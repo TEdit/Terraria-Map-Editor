@@ -1,0 +1,169 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{5C222BFA-A8FE-4F28-896B-4B57FCD414D0}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>TerrariaMapEditor</RootNamespace>
+    <AssemblyName>TerrariaMapEditor</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>HP-Network.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Common\Utility.cs" />
+    <Compile Include="Common\XML.cs" />
+    <Compile Include="Controls\TilePicker.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\TilePicker.Designer.cs">
+      <DependentUpon>TilePicker.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\WorldViewport.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\WorldViewport.Events.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FormMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormMain.Designer.cs">
+      <DependentUpon>FormMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormMain.Tools.cs">
+      <DependentUpon>FormMain.cs</DependentUpon>
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Renderer\TileColors.cs" />
+    <Compile Include="Renderer\TileProperties.cs" />
+    <Compile Include="Renderer\WorldRenderer.cs" />
+    <Compile Include="Views\AboutBox.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\AboutBox.Designer.cs">
+      <DependentUpon>AboutBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ChestEditorView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\ChestEditorView.Designer.cs">
+      <DependentUpon>ChestEditorView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\WorldEditorView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\WorldEditorView.Designer.cs">
+      <DependentUpon>WorldEditorView.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Controls\TilePicker.resx">
+      <DependentUpon>TilePicker.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormMain.resx">
+      <DependentUpon>FormMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <EmbeddedResource Include="Views\AboutBox.resx">
+      <DependentUpon>AboutBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\ChestEditorView.resx">
+      <DependentUpon>ChestEditorView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\WorldEditorView.resx">
+      <DependentUpon>WorldEditorView.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="Renderer\Constants.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\TerrariaWorld\TerrariaWorld.csproj">
+      <Project>{C68B427B-8FAB-4B88-8BCD-BCFEC89B5F8D}</Project>
+      <Name>TerrariaWorld</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="colors.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="GPL.txt" />
+    <Content Include="HP-Network.ico" />
+    <None Include="Resources\thumbnail.png" />
+    <None Include="Resources\cross.png" />
+    <None Include="Resources\cursor.png" />
+    <None Include="Resources\world_selection.png" />
+    <None Include="Resources\world.png" />
+    <None Include="Resources\shape_square.png" />
+    <None Include="Resources\pencil.png" />
+    <None Include="Resources\paintcan.png" />
+    <None Include="Resources\paintbrush.png" />
+    <None Include="Resources\arrow_rotate_clockwise.png" />
+    <None Include="Resources\arrow_rotate_anticlockwise.png" />
+    <None Include="Resources\zoom_in.png" />
+    <None Include="Resources\zoom_out.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
