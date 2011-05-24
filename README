@@ -1,12 +1,16 @@
 # Terraria Map Editor
-# v 1.0.1.0
 # Author: BinaryConstruct
 # License: GPL
 # URL: http://github.com/BinaryConstruct/Terraria-Map-Editor
 # Homepage: http://www.binaryconstruct.com/games/terraria/
+# binary: http://github.com/downloads/BinaryConstruct/Terraria-Map-Editor/TEditLatest.zip
+
+Update History
+v1.0.1.1
+Small updates to viewer
 
 v1.0.1.0
 Fixed pixel offset in view and using tool, everything should line up properly now
 
-# v1.0.0.0
-# initial release
+v1.0.0.0
+initial release
