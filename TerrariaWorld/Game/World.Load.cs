@@ -20,9 +20,6 @@ namespace TerrariaWorld.Game
 
         public static World Load(string filename)
         {
-            if (!TileProperties.IsInitialized)
-                TileProperties.InitializeTileProperties();
-
             World wf = new World();
 
 
@@ -78,7 +75,7 @@ namespace TerrariaWorld.Game
                                 if (wf.Tiles[x, y].IsActive)
                                 {
                                     wf.Tiles[x, y].Type = reader.ReadByte();
-                                    if (TileProperties.IsFrameImportant[wf.Tiles[x, y].Type])
+                                    if (TileProperties.Tiles[wf.Tiles[x, y].Type].IsFrameImportant)
                                         wf.Tiles[x, y].Frame = new Common.PointS(reader.ReadInt16(), reader.ReadInt16());
                                     else
                                         wf.Tiles[x, y].Frame = new Common.PointS(-1, -1);

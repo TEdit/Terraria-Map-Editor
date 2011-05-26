@@ -23,8 +23,6 @@ namespace TerrariaMapEditor
         public FormMain()
         {
             InitializeComponent();
-
-            TerrariaWorld.Game.TileProperties.InitializeTileProperties();
             
             this._world = new TerrariaWorld.Game.World();
             this._worldRenderer = new Renderer.WorldRenderer();
@@ -39,7 +37,7 @@ namespace TerrariaMapEditor
             List<Renderer.TileProperties> tiles = new List<Renderer.TileProperties>();
             foreach (var item in this._worldRenderer.TileColors.TileColor)
             {
-                if (!TerrariaWorld.Game.TileProperties.IsFrameImportant[item.Key])
+                if (!TerrariaWorld.Game.TileProperties.Tiles[item.Key].IsFrameImportant)
                 {
                     tiles.Add(item.Value);
                 }

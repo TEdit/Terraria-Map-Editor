@@ -11,9 +11,6 @@ namespace TerrariaWorld.Game
     {
         public void SaveFile(string filename)
         {
-            if (!TileProperties.IsInitialized)
-                TileProperties.InitializeTileProperties();
-
             string backupFileName = filename + ".Tedit";
             if (File.Exists(filename))
             {
@@ -64,7 +61,7 @@ namespace TerrariaWorld.Game
                             if (this.Tiles[x, y].IsActive)
                             {
                                 writer.Write(this.Tiles[x, y].Type);
-                                if (TileProperties.IsFrameImportant[this.Tiles[x, y].Type])
+                                if (TileProperties.Tiles[this.Tiles[x, y].Type].IsFrameImportant)
                                 {
                                     writer.Write(this.Tiles[x, y].Frame.X);
                                     writer.Write(this.Tiles[x, y].Frame.Y);
