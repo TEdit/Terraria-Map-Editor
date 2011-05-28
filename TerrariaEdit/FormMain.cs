@@ -23,8 +23,6 @@ namespace TerrariaMapEditor
         public FormMain()
         {
             InitializeComponent();
-
-            TerrariaWorld.Game.TileProperties.InitializeTileProperties();
             
             this._world = new TerrariaWorld.Game.World();
             this._worldRenderer = new Renderer.WorldRenderer();
@@ -39,7 +37,7 @@ namespace TerrariaMapEditor
             List<Renderer.TileProperties> tiles = new List<Renderer.TileProperties>();
             foreach (var item in this._worldRenderer.TileColors.TileColor)
             {
-                if (!TerrariaWorld.Game.TileProperties.IsFrameImportant[item.Key])
+                if (!TerrariaWorld.Game.TileProperties.Tiles[item.Key].IsFrameImportant)
                 {
                     tiles.Add(item.Value);
                 }
@@ -159,8 +157,31 @@ namespace TerrariaMapEditor
         {
             Task.Factory.StartNew(() =>
                 {
-                    this._world.SaveFile(this._world.Header.FileName);
+                    string tempFileName = this._world.Header.FileName + ".temp";
+                    this._world.SaveFile(tempFileName);
+                    System.IO.File.Copy(tempFileName, this._world.Header.FileName, true);
+                    System.IO.File.Delete(tempFileName);
                 });
+        }
+
+
+        private void saveAsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog sfd = new SaveFileDialog();
+            sfd.Title = "Save As Terraria World File ";
+            sfd.DefaultExt = "Terraria World File|*.wld";
+            sfd.Filter = "Terraria World File|*.wld";
+            sfd.FileName = this._world.Header.FileName;
+            if (sfd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                Task.Factory.StartNew(() =>
+                {
+                    string tempFileName = sfd.FileName + ".temp";
+                    this._world.SaveFile(tempFileName);
+                    System.IO.File.Copy(tempFileName, sfd.FileName, true);
+                    System.IO.File.Delete(tempFileName);
+                });
+            }
         }
 
         private void SetZoomLevel(string zoom)
@@ -294,5 +315,6 @@ namespace TerrariaMapEditor
                 this._world.Chests[i] = this.chestEditorView1.Chests[i];
             }
         }
+
     }
 }

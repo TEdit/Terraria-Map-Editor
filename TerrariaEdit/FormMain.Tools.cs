@@ -192,7 +192,15 @@ namespace TerrariaMapEditor
 
         private void worldViewportMain_MouseMove(object sender, MouseEventArgs e)
         {
-            this.statusTileLocLabel.Text = this.worldViewportMain.TileMouseOver.ToString();
+            if (this._world.Header.MaxTiles.X > this.worldViewportMain.TileMouseOver.X && this._world.Header.MaxTiles.Y > this.worldViewportMain.TileMouseOver.Y && this._worldRenderer != null)
+            {
+                TerrariaWorld.Game.Tile hoverTile = this._world.Tiles[this.worldViewportMain.TileMouseOver.X, this.worldViewportMain.TileMouseOver.Y];
+                this.statusTileLocLabel.Text = String.Format(
+                    "{0} {1}",
+                    this.worldViewportMain.TileMouseOver,
+                    this._worldRenderer.GetTileName(hoverTile));
+            }
+
             if (this.ActiveTool != Tool.Arrow)
             {
                 this.worldViewportMain.Invalidate();

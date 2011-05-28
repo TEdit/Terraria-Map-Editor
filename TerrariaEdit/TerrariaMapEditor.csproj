@@ -142,8 +142,16 @@
     <Content Include="colors.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="GPL.txt" />
+    <Content Include="famfamfamreadme.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="GPL.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="HP-Network.ico" />
+    <None Include="README">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="Resources\thumbnail.png" />
     <None Include="Resources\cross.png" />
     <None Include="Resources\cursor.png" />
