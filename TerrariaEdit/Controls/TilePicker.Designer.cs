@@ -54,6 +54,7 @@
             // wallField
             // 
             this.wallField.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.wallField.DropDownWidth = 200;
             this.wallField.FormattingEnabled = true;
             this.wallField.Location = new System.Drawing.Point(6, 20);
             this.wallField.Name = "wallField";
@@ -73,6 +74,7 @@
             // tileField
             // 
             this.tileField.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.tileField.DropDownWidth = 200;
             this.tileField.FormattingEnabled = true;
             this.tileField.Location = new System.Drawing.Point(6, 20);
             this.tileField.Name = "tileField";
@@ -83,6 +85,7 @@
             // maskField
             // 
             this.maskField.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.maskField.DropDownWidth = 200;
             this.maskField.FormattingEnabled = true;
             this.maskField.Location = new System.Drawing.Point(6, 20);
             this.maskField.Name = "maskField";

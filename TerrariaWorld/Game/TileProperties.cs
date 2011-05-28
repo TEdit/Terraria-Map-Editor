@@ -26,11 +26,9 @@ namespace TerrariaWorld.Game
         {
             get
             {
-                lock (_Tiles)
-                {
-                    if (!isInitialized)
-                        InitializeTileProperties();
-                }
+                if (!isInitialized)
+                    InitializeTileProperties();
+                
                 return _Tiles;
             }
         }
