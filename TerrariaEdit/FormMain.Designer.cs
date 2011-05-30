@@ -85,6 +85,8 @@
             this.tabSigns = new System.Windows.Forms.TabPage();
             this.tabNPCs = new System.Windows.Forms.TabPage();
             this.tilePicker1 = new TerrariaMapEditor.Controls.TilePicker();
+            this.statusTileTypeLabel = new System.Windows.Forms.ToolStripStatusLabel();
+            this.statusWallTypeLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.mainMenu.SuspendLayout();
             this.mainStatusStrip.SuspendLayout();
             this.mainToolStrip.SuspendLayout();
@@ -246,6 +248,8 @@
             // 
             this.mainStatusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.statusTileLocLabel,
+            this.statusTileTypeLabel,
+            this.statusWallTypeLabel,
             this.toolStripStatusLabel2,
             this.statusLabel,
             this.statusProgressBar});
@@ -264,7 +268,7 @@
             // toolStripStatusLabel2
             // 
             this.toolStripStatusLabel2.Name = "toolStripStatusLabel2";
-            this.toolStripStatusLabel2.Size = new System.Drawing.Size(963, 17);
+            this.toolStripStatusLabel2.Size = new System.Drawing.Size(876, 17);
             this.toolStripStatusLabel2.Spring = true;
             // 
             // statusLabel
@@ -665,6 +669,18 @@
             this.tilePicker1.Walls = null;
             this.tilePicker1.WallType = null;
             // 
+            // statusTileTypeLabel
+            // 
+            this.statusTileTypeLabel.Name = "statusTileTypeLabel";
+            this.statusTileTypeLabel.Size = new System.Drawing.Size(26, 17);
+            this.statusTileTypeLabel.Text = "Tile";
+            // 
+            // statusWallTypeLabel
+            // 
+            this.statusWallTypeLabel.Name = "statusWallTypeLabel";
+            this.statusWallTypeLabel.Size = new System.Drawing.Size(30, 17);
+            this.statusWallTypeLabel.Text = "Wall";
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -761,6 +777,8 @@
         private System.Windows.Forms.ToolStripComboBox toolstripMainBrushStyle;
         private System.Windows.Forms.ToolStripMenuItem hideSideBarToolStripMenuItem;
         private Views.ChestEditorView chestEditorView1;
+        private System.Windows.Forms.ToolStripStatusLabel statusTileTypeLabel;
+        private System.Windows.Forms.ToolStripStatusLabel statusWallTypeLabel;
     }
 }
 

@@ -28,10 +28,19 @@ namespace TerrariaMapEditor.Renderer
             this.tileColors = Renderer.TileColors.Load("colors.txt");
         }
 
-        public string GetTileName(TerrariaWorld.Game.Tile tile)
+        public string GetTileName(TerrariaWorld.Game.Tile tile, out string wall)
         {
             string tilename = string.Empty;
-            string wall = string.Empty;
+            wall = string.Empty;
+
+            TileProperties wallColor;
+            if (this.tileColors.WallColor.TryGetValue(tile.Type, out wallColor))
+            {
+                wall = wallColor.Name;
+            }
+
+            if (!tile.IsActive)
+                return "[empty]";
 
             if (tile.Liquid > 0)
             {
@@ -49,16 +58,7 @@ namespace TerrariaMapEditor.Renderer
                 }
             }
 
-            TileProperties wallColor;
-            if (this.tileColors.WallColor.TryGetValue(tile.Type, out wallColor))
-            {
-                wall = wallColor.Name;
-            }
-
-            if (tile.IsActive)
-                return String.Format("{0} Wall:{1}", tilename, wall);
-
-            return String.Format("{0}", wall);
+            return tilename;
         }
 
         public Bitmap RenderRegion(TerrariaWorld.Game.World world, Rectangle area)
