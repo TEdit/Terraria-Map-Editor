@@ -50,6 +50,16 @@ namespace TerrariaMapEditor.Controls
 
         }
 
+
+        public event MouseEventHandler MouseWheelTile;
+        protected virtual void OnMouseWheelTile(object sender, MouseEventArgs e)
+        {
+            if (MouseWheelTile != null)
+                MouseWheelTile(sender, e);
+        }
+        
+            
+
         #region Property Change Methods and Events
 
         [field: NonSerialized]

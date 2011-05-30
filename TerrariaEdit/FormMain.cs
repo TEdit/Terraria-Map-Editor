@@ -237,12 +237,22 @@ namespace TerrariaMapEditor
 
         private void toolstripMainZoomOutButton_Click(object sender, EventArgs e)
         {
+            ZoomOut();
+        }
+
+        private void ZoomOut()
+        {
             this.worldViewportMain.IsAutoZoom = false;
             float newZoom = (float)Math.Round(100 * this.worldViewportMain.Zoom * 0.8F, 0);
             this.worldViewportMain.Zoom = newZoom / 100;
         }
 
         private void toolstripmainZoomInButton_Click(object sender, EventArgs e)
+        {
+            ZoomIn();
+        }
+
+        private void ZoomIn()
         {
             this.worldViewportMain.IsAutoZoom = false;
             float newZoom = (float)Math.Round(100 * this.worldViewportMain.Zoom * 1.2F, 0);
@@ -315,6 +325,15 @@ namespace TerrariaMapEditor
                 this._world.Chests[i] = this.chestEditorView1.Chests[i];
             }
         }
+
+        private void toolstripMainRender_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+
+
+
 
     }
 }
