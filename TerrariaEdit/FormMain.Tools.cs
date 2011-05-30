@@ -207,6 +207,17 @@ namespace TerrariaMapEditor
             }
         }
 
+        private void worldViewportMain_KeyDown(object sender, KeyEventArgs e)
+        {
+
+        }
+
+        private void worldViewportMain_KeyUp(object sender, KeyEventArgs e)
+        {
+
+        }
+
+
         private void worldViewportMain_MouseMoveTile(object sender, MouseEventArgs e)
         {
             if (e.Button == System.Windows.Forms.MouseButtons.Left)
@@ -230,6 +241,18 @@ namespace TerrariaMapEditor
                     default:
                         break;
                 }
+            }
+        }
+
+        private void worldViewportMain_MouseWheelTile(object sender, MouseEventArgs e)
+        {
+            if (e.Delta > 0)
+            {
+                ZoomIn();
+            }
+            else if (e.Delta < 0)
+            {
+                ZoomOut();
             }
         }
 

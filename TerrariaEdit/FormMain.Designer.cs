@@ -50,6 +50,8 @@
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mainStatusStrip = new System.Windows.Forms.StatusStrip();
             this.statusTileLocLabel = new System.Windows.Forms.ToolStripStatusLabel();
+            this.statusTileTypeLabel = new System.Windows.Forms.ToolStripStatusLabel();
+            this.statusWallTypeLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
             this.statusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.statusProgressBar = new System.Windows.Forms.ToolStripProgressBar();
@@ -75,6 +77,7 @@
             this.toolstripEditSelect = new System.Windows.Forms.ToolStripButton();
             this.toolstripEditBrush = new System.Windows.Forms.ToolStripButton();
             this.toolstripEditBucket = new System.Windows.Forms.ToolStripButton();
+            this.toolstripEditFillPercent = new System.Windows.Forms.ToolStripButton();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.worldViewportMain = new TerrariaMapEditor.Controls.WorldViewport();
             this.editorTabs = new System.Windows.Forms.TabControl();
@@ -85,8 +88,6 @@
             this.tabSigns = new System.Windows.Forms.TabPage();
             this.tabNPCs = new System.Windows.Forms.TabPage();
             this.tilePicker1 = new TerrariaMapEditor.Controls.TilePicker();
-            this.statusTileTypeLabel = new System.Windows.Forms.ToolStripStatusLabel();
-            this.statusWallTypeLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.mainMenu.SuspendLayout();
             this.mainStatusStrip.SuspendLayout();
             this.mainToolStrip.SuspendLayout();
@@ -265,10 +266,22 @@
             this.statusTileLocLabel.Size = new System.Drawing.Size(29, 17);
             this.statusTileLocLabel.Text = "(x,y)";
             // 
+            // statusTileTypeLabel
+            // 
+            this.statusTileTypeLabel.Name = "statusTileTypeLabel";
+            this.statusTileTypeLabel.Size = new System.Drawing.Size(26, 17);
+            this.statusTileTypeLabel.Text = "Tile";
+            // 
+            // statusWallTypeLabel
+            // 
+            this.statusWallTypeLabel.Name = "statusWallTypeLabel";
+            this.statusWallTypeLabel.Size = new System.Drawing.Size(30, 17);
+            this.statusWallTypeLabel.Text = "Wall";
+            // 
             // toolStripStatusLabel2
             // 
             this.toolStripStatusLabel2.Name = "toolStripStatusLabel2";
-            this.toolStripStatusLabel2.Size = new System.Drawing.Size(876, 17);
+            this.toolStripStatusLabel2.Size = new System.Drawing.Size(907, 17);
             this.toolStripStatusLabel2.Spring = true;
             // 
             // statusLabel
@@ -394,6 +407,7 @@
             // toolstripMainRenderSelection
             // 
             this.toolstripMainRenderSelection.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolstripMainRenderSelection.Enabled = false;
             this.toolstripMainRenderSelection.Image = global::TerrariaMapEditor.Properties.Resources.world_selection;
             this.toolstripMainRenderSelection.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolstripMainRenderSelection.Name = "toolstripMainRenderSelection";
@@ -403,11 +417,13 @@
             // toolstripMainRender
             // 
             this.toolstripMainRender.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolstripMainRender.Enabled = false;
             this.toolstripMainRender.Image = global::TerrariaMapEditor.Properties.Resources.world;
             this.toolstripMainRender.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolstripMainRender.Name = "toolstripMainRender";
             this.toolstripMainRender.Size = new System.Drawing.Size(23, 22);
             this.toolstripMainRender.Text = "Render Whole World";
+            this.toolstripMainRender.Click += new System.EventHandler(this.toolstripMainRender_Click);
             // 
             // toolStripSeparator7
             // 
@@ -470,7 +486,8 @@
             this.toolstripEditPencil,
             this.toolstripEditSelect,
             this.toolstripEditBrush,
-            this.toolstripEditBucket});
+            this.toolstripEditBucket,
+            this.toolstripEditFillPercent});
             this.editToolStrip.Location = new System.Drawing.Point(0, 100);
             this.editToolStrip.Name = "editToolStrip";
             this.editToolStrip.Size = new System.Drawing.Size(24, 545);
@@ -528,6 +545,16 @@
             this.toolstripEditBucket.Text = "Fill";
             this.toolstripEditBucket.Click += new System.EventHandler(this.toolstripEditBucket_Click);
             // 
+            // toolstripEditFillPercent
+            // 
+            this.toolstripEditFillPercent.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolstripEditFillPercent.Enabled = false;
+            this.toolstripEditFillPercent.Image = global::TerrariaMapEditor.Properties.Resources.paintcanpercent;
+            this.toolstripEditFillPercent.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolstripEditFillPercent.Name = "toolstripEditFillPercent";
+            this.toolstripEditFillPercent.Size = new System.Drawing.Size(21, 20);
+            this.toolstripEditFillPercent.Text = "Fill Percentage";
+            // 
             // splitContainer1
             // 
             this.splitContainer1.BackColor = System.Drawing.SystemColors.ControlDarkDark;
@@ -569,7 +596,10 @@
             this.worldViewportMain.MouseDownTile += new System.Windows.Forms.MouseEventHandler(this.worldViewportMain_MouseDownTile);
             this.worldViewportMain.MouseMoveTile += new System.Windows.Forms.MouseEventHandler(this.worldViewportMain_MouseMoveTile);
             this.worldViewportMain.MouseUpTile += new System.Windows.Forms.MouseEventHandler(this.worldViewportMain_MouseUpTile);
+            this.worldViewportMain.MouseWheelTile += new System.Windows.Forms.MouseEventHandler(this.worldViewportMain_MouseWheelTile);
             this.worldViewportMain.PropertyChanged += new System.ComponentModel.PropertyChangedEventHandler(this.worldViewportMain_PropertyChanged);
+            this.worldViewportMain.KeyDown += new System.Windows.Forms.KeyEventHandler(this.worldViewportMain_KeyDown);
+            this.worldViewportMain.KeyUp += new System.Windows.Forms.KeyEventHandler(this.worldViewportMain_KeyUp);
             this.worldViewportMain.MouseEnter += new System.EventHandler(this.worldViewportMain_MouseEnter);
             this.worldViewportMain.MouseLeave += new System.EventHandler(this.worldViewportMain_MouseLeave);
             this.worldViewportMain.MouseMove += new System.Windows.Forms.MouseEventHandler(this.worldViewportMain_MouseMove);
@@ -627,7 +657,7 @@
             this.chestEditorView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.chestEditorView1.Location = new System.Drawing.Point(3, 3);
             this.chestEditorView1.Name = "chestEditorView1";
-            this.chestEditorView1.Size = new System.Drawing.Size(257, 513);
+            this.chestEditorView1.Size = new System.Drawing.Size(255, 513);
             this.chestEditorView1.TabIndex = 0;
             this.chestEditorView1.Save += new System.EventHandler(this.chestEditorView1_Save);
             this.chestEditorView1.Cancel += new System.EventHandler(this.chestEditorView1_Cancel);
@@ -668,18 +698,6 @@
             this.tilePicker1.TileType = null;
             this.tilePicker1.Walls = null;
             this.tilePicker1.WallType = null;
-            // 
-            // statusTileTypeLabel
-            // 
-            this.statusTileTypeLabel.Name = "statusTileTypeLabel";
-            this.statusTileTypeLabel.Size = new System.Drawing.Size(26, 17);
-            this.statusTileTypeLabel.Text = "Tile";
-            // 
-            // statusWallTypeLabel
-            // 
-            this.statusWallTypeLabel.Name = "statusWallTypeLabel";
-            this.statusWallTypeLabel.Size = new System.Drawing.Size(30, 17);
-            this.statusWallTypeLabel.Text = "Wall";
             // 
             // FormMain
             // 
@@ -779,6 +797,7 @@
         private Views.ChestEditorView chestEditorView1;
         private System.Windows.Forms.ToolStripStatusLabel statusTileTypeLabel;
         private System.Windows.Forms.ToolStripStatusLabel statusWallTypeLabel;
+        private System.Windows.Forms.ToolStripButton toolstripEditFillPercent;
     }
 }
 

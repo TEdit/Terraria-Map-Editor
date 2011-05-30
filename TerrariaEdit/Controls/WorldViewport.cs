@@ -103,14 +103,34 @@ namespace TerrariaMapEditor.Controls
 
                 if (this._Zoom != correctedZoom)
                 {
+                    var lastmousetile = this.TileMouseOver;
                     this._Zoom = correctedZoom;
                     this.RaisePropertyChanged("Zoom");
                     this.SetScrollSize();
+                    this.ScrollToTile(lastmousetile);
                     this.Invalidate();
                 }
 
             }
+        }
 
+        public void ScrollToTile(Point location)
+        {
+            if (this.Image != null)
+            {
+                if (this.Image.Width > location.X && this.Image.Height > location.Y)
+                {
+                    var displaySize = GetDisplaySize();
+                    var worldImageSize = GetDisplayedWorldSize(displaySize);
+                    var scrollSize = this.AutoScrollMinSize;
+
+                    int x = (int)Math.Min(Math.Max(0, (location.X * this._Zoom) - ((float)worldImageSize.Width / 2.0)), scrollSize.Width);
+                    int y = (int)Math.Min(Math.Max(0, (location.Y * this._Zoom) - ((float)worldImageSize.Height / 2.0)), scrollSize.Height);
+
+                    Point scrollOffset = new Point(x, y);
+                    this.AutoScrollPosition = scrollOffset;
+                }
+            }
         }
 
         private bool _IsAutoZoom;
@@ -279,6 +299,13 @@ namespace TerrariaMapEditor.Controls
             base.OnMouseDown(e);
         }
 
+        protected override void OnMouseWheel(MouseEventArgs e)
+        {
+            Point tileAtMouse = GetTileAtPoint(e.Location);
+            this.OnMouseWheelTile(this, new MouseEventArgs(e.Button, e.Clicks, tileAtMouse.X, tileAtMouse.Y, e.Delta));
+            base.OnMouseWheel(e);
+        }
+
         protected override void OnMouseUp(MouseEventArgs e)
         {
             this.IsMouseDown = false;
@@ -310,22 +337,39 @@ namespace TerrariaMapEditor.Controls
 
         private Point GetTileAtPoint(Point imagePoint)
         {
+            Size displaySize = GetDisplaySize();
+            Size displayedWorldSize = GetDisplayedWorldSize(displaySize);
+
+            Point offset = GetDisplayedTileAnchor;
+
+            int tX = displayedWorldSize.Width * imagePoint.X / displaySize.Width;
+            int tY = displayedWorldSize.Height * imagePoint.Y / displaySize.Height;
+
+            return new Point(offset.X + tX, offset.Y + tY);
+        }
+
+        private Size GetDisplaySize()
+        {
             int xoffsetForScrollbar = 0;
             int yoffsetForScrollbar = 0;
+
             if (this.VScroll)
                 xoffsetForScrollbar = SystemInformation.VerticalScrollBarWidth;
+
             if (this.HScroll)
                 yoffsetForScrollbar = SystemInformation.HorizontalScrollBarHeight;
 
-            Point anchor = GetDisplayedTileAnchor;
+            int width = (int)((float)(this.Width - xoffsetForScrollbar));
+            int height = (int)((float)(this.Height - yoffsetForScrollbar));
 
-            float xScaledForScrollbar =(float)imagePoint.X *(float)(this.ClientRectangle.Width)   / (float)(this.ClientRectangle.Width - xoffsetForScrollbar);
-            float yScaledForScrollbar = (float)imagePoint.Y* (float)(this.ClientRectangle.Height) / (float)(this.ClientRectangle.Height - yoffsetForScrollbar);
+            var c = this.ClientRectangle;
+            var a = this.Size;
 
-            int displayTileX = (int)(xScaledForScrollbar / this.Zoom);
-            int displayTileY = (int)(yScaledForScrollbar / this.Zoom);
-
-            return new Point(GetDisplayedTileAnchor.X + displayTileX, GetDisplayedTileAnchor.Y + displayTileY);
+            return new Size(width, height);
+        }
+        private Size GetDisplayedWorldSize(Size displaySize)
+        {
+            return new Size((int)Math.Ceiling(displaySize.Width / this._Zoom), (int)Math.Ceiling(displaySize.Height / this._Zoom));
         }
 
 
@@ -354,12 +398,12 @@ namespace TerrariaMapEditor.Controls
         {
             if (this._Image != null && this.Height > 0 && this.Width > 0)
             {
-                Size backBufferSize = new Size((int)Math.Ceiling(this.Size.Width / this.Zoom),
-                                               (int)Math.Ceiling(this.Size.Height / this.Zoom));
+                Size displaySize = GetDisplaySize();
+                Size backBufferSize = GetDisplayedWorldSize(displaySize);
 
                 if (backBufferSize.Height <= 0 || backBufferSize.Height <= 0)
                     return;
-                
+
                 if (this._backBuffer == null)
                 {
                     this._backBuffer = new Bitmap(backBufferSize.Width, backBufferSize.Height);
@@ -390,7 +434,7 @@ namespace TerrariaMapEditor.Controls
                 e.Graphics.PixelOffsetMode = PixelOffsetMode.Half;
                 e.Graphics.InterpolationMode = InterpolationMode.NearestNeighbor;
                 e.Graphics.DrawImage(this._backBuffer,
-                    new RectangleF(this.ClientRectangle.Location, this.ClientRectangle.Size),
+                    new RectangleF(this.ClientRectangle.Location, displaySize),
                     backBufferRectangle,
                     GraphicsUnit.Pixel);
             }

@@ -34,7 +34,7 @@ namespace TerrariaMapEditor.Renderer
             wall = string.Empty;
 
             TileProperties wallColor;
-            if (this.tileColors.WallColor.TryGetValue(tile.Type, out wallColor))
+            if (this.tileColors.WallColor.TryGetValue(tile.Wall, out wallColor))
             {
                 wall = wallColor.Name;
             }
