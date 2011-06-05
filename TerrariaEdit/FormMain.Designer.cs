@@ -84,7 +84,7 @@
             this.tabWorld = new System.Windows.Forms.TabPage();
             this.worldEditorView1 = new TerrariaMapEditor.Views.WorldEditorView();
             this.tabChests = new System.Windows.Forms.TabPage();
-            this.chestEditorView1 = new TerrariaMapEditor.Views.ChestEditorView();
+            this.chestEditorView1 = new TerrariaMapEditor.Views.ChestEditorView(this.worldViewportMain);
             this.tabSigns = new System.Windows.Forms.TabPage();
             this.tabNPCs = new System.Windows.Forms.TabPage();
             this.tilePicker1 = new TerrariaMapEditor.Controls.TilePicker();
