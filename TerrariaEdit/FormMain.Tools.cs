@@ -9,27 +9,29 @@ namespace TerrariaMapEditor
 {
     partial class FormMain
     {
+        Point prevScrollPoint;
+        int pointX;
+        int pointY;
 
-
-        private Point TileSelectionStart;
-        private Point TileSelectionEnd;
+        private Point tileSelectionStart;
+        private Point tileSelectionEnd;
 
 
         private Rectangle GetSelectionRectangle()
         {
-            if (this.TileSelectionEnd != null && this.TileSelectionStart != null)
+            if (this.tileSelectionEnd != null && this.tileSelectionStart != null)
             {
-                return new Rectangle((int)Math.Min(this.TileSelectionStart.X, this.TileSelectionEnd.X),
-                                                            (int)Math.Min(this.TileSelectionStart.Y, this.TileSelectionEnd.Y),
-                                                            (int)Math.Abs(this.TileSelectionStart.X - this.TileSelectionEnd.X),
-                                                            (int)Math.Abs(this.TileSelectionStart.Y - this.TileSelectionEnd.Y));
+                return new Rectangle((int)Math.Min(this.tileSelectionStart.X, this.tileSelectionEnd.X),
+                                                            (int)Math.Min(this.tileSelectionStart.Y, this.tileSelectionEnd.Y),
+                                                            (int)Math.Abs(this.tileSelectionStart.X - this.tileSelectionEnd.X),
+                                                            (int)Math.Abs(this.tileSelectionStart.Y - this.tileSelectionEnd.Y));
             }
             return new Rectangle();
         }
 
         private void DrawSelection(Graphics g, Point topLeft)
         {
-            if (this.TileSelectionEnd != null && this.TileSelectionStart != null)
+            if (this.tileSelectionEnd != null && this.tileSelectionStart != null)
             {
                 Rectangle selectionArea = GetSelectionRectangle();
                 selectionArea.X = selectionArea.X - topLeft.X;
@@ -190,23 +192,6 @@ namespace TerrariaMapEditor
             }
         }
 
-        private void worldViewportMain_MouseMove(object sender, MouseEventArgs e)
-        {
-            if (this._world.Header.MaxTiles.X > this.worldViewportMain.TileMouseOver.X && this._world.Header.MaxTiles.Y > this.worldViewportMain.TileMouseOver.Y && this._worldRenderer != null)
-            {
-                TerrariaWorld.Game.Tile hoverTile = this._world.Tiles[this.worldViewportMain.TileMouseOver.X, this.worldViewportMain.TileMouseOver.Y];
-                string wall;
-                this.statusTileLocLabel.Text = this.worldViewportMain.TileMouseOver.ToString();
-                this.statusTileTypeLabel.Text = this._worldRenderer.GetTileName(hoverTile, out wall);
-                this.statusWallTypeLabel.Text = wall;
-            }
-
-            if (this.ActiveTool != Tool.Arrow)
-            {
-                this.worldViewportMain.Invalidate();
-            }
-        }
-
         private void worldViewportMain_KeyDown(object sender, KeyEventArgs e)
         {
 
@@ -227,7 +212,7 @@ namespace TerrariaMapEditor
                     case Tool.Arrow:
                         break;
                     case Tool.Selection:
-                        this.TileSelectionEnd = e.Location;
+                        this.tileSelectionEnd = e.Location;
                         break;
                     case Tool.Pencil:
                         UseToolPencil(e.Location);
@@ -241,6 +226,20 @@ namespace TerrariaMapEditor
                     default:
                         break;
                 }
+            }
+            else if (e.Button == MouseButtons.Middle)
+            {
+                float offsetX, offsetY;
+                float mul = Math.Min(worldViewportMain.Zoom, 2);
+                offsetX = (e.X - prevScrollPoint.X) * mul;
+                offsetY = (e.Y - prevScrollPoint.Y) * mul;
+                pointX = -(worldViewportMain.AutoScrollPosition.X);
+                pointY = -(worldViewportMain.AutoScrollPosition.Y);
+                pointX += (int)offsetX;
+                pointY += (int)offsetY;
+                worldViewportMain.AutoScrollPosition = new Point(pointX, pointY);
+                worldViewportMain.Refresh();
+                prevScrollPoint = e.Location;
             }
         }
 
@@ -265,7 +264,7 @@ namespace TerrariaMapEditor
                     case Tool.Arrow:
                         break;
                     case Tool.Selection:
-                        this.TileSelectionStart = e.Location;
+                        this.tileSelectionStart = e.Location;
                         break;
                     case Tool.Pencil:
                         UseToolPencil(e.Location);
@@ -280,7 +279,40 @@ namespace TerrariaMapEditor
                         break;
                 }
             }
+            else if (e.Button == System.Windows.Forms.MouseButtons.Middle)
+            {
+                prevScrollPoint = e.Location;
+            }
         }
+
+
+        private void worldViewportMain_MouseUpTile(object sender, MouseEventArgs e)
+        {
+            if (e.Button == System.Windows.Forms.MouseButtons.Left)
+            {
+                switch (this.ActiveTool)
+                {
+                    case Tool.Arrow:
+                        break;
+                    case Tool.Selection:
+                        this.tileSelectionEnd = e.Location;
+                        break;
+                    case Tool.Pencil:
+                        break;
+                    case Tool.Brush:
+                        break;
+                    case Tool.Bucket:
+                        break;
+                    default:
+                        break;
+                }
+            }
+            else if (e.Button == MouseButtons.Right)
+            {
+               this. worldViewportMain.AutoScrollPosition = new Point(pointX, pointY);
+            }
+        }
+
 
         private void UseToolBucket(Point point)
         {
@@ -294,6 +326,33 @@ namespace TerrariaMapEditor
                 {
                     SetWorldTile(new Point(x, y), tile, wall, mask);
                 }
+            }
+        }
+
+        private void worldViewportMain_MouseDown(object sender, MouseEventArgs e)
+        {
+        }
+
+        private void worldViewportMain_MouseUp(object sender, MouseEventArgs e)
+        {
+
+        }
+
+
+        private void worldViewportMain_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (this._world.Header.MaxTiles.X > this.worldViewportMain.TileMouseOver.X && this._world.Header.MaxTiles.Y > this.worldViewportMain.TileMouseOver.Y && this._worldRenderer != null)
+            {
+                TerrariaWorld.Game.Tile hoverTile = this._world.Tiles[this.worldViewportMain.TileMouseOver.X, this.worldViewportMain.TileMouseOver.Y];
+                string wall;
+                this.statusTileLocLabel.Text = this.worldViewportMain.TileMouseOver.ToString();
+                this.statusTileTypeLabel.Text = this._worldRenderer.GetTileName(hoverTile, out wall);
+                this.statusWallTypeLabel.Text = wall;
+            }
+
+            if (this.ActiveTool != Tool.Arrow)
+            {
+                this.worldViewportMain.Invalidate();
             }
         }
 
@@ -333,29 +392,6 @@ namespace TerrariaMapEditor
             TerrariaMapEditor.Renderer.TileProperties wall = this.tilePicker1.IsPaintWall ? this.tilePicker1.WallType : null;
             TerrariaMapEditor.Renderer.TileProperties mask = this.tilePicker1.IsUseMask ? this.tilePicker1.MaskType : null;
             SetWorldTile(point, tile, wall, mask);
-        }
-
-        private void worldViewportMain_MouseUpTile(object sender, MouseEventArgs e)
-        {
-            if (e.Button == System.Windows.Forms.MouseButtons.Left)
-            {
-                switch (this.ActiveTool)
-                {
-                    case Tool.Arrow:
-                        break;
-                    case Tool.Selection:
-                        this.TileSelectionEnd = e.Location;
-                        break;
-                    case Tool.Pencil:
-                        break;
-                    case Tool.Brush:
-                        break;
-                    case Tool.Bucket:
-                        break;
-                    default:
-                        break;
-                }
-            }
         }
 
         private void SetWorldTile(Point location, Renderer.TileProperties tile, Renderer.TileProperties wall, Renderer.TileProperties mask)
