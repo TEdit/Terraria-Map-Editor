@@ -6,6 +6,10 @@
 # binary: http://github.com/downloads/BinaryConstruct/Terraria-Map-Editor/TEditLatest.zip
 
 Update History
+v1.0.1.4
+Added middle-click-drag panning
+Added error logging
+
 v1.0.1.2
 Widened tile drop down to visualize whole names
 Added "Save As" functionality
