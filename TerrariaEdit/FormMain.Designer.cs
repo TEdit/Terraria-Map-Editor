@@ -600,9 +600,11 @@
             this.worldViewportMain.PropertyChanged += new System.ComponentModel.PropertyChangedEventHandler(this.worldViewportMain_PropertyChanged);
             this.worldViewportMain.KeyDown += new System.Windows.Forms.KeyEventHandler(this.worldViewportMain_KeyDown);
             this.worldViewportMain.KeyUp += new System.Windows.Forms.KeyEventHandler(this.worldViewportMain_KeyUp);
+            this.worldViewportMain.MouseDown += new System.Windows.Forms.MouseEventHandler(this.worldViewportMain_MouseDown);
             this.worldViewportMain.MouseEnter += new System.EventHandler(this.worldViewportMain_MouseEnter);
             this.worldViewportMain.MouseLeave += new System.EventHandler(this.worldViewportMain_MouseLeave);
             this.worldViewportMain.MouseMove += new System.Windows.Forms.MouseEventHandler(this.worldViewportMain_MouseMove);
+            this.worldViewportMain.MouseUp += new System.Windows.Forms.MouseEventHandler(this.worldViewportMain_MouseUp);
             // 
             // editorTabs
             // 
@@ -657,7 +659,7 @@
             this.chestEditorView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.chestEditorView1.Location = new System.Drawing.Point(3, 3);
             this.chestEditorView1.Name = "chestEditorView1";
-            this.chestEditorView1.Size = new System.Drawing.Size(255, 513);
+            this.chestEditorView1.Size = new System.Drawing.Size(257, 513);
             this.chestEditorView1.TabIndex = 0;
             this.chestEditorView1.Save += new System.EventHandler(this.chestEditorView1_Save);
             this.chestEditorView1.Cancel += new System.EventHandler(this.chestEditorView1_Cancel);
