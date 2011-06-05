@@ -21,7 +21,7 @@ namespace TerrariaWorld.Game
         public static World Load(string filename)
         {
             string ext = Path.GetExtension(filename);
-            if (string.Equals(ext, "wld", StringComparison.CurrentCultureIgnoreCase))
+            if (!string.Equals(ext, ".wld", StringComparison.CurrentCultureIgnoreCase))
                 throw new ApplicationException("Invalid file");
 
             World wf = new World();
