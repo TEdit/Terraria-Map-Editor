@@ -11,8 +11,10 @@ namespace TerrariaMapEditor.Views
 {
     public partial class ChestEditorView : UserControl
     {
-        public ChestEditorView()
+        private Controls.WorldViewport wvp;
+        public ChestEditorView(Controls.WorldViewport wvp)
         {
+            this.wvp = wvp;
             InitializeComponent();
         }
 
@@ -47,6 +49,8 @@ namespace TerrariaMapEditor.Views
         {
             this._ActiveChest = this._Chests[chestListBox.SelectedIndex];
             chestDGV.DataSource = this._ActiveChest.Items;
+            if (this.chkJump.Checked)
+                this.wvp.ScrollToTile(new Point(this._ActiveChest.Location.X, this._ActiveChest.Location.Y));
         }
 
         private void saveButton_Click(object sender, EventArgs e)
