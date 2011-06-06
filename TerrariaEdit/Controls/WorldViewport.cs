@@ -289,20 +289,27 @@ namespace TerrariaMapEditor.Controls
         {
             this.IsMouseDown = true;
 
-            Point tileAtMouse = GetTileAtPoint(e.Location);
-            if (this.TileLastClicked != tileAtMouse)
+            if (this.ClientRectangle.Contains(e.Location))
             {
-                this.TileLastClicked = tileAtMouse;
+                Point tileAtMouse = GetTileAtPoint(e.Location);
+                if (this.TileLastClicked != tileAtMouse)
+                {
+                    this.TileLastClicked = tileAtMouse;
+                }
+
+                this.OnMouseDownTile(this, new MouseEventArgs(e.Button, e.Clicks, tileAtMouse.X, tileAtMouse.Y, e.Delta));
             }
 
-            this.OnMouseDownTile(this, new MouseEventArgs(e.Button, e.Clicks, tileAtMouse.X, tileAtMouse.Y, e.Delta));
             base.OnMouseDown(e);
         }
 
         protected override void OnMouseWheel(MouseEventArgs e)
         {
-            Point tileAtMouse = GetTileAtPoint(e.Location);
-            this.OnMouseWheelTile(this, new MouseEventArgs(e.Button, e.Clicks, tileAtMouse.X, tileAtMouse.Y, e.Delta));
+            if (this.ClientRectangle.Contains(e.Location))
+            {
+                Point tileAtMouse = GetTileAtPoint(e.Location);
+                this.OnMouseWheelTile(this, new MouseEventArgs(e.Button, e.Clicks, tileAtMouse.X, tileAtMouse.Y, e.Delta));
+            }
             base.OnMouseWheel(e);
         }
 
@@ -310,21 +317,24 @@ namespace TerrariaMapEditor.Controls
         {
             this.IsMouseDown = false;
 
-            Point tileAtMouse = GetTileAtPoint(e.Location);
-            this.TileLastReleased = tileAtMouse;
+            if (this.ClientRectangle.Contains(e.Location))
+            {
+                Point tileAtMouse = GetTileAtPoint(e.Location);
+                this.TileLastReleased = tileAtMouse;
 
-            this.OnMouseUpTile(this, new MouseEventArgs(e.Button, e.Clicks, tileAtMouse.X, tileAtMouse.Y, e.Delta));
+                this.OnMouseUpTile(this, new MouseEventArgs(e.Button, e.Clicks, tileAtMouse.X, tileAtMouse.Y, e.Delta));
+            }
             base.OnMouseUp(e);
         }
 
         protected override void OnMouseMove(MouseEventArgs e)
         {
-            Point tileAtMouse = GetTileAtPoint(e.Location);
-
-            this.TileMouseOver = tileAtMouse;
-            this.OnMouseMoveTile(this, new MouseEventArgs(e.Button, e.Clicks, tileAtMouse.X, tileAtMouse.Y, e.Delta));
-            //this.Invalidate();
-
+            if (this.ClientRectangle.Contains(e.Location))
+            {
+                Point tileAtMouse = GetTileAtPoint(e.Location);
+                this.TileMouseOver = tileAtMouse;
+                this.OnMouseMoveTile(this, new MouseEventArgs(e.Button, e.Clicks, tileAtMouse.X, tileAtMouse.Y, e.Delta));
+            }
             base.OnMouseMove(e);
         }
 
@@ -367,8 +377,15 @@ namespace TerrariaMapEditor.Controls
 
             return new Size(width, height);
         }
+
         private Size GetDisplayedWorldSize(Size displaySize)
         {
+            return new Size((int)Math.Ceiling(displaySize.Width / this._Zoom), (int)Math.Ceiling(displaySize.Height / this._Zoom));
+        }
+
+        public Size GetDisplayedWorldSize()
+        {
+            Size displaySize = GetDisplaySize();
             return new Size((int)Math.Ceiling(displaySize.Width / this._Zoom), (int)Math.Ceiling(displaySize.Height / this._Zoom));
         }
 
