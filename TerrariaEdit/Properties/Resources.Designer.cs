@@ -102,6 +102,13 @@ namespace TerrariaMapEditor.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap paintcanpercent {
+            get {
+                object obj = ResourceManager.GetObject("paintcanpercent", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap pencil {
             get {
                 object obj = ResourceManager.GetObject("pencil", resourceCulture);
