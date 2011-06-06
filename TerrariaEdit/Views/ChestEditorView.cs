@@ -6,8 +6,6 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using System.Diagnostics;
-using System.Text.RegularExpressions;
 
 namespace TerrariaMapEditor.Views
 {
@@ -51,8 +49,8 @@ namespace TerrariaMapEditor.Views
         {
             this._ActiveChest = this._Chests[chestListBox.SelectedIndex];
             chestDGV.DataSource = this._ActiveChest.Items;
-
-            this.wvp.ScrollToTile(new Point(this._ActiveChest.Location.X, this._ActiveChest.Location.Y));
+            if (this.chkJump.Checked)
+                this.wvp.ScrollToTile(new Point(this._ActiveChest.Location.X, this._ActiveChest.Location.Y));
         }
 
         private void saveButton_Click(object sender, EventArgs e)

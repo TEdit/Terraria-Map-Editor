@@ -367,8 +367,15 @@ namespace TerrariaMapEditor.Controls
 
             return new Size(width, height);
         }
+
         private Size GetDisplayedWorldSize(Size displaySize)
         {
+            return new Size((int)Math.Ceiling(displaySize.Width / this._Zoom), (int)Math.Ceiling(displaySize.Height / this._Zoom));
+        }
+
+        public Size GetDisplayedWorldSize()
+        {
+            Size displaySize = GetDisplaySize();
             return new Size((int)Math.Ceiling(displaySize.Width / this._Zoom), (int)Math.Ceiling(displaySize.Height / this._Zoom));
         }
 

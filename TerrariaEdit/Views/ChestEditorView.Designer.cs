@@ -36,6 +36,7 @@
             this.chestDGV = new System.Windows.Forms.DataGridView();
             this.label2 = new System.Windows.Forms.Label();
             this.chestCoordsLabel = new System.Windows.Forms.Label();
+            this.chkJump = new System.Windows.Forms.CheckBox();
             this.controlPanel.SuspendLayout();
             this.chestContentsPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chestDGV)).BeginInit();
@@ -47,9 +48,9 @@
                         | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.chestListBox.FormattingEnabled = true;
-            this.chestListBox.Location = new System.Drawing.Point(3, 3);
+            this.chestListBox.Location = new System.Drawing.Point(3, 29);
             this.chestListBox.Name = "chestListBox";
-            this.chestListBox.Size = new System.Drawing.Size(400, 147);
+            this.chestListBox.Size = new System.Drawing.Size(400, 121);
             this.chestListBox.TabIndex = 0;
             this.chestListBox.SelectedIndexChanged += new System.EventHandler(this.chestListBox_SelectedIndexChanged);
             // 
@@ -132,10 +133,22 @@
             this.chestCoordsLabel.TabIndex = 0;
             this.chestCoordsLabel.Text = "(0,0)";
             // 
+            // chkJump
+            // 
+            this.chkJump.AutoEllipsis = true;
+            this.chkJump.AutoSize = true;
+            this.chkJump.Location = new System.Drawing.Point(3, 6);
+            this.chkJump.Name = "chkJump";
+            this.chkJump.Size = new System.Drawing.Size(135, 17);
+            this.chkJump.TabIndex = 3;
+            this.chkJump.Text = "Jump to selected chest";
+            this.chkJump.UseVisualStyleBackColor = true;
+            // 
             // ChestEditorView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.chkJump);
             this.Controls.Add(this.chestContentsPanel);
             this.Controls.Add(this.controlPanel);
             this.Controls.Add(this.chestListBox);
@@ -146,6 +159,7 @@
             this.chestContentsPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chestDGV)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -159,5 +173,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label chestCoordsLabel;
         private System.Windows.Forms.DataGridView chestDGV;
+        private System.Windows.Forms.CheckBox chkJump;
     }
 }
