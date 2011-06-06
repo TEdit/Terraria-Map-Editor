@@ -100,18 +100,26 @@ namespace TerrariaMapEditor
             {
                 Task.Factory.StartNew(() =>
                 {
-                    // Load world from file
-                    this._world = TerrariaWorld.Game.World.Load(ofd.FileName);
-
-                    // Perform initial render of world (full render)
-                    var worldimage = _worldRenderer.RenderRegion(this._world, new Rectangle(0, 0, _world.Header.MaxTiles.X, _world.Header.MaxTiles.Y));
-                    this.uiFactory.StartNew(() =>
+                    try
                     {
-                        this._worldImage = worldimage;
-                        this.worldViewportMain.Image = _worldImage;
-                        this.worldEditorView1.WorldHeader = this._world.Header;
-                        this.chestEditorView1.Chests = this._world.Chests;
-                    });
+                        this._world = TerrariaWorld.Game.World.Load(ofd.FileName);
+
+                        // Perform initial render of world (full render)
+                        var worldimage = _worldRenderer.RenderRegion(this._world, new Rectangle(0, 0, _world.Header.MaxTiles.X, _world.Header.MaxTiles.Y));
+                        this.uiFactory.StartNew(() =>
+                        {
+                            this._worldImage = worldimage;
+                            this.worldViewportMain.Image = _worldImage;
+                            this.worldEditorView1.WorldHeader = this._world.Header;
+                            this.chestEditorView1.Chests = this._world.Chests;
+                        });
+                    }
+                    catch (Exception err)
+                    {
+                        TerrariaMapEditor.Common.ErrorLogging.Log("File load error");
+                        TerrariaMapEditor.Common.ErrorLogging.LogException(err, Common.ErrorLogging.ErrorLevel.Error);
+                        MessageBox.Show("Invalid file");
+                    }
                 });
             }
         }
@@ -330,6 +338,8 @@ namespace TerrariaMapEditor
         {
             
         }
+
+
 
 
 
