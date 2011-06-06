@@ -135,7 +135,6 @@
             // 
             // chkJump
             // 
-            this.chkJump.AutoEllipsis = true;
             this.chkJump.AutoSize = true;
             this.chkJump.Location = new System.Drawing.Point(3, 6);
             this.chkJump.Name = "chkJump";
