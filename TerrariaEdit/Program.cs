@@ -17,18 +17,18 @@ namespace TerrariaMapEditor
         {
             SetExceptionHandling();
 
-            try
-            {
+            //try
+            //{
                 Application.EnableVisualStyles();
                 Application.SetCompatibleTextRenderingDefault(false);
                 Application.Run(new FormMain());
-            }
-            catch (Exception err)
-            {
-                TerrariaMapEditor.Common.ErrorLogging.LogException(err, Common.ErrorLogging.ErrorLevel.Fatal);
-                MessageBox.Show(String.Format("An unhandled exception has occured. Please copy the log from {0} to {1}.\r\nThe program will now exit.", Properties.Settings.Default.LogFile, url), "Unhandled Exception", MessageBoxButtons.OK);
-                Application.Exit();
-            }
+            //}
+            //catch (Exception err)
+            //{
+            //    TerrariaMapEditor.Common.ErrorLogging.LogException(err, Common.ErrorLogging.ErrorLevel.Fatal);
+            //    MessageBox.Show(String.Format("An unhandled exception has occured. Please copy the log from {0} to {1}.\r\nThe program will now exit.", Properties.Settings.Default.LogFile, url), "Unhandled Exception", MessageBoxButtons.OK);
+            //    Application.Exit();
+            //}
 
         }
 
