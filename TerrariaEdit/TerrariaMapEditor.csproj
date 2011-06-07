@@ -91,6 +91,13 @@
     <Compile Include="Views\ChestEditorView.Designer.cs">
       <DependentUpon>ChestEditorView.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\ChestOpsFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\ChestOpsFrm.Designer.cs">
+      <DependentUpon>ChestOpsFrm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ChestOptions.cs" />
     <Compile Include="Views\WorldEditorView.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -118,6 +125,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\ChestEditorView.resx">
       <DependentUpon>ChestEditorView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\ChestOpsFrm.resx">
+      <DependentUpon>ChestOpsFrm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\WorldEditorView.resx">
       <DependentUpon>WorldEditorView.cs</DependentUpon>

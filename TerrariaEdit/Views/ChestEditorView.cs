@@ -6,6 +6,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using System.Diagnostics;
 
 namespace TerrariaMapEditor.Views
 {
@@ -49,8 +50,10 @@ namespace TerrariaMapEditor.Views
         {
             this._ActiveChest = this._Chests[chestListBox.SelectedIndex];
             chestDGV.DataSource = this._ActiveChest.Items;
-            if (this.chkJump.Checked)
+            if (ChestOptions.jumpToChest)
+            {
                 this.wvp.ScrollToTile(new Point(this._ActiveChest.Location.X, this._ActiveChest.Location.Y));
+            }
         }
 
         private void saveButton_Click(object sender, EventArgs e)
@@ -80,6 +83,17 @@ namespace TerrariaMapEditor.Views
             if (Cancel != null)
                 Cancel(sender, e);
 
+        }
+
+        private void contextMenuStrip1_Opening(object sender, CancelEventArgs e)
+        {
+
+        }
+
+        private void chstViewOpsCtxt_Click(object sender, EventArgs e)
+        {
+            ChestOpsFrm optionsForm = new ChestOpsFrm();
+            optionsForm.ShowDialog(this);
         }
     }
 }
