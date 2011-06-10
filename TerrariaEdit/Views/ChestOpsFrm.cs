@@ -28,7 +28,7 @@ namespace TerrariaMapEditor.Views
         private void ChestOpsFrm_Load(object sender, EventArgs e)
         {
             //Jump to chest option
-            chkJump.Checked = ChestOptions.jumpToChest;
+            chkJump.Checked = Classes.ChestOptions.jumpToChest;
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
@@ -38,8 +38,15 @@ namespace TerrariaMapEditor.Views
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            ChestOptions.jumpToChest = chkJump.Checked;
+            //Chest jumper checkbox
+            Classes.ChestOptions.jumpToChest = chkJump.Checked;
+            Classes.ChestOptions.save();
             this.Close();
+        }
+
+        private void grpBox_Enter(object sender, EventArgs e)
+        {
+
         }
     }
 }

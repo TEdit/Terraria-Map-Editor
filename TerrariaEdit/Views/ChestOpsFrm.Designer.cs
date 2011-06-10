@@ -47,6 +47,7 @@
             this.grpBox.TabIndex = 0;
             this.grpBox.TabStop = false;
             this.grpBox.Text = "Chest Editor";
+            this.grpBox.Enter += new System.EventHandler(this.grpBox_Enter);
             // 
             // lblJumpDetails
             // 

@@ -339,6 +339,11 @@ namespace TerrariaMapEditor
             
         }
 
+        private void worldViewportMain_Load(object sender, EventArgs e)
+        {
+
+        }
+
 
 
 

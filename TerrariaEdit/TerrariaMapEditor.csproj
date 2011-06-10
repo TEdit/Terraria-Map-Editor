@@ -38,6 +38,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -97,7 +98,7 @@
     <Compile Include="Views\ChestOpsFrm.Designer.cs">
       <DependentUpon>ChestOpsFrm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\ChestOptions.cs" />
+    <Compile Include="Classes\ChestOptions.cs" />
     <Compile Include="Views\WorldEditorView.cs">
       <SubType>UserControl</SubType>
     </Compile>

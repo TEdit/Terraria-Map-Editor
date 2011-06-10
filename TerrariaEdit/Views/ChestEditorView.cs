@@ -50,7 +50,7 @@ namespace TerrariaMapEditor.Views
         {
             this._ActiveChest = this._Chests[chestListBox.SelectedIndex];
             chestDGV.DataSource = this._ActiveChest.Items;
-            if (ChestOptions.jumpToChest)
+            if (Classes.ChestOptions.jumpToChest)
             {
                 this.wvp.ScrollToTile(new Point(this._ActiveChest.Location.X, this._ActiveChest.Location.Y));
             }
