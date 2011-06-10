@@ -16,12 +16,7 @@ namespace TerrariaMapEditor.Properties {
     internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
         
         private static Settings defaultInstance = ((Settings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Settings())));
-        
-        public static Settings Default {
-            get {
-                return defaultInstance;
-            }
-        }
+
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -32,6 +27,21 @@ namespace TerrariaMapEditor.Properties {
             }
             set {
                 this["LogFile"] = value;
+            }
+        }
+
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("true")]
+        public string isChecked
+        {
+            get { return (string)this["isChecked"]; }
+            set { this["isChecked"] = value; }
+        }
+        
+        public static Settings Default {
+            get {
+                return defaultInstance;
             }
         }
     }
