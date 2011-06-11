@@ -16,17 +16,17 @@ namespace TerrariaWorld.Game
             {
                 File.Copy(filename, backupFileName, true);
             }
-            using (FileStream stream = new FileStream(filename, FileMode.Create))
+            using (var stream = new FileStream(filename, FileMode.Create))
             {
-                using (BinaryWriter writer = new BinaryWriter(stream))
+                using (var writer = new BinaryWriter(stream))
                 {
                     writer.Write(this.Header.FileVersion);
                     writer.Write(this.Header.WorldName);
                     writer.Write(this.Header.WorldID);
-                    writer.Write((int)this.Header.WorldBounds.TopLeft.X);
-                    writer.Write((int)this.Header.WorldBounds.BottomRight.X);
-                    writer.Write((int)this.Header.WorldBounds.TopLeft.Y);
-                    writer.Write((int)this.Header.WorldBounds.BottomRight.Y);
+                    writer.Write((int)this.Header.WorldBounds.Left);
+                    writer.Write((int)this.Header.WorldBounds.Right);
+                    writer.Write((int)this.Header.WorldBounds.Top);
+                    writer.Write((int)this.Header.WorldBounds.Bottom);
                     writer.Write(this.Header.MaxTiles.Y);
                     writer.Write(this.Header.MaxTiles.X);
                     writer.Write(this.Header.SpawnTile.X);
@@ -89,7 +89,7 @@ namespace TerrariaWorld.Game
                             }
                         }
                     }
-                    for (int chestCount = 0; chestCount < World.MAXCHESTS; chestCount++)
+                    for (int chestCount = 0; chestCount < World.MaxChests; chestCount++)
                     {
                         if (this.Chests[chestCount] == null)
                         {
@@ -110,7 +110,7 @@ namespace TerrariaWorld.Game
                             }
                         }
                     }
-                    for (int signCount = 0; signCount < World.MAXSIGNS; signCount++)
+                    for (int signCount = 0; signCount < World.MaxSigns; signCount++)
                     {
                         if ((this.Signs[signCount] == null) || (this.Signs[signCount].Text == null))
                         {
@@ -124,7 +124,7 @@ namespace TerrariaWorld.Game
                             writer.Write(this.Signs[signCount].Location.Y);
                         }
                     }
-                    for (int npcCount = 0; npcCount < World.MAXNPCS; npcCount++)
+                    for (int npcCount = 0; npcCount < World.MaxNpcs; npcCount++)
                     {
                         if (this.NPCs[npcCount] == null)
                             break;
@@ -138,6 +138,12 @@ namespace TerrariaWorld.Game
                         writer.Write(this.NPCs[npcCount].HomeTile.Y);
                     }
                     writer.Write(false);
+
+                    // Write file info check
+                    writer.Write(true);
+                    writer.Write(this.Header.WorldName);
+                    writer.Write(this.Header.WorldID);
+
                     writer.Close();
                 }
             }

@@ -24,6 +24,26 @@ namespace TerrariaWorld.Common
             this.BottomRight = new PointF(right, bottom);
         }
 
+        public float Left
+        {
+            get { return this.TopLeft.X; }
+        }
+
+        public float Right
+        {
+            get { return this.BottomRight.X; }
+        }
+
+        public float Top
+        {
+            get { return this.TopLeft.Y; }
+        }
+
+        public float Bottom
+        {
+            get { return this.BottomRight.Y; }
+        }
+
         public PointF TopLeft { get; set; }
 
         public PointF BottomRight { get; set; }

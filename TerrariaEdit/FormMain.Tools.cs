@@ -9,29 +9,29 @@ namespace TerrariaMapEditor
 {
     partial class FormMain
     {
-        Point prevScrollPoint;
-        int pointX;
-        int pointY;
+        Point _prevScrollPoint;
+        int _pointX;
+        int _pointY;
 
-        private Point tileSelectionStart;
-        private Point tileSelectionEnd;
+        private Point _tileSelectionStart;
+        private Point _tileSelectionEnd;
 
 
         private Rectangle GetSelectionRectangle()
         {
-            if (this.tileSelectionEnd != null && this.tileSelectionStart != null)
+            if (this._tileSelectionEnd != null && this._tileSelectionStart != null)
             {
-                return new Rectangle((int)Math.Min(this.tileSelectionStart.X, this.tileSelectionEnd.X),
-                                                            (int)Math.Min(this.tileSelectionStart.Y, this.tileSelectionEnd.Y),
-                                                            (int)Math.Abs(this.tileSelectionStart.X - this.tileSelectionEnd.X),
-                                                            (int)Math.Abs(this.tileSelectionStart.Y - this.tileSelectionEnd.Y));
+                return new Rectangle((int)Math.Min(this._tileSelectionStart.X, this._tileSelectionEnd.X),
+                                                            (int)Math.Min(this._tileSelectionStart.Y, this._tileSelectionEnd.Y),
+                                                            (int)Math.Abs(this._tileSelectionStart.X - this._tileSelectionEnd.X),
+                                                            (int)Math.Abs(this._tileSelectionStart.Y - this._tileSelectionEnd.Y));
             }
             return new Rectangle();
         }
 
         private void DrawSelection(Graphics g, Point topLeft)
         {
-            if (this.tileSelectionEnd != null && this.tileSelectionStart != null)
+            if (this._tileSelectionEnd != null && this._tileSelectionStart != null)
             {
                 Rectangle selectionArea = GetSelectionRectangle();
                 selectionArea.X = selectionArea.X - topLeft.X;
@@ -212,7 +212,7 @@ namespace TerrariaMapEditor
                     case Tool.Arrow:
                         break;
                     case Tool.Selection:
-                        this.tileSelectionEnd = e.Location;
+                        this._tileSelectionEnd = e.Location;
                         break;
                     case Tool.Pencil:
                         UseToolPencil(e.Location);
@@ -231,15 +231,15 @@ namespace TerrariaMapEditor
             {
                 float offsetX, offsetY;
                 float mul = Math.Min(worldViewportMain.Zoom, 2);
-                offsetX = (e.X - prevScrollPoint.X) * mul;
-                offsetY = (e.Y - prevScrollPoint.Y) * mul;
-                pointX = -(worldViewportMain.AutoScrollPosition.X);
-                pointY = -(worldViewportMain.AutoScrollPosition.Y);
-                pointX += (int)offsetX;
-                pointY += (int)offsetY;
-                worldViewportMain.AutoScrollPosition = new Point(pointX, pointY);
+                offsetX = (e.X - _prevScrollPoint.X) * mul;
+                offsetY = (e.Y - _prevScrollPoint.Y) * mul;
+                _pointX = -(worldViewportMain.AutoScrollPosition.X);
+                _pointY = -(worldViewportMain.AutoScrollPosition.Y);
+                _pointX += (int)offsetX;
+                _pointY += (int)offsetY;
+                worldViewportMain.AutoScrollPosition = new Point(_pointX, _pointY);
                 worldViewportMain.Refresh();
-                prevScrollPoint = e.Location;
+                _prevScrollPoint = e.Location;
             }
         }
 
@@ -264,7 +264,7 @@ namespace TerrariaMapEditor
                     case Tool.Arrow:
                         break;
                     case Tool.Selection:
-                        this.tileSelectionStart = e.Location;
+                        this._tileSelectionStart = e.Location;
                         break;
                     case Tool.Pencil:
                         UseToolPencil(e.Location);
@@ -281,7 +281,7 @@ namespace TerrariaMapEditor
             }
             else if (e.Button == System.Windows.Forms.MouseButtons.Middle)
             {
-                prevScrollPoint = e.Location;
+                _prevScrollPoint = e.Location;
             }
         }
 
@@ -295,7 +295,7 @@ namespace TerrariaMapEditor
                     case Tool.Arrow:
                         break;
                     case Tool.Selection:
-                        this.tileSelectionEnd = e.Location;
+                        this._tileSelectionEnd = e.Location;
                         break;
                     case Tool.Pencil:
                         break;
@@ -309,7 +309,7 @@ namespace TerrariaMapEditor
             }
             else if (e.Button == MouseButtons.Right)
             {
-               this. worldViewportMain.AutoScrollPosition = new Point(pointX, pointY);
+               this. worldViewportMain.AutoScrollPosition = new Point(_pointX, _pointY);
             }
         }
 

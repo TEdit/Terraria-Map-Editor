@@ -8,10 +8,10 @@ namespace TerrariaWorld.Game
 {
     public partial class World
     {
-        public static int MAXCHESTS = 1000;
-        public static int MAXSIGNS = 1000;
-        public static int MAXNPCS = 1000;
-        public static int COMPATIBLEVERSION = 3;
+        public static int MaxChests = 1000;
+        public static int MaxSigns = 1000;
+        public static int MaxNpcs = 1000;
+        public static int CompatableVersion = 9;
 
         public World()
         {
@@ -21,40 +21,47 @@ namespace TerrariaWorld.Game
 
         public void ClearWorld()
         {
-            this._Tiles = new Tile[this.Header.MaxTiles.X, this.Header.MaxTiles.Y];
-            this._Chests = new Chest[World.MAXCHESTS];
-            this._Signs = new Sign[World.MAXSIGNS];
-            this._NPCs = new NPC[World.MAXNPCS];
+            this._tiles = new Tile[this.Header.MaxTiles.X, this.Header.MaxTiles.Y];
+            this._chests = new Chest[World.MaxChests];
+            this._signs = new Sign[World.MaxSigns];
+            this._npcs = new NPC[World.MaxNpcs];
+        }
+
+        public void ResetTime()
+        {
+            this.Header.Time = 13500.0;
+            this.Header.MoonPhase = 0;
+            this.Header.IsBloodMoon = false;
         }
 
         public WorldHeader Header { get; set; }
 
-        private Tile[,] _Tiles;
+        private Tile[,] _tiles;
         [Browsable(false)]
         public Tile[,] Tiles
         {
-            get { return this._Tiles; }
+            get { return this._tiles; }
         }
 
-        private Chest[] _Chests;
+        private Chest[] _chests;
         [Browsable(false)]
         public Chest[] Chests
         {
-            get { return this._Chests; }
+            get { return this._chests; }
         }
 
-        private Sign[] _Signs;
+        private Sign[] _signs;
         [Browsable(false)]
         public Sign[] Signs
         {
-            get { return this._Signs; }
+            get { return this._signs; }
         }
 
-        private NPC[] _NPCs;
+        private NPC[] _npcs;
         [Browsable(false)]
         public NPC[] NPCs
         {
-            get { return this._NPCs; }
+            get { return this._npcs; }
         }
 
     }

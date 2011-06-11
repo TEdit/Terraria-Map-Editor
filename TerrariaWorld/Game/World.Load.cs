@@ -24,20 +24,19 @@ namespace TerrariaWorld.Game
             if (!string.Equals(ext, ".wld", StringComparison.CurrentCultureIgnoreCase))
                 throw new ApplicationException("Invalid file");
 
-            World wf = new World();
-            var genRand = new Random((int)DateTime.Now.Ticks);
+            var wf = new World();
 
-            using (FileStream stream = new FileStream(filename, FileMode.Open))
+            using (var stream = new FileStream(filename, FileMode.Open))
             {
-                using (BinaryReader reader = new BinaryReader(stream))
+                using (var reader = new BinaryReader(stream))
                 {
                     int version = reader.ReadInt32();
-                    if (version > World.COMPATIBLEVERSION)
+                    if (version > World.CompatableVersion)
                     {
-                        // handle version incompat
+                        // handle version
                     }
+                    wf.Header.FileVersion = version;
                     wf.Header.FileName = filename;
-
                     wf.Header.WorldName = reader.ReadString();
                     wf.Header.WorldID = reader.ReadInt32();
                     wf.Header.WorldBounds = new Common.RectF(reader.ReadInt32(), reader.ReadInt32(), reader.ReadInt32(), reader.ReadInt32());
@@ -66,79 +65,114 @@ namespace TerrariaWorld.Game
 
                     for (int x = 0; x < wf.Header.MaxTiles.X; x++)
                     {
-                        OnProgressChanged(wf, new ProgressChangedEventArgs((int)((double)x / (double)wf.Header.MaxTiles.X * 100.0), "Loading World"));
+                        OnProgressChanged(wf, new ProgressChangedEventArgs((int)((double)x / wf.Header.MaxTiles.X * 100.0), "Loading Tiles"));
 
                         for (int y = 0; y < wf.Header.MaxTiles.Y; y++)
                         {
-                            wf.Tiles[x, y] = new Tile();
-                            wf.Tiles[x, y].IsActive = reader.ReadBoolean();
-                            if (wf.Tiles[x, y].IsActive)
+                            var tile = new Tile();
+
+                            tile.IsActive = reader.ReadBoolean();
+
+                            if (tile.IsActive)
                             {
-                                wf.Tiles[x, y].Type = reader.ReadByte();
-                                if (TileProperties.Tiles[wf.Tiles[x, y].Type].IsFrameImportant)
-                                    wf.Tiles[x, y].Frame = new Common.PointS(reader.ReadInt16(), reader.ReadInt16());
+                                tile.Type = reader.ReadByte();
+                                if (TileProperties.Tiles[tile.Type].IsFrameImportant)
+                                    tile.Frame = new Common.PointS(reader.ReadInt16(), reader.ReadInt16());
                                 else
-                                    wf.Tiles[x, y].Frame = new Common.PointS(-1, -1);
+                                    tile.Frame = new Common.PointS(-1, -1);
 
                             }
-                            wf.Tiles[x, y].IsLighted = reader.ReadBoolean();
+
+                            tile.IsLighted = reader.ReadBoolean();
+
                             if (reader.ReadBoolean())
                             {
-                                wf.Tiles[x, y].Wall = reader.ReadByte();
+                                tile.Wall = reader.ReadByte();
                             }
+
                             if (reader.ReadBoolean())
                             {
-                                wf.Tiles[x, y].Liquid = reader.ReadByte();
-                                wf.Tiles[x, y].IsLava = reader.ReadBoolean();
+                                tile.Liquid = reader.ReadByte();
+                                tile.IsLava = reader.ReadBoolean();
                             }
+
+                            wf.Tiles[x, y] = wf.Tiles[x, y];
                         }
                     }
 
-                    for (int chestIndex = 0; chestIndex < World.MAXCHESTS; chestIndex++)
+                    for (int chestIndex = 0; chestIndex < World.MaxChests; chestIndex++)
                     {
+                        OnProgressChanged(wf, new ProgressChangedEventArgs((int)((double)chestIndex / World.MaxChests * 100.0), "Loading Chest Data"));
+
                         if (reader.ReadBoolean())
                         {
-                            wf.Chests[chestIndex] = new Chest();
-                            wf.Chests[chestIndex].Location = new Common.Point(reader.ReadInt32(), reader.ReadInt32());
+                            var chest = new Chest();
+                            chest.Location = new Common.Point(reader.ReadInt32(), reader.ReadInt32());
 
                             for (int slot = 0; slot < Chest.MAXITEMS; slot++)
                             {
-                                wf.Chests[chestIndex].Items[slot] = new Item();
+                                var item = new Item();
                                 byte stackSize = reader.ReadByte();
                                 if (stackSize > 0)
                                 {
                                     string itemName = reader.ReadString();
-                                    wf.Chests[chestIndex].Items[slot].Name = itemName;
-                                    wf.Chests[chestIndex].Items[slot].Stack = stackSize;
+                                    item.Name = itemName;
+                                    item.Stack = stackSize;
                                 }
+                                chest.Items[slot] = item;
                             }
+
+                            wf.Chests[chestIndex] = chest;
                         }
                     }
-                    for (int signIndex = 0; signIndex < World.MAXSIGNS; signIndex++)
+                    for (int signIndex = 0; signIndex < World.MaxSigns; signIndex++)
                     {
+                        OnProgressChanged(wf, new ProgressChangedEventArgs((int)((double)signIndex / World.MaxSigns * 100.0), "Loading Sign Data"));
+
                         if (reader.ReadBoolean())
                         {
                             string signText = reader.ReadString();
                             int x = reader.ReadInt32();
                             int y = reader.ReadInt32();
-                            if (wf.Tiles[x, y].IsActive && (wf.Tiles[x, y].Type == 0x37))
+                            if (wf.Tiles[x, y].IsActive && (wf.Tiles[x, y].Type == 55))
                             {
-                                wf.Signs[signIndex] = new Sign();
-                                wf.Signs[signIndex].Location = new Common.Point(x, y);
-                                wf.Signs[signIndex].Text = signText;
+                                var sign= new Sign();
+                                sign.Location = new Common.Point(x, y);
+                                sign.Text = signText;
+
+                                wf.Signs[signIndex] = sign;
                             }
                         }
                     }
                     bool flag = reader.ReadBoolean();
                     for (int npcIndex = 0; flag; npcIndex++)
                     {
+                        OnProgressChanged(wf, new ProgressChangedEventArgs(100, "Loading NPCs"));
+                        var npc = new NPC();
+
+                        npc.Name = reader.ReadString();
+                        npc.Position = new Common.PointF(reader.ReadSingle(), reader.ReadSingle());
+                        npc.IsHomeless = reader.ReadBoolean();
+                        npc.HomeTile = new Common.Point(reader.ReadInt32(), reader.ReadInt32());
+                        
                         wf.NPCs[npcIndex] = new NPC();
-                        wf.NPCs[npcIndex].Name = reader.ReadString();
-                        wf.NPCs[npcIndex].Position = new Common.PointF(reader.ReadSingle(), reader.ReadSingle());
-                        wf.NPCs[npcIndex].IsHomeless = reader.ReadBoolean();
-                        wf.NPCs[npcIndex].HomeTile = new Common.Point(reader.ReadInt32(), reader.ReadInt32());
+                   
+
                         flag = reader.ReadBoolean();
                     }
+                    if (wf.Header.FileVersion > 7)
+                    {
+                        OnProgressChanged(wf, new ProgressChangedEventArgs(100, "Checking format"));
+                        bool test = reader.ReadBoolean();
+                        var worldNameCheck = reader.ReadString();
+                        var worldIdCheck = reader.ReadInt32();
+                        if (!(test && string.Equals(worldNameCheck, wf.Header.WorldName) && worldIdCheck == wf.Header.WorldID))
+                        {
+                            // Test FAILED!
+                            throw new ApplicationException("Invalid World File");
+                        }
+                    }
+
                     reader.Close();
                 }
             }
