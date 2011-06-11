@@ -52,10 +52,10 @@
     <Compile Include="Game\TileProperties.cs" />
     <Compile Include="Game\World.cs" />
     <Compile Include="Game\World.Load.cs">
-        <DependentUpon>World.cs</DependentUpon>
+      <DependentUpon>World.cs</DependentUpon>
     </Compile>
     <Compile Include="Game\World.Save.cs">
-        <DependentUpon>World.cs</DependentUpon>
+      <DependentUpon>World.cs</DependentUpon>
     </Compile>
     <Compile Include="Game\WorldHeader.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -356,6 +356,17 @@ namespace TerrariaMapEditor
             }
         }
 
+        public String getTileType(Point p, out string t)
+        {
+            if (this._world.Header.MaxTiles.X > p.X && this._world.Header.MaxTiles.Y > p.Y && this._worldRenderer != null)
+            {
+                TerrariaWorld.Game.Tile hoverTile = this._world.Tiles[p.X, p.Y];
+                return this._worldRenderer.GetTileName(hoverTile, out t);
+            }
+            t = "";
+            return null;
+        }
+
         private void UseToolBrush(Point point)
         {
             TerrariaMapEditor.Renderer.TileProperties tile = this.tilePicker1.IsPaintTile ? this.tilePicker1.TileType : null;
