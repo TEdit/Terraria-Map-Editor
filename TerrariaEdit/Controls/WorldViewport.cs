@@ -11,7 +11,9 @@ namespace TerrariaMapEditor.Controls
 {
     public partial class WorldViewport : System.Windows.Forms.UserControl, INotifyPropertyChanged
     {
-        public WorldViewport()
+        private FormMain fm;
+
+        public WorldViewport(FormMain fm)
         {
             this.SetStyle(
               ControlStyles.AllPaintingInWmPaint |
@@ -20,6 +22,7 @@ namespace TerrariaMapEditor.Controls
 
             this.HorizontalScroll.Visible = true;
             this.VerticalScroll.Visible = true;
+            this.fm = fm;
 
         }
 
@@ -288,16 +291,31 @@ namespace TerrariaMapEditor.Controls
         protected override void OnMouseDown(MouseEventArgs e)
         {
             this.IsMouseDown = true;
-
+            
+            Point tileAtMouse = GetTileAtPoint(e.Location);
             if (this.ClientRectangle.Contains(e.Location))
             {
-                Point tileAtMouse = GetTileAtPoint(e.Location);
+                
                 if (this.TileLastClicked != tileAtMouse)
                 {
                     this.TileLastClicked = tileAtMouse;
                 }
 
                 this.OnMouseDownTile(this, new MouseEventArgs(e.Button, e.Clicks, tileAtMouse.X, tileAtMouse.Y, e.Delta));
+            }
+
+            if (Classes.ChestOptions.keyMatchesRequiredForChestEditing(Control.ModifierKeys))
+            {
+                String wall = null;
+                String tileImOn = fm.getTileType(tileAtMouse, out wall);
+                if (tileImOn == "Chest")
+                {
+                    int loc = this.fm.chestEditorView1.findChestBasedOnLocation(tileAtMouse); //Horrible linear search, but meh...
+                    if (loc > -1)
+                    {
+                        this.fm.chestEditorView1.changeListBoxSelectedIndex(loc);
+                    }
+                }
             }
 
             base.OnMouseDown(e);

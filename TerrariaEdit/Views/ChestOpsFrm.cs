@@ -29,6 +29,7 @@ namespace TerrariaMapEditor.Views
         {
             //Jump to chest option
             chkJump.Checked = Classes.ChestOptions.jumpToChest;
+            cmbKey.SelectedText = Classes.ChestOptions.getKeyPressRequired();
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
@@ -40,6 +41,7 @@ namespace TerrariaMapEditor.Views
         {
             //Chest jumper checkbox
             Classes.ChestOptions.jumpToChest = chkJump.Checked;
+            Classes.ChestOptions.setKeyPressRequired(cmbKey.Text);
             Classes.ChestOptions.save();
             this.Close();
         }

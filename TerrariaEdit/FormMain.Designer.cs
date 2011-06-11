@@ -79,12 +79,12 @@
             this.toolstripEditBucket = new System.Windows.Forms.ToolStripButton();
             this.toolstripEditFillPercent = new System.Windows.Forms.ToolStripButton();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.worldViewportMain = new TerrariaMapEditor.Controls.WorldViewport();
+            this.worldViewportMain = new TerrariaMapEditor.Controls.WorldViewport(this);
+            this.chestEditorView1 = new Views.ChestEditorView(this.worldViewportMain);
             this.editorTabs = new System.Windows.Forms.TabControl();
             this.tabWorld = new System.Windows.Forms.TabPage();
             this.worldEditorView1 = new TerrariaMapEditor.Views.WorldEditorView();
             this.tabChests = new System.Windows.Forms.TabPage();
-            this.chestEditorView1 = new TerrariaMapEditor.Views.ChestEditorView(this.worldViewportMain);
             this.tabSigns = new System.Windows.Forms.TabPage();
             this.tabNPCs = new System.Windows.Forms.TabPage();
             this.tilePicker1 = new TerrariaMapEditor.Controls.TilePicker();
@@ -281,7 +281,7 @@
             // toolStripStatusLabel2
             // 
             this.toolStripStatusLabel2.Name = "toolStripStatusLabel2";
-            this.toolStripStatusLabel2.Size = new System.Drawing.Size(907, 17);
+            this.toolStripStatusLabel2.Size = new System.Drawing.Size(876, 17);
             this.toolStripStatusLabel2.Spring = true;
             // 
             // statusLabel
@@ -598,6 +598,7 @@
             this.worldViewportMain.MouseUpTile += new System.Windows.Forms.MouseEventHandler(this.worldViewportMain_MouseUpTile);
             this.worldViewportMain.MouseWheelTile += new System.Windows.Forms.MouseEventHandler(this.worldViewportMain_MouseWheelTile);
             this.worldViewportMain.PropertyChanged += new System.ComponentModel.PropertyChangedEventHandler(this.worldViewportMain_PropertyChanged);
+            this.worldViewportMain.Load += new System.EventHandler(this.worldViewportMain_Load_1);
             this.worldViewportMain.KeyDown += new System.Windows.Forms.KeyEventHandler(this.worldViewportMain_KeyDown);
             this.worldViewportMain.KeyUp += new System.Windows.Forms.KeyEventHandler(this.worldViewportMain_KeyUp);
             this.worldViewportMain.MouseDown += new System.Windows.Forms.MouseEventHandler(this.worldViewportMain_MouseDown);
@@ -796,7 +797,7 @@
         private System.Windows.Forms.ToolStripLabel toolStripLabel2;
         private System.Windows.Forms.ToolStripComboBox toolstripMainBrushStyle;
         private System.Windows.Forms.ToolStripMenuItem hideSideBarToolStripMenuItem;
-        private Views.ChestEditorView chestEditorView1;
+        public Views.ChestEditorView chestEditorView1;
         private System.Windows.Forms.ToolStripStatusLabel statusTileTypeLabel;
         private System.Windows.Forms.ToolStripStatusLabel statusWallTypeLabel;
         private System.Windows.Forms.ToolStripButton toolstripEditFillPercent;

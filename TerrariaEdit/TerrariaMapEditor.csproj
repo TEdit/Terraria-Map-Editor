@@ -80,6 +80,7 @@
     <Compile Include="Renderer\TileColors.cs" />
     <Compile Include="Renderer\TileProperties.cs" />
     <Compile Include="Renderer\WorldRenderer.cs" />
+    <Compile Include="Settings.cs" />
     <Compile Include="Views\AboutBox.cs">
       <SubType>Form</SubType>
     </Compile>
