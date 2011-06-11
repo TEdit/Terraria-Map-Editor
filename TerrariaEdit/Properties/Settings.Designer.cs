@@ -34,5 +34,28 @@ namespace TerrariaMapEditor.Properties {
                 this["LogFile"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("false")]
+        public string isChecked {
+            get {
+                return ((string)(this["isChecked"]));
+            }
+            set {
+                this["isChecked"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        public global::System.Windows.Forms.Keys keyRequired {
+            get {
+                return ((global::System.Windows.Forms.Keys)(this["keyRequired"]));
+            }
+            set {
+                this["keyRequired"] = value;
+            }
+        }
     }
 }
