@@ -38,7 +38,7 @@ namespace TerrariaWorld.Game
                     wf.Header.FileVersion = version;
                     wf.Header.FileName = filename;
                     wf.Header.WorldName = reader.ReadString();
-                    wf.Header.WorldID = reader.ReadInt32();
+                    wf.Header.WorldId = reader.ReadInt32();
                     wf.Header.WorldBounds = new Common.RectF(reader.ReadInt32(), reader.ReadInt32(), reader.ReadInt32(), reader.ReadInt32());
                     int maxy = reader.ReadInt32();
                     int maxx = reader.ReadInt32();
@@ -166,7 +166,7 @@ namespace TerrariaWorld.Game
                         bool test = reader.ReadBoolean();
                         var worldNameCheck = reader.ReadString();
                         var worldIdCheck = reader.ReadInt32();
-                        if (!(test && string.Equals(worldNameCheck, wf.Header.WorldName) && worldIdCheck == wf.Header.WorldID))
+                        if (!(test && string.Equals(worldNameCheck, wf.Header.WorldName) && worldIdCheck == wf.Header.WorldId))
                         {
                             // Test FAILED!
                             throw new ApplicationException("Invalid World File");

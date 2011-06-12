@@ -20,8 +20,104 @@ namespace TEditWPF.Views
         {
             //this._bmp = new WriteableBitmap
             _mouseOverTile = new System.Windows.Point(20, 20);
+            this._world = new World();
+            this.World.Header.MaxTiles = new Point(1800, 13000);
+        }
+
+        private World _world;
+        public World World
+        {
+            get { return this._world; }
+            set
+            {
+                if (this._world != value)
+                {
+                    this._world = value;
+                    this.RaisePropertyChanged("World");
+                }
+            }
+        }
+
+        public int WorldHeight
+        {
+            get { return this._world.Header.MaxTiles.X; }
+        }
+
+        public int WorldWidth
+        {
+            get { return this._world.Header.MaxTiles.Y; }
+        }
+
+        public double WorldZoomedHeight
+        {
+            get { return this._world.Header.MaxTiles.X * this._Zoom; }
+        }
+
+        public double WorldZoomedWidth
+        {
+            get { return this._world.Header.MaxTiles.Y * this._Zoom; }
+        }
+
+        private double _ViewportWidth;
+        public double ViewportWidth
+        {
+            get { return this._ViewportWidth; }
+            set
+            {
+                if (this._ViewportWidth != value)
+                {
+                    this._ViewportWidth = value;
+                    this.RaisePropertyChanged("ViewportWidth");
+                    this.RaisePropertyChanged("HorizontalScrollMaximum");
+                }
+            }
+        }
+
+        private double _ViewportHeight;
+        public double ViewportHeight
+        {
+            get { return this._ViewportHeight; }
+            set
+            {
+                if (this._ViewportHeight != value)
+                {
+                    this._ViewportHeight = value;
+                    this.RaisePropertyChanged("ViewportHeight");
+                    this.RaisePropertyChanged("VerticalScrollMaximum");
+                }
+            }
+        }
+
+        public double HorizontalScrollMaximum
+        {
+            get { return this.WorldZoomedWidth - this.ViewportWidth; }
+        }
+
+        public double VerticalScrollMaximum
+        {
+            get { return this.WorldZoomedHeight - this.ViewportHeight; }
+        }
 
 
+        private double _Zoom = 1;
+        public double Zoom
+        {
+            get { return this._Zoom; }
+            set
+            {
+                var limitedZoom = value;
+                limitedZoom = Math.Min(Math.Max(limitedZoom, 0.01), 1000);
+
+                if (this._Zoom != limitedZoom)
+                {
+                    this._Zoom = limitedZoom;
+                    this.RaisePropertyChanged("Zoom");
+                    this.RaisePropertyChanged("WorldZoomedHeight");
+                    this.RaisePropertyChanged("WorldZoomedWidth");
+                    this.RaisePropertyChanged("HorizontalScrollMaximum");
+                    this.RaisePropertyChanged("VerticalScrollMaximum");
+                }
+            }
         }
 
         WriteableBitmap _bmp;
@@ -93,7 +189,10 @@ namespace TEditWPF.Views
 
         private void OnMouseWheel(CustomMouseEventArgs e)
         {
-
+            if (e.WheelDelta > 0)
+                this.Zoom = this.Zoom * 1.1;
+            if (e.WheelDelta < 0)
+                this.Zoom = this.Zoom * 0.9;
         }
 
         private System.Windows.Point _mouseOverTile;
@@ -149,8 +248,14 @@ namespace TEditWPF.Views
                 {
                     this._scrollPositionVertical = value;
                     this.RaisePropertyChanged("ScrollPositionVertical");
+                    this.RaisePropertyChanged("ScrollPositionVerticalInverted");
                 }
             }
+        }
+
+        public double ScrollPositionVerticalInverted
+        {
+            get { return -this._scrollPositionVertical; }
         }
 
         private double _scrollPositionHorizontal;
@@ -163,8 +268,14 @@ namespace TEditWPF.Views
                 {
                     this._scrollPositionHorizontal = value;
                     this.RaisePropertyChanged("ScrollPositionHorizontal");
+                    this.RaisePropertyChanged("ScrollPositionHorizontalInverted");
                 }
             }
+        }
+
+        public double ScrollPositionHorizontalInverted
+        {
+            get { return -this._scrollPositionHorizontal; }
         }
 
 

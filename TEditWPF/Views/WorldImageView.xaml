@@ -23,20 +23,31 @@
                 <RowDefinition Height="1*" />
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
-            <Grid x:Name="WorldImage" Background="#FF333333" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  />
-            <Grid x:Name="Overlay" Background="#30FF0000" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  
+            <Grid x:Name="ViewArea"  SizeChanged="ViewportSizeChanged" ClipToBounds="True" >
+                <Grid x:Name="WorldImage" Background="#FF333333" Height="{Binding Path=WorldZoomedHeight}" Width="{Binding Path=WorldZoomedWidth}" />
+                <Grid x:Name="Overlay" Background="#30FF0000" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
                   MouseMove="ViewportMouseMove" 
                   MouseDown="ViewportMouseDown"
                   MouseWheel="ViewportMouseWheel" 
                   MouseUp="ViewportMouseUp" 
                   MouseEnter="ViewportMouseEnter" 
                   MouseLeave="ViewportMouseLeave" />
-            <ScrollBar Orientation="Horizontal" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Grid.Row="1" ViewportSize="500" Maximum="1000" LargeChange="10" Value="{Binding Path=ScrollPositionHorizontal, Mode=TwoWay}" />
-            <ScrollBar Orientation="Vertical" HorizontalAlignment="Right" VerticalAlignment="Stretch" Grid.Column="1" ViewportSize="500" Maximum="1000" LargeChange="10" Value="{Binding Path=ScrollPositionVertical, Mode=TwoWay}" />
+            </Grid>
+            <ScrollBar Orientation="Horizontal" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Grid.Row="1" ViewportSize="{Binding ElementName=Overlay, Path=ActualWidth, Mode=OneWay}" Maximum="{Binding Path=HorizontalScrollMaximum}" Minimum="0" LargeChange="10" Value="{Binding Path=ScrollPositionHorizontal, Mode=TwoWay}" />
+            <ScrollBar Orientation="Vertical" HorizontalAlignment="Right" VerticalAlignment="Stretch" Grid.Column="1" ViewportSize="{Binding ElementName=Overlay, Path=ActualHeight, Mode=OneWay}" Maximum="{Binding Path=VerticalScrollMaximum}" Minimum="0" LargeChange="10" Value="{Binding Path=ScrollPositionVertical, Mode=TwoWay}" />
         </Grid>
         <StackPanel Orientation="Horizontal" Grid.Row="1" VerticalAlignment="Center" Margin="1">
             <Border BorderBrush="Black" BorderThickness="1" Margin="1" Padding="1" >
+                <TextBlock Text="{Binding Path=Zoom, StringFormat=Zoom: {0:0%}}" />
+            </Border>
+            <Border BorderBrush="Black" BorderThickness="1" Margin="1" Padding="1" >
                 <TextBlock Text="{Binding Path=MouseOverTile}" />
+            </Border>
+            <Border BorderBrush="Black" BorderThickness="1" Margin="1" Padding="1" >
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="{Binding Path=ScrollPositionHorizontal, StringFormat=H: {0:0}}" />
+                    <TextBlock Text="{Binding Path=ScrollPositionVertical, StringFormat= V: {0:0}}" />
+                </StackPanel>
             </Border>
         </StackPanel>
     </Grid>

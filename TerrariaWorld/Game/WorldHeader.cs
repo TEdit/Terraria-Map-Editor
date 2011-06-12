@@ -30,7 +30,7 @@ namespace TerrariaWorld.Game
         public string WorldName { get; set; }
 
         [CategoryAttribute("World"), DescriptionAttribute("World ID"), ReadOnly(true)]
-        public int WorldID { get; set; }
+        public int WorldId { get; set; }
 
         [CategoryAttribute("World"), DescriptionAttribute("World Size"), ReadOnly(true)]
         public Common.RectF WorldBounds { get; set; }

@@ -22,7 +22,7 @@ namespace TerrariaWorld.Game
                 {
                     writer.Write(this.Header.FileVersion);
                     writer.Write(this.Header.WorldName);
-                    writer.Write(this.Header.WorldID);
+                    writer.Write(this.Header.WorldId);
                     writer.Write((int)this.Header.WorldBounds.Left);
                     writer.Write((int)this.Header.WorldBounds.Right);
                     writer.Write((int)this.Header.WorldBounds.Top);
@@ -142,7 +142,7 @@ namespace TerrariaWorld.Game
                     // Write file info check
                     writer.Write(true);
                     writer.Write(this.Header.WorldName);
-                    writer.Write(this.Header.WorldID);
+                    writer.Write(this.Header.WorldId);
 
                     writer.Close();
                 }

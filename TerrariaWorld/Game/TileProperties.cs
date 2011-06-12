@@ -19,21 +19,16 @@ namespace TerrariaWorld.Game
             public bool IsWallHouse { get; set; }
         }
 
-        private static bool isInitialized = false;
-
-        public static TileAttributes[] _Tiles;
+        private static TileAttributes[] _Tiles;
         public static TileAttributes[] Tiles
         {
             get
             {
-                if (!isInitialized)
-                    InitializeTileProperties();
-                
                 return _Tiles;
             }
         }
 
-        private static void InitializeTileProperties()
+        static TileProperties()
         {
             int[] dungeon = new int[] { 41, 43, 44 };
             int[] frameImportant = new int[] { 3, 5, 10, 11, 12, 13, 14, 15, 16, 17, 18, 20, 21, 24, 26, 27, 28, 29, 31, 33, 34, 35, 36, 42, 50, 55, 61, 71, 72, 73, 74, 77, 78, 79 };
@@ -60,8 +55,6 @@ namespace TerrariaWorld.Game
                     IsTable = table.Contains(i)
                 };
             }
-
-            isInitialized = true;
         }
 
     }

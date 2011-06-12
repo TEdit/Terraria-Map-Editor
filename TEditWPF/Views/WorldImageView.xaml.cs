@@ -103,5 +103,11 @@ namespace TEditWPF.Views
         {
             ViewModel.IsMouseContained = false;
         }
+
+        private void ViewportSizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            ViewModel.ViewportWidth = e.NewSize.Width;
+            ViewModel.ViewportHeight = e.NewSize.Height;
+        }
     }
 }
