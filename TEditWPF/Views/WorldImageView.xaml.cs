@@ -38,7 +38,7 @@ namespace TEditWPF.Views
         {
             var cargs = new CustomMouseEventArgs()
             {
-                Location = e.GetPosition(this),
+                Location = e.GetPosition((IInputElement)sender),
                 LeftButton = e.LeftButton,
                 RightButton = e.RightButton,
                 MiddleButton = e.RightButton,
@@ -53,12 +53,16 @@ namespace TEditWPF.Views
         {
             var cargs = new CustomMouseEventArgs()
                                           {
-                                              Location = e.GetPosition(this),
+                                              Location = e.GetPosition((IInputElement)sender),
                                               LeftButton = e.LeftButton,
                                               RightButton = e.RightButton,
                                               MiddleButton = e.RightButton,
                                               WheelDelta = 0
                                           };
+            var partView = (ScrollViewer)this.FindName("WorldScrollViewer");
+            partView.ScrollToHorizontalOffset(cargs.Location.X - (partView.ActualWidth / 2.0));
+            partView.ScrollToVerticalOffset(cargs.Location.Y - (partView.ActualHeight / 2.0));
+
 
             if (ViewModel.MouseDownCommand.CanExecute(cargs))
                 ViewModel.MouseDownCommand.Execute(cargs);
@@ -68,22 +72,32 @@ namespace TEditWPF.Views
         {
             var cargs = new CustomMouseEventArgs()
             {
-                Location = e.GetPosition(this),
+                Location = e.GetPosition((IInputElement)sender),
                 LeftButton = e.LeftButton,
                 RightButton = e.RightButton,
                 MiddleButton = e.RightButton,
                 WheelDelta = e.Delta
             };
 
+            var oldZoom = ViewModel.Zoom;
+
             if (ViewModel.MouseWheelCommand.CanExecute(cargs))
                 ViewModel.MouseWheelCommand.Execute(cargs);
+
+            var newZoom = ViewModel.Zoom;
+
+            // Center View on mouse
+            var partView = (ScrollViewer)this.FindName("WorldScrollViewer");
+            partView.ScrollToHorizontalOffset((cargs.Location.X / oldZoom * newZoom) - (partView.ActualWidth / 2.0));
+            partView.ScrollToVerticalOffset((cargs.Location.Y / oldZoom * newZoom) - (partView.ActualHeight / 2.0));
+
         }
 
         private void ViewportMouseUp(object sender, MouseButtonEventArgs e)
         {
             var cargs = new CustomMouseEventArgs()
             {
-                Location = e.GetPosition(this),
+                Location = e.GetPosition((IInputElement)sender),
                 LeftButton = e.LeftButton,
                 RightButton = e.RightButton,
                 MiddleButton = e.RightButton,
@@ -108,6 +122,11 @@ namespace TEditWPF.Views
         {
             ViewModel.ViewportWidth = e.NewSize.Width;
             ViewModel.ViewportHeight = e.NewSize.Height;
+        }
+
+        private void ViewportscrollChanged(object sender, ScrollChangedEventArgs e)
+        {
+            //throw new NotImplementedException();
         }
     }
 }

@@ -21,7 +21,7 @@ namespace TEditWPF.Views
             //this._bmp = new WriteableBitmap
             _mouseOverTile = new System.Windows.Point(20, 20);
             this._world = new World();
-            this.World.Header.MaxTiles = new Point(1800, 13000);
+            this.World.Header.MaxTiles = new Point(1200, 4200);
         }
 
         private World _world;
@@ -106,7 +106,7 @@ namespace TEditWPF.Views
             set
             {
                 var limitedZoom = value;
-                limitedZoom = Math.Min(Math.Max(limitedZoom, 0.01), 1000);
+                limitedZoom = Math.Min(Math.Max(limitedZoom, 0.05), 1000);
 
                 if (this._Zoom != limitedZoom)
                 {

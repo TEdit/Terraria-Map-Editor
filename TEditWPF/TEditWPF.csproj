@@ -63,6 +63,7 @@
     <Compile Include="Infrastructure\CustomMouseEventArgs.cs" />
     <Compile Include="Infrastructure\ToolType.cs" />
     <Compile Include="Tools\Pencil.cs" />
+    <Compile Include="Views\ScrollViewerThumbnail.cs" />
     <Compile Include="Views\WorldImageViewModel.cs">
       <DependentUpon>WorldImageView.xaml</DependentUpon>
     </Compile>
@@ -83,6 +84,10 @@
       <DependentUpon>Shell.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Views\ScrollViewerThumbnail.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\WorldImageView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -119,7 +124,11 @@
       <Name>TerrariaWorld</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="World5.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
   <ItemGroup>
     <Resource Include="Plugins\Readme.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
