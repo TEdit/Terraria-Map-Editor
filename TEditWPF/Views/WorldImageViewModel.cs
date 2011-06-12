@@ -8,8 +8,9 @@ using System.Windows.Media.Imaging;
 using TEditWPF.Common;
 using System.ComponentModel.Composition;
 using TEditWPF.Infrastructure;
-using TerrariaWorld.Game;
-using TerrariaWorld.Common;
+using TEditWPF.TerrariaWorld;
+using TEditWPF.TerrariaWorld.Structures;
+
 
 namespace TEditWPF.Views
 {
@@ -21,7 +22,9 @@ namespace TEditWPF.Views
             //this._bmp = new WriteableBitmap
             _mouseOverTile = new System.Windows.Point(20, 20);
             this._world = new World();
-            this.World.Header.MaxTiles = new Point(1200, 4200);
+            this.World.Header.MaxTiles = new PointInt32(1200, 4200);
+
+            int x = 0;
         }
 
         private World _world;
@@ -58,47 +61,6 @@ namespace TEditWPF.Views
             get { return this._world.Header.MaxTiles.Y * this._Zoom; }
         }
 
-        private double _ViewportWidth;
-        public double ViewportWidth
-        {
-            get { return this._ViewportWidth; }
-            set
-            {
-                if (this._ViewportWidth != value)
-                {
-                    this._ViewportWidth = value;
-                    this.RaisePropertyChanged("ViewportWidth");
-                    this.RaisePropertyChanged("HorizontalScrollMaximum");
-                }
-            }
-        }
-
-        private double _ViewportHeight;
-        public double ViewportHeight
-        {
-            get { return this._ViewportHeight; }
-            set
-            {
-                if (this._ViewportHeight != value)
-                {
-                    this._ViewportHeight = value;
-                    this.RaisePropertyChanged("ViewportHeight");
-                    this.RaisePropertyChanged("VerticalScrollMaximum");
-                }
-            }
-        }
-
-        public double HorizontalScrollMaximum
-        {
-            get { return this.WorldZoomedWidth - this.ViewportWidth; }
-        }
-
-        public double VerticalScrollMaximum
-        {
-            get { return this.WorldZoomedHeight - this.ViewportHeight; }
-        }
-
-
         private double _Zoom = 1;
         public double Zoom
         {
@@ -114,8 +76,6 @@ namespace TEditWPF.Views
                     this.RaisePropertyChanged("Zoom");
                     this.RaisePropertyChanged("WorldZoomedHeight");
                     this.RaisePropertyChanged("WorldZoomedWidth");
-                    this.RaisePropertyChanged("HorizontalScrollMaximum");
-                    this.RaisePropertyChanged("VerticalScrollMaximum");
                 }
             }
         }
@@ -137,11 +97,6 @@ namespace TEditWPF.Views
                     this.RaisePropertyChanged("IsMouseContained");
                 }
             }
-        }
-
-        Boolean IsPointInWorld(CustomMouseEventArgs e)
-        {
-            return true;
         }
 
         private ICommand _mouseMoveCommand;
@@ -168,23 +123,33 @@ namespace TEditWPF.Views
             get { return _mouseWheelCommand ?? (_mouseWheelCommand = new RelayCommand<CustomMouseEventArgs>(OnMouseWheel)); }
         }
 
+        private ICommand _scrollToTileCommand;
+        public ICommand ScrollToTileCommand
+        {
+            get { return _scrollToTileCommand ?? (_scrollToTileCommand = new RelayCommand<System.Windows.Point>(p => this.RequestScrollTile = p)); }
+        }
+
+        private System.Windows.Point GetTileAtPixel(System.Windows.Point pixel)
+        {
+            decimal x = Math.Ceiling((decimal)pixel.X / (decimal)this.Zoom);
+            decimal y = Math.Ceiling((decimal)pixel.Y / (decimal)this.Zoom);
+            var tile = new System.Windows.Point((int)x, (int)y);
+            return tile;
+        }
 
         private void OnMouseOverPixel(CustomMouseEventArgs e)
         {
-            // TODO: Calculate tile based on zoom
-            this.MouseOverTile = e.Location;
+            this.MouseOverTile = GetTileAtPixel(e.Location);
         }
 
         private void OnMouseDownPixel(CustomMouseEventArgs e)
         {
-            // TODO: Calculate tile based on zoom
-            this.MouseDownTile = e.Location;
+            this.MouseDownTile = GetTileAtPixel(e.Location);
         }
 
         private void OnMouseUpPixel(CustomMouseEventArgs e)
         {
-            // TODO: Calculate tile based on zoom
-            this.MouseUpTile = e.Location;
+            this.MouseUpTile = GetTileAtPixel(e.Location);
         }
 
         private void OnMouseWheel(CustomMouseEventArgs e)
@@ -193,6 +158,7 @@ namespace TEditWPF.Views
                 this.Zoom = this.Zoom * 1.1;
             if (e.WheelDelta < 0)
                 this.Zoom = this.Zoom * 0.9;
+
         }
 
         private System.Windows.Point _mouseOverTile;
@@ -237,49 +203,21 @@ namespace TEditWPF.Views
             }
         }
 
-
-        private double _scrollPositionVertical;
-        public double ScrollPositionVertical
+        private System.Windows.Point _requestScrollTile;
+        public System.Windows.Point RequestScrollTile
         {
-            get { return this._scrollPositionVertical; }
+            get { return this._requestScrollTile; }
             set
             {
-                if (this._scrollPositionVertical != value)
+                if (this._requestScrollTile != value)
                 {
-                    this._scrollPositionVertical = value;
-                    this.RaisePropertyChanged("ScrollPositionVertical");
-                    this.RaisePropertyChanged("ScrollPositionVerticalInverted");
+                    this._requestScrollTile = value;
+                    this.RaisePropertyChanged("RequestScrollTile");
                 }
             }
         }
 
-        public double ScrollPositionVerticalInverted
-        {
-            get { return -this._scrollPositionVertical; }
-        }
 
-        private double _scrollPositionHorizontal;
-        public double ScrollPositionHorizontal
-        {
-            get { return this._scrollPositionHorizontal; }
-            set
-            {
-                if (this._scrollPositionHorizontal != value)
-                {
-                    this._scrollPositionHorizontal = value;
-                    this.RaisePropertyChanged("ScrollPositionHorizontal");
-                    this.RaisePropertyChanged("ScrollPositionHorizontalInverted");
-                }
-            }
-        }
-
-        public double ScrollPositionHorizontalInverted
-        {
-            get { return -this._scrollPositionHorizontal; }
-        }
-
-
-
-
+        
     }
 }

@@ -1,8 +1,7 @@
 ﻿using System.ComponentModel.Composition;
 using System.Windows.Media.Imaging;
 using TEditWPF.Infrastructure;
-using TerrariaWorld.Common;
-using TerrariaWorld.Game;
+
 
 namespace TEditWPF.Tools
 {
@@ -20,14 +19,14 @@ namespace TEditWPF.Tools
             get { return ToolType.Pencil; }
         }
 
-        public bool PreviewTool(Point[] location, World world, WriteableBitmap viewPortRegion)
-        {
-            return false;
-        }
+        //public bool PreviewTool(Point[] location, World world, WriteableBitmap viewPortRegion)
+        //{
+        //    return false;
+        //}
 
-        public bool UseTool(Point[] location, World world)
-        {
-            return false;
-        }
+        //public bool UseTool(Point[] location, World world)
+        //{
+        //    return false;
+        //}
     }
 }

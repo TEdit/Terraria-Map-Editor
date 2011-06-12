@@ -16,9 +16,9 @@
         </Grid.RowDefinitions>
         
         <Grid Grid.Row="0" Background="#666666">
-            <ScrollViewer HorizontalScrollBarVisibility="Visible" ScrollChanged="ViewportscrollChanged" x:Name="WorldScrollViewer" >
+            <ScrollViewer HorizontalScrollBarVisibility="Visible"  x:Name="WorldScrollViewer" >
                 <ScrollViewer.Content>
-                    <Grid x:Name="ViewArea"  SizeChanged="ViewportSizeChanged">
+                    <Grid x:Name="ViewArea">
                         <Image x:Name="WorldImage" Source="..\World5.png" RenderOptions.BitmapScalingMode="NearestNeighbor" Height="{Binding Path=WorldZoomedHeight}" Width="{Binding Path=WorldZoomedWidth}" />
                         <Grid x:Name="Overlay" Background="#100000FF" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
                       MouseMove="ViewportMouseMove" 
@@ -39,10 +39,7 @@
                 <TextBlock Text="{Binding Path=MouseOverTile}" />
             </Border>
             <Border BorderBrush="Black" BorderThickness="1" Margin="1" Padding="1" >
-                <StackPanel Orientation="Horizontal">
-                    <TextBlock Text="{Binding Path=ScrollPositionHorizontal, StringFormat=H: {0:0}}" />
-                    <TextBlock Text="{Binding Path=ScrollPositionVertical, StringFormat= V: {0:0}}" />
-                </StackPanel>
+                    <TextBlock Text="{Binding Path=RequestScrollTile, NotifyOnTargetUpdated=True}" TargetUpdated="RequestedScrollToTile" />
             </Border>            
         </StackPanel>
         <Border BorderBrush="Black" BorderThickness="1" Grid.Row="2" HorizontalAlignment="Right" >

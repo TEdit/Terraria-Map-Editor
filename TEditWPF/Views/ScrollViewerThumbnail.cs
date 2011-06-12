@@ -55,14 +55,14 @@ namespace TEditWPF.Views
             base.OnApplyTemplate();
 
             var partHighlight = (Thumb)this.Template.FindName(PART_Highlight, this);
-            partHighlight.DragDelta += partHighlight_DragDelta;
+            partHighlight.DragDelta += PartHighlightDragDelta;
 
             var partView = (Rectangle)this.Template.FindName(PART_View, this);
-            partView.MouseDown += partView_MouseDown;
+            partView.MouseDown += PartViewMouseDown;
             //partView.MouseMove += partView_MouseMove;
         }
 
-        void partView_MouseMove(object sender, MouseEventArgs e)
+        void PartViewMouseMove(object sender, MouseEventArgs e)
         {
             if (e.LeftButton == MouseButtonState.Pressed)
             {
@@ -72,7 +72,7 @@ namespace TEditWPF.Views
             }
         }
 
-        void partView_MouseDown(object sender, MouseButtonEventArgs e)
+        void PartViewMouseDown(object sender, MouseButtonEventArgs e)
         {
             //
             var loc = e.GetPosition((IInputElement)sender);
@@ -80,7 +80,7 @@ namespace TEditWPF.Views
             ScrollViewer.ScrollToHorizontalOffset(loc.X);
         }
 
-        void partHighlight_DragDelta(object sender, DragDeltaEventArgs e)
+        void PartHighlightDragDelta(object sender, DragDeltaEventArgs e)
         {
             ScrollViewer.ScrollToVerticalOffset(ScrollViewer.VerticalOffset + e.VerticalChange);
             ScrollViewer.ScrollToHorizontalOffset(ScrollViewer.HorizontalOffset + e.HorizontalChange);

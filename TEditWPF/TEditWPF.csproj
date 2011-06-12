@@ -62,8 +62,23 @@
     <Compile Include="Infrastructure\ITool.cs" />
     <Compile Include="Infrastructure\CustomMouseEventArgs.cs" />
     <Compile Include="Infrastructure\ToolType.cs" />
+    <Compile Include="RenderWorld\TileColors.cs" />
+    <Compile Include="RenderWorld\TileProperties.cs" />
+    <Compile Include="RenderWorld\WorldRenderer.cs" />
+    <Compile Include="TerrariaWorld\Chest.cs" />
+    <Compile Include="TerrariaWorld\Item.cs" />
+    <Compile Include="TerrariaWorld\NPC.cs" />
+    <Compile Include="TerrariaWorld\Sign.cs" />
+    <Compile Include="TerrariaWorld\Structures\PointFloat.cs" />
+    <Compile Include="TerrariaWorld\Structures\PointInt32.cs" />
+    <Compile Include="TerrariaWorld\Structures\PointShort.cs" />
+    <Compile Include="TerrariaWorld\Structures\RectF.cs" />
+    <Compile Include="TerrariaWorld\Tile.cs" />
+    <Compile Include="TerrariaWorld\TileProperties.cs" />
+    <Compile Include="TerrariaWorld\World.cs" />
+    <Compile Include="TerrariaWorld\World.File.cs" />
+    <Compile Include="TerrariaWorld\WorldHeader.cs" />
     <Compile Include="Tools\Pencil.cs" />
-    <Compile Include="Views\ScrollViewerThumbnail.cs" />
     <Compile Include="Views\WorldImageViewModel.cs">
       <DependentUpon>WorldImageView.xaml</DependentUpon>
     </Compile>
@@ -84,9 +99,11 @@
       <DependentUpon>Shell.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Views\ScrollViewerThumbnail.cs" />
     <Page Include="Views\ScrollViewerThumbnail.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+      <DependentUpon>ScrollViewerThumbnail.cs</DependentUpon>
     </Page>
     <Page Include="Views\WorldImageView.xaml">
       <SubType>Designer</SubType>
@@ -119,12 +136,6 @@
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\TerrariaWorld\TerrariaWorld.csproj">
-      <Project>{C68B427B-8FAB-4B88-8BCD-BCFEC89B5F8D}</Project>
-      <Name>TerrariaWorld</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="World5.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
@@ -132,6 +143,16 @@
   <ItemGroup>
     <Resource Include="Plugins\Readme.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="colors.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="GPL.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
