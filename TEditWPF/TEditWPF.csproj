@@ -58,7 +58,9 @@
     </ApplicationDefinition>
     <Compile Include="Common\ObservableObject.cs" />
     <Compile Include="Common\PropertySupport.cs" />
+    <Compile Include="Common\RelayCommand.cs" />
     <Compile Include="Infrastructure\ITool.cs" />
+    <Compile Include="Infrastructure\CustomMouseEventArgs.cs" />
     <Compile Include="Infrastructure\ToolType.cs" />
     <Compile Include="Tools\Pencil.cs" />
     <Compile Include="Views\WorldImageViewModel.cs">

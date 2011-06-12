@@ -1,10 +1,4 @@
-﻿// -----------------------------------------------------------------------
-// <copyright file="Pencil.cs" company="Microsoft">
-// TODO: Update copyright text.
-// </copyright>
-// -----------------------------------------------------------------------
-
-using System.ComponentModel.Composition;
+﻿using System.ComponentModel.Composition;
 using System.Windows.Media.Imaging;
 using TEditWPF.Infrastructure;
 using TerrariaWorld.Common;
@@ -12,12 +6,8 @@ using TerrariaWorld.Game;
 
 namespace TEditWPF.Tools
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-
     [Export(typeof(ITool))]
+    [PartCreationPolicy(CreationPolicy.Shared)]
     public class Pencil : ITool
     {
         public string Name
@@ -30,13 +20,14 @@ namespace TEditWPF.Tools
             get { return ToolType.Pencil; }
         }
 
-        public bool PreviewTool(Point[] location, WriteableBitmap viewPortRegion)
+        public bool PreviewTool(Point[] location, World world, WriteableBitmap viewPortRegion)
         {
-
+            return false;
         }
 
         public bool UseTool(Point[] location, World world)
         {
+            return false;
         }
     }
 }
