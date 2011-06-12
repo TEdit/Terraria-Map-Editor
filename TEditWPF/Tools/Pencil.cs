@@ -32,12 +32,11 @@ namespace TEditWPF.Tools
 
         public bool PreviewTool(Point[] location, WriteableBitmap viewPortRegion)
         {
-            throw new NotImplementedException();
+
         }
 
         public bool UseTool(Point[] location, World world)
         {
-            throw new NotImplementedException();
         }
     }
 }

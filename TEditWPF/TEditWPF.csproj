@@ -60,8 +60,9 @@
     <Compile Include="Common\PropertySupport.cs" />
     <Compile Include="Infrastructure\ITool.cs" />
     <Compile Include="Infrastructure\ToolType.cs" />
+    <Compile Include="Tools\Pencil.cs" />
     <Compile Include="Views\WorldImageViewModel.cs">
-        <DependentUpon>WorldImageView.xaml</DependentUpon>
+      <DependentUpon>WorldImageView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\WorldImageView.xaml.cs">
       <DependentUpon>WorldImageView.xaml</DependentUpon>
@@ -116,9 +117,7 @@
       <Name>TerrariaWorld</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Tools\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Resource Include="Plugins\Readme.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
