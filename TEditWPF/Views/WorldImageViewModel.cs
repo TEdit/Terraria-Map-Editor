@@ -37,28 +37,34 @@ namespace TEditWPF.Views
                 {
                     this._world = value;
                     this.RaisePropertyChanged("World");
+                    this.RaisePropertyChanged("WorldZoomedHeight");
+                    this.RaisePropertyChanged("WorldZoomedWidth");
                 }
             }
         }
 
-        public int WorldHeight
-        {
-            get { return this._world.Header.MaxTiles.X; }
-        }
-
-        public int WorldWidth
-        {
-            get { return this._world.Header.MaxTiles.Y; }
-        }
 
         public double WorldZoomedHeight
         {
-            get { return this._world.Header.MaxTiles.X * this._Zoom; }
+            get
+            {
+                if (this._WorldImage != null)
+                    return this._WorldImage.PixelHeight * this._Zoom;
+
+
+                return this.World.Header.MaxTiles.Y;
+            }
         }
 
         public double WorldZoomedWidth
         {
-            get { return this._world.Header.MaxTiles.Y * this._Zoom; }
+            get
+            {
+                if (this._WorldImage != null)
+                    return this._WorldImage.PixelWidth * this._Zoom;
+
+                return this.World.Header.MaxTiles.X;
+            }
         }
 
         private double _Zoom = 1;
@@ -90,6 +96,8 @@ namespace TEditWPF.Views
                 {
                     this._WorldImage = value;
                     this.RaisePropertyChanged("WorldImage");
+                    this.RaisePropertyChanged("WorldZoomedHeight");
+                    this.RaisePropertyChanged("WorldZoomedWidth");
                 }
             }
         }
@@ -232,6 +240,6 @@ namespace TEditWPF.Views
         }
 
 
-        
+
     }
 }

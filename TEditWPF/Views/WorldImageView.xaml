@@ -18,7 +18,7 @@
         <Grid Grid.Row="0" Background="#666666">
             <ScrollViewer HorizontalScrollBarVisibility="Visible"  x:Name="WorldScrollViewer" >
                 <ScrollViewer.Content>
-                    <Grid  Height="{Binding Path=WorldZoomedHeight}" Width="{Binding Path=WorldZoomedWidth}">
+                    <Grid Height="{Binding Path=WorldZoomedHeight}" Width="{Binding Path=WorldZoomedWidth}" >
                         <Image x:Name="WorldImage" Source="{Binding Path=WorldImage}" RenderOptions.BitmapScalingMode="NearestNeighbor" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"
                       MouseMove="ViewportMouseMove" 
                       MouseDown="ViewportMouseDown"
