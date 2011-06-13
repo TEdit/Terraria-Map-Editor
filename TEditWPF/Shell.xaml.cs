@@ -11,6 +11,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using TEditWPF.Views;
 
 namespace TEditWPF
 {
@@ -22,6 +23,20 @@ namespace TEditWPF
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        private void button1_Click(object sender, RoutedEventArgs e)
+        {
+            Microsoft.Win32.OpenFileDialog ofd = new Microsoft.Win32.OpenFileDialog();
+            if ((bool)ofd.ShowDialog())
+            {
+                var wf = TerrariaWorld.World.Load(ofd.FileName);
+                var r = new RenderWorld.WorldRenderer();
+                var img = r.RenderWorld(wf);
+                var vm = (WorldImageViewModel) worldImageView1.DataContext;
+                vm.World = wf;
+                vm.WorldImage = img;
+            }
         }
     }
 }

@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Windows.Media;
 
-namespace TerrariaMapEditor.Renderer
+namespace TEditWPF.RenderWorld
 {
     public class TileProperties
     {
@@ -12,7 +9,7 @@ namespace TerrariaMapEditor.Renderer
 
         }
 
-        public TileProperties(byte id, System.Drawing.Color color, string name)
+        public TileProperties(byte id, Color color, string name)
         {
             this.ID = id;
             this.Name = name;
@@ -21,6 +18,6 @@ namespace TerrariaMapEditor.Renderer
 
         public byte ID { get; set; }
         public string Name { get; set; }
-        public System.Drawing.Color Color { get; set; }
+        public Color Color { get; set; }
     }
 }

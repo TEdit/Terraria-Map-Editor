@@ -80,7 +80,21 @@ namespace TEditWPF.Views
             }
         }
 
-        WriteableBitmap _bmp;
+        private WriteableBitmap _WorldImage;
+        public WriteableBitmap WorldImage
+        {
+            get { return this._WorldImage; }
+            set
+            {
+                if (this._WorldImage != value)
+                {
+                    this._WorldImage = value;
+                    this.RaisePropertyChanged("WorldImage");
+                }
+            }
+        }
+
+
 
         private bool _isMouseContained;
         public bool IsMouseContained

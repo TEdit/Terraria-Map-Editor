@@ -1,8 +1,13 @@
 ﻿<Window x:Class="TEditWPF.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="MainWindow" Height="350" Width="525" xmlns:my="clr-namespace:TEditWPF.Views" TextOptions.TextFormattingMode="Display" TextOptions.TextRenderingMode="Aliased" SnapsToDevicePixels="True">
+        Title="MainWindow" Height="600" Width="800" xmlns:my="clr-namespace:TEditWPF.Views" TextOptions.TextFormattingMode="Display" TextOptions.TextRenderingMode="Aliased" SnapsToDevicePixels="True">
     <Grid>
-            <my:WorldImageView HorizontalAlignment="Stretch" Margin="2" x:Name="worldImageView1" VerticalAlignment="Stretch" />
+        <Grid.RowDefinitions>
+            <RowDefinition Height="27*" />
+            <RowDefinition Height="534*" />
+        </Grid.RowDefinitions>
+        <my:WorldImageView HorizontalAlignment="Stretch" Margin="2" x:Name="worldImageView1" VerticalAlignment="Stretch" Grid.Row="2" />
+        <Button Content="Button" Grid.RowSpan="2" Height="23" HorizontalAlignment="Left" Margin="99,6,0,0" Name="button1" VerticalAlignment="Top" Width="75" Click="button1_Click" />
     </Grid>
 </Window>

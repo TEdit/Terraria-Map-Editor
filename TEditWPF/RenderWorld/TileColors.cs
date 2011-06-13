@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Drawing;
 using System.Text;
 using System.IO;
 using System.Xml;
 using TerrariaMapEditor.Common;
+using System.Windows.Media;
 
-namespace TerrariaMapEditor.Renderer
+namespace TEditWPF.RenderWorld
 {
     public class TileColors
     {
@@ -19,7 +19,6 @@ namespace TerrariaMapEditor.Renderer
         public static TileColors Load(string filename)
         {
             TileColors tc = new TileColors();
-
 
             using (TextReader sr = new StreamReader(filename))
             {
@@ -90,7 +89,7 @@ namespace TerrariaMapEditor.Renderer
 
         public static string GetTilePropertyFileLine(TileProperties item)
         {
-            return String.Format("{0}|{1}|{2}", item.ID, item.Name, item.Color.Name);
+            return String.Format("{0}|{1}|#{2}", item.ID, item.Name, item.Color.ToString());
         }
 
         public static TileProperties ParseColorFileLine(string line)
@@ -100,14 +99,7 @@ namespace TerrariaMapEditor.Renderer
             byte.TryParse(splitline[0], out id);
 
             string name = splitline[1];
-
-            Color color = Color.FromName(splitline[2]);
-            if (Utility.IsNumeric(splitline[2], System.Globalization.NumberStyles.HexNumber))
-            {
-                Int32 argb;
-                Int32.TryParse(splitline[2], System.Globalization.NumberStyles.HexNumber, System.Globalization.CultureInfo.CurrentCulture, out argb);
-                color = Color.FromArgb(argb);
-            }
+            Color color = (Color)ColorConverter.ConvertFromString("#" + splitline[2]);
 
             return new TileProperties(id, color, name);
         }

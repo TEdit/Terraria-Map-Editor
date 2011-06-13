@@ -92,7 +92,7 @@ namespace TEditWPF.TerrariaWorld
                                 tile.IsLava = reader.ReadBoolean();
                             }
 
-                            wf.Tiles[x, y] = wf.Tiles[x, y];
+                            wf.Tiles[x, y] = tile;
                         }
                     }
 
