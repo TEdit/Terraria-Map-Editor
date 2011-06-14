@@ -3,29 +3,29 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:views="clr-namespace:TEditWPF.Views" xmlns:ViewModels="clr-namespace:TEditWPF.ViewModels"
+             xmlns:ViewModels="clr-namespace:TEditWPF.ViewModels"
              xmlns:Controls="clr-namespace:TEditWPF.Controls" mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <UserControl.DataContext>
-        <ViewModels:WorldImageViewModel />
+        <ViewModels:WorldViewModel />
     </UserControl.DataContext>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="1*" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-        
+
         <Grid Grid.Row="0" Background="#666666">
             <ScrollViewer HorizontalScrollBarVisibility="Visible"  x:Name="WorldScrollViewer" >
                 <ScrollViewer.Content>
                     <Grid Height="{Binding Path=WorldZoomedHeight}" Width="{Binding Path=WorldZoomedWidth}" >
                         <Image x:Name="WorldImage" Source="{Binding Path=WorldImage}" RenderOptions.BitmapScalingMode="NearestNeighbor" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"
-                      MouseMove="ViewportMouseMove" 
-                      MouseDown="ViewportMouseDown"
-                      MouseWheel="ViewportMouseWheel" 
-                      MouseUp="ViewportMouseUp" 
-                      MouseEnter="ViewportMouseEnter" 
-                      MouseLeave="ViewportMouseLeave"/>
+                          MouseMove="ViewportMouseMove" 
+                          MouseDown="ViewportMouseDown"
+                          MouseWheel="ViewportMouseWheel" 
+                          MouseUp="ViewportMouseUp" 
+                          MouseEnter="ViewportMouseEnter" 
+                          MouseLeave="ViewportMouseLeave"/>
                     </Grid>
                 </ScrollViewer.Content>
             </ScrollViewer>
@@ -37,9 +37,9 @@
             <Border BorderBrush="Black" BorderThickness="1" Margin="1" Padding="1" >
                 <TextBlock Text="{Binding Path=MouseOverTile}" />
             </Border>
-            <Border BorderBrush="Black" BorderThickness="1" Margin="1" Padding="1" >
+            <!--<Border BorderBrush="Black" BorderThickness="1" Margin="1" Padding="1" >
                     <TextBlock Text="{Binding Path=RequestScrollTile, NotifyOnTargetUpdated=True}" TargetUpdated="RequestedScrollToTile" />
-            </Border>            
+            </Border>-->
         </StackPanel>
         <Border BorderBrush="Black" BorderThickness="1" Grid.Row="2" HorizontalAlignment="Right" >
             <Controls:ScrollViewerThumbnail Grid.Row="1" ScrollViewer="{Binding ElementName=WorldScrollViewer}" Height="30"/>

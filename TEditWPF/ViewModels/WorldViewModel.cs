@@ -9,12 +9,11 @@ using TEditWPF.TerrariaWorld.Structures;
 namespace TEditWPF.ViewModels
 {
     [Export]
-    public class WorldImageViewModel : ObservableObject
+    public class WorldViewModel : ObservableObject
     {
-        public WorldImageViewModel()
+        public WorldViewModel()
         {
             //this._bmp = new WriteableBitmap
-            _mouseOverTile = new System.Windows.Point(20, 20);
             this._world = new World();
             this.World.Header.MaxTiles = new PointInt32(1200, 4200);
         }
@@ -114,57 +113,45 @@ namespace TEditWPF.ViewModels
         private ICommand _mouseMoveCommand;
         public ICommand MouseMoveCommand
         {
-            get { return _mouseMoveCommand ?? (_mouseMoveCommand = new RelayCommand<CustomMouseEventArgs>(OnMouseOverPixel)); }
+            get { return _mouseMoveCommand ?? (_mouseMoveCommand = new RelayCommand<TileMouseEventArgs>(OnMouseOverPixel)); }
         }
 
         private ICommand _mouseDownCommand;
         public ICommand MouseDownCommand
         {
-            get { return _mouseDownCommand ?? (_mouseDownCommand = new RelayCommand<CustomMouseEventArgs>(OnMouseDownPixel)); }
+            get { return _mouseDownCommand ?? (_mouseDownCommand = new RelayCommand<TileMouseEventArgs>(OnMouseDownPixel)); }
         }
 
         private ICommand _mouseUpCommand;
         public ICommand MouseUpCommand
         {
-            get { return _mouseUpCommand ?? (_mouseUpCommand = new RelayCommand<CustomMouseEventArgs>(OnMouseUpPixel)); }
+            get { return _mouseUpCommand ?? (_mouseUpCommand = new RelayCommand<TileMouseEventArgs>(OnMouseUpPixel)); }
         }
 
         private ICommand _mouseWheelCommand;
         public ICommand MouseWheelCommand
         {
-            get { return _mouseWheelCommand ?? (_mouseWheelCommand = new RelayCommand<CustomMouseEventArgs>(OnMouseWheel)); }
+            get { return _mouseWheelCommand ?? (_mouseWheelCommand = new RelayCommand<TileMouseEventArgs>(OnMouseWheel)); }
         }
 
-        private ICommand _scrollToTileCommand;
-        public ICommand ScrollToTileCommand
+
+
+        private void OnMouseOverPixel(TileMouseEventArgs e)
         {
-            get { return _scrollToTileCommand ?? (_scrollToTileCommand = new RelayCommand<System.Windows.Point>(p => this.RequestScrollTile = p)); }
+            this.MouseOverTile = e.Tile;
         }
 
-        private System.Windows.Point GetTileAtPixel(System.Windows.Point pixel)
+        private void OnMouseDownPixel(TileMouseEventArgs e)
         {
-            decimal x = Math.Ceiling((decimal)pixel.X / (decimal)this.Zoom);
-            decimal y = Math.Ceiling((decimal)pixel.Y / (decimal)this.Zoom);
-            var tile = new System.Windows.Point((int)x, (int)y);
-            return tile;
+            this.MouseDownTile = e.Tile;
         }
 
-        private void OnMouseOverPixel(CustomMouseEventArgs e)
+        private void OnMouseUpPixel(TileMouseEventArgs e)
         {
-            this.MouseOverTile = GetTileAtPixel(e.Location);
+            this.MouseUpTile = e.Tile;
         }
 
-        private void OnMouseDownPixel(CustomMouseEventArgs e)
-        {
-            this.MouseDownTile = GetTileAtPixel(e.Location);
-        }
-
-        private void OnMouseUpPixel(CustomMouseEventArgs e)
-        {
-            this.MouseUpTile = GetTileAtPixel(e.Location);
-        }
-
-        private void OnMouseWheel(CustomMouseEventArgs e)
+        private void OnMouseWheel(TileMouseEventArgs e)
         {
             if (e.WheelDelta > 0)
                 this.Zoom = this.Zoom * 1.1;
@@ -173,8 +160,8 @@ namespace TEditWPF.ViewModels
 
         }
 
-        private System.Windows.Point _mouseOverTile;
-        public System.Windows.Point MouseOverTile
+        private PointInt32 _mouseOverTile;
+        public PointInt32 MouseOverTile
         {
             get { return this._mouseOverTile; }
             set
@@ -187,8 +174,8 @@ namespace TEditWPF.ViewModels
             }
         }
 
-        private System.Windows.Point _mouseDownTile;
-        public System.Windows.Point MouseDownTile
+        private PointInt32 _mouseDownTile;
+        public PointInt32 MouseDownTile
         {
             get { return this._mouseDownTile; }
             set
@@ -201,8 +188,8 @@ namespace TEditWPF.ViewModels
             }
         }
 
-        private System.Windows.Point _mouseUpTile;
-        public System.Windows.Point MouseUpTile
+        private PointInt32 _mouseUpTile;
+        public PointInt32 MouseUpTile
         {
             get { return this._mouseUpTile; }
             set
@@ -215,18 +202,5 @@ namespace TEditWPF.ViewModels
             }
         }
 
-        private System.Windows.Point _requestScrollTile;
-        public System.Windows.Point RequestScrollTile
-        {
-            get { return this._requestScrollTile; }
-            set
-            {
-                if (this._requestScrollTile != value)
-                {
-                    this._requestScrollTile = value;
-                    this.RaisePropertyChanged("RequestScrollTile");
-                }
-            }
-        }
     }
 }

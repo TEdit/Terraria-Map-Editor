@@ -38,19 +38,22 @@ namespace TEditWPF.RenderWorld
                     else
                     {
                         var lineproperty = ParseColorFileLine(line);
-                        switch (section)
+                        if (lineproperty != null)
                         {
-                            case FileSection.WALLCOLORS:
-                                tc.WallColor.Add(lineproperty.ID, lineproperty);
-                                break;
-                            case FileSection.TILECOLORS:
-                                tc.TileColor.Add(lineproperty.ID, lineproperty);
-                                break;
-                            case FileSection.LIQUIDCOLORS:
-                                tc.LiquidColor.Add(lineproperty.ID, lineproperty);
-                                break;
-                            default:
-                                break;
+                            switch (section)
+                            {
+                                case FileSection.WALLCOLORS:
+                                    tc.WallColor.Add(lineproperty.ID, lineproperty);
+                                    break;
+                                case FileSection.TILECOLORS:
+                                    tc.TileColor.Add(lineproperty.ID, lineproperty);
+                                    break;
+                                case FileSection.LIQUIDCOLORS:
+                                    tc.LiquidColor.Add(lineproperty.ID, lineproperty);
+                                    break;
+                                default:
+                                    break;
+                            }
                         }
                     }
                 }
@@ -89,19 +92,23 @@ namespace TEditWPF.RenderWorld
 
         public static string GetTilePropertyFileLine(TileProperties item)
         {
-            return String.Format("{0}|{1}|#{2}", item.ID, item.Name, item.Color.ToString());
+            return String.Format("{0}|{1}|#{2}{3}{4}{5}", item.ID, item.Name, item.Color.A, item.Color.R, item.Color.G, item.Color.B);
         }
 
         public static TileProperties ParseColorFileLine(string line)
         {
             var splitline = line.Split(new char[] { ',', '|' });
-            byte id = 0;
-            byte.TryParse(splitline[0], out id);
+            if (splitline.Length == 3)
+            {
+                byte id = 0;
+                byte.TryParse(splitline[0], out id);
 
-            string name = splitline[1];
-            Color color = (Color)ColorConverter.ConvertFromString("#" + splitline[2]);
+                string name = splitline[1];
+                Color color = (Color) ColorConverter.ConvertFromString("#" + splitline[2]);
 
-            return new TileProperties(id, color, name);
+                return new TileProperties(id, color, name);
+            }
+            return null;
         }
 
         public enum FileSection

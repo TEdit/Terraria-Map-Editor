@@ -1,9 +1,11 @@
-﻿using System.ComponentModel.Composition;
+﻿using System;
+using System.ComponentModel.Composition;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Input;
 using TEditWPF.Common;
+using TEditWPF.TerrariaWorld.Structures;
 using TEditWPF.ViewModels;
 
 namespace TEditWPF.Views
@@ -11,7 +13,6 @@ namespace TEditWPF.Views
     /// <summary>
     /// Interaction logic for WorldImageView.xaml
     /// </summary>
-    [Export]
     public partial class WorldImageView : UserControl
     {
         public WorldImageView()
@@ -19,20 +20,15 @@ namespace TEditWPF.Views
             InitializeComponent();
         }
 
-        [Import]
-        public WorldImageViewModel ViewModel
-        {
-            set { this.DataContext = value; }
-            get { return this.DataContext as WorldImageViewModel; }
-        }
-
         private Point _mouseDownAbsolute;
 
         private void ViewportMouseMove(object sender, MouseEventArgs e)
         {
-            var cargs = new CustomMouseEventArgs()
+            var vm = (WorldViewModel)this.DataContext;
+
+            var cargs = new TileMouseEventArgs()
             {
-                Location = e.GetPosition((IInputElement)sender),
+                Tile = GetTileAtPixel(e.GetPosition((IInputElement)sender)),
                 LeftButton = e.LeftButton,
                 RightButton = e.RightButton,
                 MiddleButton = e.MiddleButton,
@@ -56,19 +52,19 @@ namespace TEditWPF.Views
             }
             else
             {
-
                 Cursor = Cursors.Cross;
             }
 
-            if (ViewModel.MouseMoveCommand.CanExecute(cargs))
-                ViewModel.MouseMoveCommand.Execute(cargs);
+            if (vm.MouseMoveCommand.CanExecute(cargs))
+                vm.MouseMoveCommand.Execute(cargs);
+
         }
 
         private void ViewportMouseDown(object sender, MouseButtonEventArgs e)
         {
-            var cargs = new CustomMouseEventArgs()
+            var cargs = new TileMouseEventArgs()
                                           {
-                                              Location = e.GetPosition((IInputElement)sender),
+                                              Tile = GetTileAtPixel(e.GetPosition((IInputElement)sender)),
                                               LeftButton = e.LeftButton,
                                               RightButton = e.RightButton,
                                               MiddleButton = e.MiddleButton,
@@ -78,63 +74,73 @@ namespace TEditWPF.Views
 
             _mouseDownAbsolute = e.GetPosition(this);
 
-            if (ViewModel.MouseDownCommand.CanExecute(cargs))
-                ViewModel.MouseDownCommand.Execute(cargs);
+            var vm = (WorldViewModel)this.DataContext;
+            if (vm.MouseDownCommand.CanExecute(cargs))
+                vm.MouseDownCommand.Execute(cargs);
         }
 
         private void ViewportMouseWheel(object sender, MouseWheelEventArgs e)
         {
-            var cargs = new CustomMouseEventArgs()
+            var cargs = new TileMouseEventArgs()
             {
-                Location = e.GetPosition((IInputElement)sender),
+                Tile = GetTileAtPixel(e.GetPosition((IInputElement)sender)),
                 LeftButton = e.LeftButton,
                 RightButton = e.RightButton,
                 MiddleButton = e.MiddleButton,
                 WheelDelta = e.Delta
             };
 
-            if (ViewModel.MouseWheelCommand.CanExecute(cargs))
-                ViewModel.MouseWheelCommand.Execute(cargs);
+            var vm = (WorldViewModel)this.DataContext;
+            if (vm.MouseWheelCommand.CanExecute(cargs))
+                vm.MouseWheelCommand.Execute(cargs);
 
-            ScrollToTile(ViewModel.MouseOverTile);
+            ScrollToTile(cargs.Tile);
         }
 
         private void ViewportMouseUp(object sender, MouseButtonEventArgs e)
         {
-            var cargs = new CustomMouseEventArgs()
+            var cargs = new TileMouseEventArgs()
             {
-                Location = e.GetPosition((IInputElement)sender),
+                Tile = GetTileAtPixel(e.GetPosition((IInputElement)sender)),
                 LeftButton = e.LeftButton,
                 RightButton = e.RightButton,
                 MiddleButton = e.MiddleButton,
                 WheelDelta = 0
             };
 
-            if (ViewModel.MouseUpCommand.CanExecute(cargs))
-                ViewModel.MouseUpCommand.Execute(cargs);
+            var vm = (WorldViewModel)this.DataContext;
+            if (vm.MouseUpCommand.CanExecute(cargs))
+                vm.MouseUpCommand.Execute(cargs);
         }
 
         private void ViewportMouseEnter(object sender, MouseEventArgs e)
         {
-            ViewModel.IsMouseContained = true;
+            var vm = (WorldViewModel)this.DataContext;
+            vm.IsMouseContained = true;
         }
 
         private void ViewportMouseLeave(object sender, MouseEventArgs e)
         {
-            ViewModel.IsMouseContained = false;
+            var vm = (WorldViewModel)this.DataContext;
+            vm.IsMouseContained = false;
         }
 
-        private void ScrollToTile(Point tile)
+        private void ScrollToTile(PointInt32 tile)
         {
-            var zoom = ViewModel.Zoom;
+            var vm = (WorldViewModel)this.DataContext;
+            var zoom = vm.Zoom;
             var partView = (ScrollViewer)this.FindName("WorldScrollViewer");
             partView.ScrollToHorizontalOffset((tile.X * zoom) - (partView.ActualWidth / 2.0));
             partView.ScrollToVerticalOffset((tile.Y * zoom) - (partView.ActualHeight / 2.0));
         }
 
-        private void RequestedScrollToTile(object sender, DataTransferEventArgs e)
+        private PointInt32 GetTileAtPixel(System.Windows.Point pixel)
         {
-            this.ScrollToTile(ViewModel.RequestScrollTile);
+            var vm = (WorldViewModel)this.DataContext;
+            decimal x = Math.Ceiling((decimal)pixel.X / (decimal)vm.Zoom);
+            decimal y = Math.Ceiling((decimal)pixel.Y / (decimal)vm.Zoom);
+            var tile = new PointInt32((int)x, (int)y);
+            return tile;
         }
     }
 }

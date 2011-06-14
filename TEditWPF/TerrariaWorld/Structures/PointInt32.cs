@@ -24,6 +24,11 @@ namespace TEditWPF.TerrariaWorld.Structures
             set { _y = value; }
         }
 
+        public override string ToString()
+        {
+            return String.Format("({0}, {1})", this.X, this.Y);
+        }
+
         #region Operator Overrides
 
         private static bool MatchFields(PointInt32 a, PointInt32 m)

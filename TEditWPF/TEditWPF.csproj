@@ -61,7 +61,7 @@
     <Compile Include="Common\RelayCommand.cs" />
     <Compile Include="Controls\ScrollViewerThumbnail.cs" />
     <Compile Include="Tools\ITool.cs" />
-    <Compile Include="Common\CustomMouseEventArgs.cs" />
+    <Compile Include="Common\TileMouseEventArgs.cs" />
     <Compile Include="Tools\ToolType.cs" />
     <Compile Include="RenderWorld\TileColors.cs" />
     <Compile Include="RenderWorld\TileProperties.cs" />
@@ -80,7 +80,7 @@
     <Compile Include="TerrariaWorld\World.File.cs" />
     <Compile Include="TerrariaWorld\WorldHeader.cs" />
     <Compile Include="Tools\Pencil.cs" />
-    <Compile Include="ViewModels\WorldImageViewModel.cs" />
+    <Compile Include="ViewModels\WorldViewModel.cs" />
     <Compile Include="Views\WorldImageView.xaml.cs">
       <DependentUpon>WorldImageView.xaml</DependentUpon>
     </Compile>

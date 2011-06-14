@@ -1,4 +1,6 @@
-﻿namespace TEditWPF.TerrariaWorld.Structures
+﻿using System;
+
+namespace TEditWPF.TerrariaWorld.Structures
 {
     public struct PointShort
     {
@@ -20,6 +22,11 @@
         {
             get { return _y; }
             set { _y = value; }
+        }
+
+        public override string ToString()
+        {
+            return String.Format("({0}, {1})", this.X, this.Y);
         }
 
         #region Operator Overrides

@@ -1,4 +1,6 @@
-﻿namespace TEditWPF.TerrariaWorld.Structures
+﻿using System;
+
+namespace TEditWPF.TerrariaWorld.Structures
 {
     public struct PointFloat
     {
@@ -20,6 +22,11 @@
         {
             get { return _y; }
             set { _y = value; }
+        }
+
+        public override string ToString()
+        {
+            return String.Format("({0:#.000}, {1:#.000})", this.X, this.Y);
         }
 
         #region Operator Overrides

@@ -4,10 +4,10 @@
         Title="MainWindow" Height="600" Width="800" xmlns:my="clr-namespace:TEditWPF.Views" TextOptions.TextFormattingMode="Display" TextOptions.TextRenderingMode="Aliased" SnapsToDevicePixels="True">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="27*" />
-            <RowDefinition Height="534*" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
         </Grid.RowDefinitions>
+        <Button Content="Load World" Height="23" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Click="MockLoadWorldandRender" />
         <my:WorldImageView HorizontalAlignment="Stretch" Margin="2" x:Name="worldImageView1" VerticalAlignment="Stretch" Grid.Row="2" />
-        <Button Content="Button" Grid.RowSpan="2" Height="23" HorizontalAlignment="Left" Margin="99,6,0,0" Name="button1" VerticalAlignment="Top" Width="75" Click="button1_Click" />
     </Grid>
 </Window>
