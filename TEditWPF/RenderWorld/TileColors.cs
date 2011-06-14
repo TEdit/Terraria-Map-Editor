@@ -1,10 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.IO;
-using System.Xml;
-using TerrariaMapEditor.Common;
 using System.Windows.Media;
 
 namespace TEditWPF.RenderWorld

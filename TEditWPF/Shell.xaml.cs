@@ -25,21 +25,5 @@ namespace TEditWPF
         {
             InitializeComponent();
         }
-
-
-        
-        private void MockLoadWorldandRender(object sender, RoutedEventArgs e)
-        {
-            Microsoft.Win32.OpenFileDialog ofd = new Microsoft.Win32.OpenFileDialog();
-            if ((bool)ofd.ShowDialog())
-            {
-                var wf = TerrariaWorld.World.Load(ofd.FileName);
-                var r = new RenderWorld.WorldRenderer();
-                var img = r.RenderWorld(wf);
-                var vm = (WorldViewModel) worldImageView1.DataContext;
-                vm.World = wf;
-                vm.WorldImage = img;
-            }
-        }
     }
 }

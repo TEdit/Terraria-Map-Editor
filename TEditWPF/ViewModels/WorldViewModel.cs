@@ -1,8 +1,13 @@
 using System;
+using System.ComponentModel;
 using System.ComponentModel.Composition;
+using System.Threading;
+using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media.Imaging;
 using TEditWPF.Common;
+using TEditWPF.RenderWorld;
 using TEditWPF.TerrariaWorld;
 using TEditWPF.TerrariaWorld.Structures;
 
@@ -11,11 +16,27 @@ namespace TEditWPF.ViewModels
     [Export]
     public class WorldViewModel : ObservableObject
     {
+
+        private void CreateRenderer()
+        {
+            if (_renderer == null)
+                _renderer = new WorldRenderer();
+
+            _renderer.ProgressChanged += (s, e) => { this.Progress = e; };
+        }
+
+        private TaskScheduler _uiScheduler;
+        private TaskFactory _uiFactory;
+        private WorldRenderer _renderer;
+
         public WorldViewModel()
         {
-            //this._bmp = new WriteableBitmap
-            this._world = new World();
-            this.World.Header.MaxTiles = new PointInt32(1200, 4200);
+
+            _uiScheduler = TaskScheduler.FromCurrentSynchronizationContext();
+            _uiFactory = new TaskFactory(_uiScheduler);
+
+
+            World.ProgressChanged += (s, e) => { this.Progress = e; };
         }
 
         private World _world;
@@ -43,7 +64,7 @@ namespace TEditWPF.ViewModels
                     return this._WorldImage.PixelHeight * this._Zoom;
 
 
-                return this.World.Header.MaxTiles.Y;
+                return 1;
             }
         }
 
@@ -54,7 +75,7 @@ namespace TEditWPF.ViewModels
                 if (this._WorldImage != null)
                     return this._WorldImage.PixelWidth * this._Zoom;
 
-                return this.World.Header.MaxTiles.X;
+                return 1;
             }
         }
 
@@ -134,6 +155,67 @@ namespace TEditWPF.ViewModels
             get { return _mouseWheelCommand ?? (_mouseWheelCommand = new RelayCommand<TileMouseEventArgs>(OnMouseWheel)); }
         }
 
+        private ICommand _openWorldCommand;
+        public ICommand OpenWorldCommand
+        {
+            get { return _openWorldCommand ?? (_openWorldCommand = new RelayCommand(LoadWorldandRender, CanLoad)); }
+        }
+
+        private bool _IsBusy;
+        public bool IsBusy
+        {
+            get { return this._IsBusy; }
+            set
+            {
+                if (this._IsBusy != value)
+                {
+                    this._IsBusy = value;
+                    this.RaisePropertyChanged("IsBusy");
+                }
+            }
+        }
+
+
+        public bool CanLoad()
+        {
+            return !IsBusy;
+        }
+
+        private void LoadWorldandRender()
+        {
+            CreateRenderer();
+            var uiContext = TaskScheduler.FromCurrentSynchronizationContext();
+
+            Microsoft.Win32.OpenFileDialog ofd = new Microsoft.Win32.OpenFileDialog();
+            IsBusy = true;
+            if ((bool)ofd.ShowDialog())
+            {
+                Task.Factory.StartNew(() =>
+                {
+                    var world = World.Load(ofd.FileName);
+                    var img = _renderer.RenderWorld(world);
+                    img.Freeze();
+                    Task.Factory.StartNew(() =>
+                                              {
+                                                  
+                                                  this.World = world;
+                                                  this.WorldImage = img;
+                                              }, CancellationToken.None, TaskCreationOptions.None, uiContext);
+                });
+            }
+            IsBusy = false;
+        }
+
+
+        private void LoadWorld(string filename)
+        {
+            this.World = World.Load(filename);
+        }
+
+        private void RenderWorld(World world)
+        {
+            this.WorldImage = _renderer.RenderWorld(world);
+        }
 
 
         private void OnMouseOverPixel(TileMouseEventArgs e)
@@ -201,6 +283,24 @@ namespace TEditWPF.ViewModels
                 }
             }
         }
+
+        private ProgressChangedEventArgs _progress;
+        public ProgressChangedEventArgs Progress
+        {
+            get { return this._progress; }
+            set
+            {
+                if (this._progress != value)
+                {
+                    this._progress = value;
+                    this.RaisePropertyChanged("Progress");
+                }
+            }
+        }
+
+
+
+
 
     }
 }
