@@ -6,21 +6,16 @@
     <Window.DataContext>
         <ViewModels:WorldViewModel />
     </Window.DataContext>
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="*" />
-            <RowDefinition Height="Auto" />
-        </Grid.RowDefinitions>
-        <Button Content="Load World" Height="23" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Command="{Binding Path=OpenWorldCommand}" />
-        <views:WorldImageView HorizontalAlignment="Stretch" Margin="2" x:Name="worldImageView1" VerticalAlignment="Stretch" Grid.Row="1" />
-        <StatusBar Grid.Row="2">
-            <StatusBarItem HorizontalAlignment="Right">
-                <TextBlock Text="{Binding Path=Progress.UserState, Mode=OneWay}" />
-            </StatusBarItem>
-            <StatusBarItem HorizontalAlignment="Right">
-                <ProgressBar Height="20" Width="100" Value="{Binding Path=Progress.ProgressPercentage, Mode=OneWay}" />
-            </StatusBarItem>
-            </StatusBar>
-    </Grid>
+    <DockPanel Grid.Row="1" HorizontalAlignment="Stretch" >
+        <Button DockPanel.Dock="Top" Content="Load World" Height="23" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Command="{Binding Path=OpenWorldCommand}" />
+        <views:StatusBarView DockPanel.Dock="Bottom" />
+        <views:ToolSelectorView DockPanel.Dock="Left" />
+        <Expander Header="Tools" ExpandDirection="Left" IsExpanded="False" Grid.Row="1" DockPanel.Dock="Right">
+            <TabControl Width="200"></TabControl>
+        </Expander>
+        <Border BorderBrush="Black" BorderThickness="1">
+            <views:WorldImageView />
+        </Border>
+
+    </DockPanel>
 </Window>

@@ -1,0 +1,18 @@
+﻿<UserControl x:Class="TEditWPF.Views.ToolSelectorView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:vm="clr-namespace:TEditWPF.ViewModels"
+             mc:Ignorable="d" >
+    <ToolBarTray Orientation="Vertical" Width="27" d:DataContext="{d:DesignInstance vm:WorldViewModel}">
+        <ToolBar>
+            <ToggleButton Width="22" Height="22" Margin="1" />
+            <ToggleButton Width="22" Height="22" Margin="1" />
+            <ToggleButton Width="22" Height="22" Margin="1" />
+            <ToggleButton Width="22" Height="22" Margin="1" />
+            <ToggleButton Width="22" Height="22" Margin="1" />
+            <ToggleButton Width="22" Height="22" Margin="1" />
+        </ToolBar>
+    </ToolBarTray>
+</UserControl>

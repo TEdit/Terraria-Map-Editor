@@ -184,7 +184,6 @@ namespace TEditWPF.ViewModels
         private void LoadWorldandRender()
         {
             CreateRenderer();
-            var uiContext = TaskScheduler.FromCurrentSynchronizationContext();
 
             Microsoft.Win32.OpenFileDialog ofd = new Microsoft.Win32.OpenFileDialog();
             IsBusy = true;
@@ -195,26 +194,15 @@ namespace TEditWPF.ViewModels
                     var world = World.Load(ofd.FileName);
                     var img = _renderer.RenderWorld(world);
                     img.Freeze();
-                    Task.Factory.StartNew(() =>
-                                              {
-                                                  
-                                                  this.World = world;
-                                                  this.WorldImage = img;
-                                              }, CancellationToken.None, TaskCreationOptions.None, uiContext);
+                    _uiFactory.StartNew(() =>
+                    {
+
+                        this.World = world;
+                        this.WorldImage = img;
+                    });
                 });
             }
             IsBusy = false;
-        }
-
-
-        private void LoadWorld(string filename)
-        {
-            this.World = World.Load(filename);
-        }
-
-        private void RenderWorld(World world)
-        {
-            this.WorldImage = _renderer.RenderWorld(world);
         }
 
 
