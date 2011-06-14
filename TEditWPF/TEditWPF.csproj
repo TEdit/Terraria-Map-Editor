@@ -59,6 +59,7 @@
     <Compile Include="Common\ObservableObject.cs" />
     <Compile Include="Common\PropertySupport.cs" />
     <Compile Include="Common\RelayCommand.cs" />
+    <Compile Include="Controls\ScrollViewerThumbnail.cs" />
     <Compile Include="Tools\ITool.cs" />
     <Compile Include="Common\CustomMouseEventArgs.cs" />
     <Compile Include="Tools\ToolType.cs" />
@@ -83,6 +84,11 @@
     <Compile Include="Views\WorldImageView.xaml.cs">
       <DependentUpon>WorldImageView.xaml</DependentUpon>
     </Compile>
+    <Page Include="Controls\ScrollViewerThumbnail.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <DependentUpon>ScrollViewerThumbnail.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Shell.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -97,12 +103,6 @@
       <DependentUpon>Shell.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Views\ScrollViewerThumbnail.cs" />
-    <Page Include="Views\ScrollViewerThumbnail.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-      <DependentUpon>ScrollViewerThumbnail.cs</DependentUpon>
-    </Page>
     <Page Include="Views\WorldImageView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -139,9 +139,9 @@
     </Resource>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="colors.txt">
+    <Content Include="colors.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Resource>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Resource Include="GPL.txt">

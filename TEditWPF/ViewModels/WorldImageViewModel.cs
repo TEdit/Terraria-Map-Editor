@@ -17,8 +17,6 @@ namespace TEditWPF.ViewModels
             _mouseOverTile = new System.Windows.Point(20, 20);
             this._world = new World();
             this.World.Header.MaxTiles = new PointInt32(1200, 4200);
-
-            int x = 0;
         }
 
         private World _world;

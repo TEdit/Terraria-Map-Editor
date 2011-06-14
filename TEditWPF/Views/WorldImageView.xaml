@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:views="clr-namespace:TEditWPF.Views" xmlns:ViewModels="clr-namespace:TEditWPF.ViewModels"
-             mc:Ignorable="d" 
+             xmlns:Controls="clr-namespace:TEditWPF.Controls" mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <UserControl.DataContext>
         <ViewModels:WorldImageViewModel />
@@ -42,7 +42,7 @@
             </Border>            
         </StackPanel>
         <Border BorderBrush="Black" BorderThickness="1" Grid.Row="2" HorizontalAlignment="Right" >
-            <views:ScrollViewerThumbnail Grid.Row="1" ScrollViewer="{Binding ElementName=WorldScrollViewer}" Height="30"/>
+            <Controls:ScrollViewerThumbnail Grid.Row="1" ScrollViewer="{Binding ElementName=WorldScrollViewer}" Height="30"/>
         </Border>
     </Grid>
 </UserControl>
