@@ -1,7 +1,5 @@
 ﻿using System.ComponentModel.Composition;
 using System.Windows.Media.Imaging;
-using TEditWPF.Infrastructure;
-
 
 namespace TEditWPF.Tools
 {

@@ -59,9 +59,9 @@
     <Compile Include="Common\ObservableObject.cs" />
     <Compile Include="Common\PropertySupport.cs" />
     <Compile Include="Common\RelayCommand.cs" />
-    <Compile Include="Infrastructure\ITool.cs" />
-    <Compile Include="Infrastructure\CustomMouseEventArgs.cs" />
-    <Compile Include="Infrastructure\ToolType.cs" />
+    <Compile Include="Tools\ITool.cs" />
+    <Compile Include="Common\CustomMouseEventArgs.cs" />
+    <Compile Include="Tools\ToolType.cs" />
     <Compile Include="RenderWorld\TileColors.cs" />
     <Compile Include="RenderWorld\TileProperties.cs" />
     <Compile Include="RenderWorld\WorldRenderer.cs" />
@@ -79,9 +79,7 @@
     <Compile Include="TerrariaWorld\World.File.cs" />
     <Compile Include="TerrariaWorld\WorldHeader.cs" />
     <Compile Include="Tools\Pencil.cs" />
-    <Compile Include="Views\WorldImageViewModel.cs">
-      <DependentUpon>WorldImageView.xaml</DependentUpon>
-    </Compile>
+    <Compile Include="ViewModels\WorldImageViewModel.cs" />
     <Compile Include="Views\WorldImageView.xaml.cs">
       <DependentUpon>WorldImageView.xaml</DependentUpon>
     </Compile>
@@ -150,6 +148,7 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

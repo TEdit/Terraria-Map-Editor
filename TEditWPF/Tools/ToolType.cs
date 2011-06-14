@@ -1,4 +1,4 @@
-﻿namespace TEditWPF.Infrastructure
+﻿namespace TEditWPF.Tools
 {
     public enum ToolType
     {

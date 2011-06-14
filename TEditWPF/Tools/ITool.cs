@@ -1,6 +1,6 @@
 ﻿using System.Windows;
 
-namespace TEditWPF.Infrastructure
+namespace TEditWPF.Tools
 {
     using System.Windows.Media.Imaging;
 

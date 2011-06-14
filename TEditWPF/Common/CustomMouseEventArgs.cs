@@ -1,6 +1,6 @@
 ﻿using System.Windows.Input;
 
-namespace TEditWPF.Infrastructure
+namespace TEditWPF.Common
 {
     public class CustomMouseEventArgs
     {

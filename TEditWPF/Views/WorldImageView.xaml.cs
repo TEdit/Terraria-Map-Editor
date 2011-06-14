@@ -3,7 +3,8 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Input;
-using TEditWPF.Infrastructure;
+using TEditWPF.Common;
+using TEditWPF.ViewModels;
 
 namespace TEditWPF.Views
 {

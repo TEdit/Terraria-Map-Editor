@@ -1,18 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using System;
+using System.ComponentModel.Composition;
 using System.Windows.Input;
-using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using TEditWPF.Common;
-using System.ComponentModel.Composition;
-using TEditWPF.Infrastructure;
 using TEditWPF.TerrariaWorld;
 using TEditWPF.TerrariaWorld.Structures;
 
-
-namespace TEditWPF.Views
+namespace TEditWPF.ViewModels
 {
     [Export]
     public class WorldImageViewModel : ObservableObject
@@ -101,8 +95,6 @@ namespace TEditWPF.Views
                 }
             }
         }
-
-
 
         private bool _isMouseContained;
         public bool IsMouseContained
@@ -238,8 +230,5 @@ namespace TEditWPF.Views
                 }
             }
         }
-
-
-
     }
 }
