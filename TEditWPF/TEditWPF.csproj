@@ -58,6 +58,7 @@
     </ApplicationDefinition>
     <Compile Include="Common\ObservableObject.cs" />
     <Compile Include="Common\PropertySupport.cs" />
+    <Compile Include="Common\Int32RectExtensions.cs" />
     <Compile Include="Common\RelayCommand.cs" />
     <Compile Include="Controls\ScrollViewerThumbnail.cs" />
     <Compile Include="Tools\ITool.cs" />

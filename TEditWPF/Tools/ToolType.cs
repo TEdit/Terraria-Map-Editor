@@ -4,6 +4,7 @@
     {
         Pencil,
         Brush,
-        Fill
+        Fill,
+        Selection
     }
 }

@@ -17,7 +17,7 @@ namespace TEditWPF.Views
     {
         public WorldImageView()
         {
-            InitializeComponent();
+            InitializeComponent(); 
         }
 
         private Point _mouseDownAbsolute;
@@ -26,7 +26,7 @@ namespace TEditWPF.Views
         {
             var vm = (WorldViewModel)this.DataContext;
 
-            var cargs = new TileMouseEventArgs()
+            var cargs = new TileMouseEventArgs
             {
                 Tile = GetTileAtPixel(e.GetPosition((IInputElement)sender)),
                 LeftButton = e.LeftButton,

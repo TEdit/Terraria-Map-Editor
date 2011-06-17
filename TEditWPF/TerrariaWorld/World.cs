@@ -1,42 +1,35 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.ComponentModel.Composition;
+using System.Diagnostics;
 using TEditWPF.Common;
 
 namespace TEditWPF.TerrariaWorld
 {
-    public partial class World : ObservableObject
+    [Export("World", typeof(World))]
+    [PartCreationPolicy(CreationPolicy.Shared)]
+    public partial class World
     {
-        public static int MaxChests = 1000;
-        public static int MaxSigns = 1000;
-        public static int MaxNpcs = 1000;
-        public static int CompatableVersion = 9;
+        const int MaxChests = 1000;
+        const int MaxSigns = 1000;
+        const int MaxNpcs = 1000;
+        const int CompatableVersion = 9;
 
         public World()
         {
             this.Header = new WorldHeader();
-
+            this.ClearWorld();
         }
 
-        private WorldHeader _Header;
-        public WorldHeader Header
-        {
-            get { return this._Header; }
-            set
-            {
-                if (this._Header != value)
-                {
-                    this._Header = value;
-                    this.RaisePropertyChanged("Header");
-                }
-            }
-        }
+        public WorldHeader Header { get; set; }
 
         public void ClearWorld()
         {
             this._tiles = new Tile[this.Header.MaxTiles.X, this.Header.MaxTiles.Y];
-            this._Chests = new ObservableCollection<Chest>();
-            this._Signs = new ObservableCollection<Sign>();
-            this._Npcs = new ObservableCollection<NPC>();
+            this._chests = new Chest[World.MaxChests];
+            this._signs = new Sign[World.MaxSigns];
+            this._npcs = new NPC[World.MaxNpcs];
         }
 
         public void ResetTime()
@@ -47,28 +40,29 @@ namespace TEditWPF.TerrariaWorld
         }
 
         private Tile[,] _tiles;
-        [Browsable(false)]
         public Tile[,] Tiles
         {
             get { return this._tiles; }
         }
 
-        private ObservableCollection<Chest> _Chests = new ObservableCollection<Chest>();
-        public ObservableCollection<Chest> Chests
+        private Chest[] _chests = new Chest[World.MaxChests];
+        public Chest[] Chests
         {
-            get { return _Chests; }
+            get { return _chests; }
         }
 
-        private ObservableCollection<Sign> _Signs = new ObservableCollection<Sign>();
-        public ObservableCollection<Sign> Signs
+        private Sign[] _signs = new Sign[World.MaxSigns];
+        public Sign[] Signs
         {
-            get { return _Signs; }
+            get { return _signs; }
         }
 
-        private ObservableCollection<NPC> _Npcs = new ObservableCollection<NPC>();
-        public ObservableCollection<NPC> Npcs
+        private NPC[] _npcs = new NPC[World.MaxNpcs];
+        public NPC[] Npcs
         {
-            get { return _Npcs; }
+            get { return _npcs; }
         }
     }
+
+
 }

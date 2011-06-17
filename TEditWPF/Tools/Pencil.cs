@@ -1,5 +1,5 @@
 ﻿using System.ComponentModel.Composition;
-using System.Windows.Media.Imaging;
+using System.Windows.Controls;
 
 namespace TEditWPF.Tools
 {
@@ -16,6 +16,15 @@ namespace TEditWPF.Tools
         {
             get { return ToolType.Pencil; }
         }
+
+        private Image _icon = new Image();
+        public Image Icon
+        {
+            get { return _icon; }
+        }
+
+        [Import]
+        private TerrariaWorld.World _currentWorld;
 
         //public bool PreviewTool(Point[] location, World world, WriteableBitmap viewPortRegion)
         //{

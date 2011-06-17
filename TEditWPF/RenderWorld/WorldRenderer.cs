@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Collections.Generic;
+using System.ComponentModel.Composition;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows;
@@ -9,6 +10,7 @@ using TEditWPF.TerrariaWorld.Structures;
 
 namespace TEditWPF.RenderWorld
 {
+    [Export]
     public class WorldRenderer
     {
         private TileColors tileColors;
@@ -23,6 +25,9 @@ namespace TEditWPF.RenderWorld
                 tileColors = value;
             }
         }
+
+        [Import("World")]
+        private TerrariaWorld.World World;
 
         public WorldRenderer()
         {
@@ -70,10 +75,10 @@ namespace TEditWPF.RenderWorld
             return Color.FromArgb(255, r, g, b);
         }
 
-        public WriteableBitmap RenderWorld(TerrariaWorld.World world)
+        public WriteableBitmap RenderWorld()
         {
-            int width = world.Header.MaxTiles.X;
-            int height = world.Header.MaxTiles.Y;
+            int width = World.Header.MaxTiles.X;
+            int height = World.Header.MaxTiles.Y;
             var wbmap = new WriteableBitmap(
                 width,
                 height,
@@ -95,14 +100,14 @@ namespace TEditWPF.RenderWorld
                                         "Rendering World..."));
                 for (int y = 0; y < height; y++)
                 {
-                    TerrariaWorld.Tile tile = world.Tiles[x, y];
+                    TerrariaWorld.Tile tile = World.Tiles[x, y];
                     if (tile != null)
                     {
                         Color c;
 
-                        if (y > world.Header.WorldRockLayer)
+                        if (y > World.Header.WorldRockLayer)
                             c = tileColors.WallColor[1].Color;
-                        else if (y > world.Header.WorldSurface)
+                        else if (y > World.Header.WorldSurface)
                             c = tileColors.WallColor[2].Color;
                         else
                             c = tileColors.WallColor[0].Color;
@@ -132,7 +137,7 @@ namespace TEditWPF.RenderWorld
                 }
             }
 
-            wbmap.WritePixels(new Int32Rect(0, 0, wbmap.PixelWidth, wbmap.PixelHeight), pixels, wbmap.PixelWidth*wbmap.Format.BitsPerPixel/8, 0);
+            wbmap.WritePixels(new Int32Rect(0, 0, wbmap.PixelWidth, wbmap.PixelHeight), pixels, wbmap.PixelWidth * wbmap.Format.BitsPerPixel / 8, 0);
 
             this.OnProgressChanged(this, new ProgressChangedEventArgs(0, "Render Complete."));
 

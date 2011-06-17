@@ -1,12 +1,11 @@
-﻿using System.Windows;
+﻿using System.Windows.Controls;
 
 namespace TEditWPF.Tools
 {
-    using System.Windows.Media.Imaging;
-
     public interface ITool
     {
         string Name { get; }
+        Image Icon { get; }
         ToolType Type { get; }
 
         // Bool for can use tool

@@ -1,6 +1,8 @@
 using System;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.ComponentModel.Composition;
+
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
@@ -14,7 +16,7 @@ using TEditWPF.TerrariaWorld.Structures;
 namespace TEditWPF.ViewModels
 {
     [Export]
-    public class WorldViewModel : ObservableObject
+    public class WorldViewModel : ObservableObject, IPartImportsSatisfiedNotification
     {
 
         private void CreateRenderer()
@@ -27,32 +29,55 @@ namespace TEditWPF.ViewModels
 
         private TaskScheduler _uiScheduler;
         private TaskFactory _uiFactory;
-        private WorldRenderer _renderer;
-
+        
         public WorldViewModel()
         {
-
             _uiScheduler = TaskScheduler.FromCurrentSynchronizationContext();
             _uiFactory = new TaskFactory(_uiScheduler);
-
-
-            World.ProgressChanged += (s, e) => { this.Progress = e; };
         }
 
-        private World _world;
+        [Import]
+        private WorldRenderer _renderer = null;
+
+        private World _world = null;
+        [Import("World", typeof(World))]
         public World World
         {
-            get { return this._world; }
+            get
+            {
+                //if (this._world == null)
+
+                return this._world;
+            }
             set
             {
                 if (this._world != value)
                 {
                     this._world = value;
+                    this._world.ProgressChanged += (s, e) => { this.Progress = e; };
                     this.RaisePropertyChanged("World");
                     this.RaisePropertyChanged("WorldZoomedHeight");
                     this.RaisePropertyChanged("WorldZoomedWidth");
                 }
             }
+        }
+
+        private ObservableCollection<Chest> _Chests = new ObservableCollection<Chest>();
+        public ObservableCollection<Chest> Chests
+        {
+            get { return _Chests; }
+        }
+
+        private ObservableCollection<Sign> _Signs = new ObservableCollection<Sign>();
+        public ObservableCollection<Sign> Signs
+        {
+            get { return _Signs; }
+        }
+
+        private ObservableCollection<NPC> _Npcs = new ObservableCollection<NPC>();
+        public ObservableCollection<NPC> Npcs
+        {
+            get { return _Npcs; }
         }
 
 
@@ -185,19 +210,17 @@ namespace TEditWPF.ViewModels
         {
             CreateRenderer();
 
-            Microsoft.Win32.OpenFileDialog ofd = new Microsoft.Win32.OpenFileDialog();
+            var ofd = new Microsoft.Win32.OpenFileDialog();
             IsBusy = true;
             if ((bool)ofd.ShowDialog())
             {
                 Task.Factory.StartNew(() =>
                 {
-                    var world = World.Load(ofd.FileName);
-                    var img = _renderer.RenderWorld(world);
+                    this.World.Load(ofd.FileName);
+                    var img = _renderer.RenderWorld();
                     img.Freeze();
                     _uiFactory.StartNew(() =>
                     {
-
-                        this.World = world;
                         this.WorldImage = img;
                     });
                 });
@@ -286,9 +309,23 @@ namespace TEditWPF.ViewModels
             }
         }
 
+        private Int32Rect _selection;
+        public Int32Rect Selection
+        {
+            get { return this._selection; }
+            set
+            {
+                if (this._selection != value)
+                {
+                    this._selection = value;
+                    this.RaisePropertyChanged("Selection");
+                }
+            }
+        }
 
-
-
-
+        public void OnImportsSatisfied()
+        {
+            int x = 0;
+        }
     }
 }

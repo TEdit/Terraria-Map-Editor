@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
+using System.ComponentModel.Composition;
 using System.IO;
 using TEditWPF.TerrariaWorld.Structures;
 
@@ -7,20 +8,20 @@ namespace TEditWPF.TerrariaWorld
 {
     public partial class World
     {
-        public static event ProgressChangedEventHandler ProgressChanged;
-        protected static void OnProgressChanged(object sender, ProgressChangedEventArgs e)
+        public event ProgressChangedEventHandler ProgressChanged;
+        protected void OnProgressChanged(object sender, ProgressChangedEventArgs e)
         {
             if (ProgressChanged != null)
                 ProgressChanged(sender, e);
         }
 
-        public static World Load(string filename)
+        public void Load(string filename)
         {
             string ext = Path.GetExtension(filename);
             if (!string.Equals(ext, ".wld", StringComparison.CurrentCultureIgnoreCase))
                 throw new ApplicationException("Invalid file");
 
-            var wf = new World();
+            this.ClearWorld();
 
             using (var stream = new FileStream(filename, FileMode.Open))
             {
@@ -31,39 +32,39 @@ namespace TEditWPF.TerrariaWorld
                     {
                         // handle version
                     }
-                    wf.Header.FileVersion = version;
-                    wf.Header.FileName = filename;
-                    wf.Header.WorldName = reader.ReadString();
-                    wf.Header.WorldId = reader.ReadInt32();
-                    wf.Header.WorldBounds = new RectF(reader.ReadInt32(), reader.ReadInt32(), reader.ReadInt32(), reader.ReadInt32());
+                    this.Header.FileVersion = version;
+                    this.Header.FileName = filename;
+                    this.Header.WorldName = reader.ReadString();
+                    this.Header.WorldId = reader.ReadInt32();
+                    this.Header.WorldBounds = new RectF(reader.ReadInt32(), reader.ReadInt32(), reader.ReadInt32(), reader.ReadInt32());
                     int maxy = reader.ReadInt32();
                     int maxx = reader.ReadInt32();
-                    wf.Header.MaxTiles = new PointInt32(maxx, maxy);
-                    wf.ClearWorld();
-                    wf.Header.SpawnTile = new PointInt32(reader.ReadInt32(), reader.ReadInt32());
-                    wf.Header.WorldSurface = reader.ReadDouble();
-                    wf.Header.WorldRockLayer = reader.ReadDouble();
-                    wf.Header.Time = reader.ReadDouble();
-                    wf.Header.IsDayTime = reader.ReadBoolean();
-                    wf.Header.MoonPhase = reader.ReadInt32();
-                    wf.Header.IsBloodMoon = reader.ReadBoolean();
-                    wf.Header.DungeonEntrance = new PointInt32(reader.ReadInt32(), reader.ReadInt32());
-                    wf.Header.IsBossDowned1 = reader.ReadBoolean();
-                    wf.Header.IsBossDowned2 = reader.ReadBoolean();
-                    wf.Header.IsBossDowned3 = reader.ReadBoolean();
-                    wf.Header.IsShadowOrbSmashed = reader.ReadBoolean();
-                    wf.Header.IsSpawnMeteor = reader.ReadBoolean();
-                    wf.Header.ShadowOrbCount = reader.ReadByte();
-                    wf.Header.InvasionDelay = reader.ReadInt32();
-                    wf.Header.InvasionSize = reader.ReadInt32();
-                    wf.Header.InvasionType = reader.ReadInt32();
-                    wf.Header.InvasionX = reader.ReadDouble();
+                    this.Header.MaxTiles = new PointInt32(maxx, maxy);
+                    this.ClearWorld();
+                    this.Header.SpawnTile = new PointInt32(reader.ReadInt32(), reader.ReadInt32());
+                    this.Header.WorldSurface = reader.ReadDouble();
+                    this.Header.WorldRockLayer = reader.ReadDouble();
+                    this.Header.Time = reader.ReadDouble();
+                    this.Header.IsDayTime = reader.ReadBoolean();
+                    this.Header.MoonPhase = reader.ReadInt32();
+                    this.Header.IsBloodMoon = reader.ReadBoolean();
+                    this.Header.DungeonEntrance = new PointInt32(reader.ReadInt32(), reader.ReadInt32());
+                    this.Header.IsBossDowned1 = reader.ReadBoolean();
+                    this.Header.IsBossDowned2 = reader.ReadBoolean();
+                    this.Header.IsBossDowned3 = reader.ReadBoolean();
+                    this.Header.IsShadowOrbSmashed = reader.ReadBoolean();
+                    this.Header.IsSpawnMeteor = reader.ReadBoolean();
+                    this.Header.ShadowOrbCount = reader.ReadByte();
+                    this.Header.InvasionDelay = reader.ReadInt32();
+                    this.Header.InvasionSize = reader.ReadInt32();
+                    this.Header.InvasionType = reader.ReadInt32();
+                    this.Header.InvasionX = reader.ReadDouble();
 
-                    for (int x = 0; x < wf.Header.MaxTiles.X; x++)
+                    for (int x = 0; x < this.Header.MaxTiles.X; x++)
                     {
-                        OnProgressChanged(wf, new ProgressChangedEventArgs((int)((double)x / wf.Header.MaxTiles.X * 100.0), "Loading Tiles"));
+                        OnProgressChanged(this, new ProgressChangedEventArgs((int)((double)x / this.Header.MaxTiles.X * 100.0), "Loading Tiles"));
 
-                        for (int y = 0; y < wf.Header.MaxTiles.Y; y++)
+                        for (int y = 0; y < this.Header.MaxTiles.Y; y++)
                         {
                             var tile = new Tile();
 
@@ -92,13 +93,13 @@ namespace TEditWPF.TerrariaWorld
                                 tile.IsLava = reader.ReadBoolean();
                             }
 
-                            wf.Tiles[x, y] = tile;
+                            this.Tiles[x, y] = tile;
                         }
                     }
 
                     for (int chestIndex = 0; chestIndex < World.MaxChests; chestIndex++)
                     {
-                        OnProgressChanged(wf, new ProgressChangedEventArgs((int)((double)chestIndex / World.MaxChests * 100.0), "Loading Chest Data"));
+                        OnProgressChanged(this, new ProgressChangedEventArgs((int)((double)chestIndex / World.MaxChests * 100.0), "Loading Chest Data"));
 
                         if (reader.ReadBoolean())
                         {
@@ -118,25 +119,25 @@ namespace TEditWPF.TerrariaWorld
                                 chest.Items.Add(item);
                             }
 
-                            wf.Chests.Add(chest);
+                            this.Chests[chestIndex] = chest;
                         }
                     }
                     for (int signIndex = 0; signIndex < World.MaxSigns; signIndex++)
                     {
-                        OnProgressChanged(wf, new ProgressChangedEventArgs((int)((double)signIndex / World.MaxSigns * 100.0), "Loading Sign Data"));
+                        OnProgressChanged(this, new ProgressChangedEventArgs((int)((double)signIndex / World.MaxSigns * 100.0), "Loading Sign Data"));
 
                         if (reader.ReadBoolean())
                         {
                             string signText = reader.ReadString();
                             int x = reader.ReadInt32();
                             int y = reader.ReadInt32();
-                            if (wf.Tiles[x, y].IsActive && (wf.Tiles[x, y].Type == 55)) // validate tile location
+                            if (this.Tiles[x, y].IsActive && (this.Tiles[x, y].Type == 55)) // validate tile location
                             {
                                 var sign = new Sign();
                                 sign.Location = new PointInt32(x, y);
                                 sign.Text = signText;
 
-                                wf.Signs.Add(sign);
+                                this.Signs[signIndex] = sign;
                             }
                         }
                     }
@@ -144,7 +145,7 @@ namespace TEditWPF.TerrariaWorld
                     bool isNpcActive = reader.ReadBoolean();
                     for (int npcIndex = 0; isNpcActive; npcIndex++)
                     {
-                        OnProgressChanged(wf, new ProgressChangedEventArgs(100, "Loading NPCs"));
+                        OnProgressChanged(this, new ProgressChangedEventArgs(100, "Loading NPCs"));
                         var npc = new NPC();
 
                         npc.Name = reader.ReadString();
@@ -152,18 +153,18 @@ namespace TEditWPF.TerrariaWorld
                         npc.IsHomeless = reader.ReadBoolean();
                         npc.HomeTile = new PointInt32(reader.ReadInt32(), reader.ReadInt32());
 
-                        wf.Npcs.Add(npc);
+                        this.Npcs[npcIndex] =npc;
 
                         isNpcActive = reader.ReadBoolean();
                     }
 
-                    if (wf.Header.FileVersion > 7)
+                    if (this.Header.FileVersion > 7)
                     {
-                        OnProgressChanged(wf, new ProgressChangedEventArgs(100, "Checking format"));
+                        OnProgressChanged(this, new ProgressChangedEventArgs(100, "Checking format"));
                         bool test = reader.ReadBoolean();
                         var worldNameCheck = reader.ReadString();
                         var worldIdCheck = reader.ReadInt32();
-                        if (!(test && string.Equals(worldNameCheck, wf.Header.WorldName) && worldIdCheck == wf.Header.WorldId))
+                        if (!(test && string.Equals(worldNameCheck, this.Header.WorldName) && worldIdCheck == this.Header.WorldId))
                         {
                             // Test FAILED!
                             throw new ApplicationException("Invalid World File");
@@ -173,8 +174,7 @@ namespace TEditWPF.TerrariaWorld
                     reader.Close();
                 }
             }
-            OnProgressChanged(wf, new ProgressChangedEventArgs(0, ""));
-            return wf;
+            OnProgressChanged(this, new ProgressChangedEventArgs(0, ""));
         }
 
         public void SaveFile(string filename)
@@ -259,7 +259,7 @@ namespace TEditWPF.TerrariaWorld
                     }
                     for (int chestIndex = 0; chestIndex < World.MaxChests; chestIndex++)
                     {
-                        if (chestIndex >= this.Chests.Count)
+                        if (this.Chests[chestIndex] == null)
                         {
                             writer.Write(false);
                         }
@@ -280,7 +280,11 @@ namespace TEditWPF.TerrariaWorld
                     }
                     for (int signIndex = 0; signIndex < World.MaxSigns; signIndex++)
                     {
-                        if (signIndex >= this.Signs.Count || this.Signs[signIndex].Text == null)
+                        if (this.Signs[signIndex] == null)
+                        {
+                            writer.Write(false);
+                        }
+                        else if (string.IsNullOrWhiteSpace(this.Signs[signIndex].Text))
                         {
                             writer.Write(false);
                         }
@@ -294,6 +298,12 @@ namespace TEditWPF.TerrariaWorld
                     }
                     foreach (var npc in this.Npcs)
                     {
+                        if (npc == null)
+                        {
+                            writer.Write(false);
+                            break;
+                        }
+
                         writer.Write(true);
                         writer.Write(npc.Name);
                         writer.Write(npc.Position.X);
@@ -302,7 +312,7 @@ namespace TEditWPF.TerrariaWorld
                         writer.Write(npc.HomeTile.X);
                         writer.Write(npc.HomeTile.Y);
                     }
-                    writer.Write(false);
+                    
 
                     // Write file info check version 7+
                     writer.Write(true);

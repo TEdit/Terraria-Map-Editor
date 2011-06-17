@@ -1,21 +1,23 @@
 ﻿<Window x:Class="TEditWPF.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="MainWindow" Height="600" Width="800" xmlns:views="clr-namespace:TEditWPF.Views"
-        xmlns:ViewModels="clr-namespace:TEditWPF.ViewModels" TextOptions.TextFormattingMode="Display" TextOptions.TextRenderingMode="Aliased" SnapsToDevicePixels="True">
-    <Window.DataContext>
-        <ViewModels:WorldViewModel />
-    </Window.DataContext>
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:vm="clr-namespace:TEditWPF.ViewModels" 
+        xmlns:views="clr-namespace:TEditWPF.Views"
+        Title="MainWindow" Height="600" Width="800" 
+        TextOptions.TextFormattingMode="Display" 
+        TextOptions.TextRenderingMode="Aliased" 
+        SnapsToDevicePixels="True">
     <DockPanel Grid.Row="1" HorizontalAlignment="Stretch" >
-        <Button DockPanel.Dock="Top" Content="Load World" Height="23" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Command="{Binding Path=OpenWorldCommand}" />
-        <views:StatusBarView DockPanel.Dock="Bottom" />
-        <views:ToolSelectorView DockPanel.Dock="Left" />
-        <Expander Header="Tools" ExpandDirection="Left" IsExpanded="False" Grid.Row="1" DockPanel.Dock="Right">
-            <TabControl Width="200"></TabControl>
-        </Expander>
-        <Border BorderBrush="Black" BorderThickness="1">
-            <views:WorldImageView />
-        </Border>
+            <Button DockPanel.Dock="Top" Content="Load World" Height="23" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Command="{Binding Path=OpenWorldCommand}" />
+            <views:StatusBarView DockPanel.Dock="Bottom" />
+            <views:ToolSelectorView DockPanel.Dock="Left" />
+            <Expander Header="Tools" ExpandDirection="Left" IsExpanded="False" Grid.Row="1" DockPanel.Dock="Right">
+                <TabControl Width="200"></TabControl>
+            </Expander>
+            <Border BorderBrush="Black" BorderThickness="1">
+                <views:WorldImageView />
+            </Border>
 
-    </DockPanel>
+        </DockPanel>
 </Window>
