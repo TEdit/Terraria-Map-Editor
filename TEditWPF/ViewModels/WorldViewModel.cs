@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.ComponentModel.Composition;
@@ -12,6 +13,7 @@ using TEditWPF.Common;
 using TEditWPF.RenderWorld;
 using TEditWPF.TerrariaWorld;
 using TEditWPF.TerrariaWorld.Structures;
+using TEditWPF.Tools;
 
 namespace TEditWPF.ViewModels
 {
@@ -38,6 +40,9 @@ namespace TEditWPF.ViewModels
 
         [Import]
         private WorldRenderer _renderer = null;
+
+        [ImportMany(typeof(ITool))]
+        public IEnumerable<ITool> Tools = null;
 
         private World _world = null;
         [Import("World", typeof(World))]

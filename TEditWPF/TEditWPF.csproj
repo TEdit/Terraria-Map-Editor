@@ -61,6 +61,10 @@
     <Compile Include="Common\Int32RectExtensions.cs" />
     <Compile Include="Common\RelayCommand.cs" />
     <Compile Include="Controls\ScrollViewerThumbnail.cs" />
+    <Compile Include="Plugins\IPlugin.cs" />
+    <Compile Include="Plugins\IPluginMetaData.cs" />
+    <Compile Include="Plugins\SamplePlugin.cs" />
+    <Compile Include="RenderWorld\WorldImage.cs" />
     <Compile Include="Tools\ITool.cs" />
     <Compile Include="Common\TileMouseEventArgs.cs" />
     <Compile Include="Tools\ToolType.cs" />

@@ -1,4 +1,5 @@
-﻿using System.Windows.Controls;
+﻿using System.ComponentModel.Composition;
+using System.Windows.Controls;
 
 namespace TEditWPF.Tools
 {

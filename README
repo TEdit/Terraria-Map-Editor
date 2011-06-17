@@ -5,6 +5,8 @@
 # Homepage: http://www.binaryconstruct.com/games/terraria/
 # binary: http://github.com/BinaryConstruct/Terraria-Map-Editor/downloads
 
+NOTE: THIS IS PRE-RELEASE AND DOES NOT HAVE ALL FEATURES. IT IS A DEMO OF THE TECHNOLOGY.
+
 Update History
 v2.0.0.0
 Complete rewrite using WPF for performance boost, previous history removed from log.

@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.Composition;
 using System.Windows.Controls;
+using TEditWPF.TerrariaWorld;
 
 namespace TEditWPF.Tools
 {
@@ -7,6 +8,9 @@ namespace TEditWPF.Tools
     [PartCreationPolicy(CreationPolicy.Shared)]
     public class Pencil : ITool
     {
+        [Import("World", typeof(World))]
+        private World _world = null;
+
         public string Name
         {
             get { return "Pencil"; }
