@@ -247,20 +247,98 @@ namespace TEditWPF.ViewModels
             IsBusy = false;
         }
 
+        private string _WallName;
+        public string WallName
+        {
+            get { return this._WallName; }
+            set
+            {
+                if (this._WallName != value)
+                {
+                    this._WallName = value;
+                    this.RaisePropertyChanged("WallName");
+                }
+            }
+        }
+
+        private string _TileName;
+        public string TileName
+        {
+            get { return this._TileName; }
+            set
+            {
+                if (this._TileName != value)
+                {
+                    this._TileName = value;
+                    this.RaisePropertyChanged("TileName");
+                }
+            }
+        }
+
+        private string _FluidName;
+        public string FluidName
+        {
+            get { return this._FluidName; }
+            set
+            {
+                if (this._FluidName != value)
+                {
+                    this._FluidName = value;
+                    this.RaisePropertyChanged("FluidName");
+                }
+            }
+        }
+
+
+
+
+
 
         private void OnMouseOverPixel(TileMouseEventArgs e)
         {
             this.MouseOverTile = e.Tile;
+            var overTile = world.Tiles[e.Tile.X, e.Tile.Y];
+
+            var wallName = renderer.TileColors.WallColor[overTile.Wall].Name;
+            var tileName = overTile.IsActive ? renderer.TileColors.TileColor[overTile.Type].Name : "[empty]";
+            var fluidname = "[no fluid]";
+            if (overTile.Liquid > 0)
+            {
+                fluidname = overTile.IsLava ? "Lava" : "Water";
+                fluidname += " [" + overTile.Liquid.ToString() + "]";
+            }
+
+            this.FluidName = fluidname;
+            this.TileName = tileName;
+            this.WallName = wallName;
+
+            if (e.LeftButton == MouseButtonState.Pressed)
+            {
+                if (this.ActiveTool != null)
+                    this.ActiveTool.MoveTool(e.Tile);
+            }            
         }
 
         private void OnMouseDownPixel(TileMouseEventArgs e)
         {
             this.MouseDownTile = e.Tile;
+
+            if (e.LeftButton == MouseButtonState.Pressed)
+            {
+                if (this.ActiveTool != null)
+                    this.ActiveTool.PressTool(e.Tile);
+            }
         }
 
         private void OnMouseUpPixel(TileMouseEventArgs e)
         {
             this.MouseUpTile = e.Tile;
+
+            if (e.LeftButton == MouseButtonState.Released)
+            {
+                if (this.ActiveTool != null)
+                    this.ActiveTool.ReleaseTool(e.Tile);
+            }
         }
 
         private void OnMouseWheel(TileMouseEventArgs e)

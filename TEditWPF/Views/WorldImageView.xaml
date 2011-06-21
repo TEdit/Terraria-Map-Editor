@@ -32,7 +32,16 @@
                 <TextBlock Text="{Binding Path=Zoom, StringFormat=Zoom: {0:0%}}" />
             </Border>
             <Border BorderBrush="Black" BorderThickness="1" Margin="1" Padding="1" >
-                <TextBlock Text="{Binding Path=MouseOverTile}" />
+                <TextBlock Text="{Binding Path=MouseOverTile, StringFormat={}{0}}" />
+            </Border>
+            <Border BorderBrush="Black" BorderThickness="1" Margin="1" Padding="1" >
+                <TextBlock Text="{Binding Path=WallName, StringFormat=Wall: {0}}" />
+            </Border>
+            <Border BorderBrush="Black" BorderThickness="1" Margin="1" Padding="1" >
+                <TextBlock Text="{Binding Path=TileName, StringFormat=Tile: {0}}" />
+            </Border>
+            <Border BorderBrush="Black" BorderThickness="1" Margin="1" Padding="1" >
+                <TextBlock Text="{Binding Path=FluidName, StringFormat=Liquid: {0}}" />
             </Border>
             <!--<Border BorderBrush="Black" BorderThickness="1" Margin="1" Padding="1" >
                     <TextBlock Text="{Binding Path=RequestScrollTile, NotifyOnTargetUpdated=True}" TargetUpdated="RequestedScrollToTile" />

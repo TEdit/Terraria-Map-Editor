@@ -179,9 +179,9 @@
     <Resource Include="Tools\Images\shape_square.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="GPL.txt">
+    <Content Include="GPL.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Resource>
+    </Content>
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

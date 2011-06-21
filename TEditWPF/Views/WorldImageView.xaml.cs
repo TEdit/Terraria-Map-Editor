@@ -137,8 +137,8 @@ namespace TEditWPF.Views
         private PointInt32 GetTileAtPixel(System.Windows.Point pixel)
         {
             var vm = (WorldViewModel)this.DataContext;
-            decimal x = Math.Ceiling((decimal)pixel.X / (decimal)vm.Zoom);
-            decimal y = Math.Ceiling((decimal)pixel.Y / (decimal)vm.Zoom);
+            decimal x = Math.Floor((decimal)pixel.X / (decimal)vm.Zoom);
+            decimal y = Math.Floor((decimal)pixel.Y / (decimal)vm.Zoom);
             var tile = new PointInt32((int)x, (int)y);
             return tile;
         }
