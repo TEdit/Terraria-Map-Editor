@@ -8,14 +8,14 @@ namespace TEditWPF.Tools
 {
     [Export(typeof(ITool))]
     [PartCreationPolicy(CreationPolicy.Shared)]
-    [ExportMetadata("Order", 3)]
-    public class Pencil : ToolBase
+    [ExportMetadata("Order", 5)]
+    public class Fill : ToolBase
     {
-        public Pencil()
+        public Fill()
         {
-            _Image = new BitmapImage(new Uri(@"pack://application:,,,/TEditWPF;component/Tools/Images/pencil.png"));
-            _Name = "Pencil";
-            _Type = ToolType.Brush;
+            _Image = new BitmapImage(new Uri(@"pack://application:,,,/TEditWPF;component/Tools/Images/paintcan.png"));
+            _Name = "Fill";
+            _Type = ToolType.Fill;
             IsActive = false;
         }
 
@@ -50,7 +50,7 @@ namespace TEditWPF.Tools
                     this.RaisePropertyChanged("IsActive");
                 }
             }
-        } 
+        }
         #endregion
 
         public override bool PressTool(PointInt32 location) { return false; }

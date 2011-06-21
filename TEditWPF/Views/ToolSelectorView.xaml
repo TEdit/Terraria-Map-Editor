@@ -4,15 +4,19 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:vm="clr-namespace:TEditWPF.ViewModels"
+             xmlns:controls="clr-namespace:TEditWPF.Controls"
              mc:Ignorable="d" >
+    <UserControl.Resources>
+        <DataTemplate x:Key="toolBarItemTemplate">
+            <controls:DataBoundToggleButton Width="22" Height="22" Margin="1" Command="{Binding Path=DataContext.SetTool, RelativeSource={RelativeSource AncestorType=Window},  Mode=Default}" CommandParameter="{Binding Path=Value}" IsChecked="{Binding Path=Value.IsActive}">
+                <controls:DataBoundToggleButton.ToolTip>
+                    <TextBlock Text="{Binding Path=Value.Name}" />
+                </controls:DataBoundToggleButton.ToolTip>
+                <Image Source="{Binding Path=Value.Image}" />
+            </controls:DataBoundToggleButton>            
+        </DataTemplate>
+    </UserControl.Resources>
     <ToolBarTray Orientation="Vertical" Width="27" d:DataContext="{d:DesignInstance vm:WorldViewModel}">
-        <ToolBar>
-            <ToggleButton Width="22" Height="22" Margin="1" />
-            <ToggleButton Width="22" Height="22" Margin="1" />
-            <ToggleButton Width="22" Height="22" Margin="1" />
-            <ToggleButton Width="22" Height="22" Margin="1" />
-            <ToggleButton Width="22" Height="22" Margin="1" />
-            <ToggleButton Width="22" Height="22" Margin="1" />
-        </ToolBar>
+        <ToolBar ItemsSource="{Binding Path=Tools}" ItemTemplate="{StaticResource toolBarItemTemplate}" />
     </ToolBarTray>
 </UserControl>

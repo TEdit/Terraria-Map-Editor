@@ -2,6 +2,7 @@
 {
     public enum ToolType
     {
+        Arrow,
         Pencil,
         Brush,
         Fill,

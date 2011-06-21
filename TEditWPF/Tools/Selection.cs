@@ -8,14 +8,14 @@ namespace TEditWPF.Tools
 {
     [Export(typeof(ITool))]
     [PartCreationPolicy(CreationPolicy.Shared)]
-    [ExportMetadata("Order", 3)]
-    public class Pencil : ToolBase
+    [ExportMetadata("Order", 2)]
+    public class Selection : ToolBase
     {
-        public Pencil()
+        public Selection()
         {
-            _Image = new BitmapImage(new Uri(@"pack://application:,,,/TEditWPF;component/Tools/Images/pencil.png"));
-            _Name = "Pencil";
-            _Type = ToolType.Brush;
+            _Image = new BitmapImage(new Uri(@"pack://application:,,,/TEditWPF;component/Tools/Images/shape_square.png"));
+            _Name = "Selection";
+            _Type = ToolType.Selection;
             IsActive = false;
         }
 
@@ -50,13 +50,14 @@ namespace TEditWPF.Tools
                     this.RaisePropertyChanged("IsActive");
                 }
             }
-        } 
+        }
         #endregion
 
         public override bool PressTool(PointInt32 location) { return false; }
         public override bool MoveTool(PointInt32 location) { return false; }
         public override bool ReleaseTool(PointInt32 location) { return false; }
         public override bool PreviewTool(PointInt32 location) { return false; }
+
 
         //[Import("World", typeof(World))]
         //private World _world = null;

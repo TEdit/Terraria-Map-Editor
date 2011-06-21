@@ -11,6 +11,7 @@ using TEditWPF.TerrariaWorld.Structures;
 namespace TEditWPF.RenderWorld
 {
     [Export]
+    [PartCreationPolicy(CreationPolicy.Shared)]
     public class WorldRenderer
     {
         private TileColors tileColors;

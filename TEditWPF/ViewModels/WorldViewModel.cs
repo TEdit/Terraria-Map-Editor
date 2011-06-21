@@ -20,15 +20,6 @@ namespace TEditWPF.ViewModels
     [Export]
     public class WorldViewModel : ObservableObject, IPartImportsSatisfiedNotification
     {
-
-        private void CreateRenderer()
-        {
-            if (_renderer == null)
-                _renderer = new WorldRenderer();
-
-            _renderer.ProgressChanged += (s, e) => { this.Progress = e; };
-        }
-
         private TaskScheduler _uiScheduler;
         private TaskFactory _uiFactory;
         
@@ -36,30 +27,49 @@ namespace TEditWPF.ViewModels
         {
             _uiScheduler = TaskScheduler.FromCurrentSynchronizationContext();
             _uiFactory = new TaskFactory(_uiScheduler);
+            Tools = new OrderingCollection<ITool, IOrderMetadata>(t => t.Metadata.Order);
         }
 
         [Import]
-        private WorldRenderer _renderer = null;
+        private WorldRenderer renderer;
 
         [ImportMany(typeof(ITool))]
-        public IEnumerable<ITool> Tools = null;
+        public OrderingCollection<ITool, IOrderMetadata> Tools { get; set; }
 
-        private World _world = null;
+        private ITool _ActiveTool;
+        public ITool ActiveTool
+        {
+            get { return this._ActiveTool; }
+            set
+            {
+                if (this._ActiveTool != value)
+                {
+                    this._ActiveTool = value;
+                    this.RaisePropertyChanged("ActiveTool");
+
+                    foreach (var tool in Tools)
+                    {
+                        tool.Value.IsActive = (tool.Value == this._ActiveTool);
+                    }
+
+                }
+            }
+        }
+
+        private World world = null;
         [Import("World", typeof(World))]
         public World World
         {
             get
             {
-                //if (this._world == null)
-
-                return this._world;
+                return this.world;
             }
             set
             {
-                if (this._world != value)
+                if (this.world != value)
                 {
-                    this._world = value;
-                    this._world.ProgressChanged += (s, e) => { this.Progress = e; };
+                    this.world = null;
+                    this.world = value;
                     this.RaisePropertyChanged("World");
                     this.RaisePropertyChanged("WorldZoomedHeight");
                     this.RaisePropertyChanged("WorldZoomedWidth");
@@ -161,6 +171,12 @@ namespace TEditWPF.ViewModels
             }
         }
 
+        private ICommand _setTool;
+        public ICommand SetTool
+        {
+            get { return _setTool ?? (_setTool = new RelayCommand<ITool>(t => ActiveTool = t)); }
+        }
+
         private ICommand _mouseMoveCommand;
         public ICommand MouseMoveCommand
         {
@@ -213,8 +229,6 @@ namespace TEditWPF.ViewModels
 
         private void LoadWorldandRender()
         {
-            CreateRenderer();
-
             var ofd = new Microsoft.Win32.OpenFileDialog();
             IsBusy = true;
             if ((bool)ofd.ShowDialog())
@@ -222,7 +236,7 @@ namespace TEditWPF.ViewModels
                 Task.Factory.StartNew(() =>
                 {
                     this.World.Load(ofd.FileName);
-                    var img = _renderer.RenderWorld();
+                    var img = renderer.RenderWorld();
                     img.Freeze();
                     _uiFactory.StartNew(() =>
                     {
@@ -330,7 +344,8 @@ namespace TEditWPF.ViewModels
 
         public void OnImportsSatisfied()
         {
-            int x = 0;
+            renderer.ProgressChanged += (s, e) => { this.Progress = e; };
+            world.ProgressChanged += (s, e) => { this.Progress = e; };
         }
     }
 }

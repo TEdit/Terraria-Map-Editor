@@ -39,6 +39,7 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -56,17 +57,25 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Common\CustomCollections.cs" />
     <Compile Include="Common\ObservableObject.cs" />
     <Compile Include="Common\PropertySupport.cs" />
     <Compile Include="Common\Int32RectExtensions.cs" />
     <Compile Include="Common\RelayCommand.cs" />
     <Compile Include="Controls\ScrollViewerThumbnail.cs" />
+    <Compile Include="Controls\DataBoundToggleButton.cs" />
     <Compile Include="Plugins\IPlugin.cs" />
     <Compile Include="Plugins\IPluginMetaData.cs" />
     <Compile Include="Plugins\SamplePlugin.cs" />
     <Compile Include="RenderWorld\WorldImage.cs" />
+    <Compile Include="Tools\Arrow.cs" />
+    <Compile Include="Tools\Brush.cs" />
+    <Compile Include="Tools\Fill.cs" />
+    <Compile Include="Tools\IOrderMetadata.cs" />
     <Compile Include="Tools\ITool.cs" />
     <Compile Include="Common\TileMouseEventArgs.cs" />
+    <Compile Include="Tools\Selection.cs" />
+    <Compile Include="Tools\ToolBase.cs" />
     <Compile Include="Tools\ToolType.cs" />
     <Compile Include="RenderWorld\TileColors.cs" />
     <Compile Include="RenderWorld\TileProperties.cs" />
@@ -144,6 +153,7 @@
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <None Include="app.config" />
     <None Include="Properties\Settings.settings">
@@ -161,6 +171,12 @@
     <Content Include="colors.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Resource Include="Tools\Images\cursor.png" />
+    <Resource Include="Tools\Images\paintbrush.png" />
+    <Resource Include="Tools\Images\paintcan.png" />
+    <Resource Include="Tools\Images\paintcanpercent.png" />
+    <Resource Include="Tools\Images\pencil.png" />
+    <Resource Include="Tools\Images\shape_square.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="GPL.txt">

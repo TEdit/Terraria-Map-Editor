@@ -8,13 +8,13 @@ namespace TEditWPF.Tools
 {
     [Export(typeof(ITool))]
     [PartCreationPolicy(CreationPolicy.Shared)]
-    [ExportMetadata("Order", 3)]
-    public class Pencil : ToolBase
+    [ExportMetadata("Order", 4)]
+    public class Brush : ToolBase
     {
-        public Pencil()
+        public Brush()
         {
-            _Image = new BitmapImage(new Uri(@"pack://application:,,,/TEditWPF;component/Tools/Images/pencil.png"));
-            _Name = "Pencil";
+            _Image = new BitmapImage(new Uri(@"pack://application:,,,/TEditWPF;component/Tools/Images/paintbrush.png"));
+            _Name = "Brush";
             _Type = ToolType.Brush;
             IsActive = false;
         }
