@@ -35,7 +35,7 @@ TILECOLORS
 14|Table|ff00fff2
 15|Chair|ff00fff2
 16|Anvil|ff00fff2
-17|Furnance|ff00fff2
+17|Furnace|ff00fff2
 18|CraftingTable|ff00fff2
 19|WoodenPlatform|ff563e2c
 20|PlantsDecorative|ff0d6524
@@ -95,7 +95,7 @@ TILECOLORS
 74|Plants3|ff0d6524
 75|BlockObsidian|ffb200ff
 76|BlockHellstone|ffb200ff
-77|UnderworldFurnance|ffff0000
+77|UnderworldFurnace|ffff0000
 78|DecorativePot|ff00fff2
 79|Bed|ff00fff2
 80|Unknown|ffff00ff
