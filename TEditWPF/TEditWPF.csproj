@@ -64,6 +64,7 @@
     <Compile Include="Common\RelayCommand.cs" />
     <Compile Include="Controls\ScrollViewerThumbnail.cs" />
     <Compile Include="Controls\DataBoundToggleButton.cs" />
+    <Compile Include="Controls\ThicknessMultiConverter.cs" />
     <Compile Include="Plugins\IPlugin.cs" />
     <Compile Include="Plugins\IPluginMetaData.cs" />
     <Compile Include="Plugins\SamplePlugin.cs" />
@@ -75,6 +76,7 @@
     <Compile Include="Tools\ITool.cs" />
     <Compile Include="Common\TileMouseEventArgs.cs" />
     <Compile Include="Tools\Selection.cs" />
+    <Compile Include="Tools\SelectionArea.cs" />
     <Compile Include="Tools\ToolBase.cs" />
     <Compile Include="Tools\ToolType.cs" />
     <Compile Include="RenderWorld\TileColors.cs" />

@@ -56,6 +56,23 @@ namespace TEditWPF.ViewModels
             }
         }
 
+        private SelectionArea _Selection;
+        [Import]
+        public SelectionArea Selection
+        {
+            get { return this._Selection; }
+            set
+            {
+                if (this._Selection != value)
+                {
+                    this._Selection = value;
+                    this.RaisePropertyChanged("Selection");
+                }
+            }
+        }
+
+
+
         private World world = null;
         [Import("World", typeof(World))]
         public World World
@@ -402,20 +419,6 @@ namespace TEditWPF.ViewModels
                 {
                     this._progress = value;
                     this.RaisePropertyChanged("Progress");
-                }
-            }
-        }
-
-        private Int32Rect _selection;
-        public Int32Rect Selection
-        {
-            get { return this._selection; }
-            set
-            {
-                if (this._selection != value)
-                {
-                    this._selection = value;
-                    this.RaisePropertyChanged("Selection");
                 }
             }
         }

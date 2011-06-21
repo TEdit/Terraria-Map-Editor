@@ -53,14 +53,32 @@ namespace TEditWPF.Tools
         }
         #endregion
 
-        public override bool PressTool(PointInt32 location) { return false; }
-        public override bool MoveTool(PointInt32 location) { return false; }
-        public override bool ReleaseTool(PointInt32 location) { return false; }
+        [Import]
+        private SelectionArea _selection;
+
+        [Import("World", typeof(World))]
+        private World _world;
+
+        PointInt32 startselection;
+        public override bool PressTool(PointInt32 location)
+        {
+            startselection = location;
+            return true;
+        }
+        public override bool MoveTool(PointInt32 location)
+        {
+            _selection.SetRectangle(startselection, location);
+            return false;
+        }
+        public override bool ReleaseTool(PointInt32 location)
+        {
+            _selection.SetRectangle(startselection, location);
+            return true;
+        }
         public override bool PreviewTool(PointInt32 location) { return false; }
 
 
-        //[Import("World", typeof(World))]
-        //private World _world = null;
+
 
         //public bool PreviewTool(Point[] location, World world, WriteableBitmap viewPortRegion)
         //{
