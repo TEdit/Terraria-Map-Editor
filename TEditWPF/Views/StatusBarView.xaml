@@ -7,6 +7,7 @@
              mc:Ignorable="d" d:DesignWidth="700">
     <StatusBar Grid.Row="2" d:DataContext="{d:DesignInstance vm:WorldViewModel}">
         <StatusBarItem HorizontalAlignment="Left">
+            <TextBlock Text="{Binding Path=FrameRate, StringFormat={}{0} FPS}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,0" />
         </StatusBarItem>
         <StatusBarItem HorizontalAlignment="Right">
             <StackPanel Orientation="Horizontal">

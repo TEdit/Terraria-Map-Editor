@@ -3,17 +3,18 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.ComponentModel.Composition;
-
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
+using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using TEditWPF.Common;
 using TEditWPF.RenderWorld;
 using TEditWPF.TerrariaWorld;
 using TEditWPF.TerrariaWorld.Structures;
 using TEditWPF.Tools;
+using System.Diagnostics;
 
 namespace TEditWPF.ViewModels
 {
@@ -28,7 +29,44 @@ namespace TEditWPF.ViewModels
             _uiScheduler = TaskScheduler.FromCurrentSynchronizationContext();
             _uiFactory = new TaskFactory(_uiScheduler);
             Tools = new OrderingCollection<ITool, IOrderMetadata>(t => t.Metadata.Order);
+            CompositionTarget.Rendering += CompTargetRender;
         }
+
+        private void CompTargetRender(object sender, EventArgs e)
+        {
+            // About to render...
+            if (_frameCounter++ == 0)
+            {
+                // Starting timing.
+                _stopwatch.Start();
+            }
+
+            // Determine frame rate in fps (frames per second).
+            long frameRate = (long)(_frameCounter / this._stopwatch.Elapsed.TotalSeconds);
+            if (frameRate > 0)
+            {
+                // Update elapsed time, number of frames, and frame rate.
+                FrameRate = frameRate;
+            }
+        }
+
+        private Stopwatch _stopwatch = new Stopwatch();
+        private double _frameCounter = 0;
+        private long _FrameRate;
+        public long FrameRate
+        {
+            get { return this._FrameRate; }
+            set
+            {
+                if (this._FrameRate != value)
+                {
+                    this._FrameRate = value;
+                    this.RaisePropertyChanged("FrameRate");
+                }
+            }
+        }
+        
+
 
         [Import]
         private WorldRenderer renderer;

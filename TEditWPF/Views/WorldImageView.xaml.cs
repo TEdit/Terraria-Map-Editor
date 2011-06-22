@@ -17,7 +17,7 @@ namespace TEditWPF.Views
     {
         public WorldImageView()
         {
-            InitializeComponent(); 
+            InitializeComponent();
         }
 
         private Point _mouseDownAbsolute;
@@ -142,5 +142,7 @@ namespace TEditWPF.Views
             var tile = new PointInt32((int)x, (int)y);
             return tile;
         }
+
+
     }
 }
