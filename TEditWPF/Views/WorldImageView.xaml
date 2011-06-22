@@ -16,20 +16,14 @@
             <ScrollViewer HorizontalScrollBarVisibility="Visible"  x:Name="WorldScrollViewer" >
                 <ScrollViewer.Content>
                     <Grid Height="{Binding Path=WorldZoomedHeight}" Width="{Binding Path=WorldZoomedWidth}" >
-                        <Image x:Name="WorldImage" Source="{Binding Path=WorldImage}" RenderOptions.BitmapScalingMode="NearestNeighbor" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"
+                        <!--<Image x:Name="WorldImage" Source="{Binding Path=WorldImage.Image}" RenderOptions.BitmapScalingMode="NearestNeighbor" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" />-->
+                        <Image x:Name="WorldImage" Source="{Binding Path=WorldImage.Image}" RenderOptions.BitmapScalingMode="NearestNeighbor" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"
                           MouseMove="ViewportMouseMove" 
                           MouseDown="ViewportMouseDown"
                           MouseWheel="ViewportMouseWheel" 
                           MouseUp="ViewportMouseUp" 
                           MouseEnter="ViewportMouseEnter" 
                           MouseLeave="ViewportMouseLeave" />
-                        <Canvas Margin="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Height="{Binding Path=WorldZoomedHeight}" Width="{Binding Path=WorldZoomedWidth}">
-                            <Rectangle Fill="#9F8C8CDF"  
-                                       Width="{Binding Path=Selection.Rectangle.Width}"
-                                       Height="{Binding Path=Selection.Rectangle.Height}" 
-                                       Canvas.Left="{Binding Path=Selection.Rectangle.X}"
-                                       Canvas.Top="{Binding Path=Selection.Rectangle.Y}"/>
-                        </Canvas>
                     </Grid>
                 </ScrollViewer.Content>
             </ScrollViewer>

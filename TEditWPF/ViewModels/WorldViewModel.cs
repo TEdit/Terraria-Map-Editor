@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -15,6 +16,7 @@ using TEditWPF.TerrariaWorld;
 using TEditWPF.TerrariaWorld.Structures;
 using TEditWPF.Tools;
 using System.Diagnostics;
+using System.Windows.Threading;
 
 namespace TEditWPF.ViewModels
 {
@@ -23,37 +25,45 @@ namespace TEditWPF.ViewModels
     {
         private TaskScheduler _uiScheduler;
         private TaskFactory _uiFactory;
-        
         public WorldViewModel()
         {
+
             _uiScheduler = TaskScheduler.FromCurrentSynchronizationContext();
             _uiFactory = new TaskFactory(_uiScheduler);
             Tools = new OrderingCollection<ITool, IOrderMetadata>(t => t.Metadata.Order);
             CompositionTarget.Rendering += CompTargetRender;
         }
 
+        
         private void CompTargetRender(object sender, EventArgs e)
         {
-            // About to render...
-            if (_frameCounter++ == 0)
-            {
-                // Starting timing.
-                _stopwatch.Start();
-            }
+            CalcFrameRate((RenderingEventArgs)e);
 
-            // Determine frame rate in fps (frames per second).
-            long frameRate = (long)(_frameCounter / this._stopwatch.Elapsed.TotalSeconds);
-            if (frameRate > 0)
-            {
-                // Update elapsed time, number of frames, and frame rate.
-                FrameRate = frameRate;
-            }
+ 
         }
 
-        private Stopwatch _stopwatch = new Stopwatch();
-        private double _frameCounter = 0;
-        private long _FrameRate;
-        public long FrameRate
+
+
+        TimeSpan lastRender;
+        int frameTimesIndex = 0;
+        int[] frameTimes = new int[100];
+        private void CalcFrameRate(RenderingEventArgs renderArgs)
+        {
+            var dt = (renderArgs.RenderingTime - lastRender);
+            int framrate = (int)(1000 / dt.TotalMilliseconds);
+
+            if (framrate > 0)
+            {
+                frameTimesIndex = (frameTimesIndex + 1) % frameTimes.Length;
+                frameTimes[frameTimesIndex] = framrate;
+                FrameRate = (int)frameTimes.Average();
+            }
+            // About to render...
+            lastRender = renderArgs.RenderingTime;
+        }
+
+        private int _FrameRate;
+        public int FrameRate
         {
             get { return this._FrameRate; }
             set
@@ -65,7 +75,7 @@ namespace TEditWPF.ViewModels
                 }
             }
         }
-        
+
 
 
         [Import]
@@ -155,8 +165,8 @@ namespace TEditWPF.ViewModels
         {
             get
             {
-                if (this._WorldImage != null)
-                    return this._WorldImage.PixelHeight * this._Zoom;
+                if (this._worldImage.Image != null)
+                    return this._worldImage.Image.PixelHeight * this._Zoom;
 
 
                 return 1;
@@ -167,8 +177,8 @@ namespace TEditWPF.ViewModels
         {
             get
             {
-                if (this._WorldImage != null)
-                    return this._WorldImage.PixelWidth * this._Zoom;
+                if (this._worldImage.Image != null)
+                    return this._worldImage.Image.PixelWidth * this._Zoom;
 
                 return 1;
             }
@@ -193,18 +203,17 @@ namespace TEditWPF.ViewModels
             }
         }
 
-        private WriteableBitmap _WorldImage;
-        public WriteableBitmap WorldImage
+        private WorldImage _worldImage;
+        [Import]
+        public WorldImage WorldImage
         {
-            get { return this._WorldImage; }
+            get { return this._worldImage; }
             set
             {
-                if (this._WorldImage != value)
+                if (this._worldImage != value)
                 {
-                    this._WorldImage = value;
+                    this._worldImage = value;
                     this.RaisePropertyChanged("WorldImage");
-                    this.RaisePropertyChanged("WorldZoomedHeight");
-                    this.RaisePropertyChanged("WorldZoomedWidth");
                 }
             }
         }
@@ -295,7 +304,9 @@ namespace TEditWPF.ViewModels
                     img.Freeze();
                     _uiFactory.StartNew(() =>
                     {
-                        this.WorldImage = img;
+                        this.WorldImage.Image = img;
+                        this.RaisePropertyChanged("WorldZoomedHeight");
+                        this.RaisePropertyChanged("WorldZoomedWidth");
                     });
                 });
             }
@@ -371,7 +382,7 @@ namespace TEditWPF.ViewModels
             {
                 if (this.ActiveTool != null)
                     this.ActiveTool.MoveTool(e.Tile);
-            }            
+            }
         }
 
         private void OnMouseDownPixel(TileMouseEventArgs e)
