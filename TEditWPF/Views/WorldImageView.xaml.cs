@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel.Composition;
+using System.Diagnostics;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -41,14 +42,17 @@ namespace TEditWPF.Views
                 Cursor = Cursors.ScrollAll;
 
                 var partView = (ScrollViewer)this.FindName("WorldScrollViewer");
-                var currentScrollPosition = new Point(partView.HorizontalOffset, partView.VerticalOffset);
-                var currentMousePosition = e.GetPosition(this);
-                var delta = new Point(currentMousePosition.X - _mouseDownAbsolute.X,
-                                      currentMousePosition.Y - _mouseDownAbsolute.Y);
+                if (partView != null)
+                {
+                    var currentScrollPosition = new Point(partView.HorizontalOffset, partView.VerticalOffset);
+                    var currentMousePosition = e.GetPosition(this);
+                    var delta = new Point(currentMousePosition.X - _mouseDownAbsolute.X,
+                                          currentMousePosition.Y - _mouseDownAbsolute.Y);
 
 
-                partView.ScrollToHorizontalOffset(currentScrollPosition.X + (delta.X) / 128.0);
-                partView.ScrollToVerticalOffset(currentScrollPosition.Y + (delta.Y) / 128.0);
+                    partView.ScrollToHorizontalOffset(currentScrollPosition.X + (delta.X) / 128.0);
+                    partView.ScrollToVerticalOffset(currentScrollPosition.Y + (delta.Y) / 128.0);
+                }
             }
             else
             {
@@ -130,17 +134,16 @@ namespace TEditWPF.Views
             var vm = (WorldViewModel)this.DataContext;
             var zoom = vm.Zoom;
             var partView = (ScrollViewer)this.FindName("WorldScrollViewer");
-            partView.ScrollToHorizontalOffset((tile.X * zoom) - (partView.ActualWidth / 2.0));
-            partView.ScrollToVerticalOffset((tile.Y * zoom) - (partView.ActualHeight / 2.0));
+            if (partView != null)
+            {
+                partView.ScrollToHorizontalOffset((tile.X * zoom) - (partView.ActualWidth / 2.0));
+                partView.ScrollToVerticalOffset((tile.Y * zoom) - (partView.ActualHeight / 2.0));
+            }
         }
 
         private PointInt32 GetTileAtPixel(System.Windows.Point pixel)
         {
-            var vm = (WorldViewModel)this.DataContext;
-            decimal x = Math.Floor((decimal)pixel.X / (decimal)vm.Zoom);
-            decimal y = Math.Floor((decimal)pixel.Y / (decimal)vm.Zoom);
-            var tile = new PointInt32((int)x, (int)y);
-            return tile;
+            return new PointInt32((int)pixel.X, (int)pixel.Y);
         }
 
 
