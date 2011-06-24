@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Windows;
 
 namespace TEditWPF.TerrariaWorld.Structures
 {
@@ -7,85 +6,75 @@ namespace TEditWPF.TerrariaWorld.Structures
     {
         public RectInt32(PointInt32 topLeft, PointInt32 bottomRight)
         {
-            _topLeft = topLeft;
-            _bottomRight = bottomRight;
+            TopLeft = topLeft;
+            BottomRight = bottomRight;
         }
 
         public RectInt32(int left, int right, int top, int bottom)
         {
-            _topLeft = new PointInt32(left, top);
-            _bottomRight = new PointInt32(right, bottom);
+            TopLeft = new PointInt32(left, top);
+            BottomRight = new PointInt32(right, bottom);
         }
 
         public RectInt32(PointInt32 location, int width, int height)
         {
-            _topLeft = location;
-            _bottomRight = new PointInt32(location.X + width, location.Y + Height);
+            TopLeft = location;
+            BottomRight = new PointInt32(location.X + width, location.Y + Height);
         }
 
         public int Left
         {
-            get { return this.TopLeft.X; }
+            get { return TopLeft.X; }
         }
 
         public int Right
         {
-            get { return this.BottomRight.X; }
+            get { return BottomRight.X; }
         }
 
         public int Top
         {
-            get { return this.TopLeft.Y; }
+            get { return TopLeft.Y; }
         }
 
         public int Bottom
         {
-            get { return this.BottomRight.Y; }
+            get { return BottomRight.Y; }
         }
 
         public int X
         {
-            get { return this.Left; }
+            get { return Left; }
         }
 
         public int Y
         {
-            get { return this.Top; }
+            get { return Top; }
         }
 
         public int Width
         {
-            get { return Math.Abs(this.BottomRight.X - this.TopLeft.X); }
+            get { return Math.Abs(BottomRight.X - TopLeft.X); }
         }
 
         public int Height
         {
-            get { return Math.Abs(this.BottomRight.Y - this.TopLeft.Y); }
+            get { return Math.Abs(BottomRight.Y - TopLeft.Y); }
         }
 
-        private PointInt32 _topLeft;
-        public PointInt32 TopLeft
-        {
-            get { return _topLeft; }
-            set { _topLeft = value; }
-        }
+        public PointInt32 TopLeft { get; set; }
 
-        private PointInt32 _bottomRight;
-        public PointInt32 BottomRight
-        {
-            get { return _bottomRight; }
-            set { _bottomRight = value; }
-        }
+        public PointInt32 BottomRight { get; set; }
 
         public override string ToString()
         {
-            return String.Format("[{0}, {1}]", this.TopLeft, this.BottomRight);
+            return String.Format("[{0}, {1}]", TopLeft, BottomRight);
         }
 
         public bool Contains(PointInt32 point)
         {
-            int xabs = (point.X - this.X);
-            int yabs = (point.Y - this.Y);
+            int xabs = (point.X - X);
+            int yabs = (point.Y - Y);
 
             if (xabs < 0)
                 return false;
@@ -93,7 +82,7 @@ namespace TEditWPF.TerrariaWorld.Structures
             if (yabs < 0)
                 return false;
 
-            return xabs < this.Width && yabs < this.Height;
+            return xabs < Width && yabs < Height;
         }
 
         #region Operator Overrides
@@ -109,7 +98,7 @@ namespace TEditWPF.TerrariaWorld.Structures
                 return false;
 
             if (obj is RectInt32)
-                return MatchFields(this, (RectInt32)obj);
+                return MatchFields(this, (RectInt32) obj);
 
             return false;
         }
@@ -132,8 +121,8 @@ namespace TEditWPF.TerrariaWorld.Structures
         public override int GetHashCode()
         {
             int result = 17;
-            result = result * 37 + TopLeft.GetHashCode();
-            result = result * 37 + BottomRight.GetHashCode();
+            result = result*37 + TopLeft.GetHashCode();
+            result = result*37 + BottomRight.GetHashCode();
             return result;
         }
 

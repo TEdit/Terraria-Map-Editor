@@ -3,16 +3,16 @@ using System.ComponentModel.Composition;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using TEditWPF.Common;
-using TEditWPF.TerrariaWorld;
-using TEditWPF.TerrariaWorld.Structures;
 
 namespace TEditWPF.Tools
 {
-    [Export(typeof(ITool))]
+    [Export(typeof (ITool))]
     [PartCreationPolicy(CreationPolicy.Shared)]
     [ExportMetadata("Order", 1)]
     public class Arrow : ToolBase
     {
+        [Import] private ToolProperties _properties;
+
         public Arrow()
         {
             _Image = new BitmapImage(new Uri(@"pack://application:,,,/TEditWPF;component/Tools/Images/cursor.png"));
@@ -22,45 +22,57 @@ namespace TEditWPF.Tools
         }
 
         #region Properties
-        private string _Name;
+
+        private readonly BitmapImage _Image;
+        private readonly string _Name;
+
+        private readonly ToolType _Type;
+        private bool _IsActive;
+
         public override string Name
         {
             get { return _Name; }
         }
 
-        private ToolType _Type;
         public override ToolType Type
         {
             get { return _Type; }
         }
 
-        private BitmapImage _Image;
         public override BitmapImage Image
         {
             get { return _Image; }
         }
 
-        private bool _IsActive;
         public override bool IsActive
         {
-            get { return this._IsActive; }
+            get { return _IsActive; }
             set
             {
-                if (this._IsActive != value)
+                if (_IsActive != value)
                 {
-                    this._IsActive = value;
-                    this.RaisePropertyChanged("IsActive");
+                    _IsActive = value;
+                    RaisePropertyChanged("IsActive");
                 }
             }
         }
+
         #endregion
 
-        [Import]
-        private ToolProperties _properties;
+        public override bool PressTool(TileMouseEventArgs e)
+        {
+            return false;
+        }
 
-        public override bool PressTool(TileMouseEventArgs e) { return false; }
-        public override bool MoveTool(TileMouseEventArgs e) { return false; }
-        public override bool ReleaseTool(TileMouseEventArgs e) { return false; }
+        public override bool MoveTool(TileMouseEventArgs e)
+        {
+            return false;
+        }
+
+        public override bool ReleaseTool(TileMouseEventArgs e)
+        {
+            return false;
+        }
 
         public override WriteableBitmap PreviewTool()
         {

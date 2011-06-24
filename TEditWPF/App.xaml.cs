@@ -1,17 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.Composition;
-using System.ComponentModel.Composition.AttributedModel;
-using System.ComponentModel.Composition.Primitives;
-using System.ComponentModel.Composition.ReflectionModel;
+﻿using System.ComponentModel.Composition;
 using System.ComponentModel.Composition.Hosting;
-using System.Configuration;
-using System.Data;
-using System.Linq;
 using System.Reflection;
 using System.Windows;
-using System.IO;
-using TEditWPF.TerrariaWorld;
 
 namespace TEditWPF
 {

@@ -22,10 +22,11 @@ namespace TEditWPF.Common
             var property = memberExpression.Member as PropertyInfo;
             if (property == null)
             {
-                throw new ArgumentException("The member access expression does not access a property.", "propertyExpresssion");
+                throw new ArgumentException("The member access expression does not access a property.",
+                                            "propertyExpresssion");
             }
 
-            var getMethod = property.GetGetMethod(true);
+            MethodInfo getMethod = property.GetGetMethod(true);
             if (getMethod.IsStatic)
             {
                 throw new ArgumentException("The referenced property is a static property.", "propertyExpresssion");

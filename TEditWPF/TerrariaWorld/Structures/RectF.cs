@@ -4,6 +4,8 @@ namespace TEditWPF.TerrariaWorld.Structures
 {
     public struct RectF
     {
+        private PointFloat _bottomRight;
+        private PointFloat _topLeft;
 
         public RectF(PointFloat topLeft, PointFloat bottomRight)
         {
@@ -19,32 +21,30 @@ namespace TEditWPF.TerrariaWorld.Structures
 
         public float Left
         {
-            get { return this.TopLeft.X; }
+            get { return TopLeft.X; }
         }
 
         public float Right
         {
-            get { return this.BottomRight.X; }
+            get { return BottomRight.X; }
         }
 
         public float Top
         {
-            get { return this.TopLeft.Y; }
+            get { return TopLeft.Y; }
         }
 
         public float Bottom
         {
-            get { return this.BottomRight.Y; }
+            get { return BottomRight.Y; }
         }
 
-        private PointFloat _topLeft;
         public PointFloat TopLeft
         {
             get { return _topLeft; }
             set { _topLeft = value; }
         }
 
-        private PointFloat _bottomRight;
         public PointFloat BottomRight
         {
             get { return _bottomRight; }
@@ -53,7 +53,7 @@ namespace TEditWPF.TerrariaWorld.Structures
 
         public override string ToString()
         {
-            return String.Format("[{0}, {1}]", this.TopLeft, this.BottomRight);
+            return String.Format("[{0}, {1}]", TopLeft, BottomRight);
         }
 
         #region Operator Overrides
@@ -69,7 +69,7 @@ namespace TEditWPF.TerrariaWorld.Structures
                 return false;
 
             if (obj is RectF)
-                return MatchFields(this, (RectF)obj);
+                return MatchFields(this, (RectF) obj);
 
             return false;
         }
@@ -92,8 +92,8 @@ namespace TEditWPF.TerrariaWorld.Structures
         public override int GetHashCode()
         {
             int result = 17;
-            result = result * 37 + TopLeft.GetHashCode();
-            result = result * 37 + BottomRight.GetHashCode();
+            result = result*37 + TopLeft.GetHashCode();
+            result = result*37 + BottomRight.GetHashCode();
             return result;
         }
 

@@ -6,13 +6,13 @@ namespace TEditWPF.TerrariaWorld
     {
         public Tile()
         {
-            this.IsActive = false;
-            this.Type = 0;
-            this.Frame = new PointShort(-1, -1);
-            this.Wall = 0;
-            this.IsLighted = false;
-            this.Liquid = 0;
-            this.IsLava = false;
+            IsActive = false;
+            Type = 0;
+            Frame = new PointShort(-1, -1);
+            Wall = 0;
+            IsLighted = false;
+            Liquid = 0;
+            IsLava = false;
         }
 
         public bool IsActive { get; set; }
@@ -31,7 +31,7 @@ namespace TEditWPF.TerrariaWorld
 
         public override string ToString()
         {
-            return this.Type.ToString();
+            return Type.ToString();
         }
     }
 }

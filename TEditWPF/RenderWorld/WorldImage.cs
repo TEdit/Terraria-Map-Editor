@@ -1,7 +1,7 @@
-﻿using System.Windows.Media.Imaging;
-using TEditWPF.Common;
-using System.ComponentModel.Composition;
+﻿using System.ComponentModel.Composition;
 using System.Windows;
+using System.Windows.Media.Imaging;
+using TEditWPF.Common;
 
 namespace TEditWPF.RenderWorld
 {
@@ -10,29 +10,31 @@ namespace TEditWPF.RenderWorld
     public class WorldImage : ObservableObject
     {
         private WriteableBitmap _Image;
+
+        private WriteableBitmap _Overlay;
+
         public WriteableBitmap Image
         {
-            get { return this._Image; }
+            get { return _Image; }
             set
             {
-                if (this._Image != value)
+                if (_Image != value)
                 {
-                    this._Image = value;
-                    this.RaisePropertyChanged("Image");
+                    _Image = value;
+                    RaisePropertyChanged("Image");
                 }
             }
         }
 
-        private WriteableBitmap _Overlay;
         public WriteableBitmap Overlay
         {
-            get { return this._Overlay; }
+            get { return _Overlay; }
             set
             {
-                if (this._Overlay != value)
+                if (_Overlay != value)
                 {
-                    this._Overlay = value;
-                    this.RaisePropertyChanged("Overlay");
+                    _Overlay = value;
+                    RaisePropertyChanged("Overlay");
                 }
             }
         }
@@ -41,11 +43,12 @@ namespace TEditWPF.RenderWorld
         {
             if (_Image != null)
             {
-                _Overlay = new WriteableBitmap(_Image.PixelWidth, _Image.PixelHeight, _Image.DpiX, _Image.DpiY, _Image.Format, _Image.Palette);
+                _Overlay = new WriteableBitmap(_Image.PixelWidth, _Image.PixelHeight, _Image.DpiX, _Image.DpiY,
+                                               _Image.Format, _Image.Palette);
 
                 int stride = _Overlay.BackBufferStride;
-                int numpixelbytes = _Overlay.PixelHeight * _Overlay.PixelWidth * _Overlay.Format.BitsPerPixel / 8;
-                byte[] pixels = new byte[numpixelbytes];
+                int numpixelbytes = _Overlay.PixelHeight*_Overlay.PixelWidth*_Overlay.Format.BitsPerPixel/8;
+                var pixels = new byte[numpixelbytes];
 
                 //for (int x = 0; x < _Overlay.PixelWidth; x++)
                 //{
@@ -59,10 +62,10 @@ namespace TEditWPF.RenderWorld
                 //}
 
                 _Image.CopyPixels(pixels, stride, 0);
-                _Overlay.WritePixels(new Int32Rect(0, 0, _Overlay.PixelWidth, _Overlay.PixelHeight), pixels, _Overlay.PixelWidth * _Overlay.Format.BitsPerPixel / 8, 0);
+                _Overlay.WritePixels(new Int32Rect(0, 0, _Overlay.PixelWidth, _Overlay.PixelHeight), pixels,
+                                     _Overlay.PixelWidth*_Overlay.Format.BitsPerPixel/8, 0);
             }
-            this.RaisePropertyChanged("Overlay");
-
+            RaisePropertyChanged("Overlay");
         }
     }
 }

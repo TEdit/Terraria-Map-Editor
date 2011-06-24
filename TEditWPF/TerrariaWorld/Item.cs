@@ -1,55 +1,56 @@
-﻿namespace TEditWPF.TerrariaWorld
-{
-    using TEditWPF.Common;
+﻿using TEditWPF.Common;
 
+namespace TEditWPF.TerrariaWorld
+{
     public class Item : ObservableObject
     {
+        private string _Name;
+        private int _StackSize;
+
         public Item()
         {
-            this.StackSize = 0;
-            this.Name = "[empty]";
+            StackSize = 0;
+            Name = "[empty]";
         }
 
         public Item(int stackSize, string name)
         {
-            this.StackSize = stackSize;
-            this.Name = stackSize > 0 ? name : "[empty]";
+            StackSize = stackSize;
+            Name = stackSize > 0 ? name : "[empty]";
         }
 
-        private int _StackSize;
         public int StackSize
         {
-            get { return this._StackSize; }
+            get { return _StackSize; }
             set
             {
-                if (this._StackSize != value)
+                if (_StackSize != value)
                 {
-                    this._StackSize = value;
-                    this.RaisePropertyChanged("StackSize");
+                    _StackSize = value;
+                    RaisePropertyChanged("StackSize");
                 }
             }
         }
 
-        private string _Name;
         public string Name
         {
-            get { return this._Name; }
+            get { return _Name; }
             set
             {
-                if (this._Name != value)
+                if (_Name != value)
                 {
-                    this._Name = value;
-                    this.RaisePropertyChanged("Name");
+                    _Name = value;
+                    RaisePropertyChanged("Name");
                 }
             }
         }
 
         public override string ToString()
         {
-            if (this.StackSize > 0)
-                return string.Format("{0}: {1}", this.Name, this.StackSize);
+            if (StackSize > 0)
+                return string.Format("{0}: {1}", Name, StackSize);
 
-            return this.Name;
+            return Name;
         }
     }
 }

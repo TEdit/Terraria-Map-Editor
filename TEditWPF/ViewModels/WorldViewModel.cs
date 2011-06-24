@@ -1,173 +1,157 @@
 using System;
-using System.Linq;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.ComponentModel.Composition;
-using System.Threading;
+using System.Linq;
 using System.Threading.Tasks;
-using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using Microsoft.Win32;
 using TEditWPF.Common;
 using TEditWPF.RenderWorld;
 using TEditWPF.TerrariaWorld;
 using TEditWPF.TerrariaWorld.Structures;
 using TEditWPF.Tools;
-using System.Diagnostics;
-using System.Windows.Threading;
 
 namespace TEditWPF.ViewModels
 {
     [Export]
     public class WorldViewModel : ObservableObject, IPartImportsSatisfiedNotification
     {
-        private TaskScheduler _uiScheduler;
-        private TaskFactory _uiFactory;
+        private readonly ObservableCollection<Chest> _Chests = new ObservableCollection<Chest>();
+        private readonly ObservableCollection<NPC> _Npcs = new ObservableCollection<NPC>();
+        private readonly ObservableCollection<Sign> _Signs = new ObservableCollection<Sign>();
+        private readonly TaskFactory _uiFactory;
+        private readonly TaskScheduler _uiScheduler;
+
+        private readonly int[] frameTimes = new int[100];
+        private ITool _ActiveTool;
+        private string _FluidName;
+
+        private int _FrameRate;
+        private bool _IsBusy;
+        private SelectionArea _Selection;
+        private string _TileName;
+
+        [Import] private ToolProperties _ToolProperties;
+        private string _WallName;
+        private double _Zoom = 1;
+        private bool _isMouseContained;
+        private ICommand _mouseDownCommand;
+        private PointInt32 _mouseDownTile;
+        private ICommand _mouseMoveCommand;
+        private PointInt32 _mouseOverTile;
+        private ICommand _mouseUpCommand;
+        private PointInt32 _mouseUpTile;
+        private ICommand _mouseWheelCommand;
+        private ICommand _openWorldCommand;
+        private ProgressChangedEventArgs _progress;
+        private ICommand _setTool;
+        private WorldImage _worldImage;
+        private int frameTimesIndex;
+        private TimeSpan lastRender;
+
+        [Import] private WorldRenderer renderer;
+        private World world;
+
         public WorldViewModel()
         {
-
             _uiScheduler = TaskScheduler.FromCurrentSynchronizationContext();
             _uiFactory = new TaskFactory(_uiScheduler);
             Tools = new OrderingCollection<ITool, IOrderMetadata>(t => t.Metadata.Order);
             CompositionTarget.Rendering += CompTargetRender;
         }
 
-
-        private void CompTargetRender(object sender, EventArgs e)
-        {
-            CalcFrameRate((RenderingEventArgs)e);
-
-
-        }
-
-
-
-        TimeSpan lastRender;
-        int frameTimesIndex = 0;
-        int[] frameTimes = new int[100];
-        private void CalcFrameRate(RenderingEventArgs renderArgs)
-        {
-            var dt = (renderArgs.RenderingTime - lastRender);
-            int framrate = (int)(1000 / dt.TotalMilliseconds);
-
-            if (framrate > 0)
-            {
-                frameTimesIndex = (frameTimesIndex + 1) % frameTimes.Length;
-                frameTimes[frameTimesIndex] = framrate;
-                FrameRate = (int)frameTimes.Average();
-            }
-            // About to render...
-            lastRender = renderArgs.RenderingTime;
-        }
-
-        private int _FrameRate;
         public int FrameRate
         {
-            get { return this._FrameRate; }
+            get { return _FrameRate; }
             set
             {
-                if (this._FrameRate != value)
+                if (_FrameRate != value)
                 {
-                    this._FrameRate = value;
-                    this.RaisePropertyChanged("FrameRate");
+                    _FrameRate = value;
+                    RaisePropertyChanged("FrameRate");
                 }
             }
         }
 
-        [Import]
-        private ToolProperties _ToolProperties;
         public ToolProperties ToolProperties
         {
-            get { return this._ToolProperties; }
+            get { return _ToolProperties; }
             set
             {
-                if (this._ToolProperties != value)
+                if (_ToolProperties != value)
                 {
-                    this._ToolProperties = value;
-                    this.RaisePropertyChanged("ToolProperties");
+                    _ToolProperties = value;
+                    RaisePropertyChanged("ToolProperties");
                 }
             }
         }
 
-        [Import]
-        private WorldRenderer renderer;
-
-        [ImportMany(typeof(ITool))]
+        [ImportMany(typeof (ITool))]
         public OrderingCollection<ITool, IOrderMetadata> Tools { get; set; }
 
-        private ITool _ActiveTool;
         public ITool ActiveTool
         {
-            get { return this._ActiveTool; }
+            get { return _ActiveTool; }
             set
             {
-                if (this._ActiveTool != value)
+                if (_ActiveTool != value)
                 {
-                    this._ActiveTool = value;
-                    this.RaisePropertyChanged("ActiveTool");
+                    _ActiveTool = value;
+                    RaisePropertyChanged("ActiveTool");
 
                     foreach (var tool in Tools)
                     {
-                        tool.Value.IsActive = (tool.Value == this._ActiveTool);
+                        tool.Value.IsActive = (tool.Value == _ActiveTool);
                     }
-
                 }
             }
         }
 
-        private SelectionArea _Selection;
         [Import]
         public SelectionArea Selection
         {
-            get { return this._Selection; }
+            get { return _Selection; }
             set
             {
-                if (this._Selection != value)
+                if (_Selection != value)
                 {
-                    this._Selection = value;
-                    this.RaisePropertyChanged("Selection");
+                    _Selection = value;
+                    RaisePropertyChanged("Selection");
                 }
             }
         }
 
 
-
-        private World world = null;
-        [Import("World", typeof(World))]
+        [Import("World", typeof (World))]
         public World World
         {
-            get
-            {
-                return this.world;
-            }
+            get { return world; }
             set
             {
-                if (this.world != value)
+                if (world != value)
                 {
-                    this.world = null;
-                    this.world = value;
-                    this.RaisePropertyChanged("World");
-                    this.RaisePropertyChanged("WorldZoomedHeight");
-                    this.RaisePropertyChanged("WorldZoomedWidth");
+                    world = null;
+                    world = value;
+                    RaisePropertyChanged("World");
+                    RaisePropertyChanged("WorldZoomedHeight");
+                    RaisePropertyChanged("WorldZoomedWidth");
                 }
             }
         }
 
-        private ObservableCollection<Chest> _Chests = new ObservableCollection<Chest>();
         public ObservableCollection<Chest> Chests
         {
             get { return _Chests; }
         }
 
-        private ObservableCollection<Sign> _Signs = new ObservableCollection<Sign>();
         public ObservableCollection<Sign> Signs
         {
             get { return _Signs; }
         }
 
-        private ObservableCollection<NPC> _Npcs = new ObservableCollection<NPC>();
         public ObservableCollection<NPC> Npcs
         {
             get { return _Npcs; }
@@ -178,8 +162,8 @@ namespace TEditWPF.ViewModels
         {
             get
             {
-                if (this._worldImage.Image != null)
-                    return this._worldImage.Image.PixelHeight * this._Zoom;
+                if (_worldImage.Image != null)
+                    return _worldImage.Image.PixelHeight*_Zoom;
 
 
                 return 1;
@@ -190,114 +174,229 @@ namespace TEditWPF.ViewModels
         {
             get
             {
-                if (this._worldImage.Image != null)
-                    return this._worldImage.Image.PixelWidth * this._Zoom;
+                if (_worldImage.Image != null)
+                    return _worldImage.Image.PixelWidth*_Zoom;
 
                 return 1;
             }
         }
 
-        private double _Zoom = 1;
         public double Zoom
         {
-            get { return this._Zoom; }
+            get { return _Zoom; }
             set
             {
-                var limitedZoom = value;
+                double limitedZoom = value;
                 limitedZoom = Math.Min(Math.Max(limitedZoom, 0.05), 1000);
 
-                if (this._Zoom != limitedZoom)
+                if (_Zoom != limitedZoom)
                 {
-                    this._Zoom = limitedZoom;
-                    this.RaisePropertyChanged("Zoom");
-                    this.RaisePropertyChanged("WorldZoomedHeight");
-                    this.RaisePropertyChanged("WorldZoomedWidth");
+                    _Zoom = limitedZoom;
+                    RaisePropertyChanged("Zoom");
+                    RaisePropertyChanged("WorldZoomedHeight");
+                    RaisePropertyChanged("WorldZoomedWidth");
                 }
             }
         }
 
-        private WorldImage _worldImage;
         [Import]
         public WorldImage WorldImage
         {
-            get { return this._worldImage; }
+            get { return _worldImage; }
             set
             {
-                if (this._worldImage != value)
+                if (_worldImage != value)
                 {
-                    this._worldImage = value;
-                    this.RaisePropertyChanged("WorldImage");
+                    _worldImage = value;
+                    RaisePropertyChanged("WorldImage");
                 }
             }
         }
 
-        private bool _isMouseContained;
         public bool IsMouseContained
         {
-            get
-            {
-                return this._isMouseContained;
-            }
+            get { return _isMouseContained; }
             set
             {
-                if (this._isMouseContained != value)
+                if (_isMouseContained != value)
                 {
-                    this._isMouseContained = value;
-                    this.RaisePropertyChanged("IsMouseContained");
+                    _isMouseContained = value;
+                    RaisePropertyChanged("IsMouseContained");
                 }
             }
         }
 
-        private ICommand _setTool;
         public ICommand SetTool
         {
             get { return _setTool ?? (_setTool = new RelayCommand<ITool>(t => ActiveTool = t)); }
         }
 
-        private ICommand _mouseMoveCommand;
         public ICommand MouseMoveCommand
         {
             get { return _mouseMoveCommand ?? (_mouseMoveCommand = new RelayCommand<TileMouseEventArgs>(OnMouseOverPixel)); }
         }
 
-        private ICommand _mouseDownCommand;
         public ICommand MouseDownCommand
         {
             get { return _mouseDownCommand ?? (_mouseDownCommand = new RelayCommand<TileMouseEventArgs>(OnMouseDownPixel)); }
         }
 
-        private ICommand _mouseUpCommand;
         public ICommand MouseUpCommand
         {
             get { return _mouseUpCommand ?? (_mouseUpCommand = new RelayCommand<TileMouseEventArgs>(OnMouseUpPixel)); }
         }
 
-        private ICommand _mouseWheelCommand;
         public ICommand MouseWheelCommand
         {
             get { return _mouseWheelCommand ?? (_mouseWheelCommand = new RelayCommand<TileMouseEventArgs>(OnMouseWheel)); }
         }
 
-        private ICommand _openWorldCommand;
         public ICommand OpenWorldCommand
         {
             get { return _openWorldCommand ?? (_openWorldCommand = new RelayCommand(LoadWorldandRender, CanLoad)); }
         }
 
-        private bool _IsBusy;
         public bool IsBusy
         {
-            get { return this._IsBusy; }
+            get { return _IsBusy; }
             set
             {
-                if (this._IsBusy != value)
+                if (_IsBusy != value)
                 {
-                    this._IsBusy = value;
-                    this.RaisePropertyChanged("IsBusy");
+                    _IsBusy = value;
+                    RaisePropertyChanged("IsBusy");
                 }
             }
         }
 
+
+        public string WallName
+        {
+            get { return _WallName; }
+            set
+            {
+                if (_WallName != value)
+                {
+                    _WallName = value;
+                    RaisePropertyChanged("WallName");
+                }
+            }
+        }
+
+        public string TileName
+        {
+            get { return _TileName; }
+            set
+            {
+                if (_TileName != value)
+                {
+                    _TileName = value;
+                    RaisePropertyChanged("TileName");
+                }
+            }
+        }
+
+        public string FluidName
+        {
+            get { return _FluidName; }
+            set
+            {
+                if (_FluidName != value)
+                {
+                    _FluidName = value;
+                    RaisePropertyChanged("FluidName");
+                }
+            }
+        }
+
+
+        public PointInt32 MouseOverTile
+        {
+            get { return _mouseOverTile; }
+            set
+            {
+                if (_mouseOverTile != value)
+                {
+                    _mouseOverTile = value;
+                    RaisePropertyChanged("MouseOverTile");
+                    RaisePropertyChanged("ToolLocation");
+                }
+            }
+        }
+
+        public PointInt32 ToolLocation
+        {
+            get { return _mouseOverTile - ToolProperties.Offset; }
+        }
+
+        public PointInt32 MouseDownTile
+        {
+            get { return _mouseDownTile; }
+            set
+            {
+                if (_mouseDownTile != value)
+                {
+                    _mouseDownTile = value;
+                    RaisePropertyChanged("MouseDownTile");
+                }
+            }
+        }
+
+        public PointInt32 MouseUpTile
+        {
+            get { return _mouseUpTile; }
+            set
+            {
+                if (_mouseUpTile != value)
+                {
+                    _mouseUpTile = value;
+                    RaisePropertyChanged("MouseUpTile");
+                }
+            }
+        }
+
+        public ProgressChangedEventArgs Progress
+        {
+            get { return _progress; }
+            set
+            {
+                if (_progress != value)
+                {
+                    _progress = value;
+                    RaisePropertyChanged("Progress");
+                }
+            }
+        }
+
+        #region IPartImportsSatisfiedNotification Members
+
+        public void OnImportsSatisfied()
+        {
+            renderer.ProgressChanged += (s, e) => { Progress = e; };
+            world.ProgressChanged += (s, e) => { Progress = e; };
+        }
+
+        #endregion
+
+        private void CompTargetRender(object sender, EventArgs e)
+        {
+            CalcFrameRate((RenderingEventArgs) e);
+        }
+
+        private void CalcFrameRate(RenderingEventArgs renderArgs)
+        {
+            TimeSpan dt = (renderArgs.RenderingTime - lastRender);
+            var framrate = (int) (1000/dt.TotalMilliseconds);
+
+            if (framrate > 0)
+            {
+                frameTimesIndex = (frameTimesIndex + 1)%frameTimes.Length;
+                frameTimes[frameTimesIndex] = framrate;
+                FrameRate = (int) frameTimes.Average();
+            }
+            // About to render...
+            lastRender = renderArgs.RenderingTime;
+        }
 
         public bool CanLoad()
         {
@@ -306,186 +405,71 @@ namespace TEditWPF.ViewModels
 
         private void LoadWorldandRender()
         {
-            var ofd = new Microsoft.Win32.OpenFileDialog();
+            var ofd = new OpenFileDialog();
             IsBusy = true;
-            if ((bool)ofd.ShowDialog())
+            if ((bool) ofd.ShowDialog())
             {
                 Task.Factory.StartNew(() =>
-                {
-                    this.World.Load(ofd.FileName);
-                    var img = renderer.RenderWorld();
-                    img.Freeze();
-                    _uiFactory.StartNew(() =>
-                    {
-                        this.WorldImage.Image = img.Clone();
-                        img = null;
-                        this.RaisePropertyChanged("WorldZoomedHeight");
-                        this.RaisePropertyChanged("WorldZoomedWidth");
-                    });
-                });
+                                          {
+                                              World.Load(ofd.FileName);
+                                              WriteableBitmap img = renderer.RenderWorld();
+                                              img.Freeze();
+                                              _uiFactory.StartNew(() =>
+                                                                      {
+                                                                          WorldImage.Image = img.Clone();
+                                                                          img = null;
+                                                                          RaisePropertyChanged("WorldZoomedHeight");
+                                                                          RaisePropertyChanged("WorldZoomedWidth");
+                                                                      });
+                                          });
             }
             IsBusy = false;
         }
 
-        private string _WallName;
-        public string WallName
-        {
-            get { return this._WallName; }
-            set
-            {
-                if (this._WallName != value)
-                {
-                    this._WallName = value;
-                    this.RaisePropertyChanged("WallName");
-                }
-            }
-        }
-
-        private string _TileName;
-        public string TileName
-        {
-            get { return this._TileName; }
-            set
-            {
-                if (this._TileName != value)
-                {
-                    this._TileName = value;
-                    this.RaisePropertyChanged("TileName");
-                }
-            }
-        }
-
-        private string _FluidName;
-        public string FluidName
-        {
-            get { return this._FluidName; }
-            set
-            {
-                if (this._FluidName != value)
-                {
-                    this._FluidName = value;
-                    this.RaisePropertyChanged("FluidName");
-                }
-            }
-        }
-
-
         private void OnMouseOverPixel(TileMouseEventArgs e)
         {
-            this.MouseOverTile = e.Tile;
-            var overTile = world.Tiles[e.Tile.X, e.Tile.Y];
+            MouseOverTile = e.Tile;
+            Tile overTile = world.Tiles[e.Tile.X, e.Tile.Y];
 
-            var wallName = renderer.TileColors.WallColor[overTile.Wall].Name;
-            var tileName = overTile.IsActive ? renderer.TileColors.TileColor[overTile.Type].Name : "[empty]";
-            var fluidname = "[no fluid]";
+            string wallName = renderer.TileColors.WallColor[overTile.Wall].Name;
+            string tileName = overTile.IsActive ? renderer.TileColors.TileColor[overTile.Type].Name : "[empty]";
+            string fluidname = "[no fluid]";
             if (overTile.Liquid > 0)
             {
                 fluidname = overTile.IsLava ? "Lava" : "Water";
                 fluidname += " [" + overTile.Liquid.ToString() + "]";
             }
 
-            this.FluidName = fluidname;
-            this.TileName = tileName;
-            this.WallName = wallName;
+            FluidName = fluidname;
+            TileName = tileName;
+            WallName = wallName;
 
-            if (this.ActiveTool != null)
-                this.ActiveTool.MoveTool(e);
-
+            if (ActiveTool != null)
+                ActiveTool.MoveTool(e);
         }
 
         private void OnMouseDownPixel(TileMouseEventArgs e)
         {
-            this.MouseDownTile = e.Tile;
+            MouseDownTile = e.Tile;
 
-            if (this.ActiveTool != null)
-                this.ActiveTool.PressTool(e);
-
+            if (ActiveTool != null)
+                ActiveTool.PressTool(e);
         }
 
         private void OnMouseUpPixel(TileMouseEventArgs e)
         {
-            this.MouseUpTile = e.Tile;
+            MouseUpTile = e.Tile;
 
-            if (this.ActiveTool != null)
-                this.ActiveTool.ReleaseTool(e);
-
+            if (ActiveTool != null)
+                ActiveTool.ReleaseTool(e);
         }
 
         private void OnMouseWheel(TileMouseEventArgs e)
         {
             if (e.WheelDelta > 0)
-                this.Zoom = this.Zoom * 1.1;
+                Zoom = Zoom*1.1;
             if (e.WheelDelta < 0)
-                this.Zoom = this.Zoom * 0.9;
-
-        }
-
-        private PointInt32 _mouseOverTile;
-        public PointInt32 MouseOverTile
-        {
-            get { return this._mouseOverTile; }
-            set
-            {
-                if (this._mouseOverTile != value)
-                {
-                    this._mouseOverTile = value;
-                    this.RaisePropertyChanged("MouseOverTile");
-                    this.RaisePropertyChanged("ToolLocation");
-                }
-            }
-        }
-
-        public PointInt32 ToolLocation
-        {
-            get { return this._mouseOverTile - this.ToolProperties.Offset; }
-        }
-
-        private PointInt32 _mouseDownTile;
-        public PointInt32 MouseDownTile
-        {
-            get { return this._mouseDownTile; }
-            set
-            {
-                if (this._mouseDownTile != value)
-                {
-                    this._mouseDownTile = value;
-                    this.RaisePropertyChanged("MouseDownTile");
-                }
-            }
-        }
-
-        private PointInt32 _mouseUpTile;
-        public PointInt32 MouseUpTile
-        {
-            get { return this._mouseUpTile; }
-            set
-            {
-                if (this._mouseUpTile != value)
-                {
-                    this._mouseUpTile = value;
-                    this.RaisePropertyChanged("MouseUpTile");
-                }
-            }
-        }
-
-        private ProgressChangedEventArgs _progress;
-        public ProgressChangedEventArgs Progress
-        {
-            get { return this._progress; }
-            set
-            {
-                if (this._progress != value)
-                {
-                    this._progress = value;
-                    this.RaisePropertyChanged("Progress");
-                }
-            }
-        }
-
-        public void OnImportsSatisfied()
-        {
-            renderer.ProgressChanged += (s, e) => { this.Progress = e; };
-            world.ProgressChanged += (s, e) => { this.Progress = e; };
+                Zoom = Zoom*0.9;
         }
     }
 }

@@ -9,11 +9,18 @@ using TEditWPF.TerrariaWorld.Structures;
 
 namespace TEditWPF.Tools
 {
-    [Export(typeof(ITool))]
+    [Export(typeof (ITool))]
     [PartCreationPolicy(CreationPolicy.Shared)]
     [ExportMetadata("Order", 2)]
     public class Selection : ToolBase
     {
+        [Import] private ToolProperties _properties;
+        [Import] private SelectionArea _selection;
+
+
+        private PointInt32 _startselection;
+        [Import("World", typeof (World))] private World _world;
+
         public Selection()
         {
             _Image = new BitmapImage(new Uri(@"pack://application:,,,/TEditWPF;component/Tools/Images/shape_square.png"));
@@ -23,48 +30,43 @@ namespace TEditWPF.Tools
         }
 
         #region Properties
-        private string _Name;
+
+        private readonly BitmapImage _Image;
+        private readonly string _Name;
+
+        private readonly ToolType _Type;
+        private bool _IsActive;
+
         public override string Name
         {
             get { return _Name; }
         }
 
-        private ToolType _Type;
         public override ToolType Type
         {
             get { return _Type; }
         }
 
-        private BitmapImage _Image;
         public override BitmapImage Image
         {
             get { return _Image; }
         }
 
-        private bool _IsActive;
         public override bool IsActive
         {
-            get { return this._IsActive; }
+            get { return _IsActive; }
             set
             {
-                if (this._IsActive != value)
+                if (_IsActive != value)
                 {
-                    this._IsActive = value;
-                    this.RaisePropertyChanged("IsActive");
+                    _IsActive = value;
+                    RaisePropertyChanged("IsActive");
                 }
             }
         }
+
         #endregion
 
-        [Import]
-        private SelectionArea _selection;
-
-        [Import("World", typeof(World))]
-        private World _world;
-
-        
-
-        PointInt32 _startselection;
         public override bool PressTool(TileMouseEventArgs e)
         {
             if (e.LeftButton == MouseButtonState.Pressed)
@@ -75,20 +77,20 @@ namespace TEditWPF.Tools
             }
             return true;
         }
+
         public override bool MoveTool(TileMouseEventArgs e)
         {
             if (e.LeftButton == MouseButtonState.Pressed)
                 _selection.SetRectangle(_startselection, e.Tile);
             return false;
         }
+
         public override bool ReleaseTool(TileMouseEventArgs e)
         {
             // Do nothing on release
             return true;
         }
 
-        [Import]
-        private ToolProperties _properties;
         public override WriteableBitmap PreviewTool()
         {
             return new WriteableBitmap(

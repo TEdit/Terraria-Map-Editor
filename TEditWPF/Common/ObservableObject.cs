@@ -7,17 +7,19 @@ using System.Linq.Expressions;
 
 namespace TEditWPF.Common
 {
-
     [Serializable]
     public abstract class ObservableObject : INotifyPropertyChanged
     {
+        #region INotifyPropertyChanged Members
 
         [field: NonSerialized]
         public event PropertyChangedEventHandler PropertyChanged;
 
+        #endregion
+
         protected virtual void OnPropertyChanged(PropertyChangedEventArgs e)
         {
-            var handler = this.PropertyChanged;
+            PropertyChangedEventHandler handler = PropertyChanged;
             if (handler != null)
             {
                 handler(this, e);
@@ -26,8 +28,8 @@ namespace TEditWPF.Common
 
         protected void RaisePropertyChanged<T>(Expression<Func<T>> propertyExpresssion)
         {
-            var propertyName = PropertySupport.ExtractPropertyName(propertyExpresssion);
-            this.RaisePropertyChanged(propertyName);
+            string propertyName = PropertySupport.ExtractPropertyName(propertyExpresssion);
+            RaisePropertyChanged(propertyName);
         }
 
         protected void RaisePropertyChanged(String propertyName)

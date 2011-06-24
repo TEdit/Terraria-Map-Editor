@@ -4,25 +4,22 @@
 // </copyright>
 // -----------------------------------------------------------------------
 
+using System.Windows;
+using System.Windows.Controls.Primitives;
+
 namespace TEditWPF.Controls
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
-    public class DataBoundToggleButton : System.Windows.Controls.Primitives.ToggleButton
+    public class DataBoundToggleButton : ToggleButton
     {
-        protected override void OnChecked(System.Windows.RoutedEventArgs e)
+        protected override void OnChecked(RoutedEventArgs e)
         {
-            
         }
 
         protected override void OnToggle()
         {
-            
         }
     }
 }

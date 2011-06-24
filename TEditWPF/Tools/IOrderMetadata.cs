@@ -1,8 +1,8 @@
-﻿namespace TEditWPF.Tools
-{
-    using System;
-    using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
 
+namespace TEditWPF.Tools
+{
     public interface IOrderMetadata
     {
         [DefaultValue(Int32.MaxValue)]

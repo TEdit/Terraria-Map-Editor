@@ -4,20 +4,18 @@
 // </copyright>
 // -----------------------------------------------------------------------
 
+using System;
+using System.Globalization;
+using System.Windows;
+using System.Windows.Data;
+
 namespace TEditWPF.Controls
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using System.Windows.Data;
-    using System.Windows;
-
     public class ThicknessMultiConverter : IMultiValueConverter
     {
         #region IMultiValueConverter Members
 
-        public object Convert(object[] values, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
         {
             double left = System.Convert.ToDouble(values[0]);
             double top = System.Convert.ToDouble(values[1]);
@@ -26,16 +24,16 @@ namespace TEditWPF.Controls
             return new Thickness(left, top, right, bottom);
         }
 
-        public object[] ConvertBack(object value, Type[] targetTypes, object parameter, System.Globalization.CultureInfo culture)
+        public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
         {
-            Thickness thickness = (Thickness)value;
+            var thickness = (Thickness) value;
             return new object[]
-        {
-            thickness.Left,
-            thickness.Top,
-            thickness.Right,
-            thickness.Bottom
-        };
+                       {
+                           thickness.Left,
+                           thickness.Top,
+                           thickness.Right,
+                           thickness.Bottom
+                       };
         }
 
         #endregion

@@ -4,20 +4,15 @@
 // </copyright>
 // -----------------------------------------------------------------------
 
+using System;
+using System.ComponentModel;
+using System.Diagnostics;
+using System.Linq.Expressions;
 using System.Windows.Media.Imaging;
+using TEditWPF.Common;
 
 namespace TEditWPF.Tools
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using System.ComponentModel;
-    using TEditWPF.Common;
-    using System.Diagnostics;
-    using System.Linq.Expressions;
-    using TEditWPF.TerrariaWorld.Structures;
-
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
@@ -30,7 +25,7 @@ namespace TEditWPF.Tools
 
         protected virtual void OnPropertyChanged(PropertyChangedEventArgs e)
         {
-            var handler = this.PropertyChanged;
+            PropertyChangedEventHandler handler = PropertyChanged;
             if (handler != null)
             {
                 handler(this, e);
@@ -39,8 +34,8 @@ namespace TEditWPF.Tools
 
         protected void RaisePropertyChanged<T>(Expression<Func<T>> propertyExpresssion)
         {
-            var propertyName = PropertySupport.ExtractPropertyName(propertyExpresssion);
-            this.RaisePropertyChanged(propertyName);
+            string propertyName = PropertySupport.ExtractPropertyName(propertyExpresssion);
+            RaisePropertyChanged(propertyName);
         }
 
         protected void RaisePropertyChanged(String propertyName)
@@ -64,24 +59,18 @@ namespace TEditWPF.Tools
                 Debug.Fail("Invalid property name: " + propertyName);
             }
         }
+
         #endregion
 
-        public abstract string Name
-        {
-            get;
-        }
+        #region ITool Members
+
+        public abstract string Name { get; }
 
 
-        public abstract System.Windows.Media.Imaging.BitmapImage Image
-        {
-            get;
-        }
+        public abstract BitmapImage Image { get; }
 
 
-        public abstract ToolType Type
-        {
-            get;
-        }
+        public abstract ToolType Type { get; }
 
         public abstract bool IsActive { get; set; }
 
@@ -89,5 +78,7 @@ namespace TEditWPF.Tools
         public abstract bool MoveTool(TileMouseEventArgs e);
         public abstract bool ReleaseTool(TileMouseEventArgs e);
         public abstract WriteableBitmap PreviewTool();
+
+        #endregion
     }
 }

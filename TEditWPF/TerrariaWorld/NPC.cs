@@ -5,74 +5,73 @@
 // -----------------------------------------------------------------------
 
 
+using TEditWPF.Common;
+using TEditWPF.TerrariaWorld.Structures;
 
 namespace TEditWPF.TerrariaWorld
 {
-    using TEditWPF.Common;
-    using TEditWPF.TerrariaWorld.Structures;
-
     public class NPC : ObservableObject
     {
+        private PointInt32 _HomeTile;
+        private bool _IsHomeless;
         private string _Name;
+        private PointFloat _Position;
+
         public string Name
         {
-            get { return this._Name; }
+            get { return _Name; }
             set
             {
-                if (this._Name != value)
+                if (_Name != value)
                 {
-                    this._Name = value;
-                    this.RaisePropertyChanged("Name");
+                    _Name = value;
+                    RaisePropertyChanged("Name");
                 }
             }
         }
 
-        private bool _IsHomeless;
         public bool IsHomeless
         {
-            get { return this._IsHomeless; }
+            get { return _IsHomeless; }
             set
             {
-                if (this._IsHomeless != value)
+                if (_IsHomeless != value)
                 {
-                    this._IsHomeless = value;
-                    this.RaisePropertyChanged("IsHomeless");
+                    _IsHomeless = value;
+                    RaisePropertyChanged("IsHomeless");
                 }
             }
         }
 
-        private Structures.PointInt32 _HomeTile;
-        public Structures.PointInt32 HomeTile
+        public PointInt32 HomeTile
         {
-            get { return this._HomeTile; }
+            get { return _HomeTile; }
             set
             {
-
-                if (this._HomeTile != value)
+                if (_HomeTile != value)
                 {
-                    this._HomeTile = value;
-                    this.RaisePropertyChanged("HomeTile");
+                    _HomeTile = value;
+                    RaisePropertyChanged("HomeTile");
                 }
             }
         }
 
-        private PointFloat _Position;
         public PointFloat Position
         {
-            get { return this._Position; }
+            get { return _Position; }
             set
             {
-                if (this._Position != value)
+                if (_Position != value)
                 {
-                    this._Position = value;
-                    this.RaisePropertyChanged("Position");
+                    _Position = value;
+                    RaisePropertyChanged("Position");
                 }
             }
         }
 
         public override string ToString()
         {
-            return this.Name;
+            return Name;
         }
     }
 }

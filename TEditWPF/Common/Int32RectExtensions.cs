@@ -23,6 +23,7 @@ namespace TEditWPF.Common
         {
             return rect.X + rect.Width;
         }
+
         public static int GetBottom(this Int32Rect rect)
         {
             return rect.Y + rect.Height;

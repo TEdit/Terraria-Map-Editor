@@ -1,54 +1,53 @@
-﻿using TEditWPF.TerrariaWorld.Structures;
+﻿using System;
+using TEditWPF.Common;
+using TEditWPF.TerrariaWorld.Structures;
 
 namespace TEditWPF.TerrariaWorld
 {
-    using System;
-    using TEditWPF.Common;
-
     public class Sign : ObservableObject
     {
+        private PointInt32 _Location;
+        private string _Text;
+
         public Sign()
         {
-          
         }
 
-        public Sign(string text, Structures.PointInt32 location)
+        public Sign(string text, PointInt32 location)
         {
-            this._Text = text;
-            this._Location = location;
+            _Text = text;
+            _Location = location;
         }
 
-        private string _Text;
         public string Text
         {
-            get { return this._Text; }
+            get { return _Text; }
             set
             {
-                if (this._Text != value)
+                if (_Text != value)
                 {
-                    this._Text = value;
-                    this.RaisePropertyChanged("Text");
+                    _Text = value;
+                    RaisePropertyChanged("Text");
                 }
             }
         }
 
-        private Structures.PointInt32 _Location;
-        public Structures.PointInt32 Location
+        public PointInt32 Location
         {
-            get { return this._Location; }
+            get { return _Location; }
             set
             {
-                if (this._Location != value)
+                if (_Location != value)
                 {
-                    this._Location = value;
-                    this.RaisePropertyChanged("Location");
+                    _Location = value;
+                    RaisePropertyChanged("Location");
                 }
             }
         }
 
         public override string ToString()
         {
-            return String.Format("[Sign: {0}, {1}]", this.Text, this.Location);
+            return String.Format("[Sign: {0}, {1}]", Text, Location);
         }
     }
 }

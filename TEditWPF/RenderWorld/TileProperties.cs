@@ -5,61 +5,59 @@ namespace TEditWPF.RenderWorld
 {
     public class TileProperties : ObservableObject
     {
+        private Color _Color;
+        private byte _ID;
+        private string _Name;
+
         public TileProperties()
         {
-
         }
 
         public TileProperties(byte id, Color color, string name)
         {
-            this._ID = id;
-            this._Name = name;
-            this._Color = color;
+            _ID = id;
+            _Name = name;
+            _Color = color;
         }
 
-        private byte _ID;
         public byte ID
         {
-            get { return this._ID; }
+            get { return _ID; }
             set
             {
-                if (this._ID != value)
+                if (_ID != value)
                 {
-                    this._ID = value;
-                    this.RaisePropertyChanged("ID");
+                    _ID = value;
+                    RaisePropertyChanged("ID");
                 }
             }
         }
 
 
-        private string _Name;
         public string Name
         {
-            get { return this._Name; }
+            get { return _Name; }
             set
             {
-                if (this._Name != value)
+                if (_Name != value)
                 {
-                    this._Name = value;
-                    this.RaisePropertyChanged("Name");
+                    _Name = value;
+                    RaisePropertyChanged("Name");
                 }
             }
         }
 
-        private Color _Color;
         public Color Color
         {
-            get { return this._Color; }
+            get { return _Color; }
             set
             {
-                if (this._Color != value)
+                if (_Color != value)
                 {
-                    this._Color = value;
-                    this.RaisePropertyChanged("Color");
+                    _Color = value;
+                    RaisePropertyChanged("Color");
                 }
             }
         }
-
-
     }
 }

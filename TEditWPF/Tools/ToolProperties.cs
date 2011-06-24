@@ -1,6 +1,4 @@
-﻿using System;
-using System.ComponentModel.Composition;
-using System.Windows;
+﻿using System.ComponentModel.Composition;
 using System.Windows.Media.Imaging;
 using TEditWPF.Common;
 using TEditWPF.TerrariaWorld.Structures;
@@ -11,82 +9,97 @@ namespace TEditWPF.Tools
     [PartCreationPolicy(CreationPolicy.Shared)]
     public class ToolProperties : ObservableObject
     {
+        private WriteableBitmap _Image;
+        private ToolAnchorMode _Mode;
+        private PointInt32 _Offset;
+        private int _Radius;
+
+        private ToolShape _Shape;
+        private SizeInt32 _Size;
+
         public ToolProperties()
         {
             Mode = ToolAnchorMode.Center;
         }
 
-        private ToolAnchorMode _Mode;
         public ToolAnchorMode Mode
         {
-            get { return this._Mode; }
+            get { return _Mode; }
             set
             {
-                if (this._Mode != value)
+                if (_Mode != value)
                 {
-                    this._Mode = value;
-                    this.RaisePropertyChanged("Mode");
-                    this.CalcOffset();
+                    _Mode = value;
+                    RaisePropertyChanged("Mode");
+                    CalcOffset();
                 }
             }
         }
 
-        private ToolShape _Shape;
         public ToolShape Shape
         {
-            get { return this._Shape; }
+            get { return _Shape; }
             set
             {
-                if (this._Shape != value)
+                if (_Shape != value)
                 {
-                    this._Shape = value;
-                    this.RaisePropertyChanged("Shape");
+                    _Shape = value;
+                    RaisePropertyChanged("Shape");
                 }
             }
         }
 
 
-
-        private int _Radius;
         public int Radius
         {
-            get { return this._Radius; }
+            get { return _Radius; }
             set
             {
-                if (this._Radius != value)
+                if (_Radius != value)
                 {
-                    this._Radius = value;
-                    this.RaisePropertyChanged("Radius");
-                    this.Size = new SizeInt32(this._Radius * 2, this._Radius * 2);
+                    _Radius = value;
+                    RaisePropertyChanged("Radius");
+                    Size = new SizeInt32(_Radius*2, _Radius*2);
                 }
             }
         }
 
-        private SizeInt32 _Size;
         public SizeInt32 Size
         {
-            get { return this._Size; }
+            get { return _Size; }
             set
             {
-                if (this._Size != value)
+                if (_Size != value)
                 {
-                    this._Size = value;
-                    this.RaisePropertyChanged("Size");
-                    this.CalcOffset();
+                    _Size = value;
+                    RaisePropertyChanged("Size");
+                    CalcOffset();
                 }
             }
         }
 
-        private PointInt32 _Offset;
         public PointInt32 Offset
         {
-            get { return this._Offset; }
+            get { return _Offset; }
             set
             {
-                if (this._Offset != value)
+                if (_Offset != value)
                 {
-                    this._Offset = value;
-                    this.RaisePropertyChanged("Offset");
+                    _Offset = value;
+                    RaisePropertyChanged("Offset");
+                }
+            }
+        }
+
+        public WriteableBitmap Image
+        {
+            get { return _Image; }
+            set
+            {
+                if (_Image != value)
+                {
+                    _Image = value;
+                    RaisePropertyChanged("Image");
                 }
             }
         }
@@ -96,54 +109,36 @@ namespace TEditWPF.Tools
             switch (Mode)
             {
                 case ToolAnchorMode.Center:
-                    Offset = new PointInt32(_Size.Width / 2, _Size.Height / 2);
+                    Offset = new PointInt32(_Size.Width/2, _Size.Height/2);
                     break;
                 case ToolAnchorMode.TopLeft:
                     Offset = new PointInt32(0, 0);
                     break;
                 case ToolAnchorMode.TopCenter:
-                    Offset = new PointInt32(_Size.Width / 2, 0);
+                    Offset = new PointInt32(_Size.Width/2, 0);
                     break;
                 case ToolAnchorMode.TopRight:
                     Offset = new PointInt32(_Size.Width, 0);
                     break;
                 case ToolAnchorMode.MiddleRight:
-                    Offset = new PointInt32(_Size.Width, _Size.Height / 2);
+                    Offset = new PointInt32(_Size.Width, _Size.Height/2);
                     break;
                 case ToolAnchorMode.BottomRight:
                     Offset = new PointInt32(_Size.Width, _Size.Height);
                     break;
                 case ToolAnchorMode.BottomCenter:
-                    Offset = new PointInt32(_Size.Width / 2, _Size.Height);
+                    Offset = new PointInt32(_Size.Width/2, _Size.Height);
                     break;
                 case ToolAnchorMode.BottomLeft:
                     Offset = new PointInt32(0, _Size.Height);
                     break;
                 case ToolAnchorMode.MiddleLeft:
-                    Offset = new PointInt32(0, _Size.Height / 2);
+                    Offset = new PointInt32(0, _Size.Height/2);
                     break;
                 default:
                     Offset = new PointInt32(0, 0);
                     break;
             }
-
-        }
-
-
-        private WriteableBitmap _Image;
-        public WriteableBitmap Image
-        {
-            get { return this._Image; }
-            set
-            {
-                if (this._Image != value)
-                {
-                    this._Image = value;
-                    this.RaisePropertyChanged("Image");
-                }
-            }
         }
     }
-
-
 }

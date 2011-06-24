@@ -5,36 +5,37 @@ namespace TEditWPF.TerrariaWorld.Structures
 {
     public class SizeInt32 : ObservableObject
     {
+        private int _Height;
+        private int _Width;
+
         public SizeInt32(int width, int height)
         {
             _Width = width;
             _Height = height;
         }
 
-        private int _Width;
         public int Width
         {
-            get { return this._Width; }
+            get { return _Width; }
             set
             {
-                if (this._Width != value)
+                if (_Width != value)
                 {
-                    this._Width = value;
-                    this.RaisePropertyChanged("Width");
+                    _Width = value;
+                    RaisePropertyChanged("Width");
                 }
             }
         }
 
-        private int _Height;
         public int Height
         {
-            get { return this._Height; }
+            get { return _Height; }
             set
             {
-                if (this._Height != value)
+                if (_Height != value)
                 {
-                    this._Height = value;
-                    this.RaisePropertyChanged("Height");
+                    _Height = value;
+                    RaisePropertyChanged("Height");
                 }
             }
         }
@@ -42,7 +43,7 @@ namespace TEditWPF.TerrariaWorld.Structures
 
         public override string ToString()
         {
-            return String.Format("({0}, {1})", this.Width, this.Height);
+            return String.Format("({0}, {1})", Width, Height);
         }
 
         #region Operator Overrides
@@ -58,7 +59,7 @@ namespace TEditWPF.TerrariaWorld.Structures
                 return false;
 
             if (obj is SizeInt32)
-                return MatchFields(this, (SizeInt32)obj);
+                return MatchFields(this, (SizeInt32) obj);
 
             return false;
         }
@@ -90,23 +91,22 @@ namespace TEditWPF.TerrariaWorld.Structures
 
         public static SizeInt32 operator /(SizeInt32 a, SizeInt32 b)
         {
-            return new SizeInt32(a.Width / b.Width, a.Height / b.Height);
+            return new SizeInt32(a.Width/b.Width, a.Height/b.Height);
         }
 
         public static SizeInt32 operator *(SizeInt32 a, SizeInt32 b)
         {
-            return new SizeInt32(a.Width * b.Width, a.Height * b.Height);
+            return new SizeInt32(a.Width*b.Width, a.Height*b.Height);
         }
 
         public override int GetHashCode()
         {
             int result = 17;
-            result = result * 37 + Width.GetHashCode();
-            result = result * 37 + Height.GetHashCode();
+            result = result*37 + Width.GetHashCode();
+            result = result*37 + Height.GetHashCode();
             return result;
         }
 
         #endregion
     }
-
 }

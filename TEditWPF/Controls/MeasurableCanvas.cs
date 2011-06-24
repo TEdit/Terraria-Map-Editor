@@ -7,7 +7,7 @@ namespace TEditWPF.Controls
     {
         protected override Size MeasureOverride(Size constraint)
         {
-            Size availableSize = new Size(double.PositiveInfinity, double.PositiveInfinity);
+            var availableSize = new Size(double.PositiveInfinity, double.PositiveInfinity);
 
             double maxHeight = 0;
             double maxWidth = 0;
@@ -17,8 +17,8 @@ namespace TEditWPF.Controls
                 if (element != null)
                 {
                     element.Measure(availableSize);
-                    double left = Canvas.GetLeft(element);
-                    double top = Canvas.GetTop(element);
+                    double left = GetLeft(element);
+                    double top = GetTop(element);
                     left += element.DesiredSize.Width;
                     top += element.DesiredSize.Height;
 
@@ -26,7 +26,7 @@ namespace TEditWPF.Controls
                     maxHeight = maxHeight < top ? top : maxHeight;
                 }
             }
-            return new Size { Height = maxHeight, Width = maxWidth };
+            return new Size {Height = maxHeight, Width = maxWidth};
         }
     }
 }

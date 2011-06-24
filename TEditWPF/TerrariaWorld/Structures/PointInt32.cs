@@ -4,20 +4,22 @@ namespace TEditWPF.TerrariaWorld.Structures
 {
     public struct PointInt32
     {
+        private int _x;
+
+        private int _y;
+
         public PointInt32(int x, int y)
         {
             _x = x;
             _y = y;
         }
 
-        private int _x;
         public int X
         {
             get { return _x; }
             set { _x = value; }
         }
 
-        private int _y;
         public int Y
         {
             get { return _y; }
@@ -26,7 +28,7 @@ namespace TEditWPF.TerrariaWorld.Structures
 
         public override string ToString()
         {
-            return String.Format("({0}, {1})", this.X, this.Y);
+            return String.Format("({0}, {1})", X, Y);
         }
 
         #region Operator Overrides
@@ -42,7 +44,7 @@ namespace TEditWPF.TerrariaWorld.Structures
                 return false;
 
             if (obj is PointInt32)
-                return MatchFields(this, (PointInt32)obj);
+                return MatchFields(this, (PointInt32) obj);
 
             return false;
         }
@@ -74,19 +76,19 @@ namespace TEditWPF.TerrariaWorld.Structures
 
         public static PointInt32 operator /(PointInt32 a, PointInt32 b)
         {
-            return new PointInt32(a.X / b.X, a.Y / b.Y);
+            return new PointInt32(a.X/b.X, a.Y/b.Y);
         }
 
         public static PointInt32 operator *(PointInt32 a, PointInt32 b)
         {
-            return new PointInt32(a.X * b.X, a.Y * b.Y);
+            return new PointInt32(a.X*b.X, a.Y*b.Y);
         }
 
         public override int GetHashCode()
         {
             int result = 17;
-            result = result * 37 + X.GetHashCode();
-            result = result * 37 + Y.GetHashCode();
+            result = result*37 + X.GetHashCode();
+            result = result*37 + Y.GetHashCode();
             return result;
         }
 
