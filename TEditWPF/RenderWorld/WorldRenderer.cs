@@ -235,6 +235,7 @@ namespace TEditWPF.RenderWorld
                     Tile tile = World.Tiles[x, y];
                     if (tile != null)
                     {
+                        TileProperties prop;
                         Color c;
 
                         if (y > World.Header.WorldRockLayer)
@@ -245,7 +246,13 @@ namespace TEditWPF.RenderWorld
                             c = tileColors.WallColor[0].Color;
 
                         if (tile.Wall > 0)
-                            c = tileColors.WallColor[tile.Wall].Color;
+                        {
+                            if (tileColors.WallColor.TryGetValue(tile.Wall, out prop))
+
+                                c = prop.Color;
+                            else
+                                c = Color.FromArgb(255, 255, 00, 255);
+                        }
 
                         if (tile.Liquid > 0)
                         {
@@ -259,7 +266,13 @@ namespace TEditWPF.RenderWorld
                         }
 
                         if (tile.IsActive)
-                            c = tileColors.TileColor[tile.Type].Color;
+                        {
+                            if (tileColors.TileColor.TryGetValue(tile.Type, out prop))
+                                c = prop.Color;
+                            else
+                                c = Color.FromArgb(255, 255, 00, 255);
+                        }
+
                         pixels[x*4 + y*stride] = c.B;
                         pixels[x*4 + y*stride + 1] = c.G;
                         pixels[x*4 + y*stride + 2] = c.R;

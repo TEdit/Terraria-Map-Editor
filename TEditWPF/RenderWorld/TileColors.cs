@@ -19,7 +19,6 @@ namespace TEditWPF.RenderWorld
         #endregion
 
         private readonly Dictionary<byte, TileProperties> liquidColor = new Dictionary<byte, TileProperties>();
-
         private readonly Dictionary<byte, TileProperties> tileColor = new Dictionary<byte, TileProperties>();
         private readonly Dictionary<byte, TileProperties> wallColor = new Dictionary<byte, TileProperties>();
 
