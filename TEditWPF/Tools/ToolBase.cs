@@ -4,6 +4,8 @@
 // </copyright>
 // -----------------------------------------------------------------------
 
+using System.Windows.Media.Imaging;
+
 namespace TEditWPF.Tools
 {
     using System;
@@ -86,6 +88,6 @@ namespace TEditWPF.Tools
         public abstract bool PressTool(TileMouseEventArgs e);
         public abstract bool MoveTool(TileMouseEventArgs e);
         public abstract bool ReleaseTool(TileMouseEventArgs e);
-        public abstract bool PreviewTool(TileMouseEventArgs e);
+        public abstract WriteableBitmap PreviewTool();
     }
 }

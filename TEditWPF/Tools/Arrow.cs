@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel.Composition;
+using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using TEditWPF.Common;
 using TEditWPF.TerrariaWorld;
@@ -54,23 +55,22 @@ namespace TEditWPF.Tools
         }
         #endregion
 
+        [Import]
+        private ToolProperties _properties;
+
         public override bool PressTool(TileMouseEventArgs e) { return false; }
         public override bool MoveTool(TileMouseEventArgs e) { return false; }
         public override bool ReleaseTool(TileMouseEventArgs e) { return false; }
-        public override bool PreviewTool(TileMouseEventArgs e) { return false; }
 
-
-        //[Import("World", typeof(World))]
-        //private World _world = null;
-
-        //public bool PreviewTool(Point[] location, World world, WriteableBitmap viewPortRegion)
-        //{
-        //    return false;
-        //}
-
-        //public bool UseTool(Point[] location, World world)
-        //{
-        //    return false;
-        //}
+        public override WriteableBitmap PreviewTool()
+        {
+            return new WriteableBitmap(
+                _properties.Size.Width,
+                _properties.Size.Height,
+                96,
+                96,
+                PixelFormats.Bgr32,
+                null);
+        }
     }
 }

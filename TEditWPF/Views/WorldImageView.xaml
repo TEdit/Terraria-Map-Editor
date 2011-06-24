@@ -33,7 +33,13 @@
                                 MouseUp="ViewportMouseUp" 
                                 MouseEnter="ViewportMouseEnter" 
                                 MouseLeave="ViewportMouseLeave" />
-                            <Rectangle Height="1" Width="1" Canvas.Left="{Binding Path=MouseOverTile.X}" Canvas.Top="{Binding Path=MouseOverTile.Y}" Fill="#A4005BFF" IsHitTestVisible="False" />
+                            <Image Source="{Binding Path=ToolProperties.Image}" 
+                                   RenderOptions.BitmapScalingMode="NearestNeighbor" 
+                                   Height="{Binding Path=ToolProperties.Size.Height}" 
+                                   Width="{Binding Path=ToolProperties.Size.Width}" 
+                                   Canvas.Left="{Binding Path=ToolLocation.X}" 
+                                   Canvas.Top="{Binding Path=ToolLocation.Y}" 
+                                   IsHitTestVisible="False" Opacity="0.5" />
                             <Rectangle Height="{Binding Path=Selection.Rectangle.Height}" Width="{Binding Path=Selection.Rectangle.Width}" Canvas.Left="{Binding Path=Selection.Rectangle.X}" Canvas.Top="{Binding Path=Selection.Rectangle.Y}" Fill="#A4005BFF" IsHitTestVisible="False" Visibility="{Binding Path=Selection.SelectionVisibility}" />
                         </Controls:MeasurableCanvas >
                     </Grid>

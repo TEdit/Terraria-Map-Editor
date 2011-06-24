@@ -76,7 +76,20 @@ namespace TEditWPF.ViewModels
             }
         }
 
-
+        [Import]
+        private ToolProperties _ToolProperties;
+        public ToolProperties ToolProperties
+        {
+            get { return this._ToolProperties; }
+            set
+            {
+                if (this._ToolProperties != value)
+                {
+                    this._ToolProperties = value;
+                    this.RaisePropertyChanged("ToolProperties");
+                }
+            }
+        }
 
         [Import]
         private WorldRenderer renderer;
@@ -357,10 +370,6 @@ namespace TEditWPF.ViewModels
         }
 
 
-
-
-
-
         private void OnMouseOverPixel(TileMouseEventArgs e)
         {
             this.MouseOverTile = e.Tile;
@@ -421,8 +430,14 @@ namespace TEditWPF.ViewModels
                 {
                     this._mouseOverTile = value;
                     this.RaisePropertyChanged("MouseOverTile");
+                    this.RaisePropertyChanged("ToolLocation");
                 }
             }
+        }
+
+        public PointInt32 ToolLocation
+        {
+            get { return this._mouseOverTile - this.ToolProperties.Offset; }
         }
 
         private PointInt32 _mouseDownTile;

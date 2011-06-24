@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel.Composition;
 using System.Windows.Input;
+using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using TEditWPF.Common;
 using TEditWPF.TerrariaWorld;
@@ -61,11 +62,13 @@ namespace TEditWPF.Tools
         [Import("World", typeof(World))]
         private World _world;
 
-        PointInt32 startselection;
+        
+
+        PointInt32 _startselection;
         public override bool PressTool(TileMouseEventArgs e)
         {
             if (e.LeftButton == MouseButtonState.Pressed)
-                startselection = e.Tile;
+                _startselection = e.Tile;
             if (e.RightButton == MouseButtonState.Pressed && e.LeftButton == MouseButtonState.Released)
             {
                 _selection.Deactive();
@@ -75,7 +78,7 @@ namespace TEditWPF.Tools
         public override bool MoveTool(TileMouseEventArgs e)
         {
             if (e.LeftButton == MouseButtonState.Pressed)
-                _selection.SetRectangle(startselection, e.Tile);
+                _selection.SetRectangle(_startselection, e.Tile);
             return false;
         }
         public override bool ReleaseTool(TileMouseEventArgs e)
@@ -83,6 +86,18 @@ namespace TEditWPF.Tools
             // Do nothing on release
             return true;
         }
-        public override bool PreviewTool(TileMouseEventArgs e) { return false; }
+
+        [Import]
+        private ToolProperties _properties;
+        public override WriteableBitmap PreviewTool()
+        {
+            return new WriteableBitmap(
+                _properties.Size.Width,
+                _properties.Size.Height,
+                96,
+                96,
+                PixelFormats.Bgr32,
+                null);
+        }
     }
 }

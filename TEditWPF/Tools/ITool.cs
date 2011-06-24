@@ -23,6 +23,6 @@ namespace TEditWPF.Tools
         bool PressTool(TileMouseEventArgs e);
         bool MoveTool(TileMouseEventArgs e);
         bool ReleaseTool(TileMouseEventArgs e);
-        bool PreviewTool(TileMouseEventArgs e);
+        WriteableBitmap PreviewTool();
     }
 }

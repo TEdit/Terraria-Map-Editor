@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel.Composition;
 using System.Windows.Input;
+using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using TEditWPF.Common;
 using TEditWPF.RenderWorld;
@@ -108,7 +109,18 @@ namespace TEditWPF.Tools
             isLeftDown = false;
             return true;
         }
-        public override bool PreviewTool(TileMouseEventArgs e) { return false; }
+        [Import]
+        private ToolProperties _properties;
+        public override WriteableBitmap PreviewTool()
+        {
+            return new WriteableBitmap(
+                _properties.Size.Width,
+                _properties.Size.Height,
+                96,
+                96,
+                PixelFormats.Bgr32,
+                null);
+        }
 
         private void EraseLine(TileMouseEventArgs e)
         {

@@ -86,39 +86,6 @@ namespace TEditWPF.RenderWorld
             UpdateWorldImage(new Int32Rect(location.X, location.Y, 1, 1));
         }
 
-        public static IEnumerable<PointInt32> DrawLine1(PointInt32 begin, PointInt32 end)
-        {
-            yield return begin;
-
-            PointInt32 nextPoint = begin;
-            int deltax = end.X - begin.X;
-            int deltay = end.Y - begin.Y;
-            int error = deltax / 2;
-            int ystep = 1;
-
-            if (end.Y < begin.Y)
-            {
-                ystep = -1;
-            }
-
-            while (nextPoint.X < end.X)
-            {
-                if (nextPoint != begin) yield return nextPoint;
-                nextPoint.X++;
-
-                error -= deltay;
-                if (error < 0)
-                {
-                    nextPoint.Y += ystep;
-                    error += deltax;
-                }
-                yield return nextPoint;
-            }
-
-            yield return end;
-        }
-
-
         public static IEnumerable<PointInt32> DrawLine(PointInt32 begin, PointInt32 end)
         {
             var y0 = begin.Y;
