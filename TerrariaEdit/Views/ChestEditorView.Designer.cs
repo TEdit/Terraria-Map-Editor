@@ -28,7 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.chestListBox = new System.Windows.Forms.ListBox();
+            this.contextChest = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.chstViewOpsCtxt = new System.Windows.Forms.ToolStripMenuItem();
             this.controlPanel = new System.Windows.Forms.Panel();
             this.cancelButton = new System.Windows.Forms.Button();
             this.saveButton = new System.Windows.Forms.Button();
@@ -36,7 +39,7 @@
             this.chestDGV = new System.Windows.Forms.DataGridView();
             this.label2 = new System.Windows.Forms.Label();
             this.chestCoordsLabel = new System.Windows.Forms.Label();
-            this.chkJump = new System.Windows.Forms.CheckBox();
+            this.contextChest.SuspendLayout();
             this.controlPanel.SuspendLayout();
             this.chestContentsPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chestDGV)).BeginInit();
@@ -47,12 +50,28 @@
             this.chestListBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                         | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
+            this.chestListBox.ContextMenuStrip = this.contextChest;
             this.chestListBox.FormattingEnabled = true;
-            this.chestListBox.Location = new System.Drawing.Point(3, 29);
+            this.chestListBox.Location = new System.Drawing.Point(3, 3);
             this.chestListBox.Name = "chestListBox";
-            this.chestListBox.Size = new System.Drawing.Size(400, 121);
+            this.chestListBox.Size = new System.Drawing.Size(400, 147);
             this.chestListBox.TabIndex = 0;
             this.chestListBox.SelectedIndexChanged += new System.EventHandler(this.chestListBox_SelectedIndexChanged);
+            // 
+            // contextChest
+            // 
+            this.contextChest.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.chstViewOpsCtxt});
+            this.contextChest.Name = "contextChest";
+            this.contextChest.Size = new System.Drawing.Size(188, 26);
+            this.contextChest.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuStrip1_Opening);
+            // 
+            // chstViewOpsCtxt
+            // 
+            this.chstViewOpsCtxt.Name = "chstViewOpsCtxt";
+            this.chstViewOpsCtxt.Size = new System.Drawing.Size(187, 22);
+            this.chstViewOpsCtxt.Text = "Chest Viewer Options";
+            this.chstViewOpsCtxt.Click += new System.EventHandler(this.chstViewOpsCtxt_Click);
             // 
             // controlPanel
             // 
@@ -91,6 +110,7 @@
             // 
             this.chestContentsPanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
+            this.chestContentsPanel.ContextMenuStrip = this.contextChest;
             this.chestContentsPanel.Controls.Add(this.chestDGV);
             this.chestContentsPanel.Controls.Add(this.label2);
             this.chestContentsPanel.Controls.Add(this.chestCoordsLabel);
@@ -109,6 +129,7 @@
                         | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.chestDGV.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.chestDGV.ContextMenuStrip = this.contextChest;
             this.chestDGV.Location = new System.Drawing.Point(13, 37);
             this.chestDGV.Name = "chestDGV";
             this.chestDGV.RowHeadersVisible = false;
@@ -133,32 +154,22 @@
             this.chestCoordsLabel.TabIndex = 0;
             this.chestCoordsLabel.Text = "(0,0)";
             // 
-            // chkJump
-            // 
-            this.chkJump.AutoSize = true;
-            this.chkJump.Location = new System.Drawing.Point(3, 6);
-            this.chkJump.Name = "chkJump";
-            this.chkJump.Size = new System.Drawing.Size(135, 17);
-            this.chkJump.TabIndex = 3;
-            this.chkJump.Text = "Jump to selected chest";
-            this.chkJump.UseVisualStyleBackColor = true;
-            // 
             // ChestEditorView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.chkJump);
+            this.ContextMenuStrip = this.contextChest;
             this.Controls.Add(this.chestContentsPanel);
             this.Controls.Add(this.controlPanel);
             this.Controls.Add(this.chestListBox);
             this.Name = "ChestEditorView";
             this.Size = new System.Drawing.Size(406, 534);
+            this.contextChest.ResumeLayout(false);
             this.controlPanel.ResumeLayout(false);
             this.chestContentsPanel.ResumeLayout(false);
             this.chestContentsPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chestDGV)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -172,6 +183,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label chestCoordsLabel;
         private System.Windows.Forms.DataGridView chestDGV;
-        private System.Windows.Forms.CheckBox chkJump;
+        private System.Windows.Forms.ContextMenuStrip contextChest;
+        private System.Windows.Forms.ToolStripMenuItem chstViewOpsCtxt;
     }
 }
