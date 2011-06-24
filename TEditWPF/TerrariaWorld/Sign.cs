@@ -12,7 +12,7 @@ namespace TEditWPF.TerrariaWorld
           
         }
 
-        public Sign(string text, PointInt32 location)
+        public Sign(string text, Structures.PointInt32 location)
         {
             this._Text = text;
             this._Location = location;
@@ -32,8 +32,8 @@ namespace TEditWPF.TerrariaWorld
             }
         }
 
-        private PointInt32 _Location;
-        public PointInt32 Location
+        private Structures.PointInt32 _Location;
+        public Structures.PointInt32 Location
         {
             get { return this._Location; }
             set

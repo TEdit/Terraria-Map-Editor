@@ -41,8 +41,8 @@ namespace TEditWPF.TerrariaWorld
             }
         }
 
-        private PointInt32 _HomeTile;
-        public PointInt32 HomeTile
+        private Structures.PointInt32 _HomeTile;
+        public Structures.PointInt32 HomeTile
         {
             get { return this._HomeTile; }
             set

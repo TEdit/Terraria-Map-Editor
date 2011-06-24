@@ -3,6 +3,7 @@ using System.ComponentModel.Composition;
 using System.Windows.Input;
 using System.Windows.Media.Imaging;
 using TEditWPF.Common;
+using TEditWPF.RenderWorld;
 using TEditWPF.TerrariaWorld;
 using TEditWPF.TerrariaWorld.Structures;
 
@@ -10,14 +11,14 @@ namespace TEditWPF.Tools
 {
     [Export(typeof(ITool))]
     [PartCreationPolicy(CreationPolicy.Shared)]
-    [ExportMetadata("Order", 2)]
-    public class Selection : ToolBase
+    [ExportMetadata("Order", 3)]
+    public class Delete : ToolBase
     {
-        public Selection()
+        public Delete()
         {
-            _Image = new BitmapImage(new Uri(@"pack://application:,,,/TEditWPF;component/Tools/Images/shape_square.png"));
-            _Name = "Selection";
-            _Type = ToolType.Selection;
+            _Image = new BitmapImage(new Uri(@"pack://application:,,,/TEditWPF;component/Tools/Images/pencil.png"));
+            _Name = "Delete";
+            _Type = ToolType.Brush;
             IsActive = false;
         }
 
@@ -61,28 +62,62 @@ namespace TEditWPF.Tools
         [Import("World", typeof(World))]
         private World _world;
 
-        PointInt32 startselection;
+
+        [Import]
+        private WorldRenderer renderer;
+
+        private PointInt32 start;
+        private bool isLeftDown = false;
         public override bool PressTool(TileMouseEventArgs e)
         {
             if (e.LeftButton == MouseButtonState.Pressed)
-                startselection = e.Tile;
-            if (e.RightButton == MouseButtonState.Pressed && e.LeftButton == MouseButtonState.Released)
             {
-                _selection.Deactive();
+                isLeftDown = true;
+                start = e.Tile;
             }
             return true;
         }
         public override bool MoveTool(TileMouseEventArgs e)
         {
             if (e.LeftButton == MouseButtonState.Pressed)
-                _selection.SetRectangle(startselection, e.Tile);
+            {
+                EraseLine(e);
+            }
             return false;
         }
+
         public override bool ReleaseTool(TileMouseEventArgs e)
         {
-            // Do nothing on release
+            if (_selection.Rectangle.Contains(e.Tile) && isLeftDown)
+            {
+                for (int x = _selection.Rectangle.X; x < _selection.Rectangle.GetRight(); x++)
+                {
+                    for (int y = _selection.Rectangle.Y; y < _selection.Rectangle.GetBottom(); y++)
+                    {
+                        _world.Tiles[x, y].IsActive = false;
+
+                    }
+                }
+                renderer.UpdateWorldImage(_selection.Rectangle);
+            }
+            else
+            {
+                if (isLeftDown)
+                    EraseLine(e);
+            }
+            isLeftDown = false;
             return true;
         }
         public override bool PreviewTool(TileMouseEventArgs e) { return false; }
+
+        private void EraseLine(TileMouseEventArgs e)
+        {
+            foreach (var p in WorldRenderer.DrawLine(start, e.Tile))
+            {
+                _world.Tiles[p.X, p.Y].IsActive = false;
+                renderer.UpdateWorldImage(p);
+            }
+            start = e.Tile;
+        }
     }
 }

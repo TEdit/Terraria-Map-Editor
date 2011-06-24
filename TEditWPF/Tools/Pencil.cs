@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel.Composition;
 using System.Windows.Media.Imaging;
+using TEditWPF.Common;
 using TEditWPF.TerrariaWorld;
 using TEditWPF.TerrariaWorld.Structures;
 
@@ -15,7 +16,7 @@ namespace TEditWPF.Tools
         {
             _Image = new BitmapImage(new Uri(@"pack://application:,,,/TEditWPF;component/Tools/Images/pencil.png"));
             _Name = "Pencil";
-            _Type = ToolType.Brush;
+            _Type = ToolType.Pencil;
             IsActive = false;
         }
 
@@ -53,10 +54,10 @@ namespace TEditWPF.Tools
         } 
         #endregion
 
-        public override bool PressTool(PointInt32 location) { return false; }
-        public override bool MoveTool(PointInt32 location) { return false; }
-        public override bool ReleaseTool(PointInt32 location) { return false; }
-        public override bool PreviewTool(PointInt32 location) { return false; }
+        public override bool PressTool(TileMouseEventArgs e) { return false; }
+        public override bool MoveTool(TileMouseEventArgs e) { return false; }
+        public override bool ReleaseTool(TileMouseEventArgs e) { return false; }
+        public override bool PreviewTool(TileMouseEventArgs e) { return false; }
 
         //[Import("World", typeof(World))]
         //private World _world = null;

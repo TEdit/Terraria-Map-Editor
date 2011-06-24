@@ -34,12 +34,12 @@ namespace TEditWPF.ViewModels
             CompositionTarget.Rendering += CompTargetRender;
         }
 
-        
+
         private void CompTargetRender(object sender, EventArgs e)
         {
             CalcFrameRate((RenderingEventArgs)e);
 
- 
+
         }
 
 
@@ -304,7 +304,8 @@ namespace TEditWPF.ViewModels
                     img.Freeze();
                     _uiFactory.StartNew(() =>
                     {
-                        this.WorldImage.Image = img;
+                        this.WorldImage.Image = img.Clone();
+                        img = null;
                         this.RaisePropertyChanged("WorldZoomedHeight");
                         this.RaisePropertyChanged("WorldZoomedWidth");
                     });
@@ -378,33 +379,27 @@ namespace TEditWPF.ViewModels
             this.TileName = tileName;
             this.WallName = wallName;
 
-            if (e.LeftButton == MouseButtonState.Pressed)
-            {
-                if (this.ActiveTool != null)
-                    this.ActiveTool.MoveTool(e.Tile);
-            }
+            if (this.ActiveTool != null)
+                this.ActiveTool.MoveTool(e);
+
         }
 
         private void OnMouseDownPixel(TileMouseEventArgs e)
         {
             this.MouseDownTile = e.Tile;
 
-            if (e.LeftButton == MouseButtonState.Pressed)
-            {
-                if (this.ActiveTool != null)
-                    this.ActiveTool.PressTool(e.Tile);
-            }
+            if (this.ActiveTool != null)
+                this.ActiveTool.PressTool(e);
+
         }
 
         private void OnMouseUpPixel(TileMouseEventArgs e)
         {
             this.MouseUpTile = e.Tile;
 
-            if (e.LeftButton == MouseButtonState.Released)
-            {
-                if (this.ActiveTool != null)
-                    this.ActiveTool.ReleaseTool(e.Tile);
-            }
+            if (this.ActiveTool != null)
+                this.ActiveTool.ReleaseTool(e);
+
         }
 
         private void OnMouseWheel(TileMouseEventArgs e)

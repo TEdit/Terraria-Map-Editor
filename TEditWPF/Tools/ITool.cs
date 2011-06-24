@@ -2,6 +2,7 @@
 using System.Windows.Controls;
 using System.Windows.Media.Imaging;
 using System.ComponentModel;
+using TEditWPF.Common;
 using TEditWPF.TerrariaWorld.Structures;
 
 namespace TEditWPF.Tools
@@ -19,9 +20,9 @@ namespace TEditWPF.Tools
         //// Bool for was tool used
         //bool UseTool(Point[] location, TerrariaWorld.Game.World world);
 
-        bool PressTool(PointInt32 location);
-        bool MoveTool(PointInt32 location);
-        bool ReleaseTool(PointInt32 location);
-        bool PreviewTool(PointInt32 location);
+        bool PressTool(TileMouseEventArgs e);
+        bool MoveTool(TileMouseEventArgs e);
+        bool ReleaseTool(TileMouseEventArgs e);
+        bool PreviewTool(TileMouseEventArgs e);
     }
 }

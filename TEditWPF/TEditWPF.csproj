@@ -71,8 +71,10 @@
     <Compile Include="Plugins\IPluginMetaData.cs" />
     <Compile Include="Plugins\SamplePlugin.cs" />
     <Compile Include="RenderWorld\WorldImage.cs" />
+    <Compile Include="TerrariaWorld\Structures\RectInt32.cs" />
     <Compile Include="Tools\Arrow.cs" />
     <Compile Include="Tools\Brush.cs" />
+    <Compile Include="Tools\Delete.cs" />
     <Compile Include="Tools\Fill.cs" />
     <Compile Include="Tools\IOrderMetadata.cs" />
     <Compile Include="Tools\ITool.cs" />

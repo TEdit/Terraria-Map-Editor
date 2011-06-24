@@ -83,9 +83,9 @@ namespace TEditWPF.Tools
 
         public abstract bool IsActive { get; set; }
 
-        public abstract bool PressTool(PointInt32 location);
-        public abstract bool MoveTool(PointInt32 location);
-        public abstract bool ReleaseTool(PointInt32 location);
-        public abstract bool PreviewTool(PointInt32 location);
+        public abstract bool PressTool(TileMouseEventArgs e);
+        public abstract bool MoveTool(TileMouseEventArgs e);
+        public abstract bool ReleaseTool(TileMouseEventArgs e);
+        public abstract bool PreviewTool(TileMouseEventArgs e);
     }
 }

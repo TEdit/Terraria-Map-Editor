@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel;
 using TEditWPF.Common;
 using TEditWPF.TerrariaWorld.Structures;
+using TileMouseEventArgs = TEditWPF.TerrariaWorld.Structures.PointInt32;
 
 namespace TEditWPF.TerrariaWorld
 {
@@ -10,7 +11,7 @@ namespace TEditWPF.TerrariaWorld
         {
             this._FileName = "";
             this._WorldName = "No World Loaded";
-            this._MaxTiles = new PointInt32(0,0);
+            this._MaxTiles = new TileMouseEventArgs(0,0);
         }
 
         public WorldHeader Clone()
@@ -97,8 +98,8 @@ namespace TEditWPF.TerrariaWorld
         }
 
         [CategoryAttribute("World"), DescriptionAttribute("World Size"), ReadOnly(true)]
-        private PointInt32 _MaxTiles;
-        public PointInt32 MaxTiles
+        private TileMouseEventArgs _MaxTiles;
+        public TileMouseEventArgs MaxTiles
         {
             get { return this._MaxTiles; }
             set
@@ -112,8 +113,8 @@ namespace TEditWPF.TerrariaWorld
         }
 
         [CategoryAttribute("World"), DescriptionAttribute("Spawn Location")]
-        private PointInt32 _SpawnTile;
-        public PointInt32 SpawnTile
+        private TileMouseEventArgs _SpawnTile;
+        public TileMouseEventArgs SpawnTile
         {
             get { return this._SpawnTile; }
             set
@@ -229,8 +230,8 @@ namespace TEditWPF.TerrariaWorld
 
 
         [CategoryAttribute("World"), DescriptionAttribute("Dungeon Location"), ReadOnly(true)]
-        private PointInt32 _DungeonEntrance;
-        public PointInt32 DungeonEntrance
+        private TileMouseEventArgs _DungeonEntrance;
+        public TileMouseEventArgs DungeonEntrance
         {
             get { return this._DungeonEntrance; }
             set

@@ -2,6 +2,7 @@
 using System.Collections.ObjectModel;
 using TEditWPF.Common;
 using TEditWPF.TerrariaWorld.Structures;
+using TileMouseEventArgs = TEditWPF.TerrariaWorld.Structures.PointInt32;
 
 namespace TEditWPF.TerrariaWorld
 {
@@ -14,8 +15,8 @@ namespace TEditWPF.TerrariaWorld
 
         }
 
-        private PointInt32 _Location;
-        public PointInt32 Location
+        private TileMouseEventArgs _Location;
+        public TileMouseEventArgs Location
         {
             get { return this._Location; }
             set
