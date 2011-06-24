@@ -26,6 +26,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
     <PlatformTarget>x86</PlatformTarget>
@@ -73,6 +74,7 @@
     <Compile Include="RenderWorld\WorldImage.cs" />
     <Compile Include="TerrariaWorld\Structures\RectInt32.cs" />
     <Compile Include="TerrariaWorld\Structures\SizeInt32.cs" />
+    <Compile Include="TerrariaWorld\WorldExtensions.cs" />
     <Compile Include="Tools\Arrow.cs" />
     <Compile Include="Tools\Brush.cs" />
     <Compile Include="Tools\Delete.cs" />
@@ -113,6 +115,12 @@
     <Compile Include="Views\WorldImageView.xaml.cs">
       <DependentUpon>WorldImageView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="WriteableBitmapEx\NativeMethods.cs" />
+    <Compile Include="WriteableBitmapEx\WriteableBitmapBaseExtensions.cs" />
+    <Compile Include="WriteableBitmapEx\WriteableBitmapFillExtensions.cs" />
+    <Compile Include="WriteableBitmapEx\WriteableBitmapShapeExtensions.cs" />
+    <Compile Include="WriteableBitmapEx\WriteableBitmapSplineExtensions.cs" />
+    <Compile Include="WriteableBitmapEx\WriteableBitmapTransformationExtensions.cs" />
     <Page Include="Controls\ScrollViewerThumbnail.xaml">
       <Generator>MSBuild:Compile</Generator>
       <DependentUpon>ScrollViewerThumbnail.cs</DependentUpon>
@@ -178,6 +186,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="colors.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="items.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Resource Include="Tools\Images\cursor.png" />

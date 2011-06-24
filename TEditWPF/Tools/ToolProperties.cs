@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.Composition;
+﻿using System;
+using System.ComponentModel.Composition;
 using System.Windows.Media.Imaging;
 using TEditWPF.Common;
 using TEditWPF.TerrariaWorld.Structures;
@@ -19,7 +20,11 @@ namespace TEditWPF.Tools
 
         public ToolProperties()
         {
+            _Size = new SizeInt32(11,11);
+            Shape = ToolShape.Round;
             Mode = ToolAnchorMode.Center;
+            Radius = 5;
+            CalcOffset();
         }
 
         public ToolAnchorMode Mode
@@ -55,11 +60,14 @@ namespace TEditWPF.Tools
             get { return _Radius; }
             set
             {
-                if (_Radius != value)
+                var tempval = value;
+                if (value < 0)
+                    tempval = -value;
+                if (_Radius != tempval)
                 {
-                    _Radius = value;
+                    _Radius = tempval;
                     RaisePropertyChanged("Radius");
-                    Size = new SizeInt32(_Radius*2, _Radius*2);
+                    Size = new SizeInt32(Math.Max(1,_Radius*2), Math.Max(1,_Radius*2));
                 }
             }
         }

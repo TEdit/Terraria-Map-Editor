@@ -161,14 +161,14 @@ namespace TEditWPF.RenderWorld
                                       "Rendering World..."));
                 for (int y = 0; y < height; y++)
                 {
-                    Tile tile = World.Tiles[x, y];
+                    Tile tile = World.Tiles[x+area.X, y+area.Y];
                     if (tile != null)
                     {
                         Color c;
 
-                        if (y > World.Header.WorldRockLayer)
+                        if (y + area.Y > World.Header.WorldRockLayer)
                             c = tileColors.WallColor[1].Color;
-                        else if (y > World.Header.WorldSurface)
+                        else if (y + area.Y > World.Header.WorldSurface)
                             c = tileColors.WallColor[2].Color;
                         else
                             c = tileColors.WallColor[0].Color;
@@ -189,6 +189,7 @@ namespace TEditWPF.RenderWorld
 
                         if (tile.IsActive)
                             c = tileColors.TileColor[tile.Type].Color;
+
                         pixels[x*4 + y*stride] = c.B;
                         pixels[x*4 + y*stride + 1] = c.G;
                         pixels[x*4 + y*stride + 2] = c.R;

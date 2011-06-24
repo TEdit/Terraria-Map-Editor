@@ -33,5 +33,10 @@ namespace TEditWPF.TerrariaWorld
         {
             return Type.ToString();
         }
+
+        public object Clone()
+        {
+            return this.MemberwiseClone();
+        }
     }
 }

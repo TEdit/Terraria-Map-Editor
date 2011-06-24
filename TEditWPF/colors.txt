@@ -31,12 +31,12 @@ TILECOLORS
 10|Door1|ff00fff2
 11|Door2|ff00fff2
 12|HeartStone|ffff0000
-13|Bottles|ff00fff2
+13|Bottle|ff00fff2
 14|Table|ff00fff2
 15|Chair|ff00fff2
 16|Anvil|ff00fff2
 17|Furnace|ff00fff2
-18|CraftingTable|ff00fff2
+18|Workbench|ff00fff2
 19|WoodenPlatform|ff563e2c
 20|PlantsDecorative|ff0d6524
 21|Chest|ffff0000
@@ -44,7 +44,7 @@ TILECOLORS
 23|CorruptionGrass|ff8d89df
 24|CorruptionPlants|ff8d89df
 25|CorruptionStone2|ff4b4a82
-26|Altar|ffff0000
+26|DemonAltar|ffff0000
 27|Sunflower|ff0d6524
 28|Pot|ffff0000
 29|PiggyBank|ff00fff2
@@ -95,7 +95,7 @@ TILECOLORS
 74|Plants3|ff0d6524
 75|BlockObsidian|ffb200ff
 76|BlockHellstone|ffb200ff
-77|UnderworldFurnace|ffff0000
+77|Hellforge|ffff0000
 78|DecorativePot|ff00fff2
 79|Bed|ff00fff2
 80|Unknown|ffff00ff

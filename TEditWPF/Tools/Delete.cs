@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel.Composition;
+using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
@@ -15,14 +16,19 @@ namespace TEditWPF.Tools
     [ExportMetadata("Order", 3)]
     public class Delete : ToolBase
     {
-        [Import] private ToolProperties _properties;
-        [Import] private SelectionArea _selection;
+        [Import] 
+        private ToolProperties _properties;
+        [Import] 
+        private SelectionArea _selection;
 
-        [Import("World", typeof (World))] private World _world;
+        [Import("World", typeof (World))] 
+        private World _world;
+
+
+        [Import] 
+        private WorldRenderer renderer;
+
         private bool isLeftDown;
-
-
-        [Import] private WorldRenderer renderer;
 
         private PointInt32 start;
 
@@ -106,6 +112,7 @@ namespace TEditWPF.Tools
             }
             else
             {
+                
                 if (isLeftDown)
                     EraseLine(e);
             }
@@ -115,21 +122,34 @@ namespace TEditWPF.Tools
 
         public override WriteableBitmap PreviewTool()
         {
-            return new WriteableBitmap(
-                _properties.Size.Width,
-                _properties.Size.Height,
-                96,
-                96,
-                PixelFormats.Bgr32,
-                null);
+            var bmp = new WriteableBitmap(
+                    _properties.Size.Width,
+                    _properties.Size.Height,
+                    96,
+                    96,
+                    PixelFormats.Bgra32,
+                    null);
+
+            
+            bmp.Clear();
+            if (_properties.Shape == ToolShape.Square)
+            {
+                bmp.FillRectangle(0, 0, _properties.Size.Width, _properties.Size.Height, Color.FromArgb(127, 0, 90, 255));
+            }
+            else
+            {
+                bmp.FillEllipse(0, 0, _properties.Size.Width, _properties.Size.Height, Color.FromArgb(127, 0, 90, 255));
+            }
+            return bmp;
         }
 
         private void EraseLine(TileMouseEventArgs e)
         {
             foreach (PointInt32 p in WorldRenderer.DrawLine(start, e.Tile))
             {
-                _world.Tiles[p.X, p.Y].IsActive = false;
-                renderer.UpdateWorldImage(p);
+                //_world.Tiles[p.X, p.Y].IsActive = false;
+                _world.FillEllipseCentered(p.X, p.Y, _properties.Radius, _properties.Radius, new Tile { IsActive = false });
+                renderer.UpdateWorldImage(new Int32Rect(p.X-_properties.Radius, p.Y-_properties.Radius, _properties.Radius * 2, _properties.Radius*2));
             }
             start = e.Tile;
         }

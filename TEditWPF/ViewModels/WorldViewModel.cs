@@ -100,6 +100,8 @@ namespace TEditWPF.ViewModels
                 if (_ActiveTool != value)
                 {
                     _ActiveTool = value;
+                    ToolProperties.Image = null;
+                    ToolProperties.Image = _ActiveTool.PreviewTool();
                     RaisePropertyChanged("ActiveTool");
 
                     foreach (var tool in Tools)

@@ -3,66 +3,78 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:vm="clr-namespace:TEditWPF.ViewModels"
              xmlns:Controls="clr-namespace:TEditWPF.Controls" mc:Ignorable="d" d:DesignHeight="300" d:DesignWidth="300">
-  <Grid d:DataContext="{d:DesignInstance vm:WorldViewModel}">
-    <Grid.RowDefinitions>
-      <RowDefinition Height="1*" />
-      <RowDefinition Height="Auto" />
-    </Grid.RowDefinitions>
+    <Grid d:DataContext="{d:DesignInstance vm:WorldViewModel}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
 
-    <Grid Grid.Row="0" Background="#666666">
-      <ScrollViewer HorizontalScrollBarVisibility="Visible" x:Name="WorldScrollViewer">
-        <ScrollViewer.Content>
-          <Grid>
-            <Controls:MeasurableCanvas>
-              <Controls:MeasurableCanvas.LayoutTransform>
-                <ScaleTransform ScaleX="{Binding Path=Zoom}" ScaleY="{Binding  Path=Zoom}" />
-              </Controls:MeasurableCanvas.LayoutTransform>
-              <!--<Image x:Name="WorldImage" Source="{Binding Path=WorldImage.Image}" RenderOptions.BitmapScalingMode="NearestNeighbor" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" />-->
-              <Image x:Name="WorldImage" Canvas.Top="0" Canvas.Left="0"
-                     Height="{Binding Path=WorldImage.Image.PixelHeight}" Width="{Binding Path=WorldImage.Image.PixelWidth}"
-                     Source="{Binding Path=WorldImage.Image}" RenderOptions.BitmapScalingMode="NearestNeighbor"
-                     MouseMove="ViewportMouseMove" MouseDown="ViewportMouseDown" MouseWheel="ViewportMouseWheel" MouseUp="ViewportMouseUp"
-                     MouseEnter="ViewportMouseEnter" MouseLeave="ViewportMouseLeave" />
-              <Image Source="{Binding Path=ToolProperties.Image}"
-                     RenderOptions.BitmapScalingMode="NearestNeighbor" Height="{Binding Path=ToolProperties.Size.Height}"
-                     Width="{Binding Path=ToolProperties.Size.Width}" Canvas.Left="{Binding Path=ToolLocation.X}"
-                     Canvas.Top="{Binding Path=ToolLocation.Y}" IsHitTestVisible="False" Opacity="0.5" />
-              <Rectangle Height="{Binding Path=Selection.Rectangle.Height}"
-                         Width="{Binding Path=Selection.Rectangle.Width}" Canvas.Left="{Binding Path=Selection.Rectangle.X}"
-                         Canvas.Top="{Binding Path=Selection.Rectangle.Y}" Fill="#A4005BFF" IsHitTestVisible="False"
-                         Visibility="{Binding Path=Selection.SelectionVisibility}" />
-            </Controls:MeasurableCanvas>
-          </Grid>
-        </ScrollViewer.Content>
-      </ScrollViewer>
-    </Grid>
-    <StackPanel Orientation="Horizontal" Grid.Row="1" VerticalAlignment="Center" Margin="1"
+        <Grid Grid.Row="0" Background="#666666">
+            <ScrollViewer HorizontalScrollBarVisibility="Visible" x:Name="WorldScrollViewer">
+                <ScrollViewer.Content>
+                    <Grid>
+                        <Controls:MeasurableCanvas>
+                            <Controls:MeasurableCanvas.LayoutTransform>
+                                <ScaleTransform ScaleX="{Binding Path=Zoom}" ScaleY="{Binding  Path=Zoom}" />
+                            </Controls:MeasurableCanvas.LayoutTransform>
+                            <!--<Image x:Name="WorldImage" Source="{Binding Path=WorldImage.Image}" RenderOptions.BitmapScalingMode="NearestNeighbor" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" />-->
+                            <Image x:Name="WorldImage" 
+                                    Canvas.Top="0" Canvas.Left="0"
+                                    Height="{Binding Path=WorldImage.Image.PixelHeight}" Width="{Binding Path=WorldImage.Image.PixelWidth}"
+                                    Source="{Binding Path=WorldImage.Image}" 
+                                    RenderOptions.BitmapScalingMode="NearestNeighbor"
+                                    MouseMove="ViewportMouseMove" 
+                                    MouseDown="ViewportMouseDown" 
+                                    MouseWheel="ViewportMouseWheel" 
+                                    MouseUp="ViewportMouseUp"
+                                    MouseEnter="ViewportMouseEnter" 
+                                    MouseLeave="ViewportMouseLeave" />
+                            <Image Source="{Binding Path=ToolProperties.Image}"
+                                    RenderOptions.BitmapScalingMode="NearestNeighbor" 
+                                    Height="{Binding Path=ToolProperties.Size.Height}"
+                                    Width="{Binding Path=ToolProperties.Size.Width}" 
+                                    Canvas.Left="{Binding Path=ToolLocation.X}"
+                                    Canvas.Top="{Binding Path=ToolLocation.Y}" 
+                                    IsHitTestVisible="False" Opacity="0.75" />
+                            <Rectangle Height="{Binding Path=Selection.Rectangle.Height}"
+                                    Width="{Binding Path=Selection.Rectangle.Width}" 
+                                    Canvas.Left="{Binding Path=Selection.Rectangle.X}"
+                                    Canvas.Top="{Binding Path=Selection.Rectangle.Y}" 
+                                    Fill="#A4005BFF" 
+                                    IsHitTestVisible="False"
+                                    Visibility="{Binding Path=Selection.SelectionVisibility}" />
+                        </Controls:MeasurableCanvas>
+                    </Grid>
+                </ScrollViewer.Content>
+            </ScrollViewer>
+        </Grid>
+        <StackPanel Orientation="Horizontal" Grid.Row="1" VerticalAlignment="Center" Margin="1"
                 CanHorizontallyScroll="False" SnapsToDevicePixels="True">
-      <!--<Slider Minimum=".05" Maximum="50" Value="{Binding Path=Zoom}" Width="100" />-->
+            <!--<Slider Minimum=".05" Maximum="50" Value="{Binding Path=Zoom}" Width="100" />-->
 
-      <Border BorderBrush="Black" BorderThickness="1" Margin="1" Padding="1">
-        <TextBlock Text="{Binding Path=Zoom, StringFormat=Zoom: {0:0%}}" />
-      </Border>
-      <Border BorderBrush="Black" BorderThickness="1" Margin="1" Padding="1">
-        <TextBlock Text="{Binding Path=MouseOverTile, StringFormat={}{0}}" />
-      </Border>
-      <Border BorderBrush="Black" BorderThickness="1" Margin="1" Padding="1">
-        <TextBlock Text="{Binding Path=WallName, StringFormat=Wall: {0}}" />
-      </Border>
-      <Border BorderBrush="Black" BorderThickness="1" Margin="1" Padding="1">
-        <TextBlock Text="{Binding Path=TileName, StringFormat=Tile: {0}}" />
-      </Border>
-      <Border BorderBrush="Black" BorderThickness="1" Margin="1" Padding="1">
-        <TextBlock Text="{Binding Path=FluidName, StringFormat=Liquid: {0}}" />
-      </Border>
+            <Border BorderBrush="Black" BorderThickness="1" Margin="1" Padding="1">
+                <TextBlock Text="{Binding Path=Zoom, StringFormat=Zoom: {0:0%}}" />
+            </Border>
+            <Border BorderBrush="Black" BorderThickness="1" Margin="1" Padding="1">
+                <TextBlock Text="{Binding Path=MouseOverTile, StringFormat={}{0}}" />
+            </Border>
+            <Border BorderBrush="Black" BorderThickness="1" Margin="1" Padding="1">
+                <TextBlock Text="{Binding Path=WallName, StringFormat=Wall: {0}}" />
+            </Border>
+            <Border BorderBrush="Black" BorderThickness="1" Margin="1" Padding="1">
+                <TextBlock Text="{Binding Path=TileName, StringFormat=Tile: {0}}" />
+            </Border>
+            <Border BorderBrush="Black" BorderThickness="1" Margin="1" Padding="1">
+                <TextBlock Text="{Binding Path=FluidName, StringFormat=Liquid: {0}}" />
+            </Border>
 
-      <!--<Border BorderBrush="Black" BorderThickness="1" Margin="1" Padding="1" >
+            <!--<Border BorderBrush="Black" BorderThickness="1" Margin="1" Padding="1" >
                     <TextBlock Text="{Binding Path=RequestScrollTile, NotifyOnTargetUpdated=True}" TargetUpdated="RequestedScrollToTile" />
             </Border>-->
-    </StackPanel>
-    <Border BorderBrush="Black" BorderThickness="1" Grid.Row="2" HorizontalAlignment="Right">
-      <Controls:ScrollViewerThumbnail Grid.Row="1" ScrollViewer="{Binding ElementName=WorldScrollViewer}"
+        </StackPanel>
+        <Border BorderBrush="Black" BorderThickness="1" Grid.Row="2" HorizontalAlignment="Right">
+            <Controls:ScrollViewerThumbnail Grid.Row="1" ScrollViewer="{Binding ElementName=WorldScrollViewer}"
                                       Height="30" />
-    </Border>
-  </Grid>
+        </Border>
+    </Grid>
 </UserControl>
