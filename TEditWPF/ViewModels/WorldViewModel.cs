@@ -431,23 +431,27 @@ namespace TEditWPF.ViewModels
         private void OnMouseOverPixel(TileMouseEventArgs e)
         {
             MouseOverTile = e.Tile;
+            
             Tile overTile = world.Tiles[e.Tile.X, e.Tile.Y];
 
-            string wallName = TileColors.Walls[overTile.Wall].Name;
-            string tileName = overTile.IsActive ? TileColors.Tiles[overTile.Type].Name : "[empty]";
-            string fluidname = "[no fluid]";
-            if (overTile.Liquid > 0)
+            if (overTile != null)
             {
-                fluidname = overTile.IsLava ? "Lava" : "Water";
-                fluidname += " [" + overTile.Liquid.ToString() + "]";
+                string wallName = TileColors.Walls[overTile.Wall].Name;
+                string tileName = overTile.IsActive ? TileColors.Tiles[overTile.Type].Name : "[empty]";
+                string fluidname = "[no fluid]";
+                if (overTile.Liquid > 0)
+                {
+                    fluidname = overTile.IsLava ? "Lava" : "Water";
+                    fluidname += " [" + overTile.Liquid.ToString() + "]";
+                }
+
+                FluidName = fluidname;
+                TileName = tileName;
+                WallName = wallName;
+
+                if (ActiveTool != null)
+                    ActiveTool.MoveTool(e);
             }
-
-            FluidName = fluidname;
-            TileName = tileName;
-            WallName = wallName;
-
-            if (ActiveTool != null)
-                ActiveTool.MoveTool(e);
         }
 
         private void OnMouseDownPixel(TileMouseEventArgs e)

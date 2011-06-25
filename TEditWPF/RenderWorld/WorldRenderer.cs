@@ -155,9 +155,9 @@ namespace TEditWPF.RenderWorld
         {
             Color c;
 
-            if (y > _world.Header.WorldRockLayer)
+            if (y > _world.Header.WorldRockLayer && tile.Wall == 0)
                 c = TileColors.Walls[1].Color;
-            else if (y > _world.Header.WorldSurface)
+            else if (y > _world.Header.WorldSurface && tile.Wall == 0)
                 c = TileColors.Walls[2].Color;
             else
                 c = TileColors.Walls[tile.Wall].Color;
