@@ -76,7 +76,7 @@ namespace TEditWPF.TerrariaWorld
                             if (tile.IsActive)
                             {
                                 tile.Type = reader.ReadByte();
-                                if (TileProperties.Tiles[tile.Type].IsFrameImportant)
+                                if (TileProperties.TileFrameImportant[tile.Type])
                                     tile.Frame = new PointShort(reader.ReadInt16(), reader.ReadInt16());
                                 else
                                     tile.Frame = new PointShort(-1, -1);
@@ -237,7 +237,7 @@ namespace TEditWPF.TerrariaWorld
                             if (Tiles[x, y].IsActive)
                             {
                                 writer.Write(Tiles[x, y].Type);
-                                if (TileProperties.Tiles[Tiles[x, y].Type].IsFrameImportant)
+                                if (TileProperties.TileFrameImportant[Tiles[x, y].Type])
                                 {
                                     writer.Write(Tiles[x, y].Frame.X);
                                     writer.Write(Tiles[x, y].Frame.Y);

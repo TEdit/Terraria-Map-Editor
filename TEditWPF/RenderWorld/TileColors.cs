@@ -18,15 +18,15 @@ namespace TEditWPF.RenderWorld
 
         #endregion
 
-        private static RenderTileProperties[] _tiles = new RenderTileProperties[byte.MaxValue];
-        private static RenderTileProperties[] _walls = new RenderTileProperties[byte.MaxValue];
+        private static TileColor[] _tiles = new TileColor[byte.MaxValue];
+        private static TileColor[] _walls = new TileColor[byte.MaxValue];
 
-        public static RenderTileProperties[] Tiles
+        public static TileColor[] Tiles
         {
             get { return _tiles; }
         }
 
-        public static RenderTileProperties[] Walls
+        public static TileColor[] Walls
         {
             get { return _walls; }
         }
@@ -42,8 +42,8 @@ namespace TEditWPF.RenderWorld
 
             for (byte i = 0; i < byte.MaxValue; i++)
             {
-                _tiles[i] = new RenderTileProperties() { Color = Colors.Magenta, ID = i, Name = "Unknown" };
-                _walls[i] = new RenderTileProperties() { Color = Colors.Magenta, ID = i, Name = "Unknown" };
+                _tiles[i] = new TileColor() { Color = Colors.Magenta, ID = i, Name = "Unknown" };
+                _walls[i] = new TileColor() { Color = Colors.Magenta, ID = i, Name = "Unknown" };
             }
 
 
@@ -65,7 +65,7 @@ namespace TEditWPF.RenderWorld
                         section = FileSection.LIQUIDCOLORS;
                     else
                     {
-                        var lineproperty = RenderTileProperties.FromString(line);
+                        var lineproperty = TileColor.FromString(line);
                         if (lineproperty != null)
                         {
                             switch (section)
@@ -98,8 +98,8 @@ namespace TEditWPF.RenderWorld
                 sr.WriteLine("# Color is in ARGB HEX, e.g. AARRGGBB");
 
                 sr.WriteLine(FileSection.LIQUIDCOLORS.ToString());
-                sr.WriteLine((new RenderTileProperties(1, Water, "Water")).ToString());
-                sr.WriteLine((new RenderTileProperties(2, Lava, "Lava")).ToString());
+                sr.WriteLine((new TileColor(1, Water, "Water")).ToString());
+                sr.WriteLine((new TileColor(2, Lava, "Lava")).ToString());
 
                 sr.WriteLine(FileSection.WALLCOLORS.ToString());
                 for (byte i = 0; i < byte.MaxValue; i++)

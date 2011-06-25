@@ -44,8 +44,20 @@ namespace TEditWPF.Tools
                 }
             }
         }
-        
 
+        private bool _isLava;
+        public bool isLava
+        {
+            get { return this._isLava; }
+            set
+            {
+                if (this._isLava != value)
+                {
+                    this._isLava = value;
+                    this.RaisePropertyChanged("isLava");
+                }
+            }
+        }
 
 
     }

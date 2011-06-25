@@ -4,17 +4,17 @@ using TEditWPF.Common;
 
 namespace TEditWPF.RenderWorld
 {
-    public class RenderTileProperties : ObservableObject
+    public class TileColor : ObservableObject
     {
         private Color _Color;
         private byte _ID;
         private string _Name;
 
-        public RenderTileProperties()
+        public TileColor()
         {
         }
 
-        public RenderTileProperties(byte id, Color color, string name)
+        public TileColor(byte id, Color color, string name)
         {
             _ID = id;
             _Name = name;
@@ -66,7 +66,7 @@ namespace TEditWPF.RenderWorld
             return String.Format("{0}|{1}|#{2}{3}{4}{5}", this.ID, this.Name, this.Color.A, this.Color.R, this.Color.G, this.Color.B);
         }
 
-        public static RenderTileProperties FromString(string line)
+        public static TileColor FromString(string line)
         {
             string[] splitline = line.Split(new[] { ',', '|' });
             if (splitline.Length == 3)
@@ -77,7 +77,7 @@ namespace TEditWPF.RenderWorld
                 string name = splitline[1];
                 var color = (Color)ColorConverter.ConvertFromString(splitline[2]);
 
-                return new RenderTileProperties(id, color, name);
+                return new TileColor(id, color, name);
             }
             return null;
         }
