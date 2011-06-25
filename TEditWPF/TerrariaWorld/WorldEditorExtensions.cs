@@ -4,6 +4,8 @@
 // </copyright>
 // -----------------------------------------------------------------------
 
+using TEditWPF.TerrariaWorld.Structures;
+
 namespace TEditWPF.TerrariaWorld
 {
     using System;
@@ -14,8 +16,14 @@ namespace TEditWPF.TerrariaWorld
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
-    public static class WorldExtensions
+    public static class WorldEditorExtensions
     {
+        #region Flood Fill
+
+        public static void FloodFill(this World world, PointInt32 start, RectInt32 bounds, )
+
+        #endregion
+
         #region Ellipse
 
         public static void FillEllipse(this World world, int x1, int y1, int x2, int y2, Tile tile)
@@ -32,8 +40,6 @@ namespace TEditWPF.TerrariaWorld
 
         public static void FillEllipseCentered(this World world, int xc, int yc, int xr, int yr, Tile tile)
         {
-
-
             int w = world.Header.MaxTiles.X;
             int h = world.Header.MaxTiles.Y;
 

@@ -5,7 +5,7 @@ using System.Windows.Media;
 
 namespace TEditWPF.RenderWorld
 {
-    public class TileColors
+    public static class TileColors
     {
         #region FileSection enum
 
@@ -18,28 +18,35 @@ namespace TEditWPF.RenderWorld
 
         #endregion
 
-        private readonly Dictionary<byte, TileProperties> liquidColor = new Dictionary<byte, TileProperties>();
-        private readonly Dictionary<byte, TileProperties> tileColor = new Dictionary<byte, TileProperties>();
-        private readonly Dictionary<byte, TileProperties> wallColor = new Dictionary<byte, TileProperties>();
+        private static TileProperties[] tileColor = new TileProperties[byte.MaxValue];
+        private static TileProperties[] wallColor = new TileProperties[byte.MaxValue];
 
-        public Dictionary<byte, TileProperties> TileColor
+        public static TileProperties[] TileColor
         {
             get { return tileColor; }
         }
 
-        public Dictionary<byte, TileProperties> LiquidColor
-        {
-            get { return liquidColor; }
-        }
-
-        public Dictionary<byte, TileProperties> WallColor
+        public static TileProperties[] WallColor
         {
             get { return wallColor; }
         }
 
-        public static TileColors Load(string filename)
+        private static Color WaterColor { get; set; }
+        private static Color LavaColor { get; set; }
+        
+
+        public static void Load(string filename)
         {
-            var tc = new TileColors();
+            WaterColor = Color.FromArgb(128, 0, 64, 255);
+            LavaColor = Color.FromArgb(255, 255, 96, 0);
+
+            for (byte i = 0; i < byte.MaxValue; i++)
+            {
+                tileColor[i] = new TileProperties() { Color = Colors.Magenta, ID = i, Name = "Unknown" };
+                wallColor[i] = new TileProperties() { Color = Colors.Magenta, ID = i, Name = "Unknown" };
+            }
+
+
 
             using (TextReader sr = new StreamReader(filename))
             {
@@ -70,7 +77,10 @@ namespace TEditWPF.RenderWorld
                                     tc.TileColor.Add(lineproperty.ID, lineproperty);
                                     break;
                                 case FileSection.LIQUIDCOLORS:
-                                    tc.LiquidColor.Add(lineproperty.ID, lineproperty);
+                                    if (string.Equals(lineproperty.Name,"Water",StringComparison.InvariantCultureIgnoreCase))
+                                        WaterColor = lineproperty.Color;
+                                    else if (string.Equals(lineproperty.Name, "Lava", StringComparison.InvariantCultureIgnoreCase))
+                                        LavaColor = lineproperty.Color;
                                     break;
                                 default:
                                     break;

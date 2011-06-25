@@ -74,7 +74,7 @@
     <Compile Include="RenderWorld\WorldImage.cs" />
     <Compile Include="TerrariaWorld\Structures\RectInt32.cs" />
     <Compile Include="TerrariaWorld\Structures\SizeInt32.cs" />
-    <Compile Include="TerrariaWorld\WorldExtensions.cs" />
+    <Compile Include="TerrariaWorld\WorldEditorExtensions.cs" />
     <Compile Include="Tools\Arrow.cs" />
     <Compile Include="Tools\Brush.cs" />
     <Compile Include="Tools\Delete.cs" />
@@ -84,6 +84,7 @@
     <Compile Include="Common\TileMouseEventArgs.cs" />
     <Compile Include="Tools\Selection.cs" />
     <Compile Include="Tools\SelectionArea.cs" />
+    <Compile Include="Tools\TilePickerProperties.cs" />
     <Compile Include="Tools\ToolAnchorMode.cs" />
     <Compile Include="Tools\ToolBase.cs" />
     <Compile Include="Tools\ToolProperties.cs" />

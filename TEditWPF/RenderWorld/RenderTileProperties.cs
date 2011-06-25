@@ -1,19 +1,20 @@
-﻿using System.Windows.Media;
+﻿using System;
+using System.Windows.Media;
 using TEditWPF.Common;
 
 namespace TEditWPF.RenderWorld
 {
-    public class TileProperties : ObservableObject
+    public class RenderTileProperties : ObservableObject
     {
         private Color _Color;
         private byte _ID;
         private string _Name;
 
-        public TileProperties()
+        public RenderTileProperties()
         {
         }
 
-        public TileProperties(byte id, Color color, string name)
+        public RenderTileProperties(byte id, Color color, string name)
         {
             _ID = id;
             _Name = name;
@@ -58,6 +59,27 @@ namespace TEditWPF.RenderWorld
                     RaisePropertyChanged("Color");
                 }
             }
+        }
+
+        public override string ToString()
+        {
+            return String.Format("{0}|{1}|#{2}{3}{4}{5}", this.ID, this.Name, this.Color.A, this.Color.R, this.Color.G, this.Color.B);
+        }
+
+        public static RenderTileProperties FromString(string line)
+        {
+            string[] splitline = line.Split(new[] { ',', '|' });
+            if (splitline.Length == 3)
+            {
+                byte id = 0;
+                byte.TryParse(splitline[0], out id);
+
+                string name = splitline[1];
+                var color = (Color)ColorConverter.ConvertFromString("#" + splitline[2]);
+
+                return new RenderTileProperties(id, color, name);
+            }
+            return null;
         }
     }
 }

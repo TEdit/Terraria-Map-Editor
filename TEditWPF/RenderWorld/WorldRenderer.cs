@@ -14,9 +14,11 @@ namespace TEditWPF.RenderWorld
     [PartCreationPolicy(CreationPolicy.Shared)]
     public class WorldRenderer
     {
-        [Import("World")] private World World;
+        [Import("World")]
+        private World World;
 
-        [Import] private WorldImage _worldImage;
+        [Import]
+        private WorldImage _worldImage;
         private TileColors tileColors;
 
         public WorldRenderer()
@@ -65,9 +67,9 @@ namespace TEditWPF.RenderWorld
 
         public static Color AlphaBlend(Color background, Color color)
         {
-            var r = (byte) ((color.A/255F)*color.R + (1F - color.A/255F)*background.R);
-            var g = (byte) ((color.A/255F)*color.G + (1F - color.A/255F)*background.G);
-            var b = (byte) ((color.A/255F)*color.B + (1F - color.A/255F)*background.B);
+            var r = (byte)((color.A / 255F) * color.R + (1F - color.A / 255F) * background.R);
+            var g = (byte)((color.A / 255F) * color.G + (1F - color.A / 255F) * background.G);
+            var b = (byte)((color.A / 255F) * color.B + (1F - color.A / 255F) * background.B);
             return Color.FromArgb(255, r, g, b);
         }
 
@@ -148,52 +150,28 @@ namespace TEditWPF.RenderWorld
             int width = area.Width;
             int height = area.Height;
 
-            int stride = width*_worldImage.Image.Format.BitsPerPixel/8;
+            int stride = width * _worldImage.Image.Format.BitsPerPixel / 8;
 
-            int numpixelbytes = height*width*_worldImage.Image.Format.BitsPerPixel/8;
+            int numpixelbytes = height * width * _worldImage.Image.Format.BitsPerPixel / 8;
 
             var pixels = new byte[numpixelbytes];
             for (int x = 0; x < width; x++)
             {
                 OnProgressChanged(this,
                                   new ProgressChangedEventArgs(
-                                      (int) (x/(double) width*100.0),
+                                      (int)(x / (double)width * 100.0),
                                       "Rendering World..."));
                 for (int y = 0; y < height; y++)
                 {
-                    Tile tile = World.Tiles[x+area.X, y+area.Y];
+                    Tile tile = World.Tiles[x + area.X, y + area.Y];
                     if (tile != null)
                     {
-                        Color c;
+                        var c = GetTileColor(y, tile);
 
-                        if (y + area.Y > World.Header.WorldRockLayer)
-                            c = tileColors.WallColor[1].Color;
-                        else if (y + area.Y > World.Header.WorldSurface)
-                            c = tileColors.WallColor[2].Color;
-                        else
-                            c = tileColors.WallColor[0].Color;
-
-                        if (tile.Wall > 0)
-                            c = tileColors.WallColor[tile.Wall].Color;
-
-                        if (tile.Liquid > 0)
-                        {
-                            if (tile.IsLava)
-                                c = tileColors.LiquidColor[2].Color;
-                            else
-                            {
-                                // Alphablend water
-                                c = AlphaBlend(c, tileColors.LiquidColor[1].Color);
-                            }
-                        }
-
-                        if (tile.IsActive)
-                            c = tileColors.TileColor[tile.Type].Color;
-
-                        pixels[x*4 + y*stride] = c.B;
-                        pixels[x*4 + y*stride + 1] = c.G;
-                        pixels[x*4 + y*stride + 2] = c.R;
-                        pixels[x*4 + y*stride + 3] = c.A;
+                        pixels[x * 4 + y * stride] = c.B;
+                        pixels[x * 4 + y * stride + 1] = c.G;
+                        pixels[x * 4 + y * stride + 2] = c.R;
+                        pixels[x * 4 + y * stride + 3] = c.A;
                         //bmp.SetPixel(x - area.Left, y - area.Top, c);
                     }
                 }
@@ -222,216 +200,66 @@ namespace TEditWPF.RenderWorld
 
             int stride = wbmap.BackBufferStride;
 
-            int numpixelbytes = wbmap.PixelHeight*wbmap.PixelWidth*wbmap.Format.BitsPerPixel/8;
+            int numpixelbytes = wbmap.PixelHeight * wbmap.PixelWidth * wbmap.Format.BitsPerPixel / 8;
 
             var pixels = new byte[numpixelbytes];
             for (int x = 0; x < width; x++)
             {
                 OnProgressChanged(this,
                                   new ProgressChangedEventArgs(
-                                      (int) (x/(double) width*100.0),
+                                      (int)(x / (double)width * 100.0),
                                       "Rendering World..."));
+
                 for (int y = 0; y < height; y++)
                 {
                     Tile tile = World.Tiles[x, y];
                     if (tile != null)
                     {
-                        TileProperties prop;
-                        Color c;
+                        var c = GetTileColor(y, tile);
 
-                        if (y > World.Header.WorldRockLayer)
-                            c = tileColors.WallColor[1].Color;
-                        else if (y > World.Header.WorldSurface)
-                            c = tileColors.WallColor[2].Color;
-                        else
-                            c = tileColors.WallColor[0].Color;
 
-                        if (tile.Wall > 0)
-                        {
-                            if (tileColors.WallColor.TryGetValue(tile.Wall, out prop))
-
-                                c = prop.Color;
-                            else
-                                c = Color.FromArgb(255, 255, 00, 255);
-                        }
-
-                        if (tile.Liquid > 0)
-                        {
-                            if (tile.IsLava)
-                                c = tileColors.LiquidColor[2].Color;
-                            else
-                            {
-                                // Alphablend water
-                                c = AlphaBlend(c, tileColors.LiquidColor[1].Color);
-                            }
-                        }
-
-                        if (tile.IsActive)
-                        {
-                            if (tileColors.TileColor.TryGetValue(tile.Type, out prop))
-                                c = prop.Color;
-                            else
-                                c = Color.FromArgb(255, 255, 00, 255);
-                        }
-
-                        pixels[x*4 + y*stride] = c.B;
-                        pixels[x*4 + y*stride + 1] = c.G;
-                        pixels[x*4 + y*stride + 2] = c.R;
-                        pixels[x*4 + y*stride + 3] = c.A;
+                        pixels[x * 4 + y * stride] = c.B;
+                        pixels[x * 4 + y * stride + 1] = c.G;
+                        pixels[x * 4 + y * stride + 2] = c.R;
+                        pixels[x * 4 + y * stride + 3] = c.A;
                         //bmp.SetPixel(x - area.Left, y - area.Top, c);
                     }
                 }
             }
 
             wbmap.WritePixels(new Int32Rect(0, 0, wbmap.PixelWidth, wbmap.PixelHeight), pixels,
-                              wbmap.PixelWidth*wbmap.Format.BitsPerPixel/8, 0);
+                              wbmap.PixelWidth * wbmap.Format.BitsPerPixel / 8, 0);
 
             OnProgressChanged(this, new ProgressChangedEventArgs(0, "Render Complete."));
 
             return wbmap;
         }
 
-        //public void RenderRegion(TerrariaWorld.World world, Int32Rect area)
-        //{
-        //    var writeableBitmap = new WriteableBitmap(
-        //        (int)w.ActualWidth,
-        //        (int)w.ActualHeight,
-        //        96,
-        //        96,
-        //        PixelFormats.Bgr32,
-        //        null);
+        private Color GetTileColor(int y, Tile tile)
+        {
+            Color c;
 
-        //    Bitmap bmp = new Bitmap(area.Width, area.Height);
+            if (y > World.Header.WorldRockLayer)
+                c = tileColors.WallColor[1].Color;
+            else if (y > World.Header.WorldSurface)
+                c = tileColors.WallColor[2].Color;
+            else
+                c = tileColors.WallColor[tile.Wall].Color;
 
-        //    for (int x = area.Left; x < area.Right; x++)
-        //    {
-        //        this.OnProgressChanged(this, new ProgressChangedEventArgs((int)((double)x / (double)area.Right * 100.0), "Rendering World..."));
-        //        for (int y = area.Top; y < area.Bottom; y++)
-        //        {
-        //            TerrariaWorld.Tile tile = world.Tiles[x, y];
-        //            if (tile != null)
-        //            {
-        //                Color c;
 
-        //                if (y > world.Header.WorldRockLayer)
-        //                    c = tileColors.WallColor[1].Color;
-        //                else if (y > world.Header.WorldSurface)
-        //                    c = tileColors.WallColor[2].Color;
-        //                else
-        //                    c = tileColors.WallColor[0].Color;
+            if (tile.IsActive)
+                c = AlphaBlend(c, tileColors.TileColor[tile.Type].Color);
+            
 
-        //                if (tile.Wall > 0)
-        //                    c = tileColors.WallColor[tile.Wall].Color;
-
-        //                if (tile.Liquid > 0)
-        //                {
-        //                    if (tile.IsLava)
-        //                        c = tileColors.LiquidColor[2].Color;
-        //                    else
-        //                    {
-        //                        // Alphablend water
-        //                        c = Common.Utility.AlphaBlend(c, tileColors.LiquidColor[1].Color);
-        //                    }
-        //                }
-
-        //                if (tile.IsActive)
-        //                    c = tileColors.TileColor[tile.Type].Color;
-
-        //                bmp.SetPixel(x - area.Left, y - area.Top, c);
-        //            }
-        //        }
-        //    }
-
-        //    this.OnProgressChanged(this, new ProgressChangedEventArgs(0, "Render Complete."));
-
-        //    return bmp;
-        //}
-
-        //public void UpdateMultipleTile(TerrariaWorld.World world, Bitmap worldImage, List<Point> updatedCoords)
-        //{
-        //    for (int p = 0; p < updatedCoords.Count; p++)
-        //    {
-        //        this.OnProgressChanged(this, new ProgressChangedEventArgs((int)((float)p / (float)updatedCoords.Count * 100.0), "Updating World..."));
-
-        //        int x = updatedCoords[p].X;
-        //        int y = updatedCoords[p].Y;
-
-        //        TerrariaWorld.Game.Tile tile = world.Tiles[x, y];
-        //        if (tile != null)
-        //        {
-        //            Color c;
-
-        //            if (y > world.Header.WorldRockLayer)
-        //                c = tileColors.WallColor[1].Color;
-        //            else if (y > world.Header.WorldSurface)
-        //                c = tileColors.WallColor[2].Color;
-        //            else
-        //                c = tileColors.WallColor[0].Color;
-
-        //            if (tile.Wall > 0)
-        //                c = tileColors.WallColor[tile.Wall].Color;
-
-        //            if (tile.Liquid > 0)
-        //            {
-        //                if (tile.IsLava)
-        //                    c = tileColors.LiquidColor[2].Color;
-        //                else
-        //                {
-        //                    // Alphablend water
-        //                    c = Common.Utility.AlphaBlend(c, tileColors.LiquidColor[1].Color);
-        //                }
-        //            }
-
-        //            if (tile.IsActive)
-        //                c = tileColors.TileColor[tile.Type].Color;
-
-        //            worldImage.SetPixel(x, y, c);
-        //        }
-        //    }
-
-        //    this.OnProgressChanged(this, new ProgressChangedEventArgs(0, "Render Complete."));
-        //}
-
-        //public void UpdateSingleTile(TerrariaWorld.Game.World world, Bitmap worldImage, Point updatedCoords)
-        //{
-
-        //    int x = updatedCoords.X;
-        //    int y = updatedCoords.Y;
-
-        //    TerrariaWorld.Game.Tile tile = world.Tiles[x, y];
-        //    if (tile != null)
-        //    {
-        //        Color c;
-
-        //        if (y > world.Header.WorldRockLayer)
-        //            c = tileColors.WallColor[1].Color;
-        //        else if (y > world.Header.WorldSurface)
-        //            c = tileColors.WallColor[2].Color;
-        //        else
-        //            c = tileColors.WallColor[0].Color;
-
-        //        if (tile.Wall > 0)
-        //            c = tileColors.WallColor[tile.Wall].Color;
-
-        //        if (tile.Liquid > 0)
-        //        {
-        //            if (tile.IsLava)
-        //                c = tileColors.LiquidColor[2].Color;
-        //            else
-        //            {
-        //                // Alphablend water
-        //                c = Common.Utility.AlphaBlend(c, tileColors.LiquidColor[1].Color);
-        //            }
-        //        }
-
-        //        if (tile.IsActive)
-        //            c = tileColors.TileColor[tile.Type].Color;
-
-        //        worldImage.SetPixel(x, y, c);
-        //    }
-
-        //}
-
+            if (tile.Liquid > 0)
+            {
+                if (tile.IsLava)
+                    c = AlphaBlend(c, tileColors.LiquidColor[2].Color);
+                else
+                    c = AlphaBlend(c, tileColors.LiquidColor[1].Color);
+            }
+            return c;
+        }
 
         public event ProgressChangedEventHandler ProgressChanged;
 

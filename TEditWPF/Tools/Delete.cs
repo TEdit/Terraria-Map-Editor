@@ -112,7 +112,6 @@ namespace TEditWPF.Tools
             }
             else
             {
-                
                 if (isLeftDown)
                     EraseLine(e);
             }
