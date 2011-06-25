@@ -91,7 +91,7 @@
     <Compile Include="Tools\ToolShape.cs" />
     <Compile Include="Tools\ToolType.cs" />
     <Compile Include="RenderWorld\TileColors.cs" />
-    <Compile Include="RenderWorld\TileProperties.cs" />
+    <Compile Include="RenderWorld\RenderTileProperties.cs" />
     <Compile Include="RenderWorld\WorldRenderer.cs" />
     <Compile Include="TerrariaWorld\Chest.cs" />
     <Compile Include="TerrariaWorld\Item.cs" />

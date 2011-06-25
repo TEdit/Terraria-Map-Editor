@@ -433,8 +433,8 @@ namespace TEditWPF.ViewModels
             MouseOverTile = e.Tile;
             Tile overTile = world.Tiles[e.Tile.X, e.Tile.Y];
 
-            string wallName = renderer.TileColors.WallColor[overTile.Wall].Name;
-            string tileName = overTile.IsActive ? renderer.TileColors.RenderTileColor[overTile.Type].Name : "[empty]";
+            string wallName = TileColors.Walls[overTile.Wall].Name;
+            string tileName = overTile.IsActive ? TileColors.Tiles[overTile.Type].Name : "[empty]";
             string fluidname = "[no fluid]";
             if (overTile.Liquid > 0)
             {

@@ -18,9 +18,16 @@ namespace TEditWPF.TerrariaWorld
     /// </summary>
     public static class WorldEditorExtensions
     {
+
+#region Line
+        
+#endregion
         #region Flood Fill
 
-        public static void FloodFill(this World world, PointInt32 start, RectInt32 bounds, )
+        public static void FloodFill(this World world, PointInt32 start, RectInt32 bounds )
+        {
+            
+        }
 
         #endregion
 

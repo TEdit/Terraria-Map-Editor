@@ -75,7 +75,7 @@ namespace TEditWPF.RenderWorld
                 byte.TryParse(splitline[0], out id);
 
                 string name = splitline[1];
-                var color = (Color)ColorConverter.ConvertFromString("#" + splitline[2]);
+                var color = (Color)ColorConverter.ConvertFromString(splitline[2]);
 
                 return new RenderTileProperties(id, color, name);
             }

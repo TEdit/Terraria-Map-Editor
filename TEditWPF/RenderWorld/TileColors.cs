@@ -18,32 +18,32 @@ namespace TEditWPF.RenderWorld
 
         #endregion
 
-        private static TileProperties[] tileColor = new TileProperties[byte.MaxValue];
-        private static TileProperties[] wallColor = new TileProperties[byte.MaxValue];
+        private static RenderTileProperties[] _tiles = new RenderTileProperties[byte.MaxValue];
+        private static RenderTileProperties[] _walls = new RenderTileProperties[byte.MaxValue];
 
-        public static TileProperties[] TileColor
+        public static RenderTileProperties[] Tiles
         {
-            get { return tileColor; }
+            get { return _tiles; }
         }
 
-        public static TileProperties[] WallColor
+        public static RenderTileProperties[] Walls
         {
-            get { return wallColor; }
+            get { return _walls; }
         }
 
-        private static Color WaterColor { get; set; }
-        private static Color LavaColor { get; set; }
+        public static Color Water { get; set; }
+        public static Color Lava { get; set; }
         
 
         public static void Load(string filename)
         {
-            WaterColor = Color.FromArgb(128, 0, 64, 255);
-            LavaColor = Color.FromArgb(255, 255, 96, 0);
+            Water = Color.FromArgb(128, 0, 64, 255);
+            Lava = Color.FromArgb(255, 255, 96, 0);
 
             for (byte i = 0; i < byte.MaxValue; i++)
             {
-                tileColor[i] = new TileProperties() { Color = Colors.Magenta, ID = i, Name = "Unknown" };
-                wallColor[i] = new TileProperties() { Color = Colors.Magenta, ID = i, Name = "Unknown" };
+                _tiles[i] = new RenderTileProperties() { Color = Colors.Magenta, ID = i, Name = "Unknown" };
+                _walls[i] = new RenderTileProperties() { Color = Colors.Magenta, ID = i, Name = "Unknown" };
             }
 
 
@@ -65,35 +65,31 @@ namespace TEditWPF.RenderWorld
                         section = FileSection.LIQUIDCOLORS;
                     else
                     {
-                        TileProperties lineproperty = ParseColorFileLine(line);
+                        var lineproperty = RenderTileProperties.FromString(line);
                         if (lineproperty != null)
                         {
                             switch (section)
                             {
                                 case FileSection.WALLCOLORS:
-                                    tc.WallColor.Add(lineproperty.ID, lineproperty);
+                                    _walls[lineproperty.ID] = lineproperty;
                                     break;
                                 case FileSection.TILECOLORS:
-                                    tc.TileColor.Add(lineproperty.ID, lineproperty);
+                                    _tiles[lineproperty.ID] = lineproperty;
                                     break;
                                 case FileSection.LIQUIDCOLORS:
                                     if (string.Equals(lineproperty.Name,"Water",StringComparison.InvariantCultureIgnoreCase))
-                                        WaterColor = lineproperty.Color;
+                                        Water = lineproperty.Color;
                                     else if (string.Equals(lineproperty.Name, "Lava", StringComparison.InvariantCultureIgnoreCase))
-                                        LavaColor = lineproperty.Color;
-                                    break;
-                                default:
+                                        Lava = lineproperty.Color;
                                     break;
                             }
                         }
                     }
                 }
             }
-
-            return tc;
         }
 
-        public void Save(string filename)
+        public static void Save(string filename)
         {
             using (TextWriter sr = new StreamWriter(filename))
             {
@@ -102,45 +98,25 @@ namespace TEditWPF.RenderWorld
                 sr.WriteLine("# Color is in ARGB HEX, e.g. AARRGGBB");
 
                 sr.WriteLine(FileSection.LIQUIDCOLORS.ToString());
-                foreach (var item in LiquidColor)
-                {
-                    sr.WriteLine(GetTilePropertyFileLine(item.Value));
-                }
+                sr.WriteLine((new RenderTileProperties(1, Water, "Water")).ToString());
+                sr.WriteLine((new RenderTileProperties(2, Lava, "Lava")).ToString());
 
                 sr.WriteLine(FileSection.WALLCOLORS.ToString());
-                foreach (var item in WallColor)
+                for (byte i = 0; i < byte.MaxValue; i++)
                 {
-                    sr.WriteLine(GetTilePropertyFileLine(item.Value));
+                    if (!string.Equals(_walls[i].Name,"Unknown",StringComparison.InvariantCultureIgnoreCase))
+                        sr.WriteLine(_walls[i].ToString());
                 }
+
 
                 sr.WriteLine(FileSection.TILECOLORS.ToString());
-                foreach (var item in TileColor)
+                for (byte i = 0; i < byte.MaxValue; i++)
                 {
-                    sr.WriteLine(GetTilePropertyFileLine(item.Value));
+                    if (!string.Equals(_tiles[i].Name, "Unknown", StringComparison.InvariantCultureIgnoreCase))
+                        sr.WriteLine(_tiles[i].ToString());
                 }
             }
         }
 
-        public static string GetTilePropertyFileLine(TileProperties item)
-        {
-            return String.Format("{0}|{1}|#{2}{3}{4}{5}", item.ID, item.Name, item.Color.A, item.Color.R, item.Color.G,
-                                 item.Color.B);
-        }
-
-        public static TileProperties ParseColorFileLine(string line)
-        {
-            string[] splitline = line.Split(new[] {',', '|'});
-            if (splitline.Length == 3)
-            {
-                byte id = 0;
-                byte.TryParse(splitline[0], out id);
-
-                string name = splitline[1];
-                var color = (Color) ColorConverter.ConvertFromString("#" + splitline[2]);
-
-                return new TileProperties(id, color, name);
-            }
-            return null;
-        }
     }
 }
