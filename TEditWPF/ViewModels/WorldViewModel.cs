@@ -46,6 +46,7 @@ namespace TEditWPF.ViewModels
         private PointInt32 _mouseUpTile;
         private ICommand _mouseWheelCommand;
         private ICommand _openWorldCommand;
+        private ICommand _saveWorldCommand;
         private ProgressChangedEventArgs _progress;
         private ICommand _setTool;
         private WorldImage _worldImage;
@@ -285,6 +286,11 @@ namespace TEditWPF.ViewModels
             get { return _openWorldCommand ?? (_openWorldCommand = new RelayCommand(LoadWorldandRender, CanLoad)); }
         }
 
+        public ICommand SaveWorldCommand
+        {
+            get { return _saveWorldCommand ?? (_saveWorldCommand = new RelayCommand(SaveWorld, CanSave)); }
+        }
+
         public bool IsBusy
         {
             get { return _IsBusy; }
@@ -432,6 +438,11 @@ namespace TEditWPF.ViewModels
             return !IsBusy;
         }
 
+        public bool CanSave()
+        {
+            return !IsBusy;
+        }
+
         private void LoadWorldandRender()
         {
             var ofd = new OpenFileDialog();
@@ -453,6 +464,16 @@ namespace TEditWPF.ViewModels
                                           });
             }
             IsBusy = false;
+        }
+
+        private void SaveWorld()
+        {
+            Task.Factory.StartNew(() =>
+                                      {
+                                          IsBusy = true;
+                                          World.SaveFile(world.Header.FileName);
+                                          _uiFactory.StartNew(() => IsBusy = false);
+                                      });
         }
 
         private void OnMouseOverPixel(TileMouseEventArgs e)

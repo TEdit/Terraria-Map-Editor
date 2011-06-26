@@ -9,8 +9,6 @@ namespace TEditWPF.Tools
     [Export]
     public class TilePicker : ObservableObject
     {
-
-
         public TilePicker()
         {
             for (int i = 0; i < TerrariaWorld.TileProperties.MaxWallTypes; i++)
@@ -26,10 +24,11 @@ namespace TEditWPF.Tools
 
             _Wall = new TilePickerProperty { IsActive = false, Value = 0 };
             _Tile = new TilePickerProperty { IsActive = true, Value = 0 };
-            _Liquid = new TilePickerLiquidProperty { IsActive = false, IsLava = false, Liquid = 0 };
+            _Liquid = new TilePickerLiquidProperty { IsActive = false, IsLava = false};
 
             _WallMask = new TilePickerProperty { IsActive = false, Value = 0 };
             _TileMask = new TilePickerProperty { IsActive = false, Value = 0 };
+            _IsEraiser = false;
         }
 
         private readonly ObservableCollection<TileColor> _walls = new ObservableCollection<TileColor>();
@@ -42,8 +41,21 @@ namespace TEditWPF.Tools
         public ObservableCollection<TileColor> Tiles
         {
             get { return _tiles; }
-        }    
+        }
 
+        private bool _IsEraiser;
+        public bool IsEraiser
+        {
+            get { return this._IsEraiser; }
+            set
+            {
+                if (this._IsEraiser != value)
+                {
+                    this._IsEraiser = value;
+                    this.RaisePropertyChanged("IsEraiser");
+                }
+            }
+        }
 
         private TilePickerProperty _Wall;
         public TilePickerProperty Wall
@@ -174,20 +186,6 @@ namespace TEditWPF.Tools
                 {
                     this._IsLava = value;
                     this.RaisePropertyChanged("IsLava");
-                }
-            }
-        }
-
-        private byte _Liquid;
-        public byte Liquid
-        {
-            get { return this._Liquid; }
-            set
-            {
-                if (this._Liquid != value)
-                {
-                    this._Liquid = value;
-                    this.RaisePropertyChanged("Liquid");
                 }
             }
         }

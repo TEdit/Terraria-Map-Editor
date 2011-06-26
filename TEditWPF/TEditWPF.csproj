@@ -77,8 +77,7 @@
     <Compile Include="TerrariaWorld\WorldEditorExtensions.cs" />
     <Compile Include="Tools\Arrow.cs" />
     <Compile Include="Tools\Brush.cs" />
-    <Compile Include="Tools\Delete.cs" />
-    <Compile Include="Tools\Fill.cs" />
+    <None Include="Tools\Fill.cs" />
     <Compile Include="Tools\IOrderMetadata.cs" />
     <Compile Include="Tools\ITool.cs" />
     <Compile Include="Common\TileMouseEventArgs.cs" />
@@ -199,6 +198,8 @@
     <Content Include="items.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Resource Include="Tools\Images\eraser.png" />
+    <Resource Include="Tools\Images\delete.png" />
     <Resource Include="Tools\Images\cursor.png" />
     <Resource Include="Tools\Images\paintbrush.png" />
     <Resource Include="Tools\Images\paintcan.png" />
