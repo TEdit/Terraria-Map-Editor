@@ -51,10 +51,25 @@ namespace TEditWPF.TerrariaWorld.Structures
             set { _bottomRight = value; }
         }
 
+        public bool Contains(int x, int y)
+        {
+            if (x < this.Left)
+                return false;
+            if (x > this.Right)
+                return false;
+            if (y < this.Top)
+                return false;
+            if (y > this.Bottom)
+                return false;
+
+            return true;
+        }
+
         public override string ToString()
         {
             return String.Format("[{0}, {1}]", TopLeft, BottomRight);
         }
+
 
         #region Operator Overrides
 

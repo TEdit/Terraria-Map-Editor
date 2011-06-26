@@ -84,11 +84,11 @@
     <Compile Include="Common\TileMouseEventArgs.cs" />
     <Compile Include="Tools\Selection.cs" />
     <Compile Include="Tools\SelectionArea.cs" />
-    <Compile Include="Tools\TilePickerProperties.cs" />
+    <Compile Include="Tools\TilePicker.cs" />
     <Compile Include="Tools\ToolAnchorMode.cs" />
     <Compile Include="Tools\ToolBase.cs" />
     <Compile Include="Tools\ToolProperties.cs" />
-    <Compile Include="Tools\ToolShape.cs" />
+    <Compile Include="Tools\ToolBrushShape.cs" />
     <Compile Include="Tools\ToolType.cs" />
     <Compile Include="RenderWorld\TileColors.cs" />
     <Compile Include="RenderWorld\TileColor.cs" />
@@ -109,6 +109,9 @@
     <Compile Include="ViewModels\WorldViewModel.cs" />
     <Compile Include="Views\StatusBarView.xaml.cs">
       <DependentUpon>StatusBarView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\TilePickerView.xaml.cs">
+      <DependentUpon>TilePickerView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ToolSelectorView.xaml.cs">
       <DependentUpon>ToolSelectorView.xaml</DependentUpon>
@@ -142,6 +145,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Views\StatusBarView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\TilePickerView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -131,7 +131,7 @@ namespace TEditWPF.Tools
 
             
             bmp.Clear();
-            if (_properties.Shape == ToolShape.Square)
+            if (_properties.BrushShape == ToolBrushShape.Square)
             {
                 bmp.FillRectangle(0, 0, _properties.Size.Width, _properties.Size.Height, Color.FromArgb(127, 0, 90, 255));
             }
@@ -147,8 +147,8 @@ namespace TEditWPF.Tools
             foreach (PointInt32 p in WorldRenderer.DrawLine(start, e.Tile))
             {
                 //_world.Tiles[p.X, p.Y].IsActive = false;
-                _world.FillEllipseCentered(p.X, p.Y, _properties.Radius, _properties.Radius, new Tile { IsActive = false });
-                renderer.UpdateWorldImage(new Int32Rect(p.X-_properties.Radius, p.Y-_properties.Radius, _properties.Radius * 2, _properties.Radius*2));
+                _world.FillEllipseCentered(p.X, p.Y, _properties.RadiusX, _properties.RadiusY, new Tile { IsActive = false });
+                renderer.UpdateWorldImage(new Int32Rect(p.X - _properties.RadiusX, p.Y - _properties.RadiusY, _properties.Size.Width, _properties.Size.Height));
             }
             start = e.Tile;
         }

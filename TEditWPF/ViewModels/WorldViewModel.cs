@@ -31,10 +31,10 @@ namespace TEditWPF.ViewModels
 
         private int _FrameRate;
         private bool _IsBusy;
-        private SelectionArea _Selection;
+
         private string _TileName;
 
-        [Import] private ToolProperties _ToolProperties;
+        
         private string _WallName;
         private double _Zoom = 1;
         private bool _isMouseContained;
@@ -52,8 +52,20 @@ namespace TEditWPF.ViewModels
         private int frameTimesIndex;
         private TimeSpan lastRender;
 
-        [Import] private WorldRenderer renderer;
+        [Import]
+        private WorldRenderer renderer;
+
+        [Import("World", typeof(World))] 
         private World world;
+
+        [Import]
+        private TilePicker _TilePicker;
+
+        [Import]
+        private ToolProperties _ToolProperties;
+
+        [Import]
+        private SelectionArea _Selection;
 
         public WorldViewModel()
         {
@@ -89,6 +101,22 @@ namespace TEditWPF.ViewModels
             }
         }
 
+
+        public TilePicker TilePicker
+        {
+            get { return this._TilePicker; }
+            set
+            {
+                if (this._TilePicker != value)
+                {
+                    this._TilePicker = value;
+                    this.RaisePropertyChanged("TilePicker");
+                }
+            }
+        }
+
+
+
         [ImportMany(typeof (ITool))]
         public OrderingCollection<ITool, IOrderMetadata> Tools { get; set; }
 
@@ -112,7 +140,7 @@ namespace TEditWPF.ViewModels
             }
         }
 
-        [Import]
+        
         public SelectionArea Selection
         {
             get { return _Selection; }
@@ -127,7 +155,6 @@ namespace TEditWPF.ViewModels
         }
 
 
-        [Import("World", typeof (World))]
         public World World
         {
             get { return world; }

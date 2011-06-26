@@ -3,9 +3,13 @@
         xmlns:vm="clr-namespace:TEditWPF.ViewModels" xmlns:views="clr-namespace:TEditWPF.Views" Title="MainWindow" Height="600"
         Width="800" TextOptions.TextFormattingMode="Display" TextOptions.TextRenderingMode="Aliased" SnapsToDevicePixels="True">
   <DockPanel Grid.Row="1" HorizontalAlignment="Stretch">
-    <Button DockPanel.Dock="Top" Content="Load World" Height="23" HorizontalAlignment="Left"
+        <Button DockPanel.Dock="Top" Content="Load World" Height="23" HorizontalAlignment="Left"
             VerticalAlignment="Top" Width="75" Command="{Binding Path=OpenWorldCommand}" />
-    <views:StatusBarView DockPanel.Dock="Bottom" />
+        <StackPanel DockPanel.Dock="Top" Orientation="Horizontal">
+            <Grid Width="200" />
+            <views:TilePickerView x:Name="tilePickerView1"  Height="90" Width="400" />
+        </StackPanel>
+        <views:StatusBarView DockPanel.Dock="Bottom" />
     <views:ToolSelectorView DockPanel.Dock="Left" />
     <Expander Header="Tools" ExpandDirection="Left" IsExpanded="False" Grid.Row="1" DockPanel.Dock="Right">
       <TabControl Width="200"></TabControl>
@@ -13,6 +17,6 @@
     <Border BorderBrush="Black" BorderThickness="1">
       <views:WorldImageView />
     </Border>
-
-  </DockPanel>
+        
+    </DockPanel>
 </Window>

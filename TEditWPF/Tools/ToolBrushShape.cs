@@ -1,6 +1,6 @@
 ﻿namespace TEditWPF.Tools
 {
-    public enum ToolShape
+    public enum ToolBrushShape
     {
         Square,
         Round

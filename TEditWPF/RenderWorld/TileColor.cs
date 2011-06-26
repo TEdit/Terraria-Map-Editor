@@ -63,7 +63,7 @@ namespace TEditWPF.RenderWorld
 
         public override string ToString()
         {
-            return String.Format("{0}|{1}|#{2}{3}{4}{5}", this.ID, this.Name, this.Color.A, this.Color.R, this.Color.G, this.Color.B);
+            return String.Format("{0}|{1}|#{2:x2}{3:x2}{4:x2}{5:x2}", this.ID, this.Name, this.Color.A, this.Color.R, this.Color.G, this.Color.B);
         }
 
         public static TileColor FromString(string line)

@@ -63,8 +63,31 @@ namespace TEditWPF.RenderWorld
 
         public void UpdateWorldImage(Int32Rect area)
         {
+
+            // validate area
+            if (area.X < 0)
+            {
+                area.Width += area.X;
+                area.X = 0;
+            }
+            if (area.Y < 0)
+            {
+                area.Height += area.Y;
+                area.Y = 0;
+            }
+            if ((area.Y+area.Height) >= _world.Header.MaxTiles.Y)
+            {
+                area.Height += _world.Header.MaxTiles.Y - (area.Y + area.Height);
+            }
+            if ((area.X + area.Width) >= _world.Header.MaxTiles.X)
+            {
+                area.Width += _world.Header.MaxTiles.X - (area.X + area.Width);
+            }
+
+
             int width = area.Width;
             int height = area.Height;
+
 
             int stride = width * _worldImage.Image.Format.BitsPerPixel / 8;
 
@@ -82,14 +105,15 @@ namespace TEditWPF.RenderWorld
                     Tile tile = _world.Tiles[x + area.X, y + area.Y];
                     if (tile != null)
                     {
-                        var c = GetTileColor(y, tile);
+                        var c = GetTileColor(+area.Y + y, tile);
 
-                        pixels[x * 4 + y * stride] = c.B;
-                        pixels[x * 4 + y * stride + 1] = c.G;
-                        pixels[x * 4 + y * stride + 2] = c.R;
-                        pixels[x * 4 + y * stride + 3] = c.A;
+                        pixels[x*4 + y*stride] = c.B;
+                        pixels[x*4 + y*stride + 1] = c.G;
+                        pixels[x*4 + y*stride + 2] = c.R;
+                        pixels[x*4 + y*stride + 3] = c.A;
                         //bmp.SetPixel(x - area.Left, y - area.Top, c);
                     }
+
                 }
             }
 

@@ -13,17 +13,14 @@ namespace TEditWPF.Tools
         private WriteableBitmap _Image;
         private ToolAnchorMode _Mode;
         private PointInt32 _Offset;
-        private int _Radius;
-
-        private ToolShape _Shape;
+        private ToolBrushShape _brushShape;
         private SizeInt32 _Size;
 
         public ToolProperties()
         {
-            _Size = new SizeInt32(11,11);
-            Shape = ToolShape.Round;
+            _Size = new SizeInt32(10,10);
+            BrushShape = ToolBrushShape.Round;
             Mode = ToolAnchorMode.Center;
-            Radius = 5;
             CalcOffset();
         }
 
@@ -41,33 +38,15 @@ namespace TEditWPF.Tools
             }
         }
 
-        public ToolShape Shape
+        public ToolBrushShape BrushShape
         {
-            get { return _Shape; }
+            get { return _brushShape; }
             set
             {
-                if (_Shape != value)
+                if (_brushShape != value)
                 {
-                    _Shape = value;
-                    RaisePropertyChanged("Shape");
-                }
-            }
-        }
-
-
-        public int Radius
-        {
-            get { return _Radius; }
-            set
-            {
-                var tempval = value;
-                if (value < 0)
-                    tempval = -value;
-                if (_Radius != tempval)
-                {
-                    _Radius = tempval;
-                    RaisePropertyChanged("Radius");
-                    Size = new SizeInt32(Math.Max(1,_Radius*2), Math.Max(1,_Radius*2));
+                    _brushShape = value;
+                    RaisePropertyChanged("BrushShape");
                 }
             }
         }
@@ -84,6 +63,15 @@ namespace TEditWPF.Tools
                     CalcOffset();
                 }
             }
+        }
+
+        public int RadiusX
+        {
+            get { return (int) Math.Floor(_Size.Width/2.0D); }
+        }
+        public int RadiusY
+        {
+            get { return (int)Math.Floor(_Size.Height / 2.0D); }
         }
 
         public PointInt32 Offset
