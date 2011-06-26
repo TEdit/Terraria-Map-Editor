@@ -28,7 +28,7 @@ namespace TEditWPF.Tools
 
             _WallMask = new TilePickerProperty { IsActive = false, Value = 0 };
             _TileMask = new TilePickerProperty { IsActive = false, Value = 0 };
-            _IsEraiser = false;
+            _IsEraser = false;
         }
 
         private readonly ObservableCollection<TileColor> _walls = new ObservableCollection<TileColor>();
@@ -43,16 +43,16 @@ namespace TEditWPF.Tools
             get { return _tiles; }
         }
 
-        private bool _IsEraiser;
-        public bool IsEraiser
+        private bool _IsEraser;
+        public bool IsEraser
         {
-            get { return this._IsEraiser; }
+            get { return this._IsEraser; }
             set
             {
-                if (this._IsEraiser != value)
+                if (this._IsEraser != value)
                 {
-                    this._IsEraiser = value;
-                    this.RaisePropertyChanged("IsEraiser");
+                    this._IsEraser = value;
+                    this.RaisePropertyChanged("IsEraser");
                 }
             }
         }

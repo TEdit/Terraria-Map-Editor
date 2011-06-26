@@ -77,8 +77,8 @@ namespace TEditWPF.Tools
         public override WriteableBitmap PreviewTool()
         {
             return new WriteableBitmap(
-                _properties.Size.Width,
-                _properties.Size.Height,
+                _properties.Width,
+                _properties.Height,
                 96,
                 96,
                 PixelFormats.Bgr32,

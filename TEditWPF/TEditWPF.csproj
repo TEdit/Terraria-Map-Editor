@@ -81,6 +81,7 @@
     <Compile Include="Tools\IOrderMetadata.cs" />
     <Compile Include="Tools\ITool.cs" />
     <Compile Include="Common\TileMouseEventArgs.cs" />
+    <Compile Include="Tools\Pencil.cs" />
     <Compile Include="Tools\Selection.cs" />
     <Compile Include="Tools\SelectionArea.cs" />
     <Compile Include="Tools\TilePicker.cs" />
@@ -111,6 +112,9 @@
     </Compile>
     <Compile Include="Views\TilePickerView.xaml.cs">
       <DependentUpon>TilePickerView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ToolPropertiesView.xaml.cs">
+      <DependentUpon>ToolPropertiesView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ToolSelectorView.xaml.cs">
       <DependentUpon>ToolSelectorView.xaml</DependentUpon>
@@ -148,6 +152,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\TilePickerView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ToolPropertiesView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -198,6 +206,7 @@
     <Content Include="items.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Resource Include="Tools\Images\link90.png" />
     <Resource Include="Tools\Images\eraser.png" />
     <Resource Include="Tools\Images\delete.png" />
     <Resource Include="Tools\Images\cursor.png" />

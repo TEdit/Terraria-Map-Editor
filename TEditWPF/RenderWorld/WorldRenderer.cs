@@ -58,7 +58,9 @@ namespace TEditWPF.RenderWorld
 
         public void UpdateWorldImage(PointInt32 location)
         {
-            UpdateWorldImage(new Int32Rect(location.X, location.Y, 1, 1));
+             Tile tile = _world.Tiles[location.X, location.Y];
+             var color = GetTileColor(location.Y, tile);
+            _worldImage.Image.SetPixel(location.X, location.Y, color);
         }
 
         public void UpdateWorldImage(Int32Rect area)
@@ -75,7 +77,7 @@ namespace TEditWPF.RenderWorld
                 area.Height += area.Y;
                 area.Y = 0;
             }
-            if ((area.Y+area.Height) >= _world.Header.MaxTiles.Y)
+            if ((area.Y + area.Height) >= _world.Header.MaxTiles.Y)
             {
                 area.Height += _world.Header.MaxTiles.Y - (area.Y + area.Height);
             }
@@ -107,10 +109,10 @@ namespace TEditWPF.RenderWorld
                     {
                         var c = GetTileColor(+area.Y + y, tile);
 
-                        pixels[x*4 + y*stride] = c.B;
-                        pixels[x*4 + y*stride + 1] = c.G;
-                        pixels[x*4 + y*stride + 2] = c.R;
-                        pixels[x*4 + y*stride + 3] = c.A;
+                        pixels[x * 4 + y * stride] = c.B;
+                        pixels[x * 4 + y * stride + 1] = c.G;
+                        pixels[x * 4 + y * stride + 2] = c.R;
+                        pixels[x * 4 + y * stride + 3] = c.A;
                         //bmp.SetPixel(x - area.Left, y - area.Top, c);
                     }
 

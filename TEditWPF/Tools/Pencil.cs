@@ -12,10 +12,10 @@ using TEditWPF.TerrariaWorld.Structures;
 
 namespace TEditWPF.Tools
 {
-    [Export(typeof (ITool))]
+    [Export(typeof(ITool))]
     [PartCreationPolicy(CreationPolicy.Shared)]
-    [ExportMetadata("Order", 4)]
-    public class Brush : ToolBase
+    [ExportMetadata("Order", 3)]
+    public class Pencil : ToolBase
     {
         [Import]
         private ToolProperties _properties;
@@ -35,16 +35,15 @@ namespace TEditWPF.Tools
         private bool _isLeftDown;
 
         private PointInt32 _startPoint;
-        private bool _isActive;
-        private bool _isRightDown;
+
         private bool _isSnapDirectionSet = false;
         private Orientation _snapDirection = Orientation.Horizontal;
 
-        public Brush()
+        public Pencil()
         {
-            _image = new BitmapImage(new Uri(@"pack://application:,,,/TEditWPF;component/Tools/Images/paintbrush.png"));
-            _name = "Brush";
-            _type = ToolType.Brush;
+            _image = new BitmapImage(new Uri(@"pack://application:,,,/TEditWPF;component/Tools/Images/pencil.png"));
+            _name = "Pencil";
+            _type = ToolType.Pencil;
             _isActive = false;
         }
 
@@ -54,7 +53,8 @@ namespace TEditWPF.Tools
         private readonly string _name;
 
         private readonly ToolType _type;
-
+        private bool _isActive;
+        private bool _isRightDown;
 
         public override string Name
         {
@@ -83,8 +83,10 @@ namespace TEditWPF.Tools
 
                     if (_isActive)
                     {
-                        _properties.MinHeight = 2;
-                        _properties.MinWidth = 2;
+                        _properties.MinHeight = 1;
+                        _properties.MinWidth = 1;
+                        _properties.MaxHeight = 1;
+                        _properties.MaxWidth = 1;
                     }
                 }
             }
@@ -98,13 +100,13 @@ namespace TEditWPF.Tools
             _isRightDown = (e.RightButton == MouseButtonState.Pressed);
             _isSnapDirectionSet = false;
             _startPoint = e.Tile;
-
+            
             return true;
         }
 
         public override bool MoveTool(TileMouseEventArgs e)
         {
-
+            
             if (_isRightDown)
             {
                 var p = e.Tile;
@@ -119,7 +121,7 @@ namespace TEditWPF.Tools
                     _isSnapDirectionSet = true;
                 }
 
-                if (_snapDirection == Orientation.Horizontal)
+                if (_snapDirection== Orientation.Horizontal)
                     p.Y = _startPoint.Y;
                 else
                     p.X = _startPoint.X;
@@ -158,8 +160,8 @@ namespace TEditWPF.Tools
         public override WriteableBitmap PreviewTool()
         {
             var bmp = new WriteableBitmap(
-                    _properties.Width+1,
-                    _properties.Height+1,
+                    1,
+                    1,
                     96,
                     96,
                     PixelFormats.Bgra32,
@@ -167,10 +169,7 @@ namespace TEditWPF.Tools
 
 
             bmp.Clear();
-            if (_properties.BrushShape == ToolBrushShape.Square)
-                bmp.FillRectangle(0, 0, _properties.Width, _properties.Height, Color.FromArgb(127, 0, 90, 255));
-            else
-                bmp.FillEllipse(0, 0, _properties.Width, _properties.Height, Color.FromArgb(127, 0, 90, 255));
+            bmp.SetPixel(0,0, 127,0,90,255);
             return bmp;
         }
 
@@ -178,15 +177,8 @@ namespace TEditWPF.Tools
         {
             foreach (PointInt32 p in WorldRenderer.DrawLine(_startPoint, endPoint))
             {
-
-                //_world.Tiles[p.X, p.Y].IsActive = false;
-                int x0 = p.X - _properties.Offset.X;
-                int y0 = p.Y - _properties.Offset.Y;
-                if (_properties.BrushShape == ToolBrushShape.Square)
-                    _world.FillRectangle(new Int32Rect(x0, y0, _properties.Width, _properties.Height), _tilePicker);
-                else if (_properties.BrushShape == ToolBrushShape.Round)
-                    _world.FillEllipse(x0, y0, x0 + _properties.Width, y0+_properties.Height, _tilePicker);
-                _renderer.UpdateWorldImage(new Int32Rect(x0, y0, _properties.Width+1, _properties.Height+1));
+                _world.SetTileXY(p.X, p.Y, _tilePicker);
+                _renderer.UpdateWorldImage(p);
             }
             _startPoint = endPoint;
         }

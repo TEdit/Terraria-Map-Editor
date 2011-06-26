@@ -1,0 +1,37 @@
+﻿<UserControl x:Class="TEditWPF.Views.ToolPropertiesView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="90" d:DesignWidth="275">
+    <Grid>
+        <Grid Width="275">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="1*" />
+            </Grid.RowDefinitions>
+            <ToggleButton Grid.Row="0" Grid.RowSpan="2" Grid.Column="2" Width="25" Margin="2" IsChecked="{Binding Path=ToolProperties.IsSquare}" ToolTip="Square Width and Height">
+                <Image Source="../Tools/Images/link90.png" Height="32" Width="16"  RenderOptions.BitmapScalingMode="NearestNeighbor" />
+            </ToggleButton>
+            
+            <TextBlock Grid.Row="0" Grid.Column="0" Text="Width" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="2" />
+            <TextBox Grid.Row="0" Grid.Column="1" Width="50" HorizontalAlignment="Left" Text="{Binding Path=ToolProperties.Width, Mode=TwoWay}" />
+            <Slider Grid.Row="0" Grid.Column="1" Width="150" HorizontalAlignment="Right"  Value="{Binding Path=ToolProperties.Width, Mode=TwoWay}" Minimum="{Binding Path=ToolProperties.MinWidth}" Maximum="{Binding Path=ToolProperties.MaxWidth}" LargeChange="10" SmallChange="1" />
+            <TextBlock Grid.Row="1" Grid.Column="0" Text="Height" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="2" />
+            <TextBox Grid.Row="1" Grid.Column="1" Width="50" HorizontalAlignment="Left" Text="{Binding Path=ToolProperties.Height, Mode=TwoWay}" />
+            <Slider Grid.Row="1" Grid.Column="1" Width="150" HorizontalAlignment="Right" Value="{Binding Path=ToolProperties.Height, Mode=TwoWay}" Minimum="{Binding Path=ToolProperties.MinHeight}" Maximum="{Binding Path=ToolProperties.MaxHeight}" LargeChange="10" SmallChange="1"/>
+            <TextBlock Grid.Row="2" Grid.Column="0" Text="Shape"  HorizontalAlignment="Right" VerticalAlignment="Center" Margin="2"  />
+            <ComboBox Grid.Row="2" Grid.Column="1" ItemsSource="{Binding Path=ToolProperties.BrushShapes}" SelectedItem="{Binding Path=ToolProperties.BrushShape}" />
+            <TextBlock Grid.Row="3" Grid.Column="0" Text="Anchor" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="2" />
+            <ComboBox Grid.Row="3" Grid.Column="1" ItemsSource="{Binding Path=ToolProperties.AnchorModes}" SelectedItem="{Binding Path=ToolProperties.Mode}" />
+        </Grid>
+    </Grid>
+</UserControl>

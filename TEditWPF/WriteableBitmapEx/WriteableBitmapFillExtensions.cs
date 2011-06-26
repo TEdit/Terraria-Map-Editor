@@ -90,7 +90,7 @@ namespace System.Windows.Media.Imaging
               int startY = y1*w;
               int startYPlusX1 = startY + x1;
               int endOffset = startY + x2;
-              for (int x = startYPlusX1; x <= endOffset; x++)
+              for (int x = startYPlusX1; x < endOffset; x++)
               {
                   pixels[x] = color;
               }

@@ -8,7 +8,7 @@
             <Button  Content="Save World" Height="23" Width="75" Command="{Binding Path=SaveWorldCommand}" />
         </StackPanel>
         <StackPanel DockPanel.Dock="Top" Orientation="Horizontal">
-            <Grid Width="200" />
+            <views:ToolPropertiesView x:Name="toolPropreties1"  Height="90" />
             <views:TilePickerView x:Name="tilePickerView1"  Height="90" />
         </StackPanel>
         <views:StatusBarView DockPanel.Dock="Bottom" />

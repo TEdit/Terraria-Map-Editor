@@ -21,7 +21,7 @@
         </DataTemplate>
     </UserControl.Resources>
     <StackPanel Orientation="Horizontal">
-        <ToggleButton ToolTip="Eraiser" IsChecked="{Binding Path=TilePicker.IsEraiser, Mode=TwoWay}">
+        <ToggleButton ToolTip="Eraser" IsChecked="{Binding Path=TilePicker.IsEraser, Mode=TwoWay}">
             <Image Source="../Tools/Images/eraser.png" Height="32" Width="32"/>
         </ToggleButton>
         <UniformGrid Columns="2" Rows="2" Width="400">
@@ -76,7 +76,7 @@
         </UniformGrid>
         <GroupBox>
             <GroupBox.Header>
-                <CheckBox x:Name="enableLiquid" Content="Enable Liquid" IsChecked="{Binding Path=TilePicker.Liquid.IsActive, Mode=TwoWay}" Margin="1"/>
+                <CheckBox x:Name="enableLiquid" Content="Paint Liquid" IsChecked="{Binding Path=TilePicker.Liquid.IsActive, Mode=TwoWay}" Margin="1"/>
             </GroupBox.Header>
             <StackPanel IsEnabled="{Binding Path=TilePicker.Liquid.IsActive}">
                 <RadioButton Content="Water" Margin="2"/>

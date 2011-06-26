@@ -96,6 +96,7 @@ namespace TEditWPF.ViewModels
             {
                 if (_ToolProperties != value)
                 {
+                    _ToolProperties = null;
                     _ToolProperties = value;
                     RaisePropertyChanged("ToolProperties");
                 }
@@ -129,14 +130,14 @@ namespace TEditWPF.ViewModels
                 if (_ActiveTool != value)
                 {
                     _ActiveTool = value;
-                    ToolProperties.Image = null;
-                    ToolProperties.Image = _ActiveTool.PreviewTool();
-                    RaisePropertyChanged("ActiveTool");
-
                     foreach (var tool in Tools)
                     {
                         tool.Value.IsActive = (tool.Value == _ActiveTool);
                     }
+
+                    ToolProperties.Image = null;
+                    ToolProperties.Image = _ActiveTool.PreviewTool();
+                    RaisePropertyChanged("ActiveTool");
                 }
             }
         }
@@ -409,6 +410,13 @@ namespace TEditWPF.ViewModels
         {
             renderer.ProgressChanged += (s, e) => { Progress = e; };
             world.ProgressChanged += (s, e) => { Progress = e; };
+            _ToolProperties.ToolPreviewRequest += (s, e) =>
+                                                      {
+                                                          if (_ActiveTool != null)
+                                                          {
+                                                              ToolProperties.Image = _ActiveTool.PreviewTool();
+                                                          }
+                                                      };
         }
 
         #endregion

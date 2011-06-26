@@ -56,7 +56,7 @@ namespace TEditWPF.TerrariaWorld
 
             for (int x = area.X; x < area.X+area.Width; x++)
             {
-                for (int y = area.Y; x < area.Y + area.Height; y++)
+                for (int y = area.Y; y < area.Y + area.Height; y++)
                 {
                     SetTileXY(world, x, y, tile);
                 } 
@@ -71,7 +71,7 @@ namespace TEditWPF.TerrariaWorld
             {
                 if (!tile.TileMask.IsActive || (curTile.Type == tile.TileMask.Value))
                 {
-                    if (tile.IsEraiser)
+                    if (tile.IsEraser)
                     {
                         curTile.IsActive = false;
                     }
@@ -90,7 +90,7 @@ namespace TEditWPF.TerrariaWorld
             {
                 if (!tile.WallMask.IsActive || (curTile.Wall == tile.WallMask.Value))
                 {
-                    if (tile.IsEraiser)
+                    if (tile.IsEraser)
                         curTile.Wall = 0;
                     else
                         curTile.Wall = tile.Wall.Value;
@@ -99,7 +99,7 @@ namespace TEditWPF.TerrariaWorld
 
             if (tile.Liquid.IsActive && (!curTile.IsActive || !TileProperties.TileSolid[curTile.Type]))
             {
-                if (tile.IsEraiser)
+                if (tile.IsEraser)
                 {
                     curTile.Liquid = 0;
                     curTile.IsLava = false;
