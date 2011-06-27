@@ -1,14 +1,14 @@
 ﻿using System.ComponentModel;
 using TEditWPF.Common;
 using TEditWPF.TerrariaWorld.Structures;
-using TileMouseEventArgs = TEditWPF.TerrariaWorld.Structures.PointInt32;
+using PointInt32 = TEditWPF.TerrariaWorld.Structures.PointInt32;
 
 namespace TEditWPF.TerrariaWorld
 {
     public class WorldHeader : ObservableObject
     {
         [CategoryAttribute("World"), DescriptionAttribute("Dungeon Location"), ReadOnly(true)] private
-            TileMouseEventArgs _DungeonEntrance;
+            PointInt32 _DungeonEntrance;
 
         [Browsable(false)] private string _FileName;
 
@@ -28,7 +28,7 @@ namespace TEditWPF.TerrariaWorld
 
         [CategoryAttribute("Shadow Orbs"), DescriptionAttribute("Spawn the Meteor?")] private bool _IsSpawnMeteor;
 
-        [CategoryAttribute("World"), DescriptionAttribute("World Size"), ReadOnly(true)] private TileMouseEventArgs
+        [CategoryAttribute("World"), DescriptionAttribute("World Size"), ReadOnly(true)] private PointInt32
             _MaxTiles;
 
         [CategoryAttribute("Time"), DescriptionAttribute("Moon Phase")] private int _MoonPhase;
@@ -36,7 +36,7 @@ namespace TEditWPF.TerrariaWorld
         [CategoryAttribute("Shadow Orbs"), DescriptionAttribute("Number of Shadow Orbs Smashed")] private int
             _ShadowOrbCount;
 
-        [CategoryAttribute("World"), DescriptionAttribute("Spawn Location")] private TileMouseEventArgs _SpawnTile;
+        [CategoryAttribute("World"), DescriptionAttribute("Spawn Location")] private PointInt32 _SpawnTile;
         [CategoryAttribute("Time"), DescriptionAttribute("Time of Day")] private double _Time;
         [CategoryAttribute("World"), DescriptionAttribute("World Size"), ReadOnly(true)] private RectF _WorldBounds;
         [CategoryAttribute("World"), DescriptionAttribute("World ID"), ReadOnly(true)] private int _WorldId;
@@ -50,7 +50,7 @@ namespace TEditWPF.TerrariaWorld
         {
             _FileName = "";
             _WorldName = "No World Loaded";
-            _MaxTiles = new TileMouseEventArgs(0, 0);
+            _MaxTiles = new PointInt32(0, 0);
         }
 
         public string FileName
@@ -118,7 +118,7 @@ namespace TEditWPF.TerrariaWorld
             }
         }
 
-        public TileMouseEventArgs MaxTiles
+        public PointInt32 MaxTiles
         {
             get { return _MaxTiles; }
             set
@@ -131,7 +131,7 @@ namespace TEditWPF.TerrariaWorld
             }
         }
 
-        public TileMouseEventArgs SpawnTile
+        public PointInt32 SpawnTile
         {
             get { return _SpawnTile; }
             set
@@ -228,7 +228,7 @@ namespace TEditWPF.TerrariaWorld
         }
 
 
-        public TileMouseEventArgs DungeonEntrance
+        public PointInt32 DungeonEntrance
         {
             get { return _DungeonEntrance; }
             set

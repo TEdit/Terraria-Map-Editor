@@ -68,6 +68,23 @@ namespace TEditWPF.ViewModels
         [Import]
         private SelectionArea _Selection;
 
+        [Import]
+        private MarkerLocations _Markers;
+        public MarkerLocations Markers
+        {
+            get { return this._Markers; }
+            set
+            {
+                if (this._Markers != value)
+                {
+                    this._Markers = value;
+                    this.RaisePropertyChanged("Markers");
+                }
+            }
+        }
+
+
+
         public WorldViewModel()
         {
             _uiScheduler = TaskScheduler.FromCurrentSynchronizationContext();
@@ -466,6 +483,7 @@ namespace TEditWPF.ViewModels
                                                                       {
                                                                           WorldImage.Image = img.Clone();
                                                                           img = null;
+                                                                          Markers.UpdateLocations(this.World);
                                                                           RaisePropertyChanged("WorldZoomedHeight");
                                                                           RaisePropertyChanged("WorldZoomedWidth");
                                                                       });
