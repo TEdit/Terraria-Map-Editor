@@ -6,6 +6,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="90" d:DesignWidth="700" d:DataContext="{d:DesignInstance vm:WorldViewModel}" >
     <UserControl.Resources>
+
         <DataTemplate x:Key="ColorPickerTemplate">
             <StackPanel Orientation="Horizontal">
                 <Border BorderBrush="Black" BorderThickness="1" Margin="2,1" >
