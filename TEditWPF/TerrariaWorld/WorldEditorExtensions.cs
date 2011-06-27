@@ -69,7 +69,7 @@ namespace TEditWPF.TerrariaWorld
 
             if (tile.Tile.IsActive)
             {
-                if (!tile.TileMask.IsActive || (curTile.Type == tile.TileMask.Value))
+                if (!tile.TileMask.IsActive || (curTile.Type == tile.TileMask.Value && curTile.IsActive))
                 {
                     if (tile.IsEraser)
                     {
@@ -77,10 +77,14 @@ namespace TEditWPF.TerrariaWorld
                     }
                     else
                     {
-                        curTile.IsActive = true;
+                        //TODO: i don't like redundant conditionals, but its a fix
+                        if (!tile.TileMask.IsActive)
+                            curTile.IsActive = true;
+
                         curTile.Type = tile.Tile.Value;
 
-                        if ((curTile.IsActive || TileProperties.TileSolid[curTile.Type]) && curTile.Liquid > 0)
+                        // if the tile is solid and there isn't a mask, remove the liquid
+                        if (!tile.TileMask.IsActive && TileProperties.TileSolid[curTile.Type] && curTile.Liquid > 0)
                             curTile.Liquid = 0;
                     }
                 }
