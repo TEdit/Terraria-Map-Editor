@@ -8,6 +8,7 @@ namespace TEditWPF.Tools
 {
     [Export]
     [PartCreationPolicy(CreationPolicy.Shared)]
+    [Serializable]
     public class ToolProperties : ObservableObject
     {
         private WriteableBitmap _Image;
@@ -17,12 +18,15 @@ namespace TEditWPF.Tools
 
         public ToolProperties()
         {
+            this._MaxOutlineThickness = 10;
+            this._OutlineThickness = 1;
             this._Height = 10;
             this._Width = 10;
             this._MinHeight = 1;
             this._MinWidth = 1;
             this._MaxHeight = 100;
             this._MaxWidth = 100;
+
             this._IsSquare = true;
             this._brushShape = ToolBrushShape.Round;
             this._Mode = ToolAnchorMode.Center;
@@ -107,7 +111,7 @@ namespace TEditWPF.Tools
 
                     if (this.IsSquare)
                         this.Width = validHeight;
-                    
+
 
                     this.RaisePropertyChanged("Height");
                     CalcOffset();
@@ -201,6 +205,62 @@ namespace TEditWPF.Tools
             }
         }
 
+        private bool _IsOutline;
+        public bool IsOutline
+        {
+            get { return this._IsOutline; }
+            set
+            {
+                if (this._IsOutline != value)
+                {
+                    this._IsOutline = value;
+                    this.RaisePropertyChanged("IsOutline");
+                }
+            }
+        }
+
+        private int _OutlineThickness;
+        public int OutlineThickness
+        {
+            get { return this._OutlineThickness; }
+            set
+            {
+                if (this._OutlineThickness != value)
+                {
+                    this._OutlineThickness = value;
+                    this.RaisePropertyChanged("OutlineThickness");
+                }
+            }
+        }
+
+
+        private int _MaxOutlineThickness;
+        public int MaxOutlineThickness
+        {
+            get { return this._MaxOutlineThickness; }
+            set
+            {
+                var validValue = value;
+                if (validValue < 1)
+                    validValue = 1;
+
+                if (this._MaxOutlineThickness != validValue)
+                {
+                    this._MaxOutlineThickness = validValue;
+                    this.RaisePropertyChanged("MaxOutlineThickness");
+
+                    if (this._OutlineThickness > _MaxOutlineThickness)
+                    {
+                        this.OutlineThickness = _MaxOutlineThickness;
+                    }
+                }
+            }
+        }
+
+
+
+
+
         //public int RadiusX
         //{
         //    get { return (int) Math.Floor(this.Width/2.0D); }
@@ -246,7 +306,7 @@ namespace TEditWPF.Tools
 
         }
 
-			
+
 
         private void CalcOffset()
         {
@@ -283,6 +343,7 @@ namespace TEditWPF.Tools
                     Offset = new PointInt32(0, 0);
                     break;
             }
+            MaxOutlineThickness = (int)Math.Max(1, Math.Min(Math.Floor(this.Height / 2.0), Math.Floor(this.Width / 2.0)));
 
             OnToolPreviewRequest(this, new EventArgs());
         }

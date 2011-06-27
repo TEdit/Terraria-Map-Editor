@@ -4,6 +4,7 @@ using TEditWPF.Common;
 
 namespace TEditWPF.RenderWorld
 {
+    [Serializable]
     public class TileColor : ObservableObject
     {
         private Color _Color;

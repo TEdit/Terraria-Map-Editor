@@ -206,7 +206,8 @@
     <Content Include="items.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Resource Include="Tools\Images\link90.png" />
+    <Resource Include="Tools\Images\outline.png" />
+    <Resource Include="Tools\Images\constrain.png" />
     <Resource Include="Tools\Images\eraser.png" />
     <Resource Include="Tools\Images\delete.png" />
     <Resource Include="Tools\Images\cursor.png" />

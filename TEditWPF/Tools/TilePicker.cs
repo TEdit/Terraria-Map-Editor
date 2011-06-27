@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
 using System.ComponentModel.Composition;
 using TEditWPF.Common;
 using TEditWPF.RenderWorld;
@@ -7,6 +8,7 @@ using TEditWPF.TerrariaWorld;
 namespace TEditWPF.Tools
 {
     [Export]
+    [Serializable]
     public class TilePicker : ObservableObject
     {
         public TilePicker()
@@ -31,12 +33,14 @@ namespace TEditWPF.Tools
             _IsEraser = false;
         }
 
+        [NonSerialized]
         private readonly ObservableCollection<TileColor> _walls = new ObservableCollection<TileColor>();
         public ObservableCollection<TileColor> Walls
         {
             get { return _walls; }
         }
 
+        [NonSerialized]
         private readonly ObservableCollection<TileColor> _tiles = new ObservableCollection<TileColor>();
         public ObservableCollection<TileColor> Tiles
         {
@@ -126,9 +130,9 @@ namespace TEditWPF.Tools
                 }
             }
         }
-
     }
 
+    [Serializable]
     public class TilePickerProperty : ObservableObject
     {
         private bool _IsActive;
@@ -160,6 +164,7 @@ namespace TEditWPF.Tools
         }
     }
 
+    [Serializable]
     public class TilePickerLiquidProperty : ObservableObject
     {
         private bool _IsActive;

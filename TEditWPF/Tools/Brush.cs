@@ -9,7 +9,6 @@ using TEditWPF.Common;
 using TEditWPF.RenderWorld;
 using TEditWPF.TerrariaWorld;
 using TEditWPF.TerrariaWorld.Structures;
-
 namespace TEditWPF.Tools
 {
     [Export(typeof (ITool))]
@@ -37,8 +36,6 @@ namespace TEditWPF.Tools
         private PointInt32 _startPoint;
         private bool _isActive;
         private bool _isRightDown;
-        private bool _isSnapDirectionSet = false;
-        private Orientation _snapDirection = Orientation.Horizontal;
 
         public Brush()
         {
@@ -85,6 +82,8 @@ namespace TEditWPF.Tools
                     {
                         _properties.MinHeight = 2;
                         _properties.MinWidth = 2;
+                        _properties.MaxHeight = 200;
+                        _properties.MaxWidth = 200;
                     }
                 }
             }
@@ -94,66 +93,51 @@ namespace TEditWPF.Tools
 
         public override bool PressTool(TileMouseEventArgs e)
         {
+            if (!_isRightDown && !_isLeftDown)
+                _startPoint = e.Tile;
+
+            CheckDirectionandDraw(e);  
             _isLeftDown = (e.LeftButton == MouseButtonState.Pressed);
             _isRightDown = (e.RightButton == MouseButtonState.Pressed);
-            _isSnapDirectionSet = false;
-            _startPoint = e.Tile;
-
             return true;
         }
 
         public override bool MoveTool(TileMouseEventArgs e)
         {
-
-            if (_isRightDown)
-            {
-                var p = e.Tile;
-
-                if (!_isSnapDirectionSet)
-                {
-                    if (Math.Abs(p.X - _startPoint.X) > Math.Abs(p.Y - _startPoint.Y))
-                        _snapDirection = Orientation.Horizontal;
-                    else
-                        _snapDirection = Orientation.Vertical;
-
-                    _isSnapDirectionSet = true;
-                }
-
-                if (_snapDirection == Orientation.Horizontal)
-                    p.Y = _startPoint.Y;
-                else
-                    p.X = _startPoint.X;
-
-                DrawLine(p);
-            }
-            else if (_isLeftDown)
-            {
-                DrawLine(e.Tile);
-            }
+            CheckDirectionandDraw(e);
             return false;
         }
 
         public override bool ReleaseTool(TileMouseEventArgs e)
         {
+            CheckDirectionandDraw(e);
+            _isLeftDown = (e.LeftButton == MouseButtonState.Pressed);
+            _isRightDown = (e.RightButton == MouseButtonState.Pressed);
+            return true;
+        }
+
+        private void CheckDirectionandDraw(TileMouseEventArgs e)
+        {
+            var p = e.Tile;
             if (_isRightDown)
             {
-                var p = e.Tile;
-                if (_snapDirection == Orientation.Horizontal)
-                    p.Y = _startPoint.Y;
-                else
+
+                if (_isLeftDown)
                     p.X = _startPoint.X;
+                else
+                    p.Y = _startPoint.Y;
 
                 DrawLine(p);
+                _startPoint = p;
             }
             else if (_isLeftDown)
             {
-                DrawLine(e.Tile);
+                DrawLine(p);
+                _startPoint = p;
             }
-
-            _isLeftDown = false;
-            _isRightDown = false;
-            return true;
         }
+
+
 
         public override WriteableBitmap PreviewTool()
         {
@@ -178,17 +162,52 @@ namespace TEditWPF.Tools
         {
             foreach (PointInt32 p in WorldRenderer.DrawLine(_startPoint, endPoint))
             {
+                if (_selection.SelectionVisibility == Visibility.Visible)
+                {
+                    // if selection is active, and point is not inside, skip point
+                    if (!_selection.Rectangle.Contains(p))
+                        continue;
+                }
 
-                //_world.Tiles[p.X, p.Y].IsActive = false;
+                // center
                 int x0 = p.X - _properties.Offset.X;
                 int y0 = p.Y - _properties.Offset.Y;
+
                 if (_properties.BrushShape == ToolBrushShape.Square)
+                {
                     _world.FillRectangle(new Int32Rect(x0, y0, _properties.Width, _properties.Height), _tilePicker);
+                    if (_properties.IsOutline)
+                    {
+                        // eraise a center section
+                        var eraser = Utility.DeepCopy(_tilePicker);
+                        eraser.IsEraser = true;
+                        eraser.Wall.IsActive = false; // don't erase the wall for the interrior
+                        _world.FillRectangle(new Int32Rect(x0 + _properties.OutlineThickness,
+                            y0 + _properties.OutlineThickness,
+                            _properties.Width - (_properties.OutlineThickness * 2), 
+                            _properties.Height - (_properties.OutlineThickness * 2)),eraser);
+                        eraser = null;
+                    }
+                }
                 else if (_properties.BrushShape == ToolBrushShape.Round)
-                    _world.FillEllipse(x0, y0, x0 + _properties.Width, y0+_properties.Height, _tilePicker);
+                {
+                    _world.FillEllipse(x0, y0, x0 + _properties.Width, y0 + _properties.Height, _tilePicker);
+                    if (_properties.IsOutline)
+                    {
+                        // eraise a center section
+                        var eraser = Utility.DeepCopy(_tilePicker);
+                        eraser.IsEraser = true;
+                        eraser.Wall.IsActive = false; // don't erase the wall for the interrior
+                        _world.FillEllipse(x0 + _properties.OutlineThickness,
+                            y0 + _properties.OutlineThickness,
+                            x0 + _properties.Width - _properties.OutlineThickness,
+                            y0 +_properties.Height - _properties.OutlineThickness, eraser);
+                        
+                        eraser = null;
+                    }
+                }
                 _renderer.UpdateWorldImage(new Int32Rect(x0, y0, _properties.Width+1, _properties.Height+1));
             }
-            _startPoint = endPoint;
         }
     }
 }

@@ -21,9 +21,15 @@
         </DataTemplate>
     </UserControl.Resources>
     <StackPanel Orientation="Horizontal">
-        <ToggleButton ToolTip="Eraser" IsChecked="{Binding Path=TilePicker.IsEraser, Mode=TwoWay}">
-            <Image Source="../Tools/Images/eraser.png" Height="32" Width="32"/>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="1*" />
+            </Grid.RowDefinitions>
+        <ToggleButton ToolTip="Eraser" IsChecked="{Binding Path=TilePicker.IsEraser, Mode=TwoWay}" Margin="2" Grid.Row="0">
+                <Image Source="../Tools/Images/eraser.png" Height="32" Width="32" RenderOptions.BitmapScalingMode="NearestNeighbor" Stretch="None" />
         </ToggleButton>
+        </Grid>
         <UniformGrid Columns="2" Rows="2" Width="400">
             <GroupBox>
                 <GroupBox.Header>

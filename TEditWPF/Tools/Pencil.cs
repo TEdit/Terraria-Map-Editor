@@ -96,65 +96,50 @@ namespace TEditWPF.Tools
 
         public override bool PressTool(TileMouseEventArgs e)
         {
+            if (!_isRightDown && !_isLeftDown)
+                _startPoint = e.Tile;
+
+            CheckDirectionandDraw(e);
             _isLeftDown = (e.LeftButton == MouseButtonState.Pressed);
             _isRightDown = (e.RightButton == MouseButtonState.Pressed);
-            _isSnapDirectionSet = false;
-            _startPoint = e.Tile;
-            
             return true;
         }
 
         public override bool MoveTool(TileMouseEventArgs e)
         {
-            
-            if (_isRightDown)
-            {
-                var p = e.Tile;
-
-                if (!_isSnapDirectionSet)
-                {
-                    if (Math.Abs(p.X - _startPoint.X) > Math.Abs(p.Y - _startPoint.Y))
-                        _snapDirection = Orientation.Horizontal;
-                    else
-                        _snapDirection = Orientation.Vertical;
-
-                    _isSnapDirectionSet = true;
-                }
-
-                if (_snapDirection== Orientation.Horizontal)
-                    p.Y = _startPoint.Y;
-                else
-                    p.X = _startPoint.X;
-
-                DrawLine(p);
-            }
-            else if (_isLeftDown)
-            {
-                DrawLine(e.Tile);
-            }
+            CheckDirectionandDraw(e);
             return false;
         }
 
         public override bool ReleaseTool(TileMouseEventArgs e)
         {
+            CheckDirectionandDraw(e);
+            _isLeftDown = (e.LeftButton == MouseButtonState.Pressed);
+            _isRightDown = (e.RightButton == MouseButtonState.Pressed);
+            return true;
+        }
+
+        private void CheckDirectionandDraw(TileMouseEventArgs e)
+        {
+            var p = e.Tile;
             if (_isRightDown)
             {
-                var p = e.Tile;
-                if (_snapDirection == Orientation.Horizontal)
-                    p.Y = _startPoint.Y;
-                else
+
+                if (_isLeftDown)
                     p.X = _startPoint.X;
+                else
+                    p.Y = _startPoint.Y;
 
                 DrawLine(p);
+                _startPoint = p;
             }
             else if (_isLeftDown)
             {
-                DrawLine(e.Tile);
+                DrawLine(p);
+                _startPoint = p;
             }
 
-            _isLeftDown = false;
-            _isRightDown = false;
-            return true;
+
         }
 
         public override WriteableBitmap PreviewTool()
@@ -169,7 +154,7 @@ namespace TEditWPF.Tools
 
 
             bmp.Clear();
-            bmp.SetPixel(0,0, 127,0,90,255);
+            bmp.SetPixel(0, 0, 127, 0, 90, 255);
             return bmp;
         }
 
@@ -177,10 +162,15 @@ namespace TEditWPF.Tools
         {
             foreach (PointInt32 p in WorldRenderer.DrawLine(_startPoint, endPoint))
             {
+                if (_selection.SelectionVisibility == Visibility.Visible)
+                {
+                    // if selection is active, and point is not inside, skip point
+                    if (!_selection.Rectangle.Contains(p))
+                        continue;
+                }
                 _world.SetTileXY(p.X, p.Y, _tilePicker);
                 _renderer.UpdateWorldImage(p);
             }
-            _startPoint = endPoint;
         }
     }
 }
