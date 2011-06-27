@@ -1,0 +1,105 @@
+﻿using System;
+using System.ComponentModel.Composition;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using TEditWPF.Common;
+using TEditWPF.TerrariaWorld;
+using TEditWPF.TerrariaWorld.Structures;
+
+namespace TEditWPF.Tools
+{
+    [Export(typeof (ITool))]
+    [PartCreationPolicy(CreationPolicy.Shared)]
+    [ExportMetadata("Order", 2)]
+    public class Selection : ToolBase
+    {
+        [Import] private ToolProperties _properties;
+        [Import] private SelectionArea _selection;
+
+
+        private PointInt32 _startselection;
+        [Import("World", typeof (World))] private World _world;
+
+        public Selection()
+        {
+            _Image = new BitmapImage(new Uri(@"pack://application:,,,/TEditWPF;component/Tools/Images/shape_square.png"));
+            _Name = "Selection";
+            _Type = ToolType.Selection;
+            IsActive = false;
+        }
+
+        #region Properties
+
+        private readonly BitmapImage _Image;
+        private readonly string _Name;
+
+        private readonly ToolType _Type;
+        private bool _IsActive;
+
+        public override string Name
+        {
+            get { return _Name; }
+        }
+
+        public override ToolType Type
+        {
+            get { return _Type; }
+        }
+
+        public override BitmapImage Image
+        {
+            get { return _Image; }
+        }
+
+        public override bool IsActive
+        {
+            get { return _IsActive; }
+            set
+            {
+                if (_IsActive != value)
+                {
+                    _IsActive = value;
+                    RaisePropertyChanged("IsActive");
+                }
+            }
+        }
+
+        #endregion
+
+        public override bool PressTool(TileMouseEventArgs e)
+        {
+            if (e.LeftButton == MouseButtonState.Pressed)
+                _startselection = e.Tile;
+            if (e.RightButton == MouseButtonState.Pressed && e.LeftButton == MouseButtonState.Released)
+            {
+                _selection.Deactive();
+            }
+            return true;
+        }
+
+        public override bool MoveTool(TileMouseEventArgs e)
+        {
+            if (e.LeftButton == MouseButtonState.Pressed)
+                _selection.SetRectangle(_startselection, e.Tile);
+            return false;
+        }
+
+        public override bool ReleaseTool(TileMouseEventArgs e)
+        {
+            // Do nothing on release
+            return true;
+        }
+
+        public override WriteableBitmap PreviewTool()
+        {
+            return new WriteableBitmap(
+                _properties.Width,
+                _properties.Height,
+                96,
+                96,
+                PixelFormats.Bgr32,
+                null);
+        }
+    }
+}

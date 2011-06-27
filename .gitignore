@@ -2,6 +2,10 @@
 #ignore thumbnails created by windows
 Thumbs.db
 #Ignore files build by Visual Studio
+Storage.dat
+Index.dat
+*.*.docstates
+*.gpState
 *.obj
 *.exe
 *.pdb
@@ -26,4 +30,6 @@ Thumbs.db
 obj/
 [Rr]elease*/
 _ReSharper*/
+*.ReSharper*
 [Tt]est[Rr]esult*
+*.docstates

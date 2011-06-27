@@ -5,26 +5,8 @@
 # Homepage: http://www.binaryconstruct.com/games/terraria/
 # binary: http://github.com/BinaryConstruct/Terraria-Map-Editor/downloads
 
-V2 soon...
+NOTE: THIS IS PRE-RELEASE AND DOES NOT HAVE ALL FEATURES. IT IS A DEMO OF THE TECHNOLOGY.
 
 Update History
-v1.0.1.5
-Terraria 1.0.5 compatibility patch
-
-v1.0.1.4
-Added middle-click-drag panning
-Added error logging
-
-v1.0.1.2
-Widened tile drop down to visualize whole names
-Added "Save As" functionality
-Added mouse over tile type to status bar
-
-v1.0.1.1
-Small updates to viewer
-
-v1.0.1.0
-Fixed pixel offset in view and using tool, everything should line up properly now
-
-v1.0.0.0
-initial release
+v2.0.0.0
+Complete rewrite using WPF for performance boost, previous history removed from log.
