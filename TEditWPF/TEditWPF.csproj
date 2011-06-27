@@ -72,6 +72,7 @@
     <Compile Include="Plugins\IPlugin.cs" />
     <Compile Include="Plugins\IPluginMetaData.cs" />
     <Compile Include="Plugins\SamplePlugin.cs" />
+    <Compile Include="RenderWorld\MarkerLocations.cs" />
     <Compile Include="RenderWorld\WorldImage.cs" />
     <Compile Include="TerrariaWorld\Structures\RectInt32.cs" />
     <Compile Include="TerrariaWorld\Structures\SizeInt32.cs" />
@@ -207,6 +208,15 @@
     <Content Include="items.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Resource Include="RenderWorld\Overlays\npc_armsdealer.png" />
+    <Resource Include="RenderWorld\Overlays\npc_clothier.png" />
+    <Resource Include="RenderWorld\Overlays\npc_dryad.png" />
+    <Resource Include="RenderWorld\Overlays\npc_explosives.png" />
+    <Resource Include="RenderWorld\Overlays\npc_guide.png" />
+    <Resource Include="RenderWorld\Overlays\npc_merchant.png" />
+    <Resource Include="RenderWorld\Overlays\npc_nurse.png" />
+    <Resource Include="RenderWorld\Overlays\dungeon_marker.png" />
+    <Resource Include="RenderWorld\Overlays\spawn_marker.png" />
     <Resource Include="Tools\Images\outline.png" />
     <Resource Include="Tools\Images\constrain.png" />
     <Resource Include="Tools\Images\eraser.png" />

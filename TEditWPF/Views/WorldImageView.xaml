@@ -43,6 +43,14 @@
                                     Fill="#A4005BFF" 
                                     IsHitTestVisible="False"
                                     Visibility="{Binding Path=Selection.SelectionVisibility}" />
+                            <Image Source="../RenderWorld/Overlays/spawn_marker.png" Canvas.Left="{Binding Path=Markers.Spawn.X}"  Canvas.Top="{Binding Path=Markers.Spawn.Y}" IsHitTestVisible="False" OpacityMask="#72000000" RenderOptions.BitmapScalingMode="NearestNeighbor" />
+                            <Image Source="../RenderWorld/Overlays/dungeon_marker.png" Canvas.Left="{Binding Path=Markers.Dungeon.X}"  Canvas.Top="{Binding Path=Markers.Dungeon.Y}" IsHitTestVisible="False" OpacityMask="#72000000" RenderOptions.BitmapScalingMode="NearestNeighbor" />
+                            <Image Source="../RenderWorld/Overlays/npc_guide.png" Canvas.Left="{Binding Path=Markers.Guide.X}"  Canvas.Top="{Binding Path=Markers.Guide.Y}" IsHitTestVisible="False" OpacityMask="#72000000" RenderOptions.BitmapScalingMode="NearestNeighbor" />
+                            <Image Source="../RenderWorld/Overlays/npc_merchant.png" Canvas.Left="{Binding Path=Markers.Merchant.X}"  Canvas.Top="{Binding Path=Markers.Merchant.Y}" IsHitTestVisible="False" OpacityMask="#72000000" RenderOptions.BitmapScalingMode="NearestNeighbor" />
+                            <Image Source="../RenderWorld/Overlays/npc_nurse.png" Canvas.Left="{Binding Path=Markers.Nurse.X}"  Canvas.Top="{Binding Path=Markers.Nurse.Y}" IsHitTestVisible="False" OpacityMask="#72000000" RenderOptions.BitmapScalingMode="NearestNeighbor" />
+                            <Image Source="../RenderWorld/Overlays/npc_armsdealer.png" Canvas.Left="{Binding Path=Markers.ArmsDealer.X}"  Canvas.Top="{Binding Path=Markers.ArmsDealer.Y}" IsHitTestVisible="False" OpacityMask="#72000000" RenderOptions.BitmapScalingMode="NearestNeighbor" />
+                            <Image Source="../RenderWorld/Overlays/npc_explosives.png" Canvas.Left="{Binding Path=Markers.ExplosiveVendor.X}"  Canvas.Top="{Binding Path=Markers.ExplosiveVendor.Y}" IsHitTestVisible="False" OpacityMask="#72000000" RenderOptions.BitmapScalingMode="NearestNeighbor" />
+                            <Image Source="../RenderWorld/Overlays/npc_clothier.png" Canvas.Left="{Binding Path=Markers.Clothier.X}"  Canvas.Top="{Binding Path=Markers.Clothier.Y}" IsHitTestVisible="False" OpacityMask="#72000000" RenderOptions.BitmapScalingMode="NearestNeighbor" />
                         </Controls:MeasurableCanvas>
                     </Grid>
                 </ScrollViewer.Content>

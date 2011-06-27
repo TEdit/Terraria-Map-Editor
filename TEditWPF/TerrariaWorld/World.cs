@@ -6,10 +6,10 @@ namespace TEditWPF.TerrariaWorld
     [PartCreationPolicy(CreationPolicy.Shared)]
     public partial class World
     {
-        private const int MaxChests = 1000;
-        private const int MaxSigns = 1000;
-        private const int MaxNpcs = 1000;
-        private const int CompatableVersion = 9;
+        public const int MaxChests = 1000;
+        public const int MaxSigns = 1000;
+        public const int MaxNpcs = 1000;
+        public const int CompatableVersion = 9;
         private Chest[] _chests = new Chest[MaxChests];
         private NPC[] _npcs = new NPC[MaxNpcs];
         private Sign[] _signs = new Sign[MaxSigns];
