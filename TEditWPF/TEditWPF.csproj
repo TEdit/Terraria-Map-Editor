@@ -1,0 +1,236 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{8170F410-6E4F-4EDC-8766-89CF316CECF8}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>TEditWPF</RootNamespace>
+    <AssemblyName>TEditWPF</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="Common\CustomCollections.cs" />
+    <Compile Include="Common\ObservableObject.cs" />
+    <Compile Include="Common\PropertySupport.cs" />
+    <Compile Include="Common\Int32RectExtensions.cs" />
+    <Compile Include="Common\RelayCommand.cs" />
+    <Compile Include="Controls\MeasurableCanvas.cs" />
+    <Compile Include="Controls\ScrollViewerThumbnail.cs" />
+    <Compile Include="Controls\DataBoundToggleButton.cs" />
+    <Compile Include="Controls\ThicknessMultiConverter.cs" />
+    <Compile Include="Plugins\IPlugin.cs" />
+    <Compile Include="Plugins\IPluginMetaData.cs" />
+    <Compile Include="Plugins\SamplePlugin.cs" />
+    <Compile Include="RenderWorld\WorldImage.cs" />
+    <Compile Include="TerrariaWorld\Structures\RectInt32.cs" />
+    <Compile Include="TerrariaWorld\Structures\SizeInt32.cs" />
+    <Compile Include="TerrariaWorld\WorldEditorExtensions.cs" />
+    <Compile Include="Tools\Arrow.cs" />
+    <Compile Include="Tools\Brush.cs" />
+    <None Include="Tools\Fill.cs" />
+    <Compile Include="Tools\IOrderMetadata.cs" />
+    <Compile Include="Tools\ITool.cs" />
+    <Compile Include="Common\TileMouseEventArgs.cs" />
+    <Compile Include="Tools\Pencil.cs" />
+    <Compile Include="Tools\Selection.cs" />
+    <Compile Include="Tools\SelectionArea.cs" />
+    <Compile Include="Tools\TilePicker.cs" />
+    <Compile Include="Tools\ToolAnchorMode.cs" />
+    <Compile Include="Tools\ToolBase.cs" />
+    <Compile Include="Tools\ToolProperties.cs" />
+    <Compile Include="Tools\ToolBrushShape.cs" />
+    <Compile Include="Tools\ToolType.cs" />
+    <Compile Include="RenderWorld\TileColors.cs" />
+    <Compile Include="RenderWorld\TileColor.cs" />
+    <Compile Include="RenderWorld\WorldRenderer.cs" />
+    <Compile Include="TerrariaWorld\Chest.cs" />
+    <Compile Include="TerrariaWorld\Item.cs" />
+    <Compile Include="TerrariaWorld\NPC.cs" />
+    <Compile Include="TerrariaWorld\Sign.cs" />
+    <Compile Include="TerrariaWorld\Structures\PointFloat.cs" />
+    <Compile Include="TerrariaWorld\Structures\PointInt32.cs" />
+    <Compile Include="TerrariaWorld\Structures\PointShort.cs" />
+    <Compile Include="TerrariaWorld\Structures\RectF.cs" />
+    <Compile Include="TerrariaWorld\Tile.cs" />
+    <Compile Include="TerrariaWorld\TileProperties.cs" />
+    <Compile Include="TerrariaWorld\World.cs" />
+    <Compile Include="TerrariaWorld\World.File.cs" />
+    <Compile Include="TerrariaWorld\WorldHeader.cs" />
+    <Compile Include="ViewModels\WorldViewModel.cs" />
+    <Compile Include="Views\StatusBarView.xaml.cs">
+      <DependentUpon>StatusBarView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\TilePickerView.xaml.cs">
+      <DependentUpon>TilePickerView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ToolPropertiesView.xaml.cs">
+      <DependentUpon>ToolPropertiesView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ToolSelectorView.xaml.cs">
+      <DependentUpon>ToolSelectorView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\WorldImageView.xaml.cs">
+      <DependentUpon>WorldImageView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WriteableBitmapEx\NativeMethods.cs" />
+    <Compile Include="WriteableBitmapEx\WriteableBitmapBaseExtensions.cs" />
+    <Compile Include="WriteableBitmapEx\WriteableBitmapFillExtensions.cs" />
+    <Compile Include="WriteableBitmapEx\WriteableBitmapShapeExtensions.cs" />
+    <Compile Include="WriteableBitmapEx\WriteableBitmapSplineExtensions.cs" />
+    <Compile Include="WriteableBitmapEx\WriteableBitmapTransformationExtensions.cs" />
+    <Page Include="Controls\ScrollViewerThumbnail.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <DependentUpon>ScrollViewerThumbnail.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Shell.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Common\ErrorLogging.cs" />
+    <Compile Include="Common\Utility.cs" />
+    <Compile Include="Shell.xaml.cs">
+      <DependentUpon>Shell.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Page Include="Views\StatusBarView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\TilePickerView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ToolPropertiesView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ToolSelectorView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\WorldImageView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <None Include="app.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <AppDesigner Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Plugins\Readme.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="colors.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="items.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Resource Include="Tools\Images\outline.png" />
+    <Resource Include="Tools\Images\constrain.png" />
+    <Resource Include="Tools\Images\eraser.png" />
+    <Resource Include="Tools\Images\delete.png" />
+    <Resource Include="Tools\Images\cursor.png" />
+    <Resource Include="Tools\Images\paintbrush.png" />
+    <Resource Include="Tools\Images\paintcan.png" />
+    <Resource Include="Tools\Images\paintcanpercent.png" />
+    <Resource Include="Tools\Images\pencil.png" />
+    <Resource Include="Tools\Images\shape_square.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="GPL.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Tools\Base\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
