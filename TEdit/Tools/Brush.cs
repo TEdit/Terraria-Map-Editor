@@ -35,11 +35,13 @@ namespace TEdit.Tools
         private bool _isLeftDown;
 
         private PointInt32 _startPoint;
+        private SizeInt32 _lastUsedSize;
         private bool _isActive;
         private bool _isRightDown;
 
         public Brush()
         {
+            _lastUsedSize = new SizeInt32(0, 0);
             _image = new BitmapImage(new Uri(@"pack://application:,,,/TEdit;component/Tools/Images/paintbrush.png"));
             _name = "Brush";
             _type = ToolType.Brush;
@@ -85,6 +87,17 @@ namespace TEdit.Tools
                         _properties.MinWidth = 2;
                         _properties.MaxHeight = 200;
                         _properties.MaxWidth = 200;
+
+                        if (_lastUsedSize.Width > 0 && _lastUsedSize.Height > 0)
+                        {
+                            _properties.Height = _lastUsedSize.Height;
+                            _properties.Width = _lastUsedSize.Width;
+                        }
+                    }
+                    else
+                    {
+                        if ((_properties.Height > 0 && _properties.Width > 0) && (_lastUsedSize.Width != _properties.Width || _lastUsedSize.Height != _properties.Height))
+                            _lastUsedSize = new SizeInt32(_properties.Height, _properties.Width);
                     }
                 }
             }
@@ -96,6 +109,9 @@ namespace TEdit.Tools
         {
             if (!_isRightDown && !_isLeftDown)
                 _startPoint = e.Tile;
+
+            if ((_properties.Height > 0 && _properties.Width > 0) && (_lastUsedSize.Width != _properties.Width || _lastUsedSize.Height != _properties.Height))
+                _lastUsedSize = new SizeInt32(_properties.Height, _properties.Width);
 
             CheckDirectionandDraw(e);  
             _isLeftDown = (e.LeftButton == MouseButtonState.Pressed);

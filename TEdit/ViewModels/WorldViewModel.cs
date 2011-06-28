@@ -146,11 +146,15 @@ namespace TEdit.ViewModels
             {
                 if (_ActiveTool != value)
                 {
+                    if (_ActiveTool != null)
+                        _ActiveTool.IsActive = false;
+
                     _ActiveTool = value;
-                    foreach (var tool in Tools)
-                    {
-                        tool.Value.IsActive = (tool.Value == _ActiveTool);
-                    }
+                    _ActiveTool.IsActive = true;
+                    //foreach (var tool in Tools)
+                    //{
+                    //    tool.Value.IsActive = (tool.Value == _ActiveTool);
+                    //}
 
                     ToolProperties.Image = null;
                     ToolProperties.Image = _ActiveTool.PreviewTool();
