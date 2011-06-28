@@ -86,6 +86,7 @@
     <Compile Include="Tools\Arrow.cs" />
     <Compile Include="Tools\Brush.cs" />
     <None Include="Tools\Fill.cs" />
+    <Compile Include="Tools\DungeonPointPicker.cs" />
     <Compile Include="Tools\IOrderMetadata.cs" />
     <Compile Include="Tools\ITool.cs" />
     <Compile Include="Common\TileMouseEventArgs.cs" />
@@ -220,6 +221,7 @@
     <Content Include="colors.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Resource Include="Tools\Images\dungeon_tool.png" />
     <Resource Include="Tools\Images\spawn.png" />
     <Resource Include="Images\tedit.ico" />
     <Content Include="items.txt">
