@@ -37,7 +37,7 @@ TILECOLORS
 16|Anvil|#ff00fff2
 17|Furnace|#ff00fff2
 18|Workbench|#ff00fff2
-19|WoodenPlatform|#ff563e2c
+19|WoodenPlatform|#ff6B3A18
 20|PlantsDecorative|#ff0d6524
 21|Chest|#ffFFD800
 22|Demonite|#ff625fa7
