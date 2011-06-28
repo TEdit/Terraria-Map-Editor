@@ -4,28 +4,30 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using TEdit.Common;
+using TEdit.RenderWorld;
 using TEdit.TerrariaWorld;
-using TEdit.TerrariaWorld.Structures;
 
 namespace TEdit.Tools
 {
-    [Export(typeof (ITool))]
+    [Export(typeof(ITool))]
     [PartCreationPolicy(CreationPolicy.Shared)]
-    [ExportMetadata("Order", 2)]
-    public class Selection : ToolBase
+    [ExportMetadata("Order", 6)]
+    public class SpawnPointPicker : ToolBase
     {
-        [Import] private ToolProperties _properties;
-        [Import] private SelectionArea _selection;
+        [Import]
+        private ToolProperties _properties;
 
+        [Import("World", typeof(World))]
+        private World _world;
 
-        private PointInt32 _startselection;
-        [Import("World", typeof (World))] private World _world;
+        [Import]
+        private MarkerLocations _Markers;
 
-        public Selection()
+        public SpawnPointPicker()
         {
-            _Image = new BitmapImage(new Uri(@"pack://application:,,,/TEdit;component/Tools/Images/shape_square.png"));
-            _Name = "Selection";
-            _Type = ToolType.Selection;
+            _Image = new BitmapImage(new Uri(@"pack://application:,,,/TEdit;component/Tools/Images/spawn.png"));
+            _Name = "Spawn Point Tool";
+            _Type = ToolType.Pencil;
             IsActive = false;
         }
 
@@ -77,25 +79,37 @@ namespace TEdit.Tools
         public override bool PressTool(TileMouseEventArgs e)
         {
             if (e.LeftButton == MouseButtonState.Pressed)
-                _startselection = e.Tile;
-            if (e.RightButton == MouseButtonState.Pressed && e.LeftButton == MouseButtonState.Released)
             {
-                _selection.Deactive();
+                SetSpawn(e);
             }
+
             return true;
         }
+
+
 
         public override bool MoveTool(TileMouseEventArgs e)
         {
             if (e.LeftButton == MouseButtonState.Pressed)
-                _selection.SetRectangle(_startselection, e.Tile);
-            return false;
+            {
+                SetSpawn(e);
+            }
+            return true;
+        }
+
+        private void SetSpawn(TileMouseEventArgs e)
+        {
+            if (!TileProperties.TileSolid[_world.Tiles[e.Tile.X, e.Tile.Y].Type] || !_world.Tiles[e.Tile.X, e.Tile.Y].IsActive)
+            {
+                _world.Header.SpawnTile = e.Tile;
+                _Markers.UpdateLocations(_world);
+            }
         }
 
         public override bool ReleaseTool(TileMouseEventArgs e)
         {
             // Do nothing on release
-            return true;
+            return false;
         }
 
         public override WriteableBitmap PreviewTool()

@@ -15,7 +15,7 @@ namespace TEdit.Tools
 
         public Arrow()
         {
-            _Image = new BitmapImage(new Uri(@"pack://application:,,,/TEditWPF;component/Tools/Images/cursor.png"));
+            _Image = new BitmapImage(new Uri(@"pack://application:,,,/TEdit;component/Tools/Images/cursor.png"));
             _Name = "Arrow";
             _Type = ToolType.Arrow;
             IsActive = false;

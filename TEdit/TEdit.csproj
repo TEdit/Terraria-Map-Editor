@@ -92,6 +92,7 @@
     <Compile Include="Tools\Pencil.cs" />
     <Compile Include="Tools\Selection.cs" />
     <Compile Include="Tools\SelectionArea.cs" />
+    <Compile Include="Tools\SpawnPointPicker.cs" />
     <Compile Include="Tools\TilePicker.cs" />
     <Compile Include="Tools\ToolAnchorMode.cs" />
     <Compile Include="Tools\ToolBase.cs" />
@@ -219,6 +220,7 @@
     <Content Include="colors.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Resource Include="Tools\Images\spawn.png" />
     <Resource Include="Images\tedit.ico" />
     <Content Include="items.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

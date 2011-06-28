@@ -40,7 +40,7 @@ namespace TEdit.Tools
 
         public Brush()
         {
-            _image = new BitmapImage(new Uri(@"pack://application:,,,/TEditWPF;component/Tools/Images/paintbrush.png"));
+            _image = new BitmapImage(new Uri(@"pack://application:,,,/TEdit;component/Tools/Images/paintbrush.png"));
             _name = "Brush";
             _type = ToolType.Brush;
             _isActive = false;
