@@ -7,7 +7,7 @@
 using System.Windows;
 using System.Windows.Controls.Primitives;
 
-namespace TEditWPF.Controls
+namespace TEdit.Controls
 {
     /// <summary>
     /// TODO: Update summary.

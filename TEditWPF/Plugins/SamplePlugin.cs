@@ -1,8 +1,8 @@
 ﻿using System;
 using System.ComponentModel.Composition;
-using TEditWPF.TerrariaWorld;
+using TEdit.TerrariaWorld;
 
-namespace TEditWPF.Plugins
+namespace TEdit.Plugins
 {
     [Export(typeof (IPlugin))]
     public class SamplePlugin : IPlugin

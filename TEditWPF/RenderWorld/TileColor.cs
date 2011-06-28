@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Windows.Media;
-using TEditWPF.Common;
+using TEdit.Common;
 
-namespace TEditWPF.RenderWorld
+namespace TEdit.RenderWorld
 {
     [Serializable]
     public class TileColor : ObservableObject

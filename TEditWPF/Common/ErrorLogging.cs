@@ -1,8 +1,8 @@
 ﻿using System;
 using System.IO;
-using TEditWPF.Properties;
+using TEdit.Properties;
 
-namespace TEditWPF.Common
+namespace TEdit.Common
 {
     public static class ErrorLogging
     {

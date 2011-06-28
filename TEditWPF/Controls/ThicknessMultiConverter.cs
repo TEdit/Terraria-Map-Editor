@@ -9,7 +9,7 @@ using System.Globalization;
 using System.Windows;
 using System.Windows.Data;
 
-namespace TEditWPF.Controls
+namespace TEdit.Controls
 {
     public class ThicknessMultiConverter : IMultiValueConverter
     {

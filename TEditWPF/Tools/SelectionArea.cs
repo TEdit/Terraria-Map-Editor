@@ -1,10 +1,10 @@
 ﻿using System;
 using System.ComponentModel.Composition;
 using System.Windows;
-using TEditWPF.Common;
-using TEditWPF.TerrariaWorld.Structures;
+using TEdit.Common;
+using TEdit.TerrariaWorld.Structures;
 
-namespace TEditWPF.Tools
+namespace TEdit.Tools
 {
     [Export]
     [PartCreationPolicy(CreationPolicy.Shared)]

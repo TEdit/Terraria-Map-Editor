@@ -3,7 +3,7 @@ using System.Globalization;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 
-namespace TEditWPF.Common
+namespace TEdit.Common
 {
     public static class Utility
     {

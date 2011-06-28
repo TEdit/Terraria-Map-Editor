@@ -1,9 +1,9 @@
 ﻿using System.ComponentModel.Composition;
 using System.Windows;
 using System.Windows.Media.Imaging;
-using TEditWPF.Common;
+using TEdit.Common;
 
-namespace TEditWPF.RenderWorld
+namespace TEdit.RenderWorld
 {
     [Export]
     [PartCreationPolicy(CreationPolicy.Shared)]

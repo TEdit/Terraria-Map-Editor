@@ -1,4 +1,4 @@
-﻿namespace TEditWPF.Plugins
+﻿namespace TEdit.Plugins
 {
     public interface IPlugin
     {

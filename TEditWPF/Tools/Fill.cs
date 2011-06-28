@@ -2,9 +2,9 @@
 using System.ComponentModel.Composition;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using TEditWPF.Common;
+using TEdit.Common;
 
-namespace TEditWPF.Tools
+namespace TEdit.Tools
 {
     [Export(typeof (ITool))]
     [PartCreationPolicy(CreationPolicy.Shared)]

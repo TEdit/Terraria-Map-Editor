@@ -8,13 +8,13 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using Microsoft.Win32;
-using TEditWPF.Common;
-using TEditWPF.RenderWorld;
-using TEditWPF.TerrariaWorld;
-using TEditWPF.TerrariaWorld.Structures;
-using TEditWPF.Tools;
+using TEdit.Common;
+using TEdit.RenderWorld;
+using TEdit.TerrariaWorld;
+using TEdit.TerrariaWorld.Structures;
+using TEdit.Tools;
 
-namespace TEditWPF.ViewModels
+namespace TEdit.ViewModels
 {
     [Export]
     public class WorldViewModel : ObservableObject, IPartImportsSatisfiedNotification

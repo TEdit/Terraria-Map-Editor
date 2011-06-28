@@ -10,7 +10,7 @@ using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Linq;
 
-namespace TEditWPF.Common
+namespace TEdit.Common
 {
     public class FilteringCollection<T, M> : AdaptingCollection<T, M>
     {

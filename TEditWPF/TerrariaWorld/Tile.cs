@@ -1,6 +1,6 @@
-﻿using TEditWPF.TerrariaWorld.Structures;
+﻿using TEdit.TerrariaWorld.Structures;
 
-namespace TEditWPF.TerrariaWorld
+namespace TEdit.TerrariaWorld
 {
     public class Tile
     {

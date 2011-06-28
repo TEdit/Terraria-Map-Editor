@@ -1,8 +1,8 @@
 ﻿using System;
-using TEditWPF.Common;
-using TEditWPF.TerrariaWorld.Structures;
+using TEdit.Common;
+using TEdit.TerrariaWorld.Structures;
 
-namespace TEditWPF.TerrariaWorld
+namespace TEdit.TerrariaWorld
 {
     public class Sign : ObservableObject
     {

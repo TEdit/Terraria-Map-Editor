@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel;
 
-namespace TEditWPF.Plugins
+namespace TEdit.Plugins
 {
     public interface IPluginMetaData
     {

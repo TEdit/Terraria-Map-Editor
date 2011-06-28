@@ -1,7 +1,7 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
 
-namespace TEditWPF.Controls
+namespace TEdit.Controls
 {
     public class MeasurableCanvas : Canvas
     {

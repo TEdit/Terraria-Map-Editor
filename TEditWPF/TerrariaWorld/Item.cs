@@ -1,6 +1,6 @@
-﻿using TEditWPF.Common;
+﻿using TEdit.Common;
 
-namespace TEditWPF.TerrariaWorld
+namespace TEdit.TerrariaWorld
 {
     public class Item : ObservableObject
     {

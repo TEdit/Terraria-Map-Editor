@@ -1,7 +1,7 @@
 ﻿using System.Windows.Media.Imaging;
-using TEditWPF.Common;
+using TEdit.Common;
 
-namespace TEditWPF.Tools
+namespace TEdit.Tools
 {
     public interface ITool
     {

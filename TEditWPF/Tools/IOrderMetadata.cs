@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 
-namespace TEditWPF.Tools
+namespace TEdit.Tools
 {
     public interface IOrderMetadata
     {

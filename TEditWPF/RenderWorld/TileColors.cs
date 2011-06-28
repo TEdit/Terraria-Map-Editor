@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Windows.Media;
 
-namespace TEditWPF.RenderWorld
+namespace TEdit.RenderWorld
 {
     public static class TileColors
     {

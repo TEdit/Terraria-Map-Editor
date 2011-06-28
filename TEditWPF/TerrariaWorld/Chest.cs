@@ -1,18 +1,19 @@
 ﻿using System;
 using System.Collections.ObjectModel;
-using TEditWPF.Common;
-using TileMouseEventArgs = TEditWPF.TerrariaWorld.Structures.PointInt32;
+using TEdit.Common;
+using TEdit.TerrariaWorld.Structures;
+using TileMouseEventArgs = TEdit.TerrariaWorld.Structures.PointInt32;
 
-namespace TEditWPF.TerrariaWorld
+namespace TEdit.TerrariaWorld
 {
     public class Chest : ObservableObject
     {
         public static int MaxItems = 20;
         private readonly ObservableCollection<Item> _Items = new ObservableCollection<Item>();
 
-        private TileMouseEventArgs _Location;
+        private PointInt32 _Location;
 
-        public TileMouseEventArgs Location
+        public PointInt32 Location
         {
             get { return _Location; }
             set

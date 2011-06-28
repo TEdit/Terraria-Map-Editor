@@ -12,7 +12,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace TEditWPF.Views
+namespace TEdit.Views
 {
     /// <summary>
     /// Interaction logic for ToolPropertiesView.xaml

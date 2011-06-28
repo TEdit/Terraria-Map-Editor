@@ -5,12 +5,12 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using TEditWPF.Common;
-using TEditWPF.RenderWorld;
-using TEditWPF.TerrariaWorld;
-using TEditWPF.TerrariaWorld.Structures;
+using TEdit.Common;
+using TEdit.RenderWorld;
+using TEdit.TerrariaWorld;
+using TEdit.TerrariaWorld.Structures;
 
-namespace TEditWPF.Tools
+namespace TEdit.Tools
 {
     [Export(typeof(ITool))]
     [PartCreationPolicy(CreationPolicy.Shared)]

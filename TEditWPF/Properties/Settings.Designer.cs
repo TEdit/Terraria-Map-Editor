@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace TEditWPF.Properties {
+namespace TEdit.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
@@ -25,7 +25,7 @@ namespace TEditWPF.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("exceptiontracelog.txt")]
+        [global::System.Configuration.DefaultSettingValueAttribute("\r\n        exceptiontracelog.txt\r\n      ")]
         public string LogFile {
             get {
                 return ((string)(this["LogFile"]));

@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.Composition;
 
-namespace TEditWPF.TerrariaWorld
+namespace TEdit.TerrariaWorld
 {
     [Export("World", typeof (World))]
     [PartCreationPolicy(CreationPolicy.Shared)]

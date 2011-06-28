@@ -6,10 +6,10 @@
 
 using System.ComponentModel.Composition;
 using System.Windows;
-using TEditWPF.TerrariaWorld.Structures;
-using TEditWPF.Tools;
+using TEdit.TerrariaWorld.Structures;
+using TEdit.Tools;
 
-namespace TEditWPF.TerrariaWorld
+namespace TEdit.TerrariaWorld
 {
     using System;
     using System.Collections.Generic;

@@ -1,11 +1,11 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-using TEditWPF.Common;
-using TEditWPF.TerrariaWorld.Structures;
-using TEditWPF.ViewModels;
+using TEdit.Common;
+using TEdit.TerrariaWorld.Structures;
+using TEdit.ViewModels;
 
-namespace TEditWPF.Views
+namespace TEdit.Views
 {
     /// <summary>
     /// Interaction logic for WorldImageView.xaml

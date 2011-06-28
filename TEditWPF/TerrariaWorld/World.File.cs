@@ -1,9 +1,9 @@
 ﻿using System;
 using System.ComponentModel;
 using System.IO;
-using TEditWPF.TerrariaWorld.Structures;
+using TEdit.TerrariaWorld.Structures;
 
-namespace TEditWPF.TerrariaWorld
+namespace TEdit.TerrariaWorld
 {
     public partial class World
     {

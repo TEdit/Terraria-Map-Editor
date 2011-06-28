@@ -2,7 +2,7 @@
 using System.Linq.Expressions;
 using System.Reflection;
 
-namespace TEditWPF.Common
+namespace TEdit.Common
 {
     public static class PropertySupport
     {

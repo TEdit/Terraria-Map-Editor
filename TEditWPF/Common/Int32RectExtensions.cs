@@ -1,7 +1,7 @@
 ﻿using System.Windows;
-using TEditWPF.TerrariaWorld.Structures;
+using TEdit.TerrariaWorld.Structures;
 
-namespace TEditWPF.Common
+namespace TEdit.Common
 {
     public static class Int32RectExtensions
     {

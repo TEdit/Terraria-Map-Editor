@@ -1,6 +1,6 @@
 ﻿using System.Windows.Controls;
 
-namespace TEditWPF.Views
+namespace TEdit.Views
 {
     /// <summary>
     /// Interaction logic for StatusBarView.xaml

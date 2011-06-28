@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace TEditWPF.TerrariaWorld.Structures
+namespace TEdit.TerrariaWorld.Structures
 {
     public struct PointShort
     {

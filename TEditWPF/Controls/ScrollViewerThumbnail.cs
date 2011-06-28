@@ -5,7 +5,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Shapes;
 
-namespace TEditWPF.Controls
+namespace TEdit.Controls
 {
     /// <summary>
     /// Interaction logic for ScrollViewerThumbnail.xaml

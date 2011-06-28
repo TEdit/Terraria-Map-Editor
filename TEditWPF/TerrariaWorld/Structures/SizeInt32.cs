@@ -1,7 +1,7 @@
 ﻿using System;
-using TEditWPF.Common;
+using TEdit.Common;
 
-namespace TEditWPF.TerrariaWorld.Structures
+namespace TEdit.TerrariaWorld.Structures
 {
     public class SizeInt32 : ObservableObject
     {

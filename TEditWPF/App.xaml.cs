@@ -3,7 +3,7 @@ using System.ComponentModel.Composition.Hosting;
 using System.Reflection;
 using System.Windows;
 
-namespace TEditWPF
+namespace TEdit
 {
     /// <summary>
     /// Interaction logic for App.xaml

@@ -1,6 +1,6 @@
 ﻿using System.Linq;
 
-namespace TEditWPF.TerrariaWorld
+namespace TEdit.TerrariaWorld
 {
     public static class TileProperties
     {

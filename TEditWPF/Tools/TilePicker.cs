@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel.Composition;
-using TEditWPF.Common;
-using TEditWPF.RenderWorld;
-using TEditWPF.TerrariaWorld;
+using TEdit.Common;
+using TEdit.RenderWorld;
+using TEdit.TerrariaWorld;
 
-namespace TEditWPF.Tools
+namespace TEdit.Tools
 {
     [Export]
     [Serializable]

@@ -1,9 +1,9 @@
 ﻿using System.ComponentModel.Composition;
-using TEditWPF.Common;
-using TEditWPF.TerrariaWorld;
-using TEditWPF.TerrariaWorld.Structures;
+using TEdit.Common;
+using TEdit.TerrariaWorld;
+using TEdit.TerrariaWorld.Structures;
 
-namespace TEditWPF.RenderWorld
+namespace TEdit.RenderWorld
 {
     [Export]
     public class MarkerLocations : ObservableObject

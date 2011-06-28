@@ -9,9 +9,9 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq.Expressions;
 using System.Windows.Media.Imaging;
-using TEditWPF.Common;
+using TEdit.Common;
 
-namespace TEditWPF.Tools
+namespace TEdit.Tools
 {
     /// <summary>
     /// TODO: Update summary.

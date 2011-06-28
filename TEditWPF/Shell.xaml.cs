@@ -1,8 +1,8 @@
 ﻿using System.ComponentModel.Composition;
 using System.Windows;
-using TEditWPF.ViewModels;
+using TEdit.ViewModels;
 
-namespace TEditWPF
+namespace TEdit
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml

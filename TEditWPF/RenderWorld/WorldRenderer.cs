@@ -5,10 +5,10 @@ using System.ComponentModel.Composition;
 using System.Windows;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using TEditWPF.TerrariaWorld;
-using TEditWPF.TerrariaWorld.Structures;
+using TEdit.TerrariaWorld;
+using TEdit.TerrariaWorld.Structures;
 
-namespace TEditWPF.RenderWorld
+namespace TEdit.RenderWorld
 {
     [Export]
     [PartCreationPolicy(CreationPolicy.Shared)]
