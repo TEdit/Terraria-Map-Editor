@@ -85,7 +85,7 @@
                 <CheckBox x:Name="enableLiquid" Content="Paint Liquid" IsChecked="{Binding Path=TilePicker.Liquid.IsActive, Mode=TwoWay}" Margin="1"/>
             </GroupBox.Header>
             <StackPanel IsEnabled="{Binding Path=TilePicker.Liquid.IsActive}" Margin="0,3,0,0">
-                <RadioButton Content="Water" Margin="2"/>
+                <RadioButton Content="Water" Margin="2" IsChecked="True" />
                 <RadioButton Content="Lava"  Margin="2" IsChecked="{Binding Path=TilePicker.Liquid.IsLava}" />
             </StackPanel>
         </GroupBox>
