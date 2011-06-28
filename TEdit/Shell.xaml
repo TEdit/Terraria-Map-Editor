@@ -7,10 +7,12 @@
             <Button  Content="Load World" Height="23" Width="75" Command="{Binding Path=OpenWorldCommand}" />
             <Button  Content="Save World" Height="23" Width="75" Command="{Binding Path=SaveWorldCommand}" />
         </StackPanel>
-        <StackPanel DockPanel.Dock="Top" Orientation="Horizontal">
-            <views:ToolPropertiesView x:Name="toolPropreties1"  Height="110" />
-            <views:TilePickerView x:Name="tilePickerView1"  Height="110" />
+        <ScrollViewer DockPanel.Dock="Top" VerticalScrollBarVisibility="Disabled" HorizontalScrollBarVisibility="Auto">
+        <StackPanel Orientation="Horizontal">
+            <views:ToolPropertiesView x:Name="toolPropreties1"  Height="110" Margin="0,1"/>
+                <views:TilePickerView x:Name="tilePickerView1"  Height="110"  Margin="0,1" />
         </StackPanel>
+        </ScrollViewer>
         <views:StatusBarView DockPanel.Dock="Bottom" />
         <views:ToolSelectorView DockPanel.Dock="Left" />
         <Expander Header="Tools" ExpandDirection="Left" IsExpanded="False" Grid.Row="1" DockPanel.Dock="Right">
