@@ -62,6 +62,13 @@ namespace TEdit.Tools
                     _IsActive = value;
                     RaisePropertyChanged("IsActive");
                 }
+                if (_IsActive)
+                {
+                    _properties.MinHeight = 1;
+                    _properties.MinWidth = 1;
+                    _properties.MaxHeight = 1;
+                    _properties.MaxWidth = 1;
+                }
             }
         }
 
@@ -94,8 +101,8 @@ namespace TEdit.Tools
         public override WriteableBitmap PreviewTool()
         {
             return new WriteableBitmap(
-                _properties.Width,
-                _properties.Height,
+                1,
+                1,
                 96,
                 96,
                 PixelFormats.Bgr32,
