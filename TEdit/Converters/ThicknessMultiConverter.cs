@@ -1,4 +1,4 @@
-﻿// -----------------------------------------------------------------------
+// -----------------------------------------------------------------------
 // <copyright file="ThicknessMultiConverter.cs" company="Microsoft">
 // TODO: Update copyright text.
 // </copyright>
@@ -9,7 +9,7 @@ using System.Globalization;
 using System.Windows;
 using System.Windows.Data;
 
-namespace TEdit.Controls
+namespace TEdit.Converters
 {
     public class ThicknessMultiConverter : IMultiValueConverter
     {

@@ -2,7 +2,16 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:vm="clr-namespace:TEdit.ViewModels"
-             xmlns:Controls="clr-namespace:TEdit.Controls" mc:Ignorable="d" d:DesignHeight="300" d:DesignWidth="300">
+             xmlns:Controls="clr-namespace:TEdit.Controls"
+             xmlns:conv="clr-namespace:TEdit.Converters"
+             mc:Ignorable="d" d:DesignHeight="300" d:DesignWidth="300">
+    <UserControl.Resources>
+        <conv:DoublePercentageConverter x:Key="DoublePercentConv" />
+        <TransformGroup x:Key="MarkerTransform">
+            <ScaleTransform ScaleX="{Binding ZoomInverted}" ScaleY="{Binding ZoomInverted}" />
+            <TranslateTransform X="-10" Y="-34" />
+        </TransformGroup>
+    </UserControl.Resources>
     <Grid d:DataContext="{d:DesignInstance vm:WorldViewModel}">
         <Grid.RowDefinitions>
             <RowDefinition Height="1*" />
@@ -43,14 +52,27 @@
                                     Fill="#A4005BFF" 
                                     IsHitTestVisible="False"
                                     Visibility="{Binding Path=Selection.SelectionVisibility}" />
-                            <Image Source="../RenderWorld/Overlays/spawn_marker.png" Canvas.Left="{Binding Path=Markers.Spawn.X}"  Canvas.Top="{Binding Path=Markers.Spawn.Y}" IsHitTestVisible="False" OpacityMask="#72000000" RenderOptions.BitmapScalingMode="NearestNeighbor" />
-                            <Image Source="../RenderWorld/Overlays/dungeon_marker.png" Canvas.Left="{Binding Path=Markers.Dungeon.X}"  Canvas.Top="{Binding Path=Markers.Dungeon.Y}" IsHitTestVisible="False" OpacityMask="#72000000" RenderOptions.BitmapScalingMode="NearestNeighbor" />
-                            <Image Source="../RenderWorld/Overlays/npc_guide.png" Canvas.Left="{Binding Path=Markers.Guide.X}"  Canvas.Top="{Binding Path=Markers.Guide.Y}" IsHitTestVisible="False" OpacityMask="#72000000" RenderOptions.BitmapScalingMode="NearestNeighbor" />
-                            <Image Source="../RenderWorld/Overlays/npc_merchant.png" Canvas.Left="{Binding Path=Markers.Merchant.X}"  Canvas.Top="{Binding Path=Markers.Merchant.Y}" IsHitTestVisible="False" OpacityMask="#72000000" RenderOptions.BitmapScalingMode="NearestNeighbor" />
-                            <Image Source="../RenderWorld/Overlays/npc_nurse.png" Canvas.Left="{Binding Path=Markers.Nurse.X}"  Canvas.Top="{Binding Path=Markers.Nurse.Y}" IsHitTestVisible="False" OpacityMask="#72000000" RenderOptions.BitmapScalingMode="NearestNeighbor" />
-                            <Image Source="../RenderWorld/Overlays/npc_armsdealer.png" Canvas.Left="{Binding Path=Markers.ArmsDealer.X}"  Canvas.Top="{Binding Path=Markers.ArmsDealer.Y}" IsHitTestVisible="False" OpacityMask="#72000000" RenderOptions.BitmapScalingMode="NearestNeighbor" />
-                            <Image Source="../RenderWorld/Overlays/npc_explosives.png" Canvas.Left="{Binding Path=Markers.ExplosiveVendor.X}"  Canvas.Top="{Binding Path=Markers.ExplosiveVendor.Y}" IsHitTestVisible="False" OpacityMask="#72000000" RenderOptions.BitmapScalingMode="NearestNeighbor" />
-                            <Image Source="../RenderWorld/Overlays/npc_clothier.png" Canvas.Left="{Binding Path=Markers.Clothier.X}"  Canvas.Top="{Binding Path=Markers.Clothier.Y}" IsHitTestVisible="False" OpacityMask="#72000000" RenderOptions.BitmapScalingMode="NearestNeighbor" />
+
+                            <Image Source="../RenderWorld/Overlays/spawn_marker.png" Canvas.Left="{Binding Path=World.Header.SpawnTile.X}" Canvas.Top="{Binding Path=World.Header.SpawnTile.Y}"  IsHitTestVisible="False" OpacityMask="#A0000000" RenderTransformOrigin="0.5,1" RenderTransform="{DynamicResource MarkerTransform}"/>
+                            <Image Source="../RenderWorld/Overlays/dungeon_marker.png" Canvas.Left="{Binding Path=World.Header.DungeonEntrance.X}"  Canvas.Top="{Binding Path=World.Header.DungeonEntrance.Y}" IsHitTestVisible="False" OpacityMask="#A0000000" RenderTransformOrigin="0.5,1" RenderTransform="{DynamicResource MarkerTransform}" />
+                            <ItemsControl ItemsSource="{Binding Path=World.Npcs}">
+                                <ItemsControl.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <Canvas HorizontalAlignment="Stretch" VerticalAlignment="Stretch" IsItemsHost="True"/>
+                                    </ItemsPanelTemplate>
+                                </ItemsControl.ItemsPanel>
+                                <ItemsControl.ItemContainerStyle>
+                                    <Style TargetType="ContentPresenter">
+                                        <Setter Property="Canvas.Left" Value="{Binding Path=HomeTile.X}" />
+                                        <Setter Property="Canvas.Top" Value="{Binding Path=HomeTile.Y}" />
+                                    </Style>
+                                </ItemsControl.ItemContainerStyle>
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <Image Source="{Binding Path=ImagePath}" IsHitTestVisible="False" OpacityMask="#A0000000" RenderTransformOrigin="0.5,1" RenderTransform="{DynamicResource MarkerTransform}" />
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
                         </Controls:MeasurableCanvas>
                     </Grid>
                 </ScrollViewer.Content>
@@ -61,7 +83,10 @@
             <!--<Slider Minimum=".05" Maximum="50" Value="{Binding Path=Zoom}" Width="100" />-->
 
             <Border BorderBrush="Black" BorderThickness="1" Margin="1" Padding="1">
-                <TextBlock Text="{Binding Path=Zoom, StringFormat=Zoom: {0:0%}}" />
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Zoom: " VerticalAlignment="Center" Margin="2,0"/>
+                    <TextBox Text="{Binding Path=Zoom,Mode=TwoWay, StringFormat={}{0:0%}, Converter={StaticResource DoublePercentConv}}" />
+                </StackPanel>
             </Border>
             <Border BorderBrush="Black" BorderThickness="1" Margin="1" Padding="1">
                 <TextBlock Text="{Binding Path=MouseOverTile, StringFormat={}{0}}" />

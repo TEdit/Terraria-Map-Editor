@@ -17,6 +17,11 @@ namespace TEdit.TerrariaWorld
         private string _Name;
         private PointFloat _Position;
 
+        public string ImagePath
+        {
+            get { return "../RenderWorld/Overlays/npc_" + _Name.ToLower().Replace(' ', '_') + ".png"; }
+        }
+
         public string Name
         {
             get { return _Name; }
@@ -26,6 +31,7 @@ namespace TEdit.TerrariaWorld
                 {
                     _Name = value;
                     RaisePropertyChanged("Name");
+                    RaisePropertyChanged("ImagePath");
                 }
             }
         }

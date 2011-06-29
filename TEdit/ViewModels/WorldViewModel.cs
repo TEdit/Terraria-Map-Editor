@@ -68,23 +68,6 @@ namespace TEdit.ViewModels
         [Import]
         private SelectionArea _Selection;
 
-        [Import]
-        private MarkerLocations _Markers;
-        public MarkerLocations Markers
-        {
-            get { return this._Markers; }
-            set
-            {
-                if (this._Markers != value)
-                {
-                    this._Markers = value;
-                    this.RaisePropertyChanged("Markers");
-                }
-            }
-        }
-
-
-
         public WorldViewModel()
         {
             _uiScheduler = TaskScheduler.FromCurrentSynchronizationContext();
@@ -245,10 +228,16 @@ namespace TEdit.ViewModels
                 {
                     _Zoom = limitedZoom;
                     RaisePropertyChanged("Zoom");
+                    RaisePropertyChanged("ZoomInverted");
                     RaisePropertyChanged("WorldZoomedHeight");
                     RaisePropertyChanged("WorldZoomedWidth");
                 }
             }
+        }
+
+        public double ZoomInverted
+        {
+            get { return 1 / (_Zoom ); }
         }
 
         [Import]
@@ -487,7 +476,6 @@ namespace TEdit.ViewModels
                                                                       {
                                                                           WorldImage.Image = img.Clone();
                                                                           img = null;
-                                                                          Markers.UpdateLocations(this.World);
                                                                           RaisePropertyChanged("WorldZoomedHeight");
                                                                           RaisePropertyChanged("WorldZoomedWidth");
                                                                       });
@@ -509,11 +497,15 @@ namespace TEdit.ViewModels
         private void OnMouseOverPixel(TileMouseEventArgs e)
         {
             MouseOverTile = e.Tile;
-            
-            Tile overTile = world.Tiles[e.Tile.X, e.Tile.Y];
 
-            if (overTile != null)
+            if (e.Tile.X  < world.Header.MaxTiles.X &&
+                e.Tile.Y  < world.Header.MaxTiles.X &&
+                e.Tile.X  >= 0 &&
+                e.Tile.Y  >= 0)
             {
+                Tile overTile = world.Tiles[e.Tile.X, e.Tile.Y];
+
+            
                 string wallName = TileColors.Walls[overTile.Wall].Name;
                 string tileName = overTile.IsActive ? TileColors.Tiles[overTile.Type].Name : "[empty]";
                 string fluidname = "[no fluid]";

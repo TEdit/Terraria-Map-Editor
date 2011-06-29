@@ -1,10 +1,13 @@
-﻿using System.ComponentModel.Composition;
+﻿using System.Collections.ObjectModel;
+using System.ComponentModel.Composition;
+using System.Windows.Threading;
+using TEdit.Common;
 
 namespace TEdit.TerrariaWorld
 {
     [Export("World", typeof (World))]
     [PartCreationPolicy(CreationPolicy.Shared)]
-    public partial class World
+    public partial class World : ObservableObject
     {
         public const int MaxChests = 1000;
         public const int MaxSigns = 1000;
@@ -14,41 +17,56 @@ namespace TEdit.TerrariaWorld
         private NPC[] _npcs = new NPC[MaxNpcs];
         private Sign[] _signs = new Sign[MaxSigns];
         private Tile[,] _tiles;
-
         public World()
         {
             Header = new WorldHeader();
             ClearWorld();
         }
 
-        public WorldHeader Header { get; set; }
+        private WorldHeader _Header;
+        public WorldHeader Header
+        {
+            get { return this._Header; }
+            set
+            {
+                if (this._Header != value)
+                {
+                    this._Header = value;
+                    this.RaisePropertyChanged("Header");
+                }
+            }
+        }
 
         public Tile[,] Tiles
         {
             get { return _tiles; }
         }
 
-        public Chest[] Chests
+        private readonly ObservableCollectionEx<Chest> _Chests = new ObservableCollectionEx<Chest>();
+        public ObservableCollection<Chest> Chests
         {
-            get { return _chests; }
+            get { return _Chests; }
         }
 
-        public Sign[] Signs
+        private readonly ObservableCollectionEx<Sign> _Signs = new ObservableCollectionEx<Sign>();
+        public ObservableCollection<Sign> Signs
         {
-            get { return _signs; }
+            get { return _Signs; }
         }
 
-        public NPC[] Npcs
+        private readonly ObservableCollectionEx<NPC> _Npcs = new ObservableCollectionEx<NPC>();
+        public ObservableCollection<NPC> Npcs
         {
-            get { return _npcs; }
+            get { return _Npcs; }
         }
 
         public void ClearWorld()
         {
             _tiles = new Tile[Header.MaxTiles.X,Header.MaxTiles.Y];
-            _chests = new Chest[MaxChests];
-            _signs = new Sign[MaxSigns];
-            _npcs = new NPC[MaxNpcs];
+            
+            Chests.Clear();
+            Signs.Clear();
+            Npcs.Clear();
         }
 
         public void ResetTime()

@@ -20,9 +20,6 @@ namespace TEdit.Tools
         [Import("World", typeof(World))]
         private World _world;
 
-        [Import]
-        private MarkerLocations _Markers;
-
         public SpawnPointPicker()
         {
             _Image = new BitmapImage(new Uri(@"pack://application:,,,/TEdit;component/Tools/Images/spawn.png"));
@@ -102,7 +99,6 @@ namespace TEdit.Tools
             if (!TileProperties.TileSolid[_world.Tiles[e.Tile.X, e.Tile.Y].Type] || !_world.Tiles[e.Tile.X, e.Tile.Y].IsActive)
             {
                 _world.Header.SpawnTile = e.Tile;
-                _Markers.UpdateLocations(_world);
             }
         }
 

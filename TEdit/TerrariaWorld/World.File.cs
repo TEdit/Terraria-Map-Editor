@@ -123,7 +123,8 @@ namespace TEdit.TerrariaWorld
                                 chest.Items.Add(item);
                             }
 
-                            Chests[chestIndex] = chest;
+                            //Chests[chestIndex] = chest;
+                            Chests.Add(chest);
                         }
                     }
                     for (int signIndex = 0; signIndex < MaxSigns; signIndex++)
@@ -143,7 +144,8 @@ namespace TEdit.TerrariaWorld
                                 sign.Location = new PointInt32(x, y);
                                 sign.Text = signText;
 
-                                Signs[signIndex] = sign;
+                                //Signs[signIndex] = sign;
+                                Signs.Add(sign);
                             }
                         }
                     }
@@ -159,8 +161,8 @@ namespace TEdit.TerrariaWorld
                         npc.IsHomeless = reader.ReadBoolean();
                         npc.HomeTile = new PointInt32(reader.ReadInt32(), reader.ReadInt32());
 
-                        Npcs[npcIndex] = npc;
-
+                        //Npcs[npcIndex] = npc;
+                        Npcs.Add(npc);
                         isNpcActive = reader.ReadBoolean();
                     }
 
@@ -267,7 +269,8 @@ namespace TEdit.TerrariaWorld
                     }
                     for (int chestIndex = 0; chestIndex < MaxChests; chestIndex++)
                     {
-                        if (Chests[chestIndex] == null)
+                        //if (Chests[chestIndex] == null)
+                        if (chestIndex >= Chests.Count)
                         {
                             writer.Write(false);
                         }
@@ -288,7 +291,8 @@ namespace TEdit.TerrariaWorld
                     }
                     for (int signIndex = 0; signIndex < MaxSigns; signIndex++)
                     {
-                        if (Signs[signIndex] == null)
+                        //if (Signs[signIndex] == null)
+                        if (signIndex >= Signs.Count)
                         {
                             writer.Write(false);
                         }
@@ -306,11 +310,12 @@ namespace TEdit.TerrariaWorld
                     }
                     foreach (NPC npc in Npcs)
                     {
-                        if (npc == null)
-                        {
-                            writer.Write(false);
-                            break;
-                        }
+                        // removed for list, add for array
+                        //if (npc == null)
+                        //{
+                        //    writer.Write(false);
+                        //    break;
+                        //}
 
                         writer.Write(true);
                         writer.Write(npc.Name);
@@ -320,7 +325,7 @@ namespace TEdit.TerrariaWorld
                         writer.Write(npc.HomeTile.X);
                         writer.Write(npc.HomeTile.Y);
                     }
-
+                    writer.Write(false);
 
                     // Write file info check version 7+
                     writer.Write(true);
