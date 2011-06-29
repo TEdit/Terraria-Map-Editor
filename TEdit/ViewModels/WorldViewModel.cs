@@ -417,7 +417,7 @@ namespace TEdit.ViewModels
 
         public bool CanSave()
         {
-            return _world.CanUseFileIO;
+            return !string.Equals(_world.Header.WorldName, "No World Loaded", StringComparison.InvariantCultureIgnoreCase) && _world.CanUseFileIO;
         }
 
         private void LoadWorldandRender()

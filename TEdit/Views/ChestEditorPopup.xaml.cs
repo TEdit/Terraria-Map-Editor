@@ -17,10 +17,15 @@ namespace TEdit.Views
 
         private void Popup_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            IsOpen = false;
+            //IsOpen = false;
         }
 
         private void Popup_MouseLeave(object sender, MouseEventArgs e)
+        {
+            //IsOpen = false;
+        }
+
+        private void ClosePopup(object sender, System.Windows.RoutedEventArgs e)
         {
             IsOpen = false;
         }

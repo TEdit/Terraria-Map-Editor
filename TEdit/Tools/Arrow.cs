@@ -82,6 +82,7 @@ namespace TEdit.Tools
 
         public override bool PressTool(TileMouseEventArgs e)
         {
+
             return false;
         }
 
@@ -97,7 +98,7 @@ namespace TEdit.Tools
                 _chestPopup.IsOpen = false;
                 _chestPopup = null;
             }
-            if (_chestPopup != null)
+            if (_signPopup != null)
             {
                 _signPopup.IsOpen = false;
                 _signPopup = null;

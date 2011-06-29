@@ -205,6 +205,7 @@ namespace TEdit.TerrariaWorld
 
         public void SaveFile(string filename)
         {
+
             CanUseFileIO = false;
             string backupFileName = filename + ".Tedit";
             if (File.Exists(filename))
