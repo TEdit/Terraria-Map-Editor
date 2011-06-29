@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.ComponentModel.Composition;
 using System.Windows.Input;
 using System.Windows.Media;
@@ -6,21 +6,21 @@ using System.Windows.Media.Imaging;
 using TEdit.Common;
 using TEdit.TerrariaWorld;
 
-namespace TEdit.Tools
+namespace TEdit.Tools.Tool
 {
     [Export(typeof (ITool))]
     [PartCreationPolicy(CreationPolicy.Shared)]
-    [ExportMetadata("Order", 7)]
-    public class DungeonPointPicker : ToolBase
+    [ExportMetadata("Order", 6)]
+    public class SpawnPointPicker : ToolBase
     {
         [Import] private ToolProperties _properties;
 
         [Import("World", typeof (World))] private World _world;
 
-        public DungeonPointPicker()
+        public SpawnPointPicker()
         {
-            _Image = new BitmapImage(new Uri(@"pack://application:,,,/TEdit;component/Images/Tools/dungeon_tool.png"));
-            _Name = "Dungeon Point Tool";
+            _Image = new BitmapImage(new Uri(@"pack://application:,,,/TEdit;component/Images/Tools/spawn.png"));
+            _Name = "Spawn Point Tool";
             _Type = ToolType.Pencil;
             IsActive = false;
         }
@@ -95,7 +95,7 @@ namespace TEdit.Tools
             if (!TileProperties.TileSolid[_world.Tiles[e.Tile.X, e.Tile.Y].Type] ||
                 !_world.Tiles[e.Tile.X, e.Tile.Y].IsActive)
             {
-                _world.Header.DungeonEntrance = e.Tile;
+                _world.Header.SpawnTile = e.Tile;
             }
         }
 

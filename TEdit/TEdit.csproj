@@ -84,17 +84,10 @@
     <Compile Include="TerrariaWorld\Structures\RectInt32.cs" />
     <Compile Include="TerrariaWorld\Structures\SizeInt32.cs" />
     <Compile Include="TerrariaWorld\WorldEditorExtensions.cs" />
-    <Compile Include="Tools\Arrow.cs" />
-    <Compile Include="Tools\Brush.cs" />
-    <None Include="Tools\Fill.cs" />
-    <Compile Include="Tools\DungeonPointPicker.cs" />
     <Compile Include="Tools\IOrderMetadata.cs" />
     <Compile Include="Tools\ITool.cs" />
     <Compile Include="Common\TileMouseEventArgs.cs" />
-    <Compile Include="Tools\Pencil.cs" />
-    <Compile Include="Tools\Selection.cs" />
     <Compile Include="Tools\SelectionArea.cs" />
-    <Compile Include="Tools\SpawnPointPicker.cs" />
     <Compile Include="Tools\TilePicker.cs" />
     <Compile Include="Tools\ToolAnchorMode.cs" />
     <Compile Include="Tools\ToolBase.cs" />
@@ -117,6 +110,13 @@
     <Compile Include="TerrariaWorld\World.cs" />
     <Compile Include="TerrariaWorld\World.File.cs" />
     <Compile Include="TerrariaWorld\WorldHeader.cs" />
+    <Compile Include="Tools\Tool\Arrow.cs" />
+    <Compile Include="Tools\Tool\Brush.cs" />
+    <Compile Include="Tools\Tool\DungeonPointPicker.cs" />
+    <Compile Include="Tools\Tool\Paste.cs" />
+    <Compile Include="Tools\Tool\Pencil.cs" />
+    <Compile Include="Tools\Tool\Selection.cs" />
+    <Compile Include="Tools\Tool\SpawnPointPicker.cs" />
     <Compile Include="ViewModels\WorldViewModel.cs" />
     <Compile Include="Views\ChestsContentsPopup.xaml.cs">
       <DependentUpon>ChestsContentsPopup.xaml</DependentUpon>
@@ -272,6 +272,7 @@
     <Resource Include="Images\Tools\pencil.png" />
     <Resource Include="Images\Tools\shape_square.png" />
     <Resource Include="Images\Tools\spawn.png" />
+    <Resource Include="Images\Tools\paste.png" />
     <Content Include="items.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

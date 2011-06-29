@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.ComponentModel.Composition;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
@@ -22,6 +23,8 @@ namespace TEdit.ViewModels
         private readonly TaskFactory _uiFactory;
         private readonly TaskScheduler _uiScheduler;
 
+        private ICommand _copyToClipboard;
+        private ICommand _pasteFromClipboard;
         private ICommand _mouseDownCommand;
         private ICommand _mouseMoveCommand;
         private ICommand _mouseUpCommand;
@@ -115,6 +118,10 @@ namespace TEdit.ViewModels
             get { return _activeTool; }
             set
             {
+                // Block paste tool if no buffer
+                if (value.Name == "Paste" && !CanActivatePasteTool())
+                    return;
+
                 if (_activeTool != value)
                 {
                     if (_activeTool != null)
@@ -237,6 +244,39 @@ namespace TEdit.ViewModels
                     RaisePropertyChanged("IsMouseContained");
                 }
             }
+        }
+
+        public ICommand CopyToClipboard
+        {
+            get { return _copyToClipboard ?? (_copyToClipboard = new RelayCommand(SetClipBoard, CanSetClipboard)); }
+        }
+
+        public ICommand PasteFromClipboard
+        {
+            get { return _pasteFromClipboard ?? (_pasteFromClipboard = new RelayCommand(ActivatePasteTool, CanActivatePasteTool)); }
+        }
+
+        private void SetClipBoard()
+        {
+            
+        }
+
+        private bool CanSetClipboard()
+        {
+            return (Selection.SelectionVisibility == Visibility.Visible);
+        }
+
+        private void ActivatePasteTool()
+        {
+            ITool pasteTool = Tools.FirstOrDefault(x => x.Value.Name == "Paste").Value;
+            if (pasteTool != null)
+                this.ActiveTool = pasteTool;
+        }
+
+        private bool CanActivatePasteTool()
+        {
+            // if buffer has contents return true
+            return false;
         }
 
         public ICommand SetTool

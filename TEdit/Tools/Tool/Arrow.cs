@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.ComponentModel.Composition;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
@@ -6,7 +6,7 @@ using TEdit.Common;
 using TEdit.TerrariaWorld;
 using TEdit.Views;
 
-namespace TEdit.Tools
+namespace TEdit.Tools.Tool
 {
     [Export(typeof(ITool))]
     [PartCreationPolicy(CreationPolicy.Shared)]

@@ -5,26 +5,24 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using TEdit.Common;
 using TEdit.TerrariaWorld;
-using TEdit.TerrariaWorld.Structures;
 
-namespace TEdit.Tools
+namespace TEdit.Tools.Tool
 {
-    [Export(typeof (ITool))]
+    [Export(typeof(ITool))]
     [PartCreationPolicy(CreationPolicy.Shared)]
     [ExportMetadata("Order", 2)]
-    public class Selection : ToolBase
+    public class Paste : ToolBase
     {
-        [Import] private ToolProperties _properties;
-        [Import] private SelectionArea _selection;
+        [Import]
+        private ToolProperties _properties;
 
+        [Import("World", typeof(World))]
+        private World _world;
 
-        private PointInt32 _startselection;
-        [Import("World", typeof (World))] private World _world;
-
-        public Selection()
+        public Paste()
         {
-            _Image = new BitmapImage(new Uri(@"pack://application:,,,/TEdit;component/Images/Tools/shape_square.png"));
-            _Name = "Selection";
+            _Image = new BitmapImage(new Uri(@"pack://application:,,,/TEdit;component/Images/Tools/paste.png"));
+            _Name = "Paste";
             _Type = ToolType.Selection;
             IsActive = false;
         }
@@ -66,8 +64,8 @@ namespace TEdit.Tools
                 {
                     _properties.MinHeight = 1;
                     _properties.MinWidth = 1;
-                    _properties.MaxHeight = 1;
-                    _properties.MaxWidth = 1;
+                    _properties.MaxHeight = int.MaxValue;
+                    _properties.MaxWidth = int.MaxValue;
                 }
             }
         }
@@ -76,26 +74,20 @@ namespace TEdit.Tools
 
         public override bool PressTool(TileMouseEventArgs e)
         {
-            if (e.LeftButton == MouseButtonState.Pressed)
-                _startselection = e.Tile;
-            if (e.RightButton == MouseButtonState.Pressed && e.LeftButton == MouseButtonState.Released)
-            {
-                _selection.Deactive();
-            }
-            return true;
+            PasteClipboard(e);
+            return false;
         }
+
 
         public override bool MoveTool(TileMouseEventArgs e)
         {
-            if (e.LeftButton == MouseButtonState.Pressed)
-                _selection.SetRectangle(_startselection, e.Tile);
             return false;
         }
 
         public override bool ReleaseTool(TileMouseEventArgs e)
         {
             // Do nothing on release
-            return true;
+            return false;
         }
 
         public override WriteableBitmap PreviewTool()
@@ -107,6 +99,11 @@ namespace TEdit.Tools
                 96,
                 PixelFormats.Bgr32,
                 null);
+        }
+
+        private void PasteClipboard(TileMouseEventArgs e)
+        {
+
         }
     }
 }
