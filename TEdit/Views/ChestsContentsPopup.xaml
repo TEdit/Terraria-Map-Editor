@@ -1,0 +1,17 @@
+﻿<Popup x:Class="TEdit.Views.ChestsContentsPopup"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Placement="Mouse" MouseDown="Popup_MouseDown" MouseLeave="Popup_MouseLeave">
+    <StackPanel Background="#FF666666" >
+        <TextBlock Text="Chest Contents:" Foreground="White" Margin="2" FontWeight="Bold" />
+        <ItemsControl Name="ChestList" Padding="5" Foreground="White">
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal" Visibility="{Binding Path=IsVisible}">
+                        <TextBlock Text="{Binding Path=Name}" />
+                    </StackPanel>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+    </StackPanel>
+</Popup>

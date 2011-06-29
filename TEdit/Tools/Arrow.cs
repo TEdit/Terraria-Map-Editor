@@ -3,6 +3,8 @@ using System.ComponentModel.Composition;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using TEdit.Common;
+using TEdit.TerrariaWorld;
+using TEdit.Views;
 
 namespace TEdit.Tools
 {
@@ -12,6 +14,8 @@ namespace TEdit.Tools
     public class Arrow : ToolBase
     {
         [Import] private ToolProperties _properties;
+        [Import("World", typeof(World))]
+        private World _world;
 
         public Arrow()
         {
@@ -53,6 +57,13 @@ namespace TEdit.Tools
                 {
                     _IsActive = value;
                     RaisePropertyChanged("IsActive");
+                    if (_IsActive)
+                    {
+                        _properties.MinHeight = 1;
+                        _properties.MinWidth = 1;
+                        _properties.MaxHeight = 1;
+                        _properties.MaxWidth = 1;
+                    }
                 }
             }
         }
@@ -71,18 +82,41 @@ namespace TEdit.Tools
 
         public override bool ReleaseTool(TileMouseEventArgs e)
         {
+            foreach (var c in _world.Chests)
+            {
+                //chests are 2x2, and their x/y is upper left corner
+                if ((c.Location.X == e.Tile.X || c.Location.X + 1 == e.Tile.X) && (c.Location.Y == e.Tile.Y || c.Location.Y + 1 == e.Tile.Y))
+                {
+                    var chestPop = new ChestsContentsPopup(c);
+                    chestPop.IsOpen = true;
+                }
+            }
+            //foreach (Sign s in signs)
+            //{
+            //    //signs are 2x2, and their x/y is upper left corner
+            //    if ((s.x == sx || s.x + 1 == sx) && (s.y == sy || s.y + 1 == sy))
+            //    {
+            //        signPop = new SignPopup(s.text);
+            //        signPop.IsOpen = true;
+            //    }
+            //}
             return false;
         }
 
         public override WriteableBitmap PreviewTool()
         {
-            return new WriteableBitmap(
-                _properties.Width,
-                _properties.Height,
-                96,
-                96,
-                PixelFormats.Bgr32,
-                null);
+            var bmp = new WriteableBitmap(
+                    1,
+                    1,
+                    96,
+                    96,
+                    PixelFormats.Bgra32,
+                    null);
+
+
+            bmp.Clear();
+            bmp.SetPixel(0, 0, 127, 0, 90, 255);
+            return bmp;
         }
     }
 }

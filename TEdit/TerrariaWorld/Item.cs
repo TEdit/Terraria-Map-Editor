@@ -1,4 +1,5 @@
-﻿using TEdit.Common;
+﻿using System.Windows;
+using TEdit.Common;
 
 namespace TEdit.TerrariaWorld
 {
@@ -41,7 +42,16 @@ namespace TEdit.TerrariaWorld
                 {
                     _Name = value;
                     RaisePropertyChanged("Name");
+                    this.RaisePropertyChanged("IsVisible");
                 }
+            }
+        }
+
+        public Visibility IsVisible
+        {
+            get
+            {
+                return this.Name == "[empty]" ? Visibility.Collapsed : Visibility.Visible;
             }
         }
 

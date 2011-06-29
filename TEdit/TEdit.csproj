@@ -118,6 +118,9 @@
     <Compile Include="TerrariaWorld\World.File.cs" />
     <Compile Include="TerrariaWorld\WorldHeader.cs" />
     <Compile Include="ViewModels\WorldViewModel.cs" />
+    <Compile Include="Views\ChestsContentsPopup.xaml.cs">
+      <DependentUpon>ChestsContentsPopup.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\StatusBarView.xaml.cs">
       <DependentUpon>StatusBarView.xaml</DependentUpon>
     </Compile>
@@ -163,6 +166,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Themes\GroupBoxFix.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ChestsContentsPopup.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
