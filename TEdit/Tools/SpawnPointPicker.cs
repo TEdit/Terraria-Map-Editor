@@ -4,21 +4,18 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using TEdit.Common;
-using TEdit.RenderWorld;
 using TEdit.TerrariaWorld;
 
 namespace TEdit.Tools
 {
-    [Export(typeof(ITool))]
+    [Export(typeof (ITool))]
     [PartCreationPolicy(CreationPolicy.Shared)]
     [ExportMetadata("Order", 6)]
     public class SpawnPointPicker : ToolBase
     {
-        [Import]
-        private ToolProperties _properties;
+        [Import] private ToolProperties _properties;
 
-        [Import("World", typeof(World))]
-        private World _world;
+        [Import("World", typeof (World))] private World _world;
 
         public SpawnPointPicker()
         {
@@ -84,7 +81,6 @@ namespace TEdit.Tools
         }
 
 
-
         public override bool MoveTool(TileMouseEventArgs e)
         {
             if (e.LeftButton == MouseButtonState.Pressed)
@@ -96,7 +92,8 @@ namespace TEdit.Tools
 
         private void SetSpawn(TileMouseEventArgs e)
         {
-            if (!TileProperties.TileSolid[_world.Tiles[e.Tile.X, e.Tile.Y].Type] || !_world.Tiles[e.Tile.X, e.Tile.Y].IsActive)
+            if (!TileProperties.TileSolid[_world.Tiles[e.Tile.X, e.Tile.Y].Type] ||
+                !_world.Tiles[e.Tile.X, e.Tile.Y].IsActive)
             {
                 _world.Header.SpawnTile = e.Tile;
             }

@@ -11,122 +11,121 @@ namespace TEdit.Tools
     [Serializable]
     public class TilePicker : ObservableObject
     {
+        [NonSerialized] private readonly ObservableCollection<TileColor> _tiles = new ObservableCollection<TileColor>();
+        [NonSerialized] private readonly ObservableCollection<TileColor> _walls = new ObservableCollection<TileColor>();
+        private bool _IsEraser;
+        private TilePickerLiquidProperty _Liquid;
+        private TilePickerProperty _Tile;
+        private TilePickerProperty _TileMask;
+        private TilePickerProperty _Wall;
+        private TilePickerProperty _WallMask;
+
         public TilePicker()
         {
-            for (int i = 0; i < TerrariaWorld.TileProperties.MaxWallTypes; i++)
+            for (int i = 0; i < TileProperties.MaxWallTypes; i++)
             {
                 _walls.Add(TileColors.Walls[i]);
             }
 
-            for (int i = 0; i < TerrariaWorld.TileProperties.MaxTileTypes; i++)
+            for (int i = 0; i < TileProperties.MaxTileTypes; i++)
             {
                 if (TileProperties.TileSolid[i])
                     _tiles.Add(TileColors.Tiles[i]);
             }
 
-            _Wall = new TilePickerProperty { IsActive = false, Value = 0 };
-            _Tile = new TilePickerProperty { IsActive = true, Value = 0 };
-            _Liquid = new TilePickerLiquidProperty { IsActive = false, IsLava = false};
+            _Wall = new TilePickerProperty {IsActive = false, Value = 0};
+            _Tile = new TilePickerProperty {IsActive = true, Value = 0};
+            _Liquid = new TilePickerLiquidProperty {IsActive = false, IsLava = false};
 
-            _WallMask = new TilePickerProperty { IsActive = false, Value = 0 };
-            _TileMask = new TilePickerProperty { IsActive = false, Value = 0 };
+            _WallMask = new TilePickerProperty {IsActive = false, Value = 0};
+            _TileMask = new TilePickerProperty {IsActive = false, Value = 0};
             _IsEraser = false;
         }
 
-        [NonSerialized]
-        private readonly ObservableCollection<TileColor> _walls = new ObservableCollection<TileColor>();
         public ObservableCollection<TileColor> Walls
         {
             get { return _walls; }
         }
 
-        [NonSerialized]
-        private readonly ObservableCollection<TileColor> _tiles = new ObservableCollection<TileColor>();
         public ObservableCollection<TileColor> Tiles
         {
             get { return _tiles; }
         }
 
-        private bool _IsEraser;
         public bool IsEraser
         {
-            get { return this._IsEraser; }
+            get { return _IsEraser; }
             set
             {
-                if (this._IsEraser != value)
+                if (_IsEraser != value)
                 {
-                    this._IsEraser = value;
-                    this.RaisePropertyChanged("IsEraser");
+                    _IsEraser = value;
+                    RaisePropertyChanged("IsEraser");
                 }
             }
         }
 
-        private TilePickerProperty _Wall;
         public TilePickerProperty Wall
         {
-            get { return this._Wall; }
+            get { return _Wall; }
             set
             {
-                if (this._Wall != value)
+                if (_Wall != value)
                 {
-                    this._Wall = value;
-                    this.RaisePropertyChanged("Wall");
+                    _Wall = value;
+                    RaisePropertyChanged("Wall");
                 }
             }
         }
 
-        private TilePickerProperty _Tile;
         public TilePickerProperty Tile
         {
-            get { return this._Tile; }
+            get { return _Tile; }
             set
             {
-                if (this._Tile != value)
+                if (_Tile != value)
                 {
-                    this._Tile = value;
-                    this.RaisePropertyChanged("Tile");
+                    _Tile = value;
+                    RaisePropertyChanged("Tile");
                 }
             }
         }
 
-        private TilePickerLiquidProperty _Liquid;
         public TilePickerLiquidProperty Liquid
         {
-            get { return this._Liquid; }
+            get { return _Liquid; }
             set
             {
-                if (this._Liquid != value)
+                if (_Liquid != value)
                 {
-                    this._Liquid = value;
-                    this.RaisePropertyChanged("Liquid");
+                    _Liquid = value;
+                    RaisePropertyChanged("Liquid");
                 }
             }
         }
 
-        private TilePickerProperty _WallMask;
         public TilePickerProperty WallMask
         {
-            get { return this._WallMask; }
+            get { return _WallMask; }
             set
             {
-                if (this._WallMask != value)
+                if (_WallMask != value)
                 {
-                    this._WallMask = value;
-                    this.RaisePropertyChanged("WallMask");
+                    _WallMask = value;
+                    RaisePropertyChanged("WallMask");
                 }
             }
         }
 
-        private TilePickerProperty _TileMask;
         public TilePickerProperty TileMask
         {
-            get { return this._TileMask; }
+            get { return _TileMask; }
             set
             {
-                if (this._TileMask != value)
+                if (_TileMask != value)
                 {
-                    this._TileMask = value;
-                    this.RaisePropertyChanged("TileMask");
+                    _TileMask = value;
+                    RaisePropertyChanged("TileMask");
                 }
             }
         }
@@ -136,29 +135,31 @@ namespace TEdit.Tools
     public class TilePickerProperty : ObservableObject
     {
         private bool _IsActive;
+
+        private byte _value;
+
         public bool IsActive
         {
-            get { return this._IsActive; }
+            get { return _IsActive; }
             set
             {
-                if (this._IsActive != value)
+                if (_IsActive != value)
                 {
-                    this._IsActive = value;
-                    this.RaisePropertyChanged("IsActive");
+                    _IsActive = value;
+                    RaisePropertyChanged("IsActive");
                 }
             }
         }
 
-        private byte _value;
         public byte Value
         {
-            get { return this._value; }
+            get { return _value; }
             set
             {
-                if (this._value != value)
+                if (_value != value)
                 {
-                    this._value = value;
-                    this.RaisePropertyChanged("Value");
+                    _value = value;
+                    RaisePropertyChanged("Value");
                 }
             }
         }
@@ -168,29 +169,31 @@ namespace TEdit.Tools
     public class TilePickerLiquidProperty : ObservableObject
     {
         private bool _IsActive;
+
+        private bool _IsLava;
+
         public bool IsActive
         {
-            get { return this._IsActive; }
+            get { return _IsActive; }
             set
             {
-                if (this._IsActive != value)
+                if (_IsActive != value)
                 {
-                    this._IsActive = value;
-                    this.RaisePropertyChanged("IsActive");
+                    _IsActive = value;
+                    RaisePropertyChanged("IsActive");
                 }
             }
         }
 
-        private bool _IsLava;
         public bool IsLava
         {
-            get { return this._IsLava; }
+            get { return _IsLava; }
             set
             {
-                if (this._IsLava != value)
+                if (_IsLava != value)
                 {
-                    this._IsLava = value;
-                    this.RaisePropertyChanged("IsLava");
+                    _IsLava = value;
+                    RaisePropertyChanged("IsLava");
                 }
             }
         }

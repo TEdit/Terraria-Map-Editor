@@ -37,22 +37,22 @@ namespace TEdit.TerrariaWorld
                                PointShort? frame = null)
         {
             if (isActive != null)
-                IsActive = (bool)isActive;
+                IsActive = (bool) isActive;
 
             if (wall != null)
                 Wall = (byte) wall;
 
             if (type != null)
-                Type = (byte)type;
+                Type = (byte) type;
 
             if (liquid != null)
-                Liquid = (byte)liquid;
+                Liquid = (byte) liquid;
 
             if (isLava != null)
-                IsLava = (bool)isLava;
+                IsLava = (bool) isLava;
 
             if (frame != null)
-                Frame = (PointShort)frame;
+                Frame = (PointShort) frame;
         }
 
         public override string ToString()
@@ -62,7 +62,7 @@ namespace TEdit.TerrariaWorld
 
         public object Clone()
         {
-            return this.MemberwiseClone();
+            return MemberwiseClone();
         }
     }
 }

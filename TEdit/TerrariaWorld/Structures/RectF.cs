@@ -53,13 +53,13 @@ namespace TEdit.TerrariaWorld.Structures
 
         public bool Contains(int x, int y)
         {
-            if (x < this.Left)
+            if (x < Left)
                 return false;
-            if (x > this.Right)
+            if (x > Right)
                 return false;
-            if (y < this.Top)
+            if (y < Top)
                 return false;
-            if (y > this.Bottom)
+            if (y > Bottom)
                 return false;
 
             return true;
@@ -69,7 +69,6 @@ namespace TEdit.TerrariaWorld.Structures
         {
             return String.Format("[{0}, {1}]", TopLeft, BottomRight);
         }
-
 
         #region Operator Overrides
 

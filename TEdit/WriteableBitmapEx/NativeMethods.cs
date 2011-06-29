@@ -1,5 +1,4 @@
-﻿using System;
-using System.Runtime.InteropServices;
+﻿using System.Runtime.InteropServices;
 
 namespace System.Windows.Media.Imaging
 {
@@ -9,9 +8,9 @@ namespace System.Windows.Media.Imaging
         {
             unsafe
             {
-                var srcPtr = (byte*)src.ToPointer();
+                var srcPtr = (byte*) src.ToPointer();
                 srcPtr += srcOffset;
-                var dstPtr = (byte*)dst.ToPointer();
+                var dstPtr = (byte*) dst.ToPointer();
                 dstPtr += dstOffset;
 
                 memcpy(dstPtr, srcPtr, count);
@@ -20,15 +19,13 @@ namespace System.Windows.Media.Imaging
 
         public static void SetUnmanagedMemory(IntPtr dst, int filler, int count)
         {
-            unsafe
-            {
-                memset(dst, filler, count);
-            }
+            memset(dst, filler, count);
         }
 
         // Win32 memory copy function
         //[DllImport("ntdll.dll")]
-        [DllImport("msvcrt.dll", EntryPoint = "memcpy", CallingConvention = CallingConvention.Cdecl, SetLastError = false)]
+        [DllImport("msvcrt.dll", EntryPoint = "memcpy", CallingConvention = CallingConvention.Cdecl,
+            SetLastError = false)]
         private static extern unsafe byte* memcpy(
             byte* dst,
             byte* src,
@@ -37,7 +34,8 @@ namespace System.Windows.Media.Imaging
         // Win32 memory set function
         //[DllImport("ntdll.dll")]
         //[DllImport("coredll.dll", EntryPoint = "memset", SetLastError = false)]
-        [DllImport("msvcrt.dll", EntryPoint = "memset", CallingConvention = CallingConvention.Cdecl, SetLastError = false)]
+        [DllImport("msvcrt.dll", EntryPoint = "memset", CallingConvention = CallingConvention.Cdecl,
+            SetLastError = false)]
         private static extern void memset(
             IntPtr dst,
             int filler,

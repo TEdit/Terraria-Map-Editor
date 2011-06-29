@@ -1,14 +1,13 @@
 ﻿using System.ComponentModel;
 using TEdit.Common;
 using TEdit.TerrariaWorld.Structures;
-using PointInt32 = TEdit.TerrariaWorld.Structures.PointInt32;
 
 namespace TEdit.TerrariaWorld
 {
     public class WorldHeader : ObservableObject
     {
-        [CategoryAttribute("World"), DescriptionAttribute("Dungeon Location"), ReadOnly(true)] private
-            Structures.PointInt32 _DungeonEntrance;
+        [Category("World"), DescriptionAttribute("Dungeon Location"), ReadOnly(true)] private
+            PointInt32 _DungeonEntrance;
 
         [Browsable(false)] private string _FileName;
 
@@ -28,7 +27,7 @@ namespace TEdit.TerrariaWorld
 
         [CategoryAttribute("Shadow Orbs"), DescriptionAttribute("Spawn the Meteor?")] private bool _IsSpawnMeteor;
 
-        [CategoryAttribute("World"), DescriptionAttribute("World Size"), ReadOnly(true)] private Structures.PointInt32
+        [CategoryAttribute("World"), DescriptionAttribute("World Size"), ReadOnly(true)] private PointInt32
             _MaxTiles;
 
         [CategoryAttribute("Time"), DescriptionAttribute("Moon Phase")] private int _MoonPhase;
@@ -36,7 +35,7 @@ namespace TEdit.TerrariaWorld
         [CategoryAttribute("Shadow Orbs"), DescriptionAttribute("Number of Shadow Orbs Smashed")] private int
             _ShadowOrbCount;
 
-        [CategoryAttribute("World"), DescriptionAttribute("Spawn Location")] private Structures.PointInt32 _SpawnTile;
+        [CategoryAttribute("World"), DescriptionAttribute("Spawn Location")] private PointInt32 _SpawnTile;
         [CategoryAttribute("Time"), DescriptionAttribute("Time of Day")] private double _Time;
         [CategoryAttribute("World"), DescriptionAttribute("World Size"), ReadOnly(true)] private RectF _WorldBounds;
         [CategoryAttribute("World"), DescriptionAttribute("World ID"), ReadOnly(true)] private int _WorldId;
@@ -50,7 +49,7 @@ namespace TEdit.TerrariaWorld
         {
             _FileName = "";
             _WorldName = "No World Loaded";
-            _MaxTiles = new Structures.PointInt32(0, 0);
+            _MaxTiles = new PointInt32(0, 0);
         }
 
         public string FileName
@@ -118,7 +117,7 @@ namespace TEdit.TerrariaWorld
             }
         }
 
-        public Structures.PointInt32 MaxTiles
+        public PointInt32 MaxTiles
         {
             get { return _MaxTiles; }
             set
@@ -131,7 +130,7 @@ namespace TEdit.TerrariaWorld
             }
         }
 
-        public Structures.PointInt32 SpawnTile
+        public PointInt32 SpawnTile
         {
             get { return _SpawnTile; }
             set
@@ -228,7 +227,7 @@ namespace TEdit.TerrariaWorld
         }
 
 
-        public Structures.PointInt32 DungeonEntrance
+        public PointInt32 DungeonEntrance
         {
             get { return _DungeonEntrance; }
             set

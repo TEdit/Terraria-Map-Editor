@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using TEdit.Common;
-using TEdit.TerrariaWorld.Structures;
 using TileMouseEventArgs = TEdit.TerrariaWorld.Structures.PointInt32;
 
 namespace TEdit.TerrariaWorld
@@ -11,9 +10,9 @@ namespace TEdit.TerrariaWorld
         public static int MaxItems = 20;
         private readonly ObservableCollection<Item> _Items = new ObservableCollection<Item>();
 
-        private PointInt32 _Location;
+        private TileMouseEventArgs _Location;
 
-        public PointInt32 Location
+        public TileMouseEventArgs Location
         {
             get { return _Location; }
             set

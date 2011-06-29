@@ -12,32 +12,21 @@ using TEdit.TerrariaWorld.Structures;
 
 namespace TEdit.Tools
 {
-    [Export(typeof(ITool))]
+    [Export(typeof (ITool))]
     [PartCreationPolicy(CreationPolicy.Shared)]
     [ExportMetadata("Order", 3)]
     public class Pencil : ToolBase
     {
-        [Import]
-        private ToolProperties _properties;
-        [Import]
-        private SelectionArea _selection;
-
-        [Import("World", typeof(World))]
-        private World _world;
-
-
-        [Import]
-        private WorldRenderer _renderer;
-
-        [Import]
-        private TilePicker _tilePicker;
-
         private bool _isLeftDown;
 
-        private PointInt32 _startPoint;
-
-        private bool _isSnapDirectionSet = false;
+        private bool _isSnapDirectionSet;
+        [Import] private ToolProperties _properties;
+        [Import] private WorldRenderer _renderer;
+        [Import] private SelectionArea _selection;
         private Orientation _snapDirection = Orientation.Horizontal;
+        private PointInt32 _startPoint;
+        [Import] private TilePicker _tilePicker;
+        [Import("World", typeof (World))] private World _world;
 
         public Pencil()
         {
@@ -121,10 +110,9 @@ namespace TEdit.Tools
 
         private void CheckDirectionandDraw(TileMouseEventArgs e)
         {
-            var p = e.Tile;
+            PointInt32 p = e.Tile;
             if (_isRightDown)
             {
-
                 if (_isLeftDown)
                     p.X = _startPoint.X;
                 else
@@ -138,19 +126,17 @@ namespace TEdit.Tools
                 DrawLine(p);
                 _startPoint = p;
             }
-
-
         }
 
         public override WriteableBitmap PreviewTool()
         {
             var bmp = new WriteableBitmap(
-                    1,
-                    1,
-                    96,
-                    96,
-                    PixelFormats.Bgra32,
-                    null);
+                1,
+                1,
+                96,
+                96,
+                PixelFormats.Bgra32,
+                null);
 
 
             bmp.Clear();

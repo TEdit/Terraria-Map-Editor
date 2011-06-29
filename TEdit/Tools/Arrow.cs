@@ -14,8 +14,7 @@ namespace TEdit.Tools
     public class Arrow : ToolBase
     {
         [Import] private ToolProperties _properties;
-        [Import("World", typeof(World))]
-        private World _world;
+        [Import("World", typeof (World))] private World _world;
 
         public Arrow()
         {
@@ -82,10 +81,11 @@ namespace TEdit.Tools
 
         public override bool ReleaseTool(TileMouseEventArgs e)
         {
-            foreach (var c in _world.Chests)
+            foreach (Chest c in _world.Chests)
             {
                 //chests are 2x2, and their x/y is upper left corner
-                if ((c.Location.X == e.Tile.X || c.Location.X + 1 == e.Tile.X) && (c.Location.Y == e.Tile.Y || c.Location.Y + 1 == e.Tile.Y))
+                if ((c.Location.X == e.Tile.X || c.Location.X + 1 == e.Tile.X) &&
+                    (c.Location.Y == e.Tile.Y || c.Location.Y + 1 == e.Tile.Y))
                 {
                     var chestPop = new ChestsContentsPopup(c);
                     chestPop.IsOpen = true;
@@ -106,12 +106,12 @@ namespace TEdit.Tools
         public override WriteableBitmap PreviewTool()
         {
             var bmp = new WriteableBitmap(
-                    1,
-                    1,
-                    96,
-                    96,
-                    PixelFormats.Bgra32,
-                    null);
+                1,
+                1,
+                96,
+                96,
+                PixelFormats.Bgra32,
+                null);
 
 
             bmp.Clear();

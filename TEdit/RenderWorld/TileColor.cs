@@ -64,19 +64,19 @@ namespace TEdit.RenderWorld
 
         public override string ToString()
         {
-            return String.Format("{0}|{1}|#{2:x2}{3:x2}{4:x2}{5:x2}", this.ID, this.Name, this.Color.A, this.Color.R, this.Color.G, this.Color.B);
+            return String.Format("{0}|{1}|#{2:x2}{3:x2}{4:x2}{5:x2}", ID, Name, Color.A, Color.R, Color.G, Color.B);
         }
 
         public static TileColor FromString(string line)
         {
-            string[] splitline = line.Split(new[] { ',', '|' });
+            string[] splitline = line.Split(new[] {',', '|'});
             if (splitline.Length == 3)
             {
                 byte id = 0;
                 byte.TryParse(splitline[0], out id);
 
                 string name = splitline[1];
-                var color = (Color)ColorConverter.ConvertFromString(splitline[2]);
+                var color = (Color) ColorConverter.ConvertFromString(splitline[2]);
 
                 return new TileColor(id, color, name);
             }

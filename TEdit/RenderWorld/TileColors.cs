@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Windows.Media;
 
@@ -18,8 +17,8 @@ namespace TEdit.RenderWorld
 
         #endregion
 
-        private static TileColor[] _tiles = new TileColor[byte.MaxValue];
-        private static TileColor[] _walls = new TileColor[byte.MaxValue];
+        private static readonly TileColor[] _tiles = new TileColor[byte.MaxValue];
+        private static readonly TileColor[] _walls = new TileColor[byte.MaxValue];
 
         public static TileColor[] Tiles
         {
@@ -33,7 +32,7 @@ namespace TEdit.RenderWorld
 
         public static Color Water { get; set; }
         public static Color Lava { get; set; }
-        
+
 
         public static void Load(string filename)
         {
@@ -42,10 +41,9 @@ namespace TEdit.RenderWorld
 
             for (byte i = 0; i < byte.MaxValue; i++)
             {
-                _tiles[i] = new TileColor() { Color = Colors.Magenta, ID = i, Name = "Unknown" };
-                _walls[i] = new TileColor() { Color = Colors.Magenta, ID = i, Name = "Unknown" };
+                _tiles[i] = new TileColor {Color = Colors.Magenta, ID = i, Name = "Unknown"};
+                _walls[i] = new TileColor {Color = Colors.Magenta, ID = i, Name = "Unknown"};
             }
-
 
 
             using (TextReader sr = new StreamReader(filename))
@@ -65,7 +63,7 @@ namespace TEdit.RenderWorld
                         section = FileSection.LIQUIDCOLORS;
                     else
                     {
-                        var lineproperty = TileColor.FromString(line);
+                        TileColor lineproperty = TileColor.FromString(line);
                         if (lineproperty != null)
                         {
                             switch (section)
@@ -77,9 +75,11 @@ namespace TEdit.RenderWorld
                                     _tiles[lineproperty.ID] = lineproperty;
                                     break;
                                 case FileSection.LIQUIDCOLORS:
-                                    if (string.Equals(lineproperty.Name,"Water",StringComparison.InvariantCultureIgnoreCase))
+                                    if (string.Equals(lineproperty.Name, "Water",
+                                                      StringComparison.InvariantCultureIgnoreCase))
                                         Water = lineproperty.Color;
-                                    else if (string.Equals(lineproperty.Name, "Lava", StringComparison.InvariantCultureIgnoreCase))
+                                    else if (string.Equals(lineproperty.Name, "Lava",
+                                                           StringComparison.InvariantCultureIgnoreCase))
                                         Lava = lineproperty.Color;
                                     break;
                             }
@@ -104,7 +104,7 @@ namespace TEdit.RenderWorld
                 sr.WriteLine(FileSection.WALLCOLORS.ToString());
                 for (byte i = 0; i < byte.MaxValue; i++)
                 {
-                    if (!string.Equals(_walls[i].Name,"Unknown",StringComparison.InvariantCultureIgnoreCase))
+                    if (!string.Equals(_walls[i].Name, "Unknown", StringComparison.InvariantCultureIgnoreCase))
                         sr.WriteLine(_walls[i].ToString());
                 }
 
@@ -117,6 +117,5 @@ namespace TEdit.RenderWorld
                 }
             }
         }
-
     }
 }

@@ -4,32 +4,25 @@
 // </copyright>
 // -----------------------------------------------------------------------
 
-using System.ComponentModel.Composition;
 using System.Windows;
 using TEdit.TerrariaWorld.Structures;
 using TEdit.Tools;
 
 namespace TEdit.TerrariaWorld
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
     public static class WorldEditorExtensions
     {
+        #region Line
 
-#region Line
-        
-#endregion
+        #endregion
+
         #region Flood Fill
 
         public static void FloodFillContig(this World world, PointInt32 start, Int32Rect area, TilePicker tile)
         {
-            
         }
 
         public static void FillRectangle(this World world, Int32Rect area, TilePicker tile)
@@ -54,12 +47,12 @@ namespace TEdit.TerrariaWorld
                 area.Width += world.Header.MaxTiles.X - (area.X + area.Width);
             }
 
-            for (int x = area.X; x < area.X+area.Width; x++)
+            for (int x = area.X; x < area.X + area.Width; x++)
             {
                 for (int y = area.Y; y < area.Y + area.Height; y++)
                 {
                     SetTileXY(world, x, y, tile);
-                } 
+                }
             }
         }
 
@@ -113,7 +106,6 @@ namespace TEdit.TerrariaWorld
                     curTile.Liquid = 255;
                     curTile.IsLava = tile.Liquid.IsLava;
                 }
-
             }
         }
 
@@ -143,22 +135,22 @@ namespace TEdit.TerrariaWorld
             int uh, lh, uy, ly, lx, rx;
             int x = xr;
             int y = 0;
-            int xrSqTwo = (xr * xr) << 1;
-            int yrSqTwo = (yr * yr) << 1;
-            int xChg = yr * yr * (1 - (xr << 1));
-            int yChg = xr * xr;
+            int xrSqTwo = (xr*xr) << 1;
+            int yrSqTwo = (yr*yr) << 1;
+            int xChg = yr*yr*(1 - (xr << 1));
+            int yChg = xr*xr;
             int err = 0;
-            int xStopping = yrSqTwo * xr;
+            int xStopping = yrSqTwo*xr;
             int yStopping = 0;
 
             // Draw first set of points counter clockwise where tangent line slope > -1.
             while (xStopping >= yStopping)
             {
                 // Draw 4 quadrant points at once
-                uy = yc + y;                  // Upper half
-                ly = yc - y;                  // Lower half
-                if (uy < 0) uy = 0;          // Clip
-                if (uy >= h) uy = h - 1;      // ...
+                uy = yc + y; // Upper half
+                ly = yc - y; // Lower half
+                if (uy < 0) uy = 0; // Clip
+                if (uy >= h) uy = h - 1; // ...
                 if (ly < 0) ly = 0;
                 if (ly >= h) ly = h - 1;
                 //uh = uy * w;                  // Upper half
@@ -166,17 +158,17 @@ namespace TEdit.TerrariaWorld
 
                 rx = xc + x;
                 lx = xc - x;
-                if (rx < 0) rx = 0;          // Clip
-                if (rx >= w) rx = w - 1;      // ...
+                if (rx < 0) rx = 0; // Clip
+                if (rx >= w) rx = w - 1; // ...
                 if (lx < 0) lx = 0;
                 if (lx >= w) lx = w - 1;
 
                 // Draw line
                 for (int i = lx; i <= rx; i++)
                 {
-                    SetTileXY(world, i, uy, tile);       // Quadrant II to I (Actually two octants)
-                    SetTileXY(world, i, ly, tile);       // Quadrant III to IV    
-                }                     
+                    SetTileXY(world, i, uy, tile); // Quadrant II to I (Actually two octants)
+                    SetTileXY(world, i, ly, tile); // Quadrant III to IV    
+                }
 
                 y++;
                 yStopping += xrSqTwo;
@@ -194,19 +186,19 @@ namespace TEdit.TerrariaWorld
             // ReInit vars
             x = 0;
             y = yr;
-            uy = yc + y;                  // Upper half
-            ly = yc - y;                  // Lower half
-            if (uy < 0) uy = 0;          // Clip
-            if (uy >= h) uy = h - 1;      // ...
+            uy = yc + y; // Upper half
+            ly = yc - y; // Lower half
+            if (uy < 0) uy = 0; // Clip
+            if (uy >= h) uy = h - 1; // ...
             if (ly < 0) ly = 0;
             if (ly >= h) ly = h - 1;
             //uh = uy * w;                  // Upper half
             //lh = ly * w;                  // Lower half
-            xChg = yr * yr;
-            yChg = xr * xr * (1 - (yr << 1));
+            xChg = yr*yr;
+            yChg = xr*xr*(1 - (yr << 1));
             err = 0;
             xStopping = 0;
-            yStopping = xrSqTwo * yr;
+            yStopping = xrSqTwo*yr;
 
             // Draw second set of points clockwise where tangent line slope < -1.
             while (xStopping <= yStopping)
@@ -214,16 +206,16 @@ namespace TEdit.TerrariaWorld
                 // Draw 4 quadrant points at once
                 rx = xc + x;
                 lx = xc - x;
-                if (rx < 0) rx = 0;          // Clip
-                if (rx >= w) rx = w - 1;      // ...
+                if (rx < 0) rx = 0; // Clip
+                if (rx >= w) rx = w - 1; // ...
                 if (lx < 0) lx = 0;
                 if (lx >= w) lx = w - 1;
 
                 // Draw line
                 for (int i = lx; i <= rx; i++)
                 {
-                    SetTileXY(world, i, uy, tile);       // Quadrant II to I (Actually two octants)
-                    SetTileXY(world, i, ly, tile);       // Quadrant III to IV    
+                    SetTileXY(world, i, uy, tile); // Quadrant II to I (Actually two octants)
+                    SetTileXY(world, i, ly, tile); // Quadrant III to IV    
                 }
 
                 x++;
@@ -233,14 +225,14 @@ namespace TEdit.TerrariaWorld
                 if ((yChg + (err << 1)) > 0)
                 {
                     y--;
-                    uy = yc + y;                  // Upper half
-                    ly = yc - y;                  // Lower half
-                    if (uy < 0) uy = 0;           // Clip
-                    if (uy >= h) uy = h - 1;      // ...
+                    uy = yc + y; // Upper half
+                    ly = yc - y; // Lower half
+                    if (uy < 0) uy = 0; // Clip
+                    if (uy >= h) uy = h - 1; // ...
                     if (ly < 0) ly = 0;
                     if (ly >= h) ly = h - 1;
-                    uh = uy * w;                  // Upper half
-                    lh = ly * w;                  // Lower half
+                    uh = uy*w; // Upper half
+                    lh = ly*w; // Lower half
                     yStopping -= xrSqTwo;
                     err += yChg;
                     yChg += xrSqTwo;

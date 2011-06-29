@@ -11,28 +11,38 @@ namespace TEdit.Tools
     [Serializable]
     public class ToolProperties : ObservableObject
     {
+        private int _Height;
         private WriteableBitmap _Image;
+        private bool _IsOutline;
+        private bool _IsSquare;
+        private int _MaxHeight;
+        private int _MaxOutlineThickness;
+        private int _MaxWidth;
+        private int _MinHeight;
+        private int _MinWidth;
         private ToolAnchorMode _Mode;
         private PointInt32 _Offset;
+        private int _OutlineThickness;
+        private int _Width;
         private ToolBrushShape _brushShape;
 
         public ToolProperties()
         {
-            this._MaxOutlineThickness = 10;
-            this._OutlineThickness = 1;
-            this._Height = 10;
-            this._Width = 10;
-            this._MinHeight = 1;
-            this._MinWidth = 1;
-            this._MaxHeight = 100;
-            this._MaxWidth = 100;
+            _MaxOutlineThickness = 10;
+            _OutlineThickness = 1;
+            _Height = 10;
+            _Width = 10;
+            _MinHeight = 1;
+            _MinWidth = 1;
+            _MaxHeight = 100;
+            _MaxWidth = 100;
 
-            this._IsSquare = true;
-            this._brushShape = ToolBrushShape.Round;
-            this._Mode = ToolAnchorMode.Center;
+            _IsSquare = true;
+            _brushShape = ToolBrushShape.Round;
+            _Mode = ToolAnchorMode.Center;
             CalcOffset();
-            AnchorModes = Enum.GetValues(typeof(ToolAnchorMode));
-            BrushShapes = Enum.GetValues(typeof(ToolBrushShape));
+            AnchorModes = Enum.GetValues(typeof (ToolAnchorMode));
+            BrushShapes = Enum.GetValues(typeof (ToolBrushShape));
         }
 
         public Array AnchorModes { get; set; }
@@ -66,10 +76,9 @@ namespace TEdit.Tools
             }
         }
 
-        private int _Width;
         public int Width
         {
-            get { return this._Width; }
+            get { return _Width; }
             set
             {
                 int validWidth = value;
@@ -79,23 +88,22 @@ namespace TEdit.Tools
                 if (validWidth > MaxWidth)
                     validWidth = MaxWidth;
 
-                if (this._Width != validWidth)
+                if (_Width != validWidth)
                 {
-                    this._Width = validWidth;
+                    _Width = validWidth;
 
-                    if (this.IsSquare)
-                        this.Height = validWidth;
+                    if (IsSquare)
+                        Height = validWidth;
 
-                    this.RaisePropertyChanged("Width");
+                    RaisePropertyChanged("Width");
                     CalcOffset();
                 }
             }
         }
 
-        private int _Height;
         public int Height
         {
-            get { return this._Height; }
+            get { return _Height; }
             set
             {
                 int validHeight = value;
@@ -105,160 +113,149 @@ namespace TEdit.Tools
                 if (validHeight > MaxHeight)
                     validHeight = MaxHeight;
 
-                if (this._Height != validHeight)
+                if (_Height != validHeight)
                 {
-                    this._Height = validHeight;
+                    _Height = validHeight;
 
-                    if (this.IsSquare)
-                        this.Width = validHeight;
+                    if (IsSquare)
+                        Width = validHeight;
 
 
-                    this.RaisePropertyChanged("Height");
+                    RaisePropertyChanged("Height");
                     CalcOffset();
                 }
             }
         }
 
-        private int _MinWidth;
         public int MinWidth
         {
-            get { return this._MinWidth; }
+            get { return _MinWidth; }
             set
             {
                 if (value > MaxWidth)
                     MaxWidth = value;
 
-                if (this._MinWidth != value)
+                if (_MinWidth != value)
                 {
-                    this._MinWidth = value;
-                    this.RaisePropertyChanged("MinWidth");
+                    _MinWidth = value;
+                    RaisePropertyChanged("MinWidth");
                     Width = _Width; // Validate Width 
                 }
             }
         }
 
-        private int _MinHeight;
         public int MinHeight
         {
-            get { return this._MinHeight; }
+            get { return _MinHeight; }
             set
             {
                 if (value > MaxHeight)
                     MaxHeight = value;
 
-                if (this._MinHeight != value)
+                if (_MinHeight != value)
                 {
-                    this._MinHeight = value;
-                    this.RaisePropertyChanged("MinHeight");
+                    _MinHeight = value;
+                    RaisePropertyChanged("MinHeight");
                     Height = _Height; // Validate Height
                 }
             }
         }
 
-        private int _MaxWidth;
         public int MaxWidth
         {
-            get { return this._MaxWidth; }
+            get { return _MaxWidth; }
             set
             {
                 if (value < MinWidth)
                     MinWidth = value;
 
-                if (this._MaxWidth != value)
+                if (_MaxWidth != value)
                 {
-                    this._MaxWidth = value;
-                    this.RaisePropertyChanged("MaxWidth");
+                    _MaxWidth = value;
+                    RaisePropertyChanged("MaxWidth");
                     Width = _Width; // Validate Width 
                 }
             }
         }
 
-        private int _MaxHeight;
         public int MaxHeight
         {
-            get { return this._MaxHeight; }
+            get { return _MaxHeight; }
             set
             {
                 if (value < MinHeight)
                     MinHeight = value;
 
-                if (this._MaxHeight != value)
+                if (_MaxHeight != value)
                 {
-                    this._MaxHeight = value;
-                    this.RaisePropertyChanged("MaxHeight");
+                    _MaxHeight = value;
+                    RaisePropertyChanged("MaxHeight");
                     Height = _Height; // Validate Height
                 }
             }
         }
 
-        private bool _IsSquare;
         public bool IsSquare
         {
-            get { return this._IsSquare; }
+            get { return _IsSquare; }
             set
             {
-                if (this._IsSquare != value)
+                if (_IsSquare != value)
                 {
-                    this._IsSquare = value;
-                    this.RaisePropertyChanged("IsSquare");
+                    _IsSquare = value;
+                    RaisePropertyChanged("IsSquare");
                 }
             }
         }
 
-        private bool _IsOutline;
         public bool IsOutline
         {
-            get { return this._IsOutline; }
+            get { return _IsOutline; }
             set
             {
-                if (this._IsOutline != value)
+                if (_IsOutline != value)
                 {
-                    this._IsOutline = value;
-                    this.RaisePropertyChanged("IsOutline");
+                    _IsOutline = value;
+                    RaisePropertyChanged("IsOutline");
                 }
             }
         }
 
-        private int _OutlineThickness;
         public int OutlineThickness
         {
-            get { return this._OutlineThickness; }
+            get { return _OutlineThickness; }
             set
             {
-                if (this._OutlineThickness != value)
+                if (_OutlineThickness != value)
                 {
-                    this._OutlineThickness = value;
-                    this.RaisePropertyChanged("OutlineThickness");
+                    _OutlineThickness = value;
+                    RaisePropertyChanged("OutlineThickness");
                 }
             }
         }
 
 
-        private int _MaxOutlineThickness;
         public int MaxOutlineThickness
         {
-            get { return this._MaxOutlineThickness; }
+            get { return _MaxOutlineThickness; }
             set
             {
-                var validValue = value;
+                int validValue = value;
                 if (validValue < 1)
                     validValue = 1;
 
-                if (this._MaxOutlineThickness != validValue)
+                if (_MaxOutlineThickness != validValue)
                 {
-                    this._MaxOutlineThickness = validValue;
-                    this.RaisePropertyChanged("MaxOutlineThickness");
+                    _MaxOutlineThickness = validValue;
+                    RaisePropertyChanged("MaxOutlineThickness");
 
-                    if (this._OutlineThickness > _MaxOutlineThickness)
+                    if (_OutlineThickness > _MaxOutlineThickness)
                     {
-                        this.OutlineThickness = _MaxOutlineThickness;
+                        OutlineThickness = _MaxOutlineThickness;
                     }
                 }
             }
         }
-
-
-
 
 
         //public int RadiusX
@@ -303,9 +300,7 @@ namespace TEdit.Tools
         {
             if (ToolPreviewRequest != null)
                 ToolPreviewRequest(sender, e);
-
         }
-
 
 
         private void CalcOffset()
@@ -313,37 +308,37 @@ namespace TEdit.Tools
             switch (Mode)
             {
                 case ToolAnchorMode.Center:
-                    Offset = new PointInt32(this.Width / 2, this.Height / 2);
+                    Offset = new PointInt32(Width/2, Height/2);
                     break;
                 case ToolAnchorMode.TopLeft:
                     Offset = new PointInt32(0, 0);
                     break;
                 case ToolAnchorMode.TopCenter:
-                    Offset = new PointInt32(this.Width / 2, 0);
+                    Offset = new PointInt32(Width/2, 0);
                     break;
                 case ToolAnchorMode.TopRight:
-                    Offset = new PointInt32(this.Width, 0);
+                    Offset = new PointInt32(Width, 0);
                     break;
                 case ToolAnchorMode.MiddleRight:
-                    Offset = new PointInt32(this.Width, this.Height / 2);
+                    Offset = new PointInt32(Width, Height/2);
                     break;
                 case ToolAnchorMode.BottomRight:
-                    Offset = new PointInt32(this.Width, this.Height);
+                    Offset = new PointInt32(Width, Height);
                     break;
                 case ToolAnchorMode.BottomCenter:
-                    Offset = new PointInt32(this.Width / 2, this.Height);
+                    Offset = new PointInt32(Width/2, Height);
                     break;
                 case ToolAnchorMode.BottomLeft:
-                    Offset = new PointInt32(0, this.Height);
+                    Offset = new PointInt32(0, Height);
                     break;
                 case ToolAnchorMode.MiddleLeft:
-                    Offset = new PointInt32(0, this.Height / 2);
+                    Offset = new PointInt32(0, Height/2);
                     break;
                 default:
                     Offset = new PointInt32(0, 0);
                     break;
             }
-            MaxOutlineThickness = (int)Math.Max(1, Math.Min(Math.Floor(this.Height / 2.0), Math.Floor(this.Width / 2.0)));
+            MaxOutlineThickness = (int) Math.Max(1, Math.Min(Math.Floor(Height/2.0), Math.Floor(Width/2.0)));
 
             OnToolPreviewRequest(this, new EventArgs());
         }

@@ -14,11 +14,9 @@ namespace TEdit.RenderWorld
     [PartCreationPolicy(CreationPolicy.Shared)]
     public class WorldRenderer
     {
-        [Import("World")]
-        private World _world;
+        [Import("World")] private World _world;
 
-        [Import]
-        private WorldImage _worldImage;
+        [Import] private WorldImage _worldImage;
 
         public WorldRenderer()
         {
@@ -50,22 +48,21 @@ namespace TEdit.RenderWorld
 
         public static Color AlphaBlend(Color background, Color color)
         {
-            var r = (byte)((color.A / 255F) * color.R + (1F - color.A / 255F) * background.R);
-            var g = (byte)((color.A / 255F) * color.G + (1F - color.A / 255F) * background.G);
-            var b = (byte)((color.A / 255F) * color.B + (1F - color.A / 255F) * background.B);
+            var r = (byte) ((color.A/255F)*color.R + (1F - color.A/255F)*background.R);
+            var g = (byte) ((color.A/255F)*color.G + (1F - color.A/255F)*background.G);
+            var b = (byte) ((color.A/255F)*color.B + (1F - color.A/255F)*background.B);
             return Color.FromArgb(255, r, g, b);
         }
 
         public void UpdateWorldImage(PointInt32 location)
         {
-             Tile tile = _world.Tiles[location.X, location.Y];
-             var color = GetTileColor(location.Y, tile);
+            Tile tile = _world.Tiles[location.X, location.Y];
+            Color color = GetTileColor(location.Y, tile);
             _worldImage.Image.SetPixel(location.X, location.Y, color);
         }
 
         public void UpdateWorldImage(Int32Rect area)
         {
-
             // validate area
             if (area.X < 0)
             {
@@ -91,31 +88,30 @@ namespace TEdit.RenderWorld
             int height = area.Height;
 
 
-            int stride = width * _worldImage.Image.Format.BitsPerPixel / 8;
+            int stride = width*_worldImage.Image.Format.BitsPerPixel/8;
 
-            int numpixelbytes = height * width * _worldImage.Image.Format.BitsPerPixel / 8;
+            int numpixelbytes = height*width*_worldImage.Image.Format.BitsPerPixel/8;
 
             var pixels = new byte[numpixelbytes];
             for (int x = 0; x < width; x++)
             {
                 OnProgressChanged(this,
                                   new ProgressChangedEventArgs(
-                                      (int)(x / (double)width * 100.0),
+                                      (int) (x/(double) width*100.0),
                                       "Rendering World..."));
                 for (int y = 0; y < height; y++)
                 {
                     Tile tile = _world.Tiles[x + area.X, y + area.Y];
                     if (tile != null)
                     {
-                        var c = GetTileColor(+area.Y + y, tile);
+                        Color c = GetTileColor(+area.Y + y, tile);
 
-                        pixels[x * 4 + y * stride] = c.B;
-                        pixels[x * 4 + y * stride + 1] = c.G;
-                        pixels[x * 4 + y * stride + 2] = c.R;
-                        pixels[x * 4 + y * stride + 3] = c.A;
+                        pixels[x*4 + y*stride] = c.B;
+                        pixels[x*4 + y*stride + 1] = c.G;
+                        pixels[x*4 + y*stride + 2] = c.R;
+                        pixels[x*4 + y*stride + 3] = c.A;
                         //bmp.SetPixel(x - area.Left, y - area.Top, c);
                     }
-
                 }
             }
 
@@ -142,14 +138,14 @@ namespace TEdit.RenderWorld
 
             int stride = wbmap.BackBufferStride;
 
-            int numpixelbytes = wbmap.PixelHeight * wbmap.PixelWidth * wbmap.Format.BitsPerPixel / 8;
+            int numpixelbytes = wbmap.PixelHeight*wbmap.PixelWidth*wbmap.Format.BitsPerPixel/8;
 
             var pixels = new byte[numpixelbytes];
             for (int x = 0; x < width; x++)
             {
                 OnProgressChanged(this,
                                   new ProgressChangedEventArgs(
-                                      (int)(x / (double)width * 100.0),
+                                      (int) (x/(double) width*100.0),
                                       "Rendering World..."));
 
                 for (int y = 0; y < height; y++)
@@ -157,20 +153,20 @@ namespace TEdit.RenderWorld
                     Tile tile = _world.Tiles[x, y];
                     if (tile != null)
                     {
-                        var c = GetTileColor(y, tile);
+                        Color c = GetTileColor(y, tile);
 
 
-                        pixels[x * 4 + y * stride] = c.B;
-                        pixels[x * 4 + y * stride + 1] = c.G;
-                        pixels[x * 4 + y * stride + 2] = c.R;
-                        pixels[x * 4 + y * stride + 3] = c.A;
+                        pixels[x*4 + y*stride] = c.B;
+                        pixels[x*4 + y*stride + 1] = c.G;
+                        pixels[x*4 + y*stride + 2] = c.R;
+                        pixels[x*4 + y*stride + 3] = c.A;
                         //bmp.SetPixel(x - area.Left, y - area.Top, c);
                     }
                 }
             }
 
             wbmap.WritePixels(new Int32Rect(0, 0, wbmap.PixelWidth, wbmap.PixelHeight), pixels,
-                              wbmap.PixelWidth * wbmap.Format.BitsPerPixel / 8, 0);
+                              wbmap.PixelWidth*wbmap.Format.BitsPerPixel/8, 0);
 
             OnProgressChanged(this, new ProgressChangedEventArgs(0, "Render Complete."));
 

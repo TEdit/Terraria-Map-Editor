@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 using System.Windows.Threading;
 
 namespace TEdit.Common
@@ -7,22 +8,22 @@ namespace TEdit.Common
     public class ObservableCollectionEx<T> : ObservableCollection<T>
     {
         // Override the event so this class can access it
-        public override event System.Collections.Specialized.NotifyCollectionChangedEventHandler CollectionChanged;
+        public override event NotifyCollectionChangedEventHandler CollectionChanged;
 
-        protected override void OnCollectionChanged(System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        protected override void OnCollectionChanged(NotifyCollectionChangedEventArgs e)
         {
             // Be nice - use BlockReentrancy like MSDN said
             using (BlockReentrancy())
             {
-                System.Collections.Specialized.NotifyCollectionChangedEventHandler eventHandler = CollectionChanged;
+                NotifyCollectionChangedEventHandler eventHandler = CollectionChanged;
                 if (eventHandler == null)
                     return;
 
                 Delegate[] delegates = eventHandler.GetInvocationList();
                 // Walk thru invocation list
-                foreach (System.Collections.Specialized.NotifyCollectionChangedEventHandler handler in delegates)
+                foreach (NotifyCollectionChangedEventHandler handler in delegates)
                 {
-                    DispatcherObject dispatcherObject = handler.Target as DispatcherObject;
+                    var dispatcherObject = handler.Target as DispatcherObject;
                     // If the subscriber is a DispatcherObject and different thread
                     if (dispatcherObject != null && dispatcherObject.CheckAccess() == false)
                     {

@@ -1,23 +1,23 @@
-﻿<UserControl
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+﻿<UserControl xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:vm="clr-namespace:TEdit.ViewModels"
-             xmlns:controls="clr-namespace:TEdit.Controls" x:Class="TEdit.Views.ToolSelectorView"
-             mc:Ignorable="d">
-    <UserControl.Resources>
-        <DataTemplate x:Key="toolBarItemTemplate">
-            <controls:DataBoundToggleButton Width="22" Height="22" Margin="1"
+             xmlns:controls="clr-namespace:TEdit.Controls" x:Class="TEdit.Views.ToolSelectorView" mc:Ignorable="d">
+  <UserControl.Resources>
+    <DataTemplate x:Key="toolBarItemTemplate">
+      <controls:DataBoundToggleButton Width="22" Height="22" Margin="1"
                                       Command="{Binding DataContext.SetTool, Mode=Default, RelativeSource={RelativeSource AncestorType={x:Type Window}}}"
                                       CommandParameter="{Binding Value}" IsChecked="{Binding Value.IsActive}">
-                <controls:DataBoundToggleButton.ToolTip>
-                    <TextBlock Text="{Binding Value.Name}" />
-                </controls:DataBoundToggleButton.ToolTip>
-                    <Image Source="{Binding Value.Image}" Stretch="None" VerticalAlignment="Center" HorizontalAlignment="Center" />
-            </controls:DataBoundToggleButton>
-        </DataTemplate>
-    </UserControl.Resources>
-    <ToolBarTray Orientation="Vertical" Width="27" d:DataContext="{d:DesignInstance {x:Type vm:WorldViewModel}}" Background="{x:Null}">
-        <ToolBar ItemsSource="{Binding Tools}" ItemTemplate="{StaticResource toolBarItemTemplate}" />
-    </ToolBarTray>
+        <controls:DataBoundToggleButton.ToolTip>
+          <TextBlock Text="{Binding Value.Name}" />
+        </controls:DataBoundToggleButton.ToolTip>
+        <Image Source="{Binding Value.Image}" Stretch="None" VerticalAlignment="Center"
+               HorizontalAlignment="Center" />
+      </controls:DataBoundToggleButton>
+    </DataTemplate>
+  </UserControl.Resources>
+  <ToolBarTray Orientation="Vertical" Width="27" d:DataContext="{d:DesignInstance {x:Type vm:WorldViewModel}}"
+               Background="{x:Null}">
+    <ToolBar ItemsSource="{Binding Tools}" ItemTemplate="{StaticResource toolBarItemTemplate}" />
+  </ToolBarTray>
 </UserControl>

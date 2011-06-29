@@ -42,17 +42,14 @@ namespace TEdit.TerrariaWorld
                 {
                     _Name = value;
                     RaisePropertyChanged("Name");
-                    this.RaisePropertyChanged("IsVisible");
+                    RaisePropertyChanged("IsVisible");
                 }
             }
         }
 
         public Visibility IsVisible
         {
-            get
-            {
-                return this.Name == "[empty]" ? Visibility.Collapsed : Visibility.Visible;
-            }
+            get { return Name == "[empty]" ? Visibility.Collapsed : Visibility.Visible; }
         }
 
         public override string ToString()

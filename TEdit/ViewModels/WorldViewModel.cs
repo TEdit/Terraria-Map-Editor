@@ -31,10 +31,14 @@ namespace TEdit.ViewModels
 
         private int _FrameRate;
         private bool _IsBusy;
+        [Import] private SelectionArea _Selection;
 
         private string _TileName;
+        [Import] private TilePicker _TilePicker;
 
-        
+        [Import] private ToolProperties _ToolProperties;
+
+
         private string _WallName;
         private double _Zoom = 1;
         private bool _isMouseContained;
@@ -46,27 +50,16 @@ namespace TEdit.ViewModels
         private PointInt32 _mouseUpTile;
         private ICommand _mouseWheelCommand;
         private ICommand _openWorldCommand;
-        private ICommand _saveWorldCommand;
         private ProgressChangedEventArgs _progress;
+        private ICommand _saveWorldCommand;
         private ICommand _setTool;
         private WorldImage _worldImage;
         private int frameTimesIndex;
         private TimeSpan lastRender;
 
-        [Import]
-        private WorldRenderer renderer;
+        [Import] private WorldRenderer renderer;
 
-        [Import("World", typeof(World))] 
-        private World world;
-
-        [Import]
-        private TilePicker _TilePicker;
-
-        [Import]
-        private ToolProperties _ToolProperties;
-
-        [Import]
-        private SelectionArea _Selection;
+        [Import("World", typeof (World))] private World world;
 
         public WorldViewModel()
         {
@@ -106,17 +99,16 @@ namespace TEdit.ViewModels
 
         public TilePicker TilePicker
         {
-            get { return this._TilePicker; }
+            get { return _TilePicker; }
             set
             {
-                if (this._TilePicker != value)
+                if (_TilePicker != value)
                 {
-                    this._TilePicker = value;
-                    this.RaisePropertyChanged("TilePicker");
+                    _TilePicker = value;
+                    RaisePropertyChanged("TilePicker");
                 }
             }
         }
-
 
 
         [ImportMany(typeof (ITool))]
@@ -146,7 +138,7 @@ namespace TEdit.ViewModels
             }
         }
 
-        
+
         public SelectionArea Selection
         {
             get { return _Selection; }
@@ -237,7 +229,7 @@ namespace TEdit.ViewModels
 
         public double ZoomInverted
         {
-            get { return 1 / (_Zoom ); }
+            get { return 1/(_Zoom); }
         }
 
         [Import]
@@ -498,14 +490,14 @@ namespace TEdit.ViewModels
         {
             MouseOverTile = e.Tile;
 
-            if (e.Tile.X  < world.Header.MaxTiles.X &&
-                e.Tile.Y  < world.Header.MaxTiles.X &&
-                e.Tile.X  >= 0 &&
-                e.Tile.Y  >= 0)
+            if (e.Tile.X < world.Header.MaxTiles.X &&
+                e.Tile.Y < world.Header.MaxTiles.X &&
+                e.Tile.X >= 0 &&
+                e.Tile.Y >= 0)
             {
                 Tile overTile = world.Tiles[e.Tile.X, e.Tile.Y];
 
-            
+
                 string wallName = TileColors.Walls[overTile.Wall].Name;
                 string tileName = overTile.IsActive ? TileColors.Tiles[overTile.Type].Name : "[empty]";
                 string fluidname = "[no fluid]";

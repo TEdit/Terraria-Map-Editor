@@ -138,7 +138,8 @@ namespace TEdit.TerrariaWorld
                             string signText = reader.ReadString();
                             int x = reader.ReadInt32();
                             int y = reader.ReadInt32();
-                            if (Tiles[x, y].IsActive && (Tiles[x, y].Type == 55 || Tiles[x, y].Type == 85)) // validate tile location
+                            if (Tiles[x, y].IsActive && (Tiles[x, y].Type == 55 || Tiles[x, y].Type == 85))
+                                // validate tile location
                             {
                                 var sign = new Sign();
                                 sign.Location = new PointInt32(x, y);
