@@ -6,44 +6,30 @@ namespace TEdit.TerrariaWorld
 {
     public class WorldHeader : ObservableObject
     {
-        [Category("World"), DescriptionAttribute("Dungeon Location"), ReadOnly(true)] private
-            PointInt32 _DungeonEntrance;
-
-        [Browsable(false)] private string _FileName;
-
-        [CategoryAttribute("World"), DescriptionAttribute("Terraria Save File Version")] private int _FileVersion;
-        [CategoryAttribute("Invasion"), DescriptionAttribute("Invasion Delay")] private int _InvasionDelay;
-        [CategoryAttribute("Invasion"), DescriptionAttribute("Invasion Size")] private int _InvasionSize;
-        [CategoryAttribute("Invasion"), DescriptionAttribute("Invasion Type")] private int _InvasionType;
-        [CategoryAttribute("Invasion"), DescriptionAttribute("Invasion X Coordinate")] private double _InvasionX;
-        [CategoryAttribute("Time"), DescriptionAttribute("Is it a Blood Moon")] private bool _IsBloodMoon;
-        [CategoryAttribute("Bosses"), DescriptionAttribute("Is Eater of Worlds Dead")] private bool _IsBossDowned1;
-        [CategoryAttribute("Bosses"), DescriptionAttribute("Is Eye of Cuthulu Dead")] private bool _IsBossDowned2;
-        [CategoryAttribute("Bosses"), DescriptionAttribute("Is Skeletor Dead")] private bool _IsBossDowned3;
-        [CategoryAttribute("Time"), DescriptionAttribute("Is it Daytime")] private bool _IsDayTime;
-
-        [CategoryAttribute("Shadow Orbs"), DescriptionAttribute("Have any Shadow Orbs been Smashed?")] private bool
-            _IsShadowOrbSmashed;
-
-        [CategoryAttribute("Shadow Orbs"), DescriptionAttribute("Spawn the Meteor?")] private bool _IsSpawnMeteor;
-
-        [CategoryAttribute("World"), DescriptionAttribute("World Size"), ReadOnly(true)] private PointInt32
-            _MaxTiles;
-
-        [CategoryAttribute("Time"), DescriptionAttribute("Moon Phase")] private int _MoonPhase;
-
-        [CategoryAttribute("Shadow Orbs"), DescriptionAttribute("Number of Shadow Orbs Smashed")] private int
-            _ShadowOrbCount;
-
-        [CategoryAttribute("World"), DescriptionAttribute("Spawn Location")] private PointInt32 _SpawnTile;
-        [CategoryAttribute("Time"), DescriptionAttribute("Time of Day")] private double _Time;
-        [CategoryAttribute("World"), DescriptionAttribute("World Size"), ReadOnly(true)] private RectF _WorldBounds;
-        [CategoryAttribute("World"), DescriptionAttribute("World ID"), ReadOnly(true)] private int _WorldId;
-
-
-        [CategoryAttribute("World"), DescriptionAttribute("World Name")] private string _WorldName;
-        [CategoryAttribute("World"), DescriptionAttribute("Rock Level"), ReadOnly(true)] private double _WorldRockLayer;
-        [CategoryAttribute("World"), DescriptionAttribute("Surface Level"), ReadOnly(true)] private double _WorldSurface;
+        private bool _IsBloodMoon;
+        private bool _IsBossDowned1;
+        private bool _IsBossDowned2;
+        private bool _IsBossDowned3;
+        private bool _IsDayTime;
+        private bool _IsShadowOrbSmashed;
+        private bool _IsSpawnMeteor;
+        private double _InvasionX;
+        private double _Time;
+        private double _WorldRockLayer;
+        private double _WorldSurface;
+        private int _FileVersion;
+        private int _InvasionDelay;
+        private int _InvasionSize;
+        private int _InvasionType;
+        private int _MoonPhase;
+        private int _ShadowOrbCount;
+        private int _WorldId;
+        private PointInt32 _DungeonEntrance;
+        private PointInt32 _MaxTiles;
+        private PointInt32 _SpawnTile;
+        private RectF _WorldBounds;
+        private string _WorldName;
+        private string _FileName;
 
         public WorldHeader()
         {
@@ -65,6 +51,7 @@ namespace TEdit.TerrariaWorld
             }
         }
 
+        [CategoryAttribute("World"), DescriptionAttribute("Terraria Save File Version")]
         public int FileVersion
         {
             get { return _FileVersion; }
@@ -78,6 +65,7 @@ namespace TEdit.TerrariaWorld
             }
         }
 
+        [CategoryAttribute("World"), DescriptionAttribute("World Name")]
         public string WorldName
         {
             get { return _WorldName; }
@@ -91,6 +79,7 @@ namespace TEdit.TerrariaWorld
             }
         }
 
+        [CategoryAttribute("World"), DescriptionAttribute("World ID"), ReadOnly(true)]
         public int WorldId
         {
             get { return _WorldId; }
@@ -104,6 +93,7 @@ namespace TEdit.TerrariaWorld
             }
         }
 
+        [CategoryAttribute("World"), DescriptionAttribute("World Size"), ReadOnly(true)]
         public RectF WorldBounds
         {
             get { return _WorldBounds; }
@@ -117,6 +107,7 @@ namespace TEdit.TerrariaWorld
             }
         }
 
+        [CategoryAttribute("World"), DescriptionAttribute("World Size"), ReadOnly(true)]
         public PointInt32 MaxTiles
         {
             get { return _MaxTiles; }
@@ -130,6 +121,7 @@ namespace TEdit.TerrariaWorld
             }
         }
 
+        [CategoryAttribute("World"), DescriptionAttribute("Spawn Location")]
         public PointInt32 SpawnTile
         {
             get { return _SpawnTile; }
@@ -143,6 +135,7 @@ namespace TEdit.TerrariaWorld
             }
         }
 
+        [CategoryAttribute("World"), DescriptionAttribute("Surface Level"), ReadOnly(true)]
         public double WorldSurface
         {
             get { return _WorldSurface; }
@@ -156,7 +149,7 @@ namespace TEdit.TerrariaWorld
             }
         }
 
-
+        [CategoryAttribute("World"), DescriptionAttribute("Rock Level"), ReadOnly(true)]
         public double WorldRockLayer
         {
             get { return _WorldRockLayer; }
@@ -170,7 +163,7 @@ namespace TEdit.TerrariaWorld
             }
         }
 
-
+        [CategoryAttribute("Time"), DescriptionAttribute("Time of Day")]
         public double Time
         {
             get { return _Time; }
@@ -184,7 +177,7 @@ namespace TEdit.TerrariaWorld
             }
         }
 
-
+        [CategoryAttribute("Time"), DescriptionAttribute("Is it Daytime")]
         public bool IsDayTime
         {
             get { return _IsDayTime; }
@@ -198,7 +191,7 @@ namespace TEdit.TerrariaWorld
             }
         }
 
-
+        [CategoryAttribute("Time"), DescriptionAttribute("Moon Phase")]
         public int MoonPhase
         {
             get { return _MoonPhase; }
@@ -212,7 +205,7 @@ namespace TEdit.TerrariaWorld
             }
         }
 
-
+        [CategoryAttribute("Time"), DescriptionAttribute("Is it a Blood Moon")]
         public bool IsBloodMoon
         {
             get { return _IsBloodMoon; }
@@ -226,7 +219,7 @@ namespace TEdit.TerrariaWorld
             }
         }
 
-
+        [Category("World"), DescriptionAttribute("Dungeon Location"), ReadOnly(true)]
         public PointInt32 DungeonEntrance
         {
             get { return _DungeonEntrance; }
@@ -240,7 +233,7 @@ namespace TEdit.TerrariaWorld
             }
         }
 
-
+        [CategoryAttribute("Bosses"), DescriptionAttribute("Is Eater of Worlds Dead")]
         public bool IsBossDowned1
         {
             get { return _IsBossDowned1; }
@@ -254,7 +247,7 @@ namespace TEdit.TerrariaWorld
             }
         }
 
-
+        [CategoryAttribute("Bosses"), DescriptionAttribute("Is Eye of Cuthulu Dead")]
         public bool IsBossDowned2
         {
             get { return _IsBossDowned2; }
@@ -268,7 +261,7 @@ namespace TEdit.TerrariaWorld
             }
         }
 
-
+        [CategoryAttribute("Bosses"), DescriptionAttribute("Is Skeletron Dead")]
         public bool IsBossDowned3
         {
             get { return _IsBossDowned3; }
@@ -282,7 +275,7 @@ namespace TEdit.TerrariaWorld
             }
         }
 
-
+        [CategoryAttribute("Shadow Orbs"), DescriptionAttribute("Have any Shadow Orbs been Smashed?")]
         public bool IsShadowOrbSmashed
         {
             get { return _IsShadowOrbSmashed; }
@@ -296,7 +289,7 @@ namespace TEdit.TerrariaWorld
             }
         }
 
-
+        [CategoryAttribute("Shadow Orbs"), DescriptionAttribute("Spawn the Meteor?")]
         public bool IsSpawnMeteor
         {
             get { return _IsSpawnMeteor; }
@@ -310,7 +303,7 @@ namespace TEdit.TerrariaWorld
             }
         }
 
-
+        [CategoryAttribute("Shadow Orbs"), DescriptionAttribute("Number of Shadow Orbs Smashed")]
         public int ShadowOrbCount
         {
             get { return _ShadowOrbCount; }
@@ -320,11 +313,12 @@ namespace TEdit.TerrariaWorld
                 {
                     _ShadowOrbCount = value;
                     RaisePropertyChanged("ShadowOrbCount");
+                    IsShadowOrbSmashed = ShadowOrbCount > 0;
                 }
             }
         }
 
-
+        [CategoryAttribute("Invasion"), DescriptionAttribute("Invasion Delay")]
         public int InvasionDelay
         {
             get { return _InvasionDelay; }
@@ -338,7 +332,7 @@ namespace TEdit.TerrariaWorld
             }
         }
 
-
+        [CategoryAttribute("Invasion"), DescriptionAttribute("Invasion Size")]
         public int InvasionSize
         {
             get { return _InvasionSize; }
@@ -352,7 +346,7 @@ namespace TEdit.TerrariaWorld
             }
         }
 
-
+        [CategoryAttribute("Invasion"), DescriptionAttribute("Invasion Type")]
         public int InvasionType
         {
             get { return _InvasionType; }
@@ -366,7 +360,7 @@ namespace TEdit.TerrariaWorld
             }
         }
 
-
+        [CategoryAttribute("Invasion"), DescriptionAttribute("Invasion X Coordinate")]
         public double InvasionX
         {
             get { return _InvasionX; }
@@ -382,7 +376,7 @@ namespace TEdit.TerrariaWorld
 
         public WorldHeader Clone()
         {
-            return (WorldHeader) MemberwiseClone();
+            return (WorldHeader)MemberwiseClone();
         }
     }
 }

@@ -73,7 +73,7 @@ TILECOLORS
 52|Vines|#ff0d6524
 53|Sand|#ffffda38
 54|Glass|#20FFFFFF
-55|Signs|#ff00fff2
+55|Signs|#ffFFAE5E
 56|Obsidian|#ff5751ad
 57|Ash|#ff44444c
 58|Hellstone|#ff662222

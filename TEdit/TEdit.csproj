@@ -142,6 +142,9 @@
     <Compile Include="Views\WorldImageView.xaml.cs">
       <DependentUpon>WorldImageView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\WorldPropertiesView.xaml.cs">
+      <DependentUpon>WorldPropertiesView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="WriteableBitmapEx\NativeMethods.cs" />
     <Compile Include="WriteableBitmapEx\WriteableBitmapBaseExtensions.cs" />
     <Compile Include="WriteableBitmapEx\WriteableBitmapFillExtensions.cs" />
@@ -204,6 +207,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\WorldImageView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\WorldPropertiesView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

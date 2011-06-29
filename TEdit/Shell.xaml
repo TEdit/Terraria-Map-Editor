@@ -16,8 +16,8 @@
     </ScrollViewer>
     <views:StatusBarView DockPanel.Dock="Bottom" />
     <views:ToolSelectorView DockPanel.Dock="Left" />
-    <Expander Header="Tools" ExpandDirection="Left" IsExpanded="False" Grid.Row="1" DockPanel.Dock="Right">
-      <TabControl Width="200"></TabControl>
+    <Expander Header="World Properties" ExpandDirection="Left" IsExpanded="True" Grid.Row="1" DockPanel.Dock="Right">
+      <views:WorldPropertiesView Height="300" Width="260" HorizontalAlignment="Right" VerticalAlignment="Top"/>
     </Expander>
     <Border BorderBrush="Black" BorderThickness="1">
       <views:WorldImageView />
