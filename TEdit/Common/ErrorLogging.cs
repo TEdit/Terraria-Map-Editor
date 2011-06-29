@@ -21,7 +21,7 @@ namespace TEdit.Common
 
         public static void Log(string message)
         {
-            File.AppendAllText(Settings.Default.LogFile,
+            File.AppendAllText("log.txt",
                                DateTime.Now.ToShortDateString() + " " + DateTime.Now.ToShortTimeString() + ": " +
                                message + Environment.NewLine);
         }

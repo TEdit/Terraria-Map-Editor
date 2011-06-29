@@ -1,3 +1,8 @@
+2011-06-28 Some test error trapping
+2011-06-28 Added Terrafirma style sign popup to arrow tool
+2011-06-28 Resharper megacleanup...
+2011-06-28 Arrow tool - right clicking chests opens a popup. Idea from Terrafirma.
+2011-06-28 Marker scaling and dynamic loading. Converted chests, signs, and npcs to observablecollections. Zoom textbox is now editable directly - closes #55
 2011-06-28 Added Dungeon Point Picker
 2011-06-27 Brush saves last size used, closes #51.
 2011-06-27 Scroll bar for tools
