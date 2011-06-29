@@ -22,17 +22,5 @@ namespace TEdit.Properties {
                 return defaultInstance;
             }
         }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("\r\n        exceptiontracelog.txt\r\n      ")]
-        public string LogFile {
-            get {
-                return ((string)(this["LogFile"]));
-            }
-            set {
-                this["LogFile"] = value;
-            }
-        }
     }
 }

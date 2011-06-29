@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.Composition;
+﻿using System;
+using System.ComponentModel.Composition;
 using System.ComponentModel.Composition.Hosting;
 using System.Reflection;
 using System.Windows;
@@ -21,6 +22,13 @@ namespace TEdit
 
         protected override void OnStartup(StartupEventArgs e)
         {
+#if DEBUG
+            // Don't trap unhandled exceptions in debug mode
+#else
+            AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
+            //this.DispatcherUnhandledException += App_DispatcherUnhandledException;
+#endif
+
             base.OnStartup(e);
 
             if (Compose())
@@ -31,6 +39,22 @@ namespace TEdit
             {
                 Shutdown();
             }
+        }
+
+        void App_DispatcherUnhandledException(object sender, System.Windows.Threading.DispatcherUnhandledExceptionEventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
+        {
+#if DEBUG
+            // Don't trap unhandled exceptions in debug mode
+#else
+            TEdit.Common.ErrorLogging.LogException(e.ExceptionObject, Common.ErrorLogging.ErrorLevel.Fatal);
+            MessageBox.Show("An unhandled exception has occured. Please copy the log from \"log.txt\" to the GitHub Issues list.\r\nThe program will now exit.", "Unhandled Exception");
+            Application.Current.Shutdown();
+#endif
         }
 
         protected override void OnExit(ExitEventArgs e)
