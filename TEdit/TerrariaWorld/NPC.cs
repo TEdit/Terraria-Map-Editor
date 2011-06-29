@@ -19,7 +19,7 @@ namespace TEdit.TerrariaWorld
 
         public string ImagePath
         {
-            get { return "../RenderWorld/Overlays/npc_" + _Name.ToLower().Replace(' ', '_') + ".png"; }
+            get { return "../Images/Overlays/npc_" + _Name.ToLower().Replace(' ', '_') + ".png"; }
         }
 
         public string Name

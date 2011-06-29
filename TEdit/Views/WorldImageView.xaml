@@ -40,11 +40,11 @@
                          Canvas.Top="{Binding Path=Selection.Rectangle.Y}" Fill="#A4005BFF" IsHitTestVisible="False"
                          Visibility="{Binding Path=Selection.SelectionVisibility}" />
 
-              <Image Source="../RenderWorld/Overlays/spawn_marker.png"
+              <Image Source="../Images/Overlays/spawn_marker.png"
                      Canvas.Left="{Binding Path=World.Header.SpawnTile.X}" Canvas.Top="{Binding Path=World.Header.SpawnTile.Y}"
                      IsHitTestVisible="False" OpacityMask="#A0000000" RenderTransformOrigin="0.5,1"
                      RenderTransform="{DynamicResource MarkerTransform}" />
-              <Image Source="../RenderWorld/Overlays/dungeon_marker.png"
+                            <Image Source="../Images/Overlays/dungeon_marker.png"
                      Canvas.Left="{Binding Path=World.Header.DungeonEntrance.X}" Canvas.Top="{Binding Path=World.Header.DungeonEntrance.Y}"
                      IsHitTestVisible="False" OpacityMask="#A0000000" RenderTransformOrigin="0.5,1"
                      RenderTransform="{DynamicResource MarkerTransform}" />

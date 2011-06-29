@@ -26,7 +26,7 @@
       </Grid.RowDefinitions>
       <ToggleButton ToolTip="Eraser" IsChecked="{Binding Path=TilePicker.IsEraser, Mode=TwoWay}" Margin="2"
                     Grid.Row="0" BorderThickness="2">
-        <Image Source="../Tools/Images/eraser.png" Height="32" Width="32"
+        <Image Source="../Images/Tools/eraser.png" Height="32" Width="32"
                RenderOptions.BitmapScalingMode="NearestNeighbor" Stretch="None" />
       </ToggleButton>
     </Grid>

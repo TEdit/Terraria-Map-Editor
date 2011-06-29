@@ -15,7 +15,7 @@ namespace TEdit.Tools
 
         public Fill()
         {
-            _Image = new BitmapImage(new Uri(@"pack://application:,,,/TEdit;component/Tools/Images/paintcan.png"));
+            _Image = new BitmapImage(new Uri(@"pack://application:,,,/TEdit;component/Images/Tools/paintcan.png"));
             _Name = "Fill";
             _Type = ToolType.Fill;
             IsActive = false;

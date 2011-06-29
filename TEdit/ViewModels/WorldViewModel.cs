@@ -46,11 +46,16 @@ namespace TEdit.ViewModels
         private string _tileName;
         private string _wallName;
 
-        [Import] private SelectionArea _selection;
-        [Import] private TilePicker _tilePicker;
-        [Import] private ToolProperties _toolProperties;
-        [Import] private WorldRenderer _renderer;
-        [Import("World", typeof (World))] private World _world;
+        [Import]
+        private SelectionArea _selection;
+        [Import]
+        private TilePicker _tilePicker;
+        [Import]
+        private ToolProperties _toolProperties;
+        [Import]
+        private WorldRenderer _renderer;
+        [Import("World", typeof(World))]
+        private World _world;
 
         public WorldViewModel()
         {
@@ -102,7 +107,7 @@ namespace TEdit.ViewModels
         }
 
 
-        [ImportMany(typeof (ITool))]
+        [ImportMany(typeof(ITool))]
         public OrderingCollection<ITool, IOrderMetadata> Tools { get; set; }
 
         public ITool ActiveTool
@@ -165,7 +170,7 @@ namespace TEdit.ViewModels
             get
             {
                 if (_worldImage.Image != null)
-                    return _worldImage.Image.PixelHeight*_zoom;
+                    return _worldImage.Image.PixelHeight * _zoom;
 
 
                 return 1;
@@ -177,7 +182,7 @@ namespace TEdit.ViewModels
             get
             {
                 if (_worldImage.Image != null)
-                    return _worldImage.Image.PixelWidth*_zoom;
+                    return _worldImage.Image.PixelWidth * _zoom;
 
                 return 1;
             }
@@ -204,7 +209,7 @@ namespace TEdit.ViewModels
 
         public double ZoomInverted
         {
-            get { return 1/(_zoom); }
+            get { return 1 / (_zoom); }
         }
 
         [Import]
@@ -267,19 +272,6 @@ namespace TEdit.ViewModels
         public ICommand SaveWorldCommand
         {
             get { return _saveWorldCommand ?? (_saveWorldCommand = new RelayCommand(SaveWorld, CanSave)); }
-        }
-
-        public bool IsBusy
-        {
-            get { return _isBusy; }
-            set
-            {
-                if (_isBusy != value)
-                {
-                    _isBusy = value;
-                    RaisePropertyChanged("IsBusy");
-                }
-            }
         }
 
 
@@ -400,19 +392,19 @@ namespace TEdit.ViewModels
 
         private void CompTargetRender(object sender, EventArgs e)
         {
-            CalcFrameRate((RenderingEventArgs) e);
+            CalcFrameRate((RenderingEventArgs)e);
         }
 
         private void CalcFrameRate(RenderingEventArgs renderArgs)
         {
             TimeSpan dt = (renderArgs.RenderingTime - _lastRender);
-            var framrate = (int) (1000/dt.TotalMilliseconds);
+            var framrate = (int)(1000 / dt.TotalMilliseconds);
 
             if (framrate > 0)
             {
-                _frameTimesIndex = (_frameTimesIndex + 1)%_frameTimes.Length;
+                _frameTimesIndex = (_frameTimesIndex + 1) % _frameTimes.Length;
                 _frameTimes[_frameTimesIndex] = framrate;
-                FrameRate = (int) _frameTimes.Average();
+                FrameRate = (int)_frameTimes.Average();
             }
             // About to render...
             _lastRender = renderArgs.RenderingTime;
@@ -420,55 +412,49 @@ namespace TEdit.ViewModels
 
         public bool CanLoad()
         {
-            return !IsBusy;
+            return _world.CanUseFileIO;
         }
 
         public bool CanSave()
         {
-            return !IsBusy;
+            return _world.CanUseFileIO;
         }
 
         private void LoadWorldandRender()
         {
             var ofd = new OpenFileDialog();
-            IsBusy = true;
-            if ((bool) ofd.ShowDialog())
+            if ((bool)ofd.ShowDialog())
             {
                 Task.Factory.StartNew(() =>
                                           {
+                                              WorldImage.Image = null;
                                               World.Load(ofd.FileName);
                                               WriteableBitmap img = _renderer.RenderWorld();
                                               img.Freeze();
                                               _uiFactory.StartNew(() =>
-                                                                      {
-                                                                          WorldImage.Image = img.Clone();
-                                                                          img = null;
-                                                                          RaisePropertyChanged("WorldZoomedHeight");
-                                                                          RaisePropertyChanged("WorldZoomedWidth");
-                                                                      });
+                                                {
+                                                    WorldImage.Image = img.Clone();
+                                                    img = null;
+                                                    RaisePropertyChanged("WorldZoomedHeight");
+                                                    RaisePropertyChanged("WorldZoomedWidth");
+                                                });
                                           });
             }
-            IsBusy = false;
         }
 
         private void SaveWorld()
         {
-            Task.Factory.StartNew(() =>
-                                      {
-                                          IsBusy = true;
-                                          World.SaveFile(_world.Header.FileName);
-                                          _uiFactory.StartNew(() => IsBusy = false);
-                                      });
+            Task.Factory.StartNew(() => World.SaveFile(_world.Header.FileName));
         }
 
         private void OnMouseOverPixel(TileMouseEventArgs e)
         {
             MouseOverTile = e.Tile;
 
-            if (e.Tile.X < _world.Header.MaxTiles.X &&
-                e.Tile.Y < _world.Header.MaxTiles.X &&
+            if ((e.Tile.X < _world.Header.MaxTiles.X &&
+                e.Tile.Y < _world.Header.MaxTiles.Y &&
                 e.Tile.X >= 0 &&
-                e.Tile.Y >= 0)
+                e.Tile.Y >= 0) && (_world.Tiles[e.Tile.X, e.Tile.Y] != null))
             {
                 Tile overTile = _world.Tiles[e.Tile.X, e.Tile.Y];
 
@@ -493,26 +479,44 @@ namespace TEdit.ViewModels
 
         private void OnMouseDownPixel(TileMouseEventArgs e)
         {
-            MouseDownTile = e.Tile;
+            if ((e.Tile.X < _world.Header.MaxTiles.X &&
+                e.Tile.Y < _world.Header.MaxTiles.Y &&
+                e.Tile.X >= 0 &&
+                e.Tile.Y >= 0) && (_world.Tiles[e.Tile.X, e.Tile.Y] != null))
+            {
+                MouseDownTile = e.Tile;
 
-            if (ActiveTool != null)
-                ActiveTool.PressTool(e);
+                if (ActiveTool != null)
+                    ActiveTool.PressTool(e);
+            }
         }
 
         private void OnMouseUpPixel(TileMouseEventArgs e)
         {
-            MouseUpTile = e.Tile;
+            if ((e.Tile.X < _world.Header.MaxTiles.X &&
+                e.Tile.Y < _world.Header.MaxTiles.Y &&
+                e.Tile.X >= 0 &&
+                e.Tile.Y >= 0) && (_world.Tiles[e.Tile.X, e.Tile.Y] != null))
+            {
+                MouseUpTile = e.Tile;
 
-            if (ActiveTool != null)
-                ActiveTool.ReleaseTool(e);
+                if (ActiveTool != null)
+                    ActiveTool.ReleaseTool(e);
+            }
         }
 
         private void OnMouseWheel(TileMouseEventArgs e)
         {
-            if (e.WheelDelta > 0)
-                Zoom = Zoom*1.1;
-            if (e.WheelDelta < 0)
-                Zoom = Zoom*0.9;
+            if ((e.Tile.X < _world.Header.MaxTiles.X &&
+                e.Tile.Y < _world.Header.MaxTiles.Y &&
+                e.Tile.X >= 0 &&
+                e.Tile.Y >= 0) && (_world.Tiles[e.Tile.X, e.Tile.Y] != null))
+            {
+                if (e.WheelDelta > 0)
+                    Zoom = Zoom * 1.1;
+                if (e.WheelDelta < 0)
+                    Zoom = Zoom * 0.9;
+            }
         }
     }
 }

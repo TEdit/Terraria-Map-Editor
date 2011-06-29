@@ -7,7 +7,7 @@
       <ItemsControl.ItemTemplate>
         <DataTemplate>
           <StackPanel Orientation="Horizontal" Margin="1">
-                        <TextBox Text="{Binding Path=StackSize, Mode=TwoWay}" Width="30" />
+                        <TextBox Text="{Binding Path=StackSize, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Width="30" />
                         <ComboBox ItemsSource="{Binding Path=ValidItems}" SelectedItem="{Binding Path=Name,Mode=TwoWay}" Width="200" Margin="1,0" />
           </StackPanel>
         </DataTemplate>

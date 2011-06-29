@@ -15,8 +15,24 @@ namespace TEdit.TerrariaWorld
                 ProgressChanged(sender, e);
         }
 
+        private bool _canUseFileIo = true;
+        public bool CanUseFileIO
+        {
+            get { return this._canUseFileIo; }
+            set
+            {
+                if (this._canUseFileIo != value)
+                {
+                    this._canUseFileIo = value;
+                    this.RaisePropertyChanged("CanUseFileIO");
+                }
+            }
+        }
+
+
         public void Load(string filename)
         {
+            CanUseFileIO = false;
             string ext = Path.GetExtension(filename);
             if (!string.Equals(ext, ".wld", StringComparison.CurrentCultureIgnoreCase))
                 throw new ApplicationException("Invalid file");
@@ -183,11 +199,13 @@ namespace TEdit.TerrariaWorld
                     reader.Close();
                 }
             }
+            CanUseFileIO = true;
             OnProgressChanged(this, new ProgressChangedEventArgs(0, ""));
         }
 
         public void SaveFile(string filename)
         {
+            CanUseFileIO = false;
             string backupFileName = filename + ".Tedit";
             if (File.Exists(filename))
             {
@@ -336,6 +354,7 @@ namespace TEdit.TerrariaWorld
                     writer.Close();
                 }
             }
+            CanUseFileIO = true;
             OnProgressChanged(this, new ProgressChangedEventArgs(0, ""));
         }
     }

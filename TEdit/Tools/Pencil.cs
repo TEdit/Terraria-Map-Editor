@@ -30,7 +30,7 @@ namespace TEdit.Tools
 
         public Pencil()
         {
-            _image = new BitmapImage(new Uri(@"pack://application:,,,/TEdit;component/Tools/Images/pencil.png"));
+            _image = new BitmapImage(new Uri(@"pack://application:,,,/TEdit;component/Images/Tools/pencil.png"));
             _name = "Pencil";
             _type = ToolType.Pencil;
             _isActive = false;

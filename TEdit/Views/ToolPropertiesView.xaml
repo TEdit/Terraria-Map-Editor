@@ -17,12 +17,12 @@
       </Grid.RowDefinitions>
       <ToggleButton Grid.Row="0" Grid.RowSpan="2" Grid.Column="2" Margin="2"
                     IsChecked="{Binding Path=ToolProperties.IsSquare}" ToolTip="Square Width and Height">
-        <Image Source="../Tools/Images/constrain.png" RenderOptions.BitmapScalingMode="NearestNeighbor"
+                <Image Source="../Images/Tools/constrain.png" RenderOptions.BitmapScalingMode="NearestNeighbor"
                Stretch="None" />
       </ToggleButton>
       <ToggleButton Grid.Row="2" Grid.Column="3" Margin="2,2" ToolTip="Enable Draw Outline (room)"
                     IsChecked="{Binding Path=ToolProperties.IsOutline, Mode=TwoWay}">
-        <Image Source="../Tools/Images/outline.png" RenderOptions.BitmapScalingMode="NearestNeighbor"
+                <Image Source="../Images/Tools/outline.png" RenderOptions.BitmapScalingMode="NearestNeighbor"
                Height="16" Stretch="None" />
       </ToggleButton>
       <TextBlock Grid.Row="0" Grid.Column="0" Text="Width" HorizontalAlignment="Right" VerticalAlignment="Center"

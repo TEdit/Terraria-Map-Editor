@@ -19,7 +19,7 @@ namespace TEdit.Tools
 
         public SpawnPointPicker()
         {
-            _Image = new BitmapImage(new Uri(@"pack://application:,,,/TEdit;component/Tools/Images/spawn.png"));
+            _Image = new BitmapImage(new Uri(@"pack://application:,,,/TEdit;component/Images/Tools/spawn.png"));
             _Name = "Spawn Point Tool";
             _Type = ToolType.Pencil;
             IsActive = false;

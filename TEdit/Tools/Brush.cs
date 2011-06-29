@@ -33,7 +33,7 @@ namespace TEdit.Tools
         public Brush()
         {
             _lastUsedSize = new SizeInt32(0, 0);
-            _image = new BitmapImage(new Uri(@"pack://application:,,,/TEdit;component/Tools/Images/paintbrush.png"));
+            _image = new BitmapImage(new Uri(@"pack://application:,,,/TEdit;component/Images/Tools/paintbrush.png"));
             _name = "Brush";
             _type = ToolType.Brush;
             _isActive = false;

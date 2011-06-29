@@ -23,7 +23,7 @@ namespace TEdit.Tools
 
         public Selection()
         {
-            _Image = new BitmapImage(new Uri(@"pack://application:,,,/TEdit;component/Tools/Images/shape_square.png"));
+            _Image = new BitmapImage(new Uri(@"pack://application:,,,/TEdit;component/Images/Tools/shape_square.png"));
             _Name = "Selection";
             _Type = ToolType.Selection;
             IsActive = false;

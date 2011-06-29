@@ -19,7 +19,7 @@ namespace TEdit.Tools
 
         public DungeonPointPicker()
         {
-            _Image = new BitmapImage(new Uri(@"pack://application:,,,/TEdit;component/Tools/Images/dungeon_tool.png"));
+            _Image = new BitmapImage(new Uri(@"pack://application:,,,/TEdit;component/Images/Tools/dungeon_tool.png"));
             _Name = "Dungeon Point Tool";
             _Type = ToolType.Pencil;
             IsActive = false;

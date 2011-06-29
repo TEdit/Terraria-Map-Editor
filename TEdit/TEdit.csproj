@@ -243,32 +243,32 @@
     <Content Include="colors.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Resource Include="Tools\Images\dungeon_tool.png" />
-    <Resource Include="Tools\Images\spawn.png" />
     <Resource Include="Images\tedit.ico" />
+    <Resource Include="Images\Overlays\dungeon_marker.png" />
+    <Resource Include="Images\Overlays\npc_arms_dealer.png" />
+    <Resource Include="Images\Overlays\npc_clothier.png" />
+    <Resource Include="Images\Overlays\npc_demolitionist.png" />
+    <Resource Include="Images\Overlays\npc_dryad.png" />
+    <Resource Include="Images\Overlays\npc_guide.png" />
+    <Resource Include="Images\Overlays\npc_merchant.png" />
+    <Resource Include="Images\Overlays\npc_nurse.png" />
+    <Resource Include="Images\Overlays\spawn_marker.png" />
+    <Resource Include="Images\Tools\constrain.png" />
+    <Resource Include="Images\Tools\cursor.png" />
+    <Resource Include="Images\Tools\delete.png" />
+    <Resource Include="Images\Tools\dungeon_tool.png" />
+    <Resource Include="Images\Tools\eraser.png" />
+    <Resource Include="Images\Tools\outline.png" />
+    <Resource Include="Images\Tools\paintbrush.png" />
+    <Resource Include="Images\Tools\paintcan.png" />
+    <Resource Include="Images\Tools\paintcanpercent.png" />
+    <Resource Include="Images\Tools\pencil.png" />
+    <Resource Include="Images\Tools\shape_square.png" />
+    <Resource Include="Images\Tools\spawn.png" />
     <Content Include="items.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Resource Include="tedit.ico" />
-    <Resource Include="RenderWorld\Overlays\npc_arms_dealer.png" />
-    <Resource Include="RenderWorld\Overlays\npc_clothier.png" />
-    <Resource Include="RenderWorld\Overlays\npc_dryad.png" />
-    <Resource Include="RenderWorld\Overlays\npc_demolitionist.png" />
-    <Resource Include="RenderWorld\Overlays\npc_guide.png" />
-    <Resource Include="RenderWorld\Overlays\npc_merchant.png" />
-    <Resource Include="RenderWorld\Overlays\npc_nurse.png" />
-    <Resource Include="RenderWorld\Overlays\dungeon_marker.png" />
-    <Resource Include="RenderWorld\Overlays\spawn_marker.png" />
-    <Resource Include="Tools\Images\outline.png" />
-    <Resource Include="Tools\Images\constrain.png" />
-    <Resource Include="Tools\Images\eraser.png" />
-    <Resource Include="Tools\Images\delete.png" />
-    <Resource Include="Tools\Images\cursor.png" />
-    <Resource Include="Tools\Images\paintbrush.png" />
-    <Resource Include="Tools\Images\paintcan.png" />
-    <Resource Include="Tools\Images\paintcanpercent.png" />
-    <Resource Include="Tools\Images\pencil.png" />
-    <Resource Include="Tools\Images\shape_square.png" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="GPL.txt">
