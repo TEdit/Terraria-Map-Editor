@@ -19,47 +19,38 @@ namespace TEdit.ViewModels
     [Export]
     public class WorldViewModel : ObservableObject, IPartImportsSatisfiedNotification
     {
-        private readonly ObservableCollection<Chest> _Chests = new ObservableCollection<Chest>();
-        private readonly ObservableCollection<NPC> _Npcs = new ObservableCollection<NPC>();
-        private readonly ObservableCollection<Sign> _Signs = new ObservableCollection<Sign>();
         private readonly TaskFactory _uiFactory;
         private readonly TaskScheduler _uiScheduler;
 
-        private readonly int[] frameTimes = new int[100];
-        private ITool _ActiveTool;
-        private string _FluidName;
-
-        private int _FrameRate;
-        private bool _IsBusy;
-        [Import] private SelectionArea _Selection;
-
-        private string _TileName;
-        [Import] private TilePicker _TilePicker;
-
-        [Import] private ToolProperties _ToolProperties;
-
-
-        private string _WallName;
-        private double _Zoom = 1;
-        private bool _isMouseContained;
         private ICommand _mouseDownCommand;
-        private PointInt32 _mouseDownTile;
         private ICommand _mouseMoveCommand;
-        private PointInt32 _mouseOverTile;
         private ICommand _mouseUpCommand;
-        private PointInt32 _mouseUpTile;
         private ICommand _mouseWheelCommand;
         private ICommand _openWorldCommand;
-        private ProgressChangedEventArgs _progress;
         private ICommand _saveWorldCommand;
         private ICommand _setTool;
+        private ITool _activeTool;
+        private PointInt32 _mouseDownTile;
+        private PointInt32 _mouseOverTile;
+        private PointInt32 _mouseUpTile;
+        private ProgressChangedEventArgs _progress;
+        private TimeSpan _lastRender;
         private WorldImage _worldImage;
-        private int frameTimesIndex;
-        private TimeSpan lastRender;
+        private bool _isBusy;
+        private bool _isMouseContained;
+        private double _zoom = 1;
+        private int _frameRate;
+        private int _frameTimesIndex;
+        private readonly int[] _frameTimes = new int[100];
+        private string _fluidName;
+        private string _tileName;
+        private string _wallName;
 
-        [Import] private WorldRenderer renderer;
-
-        [Import("World", typeof (World))] private World world;
+        [Import] private SelectionArea _selection;
+        [Import] private TilePicker _tilePicker;
+        [Import] private ToolProperties _toolProperties;
+        [Import] private WorldRenderer _renderer;
+        [Import("World", typeof (World))] private World _world;
 
         public WorldViewModel()
         {
@@ -71,12 +62,12 @@ namespace TEdit.ViewModels
 
         public int FrameRate
         {
-            get { return _FrameRate; }
+            get { return _frameRate; }
             set
             {
-                if (_FrameRate != value)
+                if (_frameRate != value)
                 {
-                    _FrameRate = value;
+                    _frameRate = value;
                     RaisePropertyChanged("FrameRate");
                 }
             }
@@ -84,13 +75,13 @@ namespace TEdit.ViewModels
 
         public ToolProperties ToolProperties
         {
-            get { return _ToolProperties; }
+            get { return _toolProperties; }
             set
             {
-                if (_ToolProperties != value)
+                if (_toolProperties != value)
                 {
-                    _ToolProperties = null;
-                    _ToolProperties = value;
+                    _toolProperties = null;
+                    _toolProperties = value;
                     RaisePropertyChanged("ToolProperties");
                 }
             }
@@ -99,12 +90,12 @@ namespace TEdit.ViewModels
 
         public TilePicker TilePicker
         {
-            get { return _TilePicker; }
+            get { return _tilePicker; }
             set
             {
-                if (_TilePicker != value)
+                if (_tilePicker != value)
                 {
-                    _TilePicker = value;
+                    _tilePicker = value;
                     RaisePropertyChanged("TilePicker");
                 }
             }
@@ -116,23 +107,23 @@ namespace TEdit.ViewModels
 
         public ITool ActiveTool
         {
-            get { return _ActiveTool; }
+            get { return _activeTool; }
             set
             {
-                if (_ActiveTool != value)
+                if (_activeTool != value)
                 {
-                    if (_ActiveTool != null)
-                        _ActiveTool.IsActive = false;
+                    if (_activeTool != null)
+                        _activeTool.IsActive = false;
 
-                    _ActiveTool = value;
-                    _ActiveTool.IsActive = true;
+                    _activeTool = value;
+                    _activeTool.IsActive = true;
                     //foreach (var tool in Tools)
                     //{
                     //    tool.Value.IsActive = (tool.Value == _ActiveTool);
                     //}
 
                     ToolProperties.Image = null;
-                    ToolProperties.Image = _ActiveTool.PreviewTool();
+                    ToolProperties.Image = _activeTool.PreviewTool();
                     RaisePropertyChanged("ActiveTool");
                 }
             }
@@ -141,12 +132,12 @@ namespace TEdit.ViewModels
 
         public SelectionArea Selection
         {
-            get { return _Selection; }
+            get { return _selection; }
             set
             {
-                if (_Selection != value)
+                if (_selection != value)
                 {
-                    _Selection = value;
+                    _selection = value;
                     RaisePropertyChanged("Selection");
                 }
             }
@@ -155,13 +146,13 @@ namespace TEdit.ViewModels
 
         public World World
         {
-            get { return world; }
+            get { return _world; }
             set
             {
-                if (world != value)
+                if (_world != value)
                 {
-                    world = null;
-                    world = value;
+                    _world = null;
+                    _world = value;
                     RaisePropertyChanged("World");
                     RaisePropertyChanged("WorldZoomedHeight");
                     RaisePropertyChanged("WorldZoomedWidth");
@@ -169,28 +160,12 @@ namespace TEdit.ViewModels
             }
         }
 
-        public ObservableCollection<Chest> Chests
-        {
-            get { return _Chests; }
-        }
-
-        public ObservableCollection<Sign> Signs
-        {
-            get { return _Signs; }
-        }
-
-        public ObservableCollection<NPC> Npcs
-        {
-            get { return _Npcs; }
-        }
-
-
         public double WorldZoomedHeight
         {
             get
             {
                 if (_worldImage.Image != null)
-                    return _worldImage.Image.PixelHeight*_Zoom;
+                    return _worldImage.Image.PixelHeight*_zoom;
 
 
                 return 1;
@@ -202,7 +177,7 @@ namespace TEdit.ViewModels
             get
             {
                 if (_worldImage.Image != null)
-                    return _worldImage.Image.PixelWidth*_Zoom;
+                    return _worldImage.Image.PixelWidth*_zoom;
 
                 return 1;
             }
@@ -210,15 +185,15 @@ namespace TEdit.ViewModels
 
         public double Zoom
         {
-            get { return _Zoom; }
+            get { return _zoom; }
             set
             {
                 double limitedZoom = value;
                 limitedZoom = Math.Min(Math.Max(limitedZoom, 0.05), 1000);
 
-                if (_Zoom != limitedZoom)
+                if (_zoom != limitedZoom)
                 {
-                    _Zoom = limitedZoom;
+                    _zoom = limitedZoom;
                     RaisePropertyChanged("Zoom");
                     RaisePropertyChanged("ZoomInverted");
                     RaisePropertyChanged("WorldZoomedHeight");
@@ -229,7 +204,7 @@ namespace TEdit.ViewModels
 
         public double ZoomInverted
         {
-            get { return 1/(_Zoom); }
+            get { return 1/(_zoom); }
         }
 
         [Import]
@@ -296,12 +271,12 @@ namespace TEdit.ViewModels
 
         public bool IsBusy
         {
-            get { return _IsBusy; }
+            get { return _isBusy; }
             set
             {
-                if (_IsBusy != value)
+                if (_isBusy != value)
                 {
-                    _IsBusy = value;
+                    _isBusy = value;
                     RaisePropertyChanged("IsBusy");
                 }
             }
@@ -310,12 +285,12 @@ namespace TEdit.ViewModels
 
         public string WallName
         {
-            get { return _WallName; }
+            get { return _wallName; }
             set
             {
-                if (_WallName != value)
+                if (_wallName != value)
                 {
-                    _WallName = value;
+                    _wallName = value;
                     RaisePropertyChanged("WallName");
                 }
             }
@@ -323,12 +298,12 @@ namespace TEdit.ViewModels
 
         public string TileName
         {
-            get { return _TileName; }
+            get { return _tileName; }
             set
             {
-                if (_TileName != value)
+                if (_tileName != value)
                 {
-                    _TileName = value;
+                    _tileName = value;
                     RaisePropertyChanged("TileName");
                 }
             }
@@ -336,12 +311,12 @@ namespace TEdit.ViewModels
 
         public string FluidName
         {
-            get { return _FluidName; }
+            get { return _fluidName; }
             set
             {
-                if (_FluidName != value)
+                if (_fluidName != value)
                 {
-                    _FluidName = value;
+                    _fluidName = value;
                     RaisePropertyChanged("FluidName");
                 }
             }
@@ -410,13 +385,13 @@ namespace TEdit.ViewModels
 
         public void OnImportsSatisfied()
         {
-            renderer.ProgressChanged += (s, e) => { Progress = e; };
-            world.ProgressChanged += (s, e) => { Progress = e; };
-            _ToolProperties.ToolPreviewRequest += (s, e) =>
+            _renderer.ProgressChanged += (s, e) => { Progress = e; };
+            _world.ProgressChanged += (s, e) => { Progress = e; };
+            _toolProperties.ToolPreviewRequest += (s, e) =>
                                                       {
-                                                          if (_ActiveTool != null)
+                                                          if (_activeTool != null)
                                                           {
-                                                              ToolProperties.Image = _ActiveTool.PreviewTool();
+                                                              ToolProperties.Image = _activeTool.PreviewTool();
                                                           }
                                                       };
         }
@@ -430,17 +405,17 @@ namespace TEdit.ViewModels
 
         private void CalcFrameRate(RenderingEventArgs renderArgs)
         {
-            TimeSpan dt = (renderArgs.RenderingTime - lastRender);
+            TimeSpan dt = (renderArgs.RenderingTime - _lastRender);
             var framrate = (int) (1000/dt.TotalMilliseconds);
 
             if (framrate > 0)
             {
-                frameTimesIndex = (frameTimesIndex + 1)%frameTimes.Length;
-                frameTimes[frameTimesIndex] = framrate;
-                FrameRate = (int) frameTimes.Average();
+                _frameTimesIndex = (_frameTimesIndex + 1)%_frameTimes.Length;
+                _frameTimes[_frameTimesIndex] = framrate;
+                FrameRate = (int) _frameTimes.Average();
             }
             // About to render...
-            lastRender = renderArgs.RenderingTime;
+            _lastRender = renderArgs.RenderingTime;
         }
 
         public bool CanLoad()
@@ -462,7 +437,7 @@ namespace TEdit.ViewModels
                 Task.Factory.StartNew(() =>
                                           {
                                               World.Load(ofd.FileName);
-                                              WriteableBitmap img = renderer.RenderWorld();
+                                              WriteableBitmap img = _renderer.RenderWorld();
                                               img.Freeze();
                                               _uiFactory.StartNew(() =>
                                                                       {
@@ -481,7 +456,7 @@ namespace TEdit.ViewModels
             Task.Factory.StartNew(() =>
                                       {
                                           IsBusy = true;
-                                          World.SaveFile(world.Header.FileName);
+                                          World.SaveFile(_world.Header.FileName);
                                           _uiFactory.StartNew(() => IsBusy = false);
                                       });
         }
@@ -490,12 +465,12 @@ namespace TEdit.ViewModels
         {
             MouseOverTile = e.Tile;
 
-            if (e.Tile.X < world.Header.MaxTiles.X &&
-                e.Tile.Y < world.Header.MaxTiles.X &&
+            if (e.Tile.X < _world.Header.MaxTiles.X &&
+                e.Tile.Y < _world.Header.MaxTiles.X &&
                 e.Tile.X >= 0 &&
                 e.Tile.Y >= 0)
             {
-                Tile overTile = world.Tiles[e.Tile.X, e.Tile.Y];
+                Tile overTile = _world.Tiles[e.Tile.X, e.Tile.Y];
 
 
                 string wallName = TileColors.Walls[overTile.Wall].Name;

@@ -121,6 +121,9 @@
     <Compile Include="Views\ChestsContentsPopup.xaml.cs">
       <DependentUpon>ChestsContentsPopup.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\SignPopup.xaml.cs">
+      <DependentUpon>SignPopup.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\StatusBarView.xaml.cs">
       <DependentUpon>StatusBarView.xaml</DependentUpon>
     </Compile>
@@ -172,6 +175,10 @@
     <Page Include="Views\ChestsContentsPopup.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SignPopup.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\StatusBarView.xaml">
       <SubType>Designer</SubType>
@@ -261,9 +268,7 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Tools\Base\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

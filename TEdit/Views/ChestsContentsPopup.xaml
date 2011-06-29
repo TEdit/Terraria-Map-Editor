@@ -3,11 +3,12 @@
        MouseLeave="Popup_MouseLeave">
   <StackPanel Background="#FF666666">
     <TextBlock Text="Chest Contents:" Foreground="White" Margin="2" FontWeight="Bold" />
-    <ItemsControl Name="ChestList" Padding="5" Foreground="White">
+        <ItemsControl Name="ChestList" Padding="5" Foreground="White" ItemsSource="{Binding}">
       <ItemsControl.ItemTemplate>
         <DataTemplate>
           <StackPanel Orientation="Horizontal" Visibility="{Binding Path=IsVisible}">
-            <TextBlock Text="{Binding Path=Name}" />
+                        <TextBlock Text="{Binding Path=StackSize, StringFormat=[{0:0}] }" Width="30" />
+                        <TextBlock Text="{Binding Path=Name}" />
           </StackPanel>
         </DataTemplate>
       </ItemsControl.ItemTemplate>

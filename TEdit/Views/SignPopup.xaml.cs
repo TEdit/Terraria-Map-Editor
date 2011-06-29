@@ -7,12 +7,12 @@ namespace TEdit.Views
     /// <summary>
     /// Interaction logic for ChestsContentsPopup.xaml
     /// </summary>
-    public partial class ChestsContentsPopup : Popup
+    public partial class SignPopup : Popup
     {
-        public ChestsContentsPopup(Chest chest)
+        public SignPopup(Sign sign)
         {
             InitializeComponent();
-            this.DataContext = chest.Items;
+            this.DataContext = sign;
         }
 
         private void Popup_MouseDown(object sender, MouseButtonEventArgs e)

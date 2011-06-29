@@ -16,6 +16,9 @@ namespace TEdit.Tools
         [Import] private ToolProperties _properties;
         [Import("World", typeof (World))] private World _world;
 
+        private ChestsContentsPopup _chestPopup = null;
+        private SignPopup _signPopup = null;
+
         public Arrow()
         {
             _Image = new BitmapImage(new Uri(@"pack://application:,,,/TEdit;component/Tools/Images/cursor.png"));
@@ -79,27 +82,44 @@ namespace TEdit.Tools
             return false;
         }
 
+        private void ClosePopups()
+		{
+            if (_chestPopup != null)
+            {
+                _chestPopup.IsOpen = false;
+                _chestPopup = null;
+            }
+            if (_chestPopup != null)
+            {
+                _signPopup.IsOpen = false;
+                _signPopup = null;
+            }
+		}
+
         public override bool ReleaseTool(TileMouseEventArgs e)
         {
+            ClosePopups();
+
+            // From Terrafirma
             foreach (Chest c in _world.Chests)
             {
                 //chests are 2x2, and their x/y is upper left corner
                 if ((c.Location.X == e.Tile.X || c.Location.X + 1 == e.Tile.X) &&
                     (c.Location.Y == e.Tile.Y || c.Location.Y + 1 == e.Tile.Y))
                 {
-                    var chestPop = new ChestsContentsPopup(c);
-                    chestPop.IsOpen = true;
+                    _chestPopup = new ChestsContentsPopup(c);
+                    _chestPopup.IsOpen = true;
                 }
             }
-            //foreach (Sign s in signs)
-            //{
-            //    //signs are 2x2, and their x/y is upper left corner
-            //    if ((s.x == sx || s.x + 1 == sx) && (s.y == sy || s.y + 1 == sy))
-            //    {
-            //        signPop = new SignPopup(s.text);
-            //        signPop.IsOpen = true;
-            //    }
-            //}
+            foreach (Sign s in _world.Signs)
+            {
+                //signs are 2x2, and their x/y is upper left corner
+                if ((s.Location.X == e.Tile.X || s.Location.X + 1 == e.Tile.X) && (s.Location.Y == e.Tile.Y || s.Location.Y + 1 == e.Tile.Y))
+                {
+                    _signPopup = new SignPopup(s);
+                    _signPopup.IsOpen = true;
+                }
+            }
             return false;
         }
 

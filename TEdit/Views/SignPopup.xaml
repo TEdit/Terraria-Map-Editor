@@ -1,0 +1,7 @@
+﻿<Popup x:Class="TEdit.Views.SignPopup" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Placement="Mouse" MouseDown="Popup_MouseDown"
+       MouseLeave="Popup_MouseLeave">
+  <Grid Background="#FF666666">
+    <TextBlock Text="{Binding Path=Text}" Foreground="White" Margin="2" FontWeight="Bold" />
+    </Grid>
+</Popup>
