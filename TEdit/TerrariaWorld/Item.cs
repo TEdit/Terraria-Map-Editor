@@ -1,5 +1,7 @@
-﻿using System.Windows;
+﻿using System.Collections.ObjectModel;
+using System.Windows;
 using TEdit.Common;
+using TEdit.RenderWorld;
 
 namespace TEdit.TerrariaWorld
 {
@@ -25,10 +27,18 @@ namespace TEdit.TerrariaWorld
             get { return _StackSize; }
             set
             {
-                if (_StackSize != value)
+                int validValue = value;
+                if (validValue > 255)
+                    validValue = 255;
+                if (validValue < 0)
+                    validValue = 0;
+
+                if (_StackSize != validValue)
                 {
-                    _StackSize = value;
+                    _StackSize = validValue;
                     RaisePropertyChanged("StackSize");
+                    if (_StackSize == 0)
+                        Name = "[empty]";
                 }
             }
         }
@@ -43,8 +53,17 @@ namespace TEdit.TerrariaWorld
                     _Name = value;
                     RaisePropertyChanged("Name");
                     RaisePropertyChanged("IsVisible");
+
+                    if (_Name == "[empty]")
+                        StackSize = 0;
                 }
             }
+        }
+
+
+        public ObservableCollection<string> ValidItems
+        {
+            get { return Settings.Items; }
         }
 
         public Visibility IsVisible

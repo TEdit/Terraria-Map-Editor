@@ -20,13 +20,13 @@ namespace TEdit.RenderWorld
 
         public WorldRenderer()
         {
-            TileColors.Load("colors.txt");
+
         }
 
         public string GetTileName(Tile tile, out string wall)
         {
             string tilename = String.Empty;
-            wall = TileColors.Walls[tile.Wall].Name;
+            wall = Settings.Walls[tile.Wall].Name;
 
             if (!tile.IsActive)
                 return "[empty]";
@@ -40,7 +40,7 @@ namespace TEdit.RenderWorld
             }
             else
             {
-                tilename = TileColors.Tiles[tile.Type].Name;
+                tilename = Settings.Tiles[tile.Type].Name;
             }
 
             return tilename;
@@ -178,21 +178,21 @@ namespace TEdit.RenderWorld
             Color c;
 
             if (y > _world.Header.WorldRockLayer && tile.Wall == 0)
-                c = TileColors.Walls[1].Color;
+                c = Settings.Walls[1].Color;
             else if (y > _world.Header.WorldSurface && tile.Wall == 0)
-                c = TileColors.Walls[2].Color;
+                c = Settings.Walls[2].Color;
             else
-                c = TileColors.Walls[tile.Wall].Color;
+                c = Settings.Walls[tile.Wall].Color;
 
             if (tile.IsActive)
-                c = AlphaBlend(c, TileColors.Tiles[tile.Type].Color);
+                c = AlphaBlend(c, Settings.Tiles[tile.Type].Color);
 
             if (tile.Liquid > 0)
             {
                 if (tile.IsLava)
-                    c = AlphaBlend(c, TileColors.Lava);
+                    c = AlphaBlend(c, Settings.Lava);
                 else
-                    c = AlphaBlend(c, TileColors.Water);
+                    c = AlphaBlend(c, Settings.Water);
             }
             return c;
         }

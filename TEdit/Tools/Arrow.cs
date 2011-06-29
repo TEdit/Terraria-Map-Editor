@@ -8,15 +8,23 @@ using TEdit.Views;
 
 namespace TEdit.Tools
 {
-    [Export(typeof (ITool))]
+    [Export(typeof(ITool))]
     [PartCreationPolicy(CreationPolicy.Shared)]
     [ExportMetadata("Order", 1)]
     public class Arrow : ToolBase
     {
-        [Import] private ToolProperties _properties;
-        [Import("World", typeof (World))] private World _world;
+        [Import]
+        private ToolProperties _properties;
+        [Import("World", typeof(World))]
+        private World _world;
 
+#if DEBUG
+        // The world just isn't quite ready for this...
+        private ChestEditorPopup _chestPopup = null;
+#else
         private ChestsContentsPopup _chestPopup = null;
+#endif
+
         private SignPopup _signPopup = null;
 
         public Arrow()
@@ -83,7 +91,7 @@ namespace TEdit.Tools
         }
 
         private void ClosePopups()
-		{
+        {
             if (_chestPopup != null)
             {
                 _chestPopup.IsOpen = false;
@@ -94,7 +102,7 @@ namespace TEdit.Tools
                 _signPopup.IsOpen = false;
                 _signPopup = null;
             }
-		}
+        }
 
         public override bool ReleaseTool(TileMouseEventArgs e)
         {
@@ -107,7 +115,11 @@ namespace TEdit.Tools
                 if ((c.Location.X == e.Tile.X || c.Location.X + 1 == e.Tile.X) &&
                     (c.Location.Y == e.Tile.Y || c.Location.Y + 1 == e.Tile.Y))
                 {
+#if DEBUG
+                    _chestPopup = new ChestEditorPopup(c);
+#else
                     _chestPopup = new ChestsContentsPopup(c);
+#endif
                     _chestPopup.IsOpen = true;
                 }
             }

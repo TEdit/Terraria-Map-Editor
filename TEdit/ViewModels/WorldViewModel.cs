@@ -473,8 +473,8 @@ namespace TEdit.ViewModels
                 Tile overTile = _world.Tiles[e.Tile.X, e.Tile.Y];
 
 
-                string wallName = TileColors.Walls[overTile.Wall].Name;
-                string tileName = overTile.IsActive ? TileColors.Tiles[overTile.Type].Name : "[empty]";
+                string wallName = Settings.Walls[overTile.Wall].Name;
+                string tileName = overTile.IsActive ? Settings.Tiles[overTile.Type].Name : "[empty]";
                 string fluidname = "[no fluid]";
                 if (overTile.Liquid > 0)
                 {

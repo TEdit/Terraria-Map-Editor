@@ -7,8 +7,8 @@ using TEdit.TerrariaWorld;
 
 namespace TEdit.Tools
 {
-    [Export]
     [Serializable]
+    [Export]
     public class TilePicker : ObservableObject
     {
         [NonSerialized] private readonly ObservableCollection<TileColor> _tiles = new ObservableCollection<TileColor>();
@@ -24,13 +24,13 @@ namespace TEdit.Tools
         {
             for (int i = 0; i < TileProperties.MaxWallTypes; i++)
             {
-                _walls.Add(TileColors.Walls[i]);
+                _walls.Add(Settings.Walls[i]);
             }
 
             for (int i = 0; i < TileProperties.MaxTileTypes; i++)
             {
                 if (TileProperties.TileSolid[i])
-                    _tiles.Add(TileColors.Tiles[i]);
+                    _tiles.Add(Settings.Tiles[i]);
             }
 
             _Wall = new TilePickerProperty {IsActive = false, Value = 0};

@@ -1,10 +1,13 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
+using System.Linq;
 using System.Windows.Media;
 
 namespace TEdit.RenderWorld
 {
-    public static class TileColors
+    public static class Settings
     {
         #region FileSection enum
 
@@ -17,8 +20,31 @@ namespace TEdit.RenderWorld
 
         #endregion
 
+
+        public static event EventHandler SettingsLoaded;
+        private static void OnSettingsLoaded(object sender, EventArgs e)
+        {
+            if (SettingsLoaded != null)
+                SettingsLoaded(sender, e);
+
+        }
+
+        static Settings()
+        {
+            Load("colors.txt");
+            LoadItems("items.txt");
+            OnSettingsLoaded(null, new EventArgs());
+        }
+			
+
         private static readonly TileColor[] _tiles = new TileColor[byte.MaxValue];
         private static readonly TileColor[] _walls = new TileColor[byte.MaxValue];
+        private static readonly ObservableCollection<string> _items = new ObservableCollection<string>();
+
+        public static ObservableCollection<string> Items
+        {
+            get { return _items; }
+        }
 
         public static TileColor[] Tiles
         {
@@ -33,6 +59,24 @@ namespace TEdit.RenderWorld
         public static Color Water { get; set; }
         public static Color Lava { get; set; }
 
+
+        public static void LoadItems(string filename)
+        {
+            using (TextReader sr = new StreamReader(filename))
+            {
+                ObservableCollection<string> items = new ObservableCollection<string>();
+                string line = string.Empty;
+                while ((line = sr.ReadLine()) != null)
+                {
+                    items.Add(line.Split('|')[1]);
+                }
+                foreach (var item in items.OrderBy(x=>x))
+                {
+                    _items.Add(item);
+                }
+
+            }
+        }
 
         public static void Load(string filename)
         {

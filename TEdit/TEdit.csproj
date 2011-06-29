@@ -101,7 +101,7 @@
     <Compile Include="Tools\ToolProperties.cs" />
     <Compile Include="Tools\ToolBrushShape.cs" />
     <Compile Include="Tools\ToolType.cs" />
-    <Compile Include="RenderWorld\TileColors.cs" />
+    <Compile Include="RenderWorld\Settings.cs" />
     <Compile Include="RenderWorld\TileColor.cs" />
     <Compile Include="RenderWorld\WorldRenderer.cs" />
     <Compile Include="TerrariaWorld\Chest.cs" />
@@ -120,6 +120,9 @@
     <Compile Include="ViewModels\WorldViewModel.cs" />
     <Compile Include="Views\ChestsContentsPopup.xaml.cs">
       <DependentUpon>ChestsContentsPopup.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ChestEditorPopup.xaml.cs">
+      <DependentUpon>ChestEditorPopup.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\SignPopup.xaml.cs">
       <DependentUpon>SignPopup.xaml</DependentUpon>
@@ -175,6 +178,10 @@
     <Page Include="Views\ChestsContentsPopup.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ChestEditorPopup.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\SignPopup.xaml">
       <Generator>MSBuild:Compile</Generator>
