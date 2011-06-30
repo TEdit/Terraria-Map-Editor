@@ -32,11 +32,14 @@ namespace TEdit.TerrariaWorld
 
         public void Load(string filename)
         {
-            CanUseFileIO = false;
+            
             string ext = Path.GetExtension(filename);
-            if (!string.Equals(ext, ".wld", StringComparison.CurrentCultureIgnoreCase))
+            if (!(string.Equals(ext, ".wld", StringComparison.CurrentCultureIgnoreCase) || 
+                string.Equals(ext, ".bak", StringComparison.CurrentCultureIgnoreCase) ||
+                string.Equals(ext, ".Tedit", StringComparison.CurrentCultureIgnoreCase)))
                 throw new ApplicationException("Invalid file");
 
+            CanUseFileIO = false;
             ClearWorld();
 
             using (var stream = new FileStream(filename, FileMode.Open))

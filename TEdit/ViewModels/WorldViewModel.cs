@@ -465,22 +465,32 @@ namespace TEdit.ViewModels
             var ofd = new OpenFileDialog();
             if ((bool)ofd.ShowDialog())
             {
-                Task.Factory.StartNew(() =>
-                                          {
-                                              WorldImage.Image = null;
-                                              World.Load(ofd.FileName);
-                                              WriteableBitmap img = _renderer.RenderWorld();
-                                              img.Freeze();
-                                              _uiFactory.StartNew(() =>
-                                                {
-                                                    WorldImage.Image = img.Clone();
-                                                    img = null;
-                                                    RaisePropertyChanged("WorldZoomedHeight");
-                                                    RaisePropertyChanged("WorldZoomedWidth");
-                                                });
-                                          });
+                Task.Factory.StartNew(() => LoadWorld(ofd.FileName));
             }
         }
+
+        private void LoadWorld(string filename)
+		{
+            try
+            {
+                WorldImage.Image = null;
+                World.Load(filename);
+                WriteableBitmap img = _renderer.RenderWorld();
+                img.Freeze();
+                _uiFactory.StartNew(() =>
+                {
+                    WorldImage.Image = img.Clone();
+                    img = null;
+                    RaisePropertyChanged("WorldZoomedHeight");
+                    RaisePropertyChanged("WorldZoomedWidth");
+                });
+            }
+            catch (Exception)
+            {
+                World.CanUseFileIO = true;
+                MessageBox.Show("There was a problem loading the file. Make sure you selected a .wld, .bak or .Tedit file.", "World File Problem", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+		}
 
         private void SaveWorld()
         {
