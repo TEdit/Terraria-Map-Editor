@@ -11,7 +11,7 @@ using TEdit.TerrariaWorld.Structures;
 
 namespace TEdit.Tools.Tool
 {
-    [Export(typeof (ITool))]
+    [Export(typeof(ITool))]
     [PartCreationPolicy(CreationPolicy.Shared)]
     [ExportMetadata("Order", 4)]
     public class Brush : ToolBase
@@ -20,15 +20,20 @@ namespace TEdit.Tools.Tool
         private bool _isLeftDown;
         private bool _isRightDown;
         private SizeInt32 _lastUsedSize;
-        [Import] private ToolProperties _properties;
+        [Import]
+        private ToolProperties _properties;
 
 
-        [Import] private WorldRenderer _renderer;
-        [Import] private SelectionArea _selection;
+        [Import]
+        private WorldRenderer _renderer;
+        [Import]
+        private SelectionArea _selection;
 
         private PointInt32 _startPoint;
-        [Import] private TilePicker _tilePicker;
-        [Import("World", typeof (World))] private World _world;
+        [Import]
+        private TilePicker _tilePicker;
+        [Import("World", typeof(World))]
+        private World _world;
 
         public Brush()
         {
@@ -192,8 +197,8 @@ namespace TEdit.Tools.Tool
                         eraser.Wall.IsActive = false; // don't erase the wall for the interrior
                         _world.FillRectangle(new Int32Rect(x0 + _properties.OutlineThickness,
                                                            y0 + _properties.OutlineThickness,
-                                                           _properties.Width - (_properties.OutlineThickness*2),
-                                                           _properties.Height - (_properties.OutlineThickness*2)),
+                                                           _properties.Width - (_properties.OutlineThickness * 2),
+                                                           _properties.Height - (_properties.OutlineThickness * 2)),
                                              eraser);
                         eraser = null;
                     }

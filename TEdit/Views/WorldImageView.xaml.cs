@@ -92,7 +92,7 @@ namespace TEdit.Views
             var vm = (WorldViewModel)DataContext;
             var partView = (ScrollViewer)FindName("WorldScrollViewer");
 
-            var initialZoom = vm.Zoom;
+            double initialZoom = vm.Zoom;
             var initialScrollPosition = new Point(partView.HorizontalOffset, partView.VerticalOffset);
             var initialCenterTile =
                 new PointInt32((int)(partView.HorizontalOffset / initialZoom + (partView.ActualWidth / 2) / initialZoom),
@@ -101,9 +101,9 @@ namespace TEdit.Views
             if (vm.MouseWheelCommand.CanExecute(cargs))
                 vm.MouseWheelCommand.Execute(cargs);
 
-            var finalZoom = vm.Zoom;
+            double finalZoom = vm.Zoom;
             //var finalScrollPosition = new Point(partView.HorizontalOffset, partView.VerticalOffset);
-            var zoomRatio = 1 -  finalZoom / initialZoom;
+            double zoomRatio = 1 - finalZoom / initialZoom;
             var scaleCenterTile = new PointInt32(
                 (int)(initialCenterTile.X - ((cargs.Tile.X - initialCenterTile.X) * zoomRatio)),
                 (int)(initialCenterTile.Y - ((cargs.Tile.Y - initialCenterTile.Y) * zoomRatio)));

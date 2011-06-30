@@ -7,6 +7,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using TEdit.TerrariaWorld;
 using TEdit.TerrariaWorld.Structures;
+using TEdit.Tools.Clipboard;
 
 namespace TEdit.RenderWorld
 {
@@ -162,6 +163,55 @@ namespace TEdit.RenderWorld
 
             wbmap.WritePixels(new Int32Rect(0, 0, wbmap.PixelWidth, wbmap.PixelHeight), pixels,
                               wbmap.PixelWidth*wbmap.Format.BitsPerPixel/8, 0);
+
+            OnProgressChanged(this, new ProgressChangedEventArgs(0, "Render Complete."));
+
+            return wbmap;
+        }
+
+        public WriteableBitmap RenderBuffer(ClipboardBuffer buffer)
+        {
+            int width = buffer.Size.X;
+            int height = buffer.Size.Y;
+            var wbmap = new WriteableBitmap(
+                width,
+                height,
+                96,
+                96,
+                PixelFormats.Bgr32,
+                null);
+
+            int stride = wbmap.BackBufferStride;
+
+            int numpixelbytes = wbmap.PixelHeight * wbmap.PixelWidth * wbmap.Format.BitsPerPixel / 8;
+
+            var pixels = new byte[numpixelbytes];
+            for (int x = 0; x < width; x++)
+            {
+                OnProgressChanged(this,
+                                  new ProgressChangedEventArgs(
+                                      (int)(x / (double)width * 100.0),
+                                      "Rendering Buffer..."));
+
+                for (int y = 0; y < height; y++)
+                {
+                    Tile tile = buffer.Tiles[x, y];
+                    if (tile != null)
+                    {
+                        Color c = GetTileColor(y, tile);
+
+
+                        pixels[x * 4 + y * stride] = c.B;
+                        pixels[x * 4 + y * stride + 1] = c.G;
+                        pixels[x * 4 + y * stride + 2] = c.R;
+                        pixels[x * 4 + y * stride + 3] = c.A;
+                        //bmp.SetPixel(x - area.Left, y - area.Top, c);
+                    }
+                }
+            }
+
+            wbmap.WritePixels(new Int32Rect(0, 0, wbmap.PixelWidth, wbmap.PixelHeight), pixels,
+                              wbmap.PixelWidth * wbmap.Format.BitsPerPixel / 8, 0);
 
             OnProgressChanged(this, new ProgressChangedEventArgs(0, "Render Complete."));
 

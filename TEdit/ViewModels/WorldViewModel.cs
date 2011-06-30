@@ -13,21 +13,21 @@ using TEdit.RenderWorld;
 using TEdit.TerrariaWorld;
 using TEdit.TerrariaWorld.Structures;
 using TEdit.Tools;
+using TEdit.Tools.Clipboard;
 
 namespace TEdit.ViewModels
 {
     [Export]
     public class WorldViewModel : ObservableObject, IPartImportsSatisfiedNotification
     {
-        private readonly int[] _frameTimes = new int[100];
+
         private readonly TaskFactory _uiFactory;
         private readonly TaskScheduler _uiScheduler;
         private ITool _activeTool;
 
         private ICommand _copyToClipboard;
         private string _fluidName;
-        private int _frameRate;
-        private int _frameTimesIndex;
+
         private bool _isBusy;
         private bool _isMouseContained;
         private TimeSpan _lastRender;
@@ -58,18 +58,19 @@ namespace TEdit.ViewModels
             _uiScheduler = TaskScheduler.FromCurrentSynchronizationContext();
             _uiFactory = new TaskFactory(_uiScheduler);
             Tools = new OrderingCollection<ITool, IOrderMetadata>(t => t.Metadata.Order);
-            CompositionTarget.Rendering += CompTargetRender;
         }
 
-        public int FrameRate
+        [Import]
+        private ClipboardManager _clipboardMan;
+        public ClipboardManager ClipboardMan
         {
-            get { return _frameRate; }
+            get { return this._clipboardMan; }
             set
             {
-                if (_frameRate != value)
+                if (this._clipboardMan != value)
                 {
-                    _frameRate = value;
-                    RaisePropertyChanged("FrameRate");
+                    this._clipboardMan = value;
+                    this.RaisePropertyChanged("ClipboardMan");
                 }
             }
         }
@@ -402,6 +403,10 @@ namespace TEdit.ViewModels
 
         private void SetClipBoard()
         {
+            if (Selection.SelectionVisibility == Visibility.Visible)
+            {
+                ClipboardMan.Buffer = ClipboardBuffer.GetBufferedRegion(_world, Selection.Rectangle);
+            }
         }
 
         private bool CanSetClipboard()
@@ -418,28 +423,7 @@ namespace TEdit.ViewModels
 
         private bool CanActivatePasteTool()
         {
-            // if buffer has contents return true
-            return false;
-        }
-
-        private void CompTargetRender(object sender, EventArgs e)
-        {
-            CalcFrameRate((RenderingEventArgs) e);
-        }
-
-        private void CalcFrameRate(RenderingEventArgs renderArgs)
-        {
-            TimeSpan dt = (renderArgs.RenderingTime - _lastRender);
-            var framrate = (int) (1000/dt.TotalMilliseconds);
-
-            if (framrate > 0)
-            {
-                _frameTimesIndex = (_frameTimesIndex + 1)%_frameTimes.Length;
-                _frameTimes[_frameTimesIndex] = framrate;
-                FrameRate = (int) _frameTimes.Average();
-            }
-            // About to render...
-            _lastRender = renderArgs.RenderingTime;
+            return (ClipboardMan.Buffer != null);
         }
 
         public bool CanLoad()

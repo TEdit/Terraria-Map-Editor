@@ -12,7 +12,7 @@ using TEdit.TerrariaWorld.Structures;
 
 namespace TEdit.Tools.Tool
 {
-    [Export(typeof (ITool))]
+    [Export(typeof(ITool))]
     [PartCreationPolicy(CreationPolicy.Shared)]
     [ExportMetadata("Order", 3)]
     public class Pencil : ToolBase
@@ -20,13 +20,18 @@ namespace TEdit.Tools.Tool
         private bool _isLeftDown;
 
         private bool _isSnapDirectionSet;
-        [Import] private ToolProperties _properties;
-        [Import] private WorldRenderer _renderer;
-        [Import] private SelectionArea _selection;
+        [Import]
+        private ToolProperties _properties;
+        [Import]
+        private WorldRenderer _renderer;
+        [Import]
+        private SelectionArea _selection;
         private Orientation _snapDirection = Orientation.Horizontal;
         private PointInt32 _startPoint;
-        [Import] private TilePicker _tilePicker;
-        [Import("World", typeof (World))] private World _world;
+        [Import]
+        private TilePicker _tilePicker;
+        [Import("World", typeof(World))]
+        private World _world;
 
         public Pencil()
         {

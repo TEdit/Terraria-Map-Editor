@@ -20,12 +20,12 @@ namespace TEdit.Tools.Tool
 
 #if DEBUG
         // The world just isn't quite ready for this...
-        private ChestEditorPopup _chestPopup = null;
+        private ChestEditorPopup _chestPopup;
 #else
         private ChestsContentsPopup _chestPopup = null;
 #endif
 
-        private SignPopup _signPopup = null;
+        private SignPopup _signPopup;
 
         public Arrow()
         {
@@ -82,7 +82,6 @@ namespace TEdit.Tools.Tool
 
         public override bool PressTool(TileMouseEventArgs e)
         {
-
             return false;
         }
 

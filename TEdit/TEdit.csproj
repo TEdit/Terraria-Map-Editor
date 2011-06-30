@@ -81,9 +81,10 @@
     <Compile Include="Plugins\IPluginMetaData.cs" />
     <Compile Include="Plugins\SamplePlugin.cs" />
     <Compile Include="RenderWorld\WorldImage.cs" />
-    <Compile Include="TerrariaWorld\Structures\RectInt32.cs" />
     <Compile Include="TerrariaWorld\Structures\SizeInt32.cs" />
     <Compile Include="TerrariaWorld\WorldEditorExtensions.cs" />
+    <Compile Include="Tools\Clipboard\ClipboardBuffer.cs" />
+    <Compile Include="Tools\Clipboard\ClipboardManager.cs" />
     <Compile Include="Tools\IOrderMetadata.cs" />
     <Compile Include="Tools\ITool.cs" />
     <Compile Include="Common\TileMouseEventArgs.cs" />

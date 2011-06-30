@@ -1,6 +1,7 @@
 ﻿using System.Collections.ObjectModel;
 using System.ComponentModel.Composition;
 using TEdit.Common;
+using TEdit.TerrariaWorld.Structures;
 
 namespace TEdit.TerrariaWorld
 {
@@ -20,7 +21,7 @@ namespace TEdit.TerrariaWorld
         private NPC[] _npcs = new NPC[MaxNpcs];
         private Sign[] _signs = new Sign[MaxSigns];
         private Tile[,] _tiles;
-
+        
         public World()
         {
             Header = new WorldHeader();
@@ -67,6 +68,12 @@ namespace TEdit.TerrariaWorld
             Chests.Clear();
             Signs.Clear();
             Npcs.Clear();
+        }
+
+        public bool IsPointInWorld(int x, int y)
+        {
+            return (x >= 0 && y >= 0 &&
+                    x < Header.MaxTiles.X && y < Header.MaxTiles.Y);
         }
 
         public void ResetTime()

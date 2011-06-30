@@ -8,14 +8,16 @@ using TEdit.TerrariaWorld;
 
 namespace TEdit.Tools.Tool
 {
-    [Export(typeof (ITool))]
+    [Export(typeof(ITool))]
     [PartCreationPolicy(CreationPolicy.Shared)]
     [ExportMetadata("Order", 7)]
     public class DungeonPointPicker : ToolBase
     {
-        [Import] private ToolProperties _properties;
+        [Import]
+        private ToolProperties _properties;
 
-        [Import("World", typeof (World))] private World _world;
+        [Import("World", typeof(World))]
+        private World _world;
 
         public DungeonPointPicker()
         {

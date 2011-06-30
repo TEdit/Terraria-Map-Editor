@@ -9,17 +9,20 @@ using TEdit.TerrariaWorld.Structures;
 
 namespace TEdit.Tools.Tool
 {
-    [Export(typeof (ITool))]
+    [Export(typeof(ITool))]
     [PartCreationPolicy(CreationPolicy.Shared)]
     [ExportMetadata("Order", 2)]
     public class Selection : ToolBase
     {
-        [Import] private ToolProperties _properties;
-        [Import] private SelectionArea _selection;
+        [Import]
+        private ToolProperties _properties;
+        [Import]
+        private SelectionArea _selection;
 
 
         private PointInt32 _startselection;
-        [Import("World", typeof (World))] private World _world;
+        [Import("World", typeof(World))]
+        private World _world;
 
         public Selection()
         {

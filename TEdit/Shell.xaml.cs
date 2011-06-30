@@ -8,13 +8,20 @@ namespace TEdit
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    [Export("MainWindow", typeof (Window))]
+    [Export("MainWindow", typeof(Window))]
     public partial class MainWindow : Window
     {
         public MainWindow()
         {
             InitializeComponent();
             AddHandler(Keyboard.KeyDownEvent, (KeyEventHandler)HandleKeyDownEvent);
+        }
+
+        [Import]
+        public WorldViewModel ViewModel
+        {
+            get { return (WorldViewModel)DataContext; }
+            set { DataContext = value; }
         }
 
         private void HandleKeyDownEvent(object sender, KeyEventArgs e)
@@ -29,13 +36,6 @@ namespace TEdit
                 if (ViewModel.PasteFromClipboard.CanExecute(null))
                     ViewModel.PasteFromClipboard.Execute(null);
             }
-        }
-
-        [Import]
-        public WorldViewModel ViewModel
-        {
-            get { return (WorldViewModel) DataContext; }
-            set { DataContext = value; }
         }
     }
 }
