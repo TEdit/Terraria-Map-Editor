@@ -4,6 +4,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using TEdit.Common;
 using TEdit.TerrariaWorld;
+using TEdit.TerrariaWorld.Structures;
 using TEdit.Views;
 
 namespace TEdit.Tools.Tool
@@ -103,6 +104,7 @@ namespace TEdit.Tools.Tool
                 _signPopup = null;
             }
         }
+
 
         public override bool ReleaseTool(TileMouseEventArgs e)
         {

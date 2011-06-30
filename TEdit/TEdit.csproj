@@ -118,6 +118,7 @@
     <Compile Include="Tools\Tool\Pencil.cs" />
     <Compile Include="Tools\Tool\Selection.cs" />
     <Compile Include="Tools\Tool\SpawnPointPicker.cs" />
+    <Compile Include="Tools\Tool\SpritePlacer.cs" />
     <Compile Include="ViewModels\WorldViewModel.cs" />
     <Compile Include="Views\ChestsContentsPopup.xaml.cs">
       <DependentUpon>ChestsContentsPopup.xaml</DependentUpon>
