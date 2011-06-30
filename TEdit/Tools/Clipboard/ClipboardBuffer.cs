@@ -37,10 +37,6 @@ namespace TEdit.Tools.Clipboard
                 for (int y = 0; y < area.Height; y++)
                 {
                     Tile curTile = (Tile)world.Tiles[x + area.X, y + area.Y].Clone();
-                    if (curTile.Frame.X != -1 && curTile.Frame.Y != -1)
-                        curTile.Frame = new PointShort((short)(curTile.Frame.X - area.X),
-                                                       (short)(curTile.Frame.Y - area.Y));
-
                     buffer.Tiles[x, y] = curTile;
                 }
             }
@@ -57,11 +53,6 @@ namespace TEdit.Tools.Clipboard
                     if (world.IsPointInWorld(x + TopLeft.X, y + TopLeft.Y))
                     {
                         Tile curTile = (Tile) buffer.Tiles[x, y].Clone();
-
-                        if (curTile.Frame.X != -1 && curTile.Frame.Y != -1)
-                            curTile.Frame = new PointShort((short) (curTile.Frame.X + TopLeft.X),
-                                                           (short) (curTile.Frame.Y + TopLeft.Y));
-
                         world.Tiles[x + TopLeft.X, y + TopLeft.Y] = curTile;
                     }
                 }

@@ -519,11 +519,28 @@ namespace TEdit.ViewModels
                 FluidName = fluidname;
                 TileName = tileName;
                 WallName = wallName;
+                Frame = overTile.Frame;
 
                 if (ActiveTool != null)
                     ActiveTool.MoveTool(e);
             }
         }
+
+        private PointShort _Frame;
+        public PointShort Frame
+        {
+            get { return this._Frame; }
+            set
+            {
+                if (this._Frame != value)
+                {
+                    this._Frame = value;
+                    this.RaisePropertyChanged("Frame");
+                }
+            }
+        }
+
+
 
         private void OnMouseDownPixel(TileMouseEventArgs e)
         {
