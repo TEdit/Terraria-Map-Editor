@@ -36,6 +36,10 @@ namespace TEdit
                 if (ViewModel.PasteFromClipboard.CanExecute(null))
                     ViewModel.PasteFromClipboard.Execute(null);
             }
+            else if (e.Key == Key.Delete)
+            {
+                ViewModel.DeleteSelection();
+            }
         }
     }
 }

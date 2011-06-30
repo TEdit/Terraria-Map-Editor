@@ -41,15 +41,20 @@ namespace TEdit.ViewModels
         private ICommand _openWorldCommand;
         private ICommand _pasteFromClipboard;
         private ProgressChangedEventArgs _progress;
-        [Import] private WorldRenderer _renderer;
+        [Import]
+        private WorldRenderer _renderer;
         private ICommand _saveWorldCommand;
-        [Import] private SelectionArea _selection;
+        [Import]
+        private SelectionArea _selection;
         private ICommand _setTool;
         private string _tileName;
-        [Import] private TilePicker _tilePicker;
-        [Import] private ToolProperties _toolProperties;
+        [Import]
+        private TilePicker _tilePicker;
+        [Import]
+        private ToolProperties _toolProperties;
         private string _wallName;
-        [Import("World", typeof (World))] private World _world;
+        [Import("World", typeof(World))]
+        private World _world;
         private WorldImage _worldImage;
         private double _zoom = 1;
 
@@ -104,7 +109,7 @@ namespace TEdit.ViewModels
         }
 
 
-        [ImportMany(typeof (ITool))]
+        [ImportMany(typeof(ITool))]
         public OrderingCollection<ITool, IOrderMetadata> Tools { get; set; }
 
         public ITool ActiveTool
@@ -171,7 +176,7 @@ namespace TEdit.ViewModels
             get
             {
                 if (_worldImage.Image != null)
-                    return _worldImage.Image.PixelHeight*_zoom;
+                    return _worldImage.Image.PixelHeight * _zoom;
 
 
                 return 1;
@@ -183,7 +188,7 @@ namespace TEdit.ViewModels
             get
             {
                 if (_worldImage.Image != null)
-                    return _worldImage.Image.PixelWidth*_zoom;
+                    return _worldImage.Image.PixelWidth * _zoom;
 
                 return 1;
             }
@@ -210,7 +215,7 @@ namespace TEdit.ViewModels
 
         public double ZoomInverted
         {
-            get { return 1/(_zoom); }
+            get { return 1 / (_zoom); }
         }
 
         [Import]
@@ -285,6 +290,23 @@ namespace TEdit.ViewModels
             get { return _saveWorldCommand ?? (_saveWorldCommand = new RelayCommand(SaveWorld, CanSave)); }
         }
 
+        public void DeleteSelection()
+        {
+            if (Selection.SelectionVisibility == Visibility.Visible)
+            {
+                for (int x = Selection.Rectangle.X; x < Selection.Rectangle.X+Selection.Rectangle.Width; x++)
+                {
+                    for (int y = Selection.Rectangle.Y; y < Selection.Rectangle.Y + Selection.Rectangle.Height; y++)
+                    {
+                        World.Tiles[x, y].IsActive = false;
+                        World.Tiles[x, y].Wall = 0;
+                        World.Tiles[x, y].Liquid = 0;
+                    }
+                }
+                _renderer.UpdateWorldImage(Selection.Rectangle);
+            }
+            
+        }
 
         public string WallName
         {
@@ -439,7 +461,7 @@ namespace TEdit.ViewModels
         private void LoadWorldandRender()
         {
             var ofd = new OpenFileDialog();
-            if ((bool) ofd.ShowDialog())
+            if ((bool)ofd.ShowDialog())
             {
                 Task.Factory.StartNew(() => LoadWorld(ofd.FileName));
             }
@@ -539,9 +561,9 @@ namespace TEdit.ViewModels
                  e.Tile.Y >= 0) && (_world.Tiles[e.Tile.X, e.Tile.Y] != null))
             {
                 if (e.WheelDelta > 0)
-                    Zoom = Zoom*1.1;
+                    Zoom = Zoom * 1.1;
                 if (e.WheelDelta < 0)
-                    Zoom = Zoom*0.9;
+                    Zoom = Zoom * 0.9;
             }
         }
     }
