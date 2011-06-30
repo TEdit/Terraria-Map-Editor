@@ -1,4 +1,5 @@
-﻿using System.Windows.Controls.Primitives;
+﻿using System.Windows;
+using System.Windows.Controls.Primitives;
 using System.Windows.Input;
 using TEdit.TerrariaWorld;
 
@@ -12,7 +13,7 @@ namespace TEdit.Views
         public ChestEditorPopup(Chest chest)
         {
             InitializeComponent();
-            this.DataContext = chest.Items;
+            DataContext = chest.Items;
         }
 
         private void Popup_MouseDown(object sender, MouseButtonEventArgs e)
@@ -25,7 +26,7 @@ namespace TEdit.Views
             //IsOpen = false;
         }
 
-        private void ClosePopup(object sender, System.Windows.RoutedEventArgs e)
+        private void ClosePopup(object sender, RoutedEventArgs e)
         {
             IsOpen = false;
         }

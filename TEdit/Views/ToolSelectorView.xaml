@@ -11,8 +11,7 @@
         <controls:DataBoundToggleButton.ToolTip>
           <TextBlock Text="{Binding Value.Name}" />
         </controls:DataBoundToggleButton.ToolTip>
-        <Image Source="{Binding Value.Image}" Stretch="None" VerticalAlignment="Center"
-               HorizontalAlignment="Center" />
+        <Image Source="{Binding Value.Image}" Stretch="None" VerticalAlignment="Center" HorizontalAlignment="Center" />
       </controls:DataBoundToggleButton>
     </DataTemplate>
   </UserControl.Resources>

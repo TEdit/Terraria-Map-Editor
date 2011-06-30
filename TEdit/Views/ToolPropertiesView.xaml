@@ -17,12 +17,12 @@
       </Grid.RowDefinitions>
       <ToggleButton Grid.Row="0" Grid.RowSpan="2" Grid.Column="2" Margin="2"
                     IsChecked="{Binding Path=ToolProperties.IsSquare}" ToolTip="Square Width and Height">
-                <Image Source="../Images/Tools/constrain.png" RenderOptions.BitmapScalingMode="NearestNeighbor"
+        <Image Source="../Images/Tools/constrain.png" RenderOptions.BitmapScalingMode="NearestNeighbor"
                Stretch="None" />
       </ToggleButton>
       <ToggleButton Grid.Row="2" Grid.Column="3" Margin="2,2" ToolTip="Enable Draw Outline (room)"
                     IsChecked="{Binding Path=ToolProperties.IsOutline, Mode=TwoWay}">
-                <Image Source="../Images/Tools/outline.png" RenderOptions.BitmapScalingMode="NearestNeighbor"
+        <Image Source="../Images/Tools/outline.png" RenderOptions.BitmapScalingMode="NearestNeighbor"
                Height="16" Stretch="None" />
       </ToggleButton>
       <TextBlock Grid.Row="0" Grid.Column="0" Text="Width" HorizontalAlignment="Right" VerticalAlignment="Center"
@@ -33,8 +33,8 @@
               Value="{Binding Path=ToolProperties.Width, Mode=TwoWay}" Minimum="{Binding Path=ToolProperties.MinWidth}"
               Maximum="{Binding Path=ToolProperties.MaxWidth}" LargeChange="10" SmallChange="1" VerticalAlignment="Center" />
 
-      <TextBlock Grid.Row="1" Grid.Column="0" Text="Height" HorizontalAlignment="Right"
-                 VerticalAlignment="Center" Margin="2" />
+      <TextBlock Grid.Row="1" Grid.Column="0" Text="Height" HorizontalAlignment="Right" VerticalAlignment="Center"
+                 Margin="2" />
       <TextBox Grid.Row="1" Grid.Column="1" Width="50" HorizontalAlignment="Left"
                Text="{Binding Path=ToolProperties.Height, Mode=TwoWay}" Margin="2" VerticalAlignment="Center" />
       <Slider Grid.Row="1" Grid.Column="1" Width="150" HorizontalAlignment="Right"

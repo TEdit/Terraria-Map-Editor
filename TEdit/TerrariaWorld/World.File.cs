@@ -7,6 +7,21 @@ namespace TEdit.TerrariaWorld
 {
     public partial class World
     {
+        private bool _canUseFileIo = true;
+
+        public bool CanUseFileIO
+        {
+            get { return _canUseFileIo; }
+            set
+            {
+                if (_canUseFileIo != value)
+                {
+                    _canUseFileIo = value;
+                    RaisePropertyChanged("CanUseFileIO");
+                }
+            }
+        }
+
         public event ProgressChangedEventHandler ProgressChanged;
 
         protected void OnProgressChanged(object sender, ProgressChangedEventArgs e)
@@ -15,28 +30,13 @@ namespace TEdit.TerrariaWorld
                 ProgressChanged(sender, e);
         }
 
-        private bool _canUseFileIo = true;
-        public bool CanUseFileIO
-        {
-            get { return this._canUseFileIo; }
-            set
-            {
-                if (this._canUseFileIo != value)
-                {
-                    this._canUseFileIo = value;
-                    this.RaisePropertyChanged("CanUseFileIO");
-                }
-            }
-        }
-
 
         public void Load(string filename)
         {
-            
             string ext = Path.GetExtension(filename);
-            if (!(string.Equals(ext, ".wld", StringComparison.CurrentCultureIgnoreCase) || 
-                string.Equals(ext, ".bak", StringComparison.CurrentCultureIgnoreCase) ||
-                string.Equals(ext, ".Tedit", StringComparison.CurrentCultureIgnoreCase)))
+            if (!(string.Equals(ext, ".wld", StringComparison.CurrentCultureIgnoreCase) ||
+                  string.Equals(ext, ".bak", StringComparison.CurrentCultureIgnoreCase) ||
+                  string.Equals(ext, ".Tedit", StringComparison.CurrentCultureIgnoreCase)))
                 throw new ApplicationException("Invalid file");
 
             CanUseFileIO = false;
@@ -208,7 +208,6 @@ namespace TEdit.TerrariaWorld
 
         public void SaveFile(string filename)
         {
-
             CanUseFileIO = false;
             string backupFileName = filename + ".Tedit";
             if (File.Exists(filename))

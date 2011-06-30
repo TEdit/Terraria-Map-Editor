@@ -18,11 +18,6 @@ namespace TEdit.RenderWorld
 
         [Import] private WorldImage _worldImage;
 
-        public WorldRenderer()
-        {
-
-        }
-
         public string GetTileName(Tile tile, out string wall)
         {
             string tilename = String.Empty;

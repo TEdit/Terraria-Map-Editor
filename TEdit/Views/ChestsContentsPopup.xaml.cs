@@ -12,7 +12,7 @@ namespace TEdit.Views
         public ChestsContentsPopup(Chest chest)
         {
             InitializeComponent();
-            this.DataContext = chest.Items;
+            DataContext = chest.Items;
         }
 
         private void Popup_MouseDown(object sender, MouseButtonEventArgs e)

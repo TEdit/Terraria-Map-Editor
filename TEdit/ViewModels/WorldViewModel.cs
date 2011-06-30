@@ -1,5 +1,4 @@
 using System;
-using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.ComponentModel.Composition;
 using System.Linq;
@@ -20,45 +19,39 @@ namespace TEdit.ViewModels
     [Export]
     public class WorldViewModel : ObservableObject, IPartImportsSatisfiedNotification
     {
+        private readonly int[] _frameTimes = new int[100];
         private readonly TaskFactory _uiFactory;
         private readonly TaskScheduler _uiScheduler;
+        private ITool _activeTool;
 
         private ICommand _copyToClipboard;
-        private ICommand _pasteFromClipboard;
-        private ICommand _mouseDownCommand;
-        private ICommand _mouseMoveCommand;
-        private ICommand _mouseUpCommand;
-        private ICommand _mouseWheelCommand;
-        private ICommand _openWorldCommand;
-        private ICommand _saveWorldCommand;
-        private ICommand _setTool;
-        private ITool _activeTool;
-        private PointInt32 _mouseDownTile;
-        private PointInt32 _mouseOverTile;
-        private PointInt32 _mouseUpTile;
-        private ProgressChangedEventArgs _progress;
-        private TimeSpan _lastRender;
-        private WorldImage _worldImage;
-        private bool _isBusy;
-        private bool _isMouseContained;
-        private double _zoom = 1;
+        private string _fluidName;
         private int _frameRate;
         private int _frameTimesIndex;
-        private readonly int[] _frameTimes = new int[100];
-        private string _fluidName;
+        private bool _isBusy;
+        private bool _isMouseContained;
+        private TimeSpan _lastRender;
+        private ICommand _mouseDownCommand;
+        private PointInt32 _mouseDownTile;
+        private ICommand _mouseMoveCommand;
+        private PointInt32 _mouseOverTile;
+        private ICommand _mouseUpCommand;
+        private PointInt32 _mouseUpTile;
+        private ICommand _mouseWheelCommand;
+        private ICommand _openWorldCommand;
+        private ICommand _pasteFromClipboard;
+        private ProgressChangedEventArgs _progress;
+        [Import] private WorldRenderer _renderer;
+        private ICommand _saveWorldCommand;
+        [Import] private SelectionArea _selection;
+        private ICommand _setTool;
         private string _tileName;
+        [Import] private TilePicker _tilePicker;
+        [Import] private ToolProperties _toolProperties;
         private string _wallName;
-
-        [Import]
-        private SelectionArea _selection;
-        [Import]
-        private TilePicker _tilePicker;
-        [Import]
-        private ToolProperties _toolProperties;
-        [Import]
-        private WorldRenderer _renderer;
-        [Import("World", typeof(World))]
-        private World _world;
+        [Import("World", typeof (World))] private World _world;
+        private WorldImage _worldImage;
+        private double _zoom = 1;
 
         public WorldViewModel()
         {
@@ -110,7 +103,7 @@ namespace TEdit.ViewModels
         }
 
 
-        [ImportMany(typeof(ITool))]
+        [ImportMany(typeof (ITool))]
         public OrderingCollection<ITool, IOrderMetadata> Tools { get; set; }
 
         public ITool ActiveTool
@@ -177,7 +170,7 @@ namespace TEdit.ViewModels
             get
             {
                 if (_worldImage.Image != null)
-                    return _worldImage.Image.PixelHeight * _zoom;
+                    return _worldImage.Image.PixelHeight*_zoom;
 
 
                 return 1;
@@ -189,7 +182,7 @@ namespace TEdit.ViewModels
             get
             {
                 if (_worldImage.Image != null)
-                    return _worldImage.Image.PixelWidth * _zoom;
+                    return _worldImage.Image.PixelWidth*_zoom;
 
                 return 1;
             }
@@ -216,7 +209,7 @@ namespace TEdit.ViewModels
 
         public double ZoomInverted
         {
-            get { return 1 / (_zoom); }
+            get { return 1/(_zoom); }
         }
 
         [Import]
@@ -254,29 +247,6 @@ namespace TEdit.ViewModels
         public ICommand PasteFromClipboard
         {
             get { return _pasteFromClipboard ?? (_pasteFromClipboard = new RelayCommand(ActivatePasteTool, CanActivatePasteTool)); }
-        }
-
-        private void SetClipBoard()
-        {
-            
-        }
-
-        private bool CanSetClipboard()
-        {
-            return (Selection.SelectionVisibility == Visibility.Visible);
-        }
-
-        private void ActivatePasteTool()
-        {
-            ITool pasteTool = Tools.FirstOrDefault(x => x.Value.Name == "Paste").Value;
-            if (pasteTool != null)
-                this.ActiveTool = pasteTool;
-        }
-
-        private bool CanActivatePasteTool()
-        {
-            // if buffer has contents return true
-            return false;
         }
 
         public ICommand SetTool
@@ -430,21 +400,43 @@ namespace TEdit.ViewModels
 
         #endregion
 
+        private void SetClipBoard()
+        {
+        }
+
+        private bool CanSetClipboard()
+        {
+            return (Selection.SelectionVisibility == Visibility.Visible);
+        }
+
+        private void ActivatePasteTool()
+        {
+            ITool pasteTool = Tools.FirstOrDefault(x => x.Value.Name == "Paste").Value;
+            if (pasteTool != null)
+                ActiveTool = pasteTool;
+        }
+
+        private bool CanActivatePasteTool()
+        {
+            // if buffer has contents return true
+            return false;
+        }
+
         private void CompTargetRender(object sender, EventArgs e)
         {
-            CalcFrameRate((RenderingEventArgs)e);
+            CalcFrameRate((RenderingEventArgs) e);
         }
 
         private void CalcFrameRate(RenderingEventArgs renderArgs)
         {
             TimeSpan dt = (renderArgs.RenderingTime - _lastRender);
-            var framrate = (int)(1000 / dt.TotalMilliseconds);
+            var framrate = (int) (1000/dt.TotalMilliseconds);
 
             if (framrate > 0)
             {
-                _frameTimesIndex = (_frameTimesIndex + 1) % _frameTimes.Length;
+                _frameTimesIndex = (_frameTimesIndex + 1)%_frameTimes.Length;
                 _frameTimes[_frameTimesIndex] = framrate;
-                FrameRate = (int)_frameTimes.Average();
+                FrameRate = (int) _frameTimes.Average();
             }
             // About to render...
             _lastRender = renderArgs.RenderingTime;
@@ -463,14 +455,14 @@ namespace TEdit.ViewModels
         private void LoadWorldandRender()
         {
             var ofd = new OpenFileDialog();
-            if ((bool)ofd.ShowDialog())
+            if ((bool) ofd.ShowDialog())
             {
                 Task.Factory.StartNew(() => LoadWorld(ofd.FileName));
             }
         }
 
         private void LoadWorld(string filename)
-		{
+        {
             try
             {
                 WorldImage.Image = null;
@@ -478,19 +470,19 @@ namespace TEdit.ViewModels
                 WriteableBitmap img = _renderer.RenderWorld();
                 img.Freeze();
                 _uiFactory.StartNew(() =>
-                {
-                    WorldImage.Image = img.Clone();
-                    img = null;
-                    RaisePropertyChanged("WorldZoomedHeight");
-                    RaisePropertyChanged("WorldZoomedWidth");
-                });
+                                        {
+                                            WorldImage.Image = img.Clone();
+                                            img = null;
+                                            RaisePropertyChanged("WorldZoomedHeight");
+                                            RaisePropertyChanged("WorldZoomedWidth");
+                                        });
             }
             catch (Exception)
             {
                 World.CanUseFileIO = true;
                 MessageBox.Show("There was a problem loading the file. Make sure you selected a .wld, .bak or .Tedit file.", "World File Problem", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
-		}
+        }
 
         private void SaveWorld()
         {
@@ -502,9 +494,9 @@ namespace TEdit.ViewModels
             MouseOverTile = e.Tile;
 
             if ((e.Tile.X < _world.Header.MaxTiles.X &&
-                e.Tile.Y < _world.Header.MaxTiles.Y &&
-                e.Tile.X >= 0 &&
-                e.Tile.Y >= 0) && (_world.Tiles[e.Tile.X, e.Tile.Y] != null))
+                 e.Tile.Y < _world.Header.MaxTiles.Y &&
+                 e.Tile.X >= 0 &&
+                 e.Tile.Y >= 0) && (_world.Tiles[e.Tile.X, e.Tile.Y] != null))
             {
                 Tile overTile = _world.Tiles[e.Tile.X, e.Tile.Y];
 
@@ -530,9 +522,9 @@ namespace TEdit.ViewModels
         private void OnMouseDownPixel(TileMouseEventArgs e)
         {
             if ((e.Tile.X < _world.Header.MaxTiles.X &&
-                e.Tile.Y < _world.Header.MaxTiles.Y &&
-                e.Tile.X >= 0 &&
-                e.Tile.Y >= 0) && (_world.Tiles[e.Tile.X, e.Tile.Y] != null))
+                 e.Tile.Y < _world.Header.MaxTiles.Y &&
+                 e.Tile.X >= 0 &&
+                 e.Tile.Y >= 0) && (_world.Tiles[e.Tile.X, e.Tile.Y] != null))
             {
                 MouseDownTile = e.Tile;
 
@@ -544,9 +536,9 @@ namespace TEdit.ViewModels
         private void OnMouseUpPixel(TileMouseEventArgs e)
         {
             if ((e.Tile.X < _world.Header.MaxTiles.X &&
-                e.Tile.Y < _world.Header.MaxTiles.Y &&
-                e.Tile.X >= 0 &&
-                e.Tile.Y >= 0) && (_world.Tiles[e.Tile.X, e.Tile.Y] != null))
+                 e.Tile.Y < _world.Header.MaxTiles.Y &&
+                 e.Tile.X >= 0 &&
+                 e.Tile.Y >= 0) && (_world.Tiles[e.Tile.X, e.Tile.Y] != null))
             {
                 MouseUpTile = e.Tile;
 
@@ -558,14 +550,14 @@ namespace TEdit.ViewModels
         private void OnMouseWheel(TileMouseEventArgs e)
         {
             if ((e.Tile.X < _world.Header.MaxTiles.X &&
-                e.Tile.Y < _world.Header.MaxTiles.Y &&
-                e.Tile.X >= 0 &&
-                e.Tile.Y >= 0) && (_world.Tiles[e.Tile.X, e.Tile.Y] != null))
+                 e.Tile.Y < _world.Header.MaxTiles.Y &&
+                 e.Tile.X >= 0 &&
+                 e.Tile.Y >= 0) && (_world.Tiles[e.Tile.X, e.Tile.Y] != null))
             {
                 if (e.WheelDelta > 0)
-                    Zoom = Zoom * 1.1;
+                    Zoom = Zoom*1.1;
                 if (e.WheelDelta < 0)
-                    Zoom = Zoom * 0.9;
+                    Zoom = Zoom*0.9;
             }
         }
     }

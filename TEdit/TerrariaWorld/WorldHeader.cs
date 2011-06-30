@@ -6,6 +6,13 @@ namespace TEdit.TerrariaWorld
 {
     public class WorldHeader : ObservableObject
     {
+        private PointInt32 _DungeonEntrance;
+        private string _FileName;
+        private int _FileVersion;
+        private int _InvasionDelay;
+        private int _InvasionSize;
+        private int _InvasionType;
+        private double _InvasionX;
         private bool _IsBloodMoon;
         private bool _IsBossDowned1;
         private bool _IsBossDowned2;
@@ -13,23 +20,16 @@ namespace TEdit.TerrariaWorld
         private bool _IsDayTime;
         private bool _IsShadowOrbSmashed;
         private bool _IsSpawnMeteor;
-        private double _InvasionX;
-        private double _Time;
-        private double _WorldRockLayer;
-        private double _WorldSurface;
-        private int _FileVersion;
-        private int _InvasionDelay;
-        private int _InvasionSize;
-        private int _InvasionType;
+        private PointInt32 _MaxTiles;
         private int _MoonPhase;
         private int _ShadowOrbCount;
-        private int _WorldId;
-        private PointInt32 _DungeonEntrance;
-        private PointInt32 _MaxTiles;
         private PointInt32 _SpawnTile;
+        private double _Time;
         private RectF _WorldBounds;
+        private int _WorldId;
         private string _WorldName;
-        private string _FileName;
+        private double _WorldRockLayer;
+        private double _WorldSurface;
 
         public WorldHeader()
         {
@@ -51,7 +51,7 @@ namespace TEdit.TerrariaWorld
             }
         }
 
-        [CategoryAttribute("World"), DescriptionAttribute("Terraria Save File Version")]
+        [Category("World"), DescriptionAttribute("Terraria Save File Version")]
         public int FileVersion
         {
             get { return _FileVersion; }
@@ -376,7 +376,7 @@ namespace TEdit.TerrariaWorld
 
         public WorldHeader Clone()
         {
-            return (WorldHeader)MemberwiseClone();
+            return (WorldHeader) MemberwiseClone();
         }
     }
 }

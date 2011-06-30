@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using TEdit.Common;
-using TEdit.RenderWorld;
 using TileMouseEventArgs = TEdit.TerrariaWorld.Structures.PointInt32;
 
 namespace TEdit.TerrariaWorld

@@ -1,4 +1,5 @@
-﻿using System.Windows.Controls;
+﻿using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Input;
 using TEdit.TerrariaWorld;
@@ -13,7 +14,7 @@ namespace TEdit.Views
         public SignPopup(Sign sign)
         {
             InitializeComponent();
-            this.DataContext = sign;
+            DataContext = sign;
         }
 
         private void Popup_MouseDown(object sender, MouseButtonEventArgs e)
@@ -26,7 +27,7 @@ namespace TEdit.Views
             //IsOpen = false;
         }
 
-        private void ClosePopup(object sender, System.Windows.RoutedEventArgs e)
+        private void ClosePopup(object sender, RoutedEventArgs e)
         {
             IsOpen = false;
         }
@@ -34,7 +35,7 @@ namespace TEdit.Views
         private void ValidateLines(object sender, KeyEventArgs e)
         {
             // Limit to 10 lines
-            TextBox tb = sender as TextBox;
+            var tb = sender as TextBox;
 
             if (tb != null)
             {

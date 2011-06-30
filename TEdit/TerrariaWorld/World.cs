@@ -8,7 +8,6 @@ namespace TEdit.TerrariaWorld
     [PartCreationPolicy(CreationPolicy.Shared)]
     public partial class World : ObservableObject
     {
-
         public const int MaxChests = 1000;
         public const int MaxSigns = 1000;
         public const int MaxNpcs = 1000;

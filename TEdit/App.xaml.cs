@@ -3,6 +3,8 @@ using System.ComponentModel.Composition;
 using System.ComponentModel.Composition.Hosting;
 using System.Reflection;
 using System.Windows;
+using System.Windows.Threading;
+using TEdit.Common;
 
 namespace TEdit
 {
@@ -41,19 +43,19 @@ namespace TEdit
             }
         }
 
-        void App_DispatcherUnhandledException(object sender, System.Windows.Threading.DispatcherUnhandledExceptionEventArgs e)
+        private void App_DispatcherUnhandledException(object sender, DispatcherUnhandledExceptionEventArgs e)
         {
             throw new NotImplementedException();
         }
 
-        void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
+        private void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
         {
 #if DEBUG
             // Don't trap unhandled exceptions in debug mode
 #else
-            TEdit.Common.ErrorLogging.LogException(e.ExceptionObject, Common.ErrorLogging.ErrorLevel.Fatal);
+            ErrorLogging.LogException(e.ExceptionObject, ErrorLogging.ErrorLevel.Fatal);
             MessageBox.Show("An unhandled exception has occured. Please copy the log from \"log.txt\" to the GitHub Issues list.\r\nThe program will now exit.", "Unhandled Exception");
-            Application.Current.Shutdown();
+            Current.Shutdown();
 #endif
         }
 

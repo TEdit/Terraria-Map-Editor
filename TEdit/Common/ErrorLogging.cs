@@ -1,6 +1,5 @@
 ﻿using System;
 using System.IO;
-using TEdit.Properties;
 
 namespace TEdit.Common
 {

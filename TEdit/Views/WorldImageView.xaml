@@ -31,28 +31,26 @@
                      Source="{Binding Path=WorldImage.Image}" RenderOptions.BitmapScalingMode="NearestNeighbor"
                      MouseMove="ViewportMouseMove" MouseDown="ViewportMouseDown" MouseWheel="ViewportMouseWheel" MouseUp="ViewportMouseUp"
                      MouseEnter="ViewportMouseEnter" MouseLeave="ViewportMouseLeave" />
-              <Image Source="{Binding Path=ToolProperties.Image}"
-                     RenderOptions.BitmapScalingMode="NearestNeighbor" Height="{Binding Path=ToolProperties.Size.Height}"
-                     Width="{Binding Path=ToolProperties.Size.Width}" Canvas.Left="{Binding Path=ToolLocation.X}"
-                     Canvas.Top="{Binding Path=ToolLocation.Y}" IsHitTestVisible="False" Opacity="0.75" />
+              <Image Source="{Binding Path=ToolProperties.Image}" RenderOptions.BitmapScalingMode="NearestNeighbor"
+                     Height="{Binding Path=ToolProperties.Size.Height}" Width="{Binding Path=ToolProperties.Size.Width}"
+                     Canvas.Left="{Binding Path=ToolLocation.X}" Canvas.Top="{Binding Path=ToolLocation.Y}" IsHitTestVisible="False"
+                     Opacity="0.75" />
               <Rectangle Height="{Binding Path=Selection.Rectangle.Height}"
                          Width="{Binding Path=Selection.Rectangle.Width}" Canvas.Left="{Binding Path=Selection.Rectangle.X}"
                          Canvas.Top="{Binding Path=Selection.Rectangle.Y}" Fill="#A4005BFF" IsHitTestVisible="False"
                          Visibility="{Binding Path=Selection.SelectionVisibility}" />
 
-              <Image Source="../Images/Overlays/spawn_marker.png"
-                     Canvas.Left="{Binding Path=World.Header.SpawnTile.X}" Canvas.Top="{Binding Path=World.Header.SpawnTile.Y}"
-                     IsHitTestVisible="False" OpacityMask="#A0000000" RenderTransformOrigin="0.5,1"
-                     RenderTransform="{DynamicResource MarkerTransform}" />
-                            <Image Source="../Images/Overlays/dungeon_marker.png"
+              <Image Source="../Images/Overlays/spawn_marker.png" Canvas.Left="{Binding Path=World.Header.SpawnTile.X}"
+                     Canvas.Top="{Binding Path=World.Header.SpawnTile.Y}" IsHitTestVisible="False" OpacityMask="#A0000000"
+                     RenderTransformOrigin="0.5,1" RenderTransform="{DynamicResource MarkerTransform}" />
+              <Image Source="../Images/Overlays/dungeon_marker.png"
                      Canvas.Left="{Binding Path=World.Header.DungeonEntrance.X}" Canvas.Top="{Binding Path=World.Header.DungeonEntrance.Y}"
                      IsHitTestVisible="False" OpacityMask="#A0000000" RenderTransformOrigin="0.5,1"
                      RenderTransform="{DynamicResource MarkerTransform}" />
               <ItemsControl ItemsSource="{Binding Path=World.Npcs}">
                 <ItemsControl.ItemsPanel>
                   <ItemsPanelTemplate>
-                    <Canvas HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
-                            IsItemsHost="True" />
+                    <Canvas HorizontalAlignment="Stretch" VerticalAlignment="Stretch" IsItemsHost="True" />
                   </ItemsPanelTemplate>
                 </ItemsControl.ItemsPanel>
                 <ItemsControl.ItemContainerStyle>
@@ -63,8 +61,8 @@
                 </ItemsControl.ItemContainerStyle>
                 <ItemsControl.ItemTemplate>
                   <DataTemplate>
-                    <Image Source="{Binding Path=ImagePath}" IsHitTestVisible="False"
-                           OpacityMask="#A0000000" RenderTransformOrigin="0.5,1" RenderTransform="{DynamicResource MarkerTransform}" />
+                    <Image Source="{Binding Path=ImagePath}" IsHitTestVisible="False" OpacityMask="#A0000000"
+                           RenderTransformOrigin="0.5,1" RenderTransform="{DynamicResource MarkerTransform}" />
                   </DataTemplate>
                 </ItemsControl.ItemTemplate>
               </ItemsControl>
@@ -102,8 +100,7 @@ Text="{Binding Path=Zoom,Mode=TwoWay, StringFormat={}{0:0%}, Converter={StaticRe
             </Border>-->
     </StackPanel>
     <Border BorderBrush="Black" BorderThickness="1" Grid.Row="2" HorizontalAlignment="Right">
-      <Controls:ScrollViewerThumbnail Grid.Row="1" ScrollViewer="{Binding ElementName=WorldScrollViewer}"
-                                      Height="30" />
+      <Controls:ScrollViewerThumbnail Grid.Row="1" ScrollViewer="{Binding ElementName=WorldScrollViewer}" Height="30" />
     </Border>
   </Grid>
 </UserControl>
