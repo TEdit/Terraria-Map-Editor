@@ -8,5 +8,103 @@
 NOTE: THIS IS PRE-RELEASE AND DOES NOT HAVE ALL FEATURES. IT IS A DEMO OF THE TECHNOLOGY.
 
 Update History
-v2.0.0.0
-Complete rewrite using WPF for performance boost, previous history removed from log.
+2011-06-29 Copy. Paste.
+2011-06-29 Code cleanup
+2011-06-29 Added additional file type handling
+2011-06-29 Refactor tools, beginning copy/paste functionality
+2011-06-29 Smoothed and improved zoom centering - removed the jumpiness, closes #57
+2011-06-29 World Property Editor
+2011-06-29 Editable Signs!
+2011-06-29 Fixed load/save crash when loading a second world
+2011-06-29 Chests Popups
+2011-06-28 Error log file name update
+2011-06-28 Some test error trapping
+2011-06-28 Added Terrafirma style sign popup to arrow tool
+2011-06-28 Resharper megacleanup...
+2011-06-28 Arrow tool - right clicking chests opens a popup. Idea from Terrafirma.
+2011-06-28 Marker scaling and dynamic loading. Converted chests, signs, and npcs to observablecollections. Zoom textbox is now editable directly - closes #55
+2011-06-28 Added Dungeon Point Picker
+2011-06-27 Brush saves last size used, closes #51.
+2011-06-27 Scroll bar for tools
+2011-06-27 default water as checked
+2011-06-27 platform color blended with dirt wall too much
+2011-06-27 Spawn point tool and fixed some issues with refactoring not renaming string values.
+2011-06-27 fixed oversize selector
+2011-06-27 Added icons to repo and renamed project folder
+2011-06-27 Refactor namespace to Tedit (from TEditWPF)
+2011-06-27 Fix issue #49 "Checkbox selection" with bad mouse clicks on groupbox.
+2011-06-27 Krude's Awesome Color Upgrade!
+2011-06-26 Added NPC and Spawn icons
+2011-06-26 Mask fix
+2011-06-26 Merge branch 'master' into release
+2011-06-26 Merge branch 'WPF'
+2011-06-26 Outline and walls
+2011-06-26 Brush, pencil, eraser and horizontal/vertical snapping complete
+2011-06-26 Basic functionality complete
+2011-06-25 tile and mask picker
+2011-06-25 color and property tweaks
+2011-06-25 better colors
+2011-06-25 tile color handling changes
+2011-06-25 Rendering enhancements
+2011-06-24 Merge branch 'master' into release
+2011-06-24 1.0.5 compatibility patch
+2011-06-24 Tool rendering, ellipse updating, working eraser
+2011-06-23 updated for new tile types
+2011-06-23 Resharper code cleanup
+2011-06-23 Tool prep for refactor
+2011-06-23 Bresenham's line algorithm
+2011-06-23 layout transform zooming
+2011-06-21 stuff with overlay, probably won't be used
+2011-06-21 FRAMERATE FTW
+2011-06-21 selection implemented but not scaled with zoom, too tired fix tomorrow
+2011-06-20 Hover Tile Text
+2011-06-20 fix spelling on furnace
+2011-06-20 Tool Interface
+2011-06-17 remove zip from git
+2011-06-17 Added a zip of this prerelease.
+2011-06-16 MEF!
+2011-06-14 UI organization
+2011-06-13 Loading and rendering working properly and threaded.
+2011-06-13 Improved scroll and zoom interaction and decoupled view/viewmodel
+2011-06-13 More refactoring
+2011-06-13 A little bit of refactoring
+2011-06-13 fixed scroll zoom issue
+2011-06-12 added some initial rendering tests
+2011-06-12 Added world handling to WPF project, removed winforms and world lib. Merging everything into one project for one file to download this time. May change in the future.
+2011-06-12 Improved scroll and zoom
+2011-06-12 Added scrolling and zooming support, refactoring on world.header
+2011-06-12 Hooked up mouse events to viewport
+2011-06-11 Made WPF the startup project
+2011-06-11 Starting infrastructure for wpf project
+2011-06-09 Adding WPF test project, attempting to improve performance
+2011-06-11 Merge branch 'dev' and terminated 'dev'
+2011-06-11 Merge pull request #31 from ShaneK/ShanesDevBranch
+2011-06-11 Added the ability to jump to chests by clicking on them while holding a pre-determined button. DEFAULT is ALT but you can change in the chest editor context menu.
+2011-06-10 Made jumping to selected chest a context menu with a state change.
+2011-06-07 Removed the option to jump to selected chests from the chest editor and placed it in the context menu. Still disabled by default, but that may change.
+2011-06-06 Merge branch 'master' of git://github.com/BinaryConstruct/Terraria-Map-Editor
+2011-06-06 Merge branch 'master' into dev
+2011-06-06 Merge branch 'master' into release
+2011-06-06 Merge branch 'master' into release
+2011-06-06 Merge branch 'master' into release
+2011-06-06 Merge pull request #24 from ShaneK/ShanesDevBranch
+2011-06-06 Didn't really change anything. Just updating before pushing.
+2011-06-06 Was trying to make jumping to the chest more centered, but failed and gave up. I did, however, add a checkbox that lets the user chose if they wanna jump to the chest or not. (Disabled by default)
+2011-06-06 Merge branch 'dev'
+2011-06-06 Modified readme for new download location
+2011-06-05 Fixed exception with pan-dragging outside of viewport by adding check for mouse-in-viewport.
+2011-06-05 Merge branch 'dev'
+2011-06-05 file extension block, not the best but will suffice for now
+2011-06-05 Added error logging
+2011-06-05 Made jumping to chests when you select them in the list.
+2011-06-05 Added Shirkit's panning code to middle mouse
+2011-06-05 Test
+2011-05-30 Merge branch 'dev'
+2011-05-30 Added mouse-wheel zoom
+2011-05-29 Fixed wall type in status bar
+2011-05-28 Merge branch 'dev'
+2011-05-28 v1.0.1.2
+2011-05-26 easier method of saving tile properties
+2011-05-24 release notes to readme
+2011-05-24 Release version 1.0.1.1
+2011-05-24 Adding .gitignore
