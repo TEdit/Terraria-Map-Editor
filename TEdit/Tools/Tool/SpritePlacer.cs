@@ -4,6 +4,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using TEdit.Common;
+using TEdit.RenderWorld;
 using TEdit.TerrariaWorld;
 using TEdit.TerrariaWorld.Structures;
 
@@ -19,6 +20,9 @@ namespace TEdit.Tools.Tool
 
         [Import("World", typeof(World))]
         private World _world;
+
+        [Import]
+        private WorldRenderer _renderer;
 
         public SpritePlacer()
         {
@@ -120,6 +124,7 @@ namespace TEdit.Tools.Tool
                 curTile.IsActive = true;
                 curTile.Type = type;
                 curTile.Frame = frame;
+                _renderer.UpdateWorldImage(point);
             }
         }
 

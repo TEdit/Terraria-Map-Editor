@@ -1,0 +1,85 @@
+Tue Jun 28 00:34:32 2011 -0500 Added Dungeon Point Picker
+Mon Jun 27 23:53:22 2011 -0500 Brush saves last size used, closes #51.
+Mon Jun 27 23:32:18 2011 -0500 Scroll bar for tools
+Mon Jun 27 22:38:46 2011 -0500 default water as checked
+Mon Jun 27 19:59:30 2011 -0500 platform color blended with dirt wall too much
+Mon Jun 27 19:52:28 2011 -0500 Spawn point tool and fixed some issues with refactoring not renaming string values.
+Mon Jun 27 19:35:35 2011 -0500 fixed oversize selector
+Mon Jun 27 19:24:07 2011 -0500 Added icons to repo and renamed project folder
+Mon Jun 27 19:21:53 2011 -0500 Refactor namespace to Tedit (from TEditWPF)
+Mon Jun 27 17:53:44 2011 -0500 Fix issue #49 "Checkbox selection" with bad mouse clicks on groupbox.
+Mon Jun 27 17:42:28 2011 -0500 Krude's Awesome Color Upgrade!
+Sun Jun 26 23:16:04 2011 -0500 Added NPC and Spawn icons
+Sun Jun 26 21:41:51 2011 -0500 Mask fix
+Sun Jun 26 20:01:27 2011 -0500 Merge branch 'master' into release
+Sun Jun 26 20:00:52 2011 -0500 Merge branch 'WPF'
+Sun Jun 26 19:53:25 2011 -0500 Outline and walls
+Sun Jun 26 18:15:34 2011 -0500 Brush, pencil, eraser and horizontal/vertical snapping complete
+Sun Jun 26 02:22:16 2011 -0500 Basic functionality complete
+Sat Jun 25 21:28:43 2011 -0500 tile and mask picker
+Sat Jun 25 12:20:42 2011 -0500 color and property tweaks
+Sat Jun 25 11:09:09 2011 -0500 better colors
+Sat Jun 25 10:53:05 2011 -0500 tile color handling changes
+Sat Jun 25 10:33:34 2011 -0500 Rendering enhancements
+Fri Jun 24 02:13:42 2011 -0500 Merge branch 'master' into release
+Fri Jun 24 02:10:59 2011 -0500 1.0.5 compatibility patch
+Fri Jun 24 02:02:22 2011 -0500 Tool rendering, ellipse updating, working eraser
+Thu Jun 23 23:10:30 2011 -0500 updated for new tile types
+Thu Jun 23 22:38:43 2011 -0500 Resharper code cleanup
+Thu Jun 23 22:35:51 2011 -0500 Tool prep for refactor
+Thu Jun 23 20:05:42 2011 -0500 Bresenham's line algorithm
+Thu Jun 23 18:13:54 2011 -0500 layout transform zooming
+Tue Jun 21 22:04:19 2011 -0500 stuff with overlay, probably won't be used
+Tue Jun 21 20:16:07 2011 -0500 FRAMERATE FTW
+Tue Jun 21 00:43:47 2011 -0500 selection implemented but not scaled with zoom, too tired fix tomorrow
+Mon Jun 20 22:32:55 2011 -0500 Hover Tile Text
+Mon Jun 20 22:09:16 2011 -0500 fix spelling on furnace
+Mon Jun 20 21:57:46 2011 -0500 Tool Interface
+Fri Jun 17 00:24:30 2011 -0500 remove zip from git
+Fri Jun 17 00:23:49 2011 -0500 Added a zip of this prerelease.
+Thu Jun 16 23:12:51 2011 -0500 MEF!
+Tue Jun 14 01:17:19 2011 -0500 UI organization
+Mon Jun 13 23:29:47 2011 -0500 Loading and rendering working properly and threaded.
+Mon Jun 13 21:25:54 2011 -0500 Improved scroll and zoom interaction and decoupled view/viewmodel
+Mon Jun 13 20:09:58 2011 -0500 More refactoring
+Mon Jun 13 20:03:03 2011 -0500 A little bit of refactoring
+Mon Jun 13 00:15:10 2011 -0500 fixed scroll zoom issue
+Sun Jun 12 23:09:12 2011 -0500 added some initial rendering tests
+Sun Jun 12 18:19:24 2011 -0500 Added world handling to WPF project, removed winforms and world lib. Merging everything into one project for one file to download this time. May change in the future.
+Sun Jun 12 11:58:03 2011 -0500 Improved scroll and zoom
+Sun Jun 12 03:30:29 2011 -0500 Added scrolling and zooming support, refactoring on world.header
+Sun Jun 12 02:07:47 2011 -0500 Hooked up mouse events to viewport
+Sat Jun 11 19:10:06 2011 -0500 Made WPF the startup project
+Sat Jun 11 19:10:06 2011 -0500 Starting infrastructure for wpf project
+Sat Jun 11 19:10:06 2011 -0500 Adding WPF test project, attempting to improve performance
+Sat Jun 11 19:07:31 2011 -0500 Merge branch 'dev' and terminated 'dev'
+Sat Jun 11 16:53:28 2011 -0700 Merge pull request #31 from ShaneK/ShanesDevBranch
+Sat Jun 11 12:18:25 2011 -0500 Added the ability to jump to chests by clicking on them while holding a pre-determined button. DEFAULT is ALT but you can change in the chest editor context menu.
+Fri Jun 10 11:42:46 2011 -0500 Made jumping to selected chest a context menu with a state change.
+Tue Jun 7 11:52:53 2011 -0500 Removed the option to jump to selected chests from the chest editor and placed it in the context menu. Still disabled by default, but that may change.
+Mon Jun 6 19:01:43 2011 -0500 Merge branch 'master' of git://github.com/BinaryConstruct/Terraria-Map-Editor
+Mon Jun 6 17:55:54 2011 -0500 Merge branch 'master' into dev
+Mon Jun 6 17:54:38 2011 -0500 Merge branch 'master' into release
+Mon Jun 6 17:52:44 2011 -0500 Merge branch 'master' into release
+Mon Jun 6 17:52:18 2011 -0500 Merge branch 'master' into release
+Mon Jun 6 15:43:32 2011 -0700 Merge pull request #24 from ShaneK/ShanesDevBranch
+Mon Jun 6 12:25:47 2011 -0500 Didn't really change anything. Just updating before pushing.
+Mon Jun 6 12:22:51 2011 -0500 Was trying to make jumping to the chest more centered, but failed and gave up. I did, however, add a checkbox that lets the user chose if they wanna jump to the chest or not. (Disabled by default)
+Mon Jun 6 10:32:21 2011 -0500 Merge branch 'dev'
+Mon Jun 6 10:32:09 2011 -0500 Modified readme for new download location
+Sun Jun 5 20:16:35 2011 -0500 Fixed exception with pan-dragging outside of viewport by adding check for mouse-in-viewport.
+Sun Jun 5 13:58:23 2011 -0500 Merge branch 'dev'
+Sun Jun 5 13:58:12 2011 -0500 file extension block, not the best but will suffice for now
+Sun Jun 5 13:51:05 2011 -0500 Added error logging
+Sun Jun 5 13:19:02 2011 -0500 Made jumping to chests when you select them in the list.
+Sun Jun 5 13:01:44 2011 -0500 Added Shirkit's panning code to middle mouse
+Sun Jun 5 10:31:41 2011 -0500 Test
+Mon May 30 00:43:13 2011 -0500 Merge branch 'dev'
+Mon May 30 00:42:59 2011 -0500 Added mouse-wheel zoom
+Sun May 29 23:35:03 2011 -0500 Fixed wall type in status bar
+Sat May 28 00:03:24 2011 -0500 Merge branch 'dev'
+Sat May 28 00:02:56 2011 -0500 v1.0.1.2
+Thu May 26 01:19:54 2011 -0500 easier method of saving tile properties
+Tue May 24 17:01:11 2011 -0500 release notes to readme
+Tue May 24 16:22:01 2011 -0500 Release version 1.0.1.1
+Tue May 24 16:21:49 2011 -0500 Adding .gitignore
