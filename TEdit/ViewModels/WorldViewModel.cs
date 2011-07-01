@@ -36,6 +36,7 @@ namespace TEdit.ViewModels
         private ICommand _mouseMoveCommand;
         private PointInt32 _mouseOverTile;
         private ICommand _mouseUpCommand;
+        private ICommand _renderCommand;
         private ICommand _importSchematic;
         private ICommand _exportSchematic;
         private PointInt32 _mouseUpTile;
@@ -253,7 +254,10 @@ namespace TEdit.ViewModels
         }
 
 
-        
+        public ICommand RenderCommand
+        {
+            get { return _renderCommand ?? (_renderCommand = new RelayCommand(RenderWorld)); }
+        }
 
         public ICommand EmptyClipboard
         {
@@ -573,6 +577,22 @@ namespace TEdit.ViewModels
                 World.CanUseFileIO = true;
                 MessageBox.Show("There was a problem loading the file. Make sure you selected a .wld, .bak or .Tedit file.", "World File Problem", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
+        }
+
+        private void RenderWorld()
+        {
+            Task.Factory.StartNew(() =>
+            {
+                WriteableBitmap img = _renderer.RenderWorld();
+                img.Freeze();
+                _uiFactory.StartNew(() =>
+                {
+                    WorldImage.Image = img.Clone();
+                    img = null;
+                    RaisePropertyChanged("WorldZoomedHeight");
+                    RaisePropertyChanged("WorldZoomedWidth");
+                });
+            });
         }
 
         private void SaveWorld()

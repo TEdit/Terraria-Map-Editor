@@ -141,10 +141,19 @@ namespace TEdit.TerrariaWorld
             get { return _WorldSurface; }
             set
             {
-                if (_WorldSurface != value)
+                var validValue = value;
+                if (validValue < 0)
+                    validValue = 0;
+                if (validValue > MaxTiles.Y)
+                    validValue = MaxTiles.Y;
+
+                if (_WorldSurface != validValue)
                 {
-                    _WorldSurface = value;
+                    _WorldSurface = validValue;
                     RaisePropertyChanged("WorldSurface");
+
+                    if (_WorldSurface > _WorldRockLayer)
+                        WorldRockLayer = _WorldSurface;
                 }
             }
         }
@@ -155,10 +164,19 @@ namespace TEdit.TerrariaWorld
             get { return _WorldRockLayer; }
             set
             {
-                if (_WorldRockLayer != value)
+                var validValue = value;
+                if (validValue < 0)
+                    validValue = 0;
+                if (validValue > MaxTiles.Y)
+                    validValue = MaxTiles.Y;
+
+                if (_WorldRockLayer != validValue)
                 {
-                    _WorldRockLayer = value;
+                    _WorldRockLayer = validValue;
                     RaisePropertyChanged("WorldRockLayer");
+
+                    if (_WorldRockLayer < _WorldSurface)
+                        WorldSurface = _WorldRockLayer;
                 }
             }
         }
