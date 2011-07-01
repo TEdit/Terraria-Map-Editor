@@ -1,11 +1,12 @@
 ﻿using System.Collections.ObjectModel;
 using System.ComponentModel.Composition;
+using System.Linq;
 using TEdit.Common;
 using TEdit.TerrariaWorld.Structures;
 
 namespace TEdit.TerrariaWorld
 {
-    [Export("World", typeof (World))]
+    [Export("World", typeof(World))]
     [PartCreationPolicy(CreationPolicy.Shared)]
     public partial class World : ObservableObject
     {
@@ -21,7 +22,7 @@ namespace TEdit.TerrariaWorld
         private NPC[] _npcs = new NPC[MaxNpcs];
         private Sign[] _signs = new Sign[MaxSigns];
         private Tile[,] _tiles;
-        
+
         public World()
         {
             Header = new WorldHeader();
@@ -61,9 +62,19 @@ namespace TEdit.TerrariaWorld
             get { return _Npcs; }
         }
 
+        public Chest GetChestAtTile(int x, int y)
+        {
+            return Chests.FirstOrDefault(c => (c.Location.X == x || c.Location.X == x - 1) && (c.Location.Y == y || c.Location.Y == y - 1));
+        }
+
+        public Sign GetSignAtTile(int x, int y)
+        {
+            return Signs.FirstOrDefault(c => (c.Location.X == x || c.Location.X == x - 1) && (c.Location.Y == y || c.Location.Y == y - 1));
+        }
+
         public void ClearWorld()
         {
-            _tiles = new Tile[Header.MaxTiles.X,Header.MaxTiles.Y];
+            _tiles = new Tile[Header.MaxTiles.X, Header.MaxTiles.Y];
 
             Chests.Clear();
             Signs.Clear();

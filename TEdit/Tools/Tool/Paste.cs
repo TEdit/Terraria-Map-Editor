@@ -106,7 +106,12 @@ namespace TEdit.Tools.Tool
 
         public override WriteableBitmap PreviewTool()
         {
-            return _renderer.RenderBuffer(_clipboardMan.Buffer);
+            if (_clipboardMan.Buffer.Preview == null)
+            {
+                _clipboardMan.Buffer.Preview = _renderer.RenderBuffer(_clipboardMan.Buffer);;
+            }
+
+            return _clipboardMan.Buffer.Preview;
         }
 
         private void PasteClipboard(PointInt32 anchor)
@@ -117,7 +122,7 @@ namespace TEdit.Tools.Tool
 
         private void ClipboardManPropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
-            if (e.PropertyName == "Buffer")
+            if (e.PropertyName == "Buffer" && _IsActive)
             {
                 if (_clipboardMan.Buffer != null)
                 {

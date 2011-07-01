@@ -84,6 +84,7 @@
     <Compile Include="TerrariaWorld\Structures\SizeInt32.cs" />
     <Compile Include="TerrariaWorld\WorldEditorExtensions.cs" />
     <Compile Include="Tools\Clipboard\ClipboardBuffer.cs" />
+    <Compile Include="Tools\Clipboard\ClipboardBuffer.File.cs" />
     <Compile Include="Tools\Clipboard\ClipboardManager.cs" />
     <Compile Include="Tools\IOrderMetadata.cs" />
     <Compile Include="Tools\ITool.cs" />
@@ -125,6 +126,9 @@
     </Compile>
     <Compile Include="Views\ChestEditorPopup.xaml.cs">
       <DependentUpon>ChestEditorPopup.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ClipboardView.xaml.cs">
+      <DependentUpon>ClipboardView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\SignPopup.xaml.cs">
       <DependentUpon>SignPopup.xaml</DependentUpon>
@@ -187,6 +191,10 @@
     <Page Include="Views\ChestEditorPopup.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\ClipboardView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\SignPopup.xaml">
       <Generator>MSBuild:Compile</Generator>

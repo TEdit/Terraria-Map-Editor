@@ -1,10 +1,12 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
 using System.Windows;
 using TEdit.Common;
 using TEdit.RenderWorld;
 
 namespace TEdit.TerrariaWorld
 {
+    [Serializable]
     public class Item : ObservableObject
     {
         private string _Name;
@@ -59,7 +61,6 @@ namespace TEdit.TerrariaWorld
                 }
             }
         }
-
 
         public ObservableCollection<string> ValidItems
         {

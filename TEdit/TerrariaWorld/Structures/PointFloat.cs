@@ -2,6 +2,7 @@
 
 namespace TEdit.TerrariaWorld.Structures
 {
+    [Serializable]
     public struct PointFloat
     {
         private float _x;

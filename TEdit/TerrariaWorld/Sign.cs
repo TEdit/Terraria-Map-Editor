@@ -4,6 +4,7 @@ using TEdit.TerrariaWorld.Structures;
 
 namespace TEdit.TerrariaWorld
 {
+    [Serializable]
     public class Sign : ObservableObject
     {
         private PointInt32 _Location;

@@ -2,6 +2,7 @@
 
 namespace TEdit.TerrariaWorld.Structures
 {
+    [Serializable]
     public struct PointInt32
     {
         private int _x;

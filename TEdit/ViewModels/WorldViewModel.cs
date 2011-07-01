@@ -36,14 +36,19 @@ namespace TEdit.ViewModels
         private ICommand _mouseMoveCommand;
         private PointInt32 _mouseOverTile;
         private ICommand _mouseUpCommand;
+        private ICommand _importSchematic;
+        private ICommand _exportSchematic;
         private PointInt32 _mouseUpTile;
+        private ICommand _loadBuffer;
         private ICommand _mouseWheelCommand;
         private ICommand _openWorldCommand;
         private ICommand _pasteFromClipboard;
+        private ICommand _emptyClipboard;
         private ProgressChangedEventArgs _progress;
         [Import]
         private WorldRenderer _renderer;
         private ICommand _saveWorldCommand;
+        private ICommand _saveWorldAsCommand;
         [Import]
         private SelectionArea _selection;
         private ICommand _setTool;
@@ -118,8 +123,11 @@ namespace TEdit.ViewModels
             set
             {
                 // Block paste tool if no buffer
-                if (value.Name == "Paste" && !CanActivatePasteTool())
-                    return;
+                if (value != null)
+                {
+                    if (value.Name == "Paste" && !CanActivatePasteTool())
+                        return;
+                }
 
                 if (_activeTool != value)
                 {
@@ -127,14 +135,13 @@ namespace TEdit.ViewModels
                         _activeTool.IsActive = false;
 
                     _activeTool = value;
-                    _activeTool.IsActive = true;
-                    //foreach (var tool in Tools)
-                    //{
-                    //    tool.Value.IsActive = (tool.Value == _ActiveTool);
-                    //}
-
                     ToolProperties.Image = null;
-                    ToolProperties.Image = _activeTool.PreviewTool();
+
+                    if (_activeTool != null)
+                    {
+                        _activeTool.IsActive = true;
+                        ToolProperties.Image = _activeTool.PreviewTool();
+                    }
                     RaisePropertyChanged("ActiveTool");
                 }
             }
@@ -245,6 +252,24 @@ namespace TEdit.ViewModels
             }
         }
 
+
+        
+
+        public ICommand EmptyClipboard
+        {
+            get { return _emptyClipboard ?? (_emptyClipboard = new RelayCommand(ClipboardMan.ClearBuffers)); }
+        }
+
+        public ICommand ImportSchematic
+        {
+            get { return _importSchematic ?? (_importSchematic = new RelayCommand(ImportSchematicFile)); }
+        }
+
+        public ICommand ExportSchematic
+        {
+            get { return _exportSchematic ?? (_exportSchematic = new RelayCommand<ClipboardBuffer>(ExportSchematicFile)); }
+        }
+
         public ICommand CopyToClipboard
         {
             get { return _copyToClipboard ?? (_copyToClipboard = new RelayCommand(SetClipBoard, CanSetClipboard)); }
@@ -258,6 +283,18 @@ namespace TEdit.ViewModels
         public ICommand SetTool
         {
             get { return _setTool ?? (_setTool = new RelayCommand<ITool>(t => ActiveTool = t)); }
+        }
+
+        public ICommand LoadBuffer
+        {
+            get
+            {
+                return _loadBuffer ?? (_loadBuffer = new RelayCommand<ClipboardBuffer>(b =>
+                {
+                    ClipboardMan.Buffer = b;
+                    ActivatePasteTool();
+                }));
+            }
         }
 
         public ICommand MouseMoveCommand
@@ -289,12 +326,16 @@ namespace TEdit.ViewModels
         {
             get { return _saveWorldCommand ?? (_saveWorldCommand = new RelayCommand(SaveWorld, CanSave)); }
         }
+        public ICommand SaveAWorldAsCommand
+        {
+            get { return _saveWorldAsCommand ?? (_saveWorldAsCommand = new RelayCommand(SaveWorldAs, CanSave)); }
+        }
 
         public void DeleteSelection()
         {
             if (Selection.SelectionVisibility == Visibility.Visible)
             {
-                for (int x = Selection.Rectangle.X; x < Selection.Rectangle.X+Selection.Rectangle.Width; x++)
+                for (int x = Selection.Rectangle.X; x < Selection.Rectangle.X + Selection.Rectangle.Width; x++)
                 {
                     for (int y = Selection.Rectangle.Y; y < Selection.Rectangle.Y + Selection.Rectangle.Height; y++)
                     {
@@ -305,7 +346,7 @@ namespace TEdit.ViewModels
                 }
                 _renderer.UpdateWorldImage(Selection.Rectangle);
             }
-            
+
         }
 
         public string WallName
@@ -406,7 +447,6 @@ namespace TEdit.ViewModels
             }
         }
 
-        #region IPartImportsSatisfiedNotification Members
 
         public void OnImportsSatisfied()
         {
@@ -421,13 +461,42 @@ namespace TEdit.ViewModels
                                                       };
         }
 
-        #endregion
+
+        private void ImportSchematicFile()
+        {
+            var ofd = new OpenFileDialog();
+            ofd.Filter = "TEdit Schematic File|*.TEditSch";
+            ofd.Title = "Import Schematic File";
+            ofd.InitialDirectory = System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), @"My Games\Terraria\Worlds");
+            ofd.Multiselect = false;
+            if ((bool)ofd.ShowDialog())
+            {
+                var buffer = ClipboardBuffer.Load(ofd.FileName);
+                buffer.Preview = _renderer.RenderBuffer(buffer);
+                ClipboardMan.LoadedBuffers.Insert(0, buffer);
+            }
+        }
+        private void ExportSchematicFile(ClipboardBuffer buffer)
+        {
+            var sfd = new SaveFileDialog();
+            sfd.Filter = "TEdit Schematic File|*.TEditSch";
+            sfd.Title = "Export Schematic File";
+            sfd.InitialDirectory = System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), @"My Games\Terraria\Worlds");
+            if ((bool)sfd.ShowDialog())
+            {
+                buffer.Save(sfd.FileName);
+            }
+        }
 
         private void SetClipBoard()
         {
             if (Selection.SelectionVisibility == Visibility.Visible)
             {
-                ClipboardMan.Buffer = ClipboardBuffer.GetBufferedRegion(_world, Selection.Rectangle);
+                var buffer = ClipboardBuffer.GetBufferedRegion(_world, Selection.Rectangle);
+                buffer.Preview = _renderer.RenderBuffer(buffer);
+                ClipboardMan.LoadedBuffers.Insert(0, buffer);
+                ClipboardMan.Buffer = null;
+                ClipboardMan.Buffer = buffer;
             }
         }
 
@@ -461,9 +530,25 @@ namespace TEdit.ViewModels
         private void LoadWorldandRender()
         {
             var ofd = new OpenFileDialog();
+            ofd.Filter = "Terrarial World File|*.wld|Terraria World Backup|*.bak|TEdit Backup File|*.TEdit";
+            ofd.DefaultExt = "Terrarial World File|*.wld";
+            ofd.Title = "Import Schematic File";
+            ofd.InitialDirectory = System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), @"My Games\Terraria\Worlds");
+            ofd.Multiselect = false;
             if ((bool)ofd.ShowDialog())
             {
                 Task.Factory.StartNew(() => LoadWorld(ofd.FileName));
+            }
+        }
+        private void SaveWorldAs()
+        {
+            var sfd = new SaveFileDialog();
+            sfd.Filter = "Terraria World File|*.wld|TEdit Backup File|*.TEdit";
+            sfd.Title = "Save World As";
+            sfd.InitialDirectory = System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), @"My Games\Terraria\Worlds");
+            if ((bool)sfd.ShowDialog())
+            {
+                Task.Factory.StartNew(() => World.SaveFile(sfd.FileName));
             }
         }
 
@@ -552,7 +637,13 @@ namespace TEdit.ViewModels
                 MouseDownTile = e.Tile;
 
                 if (ActiveTool != null)
+                {
                     ActiveTool.PressTool(e);
+
+                    if (ActiveTool.Name == "Paste")
+                        ActiveTool = null;// Tools.FirstOrDefault(t => t.Value.Name == "Selection").Value;
+
+                }
             }
         }
 

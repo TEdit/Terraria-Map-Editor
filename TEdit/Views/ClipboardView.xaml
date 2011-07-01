@@ -1,0 +1,26 @@
+﻿<UserControl x:Class="TEdit.Views.ClipboardView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="260">
+    <UserControl.Resources>
+        <DataTemplate x:Key="clipboardItemView">
+            <StackPanel Orientation="Vertical">
+                <Image Source="{Binding Path=Preview}" HorizontalAlignment="Stretch" Stretch="Uniform" RenderOptions.BitmapScalingMode="NearestNeighbor" MaxHeight="100" />
+                <UniformGrid Columns="2">
+                    <Button Content="Paste" Margin="1" Padding="3" Command="{Binding DataContext.LoadBuffer, Mode=Default, RelativeSource={RelativeSource AncestorType={x:Type Window}}}" CommandParameter="{Binding}" />
+                    <Button Content="Export" Margin="1" Padding="3"  Command="{Binding DataContext.ExportSchematic, Mode=Default, RelativeSource={RelativeSource AncestorType={x:Type Window}}}" CommandParameter="{Binding}" />
+                </UniformGrid>
+            </StackPanel>
+        </DataTemplate>
+    </UserControl.Resources>
+    <DockPanel LastChildFill="True">
+        <Button Content="Empty Clipboard" DockPanel.Dock="Top" Padding="2,4" Margin="2" Command="{Binding EmptyClipboard}" />
+        <Button Content="Import Schematic" DockPanel.Dock="Top" Padding="2,4" Margin="2" Command="{Binding ImportSchematic}" />
+        <ScrollViewer>
+            <ItemsControl HorizontalAlignment="Stretch" ItemTemplate="{StaticResource clipboardItemView}" ItemsSource="{Binding ClipboardMan.LoadedBuffers}" />
+        </ScrollViewer>
+    </DockPanel>
+</UserControl>

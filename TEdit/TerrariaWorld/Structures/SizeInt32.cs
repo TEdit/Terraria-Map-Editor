@@ -3,6 +3,7 @@ using TEdit.Common;
 
 namespace TEdit.TerrariaWorld.Structures
 {
+    [Serializable]
     public class SizeInt32 : ObservableObject
     {
         private int _Height;

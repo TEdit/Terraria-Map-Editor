@@ -1,27 +1,30 @@
 ﻿<Window x:Class="TEdit.MainWindow" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:vm="clr-namespace:TEdit.ViewModels" xmlns:views="clr-namespace:TEdit.Views" Title="TEdit 2 - 2.5 RC1"
+        xmlns:vm="clr-namespace:TEdit.ViewModels" xmlns:views="clr-namespace:TEdit.Views" Title="TEdit 2 - 2.6 RC2"
         Height="600" Width="800" TextOptions.TextFormattingMode="Display" TextOptions.TextRenderingMode="Aliased"
         UseLayoutRounding="True" Background="#FF555555" Foreground="White" Icon="/TEdit;component/Images/tedit.ico">
-  <DockPanel Grid.Row="1" HorizontalAlignment="Stretch">
-    <StackPanel Orientation="Horizontal" DockPanel.Dock="Top">
-      <Button Content="Load World" Height="23" Width="75" Command="{Binding Path=OpenWorldCommand}" />
-      <Button Content="Save World" Height="23" Width="75" Command="{Binding Path=SaveWorldCommand}" />
-    </StackPanel>
-    <ScrollViewer DockPanel.Dock="Top" VerticalScrollBarVisibility="Disabled" HorizontalScrollBarVisibility="Auto">
-      <StackPanel Orientation="Horizontal">
-        <views:ToolPropertiesView x:Name="toolPropreties1" Height="110" Margin="0,1" />
-        <views:TilePickerView x:Name="tilePickerView1" Height="110" Margin="0,1" />
-      </StackPanel>
-    </ScrollViewer>
-    <views:StatusBarView DockPanel.Dock="Bottom" />
-    <views:ToolSelectorView DockPanel.Dock="Left" />
-    <Expander Header="World Properties" ExpandDirection="Left" IsExpanded="True" Grid.Row="1" DockPanel.Dock="Right">
-      <views:WorldPropertiesView Height="300" Width="260" HorizontalAlignment="Right" VerticalAlignment="Top" />
-    </Expander>
-    <Border BorderBrush="Black" BorderThickness="1">
-      <views:WorldImageView />
-    </Border>
-
-  </DockPanel>
+    <DockPanel Grid.Row="1" HorizontalAlignment="Stretch">
+        <StackPanel Orientation="Horizontal" DockPanel.Dock="Top">
+            <Button Content="Load World" Height="23" Width="75" Command="{Binding Path=OpenWorldCommand}" Margin="2,1" />
+            <Button Content="Save World" Height="23" Width="75" Command="{Binding Path=SaveWorldCommand}" Margin="2,1" />
+            <Button Content="Save World As" Height="23" Width="100" Command="{Binding Path=SaveWorldCommand}" Margin="2,1" />
+        </StackPanel>
+        <ScrollViewer DockPanel.Dock="Top" VerticalScrollBarVisibility="Disabled" HorizontalScrollBarVisibility="Auto">
+            <StackPanel Orientation="Horizontal">
+                <views:ToolPropertiesView x:Name="toolPropreties1" Height="110" Margin="0,1" />
+                <views:TilePickerView x:Name="tilePickerView1" Height="110" Margin="0,1" />
+            </StackPanel>
+        </ScrollViewer>
+        <views:StatusBarView DockPanel.Dock="Bottom" />
+        <views:ToolSelectorView DockPanel.Dock="Left" />
+        <Expander Header="World Properties" ExpandDirection="Left" IsExpanded="True" Grid.Row="1" DockPanel.Dock="Right">
+            <DockPanel LastChildFill="True">
+                <views:WorldPropertiesView Height="300" Width="260" HorizontalAlignment="Right" DockPanel.Dock="Top" />
+                <views:ClipboardView Width="260" HorizontalAlignment="Right" VerticalAlignment="Stretch" />
+            </DockPanel>
+        </Expander>
+        <Border BorderBrush="Black" BorderThickness="1">
+            <views:WorldImageView />
+        </Border>
+    </DockPanel>
 </Window>

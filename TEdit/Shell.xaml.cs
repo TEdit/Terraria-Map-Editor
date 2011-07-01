@@ -1,6 +1,9 @@
-﻿using System.ComponentModel.Composition;
+﻿using System;
+using System.ComponentModel.Composition;
 using System.Windows;
+using System.Linq;
 using System.Windows.Input;
+using TEdit.Tools;
 using TEdit.ViewModels;
 
 namespace TEdit
@@ -39,6 +42,54 @@ namespace TEdit
             else if (e.Key == Key.Delete)
             {
                 ViewModel.DeleteSelection();
+            }
+            else if (e.Key == Key.S)
+            {
+                Lazy<ITool, IOrderMetadata> tool = ViewModel.Tools.FirstOrDefault(t => t.Value.Name == "Selection");
+                if (tool != null)
+                {
+                    ViewModel.SetTool.Execute(tool.Value);
+                }
+            }
+            else if (e.Key == Key.A)
+            {
+                Lazy<ITool, IOrderMetadata> tool = ViewModel.Tools.FirstOrDefault(t => t.Value.Name == "Arrow");
+                if (tool != null)
+                {
+                    ViewModel.SetTool.Execute(tool.Value);
+                }
+            }
+            else if (e.Key == Key.P)
+            {
+                Lazy<ITool, IOrderMetadata> tool = ViewModel.Tools.FirstOrDefault(t => t.Value.Name == "Spawn Point Tool");
+                if (tool != null)
+                {
+                    ViewModel.SetTool.Execute(tool.Value);
+                }
+            }
+            else if (e.Key == Key.D)
+            {
+                Lazy<ITool, IOrderMetadata> tool = ViewModel.Tools.FirstOrDefault(t => t.Value.Name == "Dungeon Point Tool");
+                if (tool != null)
+                {
+                    ViewModel.SetTool.Execute(tool.Value);
+                }
+            }
+            else if (e.Key == Key.E)
+            {
+                Lazy<ITool, IOrderMetadata> tool = ViewModel.Tools.FirstOrDefault(t => t.Value.Name == "Pencil");
+                if (tool != null)
+                {
+                    ViewModel.SetTool.Execute(tool.Value);
+                }
+            }
+            else if (e.Key == Key.B)
+            {
+                Lazy<ITool, IOrderMetadata> tool = ViewModel.Tools.FirstOrDefault(t => t.Value.Name == "Brush");
+                if (tool != null)
+                {
+                    ViewModel.SetTool.Execute(tool.Value);
+                }
             }
         }
     }
