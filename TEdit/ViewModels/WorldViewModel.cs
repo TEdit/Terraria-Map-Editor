@@ -326,7 +326,7 @@ namespace TEdit.ViewModels
         {
             get { return _saveWorldCommand ?? (_saveWorldCommand = new RelayCommand(SaveWorld, CanSave)); }
         }
-        public ICommand SaveAWorldAsCommand
+        public ICommand SaveWorldAsCommand
         {
             get { return _saveWorldAsCommand ?? (_saveWorldAsCommand = new RelayCommand(SaveWorldAs, CanSave)); }
         }

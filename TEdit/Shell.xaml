@@ -7,7 +7,7 @@
         <StackPanel Orientation="Horizontal" DockPanel.Dock="Top">
             <Button Content="Load World" Height="23" Width="75" Command="{Binding Path=OpenWorldCommand}" Margin="2,1" />
             <Button Content="Save World" Height="23" Width="75" Command="{Binding Path=SaveWorldCommand}" Margin="2,1" />
-            <Button Content="Save World As" Height="23" Width="100" Command="{Binding Path=SaveWorldCommand}" Margin="2,1" />
+            <Button Content="Save World As" Height="23" Width="100" Command="{Binding Path=SaveWorldAsCommand}" Margin="2,1" />
         </StackPanel>
         <ScrollViewer DockPanel.Dock="Top" VerticalScrollBarVisibility="Disabled" HorizontalScrollBarVisibility="Auto">
             <StackPanel Orientation="Horizontal">

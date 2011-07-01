@@ -65,10 +65,17 @@ namespace TEdit.Tools.Clipboard
                             writer.Write(Chests[chestIndex].Location.Y);
                             for (int slot = 0; slot < Chest.MaxItems; slot++)
                             {
-                                writer.Write((byte)Chests[chestIndex].Items[slot].StackSize);
-                                if (Chests[chestIndex].Items[slot].StackSize > 0)
+                                if (Chests[chestIndex].Items.Count > slot)
                                 {
-                                    writer.Write(Chests[chestIndex].Items[slot].Name);
+                                    writer.Write((byte)Chests[chestIndex].Items[slot].StackSize);
+                                    if (Chests[chestIndex].Items[slot].StackSize > 0)
+                                    {
+                                        writer.Write(Chests[chestIndex].Items[slot].Name);
+                                    }
+                                }
+                                else
+                                {
+                                    writer.Write((byte)0);
                                 }
                             }
                         }

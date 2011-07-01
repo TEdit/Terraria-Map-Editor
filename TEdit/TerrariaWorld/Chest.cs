@@ -8,6 +8,11 @@ namespace TEdit.TerrariaWorld
     [Serializable]
     public class Chest : ObservableObject
     {
+        public Chest()
+        {
+
+        }
+
         public static int MaxItems = 20;
         private readonly ObservableCollection<Item> _Items = new ObservableCollection<Item>();
 

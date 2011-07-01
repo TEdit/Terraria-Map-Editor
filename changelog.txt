@@ -1,3 +1,9 @@
+2011-06-30 Lots of changes...Clipboard manager, importing/exporting schematics, save as, closes #66, closes #60
+2011-06-30 Visible world changes for sprite placer
+2011-06-30 Framework for sprite placer
+2011-06-30 First fix attempt for copy/paste
+2011-06-29 Delete selection
+2011-06-29 Adding changelog/readme updates
 2011-06-29 Copy. Paste.
 2011-06-29 Code cleanup
 2011-06-29 Added additional file type handling
