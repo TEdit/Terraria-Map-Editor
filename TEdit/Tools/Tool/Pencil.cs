@@ -153,14 +153,13 @@ namespace TEdit.Tools.Tool
         {
             foreach (PointInt32 p in WorldRenderer.DrawLine(_startPoint, endPoint))
             {
-                if (_selection.SelectionVisibility == Visibility.Visible)
+                if (_selection.IsValid(p))
                 {
-                    // if selection is active, and point is not inside, skip point
-                    if (!_selection.Rectangle.Contains(p))
-                        continue;
+                    int x = p.X;
+                    int y = p.Y;
+                    _world.SetTileXY(ref x, ref y, ref _tilePicker, ref _selection);
+                    _renderer.UpdateWorldImage(p);
                 }
-                _world.SetTileXY(p.X, p.Y, _tilePicker);
-                _renderer.UpdateWorldImage(p);
             }
         }
     }

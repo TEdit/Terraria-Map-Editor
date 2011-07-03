@@ -188,7 +188,7 @@ namespace TEdit.Tools.Tool
 
                 if (_properties.BrushShape == ToolBrushShape.Square)
                 {
-                    _world.FillRectangle(new Int32Rect(x0, y0, _properties.Width, _properties.Height), _tilePicker);
+                    _world.FillRectangle(new Int32Rect(x0, y0, _properties.Width, _properties.Height), ref _tilePicker, ref _selection);
                     if (_properties.IsOutline)
                     {
                         // eraise a center section
@@ -199,13 +199,13 @@ namespace TEdit.Tools.Tool
                                                            y0 + _properties.OutlineThickness,
                                                            _properties.Width - (_properties.OutlineThickness * 2),
                                                            _properties.Height - (_properties.OutlineThickness * 2)),
-                                             eraser);
+                                            ref eraser, ref _selection);
                         eraser = null;
                     }
                 }
                 else if (_properties.BrushShape == ToolBrushShape.Round)
                 {
-                    _world.FillEllipse(x0, y0, x0 + _properties.Width, y0 + _properties.Height, _tilePicker);
+                    _world.FillEllipse(x0, y0, x0 + _properties.Width, y0 + _properties.Height, ref _tilePicker, ref _selection);
                     if (_properties.IsOutline)
                     {
                         // eraise a center section
@@ -215,7 +215,7 @@ namespace TEdit.Tools.Tool
                         _world.FillEllipse(x0 + _properties.OutlineThickness,
                                            y0 + _properties.OutlineThickness,
                                            x0 + _properties.Width - _properties.OutlineThickness,
-                                           y0 + _properties.Height - _properties.OutlineThickness, eraser);
+                                           y0 + _properties.Height - _properties.OutlineThickness, ref eraser, ref _selection);
 
                         eraser = null;
                     }

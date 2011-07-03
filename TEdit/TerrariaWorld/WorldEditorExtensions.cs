@@ -15,17 +15,10 @@ namespace TEdit.TerrariaWorld
     /// </summary>
     public static class WorldEditorExtensions
     {
-        #region Line
-
-        #endregion
 
         #region Flood Fill
 
-        public static void FloodFillContig(this World world, PointInt32 start, Int32Rect area, TilePicker tile)
-        {
-        }
-
-        public static void FillRectangle(this World world, Int32Rect area, TilePicker tile)
+        public static void FillRectangle(this World world, Int32Rect area, ref TilePicker tile, ref SelectionArea selection)
         {
             // validate area
             if (area.X < 0)
@@ -51,60 +44,64 @@ namespace TEdit.TerrariaWorld
             {
                 for (int y = area.Y; y < area.Y + area.Height; y++)
                 {
-                    SetTileXY(world, x, y, tile);
+                    SetTileXY(world, ref x, ref y, ref tile, ref selection);
                 }
             }
         }
 
-        public static void SetTileXY(this World world, int x, int y, TilePicker tile)
+        public static void SetTileXY(this World world, ref int x, ref int y, ref TilePicker tile, ref SelectionArea selection)
         {
-            Tile curTile = world.Tiles[x, y];
-
-            if (tile.Tile.IsActive)
+            if (selection.IsValid(new PointInt32(x, y)))
             {
-                if (!tile.TileMask.IsActive || (curTile.Type == tile.TileMask.Value && curTile.IsActive))
+                Tile curTile = world.Tiles[x, y];
+
+                if (tile.Tile.IsActive)
+                {
+                    if (!tile.TileMask.IsActive || (curTile.Type == tile.TileMask.Value && curTile.IsActive))
+                    {
+                        if (tile.IsEraser)
+                        {
+                            curTile.IsActive = false;
+                        }
+                        else
+                        {
+                            //TODO: i don't like redundant conditionals, but its a fix
+                            if (!tile.TileMask.IsActive)
+                                curTile.IsActive = true;
+
+                            curTile.Type = tile.Tile.Value;
+
+                            // if the tile is solid and there isn't a mask, remove the liquid
+                            if (!tile.TileMask.IsActive && TileProperties.TileSolid[curTile.Type] && curTile.Liquid > 0)
+                                curTile.Liquid = 0;
+                        }
+                    }
+                }
+
+
+                if (tile.Wall.IsActive)
+                {
+                    if (!tile.WallMask.IsActive || (curTile.Wall == tile.WallMask.Value))
+                    {
+                        if (tile.IsEraser)
+                            curTile.Wall = 0;
+                        else
+                            curTile.Wall = tile.Wall.Value;
+                    }
+                }
+
+                if (tile.Liquid.IsActive && (!curTile.IsActive || !TileProperties.TileSolid[curTile.Type]))
                 {
                     if (tile.IsEraser)
                     {
-                        curTile.IsActive = false;
+                        curTile.Liquid = 0;
+                        curTile.IsLava = false;
                     }
                     else
                     {
-                        //TODO: i don't like redundant conditionals, but its a fix
-                        if (!tile.TileMask.IsActive)
-                            curTile.IsActive = true;
-
-                        curTile.Type = tile.Tile.Value;
-
-                        // if the tile is solid and there isn't a mask, remove the liquid
-                        if (!tile.TileMask.IsActive && TileProperties.TileSolid[curTile.Type] && curTile.Liquid > 0)
-                            curTile.Liquid = 0;
+                        curTile.Liquid = 255;
+                        curTile.IsLava = tile.Liquid.IsLava;
                     }
-                }
-            }
-
-            if (tile.Wall.IsActive)
-            {
-                if (!tile.WallMask.IsActive || (curTile.Wall == tile.WallMask.Value))
-                {
-                    if (tile.IsEraser)
-                        curTile.Wall = 0;
-                    else
-                        curTile.Wall = tile.Wall.Value;
-                }
-            }
-
-            if (tile.Liquid.IsActive && (!curTile.IsActive || !TileProperties.TileSolid[curTile.Type]))
-            {
-                if (tile.IsEraser)
-                {
-                    curTile.Liquid = 0;
-                    curTile.IsLava = false;
-                }
-                else
-                {
-                    curTile.Liquid = 255;
-                    curTile.IsLava = tile.Liquid.IsLava;
                 }
             }
         }
@@ -113,7 +110,7 @@ namespace TEdit.TerrariaWorld
 
         #region Ellipse
 
-        public static void FillEllipse(this World world, int x1, int y1, int x2, int y2, TilePicker tile)
+        public static void FillEllipse(this World world, int x1, int y1, int x2, int y2, ref TilePicker tile, ref SelectionArea selection)
         {
             // Calc center and radius
             int xr = (x2 - x1) >> 1;
@@ -122,10 +119,10 @@ namespace TEdit.TerrariaWorld
             int yc = y1 + yr;
 
 
-            world.FillEllipseCentered(xc, yc, xr, yr, tile);
+            world.FillEllipseCentered(xc, yc, xr, yr, ref tile, ref selection);
         }
 
-        public static void FillEllipseCentered(this World world, int xc, int yc, int xr, int yr, TilePicker tile)
+        public static void FillEllipseCentered(this World world, int xc, int yc, int xr, int yr, ref TilePicker tile, ref SelectionArea selection)
         {
             int w = world.Header.MaxTiles.X;
             int h = world.Header.MaxTiles.Y;
@@ -135,12 +132,12 @@ namespace TEdit.TerrariaWorld
             int uh, lh, uy, ly, lx, rx;
             int x = xr;
             int y = 0;
-            int xrSqTwo = (xr*xr) << 1;
-            int yrSqTwo = (yr*yr) << 1;
-            int xChg = yr*yr*(1 - (xr << 1));
-            int yChg = xr*xr;
+            int xrSqTwo = (xr * xr) << 1;
+            int yrSqTwo = (yr * yr) << 1;
+            int xChg = yr * yr * (1 - (xr << 1));
+            int yChg = xr * xr;
             int err = 0;
-            int xStopping = yrSqTwo*xr;
+            int xStopping = yrSqTwo * xr;
             int yStopping = 0;
 
             // Draw first set of points counter clockwise where tangent line slope > -1.
@@ -166,8 +163,8 @@ namespace TEdit.TerrariaWorld
                 // Draw line
                 for (int i = lx; i <= rx; i++)
                 {
-                    SetTileXY(world, i, uy, tile); // Quadrant II to I (Actually two octants)
-                    SetTileXY(world, i, ly, tile); // Quadrant III to IV    
+                    SetTileXY(world, ref i, ref uy, ref tile, ref selection);     // Quadrant II to I (Actually two octants)
+                    SetTileXY(world, ref i, ref ly, ref tile, ref selection);     // Quadrant III to IV    
                 }
 
                 y++;
@@ -194,11 +191,11 @@ namespace TEdit.TerrariaWorld
             if (ly >= h) ly = h - 1;
             //uh = uy * w;                  // Upper half
             //lh = ly * w;                  // Lower half
-            xChg = yr*yr;
-            yChg = xr*xr*(1 - (yr << 1));
+            xChg = yr * yr;
+            yChg = xr * xr * (1 - (yr << 1));
             err = 0;
             xStopping = 0;
-            yStopping = xrSqTwo*yr;
+            yStopping = xrSqTwo * yr;
 
             // Draw second set of points clockwise where tangent line slope < -1.
             while (xStopping <= yStopping)
@@ -214,8 +211,8 @@ namespace TEdit.TerrariaWorld
                 // Draw line
                 for (int i = lx; i <= rx; i++)
                 {
-                    SetTileXY(world, i, uy, tile); // Quadrant II to I (Actually two octants)
-                    SetTileXY(world, i, ly, tile); // Quadrant III to IV    
+                    SetTileXY(world, ref i, ref uy, ref tile, ref selection);     // Quadrant II to I (Actually two octants)
+                    SetTileXY(world, ref i, ref ly, ref tile, ref selection);     // Quadrant III to IV    
                 }
 
                 x++;
@@ -231,8 +228,8 @@ namespace TEdit.TerrariaWorld
                     if (uy >= h) uy = h - 1; // ...
                     if (ly < 0) ly = 0;
                     if (ly >= h) ly = h - 1;
-                    uh = uy*w; // Upper half
-                    lh = ly*w; // Lower half
+                    uh = uy * w; // Upper half
+                    lh = ly * w; // Lower half
                     yStopping -= xrSqTwo;
                     err += yChg;
                     yChg += xrSqTwo;

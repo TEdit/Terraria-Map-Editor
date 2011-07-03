@@ -208,7 +208,7 @@ namespace TEdit.Tools.Tool
             int tileIndex = (bitmapWidth * y) + x;
             while (true)
             {
-                _world.SetTileXY(lFillLoc, y, tp);
+                _world.SetTileXY(ref lFillLoc, ref y, ref tp, ref _selection);
                 tilesChecked[tileIndex] = true;
 
                 lFillLoc--;
@@ -225,7 +225,7 @@ namespace TEdit.Tools.Tool
             tileIndex = (bitmapWidth * y) + x;
             while (true)
             {
-                _world.SetTileXY(rFillLoc, y, tp);
+                _world.SetTileXY(ref rFillLoc, ref y, ref tp, ref _selection);
                 tilesChecked[tileIndex] = true;
 
                 rFillLoc++;
