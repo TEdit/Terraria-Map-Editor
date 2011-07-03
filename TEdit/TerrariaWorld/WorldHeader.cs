@@ -251,7 +251,7 @@ namespace TEdit.TerrariaWorld
             }
         }
 
-        [CategoryAttribute("Bosses"), DescriptionAttribute("Is Eater of Worlds Dead")]
+        [CategoryAttribute("Bosses"), DescriptionAttribute("Is Eye of Cuthulu Dead")]
         public bool IsBossDowned1
         {
             get { return _IsBossDowned1; }
@@ -265,7 +265,7 @@ namespace TEdit.TerrariaWorld
             }
         }
 
-        [CategoryAttribute("Bosses"), DescriptionAttribute("Is Eye of Cuthulu Dead")]
+        [CategoryAttribute("Bosses"), DescriptionAttribute("Is Eater of Worlds Dead")]
         public bool IsBossDowned2
         {
             get { return _IsBossDowned2; }

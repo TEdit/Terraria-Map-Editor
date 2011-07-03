@@ -19,7 +19,7 @@
         <views:ToolSelectorView DockPanel.Dock="Left" />
         <Expander Header="World Properties" ExpandDirection="Left" IsExpanded="True" Grid.Row="1" DockPanel.Dock="Right">
             <DockPanel LastChildFill="True">
-                <views:WorldPropertiesView Height="300" Width="260" HorizontalAlignment="Right" DockPanel.Dock="Top" />
+                <views:WorldPropertiesView Height="400" Width="260" HorizontalAlignment="Right" DockPanel.Dock="Top" />
                 <views:ClipboardView Width="260" HorizontalAlignment="Right" VerticalAlignment="Stretch" />
             </DockPanel>
         </Expander>

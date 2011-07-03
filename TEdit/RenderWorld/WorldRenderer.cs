@@ -122,8 +122,13 @@ namespace TEdit.RenderWorld
 
         public WriteableBitmap RenderWorld()
         {
+            if (_world.Header.WorldId == 0)
+                return null;
+
             int width = _world.Header.MaxTiles.X;
             int height = _world.Header.MaxTiles.Y;
+
+
             var wbmap = new WriteableBitmap(
                 width,
                 height,

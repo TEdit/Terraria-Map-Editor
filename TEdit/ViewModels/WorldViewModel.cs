@@ -472,12 +472,16 @@ namespace TEdit.ViewModels
             ofd.Filter = "TEdit Schematic File|*.TEditSch";
             ofd.Title = "Import Schematic File";
             ofd.InitialDirectory = System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), @"My Games\Terraria\Worlds");
-            ofd.Multiselect = false;
+            ofd.Multiselect = true;
             if ((bool)ofd.ShowDialog())
             {
-                var buffer = ClipboardBuffer.Load(ofd.FileName);
-                buffer.Preview = _renderer.RenderBuffer(buffer);
-                ClipboardMan.LoadedBuffers.Insert(0, buffer);
+                foreach (string file in ofd.FileNames)
+                {
+                    var buffer = ClipboardBuffer.Load(file);
+                    buffer.Preview = _renderer.RenderBuffer(buffer);
+                    ClipboardMan.LoadedBuffers.Insert(0, buffer);
+                }
+
             }
         }
         private void ExportSchematicFile(ClipboardBuffer buffer)
@@ -584,14 +588,17 @@ namespace TEdit.ViewModels
             Task.Factory.StartNew(() =>
             {
                 WriteableBitmap img = _renderer.RenderWorld();
-                img.Freeze();
-                _uiFactory.StartNew(() =>
+                if (img != null)
                 {
-                    WorldImage.Image = img.Clone();
-                    img = null;
-                    RaisePropertyChanged("WorldZoomedHeight");
-                    RaisePropertyChanged("WorldZoomedWidth");
-                });
+                    img.Freeze();
+                    _uiFactory.StartNew(() =>
+                                            {
+                                                WorldImage.Image = img.Clone();
+                                                img = null;
+                                                RaisePropertyChanged("WorldZoomedHeight");
+                                                RaisePropertyChanged("WorldZoomedWidth");
+                                            });
+                }
             });
         }
 
