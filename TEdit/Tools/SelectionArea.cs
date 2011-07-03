@@ -50,6 +50,14 @@ namespace TEdit.Tools
             }
         }
 
+        public bool IsValid(PointInt32 point)
+        {
+            if (_selectionVisibility != Visibility.Visible)
+                return true;
+
+            return (Rectangle.Contains(point));
+        }
+
         public void SetRectangle(PointInt32 p1, PointInt32 p2)
         {
             int x = p1.X < p2.X ? p1.X : p2.X;

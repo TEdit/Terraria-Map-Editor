@@ -86,6 +86,7 @@
     <Compile Include="Tools\Clipboard\ClipboardBuffer.cs" />
     <Compile Include="Tools\Clipboard\ClipboardBuffer.File.cs" />
     <Compile Include="Tools\Clipboard\ClipboardManager.cs" />
+    <Compile Include="Tools\FloodFillRangeQueue.cs" />
     <Compile Include="Tools\IOrderMetadata.cs" />
     <Compile Include="Tools\ITool.cs" />
     <Compile Include="Common\TileMouseEventArgs.cs" />
@@ -114,6 +115,7 @@
     <Compile Include="TerrariaWorld\WorldHeader.cs" />
     <Compile Include="Tools\Tool\Arrow.cs" />
     <Compile Include="Tools\Tool\Brush.cs" />
+    <Compile Include="Tools\Tool\FloodFill.cs" />
     <Compile Include="Tools\Tool\DungeonPointPicker.cs" />
     <Compile Include="Tools\Tool\Paste.cs" />
     <Compile Include="Tools\Tool\Pencil.cs" />
