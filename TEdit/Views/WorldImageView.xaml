@@ -17,7 +17,7 @@
       <RowDefinition Height="Auto" />
     </Grid.RowDefinitions>
 
-    <Grid Grid.Row="0" Background="#666666">
+    <Grid Grid.Row="0">
       <ScrollViewer HorizontalScrollBarVisibility="Visible" x:Name="WorldScrollViewer">
         <ScrollViewer.Content>
           <Grid>

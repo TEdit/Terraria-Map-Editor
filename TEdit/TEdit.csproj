@@ -130,6 +130,9 @@
     <Compile Include="Views\ClipboardView.xaml.cs">
       <DependentUpon>ClipboardView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\NewWorldView.xaml.cs">
+      <DependentUpon>NewWorldView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\SignPopup.xaml.cs">
       <DependentUpon>SignPopup.xaml</DependentUpon>
     </Compile>
@@ -184,6 +187,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Themes\Whistler.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Views\ChestsContentsPopup.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -193,6 +200,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\ClipboardView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\NewWorldView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

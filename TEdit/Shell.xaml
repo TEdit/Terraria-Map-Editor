@@ -2,7 +2,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:vm="clr-namespace:TEdit.ViewModels" xmlns:views="clr-namespace:TEdit.Views" Title="TEdit 2 - 2.6 RC2"
         Height="600" Width="800" TextOptions.TextFormattingMode="Display" TextOptions.TextRenderingMode="Aliased"
-        UseLayoutRounding="True" Background="#FF555555" Foreground="White" Icon="/TEdit;component/Images/tedit.ico">
+        UseLayoutRounding="True" Background="{StaticResource WindowBackgroundBrush}" Foreground="White" Icon="/TEdit;component/Images/tedit.ico">
     <DockPanel Grid.Row="1" HorizontalAlignment="Stretch">
         <StackPanel Orientation="Horizontal" DockPanel.Dock="Top">
             <Button Content="Load World" Height="23" Width="75" Command="{Binding Path=OpenWorldCommand}" Margin="2,1" />
