@@ -30,6 +30,51 @@ namespace TEdit.TerrariaWorld
                 ProgressChanged(sender, e);
         }
 
+        public void NewWorld(int width, int height, int seed = -1)
+        {
+            var genRand = seed <= 0 ? new Random((int)DateTime.Now.Ticks) : new Random(seed);
+
+            Header.FileVersion = CompatableVersion;
+            Header.FileName = "";
+            Header.WorldName = "TEdit World";
+            Header.WorldId = genRand.Next(int.MaxValue);
+
+            Header.WorldBounds = new RectF(0,width,0,height);
+            Header.MaxTiles = new PointInt32(width, height);
+            ClearWorld();
+            Header.SpawnTile = new PointInt32(width / 2, height / 3);
+            Header.WorldSurface = height / 3;
+            Header.WorldRockLayer = 2 * height / 3;
+            Header.Time = 13500;
+            Header.IsDayTime = true;
+            Header.MoonPhase = 0;
+            Header.IsBloodMoon = false;
+            Header.DungeonEntrance = new PointInt32(width / 5, height / 3);
+            Header.IsBossDowned1 = false;
+            Header.IsBossDowned2 = false;
+            Header.IsBossDowned3 = false;
+            Header.IsShadowOrbSmashed = false;
+            Header.IsSpawnMeteor = false;
+            Header.ShadowOrbCount = 0;
+            Header.InvasionDelay = 0;
+            Header.InvasionSize = 0;
+            Header.InvasionType = 0;
+            Header.InvasionX = 0;
+            ClearWorld();
+            ResetTime();
+
+            for (int x = 0; x < Header.MaxTiles.X; x++)
+            {
+                OnProgressChanged(this,
+                                  new ProgressChangedEventArgs((int)((double)x / Header.MaxTiles.X * 100.0),
+                                                               "Loading Tiles"));
+
+                for (int y = 0; y < Header.MaxTiles.Y; y++)
+                {
+                    Tiles[x, y] = new Tile();
+                }
+            }
+        }
 
         public void Load(string filename)
         {

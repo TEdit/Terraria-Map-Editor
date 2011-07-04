@@ -4,8 +4,35 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
+             d:DesignHeight="125" d:DesignWidth="300" Background="{DynamicResource WindowBackgroundBrush}">
     <Grid>
-    
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="100*" />
+            <ColumnDefinition Width="200*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="1*" />
+
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Row="0" Grid.Column="0" Text="Name" HorizontalAlignment="Right" VerticalAlignment="Center" />
+        <TextBox  Grid.Row="0" Grid.Column="1" Text="{Binding Path=Name}" HorizontalAlignment="Stretch" Margin="1" />
+
+        <TextBlock Grid.Row="1" Grid.Column="0" Text="Width" HorizontalAlignment="Right" VerticalAlignment="Center" />
+        <DockPanel LastChildFill="True" Grid.Row="1" Grid.Column="1">
+            <TextBlock Text="{Binding Path=Width}" HorizontalAlignment="Right" VerticalAlignment="Center" Width="30" DockPanel.Dock="Right" Margin="2"  />
+            <Slider Value="{Binding Path=Width}" Minimum="200" Maximum="4800" SmallChange="200" LargeChange="1000" Margin="1" VerticalAlignment="Center" HorizontalAlignment="Stretch"  />
+        </DockPanel>
+        
+        <TextBlock Grid.Row="2" Grid.Column="0" Text="Height" HorizontalAlignment="Right" VerticalAlignment="Center" />
+        <DockPanel LastChildFill="True" Grid.Row="2" Grid.Column="1">
+            <TextBlock Text="{Binding Path=Height}" HorizontalAlignment="Right" VerticalAlignment="Center" Width="30" DockPanel.Dock="Right" Margin="2"  />
+            <Slider Value="{Binding Path=Height}" Minimum="200" Maximum="4800" SmallChange="200" LargeChange="1000" Margin="1" VerticalAlignment="Center" HorizontalAlignment="Stretch"  />
+        </DockPanel>
+        
+        <Button Content="Create New World" Grid.Row="3" Grid.ColumnSpan="2" Margin="2" Padding="5" />
     </Grid>
 </UserControl>

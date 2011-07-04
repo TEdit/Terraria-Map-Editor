@@ -392,6 +392,11 @@ namespace TEdit.ViewModels
             }
         }
 
+        public void GenNewWorld()
+        {
+            World.NewWorld(2000, 300);
+        }
+
 
         public PointInt32 MouseOverTile
         {
@@ -463,6 +468,8 @@ namespace TEdit.ViewModels
                                                               ToolProperties.Image = _activeTool.PreviewTool();
                                                           }
                                                       };
+
+            GenNewWorld();
         }
 
 

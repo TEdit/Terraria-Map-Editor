@@ -97,10 +97,11 @@ namespace TEdit.RenderWorld
                                       "Rendering World..."));
                 for (int y = 0; y < height; y++)
                 {
+                    bool ishell = y + area.Y >= _world.Header.MaxTiles.Y - 192;
                     Tile tile = _world.Tiles[x + area.X, y + area.Y];
                     if (tile != null)
                     {
-                        Color c = GetTileColor(+area.Y + y, tile);
+                        Color c = GetTileColor(+area.Y + y, tile, ishell);
 
                         pixels[x*4 + y*stride] = c.B;
                         pixels[x*4 + y*stride + 1] = c.G;
@@ -154,7 +155,8 @@ namespace TEdit.RenderWorld
                     Tile tile = _world.Tiles[x, y];
                     if (tile != null)
                     {
-                        Color c = GetTileColor(y, tile);
+                        bool ishell = y >= height - 192;
+                        Color c = GetTileColor(y, tile, ishell);
 
 
                         pixels[x*4 + y*stride] = c.B;
@@ -223,11 +225,13 @@ namespace TEdit.RenderWorld
             return wbmap;
         }
 
-        private Color GetTileColor(int y, Tile tile)
+        private Color GetTileColor(int y, Tile tile, bool isHell = false)
         {
             Color c;
 
-            if (y > _world.Header.WorldRockLayer && tile.Wall == 0)
+            if (isHell)
+                c = Settings.Walls[13].Color;
+            else if (y > _world.Header.WorldRockLayer && tile.Wall == 0)
                 c = Settings.Walls[1].Color;
             else if (y > _world.Header.WorldSurface && tile.Wall == 0)
                 c = Settings.Walls[2].Color;

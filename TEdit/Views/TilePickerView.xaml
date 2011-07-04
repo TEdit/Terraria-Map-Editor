@@ -2,93 +2,82 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:vm="clr-namespace:TEdit.ViewModels" mc:Ignorable="d"
-             d:DesignHeight="120" d:DesignWidth="700" d:DataContext="{d:DesignInstance vm:WorldViewModel}">
-  <UserControl.Resources>
-    <DataTemplate x:Key="ColorPickerTemplate">
-      <StackPanel Orientation="Horizontal">
-        <Border BorderBrush="Black" BorderThickness="1" Margin="2,1">
-          <Rectangle Height="12" Width="12">
-            <Rectangle.Fill>
-              <SolidColorBrush Color="{Binding Path=Color}" />
-            </Rectangle.Fill>
-          </Rectangle>
-        </Border>
-        <TextBlock Text="{Binding Path=ID}" Margin="2,0" Width="30" />
-        <TextBlock Text="{Binding Path=Name}" Margin="2,0" />
-      </StackPanel>
-    </DataTemplate>
-  </UserControl.Resources>
-  <StackPanel Orientation="Horizontal">
-    <Grid>
-      <Grid.RowDefinitions>
-        <RowDefinition Height="1*" />
-        <RowDefinition Height="1*" />
-      </Grid.RowDefinitions>
-      <ToggleButton ToolTip="Eraser" IsChecked="{Binding Path=TilePicker.IsEraser, Mode=TwoWay}" Margin="2"
+             d:DesignHeight="120" d:DataContext="{d:DesignInstance vm:WorldViewModel}">
+    <UserControl.Resources>
+        <DataTemplate x:Key="ColorPickerTemplate">
+            <StackPanel Orientation="Horizontal">
+                <Border BorderBrush="Black" BorderThickness="1" Margin="2,1">
+                    <Rectangle Height="12" Width="12">
+                        <Rectangle.Fill>
+                            <SolidColorBrush Color="{Binding Path=Color}" />
+                        </Rectangle.Fill>
+                    </Rectangle>
+                </Border>
+                <TextBlock Text="{Binding Path=ID}" Margin="2,0" Width="30" />
+                <TextBlock Text="{Binding Path=Name}" Margin="2,0" />
+            </StackPanel>
+        </DataTemplate>
+    </UserControl.Resources>
+    <StackPanel Orientation="Horizontal">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="1*" />
+            </Grid.RowDefinitions>
+            <ToggleButton ToolTip="Eraser" IsChecked="{Binding Path=TilePicker.IsEraser, Mode=TwoWay}" Margin="2"
                     Grid.Row="0" BorderThickness="2">
-        <Image Source="../Images/Tools/eraser.png" Height="32" Width="32"
+                <Image Source="../Images/Tools/eraser.png" Height="32" Width="32"
                RenderOptions.BitmapScalingMode="NearestNeighbor" Stretch="None" />
-      </ToggleButton>
-    </Grid>
-    <UniformGrid Columns="2" Rows="2" Width="400">
-      <GroupBox>
-        <GroupBox.Header>
-          <CheckBox x:Name="enableWall" Content="Enable Painting Walls"
+            </ToggleButton>
+        </Grid>
+        <UniformGrid Columns="2" Rows="2" Width="300">
+            <GroupBox>
+                <GroupBox.Header>
+                    <CheckBox x:Name="enableWall" Content="Enable Painting Walls"
                     IsChecked="{Binding Path=TilePicker.Wall.IsActive, Mode=TwoWay}" Margin="1" />
-        </GroupBox.Header>
-        <DockPanel IsEnabled="{Binding Path=TilePicker.Wall.IsActive}" Margin="0,2,0,-1">
-          <TextBlock DockPanel.Dock="Left" Text="Wall:" VerticalAlignment="Center" Margin="2" />
-          <ComboBox ItemsSource="{Binding Path=TilePicker.Walls, Mode=OneTime}"
+                </GroupBox.Header>
+                <ComboBox ItemsSource="{Binding Path=TilePicker.Walls, Mode=OneTime}" Margin="-1,2,-1,-1" IsEnabled="{Binding Path=TilePicker.Wall.IsActive}"
                     ItemTemplate="{DynamicResource ColorPickerTemplate}" SelectedValue="{Binding Path=TilePicker.Wall.Value, Mode=TwoWay}"
                     SelectedValuePath="ID" />
-        </DockPanel>
-      </GroupBox>
-      <GroupBox>
-        <GroupBox.Header>
-          <CheckBox x:Name="enableTile" Content="Enable Painting Tiles"
+            </GroupBox>
+            <GroupBox>
+                <GroupBox.Header>
+                    <CheckBox x:Name="enableTile" Content="Enable Painting Tiles"
                     IsChecked="{Binding Path=TilePicker.Tile.IsActive, Mode=TwoWay}" Margin="1" />
-        </GroupBox.Header>
-        <DockPanel IsEnabled="{Binding Path=TilePicker.Tile.IsActive}" Margin="0,2,0,-1">
-          <TextBlock DockPanel.Dock="Left" Text="Tile:" VerticalAlignment="Center" Margin="2" />
-          <ComboBox ItemsSource="{Binding Path=TilePicker.Tiles, Mode=OneTime}"
+                </GroupBox.Header>
+                <ComboBox ItemsSource="{Binding Path=TilePicker.Tiles, Mode=OneTime}" Margin="-1,2,-1,-1" IsEnabled="{Binding Path=TilePicker.Tile.IsActive}" 
                     ItemTemplate="{DynamicResource ColorPickerTemplate}" SelectedValue="{Binding Path=TilePicker.Tile.Value, Mode=TwoWay}"
                     SelectedValuePath="ID" />
-        </DockPanel>
-      </GroupBox>
-      <GroupBox>
-        <GroupBox.Header>
-          <CheckBox x:Name="enableWallMask" Content="Enable Wall Mask"
+            </GroupBox>
+            <GroupBox>
+                <GroupBox.Header>
+                    <CheckBox x:Name="enableWallMask" Content="Enable Wall Mask"
                     IsChecked="{Binding Path=TilePicker.WallMask.IsActive, Mode=TwoWay}" Margin="1" />
-        </GroupBox.Header>
-        <DockPanel IsEnabled="{Binding Path=TilePicker.WallMask.IsActive}" Margin="0,2,0,-1">
-          <TextBlock DockPanel.Dock="Left" Text="Mask:" VerticalAlignment="Center" Margin="2" />
-          <ComboBox ItemsSource="{Binding Path=TilePicker.Walls, Mode=OneTime}"
+                </GroupBox.Header>
+                <ComboBox ItemsSource="{Binding Path=TilePicker.Walls, Mode=OneTime}"
+                          IsEnabled="{Binding Path=TilePicker.WallMask.IsActive}" Margin="-1,2,-1,-1"
                     ItemTemplate="{DynamicResource ColorPickerTemplate}"
                     SelectedValue="{Binding Path=TilePicker.WallMask.Value, Mode=TwoWay}" SelectedValuePath="ID" />
-        </DockPanel>
-      </GroupBox>
-      <GroupBox>
-        <GroupBox.Header>
-          <CheckBox x:Name="enableTileMask" Content="Enable Tile Mask"
+            </GroupBox>
+            <GroupBox>
+                <GroupBox.Header>
+                    <CheckBox x:Name="enableTileMask" Content="Enable Tile Mask"
                     IsChecked="{Binding Path=TilePicker.TileMask.IsActive, Mode=TwoWay}" Margin="1" />
-        </GroupBox.Header>
-        <DockPanel IsEnabled="{Binding Path=TilePicker.TileMask.IsActive}" Margin="0,2,0,-1">
-          <TextBlock DockPanel.Dock="Left" Text="Mask:" VerticalAlignment="Center" Margin="2" />
-          <ComboBox ItemsSource="{Binding Path=TilePicker.Tiles, Mode=OneTime}"
-                    ItemTemplate="{DynamicResource ColorPickerTemplate}"
+                </GroupBox.Header>
+                <ComboBox ItemsSource="{Binding Path=TilePicker.Tiles, Mode=OneTime}" IsEnabled="{Binding Path=TilePicker.TileMask.IsActive}"
+                    ItemTemplate="{DynamicResource ColorPickerTemplate}" Margin="-1,2,-1,-1"
                     SelectedValue="{Binding Path=TilePicker.TileMask.Value, Mode=TwoWay}" SelectedValuePath="ID" />
-        </DockPanel>
-      </GroupBox>
-    </UniformGrid>
-    <GroupBox>
-      <GroupBox.Header>
-        <CheckBox x:Name="enableLiquid" Content="Paint Liquid"
+            </GroupBox>
+        </UniformGrid>
+        <GroupBox>
+            <GroupBox.Header>
+                <CheckBox x:Name="enableLiquid" Content="Paint Liquid"
                   IsChecked="{Binding Path=TilePicker.Liquid.IsActive, Mode=TwoWay}" Margin="1" />
-      </GroupBox.Header>
-      <StackPanel IsEnabled="{Binding Path=TilePicker.Liquid.IsActive}" Margin="0,3,0,0">
-        <RadioButton Content="Water" Margin="2" IsChecked="True" />
-        <RadioButton Content="Lava" Margin="2" IsChecked="{Binding Path=TilePicker.Liquid.IsLava}" />
-      </StackPanel>
-    </GroupBox>
-  </StackPanel>
+            </GroupBox.Header>
+            <StackPanel IsEnabled="{Binding Path=TilePicker.Liquid.IsActive}" Margin="0,3,0,0">
+                <RadioButton Content="Water" Margin="2" IsChecked="True" />
+                <RadioButton Content="Lava" Margin="2" IsChecked="{Binding Path=TilePicker.Liquid.IsLava}" />
+            </StackPanel>
+        </GroupBox>
+    </StackPanel>
 </UserControl>

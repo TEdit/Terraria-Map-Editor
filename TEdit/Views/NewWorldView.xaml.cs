@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.Composition;
 using System.Linq;
 using System.Text;
 using System.Windows;
@@ -11,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using TEdit.ViewModels;
 
 namespace TEdit.Views
 {
@@ -22,6 +24,13 @@ namespace TEdit.Views
         public NewWorldView()
         {
             InitializeComponent();
+        }
+
+        [Import]
+        public NewWorldViewModel ViewModel
+        {
+            get { return (NewWorldViewModel)DataContext; }
+            set { DataContext = value; }
         }
     }
 }

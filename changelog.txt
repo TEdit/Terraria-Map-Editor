@@ -1,3 +1,9 @@
+2011-07-03 Tools (excluding paste) must obey selection, closes #59
+2011-07-03 Bucket fill (contigous / selection), closes #41
+2011-07-03 Color options (source code) closes #77
+2011-07-03 Goblin invasion settings, closes #67
+2011-07-01 Bedrock and surface level editing, sprite place makes unusable chests.
+2011-07-01 Fixed save-as and copy/paste chest bug
 2011-06-30 Lots of changes...Clipboard manager, importing/exporting schematics, save as, closes #66, closes #60
 2011-06-30 Visible world changes for sprite placer
 2011-06-30 Framework for sprite placer
