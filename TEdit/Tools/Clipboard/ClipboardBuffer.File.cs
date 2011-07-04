@@ -8,6 +8,7 @@ namespace TEdit.Tools.Clipboard
     {
         public void Save(string filename)
         {
+            this.Name = Path.GetFileNameWithoutExtension(filename);
             using (var stream = new FileStream(filename, FileMode.Create))
             {
                 using (var writer = new BinaryWriter(stream))
@@ -117,7 +118,7 @@ namespace TEdit.Tools.Clipboard
                     int maxy = reader.ReadInt32();
 
                     var buffer = new ClipboardBuffer(new PointInt32(maxx, maxy));
-
+                    buffer.Name = Path.GetFileNameWithoutExtension(filename);
 
                     for (int x = 0; x < buffer.Size.X; x++)
                     {

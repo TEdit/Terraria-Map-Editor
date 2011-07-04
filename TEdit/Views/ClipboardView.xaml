@@ -8,10 +8,12 @@
     <UserControl.Resources>
         <DataTemplate x:Key="clipboardItemView">
             <StackPanel Orientation="Vertical">
+                <TextBlock Text="{Binding Path=Name}" HorizontalAlignment="Center" Margin="1" Foreground="{DynamicResource TextBrush}"/>
                 <Image Source="{Binding Path=Preview}" HorizontalAlignment="Stretch" Stretch="Uniform" RenderOptions.BitmapScalingMode="NearestNeighbor" MaxHeight="100" />
-                <UniformGrid Columns="2">
+                <UniformGrid Columns="3">
                     <Button Content="Paste" Margin="1" Padding="3" Command="{Binding DataContext.LoadBuffer, Mode=Default, RelativeSource={RelativeSource AncestorType={x:Type Window}}}" CommandParameter="{Binding}" />
-                    <Button Content="Export" Margin="1" Padding="3"  Command="{Binding DataContext.ExportSchematic, Mode=Default, RelativeSource={RelativeSource AncestorType={x:Type Window}}}" CommandParameter="{Binding}" />
+                    <Button Content="Export" Margin="1" Padding="3" Command="{Binding DataContext.ExportSchematic, Mode=Default, RelativeSource={RelativeSource AncestorType={x:Type Window}}}" CommandParameter="{Binding}" />
+                    <Button Content="Remove" Margin="1" Padding="3" Command="{Binding DataContext.RemoveSchematic, Mode=Default, RelativeSource={RelativeSource AncestorType={x:Type Window}}}" CommandParameter="{Binding}" />
                 </UniformGrid>
             </StackPanel>
         </DataTemplate>

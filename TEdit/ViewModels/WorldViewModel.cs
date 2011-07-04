@@ -39,6 +39,7 @@ namespace TEdit.ViewModels
         private ICommand _renderCommand;
         private ICommand _importSchematic;
         private ICommand _exportSchematic;
+        private ICommand _removeSchematic;
         private PointInt32 _mouseUpTile;
         private ICommand _loadBuffer;
         private ICommand _mouseWheelCommand;
@@ -274,6 +275,12 @@ namespace TEdit.ViewModels
             get { return _exportSchematic ?? (_exportSchematic = new RelayCommand<ClipboardBuffer>(ExportSchematicFile)); }
         }
 
+                public ICommand RemoveSchematic
+        {
+            get { return _removeSchematic ?? (_removeSchematic = new RelayCommand<ClipboardBuffer>(RemoveSchematicFile)); }
+        }
+
+
         public ICommand CopyToClipboard
         {
             get { return _copyToClipboard ?? (_copyToClipboard = new RelayCommand(SetClipBoard, CanSetClipboard)); }
@@ -501,6 +508,11 @@ namespace TEdit.ViewModels
             {
                 buffer.Save(sfd.FileName);
             }
+        }
+
+        private void RemoveSchematicFile(ClipboardBuffer buffer)
+        {
+            ClipboardMan.LoadedBuffers.Remove(buffer);
         }
 
         private void SetClipBoard()

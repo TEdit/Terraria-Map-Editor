@@ -10,7 +10,7 @@ using TEdit.TerrariaWorld.Structures;
 
 namespace TEdit.Tools.Clipboard
 {
-    public partial class ClipboardBuffer
+    public partial class ClipboardBuffer : ObservableObject
     {
         public ClipboardBuffer(PointInt32 size)
         {
@@ -18,18 +18,45 @@ namespace TEdit.Tools.Clipboard
             Tiles = new Tile[size.X, size.Y];
         }
 
-        public WriteableBitmap Preview { get; set; }
+        private string _Name;
+        public string Name
+        {
+            get { return this._Name; }
+            set
+            {
+                if (this._Name != value)
+                {
+                    this._Name = value;
+                    this.RaisePropertyChanged("Name");
+                }
+            }
+        }
+
+        private WriteableBitmap _Preview;
+        public WriteableBitmap Preview
+        {
+            get { return this._Preview; }
+            set
+            {
+                if (this._Preview != value)
+                {
+                    this._Preview = value;
+                    this.RaisePropertyChanged("Preview");
+                }
+            }
+        }
 
         private PointInt32 _size;
         public PointInt32 Size
         {
             get { return this._size; }
-            set
+            protected set
             {
                 if (this._size != value)
                 {
                     this._size = value;
                     Tiles = new Tile[_size.X, _size.Y];
+                    this.RaisePropertyChanged("Size");
                 }
             }
         }
