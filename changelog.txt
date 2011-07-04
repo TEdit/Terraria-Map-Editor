@@ -1,3 +1,5 @@
+2011-07-04 Removed loaded schematics, schematic names
+2011-07-04 Layout tweaks for improved view on 800x600
 2011-07-03 Tools (excluding paste) must obey selection, closes #59
 2011-07-03 Bucket fill (contigous / selection), closes #41
 2011-07-03 Color options (source code) closes #77
