@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.Windows;
 using System.Windows.Input;
@@ -8,6 +9,7 @@ using TEdit.Common;
 using TEdit.RenderWorld;
 using TEdit.TerrariaWorld;
 using TEdit.TerrariaWorld.Structures;
+using TEdit.Tools.History;
 
 namespace TEdit.Tools.Tool
 {
@@ -83,6 +85,10 @@ namespace TEdit.Tools.Tool
 
         #endregion
 
+        [Import]
+        private HistoryManager HistMan;
+        private Queue<HistoryTile> history = new Queue<HistoryTile>();
+
         public override bool PressTool(TileMouseEventArgs e)
         {
             if (e.LeftButton == MouseButtonState.Pressed)
@@ -91,6 +97,8 @@ namespace TEdit.Tools.Tool
 
                 _renderer.UpdateWorldImage(new Int32Rect(minX,minY, maxX-minX+1,maxY-minY+1));
             }
+            HistMan.AddUndo(history);
+            history = new Queue<HistoryTile>();
             return true;
         }
 
@@ -119,6 +127,8 @@ namespace TEdit.Tools.Tool
                 PixelFormats.Bgr32,
                 null);
         }
+
+
 
         FloodFillRangeQueue ranges = new FloodFillRangeQueue();
         private bool[] tilesChecked;
@@ -208,6 +218,7 @@ namespace TEdit.Tools.Tool
             int tileIndex = (bitmapWidth * y) + x;
             while (true)
             {
+                history.Enqueue(new HistoryTile(new PointInt32(lFillLoc, y), (Tile)_world.Tiles[x, y].Clone()));
                 _world.SetTileXY(ref lFillLoc, ref y, ref tp, ref _selection);
                 tilesChecked[tileIndex] = true;
 
@@ -225,6 +236,7 @@ namespace TEdit.Tools.Tool
             tileIndex = (bitmapWidth * y) + x;
             while (true)
             {
+                history.Enqueue(new HistoryTile(new PointInt32(rFillLoc, y), (Tile)_world.Tiles[x, y].Clone()));
                 _world.SetTileXY(ref rFillLoc, ref y, ref tp, ref _selection);
                 tilesChecked[tileIndex] = true;
 

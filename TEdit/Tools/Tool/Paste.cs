@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel.Composition;
 using System.Windows;
 using System.Windows.Media;
@@ -8,6 +10,7 @@ using TEdit.RenderWorld;
 using TEdit.TerrariaWorld;
 using TEdit.TerrariaWorld.Structures;
 using TEdit.Tools.Clipboard;
+using TEdit.Tools.History;
 
 namespace TEdit.Tools.Tool
 {
@@ -116,7 +119,7 @@ namespace TEdit.Tools.Tool
 
         private void PasteClipboard(PointInt32 anchor)
         {
-            ClipboardBuffer.PasteBufferIntoWorld(_world, _clipboardMan.Buffer, anchor);
+            _clipboardMan.PasteBufferIntoWorld(_world, _clipboardMan.Buffer, anchor);
             _renderer.UpdateWorldImage(new Int32Rect(anchor.X, anchor.Y, _clipboardMan.Buffer.Size.X + 1, _clipboardMan.Buffer.Size.Y + 1));
         }
 

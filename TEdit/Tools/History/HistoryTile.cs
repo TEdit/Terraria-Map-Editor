@@ -6,6 +6,12 @@ namespace TEdit.Tools.History
 {
     public class HistoryTile : ObservableObject
     {
+        public HistoryTile(PointInt32 location, Tile tile)
+        {
+            Location = location;
+            Tile = tile;
+        }
+
         private PointInt32 _Location;
         public PointInt32 Location
         {

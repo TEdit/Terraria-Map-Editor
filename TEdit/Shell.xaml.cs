@@ -39,6 +39,14 @@ namespace TEdit
                 if (ViewModel.PasteFromClipboard.CanExecute(null))
                     ViewModel.PasteFromClipboard.Execute(null);
             }
+            else if (e.Key == Key.Z && Keyboard.Modifiers.HasFlag(ModifierKeys.Control))
+            {
+                ViewModel.Undo.Execute(null);
+            }
+            else if (e.Key == Key.Y && Keyboard.Modifiers.HasFlag(ModifierKeys.Control))
+            {
+                ViewModel.Redo.Execute(null);
+            }
             else if (e.Key == Key.Delete)
             {
                 ViewModel.DeleteSelection();
@@ -91,6 +99,7 @@ namespace TEdit
                     ViewModel.SetTool.Execute(tool.Value);
                 }
             }
+
         }
     }
 }

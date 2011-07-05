@@ -9,6 +9,8 @@
             <Button Content="Save World" Padding="5,4"  Margin="2,1"  Command="{Binding Path=SaveWorldCommand}"  />
             <Button Content="Save World As" Padding="5,4"  Margin="2,1"  Command="{Binding Path=SaveWorldAsCommand}" />
             <Button Content="Refresh Entire World" Padding="5,4"  Margin="2,1" Command="{Binding Path=RenderCommand}" />
+            <Button Content="Undo" Padding="5,4"  Margin="2,1"  Command="{Binding Path=Undo}" />
+            <Button Content="Redo" Padding="5,4"  Margin="2,1"  Command="{Binding Path=Redo}"  />
         </StackPanel>
         <ScrollViewer DockPanel.Dock="Top" VerticalScrollBarVisibility="Disabled" HorizontalScrollBarVisibility="Auto">
             <StackPanel Orientation="Horizontal">

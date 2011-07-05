@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel.Composition;
 using System.Windows;
 using System.Windows.Input;
@@ -8,6 +10,7 @@ using TEdit.Common;
 using TEdit.RenderWorld;
 using TEdit.TerrariaWorld;
 using TEdit.TerrariaWorld.Structures;
+using TEdit.Tools.History;
 
 namespace TEdit.Tools.Tool
 {
@@ -35,6 +38,9 @@ namespace TEdit.Tools.Tool
         [Import("World", typeof(World))]
         private World _world;
 
+        [Import]
+        private HistoryManager HistMan;
+        private Queue<HistoryTile> history = new Queue<HistoryTile>();
         private bool[] tilesChecked;
 
         public Brush()
@@ -132,6 +138,10 @@ namespace TEdit.Tools.Tool
             CheckDirectionandDraw(e);
             _isLeftDown = (e.LeftButton == MouseButtonState.Pressed);
             _isRightDown = (e.RightButton == MouseButtonState.Pressed);
+
+            HistMan.AddUndo(history);
+            history = new Queue<HistoryTile>();
+
             return true;
         }
 
@@ -285,12 +295,19 @@ namespace TEdit.Tools.Tool
                 {
                     if (!tilesChecked[i + uy * w])
                     {
+                        // Save History
+                        var loc = new PointInt32(i, uy);
+                        history.Enqueue(new HistoryTile(loc, (Tile)_world.Tiles[i, uy].Clone()));
+
                         _world.SetTileXY(ref i, ref uy, ref tile, ref selection); // Quadrant II to I (Actually two octants)
-                        _renderer.UpdateWorldImage(new PointInt32(i,uy));
+                        _renderer.UpdateWorldImage(loc);
                         tilesChecked[i + uy * w] = true;
                     }
                     if (!tilesChecked[i + ly * w])
                     {
+                        var loc = new PointInt32(i, ly);
+                        history.Enqueue(new HistoryTile(loc, (Tile)_world.Tiles[i, ly].Clone()));
+
                         _world.SetTileXY(ref i, ref ly, ref tile, ref selection);     // Quadrant III to IV   
                         _renderer.UpdateWorldImage(new PointInt32(i, ly));
                         tilesChecked[i + ly * w] = true;
@@ -341,12 +358,19 @@ namespace TEdit.Tools.Tool
                 {
                     if (!tilesChecked[i + uy * w])
                     {
+                        // Save History
+                        var loc = new PointInt32(i, uy);
+                        history.Enqueue(new HistoryTile(loc, (Tile)_world.Tiles[i, uy].Clone()));
+
                         _world.SetTileXY(ref i, ref uy, ref tile, ref selection); // Quadrant II to I (Actually two octants)
                         _renderer.UpdateWorldImage(new PointInt32(i, uy));
                         tilesChecked[i + uy * w] = true;
                     }
                     if (!tilesChecked[i + ly * w])
                     {
+                        var loc = new PointInt32(i, ly);
+                        history.Enqueue(new HistoryTile(loc, (Tile)_world.Tiles[i, ly].Clone()));
+
                         _world.SetTileXY(ref i, ref ly, ref tile, ref selection);     // Quadrant III to IV  
                         _renderer.UpdateWorldImage(new PointInt32(i, ly));
                         tilesChecked[i + ly * w] = true;
@@ -376,7 +400,7 @@ namespace TEdit.Tools.Tool
         #endregion
 
         public void FillRectangle(Int32Rect area, ref TilePicker tile, ref SelectionArea selection)
-        { 
+        {
             // validate area
             int w = _world.Header.MaxTiles.X;
             if (area.X < 0)
@@ -404,11 +428,14 @@ namespace TEdit.Tools.Tool
                 {
                     if (!tilesChecked[x + y * w])
                     {
+                        // Save History
+                        var loc = new PointInt32(x, y);
+                        history.Enqueue(new HistoryTile(loc, (Tile)_world.Tiles[x, y].Clone()));
+
                         _world.SetTileXY(ref x, ref y, ref tile, ref selection);
-                        _renderer.UpdateWorldImage(new PointInt32(x,y));
+                        _renderer.UpdateWorldImage(new PointInt32(x, y));
                         tilesChecked[x + y * w] = true;
                     }
-                    
                 }
             }
         }

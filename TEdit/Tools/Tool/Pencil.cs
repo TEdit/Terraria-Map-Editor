@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.Windows;
 using System.Windows.Controls;
@@ -9,6 +10,7 @@ using TEdit.Common;
 using TEdit.RenderWorld;
 using TEdit.TerrariaWorld;
 using TEdit.TerrariaWorld.Structures;
+using TEdit.Tools.History;
 
 namespace TEdit.Tools.Tool
 {
@@ -32,6 +34,10 @@ namespace TEdit.Tools.Tool
         private TilePicker _tilePicker;
         [Import("World", typeof(World))]
         private World _world;
+
+        [Import]
+        private HistoryManager HistMan;
+        private Queue<HistoryTile> history = new Queue<HistoryTile>();
 
         public Pencil()
         {
@@ -110,6 +116,11 @@ namespace TEdit.Tools.Tool
             CheckDirectionandDraw(e);
             _isLeftDown = (e.LeftButton == MouseButtonState.Pressed);
             _isRightDown = (e.RightButton == MouseButtonState.Pressed);
+
+            if (history != null)
+                HistMan.AddUndo(history);
+            history = new Queue<HistoryTile>();
+
             return true;
         }
 
@@ -157,6 +168,7 @@ namespace TEdit.Tools.Tool
                 {
                     int x = p.X;
                     int y = p.Y;
+                    history.Enqueue(new HistoryTile(new PointInt32(x, y), (Tile)_world.Tiles[x, y].Clone()));
                     _world.SetTileXY(ref x, ref y, ref _tilePicker, ref _selection);
                     _renderer.UpdateWorldImage(p);
                 }

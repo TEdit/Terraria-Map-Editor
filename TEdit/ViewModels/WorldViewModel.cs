@@ -14,6 +14,7 @@ using TEdit.TerrariaWorld;
 using TEdit.TerrariaWorld.Structures;
 using TEdit.Tools;
 using TEdit.Tools.Clipboard;
+using TEdit.Tools.History;
 
 namespace TEdit.ViewModels
 {
@@ -39,6 +40,8 @@ namespace TEdit.ViewModels
         private ICommand _renderCommand;
         private ICommand _importSchematic;
         private ICommand _exportSchematic;
+        private ICommand _undo;
+        private ICommand _redo;
         private ICommand _removeSchematic;
         private PointInt32 _mouseUpTile;
         private ICommand _loadBuffer;
@@ -64,6 +67,9 @@ namespace TEdit.ViewModels
         private World _world;
         private WorldImage _worldImage;
         private double _zoom = 1;
+
+        [Import]
+        private HistoryManager HistMan;
 
         public WorldViewModel()
         {
@@ -254,6 +260,15 @@ namespace TEdit.ViewModels
             }
         }
 
+        public ICommand Undo
+        {
+            get { return _undo ?? (_undo = new RelayCommand(() => HistMan.ProcessUndo())); }
+        }
+
+        public ICommand Redo
+        {
+            get { return _redo ?? (_redo = new RelayCommand(() => HistMan.ProcessRedo())); }
+        }
 
         public ICommand RenderCommand
         {
@@ -275,7 +290,7 @@ namespace TEdit.ViewModels
             get { return _exportSchematic ?? (_exportSchematic = new RelayCommand<ClipboardBuffer>(ExportSchematicFile)); }
         }
 
-                public ICommand RemoveSchematic
+        public ICommand RemoveSchematic
         {
             get { return _removeSchematic ?? (_removeSchematic = new RelayCommand<ClipboardBuffer>(RemoveSchematicFile)); }
         }
@@ -519,7 +534,7 @@ namespace TEdit.ViewModels
         {
             if (Selection.SelectionVisibility == Visibility.Visible)
             {
-                var buffer = ClipboardBuffer.GetBufferedRegion(_world, Selection.Rectangle);
+                var buffer = _clipboardMan.GetBufferedRegion(_world, Selection.Rectangle);
                 buffer.Preview = _renderer.RenderBuffer(buffer);
                 ClipboardMan.LoadedBuffers.Insert(0, buffer);
                 ClipboardMan.Buffer = null;
