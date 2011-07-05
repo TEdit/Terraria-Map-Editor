@@ -1,3 +1,8 @@
+2011-07-05 Undo/Redo
+2011-07-05 Big performance boost for brush
+2011-07-05 Fixed height/width of brush swapping when changing tools
+2011-07-04 Added old-man icon.
+2011-07-04 Readme file updates
 2011-07-04 Removed loaded schematics, schematic names
 2011-07-04 Layout tweaks for improved view on 800x600
 2011-07-03 Tools (excluding paste) must obey selection, closes #59
