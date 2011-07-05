@@ -94,7 +94,7 @@ namespace TEdit.Tools.Tool
                     {
                         if ((_properties.Height > 0 && _properties.Width > 0) &&
                             (_lastUsedSize.Width != _properties.Width || _lastUsedSize.Height != _properties.Height))
-                            _lastUsedSize = new SizeInt32(_properties.Height, _properties.Width);
+                            _lastUsedSize = new SizeInt32(_properties.Width, _properties.Height);
                     }
                 }
             }
@@ -109,7 +109,7 @@ namespace TEdit.Tools.Tool
 
             if ((_properties.Height > 0 && _properties.Width > 0) &&
                 (_lastUsedSize.Width != _properties.Width || _lastUsedSize.Height != _properties.Height))
-                _lastUsedSize = new SizeInt32(_properties.Height, _properties.Width);
+                _lastUsedSize = new SizeInt32(_properties.Width, _properties.Height);
 
             CheckDirectionandDraw(e);
             _isLeftDown = (e.LeftButton == MouseButtonState.Pressed);
