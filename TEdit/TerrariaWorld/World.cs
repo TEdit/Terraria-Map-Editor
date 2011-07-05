@@ -3,6 +3,7 @@ using System.ComponentModel.Composition;
 using System.Linq;
 using TEdit.Common;
 using TEdit.TerrariaWorld.Structures;
+using TEdit.Tools;
 
 namespace TEdit.TerrariaWorld
 {
@@ -92,6 +93,63 @@ namespace TEdit.TerrariaWorld
             Header.Time = 13500.0;
             Header.MoonPhase = 0;
             Header.IsBloodMoon = false;
+        }
+
+        public void SetTileXY(ref int x, ref int y, ref TilePicker tile, ref SelectionArea selection)
+        {
+            if (selection.IsValid(new PointInt32(x, y)))
+            {
+                Tile curTile = this.Tiles[x, y];
+
+                if (tile.Tile.IsActive)
+                {
+                    if (!tile.TileMask.IsActive || (curTile.Type == tile.TileMask.Value && curTile.IsActive))
+                    {
+                        if (tile.IsEraser)
+                        {
+                            curTile.IsActive = false;
+                        }
+                        else
+                        {
+                            //TODO: i don't like redundant conditionals, but its a fix
+                            if (!tile.TileMask.IsActive)
+                                curTile.IsActive = true;
+
+                            curTile.Type = tile.Tile.Value;
+
+                            // if the tile is solid and there isn't a mask, remove the liquid
+                            if (!tile.TileMask.IsActive && TileProperties.TileSolid[curTile.Type] && curTile.Liquid > 0)
+                                curTile.Liquid = 0;
+                        }
+                    }
+                }
+
+
+                if (tile.Wall.IsActive)
+                {
+                    if (!tile.WallMask.IsActive || (curTile.Wall == tile.WallMask.Value))
+                    {
+                        if (tile.IsEraser)
+                            curTile.Wall = 0;
+                        else
+                            curTile.Wall = tile.Wall.Value;
+                    }
+                }
+
+                if (tile.Liquid.IsActive && (!curTile.IsActive || !TileProperties.TileSolid[curTile.Type]))
+                {
+                    if (tile.IsEraser)
+                    {
+                        curTile.Liquid = 0;
+                        curTile.IsLava = false;
+                    }
+                    else
+                    {
+                        curTile.Liquid = 255;
+                        curTile.IsLava = tile.Liquid.IsLava;
+                    }
+                }
+            }
         }
     }
 }

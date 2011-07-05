@@ -35,6 +35,8 @@ namespace TEdit.Tools.Tool
         [Import("World", typeof(World))]
         private World _world;
 
+        private bool[] tilesChecked;
+
         public Brush()
         {
             _lastUsedSize = new SizeInt32(0, 0);
@@ -104,6 +106,8 @@ namespace TEdit.Tools.Tool
 
         public override bool PressTool(TileMouseEventArgs e)
         {
+            tilesChecked = new bool[_world.Header.MaxTiles.X * _world.Header.MaxTiles.Y];
+
             if (!_isRightDown && !_isLeftDown)
                 _startPoint = e.Tile;
 
@@ -188,14 +192,14 @@ namespace TEdit.Tools.Tool
 
                 if (_properties.BrushShape == ToolBrushShape.Square)
                 {
-                    _world.FillRectangle(new Int32Rect(x0, y0, _properties.Width, _properties.Height), ref _tilePicker, ref _selection);
+                    FillRectangle(new Int32Rect(x0, y0, _properties.Width, _properties.Height), ref _tilePicker, ref _selection);
                     if (_properties.IsOutline)
                     {
                         // eraise a center section
                         TilePicker eraser = Utility.DeepCopy(_tilePicker);
                         eraser.IsEraser = true;
                         eraser.Wall.IsActive = false; // don't erase the wall for the interrior
-                        _world.FillRectangle(new Int32Rect(x0 + _properties.OutlineThickness,
+                        FillRectangle(new Int32Rect(x0 + _properties.OutlineThickness,
                                                            y0 + _properties.OutlineThickness,
                                                            _properties.Width - (_properties.OutlineThickness * 2),
                                                            _properties.Height - (_properties.OutlineThickness * 2)),
@@ -205,14 +209,14 @@ namespace TEdit.Tools.Tool
                 }
                 else if (_properties.BrushShape == ToolBrushShape.Round)
                 {
-                    _world.FillEllipse(x0, y0, x0 + _properties.Width, y0 + _properties.Height, ref _tilePicker, ref _selection);
+                    FillEllipse(x0, y0, x0 + _properties.Width, y0 + _properties.Height, ref _tilePicker, ref _selection);
                     if (_properties.IsOutline)
                     {
                         // eraise a center section
                         TilePicker eraser = Utility.DeepCopy(_tilePicker);
                         eraser.IsEraser = true;
                         eraser.Wall.IsActive = false; // don't erase the wall for the interrior
-                        _world.FillEllipse(x0 + _properties.OutlineThickness,
+                        FillEllipse(x0 + _properties.OutlineThickness,
                                            y0 + _properties.OutlineThickness,
                                            x0 + _properties.Width - _properties.OutlineThickness,
                                            y0 + _properties.Height - _properties.OutlineThickness, ref eraser, ref _selection);
@@ -220,7 +224,192 @@ namespace TEdit.Tools.Tool
                         eraser = null;
                     }
                 }
-                _renderer.UpdateWorldImage(new Int32Rect(x0, y0, _properties.Width + 1, _properties.Height + 1));
+                //_renderer.UpdateWorldImage(new Int32Rect(x0, y0, _properties.Width + 1, _properties.Height + 1));
+            }
+        }
+
+
+
+        #region Ellipse
+
+        public void FillEllipse(int x1, int y1, int x2, int y2, ref TilePicker tile, ref SelectionArea selection)
+        {
+            // Calc center and radius
+            int xr = (x2 - x1) >> 1;
+            int yr = (y2 - y1) >> 1;
+            int xc = x1 + xr;
+            int yc = y1 + yr;
+
+
+            FillEllipseCentered(xc, yc, xr, yr, ref tile, ref selection);
+        }
+
+        public void FillEllipseCentered(int xc, int yc, int xr, int yr, ref TilePicker tile, ref SelectionArea selection)
+        {
+            int w = _world.Header.MaxTiles.X;
+            int h = _world.Header.MaxTiles.Y;
+
+
+            // Init vars
+            int uy, ly, lx, rx;
+            int x = xr;
+            int y = 0;
+            int xrSqTwo = (xr * xr) << 1;
+            int yrSqTwo = (yr * yr) << 1;
+            int xChg = yr * yr * (1 - (xr << 1));
+            int yChg = xr * xr;
+            int err = 0;
+            int xStopping = yrSqTwo * xr;
+            int yStopping = 0;
+
+            // Draw first set of points counter clockwise where tangent line slope > -1.
+            while (xStopping >= yStopping)
+            {
+                // Draw 4 quadrant points at once
+                uy = yc + y; // Upper half
+                ly = yc - y; // Lower half
+                if (uy < 0) uy = 0; // Clip
+                if (uy >= h) uy = h - 1; // ...
+                if (ly < 0) ly = 0;
+                if (ly >= h) ly = h - 1;
+
+                rx = xc + x;
+                lx = xc - x;
+                if (rx < 0) rx = 0; // Clip
+                if (rx >= w) rx = w - 1; // ...
+                if (lx < 0) lx = 0;
+                if (lx >= w) lx = w - 1;
+
+                // Draw line
+                for (int i = lx; i <= rx; i++)
+                {
+                    if (!tilesChecked[i + uy * w])
+                    {
+                        _world.SetTileXY(ref i, ref uy, ref tile, ref selection); // Quadrant II to I (Actually two octants)
+                        _renderer.UpdateWorldImage(new PointInt32(i,uy));
+                        tilesChecked[i + uy * w] = true;
+                    }
+                    if (!tilesChecked[i + ly * w])
+                    {
+                        _world.SetTileXY(ref i, ref ly, ref tile, ref selection);     // Quadrant III to IV   
+                        _renderer.UpdateWorldImage(new PointInt32(i, ly));
+                        tilesChecked[i + ly * w] = true;
+                    }
+                }
+
+                y++;
+                yStopping += xrSqTwo;
+                err += yChg;
+                yChg += xrSqTwo;
+                if ((xChg + (err << 1)) > 0)
+                {
+                    x--;
+                    xStopping -= yrSqTwo;
+                    err += xChg;
+                    xChg += yrSqTwo;
+                }
+            }
+
+            // ReInit vars
+            x = 0;
+            y = yr;
+            uy = yc + y; // Upper half
+            ly = yc - y; // Lower half
+            if (uy < 0) uy = 0; // Clip
+            if (uy >= h) uy = h - 1; // ...
+            if (ly < 0) ly = 0;
+            if (ly >= h) ly = h - 1;
+            xChg = yr * yr;
+            yChg = xr * xr * (1 - (yr << 1));
+            err = 0;
+            xStopping = 0;
+            yStopping = xrSqTwo * yr;
+
+            // Draw second set of points clockwise where tangent line slope < -1.
+            while (xStopping <= yStopping)
+            {
+                // Draw 4 quadrant points at once
+                rx = xc + x;
+                lx = xc - x;
+                if (rx < 0) rx = 0; // Clip
+                if (rx >= w) rx = w - 1; // ...
+                if (lx < 0) lx = 0;
+                if (lx >= w) lx = w - 1;
+
+                // Draw line
+                for (int i = lx; i <= rx; i++)
+                {
+                    if (!tilesChecked[i + uy * w])
+                    {
+                        _world.SetTileXY(ref i, ref uy, ref tile, ref selection); // Quadrant II to I (Actually two octants)
+                        _renderer.UpdateWorldImage(new PointInt32(i, uy));
+                        tilesChecked[i + uy * w] = true;
+                    }
+                    if (!tilesChecked[i + ly * w])
+                    {
+                        _world.SetTileXY(ref i, ref ly, ref tile, ref selection);     // Quadrant III to IV  
+                        _renderer.UpdateWorldImage(new PointInt32(i, ly));
+                        tilesChecked[i + ly * w] = true;
+                    }
+                }
+
+                x++;
+                xStopping += yrSqTwo;
+                err += xChg;
+                xChg += yrSqTwo;
+                if ((yChg + (err << 1)) > 0)
+                {
+                    y--;
+                    uy = yc + y; // Upper half
+                    ly = yc - y; // Lower half
+                    if (uy < 0) uy = 0; // Clip
+                    if (uy >= h) uy = h - 1; // ...
+                    if (ly < 0) ly = 0;
+                    if (ly >= h) ly = h - 1;
+                    yStopping -= xrSqTwo;
+                    err += yChg;
+                    yChg += xrSqTwo;
+                }
+            }
+        }
+
+        #endregion
+
+        public void FillRectangle(Int32Rect area, ref TilePicker tile, ref SelectionArea selection)
+        { 
+            // validate area
+            int w = _world.Header.MaxTiles.X;
+            if (area.X < 0)
+            {
+                area.Width += area.X;
+                area.X = 0;
+            }
+            if (area.Y < 0)
+            {
+                area.Height += area.Y;
+                area.Y = 0;
+            }
+            if ((area.Y + area.Height) >= _world.Header.MaxTiles.Y)
+            {
+                area.Height += _world.Header.MaxTiles.Y - (area.Y + area.Height);
+            }
+            if ((area.X + area.Width) >= w)
+            {
+                area.Width += w - (area.X + area.Width);
+            }
+
+            for (int x = area.X; x < area.X + area.Width; x++)
+            {
+                for (int y = area.Y; y < area.Y + area.Height; y++)
+                {
+                    if (!tilesChecked[x + y * w])
+                    {
+                        _world.SetTileXY(ref x, ref y, ref tile, ref selection);
+                        _renderer.UpdateWorldImage(new PointInt32(x,y));
+                        tilesChecked[x + y * w] = true;
+                    }
+                    
+                }
             }
         }
     }

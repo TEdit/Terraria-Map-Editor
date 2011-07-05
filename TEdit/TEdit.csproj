@@ -82,11 +82,12 @@
     <Compile Include="Plugins\SamplePlugin.cs" />
     <Compile Include="RenderWorld\WorldImage.cs" />
     <Compile Include="TerrariaWorld\Structures\SizeInt32.cs" />
-    <Compile Include="TerrariaWorld\WorldEditorExtensions.cs" />
     <Compile Include="Tools\Clipboard\ClipboardBuffer.cs" />
     <Compile Include="Tools\Clipboard\ClipboardBuffer.File.cs" />
     <Compile Include="Tools\Clipboard\ClipboardManager.cs" />
     <Compile Include="Tools\FloodFillRangeQueue.cs" />
+    <Compile Include="Tools\History\HistoryTile.cs" />
+    <Compile Include="Tools\History\HistoryManager.cs" />
     <Compile Include="Tools\IOrderMetadata.cs" />
     <Compile Include="Tools\ITool.cs" />
     <Compile Include="Common\TileMouseEventArgs.cs" />
