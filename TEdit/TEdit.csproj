@@ -297,6 +297,7 @@
     <Resource Include="Images\Tools\shape_square.png" />
     <Resource Include="Images\Tools\spawn.png" />
     <Resource Include="Images\Tools\paste.png" />
+    <Resource Include="Images\Overlays\npc_old_man.png" />
     <Content Include="items.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

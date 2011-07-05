@@ -84,6 +84,7 @@
                 <Border Grid.Row="0" Grid.Column="0" BorderBrush="Black" BorderThickness="1" Margin="1" Padding="1">
                     <DockPanel LastChildFill="True">
                         <TextBlock Text="Zoom: " VerticalAlignment="Center" Margin="2,0" DockPanel.Dock="Left" />
+                        <!--<TextBlock Text="{Binding Path=Zoom, StringFormat={}{0:0%}}" Margin="1,0" VerticalAlignment="Center" />-->
                         <TextBox Text="{Binding Path=Zoom, Mode=TwoWay, StringFormat={}{0:0%}, Converter={StaticResource DoublePercentConv}}" Padding="-1,0" Margin="1,0" />
                     </DockPanel>
                 </Border>
