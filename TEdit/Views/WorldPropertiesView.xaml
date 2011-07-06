@@ -73,7 +73,7 @@
             <TextBlock Text="{Binding Path=World.Header.MoonPhase}" HorizontalAlignment="Right"
                  VerticalAlignment="Center" Width="30" DockPanel.Dock="Right" Margin="2"  />
             <Slider Value="{Binding Path=World.Header.MoonPhase, Mode=TwoWay}" Margin="1" VerticalAlignment="Center"
-              HorizontalAlignment="Stretch" Maximum="28" />
+              HorizontalAlignment="Stretch" Maximum="7" />
         </DockPanel>
 
         <CheckBox Grid.Row="4" Grid.Column="1" Content="Is Eye of Cuthulu Dead"
