@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.Composition;
 using System.Linq;
@@ -361,11 +362,14 @@ namespace TEdit.ViewModels
         {
             if (Selection.SelectionVisibility == Visibility.Visible)
             {
+                var hist = new Queue<HistoryTile>();
                 for (int x = Selection.Rectangle.X; x < Selection.Rectangle.X + Selection.Rectangle.Width; x++)
                 {
                     for (int y = Selection.Rectangle.Y; y < Selection.Rectangle.Y + Selection.Rectangle.Height; y++)
                     {
+                        hist.Enqueue(new HistoryTile(new PointInt32(x, y), (Tile)World.Tiles[x, y].Clone()));
                         World.Tiles[x, y].IsActive = false;
+                        World.Tiles[x, y].Type = 0;
                         World.Tiles[x, y].Wall = 0;
                         World.Tiles[x, y].Liquid = 0;
                     }
