@@ -375,6 +375,7 @@ namespace TEdit.ViewModels
                     }
                 }
                 _renderer.UpdateWorldImage(Selection.Rectangle);
+                HistMan.AddUndo(hist);
             }
 
         }
