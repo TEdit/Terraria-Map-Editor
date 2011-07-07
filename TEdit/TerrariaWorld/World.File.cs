@@ -310,6 +310,23 @@ namespace TEdit.TerrariaWorld
                                 {
                                     writer.Write(Tiles[x, y].Frame.X);
                                     writer.Write(Tiles[x, y].Frame.Y);
+
+                                    //validate chest entry exists
+                                    if (Tiles[x, y].Type == 21)
+                                    {
+                                        if (GetChestAtTile(x, y) == null)
+                                        {
+                                            Chests.Add(new Chest(new PointInt32(x, y)));
+                                        }
+                                    }
+                                    //validate sign entry exists
+                                    else if (Tiles[x, y].Type == 55 || Tiles[x, y].Type == 85)
+                                    {
+                                        if (GetSignAtTile(x, y) == null)
+                                        {
+                                            Signs.Add(new Sign("", new PointInt32(x, y)));
+                                        }
+                                    }
                                 }
                             }
                             writer.Write(Tiles[x, y].IsLighted);

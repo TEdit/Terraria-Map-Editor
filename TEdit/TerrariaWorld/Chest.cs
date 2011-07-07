@@ -10,11 +10,19 @@ namespace TEdit.TerrariaWorld
     {
         public Chest()
         {
-
+            _Items = new ObservableCollection<Item>();
+        }
+        public Chest(PointInt32 location) : this()
+        {
+            _Location = location;
+            for (int i = 0; i < MaxItems; i++)
+            {
+                _Items.Add(new Item(0,"[empty]"));
+            }
         }
 
         public static int MaxItems = 20;
-        private readonly ObservableCollection<Item> _Items = new ObservableCollection<Item>();
+        private readonly ObservableCollection<Item> _Items;
 
         private PointInt32 _Location;
         public PointInt32 Location

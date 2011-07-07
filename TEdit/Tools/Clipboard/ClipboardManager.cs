@@ -135,7 +135,7 @@ namespace TEdit.Tools.Clipboard
                                 else
                                 {
                                     // Empty chest
-                                    world.Chests.Add(new Chest { Location = new PointInt32(x + anchor.X, y + anchor.Y) });
+                                    world.Chests.Add(new Chest(new PointInt32(x + anchor.X, y + anchor.Y)));
                                 }
                             }
                         }
@@ -150,12 +150,12 @@ namespace TEdit.Tools.Clipboard
                                 {
                                     // Copied sign
                                     var newSign = Utility.DeepCopy(data);
-                                    newSign.Location = new PointInt32(x + anchor.X + 1, y + anchor.Y + 1);
+                                    newSign.Location = new PointInt32(x + anchor.X, y + anchor.Y);
                                     world.Signs.Add(newSign);
                                 }
                                 else
                                 {
-                                    world.Signs.Add(new Sign("", new PointInt32(x + anchor.X + 1, y + anchor.Y + 1)));
+                                    world.Signs.Add(new Sign("", new PointInt32(x + anchor.X, y + anchor.Y)));
                                 }
                             }
                         }
