@@ -53,7 +53,7 @@ namespace TEdit
 #if DEBUG
             // Don't trap unhandled exceptions in debug mode
 #else
-            ErrorLogging.LogException(e.ExceptionObject, ErrorLogging.ErrorLevel.Fatal);
+            ErrorLogging.LogException(e.ExceptionObject);
             MessageBox.Show("An unhandled exception has occured. Please copy the log from \"log.txt\" to the GitHub Issues list.\r\nThe program will now exit.", "Unhandled Exception");
             Current.Shutdown();
 #endif

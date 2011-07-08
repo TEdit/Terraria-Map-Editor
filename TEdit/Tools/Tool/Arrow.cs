@@ -19,12 +19,7 @@ namespace TEdit.Tools.Tool
         [Import("World", typeof(World))]
         private World _world;
 
-#if DEBUG
-        // The world just isn't quite ready for this...
-        private ChestEditorPopup _chestPopup;
-#else
         private ChestsContentsPopup _chestPopup = null;
-#endif
 
         private SignPopup _signPopup;
 
@@ -117,11 +112,7 @@ namespace TEdit.Tools.Tool
                 if ((c.Location.X == e.Tile.X || c.Location.X + 1 == e.Tile.X) &&
                     (c.Location.Y == e.Tile.Y || c.Location.Y + 1 == e.Tile.Y))
                 {
-#if DEBUG
-                    _chestPopup = new ChestEditorPopup(c);
-#else
                     _chestPopup = new ChestsContentsPopup(c);
-#endif
                     _chestPopup.IsOpen = true;
                 }
             }

@@ -27,19 +27,22 @@ namespace TEdit.Common
 
         public static void LogException(object ex)
         {
-            var e = ex as Exception;
-            if (e != null)
+            if (ex is AggregateException)
             {
-                Log(String.Format("{0} - {1}\r\n{2}", ErrorLevel.Error, e.Message, e.StackTrace));
+                var e = ex as AggregateException;
+                foreach (var curE in e.Flatten().InnerExceptions)
+                {
+                    Log(String.Format("{0} - {1}\r\n{2}", ErrorLevel.Error, curE.Message, curE.StackTrace));
+                }                
             }
-        }
-
-        public static void LogException(object ex, ErrorLevel level)
-        {
-            var e = ex as Exception;
-            if (e != null)
+            else if (ex is Exception)
             {
-                Log(String.Format("{0} - {1}\r\n{2}", level, e.Message, e.StackTrace));
+                var e = ex as Exception;
+                // Log inner exceptions first
+                if (e.InnerException != null)
+                    LogException(e.InnerException);
+
+                Log(String.Format("{0} - {1}\r\n{2}", ErrorLevel.Error, e.Message, e.StackTrace));
             }
         }
     }

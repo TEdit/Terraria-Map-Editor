@@ -128,9 +128,6 @@
     <Compile Include="Views\ChestsContentsPopup.xaml.cs">
       <DependentUpon>ChestsContentsPopup.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\ChestEditorPopup.xaml.cs">
-      <DependentUpon>ChestEditorPopup.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\ClipboardView.xaml.cs">
       <DependentUpon>ClipboardView.xaml</DependentUpon>
     </Compile>
@@ -198,10 +195,6 @@
     <Page Include="Views\ChestsContentsPopup.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\ChestEditorPopup.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\ClipboardView.xaml">
       <SubType>Designer</SubType>
