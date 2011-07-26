@@ -70,7 +70,21 @@ namespace TEdit.ViewModels
         private double _zoom = 1;
 
         [Import]
-        private HistoryManager HistMan;
+        private HistoryManager _HistMan;
+        public HistoryManager HistMan
+        {
+            get { return this._HistMan; }
+            set
+            {
+                if (this._HistMan != value)
+                {
+                    this._HistMan = value;
+                    this.RaisePropertyChanged("HistMan");
+                }
+            }
+        }
+
+
 
         public WorldViewModel()
         {
@@ -228,6 +242,7 @@ namespace TEdit.ViewModels
                 }
             }
         }
+        
 
         public double ZoomInverted
         {
@@ -375,7 +390,7 @@ namespace TEdit.ViewModels
                     }
                 }
                 _renderer.UpdateWorldImage(Selection.Rectangle);
-                HistMan.AddUndo(hist);
+                HistMan.AddBufferToHistory();
             }
 
         }

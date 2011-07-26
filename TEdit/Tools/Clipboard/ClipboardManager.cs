@@ -16,7 +16,6 @@ namespace TEdit.Tools.Clipboard
     {
         [Import]
         private HistoryManager HistMan;
-        private Queue<HistoryTile> history;
 
         private ClipboardBuffer _Buffer;
         public ClipboardBuffer Buffer
@@ -92,14 +91,13 @@ namespace TEdit.Tools.Clipboard
 
         public void PasteBufferIntoWorld(World world, ClipboardBuffer buffer, PointInt32 anchor)
         {
-            history = new Queue<HistoryTile>();
             for (int x = 0; x < buffer.Size.X; x++)
             {
                 for (int y = 0; y < buffer.Size.Y; y++)
                 {
                     if (world.IsPointInWorld(x + anchor.X, y + anchor.Y))
                     {
-                        history.Enqueue(new HistoryTile(new PointInt32(x + anchor.X, y + anchor.Y), (Tile)world.Tiles[x + anchor.X, y + anchor.Y].Clone()));
+                        HistMan.AddTileToBuffer(new HistoryTile(new PointInt32(x + anchor.X, y + anchor.Y), (Tile)world.Tiles[x + anchor.X, y + anchor.Y].Clone()));
                         Tile curTile = (Tile)buffer.Tiles[x, y].Clone();
 
                         // Remove overwritten chests data
@@ -165,7 +163,7 @@ namespace TEdit.Tools.Clipboard
                 }
             }
 
-            HistMan.AddUndo(history);
+            HistMan.AddBufferToHistory();
         }
     }
 }

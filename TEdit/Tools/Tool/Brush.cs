@@ -40,7 +40,6 @@ namespace TEdit.Tools.Tool
 
         [Import]
         private HistoryManager HistMan;
-        private Queue<HistoryTile> history = new Queue<HistoryTile>();
         private bool[] tilesChecked;
 
         public Brush()
@@ -138,10 +137,7 @@ namespace TEdit.Tools.Tool
             CheckDirectionandDraw(e);
             _isLeftDown = (e.LeftButton == MouseButtonState.Pressed);
             _isRightDown = (e.RightButton == MouseButtonState.Pressed);
-
-            HistMan.AddUndo(history);
-            history = new Queue<HistoryTile>();
-
+            HistMan.AddBufferToHistory();
             return true;
         }
 
@@ -299,7 +295,7 @@ namespace TEdit.Tools.Tool
             {
                 // Save History
                 var loc = new PointInt32(x, y);
-                history.Enqueue(new HistoryTile(loc, (Tile)_world.Tiles[x, y].Clone()));
+                HistMan.AddTileToBuffer(new HistoryTile(loc, (Tile)_world.Tiles[x, y].Clone()));
 
                 _world.SetTileXY(ref x, ref y, ref tile, ref _selection);
                 tilesChecked[x + y * w] = true;

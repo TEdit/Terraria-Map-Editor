@@ -87,7 +87,6 @@ namespace TEdit.Tools.Tool
 
         [Import]
         private HistoryManager HistMan;
-        private Queue<HistoryTile> history = new Queue<HistoryTile>();
 
         public override bool PressTool(TileMouseEventArgs e)
         {
@@ -97,8 +96,7 @@ namespace TEdit.Tools.Tool
 
                 _renderer.UpdateWorldImage(new Int32Rect(minX,minY, maxX-minX+1,maxY-minY+1));
             }
-            HistMan.AddUndo(history);
-            history = new Queue<HistoryTile>();
+            HistMan.AddBufferToHistory();
             return true;
         }
 
@@ -218,7 +216,7 @@ namespace TEdit.Tools.Tool
             int tileIndex = (bitmapWidth * y) + x;
             while (true)
             {
-                history.Enqueue(new HistoryTile(new PointInt32(lFillLoc, y), (Tile)_world.Tiles[x, y].Clone()));
+                HistMan.AddTileToBuffer(new HistoryTile(new PointInt32(lFillLoc, y), (Tile)_world.Tiles[x, y].Clone()));
                 _world.SetTileXY(ref lFillLoc, ref y, ref tp, ref _selection);
                 tilesChecked[tileIndex] = true;
 
@@ -236,7 +234,7 @@ namespace TEdit.Tools.Tool
             tileIndex = (bitmapWidth * y) + x;
             while (true)
             {
-                history.Enqueue(new HistoryTile(new PointInt32(rFillLoc, y), (Tile)_world.Tiles[x, y].Clone()));
+                HistMan.AddTileToBuffer(new HistoryTile(new PointInt32(rFillLoc, y), (Tile)_world.Tiles[x, y].Clone()));
                 _world.SetTileXY(ref rFillLoc, ref y, ref tp, ref _selection);
                 tilesChecked[tileIndex] = true;
 

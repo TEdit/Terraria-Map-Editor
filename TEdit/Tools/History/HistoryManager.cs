@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel.Composition;
 using TEdit.Common;
@@ -18,15 +19,15 @@ namespace TEdit.Tools.History
         [Import]
         private WorldRenderer _renderer;
 
-        private readonly ObservableCollectionEx<Queue<HistoryTile>> _UndoHistory = new ObservableCollectionEx<Queue<HistoryTile>>();
-        private readonly ObservableCollectionEx<Queue<HistoryTile>> _Undo = new ObservableCollectionEx<Queue<HistoryTile>>();
+        private readonly ObservableCollectionEx<HistoryTile[]> _UndoHistory = new ObservableCollectionEx<HistoryTile[]>();
+        private readonly ObservableCollectionEx<HistoryTile[]> _Undo = new ObservableCollectionEx<HistoryTile[]>();
         //public ObservableCollectionEx<Queue<HistoryTile>> Undo
         //{
         //    get { return _Undo; }
         //}
 
-        private readonly ObservableCollectionEx<Queue<HistoryTile>> _RedoHistory = new ObservableCollectionEx<Queue<HistoryTile>>();
-        private readonly ObservableCollectionEx<Queue<HistoryTile>> _Redo = new ObservableCollectionEx<Queue<HistoryTile>>();
+        private readonly ObservableCollectionEx<HistoryTile[]> _RedoHistory = new ObservableCollectionEx<HistoryTile[]>();
+        private readonly ObservableCollectionEx<HistoryTile[]> _Redo = new ObservableCollectionEx<HistoryTile[]>();
         //public ObservableCollectionEx<Queue<HistoryTile>> Redo
         //{
         //    get { return _Redo; }
@@ -34,17 +35,54 @@ namespace TEdit.Tools.History
 
         private int UndoIndex = 0;
 
-        public void AddUndo(Queue<HistoryTile> history)
+        private Queue<HistoryTile> buffer = new Queue<HistoryTile>();
+
+        private bool _SaveHistory = true;
+        public bool SaveHistory
         {
+            get { return this._SaveHistory; }
+            set
+            {
+                if (this._SaveHistory != value)
+                {
+                    this._SaveHistory = value;
+
+                    if (this._SaveHistory == false)
+                        PurgeBuffer();
+
+                    this.RaisePropertyChanged("SaveHistory");
+                }
+            }
+        }
+
+
+
+        public void PurgeBuffer()
+        {
+            buffer = new Queue<HistoryTile>();
+            ClearRedoHistory();
+        }
+        public void AddTileToBuffer(HistoryTile tile)
+        {
+            if (_SaveHistory)
+                buffer.Enqueue(tile);
+        }
+
+        public void AddBufferToHistory()
+        {
+            if (!_SaveHistory)
+                return;
+
             if (_Undo.Count >= 100)
                 _Undo.RemoveAt(0);
 
-            _Undo.Add(history);
+            _Undo.Add(buffer.ToArray());
+            buffer.Clear();
 
-
-            ClearHistory();
+            ClearRedoHistory();
         }
-        private void ClearHistory()
+
+        private void ClearRedoHistory()
         {
             _UndoHistory.Clear();
             _Redo.Clear();
@@ -67,7 +105,7 @@ namespace TEdit.Tools.History
                 }
 
                 _UndoHistory.Add(item);
-                _Redo.Add(redo);
+                _Redo.Add(redo.ToArray());
             }
         }
 
