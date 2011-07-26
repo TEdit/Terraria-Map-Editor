@@ -1,0 +1,1 @@
+ git log --date=short --pretty=format:"%ad %s" > changelog.txt

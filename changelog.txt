@@ -1,3 +1,9 @@
+2011-07-09 better brush outlining
+2011-07-08 exception flattening and better logging
+2011-07-07 Fixed imported schematic chests not working.
+2011-07-05 delete undo
+2011-07-05 Delete command added to history and fixed delete/fill not working.
+2011-07-05 Corrected moon phases
 2011-07-05 V2.7 RC3
 2011-07-05 Undo/Redo
 2011-07-05 Big performance boost for brush
