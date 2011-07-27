@@ -295,7 +295,8 @@ namespace TEdit.Tools.Tool
             {
                 // Save History
 
-                HistMan.AddTileToBuffer(x, y, ref _world.Tiles[x, y]);
+                if (HistMan.SaveHistory)
+                    HistMan.AddTileToBuffer(x, y, ref _world.Tiles[x, y]);
 
                 _world.SetTileXY(ref x, ref y, ref tile, ref _selection);
                 tilesChecked[x + y * w] = true;

@@ -251,7 +251,7 @@ namespace TEdit.TerrariaWorld
             }
         }
 
-        [CategoryAttribute("Bosses"), DescriptionAttribute("Is Eye of Cuthulu Dead")]
+        [CategoryAttribute("Bosses"), DescriptionAttribute("Is Eye of Cthulhu Dead")]
         public bool IsBossDowned1
         {
             get { return _IsBossDowned1; }
