@@ -214,9 +214,9 @@ namespace TEdit.Tools.Tool
 
 
 
-                        var interrior = new Int32Rect(x0 + _properties.OutlineThickness, 
-                                                      y0 + _properties.OutlineThickness, 
-                                                      _properties.Width - (_properties.OutlineThickness * 2), 
+                        var interrior = new Int32Rect(x0 + _properties.OutlineThickness,
+                                                      y0 + _properties.OutlineThickness,
+                                                      _properties.Width - (_properties.OutlineThickness * 2),
                                                       _properties.Height - (_properties.OutlineThickness * 2));
 
                         // Erase center
@@ -229,7 +229,7 @@ namespace TEdit.Tools.Tool
                         {
                             for (int i = 0; i < _properties.OutlineThickness; i++)
                             {
-                                DrawRectangle(new Int32Rect(x0 + i, y0 + i, _properties.Width - (i * 2)-1, _properties.Height - (i * 2)-1), ref outline);
+                                DrawRectangle(new Int32Rect(x0 + i, y0 + i, _properties.Width - (i * 2) - 1, _properties.Height - (i * 2) - 1), ref outline);
                             }
                         }
                     }
@@ -294,8 +294,8 @@ namespace TEdit.Tools.Tool
             if (!tilesChecked[x + y * w] || _properties.IsOutline)
             {
                 // Save History
-                var loc = new PointInt32(x, y);
-                HistMan.AddTileToBuffer(new HistoryTile(loc, (Tile)_world.Tiles[x, y].Clone()));
+
+                HistMan.AddTileToBuffer(x, y, ref _world.Tiles[x, y]);
 
                 _world.SetTileXY(ref x, ref y, ref tile, ref _selection);
                 tilesChecked[x + y * w] = true;
@@ -470,7 +470,7 @@ namespace TEdit.Tools.Tool
         {
             DrawRectangle(area.X, area.Y, area.X + area.Width, area.Y + area.Height, ref tile);
         }
-        
+
         public void DrawRectangle(int x1, int y1, int x2, int y2, ref TilePicker tile)
         {
             // Use refs for faster access (really important!) speeds up a lot!

@@ -166,7 +166,7 @@ namespace TEdit.Tools.Tool
                 {
                     int x = p.X;
                     int y = p.Y;
-                    HistMan.AddTileToBuffer(new HistoryTile(new PointInt32(x, y), (Tile)_world.Tiles[x, y].Clone()));
+                    HistMan.AddTileToBuffer(x, y, ref _world.Tiles[x, y]);
                     _world.SetTileXY(ref x, ref y, ref _tilePicker, ref _selection);
                     _renderer.UpdateWorldImage(p);
                 }

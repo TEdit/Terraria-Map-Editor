@@ -62,10 +62,11 @@ namespace TEdit.Tools.History
             buffer = new Queue<HistoryTile>();
             ClearRedoHistory();
         }
-        public void AddTileToBuffer(HistoryTile tile)
+        public void AddTileToBuffer(int x, int y, ref Tile tile)
         {
+            // pass by ref to avoid as much garbage
             if (_SaveHistory)
-                buffer.Enqueue(tile);
+                buffer.Enqueue(new HistoryTile(new PointInt32(x, y), (Tile)tile.Clone()));
         }
 
         public void AddBufferToHistory()

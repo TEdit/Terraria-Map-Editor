@@ -97,7 +97,7 @@ namespace TEdit.Tools.Clipboard
                 {
                     if (world.IsPointInWorld(x + anchor.X, y + anchor.Y))
                     {
-                        HistMan.AddTileToBuffer(new HistoryTile(new PointInt32(x + anchor.X, y + anchor.Y), (Tile)world.Tiles[x + anchor.X, y + anchor.Y].Clone()));
+                        HistMan.AddTileToBuffer(x + anchor.X, y + anchor.Y, ref world.Tiles[x + anchor.X, y + anchor.Y]);
                         Tile curTile = (Tile)buffer.Tiles[x, y].Clone();
 
                         // Remove overwritten chests data

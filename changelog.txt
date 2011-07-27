@@ -1,3 +1,5 @@
+2011-07-26 Added option to disable undo, saves memory.
+2011-07-26 Changing version to reflect assembly version (2.0.8.0)
 2011-07-09 better brush outlining
 2011-07-08 exception flattening and better logging
 2011-07-07 Fixed imported schematic chests not working.

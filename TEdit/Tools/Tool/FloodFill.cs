@@ -94,7 +94,7 @@ namespace TEdit.Tools.Tool
             {
                 Flood(e.Tile);
 
-                _renderer.UpdateWorldImage(new Int32Rect(minX,minY, maxX-minX+1,maxY-minY+1));
+                _renderer.UpdateWorldImage(new Int32Rect(minX, minY, maxX - minX + 1, maxY - minY + 1));
             }
             HistMan.AddBufferToHistory();
             return true;
@@ -157,7 +157,7 @@ namespace TEdit.Tools.Tool
                 {
                     //*Start Fill Upwards
                     //if we're not above the top of the bitmap and the pixel above this one is within the color tolerance
-                    if (range.Y > 0 && (!tilesChecked[upPxIdx]) && CheckTileMatch(ref originTile, ref _world.Tiles[i, upY], ref _tilePicker) && _selection.IsValid(new PointInt32(i,upY)))
+                    if (range.Y > 0 && (!tilesChecked[upPxIdx]) && CheckTileMatch(ref originTile, ref _world.Tiles[i, upY], ref _tilePicker) && _selection.IsValid(new PointInt32(i, upY)))
                         LinearFloodFill(ref i, ref upY, ref _tilePicker, ref originTile);
 
                     //*Start Fill Downwards
@@ -216,7 +216,8 @@ namespace TEdit.Tools.Tool
             int tileIndex = (bitmapWidth * y) + x;
             while (true)
             {
-                HistMan.AddTileToBuffer(new HistoryTile(new PointInt32(lFillLoc, y), (Tile)_world.Tiles[x, y].Clone()));
+                if (HistMan.SaveHistory)
+                    HistMan.AddTileToBuffer(lFillLoc, y, ref _world.Tiles[x, y]);
                 _world.SetTileXY(ref lFillLoc, ref y, ref tp, ref _selection);
                 tilesChecked[tileIndex] = true;
 
@@ -234,7 +235,8 @@ namespace TEdit.Tools.Tool
             tileIndex = (bitmapWidth * y) + x;
             while (true)
             {
-                HistMan.AddTileToBuffer(new HistoryTile(new PointInt32(rFillLoc, y), (Tile)_world.Tiles[x, y].Clone()));
+                if (HistMan.SaveHistory)
+                    HistMan.AddTileToBuffer(rFillLoc, y, ref _world.Tiles[x, y]);
                 _world.SetTileXY(ref rFillLoc, ref y, ref tp, ref _selection);
                 tilesChecked[tileIndex] = true;
 
