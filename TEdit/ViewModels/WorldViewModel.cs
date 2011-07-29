@@ -616,8 +616,8 @@ namespace TEdit.ViewModels
 
         private void LoadWorld(string filename)
         {
-            try
-            {
+           // try
+           // {
                 WorldImage.Image = null;
                 World.Load(filename);
                 WriteableBitmap img = _renderer.RenderWorld();
@@ -629,12 +629,12 @@ namespace TEdit.ViewModels
                                             RaisePropertyChanged("WorldZoomedHeight");
                                             RaisePropertyChanged("WorldZoomedWidth");
                                         });
-            }
-            catch (Exception)
-            {
-                World.CanUseFileIO = true;
-                MessageBox.Show("There was a problem loading the file. Make sure you selected a .wld, .bak or .Tedit file.", "World File Problem", MessageBoxButton.OK, MessageBoxImage.Warning);
-            }
+           // }
+           // catch (Exception)
+           // {
+           //     World.CanUseFileIO = true;
+           //     MessageBox.Show("There was a problem loading the file. Make sure you selected a .wld, .bak or .Tedit file.", "World File Problem", MessageBoxButton.OK, MessageBoxImage.Warning);
+           // }
         }
 
         private void RenderWorld()

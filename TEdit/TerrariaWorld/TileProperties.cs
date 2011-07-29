@@ -5,26 +5,26 @@
         public const byte MaxTileTypes = 86;
         public const byte MaxWallTypes = 14;
 
-        public static bool[] TileCut = new bool[byte.MaxValue];
-        public static bool[] TileAlch = new bool[byte.MaxValue];
-        public static int[] TileShine = new int[byte.MaxValue];
-        public static bool[] WallHouse = new bool[byte.MaxValue];
-        public static bool[] TileStone = new bool[byte.MaxValue];
-        public static bool[] TileWaterDeath = new bool[byte.MaxValue];
-        public static bool[] TileLavaDeath = new bool[byte.MaxValue];
-        public static bool[] TileTable = new bool[byte.MaxValue];
-        public static bool[] TileBlockLight = new bool[byte.MaxValue];
-        public static bool[] TileDungeon = new bool[byte.MaxValue];
-        public static bool[] TileSolidTop = new bool[byte.MaxValue];
-        public static bool[] TileSolid = new bool[byte.MaxValue];
-        public static bool[] TileNoAttach = new bool[byte.MaxValue];
-        public static bool[] TileNoFail = new bool[byte.MaxValue];
-        public static bool[] TileFrameImportant = new bool[byte.MaxValue];
-        public static string[] TileName = new string[byte.MaxValue];
+        public static bool[] TileCut = new bool[byte.MaxValue+1];
+        public static bool[] TileAlch = new bool[byte.MaxValue+1];
+        public static int[] TileShine = new int[byte.MaxValue+1];
+        public static bool[] WallHouse = new bool[byte.MaxValue+1];
+        public static bool[] TileStone = new bool[byte.MaxValue+1];
+        public static bool[] TileWaterDeath = new bool[byte.MaxValue+1];
+        public static bool[] TileLavaDeath = new bool[byte.MaxValue+1];
+        public static bool[] TileTable = new bool[byte.MaxValue+1];
+        public static bool[] TileBlockLight = new bool[byte.MaxValue+1];
+        public static bool[] TileDungeon = new bool[byte.MaxValue+1];
+        public static bool[] TileSolidTop = new bool[byte.MaxValue+1];
+        public static bool[] TileSolid = new bool[byte.MaxValue+1];
+        public static bool[] TileNoAttach = new bool[byte.MaxValue+1];
+        public static bool[] TileNoFail = new bool[byte.MaxValue+1];
+        public static bool[] TileFrameImportant = new bool[byte.MaxValue+1];
+        public static string[] TileName = new string[byte.MaxValue+1];
 
         static TileProperties()
         {
-            for (int i = 0; i < byte.MaxValue; i++)
+            for (int i = 0; i <= byte.MaxValue; i++)
             {
                 TileCut[i] = false;
                 TileAlch[i] = false;

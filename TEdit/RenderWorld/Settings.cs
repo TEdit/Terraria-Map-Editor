@@ -19,8 +19,8 @@ namespace TEdit.RenderWorld
 
         #endregion
 
-        private static readonly TileColor[] _tiles = new TileColor[byte.MaxValue];
-        private static readonly TileColor[] _walls = new TileColor[byte.MaxValue];
+        private static readonly TileColor[] _tiles = new TileColor[byte.MaxValue+1];
+        private static readonly TileColor[] _walls = new TileColor[byte.MaxValue+1];
         private static readonly ObservableCollection<string> _items = new ObservableCollection<string>();
 
         static Settings()
@@ -78,10 +78,10 @@ namespace TEdit.RenderWorld
             Water = Color.FromArgb(128, 0, 64, 255);
             Lava = Color.FromArgb(255, 255, 96, 0);
 
-            for (byte i = 0; i < byte.MaxValue; i++)
+            for (int i = 0; i <= byte.MaxValue; i++)
             {
-                _tiles[i] = new TileColor {Color = Colors.Magenta, ID = i, Name = "Unknown"};
-                _walls[i] = new TileColor {Color = Colors.Magenta, ID = i, Name = "Unknown"};
+                _tiles[i] = new TileColor {Color = Colors.Magenta, ID = (byte)i, Name = "Unknown"};
+                _walls[i] = new TileColor {Color = Colors.Magenta, ID = (byte)i, Name = "Unknown"};
             }
 
 
@@ -141,7 +141,7 @@ namespace TEdit.RenderWorld
                 sr.WriteLine((new TileColor(2, Lava, "Lava")).ToString());
 
                 sr.WriteLine(FileSection.WALLCOLORS.ToString());
-                for (byte i = 0; i < byte.MaxValue; i++)
+                for (int i = 0; i <= byte.MaxValue; i++)
                 {
                     if (!string.Equals(_walls[i].Name, "Unknown", StringComparison.InvariantCultureIgnoreCase))
                         sr.WriteLine(_walls[i].ToString());
@@ -149,7 +149,7 @@ namespace TEdit.RenderWorld
 
 
                 sr.WriteLine(FileSection.TILECOLORS.ToString());
-                for (byte i = 0; i < byte.MaxValue; i++)
+                for (int i = 0; i <= byte.MaxValue; i++)
                 {
                     if (!string.Equals(_tiles[i].Name, "Unknown", StringComparison.InvariantCultureIgnoreCase))
                         sr.WriteLine(_tiles[i].ToString());
