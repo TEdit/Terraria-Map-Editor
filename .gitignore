@@ -23,6 +23,8 @@ Index.dat
 *.cache
 *.ilk
 *.log
+#visual studio profiler
+*.vsp
 [Bb]in
 [Dd]ebug*/
 *.lib
