@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
 using TEdit.TerrariaWorld.Structures;
@@ -39,7 +40,7 @@ namespace TEdit.TerrariaWorld
             Header.WorldName = "TEdit World";
             Header.WorldId = genRand.Next(int.MaxValue);
 
-            Header.WorldBounds = new RectF(0,width,0,height);
+            Header.WorldBounds = new RectF(0, width, 0, height);
             Header.MaxTiles = new PointInt32(width, height);
             ClearWorld();
             Header.SpawnTile = new PointInt32(width / 2, height / 3);
@@ -128,7 +129,7 @@ namespace TEdit.TerrariaWorld
                     for (int x = 0; x < Header.MaxTiles.X; x++)
                     {
                         OnProgressChanged(this,
-                                          new ProgressChangedEventArgs((int) ((double) x/Header.MaxTiles.X*100.0),
+                                          new ProgressChangedEventArgs((int)((double)x / Header.MaxTiles.X * 100.0),
                                                                        "Loading Tiles"));
 
                         for (int y = 0; y < Header.MaxTiles.Y; y++)
@@ -166,7 +167,7 @@ namespace TEdit.TerrariaWorld
                     for (int chestIndex = 0; chestIndex < MaxChests; chestIndex++)
                     {
                         OnProgressChanged(this,
-                                          new ProgressChangedEventArgs((int) ((double) chestIndex/MaxChests*100.0),
+                                          new ProgressChangedEventArgs((int)((double)chestIndex / MaxChests * 100.0),
                                                                        "Loading Chest Data"));
 
                         if (reader.ReadBoolean())
@@ -194,7 +195,7 @@ namespace TEdit.TerrariaWorld
                     for (int signIndex = 0; signIndex < MaxSigns; signIndex++)
                     {
                         OnProgressChanged(this,
-                                          new ProgressChangedEventArgs((int) ((double) signIndex/MaxSigns*100.0),
+                                          new ProgressChangedEventArgs((int)((double)signIndex / MaxSigns * 100.0),
                                                                        "Loading Sign Data"));
 
                         if (reader.ReadBoolean())
@@ -203,7 +204,7 @@ namespace TEdit.TerrariaWorld
                             int x = reader.ReadInt32();
                             int y = reader.ReadInt32();
                             if (Tiles[x, y].IsActive && (Tiles[x, y].Type == 55 || Tiles[x, y].Type == 85))
-                                // validate tile location
+                            // validate tile location
                             {
                                 var sign = new Sign();
                                 sign.Location = new PointInt32(x, y);
@@ -266,10 +267,10 @@ namespace TEdit.TerrariaWorld
                     writer.Write(Header.FileVersion);
                     writer.Write(Header.WorldName);
                     writer.Write(Header.WorldId);
-                    writer.Write((int) Header.WorldBounds.Left);
-                    writer.Write((int) Header.WorldBounds.Right);
-                    writer.Write((int) Header.WorldBounds.Top);
-                    writer.Write((int) Header.WorldBounds.Bottom);
+                    writer.Write((int)Header.WorldBounds.Left);
+                    writer.Write((int)Header.WorldBounds.Right);
+                    writer.Write((int)Header.WorldBounds.Top);
+                    writer.Write((int)Header.WorldBounds.Bottom);
                     writer.Write(Header.MaxTiles.Y);
                     writer.Write(Header.MaxTiles.X);
                     writer.Write(Header.SpawnTile.X);
@@ -287,7 +288,7 @@ namespace TEdit.TerrariaWorld
                     writer.Write(Header.IsBossDowned3);
                     writer.Write(Header.IsShadowOrbSmashed);
                     writer.Write(Header.IsSpawnMeteor);
-                    writer.Write((byte) Header.ShadowOrbCount);
+                    writer.Write((byte)Header.ShadowOrbCount);
                     writer.Write(Header.InvasionDelay);
                     writer.Write(Header.InvasionSize);
                     writer.Write(Header.InvasionType);
@@ -296,7 +297,7 @@ namespace TEdit.TerrariaWorld
                     for (int x = 0; x < Header.MaxTiles.X; x++)
                     {
                         OnProgressChanged(this,
-                                          new ProgressChangedEventArgs((int) (x/(double) Header.MaxTiles.X*100.0),
+                                          new ProgressChangedEventArgs((int)(x / (double)Header.MaxTiles.X * 100.0),
                                                                        "Saving World"));
                         //float num2 = ((float) i) / ((float) this.MaxTiles.X);
                         //string statusText = "Saving world data: " + ((int) ((num2 * 100f) + 1f)) + "%";
@@ -367,7 +368,7 @@ namespace TEdit.TerrariaWorld
                             {
                                 if (Chests[chestIndex].Items.Count > slot)
                                 {
-                                    writer.Write((byte) Chests[chestIndex].Items[slot].StackSize);
+                                    writer.Write((byte)Chests[chestIndex].Items[slot].StackSize);
                                     if (Chests[chestIndex].Items[slot].StackSize > 0)
                                     {
                                         writer.Write(Chests[chestIndex].Items[slot].Name);
@@ -430,8 +431,13 @@ namespace TEdit.TerrariaWorld
             OnProgressChanged(this, new ProgressChangedEventArgs(0, ""));
         }
 
-
         public void SaveFileCompressed(string filename)
+        {
+            SaveFileCompressed1(filename + ".TEST1");
+            SaveFileCompressed2(filename + ".TEST2");
+
+        }
+        public void SaveFileCompressed1(string filename)
         {
             CanUseFileIO = false;
             string backupFileName = filename + ".Tedit";
@@ -473,40 +479,34 @@ namespace TEdit.TerrariaWorld
                     writer.Write(Header.InvasionType);
                     writer.Write(Header.InvasionX);
 
+                    Tile prevTile = null;
+                    int repeatCounter = 0;
                     for (int y = 0; y < Header.MaxTiles.Y; y++)
-
                     {
-                        OnProgressChanged(this,
-                                          new ProgressChangedEventArgs((int)(y / (double)Header.MaxTiles.Y * 100.0),
-                                                                       "Saving World"));
-                        //float num2 = ((float) i) / ((float) this.MaxTiles.X);
-                        //string statusText = "Saving world data: " + ((int) ((num2 * 100f) + 1f)) + "%";
-
-                        Tile prevTile = null;
-                        int repeatCounter = 0;
+                        OnProgressChanged(this,new ProgressChangedEventArgs((int)(y / (double)Header.MaxTiles.Y * 100.0),"Saving World"));
+                        
                         for (int x = 0; x < Header.MaxTiles.X; x++)
                         {
                             var cacheTile = Tiles[x, y];
-                            if (!TileProperties.TileFrameImportant[cacheTile.Type])
+
+                            // == is an overridden comparison on the writeable fields
+                            if (cacheTile == prevTile) 
                             {
-                                if (cacheTile.CompareFields(prevTile))
-                                {
-                                    repeatCounter++;
-                                    continue; // reset loop
-                                }
-                            }
-                            else
-                            {
-                                if (prevTile != null)
-                                {
-                                    writer.Write(repeatCounter);
-                                }
-                                repeatCounter = 0;
+                                repeatCounter++;
+                                continue; 
+                                // reset loop
                             }
 
+                            if (prevTile != null)
+                            {
+                                // use if to prevent duplicating the first tile;
+                                writer.Write(repeatCounter);
+                                repeatCounter = 0;
+                            }
                             // make prev tile equal to new tile type
                             prevTile = cacheTile;
 
+                            //perform standard tile writing below
                             writer.Write(cacheTile.IsActive);
 
                             if (cacheTile.IsActive)
@@ -557,6 +557,233 @@ namespace TEdit.TerrariaWorld
                             }
                         }
                     }
+                    for (int chestIndex = 0; chestIndex < MaxChests; chestIndex++)
+                    {
+                        //if (Chests[chestIndex] == null)
+                        if (chestIndex >= Chests.Count)
+                        {
+                            writer.Write(false);
+                        }
+                        else
+                        {
+                            writer.Write(true);
+                            writer.Write(Chests[chestIndex].Location.X);
+                            writer.Write(Chests[chestIndex].Location.Y);
+                            for (int slot = 0; slot < Chest.MaxItems; slot++)
+                            {
+                                if (Chests[chestIndex].Items.Count > slot)
+                                {
+                                    writer.Write((byte)Chests[chestIndex].Items[slot].StackSize);
+                                    if (Chests[chestIndex].Items[slot].StackSize > 0)
+                                    {
+                                        writer.Write(Chests[chestIndex].Items[slot].Name);
+                                    }
+                                }
+                                else
+                                {
+                                    writer.Write((byte)0);
+                                }
+                            }
+                        }
+                    }
+                    for (int signIndex = 0; signIndex < MaxSigns; signIndex++)
+                    {
+                        //if (Signs[signIndex] == null)
+                        if (signIndex >= Signs.Count)
+                        {
+                            writer.Write(false);
+                        }
+                        else if (string.IsNullOrWhiteSpace(Signs[signIndex].Text))
+                        {
+                            writer.Write(false);
+                        }
+                        else
+                        {
+                            writer.Write(true);
+                            writer.Write(Signs[signIndex].Text);
+                            writer.Write(Signs[signIndex].Location.X);
+                            writer.Write(Signs[signIndex].Location.Y);
+                        }
+                    }
+                    foreach (NPC npc in Npcs)
+                    {
+                        // removed for list, add for array
+                        //if (npc == null)
+                        //{
+                        //    writer.Write(false);
+                        //    break;
+                        //}
+
+                        writer.Write(true);
+                        writer.Write(npc.Name);
+                        writer.Write(npc.Position.X);
+                        writer.Write(npc.Position.Y);
+                        writer.Write(npc.IsHomeless);
+                        writer.Write(npc.HomeTile.X);
+                        writer.Write(npc.HomeTile.Y);
+                    }
+                    writer.Write(false);
+
+                    // Write file info check version 7+
+                    writer.Write(true);
+                    writer.Write(Header.WorldName);
+                    writer.Write(Header.WorldId);
+
+                    writer.Close();
+                }
+            }
+            CanUseFileIO = true;
+            OnProgressChanged(this, new ProgressChangedEventArgs(0, ""));
+        }
+
+        public void SaveFileCompressed2(string filename)
+        {
+            CanUseFileIO = false;
+            //string backupFileName = filename + ".Tedit1";
+            //if (File.Exists(filename))
+            //{
+            //    File.Copy(filename, backupFileName, true);
+            //} 
+            using (var stream = new FileStream(filename, FileMode.Create))
+            {
+                using (var writer = new BinaryWriter(stream))
+                {
+                    writer.Write(Header.FileVersion);
+                    writer.Write(Header.WorldName);
+                    writer.Write(Header.WorldId);
+                    writer.Write((int)Header.WorldBounds.Left);
+                    writer.Write((int)Header.WorldBounds.Right);
+                    writer.Write((int)Header.WorldBounds.Top);
+                    writer.Write((int)Header.WorldBounds.Bottom);
+                    writer.Write(Header.MaxTiles.Y);
+                    writer.Write(Header.MaxTiles.X);
+                    writer.Write(Header.SpawnTile.X);
+                    writer.Write(Header.SpawnTile.Y);
+                    writer.Write(Header.WorldSurface);
+                    writer.Write(Header.WorldRockLayer);
+                    writer.Write(Header.Time);
+                    writer.Write(Header.IsDayTime);
+                    writer.Write(Header.MoonPhase);
+                    writer.Write(Header.IsBloodMoon);
+                    writer.Write(Header.DungeonEntrance.X);
+                    writer.Write(Header.DungeonEntrance.Y);
+                    writer.Write(Header.IsBossDowned1);
+                    writer.Write(Header.IsBossDowned2);
+                    writer.Write(Header.IsBossDowned3);
+                    writer.Write(Header.IsShadowOrbSmashed);
+                    writer.Write(Header.IsSpawnMeteor);
+                    writer.Write((byte)Header.ShadowOrbCount);
+                    writer.Write(Header.InvasionDelay);
+                    writer.Write(Header.InvasionSize);
+                    writer.Write(Header.InvasionType);
+                    writer.Write(Header.InvasionX);
+
+                    var index = new Dictionary<Tile, int>();
+                    var buffer = new List<Tuple<int, int>>();
+
+                    Tile previousTile = null;
+                    int repeatCount = 0;
+                    int cacheTileIndex = 0;
+
+                    for (int y = 0; y < Header.MaxTiles.Y; y++)
+                    {
+                        for (int x = 0; x < Header.MaxTiles.X; x++)
+                        {
+                            var cacheTile = Tiles[x, y];
+
+                            if (cacheTile.Equals(previousTile))
+                            {
+                                repeatCount++;
+                                continue;
+                            }
+                            else
+                            {
+                                // Add to buffer and reset counter
+                                buffer.Add(new Tuple<int, int>(cacheTileIndex, repeatCount));
+                                repeatCount = 0;
+                                previousTile = cacheTile;
+                            }
+
+                            //if (TileProperties.TileFrameImportant[cacheTile.Type])
+                            //{
+                            //////validate chest entry exists
+                            ////if (cacheTile.Type == 21)
+                            ////{
+                            ////    if (GetChestAtTile(x, y) == null)
+                            ////    {
+                            ////        Chests.Add(new Chest(new PointInt32(x, y)));
+                            ////    }
+                            ////}
+                            //////validate sign entry exists
+                            ////else if (cacheTile.Type == 55 || cacheTile.Type == 85)
+                            ////{
+                            ////    if (GetSignAtTile(x, y) == null)
+                            ////    {
+                            ////        Signs.Add(new Sign("", new PointInt32(x, y)));
+                            ////    }
+                            ////}
+                            //}
+                            
+                            if (!index.ContainsKey(cacheTile))
+                            {
+                                // Add our tile to the index
+                                cacheTileIndex = index.Count;
+                                index.Add(cacheTile, cacheTileIndex);
+                            }
+                            else
+                            {
+                                // Get the index
+                                index.TryGetValue(cacheTile, out cacheTileIndex);
+                            }
+                        }
+                    }
+
+                    writer.Write(index.Count);
+                    foreach (KeyValuePair<Tile, int> tile in index)
+                    {
+
+                        Tile cacheTile = tile.Key;
+                        writer.Write(cacheTile.IsActive);
+
+                        if (cacheTile.IsActive)
+                        {
+                            writer.Write(cacheTile.Type);
+                            if (TileProperties.TileFrameImportant[cacheTile.Type])
+                            {
+                                writer.Write(cacheTile.Frame.X);
+                                writer.Write(cacheTile.Frame.Y);
+                            }
+                        }
+                        writer.Write(cacheTile.IsLighted);
+                        if (cacheTile.Wall > 0)
+                        {
+                            writer.Write(true);
+                            writer.Write(cacheTile.Wall);
+                        }
+                        else
+                        {
+                            writer.Write(false);
+                        }
+                        if (cacheTile.Liquid > 0)
+                        {
+                            writer.Write(true);
+                            writer.Write(cacheTile.Liquid);
+                            writer.Write(cacheTile.IsLava);
+                        }
+                        else
+                        {
+                            writer.Write(false);
+                        }
+                    }
+
+                    writer.Write(buffer.Count);
+                    foreach (Tuple<int, int> tileCompressed in buffer)
+                    {
+                        writer.Write(tileCompressed.Item1); // dictionary index
+                        writer.Write(tileCompressed.Item2); // tile repeat count
+                    }
+
+
                     for (int chestIndex = 0; chestIndex < MaxChests; chestIndex++)
                     {
                         //if (Chests[chestIndex] == null)

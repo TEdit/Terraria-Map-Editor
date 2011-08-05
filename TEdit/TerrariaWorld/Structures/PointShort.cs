@@ -77,9 +77,9 @@ namespace TEdit.TerrariaWorld.Structures
 
         public override int GetHashCode()
         {
-            int result = 17;
-            result = result*37 + X.GetHashCode();
-            result = result*37 + Y.GetHashCode();
+            int result = 13;
+            result = result*7 + X.GetHashCode();
+            result = result*7 + Y.GetHashCode();
             return result;
         }
 

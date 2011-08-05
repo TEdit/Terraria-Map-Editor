@@ -65,20 +65,88 @@ namespace TEdit.TerrariaWorld
             return MemberwiseClone();
         } 
 
-        public bool CompareFields(Tile other)
+        #region Operator Overrides
+
+        private static bool matchFields(Tile a, Tile other)
         {
-            if (other == null)
-                return false;
-
-            //if (IsActive == other.IsActive == false)
-            //    return true;
-
-            return IsActive == other.IsActive &&
-                   Type == other.Type &&
-                   Wall == other.Wall &&
-                   IsLighted == other.IsLighted &&
-                   Liquid == other.Liquid &&
-                   IsLava == other.IsLava;
+            return a.IsActive == other.IsActive &&
+                   a.Type == other.Type &&
+                   a.Wall == other.Wall &&
+                   a.IsLighted == other.IsLighted &&
+                   a.Liquid == other.Liquid &&
+                   a.IsLava == other.IsLava &&
+                   a.Frame == other.Frame;
         }
+
+        public override bool Equals(object obj)
+        {
+            if (obj == null)
+            {
+                return false;
+            }
+
+            // If parameter cannot be cast to Point return false.
+            Tile i = obj as Tile;
+            if ((System.Object)i == null)
+            {
+                return false;
+            }
+
+            // Return true if the fields match:
+            return matchFields(this, i);
+        }
+
+        public bool Equals(Tile p)
+        {
+            // If parameter is null return false:
+            if ((object)p == null)
+            {
+                return false;
+            }
+
+            // Return true if the fields match:
+            return matchFields(this, p);
+        }
+
+        public static bool operator ==(Tile a, Tile b)
+        {
+            // If both are null, or both are same instance, return true.
+            if (System.Object.ReferenceEquals(a, b))
+            {
+                return true;
+            }
+
+            // If one is null, but not both, return false.
+            if (((object)a == null) || ((object)b == null))
+            {
+                return false;
+            }
+
+            // Return true if the fields match:
+            return matchFields(a, b);
+        }
+
+        public static bool operator !=(Tile a, Tile b)
+        {
+            return !(a == b);
+        }
+
+        public override int GetHashCode()
+        {
+
+            int result = 13;
+            result = result*7 + IsActive.GetHashCode();
+            result = result*7 + Type.GetHashCode();
+            result = result*7 + Wall.GetHashCode();
+            result = result*7 + IsLighted.GetHashCode();
+            result = result*7 + Liquid.GetHashCode();
+            result = result*7 + IsLava.GetHashCode();
+            result = result*7 + Frame.GetHashCode();
+
+            return result;
+        }
+
+        #endregion
+			
     }
 }
