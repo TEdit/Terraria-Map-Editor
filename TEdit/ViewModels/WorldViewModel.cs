@@ -601,7 +601,7 @@ namespace TEdit.ViewModels
             {
                 Task.Factory.StartNew(() => LoadWorld(ofd.FileName));
             }
-        }
+        } 
         private void SaveWorldAs()
         {
             var sfd = new SaveFileDialog();
@@ -610,7 +610,7 @@ namespace TEdit.ViewModels
             sfd.InitialDirectory = System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), @"My Games\Terraria\Worlds");
             if ((bool)sfd.ShowDialog())
             {
-                Task.Factory.StartNew(() => World.SaveFile(sfd.FileName));
+                Task.Factory.StartNew(() => World.SaveFileCompressed(sfd.FileName));
             }
         }
 

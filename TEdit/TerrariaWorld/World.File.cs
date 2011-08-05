@@ -429,5 +429,211 @@ namespace TEdit.TerrariaWorld
             CanUseFileIO = true;
             OnProgressChanged(this, new ProgressChangedEventArgs(0, ""));
         }
+
+
+        public void SaveFileCompressed(string filename)
+        {
+            CanUseFileIO = false;
+            string backupFileName = filename + ".Tedit";
+            if (File.Exists(filename))
+            {
+                File.Copy(filename, backupFileName, true);
+            } 
+            using (var stream = new FileStream(filename, FileMode.Create))
+            {
+                using (var writer = new BinaryWriter(stream))
+                {
+                    writer.Write(Header.FileVersion);
+                    writer.Write(Header.WorldName);
+                    writer.Write(Header.WorldId);
+                    writer.Write((int)Header.WorldBounds.Left);
+                    writer.Write((int)Header.WorldBounds.Right);
+                    writer.Write((int)Header.WorldBounds.Top);
+                    writer.Write((int)Header.WorldBounds.Bottom);
+                    writer.Write(Header.MaxTiles.Y);
+                    writer.Write(Header.MaxTiles.X);
+                    writer.Write(Header.SpawnTile.X);
+                    writer.Write(Header.SpawnTile.Y);
+                    writer.Write(Header.WorldSurface);
+                    writer.Write(Header.WorldRockLayer);
+                    writer.Write(Header.Time);
+                    writer.Write(Header.IsDayTime);
+                    writer.Write(Header.MoonPhase);
+                    writer.Write(Header.IsBloodMoon);
+                    writer.Write(Header.DungeonEntrance.X);
+                    writer.Write(Header.DungeonEntrance.Y);
+                    writer.Write(Header.IsBossDowned1);
+                    writer.Write(Header.IsBossDowned2);
+                    writer.Write(Header.IsBossDowned3);
+                    writer.Write(Header.IsShadowOrbSmashed);
+                    writer.Write(Header.IsSpawnMeteor);
+                    writer.Write((byte)Header.ShadowOrbCount);
+                    writer.Write(Header.InvasionDelay);
+                    writer.Write(Header.InvasionSize);
+                    writer.Write(Header.InvasionType);
+                    writer.Write(Header.InvasionX);
+
+                    for (int y = 0; y < Header.MaxTiles.Y; y++)
+
+                    {
+                        OnProgressChanged(this,
+                                          new ProgressChangedEventArgs((int)(y / (double)Header.MaxTiles.Y * 100.0),
+                                                                       "Saving World"));
+                        //float num2 = ((float) i) / ((float) this.MaxTiles.X);
+                        //string statusText = "Saving world data: " + ((int) ((num2 * 100f) + 1f)) + "%";
+
+                        Tile prevTile = null;
+                        int repeatCounter = 0;
+                        for (int x = 0; x < Header.MaxTiles.X; x++)
+                        {
+                            var cacheTile = Tiles[x, y];
+                            if (!TileProperties.TileFrameImportant[cacheTile.Type])
+                            {
+                                if (cacheTile.CompareFields(prevTile))
+                                {
+                                    repeatCounter++;
+                                    continue; // reset loop
+                                }
+                            }
+                            else
+                            {
+                                if (prevTile != null)
+                                {
+                                    writer.Write(repeatCounter);
+                                }
+                                repeatCounter = 0;
+                            }
+
+                            // make prev tile equal to new tile type
+                            prevTile = cacheTile;
+
+                            writer.Write(cacheTile.IsActive);
+
+                            if (cacheTile.IsActive)
+                            {
+                                writer.Write(cacheTile.Type);
+                                if (TileProperties.TileFrameImportant[cacheTile.Type])
+                                {
+                                    writer.Write(cacheTile.Frame.X);
+                                    writer.Write(cacheTile.Frame.Y);
+
+                                    //validate chest entry exists
+                                    if (cacheTile.Type == 21)
+                                    {
+                                        if (GetChestAtTile(x, y) == null)
+                                        {
+                                            Chests.Add(new Chest(new PointInt32(x, y)));
+                                        }
+                                    }
+                                    //validate sign entry exists
+                                    else if (cacheTile.Type == 55 || cacheTile.Type == 85)
+                                    {
+                                        if (GetSignAtTile(x, y) == null)
+                                        {
+                                            Signs.Add(new Sign("", new PointInt32(x, y)));
+                                        }
+                                    }
+                                }
+                            }
+                            writer.Write(cacheTile.IsLighted);
+                            if (cacheTile.Wall > 0)
+                            {
+                                writer.Write(true);
+                                writer.Write(cacheTile.Wall);
+                            }
+                            else
+                            {
+                                writer.Write(false);
+                            }
+                            if (cacheTile.Liquid > 0)
+                            {
+                                writer.Write(true);
+                                writer.Write(cacheTile.Liquid);
+                                writer.Write(cacheTile.IsLava);
+                            }
+                            else
+                            {
+                                writer.Write(false);
+                            }
+                        }
+                    }
+                    for (int chestIndex = 0; chestIndex < MaxChests; chestIndex++)
+                    {
+                        //if (Chests[chestIndex] == null)
+                        if (chestIndex >= Chests.Count)
+                        {
+                            writer.Write(false);
+                        }
+                        else
+                        {
+                            writer.Write(true);
+                            writer.Write(Chests[chestIndex].Location.X);
+                            writer.Write(Chests[chestIndex].Location.Y);
+                            for (int slot = 0; slot < Chest.MaxItems; slot++)
+                            {
+                                if (Chests[chestIndex].Items.Count > slot)
+                                {
+                                    writer.Write((byte)Chests[chestIndex].Items[slot].StackSize);
+                                    if (Chests[chestIndex].Items[slot].StackSize > 0)
+                                    {
+                                        writer.Write(Chests[chestIndex].Items[slot].Name);
+                                    }
+                                }
+                                else
+                                {
+                                    writer.Write((byte)0);
+                                }
+                            }
+                        }
+                    }
+                    for (int signIndex = 0; signIndex < MaxSigns; signIndex++)
+                    {
+                        //if (Signs[signIndex] == null)
+                        if (signIndex >= Signs.Count)
+                        {
+                            writer.Write(false);
+                        }
+                        else if (string.IsNullOrWhiteSpace(Signs[signIndex].Text))
+                        {
+                            writer.Write(false);
+                        }
+                        else
+                        {
+                            writer.Write(true);
+                            writer.Write(Signs[signIndex].Text);
+                            writer.Write(Signs[signIndex].Location.X);
+                            writer.Write(Signs[signIndex].Location.Y);
+                        }
+                    }
+                    foreach (NPC npc in Npcs)
+                    {
+                        // removed for list, add for array
+                        //if (npc == null)
+                        //{
+                        //    writer.Write(false);
+                        //    break;
+                        //}
+
+                        writer.Write(true);
+                        writer.Write(npc.Name);
+                        writer.Write(npc.Position.X);
+                        writer.Write(npc.Position.Y);
+                        writer.Write(npc.IsHomeless);
+                        writer.Write(npc.HomeTile.X);
+                        writer.Write(npc.HomeTile.Y);
+                    }
+                    writer.Write(false);
+
+                    // Write file info check version 7+
+                    writer.Write(true);
+                    writer.Write(Header.WorldName);
+                    writer.Write(Header.WorldId);
+
+                    writer.Close();
+                }
+            }
+            CanUseFileIO = true;
+            OnProgressChanged(this, new ProgressChangedEventArgs(0, ""));
+        }
     }
 }

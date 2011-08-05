@@ -63,6 +63,22 @@ namespace TEdit.TerrariaWorld
         public object Clone()
         {
             return MemberwiseClone();
+        } 
+
+        public bool CompareFields(Tile other)
+        {
+            if (other == null)
+                return false;
+
+            //if (IsActive == other.IsActive == false)
+            //    return true;
+
+            return IsActive == other.IsActive &&
+                   Type == other.Type &&
+                   Wall == other.Wall &&
+                   IsLighted == other.IsLighted &&
+                   Liquid == other.Liquid &&
+                   IsLava == other.IsLava;
         }
     }
 }
