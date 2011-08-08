@@ -125,6 +125,9 @@
     <Compile Include="Tools\Tool\SpritePlacer.cs" />
     <Compile Include="ViewModels\NewWorldViewModel.cs" />
     <Compile Include="ViewModels\WorldViewModel.cs" />
+    <Compile Include="Views\ChestEditorPopup.xaml.cs">
+      <DependentUpon>ChestEditorPopup.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\ChestsContentsPopup.xaml.cs">
       <DependentUpon>ChestsContentsPopup.xaml</DependentUpon>
     </Compile>
@@ -189,6 +192,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Themes\Whistler.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\ChestEditorPopup.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
