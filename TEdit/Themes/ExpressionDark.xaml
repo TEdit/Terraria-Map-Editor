@@ -86,6 +86,7 @@
             </Setter.Value>
         </Setter>
     </Style>
+    
     <Style TargetType="{x:Type Button}" BasedOn="{x:Null}">
         <Setter Property="FocusVisualStyle" Value="{DynamicResource NuclearButtonFocusVisual}" />
         <Setter Property="Background" Value="{DynamicResource NormalBrush}" />

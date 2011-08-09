@@ -160,7 +160,7 @@
 159|Shiny Red Balloon
 160|Harpoon
 161|Spiky Ball
-162|Ball 'O Hurt
+162|Ball O' Hurt
 163|Blue Moon
 164|Handgun
 165|Water Bolt
@@ -175,11 +175,11 @@
 174|Hellstone
 175|Hellstone Bar
 176|Mud Block
-177|Sapphire
-178|Ruby
-179|Emerald
-180|Topaz
 181|Amethyst
+180|Topaz
+177|Sapphire
+179|Emerald
+178|Ruby
 182|Diamond
 183|Glowing Mushroom
 184|Star
@@ -189,7 +189,7 @@
 188|Healing Potion
 189|Mana Potion
 190|Blade of Grass
-191|Thorn Chakrum
+191|Thorn Chakram
 192|Obsidian Brick
 193|Obsidian Skull
 194|Mushroom Grass Seeds
@@ -289,7 +289,7 @@
 288|Obsidian Skin Potion
 289|Regeneration Potion
 290|Swiftness Potion
-291|Gills potion
+291|Gills Potion
 292|Ironskin Potion
 293|Mana Regeneration Potion
 294|Magic Power Potion
@@ -325,3 +325,39 @@
 324|Illegal Gun Parts
 325|The Doctor's Shirt
 326|The Doctor's Pants
+327|Golden Key
+328|Shadow Chest
+329|Shadow Key
+330|Obsidian Brick Wall
+331|Jungle Spores
+332|Loom
+333|Piano
+334|Dresser
+335|Bench
+336|Bathtub
+337|Red Banner
+338|Green Banner
+339|Blue Banner
+340|Yellow Banner
+341|Lamp Post
+342|Tiki Torch
+343|Barrel
+344|Chinese Lantern
+345|Cooking Pot
+346|Safe
+347|Skull Lantern
+348|Trash Can
+349|Candelabra
+350|Pink Vase
+351|Mug
+352|Keg
+353|Ale
+354|Bookcase
+355|Throne
+356|Bowl
+357|Bowl of Soup
+358|Toilet
+359|Grandfather Clock
+360|Statue
+361|Goblin Battle Standard
+362|Tattered Cloth

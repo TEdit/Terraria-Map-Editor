@@ -17,6 +17,7 @@ WALLCOLORS
 12|WallCopper|#ff3F1907
 13|WallHellstone|#ff3F0707
 14|WallUnknown|#ff3F0707
+15|JungleWall|#ff005500
 TILECOLORS
 0|Dirt|#ff916a4f
 1|Stone|#ff808080
@@ -104,4 +105,14 @@ TILECOLORS
 83|HerbStalks|#ffff7800
 84|Herbs|#ffff7800
 85|Tombstone|#ffc0c0c0
-86|Unknown|#ffff00ff
+86|Loom|#ffff00ff
+87|Unknown|#ff00fff2
+88|Unknown|#ff00fff2
+89|Unknown|#ff00fff2
+90|Unknown|#ff00fff2
+91|Unknown|#ff00fff2
+92|Unknown|#ff00fff2
+93|Unknown|#ff00fff2
+94|Unknown|#ff00fff2
+95|Unknown|#ff00fff2
+96|Unknown|#ff00fff2

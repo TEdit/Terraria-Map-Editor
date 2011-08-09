@@ -479,35 +479,35 @@ namespace TEdit.TerrariaWorld
                     writer.Write(Header.InvasionType);
                     writer.Write(Header.InvasionX);
 
-                    Tile prevTile = null;
-                    int repeatCounter = 0;
-                    for (int y = 0; y < Header.MaxTiles.Y; y++)
-                    {
-                        OnProgressChanged(this,new ProgressChangedEventArgs((int)(y / (double)Header.MaxTiles.Y * 100.0),"Saving World"));
+Tile prevTile = null;
+int repeatCounter = 0;
+for (int y = 0; y < Header.MaxTiles.Y; y++)
+{
+    OnProgressChanged(this,new ProgressChangedEventArgs((int)(y / (double)Header.MaxTiles.Y * 100.0),"Saving World"));
                         
-                        for (int x = 0; x < Header.MaxTiles.X; x++)
-                        {
-                            var cacheTile = Tiles[x, y];
+    for (int x = 0; x < Header.MaxTiles.X; x++)
+    {
+        var cacheTile = Tiles[x, y];
 
-                            // == is an overridden comparison on the writeable fields
-                            if (cacheTile == prevTile) 
-                            {
-                                repeatCounter++;
-                                continue; 
-                                // reset loop
-                            }
+        // == is an overridden comparison on the writeable fields
+        if (cacheTile == prevTile) 
+        {
+            repeatCounter++;
+            continue; 
+            // reset loop
+        }
 
-                            if (prevTile != null)
-                            {
-                                // use if to prevent duplicating the first tile;
-                                writer.Write(repeatCounter);
-                                repeatCounter = 0;
-                            }
-                            // make prev tile equal to new tile type
-                            prevTile = cacheTile;
+        if (prevTile != null)
+        {
+            // use if to prevent duplicating the first tile;
+            writer.Write(repeatCounter);
+            repeatCounter = 0;
+        }
+        // make prev tile equal to new tile type
+        prevTile = cacheTile;
 
-                            //perform standard tile writing below
-                            writer.Write(cacheTile.IsActive);
+        //perform standard tile writing below
+        writer.Write(cacheTile.IsActive);
 
                             if (cacheTile.IsActive)
                             {

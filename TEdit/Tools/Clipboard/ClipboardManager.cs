@@ -123,7 +123,7 @@ namespace TEdit.Tools.Clipboard
                             if (world.GetChestAtTile(x + anchor.X, y + anchor.Y) == null)
                             {
                                 var data = buffer.GetChestAtTile(x, y);
-                                if (data != null && false) // disallow chest copying
+                                if (data != null) // allow? chest copying may not work...
                                 {
                                     // Copied chest
                                     var newChest = Utility.DeepCopy(data);

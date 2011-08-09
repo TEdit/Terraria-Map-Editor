@@ -50,8 +50,17 @@
             </Setter.Value>
         </Setter>
     </Style>
+    <Style x:Key="ButtonFocusVisualC">
+        <Setter Property="Control.Template">
+            <Setter.Value>
+                <ControlTemplate>
+                    <Rectangle SnapsToDevicePixels="true" Margin="2" Stroke="Black" StrokeDashArray="1 2" StrokeThickness="1" />
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
     <Style TargetType="{x:Type Controls:DataBoundToggleButton}">
-        <Setter Property="FocusVisualStyle" Value="{StaticResource ButtonFocusVisual}" />
+        <Setter Property="FocusVisualStyle" Value="{StaticResource ButtonFocusVisualC}" />
         <Setter Property="Background" Value="{StaticResource ButtonNormalBackground}" />
         <Setter Property="BorderBrush" Value="{StaticResource ButtonNormalBorder}" />
         <Setter Property="BorderThickness" Value="1" />

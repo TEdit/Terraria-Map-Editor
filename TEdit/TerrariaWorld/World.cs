@@ -14,7 +14,7 @@ namespace TEdit.TerrariaWorld
         public const int MaxChests = 1000;
         public const int MaxSigns = 1000;
         public const int MaxNpcs = 1000;
-        public const int CompatableVersion = 9;
+        public const int CompatableVersion = 20;
         private readonly ObservableCollectionEx<Chest> _Chests = new ObservableCollectionEx<Chest>();
         private readonly ObservableCollectionEx<NPC> _Npcs = new ObservableCollectionEx<NPC>();
         private readonly ObservableCollectionEx<Sign> _Signs = new ObservableCollectionEx<Sign>();
