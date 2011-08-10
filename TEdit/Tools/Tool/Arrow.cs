@@ -109,8 +109,7 @@ namespace TEdit.Tools.Tool
             foreach (Chest c in _world.Chests)
             {
                 //chests are 2x2, and their x/y is upper left corner
-                if ((c.Location.X == e.Tile.X || c.Location.X + 1 == e.Tile.X) &&
-                    (c.Location.Y == e.Tile.Y || c.Location.Y + 1 == e.Tile.Y))
+                if (Check2x2(c.Location, e.Tile))
                 {
                     _chestPopup = new ChestEditorPopup(c);
                     _chestPopup.IsOpen = true;
@@ -119,13 +118,19 @@ namespace TEdit.Tools.Tool
             foreach (Sign s in _world.Signs)
             {
                 //signs are 2x2, and their x/y is upper left corner
-                if ((s.Location.X == e.Tile.X || s.Location.X + 1 == e.Tile.X) && (s.Location.Y == e.Tile.Y || s.Location.Y + 1 == e.Tile.Y))
+                if (Check2x2(s.Location, e.Tile))
                 {
                     _signPopup = new SignPopup(s);
                     _signPopup.IsOpen = true;
                 }
             }
             return false;
+        }
+
+        private bool Check2x2(PointInt32 loc, PointInt32 hit)
+        {
+            return (loc.X == hit.X || loc.X + 1 == hit.X) &&
+                   (loc.Y == hit.Y || loc.Y + 1 == hit.Y);
         }
 
         public override WriteableBitmap PreviewTool()
