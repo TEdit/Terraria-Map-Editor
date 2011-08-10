@@ -444,7 +444,7 @@ namespace TEdit.TerrariaWorld
             if (File.Exists(filename))
             {
                 File.Copy(filename, backupFileName, true);
-            } 
+            }
             using (var stream = new FileStream(filename, FileMode.Create))
             {
                 using (var writer = new BinaryWriter(stream))
@@ -479,35 +479,35 @@ namespace TEdit.TerrariaWorld
                     writer.Write(Header.InvasionType);
                     writer.Write(Header.InvasionX);
 
-Tile prevTile = null;
-int repeatCounter = 0;
-for (int y = 0; y < Header.MaxTiles.Y; y++)
-{
-    OnProgressChanged(this,new ProgressChangedEventArgs((int)(y / (double)Header.MaxTiles.Y * 100.0),"Saving World"));
-                        
-    for (int x = 0; x < Header.MaxTiles.X; x++)
-    {
-        var cacheTile = Tiles[x, y];
+                    Tile prevTile = null;
+                    int repeatCounter = 0;
+                    for (int y = 0; y < Header.MaxTiles.Y; y++)
+                    {
+                        OnProgressChanged(this, new ProgressChangedEventArgs((int)(y / (double)Header.MaxTiles.Y * 100.0), "Saving World"));
 
-        // == is an overridden comparison on the writeable fields
-        if (cacheTile == prevTile) 
-        {
-            repeatCounter++;
-            continue; 
-            // reset loop
-        }
+                        for (int x = 0; x < Header.MaxTiles.X; x++)
+                        {
+                            var cacheTile = Tiles[x, y];
 
-        if (prevTile != null)
-        {
-            // use if to prevent duplicating the first tile;
-            writer.Write(repeatCounter);
-            repeatCounter = 0;
-        }
-        // make prev tile equal to new tile type
-        prevTile = cacheTile;
+                            // == is an overridden comparison on the writeable fields
+                            if (cacheTile == prevTile)
+                            {
+                                repeatCounter++;
+                                continue;
+                                // reset loop
+                            }
 
-        //perform standard tile writing below
-        writer.Write(cacheTile.IsActive);
+                            if (prevTile != null)
+                            {
+                                // use if to prevent duplicating the first tile;
+                                writer.Write(repeatCounter);
+                                repeatCounter = 0;
+                            }
+                            // make prev tile equal to new tile type
+                            prevTile = cacheTile;
+
+                            //perform standard tile writing below
+                            writer.Write(cacheTile.IsActive);
 
                             if (cacheTile.IsActive)
                             {
@@ -723,7 +723,7 @@ for (int y = 0; y < Header.MaxTiles.Y; y++)
                             ////    }
                             ////}
                             //}
-                            
+
                             if (!index.ContainsKey(cacheTile))
                             {
                                 // Add our tile to the index
