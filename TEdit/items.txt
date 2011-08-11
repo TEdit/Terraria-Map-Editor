@@ -361,3 +361,12 @@
 360|Statue
 361|Goblin Battle Standard
 362|Tattered Cloth
+363|Silver Broadsword
+364|Silver Shortsword
+365|Gold Broadsword
+366|Gold Shortsword
+367|Copper Broadsword
+368|Copper Shortsword
+369|Silver Bow
+370|Gold Bow
+371|Copper Bow
