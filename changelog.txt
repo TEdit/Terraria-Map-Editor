@@ -1,3 +1,16 @@
+2011-08-09 refactoring chest/sign hittest
+2011-08-09 updated version, closes #101
+2011-08-09 removed debug code
+2011-08-09 1.0.6 tiles and some other stuff...attempting to fix #79, closes #100
+2011-08-07 chest editing added back
+2011-08-05 some test world compression code
+2011-08-05 file compression test
+2011-08-01 lioncash's lossless image compression
+2011-08-01 remove profiler files
+2011-08-01 lossless image compression (lioncash)
+2011-07-29 Fixed indexing and byte overflow issues with mod tile types, 0-255 are valid tile/walltypes now.
+2011-07-26 CTHULHU NO!
+2011-07-26 less garbage with disabled undo
 2011-07-26 Added option to disable undo, saves memory.
 2011-07-26 Changing version to reflect assembly version (2.0.8.0)
 2011-07-09 better brush outlining

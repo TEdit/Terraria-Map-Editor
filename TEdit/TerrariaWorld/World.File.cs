@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.IO;
 using TEdit.TerrariaWorld.Structures;
 
@@ -138,17 +139,17 @@ namespace TEdit.TerrariaWorld
 
                             tile.IsActive = reader.ReadBoolean();
 
+                            
                             if (tile.IsActive)
                             {
                                 tile.Type = reader.ReadByte();
+
                                 if (TileProperties.TileFrameImportant[tile.Type])
                                     tile.Frame = new PointShort(reader.ReadInt16(), reader.ReadInt16());
                                 else
                                     tile.Frame = new PointShort(-1, -1);
                             }
-
                             tile.IsLighted = reader.ReadBoolean();
-
                             if (reader.ReadBoolean())
                             {
                                 tile.Wall = reader.ReadByte();

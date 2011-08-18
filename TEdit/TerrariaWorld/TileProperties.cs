@@ -108,12 +108,7 @@
             TileDungeon[41] = true;
             TileDungeon[43] = true;
             TileDungeon[44] = true;
-            TileFrameImportant[100] = true;
-            TileFrameImportant[101] = true;
-            TileFrameImportant[102] = true;
-            TileFrameImportant[103] = true;
-            TileFrameImportant[104] = true;
-            TileFrameImportant[105] = true;
+
             TileFrameImportant[10] = true;
             TileFrameImportant[11] = true;
             TileFrameImportant[12] = true;
@@ -167,6 +162,13 @@
             TileFrameImportant[97] = true;
             TileFrameImportant[98] = true;
             TileFrameImportant[99] = true;
+            TileFrameImportant[100] = true;
+            TileFrameImportant[101] = true;
+            TileFrameImportant[102] = true;
+            TileFrameImportant[103] = true;
+            TileFrameImportant[104] = true;
+            TileFrameImportant[105] = true;
+            TileFrameImportant[106] = true;
             TileLavaDeath[100] = true;
             TileLavaDeath[101] = true;
             TileLavaDeath[102] = true;

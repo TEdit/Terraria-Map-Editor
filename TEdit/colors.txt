@@ -116,3 +116,5 @@ TILECOLORS
 94|Unknown|#ff00fff2
 95|Unknown|#ff00fff2
 96|Unknown|#ff00fff2
+105|Statue|#ff00fff2
+106|Sawmill|#ff00fff2
