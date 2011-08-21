@@ -370,3 +370,6 @@
 369|Silver Bow
 370|Gold Bow
 371|Copper Bow
+372|Copper Hammer
+373|Silver Hammer
+374|Gold Hammer
