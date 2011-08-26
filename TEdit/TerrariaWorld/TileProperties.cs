@@ -2,6 +2,14 @@
 {
     public static class TileProperties
     {
+        //var xmlSettings = XElement.Load("settings.xml");
+        //    foreach (var tile in xmlSettings.Elements("Tiles").Elements("Tile"))
+        //    {
+        //        if ((bool?)tile.Attribute("isFramed") ?? false)
+        //       {
+        //            //do stuff
+        //        }
+        //    }
         public const byte MaxTileTypes = 86;
         public const byte MaxWallTypes = 14;
 
