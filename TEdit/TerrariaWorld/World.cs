@@ -2,6 +2,7 @@
 using System.ComponentModel.Composition;
 using System.Linq;
 using TEdit.Common;
+using TEdit.RenderWorld;
 using TEdit.TerrariaWorld.Structures;
 using TEdit.Tools;
 
@@ -118,7 +119,7 @@ namespace TEdit.TerrariaWorld
                             curTile.Type = tile.Tile.Value;
 
                             // if the tile is solid and there isn't a mask, remove the liquid
-                            if (!tile.TileMask.IsActive && TileProperties.TileSolid[curTile.Type] && curTile.Liquid > 0)
+                            if (!tile.TileMask.IsActive && WorldSettings.Tiles[curTile.Type].IsSolid && curTile.Liquid > 0)
                                 curTile.Liquid = 0;
                         }
                     }
@@ -136,7 +137,7 @@ namespace TEdit.TerrariaWorld
                     }
                 }
 
-                if (tile.Liquid.IsActive && (!curTile.IsActive || !TileProperties.TileSolid[curTile.Type]))
+                if (tile.Liquid.IsActive && (!curTile.IsActive || !WorldSettings.Tiles[curTile.Type].IsSolid))
                 {
                     if (tile.IsEraser)
                     {

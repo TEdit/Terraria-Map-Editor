@@ -11,8 +11,9 @@ namespace TEdit.Tools
     [Export]
     public class TilePicker : ObservableObject
     {
-        [NonSerialized] private readonly ObservableCollection<TileColor> _tiles = new ObservableCollection<TileColor>();
-        [NonSerialized] private readonly ObservableCollection<TileColor> _walls = new ObservableCollection<TileColor>();
+        [NonSerialized]
+        private readonly ObservableCollection<TileProperty> _tiles = new ObservableCollection<TileProperty>();
+        [NonSerialized] private readonly ObservableCollection<ColorProperty> _walls = new ObservableCollection<ColorProperty>();
         private bool _IsEraser;
         private TilePickerLiquidProperty _Liquid;
         private TilePickerProperty _Tile;
@@ -22,15 +23,16 @@ namespace TEdit.Tools
 
         public TilePicker()
         {
-            for (int i = 0; i < TileProperties.MaxWallTypes; i++)
+            for (int i = 0; i < byte.MaxValue; i++)
             {
-                _walls.Add(Settings.Walls[i]);
+                if (WorldSettings.Walls[i].Name != "UNKNOWN")
+                    _walls.Add(WorldSettings.Walls[i]);
             }
 
-            for (int i = 0; i < TileProperties.MaxTileTypes; i++)
+            for (int i = 0; i < byte.MaxValue; i++)
             {
-                if (TileProperties.TileSolid[i])
-                    _tiles.Add(Settings.Tiles[i]);
+                if (WorldSettings.Tiles[i].Name != "UNKNOWN" && !WorldSettings.Tiles[i].IsFramed && i != 4)
+                    _tiles.Add(WorldSettings.Tiles[i]);
             }
 
             _Wall = new TilePickerProperty {IsActive = false, Value = 0};
@@ -42,12 +44,12 @@ namespace TEdit.Tools
             _IsEraser = false;
         }
 
-        public ObservableCollection<TileColor> Walls
+        public ObservableCollection<ColorProperty> Walls
         {
             get { return _walls; }
         }
 
-        public ObservableCollection<TileColor> Tiles
+        public ObservableCollection<TileProperty> Tiles
         {
             get { return _tiles; }
         }

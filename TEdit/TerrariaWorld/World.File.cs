@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
+using TEdit.RenderWorld;
 using TEdit.TerrariaWorld.Structures;
 
 namespace TEdit.TerrariaWorld
@@ -144,7 +145,7 @@ namespace TEdit.TerrariaWorld
                             {
                                 tile.Type = reader.ReadByte();
 
-                                if (TileProperties.TileFrameImportant[tile.Type])
+                                if (WorldSettings.Tiles[tile.Type].IsFramed)
                                     tile.Frame = new PointShort(reader.ReadInt16(), reader.ReadInt16());
                                 else
                                     tile.Frame = new PointShort(-1, -1);
@@ -308,7 +309,7 @@ namespace TEdit.TerrariaWorld
                             if (Tiles[x, y].IsActive)
                             {
                                 writer.Write(Tiles[x, y].Type);
-                                if (TileProperties.TileFrameImportant[Tiles[x, y].Type])
+                                if (WorldSettings.Tiles[Tiles[x, y].Type].IsFramed)
                                 {
                                     writer.Write(Tiles[x, y].Frame.X);
                                     writer.Write(Tiles[x, y].Frame.Y);
@@ -513,7 +514,7 @@ namespace TEdit.TerrariaWorld
                             if (cacheTile.IsActive)
                             {
                                 writer.Write(cacheTile.Type);
-                                if (TileProperties.TileFrameImportant[cacheTile.Type])
+                                if (WorldSettings.Tiles[cacheTile.Type].IsFramed)
                                 {
                                     writer.Write(cacheTile.Frame.X);
                                     writer.Write(cacheTile.Frame.Y);
@@ -749,7 +750,7 @@ namespace TEdit.TerrariaWorld
                         if (cacheTile.IsActive)
                         {
                             writer.Write(cacheTile.Type);
-                            if (TileProperties.TileFrameImportant[cacheTile.Type])
+                            if (WorldSettings.Tiles[cacheTile.Type].IsFramed)
                             {
                                 writer.Write(cacheTile.Frame.X);
                                 writer.Write(cacheTile.Frame.Y);

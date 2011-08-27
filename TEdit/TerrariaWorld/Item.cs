@@ -64,7 +64,7 @@ namespace TEdit.TerrariaWorld
 
         public ObservableCollection<string> ValidItems
         {
-            get { return Settings.Items; }
+            get { return WorldSettings.Items; }
         }
 
         public Visibility IsVisible

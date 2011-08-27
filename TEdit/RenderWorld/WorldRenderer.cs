@@ -22,7 +22,7 @@ namespace TEdit.RenderWorld
         public string GetTileName(Tile tile, out string wall)
         {
             string tilename = String.Empty;
-            wall = Settings.Walls[tile.Wall].Name;
+            wall = WorldSettings.Walls[tile.Wall].Name;
 
             if (!tile.IsActive)
                 return "[empty]";
@@ -36,7 +36,7 @@ namespace TEdit.RenderWorld
             }
             else
             {
-                tilename = Settings.Tiles[tile.Type].Name;
+                tilename = WorldSettings.Tiles[tile.Type].Name;
             }
 
             return tilename;
@@ -229,24 +229,32 @@ namespace TEdit.RenderWorld
         {
             Color c;
 
-            if (isHell)
-                c = Settings.Walls[13].Color;
-            else if (y > _world.Header.WorldRockLayer && tile.Wall == 0)
-                c = Settings.Walls[1].Color;
-            else if (y > _world.Header.WorldSurface && tile.Wall == 0)
-                c = Settings.Walls[2].Color;
+            if (tile.Wall > 0)
+            {
+                c = WorldSettings.Walls[tile.Wall].Color;
+            }
             else
-                c = Settings.Walls[tile.Wall].Color;
+            {
+                if (isHell)
+                    c = WorldSettings.GlobalColors["Hell"];
+                else if (y > _world.Header.WorldRockLayer && tile.Wall == 0)
+                    c = WorldSettings.GlobalColors["Rock"];
+                else if (y > _world.Header.WorldSurface && tile.Wall == 0)
+                    c = WorldSettings.GlobalColors["Earth"];
+                else
+                    c = WorldSettings.GlobalColors["Sky"];
+            }
+
 
             if (tile.IsActive)
-                c = AlphaBlend(c, Settings.Tiles[tile.Type].Color);
+                c = AlphaBlend(c, WorldSettings.Tiles[tile.Type].Color);
 
             if (tile.Liquid > 0)
             {
                 if (tile.IsLava)
-                    c = AlphaBlend(c, Settings.Lava);
+                    c = AlphaBlend(c, WorldSettings.GlobalColors["Lava"]);
                 else
-                    c = AlphaBlend(c, Settings.Water);
+                    c = AlphaBlend(c, WorldSettings.GlobalColors["Water"]);
             }
             return c;
         }

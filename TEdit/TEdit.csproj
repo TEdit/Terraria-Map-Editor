@@ -98,8 +98,8 @@
     <Compile Include="Tools\ToolProperties.cs" />
     <Compile Include="Tools\ToolBrushShape.cs" />
     <Compile Include="Tools\ToolType.cs" />
-    <Compile Include="RenderWorld\Settings.cs" />
-    <Compile Include="RenderWorld\TileColor.cs" />
+    <Compile Include="RenderWorld\WorldSettings.cs" />
+    <Compile Include="RenderWorld\ColorProperty.cs" />
     <Compile Include="RenderWorld\WorldRenderer.cs" />
     <Compile Include="TerrariaWorld\Chest.cs" />
     <Compile Include="TerrariaWorld\Item.cs" />
@@ -110,7 +110,6 @@
     <Compile Include="TerrariaWorld\Structures\PointShort.cs" />
     <Compile Include="TerrariaWorld\Structures\RectF.cs" />
     <Compile Include="TerrariaWorld\Tile.cs" />
-    <Compile Include="TerrariaWorld\TileProperties.cs" />
     <Compile Include="TerrariaWorld\World.cs" />
     <Compile Include="TerrariaWorld\World.File.cs" />
     <Compile Include="TerrariaWorld\WorldHeader.cs" />
@@ -272,7 +271,7 @@
     </Resource>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="colors.txt">
+    <Content Include="settings.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Resource Include="Images\tedit.ico" />
@@ -299,9 +298,6 @@
     <Resource Include="Images\Tools\spawn.png" />
     <Resource Include="Images\Tools\paste.png" />
     <Resource Include="Images\Overlays\npc_old_man.png" />
-    <Content Include="items.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <Resource Include="tedit.ico" />
   </ItemGroup>
   <ItemGroup />

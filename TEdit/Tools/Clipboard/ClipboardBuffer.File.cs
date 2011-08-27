@@ -1,4 +1,6 @@
 ﻿using System.IO;
+using TEdit.Properties;
+using TEdit.RenderWorld;
 using TEdit.TerrariaWorld;
 using TEdit.TerrariaWorld.Structures;
 
@@ -24,7 +26,7 @@ namespace TEdit.Tools.Clipboard
                             if (Tiles[x, y].IsActive)
                             {
                                 writer.Write(Tiles[x, y].Type);
-                                if (TileProperties.TileFrameImportant[Tiles[x, y].Type])
+                                if (WorldSettings.Tiles[Tiles[x, y].Type].IsFramed)
                                 {
                                     writer.Write(Tiles[x, y].Frame.X);
                                     writer.Write(Tiles[x, y].Frame.Y);
@@ -131,7 +133,7 @@ namespace TEdit.Tools.Clipboard
                             if (tile.IsActive)
                             {
                                 tile.Type = reader.ReadByte();
-                                if (TileProperties.TileFrameImportant[tile.Type])
+                                if (WorldSettings.Tiles[tile.Type].IsFramed)
                                     tile.Frame = new PointShort(reader.ReadInt16(), reader.ReadInt16());
                                 else
                                     tile.Frame = new PointShort(-1, -1);

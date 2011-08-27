@@ -4,6 +4,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using TEdit.Common;
+using TEdit.RenderWorld;
 using TEdit.TerrariaWorld;
 
 namespace TEdit.Tools.Tool
@@ -94,7 +95,7 @@ namespace TEdit.Tools.Tool
 
         private void SetSpawn(TileMouseEventArgs e)
         {
-            if (!TileProperties.TileSolid[_world.Tiles[e.Tile.X, e.Tile.Y].Type] ||
+            if (!WorldSettings.Tiles[_world.Tiles[e.Tile.X, e.Tile.Y].Type].IsSolid ||
                 !_world.Tiles[e.Tile.X, e.Tile.Y].IsActive)
             {
                 _world.Header.DungeonEntrance = e.Tile;

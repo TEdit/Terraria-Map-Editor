@@ -102,9 +102,9 @@ namespace TEdit.Tools.Tool
             // Validate free space
             if (!_world.Tiles[x, y].IsActive && !_world.Tiles[x + 1, y].IsActive && !_world.Tiles[x, y + 1].IsActive && !_world.Tiles[x + 1, y + 1].IsActive)
             {
-                // Validate floor
-                if ((_world.Tiles[x, y + 2].IsActive && (TileProperties.TileSolid[_world.Tiles[x, y + 2].Type] || TileProperties.TileSolidTop[_world.Tiles[x, y + 2].Type])) &&
-                    (_world.Tiles[x+1, y + 2].IsActive && (TileProperties.TileSolid[_world.Tiles[x+1, y + 2].Type] || TileProperties.TileSolidTop[_world.Tiles[x+1, y + 2].Type])))
+                // Validate floor    WorldSettings.Tiles[].IsSolid
+                if ((_world.Tiles[x, y + 2].IsActive && (WorldSettings.Tiles[_world.Tiles[x, y + 2].Type].IsSolid)) &&
+                    (_world.Tiles[x + 1, y + 2].IsActive && (WorldSettings.Tiles[_world.Tiles[x + 1, y + 2].Type].IsSolid)))
                 {
                     // Place Chest
                     var tp = new TilePicker();

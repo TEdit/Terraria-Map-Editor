@@ -4,88 +4,88 @@
     <GlobalColor name="Sky" color="#FF9BD1FF" />
     <GlobalColor name="Earth" color="#FF583D2E" />
     <GlobalColor name="Rock" color="#FF4A433C" />
-    <GlobalColor name="Hell" color="#FF000000" />
+    <GlobalColor name="Hell" color="#FF330000" />
     <GlobalColor name="Lava" color="#F0FF1E00" />
     <GlobalColor name="Water" color="#80000CFF" />
   </GlobalColors>
   <Tiles>
-    <Tile num="0" name="Dirt" color="#ff916a4f" />
-    <Tile num="1" name="Stone" color="#ff808080" />
-    <Tile num="2" name="Grass" color="#ff1cd85e" />
-    <Tile num="3" name="Plants" color="#ff0d6524" isFramed="true" />
-    <Tile num="4" name="Torches" color="#fffd3e03" />
-    <Tile num="5" name="Trees" color="#ff634631" isFramed="true" />
-    <Tile num="6" name="Iron" color="#ff6b594e" />
-    <Tile num="7" name="Copper" color="#ffc6561d" />
-    <Tile num="8" name="Gold" color="#ffb9a417" />
-    <Tile num="9" name="Silver" color="#ffd9dfdf" />
-    <Tile num="10" name="Door Closed" color="#ff00fff2" isFramed="true" />
-    <Tile num="11" name="Door Open" color="#ff00fff2" isFramed="true" />
+    <Tile num="0" name="Dirt" color="#ff916a4f" isSolid="true" />
+    <Tile num="1" name="Stone" color="#ff808080" isSolid="true" />
+    <Tile num="2" name="Grass" color="#ff1cd85e" isSolid="true" />
+    <Tile num="3" name="Plants" color="#ff0d6524" isFramed="true" isSolid="true" />
+    <Tile num="4" name="Torches" color="#fffd3e03" isSolid="true" />
+    <Tile num="5" name="Trees" color="#ff634631" isFramed="true" isSolid="true" />
+    <Tile num="6" name="Iron" color="#ff6b594e" isSolid="true" />
+    <Tile num="7" name="Copper" color="#ffc6561d" isSolid="true" />
+    <Tile num="8" name="Gold" color="#ffb9a417" isSolid="true" />
+    <Tile num="9" name="Silver" color="#ffd9dfdf" isSolid="true" />
+    <Tile num="10" name="Door Closed" color="#ff00fff2" isFramed="true" isSolid="true" />
+    <Tile num="11" name="Door Open" color="#ff00fff2" isFramed="true" isSolid="true" />
     <Tile num="12" name="HeartStone" color="#ffff0000" isFramed="true" />
     <Tile num="13" name="Bottle" color="#ff00fff2" isFramed="true" />
-    <Tile num="14" name="Table" color="#ff00fff2" isFramed="true" />
+    <Tile num="14" name="Table" color="#ff00fff2" isFramed="true" isSolidTop="true" />
     <Tile num="15" name="Chair" color="#ff00fff2" isFramed="true" />
-    <Tile num="16" name="Anvil" color="#ff00fff2" isFramed="true" />
+    <Tile num="16" name="Anvil" color="#ff00fff2" isFramed="true" isSolidTop="true" />
     <Tile num="17" name="Furnace" color="#ff00fff2" isFramed="true" />
-    <Tile num="18" name="Workbench" color="#ff00fff2" isFramed="true" />
-    <Tile num="19" name="Wooden Platform" color="#ff6B3A18" />
+    <Tile num="18" name="Workbench" color="#ff00fff2" isFramed="true" isSolidTop="true" />
+    <Tile num="19" name="Wooden Platform" color="#ff6B3A18" isSolidTop="true" />
     <Tile num="20" name="Decorative Plants" color="#ff0d6524" isFramed="true" />
-    <Tile num="21" name="Chest" color="#ffFFD800" isFramed="true" />
-    <Tile num="22" name="Demonite" color="#ff625fa7" />
-    <Tile num="23" name="Corruption Grass" color="#ff8d89df" />
+    <Tile num="21" name="Chest" color="#ffDDB800" isFramed="true" />
+    <Tile num="22" name="Demonite" color="#ff625fa7" isSolid="true" />
+    <Tile num="23" name="Corruption Grass" color="#ff8d89df" isSolid="true" />
     <Tile num="24" name="Corruption Plants" color="#ff8d89df" isFramed="true" />
-    <Tile num="25" name="Ebonstone" color="#ff4b4a82" />
+    <Tile num="25" name="Ebonstone" color="#ff4b4a82" isSolid="true" />
     <Tile num="26" name="Demon Altar" color="#ff9000FF" isFramed="true" />
     <Tile num="27" name="Sunflower" color="#ffC4FF14" isFramed="true" />
     <Tile num="28" name="Pot" color="#ff8C2726" isFramed="true" />
     <Tile num="29" name="PiggyBank" color="#ff00fff2" isFramed="true" />
-    <Tile num="30" name="BlockWood" color="#ff684934" />
+    <Tile num="30" name="BlockWood" color="#ff684934" isSolid="true" />
     <Tile num="31" name="ShadowOrb" color="#ff000000" isFramed="true" />
     <Tile num="32" name="Corruption Vines" color="#ff7a618f" />
     <Tile num="33" name="Candle" color="#fffd3e03" isFramed="true" />
     <Tile num="34" name="Chandler Copper" color="#fffd3e03" isFramed="true" />
     <Tile num="35" name="Chandler Silver" color="#fffd3e03" isFramed="true" />
     <Tile num="36" name="Chandler Gold" color="#fffd3e03" isFramed="true" />
-    <Tile num="37" name="Meterorite" color="#ffdf9f89" />
-    <Tile num="38" name="Block Stone" color="#ff909090" />
-    <Tile num="39" name="Block Red Stone" color="#ffb200ff" />
-    <Tile num="40" name="Clay" color="#ffac5b4d" />
-    <Tile num="41" name="Block Blue Stone" color="#ff545498" />
+    <Tile num="37" name="Meterorite" color="#ffdf9f89" isSolid="true" />
+    <Tile num="38" name="Block Stone" color="#ff909090" isSolid="true" />
+    <Tile num="39" name="Block Red Stone" color="#ffb200ff" isSolid="true" />
+    <Tile num="40" name="Clay" color="#ffac5b4d" isSolid="true" />
+    <Tile num="41" name="Block Blue Stone" color="#ff545498" isSolid="true" />
     <Tile num="42" name="Light Globe" color="#ffef904b" isFramed="true" />
-    <Tile num="43" name="Block Green Stone" color="#ff39A851" />
-    <Tile num="44" name="Block Pink Stone" color="#ffB200FF" />
-    <Tile num="45" name="Block Gold" color="#ffFFD514" />
-    <Tile num="46" name="Block Silver" color="#ffE5E5E5" />
-    <Tile num="47" name="Block Copper" color="#ffFF5900" />
-    <Tile num="48" name="Spikes" color="#ff6d6d6d" />
+    <Tile num="43" name="Block Green Stone" color="#ff39A851" isSolid="true" />
+    <Tile num="44" name="Block Pink Stone" color="#ffB200FF" isSolid="true" />
+    <Tile num="45" name="Block Gold" color="#ffFFD514" isSolid="true" />
+    <Tile num="46" name="Block Silver" color="#ffE5E5E5" isSolid="true" />
+    <Tile num="47" name="Block Copper" color="#ffFF5900" isSolid="true" />
+    <Tile num="48" name="Spikes" color="#ff6d6d6d" isSolid="true" />
     <Tile num="49" name="Candle Blue" color="#ff2B8FFF" />
     <Tile num="50" name="Books" color="#ff00fff2" isFramed="true" />
     <Tile num="51" name="Web" color="#ffffffff" />
     <Tile num="52" name="Vines" color="#ff0d6524" />
-    <Tile num="53" name="Sand" color="#ffffda38" />
-    <Tile num="54" name="Glass" color="#40FFFFFF" />
+    <Tile num="53" name="Sand" color="#ffffda38" isSolid="true" />
+    <Tile num="54" name="Glass" color="#40FFFFFF" isSolid="true" />
     <Tile num="55" name="Sign" color="#ffFFAE5E" isFramed="true" />
-    <Tile num="56" name="Obsidian" color="#ff5751ad" />
-    <Tile num="57" name="Ash" color="#ff44444c" />
-    <Tile num="58" name="Hellstone" color="#ff662222" />
-    <Tile num="59" name="Mud" color="#ff5c4449" />
-    <Tile num="60" name="Jungle Grass" color="#ff8fd71d" />
+    <Tile num="56" name="Obsidian" color="#ff5751ad" isSolid="true" />
+    <Tile num="57" name="Ash" color="#ff44444c" isSolid="true" />
+    <Tile num="58" name="Hellstone" color="#ff662222" isSolid="true" />
+    <Tile num="59" name="Mud" color="#ff5c4449" isSolid="true" />
+    <Tile num="60" name="Jungle Grass" color="#ff8fd71d" isSolid="true" />
     <Tile num="61" name="Jungle Plants" color="#ff8fd71d" isFramed="true" />
     <Tile num="62" name="Jungle Vines" color="#ff8ace1c" />
-    <Tile num="63" name="Gem Sapphire" color="#ff2a82fa" />
-    <Tile num="64" name="Gem Ruby" color="#ff2a82fa" />
-    <Tile num="65" name="Gem Emerald" color="#ff2a82fa" />
-    <Tile num="66" name="Gem Topaz" color="#ff2a82fa" />
-    <Tile num="67" name="Gem Amethyst" color="#ff2a82fa" />
-    <Tile num="68" name="Gem Diamond" color="#ff2a82fa" />
+    <Tile num="63" name="Gem Sapphire" color="#ff2a82fa" isSolid="true" />
+    <Tile num="64" name="Gem Ruby" color="#ff2a82fa" isSolid="true" />
+    <Tile num="65" name="Gem Emerald" color="#ff2a82fa" isSolid="true" />
+    <Tile num="66" name="Gem Topaz" color="#ff2a82fa" isSolid="true" />
+    <Tile num="67" name="Gem Amethyst" color="#ff2a82fa" isSolid="true" />
+    <Tile num="68" name="Gem Diamond" color="#ff2a82fa" isSolid="true" />
     <Tile num="69" name="Jungle Thorns" color="#ff5e3037" />
-    <Tile num="70" name="Mushroom Grass" color="#ff5d7fff" />
+    <Tile num="70" name="Mushroom Grass" color="#ff5d7fff" isSolid="true" />
     <Tile num="71" name="Mushroom Plants" color="#ffb1ae83" isFramed="true" />
     <Tile num="72" name="Mushroom Trees" color="#ff968f6e" isFramed="true" />
     <Tile num="73" name="Plants2" color="#ff0d6524" isFramed="true" />
     <Tile num="74" name="Plants3" color="#ff0d6524" isFramed="true" />
-    <Tile num="75" name="Block Obsidian" color="#ffb200ff" />
-    <Tile num="76" name="Block Hellstone" color="#ffC6001D" />
+    <Tile num="75" name="Block Obsidian" color="#ffb200ff" isSolid="true" />
+    <Tile num="76" name="Block Hellstone" color="#ffC6001D" isSolid="true" />
     <Tile num="77" name="Hellforge" color="#ffD50010" isFramed="true" />
     <Tile num="78" name="Decorative Pot" color="#ff00fff2" />
     <Tile num="79" name="Bed" color="#ff00fff2" isFramed="true" />
@@ -96,8 +96,8 @@
     <Tile num="84" name="Herbs" color="#ffff7800" isFramed="true" />
     <Tile num="85" name="Tombstone" color="#ffc0c0c0" isFramed="true" />
     <Tile num="86" name="Loom" color="#ffff00ff" isFramed="true" />
-    <Tile num="87" name="Piano" color="#ff00fff2" isFramed="true" />
-    <Tile num="88" name="Dresser" color="#ff00fff2" isFramed="true" />
+    <Tile num="87" name="Piano" color="#ff00fff2" isFramed="true" isSolidTop="true" />
+    <Tile num="88" name="Dresser" color="#ff00fff2" isFramed="true" isSolidTop="true" />
     <Tile num="89" name="Bench" color="#ff00fff2" isFramed="true" />
     <Tile num="90" name="Bathtub" color="#ff00fff2" isFramed="true" />
     <Tile num="91" name="Banner" color="#ff00fff2" isFramed="true" />
@@ -110,7 +110,7 @@
     <Tile num="98" name="Skull Lantern" color="#ffff00ff" isFramed="true" />
     <Tile num="99" name="UNKNOWN" color="#ffff00D0" isFramed="true" />
     <Tile num="100" name="Candelabra" color="#ffff00ff" isFramed="true" />
-    <Tile num="101" name="Bookcase" color="#ffff00ff" isFramed="true" />
+    <Tile num="101" name="Bookcase" color="#ffff00ff" isFramed="true" isSolidTop="true" />
     <Tile num="102" name="Throne" color="#ffff00ff" isFramed="true" />
     <Tile num="104" name="GrandFather Clock" color="#ffff00ff" isFramed="true" />
     <Tile num="105" name="Statue" color="#ff00fff2" isFramed="true" />
