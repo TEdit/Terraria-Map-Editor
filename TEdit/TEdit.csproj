@@ -273,6 +273,7 @@
   <ItemGroup>
     <Content Include="settings.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
     </Content>
     <Resource Include="Images\tedit.ico" />
     <Resource Include="Images\Overlays\dungeon_marker.png" />
