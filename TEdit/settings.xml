@@ -28,7 +28,7 @@
     <Tile num="16" name="Anvil" color="#ff00fff2" isFramed="true" isSolidTop="true" />
     <Tile num="17" name="Furnace" color="#ff00fff2" isFramed="true" />
     <Tile num="18" name="Workbench" color="#ff00fff2" isFramed="true" isSolidTop="true" />
-    <Tile num="19" name="Wooden Platform" color="#ff6B3A18" isSolidTop="true" />
+    <Tile num="19" name="Wooden Platform" color="#ff6B3A18" isSolid="true" isSolidTop="true" />
     <Tile num="20" name="Decorative Plants" color="#ff0d6524" isFramed="true" />
     <Tile num="21" name="Chest" color="#ffDDB800" isFramed="true" />
     <Tile num="22" name="Demonite" color="#ff625fa7" isSolid="true" />
@@ -87,7 +87,7 @@
     <Tile num="75" name="Block Obsidian" color="#ffb200ff" isSolid="true" />
     <Tile num="76" name="Block Hellstone" color="#ffC6001D" isSolid="true" />
     <Tile num="77" name="Hellforge" color="#ffD50010" isFramed="true" />
-    <Tile num="78" name="Decorative Pot" color="#ff00fff2" />
+    <Tile num="78" name="Decorative Pot" color="#ff00fff2" isFramed="true" />
     <Tile num="79" name="Bed" color="#ff00fff2" isFramed="true" />
     <Tile num="80" name="Cactus" color="#ff00a500" />
     <Tile num="81" name="Coral" color="#ffe55340" isFramed="true" />
@@ -112,6 +112,7 @@
     <Tile num="100" name="Candelabra" color="#ffff00ff" isFramed="true" />
     <Tile num="101" name="Bookcase" color="#ffff00ff" isFramed="true" isSolidTop="true" />
     <Tile num="102" name="Throne" color="#ffff00ff" isFramed="true" />
+    <Tile num="103" name="UNKNOWN" color="#ffff00ff" isFramed="true" />
     <Tile num="104" name="GrandFather Clock" color="#ffff00ff" isFramed="true" />
     <Tile num="105" name="Statue" color="#ff00fff2" isFramed="true" />
     <Tile num="106" name="Sawmill" color="#ff00fff2" isFramed="true" />
@@ -132,11 +133,11 @@
     <Wall num="12" name="WallCopper" color="#ff3F1907" isHouse="true" />
     <Wall num="13" name="WallHellstone" color="#ff3F0707" />
     <Wall num="14" name="WallObsidian" color="#ff000060" />
-    <Wall num="15" name="WallPlayerMud" color="#ff005500" />
+    <Wall num="15" name="WallMud" color="#ff005500" />
     <Wall num="16" name="WallPlayerDirt" color="#ff583d2e" isHouse="true"  />
-    <Wall num="17" name="WallUNKNOWN" color="#ffFF00DC" isHouse="true"  />
-    <Wall num="18" name="WallUNKNOWN" color="#ffFF00DC" isHouse="true"  />
-    <Wall num="19" name="WallUNKNOWN" color="#ffFF00DC" isHouse="true"  />
+    <Wall num="17" name="WallPlayerBlue" color="#ff000043" isHouse="true"  />
+    <Wall num="18" name="WallPlayerGreen" color="#ff003700" isHouse="true"  />
+    <Wall num="19" name="WallPlayerPink" color="#ff330037" isHouse="true"  />
     <Wall num="20" name="WallPlayerObsidian" color="#ff000060" isHouse="true"  />
   </Walls>
   <Items>
