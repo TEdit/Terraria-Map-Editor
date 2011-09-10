@@ -108,11 +108,11 @@
     <Tile num="96" name="Cooking Pot" color="#ff00fff2" isFramed="true" />
     <Tile num="97" name="Safe" color="#ffff00ff" isFramed="true" />
     <Tile num="98" name="Skull Lantern" color="#ffff00ff" isFramed="true" />
-    <Tile num="99" name="UNKNOWN" color="#ffff00D0" isFramed="true" />
+    <Tile num="99" name="Trash Can" color="#ffff00D0" isFramed="true" />
     <Tile num="100" name="Candelabra" color="#ffff00ff" isFramed="true" />
     <Tile num="101" name="Bookcase" color="#ffff00ff" isFramed="true" isSolidTop="true" />
     <Tile num="102" name="Throne" color="#ffff00ff" isFramed="true" />
-    <Tile num="103" name="UNKNOWN" color="#ffff00ff" isFramed="true" />
+    <Tile num="103" name="Plate" color="#ffff00ff" isFramed="true" />
     <Tile num="104" name="GrandFather Clock" color="#ffff00ff" isFramed="true" />
     <Tile num="105" name="Statue" color="#ff00fff2" isFramed="true" />
     <Tile num="106" name="Sawmill" color="#ff00fff2" isFramed="true" />
