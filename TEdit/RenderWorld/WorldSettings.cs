@@ -58,7 +58,7 @@ namespace TEdit.RenderWorld
                 curTile.GrowsOn         = (byte[])tile.Attribute("growsOn").ToString.Split( new[] { ', ', ',' } ) ?? new[] {};
                 curTile.HangsOn         = (byte[])tile.Attribute("hangsOn").ToString.Split( new[] { ', ', ',' } ) ?? new[] {};
                 
-                curTile.Size            = new SizeProperty(string)tile.Attribute("size"));
+                curTile.Size            = new SizeProperty((string)tile.Attribute("size"));
                 curTile.Placement       = new PlacementProperty((string)tile.Attribute("placement"));
                 
                 if (curTile.IsFramed) {
@@ -83,11 +83,11 @@ namespace TEdit.RenderWorld
                         
                         curFrame.Color           = (Color?)ColorConverter.ConvertFromString((string)frame.Attribute("color")) ;
         
-                        curFrame.GrowsOn         = (byte[])frame.Attribute("growsOn").ToString.Split( new[] { ', ', ',' } );
-                        curFrame.HangsOn         = (byte[])frame.Attribute("hangsOn").ToString.Split( new[] { ', ', ',' } );
+                        curFrame.GrowsOn         = frame.Attribute("growsOn") ? (byte[])frame.Attribute("growsOn").ToString.Split( new[] { ', ', ',' } ) : null;
+                        curFrame.HangsOn         = frame.Attribute("hangsOn") ? (byte[])frame.Attribute("hangsOn").ToString.Split( new[] { ', ', ',' } ) : null;
                         
-                        curFrame.Size            = new SizeProperty(string?)frame.Attribute("size"));
-                        curFrame.Placement       = new PlacementProperty((string?)frame.Attribute("placement"));
+                        curFrame.Size            = frame.Attribute("size")      ? new      SizeProperty((string)frame.Attribute("size"))      : null;
+                        curFrame.Placement       = frame.Attribute("placement") ? new PlacementProperty((string)frame.Attribute("placement")) : null;
                         
                     }
                     
