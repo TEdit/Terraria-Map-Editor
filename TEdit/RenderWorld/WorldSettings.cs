@@ -67,6 +67,8 @@ namespace TEdit.RenderWorld
                     foreach (var frame in tile.Elements("Frame"))
                     {
                         var curFrame = curTile.Frames[(int)frame.Attribute("num")];
+                        
+                        curFrame.Parent = curTile;
         
                         curFrame.IsSolid         = (bool?)frame.Attribute("isSolid");
                         curFrame.IsSolidTop      = (bool?)frame.Attribute("isSolidTop");
@@ -106,7 +108,7 @@ namespace TEdit.RenderWorld
             {
                 var curItem = new ItemProperty
                 {   
-                    Id   = (int)    item.Attribute("num"), 
+                    ID   = (int)    item.Attribute("num"), 
                     Name = (string) item.Attribute("name"),
                     Type = (string) item.Attribute("type")
                 };
