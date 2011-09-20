@@ -13,7 +13,7 @@ namespace TEdit.RenderWorld
         private static readonly TileProperty[] _tiles = new TileProperty[byte.MaxValue + 1];
         private static readonly ColorProperty[] _walls = new ColorProperty[byte.MaxValue + 1];
         private static readonly Dictionary<string, Color> _globals = new Dictionary<string, Color>();
-        private static readonly ObservableCollection<string> _items = new ObservableCollection<string>();
+        private static readonly ObservableCollection<ItemProperty> _items = new ObservableCollection<ItemProperty>();
 
         static WorldSettings()
         {
@@ -41,11 +41,56 @@ namespace TEdit.RenderWorld
             {
                 var curTile = _tiles[(int)tile.Attribute("num")];
 
-                curTile.IsFramed = ((bool?)tile.Attribute("isFramed") ?? false);
-                curTile.IsSolid = ((bool?)tile.Attribute("isSolid") ?? false);
-                curTile.IsSolidTop = ((bool?)tile.Attribute("isSolidTop") ?? false);
-                curTile.Name = (string)tile.Attribute("name");
-                curTile.Color = (Color)ColorConverter.ConvertFromString((string)tile.Attribute("color")) ;
+                curTile.IsFramed        = ((bool?)tile.Attribute("isFramed")     ?? false);
+                curTile.IsSolid         = ((bool?)tile.Attribute("isSolid")      ?? false);
+                curTile.IsSolidTop      = ((bool?)tile.Attribute("isSolidTop")   ?? false);
+                curTile.IsHouseItem     = ((bool?)tile.Attribute("isHouseItem")  ?? false);
+                curTile.CanMixFrames    = ((bool?)tile.Attribute("canMixFrames") ?? false);
+                curTile.Name            = (string)tile.Attribute("name");
+                curTile.Variety         = (string)tile.Attribute("variety");
+                curTile.Dir             = (char)tile.Attribute("dir");
+                
+                curTile.LightBrightness = (byte)tile.Attribute("lightBrightness").ToString.Replace('%','');
+                curTile.ContactDmg      = (ushort)tile.Attribute("contactDmg");
+                
+                curTile.Color           = (Color)ColorConverter.ConvertFromString((string)tile.Attribute("color")) ;
+
+                curTile.GrowsOn         = (byte[])tile.Attribute("growsOn").ToString.Split( new[] { ', ', ',' } ) ?? new[] {};
+                curTile.HangsOn         = (byte[])tile.Attribute("hangsOn").ToString.Split( new[] { ', ', ',' } ) ?? new[] {};
+                
+                curTile.Size            = new SizeProperty(string)tile.Attribute("size"));
+                curTile.Placement       = new PlacementProperty((string)tile.Attribute("placement"));
+                
+                if (curTile.IsFramed) {
+
+                    // read frames
+                    foreach (var frame in tile.Elements("Frame"))
+                    {
+                        var curFrame = curTile.Frames[(int)frame.Attribute("num")];
+        
+                        curFrame.IsSolid         = (bool?)frame.Attribute("isSolid");
+                        curFrame.IsSolidTop      = (bool?)frame.Attribute("isSolidTop");
+                        curFrame.IsHouseItem     = (bool?)frame.Attribute("isHouseItem");
+                        curFrame.CanMixFrames    = (bool?)frame.Attribute("canMixFrames");
+                        curFrame.Name            = (string?)frame.Attribute("name");
+                        curFrame.Variety         = (string?)frame.Attribute("variety");
+                        curFrame.Dir             = (char?)frame.Attribute("dir");
+                        
+                        curFrame.LightBrightness = (byte?)frame.Attribute("lightBrightness").ToString.Replace('%','');
+                        curFrame.ContactDmg      = (ushort?)frame.Attribute("contactDmg");
+                        
+                        curFrame.Color           = (Color?)ColorConverter.ConvertFromString((string)frame.Attribute("color")) ;
+        
+                        curFrame.GrowsOn         = (byte[])frame.Attribute("growsOn").ToString.Split( new[] { ', ', ',' } );
+                        curFrame.HangsOn         = (byte[])frame.Attribute("hangsOn").ToString.Split( new[] { ', ', ',' } );
+                        
+                        curFrame.Size            = new SizeProperty(string?)frame.Attribute("size"));
+                        curFrame.Placement       = new PlacementProperty((string?)frame.Attribute("placement"));
+                        
+                    }
+                    
+                }
+                
             }
 
             // read walls
@@ -59,12 +104,14 @@ namespace TEdit.RenderWorld
             // read items
             foreach (var item in xmlSettings.Elements("Items").Elements("Item"))
             {
-                //var curItem = new ItemProperty
-                //{   
-                //    Id = (int) item.Attribute("num"), 
-                //    Name = (string) item.Attribute("name")
-                //};
-                _items.Add((string)item.Attribute("name"));
+                var curItem = new ItemProperty
+                {   
+                    Id   = (int)    item.Attribute("num"), 
+                    Name = (string) item.Attribute("name"),
+                    Type = (string) item.Attribute("type")
+                };
+                
+                _items.Add(curItem);
             }
 
             // read global colors
@@ -74,7 +121,7 @@ namespace TEdit.RenderWorld
             }
         }
 
-        public static ObservableCollection<string> Items
+        public static ObservableCollection<ItemProperty> Items
         {
             get { return _items; }
         }
