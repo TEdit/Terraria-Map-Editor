@@ -29,8 +29,11 @@ namespace TEdit.RenderWorld
             {
                 if (!_Frames.Equal(value))
                 {
-                    _Frames.ClearItems();
-                    foreach (FrameProperty f in value) { _Frames.Add(f); }
+                    _Frames.Clear();
+                    foreach (FrameProperty f in value) {
+                        f.Parent = this;
+                        _Frames.Add(f);
+                    }
                     RaisePropertyChanged("Frames");
                 }
             }
@@ -43,18 +46,19 @@ namespace TEdit.RenderWorld
     public class FrameProperty : TileFrameProperty {}
 
     // Common items for both Tile and Frame tags, with parental inherience
+    // (Using the public object for the set method, so that value ?? parent == parent will not change anything)
     [Serializable]
     public class TileFrameProperty : ColorProperty
     {
-        private bool _isSolid;
+        private bool _IsSolid;
         public bool IsSolid
         {
-            get { return _isSolid ?? (this.Parent ? this.Parent.IsSolid : null); }
+            get { return _IsSolid ?? (this.Parent ? this.Parent.IsSolid : null); }
             set
             {
-                if (_isSolid != value)
+                if (IsSolid != value)
                 {
-                    _isSolid = value;
+                    _IsSolid = value;
                     RaisePropertyChanged("IsSolid");
                 }
             }
@@ -66,7 +70,7 @@ namespace TEdit.RenderWorld
             get { return _IsSolidTop ?? (this.Parent ? this.Parent.IsSolidTop : null); }
             set
             {
-                if (_IsSolidTop != value)
+                if (IsSolidTop != value)
                 {
                     _IsSolidTop = value;
                     RaisePropertyChanged("IsSolidTop");
@@ -80,9 +84,9 @@ namespace TEdit.RenderWorld
             get { return _IsHouseItem ?? (this.Parent ? this.Parent.IsHouseItem : null); }
             set
             {
-                if (_IsHouseItem != value)
+                if (IsHouseItem != value)
                 {
-                    _IsHouseItem = value;
+                    IsHouseItem = value;
                     RaisePropertyChanged("IsHouseItem");
                 }
             }
@@ -94,7 +98,7 @@ namespace TEdit.RenderWorld
             get { return _CanMixFrames ?? (this.Parent ? this.Parent.CanMixFrames : null); }
             set
             {
-                if (_CanMixFrames != value)
+                if (CanMixFrames != value)
                 {
                     _CanMixFrames = value;
                     RaisePropertyChanged("CanMixFrames");
@@ -108,7 +112,7 @@ namespace TEdit.RenderWorld
             get { return _Variety ?? (this.Parent ? this.Parent.Variety : null); }
             set
             {
-                if (_Variety != value)
+                if (Variety != value)
                 {
                     _Variety = value;
                     RaisePropertyChanged("Variety");
@@ -122,7 +126,7 @@ namespace TEdit.RenderWorld
             get { return _Dir ?? (this.Parent ? this.Parent.Dir : null); }
             set
             {
-                if (_Dir != value)
+                if (Dir != value)
                 {
                     _Dir = value;
                     RaisePropertyChanged("Dir");
@@ -135,7 +139,8 @@ namespace TEdit.RenderWorld
             get { return _GrowsOn ?? (this.Parent ? this.Parent.GrowsOn : null); }
             set
             {
-                if (!_GrowsOn.Equals(value))
+                
+                if (!GrowsOn.Equals(value.Count ? value : null))
                 {
                     _GrowsOn = value;
                     RaisePropertyChanged("GrowsOn");
@@ -149,7 +154,7 @@ namespace TEdit.RenderWorld
             get { return _HangsOn ?? (this.Parent ? this.Parent.HangsOn : null); }
             set
             {
-                if (!_HangsOn.Equals(value))
+                if (!HangsOn.Equals(value.Count ? value : null))
                 {
                     _HangsOn = value;
                     RaisePropertyChanged("HangsOn");
@@ -163,9 +168,9 @@ namespace TEdit.RenderWorld
             get { return _LightBrightness ?? (this.Parent ? this.Parent.LightBrightness : null); }
             set
             {
-                if (_LightBrightness != ToByte(value))
+                if (LightBrightness != (byte)value)
                 {
-                    _LightBrightness = ToByte(value);
+                    _LightBrightness = (byte)value;
                     RaisePropertyChanged("LightBrightness");
                 }
             }
@@ -177,9 +182,9 @@ namespace TEdit.RenderWorld
             get { return _ContactDmg ?? (this.Parent ? this.Parent.ContactDmg : null); }
             set
             {
-                if (_ContactDmg != ToByte(value))
+                if (ContactDmg != (ushort)value)
                 {
-                    _ContactDmg = ToByte(value);
+                    _ContactDmg = (ushort)value;
                     RaisePropertyChanged("ContactDmg");
                 }
             }
@@ -191,7 +196,7 @@ namespace TEdit.RenderWorld
             get { return _Size ?? (this.Parent ? this.Parent.Size : null); }
             set
             {
-                if (!_Size.Equal(value))
+                if (!Size.Equal(value))
                 {
                     _Size = value;
                     RaisePropertyChanged("Size");
@@ -205,7 +210,7 @@ namespace TEdit.RenderWorld
             get { return _UpperLeft ?? (this.Parent ? this.Parent.UpperLeft : null); }
             set
             {
-                if (!_UpperLeft.Equal(value))
+                if (!UpperLeft.Equal(value))
                 {
                     _UpperLeft = value;
                     RaisePropertyChanged("UpperLeft");
@@ -219,7 +224,7 @@ namespace TEdit.RenderWorld
             get { return _Placement ?? (this.Parent ? this.Parent.Placement : null); }
             set
             {
-                if (!_Placement.Equal(value))
+                if (!Placement.Equal(value))
                 {
                     _Placement = value;
                     RaisePropertyChanged("Placement");
@@ -231,34 +236,48 @@ namespace TEdit.RenderWorld
             get { return (this.Parent ? this.Parent.FullID + '.' : '') + this.ID.ToString(); }
             set {}
         }
+        
+        // This is basically just a placeholder for an object ref; hopefully object is generic enough...
+        private object _Parent;
+        public object Parent {
+            get { return _Parent; }
+            set { 
+                if (!_Parent.Equal(value))
+                {
+                    _Parent = value;
+                    RaisePropertyChanged("Parent");
+                }                
+            }
+        }
+        
     }
 
     [Serializable]
     public class ItemProperty : ObservableObject
     {
-        private int _id;
-        public int Id
+        private ushort _ID;
+        public ushort ID
         {
-            get { return _id; }
+            get { return _ID; }
             set
             {
-                if (_id != value)
+                if (_ID != value)
                 {
-                    _id = value;
-                    RaisePropertyChanged("Id");
+                    _ID = value;
+                    RaisePropertyChanged("ID");
                 }
             }
         }
 
-        private string _name;
+        private string _Name;
         public string Name
         {
-            get { return _name; }
+            get { return _Name; }
             set
             {
-                if (_name != value)
+                if (_Name != value)
                 {
-                    _name = value;
+                    _Name = value;
                     RaisePropertyChanged("Name");
                 }
             }
@@ -272,11 +291,14 @@ namespace TEdit.RenderWorld
             {
                 if (_Type != value)
                 {
-                    _Type = value.ToLower;
+                    _Type = (string)value.ToLower;
                     RaisePropertyChanged("Type");
                 }
             }
         }
+
+        // (Should fix any old code trying use this like a string...)
+        public override string ToString() { return Name; }
     }
 
     [Serializable]
@@ -356,14 +378,14 @@ namespace TEdit.RenderWorld
         public SizeProperty(string WxH)
         {
             string[] WH = WxH.Split( new[] { 'x', ', ', ',' } );
-            _W = byte.Parse(WH[0]);
-            _H = byte.Parse(WH[1]);
+            _W = byte.Parse(WH[0] ?? 1);
+            _H = byte.Parse(WH[1] ?? 1);
         }
 
         public SizeProperty(byte W, byte H)
         {
-            _W = W;
-            _H = H;
+            _W = W ?? 1;
+            _H = H ?? 1;
         }
 
         public byte W
@@ -412,14 +434,14 @@ namespace TEdit.RenderWorld
         public XYProperty(string XxY)
         {
             string[] XY = XxY.Split( new[] { ', ', ',', 'x' } );
-            _X = int.Parse(XY[0]);
-            _Y = int.Parse(XY[1]);
+            _X = int.Parse(XY[0] ?? 0);
+            _Y = int.Parse(XY[1] ?? 0);
         }
 
         public XYProperty(int X, int Y)
         {
-            _X = X;
-            _Y = Y;
+            _X = X ?? 0;
+            _Y = Y ?? 0;
         }
 
         public byte X
