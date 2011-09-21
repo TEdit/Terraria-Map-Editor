@@ -151,7 +151,7 @@ A Frame tag has the following (other) properties:
       direction.  So, all of the objects on the first row, then the second, etc.  Frame numbers are
       only to be unique among its siblings, not other tags in different tiles.  Frame tags may be
       referred to directly as "45.03", meaning Tile 45, Frame 03.  (So far, no property has
-      required us to refer to a frame directly, but the standard still exists for future use.)
+      required us to refer to a frame size, but the standard still exists for future use.)
       
  * upperLeft - Required (even if default); default is 0,0.  This is the X,Y coordinates of the
       upper-left corner of the Frame object.  Frame coordinates directly relate to the Tile_??.xnb
@@ -445,27 +445,27 @@ Single item; tag has no children.  Has the following properties:
         <Frame name="Default" height="2" width="3" upperLeft="0,0" />
       </Frames>
     </Tile>
-    <Tile num="27" name="Sunflower" color="#ffc4ff14" isFramed="true" size="2x4" growsOn="2">
+    <Tile num="27" name="Sunflower" color="#ffc4ff14" isFramed="true" growsOn="2">
       <Frames>
         <Frame height="4" width="2" upperLeft="0,0" variety="A" />
         <Frame height="4" width="2" upperLeft="18,0" variety="B" />
         <Frame height="4" width="2" upperLeft="36,0" variety="C" />
       </Frames>
     </Tile>
-    <Tile num="28" name="Pot" color="#ff8c2726" isFramed="true" size="2x2" placement="floor" canMixFrames="true">
+    <Tile num="28" name="Pot" color="#ff8c2726" isFramed="true" placement="floor" canMixFrames="true">
       <Frames>
         <Frame height="2" width="2" upperLeft="0,0" variety="Oval" />
         <Frame height="2" width="2" upperLeft="36,0" variety="Wide" />
         <Frame height="2" width="2" upperLeft="72,0" variety="Round" />
       </Frames>
     </Tile>
-    <Tile num="29" name="Piggy Bank" color="#ff00fff2" isFramed="true" size="2x1" placement="surface">
+    <Tile num="29" name="Piggy Bank" color="#ff00fff2" isFramed="true" placement="surface">
       <Frames>
         <Frame name="Default" height="1" width="2" upperLeft="0,0" />
       </Frames>
     </Tile>
     <Tile num="30" name="Wood Block" color="#ff684934" isSolid="true" />
-    <Tile num="31" name="Shadow Orb" color="#ff000000" isFramed="true" size="2x2" placement="floor">
+    <Tile num="31" name="Shadow Orb" color="#ff000000" isFramed="true" placement="floor">
       <Frames>
         <Frame name="Default" height="2" width="2" upperLeft="0,0" />
       </Frames>
@@ -492,7 +492,11 @@ Single item; tag has no children.  Has the following properties:
     <Tile num="39" name="Red Brick" color="#ffb200ff" isSolid="true" />
     <Tile num="40" name="Clay" color="#ffac5b4d" isSolid="true" />
     <Tile num="41" name="Blue Dungeon Brick" color="#ff545498" isSolid="true" />
-    <Tile num="42" name="Chain Lantern" color="#ffef904b" isFramed="true" size="1x2" placement="ceiling" />
+    <Tile num="42" name="Chain Lantern" color="#ffef904b" isFramed="true" placement="ceiling">
+      <Frames>
+        <Frame name="Default" height="2" width="1" upperLeft="0,0" />
+      </Frames>
+    </Tile>
     <Tile num="43" name="Green Dungeon Brick" color="#ff39a851" isSolid="true" />
     <Tile num="44" name="Pink Dungeon Brick" color="#ffb200ff" isSolid="true" />
     <Tile num="45" name="Gold Brick" color="#ffffd514" isSolid="true" />
@@ -514,7 +518,11 @@ Single item; tag has no children.  Has the following properties:
     <Tile num="52" name="Vines" color="#ff0d6524" hangsOn="2" />
     <Tile num="53" name="Sand" color="#ffffda38" isSolid="true" />
     <Tile num="54" name="Glass" color="#40ffffff" isSolid="true" />
-    <Tile num="55" name="Sign" color="#ffffae5e" isFramed="true" size="2x2" placement="wallFloorCeiling" />
+    <Tile num="55" name="Sign" color="#ffffae5e" isFramed="true" placement="wallFloorCeiling" >
+      <Frames>
+        <Frame name="Default" height="2" width="2" upperLeft="0,0" />
+      </Frames>
+    </Tile>
     <Tile num="56" name="Obsidian" color="#ff5751ad" isSolid="true" />
     <Tile num="57" name="Ash" color="#ff44444c" isSolid="true" />
     <Tile num="58" name="Hellstone" color="#ff662222" isSolid="true" contactDmg="20" />
@@ -643,7 +651,11 @@ Single item; tag has no children.  Has the following properties:
         <Frame upperLeft="90,0" name="Fireblossom" growsOn="57,76,78" />
       </Frames>
     </Tile>
-    <Tile num="85" name="Tombstone" color="#ffc0c0c0" isFramed="true" size="2x2" placement="floor" />
+    <Tile num="85" name="Tombstone" color="#ffc0c0c0" isFramed="true" placement="floor">
+      <Frames>
+        <Frame name="Default" height="2" width="2" upperLeft="0,0" />
+      </Frames>
+    </Tile>
     <Tile num="86" name="Loom" color="#ffff00ff" isFramed="true" placement="floor">
       <Frames>
         <Frame name="Default" height="2" width="3" upperLeft="0,0" />
@@ -726,7 +738,7 @@ Single item; tag has no children.  Has the following properties:
         <Frame name="Default" height="4" width="3" upperLeft="0,0" />
       </Frames>
     </Tile>
-    <Tile num="102" name="Throne" color="#ffff00ff" isFramed="true" size="3x4" placement="floor" isHouseItem="true">
+    <Tile num="102" name="Throne" color="#ffff00ff" isFramed="true" placement="floor" isHouseItem="true">
       <Frames>
         <Frame name="Default" height="4" width="3" upperLeft="0,0" />
       </Frames>
@@ -741,12 +753,12 @@ Single item; tag has no children.  Has the following properties:
         <Frame name="Default" height="5" width="2" upperLeft="0,0" />
       </Frames>
     </Tile>          
-    <Tile num="105" name="Statue" color="#ff00fff2" isFramed="true" size="2x3" placement="floor">
+    <Tile num="105" name="Statue" color="#ff00fff2" isFramed="true" placement="floor">
       <Frames>
         <Frame name="Default" height="3" width="2" upperLeft="0,0" />
       </Frames>
     </Tile>
-    <Tile num="106" name="Sawmill" color="#ff00fff2" isFramed="true" size="3x3" placement="floor">
+    <Tile num="106" name="Sawmill" color="#ff00fff2" isFramed="true" placement="floor">
       <Frames>
         <Frame name="Default" height="3" width="3" upperLeft="0,0" />
       </Frames>
