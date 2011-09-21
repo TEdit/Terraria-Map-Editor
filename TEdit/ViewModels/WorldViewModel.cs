@@ -610,7 +610,8 @@ namespace TEdit.ViewModels
             sfd.InitialDirectory = System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), @"My Games\Terraria\Worlds");
             if ((bool)sfd.ShowDialog())
             {
-                Task.Factory.StartNew(() => World.SaveFile(sfd.FileName));
+                Task.Factory.StartNew(() => World.SaveFile(sfd.FileName))
+                .ContinueWith(t=>CommandManager.InvalidateRequerySuggested(), _uiScheduler);
             }
         }
 
@@ -628,6 +629,7 @@ namespace TEdit.ViewModels
                                             img = null;
                                             RaisePropertyChanged("WorldZoomedHeight");
                                             RaisePropertyChanged("WorldZoomedWidth");
+                                            CommandManager.InvalidateRequerySuggested();
                                         });
            // }
            // catch (Exception)
@@ -651,6 +653,7 @@ namespace TEdit.ViewModels
                                                 img = null;
                                                 RaisePropertyChanged("WorldZoomedHeight");
                                                 RaisePropertyChanged("WorldZoomedWidth");
+                                                CommandManager.InvalidateRequerySuggested();
                                             });
                 }
             });
