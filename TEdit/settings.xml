@@ -683,10 +683,12 @@ Single item; tag has no children.  Has the following properties:
       </Frames>
     </Tile>
     <Tile num="91" name="Banner" color="#ff00fff2" isFramed="true" placement="ceiling">
-      <Frame height="3" width="1" upperLeft="0,0" name="Red Banner" />
-      <Frame height="3" width="1" upperLeft="18,0" name="Green Banner" />
-      <Frame height="3" width="1" upperLeft="36,0" name="Blue Banner" />
-      <Frame height="3" width="1" upperLeft="54,0" name="Yellow Banner" />
+      <Frames>
+        <Frame height="3" width="1" upperLeft="0,0" name="Red Banner" />
+        <Frame height="3" width="1" upperLeft="18,0" name="Green Banner" />
+        <Frame height="3" width="1" upperLeft="36,0" name="Blue Banner" />
+        <Frame height="3" width="1" upperLeft="54,0" name="Yellow Banner" />
+      </Frames>
     </Tile>
     <Tile num="92" name="Lamp Post" color="#ff00fff2" isFramed="true" placement="floor" lightBrightness="1.0">
       <Frames>
@@ -707,7 +709,7 @@ Single item; tag has no children.  Has the following properties:
       <Frames>
         <Frame name="Default" height="2" width="2" upperLeft="0,0" />
       </Frames>
-    </Tile>          
+    </Tile>
     <Tile num="96" name="Cooking Pot" color="#ff00fff2" isFramed="true" placement="floorSurface">
       <Frames>
         <Frame name="Default" height="2" width="2" upperLeft="0,0" />
@@ -752,7 +754,7 @@ Single item; tag has no children.  Has the following properties:
       <Frames>
         <Frame name="Default" height="5" width="2" upperLeft="0,0" />
       </Frames>
-    </Tile>          
+    </Tile>
     <Tile num="105" name="Statue" color="#ff00fff2" isFramed="true" placement="floor">
       <Frames>
         <Frame name="Default" height="3" width="2" upperLeft="0,0" />

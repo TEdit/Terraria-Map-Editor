@@ -32,6 +32,37 @@ namespace TEdit.TerrariaWorld.Structures
             return String.Format("({0}, {1})", X, Y);
         }
 
+        public static bool TryParse(string point, out PointShort pointShort)
+        {
+            short x = 0;
+            short y = 0;
+
+            if (string.IsNullOrWhiteSpace(point))
+            {
+                pointShort = new PointShort(x, y);
+                return false;
+            }
+
+            string[] split = point.Split(',');
+            if (split.Length == 2)
+            {
+                short.TryParse(split[0], out x);
+                short.TryParse(split[1], out y);
+                pointShort = new PointShort(x, y);
+                return true;
+            }
+
+            pointShort = new PointShort(x, y);
+            return false;
+        }
+
+        public static PointShort Parse(string point)
+        {
+            PointShort result;
+            TryParse(point, out result);
+            return result;
+        }
+
         #region Operator Overrides
 
         private static bool MatchFields(PointShort a, PointShort m)
@@ -45,7 +76,7 @@ namespace TEdit.TerrariaWorld.Structures
                 return false;
 
             if (obj is PointShort)
-                return MatchFields(this, (PointShort) obj);
+                return MatchFields(this, (PointShort)obj);
 
             return false;
         }
@@ -67,19 +98,19 @@ namespace TEdit.TerrariaWorld.Structures
 
         public static PointShort operator +(PointShort a, PointShort b)
         {
-            return new PointShort((short) (a.X + b.X), (short) (a.Y + b.Y));
+            return new PointShort((short)(a.X + b.X), (short)(a.Y + b.Y));
         }
 
         public static PointShort operator -(PointShort a, PointShort b)
         {
-            return new PointShort((short) (a.X - b.X), (short) (a.Y - b.Y));
+            return new PointShort((short)(a.X - b.X), (short)(a.Y - b.Y));
         }
 
         public override int GetHashCode()
         {
             int result = 13;
-            result = result*7 + X.GetHashCode();
-            result = result*7 + Y.GetHashCode();
+            result = result * 7 + X.GetHashCode();
+            result = result * 7 + Y.GetHashCode();
             return result;
         }
 

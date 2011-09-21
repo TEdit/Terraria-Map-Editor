@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Windows.Media;
 using System.Xml.Linq;
+using TEdit.TerrariaWorld.Structures;
 
 namespace TEdit.RenderWorld
 {
@@ -46,6 +47,20 @@ namespace TEdit.RenderWorld
                 curTile.IsSolidTop = ((bool?)tile.Attribute("isSolidTop") ?? false);
                 curTile.Name = (string)tile.Attribute("name");
                 curTile.Color = (Color)ColorConverter.ConvertFromString((string)tile.Attribute("color"));
+
+                if (tile.Elements().Any(x => x.Name == "Frames"))
+                {
+                    foreach (var frame in tile.Elements("Frames").Elements("Frame"))
+                    {
+                        var frameProperty = new FrameProperty();
+                        frameProperty.Direction = (string)frame.Attribute("dir");
+                        frameProperty.Name = (string)frame.Attribute("name");
+                        frameProperty.Variety = (string)frame.Attribute("variety");
+                        frameProperty.Size = new PointShort(((short?)tile.Attribute("width") ?? 1), ((short?)tile.Attribute("height") ?? 1));
+                        frameProperty.UpperLeft = PointShort.Parse((string)frame.Attribute("upperLeft"));
+                        curTile.Frames.Add(frameProperty);
+                    }
+                }
             }
 
             // read walls
