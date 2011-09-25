@@ -5,66 +5,30 @@ using TEdit.Common;
 namespace TEdit.RenderWorld
 {
     [Serializable]
-    public class ColorProperty : ObservableObject
+    public class ColorProperty : OOProperty
     {
-        private Color _color;
-        private byte _id;
-        private string _name;
 
         public ColorProperty()
         {
         }
 
-        public ColorProperty(byte id, Color color, string name)
+        public ColorProperty(byte id)
         {
-            _id = id;
-            _name = name;
-            _color = color;
+            ID = id;
+            Name = "UNKNOWN";
+            Color = Colors.Magenta;
         }
 
-        public byte ID
-        {
-            get { return _id; }
-            set
-            {
-                if (_id != value)
-                {
-                    _id = value;
-                    RaisePropertyChanged("ID");
-                }
-            }
-        }
-
-
-        public string Name
-        {
-            get { return _name; }
-            set
-            {
-                if (_name != value)
-                {
-                    _name = value;
-                    RaisePropertyChanged("Name");
-                }
-            }
-        }
-
-        public Color Color
+        private Color _color;
+        public virtual Color Color
         {
             get { return _color; }
-            set
-            {
-                if (_color != value)
-                {
-                    _color = value;
-                    RaisePropertyChanged("Color");
-                }
-            }
+            set { StandardSet<Color>(ref _color, ref value, "Color"); }
         }
 
         public override string ToString()
         {
-            return String.Format("{0}|{1}|#{2:x2}{3:x2}{4:x2}{5:x2}", ID, Name, Color.A, Color.R, Color.G, Color.B);
+            return String.Format("{0}|{1}|#{2:x2}{3:x2}{4:x2}{5:x2}", ID, this.Name, Color.A, Color.R, Color.G, Color.B);
         }
     }
 }

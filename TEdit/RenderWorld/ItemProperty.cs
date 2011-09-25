@@ -4,37 +4,15 @@ using TEdit.Common;
 namespace TEdit.RenderWorld
 {
     [Serializable]
-    public class ItemProperty : ObservableObject
+    public class ItemProperty : OOProperty
     {
-        private int _id;
-        public int Id
+        
+        private string _type;
+        public string Type
         {
-            get { return _id; }
-            set
-            {
-                if (_id != value)
-                {
-                    _id = value;
-                    RaisePropertyChanged("Id");
-                }
-            }
+            get { return _type; }
+            set { StandardSet<string>(ref _type, ref value, "Type"); }
         }
-
-        private string _name;
-        public string Name
-        {
-            get { return _name; }
-            set
-            {
-                if (_name != value)
-                {
-                    _name = value;
-                    RaisePropertyChanged("Name");
-                }
-            }
-        }
-
-
 
     }
 }

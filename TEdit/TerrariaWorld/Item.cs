@@ -62,7 +62,7 @@ namespace TEdit.TerrariaWorld
             }
         }
 
-        public ObservableCollection<string> ValidItems
+        public ObservableCollection<ItemProperty> ValidItems
         {
             get { return WorldSettings.Items; }
         }
