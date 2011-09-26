@@ -2,6 +2,7 @@
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq.Expressions;
+using System.Windows;
 
 //Event Design: http://msdn.microsoft.com/en-us/library/ms229011.aspx
 
@@ -51,6 +52,16 @@ namespace TEdit.Common
             if (TypeDescriptor.GetProperties(this)[propertyName] == null)
             {
                 Debug.Fail("Invalid property name: " + propertyName);
+            }
+        }
+
+        // Stop the madness of 8-line set methods for everything
+        public void StandardSet<T>(ref T priv, ref T val, string prop)
+        {
+            if (priv == null || !priv.Equals(val))
+            {
+                priv = val;
+                RaisePropertyChanged(prop);
             }
         }
     }

@@ -5,7 +5,7 @@ namespace TEdit.RenderWorld
     [Flags]
     public enum FramePlacement
     {
-        Any = 0x00,
+        None = 0x00,
         Floor,
         Surface,
         FloorSurface = Floor | Surface,
@@ -13,6 +13,9 @@ namespace TEdit.RenderWorld
         Wall,
         WallFloor = Floor | Wall,
         WallFloorCeiling = Floor | Ceiling | Wall,
-        CFBoth,
+        Float,
+        Any = Floor | Surface | Ceiling | Wall | Float,
+        MustHaveAll,
+        CFBoth = Ceiling | Floor | MustHaveAll,
     }
 }
