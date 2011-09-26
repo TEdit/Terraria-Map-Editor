@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Collections;
 
 namespace TEdit.Common
 {
@@ -30,10 +31,7 @@ namespace TEdit.Common
             if (ex is AggregateException)
             {
                 var e = ex as AggregateException;
-                foreach (var curE in e.Flatten().InnerExceptions)
-                {
-                    Log(String.Format("{0} - {1}\r\n{2}", ErrorLevel.Error, curE.Message, curE.StackTrace));
-                }                
+                foreach (var curE in e.Flatten().InnerExceptions) LogException(curE);
             }
             else if (ex is Exception)
             {

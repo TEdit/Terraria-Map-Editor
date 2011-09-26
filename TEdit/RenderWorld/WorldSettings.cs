@@ -6,6 +6,7 @@ using System.Linq;
 using System.Windows.Media;
 using System.Xml.Linq;
 using TEdit.TerrariaWorld.Structures;
+using System.Reflection;
 
 namespace TEdit.RenderWorld
 {
@@ -14,7 +15,7 @@ namespace TEdit.RenderWorld
         private static readonly TileProperty[] _tiles = new TileProperty[byte.MaxValue + 1];
         private static readonly ColorProperty[] _walls = new ColorProperty[byte.MaxValue + 1];
         private static readonly Dictionary<string, Color> _globals = new Dictionary<string, Color>();
-        private static readonly ObservableCollection<string> _items = new ObservableCollection<string>();
+        private static readonly ObservableCollection<ItemProperty> _items = new ObservableCollection<ItemProperty>();
 
         static WorldSettings()
         {
@@ -26,10 +27,10 @@ namespace TEdit.RenderWorld
         {
 
             // Populate Defaults
-            for (int i = 0; i <= byte.MaxValue; i++)
+            for (ushort i = 0; i <= byte.MaxValue; i++)
             {
-                _tiles[i] = new TileProperty { Color = Colors.Magenta, ID = (byte)i, Name = "UNKNOWN" };
-                _walls[i] = new ColorProperty { Color = Colors.Magenta, ID = (byte)i, Name = "UNKNOWN" };
+                _tiles[i] = new TileProperty((byte)i);
+                _walls[i] = new ColorProperty((byte)i);
             }
             _globals.Clear();
             _items.Clear();
@@ -43,23 +44,27 @@ namespace TEdit.RenderWorld
                 var curTile = _tiles[(int)tile.Attribute("num")];
 
                 curTile.IsFramed = ((bool?)tile.Attribute("isFramed") ?? false);
-                curTile.IsSolid = ((bool?)tile.Attribute("isSolid") ?? false);
-                curTile.IsSolidTop = ((bool?)tile.Attribute("isSolidTop") ?? false);
-                curTile.Name = (string)tile.Attribute("name");
-                curTile.Color = (Color)ColorConverter.ConvertFromString((string)tile.Attribute("color"));
+                curTile.CanMixFrames = ((bool?)tile.Attribute("canMixFrames") ?? false);
+                ParseCommonXML(ref curTile, tile);
 
                 if (tile.Elements().Any(x => x.Name == "Frames"))
                 {
+                    byte c = 0;
                     foreach (var frame in tile.Elements("Frames").Elements("Frame"))
                     {
-                        var frameProperty = new FrameProperty();
-                        frameProperty.Direction = (string)frame.Attribute("dir");
-                        frameProperty.Name = (string)frame.Attribute("name");
-                        frameProperty.Variety = (string)frame.Attribute("variety");
-                        frameProperty.Size = new PointShort(((short?)tile.Attribute("width") ?? 1), ((short?)tile.Attribute("height") ?? 1));
-                        frameProperty.UpperLeft = PointShort.Parse((string)frame.Attribute("upperLeft"));
-                        curTile.Frames.Add(frameProperty);
+                        var curFrame = new FrameProperty();
+                        curFrame.SetParent(ref curTile);
+                        curFrame.ID = c++;
+                        ParseCommonXML(ref curFrame, frame);
+                        curTile.Frames.Add(curFrame);
                     }
+                }
+                // Default Frame 0
+                else if (curTile.IsFramed)
+                {
+                    var curFrame = new FrameProperty();
+                    curFrame.SetParent(ref curTile);
+                    curTile.Frames.Add(curFrame);
                 }
             }
 
@@ -74,12 +79,11 @@ namespace TEdit.RenderWorld
             // read items
             foreach (var item in xmlSettings.Elements("Items").Elements("Item"))
             {
-                //var curItem = new ItemProperty
-                //{   
-                //    Id = (int) item.Attribute("num"), 
-                //    Name = (string) item.Attribute("name")
-                //};
-                _items.Add((string)item.Attribute("name"));
+                var curItem = new ItemProperty();
+                curItem.ID   = (int?)item.Attribute("num");
+                curItem.Name = (string)item.Attribute("name");
+                curItem.Type = (string)item.Attribute("type");
+                _items.Add(curItem);
             }
 
             // read global colors
@@ -89,7 +93,40 @@ namespace TEdit.RenderWorld
             }
         }
 
-        public static ObservableCollection<string> Items
+        private static void ParseCommonXML<T>(ref T curItem, XElement xml)
+        {
+            foreach (string prop in new[] { "name", "color", "variety", "dir", "upperLeft", "isSolid", "isSolidTop", "size", "placement", "lightBrightness" })
+            {
+                XAttribute xattr = xml.Attribute(prop);
+                if (xattr == null) continue;
+                string attr = (string)xattr;
+                string field = char.ToUpper(prop[0]) + prop.Substring(1);
+                if (prop == "dir") field = "Direction";  // exception
+                PropertyInfo p = typeof(T).GetProperty(field);
+
+                switch (prop)
+                {
+                    case "name":
+                    case "variety":
+                        p.SetValue(curItem, attr, null);
+                        break;
+                    case "upperLeft":
+                    case "size":
+                        p.SetValue(curItem, PointShort.Parse(attr), null);
+                        break;
+                    case "isSolid":
+                    case "isSolidTop":
+                        p.SetValue(curItem, (bool)xattr, null);
+                        break;
+                    case "color": p.SetValue(curItem, (Color)ColorConverter.ConvertFromString(attr), null); break;
+                    case "dir": p.SetValue(curItem, (FrameDirection)Enum.Parse(typeof(FrameDirection), attr), null); break;
+                    case "placement": p.SetValue(curItem, (FramePlacement)Enum.Parse(typeof(FramePlacement), char.ToUpper(attr[0]) + attr.Substring(1)), null); break;
+                    case "lightBrightness": p.SetValue(curItem, (byte)((float)xattr * 100), null); break;
+                }
+            }
+        }
+
+        public static ObservableCollection<ItemProperty> Items
         {
             get { return _items; }
         }

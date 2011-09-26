@@ -437,6 +437,7 @@ namespace TEdit.ViewModels
         public void GenNewWorld()
         {
             World.NewWorld(2000, 300);
+            RenderWorld();
         }
 
 
