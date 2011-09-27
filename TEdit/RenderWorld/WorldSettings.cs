@@ -118,10 +118,15 @@ namespace TEdit.RenderWorld
                     case "isSolidTop":
                         p.SetValue(curItem, (bool)xattr, null);
                         break;
+                    case "growsOn":
+                    case "hangsOn":
+                        p.SetValue(curItem, TileNumArray.Parse(attr), null);
+                        break;
                     case "color": p.SetValue(curItem, (Color)ColorConverter.ConvertFromString(attr), null); break;
                     case "dir": p.SetValue(curItem, (FrameDirection)Enum.Parse(typeof(FrameDirection), attr), null); break;
                     case "placement": p.SetValue(curItem, (FramePlacement)Enum.Parse(typeof(FramePlacement), char.ToUpper(attr[0]) + attr.Substring(1)), null); break;
                     case "lightBrightness": p.SetValue(curItem, (byte)((float)xattr * 100), null); break;
+                    case "contactDmg": p.SetValue(curItem, (ushort)(uint)xattr, null); break;
                 }
             }
         }

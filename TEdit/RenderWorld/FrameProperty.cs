@@ -26,74 +26,89 @@ namespace TEdit.RenderWorld
             return temp;
         }
 
-        // Must be here and referencing TileProperty to prevent circuir references within TileFrameProperty
+        // Must be here and referencing TileProperty to prevent circular references within TileFrameProperty
         // (this means some overrides below)
         private TileProperty _parent;
         public TileProperty Parent { get { return _parent; } }
         // Special SetParent method for ref passing
-        public void SetParent (ref TileProperty tile) { StandardSet<TileProperty>(ref _parent, ref tile, "Parent"); }
+        public void SetParent (ref TileProperty tile) { StandardSet(ref _parent, ref tile, "Parent"); }
 
         // InheritCheck overrides
         public override string Name
         {
-            get { return InheritCheck<string>(_name, "Name"); }
-            set { StandardSet<string>(ref _name, ref value, "Name"); }
+            get { return InheritCheck(_name, "Name"); }
+            set { StandardSet(ref _name, ref value, "Name"); }
         }
         public override Color Color {
-            get { return InheritCheck<Color>(_color, "Color"); }
-            set { StandardSet<Color>(ref _color, ref value, "Color"); }
+            get { return InheritCheck(_color, "Color"); }
+            set { StandardSet(ref _color, ref value, "Color"); }
         }
         public override bool IsSolid
         {
-            get { return InheritCheck<bool>(_isSolid, "IsSolid"); }
-            set { StandardSet<bool>(ref _isSolid, ref value, "IsSolid"); }
+            get { return InheritCheck(_isSolid, "IsSolid"); }
+            set { StandardSet(ref _isSolid, ref value, "IsSolid"); }
         }
         public override bool IsSolidTop
         {
-            get { return InheritCheck<bool>(_isSolidTop, "IsSolidTop"); }
-            set { StandardSet<bool>(ref _isSolidTop, ref value, "IsSolidTop"); }
+            get { return InheritCheck(_isSolidTop, "IsSolidTop"); }
+            set { StandardSet(ref _isSolidTop, ref value, "IsSolidTop"); }
         }
         public override bool IsHouseItem
         {
-            get { return InheritCheck<bool>(_isHouseItem, "IsHouseItem"); }
-            set { StandardSet<bool>(ref _isHouseItem, ref value, "IsHouseItem"); }
+            get { return InheritCheck(_isHouseItem, "IsHouseItem"); }
+            set { StandardSet(ref _isHouseItem, ref value, "IsHouseItem"); }
         }
         public override PointShort UpperLeft
         {
-            get { return InheritCheck<PointShort>(_upperLeft, "UpperLeft"); }
-            set { StandardSet<PointShort>(ref _upperLeft, ref value, "UpperLeft"); }
+            get { return InheritCheck(_upperLeft, "UpperLeft"); }
+            set { StandardSet(ref _upperLeft, ref value, "UpperLeft"); }
         }
         public override PointShort Size
         {
-            get { return InheritCheck<PointShort>(_size, "Size"); }
-            set { StandardSet<PointShort>(ref _size, ref value, "Size"); }
+            get { return InheritCheck(_size, "Size"); }
+            set { StandardSet(ref _size, ref value, "Size"); }
         }
         public override FrameDirection? Direction
         {
-            get { return InheritCheck<FrameDirection?>(_direction, "Direction"); }
-            set { StandardSet<FrameDirection?>(ref _direction, ref value, "Direction"); }
+            get { return InheritCheck(_direction, "Direction"); }
+            set { StandardSet(ref _direction, ref value, "Direction"); }
         }
         public override string Variety
         {
-            get { return InheritCheck<string>(_variety, "Variety"); }
-            set { StandardSet<string>(ref _variety, ref value, "Variety"); }
+            get { return InheritCheck(_variety, "Variety"); }
+            set { StandardSet(ref _variety, ref value, "Variety"); }
         }
         public override FramePlacement Placement
         {
-            get { return InheritCheck<FramePlacement>(_placement, "Placement"); }
-            set { StandardSet<FramePlacement>(ref _placement, ref value, "Placement"); }
+            get { return InheritCheck(_placement, "Placement"); }
+            set { StandardSet(ref _placement, ref value, "Placement"); }
         }
-        public virtual byte LightBrightness
+        public override TileNumArray GrowsOn
         {
-            get { return InheritCheck<byte>(_lightBrightness, "LightBrightness"); }
-            set { StandardSet<byte>(ref _lightBrightness, ref value, "LightBrightness"); }
+            get { return InheritCheck(_growsOn, "GrowsOn"); }
+            set { StandardSet(ref _growsOn, ref value, "GrowsOn"); }
+        }
+        public override TileNumArray HangsOn
+        {
+            get { return InheritCheck(_hangsOn, "HangsOn"); }
+            set { StandardSet(ref _hangsOn, ref value, "HangsOn"); }
+        }
+        public override byte LightBrightness
+        {
+            get { return InheritCheck(_lightBrightness, "LightBrightness"); }
+            set { StandardSet(ref _lightBrightness, ref value, "LightBrightness"); }
+        }
+        public override ushort ContactDmg
+        {
+            get { return InheritCheck(_contactDmg, "ContactDmg"); }
+            set { StandardSet(ref _contactDmg, ref value, "ContactDmg"); }
         }
 
         public override string ToString()
         {
             string n = Name;
-            if (!String.IsNullOrEmpty(Variety)) n += " - " + Variety;
-            if (!String.IsNullOrEmpty(((DisplayFrameDirection?)Direction).ToString())) n += " (" + ((DisplayFrameDirection?)Direction).ToString() + ")";
+            if (!String.IsNullOrWhiteSpace(Variety)) n += " - " + Variety;
+            if (!String.IsNullOrWhiteSpace(((DisplayFrameDirection?)Direction).ToString())) n += " (" + ((DisplayFrameDirection?)Direction).ToString() + ")";
 
             return n;
         }
