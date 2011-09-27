@@ -103,6 +103,7 @@
     <Compile Include="RenderWorld\ItemProperty.cs" />
     <Compile Include="RenderWorld\TileProperty.cs" />
     <Compile Include="RenderWorld\WorldImage.cs" />
+    <Compile Include="TerrariaWorld\Structures\TileNumArray.cs" />
     <Compile Include="TerrariaWorld\Structures\SizeInt32.cs" />
     <Compile Include="Tools\Clipboard\ClipboardBuffer.cs" />
     <Compile Include="Tools\Clipboard\ClipboardBuffer.File.cs" />

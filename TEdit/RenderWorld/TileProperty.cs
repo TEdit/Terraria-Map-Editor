@@ -30,25 +30,20 @@ namespace TEdit.RenderWorld
         public bool IsFramed
         {
             get { return _isFramed; }
-            set { StandardSet<bool>(ref _isFramed, ref value, "IsFramed"); }
+            set { StandardSet(ref _isFramed, ref value, "IsFramed"); }
         }
 
         private bool _canMixFrames;
         public bool CanMixFrames
         {
             get { return _canMixFrames; }
-            set { StandardSet<bool>(ref _canMixFrames, ref value, "CanMixFrames"); }
+            set { StandardSet(ref _canMixFrames, ref value, "CanMixFrames"); }
         }
 
         private readonly ObservableCollection<FrameProperty> _Frames = new ObservableCollection<FrameProperty>();
         public ObservableCollection<FrameProperty> Frames
         {
             get { return _Frames; }
-        }
-
-        public override string ToString()
-        {
-            return String.Format("{0}|{1}|#{2:x2}{3:x2}{4:x2}{5:x2}", ID, this.Name, Color.A, Color.R, Color.G, Color.B);
         }
 
     }

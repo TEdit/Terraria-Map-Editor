@@ -8,18 +8,18 @@ namespace TEdit.RenderWorld
     public class OOProperty : ObservableObject
     {
         
-        private int? _id;
-        public int? ID
+        protected internal int? _id;
+        public virtual int? ID
         {
             get { return _id; }
-            set { StandardSet<int?>(ref _id, ref value, "ID"); }
+            set { StandardSet(ref _id, ref value, "ID"); }
         }
 
-        private string _name;
-        public string Name
+        protected internal string _name;
+        public virtual string Name
         {
             get { return _name; }
-            set { StandardSet<string>(ref _name, ref value, "Name"); }
+            set { StandardSet(ref _name, ref value, "Name"); }
         }
 
         public override string ToString()
