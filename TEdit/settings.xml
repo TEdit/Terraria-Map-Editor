@@ -4,9 +4,9 @@
 Terraria Settings.XML Specifications
 ====================================
 Status:         Draft
-Version:        0.90
+Version:        0.92
 Compatible Ver: Terraria 1.0.6
-Last Updated:   2011-09-20
+Last Updated:   2011-09-26
 Primary URL:    https://github.com/BinaryConstruct/Terraria-Map-Editor/blob/master/TEdit/settings.xml
 ====================================
 
@@ -472,7 +472,7 @@ Single item; tag has no children.  Has the following properties:
     <Tile num="45" name="Gold Brick" color="#ffffd514" isSolid="true" />
     <Tile num="46" name="Silver Brick" color="#ffe5e5e5" isSolid="true" />
     <Tile num="47" name="Copper Brick" color="#ffff5900" isSolid="true" />
-    <Tile num="48" name="Spikes" color="#ff6d6d6d" isSolid="true" placement="floor" contactDmg="40" />
+    <Tile num="48" name="Spikes" color="#ff6d6d6d" isSolid="true" placement="wallFloorCeiling" contactDmg="40" />
     <Tile num="49" name="Water Candle" color="#ff2b8fff" placement="surface" lightBrightness="0.75" />
     <Tile num="50" name="Books" color="#ff00fff2" isFramed="true" placement="surface">
       <Frames>
