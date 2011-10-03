@@ -5,7 +5,7 @@ using TEdit.Common;
 namespace TEdit.RenderWorld
 {
     [Serializable]
-    public class ColorProperty : OOProperty
+    public class ColorProperty : TileItemBase
     {
 
         public ColorProperty()

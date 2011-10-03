@@ -95,7 +95,7 @@
     <Compile Include="Plugins\IPlugin.cs" />
     <Compile Include="Plugins\IPluginMetaData.cs" />
     <Compile Include="Plugins\SamplePlugin.cs" />
-    <Compile Include="RenderWorld\OOProperty.cs" />
+    <Compile Include="RenderWorld\TileItemBase.cs" />
     <Compile Include="RenderWorld\FrameDirection.cs" />
     <Compile Include="RenderWorld\TileFrameProperty.cs" />
     <Compile Include="RenderWorld\FramePlacement.cs" />

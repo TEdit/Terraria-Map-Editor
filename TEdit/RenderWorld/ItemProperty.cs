@@ -4,7 +4,7 @@ using TEdit.Common;
 namespace TEdit.RenderWorld
 {
     [Serializable]
-    public class ItemProperty : OOProperty
+    public class ItemProperty : TileItemBase
     {
         
         private string _type;

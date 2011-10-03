@@ -5,7 +5,7 @@ using TEdit.TerrariaWorld.Structures;
 namespace TEdit.RenderWorld
 {
     [Serializable]
-    public class TileFrameProperty : ColorProperty // : OOProperty : ObservableObject
+    public class TileFrameProperty : ColorProperty // : TileItemBase : ObservableObject
     {
 
         public override string Name

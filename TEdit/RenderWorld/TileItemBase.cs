@@ -5,7 +5,7 @@ namespace TEdit.RenderWorld
 {
     // Very basic stuff for most ObservableObjects
     [Serializable]
-    public class OOProperty : ObservableObject
+    public class TileItemBase : ObservableObject
     {
         
         protected internal int? _id;
@@ -26,6 +26,5 @@ namespace TEdit.RenderWorld
         {
             return Name;
         }
-
     }
 }
