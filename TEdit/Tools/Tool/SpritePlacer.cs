@@ -116,6 +116,25 @@ namespace TEdit.Tools.Tool
             }
         }
 
+        private void PlaceSprite(PointInt32 location, byte type, PointShort size, PointShort upperLeft = new PointShort())
+        {
+            for (int x = 0; x < size.X; x++)
+            {
+                for (int y = 0; y < size.Y; y++)
+                {
+                    var curTile = _world.Tiles[location.X + x, location.Y + y];
+                    curTile.Type = type;
+                    curTile.Frame = new PointShort((short)(upperLeft.X + (x * 18)), (short)(upperLeft.Y + (y * 18)));
+                    _renderer.UpdateWorldImage(new PointInt32(location.X + x, location.Y + y));
+                }
+            }
+
+            if (type == 21)
+                _world.Chests.Add(new Chest { Location = location });
+            else if (type == 55 || type == 85)
+                _world.Signs.Add(new Sign{Location =  location});
+        }
+
         private void SetTileSprite(PointInt32 point, PointShort frame, byte type)
         {
             var curTile = _world.Tiles[point.X, point.Y];

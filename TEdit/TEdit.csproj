@@ -117,6 +117,7 @@
     <Compile Include="Tools\ITool.cs" />
     <Compile Include="Common\TileMouseEventArgs.cs" />
     <Compile Include="Tools\SelectionArea.cs" />
+    <Compile Include="Tools\SpritePicker.cs" />
     <Compile Include="Tools\TilePicker.cs" />
     <Compile Include="Tools\ToolAnchorMode.cs" />
     <Compile Include="Tools\ToolBase.cs" />
