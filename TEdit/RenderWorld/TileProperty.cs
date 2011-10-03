@@ -30,14 +30,14 @@ namespace TEdit.RenderWorld
         public bool IsFramed
         {
             get { return _isFramed; }
-            set { StandardSet(ref _isFramed, ref value, "IsFramed"); }
+            set { SetProperty(ref _isFramed, ref value, "IsFramed"); }
         }
 
         private bool _canMixFrames;
         public bool CanMixFrames
         {
             get { return _canMixFrames; }
-            set { StandardSet(ref _canMixFrames, ref value, "CanMixFrames"); }
+            set { SetProperty(ref _canMixFrames, ref value, "CanMixFrames"); }
         }
 
         private readonly ObservableCollection<FrameProperty> _Frames = new ObservableCollection<FrameProperty>();

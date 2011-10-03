@@ -10,20 +10,26 @@ namespace TEdit.TerrariaWorld
 {
     public partial class World
     {
-        private bool _canUseFileIo = true;
+        private bool _isUsingIo = true;
+        private bool _isValid;
+        private bool _isSaved; 
 
-        public bool CanUseFileIO
+        public bool IsSaved
         {
-            get { return _canUseFileIo; }
-            set
-            {
-                if (_canUseFileIo != value)
-                {
-                    _canUseFileIo = value;
-                    RaisePropertyChanged("CanUseFileIO");
-                }
-            }
+            get { return _isSaved; }
+            set { SetProperty(ref _isSaved, ref value, "IsSaved"); }
         }
+        public bool IsValid
+        {
+            get { return _isValid; }
+            set { SetProperty(ref _isValid, ref value, "IsValid"); }
+        }
+        public bool IsUsingIo
+        {
+            get { return _isUsingIo; }
+            set{ SetProperty(ref _isUsingIo, ref value, "IsUsingIo");}
+        }
+        
 
         public event ProgressChangedEventHandler ProgressChanged;
 
@@ -36,6 +42,9 @@ namespace TEdit.TerrariaWorld
         public void NewWorld(int width, int height, int seed = -1)
         {
             var genRand = seed <= 0 ? new Random((int)DateTime.Now.Ticks) : new Random(seed);
+            IsValid = false;
+            IsUsingIo = true;
+            IsSaved = false;
 
             Header.FileVersion = CompatableVersion;
             Header.FileName = "";
@@ -77,6 +86,8 @@ namespace TEdit.TerrariaWorld
                     Tiles[x, y] = new Tile();
                 }
             }
+            IsValid = true;
+            IsUsingIo = false;
         }
 
         public void Load(string filename)
@@ -87,7 +98,8 @@ namespace TEdit.TerrariaWorld
                   string.Equals(ext, ".Tedit", StringComparison.CurrentCultureIgnoreCase)))
                 throw new ApplicationException("Invalid file");
 
-            CanUseFileIO = false;
+            IsUsingIo = true;
+            IsValid = false;
             ClearWorld();
 
             using (var stream = new FileStream(filename, FileMode.Open))
@@ -243,20 +255,25 @@ namespace TEdit.TerrariaWorld
                         if (!(test && string.Equals(worldNameCheck, Header.WorldName) && worldIdCheck == Header.WorldId))
                         {
                             // Test FAILED!
+                            IsUsingIo = false;
+                            reader.Close();
                             throw new ApplicationException("Invalid World File");
                         }
                     }
-
+                    
                     reader.Close();
                 }
             }
-            CanUseFileIO = true;
+            IsValid = true;
+            IsUsingIo = false;
+            IsSaved = true;
             OnProgressChanged(this, new ProgressChangedEventArgs(0, ""));
         }
 
         public void SaveFile(string filename)
         {
-            CanUseFileIO = false;
+            IsUsingIo = true;
+
             string backupFileName = filename + ".Tedit";
             if (File.Exists(filename))
             {
@@ -429,19 +446,22 @@ namespace TEdit.TerrariaWorld
                     writer.Close();
                 }
             }
-            CanUseFileIO = true;
+            IsUsingIo = false;
+            IsSaved = true;
             OnProgressChanged(this, new ProgressChangedEventArgs(0, ""));
         }
 
+        #region Test World Compression Methods
         public void SaveFileCompressed(string filename)
         {
             SaveFileCompressed1(filename + ".TEST1");
             SaveFileCompressed2(filename + ".TEST2");
 
         }
+        
         public void SaveFileCompressed1(string filename)
         {
-            CanUseFileIO = false;
+            IsUsingIo = false;
             string backupFileName = filename + ".Tedit";
             if (File.Exists(filename))
             {
@@ -634,13 +654,13 @@ namespace TEdit.TerrariaWorld
                     writer.Close();
                 }
             }
-            CanUseFileIO = true;
+            IsUsingIo = true;
             OnProgressChanged(this, new ProgressChangedEventArgs(0, ""));
         }
 
         public void SaveFileCompressed2(string filename)
         {
-            CanUseFileIO = false;
+            IsUsingIo = false;
             //string backupFileName = filename + ".Tedit1";
             //if (File.Exists(filename))
             //{
@@ -861,8 +881,9 @@ namespace TEdit.TerrariaWorld
                     writer.Close();
                 }
             }
-            CanUseFileIO = true;
+            IsUsingIo = true;
             OnProgressChanged(this, new ProgressChangedEventArgs(0, ""));
         }
+        #endregion
     }
 }

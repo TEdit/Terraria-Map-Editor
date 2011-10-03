@@ -11,7 +11,7 @@ namespace TEdit.RenderWorld
         public string Type
         {
             get { return _type; }
-            set { StandardSet(ref _type, ref value, "Type"); }
+            set { SetProperty(ref _type, ref value, "Type"); }
         }
 
     }

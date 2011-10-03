@@ -23,7 +23,7 @@ namespace TEdit.RenderWorld
         public virtual Color Color
         {
             get { return _color; }
-            set { StandardSet(ref _color, ref value, "Color"); }
+            set { SetProperty(ref _color, ref value, "Color"); }
         }
 
         public override string ToString()

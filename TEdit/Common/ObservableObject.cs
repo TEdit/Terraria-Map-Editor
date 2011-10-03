@@ -56,7 +56,7 @@ namespace TEdit.Common
         }
 
         // Stop the madness of 8-line set methods for everything
-        public void StandardSet<T>(ref T priv, ref T val, params string[] prop)
+        public void SetProperty<T>(ref T priv, ref T val, params string[] prop)
         {
             if (priv == null || !priv.Equals(val))
             {
