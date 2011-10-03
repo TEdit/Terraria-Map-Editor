@@ -1,8 +1,8 @@
 ﻿using System.IO;
+using TEdit.Common.Structures;
 using TEdit.Properties;
 using TEdit.RenderWorld;
 using TEdit.TerrariaWorld;
-using TEdit.TerrariaWorld.Structures;
 
 namespace TEdit.Tools.Clipboard
 {

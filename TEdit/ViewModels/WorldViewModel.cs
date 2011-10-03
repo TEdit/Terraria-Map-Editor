@@ -10,9 +10,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using Microsoft.Win32;
 using TEdit.Common;
+using TEdit.Common.Structures;
 using TEdit.RenderWorld;
 using TEdit.TerrariaWorld;
-using TEdit.TerrariaWorld.Structures;
 using TEdit.Tools;
 using TEdit.Tools.Clipboard;
 using TEdit.Tools.History;
@@ -22,12 +22,14 @@ namespace TEdit.ViewModels
     [Export]
     public class WorldViewModel : ObservableObject, IPartImportsSatisfiedNotification
     {
+        #region Fields
 
         private readonly TaskFactory _uiFactory;
         private readonly TaskScheduler _uiScheduler;
         private ITool _activeTool;
 
         private ICommand _copyToClipboard;
+        private ICommand _validateWorldCommand;
         private string _fluidName;
 
         private bool _isBusy;
@@ -35,6 +37,7 @@ namespace TEdit.ViewModels
         private TimeSpan _lastRender;
         private ICommand _mouseDownCommand;
         private PointInt32 _mouseDownTile;
+        private PointShort _frame;
         private ICommand _mouseMoveCommand;
         private PointInt32 _mouseOverTile;
         private ICommand _mouseUpCommand;
@@ -61,6 +64,8 @@ namespace TEdit.ViewModels
         private string _tileName;
         [Import]
         private TilePicker _tilePicker;
+
+        [Import] private SpritePicker _spritePicker;
         [Import]
         private ToolProperties _toolProperties;
         private string _wallName;
@@ -69,22 +74,9 @@ namespace TEdit.ViewModels
         private WorldImage _worldImage;
         private double _zoom = 1;
 
-        [Import]
-        private HistoryManager _HistMan;
-        public HistoryManager HistMan
-        {
-            get { return this._HistMan; }
-            set
-            {
-                if (this._HistMan != value)
-                {
-                    this._HistMan = value;
-                    this.RaisePropertyChanged("HistMan");
-                }
-            }
-        }
+        #endregion
 
-
+        #region CTOR
 
         public WorldViewModel()
         {
@@ -93,49 +85,79 @@ namespace TEdit.ViewModels
             Tools = new OrderingCollection<ITool, IOrderMetadata>(t => t.Metadata.Order);
         }
 
+        public void OnImportsSatisfied()
+        {
+            _renderer.ProgressChanged += (s, e) => { Progress = e; };
+            _world.ProgressChanged += (s, e) => { Progress = e; };
+            
+            _spritePicker.PropertyChanged += (s, e) =>
+            {
+                if (ActiveTool != null)
+                {
+                    if (e.PropertyName == "SelectedSprite" && ActiveTool.Name == "Sprite Placer Tool")
+                    {
+                        ToolProperties.Image = _activeTool.PreviewTool();
+                    }
+                }
+            };
+
+            _toolProperties.ToolPreviewRequest += (s, e) =>
+            {
+                if (_activeTool != null)
+                {
+                    ToolProperties.Image = _activeTool.PreviewTool();
+                }
+            };
+
+            GenNewWorld();
+        }
+
+
+
+        #endregion
+
+        #region Propertie
+
+
+        public PointShort Frame
+        {
+            get { return this._frame; }
+            set { SetProperty(ref _frame, ref value, "Frame"); }
+        }
+
+        [Import]
+        private HistoryManager _histMan;
+        public HistoryManager HistMan
+        {
+            get { return _histMan; }
+            set { SetProperty(ref _histMan, ref value, "HistMan"); }
+        }
+
         [Import]
         private ClipboardManager _clipboardMan;
         public ClipboardManager ClipboardMan
         {
             get { return this._clipboardMan; }
-            set
-            {
-                if (this._clipboardMan != value)
-                {
-                    this._clipboardMan = value;
-                    this.RaisePropertyChanged("ClipboardMan");
-                }
-            }
+            set { SetProperty(ref _clipboardMan, ref value, "ClipboardMan"); }
         }
 
         public ToolProperties ToolProperties
         {
             get { return _toolProperties; }
-            set
-            {
-                if (_toolProperties != value)
-                {
-                    _toolProperties = null;
-                    _toolProperties = value;
-                    RaisePropertyChanged("ToolProperties");
-                }
-            }
+            set { SetProperty(ref _toolProperties, ref value, "ToolProperties"); } // null
         }
 
+        public SpritePicker SpritePicker
+        {
+            get { return _spritePicker; }
+            set { SetProperty(ref _spritePicker, ref value, "SpritePicker"); }
+        }
 
         public TilePicker TilePicker
         {
             get { return _tilePicker; }
-            set
-            {
-                if (_tilePicker != value)
-                {
-                    _tilePicker = value;
-                    RaisePropertyChanged("TilePicker");
-                }
-            }
+            set { SetProperty(ref _tilePicker, ref value, "TilePicker"); }
         }
-
 
         [ImportMany(typeof(ITool))]
         public OrderingCollection<ITool, IOrderMetadata> Tools { get; set; }
@@ -174,31 +196,13 @@ namespace TEdit.ViewModels
         public SelectionArea Selection
         {
             get { return _selection; }
-            set
-            {
-                if (_selection != value)
-                {
-                    _selection = value;
-                    RaisePropertyChanged("Selection");
-                }
-            }
+            set { SetProperty(ref _selection, ref value, "Selection"); }
         }
-
 
         public World World
         {
             get { return _world; }
-            set
-            {
-                if (_world != value)
-                {
-                    _world = null;
-                    _world = value;
-                    RaisePropertyChanged("World");
-                    RaisePropertyChanged("WorldZoomedHeight");
-                    RaisePropertyChanged("WorldZoomedWidth");
-                }
-            }
+            set { SetProperty(ref _world, ref value, "World", "WorldZoomedHeight", "WorldZoomedWidth"); }
         }
 
         public double WorldZoomedHeight
@@ -231,18 +235,9 @@ namespace TEdit.ViewModels
             {
                 double limitedZoom = value;
                 limitedZoom = Math.Min(Math.Max(limitedZoom, 0.05), 1000);
-
-                if (_zoom != limitedZoom)
-                {
-                    _zoom = limitedZoom;
-                    RaisePropertyChanged("Zoom");
-                    RaisePropertyChanged("ZoomInverted");
-                    RaisePropertyChanged("WorldZoomedHeight");
-                    RaisePropertyChanged("WorldZoomedWidth");
-                }
+                SetProperty(ref _zoom, ref limitedZoom, "Zoom", "ZoomInverted", "WorldZoomedHeight", "WorldZoomedWidth");
             }
         }
-        
 
         public double ZoomInverted
         {
@@ -253,28 +248,64 @@ namespace TEdit.ViewModels
         public WorldImage WorldImage
         {
             get { return _worldImage; }
-            set
-            {
-                if (_worldImage != value)
-                {
-                    _worldImage = value;
-                    RaisePropertyChanged("WorldImage");
-                }
-            }
+            set { SetProperty(ref _worldImage, ref value, "WorldImage"); }
         }
 
         public bool IsMouseContained
         {
             get { return _isMouseContained; }
-            set
-            {
-                if (_isMouseContained != value)
-                {
-                    _isMouseContained = value;
-                    RaisePropertyChanged("IsMouseContained");
-                }
-            }
+            set { SetProperty(ref _isMouseContained, ref value, "IsMouseContained"); }
         }
+
+        public string WallName
+        {
+            get { return _wallName; }
+            set { SetProperty(ref _wallName, ref value, "WallName"); }
+        }
+
+        public string TileName
+        {
+            get { return _tileName; }
+            set { SetProperty(ref _tileName, ref value, "TileName"); }
+        }
+
+        public string FluidName
+        {
+            get { return _fluidName; }
+            set { SetProperty(ref _fluidName, ref value, "FluidName"); }
+        }
+
+        public PointInt32 MouseOverTile
+        {
+            get { return _mouseOverTile; }
+            set { SetProperty(ref _mouseOverTile, ref value, "MouseOverTile", "ToolLocation"); }
+        }
+
+        public PointInt32 ToolLocation
+        {
+            get { return _mouseOverTile - ToolProperties.Offset; }
+        }
+
+        public PointInt32 MouseDownTile
+        {
+            get { return _mouseDownTile; }
+            set { SetProperty(ref _mouseDownTile, ref value, "MouseDownTile"); }
+        }
+
+        public PointInt32 MouseUpTile
+        {
+            get { return _mouseUpTile; }
+            set { SetProperty(ref _mouseUpTile, ref value, "MouseUpTile"); }
+        }
+
+        public ProgressChangedEventArgs Progress
+        {
+            get { return _progress; }
+            set { SetProperty(ref _progress, ref value, "Progress"); }
+        }
+        #endregion
+
+        #region Commands
 
         public ICommand Undo
         {
@@ -288,7 +319,7 @@ namespace TEdit.ViewModels
 
         public ICommand RenderCommand
         {
-            get { return _renderCommand ?? (_renderCommand = new RelayCommand(RenderWorld)); }
+            get { return _renderCommand ?? (_renderCommand = new RelayCommand(RenderWorld, CanRender)); }
         }
 
         public ICommand EmptyClipboard
@@ -310,6 +341,7 @@ namespace TEdit.ViewModels
         {
             get { return _removeSchematic ?? (_removeSchematic = new RelayCommand<ClipboardBuffer>(RemoveSchematicFile)); }
         }
+
 
 
         public ICommand CopyToClipboard
@@ -364,6 +396,11 @@ namespace TEdit.ViewModels
             get { return _openWorldCommand ?? (_openWorldCommand = new RelayCommand(LoadWorldandRender, CanLoad)); }
         }
 
+        public ICommand ValidateWorldCommand
+        {
+            get { return _validateWorldCommand ?? (_validateWorldCommand = new RelayCommand(ValidateWorld, CanSave)); }
+        }
+
         public ICommand SaveWorldCommand
         {
             get { return _saveWorldCommand ?? (_saveWorldCommand = new RelayCommand(SaveWorld, CanSave)); }
@@ -372,6 +409,7 @@ namespace TEdit.ViewModels
         {
             get { return _saveWorldAsCommand ?? (_saveWorldAsCommand = new RelayCommand(SaveWorldAs, CanSave)); }
         }
+
 
         public void DeleteSelection()
         {
@@ -395,125 +433,44 @@ namespace TEdit.ViewModels
 
         }
 
-        public string WallName
-        {
-            get { return _wallName; }
-            set
-            {
-                if (_wallName != value)
-                {
-                    _wallName = value;
-                    RaisePropertyChanged("WallName");
-                }
-            }
-        }
-
-        public string TileName
-        {
-            get { return _tileName; }
-            set
-            {
-                if (_tileName != value)
-                {
-                    _tileName = value;
-                    RaisePropertyChanged("TileName");
-                }
-            }
-        }
-
-        public string FluidName
-        {
-            get { return _fluidName; }
-            set
-            {
-                if (_fluidName != value)
-                {
-                    _fluidName = value;
-                    RaisePropertyChanged("FluidName");
-                }
-            }
-        }
-
         public void GenNewWorld()
         {
             World.NewWorld(2000, 300);
+            RenderWorld();
         }
 
+        #endregion
 
-        public PointInt32 MouseOverTile
+        #region Clipboard and Schematics
+
+        private bool CanActivatePasteTool()
         {
-            get { return _mouseOverTile; }
-            set
+            return (ClipboardMan.Buffer != null);
+        }
+
+        private bool CanSetClipboard()
+        {
+            return (Selection.SelectionVisibility == Visibility.Visible);
+        }
+
+        private void ActivatePasteTool()
+        {
+            ITool pasteTool = Tools.FirstOrDefault(x => x.Value.Name == "Paste").Value;
+            if (pasteTool != null)
+                ActiveTool = pasteTool;
+        }
+
+        private void SetClipBoard()
+        {
+            if (Selection.SelectionVisibility == Visibility.Visible)
             {
-                if (_mouseOverTile != value)
-                {
-                    _mouseOverTile = value;
-                    RaisePropertyChanged("MouseOverTile");
-                    RaisePropertyChanged("ToolLocation");
-                }
+                var buffer = _clipboardMan.GetBufferedRegion(_world, Selection.Rectangle);
+                buffer.Preview = _renderer.RenderBuffer(buffer);
+                ClipboardMan.LoadedBuffers.Insert(0, buffer);
+                ClipboardMan.Buffer = null;
+                ClipboardMan.Buffer = buffer;
             }
         }
-
-        public PointInt32 ToolLocation
-        {
-            get { return _mouseOverTile - ToolProperties.Offset; }
-        }
-
-        public PointInt32 MouseDownTile
-        {
-            get { return _mouseDownTile; }
-            set
-            {
-                if (_mouseDownTile != value)
-                {
-                    _mouseDownTile = value;
-                    RaisePropertyChanged("MouseDownTile");
-                }
-            }
-        }
-
-        public PointInt32 MouseUpTile
-        {
-            get { return _mouseUpTile; }
-            set
-            {
-                if (_mouseUpTile != value)
-                {
-                    _mouseUpTile = value;
-                    RaisePropertyChanged("MouseUpTile");
-                }
-            }
-        }
-
-        public ProgressChangedEventArgs Progress
-        {
-            get { return _progress; }
-            set
-            {
-                if (_progress != value)
-                {
-                    _progress = value;
-                    RaisePropertyChanged("Progress");
-                }
-            }
-        }
-
-
-        public void OnImportsSatisfied()
-        {
-            _renderer.ProgressChanged += (s, e) => { Progress = e; };
-            _world.ProgressChanged += (s, e) => { Progress = e; };
-            _toolProperties.ToolPreviewRequest += (s, e) =>
-                                                      {
-                                                          if (_activeTool != null)
-                                                          {
-                                                              ToolProperties.Image = _activeTool.PreviewTool();
-                                                          }
-                                                      };
-
-            GenNewWorld();
-        }
-
 
         private void ImportSchematicFile()
         {
@@ -550,43 +507,58 @@ namespace TEdit.ViewModels
             ClipboardMan.LoadedBuffers.Remove(buffer);
         }
 
-        private void SetClipBoard()
-        {
-            if (Selection.SelectionVisibility == Visibility.Visible)
-            {
-                var buffer = _clipboardMan.GetBufferedRegion(_world, Selection.Rectangle);
-                buffer.Preview = _renderer.RenderBuffer(buffer);
-                ClipboardMan.LoadedBuffers.Insert(0, buffer);
-                ClipboardMan.Buffer = null;
-                ClipboardMan.Buffer = buffer;
-            }
-        }
+        #endregion
 
-        private bool CanSetClipboard()
-        {
-            return (Selection.SelectionVisibility == Visibility.Visible);
-        }
-
-        private void ActivatePasteTool()
-        {
-            ITool pasteTool = Tools.FirstOrDefault(x => x.Value.Name == "Paste").Value;
-            if (pasteTool != null)
-                ActiveTool = pasteTool;
-        }
-
-        private bool CanActivatePasteTool()
-        {
-            return (ClipboardMan.Buffer != null);
-        }
+        #region World File IO and Rendering
 
         public bool CanLoad()
         {
-            return _world.CanUseFileIO;
+            return !_world.IsUsingIo && !_renderer.IsRenderingFullMap;
         }
 
         public bool CanSave()
         {
-            return !string.Equals(_world.Header.WorldName, "No World Loaded", StringComparison.InvariantCultureIgnoreCase) && _world.CanUseFileIO;
+            return _world.IsValid && !_world.IsUsingIo && !_renderer.IsRenderingFullMap;
+        }
+
+        public bool CanRender()
+        {
+            return _world.IsValid && !_world.IsUsingIo && !_renderer.IsRenderingFullMap;
+        }
+
+        private void ValidateWorld()
+        {
+            Task.Factory.StartNew(() => _world.Validate())
+            .ContinueWith(t => RenderWorld(), _uiScheduler);
+        }
+
+        private void SaveWorld()
+        {
+            //if (!CanSave())
+            //    return;
+
+            if (World.IsSaved && !string.IsNullOrWhiteSpace(_world.Header.FileName))
+            {
+                // Only perform save if file exists, otherwise create a new file using SaveAs dialog
+                Task.Factory.StartNew(() => World.SaveFile(_world.Header.FileName))
+                .ContinueWith(t => CommandManager.InvalidateRequerySuggested(), _uiScheduler);
+            }
+            else
+            {
+                SaveWorldAs();
+            }
+        }
+        private void SaveWorldAs()
+        {
+            var sfd = new SaveFileDialog();
+            sfd.Filter = "Terraria World File|*.wld|TEdit Backup File|*.TEdit";
+            sfd.Title = "Save World As";
+            sfd.InitialDirectory = System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), @"My Games\Terraria\Worlds");
+            if ((bool)sfd.ShowDialog())
+            {
+                Task.Factory.StartNew(() => World.SaveFile(sfd.FileName))
+                .ContinueWith(t => CommandManager.InvalidateRequerySuggested(), _uiScheduler);
+            }
         }
 
         private void LoadWorldandRender()
@@ -599,67 +571,53 @@ namespace TEdit.ViewModels
             ofd.Multiselect = false;
             if ((bool)ofd.ShowDialog())
             {
-                Task.Factory.StartNew(() => LoadWorld(ofd.FileName));
-            }
-        } 
-        private void SaveWorldAs()
-        {
-            var sfd = new SaveFileDialog();
-            sfd.Filter = "Terraria World File|*.wld|TEdit Backup File|*.TEdit";
-            sfd.Title = "Save World As";
-            sfd.InitialDirectory = System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), @"My Games\Terraria\Worlds");
-            if ((bool)sfd.ShowDialog())
-            {
-                Task.Factory.StartNew(() => World.SaveFile(sfd.FileName));
+                Task.Factory.StartNew(() => LoadWorld(ofd.FileName))
+                    .ContinueWith(t => RenderWorld());
             }
         }
 
         private void LoadWorld(string filename)
         {
-           // try
-           // {
+            try
+            {
                 WorldImage.Image = null;
                 World.Load(filename);
-                WriteableBitmap img = _renderer.RenderWorld();
-                img.Freeze();
-                _uiFactory.StartNew(() =>
-                                        {
-                                            WorldImage.Image = img.Clone();
-                                            img = null;
-                                            RaisePropertyChanged("WorldZoomedHeight");
-                                            RaisePropertyChanged("WorldZoomedWidth");
-                                        });
-           // }
-           // catch (Exception)
-           // {
-           //     World.CanUseFileIO = true;
-           //     MessageBox.Show("There was a problem loading the file. Make sure you selected a .wld, .bak or .Tedit file.", "World File Problem", MessageBoxButton.OK, MessageBoxImage.Warning);
-           // }
+            }
+            catch (Exception)
+            {
+                World.IsUsingIo = true;
+                MessageBox.Show("There was a problem loading the file. Make sure you selected a .wld, .bak or .Tedit file.", "World File Problem", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
         }
 
         private void RenderWorld()
         {
-            Task.Factory.StartNew(() =>
-            {
-                WriteableBitmap img = _renderer.RenderWorld();
-                if (img != null)
+            Task<WriteableBitmap>.Factory.StartNew(
+                () =>
                 {
-                    img.Freeze();
-                    _uiFactory.StartNew(() =>
-                                            {
-                                                WorldImage.Image = img.Clone();
-                                                img = null;
-                                                RaisePropertyChanged("WorldZoomedHeight");
-                                                RaisePropertyChanged("WorldZoomedWidth");
-                                            });
-                }
-            });
+                    WriteableBitmap img = _renderer.RenderWorld();
+                    if (img != null)
+                    {
+                        img.Freeze();
+                    }
+                    return img;
+                })
+            .ContinueWith(
+                t =>
+                {
+                    if (t.Result != null)
+                    {
+                        WorldImage.Image = t.Result.Clone();
+                        RaisePropertyChanged("WorldZoomedHeight");
+                        RaisePropertyChanged("WorldZoomedWidth");
+                        CommandManager.InvalidateRequerySuggested();
+                    }
+                }, _uiScheduler);
         }
 
-        private void SaveWorld()
-        {
-            Task.Factory.StartNew(() => World.SaveFile(_world.Header.FileName));
-        }
+        #endregion
+
+        #region Mouse Handlers
 
         private void OnMouseOverPixel(TileMouseEventArgs e)
         {
@@ -692,22 +650,6 @@ namespace TEdit.ViewModels
             }
         }
 
-        private PointShort _Frame;
-        public PointShort Frame
-        {
-            get { return this._Frame; }
-            set
-            {
-                if (this._Frame != value)
-                {
-                    this._Frame = value;
-                    this.RaisePropertyChanged("Frame");
-                }
-            }
-        }
-
-
-
         private void OnMouseDownPixel(TileMouseEventArgs e)
         {
             if ((e.Tile.X < _world.Header.MaxTiles.X &&
@@ -723,7 +665,6 @@ namespace TEdit.ViewModels
 
                     if (ActiveTool.Name == "Paste")
                         ActiveTool = null;// Tools.FirstOrDefault(t => t.Value.Name == "Selection").Value;
-
                 }
             }
         }
@@ -755,5 +696,7 @@ namespace TEdit.ViewModels
                     Zoom = Zoom * 0.9;
             }
         }
+
+        #endregion
     }
 }

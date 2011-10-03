@@ -2,7 +2,7 @@
 using System.ComponentModel.Composition;
 using System.Windows.Media.Imaging;
 using TEdit.Common;
-using TEdit.TerrariaWorld.Structures;
+using TEdit.Common.Structures;
 
 namespace TEdit.Tools
 {

@@ -5,19 +5,28 @@ using System.ComponentModel.Composition;
 using System.Windows;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using TEdit.Common;
+using TEdit.Common.Structures;
 using TEdit.TerrariaWorld;
-using TEdit.TerrariaWorld.Structures;
 using TEdit.Tools.Clipboard;
 
 namespace TEdit.RenderWorld
 {
     [Export]
     [PartCreationPolicy(CreationPolicy.Shared)]
-    public class WorldRenderer
+    public class WorldRenderer : ObservableObject
     {
         [Import("World")] private World _world;
 
         [Import] private WorldImage _worldImage;
+
+        public event ProgressChangedEventHandler ProgressChanged;
+
+        protected virtual void OnProgressChanged(object sender, ProgressChangedEventArgs e)
+        {
+            if (ProgressChanged != null)
+                ProgressChanged(sender, e);
+        }
 
         public string GetTileName(Tile tile, out string wall)
         {
@@ -40,6 +49,14 @@ namespace TEdit.RenderWorld
             }
 
             return tilename;
+        }
+
+        private bool _isRenderingFullMap;
+      
+        public bool IsRenderingFullMap
+        {
+            get { return _isRenderingFullMap; }
+            set { SetProperty(ref _isRenderingFullMap, ref value, "IsRenderingFullMap"); }
         }
 
         public static Color AlphaBlend(Color background, Color color)
@@ -126,6 +143,7 @@ namespace TEdit.RenderWorld
             if (_world.Header.WorldId == 0)
                 return null;
 
+            IsRenderingFullMap = true;
             int width = _world.Header.MaxTiles.X;
             int height = _world.Header.MaxTiles.Y;
 
@@ -172,7 +190,7 @@ namespace TEdit.RenderWorld
                               wbmap.PixelWidth*wbmap.Format.BitsPerPixel/8, 0);
 
             OnProgressChanged(this, new ProgressChangedEventArgs(0, "Render Complete."));
-
+            IsRenderingFullMap = false;
             return wbmap;
         }
 
@@ -258,15 +276,6 @@ namespace TEdit.RenderWorld
             }
             return c;
         }
-
-        public event ProgressChangedEventHandler ProgressChanged;
-
-        protected virtual void OnProgressChanged(object sender, ProgressChangedEventArgs e)
-        {
-            if (ProgressChanged != null)
-                ProgressChanged(sender, e);
-        }
-
 
         public static IEnumerable<PointInt32> DrawLine(PointInt32 begin, PointInt32 end)
         {

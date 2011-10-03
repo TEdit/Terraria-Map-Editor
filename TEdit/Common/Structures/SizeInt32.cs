@@ -1,7 +1,6 @@
-﻿using System;
-using TEdit.Common;
+using System;
 
-namespace TEdit.TerrariaWorld.Structures
+namespace TEdit.Common.Structures
 {
     [Serializable]
     public class SizeInt32 : ObservableObject

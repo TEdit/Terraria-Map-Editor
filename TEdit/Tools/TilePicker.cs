@@ -11,8 +11,7 @@ namespace TEdit.Tools
     [Export]
     public class TilePicker : ObservableObject
     {
-        [NonSerialized]
-        private readonly ObservableCollection<TileProperty> _tiles = new ObservableCollection<TileProperty>();
+        [NonSerialized] private readonly ObservableCollection<ColorProperty> _tiles = new ObservableCollection<ColorProperty>();
         [NonSerialized] private readonly ObservableCollection<ColorProperty> _walls = new ObservableCollection<ColorProperty>();
         private bool _IsEraser;
         private TilePickerLiquidProperty _Liquid;
@@ -31,7 +30,7 @@ namespace TEdit.Tools
 
             for (int i = 0; i < byte.MaxValue; i++)
             {
-                if (WorldSettings.Tiles[i].Name != "UNKNOWN" && !WorldSettings.Tiles[i].IsFramed && i != 4)
+                if (WorldSettings.Tiles[i].Name != "UNKNOWN" && !WorldSettings.Tiles[i].IsFramed)
                     _tiles.Add(WorldSettings.Tiles[i]);
             }
 
@@ -49,7 +48,7 @@ namespace TEdit.Tools
             get { return _walls; }
         }
 
-        public ObservableCollection<TileProperty> Tiles
+        public ObservableCollection<ColorProperty> Tiles
         {
             get { return _tiles; }
         }
@@ -57,79 +56,37 @@ namespace TEdit.Tools
         public bool IsEraser
         {
             get { return _IsEraser; }
-            set
-            {
-                if (_IsEraser != value)
-                {
-                    _IsEraser = value;
-                    RaisePropertyChanged("IsEraser");
-                }
-            }
+            set { SetProperty(ref _IsEraser, ref value, "IsEraser");}
         }
 
         public TilePickerProperty Wall
         {
             get { return _Wall; }
-            set
-            {
-                if (_Wall != value)
-                {
-                    _Wall = value;
-                    RaisePropertyChanged("Wall");
-                }
-            }
+            set { SetProperty(ref _Wall, ref value, "Wall");}
         }
 
         public TilePickerProperty Tile
         {
             get { return _Tile; }
-            set
-            {
-                if (_Tile != value)
-                {
-                    _Tile = value;
-                    RaisePropertyChanged("Tile");
-                }
-            }
+            set { SetProperty(ref _Tile, ref value, "Tile");}
         }
 
         public TilePickerLiquidProperty Liquid
         {
             get { return _Liquid; }
-            set
-            {
-                if (_Liquid != value)
-                {
-                    _Liquid = value;
-                    RaisePropertyChanged("Liquid");
-                }
-            }
+            set { SetProperty(ref _Liquid, ref value, "Liquid");}
         }
 
         public TilePickerProperty WallMask
         {
             get { return _WallMask; }
-            set
-            {
-                if (_WallMask != value)
-                {
-                    _WallMask = value;
-                    RaisePropertyChanged("WallMask");
-                }
-            }
+            set { SetProperty(ref _WallMask, ref value, "WallMask");}
         }
 
         public TilePickerProperty TileMask
         {
             get { return _TileMask; }
-            set
-            {
-                if (_TileMask != value)
-                {
-                    _TileMask = value;
-                    RaisePropertyChanged("TileMask");
-                }
-            }
+            set { SetProperty(ref _TileMask, ref value, "TileMask");}
         }
     }
 
@@ -137,33 +94,18 @@ namespace TEdit.Tools
     public class TilePickerProperty : ObservableObject
     {
         private bool _IsActive;
-
         private byte _value;
 
         public bool IsActive
         {
             get { return _IsActive; }
-            set
-            {
-                if (_IsActive != value)
-                {
-                    _IsActive = value;
-                    RaisePropertyChanged("IsActive");
-                }
-            }
+            set { SetProperty(ref _IsActive, ref value, "IsActive");}
         }
 
         public byte Value
         {
             get { return _value; }
-            set
-            {
-                if (_value != value)
-                {
-                    _value = value;
-                    RaisePropertyChanged("Value");
-                }
-            }
+            set { SetProperty(ref _value, ref value, "Value");}
         }
     }
 
@@ -171,33 +113,18 @@ namespace TEdit.Tools
     public class TilePickerLiquidProperty : ObservableObject
     {
         private bool _IsActive;
-
         private bool _IsLava;
 
         public bool IsActive
         {
             get { return _IsActive; }
-            set
-            {
-                if (_IsActive != value)
-                {
-                    _IsActive = value;
-                    RaisePropertyChanged("IsActive");
-                }
-            }
+            set { SetProperty(ref _IsActive, ref value, "IsActive"); }
         }
 
         public bool IsLava
         {
             get { return _IsLava; }
-            set
-            {
-                if (_IsLava != value)
-                {
-                    _IsLava = value;
-                    RaisePropertyChanged("IsLava");
-                }
-            }
+            set { SetProperty(ref _IsLava, ref value, "IsLava"); }
         }
     }
 }

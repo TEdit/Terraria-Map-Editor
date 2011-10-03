@@ -1,6 +1,6 @@
 ﻿<Window x:Class="TEdit.MainWindow" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:vm="clr-namespace:TEdit.ViewModels" xmlns:views="clr-namespace:TEdit.Views" Title="TEdit 2 - 2.0.8.5"
+        xmlns:vm="clr-namespace:TEdit.ViewModels" xmlns:views="clr-namespace:TEdit.Views" Title="TEdit 2 - 2.0.9.0"
         Height="600" Width="800" TextOptions.TextFormattingMode="Display" TextOptions.TextRenderingMode="Aliased"
         UseLayoutRounding="True" Background="{StaticResource WindowBackgroundBrush}" Foreground="{DynamicResource TextBrush}" Icon="/TEdit;component/Images/tedit.ico">
     <DockPanel Grid.Row="1" HorizontalAlignment="Stretch">
@@ -8,6 +8,7 @@
             <Button Content="Load World" Padding="5,4"  Margin="2,1"  Command="{Binding Path=OpenWorldCommand}" />
             <Button Content="Save World" Padding="5,4"  Margin="2,1"  Command="{Binding Path=SaveWorldCommand}"  />
             <Button Content="Save World As" Padding="5,4"  Margin="2,1"  Command="{Binding Path=SaveWorldAsCommand}" />
+            <Button Content="Validate Tiles" Padding="5,4"  Margin="2,1"  Command="{Binding Path=ValidateWorldCommand}" />
             <Button Content="Refresh Entire World" Padding="5,4"  Margin="2,1" Command="{Binding Path=RenderCommand}" />
             <Button Content="Undo" Padding="5,4"  Margin="2,1"  Command="{Binding Path=Undo}" />
             <Button Content="Redo" Padding="5,4"  Margin="2,1"  Command="{Binding Path=Redo}"  />
@@ -22,7 +23,7 @@
         <views:StatusBarView DockPanel.Dock="Bottom" />
         <views:ToolSelectorView DockPanel.Dock="Left" />
         <Expander Header="Utilities" ExpandDirection="Left" IsExpanded="True" Grid.Row="1" DockPanel.Dock="Right">
-            <TabControl TabStripPlacement="Top" Width="260" Foreground="{DynamicResource TextBrush}">
+            <TabControl TabStripPlacement="Top" Width="300" Foreground="{DynamicResource TextBrush}">
                 <TabItem Header="World Properties">
                     <ScrollViewer VerticalScrollBarVisibility="Auto">
                         <views:WorldPropertiesView Height="360" HorizontalAlignment="Stretch" VerticalAlignment="Top" />
@@ -30,6 +31,9 @@
                 </TabItem>
                 <TabItem Header="Clipboard">
                     <views:ClipboardView HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
+                </TabItem>
+                <TabItem Header="Sprites">
+                    <views:SpritePickerView HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
                 </TabItem>
             </TabControl>
         </Expander>

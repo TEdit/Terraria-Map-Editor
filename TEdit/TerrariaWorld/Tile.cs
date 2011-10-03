@@ -1,4 +1,4 @@
-﻿using TEdit.TerrariaWorld.Structures;
+﻿using TEdit.Common.Structures;
 
 namespace TEdit.TerrariaWorld
 {

@@ -3,26 +3,32 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
+using System.Linq;
+using TEdit.Common.Structures;
 using TEdit.RenderWorld;
-using TEdit.TerrariaWorld.Structures;
 
 namespace TEdit.TerrariaWorld
 {
     public partial class World
     {
-        private bool _canUseFileIo = true;
+        private bool _isUsingIo = true;
+        private bool _isValid;
+        private bool _isSaved; 
 
-        public bool CanUseFileIO
+        public bool IsSaved
         {
-            get { return _canUseFileIo; }
-            set
-            {
-                if (_canUseFileIo != value)
-                {
-                    _canUseFileIo = value;
-                    RaisePropertyChanged("CanUseFileIO");
-                }
-            }
+            get { return _isSaved; }
+            set { SetProperty(ref _isSaved, ref value, "IsSaved"); }
+        }
+        public bool IsValid
+        {
+            get { return _isValid; }
+            set { SetProperty(ref _isValid, ref value, "IsValid"); }
+        }
+        public bool IsUsingIo
+        {
+            get { return _isUsingIo; }
+            set{ SetProperty(ref _isUsingIo, ref value, "IsUsingIo");}
         }
 
         public event ProgressChangedEventHandler ProgressChanged;
@@ -36,6 +42,9 @@ namespace TEdit.TerrariaWorld
         public void NewWorld(int width, int height, int seed = -1)
         {
             var genRand = seed <= 0 ? new Random((int)DateTime.Now.Ticks) : new Random(seed);
+            IsValid = false;
+            IsUsingIo = true;
+            IsSaved = false;
 
             Header.FileVersion = CompatableVersion;
             Header.FileName = "";
@@ -77,6 +86,106 @@ namespace TEdit.TerrariaWorld
                     Tiles[x, y] = new Tile();
                 }
             }
+            IsValid = true;
+            IsUsingIo = false;
+        }
+        
+        private bool ValidatePlacement(PointInt32 location, PointShort size, FramePlacement frame)
+        {
+            // TODO: Implement frame validations
+            return false;
+        }
+
+        private bool ValidateTorch(int x, int y)
+        {
+            int left = x - 1;
+            int right = x + 1;
+            int bottom = y + 1;
+
+            if (left >= 0)
+                if (WorldSettings.Tiles[Tiles[left, y].Type].IsSolid && Tiles[left, y].IsActive)
+                    return true;
+
+            if (right < Header.MaxTiles.X)
+                if (WorldSettings.Tiles[Tiles[right, y].Type].IsSolid && Tiles[left, y].IsActive)
+                    return true;
+
+            if (bottom < Header.MaxTiles.Y)
+                if ((WorldSettings.Tiles[Tiles[x, bottom].Type].IsSolid || WorldSettings.Tiles[Tiles[x, bottom].Type].IsSolidTop) && Tiles[left, y].IsActive)
+                    return true;
+
+            return false;
+        }
+
+        public void Validate()
+        {
+            List<string> log = new List<string>();
+            IsUsingIo = true;
+            for (int x = 0; x < Header.MaxTiles.X; x++)
+            {
+                OnProgressChanged(this,new ProgressChangedEventArgs((int)(x / (double)Header.MaxTiles.X * 100.0),"Validating Tiles"));
+
+                for (int y = 0; y < Header.MaxTiles.Y; y++)
+                {
+                    //validate chest entry exists
+                    var curType = Tiles[x, y].Type;
+
+                    switch (curType)
+                    {
+                        case 4:
+                            // torch validation
+                            if (!ValidateTorch(x, y))
+                                Tiles[x, y].IsActive = false;
+                            break;
+                        case 21:
+                            // Validate Chest
+                            if (GetChestAtTile(x, y) == null) Chests.Add(new Chest(new PointInt32(x, y)));
+                            log.Add(string.Format("added empty chest content [{0},{1}]",x,y));
+                            break;
+                        case 55:
+                        case 85:
+                            // Validate Sign/Tombstone
+                            if (GetSignAtTile(x, y) == null) Signs.Add(new Sign("", new PointInt32(x, y)));
+                            log.Add(string.Format("added blank sign text [{0},{1}]", x, y));
+                            break;
+                    }
+                }
+            }
+
+            OnProgressChanged(this, new ProgressChangedEventArgs(33, "Validating Chests"));
+            foreach (var chest in Chests.ToList())
+            {
+                //if (Chests[chestIndex] == null)
+                var loc = chest.Location;
+                int locType = Tiles[loc.X, loc.Y].Type;
+
+                if (locType != 21)
+                {
+                    Chests.Remove(chest);
+                    log.Add(string.Format("removed missing chest {0}", loc));
+                }
+            }
+
+            OnProgressChanged(this, new ProgressChangedEventArgs(66, "Validating Signs"));
+            foreach (var sign in Signs.ToList())
+            {
+                //if (Chests[chestIndex] == null)
+                var loc = sign.Location;
+                int locType = Tiles[loc.X, loc.Y].Type;
+
+                if (locType != 55 && locType != 85)
+                {
+                    Signs.Remove(sign);
+                    log.Add(string.Format("removed missing sign {0}", loc));
+                }
+            }
+
+            foreach (NPC npc in Npcs)
+            {
+                // no validation yet...
+            }
+            IsUsingIo = false;
+            OnProgressChanged(this, new ProgressChangedEventArgs(0, "Validation Complete."));
         }
 
         public void Load(string filename)
@@ -87,7 +196,8 @@ namespace TEdit.TerrariaWorld
                   string.Equals(ext, ".Tedit", StringComparison.CurrentCultureIgnoreCase)))
                 throw new ApplicationException("Invalid file");
 
-            CanUseFileIO = false;
+            IsUsingIo = true;
+            IsValid = false;
             ClearWorld();
 
             using (var stream = new FileStream(filename, FileMode.Open))
@@ -243,20 +353,27 @@ namespace TEdit.TerrariaWorld
                         if (!(test && string.Equals(worldNameCheck, Header.WorldName) && worldIdCheck == Header.WorldId))
                         {
                             // Test FAILED!
+                            IsUsingIo = false;
+                            reader.Close();
                             throw new ApplicationException("Invalid World File");
                         }
                     }
-
+                    
                     reader.Close();
                 }
             }
-            CanUseFileIO = true;
+            IsValid = true;
+            IsUsingIo = false;
+            IsSaved = true;
             OnProgressChanged(this, new ProgressChangedEventArgs(0, ""));
         }
 
         public void SaveFile(string filename)
         {
-            CanUseFileIO = false;
+            Validate();
+
+            IsUsingIo = true;
+            
             string backupFileName = filename + ".Tedit";
             if (File.Exists(filename))
             {
@@ -429,19 +546,22 @@ namespace TEdit.TerrariaWorld
                     writer.Close();
                 }
             }
-            CanUseFileIO = true;
+            IsUsingIo = false;
+            IsSaved = true;
             OnProgressChanged(this, new ProgressChangedEventArgs(0, ""));
         }
 
+        #region Test World Compression Methods
         public void SaveFileCompressed(string filename)
         {
             SaveFileCompressed1(filename + ".TEST1");
             SaveFileCompressed2(filename + ".TEST2");
 
         }
+        
         public void SaveFileCompressed1(string filename)
         {
-            CanUseFileIO = false;
+            IsUsingIo = false;
             string backupFileName = filename + ".Tedit";
             if (File.Exists(filename))
             {
@@ -634,13 +754,13 @@ namespace TEdit.TerrariaWorld
                     writer.Close();
                 }
             }
-            CanUseFileIO = true;
+            IsUsingIo = true;
             OnProgressChanged(this, new ProgressChangedEventArgs(0, ""));
         }
 
         public void SaveFileCompressed2(string filename)
         {
-            CanUseFileIO = false;
+            IsUsingIo = false;
             //string backupFileName = filename + ".Tedit1";
             //if (File.Exists(filename))
             //{
@@ -861,8 +981,9 @@ namespace TEdit.TerrariaWorld
                     writer.Close();
                 }
             }
-            CanUseFileIO = true;
+            IsUsingIo = true;
             OnProgressChanged(this, new ProgressChangedEventArgs(0, ""));
         }
+        #endregion
     }
 }

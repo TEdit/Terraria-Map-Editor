@@ -2,8 +2,8 @@
 using System.ComponentModel.Composition;
 using System.Linq;
 using TEdit.Common;
+using TEdit.Common.Structures;
 using TEdit.RenderWorld;
-using TEdit.TerrariaWorld.Structures;
 using TEdit.Tools;
 
 namespace TEdit.TerrariaWorld

@@ -6,7 +6,7 @@
 
 
 using TEdit.Common;
-using TEdit.TerrariaWorld.Structures;
+using TEdit.Common.Structures;
 
 namespace TEdit.TerrariaWorld
 {

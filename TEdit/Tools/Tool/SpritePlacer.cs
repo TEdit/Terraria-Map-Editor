@@ -4,9 +4,9 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using TEdit.Common;
+using TEdit.Common.Structures;
 using TEdit.RenderWorld;
 using TEdit.TerrariaWorld;
-using TEdit.TerrariaWorld.Structures;
 
 namespace TEdit.Tools.Tool
 {
@@ -23,6 +23,8 @@ namespace TEdit.Tools.Tool
 
         [Import]
         private WorldRenderer _renderer;
+
+        [Import] private SpritePicker _spritePicker;
 
         public SpritePlacer()
         {
@@ -79,12 +81,17 @@ namespace TEdit.Tools.Tool
 
         public override bool PressTool(TileMouseEventArgs e)
         {
-            if (e.LeftButton == MouseButtonState.Pressed)
+            if (_spritePicker.SelectedSprite != null)
             {
-                PlaceBrownChest(e.Tile);
+                if (e.LeftButton == MouseButtonState.Pressed)
+                {
+                    var cursprite = _spritePicker.SelectedSprite;
+                    PlaceSprite(e.Tile, (byte) cursprite.ID, cursprite.Size, cursprite.UpperLeft);
+                    //PlaceBrownChest(e.Tile);
+                }
+                return true;
             }
-
-            return true;
+            return false;
         }
 
 
@@ -116,6 +123,26 @@ namespace TEdit.Tools.Tool
             }
         }
 
+        private void PlaceSprite(PointInt32 location, byte type, PointShort size, PointShort upperLeft = new PointShort())
+        {
+            for (int x = 0; x < size.X; x++)
+            {
+                for (int y = 0; y < size.Y; y++)
+                {
+                    var curTile = _world.Tiles[location.X + x, location.Y + y];
+                    curTile.IsActive = true;
+                    curTile.Type = type;
+                    curTile.Frame = new PointShort((short)(upperLeft.X + (x * 18)), (short)(upperLeft.Y + (y * 18)));
+                    _renderer.UpdateWorldImage(new PointInt32(location.X + x, location.Y + y));
+                }
+            }
+
+            if (type == 21)
+                _world.Chests.Add(new Chest { Location = location });
+            else if (type == 55 || type == 85)
+                _world.Signs.Add(new Sign{Location =  location});
+        }
+
         private void SetTileSprite(PointInt32 point, PointShort frame, byte type)
         {
             var curTile = _world.Tiles[point.X, point.Y];
@@ -136,6 +163,17 @@ namespace TEdit.Tools.Tool
 
         public override WriteableBitmap PreviewTool()
         {
+            if (_spritePicker.SelectedSprite != null)
+            {
+                return new WriteableBitmap(
+                _spritePicker.SelectedSprite.Size.X,
+                _spritePicker.SelectedSprite.Size.Y,
+                96,
+                96,
+                PixelFormats.Bgr32,
+                null);
+            }
+            
             return new WriteableBitmap(
                 1,
                 1,

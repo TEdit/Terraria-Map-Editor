@@ -4,8 +4,8 @@ using System.Collections.ObjectModel;
 using System.ComponentModel.Composition;
 using System.Windows;
 using TEdit.Common;
+using TEdit.Common.Structures;
 using TEdit.TerrariaWorld;
-using TEdit.TerrariaWorld.Structures;
 using TEdit.Tools.History;
 
 namespace TEdit.Tools.Clipboard

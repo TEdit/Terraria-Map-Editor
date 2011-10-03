@@ -2,7 +2,7 @@
 using System.Windows.Controls;
 using System.Windows.Input;
 using TEdit.Common;
-using TEdit.TerrariaWorld.Structures;
+using TEdit.Common.Structures;
 using TEdit.ViewModels;
 
 namespace TEdit.Views
