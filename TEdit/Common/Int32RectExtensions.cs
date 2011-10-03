@@ -1,5 +1,5 @@
 ﻿using System.Windows;
-using TEdit.TerrariaWorld.Structures;
+using TEdit.Common.Structures;
 
 namespace TEdit.Common
 {

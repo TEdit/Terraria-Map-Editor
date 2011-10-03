@@ -7,11 +7,50 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.Linq;
 
 namespace TEdit.Common
 {
+    public static class ObservableCollectionExtensions
+    {
+        /// <summary> 
+        /// Adds the elements of the specified collection to the end of the ObservableCollection(Of T). 
+        /// </summary> 
+        public static void AddRange<T>(this ObservableCollection<T> current, IEnumerable<T> collection)
+        {
+            foreach (var i in collection) current.Add(i);
+        }
+
+        /// <summary> 
+        /// Removes the first occurence of each item in the specified collection from ObservableCollection(Of T). 
+        /// </summary> 
+        public static void RemoveRange<T>(this ObservableCollection<T> current, IEnumerable<T> collection)
+        {
+            foreach (var i in collection) current.Remove(i);
+            //OnCollectionChanged(new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Reset));
+        }
+
+        /// <summary> 
+        /// Clears the current collection and replaces it with the specified item. 
+        /// </summary> 
+        public static void Replace<T>(this ObservableCollection<T> current, T item)
+        {
+            current.ReplaceRange(new T[] { item });
+        }
+        /// <summary> 
+        /// Clears the current collection and replaces it with the specified collection. 
+        /// </summary> 
+        public static void ReplaceRange<T>(this ObservableCollection<T> current, IEnumerable<T> collection)
+        {
+            //List<T> old = new List<T>(current);
+            current.Clear();
+            foreach (var i in collection) current.Add(i);
+            //OnCollectionChanged(new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Reset));
+        }
+    }
+
     public class FilteringCollection<T, M> : AdaptingCollection<T, M>
     {
         public FilteringCollection(Func<Lazy<T, M>, bool> filter)

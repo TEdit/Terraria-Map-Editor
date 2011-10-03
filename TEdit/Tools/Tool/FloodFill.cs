@@ -6,9 +6,9 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using TEdit.Common;
+using TEdit.Common.Structures;
 using TEdit.RenderWorld;
 using TEdit.TerrariaWorld;
-using TEdit.TerrariaWorld.Structures;
 using TEdit.Tools.History;
 
 namespace TEdit.Tools.Tool

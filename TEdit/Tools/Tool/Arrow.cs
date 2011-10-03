@@ -3,8 +3,8 @@ using System.ComponentModel.Composition;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using TEdit.Common;
+using TEdit.Common.Structures;
 using TEdit.TerrariaWorld;
-using TEdit.TerrariaWorld.Structures;
 using TEdit.Views;
 
 namespace TEdit.Tools.Tool

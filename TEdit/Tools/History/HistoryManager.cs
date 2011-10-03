@@ -4,9 +4,9 @@ using System.Collections.ObjectModel;
 using System.ComponentModel.Composition;
 using TEdit.Common;
 using System.Linq;
+using TEdit.Common.Structures;
 using TEdit.RenderWorld;
 using TEdit.TerrariaWorld;
-using TEdit.TerrariaWorld.Structures;
 
 namespace TEdit.Tools.History
 {

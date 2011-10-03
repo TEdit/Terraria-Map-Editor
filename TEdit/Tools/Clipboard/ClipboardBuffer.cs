@@ -5,8 +5,8 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Media.Imaging;
 using TEdit.Common;
+using TEdit.Common.Structures;
 using TEdit.TerrariaWorld;
-using TEdit.TerrariaWorld.Structures;
 
 namespace TEdit.Tools.Clipboard
 {

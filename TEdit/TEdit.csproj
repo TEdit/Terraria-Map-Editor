@@ -83,6 +83,11 @@
     </ApplicationDefinition>
     <Compile Include="Common\CustomCollections.cs" />
     <Compile Include="Common\ObservableCollectionEx.cs" />
+    <Compile Include="Common\Structures\PointFloat.cs" />
+    <Compile Include="Common\Structures\PointInt32.cs" />
+    <Compile Include="Common\Structures\PointShort.cs" />
+    <Compile Include="Common\Structures\RectF.cs" />
+    <Compile Include="Common\Structures\SizeInt32.cs" />
     <Compile Include="Converters\DoublePercentageConverter.cs" />
     <Compile Include="Common\ObservableObject.cs" />
     <Compile Include="Common\PropertySupport.cs" />
@@ -95,16 +100,13 @@
     <Compile Include="Plugins\IPlugin.cs" />
     <Compile Include="Plugins\IPluginMetaData.cs" />
     <Compile Include="Plugins\SamplePlugin.cs" />
-    <Compile Include="RenderWorld\TileItemBase.cs" />
+    <Compile Include="RenderWorld\NamedBase.cs" />
     <Compile Include="RenderWorld\FrameDirection.cs" />
-    <Compile Include="RenderWorld\TileFrameProperty.cs" />
     <Compile Include="RenderWorld\FramePlacement.cs" />
     <Compile Include="RenderWorld\FrameProperty.cs" />
     <Compile Include="RenderWorld\ItemProperty.cs" />
     <Compile Include="RenderWorld\TileProperty.cs" />
     <Compile Include="RenderWorld\WorldImage.cs" />
-    <Compile Include="TerrariaWorld\Structures\TileNumArray.cs" />
-    <Compile Include="TerrariaWorld\Structures\SizeInt32.cs" />
     <Compile Include="Tools\Clipboard\ClipboardBuffer.cs" />
     <Compile Include="Tools\Clipboard\ClipboardBuffer.File.cs" />
     <Compile Include="Tools\Clipboard\ClipboardManager.cs" />
@@ -128,10 +130,6 @@
     <Compile Include="TerrariaWorld\Item.cs" />
     <Compile Include="TerrariaWorld\NPC.cs" />
     <Compile Include="TerrariaWorld\Sign.cs" />
-    <Compile Include="TerrariaWorld\Structures\PointFloat.cs" />
-    <Compile Include="TerrariaWorld\Structures\PointInt32.cs" />
-    <Compile Include="TerrariaWorld\Structures\PointShort.cs" />
-    <Compile Include="TerrariaWorld\Structures\RectF.cs" />
     <Compile Include="TerrariaWorld\Tile.cs" />
     <Compile Include="TerrariaWorld\World.cs" />
     <Compile Include="TerrariaWorld\World.File.cs" />

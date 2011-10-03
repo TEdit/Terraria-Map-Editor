@@ -5,22 +5,21 @@ using TEdit.Common;
 namespace TEdit.RenderWorld
 {
     [Serializable]
-    public class ColorProperty : TileItemBase
+    public class ColorProperty : NamedBase
     {
-
         public ColorProperty()
         {
-        }
-
-        public ColorProperty(byte id)
-        {
-            ID = id;
             Name = "UNKNOWN";
             Color = Colors.Magenta;
         }
 
-        protected internal Color _color;
-        public virtual Color Color
+        public ColorProperty(byte id) : this()
+        {
+            ID = id;
+        }
+
+        private Color _color;
+        public Color Color
         {
             get { return _color; }
             set { SetProperty(ref _color, ref value, "Color"); }
@@ -28,7 +27,7 @@ namespace TEdit.RenderWorld
 
         public override string ToString()
         {
-            return String.Format("{0}|{1}|#{2:x2}{3:x2}{4:x2}{5:x2}", ID, Name, Color.A, Color.R, Color.G, Color.B);
+            return base.ToString() + String.Format("|{0}|#{1:x2}{2:x2}{3:x2}{4:x2}", ID, Color.A, Color.R, Color.G, Color.B);
         }
     }
 }

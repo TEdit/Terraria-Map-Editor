@@ -5,18 +5,10 @@ namespace TEdit.RenderWorld
 {
     public enum FrameDirection
     {
-        l = 0x01,
-        r,
-        c,
-        u,
-    }
-
-    public enum DisplayFrameDirection
-    {
-        LeftFacing = 0x01,
-        RightFacing,
+        None,
+        Left,
+        Right,
         Center,
-        Upwards,
+        Up,
     }
-
  }

@@ -182,13 +182,13 @@ A Frame tag has the following (other) properties:
 Frame tags have a unique name among the name, variety, and dir properties.  So, they might be 
 displayed in the following fashion:
 
-<Frame upperLeft="22,0" name="Tree Trunk" dir="u" variety="Right Indent A" />
+<Frame upperLeft="22,0" name="Tree Trunk" dir="Up" variety="Right Indent A" />
    Full Name: Tree Trunk - Right Indent A (Upwards)
 
 <Frame upperLeft="72,0" name="Gold Chest" variety="Locked" />
    Full Name: Gold Chest - Locked
 
-<Frame upperLeft="18,0" name="Chair" dir="r" />
+<Frame upperLeft="18,0" name="Chair" dir="Right" />
    Full Name: Chair (Right Facing)
 
 <Walls>
@@ -264,106 +264,106 @@ Single item; tag has no children.  Has the following properties:
     <Tile num="2" name="Grass" color="#ff1cd85e" isSolid="true" />
     <Tile num="3" name="Grass Flowers" color="#ff0d6524" isSolid="true" isFramed="true" growsOn="2">
       <Frames>
-        <Frame upperLeft="0,0" name="Grass" dir="r" variety="Single Blade" />
-        <Frame upperLeft="18,0" name="Grass" dir="r" variety="Double Blade" />
-        <Frame upperLeft="36,0" name="Grass" dir="u" variety="Small Y" />
-        <Frame upperLeft="54,0" name="Grass" dir="r" variety="Three Small" />
-        <Frame upperLeft="72,0" name="Grass" dir="l" variety="Single Blade" />
-        <Frame upperLeft="90,0" name="Grass" dir="l" variety="Three Large" />
-        <Frame upperLeft="108,0" name="Flowers" dir="l" variety="Purple, Immature" />
-        <Frame upperLeft="126,0" name="Flowers" dir="r" variety="Pink, Immature" />
-        <Frame upperLeft="144,0" name="Mushroom" dir="u" />
+        <Frame upperLeft="0,0" name="Grass" dir="Right" variety="Single Blade" />
+        <Frame upperLeft="18,0" name="Grass" dir="Right" variety="Double Blade" />
+        <Frame upperLeft="36,0" name="Grass" dir="Up" variety="Small Y" />
+        <Frame upperLeft="54,0" name="Grass" dir="Right" variety="Three Small" />
+        <Frame upperLeft="72,0" name="Grass" dir="Left" variety="Single Blade" />
+        <Frame upperLeft="90,0" name="Grass" dir="Left" variety="Three Large" />
+        <Frame upperLeft="108,0" name="Flowers" dir="Left" variety="Purple, Immature" />
+        <Frame upperLeft="126,0" name="Flowers" dir="Right" variety="Pink, Immature" />
+        <Frame upperLeft="144,0" name="Mushroom" dir="Up" />
       </Frames>
     </Tile>
     <Tile num="4" name="Torch" color="#fffd3e03" isSolid="true" placement="wallFloor" lightBrightness="1.0" isHouseItem="true" />
     <Tile num="5" name="Tree" color="#ff634631" isSolid="true" isFramed="true" growsOn="2">
       <Frames>
-        <Frame upperLeft="0,0" name="Tree Trunk" dir="u" variety="Plain A" />
-        <Frame upperLeft="22,0" name="Tree Trunk" dir="u" variety="Right Indent A" />
-        <Frame upperLeft="44,0" name="Tree Trunk" dir="u" variety="Right Slight Bulge A" />
-        <Frame upperLeft="66,0" name="Tree Branch" dir="l" variety="Plain A" />
-        <Frame upperLeft="88,0" name="Tree Trunk" dir="u" variety="Left Slight Bulge A" />
-        <Frame upperLeft="110,0" name="Tree Top" dir="u" variety="Medium A" />
-        <Frame upperLeft="132,0" name="Tree Top" dir="u" variety="Small A" />
-        <Frame upperLeft="154,0" name="Tree Top" dir="r" variety="Large A" />
+        <Frame upperLeft="0,0" name="Tree Trunk" dir="Up" variety="Plain A" />
+        <Frame upperLeft="22,0" name="Tree Trunk" dir="Up" variety="Right Indent A" />
+        <Frame upperLeft="44,0" name="Tree Trunk" dir="Up" variety="Right Slight Bulge A" />
+        <Frame upperLeft="66,0" name="Tree Branch" dir="Left" variety="Plain A" />
+        <Frame upperLeft="88,0" name="Tree Trunk" dir="Up" variety="Left Slight Bulge A" />
+        <Frame upperLeft="110,0" name="Tree Top" dir="Up" variety="Medium A" />
+        <Frame upperLeft="132,0" name="Tree Top" dir="Up" variety="Small A" />
+        <Frame upperLeft="154,0" name="Tree Top" dir="Right" variety="Large A" />
 
-        <Frame upperLeft="0,22" name="Tree Trunk" dir="u" variety="Plain B" />
-        <Frame upperLeft="22,22" name="Tree Trunk" dir="u" variety="Right Indent B" />
-        <Frame upperLeft="44,22" name="Tree Trunk" dir="u" variety="Right Slight Bulge B" />
-        <Frame upperLeft="66,22" name="Tree Branch" dir="l" variety="Plain B" />
-        <Frame upperLeft="88,22" name="Tree Trunk" dir="u" variety="Left Slight Bulge B" />
-        <Frame upperLeft="110,22" name="Tree Top" dir="u" variety="Medium B" />
-        <Frame upperLeft="132,22" name="Tree Top" dir="u" variety="Small B" />
-        <Frame upperLeft="154,22" name="Tree Top" dir="r" variety="Large B" />
+        <Frame upperLeft="0,22" name="Tree Trunk" dir="Up" variety="Plain B" />
+        <Frame upperLeft="22,22" name="Tree Trunk" dir="Up" variety="Right Indent B" />
+        <Frame upperLeft="44,22" name="Tree Trunk" dir="Up" variety="Right Slight Bulge B" />
+        <Frame upperLeft="66,22" name="Tree Branch" dir="Left" variety="Plain B" />
+        <Frame upperLeft="88,22" name="Tree Trunk" dir="Up" variety="Left Slight Bulge B" />
+        <Frame upperLeft="110,22" name="Tree Top" dir="Up" variety="Medium B" />
+        <Frame upperLeft="132,22" name="Tree Top" dir="Up" variety="Small B" />
+        <Frame upperLeft="154,22" name="Tree Top" dir="Right" variety="Large B" />
 
-        <Frame upperLeft="0,44" name="Tree Trunk" dir="u" variety="Plain C" />
-        <Frame upperLeft="22,44" name="Tree Trunk" dir="u" variety="Right Indent C" />
-        <Frame upperLeft="44,44" name="Tree Trunk" dir="u" variety="Right Slight Bulge C" />
-        <Frame upperLeft="66,44" name="Tree Branch" dir="l" variety="Plain C" />
-        <Frame upperLeft="88,44" name="Tree Trunk" dir="u" variety="Left Slight Bulge C" />
-        <Frame upperLeft="110,44" name="Tree Top" dir="u" variety="Medium C" />
-        <Frame upperLeft="132,44" name="Tree Top" dir="u" variety="Small C" />
-        <Frame upperLeft="154,44" name="Tree Top" dir="r" variety="Large C" />
+        <Frame upperLeft="0,44" name="Tree Trunk" dir="Up" variety="Plain C" />
+        <Frame upperLeft="22,44" name="Tree Trunk" dir="Up" variety="Right Indent C" />
+        <Frame upperLeft="44,44" name="Tree Trunk" dir="Up" variety="Right Slight Bulge C" />
+        <Frame upperLeft="66,44" name="Tree Branch" dir="Left" variety="Plain C" />
+        <Frame upperLeft="88,44" name="Tree Trunk" dir="Up" variety="Left Slight Bulge C" />
+        <Frame upperLeft="110,44" name="Tree Top" dir="Up" variety="Medium C" />
+        <Frame upperLeft="132,44" name="Tree Top" dir="Up" variety="Small C" />
+        <Frame upperLeft="154,44" name="Tree Top" dir="Right" variety="Large C" />
 
-        <Frame upperLeft="0,66" name="Tree Trunk" dir="u" variety="Left Indent A" />
-        <Frame upperLeft="22,66" name="Tree Trunk" dir="u" variety="Right Bulge A" />
-        <Frame upperLeft="44,66" name="Tree Trunk" dir="u" variety="Left Bulge A" />
-        <Frame upperLeft="66,66" name="Tree Trunk" dir="u" variety="Right Slight Bulge D" />
-        <Frame upperLeft="88,66" name="Tree Branch" dir="r" variety="Plain A" />
-        <Frame upperLeft="110,66" name="Tree Trunk" dir="u" variety="Double Slight Bulge A" />
-        <Frame upperLeft="132,66" name="Tree Top" dir="u" variety="Small Right Slight Bulge A" />
-        <Frame upperLeft="154,66" name="Tree Top" dir="l" variety="Large A" />
+        <Frame upperLeft="0,66" name="Tree Trunk" dir="Up" variety="Left Indent A" />
+        <Frame upperLeft="22,66" name="Tree Trunk" dir="Up" variety="Right Bulge A" />
+        <Frame upperLeft="44,66" name="Tree Trunk" dir="Up" variety="Left Bulge A" />
+        <Frame upperLeft="66,66" name="Tree Trunk" dir="Up" variety="Right Slight Bulge D" />
+        <Frame upperLeft="88,66" name="Tree Branch" dir="Right" variety="Plain A" />
+        <Frame upperLeft="110,66" name="Tree Trunk" dir="Up" variety="Double Slight Bulge A" />
+        <Frame upperLeft="132,66" name="Tree Top" dir="Up" variety="Small Right Slight Bulge A" />
+        <Frame upperLeft="154,66" name="Tree Top" dir="Left" variety="Large A" />
 
-        <Frame upperLeft="0,88" name="Tree Trunk" dir="u" variety="Left Indent B" />
-        <Frame upperLeft="22,88" name="Tree Trunk" dir="u" variety="Right Bulge B" />
-        <Frame upperLeft="44,88" name="Tree Trunk" dir="u" variety="Left Bulge B" />
-        <Frame upperLeft="66,88" name="Tree Trunk" dir="u" variety="Right Slight Bulge E" />
-        <Frame upperLeft="88,88" name="Tree Branch" dir="r" variety="Plain B" />
-        <Frame upperLeft="110,88" name="Tree Trunk" dir="u" variety="Double Slight Bulge B" />
-        <Frame upperLeft="132,88" name="Tree Top" dir="u" variety="Small Right Slight Bulge B" />
-        <Frame upperLeft="154,88" name="Tree Top" dir="l" variety="Large B" />
+        <Frame upperLeft="0,88" name="Tree Trunk" dir="Up" variety="Left Indent B" />
+        <Frame upperLeft="22,88" name="Tree Trunk" dir="Up" variety="Right Bulge B" />
+        <Frame upperLeft="44,88" name="Tree Trunk" dir="Up" variety="Left Bulge B" />
+        <Frame upperLeft="66,88" name="Tree Trunk" dir="Up" variety="Right Slight Bulge E" />
+        <Frame upperLeft="88,88" name="Tree Branch" dir="Right" variety="Plain B" />
+        <Frame upperLeft="110,88" name="Tree Trunk" dir="Up" variety="Double Slight Bulge B" />
+        <Frame upperLeft="132,88" name="Tree Top" dir="Up" variety="Small Right Slight Bulge B" />
+        <Frame upperLeft="154,88" name="Tree Top" dir="Left" variety="Large B" />
 
-        <Frame upperLeft="0,110" name="Tree Trunk" dir="u" variety="Left Indent C" />
-        <Frame upperLeft="22,110" name="Tree Trunk" dir="u" variety="Right Bulge C" />
-        <Frame upperLeft="44,110" name="Tree Trunk" dir="u" variety="Left Bulge C" />
-        <Frame upperLeft="66,110" name="Tree Trunk" dir="u" variety="Right Slight Bulge F" />
-        <Frame upperLeft="88,110" name="Tree Branch" dir="r" variety="Plain C" />
-        <Frame upperLeft="110,110" name="Tree Trunk" dir="u" variety="Double Slight Bulge C" />
-        <Frame upperLeft="132,110" name="Tree Top" dir="u" variety="Small Right Slight Bulge C" />
-        <Frame upperLeft="154,110" name="Tree Top" dir="l" variety="Large C" />
+        <Frame upperLeft="0,110" name="Tree Trunk" dir="Up" variety="Left Indent C" />
+        <Frame upperLeft="22,110" name="Tree Trunk" dir="Up" variety="Right Bulge C" />
+        <Frame upperLeft="44,110" name="Tree Trunk" dir="Up" variety="Left Bulge C" />
+        <Frame upperLeft="66,110" name="Tree Trunk" dir="Up" variety="Right Slight Bulge F" />
+        <Frame upperLeft="88,110" name="Tree Branch" dir="Right" variety="Plain C" />
+        <Frame upperLeft="110,110" name="Tree Trunk" dir="Up" variety="Double Slight Bulge C" />
+        <Frame upperLeft="132,110" name="Tree Top" dir="Up" variety="Small Right Slight Bulge C" />
+        <Frame upperLeft="154,110" name="Tree Top" dir="Left" variety="Large C" />
 
-        <Frame upperLeft="0,132" name="Tree Trunk" dir="l" variety="Large A" />
-        <Frame upperLeft="22,132" name="Tree Base" dir="r" variety="Plain A" />
-        <Frame upperLeft="44,132" name="Tree Base" dir="l" variety="Plain A" />
-        <Frame upperLeft="66,132" name="Tree Trunk" dir="r" variety="Large A" />
-        <Frame upperLeft="88,132" name="Tree Trunk" dir="c" variety="Large A" />
+        <Frame upperLeft="0,132" name="Tree Trunk" dir="Left" variety="Large A" />
+        <Frame upperLeft="22,132" name="Tree Base" dir="Right" variety="Plain A" />
+        <Frame upperLeft="44,132" name="Tree Base" dir="Left" variety="Plain A" />
+        <Frame upperLeft="66,132" name="Tree Trunk" dir="Right" variety="Large A" />
+        <Frame upperLeft="88,132" name="Tree Trunk" dir="Center" variety="Large A" />
         <!-- ########################This#space#intentionally#left#blank######################## -->
-        <Frame upperLeft="132,132" name="Tree Top" dir="u" variety="Small Double Slight Bulge A" />
-        <Frame upperLeft="154,132" name="Tree Top" dir="l" variety="Huge" />
+        <Frame upperLeft="132,132" name="Tree Top" dir="Up" variety="Small Double Slight Bulge A" />
+        <Frame upperLeft="154,132" name="Tree Top" dir="Left" variety="Huge" />
 
-        <Frame upperLeft="0,154" name="Tree Trunk" dir="l" variety="Large B" />
-        <Frame upperLeft="22,154" name="Tree Base" dir="r" variety="Plain B" />
-        <Frame upperLeft="44,154" name="Tree Base" dir="l" variety="Plain B" />
-        <Frame upperLeft="66,154" name="Tree Trunk" dir="r" variety="Large B" />
-        <Frame upperLeft="88,154" name="Tree Trunk" dir="c" variety="Large B" />
+        <Frame upperLeft="0,154" name="Tree Trunk" dir="Left" variety="Large B" />
+        <Frame upperLeft="22,154" name="Tree Base" dir="Right" variety="Plain B" />
+        <Frame upperLeft="44,154" name="Tree Base" dir="Left" variety="Plain B" />
+        <Frame upperLeft="66,154" name="Tree Trunk" dir="Right" variety="Large B" />
+        <Frame upperLeft="88,154" name="Tree Trunk" dir="Center" variety="Large B" />
         <!-- ########################This#space#intentionally#left#blank######################## -->
-        <Frame upperLeft="132,154" name="Tree Top" dir="u" variety="Small Double Slight Bulge B" />
-        <Frame upperLeft="154,154" name="Tree Top" dir="c" variety="Huge" />
+        <Frame upperLeft="132,154" name="Tree Top" dir="Up" variety="Small Double Slight Bulge B" />
+        <Frame upperLeft="154,154" name="Tree Top" dir="Center" variety="Huge" />
 
-        <Frame upperLeft="0,176" name="Tree Trunk" dir="l" variety="Large C" />
-        <Frame upperLeft="22,176" name="Tree Base" dir="r" variety="Plain C" />
-        <Frame upperLeft="44,176" name="Tree Base" dir="l" variety="Plain C" />
-        <Frame upperLeft="66,176" name="Tree Trunk" dir="r" variety="Large C" />
-        <Frame upperLeft="88,176" name="Tree Trunk" dir="c" variety="Large C" />
+        <Frame upperLeft="0,176" name="Tree Trunk" dir="Left" variety="Large C" />
+        <Frame upperLeft="22,176" name="Tree Base" dir="Right" variety="Plain C" />
+        <Frame upperLeft="44,176" name="Tree Base" dir="Left" variety="Plain C" />
+        <Frame upperLeft="66,176" name="Tree Trunk" dir="Right" variety="Large C" />
+        <Frame upperLeft="88,176" name="Tree Trunk" dir="Center" variety="Large C" />
         <!-- ########################This#space#intentionally#left#blank######################## -->
-        <Frame upperLeft="132,176" name="Tree Top" dir="u" variety="Small Double Slight Bulge C" />
-        <Frame upperLeft="154,176" name="Tree Top" dir="r" variety="Huge" />
+        <Frame upperLeft="132,176" name="Tree Top" dir="Up" variety="Small Double Slight Bulge C" />
+        <Frame upperLeft="154,176" name="Tree Top" dir="Right" variety="Huge" />
 
-        <Frame upperLeft="0,198" name="Tree Top" dir="r" variety="Jagged" />
+        <Frame upperLeft="0,198" name="Tree Top" dir="Right" variety="Jagged" />
 
-        <Frame upperLeft="0,220" name="Tree Trunk" dir="u" variety="Jagged" />
+        <Frame upperLeft="0,220" name="Tree Trunk" dir="Up" variety="Jagged" />
 
-        <Frame upperLeft="0,242" name="Tree Trunk" dir="l" variety="Jagged" />
+        <Frame upperLeft="0,242" name="Tree Trunk" dir="Left" variety="Jagged" />
       </Frames>
     </Tile>
     <Tile num="6" name="Iron" color="#ff6b594e" isSolid="true" />
@@ -379,8 +379,8 @@ Single item; tag has no children.  Has the following properties:
     </Tile>
     <Tile num="11" name="Door Open" color="#ff00fff2" isSolid="true" isFramed="true" size="2,3" placement="CFBoth">
       <Frames>
-        <Frame upperLeft="0,0" dir="r" />
-        <Frame upperLeft="36,0" dir="l" />
+        <Frame upperLeft="0,0" dir="Right" />
+        <Frame upperLeft="36,0" dir="Left" />
       </Frames>
     </Tile>
     <Tile num="12" name="Crystal Heart" color="#ffff0000" isFramed="true" size="2,2" placement="floor" />
@@ -395,10 +395,10 @@ Single item; tag has no children.  Has the following properties:
     </Tile>
     <Tile num="14" name="Table" color="#ff00fff2" isFramed="true" size="3,2" placement="floor" isSolidTop="true" isHouseItem="true" />
     <Tile num="15" name="Chair" color="#ff00fff2" isFramed="true" size="1,2" placement="floor" isHouseItem="true">
-      <Frame upperLeft="0,0" name="Chair" dir="l" />
-      <Frame upperLeft="18,0" name="Chair" dir="r" />
-      <Frame upperLeft="0,40" name="Toilet" dir="l" />
-      <Frame upperLeft="18,40" name="Toilet" dir="r" />
+      <Frame upperLeft="0,0" name="Chair" dir="Left" />
+      <Frame upperLeft="18,0" name="Chair" dir="Right" />
+      <Frame upperLeft="0,40" name="Toilet" dir="Left" />
+      <Frame upperLeft="18,40" name="Toilet" dir="Right" />
     </Tile>
     <Tile num="16" name="Anvil" color="#ff00fff2" isFramed="true" size="2,1" placement="floor" isSolidTop="true" />
     <Tile num="17" name="Furnace" color="#ff00fff2" isFramed="true" size="3,2" placement="floor" lightBrightness="0.8" />
@@ -406,9 +406,9 @@ Single item; tag has no children.  Has the following properties:
     <Tile num="19" name="Wooden Platform" color="#ff6b3a18" placement="wall" isSolidTop="true" />
     <Tile num="20" name="Sapling" color="#ff0d6524" isFramed="true" growsOn="2">
       <Frames>
-        <Frame upperLeft="0,0" dir="l" />
-        <Frame upperLeft="18,0" dir="u" />
-        <Frame upperLeft="36,0" dir="r" />
+        <Frame upperLeft="0,0" dir="Left" />
+        <Frame upperLeft="18,0" dir="Up" />
+        <Frame upperLeft="36,0" dir="Right" />
       </Frames>
     </Tile>
     <Tile num="21" name="Chest" color="#ffddb800" isFramed="true" size="2,2" placement="floor">
@@ -426,15 +426,15 @@ Single item; tag has no children.  Has the following properties:
     <Tile num="23" name="Corruption Grass" color="#ff8d89df" isSolid="true" />
     <Tile num="24" name="Corruption Plants" color="#ff8d89df" isFramed="true" growsOn="23">
       <Frames>
-        <Frame upperLeft="0,0" name="Vile Grass" dir="r" variety="Single Blade" />
-        <Frame upperLeft="18,0" name="Vile Grass" dir="r" variety="Double Blade" />
-        <Frame upperLeft="36,0" name="Vile Grass" dir="u" variety="Small Y" />
-        <Frame upperLeft="54,0" name="Vile Grass" dir="r" variety="Three Small" />
-        <Frame upperLeft="72,0" name="Vile Grass" dir="l" variety="Single Blade" />
-        <Frame upperLeft="90,0" name="Vile Grass" dir="l" variety="Three Large" />
-        <Frame upperLeft="108,0" name="Vile Flower" dir="l" variety="Yellow" />
-        <Frame upperLeft="126,0" name="Vile Flower" dir="r" variety="Red" />
-        <Frame upperLeft="144,0" name="Vile Mushroom" dir="u" />
+        <Frame upperLeft="0,0" name="Vile Grass" dir="Right" variety="Single Blade" />
+        <Frame upperLeft="18,0" name="Vile Grass" dir="Right" variety="Double Blade" />
+        <Frame upperLeft="36,0" name="Vile Grass" dir="Up" variety="Small Y" />
+        <Frame upperLeft="54,0" name="Vile Grass" dir="Right" variety="Three Small" />
+        <Frame upperLeft="72,0" name="Vile Grass" dir="Left" variety="Single Blade" />
+        <Frame upperLeft="90,0" name="Vile Grass" dir="Left" variety="Three Large" />
+        <Frame upperLeft="108,0" name="Vile Flower" dir="Left" variety="Yellow" />
+        <Frame upperLeft="126,0" name="Vile Flower" dir="Right" variety="Red" />
+        <Frame upperLeft="144,0" name="Vile Mushroom" dir="Up" />
       </Frames>
     </Tile>
     <Tile num="25" name="Ebonstone" color="#ff4b4a82" isSolid="true" />
@@ -496,16 +496,16 @@ Single item; tag has no children.  Has the following properties:
     <Tile num="60" name="Jungle Grass" color="#ff8fd71d" isSolid="true" />
     <Tile num="61" name="Jungle Plants" color="#ff8fd71d" isFramed="true" growsOn="60">
       <Frames>
-        <Frame upperLeft="0,0" name="Jungle Grass" dir="r" variety="Single Blade" />
-        <Frame upperLeft="18,0" name="Jungle Grass" dir="r" variety="Double Blade" />
-        <Frame upperLeft="36,0" name="Jungle Grass" dir="u" variety="Small Y" />
-        <Frame upperLeft="54,0" name="Jungle Grass" dir="r" variety="Three Small" />
-        <Frame upperLeft="72,0" name="Jungle Grass" dir="l" variety="Single Blade" />
-        <Frame upperLeft="90,0" name="Jungle Grass" dir="l" variety="Three Large" />
-        <Frame upperLeft="108,0" name="Jungle Rose" dir="l" variety="Immature" />
-        <Frame upperLeft="126,0" name="Jungle Rose" dir="r" variety="Immature" />
-        <Frame upperLeft="144,0" name="Puff Light" dir="u" />
-        <Frame upperLeft="162,0" name="Nature's Gift" dir="r" variety="Immature" />
+        <Frame upperLeft="0,0" name="Jungle Grass" dir="Right" variety="Single Blade" />
+        <Frame upperLeft="18,0" name="Jungle Grass" dir="Right" variety="Double Blade" />
+        <Frame upperLeft="36,0" name="Jungle Grass" dir="Up" variety="Small Y" />
+        <Frame upperLeft="54,0" name="Jungle Grass" dir="Right" variety="Three Small" />
+        <Frame upperLeft="72,0" name="Jungle Grass" dir="Left" variety="Single Blade" />
+        <Frame upperLeft="90,0" name="Jungle Grass" dir="Left" variety="Three Large" />
+        <Frame upperLeft="108,0" name="Jungle Rose" dir="Left" variety="Immature" />
+        <Frame upperLeft="126,0" name="Jungle Rose" dir="Right" variety="Immature" />
+        <Frame upperLeft="144,0" name="Puff Light" dir="Up" />
+        <Frame upperLeft="162,0" name="Nature's Gift" dir="Right" variety="Immature" />
       </Frames>
     </Tile>
     <Tile num="62" name="Jungle Vines" color="#ff8ace1c" hangsOn="60" />
@@ -529,11 +529,11 @@ Single item; tag has no children.  Has the following properties:
     <Tile num="72" name="Mushroom Tree" color="#ff968f6e" isFramed="true" growsOn="70">
       <Frames>
         <Frame upperLeft="0,0" variety="Trunk A" />
-        <Frame upperLeft="18,0" variety="Tree Top" dir="u" />
+        <Frame upperLeft="18,0" variety="Tree Top" dir="Up" />
         <Frame upperLeft="0,18" variety="Trunk B" />
-        <Frame upperLeft="18,18" variety="Tree Top" dir="r" />
+        <Frame upperLeft="18,18" variety="Tree Top" dir="Right" />
         <Frame upperLeft="0,36" variety="Trunk C" />
-        <Frame upperLeft="18,36" variety="Tree Top" dir="l" />
+        <Frame upperLeft="18,36" variety="Tree Top" dir="Left" />
       </Frames>
     </Tile>
     <Tile num="73" name="Tall Grass" color="#ff0d6524" isFramed="true">
@@ -565,8 +565,8 @@ Single item; tag has no children.  Has the following properties:
     <Tile num="77" name="Hellforge" color="#ffd50010" isFramed="true" size="3,2" placement="floor" lightBrightness="0.8" />
     <Tile num="78" name="Clay Pot" color="#ff00fff2" isFramed="true" size="2,2" placement="floor" />
     <Tile num="79" name="Bed" color="#ff00fff2" isFramed="true" size="4,2" placement="floor" isHouseItem="true">
-      <Frame upperLeft="0,0" dir="l" />
-      <Frame upperLeft="72,0" dir="r" />
+      <Frame upperLeft="0,0" dir="Left" />
+      <Frame upperLeft="72,0" dir="Right" />
     </Tile>
     <Tile num="80" name="Cactus" color="#ff00a500" growsOn="53" contactDmg="10" />
     <Tile num="81" name="Coral" color="#ffe55340" isFramed="true" growsOn="53">
@@ -616,8 +616,8 @@ Single item; tag has no children.  Has the following properties:
     <Tile num="89" name="Bench" color="#ff00fff2" isFramed="true" size="3,2" placement="floor" isHouseItem="true" />
     <Tile num="90" name="Bathtub" color="#ff00fff2" isFramed="true" size="4,2" placement="floor" isHouseItem="true">
       <Frames>
-        <Frame upperLeft="0,0" dir="l" />
-        <Frame upperLeft="72,0" dir="r" />
+        <Frame upperLeft="0,0" dir="Left" />
+        <Frame upperLeft="72,0" dir="Right" />
       </Frames>
     </Tile>
     <Tile num="91" name="Banner" color="#ff00fff2" isFramed="true" size="1,3" placement="ceiling">

@@ -1,6 +1,6 @@
-﻿using System;
+using System;
 
-namespace TEdit.TerrariaWorld.Structures
+namespace TEdit.Common.Structures
 {
     [Serializable]
     public struct PointFloat

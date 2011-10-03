@@ -1,6 +1,6 @@
-﻿using System;
+using System;
 
-namespace TEdit.TerrariaWorld.Structures
+namespace TEdit.Common.Structures
 {
     [Serializable]
     public struct PointShort
@@ -56,11 +56,33 @@ namespace TEdit.TerrariaWorld.Structures
             return false;
         }
 
-        public static PointShort Parse(string point)
+        public static PointShort TryParseInline(string point)
         {
             PointShort result;
             TryParse(point, out result);
             return result;
+        }
+
+        public static PointShort Parse(string point)
+        {
+            short x = 0;
+            short y = 0;
+
+            if (string.IsNullOrWhiteSpace(point))
+            {
+                throw new NullReferenceException("point cannot be null");
+            }
+
+            string[] split = point.Split(',');
+            if (split.Length == 2)
+            {
+                x = short.Parse(split[0]);
+                y = short.Parse(split[1]);
+                return new PointShort(x, y);
+
+            }
+
+            throw new ArgumentOutOfRangeException("point", "Invalid point structure, must be in the form of x,y");
         }
 
         #region Operator Overrides

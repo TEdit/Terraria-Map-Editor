@@ -1,12 +1,12 @@
 using System;
 using System.Windows.Media;
-using TEdit.TerrariaWorld.Structures;
 using System.Collections.ObjectModel;
+using TEdit.Common.Structures;
 
 namespace TEdit.RenderWorld
 {
     [Serializable]
-    public class TileProperty : TileFrameProperty
+    public class TileProperty : FrameProperty
     {
 
         public TileProperty()
@@ -19,11 +19,7 @@ namespace TEdit.RenderWorld
             ID = id;
             Name = "UNKNOWN";
             Color = Colors.Magenta;
-            IsSolid = false;
-            IsSolidTop = false;
             Size = new PointShort(1, 1);
-            Direction = null;
-            Variety = "";
         }
 
         private bool _isFramed;
@@ -40,10 +36,10 @@ namespace TEdit.RenderWorld
             set { SetProperty(ref _canMixFrames, ref value, "CanMixFrames"); }
         }
 
-        private readonly ObservableCollection<FrameProperty> _Frames = new ObservableCollection<FrameProperty>();
+        private readonly ObservableCollection<FrameProperty> _frames = new ObservableCollection<FrameProperty>();
         public ObservableCollection<FrameProperty> Frames
         {
-            get { return _Frames; }
+            get { return _frames; }
         }
 
     }

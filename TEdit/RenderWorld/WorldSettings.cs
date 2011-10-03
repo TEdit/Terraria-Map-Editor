@@ -5,8 +5,9 @@ using System.IO;
 using System.Linq;
 using System.Windows.Media;
 using System.Xml.Linq;
-using TEdit.TerrariaWorld.Structures;
+using TEdit.Common;
 using System.Reflection;
+using TEdit.Common.Structures;
 
 namespace TEdit.RenderWorld
 {
@@ -21,6 +22,25 @@ namespace TEdit.RenderWorld
         {
             LoadXMLSettings("settings.xml");
             OnSettingsLoaded(null, new EventArgs());
+        }
+
+        private static IEnumerable<TOut> StringToList<TOut>(string xmlcsv)
+        {
+            if (!string.IsNullOrWhiteSpace(xmlcsv))
+            {
+                string[] split = xmlcsv.Split(',');
+                foreach (var s in split)
+                {
+                    yield return (TOut)Convert.ChangeType(s, typeof(TOut));
+                }
+            }
+        }
+
+        private static T InLineEnumTryParse<T>(string value) where T : struct
+        {
+            T result;
+            Enum.TryParse(value, true, out result);
+            return result;
         }
 
         private static void LoadXMLSettings(string file)
@@ -43,27 +63,30 @@ namespace TEdit.RenderWorld
             {
                 var curTile = _tiles[(int)tile.Attribute("num")];
 
-                curTile.IsFramed = ((bool?)tile.Attribute("isFramed") ?? false);
                 curTile.CanMixFrames = ((bool?)tile.Attribute("canMixFrames") ?? false);
-                ParseCommonXML(ref curTile, tile);
+                curTile.Color = (Color)ColorConverter.ConvertFromString((string)tile.Attribute("color"));
+                curTile.IsFramed = ((bool?)tile.Attribute("isFramed") ?? false);
+                ParseFrameAttributes(tile, curTile);
 
                 if (tile.Elements().Any(x => x.Name == "Frames"))
                 {
                     byte c = 0;
                     foreach (var frame in tile.Elements("Frames").Elements("Frame"))
                     {
-                        var curFrame = new FrameProperty();
-                        curFrame.SetParent(ref curTile);
-                        curFrame.ID = c++;
-                        ParseCommonXML(ref curFrame, frame);
+                        var curFrame = new FrameProperty { ID = c++ };
+                        ParseFrameAttributes(frame, curFrame);
                         curTile.Frames.Add(curFrame);
                     }
                 }
-                // Default Frame 0
                 else if (curTile.IsFramed)
                 {
-                    var curFrame = new FrameProperty();
-                    curFrame.SetParent(ref curTile);
+                    // Default Frame 0
+                    var curFrame = new FrameProperty
+                    {
+                        ID = 0,
+                        UpperLeft = new PointShort(0, 0),
+                        Name = "Default"
+                    };
                     curTile.Frames.Add(curFrame);
                 }
             }
@@ -80,9 +103,9 @@ namespace TEdit.RenderWorld
             foreach (var item in xmlSettings.Elements("Items").Elements("Item"))
             {
                 var curItem = new ItemProperty();
-                curItem.ID   = (int?)item.Attribute("num");
+                curItem.ID = (int?)item.Attribute("num") ?? -1;
                 curItem.Name = (string)item.Attribute("name");
-                curItem.Type = (string)item.Attribute("type");
+                curItem.ItemType = (string)item.Attribute("type");
                 _items.Add(curItem);
             }
 
@@ -93,42 +116,20 @@ namespace TEdit.RenderWorld
             }
         }
 
-        private static void ParseCommonXML<T>(ref T curItem, XElement xml)
+        private static void ParseFrameAttributes(XElement tile, FrameProperty curTile)
         {
-            foreach (string prop in new[] { "name", "color", "variety", "dir", "upperLeft", "isSolid", "isSolidTop", "size", "placement", "lightBrightness" })
-            {
-                XAttribute xattr = xml.Attribute(prop);
-                if (xattr == null) continue;
-                string attr = (string)xattr;
-                string field = char.ToUpper(prop[0]) + prop.Substring(1);
-                if (prop == "dir") field = "Direction";  // exception
-                PropertyInfo p = typeof(T).GetProperty(field);
-
-                switch (prop)
-                {
-                    case "name":
-                    case "variety":
-                        p.SetValue(curItem, attr, null);
-                        break;
-                    case "upperLeft":
-                    case "size":
-                        p.SetValue(curItem, PointShort.Parse(attr), null);
-                        break;
-                    case "isSolid":
-                    case "isSolidTop":
-                        p.SetValue(curItem, (bool)xattr, null);
-                        break;
-                    case "growsOn":
-                    case "hangsOn":
-                        p.SetValue(curItem, TileNumArray.Parse(attr), null);
-                        break;
-                    case "color": p.SetValue(curItem, (Color)ColorConverter.ConvertFromString(attr), null); break;
-                    case "dir": p.SetValue(curItem, (FrameDirection)Enum.Parse(typeof(FrameDirection), attr), null); break;
-                    case "placement": p.SetValue(curItem, (FramePlacement)Enum.Parse(typeof(FramePlacement), char.ToUpper(attr[0]) + attr.Substring(1)), null); break;
-                    case "lightBrightness": p.SetValue(curItem, (byte)((float)xattr * 100), null); break;
-                    case "contactDmg": p.SetValue(curItem, (ushort)(uint)xattr, null); break;
-                }
-            }
+            curTile.Name = (string)tile.Attribute("name") ?? string.Empty;
+            curTile.ContactDamage = (int?)tile.Attribute("contactDamage") ?? 0;
+            curTile.Direction = InLineEnumTryParse<FrameDirection>((string)tile.Attribute("dir"));
+            curTile.IsHouseItem = ((bool?)tile.Attribute("isHouseItem") ?? false);
+            curTile.IsSolid = ((bool?)tile.Attribute("isSolid") ?? false);
+            curTile.IsSolidTop = ((bool?)tile.Attribute("isSolidTop") ?? false);
+            curTile.LightBrightness = ((float?)tile.Attribute("lightBrightness") ?? 0F);
+            curTile.Placement = InLineEnumTryParse<FramePlacement>((string)tile.Attribute("placement"));
+            curTile.Size = PointShort.TryParseInline((string)tile.Attribute("size"));
+            curTile.UpperLeft = PointShort.TryParseInline((string)tile.Attribute("upperLeft"));
+            curTile.Variety = (string)tile.Attribute("variety") ?? string.Empty;
+            curTile.GrowsOn.ReplaceRange(StringToList<byte>((string)tile.Attribute("growsOn")));
         }
 
         public static ObservableCollection<ItemProperty> Items

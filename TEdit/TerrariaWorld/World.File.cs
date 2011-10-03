@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
+using TEdit.Common.Structures;
 using TEdit.RenderWorld;
-using TEdit.TerrariaWorld.Structures;
 
 namespace TEdit.TerrariaWorld
 {

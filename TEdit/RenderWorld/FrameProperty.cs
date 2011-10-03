@@ -1,14 +1,25 @@
 ﻿using System;
-using System.Windows.Media;
-using System.Reflection;
-using TEdit.Common;
-using TEdit.TerrariaWorld.Structures;
+using System.Collections.ObjectModel;
+using TEdit.Common.Structures;
 
 namespace TEdit.RenderWorld
 {
     [Serializable]
-    public class FrameProperty : TileFrameProperty
+    public class FrameProperty : ColorProperty
     {
+        private readonly ObservableCollection<byte> _attachesTo = new ObservableCollection<byte>();
+        private readonly ObservableCollection<byte> _canReplace = new ObservableCollection<byte>();
+        private readonly ObservableCollection<byte> _growsOn = new ObservableCollection<byte>();
+        private int _contactDamage;
+        private FrameDirection _direction;
+        private bool _isHouseItem;
+        private bool _isSolid;
+        private bool _isSolidTop;
+        private float _lightBrightness;
+        private FramePlacement _placement;
+        private PointShort _size;
+        private PointShort _upperLeft;
+        private string _variety;
 
         public FrameProperty()
         {
@@ -16,101 +27,85 @@ namespace TEdit.RenderWorld
             UpperLeft = new PointShort(0, 0);
         }
 
-        // If object is Null/Empty/Whitespace, looks for any data in the parent, creating parental inheritence of Tiles/Frames properties
-        public T InheritCheck<T>(T chk, string parentVar)
+        public ObservableCollection<byte> AttachesTo
         {
-            T temp = chk;
-            if (String.IsNullOrWhiteSpace(temp.ToString()) && Parent != null)
-                temp = (T)typeof(TileProperty).GetProperty(parentVar).GetValue(Parent, null);
-
-            return temp;
+            get { return _attachesTo; }
         }
 
-        // Must be here and referencing TileProperty to prevent circular references within TileFrameProperty
-        // (this means some overrides below)
-        private TileProperty _parent;
-        public TileProperty Parent { get { return _parent; } }
-        // Special SetParent method for ref passing
-        public void SetParent (ref TileProperty tile) { SetProperty(ref _parent, ref tile, "Parent"); }
+        public ObservableCollection<byte> CanReplace
+        {
+            get { return _canReplace; }
+        }
 
-        // InheritCheck overrides
-        public override string Name
+        public ObservableCollection<byte> GrowsOn
         {
-            get { return InheritCheck(_name, "Name"); }
-            set { SetProperty(ref _name, ref value, "Name"); }
+            get { return _growsOn; }
         }
-        public override Color Color {
-            get { return InheritCheck(_color, "Color"); }
-            set { SetProperty(ref _color, ref value, "Color"); }
-        }
-        public override bool IsSolid
+
+        public int ContactDamage
         {
-            get { return InheritCheck(_isSolid, "IsSolid"); }
-            set { SetProperty(ref _isSolid, ref value, "IsSolid"); }
+            get { return _contactDamage; }
+            set { SetProperty(ref _contactDamage, ref value, "ContactDamage"); }
         }
-        public override bool IsSolidTop
+
+        public float LightBrightness
         {
-            get { return InheritCheck(_isSolidTop, "IsSolidTop"); }
-            set { SetProperty(ref _isSolidTop, ref value, "IsSolidTop"); }
-        }
-        public override bool IsHouseItem
-        {
-            get { return InheritCheck(_isHouseItem, "IsHouseItem"); }
-            set { SetProperty(ref _isHouseItem, ref value, "IsHouseItem"); }
-        }
-        public override PointShort UpperLeft
-        {
-            get { return InheritCheck(_upperLeft, "UpperLeft"); }
-            set { SetProperty(ref _upperLeft, ref value, "UpperLeft"); }
-        }
-        public override PointShort Size
-        {
-            get { return InheritCheck(_size, "Size"); }
-            set { SetProperty(ref _size, ref value, "Size"); }
-        }
-        public override FrameDirection? Direction
-        {
-            get { return InheritCheck(_direction, "Direction"); }
-            set { SetProperty(ref _direction, ref value, "Direction"); }
-        }
-        public override string Variety
-        {
-            get { return InheritCheck(_variety, "Variety"); }
-            set { SetProperty(ref _variety, ref value, "Variety"); }
-        }
-        public override FramePlacement Placement
-        {
-            get { return InheritCheck(_placement, "Placement"); }
-            set { SetProperty(ref _placement, ref value, "Placement"); }
-        }
-        public override TileNumArray GrowsOn
-        {
-            get { return InheritCheck(_growsOn, "GrowsOn"); }
-            set { SetProperty(ref _growsOn, ref value, "GrowsOn"); }
-        }
-        public override TileNumArray HangsOn
-        {
-            get { return InheritCheck(_hangsOn, "HangsOn"); }
-            set { SetProperty(ref _hangsOn, ref value, "HangsOn"); }
-        }
-        public override byte LightBrightness
-        {
-            get { return InheritCheck(_lightBrightness, "LightBrightness"); }
+            get { return _lightBrightness; }
             set { SetProperty(ref _lightBrightness, ref value, "LightBrightness"); }
         }
-        public override ushort ContactDmg
+
+        public FramePlacement Placement
         {
-            get { return InheritCheck(_contactDmg, "ContactDmg"); }
-            set { SetProperty(ref _contactDmg, ref value, "ContactDmg"); }
+            get { return _placement; }
+            set { SetProperty(ref _placement, ref value, "Placement"); }
         }
+
+        public string Variety
+        {
+            get { return _variety; }
+            set { SetProperty(ref _variety, ref value, "Variety"); }
+        }
+
+        public FrameDirection Direction
+        {
+            get { return _direction; }
+            set { SetProperty(ref _direction, ref value, "Direction"); }
+        }
+
+        public PointShort Size
+        {
+            get { return _size; }
+            set { SetProperty(ref _size, ref value, "Size"); }
+        }
+
+        public PointShort UpperLeft
+        {
+            get { return _upperLeft; }
+            set { SetProperty(ref _upperLeft, ref value, "UpperLeft"); }
+        }
+
+        public bool IsHouseItem
+        {
+            get { return _isHouseItem; }
+            set { SetProperty(ref _isHouseItem, ref value, "IsHouseItem"); }
+        }
+
+        public bool IsSolidTop
+        {
+            get { return _isSolidTop; }
+            set { SetProperty(ref _isSolidTop, ref value, "IsSolidTop"); }
+        }
+
+        public bool IsSolid
+        {
+            get { return _isSolid; }
+            set { SetProperty(ref _isSolid, ref value, "IsSolid"); }
+        }
+
 
         public override string ToString()
         {
-            string n = Name;
-            if (!String.IsNullOrWhiteSpace(Variety)) n += " - " + Variety;
-            if (!String.IsNullOrWhiteSpace(((DisplayFrameDirection?)Direction).ToString())) n += " (" + ((DisplayFrameDirection?)Direction).ToString() + ")";
-
-            return n;
+            return string.Format("{0} - {1}[{2}]", base.Name, Variety, Direction);
         }
     }
 }

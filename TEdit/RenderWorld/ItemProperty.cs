@@ -4,15 +4,13 @@ using TEdit.Common;
 namespace TEdit.RenderWorld
 {
     [Serializable]
-    public class ItemProperty : TileItemBase
+    public class ItemProperty : NamedBase
     {
-        
-        private string _type;
-        public string Type
+        private string _itemType;
+        public string ItemType
         {
-            get { return _type; }
-            set { SetProperty(ref _type, ref value, "Type"); }
+            get { return _itemType; }
+            set { SetProperty(ref _itemType, ref value, "ItemType"); }
         }
-
     }
 }

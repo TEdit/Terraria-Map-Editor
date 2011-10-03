@@ -79,6 +79,9 @@ namespace TEdit
             var batch = new CompositionBatch();
             batch.AddPart(this);
 
+#if DEBUG
+            _container.Compose(batch);
+#else
             try
             {
                 _container.Compose(batch);
@@ -89,6 +92,7 @@ namespace TEdit
                 Shutdown(1);
                 return false;
             }
+#endif
             return true;
         }
     }
