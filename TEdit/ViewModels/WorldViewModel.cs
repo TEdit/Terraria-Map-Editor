@@ -84,8 +84,6 @@ namespace TEdit.ViewModels
             }
         }
 
-
-
         public WorldViewModel()
         {
             _uiScheduler = TaskScheduler.FromCurrentSynchronizationContext();
@@ -190,14 +188,7 @@ namespace TEdit.ViewModels
             get { return _world; }
             set
             {
-                if (_world != value)
-                {
-                    _world = null;
-                    _world = value;
-                    RaisePropertyChanged("World");
-                    RaisePropertyChanged("WorldZoomedHeight");
-                    RaisePropertyChanged("WorldZoomedWidth");
-                }
+                StandardSet(ref _world, ref value, "World", "WorldZoomedHeight", "WorldZoomedWidth");
             }
         }
 
@@ -231,18 +222,10 @@ namespace TEdit.ViewModels
             {
                 double limitedZoom = value;
                 limitedZoom = Math.Min(Math.Max(limitedZoom, 0.05), 1000);
-
-                if (_zoom != limitedZoom)
-                {
-                    _zoom = limitedZoom;
-                    RaisePropertyChanged("Zoom");
-                    RaisePropertyChanged("ZoomInverted");
-                    RaisePropertyChanged("WorldZoomedHeight");
-                    RaisePropertyChanged("WorldZoomedWidth");
-                }
+                StandardSet(ref _zoom, ref limitedZoom, "Zoom", "ZoomInverted", "WorldZoomedHeight", "WorldZoomedWidth");
             }
         }
-        
+
 
         public double ZoomInverted
         {
@@ -253,27 +236,13 @@ namespace TEdit.ViewModels
         public WorldImage WorldImage
         {
             get { return _worldImage; }
-            set
-            {
-                if (_worldImage != value)
-                {
-                    _worldImage = value;
-                    RaisePropertyChanged("WorldImage");
-                }
-            }
+            set { StandardSet(ref _worldImage, ref value, "WorldImage"); }
         }
 
         public bool IsMouseContained
         {
             get { return _isMouseContained; }
-            set
-            {
-                if (_isMouseContained != value)
-                {
-                    _isMouseContained = value;
-                    RaisePropertyChanged("IsMouseContained");
-                }
-            }
+            set { StandardSet(ref _isMouseContained, ref value, "IsMouseContained"); }
         }
 
         public ICommand Undo
@@ -398,40 +367,19 @@ namespace TEdit.ViewModels
         public string WallName
         {
             get { return _wallName; }
-            set
-            {
-                if (_wallName != value)
-                {
-                    _wallName = value;
-                    RaisePropertyChanged("WallName");
-                }
-            }
+            set { StandardSet(ref _wallName, ref value, "WallName"); }
         }
 
         public string TileName
         {
             get { return _tileName; }
-            set
-            {
-                if (_tileName != value)
-                {
-                    _tileName = value;
-                    RaisePropertyChanged("TileName");
-                }
-            }
+            set { StandardSet(ref _tileName, ref value, "TileName"); }
         }
 
         public string FluidName
         {
             get { return _fluidName; }
-            set
-            {
-                if (_fluidName != value)
-                {
-                    _fluidName = value;
-                    RaisePropertyChanged("FluidName");
-                }
-            }
+            set { StandardSet(ref _fluidName, ref value, "FluidName"); }
         }
 
         public void GenNewWorld()
@@ -446,13 +394,9 @@ namespace TEdit.ViewModels
             get { return _mouseOverTile; }
             set
             {
-                if (_mouseOverTile != value)
-                {
-                    _mouseOverTile = value;
-                    RaisePropertyChanged("MouseOverTile");
-                    RaisePropertyChanged("ToolLocation");
-                }
+                StandardSet(ref _mouseOverTile, ref value, "MouseOverTile", "ToolLocation");
             }
+
         }
 
         public PointInt32 ToolLocation
@@ -463,40 +407,19 @@ namespace TEdit.ViewModels
         public PointInt32 MouseDownTile
         {
             get { return _mouseDownTile; }
-            set
-            {
-                if (_mouseDownTile != value)
-                {
-                    _mouseDownTile = value;
-                    RaisePropertyChanged("MouseDownTile");
-                }
-            }
+            set { StandardSet(ref _mouseDownTile, ref value, "MouseDownTile"); }
         }
 
         public PointInt32 MouseUpTile
         {
             get { return _mouseUpTile; }
-            set
-            {
-                if (_mouseUpTile != value)
-                {
-                    _mouseUpTile = value;
-                    RaisePropertyChanged("MouseUpTile");
-                }
-            }
+            set { StandardSet(ref _mouseUpTile, ref value, "MouseUpTile"); }
         }
 
         public ProgressChangedEventArgs Progress
         {
             get { return _progress; }
-            set
-            {
-                if (_progress != value)
-                {
-                    _progress = value;
-                    RaisePropertyChanged("Progress");
-                }
-            }
+            set { StandardSet(ref _progress, ref value, "Progress"); }
         }
 
 
@@ -590,6 +513,11 @@ namespace TEdit.ViewModels
             return !string.Equals(_world.Header.WorldName, "No World Loaded", StringComparison.InvariantCultureIgnoreCase) && _world.CanUseFileIO;
         }
 
+        public bool CanRender()
+        {
+            return true;
+        }
+
         private void LoadWorldandRender()
         {
             var ofd = new OpenFileDialog();
@@ -602,7 +530,7 @@ namespace TEdit.ViewModels
             {
                 Task.Factory.StartNew(() => LoadWorld(ofd.FileName));
             }
-        } 
+        }
         private void SaveWorldAs()
         {
             var sfd = new SaveFileDialog();
@@ -612,32 +540,33 @@ namespace TEdit.ViewModels
             if ((bool)sfd.ShowDialog())
             {
                 Task.Factory.StartNew(() => World.SaveFile(sfd.FileName))
-                .ContinueWith(t=>CommandManager.InvalidateRequerySuggested(), _uiScheduler);
+                .ContinueWith(t => CommandManager.InvalidateRequerySuggested(), _uiScheduler);
             }
         }
 
         private void LoadWorld(string filename)
         {
-           // try
-           // {
+            try
+            {
                 WorldImage.Image = null;
                 World.Load(filename);
                 WriteableBitmap img = _renderer.RenderWorld();
                 img.Freeze();
-                _uiFactory.StartNew(() =>
-                                        {
-                                            WorldImage.Image = img.Clone();
-                                            img = null;
-                                            RaisePropertyChanged("WorldZoomedHeight");
-                                            RaisePropertyChanged("WorldZoomedWidth");
-                                            CommandManager.InvalidateRequerySuggested();
-                                        });
-           // }
-           // catch (Exception)
-           // {
-           //     World.CanUseFileIO = true;
-           //     MessageBox.Show("There was a problem loading the file. Make sure you selected a .wld, .bak or .Tedit file.", "World File Problem", MessageBoxButton.OK, MessageBoxImage.Warning);
-           // }
+                _uiFactory.StartNew(
+                    () =>
+                    {
+                        WorldImage.Image = img.Clone();
+                        img = null;
+                        RaisePropertyChanged("WorldZoomedHeight");
+                        RaisePropertyChanged("WorldZoomedWidth");
+                        CommandManager.InvalidateRequerySuggested();
+                    });
+            }
+            catch (Exception)
+            {
+                World.CanUseFileIO = true;
+                MessageBox.Show("There was a problem loading the file. Make sure you selected a .wld, .bak or .Tedit file.", "World File Problem", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
         }
 
         private void RenderWorld()
@@ -696,18 +625,11 @@ namespace TEdit.ViewModels
             }
         }
 
-        private PointShort _Frame;
+        private PointShort _frame;
         public PointShort Frame
         {
-            get { return this._Frame; }
-            set
-            {
-                if (this._Frame != value)
-                {
-                    this._Frame = value;
-                    this.RaisePropertyChanged("Frame");
-                }
-            }
+            get { return this._frame; }
+            set { StandardSet(ref _frame, ref value, "Frame"); }
         }
 
 
@@ -727,7 +649,6 @@ namespace TEdit.ViewModels
 
                     if (ActiveTool.Name == "Paste")
                         ActiveTool = null;// Tools.FirstOrDefault(t => t.Value.Name == "Selection").Value;
-
                 }
             }
         }
