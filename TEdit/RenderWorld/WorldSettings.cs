@@ -70,24 +70,17 @@ namespace TEdit.RenderWorld
 
                 if (tile.Elements().Any(x => x.Name == "Frames"))
                 {
-                    byte c = 0;
+                    //byte c = 0;
                     foreach (var frame in tile.Elements("Frames").Elements("Frame"))
                     {
-                        var curFrame = new FrameProperty { ID = c++ };
+                        var curFrame = new FrameProperty { ID = curTile.ID };
                         ParseFrameAttributes(frame, curFrame);
                         curTile.Frames.Add(curFrame);
                     }
                 }
                 else if (curTile.IsFramed)
                 {
-                    // Default Frame 0
-                    var curFrame = new FrameProperty
-                    {
-                        ID = 0,
-                        UpperLeft = new PointShort(0, 0),
-                        Name = "Default"
-                    };
-                    curTile.Frames.Add(curFrame);
+                    curTile.Frames.Add((FrameProperty)curTile);
                 }
             }
 
@@ -116,6 +109,7 @@ namespace TEdit.RenderWorld
             }
         }
 
+
         private static void ParseFrameAttributes(XElement tile, FrameProperty curTile)
         {
             curTile.Name = (string)tile.Attribute("name") ?? string.Empty;
@@ -127,6 +121,8 @@ namespace TEdit.RenderWorld
             curTile.LightBrightness = ((float?)tile.Attribute("lightBrightness") ?? 0F);
             curTile.Placement = InLineEnumTryParse<FramePlacement>((string)tile.Attribute("placement"));
             curTile.Size = PointShort.TryParseInline((string)tile.Attribute("size"));
+            if (curTile.Size.X == 0 || curTile.Size.Y == 0)
+                curTile.Size = new PointShort(1,1);
             curTile.UpperLeft = PointShort.TryParseInline((string)tile.Attribute("upperLeft"));
             curTile.Variety = (string)tile.Attribute("variety") ?? string.Empty;
             curTile.GrowsOn.ReplaceRange(StringToList<byte>((string)tile.Attribute("growsOn")));

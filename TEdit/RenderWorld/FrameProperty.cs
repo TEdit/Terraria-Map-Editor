@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using TEdit.Common.Structures;
-
+using TEdit.Common;
+using System.Linq;
 namespace TEdit.RenderWorld
 {
     [Serializable]
-    public class FrameProperty : ColorProperty
+    public class FrameProperty : ColorProperty, ICloneable
     {
         private readonly ObservableCollection<byte> _attachesTo = new ObservableCollection<byte>();
         private readonly ObservableCollection<byte> _canReplace = new ObservableCollection<byte>();
@@ -106,6 +107,16 @@ namespace TEdit.RenderWorld
         public override string ToString()
         {
             return string.Format("{0} - {1}[{2}]", base.Name, Variety, Direction);
+        }
+
+        public object Clone()
+        {
+            var clone = (FrameProperty)this.MemberwiseClone();
+            clone.AttachesTo.ReplaceRange(this.AttachesTo.ToList());
+            clone.GrowsOn.ReplaceRange(this.AttachesTo.ToList());
+            clone.CanReplace.ReplaceRange(this.AttachesTo.ToList());
+
+            return clone;
         }
     }
 }

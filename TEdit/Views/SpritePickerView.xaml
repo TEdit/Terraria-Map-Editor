@@ -1,0 +1,22 @@
+﻿<UserControl x:Class="TEdit.Views.SpritePickerView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+
+    <Grid>
+        <ListView ItemsSource="{Binding Path=SpritePicker.Sprites}" SelectedItem="{Binding Path=SpritePicker.SelectedSprite, Mode=TwoWay}">
+            <ListView.View>
+                <GridView>
+<!--<GridViewColumn Header="Known State" DisplayMemberBinding="{Binding Path=Known, Converter={StaticResource imageConverter}}" />-->
+                    <GridViewColumn Header="Tile" DisplayMemberBinding="{Binding Path=ID}" />
+                    <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Path=Name}" />
+                    <GridViewColumn Header="Variety" DisplayMemberBinding="{Binding Path=Variety}" />
+                    <GridViewColumn Header="Direction" DisplayMemberBinding="{Binding Path=Direction}" />
+                </GridView>
+            </ListView.View>
+        </ListView>
+    </Grid>
+</UserControl>

@@ -161,6 +161,9 @@
     <Compile Include="Views\SignPopup.xaml.cs">
       <DependentUpon>SignPopup.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\SpritePickerView.xaml.cs">
+      <DependentUpon>SpritePickerView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\StatusBarView.xaml.cs">
       <DependentUpon>StatusBarView.xaml</DependentUpon>
     </Compile>
@@ -235,6 +238,10 @@
     <Page Include="Views\SignPopup.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\SpritePickerView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\StatusBarView.xaml">
       <SubType>Designer</SubType>

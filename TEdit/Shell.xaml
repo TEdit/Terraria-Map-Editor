@@ -23,7 +23,7 @@
         <views:StatusBarView DockPanel.Dock="Bottom" />
         <views:ToolSelectorView DockPanel.Dock="Left" />
         <Expander Header="Utilities" ExpandDirection="Left" IsExpanded="True" Grid.Row="1" DockPanel.Dock="Right">
-            <TabControl TabStripPlacement="Top" Width="260" Foreground="{DynamicResource TextBrush}">
+            <TabControl TabStripPlacement="Top" Width="300" Foreground="{DynamicResource TextBrush}">
                 <TabItem Header="World Properties">
                     <ScrollViewer VerticalScrollBarVisibility="Auto">
                         <views:WorldPropertiesView Height="360" HorizontalAlignment="Stretch" VerticalAlignment="Top" />
@@ -31,6 +31,9 @@
                 </TabItem>
                 <TabItem Header="Clipboard">
                     <views:ClipboardView HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
+                </TabItem>
+                <TabItem Header="Sprites">
+                    <views:SpritePickerView HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
                 </TabItem>
             </TabControl>
         </Expander>

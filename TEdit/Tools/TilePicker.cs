@@ -30,7 +30,7 @@ namespace TEdit.Tools
 
             for (int i = 0; i < byte.MaxValue; i++)
             {
-                if (WorldSettings.Tiles[i].Name != "UNKNOWN" && !WorldSettings.Tiles[i].IsFramed && i != 4)
+                if (WorldSettings.Tiles[i].Name != "UNKNOWN" && !WorldSettings.Tiles[i].IsFramed)
                     _tiles.Add(WorldSettings.Tiles[i]);
             }
 

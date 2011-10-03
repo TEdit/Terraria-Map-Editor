@@ -64,6 +64,8 @@ namespace TEdit.ViewModels
         private string _tileName;
         [Import]
         private TilePicker _tilePicker;
+
+        [Import] private SpritePicker _spritePicker;
         [Import]
         private ToolProperties _toolProperties;
         private string _wallName;
@@ -87,6 +89,18 @@ namespace TEdit.ViewModels
         {
             _renderer.ProgressChanged += (s, e) => { Progress = e; };
             _world.ProgressChanged += (s, e) => { Progress = e; };
+            
+            _spritePicker.PropertyChanged += (s, e) =>
+            {
+                if (ActiveTool != null)
+                {
+                    if (e.PropertyName == "SelectedSprite" && ActiveTool.Name == "Sprite Placer Tool")
+                    {
+                        ToolProperties.Image = _activeTool.PreviewTool();
+                    }
+                }
+            };
+
             _toolProperties.ToolPreviewRequest += (s, e) =>
             {
                 if (_activeTool != null)
@@ -97,6 +111,8 @@ namespace TEdit.ViewModels
 
             GenNewWorld();
         }
+
+
 
         #endregion
 
@@ -131,6 +147,11 @@ namespace TEdit.ViewModels
             set { SetProperty(ref _toolProperties, ref value, "ToolProperties"); } // null
         }
 
+        public SpritePicker SpritePicker
+        {
+            get { return _spritePicker; }
+            set { SetProperty(ref _spritePicker, ref value, "SpritePicker"); }
+        }
 
         public TilePicker TilePicker
         {

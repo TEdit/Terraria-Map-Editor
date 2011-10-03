@@ -24,6 +24,8 @@ namespace TEdit.Tools.Tool
         [Import]
         private WorldRenderer _renderer;
 
+        [Import] private SpritePicker _spritePicker;
+
         public SpritePlacer()
         {
             _Image = new BitmapImage(new Uri(@"pack://application:,,,/TEdit;component/Images/Tools/spawn.png"));
@@ -79,12 +81,17 @@ namespace TEdit.Tools.Tool
 
         public override bool PressTool(TileMouseEventArgs e)
         {
-            if (e.LeftButton == MouseButtonState.Pressed)
+            if (_spritePicker.SelectedSprite != null)
             {
-                PlaceBrownChest(e.Tile);
+                if (e.LeftButton == MouseButtonState.Pressed)
+                {
+                    var cursprite = _spritePicker.SelectedSprite;
+                    PlaceSprite(e.Tile, (byte) cursprite.ID, cursprite.Size, cursprite.UpperLeft);
+                    //PlaceBrownChest(e.Tile);
+                }
+                return true;
             }
-
-            return true;
+            return false;
         }
 
 
@@ -123,6 +130,7 @@ namespace TEdit.Tools.Tool
                 for (int y = 0; y < size.Y; y++)
                 {
                     var curTile = _world.Tiles[location.X + x, location.Y + y];
+                    curTile.IsActive = true;
                     curTile.Type = type;
                     curTile.Frame = new PointShort((short)(upperLeft.X + (x * 18)), (short)(upperLeft.Y + (y * 18)));
                     _renderer.UpdateWorldImage(new PointInt32(location.X + x, location.Y + y));
@@ -155,6 +163,17 @@ namespace TEdit.Tools.Tool
 
         public override WriteableBitmap PreviewTool()
         {
+            if (_spritePicker.SelectedSprite != null)
+            {
+                return new WriteableBitmap(
+                _spritePicker.SelectedSprite.Size.X,
+                _spritePicker.SelectedSprite.Size.Y,
+                96,
+                96,
+                PixelFormats.Bgr32,
+                null);
+            }
+            
             return new WriteableBitmap(
                 1,
                 1,
