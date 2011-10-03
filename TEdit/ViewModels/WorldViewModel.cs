@@ -29,6 +29,7 @@ namespace TEdit.ViewModels
         private ITool _activeTool;
 
         private ICommand _copyToClipboard;
+        private ICommand _validateWorldCommand;
         private string _fluidName;
 
         private bool _isBusy;
@@ -321,6 +322,7 @@ namespace TEdit.ViewModels
         }
 
 
+
         public ICommand CopyToClipboard
         {
             get { return _copyToClipboard ?? (_copyToClipboard = new RelayCommand(SetClipBoard, CanSetClipboard)); }
@@ -371,6 +373,11 @@ namespace TEdit.ViewModels
         public ICommand OpenWorldCommand
         {
             get { return _openWorldCommand ?? (_openWorldCommand = new RelayCommand(LoadWorldandRender, CanLoad)); }
+        }
+
+        public ICommand ValidateWorldCommand
+        {
+            get { return _validateWorldCommand ?? (_validateWorldCommand = new RelayCommand(ValidateWorld, CanSave)); }
         }
 
         public ICommand SaveWorldCommand
@@ -496,6 +503,12 @@ namespace TEdit.ViewModels
         public bool CanRender()
         {
             return _world.IsValid && !_world.IsUsingIo && !_renderer.IsRenderingFullMap;
+        }
+
+        private void ValidateWorld()
+        {
+            Task.Factory.StartNew(() => _world.Validate())
+            .ContinueWith(t => RenderWorld(), _uiScheduler);
         }
 
         private void SaveWorld()
