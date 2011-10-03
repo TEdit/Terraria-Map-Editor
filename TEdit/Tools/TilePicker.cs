@@ -11,7 +11,8 @@ namespace TEdit.Tools
     [Export]
     public class TilePicker : ObservableObject
     {
-        [NonSerialized] private readonly ObservableCollection<ColorProperty> _tiles = new ObservableCollection<ColorProperty>();
+        [NonSerialized]
+        private readonly ObservableCollection<TileProperty> _tiles = new ObservableCollection<TileProperty>();
         [NonSerialized] private readonly ObservableCollection<ColorProperty> _walls = new ObservableCollection<ColorProperty>();
         private bool _IsEraser;
         private TilePickerLiquidProperty _Liquid;
@@ -48,7 +49,7 @@ namespace TEdit.Tools
             get { return _walls; }
         }
 
-        public ObservableCollection<ColorProperty> Tiles
+        public ObservableCollection<TileProperty> Tiles
         {
             get { return _tiles; }
         }

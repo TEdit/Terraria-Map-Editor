@@ -1,3 +1,36 @@
+2011-10-03 Version 2.0.9.0
+2011-10-03 oh snap, sprite placer (no previews yet), also can now place torches, closes #62, closes #37
+2011-10-03 Spritepicker and placer methods
+2011-10-03 setproperty for tilepicker
+2011-10-03 World validation function
+2011-10-03 less reflection and more refactoring
+2011-10-03 Fixed button CanExecute actions,
+2011-10-03 updating properties in viewmodel to use standardset
+2011-10-03 Support for multiple property notifications
+2011-10-03 Small name refactor from OOProperty to TileItemBase class
+2011-09-26 Merge pull request #133 from SineSwiper/master
+2011-09-26 Added the rest of the XML properties; fixed up the *Property.cs permissions and overrides
+2011-09-26 Merge pull request #132 from SineSwiper/master
+2011-09-25 Adding new files
+2011-09-25 fixing author
+2011-09-21 Added code for parsing XML frames
+2011-09-21 missed a few defaults/sizes
+2011-09-21 A few modifications to XML, reverting cs files since format changed. Once XML format is complete will update cs files. This will compile.
+2011-09-21 Merge branch 'master' into XmlSettings
+2011-09-21 Adding specification doc and a few minor tweaks.
+2011-09-20 Adding curFrame.Parent setting
+2011-09-20 Small edits
+2011-09-20 Fixed some parental stuff
+2011-09-20 Adding new code for reading new XML file.
+2011-09-20 Adding new code for new settings.XML properties/tags.
+2011-09-20 Update GUI when loading/saving/rendering complete, needs testing
+2011-09-20 New XML changes with Frame tags and extra properties
+2011-09-19 Merge pull request #126 from SineSwiper/patch-2
+2011-09-18 Adding some future use properties to the XML.  I'm using this XML for a new Perl Games::RolePlay::MapGen::GeneratorPlugin::Terraria module, and having a source for all item properties would also help out TEdit to remove hard-coded references.
+2011-09-12 Merge pull request #125 from SineSwiper/patch-1
+2011-09-10 Fixed unknowns, per MoreTerra descriptions here: http://moreterra.codeplex.com/SourceControl/changeset/view/5659#102327
+2011-08-29 Fixed a few settings issues and added unit tests. closes #123
+2011-08-28 2.0.8.5
 2011-08-27 Update to settings.xml file closes #105
 2011-08-26 More prep for settings change
 2011-08-26 Creating new settings file in prep for update

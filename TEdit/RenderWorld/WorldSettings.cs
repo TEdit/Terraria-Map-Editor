@@ -96,7 +96,7 @@ namespace TEdit.RenderWorld
             foreach (var item in xmlSettings.Elements("Items").Elements("Item"))
             {
                 var curItem = new ItemProperty();
-                curItem.ID = (int?)item.Attribute("num") ?? -1;
+                curItem.ID = (byte)((int?)item.Attribute("num") ?? 0);
                 curItem.Name = (string)item.Attribute("name");
                 curItem.ItemType = (string)item.Attribute("type");
                 _items.Add(curItem);

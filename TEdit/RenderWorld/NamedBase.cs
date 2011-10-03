@@ -5,10 +5,10 @@ namespace TEdit.RenderWorld
 {
     // Very basic stuff for most ObservableObjects
     [Serializable]
-    public abstract class NamedBase : ObservableObject
-    {       
-        private int _id;
-        public int ID
+    public class NamedBase : ObservableObject
+    {
+        private byte _id;
+        public byte ID
         {
             get { return _id; }
             set { SetProperty(ref _id, ref value, "ID"); }
