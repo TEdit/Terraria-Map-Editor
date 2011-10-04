@@ -90,10 +90,64 @@ namespace TEdit.TerrariaWorld
             IsUsingIo = false;
         }
         
-        private bool ValidatePlacement(PointInt32 location, PointShort size, FramePlacement frame)
+        private FramePlacement ValidatePlacement(PointInt32 location, PointShort size, FramePlacement frame)
         {
-            // TODO: Implement frame validations
-            return false;
+            // TODO: Support for attachesTo with placement (complex enough for its own sub)
+
+            /// Look at surrounding area for objects ///
+            FramePlacement area   = FramePlacement.Float;
+            PointInt32 upperLeft  = new PointInt32(location.X          - 1, location.Y          - 1);
+            PointInt32 lowerRight = new PointInt32(location.X + size.X + 1, location.Y + size.Y + 1);
+            // (only used for x/y loop)
+            PointInt32 upperLeftBoundary  = upperLeft.MemberwiseClone();
+            PointInt32 lowerRightBoundary = lowerRight.MemberwiseClone();
+            
+            // boundary checks
+            if ( upperLeftBoundary.X > 0)                   upperLeftBoundary.X = 0;
+            if ( upperLeftBoundary.Y > 0)                   upperLeftBoundary.Y = 0;
+            if (lowerRightBoundary.X <= Header.MaxTiles.X) lowerRightBoundary.X = Header.MaxTiles.X - 1;
+            if (lowerRightBoundary.Y <= Header.MaxTiles.Y) lowerRightBoundary.Y = Header.MaxTiles.Y - 1;
+
+            for (int y = upperLeftBoundary.Y; y <= lowerRightBoundary.Y; y++)
+            {
+                for (int x = upperLeftBoundary.X; x <= lowerRightBoundary.X; x++)
+                {
+                    // skip dead zone (the item itself) & corners (wow, xor use...)
+                    bool valid = (x == upperLeft.X || x == lowerRight.X) ^ (y == upperLeft.Y || y == lowerRight.Y);
+                    if (!valid) continue;
+                    
+                    var t = Tiles[x, y];
+                    var w = WorldSettings.Tiles[t.Type];
+                    
+                    // skip non-solid objects
+                    if (! (t.IsActive && w.IsSolid || w.IsSolidTop)) continue;
+                    
+                    // FIXME: Assuming that a single tile will hold the object //
+                    // (Maybe this is true in Terraria as well....)
+
+                    // at this point, only one of these will hit
+                    if (y ==  upperLeft.Y)                      area |= FramePlacement.Ceiling;                    
+                    if (x ==  upperLeft.X || x == lowerRight.X) area |= FramePlacement.Wall;
+                    if (y == lowerRight.Y) {  // special case for floor/surface
+                        if (w.IsSolidTop) area |= FramePlacement.Surface;
+                        else              area |= FramePlacement.Floor;
+                    }
+                }
+            }
+            
+            // Now let's compare the object in question
+            // (This ultimately returns which surfaces are required;
+            //  if MustHaveAll is set, then it needs them all)
+            
+            if ((FramePlacement.MustHaveAll | frame) != FramePlacement.None) {
+                Area |= FramePlacement.MustHaveAll;  // add bit for bitwise math to work
+                if ((Frame & Area) != Frame) return (Frame & Area);  // MustHaveAll will be carried over as a reminder
+            }
+            else {
+                if ((Frame & Area) == FramePlacement.None)  return Area;
+            }
+
+            return FramePlacement.None;  // None is good; no additional objects required for attachment
         }
 
         private bool ValidateTorch(int x, int y)
