@@ -8,6 +8,12 @@ namespace TEdit.Common.Structures
         private int _Height;
         private int _Width;
 
+        public SizeInt32(SizeInt32 s)
+        {
+            _Width = s.Width;
+            _Height = s.Height;
+        }
+
         public SizeInt32(int width, int height)
         {
             _Width = width;
@@ -99,12 +105,65 @@ namespace TEdit.Common.Structures
             return new SizeInt32(a.Width*b.Width, a.Height*b.Height);
         }
 
+        /* int overloads */
+        public static SizeInt32 operator +(SizeInt32 a, int b)
+        {
+            return new SizeInt32(a.Width + b, a.Height + b);
+        }
+
+        public static SizeInt32 operator -(SizeInt32 a, int b)
+        {
+            return new SizeInt32(a.Width - b, a.Height - b);
+        }
+
+        public static SizeInt32 operator /(SizeInt32 a, int b)
+        {
+            return new SizeInt32(a.Width/b, a.Height/b);
+        }
+
+        public static SizeInt32 operator *(SizeInt32 a, int b)
+        {
+            return new SizeInt32(a.Width*b, a.Height*b);
+        }
+
+        public static SizeInt32 operator +(int a, SizeInt32 b)
+        {
+            return new SizeInt32(a + b.Width, a + b.Height);
+        }
+
+        public static SizeInt32 operator -(int a, SizeInt32 b)
+        {
+            return new SizeInt32(a - b.Width, a - b.Height);
+        }
+
+        public static SizeInt32 operator /(int a, SizeInt32 b)
+        {
+            return new SizeInt32(a/b.Width, a/b.Height);
+        }
+
+        public static SizeInt32 operator *(int a, SizeInt32 b)
+        {
+            return new SizeInt32(a*b.Width, a*b.Height);
+        }
+
         public override int GetHashCode()
         {
             int result = 17;
             result = result*37 + Width.GetHashCode();
             result = result*37 + Height.GetHashCode();
             return result;
+        }
+
+        // one-way; reverse is not guaranteed to not lose data
+        public static implicit operator PointFloat(SizeInt32 s)
+        {
+            return new PointFloat(s.Width, s.Height);
+        }
+        
+        // two-way; reverse function is available on other struct
+        public static implicit operator PointInt32(SizeInt32 s)
+        {
+            return new PointInt32(s.Width, s.Height);
         }
 
         #endregion

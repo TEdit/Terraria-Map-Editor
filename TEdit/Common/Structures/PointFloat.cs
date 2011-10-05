@@ -9,6 +9,12 @@ namespace TEdit.Common.Structures
 
         private float _y;
 
+        public PointFloat(PointFloat p)
+        {
+            _x = p.X;
+            _y = p.Y;
+        }
+
         public PointFloat(float x, float y)
         {
             _x = x;
@@ -83,6 +89,47 @@ namespace TEdit.Common.Structures
         public static PointFloat operator *(PointFloat a, PointFloat b)
         {
             return new PointFloat(a.X*b.X, a.Y*b.Y);
+        }
+
+        /* float overloads */
+        public static PointFloat operator +(PointFloat a, float b)
+        {
+            return new PointFloat(a.X + b, a.Y + b);
+        }
+
+        public static PointFloat operator -(PointFloat a, float b)
+        {
+            return new PointFloat(a.X - b, a.Y - b);
+        }
+
+        public static PointFloat operator /(PointFloat a, float b)
+        {
+            return new PointFloat(a.X/b, a.Y/b);
+        }
+
+        public static PointFloat operator *(PointFloat a, float b)
+        {
+            return new PointFloat(a.X*b, a.Y*b);
+        }
+
+        public static PointFloat operator +(float a, PointFloat b)
+        {
+            return new PointFloat(a + b.X, a + b.Y);
+        }
+
+        public static PointFloat operator -(float a, PointFloat b)
+        {
+            return new PointFloat(a - b.X, a - b.Y);
+        }
+
+        public static PointFloat operator /(float a, PointFloat b)
+        {
+            return new PointFloat(a/b.X, a/b.Y);
+        }
+
+        public static PointFloat operator *(float a, PointFloat b)
+        {
+            return new PointFloat(a*b.X, a*b.Y);
         }
 
         public override int GetHashCode()

@@ -9,6 +9,12 @@ namespace TEdit.Common.Structures
 
         private int _y;
 
+        public PointInt32(PointInt32 p)
+        {
+            _x = p.X;
+            _y = p.Y;
+        }
+
         public PointInt32(int x, int y)
         {
             _x = x;
@@ -85,12 +91,65 @@ namespace TEdit.Common.Structures
             return new PointInt32(a.X*b.X, a.Y*b.Y);
         }
 
+        /* int overloads */
+        public static PointInt32 operator +(PointInt32 a, int b)
+        {
+            return new PointInt32(a.X + b, a.Y + b);
+        }
+
+        public static PointInt32 operator -(PointInt32 a, int b)
+        {
+            return new PointInt32(a.X - b, a.Y - b);
+        }
+
+        public static PointInt32 operator /(PointInt32 a, int b)
+        {
+            return new PointInt32(a.X/b, a.Y/b);
+        }
+
+        public static PointInt32 operator *(PointInt32 a, int b)
+        {
+            return new PointInt32(a.X*b, a.Y*b);
+        }
+
+        public static PointInt32 operator +(int a, PointInt32 b)
+        {
+            return new PointInt32(a + b.X, a + b.Y);
+        }
+
+        public static PointInt32 operator -(int a, PointInt32 b)
+        {
+            return new PointInt32(a - b.X, a - b.Y);
+        }
+
+        public static PointInt32 operator /(int a, PointInt32 b)
+        {
+            return new PointInt32(a/b.X, a/b.Y);
+        }
+
+        public static PointInt32 operator *(int a, PointInt32 b)
+        {
+            return new PointInt32(a*b.X, a*b.Y);
+        }
+
         public override int GetHashCode()
         {
             int result = 17;
             result = result*37 + X.GetHashCode();
             result = result*37 + Y.GetHashCode();
             return result;
+        }
+
+        // one-way; reverse is not guaranteed to not lose data
+        public static implicit operator PointFloat(PointInt32 p)
+        { 
+            return new PointFloat(p.X, p.Y);
+        }
+
+        // two-way; other function is available on other struct
+        public static implicit operator SizeInt32(PointInt32 p)
+        {
+            return new SizeInt32(p.X, p.Y);
         }
 
         #endregion

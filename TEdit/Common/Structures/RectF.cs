@@ -8,6 +8,12 @@ namespace TEdit.Common.Structures
         private PointFloat _bottomRight;
         private PointFloat _topLeft;
 
+        public RectF(RectF rect)
+        {
+            _topLeft = new PointFloat(rect.TopLeft);
+            _bottomRight = new PointFloat(rect.BottomRight);
+        }
+
         public RectF(PointFloat topLeft, PointFloat bottomRight)
         {
             _topLeft = topLeft;
@@ -23,21 +29,25 @@ namespace TEdit.Common.Structures
         public float Left
         {
             get { return TopLeft.X; }
+            set { _topLeft.X = value; }
         }
 
         public float Right
         {
             get { return BottomRight.X; }
+            set { _bottomRight.X = value; }
         }
 
         public float Top
         {
             get { return TopLeft.Y; }
+            set { _topLeft.Y = value; }
         }
 
         public float Bottom
         {
             get { return BottomRight.Y; }
+            set { _bottomRight.Y = value; }
         }
 
         public PointFloat TopLeft

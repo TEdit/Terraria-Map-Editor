@@ -9,6 +9,12 @@ namespace TEdit.Common.Structures
 
         private short _y;
 
+        public PointShort(PointShort p)
+        {
+            _x = p.X;
+            _y = p.Y;
+        }
+
         public PointShort(short x, short y)
         {
             _x = x;
@@ -128,12 +134,51 @@ namespace TEdit.Common.Structures
             return new PointShort((short)(a.X - b.X), (short)(a.Y - b.Y));
         }
 
+        /* short overloads */
+        public static PointShort operator +(PointShort a, short b)
+        {
+            return new PointShort((short)(a.X + b), (short)(a.Y + b));
+        }
+
+        public static PointShort operator -(PointShort a, short b)
+        {
+            return new PointShort((short)(a.X - b), (short)(a.Y - b));
+        }
+
+        public static PointShort operator +(short a, PointShort b)
+        {
+            return new PointShort((short)(a + b.X), (short)(a + b.Y));
+        }
+
+        public static PointShort operator -(short a, PointShort b)
+        {
+            return new PointShort((short)(a - b.X), (short)(a - b.Y));
+        }
+
         public override int GetHashCode()
         {
             int result = 13;
             result = result * 7 + X.GetHashCode();
             result = result * 7 + Y.GetHashCode();
             return result;
+        }
+
+        // one-way; reverse is not guaranteed to not lose data
+        public static implicit operator PointInt32(PointShort p)
+        {
+            return new PointInt32(p.X, p.Y);
+        }
+
+        // one-way; reverse is not guaranteed to not lose data
+        public static implicit operator PointFloat(PointShort p)
+        {
+            return new PointFloat(p.X, p.Y);
+        }
+
+        // one-way; reverse is not guaranteed to not lose data
+        public static implicit operator SizeInt32(PointShort p)
+        {
+            return new SizeInt32(p.X, p.Y);
         }
 
         #endregion

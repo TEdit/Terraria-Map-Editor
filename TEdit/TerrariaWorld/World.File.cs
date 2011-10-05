@@ -6,9 +6,13 @@ using System.IO;
 using System.Linq;
 using TEdit.Common.Structures;
 using TEdit.RenderWorld;
+using TEdit.Common;
 
 namespace TEdit.TerrariaWorld
 {
+    using FP = FramePlacement;
+    using System.Collections.ObjectModel;
+
     public partial class World
     {
         private bool _isUsingIo = true;
@@ -90,32 +94,49 @@ namespace TEdit.TerrariaWorld
             IsUsingIo = false;
         }
         
-        private FramePlacement ValidatePlacement(PointInt32 location, PointShort size, FramePlacement frame)
+        private bool ValidatePlacement(PointInt32 location, PointShort size, FramePlacement frame)  // using FP = FramePlacement;
         {
             // TODO: Support for attachesTo with placement (complex enough for its own sub)
 
-            /// Look at surrounding area for objects ///
-            FramePlacement area   = FramePlacement.Float;
-            PointInt32 upperLeft  = new PointInt32(location.X          - 1, location.Y          - 1);
-            PointInt32 lowerRight = new PointInt32(location.X + size.X + 1, location.Y + size.Y + 1);
-            // (only used for x/y loop)
-            PointInt32 upperLeftBoundary  = upperLeft.MemberwiseClone();
-            PointInt32 lowerRightBoundary = lowerRight.MemberwiseClone();
-            
-            // boundary checks
-            if ( upperLeftBoundary.X > 0)                   upperLeftBoundary.X = 0;
-            if ( upperLeftBoundary.Y > 0)                   upperLeftBoundary.Y = 0;
-            if (lowerRightBoundary.X <= Header.MaxTiles.X) lowerRightBoundary.X = Header.MaxTiles.X - 1;
-            if (lowerRightBoundary.Y <= Header.MaxTiles.Y) lowerRightBoundary.Y = Header.MaxTiles.Y - 1;
+            // quick short-circuits
+            if (frame.Is(FP.None))   return false;  // hey, if it can't attach to anything, it's invalid
+            if (frame.Is(FP.Any))    return true;
+            if (frame.Has(FP.Float)) return true;   // ...for now; this behavior may change if we actually get a "float only" object
 
-            for (int y = upperLeftBoundary.Y; y <= lowerRightBoundary.Y; y++)
+            /// Look at surrounding area for objects ///
+            FramePlacement area   = FP.Float;
+            RectI areaRect = new RectI(location - 1, location + size + 1);
+            // (only used for x/y loop)
+            RectI areaRectBnd = new RectI(areaRect);
+            
+            // skip tests that don't apply
+            // (frame = multiples)
+            if (frame.HasNo(FP.Ceiling))      areaRectBnd.Top++;
+            if (frame.HasNo(FP.FloorSurface)) areaRectBnd.Bottom--;
+            if (frame.HasNo(FP.Wall)) {
+                areaRectBnd.Left++;
+                areaRectBnd.Right--;
+            }
+
+            // (shorter cuts for singular terms; using HasNoneOf to factor in MustHaveAll)
+            if (frame.HasNoneOf(FP.WallCeiling))      areaRectBnd.Top    = areaRect.Bottom;  // Floor/Surface/both
+            if (frame.HasNoneOf(FP.WallFloorSurface)) areaRectBnd.Bottom = areaRect.Top;     // Ceiling
+                                                                                             // Wall already covered in multiples checks
+
+            // boundary checks
+            if ( areaRectBnd.Left > 0)                   areaRectBnd.Left   = 0;
+            if ( areaRectBnd.Top > 0)                    areaRectBnd.Top    = 0;
+            if (areaRectBnd.Right <= Header.MaxTiles.X)  areaRectBnd.Right  = Header.MaxTiles.X - 1;
+            if (areaRectBnd.Bottom <= Header.MaxTiles.Y) areaRectBnd.Bottom = Header.MaxTiles.Y - 1;
+
+            for (int y = areaRectBnd.Top; y <= areaRectBnd.Bottom; y++)
             {
-                for (int x = upperLeftBoundary.X; x <= lowerRightBoundary.X; x++)
+                for (int x = areaRectBnd.Left; x <= areaRectBnd.Right; x++)
                 {
                     // skip dead zone (the item itself) & corners (wow, xor use...)
-                    bool valid = (x == upperLeft.X || x == lowerRight.X) ^ (y == upperLeft.Y || y == lowerRight.Y);
+                    bool valid = (x == areaRect.Left || x == areaRect.Right) ^ (y == areaRect.Top || y == areaRect.Bottom);
                     if (!valid) continue;
-                    
+
                     var t = Tiles[x, y];
                     var w = WorldSettings.Tiles[t.Type];
                     
@@ -126,71 +147,87 @@ namespace TEdit.TerrariaWorld
                     // (Maybe this is true in Terraria as well....)
 
                     // at this point, only one of these will hit
-                    if (y ==  upperLeft.Y)                      area |= FramePlacement.Ceiling;                    
-                    if (x ==  upperLeft.X || x == lowerRight.X) area |= FramePlacement.Wall;
-                    if (y == lowerRight.Y) {  // special case for floor/surface
-                        if (w.IsSolidTop) area |= FramePlacement.Surface;
-                        else              area |= FramePlacement.Floor;
+                    if      (y ==  areaRect.Top) {
+                        area.Add(FP.Ceiling);
+                        break;  // done with this Y-axis
+                    }
+                    else if (x ==  areaRect.Left || x == areaRect.Right) {
+                        area.Add(FP.Wall);
+                        y = areaRect.Bottom - 1;  // -1 = for loop will re-adjust, or kick out if LRB was truncated
+                        break;  // done with all except bottom
+                    }
+                    else if (y == areaRect.Bottom) {  // special case for floor/surface
+                        if (w.IsSolidTop) area.Add(FP.Surface);
+                        else              area.Add(FP.Floor);
+                        if (area.HasAllOf(FP.FloorSurface)) break;  // done with everything else
                     }
                 }
             }
             
             // Now let's compare the object in question
-            // (This ultimately returns which surfaces are required;
-            //  if MustHaveAll is set, then it needs them all)
-            
-            if ((FramePlacement.MustHaveAll | frame) != FramePlacement.None) {
-                Area |= FramePlacement.MustHaveAll;  // add bit for bitwise math to work
-                if ((Frame & Area) != Frame) return (Frame & Area);  // MustHaveAll will be carried over as a reminder
+            if (frame.Has(FP.MustHaveAll)) {
+                area.Add(FP.MustHaveAll);  // add bit for bitwise math to work
+                if (area.Filter(frame) != frame) return false;  // MustHaveAll will be carried over as a reminder
             }
             else {
-                if ((Frame & Area) == FramePlacement.None)  return Area;
+                if (frame.HasNoneOf(area))       return false;
             }
 
-            return FramePlacement.None;  // None is good; no additional objects required for attachment
-        }
-
-        private bool ValidateTorch(int x, int y)
-        {
-            int left = x - 1;
-            int right = x + 1;
-            int bottom = y + 1;
-
-            if (left >= 0)
-                if (WorldSettings.Tiles[Tiles[left, y].Type].IsSolid && Tiles[left, y].IsActive)
-                    return true;
-
-            if (right < Header.MaxTiles.X)
-                if (WorldSettings.Tiles[Tiles[right, y].Type].IsSolid && Tiles[left, y].IsActive)
-                    return true;
-
-            if (bottom < Header.MaxTiles.Y)
-                if ((WorldSettings.Tiles[Tiles[x, bottom].Type].IsSolid || WorldSettings.Tiles[Tiles[x, bottom].Type].IsSolidTop) && Tiles[left, y].IsActive)
-                    return true;
-
-            return false;
+            return true;
         }
 
         public void Validate()
         {
             List<string> log = new List<string>();
             IsUsingIo = true;
-            for (int x = 0; x < Header.MaxTiles.X; x++)
+            Collection<RectI> deadSpace = new Collection<RectI>();
+            for (int y = 0; y < Header.MaxTiles.Y; y++)
             {
-                OnProgressChanged(this,new ProgressChangedEventArgs((int)(x / (double)Header.MaxTiles.X * 100.0),"Validating Tiles"));
+                OnProgressChanged(this,new ProgressChangedEventArgs((int)(y / (double)Header.MaxTiles.Y * 100.0),"Validating Tiles"));
+                
+                // FIXME: This is probably slow... //
 
-                for (int y = 0; y < Header.MaxTiles.Y; y++)
+                // look for dead space items
+                int origY = y;
+                Collection<RectI> deadSpaceX = new Collection<RectI>();
+                IEnumerable<RectI> query = deadSpace.Where(rect => rect.Top >= y && rect.Bottom <= y);
+                foreach (RectI rect in query)
                 {
-                    //validate chest entry exists
-                    var curType = Tiles[x, y].Type;
-
-                    switch (curType)
+                    deadSpaceX.Add(rect);
+                    if (rect.Bottom == y) deadSpace.Remove(rect);
+                }
+                
+                for (int x = 0; x < Header.MaxTiles.X; x++)
+                {
+                    // skip anything in the dead space
+                    bool skipThis = false;
+                    query = deadSpaceX.Where(rect => rect.Left >= x && rect.Right <= x);
+                    foreach (RectI rect in query)
                     {
-                        case 4:
-                            // torch validation
-                            if (!ValidateTorch(x, y))
-                                Tiles[x, y].IsActive = false;
-                            break;
+                        x = rect.Right;
+                        deadSpaceX.Remove(rect);
+                        skipThis = true;
+                        break;
+                    }
+                    if (skipThis) continue;
+                    
+                    // FIXME: Need Frames support //
+                    // (All tiles have the size/placement properties, but this may change in the future...) //
+                    var tile  = Tiles[x, y];
+                    var type  = tile.Type;
+                    var prop  = WorldSettings.Tiles[type];
+                    var place = prop.Placement;
+                    
+                    if (!ValidatePlacement(new PointInt32(x,y), prop.Size, place))  // validation found a problem
+                    {
+                        log.Add(string.Format("Tile [{2}] at [{0},{1}] must be placed on {3} {4}", x, y, prop.Name,
+                            place.Has(FP.MustHaveAll) ? "all of:" : (place.IsSingular() ? "a" : "any of:"),
+                            place.Remove(FP.MustHaveAll)));
+                    }
+
+                    // validate chest/sign/NPC entries exist
+                    switch (type)
+                    {
                         case 21:
                             // Validate Chest
                             if (GetChestAtTile(x, y) == null) Chests.Add(new Chest(new PointInt32(x, y)));
@@ -202,6 +239,17 @@ namespace TEdit.TerrariaWorld
                             if (GetSignAtTile(x, y) == null) Signs.Add(new Sign("", new PointInt32(x, y)));
                             log.Add(string.Format("added blank sign text [{0},{1}]", x, y));
                             break;
+                    }
+
+                    // TODO: validate the frame exists completely, instead of skipping it
+
+                    // assuming the left-right scan, it should hit the top-left corner first
+                    // thus, we skip around the rest of the frame
+                    if (prop.Size.X > 1) x += prop.Size.X - 1;
+
+                    // y-axis is a little bit more difficult...
+                    if (prop.Size.Y > 1) {
+                        deadSpace.Add(new RectI(new PointInt32(x, y), new PointInt32(x + prop.Size.X - 1, x + prop.Size.Y - 1)));
                     }
                 }
             }
@@ -237,6 +285,7 @@ namespace TEdit.TerrariaWorld
             foreach (NPC npc in Npcs)
             {
                 // no validation yet...
+                // (SS: we should really put this in the XML...)
             }
             IsUsingIo = false;
             OnProgressChanged(this, new ProgressChangedEventArgs(0, "Validation Complete."));
