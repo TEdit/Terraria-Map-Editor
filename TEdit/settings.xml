@@ -4,9 +4,9 @@
 Terraria Settings.XML Specifications
 ====================================
 Status:         Draft
-Version:        0.92
+Version:        0.93
 Compatible Ver: Terraria 1.0.6
-Last Updated:   2011-09-26
+Last Updated:   2011-10-05
 Primary URL:    https://github.com/BinaryConstruct/Terraria-Map-Editor/blob/master/TEdit/settings.xml
 ====================================
 
@@ -82,11 +82,21 @@ Single tile object; may contain Frame tags.  Has the following properties:
       All programs MUST NOT use the "placement" property (as an implied default or not) if a growOn
       property exists.  The "placement", "growsOn", and "hangsOn" properties are all mutually
       exclusive, and MUST NOT appear together on one Tile tag.
+      
+      *** NOTE: To be soon replaced with attachesTo ***
 
  * hangsOn     - Required if it applies.  This property is exactly like the growsOn property, except
       it applies for a required tile being _above_ the object, like vines.  All warnings about
       property exclusivity still apply.
 
+      *** NOTE: To be soon replaced with attachesTo ***
+      
+ * canReplace   - Required if it applies.  This property captures "morphing" tiles, like Dirt that
+      can turn into Grass.  In that example, the Grass gets the canReplace property.  Like
+      attachesTo, this property is comma-delimited list of Tile numbers.
+
+      *** NOTE: Needs to be added to Tiles ***
+      
  * canMixFrames - Required if true; default is false.  The "canMixFrames" property is true if the
       different Frame tags can swap around individual tiles for an object.  For example, a Pot is
       a 2x2 object with three different variations.  However, each 1x1 tile can be taken from a
@@ -176,9 +186,8 @@ A Frame tag has the following (other) properties:
  * dir       - Optional as long as name+variety+dir is unique.  This is used instead of (or in
       combination with) a "variety" property to describe the facing direction of the object.  For
       example, a Toilet comes with both left- and right-facing versions.  This property MUST be
-      a single character, which (so far) equals: l, r, u, c.  Which is Left, Right, Up, Center,
-      respectively.  Down (as "d") may be used later on, so that is also acceptable.
-
+      one of the following: Left, Right, Up, Upwards, Center, Down.
+      
 Frame tags have a unique name among the name, variety, and dir properties.  So, they might be 
 displayed in the following fashion:
 
@@ -262,7 +271,7 @@ Single item; tag has no children.  Has the following properties:
     <Tile num="0" name="Dirt" color="#ff916a4f" isSolid="true" />
     <Tile num="1" name="Stone" color="#ff808080" isSolid="true" />
     <Tile num="2" name="Grass" color="#ff1cd85e" isSolid="true" />
-    <Tile num="3" name="Grass Flowers" color="#ff0d6524" isSolid="true" isFramed="true" growsOn="2">
+    <Tile num="3" name="Grass Flowers" color="#ff0d6524" isFramed="true" growsOn="2">
       <Frames>
         <Frame upperLeft="0,0" name="Grass" dir="Right" variety="Single Blade" />
         <Frame upperLeft="18,0" name="Grass" dir="Right" variety="Double Blade" />
@@ -275,8 +284,8 @@ Single item; tag has no children.  Has the following properties:
         <Frame upperLeft="144,0" name="Mushroom" dir="Up" />
       </Frames>
     </Tile>
-    <Tile num="4" name="Torch" color="#fffd3e03" isSolid="true" placement="wallFloor" lightBrightness="1.0" isHouseItem="true" />
-    <Tile num="5" name="Tree" color="#ff634631" isSolid="true" isFramed="true" growsOn="2">
+    <Tile num="4" name="Torch" color="#fffd3e03" placement="wallFloor" lightBrightness="1.0" isHouseItem="true" />
+    <Tile num="5" name="Tree" color="#ff634631" isFramed="true" growsOn="2">
       <Frames>
         <Frame upperLeft="0,0" name="Tree Trunk" dir="Up" variety="Plain A" />
         <Frame upperLeft="22,0" name="Tree Trunk" dir="Up" variety="Right Indent A" />
@@ -377,7 +386,7 @@ Single item; tag has no children.  Has the following properties:
         <Frame upperLeft="36,0" variety="C" />
       </Frames>
     </Tile>
-    <Tile num="11" name="Door Open" color="#ff00fff2" isSolid="true" isFramed="true" size="2,3" placement="CFBoth">
+    <Tile num="11" name="Door Open" color="#ff00fff2" isFramed="true" size="2,3" placement="CFBoth">
       <Frames>
         <Frame upperLeft="0,0" dir="Right" />
         <Frame upperLeft="36,0" dir="Left" />
