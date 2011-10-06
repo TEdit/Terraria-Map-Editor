@@ -192,7 +192,7 @@ namespace TEdit.TerrariaWorld
         {
             List<string> log = new List<string>();
             IsUsingIo = true;
-            short[,] deadSpace = new short[Header.MaxTiles.Y,Header.MaxTiles.X];
+            short[,] deadSpace = new short[Header.MaxTiles.X,Header.MaxTiles.Y];
             for (int y = 0; y < Header.MaxTiles.Y; y++)
             {
                 OnProgressChanged(this,new ProgressChangedEventArgs((int)(y / (double)Header.MaxTiles.Y * 100.0),"Validating Tiles"));
@@ -200,9 +200,10 @@ namespace TEdit.TerrariaWorld
                 for (int x = 0; x < Header.MaxTiles.X; x++)
                 {
                     // skip anything in the dead space
-                    if (deadSpace[y,x] > 0)
+                    // SS: runs faster, but still not quite working right; will debug later on...
+                    if (deadSpace[x,y] > 0)
                     {
-                        x += deadSpace[y,x] - 1;
+                        x += deadSpace[x,y] - 1;
                         continue;
                     }
                     
@@ -249,7 +250,7 @@ namespace TEdit.TerrariaWorld
 
                     // y-axis is a little bit more difficult...
                     if (prop.Size.Y > 1) {
-                        for (int s = 1; s < prop.Size.Y; s++) { deadSpace[y+s,x] = prop.Size.X; }
+                        for (int s = 1; s < prop.Size.Y; s++) { deadSpace[x,y+s] = prop.Size.X; }
                     }
                 }
             }
