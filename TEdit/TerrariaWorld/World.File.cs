@@ -198,31 +198,39 @@ namespace TEdit.TerrariaWorld
                 OnProgressChanged(this,new ProgressChangedEventArgs((int)(y / (double)Header.MaxTiles.Y * 100.0),"Validating Tiles"));
                 
                 // FIXME: This is probably slow... //
-                // (Not as slow as I thought, though we might need to look into this later...)
+                // (Yes, very slow...)
 
                 // look for dead space items
-                int origY = y;
+                // FIXME: RectI -> index optimizations
                 Collection<RectI> deadSpaceX = new Collection<RectI>();
-                IEnumerable<RectI> query = deadSpace.Where(rect => rect.Top >= y && rect.Bottom <= y);
+                Collection<RectI> toDelete   = new Collection<RectI>();
+
+
+                IEnumerable<RectI> query = deadSpace.Where(rect => y >= rect.Top && y <= rect.Bottom);
                 foreach (RectI rect in query)
                 {
                     deadSpaceX.Add(rect);
-                    if (rect.Bottom == y) deadSpace.Remove(rect);
+                    if (rect.Bottom == y) toDelete.Add(rect);
                 }
+                foreach (RectI rect in toDelete) { deadSpace.Remove(rect); }  // FIXME: This does Equals matches on EVERY Rect; need an index removal system
+                toDelete.Clear();
                 
                 for (int x = 0; x < Header.MaxTiles.X; x++)
                 {
                     // skip anything in the dead space
-                    bool skipThis = false;
-                    query = deadSpaceX.Where(rect => rect.Left >= x && rect.Right <= x);
+                    RectI? skipThis = null;
+                    query = deadSpaceX.Where(rect => x >= rect.Left && x <= rect.Right);
                     foreach (RectI rect in query)
                     {
                         x = rect.Right;
-                        deadSpaceX.Remove(rect);
-                        skipThis = true;
+                        skipThis = rect;
                         break;
                     }
-                    if (skipThis) continue;
+                    if (skipThis != null)
+                    {
+                        deadSpaceX.Remove((RectI)skipThis);
+                        continue;
+                    }
                     
                     // FIXME: Need Frames support //
                     // (All tiles have the size/placement properties, but this may change in the future...) //
@@ -259,7 +267,7 @@ namespace TEdit.TerrariaWorld
                             break;
                     }
 
-                    // TODO: validate the frame exists completely, instead of skipping it
+                    // TODO: validate the frame exists completely //
 
                     // assuming the left-right scan, it should hit the top-left corner first
                     // thus, we skip around the rest of the frame
@@ -309,8 +317,7 @@ namespace TEdit.TerrariaWorld
             OnProgressChanged(this, new ProgressChangedEventArgs(0, "Validation Complete."));
 
             log.Add("FINISHED with Validation!");
-          	foreach (string s in log) { ErrorLogging.Log(s); }
-            // ErrorLogging.Log(string.Join(Environment.NewLine, log.ToArray()));
+            ErrorLogging.Log(string.Join(Environment.NewLine, log.ToArray()));
         }
 
         public void Load(string filename)
