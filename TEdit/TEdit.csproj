@@ -82,7 +82,9 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Common\CustomCollections.cs" />
+    <Compile Include="Common\EnumExtensions.cs" />
     <Compile Include="Common\ObservableCollectionEx.cs" />
+    <Compile Include="Common\Structures\RectI.cs" />
     <Compile Include="Common\Structures\PointFloat.cs" />
     <Compile Include="Common\Structures\PointInt32.cs" />
     <Compile Include="Common\Structures\PointShort.cs" />

@@ -41,6 +41,5 @@ namespace TEdit.RenderWorld
         {
             get { return _frames; }
         }
-
     }
 }

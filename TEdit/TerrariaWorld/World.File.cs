@@ -94,23 +94,33 @@ namespace TEdit.TerrariaWorld
             IsUsingIo = false;
         }
         
-        private bool ValidatePlacement(PointInt32 location, PointShort size, FramePlacement frame)  // using FP = FramePlacement;
+        private FramePlacement ValidatePlacement(PointInt32 location, PointShort size, FramePlacement frame)  // using FP = FramePlacement;
         {
             // TODO: Support for attachesTo with placement (complex enough for its own sub)
 
             // quick short-circuits
-            if (frame.Is(FP.None))   return false;  // hey, if it can't attach to anything, it's invalid
-            if (frame.Is(FP.Any))    return true;
-            if (frame.Has(FP.Float)) return true;   // ...for now; this behavior may change if we actually get a "float only" object
+            if (frame.Is(FP.None))   return FP.Any;   // hey, if it can't attach to anything, it's invalid
+            if (frame.Is(FP.Any))    return FP.None;
+            if (frame.Has(FP.Float)) return FP.None;  // ...for now; this behavior may change if we actually get a "float only" object
 
             /// Look at surrounding area for objects ///
             FramePlacement area   = FP.Float;
-            RectI areaRect = new RectI(location - 1, location + size + 1);
+            RectI areaRect = new RectI(location - 1, location + size);
             // (only used for x/y loop)
             RectI areaRectBnd = new RectI(areaRect);
             
             // skip tests that don't apply
             // (frame = multiples)
+            
+            //// DEBUG ////
+
+            /*
+             * This code comment is temporary until we completely fix all of the little issues here and there with the placement XML
+             * 
+             * For now, the boundaries need to look at everything to give us clues into what the placements are SUPPOSED to be.
+             * (After all, if a newly-created map doesn't pass, then something is wrong on OUR side.)
+            
+             
             if (frame.HasNo(FP.Ceiling))      areaRectBnd.Top++;
             if (frame.HasNo(FP.FloorSurface)) areaRectBnd.Bottom--;
             if (frame.HasNo(FP.Wall)) {
@@ -122,12 +132,13 @@ namespace TEdit.TerrariaWorld
             if (frame.HasNoneOf(FP.WallCeiling))      areaRectBnd.Top    = areaRect.Bottom;  // Floor/Surface/both
             if (frame.HasNoneOf(FP.WallFloorSurface)) areaRectBnd.Bottom = areaRect.Top;     // Ceiling
                                                                                              // Wall already covered in multiples checks
-
+            */
+            
             // boundary checks
-            if ( areaRectBnd.Left > 0)                   areaRectBnd.Left   = 0;
-            if ( areaRectBnd.Top > 0)                    areaRectBnd.Top    = 0;
-            if (areaRectBnd.Right <= Header.MaxTiles.X)  areaRectBnd.Right  = Header.MaxTiles.X - 1;
-            if (areaRectBnd.Bottom <= Header.MaxTiles.Y) areaRectBnd.Bottom = Header.MaxTiles.Y - 1;
+            if ( areaRectBnd.Left  < 0)                  areaRectBnd.Left   = 0;
+            if ( areaRectBnd.Top   < 0)                  areaRectBnd.Top    = 0;
+            if (areaRectBnd.Right  >= Header.MaxTiles.X) areaRectBnd.Right  = Header.MaxTiles.X - 1;
+            if (areaRectBnd.Bottom >= Header.MaxTiles.Y) areaRectBnd.Bottom = Header.MaxTiles.Y - 1;
 
             for (int y = areaRectBnd.Top; y <= areaRectBnd.Bottom; y++)
             {
@@ -148,32 +159,33 @@ namespace TEdit.TerrariaWorld
 
                     // at this point, only one of these will hit
                     if      (y ==  areaRect.Top) {
-                        area.Add(FP.Ceiling);
+                        area = area.Add(FP.Ceiling);
                         break;  // done with this Y-axis
                     }
                     else if (x ==  areaRect.Left || x == areaRect.Right) {
-                        area.Add(FP.Wall);
+                        area = area.Add(FP.Wall);
                         y = areaRect.Bottom - 1;  // -1 = for loop will re-adjust, or kick out if LRB was truncated
                         break;  // done with all except bottom
                     }
                     else if (y == areaRect.Bottom) {  // special case for floor/surface
-                        if (w.IsSolidTop) area.Add(FP.Surface);
-                        else              area.Add(FP.Floor);
+                        if (w.IsSolidTop) area = area.Add(FP.Surface);
+                        else              area = area.Add(FP.Floor);
                         if (area.HasAllOf(FP.FloorSurface)) break;  // done with everything else
                     }
                 }
             }
             
             // Now let's compare the object in question
+            // (This ultimately returns which surfaces it found instead) 
             if (frame.Has(FP.MustHaveAll)) {
-                area.Add(FP.MustHaveAll);  // add bit for bitwise math to work
-                if (area.Filter(frame) != frame) return false;  // MustHaveAll will be carried over as a reminder
+                area = area.Add(FP.MustHaveAll);  // add bit for bitwise math to work
+                if (area.Filter(frame) != frame) return area.Remove(FP.MustHaveAll);
             }
             else {
-                if (frame.HasNoneOf(area))       return false;
+                if (frame.HasNoneOf(area))       return area;
             }
 
-            return true;
+            return FP.None;  // None is good; no additional objects required for attachment
         }
 
         public void Validate()
@@ -186,6 +198,7 @@ namespace TEdit.TerrariaWorld
                 OnProgressChanged(this,new ProgressChangedEventArgs((int)(y / (double)Header.MaxTiles.Y * 100.0),"Validating Tiles"));
                 
                 // FIXME: This is probably slow... //
+                // (Not as slow as I thought, though we might need to look into this later...)
 
                 // look for dead space items
                 int origY = y;
@@ -214,15 +227,20 @@ namespace TEdit.TerrariaWorld
                     // FIXME: Need Frames support //
                     // (All tiles have the size/placement properties, but this may change in the future...) //
                     var tile  = Tiles[x, y];
+                    if (!tile.IsActive) continue;  // immediate short-circuit
                     var type  = tile.Type;
                     var prop  = WorldSettings.Tiles[type];
                     var place = prop.Placement;
+                    var area  = ValidatePlacement(new PointInt32(x,y), prop.Size, place);
                     
-                    if (!ValidatePlacement(new PointInt32(x,y), prop.Size, place))  // validation found a problem
+                    if (area != FP.None)  // validation found a problem
                     {
-                        log.Add(string.Format("Tile [{2}] at [{0},{1}] must be placed on {3} {4}", x, y, prop.Name,
+                        /* log.Add(string.Format("Tile [{2}] at [{0},{1}] must be placed on {3} {4}", x, y, prop.Name,
                             place.Has(FP.MustHaveAll) ? "all of:" : (place.IsSingular() ? "a" : "any of:"),
-                            place.Remove(FP.MustHaveAll)));
+                            place.Remove(FP.MustHaveAll))); */
+                        log.Add(string.Format("Tile [{2}] at [{0},{1}] must be placed on {3} {4}, instead of {5}", x, y, prop.Name,
+                            place.Has(FP.MustHaveAll) ? "all of:" : (place.IsSingular() ? "a" : "any of:"),
+                            place.Remove(FP.MustHaveAll), area));
                     }
 
                     // validate chest/sign/NPC entries exist
@@ -289,6 +307,10 @@ namespace TEdit.TerrariaWorld
             }
             IsUsingIo = false;
             OnProgressChanged(this, new ProgressChangedEventArgs(0, "Validation Complete."));
+
+            log.Add("FINISHED with Validation!");
+          	foreach (string s in log) { ErrorLogging.Log(s); }
+            // ErrorLogging.Log(string.Join(Environment.NewLine, log.ToArray()));
         }
 
         public void Load(string filename)

@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using System.Xml.Linq;
 using TEdit.Common.Structures;
 using TEdit.Common;
 using System.Linq;
+using System.Windows.Media;
 namespace TEdit.RenderWorld
 {
     [Serializable]
@@ -26,6 +28,8 @@ namespace TEdit.RenderWorld
         {
             ID = 0;
             UpperLeft = new PointShort(0, 0);
+            Size      = new PointShort(1, 1);
+            Placement = FramePlacement.Any;
         }
 
         public ObservableCollection<byte> AttachesTo
@@ -118,5 +122,45 @@ namespace TEdit.RenderWorld
 
             return clone;
         }
+
+        // XML conversions with defaults
+        public bool       XMLConvertBool  (XAttribute attr) { return (bool?) attr ?? false; }
+        public string     XMLConvertString(XAttribute attr) { return (string)attr ?? string.Empty; }
+        public int        XMLConvertInt   (XAttribute attr) { return (int?)  attr ?? 0; }
+        public float      XMLConvertFloat (XAttribute attr) { return (float?)attr ?? 0F; }
+        public Color      XMLConvertColor (XAttribute attr)  { return (Color)ColorConverter.ConvertFromString((string)attr); }
+        public PointShort XMLConvertPoint (XAttribute attr)
+        {
+            var ps = PointShort.TryParseInline((string)attr);
+            if (attr.Name == "size" && ps == new PointShort(0, 0)) ps = new PointShort(1, 1);
+            return ps;
+        }
+        public FrameDirection XMLConvertDir(XAttribute attr)
+        {
+            FrameDirection f = FrameDirection.None;
+            f = f.Convert<FrameDirection>(attr);
+            return f;
+        }
+        public FramePlacement XMLConvertPlace(XAttribute attr)
+        {
+            FramePlacement f = FramePlacement.Any;
+            f = f.Convert<FramePlacement>(attr);
+            return f;
+        }
+        public ObservableCollection<byte> XMLConvertOC(XAttribute attr)
+        {
+            var oc = new ObservableCollection<byte>();
+            if (!string.IsNullOrWhiteSpace((string)attr))
+            {
+                string[] split = ((string)attr).Split(',');
+                foreach (var s in split)
+                {
+                    oc.Add((byte)Convert.ChangeType(s, typeof(byte)));
+                }
+            }
+
+            return oc;
+        }
+    
     }
 }
