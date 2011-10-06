@@ -192,43 +192,17 @@ namespace TEdit.TerrariaWorld
         {
             List<string> log = new List<string>();
             IsUsingIo = true;
-            Collection<RectI> deadSpace = new Collection<RectI>();
+            short[,] deadSpace = new short[Header.MaxTiles.Y,Header.MaxTiles.X];
             for (int y = 0; y < Header.MaxTiles.Y; y++)
             {
                 OnProgressChanged(this,new ProgressChangedEventArgs((int)(y / (double)Header.MaxTiles.Y * 100.0),"Validating Tiles"));
                 
-                // FIXME: This is probably slow... //
-                // (Yes, very slow...)
-
-                // look for dead space items
-                // FIXME: RectI -> index optimizations
-                Collection<RectI> deadSpaceX = new Collection<RectI>();
-                Collection<RectI> toDelete   = new Collection<RectI>();
-
-
-                IEnumerable<RectI> query = deadSpace.Where(rect => y >= rect.Top && y <= rect.Bottom);
-                foreach (RectI rect in query)
-                {
-                    deadSpaceX.Add(rect);
-                    if (rect.Bottom == y) toDelete.Add(rect);
-                }
-                foreach (RectI rect in toDelete) { deadSpace.Remove(rect); }  // FIXME: This does Equals matches on EVERY Rect; need an index removal system
-                toDelete.Clear();
-                
                 for (int x = 0; x < Header.MaxTiles.X; x++)
                 {
                     // skip anything in the dead space
-                    RectI? skipThis = null;
-                    query = deadSpaceX.Where(rect => x >= rect.Left && x <= rect.Right);
-                    foreach (RectI rect in query)
+                    if (deadSpace[y,x] > 0)
                     {
-                        x = rect.Right;
-                        skipThis = rect;
-                        break;
-                    }
-                    if (skipThis != null)
-                    {
-                        deadSpaceX.Remove((RectI)skipThis);
+                        x += deadSpace[y,x] - 1;
                         continue;
                     }
                     
@@ -275,7 +249,7 @@ namespace TEdit.TerrariaWorld
 
                     // y-axis is a little bit more difficult...
                     if (prop.Size.Y > 1) {
-                        deadSpace.Add(new RectI(new PointInt32(x, y), new PointInt32(x + prop.Size.X - 1, x + prop.Size.Y - 1)));
+                        for (int s = 1; s < prop.Size.Y; s++) { deadSpace[y+s,x] = prop.Size.X; }
                     }
                 }
             }
