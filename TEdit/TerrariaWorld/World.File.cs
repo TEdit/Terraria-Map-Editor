@@ -111,16 +111,6 @@ namespace TEdit.TerrariaWorld
             
             // skip tests that don't apply
             // (frame = multiples)
-            
-            //// DEBUG ////
-
-            /*
-             * This code comment is temporary until we completely fix all of the little issues here and there with the placement XML
-             * 
-             * For now, the boundaries need to look at everything to give us clues into what the placements are SUPPOSED to be.
-             * (After all, if a newly-created map doesn't pass, then something is wrong on OUR side.)
-            
-             
             if (frame.HasNo(FP.Ceiling))      areaRectBnd.Top++;
             if (frame.HasNo(FP.FloorSurface)) areaRectBnd.Bottom--;
             if (frame.HasNo(FP.Wall)) {
@@ -132,7 +122,6 @@ namespace TEdit.TerrariaWorld
             if (frame.HasNoneOf(FP.WallCeiling))      areaRectBnd.Top    = areaRect.Bottom;  // Floor/Surface/both
             if (frame.HasNoneOf(FP.WallFloorSurface)) areaRectBnd.Bottom = areaRect.Top;     // Ceiling
                                                                                              // Wall already covered in multiples checks
-            */
             
             // boundary checks
             if ( areaRectBnd.Left  < 0)                  areaRectBnd.Left   = 0;
@@ -200,14 +189,13 @@ namespace TEdit.TerrariaWorld
                 for (int x = 0; x < Header.MaxTiles.X; x++)
                 {
                     // skip anything in the dead space
-                    // SS: runs faster, but still not quite working right; will debug later on...
                     if (deadSpace[x,y] > 0)
                     {
                         x += deadSpace[x,y] - 1;
                         continue;
                     }
                     
-                    // FIXME: Need Frames support //
+                    // TODO: Need Frames support //
                     // (All tiles have the size/placement properties, but this may change in the future...) //
                     var tile  = Tiles[x, y];
                     if (!tile.IsActive) continue;  // immediate short-circuit
@@ -218,12 +206,9 @@ namespace TEdit.TerrariaWorld
                     
                     if (area != FP.None)  // validation found a problem
                     {
-                        /* log.Add(string.Format("Tile [{2}] at [{0},{1}] must be placed on {3} {4}", x, y, prop.Name,
+                        log.Add(string.Format("Tile [{2}] at [{0},{1}] must be placed on {3} {4}", x, y, prop.Name,
                             place.Has(FP.MustHaveAll) ? "all of:" : (place.IsSingular() ? "a" : "any of:"),
-                            place.Remove(FP.MustHaveAll))); */
-                        log.Add(string.Format("Tile [{2}] at [{0},{1}] must be placed on {3} {4}, instead of {5}", x, y, prop.Name,
-                            place.Has(FP.MustHaveAll) ? "all of:" : (place.IsSingular() ? "a" : "any of:"),
-                            place.Remove(FP.MustHaveAll), area));
+                            place.Remove(FP.MustHaveAll)));
                     }
 
                     // validate chest/sign/NPC entries exist
@@ -245,13 +230,13 @@ namespace TEdit.TerrariaWorld
                     // TODO: validate the frame exists completely //
 
                     // assuming the left-right scan, it should hit the top-left corner first
-                    // thus, we skip around the rest of the frame
-                    if (prop.Size.X > 1) x += prop.Size.X - 1;
+                    // thus, we skip around the rest of the frame for the x-axis
 
-                    // y-axis is a little bit more difficult...
+                    // y-axis is a little bit more difficult... (and it requires that x stay put for a bit)
                     if (prop.Size.Y > 1) {
                         for (int s = 1; s < prop.Size.Y; s++) { deadSpace[x,y+s] = prop.Size.X; }
                     }
+                    if (prop.Size.X > 1) x += prop.Size.X - 1;
                 }
             }
 
