@@ -20,7 +20,8 @@ namespace TEdit.RenderWorld
 
         static WorldSettings()
         {
-            LoadXMLSettings("settings.xml");
+            string xmlPath = Path.Combine(Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().GetName().CodeBase), "settings.xml");
+            LoadXMLSettings(xmlPath);
             OnSettingsLoaded(null, new EventArgs());
         }
 
