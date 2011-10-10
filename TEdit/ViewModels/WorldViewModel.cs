@@ -693,7 +693,7 @@ namespace TEdit.ViewModels
                 if (e.WheelDelta > 0)
                     Zoom = Zoom * 1.1;
                 if (e.WheelDelta < 0)
-                    Zoom = Zoom * 0.9;
+                    Zoom = Zoom * (1/1.1);  // 0.9090909090909090909090...
             }
         }
 

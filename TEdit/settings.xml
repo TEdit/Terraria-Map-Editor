@@ -383,7 +383,7 @@ Single item; tag has no children.  Has the following properties:
         <Frame upperLeft="36,0" dir="Left" />
       </Frames>
     </Tile>
-    <Tile num="12" name="Crystal Heart" color="#ffff0000" isFramed="true" size="2,2" placement="floorSurface" />
+    <Tile num="12" name="Crystal Heart" color="#ffff0000" isFramed="true" size="2,2" placement="floor" />
     <Tile num="13" name="Bottle" 		 color="#ff00fff2" isFramed="true" placement="surface">
       <Frames>
         <Frame upperLeft="0,0" 	  name="Bottle" />
@@ -403,7 +403,7 @@ Single item; tag has no children.  Has the following properties:
     <Tile num="16" name="Anvil" 				color="#ff00fff2" isFramed="true" size="2,1" placement="floor" isSolidTop="true" />
     <Tile num="17" name="Furnace" 			color="#ff00fff2" isFramed="true" size="3,2" placement="floor" lightBrightness="0.8" />
     <Tile num="18" name="Workbench" 		color="#ff00fff2" isFramed="true" size="2,1" placement="floor" isSolidTop="true" isHouseItem="true" />
-    <Tile num="19" name="Wooden Platform" color="#ff6b3a18" placement="wall" isSolidTop="true" />
+    <Tile num="19" name="Wooden Platform" color="#ff6b3a18" isSolidTop="true" />
     <Tile num="20" name="Sapling" 			color="#ff0d6524" isFramed="true" growsOn="2">
       <Frames>
         <Frame upperLeft="0,0"  dir="Left" />
@@ -411,7 +411,7 @@ Single item; tag has no children.  Has the following properties:
         <Frame upperLeft="36,0" dir="Right" />
       </Frames>
     </Tile>
-    <Tile num="21" name="Chest" color="#ffddb800" isFramed="true" size="2,2" placement="floorSurface">
+    <Tile num="21" name="Chest" color="#ffddb800" isFramed="true" size="2,2" placement="floor">
       <Frames>
         <Frame upperLeft="0,0" 	  name="Chest" />
         <Frame upperLeft="36,0" 	  name="Gold Chest" />
@@ -446,7 +446,7 @@ Single item; tag has no children.  Has the following properties:
         <Frame upperLeft="36,0" variety="C" />
       </Frames>
     </Tile>
-    <Tile num="28" name="Pot" color="#ff8c2726" isFramed="true" size="2,2" placement="floorSurface" canMixFrames="true">
+    <Tile num="28" name="Pot" color="#ff8c2726" isFramed="true" size="2,2" placement="floor" canMixFrames="true">
       <Frames>
         <Frame upperLeft="0,0"  variety="Oval"  />
         <Frame upperLeft="36,0" variety="Wide"  />
@@ -562,7 +562,7 @@ Single item; tag has no children.  Has the following properties:
     </Tile>
     <Tile num="75" name="Obsidian Brick" 	color="#ffb200ff" isSolid="true" />
     <Tile num="76" name="Hellstone Brick" color="#ffc6001d" isSolid="true" contactDmg="20" />
-    <Tile num="77" name="Hellforge" 		color="#ffd50010" isFramed="true" size="3,2" placement="floorSurface" lightBrightness="0.8" />
+    <Tile num="77" name="Hellforge" 		color="#ffd50010" isFramed="true" size="3,2" placement="floor" lightBrightness="0.8" />
     <Tile num="78" name="Clay Pot" 			color="#ff00fff2" isFramed="true" size="2,2" placement="floor" />
     <Tile num="79" name="Bed" 				color="#ff00fff2" isFramed="true" size="4,2" placement="floor" isHouseItem="true">
       <Frame upperLeft="0,0"  dir="Left"  />
