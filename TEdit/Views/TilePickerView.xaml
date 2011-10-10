@@ -6,6 +6,7 @@
     <UserControl.Resources>
         <DataTemplate x:Key="ColorPickerTemplate">
             <StackPanel Orientation="Horizontal">
+                <TextBlock Text="{Binding Path=Name}" Margin="2,0" Visibility="Collapsed"/>
                 <Border BorderBrush="Black" BorderThickness="1" Margin="2,1">
                     <Rectangle Height="12" Width="12">
                         <Rectangle.Fill>
