@@ -107,11 +107,11 @@ namespace TEdit.TerrariaWorld
                     return true;
 
             if (right < Header.MaxTiles.X)
-                if (WorldSettings.Tiles[Tiles[right, y].Type].IsSolid && Tiles[left, y].IsActive)
+                if (WorldSettings.Tiles[Tiles[right, y].Type].IsSolid && Tiles[right, y].IsActive)
                     return true;
 
             if (bottom < Header.MaxTiles.Y)
-                if ((WorldSettings.Tiles[Tiles[x, bottom].Type].IsSolid || WorldSettings.Tiles[Tiles[x, bottom].Type].IsSolidTop) && Tiles[left, y].IsActive)
+                if ((WorldSettings.Tiles[Tiles[x, bottom].Type].IsSolid || WorldSettings.Tiles[Tiles[x, bottom].Type].IsSolidTop) && Tiles[x, bottom].IsActive)
                     return true;
 
             return false;
