@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
@@ -13,7 +14,7 @@ namespace TEdit.TerrariaWorld
     {
         private bool _isUsingIo = true;
         private bool _isValid;
-        private bool _isSaved; 
+        private bool _isSaved;
 
         public bool IsSaved
         {
@@ -28,7 +29,7 @@ namespace TEdit.TerrariaWorld
         public bool IsUsingIo
         {
             get { return _isUsingIo; }
-            set{ SetProperty(ref _isUsingIo, ref value, "IsUsingIo");}
+            set { SetProperty(ref _isUsingIo, ref value, "IsUsingIo"); }
         }
 
         public event ProgressChangedEventHandler ProgressChanged;
@@ -89,7 +90,7 @@ namespace TEdit.TerrariaWorld
             IsValid = true;
             IsUsingIo = false;
         }
-        
+
         private bool ValidatePlacement(PointInt32 location, PointShort size, FramePlacement frame)
         {
             // TODO: Implement frame validations
@@ -123,7 +124,7 @@ namespace TEdit.TerrariaWorld
             IsUsingIo = true;
             for (int x = 0; x < Header.MaxTiles.X; x++)
             {
-                OnProgressChanged(this,new ProgressChangedEventArgs((int)(x / (double)Header.MaxTiles.X * 100.0),"Validating Tiles"));
+                OnProgressChanged(this, new ProgressChangedEventArgs((int)(x / (double)Header.MaxTiles.X * 100.0), "Validating Tiles"));
 
                 for (int y = 0; y < Header.MaxTiles.Y; y++)
                 {
@@ -139,15 +140,27 @@ namespace TEdit.TerrariaWorld
                             break;
                         case 21:
                             // Validate Chest
-                            if (GetChestAtTile(x, y) == null) Chests.Add(new Chest(new PointInt32(x, y)));
-                            log.Add(string.Format("added empty chest content [{0},{1}]",x,y));
+                            if (GetChestAtTile(x, y) == null)
+                            {
+                                var c = new Chest(new PointInt32(x, y));
+                                for (int i = 0; i < 20; i++)
+                                    c.Items.Add(new Item(0, "[empty]"));
+                                
+                                Chests.Add(c);
+                                  
+                                log.Add(string.Format("added empty chest content [{0},{1}]", x, y));
+                            }
                             break;
                         case 55:
                         case 85:
                             // Validate Sign/Tombstone
-                            if (GetSignAtTile(x, y) == null) Signs.Add(new Sign("", new PointInt32(x, y)));
-                            log.Add(string.Format("added blank sign text [{0},{1}]", x, y));
-                            break;
+                            if (GetSignAtTile(x, y) == null)
+                            {
+                                Signs.Add(new Sign("", new PointInt32(x, y)));
+                                log.Add(string.Format("added blank sign text [{0},{1}]", x, y));
+                            }
+                    
+                    break;
                     }
                 }
             }
@@ -250,7 +263,7 @@ namespace TEdit.TerrariaWorld
 
                             tile.IsActive = reader.ReadBoolean();
 
-                            
+
                             if (tile.IsActive)
                             {
                                 tile.Type = reader.ReadByte();
@@ -294,7 +307,7 @@ namespace TEdit.TerrariaWorld
                                 if (stackSize > 0)
                                 {
                                     string itemName = reader.ReadString();
-                                    item.Name = itemName;
+                                    item.ItemName = itemName;
                                     item.StackSize = stackSize;
                                 }
                                 chest.Items.Add(item);
@@ -358,7 +371,7 @@ namespace TEdit.TerrariaWorld
                             throw new ApplicationException("Invalid World File");
                         }
                     }
-                    
+
                     reader.Close();
                 }
             }
@@ -373,7 +386,7 @@ namespace TEdit.TerrariaWorld
             Validate();
 
             IsUsingIo = true;
-            
+
             string backupFileName = filename + ".Tedit";
             if (File.Exists(filename))
             {
@@ -490,7 +503,7 @@ namespace TEdit.TerrariaWorld
                                     writer.Write((byte)Chests[chestIndex].Items[slot].StackSize);
                                     if (Chests[chestIndex].Items[slot].StackSize > 0)
                                     {
-                                        writer.Write(Chests[chestIndex].Items[slot].Name);
+                                        writer.Write(Chests[chestIndex].Items[slot].ItemName);
                                     }
                                 }
                                 else
@@ -558,7 +571,7 @@ namespace TEdit.TerrariaWorld
             SaveFileCompressed2(filename + ".TEST2");
 
         }
-        
+
         public void SaveFileCompressed1(string filename)
         {
             IsUsingIo = false;
@@ -698,7 +711,7 @@ namespace TEdit.TerrariaWorld
                                     writer.Write((byte)Chests[chestIndex].Items[slot].StackSize);
                                     if (Chests[chestIndex].Items[slot].StackSize > 0)
                                     {
-                                        writer.Write(Chests[chestIndex].Items[slot].Name);
+                                        writer.Write(Chests[chestIndex].Items[slot].ItemName);
                                     }
                                 }
                                 else
@@ -925,7 +938,7 @@ namespace TEdit.TerrariaWorld
                                     writer.Write((byte)Chests[chestIndex].Items[slot].StackSize);
                                     if (Chests[chestIndex].Items[slot].StackSize > 0)
                                     {
-                                        writer.Write(Chests[chestIndex].Items[slot].Name);
+                                        writer.Write(Chests[chestIndex].Items[slot].ItemName);
                                     }
                                 }
                                 else

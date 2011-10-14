@@ -17,6 +17,7 @@ namespace TEdit.RenderWorld
         private static readonly ColorProperty[] _walls = new ColorProperty[byte.MaxValue + 1];
         private static readonly Dictionary<string, Color> _globals = new Dictionary<string, Color>();
         private static readonly ObservableCollection<ItemProperty> _items = new ObservableCollection<ItemProperty>();
+        private static readonly ObservableCollection<string> _itemNames = new ObservableCollection<string>(); 
 
         static WorldSettings()
         {
@@ -96,11 +97,13 @@ namespace TEdit.RenderWorld
             // read items
             foreach (var item in xmlSettings.Elements("Items").Elements("Item"))
             {
+                
                 var curItem = new ItemProperty();
                 curItem.ID = (byte)((int?)item.Attribute("num") ?? 0);
                 curItem.Name = (string)item.Attribute("name");
                 curItem.ItemType = (string)item.Attribute("type");
                 _items.Add(curItem);
+                _itemNames.Add(curItem.Name);
             }
 
             // read global colors
@@ -129,6 +132,10 @@ namespace TEdit.RenderWorld
             curTile.GrowsOn.ReplaceRange(StringToList<byte>((string)tile.Attribute("growsOn")));
         }
 
+        public static ObservableCollection<string> ItemNames
+        {
+            get { return _itemNames; }
+        }
         public static ObservableCollection<ItemProperty> Items
         {
             get { return _items; }
