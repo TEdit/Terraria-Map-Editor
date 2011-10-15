@@ -1,0 +1,2400 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+
+Terraria.Object.DB.XML Specifications
+====================================
+Status:         Draft
+Version:        0.95
+Compatible Ver: Terraria 1.0.6.1
+Last Updated:   2011-10-14
+Primary URL:    https://github.com/BinaryConstruct/Terraria-Map-Editor/blob/master/TEdit/Terraria.Object.DB.xml
+====================================
+
+<Objects>
+
+This is the root XML object.
+
+<GlobalColors>
+
+Container of GlobalColor tags.  These contain PNG colors of common backgrounds.  The GlobalColors
+tag SHOULD contain colors for at least these types: Sky, Water, Lava.
+
+<GlobalColor>
+
+Single tag with no children.  Properties are self-explanatory.
+
+<Tiles>
+
+Container of Tile tags.  These contain all of the tiles found in Terraria maps.  The Tiles tag
+MUST contain Tile tags for all possible tiles that have a Tile_??.xnb file in the Terraria
+game data, found in the Content\Images folder.
+
+<Tile>
+
+Single tile object; may contain Frame tags.  Has the following properties:
+
+ * num         - Required; unique.  This tile number MUST match the same ID used in Terraria world files.     
+ * color       - Required; default is #ffff00ff.  Color SHOULD approx. match the color of the tile in-game.
+ * name        - Required; unique.  Name MUST match the tile name in-game, if possible.  (The
+      TerrariaOnline wiki is a good source for information.)  Names MUST be unique among different
+      Tile tags.  Names MAY be used as a tile identifier, so the names should be reasonably static.
+      However, names that are discovered to not match the Terraria game name MUST be changed.
+
+ * isSolid     - Required if true; default is false.  This property MUST be true if the tile can't
+      be walked through.
+
+ * isFramed    - Required if true; default is false.  This property MUST be true if the tile contains
+      frames that require frame coordinates in Terraria world files.  This property MUST be accurate
+      to read world files.  All tile types that use multiple tiles (tables, doors, chests, etc.)
+      always have isFramed set, though some single-tiled objects also have frames.  Furthermore,
+      some XNB tiles with frames actually don't need frame coordinations.  (Yes, it's confusing;
+      it usually boils down to trial-and-error and seeing if the world file can't be read.)
+
+ * size        - Required if not default; default is "1,1".  This is the width and height of tile
+      objects that span multiple tiles.  If this property is beyond "1,1", then isFramed MUST be true.
+      
+ * placement   - Required if not default; default is "any".  This details how the tile (or full object,
+      if multi-tiled) can be placed among other tiles.  The property MUST only be one of these options:
+      
+    @ any              - Is like a block, which can even float in the air
+    @ floor            - Must be on the floor; affected by gravity
+    @ surface          - Must be on top of a SolidTop surface object
+    @ floorSurface     - Either "floor" or "surface"
+    @ wall             - Must be attached to a tile-based wall (not a background wall)
+    @ ceiling          - Must be attached to the ceiling
+    @ wallFloor        - Either "wall" or "floor"
+    @ wallFloorCeiling - Either "wall", "floor", or "ceiling" (rare; signs have these)
+    @ CFBoth           - Must be attached to both ceiling AND floor (rare; doors have these)
+
+ * isSolidTop  - Required if true; default is false.  If the object is a "Flat Surface" object, such
+      as a table, this property MUST be set to true.  These objects will accept other objects that
+      can be placed on top of surfaces, and can usually be stood on by the player, despite being a
+      pass-through object itself.  In fact, isSolid and isSolidTop SHOULD be mutually exclusive.
+      
+ * growsOn     - Required if it applies.  This property only applies to plant objects (unless we
+      happen to discover some sort of growing sword or other bizzare thing).  This property is a
+      comma-delimited list of Tile numbers that will accept this object on top of it.  For example,
+      grass flowers can only grow on grass blocks.  These type of tiles MUST only be able to have
+      the following underneath it: the tiles on the list, itself (other tiles with the same tile
+      number), or empty space.  Furthermore, the full plant object MUST ultimately have a
+      bottom-most tile attached to one of the tiles on the list.
+      
+      All programs MUST NOT use the "placement" property (as an implied default or not) if a growOn
+      property exists.  The "placement", "growsOn", and "hangsOn" properties are all mutually
+      exclusive, and MUST NOT appear together on one Tile tag.
+      
+      *** NOTE: To be soon replaced with attachesTo ***
+
+ * hangsOn     - Required if it applies.  This property is exactly like the growsOn property, except
+      it applies for a required tile being _above_ the object, like vines.  All warnings about
+      property exclusivity still apply.
+
+      *** NOTE: To be soon replaced with attachesTo ***
+      
+ * canReplace   - Required if it applies.  This property captures "morphing" tiles, like Dirt that
+      can turn into Grass.  In that example, the Grass gets the canReplace property.  Like
+      attachesTo, this property is comma-delimited list of Tile numbers.
+
+      *** NOTE: Needs to be added to Tiles ***
+      
+ * canMixFrames - Required if true; default is false.  The "canMixFrames" property is true if the
+      different Frame tags can swap around individual tiles for an object.  For example, a Pot is
+      a 2x2 object with three different variations.  However, each 1x1 tile can be taken from a
+      different variation to create a new composite object.  (Tiles must still be taken from the
+      same location.  IOW, you can't take the lower-right corner of Pot A and use it for the
+      upper-left corner of your new object.)  These type of objects are rare, as it only applies
+      so far to Pots and Closed Doors.
+ 
+      This property MUST NOT be used unless the "size" property is non-default, and "isFramed"
+      property is true.
+
+ * isHouseItem - Required if true; default is false.  If the object is one of the required objects
+      that can be used to build a NPC-qualified house, this property MUST be true.  This should be
+      used with other properties to identify all of the house objects:
+      
+    @ isSolidTop      - If true, then this classifies as a "Flat Surface" object for a house.
+    @ lightBrightness - If non-zero, then this classified as a "Light Source" object for a house.
+    @ None            - If the above two don't apply, then it's a "Comfort" object.
+
+ * lightBrightness - Required if not default; default is 0.  This is the brightness of the light
+      given off the object when placed, where 1.0 is torch light.  A non-zero value indicates 
+      that this tile is a "Light Source", though objects such as Furnaces do qualify, even if it
+      can't be used as a house "Light Source" object.
+      
+ * contactDmg  - Optional.  If the object causes damage when touched by the player, this is the
+      amount of HP that it drains.
+
+<Frames>
+
+Container of Frame tags.  These contain all of the frame found for a individual Tile.  A Tile object
+MUST contain a Frames tag, and the Frames tag MUST contain Frame tags for all possible tiles that
+have isFramed set to true, with two exceptions:
+
+ * If the Tile only has one Frame tag, the Frames/Frame tag SHOULD NOT appear.  Defaults for the frame
+      are listed in the <Frame> spec.
+      
+ * The tags SHOULD NOT appear if the object is subject to auto-alignment or auto-correction by the game
+      itself.  (For example, Signs automatically align to the right Frame, whether it's floor, wall, or
+      ceiling, whereas Beds do not automatically pick a facing direction.)
+ 
+
+<Frame>
+
+Single frame object with no children.  Describes individual frames within a Tile image.
+
+A Frame tag inherits all property information of its parent Tile tag.  So, all of the properties
+of the Frame tag can exist in Tile tags and visa-versa.  Which means that all of the properties
+on both tags are really optional as long as they appear on one or the other, with the following
+exceptions:
+
+ * The "num" property MUST appear on the Tile tag without question.
+ * A Tile tag MUST have a name, even if it is later overridden by a Frame tag.
+ * A Frame tag MUST have an "upperLeft" property, even if it's default.
+ * A Frame tag MUST NOT have a isFramed property.  (This is just redundant.)
+ * A Frame tag MUST NOT have a canMixFrames property.  (This doesn't even make sense.)
+ * The following properties SHOULD only appear on Tile tags, as we have not found different ones
+      on the same tile: isSolid, isSolidTop, size, placement, isHouseItem, lightBrightness,
+      contactDmg
+
+The following defaults are assumed for Frame tags, including Tiles with frames and no Frame tags:
+
+ * The upperLeft property defaults to 0,0.
+ * There are no "variety" or "dir" properties (unless set).
+ * Each frame jumps by 18 frame points.  (So far this has been accurate for all multi-tile objects,
+      so we don't need to create a new property yet...)
+
+Frame tags MUST be ordered by a left-right reading direction.  So, all of the objects on the first
+row, then the second, etc.  A zero-based num property can be assumed based on the order of the
+object, but is not actually used (yet).
+
+A Frame tag has the following (other) properties:
+      
+ * upperLeft - Required (even if default); default is 0,0. This is the X,Y coordinates of the
+      upper-left corner of the Frame object. Frame coordinates directly relate to the Tile_??.xnb
+      file referencing them. Each frame point is equal to 1/2 of a pixel. So, a X,Y of 18,0
+      is starting at X,Y of 9,0 on the Tile image.
+      
+      A grand majority of tiles (including all multi-tiled objects) use 8x8 pixel tiles (with a
+      1-pixel divider line), so all tiles are assumed to jump by 18 frame points. There are a few
+      exceptions, but all of these tiles have size="1,1", so no jumping is required.
+      
+ * variety   - Optional as long as name+variety+dir is unique.  This further describes the object
+      beyond what the name says.  For example, the in-game name of a normal wooden Chest is merely
+      "Chest", but one frame has a locked Chest.  So, the name is "Chest", and the variety is 
+      "Locked".
+      
+ * dir       - Optional as long as name+variety+dir is unique.  This is used instead of (or in
+      combination with) a "variety" property to describe the facing direction of the object.  For
+      example, a Toilet comes with both left- and right-facing versions.  This property MUST be
+      one of the following: Left, Right, Up, Upwards, Center, Down.
+      
+Frame tags have a unique name among the name, variety, and dir properties.  So, they might be 
+displayed in the following fashion:
+
+<Frame upperLeft="22,0" name="Tree Trunk" dir="Up" variety="Right Indent A" />
+   Full Name: Tree Trunk - Right Indent A (Upwards)
+
+<Frame upperLeft="72,0" name="Gold Chest" variety="Locked" />
+   Full Name: Gold Chest - Locked
+
+<Frame upperLeft="18,0" name="Chair" dir="Right" />
+   Full Name: Chair (Right Facing)
+
+<Walls>
+
+Container of Wall tags.  These contain all of the background walls found in Terraria maps.  The
+Walls tag MUST contain Wall tags for all possible walls that have a Wall_??.xnb file in the Terraria
+game data, found in the Content\Images folder.
+
+<Wall>
+
+Single wall, with no children.  Has the following properties:
+
+ * num     - Required; unique.  This wall number MUST match the same ID used in Terraria world files.
+ * name    - Required; unique.  Name MUST match the wall name in-game, if possible.
+ * color   - Required.  Color SHOULD approx. match the color of the wall in-game.
+ * isHouse - Required if true; default is false.  If true, this wall can be used in a house.
+
+<Items>
+
+Container of Item tags.  These contain all of the character items found in Terraria maps.  The Items
+tag MUST contain Item tags for all possible items that have a Item_??.xnb file in the Terraria
+game data, found in the Content\Images folder, as well as any other items found in the game that
+can be picked up by the player.
+
+<Item>
+
+Single item; tag has no children.  Has the following properties:
+
+ * num  - Required if exists; unique (if exists); starts with 0.  This item number MUST match the
+      the same ID used in Terraria XNB image files.  For some reason, some items don't relate to
+      an item ID, so certain items might not have one.  (There may be some palette shifting going
+      on to reuse item image files...)
+      
+ * name - Required; unique.  Name MUST match the item name in-game.
+      
+ * type - Required except for the [empty] item.  This is a (loose) categorization of the item.
+      The categories, so far, are somewhat subject to interpretation, and are pidgin-holed into
+      a single category, but this will be more strictly defined in a future XML release.  The
+      item type MUST be one of the categories (in all lowercase):
+      
+       @ tool       = All mining/gathering tools, like Pickaxe, Hammer, Axe, etc.
+       @ weapon     = All weapons, including swords, staffs, consumable weapons (like Throwing Knives), etc.
+       @ armor      = All items that fit into armor slot (including vanity; will split later on)
+       @ vanity     = Future use for vanity (and useless) items.
+       @ accessory  = All items that fit into accessory slots
+       @ block      = Blocks that are normally gathered through mining
+       @ light      = Items that are primarily used as a light source, ie: Torch, Candles, etc.
+       @ storage    = All storage furniture, including Chests, Barrels, Trash Cans, etc.
+       @ wall       = All background wall objects
+       @ furniture  = All furniture, both decorative and crafting stations (will split later on)
+       @ crafter    = Future use for crafting stations.
+       @ plant      = All plants (supersedes all other categories)
+       @ material   = Objects that are primarily used for crafting material
+       @ potion     = All items called "Potion" or containers of liquid that buff character
+       @ consumable = Other items that are one-use only
+       @ ammo       = Objects that are primarily used for gun/bow ammo
+       @ money      = Objects that go directly in the money slots
+
+-->
+
+<Objects>
+  <GlobalColors>
+    <GlobalColor name="Earth" color="#ff583d2e" />
+    <GlobalColor name="Hell"  color="#ff330000" />
+    <GlobalColor name="Lava"  color="#f0ff1e00" />
+    <GlobalColor name="Rock"  color="#ff4a433c" />
+    <GlobalColor name="Sky"   color="#ff9bd1ff" />
+    <GlobalColor name="Water" color="#80000cff" />
+  </GlobalColors>
+
+  <Tiles>
+    <Tile num="0"   name="Dirt"                color="#ff916a4f"                 blocksLight="true" isSolid="true" />
+    <Tile num="1"   name="Stone"               color="#ff808080"                 blocksLight="true" canMorphFrom="0" isSolid="true" />
+    <Tile num="2"   name="Grass"               color="#ff1cd85e"                 blocksLight="true" isSolid="true" />
+    <Tile num="3"   name="Grass Flowers"       color="#ff0d6524" isFramed="true" attachesTo="2" canBeCut="true" destroyedBy="lava" noAttach="4" oneHit="true" placement="floor">
+      <Frames>
+        <Frame num="0" upperLeft="0,0"   name="Grass"    dir="Right" variety="Single Blade"     />
+        <Frame num="1" upperLeft="18,0"  name="Grass"    dir="Right" variety="Double Blade"     />
+        <Frame num="2" upperLeft="36,0"  name="Grass"    dir="Up"    variety="Small Y"          />
+        <Frame num="3" upperLeft="54,0"  name="Grass"    dir="Right" variety="Three Small"      />
+        <Frame num="4" upperLeft="72,0"  name="Grass"    dir="Left"  variety="Single Blade"     />
+        <Frame num="5" upperLeft="90,0"  name="Grass"    dir="Left"  variety="Three Large"      />
+        <Frame num="6" upperLeft="108,0" name="Flowers"  dir="Left"  variety="Purple, Immature" />
+        <Frame num="7" upperLeft="126,0" name="Flowers"  dir="Right" variety="Pink, Immature"   />
+        <Frame num="8" upperLeft="144,0" name="Mushroom" dir="Up"                               />
+      </Frames>
+    </Frame>
+    <Tile num="4"   name="Torch"               color="#fffd3e03"                 destroyedBy="water" isHouseItem="true" lightBrightness="1.0" noAttach="4" oneHit="true" placement="wallFloor" />
+    <Tile num="5"   name="Tree"                color="#ff634631" isFramed="true" attachesTo="2" destroyedBy="lava" placement="floor">
+      <Frames>
+        <Frame num="0"  upperLeft="0,0"     name="Tree Trunk"  dir="Up"     variety="Plain A"                     />
+        <Frame num="1"  upperLeft="22,0"    name="Tree Trunk"  dir="Up"     variety="Right Indent A"              />
+        <Frame num="2"  upperLeft="44,0"    name="Tree Trunk"  dir="Up"     variety="Right Slight Bulge A"        />
+        <Frame num="3"  upperLeft="66,0"    name="Tree Branch" dir="Left"   variety="Plain A"                     />
+        <Frame num="4"  upperLeft="88,0"    name="Tree Trunk"  dir="Up"     variety="Left Slight Bulge A"         />
+        <Frame num="5"  upperLeft="110,0"   name="Tree Top"    dir="Up"     variety="Medium A"                    />
+        <Frame num="6"  upperLeft="132,0"   name="Tree Top"    dir="Up"     variety="Small A"                     />
+        <Frame num="7"  upperLeft="154,0"   name="Tree Top"    dir="Right"  variety="Large A"                     />
+        <Frame num="8"  upperLeft="0,22"    name="Tree Trunk"  dir="Up"     variety="Plain B"                     />
+        <Frame num="9"  upperLeft="22,22"   name="Tree Trunk"  dir="Up"     variety="Right Indent B"              />
+        <Frame num="10" upperLeft="44,22"   name="Tree Trunk"  dir="Up"     variety="Right Slight Bulge B"        />
+        <Frame num="11" upperLeft="66,22"   name="Tree Branch" dir="Left"   variety="Plain B"                     />
+        <Frame num="12" upperLeft="88,22"   name="Tree Trunk"  dir="Up"     variety="Left Slight Bulge B"         />
+        <Frame num="13" upperLeft="110,22"  name="Tree Top"    dir="Up"     variety="Medium B"                    />
+        <Frame num="14" upperLeft="132,22"  name="Tree Top"    dir="Up"     variety="Small B"                     />
+        <Frame num="15" upperLeft="154,22"  name="Tree Top"    dir="Right"  variety="Large B"                     />
+        <Frame num="16" upperLeft="0,44"    name="Tree Trunk"  dir="Up"     variety="Plain C"                     />
+        <Frame num="17" upperLeft="22,44"   name="Tree Trunk"  dir="Up"     variety="Right Indent C"              />
+        <Frame num="18" upperLeft="44,44"   name="Tree Trunk"  dir="Up"     variety="Right Slight Bulge C"        />
+        <Frame num="19" upperLeft="66,44"   name="Tree Branch" dir="Left"   variety="Plain C"                     />
+        <Frame num="20" upperLeft="88,44"   name="Tree Trunk"  dir="Up"     variety="Left Slight Bulge C"         />
+        <Frame num="21" upperLeft="110,44"  name="Tree Top"    dir="Up"     variety="Medium C"                    />
+        <Frame num="22" upperLeft="132,44"  name="Tree Top"    dir="Up"     variety="Small C"                     />
+        <Frame num="23" upperLeft="154,44"  name="Tree Top"    dir="Right"  variety="Large C"                     />
+        <Frame num="24" upperLeft="0,66"    name="Tree Trunk"  dir="Up"     variety="Left Indent A"               />
+        <Frame num="25" upperLeft="22,66"   name="Tree Trunk"  dir="Up"     variety="Right Bulge A"               />
+        <Frame num="26" upperLeft="44,66"   name="Tree Trunk"  dir="Up"     variety="Left Bulge A"                />
+        <Frame num="27" upperLeft="66,66"   name="Tree Trunk"  dir="Up"     variety="Right Slight Bulge D"        />
+        <Frame num="28" upperLeft="88,66"   name="Tree Branch" dir="Right"  variety="Plain A"                     />
+        <Frame num="29" upperLeft="110,66"  name="Tree Trunk"  dir="Up"     variety="Double Slight Bulge A"       />
+        <Frame num="30" upperLeft="132,66"  name="Tree Top"    dir="Up"     variety="Small Right Slight Bulge A"  />
+        <Frame num="31" upperLeft="154,66"  name="Tree Top"    dir="Left"   variety="Large A"                     />
+        <Frame num="32" upperLeft="0,88"    name="Tree Trunk"  dir="Up"     variety="Left Indent B"               />
+        <Frame num="33" upperLeft="22,88"   name="Tree Trunk"  dir="Up"     variety="Right Bulge B"               />
+        <Frame num="34" upperLeft="44,88"   name="Tree Trunk"  dir="Up"     variety="Left Bulge B"                />
+        <Frame num="35" upperLeft="66,88"   name="Tree Trunk"  dir="Up"     variety="Right Slight Bulge E"        />
+        <Frame num="36" upperLeft="88,88"   name="Tree Branch" dir="Right"  variety="Plain B"                     />
+        <Frame num="37" upperLeft="110,88"  name="Tree Trunk"  dir="Up"     variety="Double Slight Bulge B"       />
+        <Frame num="38" upperLeft="132,88"  name="Tree Top"    dir="Up"     variety="Small Right Slight Bulge B"  />
+        <Frame num="39" upperLeft="154,88"  name="Tree Top"    dir="Left"   variety="Large B"                     />
+        <Frame num="40" upperLeft="0,110"   name="Tree Trunk"  dir="Up"     variety="Left Indent C"               />
+        <Frame num="41" upperLeft="22,110"  name="Tree Trunk"  dir="Up"     variety="Right Bulge C"               />
+        <Frame num="42" upperLeft="44,110"  name="Tree Trunk"  dir="Up"     variety="Left Bulge C"                />
+        <Frame num="43" upperLeft="66,110"  name="Tree Trunk"  dir="Up"     variety="Right Slight Bulge F"        />
+        <Frame num="44" upperLeft="88,110"  name="Tree Branch" dir="Right"  variety="Plain C"                     />
+        <Frame num="45" upperLeft="110,110" name="Tree Trunk"  dir="Up"     variety="Double Slight Bulge C"       />
+        <Frame num="46" upperLeft="132,110" name="Tree Top"    dir="Up"     variety="Small Right Slight Bulge C"  />
+        <Frame num="47" upperLeft="154,110" name="Tree Top"    dir="Left"   variety="Large C"                     />
+        <Frame num="48" upperLeft="0,132"   name="Tree Trunk"  dir="Left"   variety="Large A"                     />
+        <Frame num="49" upperLeft="22,132"  name="Tree Base"   dir="Right"  variety="Plain A"                     />
+        <Frame num="50" upperLeft="44,132"  name="Tree Base"   dir="Left"   variety="Plain A"                     />
+        <Frame num="51" upperLeft="66,132"  name="Tree Trunk"  dir="Right"  variety="Large A"                     />
+        <Frame num="52" upperLeft="88,132"  name="Tree Trunk"  dir="Center" variety="Large A"                     />
+        <Frame num="53" upperLeft="132,132" name="Tree Top"    dir="Up"     variety="Small Double Slight Bulge A" />
+        <Frame num="54" upperLeft="154,132" name="Tree Top"    dir="Left"   variety="Huge"                        />
+        <Frame num="55" upperLeft="0,154"   name="Tree Trunk"  dir="Left"   variety="Large B"                     />
+        <Frame num="56" upperLeft="22,154"  name="Tree Base"   dir="Right"  variety="Plain B"                     />
+        <Frame num="57" upperLeft="44,154"  name="Tree Base"   dir="Left"   variety="Plain B"                     />
+        <Frame num="58" upperLeft="66,154"  name="Tree Trunk"  dir="Right"  variety="Large B"                     />
+        <Frame num="59" upperLeft="88,154"  name="Tree Trunk"  dir="Center" variety="Large B"                     />
+        <Frame num="60" upperLeft="132,154" name="Tree Top"    dir="Up"     variety="Small Double Slight Bulge B" />
+        <Frame num="61" upperLeft="154,154" name="Tree Top"    dir="Center" variety="Huge"                        />
+        <Frame num="62" upperLeft="0,176"   name="Tree Trunk"  dir="Left"   variety="Large C"                     />
+        <Frame num="63" upperLeft="22,176"  name="Tree Base"   dir="Right"  variety="Plain C"                     />
+        <Frame num="64" upperLeft="44,176"  name="Tree Base"   dir="Left"   variety="Plain C"                     />
+        <Frame num="65" upperLeft="66,176"  name="Tree Trunk"  dir="Right"  variety="Large C"                     />
+        <Frame num="66" upperLeft="88,176"  name="Tree Trunk"  dir="Center" variety="Large C"                     />
+        <Frame num="67" upperLeft="132,176" name="Tree Top"    dir="Up"     variety="Small Double Slight Bulge C" />
+        <Frame num="68" upperLeft="154,176" name="Tree Top"    dir="Right"  variety="Huge"                        />
+        <Frame num="69" upperLeft="0,198"   name="Tree Top"    dir="Right"  variety="Jagged"                      />
+        <Frame num="70" upperLeft="0,220"   name="Tree Trunk"  dir="Up"     variety="Jagged"                      />
+        <Frame num="71" upperLeft="0,242"   name="Tree Trunk"  dir="Left"   variety="Jagged"                      />
+      </Frames>
+    </Frame>
+    <Tile num="6"   name="Iron"                color="#ff6b594e"                 blocksLight="true" canMorphFrom="0" isSolid="true" reflectivity="1.15" />
+    <Tile num="7"   name="Copper"              color="#ffc6561d"                 blocksLight="true" canMorphFrom="0" isSolid="true" reflectivity="1.1" />
+    <Tile num="8"   name="Gold"                color="#ffb9a417"                 blocksLight="true" canMorphFrom="0" isSolid="true" reflectivity="1" />
+    <Tile num="9"   name="Silver"              color="#ffd9dfdf"                 blocksLight="true" canMorphFrom="0" isSolid="true" reflectivity="1.05" />
+    <Tile num="10"  name="Door Closed"         color="#ff00fff2" isFramed="true" blocksLight="true" canMixFrames="true" destroyedBy="lava" isSolid="true" noAttach="4" placement="CFBoth" size="1x3">
+      <Frames>
+        <Frame num="0" upperLeft="0,0"    variety="A" />
+        <Frame num="1" upperLeft="18,0"   variety="B" />
+        <Frame num="2" upperLeft="36,0"   variety="C" />
+      </Frames>
+    </Frame>
+    <Tile num="11"  name="Door Open"           color="#ff00fff2" isFramed="true" destroyedBy="lava" placement="CFBoth" size="2x3">
+      <Frames>
+        <Frame num="0" upperLeft="0,0"   dir="Right"  />
+        <Frame num="1" upperLeft="36,0"  dir="Left"   />
+      </Frames>
+    </Frame>
+    <Tile num="12"  name="Crystal Heart"       color="#ffff0000" isFramed="true" destroyedBy="lava" placement="floor" reflectivity="1" size="2x2" />
+    <Tile num="13"  name="Bottle"              color="#ff00fff2" isFramed="true" destroyedBy="lava" noAttach="4" placement="surface">
+      <Frames>
+        <Frame num="0" upperLeft="0,0"  name="Bottle"           />
+        <Frame num="1" upperLeft="18,0" name="Healing Potion"   />
+        <Frame num="2" upperLeft="36,0" name="Mana Potion"      />
+        <Frame num="3" upperLeft="54,0" name="Pink Vase"        />
+        <Frame num="4" upperLeft="72,0" name="Mug"              />
+      </Frames>
+    </Frame>
+    <Tile num="14"  name="Table"               color="#ff00fff2" isFramed="true" destroyedBy="lava" isHouseItem="true" isSolidTop="true" noAttach="4" placement="floor" size="3x2" />
+    <Tile num="15"  name="Chair"               color="#ff00fff2" isFramed="true" destroyedBy="lava" isHouseItem="true" noAttach="4" placement="floor" size="1x2">
+      <Frames>
+        <Frame num="0" upperLeft="0,0"   name="Chair"  dir="Left"   />
+        <Frame num="1" upperLeft="18,0"  name="Chair"  dir="Right"  />
+        <Frame num="2" upperLeft="0,40"  name="Toilet" dir="Left"   />
+        <Frame num="3" upperLeft="18,40" name="Toilet" dir="Right"  />
+      </Frames>
+    </Frame>
+    <Tile num="16"  name="Anvil"               color="#ff00fff2" isFramed="true" destroyedBy="lava" isSolidTop="true" noAttach="4" placement="floor" size="2x1" />
+    <Tile num="17"  name="Furnace"             color="#ff00fff2" isFramed="true" destroyedBy="lava" lightBrightness="0.8" noAttach="4" placement="floor" size="3x2" />
+    <Tile num="18"  name="Workbench"           color="#ff00fff2" isFramed="true" destroyedBy="lava" isHouseItem="true" isSolidTop="true" noAttach="4" placement="floor" size="2x1" />
+    <Tile num="19"  name="Wooden Platform"     color="#ff6b3a18"                 destroyedBy="lava" isSolid="true" isSolidTop="true" noAttach="4" />
+    <Tile num="20"  name="Sapling"             color="#ff0d6524" isFramed="true" attachesTo="2" destroyedBy="lava" noAttach="4" placement="floor">
+      <Frames>
+        <Frame num="0" upperLeft="0,0"   dir="Left"   />
+        <Frame num="1" upperLeft="18,0"  dir="Up"     />
+        <Frame num="2" upperLeft="36,0"  dir="Right"  />
+      </Frames>
+    </Frame>
+    <Tile num="21"  name="Chest"               color="#ffddb800" isFramed="true" noAttach="4" placement="floor" reflectivity="1" size="2x2">
+      <Frames>
+        <Frame num="0" upperLeft="0,0"   name="Chest"                          />
+        <Frame num="1" upperLeft="36,0"  name="Gold Chest"                     />
+        <Frame num="2" upperLeft="72,0"  name="Gold Chest"    variety="Locked" />
+        <Frame num="3" upperLeft="108,0" name="Shadow Chest"                   />
+        <Frame num="4" upperLeft="144,0" name="Shadow Chest"  variety="Locked" />
+        <Frame num="5" upperLeft="180,0" name="Barrel"                         />
+        <Frame num="6" upperLeft="216,0" name="Trash Can"                      />
+      </Frames>
+    </Frame>
+    <Tile num="22"  name="Demonite"            color="#ff625fa7"                 blocksLight="true" canMorphFrom="0" isSolid="true" reflectivity="1.15" />
+    <Tile num="23"  name="Corruption Grass"    color="#ff8d89df"                 blocksLight="true" isSolid="true" />
+    <Tile num="24"  name="Corruption Plants"   color="#ff8d89df" isFramed="true" attachesTo="23" canBeCut="true" oneHit="true" placement="floor">
+      <Frames>
+        <Frame num="0" upperLeft="0,0"   name="Vile Grass"    dir="Right" variety="Single Blade" />
+        <Frame num="1" upperLeft="18,0"  name="Vile Grass"    dir="Right" variety="Double Blade" />
+        <Frame num="2" upperLeft="36,0"  name="Vile Grass"    dir="Up"    variety="Small Y"      />
+        <Frame num="3" upperLeft="54,0"  name="Vile Grass"    dir="Right" variety="Three Small"  />
+        <Frame num="4" upperLeft="72,0"  name="Vile Grass"    dir="Left"  variety="Single Blade" />
+        <Frame num="5" upperLeft="90,0"  name="Vile Grass"    dir="Left"  variety="Three Large"  />
+        <Frame num="6" upperLeft="108,0" name="Vile Flower"   dir="Left"  variety="Yellow"       />
+        <Frame num="7" upperLeft="126,0" name="Vile Flower"   dir="Right" variety="Red"          />
+        <Frame num="8" upperLeft="144,0" name="Vile Mushroom" dir="Up"                           />
+      </Frames>
+    </Frame>
+    <Tile num="25"  name="Ebonstone"           color="#ff4b4a82"                 blocksLight="true" canMorphFrom="0" isSolid="true" />
+    <Tile num="26"  name="Demon Altar"         color="#ff9000ff" isFramed="true" placement="floor" size="3x2" />
+    <Tile num="27"  name="Sunflower"           color="#ffc4ff14" isFramed="true" attachesTo="2" destroyedBy="lava" noAttach="4" placement="floor" size="2x4">
+      <Frames>
+        <Frame num="0" upperLeft="0,0"    variety="A" />
+        <Frame num="1" upperLeft="18,0"   variety="B" />
+        <Frame num="2" upperLeft="36,0"   variety="C" />
+      </Frames>
+    </Frame>
+    <Tile num="28"  name="Pot"                 color="#ff8c2726" isFramed="true" canBeCut="true" canMixFrames="true" destroyedBy="lava" placement="floor" size="2x2">
+      <Frames>
+        <Frame num="0" upperLeft="0,0"    variety="Oval"  />
+        <Frame num="1" upperLeft="36,0"   variety="Wide"  />
+        <Frame num="2" upperLeft="72,0"   variety="Round" />
+      </Frames>
+    </Frame>
+    <Tile num="29"  name="Piggy Bank"          color="#ff00fff2" isFramed="true" destroyedBy="lava" placement="surface" size="2x1" />
+    <Tile num="30"  name="Wood Block"          color="#ff684934"                 blocksLight="true" isSolid="true" />
+    <Tile num="31"  name="Shadow Orb"          color="#ff000000" isFramed="true" placement="floor" size="2x2" />
+    <Tile num="32"  name="Corruption Vines"    color="#ff7a618f"                 attachesTo="23" blocksLight="true" canBeCut="true" contactDmg="10" destroyedBy="lava" oneHit="true" placement="floor" />
+    <Tile num="33"  name="Candle"              color="#fffd3e03" isFramed="true" destroyedBy="lava" isHouseItem="true" lightBrightness="1.0" placement="surface" />
+    <Tile num="34"  name="Chandler Copper"     color="#fffd3e03" isFramed="true" destroyedBy="lava" isHouseItem="true" lightBrightness="1.0" placement="ceiling" size="3x3" />
+    <Tile num="35"  name="Chandler Silver"     color="#fffd3e03" isFramed="true" destroyedBy="lava" isHouseItem="true" lightBrightness="1.0" placement="ceiling" size="3x3" />
+    <Tile num="36"  name="Chandler Gold"       color="#fffd3e03" isFramed="true" destroyedBy="lava" isHouseItem="true" lightBrightness="1.0" placement="ceiling" size="3x3" />
+    <Tile num="37"  name="Meteorite"           color="#ffdf9f89"                 blocksLight="true" canMorphFrom="0" contactDmg="20" isSolid="true" />
+    <Tile num="38"  name="Gray Brick"          color="#ff909090"                 blocksLight="true" isSolid="true" />
+    <Tile num="39"  name="Red Brick"           color="#ffb200ff"                 blocksLight="true" isSolid="true" />
+    <Tile num="40"  name="Clay"                color="#ffac5b4d"                 blocksLight="true" canMorphFrom="0" isSolid="true" />
+    <Tile num="41"  name="Blue Dungeon Brick"  color="#ff545498"                 blocksLight="true" isSolid="true" />
+    <Tile num="42"  name="Chain Lantern"       color="#ffef904b" isFramed="true" destroyedBy="lava" placement="ceiling" size="1x2" />
+    <Tile num="43"  name="Green Dungeon Brick" color="#ff39a851"                 blocksLight="true" isSolid="true" />
+    <Tile num="44"  name="Pink Dungeon Brick"  color="#ffb200ff"                 blocksLight="true" isSolid="true" />
+    <Tile num="45"  name="Gold Brick"          color="#ffffd514"                 blocksLight="true" isSolid="true" reflectivity="1.9" />
+    <Tile num="46"  name="Silver Brick"        color="#ffe5e5e5"                 blocksLight="true" isSolid="true" reflectivity="2" />
+    <Tile num="47"  name="Copper Brick"        color="#ffff5900"                 blocksLight="true" isSolid="true" reflectivity="2.1" />
+    <Tile num="48"  name="Spikes"              color="#ff6d6d6d"                 blocksLight="true" contactDmg="40" isSolid="true" placement="wallFloorCeiling" />
+    <Tile num="49"  name="Water Candle"        color="#ff2b8fff"                 destroyedBy="lava" lightBrightness="0.75" placement="surface" />
+    <Tile num="50"  name="Books"               color="#ff00fff2" isFramed="true" destroyedBy="lava" noAttach="4" oneHit="true" placement="surface">
+      <Frames>
+        <Frame num="0" upperLeft="0,0"    variety="Blue, Red, Brown"        />
+        <Frame num="1" upperLeft="18,0"   variety="Yellow, Pink"            />
+        <Frame num="2" upperLeft="36,0"   variety="Teal, Brown"             />
+        <Frame num="3" upperLeft="54,0"   variety="Purple, Blue"            />
+        <Frame num="4" upperLeft="72,0"   variety="Green, Orange"           />
+        <Frame num="5" upperLeft="90,0"   variety="Brown, Water Bolt, Gray" />
+      </Frames>
+    </Frame>
+    <Tile num="51"  name="Web"                 color="#ffffffff"                 blocksLight="true" canBeCut="true" destroyedBy="water" />
+    <Tile num="52"  name="Vines"               color="#ff0d6524"                 attachesTo="2" blocksLight="true" canBeCut="true" destroyedBy="lava" placement="ceiling" />
+    <Tile num="53"  name="Sand"                color="#ffffda38"                 blocksLight="true" canMorphFrom="0" isSolid="true" />
+    <Tile num="54"  name="Glass"               color="#40ffffff"                 isSolid="true" />
+    <Tile num="55"  name="Sign"                color="#ffffae5e" isFramed="true" destroyedBy="lava" placement="wallFloorCeiling" size="2x2" />
+    <Tile num="56"  name="Obsidian"            color="#ff5751ad"                 blocksLight="true" canMorphFrom="0" isSolid="true" />
+    <Tile num="57"  name="Ash"                 color="#ff44444c"                 blocksLight="true" isSolid="true" />
+    <Tile num="58"  name="Hellstone"           color="#ff662222"                 blocksLight="true" contactDmg="20" isSolid="true" />
+    <Tile num="59"  name="Mud"                 color="#ff5c4449"                 blocksLight="true" canMorphFrom="0" isSolid="true" />
+    <Tile num="60"  name="Jungle Grass"        color="#ff8fd71d"                 blocksLight="true" isSolid="true" />
+    <Tile num="61"  name="Jungle Plants"       color="#ff8fd71d" isFramed="true" attachesTo="60" canBeCut="true" destroyedBy="lava" oneHit="true" placement="floor">
+      <Frames>
+        <Frame num="0" upperLeft="0,0"   name="Jungle Grass"  dir="Right" variety="Single Blade" />
+        <Frame num="1" upperLeft="18,0"  name="Jungle Grass"  dir="Right" variety="Double Blade" />
+        <Frame num="2" upperLeft="36,0"  name="Jungle Grass"  dir="Up"    variety="Small Y"      />
+        <Frame num="3" upperLeft="54,0"  name="Jungle Grass"  dir="Right" variety="Three Small"  />
+        <Frame num="4" upperLeft="72,0"  name="Jungle Grass"  dir="Left"  variety="Single Blade" />
+        <Frame num="5" upperLeft="90,0"  name="Jungle Grass"  dir="Left"  variety="Three Large"  />
+        <Frame num="6" upperLeft="108,0" name="Jungle Rose"   dir="Left"  variety="Immature"     />
+        <Frame num="7" upperLeft="126,0" name="Jungle Rose"   dir="Right" variety="Immature"     />
+        <Frame num="8" upperLeft="144,0" name="Puff Light"    dir="Up"                           />
+        <Frame num="9" upperLeft="162,0" name="Nature's Gift" dir="Right" variety="Immature"     />
+      </Frames>
+    </Frame>
+    <Tile num="62"  name="Jungle Vines"        color="#ff8ace1c"                 attachesTo="60" blocksLight="true" canBeCut="true" destroyedBy="lava" placement="ceiling" />
+    <Tile num="63"  name="Gem Sapphire"        color="#ff2a82fa"                 blocksLight="true" isSolid="true" reflectivity="0.9" />
+    <Tile num="64"  name="Gem Ruby"            color="#ff2a82fa"                 blocksLight="true" isSolid="true" reflectivity="0.9" />
+    <Tile num="65"  name="Gem Emerald"         color="#ff2a82fa"                 blocksLight="true" isSolid="true" reflectivity="0.9" />
+    <Tile num="66"  name="Gem Topaz"           color="#ff2a82fa"                 blocksLight="true" isSolid="true" reflectivity="0.9" />
+    <Tile num="67"  name="Gem Amethyst"        color="#ff2a82fa"                 blocksLight="true" isSolid="true" reflectivity="0.9" />
+    <Tile num="68"  name="Gem Diamond"         color="#ff2a82fa"                 blocksLight="true" isSolid="true" reflectivity="0.9" />
+    <Tile num="69"  name="Jungle Thorns"       color="#ff5e3037"                 attachesTo="60" canBeCut="true" contactDmg="25" destroyedBy="lava" oneHit="true" placement="floor" />
+    <Tile num="70"  name="Mushroom Grass"      color="#ff5d7fff"                 blocksLight="true" isSolid="true" />
+    <Tile num="71"  name="Mushroom Plant"      color="#ffb1ae83" isFramed="true" attachesTo="70" canBeCut="true" destroyedBy="lava" placement="floor">
+      <Frames>
+        <Frame num="0" upperLeft="0,0"    variety="Double Small" />
+        <Frame num="1" upperLeft="18,0"   variety="Small"        />
+        <Frame num="2" upperLeft="36,0"   variety="Malformed"    />
+        <Frame num="3" upperLeft="54,0"   variety="Thin"         />
+        <Frame num="4" upperLeft="72,0"   variety="Standard"     />
+      </Frames>
+    </Frame>
+    <Tile num="72"  name="Mushroom Tree"       color="#ff968f6e" isFramed="true" attachesTo="70" destroyedBy="lava" placement="floor">
+      <Frames>
+        <Frame num="0" upperLeft="0,0"                variety="Trunk A"  />
+        <Frame num="1" upperLeft="18,0"   dir="Up"    variety="Tree Top" />
+        <Frame num="2" upperLeft="0,18"               variety="Trunk B"  />
+        <Frame num="3" upperLeft="18,18"  dir="Right" variety="Tree Top" />
+        <Frame num="4" upperLeft="0,36"               variety="Trunk C"  />
+        <Frame num="5" upperLeft="18,36"  dir="Left"  variety="Tree Top" />
+      </Frames>
+    </Frame>
+    <Tile num="73"  name="Tall Grass"          color="#ff0d6524" isFramed="true" canBeCut="true" destroyedBy="lava" oneHit="true">
+      <Frames>
+        <Frame num="0" upperLeft="0,0"   name="Grass"  variety="G" />
+        <Frame num="1" upperLeft="18,0"  name="Grass"  variety="C" />
+        <Frame num="2" upperLeft="36,0"  name="Grass"  variety="?" />
+        <Frame num="3" upperLeft="54,0"  name="Grass"  variety="u" />
+        <Frame num="4" upperLeft="72,0"  name="Grass"  variety="w" />
+        <Frame num="5" upperLeft="90,0"  name="Grass"  variety="W" />
+        <Frame num="6" upperLeft="108,0" name="Rose"   variety="A" />
+        <Frame num="7" upperLeft="126,0" name="Rose"   variety="B" />
+      </Frames>
+    </Frame>
+    <Tile num="74"  name="Tall Jungle Grass"   color="#ff0d6524" isFramed="true" canBeCut="true" destroyedBy="lava" oneHit="true">
+      <Frames>
+        <Frame num="0" upperLeft="0,0"   name="Jungle Grass"  variety="G" />
+        <Frame num="1" upperLeft="18,0"  name="Jungle Grass"  variety="C" />
+        <Frame num="2" upperLeft="36,0"  name="Jungle Grass"  variety="?" />
+        <Frame num="3" upperLeft="54,0"  name="Jungle Grass"  variety="u" />
+        <Frame num="4" upperLeft="72,0"  name="Jungle Grass"  variety="w" />
+        <Frame num="5" upperLeft="90,0"  name="Jungle Grass"  variety="W" />
+        <Frame num="6" upperLeft="108,0" name="Jungle Rose"   variety="A" />
+        <Frame num="7" upperLeft="126,0" name="Jungle Rose"   variety="B" />
+      </Frames>
+    </Frame>
+    <Tile num="75"  name="Obsidian Brick"      color="#ffb200ff"                 blocksLight="true" isSolid="true" />
+    <Tile num="76"  name="Hellstone Brick"     color="#ffc6001d"                 blocksLight="true" contactDmg="20" isSolid="true" />
+    <Tile num="77"  name="Hellforge"           color="#ffd50010" isFramed="true" lightBrightness="0.8" placement="floor" size="3x2" />
+    <Tile num="78"  name="Clay Pot"            color="#ff00fff2" isFramed="true" placement="floor" size="2x2" />
+    <Tile num="79"  name="Bed"                 color="#ff00fff2" isFramed="true" destroyedBy="lava" isHouseItem="true" placement="floor" size="4x2">
+      <Frames>
+        <Frame num="0" upperLeft="0,0"   dir="Left"   />
+        <Frame num="1" upperLeft="72,0"  dir="Right"  />
+      </Frames>
+    </Frame>
+    <Tile num="80"  name="Cactus"              color="#ff00a500"                 attachesTo="53" contactDmg="10" destroyedBy="lava" placement="floor" />
+    <Tile num="81"  name="Coral"               color="#ffe55340" isFramed="true" attachesTo="53" destroyedBy="lava" placement="floor">
+      <Frames>
+        <Frame num="0" upperLeft="0,0"     variety="Red"    />
+        <Frame num="1" upperLeft="26,0"    variety="Pink"   />
+        <Frame num="2" upperLeft="52,0"    variety="Yellow" />
+        <Frame num="3" upperLeft="78,0"    variety="Green"  />
+        <Frame num="4" upperLeft="104,0"   variety="Blue"   />
+        <Frame num="5" upperLeft="130,0"   variety="Sponge" />
+      </Frames>
+    </Frame>
+    <Tile num="82"  name="Herb Immature"       color="#ffff7800" isFramed="true" canBeCut="true" oneHit="true" variety="Immature">
+      <Frames>
+        <Frame num="0" upperLeft="0,0"  name="Daybloom"      attachesTo="2,78" placement="floor" />
+        <Frame num="1" upperLeft="18,0" name="Moonglow"      attachesTo="60,78" placement="floor" />
+        <Frame num="2" upperLeft="36,0" name="Blinkroot"     attachesTo="0,59,78" placement="floor" />
+        <Frame num="3" upperLeft="54,0" name="Deathweed"     attachesTo="23,25,78" placement="floor" />
+        <Frame num="4" upperLeft="72,0" name="Waterleaf"     attachesTo="53,78" placement="floor" />
+        <Frame num="5" upperLeft="90,0" name="Fireblossom"   attachesTo="57,76,78" placement="floor" />
+      </Frames>
+    </Frame>
+    <Tile num="83"  name="Herb Mature"         color="#ffff7800" isFramed="true" canBeCut="true" oneHit="true" variety="Mature">
+      <Frames>
+        <Frame num="0" upperLeft="0,0"  name="Daybloom"      attachesTo="2,78" placement="floor" />
+        <Frame num="1" upperLeft="18,0" name="Moonglow"      attachesTo="60,78" placement="floor" />
+        <Frame num="2" upperLeft="36,0" name="Blinkroot"     attachesTo="0,59,78" placement="floor" />
+        <Frame num="3" upperLeft="54,0" name="Deathweed"     attachesTo="23,25,78" placement="floor" />
+        <Frame num="4" upperLeft="72,0" name="Waterleaf"     attachesTo="53,78" placement="floor" />
+        <Frame num="5" upperLeft="90,0" name="Fireblossom"   attachesTo="57,76,78" placement="floor" />
+      </Frames>
+    </Frame>
+    <Tile num="84"  name="Herb Bloom"          color="#ffff7800" isFramed="true" canBeCut="true" oneHit="true" variety="Bloom">
+      <Frames>
+        <Frame num="0" upperLeft="0,0"  name="Daybloom"      attachesTo="2,78" placement="floor" />
+        <Frame num="1" upperLeft="18,0" name="Moonglow"      attachesTo="60,78" placement="floor" />
+        <Frame num="2" upperLeft="36,0" name="Blinkroot"     attachesTo="0,59,78" placement="floor" />
+        <Frame num="3" upperLeft="54,0" name="Deathweed"     attachesTo="23,25,78" placement="floor" />
+        <Frame num="4" upperLeft="72,0" name="Waterleaf"     attachesTo="53,78" placement="floor" />
+        <Frame num="5" upperLeft="90,0" name="Fireblossom"   attachesTo="57,76,78" placement="floor" />
+      </Frames>
+    </Frame>
+    <Tile num="85"  name="Tombstone"           color="#ffc0c0c0" isFramed="true" placement="floor" size="2x2" />
+    <Tile num="86"  name="Loom"                color="#ffff00ff" isFramed="true" destroyedBy="lava" noAttach="4" placement="floor" size="3x2" />
+    <Tile num="87"  name="Piano"               color="#ff00fff2" isFramed="true" destroyedBy="lava" isSolidTop="true" noAttach="4" placement="floor" size="3x2" />
+    <Tile num="88"  name="Dresser"             color="#ff00fff2" isFramed="true" destroyedBy="lava" isHouseItem="true" isSolidTop="true" noAttach="4" placement="floor" size="3x2" />
+    <Tile num="89"  name="Bench"               color="#ff00fff2" isFramed="true" destroyedBy="lava" isHouseItem="true" noAttach="4" placement="floor" size="3x2" />
+    <Tile num="90"  name="Bathtub"             color="#ff00fff2" isFramed="true" isHouseItem="true" noAttach="4" placement="floor" size="4x2">
+      <Frames>
+        <Frame num="0" upperLeft="0,0"   dir="Left"   />
+        <Frame num="1" upperLeft="72,0"  dir="Right"  />
+      </Frames>
+    </Frame>
+    <Tile num="91"  name="Banner"              color="#ff00fff2" isFramed="true" destroyedBy="lava" noAttach="4" placement="ceiling" size="1x3">
+      <Frames>
+        <Frame num="0" upperLeft="0,0"  name="Red Banner"      />
+        <Frame num="1" upperLeft="18,0" name="Green Banner"    />
+        <Frame num="2" upperLeft="36,0" name="Blue Banner"     />
+        <Frame num="3" upperLeft="54,0" name="Yellow Banner"   />
+      </Frames>
+    </Frame>
+    <Tile num="92"  name="Lamp Post"           color="#ff00fff2" isFramed="true" destroyedBy="lava" lightBrightness="1.0" noAttach="4" placement="floor" size="1x6" />
+    <Tile num="93"  name="Tiki Torch"          color="#ff00fff2" isFramed="true" destroyedBy="all" lightBrightness="1.0" noAttach="4" placement="floor" size="1x3" />
+    <Tile num="94"  name="Keg"                 color="#ff00fff2" isFramed="true" destroyedBy="lava" noAttach="4" placement="floor" size="2x2" />
+    <Tile num="95"  name="Chinese Lantern"     color="#ff00fff2" isFramed="true" destroyedBy="lava" lightBrightness="0.85" noAttach="4" placement="floorSurface" size="2x2" />
+    <Tile num="96"  name="Cooking Pot"         color="#ff00fff2" isFramed="true" destroyedBy="lava" noAttach="4" placement="floorSurface" size="2x2" />
+    <Tile num="97"  name="Safe"                color="#ffff00ff" isFramed="true" destroyedBy="lava" noAttach="4" placement="floor" size="2x2" />
+    <Tile num="98"  name="Skull Lantern"       color="#ffff00ff" isFramed="true" destroyedBy="all" lightBrightness="1.0" noAttach="4" placement="floorSurface" size="2x2" />
+    <Tile num="99"  name="Trash Can"           color="#ffff00d0" isFramed="true" destroyedBy="lava" noAttach="4" placement="floor" size="2x2" />
+    <Tile num="100" name="Candelabra"          color="#ffff00ff" isFramed="true" destroyedBy="lava" lightBrightness="1.0" placement="surface" size="2x2" />
+    <Tile num="101" name="Bookcase"            color="#ffff00ff" isFramed="true" destroyedBy="lava" isHouseItem="true" isSolidTop="true" noAttach="4" placement="floor" size="3x4" />
+    <Tile num="102" name="Throne"              color="#ffff00ff" isFramed="true" destroyedBy="lava" isHouseItem="true" noAttach="4" placement="floor" size="3x4" />
+    <Tile num="103" name="Plate"               color="#ffff00ff" isFramed="true" destroyedBy="lava" placement="surface" size="2x1" />
+    <Tile num="104" name="Grandfather Clock"   color="#ffff00ff" isFramed="true" destroyedBy="lava" placement="floor" size="2x5" />
+    <Tile num="105" name="Statue"              color="#ff00fff2" isFramed="true" destroyedBy="lava" placement="floor" size="2x3" />
+    <Tile num="106" name="Sawmill"             color="#ff00fff2" isFramed="true" destroyedBy="lava" placement="floor" size="3x3" />
+  </Tiles>
+
+  <Walls>
+    <Wall num="0"  name="Sky"                color="#00000000"                />
+    <Wall num="1"  name="WallStone"          color="#ff424242" isHouse="true" />
+    <Wall num="2"  name="WallDirt"           color="#ff583d2e"                />
+    <Wall num="3"  name="WallCorruption"     color="#ff312545"                />
+    <Wall num="4"  name="WallWood"           color="#ff4a2e1c" isHouse="true" />
+    <Wall num="5"  name="WallBrick"          color="#ff454545" isHouse="true" />
+    <Wall num="6"  name="WallRed"            color="#ff500000" isHouse="true" />
+    <Wall num="7"  name="WallBlue"           color="#ff000060"                />
+    <Wall num="8"  name="WallGreen"          color="#ff005000"                />
+    <Wall num="9"  name="WallPink"           color="#ff48004F"                />
+    <Wall num="10" name="WallGold"           color="#ff774707" isHouse="true" />
+    <Wall num="11" name="WallSilver"         color="#ff828282" isHouse="true" />
+    <Wall num="12" name="WallCopper"         color="#ff3F1907" isHouse="true" />
+    <Wall num="13" name="WallHellstone"      color="#ff3F0707"                />
+    <Wall num="14" name="WallObsidian"       color="#ff000060"                />
+    <Wall num="15" name="WallMud"            color="#ff005500"                />
+    <Wall num="16" name="WallPlayerDirt"     color="#ff583d2e" isHouse="true" />
+    <Wall num="17" name="WallPlayerBlue"     color="#ff000043" isHouse="true" />
+    <Wall num="18" name="WallPlayerGreen"    color="#ff003700" isHouse="true" />
+    <Wall num="19" name="WallPlayerPink"     color="#ff330037" isHouse="true" />
+    <Wall num="20" name="WallPlayerObsidian" color="#ff000060" isHouse="true" />
+  </Walls>
+
+  <Biomes>
+    <Biome ord="0"  name="Sky"                zoneX="leftRightThird" zoneY="skyThird" />
+    <Biome ord="1"  name="Ocean"              liquidType="water" tileTypes="53" zoneX="farEnds" zoneY="skyToRock" />
+    <Biome ord="2"  name="Dungeon"            tileCount="250" tileTypes="41,43,44" />
+    <Biome ord="3"  name="Meteorite"          tileCount="50" tileTypes="37" />
+    <Biome ord="4"  name="Corruption"         reversePer="5" reverseTileTypes="27" tileCount="500" tileTypes="23,24,25,32" />
+    <Biome ord="5"  name="Jungle"             tileCount="150" tileTypes="60,61,62,74" />
+    <Biome ord="6"  name="Desert"             liquidType="notWater" tileTypes="53" />
+    <Biome ord="7"  name="Underground"        zoneY="surfaceToRock" />
+    <Biome ord="8"  name="Cavern"             zoneY="rockToBottom" />
+    <Biome ord="9"  name="Underground Jungle" tileCount="150" tileTypes="60,61,62,74" zoneY="surfaceToRock" />
+    <Biome ord="10" name="Underworld"         zoneY="bottom" />
+    <Biome ord="11" name="Forest"             zoneX="middleThird" zoneY="skyToSurface" />
+  </Biomes>
+
+  <NPCs>
+    <NPC num="1"  name="Baby Slime"           size="24x18"   HP="30"   AI="slime"                        def="4"    dmg="13"   knockbackResist="0.95"  value="10"    sounds="1,1" alpha="120" color="#32000000" isCopyOf="Blue Slime" scale="0.9" />
+    <NPC num="1"  name="Black Slime"          size="24x18"   HP="45"   AI="slime"                        def="4"    dmg="15"                           value="20"    sounds="1,1" alpha="175" color="#32000000" isCopyOf="Blue Slime" />
+    <NPC num="1"  name="Blue Slime"           size="24x18"   HP="25"   AI="slime"                        def="2"    dmg="7"                            value="25"    sounds="1,1" alpha="175" color="#640050ff" />
+    <NPC num="1"  name="Green Slime"          size="24x18"   HP="14"   AI="slime"                        def="0"    dmg="6"    knockbackResist="1.2"   value="3"     sounds="1,1" alpha="175" color="#6400dc28" isCopyOf="Blue Slime" scale="0.9" />
+    <NPC num="1"  name="Jungle Slime"         size="24x18"   HP="60"   AI="slime"                        def="6"    dmg="18"                           value="500"   sounds="1,1" alpha="175" color="#648fd75d" isCopyOf="Blue Slime" scale="1.1" />
+    <NPC num="1"  name="Pinky"                size="24x18"   HP="150"  AI="slime"                        def="5"    dmg="5"    knockbackResist="1.4"   value="10000" sounds="1,1" alpha="175" color="#5afa1e5a" isCopyOf="Blue Slime" scale="0.6" />
+    <NPC num="1"  name="Purple Slime"         size="24x18"   HP="40"   AI="slime"                        def="6"    dmg="12"   knockbackResist="0.9"   value="10"    sounds="1,1" alpha="175" color="#96c800ff" isCopyOf="Blue Slime" scale="1.2" />
+    <NPC num="1"  name="Red Slime"            size="24x18"   HP="35"   AI="slime"                        def="4"    dmg="12"                           value="8"     sounds="1,1" alpha="175" color="#64ff1e00" isCopyOf="Blue Slime" />
+    <NPC num="1"  name="Yellow Slime"         size="24x18"   HP="45"   AI="slime"                        def="7"    dmg="15"                           value="10"    sounds="1,1" alpha="175" color="#64ffff00" isCopyOf="Blue Slime" scale="1.2" />
+    <NPC num="2"  name="Demon Eye"            size="30x32"   HP="60"   AI="demonEye"                     def="2"    dmg="18"   knockbackResist="0.8"   value="75"    sounds="1,1" />
+    <NPC num="3"  name="Zombie"               size="18x40"   HP="45"   AI="fighter"                      def="6"    dmg="14"   knockbackResist="0.5"   value="60"    sounds="1,2" />
+    <NPC num="4"  name="Eye of Cthulhu"       size="100x110" HP="2800" AI="eyeOfCthulhu"                 def="12"   dmg="15"   knockbackResist="0.0"   value="30000" sounds="1,1" floats="true" isBoss="true" noClipping="true" />
+    <NPC num="5"  name="Servant of Cthulhu"   size="20x20"   HP="8"    AI="flying"                       def="0"    dmg="12"                                         sounds="1,1" floats="true" noClipping="true" />
+    <NPC num="6"  name="Big Eater"            size="30x30"   HP="46"   AI="flying"                       def="9"    dmg="25"   knockbackResist="0.425" value="103"   sounds="1,1" floats="true" isCopyOf="Eater of Souls" scale="1.15" />
+    <NPC num="6"  name="Eater of Souls"       size="30x30"   HP="40"   AI="flying"                       def="8"    dmg="22"   knockbackResist="0.5"   value="90"    sounds="1,1" floats="true" />
+    <NPC num="6"  name="Little Eater"         size="30x30"   HP="34"   AI="flying"                       def="6"    dmg="18"   knockbackResist="0.575" value="76"    sounds="1,1" floats="true" isCopyOf="Eater of Souls" scale="0.85" />
+    <NPC num="7"  name="Devourer Head"        size="22x22"   HP="20"   AI="worm"                         def="2"    dmg="31"   knockbackResist="0.0"   value="140"   sounds="1,1" floats="true" isBehindTiles="true" noClipping="true" />
+    <NPC num="8"  name="Devourer Body"        size="22x22"   HP="40"   AI="worm"                         def="6"    dmg="16"   knockbackResist="0.0"   value="140"   sounds="1,1" floats="true" isBehindTiles="true" noClipping="true" />
+    <NPC num="9"  name="Devourer Tail"        size="22x22"   HP="50"   AI="worm"                         def="10"   dmg="13"   knockbackResist="0.0"   value="140"   sounds="1,1" floats="true" isBehindTiles="true" noClipping="true" />
+    <NPC num="10" name="Giant Worm Head"      size="14x14"   HP="10"   AI="worm"                         def="0"    dmg="8"    knockbackResist="0.0"   value="40"    sounds="1,1" floats="true" isBehindTiles="true" noClipping="true" />
+    <NPC num="11" name="Giant Worm Body"      size="14x14"   HP="15"   AI="worm"                         def="4"    dmg="4"    knockbackResist="0.0"   value="40"    sounds="1,1" floats="true" isBehindTiles="true" noClipping="true" />
+    <NPC num="12" name="Giant Worm Tail"      size="14x14"   HP="20"   AI="worm"                         def="6"    dmg="4"    knockbackResist="0.0"   value="40"    sounds="1,1" floats="true" isBehindTiles="true" noClipping="true" />
+    <NPC num="13" name="Eater of Worlds Head" size="38x38"   HP="65"   AI="worm"                         def="2"    dmg="22"   knockbackResist="0.0"   value="300"   sounds="1,1" floats="true" isBehindTiles="true" noClipping="true" scale="1" />
+    <NPC num="14" name="Eater of Worlds Body" size="38x38"   HP="150"  AI="worm"                         def="4"    dmg="13"   knockbackResist="0.0"   value="300"   sounds="1,1" floats="true" isBehindTiles="true" noClipping="true" scale="1" />
+    <NPC num="15" name="Eater of Worlds Tail" size="38x38"   HP="220"  AI="worm"                         def="8"    dmg="11"   knockbackResist="0.0"   value="300"   sounds="1,1" floats="true" isBehindTiles="true" noClipping="true" scale="1" />
+    <NPC num="16" name="Mother Slime"         size="36x24"   HP="90"   AI="slime"                        def="7"    dmg="20"   knockbackResist="0.6"   value="75"    sounds="1,1" alpha="120" color="#32000000" scale="1.25" />
+    <NPC num="17" name="Merchant"             size="18x40"   HP="250"  AI="passive"       townNPC="true" def="15"   dmg="10"   knockbackResist="0.5"                 sounds="1,1" isFriendly="true" />
+    <NPC num="18" name="Nurse"                size="18x40"   HP="250"  AI="passive"       townNPC="true" def="15"   dmg="10"   knockbackResist="0.5"                 sounds="1,1" isFriendly="true" />
+    <NPC num="19" name="Arms Dealer"          size="18x40"   HP="250"  AI="passive"       townNPC="true" def="15"   dmg="10"   knockbackResist="0.5"                 sounds="1,1" isFriendly="true" />
+    <NPC num="20" name="Dryad"                size="18x40"   HP="250"  AI="passive"       townNPC="true" def="15"   dmg="10"   knockbackResist="0.5"                 sounds="1,1" isFriendly="true" />
+    <NPC num="21" name="Skeleton"             size="18x40"   HP="60"   AI="fighter"                      def="8"    dmg="20"   knockbackResist="0.5"   value="100"   sounds="2,2" />
+    <NPC num="22" name="Guide"                size="18x40"   HP="250"  AI="passive"       townNPC="true" def="15"   dmg="10"   knockbackResist="0.5"                 sounds="1,1" isFriendly="true" />
+    <NPC num="23" name="Meteor Head"          size="22x22"   HP="26"   AI="flying"                       def="6"    dmg="40"   knockbackResist="0.4"   value="80"    sounds="3,3" floats="true" noClipping="true" />
+    <NPC num="24" name="Fire Imp"             size="18x40"   HP="70"   AI="caster"                       def="16"   dmg="30"   knockbackResist="0.5"   value="350"   sounds="1,1" immunities="lava" />
+    <NPC num="25" name="Burning Sphere"       size="16x16"   HP="1"    AI="spell"                        def="0"    dmg="30"   knockbackResist="0.0"                 sounds="3,3" alpha="100" floats="true" noClipping="true" />
+    <NPC num="26" name="Goblin Peon"          size="18x40"   HP="60"   AI="fighter"                      def="4"    dmg="12"   knockbackResist="0.8"   value="100"   sounds="1,1" scale="0.9" />
+    <NPC num="27" name="Goblin Thief"         size="18x40"   HP="80"   AI="fighter"                      def="6"    dmg="20"   knockbackResist="0.7"   value="200"   sounds="1,1" scale="0.95" />
+    <NPC num="28" name="Goblin Warrior"       size="18x40"   HP="110"  AI="fighter"                      def="8"    dmg="25"   knockbackResist="0.5"   value="150"   sounds="1,1" scale="1.1" />
+    <NPC num="29" name="Goblin Sorcerer"      size="18x40"   HP="40"   AI="caster"                       def="2"    dmg="20"   knockbackResist="0.6"   value="200"   sounds="1,1" />
+    <NPC num="30" name="Chaos Ball"           size="16x16"   HP="1"    AI="spell"                        def="0"    dmg="20"   knockbackResist="0.0"                 sounds="3,3" alpha="100" floats="true" noClipping="true" />
+    <NPC num="31" name="Angry Bones"          size="18x40"   HP="80"   AI="fighter"                      def="8"    dmg="26"   knockbackResist="0.8"   value="130"   sounds="2,2" />
+    <NPC num="31" name="Big Boned"            size="18x40"   HP="92"   AI="fighter"                      def="9"    dmg="29"   knockbackResist="0.68"  value="149"   sounds="2,2" isCopyOf="Angry Bones" scale="1.15" />
+    <NPC num="31" name="Short Bones"          size="18x40"   HP="72"   AI="fighter"                      def="7"    dmg="23"   knockbackResist="0.8"   value="117"   sounds="2,2" isCopyOf="Angry Bones" scale="0.9" />
+    <NPC num="32" name="Dark Caster"          size="18x40"   HP="50"   AI="caster"                       def="2"    dmg="20"   knockbackResist="0.6"   value="140"   sounds="2,2" />
+    <NPC num="33" name="Water Sphere"         size="16x16"   HP="1"    AI="spell"                        def="0"    dmg="20"   knockbackResist="0.0"                 sounds="3,3" alpha="100" floats="true" noClipping="true" />
+    <NPC num="34" name="Cursed Skull"         size="26x28"   HP="40"   AI="cursedSkull"                  def="6"    dmg="35"   knockbackResist="0.2"   value="150"   sounds="2,2" floats="true" noClipping="true" />
+    <NPC num="35" name="Skeletron Head"       size="80x102"  HP="4400" AI="head"                         def="10"   dmg="32"   knockbackResist="0.0"   value="50000" sounds="2,2" floats="true" isBoss="true" noClipping="true" />
+    <NPC num="36" name="Skeletron Hand"       size="52x52"   HP="600"  AI="skeletronHand"                def="14"   dmg="20"   knockbackResist="0.0"                 sounds="2,2" floats="true" noClipping="true" />
+    <NPC num="37" name="Old Man"              size="18x40"   HP="250"  AI="passive"       townNPC="true" def="15"   dmg="10"   knockbackResist="0.5"                 sounds="1,1" isFriendly="true" />
+    <NPC num="38" name="Demolitionist"        size="18x40"   HP="250"  AI="passive"       townNPC="true" def="15"   dmg="10"   knockbackResist="0.5"                 sounds="1,1" isFriendly="true" />
+    <NPC num="39" name="Bone Serpent Head"    size="22x22"   HP="70"   AI="worm"                         def="10"   dmg="30"   knockbackResist="0.0"   value="1200"  sounds="2,5" floats="true" isBehindTiles="true" noClipping="true" />
+    <NPC num="40" name="Bone Serpent Body"    size="22x22"   HP="150"  AI="worm"                         def="12"   dmg="15"   knockbackResist="0.0"   value="1200"  sounds="2,5" floats="true" isBehindTiles="true" noClipping="true" />
+    <NPC num="41" name="Bone Serpent Tail"    size="22x22"   HP="200"  AI="worm"                         def="18"   dmg="10"   knockbackResist="0.0"   value="1200"  sounds="2,5" floats="true" isBehindTiles="true" noClipping="true" />
+    <NPC num="42" name="Big Stinger"          size="34x32"   HP="60"   AI="flying"                       def="14"   dmg="45"   knockbackResist="0.4"   value="240"   sounds="1,1" floats="true" isCopyOf="Hornet" scale="1.2" />
+    <NPC num="42" name="Hornet"               size="34x32"   HP="50"   AI="flying"                       def="12"   dmg="38"   knockbackResist="0.5"   value="200"   sounds="1,1" floats="true" />
+    <NPC num="42" name="Little Stinger"       size="34x32"   HP="42"   AI="flying"                       def="10"   dmg="32"   knockbackResist="0.575" value="170"   sounds="1,1" floats="true" isCopyOf="Hornet" scale="0.85" />
+    <NPC num="43" name="Man Eater"            size="30x30"   HP="130"  AI="plant"                        def="14"   dmg="45"   knockbackResist="0.0"   value="350"   sounds="1,1" floats="true" noClipping="true" />
+    <NPC num="44" name="Undead Miner"         size="18x40"   HP="70"   AI="fighter"                      def="9"    dmg="22"   knockbackResist="0.5"   value="250"   sounds="2,2" />
+    <NPC num="45" name="Tim"                  size="18x40"   HP="200"  AI="caster"                       def="4"    dmg="20"   knockbackResist="0.6"   value="5000"  sounds="2,2" />
+    <NPC num="46" name="Bunny"                size="18x20"   HP="5"    AI="passive"                      def="0"    dmg="0"                                          sounds="1,1" isFriendly="true" />
+    <NPC num="47" name="Corrupt Bunny"        size="18x20"   HP="70"   AI="fighter"                      def="4"    dmg="20"                           value="500"   sounds="1,1" />
+    <NPC num="48" name="Harpy"                size="24x34"   HP="100"  AI="bat"                          def="8"    dmg="25"   knockbackResist="0.6"   value="300"   sounds="1,1" />
+    <NPC num="49" name="Cave Bat"             size="22x18"   HP="16"   AI="bat"                          def="2"    dmg="13"   knockbackResist="0.8"   value="90"    sounds="1,4" />
+    <NPC num="50" name="King Slime"           size="98x92"   HP="2000" AI="kingSlime"                    def="10"   dmg="40"   knockbackResist="0.0"   value="10000" sounds="1,1" alpha="30" isBoss="true" scale="1.25" />
+    <NPC num="51" name="Jungle Bat"           size="22x18"   HP="34"   AI="bat"                          def="4"    dmg="20"   knockbackResist="0.8"   value="80"    sounds="1,4" />
+    <NPC num="52" name="Doctor Bones"         size="18x40"   HP="500"  AI="fighter"                      def="10"   dmg="20"   knockbackResist="0.5"   value="1000"  sounds="1,2" />
+    <NPC num="53" name="The Groom"            size="18x40"   HP="200"  AI="fighter"                      def="8"    dmg="14"   knockbackResist="0.5"   value="1000"  sounds="1,2" />
+    <NPC num="54" name="Clothier"             size="18x40"   HP="250"  AI="passive"       townNPC="true" def="15"   dmg="10"   knockbackResist="0.5"                 sounds="1,1" isFriendly="true" />
+    <NPC num="55" name="Goldfish"             size="20x18"   HP="5"    AI="swimming"                     def="0"    dmg="0"    knockbackResist="0.5"                 sounds="1,1" floats="true" isFriendly="true" />
+    <NPC num="56" name="Snatcher"             size="30x30"   HP="60"   AI="plant"                        def="10"   dmg="25"   knockbackResist="0.0"   value="90"    sounds="1,1" floats="true" noClipping="true" />
+    <NPC num="57" name="Corrupt Goldfish"     size="18x20"   HP="100"  AI="swimming"                     def="6"    dmg="30"                           value="500"   sounds="1,1" floats="true" />
+    <NPC num="58" name="Piranha"              size="18x20"   HP="30"   AI="swimming"                     def="2"    dmg="25"                           value="50"    sounds="1,1" floats="true" />
+    <NPC num="59" name="Lava Slime"           size="24x18"   HP="50"   AI="slime"                        def="10"   dmg="15"                           value="120"   sounds="1,1" alpha="50" immunities="lava" scale="1.1" />
+    <NPC num="60" name="Hellbat"              size="22x18"   HP="46"   AI="bat"                          def="8"    dmg="35"   knockbackResist="0.8"   value="120"   sounds="1,4" immunities="lava" scale="1.1" />
+    <NPC num="61" name="Vulture"              size="36x36"   HP="40"   AI="vulture"                      def="4"    dmg="15"   knockbackResist="0.8"   value="60"    sounds="1,1" />
+    <NPC num="62" name="Demon"                size="28x48"   HP="120"  AI="bat"                          def="8"    dmg="32"   knockbackResist="0.8"   value="300"   sounds="1,1" immunities="lava" />
+    <NPC num="63" name="Blue Jellyfish"       size="26x26"   HP="30"   AI="jellyfish"                    def="2"    dmg="20"                           value="100"   sounds="1,1" alpha="20" floats="true" />
+    <NPC num="64" name="Pink Jellyfish"       size="26x26"   HP="70"   AI="jellyfish"                    def="6"    dmg="30"                           value="100"   sounds="1,1" alpha="20" floats="true" />
+    <NPC num="65" name="Shark"                size="100x24"  HP="300"  AI="swimming"                     def="2"    dmg="40"   knockbackResist="0.7"   value="400"   sounds="1,1" floats="true" />
+    <NPC num="66" name="Voodoo Demon"         size="28x48"   HP="140"  AI="bat"                          def="8"    dmg="32"   knockbackResist="0.8"   value="1000"  sounds="1,1" immunities="lava" />
+    <NPC num="67" name="Crab"                 size="28x20"   HP="40"   AI="fighter"                      def="10"   dmg="20"                           value="60"    sounds="1,1" />
+    <NPC num="68" name="Dungeon Guardian"     size="80x102"  HP="9999" AI="head"                         def="9000" dmg="9000" knockbackResist="0.0"                 sounds="2,2" floats="true" noClipping="true" />
+    <NPC num="69" name="Antlion"              size="24x24"   HP="45"   AI="antlion"                      def="6"    dmg="10"   knockbackResist="0.0"   value="60"    sounds="1,1" isBehindTiles="true" />
+    <NPC num="70" name="Spike Ball"           size="34x34"   HP="100"  AI="spikeBall"                    def="100"  dmg="32"   knockbackResist="0.0"                 sounds="1,1" floats="true" isImmortal="true" noClipping="true" scale="1.5" />
+    <NPC num="71" name="Dungeon Slime"        size="36x24"   HP="150"  AI="slime"                        def="7"    dmg="30"   knockbackResist="0.6"   value="150"   sounds="1,1" alpha="60" scale="1.25" />
+    <NPC num="72" name="Blazing Wheel"        size="34x34"   HP="100"  AI="blazingWheel"                 def="100"  dmg="24"   knockbackResist="0.0"                 sounds="1,1" alpha="100" floats="true" isBehindTiles="true" isImmortal="true" scale="1.2" />
+    <NPC num="73" name="Goblin Scout"         size="18x40"   HP="80"   AI="fighter"                      def="6"    dmg="20"   knockbackResist="0.7"   value="200"   sounds="1,1" scale="0.95" />
+  </NPCs>
+
+  <Items>
+    <Item num="0"                                                                                />
+    <Item num="0"   name="[empty]"                                                               />
+    <Item num="1"   name="Copper Pickaxe"            size="24x28" value="500"                    autofire="true" canTurn="true" color="#50b4642d" dmg="4" isCopyOf="Iron Pickaxe" knockback="2" pickPwr="35" scale="0.9" sound="1" speed="15" weaponType="melee" />
+    <Item num="1"   name="Gold Pickaxe"              size="24x28" value="10000"                  autofire="true" canTurn="true" color="#64d2be00" description="Can mine Meteorite" dmg="6" isCopyOf="Iron Pickaxe" knockback="2" pickPwr="55" scale="1.05" sound="1" speed="17" weaponType="melee" />
+    <Item num="1"   name="Iron Pickaxe"              size="24x28" value="2000"                   autofire="true" canTurn="true" dmg="5" knockback="2" pickPwr="40" sound="1" speed="13" weaponType="melee" />
+    <Item num="1"   name="Silver Pickaxe"            size="24x28" value="5000"                   autofire="true" canTurn="true" color="#64b4b4b4" dmg="6" isCopyOf="Iron Pickaxe" knockback="2" pickPwr="45" scale="1.05" sound="1" speed="11" weaponType="melee" />
+    <Item num="2"   name="Dirt Block"                size="12x12"                 maxStack="250" autofire="true" canTurn="true" consumable="true" createTile="0" speed="10" />
+    <Item num="3"   name="Stone Block"               size="12x12"                 maxStack="250" autofire="true" canTurn="true" consumable="true" createTile="1" speed="10" />
+    <Item num="4"   name="Copper Broadsword"         size="24x28" value="450"                    color="#50b4642d" dmg="8" isCopyOf="Iron Broadsword" knockback="5" scale="1" sound="1" speed="21" weaponType="melee" />
+    <Item num="4"   name="Gold Broadsword"           size="24x28" value="9000"                   color="#64d2be00" dmg="13" isCopyOf="Iron Broadsword" knockback="5" scale="1.05" sound="1" speed="21" weaponType="melee" />
+    <Item num="4"   name="Iron Broadsword"           size="24x28" value="1800"                   dmg="10" knockback="5" scale="1" sound="1" speed="21" weaponType="melee" />
+    <Item num="4"   name="Silver Broadsword"         size="24x28" value="4500"                   color="#64b4b4b4" dmg="11" isCopyOf="Iron Broadsword" knockback="5" scale="1" sound="1" speed="21" weaponType="melee" />
+    <Item num="5"   name="Mushroom"                  size="16x18" value="25"      maxStack="99"  consumable="true" healHP="15" sound="2" speed="17" />
+    <Item num="6"   name="Copper Shortsword"         size="24x28" value="350"                    canTurn="true" color="#50b4642d" dmg="5" isCopyOf="Iron Shortsword" knockback="4" scale="0.8" sound="1" speed="12" weaponType="melee" />
+    <Item num="6"   name="Gold Shortsword"           size="24x28" value="7000"                   canTurn="true" color="#64d2be00" dmg="11" isCopyOf="Iron Shortsword" knockback="4" scale="0.95" sound="1" speed="12" weaponType="melee" />
+    <Item num="6"   name="Iron Shortsword"           size="24x28" value="1400"                   canTurn="true" dmg="8" knockback="4" scale="0.9" sound="1" speed="12" weaponType="melee" />
+    <Item num="6"   name="Silver Shortsword"         size="24x28" value="3500"                   canTurn="true" color="#64b4b4b4" dmg="9" isCopyOf="Iron Shortsword" knockback="4" scale="0.95" sound="1" speed="12" weaponType="melee" />
+    <Item num="7"   name="Copper Hammer"             size="24x28" value="400"                    autofire="true" canTurn="true" color="#50b4642d" dmg="4" hammerPwr="35" isCopyOf="Iron Hammer" knockback="5.5" scale="1.1" sound="1" speed="23" weaponType="melee" />
+    <Item num="7"   name="Gold Hammer"               size="24x28" value="8000"                   autofire="true" canTurn="true" color="#64d2be00" dmg="9" hammerPwr="55" isCopyOf="Iron Hammer" knockback="5.5" scale="1.25" sound="1" speed="23" weaponType="melee" />
+    <Item num="7"   name="Iron Hammer"               size="24x28" value="1600"                   autofire="true" canTurn="true" dmg="7" hammerPwr="45" knockback="5.5" scale="1.2" sound="1" speed="20" weaponType="melee" />
+    <Item num="7"   name="Silver Hammer"             size="24x28" value="4000"                   autofire="true" canTurn="true" color="#64b4b4b4" dmg="9" hammerPwr="45" isCopyOf="Iron Hammer" knockback="5.5" scale="1.25" sound="1" speed="19" weaponType="melee" />
+    <Item num="8"   name="Torch"                     size="10x12" value="50"      maxStack="99"  autofire="true" canTurn="true" consumable="true" createTile="4" description="Provides light" hatesWater="true" speed="10" />
+    <Item num="9"   name="Wood"                      size="8x10"                  maxStack="250" autofire="true" canTurn="true" consumable="true" createTile="30" speed="10" />
+    <Item num="10"  name="Copper Axe"                size="24x28" value="400"                    autofire="true" axePwr="7" canTurn="true" color="#50b4642d" dmg="3" isCopyOf="Iron Axe" knockback="4.5" scale="1" sound="1" speed="21" weaponType="melee" />
+    <Item num="10"  name="Gold Axe"                  size="24x28" value="8000"                   autofire="true" axePwr="11" canTurn="true" color="#64d2be00" dmg="7" isCopyOf="Iron Axe" knockback="4.5" scale="1.15" sound="1" speed="18" weaponType="melee" />
+    <Item num="10"  name="Iron Axe"                  size="24x28" value="1600"                   autofire="true" axePwr="9" canTurn="true" dmg="5" knockback="4.5" scale="1.1" sound="1" speed="19" weaponType="melee" />
+    <Item num="10"  name="Silver Axe"                size="24x28" value="4000"                   autofire="true" axePwr="10" canTurn="true" color="#64b4b4b4" dmg="6" isCopyOf="Iron Axe" knockback="4.5" scale="1.15" sound="1" speed="18" weaponType="melee" />
+    <Item num="11"  name="Iron Ore"                  size="12x12" value="500"     maxStack="99"  autofire="true" canTurn="true" consumable="true" createTile="6" speed="10" />
+    <Item num="12"  name="Copper Ore"                size="12x12" value="250"     maxStack="99"  autofire="true" canTurn="true" consumable="true" createTile="7" speed="10" />
+    <Item num="13"  name="Gold Ore"                  size="12x12" value="2000"    maxStack="99"  autofire="true" canTurn="true" consumable="true" createTile="8" speed="10" />
+    <Item num="14"  name="Silver Ore"                size="12x12" value="1000"    maxStack="99"  autofire="true" canTurn="true" consumable="true" createTile="9" speed="10" />
+    <Item num="15"  name="Copper Watch"              size="24x28" value="1000"                   description="Tells the time" equipSlot="accessory" />
+    <Item num="16"  name="Silver Watch"              size="24x28" value="5000"                   description="Tells the time" equipSlot="accessory" />
+    <Item num="17"  name="Gold Watch"                size="24x28" value="10000"                  description="Tells the time" equipSlot="accessory" rarity="1" />
+    <Item num="18"  name="Depth Meter"               size="24x18" value="10000"                  description="Shows depth" equipSlot="accessory" rarity="1" />
+    <Item num="19"  name="Gold Bar"                  size="20x20" value="6000"    maxStack="99"  />
+    <Item num="20"  name="Copper Bar"                size="20x20" value="750"     maxStack="99"  />
+    <Item num="21"  name="Silver Bar"                size="20x20" value="3000"    maxStack="99"  />
+    <Item num="22"  name="Iron Bar"                  size="20x20" value="1500"    maxStack="99"  />
+    <Item num="23"  name="Gel"                       size="10x12" value="5"       maxStack="99"  alpha="175" color="#640050ff" description="'Both tasty and flammable'" />
+    <Item num="24"  name="Wooden Sword"              size="24x28" value="100"                    dmg="7" knockback="4" scale="0.95" sound="1" weaponType="melee" />
+    <Item num="25"  name="Wooden Door"               size="14x28" value="200"     maxStack="99"  canTurn="true" consumable="true" createTile="10" speed="10" />
+    <Item num="26"  name="Stone Wall"                size="12x12"                 maxStack="250" autofire="true" canTurn="true" consumable="true" createWall="1" speed="7" />
+    <Item num="27"  name="Acorn"                     size="18x18" value="10"      maxStack="99"  canTurn="true" consumable="true" createTile="20" speed="10" />
+    <Item num="28"  name="Lesser Healing Potion"     size="14x24" value="300"     maxStack="30"  canTurn="true" consumable="true" healHP="50" sound="3" speed="17" />
+    <Item num="29"  name="Life Crystal"              size="18x18"                 maxStack="99"  consumable="true" description="Permanently increases maximum life by 20" rarity="2" sound="4" speed="30" />
+    <Item num="30"  name="Dirt Wall"                 size="12x12"                 maxStack="250" autofire="true" canTurn="true" consumable="true" createWall="16" speed="7" />
+    <Item num="31"  name="Bottle"                    size="16x24" value="20"      maxStack="99"  autofire="true" canTurn="true" consumable="true" createTile="13" speed="10" />
+    <Item num="32"  name="Wooden Table"              size="26x20" value="300"     maxStack="99"  autofire="true" canTurn="true" consumable="true" createTile="14" speed="10" />
+    <Item num="33"  name="Furnace"                   size="26x24" value="300"     maxStack="99"  autofire="true" canTurn="true" consumable="true" createTile="17" description="Used for smelting ore" speed="10" />
+    <Item num="34"  name="Wooden Chair"              size="12x30" value="150"     maxStack="99"  autofire="true" canTurn="true" consumable="true" createTile="15" speed="10" />
+    <Item num="35"  name="Iron Anvil"                size="28x14" value="5000"    maxStack="99"  autofire="true" canTurn="true" consumable="true" createTile="16" description="Used to craft items from metal bars" speed="10" />
+    <Item num="36"  name="Work Bench"                size="28x14" value="150"     maxStack="99"  autofire="true" canTurn="true" consumable="true" createTile="18" description="Used for basic crafting" speed="10" />
+    <Item num="37"  name="Goggles"                   size="28x12" value="1000"                   def="1" equipSlot="head" rarity="1" />
+    <Item num="38"  name="Lens"                      size="12x20" value="500"     maxStack="99"  />
+    <Item num="39"  name="Wooden Bow"                size="12x28" value="100"                    cantSwing="true" dmg="4" shoot="1" shootSpeed="6.1" sound="5" speed="30" usesAmmo="1" weaponType="ranged" />
+    <Item num="40"  name="Wooden Arrow"              size="10x28" value="10"      maxStack="250" ammoType="1" consumable="true" dmg="4" knockback="2" shoot="1" shootSpeed="3" weaponType="ranged" />
+    <Item num="41"  name="Flaming Arrow"             size="10x28" value="15"      maxStack="250" ammoType="1" consumable="true" dmg="6" knockback="2" shoot="2" shootSpeed="3.5" weaponType="ranged" />
+    <Item num="42"  name="Shuriken"                  size="18x20" value="20"      maxStack="250" cantSwing="true" consumable="true" dmg="10" shoot="3" shootSpeed="9" sound="1" speed="15" weaponType="ranged" />
+    <Item num="43"  name="Suspicious Looking Eye"    size="22x14"                                consumable="true" description="Summons the Eye of Cthulhu" speed="45" />
+    <Item num="44"  name="Demon Bow"                 size="12x28" value="18000"                  alpha="30" cantSwing="true" dmg="14" knockback="1" rarity="1" shoot="1" shootSpeed="6.7" sound="5" speed="25" usesAmmo="1" weaponType="ranged" />
+    <Item num="45"  name="War Axe of the Night"      size="24x28" value="13500"                  autofire="true" axePwr="15" dmg="20" knockback="6" rarity="1" scale="1.2" sound="1" speed="15" weaponType="melee" />
+    <Item num="46"  name="Light's Bane"              size="24x28" value="13500"                  dmg="17" knockback="5" rarity="1" scale="1.1" sound="1" weaponType="melee" />
+    <Item num="47"  name="Unholy Arrow"              size="10x28" value="40"      maxStack="250" alpha="30" ammoType="1" consumable="true" dmg="8" knockback="3" rarity="1" shoot="4" shootSpeed="3.4" weaponType="ranged" />
+    <Item num="48"  name="Chest"                     size="26x22" value="500"     maxStack="99"  autofire="true" canTurn="true" consumable="true" createTile="21" speed="10" />
+    <Item num="49"  name="Band of Regeneration"      size="22x22" value="50000"                  description="Slowly regenerates life" equipSlot="accessory" rarity="1" regenHP="1" />
+    <Item num="50"  name="Magic Mirror"              size="20x20" value="50000"                  canTurn="true" costMP="20" description="Gaze in the mirror to return home" rarity="1" sound="6" speed="90" />
+    <Item num="51"  name="Jester's Arrow"            size="10x28" value="100"     maxStack="250" ammoType="1" consumable="true" dmg="9" knockback="4" rarity="1" shoot="5" shootSpeed="0.5" weaponType="ranged" />
+    <Item num="52"  name="Angel Statue"              size="24x28" value="1"                      description="'It doesn't do anything'" />
+    <Item num="53"  name="Cloud in a Bottle"         size="16x24" value="50000"                  description="Allows the holder to double jump" equipSlot="accessory" rarity="1" />
+    <Item num="54"  name="Hermes Boots"              size="28x24" value="50000"                  description="The wearer can run super fast" equipSlot="accessory" rarity="1" />
+    <Item num="55"  name="Enchanted Boomerang"       size="14x28" value="50000"                  cantSwing="true" dmg="13" knockback="8" rarity="1" shoot="6" shootSpeed="10" sound="1" speed="15" weaponType="ranged" />
+    <Item num="56"  name="Demonite Ore"              size="12x12" value="4000"    maxStack="99"  autofire="true" canTurn="true" consumable="true" createTile="22" description="'Pulsing with dark energy'" rarity="1" speed="10" />
+    <Item num="57"  name="Demonite Bar"              size="20x20" value="16000"   maxStack="99"  description="'Pulsing with dark energy'" rarity="1" />
+    <Item num="58"  name="Heart"                     size="12x12"                                />
+    <Item num="59"  name="Corrupt Seeds"             size="14x14" value="500"     maxStack="99"  canTurn="true" consumable="true" createTile="23" speed="10" />
+    <Item num="60"  name="Vile Mushroom"             size="16x18" value="50"      maxStack="99"  />
+    <Item num="61"  name="Ebonstone Block"           size="12x12"                 maxStack="250" autofire="true" canTurn="true" consumable="true" createTile="25" speed="10" />
+    <Item num="62"  name="Grass Seeds"               size="14x14" value="20"      maxStack="99"  canTurn="true" consumable="true" createTile="2" speed="10" />
+    <Item num="63"  name="Sunflower"                 size="26x26" value="200"     maxStack="99"  canTurn="true" consumable="true" createTile="27" speed="10" />
+    <Item num="64"  name="Vilethorn"                 size="26x28" value="10000"                  cantSwing="true" costMP="12" description="Summons a vile thorn" dmg="8" knockback="1" rarity="1" shoot="7" shootSpeed="32" sound="8" speed="30" weaponType="magic" />
+    <Item num="65"  name="Starfury"                  size="14x28" value="50000"                  alpha="100" autofire="true" color="#00969696" costMP="16" description="Causes stars to rain from the sky" description2="'Forged with the fury of heaven'" dmg="16" knockback="5" rarity="1" scale="1.15" shoot="9" shootSpeed="12" sound="9" speed="10" weaponType="magic" />
+    <Item num="66"  name="Purification Powder"       size="16x24" value="75"      maxStack="99"  cantSwing="true" consumable="true" description="Cleanses the corruption" shoot="10" shootSpeed="4" sound="1" speed="15" />
+    <Item num="67"  name="Vile Powder"               size="16x24" value="100"     maxStack="99"  cantSwing="true" consumable="true" dmg="8" shoot="11" shootSpeed="4" sound="1" speed="15" />
+    <Item num="68"  name="Rotten Chunk"              size="18x20" value="10"      maxStack="99"  description="'Looks tasty!'" />
+    <Item num="69"  name="Worm Tooth"                size="8x20"  value="100"     maxStack="99"  />
+    <Item num="70"  name="Worm Food"                 size="28x28"                                consumable="true" description="Summons the Eater of Worlds" speed="45" />
+    <Item num="71"  name="Copper Coin"               size="10x12" value="5"       maxStack="100" />
+    <Item num="72"  name="Silver Coin"               size="10x12" value="500"     maxStack="100" />
+    <Item num="73"  name="Gold Coin"                 size="10x12" value="50000"   maxStack="100" />
+    <Item num="74"  name="Platinum Coin"             size="10x12" value="5000000" maxStack="100" />
+    <Item num="75"  name="Fallen Star"               size="18x20" value="500"     maxStack="100" alpha="75" ammoType="15" consumable="true" description="Disappears after the sunrise" healMP="20" rarity="1" sound="4" speed="17" />
+    <Item num="76"  name="Copper Greaves"            size="18x18" value="750"                    def="1" equipSlot="leg" />
+    <Item num="77"  name="Iron Greaves"              size="18x18" value="3000"                   def="2" equipSlot="leg" />
+    <Item num="78"  name="Silver Greaves"            size="18x18" value="7500"                   def="3" equipSlot="leg" />
+    <Item num="79"  name="Gold Greaves"              size="18x18" value="15000"                  def="4" equipSlot="leg" />
+    <Item num="80"  name="Copper Chainmail"          size="18x18" value="1000"                   def="2" equipSlot="body" />
+    <Item num="81"  name="Iron Chainmail"            size="18x18" value="4000"                   def="3" equipSlot="body" />
+    <Item num="82"  name="Silver Chainmail"          size="18x18" value="10000"                  def="4" equipSlot="body" />
+    <Item num="83"  name="Gold Chainmail"            size="18x18" value="20000"                  def="5" equipSlot="body" />
+    <Item num="84"  name="Grappling Hook"            size="18x28" value="20000"                  cantSwing="true" description="'Get over here!'" dmg="0" knockback="7" rarity="1" shoot="13" shootSpeed="11" sound="1" speed="20" />
+    <Item num="85"  name="Iron Chain"                size="14x20" value="1000"    maxStack="99"  />
+    <Item num="86"  name="Shadow Scale"              size="14x18" value="500"     maxStack="99"  rarity="1" />
+    <Item num="87"  name="Piggy Bank"                size="20x12" value="10000"   maxStack="99"  autofire="true" canTurn="true" consumable="true" createTile="29" speed="10" />
+    <Item num="88"  name="Mining Helmet"             size="22x16" value="80000"                  def="1" description="Provides light when worn" equipSlot="head" rarity="1" />
+    <Item num="89"  name="Copper Helmet"             size="18x18" value="1250"                   def="1" equipSlot="head" />
+    <Item num="90"  name="Iron Helmet"               size="18x18" value="5000"                   def="2" equipSlot="head" />
+    <Item num="91"  name="Silver Helmet"             size="18x18" value="12500"                  def="3" equipSlot="head" />
+    <Item num="92"  name="Gold Helmet"               size="18x18" value="25000"                  def="4" equipSlot="head" />
+    <Item num="93"  name="Wood Wall"                 size="12x12"                 maxStack="250" autofire="true" canTurn="true" consumable="true" createWall="4" speed="7" />
+    <Item num="94"  name="Wood Platform"             size="8x10"                  maxStack="99"  autofire="true" canTurn="true" consumable="true" createTile="19" speed="10" />
+    <Item num="95"  name="Flintlock Pistol"          size="24x28" value="50000"                  cantSwing="true" dmg="10" rarity="1" scale="0.9" shoot="14" shootSpeed="5" sound="11" speed="16" usesAmmo="14" weaponType="ranged" />
+    <Item num="96"  name="Musket"                    size="44x14" value="100000"                 autofire="true" cantSwing="true" dmg="23" knockback="4" rarity="1" shoot="10" shootSpeed="8" sound="11" speed="43" usesAmmo="14" weaponType="ranged" />
+    <Item num="97"  name="Musket Ball"               size="8x8"   value="7"       maxStack="250" ammoType="14" consumable="true" dmg="7" knockback="2" shoot="14" shootSpeed="4" weaponType="ranged" />
+    <Item num="98"  name="Minishark"                 size="50x18" value="400000"                 autofire="true" cantSwing="true" description="33% chance to not consume ammo" description2="'Half shark, half gun, completely awesome.'" dmg="6" rarity="2" shoot="10" shootSpeed="7" sound="11" speed="8" usesAmmo="14" weaponType="ranged" />
+    <Item num="99"  name="Copper Bow"                size="12x28" value="350"                    cantSwing="true" color="#50b4642d" dmg="6" isCopyOf="Iron Bow" shoot="1" shootSpeed="6.6" sound="5" speed="29" usesAmmo="1" weaponType="ranged" />
+    <Item num="99"  name="Gold Bow"                  size="12x28" value="7000"                   cantSwing="true" color="#64d2be00" dmg="11" isCopyOf="Iron Bow" shoot="1" shootSpeed="6.6" sound="5" speed="26" usesAmmo="1" weaponType="ranged" />
+    <Item num="99"  name="Iron Bow"                  size="12x28" value="1400"                   cantSwing="true" dmg="8" shoot="1" shootSpeed="6.6" sound="5" speed="28" usesAmmo="1" weaponType="ranged" />
+    <Item num="99"  name="Silver Bow"                size="12x28" value="3500"                   cantSwing="true" color="#64b4b4b4" dmg="9" isCopyOf="Iron Bow" shoot="1" shootSpeed="6.6" sound="5" speed="27" usesAmmo="1" weaponType="ranged" />
+    <Item num="100" name="Shadow Greaves"            size="18x18" value="22500"                  def="6" description="7% increased melee speed" equipSlot="leg" rarity="1" />
+    <Item num="101" name="Shadow Scalemail"          size="18x18" value="30000"                  def="7" description="7% increased melee speed" equipSlot="body" rarity="1" />
+    <Item num="102" name="Shadow Helmet"             size="18x18" value="37500"                  def="6" description="7% increased melee speed" equipSlot="head" rarity="1" />
+    <Item num="103" name="Nightmare Pickaxe"         size="24x28" value="18000"                  autofire="true" canTurn="true" description="Able to mine Hellstone" dmg="9" knockback="3" pickPwr="65" rarity="1" scale="1.15" sound="1" speed="15" weaponType="melee" />
+    <Item num="104" name="The Breaker"               size="24x28" value="15000"                  autofire="true" dmg="24" hammerPwr="55" knockback="6" rarity="1" scale="1.3" sound="1" speed="19" weaponType="melee" />
+    <Item num="105" name="Candle"                    size="8x18"                  maxStack="99"  autofire="true" canTurn="true" consumable="true" createTile="33" hatesWater="true" speed="10" />
+    <Item num="106" name="Copper Chandelier"         size="26x26"                 maxStack="99"  autofire="true" canTurn="true" consumable="true" createTile="34" speed="10" />
+    <Item num="107" name="Silver Chandelier"         size="26x26"                 maxStack="99"  autofire="true" canTurn="true" consumable="true" createTile="35" speed="10" />
+    <Item num="108" name="Gold Chandelier"           size="26x26"                 maxStack="99"  autofire="true" canTurn="true" consumable="true" createTile="36" speed="10" />
+    <Item num="109" name="Mana Crystal"              size="18x18"                 maxStack="99"  consumable="true" description="Permanently increases maximum mana by 20" rarity="2" sound="4" speed="30" />
+    <Item num="110" name="Lesser Mana Potion"        size="14x24" value="1000"    maxStack="30"  canTurn="true" consumable="true" healMP="50" sound="3" speed="17" />
+    <Item num="111" name="Band of Starpower"         size="22x22" value="50000"                  description="Increases maximum mana by 20" equipSlot="accessory" rarity="1" />
+    <Item num="112" name="Flower of Fire"            size="26x28" value="10000"                  cantSwing="true" costMP="19" description="Throws balls of fire" dmg="44" knockback="5.5" rarity="3" shoot="15" shootSpeed="6" sound="20" speed="20" weaponType="magic" />
+    <Item num="113" name="Magic Missile"             size="26x28" value="10000"                  cantSwing="true" costMP="10" description="Casts a controllable missile" dmg="22" isControllable="true" knockback="5" rarity="2" shoot="16" shootSpeed="6" sound="9" speed="17" weaponType="magic" />
+    <Item num="114" name="Dirt Rod"                  size="26x28" value="200000"                 cantSwing="true" costMP="5" description="Magically move dirt" dmg="0" isControllable="true" knockback="5" rarity="1" shoot="17" sound="8" speed="20" />
+    <Item num="115" name="Orb of Light"              size="24x24" value="10000"                  buffMin="5" buffType="orbOfLight" cantSwing="true" costMP="40" description="Creates a magical orb of light" dmg="0" isControllable="true" rarity="1" shoot="18" sound="8" speed="20" />
+    <Item num="116" name="Meteorite"                 size="12x12" value="1000"    maxStack="250" autofire="true" canTurn="true" consumable="true" createTile="37" speed="10" />
+    <Item num="117" name="Meteorite Bar"             size="20x20" value="7000"    maxStack="99"  description="'Warm to the touch'" rarity="1" />
+    <Item num="118" name="Hook"                      size="18x18" value="1000"    maxStack="99"  />
+    <Item num="119" name="Flamarang"                 size="14x28" value="100000"                 cantSwing="true" dmg="32" knockback="8" rarity="3" shoot="19" shootSpeed="11" sound="1" speed="15" weaponType="ranged" />
+    <Item num="120" name="Molten Fury"               size="14x32" value="27000"                  alpha="30" cantSwing="true" description="Lights wooden arrows ablaze" dmg="29" knockback="2" rarity="3" scale="1.1" shoot="1" shootSpeed="8" sound="5" speed="25" usesAmmo="1" weaponType="ranged" />
+    <Item num="121" name="Fiery Greatsword"          size="24x28" value="27000"                  description="'It's made out of fire!'" dmg="36" knockback="6.5" rarity="3" scale="1.3" sound="1" weaponType="melee" />
+    <Item num="122" name="Molten Pickaxe"            size="24x28" value="27000"                  autofire="true" canTurn="true" dmg="12" knockback="2" pickPwr="100" rarity="3" scale="1.15" sound="1" speed="25" weaponType="melee" />
+    <Item num="123" name="Meteor Helmet"             size="18x18" value="45000"                  def="3" description="%5 increased magic damage" equipSlot="head" rarity="1" />
+    <Item num="124" name="Meteor Suit"               size="18x18" value="30000"                  def="4" description="%5 increased magic damage" equipSlot="body" rarity="1" />
+    <Item num="125" name="Meteor Leggings"           size="18x18" value="30000"                  def="3" description="%5 increased magic damage" equipSlot="leg" rarity="1" />
+    <Item num="126" name="Bottled Water"             size="14x24" value="20"      maxStack="30"  canTurn="true" consumable="true" healHP="20" sound="3" speed="17" />
+    <Item num="127" name="Space Gun"                 size="24x28"                                autofire="true" cantSwing="true" costMP="8" dmg="17" knockback="0.5" rarity="1" scale="0.8" shoot="20" shootSpeed="10" sound="12" speed="19" weaponType="magic" />
+    <Item num="128" name="Rocket Boots"              size="28x24" value="50000"                  description="Allows flight" equipSlot="accessory" rarity="3" />
+    <Item num="129" name="Gray Brick"                size="12x12"                 maxStack="250" autofire="true" canTurn="true" consumable="true" createTile="38" speed="10" />
+    <Item num="130" name="Gray Brick Wall"           size="12x12"                 maxStack="250" autofire="true" canTurn="true" consumable="true" createWall="5" speed="7" />
+    <Item num="131" name="Red Brick"                 size="12x12"                 maxStack="250" autofire="true" canTurn="true" consumable="true" createTile="39" speed="10" />
+    <Item num="132" name="Red Brick Wall"            size="12x12"                 maxStack="250" autofire="true" canTurn="true" consumable="true" createWall="6" speed="7" />
+    <Item num="133" name="Clay Block"                size="12x12"                 maxStack="250" autofire="true" canTurn="true" consumable="true" createTile="40" speed="10" />
+    <Item num="134" name="Blue Brick"                size="12x12"                 maxStack="250" autofire="true" canTurn="true" consumable="true" createTile="41" speed="10" />
+    <Item num="135" name="Blue Brick Wall"           size="12x12"                 maxStack="250" autofire="true" canTurn="true" consumable="true" createWall="17" speed="7" />
+    <Item num="136" name="Chain Lantern"             size="12x28"                 maxStack="250" autofire="true" canTurn="true" consumable="true" createTile="42" speed="10" />
+    <Item num="137" name="Green Brick"               size="12x12"                 maxStack="250" autofire="true" canTurn="true" consumable="true" createTile="43" speed="10" />
+    <Item num="138" name="Green Brick Wall"          size="12x12"                 maxStack="250" autofire="true" canTurn="true" consumable="true" createWall="18" speed="7" />
+    <Item num="139" name="Pink Brick"                size="12x12"                 maxStack="250" autofire="true" canTurn="true" consumable="true" createTile="44" speed="10" />
+    <Item num="140" name="Pink Brick Wall"           size="12x12"                 maxStack="250" autofire="true" canTurn="true" consumable="true" createWall="19" speed="7" />
+    <Item num="141" name="Gold Brick"                size="12x12"                 maxStack="250" autofire="true" canTurn="true" consumable="true" createTile="45" speed="10" />
+    <Item num="142" name="Gold Brick Wall"           size="12x12"                 maxStack="250" autofire="true" canTurn="true" consumable="true" createWall="10" speed="7" />
+    <Item num="143" name="Silver Brick"              size="12x12"                 maxStack="250" autofire="true" canTurn="true" consumable="true" createTile="46" speed="10" />
+    <Item num="144" name="Silver Brick Wall"         size="12x12"                 maxStack="250" autofire="true" canTurn="true" consumable="true" createWall="11" speed="7" />
+    <Item num="145" name="Copper Brick"              size="12x12"                 maxStack="250" autofire="true" canTurn="true" consumable="true" createTile="47" speed="10" />
+    <Item num="146" name="Copper Brick Wall"         size="12x12"                 maxStack="250" autofire="true" canTurn="true" consumable="true" createWall="12" speed="7" />
+    <Item num="147" name="Spike"                     size="12x12"                 maxStack="250" autofire="true" canTurn="true" consumable="true" createTile="48" speed="10" />
+    <Item num="148" name="Water Candle"              size="8x18"                  maxStack="99"  autofire="true" canTurn="true" consumable="true" createTile="49" description="Holding this may attract unwanted attention" hatesWater="true" speed="10" />
+    <Item num="149" name="Book"                      size="24x28"                 maxStack="99"  autofire="true" canTurn="true" consumable="true" createTile="50" description="'It contains strange symbols'" speed="10" />
+    <Item num="150" name="Cobweb"                    size="20x24"                 maxStack="250" alpha="100" autofire="true" canTurn="true" consumable="true" createTile="51" speed="10" />
+    <Item num="151" name="Necro Helmet"              size="18x18" value="45000"                  def="5" description="4% increased ranged damage." equipSlot="head" rarity="2" />
+    <Item num="152" name="Necro Breastplate"         size="18x18" value="30000"                  def="6" description="4% increased ranged damage." equipSlot="body" rarity="2" />
+    <Item num="153" name="Necro Greaves"             size="18x18" value="30000"                  def="5" description="4% increased ranged damage." equipSlot="leg" rarity="2" />
+    <Item num="154" name="Bone"                      size="12x14" value="50"      maxStack="99"  consumable="true" dmg="22" knockback="4" shoot="21" shootSpeed="8" sound="1" speed="12" weaponType="ranged" />
+    <Item num="155" name="Muramasa"                  size="40x40" value="27000"                  autofire="true" canTurn="true" dmg="18" knockback="1" rarity="2" scale="1.1" sound="1" weaponType="melee" />
+    <Item num="156" name="Cobalt Shield"             size="24x28" value="27000"                  def="1" description="Grants immunity to knockback" equipSlot="accessory" rarity="2" />
+    <Item num="157" name="Aqua Scepter"              size="38x10" value="27000"                  autofire="true" costMP="7" description="Sprays out a shower of water" dmg="14" knockback="5" rarity="2" scale="1" shoot="22" shootSpeed="11" sound="13" speed="8" weaponType="magic" />
+    <Item num="158" name="Lucky Horseshoe"           size="20x22" value="27000"                  description="Negate fall damage" equipSlot="accessory" rarity="1" />
+    <Item num="159" name="Shiny Red Balloon"         size="14x28" value="27000"                  description="Increases jump height" equipSlot="accessory" rarity="1" />
+    <Item num="160" name="Harpoon"                   size="30x10" value="27000"                  autofire="true" dmg="25" knockback="6" rarity="2" scale="1.1" shoot="23" shootSpeed="11" sound="10" speed="30" weaponType="ranged" />
+    <Item num="161" name="Spiky Ball"                size="10x10" value="20"      maxStack="250" cantSwing="true" consumable="true" dmg="15" knockback="1" shoot="24" shootSpeed="5" sound="1" speed="15" weaponType="ranged" />
+    <Item num="162" name="Ball O' Hurt"              size="30x10" value="27000"                  cantSwing="true" dmg="15" isControllable="true" knockback="6.5" rarity="1" scale="1.1" shoot="25" shootSpeed="12" sound="1" speed="45" weaponType="melee" />
+    <Item num="163" name="Blue Moon"                 size="30x10" value="27000"                  dmg="23" isControllable="true" knockback="7" rarity="2" scale="1.1" shoot="26" shootSpeed="12" sound="1" speed="45" weaponType="melee" />
+    <Item num="164" name="Handgun"                   size="24x24" value="50000"                  cantSwing="true" dmg="14" knockback="3" rarity="2" scale="0.75" shoot="14" shootSpeed="10" sound="11" speed="12" usesAmmo="14" weaponType="ranged" />
+    <Item num="165" name="Water Bolt"                size="24x28"                                autofire="true" costMP="14" description="Casts a slow moving bolt of water" dmg="17" knockback="5" rarity="2" scale="0.9" shoot="27" shootSpeed="4.5" sound="21" speed="17" weaponType="magic" />
+    <Item num="166" name="Bomb"                      size="20x20" value="500"     maxStack="20"  cantSwing="true" consumable="true" description="A small explosion that will destroy some tiles" dmg="0" shoot="28" shootSpeed="5" sound="1" speed="25" />
+    <Item num="167" name="Dynamite"                  size="8x28"  value="5000"    maxStack="3"   cantSwing="true" consumable="true" description="A large explosion that will destroy most tiles" rarity="1" shoot="29" shootSpeed="4" sound="1" speed="40" />
+    <Item num="168" name="Grenade"                   size="20x20" value="400"     maxStack="20"  cantSwing="true" consumable="true" description="A small explosion that will not destroy tiles" dmg="60" knockback="8" shoot="30" shootSpeed="5.5" sound="1" speed="45" weaponType="ranged" />
+    <Item num="169" name="Sand Block"                size="12x12"                 maxStack="250" ammoType="42" autofire="true" canTurn="true" consumable="true" createTile="53" speed="10" />
+    <Item num="170" name="Glass"                     size="12x12"                 maxStack="250" autofire="true" canTurn="true" consumable="true" createTile="54" speed="10" />
+    <Item num="171" name="Sign"                      size="28x28"                 maxStack="250" autofire="true" canTurn="true" consumable="true" createTile="55" speed="10" />
+    <Item num="172" name="Ash Block"                 size="12x12"                 maxStack="250" autofire="true" canTurn="true" consumable="true" createTile="57" speed="10" />
+    <Item num="173" name="Obsidian"                  size="12x12"                 maxStack="250" autofire="true" canTurn="true" consumable="true" createTile="56" speed="10" />
+    <Item num="174" name="Hellstone"                 size="12x12"                 maxStack="250" autofire="true" canTurn="true" consumable="true" createTile="58" speed="10" />
+    <Item num="175" name="Hellstone Bar"             size="20x20" value="20000"   maxStack="99"  description="'Hot to the touch'" rarity="2" />
+    <Item num="176" name="Mud Block"                 size="12x12"                 maxStack="250" autofire="true" canTurn="true" consumable="true" createTile="59" speed="10" />
+    <Item num="177" name="Sapphire"                  size="10x14" value="5625"    maxStack="99"  alpha="50" />
+    <Item num="178" name="Ruby"                      size="10x14" value="11250"   maxStack="99"  alpha="50" />
+    <Item num="179" name="Emerald"                   size="10x14" value="7500"    maxStack="99"  alpha="50" />
+    <Item num="180" name="Topaz"                     size="10x14" value="3750"    maxStack="99"  alpha="50" />
+    <Item num="181" name="Amethyst"                  size="10x14" value="1875"    maxStack="99"  alpha="50" />
+    <Item num="182" name="Diamond"                   size="10x14" value="15000"   maxStack="99"  alpha="50" />
+    <Item num="183" name="Glowing Mushroom"          size="16x18" value="50"      maxStack="99"  consumable="true" healHP="25" sound="2" speed="17" />
+    <Item num="184" name="Star"                      size="12x12"                                />
+    <Item num="185" name="Ivy Whip"                  size="18x28" value="20000"                  cantSwing="true" dmg="0" knockback="7" rarity="3" shoot="32" shootSpeed="13" sound="1" speed="20" />
+    <Item num="186" name="Breathing Reed"            size="44x44" value="10000"                  description="'Because not drowning is kinda nice'" rarity="1" />
+    <Item num="187" name="Flipper"                   size="28x28" value="10000"                  description="Grants the ability to swim" equipSlot="accessory" rarity="1" />
+    <Item num="188" name="Healing Potion"            size="14x24" value="1000"    maxStack="30"  canTurn="true" consumable="true" healHP="100" rarity="1" sound="3" speed="17" />
+    <Item num="189" name="Mana Potion"               size="14x24" value="1000"    maxStack="30"  canTurn="true" consumable="true" healMP="100" rarity="1" sound="3" speed="17" />
+    <Item num="190" name="Blade of Grass"            size="40x40" value="27000"                  dmg="28" knockback="3" rarity="3" scale="1.4" sound="1" weaponType="melee" />
+    <Item num="191" name="Thorn Chakram"             size="14x28" value="50000"                  cantSwing="true" dmg="25" knockback="8" rarity="3" shoot="33" shootSpeed="11" sound="1" speed="15" weaponType="ranged" />
+    <Item num="192" name="Obsidian Brick"            size="12x12"                 maxStack="250" autofire="true" canTurn="true" consumable="true" createTile="75" speed="10" />
+    <Item num="193" name="Obsidian Skull"            size="20x22" value="27000"                  def="1" description="Grants immunity to fire blocks" equipSlot="accessory" rarity="2" />
+    <Item num="194" name="Mushroom Grass Seeds"      size="14x14" value="150"     maxStack="99"  canTurn="true" consumable="true" createTile="70" speed="10" />
+    <Item num="195" name="Jungle Grass Seeds"        size="14x14" value="150"     maxStack="99"  canTurn="true" consumable="true" createTile="60" speed="10" />
+    <Item num="196" name="Wooden Hammer"             size="24x28" value="50"                     autofire="true" canTurn="true" dmg="2" hammerPwr="25" knockback="5.5" scale="1.2" sound="1" speed="25" weaponType="melee" />
+    <Item num="197" name="Star Cannon"               size="50x18" value="500000"                 autofire="true" cantSwing="true" description="Shoots fallen stars" dmg="60" rarity="2" shoot="12" shootSpeed="14" sound="9" speed="40" usesAmmo="15" weaponType="ranged" />
+    <Item num="198" name="Blue Phaseblade"           size="40x40" value="27000"                  dmg="21" knockback="3" rarity="1" scale="1" sound="15" weaponType="melee" />
+    <Item num="199" name="Red Phaseblade"            size="40x40" value="27000"                  dmg="21" knockback="3" rarity="1" scale="1" sound="15" weaponType="melee" />
+    <Item num="200" name="Green Phaseblade"          size="40x40" value="27000"                  dmg="21" knockback="3" rarity="1" scale="1" sound="15" weaponType="melee" />
+    <Item num="201" name="Purple Phaseblade"         size="40x40" value="27000"                  dmg="21" knockback="3" rarity="1" scale="1" sound="15" weaponType="melee" />
+    <Item num="202" name="White Phaseblade"          size="40x40" value="27000"                  dmg="21" knockback="3" rarity="1" scale="1" sound="15" weaponType="melee" />
+    <Item num="203" name="Yellow Phaseblade"         size="40x40" value="27000"                  dmg="21" knockback="3" rarity="1" scale="1" sound="15" weaponType="melee" />
+    <Item num="204" name="Meteor Hamaxe"             size="24x28" value="15000"                  autofire="true" axePwr="20" canTurn="true" dmg="20" hammerPwr="60" knockback="7" rarity="1" scale="1.2" sound="1" speed="16" weaponType="melee" />
+    <Item num="205" name="Empty Bucket"              size="20x20"                                canTurn="true" def="1" equipSlot="head" speed="10" />
+    <Item num="206" name="Water Bucket"              size="20x20"                                canTurn="true" speed="10" />
+    <Item num="207" name="Lava Bucket"               size="20x20"                                canTurn="true" speed="10" />
+    <Item num="208" name="Jungle Rose"               size="20x20" value="100"                    description="'It's pretty, oh so pretty'" equipSlot="head" isVanity="true" />
+    <Item num="209" name="Stinger"                   size="16x18" value="200"     maxStack="99"  />
+    <Item num="210" name="Vine"                      size="14x20" value="1000"    maxStack="99"  />
+    <Item num="211" name="Feral Claws"               size="20x20" value="50000"                  description="12% increased melee speed" equipSlot="accessory" rarity="3" />
+    <Item num="212" name="Anklet of the Wind"        size="20x20" value="50000"                  description="10% increased movement speed" equipSlot="accessory" rarity="3" />
+    <Item num="213" name="Staff of Regrowth"         size="24x28" value="2000"                   autofire="true" canTurn="true" createTile="2" description="Creates grass on dirt" dmg="7" knockback="3" rarity="3" scale="1.2" sound="1" speed="13" weaponType="melee" />
+    <Item num="214" name="Hellstone Brick"           size="12x12"                 maxStack="250" autofire="true" canTurn="true" consumable="true" createTile="76" speed="10" />
+    <Item num="215" name="Whoopie Cushion"           size="18x18" value="100"                    canTurn="true" description="'May annoy others'" rarity="2" sound="16" speed="30" />
+    <Item num="216" name="Shackle"                   size="20x20" value="1500"                   def="1" equipSlot="accessory" rarity="1" />
+    <Item num="217" name="Molten Hamaxe"             size="24x28" value="15000"                  autofire="true" axePwr="30" canTurn="true" dmg="20" hammerPwr="70" knockback="7" rarity="3" scale="1.4" sound="1" speed="14" weaponType="melee" />
+    <Item num="218" name="Flamelash"                 size="26x28" value="10000"                  cantSwing="true" costMP="16" description="Summons a controllable ball of fire" dmg="34" isControllable="true" knockback="6.5" rarity="3" shoot="34" shootSpeed="6" sound="20" speed="20" weaponType="magic" />
+    <Item num="219" name="Phoenix Blaster"           size="24x22" value="50000"                  cantSwing="true" dmg="23" knockback="4" rarity="3" scale="0.75" shoot="14" shootSpeed="13" sound="11" speed="11" usesAmmo="14" weaponType="ranged" />
+    <Item num="220" name="Sunfury"                   size="30x10" value="27000"                  cantSwing="true" dmg="33" isControllable="true" knockback="7" rarity="3" scale="1.1" shoot="35" shootSpeed="12" sound="1" speed="45" weaponType="melee" />
+    <Item num="221" name="Hellforge"                 size="26x24" value="3000"    maxStack="99"  autofire="true" canTurn="true" consumable="true" createTile="77" speed="10" />
+    <Item num="222" name="Clay Pot"                  size="14x14" value="100"     maxStack="99"  autofire="true" canTurn="true" consumable="true" createTile="78" description="Grows plants" speed="10" />
+    <Item num="223" name="Nature's Gift"             size="20x22" value="27000"                  description="6% reduced mana usage" equipSlot="accessory" rarity="3" />
+    <Item num="224" name="Bed"                       size="28x20" value="2000"    maxStack="99"  canTurn="true" consumable="true" createTile="79" speed="10" />
+    <Item num="225" name="Silk"                      size="22x22" value="1000"    maxStack="99"  />
+    <Item num="226" name="Lesser Restoration Potion" size="14x24" value="2000"    maxStack="20"  canTurn="true" consumable="true" healHP="50" healMP="50" sound="3" speed="17" />
+    <Item num="227" name="Restoration Potion"        size="14x24" value="4000"    maxStack="20"  canTurn="true" consumable="true" healHP="100" healMP="100" sound="3" speed="17" />
+    <Item num="228" name="Jungle Hat"                size="18x18" value="45000"                  def="4" description="Increases maximum mana by 20" description2="3% increased magic critical strike chance" equipSlot="head" rarity="3" />
+    <Item num="229" name="Jungle Shirt"              size="18x18" value="30000"                  def="5" description="Increases maximum mana by 20" description2="3% increased magic critical strike chance" equipSlot="body" rarity="3" />
+    <Item num="230" name="Jungle Pants"              size="18x18" value="30000"                  def="4" description="Increases maximum mana by 20" description2="3% increased magic critical strike chance" equipSlot="leg" rarity="3" />
+    <Item num="231" name="Molten Helmet"             size="18x18" value="45000"                  def="8" equipSlot="head" rarity="3" />
+    <Item num="232" name="Molten Breastplate"        size="18x18" value="30000"                  def="9" equipSlot="body" rarity="3" />
+    <Item num="233" name="Molten Greaves"            size="18x18" value="30000"                  def="8" equipSlot="leg" rarity="3" />
+    <Item num="234" name="Meteor Shot"               size="8x8"   value="8"       maxStack="250" ammoType="14" consumable="true" dmg="9" knockback="1" rarity="1" shoot="36" shootSpeed="3" weaponType="ranged" />
+    <Item num="235" name="Sticky Bomb"               size="20x20" value="500"     maxStack="20"  cantSwing="true" consumable="true" description="'Tossing may be difficult.'" dmg="0" shoot="37" shootSpeed="5" sound="1" speed="25" />
+    <Item num="236" name="Black Lens"                size="12x20" value="5000"    maxStack="99"  />
+    <Item num="237" name="Sunglasses"                size="28x12" value="10000"                  description="'Makes you look cool!'" equipSlot="head" isVanity="true" rarity="2" />
+    <Item num="238" name="Wizard Hat"                size="28x20" value="10000"                  def="2" description="15% increased magic damage" equipSlot="head" rarity="2" />
+    <Item num="239" name="Top Hat"                   size="18x18" value="10000"                  equipSlot="head" isVanity="true" />
+    <Item num="240" name="Tuxedo Shirt"              size="18x18" value="5000"                   equipSlot="body" isVanity="true" />
+    <Item num="241" name="Tuxedo Pants"              size="18x18" value="5000"                   equipSlot="leg" isVanity="true" />
+    <Item num="242" name="Summer Hat"                size="18x18" value="10000"                  equipSlot="head" isVanity="true" />
+    <Item num="243" name="Bunny Hood"                size="18x18" value="20000"                  equipSlot="head" isVanity="true" />
+    <Item num="244" name="Plumber's Hat"             size="18x18" value="10000"                  equipSlot="head" isVanity="true" />
+    <Item num="245" name="Plumber's Shirt"           size="18x18" value="250000"                 equipSlot="body" isVanity="true" />
+    <Item num="246" name="Plumber's Pants"           size="18x18" value="250000"                 equipSlot="leg" isVanity="true" />
+    <Item num="247" name="Hero's Hat"                size="18x12" value="10000"                  equipSlot="head" isVanity="true" />
+    <Item num="248" name="Hero's Shirt"              size="18x18" value="5000"                   equipSlot="body" isVanity="true" />
+    <Item num="249" name="Hero's Pants"              size="18x18" value="5000"                   equipSlot="leg" isVanity="true" />
+    <Item num="250" name="Fish Bowl"                 size="18x18" value="10000"                  equipSlot="head" isVanity="true" />
+    <Item num="251" name="Archaeologist's Hat"       size="18x12" value="10000"                  equipSlot="head" isVanity="true" />
+    <Item num="252" name="Archaeologist's Jacket"    size="18x18" value="5000"                   equipSlot="body" isVanity="true" />
+    <Item num="253" name="Archaeologist's Pants"     size="18x18" value="5000"                   equipSlot="leg" isVanity="true" />
+    <Item num="254" name="Black Dye"                 size="12x20" value="10000"   maxStack="99"  />
+    <Item num="255" name="Green Dye"                 size="12x20" value="2000"    maxStack="99"  />
+    <Item num="256" name="Ninja Hood"                size="18x12" value="10000"                  equipSlot="head" isVanity="true" />
+    <Item num="257" name="Ninja Shirt"               size="18x18" value="5000"                   equipSlot="body" isVanity="true" />
+    <Item num="258" name="Ninja Pants"               size="18x18" value="5000"                   equipSlot="leg" isVanity="true" />
+    <Item num="259" name="Leather"                   size="18x20" value="50"      maxStack="99"  />
+    <Item num="260" name="Red Hat"                   size="18x14" value="1000"                   equipSlot="head" isVanity="true" />
+    <Item num="261" name="Goldfish"                  size="20x10" value="1000"    maxStack="99"  consumable="true" description="'It's smiling, might be a good snack'" healHP="20" sound="2" speed="17" />
+    <Item num="262" name="Robe"                      size="18x14" value="2000"                   equipSlot="body" isVanity="true" />
+    <Item num="263" name="Robot Hat"                 size="18x18" value="10000"                  equipSlot="head" isVanity="true" />
+    <Item num="264" name="Gold Crown"                size="18x18" value="10000"                  equipSlot="head" isVanity="true" />
+    <Item num="265" name="Hellfire Arrow"            size="10x28" value="100"     maxStack="250" ammoType="1" consumable="true" dmg="10" knockback="8" rarity="2" shoot="41" shootSpeed="6.5" weaponType="ranged" />
+    <Item num="266" name="Sandgun"                   size="40x20" value="10000"                  cantSwing="true" description="'This is a good idea!'" dmg="10" knockback="5" rarity="2" shoot="42" shootSpeed="14" sound="11" speed="20" usesAmmo="42" weaponType="ranged" />
+    <Item num="267" name="Guide Voodoo Doll"         size="14x26" value="1000"                   description="'You are a terrible person.'" equipSlot="accessory" />
+    <Item num="268" name="Diving Helmet"             size="20x20" value="1000"                   def="2" description="Greatly extends underwater breathing" equipSlot="head" rarity="2" />
+    <Item num="269" name="Familiar Shirt"            size="20x20" value="10000"                  equipSlot="body" />
+    <Item num="270" name="Familiar Pants"            size="20x20" value="10000"                  equipSlot="leg" />
+    <Item num="271" name="Familiar Wig"              size="20x20" value="10000"                  equipSlot="head" />
+    <Item num="272" name="Demon Scythe"              size="26x28" value="10000"                  cantSwing="true" costMP="18" description="Casts a demon scythe" dmg="35" knockback="5" rarity="3" scale="0.9" shoot="45" shootSpeed="0.2" sound="8" speed="20" weaponType="magic" />
+    <Item num="273" name="Night's Edge"              size="40x40" value="27000"                  dmg="42" knockback="4.5" rarity="3" scale="1.15" sound="1" speed="27" weaponType="melee" />
+    <Item num="274" name="Dark Lance"                size="40x40" value="27000"                  cantSwing="true" dmg="27" knockback="4" rarity="3" scale="1.1" shoot="46" shootSpeed="5" sound="1" speed="25" weaponType="melee" />
+    <Item num="275" name="Coral"                     size="20x22" value="400"     maxStack="250" autofire="true" canTurn="true" consumable="true" createTile="81" speed="10" />
+    <Item num="276" name="Cactus"                    size="12x12" value="10"      maxStack="250" />
+    <Item num="277" name="Trident"                   size="40x40" value="10000"                  cantSwing="true" dmg="10" knockback="5" rarity="1" scale="1.1" shoot="47" shootSpeed="4" sound="1" speed="31" weaponType="melee" />
+    <Item num="278" name="Silver Bullet"             size="8x8"   value="15"      maxStack="250" ammoType="14" consumable="true" dmg="9" knockback="3" shoot="14" shootSpeed="4.5" weaponType="ranged" />
+    <Item num="279" name="Throwing Knife"            size="18x20" value="50"      maxStack="250" cantSwing="true" consumable="true" dmg="12" knockback="2" shoot="48" shootSpeed="10" sound="1" speed="15" weaponType="ranged" />
+    <Item num="280" name="Spear"                     size="32x32" value="1000"                   cantSwing="true" dmg="8" knockback="6.5" scale="1" shoot="49" shootSpeed="3.7" sound="1" speed="31" weaponType="melee" />
+    <Item num="281" name="Blowpipe"                  size="38x6"  value="10000"                  autofire="true" cantSwing="true" description="Allows the collection of seeds for ammo" dmg="9" knockback="4" shoot="10" shootSpeed="11" sound="5" speed="45" usesAmmo="51" />
+    <Item num="282" name="Glowstick"                 size="12x12" value="10"      maxStack="99"  cantSwing="true" consumable="true" description="Works when wet" shoot="50" shootSpeed="6" sound="1" speed="15" />
+    <Item num="283" name="Seed"                      size="8x8"                   maxStack="250" ammoType="51" description="For use with Blowpipe" shoot="51" />
+    <Item num="284" name="Wooden Boomerang"          size="14x28" value="5000"                   cantSwing="true" dmg="7" knockback="5" shoot="52" shootSpeed="6.5" sound="1" speed="16" weaponType="ranged" />
+    <Item num="285" name="Aglet"                     size="24x8"  value="5000"                   description="5% increased movement speed" equipSlot="accessory" />
+    <Item num="286" name="Sticky Glowstick"          size="12x12" value="20"      maxStack="99"  cantSwing="true" consumable="true" shoot="53" shootSpeed="6" sound="1" speed="15" />
+    <Item num="287" name="Poisoned Knife"            size="18x20" value="60"      maxStack="250" cantSwing="true" consumable="true" dmg="13" knockback="2" shoot="54" shootSpeed="11" sound="1" speed="15" weaponType="ranged" />
+    <Item num="288" name="Obsidian Skin Potion"      size="14x24" value="1000"    maxStack="30"  buffMin="4" buffType="obsidianSkin" canTurn="true" consumable="true" description="Provides immunity to lava" rarity="1" sound="3" speed="17" />
+    <Item num="289" name="Regeneration Potion"       size="14x24" value="1000"    maxStack="30"  buffMin="5" buffType="regeneration" canTurn="true" consumable="true" description="Provides life regeneration" rarity="1" sound="3" speed="17" />
+    <Item num="290" name="Swiftness Potion"          size="14x24" value="1000"    maxStack="30"  buffMin="4" buffType="swiftness" canTurn="true" consumable="true" description="25% increased movement speed" rarity="1" sound="3" speed="17" />
+    <Item num="291" name="Gills Potion"              size="14x24" value="1000"    maxStack="30"  buffMin="2" buffType="gills" canTurn="true" consumable="true" description="Breathe water instead of air" rarity="1" sound="3" speed="17" />
+    <Item num="292" name="Ironskin Potion"           size="14x24" value="1000"    maxStack="30"  buffMin="5" buffType="ironskin" canTurn="true" consumable="true" description="Increase defense by 8" rarity="1" sound="3" speed="17" />
+    <Item num="293" name="Mana Regeneration Potion"  size="14x24" value="1000"    maxStack="30"  buffMin="2" buffType="manaRegeneration" canTurn="true" consumable="true" description="Increased mana regeneration" rarity="1" sound="3" speed="17" />
+    <Item num="294" name="Magic Power Potion"        size="14x24" value="1000"    maxStack="30"  buffMin="2" buffType="magicPower" canTurn="true" consumable="true" description="20% increased magic damage" rarity="1" sound="3" speed="17" />
+    <Item num="295" name="Featherfall Potion"        size="14x24" value="1000"    maxStack="30"  buffMin="5" buffType="featherfall" canTurn="true" consumable="true" description="Slows falling speed" rarity="1" sound="3" speed="17" />
+    <Item num="296" name="Spelunker Potion"          size="14x24" value="1000"    maxStack="30"  buffMin="5" buffType="spelunker" canTurn="true" consumable="true" description="Shows the location of treasure and ore" rarity="1" sound="3" speed="17" />
+    <Item num="297" name="Invisibility Potion"       size="14x24" value="1000"    maxStack="30"  buffMin="2" buffType="invisibility" canTurn="true" consumable="true" description="Grants invisibility" rarity="1" sound="3" speed="17" />
+    <Item num="298" name="Shine Potion"              size="14x24" value="1000"    maxStack="30"  buffMin="5" buffType="shine" canTurn="true" consumable="true" description="Emit an aura of light" rarity="1" sound="3" speed="17" />
+    <Item num="299" name="Night Owl Potion"          size="14x24" value="1000"    maxStack="30"  buffMin="4" buffType="nightOwl" canTurn="true" consumable="true" description="Increased night vision" rarity="1" sound="3" speed="17" />
+    <Item num="300" name="Battle Potion"             size="14x24" value="1000"    maxStack="30"  buffMin="7" buffType="battle" canTurn="true" consumable="true" description="Increase enemy spawn rate" rarity="1" sound="3" speed="17" />
+    <Item num="301" name="Thorns Potion"             size="14x24" value="1000"    maxStack="30"  buffMin="2" buffType="thorns" canTurn="true" consumable="true" description="Attackers also take damage" rarity="1" sound="3" speed="17" />
+    <Item num="302" name="Water Walking Potion"      size="14x24" value="1000"    maxStack="30"  buffMin="5" buffType="waterWalking" canTurn="true" consumable="true" description="Allows the ability to walk on water" rarity="1" sound="3" speed="17" />
+    <Item num="303" name="Archery Potion"            size="14x24" value="1000"    maxStack="30"  buffMin="4" buffType="archery" canTurn="true" consumable="true" description="20% increased arrow speed and damage" rarity="1" sound="3" speed="17" />
+    <Item num="304" name="Hunter Potion"             size="14x24" value="1000"    maxStack="30"  buffMin="5" buffType="hunter" canTurn="true" consumable="true" description="Shows the location of enemies" rarity="1" sound="3" speed="17" />
+    <Item num="305" name="Gravitation Potion"        size="14x24" value="1000"    maxStack="30"  buffMin="3" buffType="gravitation" canTurn="true" consumable="true" description="Allows the control of gravity" rarity="1" sound="3" speed="17" />
+    <Item num="306" name="Gold Chest"                size="26x22" value="5000"    maxStack="99"  autofire="true" canTurn="true" consumable="true" createTile="21" speed="10" />
+    <Item num="307" name="Daybloom Seeds"            size="12x14" value="80"      maxStack="99"  canTurn="true" consumable="true" createTile="82" speed="10" />
+    <Item num="308" name="Moonglow Seeds"            size="12x14" value="80"      maxStack="99"  canTurn="true" consumable="true" createTile="82" speed="10" />
+    <Item num="309" name="Blinkroot Seeds"           size="12x14" value="80"      maxStack="99"  canTurn="true" consumable="true" createTile="82" speed="10" />
+    <Item num="310" name="Deathweed Seeds"           size="12x14" value="80"      maxStack="99"  canTurn="true" consumable="true" createTile="82" speed="10" />
+    <Item num="311" name="Waterleaf Seeds"           size="12x14" value="80"      maxStack="99"  canTurn="true" consumable="true" createTile="82" speed="10" />
+    <Item num="312" name="Fireblossom Seeds"         size="12x14" value="80"      maxStack="99"  canTurn="true" consumable="true" createTile="82" speed="10" />
+    <Item num="313" name="Daybloom"                  size="12x14" value="100"     maxStack="99"  />
+    <Item num="314" name="Moonglow"                  size="12x14" value="100"     maxStack="99"  />
+    <Item num="315" name="Blinkroot"                 size="12x14" value="100"     maxStack="99"  />
+    <Item num="316" name="Deathweed"                 size="12x14" value="100"     maxStack="99"  />
+    <Item num="317" name="Waterleaf"                 size="12x14" value="100"     maxStack="99"  />
+    <Item num="318" name="Fireblossom"               size="12x14" value="100"     maxStack="99"  />
+    <Item num="319" name="Shark Fin"                 size="16x14" value="200"     maxStack="99"  />
+    <Item num="320" name="Feather"                   size="16x14" value="50"      maxStack="99"  />
+    <Item num="321" name="Tombstone"                 size="20x20"                 maxStack="99"  canTurn="true" consumable="true" createTile="85" speed="10" />
+    <Item num="322" name="Mime Mask"                 size="20x20" value="20000"                  equipSlot="head" />
+    <Item num="323" name="Antlion Mandible"          size="10x20" value="50"      maxStack="99"  />
+    <Item num="324" name="Illegal Gun Parts"         size="10x20" value="1000000" maxStack="99"  description="'Banned in most places'" />
+    <Item num="325" name="The Doctor's Shirt"        size="18x18" value="200000"                 equipSlot="body" isVanity="true" />
+    <Item num="326" name="The Doctor's Pants"        size="18x18" value="200000"                 equipSlot="leg" isVanity="true" />
+    <Item num="327" name="Golden Key"                size="14x20"                 maxStack="99"  description="Opens one Gold Chest" />
+    <Item num="328" name="Shadow Chest"              size="26x22" value="5000"    maxStack="99"  autofire="true" canTurn="true" consumable="true" createTile="21" speed="10" />
+    <Item num="329" name="Shadow Key"                size="14x20"                 maxStack="1"   description="Opens all Shadow Chests" />
+    <Item num="330" name="Obsidian Brick Wall"       size="12x12"                 maxStack="250" autofire="true" canTurn="true" consumable="true" createWall="20" speed="7" />
+    <Item num="331" name="Jungle Spores"             size="18x16" value="100"     maxStack="99"  />
+    <Item num="332" name="Loom"                      size="20x20" value="300"     maxStack="99"  autofire="true" canTurn="true" consumable="true" createTile="86" description="Used for crafting cloth" speed="10" />
+    <Item num="333" name="Piano"                     size="20x20" value="300"     maxStack="99"  autofire="true" canTurn="true" consumable="true" createTile="87" speed="10" />
+    <Item num="334" name="Dresser"                   size="20x20" value="300"     maxStack="99"  autofire="true" canTurn="true" consumable="true" createTile="88" speed="10" />
+    <Item num="335" name="Bench"                     size="20x20" value="300"     maxStack="99"  autofire="true" canTurn="true" consumable="true" createTile="89" speed="10" />
+    <Item num="336" name="Bathtub"                   size="20x20" value="300"     maxStack="99"  autofire="true" canTurn="true" consumable="true" createTile="90" speed="10" />
+    <Item num="337" name="Red Banner"                size="10x24" value="500"     maxStack="99"  autofire="true" canTurn="true" consumable="true" createTile="91" speed="10" />
+    <Item num="338" name="Green Banner"              size="10x24" value="500"     maxStack="99"  autofire="true" canTurn="true" consumable="true" createTile="91" speed="10" />
+    <Item num="339" name="Blue Banner"               size="10x24" value="500"     maxStack="99"  autofire="true" canTurn="true" consumable="true" createTile="91" speed="10" />
+    <Item num="340" name="Yellow Banner"             size="10x24" value="500"     maxStack="99"  autofire="true" canTurn="true" consumable="true" createTile="91" speed="10" />
+    <Item num="341" name="Lamp Post"                 size="10x24" value="500"     maxStack="99"  autofire="true" canTurn="true" consumable="true" createTile="92" speed="10" />
+    <Item num="342" name="Tiki Torch"                size="10x24" value="500"     maxStack="99"  autofire="true" canTurn="true" consumable="true" createTile="93" speed="10" />
+    <Item num="343" name="Barrel"                    size="20x20" value="500"     maxStack="99"  autofire="true" canTurn="true" consumable="true" createTile="21" speed="10" />
+    <Item num="344" name="Chinese Lantern"           size="20x20" value="500"     maxStack="99"  autofire="true" canTurn="true" consumable="true" createTile="95" speed="10" />
+    <Item num="345" name="Cooking Pot"               size="20x20" value="500"     maxStack="99"  autofire="true" canTurn="true" consumable="true" createTile="96" speed="10" />
+    <Item num="346" name="Safe"                      size="20x20" value="500000"  maxStack="99"  autofire="true" canTurn="true" consumable="true" createTile="97" speed="10" />
+    <Item num="347" name="Skull Lantern"             size="20x20" value="500"     maxStack="99"  autofire="true" canTurn="true" consumable="true" createTile="98" speed="10" />
+    <Item num="348" name="Trash Can"                 size="20x20" value="1000"    maxStack="99"  autofire="true" canTurn="true" consumable="true" createTile="21" speed="10" />
+    <Item num="349" name="Candelabra"                size="20x20" value="1500"    maxStack="99"  autofire="true" canTurn="true" consumable="true" createTile="100" speed="10" />
+    <Item num="350" name="Pink Vase"                 size="16x24" value="70"      maxStack="99"  autofire="true" canTurn="true" consumable="true" createTile="13" speed="10" />
+    <Item num="351" name="Mug"                       size="16x24" value="20"      maxStack="99"  autofire="true" canTurn="true" consumable="true" createTile="13" speed="10" />
+    <Item num="352" name="Keg"                       size="24x24" value="600"     maxStack="99"  autofire="true" canTurn="true" consumable="true" createTile="94" description="Used for brewing ale" speed="10" />
+    <Item num="353" name="Ale"                       size="10x10" value="100"     maxStack="30"  buffMin="2" buffType="tipsy" canTurn="true" consumable="true" sound="3" speed="17" />
+    <Item num="354" name="Bookcase"                  size="20x20" value="300"     maxStack="99"  autofire="true" canTurn="true" consumable="true" createTile="101" speed="10" />
+    <Item num="355" name="Throne"                    size="20x20" value="300"     maxStack="99"  autofire="true" canTurn="true" consumable="true" createTile="102" speed="10" />
+    <Item num="356" name="Bowl"                      size="16x24" value="20"      maxStack="99"  autofire="true" canTurn="true" consumable="true" createTile="103" speed="10" />
+    <Item num="357" name="Bowl of Soup"              size="10x10" value="1000"    maxStack="30"  buffMin="10" buffType="wellFed" canTurn="true" consumable="true" description="Minor improvements to all stats" rarity="1" sound="3" speed="17" />
+    <Item num="358" name="Toilet"                    size="12x30" value="150"     maxStack="99"  autofire="true" canTurn="true" consumable="true" createTile="15" speed="10" />
+    <Item num="359" name="Grandfather Clock"         size="20x20" value="300"     maxStack="99"  autofire="true" canTurn="true" consumable="true" createTile="104" speed="10" />
+    <Item num="360" name="Statue"                    size="20x20" value="300"     maxStack="99"  autofire="true" canTurn="true" consumable="true" createTile="105" speed="10" />
+    <Item num="361" name="Goblin Battle Standard"    size="28x28"                                consumable="true" description="Summons a Goblin Army" speed="45" />
+    <Item num="362" name="Tattered Cloth"            size="28x28" value="30"      maxStack="99"  />
+    <Item num="363" name="Sawmill"                   size="20x20" value="300"     maxStack="99"  autofire="true" canTurn="true" consumable="true" createTile="106" description="Used for advanced wood crafting" speed="10" />
+  </Items>
+
+  <Recipes>
+    <Recipe name="Ale"                       craftingTiles="94"   >
+      <Materials>
+        <Material name="Mug"  />
+      </Materials>
+    </Material>
+    <Recipe name="Archaeologist's Jacket"    craftingTiles="18"   >
+      <Materials>
+        <Material name="Leather" qty="15" />
+      </Materials>
+    </Material>
+    <Recipe name="Archaeologist's Pants"     craftingTiles="18"   >
+      <Materials>
+        <Material name="Leather" qty="15" />
+      </Materials>
+    </Material>
+    <Recipe name="Archery Potion"            craftingTiles="13"   >
+      <Materials>
+        <Material name="Bottled Water"  />
+        <Material name="Daybloom"       />
+        <Material name="Lens"           />
+      </Materials>
+    </Material>
+    <Recipe name="Barrel"                    craftingTiles="106"  >
+      <Materials>
+        <Material name="Iron Bar"         />
+        <Material name="Wood"     qty="9" />
+      </Materials>
+    </Material>
+    <Recipe name="Bathtub"                   craftingTiles="16"   >
+      <Materials>
+        <Material name="Iron Bar" qty="14" />
+      </Materials>
+    </Material>
+    <Recipe name="Battle Potion"             craftingTiles="13"   >
+      <Materials>
+        <Material name="Bottled Water"  />
+        <Material name="Deathweed"      />
+        <Material name="Rotten Chunk"   />
+      </Materials>
+    </Material>
+    <Recipe name="Bed"                       craftingTiles="106"  >
+      <Materials>
+        <Material name="Silk" qty="5"  />
+        <Material name="Wood" qty="15" />
+      </Materials>
+    </Material>
+    <Recipe name="Bench"                     craftingTiles="106"  >
+      <Materials>
+        <Material name="Wood" qty="8" />
+      </Materials>
+    </Material>
+    <Recipe name="Blade of Grass"            craftingTiles="16"   >
+      <Materials>
+        <Material name="Jungle Spores"     qty="20" />
+        <Material name="Silver Broadsword"          />
+        <Material name="Stinger"           qty="20" />
+      </Materials>
+    </Material>
+    <Recipe name="Blue Banner"               craftingTiles="86"   >
+      <Materials>
+        <Material name="Silk" qty="3" />
+      </Materials>
+    </Material>
+    <Recipe name="Blue Phaseblade"           craftingTiles="16"   >
+      <Materials>
+        <Material name="Meteorite Bar" qty="20" />
+        <Material name="Sapphire"      qty="10" />
+      </Materials>
+    </Material>
+    <Recipe name="Bookcase"                  craftingTiles="106"  >
+      <Materials>
+        <Material name="Book" qty="10" />
+        <Material name="Wood" qty="20" />
+      </Materials>
+    </Material>
+    <Recipe name="Bottle"                    craftingTiles="17"    qty="2">
+      <Materials>
+        <Material name="Glass"  />
+      </Materials>
+    </Material>
+    <Recipe name="Bottled Water"                                   needsWater="true">
+      <Materials>
+        <Material name="Bottle"  />
+      </Materials>
+    </Material>
+    <Recipe name="Bowl"                      craftingTiles="17"   >
+      <Materials>
+        <Material name="Clay Block" qty="2" />
+      </Materials>
+    </Material>
+    <Recipe name="Bowl of Soup"              craftingTiles="96"   >
+      <Materials>
+        <Material name="Bowl"      />
+        <Material name="Goldfish"  />
+        <Material name="Mushroom"  />
+      </Materials>
+    </Material>
+    <Recipe name="Candelabra"                craftingTiles="18"   >
+      <Materials>
+        <Material name="Gold Bar" qty="5" />
+        <Material name="Torch"    qty="3" />
+      </Materials>
+    </Material>
+    <Recipe name="Candle"                    craftingTiles="18"   >
+      <Materials>
+        <Material name="Gold Bar"  />
+        <Material name="Torch"     />
+      </Materials>
+    </Material>
+    <Recipe name="Chest"                     craftingTiles="18"   >
+      <Materials>
+        <Material name="Iron Bar" qty="2" />
+        <Material name="Wood"     qty="8" />
+      </Materials>
+    </Material>
+    <Recipe name="Chinese Lantern"           craftingTiles="18"   >
+      <Materials>
+        <Material name="Silk"  qty="5" />
+        <Material name="Torch"         />
+      </Materials>
+    </Material>
+    <Recipe name="Clay Pot"                  craftingTiles="17"   >
+      <Materials>
+        <Material name="Clay Block" qty="6" />
+      </Materials>
+    </Material>
+    <Recipe name="Cooking Pot"               craftingTiles="16"   >
+      <Materials>
+        <Material name="Iron Bar" qty="10" />
+        <Material name="Wood"     qty="2"  />
+      </Materials>
+    </Material>
+    <Recipe name="Copper Axe"                craftingTiles="16"   >
+      <Materials>
+        <Material name="Copper Bar" qty="9" />
+        <Material name="Wood"       qty="3" />
+      </Materials>
+    </Material>
+    <Recipe name="Copper Bar"                craftingTiles="17"   >
+      <Materials>
+        <Material name="Copper Ore" qty="3" />
+      </Materials>
+    </Material>
+    <Recipe name="Copper Bow"                craftingTiles="16"   >
+      <Materials>
+        <Material name="Copper Bar" qty="7" />
+      </Materials>
+    </Material>
+    <Recipe name="Copper Brick"              craftingTiles="17"   >
+      <Materials>
+        <Material name="Copper Ore"   />
+        <Material name="Stone Block"  />
+      </Materials>
+    </Material>
+    <Recipe name="Copper Brick Wall"         craftingTiles="18"    qty="4">
+      <Materials>
+        <Material name="Copper Brick"  />
+      </Materials>
+    </Material>
+    <Recipe name="Copper Broadsword"         craftingTiles="16"   >
+      <Materials>
+        <Material name="Copper Bar" qty="8" />
+      </Materials>
+    </Material>
+    <Recipe name="Copper Chainmail"          craftingTiles="16"   >
+      <Materials>
+        <Material name="Copper Bar" qty="25" />
+      </Materials>
+    </Material>
+    <Recipe name="Copper Chandelier"         craftingTiles="16"   >
+      <Materials>
+        <Material name="Copper Bar" qty="4" />
+        <Material name="Iron Chain"         />
+        <Material name="Torch"      qty="4" />
+      </Materials>
+    </Material>
+    <Recipe name="Copper Coin"                                     qty="100">
+      <Materials>
+        <Material name="Silver Coin"  />
+      </Materials>
+    </Material>
+    <Recipe name="Copper Greaves"            craftingTiles="16"   >
+      <Materials>
+        <Material name="Copper Bar" qty="20" />
+      </Materials>
+    </Material>
+    <Recipe name="Copper Hammer"             craftingTiles="16"   >
+      <Materials>
+        <Material name="Copper Bar" qty="10" />
+        <Material name="Wood"       qty="3"  />
+      </Materials>
+    </Material>
+    <Recipe name="Copper Helmet"             craftingTiles="16"   >
+      <Materials>
+        <Material name="Copper Bar" qty="15" />
+      </Materials>
+    </Material>
+    <Recipe name="Copper Pickaxe"            craftingTiles="16"   >
+      <Materials>
+        <Material name="Copper Bar" qty="12" />
+        <Material name="Wood"       qty="4"  />
+      </Materials>
+    </Material>
+    <Recipe name="Copper Shortsword"         craftingTiles="16"   >
+      <Materials>
+        <Material name="Copper Bar" qty="7" />
+      </Materials>
+    </Material>
+    <Recipe name="Copper Watch"              craftingTiles="14,15">
+      <Materials>
+        <Material name="Copper Bar" qty="10" />
+        <Material name="Iron Chain"          />
+      </Materials>
+    </Material>
+    <Recipe name="Demon Bow"                 craftingTiles="16"   >
+      <Materials>
+        <Material name="Demonite Bar" qty="8" />
+      </Materials>
+    </Material>
+    <Recipe name="Demonite Bar"              craftingTiles="17"   >
+      <Materials>
+        <Material name="Demonite Ore" qty="4" />
+      </Materials>
+    </Material>
+    <Recipe name="Depth Meter"               craftingTiles="14,15">
+      <Materials>
+        <Material name="Copper Bar" qty="10" />
+        <Material name="Gold Bar"   qty="6"  />
+        <Material name="Silver Bar" qty="8"  />
+      </Materials>
+    </Material>
+    <Recipe name="Dirt Wall"                 craftingTiles="18"    qty="4">
+      <Materials>
+        <Material name="Dirt Block"  />
+      </Materials>
+    </Material>
+    <Recipe name="Dresser"                   craftingTiles="106"  >
+      <Materials>
+        <Material name="Wood" qty="16" />
+      </Materials>
+    </Material>
+    <Recipe name="Empty Bucket"              craftingTiles="16"   >
+      <Materials>
+        <Material name="Iron Bar" qty="3" />
+      </Materials>
+    </Material>
+    <Recipe name="Featherfall Potion"        craftingTiles="13"   >
+      <Materials>
+        <Material name="Blinkroot"      />
+        <Material name="Bottled Water"  />
+        <Material name="Daybloom"       />
+        <Material name="Feather"        />
+      </Materials>
+    </Material>
+    <Recipe name="Fiery Greatsword"          craftingTiles="16"   >
+      <Materials>
+        <Material name="Hellstone Bar" qty="35" />
+      </Materials>
+    </Material>
+    <Recipe name="Fish Bowl"                 craftingTiles="18"   >
+      <Materials>
+        <Material name="Bottled Water"         />
+        <Material name="Goldfish"      qty="2" />
+      </Materials>
+    </Material>
+    <Recipe name="Flamarang"                 craftingTiles="16"   >
+      <Materials>
+        <Material name="Enchanted Boomerang"          />
+        <Material name="Hellstone Bar"       qty="15" />
+      </Materials>
+    </Material>
+    <Recipe name="Flaming Arrow"                                   qty="3">
+      <Materials>
+        <Material name="Torch"                />
+        <Material name="Wooden Arrow" qty="3" />
+      </Materials>
+    </Material>
+    <Recipe name="Furnace"                   craftingTiles="18"   >
+      <Materials>
+        <Material name="Stone Block" qty="20" />
+        <Material name="Torch"       qty="3"  />
+        <Material name="Wood"        qty="4"  />
+      </Materials>
+    </Material>
+    <Recipe name="Gills Potion"              craftingTiles="13"   >
+      <Materials>
+        <Material name="Bottled Water"  />
+        <Material name="Coral"          />
+        <Material name="Waterleaf"      />
+      </Materials>
+    </Material>
+    <Recipe name="Glass"                     craftingTiles="17"   >
+      <Materials>
+        <Material name="Sand Block" qty="2" />
+      </Materials>
+    </Material>
+    <Recipe name="Goblin Battle Standard"    craftingTiles="86"   >
+      <Materials>
+        <Material name="Tattered Cloth" qty="10" />
+        <Material name="Wood"           qty="5"  />
+      </Materials>
+    </Material>
+    <Recipe name="Goggles"                   craftingTiles="18,15">
+      <Materials>
+        <Material name="Lens" qty="2" />
+      </Materials>
+    </Material>
+    <Recipe name="Gold Axe"                  craftingTiles="16"   >
+      <Materials>
+        <Material name="Gold Bar" qty="9" />
+        <Material name="Wood"     qty="3" />
+      </Materials>
+    </Material>
+    <Recipe name="Gold Bar"                  craftingTiles="17"   >
+      <Materials>
+        <Material name="Gold Ore" qty="4" />
+      </Materials>
+    </Material>
+    <Recipe name="Gold Bow"                  craftingTiles="16"   >
+      <Materials>
+        <Material name="Gold Bar" qty="7" />
+      </Materials>
+    </Material>
+    <Recipe name="Gold Brick"                craftingTiles="17"   >
+      <Materials>
+        <Material name="Gold Ore"     />
+        <Material name="Stone Block"  />
+      </Materials>
+    </Material>
+    <Recipe name="Gold Brick Wall"           craftingTiles="18"    qty="4">
+      <Materials>
+        <Material name="Gold Brick"  />
+      </Materials>
+    </Material>
+    <Recipe name="Gold Broadsword"           craftingTiles="16"   >
+      <Materials>
+        <Material name="Gold Bar" qty="8" />
+      </Materials>
+    </Material>
+    <Recipe name="Gold Chainmail"            craftingTiles="16"   >
+      <Materials>
+        <Material name="Gold Bar" qty="35" />
+      </Materials>
+    </Material>
+    <Recipe name="Gold Chandelier"           craftingTiles="16"   >
+      <Materials>
+        <Material name="Gold Bar"   qty="4" />
+        <Material name="Iron Chain"         />
+        <Material name="Torch"      qty="4" />
+      </Materials>
+    </Material>
+    <Recipe name="Gold Coin"                                       qty="100">
+      <Materials>
+        <Material name="Platinum Coin" qty="100" />
+      </Materials>
+    </Material>
+    <Recipe name="Gold Crown"                craftingTiles="16"   >
+      <Materials>
+        <Material name="Gold Bar" qty="30" />
+        <Material name="Ruby"              />
+      </Materials>
+    </Material>
+    <Recipe name="Gold Greaves"              craftingTiles="16"   >
+      <Materials>
+        <Material name="Gold Bar" qty="30" />
+      </Materials>
+    </Material>
+    <Recipe name="Gold Hammer"               craftingTiles="16"   >
+      <Materials>
+        <Material name="Gold Bar" qty="10" />
+        <Material name="Wood"     qty="3"  />
+      </Materials>
+    </Material>
+    <Recipe name="Gold Helmet"               craftingTiles="16"   >
+      <Materials>
+        <Material name="Gold Bar" qty="25" />
+      </Materials>
+    </Material>
+    <Recipe name="Gold Pickaxe"              craftingTiles="16"   >
+      <Materials>
+        <Material name="Gold Bar" qty="12" />
+        <Material name="Wood"     qty="4"  />
+      </Materials>
+    </Material>
+    <Recipe name="Gold Shortsword"           craftingTiles="16"   >
+      <Materials>
+        <Material name="Gold Bar" qty="7" />
+      </Materials>
+    </Material>
+    <Recipe name="Gold Watch"                craftingTiles="14,15">
+      <Materials>
+        <Material name="Gold Bar"   qty="10" />
+        <Material name="Iron Chain"          />
+      </Materials>
+    </Material>
+    <Recipe name="Grandfather Clock"         craftingTiles="106"  >
+      <Materials>
+        <Material name="Glass"    qty="6"  />
+        <Material name="Gold Bar" qty="3"  />
+        <Material name="Wood"     qty="10" />
+      </Materials>
+    </Material>
+    <Recipe name="Grappling Hook"            craftingTiles="16"   >
+      <Materials>
+        <Material name="Hook"               />
+        <Material name="Iron Chain" qty="3" />
+      </Materials>
+    </Material>
+    <Recipe name="Gravitation Potion"        craftingTiles="13"   >
+      <Materials>
+        <Material name="Blinkroot"      />
+        <Material name="Bottled Water"  />
+        <Material name="Deathweed"      />
+        <Material name="Feather"        />
+        <Material name="Fireblossom"    />
+      </Materials>
+    </Material>
+    <Recipe name="Gray Brick"                craftingTiles="17"   >
+      <Materials>
+        <Material name="Stone Block" qty="2" />
+      </Materials>
+    </Material>
+    <Recipe name="Gray Brick Wall"           craftingTiles="18"    qty="4">
+      <Materials>
+        <Material name="Gray Brick"  />
+      </Materials>
+    </Material>
+    <Recipe name="Green Banner"              craftingTiles="86"   >
+      <Materials>
+        <Material name="Silk" qty="3" />
+      </Materials>
+    </Material>
+    <Recipe name="Green Dye"                 craftingTiles="13"   >
+      <Materials>
+        <Material name="Bottle"                     />
+        <Material name="Jungle Grass Seeds" qty="3" />
+      </Materials>
+    </Material>
+    <Recipe name="Green Phaseblade"          craftingTiles="16"   >
+      <Materials>
+        <Material name="Emerald"       qty="10" />
+        <Material name="Meteorite Bar" qty="20" />
+      </Materials>
+    </Material>
+    <Recipe name="Healing Potion"            craftingTiles="13"   >
+      <Materials>
+        <Material name="Glowing Mushroom"              />
+        <Material name="Lesser Healing Potion" qty="2" />
+      </Materials>
+    </Material>
+    <Recipe name="Hellstone Bar"             craftingTiles="77"   >
+      <Materials>
+        <Material name="Hellstone" qty="4" />
+        <Material name="Obsidian"          />
+      </Materials>
+    </Material>
+    <Recipe name="Hellstone Brick"           craftingTiles="17"   >
+      <Materials>
+        <Material name="Hellstone"    />
+        <Material name="Stone Block"  />
+      </Materials>
+    </Material>
+    <Recipe name="Hero's Hat"                craftingTiles="86"   >
+      <Materials>
+        <Material name="Green Dye" qty="3"  />
+        <Material name="Silk"      qty="20" />
+      </Materials>
+    </Material>
+    <Recipe name="Hero's Pants"              craftingTiles="86"   >
+      <Materials>
+        <Material name="Green Dye" qty="3"  />
+        <Material name="Silk"      qty="20" />
+      </Materials>
+    </Material>
+    <Recipe name="Hero's Shirt"              craftingTiles="86"   >
+      <Materials>
+        <Material name="Green Dye" qty="3"  />
+        <Material name="Silk"      qty="20" />
+      </Materials>
+    </Material>
+    <Recipe name="Hunter Potion"             craftingTiles="13"   >
+      <Materials>
+        <Material name="Blinkroot"      />
+        <Material name="Bottled Water"  />
+        <Material name="Daybloom"       />
+        <Material name="Shark Fin"      />
+      </Materials>
+    </Material>
+    <Recipe name="Invisibility Potion"       craftingTiles="13"   >
+      <Materials>
+        <Material name="Blinkroot"      />
+        <Material name="Bottled Water"  />
+        <Material name="Moonglow"       />
+      </Materials>
+    </Material>
+    <Recipe name="Iron Anvil"                craftingTiles="18"   >
+      <Materials>
+        <Material name="Iron Bar" qty="5" />
+      </Materials>
+    </Material>
+    <Recipe name="Iron Axe"                  craftingTiles="16"   >
+      <Materials>
+        <Material name="Iron Bar" qty="9" />
+        <Material name="Wood"     qty="3" />
+      </Materials>
+    </Material>
+    <Recipe name="Iron Bar"                  craftingTiles="17"   >
+      <Materials>
+        <Material name="Iron Ore" qty="3" />
+      </Materials>
+    </Material>
+    <Recipe name="Iron Bow"                  craftingTiles="16"   >
+      <Materials>
+        <Material name="Iron Bar" qty="7" />
+      </Materials>
+    </Material>
+    <Recipe name="Iron Broadsword"           craftingTiles="16"   >
+      <Materials>
+        <Material name="Iron Bar" qty="8" />
+      </Materials>
+    </Material>
+    <Recipe name="Iron Chain"                craftingTiles="16"   >
+      <Materials>
+        <Material name="Iron Bar" qty="3" />
+      </Materials>
+    </Material>
+    <Recipe name="Iron Chainmail"            craftingTiles="16"   >
+      <Materials>
+        <Material name="Iron Bar" qty="30" />
+      </Materials>
+    </Material>
+    <Recipe name="Iron Greaves"              craftingTiles="16"   >
+      <Materials>
+        <Material name="Iron Bar" qty="25" />
+      </Materials>
+    </Material>
+    <Recipe name="Iron Hammer"               craftingTiles="16"   >
+      <Materials>
+        <Material name="Iron Bar" qty="10" />
+        <Material name="Wood"     qty="3"  />
+      </Materials>
+    </Material>
+    <Recipe name="Iron Helmet"               craftingTiles="16"   >
+      <Materials>
+        <Material name="Iron Bar" qty="20" />
+      </Materials>
+    </Material>
+    <Recipe name="Iron Pickaxe"              craftingTiles="16"   >
+      <Materials>
+        <Material name="Iron Bar" qty="12" />
+        <Material name="Wood"     qty="3"  />
+      </Materials>
+    </Material>
+    <Recipe name="Iron Shortsword"           craftingTiles="16"   >
+      <Materials>
+        <Material name="Iron Bar" qty="7" />
+      </Materials>
+    </Material>
+    <Recipe name="Ironskin Potion"           craftingTiles="13"   >
+      <Materials>
+        <Material name="Bottled Water"  />
+        <Material name="Daybloom"       />
+        <Material name="Iron Ore"       />
+      </Materials>
+    </Material>
+    <Recipe name="Ivy Whip"                  craftingTiles="16"   >
+      <Materials>
+        <Material name="Grappling Hook"          />
+        <Material name="Jungle Spores"  qty="15" />
+        <Material name="Vine"           qty="3"  />
+      </Materials>
+    </Material>
+    <Recipe name="Jungle Hat"                craftingTiles="16"   >
+      <Materials>
+        <Material name="Emerald"                />
+        <Material name="Jungle Spores" qty="15" />
+        <Material name="Sapphire"               />
+        <Material name="Silver Helmet"          />
+      </Materials>
+    </Material>
+    <Recipe name="Jungle Pants"              craftingTiles="16"   >
+      <Materials>
+        <Material name="Amethyst"                />
+        <Material name="Jungle Spores"  qty="20" />
+        <Material name="Silver Greaves"          />
+        <Material name="Topaz"                   />
+        <Material name="Vine"           qty="2"  />
+      </Materials>
+    </Material>
+    <Recipe name="Jungle Shirt"              craftingTiles="16"   >
+      <Materials>
+        <Material name="Diamond"                   />
+        <Material name="Jungle Spores"    qty="20" />
+        <Material name="Ruby"                      />
+        <Material name="Silver Chainmail"          />
+        <Material name="Stinger"          qty="20" />
+      </Materials>
+    </Material>
+    <Recipe name="Keg"                       craftingTiles="106"  >
+      <Materials>
+        <Material name="Wood" qty="14" />
+      </Materials>
+    </Material>
+    <Recipe name="Lamp Post"                 craftingTiles="16"   >
+      <Materials>
+        <Material name="Glass"    qty="2" />
+        <Material name="Iron Bar" qty="3" />
+        <Material name="Torch"            />
+      </Materials>
+    </Material>
+    <Recipe name="Leather"                   craftingTiles="18"   >
+      <Materials>
+        <Material name="Rotten Chunk" qty="5" />
+      </Materials>
+    </Material>
+    <Recipe name="Lesser Healing Potion"     craftingTiles="13"    qty="2">
+      <Materials>
+        <Material name="Bottle"   qty="2" />
+        <Material name="Gel"      qty="2" />
+        <Material name="Mushroom"         />
+      </Materials>
+    </Material>
+    <Recipe name="Lesser Mana Potion"        craftingTiles="13"    qty="2">
+      <Materials>
+        <Material name="Bottle"      qty="2" />
+        <Material name="Fallen Star"         />
+        <Material name="Gel"         qty="2" />
+      </Materials>
+    </Material>
+    <Recipe name="Lesser Restoration Potion" craftingTiles="13"   >
+      <Materials>
+        <Material name="Lesser Healing Potion"  />
+        <Material name="Lesser Mana Potion"     />
+      </Materials>
+    </Material>
+    <Recipe name="Light's Bane"              craftingTiles="16"   >
+      <Materials>
+        <Material name="Demonite Bar" qty="10" />
+      </Materials>
+    </Material>
+    <Recipe name="Loom"                      craftingTiles="106"  >
+      <Materials>
+        <Material name="Wood" qty="12" />
+      </Materials>
+    </Material>
+    <Recipe name="Magic Power Potion"        craftingTiles="13"   >
+      <Materials>
+        <Material name="Bottled Water"  />
+        <Material name="Deathweed"      />
+        <Material name="Fallen Star"    />
+        <Material name="Moonglow"       />
+      </Materials>
+    </Material>
+    <Recipe name="Mana Crystal"                                   >
+      <Materials>
+        <Material name="Fallen Star" qty="10" />
+      </Materials>
+    </Material>
+    <Recipe name="Mana Potion"               craftingTiles="13"   >
+      <Materials>
+        <Material name="Glowing Mushroom"           />
+        <Material name="Lesser Mana Potion" qty="2" />
+      </Materials>
+    </Material>
+    <Recipe name="Mana Regeneration Potion"  craftingTiles="13"   >
+      <Materials>
+        <Material name="Bottled Water"  />
+        <Material name="Daybloom"       />
+        <Material name="Fallen Star"    />
+        <Material name="Moonglow"       />
+      </Materials>
+    </Material>
+    <Recipe name="Meteor Hamaxe"             craftingTiles="16"   >
+      <Materials>
+        <Material name="Meteorite Bar" qty="35" />
+      </Materials>
+    </Material>
+    <Recipe name="Meteor Helmet"             craftingTiles="16"   >
+      <Materials>
+        <Material name="Meteorite Bar" qty="25" />
+      </Materials>
+    </Material>
+    <Recipe name="Meteor Leggings"           craftingTiles="16"   >
+      <Materials>
+        <Material name="Meteorite Bar" qty="30" />
+      </Materials>
+    </Material>
+    <Recipe name="Meteor Shot"               craftingTiles="16"    qty="25">
+      <Materials>
+        <Material name="Meteorite Bar"          />
+        <Material name="Musket Ball"   qty="25" />
+      </Materials>
+    </Material>
+    <Recipe name="Meteor Suit"               craftingTiles="16"   >
+      <Materials>
+        <Material name="Meteorite Bar" qty="35" />
+      </Materials>
+    </Material>
+    <Recipe name="Meteorite Bar"             craftingTiles="17"   >
+      <Materials>
+        <Material name="Meteorite" qty="6" />
+      </Materials>
+    </Material>
+    <Recipe name="Molten Breastplate"        craftingTiles="16"   >
+      <Materials>
+        <Material name="Gold Chainmail"          />
+        <Material name="Hellstone Bar"  qty="40" />
+      </Materials>
+    </Material>
+    <Recipe name="Molten Fury"               craftingTiles="16"   >
+      <Materials>
+        <Material name="Hellstone Bar" qty="25" />
+      </Materials>
+    </Material>
+    <Recipe name="Molten Greaves"            craftingTiles="16"   >
+      <Materials>
+        <Material name="Gold Greaves"           />
+        <Material name="Hellstone Bar" qty="35" />
+      </Materials>
+    </Material>
+    <Recipe name="Molten Hamaxe"             craftingTiles="16"   >
+      <Materials>
+        <Material name="Hellstone Bar" qty="35" />
+      </Materials>
+    </Material>
+    <Recipe name="Molten Helmet"             craftingTiles="16"   >
+      <Materials>
+        <Material name="Gold Helmet"            />
+        <Material name="Hellstone Bar" qty="30" />
+      </Materials>
+    </Material>
+    <Recipe name="Molten Pickaxe"            craftingTiles="16"   >
+      <Materials>
+        <Material name="Hellstone Bar" qty="35" />
+      </Materials>
+    </Material>
+    <Recipe name="Mug"                       craftingTiles="17"   >
+      <Materials>
+        <Material name="Glass"  />
+      </Materials>
+    </Material>
+    <Recipe name="Necro Breastplate"         craftingTiles="18"   >
+      <Materials>
+        <Material name="Bone"   qty="35" />
+        <Material name="Cobweb" qty="50" />
+      </Materials>
+    </Material>
+    <Recipe name="Necro Greaves"             craftingTiles="18"   >
+      <Materials>
+        <Material name="Bone"   qty="30" />
+        <Material name="Cobweb" qty="45" />
+      </Materials>
+    </Material>
+    <Recipe name="Necro Helmet"              craftingTiles="18"   >
+      <Materials>
+        <Material name="Bone"   qty="25" />
+        <Material name="Cobweb" qty="40" />
+      </Materials>
+    </Material>
+    <Recipe name="Night Owl Potion"          craftingTiles="13"   >
+      <Materials>
+        <Material name="Blinkroot"      />
+        <Material name="Bottled Water"  />
+        <Material name="Daybloom"       />
+      </Materials>
+    </Material>
+    <Recipe name="Night's Edge"              craftingTiles="26"   >
+      <Materials>
+        <Material name="Blade of Grass"    />
+        <Material name="Fiery Greatsword"  />
+        <Material name="Light's Bane"      />
+        <Material name="Muramasa"          />
+      </Materials>
+    </Material>
+    <Recipe name="Nightmare Pickaxe"         craftingTiles="16"   >
+      <Materials>
+        <Material name="Demonite Bar" qty="12" />
+        <Material name="Shadow Scale" qty="6"  />
+      </Materials>
+    </Material>
+    <Recipe name="Obsidian Brick"            craftingTiles="17"   >
+      <Materials>
+        <Material name="Obsidian" qty="2" />
+      </Materials>
+    </Material>
+    <Recipe name="Obsidian Brick Wall"       craftingTiles="17"    qty="4">
+      <Materials>
+        <Material name="Obsidian Brick"  />
+      </Materials>
+    </Material>
+    <Recipe name="Obsidian Skin Potion"      craftingTiles="13"   >
+      <Materials>
+        <Material name="Bottled Water"  />
+        <Material name="Fireblossom"    />
+        <Material name="Obsidian"       />
+        <Material name="Waterleaf"      />
+      </Materials>
+    </Material>
+    <Recipe name="Obsidian Skull"            craftingTiles="17"   >
+      <Materials>
+        <Material name="Obsidian" qty="20" />
+      </Materials>
+    </Material>
+    <Recipe name="Phoenix Blaster"           craftingTiles="16"   >
+      <Materials>
+        <Material name="Handgun"                />
+        <Material name="Hellstone Bar" qty="20" />
+      </Materials>
+    </Material>
+    <Recipe name="Piano"                     craftingTiles="106"  >
+      <Materials>
+        <Material name="Bone" qty="4"  />
+        <Material name="Book"          />
+        <Material name="Wood" qty="15" />
+      </Materials>
+    </Material>
+    <Recipe name="Pink Vase"                 craftingTiles="17"   >
+      <Materials>
+        <Material name="Clay Block" qty="4" />
+      </Materials>
+    </Material>
+    <Recipe name="Platinum Coin"                                  >
+      <Materials>
+        <Material name="Gold Coin" qty="100" />
+      </Materials>
+    </Material>
+    <Recipe name="Poisoned Knife"                                  qty="20">
+      <Materials>
+        <Material name="Throwing Knife" qty="20" />
+        <Material name="Vile Powder"             />
+      </Materials>
+    </Material>
+    <Recipe name="Purple Phaseblade"         craftingTiles="16"   >
+      <Materials>
+        <Material name="Amethyst"      qty="10" />
+        <Material name="Meteorite Bar" qty="20" />
+      </Materials>
+    </Material>
+    <Recipe name="Red Banner"                craftingTiles="86"   >
+      <Materials>
+        <Material name="Silk" qty="3" />
+      </Materials>
+    </Material>
+    <Recipe name="Red Brick"                 craftingTiles="17"   >
+      <Materials>
+        <Material name="Clay Block" qty="2" />
+      </Materials>
+    </Material>
+    <Recipe name="Red Brick Wall"            craftingTiles="18"    qty="4">
+      <Materials>
+        <Material name="Red Brick"  />
+      </Materials>
+    </Material>
+    <Recipe name="Red Phaseblade"            craftingTiles="16"   >
+      <Materials>
+        <Material name="Meteorite Bar" qty="20" />
+        <Material name="Ruby"          qty="10" />
+      </Materials>
+    </Material>
+    <Recipe name="Regeneration Potion"       craftingTiles="13"   >
+      <Materials>
+        <Material name="Bottled Water"  />
+        <Material name="Daybloom"       />
+        <Material name="Mushroom"       />
+      </Materials>
+    </Material>
+    <Recipe name="Restoration Potion"        craftingTiles="13"   >
+      <Materials>
+        <Material name="Healing Potion"  />
+        <Material name="Mana Potion"     />
+      </Materials>
+    </Material>
+    <Recipe name="Robe"                      craftingTiles="86"   >
+      <Materials>
+        <Material name="Ruby" qty="3"  />
+        <Material name="Silk" qty="30" />
+      </Materials>
+    </Material>
+    <Recipe name="Sandgun"                   craftingTiles="17"   >
+      <Materials>
+        <Material name="Antlion Mandible"  qty="10" />
+        <Material name="Illegal Gun Parts"          />
+        <Material name="Topaz"             qty="5"  />
+      </Materials>
+    </Material>
+    <Recipe name="Sawmill"                   craftingTiles="18"   >
+      <Materials>
+        <Material name="Iron Bar"   qty="2"  />
+        <Material name="Iron Chain"          />
+        <Material name="Wood"       qty="10" />
+      </Materials>
+    </Material>
+    <Recipe name="Shadow Greaves"            craftingTiles="16"   >
+      <Materials>
+        <Material name="Demonite Bar" qty="20" />
+        <Material name="Shadow Scale" qty="15" />
+      </Materials>
+    </Material>
+    <Recipe name="Shadow Helmet"             craftingTiles="16"   >
+      <Materials>
+        <Material name="Demonite Bar" qty="15" />
+        <Material name="Shadow Scale" qty="10" />
+      </Materials>
+    </Material>
+    <Recipe name="Shadow Scalemail"          craftingTiles="16"   >
+      <Materials>
+        <Material name="Demonite Bar" qty="25" />
+        <Material name="Shadow Scale" qty="20" />
+      </Materials>
+    </Material>
+    <Recipe name="Shine Potion"              craftingTiles="13"   >
+      <Materials>
+        <Material name="Bottled Water"     />
+        <Material name="Daybloom"          />
+        <Material name="Glowing Mushroom"  />
+      </Materials>
+    </Material>
+    <Recipe name="Sign"                      craftingTiles="18"   >
+      <Materials>
+        <Material name="Wood" qty="6" />
+      </Materials>
+    </Material>
+    <Recipe name="Silk"                      craftingTiles="86"   >
+      <Materials>
+        <Material name="Cobweb" qty="10" />
+      </Materials>
+    </Material>
+    <Recipe name="Silver Axe"                craftingTiles="16"   >
+      <Materials>
+        <Material name="Silver Bar" qty="9" />
+        <Material name="Wood"       qty="3" />
+      </Materials>
+    </Material>
+    <Recipe name="Silver Bar"                craftingTiles="17"   >
+      <Materials>
+        <Material name="Silver Ore" qty="4" />
+      </Materials>
+    </Material>
+    <Recipe name="Silver Bow"                craftingTiles="16"   >
+      <Materials>
+        <Material name="Silver Bar" qty="7" />
+      </Materials>
+    </Material>
+    <Recipe name="Silver Brick"              craftingTiles="17"   >
+      <Materials>
+        <Material name="Silver Ore"   />
+        <Material name="Stone Block"  />
+      </Materials>
+    </Material>
+    <Recipe name="Silver Brick Wall"         craftingTiles="18"    qty="4">
+      <Materials>
+        <Material name="Silver Brick"  />
+      </Materials>
+    </Material>
+    <Recipe name="Silver Broadsword"         craftingTiles="16"   >
+      <Materials>
+        <Material name="Silver Bar" qty="8" />
+      </Materials>
+    </Material>
+    <Recipe name="Silver Chainmail"          craftingTiles="16"   >
+      <Materials>
+        <Material name="Silver Bar" qty="30" />
+      </Materials>
+    </Material>
+    <Recipe name="Silver Chandelier"         craftingTiles="16"   >
+      <Materials>
+        <Material name="Iron Chain"         />
+        <Material name="Silver Bar" qty="4" />
+        <Material name="Torch"      qty="4" />
+      </Materials>
+    </Material>
+    <Recipe name="Silver Coin"                                     qty="100">
+      <Materials>
+        <Material name="Gold Coin" qty="100" />
+      </Materials>
+    </Material>
+    <Recipe name="Silver Greaves"            craftingTiles="16"   >
+      <Materials>
+        <Material name="Silver Bar" qty="25" />
+      </Materials>
+    </Material>
+    <Recipe name="Silver Hammer"             craftingTiles="16"   >
+      <Materials>
+        <Material name="Silver Bar" qty="10" />
+        <Material name="Wood"       qty="3"  />
+      </Materials>
+    </Material>
+    <Recipe name="Silver Helmet"             craftingTiles="16"   >
+      <Materials>
+        <Material name="Silver Bar" qty="20" />
+      </Materials>
+    </Material>
+    <Recipe name="Silver Pickaxe"            craftingTiles="16"   >
+      <Materials>
+        <Material name="Silver Bar" qty="12" />
+        <Material name="Wood"       qty="4"  />
+      </Materials>
+    </Material>
+    <Recipe name="Silver Shortsword"         craftingTiles="16"   >
+      <Materials>
+        <Material name="Silver Bar" qty="6" />
+      </Materials>
+    </Material>
+    <Recipe name="Silver Watch"              craftingTiles="14,15">
+      <Materials>
+        <Material name="Iron Chain"          />
+        <Material name="Silver Bar" qty="10" />
+      </Materials>
+    </Material>
+    <Recipe name="Skull Lantern"             craftingTiles="18"   >
+      <Materials>
+        <Material name="Bone"  qty="10" />
+        <Material name="Torch"          />
+      </Materials>
+    </Material>
+    <Recipe name="Space Gun"                 craftingTiles="16"   >
+      <Materials>
+        <Material name="Fallen Star"      qty="10" />
+        <Material name="Flintlock Pistol"          />
+        <Material name="Meteorite Bar"    qty="30" />
+      </Materials>
+    </Material>
+    <Recipe name="Spelunker Potion"          craftingTiles="13"   >
+      <Materials>
+        <Material name="Blinkroot"      />
+        <Material name="Bottled Water"  />
+        <Material name="Gold Ore"       />
+        <Material name="Moonglow"       />
+      </Materials>
+    </Material>
+    <Recipe name="Star Cannon"               craftingTiles="16"   >
+      <Materials>
+        <Material name="Fallen Star"   qty="5"  />
+        <Material name="Meteorite Bar" qty="20" />
+        <Material name="Minishark"              />
+      </Materials>
+    </Material>
+    <Recipe name="Statue"                    craftingTiles="18"   >
+      <Materials>
+        <Material name="Stone Block" qty="100" />
+      </Materials>
+    </Material>
+    <Recipe name="Sticky Bomb"                                    >
+      <Materials>
+        <Material name="Bomb"         />
+        <Material name="Gel"  qty="5" />
+      </Materials>
+    </Material>
+    <Recipe name="Sticky Glowstick"                               >
+      <Materials>
+        <Material name="Gel"        />
+        <Material name="Glowstick"  />
+      </Materials>
+    </Material>
+    <Recipe name="Stone Wall"                craftingTiles="18"    qty="4">
+      <Materials>
+        <Material name="Stone Block"  />
+      </Materials>
+    </Material>
+    <Recipe name="Sunglasses"                craftingTiles="18,15">
+      <Materials>
+        <Material name="Black Lens" qty="2" />
+      </Materials>
+    </Material>
+    <Recipe name="Suspicious Looking Eye"    craftingTiles="26"   >
+      <Materials>
+        <Material name="Lens" qty="6" />
+      </Materials>
+    </Material>
+    <Recipe name="Swiftness Potion"          craftingTiles="13"   >
+      <Materials>
+        <Material name="Blinkroot"      />
+        <Material name="Bottled Water"  />
+        <Material name="Cactus"         />
+      </Materials>
+    </Material>
+    <Recipe name="The Breaker"               craftingTiles="16"   >
+      <Materials>
+        <Material name="Demonite Bar" qty="10" />
+        <Material name="Shadow Scale" qty="5"  />
+      </Materials>
+    </Material>
+    <Recipe name="Thorn Chakram"             craftingTiles="16"   >
+      <Materials>
+        <Material name="Jungle Spores" qty="15" />
+        <Material name="Stinger"       qty="20" />
+      </Materials>
+    </Material>
+    <Recipe name="Thorns Potion"             craftingTiles="13"   >
+      <Materials>
+        <Material name="Bottled Water"  />
+        <Material name="Cactus"         />
+        <Material name="Deathweed"      />
+        <Material name="Stinger"        />
+        <Material name="Worm Teeth"     />
+      </Materials>
+    </Material>
+    <Recipe name="Throne"                    craftingTiles="16"   >
+      <Materials>
+        <Material name="Gold Bar" qty="30" />
+        <Material name="Silk"     qty="20" />
+      </Materials>
+    </Material>
+    <Recipe name="Tiki Torch"                craftingTiles="18"   >
+      <Materials>
+        <Material name="Torch"         />
+        <Material name="Wood"  qty="3" />
+      </Materials>
+    </Material>
+    <Recipe name="Toilet"                    craftingTiles="16"   >
+      <Materials>
+        <Material name="Iron Bar" qty="6" />
+      </Materials>
+    </Material>
+    <Recipe name="Torch"                                           qty="3">
+      <Materials>
+        <Material name="Gel"   />
+        <Material name="Wood"  />
+      </Materials>
+    </Material>
+    <Recipe name="Trash Can"                 craftingTiles="16"   >
+      <Materials>
+        <Material name="Iron Bar" qty="8" />
+      </Materials>
+    </Material>
+    <Recipe name="Tuxedo Pants"              craftingTiles="86"   >
+      <Materials>
+        <Material name="Black Dye" qty="3"  />
+        <Material name="Silk"      qty="20" />
+      </Materials>
+    </Material>
+    <Recipe name="Tuxedo Shirt"              craftingTiles="86"   >
+      <Materials>
+        <Material name="Black Dye" qty="3"  />
+        <Material name="Silk"      qty="20" />
+      </Materials>
+    </Material>
+    <Recipe name="Unholy Arrow"              craftingTiles="16"    qty="3">
+      <Materials>
+        <Material name="Wooden Arrow" qty="3" />
+        <Material name="Worm Tooth"           />
+      </Materials>
+    </Material>
+    <Recipe name="Vile Powder"               craftingTiles="13"    qty="5">
+      <Materials>
+        <Material name="Vile Mushroom"  />
+      </Materials>
+    </Material>
+    <Recipe name="War Axe of the Night"      craftingTiles="16"   >
+      <Materials>
+        <Material name="Demonite Bar" qty="10" />
+      </Materials>
+    </Material>
+    <Recipe name="Water Walking Potion"      craftingTiles="13"   >
+      <Materials>
+        <Material name="Bottled Water"  />
+        <Material name="Shark Fin"      />
+        <Material name="Waterleaf"      />
+      </Materials>
+    </Material>
+    <Recipe name="White Phaseblade"          craftingTiles="16"   >
+      <Materials>
+        <Material name="Diamond"       qty="10" />
+        <Material name="Meteorite Bar" qty="20" />
+      </Materials>
+    </Material>
+    <Recipe name="Wood Platform"                                  >
+      <Materials>
+        <Material name="Wood"  />
+      </Materials>
+    </Material>
+    <Recipe name="Wood Wall"                 craftingTiles="18"    qty="4">
+      <Materials>
+        <Material name="Wood"  />
+      </Materials>
+    </Material>
+    <Recipe name="Wooden Arrow"              craftingTiles="18"    qty="3">
+      <Materials>
+        <Material name="Stone Block"  />
+        <Material name="Wood"         />
+      </Materials>
+    </Material>
+    <Recipe name="Wooden Bow"                craftingTiles="18"   >
+      <Materials>
+        <Material name="Wood" qty="10" />
+      </Materials>
+    </Material>
+    <Recipe name="Wooden Chair"              craftingTiles="18"   >
+      <Materials>
+        <Material name="Wood" qty="4" />
+      </Materials>
+    </Material>
+    <Recipe name="Wooden Door"               craftingTiles="18"   >
+      <Materials>
+        <Material name="Wood" qty="6" />
+      </Materials>
+    </Material>
+    <Recipe name="Wooden Hammer"             craftingTiles="18"   >
+      <Materials>
+        <Material name="Wood" qty="8" />
+      </Materials>
+    </Material>
+    <Recipe name="Wooden Sword"              craftingTiles="18"   >
+      <Materials>
+        <Material name="Wood" qty="7" />
+      </Materials>
+    </Material>
+    <Recipe name="Wooden Table"              craftingTiles="18"   >
+      <Materials>
+        <Material name="Wood" qty="8" />
+      </Materials>
+    </Material>
+    <Recipe name="Work Bench"                                     >
+      <Materials>
+        <Material name="Wood" qty="10" />
+      </Materials>
+    </Material>
+    <Recipe name="Worm Food"                 craftingTiles="26"   >
+      <Materials>
+        <Material name="Rotten Chunk" qty="15" />
+        <Material name="Vile Powder"  qty="30" />
+      </Materials>
+    </Material>
+    <Recipe name="Yellow Banner"             craftingTiles="86"   >
+      <Materials>
+        <Material name="Silk" qty="3" />
+      </Materials>
+    </Material>
+    <Recipe name="Yellow Phaseblade"         craftingTiles="16"   >
+      <Materials>
+        <Material name="Meteorite Bar" qty="20" />
+        <Material name="Topaz"         qty="10" />
+      </Materials>
+    </Material>
+  </Recipes>
+
+</Objects>
