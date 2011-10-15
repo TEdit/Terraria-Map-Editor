@@ -9,19 +9,19 @@ namespace TEdit.TerrariaWorld
     [Serializable]
     public class Item : ObservableObject
     {
-        private string _Name;
+        private string _itemName;
         private int _StackSize;
 
         public Item()
         {
             StackSize = 0;
-            Name = "[empty]";
+            ItemName = "[empty]";
         }
 
-        public Item(int stackSize, string name)
+        public Item(int stackSize, string itemName)
         {
             StackSize = stackSize;
-            Name = stackSize > 0 ? name : "[empty]";
+            ItemName = stackSize > 0 ? itemName : "[empty]";
         }
 
         public int StackSize
@@ -40,44 +40,44 @@ namespace TEdit.TerrariaWorld
                     _StackSize = validValue;
                     RaisePropertyChanged("StackSize");
                     if (_StackSize == 0)
-                        Name = "[empty]";
+                        ItemName = "[empty]";
                 }
             }
         }
 
-        public string Name
+        public string ItemName
         {
-            get { return _Name; }
+            get { return _itemName; }
             set
             {
-                if (_Name != value)
+                if (_itemName != value)
                 {
-                    _Name = value;
-                    RaisePropertyChanged("Name");
+                    _itemName = value;
+                    RaisePropertyChanged("ItemName");
                     RaisePropertyChanged("IsVisible");
 
-                    if (_Name == "[empty]")
+                    if (_itemName == "[empty]")
                         StackSize = 0;
                 }
             }
         }
 
-        public ObservableCollection<ItemProperty> ValidItems
+        public ObservableCollection<string> ValidItems
         {
-            get { return WorldSettings.Items; }
+            get { return WorldSettings.ItemNames; }
         }
 
         public Visibility IsVisible
         {
-            get { return Name == "[empty]" ? Visibility.Collapsed : Visibility.Visible; }
+            get { return ItemName == "[empty]" ? Visibility.Collapsed : Visibility.Visible; }
         }
 
         public override string ToString()
         {
             if (StackSize > 0)
-                return string.Format("{0}: {1}", Name, StackSize);
+                return string.Format("{0}: {1}", ItemName, StackSize);
 
-            return Name;
+            return ItemName;
         }
     }
 }

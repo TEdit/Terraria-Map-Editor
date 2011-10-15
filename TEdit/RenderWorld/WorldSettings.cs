@@ -17,6 +17,7 @@ namespace TEdit.RenderWorld
         private static readonly ColorProperty[] _walls = new ColorProperty[byte.MaxValue + 1];
         private static readonly Dictionary<string, Color> _globals = new Dictionary<string, Color>();
         private static readonly ObservableCollection<ItemProperty> _items = new ObservableCollection<ItemProperty>();
+        private static readonly ObservableCollection<string> _itemNames = new ObservableCollection<string>(); 
 
         static WorldSettings()
         {
@@ -77,6 +78,7 @@ namespace TEdit.RenderWorld
             // read items
             foreach (var item in xmlSettings.Elements("Items").Elements("Item"))
             {
+                
                 var curItem = new ItemProperty();
                 curItem.ID           = curItem.XMLConvert(curItem.ID,           item.Attribute("num"));
                 curItem.Name         = curItem.XMLConvert(curItem.Name,         item.Attribute("name"));
@@ -84,6 +86,7 @@ namespace TEdit.RenderWorld
                 curItem.Description  = curItem.XMLConvert(curItem.Description,  item.Attribute("description"));
                 curItem.Description2 = curItem.XMLConvert(curItem.Description2, item.Attribute("description2"));
                 _items.Add(curItem);
+                _itemNames.Add(curItem.Name);
             }
 
             // read global colors
@@ -110,8 +113,10 @@ namespace TEdit.RenderWorld
                                       curTile.XMLConvert(curTile.AttachesTo,	  tile.Attribute("attachesTo"));
         }
 
-
-
+        public static ObservableCollection<string> ItemNames
+        {
+            get { return _itemNames; }
+        }
         public static ObservableCollection<ItemProperty> Items
         {
             get { return _items; }

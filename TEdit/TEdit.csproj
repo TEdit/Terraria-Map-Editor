@@ -303,7 +303,7 @@
     </Resource>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="settings.xml">
+    <Content Include="Terraria.Object.DB.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <SubType>Designer</SubType>
     </Content>

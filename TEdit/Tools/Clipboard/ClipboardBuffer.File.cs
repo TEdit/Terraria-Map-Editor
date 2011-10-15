@@ -73,7 +73,7 @@ namespace TEdit.Tools.Clipboard
                                     writer.Write((byte)Chests[chestIndex].Items[slot].StackSize);
                                     if (Chests[chestIndex].Items[slot].StackSize > 0)
                                     {
-                                        writer.Write(Chests[chestIndex].Items[slot].Name);
+                                        writer.Write(Chests[chestIndex].Items[slot].ItemName);
                                     }
                                 }
                                 else
@@ -170,7 +170,7 @@ namespace TEdit.Tools.Clipboard
                                 if (stackSize > 0)
                                 {
                                     string itemName = reader.ReadString();
-                                    item.Name = itemName;
+                                    item.ItemName = itemName;
                                     item.StackSize = stackSize;
                                 }
                                 chest.Items.Add(item);
