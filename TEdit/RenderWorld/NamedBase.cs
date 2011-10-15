@@ -7,8 +7,8 @@ namespace TEdit.RenderWorld
     [Serializable]
     public class NamedBase : ObservableObject
     {
-        private byte _id;
-        public byte ID
+        private short _id;
+        public short ID
         {
             get { return _id; }
             set { SetProperty(ref _id, ref value, "ID"); }

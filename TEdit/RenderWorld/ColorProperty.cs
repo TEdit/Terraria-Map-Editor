@@ -5,12 +5,11 @@ using TEdit.Common;
 namespace TEdit.RenderWorld
 {
     [Serializable]
-    public class ColorProperty : NamedBase
+    public class ColorProperty : XMLBase
     {
         public ColorProperty()
         {
             Name = "UNKNOWN";
-            Color = Colors.Magenta;
         }
 
         public ColorProperty(byte id) : this()
@@ -18,7 +17,7 @@ namespace TEdit.RenderWorld
             ID = id;
         }
 
-        private Color _color;
+        private Color _color = Colors.Magenta;
         public Color Color
         {
             get { return _color; }

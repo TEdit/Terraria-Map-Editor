@@ -20,7 +20,7 @@ namespace TEdit.RenderWorld
 
         static WorldSettings()
         {
-            string xmlPath = Path.Combine(Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().GetName().CodeBase), "settings.xml");
+            string xmlPath = Path.Combine(Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().GetName().CodeBase), "Terraria.Object.DB.xml");
             LoadXMLSettings(xmlPath);
             OnSettingsLoaded(null, new EventArgs());
         }
@@ -45,9 +45,9 @@ namespace TEdit.RenderWorld
             {
                 var curTile = _tiles[(int)tile.Attribute("num")];
 
-                curTile.CanMixFrames = curTile.XMLConvertBool(tile.Attribute("canMixFrames"));
-                curTile.Color        = curTile.XMLConvertColor(tile.Attribute("color"));
-                curTile.IsFramed     = curTile.XMLConvertBool(tile.Attribute("isFramed"));
+                curTile.CanMixFrames = curTile.XMLConvert(curTile.CanMixFrames, tile.Attribute("canMixFrames"));
+                curTile.Color        = curTile.XMLConvert(curTile.Color,        tile.Attribute("color"));
+                curTile.IsFramed     = curTile.XMLConvert(curTile.IsFramed,     tile.Attribute("isFramed"));
                 ParseFrameAttributes(tile, curTile);
 
                 if (tile.Elements().Any(x => x.Name == "Frames"))
@@ -78,9 +78,11 @@ namespace TEdit.RenderWorld
             foreach (var item in xmlSettings.Elements("Items").Elements("Item"))
             {
                 var curItem = new ItemProperty();
-                curItem.ID = (byte)((int?)item.Attribute("num") ?? 0);
-                curItem.Name = (string)item.Attribute("name");
-                curItem.ItemType = (string)item.Attribute("type");
+                curItem.ID           = curItem.XMLConvert(curItem.ID,           item.Attribute("num"));
+                curItem.Name         = curItem.XMLConvert(curItem.Name,         item.Attribute("name"));
+                curItem.MaxStack     = curItem.XMLConvert(curItem.MaxStack,     item.Attribute("maxStack"));
+                curItem.Description  = curItem.XMLConvert(curItem.Description,  item.Attribute("description"));
+                curItem.Description2 = curItem.XMLConvert(curItem.Description2, item.Attribute("description2"));
                 _items.Add(curItem);
             }
 
@@ -94,18 +96,18 @@ namespace TEdit.RenderWorld
 
         private static void ParseFrameAttributes(XElement tile, FrameProperty curTile)
         {
-            if (tile.Attribute("name")            != null) curTile.Name            = curTile.XMLConvertString(tile.Attribute("name"));
-            if (tile.Attribute("contactDamage")   != null) curTile.ContactDamage   = curTile.XMLConvertInt   (tile.Attribute("contactDamage"));
-            if (tile.Attribute("dir")             != null) curTile.Direction       = curTile.XMLConvertDir   (tile.Attribute("dir"));
-            if (tile.Attribute("isHouseItem")     != null) curTile.IsHouseItem     = curTile.XMLConvertBool  (tile.Attribute("isHouseItem"));
-            if (tile.Attribute("isSolid")         != null) curTile.IsSolid         = curTile.XMLConvertBool  (tile.Attribute("isSolid"));
-            if (tile.Attribute("isSolidTop")      != null) curTile.IsSolidTop      = curTile.XMLConvertBool  (tile.Attribute("isSolidTop"));
-            if (tile.Attribute("lightBrightness") != null) curTile.LightBrightness = curTile.XMLConvertFloat (tile.Attribute("lightBrightness"));
-            if (tile.Attribute("placement")       != null) curTile.Placement       = curTile.XMLConvertPlace (tile.Attribute("placement"));
-            if (tile.Attribute("size")            != null) curTile.Size            = curTile.XMLConvertPoint (tile.Attribute("size"));
-            if (tile.Attribute("upperLeft")       != null) curTile.UpperLeft       = curTile.XMLConvertPoint (tile.Attribute("upperLeft"));
-            if (tile.Attribute("variety")         != null) curTile.Variety         = curTile.XMLConvertString(tile.Attribute("variety"));
-            if (tile.Attribute("growsOn")         != null) curTile.GrowsOn.ReplaceRange(curTile.XMLConvertOC (tile.Attribute("growsOn")));
+            curTile.Name            = curTile.XMLConvert(curTile.Name,            tile.Attribute("name"));
+            curTile.ContactDamage   = curTile.XMLConvert(curTile.ContactDamage,   tile.Attribute("contactDamage"));
+            curTile.Direction       = curTile.XMLConvert(curTile.Direction,       tile.Attribute("dir"));
+            curTile.IsHouseItem     = curTile.XMLConvert(curTile.IsHouseItem, 	  tile.Attribute("isHouseItem"));
+            curTile.IsSolid         = curTile.XMLConvert(curTile.IsSolid, 		  tile.Attribute("isSolid"));
+            curTile.IsSolidTop      = curTile.XMLConvert(curTile.IsSolidTop, 	  tile.Attribute("isSolidTop"));
+            curTile.LightBrightness = curTile.XMLConvert(curTile.LightBrightness, tile.Attribute("lightBrightness"));
+            curTile.Placement       = curTile.XMLConvert(curTile.Placement,       tile.Attribute("placement"));
+            curTile.Size            = curTile.XMLConvert(curTile.Size, 			  tile.Attribute("size"));
+            curTile.UpperLeft       = curTile.XMLConvert(curTile.UpperLeft, 	  tile.Attribute("upperLeft"));
+            curTile.Variety         = curTile.XMLConvert(curTile.Variety, 		  tile.Attribute("variety"));
+                                      curTile.XMLConvert(curTile.AttachesTo,	  tile.Attribute("attachesTo"));
         }
 
 

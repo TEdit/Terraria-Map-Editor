@@ -10,42 +10,31 @@ namespace TEdit.RenderWorld
     [Serializable]
     public class FrameProperty : ColorProperty, ICloneable
     {
-        private readonly ObservableCollection<byte> _attachesTo = new ObservableCollection<byte>();
-        private readonly ObservableCollection<byte> _canReplace = new ObservableCollection<byte>();
-        private readonly ObservableCollection<byte> _growsOn = new ObservableCollection<byte>();
-        private int _contactDamage;
-        private FrameDirection _direction;
-        private bool _isHouseItem;
-        private bool _isSolid;
-        private bool _isSolidTop;
-        private float _lightBrightness;
-        private FramePlacement _placement;
-        private PointShort _size;
-        private PointShort _upperLeft;
-        private string _variety;
-
-        public FrameProperty()
-        {
-            ID = 0;
-            UpperLeft = new PointShort(0, 0);
-            Size      = new PointShort(1, 1);
-            Placement = FramePlacement.Any;
-        }
+        // real variables with defaults
+        private readonly ObservableCollection<byte> _attachesTo   = new ObservableCollection<byte>();
+        private readonly ObservableCollection<byte> _canMorphFrom = new ObservableCollection<byte>();
+        private int _contactDamage        = 0;
+        private FrameDirection _direction = 0;
+        private bool _isHouseItem         = false;
+        private bool _isSolid             = false;
+        private bool _isSolidTop          = false;
+        private float _lightBrightness    = 0;
+        private FramePlacement _placement = FramePlacement.Any;
+        private PointShort _size          = new PointShort(1, 1);
+        private PointShort _upperLeft     = new PointShort();
+        private string _variety           = String.Empty;
 
         public ObservableCollection<byte> AttachesTo
         {
             get { return _attachesTo; }
         }
 
-        public ObservableCollection<byte> CanReplace
+        public ObservableCollection<byte> CanMorphFrom
         {
-            get { return _canReplace; }
+            get { return _canMorphFrom; }
         }
 
-        public ObservableCollection<byte> GrowsOn
-        {
-            get { return _growsOn; }
-        }
+        // TODO: Add extra properties as they are needed for TEdit //
 
         public int ContactDamage
         {
@@ -117,49 +106,49 @@ namespace TEdit.RenderWorld
         {
             var clone = (FrameProperty)this.MemberwiseClone();
             clone.AttachesTo.ReplaceRange(this.AttachesTo.ToList());
-            clone.GrowsOn.ReplaceRange(this.AttachesTo.ToList());
-            clone.CanReplace.ReplaceRange(this.AttachesTo.ToList());
+            clone.AttachesTo.ReplaceRange(this.CanMorphFrom.ToList());
 
             return clone;
         }
 
         // XML conversions with defaults
-        public bool       XMLConvertBool  (XAttribute attr) { return (bool?) attr ?? false; }
-        public string     XMLConvertString(XAttribute attr) { return (string)attr ?? string.Empty; }
-        public int        XMLConvertInt   (XAttribute attr) { return (int?)  attr ?? 0; }
-        public float      XMLConvertFloat (XAttribute attr) { return (float?)attr ?? 0F; }
-        public Color      XMLConvertColor (XAttribute attr)  { return (Color)ColorConverter.ConvertFromString((string)attr); }
-        public PointShort XMLConvertPoint (XAttribute attr)
+        public bool       XMLConvert(bool       v, XAttribute attr) { return (bool?) attr ?? v;  }
+        public string     XMLConvert(string     v, XAttribute attr) { return (string)attr ?? v; }
+        public int        XMLConvert(int        v, XAttribute attr) { return (int?)  attr ?? v; }
+        public float      XMLConvert(float      v, XAttribute attr) { return (float?)attr ?? v; }
+        public Color      XMLConvert(Color      v, XAttribute attr) { if (attr == null) return v; return (Color)ColorConverter.ConvertFromString((string)attr); }
+        public PointShort XMLConvert(PointShort v, XAttribute attr)
         {
+            if (attr == null) return v;
             var ps = PointShort.TryParseInline((string)attr);
-            if (attr.Name == "size" && ps == new PointShort(0, 0)) ps = new PointShort(1, 1);
+            if (attr.Name == "size" && ps == new PointShort()) ps = new PointShort(1, 1);
             return ps;
         }
-        public FrameDirection XMLConvertDir(XAttribute attr)
+        public FrameDirection XMLConvert(FrameDirection v, XAttribute attr)
         {
+            if (attr == null) return v;
             FrameDirection f = FrameDirection.None;
             f = f.Convert<FrameDirection>(attr);
             return f;
         }
-        public FramePlacement XMLConvertPlace(XAttribute attr)
+        public FramePlacement XMLConvert(FramePlacement v, XAttribute attr)
         {
+            if (attr == null) return v;
             FramePlacement f = FramePlacement.Any;
             f = f.Convert<FramePlacement>(attr);
             return f;
         }
-        public ObservableCollection<byte> XMLConvertOC(XAttribute attr)
+        public void XMLConvert(ObservableCollection<byte> v, XAttribute attr)
         {
             var oc = new ObservableCollection<byte>();
-            if (!string.IsNullOrWhiteSpace((string)attr))
-            {
-                string[] split = ((string)attr).Split(',');
-                foreach (var s in split)
-                {
-                    oc.Add((byte)Convert.ChangeType(s, typeof(byte)));
-                }
-            }
+            if (string.IsNullOrWhiteSpace((string)attr)) return;
 
-            return oc;
+            string[] split = ((string)attr).Split(',');
+            foreach (var s in split)
+            {
+                oc.Add((byte)Convert.ChangeType(s, typeof(byte)));
+            }
+            v.ReplaceRange(oc);
         }
     
     }

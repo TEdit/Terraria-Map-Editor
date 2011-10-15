@@ -49,7 +49,7 @@ namespace TEdit.Common.Structures
                 return false;
             }
 
-            string[] split = point.Split(',');
+            string[] split = point.Split(',', 'x');
             if (split.Length == 2)
             {
                 short.TryParse(split[0], out x);
@@ -79,7 +79,7 @@ namespace TEdit.Common.Structures
                 throw new NullReferenceException("point cannot be null");
             }
 
-            string[] split = point.Split(',');
+            string[] split = point.Split(',', 'x');
             if (split.Length == 2)
             {
                 x = short.Parse(split[0]);
@@ -88,7 +88,7 @@ namespace TEdit.Common.Structures
 
             }
 
-            throw new ArgumentOutOfRangeException("point", "Invalid point structure, must be in the form of x,y");
+            throw new ArgumentOutOfRangeException("point", "Invalid point structure, must be in the form of x,y or WxH");
         }
 
         #region Operator Overrides

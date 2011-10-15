@@ -102,6 +102,7 @@
     <Compile Include="Plugins\IPlugin.cs" />
     <Compile Include="Plugins\IPluginMetaData.cs" />
     <Compile Include="Plugins\SamplePlugin.cs" />
+    <Compile Include="RenderWorld\XMLBase.cs" />
     <Compile Include="RenderWorld\NamedBase.cs" />
     <Compile Include="RenderWorld\FrameDirection.cs" />
     <Compile Include="RenderWorld\FramePlacement.cs" />
