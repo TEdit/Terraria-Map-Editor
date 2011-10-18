@@ -11,8 +11,9 @@ namespace TEdit.RenderWorld
     public class FrameProperty : ColorProperty, ICloneable
     {
         // real variables with defaults
-        private readonly ObservableCollection<byte> _attachesTo   = new ObservableCollection<byte>();
-        private readonly ObservableCollection<byte> _canMorphFrom = new ObservableCollection<byte>();
+        private ObservableCollection<AttachGroup> _attachesTo = new ObservableCollection<AttachGroup>();
+        private ObservableCollection<TileFrame> _canMorphFrom = new ObservableCollection<TileFrame>();
+        private ObservableCollection<TileFrame> _noAttach     = new ObservableCollection<TileFrame>();
         private int _contactDamage        = 0;
         private FrameDirection _direction = 0;
         private bool _isHouseItem         = false;
@@ -24,17 +25,23 @@ namespace TEdit.RenderWorld
         private PointShort _upperLeft     = new PointShort();
         private string _variety           = String.Empty;
 
-        public ObservableCollection<byte> AttachesTo
+        public ObservableCollection<AttachGroup> AttachesTo
         {
             get { return _attachesTo; }
+            set { _attachesTo.ReplaceRange(value); }
         }
 
-        public ObservableCollection<byte> CanMorphFrom
+        public ObservableCollection<TileFrame> CanMorphFrom
         {
             get { return _canMorphFrom; }
+            set { _canMorphFrom.ReplaceRange(value); }
         }
 
-        // TODO: Add extra properties as they are needed for TEdit //
+        public ObservableCollection<TileFrame> NoAttach
+        {
+            get { return _noAttach; }
+            set { _noAttach.ReplaceRange(value); }
+        }
 
         public int ContactDamage
         {
@@ -105,9 +112,12 @@ namespace TEdit.RenderWorld
         public object Clone()
         {
             var clone = (FrameProperty)this.MemberwiseClone();
-            clone.AttachesTo.ReplaceRange(this.AttachesTo.ToList());
-            clone.AttachesTo.ReplaceRange(this.CanMorphFrom.ToList());
 
+            // go deep...
+            clone._attachesTo   = new ObservableCollection<AttachGroup>(this.AttachesTo.DeepClone().ToList());
+            clone._canMorphFrom = new ObservableCollection<TileFrame>  (this.CanMorphFrom.DeepClone().ToList());
+            clone._noAttach     = new ObservableCollection<TileFrame>  (this.NoAttach.DeepClone().ToList());
+            
             return clone;
         }
     

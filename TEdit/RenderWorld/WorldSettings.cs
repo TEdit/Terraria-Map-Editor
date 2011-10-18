@@ -99,6 +99,7 @@ namespace TEdit.RenderWorld
 
         private static void ParseFrameAttributes(XElement tile, FrameProperty curTile)
         {
+            curTile.ID              = curTile.XMLConvert(curTile.ID,              tile.Attribute("num"));
             curTile.Name            = curTile.XMLConvert(curTile.Name,            tile.Attribute("name"));
             curTile.ContactDamage   = curTile.XMLConvert(curTile.ContactDamage,   tile.Attribute("contactDamage"));
             curTile.Direction       = curTile.XMLConvert(curTile.Direction,       tile.Attribute("dir"));
@@ -111,6 +112,8 @@ namespace TEdit.RenderWorld
             curTile.UpperLeft       = curTile.XMLConvert(curTile.UpperLeft, 	  tile.Attribute("upperLeft"));
             curTile.Variety         = curTile.XMLConvert(curTile.Variety, 		  tile.Attribute("variety"));
                                       curTile.XMLConvert(curTile.AttachesTo,	  tile.Attribute("attachesTo"));
+                                      curTile.XMLConvert(curTile.NoAttach,        tile.Attribute("noAttach"));
+                                      curTile.XMLConvert(curTile.CanMorphFrom,    tile.Attribute("canMorphFrom"));
         }
 
         public static ObservableCollection<string> ItemNames

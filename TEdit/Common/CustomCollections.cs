@@ -10,6 +10,8 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.Linq;
+using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
 
 namespace TEdit.Common
 {
@@ -49,6 +51,21 @@ namespace TEdit.Common
             foreach (var i in collection) current.Add(i);
             //OnCollectionChanged(new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Reset));
         }
+
+        /// <summary> 
+        /// Creates a deep copy of the object, provided the classes (and all inherited classes) are marked as [Serializable].
+        /// </summary> 
+        public static T DeepClone<T>(this T a)
+        {
+            using (MemoryStream stream = new MemoryStream())
+            {
+                BinaryFormatter formatter = new BinaryFormatter();
+                formatter.Serialize(stream, a);
+                stream.Position = 0;
+                return (T)formatter.Deserialize(stream);
+            }
+        }
+
     }
 
     public class FilteringCollection<T, M> : AdaptingCollection<T, M>

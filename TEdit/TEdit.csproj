@@ -84,6 +84,8 @@
     <Compile Include="Common\CustomCollections.cs" />
     <Compile Include="Common\EnumExtensions.cs" />
     <Compile Include="Common\ObservableCollectionEx.cs" />
+    <Compile Include="Common\Structures\AttachGroup.cs" />
+    <Compile Include="Common\Structures\TileFrame.cs" />
     <Compile Include="Common\Structures\RectI.cs" />
     <Compile Include="Common\Structures\PointFloat.cs" />
     <Compile Include="Common\Structures\PointInt32.cs" />
@@ -102,6 +104,7 @@
     <Compile Include="Plugins\IPlugin.cs" />
     <Compile Include="Plugins\IPluginMetaData.cs" />
     <Compile Include="Plugins\SamplePlugin.cs" />
+    <Compile Include="RenderWorld\LiquidType.cs" />
     <Compile Include="RenderWorld\XMLBase.cs" />
     <Compile Include="RenderWorld\NamedBase.cs" />
     <Compile Include="RenderWorld\FrameDirection.cs" />

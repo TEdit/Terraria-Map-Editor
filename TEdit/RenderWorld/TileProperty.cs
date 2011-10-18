@@ -29,6 +29,41 @@ namespace TEdit.RenderWorld
             set { SetProperty(ref _isFramed, ref value, "IsFramed"); }
         }
 
+        private bool _blocksLight;
+        public bool BlocksLight
+        {
+            get { return _blocksLight; }
+            set { SetProperty(ref _blocksLight, ref value, "BlocksLight"); }
+        }
+
+        private bool _canBeCut;
+        public bool CanBeCut
+        {
+            get { return _canBeCut; }
+            set { SetProperty(ref _canBeCut, ref value, "CanBeCut"); }
+        }
+
+        private LiquidType _destroyedBy;
+        public LiquidType DestroyedBy
+        {
+            get { return _destroyedBy; }
+            set { SetProperty(ref _destroyedBy, ref value, "DestroyedBy"); }
+        }
+
+        private bool _oneHit;
+        public bool OneHit
+        {
+            get { return _oneHit; }
+            set { SetProperty(ref _oneHit, ref value, "OneHit"); }
+        }
+
+        private float _sparkle;
+        public float Sparkle
+        {
+            get { return _sparkle; }
+            set { SetProperty(ref _sparkle, ref value, "Sparkle"); }
+        }
+
         private bool _canMixFrames;
         public bool CanMixFrames
         {

@@ -202,7 +202,8 @@ namespace TEdit.TerrariaWorld
                     var type  = tile.Type;
                     var prop  = WorldSettings.Tiles[type];
                     var place = prop.Placement;
-                    
+                    if (prop.AttachesTo.Count > 0) continue;  // can't really handle these yet...
+
                     if (!ValidatePlacement(new PointInt32(x,y), prop.Size, place))  // validation found a problem
                     {
                         log.Add(string.Format("Tile [{2}] at [{0},{1}] must be placed on {3} {4}", x, y, prop.Name,

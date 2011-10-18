@@ -269,14 +269,14 @@ Single item; tag has no children.  Has the following properties:
   </GlobalColors>
 
   <AttachGroups>
-    <AttachGroup name="treeCeiling" 	 attachTiles="5.0-2, 5.4-10, 5.12-18, 5.20-27, 5.29-35, 5.37-43, 5.45-71"																								 />
-    <AttachGroup name="treeFloor" 		 attachTiles="5.0-2, 5.4, 5.8-10, 5.12, 5.16-18, 5.20, 5.24-27, 5.29, 5.32-35, 5.37, 5.40-43, 5.45, 5.48, 5.51-52, 5.55, 5.58-59, 5.62, 5.65-66" />
-    <AttachGroup name="treeLeft" 		 attachTiles="5.31, 5.39, 5.47-48, 5.50, 5.52, 5.54-55, 5.57, 5.59, 5.61-62, 5.64, 5.66, 5.68"																	 />
-    <AttachGroup name="treeRight" 		 attachTiles="5.7, 5.15, 5.23, 5.49, 5.51-52, 5.54, 5.56, 5.58-59, 5.61, 5.63, 5.65-66, 5.68"																	 />
-    <AttachGroup name="treeLeftBranch"  attachTiles="5.2, 5.4, 5.6, 5.10, 5.12, 5.14, 5.18, 5.20, 5.22, 5.29, 5.37, 5.45, 5.53, 5.60, 5.67"															 />
-    <AttachGroup name="treeRightBranch" attachTiles="5.2, 5.10, 5.18, 5.27, 5.29-30, 5.35, 5.37-38, 5.43, 5.45-46, 5.53, 5.60, 5.67"																	 />
-    <AttachGroup name="branchLeft " 	 attachTiles="5.3, 5.11, 5.19"																																						 />
-    <AttachGroup name="branchRight" 	 attachTiles="5.28, 5.36, 5.44"																																						 />
+    <AttachGroup name="treeCeiling" 	 attachTiles="ceiling: 5.0-2, 5.4-10, 5.12-18, 5.20-27, 5.29-35, 5.37-43, 5.45-71"																								 />
+    <AttachGroup name="treeFloor" 		 attachTiles="floor:   5.0-2, 5.4, 5.8-10, 5.12, 5.16-18, 5.20, 5.24-27, 5.29, 5.32-35, 5.37, 5.40-43, 5.45, 5.48, 5.51-52, 5.55, 5.58-59, 5.62, 5.65-66" />
+    <AttachGroup name="treeLeft" 		 attachTiles="left:    5.31, 5.39, 5.47-48, 5.50, 5.52, 5.54-55, 5.57, 5.59, 5.61-62, 5.64, 5.66, 5.68"																	 />
+    <AttachGroup name="treeRight" 		 attachTiles="right:   5.7, 5.15, 5.23, 5.49, 5.51-52, 5.54, 5.56, 5.58-59, 5.61, 5.63, 5.65-66, 5.68"																	 />
+    <AttachGroup name="treeLeftBranch"  attachTiles="left:    5.2, 5.4, 5.6, 5.10, 5.12, 5.14, 5.18, 5.20, 5.22, 5.29, 5.37, 5.45, 5.53, 5.60, 5.67"															 />
+    <AttachGroup name="treeRightBranch" attachTiles="right:   5.2, 5.10, 5.18, 5.27, 5.29-30, 5.35, 5.37-38, 5.43, 5.45-46, 5.53, 5.60, 5.67"																	 />
+    <AttachGroup name="branchLeft"  	 attachTiles="left:    5.3, 5.11, 5.19"																																						 />
+    <AttachGroup name="branchRight" 	 attachTiles="right:   5.28, 5.36, 5.44"																																						 />
   </AttachGroups>
 
   <Tiles>
@@ -299,93 +299,93 @@ Single item; tag has no children.  Has the following properties:
     <Tile num="4"   name="Torch"               color="#fffd3e03"                 destroyedBy="water" isHouseItem="true" lightBrightness="1.0" noAttach="4" oneHit="true" placement="wallFloor" />
     <Tile num="5"   name="Tree"                color="#ff634631" isFramed="true" destroyedBy="lava" placement="floor">
       <Frames>
-        <Frame num="0"  upperLeft="0,0"     name="Tree Trunk"  dir="Up"     variety="Plain A"                     attachesTo="floor: treeFloor; ceiling: treeCeiling"													/>
-        <Frame num="1"  upperLeft="22,0"    name="Tree Trunk"  dir="Up"     variety="Right Indent A"              attachesTo="floor: treeFloor; ceiling: treeCeiling"													/>
-        <Frame num="2"  upperLeft="44,0"    name="Tree Trunk"  dir="Up"     variety="Right Slight Bulge A"        attachesTo="floor: treeFloor; ceiling: treeCeiling; left: branchLeft; right: branchRight"	/>
-        <Frame num="3"  upperLeft="66,0"    name="Tree Branch" dir="Left"   variety="Plain A"                     attachesTo="right: treeLeftBranch"																		 	/>
-        <Frame num="4"  upperLeft="88,0"    name="Tree Trunk"  dir="Up"     variety="Left Slight Bulge A"         attachesTo="floor: treeFloor; ceiling: treeCeiling; left: branchLeft"							/>
-        <Frame num="5"  upperLeft="110,0"   name="Tree Top"    dir="Up"     variety="Medium A"                    attachesTo="floor: treeFloor"																				 	/>
-        <Frame num="6"  upperLeft="132,0"   name="Tree Top"    dir="Up"     variety="Small A"                     attachesTo="floor: treeFloor; left: branchLeft; right: branchRight"							 	/>
-        <Frame num="7"  upperLeft="154,0"   name="Tree Top"    dir="Right"  variety="Large A"                     attachesTo="floor: treeFloor; left: treeLeft"															/>
+        <Frame num="0"  upperLeft="0,0"     name="Tree Trunk"  dir="Up"     variety="Plain A"                     attachesTo="treeFloor; treeCeiling"									 />
+        <Frame num="1"  upperLeft="22,0"    name="Tree Trunk"  dir="Up"     variety="Right Indent A"              attachesTo="treeFloor; treeCeiling"									 />
+        <Frame num="2"  upperLeft="44,0"    name="Tree Trunk"  dir="Up"     variety="Right Slight Bulge A"        attachesTo="treeFloor; treeCeiling; branchLeft; branchRight" />
+        <Frame num="3"  upperLeft="66,0"    name="Tree Branch" dir="Left"   variety="Plain A"                     attachesTo="treeLeftBranch"											 />
+        <Frame num="4"  upperLeft="88,0"    name="Tree Trunk"  dir="Up"     variety="Left Slight Bulge A"         attachesTo="treeFloor; treeCeiling; branchLeft"					 />
+        <Frame num="5"  upperLeft="110,0"   name="Tree Top"    dir="Up"     variety="Medium A"                    attachesTo="treeFloor"													 />
+        <Frame num="6"  upperLeft="132,0"   name="Tree Top"    dir="Up"     variety="Small A"                     attachesTo="treeFloor; branchLeft; branchRight"					 />
+        <Frame num="7"  upperLeft="154,0"   name="Tree Top"    dir="Right"  variety="Large A"                     attachesTo="treeFloor; treeLeft"										 />
 
-        <Frame num="8"  upperLeft="0,22"    name="Tree Trunk"  dir="Up"     variety="Plain B"                     attachesTo="floor: treeFloor; ceiling: treeCeiling"													/>
-        <Frame num="9"  upperLeft="22,22"   name="Tree Trunk"  dir="Up"     variety="Right Indent B"              attachesTo="floor: treeFloor; ceiling: treeCeiling"													/>
-        <Frame num="10" upperLeft="44,22"   name="Tree Trunk"  dir="Up"     variety="Right Slight Bulge B"        attachesTo="floor: treeFloor; ceiling: treeCeiling; left: branchLeft; right: branchRight"	/>
-        <Frame num="11" upperLeft="66,22"   name="Tree Branch" dir="Left"   variety="Plain B"                     attachesTo="right: treeLeftBranch"																		 	/>
-        <Frame num="12" upperLeft="88,22"   name="Tree Trunk"  dir="Up"     variety="Left Slight Bulge B"         attachesTo="floor: treeFloor; ceiling: treeCeiling; left: branchLeft"							/>
-        <Frame num="13" upperLeft="110,22"  name="Tree Top"    dir="Up"     variety="Medium B"                    attachesTo="floor: treeFloor"																				 	/>
-        <Frame num="14" upperLeft="132,22"  name="Tree Top"    dir="Up"     variety="Small B"                     attachesTo="floor: treeFloor; left: branchLeft; right: branchRight"							 	/>
-        <Frame num="15" upperLeft="154,22"  name="Tree Top"    dir="Right"  variety="Large B"                     attachesTo="floor: treeFloor; left: treeLeft"															/>
+        <Frame num="8"  upperLeft="0,22"    name="Tree Trunk"  dir="Up"     variety="Plain B"                     attachesTo="treeFloor; treeCeiling"									 />
+        <Frame num="9"  upperLeft="22,22"   name="Tree Trunk"  dir="Up"     variety="Right Indent B"              attachesTo="treeFloor; treeCeiling"									 />
+        <Frame num="10" upperLeft="44,22"   name="Tree Trunk"  dir="Up"     variety="Right Slight Bulge B"        attachesTo="treeFloor; treeCeiling; branchLeft; branchRight" />
+        <Frame num="11" upperLeft="66,22"   name="Tree Branch" dir="Left"   variety="Plain B"                     attachesTo="treeLeftBranch"											 />
+        <Frame num="12" upperLeft="88,22"   name="Tree Trunk"  dir="Up"     variety="Left Slight Bulge B"         attachesTo="treeFloor; treeCeiling; branchLeft"					 />
+        <Frame num="13" upperLeft="110,22"  name="Tree Top"    dir="Up"     variety="Medium B"                    attachesTo="treeFloor"													 />
+        <Frame num="14" upperLeft="132,22"  name="Tree Top"    dir="Up"     variety="Small B"                     attachesTo="treeFloor; branchLeft; branchRight"					 />
+        <Frame num="15" upperLeft="154,22"  name="Tree Top"    dir="Right"  variety="Large B"                     attachesTo="treeFloor; treeLeft"										 />
 
-        <Frame num="16" upperLeft="0,44"    name="Tree Trunk"  dir="Up"     variety="Plain C"                     attachesTo="floor: treeFloor; ceiling: treeCeiling"													/>
-        <Frame num="17" upperLeft="22,44"   name="Tree Trunk"  dir="Up"     variety="Right Indent C"              attachesTo="floor: treeFloor; ceiling: treeCeiling"													/>
-        <Frame num="18" upperLeft="44,44"   name="Tree Trunk"  dir="Up"     variety="Right Slight Bulge C"        attachesTo="floor: treeFloor; ceiling: treeCeiling; left: branchLeft; right: branchRight"	/>
-        <Frame num="19" upperLeft="66,44"   name="Tree Branch" dir="Left"   variety="Plain C"                     attachesTo="right: treeLeftBranch"																		 	/>
-        <Frame num="20" upperLeft="88,44"   name="Tree Trunk"  dir="Up"     variety="Left Slight Bulge C"         attachesTo="floor: treeFloor; ceiling: treeCeiling; left: branchLeft"							/>
-        <Frame num="21" upperLeft="110,44"  name="Tree Top"    dir="Up"     variety="Medium C"                    attachesTo="floor: treeFloor"																				 	/>
-        <Frame num="22" upperLeft="132,44"  name="Tree Top"    dir="Up"     variety="Small C"                     attachesTo="floor: treeFloor; left: branchLeft; right: branchRight"							 	/>
-        <Frame num="23" upperLeft="154,44"  name="Tree Top"    dir="Right"  variety="Large C"                     attachesTo="floor: treeFloor; left: treeLeft"															/>
+        <Frame num="16" upperLeft="0,44"    name="Tree Trunk"  dir="Up"     variety="Plain C"                     attachesTo="treeFloor; treeCeiling"									 />
+        <Frame num="17" upperLeft="22,44"   name="Tree Trunk"  dir="Up"     variety="Right Indent C"              attachesTo="treeFloor; treeCeiling"									 />
+        <Frame num="18" upperLeft="44,44"   name="Tree Trunk"  dir="Up"     variety="Right Slight Bulge C"        attachesTo="treeFloor; treeCeiling; branchLeft; branchRight" />
+        <Frame num="19" upperLeft="66,44"   name="Tree Branch" dir="Left"   variety="Plain C"                     attachesTo="treeLeftBranch"											 />
+        <Frame num="20" upperLeft="88,44"   name="Tree Trunk"  dir="Up"     variety="Left Slight Bulge C"         attachesTo="treeFloor; treeCeiling; branchLeft"					 />
+        <Frame num="21" upperLeft="110,44"  name="Tree Top"    dir="Up"     variety="Medium C"                    attachesTo="treeFloor"													 />
+        <Frame num="22" upperLeft="132,44"  name="Tree Top"    dir="Up"     variety="Small C"                     attachesTo="treeFloor; branchLeft; branchRight"					 />
+        <Frame num="23" upperLeft="154,44"  name="Tree Top"    dir="Right"  variety="Large C"                     attachesTo="treeFloor; treeLeft"										 />
 
-        <Frame num="24" upperLeft="0,66"    name="Tree Trunk"  dir="Up"     variety="Left Indent A"               attachesTo="floor: treeFloor; ceiling: treeCeiling"													/>
-        <Frame num="25" upperLeft="22,66"   name="Tree Trunk"  dir="Up"     variety="Right Bulge A"               attachesTo="floor: treeFloor; ceiling: treeCeiling"													/>
-        <Frame num="26" upperLeft="44,66"   name="Tree Trunk"  dir="Up"     variety="Left Bulge A"                attachesTo="floor: treeFloor; ceiling: treeCeiling"													/>
-        <Frame num="27" upperLeft="66,66"   name="Tree Trunk"  dir="Up"     variety="Right Slight Bulge D"        attachesTo="floor: treeFloor; ceiling: treeCeiling; right: branchRight"						 	/>
-        <Frame num="28" upperLeft="88,66"   name="Tree Branch" dir="Right"  variety="Plain A"                     attachesTo="left: treeRightBranch"																		 	/>
-        <Frame num="29" upperLeft="110,66"  name="Tree Trunk"  dir="Up"     variety="Double Slight Bulge A"       attachesTo="floor: treeFloor; ceiling: treeCeiling; left: branchLeft; right: branchRight"	/>
-        <Frame num="30" upperLeft="132,66"  name="Tree Top"    dir="Up"     variety="Small Right Slight Bulge A"  attachesTo="floor: treeFloor; left: branchLeft"														 	/>
-        <Frame num="31" upperLeft="154,66"  name="Tree Top"    dir="Left"   variety="Large A"                     attachesTo="floor: treeFloor; right: treeRight"														 	/>
+        <Frame num="24" upperLeft="0,66"    name="Tree Trunk"  dir="Up"     variety="Left Indent A"               attachesTo="treeFloor; treeCeiling"									 />
+        <Frame num="25" upperLeft="22,66"   name="Tree Trunk"  dir="Up"     variety="Right Bulge A"               attachesTo="treeFloor; treeCeiling"									 />
+        <Frame num="26" upperLeft="44,66"   name="Tree Trunk"  dir="Up"     variety="Left Bulge A"                attachesTo="treeFloor; treeCeiling"									 />
+        <Frame num="27" upperLeft="66,66"   name="Tree Trunk"  dir="Up"     variety="Right Slight Bulge D"        attachesTo="treeFloor; treeCeiling; branchRight"				 />
+        <Frame num="28" upperLeft="88,66"   name="Tree Branch" dir="Right"  variety="Plain A"                     attachesTo="treeRightBranch"											 />
+        <Frame num="29" upperLeft="110,66"  name="Tree Trunk"  dir="Up"     variety="Double Slight Bulge A"       attachesTo="treeFloor; treeCeiling; branchLeft; branchRight" />
+        <Frame num="30" upperLeft="132,66"  name="Tree Top"    dir="Up"     variety="Small Right Slight Bulge A"  attachesTo="treeFloor; branchLeft"									 />
+        <Frame num="31" upperLeft="154,66"  name="Tree Top"    dir="Left"   variety="Large A"                     attachesTo="treeFloor; treeRight"									 />
 
-        <Frame num="32" upperLeft="0,88"    name="Tree Trunk"  dir="Up"     variety="Left Indent B"               attachesTo="floor: treeFloor; ceiling: treeCeiling"													/>
-        <Frame num="33" upperLeft="22,88"   name="Tree Trunk"  dir="Up"     variety="Right Bulge B"               attachesTo="floor: treeFloor; ceiling: treeCeiling"													/>
-        <Frame num="34" upperLeft="44,88"   name="Tree Trunk"  dir="Up"     variety="Left Bulge B"                attachesTo="floor: treeFloor; ceiling: treeCeiling"													/>
-        <Frame num="35" upperLeft="66,88"   name="Tree Trunk"  dir="Up"     variety="Right Slight Bulge E"        attachesTo="floor: treeFloor; ceiling: treeCeiling; right: branchRight"						 	/>
-        <Frame num="36" upperLeft="88,88"   name="Tree Branch" dir="Right"  variety="Plain B"                     attachesTo="left: treeRightBranch"																		 	/>
-        <Frame num="37" upperLeft="110,88"  name="Tree Trunk"  dir="Up"     variety="Double Slight Bulge B"       attachesTo="floor: treeFloor; ceiling: treeCeiling; left: branchLeft; right: branchRight"	/>
-        <Frame num="38" upperLeft="132,88"  name="Tree Top"    dir="Up"     variety="Small Right Slight Bulge B"  attachesTo="floor: treeFloor; left: branchLeft"														 	/>
-        <Frame num="39" upperLeft="154,88"  name="Tree Top"    dir="Left"   variety="Large B"                     attachesTo="floor: treeFloor; right: treeRight"														 	/>
+        <Frame num="32" upperLeft="0,88"    name="Tree Trunk"  dir="Up"     variety="Left Indent B"               attachesTo="treeFloor; treeCeiling"									 />
+        <Frame num="33" upperLeft="22,88"   name="Tree Trunk"  dir="Up"     variety="Right Bulge B"               attachesTo="treeFloor; treeCeiling"									 />
+        <Frame num="34" upperLeft="44,88"   name="Tree Trunk"  dir="Up"     variety="Left Bulge B"                attachesTo="treeFloor; treeCeiling"									 />
+        <Frame num="35" upperLeft="66,88"   name="Tree Trunk"  dir="Up"     variety="Right Slight Bulge E"        attachesTo="treeFloor; treeCeiling; branchRight"				 />
+        <Frame num="36" upperLeft="88,88"   name="Tree Branch" dir="Right"  variety="Plain B"                     attachesTo="treeRightBranch"											 />
+        <Frame num="37" upperLeft="110,88"  name="Tree Trunk"  dir="Up"     variety="Double Slight Bulge B"       attachesTo="treeFloor; treeCeiling; branchLeft; branchRight" />
+        <Frame num="38" upperLeft="132,88"  name="Tree Top"    dir="Up"     variety="Small Right Slight Bulge B"  attachesTo="treeFloor; branchLeft"									 />
+        <Frame num="39" upperLeft="154,88"  name="Tree Top"    dir="Left"   variety="Large B"                     attachesTo="treeFloor; treeRight"									 />
 
-        <Frame num="40" upperLeft="0,110"   name="Tree Trunk"  dir="Up"     variety="Left Indent C"               attachesTo="floor: treeFloor; ceiling: treeCeiling"													/>
-        <Frame num="41" upperLeft="22,110"  name="Tree Trunk"  dir="Up"     variety="Right Bulge C"               attachesTo="floor: treeFloor; ceiling: treeCeiling"													/>
-        <Frame num="42" upperLeft="44,110"  name="Tree Trunk"  dir="Up"     variety="Left Bulge C"                attachesTo="floor: treeFloor; ceiling: treeCeiling"													/>
-        <Frame num="43" upperLeft="66,110"  name="Tree Trunk"  dir="Up"     variety="Right Slight Bulge F"        attachesTo="floor: treeFloor; ceiling: treeCeiling; right: branchRight"						 	/>
-        <Frame num="44" upperLeft="88,110"  name="Tree Branch" dir="Right"  variety="Plain C"                     attachesTo="left: treeRightBranch"																		 	/>
-        <Frame num="45" upperLeft="110,110" name="Tree Trunk"  dir="Up"     variety="Double Slight Bulge C"       attachesTo="floor: treeFloor; ceiling: treeCeiling; left: branchLeft; right: branchRight"	/>
-        <Frame num="46" upperLeft="132,110" name="Tree Top"    dir="Up"     variety="Small Right Slight Bulge C"  attachesTo="floor: treeFloor; left: branchLeft"														 	/>
-        <Frame num="47" upperLeft="154,110" name="Tree Top"    dir="Left"   variety="Large C"                     attachesTo="floor: treeFloor; right: treeRight"														 	/>
+        <Frame num="40" upperLeft="0,110"   name="Tree Trunk"  dir="Up"     variety="Left Indent C"               attachesTo="treeFloor; treeCeiling"									 />
+        <Frame num="41" upperLeft="22,110"  name="Tree Trunk"  dir="Up"     variety="Right Bulge C"               attachesTo="treeFloor; treeCeiling"									 />
+        <Frame num="42" upperLeft="44,110"  name="Tree Trunk"  dir="Up"     variety="Left Bulge C"                attachesTo="treeFloor; treeCeiling"									 />
+        <Frame num="43" upperLeft="66,110"  name="Tree Trunk"  dir="Up"     variety="Right Slight Bulge F"        attachesTo="treeFloor; treeCeiling; branchRight"				 />
+        <Frame num="44" upperLeft="88,110"  name="Tree Branch" dir="Right"  variety="Plain C"                     attachesTo="treeRightBranch"											 />
+        <Frame num="45" upperLeft="110,110" name="Tree Trunk"  dir="Up"     variety="Double Slight Bulge C"       attachesTo="treeFloor; treeCeiling; branchLeft; branchRight" />
+        <Frame num="46" upperLeft="132,110" name="Tree Top"    dir="Up"     variety="Small Right Slight Bulge C"  attachesTo="treeFloor; branchLeft"									 />
+        <Frame num="47" upperLeft="154,110" name="Tree Top"    dir="Left"   variety="Large C"                     attachesTo="treeFloor; treeRight"									 />
 
-        <Frame num="48" upperLeft="0,132"   name="Tree Trunk"  dir="Left"   variety="Large A"                     attachesTo="floor: treeFloor; ceiling: treeCeiling; right: treeRight"							/>
-        <Frame num="49" upperLeft="22,132"  name="Tree Base"   dir="Right"  variety="Plain A"                     attachesTo="floor: treeFloor; left: treeLeft"															/>
-        <Frame num="50" upperLeft="44,132"  name="Tree Base"   dir="Left"   variety="Plain A"                     attachesTo="floor: treeFloor; right: treeRight"														 	/>
-        <Frame num="51" upperLeft="66,132"  name="Tree Trunk"  dir="Right"  variety="Large A"                     attachesTo="floor: treeFloor; ceiling: treeCeiling; left: treeLeft"							 	/>
-        <Frame num="52" upperLeft="88,132"  name="Tree Trunk"  dir="Center" variety="Large A"                     attachesTo="floor: treeFloor; ceiling: treeCeiling; left: treeLeft; right: treeRight"	 	/>
-        <Frame num="53" upperLeft="132,132" name="Tree Top"    dir="Up"     variety="Small Double Slight Bulge A" attachesTo="floor: treeFloor; right: branchRight"													 	/>
-        <Frame num="54" upperLeft="154,132" name="Tree Top"    dir="Left"   variety="Huge"                        attachesTo="floor: treeFloor; left: treeLeft; right: treeRight"									/>
+        <Frame num="48" upperLeft="0,132"   name="Tree Trunk"  dir="Left"   variety="Large A"                     attachesTo="treeFloor; treeCeiling; treeRight"					 />
+        <Frame num="49" upperLeft="22,132"  name="Tree Base"   dir="Right"  variety="Plain A"                     attachesTo="treeFloor; treeLeft"										 />
+        <Frame num="50" upperLeft="44,132"  name="Tree Base"   dir="Left"   variety="Plain A"                     attachesTo="treeFloor; treeRight"									 />
+        <Frame num="51" upperLeft="66,132"  name="Tree Trunk"  dir="Right"  variety="Large A"                     attachesTo="treeFloor; treeCeiling; treeLeft"					 />
+        <Frame num="52" upperLeft="88,132"  name="Tree Trunk"  dir="Center" variety="Large A"                     attachesTo="treeFloor; treeCeiling; treeLeft; treeRight"	 	 />
+        <Frame num="53" upperLeft="132,132" name="Tree Top"    dir="Up"     variety="Small Double Slight Bulge A" attachesTo="treeFloor; branchRight"									 />
+        <Frame num="54" upperLeft="154,132" name="Tree Top"    dir="Left"   variety="Huge"                        attachesTo="treeFloor; treeLeft; treeRight"						 />
 
-        <Frame num="55" upperLeft="0,154"   name="Tree Trunk"  dir="Left"   variety="Large B"                     attachesTo="floor: treeFloor; ceiling: treeCeiling; right: treeRight"							/>
-        <Frame num="56" upperLeft="22,154"  name="Tree Base"   dir="Right"  variety="Plain B"                     attachesTo="floor: treeFloor; left: treeLeft"															/>
-        <Frame num="57" upperLeft="44,154"  name="Tree Base"   dir="Left"   variety="Plain B"                     attachesTo="floor: treeFloor; right: treeRight"														 	/>
-        <Frame num="58" upperLeft="66,154"  name="Tree Trunk"  dir="Right"  variety="Large B"                     attachesTo="floor: treeFloor; ceiling: treeCeiling; left: treeLeft"							 	/>
-        <Frame num="59" upperLeft="88,154"  name="Tree Trunk"  dir="Center" variety="Large B"                     attachesTo="floor: treeFloor; ceiling: treeCeiling; left: treeLeft; right: treeRight"	 	/>
-        <Frame num="60" upperLeft="132,154" name="Tree Top"    dir="Up"     variety="Small Double Slight Bulge B" attachesTo="floor: treeFloor; right: branchRight"													 	/>
-        <Frame num="61" upperLeft="154,154" name="Tree Top"    dir="Center" variety="Huge"                        attachesTo="floor: treeFloor; left: treeLeft; right: treeRight"									/>
+        <Frame num="55" upperLeft="0,154"   name="Tree Trunk"  dir="Left"   variety="Large B"                     attachesTo="treeFloor; treeCeiling; treeRight"					 />
+        <Frame num="56" upperLeft="22,154"  name="Tree Base"   dir="Right"  variety="Plain B"                     attachesTo="treeFloor; treeLeft"										 />
+        <Frame num="57" upperLeft="44,154"  name="Tree Base"   dir="Left"   variety="Plain B"                     attachesTo="treeFloor; treeRight"									 />
+        <Frame num="58" upperLeft="66,154"  name="Tree Trunk"  dir="Right"  variety="Large B"                     attachesTo="treeFloor; treeCeiling; treeLeft"					 />
+        <Frame num="59" upperLeft="88,154"  name="Tree Trunk"  dir="Center" variety="Large B"                     attachesTo="treeFloor; treeCeiling; treeLeft; treeRight"	 	 />
+        <Frame num="60" upperLeft="132,154" name="Tree Top"    dir="Up"     variety="Small Double Slight Bulge B" attachesTo="treeFloor; branchRight"									 />
+        <Frame num="61" upperLeft="154,154" name="Tree Top"    dir="Center" variety="Huge"                        attachesTo="treeFloor; treeLeft; treeRight"						 />
 
-        <Frame num="62" upperLeft="0,176"   name="Tree Trunk"  dir="Left"   variety="Large C"                     attachesTo="floor: treeFloor; ceiling: treeCeiling; right: treeRight"							/>
-        <Frame num="63" upperLeft="22,176"  name="Tree Base"   dir="Right"  variety="Plain C"                     attachesTo="floor: treeFloor; left: treeLeft"															/>
-        <Frame num="64" upperLeft="44,176"  name="Tree Base"   dir="Left"   variety="Plain C"                     attachesTo="floor: treeFloor; right: treeRight"														 	/>
-        <Frame num="65" upperLeft="66,176"  name="Tree Trunk"  dir="Right"  variety="Large C"                     attachesTo="floor: treeFloor; ceiling: treeCeiling; left: treeLeft"							 	/>
-        <Frame num="66" upperLeft="88,176"  name="Tree Trunk"  dir="Center" variety="Large C"                     attachesTo="floor: treeFloor; ceiling: treeCeiling; left: treeLeft; right: treeRight"	 	/>
-        <Frame num="67" upperLeft="132,176" name="Tree Top"    dir="Up"     variety="Small Double Slight Bulge C" attachesTo="floor: treeFloor; right: branchRight"													 	/>
-        <Frame num="68" upperLeft="154,176" name="Tree Top"    dir="Right"  variety="Huge"                        attachesTo="floor: treeFloor; left: treeLeft; right: treeRight"									/>
+        <Frame num="62" upperLeft="0,176"   name="Tree Trunk"  dir="Left"   variety="Large C"                     attachesTo="treeFloor; treeCeiling; treeRight"					 />
+        <Frame num="63" upperLeft="22,176"  name="Tree Base"   dir="Right"  variety="Plain C"                     attachesTo="treeFloor; treeLeft"										 />
+        <Frame num="64" upperLeft="44,176"  name="Tree Base"   dir="Left"   variety="Plain C"                     attachesTo="treeFloor; treeRight"									 />
+        <Frame num="65" upperLeft="66,176"  name="Tree Trunk"  dir="Right"  variety="Large C"                     attachesTo="treeFloor; treeCeiling; treeLeft"					 />
+        <Frame num="66" upperLeft="88,176"  name="Tree Trunk"  dir="Center" variety="Large C"                     attachesTo="treeFloor; treeCeiling; treeLeft; treeRight"	 	 />
+        <Frame num="67" upperLeft="132,176" name="Tree Top"    dir="Up"     variety="Small Double Slight Bulge C" attachesTo="treeFloor; branchRight"									 />
+        <Frame num="68" upperLeft="154,176" name="Tree Top"    dir="Right"  variety="Huge"                        attachesTo="treeFloor; treeLeft; treeRight"						 />
 
-        <Frame num="69" upperLeft="0,198"   name="Tree Top"    dir="Right"  variety="Jagged"                      attachesTo="floor: treeFloor"																				 	/>
-        <Frame num="70" upperLeft="0,220"   name="Tree Top"    dir="Up"     variety="Jagged"                      attachesTo="floor: treeFloor"																				 	/>
-        <Frame num="71" upperLeft="0,242"   name="Tree Top"    dir="Left"   variety="Jagged"                      attachesTo="floor: treeFloor"																				 	/>
+        <Frame num="69" upperLeft="0,198"   name="Tree Top"    dir="Right"  variety="Jagged"                      attachesTo="treeFloor"													 />
+        <Frame num="70" upperLeft="0,220"   name="Tree Top"    dir="Up"     variety="Jagged"                      attachesTo="treeFloor"													 />
+        <Frame num="71" upperLeft="0,242"   name="Tree Top"    dir="Left"   variety="Jagged"                      attachesTo="treeFloor"													 />
       </Frames>
     </Tile>
-    <Tile num="6"   name="Iron"                color="#ff6b594e"                 blocksLight="true" canMorphFrom="0" isSolid="true" reflectivity="1.15" />
-    <Tile num="7"   name="Copper"              color="#ffc6561d"                 blocksLight="true" canMorphFrom="0" isSolid="true" reflectivity="1.1" />
-    <Tile num="8"   name="Gold"                color="#ffb9a417"                 blocksLight="true" canMorphFrom="0" isSolid="true" reflectivity="1" />
-    <Tile num="9"   name="Silver"              color="#ffd9dfdf"                 blocksLight="true" canMorphFrom="0" isSolid="true" reflectivity="1.05" />
+    <Tile num="6"   name="Iron"                color="#ff6b594e"                 blocksLight="true" canMorphFrom="0" isSolid="true" sparkle="1.15" />
+    <Tile num="7"   name="Copper"              color="#ffc6561d"                 blocksLight="true" canMorphFrom="0" isSolid="true" sparkle="1.1" />
+    <Tile num="8"   name="Gold"                color="#ffb9a417"                 blocksLight="true" canMorphFrom="0" isSolid="true" sparkle="1" />
+    <Tile num="9"   name="Silver"              color="#ffd9dfdf"                 blocksLight="true" canMorphFrom="0" isSolid="true" sparkle="1.05" />
     <Tile num="10"  name="Door Closed"         color="#ff00fff2" isFramed="true" blocksLight="true" canMixFrames="true" destroyedBy="lava" isSolid="true" noAttach="4" placement="CFBoth" size="1x3">
       <Frames>
         <Frame num="0" upperLeft="0,0"    variety="A" />
@@ -399,7 +399,7 @@ Single item; tag has no children.  Has the following properties:
         <Frame num="1" upperLeft="36,0"  dir="Left"   />
       </Frames>
     </Tile>
-    <Tile num="12"  name="Crystal Heart"       color="#ffff0000" isFramed="true" destroyedBy="lava" placement="floor" reflectivity="1" size="2x2" />
+    <Tile num="12"  name="Crystal Heart"       color="#ffff0000" isFramed="true" destroyedBy="lava" placement="floor" sparkle="1" size="2x2" />
     <Tile num="13"  name="Bottle"              color="#ff00fff2" isFramed="true" destroyedBy="lava" noAttach="4" placement="surface">
       <Frames>
         <Frame num="0" upperLeft="0,0"  name="Bottle"           />
@@ -429,7 +429,7 @@ Single item; tag has no children.  Has the following properties:
         <Frame num="2" upperLeft="36,0"  dir="Right"  />
       </Frames>
     </Tile>
-    <Tile num="21"  name="Chest"               color="#ffddb800" isFramed="true" noAttach="4" placement="floor" reflectivity="1" size="2x2">
+    <Tile num="21"  name="Chest"               color="#ffddb800" isFramed="true" noAttach="4" placement="floor" sparkle="1" size="2x2">
       <Frames>
         <Frame num="0" upperLeft="0,0"   name="Chest"                          />
         <Frame num="1" upperLeft="36,0"  name="Gold Chest"                     />
@@ -440,7 +440,7 @@ Single item; tag has no children.  Has the following properties:
         <Frame num="6" upperLeft="216,0" name="Trash Can"                      />
       </Frames>
     </Tile>
-    <Tile num="22"  name="Demonite"            color="#ff625fa7"                 blocksLight="true" canMorphFrom="0" isSolid="true" reflectivity="1.15" />
+    <Tile num="22"  name="Demonite"            color="#ff625fa7"                 blocksLight="true" canMorphFrom="0" isSolid="true" sparkle="1.15" />
     <Tile num="23"  name="Corruption Grass"    color="#ff8d89df"                 blocksLight="true" isSolid="true" />
     <Tile num="24"  name="Corruption Plants"   color="#ff8d89df" isFramed="true" attachesTo="23" canBeCut="true" oneHit="true" placement="floor">
       <Frames>
@@ -487,9 +487,9 @@ Single item; tag has no children.  Has the following properties:
     <Tile num="42"  name="Chain Lantern"       color="#ffef904b" isFramed="true" destroyedBy="lava" placement="ceiling" size="1x2" />
     <Tile num="43"  name="Green Dungeon Brick" color="#ff39a851"                 blocksLight="true" isSolid="true" />
     <Tile num="44"  name="Pink Dungeon Brick"  color="#ffb200ff"                 blocksLight="true" isSolid="true" />
-    <Tile num="45"  name="Gold Brick"          color="#ffffd514"                 blocksLight="true" isSolid="true" reflectivity="1.9" />
-    <Tile num="46"  name="Silver Brick"        color="#ffe5e5e5"                 blocksLight="true" isSolid="true" reflectivity="2" />
-    <Tile num="47"  name="Copper Brick"        color="#ffff5900"                 blocksLight="true" isSolid="true" reflectivity="2.1" />
+    <Tile num="45"  name="Gold Brick"          color="#ffffd514"                 blocksLight="true" isSolid="true" sparkle="1.9" />
+    <Tile num="46"  name="Silver Brick"        color="#ffe5e5e5"                 blocksLight="true" isSolid="true" sparkle="2" />
+    <Tile num="47"  name="Copper Brick"        color="#ffff5900"                 blocksLight="true" isSolid="true" sparkle="2.1" />
     <Tile num="48"  name="Spikes"              color="#ff6d6d6d"                 blocksLight="true" contactDmg="40" isSolid="true" placement="wallFloorCeiling" />
     <Tile num="49"  name="Water Candle"        color="#ff2b8fff"                 destroyedBy="lava" lightBrightness="0.75" placement="surface" />
     <Tile num="50"  name="Books"               color="#ff00fff2" isFramed="true" destroyedBy="lava" noAttach="4" oneHit="true" placement="surface">
@@ -527,12 +527,12 @@ Single item; tag has no children.  Has the following properties:
       </Frames>
     </Tile>
     <Tile num="62"  name="Jungle Vines"        color="#ff8ace1c"                 attachesTo="60" blocksLight="true" canBeCut="true" destroyedBy="lava" placement="ceiling" />
-    <Tile num="63"  name="Gem Sapphire"        color="#ff2a82fa"                 blocksLight="true" isSolid="true" reflectivity="0.9" />
-    <Tile num="64"  name="Gem Ruby"            color="#ff2a82fa"                 blocksLight="true" isSolid="true" reflectivity="0.9" />
-    <Tile num="65"  name="Gem Emerald"         color="#ff2a82fa"                 blocksLight="true" isSolid="true" reflectivity="0.9" />
-    <Tile num="66"  name="Gem Topaz"           color="#ff2a82fa"                 blocksLight="true" isSolid="true" reflectivity="0.9" />
-    <Tile num="67"  name="Gem Amethyst"        color="#ff2a82fa"                 blocksLight="true" isSolid="true" reflectivity="0.9" />
-    <Tile num="68"  name="Gem Diamond"         color="#ff2a82fa"                 blocksLight="true" isSolid="true" reflectivity="0.9" />
+    <Tile num="63"  name="Gem Sapphire"        color="#ff2a82fa"                 blocksLight="true" isSolid="true" sparkle="0.9" />
+    <Tile num="64"  name="Gem Ruby"            color="#ff2a82fa"                 blocksLight="true" isSolid="true" sparkle="0.9" />
+    <Tile num="65"  name="Gem Emerald"         color="#ff2a82fa"                 blocksLight="true" isSolid="true" sparkle="0.9" />
+    <Tile num="66"  name="Gem Topaz"           color="#ff2a82fa"                 blocksLight="true" isSolid="true" sparkle="0.9" />
+    <Tile num="67"  name="Gem Amethyst"        color="#ff2a82fa"                 blocksLight="true" isSolid="true" sparkle="0.9" />
+    <Tile num="68"  name="Gem Diamond"         color="#ff2a82fa"                 blocksLight="true" isSolid="true" sparkle="0.9" />
     <Tile num="69"  name="Jungle Thorns"       color="#ff5e3037"                 attachesTo="60" canBeCut="true" contactDmg="25" destroyedBy="lava" oneHit="true" placement="floor" />
     <Tile num="70"  name="Mushroom Grass"      color="#ff5d7fff"                 blocksLight="true" isSolid="true" />
     <Tile num="71"  name="Mushroom Plant"      color="#ffb1ae83" isFramed="true" attachesTo="70" canBeCut="true" destroyedBy="lava" placement="floor">

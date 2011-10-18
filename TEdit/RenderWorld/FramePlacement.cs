@@ -10,9 +10,12 @@ namespace TEdit.RenderWorld
         Floor       = 0x01,
         Surface     = 0x02,
         Ceiling     = 0x04,
-        Wall        = 0x08,
-        Float       = 0x10,
-        MustHaveAll = 0x20,
+        Left        = 0x08,
+        Right       = 0x10,
+        Float       = 0x20,
+        MustHaveAll = 0x40,
+
+        Wall = Left | Right,
 
         FloorSurface        = Floor | Surface,
         FloorCeiling        = Floor | Ceiling,          // currently not encountered in Terraria
@@ -26,6 +29,6 @@ namespace TEdit.RenderWorld
         Any        = AnySurface       | Float,
         CFBoth     = FloorCeiling     | MustHaveAll,
 
-        All              = Any              | MustHaveAll  // only used as a bitwise tautology/disjunction
+        All        = Any              | MustHaveAll     // only used as a bitwise tautology/disjunction
     }
 }
