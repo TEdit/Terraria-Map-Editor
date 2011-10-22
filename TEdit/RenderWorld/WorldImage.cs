@@ -1,7 +1,9 @@
 ﻿using System.ComponentModel.Composition;
-using System.Windows;
 using System.Windows.Media.Imaging;
+using System.Collections;
+using System.Collections.Generic;
 using TEdit.Common;
+using TEdit.Common.Structures;
 
 namespace TEdit.RenderWorld
 {
@@ -9,63 +11,42 @@ namespace TEdit.RenderWorld
     [PartCreationPolicy(CreationPolicy.Shared)]
     public class WorldImage : ObservableObject
     {
-        private WriteableBitmap _Image;
+        private Dictionary<string, WriteableBitmap> _layers = new Dictionary<string, WriteableBitmap>() {
+            { "TilesPixel", new WriteableBitmap() },
+            { "Walls",      new WriteableBitmap() },
+            { "TilesBack",  new WriteableBitmap() },
+            { "TilesFront", new WriteableBitmap() },
+            { "Liquid",     new WriteableBitmap() },
+        };
 
-        private WriteableBitmap _Overlay;
+        public readonly string[] LayerList = { "TilesPixel", "Walls", "TilesBack", "TilesFront", "Liquid" };
+        public readonly Dictionary<string, int> Bpp = new Dictionary<string, int>() {
+            { "TilesPixel", 4 },   // TODO: Change to 3; need conversion tools in place, though //
+            { "Walls",      4 },
+            { "TilesBack",  4 },
+            { "TilesFront", 4 },
+            { "Liquid",     4 },
+        };
+        public readonly Dictionary<string, SizeInt32> TileSize = new Dictionary<string, SizeInt32>() {
+            { "TilesPixel", new SizeInt32(1, 1) },
+            { "Walls",      new SizeInt32(8, 8) },
+            { "TilesBack",  new SizeInt32(8, 8) },
+            { "TilesFront", new SizeInt32(8, 8) },
+            { "Liquid",     new SizeInt32(8, 8) },
+        };
+
 
         public WriteableBitmap Image
         {
-            get { return _Image; }
-            set
-            {
-                if (_Image != value)
-                {
-                    _Image = value;
-                    RaisePropertyChanged("Image");
-                }
-            }
+            get { return _layers["TilesPixel"]; }
+            set { _layers["TilesPixel"] = value; }
         }
 
-        public WriteableBitmap Overlay
+        public Dictionary<string, WriteableBitmap> Layer
         {
-            get { return _Overlay; }
-            set
-            {
-                if (_Overlay != value)
-                {
-                    _Overlay = value;
-                    RaisePropertyChanged("Overlay");
-                }
-            }
+            get { return _layers; }
+            set { SetProperty(ref _layers, ref value, "Layer"); }
         }
 
-        public void ResetOverlay()
-        {
-            if (_Image != null)
-            {
-                _Overlay = new WriteableBitmap(_Image.PixelWidth, _Image.PixelHeight, _Image.DpiX, _Image.DpiY,
-                                               _Image.Format, _Image.Palette);
-
-                int stride = _Overlay.BackBufferStride;
-                int numpixelbytes = _Overlay.PixelHeight*_Overlay.PixelWidth*_Overlay.Format.BitsPerPixel/8;
-                var pixels = new byte[numpixelbytes];
-
-                //for (int x = 0; x < _Overlay.PixelWidth; x++)
-                //{
-                //    for (int y = 0; y < _Overlay.PixelHeight; y++)
-                //    {
-                //        pixels[x * 4 + y * stride] = (byte)0;
-                //        pixels[x * 4 + y * stride + 1] = (byte)0;
-                //        pixels[x * 4 + y * stride + 2] = (byte)0;
-                //        pixels[x * 4 + y * stride + 3] = (byte)0;
-                //    }
-                //}
-
-                _Image.CopyPixels(pixels, stride, 0);
-                _Overlay.WritePixels(new Int32Rect(0, 0, _Overlay.PixelWidth, _Overlay.PixelHeight), pixels,
-                                     _Overlay.PixelWidth*_Overlay.Format.BitsPerPixel/8, 0);
-            }
-            RaisePropertyChanged("Overlay");
-        }
     }
 }

@@ -23,29 +23,31 @@ namespace TEdit.Common.Structures
         public int Width
         {
             get { return _Width; }
-            set
-            {
-                if (_Width != value)
-                {
-                    _Width = value;
-                    RaisePropertyChanged("Width");
-                }
-            }
+            set { SetProperty(ref _Width, ref value, "Width"); }
         }
 
         public int Height
         {
             get { return _Height; }
-            set
-            {
-                if (_Height != value)
-                {
-                    _Height = value;
-                    RaisePropertyChanged("Height");
-                }
-            }
+            set { SetProperty(ref _Height, ref value, "Height"); }
         }
 
+        public int W
+        {
+            get { return _Width; }
+            set { SetProperty(ref _Width, ref value, "Width"); }
+        }
+
+        public int H
+        {
+            get { return _Height; }
+            set { SetProperty(ref _Height, ref value, "Height"); }
+        }
+
+        public int Total
+        {
+            get { return _Width * _Height; }
+        }
 
         public override string ToString()
         {

@@ -59,6 +59,8 @@
     <ApplicationIcon>tedit.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.Xna.Framework, Version=4.0.0.0, Culture=neutral, PublicKeyToken=842cf8be1de50553, processorArchitecture=x86" />
+    <Reference Include="Microsoft.Xna.Framework.Graphics, Version=4.0.0.0, Culture=neutral, PublicKeyToken=842cf8be1de50553, processorArchitecture=x86" />
     <Reference Include="PresentationFramework.Aero" />
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />
@@ -81,10 +83,13 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Common\Structures\BytePixels.cs" />
     <Compile Include="Common\CustomCollections.cs" />
     <Compile Include="Common\EnumExtensions.cs" />
     <Compile Include="Common\ObservableCollectionEx.cs" />
     <Compile Include="Common\Structures\AttachGroup.cs" />
+    <Compile Include="Common\Structures\SizeFloat.cs" />
+    <Compile Include="Common\Structures\TexturePlus.cs" />
     <Compile Include="Common\Structures\TileFrame.cs" />
     <Compile Include="Common\Structures\RectI.cs" />
     <Compile Include="Common\Structures\PointFloat.cs" />
@@ -104,6 +109,7 @@
     <Compile Include="Plugins\IPlugin.cs" />
     <Compile Include="Plugins\IPluginMetaData.cs" />
     <Compile Include="Plugins\SamplePlugin.cs" />
+    <Compile Include="RenderWorld\GraphicsServices.cs" />
     <Compile Include="RenderWorld\LiquidType.cs" />
     <Compile Include="RenderWorld\XMLBase.cs" />
     <Compile Include="RenderWorld\NamedBase.cs" />

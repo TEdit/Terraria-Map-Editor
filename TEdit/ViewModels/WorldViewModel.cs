@@ -116,7 +116,7 @@ namespace TEdit.ViewModels
 
         #endregion
 
-        #region Propertie
+        #region Properties
 
 
         public PointShort Frame

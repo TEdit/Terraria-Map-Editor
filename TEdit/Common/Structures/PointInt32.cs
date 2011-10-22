@@ -6,7 +6,6 @@ namespace TEdit.Common.Structures
     public struct PointInt32
     {
         private int _x;
-
         private int _y;
 
         public PointInt32(PointInt32 p)

@@ -36,6 +36,7 @@ namespace TEdit
             if (Compose())
             {
                 MainWindow.Show();
+                RenderWorld.WorldSettings.LoadGameData();
             }
             else
             {

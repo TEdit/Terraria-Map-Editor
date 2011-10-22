@@ -1,10 +1,11 @@
 using System;
 using TEdit.Common;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace TEdit.RenderWorld
 {
     [Serializable]
-    public class ItemProperty : XMLBase
+    public class ItemProperty : ColorProperty
     {
         private byte _maxStack = 1;
         public byte MaxStack

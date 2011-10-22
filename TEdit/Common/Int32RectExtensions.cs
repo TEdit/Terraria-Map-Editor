@@ -19,14 +19,50 @@ namespace TEdit.Common
             return xabs < rect.Width && yabs < rect.Height;
         }
 
-        public static int GetRight(this Int32Rect rect)
+        public static int Left(this Int32Rect rect)
         {
-            return rect.X + rect.Width;
+            return rect.X;
         }
 
-        public static int GetBottom(this Int32Rect rect)
+        public static int Right(this Int32Rect rect)
         {
-            return rect.Y + rect.Height;
+            return rect.X + rect.Width - 1;
         }
+
+        public static int Top(this Int32Rect rect)
+        {
+            return rect.Y;
+        }
+
+        public static int Bottom(this Int32Rect rect)
+        {
+            return rect.Y + rect.Height - 1;
+        }
+
+        public static PointInt32 TopLeft(this Int32Rect rect)
+        {
+            return new PointInt32(rect.X, rect.Y);
+        }
+
+        public static PointInt32 BottomRight(this Int32Rect rect)
+        {
+            return new PointInt32(rect.X + rect.Width - 1, rect.Y + rect.Height - 1);
+        }
+
+        public static PointInt32 TopRight(this Int32Rect rect)
+        {
+            return new PointInt32(rect.X + rect.Width - 1, rect.Y);
+        }
+
+        public static PointInt32 BottomLeft(this Int32Rect rect)
+        {
+            return new PointInt32(rect.X, rect.Y + rect.Height - 1);
+        }
+
+        public static SizeInt32 Size(this Int32Rect rect)
+        {
+            return new SizeInt32(rect.Width, rect.Height);
+        }
+
     }
 }
