@@ -148,18 +148,23 @@ namespace TEdit.Common.Structures
             return new SizeFloat(a*b.Width, a*b.Height);
         }
 
-        public override float GetHashCode()
+        public override int GetHashCode()
         {
-            float result = 17;
+            int result = 17;
             result = result*37 + Width.GetHashCode();
             result = result*37 + Height.GetHashCode();
             return result;
         }
 
-        // one-way; reverse is not guaranteed to not lose data
-        public static implicit operator PointFloat(SizeFloat s)
+        // explicit; is not guaranteed to not lose data
+        public static explicit operator SizeInt32(SizeFloat s) {
+            return new SizeInt32((int)s.Width, (int)s.Height);
+        }
+
+        // explicit; is not guaranteed to not lose data
+        public static explicit operator PointInt32(SizeFloat s)
         {
-            return new PointFloat(s.Width, s.Height);
+            return new PointInt32((int)s.Width, (int)s.Height);
         }
         
         // two-way; reverse function is available on other struct

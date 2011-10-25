@@ -3,6 +3,7 @@ using System.ComponentModel.Composition;
 using System.Windows.Media.Imaging;
 using TEdit.Common;
 using TEdit.Common.Structures;
+using System.Collections.Generic;
 
 namespace TEdit.Tools
 {
@@ -12,7 +13,7 @@ namespace TEdit.Tools
     public class ToolProperties : ObservableObject
     {
         private int _Height;
-        private WriteableBitmap _Image;
+        private Dictionary<string, WriteableBitmap> _Image;
         private bool _IsOutline;
         private bool _IsSquare;
         private int _MaxHeight;
@@ -280,7 +281,7 @@ namespace TEdit.Tools
             }
         }
 
-        public WriteableBitmap Image
+        public Dictionary<string, WriteableBitmap> Image
         {
             get { return _Image; }
             set

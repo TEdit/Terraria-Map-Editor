@@ -1,4 +1,5 @@
 ﻿using System.Windows.Media.Imaging;
+using System.Collections.Generic;
 using TEdit.Common;
 
 namespace TEdit.Tools
@@ -13,6 +14,6 @@ namespace TEdit.Tools
         bool PressTool(TileMouseEventArgs e);
         bool MoveTool(TileMouseEventArgs e);
         bool ReleaseTool(TileMouseEventArgs e);
-        WriteableBitmap PreviewTool();
+        Dictionary<string, WriteableBitmap> PreviewTool();
     }
 }

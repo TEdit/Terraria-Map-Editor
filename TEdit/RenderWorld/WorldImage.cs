@@ -11,23 +11,23 @@ namespace TEdit.RenderWorld
     [PartCreationPolicy(CreationPolicy.Shared)]
     public class WorldImage : ObservableObject
     {
-        private Dictionary<string, WriteableBitmap> _layers = new Dictionary<string, WriteableBitmap>() {
-            { "TilesPixel", new WriteableBitmap() },
-            { "Walls",      new WriteableBitmap() },
-            { "TilesBack",  new WriteableBitmap() },
-            { "TilesFront", new WriteableBitmap() },
-            { "Liquid",     new WriteableBitmap() },
+        private readonly Dictionary<string, WriteableBitmap> _layers = new Dictionary<string, WriteableBitmap>() {
+            { "TilesPixel", null },
+            { "Walls",      null },
+            { "TilesBack",  null },
+            { "TilesFront", null },
+            { "Liquid",     null },
         };
 
-        public readonly string[] LayerList = { "TilesPixel", "Walls", "TilesBack", "TilesFront", "Liquid" };
-        public readonly Dictionary<string, int> Bpp = new Dictionary<string, int>() {
+        public static readonly string[] LayerList = { "TilesPixel", "Walls", "TilesBack", "TilesFront", "Liquid" };
+        public static readonly Dictionary<string, int> Bpp = new Dictionary<string, int>() {
             { "TilesPixel", 4 },   // TODO: Change to 3; need conversion tools in place, though //
             { "Walls",      4 },
             { "TilesBack",  4 },
             { "TilesFront", 4 },
             { "Liquid",     4 },
         };
-        public readonly Dictionary<string, SizeInt32> TileSize = new Dictionary<string, SizeInt32>() {
+        public static readonly Dictionary<string, SizeInt32> TileSize = new Dictionary<string, SizeInt32>() {
             { "TilesPixel", new SizeInt32(1, 1) },
             { "Walls",      new SizeInt32(8, 8) },
             { "TilesBack",  new SizeInt32(8, 8) },
@@ -45,7 +45,6 @@ namespace TEdit.RenderWorld
         public Dictionary<string, WriteableBitmap> Layer
         {
             get { return _layers; }
-            set { SetProperty(ref _layers, ref value, "Layer"); }
         }
 
     }

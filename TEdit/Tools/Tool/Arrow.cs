@@ -4,8 +4,10 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using TEdit.Common;
 using TEdit.Common.Structures;
+using TEdit.RenderWorld;
 using TEdit.TerrariaWorld;
 using TEdit.Views;
+using System.Collections.Generic;
 
 namespace TEdit.Tools.Tool
 {
@@ -133,20 +135,26 @@ namespace TEdit.Tools.Tool
                    (loc.Y == hit.Y || loc.Y + 1 == hit.Y);
         }
 
-        public override WriteableBitmap PreviewTool()
+        public override Dictionary<string, WriteableBitmap> PreviewTool()
         {
-            var bmp = new WriteableBitmap(
-                1,
-                1,
-                96,
-                96,
-                PixelFormats.Bgra32,
-                null);
+            var layers = new Dictionary<string, WriteableBitmap>();
+            var c = Color.FromArgb(127, 0, 90, 255);
+            var ts = WorldImage.TileSize;
 
+            foreach (var layer in WorldImage.LayerList) {
+                var bmp = new WriteableBitmap(
+                    ts[layer].Width,
+                    ts[layer].Height,
+                    96,
+                    96,
+                    PixelFormats.Bgra32,
+                    null);
 
-            bmp.Clear();
-            bmp.SetPixel(0, 0, 127, 0, 90, 255);
-            return bmp;
+                bmp.Clear();
+                bmp.FillRectangle(0, 0, ts[layer].Width - 1, ts[layer].Height - 1, c);
+                layers[layer] = bmp;
+            }
+            return layers;
         }
     }
 }

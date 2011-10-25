@@ -6,6 +6,7 @@ using System.Windows.Media.Imaging;
 using TEdit.Common;
 using TEdit.RenderWorld;
 using TEdit.TerrariaWorld;
+using System.Collections.Generic;
 
 namespace TEdit.Tools.Tool
 {
@@ -108,15 +109,19 @@ namespace TEdit.Tools.Tool
             return false;
         }
 
-        public override WriteableBitmap PreviewTool()
-        {
-            return new WriteableBitmap(
-                1,
-                1,
-                96,
-                96,
-                PixelFormats.Bgr32,
-                null);
+        public override Dictionary<string, WriteableBitmap> PreviewTool() {
+            var layers = new Dictionary<string, WriteableBitmap>();
+            foreach (var layer in WorldImage.LayerList) {
+                layers[layer] = new WriteableBitmap(
+                    WorldImage.TileSize[layer].Width,
+                    WorldImage.TileSize[layer].Height,
+                    96,
+                    96,
+                    PixelFormats.Bgra32,
+                    null);
+            }
+            return layers;
         }
+
     }
 }

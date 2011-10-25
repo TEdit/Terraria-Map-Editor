@@ -157,6 +157,11 @@ namespace TEdit.Common.Structures
         }
 
         // one-way; reverse is not guaranteed to not lose data
+        public static implicit operator SizeFloat(SizeInt32 s) {
+            return new SizeFloat(s.Width, s.Height);
+        }
+       
+        // one-way; reverse is not guaranteed to not lose data
         public static implicit operator PointFloat(SizeInt32 s)
         {
             return new PointFloat(s.Width, s.Height);

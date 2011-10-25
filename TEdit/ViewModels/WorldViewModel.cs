@@ -592,22 +592,22 @@ namespace TEdit.ViewModels
 
         private void RenderWorld()
         {
-            Task<WriteableBitmap>.Factory.StartNew(
+            Task<Dictionary<string, WriteableBitmap>>.Factory.StartNew(
                 () =>
                 {
-                    WriteableBitmap img = _renderer.RenderWorld();
+                    Dictionary<string, WriteableBitmap> img = _renderer.RenderWorld();
                     if (img != null)
                     {
-                        img.Freeze();
+                        foreach (var layer in WorldImage.LayerList) { img[layer].Freeze(); }
                     }
                     return img;
                 })
             .ContinueWith(
                 t =>
                 {
-                    if (t.Result != null)
+                    if (t.Result.Count != null)
                     {
-                        WorldImage.Image = t.Result.Clone();
+                        foreach (var layer in WorldImage.LayerList) { WorldImage.Layer[layer] = t.Result[layer].Clone(); }
                         RaisePropertyChanged("WorldZoomedHeight");
                         RaisePropertyChanged("WorldZoomedWidth");
                         CommandManager.InvalidateRequerySuggested();

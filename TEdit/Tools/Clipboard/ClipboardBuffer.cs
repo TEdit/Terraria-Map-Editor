@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
@@ -12,10 +13,10 @@ namespace TEdit.Tools.Clipboard
 {
     public partial class ClipboardBuffer : ObservableObject
     {
-        public ClipboardBuffer(PointInt32 size)
+        public ClipboardBuffer(SizeInt32 size)
         {
             Size = size;
-            Tiles = new Tile[size.X, size.Y];
+            Tiles = new Tile[size.W, size.H];
         }
 
         private string _Name;
@@ -32,8 +33,8 @@ namespace TEdit.Tools.Clipboard
             }
         }
 
-        private WriteableBitmap _Preview;
-        public WriteableBitmap Preview
+        private Dictionary<string, WriteableBitmap> _Preview;
+        public Dictionary<string, WriteableBitmap> Preview
         {
             get { return this._Preview; }
             set
@@ -46,8 +47,8 @@ namespace TEdit.Tools.Clipboard
             }
         }
 
-        private PointInt32 _size;
-        public PointInt32 Size
+        private SizeInt32 _size;
+        public SizeInt32 Size
         {
             get { return this._size; }
             protected set
@@ -55,7 +56,7 @@ namespace TEdit.Tools.Clipboard
                 if (this._size != value)
                 {
                     this._size = value;
-                    Tiles = new Tile[_size.X, _size.Y];
+                    Tiles = new Tile[_size.W, _size.H];
                     this.RaisePropertyChanged("Size");
                 }
             }

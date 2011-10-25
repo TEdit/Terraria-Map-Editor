@@ -19,9 +19,11 @@ namespace TEdit.RenderWorld
         [Import("World")] private World _world;
 
         [Import] private WorldImage _worldImage;
+        string[]                      layers   = WorldImage.LayerList;
+        Dictionary<string, SizeInt32> tileSize = WorldImage.TileSize;
+        Dictionary<string, int>       Bpp      = WorldImage.Bpp;
 
         public event ProgressChangedEventHandler ProgressChanged;
-        string[] layers = { "TilesPixel", "Walls", "TilesBack", "TilesFront", "Liquid" };
 
         protected virtual void OnProgressChanged(object sender, ProgressChangedEventArgs e)
         {
@@ -67,165 +69,94 @@ namespace TEdit.RenderWorld
             return Color.FromArgb(255, r, g, b);
         }
 
-        public void UpdateWorldImage(PointInt32 location)
-        {
-            Tile tile = _world.Tiles[location.X, location.Y];
-            Color color = GetTileColor(location.Y, tile);
-            _worldImage.Image.SetPixel(location.X, location.Y, color);
-            /// FIXME: Account for other layers ///
-        }
-
-        public void UpdateWorldImage(RectI area)
+        public void UpdateWorldImage(PointInt32 loc) { UpdateWorldImage(new RectI(loc, loc), null); }
+        public void UpdateWorldImage(RectI area, string renderMsg = "Render Update Complete.", Dictionary<string, WriteableBitmap> img = null)
         {
             // validate area
-            int maxX = _world.Header.MaxTiles.X;
-            int maxY = _world.Header.MaxTiles.Y;
-            area.Rebound(new RectI(maxX, maxY));
+            area.Rebound(_world.Header.WorldBounds);
 
             int width  = area.Width;
             int height = area.Height;
 
-            var layers   = _worldImage.LayerList;
-            var tileSize = _worldImage.TileSize;
-            var Bpp      = _worldImage.Bpp;
-
-            Dictionary<string, BytePixels> pixels = new Dictionary<string, BytePixels>();
-            foreach (string layer in layers) { pixels.Add(layer, new BytePixels(area.Size * tileSize[layer], _Bpp[layer])); }
+            if (img == null) img = _worldImage.Layer;
+            var pixels = new Dictionary<string, BytePixels>();
+            foreach (string layer in layers) { pixels.Add(layer, new BytePixels(area.Size * tileSize[layer], Bpp[layer])); }
 
             for (int x = area.X; x <= area.Right; x++) {
                 int dx = x - area.X;
-                OnProgressChanged(this,
-                                  new ProgressChangedEventArgs(
-                                      (int)(dx / (double)width*100.0),
-                                      "Rendering World..."));
+                if (renderMsg != null) OnProgressChanged(this, new ProgressChangedEventArgs(
+                    (int)(dx / (double)width*100.0),
+                    "Rendering World...")
+                );
                 for (int y = area.Y; y <= area.Bottom; y++) {
                     int dy = y - area.Y;
                     Tile tile = _world.Tiles[x, y];
                     if (tile != null) {
                         var xy = new PointInt32(x, y);
                         foreach (string layer in layers) {
-                            GetTexture(layer, y, tile, y >= maxY - 192).PutData(pixels[layer], xy * tileSize[layer]);
+                            GetTexture(layer, y, tile, y >= _world.Header.WorldBounds.Bottom - 192).PutData(pixels[layer], xy * (PointInt32)tileSize[layer]);
                         }
                     }
                 }
             }
 
             foreach (string layer in layers) {
-                SizeInt32 ts = _worldImage.TileSize[layer];
+                SizeInt32 ts = tileSize[layer];
                 var realArea = area * new RectI((PointInt32)ts, ts);
-                var stride   = realArea.Width * _worldImage.Bpp[layer];
+                var stride   = realArea.Width * Bpp[layer];
 
-                _worldImage.Layer[layer].Lock();
-                _worldImage.Layer[layer].WritePixels(realArea, pixels[layer].GetData(), stride, 0);
-                _worldImage.Layer[layer].AddDirtyRect(realArea);
-                _worldImage.Layer[layer].Unlock();
+                img[layer].Lock();
+                img[layer].WritePixels(realArea, pixels[layer].GetData(), stride, 0);
+                img[layer].AddDirtyRect(realArea);
+                img[layer].Unlock();
             }
 
-            OnProgressChanged(this, new ProgressChangedEventArgs(0, "Render Update Complete."));
+            if (renderMsg != null) OnProgressChanged(this, new ProgressChangedEventArgs(0, renderMsg));
         }
 
 
-        public WriteableBitmap RenderWorld()
+        public Dictionary<string, WriteableBitmap> RenderWorld()
         {
             if (_world.Header.WorldId == 0)
                 return null;
 
             IsRenderingFullMap = true;
-            int width = _world.Header.MaxTiles.X;
+            int width  = _world.Header.MaxTiles.X;
             int height = _world.Header.MaxTiles.Y;
 
-
-            var wbmap = new WriteableBitmap(
-                width,
-                height,
-                96,
-                96,
-                PixelFormats.Bgr32,
-                null);
-
-            int stride = wbmap.BackBufferStride;
-
-            int numpixelbytes = wbmap.PixelHeight*wbmap.PixelWidth*wbmap.Format.BitsPerPixel/8;
-
-            var pixels = new byte[numpixelbytes];
-            for (int x = 0; x < width; x++)
-            {
-                OnProgressChanged(this,
-                                  new ProgressChangedEventArgs(
-                                      (int) (x/(double) width*100.0),
-                                      "Rendering World..."));
-
-                for (int y = 0; y < height; y++)
-                {
-                    Tile tile = _world.Tiles[x, y];
-                    if (tile != null)
-                    {
-                        bool ishell = y >= height - 192;
-                        Color c = GetTileColor(y, tile, ishell);
-
-
-                        pixels[x*4 + y*stride] = c.B;
-                        pixels[x*4 + y*stride + 1] = c.G;
-                        pixels[x*4 + y*stride + 2] = c.R;
-                        pixels[x*4 + y*stride + 3] = c.A;
-                        //bmp.SetPixel(x - area.Left, y - area.Top, c);
-                    }
-                }
+            var wbmap = new Dictionary<string, WriteableBitmap>();
+            foreach (string layer in layers) {
+                wbmap[layer] = new WriteableBitmap(
+                    width  * tileSize[layer].Width,
+                    height * tileSize[layer].Height,
+                    96,
+                    96,
+                    PixelFormats.Bgr32,
+                    null);
             }
 
-            wbmap.WritePixels(new Int32Rect(0, 0, wbmap.PixelWidth, wbmap.PixelHeight), pixels,
-                              wbmap.PixelWidth*wbmap.Format.BitsPerPixel/8, 0);
-
-            OnProgressChanged(this, new ProgressChangedEventArgs(0, "Render Complete."));
+            UpdateWorldImage(_world.Header.WorldBounds, "Render Complete.", wbmap);
             IsRenderingFullMap = false;
             return wbmap;
         }
 
-        public WriteableBitmap RenderBuffer(ClipboardBuffer buffer)
+        public Dictionary<string, WriteableBitmap> RenderBuffer(ClipboardBuffer buffer)
         {
-            int width = buffer.Size.X;
-            int height = buffer.Size.Y;
-            var wbmap = new WriteableBitmap(
-                width,
-                height,
-                96,
-                96,
-                PixelFormats.Bgr32,
-                null);
+            int width  = buffer.Size.W;
+            int height = buffer.Size.H;
 
-            int stride = wbmap.BackBufferStride;
-
-            int numpixelbytes = wbmap.PixelHeight * wbmap.PixelWidth * wbmap.Format.BitsPerPixel / 8;
-
-            var pixels = new byte[numpixelbytes];
-            for (int x = 0; x < width; x++)
-            {
-                OnProgressChanged(this,
-                                  new ProgressChangedEventArgs(
-                                      (int)(x / (double)width * 100.0),
-                                      "Rendering Buffer..."));
-
-                for (int y = 0; y < height; y++)
-                {
-                    Tile tile = buffer.Tiles[x, y];
-                    if (tile != null)
-                    {
-                        Color c = GetTileColor(y, tile);
-
-                        pixels[x * 4 + y * stride] = c.B;
-                        pixels[x * 4 + y * stride + 1] = c.G;
-                        pixels[x * 4 + y * stride + 2] = c.R;
-                        pixels[x * 4 + y * stride + 3] = c.A;
-                        //bmp.SetPixel(x - area.Left, y - area.Top, c);
-                    }
-                }
+            var wbmap = new Dictionary<string, WriteableBitmap>();
+            foreach (string layer in layers) {
+                wbmap[layer] = new WriteableBitmap(
+                    width  * tileSize[layer].Width,
+                    height * tileSize[layer].Height,
+                    96,
+                    96,
+                    PixelFormats.Bgr32,
+                    null);
             }
 
-            wbmap.WritePixels(new Int32Rect(0, 0, wbmap.PixelWidth, wbmap.PixelHeight), pixels,
-                              wbmap.PixelWidth * wbmap.Format.BitsPerPixel / 8, 0);
-
-            OnProgressChanged(this, new ProgressChangedEventArgs(0, "Render Complete."));
-
+            UpdateWorldImage(new RectI(0, 0, buffer.Size), "Buffer Render Complete.", wbmap);
             return wbmap;
         }
 
@@ -265,7 +196,7 @@ namespace TEdit.RenderWorld
 
         private BytePixels GetTexture(string layerType, int y, Tile tile, bool isHell = false)
         {
-            BytePixels pixels;
+            var pixels = new BytePixels(new SizeInt32(8, 8), 4);
 
             switch (layerType)
             {

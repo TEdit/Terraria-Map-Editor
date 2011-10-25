@@ -56,8 +56,8 @@ namespace TEdit.TerrariaWorld
             Header.WorldName = "TEdit World";
             Header.WorldId = genRand.Next(int.MaxValue);
 
-            Header.WorldBounds = new RectF(0, width, 0, height);
-            Header.MaxTiles = new PointInt32(width, height);
+            Header.WorldBounds = new RectI(0, width - 1, 0, height - 1);
+            Header.MaxTiles = new SizeInt32(width, height);
             ClearWorld();
             Header.SpawnTile = new PointInt32(width / 2, height / 3);
             Header.WorldSurface = height / 3;
@@ -317,7 +317,7 @@ namespace TEdit.TerrariaWorld
                     Header.FileName = filename;
                     Header.WorldName = reader.ReadString();
                     Header.WorldId = reader.ReadInt32();
-                    Header.WorldBounds = new RectF(reader.ReadInt32(), reader.ReadInt32(), reader.ReadInt32(),
+                    Header.WorldBounds = new RectI(reader.ReadInt32(), reader.ReadInt32(), reader.ReadInt32(),
                                                    reader.ReadInt32());
                     int maxy = reader.ReadInt32();
                     int maxx = reader.ReadInt32();

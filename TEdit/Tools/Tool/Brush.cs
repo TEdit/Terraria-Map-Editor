@@ -162,23 +162,29 @@ namespace TEdit.Tools.Tool
         }
 
 
-        public override WriteableBitmap PreviewTool()
+        public override Dictionary<string, WriteableBitmap> PreviewTool()
         {
-            var bmp = new WriteableBitmap(
-                _properties.Width + 1,
-                _properties.Height + 1,
-                96,
-                96,
-                PixelFormats.Bgra32,
-                null);
+            var layers = new Dictionary<string, WriteableBitmap>();
+            var c = Color.FromArgb(127, 0, 90, 255);
+            var ts = WorldImage.TileSize;
 
+            foreach (var layer in WorldImage.LayerList) {
+                var w = _properties.Width  * ts[layer].Width;
+                var h = _properties.Height * ts[layer].Height;
+                var bmp = new WriteableBitmap(
+                    w,
+                    h,
+                    96,
+                    96,
+                    PixelFormats.Bgra32,
+                    null);
 
-            bmp.Clear();
-            if (_properties.BrushShape == ToolBrushShape.Square)
-                bmp.FillRectangle(0, 0, _properties.Width, _properties.Height, Color.FromArgb(127, 0, 90, 255));
-            else
-                bmp.FillEllipse(0, 0, _properties.Width, _properties.Height, Color.FromArgb(127, 0, 90, 255));
-            return bmp;
+                bmp.Clear();
+                if (_properties.BrushShape == ToolBrushShape.Square) bmp.FillRectangle(0, 0, w, h, c);
+                else                                                 bmp.FillEllipse  (0, 0, w, h, c);
+                layers[layer] = bmp;
+            }
+            return layers;
         }
 
         private void DrawLine(PointInt32 endPoint)

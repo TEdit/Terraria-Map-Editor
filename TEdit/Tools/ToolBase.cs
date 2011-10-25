@@ -5,6 +5,7 @@
 // -----------------------------------------------------------------------
 
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq.Expressions;
@@ -77,7 +78,7 @@ namespace TEdit.Tools
         public abstract bool PressTool(TileMouseEventArgs e);
         public abstract bool MoveTool(TileMouseEventArgs e);
         public abstract bool ReleaseTool(TileMouseEventArgs e);
-        public abstract WriteableBitmap PreviewTool();
+        public abstract Dictionary<string, WriteableBitmap> PreviewTool();
 
         #endregion
     }

@@ -115,18 +115,20 @@ namespace TEdit.Tools.Tool
             return false;
         }
 
-        public override WriteableBitmap PreviewTool()
+        public override Dictionary<string, WriteableBitmap> PreviewTool()
         {
-            return new WriteableBitmap(
-                1,
-                1,
-                96,
-                96,
-                PixelFormats.Bgr32,
-                null);
+            var layers = new Dictionary<string, WriteableBitmap>();
+            foreach (var layer in WorldImage.LayerList) {
+                layers[layer] = new WriteableBitmap(
+                    WorldImage.TileSize[layer].Width,
+                    WorldImage.TileSize[layer].Height,
+                    96,
+                    96,
+                    PixelFormats.Bgra32,
+                    null);
+            }
+            return layers;
         }
-
-
 
         FloodFillRangeQueue ranges = new FloodFillRangeQueue();
         private bool[] tilesChecked;
