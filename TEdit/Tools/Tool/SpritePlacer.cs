@@ -177,4 +177,3 @@ namespace TEdit.Tools.Tool
         }
     }
 }
-
