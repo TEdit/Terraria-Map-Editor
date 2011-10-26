@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.ComponentModel.Composition;
 using System.Windows;
 using System.Windows.Input;
+using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using TEdit.Common;
 using TEdit.Common.Structures;
@@ -161,29 +162,25 @@ namespace TEdit.Tools.Tool
         }
 
 
-        public override Dictionary<string, WriteableBitmap> PreviewTool()
+        public override WriteableBitmap PreviewTool()
         {
-            var layers = new Dictionary<string, WriteableBitmap>();
             var c = Color.FromArgb(127, 0, 90, 255);
-            var ts = WorldImage.TileSize;
+            var w = _properties.Width;
+            var h = _properties.Height;
+            var bmp = new WriteableBitmap(
+                w,
+                w,
+                96,
+                96,
+                PixelFormats.Bgra32,
+                null);
 
-            foreach (var layer in WorldImage.LayerList) {
-                var w = _properties.Width  * ts[layer].Width;
-                var h = _properties.Height * ts[layer].Height;
-                var bmp = new WriteableBitmap(
-                    w,
-                    h,
-                    96,
-                    96,
-                    System.Windows.Media.PixelFormats.Bgra32,
-                    null);
 
-                bmp.Clear();
-                if (_properties.BrushShape == ToolBrushShape.Square) bmp.FillRectangle(0, 0, w, h, c);
-                else                                                 bmp.FillEllipse  (0, 0, w, h, c);
-                layers[layer] = bmp;
-            }
-            return layers;
+            bmp.Clear();
+            if (_properties.BrushShape == ToolBrushShape.Square)
+                 bmp.FillRectangle(0, 0, w, h, c);
+            else bmp.FillEllipse  (0, 0, w, h, c);
+            return bmp;
         }
 
         private void DrawLine(PointInt32 endPoint)
