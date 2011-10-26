@@ -3,7 +3,6 @@ using System.Collections.ObjectModel;
 using System.Xml.Linq;
 using TEdit.Common.Structures;
 using TEdit.Common;
-using System.Windows.Media;
 using System.Text.RegularExpressions;
 
 namespace TEdit.RenderWorld
@@ -22,7 +21,7 @@ namespace TEdit.RenderWorld
         public short      XMLConvert(short      v, XAttribute attr) { return (short?)attr ?? v; }
         public int        XMLConvert(int        v, XAttribute attr) { return (int?)  attr ?? v; }
         public float      XMLConvert(float      v, XAttribute attr) { return (float?)attr ?? v; }
-        public Color      XMLConvert(Color      v, XAttribute attr) { if (attr == null) return v; return (Color)ColorConverter.ConvertFromString((string)attr); }
+        public Color      XMLConvert(Color      v, XAttribute attr) { if (attr == null) return v; return (System.Windows.Media.Color)System.Windows.Media.ColorConverter.ConvertFromString((string)attr); }
         public PointShort XMLConvert(PointShort v, XAttribute attr)
         {
             if (attr == null) return v;

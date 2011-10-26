@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.Composition;
 using System.Windows;
-using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using TEdit.Common;
 using TEdit.Common.Structures;
@@ -59,14 +58,6 @@ namespace TEdit.RenderWorld
         {
             get { return _isRenderingFullMap; }
             set { SetProperty(ref _isRenderingFullMap, ref value, "IsRenderingFullMap"); }
-        }
-
-        public static Color AlphaBlend(Color background, Color color)
-        {
-            var r = (byte) ((color.A/255F)*color.R + (1F - color.A/255F)*background.R);
-            var g = (byte) ((color.A/255F)*color.G + (1F - color.A/255F)*background.G);
-            var b = (byte) ((color.A/255F)*color.B + (1F - color.A/255F)*background.B);
-            return Color.FromArgb(255, r, g, b);
         }
 
         public void UpdateWorldImage(PointInt32 loc) { UpdateWorldImage(new RectI(loc, loc), null); }
@@ -131,7 +122,7 @@ namespace TEdit.RenderWorld
                     height * tileSize[layer].Height,
                     96,
                     96,
-                    PixelFormats.Bgr32,
+                    System.Windows.Media.PixelFormats.Bgr32,
                     null);
             }
 
@@ -152,7 +143,7 @@ namespace TEdit.RenderWorld
                     height * tileSize[layer].Height,
                     96,
                     96,
-                    PixelFormats.Bgr32,
+                    System.Windows.Media.PixelFormats.Bgr32,
                     null);
             }
 
@@ -180,16 +171,15 @@ namespace TEdit.RenderWorld
                     c = WorldSettings.GlobalColors["Sky"].Color;
             }
 
-
             if (tile.IsActive)
-                c = AlphaBlend(c, WorldSettings.Tiles[tile.Type].Color);
+                c = c.AlphaBlend(WorldSettings.Tiles[tile.Type].Color);
 
             if (tile.Liquid > 0)
             {
                 if (tile.IsLava)
-                    c = AlphaBlend(c, WorldSettings.GlobalColors["Lava"].Color);
+                    c = c.AlphaBlend(WorldSettings.GlobalColors["Lava"].Color);
                 else
-                    c = AlphaBlend(c, WorldSettings.GlobalColors["Water"].Color);
+                    c = c.AlphaBlend(WorldSettings.GlobalColors["Water"].Color);
             }
             return c;
         }
@@ -209,6 +199,19 @@ namespace TEdit.RenderWorld
                     b[2] = c.R;
                     b[3] = c.A;
                     pixels = new BytePixels(1, 1, b);
+                    break;
+
+                case "Rendered":
+                    pixels = pixels.AlphaBlend(GetTileColor(y, tile, isHell));  // A BytePixel version of the TileColor
+
+                    if (tile.Wall > 0)
+                        pixels = pixels.AlphaBlend( GetTexture("Walls", y, tile, isHell)      );
+                    if (tile.IsActive && !WorldSettings.Tiles[tile.Type].IsSolid)
+                        pixels = pixels.AlphaBlend( GetTexture("TilesBack", y, tile, isHell)  );
+                    if (tile.IsActive && WorldSettings.Tiles[tile.Type].IsSolid)
+                        pixels = pixels.AlphaBlend( GetTexture("TilesFront", y, tile, isHell) );
+                    if (tile.Liquid > 0)
+                        pixels = pixels.AlphaBlend( GetTexture("Liquid", y, tile, isHell)     );
                     break;
 
                 case "Walls":
@@ -247,17 +250,16 @@ namespace TEdit.RenderWorld
                     break;
 
                 case "Liquid":
-                if (tile.Liquid > 0)
-                {
-                    // FIXME: 16x16, not 8x8 //
-                    // Should compress to 8x8 and use Liquid levels to determine final height //
-                    // Actually, bottom 8x8 should be for 255, and top 8x8 for anything else //
-                    if (tile.IsLava)
-                        pixels = WorldSettings.GlobalColors["Lava"].Texture.GetData(new RectI(0, 0, 7, 7));
-                    else
-                        pixels = WorldSettings.GlobalColors["Water"].Texture.GetData(new RectI(0, 0, 7, 7));
-                }
-                break;
+                    if (tile.Liquid > 0) {
+                        // FIXME: 16x16, not 8x8 //
+                        // Should compress to 8x8 and use Liquid levels to determine final height //
+                        // Actually, bottom 8x8 should be for 255, and top 8x8 for anything else //
+                        if (tile.IsLava)
+                            pixels = WorldSettings.GlobalColors["Lava"].Texture.GetData(new RectI(0, 0, 7, 7));
+                        else
+                            pixels = WorldSettings.GlobalColors["Water"].Texture.GetData(new RectI(0, 0, 7, 7));
+                    }
+                    break;
             }
             
             return pixels;

@@ -14,10 +14,10 @@ namespace TEdit.Common.Structures
             : base(t2d.GraphicsDevice, t2d.Width, t2d.Height)
         {
             var wh = t2d.Width * t2d.Height;
-            var colors = new Color[wh];
+            var colors = new Microsoft.Xna.Framework.Color[wh];
 
-            t2d.GetData<Color>(colors);
-            base.SetData<Color>(colors);
+            t2d.GetData<Microsoft.Xna.Framework.Color>(colors);
+            base.SetData<Microsoft.Xna.Framework.Color>(colors);
             _dataBytes = new BytePixels(t2d.Width, t2d.Height, this.Convert2DData(colors));
         }
 
@@ -37,12 +37,12 @@ namespace TEdit.Common.Structures
         {
             var wh = this.Width * this.Height;
             var d = new byte[wh * 4];
-            var colors = new Color[wh];
-            
-            this.GetData<Color>(colors);
+            var colors = new Microsoft.Xna.Framework.Color[wh];
+
+            this.GetData<Microsoft.Xna.Framework.Color>(colors);
             return Convert2DData(colors);
         }
-        private byte[] Convert2DData(Color[] colors)
+        private byte[] Convert2DData(Microsoft.Xna.Framework.Color[] colors)
         {
             var d = new byte[colors.Length * 4];
 
@@ -155,14 +155,14 @@ namespace TEdit.Common.Structures
         {
             var tp = new TexturePlus(a.GraphicsDevice, a.Width + b.Width, a.Height);
             var wh = (a.Width + b.Width) * a.Height;
-            
-            var colors = new Color[wh];
-            var ca = new Color[a.Width * a.Height];
-            var cb = new Color[b.Width * a.Height];
-            
-            a.GetData<Color>(ca);
+
+            var colors = new Microsoft.Xna.Framework.Color[wh];
+            var ca = new Microsoft.Xna.Framework.Color[a.Width * a.Height];
+            var cb = new Microsoft.Xna.Framework.Color[b.Width * a.Height];
+
+            a.GetData<Microsoft.Xna.Framework.Color>(ca);
             colors.CopyTo(ca, 0);
-            b.GetData<Color>(cb);
+            b.GetData<Microsoft.Xna.Framework.Color>(cb);
             colors.CopyTo(cb, a.Width * a.Height);
 
             tp.SetData(colors);

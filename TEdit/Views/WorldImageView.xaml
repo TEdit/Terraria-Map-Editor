@@ -29,18 +29,9 @@
                      Source="{Binding Path=WorldImage.Image}" RenderOptions.BitmapScalingMode="NearestNeighbor"
                      MouseMove="ViewportMouseMove" MouseDown="ViewportMouseDown" MouseWheel="ViewportMouseWheel" MouseUp="ViewportMouseUp"
                      MouseEnter="ViewportMouseEnter" MouseLeave="ViewportMouseLeave" />
-                            <Image x:Name="WorldImageWalls" Canvas.Top="0" Canvas.Left="0"
-                     Height="{Binding Path=WorldImage.Walls.PixelHeight}" Width="{Binding Path=WorldImage.Walls.PixelWidth}"
-                     Source="{Binding Path=WorldImage.Walls}" RenderOptions.BitmapScalingMode="NearestNeighbor" />
-                            <Image x:Name="WorldImageTilesBack" Canvas.Top="0" Canvas.Left="0"
-                     Height="{Binding Path=WorldImage.TilesBack.PixelHeight}" Width="{Binding Path=WorldImage.TilesBack.PixelWidth}"
-                     Source="{Binding Path=WorldImage.TilesBack}" RenderOptions.BitmapScalingMode="NearestNeighbor" />
-                            <Image x:Name="WorldImageTilesFront" Canvas.Top="0" Canvas.Left="0"
-                     Height="{Binding Path=WorldImage.TilesFront.PixelHeight}" Width="{Binding Path=WorldImage.TilesFront.PixelWidth}"
-                     Source="{Binding Path=WorldImage.TilesFront}" RenderOptions.BitmapScalingMode="NearestNeighbor" />
-                            <Image x:Name="WorldImageLiquid" Canvas.Top="0" Canvas.Left="0"
-                     Height="{Binding Path=WorldImage.Liquid.PixelHeight}" Width="{Binding Path=WorldImage.Liquid.PixelWidth}"
-                     Source="{Binding Path=WorldImage.Liquid}" RenderOptions.BitmapScalingMode="Fant" />
+                            <Image x:Name="WorldImageRendered" Canvas.Top="0" Canvas.Left="0"
+                     Height="{Binding Path=WorldImage.Rendered.PixelHeight}" Width="{Binding Path=WorldImage.Rendered.PixelWidth}"
+                     Source="{Binding Path=WorldImage.Rendered}" RenderOptions.BitmapScalingMode="NearestNeighbor" />
                             <Image Source="{Binding Path=ToolProperties.Image}" RenderOptions.BitmapScalingMode="NearestNeighbor"
                      Height="{Binding Path=ToolProperties.Size.Height}" Width="{Binding Path=ToolProperties.Size.Width}"
                      Canvas.Left="{Binding Path=ToolLocation.X}" Canvas.Top="{Binding Path=ToolLocation.Y}" IsHitTestVisible="False"

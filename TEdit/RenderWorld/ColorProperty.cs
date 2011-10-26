@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Windows.Media;
 using TEdit.Common;
 using TEdit.Common.Structures;
 
@@ -18,7 +17,7 @@ namespace TEdit.RenderWorld
             ID = id;
         }
 
-        private Color _color = Colors.Magenta;
+        private Color _color = Color.FromName("Magenta");
         public Color Color
         {
             get { return _color; }

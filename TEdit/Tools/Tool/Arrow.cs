@@ -1,6 +1,5 @@
 using System;
 using System.ComponentModel.Composition;
-using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using TEdit.Common;
 using TEdit.Common.Structures;
@@ -147,7 +146,7 @@ namespace TEdit.Tools.Tool
                     ts[layer].Height,
                     96,
                     96,
-                    PixelFormats.Bgra32,
+                    System.Windows.Media.PixelFormats.Bgra32,
                     null);
 
                 bmp.Clear();

@@ -83,6 +83,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Common\ColorExtensions.cs" />
     <Compile Include="Common\Structures\BytePixels.cs" />
     <Compile Include="Common\CustomCollections.cs" />
     <Compile Include="Common\EnumExtensions.cs" />

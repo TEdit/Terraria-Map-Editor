@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Windows.Media;
+using TEdit.Common;
 
 namespace TEdit.Common.Structures
 {
@@ -108,6 +110,57 @@ namespace TEdit.Common.Structures
                 dOfs += dest.Size.W * Bpp;
             }
         }
+
+        // Pixel-level functions
+        public byte[] GetPixel(int o) {
+            var b = new byte[Bpp];
+            Array.ConstrainedCopy(_data, o * Bpp, b, 0, Bpp);
+            return b;
+        }
+        public byte[] GetPixel(int x, int y) { return GetPixel(Size.W * y + x); }
+        public byte[] GetPixel(PointInt32 xy) { return GetPixel(Size.W * xy.Y + xy.X); }
+
+        public Color GetColor(int o) {
+            var b = GetPixel(o);
+            var c = Color.FromArgb(b[3], b[2], b[1], b[0]);  // assuming BGRA format for now
+            return c;
+        }
+        public Color GetColor(int x, int y) { return GetColor(Size.W * y + x); }
+        public Color GetColor(PointInt32 xy) { return GetColor(Size.W * xy.Y + xy.X); }
+
+        public void SetPixel(int o, byte[] b)         { Array.ConstrainedCopy(b, 0, _data, o * Bpp, Bpp); }
+        public void SetPixel(int x, int y, byte[] b)  { SetPixel(Size.W * y + x, b); }
+        public void SetPixel(PointInt32 xy, byte[] b) { SetPixel(Size.W * xy.Y + xy.X, b); }
+        public void SetPixel(int o, Color c) {
+            var b = new byte[4];
+            b[0] = c.B;
+            b[1] = c.G;
+            b[2] = c.R;
+            b[3] = c.A;
+            SetPixel(o, b);
+        }
+        public void SetPixel(int x, int y, Color c)  { SetPixel(Size.W * y + x, c); }
+        public void SetPixel(PointInt32 xy, Color c) { SetPixel(Size.W * xy.Y + xy.X, c); }
+
+        public BytePixels AlphaBlend(BytePixels bp, bool selfIsBack = true) {
+            var blended = new BytePixels(Size, Bpp);
+
+            for (int i = 0; i < Size.Total; i++) {
+                blended.SetPixel(i, GetColor(i).AlphaBlend(bp.GetColor(i), selfIsBack));
+            }
+
+            return blended;
+        }
+        public BytePixels AlphaBlend(Color c, bool selfIsBack = true) {
+            var blended = new BytePixels(Size, Bpp);
+
+            for (int i = 0; i < Size.Total; i++) {
+                blended.SetPixel(i, GetColor(i).AlphaBlend(c, selfIsBack));
+            }
+
+            return blended;
+        }
+
 
         #region Operator Overrides
 
