@@ -58,7 +58,7 @@ namespace TEdit.Common.Structures
 
         private static bool MatchFields(SizeInt32 a, SizeInt32 m)
         {
-            return (a.Width == m.Width && a.Height == m.Height);
+            return (a != null && m != null && a.Width == m.Width && a.Height == m.Height);
         }
 
         public override bool Equals(object obj)

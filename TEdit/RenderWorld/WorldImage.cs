@@ -23,7 +23,7 @@ namespace TEdit.RenderWorld
         };
         public static readonly Dictionary<string, SizeInt32> TileSize = new Dictionary<string, SizeInt32>() {
             { "TilesPixel", new SizeInt32(1, 1) },
-            { "Rendered",   new SizeInt32(8, 8) },
+            { "Rendered",   new SizeInt32(4, 4) },
         };
 
         public WriteableBitmap Image

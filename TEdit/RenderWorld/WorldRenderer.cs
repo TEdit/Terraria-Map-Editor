@@ -117,6 +117,7 @@ namespace TEdit.RenderWorld
 
             var wbmap = new Dictionary<string, WriteableBitmap>();
             foreach (string layer in layers) {
+                _worldImage.Layer[layer] = null;
                 wbmap[layer] = new WriteableBitmap(
                     width  * tileSize[layer].Width,
                     height * tileSize[layer].Height,
@@ -186,7 +187,9 @@ namespace TEdit.RenderWorld
 
         private BytePixels GetTexture(string layerType, int y, Tile tile, bool isHell = false)
         {
-            var pixels = new BytePixels(new SizeInt32(8, 8), 4);
+            var size = 4;
+            var pixels = new BytePixels(new SizeInt32(size, size), 4);
+            var sizeI = new SizeInt32(size, size);
 
             switch (layerType)
             {
@@ -217,7 +220,7 @@ namespace TEdit.RenderWorld
                 case "Walls":
                     /// FIXME: A complete wall is actually 32x32 big, with 3x3 variations, depending how many tiles exist ///
                     if (tile.Wall > 0)
-                        pixels = WorldSettings.Walls[tile.Wall].Texture.GetData(new RectI(8, 8, 15, 15));
+                        pixels = WorldSettings.Walls[tile.Wall].Texture.GetData(new RectI(size, size, sizeI));
                     else
                     {
                         // FIXME: These are actually pretty large bitmaps //
@@ -238,15 +241,15 @@ namespace TEdit.RenderWorld
                 case "TilesBack":
                     /// FIXME: Needs Frame Textures and frames checks ///
                     if (tile.IsActive && !WorldSettings.Tiles[tile.Type].IsSolid)
-                        pixels = WorldSettings.Tiles[tile.Type].Texture.GetData(new RectI(0, 0, 7, 7));
+                        pixels = WorldSettings.Tiles[tile.Type].Texture.GetData(new RectI(0, 0, sizeI));
                     break;
 
                 // FIXME: NPC layer would go here... //
 
                 case "TilesFront":
                     /// FIXME: Needs Frame Textures and frames checks ///
-                    if (tile.IsActive && WorldSettings.Tiles[tile.Type].IsSolid) 
-                        pixels = WorldSettings.Tiles[tile.Type].Texture.GetData(new RectI(0, 0, 7, 7));
+                    if (tile.IsActive && WorldSettings.Tiles[tile.Type].IsSolid)
+                        pixels = WorldSettings.Tiles[tile.Type].Texture.GetData(new RectI(0, 0, sizeI));
                     break;
 
                 case "Liquid":
@@ -255,9 +258,9 @@ namespace TEdit.RenderWorld
                         // Should compress to 8x8 and use Liquid levels to determine final height //
                         // Actually, bottom 8x8 should be for 255, and top 8x8 for anything else //
                         if (tile.IsLava)
-                            pixels = WorldSettings.GlobalColors["Lava"].Texture.GetData(new RectI(0, 0, 7, 7));
+                            pixels = WorldSettings.GlobalColors["Lava"].Texture.GetData(new RectI(0, 0, sizeI));
                         else
-                            pixels = WorldSettings.GlobalColors["Water"].Texture.GetData(new RectI(0, 0, 7, 7));
+                            pixels = WorldSettings.GlobalColors["Water"].Texture.GetData(new RectI(0, 0, sizeI));
                     }
                     break;
             }

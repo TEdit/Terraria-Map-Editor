@@ -211,6 +211,8 @@ namespace TEdit.ViewModels
             {
                 if (_worldImage.Image != null)
                     return _worldImage.Image.PixelHeight * _zoom;
+                if (_worldImage.Rendered != null)
+                    return _worldImage.Rendered.PixelHeight * (_zoom / 8);
 
 
                 return 1;
@@ -223,6 +225,8 @@ namespace TEdit.ViewModels
             {
                 if (_worldImage.Image != null)
                     return _worldImage.Image.PixelWidth * _zoom;
+                if (_worldImage.Rendered != null)
+                    return _worldImage.Rendered.PixelWidth * (_zoom / 8);
 
                 return 1;
             }
@@ -581,6 +585,7 @@ namespace TEdit.ViewModels
             try
             {
                 WorldImage.Image = null;
+                WorldImage.Rendered = null;
                 World.Load(filename);
             }
             catch (Exception)
