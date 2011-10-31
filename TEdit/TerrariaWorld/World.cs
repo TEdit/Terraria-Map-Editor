@@ -76,7 +76,7 @@ namespace TEdit.TerrariaWorld
 
         public void ClearWorld()
         {
-            _tiles = new Tile[Header.MaxTiles.X, Header.MaxTiles.Y];
+            _tiles = new Tile[Header.WorldBounds.W, Header.WorldBounds.H];
 
             Chests.Clear();
             Signs.Clear();
@@ -86,7 +86,7 @@ namespace TEdit.TerrariaWorld
         public bool IsPointInWorld(int x, int y)
         {
             return (x >= 0 && y >= 0 &&
-                    x < Header.MaxTiles.X && y < Header.MaxTiles.Y);
+                    x < Header.WorldBounds.W && y < Header.WorldBounds.H);
         }
 
         public void ResetTime()

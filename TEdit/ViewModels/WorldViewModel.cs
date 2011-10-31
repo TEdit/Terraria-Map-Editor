@@ -26,7 +26,7 @@ namespace TEdit.ViewModels
         #region Fields
 
         private readonly TaskFactory _uiFactory;
-        private readonly TaskScheduler _uiScheduler;
+        private readonly TaskScheduler _uiScheduler;  // used for synchronous tasks; don't use for separate async threads
         private ITool _activeTool;
 
         private ICommand _copyToClipboard;
@@ -574,13 +574,15 @@ namespace TEdit.ViewModels
                     Task.Factory
                         .StartNew(() => LoadWorld(ofd.FileName))
                     .ContinueWith(j => { texturesLoaded = _renderer.LoadGameData(); })
-                    .ContinueWith(k => RenderWorldTask(), _uiScheduler);
+                    .ContinueWith(k => RenderWorldTask())
+                    .ContinueWith(l => RenderWorldFinish(l.Result), _uiScheduler);  // required to be non-async
                 }
                 else
                 {
                     Task.Factory
                         .StartNew(() => LoadWorld(ofd.FileName))
-                    .ContinueWith(k => RenderWorldTask(), _uiScheduler);
+                    .ContinueWith(k => RenderWorldTask())
+                    .ContinueWith(l => RenderWorldFinish(l.Result), _uiScheduler);  // required to be non-async
                 }
 
             }
@@ -613,36 +615,38 @@ namespace TEdit.ViewModels
 
             Task.Factory
                 .StartNew(() => { texturesLoaded = _renderer.LoadGameData(); })
-            .ContinueWith(k  => RenderWorldTask(), _uiScheduler);
+            .ContinueWith(k  => RenderWorldTask())
+            .ContinueWith(l  => RenderWorldFinish(l.Result), _uiScheduler);
         }
 
         private void RenderWorld()
         {
             if (!texturesLoaded) { LoadTexturesAndRenderWorld(); return; }
 
-            Task.Factory.StartNew(RenderWorldTask, _uiFactory.CancellationToken, _uiFactory.CreationOptions, _uiScheduler);
+            Task.Factory
+                .StartNew(() => RenderWorldTask())
+            .ContinueWith(l  => RenderWorldFinish(l.Result), _uiScheduler);
         }
 
-        private void RenderWorldTask()
-        {
-            WriteableBitmap img;
-            img = _renderer.RenderWorld(false);
-            if (img != null)
-            {
-                img.Freeze();
-                WorldImage.Image = img.Clone();
-            }
+        private WriteableBitmap[] RenderWorldTask() {
+            var img = new WriteableBitmap[2];
+            img[0] = _renderer.RenderWorld(false);
+            if (img[0] != null)
+                img[0].Freeze();
 
             if (texturesLoaded)
             {
-                img = _renderer.RenderWorld(true);
-                if (img != null)
-                {
-                    img.Freeze();
-                    WorldImage.Rendered = img.Clone();
-                }
+                img[1] = _renderer.RenderWorld(true);
+                if (img[1] != null)
+                    img[1].Freeze();
             }
 
+            return img;
+        }
+
+        private void RenderWorldFinish(WriteableBitmap[] img) {
+            if (img[0] != null) WorldImage.Image    = img[0].Clone();
+            if (img[1] != null) WorldImage.Rendered = img[1].Clone();
             RaisePropertyChanged("WorldZoomedHeight");
             RaisePropertyChanged("WorldZoomedWidth");
             CommandManager.InvalidateRequerySuggested();
@@ -656,8 +660,8 @@ namespace TEdit.ViewModels
         {
             MouseOverTile = e.Tile;
 
-            if ((e.Tile.X < _world.Header.MaxTiles.X &&
-                 e.Tile.Y < _world.Header.MaxTiles.Y &&
+            if ((e.Tile.X < _world.Header.WorldBounds.W &&
+                 e.Tile.Y < _world.Header.WorldBounds.H &&
                  e.Tile.X >= 0 &&
                  e.Tile.Y >= 0) && (_world.Tiles[e.Tile.X, e.Tile.Y] != null))
             {
@@ -685,8 +689,8 @@ namespace TEdit.ViewModels
 
         private void OnMouseDownPixel(TileMouseEventArgs e)
         {
-            if ((e.Tile.X < _world.Header.MaxTiles.X &&
-                 e.Tile.Y < _world.Header.MaxTiles.Y &&
+            if ((e.Tile.X < _world.Header.WorldBounds.W &&
+                 e.Tile.Y < _world.Header.WorldBounds.H &&
                  e.Tile.X >= 0 &&
                  e.Tile.Y >= 0) && (_world.Tiles[e.Tile.X, e.Tile.Y] != null))
             {
@@ -704,8 +708,8 @@ namespace TEdit.ViewModels
 
         private void OnMouseUpPixel(TileMouseEventArgs e)
         {
-            if ((e.Tile.X < _world.Header.MaxTiles.X &&
-                 e.Tile.Y < _world.Header.MaxTiles.Y &&
+            if ((e.Tile.X < _world.Header.WorldBounds.W &&
+                 e.Tile.Y < _world.Header.WorldBounds.H &&
                  e.Tile.X >= 0 &&
                  e.Tile.Y >= 0) && (_world.Tiles[e.Tile.X, e.Tile.Y] != null))
             {
@@ -718,8 +722,8 @@ namespace TEdit.ViewModels
 
         private void OnMouseWheel(TileMouseEventArgs e)
         {
-            if ((e.Tile.X < _world.Header.MaxTiles.X &&
-                 e.Tile.Y < _world.Header.MaxTiles.Y &&
+            if ((e.Tile.X < _world.Header.WorldBounds.W &&
+                 e.Tile.Y < _world.Header.WorldBounds.H &&
                  e.Tile.X >= 0 &&
                  e.Tile.Y >= 0) && (_world.Tiles[e.Tile.X, e.Tile.Y] != null))
             {

@@ -20,7 +20,6 @@ namespace TEdit.TerrariaWorld
         private bool _IsDayTime;
         private bool _IsShadowOrbSmashed;
         private bool _IsSpawnMeteor;
-        private PointInt32 _MaxTiles;
         private int _MoonPhase;
         private int _ShadowOrbCount;
         private PointInt32 _SpawnTile;
@@ -35,7 +34,6 @@ namespace TEdit.TerrariaWorld
         {
             _FileName = "";
             _WorldName = "No World Loaded";
-            _MaxTiles = new PointInt32(0, 0);
         }
 
         public string FileName
@@ -72,13 +70,6 @@ namespace TEdit.TerrariaWorld
             set { SetProperty(ref _WorldBounds, ref value, "WorldBounds"); }
         }
 
-        [CategoryAttribute("World"), DescriptionAttribute("World Size"), ReadOnly(true)]
-        public PointInt32 MaxTiles
-        {
-            get { return _MaxTiles; }
-            set { SetProperty(ref _MaxTiles, ref value, "MaxTiles"); }
-        }
-
         [CategoryAttribute("World"), DescriptionAttribute("Spawn Location")]
         public PointInt32 SpawnTile
         {
@@ -95,8 +86,8 @@ namespace TEdit.TerrariaWorld
                 var validValue = value;
                 if (validValue < 0)
                     validValue = 0;
-                if (validValue > MaxTiles.Y)
-                    validValue = MaxTiles.Y;
+                if (validValue > WorldBounds.H)
+                    validValue = WorldBounds.Bottom;
 
                 SetProperty(ref _WorldSurface, ref value, "WorldSurface");                
             }
@@ -111,8 +102,8 @@ namespace TEdit.TerrariaWorld
                 var validValue = value;
                 if (validValue < 0)
                     validValue = 0;
-                if (validValue > MaxTiles.Y)
-                    validValue = MaxTiles.Y;
+                if (validValue > WorldBounds.H)
+                    validValue = WorldBounds.Bottom;
 
                 SetProperty(ref _WorldRockLayer, ref value, "WorldRockLayer");
             }

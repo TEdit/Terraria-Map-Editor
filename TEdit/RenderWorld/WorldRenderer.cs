@@ -122,8 +122,8 @@ namespace TEdit.RenderWorld
                 return null;
 
             IsRenderingFullMap = true;
-            int width = _world.Header.MaxTiles.X;
-            int height = _world.Header.MaxTiles.Y;
+            int width = _world.Header.WorldBounds.Width;
+            int height = _world.Header.WorldBounds.Height;
             int rts = isRenderedLayer ? renderedTileSize : 1;
 
             var wbmap = new WriteableBitmap(
@@ -191,9 +191,9 @@ namespace TEdit.RenderWorld
 
         private BytePixels GetTexture(string layerType, int y, Tile tile, bool isHell = false)
         {
-            var size = renderedTileSize;
-            var pixels = new BytePixels(new SizeInt32(size, size), 4);
-            var sizeI = new SizeInt32(size, size);
+            var size   = renderedTileSize;
+            var sizeI  = new SizeInt32(size, size);
+            var pixels = new BytePixels(sizeI, 4);
 
             switch (layerType)
             {

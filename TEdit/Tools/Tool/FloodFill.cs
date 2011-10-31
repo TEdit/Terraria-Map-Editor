@@ -135,8 +135,8 @@ namespace TEdit.Tools.Tool
         private int minX, minY, maxX, maxY;
         public void Flood(PointInt32 pt)
         {
-            int bitmapWidth = _world.Header.MaxTiles.X;
-            int bitmapHeight = _world.Header.MaxTiles.Y;
+            int bitmapWidth = _world.Header.WorldBounds.W;
+            int bitmapHeight = _world.Header.WorldBounds.H;
 
             int x = pt.X;
             int y = pt.Y;
@@ -210,8 +210,8 @@ namespace TEdit.Tools.Tool
 
         private void LinearFloodFill(ref int x, ref int y, ref TilePicker tp, ref Tile originTile)
         {
-            int bitmapWidth = _world.Header.MaxTiles.X;
-            int bitmapHeight = _world.Header.MaxTiles.Y;
+            int bitmapWidth  = _world.Header.WorldBounds.W;
+            int bitmapHeight = _world.Header.WorldBounds.H;
 
             //FIND LEFT EDGE OF COLOR AREA
             int lFillLoc = x; //the location to check/fill on the left

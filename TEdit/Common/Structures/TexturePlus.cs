@@ -1,6 +1,7 @@
 using System;
-using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Graphics.PackedVector;
 
 namespace TEdit.Common.Structures
 {
@@ -14,45 +15,51 @@ namespace TEdit.Common.Structures
             : base(t2d.GraphicsDevice, t2d.Width, t2d.Height)
         {
             var wh = t2d.Width * t2d.Height;
-            var colors = new Microsoft.Xna.Framework.Color[wh];
+            var byte4 = new Byte4[wh];
 
-            t2d.GetData<Microsoft.Xna.Framework.Color>(colors);
-            base.SetData<Microsoft.Xna.Framework.Color>(colors);
-            _dataBytes = new BytePixels(t2d.Width, t2d.Height, this.Convert2DData(colors));
+            t2d.GetData<Byte4>(byte4);
+            base.SetData<Byte4>(byte4);
+            _dataBytes = new BytePixels(t2d.Width / 2, t2d.Height / 2, this.Convert2DData(byte4));
         }
 
         public TexturePlus (GraphicsDevice graphicsDevice, int width, int height)
             : base(graphicsDevice, width, height)
         {
-            _dataBytes = new BytePixels(width, height, this.Convert2DData());
+            _dataBytes = new BytePixels(width / 2, height / 2, this.Convert2DData());
         }
 
         public TexturePlus (GraphicsDevice graphicsDevice, int width, int height, bool mipMap, SurfaceFormat format)
             : base(graphicsDevice, width, height, mipMap, format)
         {
-            _dataBytes = new BytePixels(width, height, this.Convert2DData());
+            _dataBytes = new BytePixels(width / 2, height / 2, this.Convert2DData());
         }
 
         private byte[] Convert2DData ()
         {
             var wh = this.Width * this.Height;
             var d = new byte[wh * 4];
-            var colors = new Microsoft.Xna.Framework.Color[wh];
+            var byte4 = new Byte4[wh];
 
-            this.GetData<Microsoft.Xna.Framework.Color>(colors);
-            return Convert2DData(colors);
+            this.GetData<Byte4>(byte4);
+            return Convert2DData(byte4);
         }
-        private byte[] Convert2DData(Microsoft.Xna.Framework.Color[] colors)
-        {
-            var d = new byte[colors.Length * 4];
+        private byte[] Convert2DData(Byte4[] byte4) {
+            var d = new byte[byte4.Length];  // * 4Bbp * 25% of data = *1
 
-            int ofs = 0;
-            foreach (Color c in colors)
-            {
-                d[ofs++] = (byte)c.B;
-                d[ofs++] = (byte)c.G;
-                d[ofs++] = (byte)c.R;
-                d[ofs++] = (byte)c.A;
+            // For some strange reason, all Terraria graphics data is stored 2x the size it should be.
+            // In other words, all pixels are actually 2x2 blocks.  Thus, to save space and sanity,
+            // we remove 75% of the data.
+            int dOfs = 0;
+            for (int y = 0; y < this.Height; y += 2) {
+                for (int x = 0; x < this.Width; x += 2) {
+                    int sOfs = y * this.Width + x;
+                    uint val = byte4[sOfs].PackedValue;
+
+                    d[dOfs++] = (byte)((val >> 16) & 0xff);
+                    d[dOfs++] = (byte)((val >> 8) & 0xff);
+                    d[dOfs++] = (byte)(val & 0xff);
+                    d[dOfs++] = (byte)((val >> 24) & 0xff);
+                }
             }
             return d;
         }
@@ -85,7 +92,7 @@ namespace TEdit.Common.Structures
             {
                 var r = (Microsoft.Xna.Framework.Rectangle)rect;
                 var data = new BytePixels(new SizeInt32(r.Width, r.Height), Bpp);
-                GetData(r, data, 0, r.Width * r.Height);
+                GetData(r, data, 0, data.Size.Total);
                 return data;
             }
 
@@ -123,7 +130,7 @@ namespace TEdit.Common.Structures
                 return;
             }
 
-            var sOfs = (r.Y * this.Width) + r.X;
+            var sOfs = (r.Y * _dataBytes.Size.W) + r.X;
             sOfs *= Bpp;
 
             var dOfs = startIndex;
@@ -134,7 +141,7 @@ namespace TEdit.Common.Structures
                 lineLen = dataLeft < lineLen ? dataLeft : lineLen;
 
                 Array.ConstrainedCopy(_dataBytes.Data, sOfs, data.Data, dOfs, lineLen);
-                sOfs     += this.Width * Bpp;
+                sOfs     += _dataBytes.Size.W * Bpp;
                 dOfs     += lineLen;
                 dataLeft -= lineLen;
 

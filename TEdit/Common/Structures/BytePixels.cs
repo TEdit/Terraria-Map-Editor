@@ -161,6 +161,13 @@ namespace TEdit.Common.Structures
             return blended;
         }
 
+        public void SaveToFile (string filename) {
+            // (I have no idea why this works unchanged... it should be a BGRA -> ARGB conversion...)
+            var pinnedArray = System.Runtime.InteropServices.GCHandle.Alloc(_data, System.Runtime.InteropServices.GCHandleType.Pinned);
+            var pointer = pinnedArray.AddrOfPinnedObject();
+            var bmp = new System.Drawing.Bitmap(Size.W, Size.H, Size.W * Bpp, System.Drawing.Imaging.PixelFormat.Format32bppArgb, pointer);
+            bmp.Save(filename);
+        }
 
         #region Operator Overrides
 
