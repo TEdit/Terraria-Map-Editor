@@ -32,9 +32,8 @@ namespace TEdit.Common.Structures
         public void Clamp() { _color.Clamp(); }
 
         public bool Equals(Color c)  { return _color.Equals((System.Windows.Media.Color)c); }
-        public bool Equals(Object o) { return _color.Equals(o); }
-        public static bool Equals(Color c1, Color c2)   { return System.Windows.Media.Color.Equals((System.Windows.Media.Color)c1, (System.Windows.Media.Color)c2); }
-        public static bool Equals(Object o1, Object o2) { return System.Windows.Media.Color.Equals(o1, o2); }
+        public override bool Equals(Object o) { return _color.Equals(o); }
+        public static bool Equals(Color c1, Color c2) { return System.Windows.Media.Color.Equals((System.Windows.Media.Color)c1, (System.Windows.Media.Color)c2); }
 
         public static Color FromArgb(byte a, byte r, byte g, byte b) { return System.Windows.Media.Color.FromArgb(a, r, g, b); }
         public static Color FromArgb(int i)                          { return System.Drawing.Color.FromArgb(i); }
@@ -67,7 +66,7 @@ namespace TEdit.Common.Structures
 
         public static Color Multiply(Color color, float coefficient) { return System.Windows.Media.Color.Multiply(color, coefficient); }
 
-        public string ToString() { return _color.ToString(); }
+        public override string ToString() { return _color.ToString(); }
 
         public Microsoft.Xna.Framework.Vector3 ToVector3() { Microsoft.Xna.Framework.Color c = (Color)_color; return c.ToVector3(); }
         public Microsoft.Xna.Framework.Vector4 ToVector4() { Microsoft.Xna.Framework.Color c = (Color)_color; return c.ToVector4(); }

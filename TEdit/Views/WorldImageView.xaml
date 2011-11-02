@@ -26,7 +26,12 @@
                             </Controls:MeasurableCanvas.LayoutTransform>
                             <Image x:Name="WorldImage" Canvas.Top="0" Canvas.Left="0"
                      Height="{Binding Path=WorldImage.Image.PixelHeight}" Width="{Binding Path=WorldImage.Image.PixelWidth}"
-                     Source="{Binding Path=WorldImage.Image}" RenderOptions.BitmapScalingMode="NearestNeighbor"
+                     Source="{Binding Path=WorldImage.Image}" Stretch="UniformToFill" RenderOptions.BitmapScalingMode="NearestNeighbor"
+                     MouseMove="ViewportMouseMove" MouseDown="ViewportMouseDown" MouseWheel="ViewportMouseWheel" MouseUp="ViewportMouseUp"
+                     MouseEnter="ViewportMouseEnter" MouseLeave="ViewportMouseLeave" />
+                            <Image x:Name="WorldImageRendered" Canvas.Top="0" Canvas.Left="0"
+                     Height="{Binding Path=WorldImage.Rendered.PixelHeight}" Width="{Binding Path=WorldImage.Rendered.PixelWidth}"
+                     Source="{Binding Path=WorldImage.Rendered}" RenderOptions.BitmapScalingMode="NearestNeighbor"
                      MouseMove="ViewportMouseMove" MouseDown="ViewportMouseDown" MouseWheel="ViewportMouseWheel" MouseUp="ViewportMouseUp"
                      MouseEnter="ViewportMouseEnter" MouseLeave="ViewportMouseLeave" />
                             <Image x:Name="WorldImageRendered" Canvas.Top="0" Canvas.Left="0"

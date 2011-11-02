@@ -107,7 +107,7 @@ namespace TEdit.Tools.Tool
             return false;
         }
 
-        public override Dictionary<string, WriteableBitmap> PreviewTool()
+        public override WriteableBitmap PreviewTool()
         {
             if (_clipboardMan.Buffer.Preview == null)
             {
@@ -120,7 +120,7 @@ namespace TEdit.Tools.Tool
         private void PasteClipboard(PointInt32 anchor)
         {
             _clipboardMan.PasteBufferIntoWorld(_world, _clipboardMan.Buffer, anchor);
-            _renderer.UpdateWorldImage(new Int32Rect(anchor.X, anchor.Y, _clipboardMan.Buffer.Size.W + 1, _clipboardMan.Buffer.Size.H + 1));
+            _renderer.UpdateWorldImage(new Int32Rect(anchor.X, anchor.Y, _clipboardMan.Buffer.Size.W, _clipboardMan.Buffer.Size.H));
         }
 
         private void ClipboardManPropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)

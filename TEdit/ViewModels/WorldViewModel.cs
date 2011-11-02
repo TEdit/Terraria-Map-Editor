@@ -16,6 +16,7 @@ using TEdit.TerrariaWorld;
 using TEdit.Tools;
 using TEdit.Tools.Clipboard;
 using TEdit.Tools.History;
+using System.Threading;
 
 namespace TEdit.ViewModels
 {
@@ -111,8 +112,6 @@ namespace TEdit.ViewModels
 
             GenNewWorld();
         }
-
-
 
         #endregion
 
@@ -211,9 +210,6 @@ namespace TEdit.ViewModels
             {
                 if (_worldImage.Image != null)
                     return _worldImage.Image.PixelHeight * _zoom;
-                if (_worldImage.Rendered != null)
-                    return _worldImage.Rendered.PixelHeight * (_zoom / 8);
-
 
                 return 1;
             }
@@ -225,8 +221,6 @@ namespace TEdit.ViewModels
             {
                 if (_worldImage.Image != null)
                     return _worldImage.Image.PixelWidth * _zoom;
-                if (_worldImage.Rendered != null)
-                    return _worldImage.Rendered.PixelWidth * (_zoom / 8);
 
                 return 1;
             }
@@ -440,7 +434,6 @@ namespace TEdit.ViewModels
         public void GenNewWorld()
         {
             World.NewWorld(2000, 300);
-            RenderWorld();
         }
 
         #endregion
@@ -532,8 +525,7 @@ namespace TEdit.ViewModels
 
         private void ValidateWorld()
         {
-            Task.Factory.StartNew(() => _world.Validate())
-            .ContinueWith(t => RenderWorld(), _uiScheduler);
+            Task.Factory.StartNew(() => _world.Validate());
         }
 
         private void SaveWorld()
@@ -575,8 +567,22 @@ namespace TEdit.ViewModels
             ofd.Multiselect = false;
             if ((bool)ofd.ShowDialog())
             {
-                Task.Factory.StartNew(() => LoadWorld(ofd.FileName))
-                    .ContinueWith(t => RenderWorld());
+                if (!texturesLoaded)
+                {
+                    WorldSettings.FindSteam();  // needs to be done with the current thread
+
+                    Task.Factory
+                        .StartNew(() => LoadWorld(ofd.FileName))
+                    .ContinueWith(j => { texturesLoaded = _renderer.LoadGameData(); })
+                    .ContinueWith(k => RenderWorldTask(), _uiScheduler);
+                }
+                else
+                {
+                    Task.Factory
+                        .StartNew(() => LoadWorld(ofd.FileName))
+                    .ContinueWith(k => RenderWorldTask(), _uiScheduler);
+                }
+
             }
         }
 
@@ -585,7 +591,7 @@ namespace TEdit.ViewModels
             try
             {
                 WorldImage.Image = null;
-                WorldImage.Rendered = null;
+                //WorldImage.Rendered = null;
                 World.Load(filename);
             }
             catch (Exception)
@@ -595,29 +601,51 @@ namespace TEdit.ViewModels
             }
         }
 
+        private bool texturesLoaded = false;
+        private void LoadTexturesAndRenderWorld()
+        {
+            try
+            {
+                if (App.Current.MainWindow == null) return;  // FindSteam needs a window
+                WorldSettings.FindSteam();  // needs to be done with the current thread
+            }
+            catch { }
+
+            Task.Factory
+                .StartNew(() => { texturesLoaded = _renderer.LoadGameData(); })
+            .ContinueWith(k  => RenderWorldTask(), _uiScheduler);
+        }
+
         private void RenderWorld()
         {
-            Task<Dictionary<string, WriteableBitmap>>.Factory.StartNew(
-                () =>
+            if (!texturesLoaded) { LoadTexturesAndRenderWorld(); return; }
+
+            Task.Factory.StartNew(RenderWorldTask, _uiFactory.CancellationToken, _uiFactory.CreationOptions, _uiScheduler);
+        }
+
+        private void RenderWorldTask()
+        {
+            WriteableBitmap img;
+            img = _renderer.RenderWorld(false);
+            if (img != null)
+            {
+                img.Freeze();
+                WorldImage.Image = img.Clone();
+            }
+
+            if (texturesLoaded)
+            {
+                img = _renderer.RenderWorld(true);
+                if (img != null)
                 {
-                    Dictionary<string, WriteableBitmap> img = _renderer.RenderWorld();
-                    if (img != null)
-                    {
-                        foreach (var layer in WorldImage.LayerList) { img[layer].Freeze(); }
-                    }
-                    return img;
-                })
-            .ContinueWith(
-                t =>
-                {
-                    if (t.Result.Count != null)
-                    {
-                        foreach (var layer in WorldImage.LayerList) { WorldImage.Layer[layer] = t.Result[layer].Clone(); }
-                        RaisePropertyChanged("WorldZoomedHeight");
-                        RaisePropertyChanged("WorldZoomedWidth");
-                        CommandManager.InvalidateRequerySuggested();
-                    }
-                }, _uiScheduler);
+                    img.Freeze();
+                    WorldImage.Rendered = img.Clone();
+                }
+            }
+
+            RaisePropertyChanged("WorldZoomedHeight");
+            RaisePropertyChanged("WorldZoomedWidth");
+            CommandManager.InvalidateRequerySuggested();
         }
 
         #endregion

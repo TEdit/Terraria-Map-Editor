@@ -162,7 +162,7 @@ namespace TEdit.RenderWorld
 
         // Post-window settings
         private static ContentManager cm = null;
-        private static ContentManager FindSteam()
+        public static bool FindSteam()
         {
             // find steam
             string path = "";
@@ -184,57 +184,11 @@ namespace TEdit.RenderWorld
             if (Directory.Exists(path))
             {
                 HwndSource hwnd = HwndSource.FromVisual(App.Current.MainWindow) as HwndSource;
-                return new ContentManager(new SimpleProvider(hwnd.Handle), path);
+                cm = new ContentManager(new SimpleProvider(hwnd.Handle), path);
+                return (cm == null) ? false : true;
             }
 
-            return null;
-        }
-
-        public static bool LoadGameData()
-        {
-            cm = FindSteam();
-            if (cm == null) return false;
-
-            // BC: FIXME: Need to tie this to the ProgressBar somehow... //
-
-            /* render.OnProgressChanged(this,
-                new ProgressChangedEventArgs(
-                      (int)(x / (double)width * 100.0),
-                      "Loading Objects...")); */
-
-            foreach (var obj in _walls)
-            {
-                if (obj.ID == 0) continue;
-                TryLoadTexture("Wall", obj.ID, obj);
-            }
-            foreach (var obj in _tiles)
-            {
-                TryLoadTexture("Tiles", obj.ID, obj);
-            }
-            foreach (var obj in _items)
-            {
-                if (!TryLoadTexture("Item", obj.ID, obj)) continue;
-                // obj.Sound = LoadSound("Item", obj.SoundID);
-            }
-            /* foreach (var obj in _npcs)
-            {
-                if (!TryLoadTexture("NPC", obj.ID, obj)) continue;
-
-                obj.SoundHit   = LoadSound("NPC_Hit",    obj.SoundHitID);
-                obj.SoundDeath = LoadSound("NPC_Killed", obj.SoundDeathID);
-            } */
-
-            TryLoadTexture("Liquid",     0, _globals["Water"]);
-            TryLoadTexture("Liquid",     1, _globals["Lava"]);
-            TryLoadTexture("Background", 0, _globals["Sky"]);
-            TryLoadTexture("Background", 2, _globals["Earth"]);
-            TryLoadTexture("Background", 3, _globals["Rock"]);
-            TryLoadTexture("Background", 5, _globals["Hell"]);
-
-            // TODO: Images\Moon has moon phases //
-            // FIXME: Need to grab the extra tree shapes //
-
-            return true;
+            return false;
         }
 
         public static bool TryLoadTexture(string filePart, int id, ColorProperty obj)
