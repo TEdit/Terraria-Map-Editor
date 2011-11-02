@@ -27,7 +27,7 @@ namespace TEdit.RenderWorld
         };
         public static readonly Dictionary<string, SizeInt32> TileSize = new Dictionary<string, SizeInt32>() {
             { "TilesPixel", new SizeInt32(1, 1) },
-            { "Rendered",   new SizeInt32(8, 8) },
+            { "Rendered",   new SizeInt32(4, 4) },
         };
 
 >>>>>>> 76fe96c... Finished new Color class; Rendered layer now merges everything together (slowly)
