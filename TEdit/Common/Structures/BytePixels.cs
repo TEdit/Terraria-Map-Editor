@@ -142,23 +142,44 @@ namespace TEdit.Common.Structures
         public void SetPixel(int x, int y, Color c)  { SetPixel(Size.W * y + x, c); }
         public void SetPixel(PointInt32 xy, Color c) { SetPixel(Size.W * xy.Y + xy.X, c); }
 
-        public BytePixels AlphaBlend(BytePixels bp, bool selfIsBack = true) {
-            var blended = new BytePixels(Size, Bpp);
+        public BytePixels AlphaBlend(byte[] bytes, bool selfIsBack = true) {
+            var ttl = Size.Total;
+            var step = Bpp;
 
-            for (int i = 0; i < Size.Total; i++) {
-                blended.SetPixel(i, GetColor(i).AlphaBlend(bp.GetColor(i), selfIsBack));
+            var bldData = new byte[ttl * step];
+            var b = selfIsBack ? _data : bytes;
+            var f = selfIsBack ? bytes : _data;
+
+            for (int i = 0; i < ttl*step; i += step) {
+                double a = f[i+3] / 255.0;
+                // short-circuits
+                if      (a == 0) Array.Copy(b, i, bldData, i, step);
+                else if (a == 1) Array.Copy(f, i, bldData, i, step);
+                else {
+                    bldData[i+0] = (byte)(a*f[i+0] + (1-a)*b[i+0]);
+                    bldData[i+1] = (byte)(a*f[i+1] + (1-a)*b[i+1]);
+                    bldData[i+2] = (byte)(a*f[i+2] + (1-a)*b[i+2]);
+                    bldData[i+3] = 255;
+                }
             }
 
-            return blended;
+            return new BytePixels(Size, bldData);
         }
-        public BytePixels AlphaBlend(Color c, bool selfIsBack = true) {
-            var blended = new BytePixels(Size, Bpp);
+        public BytePixels AlphaBlend(BytePixels bp, bool selfIsBack = true) { return AlphaBlend(bp.GetData(), selfIsBack); }
+        public BytePixels AlphaBlend(Color c,       bool selfIsBack = true) {
+            var ttl = Size.Total;
+            var step = Bpp;
 
-            for (int i = 0; i < Size.Total; i++) {
-                blended.SetPixel(i, GetColor(i).AlphaBlend(c, selfIsBack));
-            }
+            var bytes = new byte[ttl * step];
+            var cb    = new byte[4];
 
-            return blended;
+            cb[0] = c.B;
+            cb[1] = c.G;
+            cb[2] = c.R;
+            cb[3] = c.A;
+            for (int i = 0; i < ttl*step; i += step) { cb.CopyTo(bytes, i); }
+
+            return AlphaBlend(bytes, selfIsBack);
         }
 
         public void SaveToFile (string filename) {

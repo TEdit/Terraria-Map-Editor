@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.Composition;
+using System.Runtime.Caching;
+using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Media.Imaging;
 using TEdit.Common;
@@ -71,8 +73,6 @@ namespace TEdit.RenderWorld
             set { SetProperty(ref _isRenderingFullMap, ref value, "IsRenderingFullMap"); }
         }
 
-        int renderedTileSize = 6;
-
         public void UpdateWorldImage(PointInt32 loc, bool isRenderedLayer = false) { UpdateWorldImage(new RectI(loc, loc), isRenderedLayer, null); }
         public void UpdateWorldImage(RectI area, bool isRenderedLayer = false, string renderMsg = "Render Update Complete.", WriteableBitmap img = null)
         {
@@ -81,7 +81,7 @@ namespace TEdit.RenderWorld
 
             int width = area.Width;
             int height = area.Height;
-            int rts = isRenderedLayer ? renderedTileSize : 1;
+            int rts = isRenderedLayer ? 8 : 1;
             string renderProgressMsg = isRenderedLayer ? "Rendering Textured World..." : "Rendering Pixel World...";
 
             if (img == null) img = isRenderedLayer ? _worldImage.Rendered : _worldImage.Image;
@@ -99,18 +99,19 @@ namespace TEdit.RenderWorld
                     Tile tile = _world.Tiles[x, y];
                     if (tile != null)
                     {
-                        var xy = new PointInt32(x, y) * rts;
-                        GetTexture(isRenderedLayer ? "Rendered" : "TilesPixel", y, tile, y >= _world.Header.WorldBounds.Bottom - 192).PutData(pixels, xy);
+                        var xy = (new PointInt32(x, y) - area.TopLeft) * rts;
+                        var bp = isRenderedLayer ? GetTexture(y, tile) : GetTextureLayer("TilePixel", y, tile);
+                        bp.PutData(pixels, xy);
                     }
                 }
             }
 
             SizeInt32 ts = new SizeInt32(rts, rts);
-            var realArea = area * new RectI(ts, ts);
+            var realArea = isRenderedLayer ? new RectI(new PointInt32(), area.Size * ts) : area; // Rendered layer starts at 0,0
 
-            img.Lock(); 
+            img.Lock();
             img.WritePixels(realArea, pixels.GetData(), stride, 0);
-            img.AddDirtyRect(realArea);
+            if (!isRenderedLayer) img.AddDirtyRect(realArea);
             img.Unlock();
 
             if (renderMsg != null) OnProgressChanged(this, 100, 100, renderMsg);
@@ -124,7 +125,7 @@ namespace TEdit.RenderWorld
             IsRenderingFullMap = true;
             int width = _world.Header.WorldBounds.Width;
             int height = _world.Header.WorldBounds.Height;
-            int rts = isRenderedLayer ? renderedTileSize : 1;
+            int rts = isRenderedLayer ? 8 : 1;
 
             var wbmap = new WriteableBitmap(
                 width * rts,
@@ -156,7 +157,7 @@ namespace TEdit.RenderWorld
             return wbmap;
         }
 
-        private Color GetTileColor(int y, Tile tile, bool isHell = false)
+        private Color GetTileColor(int y, Tile tile)
         {
             Color c;
 
@@ -166,7 +167,7 @@ namespace TEdit.RenderWorld
             }
             else
             {
-                if (isHell)
+                if (y >= _world.Header.WorldBounds.Bottom - 192)
                     c = WorldSettings.GlobalColors["Hell"].Color;
                 else if (y > _world.Header.WorldRockLayer && tile.Wall == 0)
                     c = WorldSettings.GlobalColors["Rock"].Color;
@@ -189,16 +190,72 @@ namespace TEdit.RenderWorld
             return c;
         }
 
-        private BytePixels GetTexture(string layerType, int y, Tile tile, bool isHell = false)
+        private Regex shortKeyRegEx = new Regex("^[TW][hres]?[0-9]*$");
+        private ObjectCache textureCache = new MemoryCache("textureCache");
+        private BytePixels GetTexture(int y, Tile tile)
         {
-            var size   = renderedTileSize;
+            var key = GetTileKey(y, tile);
+            if (textureCache.Contains(key)) return (BytePixels)textureCache.Get(key);
+
+            // Cache the new item with properties
+            var cachePolicy = new CacheItemPolicy();
+            cachePolicy.SlidingExpiration = new TimeSpan(0, 1, 0);  // 60 second duration if not used
+            if (shortKeyRegEx.IsMatch(key)) cachePolicy.Priority = CacheItemPriority.NotRemovable;  // single unframed tiles and walls get perma-cached
+
+            // Texture blending
+            var pixels = GetTextureLayer("Wall", y, tile);
+            if (tile.IsActive)
+                pixels = pixels.AlphaBlend( GetTextureLayer(WorldSettings.Tiles[tile.Type].IsSolid ? "TileFront" : "TileBack", y, tile) );  // FIXME: NPCs go in-between here
+            if (tile.Liquid > 0)
+                pixels = pixels.AlphaBlend( GetTextureLayer("Liquid", y, tile) );
+
+            textureCache.Add(key, pixels, cachePolicy);
+            return pixels;
+        }
+
+        public string GetTileKey(int y, Tile tile) {
+            string key = String.Empty;
+            
+            // Walls
+            key += 'W';
+            if (tile.Wall > 0) key += tile.Wall;
+            else {  // FIXME: These are actually pretty large bitmaps with multiple 8x8 spans // 
+                if      (y >= _world.Header.WorldBounds.Bottom - 192)        key += 'h';
+                else if (y > _world.Header.WorldRockLayer && tile.Wall == 0) key += 'r';
+                else if (y > _world.Header.WorldSurface   && tile.Wall == 0) key += 'e';
+                else                                                         key += 's';
+            }
+
+            // Tiles
+            if (tile.IsActive) key += 'T' + tile.Type;
+
+            // Frames
+            if (WorldSettings.Tiles[tile.Type].IsFramed) key += 'F' + tile.Frame.X + ',' + tile.Frame.Y;
+
+            // FIXME: NPC layer would go here... //
+
+            // Liquid
+            if (tile.Liquid > 0) {
+                key += 'L';
+                
+                if (tile.IsLava) key += 'l' + tile.Liquid;
+                else             key += 'w' + tile.Liquid;
+            }
+
+            return key;
+        }
+
+        private BytePixels GetTextureLayer(string layerType, int y, Tile tile)
+        {
+            var size   = 8;
             var sizeI  = new SizeInt32(size, size);
             var pixels = new BytePixels(sizeI, 4);
+            var rect00 = new RectI(0, 0, sizeI);
 
             switch (layerType)
             {
-                case "TilesPixel":
-                    Color c = GetTileColor(y, tile, isHell);
+                case "TilePixel":
+                    Color c = GetTileColor(y, tile);
 
                     var b = new byte[4];
                     b[0] = c.B;
@@ -208,63 +265,55 @@ namespace TEdit.RenderWorld
                     pixels = new BytePixels(1, 1, b);
                     break;
 
-                case "Rendered":
-                    pixels = pixels.AlphaBlend(GetTileColor(y, tile, isHell));  // A BytePixel version of the TileColor
-
+                case "Wall":
+                    // FIXME: A complete wall is actually 16x16 big, with 3x3 variations, depending how many tiles exist //
                     if (tile.Wall > 0)
-                        pixels = pixels.AlphaBlend( GetTexture("Walls", y, tile, isHell)      );
-                    if (tile.IsActive && !WorldSettings.Tiles[tile.Type].IsSolid)
-                        pixels = pixels.AlphaBlend( GetTexture("TilesBack", y, tile, isHell)  );
-                    if (tile.IsActive && WorldSettings.Tiles[tile.Type].IsSolid)
-                        pixels = pixels.AlphaBlend( GetTexture("TilesFront", y, tile, isHell) );
-                    if (tile.Liquid > 0)
-                        pixels = pixels.AlphaBlend( GetTexture("Liquid", y, tile, isHell)     );
-                    break;
-
-                case "Walls":
-                    /// FIXME: A complete wall is actually 32x32 big, with 3x3 variations, depending how many tiles exist ///
-                    if (tile.Wall > 0)
-                        pixels = WorldSettings.Walls[tile.Wall].Texture.GetData(new RectI(size, size, sizeI));
-                    else
-                    {
+                        pixels = WorldSettings.Walls[tile.Wall].Texture.GetData(new RectI(166, 58, sizeI));  // tile with most coverage (will be eventually replaced per FIXME)
+                    else {
                         // FIXME: These are actually pretty large bitmaps //
                         // Might need to go on a WallsBack layer... //
-                        /* 
-                        if (isHell)
-                            pixels = WorldSettings.GlobalColors["Hell"].Texture.GetData();
-                        else if (y > _world.Header.WorldRockLayer && tile.Wall == 0)
-                            pixels = WorldSettings.GlobalColors["Rock"].Texture.GetData();
-                        else if (y > _world.Header.WorldSurface && tile.Wall == 0)
-                            pixels = WorldSettings.GlobalColors["Earth"].Texture.GetData();
+                        
+                        if (y >= _world.Header.WorldBounds.Bottom - 192)
+                            pixels = WorldSettings.GlobalColors["Hell"].Texture.GetData(rect00);
+                        else if (y > _world.Header.WorldRockLayer)
+                            pixels = WorldSettings.GlobalColors["Rock"].Texture.GetData(rect00);
+                        else if (y > _world.Header.WorldSurface)
+                            pixels = WorldSettings.GlobalColors["Earth"].Texture.GetData(rect00);
                         else  
-                            pixels = WorldSettings.GlobalColors["Sky"].Texture.GetData();
-                         */
+                            pixels = WorldSettings.GlobalColors["Sky"].Texture.GetData(rect00);
                     }
                     break;
 
-                case "TilesBack":
-                    /// FIXME: Needs Frame Textures and frames checks ///
-                    if (tile.IsActive && !WorldSettings.Tiles[tile.Type].IsSolid)
-                        pixels = WorldSettings.Tiles[tile.Type].Texture.GetData(new RectI(0, 0, sizeI));
+                case "TileBack":
+                    // FIXME: Need XML property for larger than 8x8 sizes
+                    if (tile.IsActive && !WorldSettings.Tiles[tile.Type].IsSolid) {
+                        var rect = (WorldSettings.Tiles[tile.Type].IsFramed) ?
+                            new RectI(tile.Frame.X / 2, tile.Frame.Y / 2, sizeI) :
+                            rect00;
+                        pixels = WorldSettings.Tiles[tile.Type].Texture.GetData(rect);
+                    }
                     break;
 
                 // FIXME: NPC layer would go here... //
 
-                case "TilesFront":
-                    /// FIXME: Needs Frame Textures and frames checks ///
-                    if (tile.IsActive && WorldSettings.Tiles[tile.Type].IsSolid)
-                        pixels = WorldSettings.Tiles[tile.Type].Texture.GetData(new RectI(0, 0, sizeI));
+                case "TileFront":
+                    // FIXME: Need XML property for larger than 8x8 sizes
+                    if (tile.IsActive && WorldSettings.Tiles[tile.Type].IsSolid) {
+                        var rect = (WorldSettings.Tiles[tile.Type].IsFramed) ?
+                            new RectI(tile.Frame.X / 2, tile.Frame.Y / 2, sizeI) :
+                            rect00;
+                        pixels = WorldSettings.Tiles[tile.Type].Texture.GetData(rect);
+                    }
                     break;
 
                 case "Liquid":
                     if (tile.Liquid > 0) {
-                        // FIXME: 16x16, not 8x8 //
-                        // Should compress to 8x8 and use Liquid levels to determine final height //
-                        // Actually, bottom 8x8 should be for 255, and top 8x8 for anything else //
+                        // Should use Liquid levels to determine final height //
+                        // Actually, bottom 4x4 should be for 255, and top 4x4 for anything else //
                         if (tile.IsLava)
-                            pixels = WorldSettings.GlobalColors["Lava"].Texture.GetData(new RectI(0, 0, sizeI));
+                            pixels = WorldSettings.GlobalColors["Lava"].Texture.GetData(rect00);
                         else
-                            pixels = WorldSettings.GlobalColors["Water"].Texture.GetData(new RectI(0, 0, sizeI));
+                            pixels = WorldSettings.GlobalColors["Water"].Texture.GetData(rect00);
                     }
                     break;
             }
