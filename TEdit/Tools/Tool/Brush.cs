@@ -174,7 +174,6 @@ namespace TEdit.Tools.Tool
                 System.Windows.Media.PixelFormats.Bgra32,
                 null);
 
-
             bmp.Clear();
             if (_properties.BrushShape == ToolBrushShape.Square)
                  bmp.FillRectangle(0, 0, w, h, c);

@@ -13,7 +13,7 @@ namespace TEdit.Tools
     public class ToolProperties : ObservableObject
     {
         private int _Height;
-        private Dictionary<string, WriteableBitmap> _Image;
+        private WriteableBitmap _Image;
         private bool _IsOutline;
         private bool _IsSquare;
         private int _MaxHeight;
@@ -281,7 +281,7 @@ namespace TEdit.Tools
             }
         }
 
-        public Dictionary<string, WriteableBitmap> Image
+        public WriteableBitmap Image
         {
             get { return _Image; }
             set

@@ -141,25 +141,18 @@ namespace TEdit.Tools.Tool
             }
         }
 
-        public override Dictionary<string, WriteableBitmap> PreviewTool() {
-            var layers = new Dictionary<string, WriteableBitmap>();
-            var c = Color.FromArgb(127, 0, 90, 255);
-            var ts = WorldImage.TileSize;
+        public override WriteableBitmap PreviewTool() {
+            var bmp = new WriteableBitmap(
+                1,
+                1,
+                96,
+                96,
+                System.Windows.Media.PixelFormats.Bgra32,
+                null);
 
-            foreach (var layer in WorldImage.LayerList) {
-                var bmp = new WriteableBitmap(
-                    ts[layer].Width,
-                    ts[layer].Height,
-                    96,
-                    96,
-                    System.Windows.Media.PixelFormats.Bgra32,
-                    null);
-
-                bmp.Clear();
-                bmp.FillRectangle(0, 0, ts[layer].Width - 1, ts[layer].Height - 1, c);
-                layers[layer] = bmp;
-            }
-            return layers;
+            bmp.Clear();
+            bmp.SetPixel(0, 0, 127, 0, 90, 255);
+            return bmp;
         }
 
         private void DrawLine(PointInt32 endPoint)

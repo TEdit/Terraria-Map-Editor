@@ -37,9 +37,6 @@
                                     <ScaleTransform ScaleX="0.125" ScaleY="0.125" />  <!-- 8x8 texture tiles for every pixel tile -->
                                 </Image.LayoutTransform>
                             </Image>
-                            <Image x:Name="WorldImageRendered" Canvas.Top="0" Canvas.Left="0"
-                     Height="{Binding Path=WorldImage.Rendered.PixelHeight}" Width="{Binding Path=WorldImage.Rendered.PixelWidth}"
-                     Source="{Binding Path=WorldImage.Rendered}" RenderOptions.BitmapScalingMode="NearestNeighbor" />
                             <Image Source="{Binding Path=ToolProperties.Image}" RenderOptions.BitmapScalingMode="NearestNeighbor"
                                  Height="{Binding Path=ToolProperties.Size.Height}" Width="{Binding Path=ToolProperties.Size.Width}"
                                  Canvas.Left="{Binding Path=ToolLocation.X}" Canvas.Top="{Binding Path=ToolLocation.Y}" IsHitTestVisible="False"

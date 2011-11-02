@@ -14,6 +14,6 @@ namespace TEdit.Tools
         bool PressTool(TileMouseEventArgs e);
         bool MoveTool(TileMouseEventArgs e);
         bool ReleaseTool(TileMouseEventArgs e);
-        Dictionary<string, WriteableBitmap> PreviewTool();
+        WriteableBitmap PreviewTool();
     }
 }

@@ -162,18 +162,14 @@ namespace TEdit.Tools.Tool
             return false;
         }
 
-        public override Dictionary<string, WriteableBitmap> PreviewTool() {
-            var layers = new Dictionary<string, WriteableBitmap>();
-            foreach (var layer in WorldImage.LayerList) {
-                layers[layer] = new WriteableBitmap(
-                    WorldImage.TileSize[layer].Width  * ((_spritePicker.SelectedSprite != null) ? _spritePicker.SelectedSprite.Size.X : 1),
-                    WorldImage.TileSize[layer].Height * ((_spritePicker.SelectedSprite != null) ? _spritePicker.SelectedSprite.Size.Y : 1),
-                    96,
-                    96,
-                    PixelFormats.Bgra32,
-                    null);
-            }
-            return layers;
+        public override WriteableBitmap PreviewTool() {
+            return new WriteableBitmap(
+                _spritePicker.SelectedSprite != null ? _spritePicker.SelectedSprite.Size.X : 1,
+                _spritePicker.SelectedSprite != null ? _spritePicker.SelectedSprite.Size.Y : 1,
+                96,
+                96,
+                PixelFormats.Bgra32,
+                null);
         }
     }
 }

@@ -78,7 +78,7 @@ namespace TEdit.Tools
         public abstract bool PressTool(TileMouseEventArgs e);
         public abstract bool MoveTool(TileMouseEventArgs e);
         public abstract bool ReleaseTool(TileMouseEventArgs e);
-        public abstract Dictionary<string, WriteableBitmap> PreviewTool();
+        public abstract WriteableBitmap PreviewTool();
 
         #endregion
     }

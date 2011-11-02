@@ -108,18 +108,14 @@ namespace TEdit.Tools.Tool
             return false;
         }
 
-        public override Dictionary<string, WriteableBitmap> PreviewTool() {
-            var layers = new Dictionary<string, WriteableBitmap>();
-            foreach (var layer in WorldImage.LayerList) {
-                layers[layer] = new WriteableBitmap(
-                    WorldImage.TileSize[layer].Width,
-                    WorldImage.TileSize[layer].Height,
-                    96,
-                    96,
-                    PixelFormats.Bgra32,
-                    null);
-            }
-            return layers;
+        public override WriteableBitmap PreviewTool() {
+            return new WriteableBitmap(
+                1,
+                1,
+                96,
+                96,
+                PixelFormats.Bgra32,
+                null);
         }
     }
 }

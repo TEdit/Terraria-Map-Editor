@@ -33,8 +33,8 @@ namespace TEdit.Tools.Clipboard
             }
         }
 
-        private Dictionary<string, WriteableBitmap> _Preview;
-        public Dictionary<string, WriteableBitmap> Preview
+        private WriteableBitmap _Preview;
+        public WriteableBitmap Preview
         {
             get { return this._Preview; }
             set
