@@ -105,7 +105,7 @@ namespace TEdit.Common.Structures
             var dataLeft = r.Size.Total * Bpp;
             for (int y = 0; y < r.Height; y++)
             {
-                Array.ConstrainedCopy(_data, sOfs, dest.Data, dOfs, r.Width * Bpp);
+                Array.Copy(_data, sOfs, dest.Data, dOfs, r.Width * Bpp);
                 sOfs += this.Size.W * Bpp;
                 dOfs += dest.Size.W * Bpp;
             }
@@ -114,7 +114,7 @@ namespace TEdit.Common.Structures
         // Pixel-level functions
         public byte[] GetPixel(int o) {
             var b = new byte[Bpp];
-            Array.ConstrainedCopy(_data, o * Bpp, b, 0, Bpp);
+            Array.Copy(_data, o * Bpp, b, 0, Bpp);
             return b;
         }
         public byte[] GetPixel(int x, int y) { return GetPixel(Size.W * y + x); }
@@ -128,7 +128,7 @@ namespace TEdit.Common.Structures
         public Color GetColor(int x, int y) { return GetColor(Size.W * y + x); }
         public Color GetColor(PointInt32 xy) { return GetColor(Size.W * xy.Y + xy.X); }
 
-        public void SetPixel(int o, byte[] b)         { Array.ConstrainedCopy(b, 0, _data, o * Bpp, Bpp); }
+        public void SetPixel(int o, byte[] b)         { Array.Copy(b, 0, _data, o * Bpp, Bpp); }
         public void SetPixel(int x, int y, byte[] b)  { SetPixel(Size.W * y + x, b); }
         public void SetPixel(PointInt32 xy, byte[] b) { SetPixel(Size.W * xy.Y + xy.X, b); }
         public void SetPixel(int o, Color c) {

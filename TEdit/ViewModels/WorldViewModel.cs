@@ -37,6 +37,7 @@ namespace TEdit.ViewModels
         private bool _isMouseContained;
         private bool _texturesLoaded = false;
         private DateTime _lastRender = DateTime.Now;
+        private CancellationTokenSource _lastRenderTaskCancel;
         private ICommand _mouseDownCommand;
         private PointInt32 _mouseDownTile;
         private PointShort _frame;
@@ -254,11 +255,6 @@ namespace TEdit.ViewModels
         {
             get { return _isMouseContained; }
             set { SetProperty(ref _isMouseContained, ref value, "IsMouseContained"); }
-        }
-
-        public WorldRenderer Renderer {
-            get { return _renderer; }
-            set { SetProperty(ref _renderer, ref value, "Renderer"); }
         }
 
         public DateTime LastRender {
@@ -658,6 +654,43 @@ namespace TEdit.ViewModels
             RaisePropertyChanged("WorldZoomedHeight");
             RaisePropertyChanged("WorldZoomedWidth");
             CommandManager.InvalidateRequerySuggested();
+        }
+
+        public void RenderTextures(RectI rect, System.Windows.Controls.ScrollViewer partView, System.Windows.Controls.Image img) {
+            // Cancel any old render tasks
+            if (_lastRenderTaskCancel != null) _lastRenderTaskCancel.Cancel();
+            _lastRenderTaskCancel = new CancellationTokenSource();
+
+            // Re-render
+            Task.Factory.StartNew(() => {
+                var wbmap = new WriteableBitmap(
+                    rect.Size.W * 8,
+                    rect.Size.H * 8,
+                    96,
+                    96,
+                    System.Windows.Media.PixelFormats.Bgr32,
+                    null);
+
+                _renderer.UpdateWorldImage(rect, true, null, wbmap);
+                wbmap.Freeze();
+                return wbmap;
+            })
+            .ContinueWith(t => {
+                // Re-draw
+                WorldImage.Rendered = t.Result;
+
+                // Re-position
+                System.Windows.Controls.Canvas.SetLeft(img, rect.X);
+                System.Windows.Controls.Canvas.SetTop (img, rect.Y);
+                img.Width  = rect.Size.W * 8;
+                img.Height = rect.Size.H * 8;
+                
+                img.UpdateLayout();
+                CommandManager.InvalidateRequerySuggested();
+            }, _lastRenderTaskCancel.Token, TaskContinuationOptions.LongRunning, _uiScheduler);
+
+            // Re-time
+            _lastRender = DateTime.Now;
         }
 
         #endregion

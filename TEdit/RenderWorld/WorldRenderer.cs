@@ -190,7 +190,7 @@ namespace TEdit.RenderWorld
             return c;
         }
 
-        private Regex shortKeyRegEx = new Regex("^[TW][hres]?[0-9]*$");
+        private Regex shortKeyRegEx = new Regex("^[TW][hres]?[0-9]*$|^L[lw](0|255)$");
         private ObjectCache textureCache = new MemoryCache("textureCache");
         private BytePixels GetTexture(int y, Tile tile)
         {
@@ -213,33 +213,37 @@ namespace TEdit.RenderWorld
             return pixels;
         }
 
-        public string GetTileKey(int y, Tile tile) {
+        public string GetTileKey(int y, Tile tile, char type = '*') {
             string key = String.Empty;
             
             // Walls
-            key += 'W';
-            if (tile.Wall > 0) key += tile.Wall;
-            else {  // FIXME: These are actually pretty large bitmaps with multiple 8x8 spans // 
-                if      (y >= _world.Header.WorldBounds.Bottom - 192)        key += 'h';
-                else if (y > _world.Header.WorldRockLayer && tile.Wall == 0) key += 'r';
-                else if (y > _world.Header.WorldSurface   && tile.Wall == 0) key += 'e';
-                else                                                         key += 's';
+            if (type == '*' || type == 'W') {
+                key += "W";
+                if (tile.Wall > 0) key += tile.Wall;
+                else {  // FIXME: These are actually pretty large bitmaps with multiple 8x8 spans // 
+                    if (y >= _world.Header.WorldBounds.Bottom - 192) key += "h";
+                    else if (y > _world.Header.WorldRockLayer && tile.Wall == 0) key += "r";
+                    else if (y > _world.Header.WorldSurface   && tile.Wall == 0) key += "e";
+                    else key += "s";
+                }
             }
 
-            // Tiles
-            if (tile.IsActive) key += 'T' + tile.Type;
+            if (type == '*' || type == 'T') {
+                // Tiles
+                if (tile.IsActive) key += "T" + tile.Type;
 
-            // Frames
-            if (WorldSettings.Tiles[tile.Type].IsFramed) key += 'F' + tile.Frame.X + ',' + tile.Frame.Y;
+                // Frames
+                if (WorldSettings.Tiles[tile.Type].IsFramed) key += "F" + tile.Frame.X + "," + tile.Frame.Y;
+            }
 
             // FIXME: NPC layer would go here... //
 
             // Liquid
-            if (tile.Liquid > 0) {
-                key += 'L';
+            if ((type == '*' || type == 'L') && tile.Liquid > 0) {
+                key += "L";
                 
-                if (tile.IsLava) key += 'l' + tile.Liquid;
-                else             key += 'w' + tile.Liquid;
+                if (tile.IsLava) key += "l" + tile.Liquid;
+                else             key += "w" + tile.Liquid;
             }
 
             return key;
@@ -251,6 +255,7 @@ namespace TEdit.RenderWorld
             var sizeI  = new SizeInt32(size, size);
             var pixels = new BytePixels(sizeI, 4);
             var rect00 = new RectI(0, 0, sizeI);
+            string key = String.Empty;
 
             switch (layerType)
             {
@@ -266,6 +271,9 @@ namespace TEdit.RenderWorld
                     break;
 
                 case "Wall":
+                    key = GetTileKey(y, tile, 'W');
+                    if (textureCache.Contains(key)) return (BytePixels)textureCache.Get(key);
+
                     // FIXME: A complete wall is actually 16x16 big, with 3x3 variations, depending how many tiles exist //
                     if (tile.Wall > 0)
                         pixels = WorldSettings.Walls[tile.Wall].Texture.GetData(new RectI(166, 58, sizeI));  // tile with most coverage (will be eventually replaced per FIXME)
@@ -285,6 +293,9 @@ namespace TEdit.RenderWorld
                     break;
 
                 case "TileBack":
+                    key = GetTileKey(y, tile, 'T');
+                    if (textureCache.Contains(key)) return (BytePixels)textureCache.Get(key);
+
                     // FIXME: Need XML property for larger than 8x8 sizes
                     if (tile.IsActive && !WorldSettings.Tiles[tile.Type].IsSolid) {
                         var rect = (WorldSettings.Tiles[tile.Type].IsFramed) ?
@@ -297,6 +308,9 @@ namespace TEdit.RenderWorld
                 // FIXME: NPC layer would go here... //
 
                 case "TileFront":
+                    key = GetTileKey(y, tile, 'T');
+                    if (textureCache.Contains(key)) return (BytePixels)textureCache.Get(key);
+
                     // FIXME: Need XML property for larger than 8x8 sizes
                     if (tile.IsActive && WorldSettings.Tiles[tile.Type].IsSolid) {
                         var rect = (WorldSettings.Tiles[tile.Type].IsFramed) ?
@@ -307,6 +321,9 @@ namespace TEdit.RenderWorld
                     break;
 
                 case "Liquid":
+                    key = GetTileKey(y, tile, 'L');
+                    if (textureCache.Contains(key)) return (BytePixels)textureCache.Get(key);
+
                     if (tile.Liquid > 0) {
                         // Should use Liquid levels to determine final height //
                         // Actually, bottom 4x4 should be for 255, and top 4x4 for anything else //
@@ -317,7 +334,13 @@ namespace TEdit.RenderWorld
                     }
                     break;
             }
-            
+
+            // Cache policy for new cache items
+            var cachePolicy = new CacheItemPolicy();
+            cachePolicy.SlidingExpiration = new TimeSpan(0, 5, 0);  // 5 minute duration if not used
+            if (shortKeyRegEx.IsMatch(key)) cachePolicy.Priority = CacheItemPriority.NotRemovable;  // single unframed tiles and walls get perma-cached
+
+            textureCache.Add(key, pixels, cachePolicy);
             return pixels;
         }
 
@@ -368,7 +391,7 @@ namespace TEdit.RenderWorld
  
             int inc = longLen < 0 ? -1 : 1;
             // using double here for accuracy, since some lines from one end of a world to another could get quite long...
-            double multDiff = longLen == 0 ? shortLen : shortLen / longLen;  
+            double multDiff = longLen == 0 ? shortLen : (double)shortLen / (double)longLen;
  
             if (yLonger) {
                 for (int i = 0; i != longLen; i += inc) { yield return new PointInt32(x0 + (int)(i * multDiff), y0 + i); }

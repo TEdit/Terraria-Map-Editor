@@ -73,6 +73,9 @@ namespace TEdit.Views
 
             if (vm.MouseMoveCommand.CanExecute(cargs))
                 vm.MouseMoveCommand.Execute(cargs);
+
+            if (cargs.LeftButton == MouseButtonState.Pressed || cargs.RightButton == MouseButtonState.Pressed)
+                ViewportRerender(sender, null);  // may be potentially drawing
         }
 
         private void ViewportMouseDown(object sender, MouseButtonEventArgs e)
@@ -95,6 +98,8 @@ namespace TEdit.Views
             var vm = (WorldViewModel)DataContext;
             if (vm.MouseDownCommand.CanExecute(cargs))
                 vm.MouseDownCommand.Execute(cargs);
+
+            ViewportRerender(sender, null);  // potential for button effects to trigger tile changes
         }
 
         private void ViewportMouseWheel(object sender, MouseWheelEventArgs e)
@@ -145,6 +150,8 @@ namespace TEdit.Views
             var vm = (WorldViewModel)DataContext;
             if (vm.MouseUpCommand.CanExecute(cargs))
                 vm.MouseUpCommand.Execute(cargs);
+            
+            ViewportRerender(sender, null);  // potential for button effects to trigger tile changes
         }
 
         private void ViewportMouseEnter(object sender, MouseEventArgs e)
@@ -189,10 +196,10 @@ namespace TEdit.Views
 
             // Firstly, let's not refresh more than we have to
             TimeSpan interval = DateTime.Now - vm.LastRender;
-            if (interval.Ticks < TimeSpan.TicksPerSecond / (vm.Zoom - 4)) return;  // ends up being 1fps for 5x, 5fps for 10x, 10fps for 15x, etc.
+            if (interval.Ticks < TimeSpan.TicksPerSecond / (vm.Zoom - 3)) return;  // ends up being 4fps for 7x, 7fps for 10x, 10fps for 13x, etc.
 
-            // Zoom check (only render at 500+% zoom)
-            if (vm.Zoom < 5.0 || !vm.CanRenderTextures()) {
+            // Zoom check (only render at 700+% zoom)
+            if (vm.Zoom < 7.0 || !vm.CanRenderTextures()) {
                 vm.WorldImage.Rendered = null;
                 return;
             }
@@ -205,45 +212,7 @@ namespace TEdit.Views
             var rect = TileViewportRect() - new PointInt32(5, 5) + new SizeInt32(10, 10);  // allow for a small overlap
             rect.Rebound(vm.World.Header.WorldBounds);
 
-            // FIXME: Trade off between app pauses during render (non-threaded) vs.
-            // smooth app movement (threaded) but forced to re-position FIRST and then
-            // the image updates a quarter/sec later, causing a jerky effect when dragging
-            // or sliding.
-
-            // Can't I have both?  I'd prefer to put the pos code inside the task...
-
-            // Re-position
-            var img = (Image)FindName("WorldImageRendered");
-            Canvas.SetLeft(img, rect.X);
-            Canvas.SetTop (img, rect.Y);
-            img.Width  = rect.Size.W * 8;
-            img.Height = rect.Size.H * 8;
-
-            // Re-render
-            Task.Factory.StartNew(() => {
-                var wbmap = new WriteableBitmap(
-                    rect.Size.W * 8,
-                    rect.Size.H * 8,
-                    96,
-                    96,
-                    System.Windows.Media.PixelFormats.Bgr32,
-                    null);
-
-                vm.Renderer.UpdateWorldImage(rect, true, null, wbmap);                
-                wbmap.Freeze();
-                return wbmap;
-            })
-            .ContinueWith(t => {
-                // Re-draw
-                vm.WorldImage.Rendered = t.Result;
-                CommandManager.InvalidateRequerySuggested();
-            });
-
-            //vm.Renderer.UpdateWorldImage(rect, true, null, wbmap);
-            //vm.WorldImage.Rendered = wbmap;
-            
-            // Re-time
-            vm.LastRender = DateTime.Now;
+            vm.RenderTextures(rect, partView, (Image)FindName("WorldImageRendered"));
         }
     }
 }

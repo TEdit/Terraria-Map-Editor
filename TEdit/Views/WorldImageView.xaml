@@ -32,7 +32,7 @@
                                  SizeChanged="ViewportRerender" SourceUpdated="ViewportRerender" TargetUpdated="ViewportRerender"
                             />
                             <Image x:Name="WorldImageRendered" IsHitTestVisible="False" Source="{Binding Path=WorldImage.Rendered}" 
-                                 RenderOptions.BitmapScalingMode="NearestNeighbor">
+                                 RenderOptions.BitmapScalingMode="NearestNeighbor" UseLayoutRounding="False">
                                 <Image.LayoutTransform>
                                     <ScaleTransform ScaleX="0.125" ScaleY="0.125" />  <!-- 8x8 texture tiles for every pixel tile -->
                                 </Image.LayoutTransform>

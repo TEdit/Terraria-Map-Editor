@@ -82,7 +82,7 @@ namespace TEdit.Common.Structures
         /// <param name="data">An one-dimensional byte array.</param>
         /// <param name="startIndex">Index within the array of the first element (pixel) to get.</param>
         /// <param name="elementCount">Number of elements (pixels) to get.</param>
-        public void GetData(BytePixels data, int startIndex, int elementCount) { Array.ConstrainedCopy(_dataBytes.Data, 0, data.Data, startIndex, elementCount); }
+        public void GetData(BytePixels data, int startIndex, int elementCount) { Array.Copy(_dataBytes.Data, 0, data.Data, startIndex, elementCount); }
 
         /// <summary>Returns a copy of 2D texture data in an one-dimensional byte array, specifying a source rectangle.</summary> 
         /// <param name="rect">The section of the texture to copy. <paramref name="null"/> indicates the data will be copied from the entire texture.</param>
@@ -140,7 +140,7 @@ namespace TEdit.Common.Structures
                 var lineLen = r.Width * Bpp;
                 lineLen = dataLeft < lineLen ? dataLeft : lineLen;
 
-                Array.ConstrainedCopy(_dataBytes.Data, sOfs, data.Data, dOfs, lineLen);
+                Array.Copy(_dataBytes.Data, sOfs, data.Data, dOfs, lineLen);
                 sOfs     += _dataBytes.Size.W * Bpp;
                 dOfs     += lineLen;
                 dataLeft -= lineLen;
