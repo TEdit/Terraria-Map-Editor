@@ -3,6 +3,7 @@ using System.ComponentModel.Composition;
 using System.Windows.Media.Imaging;
 using TEdit.Common;
 using TEdit.Common.Structures;
+using System.Collections.Generic;
 
 namespace TEdit.Tools
 {

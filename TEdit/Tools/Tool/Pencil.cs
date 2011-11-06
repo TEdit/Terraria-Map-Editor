@@ -4,7 +4,6 @@ using System.ComponentModel.Composition;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using TEdit.Common;
 using TEdit.Common.Structures;
@@ -29,7 +28,8 @@ namespace TEdit.Tools.Tool
         [Import]
         private SelectionArea _selection;
         private Orientation _snapDirection = Orientation.Horizontal;
-        private PointInt32 _startPoint;
+        private PointInt32? _startPoint;
+        private PointInt32? _endPoint;
         [Import]
         private TilePicker _tilePicker;
         [Import("World", typeof(World))]
@@ -107,60 +107,79 @@ namespace TEdit.Tools.Tool
 
         public override bool MoveTool(TileMouseEventArgs e)
         {
+            if (_startPoint != null) _endPoint = e.Tile;
             CheckDirectionandDraw(e);
             return false;
         }
 
         public override bool ReleaseTool(TileMouseEventArgs e)
         {
-            CheckDirectionandDraw(e);
+            if (_startPoint != null) DrawLine(e.Tile);
             _isLeftDown = (e.LeftButton == MouseButtonState.Pressed);
             _isRightDown = (e.RightButton == MouseButtonState.Pressed);
 
             HistMan.AddBufferToHistory();
-
+            _startPoint = null;
+            _endPoint   = null;
             return true;
         }
 
         private void CheckDirectionandDraw(TileMouseEventArgs e)
         {
             PointInt32 p = e.Tile;
-            if (_isRightDown)
-            {
-                if (_isLeftDown)
-                    p.X = _startPoint.X;
-                else
-                    p.Y = _startPoint.Y;
-
-                DrawLine(p);
-                _startPoint = p;
-            }
-            else if (_isLeftDown)
-            {
+            // Free range draw only
+            if (_isLeftDown && !_isRightDown) {
                 DrawLine(p);
                 _startPoint = p;
             }
         }
 
-        public override WriteableBitmap PreviewTool()
-        {
-            var bmp = new WriteableBitmap(
-                1,
-                1,
-                96,
-                96,
-                PixelFormats.Bgra32,
-                null);
+        public override WriteableBitmap PreviewTool() {
+            var c = new Color(0, 90, 255, 127);
+            WriteableBitmap bmp;
+            
+            // Line draw preview
+            if (_isRightDown && _startPoint != null && _endPoint != null) {
+                var sp = (PointInt32)_startPoint;
+                var ep = (PointInt32)_endPoint;                
+                var delta = sp - ep;
+                var upperLeft = new PointInt32(sp.X < ep.X ? sp.X : ep.X,
+                                               sp.Y < ep.Y ? sp.Y : ep.Y);
+                var rect = new RectI(upperLeft, new SizeInt32(Math.Abs(delta.X), Math.Abs(delta.Y)));
 
+                bmp = new WriteableBitmap(
+                    rect.W,
+                    rect.H,
+                    96,
+                    96,
+                    System.Windows.Media.PixelFormats.Bgra32,
+                    null);
 
-            bmp.Clear();
-            bmp.SetPixel(0, 0, 127, 0, 90, 255);
+                bmp.Clear();
+                foreach (PointInt32 p in WorldRenderer.DrawLine(rect.TopLeft, rect.BottomRight)) {
+                    if (_selection.IsValid(p)) bmp.SetPixel(p.X, p.Y, c);
+                }
+            }
+            // Single dot
+            else {
+                bmp = new WriteableBitmap(
+                    1,
+                    1,
+                    96,
+                    96,
+                    System.Windows.Media.PixelFormats.Bgra32,
+                    null);
+
+                bmp.Clear();
+                bmp.SetPixel(0, 0, c);                
+            }
+
             return bmp;
         }
 
         private void DrawLine(PointInt32 endPoint)
         {
-            foreach (PointInt32 p in WorldRenderer.DrawLine(_startPoint, endPoint))
+            foreach (PointInt32 p in WorldRenderer.DrawLine((PointInt32)_startPoint, endPoint))
             {
                 if (_selection.IsValid(p))
                 {

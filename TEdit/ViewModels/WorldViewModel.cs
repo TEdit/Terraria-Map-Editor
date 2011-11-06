@@ -16,6 +16,7 @@ using TEdit.TerrariaWorld;
 using TEdit.Tools;
 using TEdit.Tools.Clipboard;
 using TEdit.Tools.History;
+using System.Threading;
 
 namespace TEdit.ViewModels
 {
@@ -25,7 +26,7 @@ namespace TEdit.ViewModels
         #region Fields
 
         private readonly TaskFactory _uiFactory;
-        private readonly TaskScheduler _uiScheduler;
+        private readonly TaskScheduler _uiScheduler;  // used for synchronous tasks; don't use for separate async threads
         private ITool _activeTool;
 
         private ICommand _copyToClipboard;
@@ -34,7 +35,9 @@ namespace TEdit.ViewModels
 
         private bool _isBusy;
         private bool _isMouseContained;
-        private TimeSpan _lastRender;
+        private bool _texturesLoaded = false;
+        private DateTime _lastRender = DateTime.Now;
+        private CancellationTokenSource _lastRenderTaskCancel;
         private ICommand _mouseDownCommand;
         private PointInt32 _mouseDownTile;
         private PointShort _frame;
@@ -112,11 +115,9 @@ namespace TEdit.ViewModels
             GenNewWorld();
         }
 
-
-
         #endregion
 
-        #region Propertie
+        #region Properties
 
 
         public PointShort Frame
@@ -212,7 +213,6 @@ namespace TEdit.ViewModels
                 if (_worldImage.Image != null)
                     return _worldImage.Image.PixelHeight * _zoom;
 
-
                 return 1;
             }
         }
@@ -255,6 +255,11 @@ namespace TEdit.ViewModels
         {
             get { return _isMouseContained; }
             set { SetProperty(ref _isMouseContained, ref value, "IsMouseContained"); }
+        }
+
+        public DateTime LastRender {
+            get { return _lastRender; }
+            set { SetProperty(ref _lastRender, ref value, "LastRender"); }
         }
 
         public string WallName
@@ -526,10 +531,13 @@ namespace TEdit.ViewModels
             return _world.IsValid && !_world.IsUsingIo && !_renderer.IsRenderingFullMap;
         }
 
+        public bool CanRenderTextures() {
+            return _texturesLoaded && _world.IsValid && !_world.IsUsingIo && !_renderer.IsRenderingFullMap;
+        }
+
         private void ValidateWorld()
         {
-            Task.Factory.StartNew(() => _world.Validate())
-            .ContinueWith(t => RenderWorld(), _uiScheduler);
+            Task.Factory.StartNew(() => _world.Validate());
         }
 
         private void SaveWorld()
@@ -571,8 +579,24 @@ namespace TEdit.ViewModels
             ofd.Multiselect = false;
             if ((bool)ofd.ShowDialog())
             {
-                Task.Factory.StartNew(() => LoadWorld(ofd.FileName))
-                    .ContinueWith(t => RenderWorld());
+                if (!_texturesLoaded)
+                {
+                    WorldSettings.FindSteam();  // needs to be done with the current thread
+
+                    Task.Factory
+                        .StartNew(() => LoadWorld(ofd.FileName))
+                    .ContinueWith(j => { _texturesLoaded = _renderer.LoadGameData(); })
+                    .ContinueWith(k => RenderWorldTask())
+                    .ContinueWith(l => RenderWorldFinish(l.Result), _uiScheduler);  // required to be non-async
+                }
+                else
+                {
+                    Task.Factory
+                        .StartNew(() => LoadWorld(ofd.FileName))
+                    .ContinueWith(k => RenderWorldTask())
+                    .ContinueWith(l => RenderWorldFinish(l.Result), _uiScheduler);  // required to be non-async
+                }
+
             }
         }
 
@@ -581,6 +605,7 @@ namespace TEdit.ViewModels
             try
             {
                 WorldImage.Image = null;
+                //WorldImage.Rendered = null;
                 World.Load(filename);
             }
             catch (Exception)
@@ -590,29 +615,82 @@ namespace TEdit.ViewModels
             }
         }
 
+        private void LoadTexturesAndRenderWorld()
+        {
+            try  // FindSteam needs a window
+            {                
+                WorldSettings.FindSteam();  // needs to be done with the current thread
+
+                Task.Factory
+                    .StartNew(() => { _texturesLoaded = _renderer.LoadGameData(); })
+                .ContinueWith(k => RenderWorldTask())
+                .ContinueWith(l => RenderWorldFinish(l.Result), _uiScheduler);
+            }
+            catch {
+                Task.Factory
+                    .StartNew(() => RenderWorldTask())
+                .ContinueWith(l  => RenderWorldFinish(l.Result), _uiScheduler);
+            }
+        }
+
         private void RenderWorld()
         {
-            Task<WriteableBitmap>.Factory.StartNew(
-                () =>
-                {
-                    WriteableBitmap img = _renderer.RenderWorld();
-                    if (img != null)
-                    {
-                        img.Freeze();
-                    }
-                    return img;
-                })
-            .ContinueWith(
-                t =>
-                {
-                    if (t.Result != null)
-                    {
-                        WorldImage.Image = t.Result.Clone();
-                        RaisePropertyChanged("WorldZoomedHeight");
-                        RaisePropertyChanged("WorldZoomedWidth");
-                        CommandManager.InvalidateRequerySuggested();
-                    }
-                }, _uiScheduler);
+            if (!_texturesLoaded) { LoadTexturesAndRenderWorld(); return; }
+
+            Task.Factory
+                .StartNew(() => RenderWorldTask())
+            .ContinueWith(l  => RenderWorldFinish(l.Result), _uiScheduler);
+        }
+
+        private WriteableBitmap RenderWorldTask() {
+            var img = _renderer.RenderWorld(false);
+            if (img != null) img.Freeze();
+
+            return img;
+        }
+
+        private void RenderWorldFinish(WriteableBitmap img) {
+            if (img != null) WorldImage.Image = img.Clone();
+            RaisePropertyChanged("WorldZoomedHeight");
+            RaisePropertyChanged("WorldZoomedWidth");
+            CommandManager.InvalidateRequerySuggested();
+        }
+
+        public void RenderTextures(RectI rect, System.Windows.Controls.ScrollViewer partView, System.Windows.Controls.Image img) {
+            // Cancel any old render tasks
+            if (_lastRenderTaskCancel != null) _lastRenderTaskCancel.Cancel();
+            _lastRenderTaskCancel = new CancellationTokenSource();
+
+            // Re-render
+            Task.Factory.StartNew(() => {
+                var wbmap = new WriteableBitmap(
+                    rect.Size.W * 8,
+                    rect.Size.H * 8,
+                    96,
+                    96,
+                    System.Windows.Media.PixelFormats.Bgr32,
+                    null);
+
+                _renderer.UpdateWorldImage(rect, true, null, wbmap);
+                wbmap.Freeze();
+                return wbmap;
+            })
+            .ContinueWith(t => {
+                // Re-draw
+                WorldImage.Rendered = t.Result;
+
+                // Re-position
+                System.Windows.Controls.Canvas.SetLeft(img, rect.X);
+                System.Windows.Controls.Canvas.SetTop (img, rect.Y);
+                img.Width  = rect.Size.W * 8;
+                img.Height = rect.Size.H * 8;
+                
+                img.UpdateLayout();
+                CommandManager.InvalidateRequerySuggested();
+            }, _lastRenderTaskCancel.Token, TaskContinuationOptions.LongRunning, _uiScheduler);
+
+            // Re-time
+            _lastRender = DateTime.Now;
         }
 
         #endregion
@@ -623,8 +701,8 @@ namespace TEdit.ViewModels
         {
             MouseOverTile = e.Tile;
 
-            if ((e.Tile.X < _world.Header.MaxTiles.X &&
-                 e.Tile.Y < _world.Header.MaxTiles.Y &&
+            if ((e.Tile.X < _world.Header.WorldBounds.W &&
+                 e.Tile.Y < _world.Header.WorldBounds.H &&
                  e.Tile.X >= 0 &&
                  e.Tile.Y >= 0) && (_world.Tiles[e.Tile.X, e.Tile.Y] != null))
             {
@@ -652,8 +730,8 @@ namespace TEdit.ViewModels
 
         private void OnMouseDownPixel(TileMouseEventArgs e)
         {
-            if ((e.Tile.X < _world.Header.MaxTiles.X &&
-                 e.Tile.Y < _world.Header.MaxTiles.Y &&
+            if ((e.Tile.X < _world.Header.WorldBounds.W &&
+                 e.Tile.Y < _world.Header.WorldBounds.H &&
                  e.Tile.X >= 0 &&
                  e.Tile.Y >= 0) && (_world.Tiles[e.Tile.X, e.Tile.Y] != null))
             {
@@ -671,8 +749,8 @@ namespace TEdit.ViewModels
 
         private void OnMouseUpPixel(TileMouseEventArgs e)
         {
-            if ((e.Tile.X < _world.Header.MaxTiles.X &&
-                 e.Tile.Y < _world.Header.MaxTiles.Y &&
+            if ((e.Tile.X < _world.Header.WorldBounds.W &&
+                 e.Tile.Y < _world.Header.WorldBounds.H &&
                  e.Tile.X >= 0 &&
                  e.Tile.Y >= 0) && (_world.Tiles[e.Tile.X, e.Tile.Y] != null))
             {
@@ -685,8 +763,8 @@ namespace TEdit.ViewModels
 
         private void OnMouseWheel(TileMouseEventArgs e)
         {
-            if ((e.Tile.X < _world.Header.MaxTiles.X &&
-                 e.Tile.Y < _world.Header.MaxTiles.Y &&
+            if ((e.Tile.X < _world.Header.WorldBounds.W &&
+                 e.Tile.Y < _world.Header.WorldBounds.H &&
                  e.Tile.X >= 0 &&
                  e.Tile.Y >= 0) && (_world.Tiles[e.Tile.X, e.Tile.Y] != null))
             {

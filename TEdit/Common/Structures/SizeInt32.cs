@@ -23,29 +23,31 @@ namespace TEdit.Common.Structures
         public int Width
         {
             get { return _Width; }
-            set
-            {
-                if (_Width != value)
-                {
-                    _Width = value;
-                    RaisePropertyChanged("Width");
-                }
-            }
+            set { SetProperty(ref _Width, ref value, "Width"); }
         }
 
         public int Height
         {
             get { return _Height; }
-            set
-            {
-                if (_Height != value)
-                {
-                    _Height = value;
-                    RaisePropertyChanged("Height");
-                }
-            }
+            set { SetProperty(ref _Height, ref value, "Height"); }
         }
 
+        public int W
+        {
+            get { return _Width; }
+            set { SetProperty(ref _Width, ref value, "Width"); }
+        }
+
+        public int H
+        {
+            get { return _Height; }
+            set { SetProperty(ref _Height, ref value, "Height"); }
+        }
+
+        public int Total
+        {
+            get { return _Width * _Height; }
+        }
 
         public override string ToString()
         {
@@ -56,7 +58,7 @@ namespace TEdit.Common.Structures
 
         private static bool MatchFields(SizeInt32 a, SizeInt32 m)
         {
-            return (a.Width == m.Width && a.Height == m.Height);
+            return (a != null && m != null && a.Width == m.Width && a.Height == m.Height);
         }
 
         public override bool Equals(object obj)
@@ -154,6 +156,11 @@ namespace TEdit.Common.Structures
             return result;
         }
 
+        // one-way; reverse is not guaranteed to not lose data
+        public static implicit operator SizeFloat(SizeInt32 s) {
+            return new SizeFloat(s.Width, s.Height);
+        }
+       
         // one-way; reverse is not guaranteed to not lose data
         public static implicit operator PointFloat(SizeInt32 s)
         {

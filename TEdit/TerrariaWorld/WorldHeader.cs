@@ -20,12 +20,11 @@ namespace TEdit.TerrariaWorld
         private bool _IsDayTime;
         private bool _IsShadowOrbSmashed;
         private bool _IsSpawnMeteor;
-        private PointInt32 _MaxTiles;
         private int _MoonPhase;
         private int _ShadowOrbCount;
         private PointInt32 _SpawnTile;
         private double _Time;
-        private RectF _WorldBounds;
+        private RectI _WorldBounds;
         private int _WorldId;
         private string _WorldName;
         private double _WorldRockLayer;
@@ -35,104 +34,47 @@ namespace TEdit.TerrariaWorld
         {
             _FileName = "";
             _WorldName = "No World Loaded";
-            _MaxTiles = new PointInt32(0, 0);
         }
 
         public string FileName
         {
             get { return _FileName; }
-            set
-            {
-                if (_FileName != value)
-                {
-                    _FileName = value;
-                    RaisePropertyChanged("FileName");
-                }
-            }
+            set { SetProperty(ref _FileName, ref value, "FileName"); }
         }
 
         [Category("World"), DescriptionAttribute("Terraria Save File Version")]
         public int FileVersion
         {
             get { return _FileVersion; }
-            set
-            {
-                if (_FileVersion != value)
-                {
-                    _FileVersion = value;
-                    RaisePropertyChanged("FileVersion");
-                }
-            }
+            set { SetProperty(ref _FileVersion, ref value, "FileVersion"); }
         }
 
         [CategoryAttribute("World"), DescriptionAttribute("World Name")]
         public string WorldName
         {
             get { return _WorldName; }
-            set
-            {
-                if (_WorldName != value)
-                {
-                    _WorldName = value;
-                    RaisePropertyChanged("WorldName");
-                }
-            }
+            set { SetProperty(ref _WorldName, ref value, "WorldName"); }
         }
 
         [CategoryAttribute("World"), DescriptionAttribute("World ID"), ReadOnly(true)]
         public int WorldId
         {
             get { return _WorldId; }
-            set
-            {
-                if (_WorldId != value)
-                {
-                    _WorldId = value;
-                    RaisePropertyChanged("WorldId");
-                }
-            }
+            set { SetProperty(ref _WorldId, ref value, "WorldId"); }
         }
 
         [CategoryAttribute("World"), DescriptionAttribute("World Size"), ReadOnly(true)]
-        public RectF WorldBounds
+        public RectI WorldBounds
         {
             get { return _WorldBounds; }
-            set
-            {
-                if (_WorldBounds != value)
-                {
-                    _WorldBounds = value;
-                    RaisePropertyChanged("WorldBounds");
-                }
-            }
-        }
-
-        [CategoryAttribute("World"), DescriptionAttribute("World Size"), ReadOnly(true)]
-        public PointInt32 MaxTiles
-        {
-            get { return _MaxTiles; }
-            set
-            {
-                if (_MaxTiles != value)
-                {
-                    _MaxTiles = value;
-                    RaisePropertyChanged("MaxTiles");
-                }
-            }
+            set { SetProperty(ref _WorldBounds, ref value, "WorldBounds"); }
         }
 
         [CategoryAttribute("World"), DescriptionAttribute("Spawn Location")]
         public PointInt32 SpawnTile
         {
             get { return _SpawnTile; }
-            set
-            {
-                if (_SpawnTile != value)
-                {
-                    _SpawnTile = value;
-                    RaisePropertyChanged("SpawnTile");
-                }
-            }
+            set { SetProperty(ref _SpawnTile, ref value, "SpawnTile"); }
         }
 
         [CategoryAttribute("World"), DescriptionAttribute("Surface Level"), ReadOnly(true)]
@@ -144,17 +86,10 @@ namespace TEdit.TerrariaWorld
                 var validValue = value;
                 if (validValue < 0)
                     validValue = 0;
-                if (validValue > MaxTiles.Y)
-                    validValue = MaxTiles.Y;
+                if (validValue > WorldBounds.H)
+                    validValue = WorldBounds.Bottom;
 
-                if (_WorldSurface != validValue)
-                {
-                    _WorldSurface = validValue;
-                    RaisePropertyChanged("WorldSurface");
-
-                    if (_WorldSurface > _WorldRockLayer)
-                        WorldRockLayer = _WorldSurface;
-                }
+                SetProperty(ref _WorldSurface, ref value, "WorldSurface");                
             }
         }
 
@@ -167,17 +102,10 @@ namespace TEdit.TerrariaWorld
                 var validValue = value;
                 if (validValue < 0)
                     validValue = 0;
-                if (validValue > MaxTiles.Y)
-                    validValue = MaxTiles.Y;
+                if (validValue > WorldBounds.H)
+                    validValue = WorldBounds.Bottom;
 
-                if (_WorldRockLayer != validValue)
-                {
-                    _WorldRockLayer = validValue;
-                    RaisePropertyChanged("WorldRockLayer");
-
-                    if (_WorldRockLayer < _WorldSurface)
-                        WorldSurface = _WorldRockLayer;
-                }
+                SetProperty(ref _WorldRockLayer, ref value, "WorldRockLayer");
             }
         }
 
@@ -185,211 +113,105 @@ namespace TEdit.TerrariaWorld
         public double Time
         {
             get { return _Time; }
-            set
-            {
-                if (_Time != value)
-                {
-                    _Time = value;
-                    RaisePropertyChanged("Time");
-                }
-            }
+            set { SetProperty(ref _Time, ref value, "Time"); }
         }
 
         [CategoryAttribute("Time"), DescriptionAttribute("Is it Daytime")]
         public bool IsDayTime
         {
             get { return _IsDayTime; }
-            set
-            {
-                if (_IsDayTime != value)
-                {
-                    _IsDayTime = value;
-                    RaisePropertyChanged("IsDayTime");
-                }
-            }
+            set { SetProperty(ref _IsDayTime, ref value, "IsDayTime"); }
         }
 
         [CategoryAttribute("Time"), DescriptionAttribute("Moon Phase")]
         public int MoonPhase
         {
             get { return _MoonPhase; }
-            set
-            {
-                if (_MoonPhase != value)
-                {
-                    _MoonPhase = value;
-                    RaisePropertyChanged("MoonPhase");
-                }
-            }
+            set { SetProperty(ref _MoonPhase, ref value, "MoonPhase"); }
         }
 
         [CategoryAttribute("Time"), DescriptionAttribute("Is it a Blood Moon")]
         public bool IsBloodMoon
         {
             get { return _IsBloodMoon; }
-            set
-            {
-                if (_IsBloodMoon != value)
-                {
-                    _IsBloodMoon = value;
-                    RaisePropertyChanged("IsBloodMoon");
-                }
-            }
+            set { SetProperty(ref _IsBloodMoon, ref value, "IsBloodMoon"); }
         }
 
         [Category("World"), DescriptionAttribute("Dungeon Location"), ReadOnly(true)]
         public PointInt32 DungeonEntrance
         {
             get { return _DungeonEntrance; }
-            set
-            {
-                if (_DungeonEntrance != value)
-                {
-                    _DungeonEntrance = value;
-                    RaisePropertyChanged("DungeonEntrance");
-                }
-            }
+            set { SetProperty(ref _DungeonEntrance, ref value, "DungeonEntrance"); }
         }
 
         [CategoryAttribute("Bosses"), DescriptionAttribute("Is Eye of Cthulhu Dead")]
         public bool IsBossDowned1
         {
             get { return _IsBossDowned1; }
-            set
-            {
-                if (_IsBossDowned1 != value)
-                {
-                    _IsBossDowned1 = value;
-                    RaisePropertyChanged("IsBossDowned1");
-                }
-            }
+            set { SetProperty(ref _IsBossDowned1, ref value, "IsBossDowned1"); }
         }
 
         [CategoryAttribute("Bosses"), DescriptionAttribute("Is Eater of Worlds Dead")]
         public bool IsBossDowned2
         {
             get { return _IsBossDowned2; }
-            set
-            {
-                if (_IsBossDowned2 != value)
-                {
-                    _IsBossDowned2 = value;
-                    RaisePropertyChanged("IsBossDowned2");
-                }
-            }
+            set { SetProperty(ref _IsBossDowned2, ref value, "IsBossDowned2"); }
         }
 
         [CategoryAttribute("Bosses"), DescriptionAttribute("Is Skeletron Dead")]
         public bool IsBossDowned3
         {
             get { return _IsBossDowned3; }
-            set
-            {
-                if (_IsBossDowned3 != value)
-                {
-                    _IsBossDowned3 = value;
-                    RaisePropertyChanged("IsBossDowned3");
-                }
-            }
+            set { SetProperty(ref _IsBossDowned3, ref value, "IsBossDowned3"); }
         }
 
         [CategoryAttribute("Shadow Orbs"), DescriptionAttribute("Have any Shadow Orbs been Smashed?")]
         public bool IsShadowOrbSmashed
         {
             get { return _IsShadowOrbSmashed; }
-            set
-            {
-                if (_IsShadowOrbSmashed != value)
-                {
-                    _IsShadowOrbSmashed = value;
-                    RaisePropertyChanged("IsShadowOrbSmashed");
-                }
-            }
+            set { SetProperty(ref _IsShadowOrbSmashed, ref value, "IsShadowOrbSmashed"); }
         }
 
         [CategoryAttribute("Shadow Orbs"), DescriptionAttribute("Spawn the Meteor?")]
         public bool IsSpawnMeteor
         {
             get { return _IsSpawnMeteor; }
-            set
-            {
-                if (_IsSpawnMeteor != value)
-                {
-                    _IsSpawnMeteor = value;
-                    RaisePropertyChanged("IsSpawnMeteor");
-                }
-            }
+            set { SetProperty(ref _IsSpawnMeteor, ref value, "IsSpawnMeteor"); }
         }
 
         [CategoryAttribute("Shadow Orbs"), DescriptionAttribute("Number of Shadow Orbs Smashed")]
         public int ShadowOrbCount
         {
             get { return _ShadowOrbCount; }
-            set
-            {
-                if (_ShadowOrbCount != value)
-                {
-                    _ShadowOrbCount = value;
-                    RaisePropertyChanged("ShadowOrbCount");
-                    IsShadowOrbSmashed = ShadowOrbCount > 0;
-                }
-            }
+            set { SetProperty(ref _ShadowOrbCount, ref value, "ShadowOrbCount"); IsShadowOrbSmashed = ShadowOrbCount > 0; }
         }
 
         [CategoryAttribute("Invasion"), DescriptionAttribute("Invasion Delay")]
         public int InvasionDelay
         {
             get { return _InvasionDelay; }
-            set
-            {
-                if (_InvasionDelay != value)
-                {
-                    _InvasionDelay = value;
-                    RaisePropertyChanged("InvasionDelay");
-                }
-            }
+            set { SetProperty(ref _InvasionDelay, ref value, "InvasionDelay"); }
         }
 
         [CategoryAttribute("Invasion"), DescriptionAttribute("Invasion Size")]
         public int InvasionSize
         {
             get { return _InvasionSize; }
-            set
-            {
-                if (_InvasionSize != value)
-                {
-                    _InvasionSize = value;
-                    RaisePropertyChanged("InvasionSize");
-                }
-            }
+            set { SetProperty(ref _InvasionSize, ref value, "InvasionSize"); }
         }
 
         [CategoryAttribute("Invasion"), DescriptionAttribute("Invasion Type")]
         public int InvasionType
         {
             get { return _InvasionType; }
-            set
-            {
-                if (_InvasionType != value)
-                {
-                    _InvasionType = value;
-                    RaisePropertyChanged("InvasionType");
-                }
-            }
+            set { SetProperty(ref _InvasionType, ref value, "InvasionType"); }
         }
 
         [CategoryAttribute("Invasion"), DescriptionAttribute("Invasion X Coordinate")]
         public double InvasionX
         {
             get { return _InvasionX; }
-            set
-            {
-                if (_InvasionX != value)
-                {
-                    _InvasionX = value;
-                    RaisePropertyChanged("InvasionX");
-                }
-            }
+            set { SetProperty(ref _InvasionX, ref value, "InvasionX"); }
         }
 
         public WorldHeader Clone()

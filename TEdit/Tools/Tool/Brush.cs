@@ -4,7 +4,6 @@ using System.Collections.ObjectModel;
 using System.ComponentModel.Composition;
 using System.Windows;
 using System.Windows.Input;
-using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using TEdit.Common;
 using TEdit.Common.Structures;
@@ -111,7 +110,7 @@ namespace TEdit.Tools.Tool
 
         public override bool PressTool(TileMouseEventArgs e)
         {
-            tilesChecked = new bool[_world.Header.MaxTiles.X * _world.Header.MaxTiles.Y];
+            tilesChecked = new bool[_world.Header.WorldBounds.Total];
 
             if (!_isRightDown && !_isLeftDown)
                 _startPoint = e.Tile;
@@ -164,20 +163,21 @@ namespace TEdit.Tools.Tool
 
         public override WriteableBitmap PreviewTool()
         {
+            var c = Color.FromArgb(127, 0, 90, 255);
+            var w = _properties.Width;
+            var h = _properties.Height;
             var bmp = new WriteableBitmap(
-                _properties.Width + 1,
-                _properties.Height + 1,
+                w,
+                w,
                 96,
                 96,
-                PixelFormats.Bgra32,
+                System.Windows.Media.PixelFormats.Bgra32,
                 null);
-
 
             bmp.Clear();
             if (_properties.BrushShape == ToolBrushShape.Square)
-                bmp.FillRectangle(0, 0, _properties.Width, _properties.Height, Color.FromArgb(127, 0, 90, 255));
-            else
-                bmp.FillEllipse(0, 0, _properties.Width, _properties.Height, Color.FromArgb(127, 0, 90, 255));
+                 bmp.FillRectangle(0, 0, w, h, c);
+            else bmp.FillEllipse  (0, 0, w, h, c);
             return bmp;
         }
 
@@ -324,9 +324,8 @@ namespace TEdit.Tools.Tool
 
         public void FillEllipseCentered(int xc, int yc, int xr, int yr, ref TilePicker tile)
         {
-            int w = _world.Header.MaxTiles.X;
-            int h = _world.Header.MaxTiles.Y;
-
+            int w = _world.Header.WorldBounds.W;
+            int h = _world.Header.WorldBounds.H;
 
             // Init vars
             int uy, ly, lx, rx;
@@ -433,33 +432,14 @@ namespace TEdit.Tools.Tool
 
         #endregion
 
-        public void FillRectangle(Int32Rect area, ref TilePicker tile)
+        public void FillRectangle(RectI area, ref TilePicker tile)
         {
             // validate area
-            int w = _world.Header.MaxTiles.X;
-            if (area.X < 0)
-            {
-                area.Width += area.X;
-                area.X = 0;
-            }
-            if (area.Y < 0)
-            {
-                area.Height += area.Y;
-                area.Y = 0;
-            }
-            if ((area.Y + area.Height) >= _world.Header.MaxTiles.Y)
-            {
-                area.Height += _world.Header.MaxTiles.Y - (area.Y + area.Height);
-            }
-            if ((area.X + area.Width) >= w)
-            {
-                area.Width += w - (area.X + area.Width);
-            }
+            int w = _world.Header.WorldBounds.W;
+            area.Rebound(_world.Header.WorldBounds);
 
-            for (int x = area.X; x < area.X + area.Width; x++)
-            {
-                for (int y = area.Y; y < area.Y + area.Height; y++)
-                {
+            for (int x = area.Left; x <= area.Right; x++) {
+                for (int y = area.Top; y <= area.Bottom; y++) {
                     UpdateTile(ref tile, ref x, ref y, ref w);
                 }
             }
@@ -467,63 +447,36 @@ namespace TEdit.Tools.Tool
 
         #region Shapes
 
-        public void DrawRectangle(Int32Rect area, ref TilePicker tile)
-        {
-            DrawRectangle(area.X, area.Y, area.X + area.Width, area.Y + area.Height, ref tile);
-        }
-
-        public void DrawRectangle(int x1, int y1, int x2, int y2, ref TilePicker tile)
+        public void DrawRectangle(RectI area, ref TilePicker tile)
         {
             // Use refs for faster access (really important!) speeds up a lot!
-            int w = _world.Header.MaxTiles.X;
-            int h = _world.Header.MaxTiles.Y;
+            int w = _world.Header.WorldBounds.W;
+            int h = _world.Header.WorldBounds.H;
 
             // Check boundaries
-            if (x1 < 0)
-            {
-                x1 = 0;
-            }
-            if (y1 < 0)
-            {
-                y1 = 0;
-            }
-            if (x2 < 0)
-            {
-                x2 = 0;
-            }
-            if (y2 < 0)
-            {
-                y2 = 0;
-            }
-            if (x1 >= w)
-            {
-                x1 = w - 1;
-            }
-            if (y1 >= h)
-            {
-                y1 = h - 1;
-            }
-            if (x2 >= w)
-            {
-                x2 = w - 1;
-            }
-            if (y2 >= h)
-            {
-                y2 = h - 1;
-            }
+            area.Rebound(_world.Header.WorldBounds);
+
+            // (needed for refs)
+            int x1 = area.Left;
+            int x2 = area.Right;
+            int y1 = area.Top;
+            int y2 = area.Bottom;
 
             // top and bottom horizontal scanlines
-            for (int x = x1; x <= x2; x++)
-            {
+            for (int x = area.Left; x <= area.Right; x++) {
                 UpdateTile(ref tile, ref x, ref y1, ref w);
                 UpdateTile(ref tile, ref x, ref y2, ref w);
             }
 
-            for (int y = y1; y <= y2; y++)
-            {
+            for (int y = area.Top; y <= area.Bottom; y++) {
                 UpdateTile(ref tile, ref x1, ref y, ref w);
                 UpdateTile(ref tile, ref x2, ref y, ref w);
             }
+        }
+
+        public void DrawRectangle(int x1, int y1, int x2, int y2, ref TilePicker tile)
+        {
+            DrawRectangle(new RectI(x1, x2, y1, y2), ref tile);
         }
 
         #endregion
@@ -559,9 +512,8 @@ namespace TEdit.Tools.Tool
         public void DrawEllipseCentered(int xc, int yc, int xr, int yr, ref TilePicker tile)
         {
             // Use refs for faster access (really important!) speeds up a lot!
-            int w = _world.Header.MaxTiles.X;
-            int h = _world.Header.MaxTiles.Y;
-
+            int w = _world.Header.WorldBounds.W;
+            int h = _world.Header.WorldBounds.H;
 
             // Init vars
             int uy, ly, lx, rx;
@@ -596,7 +548,6 @@ namespace TEdit.Tools.Tool
                 UpdateTile(ref tile, ref rx, ref ly, ref w);
                 UpdateTile(ref tile, ref lx, ref uy, ref w);
                 UpdateTile(ref tile, ref lx, ref ly, ref w);
-
 
                 y++;
                 yStopping += xrSqTwo;

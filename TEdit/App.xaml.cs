@@ -36,6 +36,8 @@ namespace TEdit
             if (Compose())
             {
                 MainWindow.Show();
+                /// FIXME: BC: Need a GenNewWorld or RenderWorld call, but I have no idea on how to reference it! ///
+                // wvm.RenderWorld();
             }
             else
             {

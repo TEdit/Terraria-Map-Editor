@@ -59,11 +59,14 @@
     <ApplicationIcon>tedit.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.Xna.Framework, Version=4.0.0.0, Culture=neutral, PublicKeyToken=842cf8be1de50553, processorArchitecture=x86" />
+    <Reference Include="Microsoft.Xna.Framework.Graphics, Version=4.0.0.0, Culture=neutral, PublicKeyToken=842cf8be1de50553, processorArchitecture=x86" />
     <Reference Include="PresentationFramework.Aero" />
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Caching" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -81,10 +84,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Common\ColorExtensions.cs" />
+    <Compile Include="Common\Structures\BytePixels.cs" />
     <Compile Include="Common\CustomCollections.cs" />
     <Compile Include="Common\EnumExtensions.cs" />
     <Compile Include="Common\ObservableCollectionEx.cs" />
     <Compile Include="Common\Structures\AttachGroup.cs" />
+    <Compile Include="Common\Structures\SizeFloat.cs" />
+    <Compile Include="Common\Structures\TexturePlus.cs" />
     <Compile Include="Common\Structures\TileFrame.cs" />
     <Compile Include="Common\Structures\RectI.cs" />
     <Compile Include="Common\Structures\PointFloat.cs" />
@@ -104,6 +111,8 @@
     <Compile Include="Plugins\IPlugin.cs" />
     <Compile Include="Plugins\IPluginMetaData.cs" />
     <Compile Include="Plugins\SamplePlugin.cs" />
+    <Compile Include="RenderWorld\ImageTypeEnum.cs" />
+    <Compile Include="RenderWorld\GraphicsServices.cs" />
     <Compile Include="RenderWorld\LiquidType.cs" />
     <Compile Include="RenderWorld\XMLBase.cs" />
     <Compile Include="RenderWorld\NamedBase.cs" />
@@ -306,10 +315,6 @@
     </Resource>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Terraria.Object.DB.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <SubType>Designer</SubType>
-    </Content>
     <Resource Include="Images\tedit.ico" />
     <Resource Include="Images\Overlays\dungeon_marker.png" />
     <Resource Include="Images\Overlays\npc_arms_dealer.png" />
@@ -357,6 +362,11 @@
       <ProductName>Windows Installer 3.1</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Terraria.Object.DB.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

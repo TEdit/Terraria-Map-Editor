@@ -1,11 +1,12 @@
 using System;
 using System.ComponentModel.Composition;
-using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using TEdit.Common;
 using TEdit.Common.Structures;
+using TEdit.RenderWorld;
 using TEdit.TerrariaWorld;
 using TEdit.Views;
+using System.Collections.Generic;
 
 namespace TEdit.Tools.Tool
 {
@@ -140,13 +141,12 @@ namespace TEdit.Tools.Tool
                 1,
                 96,
                 96,
-                PixelFormats.Bgra32,
+                System.Windows.Media.PixelFormats.Bgra32,
                 null);
-
 
             bmp.Clear();
             bmp.SetPixel(0, 0, 127, 0, 90, 255);
-            return bmp;
+            return bmp; 
         }
     }
 }

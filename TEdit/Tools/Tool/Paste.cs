@@ -111,7 +111,7 @@ namespace TEdit.Tools.Tool
         {
             if (_clipboardMan.Buffer.Preview == null)
             {
-                _clipboardMan.Buffer.Preview = _renderer.RenderBuffer(_clipboardMan.Buffer);;
+                _clipboardMan.Buffer.Preview = _renderer.RenderBuffer(_clipboardMan.Buffer);
             }
 
             return _clipboardMan.Buffer.Preview;
@@ -120,7 +120,7 @@ namespace TEdit.Tools.Tool
         private void PasteClipboard(PointInt32 anchor)
         {
             _clipboardMan.PasteBufferIntoWorld(_world, _clipboardMan.Buffer, anchor);
-            _renderer.UpdateWorldImage(new Int32Rect(anchor.X, anchor.Y, _clipboardMan.Buffer.Size.X + 1, _clipboardMan.Buffer.Size.Y + 1));
+            _renderer.UpdateWorldImage(new Int32Rect(anchor.X, anchor.Y, _clipboardMan.Buffer.Size.W, _clipboardMan.Buffer.Size.H));
         }
 
         private void ClipboardManPropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
@@ -136,10 +136,10 @@ namespace TEdit.Tools.Tool
 
         private void UpdateSize()
         {
-            _properties.MinHeight = _clipboardMan.Buffer.Size.X;
-            _properties.MinWidth = _clipboardMan.Buffer.Size.Y;
-            _properties.MaxHeight = _clipboardMan.Buffer.Size.X;
-            _properties.MaxWidth = _clipboardMan.Buffer.Size.Y;
+            _properties.MinWidth  = _clipboardMan.Buffer.Size.W;
+            _properties.MinHeight = _clipboardMan.Buffer.Size.H;
+            _properties.MaxWidth  = _clipboardMan.Buffer.Size.W;
+            _properties.MaxHeight = _clipboardMan.Buffer.Size.H;
         }
 
         public void OnImportsSatisfied()

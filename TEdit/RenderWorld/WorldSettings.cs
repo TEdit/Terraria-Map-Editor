@@ -3,11 +3,17 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
-using System.Windows.Media;
 using System.Xml.Linq;
 using TEdit.Common;
 using System.Reflection;
 using TEdit.Common.Structures;
+using TEdit.Views;
+using System.Windows.Interop;
+using System.ComponentModel;
+using System.ComponentModel.Composition;
+using Microsoft.Xna.Framework.Content;
+using Microsoft.Xna.Framework.Audio;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace TEdit.RenderWorld
 {
@@ -15,9 +21,9 @@ namespace TEdit.RenderWorld
     {
         private static readonly TileProperty[] _tiles = new TileProperty[byte.MaxValue + 1];
         private static readonly ColorProperty[] _walls = new ColorProperty[byte.MaxValue + 1];
-        private static readonly Dictionary<string, Color> _globals = new Dictionary<string, Color>();
+        private static readonly Dictionary<string, ColorProperty> _globals = new Dictionary<string, ColorProperty>();
         private static readonly ObservableCollection<ItemProperty> _items = new ObservableCollection<ItemProperty>();
-        private static readonly ObservableCollection<string> _itemNames = new ObservableCollection<string>(); 
+        private static readonly ObservableCollection<string> _itemNames = new ObservableCollection<string>();
 
         static WorldSettings()
         {
@@ -70,9 +76,10 @@ namespace TEdit.RenderWorld
             // read walls
             foreach (var wall in xmlSettings.Elements("Walls").Elements("Wall"))
             {
-                var curWall = _walls[(int)wall.Attribute("num")];
-                curWall.Name = (string)wall.Attribute("name");
-                curWall.Color = (Color)ColorConverter.ConvertFromString((string)wall.Attribute("color"));
+                var curWall   = _walls[(int)wall.Attribute("num")];
+                curWall.ID    = curWall.XMLConvert(curWall.ID,    wall.Attribute("num"));
+                curWall.Name  = curWall.XMLConvert(curWall.Name,  wall.Attribute("name"));
+                curWall.Color = curWall.XMLConvert(curWall.Color, wall.Attribute("color"));
             }
 
             // read items
@@ -90,9 +97,12 @@ namespace TEdit.RenderWorld
             }
 
             // read global colors
-            foreach (var globalColor in xmlSettings.Elements("GlobalColors").Elements("GlobalColor"))
+            foreach (var global in xmlSettings.Elements("GlobalColors").Elements("GlobalColor"))
             {
-                _globals.Add((string)globalColor.Attribute("name"), (Color)ColorConverter.ConvertFromString((string)globalColor.Attribute("color")));
+                var curGlobal = new ColorProperty();
+                curGlobal.Name  = curGlobal.XMLConvert(curGlobal.Name,  global.Attribute("name"));
+                curGlobal.Color = curGlobal.XMLConvert(curGlobal.Color, global.Attribute("color"));
+                _globals.Add(curGlobal.Name, curGlobal);
             }
         }
 
@@ -125,7 +135,7 @@ namespace TEdit.RenderWorld
             get { return _items; }
         }
 
-        public static Dictionary<string, Color> GlobalColors
+        public static Dictionary<string, ColorProperty> GlobalColors
         {
             get { return _globals; }
         }
@@ -149,5 +159,55 @@ namespace TEdit.RenderWorld
             if (SettingsLoaded != null)
                 SettingsLoaded(sender, e);
         }
+
+        // Post-window settings
+        private static ContentManager cm = null;
+        public static bool FindSteam()
+        {
+            // find steam
+            string path = "";
+            Microsoft.Win32.RegistryKey key;
+            key = Microsoft.Win32.Registry.CurrentUser.OpenSubKey(@"Software\\Valve\\Steam");
+            if (key != null)
+                path = key.GetValue("SteamPath") as string;
+
+            // no steam key, let's try the default
+            if (path.Equals("") || !Directory.Exists(path))
+            {
+                path = Environment.GetFolderPath(Environment.SpecialFolder.ProgramFilesX86);
+                path = Path.Combine(path, "Steam");
+            }
+            path = Path.Combine(path, "steamapps");
+            path = Path.Combine(path, "common");
+            path = Path.Combine(path, "terraria");
+            path = Path.Combine(path, "Content");
+            if (Directory.Exists(path))
+            {
+                HwndSource hwnd = HwndSource.FromVisual(App.Current.MainWindow) as HwndSource;
+                cm = new ContentManager(new SimpleProvider(hwnd.Handle), path);
+                return (cm == null) ? false : true;
+            }
+
+            return false;
+        }
+
+        public static bool TryLoadTexture(string filePart, int id, ColorProperty obj)
+        {
+            if (obj == null || obj.Name == "UNKNOWN" || obj.Texture != null) return false;
+            var t2d = cm.Load<Texture2D>(String.Format("Images{0}{1}_{2}", Path.DirectorySeparatorChar, filePart, id));
+
+            // TODO: Add color masking for items that use it //
+            // TODO: Add scale //
+            // TODO: Add alpha (some items are semi-transparent) //
+            obj.Texture = new TexturePlus(t2d);
+            obj.Texture.Name = obj.Name;
+            return true;
+        }
+
+        public static SoundEffect LoadSound(string filePart, int id)
+        {
+            return cm.Load<SoundEffect>(String.Format("Sounds{0}{1}_{2}", Path.DirectorySeparatorChar, filePart, id));
+        }
+
     }
 }

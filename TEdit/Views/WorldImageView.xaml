@@ -17,35 +17,46 @@
             <RowDefinition Height="50" />
         </Grid.RowDefinitions>
         <Grid Grid.Row="0">
-            <ScrollViewer HorizontalScrollBarVisibility="Visible" x:Name="WorldScrollViewer">
+            <ScrollViewer HorizontalScrollBarVisibility="Visible" x:Name="WorldScrollViewer" ScrollChanged="ViewportRerender">
                 <ScrollViewer.Content>
                     <Grid>
-                        <Controls:MeasurableCanvas>
+                        <Controls:MeasurableCanvas x:Name="WorldCanvas">
                             <Controls:MeasurableCanvas.LayoutTransform>
-                                <ScaleTransform ScaleX="{Binding Path=Zoom}" ScaleY="{Binding  Path=Zoom}" />
+                                <ScaleTransform ScaleX="{Binding Path=Zoom}" ScaleY="{Binding Path=Zoom}" />
                             </Controls:MeasurableCanvas.LayoutTransform>
-                            <!--<Image x:Name="WorldImage" Source="{Binding Path=WorldImage.Image}" RenderOptions.BitmapScalingMode="NearestNeighbor" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" />-->
                             <Image x:Name="WorldImage" Canvas.Top="0" Canvas.Left="0"
-                     Height="{Binding Path=WorldImage.Image.PixelHeight}" Width="{Binding Path=WorldImage.Image.PixelWidth}"
-                     Source="{Binding Path=WorldImage.Image}" RenderOptions.BitmapScalingMode="NearestNeighbor"
-                     MouseMove="ViewportMouseMove" MouseDown="ViewportMouseDown" MouseWheel="ViewportMouseWheel" MouseUp="ViewportMouseUp"
-                     MouseEnter="ViewportMouseEnter" MouseLeave="ViewportMouseLeave" />
+                                 Height="{Binding Path=WorldImage.Image.PixelHeight}" Width="{Binding Path=WorldImage.Image.PixelWidth}"
+                                 Source="{Binding Path=WorldImage.Image}" RenderOptions.BitmapScalingMode="NearestNeighbor"
+                                 MouseMove="ViewportMouseMove" MouseDown="ViewportMouseDown" MouseWheel="ViewportMouseWheel" MouseUp="ViewportMouseUp"
+                                 MouseEnter="ViewportMouseEnter" MouseLeave="ViewportMouseLeave"
+                                 SizeChanged="ViewportRerender" SourceUpdated="ViewportRerender" TargetUpdated="ViewportRerender"
+                            />
+                            <Image x:Name="WorldImageRendered" IsHitTestVisible="False" Source="{Binding Path=WorldImage.Rendered}" 
+                                 RenderOptions.BitmapScalingMode="NearestNeighbor" UseLayoutRounding="False">
+                                <Image.LayoutTransform>
+                                    <ScaleTransform ScaleX="0.125" ScaleY="0.125" />  <!-- 8x8 texture tiles for every pixel tile -->
+                                </Image.LayoutTransform>
+                            </Image>
                             <Image Source="{Binding Path=ToolProperties.Image}" RenderOptions.BitmapScalingMode="NearestNeighbor"
-                     Height="{Binding Path=ToolProperties.Size.Height}" Width="{Binding Path=ToolProperties.Size.Width}"
-                     Canvas.Left="{Binding Path=ToolLocation.X}" Canvas.Top="{Binding Path=ToolLocation.Y}" IsHitTestVisible="False"
-                     Opacity="0.75" />
+                                 Height="{Binding Path=ToolProperties.Size.Height}" Width="{Binding Path=ToolProperties.Size.Width}"
+                                 Canvas.Left="{Binding Path=ToolLocation.X}" Canvas.Top="{Binding Path=ToolLocation.Y}" IsHitTestVisible="False"
+                                 Opacity="0.75"
+                            />
                             <Rectangle Height="{Binding Path=Selection.Rectangle.Height}"
-                         Width="{Binding Path=Selection.Rectangle.Width}" Canvas.Left="{Binding Path=Selection.Rectangle.X}"
-                         Canvas.Top="{Binding Path=Selection.Rectangle.Y}" Fill="#A4005BFF" IsHitTestVisible="False"
-                         Visibility="{Binding Path=Selection.SelectionVisibility}" />
+                                 Width="{Binding Path=Selection.Rectangle.Width}" Canvas.Left="{Binding Path=Selection.Rectangle.X}"
+                                 Canvas.Top="{Binding Path=Selection.Rectangle.Y}" Fill="#A4005BFF" IsHitTestVisible="False"
+                                 Visibility="{Binding Path=Selection.SelectionVisibility}"
+                            />
 
                             <Image Source="../Images/Overlays/spawn_marker.png" Canvas.Left="{Binding Path=World.Header.SpawnTile.X}"
-                     Canvas.Top="{Binding Path=World.Header.SpawnTile.Y}" IsHitTestVisible="False" OpacityMask="#A0000000"
-                     RenderTransformOrigin="0.5,1" RenderTransform="{DynamicResource MarkerTransform}" />
+                                 Canvas.Top="{Binding Path=World.Header.SpawnTile.Y}" IsHitTestVisible="False" OpacityMask="#A0000000"
+                                 RenderTransformOrigin="0.5,1" RenderTransform="{DynamicResource MarkerTransform}"
+                            />
                             <Image Source="../Images/Overlays/dungeon_marker.png"
-                     Canvas.Left="{Binding Path=World.Header.DungeonEntrance.X}" Canvas.Top="{Binding Path=World.Header.DungeonEntrance.Y}"
-                     IsHitTestVisible="False" OpacityMask="#A0000000" RenderTransformOrigin="0.5,1"
-                     RenderTransform="{DynamicResource MarkerTransform}" />
+                                 Canvas.Left="{Binding Path=World.Header.DungeonEntrance.X}" Canvas.Top="{Binding Path=World.Header.DungeonEntrance.Y}"
+                                 IsHitTestVisible="False" OpacityMask="#A0000000" RenderTransformOrigin="0.5,1"
+                                 RenderTransform="{DynamicResource MarkerTransform}"
+                            />
                             <ItemsControl ItemsSource="{Binding Path=World.Npcs}">
                                 <ItemsControl.ItemsPanel>
                                     <ItemsPanelTemplate>
@@ -61,7 +72,7 @@
                                 <ItemsControl.ItemTemplate>
                                     <DataTemplate>
                                         <Image Source="{Binding Path=ImagePath}" IsHitTestVisible="False" OpacityMask="#A0000000"
-                           RenderTransformOrigin="0.5,1" RenderTransform="{DynamicResource MarkerTransform}" />
+                                            RenderTransformOrigin="0.5,1" RenderTransform="{DynamicResource MarkerTransform}" />
                                     </DataTemplate>
                                 </ItemsControl.ItemTemplate>
                             </ItemsControl>

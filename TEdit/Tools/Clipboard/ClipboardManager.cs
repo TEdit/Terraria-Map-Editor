@@ -91,9 +91,9 @@ namespace TEdit.Tools.Clipboard
 
         public void PasteBufferIntoWorld(World world, ClipboardBuffer buffer, PointInt32 anchor)
         {
-            for (int x = 0; x < buffer.Size.X; x++)
+            for (int x = 0; x < buffer.Size.W; x++)
             {
-                for (int y = 0; y < buffer.Size.Y; y++)
+                for (int y = 0; y < buffer.Size.H; y++)
                 {
                     if (world.IsPointInWorld(x + anchor.X, y + anchor.Y))
                     {

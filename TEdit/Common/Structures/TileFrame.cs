@@ -4,7 +4,7 @@ using TEdit.Common;
 namespace TEdit.Common.Structures
 {
     [Serializable]
-    public class TileFrame : ObservableObject
+    public struct TileFrame
     {
         private byte _tile;
         private byte? _frame;
@@ -24,13 +24,13 @@ namespace TEdit.Common.Structures
         public byte Tile
         {
             get { return _tile; }
-            set { SetProperty(ref _tile, ref value, "Tile"); }
+            set { _tile = value; }
         }
 
         public byte? Frame
         {
             get { return _frame; }
-            set { SetProperty(ref _frame, ref value, "Frame"); }
+            set { _frame = value; }
         }
 
         public override string ToString()

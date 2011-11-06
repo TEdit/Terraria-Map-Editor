@@ -6,6 +6,8 @@ using System.Windows.Media.Imaging;
 using TEdit.Common;
 using TEdit.Common.Structures;
 using TEdit.TerrariaWorld;
+using System.Collections.Generic;
+using TEdit.RenderWorld;
 
 namespace TEdit.Tools.Tool
 {
@@ -101,14 +103,13 @@ namespace TEdit.Tools.Tool
             return true;
         }
 
-        public override WriteableBitmap PreviewTool()
-        {
+        public override WriteableBitmap PreviewTool() {
             return new WriteableBitmap(
                 1,
                 1,
                 96,
                 96,
-                PixelFormats.Bgr32,
+                PixelFormats.Bgra32,
                 null);
         }
     }

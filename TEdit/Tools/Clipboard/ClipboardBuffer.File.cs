@@ -15,12 +15,12 @@ namespace TEdit.Tools.Clipboard
             {
                 using (var writer = new BinaryWriter(stream))
                 {
-                    writer.Write(Size.X);
-                    writer.Write(Size.Y);
+                    writer.Write(Size.W);
+                    writer.Write(Size.H);
 
-                    for (int x = 0; x < Size.X; x++)
+                    for (int x = 0; x < Size.W; x++)
                     {
-                        for (int y = 0; y < Size.Y; y++)
+                        for (int y = 0; y < Size.H; y++)
                         {
                             writer.Write(Tiles[x, y].IsActive);
                             if (Tiles[x, y].IsActive)
@@ -103,8 +103,8 @@ namespace TEdit.Tools.Clipboard
                         }
                     }
 
-                    writer.Write(Size.X);
-                    writer.Write(Size.Y);
+                    writer.Write(Size.W);
+                    writer.Write(Size.H);
                     writer.Close();
                 }
             }
@@ -122,9 +122,9 @@ namespace TEdit.Tools.Clipboard
                     var buffer = new ClipboardBuffer(new PointInt32(maxx, maxy));
                     buffer.Name = Path.GetFileNameWithoutExtension(filename);
 
-                    for (int x = 0; x < buffer.Size.X; x++)
+                    for (int x = 0; x < buffer.Size.W; x++)
                     {
-                        for (int y = 0; y < buffer.Size.Y; y++)
+                        for (int y = 0; y < buffer.Size.H; y++)
                         {
                             var tile = new Tile();
 

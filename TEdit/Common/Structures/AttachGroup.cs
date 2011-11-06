@@ -52,13 +52,13 @@ namespace TEdit.Common.Structures
         public string Name
         {
             get { return _name; }
-            set { _name = value; }
+            set { SetProperty(ref _name, ref value, "Name"); }
         }
 
         public FramePlacement? Placement
         {
             get { return _placement; }
-            set { _placement = value; }
+            set { SetProperty(ref _placement, ref value, "Placement"); }
         }
 
         public ObservableCollection<TileFrame> AttachesTo
