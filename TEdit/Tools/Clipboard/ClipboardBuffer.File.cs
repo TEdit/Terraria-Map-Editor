@@ -26,7 +26,7 @@ namespace TEdit.Tools.Clipboard
                             if (Tiles[x, y].IsActive)
                             {
                                 writer.Write(Tiles[x, y].Type);
-                                if (WorldSettings.Tiles[Tiles[x, y].Type].IsFramed)
+                                if (WorldSettings.Tiles[Tiles[x, y].Type].IsFramed && Tiles[x, y].Type != 4)
                                 {
                                     writer.Write(Tiles[x, y].Frame.X);
                                     writer.Write(Tiles[x, y].Frame.Y);
@@ -133,7 +133,8 @@ namespace TEdit.Tools.Clipboard
                             if (tile.IsActive)
                             {
                                 tile.Type = reader.ReadByte();
-                                if (WorldSettings.Tiles[tile.Type].IsFramed)
+                                
+                                if (WorldSettings.Tiles[tile.Type].IsFramed && tile.Type != 4)
                                     tile.Frame = new PointShort(reader.ReadInt16(), reader.ReadInt16());
                                 else
                                     tile.Frame = new PointShort(-1, -1);
