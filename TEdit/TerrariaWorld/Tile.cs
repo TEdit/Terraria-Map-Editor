@@ -1,7 +1,9 @@
-﻿using TEdit.Common.Structures;
+﻿using System;
+using TEdit.Common.Structures;
 
 namespace TEdit.TerrariaWorld
 {
+    [Serializable]
     public class Tile
     {
         public Tile()
@@ -29,30 +31,36 @@ namespace TEdit.TerrariaWorld
 
         public bool IsLava { get; set; }
 
+        public bool HasWire { get; set; }
+
         public void UpdateTile(bool? isActive = null,
                                byte? wall = null,
                                byte? type = null,
                                byte? liquid = null,
                                bool? isLava = null,
-                               PointShort? frame = null)
+                               PointShort? frame = null,
+                               bool? hasWire = null)
         {
             if (isActive != null)
-                IsActive = (bool) isActive;
+                IsActive = (bool)isActive;
 
             if (wall != null)
-                Wall = (byte) wall;
+                Wall = (byte)wall;
 
             if (type != null)
-                Type = (byte) type;
+                Type = (byte)type;
 
             if (liquid != null)
-                Liquid = (byte) liquid;
+                Liquid = (byte)liquid;
 
             if (isLava != null)
-                IsLava = (bool) isLava;
+                IsLava = (bool)isLava;
 
             if (frame != null)
-                Frame = (PointShort) frame;
+                Frame = (PointShort)frame;
+
+            if (hasWire != null)
+                HasWire = (bool)hasWire;
         }
 
         public override string ToString()
@@ -63,7 +71,7 @@ namespace TEdit.TerrariaWorld
         public object Clone()
         {
             return MemberwiseClone();
-        } 
+        }
 
         #region Operator Overrides
 
@@ -72,10 +80,10 @@ namespace TEdit.TerrariaWorld
             return a.IsActive == other.IsActive &&
                    a.Type == other.Type &&
                    a.Wall == other.Wall &&
-                   a.IsLighted == other.IsLighted &&
                    a.Liquid == other.Liquid &&
                    a.IsLava == other.IsLava &&
-                   a.Frame == other.Frame;
+                   a.Frame == other.Frame &&
+                   a.HasWire == other.HasWire;
         }
 
         public override bool Equals(object obj)
@@ -135,18 +143,18 @@ namespace TEdit.TerrariaWorld
         {
 
             int result = 13;
-            result = result*7 + IsActive.GetHashCode();
-            result = result*7 + Type.GetHashCode();
-            result = result*7 + Wall.GetHashCode();
-            result = result*7 + IsLighted.GetHashCode();
-            result = result*7 + Liquid.GetHashCode();
-            result = result*7 + IsLava.GetHashCode();
-            result = result*7 + Frame.GetHashCode();
+            result = result * 7 + IsActive.GetHashCode();
+            result = result * 7 + Type.GetHashCode();
+            result = result * 7 + Wall.GetHashCode();
+            result = result * 7 + IsLighted.GetHashCode();
+            result = result * 7 + Liquid.GetHashCode();
+            result = result * 7 + IsLava.GetHashCode();
+            result = result * 7 + Frame.GetHashCode();
 
             return result;
         }
 
         #endregion
-			
+
     }
 }

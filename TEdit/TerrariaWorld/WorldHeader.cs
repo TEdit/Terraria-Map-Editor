@@ -51,6 +51,56 @@ namespace TEdit.TerrariaWorld
             }
         }
 
+        private bool _isSavedGoblin;
+        private bool _isSavedWizard;
+        private bool _isSavedMech;
+        private bool _isDownedGoblins;
+        private bool _isDownedClown;
+        private int _altarCount;
+        private bool _isHardMode;
+
+        public bool IsHardMode
+        {
+            get { return _isHardMode; }
+            set { SetProperty(ref _isHardMode, ref value, "IsHardMode"); }
+        }
+
+        public int AltarCount
+        {
+            get { return _altarCount; }
+            set { SetProperty(ref _altarCount, ref value, "AltarCount"); }
+        }
+
+        public bool IsDownedClown
+        {
+            get { return _isDownedClown; }
+            set { SetProperty(ref _isDownedClown, ref value, "IsDownedClown"); }
+        }
+
+        public bool IsDownedGoblins
+        {
+            get { return _isDownedGoblins; }
+            set { SetProperty(ref _isDownedGoblins, ref value, "IsDownedGoblins"); }
+        }
+
+        public bool IsSavedMech
+        {
+            get { return _isSavedMech; }
+            set { SetProperty(ref _isSavedMech, ref value, "IsSavedMech"); }
+        }
+
+        public bool IsSavedWizard
+        {
+            get { return _isSavedWizard; }
+            set { SetProperty(ref _isSavedWizard, ref value, "IsSavedWizard"); }
+        }
+
+        public bool IsSavedGoblin
+        {
+            get { return _isSavedGoblin; }
+            set { SetProperty(ref _isSavedGoblin, ref value, "IsSavedGoblin"); }
+        }
+
         [Category("World"), DescriptionAttribute("Terraria Save File Version")]
         public int FileVersion
         {

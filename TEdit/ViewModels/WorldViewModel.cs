@@ -578,6 +578,7 @@ namespace TEdit.ViewModels
 
         private void LoadWorld(string filename)
         {
+            World.Load(filename);
             try
             {
                 WorldImage.Image = null;

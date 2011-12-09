@@ -25,6 +25,12 @@ namespace TEdit.TerrariaWorld
         private Sign[] _signs = new Sign[MaxSigns];
         private Tile[,] _tiles;
 
+        private readonly string[] _npcNames = new string[255];
+        public string[] NpcNames
+        {
+            get { return _npcNames; }
+        }
+
         public World()
         {
             Header = new WorldHeader();

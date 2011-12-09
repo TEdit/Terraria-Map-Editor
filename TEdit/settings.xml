@@ -275,7 +275,7 @@ Single item; tag has no children.  Has the following properties:
         <Frame upperLeft="144,0" name="Mushroom" dir="Up" />
       </Frames>
     </Tile>
-    <Tile num="4" name="Torch" color="#fffd3e03" isSolid="true" placement="wallFloor" lightBrightness="1.0" isHouseItem="true" />
+    <Tile num="4" name="Torch" color="#fffd3e03" isFramed="true" isSolid="true" placement="wallFloor" lightBrightness="1.0" isHouseItem="true" />
     <Tile num="5" name="Tree" color="#ff634631" isSolid="true" isFramed="true" growsOn="2">
       <Frames>
         <Frame upperLeft="0,0" name="Tree Trunk" dir="Up" variety="Plain A" />
@@ -643,6 +643,44 @@ Single item; tag has no children.  Has the following properties:
     <Tile num="104" name="Grandfather Clock" color="#ffff00ff" isFramed="true" size="2,5" placement="floor" />
     <Tile num="105" name="Statue" color="#ff00fff2" isFramed="true" size="2,3" placement="floor" />
     <Tile num="106" name="Sawmill" color="#ff00fff2" isFramed="true" size="3,3" placement="floor" />
+    <Tile num="107" name="Cobalt Ore" color="#FF0B508F"  />
+    <Tile num="108" name="Mythril Ore" color="#FF5BA9A9"  />
+    <Tile num="109" name="Blue Grass" color="#FF4EC1E3" isGrass="1"  />
+    <Tile num="110" name="Weeds" color="#FF1E9648" isFramed="true"  />
+    <Tile num="111" name="Adamantite Ore" color="#FF801A34"  />
+    <Tile num="112" name="Ebonsand" color="#FF67627A"  />
+    <Tile num="113" name="Weeds" color="#FF1E9648" isFramed="true"  />
+    <Tile num="114" name="Tinkerer's Workshop" color="#FF7F5C45" isFramed="true" />
+    <Tile num="115" name="Vines" color="#FF327FA1" />
+    <Tile num="116" name="Pearl Sand" color="#FFD5C4C5"  />
+    <Tile num="117" name="Pearl Ore" color="#FFB5ACBE"  />
+    <Tile num="118" name="Pearlstone Brick" color="#FFD5C4C5" />
+    <Tile num="119" name="Iridescent Brick" color="#FF3F3F49" />
+    <Tile num="120" name="Mudstone Brick" color="#FF967A7D" />
+    <Tile num="121" name="Cobalt Brick" color="#FF2576AB" />
+    <Tile num="122" name="Unknown Brick 122" color="#FF91BF75" />
+    <Tile num="123" name="Silt" color="#FF595353"  />
+    <Tile num="124" name="Tile 124" color="#FF5C4436" />
+    <Tile num="125" name="Crystal Ball" color="#FF81A5FF" isFramed="true" />
+    <Tile num="126" name="Ball" color="#FFDBDBDB" isFramed="true" />
+    <Tile num="127" name="Glass" color="#FF68B3C8" />
+    <Tile num="128" name="Armor Stand" color="#FF906850" isFramed="true" />
+    <Tile num="129" name="Spikes 129" color="#FF004979" isFramed="true" />
+    <Tile num="130" name="Unknown Stone 130" color="#FFA5A5A5"  />
+    <Tile num="131" name="Unknown Stone 131" color="#FF1A1A1A"  />
+    <Tile num="132" name="Lever" color="#FFC90303" isFramed="true" />
+    <Tile num="133" name="Fireplace" color="#FF891012" isFramed="true" />
+    <Tile num="134" name="Adamantium Anvil" color="#FF96AE87" isFramed="true" />
+    <Tile num="135" name="Pressure Plate" color="#FFFD7272" isFramed="true" />
+    <Tile num="136" name="Switch" color="#FFCCC0C0" isFramed="true" />
+    <Tile num="137" name="Skull" color="#FF8C8C8C" isFramed="true" />
+    <Tile num="138" name="Boulder" color="#FF636363" isFramed="true" />
+    <Tile num="139" name="Music" color="#FF996343" isFramed="true" />
+    <Tile num="140" name="Unknown Brick 140" color="#FF7875B3" />
+    <Tile num="141" name="Unknown block 141" color="#FFAD2323" isFramed="true" />
+    <Tile num="142" name="Out block" color="#FFC90303" isFramed="true" />
+    <Tile num="143" name="In block" color="#FFC90303" isFramed="true" />
+    <Tile num="144" name="Timer" color="#FFC90303" isFramed="true" />
   </Tiles>
   <Walls>
     <Wall num="0" name="Sky" color="#00000000" />
@@ -666,6 +704,14 @@ Single item; tag has no children.  Has the following properties:
     <Wall num="18" name="WallPlayerGreen" color="#ff003700" isHouse="true" />
     <Wall num="19" name="WallPlayerPink" color="#ff330037" isHouse="true" />
     <Wall num="20" name="WallPlayerObsidian" color="#ff000060" isHouse="true" />
+    <Wall num="21" name="Glass Wall" color="#FF12242C" />
+    <Wall num="22" name="Pearlstone Wall" color="#FF716363" />
+    <Wall num="23" name="Unknown Wall" color="#FF4E4042" />
+    <Wall num="24" name="Unknown Wall" color="#FF403033" />
+    <Wall num="25" name="Cobalt Wall" color="#FF0B233E" />
+    <Wall num="26" name="Mythril Wall" color="#FF3C5B3A" />
+    <Wall num="27" name="Wood Panelling" color="#FF3A291D" />
+    <Wall num="28" name="Unknown Wall" color="#FF515465" />
   </Walls>
   <Items>
     <Item num="0" name="[empty]" />

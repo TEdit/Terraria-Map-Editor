@@ -45,6 +45,15 @@ namespace TEdit.TerrariaWorld
             }
         }
 
+        private byte _prefix;
+         
+
+        public byte Prefix
+        {
+            get { return _prefix; }
+            set { SetProperty(ref _prefix, ref value, "Prefix"); }
+        }
+
         public string ItemName
         {
             get { return _itemName; }

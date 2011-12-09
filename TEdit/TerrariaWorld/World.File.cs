@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using TEdit.Common;
 using TEdit.Common.Structures;
 using TEdit.RenderWorld;
 
@@ -145,9 +146,9 @@ namespace TEdit.TerrariaWorld
                                 var c = new Chest(new PointInt32(x, y));
                                 for (int i = 0; i < 20; i++)
                                     c.Items.Add(new Item(0, "[empty]"));
-                                
+
                                 Chests.Add(c);
-                                  
+
                                 log.Add(string.Format("added empty chest content [{0},{1}]", x, y));
                             }
                             break;
@@ -159,8 +160,8 @@ namespace TEdit.TerrariaWorld
                                 Signs.Add(new Sign("", new PointInt32(x, y)));
                                 log.Add(string.Format("added blank sign text [{0},{1}]", x, y));
                             }
-                    
-                    break;
+
+                            break;
                     }
                 }
             }
@@ -243,9 +244,24 @@ namespace TEdit.TerrariaWorld
                     Header.IsBossDowned1 = reader.ReadBoolean();
                     Header.IsBossDowned2 = reader.ReadBoolean();
                     Header.IsBossDowned3 = reader.ReadBoolean();
+                    if (Header.FileVersion >= 29)
+                    {
+                        Header.IsSavedGoblin = reader.ReadBoolean();
+                        Header.IsSavedWizard = reader.ReadBoolean();
+                        if (Header.FileVersion >= 34)
+                            Header.IsSavedMech = reader.ReadBoolean();
+                        Header.IsDownedGoblins = reader.ReadBoolean();
+                    }
+                    if (Header.FileVersion >= 32)
+                        Header.IsDownedClown = reader.ReadBoolean();
                     Header.IsShadowOrbSmashed = reader.ReadBoolean();
                     Header.IsSpawnMeteor = reader.ReadBoolean();
-                    Header.ShadowOrbCount = reader.ReadByte();
+                    Header.ShadowOrbCount = (int)reader.ReadByte();
+                    if (Header.FileVersion >= 23)
+                    {
+                        Header.AltarCount = reader.ReadInt32();
+                        Header.IsHardMode = reader.ReadBoolean();
+                    }
                     Header.InvasionDelay = reader.ReadInt32();
                     Header.InvasionSize = reader.ReadInt32();
                     Header.InvasionType = reader.ReadInt32();
@@ -256,36 +272,75 @@ namespace TEdit.TerrariaWorld
                         OnProgressChanged(this,
                                           new ProgressChangedEventArgs((int)((double)x / Header.MaxTiles.X * 100.0),
                                                                        "Loading Tiles"));
-
+                        Tile prevtype = new Tile();
                         for (int y = 0; y < Header.MaxTiles.Y; y++)
                         {
+
                             var tile = new Tile();
 
                             tile.IsActive = reader.ReadBoolean();
 
-
                             if (tile.IsActive)
                             {
                                 tile.Type = reader.ReadByte();
-
+                                if (tile.Type == (int)sbyte.MaxValue)
+                                    tile.IsActive = false;
                                 if (WorldSettings.Tiles[tile.Type].IsFramed)
-                                    tile.Frame = new PointShort(reader.ReadInt16(), reader.ReadInt16());
+                                {
+                                    // torches didn't have extra in older versions.
+                                    if (Header.FileVersion < 28 && tile.Type == 4)
+                                    {
+                                        tile.Frame = new PointShort(0, 0);
+                                    }
+                                    else
+                                    {
+                                        tile.Frame = new PointShort(reader.ReadInt16(), reader.ReadInt16());
+                                        //if (tile.Type == 128) //armor stand
+                                        //    tile.Frame = new PointShort((short)(tile.Frame.X % 100), tile.Frame.Y);
+
+                                        if (tile.Type == 144) //timer
+                                            tile.Frame = new PointShort(tile.Frame.X, 0);
+                                    }
+                                }
                                 else
+                                {
                                     tile.Frame = new PointShort(-1, -1);
+                                }
                             }
-                            tile.IsLighted = reader.ReadBoolean();
+                            if (Header.FileVersion <= 25)
+                                reader.ReadBoolean(); //skip obsolete hasLight
                             if (reader.ReadBoolean())
                             {
                                 tile.Wall = reader.ReadByte();
                             }
-
+                            //else
+                            //    tile.Wall = 0;
                             if (reader.ReadBoolean())
                             {
                                 tile.Liquid = reader.ReadByte();
                                 tile.IsLava = reader.ReadBoolean();
                             }
 
+                            if (Header.FileVersion >= 33)
+                                tile.HasWire = reader.ReadBoolean();
+                            //else
+                            //    tile.HasWire = false;
                             Tiles[x, y] = tile;
+                            var ptype = (Tile)prevtype.Clone();
+                            prevtype = (Tile)tile.Clone();
+                            if (Header.FileVersion >= 25) //compression ftw :)
+                            {
+                                int rle = reader.ReadInt16();
+                                if (rle > 0)
+                                {
+                                    for (int r = y + 1; r < y + rle + 1; r++)
+                                    {
+                                        var tcopy = (Tile)tile.Clone();
+                                        Tiles[x, r] = tcopy;
+                                    }
+                                    y += rle;
+                                }
+                            }
                         }
                     }
 
@@ -303,12 +358,12 @@ namespace TEdit.TerrariaWorld
                             for (int slot = 0; slot < Chest.MaxItems; slot++)
                             {
                                 var item = new Item();
-                                byte stackSize = reader.ReadByte();
-                                if (stackSize > 0)
+                                item.StackSize = reader.ReadByte();
+                                if (item.StackSize > 0)
                                 {
-                                    string itemName = reader.ReadString();
-                                    item.ItemName = itemName;
-                                    item.StackSize = stackSize;
+                                    item.ItemName = reader.ReadString();
+                                    if (Header.FileVersion >= 36)
+                                        item.Prefix = reader.ReadByte();
                                 }
                                 chest.Items.Add(item);
                             }
@@ -356,7 +411,20 @@ namespace TEdit.TerrariaWorld
                         Npcs.Add(npc);
                         isNpcActive = reader.ReadBoolean();
                     }
-
+                    if (Header.FileVersion >= 31)
+                    {
+                        NpcNames[17] = reader.ReadString();
+                        NpcNames[18] = reader.ReadString();
+                        NpcNames[19] = reader.ReadString();
+                        NpcNames[20] = reader.ReadString();
+                        NpcNames[22] = reader.ReadString();
+                        NpcNames[54] = reader.ReadString();
+                        NpcNames[38] = reader.ReadString();
+                        NpcNames[107] = reader.ReadString();
+                        NpcNames[108] = reader.ReadString();
+                        if (Header.FileVersion >= 35)
+                            NpcNames[124] = reader.ReadString();
+                    }
                     if (Header.FileVersion > 7)
                     {
                         OnProgressChanged(this, new ProgressChangedEventArgs(100, "Checking format"));
@@ -396,35 +464,42 @@ namespace TEdit.TerrariaWorld
             {
                 using (var writer = new BinaryWriter(stream))
                 {
-                    writer.Write(Header.FileVersion);
-                    writer.Write(Header.WorldName);
-                    writer.Write(Header.WorldId);
-                    writer.Write((int)Header.WorldBounds.Left);
-                    writer.Write((int)Header.WorldBounds.Right);
-                    writer.Write((int)Header.WorldBounds.Top);
-                    writer.Write((int)Header.WorldBounds.Bottom);
-                    writer.Write(Header.MaxTiles.Y);
-                    writer.Write(Header.MaxTiles.X);
-                    writer.Write(Header.SpawnTile.X);
-                    writer.Write(Header.SpawnTile.Y);
-                    writer.Write(Header.WorldSurface);
-                    writer.Write(Header.WorldRockLayer);
-                    writer.Write(Header.Time);
-                    writer.Write(Header.IsDayTime);
-                    writer.Write(Header.MoonPhase);
-                    writer.Write(Header.IsBloodMoon);
-                    writer.Write(Header.DungeonEntrance.X);
-                    writer.Write(Header.DungeonEntrance.Y);
-                    writer.Write(Header.IsBossDowned1);
-                    writer.Write(Header.IsBossDowned2);
-                    writer.Write(Header.IsBossDowned3);
-                    writer.Write(Header.IsShadowOrbSmashed);
-                    writer.Write(Header.IsSpawnMeteor);
-                    writer.Write((byte)Header.ShadowOrbCount);
-                    writer.Write(Header.InvasionDelay);
-                    writer.Write(Header.InvasionSize);
-                    writer.Write(Header.InvasionType);
-                    writer.Write(Header.InvasionX);
+                    writer.Write(Header.FileVersion);                     
+                    writer.Write(Header.WorldName);                       
+                    writer.Write(Header.WorldId);                         
+                    writer.Write((int)Header.WorldBounds.Left);           
+                    writer.Write((int)Header.WorldBounds.Right);          
+                    writer.Write((int)Header.WorldBounds.Top);            
+                    writer.Write((int)Header.WorldBounds.Bottom);         
+                    writer.Write(Header.MaxTiles.Y);                      
+                    writer.Write(Header.MaxTiles.X);                      
+                    writer.Write(Header.SpawnTile.X);                     
+                    writer.Write(Header.SpawnTile.Y);                     
+                    writer.Write(Header.WorldSurface);                    
+                    writer.Write(Header.WorldRockLayer);                  
+                    writer.Write(Header.Time);                            
+                    writer.Write(Header.IsDayTime);                       
+                    writer.Write(Header.MoonPhase);                       
+                    writer.Write(Header.IsBloodMoon);                     
+                    writer.Write(Header.DungeonEntrance.X);               
+                    writer.Write(Header.DungeonEntrance.Y);               
+                    writer.Write(Header.IsBossDowned1);                   
+                    writer.Write(Header.IsBossDowned2);                   
+                    writer.Write(Header.IsBossDowned3);                   
+                    writer.Write(Header.IsSavedGoblin);                   
+                    writer.Write(Header.IsSavedWizard);                   
+                    writer.Write(Header.IsSavedMech);                     
+                    writer.Write(Header.IsDownedGoblins);                 
+                    writer.Write(Header.IsDownedClown);                   
+                    writer.Write(Header.IsShadowOrbSmashed);              
+                    writer.Write(Header.IsSpawnMeteor);                   
+                    writer.Write((byte)Header.ShadowOrbCount);            
+                    writer.Write(Header.AltarCount);                      
+                    writer.Write(Header.IsHardMode);                      
+                    writer.Write(Header.InvasionDelay);                   
+                    writer.Write(Header.InvasionSize);                    
+                    writer.Write(Header.InvasionType);                    
+                    writer.Write(Header.InvasionX);                       
 
                     for (int x = 0; x < Header.MaxTiles.X; x++)
                     {
@@ -433,19 +508,23 @@ namespace TEdit.TerrariaWorld
                                                                        "Saving World"));
                         //float num2 = ((float) i) / ((float) this.MaxTiles.X);
                         //string statusText = "Saving world data: " + ((int) ((num2 * 100f) + 1f)) + "%";
-                        for (int y = 0; y < Header.MaxTiles.Y; y++)
+                        int rle;
+                        for (int y = 0; y < Header.MaxTiles.Y; y = y + rle + 1)
                         {
-                            writer.Write(Tiles[x, y].IsActive);
-                            if (Tiles[x, y].IsActive)
-                            {
-                                writer.Write(Tiles[x, y].Type);
-                                if (WorldSettings.Tiles[Tiles[x, y].Type].IsFramed)
-                                {
-                                    writer.Write(Tiles[x, y].Frame.X);
-                                    writer.Write(Tiles[x, y].Frame.Y);
+                            var curTile = Tiles[x, y];
 
+                            writer.Write(curTile.IsActive);
+                            if (curTile.IsActive)
+                            {
+                                writer.Write(curTile.Type);
+                                if (WorldSettings.Tiles[curTile.Type].IsFramed)
+                                {
+                                    writer.Write(curTile.Frame.X);
+                                    writer.Write(curTile.Frame.Y);
+
+                                    // TODO: Let Validate handle these
                                     //validate chest entry exists
-                                    if (Tiles[x, y].Type == 21)
+                                    if (curTile.Type == 21)
                                     {
                                         if (GetChestAtTile(x, y) == null)
                                         {
@@ -453,35 +532,38 @@ namespace TEdit.TerrariaWorld
                                         }
                                     }
                                     //validate sign entry exists
-                                    else if (Tiles[x, y].Type == 55 || Tiles[x, y].Type == 85)
+                                    else if (curTile.Type == 55 || curTile.Type == 85)
                                     {
                                         if (GetSignAtTile(x, y) == null)
                                         {
-                                            Signs.Add(new Sign("", new PointInt32(x, y)));
+                                            Signs.Add(new Sign(string.Empty, new PointInt32(x, y)));
                                         }
                                     }
                                 }
                             }
-                            writer.Write(Tiles[x, y].IsLighted);
-                            if (Tiles[x, y].Wall > 0)
+                            if ((int)curTile.Wall > 0)
                             {
                                 writer.Write(true);
-                                writer.Write(Tiles[x, y].Wall);
+                                writer.Write(curTile.Wall);
                             }
                             else
-                            {
                                 writer.Write(false);
-                            }
-                            if (Tiles[x, y].Liquid > 0)
+
+                            if ((int)curTile.Liquid > 0)
                             {
                                 writer.Write(true);
-                                writer.Write(Tiles[x, y].Liquid);
-                                writer.Write(Tiles[x, y].IsLava);
+                                writer.Write(curTile.Liquid);
+                                writer.Write(curTile.IsLava);
                             }
                             else
-                            {
                                 writer.Write(false);
-                            }
+
+                            writer.Write(curTile.HasWire);
+                            int rleTemp = 1;
+                            while (y + rleTemp < Header.MaxTiles.Y && curTile.Equals(Tiles[x, (y + rleTemp)]))
+                                ++rleTemp;
+                            rle = rleTemp - 1;
+                            writer.Write((short)rle);
                         }
                     }
                     for (int chestIndex = 0; chestIndex < MaxChests; chestIndex++)
@@ -504,6 +586,7 @@ namespace TEdit.TerrariaWorld
                                     if (Chests[chestIndex].Items[slot].StackSize > 0)
                                     {
                                         writer.Write(Chests[chestIndex].Items[slot].ItemName);
+                                        writer.Write(Chests[chestIndex].Items[slot].Prefix);
                                     }
                                 }
                                 else
@@ -550,7 +633,16 @@ namespace TEdit.TerrariaWorld
                         writer.Write(npc.HomeTile.Y);
                     }
                     writer.Write(false);
-
+                    writer.Write(NpcNames[17]);
+                    writer.Write(NpcNames[18]);
+                    writer.Write(NpcNames[19]);
+                    writer.Write(NpcNames[20]);
+                    writer.Write(NpcNames[22]);
+                    writer.Write(NpcNames[54]);
+                    writer.Write(NpcNames[38]);
+                    writer.Write(NpcNames[107]);
+                    writer.Write(NpcNames[108]);
+                    writer.Write(NpcNames[124]);
                     // Write file info check version 7+
                     writer.Write(true);
                     writer.Write(Header.WorldName);
