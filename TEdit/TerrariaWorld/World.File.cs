@@ -254,6 +254,8 @@ namespace TEdit.TerrariaWorld
                     }
                     if (Header.FileVersion >= 32)
                         Header.IsDownedClown = reader.ReadBoolean();
+                    if (Header.FileVersion >= 37)
+                        Header.IsDownedFrost = reader.ReadBoolean();
                     Header.IsShadowOrbSmashed = reader.ReadBoolean();
                     Header.IsSpawnMeteor = reader.ReadBoolean();
                     Header.ShadowOrbCount = (int)reader.ReadByte();
@@ -490,7 +492,8 @@ namespace TEdit.TerrariaWorld
                     writer.Write(Header.IsSavedWizard);                   
                     writer.Write(Header.IsSavedMech);                     
                     writer.Write(Header.IsDownedGoblins);                 
-                    writer.Write(Header.IsDownedClown);                   
+                    writer.Write(Header.IsDownedClown);
+                    writer.Write(Header.IsDownedFrost); 
                     writer.Write(Header.IsShadowOrbSmashed);              
                     writer.Write(Header.IsSpawnMeteor);                   
                     writer.Write((byte)Header.ShadowOrbCount);            

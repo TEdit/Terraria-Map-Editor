@@ -59,6 +59,15 @@ namespace TEdit.TerrariaWorld
         private int _altarCount;
         private bool _isHardMode;
 
+        private bool _isDownedFrost;
+         
+
+        public bool IsDownedFrost
+        {
+            get { return _isDownedFrost; }
+            set { SetProperty(ref _isDownedFrost, ref value, "IsDownedFrost"); }
+        }
+
         public bool IsHardMode
         {
             get { return _isHardMode; }

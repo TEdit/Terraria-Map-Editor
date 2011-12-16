@@ -681,6 +681,11 @@ Single item; tag has no children.  Has the following properties:
     <Tile num="142" name="Out block" color="#FFC90303" isFramed="true" />
     <Tile num="143" name="In block" color="#FFC90303" isFramed="true" />
     <Tile num="144" name="Timer" color="#FFC90303" isFramed="true" />
+    <Tile num="145" name="Red Candy Cane Block" color="#FFFF0000" isFramed="false" />
+    <Tile num="146" name="Green Candy Cane Block" color="#FF00FF00" isFramed="false" />
+    <Tile num="147" name="Snow" color="#FFEEEEFF" isFramed="false" />
+    <Tile num="148" name="Snow Brick" color="#FFCCCCEE" isFramed="false" />
+    <Tile num="149" name="UNKNOWN" color="#FFFF0000" isFramed="true" />
   </Tiles>
   <Walls>
     <Wall num="0" name="Sky" color="#00000000" />
@@ -706,12 +711,15 @@ Single item; tag has no children.  Has the following properties:
     <Wall num="20" name="WallPlayerObsidian" color="#ff000060" isHouse="true" />
     <Wall num="21" name="Glass Wall" color="#FF12242C" />
     <Wall num="22" name="Pearlstone Wall" color="#FF716363" />
-    <Wall num="23" name="Unknown Wall" color="#FF4E4042" />
-    <Wall num="24" name="Unknown Wall" color="#FF403033" />
+    <Wall num="23" name="Iridescent Brick Wall" color="#FF4E4042" />
+    <Wall num="24" name="Mudstone Brick Wall" color="#FF403033" />
     <Wall num="25" name="Cobalt Wall" color="#FF0B233E" />
     <Wall num="26" name="Mythril Wall" color="#FF3C5B3A" />
     <Wall num="27" name="Wood Panelling" color="#FF3A291D" />
-    <Wall num="28" name="Unknown Wall" color="#FF515465" />
+    <Wall num="28" name="Fragile Stone Wall" color="#FF515465" />
+    <Wall num="29" name="Red Candy Cane Wall" color="#FFAA0000" />
+    <Wall num="30" name="Green Candy Cane Wall" color="#FF00AA00" />
+    <Wall num="31" name="Snow Wall Wall" color="#FF9999BB" />
   </Walls>
   <Items>
     <Item num="0" name="[empty]" />
