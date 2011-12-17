@@ -685,7 +685,13 @@ Single item; tag has no children.  Has the following properties:
     <Tile num="146" name="Green Candy Cane Block" color="#FF00FF00" isFramed="false" />
     <Tile num="147" name="Snow" color="#FFEEEEFF" isFramed="false" />
     <Tile num="148" name="Snow Brick" color="#FFCCCCEE" isFramed="false" />
-    <Tile num="149" name="UNKNOWN" color="#FFFF0000" isFramed="true" />
+    <Tile num="149" name="Christmas Light" color="#FFFF0000" isFramed="true" size="1,1">
+      <Frames>
+        <Frame upperLeft="0,0" name="Blue Light" />
+        <Frame upperLeft="18,0" name="Red Light" />
+        <Frame upperLeft="36,0" name="Green Light" />
+      </Frames>
+    </Tile>
   </Tiles>
   <Walls>
     <Wall num="0" name="Sky" color="#00000000" />
@@ -722,380 +728,632 @@ Single item; tag has no children.  Has the following properties:
     <Wall num="31" name="Snow Wall Wall" color="#FF9999BB" />
   </Walls>
   <Items>
-    <Item num="0" name="[empty]" />
-    <Item num="1" name="Iron Pickaxe" type="tool" />
-    <Item num="2" name="Dirt Block" type="block" />
-    <Item num="3" name="Stone Block" type="block" />
-    <Item num="4" name="Iron Broadsword" type="weapon" />
-    <Item num="5" name="Mushroom" type="plant" />
-    <Item num="6" name="Iron Shortsword" type="weapon" />
-    <Item num="7" name="Iron Hammer" type="tool" />
-    <Item num="8" name="Torch" type="light" />
-    <Item num="9" name="Wood" type="block" />
-    <Item num="10" name="Iron Axe" type="tool" />
-    <Item num="11" name="Iron Ore" type="block" />
-    <Item num="12" name="Copper Ore" type="block" />
-    <Item num="13" name="Gold Ore" type="block" />
-    <Item num="14" name="Silver Ore" type="block" />
-    <Item num="15" name="Copper Watch" type="accessory" />
-    <Item num="16" name="Silver Watch" type="accessory" />
-    <Item num="17" name="Gold Watch" type="accessory" />
-    <Item num="18" name="Depth Meter" type="accessory" />
-    <Item num="19" name="Gold Bar" type="material" />
-    <Item num="20" name="Copper Bar" type="material" />
-    <Item num="21" name="Silver Bar" type="material" />
-    <Item num="22" name="Iron Bar" type="material" />
-    <Item num="23" name="Gel" type="material" />
-    <Item num="24" name="Wooden Sword" type="weapon" />
-    <Item num="25" name="Wooden Door" type="furniture" />
-    <Item num="26" name="Stone Wall" type="wall" />
-    <Item num="27" name="Acorn" type="plant" />
-    <Item num="28" name="Lesser Healing Potion" type="potion" />
-    <Item num="29" name="Life Crystal" type="consumable" />
-    <Item num="30" name="Dirt Wall" type="wall" />
-    <Item num="31" name="Bottle" type="material" />
-    <Item num="32" name="Wooden Table" type="furniture" />
-    <Item num="33" name="Furnace" type="furniture" />
-    <Item num="34" name="Wooden Chair" type="furniture" />
-    <Item num="35" name="Iron Anvil" type="furniture" />
-    <Item num="36" name="Work Bench" type="furniture" />
-    <Item num="37" name="Goggles" type="armor" />
-    <Item num="38" name="Lens" type="material" />
-    <Item num="39" name="Wooden Bow" type="weapon" />
-    <Item num="40" name="Wooden Arrow" type="ammo" />
-    <Item num="41" name="Flaming Arrow" type="ammo" />
-    <Item num="42" name="Shuriken" type="weapon" />
-    <Item num="43" name="Suspicious Looking Eye" type="consumable" />
-    <Item num="44" name="Demon Bow" type="weapon" />
-    <Item num="45" name="War Axe of the Night" type="weapon" />
-    <Item num="46" name="Light's Bane" type="weapon" />
-    <Item num="47" name="Unholy Arrow" type="ammo" />
-    <Item num="48" name="Chest" type="storage" />
-    <Item num="49" name="Band of Regeneration" type="accessory" />
-    <Item num="50" name="Magic Mirror" type="tool" />
-    <Item num="51" name="Jester's Arrow" type="ammo" />
-    <Item num="52" name="Angel Statue" type="furniture" />
-    <Item num="53" name="Cloud in a Bottle" type="accessory" />
-    <Item num="54" name="Hermes Boots" type="accessory" />
-    <Item num="55" name="Enchanted Boomerang" type="weapon" />
-    <Item num="56" name="Demonite Ore" type="block" />
-    <Item num="57" name="Demonite Bar" type="material" />
-    <Item num="58" name="Heart" type="consumable" />
-    <Item num="59" name="Corrupt Seeds" type="plant" />
-    <Item num="60" name="Vile Mushroom" type="plant" />
-    <Item num="61" name="Ebonstone Block" type="block" />
-    <Item num="62" name="Grass Seeds" type="plant" />
-    <Item num="63" name="Sunflower" type="plant" />
-    <Item num="64" name="Vilethorn" type="plant" />
-    <Item num="65" name="Starfury" type="weapon" />
-    <Item num="66" name="Purification Powder" type="tool" />
-    <Item num="67" name="Vile Powder" type="weapon" />
-    <Item num="68" name="Rotten Chunk" type="material" />
-    <Item num="69" name="Worm Tooth" type="material" />
-    <Item num="70" name="Worm Food" type="consumable" />
-    <Item num="71" name="Copper Coin" type="money" />
-    <Item num="72" name="Silver Coin" type="money" />
-    <Item num="73" name="Gold Coin" type="money" />
-    <Item num="74" name="Platinum Coin" type="money" />
-    <Item num="75" name="Fallen Star" type="material" />
-    <Item num="76" name="Copper Greaves" type="armor" />
-    <Item num="77" name="Iron Greaves" type="armor" />
-    <Item num="78" name="Silver Greaves" type="armor" />
-    <Item num="79" name="Gold Greaves" type="armor" />
-    <Item num="80" name="Copper Chainmail" type="armor" />
-    <Item num="81" name="Iron Chainmail" type="armor" />
-    <Item num="82" name="Silver Chainmail" type="armor" />
-    <Item num="83" name="Gold Chainmail" type="armor" />
-    <Item num="84" name="Grappling Hook" type="tool" />
-    <Item num="85" name="Iron Chain" type="material" />
-    <Item num="86" name="Shadow Scale" type="material" />
-    <Item num="87" name="Piggy Bank" type="storage" />
-    <Item num="88" name="Mining Helmet" type="armor" />
-    <Item num="89" name="Copper Helmet" type="armor" />
-    <Item num="90" name="Iron Helmet" type="armor" />
-    <Item num="91" name="Silver Helmet" type="armor" />
-    <Item num="92" name="Gold Helmet" type="armor" />
-    <Item num="93" name="Wood Wall" type="wall" />
-    <Item num="94" name="Wood Platform" type="furniture" />
-    <Item num="95" name="Flintlock Pistol" type="weapon" />
-    <Item num="96" name="Musket" type="weapon" />
-    <Item num="97" name="Musket Ball" type="ammo" />
-    <Item num="98" name="Minishark" type="weapon" />
-    <Item num="99" name="Iron Bow" type="weapon" />
-    <Item num="100" name="Shadow Greaves" type="armor" />
-    <Item num="101" name="Shadow Scalemail" type="armor" />
-    <Item num="102" name="Shadow Helmet" type="armor" />
-    <Item num="103" name="Nightmare Pickaxe" type="tool" />
-    <Item num="104" name="The Breaker" type="tool" />
-    <Item num="105" name="Candle" type="light" />
-    <Item num="106" name="Copper Chandelier" type="light" />
-    <Item num="107" name="Silver Chandelier" type="light" />
-    <Item num="108" name="Gold Chandelier" type="light" />
-    <Item num="109" name="Mana Crystal" type="consumable" />
-    <Item num="110" name="Lesser Mana Potion" type="potion" />
-    <Item num="111" name="Band of Starpower" type="accessory" />
-    <Item num="112" name="Flower of Fire" type="weapon" />
-    <Item num="113" name="Magic Missile" type="weapon" />
-    <Item num="114" name="Dirt Rod" type="weapon" />
-    <Item num="115" name="Orb of Light" type="light" />
-    <Item num="116" name="Meteorite" type="block" />
-    <Item num="117" name="Meteorite Bar" type="material" />
-    <Item num="118" name="Hook" type="material" />
-    <Item num="119" name="Flamarang" type="weapon" />
-    <Item num="120" name="Molten Fury" type="weapon" />
-    <Item num="121" name="Fiery Greatsword" type="weapon" />
-    <Item num="122" name="Molten Pickaxe" type="tool" />
-    <Item num="123" name="Meteor Helmet" type="armor" />
-    <Item num="124" name="Meteor Suit" type="armor" />
-    <Item num="125" name="Meteor Leggings" type="armor" />
-    <Item num="126" name="Bottled Water" type="material" />
-    <Item num="127" name="Space Gun" type="weapon" />
-    <Item num="128" name="Rocket Boots" type="accessory" />
-    <Item num="129" name="Gray Brick" type="block" />
-    <Item num="130" name="Gray Brick Wall" type="wall" />
-    <Item num="131" name="Red Brick" type="block" />
-    <Item num="132" name="Red Brick Wall" type="wall" />
-    <Item num="133" name="Clay Block" type="block" />
-    <Item num="134" name="Blue Brick" type="block" />
-    <Item num="135" name="Blue Brick Wall" type="wall" />
-    <Item num="136" name="Chain Lantern" type="light" />
-    <Item num="137" name="Green Brick" type="block" />
-    <Item num="138" name="Green Brick Wall" type="wall" />
-    <Item num="139" name="Pink Brick" type="block" />
-    <Item num="140" name="Pink Brick Wall" type="wall" />
-    <Item num="141" name="Gold Brick" type="block" />
-    <Item num="142" name="Gold Brick Wall" type="wall" />
-    <Item num="143" name="Silver Brick" type="block" />
-    <Item num="144" name="Silver Brick Wall" type="wall" />
-    <Item num="145" name="Copper Brick" type="block" />
-    <Item num="146" name="Copper Brick Wall" type="wall" />
-    <Item num="147" name="Spike" type="furniture" />
-    <Item num="148" name="Water Candle" type="light" />
-    <Item num="149" name="Book" type="furniture" />
-    <Item num="150" name="Cobweb" type="material" />
-    <Item num="151" name="Necro Helmet" type="armor" />
-    <Item num="152" name="Necro Breastplate" type="armor" />
-    <Item num="153" name="Necro Greaves" type="armor" />
-    <Item num="154" name="Bone" type="material" />
-    <Item num="155" name="Muramasa" type="weapon" />
-    <Item num="156" name="Cobalt Shield" type="accessory" />
-    <Item num="157" name="Aqua Scepter" type="weapon" />
-    <Item num="158" name="Lucky Horseshoe" type="accessory" />
-    <Item num="159" name="Shiny Red Balloon" type="accessory" />
-    <Item num="160" name="Harpoon" type="weapon" />
-    <Item num="161" name="Spiky Ball" type="consumable" />
-    <Item num="162" name="Ball O' Hurt" type="weapon" />
-    <Item num="163" name="Blue Moon" type="weapon" />
-    <Item num="164" name="Handgun" type="weapon" />
-    <Item num="165" name="Water Bolt" type="weapon" />
-    <Item num="166" name="Bomb" type="weapon" />
-    <Item num="167" name="Dynamite" type="weapon" />
-    <Item num="168" name="Grenade" type="weapon" />
-    <Item num="169" name="Sand Block" type="block" />
-    <Item num="170" name="Glass" type="block" />
-    <Item num="171" name="Sign" type="furniture" />
-    <Item num="172" name="Ash Block" type="block" />
-    <Item num="173" name="Obsidian" type="block" />
-    <Item num="174" name="Hellstone" type="block" />
-    <Item num="175" name="Hellstone Bar" type="material" />
-    <Item num="176" name="Mud Block" type="block" />
-    <Item num="181" name="Amethyst" type="material" />
-    <Item num="180" name="Topaz" type="material" />
-    <Item num="177" name="Sapphire" type="material" />
-    <Item num="179" name="Emerald" type="material" />
-    <Item num="178" name="Ruby" type="material" />
-    <Item num="182" name="Diamond" type="material" />
-    <Item num="183" name="Glowing Mushroom" type="plant" />
-    <Item num="184" name="Star" type="consumable" />
-    <Item num="185" name="Ivy Whip" type="accessory" />
-    <Item num="186" name="Breathing Reed" type="accessory" />
-    <Item num="187" name="Flipper" type="accessory" />
-    <Item num="188" name="Healing Potion" type="potion" />
-    <Item num="189" name="Mana Potion" type="potion" />
-    <Item num="190" name="Blade of Grass" type="weapon" />
-    <Item num="191" name="Thorn Chakram" type="weapon" />
-    <Item num="192" name="Obsidian Brick" type="block" />
-    <Item num="193" name="Obsidian Skull" type="accessory" />
-    <Item num="194" name="Mushroom Grass Seeds" type="plant" />
-    <Item num="195" name="Jungle Grass Seeds" type="plant" />
-    <Item num="196" name="Wooden Hammer" type="tool" />
-    <Item num="197" name="Star Cannon" type="weapon" />
-    <Item num="198" name="Blue Phaseblade" type="weapon" />
-    <Item num="199" name="Red Phaseblade" type="weapon" />
-    <Item num="200" name="Green Phaseblade" type="weapon" />
-    <Item num="201" name="Purple Phaseblade" type="weapon" />
-    <Item num="202" name="White Phaseblade" type="weapon" />
-    <Item num="203" name="Yellow Phaseblade" type="weapon" />
-    <Item num="204" name="Meteor Hamaxe" type="tool" />
-    <Item num="205" name="Empty Bucket" type="tool" />
-    <Item num="206" name="Water Bucket" type="tool" />
-    <Item num="207" name="Lava Bucket" type="tool" />
-    <Item num="208" name="Jungle Rose" type="plant" />
-    <Item num="209" name="Stinger" type="material" />
-    <Item num="210" name="Vine" type="material" />
-    <Item num="211" name="Feral Claws" type="accessory" />
-    <Item num="212" name="Anklet of the Wind" type="accessory" />
-    <Item num="213" name="Staff of Regrowth" type="weapon" />
-    <Item num="214" name="Hellstone Brick" type="block" />
-    <Item num="215" name="Whoopie Cushion" type="tool" />
-    <Item num="216" name="Shackle" type="accessory" />
-    <Item num="217" name="Molten Hamaxe" type="tool" />
-    <Item num="218" name="Flamelash" type="weapon" />
-    <Item num="219" name="Phoenix Blaster" type="weapon" />
-    <Item num="220" name="Sunfury" type="weapon" />
-    <Item num="221" name="Hellforge" type="furniture" />
-    <Item num="222" name="Clay Pot" type="furniture" />
-    <Item num="223" name="Nature's Gift" type="accessory" />
-    <Item num="224" name="Bed" type="furniture" />
-    <Item num="225" name="Silk" type="material" />
-    <Item num="226" name="Lesser Restoration Potion" type="potion" />
-    <Item num="227" name="Restoration Potion" type="potion" />
-    <Item num="228" name="Jungle Hat" type="armor" />
-    <Item num="229" name="Jungle Shirt" type="armor" />
-    <Item num="230" name="Jungle Pants" type="armor" />
-    <Item num="231" name="Molten Helmet" type="armor" />
-    <Item num="232" name="Molten Breastplate" type="armor" />
-    <Item num="233" name="Molten Greaves" type="armor" />
-    <Item num="234" name="Meteor Shot" type="ammo" />
-    <Item num="235" name="Sticky Bomb" type="weapon" />
-    <Item num="236" name="Black Lens" type="material" />
-    <Item num="237" name="Sunglasses" type="armor" />
-    <Item num="238" name="Wizard Hat" type="armor" />
-    <Item num="239" name="Top Hat" type="armor" />
-    <Item num="240" name="Tuxedo Shirt" type="armor" />
-    <Item num="241" name="Tuxedo Pants" type="armor" />
-    <Item num="242" name="Summer Hat" type="armor" />
-    <Item num="243" name="Bunny Hood" type="armor" />
-    <Item num="244" name="Plumber's Hat" type="armor" />
-    <Item num="245" name="Plumber's Shirt" type="armor" />
-    <Item num="246" name="Plumber's Pants" type="armor" />
-    <Item num="247" name="Hero's Hat" type="armor" />
-    <Item num="248" name="Hero's Shirt" type="armor" />
-    <Item num="249" name="Hero's Pants" type="armor" />
-    <Item num="250" name="Fish Bowl" type="armor" />
-    <Item num="251" name="Archaeologist's Hat" type="armor" />
-    <Item num="252" name="Archaeologist's Jacket" type="armor" />
-    <Item num="253" name="Archaeologist's Pants" type="armor" />
-    <Item num="254" name="Black Dye" type="material" />
-    <Item num="255" name="Green Dye" type="material" />
-    <Item num="256" name="Ninja Hood" type="armor" />
-    <Item num="257" name="Ninja Shirt" type="armor" />
-    <Item num="258" name="Ninja Pants" type="armor" />
-    <Item num="259" name="Leather" type="material" />
-    <Item num="260" name="Red Hat" type="armor" />
-    <Item num="261" name="Goldfish" type="consumable" />
-    <Item num="262" name="Robe" type="armor" />
-    <Item num="263" name="Robot Hat" type="armor" />
-    <Item num="264" name="Gold Crown" type="armor" />
-    <Item num="265" name="Hellfire Arrow" type="ammo" />
-    <Item num="266" name="Sandgun" type="weapon" />
-    <Item num="267" name="Guide Voodoo Doll" type="accessory" />
-    <Item num="268" name="Diving Helmet" type="armor" />
-    <Item num="269" name="Familiar Shirt" type="armor" />
-    <Item num="270" name="Familiar Pants" type="armor" />
-    <Item num="271" name="Familiar Wig" type="armor" />
-    <Item num="272" name="Demon Scythe" type="weapon" />
-    <Item num="273" name="Night's Edge" type="weapon" />
-    <Item num="274" name="Dark Lance" type="weapon" />
-    <Item num="275" name="Coral" type="material" />
-    <Item num="276" name="Cactus" type="plant" />
-    <Item num="277" name="Trident" type="weapon" />
-    <Item num="278" name="Silver Bullet" type="ammo" />
-    <Item num="279" name="Throwing Knife" type="weapon" />
-    <Item num="280" name="Spear" type="weapon" />
-    <Item num="281" name="Blowpipe" type="weapon" />
-    <Item num="282" name="Glowstick" type="light" />
-    <Item num="283" name="Seed" type="plant" />
-    <Item num="284" name="Wooden Boomerang" type="weapon" />
-    <Item num="285" name="Aglet" type="accessory" />
-    <Item num="286" name="Sticky Glowstick" type="light" />
-    <Item num="287" name="Poisoned Knife" type="weapon" />
-    <Item num="288" name="Obsidian Skin Potion" type="potion" />
-    <Item num="289" name="Regeneration Potion" type="potion" />
-    <Item num="290" name="Swiftness Potion" type="potion" />
-    <Item num="291" name="Gills Potion" type="potion" />
-    <Item num="292" name="Ironskin Potion" type="potion" />
-    <Item num="293" name="Mana Regeneration Potion" type="potion" />
-    <Item num="294" name="Magic Power Potion" type="potion" />
-    <Item num="295" name="Featherfall Potion" type="potion" />
-    <Item num="296" name="Spelunker Potion" type="potion" />
-    <Item num="297" name="Invisibility Potion" type="potion" />
-    <Item num="298" name="Shine Potion" type="potion" />
-    <Item num="299" name="Night Owl Potion" type="potion" />
-    <Item num="300" name="Battle Potion" type="potion" />
-    <Item num="301" name="Thorns Potion" type="potion" />
-    <Item num="302" name="Water Walking Potion" type="potion" />
-    <Item num="303" name="Archery Potion" type="potion" />
-    <Item num="304" name="Hunter Potion" type="potion" />
-    <Item num="305" name="Gravitation Potion" type="potion" />
-    <Item num="306" name="Gold Chest" type="storage" />
-    <Item num="307" name="Daybloom Seeds" type="plant" />
-    <Item num="308" name="Moonglow Seeds" type="plant" />
-    <Item num="309" name="Blinkroot Seeds" type="plant" />
-    <Item num="310" name="Deathweed Seeds" type="plant" />
-    <Item num="311" name="Waterleaf Seeds" type="plant" />
-    <Item num="312" name="Fireblossom Seeds" type="plant" />
-    <Item num="313" name="Daybloom" type="plant" />
-    <Item num="314" name="Moonglow" type="plant" />
-    <Item num="315" name="Blinkroot" type="plant" />
-    <Item num="316" name="Deathweed" type="plant" />
-    <Item num="317" name="Waterleaf" type="plant" />
-    <Item num="318" name="Fireblossom" type="plant" />
-    <Item num="319" name="Shark Fin" type="material" />
-    <Item num="320" name="Feather" type="material" />
-    <Item num="321" name="Tombstone" type="furniture" />
-    <Item num="322" name="Mime Mask" type="armor" />
-    <Item num="323" name="Antlion Mandible" type="material" />
-    <Item num="324" name="Illegal Gun Parts" type="material" />
-    <Item num="325" name="The Doctor's Shirt" type="armor" />
-    <Item num="326" name="The Doctor's Pants" type="armor" />
-    <Item num="327" name="Golden Key" type="tool" />
-    <Item num="328" name="Shadow Chest" type="storage" />
-    <Item num="329" name="Shadow Key" type="tool" />
-    <Item num="330" name="Obsidian Brick Wall" type="wall" />
-    <Item num="331" name="Jungle Spores" type="plant" />
-    <Item num="332" name="Loom" type="furniture" />
-    <Item num="333" name="Piano" type="furniture" />
-    <Item num="334" name="Dresser" type="furniture" />
-    <Item num="335" name="Bench" type="furniture" />
-    <Item num="336" name="Bathtub" type="furniture" />
-    <Item num="337" name="Red Banner" type="furniture" />
-    <Item num="338" name="Green Banner" type="furniture" />
-    <Item num="339" name="Blue Banner" type="furniture" />
-    <Item num="340" name="Yellow Banner" type="furniture" />
-    <Item num="341" name="Lamp Post" type="light" />
-    <Item num="342" name="Tiki Torch" type="light" />
-    <Item num="343" name="Barrel" type="storage" />
-    <Item num="344" name="Chinese Lantern" type="light" />
-    <Item num="345" name="Cooking Pot" type="furniture" />
-    <Item num="346" name="Safe" type="storage" />
-    <Item num="347" name="Skull Lantern" type="light" />
-    <Item num="348" name="Trash Can" type="storage" />
-    <Item num="349" name="Candelabra" type="light" />
-    <Item num="350" name="Pink Vase" type="furniture" />
-    <Item num="351" name="Mug" type="material" />
-    <Item num="352" name="Keg" type="furniture" />
-    <Item num="353" name="Ale" type="potion" />
-    <Item num="354" name="Bookcase" type="furniture" />
-    <Item num="355" name="Throne" type="furniture" />
-    <Item num="356" name="Bowl" type="material" />
-    <Item num="357" name="Bowl of Soup" type="potion" />
-    <Item num="358" name="Toilet" type="furniture" />
-    <Item num="359" name="Grandfather Clock" type="furniture" />
-    <Item num="360" name="Statue" type="furniture" />
-    <Item num="361" name="Goblin Battle Standard" type="consumable" />
-    <Item num="362" name="Tattered Cloth" type="material" />
-    <Item           name="Silver Broadsword" type="weapon" />
-    <Item           name="Silver Shortsword" type="weapon" />
-    <Item           name="Gold Broadsword" type="weapon" />
-    <Item           name="Gold Shortsword" type="weapon" />
-    <Item           name="Copper Broadsword" type="weapon" />
-    <Item           name="Copper Shortsword" type="weapon" />
-    <Item           name="Silver Bow" type="weapon" />
-    <Item           name="Gold Bow" type="weapon" />
-    <Item           name="Copper Bow" type="weapon" />
-    <Item           name="Copper Hammer" type="tool" />
-    <Item           name="Silver Hammer" type="tool" />
-    <Item           name="Gold Hammer" type="tool" />
+    <Item num="0" name="" type="[empty]" />
+    <Item num="1" name="Copper Pickaxe" type="" />
+    <Item num="1" name="Gold Pickaxe" type="" />
+    <Item num="1" name="Iron Pickaxe" type="" />
+    <Item num="1" name="Silver Pickaxe" type="" />
+    <Item num="2" name="Dirt Block" type="" />
+    <Item num="3" name="Stone Block" type="" />
+    <Item num="4" name="Copper Broadsword" type="" />
+    <Item num="4" name="Gold Broadsword" type="" />
+    <Item num="4" name="Iron Broadsword" type="" />
+    <Item num="4" name="Silver Broadsword" type="" />
+    <Item num="5" name="Mushroom" type="" />
+    <Item num="6" name="Copper Shortsword" type="" />
+    <Item num="6" name="Gold Shortsword" type="" />
+    <Item num="6" name="Iron Shortsword" type="" />
+    <Item num="6" name="Silver Shortsword" type="" />
+    <Item num="7" name="Copper Hammer" type="" />
+    <Item num="7" name="Gold Hammer" type="" />
+    <Item num="7" name="Iron Hammer" type="" />
+    <Item num="7" name="Silver Hammer" type="" />
+    <Item num="8" name="Torch" type="" />
+    <Item num="9" name="Wood" type="" />
+    <Item num="10" name="Copper Axe" type="" />
+    <Item num="10" name="Gold Axe" type="" />
+    <Item num="10" name="Iron Axe" type="" />
+    <Item num="10" name="Silver Axe" type="" />
+    <Item num="11" name="Iron Ore" type="" />
+    <Item num="12" name="Copper Ore" type="" />
+    <Item num="13" name="Gold Ore" type="" />
+    <Item num="14" name="Silver Ore" type="" />
+    <Item num="15" name="Copper Watch" type="" />
+    <Item num="16" name="Silver Watch" type="" />
+    <Item num="17" name="Gold Watch" type="" />
+    <Item num="18" name="Depth Meter" type="" />
+    <Item num="19" name="Gold Bar" type="" />
+    <Item num="20" name="Copper Bar" type="" />
+    <Item num="21" name="Silver Bar" type="" />
+    <Item num="22" name="Iron Bar" type="" />
+    <Item num="23" name="Gel" type="" />
+    <Item num="24" name="Wooden Sword" type="" />
+    <Item num="25" name="Wooden Door" type="" />
+    <Item num="26" name="Stone Wall" type="" />
+    <Item num="27" name="Acorn" type="" />
+    <Item num="28" name="Lesser Healing Potion" type="" />
+    <Item num="29" name="Life Crystal" type="" />
+    <Item num="30" name="Dirt Wall" type="" />
+    <Item num="31" name="Bottle" type="" />
+    <Item num="32" name="Wooden Table" type="" />
+    <Item num="33" name="Furnace" type="" />
+    <Item num="34" name="Wooden Chair" type="" />
+    <Item num="35" name="Iron Anvil" type="" />
+    <Item num="36" name="Work Bench" type="" />
+    <Item num="37" name="Goggles" type="" />
+    <Item num="38" name="Lens" type="" />
+    <Item num="39" name="Wooden Bow" type="" />
+    <Item num="40" name="Wooden Arrow" type="" />
+    <Item num="41" name="Flaming Arrow" type="" />
+    <Item num="42" name="Shuriken" type="" />
+    <Item num="43" name="Suspicious Looking Eye" type="" />
+    <Item num="44" name="Demon Bow" type="" />
+    <Item num="45" name="War Axe of the Night" type="" />
+    <Item num="46" name="Light's Bane" type="" />
+    <Item num="47" name="Unholy Arrow" type="" />
+    <Item num="48" name="Chest" type="" />
+    <Item num="49" name="Band of Regeneration" type="" />
+    <Item num="50" name="Magic Mirror" type="" />
+    <Item num="51" name="Jester's Arrow" type="" />
+    <Item num="52" name="Angel Statue" type="" />
+    <Item num="53" name="Cloud in a Bottle" type="" />
+    <Item num="54" name="Hermes Boots" type="" />
+    <Item num="55" name="Enchanted Boomerang" type="" />
+    <Item num="56" name="Demonite Ore" type="" />
+    <Item num="57" name="Demonite Bar" type="" />
+    <Item num="58" name="Heart" type="" />
+    <Item num="59" name="Corrupt Seeds" type="" />
+    <Item num="60" name="Vile Mushroom" type="" />
+    <Item num="61" name="Ebonstone Block" type="" />
+    <Item num="62" name="Grass Seeds" type="" />
+    <Item num="63" name="Sunflower" type="" />
+    <Item num="64" name="Vilethorn" type="" />
+    <Item num="65" name="Starfury" type="" />
+    <Item num="66" name="Purification Powder" type="" />
+    <Item num="67" name="Vile Powder" type="" />
+    <Item num="68" name="Rotten Chunk" type="" />
+    <Item num="69" name="Worm Tooth" type="" />
+    <Item num="70" name="Worm Food" type="" />
+    <Item num="71" name="Copper Coin" type="" />
+    <Item num="72" name="Silver Coin" type="" />
+    <Item num="73" name="Gold Coin" type="" />
+    <Item num="74" name="Platinum Coin" type="" />
+    <Item num="75" name="Fallen Star" type="" />
+    <Item num="76" name="Copper Greaves" type="" />
+    <Item num="77" name="Iron Greaves" type="" />
+    <Item num="78" name="Silver Greaves" type="" />
+    <Item num="79" name="Gold Greaves" type="" />
+    <Item num="80" name="Copper Chainmail" type="" />
+    <Item num="81" name="Iron Chainmail" type="" />
+    <Item num="82" name="Silver Chainmail" type="" />
+    <Item num="83" name="Gold Chainmail" type="" />
+    <Item num="84" name="Grappling Hook" type="" />
+    <Item num="85" name="Iron Chain" type="" />
+    <Item num="86" name="Shadow Scale" type="" />
+    <Item num="87" name="Piggy Bank" type="" />
+    <Item num="88" name="Mining Helmet" type="" />
+    <Item num="89" name="Copper Helmet" type="" />
+    <Item num="90" name="Iron Helmet" type="" />
+    <Item num="91" name="Silver Helmet" type="" />
+    <Item num="92" name="Gold Helmet" type="" />
+    <Item num="93" name="Wood Wall" type="" />
+    <Item num="94" name="Wood Platform" type="" />
+    <Item num="95" name="Flintlock Pistol" type="" />
+    <Item num="96" name="Musket" type="" />
+    <Item num="97" name="Musket Ball" type="" />
+    <Item num="98" name="Minishark" type="" />
+    <Item num="99" name="Copper Bow" type="" />
+    <Item num="99" name="Gold Bow" type="" />
+    <Item num="99" name="Iron Bow" type="" />
+    <Item num="99" name="Silver Bow" type="" />
+    <Item num="100" name="Shadow Greaves" type="" />
+    <Item num="101" name="Shadow Scalemail" type="" />
+    <Item num="102" name="Shadow Helmet" type="" />
+    <Item num="103" name="Nightmare Pickaxe" type="" />
+    <Item num="104" name="The Breaker" type="" />
+    <Item num="105" name="Candle" type="" />
+    <Item num="106" name="Copper Chandelier" type="" />
+    <Item num="107" name="Silver Chandelier" type="" />
+    <Item num="108" name="Gold Chandelier" type="" />
+    <Item num="109" name="Mana Crystal" type="" />
+    <Item num="110" name="Lesser Mana Potion" type="" />
+    <Item num="111" name="Band of Starpower" type="" />
+    <Item num="112" name="Flower of Fire" type="" />
+    <Item num="113" name="Magic Missile" type="" />
+    <Item num="114" name="Dirt Rod" type="" />
+    <Item num="115" name="Orb of Light" type="" />
+    <Item num="116" name="Meteorite" type="" />
+    <Item num="117" name="Meteorite Bar" type="" />
+    <Item num="118" name="Hook" type="" />
+    <Item num="119" name="Flamarang" type="" />
+    <Item num="120" name="Molten Fury" type="" />
+    <Item num="121" name="Fiery Greatsword" type="" />
+    <Item num="122" name="Molten Pickaxe" type="" />
+    <Item num="123" name="Meteor Helmet" type="" />
+    <Item num="124" name="Meteor Suit" type="" />
+    <Item num="125" name="Meteor Leggings" type="" />
+    <Item num="126" name="Bottled Water" type="" />
+    <Item num="127" name="Space Gun" type="" />
+    <Item num="128" name="Rocket Boots" type="" />
+    <Item num="129" name="Gray Brick" type="" />
+    <Item num="130" name="Gray Brick Wall" type="" />
+    <Item num="131" name="Red Brick" type="" />
+    <Item num="132" name="Red Brick Wall" type="" />
+    <Item num="133" name="Clay Block" type="" />
+    <Item num="134" name="Blue Brick" type="" />
+    <Item num="135" name="Blue Brick Wall" type="" />
+    <Item num="136" name="Chain Lantern" type="" />
+    <Item num="137" name="Green Brick" type="" />
+    <Item num="138" name="Green Brick Wall" type="" />
+    <Item num="139" name="Pink Brick" type="" />
+    <Item num="140" name="Pink Brick Wall" type="" />
+    <Item num="141" name="Gold Brick" type="" />
+    <Item num="142" name="Gold Brick Wall" type="" />
+    <Item num="143" name="Silver Brick" type="" />
+    <Item num="144" name="Silver Brick Wall" type="" />
+    <Item num="145" name="Copper Brick" type="" />
+    <Item num="146" name="Copper Brick Wall" type="" />
+    <Item num="147" name="Spike" type="" />
+    <Item num="148" name="Water Candle" type="" />
+    <Item num="149" name="Book" type="" />
+    <Item num="150" name="Cobweb" type="" />
+    <Item num="151" name="Necro Helmet" type="" />
+    <Item num="152" name="Necro Breastplate" type="" />
+    <Item num="153" name="Necro Greaves" type="" />
+    <Item num="154" name="Bone" type="" />
+    <Item num="155" name="Muramasa" type="" />
+    <Item num="156" name="Cobalt Shield" type="" />
+    <Item num="157" name="Aqua Scepter" type="" />
+    <Item num="158" name="Lucky Horseshoe" type="" />
+    <Item num="159" name="Shiny Red Balloon" type="" />
+    <Item num="160" name="Harpoon" type="" />
+    <Item num="161" name="Spiky Ball" type="" />
+    <Item num="162" name="Ball O' Hurt" type="" />
+    <Item num="163" name="Blue Moon" type="" />
+    <Item num="164" name="Handgun" type="" />
+    <Item num="165" name="Water Bolt" type="" />
+    <Item num="166" name="Bomb" type="" />
+    <Item num="167" name="Dynamite" type="" />
+    <Item num="168" name="Grenade" type="" />
+    <Item num="169" name="Sand Block" type="" />
+    <Item num="170" name="Glass" type="" />
+    <Item num="171" name="Sign" type="" />
+    <Item num="172" name="Ash Block" type="" />
+    <Item num="173" name="Obsidian" type="" />
+    <Item num="174" name="Hellstone" type="" />
+    <Item num="175" name="Hellstone Bar" type="" />
+    <Item num="176" name="Mud Block" type="" />
+    <Item num="177" name="Sapphire" type="" />
+    <Item num="178" name="Ruby" type="" />
+    <Item num="179" name="Emerald" type="" />
+    <Item num="180" name="Topaz" type="" />
+    <Item num="181" name="Amethyst" type="" />
+    <Item num="182" name="Diamond" type="" />
+    <Item num="183" name="Glowing Mushroom" type="" />
+    <Item num="184" name="Star" type="" />
+    <Item num="185" name="Ivy Whip" type="" />
+    <Item num="186" name="Breathing Reed" type="" />
+    <Item num="187" name="Flipper" type="" />
+    <Item num="188" name="Healing Potion" type="" />
+    <Item num="189" name="Mana Potion" type="" />
+    <Item num="190" name="Blade of Grass" type="" />
+    <Item num="191" name="Thorn Chakram" type="" />
+    <Item num="192" name="Obsidian Brick" type="" />
+    <Item num="193" name="Obsidian Skull" type="" />
+    <Item num="194" name="Mushroom Grass Seeds" type="" />
+    <Item num="195" name="Jungle Grass Seeds" type="" />
+    <Item num="196" name="Wooden Hammer" type="" />
+    <Item num="197" name="Star Cannon" type="" />
+    <Item num="198" name="Blue Phaseblade" type="" />
+    <Item num="198" name="Blue Phasesaber" type="" />
+    <Item num="199" name="Red Phaseblade" type="" />
+    <Item num="199" name="Red Phasesaber" type="" />
+    <Item num="200" name="Green Phaseblade" type="" />
+    <Item num="200" name="Green Phasesaber" type="" />
+    <Item num="201" name="Purple Phaseblade" type="" />
+    <Item num="201" name="Purple Phasesaber" type="" />
+    <Item num="202" name="White Phaseblade" type="" />
+    <Item num="202" name="White Phasesaber" type="" />
+    <Item num="203" name="Yellow Phaseblade" type="" />
+    <Item num="203" name="Yellow Phasesaber" type="" />
+    <Item num="204" name="Meteor Hamaxe" type="" />
+    <Item num="205" name="Empty Bucket" type="" />
+    <Item num="206" name="Water Bucket" type="" />
+    <Item num="207" name="Lava Bucket" type="" />
+    <Item num="208" name="Jungle Rose" type="" />
+    <Item num="209" name="Stinger" type="" />
+    <Item num="210" name="Vine" type="" />
+    <Item num="211" name="Feral Claws" type="" />
+    <Item num="212" name="Anklet of the Wind" type="" />
+    <Item num="213" name="Staff of Regrowth" type="" />
+    <Item num="214" name="Hellstone Brick" type="" />
+    <Item num="215" name="Whoopie Cushion" type="" />
+    <Item num="216" name="Shackle" type="" />
+    <Item num="217" name="Molten Hamaxe" type="" />
+    <Item num="218" name="Flamelash" type="" />
+    <Item num="219" name="Phoenix Blaster" type="" />
+    <Item num="220" name="Sunfury" type="" />
+    <Item num="221" name="Hellforge" type="" />
+    <Item num="222" name="Clay Pot" type="" />
+    <Item num="223" name="Nature's Gift" type="" />
+    <Item num="224" name="Bed" type="" />
+    <Item num="225" name="Silk" type="" />
+    <Item num="226" name="Lesser Restoration Potion" type="" />
+    <Item num="227" name="Restoration Potion" type="" />
+    <Item num="228" name="Jungle Hat" type="" />
+    <Item num="229" name="Jungle Shirt" type="" />
+    <Item num="230" name="Jungle Pants" type="" />
+    <Item num="231" name="Molten Helmet" type="" />
+    <Item num="232" name="Molten Breastplate" type="" />
+    <Item num="233" name="Molten Greaves" type="" />
+    <Item num="234" name="Meteor Shot" type="" />
+    <Item num="235" name="Sticky Bomb" type="" />
+    <Item num="236" name="Black Lens" type="" />
+    <Item num="237" name="Sunglasses" type="" />
+    <Item num="238" name="Wizard Hat" type="" />
+    <Item num="239" name="Top Hat" type="" />
+    <Item num="240" name="Tuxedo Shirt" type="" />
+    <Item num="241" name="Tuxedo Pants" type="" />
+    <Item num="242" name="Summer Hat" type="" />
+    <Item num="243" name="Bunny Hood" type="" />
+    <Item num="244" name="Plumber's Hat" type="" />
+    <Item num="245" name="Plumber's Shirt" type="" />
+    <Item num="246" name="Plumber's Pants" type="" />
+    <Item num="247" name="Hero's Hat" type="" />
+    <Item num="248" name="Hero's Shirt" type="" />
+    <Item num="249" name="Hero's Pants" type="" />
+    <Item num="250" name="Fish Bowl" type="" />
+    <Item num="251" name="Archaeologist's Hat" type="" />
+    <Item num="252" name="Archaeologist's Jacket" type="" />
+    <Item num="253" name="Archaeologist's Pants" type="" />
+    <Item num="254" name="Black Dye" type="" />
+    <Item num="255" name="Green Dye" type="" />
+    <Item num="256" name="Ninja Hood" type="" />
+    <Item num="257" name="Ninja Shirt" type="" />
+    <Item num="258" name="Ninja Pants" type="" />
+    <Item num="259" name="Leather" type="" />
+    <Item num="260" name="Red Hat" type="" />
+    <Item num="261" name="Goldfish" type="" />
+    <Item num="262" name="Robe" type="" />
+    <Item num="263" name="Robot Hat" type="" />
+    <Item num="264" name="Gold Crown" type="" />
+    <Item num="265" name="Hellfire Arrow" type="" />
+    <Item num="266" name="Sandgun" type="" />
+    <Item num="267" name="Guide Voodoo Doll" type="" />
+    <Item num="268" name="Diving Helmet" type="" />
+    <Item num="269" name="Familiar Shirt" type="" />
+    <Item num="270" name="Familiar Pants" type="" />
+    <Item num="271" name="Familiar Wig" type="" />
+    <Item num="272" name="Demon Scythe" type="" />
+    <Item num="273" name="Night's Edge" type="" />
+    <Item num="274" name="Dark Lance" type="" />
+    <Item num="275" name="Coral" type="" />
+    <Item num="276" name="Cactus" type="" />
+    <Item num="277" name="Trident" type="" />
+    <Item num="278" name="Silver Bullet" type="" />
+    <Item num="279" name="Throwing Knife" type="" />
+    <Item num="280" name="Spear" type="" />
+    <Item num="281" name="Blowpipe" type="" />
+    <Item num="282" name="Glowstick" type="" />
+    <Item num="283" name="Seed" type="" />
+    <Item num="284" name="Wooden Boomerang" type="" />
+    <Item num="285" name="Aglet" type="" />
+    <Item num="286" name="Sticky Glowstick" type="" />
+    <Item num="287" name="Poisoned Knife" type="" />
+    <Item num="288" name="Obsidian Skin Potion" type="" />
+    <Item num="289" name="Regeneration Potion" type="" />
+    <Item num="290" name="Swiftness Potion" type="" />
+    <Item num="291" name="Gills Potion" type="" />
+    <Item num="292" name="Ironskin Potion" type="" />
+    <Item num="293" name="Mana Regeneration Potion" type="" />
+    <Item num="294" name="Magic Power Potion" type="" />
+    <Item num="295" name="Featherfall Potion" type="" />
+    <Item num="296" name="Spelunker Potion" type="" />
+    <Item num="297" name="Invisibility Potion" type="" />
+    <Item num="298" name="Shine Potion" type="" />
+    <Item num="299" name="Night Owl Potion" type="" />
+    <Item num="300" name="Battle Potion" type="" />
+    <Item num="301" name="Thorns Potion" type="" />
+    <Item num="302" name="Water Walking Potion" type="" />
+    <Item num="303" name="Archery Potion" type="" />
+    <Item num="304" name="Hunter Potion" type="" />
+    <Item num="305" name="Gravitation Potion" type="" />
+    <Item num="306" name="Gold Chest" type="" />
+    <Item num="307" name="Daybloom Seeds" type="" />
+    <Item num="308" name="Moonglow Seeds" type="" />
+    <Item num="309" name="Blinkroot Seeds" type="" />
+    <Item num="310" name="Deathweed Seeds" type="" />
+    <Item num="311" name="Waterleaf Seeds" type="" />
+    <Item num="312" name="Fireblossom Seeds" type="" />
+    <Item num="313" name="Daybloom" type="" />
+    <Item num="314" name="Moonglow" type="" />
+    <Item num="315" name="Blinkroot" type="" />
+    <Item num="316" name="Deathweed" type="" />
+    <Item num="317" name="Waterleaf" type="" />
+    <Item num="318" name="Fireblossom" type="" />
+    <Item num="319" name="Shark Fin" type="" />
+    <Item num="320" name="Feather" type="" />
+    <Item num="321" name="Tombstone" type="" />
+    <Item num="322" name="Mime Mask" type="" />
+    <Item num="323" name="Antlion Mandible" type="" />
+    <Item num="324" name="Illegal Gun Parts" type="" />
+    <Item num="325" name="The Doctor's Shirt" type="" />
+    <Item num="326" name="The Doctor's Pants" type="" />
+    <Item num="327" name="Golden Key" type="" />
+    <Item num="328" name="Shadow Chest" type="" />
+    <Item num="329" name="Shadow Key" type="" />
+    <Item num="330" name="Obsidian Brick Wall" type="" />
+    <Item num="331" name="Jungle Spores" type="" />
+    <Item num="332" name="Loom" type="" />
+    <Item num="333" name="Piano" type="" />
+    <Item num="334" name="Dresser" type="" />
+    <Item num="335" name="Bench" type="" />
+    <Item num="336" name="Bathtub" type="" />
+    <Item num="337" name="Red Banner" type="" />
+    <Item num="338" name="Green Banner" type="" />
+    <Item num="339" name="Blue Banner" type="" />
+    <Item num="340" name="Yellow Banner" type="" />
+    <Item num="341" name="Lamp Post" type="" />
+    <Item num="342" name="Tiki Torch" type="" />
+    <Item num="343" name="Barrel" type="" />
+    <Item num="344" name="Chinese Lantern" type="" />
+    <Item num="345" name="Cooking Pot" type="" />
+    <Item num="346" name="Safe" type="" />
+    <Item num="347" name="Skull Lantern" type="" />
+    <Item num="348" name="Trash Can" type="" />
+    <Item num="349" name="Candelabra" type="" />
+    <Item num="350" name="Pink Vase" type="" />
+    <Item num="351" name="Mug" type="" />
+    <Item num="352" name="Keg" type="" />
+    <Item num="353" name="Ale" type="" />
+    <Item num="354" name="Bookcase" type="" />
+    <Item num="355" name="Throne" type="" />
+    <Item num="356" name="Bowl" type="" />
+    <Item num="357" name="Bowl of Soup" type="" />
+    <Item num="358" name="Toilet" type="" />
+    <Item num="359" name="Grandfather Clock" type="" />
+    <Item num="360" name="Armor Statue" type="" />
+    <Item num="361" name="Goblin Battle Standard" type="" />
+    <Item num="362" name="Tattered Cloth" type="" />
+    <Item num="363" name="Sawmill" type="" />
+    <Item num="364" name="Cobalt Ore" type="" />
+    <Item num="365" name="Mythril Ore" type="" />
+    <Item num="366" name="Adamantite Ore" type="" />
+    <Item num="367" name="Pwnhammer" type="" />
+    <Item num="368" name="Excalibur" type="" />
+    <Item num="369" name="Hallowed Seeds" type="" />
+    <Item num="370" name="Ebonsand Block" type="" />
+    <Item num="371" name="Cobalt Hat" type="" />
+    <Item num="372" name="Cobalt Helmet" type="" />
+    <Item num="373" name="Cobalt Mask" type="" />
+    <Item num="374" name="Cobalt Breastplate" type="" />
+    <Item num="375" name="Cobalt Leggings" type="" />
+    <Item num="376" name="Mythril Hood" type="" />
+    <Item num="377" name="Mythril Helmet" type="" />
+    <Item num="378" name="Mythril Hat" type="" />
+    <Item num="379" name="Mythril Chainmail" type="" />
+    <Item num="380" name="Mythril Greaves" type="" />
+    <Item num="381" name="Cobalt Bar" type="" />
+    <Item num="382" name="Mythril Bar" type="" />
+    <Item num="383" name="Cobalt Chainsaw" type="" />
+    <Item num="384" name="Mythril Chainsaw" type="" />
+    <Item num="385" name="Cobalt Drill" type="" />
+    <Item num="386" name="Mythril Drill" type="" />
+    <Item num="387" name="Adamantite Chainsaw" type="" />
+    <Item num="388" name="Adamantite Drill" type="" />
+    <Item num="389" name="Dao of Pow" type="" />
+    <Item num="390" name="Mythril Halberd" type="" />
+    <Item num="391" name="Adamantite Bar" type="" />
+    <Item num="392" name="Glass Wall" type="" />
+    <Item num="393" name="Compass" type="" />
+    <Item num="394" name="Diving Gear" type="" />
+    <Item num="395" name="GPS" type="" />
+    <Item num="396" name="Obsidian Horseshoe" type="" />
+    <Item num="397" name="Obsidian Shield" type="" />
+    <Item num="398" name="Tinkerer's Workshop" type="" />
+    <Item num="399" name="Cloud in a Balloon" type="" />
+    <Item num="400" name="Adamantite Headgear" type="" />
+    <Item num="401" name="Adamantite Helmet" type="" />
+    <Item num="402" name="Adamantite Mask" type="" />
+    <Item num="403" name="Adamantite Breastplate" type="" />
+    <Item num="404" name="Adamantite Leggings" type="" />
+    <Item num="405" name="Spectre Boots" type="" />
+    <Item num="406" name="Adamantite Glaive" type="" />
+    <Item num="407" name="Toolbelt" type="" />
+    <Item num="408" name="Pearlsand Block" type="" />
+    <Item num="409" name="Pearlstone Block" type="" />
+    <Item num="410" name="Mining Shirt" type="" />
+    <Item num="411" name="Mining Pants" type="" />
+    <Item num="412" name="Pearlstone Brick" type="" />
+    <Item num="413" name="Iridescent Brick" type="" />
+    <Item num="414" name="Mudstone Block" type="" />
+    <Item num="415" name="Cobalt Brick" type="" />
+    <Item num="416" name="Mythril Brick" type="" />
+    <Item num="417" name="Pearlstone Brick Wall" type="" />
+    <Item num="418" name="Iridescent Brick Wall" type="" />
+    <Item num="419" name="Mudstone Brick Wall" type="" />
+    <Item num="420" name="Cobalt Brick Wall" type="" />
+    <Item num="421" name="Mythril Brick Wall" type="" />
+    <Item num="422" name="Holy Water" type="" />
+    <Item num="423" name="Unholy Water" type="" />
+    <Item num="424" name="Silt Block" type="" />
+    <Item num="425" name="Fairy Bell" type="" />
+    <Item num="426" name="Breaker Blade" type="" />
+    <Item num="427" name="Blue Torch" type="" />
+    <Item num="428" name="Red Torch" type="" />
+    <Item num="429" name="Green Torch" type="" />
+    <Item num="430" name="Purple Torch" type="" />
+    <Item num="431" name="White Torch" type="" />
+    <Item num="432" name="Yellow Torch" type="" />
+    <Item num="433" name="Demon Torch" type="" />
+    <Item num="434" name="Clockwork Assault Rifle" type="" />
+    <Item num="435" name="Cobalt Repeater" type="" />
+    <Item num="436" name="Mythril Repeater" type="" />
+    <Item num="437" name="Dual Hook" type="" />
+    <Item num="438" name="Star Statue" type="" />
+    <Item num="439" name="Sword Statue" type="" />
+    <Item num="440" name="Slime Statue" type="" />
+    <Item num="441" name="Goblin Statue" type="" />
+    <Item num="442" name="Shield Statue" type="" />
+    <Item num="443" name="Bat Statue" type="" />
+    <Item num="444" name="Fish Statue" type="" />
+    <Item num="445" name="Bunny Statue" type="" />
+    <Item num="446" name="Skeleton Statue" type="" />
+    <Item num="447" name="Reaper Statue" type="" />
+    <Item num="448" name="Woman Statue" type="" />
+    <Item num="449" name="Imp Statue" type="" />
+    <Item num="450" name="Gargoyle Statue" type="" />
+    <Item num="451" name="Gloom Statue" type="" />
+    <Item num="452" name="Hornet Statue" type="" />
+    <Item num="453" name="Bomb Statue" type="" />
+    <Item num="454" name="Crab Statue" type="" />
+    <Item num="455" name="Hammer Statue" type="" />
+    <Item num="456" name="Potion Statue" type="" />
+    <Item num="457" name="Spear Statue" type="" />
+    <Item num="458" name="Cross Statue" type="" />
+    <Item num="459" name="Jellyfish Statue" type="" />
+    <Item num="460" name="Bow Statue" type="" />
+    <Item num="461" name="Boomerang Statue" type="" />
+    <Item num="462" name="Boot Statue" type="" />
+    <Item num="463" name="Chest Statue" type="" />
+    <Item num="464" name="Bird Statue" type="" />
+    <Item num="465" name="Axe Statue" type="" />
+    <Item num="466" name="Corrupt Statue" type="" />
+    <Item num="467" name="Tree Statue" type="" />
+    <Item num="468" name="Anvil Statue" type="" />
+    <Item num="469" name="Pickaxe Statue" type="" />
+    <Item num="470" name="Mushroom Statue" type="" />
+    <Item num="471" name="Eyeball Statue" type="" />
+    <Item num="472" name="Pillar Statue" type="" />
+    <Item num="473" name="Heart Statue" type="" />
+    <Item num="474" name="Pot Statue" type="" />
+    <Item num="475" name="Sunflower Statue" type="" />
+    <Item num="476" name="King Statue" type="" />
+    <Item num="477" name="Queen Statue" type="" />
+    <Item num="478" name="Pirahna Statue" type="" />
+    <Item num="479" name="Planked Wall" type="" />
+    <Item num="480" name="Wooden Beam" type="" />
+    <Item num="481" name="Adamantite Repeater" type="" />
+    <Item num="482" name="Adamantite Sword" type="" />
+    <Item num="483" name="Cobalt Sword" type="" />
+    <Item num="484" name="Mythril Sword" type="" />
+    <Item num="485" name="Moon Charm" type="" />
+    <Item num="486" name="Ruler" type="" />
+    <Item num="487" name="Crystal Ball" type="" />
+    <Item num="488" name="Disco Ball" type="" />
+    <Item num="489" name="Sorcerer Emblem" type="" />
+    <Item num="490" name="Warrior Emblem" type="" />
+    <Item num="491" name="Ranger Emblem" type="" />
+    <Item num="492" name="Demon Wings" type="" />
+    <Item num="493" name="Angel Wings" type="" />
+    <Item num="494" name="Magical Harp" type="" />
+    <Item num="495" name="Rainbow Rod" type="" />
+    <Item num="496" name="Ice Rod" type="" />
+    <Item num="497" name="Neptune's Shell" type="" />
+    <Item num="498" name="Mannequin" type="" />
+    <Item num="499" name="Greater Healing Potion" type="" />
+    <Item num="500" name="Greater Mana Potion" type="" />
+    <Item num="501" name="Pixie Dust" type="" />
+    <Item num="502" name="Crystal Shard" type="" />
+    <Item num="503" name="Clown Hat" type="" />
+    <Item num="504" name="Clown Shirt" type="" />
+    <Item num="505" name="Clown Pants" type="" />
+    <Item num="506" name="Flamethrower" type="" />
+    <Item num="507" name="Bell" type="" />
+    <Item num="508" name="Harp" type="" />
+    <Item num="509" name="Wrench" type="" />
+    <Item num="510" name="Wire Cutter" type="" />
+    <Item num="511" name="Active Stone Block" type="" />
+    <Item num="512" name="Inactive Stone Block" type="" />
+    <Item num="513" name="Lever" type="" />
+    <Item num="514" name="Laser Rifle" type="" />
+    <Item num="515" name="Crystal Bullet" type="" />
+    <Item num="516" name="Holy Arrow" type="" />
+    <Item num="517" name="Magic Dagger" type="" />
+    <Item num="518" name="Crystal Storm" type="" />
+    <Item num="519" name="Cursed Flames" type="" />
+    <Item num="520" name="Soul of Light" type="" />
+    <Item num="521" name="Soul of Night" type="" />
+    <Item num="522" name="Cursed Flame" type="" />
+    <Item num="523" name="Cursed Torch" type="" />
+    <Item num="524" name="Adamantite Forge" type="" />
+    <Item num="525" name="Mythril Anvil" type="" />
+    <Item num="526" name="Unicorn Horn" type="" />
+    <Item num="527" name="Dark Shard" type="" />
+    <Item num="528" name="Light Shard" type="" />
+    <Item num="529" name="Red Pressure Plate" type="" />
+    <Item num="530" name="Wire" type="" />
+    <Item num="531" name="Spell Tome" type="" />
+    <Item num="532" name="Star Cloak" type="" />
+    <Item num="533" name="Megashark" type="" />
+    <Item num="534" name="Shotgun" type="" />
+    <Item num="535" name="Philosopher's Stone" type="" />
+    <Item num="536" name="Titan Glove" type="" />
+    <Item num="537" name="Cobalt Naginata" type="" />
+    <Item num="538" name="Switch" type="" />
+    <Item num="539" name="Dart Trap" type="" />
+    <Item num="540" name="Boulder" type="" />
+    <Item num="541" name="Green Pressure Plate" type="" />
+    <Item num="542" name="Gray Pressure Plate" type="" />
+    <Item num="543" name="Brown Pressure Plate" type="" />
+    <Item num="544" name="Mechanical Eye" type="" />
+    <Item num="545" name="Cursed Arrow" type="" />
+    <Item num="546" name="Cursed Bullet" type="" />
+    <Item num="547" name="Soul of Fright" type="" />
+    <Item num="548" name="Soul of Might" type="" />
+    <Item num="549" name="Soul of Sight" type="" />
+    <Item num="550" name="Gungnir" type="" />
+    <Item num="551" name="Hallowed Plate Mail" type="" />
+    <Item num="552" name="Hallowed Greaves" type="" />
+    <Item num="553" name="Hallowed Helmet" type="" />
+    <Item num="554" name="Cross Necklace" type="" />
+    <Item num="555" name="Mana Flower" type="" />
+    <Item num="556" name="Mechanical Worm" type="" />
+    <Item num="557" name="Mechanical Skull" type="" />
+    <Item num="558" name="Hallowed Headgear" type="" />
+    <Item num="559" name="Hallowed Mask" type="" />
+    <Item num="560" name="Slime Crown" type="" />
+    <Item num="561" name="Light Disc" type="" />
+    <Item num="562" name="Music Box (Overworld Day)" type="" />
+    <Item num="563" name="Music Box (Eerie)" type="" />
+    <Item num="564" name="Music Box (Night)" type="" />
+    <Item num="565" name="Music Box (Title)" type="" />
+    <Item num="566" name="Music Box (Underground)" type="" />
+    <Item num="567" name="Music Box (Boss 1)" type="" />
+    <Item num="568" name="Music Box (Jungle)" type="" />
+    <Item num="569" name="Music Box (Corruption)" type="" />
+    <Item num="570" name="Music Box (Underground Corruption)" type="" />
+    <Item num="571" name="Music Box (The Hallow)" type="" />
+    <Item num="572" name="Music Box (Boss 2)" type="" />
+    <Item num="573" name="Music Box (Underground Hallow)" type="" />
+    <Item num="574" name="Music Box (Boss 3)" type="" />
+    <Item num="575" name="Soul of Flight" type="" />
+    <Item num="576" name="Music Box" type="" />
+    <Item num="577" name="Demonite Brick" type="" />
+    <Item num="578" name="Hallowed Repeater" type="" />
+    <Item num="579" name="Hamdrax" type="" />
+    <Item num="580" name="Explosives" type="" />
+    <Item num="581" name="Inlet Pump" type="" />
+    <Item num="582" name="Outlet Pump" type="" />
+    <Item num="583" name="1 Second Timer" type="" />
+    <Item num="584" name="3 Second Timer" type="" />
+    <Item num="585" name="5 Second Timer" type="" />
+    <Item num="586" name="Candy Cane Block" type="" />
+    <Item num="587" name="Candy Cane Wall" type="" />
+    <Item num="588" name="Santa Hat" type="" />
+    <Item num="589" name="Santa Shirt" type="" />
+    <Item num="590" name="Santa Pants" type="" />
+    <Item num="591" name="Green Candy Cane Block" type="" />
+    <Item num="592" name="Green Candy Cane Wall" type="" />
+    <Item num="593" name="Snow Block" type="" />
+    <Item num="594" name="Snow Brick" type="" />
+    <Item num="595" name="Snow Brick Wall" type="" />
+    <Item num="596" name="Blue Light" type="" />
+    <Item num="597" name="Red Light" type="" />
+    <Item num="598" name="Green Light" type="" />
+    <Item num="599" name="Blue Present" type="" />
+    <Item num="600" name="Green Present" type="" />
+    <Item num="601" name="Yellow Present" type="" />
+    <Item num="602" name="Snow Globe" type="" />
   </Items>
 </Settings>
