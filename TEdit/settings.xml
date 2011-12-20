@@ -677,11 +677,7 @@ Single item; tag has no children.  Has the following properties:
     <Tile num="138" name="Boulder" color="#FF636363" isFramed="true" />
     <Tile num="139" name="Music" color="#FF996343" isFramed="true" />
     <Tile num="140" name="Demonite Brick" color="#FF7875B3" />
-    <Tile num="141" name="Explosives" color="#FFAD2323" isFramed="true" size="1,1">
-      <Frames>
-        <Frame upperLeft="0,0" name="Explosives" />
-      </Frames>
-    </Tile>
+    <Tile num="141" name="Explosives" color="#FFAD2323" isFramed="true" size="1,1" />
     <Tile num="142" name="Out block" color="#FFC90303" isFramed="true" />
     <Tile num="143" name="In block" color="#FFC90303" isFramed="true" />
     <Tile num="144" name="Timer" color="#FFC90303" isFramed="true" />
