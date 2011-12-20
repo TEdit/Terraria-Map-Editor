@@ -658,16 +658,16 @@ Single item; tag has no children.  Has the following properties:
     <Tile num="119" name="Iridescent Brick" color="#FF3F3F49" />
     <Tile num="120" name="Mudstone Brick" color="#FF967A7D" />
     <Tile num="121" name="Cobalt Brick" color="#FF2576AB" />
-    <Tile num="122" name="Unknown Brick 122" color="#FF91BF75" />
+    <Tile num="122" name="Mithril Brick" color="#FF91BF75" />
     <Tile num="123" name="Silt" color="#FF595353"  />
-    <Tile num="124" name="Tile 124" color="#FF5C4436" />
+    <Tile num="124" name="Wooden Beam" color="#FF5C4436" />
     <Tile num="125" name="Crystal Ball" color="#FF81A5FF" isFramed="true" />
     <Tile num="126" name="Ball" color="#FFDBDBDB" isFramed="true" />
     <Tile num="127" name="Glass" color="#FF68B3C8" />
     <Tile num="128" name="Armor Stand" color="#FF906850" isFramed="true" />
     <Tile num="129" name="Spikes 129" color="#FF004979" isFramed="true" />
-    <Tile num="130" name="Unknown Stone 130" color="#FFA5A5A5"  />
-    <Tile num="131" name="Unknown Stone 131" color="#FF1A1A1A"  />
+    <Tile num="130" name="Active Stone" color="#FFA5A5A5"  />
+    <Tile num="131" name="Inactive Stone" color="#FF1A1A1A"  />
     <Tile num="132" name="Lever" color="#FFC90303" isFramed="true" />
     <Tile num="133" name="Fireplace" color="#FF891012" isFramed="true" />
     <Tile num="134" name="Adamantium Anvil" color="#FF96AE87" isFramed="true" />
@@ -676,8 +676,12 @@ Single item; tag has no children.  Has the following properties:
     <Tile num="137" name="Skull" color="#FF8C8C8C" isFramed="true" />
     <Tile num="138" name="Boulder" color="#FF636363" isFramed="true" />
     <Tile num="139" name="Music" color="#FF996343" isFramed="true" />
-    <Tile num="140" name="Unknown Brick 140" color="#FF7875B3" />
-    <Tile num="141" name="Unknown block 141" color="#FFAD2323" isFramed="true" />
+    <Tile num="140" name="Demonite Brick" color="#FF7875B3" />
+    <Tile num="141" name="Explosives" color="#FFAD2323" isFramed="true" size="1,1">
+      <Frames>
+        <Frame upperLeft="0,0" name="Explosives" />
+      </Frames>
+    </Tile>
     <Tile num="142" name="Out block" color="#FFC90303" isFramed="true" />
     <Tile num="143" name="In block" color="#FFC90303" isFramed="true" />
     <Tile num="144" name="Timer" color="#FFC90303" isFramed="true" />
