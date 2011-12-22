@@ -39,11 +39,17 @@ namespace TEditXna.View
             }
         }
 
+        private void InitializeGraphicsComponents(GraphicsDeviceEventArgs e)
+        {
+            // Load services, textures and initialize spritebatch
+            _serviceProvider = new SimpleProvider(xnaViewport.GraphicsService);
+            _spriteBatch = new SpriteBatch(e.GraphicsDevice);
+            _textureDictionary = new Textures(_serviceProvider);
+        }
+
         private UInt32[] colors;
-        private bool contentLoaded = false;
         private int tileWidth = 256;
         private int tileHeight = 256;
-        private Rectangle tileRectangle = new Rectangle(0, 0, 256, 256);
         private Rectangle worldBounds = new Rectangle(0, 0, 2048, 2048);
 
         private void xnaViewport_LoadContent(object sender, GraphicsDeviceEventArgs e)
@@ -59,6 +65,9 @@ namespace TEditXna.View
             // Start the Game Timer
             _gameTimer.Start();
         }
+
+        private AnimatedTexture _npc17;
+        private SpriteFont _font;
 
         private void GenerateDummyContent(GraphicsDeviceEventArgs e)
         {
@@ -82,13 +91,7 @@ namespace TEditXna.View
             }
         }
 
-        private void InitializeGraphicsComponents(GraphicsDeviceEventArgs e)
-        {
-            // Load services, textures and initialize spritebatch
-            _serviceProvider = new SimpleProvider(xnaViewport.GraphicsService);
-            _spriteBatch = new SpriteBatch(e.GraphicsDevice);
-            _textureDictionary = new Textures(_serviceProvider);
-        }
+
 
         private void LoadTerrariaTextures()
         {
@@ -102,9 +105,7 @@ namespace TEditXna.View
             }
         }
 
-        private AnimatedTexture _npc17;
 
-        private SpriteFont _font;
 
         private void xnaViewport_RenderXna(object sender, GraphicsDeviceEventArgs e)
         {
@@ -124,6 +125,8 @@ namespace TEditXna.View
             ScrollWorld();
         }
 
+        #region Render
+        
         private void Render(GraphicsDeviceEventArgs e)
         {
             // Clear the graphics device and texture buffer
@@ -173,6 +176,8 @@ namespace TEditXna.View
                     0);
             }
         }
+
+        #endregion
 
         private static Vector2 PointToVector2(Point point)
         {
