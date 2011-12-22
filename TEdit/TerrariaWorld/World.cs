@@ -1,5 +1,7 @@
 ﻿using System.Collections.ObjectModel;
 using System.ComponentModel.Composition;
+using System.Diagnostics;
+using System.Dynamic;
 using System.Linq;
 using TEdit.Common;
 using TEdit.Common.Structures;
@@ -19,7 +21,7 @@ namespace TEdit.TerrariaWorld
         private readonly ObservableCollectionEx<Chest> _Chests = new ObservableCollectionEx<Chest>();
         private readonly ObservableCollectionEx<NPC> _Npcs = new ObservableCollectionEx<NPC>();
         private readonly ObservableCollectionEx<Sign> _Signs = new ObservableCollectionEx<Sign>();
-        private WorldHeader _Header;
+        private dynamic _Header;
         private Chest[] _chests = new Chest[MaxChests];
         private NPC[] _npcs = new NPC[MaxNpcs];
         private Sign[] _signs = new Sign[MaxSigns];
@@ -33,11 +35,12 @@ namespace TEdit.TerrariaWorld
 
         public World()
         {
+            Debug.WriteLine("Ctor World");
             Header = new WorldHeader();
             ClearWorld();
         }
 
-        public WorldHeader Header
+        public dynamic Header
         {
             get { return _Header; }
             set

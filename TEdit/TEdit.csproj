@@ -182,12 +182,6 @@
     <Compile Include="Views\WorldPropertiesView.xaml.cs">
       <DependentUpon>WorldPropertiesView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="WriteableBitmapEx\NativeMethods.cs" />
-    <Compile Include="WriteableBitmapEx\WriteableBitmapBaseExtensions.cs" />
-    <Compile Include="WriteableBitmapEx\WriteableBitmapFillExtensions.cs" />
-    <Compile Include="WriteableBitmapEx\WriteableBitmapShapeExtensions.cs" />
-    <Compile Include="WriteableBitmapEx\WriteableBitmapSplineExtensions.cs" />
-    <Compile Include="WriteableBitmapEx\WriteableBitmapTransformationExtensions.cs" />
     <Page Include="Controls\ScrollViewerThumbnail.xaml">
       <Generator>MSBuild:Compile</Generator>
       <DependentUpon>ScrollViewerThumbnail.cs</DependentUpon>
@@ -351,6 +345,12 @@
       <ProductName>Windows Installer 3.1</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\BCCL\BCCL\BCCL.csproj">
+      <Project>{3D233DE2-586B-49F1-8E83-86399078EAE6}</Project>
+      <Name>BCCL</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

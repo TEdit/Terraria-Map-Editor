@@ -1,0 +1,54 @@
+﻿using System;
+
+namespace TEditXNA.Terraria.Objects
+{
+    [Flags]
+    public enum Liquid
+    {
+        None = 0x00,
+
+        Water = 0x01,
+        Lava = 0x02,
+
+        All = Water | Lava
+    }
+
+    public enum FrameDirection
+    {
+        None,
+        Left,
+        Right,
+        Center,
+        Up,
+    }
+
+    [Flags]
+    public enum FramePlacement
+    {
+        None = 0x00,
+
+        Floor = 0x01,
+        Surface = 0x02,
+        Ceiling = 0x04,
+        Left = 0x08,
+        Right = 0x10,
+        Float = 0x20,
+        MustHaveAll = 0x40,
+
+        Wall = Left | Right,
+
+        FloorSurface = Floor | Surface,
+        FloorCeiling = Floor | Ceiling,          // currently not encountered in Terraria
+        FloorSurfaceCeiling = FloorSurface | Ceiling,   // currently not encountered in Terraria
+        WallCeiling = Wall | Ceiling,          // currently not encountered in Terraria
+        WallFloor = Wall | Floor,
+        WallFloorCeiling = Wall | FloorCeiling,
+        WallFloorSurface = Wall | FloorSurface,     // currently not encountered in Terraria
+
+        AnySurface = WallFloorCeiling | Surface,        // currently not encountered in Terraria
+        Any = AnySurface | Float,
+        CFBoth = FloorCeiling | MustHaveAll,
+
+        All = Any | MustHaveAll     // only used as a bitwise tautology/disjunction
+    }
+}
