@@ -14,6 +14,11 @@ namespace TEditXNA.Terraria
         public double Light;
         public bool HasWire;
 
+        public object Clone()
+        {
+            return MemberwiseClone();
+        }
+
         public bool Equals(Tile other)
         {
             if (ReferenceEquals(null, other)) return false;

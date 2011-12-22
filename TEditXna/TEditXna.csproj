@@ -57,6 +57,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Render\PixelMap.cs" />
     <Compile Include="Terraria\Chest.cs" />
     <Compile Include="Terraria\Item.cs" />
     <Compile Include="Terraria\NPC.cs" />
@@ -71,6 +72,8 @@
     <Compile Include="Terraria\Tile.cs" />
     <Compile Include="Terraria\World.cs" />
     <Compile Include="Terraria\World.Settings.cs" />
+    <Compile Include="ViewModel\ViewModelLocator.cs" />
+    <Compile Include="ViewModel\WorldViewModel.cs" />
     <Compile Include="View\WorldRenderXna.xaml.cs">
       <DependentUpon>WorldRenderXna.xaml</DependentUpon>
     </Compile>
@@ -128,6 +131,12 @@
       <Project>{3D233DE2-586B-49F1-8E83-86399078EAE6}</Project>
       <Name>BCCL</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="settings.xml">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

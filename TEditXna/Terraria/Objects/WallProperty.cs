@@ -9,6 +9,7 @@ namespace TEditXNA.Terraria.Objects
         private Color _color;
         private int _id;
         private string _name;
+        private bool _isHouse;
 
         public WallProperty()
         {
@@ -23,6 +24,14 @@ namespace TEditXNA.Terraria.Objects
             _id = id;
             _name = name;
         }
+
+        public bool IsHouse
+        {
+            get { return _isHouse; }
+            set { Set("IsHouse", ref _isHouse, value); }
+        }
+
+
 
         public Color Color
         {
@@ -40,14 +49,6 @@ namespace TEditXNA.Terraria.Objects
         {
             get { return _name; }
             set { Set("Name", ref _name, value); }
-        }
-
-        private bool _isPlayerWall;
-
-        public bool IsPlayerWall
-        {
-            get { return _isPlayerWall; }
-            set { Set("IsPlayerWall", ref _isPlayerWall, value); }
         }
 
         private WriteableBitmap _image;

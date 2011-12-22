@@ -14,13 +14,10 @@ namespace TEditXNA.Terraria.Objects
         private bool _isFramed;
         private Vector2Short _frameSize;
         private readonly ObservableCollection<FrameProperty> _frames = new ObservableCollection<FrameProperty>();
-         
-
-        public ObservableCollection<FrameProperty> Frames
-        {
-            get { return _frames; }
-        }
-
+        private bool _isSolid;
+        private bool _isSolidTop;
+        private bool _isLight;
+        private FramePlacement _placement;
         public TileProperty()
         {
             _frameSize = new Vector2Short(1, 1);
@@ -29,6 +26,36 @@ namespace TEditXNA.Terraria.Objects
             _name = "UNKNOWN";
             _isFramed = false;
         }
+        public FramePlacement Placement
+        {
+            get { return _placement; }
+            set { Set("Placement", ref _placement, value); }
+        }
+
+        public bool IsLight
+        {
+            get { return _isLight; }
+            set { Set("IsLight", ref _isLight, value); }
+        }
+
+        public bool IsSolidTop
+        {
+            get { return _isSolidTop; }
+            set { Set("IsSolidTop", ref _isSolidTop, value); }
+        }
+
+        public bool IsSolid
+        {
+            get { return _isSolid; }
+            set { Set("IsSolid", ref _isSolid, value); }
+        }
+
+        public ObservableCollection<FrameProperty> Frames
+        {
+            get { return _frames; }
+        }
+
+
 
         public TileProperty(int id, string name, Color color, bool isFramed = false)
         {

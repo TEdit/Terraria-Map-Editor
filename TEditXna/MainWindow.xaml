@@ -5,7 +5,31 @@
     Foreground="{StaticResource TextBrush}" Background="{StaticResource WindowBackgroundBrush}">
     <Grid>
         <DockPanel LastChildFill="True">
-            <StatusBar DockPanel.Dock="Bottom" Height="30" Background="{x:Null}" Padding="2">
+            <Menu DockPanel.Dock="Top">
+                <MenuItem Header="File">
+                    <MenuItem Header="New" />
+                    <MenuItem Header="Open" Command="{Binding CommandOpenWorld}" />
+                    <Separator Margin="1"/>
+                    <MenuItem Header="Save" />
+                    <MenuItem Header="Save As" />
+                    <Separator Margin="1"/>
+                    <MenuItem Header="Exit" />
+                </MenuItem>
+                <MenuItem Header="Display">
+                    <MenuItem Header="Show Backdrop" IsCheckable="True" IsChecked="True" />
+                    <MenuItem Header="Show Wires" IsCheckable="True" IsChecked="False" />
+                    <MenuItem Header="Show Textures" IsCheckable="True" IsChecked="False" />
+                </MenuItem>
+                <MenuItem Header="Help">
+                    <MenuItem Header="Wiki" />
+                    <Separator Margin="1" /> 
+                    <MenuItem Header="Update" />
+                    <MenuItem Header="Download New XML Data" />
+                    <Separator Margin="1"/>
+                    <MenuItem Header="About" />
+                </MenuItem>
+            </Menu>
+            <StatusBar DockPanel.Dock="Bottom" Height="30" Background="{x:Null}" Padding="2" Foreground="{StaticResource TextBrush}">
                 <StatusBarItem HorizontalAlignment="Right">
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Text="{Binding Path=Progress.UserState, Mode=OneWay}" VerticalAlignment="Center" Margin="2,0" />

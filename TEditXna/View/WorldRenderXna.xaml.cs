@@ -9,6 +9,7 @@ using BCCL.UI.Xaml.XnaContentHost.Primitives2D;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using TEditXNA.Terraria;
+using TEditXna.ViewModel;
 using Point = System.Windows.Point;
 using Rectangle = Microsoft.Xna.Framework.Rectangle;
 
@@ -20,6 +21,8 @@ namespace TEditXna.View
     /// </summary>
     public partial class WorldRenderXna : UserControl
     {
+        private readonly WorldViewModel _localWvmReference;
+
         // cool XNA spritebatch in WPF
         private SpriteBatch _spriteBatch;
         // game timer for rendering
@@ -37,6 +40,9 @@ namespace TEditXna.View
                 InitializeComponent();
                 _gameTimer = new GameTimer();
             }
+
+            _localWvmReference = ViewModelLocator.WorldViewModel;
+
         }
 
         private void InitializeGraphicsComponents(GraphicsDeviceEventArgs e)
@@ -98,9 +104,9 @@ namespace TEditXna.View
             // If the texture dictionary is valid (Found terraria and loaded content) load texture data
             if (_textureDictionary.Valid)
             {
-                //_textureDictionary.GetNPC(17);
+                _textureDictionary.GetNPC(17);
                 //_font = _textureDictionary.ContentManager.Load<SpriteFont>("Fonts\\Mouse_Text");
-                //_npc17 = new AnimatedTexture(_textureDictionary.Npcs[17], new Vector2(0, 0), 0F, 0F, 0F, 16, 20F, 2, int.MaxValue);
+                _npc17 = new AnimatedTexture(_textureDictionary.Npcs[17], new Vector2(0, 0), 0F, 0F, 0F, 16, 20F, 2, int.MaxValue);
                 //_npc17.SetAnimation(5F, 0, 1);
             }
         }
@@ -121,12 +127,27 @@ namespace TEditXna.View
         {
             // Update
             _gameTimer.Update();
-            //_npc17.UpdateFrame((float)_gameTimer.ElapsedGameTime.TotalSeconds);
+
+            if (_npc17 != null)
+                _npc17.UpdateFrame((float)_gameTimer.ElapsedGameTime.TotalSeconds);
+
+            
             ScrollWorld();
         }
 
+        private void GetWorldMap()
+        {
+            if (_localWvmReference != null)
+            {
+                if (_localWvmReference.PixelMap != null)
+                {
+                    tileMap[0].SetData<Color>(_localWvmReference.PixelMap, (_localWvmReference.CurrentWorld.TilesHigh / 2) * _localWvmReference.CurrentWorld.TilesWide, tileHeight * tileWidth);
+                }
+            }
+        }
+
         #region Render
-        
+
         private void Render(GraphicsDeviceEventArgs e)
         {
             // Clear the graphics device and texture buffer
@@ -136,13 +157,13 @@ namespace TEditXna.View
             // Start SpriteBatch
             _spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.Default, RasterizerState.CullNone);
 
-            {
-                // Draw Pixel Map tiles
-                DrawPixelTiles(_spriteBatch);
+            
+            // Draw Pixel Map tiles
+            DrawPixelTiles(_spriteBatch);
+            
+            // Draw sprite overlays
+            DrawSprites(_spriteBatch);
 
-                // Draw sprite overlays
-                DrawSprites(_spriteBatch);
-            }
             // End SpriteBatch
             _spriteBatch.End();
         }
@@ -152,14 +173,15 @@ namespace TEditXna.View
             if (!_textureDictionary.Valid)
                 return;
 
-            _npc17.DrawFrame(spriteBatch, new Vector2(100, 10));
+            if (_npc17 != null)
+                _npc17.DrawFrame(spriteBatch, new Vector2(100, 10));
         }
 
         private void DrawPixelTiles(SpriteBatch spriteBatch)
         {
             for (int i = 0; i < tileMap.Length; i++)
                 tileMap[i].SetData<UInt32>(colors, i * tileWidth * tileHeight, tileWidth * tileHeight);
-
+            GetWorldMap();
             for (int i = 0; i < tileMap.Length; i++)
             {
                 spriteBatch.Draw(

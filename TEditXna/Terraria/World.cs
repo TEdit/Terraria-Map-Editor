@@ -1,4 +1,5 @@
-﻿using BCCL.Geometry;
+﻿using System.ComponentModel;
+using BCCL.Geometry;
 using BCCL.MvvmLight;
 using BCCL.Utility;
 using Microsoft.Xna.Framework;
@@ -16,6 +17,17 @@ namespace TEditXNA.Terraria
 
     public partial class World : ObservableObject
     {
+        /// <summary>
+        /// Triggered when an operation reports progress.
+        /// </summary>
+        public static event ProgressChangedEventHandler ProgressChanged;
+
+        private static void OnProgressChanged(object sender, ProgressChangedEventArgs e)
+        {
+            if (ProgressChanged != null)
+                ProgressChanged(sender, e);
+        }
+
         public World()
         {
             NPCs.Clear();
@@ -23,13 +35,14 @@ namespace TEditXNA.Terraria
             Chests.Clear();
             CharacterNames.Clear();
         }
+
         public World(int height, int width, string title, int seed = -1)
             : this()
         {
             TilesWide = width;
             TilesHigh = height;
             Title = title;
-            var r = seed <= 0 ? new Random((int)DateTime.Now.Ticks) : new Random(seed);
+            var r = seed <= 0 ? new Random((int) DateTime.Now.Ticks) : new Random(seed);
             WorldID = r.Next(int.MaxValue);
             _npcs.Clear();
             _signs.Clear();
@@ -40,24 +53,28 @@ namespace TEditXNA.Terraria
         public Tile[,] Tiles;
 
         private readonly IList<NPC> _npcs = new ObservableCollection<NPC>();
+
         public IList<NPC> NPCs
         {
             get { return _npcs; }
         }
 
         private readonly IList<Sign> _signs = new ObservableCollection<Sign>();
+
         public IList<Sign> Signs
         {
             get { return _signs; }
         }
 
         private readonly IList<Chest> _chests = new ObservableCollection<Chest>();
+
         public IList<Chest> Chests
         {
             get { return _chests; }
         }
 
         private readonly Dictionary<int, string> _charNames = new Dictionary<int, string>();
+
         public Dictionary<int, string> CharacterNames
         {
             get { return _charNames; }
@@ -105,14 +122,12 @@ namespace TEditXNA.Terraria
 
         #region Properties
 
-        
-         
-
         public bool DownedFrost
         {
             get { return _downedFrost; }
             set { Set("IsDownedFrost", ref _downedFrost, value); }
         }
+
         public string Title
         {
             get { return _title; }
@@ -297,6 +312,7 @@ namespace TEditXNA.Terraria
         {
             if (resetTime)
             {
+                OnProgressChanged(this, new ProgressChangedEventArgs(0, "Resetting Time..."));
                 DayTime = true;
                 Time = 13500.0;
                 MoonPhase = 0;
@@ -305,6 +321,7 @@ namespace TEditXNA.Terraria
 
             if (filename == null)
                 return;
+
             string temp = filename;
             using (var fs = new FileStream(temp, FileMode.Create))
             {
@@ -313,10 +330,10 @@ namespace TEditXNA.Terraria
                     bw.Write(Version);
                     bw.Write(Title);
                     bw.Write(WorldID);
-                    bw.Write((int)LeftWorld);
-                    bw.Write((int)RightWorld);
-                    bw.Write((int)TopWorld);
-                    bw.Write((int)BottomWorld);
+                    bw.Write((int) LeftWorld);
+                    bw.Write((int) RightWorld);
+                    bw.Write((int) TopWorld);
+                    bw.Write((int) BottomWorld);
                     bw.Write(TilesHigh);
                     bw.Write(TilesWide);
                     bw.Write(SpawnX);
@@ -340,7 +357,7 @@ namespace TEditXNA.Terraria
                     bw.Write(DownedFrost);
                     bw.Write(ShadowOrbSmashed);
                     bw.Write(SpawnMeteor);
-                    bw.Write((byte)ShadowOrbCount);
+                    bw.Write((byte) ShadowOrbCount);
                     bw.Write(AltarCount);
                     bw.Write(HardMode);
                     bw.Write(InvasionDelay);
@@ -351,7 +368,8 @@ namespace TEditXNA.Terraria
 
                     for (int x = 0; x < TilesWide; ++x)
                     {
-                        // statusText = "Saving world data: " + (object) (int) ((double) ((float) local_5 / (float) TilesWide) * 100.0 + 1.0) + "%";
+                        OnProgressChanged(this, new ProgressChangedEventArgs(x.ProgressPercentage(TilesWide), "Saving Tiles..."));
+
                         int rle = 0;
                         for (int y = 0; y < TilesHigh; y = y + rle + 1)
                         {
@@ -375,7 +393,7 @@ namespace TEditXNA.Terraria
                                             Chests.Add(new Chest(x, y));
                                         }
                                     }
-                                    //validate sign entry exists
+                                        //validate sign entry exists
                                     else if (curTile.Type == 55 || curTile.Type == 85)
                                     {
                                         if (GetSignAtTile(x, y) == null)
@@ -385,14 +403,14 @@ namespace TEditXNA.Terraria
                                     }
                                 }
                             }
-                            if ((int)curTile.Wall > 0)
+                            if ((int) curTile.Wall > 0)
                             {
                                 bw.Write(true);
                                 bw.Write(curTile.Wall);
                             }
                             else
                                 bw.Write(false);
-                            if ((int)curTile.Liquid > 0)
+                            if ((int) curTile.Liquid > 0)
                             {
                                 bw.Write(true);
                                 bw.Write(curTile.Liquid);
@@ -405,9 +423,10 @@ namespace TEditXNA.Terraria
                             while (y + rle < TilesHigh && curTile.Equals(Tiles[x, (y + rle)]))
                                 ++rle;
                             rle = rle - 1;
-                            bw.Write((short)rle);
+                            bw.Write((short) rle);
                         }
                     }
+                    OnProgressChanged(null, new ProgressChangedEventArgs(100, "Saving Chests..."));
                     for (int i = 0; i < 1000; ++i)
                     {
                         if (Chests.Count <= i)
@@ -422,7 +441,7 @@ namespace TEditXNA.Terraria
                             bw.Write(curChest.Y);
                             for (int j = 0; j < Chest.MaxItems; ++j)
                             {
-                                bw.Write((byte)curChest.Items[j].StackSize);
+                                bw.Write((byte) curChest.Items[j].StackSize);
                                 if (curChest.Items[j].StackSize > 0)
                                 {
                                     bw.Write(curChest.Items[j].ItemName);
@@ -431,6 +450,7 @@ namespace TEditXNA.Terraria
                             }
                         }
                     }
+                    OnProgressChanged(null, new ProgressChangedEventArgs(100, "Saving Signs..."));
                     for (int i = 0; i < 1000; ++i)
                     {
                         if (Signs.Count <= i || string.IsNullOrWhiteSpace(Signs[i].Text))
@@ -446,6 +466,7 @@ namespace TEditXNA.Terraria
                             bw.Write(curSign.Y);
                         }
                     }
+                    OnProgressChanged(null, new ProgressChangedEventArgs(100, "Saving NPC Data..."));
                     for (int i = 0; i < 200; ++i)
                     {
                         if (NPCs.Count <= i)
@@ -454,7 +475,7 @@ namespace TEditXNA.Terraria
                             break;
                         }
 
-                        NPC curNpc = (NPC)NPCs[i];
+                        NPC curNpc = (NPC) NPCs[i];
 
                         bw.Write(true);
                         bw.Write(curNpc.Name);
@@ -466,6 +487,7 @@ namespace TEditXNA.Terraria
 
                     }
 
+                    OnProgressChanged(null, new ProgressChangedEventArgs(100, "Saving NPC Names..."));
                     bw.Write(CharacterNames[17]);
                     bw.Write(CharacterNames[18]);
                     bw.Write(CharacterNames[19]);
@@ -476,6 +498,8 @@ namespace TEditXNA.Terraria
                     bw.Write(CharacterNames[107]);
                     bw.Write(CharacterNames[108]);
                     bw.Write(CharacterNames[124]);
+
+                    OnProgressChanged(null, new ProgressChangedEventArgs(100, "Saving Validation Data..."));
                     bw.Write(true);
                     bw.Write(Title);
                     bw.Write(WorldID);
@@ -489,6 +513,7 @@ namespace TEditXNA.Terraria
                     }
                     File.Copy(temp, filename, true);
                     File.Delete(temp);
+                    OnProgressChanged(null, new ProgressChangedEventArgs(100, "World Save Complete."));
                 }
             }
         }
@@ -502,17 +527,17 @@ namespace TEditXNA.Terraria
                 w.Title = b.ReadString();
 
                 w.WorldID = b.ReadInt32();
-                w.LeftWorld = (float)b.ReadInt32();
-                w.RightWorld = (float)b.ReadInt32();
-                w.TopWorld = (float)b.ReadInt32();
-                w.BottomWorld = (float)b.ReadInt32();
+                w.LeftWorld = (float) b.ReadInt32();
+                w.RightWorld = (float) b.ReadInt32();
+                w.TopWorld = (float) b.ReadInt32();
+                w.BottomWorld = (float) b.ReadInt32();
 
                 w.TilesHigh = b.ReadInt32();
                 w.TilesWide = b.ReadInt32();
                 w.SpawnX = b.ReadInt32();
                 w.SpawnY = b.ReadInt32();
-                w.GroundLevel = (int)b.ReadDouble();
-                w.RockLevel = (int)b.ReadDouble();
+                w.GroundLevel = (int) b.ReadDouble();
+                w.RockLevel = (int) b.ReadDouble();
 
                 // read world flags
                 w.Time = b.ReadDouble();
@@ -538,7 +563,7 @@ namespace TEditXNA.Terraria
                     w.DownedFrost = b.ReadBoolean();
                 w.ShadowOrbSmashed = b.ReadBoolean();
                 w.SpawnMeteor = b.ReadBoolean();
-                w.ShadowOrbCount = (int)b.ReadByte();
+                w.ShadowOrbCount = (int) b.ReadByte();
                 if (w.Version >= 23)
                 {
                     w.AltarCount = b.ReadInt32();
@@ -551,169 +576,186 @@ namespace TEditXNA.Terraria
 
 
 
-                w.Tiles = new Tile[w.TilesWide, w.TilesHigh];
+                w.Tiles = new Tile[w.TilesWide,w.TilesHigh];
                 for (int x = 0; x < w.TilesWide; ++x)
                 {
-                    // statusText = "Saving world data: " + (object) (int) ((double) ((float) local_5 / (float) TilesWide) * 100.0 + 1.0) + "%";
-                    //int rle = 0;
+                    OnProgressChanged(null, new ProgressChangedEventArgs(x.ProgressPercentage(w.TilesWide), "Loading Tiles..."));
+
+                    Tile prevtype = new Tile();
                     for (int y = 0; y < w.TilesHigh; y++)
                     {
-                        w.Tiles[x, y].IsActive = b.ReadBoolean();
-                        if (w.Tiles[x, y].IsActive)
+
+                        var tile = new Tile();
+
+                        tile.IsActive = b.ReadBoolean();
+
+                        if (tile.IsActive)
                         {
-                            w.Tiles[x, y].Type = b.ReadByte();
-                            if (w.Tiles[x, y].Type == 0x7f)
-                                w.Tiles[x, y].IsActive = false;
-                            if (TileProperties[w.Tiles[x, y].Type].IsFramed)
+                            tile.Type = b.ReadByte();
+                            if (tile.Type == (int) sbyte.MaxValue)
+                                tile.IsActive = false;
+                            if (TileProperties[tile.Type].IsFramed)
                             {
                                 // torches didn't have extra in older versions.
-                                if (w.Version < 0x1c && w.Tiles[x, y].Type == 4)
+                                if (w.Version < 28 && tile.Type == 4)
                                 {
-                                    w.Tiles[x, y].U = 0;
-                                    w.Tiles[x, y].V = 0;
+                                    tile.U = 0;
+                                    tile.V = 0;
                                 }
                                 else
                                 {
-                                    w.Tiles[x, y].U = b.ReadInt16();
-                                    w.Tiles[x, y].V = b.ReadInt16();
-                                    if (w.Tiles[x, y].Type == 128) //armor stand
-                                        w.Tiles[x, y].U %= 100;
-                                    if (w.Tiles[x, y].Type == 144) //timer
-                                        w.Tiles[x, y].V = 0;
+                                    tile.U = b.ReadInt16();
+                                    tile.V = b.ReadInt16();
+                                    //if (tile.Type == 128) //armor stand
+                                    //    tile.Frame = new PointShort((short)(tile.Frame.X % 100), tile.Frame.Y);
+
+                                    if (tile.Type == 144) //timer
+                                        tile.V = 0;
                                 }
-
-
                             }
                             else
                             {
-                                w.Tiles[x, y].U = -1;
-                                w.Tiles[x, y].V = -1;
+                                tile.U = -1;
+                                tile.V = -1;
                             }
                         }
                         if (w.Version <= 25)
                             b.ReadBoolean(); //skip obsolete hasLight
                         if (b.ReadBoolean())
                         {
-                            w.Tiles[x, y].Wall = b.ReadByte();
-                            w.Tiles[x, y].WallU = -1;
-                            w.Tiles[x, y].WallV = -1;
+                            tile.Wall = b.ReadByte();
                         }
-                        else
-                            w.Tiles[x, y].Wall = 0;
+                        //else
+                        //    tile.Wall = 0;
                         if (b.ReadBoolean())
                         {
-                            w.Tiles[x, y].Liquid = b.ReadByte();
-                            w.Tiles[x, y].IsLava = b.ReadBoolean();
+                            tile.Liquid = b.ReadByte();
+                            tile.IsLava = b.ReadBoolean();
                         }
-                        else
-                            w.Tiles[x, y].Liquid = 0;
+
                         if (w.Version >= 33)
-                            w.Tiles[x, y].HasWire = b.ReadBoolean();
-                        else
-                            w.Tiles[x, y].HasWire = false;
+                            tile.HasWire = b.ReadBoolean();
+                        //else
+                        //    tile.HasWire = false;
+                        w.Tiles[x, y] = tile;
+
+                        var ptype = (Tile) prevtype.Clone();
+                        prevtype = (Tile) tile.Clone();
                         if (w.Version >= 25) //compression ftw :)
                         {
                             int rle = b.ReadInt16();
-                            for (int r = 1; r < rle + 1; r++)
+                            if (rle > 0)
                             {
-                                w.Tiles[x, y + r] = w.Tiles[x, y + r].DeepCopy();
-                            }
-                        }
-                    }
-                    w.Chests.Clear();
-                    for (int i = 0; i < 1000; i++)
-                    {
-                        if (b.ReadBoolean())
-                        {
-                            var chest = new Chest(b.ReadInt32(), b.ReadInt32());
-                            for (int ii = 0; ii < Chest.MaxItems; ii++)
-                            {
-                                chest.Items[ii].StackSize = b.ReadByte();
-                                if (chest.Items[ii].StackSize > 0)
+                                for (int r = y + 1; r < y + rle + 1; r++)
                                 {
-                                    chest.Items[ii].ItemName = b.ReadString();
-                                    if (w.Version >= 36) //item prefixes
-                                        chest.Items[ii].Prefix = b.ReadByte(); //toss prefix
+                                    var tcopy = (Tile) tile.Clone();
+                                    w.Tiles[x, r] = tcopy;
                                 }
+                                y += rle;
                             }
-                            w.Chests.Add(chest);
                         }
                     }
-                    w.Signs.Clear();
-                    for (int i = 0; i < 1000; i++)
-                    {
-                        if (b.ReadBoolean())
-                        {
-                            Sign sign = new Sign();
-                            sign.Text = b.ReadString();
-                            sign.X = b.ReadInt32();
-                            sign.Y = b.ReadInt32();
-                            w.Signs.Add(sign);
-                        }
-                    }
-                    w.NPCs.Clear();
-                    while (b.ReadBoolean())
-                    {
-                        var npc = new NPC();
-                        npc.Name = b.ReadString();
-                        npc.Position = new BCCL.Geometry.Primitives.Vector2(b.ReadSingle(), b.ReadSingle());
-                        npc.IsHomeless = b.ReadBoolean();
-                        npc.Home = new Vector2Int32(b.ReadInt32(), b.ReadInt32());
-                        npc.SpriteId = 0;
-                        if (npc.Name == "Merchant") npc.SpriteId = 17;
-                        if (npc.Name == "Nurse") npc.SpriteId = 18;
-                        if (npc.Name == "Arms Dealer") npc.SpriteId = 19;
-                        if (npc.Name == "Dryad") npc.SpriteId = 20;
-                        if (npc.Name == "Guide") npc.SpriteId = 22;
-                        if (npc.Name == "Old Man") npc.SpriteId = 37;
-                        if (npc.Name == "Demolitionist") npc.SpriteId = 38;
-                        if (npc.Name == "Clothier") npc.SpriteId = 54;
-                        if (npc.Name == "Goblin Tinkerer") npc.SpriteId = 107;
-                        if (npc.Name == "Wizard") npc.SpriteId = 108;
-                        if (npc.Name == "Mechanic") npc.SpriteId = 124;
-
-                        w.NPCs.Add(npc);
-                    }
-                    // if (version>=0x1f) read the names of the following npcs:
-                    // merchant, nurse, arms dealer, dryad, guide, clothier, demolitionist,
-                    // tinkerer and wizard
-                    // if (version>=0x23) read the name of the mechanic
-
-                    if (w.Version >= 31)
-                    {
-                        w.CharacterNames.Add(17, b.ReadString());
-                        w.CharacterNames.Add(18, b.ReadString());
-                        w.CharacterNames.Add(19, b.ReadString());
-                        w.CharacterNames.Add(20, b.ReadString());
-                        w.CharacterNames.Add(22, b.ReadString());
-                        w.CharacterNames.Add(54, b.ReadString());
-                        w.CharacterNames.Add(38, b.ReadString());
-                        w.CharacterNames.Add(107, b.ReadString());
-                        w.CharacterNames.Add(108, b.ReadString());
-                        if (w.Version >= 35)
-                            w.CharacterNames.Add(124, b.ReadString());
-                    }
-                    if (w.Version >= 7)
-                    {
-                        bool validation = b.ReadBoolean();
-                        string checkTitle = b.ReadString();
-                        int checkVersion = b.ReadInt32();
-                        if (validation && checkTitle == w.Title && checkVersion == w.WorldID)
-                        {
-                            //w.loadSuccess = true;
-                        }
-                        else
-                        {
-                            b.Close();
-                            throw new FileLoadException("Error reading world file validation parameters!");
-                        }
-                    }
-
                 }
+                w.Chests.Clear();
+                OnProgressChanged(null, new ProgressChangedEventArgs(100, "Loading Chests..."));
+                for (int i = 0; i < 1000; i++)
+                {
+                    if (b.ReadBoolean())
+                    {
+                        var chest = new Chest(b.ReadInt32(), b.ReadInt32());
+                        for (int slot = 0; slot < Chest.MaxItems; slot++)
+                        {
+                            chest.Items[slot].StackSize = b.ReadByte();
+                            if (chest.Items[slot].StackSize > 0)
+                            {
+                                chest.Items[slot].ItemName = b.ReadString();
+
+                                // Read prefix
+                                if (w.Version >= 36)
+                                    chest.Items[slot].Prefix = b.ReadByte();
+                            }
+                        }
+                        w.Chests.Add(chest);
+                    }
+                }
+                w.Signs.Clear();
+                OnProgressChanged(null, new ProgressChangedEventArgs(100, "Loading Signs..."));
+                for (int i = 0; i < 1000; i++)
+                {
+                    if (b.ReadBoolean())
+                    {
+                        Sign sign = new Sign();
+                        sign.Text = b.ReadString();
+                        sign.X = b.ReadInt32();
+                        sign.Y = b.ReadInt32();
+                        w.Signs.Add(sign);
+                    }
+                }
+                w.NPCs.Clear();
+                OnProgressChanged(null, new ProgressChangedEventArgs(100, "Loading NPC Data..."));
+                while (b.ReadBoolean())
+                {
+                    var npc = new NPC();
+                    npc.Name = b.ReadString();
+                    npc.Position = new BCCL.Geometry.Primitives.Vector2(b.ReadSingle(), b.ReadSingle());
+                    npc.IsHomeless = b.ReadBoolean();
+                    npc.Home = new Vector2Int32(b.ReadInt32(), b.ReadInt32());
+                    npc.SpriteId = 0;
+                    if (npc.Name == "Merchant") npc.SpriteId = 17;
+                    if (npc.Name == "Nurse") npc.SpriteId = 18;
+                    if (npc.Name == "Arms Dealer") npc.SpriteId = 19;
+                    if (npc.Name == "Dryad") npc.SpriteId = 20;
+                    if (npc.Name == "Guide") npc.SpriteId = 22;
+                    if (npc.Name == "Old Man") npc.SpriteId = 37;
+                    if (npc.Name == "Demolitionist") npc.SpriteId = 38;
+                    if (npc.Name == "Clothier") npc.SpriteId = 54;
+                    if (npc.Name == "Goblin Tinkerer") npc.SpriteId = 107;
+                    if (npc.Name == "Wizard") npc.SpriteId = 108;
+                    if (npc.Name == "Mechanic") npc.SpriteId = 124;
+
+                    w.NPCs.Add(npc);
+                }
+                // if (version>=0x1f) read the names of the following npcs:
+                // merchant, nurse, arms dealer, dryad, guide, clothier, demolitionist,
+                // tinkerer and wizard
+                // if (version>=0x23) read the name of the mechanic
+
+
+                if (w.Version >= 31)
+                {
+                    OnProgressChanged(null, new ProgressChangedEventArgs(100, "Loading NPC Names..."));
+                    w.CharacterNames.Add(17, b.ReadString());
+                    w.CharacterNames.Add(18, b.ReadString());
+                    w.CharacterNames.Add(19, b.ReadString());
+                    w.CharacterNames.Add(20, b.ReadString());
+                    w.CharacterNames.Add(22, b.ReadString());
+                    w.CharacterNames.Add(54, b.ReadString());
+                    w.CharacterNames.Add(38, b.ReadString());
+                    w.CharacterNames.Add(107, b.ReadString());
+                    w.CharacterNames.Add(108, b.ReadString());
+                    if (w.Version >= 35)
+                        w.CharacterNames.Add(124, b.ReadString());
+                }
+                if (w.Version >= 7)
+                {
+                    OnProgressChanged(null, new ProgressChangedEventArgs(100, "Validating File..."));
+                    bool validation = b.ReadBoolean();
+                    string checkTitle = b.ReadString();
+                    int checkVersion = b.ReadInt32();
+                    if (validation && checkTitle == w.Title && checkVersion == w.WorldID)
+                    {
+                        //w.loadSuccess = true;
+                    }
+                    else
+                    {
+                        b.Close();
+                        throw new FileLoadException("Error reading world file validation parameters!");
+                    }
+                }
+                OnProgressChanged(null, new ProgressChangedEventArgs(0, "World Load Complete."));
+
             }
             return w;
         }
     }
-
-
 }

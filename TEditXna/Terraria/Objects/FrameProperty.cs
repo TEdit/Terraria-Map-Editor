@@ -14,7 +14,6 @@ namespace TEditXNA.Terraria.Objects
             Color = Colors.Magenta;
             UV = new Vector2Short(0,0);
             Direction = FrameDirection.None;
-            Placement = FramePlacement.Any;
         }
         public FrameProperty(int id, string name, Vector2Short uv) : this()
         {
@@ -27,14 +26,16 @@ namespace TEditXNA.Terraria.Objects
         private Vector2Short _uV;
         private int _id;
         private FrameDirection _direction;
-        private FramePlacement _placement;
+        
         private Color _color;
         private WriteableBitmap _image;
+        private string _variety;
+         
 
-        public FramePlacement Placement
+        public string Variety
         {
-            get { return _placement; }
-            set { Set("Placement", ref _placement, value); }
+            get { return _variety; }
+            set { Set("Variety", ref _variety, value); }
         }
 
         public FrameDirection Direction
