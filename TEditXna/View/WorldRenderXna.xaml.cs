@@ -31,10 +31,12 @@ namespace TEditXna.View
 
         public WorldRenderXna()
         {
-            InitializeComponent();
-
+            // to stop visual studio design time crash :(
             if (!BCCL.Utility.Debugging.IsInDesignMode)
+            {
+                InitializeComponent();
                 Initialize();
+            }
         }
 
         void Initialize()

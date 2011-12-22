@@ -182,13 +182,13 @@ A Frame tag has the following (other) properties:
 Frame tags have a unique name among the name, variety, and dir properties.  So, they might be 
 displayed in the following fashion:
 
-<Frame upperLeft="22,0" name="Tree Trunk" dir="Up" variety="Right Indent A" />
+<Frame UV="22,0" Name="Tree Trunk" Dir="Up" Variety="Right Indent A" />
    Full Name: Tree Trunk - Right Indent A (Upwards)
 
-<Frame upperLeft="72,0" name="Gold Chest" variety="Locked" />
+<Frame UV="72,0" Name="Gold Chest" Variety="Locked" />
    Full Name: Gold Chest - Locked
 
-<Frame upperLeft="18,0" name="Chair" dir="Right" />
+<Frame UV="18,0" Name="Chair" Dir="Right" />
    Full Name: Chair (Right Facing)
 
 <Walls>
@@ -251,1109 +251,1093 @@ Single item; tag has no children.  Has the following properties:
 
 <Settings>
   <GlobalColors>
-    <GlobalColor name="Sky" color="#ff9bd1ff" />
-    <GlobalColor name="Earth" color="#ff583d2e" />
-    <GlobalColor name="Rock" color="#ff4a433c" />
-    <GlobalColor name="Hell" color="#ff330000" />
-    <GlobalColor name="Lava" color="#f0ff1e00" />
-    <GlobalColor name="Water" color="#80000cff" />
+    <GlobalColor Name="Sky" Color="#FF9BD1FF" />
+    <GlobalColor Name="Earth" Color="#FF583D2E" />
+    <GlobalColor Name="Rock" Color="#FF4A433C" />
+    <GlobalColor Name="Hell" Color="#FF330000" />
+    <GlobalColor Name="Lava" Color="#F0FF1E00" />
+    <GlobalColor Name="Water" Color="#80000CFF" />
   </GlobalColors>
   <Tiles>
-    <Tile num="0" name="Dirt" color="#ff916a4f" isSolid="true" />
-    <Tile num="1" name="Stone" color="#ff808080" isSolid="true" />
-    <Tile num="2" name="Grass" color="#ff1cd85e" isSolid="true" />
-    <Tile num="3" name="Grass Flowers" color="#ff0d6524" isSolid="true" isFramed="true" growsOn="2">
+    <Tile Id="0" Name="Dirt" Color="#FF916A4F"  Solid="true" />
+    <Tile Id="1" Name="Stone" Color="#FF808080"  Solid="true" />
+    <Tile Id="2" Name="Grass" Color="#FF1CD85E"  Solid="true" />
+    <Tile Id="3" Name="Grass Flowers" Color="#FF0D6524">
       <Frames>
-        <Frame upperLeft="0,0" name="Grass" dir="Right" variety="Single Blade" />
-        <Frame upperLeft="18,0" name="Grass" dir="Right" variety="Double Blade" />
-        <Frame upperLeft="36,0" name="Grass" dir="Up" variety="Small Y" />
-        <Frame upperLeft="54,0" name="Grass" dir="Right" variety="Three Small" />
-        <Frame upperLeft="72,0" name="Grass" dir="Left" variety="Single Blade" />
-        <Frame upperLeft="90,0" name="Grass" dir="Left" variety="Three Large" />
-        <Frame upperLeft="108,0" name="Flowers" dir="Left" variety="Purple, Immature" />
-        <Frame upperLeft="126,0" name="Flowers" dir="Right" variety="Pink, Immature" />
-        <Frame upperLeft="144,0" name="Mushroom" dir="Up" />
+        <Frame UV="0,0" Name="Grass" Dir="Right" Variety="Single Blade" />
+        <Frame UV="18,0" Name="Grass" Dir="Right" Variety="Double Blade" />
+        <Frame UV="36,0" Name="Grass" Dir="Up" Variety="Small Y" />
+        <Frame UV="54,0" Name="Grass" Dir="Right" Variety="Three Small" />
+        <Frame UV="72,0" Name="Grass" Dir="Left" Variety="Single Blade" />
+        <Frame UV="90,0" Name="Grass" Dir="Left" Variety="Three Large" />
+        <Frame UV="108,0" Name="Flowers" Dir="Left" Variety="Purple, Immature" />
+        <Frame UV="126,0" Name="Flowers" Dir="Right" Variety="Pink, Immature" />
+        <Frame UV="144,0" Name="Mushroom" Dir="Up" />
       </Frames>
     </Tile>
-    <Tile num="4" name="Torch" color="#fffd3e03" isFramed="true" isSolid="true" placement="wallFloor" lightBrightness="1.0" isHouseItem="true" />
-    <Tile num="5" name="Tree" color="#ff634631" isSolid="true" isFramed="true" growsOn="2">
+    <Tile Id="4" Name="Torch" Color="#FFFD3E03" Placement="wallFloor" Light="true" />
+    <Tile Id="5" Name="Tree" Color="#FF634631">
       <Frames>
-        <Frame upperLeft="0,0" name="Tree Trunk" dir="Up" variety="Plain A" />
-        <Frame upperLeft="22,0" name="Tree Trunk" dir="Up" variety="Right Indent A" />
-        <Frame upperLeft="44,0" name="Tree Trunk" dir="Up" variety="Right Slight Bulge A" />
-        <Frame upperLeft="66,0" name="Tree Branch" dir="Left" variety="Plain A" />
-        <Frame upperLeft="88,0" name="Tree Trunk" dir="Up" variety="Left Slight Bulge A" />
-        <Frame upperLeft="110,0" name="Tree Top" dir="Up" variety="Medium A" />
-        <Frame upperLeft="132,0" name="Tree Top" dir="Up" variety="Small A" />
-        <Frame upperLeft="154,0" name="Tree Top" dir="Right" variety="Large A" />
-
-        <Frame upperLeft="0,22" name="Tree Trunk" dir="Up" variety="Plain B" />
-        <Frame upperLeft="22,22" name="Tree Trunk" dir="Up" variety="Right Indent B" />
-        <Frame upperLeft="44,22" name="Tree Trunk" dir="Up" variety="Right Slight Bulge B" />
-        <Frame upperLeft="66,22" name="Tree Branch" dir="Left" variety="Plain B" />
-        <Frame upperLeft="88,22" name="Tree Trunk" dir="Up" variety="Left Slight Bulge B" />
-        <Frame upperLeft="110,22" name="Tree Top" dir="Up" variety="Medium B" />
-        <Frame upperLeft="132,22" name="Tree Top" dir="Up" variety="Small B" />
-        <Frame upperLeft="154,22" name="Tree Top" dir="Right" variety="Large B" />
-
-        <Frame upperLeft="0,44" name="Tree Trunk" dir="Up" variety="Plain C" />
-        <Frame upperLeft="22,44" name="Tree Trunk" dir="Up" variety="Right Indent C" />
-        <Frame upperLeft="44,44" name="Tree Trunk" dir="Up" variety="Right Slight Bulge C" />
-        <Frame upperLeft="66,44" name="Tree Branch" dir="Left" variety="Plain C" />
-        <Frame upperLeft="88,44" name="Tree Trunk" dir="Up" variety="Left Slight Bulge C" />
-        <Frame upperLeft="110,44" name="Tree Top" dir="Up" variety="Medium C" />
-        <Frame upperLeft="132,44" name="Tree Top" dir="Up" variety="Small C" />
-        <Frame upperLeft="154,44" name="Tree Top" dir="Right" variety="Large C" />
-
-        <Frame upperLeft="0,66" name="Tree Trunk" dir="Up" variety="Left Indent A" />
-        <Frame upperLeft="22,66" name="Tree Trunk" dir="Up" variety="Right Bulge A" />
-        <Frame upperLeft="44,66" name="Tree Trunk" dir="Up" variety="Left Bulge A" />
-        <Frame upperLeft="66,66" name="Tree Trunk" dir="Up" variety="Right Slight Bulge D" />
-        <Frame upperLeft="88,66" name="Tree Branch" dir="Right" variety="Plain A" />
-        <Frame upperLeft="110,66" name="Tree Trunk" dir="Up" variety="Double Slight Bulge A" />
-        <Frame upperLeft="132,66" name="Tree Top" dir="Up" variety="Small Right Slight Bulge A" />
-        <Frame upperLeft="154,66" name="Tree Top" dir="Left" variety="Large A" />
-
-        <Frame upperLeft="0,88" name="Tree Trunk" dir="Up" variety="Left Indent B" />
-        <Frame upperLeft="22,88" name="Tree Trunk" dir="Up" variety="Right Bulge B" />
-        <Frame upperLeft="44,88" name="Tree Trunk" dir="Up" variety="Left Bulge B" />
-        <Frame upperLeft="66,88" name="Tree Trunk" dir="Up" variety="Right Slight Bulge E" />
-        <Frame upperLeft="88,88" name="Tree Branch" dir="Right" variety="Plain B" />
-        <Frame upperLeft="110,88" name="Tree Trunk" dir="Up" variety="Double Slight Bulge B" />
-        <Frame upperLeft="132,88" name="Tree Top" dir="Up" variety="Small Right Slight Bulge B" />
-        <Frame upperLeft="154,88" name="Tree Top" dir="Left" variety="Large B" />
-
-        <Frame upperLeft="0,110" name="Tree Trunk" dir="Up" variety="Left Indent C" />
-        <Frame upperLeft="22,110" name="Tree Trunk" dir="Up" variety="Right Bulge C" />
-        <Frame upperLeft="44,110" name="Tree Trunk" dir="Up" variety="Left Bulge C" />
-        <Frame upperLeft="66,110" name="Tree Trunk" dir="Up" variety="Right Slight Bulge F" />
-        <Frame upperLeft="88,110" name="Tree Branch" dir="Right" variety="Plain C" />
-        <Frame upperLeft="110,110" name="Tree Trunk" dir="Up" variety="Double Slight Bulge C" />
-        <Frame upperLeft="132,110" name="Tree Top" dir="Up" variety="Small Right Slight Bulge C" />
-        <Frame upperLeft="154,110" name="Tree Top" dir="Left" variety="Large C" />
-
-        <Frame upperLeft="0,132" name="Tree Trunk" dir="Left" variety="Large A" />
-        <Frame upperLeft="22,132" name="Tree Base" dir="Right" variety="Plain A" />
-        <Frame upperLeft="44,132" name="Tree Base" dir="Left" variety="Plain A" />
-        <Frame upperLeft="66,132" name="Tree Trunk" dir="Right" variety="Large A" />
-        <Frame upperLeft="88,132" name="Tree Trunk" dir="Center" variety="Large A" />
-        <!-- ########################This#space#intentionally#left#blank######################## -->
-        <Frame upperLeft="132,132" name="Tree Top" dir="Up" variety="Small Double Slight Bulge A" />
-        <Frame upperLeft="154,132" name="Tree Top" dir="Left" variety="Huge" />
-
-        <Frame upperLeft="0,154" name="Tree Trunk" dir="Left" variety="Large B" />
-        <Frame upperLeft="22,154" name="Tree Base" dir="Right" variety="Plain B" />
-        <Frame upperLeft="44,154" name="Tree Base" dir="Left" variety="Plain B" />
-        <Frame upperLeft="66,154" name="Tree Trunk" dir="Right" variety="Large B" />
-        <Frame upperLeft="88,154" name="Tree Trunk" dir="Center" variety="Large B" />
-        <!-- ########################This#space#intentionally#left#blank######################## -->
-        <Frame upperLeft="132,154" name="Tree Top" dir="Up" variety="Small Double Slight Bulge B" />
-        <Frame upperLeft="154,154" name="Tree Top" dir="Center" variety="Huge" />
-
-        <Frame upperLeft="0,176" name="Tree Trunk" dir="Left" variety="Large C" />
-        <Frame upperLeft="22,176" name="Tree Base" dir="Right" variety="Plain C" />
-        <Frame upperLeft="44,176" name="Tree Base" dir="Left" variety="Plain C" />
-        <Frame upperLeft="66,176" name="Tree Trunk" dir="Right" variety="Large C" />
-        <Frame upperLeft="88,176" name="Tree Trunk" dir="Center" variety="Large C" />
-        <!-- ########################This#space#intentionally#left#blank######################## -->
-        <Frame upperLeft="132,176" name="Tree Top" dir="Up" variety="Small Double Slight Bulge C" />
-        <Frame upperLeft="154,176" name="Tree Top" dir="Right" variety="Huge" />
-
-        <Frame upperLeft="0,198" name="Tree Top" dir="Right" variety="Jagged" />
-
-        <Frame upperLeft="0,220" name="Tree Trunk" dir="Up" variety="Jagged" />
-
-        <Frame upperLeft="0,242" name="Tree Trunk" dir="Left" variety="Jagged" />
+        <Frame UV="0,0" Name="Tree Trunk" Dir="Up" Variety="Plain A" />
+        <Frame UV="22,0" Name="Tree Trunk" Dir="Up" Variety="Right Indent A" />
+        <Frame UV="44,0" Name="Tree Trunk" Dir="Up" Variety="Right Slight Bulge A" />
+        <Frame UV="66,0" Name="Tree Branch" Dir="Left" Variety="Plain A" />
+        <Frame UV="88,0" Name="Tree Trunk" Dir="Up" Variety="Left Slight Bulge A" />
+        <Frame UV="110,0" Name="Tree Top" Dir="Up" Variety="Medium A" />
+        <Frame UV="132,0" Name="Tree Top" Dir="Up" Variety="Small A" />
+        <Frame UV="154,0" Name="Tree Top" Dir="Right" Variety="Large A" />
+        <Frame UV="0,22" Name="Tree Trunk" Dir="Up" Variety="Plain B" />
+        <Frame UV="22,22" Name="Tree Trunk" Dir="Up" Variety="Right Indent B" />
+        <Frame UV="44,22" Name="Tree Trunk" Dir="Up" Variety="Right Slight Bulge B" />
+        <Frame UV="66,22" Name="Tree Branch" Dir="Left" Variety="Plain B" />
+        <Frame UV="88,22" Name="Tree Trunk" Dir="Up" Variety="Left Slight Bulge B" />
+        <Frame UV="110,22" Name="Tree Top" Dir="Up" Variety="Medium B" />
+        <Frame UV="132,22" Name="Tree Top" Dir="Up" Variety="Small B" />
+        <Frame UV="154,22" Name="Tree Top" Dir="Right" Variety="Large B" />
+        <Frame UV="0,44" Name="Tree Trunk" Dir="Up" Variety="Plain C" />
+        <Frame UV="22,44" Name="Tree Trunk" Dir="Up" Variety="Right Indent C" />
+        <Frame UV="44,44" Name="Tree Trunk" Dir="Up" Variety="Right Slight Bulge C" />
+        <Frame UV="66,44" Name="Tree Branch" Dir="Left" Variety="Plain C" />
+        <Frame UV="88,44" Name="Tree Trunk" Dir="Up" Variety="Left Slight Bulge C" />
+        <Frame UV="110,44" Name="Tree Top" Dir="Up" Variety="Medium C" />
+        <Frame UV="132,44" Name="Tree Top" Dir="Up" Variety="Small C" />
+        <Frame UV="154,44" Name="Tree Top" Dir="Right" Variety="Large C" />
+        <Frame UV="0,66" Name="Tree Trunk" Dir="Up" Variety="Left Indent A" />
+        <Frame UV="22,66" Name="Tree Trunk" Dir="Up" Variety="Right Bulge A" />
+        <Frame UV="44,66" Name="Tree Trunk" Dir="Up" Variety="Left Bulge A" />
+        <Frame UV="66,66" Name="Tree Trunk" Dir="Up" Variety="Right Slight Bulge D" />
+        <Frame UV="88,66" Name="Tree Branch" Dir="Right" Variety="Plain A" />
+        <Frame UV="110,66" Name="Tree Trunk" Dir="Up" Variety="Double Slight Bulge A" />
+        <Frame UV="132,66" Name="Tree Top" Dir="Up" Variety="Small Right Slight Bulge A" />
+        <Frame UV="154,66" Name="Tree Top" Dir="Left" Variety="Large A" />
+        <Frame UV="0,88" Name="Tree Trunk" Dir="Up" Variety="Left Indent B" />
+        <Frame UV="22,88" Name="Tree Trunk" Dir="Up" Variety="Right Bulge B" />
+        <Frame UV="44,88" Name="Tree Trunk" Dir="Up" Variety="Left Bulge B" />
+        <Frame UV="66,88" Name="Tree Trunk" Dir="Up" Variety="Right Slight Bulge E" />
+        <Frame UV="88,88" Name="Tree Branch" Dir="Right" Variety="Plain B" />
+        <Frame UV="110,88" Name="Tree Trunk" Dir="Up" Variety="Double Slight Bulge B" />
+        <Frame UV="132,88" Name="Tree Top" Dir="Up" Variety="Small Right Slight Bulge B" />
+        <Frame UV="154,88" Name="Tree Top" Dir="Left" Variety="Large B" />
+        <Frame UV="0,110" Name="Tree Trunk" Dir="Up" Variety="Left Indent C" />
+        <Frame UV="22,110" Name="Tree Trunk" Dir="Up" Variety="Right Bulge C" />
+        <Frame UV="44,110" Name="Tree Trunk" Dir="Up" Variety="Left Bulge C" />
+        <Frame UV="66,110" Name="Tree Trunk" Dir="Up" Variety="Right Slight Bulge F" />
+        <Frame UV="88,110" Name="Tree Branch" Dir="Right" Variety="Plain C" />
+        <Frame UV="110,110" Name="Tree Trunk" Dir="Up" Variety="Double Slight Bulge C" />
+        <Frame UV="132,110" Name="Tree Top" Dir="Up" Variety="Small Right Slight Bulge C" />
+        <Frame UV="154,110" Name="Tree Top" Dir="Left" Variety="Large C" />
+        <Frame UV="0,132" Name="Tree Trunk" Dir="Left" Variety="Large A" />
+        <Frame UV="22,132" Name="Tree Base" Dir="Right" Variety="Plain A" />
+        <Frame UV="44,132" Name="Tree Base" Dir="Left" Variety="Plain A" />
+        <Frame UV="66,132" Name="Tree Trunk" Dir="Right" Variety="Large A" />
+        <Frame UV="88,132" Name="Tree Trunk" Dir="Center" Variety="Large A" />
+        <Frame UV="132,132" Name="Tree Top" Dir="Up" Variety="Small Double Slight Bulge A" />
+        <Frame UV="154,132" Name="Tree Top" Dir="Left" Variety="Huge" />
+        <Frame UV="0,154" Name="Tree Trunk" Dir="Left" Variety="Large B" />
+        <Frame UV="22,154" Name="Tree Base" Dir="Right" Variety="Plain B" />
+        <Frame UV="44,154" Name="Tree Base" Dir="Left" Variety="Plain B" />
+        <Frame UV="66,154" Name="Tree Trunk" Dir="Right" Variety="Large B" />
+        <Frame UV="88,154" Name="Tree Trunk" Dir="Center" Variety="Large B" />
+        <Frame UV="132,154" Name="Tree Top" Dir="Up" Variety="Small Double Slight Bulge B" />
+        <Frame UV="154,154" Name="Tree Top" Dir="Center" Variety="Huge" />
+        <Frame UV="0,176" Name="Tree Trunk" Dir="Left" Variety="Large C" />
+        <Frame UV="22,176" Name="Tree Base" Dir="Right" Variety="Plain C" />
+        <Frame UV="44,176" Name="Tree Base" Dir="Left" Variety="Plain C" />
+        <Frame UV="66,176" Name="Tree Trunk" Dir="Right" Variety="Large C" />
+        <Frame UV="88,176" Name="Tree Trunk" Dir="Center" Variety="Large C" />
+        <Frame UV="132,176" Name="Tree Top" Dir="Up" Variety="Small Double Slight Bulge C" />
+        <Frame UV="154,176" Name="Tree Top" Dir="Right" Variety="Huge" />
+        <Frame UV="0,198" Name="Tree Top" Dir="Right" Variety="Jagged" />
+        <Frame UV="0,220" Name="Tree Trunk" Dir="Up" Variety="Jagged" />
+        <Frame UV="0,242" Name="Tree Trunk" Dir="Left" Variety="Jagged" />
       </Frames>
     </Tile>
-    <Tile num="6" name="Iron" color="#ff6b594e" isSolid="true" />
-    <Tile num="7" name="Copper" color="#ffc6561d" isSolid="true" />
-    <Tile num="8" name="Gold" color="#ffb9a417" isSolid="true" />
-    <Tile num="9" name="Silver" color="#ffd9dfdf" isSolid="true" />
-    <Tile num="10" name="Door Closed" color="#ff00fff2" isSolid="true" isFramed="true" size="1,3" placement="CFBoth" canMixFrames="true">
+    <Tile Id="6" Name="Iron" Color="#FF6B594E"  Solid="true" />
+    <Tile Id="7" Name="Copper" Color="#FFC6561D"  Solid="true" />
+    <Tile Id="8" Name="Gold" Color="#FFB9A417"  Solid="true" />
+    <Tile Id="9" Name="Silver" Color="#FFD9DFDF"  Solid="true" />
+    <Tile Id="10" Name="Door Closed" Color="#FF00FFF2" Placement="CFBoth" Solid="true" Size="1,3">
       <Frames>
-        <Frame upperLeft="0,0" variety="A" />
-        <Frame upperLeft="18,0" variety="B" />
-        <Frame upperLeft="36,0" variety="C" />
+        <Frame UV="0,0" Variety="A" />
+        <Frame UV="18,0" Variety="B" />
+        <Frame UV="36,0" Variety="C" />
       </Frames>
     </Tile>
-    <Tile num="11" name="Door Open" color="#ff00fff2" isSolid="true" isFramed="true" size="2,3" placement="CFBoth">
+    <Tile Id="11" Name="Door Open" Color="#FF00FFF2" Placement="CFBoth" Size="2,3">
       <Frames>
-        <Frame upperLeft="0,0" dir="Right" />
-        <Frame upperLeft="36,0" dir="Left" />
+        <Frame UV="0,0" Dir="Right" />
+        <Frame UV="36,0" Dir="Left" />
       </Frames>
     </Tile>
-    <Tile num="12" name="Crystal Heart" color="#ffff0000" isFramed="true" size="2,2" placement="floor" />
-    <Tile num="13" name="Bottle" color="#ff00fff2" isFramed="true" placement="surface">
+    <Tile Id="12" Name="Crystal Heart" Color="#FFFF0000" Placement="floor" Size="2,2" />
+    <Tile Id="13" Name="Bottle" Color="#FF00FFF2" Placement="surface">
       <Frames>
-        <Frame upperLeft="0,0" name="Bottle" />
-        <Frame upperLeft="18,0" name="Healing Potion" />
-        <Frame upperLeft="36,0" name="Mana Potion" />
-        <Frame upperLeft="54,0" name="Pink Vase" />
-        <Frame upperLeft="72,0" name="Mug" />
+        <Frame UV="0,0" Name="Bottle" />
+        <Frame UV="18,0" Name="Healing Potion" />
+        <Frame UV="36,0" Name="Mana Potion" />
+        <Frame UV="54,0" Name="Pink Vase" />
+        <Frame UV="72,0" Name="Mug" />
       </Frames>
     </Tile>
-    <Tile num="14" name="Table" color="#ff00fff2" isFramed="true" size="3,2" placement="floor" isSolidTop="true" isHouseItem="true" />
-    <Tile num="15" name="Chair" color="#ff00fff2" isFramed="true" size="1,2" placement="floor" isHouseItem="true">
-      <Frame upperLeft="0,0" name="Chair" dir="Left" />
-      <Frame upperLeft="18,0" name="Chair" dir="Right" />
-      <Frame upperLeft="0,40" name="Toilet" dir="Left" />
-      <Frame upperLeft="18,40" name="Toilet" dir="Right" />
-    </Tile>
-    <Tile num="16" name="Anvil" color="#ff00fff2" isFramed="true" size="2,1" placement="floor" isSolidTop="true" />
-    <Tile num="17" name="Furnace" color="#ff00fff2" isFramed="true" size="3,2" placement="floor" lightBrightness="0.8" />
-    <Tile num="18" name="Workbench" color="#ff00fff2" isFramed="true" size="2,1" placement="floor" isSolidTop="true" isHouseItem="true" />
-    <Tile num="19" name="Wooden Platform" color="#ff6b3a18" placement="wall" isSolidTop="true" />
-    <Tile num="20" name="Sapling" color="#ff0d6524" isFramed="true" growsOn="2">
+    <Tile Id="14" Name="Table" Color="#FF00FFF2" Placement="floor" SolidTop="true" Size="3,2" />
+    <Tile Id="15" Name="Chair" Color="#FF00FFF2" Placement="floor" Size="1,2">
       <Frames>
-        <Frame upperLeft="0,0" dir="Left" />
-        <Frame upperLeft="18,0" dir="Up" />
-        <Frame upperLeft="36,0" dir="Right" />
       </Frames>
     </Tile>
-    <Tile num="21" name="Chest" color="#ffddb800" isFramed="true" size="2,2" placement="floor">
+    <Tile Id="16" Name="Anvil" Color="#FF00FFF2" Placement="floor" SolidTop="true" Size="2,1" />
+    <Tile Id="17" Name="Furnace" Color="#FF00FFF2" Placement="floor" Light="true" Size="3,2" />
+    <Tile Id="18" Name="Workbench" Color="#FF00FFF2" Placement="floor" SolidTop="true" Size="2,1" />
+    <Tile Id="19" Name="Wooden Platform" Color="#FF6B3A18" Placement="wall" Light="true" Solid="true" SolidTop="true" />
+    <Tile Id="20" Name="Sapling" Color="#FF0D6524">
       <Frames>
-        <Frame upperLeft="0,0" name="Chest" />
-        <Frame upperLeft="36,0" name="Gold Chest" />
-        <Frame upperLeft="72,0" name="Gold Chest" variety="Locked" />
-        <Frame upperLeft="108,0" name="Shadow Chest" />
-        <Frame upperLeft="144,0" name="Shadow Chest" variety="Locked" />
-        <Frame upperLeft="180,0" name="Barrel" />
-        <Frame upperLeft="216,0" name="Trash Can" />
+        <Frame UV="0,0" Dir="Left" />
+        <Frame UV="18,0" Dir="Up" />
+        <Frame UV="36,0" Dir="Right" />
       </Frames>
     </Tile>
-    <Tile num="22" name="Demonite" color="#ff625fa7" isSolid="true" />
-    <Tile num="23" name="Corruption Grass" color="#ff8d89df" isSolid="true" />
-    <Tile num="24" name="Corruption Plants" color="#ff8d89df" isFramed="true" growsOn="23">
+    <Tile Id="21" Name="Chest" Color="#FFDDB800" Placement="floor" Size="2,2">
       <Frames>
-        <Frame upperLeft="0,0" name="Vile Grass" dir="Right" variety="Single Blade" />
-        <Frame upperLeft="18,0" name="Vile Grass" dir="Right" variety="Double Blade" />
-        <Frame upperLeft="36,0" name="Vile Grass" dir="Up" variety="Small Y" />
-        <Frame upperLeft="54,0" name="Vile Grass" dir="Right" variety="Three Small" />
-        <Frame upperLeft="72,0" name="Vile Grass" dir="Left" variety="Single Blade" />
-        <Frame upperLeft="90,0" name="Vile Grass" dir="Left" variety="Three Large" />
-        <Frame upperLeft="108,0" name="Vile Flower" dir="Left" variety="Yellow" />
-        <Frame upperLeft="126,0" name="Vile Flower" dir="Right" variety="Red" />
-        <Frame upperLeft="144,0" name="Vile Mushroom" dir="Up" />
+        <Frame UV="0,0" Name="Chest" />
+        <Frame UV="36,0" Name="Gold Chest" />
+        <Frame UV="72,0" Name="Gold Chest" Variety="Locked" />
+        <Frame UV="108,0" Name="Shadow Chest" />
+        <Frame UV="144,0" Name="Shadow Chest" Variety="Locked" />
+        <Frame UV="180,0" Name="Barrel" />
+        <Frame UV="216,0" Name="Trash Can" />
       </Frames>
     </Tile>
-    <Tile num="25" name="Ebonstone" color="#ff4b4a82" isSolid="true" />
-    <Tile num="26" name="Demon Altar" color="#ff9000ff" isFramed="true" size="3,2" placement="floor" />
-    <Tile num="27" name="Sunflower" color="#ffc4ff14" isFramed="true" size="2,4" growsOn="2">
+    <Tile Id="22" Name="Demonite" Color="#FF625FA7"  Light="true" Solid="true" />
+    <Tile Id="23" Name="Corruption Grass" Color="#FF8D89DF"  Solid="true" />
+    <Tile Id="24" Name="Corruption Plants" Color="#FF8D89DF">
       <Frames>
-        <Frame upperLeft="0,0" variety="A" />
-        <Frame upperLeft="18,0" variety="B" />
-        <Frame upperLeft="36,0" variety="C" />
+        <Frame UV="0,0" Name="Vile Grass" Dir="Right" Variety="Single Blade" />
+        <Frame UV="18,0" Name="Vile Grass" Dir="Right" Variety="Double Blade" />
+        <Frame UV="36,0" Name="Vile Grass" Dir="Up" Variety="Small Y" />
+        <Frame UV="54,0" Name="Vile Grass" Dir="Right" Variety="Three Small" />
+        <Frame UV="72,0" Name="Vile Grass" Dir="Left" Variety="Single Blade" />
+        <Frame UV="90,0" Name="Vile Grass" Dir="Left" Variety="Three Large" />
+        <Frame UV="108,0" Name="Vile Flower" Dir="Left" Variety="Yellow" />
+        <Frame UV="126,0" Name="Vile Flower" Dir="Right" Variety="Red" />
+        <Frame UV="144,0" Name="Vile Mushroom" Dir="Up" />
       </Frames>
     </Tile>
-    <Tile num="28" name="Pot" color="#ff8c2726" isFramed="true" size="2,2" placement="floor" canMixFrames="true">
+    <Tile Id="25" Name="Ebonstone" Color="#FF4B4A82"  Solid="true" />
+    <Tile Id="26" Name="Demon Altar" Color="#FF9000FF" Placement="floor" Light="true" Size="3,2" />
+    <Tile Id="27" Name="Sunflower" Color="#FFC4FF14"  Size="2,4">
       <Frames>
-        <Frame upperLeft="0,0" variety="Oval" />
-        <Frame upperLeft="36,0" variety="Wide" />
-        <Frame upperLeft="72,0" variety="Round" />
+        <Frame UV="0,0" Variety="A" />
+        <Frame UV="18,0" Variety="B" />
+        <Frame UV="36,0" Variety="C" />
       </Frames>
     </Tile>
-    <Tile num="29" name="Piggy Bank" color="#ff00fff2" isFramed="true" size="2,1" placement="surface" />
-    <Tile num="30" name="Wood Block" color="#ff684934" isSolid="true" />
-    <Tile num="31" name="Shadow Orb" color="#ff000000" isFramed="true" size="2,2" placement="floor" />
-    <Tile num="32" name="Corruption Vines" color="#ff7a618f" growsOn="23" contactDmg="10" />
-    <Tile num="33" name="Candle" color="#fffd3e03" isFramed="true" placement="surface" lightBrightness="1.0" isHouseItem="true" />
-    <Tile num="34" name="Chandler Copper" color="#fffd3e03" isFramed="true" size="3,3" placement="ceiling" lightBrightness="1.0" isHouseItem="true" />
-    <Tile num="35" name="Chandler Silver" color="#fffd3e03" isFramed="true" size="3,3" placement="ceiling" lightBrightness="1.0" isHouseItem="true" />
-    <Tile num="36" name="Chandler Gold" color="#fffd3e03" isFramed="true" size="3,3" placement="ceiling" lightBrightness="1.0" isHouseItem="true" />
-    <Tile num="37" name="Meteorite" color="#ffdf9f89" isSolid="true" contactDmg="20" />
-    <Tile num="38" name="Gray Brick" color="#ff909090" isSolid="true" />
-    <Tile num="39" name="Red Brick" color="#ffb200ff" isSolid="true" />
-    <Tile num="40" name="Clay" color="#ffac5b4d" isSolid="true" />
-    <Tile num="41" name="Blue Dungeon Brick" color="#ff545498" isSolid="true" />
-    <Tile num="42" name="Chain Lantern" color="#ffef904b" isFramed="true" size="1,2" placement="ceiling" />
-    <Tile num="43" name="Green Dungeon Brick" color="#ff39a851" isSolid="true" />
-    <Tile num="44" name="Pink Dungeon Brick" color="#ffb200ff" isSolid="true" />
-    <Tile num="45" name="Gold Brick" color="#ffffd514" isSolid="true" />
-    <Tile num="46" name="Silver Brick" color="#ffe5e5e5" isSolid="true" />
-    <Tile num="47" name="Copper Brick" color="#ffff5900" isSolid="true" />
-    <Tile num="48" name="Spikes" color="#ff6d6d6d" isSolid="true" placement="wallFloorCeiling" contactDmg="40" />
-    <Tile num="49" name="Water Candle" color="#ff2b8fff" placement="surface" lightBrightness="0.75" />
-    <Tile num="50" name="Books" color="#ff00fff2" isFramed="true" placement="surface">
+    <Tile Id="28" Name="Pot" Color="#FF8C2726" Placement="floor" Size="2,2">
       <Frames>
-        <Frame upperLeft="0,0" variety="Blue, Red, Brown" />
-        <Frame upperLeft="18,0" variety="Yellow, Pink" />
-        <Frame upperLeft="36,0" variety="Teal, Brown" />
-        <Frame upperLeft="54,0" variety="Purple, Blue" />
-        <Frame upperLeft="72,0" variety="Green, Orange" />
-        <Frame upperLeft="90,0" variety="Brown, Water Bolt, Gray" />
+        <Frame UV="0,0" Variety="Oval" />
+        <Frame UV="36,0" Variety="Wide" />
+        <Frame UV="72,0" Variety="Round" />
       </Frames>
     </Tile>
-    <Tile num="51" name="Web" color="#ffffffff" />
-    <Tile num="52" name="Vines" color="#ff0d6524" hangsOn="2" />
-    <Tile num="53" name="Sand" color="#ffffda38" isSolid="true" />
-    <Tile num="54" name="Glass" color="#40ffffff" isSolid="true" />
-    <Tile num="55" name="Sign" color="#ffffae5e" isFramed="true" size="2,2" placement="wallFloorCeiling" />
-    <Tile num="56" name="Obsidian" color="#ff5751ad" isSolid="true" />
-    <Tile num="57" name="Ash" color="#ff44444c" isSolid="true" />
-    <Tile num="58" name="Hellstone" color="#ff662222" isSolid="true" contactDmg="20" />
-    <Tile num="59" name="Mud" color="#ff5c4449" isSolid="true" />
-    <Tile num="60" name="Jungle Grass" color="#ff8fd71d" isSolid="true" />
-    <Tile num="61" name="Jungle Plants" color="#ff8fd71d" isFramed="true" growsOn="60">
+    <Tile Id="29" Name="Piggy Bank" Color="#FF00FFF2" Placement="surface" Size="2,1" />
+    <Tile Id="30" Name="Wood Block" Color="#FF684934"  Solid="true" />
+    <Tile Id="31" Name="Shadow Orb" Color="#FF000000" Placement="floor" Light="true" Size="2,2" />
+    <Tile Id="32" Name="Corruption Vines" Color="#FF7A618F" />
+    <Tile Id="33" Name="Candle" Color="#FFFD3E03" Placement="surface" Light="true" />
+    <Tile Id="34" Name="Chandler Copper" Color="#FFFD3E03" Placement="ceiling" Light="true" Size="3,3" />
+    <Tile Id="35" Name="Chandler Silver" Color="#FFFD3E03" Placement="ceiling" Light="true" Size="3,3" />
+    <Tile Id="36" Name="Chandler Gold" Color="#FFFD3E03" Placement="ceiling" Light="true" Size="3,3" />
+    <Tile Id="37" Name="Meteorite" Color="#FFDF9F89"  Light="true" Solid="true" />
+    <Tile Id="38" Name="Gray Brick" Color="#FF909090"  Solid="true" />
+    <Tile Id="39" Name="Red Brick" Color="#FFB200FF"  Solid="true" />
+    <Tile Id="40" Name="Clay" Color="#FFAC5B4D"  Solid="true" />
+    <Tile Id="41" Name="Blue Dungeon Brick" Color="#FF545498"  Solid="true" />
+    <Tile Id="42" Name="Chain Lantern" Color="#FFEF904B" Placement="ceiling" Light="true" Size="1,2" />
+    <Tile Id="43" Name="Green Dungeon Brick" Color="#FF39A851"  Solid="true" />
+    <Tile Id="44" Name="Pink Dungeon Brick" Color="#FFB200FF"  Solid="true" />
+    <Tile Id="45" Name="Gold Brick" Color="#FFFFD514"  Solid="true" />
+    <Tile Id="46" Name="Silver Brick" Color="#FFE5E5E5"  Solid="true" />
+    <Tile Id="47" Name="Copper Brick" Color="#FFFF5900"  Solid="true" />
+    <Tile Id="48" Name="Spikes" Color="#FF6D6D6D" Placement="wallFloorCeiling" Solid="true" />
+    <Tile Id="49" Name="Water Candle" Color="#FF2B8FFF" Placement="surface" Light="true" />
+    <Tile Id="50" Name="Books" Color="#FF00FFF2" Placement="surface">
       <Frames>
-        <Frame upperLeft="0,0" name="Jungle Grass" dir="Right" variety="Single Blade" />
-        <Frame upperLeft="18,0" name="Jungle Grass" dir="Right" variety="Double Blade" />
-        <Frame upperLeft="36,0" name="Jungle Grass" dir="Up" variety="Small Y" />
-        <Frame upperLeft="54,0" name="Jungle Grass" dir="Right" variety="Three Small" />
-        <Frame upperLeft="72,0" name="Jungle Grass" dir="Left" variety="Single Blade" />
-        <Frame upperLeft="90,0" name="Jungle Grass" dir="Left" variety="Three Large" />
-        <Frame upperLeft="108,0" name="Jungle Rose" dir="Left" variety="Immature" />
-        <Frame upperLeft="126,0" name="Jungle Rose" dir="Right" variety="Immature" />
-        <Frame upperLeft="144,0" name="Puff Light" dir="Up" />
-        <Frame upperLeft="162,0" name="Nature's Gift" dir="Right" variety="Immature" />
+        <Frame UV="0,0" Variety="Blue, Red, Brown" />
+        <Frame UV="18,0" Variety="Yellow, Pink" />
+        <Frame UV="36,0" Variety="Teal, Brown" />
+        <Frame UV="54,0" Variety="Purple, Blue" />
+        <Frame UV="72,0" Variety="Green, Orange" />
+        <Frame UV="90,0" Variety="Brown, Water Bolt, Gray" />
       </Frames>
     </Tile>
-    <Tile num="62" name="Jungle Vines" color="#ff8ace1c" hangsOn="60" />
-    <Tile num="63" name="Gem Sapphire" color="#ff2a82fa" isSolid="true" />
-    <Tile num="64" name="Gem Ruby" color="#ff2a82fa" isSolid="true" />
-    <Tile num="65" name="Gem Emerald" color="#ff2a82fa" isSolid="true" />
-    <Tile num="66" name="Gem Topaz" color="#ff2a82fa" isSolid="true" />
-    <Tile num="67" name="Gem Amethyst" color="#ff2a82fa" isSolid="true" />
-    <Tile num="68" name="Gem Diamond" color="#ff2a82fa" isSolid="true" />
-    <Tile num="69" name="Jungle Thorns" color="#ff5e3037" growsOn="60" contactDmg="25" />
-    <Tile num="70" name="Mushroom Grass" color="#ff5d7fff" isSolid="true" />
-    <Tile num="71" name="Mushroom Plant" color="#ffb1ae83" isFramed="true" growsOn="70">
+    <Tile Id="51" Name="Web" Color="#FFFFFFFF" />
+    <Tile Id="52" Name="Vines" Color="#FF0D6524" />
+    <Tile Id="53" Name="Sand" Color="#FFFFDA38"  Solid="true" />
+    <Tile Id="54" Name="Glass" Color="#40FFFFFF"  Solid="true" />
+    <Tile Id="55" Name="Sign" Color="#FFFFAE5E" Placement="wallFloorCeiling" Size="2,2" />
+    <Tile Id="56" Name="Obsidian" Color="#FF5751AD"  Solid="true" />
+    <Tile Id="57" Name="Ash" Color="#FF44444C"  Solid="true" />
+    <Tile Id="58" Name="Hellstone" Color="#FF662222"  Light="true" Solid="true" />
+    <Tile Id="59" Name="Mud" Color="#FF5C4449"  Solid="true" />
+    <Tile Id="60" Name="Jungle Grass" Color="#FF8FD71D"  Solid="true" />
+    <Tile Id="61" Name="Jungle Plants" Color="#FF8FD71D"  Light="true">
       <Frames>
-        <Frame upperLeft="0,0" variety="Double Small" />
-        <Frame upperLeft="18,0" variety="Small" />
-        <Frame upperLeft="36,0" variety="Malformed" />
-        <Frame upperLeft="54,0" variety="Thin" />
-        <Frame upperLeft="72,0" variety="Standard" />
+        <Frame UV="0,0" Name="Jungle Grass" Dir="Right" Variety="Single Blade" />
+        <Frame UV="18,0" Name="Jungle Grass" Dir="Right" Variety="Double Blade" />
+        <Frame UV="36,0" Name="Jungle Grass" Dir="Up" Variety="Small Y" />
+        <Frame UV="54,0" Name="Jungle Grass" Dir="Right" Variety="Three Small" />
+        <Frame UV="72,0" Name="Jungle Grass" Dir="Left" Variety="Single Blade" />
+        <Frame UV="90,0" Name="Jungle Grass" Dir="Left" Variety="Three Large" />
+        <Frame UV="108,0" Name="Jungle Rose" Dir="Left" Variety="Immature" />
+        <Frame UV="126,0" Name="Jungle Rose" Dir="Right" Variety="Immature" />
+        <Frame UV="144,0" Name="Puff Light" Dir="Up" />
+        <Frame UV="162,0" Name="Nature's Gift" Dir="Right" Variety="Immature" />
       </Frames>
     </Tile>
-    <Tile num="72" name="Mushroom Tree" color="#ff968f6e" isFramed="true" growsOn="70">
+    <Tile Id="62" Name="Jungle Vines" Color="#FF8ACE1C" />
+    <Tile Id="63" Name="Gem Sapphire" Color="#FF2A82FA"  Solid="true" />
+    <Tile Id="64" Name="Gem Ruby" Color="#FF2A82FA"  Solid="true" />
+    <Tile Id="65" Name="Gem Emerald" Color="#FF2A82FA"  Solid="true" />
+    <Tile Id="66" Name="Gem Topaz" Color="#FF2A82FA"  Solid="true" />
+    <Tile Id="67" Name="Gem Amethyst" Color="#FF2A82FA"  Solid="true" />
+    <Tile Id="68" Name="Gem Diamond" Color="#FF2A82FA"  Solid="true" />
+    <Tile Id="69" Name="Jungle Thorns" Color="#FF5E3037" />
+    <Tile Id="70" Name="Mushroom Grass" Color="#FF5D7FFF"  Light="true" Solid="true" />
+    <Tile Id="71" Name="Mushroom Plant" Color="#FFB1AE83"  Light="true">
       <Frames>
-        <Frame upperLeft="0,0" variety="Trunk A" />
-        <Frame upperLeft="18,0" variety="Tree Top" dir="Up" />
-        <Frame upperLeft="0,18" variety="Trunk B" />
-        <Frame upperLeft="18,18" variety="Tree Top" dir="Right" />
-        <Frame upperLeft="0,36" variety="Trunk C" />
-        <Frame upperLeft="18,36" variety="Tree Top" dir="Left" />
+        <Frame UV="0,0" Variety="Double Small" />
+        <Frame UV="18,0" Variety="Small" />
+        <Frame UV="36,0" Variety="Malformed" />
+        <Frame UV="54,0" Variety="Thin" />
+        <Frame UV="72,0" Variety="Standard" />
       </Frames>
     </Tile>
-    <Tile num="73" name="Tall Grass" color="#ff0d6524" isFramed="true">
+    <Tile Id="72" Name="Mushroom Tree" Color="#FF968F6E"  Light="true">
       <Frames>
-        <Frame upperLeft="0,0" name="Grass" variety="G" />
-        <Frame upperLeft="18,0" name="Grass" variety="C" />
-        <Frame upperLeft="36,0" name="Grass" variety="?" />
-        <Frame upperLeft="54,0" name="Grass" variety="u" />
-        <Frame upperLeft="72,0" name="Grass" variety="w" />
-        <Frame upperLeft="90,0" name="Grass" variety="W" />
-        <Frame upperLeft="108,0" name="Rose" variety="A" />
-        <Frame upperLeft="126,0" name="Rose" variety="B" />
+        <Frame UV="0,0" Variety="Trunk A" />
+        <Frame UV="18,0" Variety="Tree Top" Dir="Up" />
+        <Frame UV="0,18" Variety="Trunk B" />
+        <Frame UV="18,18" Variety="Tree Top" Dir="Right" />
+        <Frame UV="0,36" Variety="Trunk C" />
+        <Frame UV="18,36" Variety="Tree Top" Dir="Left" />
       </Frames>
     </Tile>
-    <Tile num="74" name="Tall Jungle Grass" color="#ff0d6524" isFramed="true">
+    <Tile Id="73" Name="Tall Grass" Color="#FF0D6524">
       <Frames>
-        <Frame upperLeft="0,0" name="Jungle Grass" variety="G" />
-        <Frame upperLeft="18,0" name="Jungle Grass" variety="C" />
-        <Frame upperLeft="36,0" name="Jungle Grass" variety="?" />
-        <Frame upperLeft="54,0" name="Jungle Grass" variety="u" />
-        <Frame upperLeft="72,0" name="Jungle Grass" variety="w" />
-        <Frame upperLeft="90,0" name="Jungle Grass" variety="W" />
-        <Frame upperLeft="108,0" name="Jungle Rose" variety="A" />
-        <Frame upperLeft="126,0" name="Jungle Rose" variety="B" />
+        <Frame UV="0,0" Name="Grass" Variety="G" />
+        <Frame UV="18,0" Name="Grass" Variety="C" />
+        <Frame UV="36,0" Name="Grass" Variety="?" />
+        <Frame UV="54,0" Name="Grass" Variety="u" />
+        <Frame UV="72,0" Name="Grass" Variety="w" />
+        <Frame UV="90,0" Name="Grass" Variety="W" />
+        <Frame UV="108,0" Name="Rose" Variety="A" />
+        <Frame UV="126,0" Name="Rose" Variety="B" />
       </Frames>
     </Tile>
-    <Tile num="75" name="Obsidian Brick" color="#ffb200ff" isSolid="true" />
-    <Tile num="76" name="Hellstone Brick" color="#ffc6001d" isSolid="true" contactDmg="20" />
-    <Tile num="77" name="Hellforge" color="#ffd50010" isFramed="true" size="3,2" placement="floor" lightBrightness="0.8" />
-    <Tile num="78" name="Clay Pot" color="#ff00fff2" isFramed="true" size="2,2" placement="floor" />
-    <Tile num="79" name="Bed" color="#ff00fff2" isFramed="true" size="4,2" placement="floor" isHouseItem="true">
-      <Frame upperLeft="0,0" dir="Left" />
-      <Frame upperLeft="72,0" dir="Right" />
-    </Tile>
-    <Tile num="80" name="Cactus" color="#ff00a500" growsOn="53" contactDmg="10" />
-    <Tile num="81" name="Coral" color="#ffe55340" isFramed="true" growsOn="53">
+    <Tile Id="74" Name="Tall Jungle Grass" Color="#FF0D6524">
       <Frames>
-        <Frame upperLeft="0,0" variety="Red" />
-        <Frame upperLeft="26,0" variety="Pink" />
-        <Frame upperLeft="52,0" variety="Yellow" />
-        <Frame upperLeft="78,0" variety="Green" />
-        <Frame upperLeft="104,0" variety="Blue" />
-        <Frame upperLeft="130,0" variety="Sponge" />
+        <Frame UV="0,0" Name="Jungle Grass" Variety="G" />
+        <Frame UV="18,0" Name="Jungle Grass" Variety="C" />
+        <Frame UV="36,0" Name="Jungle Grass" Variety="?" />
+        <Frame UV="54,0" Name="Jungle Grass" Variety="u" />
+        <Frame UV="72,0" Name="Jungle Grass" Variety="w" />
+        <Frame UV="90,0" Name="Jungle Grass" Variety="W" />
+        <Frame UV="108,0" Name="Jungle Rose" Variety="A" />
+        <Frame UV="126,0" Name="Jungle Rose" Variety="B" />
       </Frames>
     </Tile>
-    <Tile num="82" name="Herb Immature" color="#ffff7800" isFramed="true" variety="Immature">
+    <Tile Id="75" Name="Obsidian Brick" Color="#FFB200FF"  Solid="true" />
+    <Tile Id="76" Name="Hellstone Brick" Color="#FFC6001D"  Light="true" Solid="true" />
+    <Tile Id="77" Name="Hellforge" Color="#FFD50010" Placement="floor" Light="true" Size="3,2" />
+    <Tile Id="78" Name="Clay Pot" Color="#FF00FFF2" Placement="floor" Size="2,2" />
+    <Tile Id="79" Name="Bed" Color="#FF00FFF2" Placement="floor" Size="4,2">
       <Frames>
-        <Frame upperLeft="0,0" name="Daybloom" growsOn="2,78" />
-        <Frame upperLeft="18,0" name="Moonglow" growsOn="60,78" />
-        <Frame upperLeft="36,0" name="Blinkroot" growsOn="0,59,78" />
-        <Frame upperLeft="54,0" name="Deathweed" growsOn="23,25,78" />
-        <Frame upperLeft="72,0" name="Waterleaf" growsOn="53,78"/>
-        <Frame upperLeft="90,0" name="Fireblossom" growsOn="57,76,78" />
       </Frames>
     </Tile>
-    <Tile num="83" name="Herb Mature" color="#ffff7800" isFramed="true" variety="Mature">
+    <Tile Id="80" Name="Cactus" Color="#FF00A500" />
+    <Tile Id="81" Name="Coral" Color="#FFE55340">
       <Frames>
-        <Frame upperLeft="0,0" name="Daybloom" growsOn="2,78" />
-        <Frame upperLeft="18,0" name="Moonglow" growsOn="60,78" />
-        <Frame upperLeft="36,0" name="Blinkroot" growsOn="0,59,78" />
-        <Frame upperLeft="54,0" name="Deathweed" growsOn="23,25,78" />
-        <Frame upperLeft="72,0" name="Waterleaf" growsOn="53,78"/>
-        <Frame upperLeft="90,0" name="Fireblossom" growsOn="57,76,78" />
+        <Frame UV="0,0" Variety="Red" />
+        <Frame UV="26,0" Variety="Pink" />
+        <Frame UV="52,0" Variety="Yellow" />
+        <Frame UV="78,0" Variety="Green" />
+        <Frame UV="104,0" Variety="Blue" />
+        <Frame UV="130,0" Variety="Sponge" />
       </Frames>
     </Tile>
-    <Tile num="84" name="Herb Bloom" color="#ffff7800" isFramed="true" variety="Bloom">
+    <Tile Id="82" Name="Herb Immature" Color="#FFFF7800">
       <Frames>
-        <Frame upperLeft="0,0" name="Daybloom" growsOn="2,78" />
-        <Frame upperLeft="18,0" name="Moonglow" growsOn="60,78" />
-        <Frame upperLeft="36,0" name="Blinkroot" growsOn="0,59,78" />
-        <Frame upperLeft="54,0" name="Deathweed" growsOn="23,25,78" />
-        <Frame upperLeft="72,0" name="Waterleaf" growsOn="53,78"/>
-        <Frame upperLeft="90,0" name="Fireblossom" growsOn="57,76,78" />
+        <Frame UV="0,0" Name="Daybloom" growsOn="2,78" />
+        <Frame UV="18,0" Name="Moonglow" growsOn="60,78" />
+        <Frame UV="36,0" Name="Blinkroot" growsOn="0,59,78" />
+        <Frame UV="54,0" Name="Deathweed" growsOn="23,25,78" />
+        <Frame UV="72,0" Name="Waterleaf" growsOn="53,78" />
+        <Frame UV="90,0" Name="Fireblossom" growsOn="57,76,78" />
       </Frames>
     </Tile>
-    <Tile num="85" name="Tombstone" color="#ffc0c0c0" isFramed="true" size="2,2" placement="floor" />
-    <Tile num="86" name="Loom" color="#ffff00ff" isFramed="true" size="3,2" placement="floor" />
-    <Tile num="87" name="Piano" color="#ff00fff2" isFramed="true" size="3,2" placement="floor" isSolidTop="true" />
-    <Tile num="88" name="Dresser" color="#ff00fff2" isFramed="true" size="3,2" placement="floor" isSolidTop="true" isHouseItem="true" />
-    <Tile num="89" name="Bench" color="#ff00fff2" isFramed="true" size="3,2" placement="floor" isHouseItem="true" />
-    <Tile num="90" name="Bathtub" color="#ff00fff2" isFramed="true" size="4,2" placement="floor" isHouseItem="true">
+    <Tile Id="83" Name="Herb Mature" Color="#FFFF7800"  Light="true">
       <Frames>
-        <Frame upperLeft="0,0" dir="Left" />
-        <Frame upperLeft="72,0" dir="Right" />
+        <Frame UV="0,0" Name="Daybloom" growsOn="2,78" />
+        <Frame UV="18,0" Name="Moonglow" growsOn="60,78" />
+        <Frame UV="36,0" Name="Blinkroot" growsOn="0,59,78" />
+        <Frame UV="54,0" Name="Deathweed" growsOn="23,25,78" />
+        <Frame UV="72,0" Name="Waterleaf" growsOn="53,78" />
+        <Frame UV="90,0" Name="Fireblossom" growsOn="57,76,78" />
       </Frames>
     </Tile>
-    <Tile num="91" name="Banner" color="#ff00fff2" isFramed="true" size="1,3" placement="ceiling">
+    <Tile Id="84" Name="Herb Bloom" Color="#FFFF7800"  Light="true">
       <Frames>
-        <Frame upperLeft="0,0" name="Red Banner" />
-        <Frame upperLeft="18,0" name="Green Banner" />
-        <Frame upperLeft="36,0" name="Blue Banner" />
-        <Frame upperLeft="54,0" name="Yellow Banner" />
+        <Frame UV="0,0" Name="Daybloom" growsOn="2,78" />
+        <Frame UV="18,0" Name="Moonglow" growsOn="60,78" />
+        <Frame UV="36,0" Name="Blinkroot" growsOn="0,59,78" />
+        <Frame UV="54,0" Name="Deathweed" growsOn="23,25,78" />
+        <Frame UV="72,0" Name="Waterleaf" growsOn="53,78" />
+        <Frame UV="90,0" Name="Fireblossom" growsOn="57,76,78" />
       </Frames>
     </Tile>
-    <Tile num="92" name="Lamp Post" color="#ff00fff2" isFramed="true" size="1,6" placement="floor" lightBrightness="1.0" />
-    <Tile num="93" name="Tiki Torch" color="#ff00fff2" isFramed="true" size="1,3" placement="floor" lightBrightness="1.0" />
-    <Tile num="94" name="Keg" color="#ff00fff2" isFramed="true" size="2,2" placement="floor" />
-    <Tile num="95" name="Chinese Lantern" color="#ff00fff2" isFramed="true" size="2,2" placement="floorSurface" lightBrightness="0.85" />
-    <Tile num="96" name="Cooking Pot" color="#ff00fff2" isFramed="true" size="2,2" placement="floorSurface" />
-    <Tile num="97" name="Safe" color="#ffff00ff" isFramed="true" size="2,2" placement="floor" />
-    <Tile num="98" name="Skull Lantern" color="#ffff00ff" isFramed="true" size="2,2" placement="floorSurface" lightBrightness="1.0" />
-    <Tile num="99" name="Trash Can" color="#ffff00d0" isFramed="true" size="2,2" placement="floor" />
-    <Tile num="100" name="Candelabra" color="#ffff00ff" isFramed="true" size="2,2" placement="surface" lightBrightness="1.0" />
-    <Tile num="101" name="Bookcase" color="#ffff00ff" isFramed="true" size="3,4" placement="floor" isSolidTop="true" isHouseItem="true" />
-    <Tile num="102" name="Throne" color="#ffff00ff" isFramed="true" size="3,4" placement="floor" isHouseItem="true" />
-    <Tile num="103" name="Plate" color="#ffff00ff" isFramed="true" size="2,1" placement="surface" />
-    <Tile num="104" name="Grandfather Clock" color="#ffff00ff" isFramed="true" size="2,5" placement="floor" />
-    <Tile num="105" name="Statue" color="#ff00fff2" isFramed="true" size="2,3" placement="floor" />
-    <Tile num="106" name="Sawmill" color="#ff00fff2" isFramed="true" size="3,3" placement="floor" />
-    <Tile num="107" name="Cobalt Ore" color="#FF0B508F"  />
-    <Tile num="108" name="Mythril Ore" color="#FF5BA9A9"  />
-    <Tile num="109" name="Blue Grass" color="#FF4EC1E3" isGrass="1"  />
-    <Tile num="110" name="Weeds" color="#FF1E9648" isFramed="true"  />
-    <Tile num="111" name="Adamantite Ore" color="#FF801A34"  />
-    <Tile num="112" name="Ebonsand" color="#FF67627A"  />
-    <Tile num="113" name="Weeds" color="#FF1E9648" isFramed="true"  />
-    <Tile num="114" name="Tinkerer's Workshop" color="#FF7F5C45" isFramed="true" />
-    <Tile num="115" name="Vines" color="#FF327FA1" />
-    <Tile num="116" name="Pearl Sand" color="#FFD5C4C5"  />
-    <Tile num="117" name="Pearl Ore" color="#FFB5ACBE"  />
-    <Tile num="118" name="Pearlstone Brick" color="#FFD5C4C5" />
-    <Tile num="119" name="Iridescent Brick" color="#FF3F3F49" />
-    <Tile num="120" name="Mudstone Brick" color="#FF967A7D" />
-    <Tile num="121" name="Cobalt Brick" color="#FF2576AB" />
-    <Tile num="122" name="Mithril Brick" color="#FF91BF75" />
-    <Tile num="123" name="Silt" color="#FF595353"  />
-    <Tile num="124" name="Wooden Beam" color="#FF5C4436" />
-    <Tile num="125" name="Crystal Ball" color="#FF81A5FF" isFramed="true" />
-    <Tile num="126" name="Ball" color="#FFDBDBDB" isFramed="true" />
-    <Tile num="127" name="Glass" color="#FF68B3C8" />
-    <Tile num="128" name="Armor Stand" color="#FF906850" isFramed="true" />
-    <Tile num="129" name="Spikes 129" color="#FF004979" isFramed="true" />
-    <Tile num="130" name="Active Stone" color="#FFA5A5A5"  />
-    <Tile num="131" name="Inactive Stone" color="#FF1A1A1A"  />
-    <Tile num="132" name="Lever" color="#FFC90303" isFramed="true" />
-    <Tile num="133" name="Fireplace" color="#FF891012" isFramed="true" />
-    <Tile num="134" name="Adamantium Anvil" color="#FF96AE87" isFramed="true" />
-    <Tile num="135" name="Pressure Plate" color="#FFFD7272" isFramed="true" />
-    <Tile num="136" name="Switch" color="#FFCCC0C0" isFramed="true" />
-    <Tile num="137" name="Skull" color="#FF8C8C8C" isFramed="true" />
-    <Tile num="138" name="Boulder" color="#FF636363" isFramed="true" />
-    <Tile num="139" name="Music" color="#FF996343" isFramed="true" />
-    <Tile num="140" name="Demonite Brick" color="#FF7875B3" />
-    <Tile num="141" name="Explosives" color="#FFAD2323" isFramed="true" size="1,1" />
-    <Tile num="142" name="Out block" color="#FFC90303" isFramed="true" />
-    <Tile num="143" name="In block" color="#FFC90303" isFramed="true" />
-    <Tile num="144" name="Timer" color="#FFC90303" isFramed="true" />
-    <Tile num="145" name="Red Candy Cane Block" color="#FFFF0000" isFramed="false" />
-    <Tile num="146" name="Green Candy Cane Block" color="#FF00FF00" isFramed="false" />
-    <Tile num="147" name="Snow" color="#FFEEEEFF" isFramed="false" />
-    <Tile num="148" name="Snow Brick" color="#FFCCCCEE" isFramed="false" />
-    <Tile num="149" name="Christmas Light" color="#FFFF0000" isFramed="true" size="1,1">
+    <Tile Id="85" Name="Tombstone" Color="#FFC0C0C0" Placement="floor" Size="2,2" />
+    <Tile Id="86" Name="Loom" Color="#FFFF00FF" Placement="floor" Size="3,2" />
+    <Tile Id="87" Name="Piano" Color="#FF00FFF2" Placement="floor" SolidTop="true" Size="3,2" />
+    <Tile Id="88" Name="Dresser" Color="#FF00FFF2" Placement="floor" SolidTop="true" Size="3,2" />
+    <Tile Id="89" Name="Bench" Color="#FF00FFF2" Placement="floor" Size="3,2" />
+    <Tile Id="90" Name="Bathtub" Color="#FF00FFF2" Placement="floor" Size="4,2">
       <Frames>
-        <Frame upperLeft="0,0" name="Blue Light" />
-        <Frame upperLeft="18,0" name="Red Light" />
-        <Frame upperLeft="36,0" name="Green Light" />
+        <Frame UV="0,0" Dir="Left" />
+        <Frame UV="72,0" Dir="Right" />
+      </Frames>
+    </Tile>
+    <Tile Id="91" Name="Banner" Color="#FF00FFF2" Placement="ceiling" Size="1,3">
+      <Frames>
+        <Frame UV="0,0" Name="Red Banner" />
+        <Frame UV="18,0" Name="Green Banner" />
+        <Frame UV="36,0" Name="Blue Banner" />
+        <Frame UV="54,0" Name="Yellow Banner" />
+      </Frames>
+    </Tile>
+    <Tile Id="92" Name="Lamp Post" Color="#FF00FFF2" Placement="floor" Light="true" Size="1,6" />
+    <Tile Id="93" Name="Tiki Torch" Color="#FF00FFF2" Placement="floor" Light="true" Size="1,3" />
+    <Tile Id="94" Name="Keg" Color="#FF00FFF2" Placement="floor" Size="2,2" />
+    <Tile Id="95" Name="Chinese Lantern" Color="#FF00FFF2" Placement="floorSurface" Light="true" Size="2,2" />
+    <Tile Id="96" Name="Cooking Pot" Color="#FF00FFF2" Placement="floorSurface" Size="2,2" />
+    <Tile Id="97" Name="Safe" Color="#FFFF00FF" Placement="floor" Size="2,2" />
+    <Tile Id="98" Name="Skull Lantern" Color="#FFFF00FF" Placement="floorSurface" Light="true" Size="2,2" />
+    <Tile Id="99" Name="Trash Can" Color="#FFFF00D0" Placement="floor" Size="2,2" />
+    <Tile Id="100" Name="Candelabra" Color="#FFFF00FF" Placement="surface" Light="true" Size="2,2" />
+    <Tile Id="101" Name="Bookcase" Color="#FFFF00FF" Placement="floor" SolidTop="true" Size="3,4" />
+    <Tile Id="102" Name="Throne" Color="#FFFF00FF" Placement="floor" Size="3,4" />
+    <Tile Id="103" Name="Plate" Color="#FFFF00FF" Placement="surface" Size="2,1" />
+    <Tile Id="104" Name="Grandfather Clock" Color="#FFFF00FF" Placement="floor" Size="2,5" />
+    <Tile Id="105" Name="Statue" Color="#FF00FFF2" Placement="floor" Size="2,3" />
+    <Tile Id="106" Name="Sawmill" Color="#FF00FFF2" Placement="floor" Size="3,3" />
+    <Tile Id="107" Name="Cobalt Ore" Color="#FF0B508F"  Solid="true" />
+    <Tile Id="108" Name="Mythril Ore" Color="#FF5BA9A9"  Solid="true" />
+    <Tile Id="109" Name="Blue Grass" Color="#FF4EC1E3"  Light="true" Solid="true" />
+    <Tile Id="110" Name="Weeds" Color="#FF1E9648" />
+    <Tile Id="111" Name="Adamantite Ore" Color="#FF801A34"  Solid="true" />
+    <Tile Id="112" Name="Ebonsand" Color="#FF67627A"  Solid="true" />
+    <Tile Id="113" Name="Weeds" Color="#FF1E9648" />
+    <Tile Id="114" Name="Tinkerer's Workshop" Color="#FF7F5C45"  SolidTop="true" />
+    <Tile Id="115" Name="Vines" Color="#FF327FA1" />
+    <Tile Id="116" Name="Pearl Sand" Color="#FFD5C4C5"  Solid="true" />
+    <Tile Id="117" Name="Pearl Ore" Color="#FFB5ACBE"  Solid="true" />
+    <Tile Id="118" Name="Pearlstone Brick" Color="#FFD5C4C5"  Solid="true" />
+    <Tile Id="119" Name="Iridescent Brick" Color="#FF3F3F49"  Solid="true" />
+    <Tile Id="120" Name="Mudstone Brick" Color="#FF967A7D"  Solid="true" />
+    <Tile Id="121" Name="Cobalt Brick" Color="#FF2576AB"  Solid="true" />
+    <Tile Id="122" Name="Mithril Brick" Color="#FF91BF75"  Solid="true" />
+    <Tile Id="123" Name="Silt" Color="#FF595353"  Solid="true" />
+    <Tile Id="124" Name="Wooden Beam" Color="#FF5C4436" />
+    <Tile Id="125" Name="Crystal Ball" Color="#FF81A5FF"  Light="true" />
+    <Tile Id="126" Name="Ball" Color="#FFDBDBDB"  Light="true" />
+    <Tile Id="127" Name="Glass" Color="#FF68B3C8"  Solid="true" />
+    <Tile Id="128" Name="Armor Stand" Color="#FF906850" />
+    <Tile Id="129" Name="Spikes 129" Color="#FF004979"  Light="true" />
+    <Tile Id="130" Name="Active Stone" Color="#FFA5A5A5"  Solid="true" />
+    <Tile Id="131" Name="Inactive Stone" Color="#FF1A1A1A" />
+    <Tile Id="132" Name="Lever" Color="#FFC90303" />
+    <Tile Id="133" Name="Fireplace" Color="#FF891012"  Light="true" />
+    <Tile Id="134" Name="Adamantium Anvil" Color="#FF96AE87" />
+    <Tile Id="135" Name="Pressure Plate" Color="#FFFD7272" />
+    <Tile Id="136" Name="Switch" Color="#FFCCC0C0" />
+    <Tile Id="137" Name="Skull" Color="#FF8C8C8C"  Solid="true" />
+    <Tile Id="138" Name="Boulder" Color="#FF636363"  Solid="true" />
+    <Tile Id="139" Name="Music Box" Color="#FF996343" />
+    <Tile Id="140" Name="Demonite Brick" Color="#FF7875B3"  Light="true" Solid="true" />
+    <Tile Id="141" Name="Explosives" Color="#FFAD2323"  Size="1,1" />
+    <Tile Id="142" Name="Inlet Pump" Color="#FFC90303" />
+    <Tile Id="143" Name="Outlet Pump" Color="#FFC90303" />
+    <Tile Id="144" Name="Timer" Color="#FFC90303" />
+    <Tile Id="145" Name="Red Candy Cane Block" Color="#FFFF0000"  Solid="true" />
+    <Tile Id="146" Name="Green Candy Cane Block" Color="#FF00FF00"  Solid="true" />
+    <Tile Id="147" Name="Snow" Color="#FFEEEEFF"  Solid="true" />
+    <Tile Id="148" Name="Snow Brick" Color="#FFCCCCEE"  Solid="true" />
+    <Tile Id="149" Name="Christmas Light" Color="#FFFF0000"  Light="true" Size="1,1">
+      <Frames>
+        <Frame UV="0,0" Name="Blue Light" />
+        <Frame UV="18,0" Name="Red Light" />
+        <Frame UV="36,0" Name="Green Light" />
       </Frames>
     </Tile>
   </Tiles>
   <Walls>
-    <Wall num="0" name="Sky" color="#00000000" />
-    <Wall num="1" name="WallStone" color="#ff424242" isHouse="true" />
-    <Wall num="2" name="WallDirt" color="#ff583d2e" />
-    <Wall num="3" name="WallCorruption" color="#ff312545" />
-    <Wall num="4" name="WallWood" color="#ff4a2e1c" isHouse="true" />
-    <Wall num="5" name="WallBrick" color="#ff454545" isHouse="true" />
-    <Wall num="6" name="WallRed" color="#ff500000" isHouse="true" />
-    <Wall num="7" name="WallBlue" color="#ff000060" />
-    <Wall num="8" name="WallGreen" color="#ff005000" />
-    <Wall num="9" name="WallPink" color="#ff48004F" />
-    <Wall num="10" name="WallGold" color="#ff774707" isHouse="true" />
-    <Wall num="11" name="WallSilver" color="#ff828282" isHouse="true" />
-    <Wall num="12" name="WallCopper" color="#ff3F1907" isHouse="true" />
-    <Wall num="13" name="WallHellstone" color="#ff3F0707" />
-    <Wall num="14" name="WallObsidian" color="#ff000060" />
-    <Wall num="15" name="WallMud" color="#ff005500" />
-    <Wall num="16" name="WallPlayerDirt" color="#ff583d2e" isHouse="true" />
-    <Wall num="17" name="WallPlayerBlue" color="#ff000043" isHouse="true" />
-    <Wall num="18" name="WallPlayerGreen" color="#ff003700" isHouse="true" />
-    <Wall num="19" name="WallPlayerPink" color="#ff330037" isHouse="true" />
-    <Wall num="20" name="WallPlayerObsidian" color="#ff000060" isHouse="true" />
-    <Wall num="21" name="Glass Wall" color="#FF12242C" />
-    <Wall num="22" name="Pearlstone Wall" color="#FF716363" />
-    <Wall num="23" name="Iridescent Brick Wall" color="#FF4E4042" />
-    <Wall num="24" name="Mudstone Brick Wall" color="#FF403033" />
-    <Wall num="25" name="Cobalt Wall" color="#FF0B233E" />
-    <Wall num="26" name="Mythril Wall" color="#FF3C5B3A" />
-    <Wall num="27" name="Wood Panelling" color="#FF3A291D" />
-    <Wall num="28" name="Fragile Stone Wall" color="#FF515465" />
-    <Wall num="29" name="Red Candy Cane Wall" color="#FFAA0000" />
-    <Wall num="30" name="Green Candy Cane Wall" color="#FF00AA00" />
-    <Wall num="31" name="Snow Wall Wall" color="#FF9999BB" />
+    <Wall num="0" Name="Sky" Color="#00000000" />
+    <Wall num="1" Name="Stone Wall" Color="#ff424242" isHouse="true" />
+    <Wall num="2" Name="Dirt Wall" Color="#ff583d2e" />
+    <Wall num="3" Name="Corruption Wall" Color="#ff312545" />
+    <Wall num="4" Name="Wood Wall" Color="#ff4a2e1c" isHouse="true" />
+    <Wall num="5" Name="Brick Wall" Color="#ff454545" isHouse="true" />
+    <Wall num="6" Name="Dungeon Red Wall" Color="#ff500000" isHouse="true" />
+    <Wall num="7" Name="Dungeon Blue Wall" Color="#ff000060" />
+    <Wall num="8" Name="Dungeon Green Wall" Color="#ff005000" />
+    <Wall num="9" Name="Dungeon Pink Wall" Color="#ff48004F" />
+    <Wall num="10" Name="Gold Wall" Color="#ff774707" isHouse="true" />
+    <Wall num="11" Name="Silver" Color="#ff828282" isHouse="true" />
+    <Wall num="12" Name="Copper" Color="#ff3F1907" isHouse="true" />
+    <Wall num="13" Name="Hellstone" Color="#ff3F0707" />
+    <Wall num="14" Name="Obsidian" Color="#ff000060" />
+    <Wall num="15" Name="Mud" Color="#ff005500" />
+    <Wall num="16" Name="Player Dirt Wall" Color="#ff583d2e" isHouse="true" />
+    <Wall num="17" Name="Player Blue Wall" Color="#ff000043" isHouse="true" />
+    <Wall num="18" Name="Player Green Wall" Color="#ff003700" isHouse="true" />
+    <Wall num="19" Name="Player Pink Wall" Color="#ff330037" isHouse="true" />
+    <Wall num="20" Name="Player Obsidian Wall" Color="#ff000060" isHouse="true" />
+    <Wall num="21" Name="Glass Wall" Color="#FF12242C" />
+    <Wall num="22" Name="Pearlstone Wall" Color="#FF716363" />
+    <Wall num="23" Name="Iridescent Brick Wall" Color="#FF4E4042" />
+    <Wall num="24" Name="Mudstone Brick Wall" Color="#FF403033" />
+    <Wall num="25" Name="Cobalt Wall" Color="#FF0B233E" />
+    <Wall num="26" Name="Mythril Wall" Color="#FF3C5B3A" />
+    <Wall num="27" Name="Wood Panelling" Color="#FF3A291D" />
+    <Wall num="28" Name="Fragile Stone Wall" Color="#FF515465" />
+    <Wall num="29" Name="Red Candy Cane Wall" Color="#FFAA0000" />
+    <Wall num="30" Name="Green Candy Cane Wall" Color="#FF00AA00" />
+    <Wall num="31" Name="Snow Wall" Color="#FF9999BB" />
   </Walls>
   <Items>
-    <Item num="0" name="" type="[empty]" />
-    <Item num="1" name="Copper Pickaxe" type="" />
-    <Item num="1" name="Gold Pickaxe" type="" />
-    <Item num="1" name="Iron Pickaxe" type="" />
-    <Item num="1" name="Silver Pickaxe" type="" />
-    <Item num="2" name="Dirt Block" type="" />
-    <Item num="3" name="Stone Block" type="" />
-    <Item num="4" name="Copper Broadsword" type="" />
-    <Item num="4" name="Gold Broadsword" type="" />
-    <Item num="4" name="Iron Broadsword" type="" />
-    <Item num="4" name="Silver Broadsword" type="" />
-    <Item num="5" name="Mushroom" type="" />
-    <Item num="6" name="Copper Shortsword" type="" />
-    <Item num="6" name="Gold Shortsword" type="" />
-    <Item num="6" name="Iron Shortsword" type="" />
-    <Item num="6" name="Silver Shortsword" type="" />
-    <Item num="7" name="Copper Hammer" type="" />
-    <Item num="7" name="Gold Hammer" type="" />
-    <Item num="7" name="Iron Hammer" type="" />
-    <Item num="7" name="Silver Hammer" type="" />
-    <Item num="8" name="Torch" type="" />
-    <Item num="9" name="Wood" type="" />
-    <Item num="10" name="Copper Axe" type="" />
-    <Item num="10" name="Gold Axe" type="" />
-    <Item num="10" name="Iron Axe" type="" />
-    <Item num="10" name="Silver Axe" type="" />
-    <Item num="11" name="Iron Ore" type="" />
-    <Item num="12" name="Copper Ore" type="" />
-    <Item num="13" name="Gold Ore" type="" />
-    <Item num="14" name="Silver Ore" type="" />
-    <Item num="15" name="Copper Watch" type="" />
-    <Item num="16" name="Silver Watch" type="" />
-    <Item num="17" name="Gold Watch" type="" />
-    <Item num="18" name="Depth Meter" type="" />
-    <Item num="19" name="Gold Bar" type="" />
-    <Item num="20" name="Copper Bar" type="" />
-    <Item num="21" name="Silver Bar" type="" />
-    <Item num="22" name="Iron Bar" type="" />
-    <Item num="23" name="Gel" type="" />
-    <Item num="24" name="Wooden Sword" type="" />
-    <Item num="25" name="Wooden Door" type="" />
-    <Item num="26" name="Stone Wall" type="" />
-    <Item num="27" name="Acorn" type="" />
-    <Item num="28" name="Lesser Healing Potion" type="" />
-    <Item num="29" name="Life Crystal" type="" />
-    <Item num="30" name="Dirt Wall" type="" />
-    <Item num="31" name="Bottle" type="" />
-    <Item num="32" name="Wooden Table" type="" />
-    <Item num="33" name="Furnace" type="" />
-    <Item num="34" name="Wooden Chair" type="" />
-    <Item num="35" name="Iron Anvil" type="" />
-    <Item num="36" name="Work Bench" type="" />
-    <Item num="37" name="Goggles" type="" />
-    <Item num="38" name="Lens" type="" />
-    <Item num="39" name="Wooden Bow" type="" />
-    <Item num="40" name="Wooden Arrow" type="" />
-    <Item num="41" name="Flaming Arrow" type="" />
-    <Item num="42" name="Shuriken" type="" />
-    <Item num="43" name="Suspicious Looking Eye" type="" />
-    <Item num="44" name="Demon Bow" type="" />
-    <Item num="45" name="War Axe of the Night" type="" />
-    <Item num="46" name="Light's Bane" type="" />
-    <Item num="47" name="Unholy Arrow" type="" />
-    <Item num="48" name="Chest" type="" />
-    <Item num="49" name="Band of Regeneration" type="" />
-    <Item num="50" name="Magic Mirror" type="" />
-    <Item num="51" name="Jester's Arrow" type="" />
-    <Item num="52" name="Angel Statue" type="" />
-    <Item num="53" name="Cloud in a Bottle" type="" />
-    <Item num="54" name="Hermes Boots" type="" />
-    <Item num="55" name="Enchanted Boomerang" type="" />
-    <Item num="56" name="Demonite Ore" type="" />
-    <Item num="57" name="Demonite Bar" type="" />
-    <Item num="58" name="Heart" type="" />
-    <Item num="59" name="Corrupt Seeds" type="" />
-    <Item num="60" name="Vile Mushroom" type="" />
-    <Item num="61" name="Ebonstone Block" type="" />
-    <Item num="62" name="Grass Seeds" type="" />
-    <Item num="63" name="Sunflower" type="" />
-    <Item num="64" name="Vilethorn" type="" />
-    <Item num="65" name="Starfury" type="" />
-    <Item num="66" name="Purification Powder" type="" />
-    <Item num="67" name="Vile Powder" type="" />
-    <Item num="68" name="Rotten Chunk" type="" />
-    <Item num="69" name="Worm Tooth" type="" />
-    <Item num="70" name="Worm Food" type="" />
-    <Item num="71" name="Copper Coin" type="" />
-    <Item num="72" name="Silver Coin" type="" />
-    <Item num="73" name="Gold Coin" type="" />
-    <Item num="74" name="Platinum Coin" type="" />
-    <Item num="75" name="Fallen Star" type="" />
-    <Item num="76" name="Copper Greaves" type="" />
-    <Item num="77" name="Iron Greaves" type="" />
-    <Item num="78" name="Silver Greaves" type="" />
-    <Item num="79" name="Gold Greaves" type="" />
-    <Item num="80" name="Copper Chainmail" type="" />
-    <Item num="81" name="Iron Chainmail" type="" />
-    <Item num="82" name="Silver Chainmail" type="" />
-    <Item num="83" name="Gold Chainmail" type="" />
-    <Item num="84" name="Grappling Hook" type="" />
-    <Item num="85" name="Iron Chain" type="" />
-    <Item num="86" name="Shadow Scale" type="" />
-    <Item num="87" name="Piggy Bank" type="" />
-    <Item num="88" name="Mining Helmet" type="" />
-    <Item num="89" name="Copper Helmet" type="" />
-    <Item num="90" name="Iron Helmet" type="" />
-    <Item num="91" name="Silver Helmet" type="" />
-    <Item num="92" name="Gold Helmet" type="" />
-    <Item num="93" name="Wood Wall" type="" />
-    <Item num="94" name="Wood Platform" type="" />
-    <Item num="95" name="Flintlock Pistol" type="" />
-    <Item num="96" name="Musket" type="" />
-    <Item num="97" name="Musket Ball" type="" />
-    <Item num="98" name="Minishark" type="" />
-    <Item num="99" name="Copper Bow" type="" />
-    <Item num="99" name="Gold Bow" type="" />
-    <Item num="99" name="Iron Bow" type="" />
-    <Item num="99" name="Silver Bow" type="" />
-    <Item num="100" name="Shadow Greaves" type="" />
-    <Item num="101" name="Shadow Scalemail" type="" />
-    <Item num="102" name="Shadow Helmet" type="" />
-    <Item num="103" name="Nightmare Pickaxe" type="" />
-    <Item num="104" name="The Breaker" type="" />
-    <Item num="105" name="Candle" type="" />
-    <Item num="106" name="Copper Chandelier" type="" />
-    <Item num="107" name="Silver Chandelier" type="" />
-    <Item num="108" name="Gold Chandelier" type="" />
-    <Item num="109" name="Mana Crystal" type="" />
-    <Item num="110" name="Lesser Mana Potion" type="" />
-    <Item num="111" name="Band of Starpower" type="" />
-    <Item num="112" name="Flower of Fire" type="" />
-    <Item num="113" name="Magic Missile" type="" />
-    <Item num="114" name="Dirt Rod" type="" />
-    <Item num="115" name="Orb of Light" type="" />
-    <Item num="116" name="Meteorite" type="" />
-    <Item num="117" name="Meteorite Bar" type="" />
-    <Item num="118" name="Hook" type="" />
-    <Item num="119" name="Flamarang" type="" />
-    <Item num="120" name="Molten Fury" type="" />
-    <Item num="121" name="Fiery Greatsword" type="" />
-    <Item num="122" name="Molten Pickaxe" type="" />
-    <Item num="123" name="Meteor Helmet" type="" />
-    <Item num="124" name="Meteor Suit" type="" />
-    <Item num="125" name="Meteor Leggings" type="" />
-    <Item num="126" name="Bottled Water" type="" />
-    <Item num="127" name="Space Gun" type="" />
-    <Item num="128" name="Rocket Boots" type="" />
-    <Item num="129" name="Gray Brick" type="" />
-    <Item num="130" name="Gray Brick Wall" type="" />
-    <Item num="131" name="Red Brick" type="" />
-    <Item num="132" name="Red Brick Wall" type="" />
-    <Item num="133" name="Clay Block" type="" />
-    <Item num="134" name="Blue Brick" type="" />
-    <Item num="135" name="Blue Brick Wall" type="" />
-    <Item num="136" name="Chain Lantern" type="" />
-    <Item num="137" name="Green Brick" type="" />
-    <Item num="138" name="Green Brick Wall" type="" />
-    <Item num="139" name="Pink Brick" type="" />
-    <Item num="140" name="Pink Brick Wall" type="" />
-    <Item num="141" name="Gold Brick" type="" />
-    <Item num="142" name="Gold Brick Wall" type="" />
-    <Item num="143" name="Silver Brick" type="" />
-    <Item num="144" name="Silver Brick Wall" type="" />
-    <Item num="145" name="Copper Brick" type="" />
-    <Item num="146" name="Copper Brick Wall" type="" />
-    <Item num="147" name="Spike" type="" />
-    <Item num="148" name="Water Candle" type="" />
-    <Item num="149" name="Book" type="" />
-    <Item num="150" name="Cobweb" type="" />
-    <Item num="151" name="Necro Helmet" type="" />
-    <Item num="152" name="Necro Breastplate" type="" />
-    <Item num="153" name="Necro Greaves" type="" />
-    <Item num="154" name="Bone" type="" />
-    <Item num="155" name="Muramasa" type="" />
-    <Item num="156" name="Cobalt Shield" type="" />
-    <Item num="157" name="Aqua Scepter" type="" />
-    <Item num="158" name="Lucky Horseshoe" type="" />
-    <Item num="159" name="Shiny Red Balloon" type="" />
-    <Item num="160" name="Harpoon" type="" />
-    <Item num="161" name="Spiky Ball" type="" />
-    <Item num="162" name="Ball O' Hurt" type="" />
-    <Item num="163" name="Blue Moon" type="" />
-    <Item num="164" name="Handgun" type="" />
-    <Item num="165" name="Water Bolt" type="" />
-    <Item num="166" name="Bomb" type="" />
-    <Item num="167" name="Dynamite" type="" />
-    <Item num="168" name="Grenade" type="" />
-    <Item num="169" name="Sand Block" type="" />
-    <Item num="170" name="Glass" type="" />
-    <Item num="171" name="Sign" type="" />
-    <Item num="172" name="Ash Block" type="" />
-    <Item num="173" name="Obsidian" type="" />
-    <Item num="174" name="Hellstone" type="" />
-    <Item num="175" name="Hellstone Bar" type="" />
-    <Item num="176" name="Mud Block" type="" />
-    <Item num="177" name="Sapphire" type="" />
-    <Item num="178" name="Ruby" type="" />
-    <Item num="179" name="Emerald" type="" />
-    <Item num="180" name="Topaz" type="" />
-    <Item num="181" name="Amethyst" type="" />
-    <Item num="182" name="Diamond" type="" />
-    <Item num="183" name="Glowing Mushroom" type="" />
-    <Item num="184" name="Star" type="" />
-    <Item num="185" name="Ivy Whip" type="" />
-    <Item num="186" name="Breathing Reed" type="" />
-    <Item num="187" name="Flipper" type="" />
-    <Item num="188" name="Healing Potion" type="" />
-    <Item num="189" name="Mana Potion" type="" />
-    <Item num="190" name="Blade of Grass" type="" />
-    <Item num="191" name="Thorn Chakram" type="" />
-    <Item num="192" name="Obsidian Brick" type="" />
-    <Item num="193" name="Obsidian Skull" type="" />
-    <Item num="194" name="Mushroom Grass Seeds" type="" />
-    <Item num="195" name="Jungle Grass Seeds" type="" />
-    <Item num="196" name="Wooden Hammer" type="" />
-    <Item num="197" name="Star Cannon" type="" />
-    <Item num="198" name="Blue Phaseblade" type="" />
-    <Item num="198" name="Blue Phasesaber" type="" />
-    <Item num="199" name="Red Phaseblade" type="" />
-    <Item num="199" name="Red Phasesaber" type="" />
-    <Item num="200" name="Green Phaseblade" type="" />
-    <Item num="200" name="Green Phasesaber" type="" />
-    <Item num="201" name="Purple Phaseblade" type="" />
-    <Item num="201" name="Purple Phasesaber" type="" />
-    <Item num="202" name="White Phaseblade" type="" />
-    <Item num="202" name="White Phasesaber" type="" />
-    <Item num="203" name="Yellow Phaseblade" type="" />
-    <Item num="203" name="Yellow Phasesaber" type="" />
-    <Item num="204" name="Meteor Hamaxe" type="" />
-    <Item num="205" name="Empty Bucket" type="" />
-    <Item num="206" name="Water Bucket" type="" />
-    <Item num="207" name="Lava Bucket" type="" />
-    <Item num="208" name="Jungle Rose" type="" />
-    <Item num="209" name="Stinger" type="" />
-    <Item num="210" name="Vine" type="" />
-    <Item num="211" name="Feral Claws" type="" />
-    <Item num="212" name="Anklet of the Wind" type="" />
-    <Item num="213" name="Staff of Regrowth" type="" />
-    <Item num="214" name="Hellstone Brick" type="" />
-    <Item num="215" name="Whoopie Cushion" type="" />
-    <Item num="216" name="Shackle" type="" />
-    <Item num="217" name="Molten Hamaxe" type="" />
-    <Item num="218" name="Flamelash" type="" />
-    <Item num="219" name="Phoenix Blaster" type="" />
-    <Item num="220" name="Sunfury" type="" />
-    <Item num="221" name="Hellforge" type="" />
-    <Item num="222" name="Clay Pot" type="" />
-    <Item num="223" name="Nature's Gift" type="" />
-    <Item num="224" name="Bed" type="" />
-    <Item num="225" name="Silk" type="" />
-    <Item num="226" name="Lesser Restoration Potion" type="" />
-    <Item num="227" name="Restoration Potion" type="" />
-    <Item num="228" name="Jungle Hat" type="" />
-    <Item num="229" name="Jungle Shirt" type="" />
-    <Item num="230" name="Jungle Pants" type="" />
-    <Item num="231" name="Molten Helmet" type="" />
-    <Item num="232" name="Molten Breastplate" type="" />
-    <Item num="233" name="Molten Greaves" type="" />
-    <Item num="234" name="Meteor Shot" type="" />
-    <Item num="235" name="Sticky Bomb" type="" />
-    <Item num="236" name="Black Lens" type="" />
-    <Item num="237" name="Sunglasses" type="" />
-    <Item num="238" name="Wizard Hat" type="" />
-    <Item num="239" name="Top Hat" type="" />
-    <Item num="240" name="Tuxedo Shirt" type="" />
-    <Item num="241" name="Tuxedo Pants" type="" />
-    <Item num="242" name="Summer Hat" type="" />
-    <Item num="243" name="Bunny Hood" type="" />
-    <Item num="244" name="Plumber's Hat" type="" />
-    <Item num="245" name="Plumber's Shirt" type="" />
-    <Item num="246" name="Plumber's Pants" type="" />
-    <Item num="247" name="Hero's Hat" type="" />
-    <Item num="248" name="Hero's Shirt" type="" />
-    <Item num="249" name="Hero's Pants" type="" />
-    <Item num="250" name="Fish Bowl" type="" />
-    <Item num="251" name="Archaeologist's Hat" type="" />
-    <Item num="252" name="Archaeologist's Jacket" type="" />
-    <Item num="253" name="Archaeologist's Pants" type="" />
-    <Item num="254" name="Black Dye" type="" />
-    <Item num="255" name="Green Dye" type="" />
-    <Item num="256" name="Ninja Hood" type="" />
-    <Item num="257" name="Ninja Shirt" type="" />
-    <Item num="258" name="Ninja Pants" type="" />
-    <Item num="259" name="Leather" type="" />
-    <Item num="260" name="Red Hat" type="" />
-    <Item num="261" name="Goldfish" type="" />
-    <Item num="262" name="Robe" type="" />
-    <Item num="263" name="Robot Hat" type="" />
-    <Item num="264" name="Gold Crown" type="" />
-    <Item num="265" name="Hellfire Arrow" type="" />
-    <Item num="266" name="Sandgun" type="" />
-    <Item num="267" name="Guide Voodoo Doll" type="" />
-    <Item num="268" name="Diving Helmet" type="" />
-    <Item num="269" name="Familiar Shirt" type="" />
-    <Item num="270" name="Familiar Pants" type="" />
-    <Item num="271" name="Familiar Wig" type="" />
-    <Item num="272" name="Demon Scythe" type="" />
-    <Item num="273" name="Night's Edge" type="" />
-    <Item num="274" name="Dark Lance" type="" />
-    <Item num="275" name="Coral" type="" />
-    <Item num="276" name="Cactus" type="" />
-    <Item num="277" name="Trident" type="" />
-    <Item num="278" name="Silver Bullet" type="" />
-    <Item num="279" name="Throwing Knife" type="" />
-    <Item num="280" name="Spear" type="" />
-    <Item num="281" name="Blowpipe" type="" />
-    <Item num="282" name="Glowstick" type="" />
-    <Item num="283" name="Seed" type="" />
-    <Item num="284" name="Wooden Boomerang" type="" />
-    <Item num="285" name="Aglet" type="" />
-    <Item num="286" name="Sticky Glowstick" type="" />
-    <Item num="287" name="Poisoned Knife" type="" />
-    <Item num="288" name="Obsidian Skin Potion" type="" />
-    <Item num="289" name="Regeneration Potion" type="" />
-    <Item num="290" name="Swiftness Potion" type="" />
-    <Item num="291" name="Gills Potion" type="" />
-    <Item num="292" name="Ironskin Potion" type="" />
-    <Item num="293" name="Mana Regeneration Potion" type="" />
-    <Item num="294" name="Magic Power Potion" type="" />
-    <Item num="295" name="Featherfall Potion" type="" />
-    <Item num="296" name="Spelunker Potion" type="" />
-    <Item num="297" name="Invisibility Potion" type="" />
-    <Item num="298" name="Shine Potion" type="" />
-    <Item num="299" name="Night Owl Potion" type="" />
-    <Item num="300" name="Battle Potion" type="" />
-    <Item num="301" name="Thorns Potion" type="" />
-    <Item num="302" name="Water Walking Potion" type="" />
-    <Item num="303" name="Archery Potion" type="" />
-    <Item num="304" name="Hunter Potion" type="" />
-    <Item num="305" name="Gravitation Potion" type="" />
-    <Item num="306" name="Gold Chest" type="" />
-    <Item num="307" name="Daybloom Seeds" type="" />
-    <Item num="308" name="Moonglow Seeds" type="" />
-    <Item num="309" name="Blinkroot Seeds" type="" />
-    <Item num="310" name="Deathweed Seeds" type="" />
-    <Item num="311" name="Waterleaf Seeds" type="" />
-    <Item num="312" name="Fireblossom Seeds" type="" />
-    <Item num="313" name="Daybloom" type="" />
-    <Item num="314" name="Moonglow" type="" />
-    <Item num="315" name="Blinkroot" type="" />
-    <Item num="316" name="Deathweed" type="" />
-    <Item num="317" name="Waterleaf" type="" />
-    <Item num="318" name="Fireblossom" type="" />
-    <Item num="319" name="Shark Fin" type="" />
-    <Item num="320" name="Feather" type="" />
-    <Item num="321" name="Tombstone" type="" />
-    <Item num="322" name="Mime Mask" type="" />
-    <Item num="323" name="Antlion Mandible" type="" />
-    <Item num="324" name="Illegal Gun Parts" type="" />
-    <Item num="325" name="The Doctor's Shirt" type="" />
-    <Item num="326" name="The Doctor's Pants" type="" />
-    <Item num="327" name="Golden Key" type="" />
-    <Item num="328" name="Shadow Chest" type="" />
-    <Item num="329" name="Shadow Key" type="" />
-    <Item num="330" name="Obsidian Brick Wall" type="" />
-    <Item num="331" name="Jungle Spores" type="" />
-    <Item num="332" name="Loom" type="" />
-    <Item num="333" name="Piano" type="" />
-    <Item num="334" name="Dresser" type="" />
-    <Item num="335" name="Bench" type="" />
-    <Item num="336" name="Bathtub" type="" />
-    <Item num="337" name="Red Banner" type="" />
-    <Item num="338" name="Green Banner" type="" />
-    <Item num="339" name="Blue Banner" type="" />
-    <Item num="340" name="Yellow Banner" type="" />
-    <Item num="341" name="Lamp Post" type="" />
-    <Item num="342" name="Tiki Torch" type="" />
-    <Item num="343" name="Barrel" type="" />
-    <Item num="344" name="Chinese Lantern" type="" />
-    <Item num="345" name="Cooking Pot" type="" />
-    <Item num="346" name="Safe" type="" />
-    <Item num="347" name="Skull Lantern" type="" />
-    <Item num="348" name="Trash Can" type="" />
-    <Item num="349" name="Candelabra" type="" />
-    <Item num="350" name="Pink Vase" type="" />
-    <Item num="351" name="Mug" type="" />
-    <Item num="352" name="Keg" type="" />
-    <Item num="353" name="Ale" type="" />
-    <Item num="354" name="Bookcase" type="" />
-    <Item num="355" name="Throne" type="" />
-    <Item num="356" name="Bowl" type="" />
-    <Item num="357" name="Bowl of Soup" type="" />
-    <Item num="358" name="Toilet" type="" />
-    <Item num="359" name="Grandfather Clock" type="" />
-    <Item num="360" name="Armor Statue" type="" />
-    <Item num="361" name="Goblin Battle Standard" type="" />
-    <Item num="362" name="Tattered Cloth" type="" />
-    <Item num="363" name="Sawmill" type="" />
-    <Item num="364" name="Cobalt Ore" type="" />
-    <Item num="365" name="Mythril Ore" type="" />
-    <Item num="366" name="Adamantite Ore" type="" />
-    <Item num="367" name="Pwnhammer" type="" />
-    <Item num="368" name="Excalibur" type="" />
-    <Item num="369" name="Hallowed Seeds" type="" />
-    <Item num="370" name="Ebonsand Block" type="" />
-    <Item num="371" name="Cobalt Hat" type="" />
-    <Item num="372" name="Cobalt Helmet" type="" />
-    <Item num="373" name="Cobalt Mask" type="" />
-    <Item num="374" name="Cobalt Breastplate" type="" />
-    <Item num="375" name="Cobalt Leggings" type="" />
-    <Item num="376" name="Mythril Hood" type="" />
-    <Item num="377" name="Mythril Helmet" type="" />
-    <Item num="378" name="Mythril Hat" type="" />
-    <Item num="379" name="Mythril Chainmail" type="" />
-    <Item num="380" name="Mythril Greaves" type="" />
-    <Item num="381" name="Cobalt Bar" type="" />
-    <Item num="382" name="Mythril Bar" type="" />
-    <Item num="383" name="Cobalt Chainsaw" type="" />
-    <Item num="384" name="Mythril Chainsaw" type="" />
-    <Item num="385" name="Cobalt Drill" type="" />
-    <Item num="386" name="Mythril Drill" type="" />
-    <Item num="387" name="Adamantite Chainsaw" type="" />
-    <Item num="388" name="Adamantite Drill" type="" />
-    <Item num="389" name="Dao of Pow" type="" />
-    <Item num="390" name="Mythril Halberd" type="" />
-    <Item num="391" name="Adamantite Bar" type="" />
-    <Item num="392" name="Glass Wall" type="" />
-    <Item num="393" name="Compass" type="" />
-    <Item num="394" name="Diving Gear" type="" />
-    <Item num="395" name="GPS" type="" />
-    <Item num="396" name="Obsidian Horseshoe" type="" />
-    <Item num="397" name="Obsidian Shield" type="" />
-    <Item num="398" name="Tinkerer's Workshop" type="" />
-    <Item num="399" name="Cloud in a Balloon" type="" />
-    <Item num="400" name="Adamantite Headgear" type="" />
-    <Item num="401" name="Adamantite Helmet" type="" />
-    <Item num="402" name="Adamantite Mask" type="" />
-    <Item num="403" name="Adamantite Breastplate" type="" />
-    <Item num="404" name="Adamantite Leggings" type="" />
-    <Item num="405" name="Spectre Boots" type="" />
-    <Item num="406" name="Adamantite Glaive" type="" />
-    <Item num="407" name="Toolbelt" type="" />
-    <Item num="408" name="Pearlsand Block" type="" />
-    <Item num="409" name="Pearlstone Block" type="" />
-    <Item num="410" name="Mining Shirt" type="" />
-    <Item num="411" name="Mining Pants" type="" />
-    <Item num="412" name="Pearlstone Brick" type="" />
-    <Item num="413" name="Iridescent Brick" type="" />
-    <Item num="414" name="Mudstone Block" type="" />
-    <Item num="415" name="Cobalt Brick" type="" />
-    <Item num="416" name="Mythril Brick" type="" />
-    <Item num="417" name="Pearlstone Brick Wall" type="" />
-    <Item num="418" name="Iridescent Brick Wall" type="" />
-    <Item num="419" name="Mudstone Brick Wall" type="" />
-    <Item num="420" name="Cobalt Brick Wall" type="" />
-    <Item num="421" name="Mythril Brick Wall" type="" />
-    <Item num="422" name="Holy Water" type="" />
-    <Item num="423" name="Unholy Water" type="" />
-    <Item num="424" name="Silt Block" type="" />
-    <Item num="425" name="Fairy Bell" type="" />
-    <Item num="426" name="Breaker Blade" type="" />
-    <Item num="427" name="Blue Torch" type="" />
-    <Item num="428" name="Red Torch" type="" />
-    <Item num="429" name="Green Torch" type="" />
-    <Item num="430" name="Purple Torch" type="" />
-    <Item num="431" name="White Torch" type="" />
-    <Item num="432" name="Yellow Torch" type="" />
-    <Item num="433" name="Demon Torch" type="" />
-    <Item num="434" name="Clockwork Assault Rifle" type="" />
-    <Item num="435" name="Cobalt Repeater" type="" />
-    <Item num="436" name="Mythril Repeater" type="" />
-    <Item num="437" name="Dual Hook" type="" />
-    <Item num="438" name="Star Statue" type="" />
-    <Item num="439" name="Sword Statue" type="" />
-    <Item num="440" name="Slime Statue" type="" />
-    <Item num="441" name="Goblin Statue" type="" />
-    <Item num="442" name="Shield Statue" type="" />
-    <Item num="443" name="Bat Statue" type="" />
-    <Item num="444" name="Fish Statue" type="" />
-    <Item num="445" name="Bunny Statue" type="" />
-    <Item num="446" name="Skeleton Statue" type="" />
-    <Item num="447" name="Reaper Statue" type="" />
-    <Item num="448" name="Woman Statue" type="" />
-    <Item num="449" name="Imp Statue" type="" />
-    <Item num="450" name="Gargoyle Statue" type="" />
-    <Item num="451" name="Gloom Statue" type="" />
-    <Item num="452" name="Hornet Statue" type="" />
-    <Item num="453" name="Bomb Statue" type="" />
-    <Item num="454" name="Crab Statue" type="" />
-    <Item num="455" name="Hammer Statue" type="" />
-    <Item num="456" name="Potion Statue" type="" />
-    <Item num="457" name="Spear Statue" type="" />
-    <Item num="458" name="Cross Statue" type="" />
-    <Item num="459" name="Jellyfish Statue" type="" />
-    <Item num="460" name="Bow Statue" type="" />
-    <Item num="461" name="Boomerang Statue" type="" />
-    <Item num="462" name="Boot Statue" type="" />
-    <Item num="463" name="Chest Statue" type="" />
-    <Item num="464" name="Bird Statue" type="" />
-    <Item num="465" name="Axe Statue" type="" />
-    <Item num="466" name="Corrupt Statue" type="" />
-    <Item num="467" name="Tree Statue" type="" />
-    <Item num="468" name="Anvil Statue" type="" />
-    <Item num="469" name="Pickaxe Statue" type="" />
-    <Item num="470" name="Mushroom Statue" type="" />
-    <Item num="471" name="Eyeball Statue" type="" />
-    <Item num="472" name="Pillar Statue" type="" />
-    <Item num="473" name="Heart Statue" type="" />
-    <Item num="474" name="Pot Statue" type="" />
-    <Item num="475" name="Sunflower Statue" type="" />
-    <Item num="476" name="King Statue" type="" />
-    <Item num="477" name="Queen Statue" type="" />
-    <Item num="478" name="Pirahna Statue" type="" />
-    <Item num="479" name="Planked Wall" type="" />
-    <Item num="480" name="Wooden Beam" type="" />
-    <Item num="481" name="Adamantite Repeater" type="" />
-    <Item num="482" name="Adamantite Sword" type="" />
-    <Item num="483" name="Cobalt Sword" type="" />
-    <Item num="484" name="Mythril Sword" type="" />
-    <Item num="485" name="Moon Charm" type="" />
-    <Item num="486" name="Ruler" type="" />
-    <Item num="487" name="Crystal Ball" type="" />
-    <Item num="488" name="Disco Ball" type="" />
-    <Item num="489" name="Sorcerer Emblem" type="" />
-    <Item num="490" name="Warrior Emblem" type="" />
-    <Item num="491" name="Ranger Emblem" type="" />
-    <Item num="492" name="Demon Wings" type="" />
-    <Item num="493" name="Angel Wings" type="" />
-    <Item num="494" name="Magical Harp" type="" />
-    <Item num="495" name="Rainbow Rod" type="" />
-    <Item num="496" name="Ice Rod" type="" />
-    <Item num="497" name="Neptune's Shell" type="" />
-    <Item num="498" name="Mannequin" type="" />
-    <Item num="499" name="Greater Healing Potion" type="" />
-    <Item num="500" name="Greater Mana Potion" type="" />
-    <Item num="501" name="Pixie Dust" type="" />
-    <Item num="502" name="Crystal Shard" type="" />
-    <Item num="503" name="Clown Hat" type="" />
-    <Item num="504" name="Clown Shirt" type="" />
-    <Item num="505" name="Clown Pants" type="" />
-    <Item num="506" name="Flamethrower" type="" />
-    <Item num="507" name="Bell" type="" />
-    <Item num="508" name="Harp" type="" />
-    <Item num="509" name="Wrench" type="" />
-    <Item num="510" name="Wire Cutter" type="" />
-    <Item num="511" name="Active Stone Block" type="" />
-    <Item num="512" name="Inactive Stone Block" type="" />
-    <Item num="513" name="Lever" type="" />
-    <Item num="514" name="Laser Rifle" type="" />
-    <Item num="515" name="Crystal Bullet" type="" />
-    <Item num="516" name="Holy Arrow" type="" />
-    <Item num="517" name="Magic Dagger" type="" />
-    <Item num="518" name="Crystal Storm" type="" />
-    <Item num="519" name="Cursed Flames" type="" />
-    <Item num="520" name="Soul of Light" type="" />
-    <Item num="521" name="Soul of Night" type="" />
-    <Item num="522" name="Cursed Flame" type="" />
-    <Item num="523" name="Cursed Torch" type="" />
-    <Item num="524" name="Adamantite Forge" type="" />
-    <Item num="525" name="Mythril Anvil" type="" />
-    <Item num="526" name="Unicorn Horn" type="" />
-    <Item num="527" name="Dark Shard" type="" />
-    <Item num="528" name="Light Shard" type="" />
-    <Item num="529" name="Red Pressure Plate" type="" />
-    <Item num="530" name="Wire" type="" />
-    <Item num="531" name="Spell Tome" type="" />
-    <Item num="532" name="Star Cloak" type="" />
-    <Item num="533" name="Megashark" type="" />
-    <Item num="534" name="Shotgun" type="" />
-    <Item num="535" name="Philosopher's Stone" type="" />
-    <Item num="536" name="Titan Glove" type="" />
-    <Item num="537" name="Cobalt Naginata" type="" />
-    <Item num="538" name="Switch" type="" />
-    <Item num="539" name="Dart Trap" type="" />
-    <Item num="540" name="Boulder" type="" />
-    <Item num="541" name="Green Pressure Plate" type="" />
-    <Item num="542" name="Gray Pressure Plate" type="" />
-    <Item num="543" name="Brown Pressure Plate" type="" />
-    <Item num="544" name="Mechanical Eye" type="" />
-    <Item num="545" name="Cursed Arrow" type="" />
-    <Item num="546" name="Cursed Bullet" type="" />
-    <Item num="547" name="Soul of Fright" type="" />
-    <Item num="548" name="Soul of Might" type="" />
-    <Item num="549" name="Soul of Sight" type="" />
-    <Item num="550" name="Gungnir" type="" />
-    <Item num="551" name="Hallowed Plate Mail" type="" />
-    <Item num="552" name="Hallowed Greaves" type="" />
-    <Item num="553" name="Hallowed Helmet" type="" />
-    <Item num="554" name="Cross Necklace" type="" />
-    <Item num="555" name="Mana Flower" type="" />
-    <Item num="556" name="Mechanical Worm" type="" />
-    <Item num="557" name="Mechanical Skull" type="" />
-    <Item num="558" name="Hallowed Headgear" type="" />
-    <Item num="559" name="Hallowed Mask" type="" />
-    <Item num="560" name="Slime Crown" type="" />
-    <Item num="561" name="Light Disc" type="" />
-    <Item num="562" name="Music Box (Overworld Day)" type="" />
-    <Item num="563" name="Music Box (Eerie)" type="" />
-    <Item num="564" name="Music Box (Night)" type="" />
-    <Item num="565" name="Music Box (Title)" type="" />
-    <Item num="566" name="Music Box (Underground)" type="" />
-    <Item num="567" name="Music Box (Boss 1)" type="" />
-    <Item num="568" name="Music Box (Jungle)" type="" />
-    <Item num="569" name="Music Box (Corruption)" type="" />
-    <Item num="570" name="Music Box (Underground Corruption)" type="" />
-    <Item num="571" name="Music Box (The Hallow)" type="" />
-    <Item num="572" name="Music Box (Boss 2)" type="" />
-    <Item num="573" name="Music Box (Underground Hallow)" type="" />
-    <Item num="574" name="Music Box (Boss 3)" type="" />
-    <Item num="575" name="Soul of Flight" type="" />
-    <Item num="576" name="Music Box" type="" />
-    <Item num="577" name="Demonite Brick" type="" />
-    <Item num="578" name="Hallowed Repeater" type="" />
-    <Item num="579" name="Hamdrax" type="" />
-    <Item num="580" name="Explosives" type="" />
-    <Item num="581" name="Inlet Pump" type="" />
-    <Item num="582" name="Outlet Pump" type="" />
-    <Item num="583" name="1 Second Timer" type="" />
-    <Item num="584" name="3 Second Timer" type="" />
-    <Item num="585" name="5 Second Timer" type="" />
-    <Item num="586" name="Candy Cane Block" type="" />
-    <Item num="587" name="Candy Cane Wall" type="" />
-    <Item num="588" name="Santa Hat" type="" />
-    <Item num="589" name="Santa Shirt" type="" />
-    <Item num="590" name="Santa Pants" type="" />
-    <Item num="591" name="Green Candy Cane Block" type="" />
-    <Item num="592" name="Green Candy Cane Wall" type="" />
-    <Item num="593" name="Snow Block" type="" />
-    <Item num="594" name="Snow Brick" type="" />
-    <Item num="595" name="Snow Brick Wall" type="" />
-    <Item num="596" name="Blue Light" type="" />
-    <Item num="597" name="Red Light" type="" />
-    <Item num="598" name="Green Light" type="" />
-    <Item num="599" name="Blue Present" type="" />
-    <Item num="600" name="Green Present" type="" />
-    <Item num="601" name="Yellow Present" type="" />
-    <Item num="602" name="Snow Globe" type="" />
+    <Item num="0" Name="" type="[empty]" />
+    <Item num="1" Name="Copper Pickaxe" />
+    <Item num="1" Name="Gold Pickaxe" />
+    <Item num="1" Name="Iron Pickaxe" />
+    <Item num="1" Name="Silver Pickaxe" />
+    <Item num="2" Name="Dirt Block" />
+    <Item num="3" Name="Stone Block" />
+    <Item num="4" Name="Copper Broadsword" />
+    <Item num="4" Name="Gold Broadsword" />
+    <Item num="4" Name="Iron Broadsword" />
+    <Item num="4" Name="Silver Broadsword" />
+    <Item num="5" Name="Mushroom" />
+    <Item num="6" Name="Copper Shortsword" />
+    <Item num="6" Name="Gold Shortsword" />
+    <Item num="6" Name="Iron Shortsword" />
+    <Item num="6" Name="Silver Shortsword" />
+    <Item num="7" Name="Copper Hammer" />
+    <Item num="7" Name="Gold Hammer" />
+    <Item num="7" Name="Iron Hammer" />
+    <Item num="7" Name="Silver Hammer" />
+    <Item num="8" Name="Torch" />
+    <Item num="9" Name="Wood" />
+    <Item num="10" Name="Copper Axe" />
+    <Item num="10" Name="Gold Axe" />
+    <Item num="10" Name="Iron Axe" />
+    <Item num="10" Name="Silver Axe" />
+    <Item num="11" Name="Iron Ore" />
+    <Item num="12" Name="Copper Ore" />
+    <Item num="13" Name="Gold Ore" />
+    <Item num="14" Name="Silver Ore" />
+    <Item num="15" Name="Copper Watch" />
+    <Item num="16" Name="Silver Watch" />
+    <Item num="17" Name="Gold Watch" />
+    <Item num="18" Name="Depth Meter" />
+    <Item num="19" Name="Gold Bar" />
+    <Item num="20" Name="Copper Bar" />
+    <Item num="21" Name="Silver Bar" />
+    <Item num="22" Name="Iron Bar" />
+    <Item num="23" Name="Gel" />
+    <Item num="24" Name="Wooden Sword" />
+    <Item num="25" Name="Wooden Door" />
+    <Item num="26" Name="Stone Wall" />
+    <Item num="27" Name="Acorn" />
+    <Item num="28" Name="Lesser Healing Potion" />
+    <Item num="29" Name="Life Crystal" />
+    <Item num="30" Name="Dirt Wall" />
+    <Item num="31" Name="Bottle" />
+    <Item num="32" Name="Wooden Table" />
+    <Item num="33" Name="Furnace" />
+    <Item num="34" Name="Wooden Chair" />
+    <Item num="35" Name="Iron Anvil" />
+    <Item num="36" Name="Work Bench" />
+    <Item num="37" Name="Goggles" />
+    <Item num="38" Name="Lens" />
+    <Item num="39" Name="Wooden Bow" />
+    <Item num="40" Name="Wooden Arrow" />
+    <Item num="41" Name="Flaming Arrow" />
+    <Item num="42" Name="Shuriken" />
+    <Item num="43" Name="Suspicious Looking Eye" />
+    <Item num="44" Name="Demon Bow" />
+    <Item num="45" Name="War Axe of the Night" />
+    <Item num="46" Name="Light's Bane" />
+    <Item num="47" Name="Unholy Arrow" />
+    <Item num="48" Name="Chest" />
+    <Item num="49" Name="Band of Regeneration" />
+    <Item num="50" Name="Magic Mirror" />
+    <Item num="51" Name="Jester's Arrow" />
+    <Item num="52" Name="Angel Statue" />
+    <Item num="53" Name="Cloud in a Bottle" />
+    <Item num="54" Name="Hermes Boots" />
+    <Item num="55" Name="Enchanted Boomerang" />
+    <Item num="56" Name="Demonite Ore" />
+    <Item num="57" Name="Demonite Bar" />
+    <Item num="58" Name="Heart" />
+    <Item num="59" Name="Corrupt Seeds" />
+    <Item num="60" Name="Vile Mushroom" />
+    <Item num="61" Name="Ebonstone Block" />
+    <Item num="62" Name="Grass Seeds" />
+    <Item num="63" Name="Sunflower" />
+    <Item num="64" Name="Vilethorn" />
+    <Item num="65" Name="Starfury" />
+    <Item num="66" Name="Purification Powder" />
+    <Item num="67" Name="Vile Powder" />
+    <Item num="68" Name="Rotten Chunk" />
+    <Item num="69" Name="Worm Tooth" />
+    <Item num="70" Name="Worm Food" />
+    <Item num="71" Name="Copper Coin" />
+    <Item num="72" Name="Silver Coin" />
+    <Item num="73" Name="Gold Coin" />
+    <Item num="74" Name="Platinum Coin" />
+    <Item num="75" Name="Fallen Star" />
+    <Item num="76" Name="Copper Greaves" />
+    <Item num="77" Name="Iron Greaves" />
+    <Item num="78" Name="Silver Greaves" />
+    <Item num="79" Name="Gold Greaves" />
+    <Item num="80" Name="Copper Chainmail" />
+    <Item num="81" Name="Iron Chainmail" />
+    <Item num="82" Name="Silver Chainmail" />
+    <Item num="83" Name="Gold Chainmail" />
+    <Item num="84" Name="Grappling Hook" />
+    <Item num="85" Name="Iron Chain" />
+    <Item num="86" Name="Shadow Scale" />
+    <Item num="87" Name="Piggy Bank" />
+    <Item num="88" Name="Mining Helmet" />
+    <Item num="89" Name="Copper Helmet" />
+    <Item num="90" Name="Iron Helmet" />
+    <Item num="91" Name="Silver Helmet" />
+    <Item num="92" Name="Gold Helmet" />
+    <Item num="93" Name="Wood Wall" />
+    <Item num="94" Name="Wood Platform" />
+    <Item num="95" Name="Flintlock Pistol" />
+    <Item num="96" Name="Musket" />
+    <Item num="97" Name="Musket Ball" />
+    <Item num="98" Name="Minishark" />
+    <Item num="99" Name="Copper Bow" />
+    <Item num="99" Name="Gold Bow" />
+    <Item num="99" Name="Iron Bow" />
+    <Item num="99" Name="Silver Bow" />
+    <Item num="100" Name="Shadow Greaves" />
+    <Item num="101" Name="Shadow Scalemail" />
+    <Item num="102" Name="Shadow Helmet" />
+    <Item num="103" Name="Nightmare Pickaxe" />
+    <Item num="104" Name="The Breaker" />
+    <Item num="105" Name="Candle" />
+    <Item num="106" Name="Copper Chandelier" />
+    <Item num="107" Name="Silver Chandelier" />
+    <Item num="108" Name="Gold Chandelier" />
+    <Item num="109" Name="Mana Crystal" />
+    <Item num="110" Name="Lesser Mana Potion" />
+    <Item num="111" Name="Band of Starpower" />
+    <Item num="112" Name="Flower of Fire" />
+    <Item num="113" Name="Magic Missile" />
+    <Item num="114" Name="Dirt Rod" />
+    <Item num="115" Name="Orb of Light" />
+    <Item num="116" Name="Meteorite" />
+    <Item num="117" Name="Meteorite Bar" />
+    <Item num="118" Name="Hook" />
+    <Item num="119" Name="Flamarang" />
+    <Item num="120" Name="Molten Fury" />
+    <Item num="121" Name="Fiery Greatsword" />
+    <Item num="122" Name="Molten Pickaxe" />
+    <Item num="123" Name="Meteor Helmet" />
+    <Item num="124" Name="Meteor Suit" />
+    <Item num="125" Name="Meteor Leggings" />
+    <Item num="126" Name="Bottled Water" />
+    <Item num="127" Name="Space Gun" />
+    <Item num="128" Name="Rocket Boots" />
+    <Item num="129" Name="Gray Brick" />
+    <Item num="130" Name="Gray Brick Wall" />
+    <Item num="131" Name="Red Brick" />
+    <Item num="132" Name="Red Brick Wall" />
+    <Item num="133" Name="Clay Block" />
+    <Item num="134" Name="Blue Brick" />
+    <Item num="135" Name="Blue Brick Wall" />
+    <Item num="136" Name="Chain Lantern" />
+    <Item num="137" Name="Green Brick" />
+    <Item num="138" Name="Green Brick Wall" />
+    <Item num="139" Name="Pink Brick" />
+    <Item num="140" Name="Pink Brick Wall" />
+    <Item num="141" Name="Gold Brick" />
+    <Item num="142" Name="Gold Brick Wall" />
+    <Item num="143" Name="Silver Brick" />
+    <Item num="144" Name="Silver Brick Wall" />
+    <Item num="145" Name="Copper Brick" />
+    <Item num="146" Name="Copper Brick Wall" />
+    <Item num="147" Name="Spike" />
+    <Item num="148" Name="Water Candle" />
+    <Item num="149" Name="Book" />
+    <Item num="150" Name="Cobweb" />
+    <Item num="151" Name="Necro Helmet" />
+    <Item num="152" Name="Necro Breastplate" />
+    <Item num="153" Name="Necro Greaves" />
+    <Item num="154" Name="Bone" />
+    <Item num="155" Name="Muramasa" />
+    <Item num="156" Name="Cobalt Shield" />
+    <Item num="157" Name="Aqua Scepter" />
+    <Item num="158" Name="Lucky Horseshoe" />
+    <Item num="159" Name="Shiny Red Balloon" />
+    <Item num="160" Name="Harpoon" />
+    <Item num="161" Name="Spiky Ball" />
+    <Item num="162" Name="Ball O' Hurt" />
+    <Item num="163" Name="Blue Moon" />
+    <Item num="164" Name="Handgun" />
+    <Item num="165" Name="Water Bolt" />
+    <Item num="166" Name="Bomb" />
+    <Item num="167" Name="Dynamite" />
+    <Item num="168" Name="Grenade" />
+    <Item num="169" Name="Sand Block" />
+    <Item num="170" Name="Glass" />
+    <Item num="171" Name="Sign" />
+    <Item num="172" Name="Ash Block" />
+    <Item num="173" Name="Obsidian" />
+    <Item num="174" Name="Hellstone" />
+    <Item num="175" Name="Hellstone Bar" />
+    <Item num="176" Name="Mud Block" />
+    <Item num="177" Name="Sapphire" />
+    <Item num="178" Name="Ruby" />
+    <Item num="179" Name="Emerald" />
+    <Item num="180" Name="Topaz" />
+    <Item num="181" Name="Amethyst" />
+    <Item num="182" Name="Diamond" />
+    <Item num="183" Name="Glowing Mushroom" />
+    <Item num="184" Name="Star" />
+    <Item num="185" Name="Ivy Whip" />
+    <Item num="186" Name="Breathing Reed" />
+    <Item num="187" Name="Flipper" />
+    <Item num="188" Name="Healing Potion" />
+    <Item num="189" Name="Mana Potion" />
+    <Item num="190" Name="Blade of Grass" />
+    <Item num="191" Name="Thorn Chakram" />
+    <Item num="192" Name="Obsidian Brick" />
+    <Item num="193" Name="Obsidian Skull" />
+    <Item num="194" Name="Mushroom Grass Seeds" />
+    <Item num="195" Name="Jungle Grass Seeds" />
+    <Item num="196" Name="Wooden Hammer" />
+    <Item num="197" Name="Star Cannon" />
+    <Item num="198" Name="Blue Phaseblade" />
+    <Item num="198" Name="Blue Phasesaber" />
+    <Item num="199" Name="Red Phaseblade" />
+    <Item num="199" Name="Red Phasesaber" />
+    <Item num="200" Name="Green Phaseblade" />
+    <Item num="200" Name="Green Phasesaber" />
+    <Item num="201" Name="Purple Phaseblade" />
+    <Item num="201" Name="Purple Phasesaber" />
+    <Item num="202" Name="White Phaseblade" />
+    <Item num="202" Name="White Phasesaber" />
+    <Item num="203" Name="Yellow Phaseblade" />
+    <Item num="203" Name="Yellow Phasesaber" />
+    <Item num="204" Name="Meteor Hamaxe" />
+    <Item num="205" Name="Empty Bucket" />
+    <Item num="206" Name="Water Bucket" />
+    <Item num="207" Name="Lava Bucket" />
+    <Item num="208" Name="Jungle Rose" />
+    <Item num="209" Name="Stinger" />
+    <Item num="210" Name="Vine" />
+    <Item num="211" Name="Feral Claws" />
+    <Item num="212" Name="Anklet of the Wind" />
+    <Item num="213" Name="Staff of Regrowth" />
+    <Item num="214" Name="Hellstone Brick" />
+    <Item num="215" Name="Whoopie Cushion" />
+    <Item num="216" Name="Shackle" />
+    <Item num="217" Name="Molten Hamaxe" />
+    <Item num="218" Name="Flamelash" />
+    <Item num="219" Name="Phoenix Blaster" />
+    <Item num="220" Name="Sunfury" />
+    <Item num="221" Name="Hellforge" />
+    <Item num="222" Name="Clay Pot" />
+    <Item num="223" Name="Nature's Gift" />
+    <Item num="224" Name="Bed" />
+    <Item num="225" Name="Silk" />
+    <Item num="226" Name="Lesser Restoration Potion" />
+    <Item num="227" Name="Restoration Potion" />
+    <Item num="228" Name="Jungle Hat" />
+    <Item num="229" Name="Jungle Shirt" />
+    <Item num="230" Name="Jungle Pants" />
+    <Item num="231" Name="Molten Helmet" />
+    <Item num="232" Name="Molten Breastplate" />
+    <Item num="233" Name="Molten Greaves" />
+    <Item num="234" Name="Meteor Shot" />
+    <Item num="235" Name="Sticky Bomb" />
+    <Item num="236" Name="Black Lens" />
+    <Item num="237" Name="Sunglasses" />
+    <Item num="238" Name="Wizard Hat" />
+    <Item num="239" Name="Top Hat" />
+    <Item num="240" Name="Tuxedo Shirt" />
+    <Item num="241" Name="Tuxedo Pants" />
+    <Item num="242" Name="Summer Hat" />
+    <Item num="243" Name="Bunny Hood" />
+    <Item num="244" Name="Plumber's Hat" />
+    <Item num="245" Name="Plumber's Shirt" />
+    <Item num="246" Name="Plumber's Pants" />
+    <Item num="247" Name="Hero's Hat" />
+    <Item num="248" Name="Hero's Shirt" />
+    <Item num="249" Name="Hero's Pants" />
+    <Item num="250" Name="Fish Bowl" />
+    <Item num="251" Name="Archaeologist's Hat" />
+    <Item num="252" Name="Archaeologist's Jacket" />
+    <Item num="253" Name="Archaeologist's Pants" />
+    <Item num="254" Name="Black Dye" />
+    <Item num="255" Name="Green Dye" />
+    <Item num="256" Name="Ninja Hood" />
+    <Item num="257" Name="Ninja Shirt" />
+    <Item num="258" Name="Ninja Pants" />
+    <Item num="259" Name="Leather" />
+    <Item num="260" Name="Red Hat" />
+    <Item num="261" Name="Goldfish" />
+    <Item num="262" Name="Robe" />
+    <Item num="263" Name="Robot Hat" />
+    <Item num="264" Name="Gold Crown" />
+    <Item num="265" Name="Hellfire Arrow" />
+    <Item num="266" Name="Sandgun" />
+    <Item num="267" Name="Guide Voodoo Doll" />
+    <Item num="268" Name="Diving Helmet" />
+    <Item num="269" Name="Familiar Shirt" />
+    <Item num="270" Name="Familiar Pants" />
+    <Item num="271" Name="Familiar Wig" />
+    <Item num="272" Name="Demon Scythe" />
+    <Item num="273" Name="Night's Edge" />
+    <Item num="274" Name="Dark Lance" />
+    <Item num="275" Name="Coral" />
+    <Item num="276" Name="Cactus" />
+    <Item num="277" Name="Trident" />
+    <Item num="278" Name="Silver Bullet" />
+    <Item num="279" Name="Throwing Knife" />
+    <Item num="280" Name="Spear" />
+    <Item num="281" Name="Blowpipe" />
+    <Item num="282" Name="Glowstick" />
+    <Item num="283" Name="Seed" />
+    <Item num="284" Name="Wooden Boomerang" />
+    <Item num="285" Name="Aglet" />
+    <Item num="286" Name="Sticky Glowstick" />
+    <Item num="287" Name="Poisoned Knife" />
+    <Item num="288" Name="Obsidian Skin Potion" />
+    <Item num="289" Name="Regeneration Potion" />
+    <Item num="290" Name="Swiftness Potion" />
+    <Item num="291" Name="Gills Potion" />
+    <Item num="292" Name="Ironskin Potion" />
+    <Item num="293" Name="Mana Regeneration Potion" />
+    <Item num="294" Name="Magic Power Potion" />
+    <Item num="295" Name="Featherfall Potion" />
+    <Item num="296" Name="Spelunker Potion" />
+    <Item num="297" Name="Invisibility Potion" />
+    <Item num="298" Name="Shine Potion" />
+    <Item num="299" Name="Night Owl Potion" />
+    <Item num="300" Name="Battle Potion" />
+    <Item num="301" Name="Thorns Potion" />
+    <Item num="302" Name="Water Walking Potion" />
+    <Item num="303" Name="Archery Potion" />
+    <Item num="304" Name="Hunter Potion" />
+    <Item num="305" Name="Gravitation Potion" />
+    <Item num="306" Name="Gold Chest" />
+    <Item num="307" Name="Daybloom Seeds" />
+    <Item num="308" Name="Moonglow Seeds" />
+    <Item num="309" Name="Blinkroot Seeds" />
+    <Item num="310" Name="Deathweed Seeds" />
+    <Item num="311" Name="Waterleaf Seeds" />
+    <Item num="312" Name="Fireblossom Seeds" />
+    <Item num="313" Name="Daybloom" />
+    <Item num="314" Name="Moonglow" />
+    <Item num="315" Name="Blinkroot" />
+    <Item num="316" Name="Deathweed" />
+    <Item num="317" Name="Waterleaf" />
+    <Item num="318" Name="Fireblossom" />
+    <Item num="319" Name="Shark Fin" />
+    <Item num="320" Name="Feather" />
+    <Item num="321" Name="Tombstone" />
+    <Item num="322" Name="Mime Mask" />
+    <Item num="323" Name="Antlion Mandible" />
+    <Item num="324" Name="Illegal Gun Parts" />
+    <Item num="325" Name="The Doctor's Shirt" />
+    <Item num="326" Name="The Doctor's Pants" />
+    <Item num="327" Name="Golden Key" />
+    <Item num="328" Name="Shadow Chest" />
+    <Item num="329" Name="Shadow Key" />
+    <Item num="330" Name="Obsidian Brick Wall" />
+    <Item num="331" Name="Jungle Spores" />
+    <Item num="332" Name="Loom" />
+    <Item num="333" Name="Piano" />
+    <Item num="334" Name="Dresser" />
+    <Item num="335" Name="Bench" />
+    <Item num="336" Name="Bathtub" />
+    <Item num="337" Name="Red Banner" />
+    <Item num="338" Name="Green Banner" />
+    <Item num="339" Name="Blue Banner" />
+    <Item num="340" Name="Yellow Banner" />
+    <Item num="341" Name="Lamp Post" />
+    <Item num="342" Name="Tiki Torch" />
+    <Item num="343" Name="Barrel" />
+    <Item num="344" Name="Chinese Lantern" />
+    <Item num="345" Name="Cooking Pot" />
+    <Item num="346" Name="Safe" />
+    <Item num="347" Name="Skull Lantern" />
+    <Item num="348" Name="Trash Can" />
+    <Item num="349" Name="Candelabra" />
+    <Item num="350" Name="Pink Vase" />
+    <Item num="351" Name="Mug" />
+    <Item num="352" Name="Keg" />
+    <Item num="353" Name="Ale" />
+    <Item num="354" Name="Bookcase" />
+    <Item num="355" Name="Throne" />
+    <Item num="356" Name="Bowl" />
+    <Item num="357" Name="Bowl of Soup" />
+    <Item num="358" Name="Toilet" />
+    <Item num="359" Name="Grandfather Clock" />
+    <Item num="360" Name="Armor Statue" />
+    <Item num="361" Name="Goblin Battle Standard" />
+    <Item num="362" Name="Tattered Cloth" />
+    <Item num="363" Name="Sawmill" />
+    <Item num="364" Name="Cobalt Ore" />
+    <Item num="365" Name="Mythril Ore" />
+    <Item num="366" Name="Adamantite Ore" />
+    <Item num="367" Name="Pwnhammer" />
+    <Item num="368" Name="Excalibur" />
+    <Item num="369" Name="Hallowed Seeds" />
+    <Item num="370" Name="Ebonsand Block" />
+    <Item num="371" Name="Cobalt Hat" />
+    <Item num="372" Name="Cobalt Helmet" />
+    <Item num="373" Name="Cobalt Mask" />
+    <Item num="374" Name="Cobalt Breastplate" />
+    <Item num="375" Name="Cobalt Leggings" />
+    <Item num="376" Name="Mythril Hood" />
+    <Item num="377" Name="Mythril Helmet" />
+    <Item num="378" Name="Mythril Hat" />
+    <Item num="379" Name="Mythril Chainmail" />
+    <Item num="380" Name="Mythril Greaves" />
+    <Item num="381" Name="Cobalt Bar" />
+    <Item num="382" Name="Mythril Bar" />
+    <Item num="383" Name="Cobalt Chainsaw" />
+    <Item num="384" Name="Mythril Chainsaw" />
+    <Item num="385" Name="Cobalt Drill" />
+    <Item num="386" Name="Mythril Drill" />
+    <Item num="387" Name="Adamantite Chainsaw" />
+    <Item num="388" Name="Adamantite Drill" />
+    <Item num="389" Name="Dao of Pow" />
+    <Item num="390" Name="Mythril Halberd" />
+    <Item num="391" Name="Adamantite Bar" />
+    <Item num="392" Name="Glass Wall" />
+    <Item num="393" Name="Compass" />
+    <Item num="394" Name="Diving Gear" />
+    <Item num="395" Name="GPS" />
+    <Item num="396" Name="Obsidian Horseshoe" />
+    <Item num="397" Name="Obsidian Shield" />
+    <Item num="398" Name="Tinkerer's Workshop" />
+    <Item num="399" Name="Cloud in a Balloon" />
+    <Item num="400" Name="Adamantite Headgear" />
+    <Item num="401" Name="Adamantite Helmet" />
+    <Item num="402" Name="Adamantite Mask" />
+    <Item num="403" Name="Adamantite Breastplate" />
+    <Item num="404" Name="Adamantite Leggings" />
+    <Item num="405" Name="Spectre Boots" />
+    <Item num="406" Name="Adamantite Glaive" />
+    <Item num="407" Name="Toolbelt" />
+    <Item num="408" Name="Pearlsand Block" />
+    <Item num="409" Name="Pearlstone Block" />
+    <Item num="410" Name="Mining Shirt" />
+    <Item num="411" Name="Mining Pants" />
+    <Item num="412" Name="Pearlstone Brick" />
+    <Item num="413" Name="Iridescent Brick" />
+    <Item num="414" Name="Mudstone Block" />
+    <Item num="415" Name="Cobalt Brick" />
+    <Item num="416" Name="Mythril Brick" />
+    <Item num="417" Name="Pearlstone Brick Wall" />
+    <Item num="418" Name="Iridescent Brick Wall" />
+    <Item num="419" Name="Mudstone Brick Wall" />
+    <Item num="420" Name="Cobalt Brick Wall" />
+    <Item num="421" Name="Mythril Brick Wall" />
+    <Item num="422" Name="Holy Water" />
+    <Item num="423" Name="Unholy Water" />
+    <Item num="424" Name="Silt Block" />
+    <Item num="425" Name="Fairy Bell" />
+    <Item num="426" Name="Breaker Blade" />
+    <Item num="427" Name="Blue Torch" />
+    <Item num="428" Name="Red Torch" />
+    <Item num="429" Name="Green Torch" />
+    <Item num="430" Name="Purple Torch" />
+    <Item num="431" Name="White Torch" />
+    <Item num="432" Name="Yellow Torch" />
+    <Item num="433" Name="Demon Torch" />
+    <Item num="434" Name="Clockwork Assault Rifle" />
+    <Item num="435" Name="Cobalt Repeater" />
+    <Item num="436" Name="Mythril Repeater" />
+    <Item num="437" Name="Dual Hook" />
+    <Item num="438" Name="Star Statue" />
+    <Item num="439" Name="Sword Statue" />
+    <Item num="440" Name="Slime Statue" />
+    <Item num="441" Name="Goblin Statue" />
+    <Item num="442" Name="Shield Statue" />
+    <Item num="443" Name="Bat Statue" />
+    <Item num="444" Name="Fish Statue" />
+    <Item num="445" Name="Bunny Statue" />
+    <Item num="446" Name="Skeleton Statue" />
+    <Item num="447" Name="Reaper Statue" />
+    <Item num="448" Name="Woman Statue" />
+    <Item num="449" Name="Imp Statue" />
+    <Item num="450" Name="Gargoyle Statue" />
+    <Item num="451" Name="Gloom Statue" />
+    <Item num="452" Name="Hornet Statue" />
+    <Item num="453" Name="Bomb Statue" />
+    <Item num="454" Name="Crab Statue" />
+    <Item num="455" Name="Hammer Statue" />
+    <Item num="456" Name="Potion Statue" />
+    <Item num="457" Name="Spear Statue" />
+    <Item num="458" Name="Cross Statue" />
+    <Item num="459" Name="Jellyfish Statue" />
+    <Item num="460" Name="Bow Statue" />
+    <Item num="461" Name="Boomerang Statue" />
+    <Item num="462" Name="Boot Statue" />
+    <Item num="463" Name="Chest Statue" />
+    <Item num="464" Name="Bird Statue" />
+    <Item num="465" Name="Axe Statue" />
+    <Item num="466" Name="Corrupt Statue" />
+    <Item num="467" Name="Tree Statue" />
+    <Item num="468" Name="Anvil Statue" />
+    <Item num="469" Name="Pickaxe Statue" />
+    <Item num="470" Name="Mushroom Statue" />
+    <Item num="471" Name="Eyeball Statue" />
+    <Item num="472" Name="Pillar Statue" />
+    <Item num="473" Name="Heart Statue" />
+    <Item num="474" Name="Pot Statue" />
+    <Item num="475" Name="Sunflower Statue" />
+    <Item num="476" Name="King Statue" />
+    <Item num="477" Name="Queen Statue" />
+    <Item num="478" Name="Pirahna Statue" />
+    <Item num="479" Name="Planked Wall" />
+    <Item num="480" Name="Wooden Beam" />
+    <Item num="481" Name="Adamantite Repeater" />
+    <Item num="482" Name="Adamantite Sword" />
+    <Item num="483" Name="Cobalt Sword" />
+    <Item num="484" Name="Mythril Sword" />
+    <Item num="485" Name="Moon Charm" />
+    <Item num="486" Name="Ruler" />
+    <Item num="487" Name="Crystal Ball" />
+    <Item num="488" Name="Disco Ball" />
+    <Item num="489" Name="Sorcerer Emblem" />
+    <Item num="490" Name="Warrior Emblem" />
+    <Item num="491" Name="Ranger Emblem" />
+    <Item num="492" Name="Demon Wings" />
+    <Item num="493" Name="Angel Wings" />
+    <Item num="494" Name="Magical Harp" />
+    <Item num="495" Name="Rainbow Rod" />
+    <Item num="496" Name="Ice Rod" />
+    <Item num="497" Name="Neptune's Shell" />
+    <Item num="498" Name="Mannequin" />
+    <Item num="499" Name="Greater Healing Potion" />
+    <Item num="500" Name="Greater Mana Potion" />
+    <Item num="501" Name="Pixie Dust" />
+    <Item num="502" Name="Crystal Shard" />
+    <Item num="503" Name="Clown Hat" />
+    <Item num="504" Name="Clown Shirt" />
+    <Item num="505" Name="Clown Pants" />
+    <Item num="506" Name="Flamethrower" />
+    <Item num="507" Name="Bell" />
+    <Item num="508" Name="Harp" />
+    <Item num="509" Name="Wrench" />
+    <Item num="510" Name="Wire Cutter" />
+    <Item num="511" Name="Active Stone Block" />
+    <Item num="512" Name="Inactive Stone Block" />
+    <Item num="513" Name="Lever" />
+    <Item num="514" Name="Laser Rifle" />
+    <Item num="515" Name="Crystal Bullet" />
+    <Item num="516" Name="Holy Arrow" />
+    <Item num="517" Name="Magic Dagger" />
+    <Item num="518" Name="Crystal Storm" />
+    <Item num="519" Name="Cursed Flames" />
+    <Item num="520" Name="Soul of Light" />
+    <Item num="521" Name="Soul of Night" />
+    <Item num="522" Name="Cursed Flame" />
+    <Item num="523" Name="Cursed Torch" />
+    <Item num="524" Name="Adamantite Forge" />
+    <Item num="525" Name="Mythril Anvil" />
+    <Item num="526" Name="Unicorn Horn" />
+    <Item num="527" Name="Dark Shard" />
+    <Item num="528" Name="Light Shard" />
+    <Item num="529" Name="Red Pressure Plate" />
+    <Item num="530" Name="Wire" />
+    <Item num="531" Name="Spell Tome" />
+    <Item num="532" Name="Star Cloak" />
+    <Item num="533" Name="Megashark" />
+    <Item num="534" Name="Shotgun" />
+    <Item num="535" Name="Philosopher's Stone" />
+    <Item num="536" Name="Titan Glove" />
+    <Item num="537" Name="Cobalt Naginata" />
+    <Item num="538" Name="Switch" />
+    <Item num="539" Name="Dart Trap" />
+    <Item num="540" Name="Boulder" />
+    <Item num="541" Name="Green Pressure Plate" />
+    <Item num="542" Name="Gray Pressure Plate" />
+    <Item num="543" Name="Brown Pressure Plate" />
+    <Item num="544" Name="Mechanical Eye" />
+    <Item num="545" Name="Cursed Arrow" />
+    <Item num="546" Name="Cursed Bullet" />
+    <Item num="547" Name="Soul of Fright" />
+    <Item num="548" Name="Soul of Might" />
+    <Item num="549" Name="Soul of Sight" />
+    <Item num="550" Name="Gungnir" />
+    <Item num="551" Name="Hallowed Plate Mail" />
+    <Item num="552" Name="Hallowed Greaves" />
+    <Item num="553" Name="Hallowed Helmet" />
+    <Item num="554" Name="Cross Necklace" />
+    <Item num="555" Name="Mana Flower" />
+    <Item num="556" Name="Mechanical Worm" />
+    <Item num="557" Name="Mechanical Skull" />
+    <Item num="558" Name="Hallowed Headgear" />
+    <Item num="559" Name="Hallowed Mask" />
+    <Item num="560" Name="Slime Crown" />
+    <Item num="561" Name="Light Disc" />
+    <Item num="562" Name="Music Box (Overworld Day)" />
+    <Item num="563" Name="Music Box (Eerie)" />
+    <Item num="564" Name="Music Box (Night)" />
+    <Item num="565" Name="Music Box (Title)" />
+    <Item num="566" Name="Music Box (Underground)" />
+    <Item num="567" Name="Music Box (Boss 1)" />
+    <Item num="568" Name="Music Box (Jungle)" />
+    <Item num="569" Name="Music Box (Corruption)" />
+    <Item num="570" Name="Music Box (Underground Corruption)" />
+    <Item num="571" Name="Music Box (The Hallow)" />
+    <Item num="572" Name="Music Box (Boss 2)" />
+    <Item num="573" Name="Music Box (Underground Hallow)" />
+    <Item num="574" Name="Music Box (Boss 3)" />
+    <Item num="575" Name="Soul of Flight" />
+    <Item num="576" Name="Music Box" />
+    <Item num="577" Name="Demonite Brick" />
+    <Item num="578" Name="Hallowed Repeater" />
+    <Item num="579" Name="Hamdrax" />
+    <Item num="580" Name="Explosives" />
+    <Item num="581" Name="Inlet Pump" />
+    <Item num="582" Name="Outlet Pump" />
+    <Item num="583" Name="1 Second Timer" />
+    <Item num="584" Name="3 Second Timer" />
+    <Item num="585" Name="5 Second Timer" />
+    <Item num="586" Name="Candy Cane Block" />
+    <Item num="587" Name="Candy Cane Wall" />
+    <Item num="588" Name="Santa Hat" />
+    <Item num="589" Name="Santa Shirt" />
+    <Item num="590" Name="Santa Pants" />
+    <Item num="591" Name="Green Candy Cane Block" />
+    <Item num="592" Name="Green Candy Cane Wall" />
+    <Item num="593" Name="Snow Block" />
+    <Item num="594" Name="Snow Brick" />
+    <Item num="595" Name="Snow Brick Wall" />
+    <Item num="596" Name="Blue Light" />
+    <Item num="597" Name="Red Light" />
+    <Item num="598" Name="Green Light" />
+    <Item num="599" Name="Blue Present" />
+    <Item num="600" Name="Green Present" />
+    <Item num="601" Name="Yellow Present" />
+    <Item num="602" Name="Snow Globe" />
   </Items>
 </Settings>

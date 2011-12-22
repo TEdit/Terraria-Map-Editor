@@ -66,9 +66,6 @@ namespace TEditXNA.Terraria.Objects
             set { Set("Name", ref _name, value); }
         }
 
-        
-         
-
         public WriteableBitmap Image
         {
             get { return _image; }

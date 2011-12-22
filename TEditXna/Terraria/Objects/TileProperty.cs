@@ -1,4 +1,5 @@
-﻿using System.Windows.Media;
+﻿using System.Collections.ObjectModel;
+using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using BCCL.Geometry.Primitives;
 using BCCL.MvvmLight;
@@ -12,6 +13,13 @@ namespace TEditXNA.Terraria.Objects
         private string _name;
         private bool _isFramed;
         private Vector2Short _frameSize;
+        private readonly ObservableCollection<FrameProperty> _frames = new ObservableCollection<FrameProperty>();
+         
+
+        public ObservableCollection<FrameProperty> Frames
+        {
+            get { return _frames; }
+        }
 
         public TileProperty()
         {

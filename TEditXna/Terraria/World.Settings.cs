@@ -26,18 +26,15 @@ namespace TEditXNA.Terraria
             get { return _globalColors; }
         }
 
-
         public static IList<TileProperty> TileProperties
         {
             get { return _tileProperties; }
         }
 
-
         public static IList<WallProperty> WallProperties
         {
             get { return _wallProperties; }
         }
-
 
         public static IList<ItemProperty> ItemProperties
         {
