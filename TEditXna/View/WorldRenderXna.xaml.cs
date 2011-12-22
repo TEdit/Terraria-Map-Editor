@@ -11,7 +11,7 @@ using Microsoft.Xna.Framework.Graphics;
 using TEditXNA.Terraria;
 using Point = System.Windows.Point;
 using Rectangle = Microsoft.Xna.Framework.Rectangle;
-using XNA = Microsoft.Xna.Framework;
+
 
 namespace TEditXna.View
 {
@@ -21,13 +21,13 @@ namespace TEditXna.View
     public partial class WorldRenderXna : UserControl
     {
         // cool XNA spritebatch in WPF
-        private XNA.Graphics.SpriteBatch _spriteBatch;
+        private SpriteBatch _spriteBatch;
         // game timer for rendering
         private GameTimer _gameTimer;
-        private TEditXNA.Terraria.Textures _textureDictionary;
+        private Textures _textureDictionary;
         private SimpleProvider _serviceProvider;
 
-        private XNA.Graphics.Texture2D[] tileMap;
+        private Texture2D[] tileMap;
 
         public WorldRenderXna()
         {
@@ -35,13 +35,8 @@ namespace TEditXna.View
             if (!BCCL.Utility.Debugging.IsInDesignMode)
             {
                 InitializeComponent();
-                Initialize();
+                _gameTimer = new GameTimer();
             }
-        }
-
-        void Initialize()
-        {
-            _gameTimer = new GameTimer();
         }
 
         private UInt32[] colors;
@@ -51,41 +46,59 @@ namespace TEditXna.View
         private Rectangle tileRectangle = new Rectangle(0, 0, 256, 256);
         private Rectangle worldBounds = new Rectangle(0, 0, 2048, 2048);
 
-        private void xnaViewport_LoadContent(object sender, BCCL.UI.Xaml.XnaContentHost.GraphicsDeviceEventArgs e)
+        private void xnaViewport_LoadContent(object sender, GraphicsDeviceEventArgs e)
         {
-            if (BCCL.Utility.Debugging.IsInDesignMode)
+            // Abort rendering if in design mode or if gameTimer is already running
+            if (BCCL.Utility.Debugging.IsInDesignMode || _gameTimer.IsRunning)
                 return;
 
-            if (!_gameTimer.IsRunning)
+            InitializeGraphicsComponents(e);
+            GenerateDummyContent(e);
+            LoadTerrariaTextures();
+
+            // Start the Game Timer
+            _gameTimer.Start();
+        }
+
+        private void GenerateDummyContent(GraphicsDeviceEventArgs e)
+        {
+            // Generate some dummy content to render
+            tileMap = new Texture2D[10];
+            colors = new UInt32[2048 * 2048];
+            int a = 255;
+            int r = 0;
+            int g = 0;
+            int b = 0;
+
+            for (int i = 0; i < 2048 * 2048; i++)
             {
-                tileMap = new XNA.Graphics.Texture2D[10];
-                _serviceProvider = new SimpleProvider(xnaViewport.GraphicsService);
-                _spriteBatch = new XNA.Graphics.SpriteBatch(e.GraphicsDevice);
-                _textureDictionary = new Textures(_serviceProvider);
-                _textureDictionary.GetNPC(17);
-                _font = _textureDictionary.ContentManager.Load<SpriteFont>("Fonts\\Mouse_Text");
-                colors = new UInt32[2048 * 2048];
-                int a = 255;
-                int r = 0;
-                int g = 0;
-                int b = 0;
+                colors[i] = (UInt32)(b++ % 256 | (g++ % 256 << 8) | (r++ % 256 << 16) | (a << 24));
+                b = b + 2;
+                g = g + 3;
+            }
+            for (int i = 0; i < tileMap.Length; i++)
+            {
+                tileMap[i] = new Texture2D(e.GraphicsDevice, tileWidth, tileHeight);
+            }
+        }
 
-                for (int i = 0; i < 2048 * 2048; i++)
-                {
-                    colors[i] = (UInt32)(b++ % 256 | (g++ % 256 << 8) | (r++ % 256 << 16) | (a << 24));
-                    b = b + 1;
-                    g = g + 3;
+        private void InitializeGraphicsComponents(GraphicsDeviceEventArgs e)
+        {
+            // Load services, textures and initialize spritebatch
+            _serviceProvider = new SimpleProvider(xnaViewport.GraphicsService);
+            _spriteBatch = new SpriteBatch(e.GraphicsDevice);
+            _textureDictionary = new Textures(_serviceProvider);
+        }
 
-                }
-
-                for (int i = 0; i < tileMap.Length; i++)
-                {
-                    tileMap[i] = new XNA.Graphics.Texture2D(e.GraphicsDevice, tileWidth, tileHeight);
-                }
-                xnaViewport.GraphicsService.GraphicsDevice.Textures[0] = null;
-                _npc17 = new AnimatedTexture(_textureDictionary.Npcs[17], new Vector2(0, 0), 0F, 0F, 0F, 16, 20F, 2, int.MaxValue);
+        private void LoadTerrariaTextures()
+        {
+            // If the texture dictionary is valid (Found terraria and loaded content) load texture data
+            if (_textureDictionary.Valid)
+            {
+                //_textureDictionary.GetNPC(17);
+                //_font = _textureDictionary.ContentManager.Load<SpriteFont>("Fonts\\Mouse_Text");
+                //_npc17 = new AnimatedTexture(_textureDictionary.Npcs[17], new Vector2(0, 0), 0F, 0F, 0F, 16, 20F, 2, int.MaxValue);
                 //_npc17.SetAnimation(5F, 0, 1);
-                _gameTimer.Start();
             }
         }
 
@@ -93,67 +106,83 @@ namespace TEditXna.View
 
         private SpriteFont _font;
 
-        private void xnaViewport_RenderXna(object sender, BCCL.UI.Xaml.XnaContentHost.GraphicsDeviceEventArgs e)
+        private void xnaViewport_RenderXna(object sender, GraphicsDeviceEventArgs e)
         {
-            if (BCCL.Utility.Debugging.IsInDesignMode)
+            // Abort rendering if in design mode or if gameTimer is not running
+            if (BCCL.Utility.Debugging.IsInDesignMode || !_gameTimer.IsRunning)
                 return;
 
-            if (!_gameTimer.IsRunning)
-                return;
+            Update(e);
+            Render(e);
+        }
 
+        private void Update(GraphicsDeviceEventArgs e)
+        {
             // Update
             _gameTimer.Update();
-            _npc17.UpdateFrame((float)_gameTimer.ElapsedGameTime.TotalSeconds);
+            //_npc17.UpdateFrame((float)_gameTimer.ElapsedGameTime.TotalSeconds);
             ScrollWorld();
+        }
 
-
-
-
-            // Draw
+        private void Render(GraphicsDeviceEventArgs e)
+        {
+            // Clear the graphics device and texture buffer
             e.GraphicsDevice.Clear(Color.Gray);
             e.GraphicsDevice.Textures[0] = null;
 
+            // Start SpriteBatch
             _spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.Default, RasterizerState.CullNone);
-            
-            DrawTiles();
 
-            _npc17.DrawFrame(_spriteBatch, new Vector2(100, 10));
+            {
+                // Draw Pixel Map tiles
+                DrawPixelTiles(_spriteBatch);
 
+                // Draw sprite overlays
+                DrawSprites(_spriteBatch);
+            }
+            // End SpriteBatch
             _spriteBatch.End();
         }
 
-        private void DrawTiles()
+        private void DrawSprites(SpriteBatch spriteBatch)
+        {
+            if (!_textureDictionary.Valid)
+                return;
+
+            _npc17.DrawFrame(spriteBatch, new Vector2(100, 10));
+        }
+
+        private void DrawPixelTiles(SpriteBatch spriteBatch)
         {
             for (int i = 0; i < tileMap.Length; i++)
-                tileMap[i].SetData<UInt32>(colors, i*tileWidth*tileHeight, tileWidth*tileHeight);
-
-            
+                tileMap[i].SetData<UInt32>(colors, i * tileWidth * tileHeight, tileWidth * tileHeight);
 
             for (int i = 0; i < tileMap.Length; i++)
             {
-                _spriteBatch.Draw(
+                spriteBatch.Draw(
                     tileMap[i],
-                    new XNA.Vector2(
-                        (scrollPosition.X + (i%3)*tileWidth)*zoom,
-                        (scrollPosition.Y + (i/3)*tileHeight)*zoom),
+                    new Vector2(
+                        (scrollPosition.X + (i % 3) * tileWidth) * zoom,
+                        (scrollPosition.Y + (i / 3) * tileHeight) * zoom),
                     null,
-                    XNA.Color.White,
+                    Color.White,
                     0,
                     Vector2.Zero,
                     zoom,
-                    XNA.Graphics.SpriteEffects.None,
+                    SpriteEffects.None,
                     0);
             }
         }
 
-        private XNA.Vector2 PointToVector2(Point point)
+        private static Vector2 PointToVector2(Point point)
         {
             return new Vector2((float)point.X, (float)point.Y);
         }
-        private XNA.Vector2 scrollPosition = new XNA.Vector2(0, 0);
+
+        private Vector2 scrollPosition = new Vector2(0, 0);
         private bool isMiddleMouseDown;
-        private XNA.Vector2 middleClickPoint;
-        private XNA.Vector2 mousePosition;
+        private Vector2 middleClickPoint;
+        private Vector2 mousePosition;
         private float zoom = 1;
 
         // speed in tile/second 
@@ -164,8 +193,8 @@ namespace TEditXna.View
             {
                 var stretchDistance = (mousePosition - middleClickPoint);
                 var clampedScroll = scrollPosition + stretchDistance / zoom;
-                clampedScroll.X = XNA.MathHelper.Clamp(clampedScroll.X, -worldBounds.Width, 0);
-                clampedScroll.Y = XNA.MathHelper.Clamp(clampedScroll.Y, -worldBounds.Height, 0);
+                clampedScroll.X = MathHelper.Clamp(clampedScroll.X, -worldBounds.Width, 0);
+                clampedScroll.Y = MathHelper.Clamp(clampedScroll.Y, -worldBounds.Height, 0);
                 scrollPosition = clampedScroll;
                 middleClickPoint = mousePosition;
             }
