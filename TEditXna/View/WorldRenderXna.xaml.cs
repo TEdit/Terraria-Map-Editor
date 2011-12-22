@@ -42,8 +42,8 @@ namespace TEditXna.View
             }
 
             _localWvmReference = ViewModelLocator.WorldViewModel;
-
         }
+
 
         private void InitializeGraphicsComponents(GraphicsDeviceEventArgs e)
         {
@@ -65,7 +65,6 @@ namespace TEditXna.View
                 return;
 
             InitializeGraphicsComponents(e);
-            GenerateDummyContent(e);
             LoadTerrariaTextures();
 
             // Start the Game Timer
@@ -74,29 +73,6 @@ namespace TEditXna.View
 
         private AnimatedTexture _npc17;
         private SpriteFont _font;
-
-        private void GenerateDummyContent(GraphicsDeviceEventArgs e)
-        {
-            // Generate some dummy content to render
-            tileMap = new Texture2D[10];
-            colors = new UInt32[2048 * 2048];
-            int a = 255;
-            int r = 0;
-            int g = 0;
-            int b = 0;
-
-            for (int i = 0; i < 2048 * 2048; i++)
-            {
-                colors[i] = (UInt32)(b++ % 256 | (g++ % 256 << 8) | (r++ % 256 << 16) | (a << 24));
-                b = b + 2;
-                g = g + 3;
-            }
-            for (int i = 0; i < tileMap.Length; i++)
-            {
-                tileMap[i] = new Texture2D(e.GraphicsDevice, tileWidth, tileHeight);
-            }
-        }
-
 
 
         private void LoadTerrariaTextures()
@@ -135,15 +111,25 @@ namespace TEditXna.View
             ScrollWorld();
         }
 
-        private void GetWorldMap()
+        private void GetWorldMap(GraphicsDeviceEventArgs e)
         {
             if (_localWvmReference != null)
             {
                 if (_localWvmReference.PixelMap != null)
                 {
-                    tileMap[0].SetData<Color>(_localWvmReference.PixelMap, (_localWvmReference.CurrentWorld.TilesHigh / 2) * _localWvmReference.CurrentWorld.TilesWide, tileHeight * tileWidth);
+                    if (tileMap == null || tileMap.Length != _localWvmReference.PixelMap.ColorBuffers.Length)
+                    {
+                        tileMap = new Texture2D[_localWvmReference.PixelMap.ColorBuffers.Length];
+                    }
+
+                    for (int i = 0; i < tileMap.Length; i++)
+                    {
+                        if (tileMap[i] == null) tileMap[i] = new Texture2D(e.GraphicsDevice, _localWvmReference.PixelMap.TileWidth, _localWvmReference.PixelMap.TileHeight);
+                        tileMap[i].SetData(_localWvmReference.PixelMap.ColorBuffers[i]);
+                    }
                 }
             }
+
         }
 
         #region Render
@@ -153,6 +139,8 @@ namespace TEditXna.View
             // Clear the graphics device and texture buffer
             e.GraphicsDevice.Clear(Color.Gray);
             e.GraphicsDevice.Textures[0] = null;
+
+            GetWorldMap(e);
 
             // Start SpriteBatch
             _spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.Default, RasterizerState.CullNone);
@@ -179,16 +167,18 @@ namespace TEditXna.View
 
         private void DrawPixelTiles(SpriteBatch spriteBatch)
         {
-            for (int i = 0; i < tileMap.Length; i++)
-                tileMap[i].SetData<UInt32>(colors, i * tileWidth * tileHeight, tileWidth * tileHeight);
-            GetWorldMap();
+            //for (int i = 0; i < tileMap.Length; i++)
+            //    tileMap[i].SetData<UInt32>(colors, i * tileWidth * tileHeight, tileWidth * tileHeight);
+            if (tileMap == null)
+                return;
+
             for (int i = 0; i < tileMap.Length; i++)
             {
                 spriteBatch.Draw(
                     tileMap[i],
                     new Vector2(
-                        (scrollPosition.X + (i % 3) * tileWidth) * zoom,
-                        (scrollPosition.Y + (i / 3) * tileHeight) * zoom),
+                        (scrollPosition.X + (i % _localWvmReference.PixelMap.TilesX) * _localWvmReference.PixelMap.TileWidth) * zoom,
+                        (scrollPosition.Y + (i / _localWvmReference.PixelMap.TilesX) * _localWvmReference.PixelMap.TileHeight) * zoom),
                     null,
                     Color.White,
                     0,

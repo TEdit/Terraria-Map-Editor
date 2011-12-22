@@ -58,6 +58,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Render\PixelMap.cs" />
+    <Compile Include="Render\PixelMapManager.cs" />
     <Compile Include="Terraria\Chest.cs" />
     <Compile Include="Terraria\Item.cs" />
     <Compile Include="Terraria\NPC.cs" />

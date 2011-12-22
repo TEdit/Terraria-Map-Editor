@@ -7,6 +7,7 @@ using BCCL.MvvmLight.Command;
 using Microsoft.Win32;
 using Microsoft.Xna.Framework;
 using TEditXNA.Terraria;
+using TEditXna.Render;
 
 namespace TEditXna.ViewModel
 {
@@ -73,27 +74,26 @@ namespace TEditXna.ViewModel
                 .ContinueWith(t => this.PixelMap = t.Result, BCCL.MvvmLight.Threading.TaskFactoryHelper.UiTaskScheduler);
         }
 
-        private Color[] _pixelMap;
+        private PixelMapManager _pixelMap;
+         
 
-
-        public Color[] PixelMap
+        public PixelMapManager PixelMap
         {
             get { return _pixelMap; }
             set { Set("PixelMap", ref _pixelMap, value); }
         }
-        private Color[] RenderEntireWorld()
+        private PixelMapManager RenderEntireWorld()
         {
-            Color[] pixels = new Color[0];
+            var pixels = new PixelMapManager(100,100);
+            pixels.InitializeBuffers(CurrentWorld.TilesWide, CurrentWorld.TilesHigh);
             if (CurrentWorld != null)
             {
-                pixels = new Color[CurrentWorld.TilesWide * CurrentWorld.TilesHigh];
-
                 for (int y = 0; y < CurrentWorld.TilesHigh; y++)
                 {
                     OnProgressChanged(this, new ProgressChangedEventArgs(BCCL.Utility.Calc.ProgressPercentage(y, CurrentWorld.TilesHigh), "Calculating Colors..."));
                     for (int x = 0; x < CurrentWorld.TilesWide; x++)
                     {
-                        pixels[x + y * CurrentWorld.TilesWide] = Render.PixelMap.GetTileColor(CurrentWorld.Tiles[x, y]);
+                        pixels.SetPixelColor(x, y, Render.PixelMap.GetTileColor(CurrentWorld.Tiles[x, y]));
                     }
                 } 
             }
