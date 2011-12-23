@@ -60,6 +60,13 @@
                     </StackPanel>
                 </StatusBarItem>
             </StatusBar>
+            <Expander Header="Utilities" ExpandDirection="Left" IsExpanded="True" DockPanel.Dock="Right">
+                <TabControl TabStripPlacement="Top" Width="300" Foreground="{DynamicResource TextBrush}">
+                    <TabItem Header="World Properties" />
+                    <TabItem Header="Sprites" />
+                    <TabItem Header="Clipboard" />
+                </TabControl>
+            </Expander>       
             <View:WorldRenderXna HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
         </DockPanel>
     </Grid>
