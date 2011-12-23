@@ -1,34 +1,49 @@
 ﻿<Window x:Class="TEditXna.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:View="clr-namespace:TEditXna.View"
-        Title="MainWindow" Height="350" Width="525"
-    Foreground="{StaticResource TextBrush}" Background="{StaticResource WindowBackgroundBrush}">
+        Title="MainWindow" 
+         Height="600" Width="800" TextOptions.TextFormattingMode="Display" TextOptions.TextRenderingMode="Aliased"
+        UseLayoutRounding="True" Background="{StaticResource WindowBackgroundBrush}" Foreground="{DynamicResource TextBrush}" >
+    <Window.Resources>
+        <Image x:Key="TB_NewIcon" x:Shared="false" Source="/TEditXna;component/Images/Toolbar/new.png" Height="16" Width="16" SnapsToDevicePixels="True" RenderOptions.BitmapScalingMode="NearestNeighbor"/>
+        <Image x:Key="TB_SaveIcon" x:Shared="false" Source="/TEditXna;component/Images/Toolbar/save.png" Height="16" Width="16" SnapsToDevicePixels="True" RenderOptions.BitmapScalingMode="NearestNeighbor"/>
+        <Image x:Key="TB_SaveAsIcon" x:Shared="false" Source="/TEditXna;component/Images/Toolbar/saveas.png" Height="16" Width="16" SnapsToDevicePixels="True" RenderOptions.BitmapScalingMode="NearestNeighbor"/>
+        <Image x:Key="TB_OpenIcon" x:Shared="false" Source="/TEditXna;component/Images/Toolbar/open.png" Height="16" Width="16" SnapsToDevicePixels="True" RenderOptions.BitmapScalingMode="NearestNeighbor"/>
+        <Image x:Key="TB_HelpIcon" x:Shared="false" Source="/TEditXna;component/Images/Toolbar/help.png" Height="16" Width="16" SnapsToDevicePixels="True" RenderOptions.BitmapScalingMode="NearestNeighbor"/>
+        <Image x:Key="TB_UpdateIcon" x:Shared="false" Source="/TEditXna;component/Images/Toolbar/update.png" Height="16" Width="16" SnapsToDevicePixels="True" RenderOptions.BitmapScalingMode="NearestNeighbor"/>
+        <Image x:Key="TB_UpdateXmlIcon" x:Shared="false" Source="/TEditXna;component/Images/Toolbar/update_xml.png" Height="16" Width="16" SnapsToDevicePixels="True" RenderOptions.BitmapScalingMode="NearestNeighbor"/>
+    </Window.Resources>
     <Grid>
         <DockPanel LastChildFill="True">
             <Menu DockPanel.Dock="Top">
                 <MenuItem Header="File">
-                    <MenuItem Header="New" />
-                    <MenuItem Header="Open" Command="{Binding CommandOpenWorld}" />
+                    <MenuItem Header="New" Icon="{StaticResource TB_NewIcon}" />
+                    <MenuItem Header="Open" Icon="{StaticResource TB_OpenIcon}" Command="{Binding CommandOpenWorld}" />
                     <Separator Margin="1"/>
-                    <MenuItem Header="Save" />
-                    <MenuItem Header="Save As" />
+                    <MenuItem Header="Save" Icon="{StaticResource TB_SaveIcon}"/>
+                    <MenuItem Header="Save As" Icon="{StaticResource TB_SaveAsIcon}"/>
                     <Separator Margin="1"/>
-                    <MenuItem Header="Exit" />
+                    <MenuItem Header="Exit" Command="{Binding CloseApplication}"/>
                 </MenuItem>
                 <MenuItem Header="Display">
-                    <MenuItem Header="Show Backdrop" IsCheckable="True" IsChecked="True" />
-                    <MenuItem Header="Show Wires" IsCheckable="True" IsChecked="False" />
-                    <MenuItem Header="Show Textures" IsCheckable="True" IsChecked="False" />
+                    <MenuItem Header="Show Textures" IsCheckable="True" IsChecked="False" IsEnabled="false" />
                 </MenuItem>
                 <MenuItem Header="Help">
-                    <MenuItem Header="Wiki" />
-                    <Separator Margin="1" /> 
-                    <MenuItem Header="Update" />
-                    <MenuItem Header="Download New XML Data" />
+                    <MenuItem Header="Wiki" Icon="{StaticResource TB_HelpIcon}"/>
+                    <Separator Margin="1" />
+                    <MenuItem Header="Update" Icon="{StaticResource TB_UpdateIcon}"/>
+                    <MenuItem Header="Download New XML Data" Icon="{StaticResource TB_UpdateXmlIcon}"/>
                     <Separator Margin="1"/>
                     <MenuItem Header="About" />
                 </MenuItem>
             </Menu>
+            <StackPanel DockPanel.Dock="Left" Orientation="Vertical" Margin="1">
+                <Button Content="{StaticResource TB_NewIcon}" ToolTip="New" Padding="3" />
+                <Button Content="{StaticResource TB_OpenIcon}" ToolTip="Open" Padding="3" />
+                <Button Content="{StaticResource TB_SaveIcon}" ToolTip="Save" Padding="3" />
+                <ItemsControl />
+            </StackPanel>
+
             <StatusBar DockPanel.Dock="Bottom" Height="30" Background="{x:Null}" Padding="2" Foreground="{StaticResource TextBrush}">
                 <StatusBarItem HorizontalAlignment="Left">
                     <StackPanel Orientation="Horizontal">

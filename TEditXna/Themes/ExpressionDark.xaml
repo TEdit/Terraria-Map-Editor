@@ -3458,7 +3458,7 @@ PopupAnimation="{DynamicResource {x:Static SystemParameters.MenuPopupAnimationKe
         <Setter Property="Foreground" Value="{DynamicResource TextBrush}" />
         <Setter Property="FontSize" Value="10" />
         <Setter Property="MinHeight" Value="18" />
-        <Setter Property="MinWidth" Value="50" />
+        <Setter Property="MinWidth" Value="22" />
     </Style>
 
     <Style x:Key="{x:Static ToolBar.CheckBoxStyleKey}" TargetType="{x:Type CheckBox}">

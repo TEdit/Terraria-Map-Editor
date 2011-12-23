@@ -86,5 +86,19 @@ namespace TEditXna.Render
 
             ColorBuffers[tileIndex][pixelIndex] = color;
         }
+
+        public Color GetPixelColor(int x, int y)
+        {
+            int curTileX = x / TileWidth;
+            int curTileY = y / TileHeight;
+
+            int curPixelX = x - (curTileX * TileWidth);
+            int curPixelY = y - (curTileY * TileHeight);
+
+            int tileIndex = curTileX + curTileY * TilesX;
+            int pixelIndex = curPixelX + curPixelY * TileWidth;
+
+            return ColorBuffers[tileIndex][pixelIndex];
+        }
     }
 }

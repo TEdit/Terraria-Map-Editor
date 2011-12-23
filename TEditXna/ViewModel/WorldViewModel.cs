@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 using BCCL.Geometry.Primitives;
 using BCCL.MvvmLight;
@@ -91,7 +92,11 @@ namespace TEditXna.ViewModel
 
         private ICommand _commandOpenWorld;
 
-
+        private ICommand _closeApplication; 
+        public ICommand CloseApplication
+        {
+            get { return _closeApplication ?? (_closeApplication = new RelayCommand(Application.Current.Shutdown)); }
+        }
         public ICommand CommandOpenWorld
         {
             get { return _commandOpenWorld ?? (_commandOpenWorld = new RelayCommand(OpenWorld, CanOpenWorld)); }

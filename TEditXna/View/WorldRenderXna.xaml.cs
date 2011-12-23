@@ -282,8 +282,8 @@ namespace TEditXna.View
             mousePosition = PointToVector2(e.Position);
             if (_wmv.CurrentWorld != null)
                 _wmv.MouseOverTileLocation = new BCCL.Geometry.Primitives.Vector2Int32(
-                    (int)MathHelper.Clamp((float)(e.Position.X / _zoom - _scrollPosition.X), 0, _wmv.CurrentWorld.TilesWide),
-                    (int)MathHelper.Clamp((float)(e.Position.Y / _zoom - _scrollPosition.Y), 0, _wmv.CurrentWorld.TilesHigh));
+                    (int)MathHelper.Clamp((float)(e.Position.X / _zoom - _scrollPosition.X), 0, _wmv.CurrentWorld.TilesWide-1),
+                    (int)MathHelper.Clamp((float)(e.Position.Y / _zoom - _scrollPosition.Y), 0, _wmv.CurrentWorld.TilesHigh-1));
         }
 
         private void xnaViewport_HwndLButtonDown(object sender, BCCL.UI.Xaml.XnaContentHost.HwndMouseEventArgs e)

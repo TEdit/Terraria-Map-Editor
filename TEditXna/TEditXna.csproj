@@ -134,6 +134,41 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Images\Overlays\dungeon_marker.png" />
+    <Resource Include="Images\Overlays\npc_arms_dealer.png" />
+    <Resource Include="Images\Overlays\npc_clothier.png" />
+    <Resource Include="Images\Overlays\npc_demolitionist.png" />
+    <Resource Include="Images\Overlays\npc_dryad.png" />
+    <Resource Include="Images\Overlays\npc_guide.png" />
+    <Resource Include="Images\Overlays\npc_merchant.png" />
+    <Resource Include="Images\Overlays\npc_nurse.png" />
+    <Resource Include="Images\Overlays\npc_old_man.png" />
+    <Resource Include="Images\Overlays\spawn_marker.png" />
+    <Resource Include="Images\tedit.ico" />
+    <Resource Include="Images\Tools\constrain.png" />
+    <Resource Include="Images\Tools\cursor.png" />
+    <Resource Include="Images\Tools\delete.png" />
+    <Resource Include="Images\Tools\dungeon_tool.png" />
+    <Resource Include="Images\Tools\eraser.png" />
+    <Resource Include="Images\Tools\outline.png" />
+    <Resource Include="Images\Tools\paintbrush.png" />
+    <Resource Include="Images\Tools\paintcan.png" />
+    <Resource Include="Images\Tools\paintcanpercent.png" />
+    <Resource Include="Images\Tools\paste.png" />
+    <Resource Include="Images\Tools\pencil.png" />
+    <Resource Include="Images\Tools\shape_square.png" />
+    <Resource Include="Images\Tools\spawn.png" />
+    <Resource Include="Images\Toolbar\open.png" />
+    <Resource Include="Images\Toolbar\save.png" />
+    <Resource Include="Images\Toolbar\saveas.png" />
+    <Resource Include="Images\Toolbar\new.png" />
+    <Resource Include="Images\Toolbar\help.png" />
+    <Resource Include="Images\Toolbar\update.png" />
+    <Resource Include="Images\Toolbar\copy.png" />
+    <Resource Include="Images\Toolbar\paste.png" />
+    <Resource Include="Images\Toolbar\delete.png" />
+    <Resource Include="Images\Toolbar\plugin.png" />
+    <Resource Include="Images\Toolbar\update_xml.png" />
     <Content Include="settings.xml">
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
