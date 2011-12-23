@@ -32,7 +32,10 @@
             <StatusBar DockPanel.Dock="Bottom" Height="30" Background="{x:Null}" Padding="2" Foreground="{StaticResource TextBrush}">
                 <StatusBarItem HorizontalAlignment="Left">
                     <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="{Binding MouseOverTile}" />
+                        <TextBlock Text="{Binding MouseOverTileLocation}" />
+                        <TextBlock Text="{Binding MouseOverTile.TileName}" />
+                        <TextBlock Text="{Binding MouseOverTile.WallName}" />
+                        <TextBlock Text="{Binding MouseOverTile.Tile.Liquid}" />
                     </StackPanel>
                 </StatusBarItem>
                 <StatusBarItem HorizontalAlignment="Right">

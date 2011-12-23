@@ -258,7 +258,7 @@ Single item; tag has no children. Has the following properties:
     <GlobalColor Name="Hell" Color="#FF330000" />
     <GlobalColor Name="Lava" Color="#F0FF1E00" />
     <GlobalColor Name="Water" Color="#80000CFF" />
-    <GlobalColor Name="Wire" Color="#60FF0000" />
+    <GlobalColor Name="Wire" Color="#70FF0000" />
   </GlobalColors>
   <Tiles>
     <Tile Id="0" Name="Dirt" Color="#FF916A4F" Solid="true"/>

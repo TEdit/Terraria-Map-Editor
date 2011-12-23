@@ -281,7 +281,7 @@ namespace TEditXna.View
         {
             mousePosition = PointToVector2(e.Position);
             if (_wmv.CurrentWorld != null)
-                _wmv.MouseOverTile = new BCCL.Geometry.Primitives.Vector2Int32(
+                _wmv.MouseOverTileLocation = new BCCL.Geometry.Primitives.Vector2Int32(
                     (int)MathHelper.Clamp((float)(e.Position.X / _zoom - _scrollPosition.X), 0, _wmv.CurrentWorld.TilesWide),
                     (int)MathHelper.Clamp((float)(e.Position.Y / _zoom - _scrollPosition.Y), 0, _wmv.CurrentWorld.TilesHigh));
         }
@@ -314,7 +314,7 @@ namespace TEditXna.View
                 tempZoom = _zoom * 2F;
             if (x < 0)
                 tempZoom = _zoom / 2F;
-            var curTile = _wmv.MouseOverTile;
+            var curTile = _wmv.MouseOverTileLocation;
             _zoom = MathHelper.Clamp(tempZoom, 0.125F, 64F);
             CenterOnTile(curTile.X, curTile.Y);
         }

@@ -14,6 +14,36 @@ namespace TEditXna.ViewModel
 {
     public class WorldViewModel : ViewModelBase
     {
+        public class MouseTile : ObservableObject
+        {
+            private Tile _tile;
+            private string _tileName;
+            private string _wallName;
+
+            public string WallName
+            {
+                get { return _wallName; }
+                set { Set("WallName", ref _wallName, value); }
+            }
+
+            public string TileName
+            {
+                get { return _tileName; }
+                set { Set("TileName", ref _tileName, value); }
+            }
+
+            public Tile Tile
+            {
+                get { return _tile; }
+                set
+                {
+                    Set("Tile", ref _tile, value);
+                    TileName = World.TileProperties[_tile.Type].Name;
+                    WallName = World.WallProperties[_tile.Wall].Name;
+                }
+            }
+        }
+
         public WorldViewModel()
         {
             World.ProgressChanged += OnProgressChanged;
@@ -27,11 +57,24 @@ namespace TEditXna.ViewModel
         private ProgressChangedEventArgs _progress;
         private World _currentWorld;
 
-        private Vector2Int32 _mouseOverTile;
-        public Vector2Int32 MouseOverTile
+        private Vector2Int32 _mouseOverTileLocation;
+        private MouseTile _mouseOverTile;
+
+
+        public MouseTile MouseOverTile
         {
             get { return _mouseOverTile; }
             set { Set("MouseOverTile", ref _mouseOverTile, value); }
+        }
+        public Vector2Int32 MouseOverTileLocation
+        {
+            get { return _mouseOverTileLocation; }
+            set
+            {
+                Set("MouseOverTileLocation", ref _mouseOverTileLocation, value);
+                if (MouseOverTile == null) MouseOverTile = new MouseTile();
+                MouseOverTile.Tile = CurrentWorld.Tiles[_mouseOverTileLocation.X, _mouseOverTileLocation.Y];
+            }
         }
 
         public World CurrentWorld
@@ -82,7 +125,7 @@ namespace TEditXna.ViewModel
         }
 
         private PixelMapManager _pixelMap;
-         
+
 
         public PixelMapManager PixelMap
         {
@@ -91,7 +134,7 @@ namespace TEditXna.ViewModel
         }
         private PixelMapManager RenderEntireWorld()
         {
-            var pixels = new PixelMapManager(100,100);
+            var pixels = new PixelMapManager(100, 100);
             pixels.InitializeBuffers(CurrentWorld.TilesWide, CurrentWorld.TilesHigh);
             if (CurrentWorld != null)
             {
@@ -104,7 +147,7 @@ namespace TEditXna.ViewModel
 
                         pixels.SetPixelColor(x, y, Render.PixelMap.GetTileColor(CurrentWorld.Tiles[x, y], curBgColor));
                     }
-                } 
+                }
             }
             return pixels;
         }
