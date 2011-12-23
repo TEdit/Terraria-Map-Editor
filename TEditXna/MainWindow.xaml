@@ -30,6 +30,11 @@
                 </MenuItem>
             </Menu>
             <StatusBar DockPanel.Dock="Bottom" Height="30" Background="{x:Null}" Padding="2" Foreground="{StaticResource TextBrush}">
+                <StatusBarItem HorizontalAlignment="Left">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="{Binding MouseOverTile}" />
+                    </StackPanel>
+                </StatusBarItem>
                 <StatusBarItem HorizontalAlignment="Right">
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Text="{Binding Path=Progress.UserState, Mode=OneWay}" VerticalAlignment="Center" Margin="2,0" />

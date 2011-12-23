@@ -36,18 +36,24 @@ namespace TEditXna.Render
         }
         #endregion
 
-        public static Color GetTileColor(Tile tile)
+        public static Color GetTileColor(Tile tile, Color background)
         {
             var c = new Color(0, 0, 0, 0);
 
             if (tile.Wall > 0)
                 c = c.AlphaBlend(World.WallProperties[tile.Wall].Color);
+            else
+                c = background;
+            
 
             if (tile.IsActive)
                 c = c.AlphaBlend(World.TileProperties[tile.Type].Color);
 
             if (tile.Liquid > 0)
                 c = c.AlphaBlend(tile.IsLava ? World.GlobalColors["Lava"] : World.GlobalColors["Water"]);
+
+            if (tile.HasWire)
+                c = c.AlphaBlend(World.GlobalColors["Wire"]);
 
             return c;
         }

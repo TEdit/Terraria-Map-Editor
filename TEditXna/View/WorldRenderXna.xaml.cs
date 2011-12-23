@@ -21,7 +21,7 @@ namespace TEditXna.View
     /// </summary>
     public partial class WorldRenderXna : UserControl
     {
-        private readonly WorldViewModel _localWvmReference;
+        private readonly WorldViewModel _wmv;
 
         // cool XNA spritebatch in WPF
         private SpriteBatch _spriteBatch;
@@ -29,6 +29,9 @@ namespace TEditXna.View
         private GameTimer _gameTimer;
         private Textures _textureDictionary;
         private SimpleProvider _serviceProvider;
+
+        private Vector2 _scrollPosition = new Vector2(0, 0);
+        private float _zoom = 1;
 
         private Texture2D[] tileMap;
 
@@ -41,7 +44,7 @@ namespace TEditXna.View
                 _gameTimer = new GameTimer();
             }
 
-            _localWvmReference = ViewModelLocator.WorldViewModel;
+            _wmv = ViewModelLocator.WorldViewModel;
         }
 
 
@@ -56,7 +59,6 @@ namespace TEditXna.View
         private UInt32[] colors;
         private int tileWidth = 256;
         private int tileHeight = 256;
-        private Rectangle worldBounds = new Rectangle(0, 0, 2048, 2048);
 
         private void xnaViewport_LoadContent(object sender, GraphicsDeviceEventArgs e)
         {
@@ -92,7 +94,7 @@ namespace TEditXna.View
         private void xnaViewport_RenderXna(object sender, GraphicsDeviceEventArgs e)
         {
             // Abort rendering if in design mode or if gameTimer is not running
-            if (BCCL.Utility.Debugging.IsInDesignMode || !_gameTimer.IsRunning)
+            if (BCCL.Utility.Debugging.IsInDesignMode || !_gameTimer.IsRunning || _wmv.CurrentWorld == null)
                 return;
 
             Update(e);
@@ -107,53 +109,91 @@ namespace TEditXna.View
             if (_npc17 != null)
                 _npc17.UpdateFrame((float)_gameTimer.ElapsedGameTime.TotalSeconds);
 
-            
+
             ScrollWorld();
         }
 
-        private void GetWorldMap(GraphicsDeviceEventArgs e)
+        public void CenterOnTile(int x, int y)
         {
-            if (_localWvmReference != null)
-            {
-                if (_localWvmReference.PixelMap != null)
-                {
-                    if (tileMap == null || tileMap.Length != _localWvmReference.PixelMap.ColorBuffers.Length)
-                    {
-                        tileMap = new Texture2D[_localWvmReference.PixelMap.ColorBuffers.Length];
-                    }
-
-                    for (int i = 0; i < tileMap.Length; i++)
-                    {
-                        if (tileMap[i] == null) tileMap[i] = new Texture2D(e.GraphicsDevice, _localWvmReference.PixelMap.TileWidth, _localWvmReference.PixelMap.TileHeight);
-                        tileMap[i].SetData(_localWvmReference.PixelMap.ColorBuffers[i]);
-                    }
-                }
-            }
-
+            _scrollPosition = new Vector2(
+                -x + (float)(xnaViewport.ActualWidth / _zoom / 2),
+                -y + (float)(xnaViewport.ActualHeight / _zoom / 2));
         }
 
         #region Render
 
+        private bool Check2DFrustrum(int tileIndex)
+        {
+            int x = tileIndex % _wmv.PixelMap.TilesX;
+            // X off min side
+            int xmin = (int)(-_scrollPosition.X / _wmv.PixelMap.TileWidth);
+            if (x < xmin)
+                return false;
+
+            // x off max side
+            if (x > 1 + xmin + (int)((xnaViewport.GraphicsService.GraphicsDevice.Viewport.Width / _zoom) / _wmv.PixelMap.TileWidth))
+                return false;
+
+
+            int y = tileIndex / _wmv.PixelMap.TilesX;
+
+            int ymin = (int)(-_scrollPosition.Y / _wmv.PixelMap.TileHeight);
+            if (y < ymin)
+                return false;
+
+            if (y > 1 + ymin + (int)((xnaViewport.GraphicsService.GraphicsDevice.Viewport.Height / _zoom) / _wmv.PixelMap.TileHeight))
+                return false;
+
+            return true;
+        }
+
         private void Render(GraphicsDeviceEventArgs e)
         {
             // Clear the graphics device and texture buffer
-            e.GraphicsDevice.Clear(Color.Gray);
+            e.GraphicsDevice.Clear(Color.Black);
             e.GraphicsDevice.Textures[0] = null;
 
-            GetWorldMap(e);
+            GenPixelTiles(e);
 
             // Start SpriteBatch
             _spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.Default, RasterizerState.CullNone);
 
-            
+
             // Draw Pixel Map tiles
             DrawPixelTiles(_spriteBatch);
-            
+
             // Draw sprite overlays
             DrawSprites(_spriteBatch);
 
             // End SpriteBatch
             _spriteBatch.End();
+        }
+
+        private void GenPixelTiles(GraphicsDeviceEventArgs e)
+        {
+            if (_wmv != null)
+            {
+                if (_wmv.PixelMap != null)
+                {
+                    if (tileMap == null || tileMap.Length != _wmv.PixelMap.ColorBuffers.Length)
+                    {
+                        tileMap = new Texture2D[_wmv.PixelMap.ColorBuffers.Length];
+                    }
+
+                    for (int i = 0; i < tileMap.Length; i++)
+                    {
+                        if (!Check2DFrustrum(i))
+                            continue;
+
+                        // Make a new texture for nulls
+                        if (tileMap[i] == null)
+                            tileMap[i] = new Texture2D(e.GraphicsDevice, _wmv.PixelMap.TileWidth, _wmv.PixelMap.TileHeight);
+
+
+                        tileMap[i].SetData(_wmv.PixelMap.ColorBuffers[i]);
+                    }
+                }
+            }
         }
 
         private void DrawSprites(SpriteBatch spriteBatch)
@@ -174,16 +214,19 @@ namespace TEditXna.View
 
             for (int i = 0; i < tileMap.Length; i++)
             {
+                if (!Check2DFrustrum(i))
+                    continue;
+
                 spriteBatch.Draw(
                     tileMap[i],
                     new Vector2(
-                        (scrollPosition.X + (i % _localWvmReference.PixelMap.TilesX) * _localWvmReference.PixelMap.TileWidth) * zoom,
-                        (scrollPosition.Y + (i / _localWvmReference.PixelMap.TilesX) * _localWvmReference.PixelMap.TileHeight) * zoom),
+                        (_scrollPosition.X + (i % _wmv.PixelMap.TilesX) * _wmv.PixelMap.TileWidth) * _zoom,
+                        (_scrollPosition.Y + (i / _wmv.PixelMap.TilesX) * _wmv.PixelMap.TileHeight) * _zoom),
                     null,
                     Color.White,
                     0,
                     Vector2.Zero,
-                    zoom,
+                    _zoom,
                     SpriteEffects.None,
                     0);
             }
@@ -196,12 +239,10 @@ namespace TEditXna.View
             return new Vector2((float)point.X, (float)point.Y);
         }
 
-        private Vector2 scrollPosition = new Vector2(0, 0);
+
         private bool isMiddleMouseDown;
         private Vector2 middleClickPoint;
         private Vector2 mousePosition;
-        private float zoom = 1;
-
         // speed in tile/second 
 
         private void ScrollWorld()
@@ -209,12 +250,24 @@ namespace TEditXna.View
             if (isMiddleMouseDown)
             {
                 var stretchDistance = (mousePosition - middleClickPoint);
-                var clampedScroll = scrollPosition + stretchDistance / zoom;
-                clampedScroll.X = MathHelper.Clamp(clampedScroll.X, -worldBounds.Width, 0);
-                clampedScroll.Y = MathHelper.Clamp(clampedScroll.Y, -worldBounds.Height, 0);
-                scrollPosition = clampedScroll;
+                var clampedScroll = _scrollPosition + stretchDistance / _zoom;
+                _scrollPosition = clampedScroll;
                 middleClickPoint = mousePosition;
             }
+
+            int xNormalRange = -_wmv.CurrentWorld.TilesWide + (int)(xnaViewport.ActualWidth / _zoom);
+            int yNormalRange = -_wmv.CurrentWorld.TilesHigh + (int)(xnaViewport.ActualHeight / _zoom);
+            
+            if (_wmv.CurrentWorld.TilesWide > (int)(xnaViewport.ActualWidth / _zoom))
+                _scrollPosition.X = MathHelper.Clamp(_scrollPosition.X, xNormalRange, 0);
+            else
+                _scrollPosition.X = MathHelper.Clamp(_scrollPosition.X, (_wmv.CurrentWorld.TilesWide / 2 - (int)(xnaViewport.ActualWidth / _zoom) / 2), 0);
+
+            if (_wmv.CurrentWorld.TilesHigh > (int)(xnaViewport.ActualHeight / _zoom))
+                _scrollPosition.Y = MathHelper.Clamp(_scrollPosition.Y, yNormalRange, 0);
+            else
+                _scrollPosition.Y = MathHelper.Clamp(_scrollPosition.Y, (_wmv.CurrentWorld.TilesHigh / 2 - (int)(xnaViewport.ActualHeight / _zoom) / 2), 0);
+            
         }
 
         private void xnaViewport_SizeChanged(object sender, SizeChangedEventArgs e)
@@ -227,6 +280,10 @@ namespace TEditXna.View
         private void xnaViewport_HwndMouseMove(object sender, BCCL.UI.Xaml.XnaContentHost.HwndMouseEventArgs e)
         {
             mousePosition = PointToVector2(e.Position);
+            if (_wmv.CurrentWorld != null)
+                _wmv.MouseOverTile = new BCCL.Geometry.Primitives.Vector2Int32(
+                    (int)MathHelper.Clamp((float)(e.Position.X / _zoom - _scrollPosition.X), 0, _wmv.CurrentWorld.TilesWide),
+                    (int)MathHelper.Clamp((float)(e.Position.Y / _zoom - _scrollPosition.Y), 0, _wmv.CurrentWorld.TilesHigh));
         }
 
         private void xnaViewport_HwndLButtonDown(object sender, BCCL.UI.Xaml.XnaContentHost.HwndMouseEventArgs e)
@@ -252,13 +309,14 @@ namespace TEditXna.View
         private void xnaViewport_HwndMouseWheel(object sender, BCCL.UI.Xaml.XnaContentHost.HwndMouseEventArgs e)
         {
             int x = e.WheelDelta;
-            float tempZoom = zoom;
+            float tempZoom = _zoom;
             if (x > 0)
-                tempZoom = zoom * 2F;
+                tempZoom = _zoom * 2F;
             if (x < 0)
-                tempZoom = zoom / 2F;
-
-            zoom = MathHelper.Clamp(tempZoom, 0.03125F, 64F);
+                tempZoom = _zoom / 2F;
+            var curTile = _wmv.MouseOverTile;
+            _zoom = MathHelper.Clamp(tempZoom, 0.125F, 64F);
+            CenterOnTile(curTile.X, curTile.Y);
         }
 
         private void xnaViewport_HwndMButtonDown(object sender, BCCL.UI.Xaml.XnaContentHost.HwndMouseEventArgs e)

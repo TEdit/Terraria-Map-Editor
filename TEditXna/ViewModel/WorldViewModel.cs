@@ -2,6 +2,7 @@
 using System.ComponentModel;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using BCCL.Geometry.Primitives;
 using BCCL.MvvmLight;
 using BCCL.MvvmLight.Command;
 using Microsoft.Win32;
@@ -26,6 +27,12 @@ namespace TEditXna.ViewModel
         private ProgressChangedEventArgs _progress;
         private World _currentWorld;
 
+        private Vector2Int32 _mouseOverTile;
+        public Vector2Int32 MouseOverTile
+        {
+            get { return _mouseOverTile; }
+            set { Set("MouseOverTile", ref _mouseOverTile, value); }
+        }
 
         public World CurrentWorld
         {
@@ -90,15 +97,31 @@ namespace TEditXna.ViewModel
             {
                 for (int y = 0; y < CurrentWorld.TilesHigh; y++)
                 {
+                    var curBgColor = GetBackgroundColor(y);
                     OnProgressChanged(this, new ProgressChangedEventArgs(BCCL.Utility.Calc.ProgressPercentage(y, CurrentWorld.TilesHigh), "Calculating Colors..."));
                     for (int x = 0; x < CurrentWorld.TilesWide; x++)
                     {
-                        pixels.SetPixelColor(x, y, Render.PixelMap.GetTileColor(CurrentWorld.Tiles[x, y]));
+
+                        pixels.SetPixelColor(x, y, Render.PixelMap.GetTileColor(CurrentWorld.Tiles[x, y], curBgColor));
                     }
                 } 
             }
             return pixels;
         }
 
+
+        public Color GetBackgroundColor(int y)
+        {
+            if (y < 20)
+                return World.GlobalColors["Space"];
+            if (y > CurrentWorld.TilesHigh - 192)
+                return World.GlobalColors["Hell"];
+            if (y > CurrentWorld.RockLevel)
+                return World.GlobalColors["Rock"];
+            if (y > CurrentWorld.GroundLevel)
+                return World.GlobalColors["Earth"];
+
+            return World.GlobalColors["Sky"];
+        }
     }
 }
