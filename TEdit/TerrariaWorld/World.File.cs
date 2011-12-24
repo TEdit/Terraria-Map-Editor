@@ -562,6 +562,7 @@ namespace TEdit.TerrariaWorld
                                 writer.Write(false);
 
                             writer.Write(curTile.HasWire);
+
                             int rleTemp = 1;
                             while (y + rleTemp < Header.MaxTiles.Y && curTile.Equals(Tiles[x, (y + rleTemp)]))
                                 ++rleTemp;

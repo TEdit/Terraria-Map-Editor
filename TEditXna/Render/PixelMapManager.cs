@@ -6,13 +6,23 @@ namespace TEditXna.Render
 {
     public class PixelMapManager : ObservableObject
     {
+        const int MaxTextureSize = 256;
+
         private int _tileWidth;
         private int _tileHeight;
         private int _tilesX;
         private int _tilesY;
 
+        
         private Color[][] _colorBuffers;
+        private bool[] _bufferUpdated;
+         
 
+        public bool[] BufferUpdated
+        {
+            get { return _bufferUpdated; }
+            set { Set("BufferUpdated", ref _bufferUpdated, value); }
+        }
         public Color[][] ColorBuffers
         {
             get { return _colorBuffers; }
@@ -43,14 +53,27 @@ namespace TEditXna.Render
             set { Set("TileWidth", ref _tileWidth, value); }
         }
 
-        public PixelMapManager(int tileWidth, int tileHeight)
-        {
-            TileWidth = tileWidth;
-            TileHeight = tileHeight;
-        }
-
         public void InitializeBuffers(int worldWidth, int worldHeight)
         {
+            // Find maximum buffer size
+            for (int h = MaxTextureSize; h >= 100; h--)
+            {
+                if (worldHeight % h == 0)
+                {
+                    TileHeight = h;
+                    break;
+                }
+            }
+
+            for (int w = MaxTextureSize; w >= 100; w--)
+            {
+                if (worldWidth % w == 0)
+                {
+                    TileWidth = w;
+                    break;
+                }
+            }
+
             TilesX = (int)Math.Ceiling((double)worldWidth / TileWidth);
             TilesY = (int)Math.Ceiling((double)worldHeight / TileHeight);
 
@@ -58,6 +81,7 @@ namespace TEditXna.Render
             int tileSize = TileWidth * TileHeight;
 
             ColorBuffers = new Color[tileCount][];
+            BufferUpdated = new bool[tileCount];
 
             for (int x = 0; x < TilesX; x++)
             {
@@ -69,6 +93,7 @@ namespace TEditXna.Render
                         curBuffer[i] = new Color(0, 0, 0, 0);
                     }
                     ColorBuffers[x + y * TilesX] = curBuffer;
+                    BufferUpdated[x + y*TilesX] = true;
                 }
             }
         }
@@ -85,6 +110,9 @@ namespace TEditXna.Render
             int pixelIndex = curPixelX + curPixelY * TileWidth;
 
             ColorBuffers[tileIndex][pixelIndex] = color;
+
+            if (!BufferUpdated[tileIndex])
+                BufferUpdated[tileIndex] = true;
         }
 
         public Color GetPixelColor(int x, int y)

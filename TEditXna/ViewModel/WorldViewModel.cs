@@ -1,81 +1,53 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.IO;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
-using BCCL.Geometry.Primitives;
 using BCCL.MvvmLight;
 using BCCL.MvvmLight.Command;
+using BCCL.MvvmLight.Threading;
+using BCCL.Utility;
 using Microsoft.Win32;
 using Microsoft.Xna.Framework;
 using TEditXNA.Terraria;
+using TEditXna.Editor;
+using TEditXna.Editor.Tools;
 using TEditXna.Render;
 
 namespace TEditXna.ViewModel
 {
     public class WorldViewModel : ViewModelBase
     {
-        public class MouseTile : ObservableObject
-        {
-            private Tile _tile;
-            private string _tileName;
-            private string _wallName;
-
-            public string WallName
-            {
-                get { return _wallName; }
-                set { Set("WallName", ref _wallName, value); }
-            }
-
-            public string TileName
-            {
-                get { return _tileName; }
-                set { Set("TileName", ref _tileName, value); }
-            }
-
-            public Tile Tile
-            {
-                get { return _tile; }
-                set
-                {
-                    Set("Tile", ref _tile, value);
-                    TileName = World.TileProperties[_tile.Type].Name;
-                    WallName = World.WallProperties[_tile.Wall].Name;
-                }
-            }
-        }
+        private ITool _activeTool;
+        private ICommand _closeApplication;
+        private ICommand _commandOpenWorld;
+        private string _currentFile;
+        private World _currentWorld;
+        private readonly MouseTile _mouseOverTile = new MouseTile();
+        private PixelMapManager _pixelMap;
+        private ProgressChangedEventArgs _progress;
+        private ICommand _saveAsCommand;
+        private ICommand _saveCommand;
+        private readonly IList<ITool> _tools = new ObservableCollection<ITool>();
+        private readonly TilePicker _tilePicker = new TilePicker();
 
         public WorldViewModel()
         {
             World.ProgressChanged += OnProgressChanged;
         }
 
-        private void OnProgressChanged(object sender, ProgressChangedEventArgs e)
-        {
-            BCCL.MvvmLight.Threading.DispatcherHelper.CheckBeginInvokeOnUI(() => Progress = e);
-        }
-
-        private ProgressChangedEventArgs _progress;
-        private World _currentWorld;
-
-        private Vector2Int32 _mouseOverTileLocation;
-        private MouseTile _mouseOverTile;
-
-
         public MouseTile MouseOverTile
         {
             get { return _mouseOverTile; }
-            set { Set("MouseOverTile", ref _mouseOverTile, value); }
         }
-        public Vector2Int32 MouseOverTileLocation
+
+        public string CurrentFile
         {
-            get { return _mouseOverTileLocation; }
-            set
-            {
-                Set("MouseOverTileLocation", ref _mouseOverTileLocation, value);
-                if (MouseOverTile == null) MouseOverTile = new MouseTile();
-                MouseOverTile.Tile = CurrentWorld.Tiles[_mouseOverTileLocation.X, _mouseOverTileLocation.Y];
-            }
+            get { return _currentFile; }
+            set { Set("CurrentFile", ref _currentFile, value); }
         }
 
         public World CurrentWorld
@@ -90,21 +62,97 @@ namespace TEditXna.ViewModel
             set { Set("Progress", ref _progress, value); }
         }
 
-        private ICommand _commandOpenWorld;
+        
+        
+        public TilePicker TilePicker
+        {
+            get { return _tilePicker; }
+        }
 
-        private ICommand _closeApplication; 
-        public ICommand CloseApplication
+        public ICommand CloseApplicationCommand
         {
             get { return _closeApplication ?? (_closeApplication = new RelayCommand(Application.Current.Shutdown)); }
         }
-        public ICommand CommandOpenWorld
+
+        public ICommand OpenCommand
         {
-            get { return _commandOpenWorld ?? (_commandOpenWorld = new RelayCommand(OpenWorld, CanOpenWorld)); }
+            get { return _commandOpenWorld ?? (_commandOpenWorld = new RelayCommand(OpenWorld)); }
         }
 
-        private bool CanOpenWorld()
+        public ICommand SaveAsCommand
         {
-            return true;
+            get { return _saveAsCommand ?? (_saveAsCommand = new RelayCommand(SaveWorldAs)); }
+        }
+
+        public ICommand SaveCommand
+        {
+            get { return _saveCommand ?? (_saveCommand = new RelayCommand(SaveWorld)); }
+        }
+
+        private ICommand _setTool;
+         
+
+        public ICommand SetTool
+        {
+            get { return _setTool ?? (_setTool = new RelayCommand<ITool>(SetActiveTool)); }
+        }
+
+        private void SetActiveTool(ITool tool)
+        {
+            if (ActiveTool != tool)
+            {
+                if (ActiveTool != null)
+                    ActiveTool.IsActive = false;
+
+                ActiveTool = tool;
+                tool.IsActive = true;
+            }
+        }
+
+        public IList<ITool> Tools
+        {
+            get { return _tools; }
+        }
+
+        public ITool ActiveTool
+        {
+            get { return _activeTool; }
+            set { Set("ActiveTool", ref _activeTool, value); }
+        }
+
+        public PixelMapManager PixelMap
+        {
+            get { return _pixelMap; }
+            set { Set("PixelMap", ref _pixelMap, value); }
+        }
+
+        private void OnProgressChanged(object sender, ProgressChangedEventArgs e)
+        {
+            DispatcherHelper.CheckBeginInvokeOnUI(() => Progress = e);
+        }
+
+        public void MouseDownTile(TileMouseState e)
+        {
+            if (e.Location != MouseOverTile.MouseState.Location)
+                MouseOverTile.Tile = CurrentWorld.Tiles[e.Location.X, e.Location.Y];
+
+            MouseOverTile.MouseState = e;
+        }
+
+        public void MouseUpTile(TileMouseState e)
+        {
+            if (e.Location != MouseOverTile.MouseState.Location)
+                MouseOverTile.Tile = CurrentWorld.Tiles[e.Location.X, e.Location.Y];
+
+            MouseOverTile.MouseState = e;
+        }
+
+        public void MouseMoveTile(TileMouseState e)
+        {
+            if (e.Location != MouseOverTile.MouseState.Location)
+                MouseOverTile.Tile = CurrentWorld.Tiles[e.Location.X, e.Location.Y];
+
+            MouseOverTile.MouseState = e;
         }
 
         private void OpenWorld()
@@ -113,43 +161,66 @@ namespace TEditXna.ViewModel
             ofd.Filter = "Terrarial World File|*.wld|Terraria World Backup|*.bak|TEdit Backup File|*.TEdit";
             ofd.DefaultExt = "Terrarial World File|*.wld";
             ofd.Title = "Load Terraria World File";
-            ofd.InitialDirectory = System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), @"My Games\Terraria\Worlds");
+            ofd.InitialDirectory = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), @"My Games\Terraria\Worlds");
             ofd.Multiselect = false;
-            if ((bool)ofd.ShowDialog())
+            if ((bool) ofd.ShowDialog())
             {
-                LoadWorld(ofd.FileName);
+                CurrentFile = ofd.FileName;
+                LoadWorld(CurrentFile);
             }
         }
+
+        private void SaveWorld()
+        {
+            if (CurrentWorld == null)
+                return;
+
+            if (string.IsNullOrWhiteSpace(CurrentFile))
+                SaveWorldAs();
+
+            SaveWorldFile();
+        }
+
+        private void SaveWorldAs()
+        {
+            var sfd = new SaveFileDialog();
+            sfd.Filter = "Terraria World File|*.wld|TEdit Backup File|*.TEdit";
+            sfd.Title = "Save World As";
+            sfd.InitialDirectory = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), @"My Games\Terraria\Worlds");
+            if ((bool) sfd.ShowDialog())
+            {
+                CurrentFile = sfd.FileName;
+                SaveWorldFile();
+            }
+        }
+
+        private void SaveWorldFile()
+        {
+            Task.Factory.StartNew(() => CurrentWorld.Save(CurrentFile))
+                .ContinueWith(t => CommandManager.InvalidateRequerySuggested(), TaskFactoryHelper.UiTaskScheduler);
+        }
+
 
         private void LoadWorld(string filename)
         {
             Task.Factory.StartNew(() => World.LoadWorld(filename))
-                .ContinueWith(t => this.CurrentWorld = t.Result, BCCL.MvvmLight.Threading.TaskFactoryHelper.UiTaskScheduler)
+                .ContinueWith(t => CurrentWorld = t.Result, TaskFactoryHelper.UiTaskScheduler)
                 .ContinueWith(t => RenderEntireWorld())
-                .ContinueWith(t => this.PixelMap = t.Result, BCCL.MvvmLight.Threading.TaskFactoryHelper.UiTaskScheduler);
+                .ContinueWith(t => PixelMap = t.Result, TaskFactoryHelper.UiTaskScheduler);
         }
 
-        private PixelMapManager _pixelMap;
-
-
-        public PixelMapManager PixelMap
-        {
-            get { return _pixelMap; }
-            set { Set("PixelMap", ref _pixelMap, value); }
-        }
         private PixelMapManager RenderEntireWorld()
         {
-            var pixels = new PixelMapManager(100, 100);
+            var pixels = new PixelMapManager();
             pixels.InitializeBuffers(CurrentWorld.TilesWide, CurrentWorld.TilesHigh);
             if (CurrentWorld != null)
             {
                 for (int y = 0; y < CurrentWorld.TilesHigh; y++)
                 {
-                    var curBgColor = GetBackgroundColor(y);
-                    OnProgressChanged(this, new ProgressChangedEventArgs(BCCL.Utility.Calc.ProgressPercentage(y, CurrentWorld.TilesHigh), "Calculating Colors..."));
+                    Color curBgColor = GetBackgroundColor(y);
+                    OnProgressChanged(this, new ProgressChangedEventArgs(y.ProgressPercentage(CurrentWorld.TilesHigh), "Calculating Colors..."));
                     for (int x = 0; x < CurrentWorld.TilesWide; x++)
                     {
-
                         pixels.SetPixelColor(x, y, Render.PixelMap.GetTileColor(CurrentWorld.Tiles[x, y], curBgColor));
                     }
                 }
@@ -157,10 +228,9 @@ namespace TEditXna.ViewModel
             return pixels;
         }
 
-
         public Color GetBackgroundColor(int y)
         {
-            if (y < 20)
+            if (y < 80)
                 return World.GlobalColors["Space"];
             if (y > CurrentWorld.TilesHigh - 192)
                 return World.GlobalColors["Hell"];

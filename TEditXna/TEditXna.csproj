@@ -57,9 +57,16 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Editor\MaskMode.cs" />
+    <Compile Include="Editor\MouseTile.cs" />
+    <Compile Include="Editor\PaintMode.cs" />
+    <Compile Include="Editor\TileMouseState.cs" />
+    <Compile Include="Editor\TilePicker.cs" />
+    <Compile Include="Editor\Tools\ITool.cs" />
     <Compile Include="Render\PixelMap.cs" />
     <Compile Include="Render\PixelMapManager.cs" />
     <Compile Include="Terraria\Chest.cs" />
+    <Compile Include="Terraria\InvasionType.cs" />
     <Compile Include="Terraria\Item.cs" />
     <Compile Include="Terraria\NPC.cs" />
     <Compile Include="Terraria\Objects\Enums.cs" />
@@ -73,8 +80,19 @@
     <Compile Include="Terraria\Tile.cs" />
     <Compile Include="Terraria\World.cs" />
     <Compile Include="Terraria\World.Settings.cs" />
+    <Compile Include="UiHelper\Converters\DoublePercentageConverter.cs" />
+    <Compile Include="UiHelper\Converters\ThicknessMultiConverter.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
     <Compile Include="ViewModel\WorldViewModel.cs" />
+    <Compile Include="View\PaintModeView.xaml.cs">
+      <DependentUpon>PaintModeView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ToolSelectorView.xaml.cs">
+      <DependentUpon>ToolSelectorView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\WorldPropertiesView.xaml.cs">
+      <DependentUpon>WorldPropertiesView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\WorldRenderXna.xaml.cs">
       <DependentUpon>WorldRenderXna.xaml</DependentUpon>
     </Compile>
@@ -93,6 +111,22 @@
     <Page Include="Themes\ExpressionDark.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\GlobalStyles.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\PaintModeView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ToolSelectorView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\WorldPropertiesView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\WorldRenderXna.xaml">
       <SubType>Designer</SubType>
@@ -173,6 +207,11 @@
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Editor\Clipboard\" />
+    <Folder Include="Editor\Plugins\" />
+    <Folder Include="Editor\Undo\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

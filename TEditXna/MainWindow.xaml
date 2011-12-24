@@ -18,12 +18,12 @@
             <Menu DockPanel.Dock="Top">
                 <MenuItem Header="File">
                     <MenuItem Header="New" Icon="{StaticResource TB_NewIcon}" />
-                    <MenuItem Header="Open" Icon="{StaticResource TB_OpenIcon}" Command="{Binding CommandOpenWorld}" />
+                    <MenuItem Header="Open" Icon="{StaticResource TB_OpenIcon}" Command="{Binding OpenCommand}" />
                     <Separator Margin="1"/>
-                    <MenuItem Header="Save" Icon="{StaticResource TB_SaveIcon}"/>
-                    <MenuItem Header="Save As" Icon="{StaticResource TB_SaveAsIcon}"/>
+                    <MenuItem Header="Save" Icon="{StaticResource TB_SaveIcon}" Command="{Binding SaveCommand}"/>
+                    <MenuItem Header="Save As" Icon="{StaticResource TB_SaveAsIcon}" Command="{Binding SaveAsCommand}" />
                     <Separator Margin="1"/>
-                    <MenuItem Header="Exit" Command="{Binding CloseApplication}"/>
+                    <MenuItem Header="Exit" Command="{Binding ExitCommand}"/>
                 </MenuItem>
                 <MenuItem Header="Display">
                     <MenuItem Header="Show Textures" IsCheckable="True" IsChecked="False" IsEnabled="false" />
@@ -37,20 +37,13 @@
                     <MenuItem Header="About" />
                 </MenuItem>
             </Menu>
-            <StackPanel DockPanel.Dock="Left" Orientation="Vertical" Margin="1">
-                <Button Content="{StaticResource TB_NewIcon}" ToolTip="New" Padding="3" />
-                <Button Content="{StaticResource TB_OpenIcon}" ToolTip="Open" Padding="3" />
-                <Button Content="{StaticResource TB_SaveIcon}" ToolTip="Save" Padding="3" />
-                <ItemsControl />
-            </StackPanel>
-
             <StatusBar DockPanel.Dock="Bottom" Height="30" Background="{x:Null}" Padding="2" Foreground="{StaticResource TextBrush}">
                 <StatusBarItem HorizontalAlignment="Left">
                     <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="{Binding MouseOverTileLocation}" />
+                        <TextBlock Text="{Binding MouseOverTile.MouseState.Location}" />
                         <TextBlock Text="{Binding MouseOverTile.TileName}" />
                         <TextBlock Text="{Binding MouseOverTile.WallName}" />
-                        <TextBlock Text="{Binding MouseOverTile.Tile.Liquid}" />
+                        <TextBlock Text="{Binding MouseOverTile.TileLiquid}" />
                     </StackPanel>
                 </StatusBarItem>
                 <StatusBarItem HorizontalAlignment="Right">
@@ -60,13 +53,36 @@
                     </StackPanel>
                 </StatusBarItem>
             </StatusBar>
+            <StackPanel DockPanel.Dock="Left" Orientation="Vertical" Margin="1">
+                <Button Content="{StaticResource TB_NewIcon}" ToolTip="New" Padding="3"  Margin="1" Height="24" Width="24"/>
+                <Button Content="{StaticResource TB_OpenIcon}" ToolTip="Open" Padding="3" Command="{Binding OpenCommand}" Margin="1" Height="24" Width="24" />
+                <Button Content="{StaticResource TB_SaveIcon}" ToolTip="Save" Padding="3" Command="{Binding SaveCommand}"  Margin="1" Height="24" Width="24" />
+                <View:ToolSelectorView />
+            </StackPanel>
+                <DockPanel DockPanel.Dock="Top" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                <Border DockPanel.Dock="Right" BorderThickness="1" BorderBrush="{StaticResource SolidBorderBrush}" Background="{StaticResource ControlBackgroundBrush}">
+                    <Grid  Width="200" Height="75">
+                        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Text="Minimap coming soon..." />
+                    </Grid>
+                </Border>
+                <Grid>
+                    <View:PaintModeView HorizontalAlignment="Left" VerticalAlignment="Stretch" Width="200" />
+                </Grid>
+            </DockPanel>
             <Expander Header="Utilities" ExpandDirection="Left" IsExpanded="True" DockPanel.Dock="Right">
-                <TabControl TabStripPlacement="Top" Width="300" Foreground="{DynamicResource TextBrush}">
-                    <TabItem Header="World Properties" />
+
+                    <TabControl TabStripPlacement="Top" Width="300" Foreground="{DynamicResource TextBrush}">
+                    <TabItem Header="World Properties" >
+                        <ScrollViewer VerticalScrollBarVisibility="Auto">
+                            <View:WorldPropertiesView HorizontalAlignment="Stretch" VerticalAlignment="Top"/>
+                        </ScrollViewer>
+                    </TabItem>
                     <TabItem Header="Sprites" />
                     <TabItem Header="Clipboard" />
                 </TabControl>
-            </Expander>       
+
+            </Expander>
+
             <View:WorldRenderXna HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
         </DockPanel>
     </Grid>

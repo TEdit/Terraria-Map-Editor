@@ -42,8 +42,8 @@ namespace TEditXNA.Terraria
             TilesWide = width;
             TilesHigh = height;
             Title = title;
-            var r = seed <= 0 ? new Random((int) DateTime.Now.Ticks) : new Random(seed);
-            WorldID = r.Next(int.MaxValue);
+            var r = seed <= 0 ? new Random((int)DateTime.Now.Ticks) : new Random(seed);
+            WorldId = r.Next(int.MaxValue);
             _npcs.Clear();
             _signs.Clear();
             _chests.Clear();
@@ -84,8 +84,8 @@ namespace TEditXNA.Terraria
         private string _title;
         private int _spawnX;
         private int _spawnY;
-        private int _groundLevel;
-        private int _rockLevel;
+        private double _groundLevel;
+        private double _rockLevel;
         private double _time;
         private bool _dayTime;
         private int _moonPhase;
@@ -110,22 +110,62 @@ namespace TEditXNA.Terraria
         private int _invasionType;
         private int _invasionSize;
         private int _invasionDelay;
-
-        public int WorldID;
-        public float LeftWorld;
-        public float RightWorld;
-        public float TopWorld;
-        public float BottomWorld;
-        public int TilesHigh;
-        public int TilesWide;
-
+        private int _worldId;
+        private float _leftWorld;
+        private float _rightWorld;
+        private float _topWorld;
+        private float _bottomWorld;
+        private int _tilesHigh;
+        private int _tilesWide;
 
         #region Properties
+
+        public int TilesWide
+        {
+            get { return _tilesWide; }
+            set { Set("TilesWide", ref _tilesWide, value); }
+        }
+
+        public int TilesHigh
+        {
+            get { return _tilesHigh; }
+            set { Set("TilesHigh", ref _tilesHigh, value); }
+        }
+
+        public float BottomWorld
+        {
+            get { return _bottomWorld; }
+            set { Set("BottomWorld", ref _bottomWorld, value); }
+        }
+
+        public float TopWorld
+        {
+            get { return _topWorld; }
+            set { Set("TopWorld", ref _topWorld, value); }
+        }
+
+        public float RightWorld
+        {
+            get { return _rightWorld; }
+            set { Set("RightWorld", ref _rightWorld, value); }
+        }
+
+        public float LeftWorld
+        {
+            get { return _leftWorld; }
+            set { Set("LeftWorld", ref _leftWorld, value); }
+        }
+
+        public int WorldId
+        {
+            get { return _worldId; }
+            set { Set("WorldId", ref _worldId, value); }
+        }
 
         public bool DownedFrost
         {
             get { return _downedFrost; }
-            set { Set("IsDownedFrost", ref _downedFrost, value); }
+            set { Set("DownedFrost", ref _downedFrost, value); }
         }
 
         public string Title
@@ -146,16 +186,26 @@ namespace TEditXNA.Terraria
             set { Set("SpawnY", ref _spawnY, value); }
         }
 
-        public int GroundLevel
+        public double GroundLevel
         {
             get { return _groundLevel; }
-            set { Set("GroundLevel", ref _groundLevel, value); }
+            set
+            {
+                Set("GroundLevel", ref _groundLevel, value);
+                if (_groundLevel > _rockLevel)
+                    RockLevel = _groundLevel;
+            }
         }
 
-        public int RockLevel
+        public double RockLevel
         {
             get { return _rockLevel; }
-            set { Set("RockLevel", ref _rockLevel, value); }
+            set
+            {
+                Set("RockLevel", ref _rockLevel, value);
+                if (_groundLevel > _rockLevel)
+                    GroundLevel = _rockLevel;
+            }
         }
 
         public double Time
@@ -257,7 +307,11 @@ namespace TEditXNA.Terraria
         public int ShadowOrbCount
         {
             get { return _shadowOrbCount; }
-            set { Set("ShadowOrbCount", ref _shadowOrbCount, value); }
+            set
+            {
+                Set("ShadowOrbCount", ref _shadowOrbCount, value);
+                ShadowOrbSmashed = _shadowOrbCount > 0;
+            }
         }
 
         public int AltarCount
@@ -322,18 +376,18 @@ namespace TEditXNA.Terraria
             if (filename == null)
                 return;
 
-            string temp = filename;
+            string temp = filename + ".tmp";
             using (var fs = new FileStream(temp, FileMode.Create))
             {
                 using (var bw = new BinaryWriter(fs))
                 {
                     bw.Write(Version);
                     bw.Write(Title);
-                    bw.Write(WorldID);
-                    bw.Write((int) LeftWorld);
-                    bw.Write((int) RightWorld);
-                    bw.Write((int) TopWorld);
-                    bw.Write((int) BottomWorld);
+                    bw.Write(WorldId);
+                    bw.Write((int)LeftWorld);
+                    bw.Write((int)RightWorld);
+                    bw.Write((int)TopWorld);
+                    bw.Write((int)BottomWorld);
                     bw.Write(TilesHigh);
                     bw.Write(TilesWide);
                     bw.Write(SpawnX);
@@ -357,7 +411,7 @@ namespace TEditXNA.Terraria
                     bw.Write(DownedFrost);
                     bw.Write(ShadowOrbSmashed);
                     bw.Write(SpawnMeteor);
-                    bw.Write((byte) ShadowOrbCount);
+                    bw.Write((byte)ShadowOrbCount);
                     bw.Write(AltarCount);
                     bw.Write(HardMode);
                     bw.Write(InvasionDelay);
@@ -393,7 +447,7 @@ namespace TEditXNA.Terraria
                                             Chests.Add(new Chest(x, y));
                                         }
                                     }
-                                        //validate sign entry exists
+                                    //validate sign entry exists
                                     else if (curTile.Type == 55 || curTile.Type == 85)
                                     {
                                         if (GetSignAtTile(x, y) == null)
@@ -403,14 +457,15 @@ namespace TEditXNA.Terraria
                                     }
                                 }
                             }
-                            if ((int) curTile.Wall > 0)
+                            if ((int)curTile.Wall > 0)
                             {
                                 bw.Write(true);
                                 bw.Write(curTile.Wall);
                             }
                             else
                                 bw.Write(false);
-                            if ((int) curTile.Liquid > 0)
+
+                            if ((int)curTile.Liquid > 0)
                             {
                                 bw.Write(true);
                                 bw.Write(curTile.Liquid);
@@ -418,18 +473,20 @@ namespace TEditXNA.Terraria
                             }
                             else
                                 bw.Write(false);
+
                             bw.Write(curTile.HasWire);
-                            rle = 1;
-                            while (y + rle < TilesHigh && curTile.Equals(Tiles[x, (y + rle)]))
-                                ++rle;
-                            rle = rle - 1;
-                            bw.Write((short) rle);
+
+                            int rleTemp = 1;
+                            while (y + rleTemp < TilesHigh && curTile.Equals(Tiles[x, (y + rleTemp)]))
+                                ++rleTemp;
+                            rle = rleTemp - 1;
+                            bw.Write((short)rle);
                         }
                     }
                     OnProgressChanged(null, new ProgressChangedEventArgs(100, "Saving Chests..."));
                     for (int i = 0; i < 1000; ++i)
                     {
-                        if (Chests.Count <= i)
+                        if (i >= Chests.Count)
                         {
                             bw.Write(false);
                         }
@@ -441,25 +498,30 @@ namespace TEditXNA.Terraria
                             bw.Write(curChest.Y);
                             for (int j = 0; j < Chest.MaxItems; ++j)
                             {
-                                bw.Write((byte) curChest.Items[j].StackSize);
-                                if (curChest.Items[j].StackSize > 0)
+                                if (curChest.Items.Count > j)
                                 {
-                                    bw.Write(curChest.Items[j].ItemName);
-                                    bw.Write(curChest.Items[j].Prefix);
+                                    bw.Write((byte) curChest.Items[j].StackSize);
+                                    if (curChest.Items[j].StackSize > 0)
+                                    {
+                                        bw.Write(curChest.Items[j].ItemName);
+                                        bw.Write(curChest.Items[j].Prefix);
+                                    }
                                 }
+                                else
+                                    bw.Write((byte)0);
                             }
                         }
                     }
                     OnProgressChanged(null, new ProgressChangedEventArgs(100, "Saving Signs..."));
                     for (int i = 0; i < 1000; ++i)
                     {
-                        if (Signs.Count <= i || string.IsNullOrWhiteSpace(Signs[i].Text))
+                        if (i >= Signs.Count || string.IsNullOrWhiteSpace(Signs[i].Text))
                         {
                             bw.Write(false);
                         }
                         else
                         {
-                            Sign curSign = Signs[i];
+                            var curSign = Signs[i];
                             bw.Write(true);
                             bw.Write(curSign.Text);
                             bw.Write(curSign.X);
@@ -467,16 +529,8 @@ namespace TEditXNA.Terraria
                         }
                     }
                     OnProgressChanged(null, new ProgressChangedEventArgs(100, "Saving NPC Data..."));
-                    for (int i = 0; i < 200; ++i)
+                    foreach (NPC curNpc in NPCs)
                     {
-                        if (NPCs.Count <= i)
-                        {
-                            bw.Write(false);
-                            break;
-                        }
-
-                        NPC curNpc = (NPC) NPCs[i];
-
                         bw.Write(true);
                         bw.Write(curNpc.Name);
                         bw.Write(curNpc.Position.X);
@@ -484,8 +538,8 @@ namespace TEditXNA.Terraria
                         bw.Write(curNpc.IsHomeless);
                         bw.Write(curNpc.Home.X);
                         bw.Write(curNpc.Home.Y);
-
                     }
+                    bw.Write(false);
 
                     OnProgressChanged(null, new ProgressChangedEventArgs(100, "Saving NPC Names..."));
                     bw.Write(CharacterNames[17]);
@@ -502,16 +556,19 @@ namespace TEditXNA.Terraria
                     OnProgressChanged(null, new ProgressChangedEventArgs(100, "Saving Validation Data..."));
                     bw.Write(true);
                     bw.Write(Title);
-                    bw.Write(WorldID);
+                    bw.Write(WorldId);
                     bw.Close();
                     fs.Close();
+
+                    // make a backup of current file if it exists
                     if (File.Exists(filename))
                     {
-                        //statusText = "Backing up world file...";
                         string backup = filename + ".TEdit";
                         File.Copy(filename, backup, true);
                     }
+                    // replace actual file with temp save file
                     File.Copy(temp, filename, true);
+                    // delete temp save file
                     File.Delete(temp);
                     OnProgressChanged(null, new ProgressChangedEventArgs(100, "World Save Complete."));
                 }
@@ -526,18 +583,18 @@ namespace TEditXNA.Terraria
                 w.Version = b.ReadUInt32(); //now we care about the version
                 w.Title = b.ReadString();
 
-                w.WorldID = b.ReadInt32();
-                w.LeftWorld = (float) b.ReadInt32();
-                w.RightWorld = (float) b.ReadInt32();
-                w.TopWorld = (float) b.ReadInt32();
-                w.BottomWorld = (float) b.ReadInt32();
+                w.WorldId = b.ReadInt32();
+                w.LeftWorld = (float)b.ReadInt32();
+                w.RightWorld = (float)b.ReadInt32();
+                w.TopWorld = (float)b.ReadInt32();
+                w.BottomWorld = (float)b.ReadInt32();
 
                 w.TilesHigh = b.ReadInt32();
                 w.TilesWide = b.ReadInt32();
                 w.SpawnX = b.ReadInt32();
                 w.SpawnY = b.ReadInt32();
-                w.GroundLevel = (int) b.ReadDouble();
-                w.RockLevel = (int) b.ReadDouble();
+                w.GroundLevel = (int)b.ReadDouble();
+                w.RockLevel = (int)b.ReadDouble();
 
                 // read world flags
                 w.Time = b.ReadDouble();
@@ -563,7 +620,7 @@ namespace TEditXNA.Terraria
                     w.DownedFrost = b.ReadBoolean();
                 w.ShadowOrbSmashed = b.ReadBoolean();
                 w.SpawnMeteor = b.ReadBoolean();
-                w.ShadowOrbCount = (int) b.ReadByte();
+                w.ShadowOrbCount = (int)b.ReadByte();
                 if (w.Version >= 23)
                 {
                     w.AltarCount = b.ReadInt32();
@@ -576,7 +633,7 @@ namespace TEditXNA.Terraria
 
 
 
-                w.Tiles = new Tile[w.TilesWide,w.TilesHigh];
+                w.Tiles = new Tile[w.TilesWide, w.TilesHigh];
                 for (int x = 0; x < w.TilesWide; ++x)
                 {
                     OnProgressChanged(null, new ProgressChangedEventArgs(x.ProgressPercentage(w.TilesWide), "Loading Tiles..."));
@@ -592,7 +649,7 @@ namespace TEditXNA.Terraria
                         if (tile.IsActive)
                         {
                             tile.Type = b.ReadByte();
-                            if (tile.Type == (int) sbyte.MaxValue)
+                            if (tile.Type == (int)sbyte.MaxValue)
                                 tile.IsActive = false;
                             if (TileProperties[tile.Type].IsFramed)
                             {
@@ -639,8 +696,8 @@ namespace TEditXNA.Terraria
                         //    tile.HasWire = false;
                         w.Tiles[x, y] = tile;
 
-                        var ptype = (Tile) prevtype.Clone();
-                        prevtype = (Tile) tile.Clone();
+                        var ptype = (Tile)prevtype.Clone();
+                        prevtype = (Tile)tile.Clone();
                         if (w.Version >= 25) //compression ftw :)
                         {
                             int rle = b.ReadInt16();
@@ -648,7 +705,7 @@ namespace TEditXNA.Terraria
                             {
                                 for (int r = y + 1; r < y + rle + 1; r++)
                                 {
-                                    var tcopy = (Tile) tile.Clone();
+                                    var tcopy = (Tile)tile.Clone();
                                     w.Tiles[x, r] = tcopy;
                                 }
                                 y += rle;
@@ -742,7 +799,7 @@ namespace TEditXNA.Terraria
                     bool validation = b.ReadBoolean();
                     string checkTitle = b.ReadString();
                     int checkVersion = b.ReadInt32();
-                    if (validation && checkTitle == w.Title && checkVersion == w.WorldID)
+                    if (validation && checkTitle == w.Title && checkVersion == w.WorldId)
                     {
                         //w.loadSuccess = true;
                     }

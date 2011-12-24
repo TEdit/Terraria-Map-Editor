@@ -251,7 +251,7 @@ Single item; tag has no children. Has the following properties:
 
 <Settings>
   <GlobalColors>
-    <GlobalColor Name="Space" Color="#FF000000" />
+    <GlobalColor Name="Space" Color="#FF336699" />
     <GlobalColor Name="Sky" Color="#FF9BD1FF" />
     <GlobalColor Name="Earth" Color="#FF583D2E" />
     <GlobalColor Name="Rock" Color="#FF4A433C" />
