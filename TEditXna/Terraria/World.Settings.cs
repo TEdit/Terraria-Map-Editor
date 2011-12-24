@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
@@ -160,6 +161,11 @@ namespace TEditXNA.Terraria
         public static IList<TileProperty> TileProperties
         {
             get { return _tileProperties; }
+        }
+
+        public static IList<TileProperty> TileBricks
+        {
+            get { return _tileProperties.Where(x => !x.IsFramed).ToList(); }
         }
 
         public static IList<WallProperty> WallProperties

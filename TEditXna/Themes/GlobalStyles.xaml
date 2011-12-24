@@ -217,4 +217,7 @@
             </Trigger>
         </Style.Triggers>
     </Style>
+    <Style TargetType="{x:Type bccl:DropDownButton}" BasedOn="{StaticResource {x:Type ToggleButton}}" />
+
+
 </ResourceDictionary>

@@ -87,6 +87,9 @@
     <Compile Include="View\PaintModeView.xaml.cs">
       <DependentUpon>PaintModeView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\ToolPropertiesView.xaml.cs">
+      <DependentUpon>ToolPropertiesView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\ToolSelectorView.xaml.cs">
       <DependentUpon>ToolSelectorView.xaml</DependentUpon>
     </Compile>
@@ -119,6 +122,10 @@
     <Page Include="View\PaintModeView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ToolPropertiesView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="View\ToolSelectorView.xaml">
       <SubType>Designer</SubType>

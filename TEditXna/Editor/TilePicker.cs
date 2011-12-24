@@ -9,6 +9,8 @@ namespace TEditXna.Editor
         private MaskMode _wallMaskMode = MaskMode.Off;
         private int _wall;
         private int _tile;
+        private int _wallMask;
+        private int _tileMask;
         private bool _isLava;
         private bool _isEraiser; 
 
@@ -22,7 +24,22 @@ namespace TEditXna.Editor
         {
             get { return _isLava; }
             set { Set("IsLava", ref _isLava, value); }
+        }
+
+
+         
+
+        public int TileMask
+        {
+            get { return _tileMask; }
+            set { Set("TileMask", ref _tileMask, value); }
         } 
+
+        public int WallMask
+        {
+            get { return _wallMask; }
+            set { Set("WallMask", ref _wallMask, value); }
+        }
 
         public int Tile
         {

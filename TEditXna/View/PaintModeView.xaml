@@ -3,28 +3,139 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:bccl="http://bccl/wpf"
-             xmlns:editor="clr-namespace:TEditXna.Editor" mc:Ignorable="d" 
-             d:DesignWidth="200" Background="{StaticResource WindowBackgroundBrush}" Foreground="{StaticResource TextBrush}">
+             xmlns:editor="clr-namespace:TEditXna.Editor" xmlns:Terraria="clr-namespace:TEditXNA.Terraria"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib" mc:Ignorable="d" 
+             Background="{StaticResource WindowBackgroundBrush}" Foreground="{StaticResource TextBrush}">
     <UserControl.Resources>
         <bccl:EnumItemList x:Key="PaintModeEnum" EnumType="{x:Type editor:PaintMode}" SortBy="Value"  />
         <bccl:EnumItemList x:Key="MaskModeEnum" EnumType="{x:Type editor:MaskMode}" x:Shared="false" SortBy="Value" />
         <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource {x:Type TextBlock}}">
-            <Setter Property="Margin" Value="3,2" />
+            <Setter Property="Margin" Value="5,2" />
             <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="HorizontalAlignment" Value="Right" />
+        </Style>
+        <DataTemplate x:Key="ColorPickerTemplate" >
+            <DockPanel LastChildFill="True">
+                <Border BorderBrush="Black" BorderThickness="1" Margin="2,1" DockPanel.Dock="Left" >
+                    <Rectangle Height="12" Width="12">
+                        <Rectangle.Fill>
+                            <SolidColorBrush Color="{Binding Path=Color}" />
+                        </Rectangle.Fill>
+                    </Rectangle>
+                </Border>
+                <TextBlock Text="{Binding Path=Id}" Margin="2,0" Width="20" DockPanel.Dock="Right" />
+                <TextBlock Text="{Binding Path=Name}" Margin="1,0"  />
+            </DockPanel>
+        </DataTemplate>
+        <DataTemplate x:Key="EnumTemplate" >
+            <Grid HorizontalAlignment="Stretch">
+                <TextBlock Text="{Binding Path=Text}" Margin="2,0" HorizontalAlignment="Stretch"  />
+            </Grid>
+        </DataTemplate>
+        <Style TargetType="{x:Type ComboBox}" BasedOn="{StaticResource {x:Type ComboBox}}">
+            <Setter Property="Margin" Value="0,1" />
+        </Style>
+        <DataTemplate x:Key="ColorPickerSimpleTemplate">
+            <Border BorderBrush="Black" BorderThickness="1" Margin="2,1" DockPanel.Dock="Left">
+                <Rectangle Height="22" Width="22">
+                    <Rectangle.Fill>
+                        <SolidColorBrush Color="{Binding Path=Color}" />
+                    </Rectangle.Fill>
+                </Rectangle>
+            </Border>
+        </DataTemplate>
+        <Style TargetType="{x:Type TextBlock}" x:Key="TileVisibleStyle" BasedOn="{StaticResource {x:Type TextBlock}}">
+            <Setter Property="Visibility" Value="Collapsed" />
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding TilePicker.PaintMode}" Value="Tile">
+                    <Setter Property="Visibility" Value="Visible" />
+                </DataTrigger>
+                <DataTrigger Binding="{Binding TilePicker.PaintMode}" Value="TileAndWall">
+                    <Setter Property="Visibility" Value="Visible" />
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+        <Style TargetType="{x:Type TextBlock}" x:Key="WallVisibleStyle" BasedOn="{StaticResource {x:Type TextBlock}}">
+            <Setter Property="Visibility" Value="Collapsed" />
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding TilePicker.PaintMode}" Value="Wall">
+                    <Setter Property="Visibility" Value="Visible" />
+                </DataTrigger>
+                <DataTrigger Binding="{Binding TilePicker.PaintMode}" Value="TileAndWall">
+                    <Setter Property="Visibility" Value="Visible" />
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+        <Style TargetType="{x:Type TextBlock}" x:Key="LiquidVisibleStyle" BasedOn="{StaticResource {x:Type TextBlock}}">
+            <Setter Property="Visibility" Value="Collapsed" />
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding TilePicker.PaintMode}" Value="Liquid">
+                    <Setter Property="Visibility" Value="Visible" />
+                </DataTrigger>
+            </Style.Triggers>
         </Style>
     </UserControl.Resources>
     <Grid>
-        <bccl:AutoGrid HorizontalAlignment="Stretch" VerticalAlignment="Top">
-            <bccl:AutoGrid.ColumnDefinitions>
-                <ColumnDefinition Width="1*" />
-                <ColumnDefinition Width="2*" />
-            </bccl:AutoGrid.ColumnDefinitions>
-            <TextBlock Text="Paint Mode" />
-            <ComboBox ItemsSource="{StaticResource PaintModeEnum}" SelectedValue="{Binding TilePicker.PaintMode}" SelectedValuePath="Value" />
-            <TextBlock Text="Tile Mask" />
-            <ComboBox ItemsSource="{StaticResource MaskModeEnum}" SelectedValue="{Binding TilePicker.TileMaskMode}" SelectedValuePath="Value" />
-            <TextBlock Text="Wall Mask" />
-            <ComboBox ItemsSource="{StaticResource MaskModeEnum}" SelectedValue="{Binding TilePicker.WallMaskMode}" SelectedValuePath="Value" />
-        </bccl:AutoGrid>
+        <StackPanel Orientation="Horizontal">
+            <ToggleButton ToolTip="Eraser" IsChecked="{Binding Path=TilePicker.IsEraser, Mode=TwoWay}" VerticalAlignment="Top" Margin="2" BorderThickness="2">
+                <Image Source="../Images/Tools/eraser.png" Height="32" Width="32" RenderOptions.BitmapScalingMode="NearestNeighbor" Stretch="None" />
+            </ToggleButton>
+            <bccl:AutoGrid Width="250" VerticalAlignment="Top" >
+                <bccl:AutoGrid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*" />
+                    <ColumnDefinition Width="2*" />
+                </bccl:AutoGrid.ColumnDefinitions>
+                <TextBlock Text="Paint Mode" />
+                <ComboBox ItemsSource="{StaticResource PaintModeEnum}" SelectedValue="{Binding TilePicker.PaintMode}" SelectedValuePath="Value" ItemTemplate="{StaticResource EnumTemplate}" />
+                <TextBlock Text="Tile" Style="{StaticResource TileVisibleStyle}" x:Name="TileText"/>
+                <ComboBox ItemsSource="{Binding Source={x:Static Terraria:World.TileBricks}, Mode=OneTime}" Visibility="{Binding ElementName=TileText, Path=Visibility}"
+                      ItemTemplate="{StaticResource ColorPickerTemplate}" 
+                      SelectedValue="{Binding Path=TilePicker.Tile, Mode=TwoWay}"
+                      SelectedValuePath="Id" 
+                      IsTextSearchEnabled="True" TextSearch.TextPath="Name" />
+                <TextBlock Text="Wall" Style="{StaticResource WallVisibleStyle}" x:Name="WallText" />
+                <ComboBox ItemsSource="{Binding Source={x:Static Terraria:World.WallProperties}, Mode=OneTime}" Visibility="{Binding ElementName=WallText, Path=Visibility}"
+                      ItemTemplate="{StaticResource ColorPickerTemplate}" 
+                      SelectedValue="{Binding Path=TilePicker.Wall, Mode=TwoWay}"
+                      SelectedValuePath="Id" 
+                      IsTextSearchEnabled="True" TextSearch.TextPath="Name" >
+                </ComboBox>
+                <TextBlock Text="Liquid Type" Style="{StaticResource LiquidVisibleStyle}" x:Name="LiquidText" />
+                <StackPanel Visibility="{Binding ElementName=LiquidText, Path=Visibility}">
+                    <RadioButton Content="Water" />
+                    <RadioButton Content="Lava" IsChecked="{Binding Path=TilePicker.IsLava, Mode=TwoWay}" />
+                </StackPanel>
+            </bccl:AutoGrid>
+            <StackPanel>
+                <bccl:AutoGrid Width="250" VerticalAlignment="Top" Visibility="{Binding ElementName=TileText, Path=Visibility}" >
+                    <bccl:AutoGrid.ColumnDefinitions>
+                        <ColumnDefinition Width="2*" />
+                        <ColumnDefinition Width="3*" />
+                    </bccl:AutoGrid.ColumnDefinitions>
+                    <TextBlock Text="Tile Mask Mode" />
+                    <ComboBox ItemsSource="{StaticResource MaskModeEnum}" SelectedValue="{Binding TilePicker.TileMaskMode}" SelectedValuePath="Value" ItemTemplate="{StaticResource EnumTemplate}"  />
+                    <TextBlock Text="Tile Mask" />
+                    <ComboBox ItemsSource="{Binding Source={x:Static Terraria:World.TileBricks}, Mode=OneTime}"
+                      ItemTemplate="{StaticResource ColorPickerTemplate}" 
+                      SelectedValue="{Binding Path=TilePicker.TileMask, Mode=TwoWay}"
+                      SelectedValuePath="Id"
+                      IsTextSearchEnabled="True" TextSearch.TextPath="Name" />
+                </bccl:AutoGrid>
+                <bccl:AutoGrid Width="250" VerticalAlignment="Top" Visibility="{Binding ElementName=WallText, Path=Visibility}">
+                    <bccl:AutoGrid.ColumnDefinitions>
+                        <ColumnDefinition Width="2*" />
+                        <ColumnDefinition Width="3*" />
+                    </bccl:AutoGrid.ColumnDefinitions>
+                    <TextBlock Text="Wall Mask Mode" />
+                    <ComboBox ItemsSource="{StaticResource MaskModeEnum}" SelectedValue="{Binding TilePicker.WallMaskMode}" SelectedValuePath="Value" ItemTemplate="{StaticResource EnumTemplate}" />
+                    <TextBlock Text="Wall Mask" />
+                    <ComboBox ItemsSource="{Binding Source={x:Static Terraria:World.WallProperties}, Mode=OneTime}" 
+                      ItemTemplate="{StaticResource ColorPickerTemplate}" 
+                      SelectedValue="{Binding Path=TilePicker.WallMask, Mode=TwoWay}"
+                      SelectedValuePath="Id"
+                      IsTextSearchEnabled="True" TextSearch.TextPath="Name" />
+                </bccl:AutoGrid>
+            </StackPanel>
+        </StackPanel>
     </Grid>
 </UserControl>
