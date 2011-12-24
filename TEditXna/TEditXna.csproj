@@ -57,6 +57,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Editor\BrushSettings.cs" />
+    <Compile Include="Editor\BrushShape.cs" />
     <Compile Include="Editor\MaskMode.cs" />
     <Compile Include="Editor\MouseTile.cs" />
     <Compile Include="Editor\PaintMode.cs" />
