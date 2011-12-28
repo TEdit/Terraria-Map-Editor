@@ -1,13 +1,13 @@
 ﻿using System.Windows.Controls;
 
-namespace TEdit.Views
+namespace TEditXna.View
 {
     /// <summary>
     /// Interaction logic for ToolPropertiesView.xaml
     /// </summary>
-    public partial class ToolPropertiesView : UserControl
+    public partial class BrushSettingsView : UserControl
     {
-        public ToolPropertiesView()
+        public BrushSettingsView()
         {
             InitializeComponent();
         }

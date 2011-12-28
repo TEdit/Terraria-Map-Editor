@@ -6,6 +6,7 @@ using System.IO;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
+using System.Windows.Media.Imaging;
 using BCCL.MvvmLight;
 using BCCL.MvvmLight.Command;
 using BCCL.MvvmLight.Threading;
@@ -26,17 +27,30 @@ namespace TEditXna.ViewModel
         private ICommand _commandOpenWorld;
         private string _currentFile;
         private World _currentWorld;
-        private readonly MouseTile _mouseOverTile = new MouseTile();
         private PixelMapManager _pixelMap;
         private ProgressChangedEventArgs _progress;
         private ICommand _saveAsCommand;
         private ICommand _saveCommand;
+        private ICommand _setTool;
         private readonly IList<ITool> _tools = new ObservableCollection<ITool>();
         private readonly TilePicker _tilePicker = new TilePicker();
+        private readonly BrushSettings _brush = new BrushSettings();
+        private readonly MouseTile _mouseOverTile = new MouseTile();
 
         public WorldViewModel()
         {
             World.ProgressChanged += OnProgressChanged;
+            Brush.BrushChanged += OnPreviewChanged;
+        }
+
+        public event EventHandler PreviewChanged;
+        private void PreviewChange()
+        {
+            OnPreviewChanged(this, new EventArgs());
+        }
+        protected virtual void OnPreviewChanged(object sender, EventArgs e)
+        {
+            if (PreviewChanged != null) PreviewChanged(sender, e);
         }
 
         public MouseTile MouseOverTile
@@ -62,8 +76,11 @@ namespace TEditXna.ViewModel
             set { Set("Progress", ref _progress, value); }
         }
 
-        
-        
+        public BrushSettings Brush
+        {
+            get { return _brush; }
+        }
+
         public TilePicker TilePicker
         {
             get { return _tilePicker; }
@@ -89,9 +106,6 @@ namespace TEditXna.ViewModel
             get { return _saveCommand ?? (_saveCommand = new RelayCommand(SaveWorld)); }
         }
 
-        private ICommand _setTool;
-         
-
         public ICommand SetTool
         {
             get { return _setTool ?? (_setTool = new RelayCommand<ITool>(SetActiveTool)); }
@@ -106,6 +120,8 @@ namespace TEditXna.ViewModel
 
                 ActiveTool = tool;
                 tool.IsActive = true;
+
+                PreviewChange();
             }
         }
 
@@ -137,6 +153,7 @@ namespace TEditXna.ViewModel
                 MouseOverTile.Tile = CurrentWorld.Tiles[e.Location.X, e.Location.Y];
 
             MouseOverTile.MouseState = e;
+            ActiveTool.MouseDown(e);
         }
 
         public void MouseUpTile(TileMouseState e)
@@ -145,6 +162,7 @@ namespace TEditXna.ViewModel
                 MouseOverTile.Tile = CurrentWorld.Tiles[e.Location.X, e.Location.Y];
 
             MouseOverTile.MouseState = e;
+            ActiveTool.MouseUp(e);
         }
 
         public void MouseMoveTile(TileMouseState e)
@@ -153,6 +171,7 @@ namespace TEditXna.ViewModel
                 MouseOverTile.Tile = CurrentWorld.Tiles[e.Location.X, e.Location.Y];
 
             MouseOverTile.MouseState = e;
+            ActiveTool.MouseMove(e);
         }
 
         private void OpenWorld()
@@ -163,7 +182,7 @@ namespace TEditXna.ViewModel
             ofd.Title = "Load Terraria World File";
             ofd.InitialDirectory = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), @"My Games\Terraria\Worlds");
             ofd.Multiselect = false;
-            if ((bool) ofd.ShowDialog())
+            if ((bool)ofd.ShowDialog())
             {
                 CurrentFile = ofd.FileName;
                 LoadWorld(CurrentFile);
@@ -187,7 +206,7 @@ namespace TEditXna.ViewModel
             sfd.Filter = "Terraria World File|*.wld|TEdit Backup File|*.TEdit";
             sfd.Title = "Save World As";
             sfd.InitialDirectory = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), @"My Games\Terraria\Worlds");
-            if ((bool) sfd.ShowDialog())
+            if ((bool)sfd.ShowDialog())
             {
                 CurrentFile = sfd.FileName;
                 SaveWorldFile();
@@ -207,6 +226,105 @@ namespace TEditXna.ViewModel
                 .ContinueWith(t => CurrentWorld = t.Result, TaskFactoryHelper.UiTaskScheduler)
                 .ContinueWith(t => RenderEntireWorld())
                 .ContinueWith(t => PixelMap = t.Result, TaskFactoryHelper.UiTaskScheduler);
+        }
+
+        public void SetPixel(int x, int y, PaintMode? mode = null, bool? erase = null)
+        {
+            var curTile = CurrentWorld.Tiles[x, y];
+            var curMode = mode ?? TilePicker.PaintMode;
+            var isErase = erase ?? TilePicker.IsEraser;
+
+            switch (curMode)
+            {
+                case PaintMode.Tile:
+                    SetTile(curTile, isErase);
+                    break;
+                case PaintMode.Wall:
+                    SetWall(curTile, isErase);
+                    break;
+                case PaintMode.TileAndWall:
+                    SetTile(curTile, isErase);
+                    SetWall(curTile, isErase);
+                    break;
+                case PaintMode.Wire:
+                    SetPixelAutomatic(curTile, wire: !isErase);
+                    break;
+                case PaintMode.Liquid:
+                    SetPixelAutomatic(curTile, liquid: isErase ? (byte)0 : (byte)255, isLava: TilePicker.IsLava);
+                    break;
+            }
+
+            Color curBgColor = GetBackgroundColor(y);
+            PixelMap.SetPixelColor(x, y, Render.PixelMap.GetTileColor(CurrentWorld.Tiles[x, y], curBgColor));
+        }
+
+        private void SetWall(Tile curTile, bool erase)
+        {
+            if (TilePicker.WallMaskMode == MaskMode.Off ||
+                (TilePicker.WallMaskMode == MaskMode.Tile && curTile.Wall == TilePicker.WallMask) ||
+                (TilePicker.WallMaskMode == MaskMode.Empty && curTile.Wall == 0))
+            {
+                if (erase)
+                    SetPixelAutomatic(curTile, wall: 0);
+                else
+                    SetPixelAutomatic(curTile, wall: TilePicker.Wall);
+            }
+        }
+
+        private void SetTile(Tile curTile, bool erase)
+        {
+            if (TilePicker.TileMaskMode == MaskMode.Off ||
+                (TilePicker.TileMaskMode == MaskMode.Tile && curTile.Type == TilePicker.TileMask && curTile.IsActive) ||
+                (TilePicker.TileMaskMode == MaskMode.Empty && !curTile.IsActive))
+            {
+                if (erase)
+                    SetPixelAutomatic(curTile, tile: -1);
+                else
+                    SetPixelAutomatic(curTile, tile: TilePicker.Tile);
+            }
+        }
+
+        private void SetPixelAutomatic(Tile curTile,
+            int? tile = null,
+            int? wall = null,
+            byte? liquid = null,
+            bool? isLava = null,
+            bool? wire = null,
+            short? u = null,
+            short? v = null)
+        {
+            // Set Tile Data
+
+            if (u != null)
+                curTile.U = (short)u;
+            if (v != null)
+                curTile.V = (short)v;
+
+            if (tile != null)
+            {
+                if (tile == -1)
+                {
+                    curTile.Type = 0;
+                    curTile.IsActive = false;
+                }
+                else
+                {
+                    curTile.Type = (byte)tile;
+                    curTile.IsActive = true;
+                }
+            }
+
+            if (wall != null)
+                curTile.Wall = (byte)wall;
+
+            if (liquid != null)
+                curTile.Liquid = (byte)liquid;
+
+            if (isLava != null)
+                curTile.IsLava = (bool)isLava;
+
+            if (wire != null)
+                curTile.HasWire = (bool)wire;
         }
 
         private PixelMapManager RenderEntireWorld()

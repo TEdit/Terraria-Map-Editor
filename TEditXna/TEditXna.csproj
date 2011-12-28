@@ -64,9 +64,14 @@
     <Compile Include="Editor\PaintMode.cs" />
     <Compile Include="Editor\TileMouseState.cs" />
     <Compile Include="Editor\TilePicker.cs" />
+    <Compile Include="Editor\Tools\ArrowTool.cs" />
+    <Compile Include="Editor\Tools\BrushTool.cs" />
     <Compile Include="Editor\Tools\ITool.cs" />
+    <Compile Include="Editor\Tools\PencilTool.cs" />
+    <Compile Include="Editor\Tools\ToolType.cs" />
     <Compile Include="Render\PixelMap.cs" />
     <Compile Include="Render\PixelMapManager.cs" />
+    <Compile Include="Render\TextureData.cs" />
     <Compile Include="Terraria\Chest.cs" />
     <Compile Include="Terraria\InvasionType.cs" />
     <Compile Include="Terraria\Item.cs" />
@@ -89,8 +94,8 @@
     <Compile Include="View\PaintModeView.xaml.cs">
       <DependentUpon>PaintModeView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\ToolPropertiesView.xaml.cs">
-      <DependentUpon>ToolPropertiesView.xaml</DependentUpon>
+    <Compile Include="View\BrushSettingsView.xaml.cs">
+      <DependentUpon>BrushSettingsView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\ToolSelectorView.xaml.cs">
       <DependentUpon>ToolSelectorView.xaml</DependentUpon>
@@ -125,7 +130,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\ToolPropertiesView.xaml">
+    <Page Include="View\BrushSettingsView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

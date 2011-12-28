@@ -12,12 +12,12 @@ namespace TEditXna.Editor
         private int _wallMask;
         private int _tileMask;
         private bool _isLava;
-        private bool _isEraiser; 
+        private bool _isEraser; 
 
-        public bool IsEraiser
+        public bool IsEraser
         {
-            get { return _isEraiser; }
-            set { Set("IsEraiser", ref _isEraiser, value); }
+            get { return _isEraser; }
+            set { Set("IsEraser", ref _isEraser, value); }
         } 
 
         public bool IsLava
@@ -25,9 +25,6 @@ namespace TEditXna.Editor
             get { return _isLava; }
             set { Set("IsLava", ref _isLava, value); }
         }
-
-
-         
 
         public int TileMask
         {

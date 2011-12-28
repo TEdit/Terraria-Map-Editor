@@ -352,6 +352,20 @@ namespace TEditXNA.Terraria
 
         #endregion
 
+        public bool ValidTileLocation(Vector2Int32 point)
+        {
+            if (point.X < 0)
+                return false;
+            if (point.Y < 0)
+                return false;
+            if (point.Y >= _tilesHigh)
+                return false;
+            if (point.X >= _tilesWide)
+                return false;
+
+            return true;
+        }
+
         public Chest GetChestAtTile(int x, int y)
         {
             return Chests.FirstOrDefault(c => (c.X == x || c.X == x - 1) && (c.Y == y || c.Y == y - 1));
