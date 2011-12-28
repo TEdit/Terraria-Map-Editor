@@ -68,8 +68,6 @@ namespace TEditXna.Editor
             set { Set("IsLocked", ref _isLocked, value); }
         }
 
-
-
         public int OffsetY
         {
             get { return _offsetY; }
@@ -92,6 +90,7 @@ namespace TEditXna.Editor
                 {
                     _width = Height;
                     RaisePropertyChanged("Width");
+                    OffsetX = _width / 2;
                 }
                 MaxOutline = Math.Min(Height, Width) / 2;
                 OffsetY = _height / 2;
@@ -109,6 +108,7 @@ namespace TEditXna.Editor
                 {
                     _height = Width;
                     RaisePropertyChanged("Height");
+                    OffsetY = _height / 2;
                 }
                 MaxOutline = Math.Min(Height, Width) / 2;
                 OffsetX = _width / 2;

@@ -250,7 +250,7 @@ namespace TEditXna.View
         {
             if (_preview == null)
                 return;
-            Vector2 position = new Vector2(0, 0);
+            Vector2 position;
 
             if (_wvm.ActiveTool.ToolType == ToolType.Brush)
             {
@@ -261,7 +261,6 @@ namespace TEditXna.View
             {
                 position = new Vector2((_scrollPosition.X + _wvm.MouseOverTile.MouseState.Location.X) * _zoom,
                                        (_scrollPosition.Y + _wvm.MouseOverTile.MouseState.Location.Y) * _zoom);
-
             }
 
             _spriteBatch.Draw(

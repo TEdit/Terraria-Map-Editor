@@ -41,6 +41,14 @@ namespace TEditXna.ViewModel
         {
             World.ProgressChanged += OnProgressChanged;
             Brush.BrushChanged += OnPreviewChanged;
+            UpdateTitle();
+        }
+
+        private void UpdateTitle()
+        {
+            WindowTitle = string.Format("TEdit v{0} *ALPHA* {1}",
+                System.Reflection.Assembly.GetExecutingAssembly().GetName().Version,
+                Path.GetFileName(_currentFile));
         }
 
         public event EventHandler PreviewChanged;
@@ -74,6 +82,15 @@ namespace TEditXna.ViewModel
         {
             get { return _progress; }
             set { Set("Progress", ref _progress, value); }
+        }
+
+        private string _windowTitle;
+
+
+        public string WindowTitle
+        {
+            get { return _windowTitle; }
+            set { Set("WindowTitle", ref _windowTitle, value); }
         }
 
         public BrushSettings Brush
@@ -225,8 +242,14 @@ namespace TEditXna.ViewModel
             Task.Factory.StartNew(() => World.LoadWorld(filename))
                 .ContinueWith(t => CurrentWorld = t.Result, TaskFactoryHelper.UiTaskScheduler)
                 .ContinueWith(t => RenderEntireWorld())
-                .ContinueWith(t => PixelMap = t.Result, TaskFactoryHelper.UiTaskScheduler);
+                .ContinueWith(t =>
+                {
+                    PixelMap = t.Result;
+                    UpdateTitle();
+                }, TaskFactoryHelper.UiTaskScheduler);
         }
+
+
 
         public void SetPixel(int x, int y, PaintMode? mode = null, bool? erase = null)
         {
@@ -325,6 +348,11 @@ namespace TEditXna.ViewModel
 
             if (wire != null)
                 curTile.HasWire = (bool)wire;
+
+            if (curTile.IsActive)
+                if (World.TileProperties[curTile.Type].IsSolid)
+                    curTile.Liquid = 0;
+
         }
 
         private PixelMapManager RenderEntireWorld()
