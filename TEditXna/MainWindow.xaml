@@ -26,6 +26,11 @@
                 </MenuItem>
                 <MenuItem Header="Display">
                     <MenuItem Header="Show Textures" IsCheckable="True" IsChecked="False" IsEnabled="false" />
+                    <Separator Margin="1" />
+                    <MenuItem Header="Show Walls" IsCheckable="True" IsChecked="{Binding ShowWalls}" />
+                    <MenuItem Header="Show Tiles" IsCheckable="True" IsChecked="{Binding ShowTiles}" />
+                    <MenuItem Header="Show Liquid" IsCheckable="True" IsChecked="{Binding ShowLiquid}" />
+                    <MenuItem Header="Show Wires" IsCheckable="True" IsChecked="{Binding ShowWires}" />
                 </MenuItem>
                 <MenuItem Header="Plugins">
                     

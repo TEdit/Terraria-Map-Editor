@@ -10,8 +10,7 @@ namespace TEditXNA.Terraria
         public byte Wall;
         public byte Liquid;
         public bool IsLava;
-        public Int16 U, V, WallU, WallV;
-        public double Light;
+        public Int16 U, V;
         public bool HasWire;
 
         public object Clone()

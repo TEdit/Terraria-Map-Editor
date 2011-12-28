@@ -249,8 +249,6 @@ namespace TEditXna.ViewModel
                 }, TaskFactoryHelper.UiTaskScheduler);
         }
 
-
-
         public void SetPixel(int x, int y, PaintMode? mode = null, bool? erase = null)
         {
             var curTile = CurrentWorld.Tiles[x, y];
@@ -278,7 +276,73 @@ namespace TEditXna.ViewModel
             }
 
             Color curBgColor = GetBackgroundColor(y);
-            PixelMap.SetPixelColor(x, y, Render.PixelMap.GetTileColor(CurrentWorld.Tiles[x, y], curBgColor));
+            PixelMap.SetPixelColor(x, y, Render.PixelMap.GetTileColor(CurrentWorld.Tiles[x, y], curBgColor, _showWalls, _showTiles, _showLiquid, _showWires));
+        }
+
+        private void UpdateRenderWorld()
+        {
+            Task.Factory.StartNew(
+                () =>
+                    {
+                        if (CurrentWorld != null)
+                        {
+                            for (int y = 0; y < CurrentWorld.TilesHigh; y++)
+                            {
+                                Color curBgColor = GetBackgroundColor(y);
+                                OnProgressChanged(this, new ProgressChangedEventArgs(y.ProgressPercentage(CurrentWorld.TilesHigh), "Calculating Colors..."));
+                                for (int x = 0; x < CurrentWorld.TilesWide; x++)
+                                {
+                                    PixelMap.SetPixelColor(x, y, Render.PixelMap.GetTileColor(CurrentWorld.Tiles[x, y], curBgColor, _showWalls, _showTiles, _showLiquid, _showWires));
+                                }
+                            }
+                        }
+                    });
+        }
+
+        private bool _showWalls = true;
+        private bool _showTiles = true;
+        private bool _showLiquid = true;
+        private bool _showWires = true;
+
+
+        public bool ShowWires
+        {
+            get { return _showWires; }
+            set
+            {
+                Set("ShowWires", ref _showWires, value);
+                UpdateRenderWorld();
+            }
+        }
+
+        public bool ShowLiquid
+        {
+            get { return _showLiquid; }
+            set
+            {
+                Set("ShowLiquid", ref _showLiquid, value);
+                UpdateRenderWorld();
+            }
+        }
+
+        public bool ShowTiles
+        {
+            get { return _showTiles; }
+            set
+            {
+                Set("ShowTiles", ref _showTiles, value);
+                UpdateRenderWorld();
+            }
+        }
+
+        public bool ShowWalls
+        {
+            get { return _showWalls; }
+            set
+            {
+                Set("ShowWalls", ref _showWalls, value);
+                UpdateRenderWorld();
+            }
         }
 
         private void SetWall(Tile curTile, bool erase)
@@ -367,7 +431,7 @@ namespace TEditXna.ViewModel
                     OnProgressChanged(this, new ProgressChangedEventArgs(y.ProgressPercentage(CurrentWorld.TilesHigh), "Calculating Colors..."));
                     for (int x = 0; x < CurrentWorld.TilesWide; x++)
                     {
-                        pixels.SetPixelColor(x, y, Render.PixelMap.GetTileColor(CurrentWorld.Tiles[x, y], curBgColor));
+                        pixels.SetPixelColor(x, y, Render.PixelMap.GetTileColor(CurrentWorld.Tiles[x, y], curBgColor, _showWalls, _showTiles, _showLiquid, _showWires));
                     }
                 }
             }
