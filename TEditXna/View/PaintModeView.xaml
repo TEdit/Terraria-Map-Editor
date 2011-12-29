@@ -7,34 +7,11 @@
              mc:Ignorable="d" 
              Background="{StaticResource WindowBackgroundBrush}" Foreground="{StaticResource TextBrush}">
     <UserControl.Resources>
-        <bccl:EnumItemList x:Key="PaintModeEnum" EnumType="{x:Type editor:PaintMode}" SortBy="Value"  />
-        <bccl:EnumItemList x:Key="MaskModeEnum" EnumType="{x:Type editor:MaskMode}" x:Shared="false" SortBy="Value" />
+        
         <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource {x:Type TextBlock}}">
             <Setter Property="Margin" Value="5,2" />
             <Setter Property="VerticalAlignment" Value="Center" />
             <Setter Property="HorizontalAlignment" Value="Right" />
-        </Style>
-        <DataTemplate x:Key="ColorPickerTemplate" >
-            <DockPanel LastChildFill="True">
-                <Border BorderBrush="Black" BorderThickness="1" Margin="2,1" DockPanel.Dock="Left" >
-                    <Rectangle Height="12" Width="12">
-                        <Rectangle.Fill>
-                            <SolidColorBrush Color="{Binding Path=Color}" />
-                        </Rectangle.Fill>
-                    </Rectangle>
-                </Border>
-                <TextBlock Text="{Binding Path=Id}" Margin="2,0" Width="20" DockPanel.Dock="Right" />
-                <TextBlock Text="{Binding Path=Name}" Margin="1,0"  />
-            </DockPanel>
-        </DataTemplate>
-        <DataTemplate x:Key="EnumTemplate" >
-            <Grid HorizontalAlignment="Stretch">
-                <TextBlock Text="{Binding Path=Text}" Margin="2,0" HorizontalAlignment="Stretch"  />
-            </Grid>
-        </DataTemplate>
-        <Style TargetType="{x:Type ComboBox}" BasedOn="{StaticResource {x:Type ComboBox}}">
-            <Setter Property="Padding" Value="1" />
-            <Setter Property="Margin" Value="1" />
         </Style>
         <DataTemplate x:Key="ColorPickerSimpleTemplate">
             <Border BorderBrush="Black" BorderThickness="1" Margin="2,1" DockPanel.Dock="Left">

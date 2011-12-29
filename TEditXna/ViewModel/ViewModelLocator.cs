@@ -29,8 +29,11 @@ namespace TEditXna.ViewModel
         {
             var wvm = new WorldViewModel();
             wvm.Tools.Add(new ArrowTool(wvm));
+            wvm.Tools.Add(new SelectionTool(wvm));
+
             wvm.Tools.Add(new PencilTool(wvm));
             wvm.Tools.Add(new BrushTool(wvm));
+            
             wvm.ActiveTool = wvm.Tools[0];
             return wvm;
         }

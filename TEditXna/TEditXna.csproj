@@ -77,15 +77,20 @@
     </ApplicationDefinition>
     <Compile Include="Editor\BrushSettings.cs" />
     <Compile Include="Editor\BrushShape.cs" />
+    <Compile Include="Editor\Clipboard\ClipboardBuffer.cs" />
+    <Compile Include="Editor\Clipboard\ClipboardBuffer.File.cs" />
+    <Compile Include="Editor\Clipboard\ClipboardManager.cs" />
     <Compile Include="Editor\MaskMode.cs" />
     <Compile Include="Editor\MouseTile.cs" />
     <Compile Include="Editor\PaintMode.cs" />
+    <Compile Include="Editor\Selection.cs" />
     <Compile Include="Editor\TileMouseState.cs" />
     <Compile Include="Editor\TilePicker.cs" />
     <Compile Include="Editor\Tools\ArrowTool.cs" />
     <Compile Include="Editor\Tools\BrushTool.cs" />
     <Compile Include="Editor\Tools\ITool.cs" />
     <Compile Include="Editor\Tools\PencilTool.cs" />
+    <Compile Include="Editor\Tools\SelectionTool.cs" />
     <Compile Include="Editor\Tools\ToolType.cs" />
     <Compile Include="Render\PixelMap.cs" />
     <Compile Include="Render\PixelMapManager.cs" />
@@ -107,8 +112,12 @@
     <Compile Include="Terraria\World.Settings.cs" />
     <Compile Include="UiHelper\Converters\DoublePercentageConverter.cs" />
     <Compile Include="UiHelper\Converters\ThicknessMultiConverter.cs" />
-    <Compile Include="ViewModel\ViewModelLocator.cs" />
+    <Compile Include="ViewModel\ViewModelLocator.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ViewModel\WorldViewModel.Commands.cs" />
     <Compile Include="ViewModel\WorldViewModel.cs" />
+    <Compile Include="ViewModel\WorldViewModel.Editor.cs" />
     <Compile Include="View\PaintModeView.xaml.cs">
       <DependentUpon>PaintModeView.xaml</DependentUpon>
     </Compile>
@@ -141,6 +150,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Themes\GlobalStyles.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\Templates.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -241,7 +254,6 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Editor\Clipboard\" />
     <Folder Include="Editor\Plugins\" />
     <Folder Include="Editor\Undo\" />
   </ItemGroup>
@@ -270,7 +282,7 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties BuildVersion_AssemblyInfoFilename="Properties\AssemblyInfo.cs" BuildVersion_UseGlobalSettings="True" />
+      <UserProperties BuildVersion_UseGlobalSettings="True" BuildVersion_AssemblyInfoFilename="Properties\AssemblyInfo.cs" />
     </VisualStudio>
   </ProjectExtensions>
   <PropertyGroup>

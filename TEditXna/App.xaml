@@ -8,6 +8,7 @@
                 <!--<ResourceDictionary Source="Themes\GroupBoxFix.xaml" />-->
                 <ResourceDictionary Source="Themes\ExpressionDark.xaml" />
                 <ResourceDictionary Source="Themes\GlobalStyles.xaml" />
+                <ResourceDictionary Source="Themes\Templates.xaml" />
                 <!--<ResourceDictionary Source="Themes\Whistler.xaml" />-->
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>

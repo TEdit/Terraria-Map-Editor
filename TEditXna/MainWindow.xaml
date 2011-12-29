@@ -24,6 +24,9 @@
                     <Separator Margin="1"/>
                     <MenuItem Header="Exit" Command="{Binding ExitCommand}"/>
                 </MenuItem>
+                <MenuItem Header="Edit">
+                    <MenuItem Header="Delete" Command="{Binding DeleteCommand}" />
+                </MenuItem>
                 <MenuItem Header="Display">
                     <MenuItem Header="Show Textures" IsCheckable="True" IsChecked="False" IsEnabled="false" />
                     <Separator Margin="1" />

@@ -33,6 +33,7 @@ namespace TEditXna.View
         private Textures _textureDictionary;
         private Texture2D[] _tileMap;
         private Texture2D _preview;
+        private Texture2D _selectionTexture;
         private float _zoom = 1;
 
         public WorldRenderXna()
@@ -89,7 +90,8 @@ namespace TEditXna.View
 
             InitializeGraphicsComponents(e);
             LoadTerrariaTextures();
-
+            _selectionTexture = new Texture2D(e.GraphicsDevice, 1, 1);
+            _selectionTexture.SetData(new[] { Color.FromNonPremultiplied(0, 128, 255, 128) });
             // Start the Game Timer
             _gameTimer.Start();
         }
@@ -174,13 +176,15 @@ namespace TEditXna.View
             // Draw sprite overlays
             DrawSprites();
 
+            if (_wvm.Selection.IsActive)
+                DrawSelection();
+
             DrawToolPreview();
+
 
             // End SpriteBatch
             _spriteBatch.End();
         }
-
-
 
         private void GenPixelTiles(GraphicsDeviceEventArgs e)
         {
@@ -273,6 +277,20 @@ namespace TEditXna.View
                 _zoom,
                 SpriteEffects.None,
                 0);
+        }
+
+        private void DrawSelection()
+        {
+            Rectangle destinationRectangle = new Rectangle(
+                (int)((_scrollPosition.X + _wvm.Selection.SelectionArea.Left) * _zoom), 
+                (int)((_scrollPosition.Y + _wvm.Selection.SelectionArea.Top) * _zoom),
+                (int)((_wvm.Selection.SelectionArea.Width) * _zoom),
+                (int)((_wvm.Selection.SelectionArea.Height) * _zoom));
+
+            _spriteBatch.Draw(
+                _selectionTexture,
+                destinationRectangle,
+                Color.White);
         }
 
         private Vector2 TileOrigin(int tileX, int tileY)
