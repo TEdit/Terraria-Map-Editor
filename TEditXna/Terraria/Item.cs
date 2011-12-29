@@ -81,6 +81,10 @@ namespace TEditXNA.Terraria
             }
         }
 
+        public Item Copy()
+        {
+            return new Item(_stackSize, _itemName) { Prefix =_prefix};
+        }
 
         public Visibility IsVisible
         {

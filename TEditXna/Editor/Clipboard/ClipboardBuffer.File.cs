@@ -116,7 +116,7 @@ namespace TEditXna.Editor.Clipboard
                     string name = br.ReadString();
                     int version = br.ReadInt32();
 
-                    if (name != Path.GetFileNameWithoutExtension(name))
+                    if (name != Path.GetFileNameWithoutExtension(filename))
                     {
                         br.Close();
                         stream.Close();

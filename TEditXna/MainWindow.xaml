@@ -11,6 +11,8 @@
         <Image x:Key="TB_HelpIcon" x:Shared="false" Source="/Images/Toolbar/help.png" Height="16" Width="16" SnapsToDevicePixels="True" RenderOptions.BitmapScalingMode="NearestNeighbor"/>
         <Image x:Key="TB_UpdateIcon" x:Shared="false" Source="/Images/Toolbar/update.png" Height="16" Width="16" SnapsToDevicePixels="True" RenderOptions.BitmapScalingMode="NearestNeighbor"/>
         <Image x:Key="TB_UpdateXmlIcon" x:Shared="false" Source="/Images/Toolbar/update_xml.png" Height="16" Width="16" SnapsToDevicePixels="True" RenderOptions.BitmapScalingMode="NearestNeighbor"/>
+        <Image x:Key="TB_CopyIcon" x:Shared="false" Source="/Images/Toolbar/update_xml.png" Height="16" Width="16" SnapsToDevicePixels="True" RenderOptions.BitmapScalingMode="NearestNeighbor"/>
+        <Image x:Key="TB_PasteIcon" x:Shared="false" Source="/Images/Toolbar/paste.png" Height="16" Width="16" SnapsToDevicePixels="True" RenderOptions.BitmapScalingMode="NearestNeighbor"/>
     </Window.Resources>
     <Grid>
         <DockPanel LastChildFill="True">
@@ -25,6 +27,10 @@
                     <MenuItem Header="Exit" Command="{Binding ExitCommand}"/>
                 </MenuItem>
                 <MenuItem Header="Edit">
+                    <MenuItem Header="Copy" Command="{Binding CopyCommand}" />
+                    <MenuItem Header="Paste" Command="{Binding PasteCommand}" Icon="{StaticResource TB_PasteIcon}"/>
+                    <MenuItem Header="Paste Empty Tiles" IsCheckable="True" IsChecked="{Binding Clipboard.PasteEmpty}" />
+                    <Separator Margin="1" />
                     <MenuItem Header="Delete" Command="{Binding DeleteCommand}" />
                 </MenuItem>
                 <MenuItem Header="Display">
@@ -50,10 +56,16 @@
             <StatusBar DockPanel.Dock="Bottom" Height="30" Background="{x:Null}" Padding="2" Foreground="{StaticResource TextBrush}">
                 <StatusBarItem HorizontalAlignment="Left">
                     <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="{Binding MouseOverTile.MouseState.Location}" />
-                        <TextBlock Text="{Binding MouseOverTile.TileName}" />
-                        <TextBlock Text="{Binding MouseOverTile.WallName}" />
-                        <TextBlock Text="{Binding MouseOverTile.TileLiquid}" />
+                        <TextBlock Text="Position" VerticalAlignment="Center" Margin="5,0"/>
+                        <TextBox Text="{Binding MouseOverTile.MouseState.Location, StringFormat={}{0}}" Width="75" IsReadOnly="True" />
+                        <TextBlock Text="Tile" VerticalAlignment="Center" Margin="5,0"  />
+                        <TextBox Text="{Binding MouseOverTile.TileName}" Width="125" IsReadOnly="True" />
+                        <TextBlock Text="Wall" VerticalAlignment="Center" Margin="5,0"/>
+                        <TextBox Text="{Binding MouseOverTile.WallName}" Width="125" IsReadOnly="True" />
+                        <TextBlock Text="Extra" VerticalAlignment="Center" Margin="5,0"/>
+                        <TextBox Text="{Binding MouseOverTile.TileExtras}" Width="100" IsReadOnly="True" />
+                        <TextBlock Text="Frame" VerticalAlignment="Center" Margin="5,0"/>
+                        <TextBox Text="{Binding MouseOverTile.UV, StringFormat={}{0}}" Width="50" IsReadOnly="True" />
                     </StackPanel>
                 </StatusBarItem>
                 <StatusBarItem HorizontalAlignment="Right">
@@ -102,7 +114,9 @@
                         </ScrollViewer>
                     </TabItem>
                     <TabItem Header="Sprites" />
-                    <TabItem Header="Clipboard" />
+                    <TabItem Header="Clipboard">
+                        <View:ClipboardView VerticalAlignment="Stretch" HorizontalAlignment="Stretch" />
+                    </TabItem>
                 </TabControl>
 
             </Expander>

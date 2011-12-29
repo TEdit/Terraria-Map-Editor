@@ -47,6 +47,15 @@ namespace TEditXNA.Terraria
             get { return _items; }
         }
 
+        public Chest Copy()
+        {
+            var chest = new Chest(_x, _y);
+            foreach (var item in Items)
+            {
+                chest.Items.Add(item.Copy());
+            }
+            return chest;
+        }
 
         public override string ToString()
         {

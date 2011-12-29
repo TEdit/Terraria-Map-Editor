@@ -22,8 +22,5 @@
             <TextBlock Text="{Binding Path=Text}" Margin="2,0" HorizontalAlignment="Stretch"  />
         </Grid>
     </DataTemplate>
-    <Style TargetType="{x:Type ComboBox}" BasedOn="{StaticResource {x:Type ComboBox}}">
-        <Setter Property="Padding" Value="1" />
-        <Setter Property="Margin" Value="1" />
-    </Style>
+
 </ResourceDictionary>

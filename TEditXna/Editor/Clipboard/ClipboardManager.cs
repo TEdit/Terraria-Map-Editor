@@ -1,9 +1,11 @@
 ﻿using System.Collections.ObjectModel;
 using System.Windows;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
 using BCCL.Geometry.Primitives;
 using BCCL.MvvmLight;
 using BCCL.Utility;
-using Microsoft.Xna.Framework;
+using XNA = Microsoft.Xna.Framework;
 using TEditXNA.Terraria;
 
 namespace TEditXna.Editor.Clipboard
@@ -11,7 +13,14 @@ namespace TEditXna.Editor.Clipboard
     public class ClipboardManager : ObservableObject
     {
         private ClipboardBuffer _buffer;
+        private bool _pasteEmpty = true;
+         
 
+        public bool PasteEmpty
+        {
+            get { return _pasteEmpty; }
+            set { Set("PasteEmpty", ref _pasteEmpty, value); }
+        }
         public ClipboardBuffer Buffer
         {
             get { return _buffer; }
@@ -30,7 +39,23 @@ namespace TEditXna.Editor.Clipboard
             LoadedBuffers.Clear();
         }
 
-        public ClipboardBuffer GetBufferedRegion(World world, Rectangle area)
+        public void Remove(ClipboardBuffer item)
+        {
+            if (LoadedBuffers.Contains(item))
+                LoadedBuffers.Remove(item);
+        }
+
+        public void Import(string filename)
+        {
+            var buffer = ClipboardBuffer.Load(filename);
+            if (buffer != null)
+            {
+                buffer.RenderBuffer();
+                LoadedBuffers.Add(buffer);
+            }
+        }
+
+        public ClipboardBuffer GetBufferedRegion(World world, XNA.Rectangle area)
         {
             var buffer = new ClipboardBuffer(new Vector2Int32(area.Width, area.Height));
 
@@ -47,7 +72,7 @@ namespace TEditXna.Editor.Clipboard
                             var data = world.GetChestAtTile(x + area.X, y + area.Y);
                             if (data != null)
                             {
-                                var newChest = BCCL.Utility.Serialization.DeepCopy(data);
+                                var newChest = data.Copy();
                                 newChest.X = x;
                                 newChest.Y = y;
                                 buffer.Chests.Add(newChest);
@@ -61,7 +86,7 @@ namespace TEditXna.Editor.Clipboard
                             var data = world.GetSignAtTile(x + area.X, y + area.Y);
                             if (data != null)
                             {
-                                var newSign = BCCL.Utility.Serialization.DeepCopy(data);
+                                var newSign = data.Copy();
                                 newSign.X = x;
                                 newSign.Y = y;
                                 buffer.Signs.Add(newSign);
@@ -72,7 +97,7 @@ namespace TEditXna.Editor.Clipboard
                     buffer.Tiles[x, y] = curTile;
                 }
             }
-
+            buffer.RenderBuffer();
             return buffer;
         }
 
@@ -87,6 +112,12 @@ namespace TEditXna.Editor.Clipboard
                         //HistMan.AddTileToBuffer(x + anchor.X, y + anchor.Y, ref world.Tiles[x + anchor.X, y + anchor.Y]);
 
                         Tile curTile = (Tile)buffer.Tiles[x, y].Clone();
+
+                        if (!PasteEmpty && (curTile.Liquid == 0 && !curTile.IsActive && curTile.Wall == 0 && !curTile.HasWire))
+                        {
+                            // skip tiles that are empty if paste empty is not true
+                            continue;
+                        }
 
                         // Remove overwritten chests data
                         if (world.Tiles[x + anchor.X, y + anchor.Y].Type == 21)
@@ -114,7 +145,7 @@ namespace TEditXna.Editor.Clipboard
                                 if (data != null) // allow? chest copying may not work...
                                 {
                                     // Copied chest
-                                    var newChest = Serialization.DeepCopy(data);
+                                    var newChest = data.Copy();
                                     newChest.X = x + anchor.X;
                                     newChest.Y =  y + anchor.Y;
                                     world.Chests.Add(newChest);
@@ -136,7 +167,7 @@ namespace TEditXna.Editor.Clipboard
                                 if (data != null)
                                 {
                                     // Copied sign
-                                    var newSign = Serialization.DeepCopy(data);
+                                    var newSign = data.Copy();
                                     newSign.X = x + anchor.X;
                                     newSign.Y =  y + anchor.Y;
                                     world.Signs.Add(newSign);

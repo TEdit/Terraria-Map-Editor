@@ -30,6 +30,7 @@ namespace TEditXna.ViewModel
             var wvm = new WorldViewModel();
             wvm.Tools.Add(new ArrowTool(wvm));
             wvm.Tools.Add(new SelectionTool(wvm));
+            wvm.Tools.Add(new PasteTool(wvm));
 
             wvm.Tools.Add(new PencilTool(wvm));
             wvm.Tools.Add(new BrushTool(wvm));

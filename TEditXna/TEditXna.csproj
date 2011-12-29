@@ -78,7 +78,9 @@
     <Compile Include="Editor\BrushSettings.cs" />
     <Compile Include="Editor\BrushShape.cs" />
     <Compile Include="Editor\Clipboard\ClipboardBuffer.cs" />
-    <Compile Include="Editor\Clipboard\ClipboardBuffer.File.cs" />
+    <Compile Include="Editor\Clipboard\ClipboardBuffer.File.cs" >
+      <DependentUpon>ClipboardBuffer.cs</DependentUpon>
+    </Compile>
     <Compile Include="Editor\Clipboard\ClipboardManager.cs" />
     <Compile Include="Editor\MaskMode.cs" />
     <Compile Include="Editor\MouseTile.cs" />
@@ -89,6 +91,7 @@
     <Compile Include="Editor\Tools\ArrowTool.cs" />
     <Compile Include="Editor\Tools\BrushTool.cs" />
     <Compile Include="Editor\Tools\ITool.cs" />
+    <Compile Include="Editor\Tools\PasteTool.cs" />
     <Compile Include="Editor\Tools\PencilTool.cs" />
     <Compile Include="Editor\Tools\SelectionTool.cs" />
     <Compile Include="Editor\Tools\ToolType.cs" />
@@ -115,9 +118,16 @@
     <Compile Include="ViewModel\ViewModelLocator.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="ViewModel\WorldViewModel.Commands.cs" />
-    <Compile Include="ViewModel\WorldViewModel.cs" />
-    <Compile Include="ViewModel\WorldViewModel.Editor.cs" />
+	<Compile Include="ViewModel\WorldViewModel.cs" />
+    <Compile Include="ViewModel\WorldViewModel.Commands.cs">
+      <DependentUpon>WorldViewModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModel\WorldViewModel.Editor.cs">
+      <DependentUpon>WorldViewModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\ClipboardView.xaml.cs">
+      <DependentUpon>ClipboardView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\PaintModeView.xaml.cs">
       <DependentUpon>PaintModeView.xaml</DependentUpon>
     </Compile>
@@ -154,6 +164,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Themes\Templates.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ClipboardView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

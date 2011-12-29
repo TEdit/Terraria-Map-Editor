@@ -1,4 +1,6 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
+using System.Linq;
 using System.Threading.Tasks;
 using BCCL.Utility;
 using Microsoft.Xna.Framework;
@@ -34,13 +36,23 @@ namespace TEditXna.ViewModel
 
         public void EditCopy()
         {
+            if (!CanCopy())
+                return;
             _clipboard.Buffer = _clipboard.GetBufferedRegion(_currentWorld, _selection.SelectionArea);
             _clipboard.LoadedBuffers.Add(_clipboard.Buffer);
         }
 
         public void EditPaste()
         {
-            
+            if (!CanPaste())
+                return;
+
+            var pasteTool = Tools.FirstOrDefault(t => t.Name == "Paste");
+            if (pasteTool != null)
+            {
+                SetActiveTool(pasteTool);
+                PreviewChange();
+            }
         }
 
         public void SetPixel(int x, int y, PaintMode? mode = null, bool? erase = null)
@@ -91,6 +103,30 @@ namespace TEditXna.ViewModel
                         }
                     }
                 });
+        }
+
+        public void UpdateRenderRegion(Rectangle area)
+        {
+            Task.Factory.StartNew(
+            () =>
+            {
+                var bounded = new Rectangle(Math.Max(area.Left, 0),
+                                                  Math.Max(area.Top, 0),
+                                                  Math.Min(area.Width, CurrentWorld.TilesWide - area.Left),
+                                                  Math.Min(area.Height, CurrentWorld.TilesHigh - area.Top));
+                if (CurrentWorld != null)
+                {
+                    for (int y = bounded.Top; y < bounded.Bottom; y++)
+                    {
+                        Color curBgColor = GetBackgroundColor(y);
+                        OnProgressChanged(this, new ProgressChangedEventArgs(y.ProgressPercentage(CurrentWorld.TilesHigh), "Calculating Colors..."));
+                        for (int x = bounded.Left; x < bounded.Right; x++)
+                        {
+                            PixelMap.SetPixelColor(x, y, Render.PixelMap.GetTileColor(CurrentWorld.Tiles[x, y], curBgColor, _showWalls, _showTiles, _showLiquid, _showWires));
+                        }
+                    }
+                }
+            });
         }
 
         private void SetWall(Tile curTile, bool erase)

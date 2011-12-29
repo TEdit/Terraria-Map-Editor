@@ -3,6 +3,7 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Windows;
+using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using BCCL.Geometry.Primitives;
 using BCCL.MvvmLight;
@@ -20,7 +21,6 @@ namespace TEditXna.Editor.Clipboard
 
         private string _name;
         private WriteableBitmap _preview;
-
 
         public WriteableBitmap Preview
         {
@@ -71,6 +71,20 @@ namespace TEditXna.Editor.Clipboard
         public Sign GetSignAtTile(int x, int y)
         {
             return Signs.FirstOrDefault(c => (c.X == x || c.X == x - 1) && (c.Y == y || c.Y == y - 1));
+        }
+
+        public void RenderBuffer()
+        {
+            var bmp = new WriteableBitmap(Size.X, Size.Y, 96, 96, PixelFormats.Bgra32, null);
+            for (int x = 0; x < Size.X; x++)
+            {
+                for (int y = 0; y < Size.Y; y++)
+                {
+                    var color = Render.PixelMap.GetTileColor(Tiles[x, y], Microsoft.Xna.Framework.Color.Transparent);
+                    bmp.SetPixel(x, y, color.A, color.R, color.G, color.B);
+                }
+            }
+            Preview = bmp;
         }
     }
 }

@@ -1,3 +1,4 @@
+using BCCL.Geometry.Primitives;
 using BCCL.MvvmLight;
 using TEditXNA.Terraria;
 
@@ -7,7 +8,8 @@ namespace TEditXna.Editor
     {
         private TileMouseState _mouseState = new TileMouseState();
         private Tile _tile;
-        private string _tileLiquid;
+        private Vector2Short _uV;
+        private string _tileExtras;
         private string _tileName;
         private string _wallName;
 
@@ -29,11 +31,16 @@ namespace TEditXna.Editor
             set { Set("TileName", ref _tileName, value); }
         }
 
-
-        public string TileLiquid
+        public string TileExtras
         {
-            get { return _tileLiquid; }
-            set { Set("TileLiquid", ref _tileLiquid, value); }
+            get { return _tileExtras; }
+            set { Set("TileExtras", ref _tileExtras, value); }
+        }
+
+        public Vector2Short UV
+        {
+            get { return _uV; }
+            set { Set("UV", ref _uV, value); }
         }
 
         public Tile Tile
@@ -42,13 +49,21 @@ namespace TEditXna.Editor
             set
             {
                 Set("Tile", ref _tile, value);
-                TileName = World.TileProperties[_tile.Type].Name;
+                TileName = _tile.IsActive ? World.TileProperties[_tile.Type].Name : "[empty]";
                 WallName = World.WallProperties[_tile.Wall].Name;
-
+                UV = new Vector2Short(_tile.U, _tile.V);
                 if (_tile.Liquid > 0)
-                    TileLiquid = _tile.IsLava ? "Lava: " + _tile.Liquid : "Water: " + _tile.Liquid;
+                    TileExtras = _tile.IsLava ? "Lava: " + _tile.Liquid : "Water: " + _tile.Liquid;
                 else
-                    TileLiquid = string.Empty;
+                    TileExtras = string.Empty;
+
+                if (_tile.HasWire)
+                {
+                    if (!string.IsNullOrWhiteSpace(TileExtras))
+                        TileExtras += ", Wire";
+                    else
+                        TileExtras += "Wire";
+                }
             }
         }
     }

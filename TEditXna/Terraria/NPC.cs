@@ -1,8 +1,10 @@
+using System;
 using BCCL.Geometry.Primitives;
 using BCCL.MvvmLight;
 
 namespace TEditXNA.Terraria
 {
+    [Serializable]
     public class NPC : ObservableObject
     {
         private Vector2Int32 _home;

@@ -159,7 +159,7 @@ namespace TEditXna.ViewModel
 
         public event EventHandler PreviewChanged;
 
-        private void PreviewChange()
+        public void PreviewChange()
         {
             OnPreviewChanged(this, new EventArgs());
         }
@@ -173,6 +173,9 @@ namespace TEditXna.ViewModel
         {
             if (ActiveTool != tool)
             {
+                if (tool.Name == "Paste" && !CanPaste())
+                    return;
+
                 if (ActiveTool != null)
                     ActiveTool.IsActive = false;
 
@@ -195,6 +198,8 @@ namespace TEditXna.ViewModel
 
             MouseOverTile.MouseState = e;
             ActiveTool.MouseDown(e);
+
+            CommandManager.InvalidateRequerySuggested();
         }
 
         public void MouseUpTile(TileMouseState e)
@@ -204,6 +209,7 @@ namespace TEditXna.ViewModel
 
             MouseOverTile.MouseState = e;
             ActiveTool.MouseUp(e);
+            CommandManager.InvalidateRequerySuggested();
         }
 
         public void MouseMoveTile(TileMouseState e)
