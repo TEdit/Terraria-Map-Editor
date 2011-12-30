@@ -1,8 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TEdit", "TEdit\TEdit.csproj", "{8170F410-6E4F-4EDC-8766-89CF316CECF8}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BCCL", "..\..\BCCL\BCCL\BCCL.csproj", "{3D233DE2-586B-49F1-8E83-86399078EAE6}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TEditXna", "TEditXna\TEditXna.csproj", "{62D9688B-DB6F-44A9-A4E9-FDF197642C00}"
@@ -22,16 +20,6 @@ Global
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{8170F410-6E4F-4EDC-8766-89CF316CECF8}.Debug|Any CPU.ActiveCfg = Debug|x86
-		{8170F410-6E4F-4EDC-8766-89CF316CECF8}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
-		{8170F410-6E4F-4EDC-8766-89CF316CECF8}.Debug|Mixed Platforms.Build.0 = Debug|x86
-		{8170F410-6E4F-4EDC-8766-89CF316CECF8}.Debug|x86.ActiveCfg = Debug|x86
-		{8170F410-6E4F-4EDC-8766-89CF316CECF8}.Debug|x86.Build.0 = Debug|x86
-		{8170F410-6E4F-4EDC-8766-89CF316CECF8}.Release|Any CPU.ActiveCfg = Release|x86
-		{8170F410-6E4F-4EDC-8766-89CF316CECF8}.Release|Mixed Platforms.ActiveCfg = Release|x86
-		{8170F410-6E4F-4EDC-8766-89CF316CECF8}.Release|Mixed Platforms.Build.0 = Release|x86
-		{8170F410-6E4F-4EDC-8766-89CF316CECF8}.Release|x86.ActiveCfg = Release|x86
-		{8170F410-6E4F-4EDC-8766-89CF316CECF8}.Release|x86.Build.0 = Release|x86
 		{3D233DE2-586B-49F1-8E83-86399078EAE6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{3D233DE2-586B-49F1-8E83-86399078EAE6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3D233DE2-586B-49F1-8E83-86399078EAE6}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU

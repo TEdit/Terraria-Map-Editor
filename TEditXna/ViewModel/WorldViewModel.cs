@@ -281,8 +281,7 @@ namespace TEditXna.ViewModel
             ofd.Multiselect = false;
             if ((bool)ofd.ShowDialog())
             {
-                CurrentFile = ofd.FileName;
-                LoadWorld(CurrentFile);
+                LoadWorld(ofd.FileName);
             }
         }
 
@@ -317,8 +316,9 @@ namespace TEditXna.ViewModel
         }
 
 
-        private void LoadWorld(string filename)
+        public void LoadWorld(string filename)
         {
+            CurrentFile = filename;
             Task.Factory.StartNew(() => World.LoadWorld(filename))
                 .ContinueWith(t => CurrentWorld = t.Result, TaskFactoryHelper.UiTaskScheduler)
                 .ContinueWith(t => RenderEntireWorld())

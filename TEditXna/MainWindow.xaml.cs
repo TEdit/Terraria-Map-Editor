@@ -25,9 +25,19 @@ namespace TEditXna
         public MainWindow()
         {
             InitializeComponent();
-            this.DataContext = ViewModelLocator.WorldViewModel;
+            DataContext = ViewModelLocator.WorldViewModel;
             _vm = (WorldViewModel)DataContext;
             AddHandler(Keyboard.KeyDownEvent, (KeyEventHandler)HandleKeyDownEvent);
+        }
+
+        void MainWindow_Loaded(object sender, RoutedEventArgs e)
+        {
+            //string fname = Application.Current.Properties["OpenFile"].ToString();
+            //if (!string.IsNullOrWhiteSpace(fname))
+            //{
+            //    _vm.LoadWorld(fname);
+            //}
+            //e.Handled = false;
         }
 
         private void HandleKeyDownEvent(object sender, KeyEventArgs e)

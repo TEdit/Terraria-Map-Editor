@@ -20,6 +20,27 @@ namespace TEditXna
 
         protected override void OnStartup(StartupEventArgs e)
         {
+            if (AppDomain.CurrentDomain.SetupInformation.ActivationArguments != null &&
+                AppDomain.CurrentDomain.SetupInformation.ActivationArguments.ActivationData != null &&
+                AppDomain.CurrentDomain.SetupInformation.ActivationArguments.ActivationData.Length > 0)
+            {
+                try
+                {
+                    string fname = AppDomain.CurrentDomain.SetupInformation.ActivationArguments.ActivationData[0];
+
+                    // It comes in as a URI; this helps to convert it to a path.
+                    var uri = new Uri(fname);
+                    fname = uri.LocalPath;
+
+                    Properties["OpenFile"] = fname;
+                }
+                catch (Exception ex)
+                {
+                    // For some reason, this couldn't be read as a URI.
+                    // Do what you must...
+                }
+            }
+
             BCCL.MvvmLight.Threading.TaskFactoryHelper.Initialize();
             AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
             base.OnStartup(e);
