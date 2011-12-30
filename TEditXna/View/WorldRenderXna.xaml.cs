@@ -307,24 +307,22 @@ namespace TEditXna.View
                     for (int y = visibleBounds.Top; y < visibleBounds.Bottom; y++)
                     {
                         var curtile = _wvm.CurrentWorld.Tiles[x, y];
+                        var tileprop = World.TileProperties[curtile.Type];
                         if (World.TileProperties[curtile.Type].IsFramed)
                         {
-                            //_spriteBatch.Draw(_textureDictionary.GetTile(curtile.Type),
-                            //                  new Vector2((_scrollPosition.X + x) * _zoom,
-                            //                              (_scrollPosition.Y + y) * _zoom),
-                            //                  new Rectangle(curtile.U, curtile.V, 16, 16),
-                            //                  Color.White,
-                            //                  0,
-                            //                  Vector2.Zero,
-                            //                  _zoom / 16,
-                            //                  SpriteEffects.None,
-                            //                  0);
-                            _spriteBatch.Draw(_textureDictionary.GetTile(curtile.Type),
+                            var source = new Rectangle(curtile.U, curtile.V, tileprop.TextureGrid.X, tileprop.TextureGrid.Y);
+                            var tileTex = _textureDictionary.GetTile(curtile.Type);
+                            if (source.Bottom > tileTex.Height)
+                                source.Height -= (source.Bottom - tileTex.Height);
+                            if (source.Right > tileTex.Width)
+                                source.Width -= (source.Right - tileTex.Width);
+                            
+                            _spriteBatch.Draw(tileTex,
                                     new Rectangle(1 + (int)((_scrollPosition.X + x) * _zoom),
                                                 1 + (int)((_scrollPosition.Y + y) * _zoom),
                                                 (int)_zoom,
                                                 (int)_zoom),
-                                    new Rectangle(curtile.U, curtile.V, 16, 16),
+                                    source,
                                     Color.White);
                         }
                     }

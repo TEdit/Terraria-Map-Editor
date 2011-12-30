@@ -285,9 +285,33 @@ Single item; tag has no children. Has the following properties:
         <!--<Frame UV="54,0" Name="Torch" Dir="Down" Variety="Off" />
         <Frame UV="72,0" Name="Torch" Dir="Left" Variety="Off" />
         <Frame UV="90,0" Name="Torch" Dir="Right" Variety="Off" />-->
+        <Frame UV="0,22" Name="Blue" Dir="Down" Variety="On" />
+        <Frame UV="22,22" Name="Blue" Dir="Left" Variety="On" />
+        <Frame UV="44,22" Name="Blue" Dir="Right" Variety="On" />
+        <Frame UV="0,44" Name="Red" Dir="Down" Variety="On" />
+        <Frame UV="22,44" Name="Red" Dir="Left" Variety="On" />
+        <Frame UV="44,44" Name="Blue" Dir="Right" Variety="On" />
+        <Frame UV="0,66" Name="Green" Dir="Down" Variety="On" />
+        <Frame UV="22,66" Name="Green" Dir="Left" Variety="On" />
+        <Frame UV="44,66" Name="Green" Dir="Right" Variety="On" />
+        <Frame UV="0,88" Name="Purple" Dir="Down" Variety="On" />
+        <Frame UV="22,88" Name="Purple" Dir="Left" Variety="On" />
+        <Frame UV="44,88" Name="Purple" Dir="Right" Variety="On" />
+        <Frame UV="0,110" Name="White" Dir="Down" Variety="On" />
+        <Frame UV="22,110" Name="White" Dir="Left" Variety="On" />
+        <Frame UV="44,110" Name="White" Dir="Right" Variety="On" />
+        <Frame UV="0,132" Name="Yellow" Dir="Down" Variety="On" />
+        <Frame UV="22,132" Name="Yellow" Dir="Left" Variety="On" />
+        <Frame UV="44,132" Name="Yellow" Dir="Right" Variety="On" />
+        <Frame UV="0,154" Name="Demon" Dir="Down" Variety="On" />
+        <Frame UV="22,154" Name="Demon" Dir="Left" Variety="On" />
+        <Frame UV="44,154" Name="Demon" Dir="Right" Variety="On" />
+        <Frame UV="0,176" Name="Cursed" Dir="Down" Variety="On" />
+        <Frame UV="22,176" Name="Cursed" Dir="Left" Variety="On" />
+        <Frame UV="44,176" Name="Cursed" Dir="Right" Variety="On" />
       </Frames>
     </Tile>
-    <Tile Id="5" Name="Tree" Color="#FF634631"  Framed="true">
+    <Tile Id="5" Name="Tree" Color="#FF634631"  Framed="true"  TextureGrid="20,20">
       <Frames>
         <Frame UV="0,0" Name="Tree Trunk" Dir="Up" Variety="Plain A" />
         <Frame UV="22,0" Name="Tree Trunk" Dir="Up" Variety="Right Indent A" />

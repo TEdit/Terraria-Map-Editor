@@ -110,6 +110,8 @@ namespace TEditXna.Editor.Clipboard
 
         public void PasteBufferIntoWorld(Vector2Int32 anchor)
         {
+            if (Buffer == null)
+                return;
             World world = _wvm.CurrentWorld;
             ClipboardBuffer buffer = _wvm.Clipboard.Buffer;
             for (int x = 0; x < buffer.Size.X; x++)
