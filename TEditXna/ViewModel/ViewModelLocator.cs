@@ -32,8 +32,10 @@ namespace TEditXna.ViewModel
             var defaultTool = new ArrowTool(wvm);
             wvm.Tools.Add(defaultTool);
             wvm.Tools.Add(new SelectionTool(wvm));
+            wvm.Tools.Add(new PickerTool(wvm));
             wvm.Tools.Add(new PencilTool(wvm));
             wvm.Tools.Add(new BrushTool(wvm));
+            wvm.Tools.Add(new FillTool(wvm));
             wvm.Tools.Add(new PointTool(wvm));
             wvm.Tools.Add(new SpriteTool(wvm));
             wvm.ActiveTool = defaultTool;

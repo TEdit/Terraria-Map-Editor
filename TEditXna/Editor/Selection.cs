@@ -16,6 +16,18 @@ namespace TEditXna.Editor
             set { Set("IsActive", ref _isActive, value); }
         }
 
+        public bool IsValid(Vector2Int32 p)
+        {
+           return IsValid(p.X, p.Y);
+        }
+        public bool IsValid(int x, int y)
+        {
+            if (!IsActive)
+                return true;
+
+            return SelectionArea.Contains(x, y);
+        }
+
         public Rectangle SelectionArea
         {
             get { return _selectionArea; }

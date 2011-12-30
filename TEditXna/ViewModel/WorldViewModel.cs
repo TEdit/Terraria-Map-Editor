@@ -40,7 +40,7 @@ namespace TEditXna.ViewModel
         private bool _showWires = true;
         private string _windowTitle;
         private bool _showTextures = true;
-         
+        public bool[] CheckTiles;
 
         public bool ShowTextures
         {
@@ -202,7 +202,7 @@ namespace TEditXna.ViewModel
 
         private void UpdateTitle()
         {
-            WindowTitle = string.Format("TEdit v{0} *ALPHA* {1}",
+            WindowTitle = string.Format("TEdit v{0} *BETA* {1}",
                                         Assembly.GetExecutingAssembly().GetName().Version,
                                         Path.GetFileName(_currentFile));
         }

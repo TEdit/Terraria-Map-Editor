@@ -14,7 +14,6 @@ namespace TEditXna.Editor.Tools
     {
         private bool _isLeftDown;
         private bool _isRightDown;
-        private bool[] _setThisPass;
         private Vector2Int32 _startPoint;
 
         public BrushTool(WorldViewModel worldViewModel) : base(worldViewModel)
@@ -29,7 +28,7 @@ namespace TEditXna.Editor.Tools
             if (!_isRightDown && !_isLeftDown)
             {
                 _startPoint = e.Location;
-                _setThisPass = new bool[_wvm.CurrentWorld.TilesWide*_wvm.CurrentWorld.TilesHigh];
+                _wvm.CheckTiles = new bool[_wvm.CurrentWorld.TilesWide * _wvm.CurrentWorld.TilesHigh];
             }
 
             CheckDirectionandDraw(e.Location);
@@ -142,9 +141,9 @@ namespace TEditXna.Editor.Tools
                 if (!_wvm.CurrentWorld.ValidTileLocation(pixel)) continue;
 
                 int index = pixel.X + pixel.Y*_wvm.CurrentWorld.TilesWide;
-                if (!_setThisPass[index])
+                if (!_wvm.CheckTiles[index])
                 {
-                    _setThisPass[index] = true;
+                    _wvm.CheckTiles[index] = true;
                     _wvm.UndoManager.SaveTile(pixel);
                     _wvm.SetPixel(pixel.X, pixel.Y);
                 }
@@ -163,9 +162,9 @@ namespace TEditXna.Editor.Tools
                     if (!_wvm.CurrentWorld.ValidTileLocation(pixel)) continue;
 
                     int index = pixel.X + pixel.Y*_wvm.CurrentWorld.TilesWide;
-                    if (!_setThisPass[index])
+                    if (!_wvm.CheckTiles[index])
                     {
-                        _setThisPass[index] = true;
+                        _wvm.CheckTiles[index] = true;
                         _wvm.UndoManager.SaveTile(pixel);
                         _wvm.SetPixel(pixel.X, pixel.Y, mode: PaintMode.Tile);
                     }

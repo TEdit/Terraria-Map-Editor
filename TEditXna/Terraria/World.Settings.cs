@@ -3,6 +3,7 @@ using System.Linq;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
+using System.Windows.Input;
 using System.Windows.Media;
 using System.Xml.Linq;
 using BCCL.Geometry.Primitives;
@@ -20,7 +21,7 @@ namespace TEditXNA.Terraria
         private static readonly IList<TileProperty> _tileProperties = new ObservableCollection<TileProperty>();
         private static readonly IList<WallProperty> _wallProperties = new ObservableCollection<WallProperty>();
         private static readonly ObservableCollection<Sprite> _sprites = new ObservableCollection<Sprite>();
-
+        private static readonly Dictionary<Key, string> _shortcuts = new Dictionary<Key, string>(); 
 
         static World()
         {
@@ -206,10 +207,13 @@ namespace TEditXNA.Terraria
                 ItemPrefix.Add((byte)id, name);
             }
 
-
+            foreach (var xElement in xmlSettings.Elements("ShortCutKeys").Elements("Shortcut"))
+            {
+                var key = InLineEnumTryParse<Key>((string)xElement.Attribute("Key"));
+                var tool = (string)xElement.Attribute("Tool");
+                ShortcutKeys.Add(key, tool);
+            }
         }
-
-
 
         public static Dictionary<string, XNA.Color> GlobalColors
         {
@@ -224,6 +228,11 @@ namespace TEditXNA.Terraria
         public static Dictionary<byte, string> ItemPrefix
         {
             get { return _prefix; }
+        }
+
+        public static Dictionary<Key, string> ShortcutKeys
+        {
+            get { return _shortcuts; }
         }
 
         public static IList<TileProperty> TileProperties

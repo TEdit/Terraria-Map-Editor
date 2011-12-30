@@ -12,7 +12,7 @@ namespace TEditXna.Editor.Tools
         public PointTool(WorldViewModel worldViewModel) : base(worldViewModel)
         {
             Icon = new BitmapImage(new Uri(@"pack://application:,,,/TEditXna;component/Images/Tools/point.png"));
-            Name = "Point Picker";
+            Name = "Point";
             IsActive = false;
             ToolType = ToolType.Npc;
         }

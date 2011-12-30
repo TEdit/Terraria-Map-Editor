@@ -82,6 +82,7 @@
       <DependentUpon>ClipboardBuffer.cs</DependentUpon>
     </Compile>
     <Compile Include="Editor\Clipboard\ClipboardManager.cs" />
+    <Compile Include="Editor\FloodFillHelpers.cs" />
     <Compile Include="Editor\MaskMode.cs" />
     <Compile Include="Editor\MouseTile.cs" />
     <Compile Include="Editor\PaintMode.cs" />
@@ -95,6 +96,7 @@
     <Compile Include="Editor\Tools\ITool.cs" />
     <Compile Include="Editor\Tools\PasteTool.cs" />
     <Compile Include="Editor\Tools\PencilTool.cs" />
+    <Compile Include="Editor\Tools\PickerTool.cs" />
     <Compile Include="Editor\Tools\PointTool.cs" />
     <Compile Include="Editor\Tools\SelectionTool.cs" />
     <Compile Include="Editor\Tools\SpriteTool.cs" />
@@ -102,6 +104,7 @@
     <Compile Include="Editor\Undo\UndoBuffer.cs" />
     <Compile Include="Editor\Undo\UndoManager.cs" />
     <Compile Include="Editor\Undo\UndoTile.cs" />
+    <Compile Include="ErrorLogging.cs" />
     <Compile Include="Render\PixelMap.cs" />
     <Compile Include="Render\PixelMapManager.cs" />
     <Compile Include="Render\TextureData.cs" />
@@ -289,7 +292,6 @@
     <Resource Include="Images\Toolbar\open.png" />
     <Resource Include="Images\Toolbar\save.png" />
     <Resource Include="Images\Toolbar\saveas.png" />
-    <Resource Include="Images\Toolbar\new.png" />
     <Resource Include="Images\Toolbar\help.png" />
     <Resource Include="Images\Toolbar\update.png" />
     <Resource Include="Images\Toolbar\copy.png" />
@@ -297,13 +299,15 @@
     <Resource Include="Images\Toolbar\delete.png" />
     <Resource Include="Images\Toolbar\plugin.png" />
     <Resource Include="Images\Toolbar\update_xml.png" />
-    <Resource Include="Images\Toolbar\arrow_redo.png" />
-    <Resource Include="Images\Toolbar\arrow_undo.png" />
     <Resource Include="Images\Tools\point.png" />
     <Resource Include="Images\Tools\cross.png" />
     <EmbeddedResource Include="Images\Overlays\npc_mechanic.png" />
     <EmbeddedResource Include="Images\Overlays\npc_wizard.png" />
     <EmbeddedResource Include="Images\Overlays\npc_goblin.png" />
+    <Resource Include="Images\Tools\eyedropper.png" />
+    <Resource Include="Images\Toolbar\arrow_redo.png" />
+    <Resource Include="Images\Toolbar\arrow_undo.png" />
+    <Resource Include="Images\Toolbar\new.png" />
     <Content Include="settings.xml">
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

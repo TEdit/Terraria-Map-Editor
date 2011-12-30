@@ -106,7 +106,7 @@
                                 <Style TargetType="{x:Type View:NpcSelectorView}">
                                     <Setter Property="Visibility" Value="Collapsed" />
                                     <Style.Triggers>
-                                        <DataTrigger Binding="{Binding ActiveTool.Name}" Value="Point Picker">
+                                        <DataTrigger Binding="{Binding ActiveTool.Name}" Value="Point">
                                             <Setter Property="Visibility" Value="Visible" />
                                         </DataTrigger>
                                     </Style.Triggers>
@@ -137,6 +137,9 @@
                                             <Setter Property="Visibility" Value="Visible" />
                                         </DataTrigger>
                                         <DataTrigger Binding="{Binding ActiveTool.Name}" Value="Picker">
+                                            <Setter Property="Visibility" Value="Visible" />
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding ActiveTool.Name}" Value="Fill">
                                             <Setter Property="Visibility" Value="Visible" />
                                         </DataTrigger>
                                     </Style.Triggers>

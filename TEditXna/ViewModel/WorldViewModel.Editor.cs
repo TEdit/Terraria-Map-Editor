@@ -126,8 +126,8 @@ namespace TEditXna.ViewModel
             {
                 var bounded = new Rectangle(Math.Max(area.Left, 0),
                                                   Math.Max(area.Top, 0),
-                                                  Math.Min(area.Width, CurrentWorld.TilesWide - area.Left),
-                                                  Math.Min(area.Height, CurrentWorld.TilesHigh - area.Top));
+                                                  Math.Min(area.Width, CurrentWorld.TilesWide - Math.Max(area.Left, 0)),
+                                                  Math.Min(area.Height, CurrentWorld.TilesHigh - Math.Max(area.Top, 0)));
                 if (CurrentWorld != null)
                 {
                     for (int y = bounded.Top; y < bounded.Bottom; y++)

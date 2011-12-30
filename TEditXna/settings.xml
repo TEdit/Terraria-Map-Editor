@@ -250,6 +250,16 @@ Single item; tag has no children. Has the following properties:
 -->
 
 <Settings>
+  <ShortCutKeys>
+    <Shortcut Key="A" Tool="Arrow" />
+    <Shortcut Key="B" Tool="Brush" />
+    <Shortcut Key="F" Tool="Fill" />
+    <Shortcut Key="E" Tool="Pencil" />
+    <Shortcut Key="R" Tool="Picker" />
+    <Shortcut Key="P" Tool="Point" />
+    <Shortcut Key="S" Tool="Selection" />
+    <Shortcut Key="T" Tool="Sprite" />
+  </ShortCutKeys>
   <GlobalColors>
     <GlobalColor Name="Space" Color="#FF336699" />
     <GlobalColor Name="Sky" Color="#FF9BD1FF" />
