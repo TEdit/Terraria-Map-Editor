@@ -3,10 +3,15 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:bccl="http://bccl/wpf" xmlns:Terraria="clr-namespace:TEditXNA.Terraria" mc:Ignorable="d" 
+             xmlns:bccl="http://bccl/wpf" xmlns:Terraria="clr-namespace:TEditXNA.Terraria"
+             xmlns:System="clr-namespace:System;assembly=mscorlib" mc:Ignorable="d" 
              d:DesignWidth="260" Background="{StaticResource WindowBackgroundBrush}" Foreground="{StaticResource TextBrush}">
     <UserControl.Resources>
-        <bccl:EnumItemList x:Key="InvasionEnum" EnumType="{x:Type Terraria:InvasionType}"  />
+        <bccl:EnumItemList x:Key="invasionTypeList" EnumType="{x:Type System:Int32}" SortBy="Value" >
+            <bccl:EnumItem Value="0">None</bccl:EnumItem>
+            <bccl:EnumItem Value="1">Goblin Invasion</bccl:EnumItem>
+            <bccl:EnumItem Value="2">Frost Legion</bccl:EnumItem>
+        </bccl:EnumItemList>
         <Style x:Key="TimeBackgroundStyle" TargetType="{x:Type Rectangle}">
             <Setter Property="Fill" Value="{DynamicResource DayGradient}" />
             <Style.Triggers>
@@ -92,7 +97,7 @@
             <CheckBox IsChecked="{Binding CurrentWorld.SavedWizard}" Content="Saved Wizard" VerticalAlignment="Center" VerticalContentAlignment="Center" />
             <Separator Grid.ColumnSpan="2" />
             <TextBlock Text="Invasion Type" HorizontalAlignment="Right" />
-            <ComboBox Height="20" ItemsSource="{StaticResource InvasionEnum}" SelectedValue="{Binding CurrentWorld.InvasionType, Mode=TwoWay}" SelectedValuePath="Value" />
+            <ComboBox Height="20" ItemsSource="{StaticResource invasionTypeList}" SelectedValue="{Binding CurrentWorld.InvasionType, Mode=TwoWay}" SelectedValuePath="Value" />
             <TextBlock Text="Invasion Size" HorizontalAlignment="Right" />
             <DockPanel>
                 <TextBlock Text="{Binding CurrentWorld.InvasionSize, StringFormat={}{0:0}}" Width="30" DockPanel.Dock="Right" />

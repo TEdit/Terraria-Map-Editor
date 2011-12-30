@@ -105,7 +105,6 @@
     <Compile Include="Render\PixelMapManager.cs" />
     <Compile Include="Render\TextureData.cs" />
     <Compile Include="Terraria\Chest.cs" />
-    <Compile Include="Terraria\InvasionType.cs" />
     <Compile Include="Terraria\Item.cs" />
     <Compile Include="Terraria\NPC.cs" />
     <Compile Include="Terraria\Objects\Enums.cs" />
@@ -143,6 +142,12 @@
     </Compile>
     <Compile Include="View\BrushSettingsView.xaml.cs">
       <DependentUpon>BrushSettingsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Popups\ChestPopup.xaml.cs">
+      <DependentUpon>ChestPopup.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Popups\SignPopup.xaml.cs">
+      <DependentUpon>SignPopup.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\SpriteView.xaml.cs">
       <DependentUpon>SpriteView.xaml</DependentUpon>
@@ -195,6 +200,14 @@
     <Page Include="View\BrushSettingsView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Popups\ChestPopup.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Popups\SignPopup.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\SpriteView.xaml">
       <SubType>Designer</SubType>
@@ -323,7 +336,7 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties BuildVersion_AssemblyInfoFilename="Properties\AssemblyInfo.cs" BuildVersion_UseGlobalSettings="True" />
+      <UserProperties BuildVersion_UseGlobalSettings="True" BuildVersion_AssemblyInfoFilename="Properties\AssemblyInfo.cs" />
     </VisualStudio>
   </ProjectExtensions>
   <PropertyGroup>

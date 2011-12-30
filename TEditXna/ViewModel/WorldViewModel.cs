@@ -68,11 +68,6 @@ namespace TEditXna.ViewModel
             get { return _points; }
         }
 
-        public ObservableCollection<Sprite> SpriteList
-        {
-            get { return World.Sprites; }
-        }
-
         public string SelectedPoint
         {
             get { return _selectedPoint; }

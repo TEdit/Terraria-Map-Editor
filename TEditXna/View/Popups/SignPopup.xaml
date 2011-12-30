@@ -1,0 +1,12 @@
+﻿<Popup x:Class="TEditXna.View.Popups.SignPopup" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Placement="Mouse" MouseDown="Popup_MouseDown"
+       MouseLeave="Popup_MouseLeave">
+    <Grid Background="{DynamicResource WindowBackgroundBrush}">
+        <DockPanel LastChildFill="True">
+            <Button DockPanel.Dock="Bottom" Click="ClosePopup" Margin="1" Content="OK" />
+            <TextBox Text="{Binding Path=Text, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="300"
+               HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Disabled" AcceptsReturn="True" 
+			   Margin="2" FontWeight="Bold" MaxLines="10" PreviewKeyDown="ValidateLines" />
+        </DockPanel>
+    </Grid>
+</Popup>
