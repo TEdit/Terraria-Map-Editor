@@ -413,10 +413,6 @@ namespace TEditXna.View
                                       GetMarkerLocation(npc.Home.X, npc.Home.Y),
                                       Color.White);
                 }
-                else
-                {
-                    ErrorLogging.Log(string.Format("NPC Texture Missing: {0}, {1}",npc.SpriteId, npc.Name));
-                }
             }
 
             _spriteBatch.Draw(_textures["Spawn"],
