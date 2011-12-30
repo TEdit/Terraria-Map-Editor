@@ -50,6 +50,16 @@ namespace TEditXna
             {
                 _vm.RedoCommand.Execute(null);
             }
+            else if (e.Key == Key.Escape)
+            {
+                if (_vm.ActiveTool != null)
+                {
+                    if (_vm.ActiveTool.Name == "Paste")
+                        SetActiveTool("Arrow");
+                    else
+                        _vm.Selection.IsActive = false;
+                }
+            }
             else if (World.ShortcutKeys.ContainsKey(e.Key))
             {
                 SetActiveTool(World.ShortcutKeys[e.Key]);

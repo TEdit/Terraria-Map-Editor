@@ -16,7 +16,8 @@ namespace TEditXna.Editor.Tools
         private bool _isRightDown;
         private Vector2Int32 _startPoint;
 
-        public BrushTool(WorldViewModel worldViewModel) : base(worldViewModel)
+        public BrushTool(WorldViewModel worldViewModel)
+            : base(worldViewModel)
         {
             Icon = new BitmapImage(new Uri(@"pack://application:,,,/TEditXna;component/Images/Tools/paintbrush.png"));
             Name = "Brush";
@@ -57,7 +58,7 @@ namespace TEditXna.Editor.Tools
             if (_wvm.Brush.Shape == BrushShape.Square)
                 bmp.FillRectangle(0, 0, _wvm.Brush.Width, _wvm.Brush.Height, Color.FromArgb(127, 0, 90, 255));
             else
-                bmp.FillEllipse(0, 0, _wvm.Brush.Width/2, _wvm.Brush.Height/2, Color.FromArgb(127, 0, 90, 255));
+                bmp.FillEllipse(0, 0, _wvm.Brush.Width / 2, _wvm.Brush.Height / 2, Color.FromArgb(127, 0, 90, 255));
 
             _preview = bmp;
             return _preview;
@@ -105,8 +106,8 @@ namespace TEditXna.Editor.Tools
                 IEnumerable<Vector2Int32> area = Fill.FillRectangleCentered(point, new Vector2Int32(_wvm.Brush.Width, _wvm.Brush.Height));
                 IEnumerable<Vector2Int32> interrior = Fill.FillRectangleCentered(point,
                                                                                  new Vector2Int32(
-                                                                                     _wvm.Brush.Width - _wvm.Brush.Outline*2,
-                                                                                     _wvm.Brush.Height - _wvm.Brush.Outline*2));
+                                                                                     _wvm.Brush.Width - _wvm.Brush.Outline * 2,
+                                                                                     _wvm.Brush.Height - _wvm.Brush.Outline * 2));
                 FillHollow(area, interrior);
             }
             else
@@ -120,16 +121,16 @@ namespace TEditXna.Editor.Tools
         {
             if (_wvm.Brush.IsOutline)
             {
-                IEnumerable<Vector2Int32> area = Fill.FillEllipseCentered(point, new Vector2Int32(_wvm.Brush.Width/2, _wvm.Brush.Height/2));
+                IEnumerable<Vector2Int32> area = Fill.FillEllipseCentered(point, new Vector2Int32(_wvm.Brush.Width / 2, _wvm.Brush.Height / 2));
                 IEnumerable<Vector2Int32> interrior = Fill.FillEllipseCentered(point,
                                                                                new Vector2Int32(
-                                                                                   _wvm.Brush.Width/2 - _wvm.Brush.Outline*2,
-                                                                                   _wvm.Brush.Height/2 - _wvm.Brush.Outline*2));
+                                                                                   _wvm.Brush.Width / 2 - _wvm.Brush.Outline * 2,
+                                                                                   _wvm.Brush.Height / 2 - _wvm.Brush.Outline * 2));
                 FillHollow(area, interrior);
             }
             else
             {
-                IEnumerable<Vector2Int32> area = Fill.FillEllipseCentered(point, new Vector2Int32(_wvm.Brush.Width/2, _wvm.Brush.Height/2));
+                IEnumerable<Vector2Int32> area = Fill.FillEllipseCentered(point, new Vector2Int32(_wvm.Brush.Width / 2, _wvm.Brush.Height / 2));
                 FillSolid(area);
             }
         }
@@ -140,12 +141,15 @@ namespace TEditXna.Editor.Tools
             {
                 if (!_wvm.CurrentWorld.ValidTileLocation(pixel)) continue;
 
-                int index = pixel.X + pixel.Y*_wvm.CurrentWorld.TilesWide;
+                int index = pixel.X + pixel.Y * _wvm.CurrentWorld.TilesWide;
                 if (!_wvm.CheckTiles[index])
                 {
                     _wvm.CheckTiles[index] = true;
-                    _wvm.UndoManager.SaveTile(pixel);
-                    _wvm.SetPixel(pixel.X, pixel.Y);
+                    if (_wvm.Selection.IsValid(pixel))
+                    {
+                        _wvm.UndoManager.SaveTile(pixel);
+                        _wvm.SetPixel(pixel.X, pixel.Y);
+                    }
                 }
             }
         }
@@ -161,12 +165,16 @@ namespace TEditXna.Editor.Tools
                 {
                     if (!_wvm.CurrentWorld.ValidTileLocation(pixel)) continue;
 
-                    int index = pixel.X + pixel.Y*_wvm.CurrentWorld.TilesWide;
+                    int index = pixel.X + pixel.Y * _wvm.CurrentWorld.TilesWide;
+
                     if (!_wvm.CheckTiles[index])
                     {
                         _wvm.CheckTiles[index] = true;
-                        _wvm.UndoManager.SaveTile(pixel);
-                        _wvm.SetPixel(pixel.X, pixel.Y, mode: PaintMode.Tile);
+                        if (_wvm.Selection.IsValid(pixel))
+                        {
+                            _wvm.UndoManager.SaveTile(pixel);
+                            _wvm.SetPixel(pixel.X, pixel.Y, mode: PaintMode.Tile);
+                        }
                     }
                 }
             }
@@ -175,11 +183,17 @@ namespace TEditXna.Editor.Tools
             foreach (Vector2Int32 pixel in interrior)
             {
                 if (!_wvm.CurrentWorld.ValidTileLocation(pixel)) continue;
-                _wvm.UndoManager.SaveTile(pixel);
-                _wvm.SetPixel(pixel.X, pixel.Y, erase: true);
 
-                if (_wvm.TilePicker.PaintMode == PaintMode.Wall || _wvm.TilePicker.PaintMode == PaintMode.TileAndWall)
-                    _wvm.SetPixel(pixel.X, pixel.Y, mode: PaintMode.Wall);
+                if (_wvm.Selection.IsValid(pixel))
+                {
+                    _wvm.UndoManager.SaveTile(pixel);
+                    _wvm.SetPixel(pixel.X, pixel.Y, erase: true);
+
+                    if (_wvm.TilePicker.PaintMode == PaintMode.Wall || _wvm.TilePicker.PaintMode == PaintMode.TileAndWall)
+                    {
+                        _wvm.SetPixel(pixel.X, pixel.Y, mode: PaintMode.Wall);
+                    }
+                }
             }
         }
     }

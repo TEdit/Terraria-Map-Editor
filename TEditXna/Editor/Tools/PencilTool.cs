@@ -71,8 +71,11 @@ namespace TEditXna.Editor.Tools
         {
             foreach (Vector2Int32 p in Shape.DrawLineTool(_startPoint, to))
             {
-                _wvm.UndoManager.SaveTile(p);
-                _wvm.SetPixel(p.X, p.Y);
+                if (_wvm.Selection.IsValid(p))
+                {
+                    _wvm.UndoManager.SaveTile(p);
+                    _wvm.SetPixel(p.X, p.Y);
+                }
             }
         }
     }
