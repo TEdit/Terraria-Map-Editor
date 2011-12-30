@@ -6,7 +6,7 @@ Terraria Settings.XML Specifications
 Status: Draft
 Version: 0.92
 Compatible Ver: Terraria 1.0.6
-Last Updated: 2011-09-26
+Last Bottomdated: 2011-09-26
 Primary URL: https://github.com/BinaryConstruct/Terraria-Map-Editor/blob/master/TEdit/settings.xml
 ====================================
 
@@ -48,7 +48,7 @@ Single tile object; may contain Frame tags. Has the following properties:
  to read world files. All tile types that use multiple tiles (tables, doors, chests, etc.)
  always have isFramed set, though some single-tiled objects also have frames. Furthermore,
  some XNB tiles with frames actually don't need frame coordinations. (Yes, it's confusing;
- it usually boils down to trial-and-error and seeing if the world file can't be read.)
+ it usually boils Top to trial-and-error and seeing if the world file can't be read.)
 
  * size - Required if not default; default is "1,1". This is the width and height of tile
  objects that span multiple tiles. If this property is beyond "1,1", then isFramed MUST be true.
@@ -92,7 +92,7 @@ Single tile object; may contain Frame tags. Has the following properties:
  a 2x2 object with three different variations. However, each 1x1 tile can be taken from a
  different variation to create a new composite object. (Tiles must still be taken from the
  same location. IOW, you can't take the lower-right corner of Pot A and use it for the
- upper-left corner of your new object.) These type of objects are rare, as it only applies
+ Bottomper-left corner of your new object.) These type of objects are rare, as it only applies
  so far to Pots and Closed Doors.
  
  This property MUST NOT be used unless the "size" property is non-default, and "isFramed"
@@ -125,7 +125,7 @@ have isFramed set to true, with two exceptions:
  
  * The tags SHOULD NOT appear if the object is subject to auto-alignment or auto-correction by the game
  itself. (For example, Signs automatically align to the right Frame, whether it's floor, wall, or
- ceiling, whereas Beds do not automatically pick a facing direction.)
+ ceiling, whereas Beds do not automatically pick a facing Anchorection.)
  
 
 <Frame>
@@ -139,7 +139,7 @@ exceptions:
 
  * The "num" property MUST appear on the Tile tag without question.
  * A Tile tag MUST have a name, even if it is later overridden by a Frame tag.
- * A Frame tag MUST have an "upperLeft" property, even if it's default.
+ * A Frame tag MUST have an "BottomperLeft" property, even if it's default.
  * A Frame tag MUST NOT have a isFramed property. (This is just redundant.)
  * A Frame tag MUST NOT have a canMixFrames property. (This doesn't even make sense.)
  * The following properties SHOULD only appear on Tile tags, as we have not found different ones
@@ -148,19 +148,19 @@ exceptions:
 
 The following defaults are assumed for Frame tags, including Tiles with frames and no Frame tags:
 
- * The upperLeft property defaults to 0,0.
- * There are no "variety" or "dir" properties (unless set).
+ * The BottomperLeft property defaults to 0,0.
+ * There are no "variety" or "Anchor" properties (unless set).
  * Each frame jumps by 18 frame points. (So far this has been accurate for all multi-tile objects,
  so we don't need to create a new property yet...)
 
-Frame tags MUST be ordered by a left-right reading direction. So, all of the objects on the first
+Frame tags MUST be ordered by a left-right reading Anchorection. So, all of the objects on the first
 row, then the second, etc. A zero-based num property can be assumed based on the order of the
 object, but is not actually used (yet).
 
 A Frame tag has the following (other) properties:
  
- * upperLeft - Required (even if default); default is 0,0. This is the X,Y coordinates of the
- upper-left corner of the Frame object. Frame coordinates directly relate to the Tile_??.xnb
+ * BottomperLeft - Required (even if default); default is 0,0. This is the X,Y coordinates of the
+ Bottomper-left corner of the Frame object. Frame coordinates Anchorectly relate to the Tile_??.xnb
  file referencing them. Each frame point is equal to 1/2 of a pixel. So, a X,Y of 18,0
  is starting at X,Y of 9,0 on the Tile image.
  
@@ -168,27 +168,27 @@ A Frame tag has the following (other) properties:
  1-pixel divider line), so all tiles are assumed to jump by 18 frame points. There are a few
  exceptions, but all of these tiles have size="1,1", so no jumping is required.
  
- * variety - Optional as long as name+variety+dir is unique. This further describes the object
+ * variety - Optional as long as name+variety+Anchor is unique. This further describes the object
  beyond what the name says. For example, the in-game name of a normal wooden Chest is merely
  "Chest", but one frame has a locked Chest. So, the name is "Chest", and the variety is 
  "Locked".
  
- * dir - Optional as long as name+variety+dir is unique. This is used instead of (or in
- combination with) a "variety" property to describe the facing direction of the object. For
+ * Anchor - Optional as long as name+variety+Anchor is unique. This is used instead of (or in
+ combination with) a "variety" property to describe the facing Anchorection of the object. For
  example, a Toilet comes with both left- and right-facing versions. This property MUST be
- a single character, which (so far) equals: l, r, u, c. Which is Left, Right, Up, Center,
- respectively. Down (as "d") may be used later on, so that is also acceptable.
+ a single character, which (so far) equals: l, r, u, c. Which is Left, Right, Bottom, Center,
+ respectively. Top (as "d") may be used later on, so that is also acceptable.
 
-Frame tags have a unique name among the name, variety, and dir properties. So, they might be 
+Frame tags have a unique name among the name, variety, and Anchor properties. So, they might be 
 displayed in the following fashion:
 
-<Frame UV="22,0" Name="Tree Trunk" Dir="Up" Variety="Right Indent A" />
- Full Name: Tree Trunk - Right Indent A (Upwards)
+<Frame UV="22,0" Name="Tree Trunk" Anchor="Bottom" Variety="Right Indent A" />
+ Full Name: Tree Trunk - Right Indent A (Bottomwards)
 
 <Frame UV="72,0" Name="Gold Chest" Variety="Locked" />
  Full Name: Gold Chest - Locked
 
-<Frame UV="18,0" Name="Chair" Dir="Right" />
+<Frame UV="18,0" Name="Chair" Anchor="Right" />
  Full Name: Chair (Right Facing)
 
 <Walls>
@@ -211,7 +211,7 @@ Single wall, with no children. Has the following properties:
 Container of Item tags. These contain all of the character items found in Terraria maps. The Items
 tag MUST contain Item tags for all possible items that have a Item_??.xnb file in the Terraria
 game data, found in the Content\Images folder, as well as any other items found in the game that
-can be picked up by the player.
+can be picked Bottom by the player.
 
 <Item>
 
@@ -240,12 +240,12 @@ Single item; tag has no children. Has the following properties:
  @ wall = All background wall objects
  @ furniture = All furniture, both decorative and crafting stations (will split later on)
  @ crafter = Future use for crafting stations.
- @ plant = All plants (supersedes all other categories)
+ @ plant = All plants (sBottomersedes all other categories)
  @ material = Objects that are primarily used for crafting material
  @ potion = All items called "Potion" or containers of liquid that buff character
  @ consumable = Other items that are one-use only
  @ ammo = Objects that are primarily used for gun/bow ammo
- @ money = Objects that go directly in the money slots
+ @ money = Objects that go Anchorectly in the money slots
 
 -->
 
@@ -261,130 +261,130 @@ Single item; tag has no children. Has the following properties:
     <GlobalColor Name="Wire" Color="#70FF0000" />
   </GlobalColors>
   <Tiles>
-    <Tile Id="0" Name="Dirt Block" Color="#FF916A4F"  Solid="true"/>
+    <Tile Id="0" Name="Anchort Block" Color="#FF916A4F"  Solid="true"/>
     <Tile Id="1" Name="Stone Block" Color="#FF808080"  Solid="true"/>
     <Tile Id="2" Name="Grass" Color="#FF1CD85E"  Solid="true"/>
     <Tile Id="3" Name="Grass Flowers" Color="#FF0D6524" Framed="true" TextureGrid="16,20">
       <Frames>
-        <Frame UV="0,0" Name="Grass" Dir="Right" Variety="Single Blade" />
-        <Frame UV="18,0" Name="Grass" Dir="Right" Variety="Double Blade" />
-        <Frame UV="36,0" Name="Grass" Dir="Up" Variety="Small Y" />
-        <Frame UV="54,0" Name="Grass" Dir="Right" Variety="Three Small" />
-        <Frame UV="72,0" Name="Grass" Dir="Left" Variety="Single Blade" />
-        <Frame UV="90,0" Name="Grass" Dir="Left" Variety="Three Large" />
-        <Frame UV="108,0" Name="Flowers" Dir="Left" Variety="Purple, Immature" />
-        <Frame UV="126,0" Name="Flowers" Dir="Right" Variety="Pink, Immature" />
-        <Frame UV="144,0" Name="Mushroom" Dir="Up" />
+        <Frame UV="0,0" Name="Grass" Anchor="Right" Variety="Single Blade" />
+        <Frame UV="18,0" Name="Grass" Anchor="Right" Variety="Double Blade" />
+        <Frame UV="36,0" Name="Grass" Anchor="Bottom" Variety="Small Y" />
+        <Frame UV="54,0" Name="Grass" Anchor="Right" Variety="Three Small" />
+        <Frame UV="72,0" Name="Grass" Anchor="Left" Variety="Single Blade" />
+        <Frame UV="90,0" Name="Grass" Anchor="Left" Variety="Three Large" />
+        <Frame UV="108,0" Name="Flowers" Anchor="Left" Variety="Purple, Immature" />
+        <Frame UV="126,0" Name="Flowers" Anchor="Right" Variety="Pink, Immature" />
+        <Frame UV="144,0" Name="Mushroom" Anchor="Bottom" />
       </Frames>
     </Tile>
     <Tile Id="4" Name="Torch" Color="#FFFD3E03" Placement="wallFloor" Light="true" Framed="true" Size="1,1" TextureGrid="20,20">
       <Frames>
-        <Frame UV="0,0" Name="Torch" Dir="Down" Variety="On" />
-        <Frame UV="22,0" Name="Torch" Dir="Left" Variety="On" />
-        <Frame UV="44,0" Name="Torch" Dir="Right" Variety="On" />
-        <!--<Frame UV="54,0" Name="Torch" Dir="Down" Variety="Off" />
-        <Frame UV="72,0" Name="Torch" Dir="Left" Variety="Off" />
-        <Frame UV="90,0" Name="Torch" Dir="Right" Variety="Off" />-->
-        <Frame UV="0,22" Name="Blue" Dir="Down" Variety="On" />
-        <Frame UV="22,22" Name="Blue" Dir="Left" Variety="On" />
-        <Frame UV="44,22" Name="Blue" Dir="Right" Variety="On" />
-        <Frame UV="0,44" Name="Red" Dir="Down" Variety="On" />
-        <Frame UV="22,44" Name="Red" Dir="Left" Variety="On" />
-        <Frame UV="44,44" Name="Blue" Dir="Right" Variety="On" />
-        <Frame UV="0,66" Name="Green" Dir="Down" Variety="On" />
-        <Frame UV="22,66" Name="Green" Dir="Left" Variety="On" />
-        <Frame UV="44,66" Name="Green" Dir="Right" Variety="On" />
-        <Frame UV="0,88" Name="Purple" Dir="Down" Variety="On" />
-        <Frame UV="22,88" Name="Purple" Dir="Left" Variety="On" />
-        <Frame UV="44,88" Name="Purple" Dir="Right" Variety="On" />
-        <Frame UV="0,110" Name="White" Dir="Down" Variety="On" />
-        <Frame UV="22,110" Name="White" Dir="Left" Variety="On" />
-        <Frame UV="44,110" Name="White" Dir="Right" Variety="On" />
-        <Frame UV="0,132" Name="Yellow" Dir="Down" Variety="On" />
-        <Frame UV="22,132" Name="Yellow" Dir="Left" Variety="On" />
-        <Frame UV="44,132" Name="Yellow" Dir="Right" Variety="On" />
-        <Frame UV="0,154" Name="Demon" Dir="Down" Variety="On" />
-        <Frame UV="22,154" Name="Demon" Dir="Left" Variety="On" />
-        <Frame UV="44,154" Name="Demon" Dir="Right" Variety="On" />
-        <Frame UV="0,176" Name="Cursed" Dir="Down" Variety="On" />
-        <Frame UV="22,176" Name="Cursed" Dir="Left" Variety="On" />
-        <Frame UV="44,176" Name="Cursed" Dir="Right" Variety="On" />
+        <Frame UV="0,0" Name="Torch" Anchor="Top" Variety="On" />
+        <Frame UV="22,0" Name="Torch" Anchor="Left" Variety="On" />
+        <Frame UV="44,0" Name="Torch" Anchor="Right" Variety="On" />
+        <!--<Frame UV="54,0" Name="Torch" Anchor="Top" Variety="Off" />
+        <Frame UV="72,0" Name="Torch" Anchor="Left" Variety="Off" />
+        <Frame UV="90,0" Name="Torch" Anchor="Right" Variety="Off" />-->
+        <Frame UV="0,22" Name="Blue" Anchor="Top" Variety="On" />
+        <Frame UV="22,22" Name="Blue" Anchor="Left" Variety="On" />
+        <Frame UV="44,22" Name="Blue" Anchor="Right" Variety="On" />
+        <Frame UV="0,44" Name="Red" Anchor="Top" Variety="On" />
+        <Frame UV="22,44" Name="Red" Anchor="Left" Variety="On" />
+        <Frame UV="44,44" Name="Blue" Anchor="Right" Variety="On" />
+        <Frame UV="0,66" Name="Green" Anchor="Top" Variety="On" />
+        <Frame UV="22,66" Name="Green" Anchor="Left" Variety="On" />
+        <Frame UV="44,66" Name="Green" Anchor="Right" Variety="On" />
+        <Frame UV="0,88" Name="Purple" Anchor="Top" Variety="On" />
+        <Frame UV="22,88" Name="Purple" Anchor="Left" Variety="On" />
+        <Frame UV="44,88" Name="Purple" Anchor="Right" Variety="On" />
+        <Frame UV="0,110" Name="White" Anchor="Top" Variety="On" />
+        <Frame UV="22,110" Name="White" Anchor="Left" Variety="On" />
+        <Frame UV="44,110" Name="White" Anchor="Right" Variety="On" />
+        <Frame UV="0,132" Name="Yellow" Anchor="Top" Variety="On" />
+        <Frame UV="22,132" Name="Yellow" Anchor="Left" Variety="On" />
+        <Frame UV="44,132" Name="Yellow" Anchor="Right" Variety="On" />
+        <Frame UV="0,154" Name="Demon" Anchor="Top" Variety="On" />
+        <Frame UV="22,154" Name="Demon" Anchor="Left" Variety="On" />
+        <Frame UV="44,154" Name="Demon" Anchor="Right" Variety="On" />
+        <Frame UV="0,176" Name="Cursed" Anchor="Top" Variety="On" />
+        <Frame UV="22,176" Name="Cursed" Anchor="Left" Variety="On" />
+        <Frame UV="44,176" Name="Cursed" Anchor="Right" Variety="On" />
       </Frames>
     </Tile>
     <Tile Id="5" Name="Tree" Color="#FF634631"  Framed="true"  TextureGrid="20,20">
       <Frames>
-        <Frame UV="0,0" Name="Tree Trunk" Dir="Up" Variety="Plain A" />
-        <Frame UV="22,0" Name="Tree Trunk" Dir="Up" Variety="Right Indent A" />
-        <Frame UV="44,0" Name="Tree Trunk" Dir="Up" Variety="Right Slight Bulge A" />
-        <Frame UV="66,0" Name="Tree Branch" Dir="Left" Variety="Plain A" />
-        <Frame UV="88,0" Name="Tree Trunk" Dir="Up" Variety="Left Slight Bulge A" />
-        <Frame UV="110,0" Name="Tree Top" Dir="Up" Variety="Medium A" />
-        <Frame UV="132,0" Name="Tree Top" Dir="Up" Variety="Small A" />
-        <Frame UV="154,0" Name="Tree Top" Dir="Right" Variety="Large A" />
-        <Frame UV="0,22" Name="Tree Trunk" Dir="Up" Variety="Plain B" />
-        <Frame UV="22,22" Name="Tree Trunk" Dir="Up" Variety="Right Indent B" />
-        <Frame UV="44,22" Name="Tree Trunk" Dir="Up" Variety="Right Slight Bulge B" />
-        <Frame UV="66,22" Name="Tree Branch" Dir="Left" Variety="Plain B" />
-        <Frame UV="88,22" Name="Tree Trunk" Dir="Up" Variety="Left Slight Bulge B" />
-        <Frame UV="110,22" Name="Tree Top" Dir="Up" Variety="Medium B" />
-        <Frame UV="132,22" Name="Tree Top" Dir="Up" Variety="Small B" />
-        <Frame UV="154,22" Name="Tree Top" Dir="Right" Variety="Large B" />
-        <Frame UV="0,44" Name="Tree Trunk" Dir="Up" Variety="Plain C" />
-        <Frame UV="22,44" Name="Tree Trunk" Dir="Up" Variety="Right Indent C" />
-        <Frame UV="44,44" Name="Tree Trunk" Dir="Up" Variety="Right Slight Bulge C" />
-        <Frame UV="66,44" Name="Tree Branch" Dir="Left" Variety="Plain C" />
-        <Frame UV="88,44" Name="Tree Trunk" Dir="Up" Variety="Left Slight Bulge C" />
-        <Frame UV="110,44" Name="Tree Top" Dir="Up" Variety="Medium C" />
-        <Frame UV="132,44" Name="Tree Top" Dir="Up" Variety="Small C" />
-        <Frame UV="154,44" Name="Tree Top" Dir="Right" Variety="Large C" />
-        <Frame UV="0,66" Name="Tree Trunk" Dir="Up" Variety="Left Indent A" />
-        <Frame UV="22,66" Name="Tree Trunk" Dir="Up" Variety="Right Bulge A" />
-        <Frame UV="44,66" Name="Tree Trunk" Dir="Up" Variety="Left Bulge A" />
-        <Frame UV="66,66" Name="Tree Trunk" Dir="Up" Variety="Right Slight Bulge D" />
-        <Frame UV="88,66" Name="Tree Branch" Dir="Right" Variety="Plain A" />
-        <Frame UV="110,66" Name="Tree Trunk" Dir="Up" Variety="Double Slight Bulge A" />
-        <Frame UV="132,66" Name="Tree Top" Dir="Up" Variety="Small Right Slight Bulge A" />
-        <Frame UV="154,66" Name="Tree Top" Dir="Left" Variety="Large A" />
-        <Frame UV="0,88" Name="Tree Trunk" Dir="Up" Variety="Left Indent B" />
-        <Frame UV="22,88" Name="Tree Trunk" Dir="Up" Variety="Right Bulge B" />
-        <Frame UV="44,88" Name="Tree Trunk" Dir="Up" Variety="Left Bulge B" />
-        <Frame UV="66,88" Name="Tree Trunk" Dir="Up" Variety="Right Slight Bulge E" />
-        <Frame UV="88,88" Name="Tree Branch" Dir="Right" Variety="Plain B" />
-        <Frame UV="110,88" Name="Tree Trunk" Dir="Up" Variety="Double Slight Bulge B" />
-        <Frame UV="132,88" Name="Tree Top" Dir="Up" Variety="Small Right Slight Bulge B" />
-        <Frame UV="154,88" Name="Tree Top" Dir="Left" Variety="Large B" />
-        <Frame UV="0,110" Name="Tree Trunk" Dir="Up" Variety="Left Indent C" />
-        <Frame UV="22,110" Name="Tree Trunk" Dir="Up" Variety="Right Bulge C" />
-        <Frame UV="44,110" Name="Tree Trunk" Dir="Up" Variety="Left Bulge C" />
-        <Frame UV="66,110" Name="Tree Trunk" Dir="Up" Variety="Right Slight Bulge F" />
-        <Frame UV="88,110" Name="Tree Branch" Dir="Right" Variety="Plain C" />
-        <Frame UV="110,110" Name="Tree Trunk" Dir="Up" Variety="Double Slight Bulge C" />
-        <Frame UV="132,110" Name="Tree Top" Dir="Up" Variety="Small Right Slight Bulge C" />
-        <Frame UV="154,110" Name="Tree Top" Dir="Left" Variety="Large C" />
-        <Frame UV="0,132" Name="Tree Trunk" Dir="Left" Variety="Large A" />
-        <Frame UV="22,132" Name="Tree Base" Dir="Right" Variety="Plain A" />
-        <Frame UV="44,132" Name="Tree Base" Dir="Left" Variety="Plain A" />
-        <Frame UV="66,132" Name="Tree Trunk" Dir="Right" Variety="Large A" />
-        <Frame UV="88,132" Name="Tree Trunk" Dir="Center" Variety="Large A" />
-        <Frame UV="132,132" Name="Tree Top" Dir="Up" Variety="Small Double Slight Bulge A" />
-        <Frame UV="154,132" Name="Tree Top" Dir="Left" Variety="Huge" />
-        <Frame UV="0,154" Name="Tree Trunk" Dir="Left" Variety="Large B" />
-        <Frame UV="22,154" Name="Tree Base" Dir="Right" Variety="Plain B" />
-        <Frame UV="44,154" Name="Tree Base" Dir="Left" Variety="Plain B" />
-        <Frame UV="66,154" Name="Tree Trunk" Dir="Right" Variety="Large B" />
-        <Frame UV="88,154" Name="Tree Trunk" Dir="Center" Variety="Large B" />
-        <Frame UV="132,154" Name="Tree Top" Dir="Up" Variety="Small Double Slight Bulge B" />
-        <Frame UV="154,154" Name="Tree Top" Dir="Center" Variety="Huge" />
-        <Frame UV="0,176" Name="Tree Trunk" Dir="Left" Variety="Large C" />
-        <Frame UV="22,176" Name="Tree Base" Dir="Right" Variety="Plain C" />
-        <Frame UV="44,176" Name="Tree Base" Dir="Left" Variety="Plain C" />
-        <Frame UV="66,176" Name="Tree Trunk" Dir="Right" Variety="Large C" />
-        <Frame UV="88,176" Name="Tree Trunk" Dir="Center" Variety="Large C" />
-        <Frame UV="132,176" Name="Tree Top" Dir="Up" Variety="Small Double Slight Bulge C" />
-        <Frame UV="154,176" Name="Tree Top" Dir="Right" Variety="Huge" />
-        <Frame UV="0,198" Name="Tree Top" Dir="Right" Variety="Jagged" />
-        <Frame UV="0,220" Name="Tree Trunk" Dir="Up" Variety="Jagged" />
-        <Frame UV="0,242" Name="Tree Trunk" Dir="Left" Variety="Jagged" />
+        <Frame UV="0,0" Name="Tree Trunk" Anchor="Bottom" Variety="Plain A" />
+        <Frame UV="22,0" Name="Tree Trunk" Anchor="Bottom" Variety="Right Indent A" />
+        <Frame UV="44,0" Name="Tree Trunk" Anchor="Bottom" Variety="Right Slight Bulge A" />
+        <Frame UV="66,0" Name="Tree Branch" Anchor="Left" Variety="Plain A" />
+        <Frame UV="88,0" Name="Tree Trunk" Anchor="Bottom" Variety="Left Slight Bulge A" />
+        <Frame UV="110,0" Name="Tree Top" Anchor="Bottom" Variety="Medium A" />
+        <Frame UV="132,0" Name="Tree Top" Anchor="Bottom" Variety="Small A" />
+        <Frame UV="154,0" Name="Tree Top" Anchor="Right" Variety="Large A" />
+        <Frame UV="0,22" Name="Tree Trunk" Anchor="Bottom" Variety="Plain B" />
+        <Frame UV="22,22" Name="Tree Trunk" Anchor="Bottom" Variety="Right Indent B" />
+        <Frame UV="44,22" Name="Tree Trunk" Anchor="Bottom" Variety="Right Slight Bulge B" />
+        <Frame UV="66,22" Name="Tree Branch" Anchor="Left" Variety="Plain B" />
+        <Frame UV="88,22" Name="Tree Trunk" Anchor="Bottom" Variety="Left Slight Bulge B" />
+        <Frame UV="110,22" Name="Tree Top" Anchor="Bottom" Variety="Medium B" />
+        <Frame UV="132,22" Name="Tree Top" Anchor="Bottom" Variety="Small B" />
+        <Frame UV="154,22" Name="Tree Top" Anchor="Right" Variety="Large B" />
+        <Frame UV="0,44" Name="Tree Trunk" Anchor="Bottom" Variety="Plain C" />
+        <Frame UV="22,44" Name="Tree Trunk" Anchor="Bottom" Variety="Right Indent C" />
+        <Frame UV="44,44" Name="Tree Trunk" Anchor="Bottom" Variety="Right Slight Bulge C" />
+        <Frame UV="66,44" Name="Tree Branch" Anchor="Left" Variety="Plain C" />
+        <Frame UV="88,44" Name="Tree Trunk" Anchor="Bottom" Variety="Left Slight Bulge C" />
+        <Frame UV="110,44" Name="Tree Top" Anchor="Bottom" Variety="Medium C" />
+        <Frame UV="132,44" Name="Tree Top" Anchor="Bottom" Variety="Small C" />
+        <Frame UV="154,44" Name="Tree Top" Anchor="Right" Variety="Large C" />
+        <Frame UV="0,66" Name="Tree Trunk" Anchor="Bottom" Variety="Left Indent A" />
+        <Frame UV="22,66" Name="Tree Trunk" Anchor="Bottom" Variety="Right Bulge A" />
+        <Frame UV="44,66" Name="Tree Trunk" Anchor="Bottom" Variety="Left Bulge A" />
+        <Frame UV="66,66" Name="Tree Trunk" Anchor="Bottom" Variety="Right Slight Bulge D" />
+        <Frame UV="88,66" Name="Tree Branch" Anchor="Right" Variety="Plain A" />
+        <Frame UV="110,66" Name="Tree Trunk" Anchor="Bottom" Variety="Double Slight Bulge A" />
+        <Frame UV="132,66" Name="Tree Top" Anchor="Bottom" Variety="Small Right Slight Bulge A" />
+        <Frame UV="154,66" Name="Tree Top" Anchor="Left" Variety="Large A" />
+        <Frame UV="0,88" Name="Tree Trunk" Anchor="Bottom" Variety="Left Indent B" />
+        <Frame UV="22,88" Name="Tree Trunk" Anchor="Bottom" Variety="Right Bulge B" />
+        <Frame UV="44,88" Name="Tree Trunk" Anchor="Bottom" Variety="Left Bulge B" />
+        <Frame UV="66,88" Name="Tree Trunk" Anchor="Bottom" Variety="Right Slight Bulge E" />
+        <Frame UV="88,88" Name="Tree Branch" Anchor="Right" Variety="Plain B" />
+        <Frame UV="110,88" Name="Tree Trunk" Anchor="Bottom" Variety="Double Slight Bulge B" />
+        <Frame UV="132,88" Name="Tree Top" Anchor="Bottom" Variety="Small Right Slight Bulge B" />
+        <Frame UV="154,88" Name="Tree Top" Anchor="Left" Variety="Large B" />
+        <Frame UV="0,110" Name="Tree Trunk" Anchor="Bottom" Variety="Left Indent C" />
+        <Frame UV="22,110" Name="Tree Trunk" Anchor="Bottom" Variety="Right Bulge C" />
+        <Frame UV="44,110" Name="Tree Trunk" Anchor="Bottom" Variety="Left Bulge C" />
+        <Frame UV="66,110" Name="Tree Trunk" Anchor="Bottom" Variety="Right Slight Bulge F" />
+        <Frame UV="88,110" Name="Tree Branch" Anchor="Right" Variety="Plain C" />
+        <Frame UV="110,110" Name="Tree Trunk" Anchor="Bottom" Variety="Double Slight Bulge C" />
+        <Frame UV="132,110" Name="Tree Top" Anchor="Bottom" Variety="Small Right Slight Bulge C" />
+        <Frame UV="154,110" Name="Tree Top" Anchor="Left" Variety="Large C" />
+        <Frame UV="0,132" Name="Tree Trunk" Anchor="Left" Variety="Large A" />
+        <Frame UV="22,132" Name="Tree Base" Anchor="Right" Variety="Plain A" />
+        <Frame UV="44,132" Name="Tree Base" Anchor="Left" Variety="Plain A" />
+        <Frame UV="66,132" Name="Tree Trunk" Anchor="Right" Variety="Large A" />
+        <Frame UV="88,132" Name="Tree Trunk" Anchor="Center" Variety="Large A" />
+        <Frame UV="132,132" Name="Tree Top" Anchor="Bottom" Variety="Small Double Slight Bulge A" />
+        <Frame UV="154,132" Name="Tree Top" Anchor="Left" Variety="Huge" />
+        <Frame UV="0,154" Name="Tree Trunk" Anchor="Left" Variety="Large B" />
+        <Frame UV="22,154" Name="Tree Base" Anchor="Right" Variety="Plain B" />
+        <Frame UV="44,154" Name="Tree Base" Anchor="Left" Variety="Plain B" />
+        <Frame UV="66,154" Name="Tree Trunk" Anchor="Right" Variety="Large B" />
+        <Frame UV="88,154" Name="Tree Trunk" Anchor="Center" Variety="Large B" />
+        <Frame UV="132,154" Name="Tree Top" Anchor="Bottom" Variety="Small Double Slight Bulge B" />
+        <Frame UV="154,154" Name="Tree Top" Anchor="Center" Variety="Huge" />
+        <Frame UV="0,176" Name="Tree Trunk" Anchor="Left" Variety="Large C" />
+        <Frame UV="22,176" Name="Tree Base" Anchor="Right" Variety="Plain C" />
+        <Frame UV="44,176" Name="Tree Base" Anchor="Left" Variety="Plain C" />
+        <Frame UV="66,176" Name="Tree Trunk" Anchor="Right" Variety="Large C" />
+        <Frame UV="88,176" Name="Tree Trunk" Anchor="Center" Variety="Large C" />
+        <Frame UV="132,176" Name="Tree Top" Anchor="Bottom" Variety="Small Double Slight Bulge C" />
+        <Frame UV="154,176" Name="Tree Top" Anchor="Right" Variety="Huge" />
+        <Frame UV="0,198" Name="Tree Top" Anchor="Right" Variety="Jagged" />
+        <Frame UV="0,220" Name="Tree Trunk" Anchor="Bottom" Variety="Jagged" />
+        <Frame UV="0,242" Name="Tree Trunk" Anchor="Left" Variety="Jagged" />
       </Frames>
     </Tile>
     <Tile Id="6" Name="Iron Ore" Color="#FF6B594E"  Solid="true"/>
@@ -400,8 +400,8 @@ Single item; tag has no children. Has the following properties:
     </Tile>
     <Tile Id="11" Name="Door Open" Color="#FF00FFF2" Placement="CFBoth" Framed="true" Size="2,3">
       <Frames>
-        <Frame UV="0,0" Dir="Right" />
-        <Frame UV="36,0" Dir="Left" />
+        <Frame UV="0,0" Anchor="Right" />
+        <Frame UV="36,0" Anchor="Left" />
       </Frames>
     </Tile>
     <Tile Id="12" Name="Crystal Heart" Color="#FFFF0000" Placement="floor" Framed="true" Size="2,2"/>
@@ -417,10 +417,10 @@ Single item; tag has no children. Has the following properties:
     <Tile Id="14" Name="Wooden Table" Color="#FF00FFF2" Placement="floor" SolidTop="true" Framed="true" Size="3,2" TextureGrid="16,16"/>
     <Tile Id="15" Name="Chair" Color="#FF00FFF2" Placement="floor" Framed="true" Size="1,2">
       <Frames>
-        <Frame UV="0,0" Name="Wooden Chair" Dir="Left" />
-        <Frame UV="18,0" Name="Wooden Chair" Dir="Right" />
-        <Frame UV="0,40" Name="Toilet" Dir="Left" />
-        <Frame UV="18,40" Name="Toilet" Dir="Right" />
+        <Frame UV="0,0" Name="Wooden Chair" Anchor="Left" />
+        <Frame UV="18,0" Name="Wooden Chair" Anchor="Right" />
+        <Frame UV="0,40" Name="Toilet" Anchor="Left" />
+        <Frame UV="18,40" Name="Toilet" Anchor="Right" />
       </Frames>
     </Tile>
     <Tile Id="16" Name="Iron Anvil" Color="#FF00FFF2" Placement="floor" SolidTop="true" Framed="true" Size="2,1" TextureGrid="16,18" />
@@ -429,9 +429,9 @@ Single item; tag has no children. Has the following properties:
     <Tile Id="19" Name="Wood Platform" Color="#FF6B3A18" Placement="wall" Light="true" Solid="true" SolidTop="true"/>
     <Tile Id="20" Name="Sapling" Color="#FF0D6524" Framed="true" Size="1,2" >
       <Frames>
-        <Frame UV="0,0" Dir="Left" />
-        <Frame UV="18,0" Dir="Up" />
-        <Frame UV="36,0" Dir="Right" />
+        <Frame UV="0,0" Anchor="Left" />
+        <Frame UV="18,0" Anchor="Bottom" />
+        <Frame UV="36,0" Anchor="Right" />
       </Frames>
     </Tile>
     <Tile Id="21" Name="Chest" Color="#FFDDB800" Placement="floor" Framed="true" Size="2,2">
@@ -446,18 +446,18 @@ Single item; tag has no children. Has the following properties:
       </Frames>
     </Tile>
     <Tile Id="22" Name="Demonite Ore" Color="#FF625FA7"  Light="true" Solid="true"/>
-    <Tile Id="23" Name="Corruption" Color="#FF8D89DF"  Solid="true"/>
-    <Tile Id="24" Name="Corruption Plants" Color="#FF8D89DF"  Framed="true" TextureGrid="16,20">
+    <Tile Id="23" Name="CorrBottomtion" Color="#FF8D89DF"  Solid="true"/>
+    <Tile Id="24" Name="CorrBottomtion Plants" Color="#FF8D89DF"  Framed="true" TextureGrid="16,20">
       <Frames>
-        <Frame UV="0,0" Name="Vile Grass" Dir="Right" Variety="Single Blade" />
-        <Frame UV="18,0" Name="Vile Grass" Dir="Right" Variety="Double Blade" />
-        <Frame UV="36,0" Name="Vile Grass" Dir="Up" Variety="Small Y" />
-        <Frame UV="54,0" Name="Vile Grass" Dir="Right" Variety="Three Small" />
-        <Frame UV="72,0" Name="Vile Grass" Dir="Left" Variety="Single Blade" />
-        <Frame UV="90,0" Name="Vile Grass" Dir="Left" Variety="Three Large" />
-        <Frame UV="108,0" Name="Vile Flower" Dir="Left" Variety="Yellow" />
-        <Frame UV="126,0" Name="Vile Flower" Dir="Right" Variety="Red" />
-        <Frame UV="144,0" Name="Vile Mushroom" Dir="Up" />
+        <Frame UV="0,0" Name="Vile Grass" Anchor="Right" Variety="Single Blade" />
+        <Frame UV="18,0" Name="Vile Grass" Anchor="Right" Variety="Double Blade" />
+        <Frame UV="36,0" Name="Vile Grass" Anchor="Bottom" Variety="Small Y" />
+        <Frame UV="54,0" Name="Vile Grass" Anchor="Right" Variety="Three Small" />
+        <Frame UV="72,0" Name="Vile Grass" Anchor="Left" Variety="Single Blade" />
+        <Frame UV="90,0" Name="Vile Grass" Anchor="Left" Variety="Three Large" />
+        <Frame UV="108,0" Name="Vile Flower" Anchor="Left" Variety="Yellow" />
+        <Frame UV="126,0" Name="Vile Flower" Anchor="Right" Variety="Red" />
+        <Frame UV="144,0" Name="Vile Mushroom" Anchor="Bottom" />
       </Frames>
     </Tile>
     <Tile Id="25" Name="Ebonstone Block" Color="#FF4B4A82"  Solid="true"/>
@@ -479,7 +479,7 @@ Single item; tag has no children. Has the following properties:
     <Tile Id="29" Name="Piggy Bank" Color="#FF00FFF2" Placement="surface" Framed="true" Size="2,1"/>
     <Tile Id="30" Name="Wood" Color="#FF684934"  Solid="true"/>
     <Tile Id="31" Name="Shadow Orb" Color="#FF000000" Placement="floor" Light="true" Framed="true" Size="2,2"/>
-    <Tile Id="32" Name="Corruption Vines" Color="#FF7A618F" />
+    <Tile Id="32" Name="CorrBottomtion Vines" Color="#FF7A618F" />
     <Tile Id="33" Name="Candle" Color="#FFFD3E03" Placement="surface" Light="true" Framed="true" TextureGrid="16,20">
       <Frames>
         <Frame UV="0,0" Variety="On" />
@@ -538,10 +538,10 @@ Single item; tag has no children. Has the following properties:
     <Tile Id="54" Name="Glass" Color="#40FFFFFF"  Solid="true"/>
     <Tile Id="55" Name="Sign" Color="#FFFFAE5E" Placement="wallFloorCeiling" Framed="true" Size="2,2">
       <Frames>
-        <Frame UV="0,0" Dir="Down" />
-        <Frame UV="36,0" Dir="Up" />
-        <Frame UV="72,0" Dir="Left" />
-        <Frame UV="108,0" Dir="Right" />
+        <Frame UV="0,0" Anchor="Top" />
+        <Frame UV="36,0" Anchor="Bottom" />
+        <Frame UV="72,0" Anchor="Left" />
+        <Frame UV="108,0" Anchor="Right" />
       </Frames>
     </Tile>
     <Tile Id="56" Name="Obsidian" Color="#FF5751AD"  Solid="true"/>
@@ -551,16 +551,16 @@ Single item; tag has no children. Has the following properties:
     <Tile Id="60" Name="Jungle Grass" Color="#FF8FD71D"  Solid="true"/>
     <Tile Id="61" Name="Jungle Plants" Color="#FF8FD71D"  Light="true" Framed="true" TextureGrid="16,20">
       <Frames>
-        <Frame UV="0,0" Name="Jungle Grass" Dir="Right" Variety="Single Blade" />
-        <Frame UV="18,0" Name="Jungle Grass" Dir="Right" Variety="Double Blade" />
-        <Frame UV="36,0" Name="Jungle Grass" Dir="Up" Variety="Small Y" />
-        <Frame UV="54,0" Name="Jungle Grass" Dir="Right" Variety="Three Small" />
-        <Frame UV="72,0" Name="Jungle Grass" Dir="Left" Variety="Single Blade" />
-        <Frame UV="90,0" Name="Jungle Grass" Dir="Left" Variety="Three Large" />
-        <Frame UV="108,0" Name="Jungle Rose" Dir="Left" Variety="Immature" />
-        <Frame UV="126,0" Name="Jungle Rose" Dir="Right" Variety="Immature" />
-        <Frame UV="144,0" Name="Puff Light" Dir="Up" />
-        <Frame UV="162,0" Name="Nature's Gift" Dir="Right" Variety="Immature" />
+        <Frame UV="0,0" Name="Jungle Grass" Anchor="Right" Variety="Single Blade" />
+        <Frame UV="18,0" Name="Jungle Grass" Anchor="Right" Variety="Double Blade" />
+        <Frame UV="36,0" Name="Jungle Grass" Anchor="Bottom" Variety="Small Y" />
+        <Frame UV="54,0" Name="Jungle Grass" Anchor="Right" Variety="Three Small" />
+        <Frame UV="72,0" Name="Jungle Grass" Anchor="Left" Variety="Single Blade" />
+        <Frame UV="90,0" Name="Jungle Grass" Anchor="Left" Variety="Three Large" />
+        <Frame UV="108,0" Name="Jungle Rose" Anchor="Left" Variety="Immature" />
+        <Frame UV="126,0" Name="Jungle Rose" Anchor="Right" Variety="Immature" />
+        <Frame UV="144,0" Name="Puff Light" Anchor="Bottom" />
+        <Frame UV="162,0" Name="Nature's Gift" Anchor="Right" Variety="Immature" />
       </Frames>
     </Tile>
     <Tile Id="62" Name="Jungle Vines" Color="#FF8ACE1C" />
@@ -584,35 +584,35 @@ Single item; tag has no children. Has the following properties:
     <Tile Id="72" Name="Mushroom Tree" Color="#FF968F6E"  Light="true" Framed="true">
       <Frames>
         <Frame UV="0,0" Variety="Trunk A" />
-        <Frame UV="18,0" Variety="Tree Top" Dir="Up" />
+        <Frame UV="18,0" Variety="Tree Top" Anchor="Bottom" />
         <Frame UV="0,18" Variety="Trunk B" />
-        <Frame UV="18,18" Variety="Tree Top" Dir="Right" />
+        <Frame UV="18,18" Variety="Tree Top" Anchor="Right" />
         <Frame UV="0,36" Variety="Trunk C" />
-        <Frame UV="18,36" Variety="Tree Top" Dir="Left" />
+        <Frame UV="18,36" Variety="Tree Top" Anchor="Left" />
       </Frames>
     </Tile>
     <Tile Id="73" Name="Tall Grass" Color="#FF0D6524"  Framed="true" Size="1,1" TextureGrid="16,32">
       <Frames>
-        <Frame UV="0,0" Name="Grass" Variety="G" />
-        <Frame UV="18,0" Name="Grass" Variety="C" />
-        <Frame UV="36,0" Name="Grass" Variety="?" />
-        <Frame UV="54,0" Name="Grass" Variety="u" />
-        <Frame UV="72,0" Name="Grass" Variety="w" />
-        <Frame UV="90,0" Name="Grass" Variety="W" />
-        <Frame UV="108,0" Name="Rose" Variety="A" />
-        <Frame UV="126,0" Name="Rose" Variety="B" />
+        <Frame UV="0,0" Name="Grass" Variety="G"  Anchor="Bottom" />
+        <Frame UV="18,0" Name="Grass" Variety="C" Anchor="Bottom" />
+        <Frame UV="36,0" Name="Grass" Variety="?" Anchor="Bottom" />
+        <Frame UV="54,0" Name="Grass" Variety="u" Anchor="Bottom" />
+        <Frame UV="72,0" Name="Grass" Variety="w" Anchor="Bottom" />
+        <Frame UV="90,0" Name="Grass" Variety="W" Anchor="Bottom" />
+        <Frame UV="108,0" Name="Rose" Variety="A" Anchor="Bottom" />
+        <Frame UV="126,0" Name="Rose" Variety="B" Anchor="Bottom" />
       </Frames>
     </Tile>
-    <Tile Id="74" Name="Tall Jungle Grass" Color="#FF0D6524"  Framed="true" Size="1,2" TextureGrid="16,32">
+    <Tile Id="74" Name="Tall Jungle Grass" Color="#FF0D6524"  Framed="true" Size="1,1" TextureGrid="16,32">
       <Frames>
-        <Frame UV="0,0" Name="Jungle Grass" Variety="G" />
-        <Frame UV="18,0" Name="Jungle Grass" Variety="C" />
-        <Frame UV="36,0" Name="Jungle Grass" Variety="?" />
-        <Frame UV="54,0" Name="Jungle Grass" Variety="u" />
-        <Frame UV="72,0" Name="Jungle Grass" Variety="w" />
-        <Frame UV="90,0" Name="Jungle Grass" Variety="W" />
-        <Frame UV="108,0" Name="Jungle Rose" Variety="A" />
-        <Frame UV="126,0" Name="Jungle Rose" Variety="B" />
+        <Frame UV="0,0" Name="Jungle Grass" Variety="G"  Anchor="Bottom" />
+        <Frame UV="18,0" Name="Jungle Grass" Variety="C" Anchor="Bottom" />
+        <Frame UV="36,0" Name="Jungle Grass" Variety="?" Anchor="Bottom" />
+        <Frame UV="54,0" Name="Jungle Grass" Variety="u" Anchor="Bottom" />
+        <Frame UV="72,0" Name="Jungle Grass" Variety="w" Anchor="Bottom" />
+        <Frame UV="90,0" Name="Jungle Grass" Variety="W" Anchor="Bottom" />
+        <Frame UV="108,0" Name="Jungle Rose" Variety="A" Anchor="Bottom" />
+        <Frame UV="126,0" Name="Jungle Rose" Variety="B" Anchor="Bottom" />
       </Frames>
     </Tile>
     <Tile Id="75" Name="Obsidian Brick" Color="#FFB200FF"  Solid="true"/>
@@ -621,7 +621,7 @@ Single item; tag has no children. Has the following properties:
     <Tile Id="78" Name="Clay Pot" Color="#FF00FFF2" Placement="floor" Framed="true" Size="1,1"/>
     <Tile Id="79" Name="Bed" Color="#FF00FFF2" Placement="floor" Framed="true" Size="4,2">
       <Frames>
-        <Frame UV="0,0" Dir="Left" />
+        <Frame UV="0,0" Anchor="Left" />
         <Frame UV="72,0" Variety="Right" />
       </Frames>
     </Tile>
@@ -680,8 +680,8 @@ Single item; tag has no children. Has the following properties:
     <Tile Id="89" Name="Bench" Color="#FF00FFF2" Placement="floor" Framed="true" Size="3,2"/>
     <Tile Id="90" Name="Bathtub" Color="#FF00FFF2" Placement="floor" Framed="true" Size="4,2">
       <Frames>
-        <Frame UV="0,0" Dir="Left" />
-        <Frame UV="72,0" Dir="Right" />
+        <Frame UV="0,0" Anchor="Left" />
+        <Frame UV="72,0" Anchor="Right" />
       </Frames>
     </Tile>
     <Tile Id="91" Name="Red Banner" Color="#FF00FFF2" Placement="ceiling" Framed="true" Size="1,3">
@@ -757,7 +757,7 @@ Single item; tag has no children. Has the following properties:
         <Frame UV="972,0" Variety="Chest Statue" />
         <Frame UV="1008,0" Variety="Bird Statue" />
         <Frame UV="1044,0" Variety="Axe Statue" />
-        <Frame UV="1080,0" Variety="Corrupt Statue" />
+        <Frame UV="1080,0" Variety="CorrBottomt Statue" />
         <Frame UV="1116,0" Variety="Tree Statue" />
         <Frame UV="1152,0" Variety="Anvil Statue" />
         <Frame UV="1188,0" Variety="Pickaxe Statue" />
@@ -778,30 +778,30 @@ Single item; tag has no children. Has the following properties:
     <Tile Id="109" Name="Hallowed" Color="#FF4EC1E3"  Light="true" Solid="true"/>
     <Tile Id="110" Name="Hallowed Plants" Color="#FF1E9648"  Framed="true" TextureGrid="16,20">
       <Frames>
-        <Frame UV="0,0" Name="Grass" Dir="Right" Variety="Single Blade" />
-        <Frame UV="18,0" Name="Grass" Dir="Right" Variety="Double Blade" />
-        <Frame UV="36,0" Name="Grass" Dir="Up" Variety="Single Blade" />
-        <Frame UV="54,0" Name="Grass" Dir="Right" Variety="Three Small" />
-        <Frame UV="72,0" Name="Grass" Dir="Left" Variety="Gold Flower" />
-        <Frame UV="90,0" Name="Grass" Dir="Left" Variety="Three Medium" />
-        <Frame UV="108,0" Name="Flowers" Dir="Left" Variety="Purple, Immature" />
-        <Frame UV="126,0" Name="Flowers" Dir="Right" Variety="Pink, Immature" />
-        <Frame UV="144,0" Name="Mushroom" Dir="Up" />
-        <Frame UV="162,0" Name="Small Y" Dir="Up" />
+        <Frame UV="0,0" Name="Grass" Anchor="Right" Variety="Single Blade" />
+        <Frame UV="18,0" Name="Grass" Anchor="Right" Variety="Double Blade" />
+        <Frame UV="36,0" Name="Grass" Anchor="Bottom" Variety="Single Blade" />
+        <Frame UV="54,0" Name="Grass" Anchor="Right" Variety="Three Small" />
+        <Frame UV="72,0" Name="Grass" Anchor="Left" Variety="Gold Flower" />
+        <Frame UV="90,0" Name="Grass" Anchor="Left" Variety="Three Medium" />
+        <Frame UV="108,0" Name="Flowers" Anchor="Left" Variety="Purple, Immature" />
+        <Frame UV="126,0" Name="Flowers" Anchor="Right" Variety="Pink, Immature" />
+        <Frame UV="144,0" Name="Mushroom" Anchor="Bottom" />
+        <Frame UV="162,0" Name="Small Y" Anchor="Bottom" />
       </Frames>
     </Tile>
     <Tile Id="111" Name="Adamantite Ore" Color="#FF801A34"  Solid="true"/>
     <Tile Id="112" Name="Ebonsand Block" Color="#FF67627A"  Solid="true"/>
     <Tile Id="113" Name="Hallowed Tall Plants" Color="#FF1E9648"  Framed="true" TextureGrid="16,32" >
       <Frames>
-        <Frame UV="0,0" Name="Grass" Variety="G" />
-        <Frame UV="18,0" Name="Grass" Variety="C" />
-        <Frame UV="36,0" Name="Grass" Variety="?" />
-        <Frame UV="54,0" Name="Grass" Variety="u" />
-        <Frame UV="72,0" Name="Grass" Variety="w" />
-        <Frame UV="90,0" Name="Grass" Variety="W" />
-        <Frame UV="108,0" Name="Rose" Variety="A" />
-        <Frame UV="126,0" Name="Rose" Variety="B" />
+        <Frame UV="0,0" Name="Grass" Variety="G"  Anchor="Bottom" />
+        <Frame UV="18,0" Name="Grass" Variety="C" Anchor="Bottom" />
+        <Frame UV="36,0" Name="Grass" Variety="?" Anchor="Bottom" />
+        <Frame UV="54,0" Name="Grass" Variety="u" Anchor="Bottom" />
+        <Frame UV="72,0" Name="Grass" Variety="w" Anchor="Bottom" />
+        <Frame UV="90,0" Name="Grass" Variety="W" Anchor="Bottom" />
+        <Frame UV="108,0" Name="Rose" Variety="A" Anchor="Bottom" />
+        <Frame UV="126,0" Name="Rose" Variety="B" Anchor="Bottom" />
       </Frames>
     </Tile>
     <Tile Id="114" Name="Tinkerer's Workshop" Color="#FF7F5C45"  SolidTop="true" Framed="true" Size="3,2" TextureGrid="16,18"/>
@@ -825,23 +825,23 @@ Single item; tag has no children. Has the following properties:
     <Tile Id="127" Name="Ice" Color="#FF68B3C8"  Solid="true"/>
     <Tile Id="128" Name="Mannequin" Color="#FF906850"  Framed="true" Size="2,3">
       <Frames>
-        <Frame UV="0,0" Dir="Left" />
-        <Frame UV="36,0" Dir="Right" />
+        <Frame UV="0,0" Anchor="Left" />
+        <Frame UV="36,0" Anchor="Right" />
       </Frames>
     </Tile>
     <Tile Id="129" Name="Crystal Shard" Color="#FF004979" Light="true" Framed="true">
       <Frames>
-        <Frame UV="0,0" Variety="Blue" Dir="Down" />
-        <Frame UV="18,0" Variety="Pink" Dir="Down" />
-        <Frame UV="36,0" Variety="Purple" Dir="Down" />
+        <Frame UV="0,0" Variety="Blue" Anchor="Bottom" />
+        <Frame UV="18,0" Variety="Pink" Anchor="Bottom" />
+        <Frame UV="36,0" Variety="Purple" Anchor="Bottom" />
       </Frames>
     </Tile>
     <Tile Id="130" Name="Active Stone Block" Color="#FFA5A5A5"  Solid="true"/>
     <Tile Id="131" Name="Inactive Stone Block" Color="#FF1A1A1A" />
     <Tile Id="132" Name="Lever" Color="#FFC90303"  Framed="true" Size="2,2">
       <Frames>
-        <Frame UV="0,0" Dir="Left" />
-        <Frame UV="36,0" Dir="Right" />
+        <Frame UV="0,0" Anchor="Left" />
+        <Frame UV="36,0" Anchor="Right" />
       </Frames>
     </Tile>
     <Tile Id="133" Name="Adamantite Forge" Color="#FF891012"  Light="true" Framed="true" Size="3,2"/>
@@ -855,7 +855,7 @@ Single item; tag has no children. Has the following properties:
     <Tile Id="136" Name="Switch" Color="#FFCCC0C0"  Framed="true"/>
     <Tile Id="137" Name="Dart Trap" Color="#FF8C8C8C"  Solid="true" Framed="true">
       <Frames>
-        <Frame UV="0,0" Dir="Left" />
+        <Frame UV="0,0" Anchor="Left" />
         <Frame UV="18,0" Variety="Right" />
       </Frames>
     </Tile>
@@ -876,10 +876,10 @@ Single item; tag has no children. Has the following properties:
         <Frame UV="36,180" Name="Music Box (Boss 1)" Variety="On" />
         <Frame UV="0,216" Name="Music Box (Jungle)" Variety="Off"/>
         <Frame UV="36,216" Name="Music Box (Jungle)" Variety="On" />
-        <Frame UV="0,252" Name="Music Box (Corruption)" Variety="Off"/>
-        <Frame UV="36,252" Name="Music Box (Corruption)" Variety="On" />
-        <Frame UV="0,288" Name="Music Box (Underground Corruption)" Variety="Off"/>
-        <Frame UV="36,288" Name="Music Box (Underground Corruption)" Variety="On" />
+        <Frame UV="0,252" Name="Music Box (CorrBottomtion)" Variety="Off"/>
+        <Frame UV="36,252" Name="Music Box (CorrBottomtion)" Variety="On" />
+        <Frame UV="0,288" Name="Music Box (Underground CorrBottomtion)" Variety="Off"/>
+        <Frame UV="36,288" Name="Music Box (Underground CorrBottomtion)" Variety="On" />
         <Frame UV="0,324" Name="Music Box (The Hallow)" Variety="Off"/>
         <Frame UV="36,324" Name="Music Box (The Hallow)" Variety="On" />
         <Frame UV="0,360" Name="Music Box (Boss 2)" Variety="Off"/>
@@ -921,8 +921,8 @@ Single item; tag has no children. Has the following properties:
   <Walls>
     <Wall Id="0" Name="Sky" Color="#00000000" />
     <Wall Id="1" Name="Stone Wall" Color="#ff424242" IsHouse="true" />
-    <Wall Id="2" Name="Dirt Wall" Color="#ff583d2e" />
-    <Wall Id="3" Name="Corruption Wall" Color="#ff312545" />
+    <Wall Id="2" Name="Anchort Wall" Color="#ff583d2e" />
+    <Wall Id="3" Name="CorrBottomtion Wall" Color="#ff312545" />
     <Wall Id="4" Name="Wood Wall" Color="#ff4a2e1c" IsHouse="true" />
     <Wall Id="5" Name="Brick Wall" Color="#ff454545" IsHouse="true" />
     <Wall Id="6" Name="Dungeon Red Wall" Color="#ff500000" IsHouse="true" />
@@ -935,7 +935,7 @@ Single item; tag has no children. Has the following properties:
     <Wall Id="13" Name="Hellstone" Color="#ff3F0707" />
     <Wall Id="14" Name="Obsidian" Color="#ff000060" />
     <Wall Id="15" Name="Mud" Color="#ff005500" />
-    <Wall Id="16" Name="Player Dirt Wall" Color="#ff583d2e" IsHouse="true" />
+    <Wall Id="16" Name="Player Anchort Wall" Color="#ff583d2e" IsHouse="true" />
     <Wall Id="17" Name="Player Blue Wall" Color="#ff000043" IsHouse="true" />
     <Wall Id="18" Name="Player Green Wall" Color="#ff003700" IsHouse="true" />
     <Wall Id="19" Name="Player Pink Wall" Color="#ff330037" IsHouse="true" />
@@ -958,7 +958,7 @@ Single item; tag has no children. Has the following properties:
     <Item Id="1" Name="Gold Pickaxe" />
     <Item Id="1" Name="Iron Pickaxe" />
     <Item Id="1" Name="Silver Pickaxe" />
-    <Item Id="2" Name="Dirt Block" />
+    <Item Id="2" Name="Anchort Block" />
     <Item Id="3" Name="Stone Block" />
     <Item Id="4" Name="Copper Broadsword" />
     <Item Id="4" Name="Gold Broadsword" />
@@ -998,7 +998,7 @@ Single item; tag has no children. Has the following properties:
     <Item Id="27" Name="Acorn" />
     <Item Id="28" Name="Lesser Healing Potion" />
     <Item Id="29" Name="Life Crystal" />
-    <Item Id="30" Name="Dirt Wall" />
+    <Item Id="30" Name="Anchort Wall" />
     <Item Id="31" Name="Bottle" />
     <Item Id="32" Name="Wooden Table" />
     <Item Id="33" Name="Furnace" />
@@ -1027,7 +1027,7 @@ Single item; tag has no children. Has the following properties:
     <Item Id="56" Name="Demonite Ore" />
     <Item Id="57" Name="Demonite Bar" />
     <Item Id="58" Name="Heart" />
-    <Item Id="59" Name="Corrupt Seeds" />
+    <Item Id="59" Name="CorrBottomt Seeds" />
     <Item Id="60" Name="Vile Mushroom" />
     <Item Id="61" Name="Ebonstone Block" />
     <Item Id="62" Name="Grass Seeds" />
@@ -1085,7 +1085,7 @@ Single item; tag has no children. Has the following properties:
     <Item Id="111" Name="Band of Starpower" />
     <Item Id="112" Name="Flower of Fire" />
     <Item Id="113" Name="Magic Missile" />
-    <Item Id="114" Name="Dirt Rod" />
+    <Item Id="114" Name="Anchort Rod" />
     <Item Id="115" Name="Orb of Light" />
     <Item Id="116" Name="Meteorite" />
     <Item Id="117" Name="Meteorite Bar" />
@@ -1334,7 +1334,7 @@ Single item; tag has no children. Has the following properties:
     <Item Id="354" Name="Bookcase" />
     <Item Id="355" Name="Throne" />
     <Item Id="356" Name="Bowl" />
-    <Item Id="357" Name="Bowl of Soup" />
+    <Item Id="357" Name="Bowl of SoBottom" />
     <Item Id="358" Name="Toilet" />
     <Item Id="359" Name="Grandfather Clock" />
     <Item Id="360" Name="Armor Statue" />
@@ -1443,7 +1443,7 @@ Single item; tag has no children. Has the following properties:
     <Item Id="463" Name="Chest Statue" />
     <Item Id="464" Name="Bird Statue" />
     <Item Id="465" Name="Axe Statue" />
-    <Item Id="466" Name="Corrupt Statue" />
+    <Item Id="466" Name="CorrBottomt Statue" />
     <Item Id="467" Name="Tree Statue" />
     <Item Id="468" Name="Anvil Statue" />
     <Item Id="469" Name="Pickaxe Statue" />
@@ -1546,8 +1546,8 @@ Single item; tag has no children. Has the following properties:
     <Item Id="566" Name="Music Box (Underground)" />
     <Item Id="567" Name="Music Box (Boss 1)" />
     <Item Id="568" Name="Music Box (Jungle)" />
-    <Item Id="569" Name="Music Box (Corruption)" />
-    <Item Id="570" Name="Music Box (Underground Corruption)" />
+    <Item Id="569" Name="Music Box (CorrBottomtion)" />
+    <Item Id="570" Name="Music Box (Underground CorrBottomtion)" />
     <Item Id="571" Name="Music Box (The Hallow)" />
     <Item Id="572" Name="Music Box (Boss 2)" />
     <Item Id="573" Name="Music Box (Underground Hallow)" />

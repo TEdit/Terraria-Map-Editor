@@ -36,7 +36,7 @@ namespace TEditXna.ViewModel
             wvm.Tools.Add(new BrushTool(wvm));
             wvm.Tools.Add(new PointTool(wvm));
             wvm.Tools.Add(new SpriteTool(wvm));
-            //wvm.ActiveTool = defaultTool;
+            wvm.ActiveTool = defaultTool;
             return wvm;
         }
     }

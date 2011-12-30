@@ -11,7 +11,7 @@ namespace TEditXNA.Terraria.Objects
         private byte _tile;
         private Vector2Short _size;
         private Vector2Short _origin;
-        private FrameDirection _direction;
+        private FrameAnchor _anchor;
         private string _name;
         private bool _isPreviewTexture;
         private string _tileName;
@@ -34,10 +34,10 @@ namespace TEditXNA.Terraria.Objects
             set { Set("Name", ref _name, value); }
         }
 
-        public FrameDirection Direction
+        public FrameAnchor Anchor
         {
-            get { return _direction; }
-            set { Set("Direction", ref _direction, value); }
+            get { return _anchor; }
+            set { Set("Anchor", ref _anchor, value); }
         }
 
         public Vector2Short Origin

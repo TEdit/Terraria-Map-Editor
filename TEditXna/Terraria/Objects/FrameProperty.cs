@@ -13,7 +13,7 @@ namespace TEditXNA.Terraria.Objects
             Name = "Default";
             Color = Colors.Magenta;
             UV = new Vector2Short(0,0);
-            Direction = FrameDirection.None;
+            Anchor = FrameAnchor.None;
         }
         public FrameProperty(int id, string name, Vector2Short uv) : this()
         {
@@ -25,7 +25,7 @@ namespace TEditXNA.Terraria.Objects
         private string _name;
         private Vector2Short _uV;
         private int _id;
-        private FrameDirection _direction;
+        private FrameAnchor _anchor;
         
         private Color _color;
         private WriteableBitmap _image;
@@ -38,10 +38,10 @@ namespace TEditXNA.Terraria.Objects
             set { Set("Variety", ref _variety, value); }
         }
 
-        public FrameDirection Direction
+        public FrameAnchor Anchor
         {
-            get { return _direction; }
-            set { Set("Direction", ref _direction, value); }
+            get { return _anchor; }
+            set { Set("Anchor", ref _anchor, value); }
         }
 
         public Color Color

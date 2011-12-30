@@ -40,10 +40,10 @@ namespace TEditXNA.Terraria
             }
         }
 
-        private static T InLineEnumTryParse<T>(string value) where T : struct
+        private static T InLineEnumTryParse<T>(string str) where T : struct
         {
             T result;
-            Enum.TryParse(value, true, out result);
+            Enum.TryParse(str, true, out result);
             return result;
         }
 
@@ -105,6 +105,7 @@ namespace TEditXNA.Terraria
 
             foreach (var xElement in xmlSettings.Elements("Tiles").Elements("Tile"))
             {
+
                 var curTile = new TileProperty();
 
                 // Read XML attributes
@@ -117,7 +118,7 @@ namespace TEditXNA.Terraria
                 curTile.IsLight = (bool?)xElement.Attribute("Light") ?? false;
                 curTile.FrameSize = StringToVector2Short((string)xElement.Attribute("Size"), 1, 1);
                 curTile.Placement = InLineEnumTryParse<FramePlacement>((string)xElement.Attribute("Placement"));
-                curTile.TextureGrid = StringToVector2Short((string)xElement.Attribute("TextureGrid"), 16,16);
+                curTile.TextureGrid = StringToVector2Short((string)xElement.Attribute("TextureGrid"), 16, 16);
                 foreach (var elementFrame in xElement.Elements("Frames").Elements("Frame"))
                 {
 
@@ -126,7 +127,7 @@ namespace TEditXNA.Terraria
                     curFrame.Name = (string)elementFrame.Attribute("Name");
                     curFrame.Variety = (string)elementFrame.Attribute("Variety");
                     curFrame.UV = StringToVector2Short((string)elementFrame.Attribute("UV"), 0, 0);
-                    curFrame.Direction = InLineEnumTryParse<FrameDirection>((string)xElement.Attribute("Dir"));
+                    curFrame.Anchor = InLineEnumTryParse<FrameAnchor>((string)elementFrame.Attribute("Anchor"));
 
                     // Assign a default name if none existed
                     if (string.IsNullOrWhiteSpace(curFrame.Name))
@@ -134,15 +135,15 @@ namespace TEditXNA.Terraria
 
                     curTile.Frames.Add(curFrame);
                     Sprites.Add(new Sprite
-                            {
-                                Direction =  curFrame.Direction,
-                                IsPreviewTexture = false,
-                                Name = curFrame.Name + ", " + curFrame.Variety,
-                                Origin = curFrame.UV,
-                                Size = curTile.FrameSize,
-                                Tile = (byte)curTile.Id,
-                                TileName = curTile.Name
-                            });
+                                    {
+                                        Anchor = curFrame.Anchor,
+                                        IsPreviewTexture = false,
+                                        Name = curFrame.Name + ", " + curFrame.Variety,
+                                        Origin = curFrame.UV,
+                                        Size = curTile.FrameSize,
+                                        Tile = (byte)curTile.Id,
+                                        TileName = curTile.Name
+                                    });
                 }
                 if (curTile.Frames.Count == 0 && curTile.IsFramed)
                 {
@@ -150,8 +151,8 @@ namespace TEditXNA.Terraria
                     // Read XML attributes
                     curFrame.Name = curTile.Name;
                     curFrame.Variety = string.Empty;
-                    curFrame.UV = new Vector2Short(0,0);
-                    curFrame.Direction = InLineEnumTryParse<FrameDirection>((string)xElement.Attribute("Dir"));
+                    curFrame.UV = new Vector2Short(0, 0);
+                    //curFrame.Anchor = InLineEnumTryParse<FrameAnchor>((string)xElement.Attribute("Anchor"));
 
                     // Assign a default name if none existed
                     if (string.IsNullOrWhiteSpace(curFrame.Name))
@@ -159,17 +160,18 @@ namespace TEditXNA.Terraria
 
                     curTile.Frames.Add(curFrame);
                     Sprites.Add(new Sprite
-                    {
-                        Direction = curFrame.Direction,
-                        IsPreviewTexture = false,
-                        Name = curFrame.Name + ", " + curFrame.Variety,
-                        Origin = curFrame.UV,
-                        Size = curTile.FrameSize,
-                        Tile = (byte)curTile.Id,
-                        TileName = curTile.Name
-                    });
+                                    {
+                                        Anchor = curFrame.Anchor,
+                                        IsPreviewTexture = false,
+                                        Name = curFrame.Name + ", " + curFrame.Variety,
+                                        Origin = curFrame.UV,
+                                        Size = curTile.FrameSize,
+                                        Tile = (byte)curTile.Id,
+                                        TileName = curTile.Name
+                                    });
                 }
                 TileProperties.Add(curTile);
+
             }
 
             foreach (var xElement in xmlSettings.Elements("Walls").Elements("Wall"))
@@ -216,7 +218,10 @@ namespace TEditXNA.Terraria
 
         public static IList<TileProperty> TileBricks
         {
-            get { return _tileProperties.Where(x => !x.IsFramed).ToList(); }
+            get
+            {
+                return _tileProperties.Where(x => !x.IsFramed).ToList();
+            }
         }
 
         public static IList<WallProperty> WallProperties

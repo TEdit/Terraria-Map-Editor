@@ -13,13 +13,13 @@ namespace TEditXNA.Terraria.Objects
         All = Water | Lava
     }
 
-    public enum FrameDirection
+    public enum FrameAnchor
     {
         None,
         Left,
         Right,
-        Center,
-        Up,
+        Top,
+        Bottom
     }
 
     [Flags]
