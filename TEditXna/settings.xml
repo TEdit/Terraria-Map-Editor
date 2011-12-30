@@ -6,7 +6,7 @@ Terraria Settings.XML Specifications
 Status: Draft
 Version: 0.92
 Compatible Ver: Terraria 1.0.6
-Last Bottomdated: 2011-09-26
+Last updated: 2011-09-26
 Primary URL: https://github.com/BinaryConstruct/Terraria-Map-Editor/blob/master/TEdit/settings.xml
 ====================================
 
@@ -77,7 +77,7 @@ Single tile object; may contain Frame tags. Has the following properties:
  grass flowers can only grow on grass blocks. These type of tiles MUST only be able to have
  the following underneath it: the tiles on the list, itself (other tiles with the same tile
  number), or empty space. Furthermore, the full plant object MUST ultimately have a
- bottom-most tile attached to one of the tiles on the list.
+ up-most tile attached to one of the tiles on the list.
  
  All programs MUST NOT use the "placement" property (as an implied default or not) if a growOn
  property exists. The "placement", "growsOn", and "hangsOn" properties are all mutually
@@ -92,7 +92,7 @@ Single tile object; may contain Frame tags. Has the following properties:
  a 2x2 object with three different variations. However, each 1x1 tile can be taken from a
  different variation to create a new composite object. (Tiles must still be taken from the
  same location. IOW, you can't take the lower-right corner of Pot A and use it for the
- Bottomper-left corner of your new object.) These type of objects are rare, as it only applies
+ upper-left corner of your new object.) These type of objects are rare, as it only applies
  so far to Pots and Closed Doors.
  
  This property MUST NOT be used unless the "size" property is non-default, and "isFramed"
@@ -125,7 +125,7 @@ have isFramed set to true, with two exceptions:
  
  * The tags SHOULD NOT appear if the object is subject to auto-alignment or auto-correction by the game
  itself. (For example, Signs automatically align to the right Frame, whether it's floor, wall, or
- ceiling, whereas Beds do not automatically pick a facing Anchorection.)
+ ceiling, whereas Beds do not automatically pick a facing Direction.)
  
 
 <Frame>
@@ -139,7 +139,7 @@ exceptions:
 
  * The "num" property MUST appear on the Tile tag without question.
  * A Tile tag MUST have a name, even if it is later overridden by a Frame tag.
- * A Frame tag MUST have an "BottomperLeft" property, even if it's default.
+ * A Frame tag MUST have an "upperLeft" property, even if it's default.
  * A Frame tag MUST NOT have a isFramed property. (This is just redundant.)
  * A Frame tag MUST NOT have a canMixFrames property. (This doesn't even make sense.)
  * The following properties SHOULD only appear on Tile tags, as we have not found different ones
@@ -148,19 +148,19 @@ exceptions:
 
 The following defaults are assumed for Frame tags, including Tiles with frames and no Frame tags:
 
- * The BottomperLeft property defaults to 0,0.
- * There are no "variety" or "Anchor" properties (unless set).
+ * The upperLeft property defaults to 0,0.
+ * There are no "variety" or "Dir" properties (unless set).
  * Each frame jumps by 18 frame points. (So far this has been accurate for all multi-tile objects,
  so we don't need to create a new property yet...)
 
-Frame tags MUST be ordered by a left-right reading Anchorection. So, all of the objects on the first
+Frame tags MUST be ordered by a left-right reading Direction. So, all of the objects on the first
 row, then the second, etc. A zero-based num property can be assumed based on the order of the
 object, but is not actually used (yet).
 
 A Frame tag has the following (other) properties:
  
- * BottomperLeft - Required (even if default); default is 0,0. This is the X,Y coordinates of the
- Bottomper-left corner of the Frame object. Frame coordinates Anchorectly relate to the Tile_??.xnb
+ * upperLeft - Required (even if default); default is 0,0. This is the X,Y coordinates of the
+ upper-left corner of the Frame object. Frame coordinates Directly relate to the Tile_??.xnb
  file referencing them. Each frame point is equal to 1/2 of a pixel. So, a X,Y of 18,0
  is starting at X,Y of 9,0 on the Tile image.
  
@@ -168,22 +168,22 @@ A Frame tag has the following (other) properties:
  1-pixel divider line), so all tiles are assumed to jump by 18 frame points. There are a few
  exceptions, but all of these tiles have size="1,1", so no jumping is required.
  
- * variety - Optional as long as name+variety+Anchor is unique. This further describes the object
+ * variety - Optional as long as name+variety+Dir is unique. This further describes the object
  beyond what the name says. For example, the in-game name of a normal wooden Chest is merely
  "Chest", but one frame has a locked Chest. So, the name is "Chest", and the variety is 
  "Locked".
  
- * Anchor - Optional as long as name+variety+Anchor is unique. This is used instead of (or in
- combination with) a "variety" property to describe the facing Anchorection of the object. For
+ * Dir - Optional as long as name+variety+Dir is unique. This is used instead of (or in
+ combination with) a "variety" property to describe the facing Direction of the object. For
  example, a Toilet comes with both left- and right-facing versions. This property MUST be
- a single character, which (so far) equals: l, r, u, c. Which is Left, Right, Bottom, Center,
+ a single character, which (so far) equals: l, r, u, c. Which is Left, Right, up, Center,
  respectively. Top (as "d") may be used later on, so that is also acceptable.
 
-Frame tags have a unique name among the name, variety, and Anchor properties. So, they might be 
+Frame tags have a unique name among the name, variety, and Dir properties. So, they might be 
 displayed in the following fashion:
 
 <Frame UV="22,0" Name="Tree Trunk" Anchor="Bottom" Variety="Right Indent A" />
- Full Name: Tree Trunk - Right Indent A (Bottomwards)
+ Full Name: Tree Trunk - Right Indent A (upwards)
 
 <Frame UV="72,0" Name="Gold Chest" Variety="Locked" />
  Full Name: Gold Chest - Locked
@@ -211,7 +211,7 @@ Single wall, with no children. Has the following properties:
 Container of Item tags. These contain all of the character items found in Terraria maps. The Items
 tag MUST contain Item tags for all possible items that have a Item_??.xnb file in the Terraria
 game data, found in the Content\Images folder, as well as any other items found in the game that
-can be picked Bottom by the player.
+can be picked up by the player.
 
 <Item>
 
@@ -240,12 +240,12 @@ Single item; tag has no children. Has the following properties:
  @ wall = All background wall objects
  @ furniture = All furniture, both decorative and crafting stations (will split later on)
  @ crafter = Future use for crafting stations.
- @ plant = All plants (sBottomersedes all other categories)
+ @ plant = All plants (supersedes all other categories)
  @ material = Objects that are primarily used for crafting material
  @ potion = All items called "Potion" or containers of liquid that buff character
  @ consumable = Other items that are one-use only
  @ ammo = Objects that are primarily used for gun/bow ammo
- @ money = Objects that go Anchorectly in the money slots
+ @ money = Objects that go Directly in the money slots
 
 -->
 
@@ -261,7 +261,7 @@ Single item; tag has no children. Has the following properties:
     <GlobalColor Name="Wire" Color="#70FF0000" />
   </GlobalColors>
   <Tiles>
-    <Tile Id="0" Name="Anchort Block" Color="#FF916A4F"  Solid="true"/>
+    <Tile Id="0" Name="Dirt Block" Color="#FF916A4F"  Solid="true"/>
     <Tile Id="1" Name="Stone Block" Color="#FF808080"  Solid="true"/>
     <Tile Id="2" Name="Grass" Color="#FF1CD85E"  Solid="true"/>
     <Tile Id="3" Name="Grass Flowers" Color="#FF0D6524" Framed="true" TextureGrid="16,20">
@@ -446,8 +446,8 @@ Single item; tag has no children. Has the following properties:
       </Frames>
     </Tile>
     <Tile Id="22" Name="Demonite Ore" Color="#FF625FA7"  Light="true" Solid="true"/>
-    <Tile Id="23" Name="CorrBottomtion" Color="#FF8D89DF"  Solid="true"/>
-    <Tile Id="24" Name="CorrBottomtion Plants" Color="#FF8D89DF"  Framed="true" TextureGrid="16,20">
+    <Tile Id="23" Name="Corruption" Color="#FF8D89DF"  Solid="true"/>
+    <Tile Id="24" Name="Corruption Plants" Color="#FF8D89DF"  Framed="true" TextureGrid="16,20">
       <Frames>
         <Frame UV="0,0" Name="Vile Grass" Anchor="Right" Variety="Single Blade" />
         <Frame UV="18,0" Name="Vile Grass" Anchor="Right" Variety="Double Blade" />
@@ -479,7 +479,7 @@ Single item; tag has no children. Has the following properties:
     <Tile Id="29" Name="Piggy Bank" Color="#FF00FFF2" Placement="surface" Framed="true" Size="2,1"/>
     <Tile Id="30" Name="Wood" Color="#FF684934"  Solid="true"/>
     <Tile Id="31" Name="Shadow Orb" Color="#FF000000" Placement="floor" Light="true" Framed="true" Size="2,2"/>
-    <Tile Id="32" Name="CorrBottomtion Vines" Color="#FF7A618F" />
+    <Tile Id="32" Name="Corruption Vines" Color="#FF7A618F" />
     <Tile Id="33" Name="Candle" Color="#FFFD3E03" Placement="surface" Light="true" Framed="true" TextureGrid="16,20">
       <Frames>
         <Frame UV="0,0" Variety="On" />
@@ -757,7 +757,7 @@ Single item; tag has no children. Has the following properties:
         <Frame UV="972,0" Variety="Chest Statue" />
         <Frame UV="1008,0" Variety="Bird Statue" />
         <Frame UV="1044,0" Variety="Axe Statue" />
-        <Frame UV="1080,0" Variety="CorrBottomt Statue" />
+        <Frame UV="1080,0" Variety="Corrupt Statue" />
         <Frame UV="1116,0" Variety="Tree Statue" />
         <Frame UV="1152,0" Variety="Anvil Statue" />
         <Frame UV="1188,0" Variety="Pickaxe Statue" />
@@ -876,10 +876,10 @@ Single item; tag has no children. Has the following properties:
         <Frame UV="36,180" Name="Music Box (Boss 1)" Variety="On" />
         <Frame UV="0,216" Name="Music Box (Jungle)" Variety="Off"/>
         <Frame UV="36,216" Name="Music Box (Jungle)" Variety="On" />
-        <Frame UV="0,252" Name="Music Box (CorrBottomtion)" Variety="Off"/>
-        <Frame UV="36,252" Name="Music Box (CorrBottomtion)" Variety="On" />
-        <Frame UV="0,288" Name="Music Box (Underground CorrBottomtion)" Variety="Off"/>
-        <Frame UV="36,288" Name="Music Box (Underground CorrBottomtion)" Variety="On" />
+        <Frame UV="0,252" Name="Music Box (Corruption)" Variety="Off"/>
+        <Frame UV="36,252" Name="Music Box (Corruption)" Variety="On" />
+        <Frame UV="0,288" Name="Music Box (Underground Corruption)" Variety="Off"/>
+        <Frame UV="36,288" Name="Music Box (Underground Corruption)" Variety="On" />
         <Frame UV="0,324" Name="Music Box (The Hallow)" Variety="Off"/>
         <Frame UV="36,324" Name="Music Box (The Hallow)" Variety="On" />
         <Frame UV="0,360" Name="Music Box (Boss 2)" Variety="Off"/>
@@ -921,8 +921,8 @@ Single item; tag has no children. Has the following properties:
   <Walls>
     <Wall Id="0" Name="Sky" Color="#00000000" />
     <Wall Id="1" Name="Stone Wall" Color="#ff424242" IsHouse="true" />
-    <Wall Id="2" Name="Anchort Wall" Color="#ff583d2e" />
-    <Wall Id="3" Name="CorrBottomtion Wall" Color="#ff312545" />
+    <Wall Id="2" Name="Dirt Wall" Color="#ff583d2e" />
+    <Wall Id="3" Name="Corruption Wall" Color="#ff312545" />
     <Wall Id="4" Name="Wood Wall" Color="#ff4a2e1c" IsHouse="true" />
     <Wall Id="5" Name="Brick Wall" Color="#ff454545" IsHouse="true" />
     <Wall Id="6" Name="Dungeon Red Wall" Color="#ff500000" IsHouse="true" />
@@ -935,7 +935,7 @@ Single item; tag has no children. Has the following properties:
     <Wall Id="13" Name="Hellstone" Color="#ff3F0707" />
     <Wall Id="14" Name="Obsidian" Color="#ff000060" />
     <Wall Id="15" Name="Mud" Color="#ff005500" />
-    <Wall Id="16" Name="Player Anchort Wall" Color="#ff583d2e" IsHouse="true" />
+    <Wall Id="16" Name="Player Dirt Wall" Color="#ff583d2e" IsHouse="true" />
     <Wall Id="17" Name="Player Blue Wall" Color="#ff000043" IsHouse="true" />
     <Wall Id="18" Name="Player Green Wall" Color="#ff003700" IsHouse="true" />
     <Wall Id="19" Name="Player Pink Wall" Color="#ff330037" IsHouse="true" />
@@ -958,7 +958,7 @@ Single item; tag has no children. Has the following properties:
     <Item Id="1" Name="Gold Pickaxe" />
     <Item Id="1" Name="Iron Pickaxe" />
     <Item Id="1" Name="Silver Pickaxe" />
-    <Item Id="2" Name="Anchort Block" />
+    <Item Id="2" Name="Dirt Block" />
     <Item Id="3" Name="Stone Block" />
     <Item Id="4" Name="Copper Broadsword" />
     <Item Id="4" Name="Gold Broadsword" />
@@ -998,7 +998,7 @@ Single item; tag has no children. Has the following properties:
     <Item Id="27" Name="Acorn" />
     <Item Id="28" Name="Lesser Healing Potion" />
     <Item Id="29" Name="Life Crystal" />
-    <Item Id="30" Name="Anchort Wall" />
+    <Item Id="30" Name="Dirt Wall" />
     <Item Id="31" Name="Bottle" />
     <Item Id="32" Name="Wooden Table" />
     <Item Id="33" Name="Furnace" />
@@ -1027,7 +1027,7 @@ Single item; tag has no children. Has the following properties:
     <Item Id="56" Name="Demonite Ore" />
     <Item Id="57" Name="Demonite Bar" />
     <Item Id="58" Name="Heart" />
-    <Item Id="59" Name="CorrBottomt Seeds" />
+    <Item Id="59" Name="Corrupt Seeds" />
     <Item Id="60" Name="Vile Mushroom" />
     <Item Id="61" Name="Ebonstone Block" />
     <Item Id="62" Name="Grass Seeds" />
@@ -1085,7 +1085,7 @@ Single item; tag has no children. Has the following properties:
     <Item Id="111" Name="Band of Starpower" />
     <Item Id="112" Name="Flower of Fire" />
     <Item Id="113" Name="Magic Missile" />
-    <Item Id="114" Name="Anchort Rod" />
+    <Item Id="114" Name="Dirt Rod" />
     <Item Id="115" Name="Orb of Light" />
     <Item Id="116" Name="Meteorite" />
     <Item Id="117" Name="Meteorite Bar" />
@@ -1334,7 +1334,7 @@ Single item; tag has no children. Has the following properties:
     <Item Id="354" Name="Bookcase" />
     <Item Id="355" Name="Throne" />
     <Item Id="356" Name="Bowl" />
-    <Item Id="357" Name="Bowl of SoBottom" />
+    <Item Id="357" Name="Bowl of Soup" />
     <Item Id="358" Name="Toilet" />
     <Item Id="359" Name="Grandfather Clock" />
     <Item Id="360" Name="Armor Statue" />
@@ -1443,7 +1443,7 @@ Single item; tag has no children. Has the following properties:
     <Item Id="463" Name="Chest Statue" />
     <Item Id="464" Name="Bird Statue" />
     <Item Id="465" Name="Axe Statue" />
-    <Item Id="466" Name="CorrBottomt Statue" />
+    <Item Id="466" Name="Corrupt Statue" />
     <Item Id="467" Name="Tree Statue" />
     <Item Id="468" Name="Anvil Statue" />
     <Item Id="469" Name="Pickaxe Statue" />
@@ -1546,8 +1546,8 @@ Single item; tag has no children. Has the following properties:
     <Item Id="566" Name="Music Box (Underground)" />
     <Item Id="567" Name="Music Box (Boss 1)" />
     <Item Id="568" Name="Music Box (Jungle)" />
-    <Item Id="569" Name="Music Box (CorrBottomtion)" />
-    <Item Id="570" Name="Music Box (Underground CorrBottomtion)" />
+    <Item Id="569" Name="Music Box (Corruption)" />
+    <Item Id="570" Name="Music Box (Underground Corruption)" />
     <Item Id="571" Name="Music Box (The Hallow)" />
     <Item Id="572" Name="Music Box (Boss 2)" />
     <Item Id="573" Name="Music Box (Underground Hallow)" />

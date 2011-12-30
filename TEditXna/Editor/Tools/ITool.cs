@@ -8,12 +8,12 @@ namespace TEditXna.Editor.Tools
         BitmapImage Icon { get; }
         bool IsActive { get; set; }
         string Name { get; }
+        bool PreviewIsTexture { get; }
         void MouseDown(TileMouseState e);
         void MouseMove(TileMouseState e);
         void MouseUp(TileMouseState e);
         void MouseWheel(TileMouseState e);
 
         WriteableBitmap PreviewTool();
-        bool PreviewIsTexture { get; }
     }
 }

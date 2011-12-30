@@ -4,51 +4,32 @@ using System.Linq;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using BCCL.Geometry;
 using BCCL.Geometry.Primitives;
-using BCCL.MvvmLight;
 using TEditXna.ViewModel;
 
 namespace TEditXna.Editor.Tools
 {
-    public class BrushTool : ObservableObject, ITool
+    public sealed class BrushTool : BaseTool
     {
-        private WorldViewModel _wvm;
-        private WriteableBitmap _preview = new WriteableBitmap(1, 1, 96, 96, PixelFormats.Bgra32, null);
-        private bool _isActive;
-        private bool[] _setThisPass;
-
-        public BrushTool(WorldViewModel worldViewModel)
-        {
-            _wvm = worldViewModel;
-            _preview.Clear();
-            _preview.SetPixel(0, 0, 127, 0, 90, 255);
-
-            Icon = new BitmapImage(new Uri(@"pack://application:,,,/TEditXna;component/Images/Tools/paintbrush.png"));
-            Name = "Brush";
-            IsActive = false;
-        }
-
-        public string Name { get; private set; }
-
-        public ToolType ToolType { get { return ToolType.Brush; } }
-
-        public BitmapImage Icon { get; private set; }
-
-        public bool IsActive
-        {
-            get { return _isActive; }
-            set { Set("IsActive", ref _isActive, value); }
-        }
-
         private bool _isLeftDown;
         private bool _isRightDown;
+        private bool[] _setThisPass;
         private Vector2Int32 _startPoint;
-        public void MouseDown(TileMouseState e)
+
+        public BrushTool(WorldViewModel worldViewModel) : base(worldViewModel)
+        {
+            Icon = new BitmapImage(new Uri(@"pack://application:,,,/TEditXna;component/Images/Tools/paintbrush.png"));
+            Name = "Brush";
+            ToolType = ToolType.Brush;
+        }
+
+        public override void MouseDown(TileMouseState e)
         {
             if (!_isRightDown && !_isLeftDown)
             {
                 _startPoint = e.Location;
-                _setThisPass = new bool[_wvm.CurrentWorld.TilesWide * _wvm.CurrentWorld.TilesHigh];
+                _setThisPass = new bool[_wvm.CurrentWorld.TilesWide*_wvm.CurrentWorld.TilesHigh];
             }
 
             CheckDirectionandDraw(e.Location);
@@ -56,12 +37,12 @@ namespace TEditXna.Editor.Tools
             _isRightDown = (e.RightButton == MouseButtonState.Pressed);
         }
 
-        public void MouseMove(TileMouseState e)
+        public override void MouseMove(TileMouseState e)
         {
             CheckDirectionandDraw(e.Location);
         }
 
-        public void MouseUp(TileMouseState e)
+        public override void MouseUp(TileMouseState e)
         {
             CheckDirectionandDraw(e.Location);
             _isLeftDown = (e.LeftButton == MouseButtonState.Pressed);
@@ -69,11 +50,7 @@ namespace TEditXna.Editor.Tools
             _wvm.UndoManager.SaveUndo();
         }
 
-        public void MouseWheel(TileMouseState e)
-        {
-        }
-
-        public WriteableBitmap PreviewTool()
+        public override WriteableBitmap PreviewTool()
         {
             var bmp = new WriteableBitmap(_wvm.Brush.Width + 1, _wvm.Brush.Height + 1, 96, 96, PixelFormats.Bgra32, null);
 
@@ -81,12 +58,11 @@ namespace TEditXna.Editor.Tools
             if (_wvm.Brush.Shape == BrushShape.Square)
                 bmp.FillRectangle(0, 0, _wvm.Brush.Width, _wvm.Brush.Height, Color.FromArgb(127, 0, 90, 255));
             else
-                bmp.FillEllipse(0, 0, _wvm.Brush.Width / 2, _wvm.Brush.Height / 2, Color.FromArgb(127, 0, 90, 255));
+                bmp.FillEllipse(0, 0, _wvm.Brush.Width/2, _wvm.Brush.Height/2, Color.FromArgb(127, 0, 90, 255));
 
             _preview = bmp;
             return _preview;
         }
-
 
         private void CheckDirectionandDraw(Vector2Int32 tile)
         {
@@ -110,7 +86,7 @@ namespace TEditXna.Editor.Tools
 
         private void DrawLine(Vector2Int32 to)
         {
-            foreach (var point in BCCL.Geometry.Shape.DrawLineTool(_startPoint, to))
+            foreach (Vector2Int32 point in Shape.DrawLineTool(_startPoint, to))
             {
                 if (_wvm.Brush.Shape == BrushShape.Round)
                 {
@@ -127,16 +103,16 @@ namespace TEditXna.Editor.Tools
         {
             if (_wvm.Brush.IsOutline)
             {
-                var area = BCCL.Geometry.Fill.FillRectangleCentered(point, new Vector2Int32(_wvm.Brush.Width, _wvm.Brush.Height));
-                var interrior = BCCL.Geometry.Fill.FillRectangleCentered(point,
-                    new Vector2Int32(
-                        _wvm.Brush.Width - _wvm.Brush.Outline * 2,
-                        _wvm.Brush.Height - _wvm.Brush.Outline * 2));
+                IEnumerable<Vector2Int32> area = Fill.FillRectangleCentered(point, new Vector2Int32(_wvm.Brush.Width, _wvm.Brush.Height));
+                IEnumerable<Vector2Int32> interrior = Fill.FillRectangleCentered(point,
+                                                                                 new Vector2Int32(
+                                                                                     _wvm.Brush.Width - _wvm.Brush.Outline*2,
+                                                                                     _wvm.Brush.Height - _wvm.Brush.Outline*2));
                 FillHollow(area, interrior);
             }
             else
             {
-                var area = BCCL.Geometry.Fill.FillRectangleCentered(point, new Vector2Int32(_wvm.Brush.Width, _wvm.Brush.Height));
+                IEnumerable<Vector2Int32> area = Fill.FillRectangleCentered(point, new Vector2Int32(_wvm.Brush.Width, _wvm.Brush.Height));
                 FillSolid(area);
             }
         }
@@ -145,27 +121,27 @@ namespace TEditXna.Editor.Tools
         {
             if (_wvm.Brush.IsOutline)
             {
-                var area = BCCL.Geometry.Fill.FillEllipseCentered(point, new Vector2Int32(_wvm.Brush.Width / 2, _wvm.Brush.Height / 2));
-                var interrior = BCCL.Geometry.Fill.FillEllipseCentered(point,
-                    new Vector2Int32(
-                        _wvm.Brush.Width / 2 - _wvm.Brush.Outline * 2,
-                        _wvm.Brush.Height / 2 - _wvm.Brush.Outline * 2));
+                IEnumerable<Vector2Int32> area = Fill.FillEllipseCentered(point, new Vector2Int32(_wvm.Brush.Width/2, _wvm.Brush.Height/2));
+                IEnumerable<Vector2Int32> interrior = Fill.FillEllipseCentered(point,
+                                                                               new Vector2Int32(
+                                                                                   _wvm.Brush.Width/2 - _wvm.Brush.Outline*2,
+                                                                                   _wvm.Brush.Height/2 - _wvm.Brush.Outline*2));
                 FillHollow(area, interrior);
             }
             else
             {
-                var area = BCCL.Geometry.Fill.FillEllipseCentered(point, new Vector2Int32(_wvm.Brush.Width / 2, _wvm.Brush.Height / 2));
+                IEnumerable<Vector2Int32> area = Fill.FillEllipseCentered(point, new Vector2Int32(_wvm.Brush.Width/2, _wvm.Brush.Height/2));
                 FillSolid(area);
             }
         }
 
         private void FillSolid(IEnumerable<Vector2Int32> area)
         {
-            foreach (var pixel in area)
+            foreach (Vector2Int32 pixel in area)
             {
                 if (!_wvm.CurrentWorld.ValidTileLocation(pixel)) continue;
 
-                int index = pixel.X + pixel.Y * _wvm.CurrentWorld.TilesWide;
+                int index = pixel.X + pixel.Y*_wvm.CurrentWorld.TilesWide;
                 if (!_setThisPass[index])
                 {
                     _setThisPass[index] = true;
@@ -177,16 +153,16 @@ namespace TEditXna.Editor.Tools
 
         private void FillHollow(IEnumerable<Vector2Int32> area, IEnumerable<Vector2Int32> interrior)
         {
-            var border = area.Except(interrior);
+            IEnumerable<Vector2Int32> border = area.Except(interrior);
 
             // Draw the border
             if (_wvm.TilePicker.PaintMode == PaintMode.Tile || _wvm.TilePicker.PaintMode == PaintMode.TileAndWall)
             {
-                foreach (var pixel in border)
+                foreach (Vector2Int32 pixel in border)
                 {
                     if (!_wvm.CurrentWorld.ValidTileLocation(pixel)) continue;
 
-                    int index = pixel.X + pixel.Y * _wvm.CurrentWorld.TilesWide;
+                    int index = pixel.X + pixel.Y*_wvm.CurrentWorld.TilesWide;
                     if (!_setThisPass[index])
                     {
                         _setThisPass[index] = true;
@@ -197,7 +173,7 @@ namespace TEditXna.Editor.Tools
             }
 
             // Draw the wall in the interrior, exclude the border so no overlaps
-            foreach (var pixel in interrior)
+            foreach (Vector2Int32 pixel in interrior)
             {
                 if (!_wvm.CurrentWorld.ValidTileLocation(pixel)) continue;
                 _wvm.UndoManager.SaveTile(pixel);
@@ -207,8 +183,5 @@ namespace TEditXna.Editor.Tools
                     _wvm.SetPixel(pixel.X, pixel.Y, mode: PaintMode.Wall);
             }
         }
-
-        public bool PreviewIsTexture { get { return false; } }
-
     }
 }

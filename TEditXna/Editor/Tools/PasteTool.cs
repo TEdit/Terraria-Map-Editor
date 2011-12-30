@@ -1,48 +1,24 @@
 using System;
 using System.Windows.Input;
-using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using BCCL.Geometry.Primitives;
-using BCCL.MvvmLight;
 using Microsoft.Xna.Framework;
 using TEditXna.ViewModel;
 
 namespace TEditXna.Editor.Tools
 {
-    public class PasteTool : ObservableObject, ITool
+    public sealed class PasteTool : BaseTool
     {
-        private WorldViewModel _wvm;
-        private WriteableBitmap _preview;
-
-        private bool _isActive;
-
-        public PasteTool(WorldViewModel worldViewModel)
+        public PasteTool(WorldViewModel worldViewModel) : base(worldViewModel)
         {
-            _wvm = worldViewModel;
-            _preview = new WriteableBitmap(1, 1, 96, 96, PixelFormats.Bgra32, null);
-            _preview.Clear();
-            _preview.SetPixel(0, 0, 127, 0, 90, 255);
-
             Icon = new BitmapImage(new Uri(@"pack://application:,,,/TEditXna;component/Images/Tools/paste.png"));
             Name = "Paste";
             IsActive = false;
+            ToolType = ToolType.Pixel;
         }
 
-        public string Name { get; private set; }
-
-        public ToolType ToolType { get { return ToolType.Pixel; } }
-
-        public BitmapImage Icon { get; private set; }
-
-        public bool IsActive
+        public override void MouseDown(TileMouseState e)
         {
-            get { return _isActive; }
-            set { Set("IsActive", ref _isActive, value); }
-        }
-
-        public void MouseDown(TileMouseState e)
-        {
-
             if (e.LeftButton == MouseButtonState.Pressed)
             {
                 PasteClipboard(e.Location);
@@ -54,25 +30,12 @@ namespace TEditXna.Editor.Tools
             }
         }
 
-        public void MouseMove(TileMouseState e)
-        {
-        }
-
-        public void MouseUp(TileMouseState e)
-        {
-
-        }
-
-        public void MouseWheel(TileMouseState e)
-        {
-        }
-
-        public WriteableBitmap PreviewTool()
+        public override WriteableBitmap PreviewTool()
         {
             if (_wvm.Clipboard.Buffer != null)
                 return _wvm.Clipboard.Buffer.Preview;
 
-            return _preview;
+            return base.PreviewTool();
         }
 
         private void PasteClipboard(Vector2Int32 anchor)
@@ -80,7 +43,5 @@ namespace TEditXna.Editor.Tools
             _wvm.Clipboard.PasteBufferIntoWorld(anchor);
             _wvm.UpdateRenderRegion(new Rectangle(anchor.X, anchor.Y, _wvm.Clipboard.Buffer.Size.X, _wvm.Clipboard.Buffer.Size.Y));
         }
-
-        public bool PreviewIsTexture { get { return false; } }
     }
 }

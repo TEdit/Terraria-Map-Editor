@@ -10,10 +10,10 @@ namespace TEditXna.Editor.Tools
 {
     public class SelectionTool : ObservableObject, ITool
     {
-        private WriteableBitmap _preview;
-        private WorldViewModel _wvm;
-        private Vector2Int32 _startSelection;
+        private readonly WriteableBitmap _preview;
+        private readonly WorldViewModel _wvm;
         private bool _isActive;
+        private Vector2Int32 _startSelection;
 
         public SelectionTool(WorldViewModel worldViewModel)
         {
@@ -27,9 +27,14 @@ namespace TEditXna.Editor.Tools
             IsActive = false;
         }
 
+        #region ITool Members
+
         public string Name { get; private set; }
 
-        public ToolType ToolType { get { return ToolType.Pixel; } }
+        public ToolType ToolType
+        {
+            get { return ToolType.Pixel; }
+        }
 
         public BitmapImage Icon { get; private set; }
 
@@ -57,12 +62,10 @@ namespace TEditXna.Editor.Tools
 
         public void MouseUp(TileMouseState e)
         {
-
         }
 
         public void MouseWheel(TileMouseState e)
         {
-
         }
 
         public WriteableBitmap PreviewTool()
@@ -70,6 +73,11 @@ namespace TEditXna.Editor.Tools
             return _preview;
         }
 
-        public bool PreviewIsTexture { get { return false; } }
+        public bool PreviewIsTexture
+        {
+            get { return false; }
+        }
+
+        #endregion
     }
 }

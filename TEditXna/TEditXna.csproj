@@ -89,6 +89,7 @@
     <Compile Include="Editor\TileMouseState.cs" />
     <Compile Include="Editor\TilePicker.cs" />
     <Compile Include="Editor\Tools\ArrowTool.cs" />
+    <Compile Include="Editor\Tools\BaseTool.cs" />
     <Compile Include="Editor\Tools\BrushTool.cs" />
     <Compile Include="Editor\Tools\FillTool.cs" />
     <Compile Include="Editor\Tools\ITool.cs" />

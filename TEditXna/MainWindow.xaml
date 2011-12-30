@@ -136,6 +136,9 @@
                                         <DataTrigger Binding="{Binding ActiveTool.Name}" Value="Pencil">
                                             <Setter Property="Visibility" Value="Visible" />
                                         </DataTrigger>
+                                        <DataTrigger Binding="{Binding ActiveTool.Name}" Value="Picker">
+                                            <Setter Property="Visibility" Value="Visible" />
+                                        </DataTrigger>
                                     </Style.Triggers>
                                 </Style>
                             </View:PaintModeView.Style>
