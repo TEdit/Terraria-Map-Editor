@@ -309,7 +309,7 @@ namespace TEditXna.View
                     {
                         var curtile = _wvm.CurrentWorld.Tiles[x, y];
                         var tileprop = World.TileProperties[curtile.Type];
-                        if (World.TileProperties[curtile.Type].IsFramed)
+                        if (tileprop.IsFramed)
                         {
                             var source = new Rectangle(curtile.U, curtile.V, tileprop.TextureGrid.X, tileprop.TextureGrid.Y);
                             var tileTex = _textureDictionary.GetTile(curtile.Type);
@@ -318,11 +318,46 @@ namespace TEditXna.View
                             if (source.Right > tileTex.Width)
                                 source.Width -= (source.Right - tileTex.Width);
 
+                            var dest = new Rectangle(1 + (int) ((_scrollPosition.X + x)*_zoom), 1 + (int) ((_scrollPosition.Y + y)*_zoom), (int) _zoom, (int) _zoom);
+                            var texsize = tileprop.TextureGrid;
+                            if (texsize.X != 16 || texsize.Y != 16)
+                            {
+                                dest.Width = (int)(texsize.X * (_zoom / 16));
+                                dest.Height = (int)(texsize.Y * (_zoom / 16));
+
+                                var frame = (tileprop.Frames.FirstOrDefault(f=>f.UV == new Vector2Short(curtile.U, curtile.V)));
+                                var frameAnchor = FrameAnchor.None;
+                                if (frame != null)
+                                    frameAnchor = frame.Anchor;
+                                switch (frameAnchor)
+                                {
+                                    case FrameAnchor.None:
+                                        dest.X += (int)(((16 - texsize.X) / 2F) * _zoom / 16);
+                                        dest.Y += (int)(((16 - texsize.Y) / 2F) * _zoom / 16);
+                                        break;
+                                    case FrameAnchor.Left:
+                                        //position.X += (16 - texsize.X) / 2;
+                                        dest.Y += (int)(((16 - texsize.Y) / 2F) * _zoom / 16);
+                                        break;
+                                    case FrameAnchor.Right:
+                                        dest.X += (int)((16 - texsize.X) * _zoom / 16);
+                                        dest.Y += (int)(((16 - texsize.Y) / 2F) * _zoom / 16);
+                                        break;
+                                    case FrameAnchor.Top:
+                                        dest.X += (int)(((16 - texsize.X) / 2F) * _zoom / 16);
+                                        //position.Y += (16 - texsize.Y);
+                                        break;
+                                    case FrameAnchor.Bottom:
+                                        dest.X += (int)(((16 - texsize.X) / 2F) * _zoom / 16);
+                                        dest.Y += (int)((16 - texsize.Y) * _zoom / 16);
+                                        break;
+                                }
+
+                            }
+
+
                             _spriteBatch.Draw(tileTex,
-                                    new Rectangle(1 + (int)((_scrollPosition.X + x) * _zoom),
-                                                1 + (int)((_scrollPosition.Y + y) * _zoom),
-                                                (int)_zoom,
-                                                (int)_zoom),
+                                    dest,
                                     source,
                                     Color.White);
                         }
@@ -412,31 +447,33 @@ namespace TEditXna.View
             if (_wvm.ActiveTool.Name == "Sprite" && _wvm.SelectedSprite != null)
             {
                 var texsize = World.TileProperties[_wvm.SelectedSprite.Tile].TextureGrid;
-                switch (_wvm.SelectedSprite.Anchor)
+                if (texsize.X != 16 || texsize.Y != 16)
                 {
-                    case FrameAnchor.None:
-                        position.X += ((16 - texsize.X) / 2F) * _zoom / 16;
-                        position.Y += ((16 - texsize.Y) / 2F) * _zoom / 16;
-                        break;
-                    case FrameAnchor.Left:
-                        //position.X += (16 - texsize.X) / 2;
-                        position.Y += ((16 - texsize.Y) / 2F) * _zoom / 16;
-                        break;
-                    case FrameAnchor.Right:
-                        position.X += (16 - texsize.X) * _zoom / 16;
-                        position.Y += ((16 - texsize.Y) / 2F) * _zoom / 16;
-                        break;
-                    case FrameAnchor.Top:
-                        position.X += ((16 - texsize.X) / 2F) * _zoom / 16;
-                        //position.Y += (16 - texsize.Y);
-                        break;
-                    case FrameAnchor.Bottom:
-                        position.X += ((16 - texsize.X) / 2F) * _zoom / 16;
-                        position.Y += (16 - texsize.Y) * _zoom/16;
-                        break;
+                    switch (_wvm.SelectedSprite.Anchor)
+                    {
+                        case FrameAnchor.None:
+                            position.X += ((16 - texsize.X)/2F)*_zoom/16;
+                            position.Y += ((16 - texsize.Y)/2F)*_zoom/16;
+                            break;
+                        case FrameAnchor.Left:
+                            //position.X += (16 - texsize.X) / 2;
+                            position.Y += ((16 - texsize.Y)/2F)*_zoom/16;
+                            break;
+                        case FrameAnchor.Right:
+                            position.X += (16 - texsize.X)*_zoom/16;
+                            position.Y += ((16 - texsize.Y)/2F)*_zoom/16;
+                            break;
+                        case FrameAnchor.Top:
+                            position.X += ((16 - texsize.X)/2F)*_zoom/16;
+                            //position.Y += (16 - texsize.Y);
+                            break;
+                        case FrameAnchor.Bottom:
+                            position.X += ((16 - texsize.X)/2F)*_zoom/16;
+                            position.Y += (16 - texsize.Y)*_zoom/16;
+                            break;
+                    }
+
                 }
-
-
             }
 
             if (_wvm.ActiveTool.PreviewIsTexture)

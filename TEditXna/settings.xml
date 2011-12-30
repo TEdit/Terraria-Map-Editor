@@ -279,34 +279,34 @@ Single item; tag has no children. Has the following properties:
     </Tile>
     <Tile Id="4" Name="Torch" Color="#FFFD3E03" Placement="wallFloor" Light="true" Framed="true" Size="1,1" TextureGrid="20,20">
       <Frames>
-        <Frame UV="0,0" Name="Torch" Anchor="Top" Variety="On" />
+        <Frame UV="0,0" Name="Torch" Anchor="Bottom" Variety="On" />
         <Frame UV="22,0" Name="Torch" Anchor="Left" Variety="On" />
         <Frame UV="44,0" Name="Torch" Anchor="Right" Variety="On" />
         <!--<Frame UV="54,0" Name="Torch" Anchor="Top" Variety="Off" />
         <Frame UV="72,0" Name="Torch" Anchor="Left" Variety="Off" />
         <Frame UV="90,0" Name="Torch" Anchor="Right" Variety="Off" />-->
-        <Frame UV="0,22" Name="Blue" Anchor="Top" Variety="On" />
+        <Frame UV="0,22" Name="Blue" Anchor="Bottom" Variety="On" />
         <Frame UV="22,22" Name="Blue" Anchor="Left" Variety="On" />
         <Frame UV="44,22" Name="Blue" Anchor="Right" Variety="On" />
-        <Frame UV="0,44" Name="Red" Anchor="Top" Variety="On" />
+        <Frame UV="0,44" Name="Red" Anchor="Bottom" Variety="On" />
         <Frame UV="22,44" Name="Red" Anchor="Left" Variety="On" />
         <Frame UV="44,44" Name="Blue" Anchor="Right" Variety="On" />
-        <Frame UV="0,66" Name="Green" Anchor="Top" Variety="On" />
+        <Frame UV="0,66" Name="Green" Anchor="Bottom" Variety="On" />
         <Frame UV="22,66" Name="Green" Anchor="Left" Variety="On" />
         <Frame UV="44,66" Name="Green" Anchor="Right" Variety="On" />
-        <Frame UV="0,88" Name="Purple" Anchor="Top" Variety="On" />
+        <Frame UV="0,88" Name="Purple" Anchor="Bottom" Variety="On" />
         <Frame UV="22,88" Name="Purple" Anchor="Left" Variety="On" />
         <Frame UV="44,88" Name="Purple" Anchor="Right" Variety="On" />
-        <Frame UV="0,110" Name="White" Anchor="Top" Variety="On" />
+        <Frame UV="0,110" Name="White" Anchor="Bottom" Variety="On" />
         <Frame UV="22,110" Name="White" Anchor="Left" Variety="On" />
         <Frame UV="44,110" Name="White" Anchor="Right" Variety="On" />
-        <Frame UV="0,132" Name="Yellow" Anchor="Top" Variety="On" />
+        <Frame UV="0,132" Name="Yellow" Anchor="Bottom" Variety="On" />
         <Frame UV="22,132" Name="Yellow" Anchor="Left" Variety="On" />
         <Frame UV="44,132" Name="Yellow" Anchor="Right" Variety="On" />
-        <Frame UV="0,154" Name="Demon" Anchor="Top" Variety="On" />
+        <Frame UV="0,154" Name="Demon" Anchor="Bottom" Variety="On" />
         <Frame UV="22,154" Name="Demon" Anchor="Left" Variety="On" />
         <Frame UV="44,154" Name="Demon" Anchor="Right" Variety="On" />
-        <Frame UV="0,176" Name="Cursed" Anchor="Top" Variety="On" />
+        <Frame UV="0,176" Name="Cursed" Anchor="Bottom" Variety="On" />
         <Frame UV="22,176" Name="Cursed" Anchor="Left" Variety="On" />
         <Frame UV="44,176" Name="Cursed" Anchor="Right" Variety="On" />
       </Frames>
