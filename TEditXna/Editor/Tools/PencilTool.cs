@@ -4,6 +4,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using BCCL.Geometry.Primitives;
 using BCCL.MvvmLight;
+using TEditXNA.Terraria;
+using TEditXna.Editor.Undo;
 using TEditXna.ViewModel;
 
 namespace TEditXna.Editor.Tools
@@ -48,6 +50,7 @@ namespace TEditXna.Editor.Tools
             {
                 _startPoint = e.Location;
                 _checked = new bool[_wvm.CurrentWorld.TilesWide * _wvm.CurrentWorld.TilesHigh];
+                
             }
 
             CheckDirectionandDraw(e.Location);
@@ -65,6 +68,7 @@ namespace TEditXna.Editor.Tools
             CheckDirectionandDraw(e.Location);
             _isLeftDown = (e.LeftButton == MouseButtonState.Pressed);
             _isRightDown = (e.RightButton == MouseButtonState.Pressed);
+            _wvm.UndoManager.SaveUndo();
         }
 
         public void MouseWheel(TileMouseState e)
@@ -101,10 +105,12 @@ namespace TEditXna.Editor.Tools
                 int x0 = p.X - _wvm.Brush.OffsetX;
                 int y0 = p.Y - _wvm.Brush.OffsetY;
 
-
+                _wvm.UndoManager.SaveTile(p);
                 _wvm.SetPixel(p.X, p.Y);
             }
         }
+
+        public bool PreviewIsTexture { get { return false; } }
     }
 
     

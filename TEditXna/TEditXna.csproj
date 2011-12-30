@@ -78,7 +78,7 @@
     <Compile Include="Editor\BrushSettings.cs" />
     <Compile Include="Editor\BrushShape.cs" />
     <Compile Include="Editor\Clipboard\ClipboardBuffer.cs" />
-    <Compile Include="Editor\Clipboard\ClipboardBuffer.File.cs" >
+    <Compile Include="Editor\Clipboard\ClipboardBuffer.File.cs">
       <DependentUpon>ClipboardBuffer.cs</DependentUpon>
     </Compile>
     <Compile Include="Editor\Clipboard\ClipboardManager.cs" />
@@ -90,11 +90,17 @@
     <Compile Include="Editor\TilePicker.cs" />
     <Compile Include="Editor\Tools\ArrowTool.cs" />
     <Compile Include="Editor\Tools\BrushTool.cs" />
+    <Compile Include="Editor\Tools\FillTool.cs" />
     <Compile Include="Editor\Tools\ITool.cs" />
     <Compile Include="Editor\Tools\PasteTool.cs" />
     <Compile Include="Editor\Tools\PencilTool.cs" />
+    <Compile Include="Editor\Tools\PointTool.cs" />
     <Compile Include="Editor\Tools\SelectionTool.cs" />
+    <Compile Include="Editor\Tools\SpriteTool.cs" />
     <Compile Include="Editor\Tools\ToolType.cs" />
+    <Compile Include="Editor\Undo\UndoBuffer.cs" />
+    <Compile Include="Editor\Undo\UndoManager.cs" />
+    <Compile Include="Editor\Undo\UndoTile.cs" />
     <Compile Include="Render\PixelMap.cs" />
     <Compile Include="Render\PixelMapManager.cs" />
     <Compile Include="Render\TextureData.cs" />
@@ -106,6 +112,7 @@
     <Compile Include="Terraria\Objects\FrameProperty.cs" />
     <Compile Include="Terraria\Objects\ItemProperty.cs" />
     <Compile Include="Terraria\Objects\ITile.cs" />
+    <Compile Include="Terraria\Objects\Sprite.cs" />
     <Compile Include="Terraria\Objects\TileProperty.cs" />
     <Compile Include="Terraria\Objects\WallProperty.cs" />
     <Compile Include="Terraria\Sign.cs" />
@@ -118,7 +125,7 @@
     <Compile Include="ViewModel\ViewModelLocator.cs">
       <SubType>Code</SubType>
     </Compile>
-	<Compile Include="ViewModel\WorldViewModel.cs" />
+    <Compile Include="ViewModel\WorldViewModel.cs" />
     <Compile Include="ViewModel\WorldViewModel.Commands.cs">
       <DependentUpon>WorldViewModel.cs</DependentUpon>
     </Compile>
@@ -128,11 +135,17 @@
     <Compile Include="View\ClipboardView.xaml.cs">
       <DependentUpon>ClipboardView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\NpcSelectorView.xaml.cs">
+      <DependentUpon>NpcSelectorView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\PaintModeView.xaml.cs">
       <DependentUpon>PaintModeView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\BrushSettingsView.xaml.cs">
       <DependentUpon>BrushSettingsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\SpriteView.xaml.cs">
+      <DependentUpon>SpriteView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\ToolSelectorView.xaml.cs">
       <DependentUpon>ToolSelectorView.xaml</DependentUpon>
@@ -171,6 +184,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\NpcSelectorView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\PaintModeView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -178,6 +195,10 @@
     <Page Include="View\BrushSettingsView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\SpriteView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\ToolSelectorView.xaml">
       <SubType>Designer</SubType>
@@ -227,16 +248,16 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\Overlays\dungeon_marker.png" />
-    <Resource Include="Images\Overlays\npc_arms_dealer.png" />
-    <Resource Include="Images\Overlays\npc_clothier.png" />
-    <Resource Include="Images\Overlays\npc_demolitionist.png" />
-    <Resource Include="Images\Overlays\npc_dryad.png" />
-    <Resource Include="Images\Overlays\npc_guide.png" />
-    <Resource Include="Images\Overlays\npc_merchant.png" />
-    <Resource Include="Images\Overlays\npc_nurse.png" />
-    <Resource Include="Images\Overlays\npc_old_man.png" />
-    <Resource Include="Images\Overlays\spawn_marker.png" />
+    <EmbeddedResource Include="Images\Overlays\dungeon_marker.png" />
+    <EmbeddedResource Include="Images\Overlays\npc_arms_dealer.png" />
+    <EmbeddedResource Include="Images\Overlays\npc_clothier.png" />
+    <EmbeddedResource Include="Images\Overlays\npc_demolitionist.png" />
+    <EmbeddedResource Include="Images\Overlays\npc_dryad.png" />
+    <EmbeddedResource Include="Images\Overlays\npc_guide.png" />
+    <EmbeddedResource Include="Images\Overlays\npc_merchant.png" />
+    <EmbeddedResource Include="Images\Overlays\npc_nurse.png" />
+    <EmbeddedResource Include="Images\Overlays\npc_old_man.png" />
+    <EmbeddedResource Include="Images\Overlays\spawn_marker.png" />
     <Resource Include="Images\tedit.ico" />
     <Resource Include="Images\Tools\constrain.png" />
     <Resource Include="Images\Tools\cursor.png" />
@@ -250,7 +271,7 @@
     <Resource Include="Images\Tools\paste.png" />
     <Resource Include="Images\Tools\pencil.png" />
     <Resource Include="Images\Tools\shape_square.png" />
-    <Resource Include="Images\Tools\spawn.png" />
+    <Resource Include="Images\Tools\sprite.png" />
     <Resource Include="Images\Toolbar\open.png" />
     <Resource Include="Images\Toolbar\save.png" />
     <Resource Include="Images\Toolbar\saveas.png" />
@@ -262,6 +283,13 @@
     <Resource Include="Images\Toolbar\delete.png" />
     <Resource Include="Images\Toolbar\plugin.png" />
     <Resource Include="Images\Toolbar\update_xml.png" />
+    <Resource Include="Images\Toolbar\arrow_redo.png" />
+    <Resource Include="Images\Toolbar\arrow_undo.png" />
+    <Resource Include="Images\Tools\point.png" />
+    <Resource Include="Images\Tools\cross.png" />
+    <EmbeddedResource Include="Images\Overlays\npc_mechanic.png" />
+    <EmbeddedResource Include="Images\Overlays\npc_wizard.png" />
+    <EmbeddedResource Include="Images\Overlays\npc_goblin.png" />
     <Content Include="settings.xml">
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -269,7 +297,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Editor\Plugins\" />
-    <Folder Include="Editor\Undo\" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.0,Profile=Client">
@@ -296,7 +323,7 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties BuildVersion_UseGlobalSettings="True" BuildVersion_AssemblyInfoFilename="Properties\AssemblyInfo.cs" />
+      <UserProperties BuildVersion_AssemblyInfoFilename="Properties\AssemblyInfo.cs" BuildVersion_UseGlobalSettings="True" />
     </VisualStudio>
   </ProjectExtensions>
   <PropertyGroup>

@@ -768,21 +768,12 @@ namespace TEditXNA.Terraria
                 {
                     var npc = new NPC();
                     npc.Name = b.ReadString();
-                    npc.Position = new BCCL.Geometry.Primitives.Vector2(b.ReadSingle(), b.ReadSingle());
+                    npc.Position = new Vector2(b.ReadSingle(), b.ReadSingle());
                     npc.IsHomeless = b.ReadBoolean();
                     npc.Home = new Vector2Int32(b.ReadInt32(), b.ReadInt32());
                     npc.SpriteId = 0;
-                    if (npc.Name == "Merchant") npc.SpriteId = 17;
-                    if (npc.Name == "Nurse") npc.SpriteId = 18;
-                    if (npc.Name == "Arms Dealer") npc.SpriteId = 19;
-                    if (npc.Name == "Dryad") npc.SpriteId = 20;
-                    if (npc.Name == "Guide") npc.SpriteId = 22;
-                    if (npc.Name == "Old Man") npc.SpriteId = 37;
-                    if (npc.Name == "Demolitionist") npc.SpriteId = 38;
-                    if (npc.Name == "Clothier") npc.SpriteId = 54;
-                    if (npc.Name == "Goblin Tinkerer") npc.SpriteId = 107;
-                    if (npc.Name == "Wizard") npc.SpriteId = 108;
-                    if (npc.Name == "Mechanic") npc.SpriteId = 124;
+                    if (NpcIds.ContainsKey(npc.Name))
+                        npc.SpriteId = NpcIds[npc.Name];
 
                     w.NPCs.Add(npc);
                 }

@@ -253,8 +253,8 @@ Single item; tag has no children. Has the following properties:
   <GlobalColors>
     <GlobalColor Name="Space" Color="#FF336699" />
     <GlobalColor Name="Sky" Color="#FF9BD1FF" />
-    <GlobalColor Name="Earth" Color="#FF583D2E" />
-    <GlobalColor Name="Rock" Color="#FF4A433C" />
+    <GlobalColor Name="Earth" Color="#FF54392A" />
+    <GlobalColor Name="Rock" Color="#FF484039" />
     <GlobalColor Name="Hell" Color="#FF330000" />
     <GlobalColor Name="Lava" Color="#F0FF1E00" />
     <GlobalColor Name="Water" Color="#80000CFF" />
@@ -264,7 +264,7 @@ Single item; tag has no children. Has the following properties:
     <Tile Id="0" Name="Dirt Block" Color="#FF916A4F"  Solid="true"/>
     <Tile Id="1" Name="Stone Block" Color="#FF808080"  Solid="true"/>
     <Tile Id="2" Name="Grass" Color="#FF1CD85E"  Solid="true"/>
-    <Tile Id="3" Name="Grass Flowers" Color="#FF0D6524"  Framed="true">
+    <Tile Id="3" Name="Grass Flowers" Color="#FF0D6524" Framed="true" TextureGrid="16,20">
       <Frames>
         <Frame UV="0,0" Name="Grass" Dir="Right" Variety="Single Blade" />
         <Frame UV="18,0" Name="Grass" Dir="Right" Variety="Double Blade" />
@@ -277,7 +277,16 @@ Single item; tag has no children. Has the following properties:
         <Frame UV="144,0" Name="Mushroom" Dir="Up" />
       </Frames>
     </Tile>
-    <Tile Id="4" Name="Torch" Color="#FFFD3E03" Placement="wallFloor" Light="true" Framed="true"/>
+    <Tile Id="4" Name="Torch" Color="#FFFD3E03" Placement="wallFloor" Light="true" Framed="true" Size="1,1" TextureGrid="20,20">
+      <Frames>
+        <Frame UV="0,0" Name="Torch" Dir="Down" Variety="On" />
+        <Frame UV="22,0" Name="Torch" Dir="Left" Variety="On" />
+        <Frame UV="44,0" Name="Torch" Dir="Right" Variety="On" />
+        <!--<Frame UV="54,0" Name="Torch" Dir="Down" Variety="Off" />
+        <Frame UV="72,0" Name="Torch" Dir="Left" Variety="Off" />
+        <Frame UV="90,0" Name="Torch" Dir="Right" Variety="Off" />-->
+      </Frames>
+    </Tile>
     <Tile Id="5" Name="Tree" Color="#FF634631"  Framed="true">
       <Frames>
         <Frame UV="0,0" Name="Tree Trunk" Dir="Up" Variety="Plain A" />
@@ -381,16 +390,20 @@ Single item; tag has no children. Has the following properties:
         <Frame UV="72,0" Name="Mug" />
       </Frames>
     </Tile>
-    <Tile Id="14" Name="Wooden Table" Color="#FF00FFF2" Placement="floor" SolidTop="true" Framed="true" Size="3,2"/>
-    <Tile Id="15" Name="Wooden Chair" Color="#FF00FFF2" Placement="floor" Framed="true" Size="1,2">
+    <Tile Id="14" Name="Wooden Table" Color="#FF00FFF2" Placement="floor" SolidTop="true" Framed="true" Size="3,2" TextureGrid="16,16"/>
+    <Tile Id="15" Name="Chair" Color="#FF00FFF2" Placement="floor" Framed="true" Size="1,2">
       <Frames>
+        <Frame UV="0,0" Name="Wooden Chair" Dir="Left" />
+        <Frame UV="18,0" Name="Wooden Chair" Dir="Right" />
+        <Frame UV="0,40" Name="Toilet" Dir="Left" />
+        <Frame UV="18,40" Name="Toilet" Dir="Right" />
       </Frames>
     </Tile>
-    <Tile Id="16" Name="Iron Anvil" Color="#FF00FFF2" Placement="floor" SolidTop="true" Framed="true" Size="2,1"/>
+    <Tile Id="16" Name="Iron Anvil" Color="#FF00FFF2" Placement="floor" SolidTop="true" Framed="true" Size="2,1" TextureGrid="16,18" />
     <Tile Id="17" Name="Furnace" Color="#FF00FFF2" Placement="floor" Light="true" Framed="true" Size="3,2"/>
-    <Tile Id="18" Name="Work Bench" Color="#FF00FFF2" Placement="floor" SolidTop="true" Framed="true" Size="2,1"/>
+    <Tile Id="18" Name="Work Bench" Color="#FF00FFF2" Placement="floor" SolidTop="true" Framed="true" Size="2,1" TextureGrid="16,18" />
     <Tile Id="19" Name="Wood Platform" Color="#FF6B3A18" Placement="wall" Light="true" Solid="true" SolidTop="true"/>
-    <Tile Id="20" Name="Sapling" Color="#FF0D6524"  Framed="true">
+    <Tile Id="20" Name="Sapling" Color="#FF0D6524" Framed="true" Size="1,2" >
       <Frames>
         <Frame UV="0,0" Dir="Left" />
         <Frame UV="18,0" Dir="Up" />
@@ -410,7 +423,7 @@ Single item; tag has no children. Has the following properties:
     </Tile>
     <Tile Id="22" Name="Demonite Ore" Color="#FF625FA7"  Light="true" Solid="true"/>
     <Tile Id="23" Name="Corruption" Color="#FF8D89DF"  Solid="true"/>
-    <Tile Id="24" Name="Corruption Plants" Color="#FF8D89DF"  Framed="true">
+    <Tile Id="24" Name="Corruption Plants" Color="#FF8D89DF"  Framed="true" TextureGrid="16,20">
       <Frames>
         <Frame UV="0,0" Name="Vile Grass" Dir="Right" Variety="Single Blade" />
         <Frame UV="18,0" Name="Vile Grass" Dir="Right" Variety="Double Blade" />
@@ -428,8 +441,8 @@ Single item; tag has no children. Has the following properties:
     <Tile Id="27" Name="Sunflower" Color="#FFC4FF14"  Framed="true" Size="2,4">
       <Frames>
         <Frame UV="0,0" Variety="A" />
-        <Frame UV="18,0" Variety="B" />
-        <Frame UV="36,0" Variety="C" />
+        <Frame UV="36,0" Variety="B" />
+        <Frame UV="72,0" Variety="C" />
       </Frames>
     </Tile>
     <Tile Id="28" Name="Pot" Color="#FF8C2726" Placement="floor" Framed="true" Size="2,2">
@@ -443,23 +456,48 @@ Single item; tag has no children. Has the following properties:
     <Tile Id="30" Name="Wood" Color="#FF684934"  Solid="true"/>
     <Tile Id="31" Name="Shadow Orb" Color="#FF000000" Placement="floor" Light="true" Framed="true" Size="2,2"/>
     <Tile Id="32" Name="Corruption Vines" Color="#FF7A618F" />
-    <Tile Id="33" Name="Candle" Color="#FFFD3E03" Placement="surface" Light="true" Framed="true"/>
-    <Tile Id="34" Name="Copper Chandelier" Color="#FFFD3E03" Placement="ceiling" Light="true" Framed="true" Size="3,3"/>
-    <Tile Id="35" Name="Silver Chandelier" Color="#FFFD3E03" Placement="ceiling" Light="true" Framed="true" Size="3,3"/>
-    <Tile Id="36" Name="Gold Chandelier" Color="#FFFD3E03" Placement="ceiling" Light="true" Framed="true" Size="3,3"/>
+    <Tile Id="33" Name="Candle" Color="#FFFD3E03" Placement="surface" Light="true" Framed="true" TextureGrid="16,20">
+      <Frames>
+        <Frame UV="0,0" Variety="On" />
+        <Frame UV="18,0" Variety="Off" />
+      </Frames>
+    </Tile>
+    <Tile Id="34" Name="Copper Chandelier" Color="#FFFD3E03" Placement="ceiling" Light="true" Framed="true" Size="3,3">
+      <Frames>
+        <Frame UV="0,0" Variety="On" />
+        <Frame UV="54,0" Variety="Off" />
+      </Frames>
+    </Tile>
+    <Tile Id="35" Name="Silver Chandelier" Color="#FFFD3E03" Placement="ceiling" Light="true" Framed="true" Size="3,3">
+      <Frames>
+        <Frame UV="0,0" Variety="On" />
+        <Frame UV="54,0" Variety="Off" />
+      </Frames>
+    </Tile>
+    <Tile Id="36" Name="Gold Chandelier" Color="#FFFD3E03" Placement="ceiling" Light="true" Framed="true" Size="3,3">
+      <Frames>
+        <Frame UV="0,0" Variety="On" />
+        <Frame UV="54,0" Variety="Off" />
+      </Frames>
+    </Tile>
     <Tile Id="37" Name="Meteorite" Color="#FFDF9F89"  Light="true" Solid="true"/>
     <Tile Id="38" Name="Gray Brick" Color="#FF909090"  Solid="true"/>
     <Tile Id="39" Name="Red Brick" Color="#FFB200FF"  Solid="true"/>
     <Tile Id="40" Name="Clay Block" Color="#FFAC5B4D"  Solid="true"/>
     <Tile Id="41" Name="Blue Brick" Color="#FF545498"  Solid="true"/>
-    <Tile Id="42" Name="Chain Lantern" Color="#FFEF904B" Placement="ceiling" Light="true" Framed="true" Size="1,2"/>
+    <Tile Id="42" Name="Chain Lantern" Color="#FFEF904B" Placement="ceiling" Light="true" Framed="true" Size="1,2">
+      <Frames>
+        <Frame UV="0,0" Variety="On" />
+        <Frame UV="18,0" Variety="Off" />
+      </Frames>
+    </Tile>
     <Tile Id="43" Name="Green Brick" Color="#FF39A851"  Solid="true"/>
     <Tile Id="44" Name="Pink Brick" Color="#FFB200FF"  Solid="true"/>
     <Tile Id="45" Name="Gold Brick" Color="#FFFFD514"  Solid="true"/>
     <Tile Id="46" Name="Silver Brick" Color="#FFE5E5E5"  Solid="true"/>
     <Tile Id="47" Name="Copper Brick" Color="#FFFF5900"  Solid="true"/>
     <Tile Id="48" Name="Spike" Color="#FF6D6D6D" Placement="wallFloorCeiling" Solid="true"/>
-    <Tile Id="49" Name="Water Candle" Color="#FF2B8FFF" Placement="surface" Light="true"/>
+    <Tile Id="49" Name="Water Candle" Color="#FF2B8FFF" Placement="surface" Light="true" TextureGrid="16,20" />
     <Tile Id="50" Name="Book" Color="#FF00FFF2" Placement="surface" Framed="true">
       <Frames>
         <Frame UV="0,0" Variety="Blue, Red, Brown" />
@@ -474,13 +512,20 @@ Single item; tag has no children. Has the following properties:
     <Tile Id="52" Name="Vines" Color="#FF0D6524" />
     <Tile Id="53" Name="Sand Block" Color="#FFFFDA38"  Solid="true"/>
     <Tile Id="54" Name="Glass" Color="#40FFFFFF"  Solid="true"/>
-    <Tile Id="55" Name="Sign" Color="#FFFFAE5E" Placement="wallFloorCeiling" Framed="true" Size="2,2"/>
+    <Tile Id="55" Name="Sign" Color="#FFFFAE5E" Placement="wallFloorCeiling" Framed="true" Size="2,2">
+      <Frames>
+        <Frame UV="0,0" Dir="Down" />
+        <Frame UV="36,0" Dir="Up" />
+        <Frame UV="72,0" Dir="Left" />
+        <Frame UV="108,0" Dir="Right" />
+      </Frames>
+    </Tile>
     <Tile Id="56" Name="Obsidian" Color="#FF5751AD"  Solid="true"/>
     <Tile Id="57" Name="Ash Block" Color="#FF44444C"  Solid="true"/>
     <Tile Id="58" Name="Hellstone" Color="#FF662222"  Light="true" Solid="true"/>
     <Tile Id="59" Name="Mud Block" Color="#FF5C4449"  Solid="true"/>
     <Tile Id="60" Name="Jungle Grass" Color="#FF8FD71D"  Solid="true"/>
-    <Tile Id="61" Name="Jungle Plants" Color="#FF8FD71D"  Light="true" Framed="true">
+    <Tile Id="61" Name="Jungle Plants" Color="#FF8FD71D"  Light="true" Framed="true" TextureGrid="16,20">
       <Frames>
         <Frame UV="0,0" Name="Jungle Grass" Dir="Right" Variety="Single Blade" />
         <Frame UV="18,0" Name="Jungle Grass" Dir="Right" Variety="Double Blade" />
@@ -503,7 +548,7 @@ Single item; tag has no children. Has the following properties:
     <Tile Id="68" Name="Gem Diamond" Color="#FF2A82FA"  Solid="true"/>
     <Tile Id="69" Name="Jungle Thorns" Color="#FF5E3037" />
     <Tile Id="70" Name="Mushroom Grass" Color="#FF5D7FFF"  Light="true" Solid="true"/>
-    <Tile Id="71" Name="Mushroom Plant" Color="#FFB1AE83"  Light="true" Framed="true">
+    <Tile Id="71" Name="Mushroom Plant" Color="#FFB1AE83"  Light="true" Framed="true" TextureGrid="16,20">
       <Frames>
         <Frame UV="0,0" Variety="Double Small" />
         <Frame UV="18,0" Variety="Small" />
@@ -522,7 +567,7 @@ Single item; tag has no children. Has the following properties:
         <Frame UV="18,36" Variety="Tree Top" Dir="Left" />
       </Frames>
     </Tile>
-    <Tile Id="73" Name="Tall Grass" Color="#FF0D6524"  Framed="true">
+    <Tile Id="73" Name="Tall Grass" Color="#FF0D6524"  Framed="true" Size="1,1" TextureGrid="16,32">
       <Frames>
         <Frame UV="0,0" Name="Grass" Variety="G" />
         <Frame UV="18,0" Name="Grass" Variety="C" />
@@ -534,7 +579,7 @@ Single item; tag has no children. Has the following properties:
         <Frame UV="126,0" Name="Rose" Variety="B" />
       </Frames>
     </Tile>
-    <Tile Id="74" Name="Tall Jungle Grass" Color="#FF0D6524"  Framed="true">
+    <Tile Id="74" Name="Tall Jungle Grass" Color="#FF0D6524"  Framed="true" Size="1,2" TextureGrid="16,32">
       <Frames>
         <Frame UV="0,0" Name="Jungle Grass" Variety="G" />
         <Frame UV="18,0" Name="Jungle Grass" Variety="C" />
@@ -549,13 +594,15 @@ Single item; tag has no children. Has the following properties:
     <Tile Id="75" Name="Obsidian Brick" Color="#FFB200FF"  Solid="true"/>
     <Tile Id="76" Name="Hellstone Brick" Color="#FFC6001D"  Light="true" Solid="true"/>
     <Tile Id="77" Name="Hellforge" Color="#FFD50010" Placement="floor" Light="true" Framed="true" Size="3,2"/>
-    <Tile Id="78" Name="Clay Pot" Color="#FF00FFF2" Placement="floor" Framed="true" Size="2,2"/>
+    <Tile Id="78" Name="Clay Pot" Color="#FF00FFF2" Placement="floor" Framed="true" Size="1,1"/>
     <Tile Id="79" Name="Bed" Color="#FF00FFF2" Placement="floor" Framed="true" Size="4,2">
       <Frames>
+        <Frame UV="0,0" Dir="Left" />
+        <Frame UV="72,0" Variety="Right" />
       </Frames>
     </Tile>
     <Tile Id="80" Name="Cactus" Color="#FF00A500" />
-    <Tile Id="81" Name="Coral" Color="#FFE55340"  Framed="true">
+    <Tile Id="81" Name="Coral" Color="#FFE55340"  Framed="true" TextureGrid="24,26">
       <Frames>
         <Frame UV="0,0" Variety="Red" />
         <Frame UV="26,0" Variety="Pink" />
@@ -565,7 +612,7 @@ Single item; tag has no children. Has the following properties:
         <Frame UV="130,0" Variety="Sponge" />
       </Frames>
     </Tile>
-    <Tile Id="82" Name="Daybloom" Color="#FFFF7800"  Framed="true">
+    <Tile Id="82" Name="Herb Sprout" Color="#FFFF7800"  Framed="true">
       <Frames>
         <Frame UV="0,0" Name="Daybloom" growsOn="2,78" />
         <Frame UV="18,0" Name="Moonglow" growsOn="60,78" />
@@ -595,7 +642,14 @@ Single item; tag has no children. Has the following properties:
         <Frame UV="90,0" Name="Fireblossom" growsOn="57,76,78" />
       </Frames>
     </Tile>
-    <Tile Id="85" Name="Tombstone" Color="#FFC0C0C0" Placement="floor" Framed="true" Size="2,2"/>
+    <Tile Id="85" Name="Tombstone" Color="#FFC0C0C0" Placement="floor" Framed="true" Size="2,2">
+      <Frames>
+        <Frame UV="0,0" Variety="A" />
+        <Frame UV="36,0" Variety="B" />
+        <Frame UV="72,0" Variety="C" />
+        <Frame UV="108,0" Variety="D" />
+      </Frames>
+    </Tile>
     <Tile Id="86" Name="Loom" Color="#FFFF00FF" Placement="floor" Framed="true" Size="3,2"/>
     <Tile Id="87" Name="Piano" Color="#FF00FFF2" Placement="floor" SolidTop="true" Framed="true" Size="3,2"/>
     <Tile Id="88" Name="Dresser" Color="#FF00FFF2" Placement="floor" SolidTop="true" Framed="true" Size="3,2"/>
@@ -614,29 +668,119 @@ Single item; tag has no children. Has the following properties:
         <Frame UV="54,0" Name="Yellow Banner" />
       </Frames>
     </Tile>
-    <Tile Id="92" Name="Lamp Post" Color="#FF00FFF2" Placement="floor" Light="true" Framed="true" Size="1,6"/>
-    <Tile Id="93" Name="Tiki Torch" Color="#FF00FFF2" Placement="floor" Light="true" Framed="true" Size="1,3"/>
+    <Tile Id="92" Name="Lamp Post" Color="#FF00FFF2" Placement="floor" Light="true" Framed="true" Size="1,6">
+      <Frames>
+        <Frame UV="0,0" Variety="On" />
+        <Frame UV="18,0" Variety="Off" />
+      </Frames>
+    </Tile>
+    <Tile Id="93" Name="Tiki Torch" Color="#FF00FFF2" Placement="floor" Light="true" Framed="true" Size="1,3">
+      <Frames>
+        <Frame UV="0,0" Variety="On" />
+        <Frame UV="18,0" Variety="Off" />
+      </Frames>
+    </Tile>
     <Tile Id="94" Name="Keg" Color="#FF00FFF2" Placement="floor" Framed="true" Size="2,2"/>
-    <Tile Id="95" Name="Chinese Lantern" Color="#FF00FFF2" Placement="floorSurface" Light="true" Framed="true" Size="2,2"/>
+    <Tile Id="95" Name="Chinese Lantern" Color="#FF00FFF2" Placement="floorSurface" Light="true" Framed="true" Size="2,2">
+      <Frames>
+        <Frame UV="0,0" Variety="On" />
+        <Frame UV="36,0" Variety="Off" />
+      </Frames>
+    </Tile>
     <Tile Id="96" Name="Cooking Pot" Color="#FF00FFF2" Placement="floorSurface" Framed="true" Size="2,2"/>
     <Tile Id="97" Name="Safe" Color="#FFFF00FF" Placement="floor" Framed="true" Size="2,2"/>
     <Tile Id="98" Name="Skull Lantern" Color="#FFFF00FF" Placement="floorSurface" Light="true" Framed="true" Size="2,2"/>
     <Tile Id="99" Name="Trash Can" Color="#FFFF00D0" Placement="floor" Framed="true" Size="2,2"/>
-    <Tile Id="100" Name="Candelabra" Color="#FFFF00FF" Placement="surface" Light="true" Framed="true" Size="2,2"/>
+    <Tile Id="100" Name="Candelabra" Color="#FFFF00FF" Placement="surface" Light="true" Framed="true" Size="2,2">
+      <Frames>
+        <Frame UV="0,0" Variety="On" />
+        <Frame UV="36,0" Variety="Off" />
+      </Frames>
+    </Tile>
     <Tile Id="101" Name="Bookcase" Color="#FFFF00FF" Placement="floor" SolidTop="true" Framed="true" Size="3,4"/>
     <Tile Id="102" Name="Throne" Color="#FFFF00FF" Placement="floor" Framed="true" Size="3,4"/>
     <Tile Id="103" Name="Bowl" Color="#FFFF00FF" Placement="surface" Framed="true" Size="2,1"/>
     <Tile Id="104" Name="Grandfather Clock" Color="#FFFF00FF" Placement="floor" Framed="true" Size="2,5"/>
-    <Tile Id="105" Name="Angel Statue" Color="#FF00FFF2" Placement="floor" Framed="true" Size="2,3"/>
+    <Tile Id="105" Name="Statue" Color="#FF00FFF2" Placement="floor" Framed="true" Size="2,3">
+      <Frames>
+        <Frame UV="0,0" Variety="Armor Statue" />
+        <Frame UV="36,0" Variety="Angel Statue" />
+        <Frame UV="72,0" Variety="Star Statue" />
+        <Frame UV="108,0" Variety="Sword Statue" />
+        <Frame UV="144,0" Variety="Slime Statue" />
+        <Frame UV="180,0" Variety="Goblin Statue" />
+        <Frame UV="216,0" Variety="Shield Statue" />
+        <Frame UV="252,0" Variety="Bat Statue" />
+        <Frame UV="288,0" Variety="Fish Statue" />
+        <Frame UV="324,0" Variety="Bunny Statue" />
+        <Frame UV="360,0" Variety="Skeleton Statue" />
+        <Frame UV="396,0" Variety="Reaper Statue" />
+        <Frame UV="432,0" Variety="Woman Statue" />
+        <Frame UV="468,0" Variety="Imp Statue" />
+        <Frame UV="504,0" Variety="Gargoyle Statue" />
+        <Frame UV="540,0" Variety="Gloom Statue" />
+        <Frame UV="576,0" Variety="Hornet Statue" />
+        <Frame UV="612,0" Variety="Bomb Statue" />
+        <Frame UV="648,0" Variety="Crab Statue" />
+        <Frame UV="684,0" Variety="Hammer Statue" />
+        <Frame UV="720,0" Variety="Potion Statue" />
+        <Frame UV="756,0" Variety="Spear Statue" />
+        <Frame UV="792,0" Variety="Cross Statue" />
+        <Frame UV="828,0" Variety="Jellyfish Statue" />
+        <Frame UV="864,0" Variety="Bow Statue" />
+        <Frame UV="900,0" Variety="Boomerang Statue" />
+        <Frame UV="936,0" Variety="Boot Statue" />
+        <Frame UV="972,0" Variety="Chest Statue" />
+        <Frame UV="1008,0" Variety="Bird Statue" />
+        <Frame UV="1044,0" Variety="Axe Statue" />
+        <Frame UV="1080,0" Variety="Corrupt Statue" />
+        <Frame UV="1116,0" Variety="Tree Statue" />
+        <Frame UV="1152,0" Variety="Anvil Statue" />
+        <Frame UV="1188,0" Variety="Pickaxe Statue" />
+        <Frame UV="1224,0" Variety="Mushroom Statue" />
+        <Frame UV="1260,0" Variety="Eyeball Statue" />
+        <Frame UV="1296,0" Variety="Pillar Statue" />
+        <Frame UV="1332,0" Variety="Heart Statue" />
+        <Frame UV="1368,0" Variety="Pot Statue" />
+        <Frame UV="1404,0" Variety="Sunflower Statue" />
+        <Frame UV="1440,0" Variety="King Statue" />
+        <Frame UV="1476,0" Variety="Queen Statue" />
+        <Frame UV="1512,0" Variety="Pirahna Statue" />
+      </Frames>
+    </Tile>
     <Tile Id="106" Name="Sawmill" Color="#FF00FFF2" Placement="floor" Framed="true" Size="3,3"/>
     <Tile Id="107" Name="Cobalt Ore" Color="#FF0B508F"  Solid="true"/>
     <Tile Id="108" Name="Mythril Ore" Color="#FF5BA9A9"  Solid="true"/>
     <Tile Id="109" Name="Hallowed" Color="#FF4EC1E3"  Light="true" Solid="true"/>
-    <Tile Id="110" Name="Weeds" Color="#FF1E9648"  Framed="true"/>
+    <Tile Id="110" Name="Hallowed Plants" Color="#FF1E9648"  Framed="true" TextureGrid="16,20">
+      <Frames>
+        <Frame UV="0,0" Name="Grass" Dir="Right" Variety="Single Blade" />
+        <Frame UV="18,0" Name="Grass" Dir="Right" Variety="Double Blade" />
+        <Frame UV="36,0" Name="Grass" Dir="Up" Variety="Single Blade" />
+        <Frame UV="54,0" Name="Grass" Dir="Right" Variety="Three Small" />
+        <Frame UV="72,0" Name="Grass" Dir="Left" Variety="Gold Flower" />
+        <Frame UV="90,0" Name="Grass" Dir="Left" Variety="Three Medium" />
+        <Frame UV="108,0" Name="Flowers" Dir="Left" Variety="Purple, Immature" />
+        <Frame UV="126,0" Name="Flowers" Dir="Right" Variety="Pink, Immature" />
+        <Frame UV="144,0" Name="Mushroom" Dir="Up" />
+        <Frame UV="162,0" Name="Small Y" Dir="Up" />
+      </Frames>
+    </Tile>
     <Tile Id="111" Name="Adamantite Ore" Color="#FF801A34"  Solid="true"/>
     <Tile Id="112" Name="Ebonsand Block" Color="#FF67627A"  Solid="true"/>
-    <Tile Id="113" Name="Weeds" Color="#FF1E9648"  Framed="true"/>
-    <Tile Id="114" Name="Tinkerer's Workshop" Color="#FF7F5C45"  SolidTop="true" Framed="true"/>
+    <Tile Id="113" Name="Hallowed Tall Plants" Color="#FF1E9648"  Framed="true" TextureGrid="16,32" >
+      <Frames>
+        <Frame UV="0,0" Name="Grass" Variety="G" />
+        <Frame UV="18,0" Name="Grass" Variety="C" />
+        <Frame UV="36,0" Name="Grass" Variety="?" />
+        <Frame UV="54,0" Name="Grass" Variety="u" />
+        <Frame UV="72,0" Name="Grass" Variety="w" />
+        <Frame UV="90,0" Name="Grass" Variety="W" />
+        <Frame UV="108,0" Name="Rose" Variety="A" />
+        <Frame UV="126,0" Name="Rose" Variety="B" />
+      </Frames>
+    </Tile>
+    <Tile Id="114" Name="Tinkerer's Workshop" Color="#FF7F5C45"  SolidTop="true" Framed="true" Size="3,2" TextureGrid="16,18"/>
     <Tile Id="115" Name="Vines" Color="#FF327FA1" />
     <Tile Id="116" Name="Pearlsand Block" Color="#FFD5C4C5"  Solid="true"/>
     <Tile Id="117" Name="Pearlstone Block" Color="#FFB5ACBE"  Solid="true"/>
@@ -647,42 +791,97 @@ Single item; tag has no children. Has the following properties:
     <Tile Id="122" Name="Mythril Brick" Color="#FF91BF75"  Solid="true"/>
     <Tile Id="123" Name="Silt Block" Color="#FF595353"  Solid="true"/>
     <Tile Id="124" Name="Wooden Beam" Color="#FF5C4436" />
-    <Tile Id="125" Name="Crystal Ball" Color="#FF81A5FF"  Light="true" Framed="true"/>
-    <Tile Id="126" Name="Disco Ball" Color="#FFDBDBDB"  Light="true" Framed="true"/>
+    <Tile Id="125" Name="Crystal Ball" Color="#FF81A5FF"  Light="true" Framed="true"  Size="2,2"/>
+    <Tile Id="126" Name="Disco Ball" Color="#FFDBDBDB"  Light="true" Framed="true"  Size="2,2">
+      <Frames>
+        <Frame UV="0,0" Variety="On" />
+        <Frame UV="36,0" Variety="Off" />
+      </Frames>
+    </Tile>
     <Tile Id="127" Name="Ice" Color="#FF68B3C8"  Solid="true"/>
-    <Tile Id="128" Name="Mannequin" Color="#FF906850"  Framed="true"/>
-    <Tile Id="129" Name="Crystal Shard" Color="#FF004979"  Light="true" Framed="true"/>
+    <Tile Id="128" Name="Mannequin" Color="#FF906850"  Framed="true" Size="2,3">
+      <Frames>
+        <Frame UV="0,0" Dir="Left" />
+        <Frame UV="36,0" Dir="Right" />
+      </Frames>
+    </Tile>
+    <Tile Id="129" Name="Crystal Shard" Color="#FF004979" Light="true" Framed="true">
+      <Frames>
+        <Frame UV="0,0" Variety="Blue" Dir="Down" />
+        <Frame UV="18,0" Variety="Pink" Dir="Down" />
+        <Frame UV="36,0" Variety="Purple" Dir="Down" />
+      </Frames>
+    </Tile>
     <Tile Id="130" Name="Active Stone Block" Color="#FFA5A5A5"  Solid="true"/>
     <Tile Id="131" Name="Inactive Stone Block" Color="#FF1A1A1A" />
-    <Tile Id="132" Name="Lever" Color="#FFC90303"  Framed="true"/>
-    <Tile Id="133" Name="Adamantite Forge" Color="#FF891012"  Light="true" Framed="true"/>
-    <Tile Id="134" Name="Mythril Anvil" Color="#FF96AE87"  Framed="true"/>
-    <Tile Id="135" Name="Red Pressure Plate" Color="#FFFD7272"  Framed="true"/>
-    <Tile Id="136" Name="Switch" Color="#FFCCC0C0"  Framed="true"/>
-    <Tile Id="137" Name="Dart Trap" Color="#FF8C8C8C"  Solid="true" Framed="true"/>
-    <Tile Id="138" Name="Boulder" Color="#FF636363"  Solid="true" Framed="true"/>
-    <Tile Id="139" Name="Music Box (Overworld Day)" Color="#FF996343"  Framed="true">
+    <Tile Id="132" Name="Lever" Color="#FFC90303"  Framed="true" Size="2,2">
       <Frames>
-        <Frame UV="0,0" Name="Music Box (Overworld Day)" />
-        <Frame UV="18,0" Name="Music Box (Eerie)" />
-        <Frame UV="36,0" Name="Music Box (Night)" />
-        <Frame UV="54,0" Name="Music Box (Title)" />
-        <Frame UV="72,0" Name="Music Box (Underground)" />
-        <Frame UV="90,0" Name="Music Box (Boss 1)" />
-        <Frame UV="108,0" Name="Music Box (Jungle)" />
-        <Frame UV="126,0" Name="Music Box (Corruption)" />
-        <Frame UV="144,0" Name="Music Box (Underground Corruption)" />
-        <Frame UV="162,0" Name="Music Box (The Hallow)" />
-        <Frame UV="180,0" Name="Music Box (Boss 2)" />
-        <Frame UV="198,0" Name="Music Box (Underground Hallow)" />
-        <Frame UV="216,0" Name="Music Box (Boss 3)" />
+        <Frame UV="0,0" Dir="Left" />
+        <Frame UV="36,0" Dir="Right" />
+      </Frames>
+    </Tile>
+    <Tile Id="133" Name="Adamantite Forge" Color="#FF891012"  Light="true" Framed="true" Size="3,2"/>
+    <Tile Id="134" Name="Mythril Anvil" Color="#FF96AE87"  Framed="true" Size="2,1" />
+    <Tile Id="135" Name="Pressure Plate" Color="#FFFD7272"  Framed="true">
+      <Frames>
+        <Frame UV="0,0" Variety="Red" />
+        <Frame UV="0,18" Variety="Green" />
+      </Frames>
+    </Tile>
+    <Tile Id="136" Name="Switch" Color="#FFCCC0C0"  Framed="true"/>
+    <Tile Id="137" Name="Dart Trap" Color="#FF8C8C8C"  Solid="true" Framed="true">
+      <Frames>
+        <Frame UV="0,0" Dir="Left" />
+        <Frame UV="18,0" Variety="Right" />
+      </Frames>
+    </Tile>
+    <Tile Id="138" Name="Boulder" Color="#FF636363"  Solid="true" Framed="true" Size="2,2"/>
+    <Tile Id="139" Name="Music Box" Color="#FF996343"  Framed="true" Size="2,2">
+      <Frames>
+        <Frame UV="0,0" Name="Music Box (Overworld Day)" Variety="Off" />
+        <Frame UV="36,0" Name="Music Box (Overworld Day)" Variety="On" />
+        <Frame UV="0,36" Name="Music Box (Eerie)"  Variety="Off"  />
+        <Frame UV="36,36" Name="Music Box (Eerie)" Variety="On"  />
+        <Frame UV="0,72" Name="Music Box (Night)" Variety="Off" />
+        <Frame UV="36,72" Name="Music Box (Night)" Variety="On"  />
+        <Frame UV="0,108" Name="Music Box (Title)" Variety="Off"/>
+        <Frame UV="36,108" Name="Music Box (Title)" Variety="On" />
+        <Frame UV="0,144" Name="Music Box (Underground)" Variety="Off"/>
+        <Frame UV="36,144" Name="Music Box (Underground)" Variety="On" />
+        <Frame UV="0,180" Name="Music Box (Boss 1)" Variety="Off"/>
+        <Frame UV="36,180" Name="Music Box (Boss 1)" Variety="On" />
+        <Frame UV="0,216" Name="Music Box (Jungle)" Variety="Off"/>
+        <Frame UV="36,216" Name="Music Box (Jungle)" Variety="On" />
+        <Frame UV="0,252" Name="Music Box (Corruption)" Variety="Off"/>
+        <Frame UV="36,252" Name="Music Box (Corruption)" Variety="On" />
+        <Frame UV="0,288" Name="Music Box (Underground Corruption)" Variety="Off"/>
+        <Frame UV="36,288" Name="Music Box (Underground Corruption)" Variety="On" />
+        <Frame UV="0,324" Name="Music Box (The Hallow)" Variety="Off"/>
+        <Frame UV="36,324" Name="Music Box (The Hallow)" Variety="On" />
+        <Frame UV="0,360" Name="Music Box (Boss 2)" Variety="Off"/>
+        <Frame UV="36,360" Name="Music Box (Boss 2)" Variety="On" />
+        <Frame UV="0,396" Name="Music Box (Underground Hallow)" Variety="Off"/>
+        <Frame UV="36,396" Name="Music Box (Underground Hallow)" Variety="On" />
+        <Frame UV="0,432" Name="Music Box (Boss 3)" Variety="Off"/>
+        <Frame UV="36,432" Name="Music Box (Boss 3)" Variety="On" />
       </Frames>
     </Tile>
     <Tile Id="140" Name="Demonite Brick" Color="#FF7875B3"  Light="true" Solid="true"/>
-    <Tile Id="141" Name="Explosives" Color="#FFAD2323"  Framed="true" Size="1,1"/>
-    <Tile Id="142" Name="Inlet Pump" Color="#FFC90303"  Framed="true"/>
-    <Tile Id="143" Name="Outlet Pump" Color="#FFC90303"  Framed="true"/>
-    <Tile Id="144" Name="1 Second Timer" Color="#FFC90303"  Framed="true"/>
+    <Tile Id="141" Name="Explosives" Color="#FFAD2323"  Framed="true" Size="1,1">
+      <Frames>
+        <Frame UV="0,0" Variety="Single" />
+        <Frame UV="0,18" Variety="Multi" />
+      </Frames>
+    </Tile>
+    <Tile Id="142" Name="Inlet Pump" Color="#FFC90303"  Framed="true" Size="2,2"/>
+    <Tile Id="143" Name="Outlet Pump" Color="#FFC90303"  Framed="true" Size="2,2"/>
+    <Tile Id="144" Name="Timer" Color="#FFC90303"  Framed="true">
+      <Frames>
+        <Frame UV="0,0" Variety="1 Second" />
+        <Frame UV="18,0" Variety="3 Second" />
+        <Frame UV="36,0" Variety="5 Second" />
+      </Frames>
+    </Tile>
     <Tile Id="145" Name="Candy Cane Block" Color="#FFFF0000"  Solid="true"/>
     <Tile Id="146" Name="Green Candy Cane Block" Color="#FF00FF00"  Solid="true"/>
     <Tile Id="147" Name="Snow Block" Color="#FFEEEEFF"  Solid="true"/>
@@ -1358,4 +1557,17 @@ Single item; tag has no children. Has the following properties:
     <Item Id="601" Name="Yellow Present" />
     <Item Id="602" Name="Snow Globe" />
   </Items>
+  <Npcs>
+    <Npc Id="17" Name="Merchant" />
+    <Npc Id="18" Name="Nurse" />
+    <Npc Id="19" Name="Arms Dealer" />
+    <Npc Id="20" Name="Dryad" />
+    <Npc Id="22" Name="Guide" />
+    <Npc Id="37" Name="Old Man" />
+    <Npc Id="38" Name="Demolitionist" />
+    <Npc Id="54" Name="Clothier" />
+    <Npc Id="107" Name="Goblin Tinkerer" />
+    <Npc Id="108" Name="Wizard" />
+    <Npc Id="124" Name="Mechanic" />
+  </Npcs>
 </Settings>

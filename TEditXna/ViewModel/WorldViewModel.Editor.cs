@@ -2,6 +2,7 @@
 using System.ComponentModel;
 using System.Linq;
 using System.Threading.Tasks;
+using BCCL.Geometry.Primitives;
 using BCCL.Utility;
 using Microsoft.Xna.Framework;
 using TEditXNA.Terraria;
@@ -20,6 +21,7 @@ namespace TEditXna.ViewModel
                 {
                     for (int y = Selection.SelectionArea.Top; y < Selection.SelectionArea.Bottom; y++)
                     {
+                        UndoManager.SaveTile(x,y);
                         var curTile = CurrentWorld.Tiles[x, y];
                         curTile.IsActive = false;
                         curTile.Wall = 0;
@@ -31,6 +33,7 @@ namespace TEditXna.ViewModel
                         PixelMap.SetPixelColor(x, y, Render.PixelMap.GetTileColor(CurrentWorld.Tiles[x, y], curBgColor, _showWalls, _showTiles, _showLiquid, _showWires));
                     }
                 }
+                UndoManager.SaveUndo();
             }
         }
 
@@ -38,7 +41,7 @@ namespace TEditXna.ViewModel
         {
             if (!CanCopy())
                 return;
-            _clipboard.Buffer = _clipboard.GetBufferedRegion(_currentWorld, _selection.SelectionArea);
+            _clipboard.Buffer = _clipboard.GetSelectionBuffer();
             _clipboard.LoadedBuffers.Add(_clipboard.Buffer);
         }
 
@@ -102,7 +105,18 @@ namespace TEditXna.ViewModel
                             }
                         }
                     }
+                    OnProgressChanged(this, new ProgressChangedEventArgs(0, "Render Complete"));
                 });
+        }
+
+        public void UpdateRenderPixel(Vector2Int32 p)
+        {
+            UpdateRenderPixel(p.X, p.Y);
+        }
+        public void UpdateRenderPixel(int x, int y)
+        {
+            Color curBgColor = GetBackgroundColor(y);
+            PixelMap.SetPixelColor(x, y, Render.PixelMap.GetTileColor(CurrentWorld.Tiles[x, y], curBgColor, _showWalls, _showTiles, _showLiquid, _showWires));
         }
 
         public void UpdateRenderRegion(Rectangle area)
@@ -126,6 +140,7 @@ namespace TEditXna.ViewModel
                         }
                     }
                 }
+                OnProgressChanged(this, new ProgressChangedEventArgs(0, "Render Complete"));
             });
         }
 
@@ -165,7 +180,6 @@ namespace TEditXna.ViewModel
                                        short? v = null)
         {
             // Set Tile Data
-
             if (u != null)
                 curTile.U = (short)u;
             if (v != null)
@@ -218,6 +232,7 @@ namespace TEditXna.ViewModel
                     }
                 }
             }
+            OnProgressChanged(this, new ProgressChangedEventArgs(0, "Render Complete"));
             return pixels;
         }
 

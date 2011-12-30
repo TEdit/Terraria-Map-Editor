@@ -66,6 +66,7 @@ namespace TEditXna.Editor.Tools
             CheckDirectionandDraw(e.Location);
             _isLeftDown = (e.LeftButton == MouseButtonState.Pressed);
             _isRightDown = (e.RightButton == MouseButtonState.Pressed);
+            _wvm.UndoManager.SaveUndo();
         }
 
         public void MouseWheel(TileMouseState e)
@@ -168,6 +169,7 @@ namespace TEditXna.Editor.Tools
                 if (!_setThisPass[index])
                 {
                     _setThisPass[index] = true;
+                    _wvm.UndoManager.SaveTile(pixel);
                     _wvm.SetPixel(pixel.X, pixel.Y);
                 }
             }
@@ -188,6 +190,7 @@ namespace TEditXna.Editor.Tools
                     if (!_setThisPass[index])
                     {
                         _setThisPass[index] = true;
+                        _wvm.UndoManager.SaveTile(pixel);
                         _wvm.SetPixel(pixel.X, pixel.Y, mode: PaintMode.Tile);
                     }
                 }
@@ -197,12 +200,15 @@ namespace TEditXna.Editor.Tools
             foreach (var pixel in interrior)
             {
                 if (!_wvm.CurrentWorld.ValidTileLocation(pixel)) continue;
+                _wvm.UndoManager.SaveTile(pixel);
                 _wvm.SetPixel(pixel.X, pixel.Y, erase: true);
 
                 if (_wvm.TilePicker.PaintMode == PaintMode.Wall || _wvm.TilePicker.PaintMode == PaintMode.TileAndWall)
                     _wvm.SetPixel(pixel.X, pixel.Y, mode: PaintMode.Wall);
             }
         }
+
+        public bool PreviewIsTexture { get { return false; } }
 
     }
 }

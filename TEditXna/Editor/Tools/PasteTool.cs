@@ -77,8 +77,10 @@ namespace TEditXna.Editor.Tools
 
         private void PasteClipboard(Vector2Int32 anchor)
         {
-            _wvm.Clipboard.PasteBufferIntoWorld(_wvm.CurrentWorld, _wvm.Clipboard.Buffer, anchor);
+            _wvm.Clipboard.PasteBufferIntoWorld(anchor);
             _wvm.UpdateRenderRegion(new Rectangle(anchor.X, anchor.Y, _wvm.Clipboard.Buffer.Size.X, _wvm.Clipboard.Buffer.Size.Y));
         }
+
+        public bool PreviewIsTexture { get { return false; } }
     }
 }

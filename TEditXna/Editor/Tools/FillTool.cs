@@ -1,5 +1,4 @@
 using System;
-using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using BCCL.MvvmLight;
@@ -7,20 +6,22 @@ using TEditXna.ViewModel;
 
 namespace TEditXna.Editor.Tools
 {
-    public class ArrowTool : ObservableObject, ITool
+    public class FillTool : ObservableObject, ITool
     {
+        private WorldViewModel _wvm;
         private WriteableBitmap _preview;
 
         private bool _isActive;
 
-        public ArrowTool(WorldViewModel worldViewModel)
+        public FillTool(WorldViewModel worldViewModel)
         {
+            _wvm = worldViewModel;
             _preview = new WriteableBitmap(1, 1, 96, 96, PixelFormats.Bgra32, null);
             _preview.Clear();
             _preview.SetPixel(0, 0, 127, 0, 90, 255);
 
-            Icon = new BitmapImage(new Uri(@"pack://application:,,,/TEditXna;component/Images/Tools/cursor.png"));
-            Name = "Arrow";
+            Icon = new BitmapImage(new Uri(@"pack://application:,,,/TEditXna;component/Images/Tools/paintcan.png"));
+            Name = "Fill";
             IsActive = false;
         }
 
@@ -38,10 +39,7 @@ namespace TEditXna.Editor.Tools
 
         public void MouseDown(TileMouseState e)
         {
-            if (e.RightButton == MouseButtonState.Pressed)
-            {
-                // Check chests and signs and show popup
-            }
+
         }
 
         public void MouseMove(TileMouseState e)

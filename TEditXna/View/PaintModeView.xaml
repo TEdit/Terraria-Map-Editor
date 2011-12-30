@@ -7,7 +7,10 @@
              mc:Ignorable="d" 
              Background="{StaticResource WindowBackgroundBrush}" Foreground="{StaticResource TextBrush}">
     <UserControl.Resources>
-        
+        <Style TargetType="{x:Type ComboBox}" BasedOn="{StaticResource {x:Type ComboBox}}">
+            <Setter Property="Padding" Value="1" />
+            <Setter Property="Margin" Value="1" />
+        </Style>
         <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource {x:Type TextBlock}}">
             <Setter Property="Margin" Value="5,2" />
             <Setter Property="VerticalAlignment" Value="Center" />

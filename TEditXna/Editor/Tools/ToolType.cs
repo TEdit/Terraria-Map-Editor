@@ -4,6 +4,7 @@
     {
         Other,
         Brush,
-        Pixel
+        Pixel,
+        Npc
     }
 }

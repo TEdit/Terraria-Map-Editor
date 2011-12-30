@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using BCCL.Geometry.Primitives;
@@ -33,6 +35,7 @@ namespace TEditXna.View
         private Textures _textureDictionary;
         private Texture2D[] _tileMap;
         private Texture2D _preview;
+        private Dictionary<string, Texture2D> _textures = new Dictionary<string, Texture2D>();
         private Texture2D _selectionTexture;
         private float _zoom = 1;
 
@@ -89,18 +92,78 @@ namespace TEditXna.View
                 return;
 
             InitializeGraphicsComponents(e);
-            LoadTerrariaTextures();
+            LoadTerrariaTextures(e);
             _selectionTexture = new Texture2D(e.GraphicsDevice, 1, 1);
+            LoadResourceTextures(e);
+
             _selectionTexture.SetData(new[] { Color.FromNonPremultiplied(0, 128, 255, 128) });
             // Start the Game Timer
             _gameTimer.Start();
         }
 
-        private void LoadTerrariaTextures()
+        private void LoadResourceTextures(GraphicsDeviceEventArgs e)
+        {
+            _textures.Add("Spawn", WriteableBitmapEx.ResourceToTexture2D("TEditXna.Images.Overlays.spawn_marker.png", e.GraphicsDevice));
+            _textures.Add("Dungeon", WriteableBitmapEx.ResourceToTexture2D("TEditXna.Images.Overlays.dungeon_marker.png", e.GraphicsDevice));
+            _textures.Add("Old Man", WriteableBitmapEx.ResourceToTexture2D("TEditXna.Images.Overlays.npc_old_man.png", e.GraphicsDevice));
+            _textures.Add("Arms Dealer", WriteableBitmapEx.ResourceToTexture2D("TEditXna.Images.Overlays.npc_old_man.png", e.GraphicsDevice));
+            _textures.Add("Clothier", WriteableBitmapEx.ResourceToTexture2D("TEditXna.Images.Overlays.npc_clothier.png", e.GraphicsDevice));
+            _textures.Add("Demolitionist", WriteableBitmapEx.ResourceToTexture2D("TEditXna.Images.Overlays.npc_demolitionist.png", e.GraphicsDevice));
+            _textures.Add("Dryad", WriteableBitmapEx.ResourceToTexture2D("TEditXna.Images.Overlays.npc_dryad.png", e.GraphicsDevice));
+            _textures.Add("Guide", WriteableBitmapEx.ResourceToTexture2D("TEditXna.Images.Overlays.npc_guide.png", e.GraphicsDevice));
+            _textures.Add("Merchant", WriteableBitmapEx.ResourceToTexture2D("TEditXna.Images.Overlays.npc_merchant.png", e.GraphicsDevice));
+            _textures.Add("Nurse", WriteableBitmapEx.ResourceToTexture2D("TEditXna.Images.Overlays.npc_nurse.png", e.GraphicsDevice));
+            _textures.Add("Goblin Tinkerer", WriteableBitmapEx.ResourceToTexture2D("TEditXna.Images.Overlays.npc_goblin.png", e.GraphicsDevice));
+            _textures.Add("Wizard", WriteableBitmapEx.ResourceToTexture2D("TEditXna.Images.Overlays.npc_wizard.png", e.GraphicsDevice));
+            _textures.Add("Mechanic", WriteableBitmapEx.ResourceToTexture2D("TEditXna.Images.Overlays.npc_mechanic.png", e.GraphicsDevice));
+        }
+
+        private void LoadTerrariaTextures(GraphicsDeviceEventArgs e)
         {
             // If the texture dictionary is valid (Found terraria and loaded content) load texture data
             if (_textureDictionary.Valid)
             {
+                foreach (var id in World.NpcIds)
+                {
+                    _textureDictionary.GetNPC(id.Value);
+                }
+
+                //foreach (var tile in World.TileProperties.Where(t => t.IsFramed))
+                //{
+                //    var tileTexture = _textureDictionary.GetTile(tile.Id);
+                //}
+
+                foreach (var sprite in World.Sprites)
+                {
+                    try
+                    {
+                        var tile = World.TileProperties[sprite.Tile];
+                        var texture = new Texture2D(e.GraphicsDevice, sprite.Size.X * tile.TextureGrid.X, sprite.Size.Y * tile.TextureGrid.Y);
+                        var tileTex = _textureDictionary.GetTile(sprite.Tile);
+                        for (int x = 0; x < sprite.Size.X; x++)
+                        {
+                            for (int y = 0; y < sprite.Size.Y; y++)
+                            {
+                                var source = new Rectangle(x * (tile.TextureGrid.X + 2) + sprite.Origin.X, y * (tile.TextureGrid.Y + 2) + sprite.Origin.Y, tile.TextureGrid.X, tile.TextureGrid.Y);
+                                if (source.Bottom > tileTex.Height)
+                                    source.Height -= (source.Bottom - tileTex.Height);
+                                if (source.Right > tileTex.Width)
+                                    source.Width -= (source.Right - tileTex.Width);
+
+                                var color = new Color[source.Height * source.Width];
+                                var dest = new Rectangle(x * tile.TextureGrid.X, y * tile.TextureGrid.Y, source.Width, source.Height);
+                                tileTex.GetData(0, source, color, 0, color.Length);
+                                texture.SetData(0, dest, color, 0, color.Length);
+                            }
+                        }
+                        sprite.IsPreviewTexture = true;
+                        sprite.Preview = texture.Texture2DToWriteableBitmap();
+                    }
+                    catch (Exception ex)
+                    {
+
+                    }
+                }
             }
         }
 
@@ -171,10 +234,24 @@ namespace TEditXna.View
 
 
             // Draw Pixel Map tiles
+
             DrawPixelTiles();
 
             // Draw sprite overlays
-            DrawSprites();
+
+            if (_wvm.ShowTextures)
+            {
+                DrawSprites();
+            }
+
+            if (_wvm.ShowPoints)
+            {
+                _spriteBatch.End();
+                _spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.LinearClamp, DepthStencilState.Default, RasterizerState.CullNone);
+                DrawPoints();
+                _spriteBatch.End();
+                _spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.Default, RasterizerState.CullNone);
+            }
 
             if (_wvm.Selection.IsActive)
                 DrawSelection();
@@ -221,6 +298,48 @@ namespace TEditXna.View
         {
             if (!_textureDictionary.Valid)
                 return;
+
+            Rectangle visibleBounds = GetViewingArea();
+            if (visibleBounds.Height * visibleBounds.Width < 25000)
+            {
+                for (int x = visibleBounds.Left; x < visibleBounds.Right; x++)
+                {
+                    for (int y = visibleBounds.Top; y < visibleBounds.Bottom; y++)
+                    {
+                        var curtile = _wvm.CurrentWorld.Tiles[x, y];
+                        if (World.TileProperties[curtile.Type].IsFramed)
+                        {
+                            //_spriteBatch.Draw(_textureDictionary.GetTile(curtile.Type),
+                            //                  new Vector2((_scrollPosition.X + x) * _zoom,
+                            //                              (_scrollPosition.Y + y) * _zoom),
+                            //                  new Rectangle(curtile.U, curtile.V, 16, 16),
+                            //                  Color.White,
+                            //                  0,
+                            //                  Vector2.Zero,
+                            //                  _zoom / 16,
+                            //                  SpriteEffects.None,
+                            //                  0);
+                            _spriteBatch.Draw(_textureDictionary.GetTile(curtile.Type),
+                                    new Rectangle(1 + (int)((_scrollPosition.X + x) * _zoom),
+                                                1 + (int)((_scrollPosition.Y + y) * _zoom),
+                                                (int)_zoom,
+                                                (int)_zoom),
+                                    new Rectangle(curtile.U, curtile.V, 16, 16),
+                                    Color.White);
+                        }
+                    }
+                }
+                //_spriteBatch.Draw();
+            }
+        }
+
+        private Rectangle GetViewingArea()
+        {
+            return new Rectangle(
+                (int)Math.Floor(-_scrollPosition.X),
+                (int)Math.Floor(-_scrollPosition.Y),
+                (int)Math.Ceiling(xnaViewport.ActualWidth / _zoom),
+                (int)Math.Ceiling(xnaViewport.ActualHeight / _zoom));
         }
 
         private void DrawPixelTiles()
@@ -250,6 +369,31 @@ namespace TEditXna.View
             }
         }
 
+        private void DrawPoints()
+        {
+            foreach (var npc in _wvm.CurrentWorld.NPCs)
+            {
+                _spriteBatch.Draw(_textures[npc.Name],
+                GetMarkerLocation(npc.Home.X, npc.Home.Y),
+                Color.White);
+            }
+
+            _spriteBatch.Draw(_textures["Spawn"],
+                GetMarkerLocation(_wvm.CurrentWorld.SpawnX, _wvm.CurrentWorld.SpawnY),
+                Color.FromNonPremultiplied(255, 255, 255, 128));
+
+            _spriteBatch.Draw(_textures["Dungeon"],
+                GetMarkerLocation(_wvm.CurrentWorld.DungeonX, _wvm.CurrentWorld.DungeonY),
+                Color.FromNonPremultiplied(255, 255, 255, 128));
+        }
+
+        private Vector2 GetMarkerLocation(int x, int y)
+        {
+            return new Vector2(
+                (_scrollPosition.X + x) * _zoom - 10,
+                (_scrollPosition.Y + y) * _zoom - 34);
+        }
+
         private void DrawToolPreview()
         {
             if (_preview == null)
@@ -258,31 +402,47 @@ namespace TEditXna.View
 
             if (_wvm.ActiveTool.ToolType == ToolType.Brush)
             {
-                position = new Vector2((_scrollPosition.X + _wvm.MouseOverTile.MouseState.Location.X - _wvm.Brush.OffsetX) * _zoom,
-                                       (_scrollPosition.Y + _wvm.MouseOverTile.MouseState.Location.Y - _wvm.Brush.OffsetY) * _zoom);
+                position = new Vector2(1 + (_scrollPosition.X + _wvm.MouseOverTile.MouseState.Location.X - _wvm.Brush.OffsetX) * _zoom,
+                                       1 + (_scrollPosition.Y + _wvm.MouseOverTile.MouseState.Location.Y - _wvm.Brush.OffsetY) * _zoom);
             }
             else
             {
-                position = new Vector2((_scrollPosition.X + _wvm.MouseOverTile.MouseState.Location.X) * _zoom,
-                                       (_scrollPosition.Y + _wvm.MouseOverTile.MouseState.Location.Y) * _zoom);
+                position = new Vector2(1 + (_scrollPosition.X + _wvm.MouseOverTile.MouseState.Location.X) * _zoom,
+                                       1 + (_scrollPosition.Y + _wvm.MouseOverTile.MouseState.Location.Y) * _zoom);
             }
 
-            _spriteBatch.Draw(
-                _preview,
-                position,
-                null,
-                Color.White,
-                0,
-                Vector2.Zero,
-                _zoom,
-                SpriteEffects.None,
-                0);
+            if (_wvm.ActiveTool.PreviewIsTexture)
+            {
+                _spriteBatch.Draw(
+                    _preview,
+                    position,
+                    null,
+                    Color.White,
+                    0,
+                    Vector2.Zero,
+                    _zoom / 16,
+                    SpriteEffects.None,
+                    0);
+            }
+            else
+            {
+                _spriteBatch.Draw(
+                    _preview,
+                    position,
+                    null,
+                    Color.White,
+                    0,
+                    Vector2.Zero,
+                    _zoom,
+                    SpriteEffects.None,
+                    0);
+            }
         }
 
         private void DrawSelection()
         {
             Rectangle destinationRectangle = new Rectangle(
-                (int)((_scrollPosition.X + _wvm.Selection.SelectionArea.Left) * _zoom), 
+                (int)((_scrollPosition.X + _wvm.Selection.SelectionArea.Left) * _zoom),
                 (int)((_scrollPosition.Y + _wvm.Selection.SelectionArea.Top) * _zoom),
                 (int)((_wvm.Selection.SelectionArea.Width) * _zoom),
                 (int)((_wvm.Selection.SelectionArea.Height) * _zoom));

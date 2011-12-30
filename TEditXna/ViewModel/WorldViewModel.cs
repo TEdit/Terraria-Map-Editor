@@ -10,9 +10,11 @@ using BCCL.MvvmLight;
 using BCCL.MvvmLight.Threading;
 using Microsoft.Win32;
 using TEditXNA.Terraria;
+using TEditXNA.Terraria.Objects;
 using TEditXna.Editor;
 using TEditXna.Editor.Clipboard;
 using TEditXna.Editor.Tools;
+using TEditXna.Editor.Undo;
 using TEditXna.Render;
 
 namespace TEditXna.ViewModel
@@ -24,24 +26,71 @@ namespace TEditXna.ViewModel
         private readonly TilePicker _tilePicker = new TilePicker();
         private readonly IList<ITool> _tools = new ObservableCollection<ITool>();
         private readonly Selection _selection = new Selection();
-        private readonly ClipboardManager _clipboard = new ClipboardManager();
+        private readonly ClipboardManager _clipboard;
+        private readonly UndoManager _undoManager;
         private ITool _activeTool;
         private string _currentFile;
         private World _currentWorld;
         private PixelMapManager _pixelMap;
         private ProgressChangedEventArgs _progress;
-
+        private bool _showPoints = true;
         private bool _showLiquid = true;
         private bool _showTiles = true;
         private bool _showWalls = true;
         private bool _showWires = true;
         private string _windowTitle;
+        private bool _showTextures = true;
+         
+
+        public bool ShowTextures
+        {
+            get { return _showTextures; }
+            set { Set("ShowTextures", ref _showTextures, value); }
+        }
+        private string _selectedPoint;
+        private readonly ObservableCollection<string> _points = new ObservableCollection<string>();
+
+        private Sprite _selectedSprite;
+
+
+        public Sprite SelectedSprite
+        {
+            get { return _selectedSprite; }
+            set
+            {
+                Set("SelectedSprite", ref _selectedSprite, value);
+                PreviewChange();
+            }
+        }
+
+        public ObservableCollection<string> Points
+        {
+            get { return _points; }
+        }
+
+        public ObservableCollection<Sprite> SpriteList
+        {
+            get { return World.Sprites; }
+        }
+
+        public string SelectedPoint
+        {
+            get { return _selectedPoint; }
+            set { Set("SelectedPoint", ref _selectedPoint, value); }
+        }
 
         public WorldViewModel()
         {
+            _undoManager = new UndoManager(this);
+            _clipboard = new ClipboardManager(this);
             World.ProgressChanged += OnProgressChanged;
             Brush.BrushChanged += OnPreviewChanged;
             UpdateTitle();
+        }
+
+        public UndoManager UndoManager
+        {
+            get { return _undoManager; }
         }
 
         public ClipboardManager Clipboard
@@ -118,6 +167,12 @@ namespace TEditXna.ViewModel
                 Set("ShowWires", ref _showWires, value);
                 UpdateRenderWorld();
             }
+        }
+
+        public bool ShowPoints
+        {
+            get { return _showPoints; }
+            set { Set("ShowPoints", ref _showPoints, value); }
         }
 
         public bool ShowLiquid
@@ -229,7 +284,7 @@ namespace TEditXna.ViewModel
             ofd.Title = "Load Terraria World File";
             ofd.InitialDirectory = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), @"My Games\Terraria\Worlds");
             ofd.Multiselect = false;
-            if ((bool) ofd.ShowDialog())
+            if ((bool)ofd.ShowDialog())
             {
                 CurrentFile = ofd.FileName;
                 LoadWorld(CurrentFile);
@@ -253,7 +308,7 @@ namespace TEditXna.ViewModel
             sfd.Filter = "Terraria World File|*.wld|TEdit Backup File|*.TEdit";
             sfd.Title = "Save World As";
             sfd.InitialDirectory = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), @"My Games\Terraria\Worlds");
-            if ((bool) sfd.ShowDialog())
+            if ((bool)sfd.ShowDialog())
             {
                 CurrentFile = sfd.FileName;
                 SaveWorldFile();
@@ -276,6 +331,14 @@ namespace TEditXna.ViewModel
                                   {
                                       PixelMap = t.Result;
                                       UpdateTitle();
+                                      Points.Clear();
+                                      Points.Add("Spawn");
+                                      Points.Add("Dungeon");
+                                      foreach (var npc in CurrentWorld.NPCs)
+                                      {
+                                          Points.Add(npc.Name);
+                                      }
+
                                   }, TaskFactoryHelper.UiTaskScheduler);
         }
     }

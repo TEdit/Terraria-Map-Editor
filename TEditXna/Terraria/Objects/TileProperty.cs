@@ -18,6 +18,8 @@ namespace TEditXNA.Terraria.Objects
         private bool _isSolidTop;
         private bool _isLight;
         private FramePlacement _placement;
+        private Vector2Short _textureGrid;
+
         public TileProperty()
         {
             _frameSize = new Vector2Short(1, 1);
@@ -25,6 +27,12 @@ namespace TEditXNA.Terraria.Objects
             _id = -1;
             _name = "UNKNOWN";
             _isFramed = false;
+        }
+
+        public Vector2Short TextureGrid
+        {
+            get { return _textureGrid; }
+            set { Set("TextureGrid", ref _textureGrid, value); }
         }
         public FramePlacement Placement
         {

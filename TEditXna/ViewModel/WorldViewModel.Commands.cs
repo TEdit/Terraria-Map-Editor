@@ -20,7 +20,18 @@ namespace TEditXna.ViewModel
         private ICommand _deleteCommand;
         private ICommand _pasteCommand;
         private ICommand _copyCommand;
-         
+        private ICommand _undoCommand;
+        private ICommand _redoCommand;
+
+        public ICommand RedoCommand
+        {
+            get { return _redoCommand ?? (_redoCommand = new RelayCommand(UndoManager.Redo)); }
+        } 
+
+        public ICommand UndoCommand
+        {
+            get { return _undoCommand ?? (_undoCommand = new RelayCommand(UndoManager.Undo)); }
+        }
 
         public ICommand CopyCommand
         {

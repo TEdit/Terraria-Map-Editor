@@ -5,6 +5,7 @@ using System.Windows.Media.Imaging;
 using BCCL.Geometry.Primitives;
 using BCCL.MvvmLight;
 using BCCL.Utility;
+using TEditXna.ViewModel;
 using XNA = Microsoft.Xna.Framework;
 using TEditXNA.Terraria;
 
@@ -14,7 +15,11 @@ namespace TEditXna.Editor.Clipboard
     {
         private ClipboardBuffer _buffer;
         private bool _pasteEmpty = true;
-         
+        private readonly WorldViewModel _wvm;
+        public ClipboardManager(WorldViewModel worldView)
+        {
+            _wvm = worldView;
+        }
 
         public bool PasteEmpty
         {
@@ -55,10 +60,12 @@ namespace TEditXna.Editor.Clipboard
             }
         }
 
-        public ClipboardBuffer GetBufferedRegion(World world, XNA.Rectangle area)
+        public ClipboardBuffer GetSelectionBuffer()
         {
+            World world = _wvm.CurrentWorld;
+            XNA.Rectangle area = _wvm.Selection.SelectionArea;
             var buffer = new ClipboardBuffer(new Vector2Int32(area.Width, area.Height));
-
+            
             for (int x = 0; x < area.Width; x++)
             {
                 for (int y = 0; y < area.Height; y++)
@@ -93,16 +100,18 @@ namespace TEditXna.Editor.Clipboard
                             }
                         }
                     }
-
                     buffer.Tiles[x, y] = curTile;
                 }
             }
+
             buffer.RenderBuffer();
             return buffer;
         }
 
-        public void PasteBufferIntoWorld(World world, ClipboardBuffer buffer, Vector2Int32 anchor)
+        public void PasteBufferIntoWorld(Vector2Int32 anchor)
         {
+            World world = _wvm.CurrentWorld;
+            ClipboardBuffer buffer = _wvm.Clipboard.Buffer;
             for (int x = 0; x < buffer.Size.X; x++)
             {
                 for (int y = 0; y < buffer.Size.Y; y++)
@@ -178,13 +187,12 @@ namespace TEditXna.Editor.Clipboard
                                 }
                             }
                         }
-
+                        _wvm.UndoManager.SaveTile(x + anchor.X, y + anchor.Y);
                         world.Tiles[x + anchor.X, y + anchor.Y] = curTile;
                     }
                 }
             }
-
-            //HistMan.AddBufferToHistory();
+            _wvm.UndoManager.SaveUndo();
         }
     }
 }

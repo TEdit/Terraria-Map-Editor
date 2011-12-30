@@ -13,14 +13,19 @@ namespace TEditXNA.Terraria
 {
     public partial class World
     {
-        public static readonly Dictionary<string, XNA.Color> _globalColors = new Dictionary<string, XNA.Color>();
-        public static readonly IList<ItemProperty> _itemProperties = new ObservableCollection<ItemProperty>();
-        public static readonly IList<TileProperty> _tileProperties = new ObservableCollection<TileProperty>();
-        public static readonly IList<WallProperty> _wallProperties = new ObservableCollection<WallProperty>();
+        private static readonly Dictionary<string, XNA.Color> _globalColors = new Dictionary<string, XNA.Color>();
+        private static readonly Dictionary<string, int> _npcIds = new Dictionary<string, int>();
+        private static readonly IList<ItemProperty> _itemProperties = new ObservableCollection<ItemProperty>();
+        private static readonly IList<TileProperty> _tileProperties = new ObservableCollection<TileProperty>();
+        private static readonly IList<WallProperty> _wallProperties = new ObservableCollection<WallProperty>();
+        private static readonly ObservableCollection<Sprite> _sprites = new ObservableCollection<Sprite>();
+
+
         static World()
         {
             var settingspath = Path.Combine(Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().GetName().CodeBase), "settings.xml");
             LoadObjectDbXml(settingspath);
+            Sprites.Add(new Sprite());
         }
 
         private static IEnumerable<TOut> StringToList<TOut>(string xmlcsv)
@@ -112,7 +117,7 @@ namespace TEditXNA.Terraria
                 curTile.IsLight = (bool?)xElement.Attribute("Light") ?? false;
                 curTile.FrameSize = StringToVector2Short((string)xElement.Attribute("Size"), 1, 1);
                 curTile.Placement = InLineEnumTryParse<FramePlacement>((string)xElement.Attribute("Placement"));
-
+                curTile.TextureGrid = StringToVector2Short((string)xElement.Attribute("TextureGrid"), 16,16);
                 foreach (var elementFrame in xElement.Elements("Frames").Elements("Frame"))
                 {
 
@@ -128,6 +133,41 @@ namespace TEditXNA.Terraria
                         curFrame.Name = curTile.Name;
 
                     curTile.Frames.Add(curFrame);
+                    Sprites.Add(new Sprite
+                            {
+                                Direction =  curFrame.Direction,
+                                IsPreviewTexture = false,
+                                Name = curFrame.Name + ", " + curFrame.Variety,
+                                Origin = curFrame.UV,
+                                Size = curTile.FrameSize,
+                                Tile = (byte)curTile.Id,
+                                TileName = curTile.Name
+                            });
+                }
+                if (curTile.Frames.Count == 0 && curTile.IsFramed)
+                {
+                    var curFrame = new FrameProperty();
+                    // Read XML attributes
+                    curFrame.Name = curTile.Name;
+                    curFrame.Variety = string.Empty;
+                    curFrame.UV = new Vector2Short(0,0);
+                    curFrame.Direction = InLineEnumTryParse<FrameDirection>((string)xElement.Attribute("Dir"));
+
+                    // Assign a default name if none existed
+                    if (string.IsNullOrWhiteSpace(curFrame.Name))
+                        curFrame.Name = curTile.Name;
+
+                    curTile.Frames.Add(curFrame);
+                    Sprites.Add(new Sprite
+                    {
+                        Direction = curFrame.Direction,
+                        IsPreviewTexture = false,
+                        Name = curFrame.Name + ", " + curFrame.Variety,
+                        Origin = curFrame.UV,
+                        Size = curTile.FrameSize,
+                        Tile = (byte)curTile.Id,
+                        TileName = curTile.Name
+                    });
                 }
                 TileProperties.Add(curTile);
             }
@@ -149,6 +189,12 @@ namespace TEditXNA.Terraria
                 curItem.Name = (string)xElement.Attribute("Name");
                 ItemProperties.Add(curItem);
             }
+            foreach (var xElement in xmlSettings.Elements("Npcs").Elements("Npc"))
+            {
+                int id = (int?)xElement.Attribute("Id") ?? -1;
+                string name = (string)xElement.Attribute("Name");
+                NpcIds.Add(name, id);
+            }
         }
 
 
@@ -156,6 +202,11 @@ namespace TEditXNA.Terraria
         public static Dictionary<string, XNA.Color> GlobalColors
         {
             get { return _globalColors; }
+        }
+
+        public static Dictionary<string, int> NpcIds
+        {
+            get { return _npcIds; }
         }
 
         public static IList<TileProperty> TileProperties
@@ -176,6 +227,11 @@ namespace TEditXNA.Terraria
         public static IList<ItemProperty> ItemProperties
         {
             get { return _itemProperties; }
+        }
+
+        public static ObservableCollection<Sprite> Sprites
+        {
+            get { return _sprites; }
         }
     }
 }

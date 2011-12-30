@@ -14,5 +14,6 @@ namespace TEditXna.Editor.Tools
         void MouseWheel(TileMouseState e);
 
         WriteableBitmap PreviewTool();
+        bool PreviewIsTexture { get; }
     }
 }

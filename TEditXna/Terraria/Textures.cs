@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Graphics.PackedVector;
@@ -120,9 +121,22 @@ namespace TEditXNA.Terraria
             }
             return Npcs[num];
         }
+
+        private static Color ColorKey = Color.FromNonPremultiplied(247, 119, 249, 255);
         private Texture2D LoadTexture(string path)
         {
-            return _cm.Load<Texture2D>(path);
+            var loadTexture = _cm.Load<Texture2D>(path);
+            var pixels = new Color[loadTexture.Height * loadTexture.Width];
+            loadTexture.GetData(pixels);
+            for (int i = 0; i < pixels.Length; i++)
+            {
+                if (pixels[i] == Color.Magenta || pixels[i] == ColorKey)
+                {
+                    pixels[i] = Color.Transparent;
+                }
+            }
+            loadTexture.SetData(pixels);
+            return loadTexture;
         }
     }
 }
