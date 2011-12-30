@@ -407,9 +407,16 @@ namespace TEditXna.View
         {
             foreach (var npc in _wvm.CurrentWorld.NPCs)
             {
-                _spriteBatch.Draw(_textures[npc.Name],
-                GetMarkerLocation(npc.Home.X, npc.Home.Y),
-                Color.White);
+                if (_textures.ContainsKey(npc.Name))
+                {
+                    _spriteBatch.Draw(_textures[npc.Name],
+                                      GetMarkerLocation(npc.Home.X, npc.Home.Y),
+                                      Color.White);
+                }
+                else
+                {
+                    ErrorLogging.Log(string.Format("NPC Texture Missing: {0}, {1}",npc.SpriteId, npc.Name));
+                }
             }
 
             _spriteBatch.Draw(_textures["Spawn"],
