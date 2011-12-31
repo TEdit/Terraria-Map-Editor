@@ -58,7 +58,7 @@ namespace TEditXna.Editor.Tools
             if (_wvm.Brush.Shape == BrushShape.Square)
                 bmp.FillRectangle(0, 0, _wvm.Brush.Width, _wvm.Brush.Height, Color.FromArgb(127, 0, 90, 255));
             else
-                bmp.FillEllipse(0, 0, _wvm.Brush.Width / 2, _wvm.Brush.Height / 2, Color.FromArgb(127, 0, 90, 255));
+                bmp.FillEllipse(0, 0, _wvm.Brush.Width, _wvm.Brush.Height, Color.FromArgb(127, 0, 90, 255));
 
             _preview = bmp;
             return _preview;
@@ -101,9 +101,10 @@ namespace TEditXna.Editor.Tools
 
         private void FillRectangle(Vector2Int32 point)
         {
+            IEnumerable<Vector2Int32> area = Fill.FillRectangleCentered(point, new Vector2Int32(_wvm.Brush.Width, _wvm.Brush.Height));
             if (_wvm.Brush.IsOutline)
             {
-                IEnumerable<Vector2Int32> area = Fill.FillRectangleCentered(point, new Vector2Int32(_wvm.Brush.Width, _wvm.Brush.Height));
+                
                 IEnumerable<Vector2Int32> interrior = Fill.FillRectangleCentered(point,
                                                                                  new Vector2Int32(
                                                                                      _wvm.Brush.Width - _wvm.Brush.Outline * 2,
@@ -112,25 +113,22 @@ namespace TEditXna.Editor.Tools
             }
             else
             {
-                IEnumerable<Vector2Int32> area = Fill.FillRectangleCentered(point, new Vector2Int32(_wvm.Brush.Width, _wvm.Brush.Height));
                 FillSolid(area);
             }
         }
 
         private void FillRound(Vector2Int32 point)
         {
+            IEnumerable<Vector2Int32> area = Fill.FillEllipseCentered(point, new Vector2Int32(_wvm.Brush.Width / 2, _wvm.Brush.Height / 2));
             if (_wvm.Brush.IsOutline)
             {
-                IEnumerable<Vector2Int32> area = Fill.FillEllipseCentered(point, new Vector2Int32(_wvm.Brush.Width / 2, _wvm.Brush.Height / 2));
-                IEnumerable<Vector2Int32> interrior = Fill.FillEllipseCentered(point,
-                                                                               new Vector2Int32(
+                IEnumerable<Vector2Int32> interrior = Fill.FillEllipseCentered(point, new Vector2Int32(
                                                                                    _wvm.Brush.Width / 2 - _wvm.Brush.Outline * 2,
                                                                                    _wvm.Brush.Height / 2 - _wvm.Brush.Outline * 2));
                 FillHollow(area, interrior);
             }
             else
             {
-                IEnumerable<Vector2Int32> area = Fill.FillEllipseCentered(point, new Vector2Int32(_wvm.Brush.Width / 2, _wvm.Brush.Height / 2));
                 FillSolid(area);
             }
         }
