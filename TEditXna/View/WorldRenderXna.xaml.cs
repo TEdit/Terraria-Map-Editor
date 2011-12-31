@@ -117,6 +117,7 @@ namespace TEditXna.View
             _textures.Add("Goblin Tinkerer", WriteableBitmapEx.ResourceToTexture2D("TEditXna.Images.Overlays.npc_goblin.png", e.GraphicsDevice));
             _textures.Add("Wizard", WriteableBitmapEx.ResourceToTexture2D("TEditXna.Images.Overlays.npc_wizard.png", e.GraphicsDevice));
             _textures.Add("Mechanic", WriteableBitmapEx.ResourceToTexture2D("TEditXna.Images.Overlays.npc_mechanic.png", e.GraphicsDevice));
+            _textures.Add("Grid", WriteableBitmapEx.ResourceToTexture2D("TEditXna.Images.Overlays.grid.png", e.GraphicsDevice));
         }
 
         private void LoadTerrariaTextures(GraphicsDeviceEventArgs e)
@@ -239,11 +240,11 @@ namespace TEditXna.View
             DrawPixelTiles();
 
             // Draw sprite overlays
-
             if (_wvm.ShowTextures)
-            {
                 DrawSprites();
-            }
+
+            if (_wvm.ShowGrid)
+                DrawGrid();
 
             if (_wvm.ShowPoints)
             {
@@ -294,7 +295,30 @@ namespace TEditXna.View
                 }
             }
         }
+        private void DrawGrid()
+        {
+            Rectangle visibleBounds = GetViewingArea();
+            var gridTex = _textures["Grid"];
+            if (visibleBounds.Height * visibleBounds.Width < 25000)
+            {
+                for (int x = 0; x < visibleBounds.Right; x += 16)
+                {
+                    for (int y = 0; y < visibleBounds.Bottom; y += 16)
+                    {
+                        if ((x + 16 >= visibleBounds.Left || x <= visibleBounds.Right) &&
+                            (y + 16 >= visibleBounds.Top || y <= visibleBounds.Bottom))
+                        {
 
+                            var dest = new Rectangle(1 + (int)((_scrollPosition.X + x) * _zoom), 1 + (int)((_scrollPosition.Y + y) * _zoom), (int)(_zoom * 256 / 16), (int)(_zoom * 256 / 16));
+
+                            _spriteBatch.Draw(gridTex, dest, Color.White);
+                        }
+                    }
+                }
+
+            }
+
+        }
         private void DrawSprites()
         {
             if (!_textureDictionary.Valid)
@@ -318,14 +342,14 @@ namespace TEditXna.View
                             if (source.Right > tileTex.Width)
                                 source.Width -= (source.Right - tileTex.Width);
 
-                            var dest = new Rectangle(1 + (int) ((_scrollPosition.X + x)*_zoom), 1 + (int) ((_scrollPosition.Y + y)*_zoom), (int) _zoom, (int) _zoom);
+                            var dest = new Rectangle(1 + (int)((_scrollPosition.X + x) * _zoom), 1 + (int)((_scrollPosition.Y + y) * _zoom), (int)_zoom, (int)_zoom);
                             var texsize = tileprop.TextureGrid;
                             if (texsize.X != 16 || texsize.Y != 16)
                             {
                                 dest.Width = (int)(texsize.X * (_zoom / 16));
                                 dest.Height = (int)(texsize.Y * (_zoom / 16));
 
-                                var frame = (tileprop.Frames.FirstOrDefault(f=>f.UV == new Vector2Short(curtile.U, curtile.V)));
+                                var frame = (tileprop.Frames.FirstOrDefault(f => f.UV == new Vector2Short(curtile.U, curtile.V)));
                                 var frameAnchor = FrameAnchor.None;
                                 if (frame != null)
                                     frameAnchor = frame.Anchor;
@@ -455,24 +479,24 @@ namespace TEditXna.View
                     switch (_wvm.SelectedSprite.Anchor)
                     {
                         case FrameAnchor.None:
-                            position.X += ((16 - texsize.X)/2F)*_zoom/16;
-                            position.Y += ((16 - texsize.Y)/2F)*_zoom/16;
+                            position.X += ((16 - texsize.X) / 2F) * _zoom / 16;
+                            position.Y += ((16 - texsize.Y) / 2F) * _zoom / 16;
                             break;
                         case FrameAnchor.Left:
                             //position.X += (16 - texsize.X) / 2;
-                            position.Y += ((16 - texsize.Y)/2F)*_zoom/16;
+                            position.Y += ((16 - texsize.Y) / 2F) * _zoom / 16;
                             break;
                         case FrameAnchor.Right:
-                            position.X += (16 - texsize.X)*_zoom/16;
-                            position.Y += ((16 - texsize.Y)/2F)*_zoom/16;
+                            position.X += (16 - texsize.X) * _zoom / 16;
+                            position.Y += ((16 - texsize.Y) / 2F) * _zoom / 16;
                             break;
                         case FrameAnchor.Top:
-                            position.X += ((16 - texsize.X)/2F)*_zoom/16;
+                            position.X += ((16 - texsize.X) / 2F) * _zoom / 16;
                             //position.Y += (16 - texsize.Y);
                             break;
                         case FrameAnchor.Bottom:
-                            position.X += ((16 - texsize.X)/2F)*_zoom/16;
-                            position.Y += (16 - texsize.Y)*_zoom/16;
+                            position.X += ((16 - texsize.X) / 2F) * _zoom / 16;
+                            position.Y += (16 - texsize.Y) * _zoom / 16;
                             break;
                     }
 

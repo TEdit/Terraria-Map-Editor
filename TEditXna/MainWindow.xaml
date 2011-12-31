@@ -41,6 +41,7 @@
                 </MenuItem>
                 <MenuItem Header="Display">
                     <MenuItem Header="Show Textures" IsCheckable="True" IsChecked="{Binding ShowTextures}" />
+                    <MenuItem Header="Show Grid" IsCheckable="True" IsChecked="{Binding ShowGrid}" />
                     <Separator Margin="1" />
                     <MenuItem Header="Show Walls" IsCheckable="True" IsChecked="{Binding ShowWalls}" />
                     <MenuItem Header="Show Tiles" IsCheckable="True" IsChecked="{Binding ShowTiles}" />

@@ -308,6 +308,7 @@
     <Resource Include="Images\Toolbar\arrow_redo.png" />
     <Resource Include="Images\Toolbar\arrow_undo.png" />
     <Resource Include="Images\Toolbar\new.png" />
+    <EmbeddedResource Include="Images\Overlays\grid.png" />
     <Content Include="settings.xml">
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -341,7 +342,7 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties BuildVersion_AssemblyInfoFilename="Properties\AssemblyInfo.cs" BuildVersion_UseGlobalSettings="True" />
+      <UserProperties BuildVersion_UseGlobalSettings="True" BuildVersion_AssemblyInfoFilename="Properties\AssemblyInfo.cs" />
     </VisualStudio>
   </ProjectExtensions>
   <PropertyGroup>

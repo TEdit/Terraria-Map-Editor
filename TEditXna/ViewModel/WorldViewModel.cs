@@ -41,7 +41,14 @@ namespace TEditXna.ViewModel
         private string _windowTitle;
         private bool _showTextures = true;
         public bool[] CheckTiles;
+        private bool _showGrid = true;
+         
 
+        public bool ShowGrid
+        {
+            get { return _showGrid; }
+            set { Set("ShowGrid", ref _showGrid, value); }
+        }
         public bool ShowTextures
         {
             get { return _showTextures; }
