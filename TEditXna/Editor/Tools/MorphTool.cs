@@ -209,7 +209,12 @@ namespace TEditXna.Editor.Tools
                                 curtile.Type = _currentBiome.Stone;
                         }
                         else if (curtile.Type == biome.Grass)
-                            curtile.Type = _currentBiome.Grass;
+                        {
+                            if (!_currentBiome.DirtToStone && (p.Y < _rockLayer))
+                                curtile.Type = _currentBiome.Grass;
+                            else
+                                curtile.Type = _currentBiome.Stone;
+                        }
                         else if (curtile.Type == biome.Sand)
                             curtile.Type = _currentBiome.Sand;
                         else if (curtile.Type == biome.Stone)
@@ -221,26 +226,43 @@ namespace TEditXna.Editor.Tools
                     }
                 }
 
-                if (curtile.Type == 0 || (curtile.Type == _currentBiome.Stone && _currentBiome.DirtToStone))
+                // Add grass where appropriate
+                if ((curtile.Type == 0 && p.Y < _rockLayer) || (curtile.Type == _currentBiome.Stone && _currentBiome.DirtToStone))
                 {
                     if (BordersAir(p))
                     {
                         curtile.Type = _currentBiome.Grass;
                     }
                 }
+
             }
 
-            if (p.Y > _dirtLayer && p.Y < _wvm.CurrentWorld.TilesHigh - 182)
+            
+
+            if (p.Y < _dirtLayer)
             {
-                if (Biomes.Any(x => x.Wall == curtile.Wall) || curtile.Wall == 2)
+                if (curtile.Wall != 0)
                 {
-                    //if (p.Y < _dirtLayer && _currentBiome.Wall == 0)
-                    //    curtile.Wall = 2;
-                    //else
-                    curtile.Wall = _currentBiome.Wall;
+                    if ((Biomes.Any(x => x.Wall == curtile.Wall) || curtile.Wall == 2) || _currentBiome.DirtToStone)
+                    {
+                        curtile.Wall = _currentBiome.Wall == 0 ? (byte)2 : _currentBiome.Wall;
+                    }
                 }
             }
-            //else if (p.Y < _dirtLayer && _currentBiome.Wall == 0) 
+            else if (p.Y < _wvm.CurrentWorld.TilesHigh - 182)
+            {
+                if (_currentBiome.DirtToStone)
+                {
+                    curtile.Wall = _currentBiome.Wall;
+                }
+                else if (curtile.Wall != 0)
+                {
+                    if (Biomes.Any(x => x.Wall == curtile.Wall))
+                    {
+                        curtile.Wall = _currentBiome.Wall;
+                    }
+                }
+            }
         }
 
         private bool BordersAir(Vector2Int32 p)
@@ -251,7 +273,7 @@ namespace TEditXna.Editor.Tools
             if (x2 >= _wvm.CurrentWorld.TilesWide) x2 = p.X;
             int y1 = p.Y - 1;
             if (y1 < 0) y1 = 0;
-            int y2 = p.Y + 2;
+            int y2 = p.Y + 1;
             if (y2 >= _wvm.CurrentWorld.TilesHigh) y2 = p.X;
 
             if (!_wvm.CurrentWorld.Tiles[p.X, y1].IsActive || !_wvm.CurrentWorld.Tiles[p.X, y2].IsActive ||
