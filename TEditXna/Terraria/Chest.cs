@@ -50,6 +50,7 @@ namespace TEditXNA.Terraria
         public Chest Copy()
         {
             var chest = new Chest(_x, _y);
+            chest.Items.Clear();
             foreach (var item in Items)
             {
                 chest.Items.Add(item.Copy());

@@ -10,7 +10,7 @@ namespace TEditXna.Editor.Undo
 {
     public class UndoManager : ObservableObject
     {
-        private static readonly string Dir = Path.Combine(Path.GetFullPath(Assembly.GetExecutingAssembly().Location), "undo");
+        private static readonly string Dir = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "undo");
         private static readonly string UndoFile = Path.Combine(Dir, "undo_temp_{0}");
         private static readonly string RedoFile = Path.Combine(Dir, "redo_temp_{0}");
 

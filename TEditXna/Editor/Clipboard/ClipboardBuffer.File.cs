@@ -7,6 +7,7 @@ namespace TEditXna.Editor.Clipboard
     public partial class ClipboardBuffer
     {
         public const int SchematicVersion = 2;
+
         public void Save(string filename)
         {
             Name = Path.GetFileNameWithoutExtension(filename);
