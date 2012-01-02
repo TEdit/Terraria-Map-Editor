@@ -393,11 +393,14 @@ namespace TEditXna.View
 
         private Rectangle GetViewingArea()
         {
+            if (_wvm.CurrentWorld == null)
+                return new Rectangle();
+
             return new Rectangle(
-                (int)Math.Floor(-_scrollPosition.X),
-                (int)Math.Floor(-_scrollPosition.Y),
-                (int)Math.Ceiling(xnaViewport.ActualWidth / _zoom),
-                (int)Math.Ceiling(xnaViewport.ActualHeight / _zoom));
+                (int)Math.Max(0,Math.Floor(-_scrollPosition.X)),
+                (int)Math.Max(0,Math.Floor(-_scrollPosition.Y)),
+                (int)Math.Min(_wvm.CurrentWorld.TilesWide, Math.Ceiling(xnaViewport.ActualWidth / _zoom)),
+                (int)Math.Min(_wvm.CurrentWorld.TilesHigh, Math.Ceiling(xnaViewport.ActualHeight / _zoom)));
         }
 
         private void DrawPixelTiles()

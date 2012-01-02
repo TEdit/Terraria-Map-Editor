@@ -175,6 +175,10 @@ namespace TEditXNA.Terraria
                 TileProperties.Add(curTile);
 
             }
+            for (int i = TileProperties.Count; i < 255; i++)
+            {
+                TileProperties.Add(new TileProperty(i, "UNKNOWN", Color.FromArgb(255,255,0,255), true));
+            }
 
             foreach (var xElement in xmlSettings.Elements("Walls").Elements("Wall"))
             {

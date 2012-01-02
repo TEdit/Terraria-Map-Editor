@@ -259,6 +259,7 @@ Single item; tag has no children. Has the following properties:
     <Shortcut Key="P" Tool="Point" />
     <Shortcut Key="S" Tool="Selection" />
     <Shortcut Key="T" Tool="Sprite" />
+    <Shortcut Key="Z" Tool="Eraser" />
   </ShortCutKeys>
   <GlobalColors>
     <GlobalColor Name="Space" Color="#FF336699" />

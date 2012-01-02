@@ -72,7 +72,15 @@ namespace TEditXna
             }
             else if (World.ShortcutKeys.ContainsKey(e.Key))
             {
-                SetActiveTool(World.ShortcutKeys[e.Key]);
+                string command = World.ShortcutKeys[e.Key];
+                if (string.Equals("Eraser", command, StringComparison.InvariantCultureIgnoreCase))
+                {
+                    _vm.TilePicker.IsEraser = !_vm.TilePicker.IsEraser;
+                }
+                else
+                {
+                    SetActiveTool(command);
+                }
             }
         }
 
