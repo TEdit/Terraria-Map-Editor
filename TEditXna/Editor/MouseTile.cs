@@ -49,7 +49,7 @@ namespace TEditXna.Editor
             set
             {
                 Set("Tile", ref _tile, value);
-                TileName = _tile.IsActive ? World.TileProperties[_tile.Type].Name : "[empty]";
+                TileName = _tile.IsActive ? string.Format("{0} ({1})", World.TileProperties[_tile.Type].Name, _tile.Type) : "[empty]";
                 WallName = World.WallProperties[_tile.Wall].Name;
                 UV = new Vector2Short(_tile.U, _tile.V);
                 if (_tile.Liquid > 0)

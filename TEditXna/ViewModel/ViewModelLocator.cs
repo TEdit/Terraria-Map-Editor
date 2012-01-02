@@ -38,6 +38,7 @@ namespace TEditXna.ViewModel
             wvm.Tools.Add(new FillTool(wvm));
             wvm.Tools.Add(new PointTool(wvm));
             wvm.Tools.Add(new SpriteTool(wvm));
+            wvm.Tools.Add(new MorphTool(wvm));
             wvm.ActiveTool = defaultTool;
             return wvm;
         }

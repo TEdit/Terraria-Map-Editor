@@ -84,6 +84,7 @@
     <Compile Include="Editor\Clipboard\ClipboardManager.cs" />
     <Compile Include="Editor\FloodFillHelpers.cs" />
     <Compile Include="Editor\MaskMode.cs" />
+    <Compile Include="Editor\MorphBiome.cs" />
     <Compile Include="Editor\MouseTile.cs" />
     <Compile Include="Editor\PaintMode.cs" />
     <Compile Include="Editor\Selection.cs" />
@@ -94,6 +95,7 @@
     <Compile Include="Editor\Tools\BrushTool.cs" />
     <Compile Include="Editor\Tools\FillTool.cs" />
     <Compile Include="Editor\Tools\ITool.cs" />
+    <Compile Include="Editor\Tools\MorphTool.cs" />
     <Compile Include="Editor\Tools\PasteTool.cs" />
     <Compile Include="Editor\Tools\PencilTool.cs" />
     <Compile Include="Editor\Tools\PickerTool.cs" />
@@ -137,6 +139,9 @@
     </Compile>
     <Compile Include="View\ClipboardView.xaml.cs">
       <DependentUpon>ClipboardView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\MorphBiomeView.xaml.cs">
+      <DependentUpon>MorphBiomeView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\NpcSelectorView.xaml.cs">
       <DependentUpon>NpcSelectorView.xaml</DependentUpon>
@@ -190,6 +195,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\ClipboardView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\MorphBiomeView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -342,7 +351,7 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties BuildVersion_UseGlobalSettings="True" BuildVersion_AssemblyInfoFilename="Properties\AssemblyInfo.cs" />
+      <UserProperties BuildVersion_AssemblyInfoFilename="Properties\AssemblyInfo.cs" BuildVersion_UseGlobalSettings="True" />
     </VisualStudio>
   </ProjectExtensions>
   <PropertyGroup>

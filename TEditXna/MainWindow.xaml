@@ -122,6 +122,9 @@
                                         <DataTrigger Binding="{Binding ActiveTool.ToolType}" Value="Brush">
                                             <Setter Property="Visibility" Value="Visible" />
                                         </DataTrigger>
+                                        <DataTrigger Binding="{Binding ActiveTool.Name}" Value="Morph">
+                                            <Setter Property="Visibility" Value="Visible" />
+                                        </DataTrigger>
                                     </Style.Triggers>
                                 </Style>
                             </View:BrushSettingsView.Style>
@@ -147,6 +150,18 @@
                                 </Style>
                             </View:PaintModeView.Style>
                         </View:PaintModeView>
+                        <View:MorphBiomeView>
+                            <View:MorphBiomeView.Style>
+                                <Style TargetType="{x:Type View:MorphBiomeView}">
+                                    <Setter Property="Visibility" Value="Collapsed" />
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding ActiveTool.Name}" Value="Morph">
+                                            <Setter Property="Visibility" Value="Visible" />
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </View:MorphBiomeView.Style>
+                        </View:MorphBiomeView>
                     </StackPanel>
                 </ScrollViewer>
             </DockPanel>

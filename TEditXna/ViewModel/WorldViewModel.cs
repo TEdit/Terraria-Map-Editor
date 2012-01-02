@@ -42,7 +42,14 @@ namespace TEditXna.ViewModel
         private bool _showTextures = true;
         public bool[] CheckTiles;
         private bool _showGrid = true;
-         
+        private MorphBiome _morphBiomeTarget;
+
+
+        public MorphBiome MorphBiomeTarget
+        {
+            get { return _morphBiomeTarget; }
+            set { Set("MorphBiomeTarget", ref _morphBiomeTarget, value); }
+        }
 
         public bool ShowGrid
         {
