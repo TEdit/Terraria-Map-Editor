@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Reflection;
 using BCCL.Geometry.Primitives;
 using BCCL.MvvmLight;
 using TEditXNA.Terraria;
@@ -9,21 +10,23 @@ namespace TEditXna.Editor.Undo
 {
     public class UndoManager : ObservableObject
     {
-        private readonly WorldViewModel _wvm;
-        public UndoManager(WorldViewModel viewModel)
-        {
-            if (!Directory.Exists("undo"))
-            {
-                Directory.CreateDirectory("undo");
-            }
-            _wvm = viewModel;
-        }
-        private const string UndoFile = "undo\\undo_temp_{0}";
-        private const string RedoFile = "undo\\redo_temp_{0}";
+        private static readonly string Dir = Path.Combine(Path.GetFullPath(Assembly.GetExecutingAssembly().Location), "undo");
+        private static readonly string UndoFile = Path.Combine(Dir, "undo_temp_{0}");
+        private static readonly string RedoFile = Path.Combine(Dir, "redo_temp_{0}");
 
+        private readonly WorldViewModel _wvm;
         private UndoBuffer _buffer = new UndoBuffer();
         private int _currentIndex = 0;
         private int _maxIndex = 0;
+
+        public UndoManager(WorldViewModel viewModel)
+        {
+            if (!Directory.Exists(Dir))
+            {
+                Directory.CreateDirectory(Dir);
+            }
+            _wvm = viewModel;
+        }
 
         public UndoBuffer Buffer
         {
