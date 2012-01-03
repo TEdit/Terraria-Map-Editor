@@ -334,7 +334,7 @@ namespace TEditXna.View
                     {
                         var curtile = _wvm.CurrentWorld.Tiles[x, y];
                         var tileprop = World.TileProperties[curtile.Type];
-                        if (tileprop.IsFramed)
+                        if (tileprop.IsFramed && curtile.IsActive)
                         {
                             var source = new Rectangle(curtile.U, curtile.V, tileprop.TextureGrid.X, tileprop.TextureGrid.Y);
                             var tileTex = _textureDictionary.GetTile(curtile.Type);
