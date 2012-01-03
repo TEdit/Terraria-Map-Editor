@@ -89,20 +89,22 @@ namespace TEditXna.Editor.Tools
         {
             if (!_isRightDown && !_isLeftDown)
             {
+                _currentBiome = Biomes.FirstOrDefault(b=>b.Biome== _wvm.MorphBiomeTarget);
                 _startPoint = e.Location;
-                _wvm.CheckTiles = new bool[_wvm.CurrentWorld.TilesWide * _wvm.CurrentWorld.TilesHigh];
                 _dirtLayer = (int)_wvm.CurrentWorld.GroundLevel;
                 _rockLayer = (int)_wvm.CurrentWorld.RockLevel;
-                _currentBiome = Biomes.FirstOrDefault(b => b.Biome == _wvm.MorphBiomeTarget);
+                _wvm.CheckTiles = new bool[_wvm.CurrentWorld.TilesWide * _wvm.CurrentWorld.TilesHigh];
             }
 
-            CheckDirectionandDraw(e.Location);
             _isLeftDown = (e.LeftButton == MouseButtonState.Pressed);
             _isRightDown = (e.RightButton == MouseButtonState.Pressed);
+            CheckDirectionandDraw(e.Location);
         }
 
         public override void MouseMove(TileMouseState e)
         {
+            _isLeftDown = (e.LeftButton == MouseButtonState.Pressed);
+            _isRightDown = (e.RightButton == MouseButtonState.Pressed);
             CheckDirectionandDraw(e.Location);
         }
 

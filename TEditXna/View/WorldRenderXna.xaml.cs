@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 using BCCL.Geometry.Primitives;
 using BCCL.UI.Xaml.XnaContentHost;
 using BCCL.Utility;
@@ -643,20 +644,25 @@ namespace TEditXna.View
         private void xnaViewport_HwndMButtonDown(object sender, HwndMouseEventArgs e)
         {
             _middleClickPoint = PointToVector2(e.Position);
+            xnaViewport.SetCursor(Cursors.SizeAll);
             _isMiddleMouseDown = true;
         }
 
         private void xnaViewport_HwndMButtonUp(object sender, HwndMouseEventArgs e)
         {
             _isMiddleMouseDown = false;
+            xnaViewport.SetCursor(Cursors.Arrow);
         }
+
 
         private void xnaViewport_HwndMouseEnter(object sender, HwndMouseEventArgs e)
         {
+            
         }
 
         private void xnaViewport_HwndMouseLeave(object sender, HwndMouseEventArgs e)
         {
+
         }
 
         #endregion

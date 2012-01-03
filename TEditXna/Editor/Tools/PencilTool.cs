@@ -29,13 +29,15 @@ namespace TEditXna.Editor.Tools
                 _startPoint = e.Location;
             }
 
-            CheckDirectionandDraw(e.Location);
             _isLeftDown = (e.LeftButton == MouseButtonState.Pressed);
             _isRightDown = (e.RightButton == MouseButtonState.Pressed);
+            CheckDirectionandDraw(e.Location);
         }
 
         public override void MouseMove(TileMouseState e)
         {
+            _isLeftDown = (e.LeftButton == MouseButtonState.Pressed);
+            _isRightDown = (e.RightButton == MouseButtonState.Pressed);
             CheckDirectionandDraw(e.Location);
         }
 
@@ -46,7 +48,6 @@ namespace TEditXna.Editor.Tools
             _isRightDown = (e.RightButton == MouseButtonState.Pressed);
             _wvm.UndoManager.SaveUndo();
         }
-
         private void CheckDirectionandDraw(Vector2Int32 tile)
         {
             Vector2Int32 p = tile;

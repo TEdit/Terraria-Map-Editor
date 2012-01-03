@@ -31,14 +31,16 @@ namespace TEditXna.Editor.Tools
                 _startPoint = e.Location;
                 _wvm.CheckTiles = new bool[_wvm.CurrentWorld.TilesWide * _wvm.CurrentWorld.TilesHigh];
             }
-
-            CheckDirectionandDraw(e.Location);
+        
             _isLeftDown = (e.LeftButton == MouseButtonState.Pressed);
             _isRightDown = (e.RightButton == MouseButtonState.Pressed);
+            CheckDirectionandDraw(e.Location);
         }
 
         public override void MouseMove(TileMouseState e)
         {
+            _isLeftDown = (e.LeftButton == MouseButtonState.Pressed);
+            _isRightDown = (e.RightButton == MouseButtonState.Pressed);
             CheckDirectionandDraw(e.Location);
         }
 
