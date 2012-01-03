@@ -155,6 +155,9 @@
     <Compile Include="View\Popups\ChestPopup.xaml.cs">
       <DependentUpon>ChestPopup.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\Popups\NewWorldView.xaml.cs">
+      <DependentUpon>NewWorldView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Popups\SignPopup.xaml.cs">
       <DependentUpon>SignPopup.xaml</DependentUpon>
     </Compile>
@@ -215,6 +218,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="View\Popups\ChestPopup.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Popups\NewWorldView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -351,7 +358,7 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties BuildVersion_AssemblyInfoFilename="Properties\AssemblyInfo.cs" BuildVersion_UseGlobalSettings="True" />
+      <UserProperties BuildVersion_UseGlobalSettings="True" BuildVersion_AssemblyInfoFilename="Properties\AssemblyInfo.cs" />
     </VisualStudio>
   </ProjectExtensions>
   <PropertyGroup>

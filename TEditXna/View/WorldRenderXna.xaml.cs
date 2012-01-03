@@ -92,7 +92,7 @@ namespace TEditXna.View
             _scrollPosition = new Vector2(
                 -x + (float)(xnaViewport.ActualWidth / _zoom / 2),
                 -y + (float)(xnaViewport.ActualHeight / _zoom / 2));
-
+            ClampScroll();
             ScrollBarH.Value = -_scrollPosition.X;
             ScrollBarV.Value = -_scrollPosition.Y;
         }
@@ -203,16 +203,14 @@ namespace TEditXna.View
         {
             // Update
             _gameTimer.Update();
-
-
             ScrollWorld();
         }
 
         private void ScrollBar_Scroll(object sender, System.Windows.Controls.Primitives.ScrollEventArgs e)
         {
-            _scrollPosition = new Vector2(-(float)ScrollBarH.Value, -(float)ScrollBarV.Value);
+            _scrollPosition = new Vector2(-(float) ScrollBarH.Value, -(float) ScrollBarV.Value);
+            ClampScroll();
         }
-
 
         private void ScrollWorld()
         {
@@ -222,28 +220,27 @@ namespace TEditXna.View
                 Vector2 clampedScroll = _scrollPosition + stretchDistance / _zoom;
                 _scrollPosition = clampedScroll;
                 _middleClickPoint = _mousePosition;
-
-
-                int xNormalRange = -_wvm.CurrentWorld.TilesWide + (int)(xnaViewport.ActualWidth / _zoom);
-                int yNormalRange = -_wvm.CurrentWorld.TilesHigh + (int)(xnaViewport.ActualHeight / _zoom);
-
-                if (_wvm.CurrentWorld.TilesWide > (int)(xnaViewport.ActualWidth / _zoom))
-                    _scrollPosition.X = MathHelper.Clamp(_scrollPosition.X, xNormalRange, 0);
-                else
-                    _scrollPosition.X = MathHelper.Clamp(_scrollPosition.X, (_wvm.CurrentWorld.TilesWide / 2 - (int)(xnaViewport.ActualWidth / _zoom) / 2), 0);
-
-                if (_wvm.CurrentWorld.TilesHigh > (int)(xnaViewport.ActualHeight / _zoom))
-                    _scrollPosition.Y = MathHelper.Clamp(_scrollPosition.Y, yNormalRange, 0);
-                else
-                    _scrollPosition.Y = MathHelper.Clamp(_scrollPosition.Y, (_wvm.CurrentWorld.TilesHigh / 2 - (int)(xnaViewport.ActualHeight / _zoom) / 2), 0);
-
-                ScrollBarH.Value =-_scrollPosition.X;
-                ScrollBarV.Value =-_scrollPosition.Y;
+                ClampScroll();
             }
-            //else
-            //{
-            //    _scrollPosition = new Vector2(-(float)ScrollBarH.Value, -(float)ScrollBarV.Value);
-            //}
+        }
+
+        private void ClampScroll()
+        {
+            int xNormalRange = -_wvm.CurrentWorld.TilesWide + (int) (xnaViewport.ActualWidth/_zoom);
+            int yNormalRange = -_wvm.CurrentWorld.TilesHigh + (int) (xnaViewport.ActualHeight/_zoom);
+
+            if (_wvm.CurrentWorld.TilesWide > (int) (xnaViewport.ActualWidth/_zoom))
+                _scrollPosition.X = MathHelper.Clamp(_scrollPosition.X, xNormalRange, 0);
+            else
+                _scrollPosition.X = MathHelper.Clamp(_scrollPosition.X, (_wvm.CurrentWorld.TilesWide/2 - (int) (xnaViewport.ActualWidth/_zoom)/2), 0);
+
+            if (_wvm.CurrentWorld.TilesHigh > (int) (xnaViewport.ActualHeight/_zoom))
+                _scrollPosition.Y = MathHelper.Clamp(_scrollPosition.Y, yNormalRange, 0);
+            else
+                _scrollPosition.Y = MathHelper.Clamp(_scrollPosition.Y, (_wvm.CurrentWorld.TilesHigh/2 - (int) (xnaViewport.ActualHeight/_zoom)/2), 0);
+
+            ScrollBarH.Value = -_scrollPosition.X;
+            ScrollBarV.Value = -_scrollPosition.Y;
         }
 
         #endregion

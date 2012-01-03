@@ -22,7 +22,13 @@ namespace TEditXna.ViewModel
         private ICommand _copyCommand;
         private ICommand _undoCommand;
         private ICommand _redoCommand;
+        private ICommand _newWorldCommand;
+         
 
+        public ICommand NewWorldCommand
+        {
+            get { return _newWorldCommand ?? (_newWorldCommand = new RelayCommand(NewWorld)); }
+        }
         public ICommand RedoCommand
         {
             get { return _redoCommand ?? (_redoCommand = new RelayCommand(UndoManager.Redo)); }
