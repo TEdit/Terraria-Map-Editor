@@ -229,7 +229,7 @@ namespace TEditXna.View
         {
             if (_wvm.CurrentWorld == null || xnaViewport == null)
             {
-                _scrollPosition = new Vector2Int32(0,0);
+                _scrollPosition = new Vector2(0,0);
                 ScrollBarH.Value = -_scrollPosition.X;
                 ScrollBarV.Value = -_scrollPosition.Y;
                 return;
