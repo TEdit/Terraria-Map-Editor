@@ -27,6 +27,7 @@ namespace TEditXna.View.Popups
             _newWorld.Version = World.CompatibleVersion;
             _newWorld.GroundLevel = 350;
             _newWorld.RockLevel = 480;
+            _newWorld.ResetTime();
             AddCharNames();
             this.DataContext = NewWorld;
         }

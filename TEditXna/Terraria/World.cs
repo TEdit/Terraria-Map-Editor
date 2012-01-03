@@ -381,10 +381,7 @@ namespace TEditXNA.Terraria
             if (resetTime)
             {
                 OnProgressChanged(this, new ProgressChangedEventArgs(0, "Resetting Time..."));
-                DayTime = true;
-                Time = 13500.0;
-                MoonPhase = 0;
-                BloodMoon = false;
+                ResetTime();
             }
 
             if (filename == null)
@@ -587,6 +584,14 @@ namespace TEditXNA.Terraria
                     OnProgressChanged(null, new ProgressChangedEventArgs(100, "World Save Complete."));
                 }
             }
+        }
+
+        public void ResetTime()
+        {
+            DayTime = true;
+            Time = 13500.0;
+            MoonPhase = 0;
+            BloodMoon = false;
         }
 
         public static World LoadWorld(string filename)
