@@ -21,7 +21,8 @@ namespace TEditXna.Editor.Tools
         {
             if (e.LeftButton == MouseButtonState.Pressed)
             {
-                PasteClipboard(e.Location);
+                if (_wvm.Clipboard.Buffer != null)
+                    PasteClipboard(e.Location);
             }
             if (e.RightButton == MouseButtonState.Pressed && e.LeftButton == MouseButtonState.Released)
             {
