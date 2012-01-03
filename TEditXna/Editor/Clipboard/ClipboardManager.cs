@@ -135,7 +135,10 @@ namespace TEditXna.Editor.Clipboard
                         {
                             var data = world.GetChestAtTile(x + anchor.X, y + anchor.Y);
                             if (data != null)
+                            {
+                                _wvm.UndoManager.Buffer.Chests.Add(data);
                                 world.Chests.Remove(data);
+                            }
                         }
 
                         // Remove overwritten sign data
@@ -143,7 +146,10 @@ namespace TEditXna.Editor.Clipboard
                         {
                             var data = world.GetSignAtTile(x + anchor.X, y + anchor.Y);
                             if (data != null)
+                            {
+                                _wvm.UndoManager.Buffer.Signs.Add(data);
                                 world.Signs.Remove(data);
+                            }
                         }
 
 

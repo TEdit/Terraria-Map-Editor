@@ -164,20 +164,17 @@ namespace TEditXna.Editor.Undo
                             var curChest = new Chest(br.ReadInt32(), br.ReadInt32());
                             for (int j = 0; j < Chest.MaxItems; ++j)
                             {
-                                var item = new Item();
-                                item.StackSize = br.ReadByte();
+                                curChest.Items[j].StackSize = br.ReadByte();
 
-                                if (item.StackSize > 0)
+                                if (curChest.Items[j].StackSize > 0)
                                 {
-                                    item.ItemName = br.ReadString();
-                                    item.Prefix = br.ReadByte();
+                                    curChest.Items[j].ItemName = br.ReadString();
+                                    curChest.Items[j].Prefix = br.ReadByte();
                                 }
                                 else
                                 {
-                                    item.ItemName = "[empty]";
+                                    curChest.Items[j].ItemName = "[empty]";
                                 }
-
-                                curChest.Items.Add(item);
                             }
 
                             buffer.Chests.Add(curChest);

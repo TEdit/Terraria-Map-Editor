@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Linq;
 using System.Reflection;
 using BCCL.Geometry.Primitives;
 using BCCL.MvvmLight;
@@ -36,6 +37,7 @@ namespace TEditXna.Editor.Undo
 
         public void SaveUndo()
         {
+            ValidateAndRemoveChests();
             _maxIndex = _currentIndex;
             _buffer.Write(string.Format(UndoFile, _currentIndex));
             _currentIndex++;
@@ -48,28 +50,61 @@ namespace TEditXna.Editor.Undo
         }
         public void SaveTile(int x, int y)
         {
+            ValidateAndRemoveChests();
             var curTile = (Tile)_wvm.CurrentWorld.Tiles[x, y].Clone();
-            if (curTile.Type == 21)
+            if (curTile.Type == 21 && !Buffer.Chests.Any(c => c.X == x && c.Y == y))
             {
+
                 var curchest = _wvm.CurrentWorld.GetChestAtTile(x, y);
                 if (curchest != null)
                 {
-                    _wvm.CurrentWorld.Chests.Remove(curchest);
                     var chest = curchest.Copy();
                     Buffer.Chests.Add(chest);
                 }
             }
-            if (curTile.Type == 55 || curTile.Type == 85)
+            else if ((curTile.Type == 55 || curTile.Type == 85) && !Buffer.Signs.Any(c => c.X == x && c.Y == y))
             {
                 var cursign = _wvm.CurrentWorld.GetSignAtTile(x, y);
                 if (cursign != null)
                 {
-                    _wvm.CurrentWorld.Signs.Remove(cursign);
                     var sign = cursign.Copy();
                     Buffer.Signs.Add(sign);
                 }
             }
             Buffer.Tiles.Add(new UndoTile(new Vector2Int32(x, y), curTile));
+        }
+
+        private void ValidateAndRemoveChests()
+        {
+            if (Buffer == null || Buffer.Tiles.Count <= 0)
+                return;
+
+            var lastTile = Buffer.Tiles.Last();
+            
+            if (lastTile.Tile.Type == 21)
+            {
+                var existingLastTile = _wvm.CurrentWorld.Tiles[lastTile.Location.X, lastTile.Location.Y];
+                if (existingLastTile.Type != 21 || !existingLastTile.IsActive)
+                {
+                    var curchest = _wvm.CurrentWorld.GetChestAtTile(lastTile.Location.X, lastTile.Location.Y);
+                    if (curchest != null)
+                    {
+                        _wvm.CurrentWorld.Chests.Remove(curchest);
+                    }
+                }
+            }
+            else if (lastTile.Tile.Type == 55 || lastTile.Tile.Type == 85)
+            {
+                var existingLastTile = _wvm.CurrentWorld.Tiles[lastTile.Location.X, lastTile.Location.Y];
+                if (existingLastTile.Type != 55 && existingLastTile.Type != 85 || !existingLastTile.IsActive)
+                {
+                    var cursign = _wvm.CurrentWorld.GetSignAtTile(lastTile.Location.X, lastTile.Location.Y);
+                    if (cursign != null)
+                    {
+                        _wvm.CurrentWorld.Signs.Remove(cursign);
+                    }
+                }
+            }
         }
 
         public void Undo()

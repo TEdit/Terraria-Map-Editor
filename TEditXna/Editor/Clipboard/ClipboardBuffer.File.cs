@@ -166,23 +166,19 @@ namespace TEditXna.Editor.Clipboard
                             var curChest = new Chest(br.ReadInt32(), br.ReadInt32());
                             for (int j = 0; j < Chest.MaxItems; ++j)
                             {
-                                var item = new Item();
-                                item.StackSize = br.ReadByte();
+                                curChest.Items[j].StackSize = br.ReadByte();
                      
-                                if (item.StackSize > 0)
+                                if (curChest.Items[j].StackSize > 0)
                                 {                        
-                                    item.ItemName = br.ReadString();
-                                    item.Prefix = br.ReadByte();
+                                    curChest.Items[j].ItemName = br.ReadString();
+                                    curChest.Items[j].Prefix = br.ReadByte();
                                 }
                                 else
                                 {
-                                    item.ItemName = "[empty]";
+                                    curChest.Items[j].ItemName = "[empty]";
                                 }
-                                
-                                curChest.Items.Add(item);
-                            }
 
-                            
+                            } 
                             buffer.Chests.Add(curChest);
                         }
                     }
@@ -275,15 +271,13 @@ namespace TEditXna.Editor.Clipboard
 
                             for (int slot = 0; slot < Chest.MaxItems; slot++)
                             {
-                                var item = new Item();
                                 byte stackSize = reader.ReadByte();
                                 if (stackSize > 0)
                                 {
                                     string itemName = reader.ReadString();
-                                    item.ItemName = itemName;
-                                    item.StackSize = stackSize;
+                                    chest.Items[slot].ItemName = itemName;
+                                    chest.Items[slot].StackSize = stackSize;
                                 }
-                                chest.Items.Add(item);
                             }
 
                             //Chests[chestIndex] = chest;
