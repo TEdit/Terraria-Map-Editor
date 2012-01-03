@@ -228,8 +228,12 @@ namespace TEditXna.View
         private void ClampScroll()
         {
             if (_wvm.CurrentWorld == null || xnaViewport == null)
+            {
+                _scrollPosition = new Vector2Int32(0,0);
+                ScrollBarH.Value = -_scrollPosition.X;
+                ScrollBarV.Value = -_scrollPosition.Y;
                 return;
-                
+            }   
             int xNormalRange = -_wvm.CurrentWorld.TilesWide + (int) (xnaViewport.ActualWidth/_zoom);
             int yNormalRange = -_wvm.CurrentWorld.TilesHigh + (int) (xnaViewport.ActualHeight/_zoom);
 
