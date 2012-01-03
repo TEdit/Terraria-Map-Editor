@@ -397,11 +397,23 @@ namespace TEditXna.View
             if (_wvm.CurrentWorld == null)
                 return new Rectangle();
 
-            return new Rectangle(
+            var r = new Rectangle(
                 (int)Math.Max(0,Math.Floor(-_scrollPosition.X)),
                 (int)Math.Max(0,Math.Floor(-_scrollPosition.Y)),
-                (int)Math.Min(_wvm.CurrentWorld.TilesWide, Math.Ceiling(xnaViewport.ActualWidth / _zoom)),
-                (int)Math.Min(_wvm.CurrentWorld.TilesHigh, Math.Ceiling(xnaViewport.ActualHeight / _zoom)));
+                (int)Math.Ceiling(xnaViewport.ActualWidth / _zoom),
+                (int)Math.Ceiling(xnaViewport.ActualHeight / _zoom));
+
+            if (r.Right > _wvm.CurrentWorld.TilesWide)
+            {
+                r.Width = r.Width - (r.Right - _wvm.CurrentWorld.TilesWide);
+            }
+
+            if (r.Bottom > _wvm.CurrentWorld.TilesHigh)
+            {
+                r.Height = r.Height - (r.Bottom - _wvm.CurrentWorld.TilesHigh);
+            }
+
+            return r;
         }
 
         private void DrawPixelTiles()
