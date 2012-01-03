@@ -86,6 +86,11 @@ namespace TEditXna
                 if (_vm.OpenCommand.CanExecute(null))
                     _vm.OpenCommand.Execute(null);
             }
+            else if (e.Key == Key.Delete)
+            {
+                if (_vm.DeleteCommand.CanExecute(null))
+                    _vm.DeleteCommand.Execute(null);
+            }
             else if (e.Key == Key.Escape)
             {
                 if (_vm.ActiveTool != null)
