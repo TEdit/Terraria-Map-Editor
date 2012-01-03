@@ -196,7 +196,7 @@ namespace TEditXna.Editor.Undo
 
         ~UndoManager()
         {
-            foreach (var file in Directory.GetFiles("undo"))
+            foreach (var file in Directory.GetFiles(Dir))
             {
                 File.Delete(file);
             }
