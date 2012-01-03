@@ -52,6 +52,15 @@ namespace TEditXna.View
 
             _wvm = ViewModelLocator.WorldViewModel;
             _wvm.PreviewChanged += PreviewChanged;
+            _wvm.PropertyChanged += _wvm_PropertyChanged;
+        }
+
+        private void _wvm_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == "CurrentWorld")
+            {
+                Zoom(0);
+            }
         }
 
         private void PreviewChanged(object sender, EventArgs e)
@@ -83,6 +92,9 @@ namespace TEditXna.View
             _scrollPosition = new Vector2(
                 -x + (float)(xnaViewport.ActualWidth / _zoom / 2),
                 -y + (float)(xnaViewport.ActualHeight / _zoom / 2));
+
+            ScrollBarH.Value = -_scrollPosition.X;
+            ScrollBarV.Value = -_scrollPosition.Y;
         }
 
         #region Load Content
@@ -196,6 +208,12 @@ namespace TEditXna.View
             ScrollWorld();
         }
 
+        private void ScrollBar_Scroll(object sender, System.Windows.Controls.Primitives.ScrollEventArgs e)
+        {
+            _scrollPosition = new Vector2(-(float)ScrollBarH.Value, -(float)ScrollBarV.Value);
+        }
+
+
         private void ScrollWorld()
         {
             if (_isMiddleMouseDown)
@@ -204,20 +222,28 @@ namespace TEditXna.View
                 Vector2 clampedScroll = _scrollPosition + stretchDistance / _zoom;
                 _scrollPosition = clampedScroll;
                 _middleClickPoint = _mousePosition;
+
+
+                int xNormalRange = -_wvm.CurrentWorld.TilesWide + (int)(xnaViewport.ActualWidth / _zoom);
+                int yNormalRange = -_wvm.CurrentWorld.TilesHigh + (int)(xnaViewport.ActualHeight / _zoom);
+
+                if (_wvm.CurrentWorld.TilesWide > (int)(xnaViewport.ActualWidth / _zoom))
+                    _scrollPosition.X = MathHelper.Clamp(_scrollPosition.X, xNormalRange, 0);
+                else
+                    _scrollPosition.X = MathHelper.Clamp(_scrollPosition.X, (_wvm.CurrentWorld.TilesWide / 2 - (int)(xnaViewport.ActualWidth / _zoom) / 2), 0);
+
+                if (_wvm.CurrentWorld.TilesHigh > (int)(xnaViewport.ActualHeight / _zoom))
+                    _scrollPosition.Y = MathHelper.Clamp(_scrollPosition.Y, yNormalRange, 0);
+                else
+                    _scrollPosition.Y = MathHelper.Clamp(_scrollPosition.Y, (_wvm.CurrentWorld.TilesHigh / 2 - (int)(xnaViewport.ActualHeight / _zoom) / 2), 0);
+
+                ScrollBarH.Value =-_scrollPosition.X;
+                ScrollBarV.Value =-_scrollPosition.Y;
             }
-
-            int xNormalRange = -_wvm.CurrentWorld.TilesWide + (int)(xnaViewport.ActualWidth / _zoom);
-            int yNormalRange = -_wvm.CurrentWorld.TilesHigh + (int)(xnaViewport.ActualHeight / _zoom);
-
-            if (_wvm.CurrentWorld.TilesWide > (int)(xnaViewport.ActualWidth / _zoom))
-                _scrollPosition.X = MathHelper.Clamp(_scrollPosition.X, xNormalRange, 0);
-            else
-                _scrollPosition.X = MathHelper.Clamp(_scrollPosition.X, (_wvm.CurrentWorld.TilesWide / 2 - (int)(xnaViewport.ActualWidth / _zoom) / 2), 0);
-
-            if (_wvm.CurrentWorld.TilesHigh > (int)(xnaViewport.ActualHeight / _zoom))
-                _scrollPosition.Y = MathHelper.Clamp(_scrollPosition.Y, yNormalRange, 0);
-            else
-                _scrollPosition.Y = MathHelper.Clamp(_scrollPosition.Y, (_wvm.CurrentWorld.TilesHigh / 2 - (int)(xnaViewport.ActualHeight / _zoom) / 2), 0);
+            //else
+            //{
+            //    _scrollPosition = new Vector2(-(float)ScrollBarH.Value, -(float)ScrollBarV.Value);
+            //}
         }
 
         #endregion
@@ -398,8 +424,8 @@ namespace TEditXna.View
                 return new Rectangle();
 
             var r = new Rectangle(
-                (int)Math.Max(0,Math.Floor(-_scrollPosition.X)),
-                (int)Math.Max(0,Math.Floor(-_scrollPosition.Y)),
+                (int)Math.Max(0, Math.Floor(-_scrollPosition.X)),
+                (int)Math.Max(0, Math.Floor(-_scrollPosition.Y)),
                 (int)Math.Ceiling(xnaViewport.ActualWidth / _zoom),
                 (int)Math.Ceiling(xnaViewport.ActualHeight / _zoom));
 
@@ -642,16 +668,31 @@ namespace TEditXna.View
 
         private void xnaViewport_HwndMouseWheel(object sender, HwndMouseEventArgs e)
         {
-            int x = e.WheelDelta;
+            Zoom(e.WheelDelta);
+        }
+
+        public void Zoom(int direction)
+        {
             float tempZoom = _zoom;
-            if (x > 0)
+            if (direction > 0)
                 tempZoom = _zoom * 2F;
-            if (x < 0)
+            if (direction < 0)
                 tempZoom = _zoom / 2F;
             Vector2Int32 curTile = _wvm.MouseOverTile.MouseState.Location;
             _zoom = MathHelper.Clamp(tempZoom, 0.125F, 64F);
             CenterOnTile(curTile.X, curTile.Y);
+
+            if (_wvm.CurrentWorld != null)
+            {
+                var r = GetViewingArea();
+                ScrollBarH.ViewportSize = r.Width;
+                ScrollBarV.ViewportSize = r.Height;
+                ScrollBarH.Maximum = _wvm.CurrentWorld.TilesWide - ScrollBarH.ViewportSize;
+                ScrollBarV.Maximum = _wvm.CurrentWorld.TilesHigh - ScrollBarV.ViewportSize;
+            }
         }
+
+
 
         private void xnaViewport_HwndMButtonDown(object sender, HwndMouseEventArgs e)
         {
@@ -669,7 +710,7 @@ namespace TEditXna.View
 
         private void xnaViewport_HwndMouseEnter(object sender, HwndMouseEventArgs e)
         {
-            
+
         }
 
         private void xnaViewport_HwndMouseLeave(object sender, HwndMouseEventArgs e)
@@ -678,5 +719,8 @@ namespace TEditXna.View
         }
 
         #endregion
+
+
+
     }
 }

@@ -11,6 +11,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using BCCL.Geometry.Primitives;
 using TEditXNA.Terraria;
 using TEditXna.ViewModel;
 
@@ -59,6 +60,31 @@ namespace TEditXna
             else if (e.Key == Key.Y && Keyboard.Modifiers.HasFlag(ModifierKeys.Control))
             {
                 _vm.RedoCommand.Execute(null);
+            }
+            else if (e.Key == Key.A && Keyboard.Modifiers.HasFlag(ModifierKeys.Control))
+            {
+                if (_vm.CurrentWorld != null)
+                {
+                    _vm.Selection.IsActive = true;
+                    _vm.Selection.SetRectangle(new Vector2Int32(0,0), new Vector2Int32(_vm.CurrentWorld.TilesWide, _vm.CurrentWorld.TilesHigh));
+                }
+            }
+            else if (e.Key == Key.D && Keyboard.Modifiers.HasFlag(ModifierKeys.Control))
+            {
+                if (_vm.CurrentWorld != null)
+                {
+                    _vm.Selection.IsActive = false;
+                }
+            }
+            else if (e.Key == Key.S && Keyboard.Modifiers.HasFlag(ModifierKeys.Control))
+            {
+                if (_vm.SaveCommand.CanExecute(null))
+                    _vm.SaveCommand.Execute(null);
+            }
+            else if (e.Key == Key.O && Keyboard.Modifiers.HasFlag(ModifierKeys.Control))
+            {
+                if (_vm.OpenCommand.CanExecute(null))
+                    _vm.OpenCommand.Execute(null);
             }
             else if (e.Key == Key.Escape)
             {

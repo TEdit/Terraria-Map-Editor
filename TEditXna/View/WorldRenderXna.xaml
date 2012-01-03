@@ -5,7 +5,17 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:bccl="http://bccl/wpf" mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid>
-        <bccl:GraphicsDeviceControl x:Name="xnaViewport" 
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="Auto" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <ScrollBar x:Name="ScrollBarV" Orientation="Vertical" Grid.Column="2" Scroll="ScrollBar_Scroll" />
+        <ScrollBar x:Name="ScrollBarH" Orientation="Horizontal" Grid.Row="2"  Scroll="ScrollBar_Scroll" />
+      <bccl:GraphicsDeviceControl x:Name="xnaViewport" 
                                     LoadContent="xnaViewport_LoadContent" 
                                     RenderXna="xnaViewport_RenderXna" 
                                     HwndMouseMove="xnaViewport_HwndMouseMove" 
