@@ -83,6 +83,32 @@ namespace TEditXna.Editor.Tools
                 Wall = 0,
                 Vines = 52
             });
+
+            Biomes.Add(new BiomeData
+            {
+                Biome = MorphBiome.Snow,
+                DirtToStone = true,
+                Stone = 147,
+                Grass = 147,
+                Plant1 = 3,
+                Plant2 = 73,
+                Sand = 147,
+                Wall = 0,
+                Vines = 52
+            });
+
+            Biomes.Add(new BiomeData
+            {
+                Biome = MorphBiome.Desert,
+                DirtToStone = true,
+                Stone = 53,
+                Grass = 53,
+                Plant1 = 3,
+                Plant2 = 73,
+                Sand = 53,
+                Wall = 0,
+                Vines = 52
+            });
         }
 
         public override void MouseDown(TileMouseState e)
@@ -295,6 +321,7 @@ namespace TEditXna.Editor.Tools
             public byte Wall;
             public byte Vines;
             public bool DirtToStone;
+            public bool IsOverwriteAll;
         }
     }
 }
