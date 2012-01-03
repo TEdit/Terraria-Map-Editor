@@ -11,6 +11,7 @@ namespace TEditXNA.Terraria
     [Serializable]
     public class Item : ObservableObject
     {
+        private const int MaxStackSize = 255;
         private static IList<string> _validItems = new ObservableCollection<string>();
         public static IList<string> ValidItems
         {
@@ -53,15 +54,15 @@ namespace TEditXNA.Terraria
             get { return _stackSize; }
             set
             {
-                int maxSize = 255;
-                if (_currentItemProperty != null)
+                int max = MaxStackSize;
+                if (_currentItemProperty != null && _currentItemProperty.MaxStackSize > 0)
                 {
-                    maxSize = _currentItemProperty.MaxStackSize;
+                    max = _currentItemProperty.MaxStackSize;
                 }
 
                 int validValue = value;
-                if (validValue > maxSize)
-                    validValue = maxSize;
+                if (validValue > max)
+                    validValue = max;
                 if (validValue < 0)
                     validValue = 0;
 
