@@ -227,7 +227,7 @@ namespace TEditXna.View
 
         private void ClampScroll()
         {
-            if (_wvm.CurrentWorld == null || xnaViewport != null)
+            if (_wvm.CurrentWorld == null || xnaViewport == null)
                 return;
                 
             int xNormalRange = -_wvm.CurrentWorld.TilesWide + (int) (xnaViewport.ActualWidth/_zoom);
