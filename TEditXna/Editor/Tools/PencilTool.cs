@@ -27,6 +27,7 @@ namespace TEditXna.Editor.Tools
             if (!_isRightDown && !_isLeftDown)
             {
                 _startPoint = e.Location;
+                _wvm.CheckTiles = new bool[_wvm.CurrentWorld.TilesWide * _wvm.CurrentWorld.TilesHigh];
             }
 
             _isLeftDown = (e.LeftButton == MouseButtonState.Pressed);
@@ -70,12 +71,19 @@ namespace TEditXna.Editor.Tools
 
         private void DrawLine(Vector2Int32 to)
         {
-            foreach (Vector2Int32 p in Shape.DrawLineTool(_startPoint, to))
+            foreach (Vector2Int32 pixel in Shape.DrawLineTool(_startPoint, to))
             {
-                if (_wvm.Selection.IsValid(p))
+                if (!_wvm.CurrentWorld.ValidTileLocation(pixel)) continue;
+
+                int index = pixel.X + pixel.Y * _wvm.CurrentWorld.TilesWide;
+                if (!_wvm.CheckTiles[index])
                 {
-                    _wvm.UndoManager.SaveTile(p);
-                    _wvm.SetPixel(p.X, p.Y);
+                    _wvm.CheckTiles[index] = true;
+                    if (_wvm.Selection.IsValid(pixel))
+                    {
+                        _wvm.UndoManager.SaveTile(pixel);
+                        _wvm.SetPixel(pixel.X, pixel.Y);
+                    }
                 }
             }
         }
