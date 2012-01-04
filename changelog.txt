@@ -1,3 +1,74 @@
+2012-01-03 max item stack fixes #195
+2012-01-03 Snow and desert biome
+2012-01-03 Editing via github is painful.
+2012-01-03 default scroll position
+2012-01-03 fixed inverted null check
+2012-01-03 null check, probably useless
+2012-01-03 check empty buffer before pasting, attempting to fix #199
+2012-01-03 one more undo change, Fixes #196
+2012-01-03 Fixed possible exception with saving a world without a filename
+2012-01-03 Validation and fix undo for pencil
+2012-01-03 Reset time on new worlds
+2012-01-03 Create New Worlds of custom sizes, clamped scrolling
+2012-01-03 Delete Command
+2012-01-03 Scrollbars, closes #192
+2012-01-02 fix sprites showing after tile is deleted or erased
+2012-01-02 Validate view bounds to be inside world, Fixes #191
+2012-01-02 attempting to fix #191 and fix #194
+2012-01-02 Part 1 of cursor changing
+2012-01-02 Better morph tool
+2012-01-02 Chest item data copying, fixes #187
+2012-01-02 undo path fixes #189
+2012-01-02 biome morph tool
+2012-01-01 Attempting to fix outofrange exception for drawsprites, added eraser toggle (Z)
+2011-12-30 Grid Overlay
+2011-12-30 fixed brush preview alignment for round brush
+2011-12-30 excessive logging
+2011-12-30 Fix for missing npc icon, fixes #185
+2011-12-30 prelim command line args
+2011-12-30 Prepping Merge
+2011-12-30 Enforced Selection for brush and pencil
+2011-12-30 Keyboard shortcuts, fill tool, eye dropper, error logging
+2011-12-30 Implemented BaseTool class, fixed search and replace name issues in settings
+2011-12-30 Chest and Sign popups, fixed invasion type
+2011-12-30 Better rendering
+2011-12-30 sprite anchor direction, fix startup bug
+2011-12-30 stretching textures, trees look strange...
+2011-12-30 Sprites
+2011-12-29 Clipboard complete
+2011-12-29 Added commands, initial clipboard/schematic work
+2011-12-28 Toggle layers
+2011-12-28 Window title and icon
+2011-12-28 Brush tool, tool previews, improved viewmodel locator
+2011-12-24 Brush Settings
+2011-12-24 TilePicker
+2011-12-23 Tools and Views
+2011-12-23 Properties Panel
+2011-12-23 Toolbars and icons
+2011-12-22 mouseover tile
+2011-12-22 Rendering, scrolling, zooming, and colors
+2011-12-22 world render success
+2011-12-22 Loading world success
+2011-12-22 splitting out rendering
+2011-12-22 splitting out rendering
+2011-12-22 Now licensed as MS-PL
+2011-12-22 additional global colors
+2011-12-22 Reformatting world settings file
+2011-12-21 Theme
+2011-12-21 Xna viewport WIP
+2011-12-19 Removed old invalid tests
+2011-12-19 Add some more brick names
+2011-12-16 Added all new tiles and items
+2011-12-15 Update for Terraria 1.1.1
+2011-12-09 hack for schematic torches
+2011-12-09 Version changed to 2.0.10.0 and noted beta
+2011-12-09 1.1 file operations
+2011-10-14 fix title bar version
+2011-10-14 Fix chest editor issue closes #147
+2011-10-10 Adding hotkey to tile picker dropdowns. closes #112
+2011-10-10 Force xml path to exe path
+2011-10-10 Bugfix for torch deletions
+2011-10-03 fixed small int/byte conversion issue
 2011-10-03 Version 2.0.9.0
 2011-10-03 oh snap, sprite placer (no previews yet), also can now place torches, closes #62, closes #37
 2011-10-03 Spritepicker and placer methods

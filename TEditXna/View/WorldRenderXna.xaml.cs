@@ -317,7 +317,7 @@ namespace TEditXna.View
 
                         // Make a new texture for nulls
                         bool init = _tileMap[i] == null;
-                        if (init)
+                        if (init || _tileMap[i].Width != _wvm.PixelMap.TileWidth || _tileMap[i].Height != _wvm.PixelMap.TileHeight)
                             _tileMap[i] = new Texture2D(e.GraphicsDevice, _wvm.PixelMap.TileWidth, _wvm.PixelMap.TileHeight);
 
                         if (_wvm.PixelMap.BufferUpdated[i] || init)
