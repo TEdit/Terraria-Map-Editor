@@ -150,6 +150,8 @@ namespace TEditXna.View
 
                 foreach (var sprite in World.Sprites)
                 {
+                    if (sprite.Size.X == 0 || sprite.Size.Y == 0)
+                        continue;
                     try
                     {
                         var tile = World.TileProperties[sprite.Tile];
@@ -176,7 +178,7 @@ namespace TEditXna.View
                     }
                     catch (Exception ex)
                     {
-
+                        ErrorLogging.LogException(ex);
                     }
                 }
             }
