@@ -42,7 +42,10 @@ namespace TEditXna
         }
 
         private void HandleKeyDownEvent(object sender, KeyEventArgs e)
-        { 
+        {
+            if (!(e.Source is View.WorldRenderXna))
+                return;
+
             if (e.Key == Key.C && Keyboard.Modifiers.HasFlag(ModifierKeys.Control))
             {
                 if (_vm.CopyCommand.CanExecute(null))
@@ -113,6 +116,7 @@ namespace TEditXna
                     SetActiveTool(command);
                 }
             }
+            e.Handled = true;
         }
 
         private void SetActiveTool(string toolName)
