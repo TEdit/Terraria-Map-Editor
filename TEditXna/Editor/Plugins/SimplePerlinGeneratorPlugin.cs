@@ -26,14 +26,17 @@ namespace TEditXna.Editor.Plugins
             //}
 
             var area = new Rectangle(0, (int)_wvm.CurrentWorld.GroundLevel, _wvm.CurrentWorld.TilesWide, _wvm.CurrentWorld.TilesHigh - (int)_wvm.CurrentWorld.GroundLevel - 196);
-            
+
             if (_wvm.Selection.IsActive)
-                area = _wvm.Selection.SelectionArea;
+            {
+                if (!_wvm.Selection.SelectionArea.Intersect(new Rectangle(0, 0, _wvm.CurrentWorld.TilesWide, _wvm.CurrentWorld.TilesHigh), out area))
+                    return;
+            }
 
             if (area.Width <= 0 || area.Height <= 0)
                 return;
 
-            byte tile = (byte)_wvm.TilePicker.Tile;
+            var tile = (byte)_wvm.TilePicker.Tile;
             for (int x = area.Left; x < area.Right; x++)
             {
                 for (int y = area.Top; y < area.Bottom; y++)
