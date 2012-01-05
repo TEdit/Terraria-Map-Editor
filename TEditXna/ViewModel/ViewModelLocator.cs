@@ -43,6 +43,7 @@ namespace TEditXna.ViewModel
             wvm.ActiveTool = defaultTool;
 
             wvm.Plugins.Add(new SandSettlePlugin(wvm));
+            wvm.Plugins.Add(new SimplePerlinGeneratorPlugin(wvm));
             return wvm;
         }
     }

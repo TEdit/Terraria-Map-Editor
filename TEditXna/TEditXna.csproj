@@ -87,7 +87,11 @@
     <Compile Include="Editor\MorphBiome.cs" />
     <Compile Include="Editor\MouseTile.cs" />
     <Compile Include="Editor\PaintMode.cs" />
+    <Compile Include="Editor\Plugins\BasePlugin.cs" />
     <Compile Include="Editor\Plugins\IPlugin.cs" />
+    <Compile Include="Editor\Plugins\PerlinNoise.cs" />
+    <Compile Include="Editor\Plugins\SandSettlePlugin.cs" />
+    <Compile Include="Editor\Plugins\SimplePerlinGeneratorPlugin.cs" />
     <Compile Include="Editor\Selection.cs" />
     <Compile Include="Editor\TileMouseState.cs" />
     <Compile Include="Editor\TilePicker.cs" />
