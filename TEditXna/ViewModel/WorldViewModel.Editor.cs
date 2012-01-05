@@ -21,7 +21,7 @@ namespace TEditXna.ViewModel
                 {
                     for (int y = Selection.SelectionArea.Top; y < Selection.SelectionArea.Bottom; y++)
                     {
-                        UndoManager.SaveTile(x,y);
+                        UndoManager.SaveTile(x, y);
                         var curTile = CurrentWorld.Tiles[x, y];
                         curTile.IsActive = false;
                         curTile.Wall = 0;

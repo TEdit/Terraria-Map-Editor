@@ -6,6 +6,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Reflection;
 using System.Threading.Tasks;
+using System.Windows.Data;
 using System.Windows.Input;
 using BCCL.MvvmLight;
 using BCCL.MvvmLight.Threading;
@@ -48,7 +49,28 @@ namespace TEditXna.ViewModel
         private bool _showGrid = true;
         private MorphBiome _morphBiomeTarget;
 
+        private ICollectionView _spritesView;
+        public ICollectionView SpritesView
+        {
+            get { return _spritesView; }
+            set
+            {
+                Set("SpritesView", ref _spritesView, value);
 
+            }
+        }
+
+        private string _spriteFilter;
+        public string SpriteFilter
+        {
+            get { return _spriteFilter; }
+            set
+            {
+                Set("SpriteFilter", ref _spriteFilter, value);
+
+                SpritesView.Refresh();
+            }
+        }
 
 
         public ObservableCollection<IPlugin> Plugins
@@ -105,6 +127,18 @@ namespace TEditXna.ViewModel
             World.ProgressChanged += OnProgressChanged;
             Brush.BrushChanged += OnPreviewChanged;
             UpdateTitle();
+
+            _spriteFilter = string.Empty;
+            _spritesView = CollectionViewSource.GetDefaultView(World.Sprites);
+            _spritesView.Filter = (o) =>
+            {
+                var sprite = o as Sprite;
+                if (sprite == null || string.IsNullOrWhiteSpace(sprite.TileName))
+                    return false;
+                
+                return sprite.TileName.IndexOf(_spriteFilter, StringComparison.InvariantCultureIgnoreCase) >= 0 ||
+                       sprite.Name.IndexOf(_spriteFilter, StringComparison.InvariantCultureIgnoreCase) >= 0;
+            };
         }
 
         public UndoManager UndoManager

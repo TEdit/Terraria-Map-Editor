@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Linq;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -24,7 +25,7 @@ namespace TEditXNA.Terraria
         private static readonly ObservableCollection<WallProperty> _wallProperties = new ObservableCollection<WallProperty>();
 
         private static readonly ObservableCollection<Sprite> _sprites = new ObservableCollection<Sprite>();
-        private static readonly Dictionary<Key, string> _shortcuts = new Dictionary<Key, string>(); 
+        private static readonly Dictionary<Key, string> _shortcuts = new Dictionary<Key, string>();
 
         static World()
         {
@@ -185,7 +186,7 @@ namespace TEditXNA.Terraria
             }
             for (int i = TileProperties.Count; i < 255; i++)
             {
-                TileProperties.Add(new TileProperty(i, "UNKNOWN", Color.FromArgb(255,255,0,255), true));
+                TileProperties.Add(new TileProperty(i, "UNKNOWN", Color.FromArgb(255, 255, 0, 255), true));
             }
 
             foreach (var xElement in xmlSettings.Elements("Walls").Elements("Wall"))
