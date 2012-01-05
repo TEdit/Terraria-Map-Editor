@@ -10,7 +10,7 @@ namespace TEditXna.Editor.Plugins
         public SimplePerlinGeneratorPlugin(WorldViewModel worldViewModel) : base(worldViewModel)
         {
             _noiseGenerator = new PerlinNoise(1);
-            Name = "Simple Tile Generator";
+            Name = "Simple Ore Generator";
         }
 
         public override void Execute()
