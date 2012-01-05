@@ -7,7 +7,8 @@ namespace TEditXna.Editor.Plugins
     public sealed class SimplePerlinGeneratorPlugin : BasePlugin
     {
         private PerlinNoise _noiseGenerator;
-        public SimplePerlinGeneratorPlugin(WorldViewModel worldViewModel) : base(worldViewModel)
+        public SimplePerlinGeneratorPlugin(WorldViewModel worldViewModel)
+            : base(worldViewModel)
         {
             _noiseGenerator = new PerlinNoise(1);
             Name = "Simple Ore Generator";
@@ -21,12 +22,16 @@ namespace TEditXna.Editor.Plugins
             // refresh generator if needed
             //if (_noiseGenerator.Seed != _wvm.CurrentWorld.WorldId)
             //{
-                _noiseGenerator = new PerlinNoise((int)DateTime.Now.Ticks);
+            _noiseGenerator = new PerlinNoise((int)DateTime.Now.Ticks);
             //}
 
-                var area = new Rectangle(0, (int)_wvm.CurrentWorld.GroundLevel, _wvm.CurrentWorld.TilesWide, _wvm.CurrentWorld.TilesHigh - (int)_wvm.CurrentWorld.GroundLevel);
+            var area = new Rectangle(0, (int)_wvm.CurrentWorld.GroundLevel, _wvm.CurrentWorld.TilesWide, _wvm.CurrentWorld.TilesHigh - (int)_wvm.CurrentWorld.GroundLevel - 196);
+            
             if (_wvm.Selection.IsActive)
                 area = _wvm.Selection.SelectionArea;
+
+            if (area.Width <= 0 || area.Height <= 0)
+                return;
 
             byte tile = (byte)_wvm.TilePicker.Tile;
             for (int x = area.Left; x < area.Right; x++)
@@ -36,10 +41,10 @@ namespace TEditXna.Editor.Plugins
                     var result = TestOctaveGenerator(x, y);
                     if (result > 0.6 && result < 0.75)
                     {
-                        _wvm.UndoManager.SaveTile(x,y);
+                        _wvm.UndoManager.SaveTile(x, y);
                         _wvm.CurrentWorld.Tiles[x, y].IsActive = true;
                         _wvm.CurrentWorld.Tiles[x, y].Type = tile;
-                        _wvm.UpdateRenderPixel(x,y);
+                        _wvm.UpdateRenderPixel(x, y);
                     }
                 }
             }
