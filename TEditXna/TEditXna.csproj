@@ -87,6 +87,7 @@
     <Compile Include="Editor\MorphBiome.cs" />
     <Compile Include="Editor\MouseTile.cs" />
     <Compile Include="Editor\PaintMode.cs" />
+    <Compile Include="Editor\Plugins\IPlugin.cs" />
     <Compile Include="Editor\Selection.cs" />
     <Compile Include="Editor\TileMouseState.cs" />
     <Compile Include="Editor\TilePicker.cs" />
@@ -330,9 +331,7 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Editor\Plugins\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.0,Profile=Client">
       <Visible>False</Visible>
@@ -358,7 +357,7 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties BuildVersion_UseGlobalSettings="True" BuildVersion_AssemblyInfoFilename="Properties\AssemblyInfo.cs" />
+      <UserProperties BuildVersion_AssemblyInfoFilename="Properties\AssemblyInfo.cs" BuildVersion_UseGlobalSettings="True" />
     </VisualStudio>
   </ProjectExtensions>
   <PropertyGroup>

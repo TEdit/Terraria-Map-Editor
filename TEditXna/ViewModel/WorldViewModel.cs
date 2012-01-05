@@ -14,6 +14,7 @@ using TEditXNA.Terraria;
 using TEditXNA.Terraria.Objects;
 using TEditXna.Editor;
 using TEditXna.Editor.Clipboard;
+using TEditXna.Editor.Plugins;
 using TEditXna.Editor.Tools;
 using TEditXna.Editor.Undo;
 using TEditXna.Render;
@@ -26,7 +27,8 @@ namespace TEditXna.ViewModel
         private readonly BrushSettings _brush = new BrushSettings();
         private readonly MouseTile _mouseOverTile = new MouseTile();
         private readonly TilePicker _tilePicker = new TilePicker();
-        private readonly IList<ITool> _tools = new ObservableCollection<ITool>();
+        private readonly ObservableCollection<ITool> _tools = new ObservableCollection<ITool>();
+        private readonly ObservableCollection<IPlugin> _plugins = new ObservableCollection<IPlugin>();
         private readonly Selection _selection = new Selection();
         private readonly ClipboardManager _clipboard;
         private readonly UndoManager _undoManager;
@@ -47,6 +49,12 @@ namespace TEditXna.ViewModel
         private MorphBiome _morphBiomeTarget;
 
 
+
+
+        public ObservableCollection<IPlugin> Plugins
+        {
+            get { return _plugins; }
+        }
         public MorphBiome MorphBiomeTarget
         {
             get { return _morphBiomeTarget; }
@@ -153,7 +161,7 @@ namespace TEditXna.ViewModel
             get { return _tilePicker; }
         }
 
-        public IList<ITool> Tools
+        public ObservableCollection<ITool> Tools
         {
             get { return _tools; }
         }

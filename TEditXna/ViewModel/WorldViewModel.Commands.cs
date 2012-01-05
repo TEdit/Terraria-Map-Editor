@@ -6,6 +6,7 @@ using System.Windows.Input;
 using BCCL.MvvmLight.Command;
 using Microsoft.Win32;
 using TEditXna.Editor.Clipboard;
+using TEditXna.Editor.Plugins;
 using TEditXna.Editor.Tools;
 
 namespace TEditXna.ViewModel
@@ -23,7 +24,18 @@ namespace TEditXna.ViewModel
         private ICommand _undoCommand;
         private ICommand _redoCommand;
         private ICommand _newWorldCommand;
+        private ICommand _runPluginCommand;
          
+
+        public ICommand RunPluginCommand
+        {
+            get { return _runPluginCommand ?? (_runPluginCommand = new RelayCommand<IPlugin>(RunPlugin)); }
+        }
+
+        private void RunPlugin(IPlugin plugin)
+        {
+            plugin.Execute();
+        }
 
         public ICommand NewWorldCommand
         {

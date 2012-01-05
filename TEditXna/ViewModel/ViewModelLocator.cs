@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Threading;
+using TEditXna.Editor.Plugins;
 using TEditXna.Editor.Tools;
 
 namespace TEditXna.ViewModel
@@ -40,6 +41,8 @@ namespace TEditXna.ViewModel
             wvm.Tools.Add(new SpriteTool(wvm));
             wvm.Tools.Add(new MorphTool(wvm));
             wvm.ActiveTool = defaultTool;
+
+            wvm.Plugins.Add(new SandSettlePlugin(wvm));
             return wvm;
         }
     }

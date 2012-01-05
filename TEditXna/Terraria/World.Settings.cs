@@ -18,9 +18,11 @@ namespace TEditXNA.Terraria
         private static readonly Dictionary<string, XNA.Color> _globalColors = new Dictionary<string, XNA.Color>();
         private static readonly Dictionary<string, int> _npcIds = new Dictionary<string, int>();
         private static readonly Dictionary<byte, string> _prefix = new Dictionary<byte, string>();
-        private static readonly IList<ItemProperty> _itemProperties = new ObservableCollection<ItemProperty>();
-        private static readonly IList<TileProperty> _tileProperties = new ObservableCollection<TileProperty>();
-        private static readonly IList<WallProperty> _wallProperties = new ObservableCollection<WallProperty>();
+        private static readonly ObservableCollection<ItemProperty> _itemProperties = new ObservableCollection<ItemProperty>();
+        private static readonly ObservableCollection<TileProperty> _tileProperties = new ObservableCollection<TileProperty>();
+        private static readonly ObservableCollection<TileProperty> _tileBricks = new ObservableCollection<TileProperty>();
+        private static readonly ObservableCollection<WallProperty> _wallProperties = new ObservableCollection<WallProperty>();
+
         private static readonly ObservableCollection<Sprite> _sprites = new ObservableCollection<Sprite>();
         private static readonly Dictionary<Key, string> _shortcuts = new Dictionary<Key, string>(); 
 
@@ -178,7 +180,8 @@ namespace TEditXNA.Terraria
                                     });
                 }
                 TileProperties.Add(curTile);
-
+                if (!curTile.IsFramed)
+                    TileBricks.Add(curTile);
             }
             for (int i = TileProperties.Count; i < 255; i++)
             {
@@ -244,25 +247,26 @@ namespace TEditXNA.Terraria
             get { return _shortcuts; }
         }
 
-        public static IList<TileProperty> TileProperties
+        public static ObservableCollection<TileProperty> TileProperties
         {
             get { return _tileProperties; }
         }
 
-        public static IList<TileProperty> TileBricks
+
+        public static ObservableCollection<TileProperty> TileBricks
         {
             get
             {
-                return _tileProperties.Where(x => !x.IsFramed).ToList();
+                return _tileBricks;
             }
         }
 
-        public static IList<WallProperty> WallProperties
+        public static ObservableCollection<WallProperty> WallProperties
         {
             get { return _wallProperties; }
         }
 
-        public static IList<ItemProperty> ItemProperties
+        public static ObservableCollection<ItemProperty> ItemProperties
         {
             get { return _itemProperties; }
         }

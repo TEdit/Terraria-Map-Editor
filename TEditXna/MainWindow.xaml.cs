@@ -69,7 +69,7 @@ namespace TEditXna
                 if (_vm.CurrentWorld != null)
                 {
                     _vm.Selection.IsActive = true;
-                    _vm.Selection.SetRectangle(new Vector2Int32(0,0), new Vector2Int32(_vm.CurrentWorld.TilesWide, _vm.CurrentWorld.TilesHigh));
+                    _vm.Selection.SetRectangle(new Vector2Int32(0,0), new Vector2Int32(_vm.CurrentWorld.TilesWide-1, _vm.CurrentWorld.TilesHigh-1));
                 }
             }
             else if (e.Key == Key.D && Keyboard.Modifiers.HasFlag(ModifierKeys.Control))

@@ -1,6 +1,6 @@
 ﻿<Window x:Class="TEditXna.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:View="clr-namespace:TEditXna.View"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:View="clr-namespace:TEditXna.View" x:Name="Shell"
         Title="{Binding WindowTitle}" Height="600" Width="800" TextOptions.TextFormattingMode="Display" TextOptions.TextRenderingMode="Aliased"
         UseLayoutRounding="True" Background="{StaticResource WindowBackgroundBrush}" Foreground="{DynamicResource TextBrush}" Icon="/TEditXna;component/Images/tedit.ico">
     <Window.Resources>
@@ -16,6 +16,20 @@
         <Image x:Key="TB_UndoIcon" x:Shared="false" Source="/Images/Toolbar/arrow_undo.png" Height="16" Width="16" SnapsToDevicePixels="True" RenderOptions.BitmapScalingMode="NearestNeighbor"/>
         <Image x:Key="TB_RedoIcon" x:Shared="false" Source="/Images/Toolbar/arrow_redo.png" Height="16" Width="16" SnapsToDevicePixels="True" RenderOptions.BitmapScalingMode="NearestNeighbor"/>
         <Image x:Key="TB_DeleteIcon" x:Shared="false" Source="/Images/Toolbar/delete.png" Height="16" Width="16" SnapsToDevicePixels="True" RenderOptions.BitmapScalingMode="NearestNeighbor"/>
+        <DataTemplate x:Key="MenuItemTemplate">
+            <MenuItem Command="" CommandParameter="{Binding}">
+                <MenuItem.HeaderTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Name}" />
+                    </DataTemplate>
+                </MenuItem.HeaderTemplate>
+            </MenuItem>
+        </DataTemplate>
+        <Style x:Key="SubmenuItemStyle" TargetType="{x:Type MenuItem}" BasedOn="{StaticResource {x:Type MenuItem}}">
+            <Setter Property="Header" Value="{Binding Name}" />
+            <Setter Property="Command" Value="{Binding ElementName=Shell, Path=DataContext.RunPluginCommand}"/>
+            <Setter Property="CommandParameter" Value="{Binding}"/>
+        </Style>
     </Window.Resources>
     <Grid>
         <DockPanel LastChildFill="True">
@@ -50,7 +64,7 @@
                     <Separator Margin="1" />
                     <MenuItem Header="Show Points" IsCheckable="True" IsChecked="{Binding ShowPoints}" />
                 </MenuItem>
-                <MenuItem Header="Plugins">
+                <MenuItem Header="Plugins" ItemsSource="{Binding Plugins}" ItemContainerStyle="{StaticResource SubmenuItemStyle}">
 
                 </MenuItem>
                 <MenuItem Header="Help">
