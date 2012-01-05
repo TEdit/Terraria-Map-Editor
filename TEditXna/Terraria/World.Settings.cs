@@ -205,6 +205,7 @@ namespace TEditXNA.Terraria
                 curItem.Name = (string)xElement.Attribute("Name");
                 ItemProperties.Add(curItem);
             }
+
             foreach (var xElement in xmlSettings.Elements("Npcs").Elements("Npc"))
             {
                 int id = (int?)xElement.Attribute("Id") ?? -1;

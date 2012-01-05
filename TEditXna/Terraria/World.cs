@@ -52,30 +52,30 @@ namespace TEditXNA.Terraria
 
         public Tile[,] Tiles;
 
-        private readonly IList<NPC> _npcs = new ObservableCollection<NPC>();
+        private readonly ObservableCollection<NPC> _npcs = new ObservableCollection<NPC>();
 
-        public IList<NPC> NPCs
+        public ObservableCollection<NPC> NPCs
         {
             get { return _npcs; }
         }
 
-        private readonly IList<Sign> _signs = new ObservableCollection<Sign>();
+        private readonly ObservableCollection<Sign> _signs = new ObservableCollection<Sign>();
 
-        public IList<Sign> Signs
+        public ObservableCollection<Sign> Signs
         {
             get { return _signs; }
         }
 
-        private readonly IList<Chest> _chests = new ObservableCollection<Chest>();
+        private readonly ObservableCollection<Chest> _chests = new ObservableCollection<Chest>();
 
-        public IList<Chest> Chests
+        public ObservableCollection<Chest> Chests
         {
             get { return _chests; }
         }
 
-        private readonly Dictionary<int, string> _charNames = new Dictionary<int, string>();
+        private readonly ObservableCollection<NpcName> _charNames = new ObservableCollection<NpcName>();
 
-        public Dictionary<int, string> CharacterNames
+        public ObservableCollection<NpcName> CharacterNames
         {
             get { return _charNames; }
         }
@@ -553,16 +553,16 @@ namespace TEditXNA.Terraria
                     bw.Write(false);
 
                     OnProgressChanged(null, new ProgressChangedEventArgs(100, "Saving NPC Names..."));
-                    bw.Write(CharacterNames[17]);
-                    bw.Write(CharacterNames[18]);
-                    bw.Write(CharacterNames[19]);
-                    bw.Write(CharacterNames[20]);
-                    bw.Write(CharacterNames[22]);
-                    bw.Write(CharacterNames[54]);
-                    bw.Write(CharacterNames[38]);
-                    bw.Write(CharacterNames[107]);
-                    bw.Write(CharacterNames[108]);
-                    bw.Write(CharacterNames[124]);
+                    bw.Write(CharacterNames.FirstOrDefault(c=>c.Id == 17).Name);
+                    bw.Write(CharacterNames.FirstOrDefault(c=>c.Id == 18).Name);
+                    bw.Write(CharacterNames.FirstOrDefault(c=>c.Id == 19).Name);
+                    bw.Write(CharacterNames.FirstOrDefault(c=>c.Id == 20).Name);
+                    bw.Write(CharacterNames.FirstOrDefault(c=>c.Id == 22).Name);
+                    bw.Write(CharacterNames.FirstOrDefault(c=>c.Id == 54).Name);
+                    bw.Write(CharacterNames.FirstOrDefault(c=>c.Id == 38).Name);
+                    bw.Write(CharacterNames.FirstOrDefault(c => c.Id == 107).Name);
+                    bw.Write(CharacterNames.FirstOrDefault(c => c.Id == 108).Name);
+                    bw.Write(CharacterNames.FirstOrDefault(c => c.Id == 124).Name);
 
                     OnProgressChanged(null, new ProgressChangedEventArgs(100, "Saving Validation Data..."));
                     bw.Write(true);
@@ -791,17 +791,34 @@ namespace TEditXNA.Terraria
                 if (w.Version >= 31)
                 {
                     OnProgressChanged(null, new ProgressChangedEventArgs(100, "Loading NPC Names..."));
-                    w.CharacterNames.Add(17, b.ReadString());
-                    w.CharacterNames.Add(18, b.ReadString());
-                    w.CharacterNames.Add(19, b.ReadString());
-                    w.CharacterNames.Add(20, b.ReadString());
-                    w.CharacterNames.Add(22, b.ReadString());
-                    w.CharacterNames.Add(54, b.ReadString());
-                    w.CharacterNames.Add(38, b.ReadString());
-                    w.CharacterNames.Add(107, b.ReadString());
-                    w.CharacterNames.Add(108, b.ReadString());
+                    w.CharacterNames.Add(new NpcName(17, b.ReadString()));
+                    w.CharacterNames.Add(new NpcName(18, b.ReadString()));
+                    w.CharacterNames.Add(new NpcName(19, b.ReadString()));
+                    w.CharacterNames.Add(new NpcName(20, b.ReadString()));
+                    w.CharacterNames.Add(new NpcName(22, b.ReadString()));
+                    w.CharacterNames.Add(new NpcName(54, b.ReadString()));
+                    w.CharacterNames.Add(new NpcName(38, b.ReadString()));
+                    w.CharacterNames.Add(new NpcName(107, b.ReadString()));
+                    w.CharacterNames.Add(new NpcName(108, b.ReadString()));
                     if (w.Version >= 35)
-                        w.CharacterNames.Add(124, b.ReadString());
+                        w.CharacterNames.Add(new NpcName(124, b.ReadString()));
+                    else
+                    {
+                        w.CharacterNames.Add(new NpcName(124, "Nancy"));
+                    }
+                }
+                else
+                {
+                    w.CharacterNames.Add(new NpcName(17, "Harold"));
+                    w.CharacterNames.Add(new NpcName(18, "Molly"));
+                    w.CharacterNames.Add(new NpcName(19, "Dominique"));
+                    w.CharacterNames.Add(new NpcName(20, "Felicitae"));
+                    w.CharacterNames.Add(new NpcName(22, "Steve"));
+                    w.CharacterNames.Add(new NpcName(54, "Fitz"));
+                    w.CharacterNames.Add(new NpcName(38, "Gimut"));
+                    w.CharacterNames.Add(new NpcName(107, "Knogs"));
+                    w.CharacterNames.Add(new NpcName(108, "Fizban"));
+                    w.CharacterNames.Add(new NpcName(124, "Nancy"));
                 }
                 if (w.Version >= 7)
                 {

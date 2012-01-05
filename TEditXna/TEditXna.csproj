@@ -122,6 +122,7 @@
     <Compile Include="Terraria\Objects\FrameProperty.cs" />
     <Compile Include="Terraria\Objects\ItemProperty.cs" />
     <Compile Include="Terraria\Objects\ITile.cs" />
+    <Compile Include="Terraria\Objects\NpcName.cs" />
     <Compile Include="Terraria\Objects\Sprite.cs" />
     <Compile Include="Terraria\Objects\TileProperty.cs" />
     <Compile Include="Terraria\Objects\WallProperty.cs" />

@@ -11,6 +11,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using TEditXNA.Terraria;
+using TEditXNA.Terraria.Objects;
 
 namespace TEditXna.View.Popups
 {
@@ -34,16 +35,16 @@ namespace TEditXna.View.Popups
 
         private void AddCharNames()
         {
-            _newWorld.CharacterNames.Add(17, "Harold");
-            _newWorld.CharacterNames.Add(18, "Molly");
-            _newWorld.CharacterNames.Add(19, "Dominique");
-            _newWorld.CharacterNames.Add(20, "Felicitae");
-            _newWorld.CharacterNames.Add(22, "Steve");
-            _newWorld.CharacterNames.Add(54, "Fitz");
-            _newWorld.CharacterNames.Add(38, "Gimut");
-            _newWorld.CharacterNames.Add(107, "Knogs");
-            _newWorld.CharacterNames.Add(108, "Fizban");
-            _newWorld.CharacterNames.Add(124, "Nancy");
+            _newWorld.CharacterNames.Add(new NpcName(17, "Harold"));
+            _newWorld.CharacterNames.Add(new NpcName(18, "Molly"));
+            _newWorld.CharacterNames.Add(new NpcName(19, "Dominique"));
+            _newWorld.CharacterNames.Add(new NpcName(20, "Felicitae"));
+            _newWorld.CharacterNames.Add(new NpcName(22, "Steve"));
+            _newWorld.CharacterNames.Add(new NpcName(54, "Fitz"));
+            _newWorld.CharacterNames.Add(new NpcName(38, "Gimut"));
+            _newWorld.CharacterNames.Add(new NpcName(107, "Knogs"));
+            _newWorld.CharacterNames.Add(new NpcName(108, "Fizban"));
+            _newWorld.CharacterNames.Add(new NpcName(124, "Nancy"));
         }
 
         public World NewWorld
