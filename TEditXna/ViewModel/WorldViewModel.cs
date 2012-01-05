@@ -308,34 +308,34 @@ namespace TEditXna.ViewModel
             {
                 _loadTimer.Reset();
                 _loadTimer.Start();
-                Task.Factory.StartNew(()=>
+                Task.Factory.StartNew(() =>
                                           {
                                               var w = nwDialog.NewWorld;
-                                              w.SpawnX = w.TilesWide/2;
-                                              w.SpawnY = (int) Math.Max(0, w.GroundLevel - 10);
-                                              w.GroundLevel = (int) w.GroundLevel;
-                                              w.RockLevel = (int) w.RockLevel;
-                                              w.BottomWorld = w.TilesHigh*16;
-                                              w.RightWorld = w.TilesWide*16;
-                                              w.Tiles = new Tile[w.TilesWide,w.TilesHigh];
+                                              w.SpawnX = w.TilesWide / 2;
+                                              w.SpawnY = (int)Math.Max(0, w.GroundLevel - 10);
+                                              w.GroundLevel = (int)w.GroundLevel;
+                                              w.RockLevel = (int)w.RockLevel;
+                                              w.BottomWorld = w.TilesHigh * 16;
+                                              w.RightWorld = w.TilesWide * 16;
+                                              w.Tiles = new Tile[w.TilesWide, w.TilesHigh];
                                               Tile cloneTile = new Tile();
                                               for (int y = 0; y < w.TilesHigh; y++)
                                               {
                                                   OnProgressChanged(w, new ProgressChangedEventArgs(BCCL.Utility.Calc.ProgressPercentage(y, w.TilesHigh), "Generating World..."));
 
-                                                  if (y == (int) w.GroundLevel - 10)
-                                                      cloneTile = new Tile {HasWire = false, IsActive = true, IsLava = false, Liquid = 0, Type = 2, U = -1, V = -1, Wall = 2};
-                                                  if (y == (int) w.GroundLevel - 9)
-                                                      cloneTile = new Tile {HasWire = false, IsActive = true, IsLava = false, Liquid = 0, Type = 0, U = -1, V = -1, Wall = 2};
-                                                  else if (y == (int) w.GroundLevel + 1)
-                                                      cloneTile = new Tile {HasWire = false, IsActive = true, IsLava = false, Liquid = 0, Type = 0, U = -1, V = -1, Wall = 0};
-                                                  else if (y == (int) w.RockLevel)
-                                                      cloneTile = new Tile {HasWire = false, IsActive = true, IsLava = false, Liquid = 0, Type = 1, U = -1, V = -1, Wall = 0};
+                                                  if (y == (int)w.GroundLevel - 10)
+                                                      cloneTile = new Tile { HasWire = false, IsActive = true, IsLava = false, Liquid = 0, Type = 2, U = -1, V = -1, Wall = 2 };
+                                                  if (y == (int)w.GroundLevel - 9)
+                                                      cloneTile = new Tile { HasWire = false, IsActive = true, IsLava = false, Liquid = 0, Type = 0, U = -1, V = -1, Wall = 2 };
+                                                  else if (y == (int)w.GroundLevel + 1)
+                                                      cloneTile = new Tile { HasWire = false, IsActive = true, IsLava = false, Liquid = 0, Type = 0, U = -1, V = -1, Wall = 0 };
+                                                  else if (y == (int)w.RockLevel)
+                                                      cloneTile = new Tile { HasWire = false, IsActive = true, IsLava = false, Liquid = 0, Type = 1, U = -1, V = -1, Wall = 0 };
                                                   else if (y == w.TilesHigh - 182)
                                                       cloneTile = new Tile();
                                                   for (int x = 0; x < w.TilesWide; x++)
                                                   {
-                                                      w.Tiles[x, y] = (Tile) cloneTile.Clone();
+                                                      w.Tiles[x, y] = (Tile)cloneTile.Clone();
                                                   }
                                               }
                                               return w;
@@ -343,20 +343,21 @@ namespace TEditXna.ViewModel
                 .ContinueWith(t => CurrentWorld = t.Result, TaskFactoryHelper.UiTaskScheduler)
                 .ContinueWith(t => RenderEntireWorld())
                 .ContinueWith(t =>
-                {
-                    PixelMap = t.Result;
-                    UpdateTitle();
-                    Points.Clear();
-                    Points.Add("Spawn");
-                    Points.Add("Dungeon");
-                    foreach (var npc in CurrentWorld.NPCs)
-                    {
-                        Points.Add(npc.Name);
-                    }
-                    _loadTimer.Stop();
-                    OnProgressChanged(this, new ProgressChangedEventArgs(0, string.Format("World loaded in {0} seconds.", _loadTimer.Elapsed.TotalSeconds)));
-                }, TaskFactoryHelper.UiTaskScheduler);
-                
+                                  {
+                                      CurrentFile = null;
+                                      PixelMap = t.Result;
+                                      UpdateTitle();
+                                      Points.Clear();
+                                      Points.Add("Spawn");
+                                      Points.Add("Dungeon");
+                                      foreach (var npc in CurrentWorld.NPCs)
+                                      {
+                                          Points.Add(npc.Name);
+                                      }
+                                      _loadTimer.Stop();
+                                      OnProgressChanged(this, new ProgressChangedEventArgs(0, string.Format("World loaded in {0} seconds.", _loadTimer.Elapsed.TotalSeconds)));
+                                  }, TaskFactoryHelper.UiTaskScheduler);
+
             }
         }
 

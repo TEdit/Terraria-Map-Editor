@@ -40,7 +40,7 @@ namespace TEditXNA.Terraria
                 path = key.GetValue("SteamPath") as string;
 
             //no steam key, let's try the default
-            if (path.Equals("") || !Directory.Exists(path))
+            if (string.IsNullOrWhiteSpace(path) || !Directory.Exists(path))
             {
                 path = Environment.GetFolderPath(Environment.SpecialFolder.ProgramFilesX86);
                 path = Path.Combine(path, "Steam");

@@ -106,7 +106,9 @@ namespace TEditXna.View
                 return;
 
             InitializeGraphicsComponents(e);
-            LoadTerrariaTextures(e);
+            if (_textureDictionary.Valid)
+                LoadTerrariaTextures(e);
+
             _selectionTexture = new Texture2D(e.GraphicsDevice, 1, 1);
             LoadResourceTextures(e);
 
@@ -136,52 +138,53 @@ namespace TEditXna.View
         private void LoadTerrariaTextures(GraphicsDeviceEventArgs e)
         {
             // If the texture dictionary is valid (Found terraria and loaded content) load texture data
-            if (_textureDictionary.Valid)
+
+            foreach (var id in World.NpcIds)
             {
-                foreach (var id in World.NpcIds)
-                {
-                    _textureDictionary.GetNPC(id.Value);
-                }
+                _textureDictionary.GetNPC(id.Value);
+            }
 
-                //foreach (var tile in World.TileProperties.Where(t => t.IsFramed))
-                //{
-                //    var tileTexture = _textureDictionary.GetTile(tile.Id);
-                //}
+            //foreach (var tile in World.TileProperties.Where(t => t.IsFramed))
+            //{
+            //    var tileTexture = _textureDictionary.GetTile(tile.Id);
+            //}
 
-                foreach (var sprite in World.Sprites)
+            foreach (var sprite in World.Sprites)
+            {
+                if (sprite.Size.X == 0 || sprite.Size.Y == 0)
+                    continue;
+                try
                 {
-                    if (sprite.Size.X == 0 || sprite.Size.Y == 0)
+                    var tile = World.TileProperties[sprite.Tile];
+                    if (tile.TextureGrid.X == 0 || tile.TextureGrid.Y == 0)
                         continue;
-                    try
+                    var texture = new Texture2D(e.GraphicsDevice, sprite.Size.X * tile.TextureGrid.X, sprite.Size.Y * tile.TextureGrid.Y);
+                    var tileTex = _textureDictionary.GetTile(sprite.Tile);
+                    for (int x = 0; x < sprite.Size.X; x++)
                     {
-                        var tile = World.TileProperties[sprite.Tile];
-                        var texture = new Texture2D(e.GraphicsDevice, sprite.Size.X * tile.TextureGrid.X, sprite.Size.Y * tile.TextureGrid.Y);
-                        var tileTex = _textureDictionary.GetTile(sprite.Tile);
-                        for (int x = 0; x < sprite.Size.X; x++)
+                        for (int y = 0; y < sprite.Size.Y; y++)
                         {
-                            for (int y = 0; y < sprite.Size.Y; y++)
-                            {
-                                var source = new Rectangle(x * (tile.TextureGrid.X + 2) + sprite.Origin.X, y * (tile.TextureGrid.Y + 2) + sprite.Origin.Y, tile.TextureGrid.X, tile.TextureGrid.Y);
-                                if (source.Bottom > tileTex.Height)
-                                    source.Height -= (source.Bottom - tileTex.Height);
-                                if (source.Right > tileTex.Width)
-                                    source.Width -= (source.Right - tileTex.Width);
+                            var source = new Rectangle(x * (tile.TextureGrid.X + 2) + sprite.Origin.X, y * (tile.TextureGrid.Y + 2) + sprite.Origin.Y, tile.TextureGrid.X, tile.TextureGrid.Y);
+                            if (source.Bottom > tileTex.Height)
+                                source.Height -= (source.Bottom - tileTex.Height);
+                            if (source.Right > tileTex.Width)
+                                source.Width -= (source.Right - tileTex.Width);
 
-                                var color = new Color[source.Height * source.Width];
-                                var dest = new Rectangle(x * tile.TextureGrid.X, y * tile.TextureGrid.Y, source.Width, source.Height);
-                                tileTex.GetData(0, source, color, 0, color.Length);
-                                texture.SetData(0, dest, color, 0, color.Length);
-                            }
+                            var color = new Color[source.Height * source.Width];
+                            var dest = new Rectangle(x * tile.TextureGrid.X, y * tile.TextureGrid.Y, source.Width, source.Height);
+                            tileTex.GetData(0, source, color, 0, color.Length);
+                            texture.SetData(0, dest, color, 0, color.Length);
                         }
-                        sprite.IsPreviewTexture = true;
-                        sprite.Preview = texture.Texture2DToWriteableBitmap();
                     }
-                    catch (Exception ex)
-                    {
-                        ErrorLogging.LogException(ex);
-                    }
+                    sprite.IsPreviewTexture = true;
+                    sprite.Preview = texture.Texture2DToWriteableBitmap();
+                }
+                catch (Exception ex)
+                {
+                    ErrorLogging.LogException(ex);
                 }
             }
+
         }
 
         #endregion
@@ -205,13 +208,13 @@ namespace TEditXna.View
         {
             // Update
             _gameTimer.Update();
-            
+
             ScrollWorld();
         }
 
         private void ScrollBar_Scroll(object sender, System.Windows.Controls.Primitives.ScrollEventArgs e)
         {
-            _scrollPosition = new Vector2(-(float) ScrollBarH.Value, -(float) ScrollBarV.Value);
+            _scrollPosition = new Vector2(-(float)ScrollBarH.Value, -(float)ScrollBarV.Value);
             ClampScroll();
         }
 
@@ -231,23 +234,23 @@ namespace TEditXna.View
         {
             if (_wvm.CurrentWorld == null || xnaViewport == null)
             {
-                _scrollPosition = new Vector2(0,0);
+                _scrollPosition = new Vector2(0, 0);
                 ScrollBarH.Value = -_scrollPosition.X;
                 ScrollBarV.Value = -_scrollPosition.Y;
                 return;
-            }   
-            int xNormalRange = -_wvm.CurrentWorld.TilesWide + (int) (xnaViewport.ActualWidth/_zoom);
-            int yNormalRange = -_wvm.CurrentWorld.TilesHigh + (int) (xnaViewport.ActualHeight/_zoom);
+            }
+            int xNormalRange = -_wvm.CurrentWorld.TilesWide + (int)(xnaViewport.ActualWidth / _zoom);
+            int yNormalRange = -_wvm.CurrentWorld.TilesHigh + (int)(xnaViewport.ActualHeight / _zoom);
 
-            if (_wvm.CurrentWorld.TilesWide > (int) (xnaViewport.ActualWidth/_zoom))
+            if (_wvm.CurrentWorld.TilesWide > (int)(xnaViewport.ActualWidth / _zoom))
                 _scrollPosition.X = MathHelper.Clamp(_scrollPosition.X, xNormalRange, 0);
             else
-                _scrollPosition.X = MathHelper.Clamp(_scrollPosition.X, (_wvm.CurrentWorld.TilesWide/2 - (int) (xnaViewport.ActualWidth/_zoom)/2), 0);
+                _scrollPosition.X = MathHelper.Clamp(_scrollPosition.X, (_wvm.CurrentWorld.TilesWide / 2 - (int)(xnaViewport.ActualWidth / _zoom) / 2), 0);
 
-            if (_wvm.CurrentWorld.TilesHigh > (int) (xnaViewport.ActualHeight/_zoom))
+            if (_wvm.CurrentWorld.TilesHigh > (int)(xnaViewport.ActualHeight / _zoom))
                 _scrollPosition.Y = MathHelper.Clamp(_scrollPosition.Y, yNormalRange, 0);
             else
-                _scrollPosition.Y = MathHelper.Clamp(_scrollPosition.Y, (_wvm.CurrentWorld.TilesHigh/2 - (int) (xnaViewport.ActualHeight/_zoom)/2), 0);
+                _scrollPosition.Y = MathHelper.Clamp(_scrollPosition.Y, (_wvm.CurrentWorld.TilesHigh / 2 - (int)(xnaViewport.ActualHeight / _zoom) / 2), 0);
 
             ScrollBarH.Value = -_scrollPosition.X;
             ScrollBarV.Value = -_scrollPosition.Y;
@@ -274,7 +277,7 @@ namespace TEditXna.View
             DrawPixelTiles();
 
             // Draw sprite overlays
-            if (_wvm.ShowTextures)
+            if (_wvm.ShowTextures && _textureDictionary.Valid)
                 DrawSprites();
 
             if (_wvm.ShowGrid)
@@ -355,9 +358,6 @@ namespace TEditXna.View
         }
         private void DrawSprites()
         {
-            if (!_textureDictionary.Valid)
-                return;
-
             Rectangle visibleBounds = GetViewingArea();
             if (visibleBounds.Height * visibleBounds.Width < 25000)
             {
@@ -370,54 +370,66 @@ namespace TEditXna.View
                         if (tileprop.IsFramed && curtile.IsActive)
                         {
                             var source = new Rectangle(curtile.U, curtile.V, tileprop.TextureGrid.X, tileprop.TextureGrid.Y);
+                            if (source.Width <= 0)
+                                source.Width = 16;
+                            if (source.Height <= 0)
+                                source.Height = 16;
+
                             var tileTex = _textureDictionary.GetTile(curtile.Type);
-                            if (source.Bottom > tileTex.Height)
-                                source.Height -= (source.Bottom - tileTex.Height);
-                            if (source.Right > tileTex.Width)
-                                source.Width -= (source.Right - tileTex.Width);
 
-                            var dest = new Rectangle(1 + (int)((_scrollPosition.X + x) * _zoom), 1 + (int)((_scrollPosition.Y + y) * _zoom), (int)_zoom, (int)_zoom);
-                            var texsize = tileprop.TextureGrid;
-                            if (texsize.X != 16 || texsize.Y != 16)
+                            if (tileTex != null)
                             {
-                                dest.Width = (int)(texsize.X * (_zoom / 16));
-                                dest.Height = (int)(texsize.Y * (_zoom / 16));
+                                if (source.Bottom > tileTex.Height)
+                                    source.Height -= (source.Bottom - tileTex.Height);
+                                if (source.Right > tileTex.Width)
+                                    source.Width -= (source.Right - tileTex.Width);
 
-                                var frame = (tileprop.Frames.FirstOrDefault(f => f.UV == new Vector2Short(curtile.U, curtile.V)));
-                                var frameAnchor = FrameAnchor.None;
-                                if (frame != null)
-                                    frameAnchor = frame.Anchor;
-                                switch (frameAnchor)
+                                if (source.Width <= 0 || source.Height <= 0)
+                                    continue;
+
+                                var dest = new Rectangle(1 + (int) ((_scrollPosition.X + x)*_zoom), 1 + (int) ((_scrollPosition.Y + y)*_zoom), (int) _zoom, (int) _zoom);
+                                var texsize = tileprop.TextureGrid;
+                                if (texsize.X != 16 || texsize.Y != 16)
                                 {
-                                    case FrameAnchor.None:
-                                        dest.X += (int)(((16 - texsize.X) / 2F) * _zoom / 16);
-                                        dest.Y += (int)(((16 - texsize.Y) / 2F) * _zoom / 16);
-                                        break;
-                                    case FrameAnchor.Left:
-                                        //position.X += (16 - texsize.X) / 2;
-                                        dest.Y += (int)(((16 - texsize.Y) / 2F) * _zoom / 16);
-                                        break;
-                                    case FrameAnchor.Right:
-                                        dest.X += (int)((16 - texsize.X) * _zoom / 16);
-                                        dest.Y += (int)(((16 - texsize.Y) / 2F) * _zoom / 16);
-                                        break;
-                                    case FrameAnchor.Top:
-                                        dest.X += (int)(((16 - texsize.X) / 2F) * _zoom / 16);
-                                        //position.Y += (16 - texsize.Y);
-                                        break;
-                                    case FrameAnchor.Bottom:
-                                        dest.X += (int)(((16 - texsize.X) / 2F) * _zoom / 16);
-                                        dest.Y += (int)((16 - texsize.Y) * _zoom / 16);
-                                        break;
+                                    dest.Width = (int) (texsize.X*(_zoom/16));
+                                    dest.Height = (int) (texsize.Y*(_zoom/16));
+
+                                    var frame = (tileprop.Frames.FirstOrDefault(f => f.UV == new Vector2Short(curtile.U, curtile.V)));
+                                    var frameAnchor = FrameAnchor.None;
+                                    if (frame != null)
+                                        frameAnchor = frame.Anchor;
+                                    switch (frameAnchor)
+                                    {
+                                        case FrameAnchor.None:
+                                            dest.X += (int) (((16 - texsize.X)/2F)*_zoom/16);
+                                            dest.Y += (int) (((16 - texsize.Y)/2F)*_zoom/16);
+                                            break;
+                                        case FrameAnchor.Left:
+                                            //position.X += (16 - texsize.X) / 2;
+                                            dest.Y += (int) (((16 - texsize.Y)/2F)*_zoom/16);
+                                            break;
+                                        case FrameAnchor.Right:
+                                            dest.X += (int) ((16 - texsize.X)*_zoom/16);
+                                            dest.Y += (int) (((16 - texsize.Y)/2F)*_zoom/16);
+                                            break;
+                                        case FrameAnchor.Top:
+                                            dest.X += (int) (((16 - texsize.X)/2F)*_zoom/16);
+                                            //position.Y += (16 - texsize.Y);
+                                            break;
+                                        case FrameAnchor.Bottom:
+                                            dest.X += (int) (((16 - texsize.X)/2F)*_zoom/16);
+                                            dest.Y += (int) ((16 - texsize.Y)*_zoom/16);
+                                            break;
+                                    }
+
                                 }
 
+
+                                _spriteBatch.Draw(tileTex,
+                                                  dest,
+                                                  source,
+                                                  Color.White);
                             }
-
-
-                            _spriteBatch.Draw(tileTex,
-                                    dest,
-                                    source,
-                                    Color.White);
                         }
                     }
                 }
