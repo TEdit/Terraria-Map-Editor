@@ -9,7 +9,7 @@ using TEditXna.ViewModel;
 
 namespace TEditXna.Editor.Undo
 {
-    public class UndoManager : ObservableObject
+    public class UndoManager : ObservableObject, IDisposable
     {
         private static readonly string Dir = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "undo");
         private static readonly string UndoFile = Path.Combine(Dir, "undo_temp_{0}");
@@ -193,13 +193,36 @@ namespace TEditXna.Editor.Undo
         }
 
         #region Destructor to cleanup files
-
+        private bool disposed = false;
+        //Implement IDisposable.
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+        
+        protected virtual void Dispose(bool disposing)
+        {
+            if (!disposed)
+            {
+                if (disposing)
+                {
+                    // free managed
+                }
+                // Free your own state (unmanaged objects).
+                // Set large fields to null.
+                _buffer = null;
+                foreach (var file in Directory.GetFiles(Dir))
+                {
+                    File.Delete(file);
+                }
+                disposed = true;
+            }
+        }
+    
         ~UndoManager()
         {
-            foreach (var file in Directory.GetFiles(Dir))
-            {
-                File.Delete(file);
-            }
+            Dispose(false);
         }
 
         #endregion
