@@ -116,7 +116,6 @@ namespace TEditXna
                     SetActiveTool(command);
                 }
             }
-            e.Handled = true;
         }
 
         private void SetActiveTool(string toolName)
