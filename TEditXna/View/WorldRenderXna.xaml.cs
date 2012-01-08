@@ -53,7 +53,48 @@ namespace TEditXna.View
             _wvm = ViewModelLocator.WorldViewModel;
             _wvm.PreviewChanged += PreviewChanged;
             _wvm.PropertyChanged += _wvm_PropertyChanged;
+            _wvm.RequestZoom += _wvm_RequestZoom;
+            _wvm.RequestScroll += _wvm_RequestScroll;
         }
+
+        void _wvm_RequestScroll(object sender, BCCL.Framework.Events.EventArgs<ScrollDirection> e)
+        {
+            float x = _scrollPosition.X;
+            float y = _scrollPosition.Y;
+            float inc = 1 / _zoom * 10;
+            switch (e.Value1)
+            {
+                case ScrollDirection.Up:
+                    y -= inc;
+                    break;
+                case ScrollDirection.Down:
+                    y += inc;
+                    break;
+                case ScrollDirection.Left:
+                    x -= inc;
+                    break;
+                case ScrollDirection.Right:
+                    x += inc;
+                    break;
+            }
+
+            _scrollPosition = new Vector2(x, y);
+            ClampScroll();
+        }
+
+        void _wvm_RequestZoom(object sender, BCCL.Framework.Events.EventArgs<bool> e)
+        {
+            if (e.Value1)
+            {
+                Zoom(1);
+            }
+            else
+            {
+                Zoom(-1);
+            }
+        }
+
+
 
         private void _wvm_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
@@ -387,12 +428,12 @@ namespace TEditXna.View
                                 if (source.Width <= 0 || source.Height <= 0)
                                     continue;
 
-                                var dest = new Rectangle(1 + (int) ((_scrollPosition.X + x)*_zoom), 1 + (int) ((_scrollPosition.Y + y)*_zoom), (int) _zoom, (int) _zoom);
+                                var dest = new Rectangle(1 + (int)((_scrollPosition.X + x) * _zoom), 1 + (int)((_scrollPosition.Y + y) * _zoom), (int)_zoom, (int)_zoom);
                                 var texsize = tileprop.TextureGrid;
                                 if (texsize.X != 16 || texsize.Y != 16)
                                 {
-                                    dest.Width = (int) (texsize.X*(_zoom/16));
-                                    dest.Height = (int) (texsize.Y*(_zoom/16));
+                                    dest.Width = (int)(texsize.X * (_zoom / 16));
+                                    dest.Height = (int)(texsize.Y * (_zoom / 16));
 
                                     var frame = (tileprop.Frames.FirstOrDefault(f => f.UV == new Vector2Short(curtile.U, curtile.V)));
                                     var frameAnchor = FrameAnchor.None;
@@ -401,24 +442,24 @@ namespace TEditXna.View
                                     switch (frameAnchor)
                                     {
                                         case FrameAnchor.None:
-                                            dest.X += (int) (((16 - texsize.X)/2F)*_zoom/16);
-                                            dest.Y += (int) (((16 - texsize.Y)/2F)*_zoom/16);
+                                            dest.X += (int)(((16 - texsize.X) / 2F) * _zoom / 16);
+                                            dest.Y += (int)(((16 - texsize.Y) / 2F) * _zoom / 16);
                                             break;
                                         case FrameAnchor.Left:
                                             //position.X += (16 - texsize.X) / 2;
-                                            dest.Y += (int) (((16 - texsize.Y)/2F)*_zoom/16);
+                                            dest.Y += (int)(((16 - texsize.Y) / 2F) * _zoom / 16);
                                             break;
                                         case FrameAnchor.Right:
-                                            dest.X += (int) ((16 - texsize.X)*_zoom/16);
-                                            dest.Y += (int) (((16 - texsize.Y)/2F)*_zoom/16);
+                                            dest.X += (int)((16 - texsize.X) * _zoom / 16);
+                                            dest.Y += (int)(((16 - texsize.Y) / 2F) * _zoom / 16);
                                             break;
                                         case FrameAnchor.Top:
-                                            dest.X += (int) (((16 - texsize.X)/2F)*_zoom/16);
+                                            dest.X += (int)(((16 - texsize.X) / 2F) * _zoom / 16);
                                             //position.Y += (16 - texsize.Y);
                                             break;
                                         case FrameAnchor.Bottom:
-                                            dest.X += (int) (((16 - texsize.X)/2F)*_zoom/16);
-                                            dest.Y += (int) ((16 - texsize.Y)*_zoom/16);
+                                            dest.X += (int)(((16 - texsize.X) / 2F) * _zoom / 16);
+                                            dest.Y += (int)((16 - texsize.Y) * _zoom / 16);
                                             break;
                                     }
 

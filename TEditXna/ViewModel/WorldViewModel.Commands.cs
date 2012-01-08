@@ -3,8 +3,10 @@ using System.Linq;
 using System.IO;
 using System.Windows;
 using System.Windows.Input;
+using BCCL.Framework.Events;
 using BCCL.MvvmLight.Command;
 using Microsoft.Win32;
+using TEditXna.Editor;
 using TEditXna.Editor.Clipboard;
 using TEditXna.Editor.Plugins;
 using TEditXna.Editor.Tools;
@@ -27,7 +29,35 @@ namespace TEditXna.ViewModel
         private ICommand _runPluginCommand;
         private ICommand _saveChestCommand;
         private ICommand _saveSignCommand;
-         
+
+        private ICommand _requestZoomCommand;
+
+        public event EventHandler<EventArgs<bool>> RequestZoom;
+
+        protected virtual void OnRequestZoom(object sender, EventArgs<bool> e)
+        {
+            if (RequestZoom != null) RequestZoom(sender, e);
+        }
+        public ICommand RequestZoomCommand
+        {
+            get { return _requestZoomCommand ?? (_requestZoomCommand = new RelayCommand<bool>(o => OnRequestZoom(this, new EventArgs<bool>(o)))); }
+        }
+
+        public event EventHandler<EventArgs<ScrollDirection>> RequestScroll;
+
+
+        protected virtual void OnRequestScroll(object sender, EventArgs<ScrollDirection> e)
+        {
+            if (RequestScroll != null) RequestScroll(sender, e);
+        }
+
+        private ICommand _requestScrollCommand;
+
+
+        public ICommand RequestScrollCommand
+        {
+            get { return _requestScrollCommand ?? (_requestScrollCommand = new RelayCommand<ScrollDirection>(o => OnRequestScroll(this, new EventArgs<ScrollDirection>(o)))); }
+        }
 
         public ICommand SaveSignCommand
         {
@@ -78,7 +108,7 @@ namespace TEditXna.ViewModel
         public ICommand SaveChestCommand
         {
             get { return _saveChestCommand ?? (_saveChestCommand = new RelayCommand<bool>(SaveChest)); }
-        } 
+        }
 
         public ICommand RunPluginCommand
         {
@@ -97,7 +127,7 @@ namespace TEditXna.ViewModel
         public ICommand RedoCommand
         {
             get { return _redoCommand ?? (_redoCommand = new RelayCommand(UndoManager.Redo)); }
-        } 
+        }
 
         public ICommand UndoCommand
         {

@@ -13,6 +13,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using BCCL.Geometry.Primitives;
 using TEditXNA.Terraria;
+using TEditXna.Editor;
 using TEditXna.ViewModel;
 
 namespace TEditXna
@@ -60,6 +61,16 @@ namespace TEditXna
             {
                 _vm.UndoCommand.Execute(null);
             }
+            else if (e.Key == Key.OemPlus && Keyboard.Modifiers.HasFlag(ModifierKeys.Control))
+            {
+                if (_vm.RequestZoomCommand.CanExecute(true))
+                    _vm.RequestZoomCommand.Execute(true);
+            }
+            else if (e.Key == Key.OemMinus && Keyboard.Modifiers.HasFlag(ModifierKeys.Control))
+            {
+                if (_vm.RequestZoomCommand.CanExecute(false))
+                    _vm.RequestZoomCommand.Execute(false);
+            }
             else if (e.Key == Key.Y && Keyboard.Modifiers.HasFlag(ModifierKeys.Control))
             {
                 _vm.RedoCommand.Execute(null);
@@ -69,7 +80,7 @@ namespace TEditXna
                 if (_vm.CurrentWorld != null)
                 {
                     _vm.Selection.IsActive = true;
-                    _vm.Selection.SetRectangle(new Vector2Int32(0,0), new Vector2Int32(_vm.CurrentWorld.TilesWide-1, _vm.CurrentWorld.TilesHigh-1));
+                    _vm.Selection.SetRectangle(new Vector2Int32(0, 0), new Vector2Int32(_vm.CurrentWorld.TilesWide - 1, _vm.CurrentWorld.TilesHigh - 1));
                 }
             }
             else if (e.Key == Key.D && Keyboard.Modifiers.HasFlag(ModifierKeys.Control))
@@ -103,6 +114,30 @@ namespace TEditXna
                     else
                         _vm.Selection.IsActive = false;
                 }
+            }
+            else if (e.Key == Key.Up)
+            {
+                if (_vm.RequestScrollCommand.CanExecute(ScrollDirection.Up))
+                    _vm.RequestScrollCommand.Execute(ScrollDirection.Up);
+                e.Handled = true;
+            }
+            else if (e.Key == Key.Down)
+            {
+                if (_vm.RequestScrollCommand.CanExecute(ScrollDirection.Down))
+                    _vm.RequestScrollCommand.Execute(ScrollDirection.Down);
+                e.Handled = true;
+            }
+            else if (e.Key == Key.Left)
+            {
+                if (_vm.RequestScrollCommand.CanExecute(ScrollDirection.Left))
+                    _vm.RequestScrollCommand.Execute(ScrollDirection.Left);
+                e.Handled = true;
+            }
+            else if (e.Key == Key.Right)
+            {
+                if (_vm.RequestScrollCommand.CanExecute(ScrollDirection.Right))
+                    _vm.RequestScrollCommand.Execute(ScrollDirection.Right);
+                e.Handled = true;
             }
             else if (World.ShortcutKeys.ContainsKey(e.Key))
             {
