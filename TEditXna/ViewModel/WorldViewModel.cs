@@ -72,6 +72,35 @@ namespace TEditXna.ViewModel
             }
         }
 
+        private Chest _selectedChest;
+        private Sign _selectedSign;
+        private int _selectedTabIndex;
+
+
+        public int SelectedTabIndex
+        {
+            get { return _selectedTabIndex; }
+            set { Set("SelectedTabIndex", ref _selectedTabIndex, value); }
+        }
+
+        public Sign SelectedSign
+        {
+            get { return _selectedSign; }
+            set
+            {
+                Set("SelectedSign", ref _selectedSign, value);
+                SelectedTabIndex = 3;
+            }
+        }
+        public Chest SelectedChest
+        {
+            get { return _selectedChest; }
+            set
+            {
+                Set("SelectedChest", ref _selectedChest, value);
+                SelectedTabIndex = 3;
+            }
+        }
 
         public ObservableCollection<IPlugin> Plugins
         {
@@ -130,12 +159,12 @@ namespace TEditXna.ViewModel
 
             _spriteFilter = string.Empty;
             _spritesView = CollectionViewSource.GetDefaultView(World.Sprites);
-            _spritesView.Filter = (o) =>
+            _spritesView.Filter = o =>
             {
                 var sprite = o as Sprite;
                 if (sprite == null || string.IsNullOrWhiteSpace(sprite.TileName))
                     return false;
-                
+
                 return sprite.TileName.IndexOf(_spriteFilter, StringComparison.InvariantCultureIgnoreCase) >= 0 ||
                        sprite.Name.IndexOf(_spriteFilter, StringComparison.InvariantCultureIgnoreCase) >= 0;
             };

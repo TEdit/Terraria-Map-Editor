@@ -1,4 +1,5 @@
 using System;
+using System.Windows.Input;
 using System.Windows.Media.Imaging;
 using TEditXNA.Terraria;
 using TEditXna.View.Popups;
@@ -8,8 +9,8 @@ namespace TEditXna.Editor.Tools
 {
     public sealed class ArrowTool : BaseTool
     {
-        private ChestPopup _chestPopup;
-        private SignPopup _signPopup;
+        //private ChestPopup _chestPopup;
+        //private SignPopup _signPopup;
 
         public ArrowTool(WorldViewModel worldViewModel) : base(worldViewModel)
         {
@@ -18,55 +19,35 @@ namespace TEditXna.Editor.Tools
             Name = "Arrow";
         }
 
+        private bool _rightClick;
         public override void MouseDown(TileMouseState e)
         {
-            ClosePopups();
+            if (e.RightButton == MouseButtonState.Pressed)
+                _rightClick = true;
         }
 
         public override void MouseUp(TileMouseState e)
         {
-            ClosePopups();
+            if (!_rightClick)
+                return;
+
+            _rightClick = false;
+
             Chest chest = _wvm.CurrentWorld.GetChestAtTile(e.Location.X, e.Location.Y);
+
             if (chest != null)
             {
-                if (_chestPopup == null)
-                    _chestPopup = new ChestPopup(chest);
-                else
-                    _chestPopup.OpenChest(chest);
-
-                _chestPopup.IsOpen = true;
+                _wvm.SelectedChest = chest.Copy();
+                return;
             }
 
             Sign sign = _wvm.CurrentWorld.GetSignAtTile(e.Location.X, e.Location.Y);
             if (sign != null)
             {
-                if (_signPopup == null)
-                    _signPopup = new SignPopup(sign);
-                else
-                    _signPopup.OpenSign(sign);
-
-                _signPopup.IsOpen = true;
+                _wvm.SelectedSign = sign.Copy();
+                return;
             }
-        }
 
-        //private bool Check2x2(Vector2Int32 loc, Vector2Int32 hit)
-        //{
-        //    return (loc.X == hit.X || loc.X + 1 == hit.X) &&
-        //           (loc.Y == hit.Y || loc.Y + 1 == hit.Y);
-        //}
-
-        private void ClosePopups()
-        {
-            if (_chestPopup != null)
-            {
-                _chestPopup.IsOpen = false;
-                _chestPopup = null;
-            }
-            if (_signPopup != null)
-            {
-                _signPopup.IsOpen = false;
-                _signPopup = null;
-            }
         }
     }
 }

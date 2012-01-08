@@ -25,7 +25,60 @@ namespace TEditXna.ViewModel
         private ICommand _redoCommand;
         private ICommand _newWorldCommand;
         private ICommand _runPluginCommand;
+        private ICommand _saveChestCommand;
+        private ICommand _saveSignCommand;
          
+
+        public ICommand SaveSignCommand
+        {
+            get { return _saveSignCommand ?? (_saveSignCommand = new RelayCommand<bool>(SaveSign)); }
+        }
+
+        private void SaveSign(bool save)
+        {
+            if (save)
+            {
+                if (SelectedSign != null)
+                {
+                    var worldSign = CurrentWorld.GetSignAtTile(SelectedSign.X, SelectedSign.Y);
+                    if (worldSign != null)
+                    {
+                        worldSign.Text = SelectedSign.Text;
+                    }
+                    SelectedSign = null;
+                }
+            }
+            else
+            {
+                SelectedSign = null;
+            }
+        }
+
+        private void SaveChest(bool save)
+        {
+            if (save)
+            {
+                if (SelectedChest != null)
+                {
+                    var worldChest = CurrentWorld.GetChestAtTile(SelectedChest.X, SelectedChest.Y);
+                    if (worldChest != null)
+                    {
+                        worldChest = SelectedChest.Copy();
+                    }
+                    SelectedChest = null;
+                }
+            }
+            else
+            {
+                SelectedChest = null;
+            }
+        }
+
+
+        public ICommand SaveChestCommand
+        {
+            get { return _saveChestCommand ?? (_saveChestCommand = new RelayCommand<bool>(SaveChest)); }
+        } 
 
         public ICommand RunPluginCommand
         {

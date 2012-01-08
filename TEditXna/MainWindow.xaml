@@ -180,7 +180,7 @@
                 </ScrollViewer>
             </DockPanel>
             <Expander Header="Utilities" ExpandDirection="Left" IsExpanded="True" DockPanel.Dock="Right">
-                <TabControl TabStripPlacement="Top" Width="300" Foreground="{DynamicResource TextBrush}">
+                <TabControl TabStripPlacement="Top" Width="300" Foreground="{DynamicResource TextBrush}" SelectedIndex="{Binding SelectedTabIndex, Mode=TwoWay}">
                     <TabItem Header="World Properties" >
                         <ScrollViewer VerticalScrollBarVisibility="Auto">
                             <View:WorldPropertiesView HorizontalAlignment="Stretch" VerticalAlignment="Top"/>
@@ -191,6 +191,9 @@
                     </TabItem>
                     <TabItem Header="Clipboard">
                         <View:ClipboardView VerticalAlignment="Stretch" HorizontalAlignment="Stretch" />
+                    </TabItem>
+                    <TabItem Header="Chest-Sign" x:Name="ChestSignTab">
+                        <View:ChestSignEditorView VerticalAlignment="Stretch" HorizontalAlignment="Stretch" />
                     </TabItem>
                 </TabControl>
             </Expander>
