@@ -1,6 +1,6 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:Editor="clr-namespace:TEditXna.Editor"
-                    xmlns:bccl="http://bccl/wpf">
+                    xmlns:bccl="http://bccl/wpf" xmlns:System="clr-namespace:System;assembly=mscorlib">
     <bccl:EnumItemList x:Key="PaintModeEnum" EnumType="{x:Type Editor:PaintMode}" SortBy="Value"  />
     <bccl:EnumItemList x:Key="MaskModeEnum" EnumType="{x:Type Editor:MaskMode}" x:Shared="false" SortBy="Value" />
 
@@ -22,5 +22,8 @@
             <TextBlock Text="{Binding Path=Text}" Margin="2,0" HorizontalAlignment="Stretch"  />
         </Grid>
     </DataTemplate>
+
+    <System:Boolean x:Key="True">True</System:Boolean>
+    <System:Boolean x:Key="False">False</System:Boolean>
 
 </ResourceDictionary>

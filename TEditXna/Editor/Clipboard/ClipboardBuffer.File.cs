@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Linq;
+using System.Windows;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using BCCL.Geometry.Primitives;
@@ -13,8 +14,21 @@ namespace TEditXna.Editor.Clipboard
     {
         public const int SchematicVersion = 2;
 
-        public void Save(string filename)
+        public void Save(string filename, bool isFalseColor = false)
         {
+            if (isFalseColor)
+            {
+                SaveFalseColor(filename);
+                return;
+            }
+
+            // Catch pngs that are real color
+            if (string.Equals(".png",Path.GetExtension(filename), StringComparison.InvariantCultureIgnoreCase))
+            {
+                Preview.SavePng(filename);
+                return;
+            }
+
             Name = Path.GetFileNameWithoutExtension(filename);
             using (var stream = new FileStream(filename, FileMode.Create))
             {
@@ -384,5 +398,129 @@ namespace TEditXna.Editor.Clipboard
 
             return null;
         }
+
+        public void SaveFalseColor(string filename)
+        {
+            var wbmp = new WriteableBitmap(Size.X, Size.Y, 96, 96, PixelFormats.Bgra32, null);
+
+            for (int y = 0; y < Size.Y; y++)
+            {
+
+                for (int x = 0; x < Size.X; x++)
+                {
+                    var curtile = Tiles[x, y];
+                    byte a = TileArgsToByte(curtile);
+                    byte r = curtile.Type;
+                    byte g = curtile.Wall;
+                    byte b = curtile.Liquid;
+
+                    wbmp.SetPixel(x, y, a, r, g, b);
+                }
+            }
+            wbmp.SavePng(filename);
+        }
+
+
+        public static ClipboardBuffer LoadFalseColor(string filename)
+        {
+            var urifrompath = new Uri(filename);
+            var bmp = new BitmapImage(urifrompath);
+            if (bmp.Width > 8400)
+                return null;
+            if (bmp.Height > 2400)
+                return null;
+
+            string name = Path.GetFileNameWithoutExtension(filename);
+            var buffer = new ClipboardBuffer(new Vector2Int32(bmp.PixelWidth, bmp.PixelHeight));
+            buffer.Name = name;
+
+            var wbmp = new WriteableBitmap(bmp);
+            if (wbmp.Format.BitsPerPixel < 32)
+                return null;
+            wbmp.Lock();
+            unsafe
+            {
+                var pixels = (int*)wbmp.BackBuffer;
+                for (int y = 0; y < bmp.PixelHeight; y++)
+                {
+                    int row = y * bmp.PixelWidth;
+                    for (int x = 0; x < bmp.PixelWidth; x++)
+                    {
+
+                        buffer.Tiles[x, y] = TileFromFalseColor(pixels[x + row]);
+                    }
+                }
+
+            }
+            wbmp.Unlock();
+
+            return buffer;
+        }
+
+
+        private static Tile TileFromFalseColor(int color)
+        {
+            byte a = (byte)(color >> 24);
+            byte r = (byte)(color >> 16);
+            byte g = (byte)(color >> 8);
+            byte b = (byte)(color >> 0);
+            var tile = new Tile();
+
+            // try and find a matching brick
+            var tileProperty = World.TileProperties[r];
+            if (tileProperty != null && !tileProperty.IsFramed)
+            {
+                tile.Type = (byte)tileProperty.Id;
+            }
+
+            // try and find a matching wall
+            var wallproperty = World.WallProperties[g];
+            if (wallproperty != null && !tile.IsActive)
+            {
+                tile.Wall = (byte)wallproperty.Id;
+            }
+
+            tile.Liquid = b;
+            AppendTileFlagsFromByte(ref tile, a);
+
+            return tile;
+        }
+
+        [Flags]
+        public enum TileFlags : byte
+        {
+            IsActive = 0x40,
+            IsLava = 0x20,
+            HasWire = 0x10,
+
+            // still have 0x08, 0x04, 0x02, 0x01 available for additional flags
+        }
+        public byte TileArgsToByte(Tile tile)
+        {
+            byte b = 0;
+            b |= 0x80; // turn on max bit so we can see stuff (otherwise alpha is too low)
+
+            if (tile.IsActive)
+                b |= (byte)TileFlags.IsActive;
+            if (tile.IsLava)
+                b |= (byte)TileFlags.IsLava;
+            if (tile.HasWire)
+                b |= (byte)TileFlags.HasWire;
+
+            return b;
+        }
+
+        public static void AppendTileFlagsFromByte(ref Tile tile, byte flags)
+        {
+            if ((flags & (byte)TileFlags.IsActive) == (byte)TileFlags.IsActive)
+                tile.IsActive = true;
+
+            if ((flags & (byte)TileFlags.IsLava) == (byte)TileFlags.IsLava)
+                tile.IsLava = true;
+
+            if ((flags & (byte)TileFlags.HasWire) == (byte)TileFlags.HasWire)
+                tile.HasWire = true;
+        }
+
     }
 }

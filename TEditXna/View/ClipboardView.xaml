@@ -21,7 +21,8 @@
     <DockPanel LastChildFill="True">
         <StackPanel Orientation="Vertical" DockPanel.Dock="Top" HorizontalAlignment="Stretch">
             <Button Content="Empty Clipboard"  Padding="2,4" Margin="2" Command="{Binding EmptyClipboardCommand}" />
-            <Button Content="Import Schematic" Padding="2,4" Margin="2" Command="{Binding ImportSchematicCommand}" />
+            <Button Content="Import Schematic or Image" Padding="2,4" Margin="2" Command="{Binding ImportSchematicCommand}" CommandParameter="{StaticResource False}" />
+            <Button Content="Import False Color Image" Padding="2,4" Margin="2" Command="{Binding ImportSchematicCommand}" CommandParameter="{StaticResource True}" />
             <CheckBox Content="Paste Empty Tiles" Padding="2,4" Margin="2" IsChecked="{Binding Clipboard.PasteEmpty}"/>
         </StackPanel>
         <ScrollViewer>

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using System.IO;
 using System.Windows;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
@@ -51,11 +52,20 @@ namespace TEditXna.Editor.Clipboard
                 LoadedBuffers.Remove(item);
         }
 
-        public void Import(string filename)
+        public void Import(string filename, bool isFalseColor = false)
         {
             try
             {
-                var buffer = ClipboardBuffer.Load(filename);
+                ClipboardBuffer buffer;
+                if (isFalseColor && string.Equals(".png", Path.GetExtension(filename), StringComparison.InvariantCultureIgnoreCase))
+                {
+                    buffer = ClipboardBuffer.LoadFalseColor(filename);
+                }
+                else
+                {
+                    buffer = ClipboardBuffer.Load(filename);
+                }
+                
                 if (buffer != null)
                 {
                     buffer.RenderBuffer();
