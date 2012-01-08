@@ -157,12 +157,23 @@ namespace TEditXna.Editor.Clipboard
             byte r = (byte)(color >> 16);
             byte g = (byte)(color >> 8);
             byte b = (byte)(color >> 0);
+            var tile = new Tile();
+
+            // try and find a matching brick
             var tileProperty = World.GetBrickFromColor(a, r, g, b);
             if (tileProperty != null && !tileProperty.IsFramed)
             {
-                return new Tile { IsActive = true, Type = (byte)tileProperty.Id };
+                tile.IsActive = true;
+                tile.Type = (byte)tileProperty.Id;
             }
-            return new Tile();
+
+            // try and find a matching wall
+            var wallproperty = World.GetWallFromColor(a, r, g, b);
+            if (wallproperty != null && !tile.IsActive)
+            {
+                tile.Wall = (byte)wallproperty.Id;
+            }
+            return tile;
         }
 
         public static ClipboardBuffer Load(string filename)

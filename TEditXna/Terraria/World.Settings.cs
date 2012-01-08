@@ -241,6 +241,32 @@ namespace TEditXNA.Terraria
                 if (r == rB && g == gB && b == bB)
                     return curBrick;
             }
+
+            return null;
+        }
+
+        public static WallProperty GetWallFromColor(byte a, byte r, byte g, byte b)
+        {
+            // if it is a global color, skip
+            foreach (var global in GlobalColors)
+            {
+                var aB = global.Value.A;
+                var rB = global.Value.R;
+                var gB = global.Value.G;
+                var bB = global.Value.B;
+                if (r == rB && g == gB && b == bB)
+                    return null;
+            }
+            for (int i = 0; i < WallProperties.Count; i++)
+            {
+                var curBrick = WallProperties[i];
+                var aB = curBrick.Color.A;
+                var rB = curBrick.Color.R;
+                var gB = curBrick.Color.G;
+                var bB = curBrick.Color.B;
+                if (r == rB && g == gB && b == bB)
+                    return curBrick;
+            }
             return null;
         }
 
