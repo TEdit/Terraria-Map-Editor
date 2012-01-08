@@ -2,6 +2,7 @@ using System;
 using System.Linq;
 using System.Windows.Input;
 using System.Windows.Media.Imaging;
+using BCCL.Geometry.Primitives;
 using TEditXNA.Terraria;
 using TEditXna.ViewModel;
 
@@ -9,7 +10,8 @@ namespace TEditXna.Editor.Tools
 {
     public sealed class PointTool : BaseTool
     {
-        public PointTool(WorldViewModel worldViewModel) : base(worldViewModel)
+        public PointTool(WorldViewModel worldViewModel)
+            : base(worldViewModel)
         {
             Icon = new BitmapImage(new Uri(@"pack://application:,,,/TEditXna;component/Images/Tools/point.png"));
             Name = "Point";
@@ -24,7 +26,10 @@ namespace TEditXna.Editor.Tools
                 NPC npc = _wvm.CurrentWorld.NPCs.FirstOrDefault(n => n.Name == _wvm.SelectedPoint);
 
                 if (npc != null)
+                {
                     npc.Home = e.Location;
+                    npc.Position = new Vector2(e.Location.X * 16, e.Location.Y * 16);
+                }
                 else
                 {
                     if (string.Equals(_wvm.SelectedPoint, "Spawn", StringComparison.InvariantCultureIgnoreCase))

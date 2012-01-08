@@ -1,6 +1,11 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
+using System.Linq;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
 using BCCL.Geometry.Primitives;
 using TEditXNA.Terraria;
+using TEditXNA.Terraria.Objects;
 
 namespace TEditXna.Editor.Clipboard
 {
@@ -108,8 +113,64 @@ namespace TEditXna.Editor.Clipboard
             }
         }
 
+        public static ClipboardBuffer LoadFromImage(string filename)
+        {
+            var urifrompath = new Uri(filename);
+            var bmp = new BitmapImage(urifrompath);
+            if (bmp.Width > 8400)
+                return null;
+            if (bmp.Height > 2400)
+                return null;
+
+
+
+            string name = Path.GetFileNameWithoutExtension(filename);
+            var buffer = new ClipboardBuffer(new Vector2Int32(bmp.PixelWidth, bmp.PixelHeight));
+            buffer.Name = name;
+
+            var wbmp = new WriteableBitmap(bmp);
+            if (wbmp.Format.BitsPerPixel < 32)
+                return null;
+            wbmp.Lock();
+            unsafe
+            {
+                var pixels = (int*)wbmp.BackBuffer;
+                for (int y = 0; y < bmp.PixelHeight; y++)
+                {
+                    int row = y * bmp.PixelWidth;
+                    for (int x = 0; x < bmp.PixelWidth; x++)
+                    {
+
+                        buffer.Tiles[x, y] = TileFromColor(pixels[x + row]);
+                    }
+                }
+
+            }
+            wbmp.Unlock();
+
+            return buffer;
+        }
+
+        private static Tile TileFromColor(int color)
+        {
+            byte a = (byte)(color >> 24);
+            byte r = (byte)(color >> 16);
+            byte g = (byte)(color >> 8);
+            byte b = (byte)(color >> 0);
+            var tileProperty = World.GetBrickFromColor(a, r, g, b);
+            if (tileProperty != null && !tileProperty.IsFramed)
+            {
+                return new Tile { IsActive = true, Type = (byte)tileProperty.Id };
+            }
+            return new Tile();
+        }
+
         public static ClipboardBuffer Load(string filename)
         {
+            string ext = Path.GetExtension(filename);
+            if (string.Equals(ext, ".jpg", StringComparison.InvariantCultureIgnoreCase) || string.Equals(ext, ".png", StringComparison.InvariantCultureIgnoreCase) || string.Equals(ext, ".bmp", StringComparison.InvariantCultureIgnoreCase))
+                return LoadFromImage(filename);
+
             using (var stream = new FileStream(filename, FileMode.Open))
             {
                 using (var br = new BinaryReader(stream))
@@ -167,9 +228,9 @@ namespace TEditXna.Editor.Clipboard
                             for (int j = 0; j < Chest.MaxItems; ++j)
                             {
                                 curChest.Items[j].StackSize = br.ReadByte();
-                     
+
                                 if (curChest.Items[j].StackSize > 0)
-                                {                        
+                                {
                                     curChest.Items[j].ItemName = br.ReadString();
                                     curChest.Items[j].Prefix = br.ReadByte();
                                 }
@@ -178,7 +239,7 @@ namespace TEditXna.Editor.Clipboard
                                     curChest.Items[j].ItemName = "[empty]";
                                 }
 
-                            } 
+                            }
                             buffer.Chests.Add(curChest);
                         }
                     }
@@ -189,7 +250,7 @@ namespace TEditXna.Editor.Clipboard
                             string text = br.ReadString();
                             int x = br.ReadInt32();
                             int y = br.ReadInt32();
-                            buffer.Signs.Add(new Sign(x,y,text));
+                            buffer.Signs.Add(new Sign(x, y, text));
                         }
                     }
 
@@ -294,7 +355,7 @@ namespace TEditXna.Editor.Clipboard
                             if (buffer.Tiles[x, y].IsActive && (buffer.Tiles[x, y].Type == 55 || buffer.Tiles[x, y].Type == 85))
                             // validate tile location
                             {
-                                var sign = new Sign(x,y,signText);
+                                var sign = new Sign(x, y, signText);
                                 //Signs[signIndex] = sign;
                                 buffer.Signs.Add(sign);
                             }

@@ -229,6 +229,21 @@ namespace TEditXNA.Terraria
             }
         }
 
+        public static TileProperty GetBrickFromColor(byte a, byte r, byte g, byte b)
+        {
+            for (int i = 0; i < TileBricks.Count; i++)
+            {
+                var curBrick = TileBricks[i];
+                var aB = curBrick.Color.A;
+                var rB = curBrick.Color.R;
+                var gB = curBrick.Color.G;
+                var bB = curBrick.Color.B;
+                if (r == rB && g == gB && b == bB)
+                    return curBrick;
+            }
+            return null;
+        }
+
         public static Dictionary<string, XNA.Color> GlobalColors
         {
             get { return _globalColors; }

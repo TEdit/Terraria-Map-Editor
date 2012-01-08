@@ -392,7 +392,7 @@ namespace TEditXNA.Terraria
             {
                 using (var bw = new BinaryWriter(fs))
                 {
-                    bw.Write(Version);
+                    bw.Write(World.CompatibleVersion);
                     bw.Write(Title);
                     bw.Write(WorldId);
                     bw.Write((int)LeftWorld);

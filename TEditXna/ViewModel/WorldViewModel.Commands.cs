@@ -195,7 +195,7 @@ namespace TEditXna.ViewModel
         {
 
             var ofd = new OpenFileDialog();
-            ofd.Filter = "TEdit Schematic File|*.TEditSch";
+            ofd.Filter = "TEdit Schematic File|*.TEditSch|32 Bit Png|*.png|32 Bit BMP|*.bmp|32 Bit JPEG|*.jpg";
             ofd.DefaultExt = "TEdit Schematic File|*.TEditSch";
             ofd.Title = "Import TEdit Schematic File";
             ofd.InitialDirectory = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), @"My Games\Terraria\Schematics");

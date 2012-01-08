@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
@@ -52,12 +53,20 @@ namespace TEditXna.Editor.Clipboard
 
         public void Import(string filename)
         {
-            var buffer = ClipboardBuffer.Load(filename);
-            if (buffer != null)
+            try
             {
-                buffer.RenderBuffer();
-                LoadedBuffers.Add(buffer);
+                var buffer = ClipboardBuffer.Load(filename);
+                if (buffer != null)
+                {
+                    buffer.RenderBuffer();
+                    LoadedBuffers.Add(buffer);
+                }
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Schematic File Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+
         }
 
         public ClipboardBuffer GetSelectionBuffer()
