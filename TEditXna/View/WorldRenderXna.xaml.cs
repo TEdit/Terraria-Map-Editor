@@ -65,16 +65,16 @@ namespace TEditXna.View
             switch (e.Value1)
             {
                 case ScrollDirection.Up:
-                    y -= inc;
-                    break;
-                case ScrollDirection.Down:
                     y += inc;
                     break;
+                case ScrollDirection.Down:
+                    y -= inc;
+                    break;
                 case ScrollDirection.Left:
-                    x -= inc;
+                    x += inc;
                     break;
                 case ScrollDirection.Right:
-                    x += inc;
+                    x -= inc;
                     break;
             }
 
