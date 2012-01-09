@@ -466,11 +466,18 @@ namespace TEditXna.Editor.Clipboard
             byte b = (byte)(color >> 0);
             var tile = new Tile();
 
+            AppendTileFlagsFromByte(ref tile, a);
             // try and find a matching brick
-            var tileProperty = World.TileProperties[r];
+
+            var tileProperty = World.TileProperties.FirstOrDefault(t=>t.Id == r);
             if (tileProperty != null && !tileProperty.IsFramed)
             {
                 tile.Type = (byte)tileProperty.Id;
+            }
+            else
+            {
+                // disable missing and framed tiles
+                tile.IsActive = false;
             }
 
             // try and find a matching wall
@@ -481,7 +488,7 @@ namespace TEditXna.Editor.Clipboard
             }
 
             tile.Liquid = b;
-            AppendTileFlagsFromByte(ref tile, a);
+            
 
             return tile;
         }
