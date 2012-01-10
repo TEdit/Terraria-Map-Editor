@@ -289,7 +289,7 @@ namespace TEditXna.ViewModel
 
         private void UpdateTitle()
         {
-            WindowTitle = string.Format("TEdit v{0} *BETA* {1}",
+            WindowTitle = string.Format("TEdit v{0} {1}",
                                         Assembly.GetExecutingAssembly().GetName().Version,
                                         Path.GetFileName(_currentFile));
         }
