@@ -28,6 +28,9 @@ namespace TEditXna.Editor.Tools
 
         public override void MouseDown(TileMouseState e)
         {
+            if (_wvm.SelectedSprite == null)
+                return;
+            
             Vector2Short[,] tiles = _wvm.SelectedSprite.GetTiles();
             for (int x = 0; x < _wvm.SelectedSprite.Size.X; x++)
             {
