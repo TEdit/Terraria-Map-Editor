@@ -57,7 +57,7 @@ namespace TEditXna.Editor.Tools
             var bmp = new WriteableBitmap(_wvm.Brush.Width + 1, _wvm.Brush.Height + 1, 96, 96, PixelFormats.Bgra32, null);
 
             bmp.Clear();
-            if (_wvm.Brush.Shape == BrushShape.Square)
+            if (_wvm.Brush.Shape == BrushShape.Square || _wvm.Brush.Height <= 1 || _wvm.Brush.Width <= 1)
                 bmp.FillRectangle(0, 0, _wvm.Brush.Width, _wvm.Brush.Height, Color.FromArgb(127, 0, 90, 255));
             else
                 bmp.FillEllipse(0, 0, _wvm.Brush.Width, _wvm.Brush.Height, Color.FromArgb(127, 0, 90, 255));
@@ -90,11 +90,11 @@ namespace TEditXna.Editor.Tools
         {
             foreach (Vector2Int32 point in Shape.DrawLineTool(_startPoint, to))
             {
-                if (_wvm.Brush.Shape == BrushShape.Round)
+                if (_wvm.Brush.Shape == BrushShape.Square || _wvm.Brush.Height <= 1 || _wvm.Brush.Width <= 1)
                 {
                     FillRound(point);
                 }
-                else if (_wvm.Brush.Shape == BrushShape.Square)
+                else if (_wvm.Brush.Shape == BrushShape.Round)
                 {
                     FillRectangle(point);
                 }
