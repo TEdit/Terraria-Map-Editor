@@ -92,11 +92,11 @@ namespace TEditXna.Editor.Tools
             {
                 if (_wvm.Brush.Shape == BrushShape.Square || _wvm.Brush.Height <= 1 || _wvm.Brush.Width <= 1)
                 {
-                    FillRound(point);
+                    FillRectangle(point);
                 }
                 else if (_wvm.Brush.Shape == BrushShape.Round)
                 {
-                    FillRectangle(point);
+                    FillRound(point);
                 }
             }
         }
