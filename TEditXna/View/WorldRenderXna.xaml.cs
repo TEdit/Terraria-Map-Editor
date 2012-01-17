@@ -112,7 +112,15 @@ namespace TEditXna.View
         private void UpdatePreview()
         {
             if (xnaViewport.GraphicsService.GraphicsDevice != null)
-                _preview = _wvm.ActiveTool.PreviewTool().ToTexture2D(xnaViewport.GraphicsService.GraphicsDevice);
+            {
+                if (_wvm.ActiveTool != null)
+                {
+                    var preview = _wvm.ActiveTool.PreviewTool();
+                    if (preview!= null)
+                        _preview = preview.ToTexture2D(xnaViewport.GraphicsService.GraphicsDevice)               
+                }
+            }
+                
         }
 
         private static Vector2 PointToVector2(Point point)
