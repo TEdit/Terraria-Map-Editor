@@ -514,7 +514,8 @@ namespace TEditXNA.Terraria
                                     bw.Write((byte) curChest.Items[j].StackSize);
                                     if (curChest.Items[j].StackSize > 0)
                                     {
-                                        bw.Write(curChest.Items[j].ItemName);
+                                        var item = World.ItemProperties.FirstOrDefault(x=>x.Name == curChest.Items[j].ItemName);
+                                        bw.Write((int)item.Id); // TODO Verify
                                         bw.Write(curChest.Items[j].Prefix);
                                     }
                                 }
@@ -747,13 +748,21 @@ namespace TEditXNA.Terraria
                 {
                     if (b.ReadBoolean())
                     {
+                        var stackSize = b.ReadByte();
                         var chest = new Chest(b.ReadInt32(), b.ReadInt32());
                         for (int slot = 0; slot < Chest.MaxItems; slot++)
                         {
-                            chest.Items[slot].StackSize = b.ReadByte();
+                            chest.Items[slot].StackSize = stackSize;
                             if (chest.Items[slot].StackSize > 0)
                             {
-                                chest.Items[slot].ItemName = b.ReadString();
+                                if (w.Version >= 38)
+                                {
+                                    var itemCode = b.ReadInt32();
+                                    var item = World.ItemProperties.FirstOrDefault(x=>x.Id == itemCode);
+                                    chest.Items[slot].ItemName = item.Name; // TODO: Verify
+                                }
+                                else
+                                    chest.Items[slot].ItemName = b.ReadString();
 
                                 // Read prefix
                                 if (w.Version >= 36)
