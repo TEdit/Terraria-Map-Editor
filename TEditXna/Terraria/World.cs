@@ -667,10 +667,19 @@ namespace TEditXNA.Terraria
 
                         if (tile.IsActive)
                         {
+
                             tile.Type = b.ReadByte();
+                            var tileProperty = TileProperties[tile.Type];
+                            if (string.Equals(tileProperty.Name, "UNKNOWN", StringComparison.InvariantCultureIgnoreCase))
+                            {
+                                throw new ArgumentOutOfRangeException(string.Format("Unknown tile tile: {0}, please add tile id {0} too your settings.xml.\r\nBE SURE TO INCLUDE THE isFramed PROPERTY (sprites=true, blocks=false).\r\nYou are seeing this message due to an update or mod.", tile.Type));
+                            }
+
+
                             if (tile.Type == (int)sbyte.MaxValue)
                                 tile.IsActive = false;
-                            if (TileProperties[tile.Type].IsFramed)
+                            
+                            if (tileProperty.IsFramed)
                             {
                                 // torches didn't have extra in older versions.
                                 if (w.Version < 28 && tile.Type == 4)

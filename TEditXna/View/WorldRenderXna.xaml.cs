@@ -116,8 +116,8 @@ namespace TEditXna.View
                 if (_wvm.ActiveTool != null)
                 {
                     var preview = _wvm.ActiveTool.PreviewTool();
-                    if (preview!= null)
-                        _preview = preview.ToTexture2D(xnaViewport.GraphicsService.GraphicsDevice)               
+                    if (preview != null)
+                        _preview = preview.ToTexture2D(xnaViewport.GraphicsService.GraphicsDevice);          
                 }
             }
                 
