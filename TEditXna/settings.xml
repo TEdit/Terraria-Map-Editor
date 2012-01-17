@@ -965,31 +965,31 @@ Single item; tag has no children. Has the following properties:
   </Walls>
   <Items>
     <Item Id="0" Name="" type="[empty]" />
-    <Item Id="1" Name="Copper Pickaxe" />
-    <Item Id="1" Name="Gold Pickaxe" />
+    <Item Id="-13" Name="Copper Pickaxe" />
+    <Item Id="-1" Name="Gold Pickaxe" />
     <Item Id="1" Name="Iron Pickaxe" />
-    <Item Id="1" Name="Silver Pickaxe" />
+    <Item Id="-7" Name="Silver Pickaxe" />
     <Item Id="2" Name="Dirt Block" />
     <Item Id="3" Name="Stone Block" />
-    <Item Id="4" Name="Copper Broadsword" />
-    <Item Id="4" Name="Gold Broadsword" />
+    <Item Id="-14" Name="Copper Broadsword" />
+    <Item Id="-2" Name="Gold Broadsword" />
     <Item Id="4" Name="Iron Broadsword" />
-    <Item Id="4" Name="Silver Broadsword" />
+    <Item Id="-8" Name="Silver Broadsword" />
     <Item Id="5" Name="Mushroom" />
-    <Item Id="6" Name="Copper Shortsword" />
-    <Item Id="6" Name="Gold Shortsword" />
+    <Item Id="-15" Name="Copper Shortsword" />
+    <Item Id="-3" Name="Gold Shortsword" />
     <Item Id="6" Name="Iron Shortsword" />
-    <Item Id="6" Name="Silver Shortsword" />
-    <Item Id="7" Name="Copper Hammer" />
-    <Item Id="7" Name="Gold Hammer" />
+    <Item Id="-9" Name="Silver Shortsword" />
+    <Item Id="-17" Name="Copper Hammer" />
+    <Item Id="-5" Name="Gold Hammer" />
     <Item Id="7" Name="Iron Hammer" />
-    <Item Id="7" Name="Silver Hammer" />
+    <Item Id="-11" Name="Silver Hammer" />
     <Item Id="8" Name="Torch" />
     <Item Id="9" Name="Wood" />
-    <Item Id="10" Name="Copper Axe" />
-    <Item Id="10" Name="Gold Axe" />
+    <Item Id="-16" Name="Copper Axe" />
+    <Item Id="-4" Name="Gold Axe" />
     <Item Id="10" Name="Iron Axe" />
-    <Item Id="10" Name="Silver Axe" />
+    <Item Id="-10" Name="Silver Axe" />
     <Item Id="11" Name="Iron Ore" />
     <Item Id="12" Name="Copper Ore" />
     <Item Id="13" Name="Gold Ore" />
@@ -1078,10 +1078,10 @@ Single item; tag has no children. Has the following properties:
     <Item Id="96" Name="Musket" />
     <Item Id="97" Name="Musket Ball" />
     <Item Id="98" Name="Minishark" />
-    <Item Id="99" Name="Copper Bow" />
-    <Item Id="99" Name="Gold Bow" />
+    <Item Id="-18" Name="Copper Bow" />
+    <Item Id="-6" Name="Gold Bow" />
     <Item Id="99" Name="Iron Bow" />
-    <Item Id="99" Name="Silver Bow" />
+    <Item Id="-12" Name="Silver Bow" />
     <Item Id="100" Name="Shadow Greaves" />
     <Item Id="101" Name="Shadow Scalemail" />
     <Item Id="102" Name="Shadow Helmet" />
@@ -1180,18 +1180,12 @@ Single item; tag has no children. Has the following properties:
     <Item Id="195" Name="Jungle Grass Seeds" />
     <Item Id="196" Name="Wooden Hammer" />
     <Item Id="197" Name="Star Cannon" />
-    <Item Id="198" Name="Blue Phaseblade" />
-    <Item Id="198" Name="Blue Phasesaber" />
-    <Item Id="199" Name="Red Phaseblade" />
-    <Item Id="199" Name="Red Phasesaber" />
-    <Item Id="200" Name="Green Phaseblade" />
-    <Item Id="200" Name="Green Phasesaber" />
-    <Item Id="201" Name="Purple Phaseblade" />
-    <Item Id="201" Name="Purple Phasesaber" />
-    <Item Id="202" Name="White Phaseblade" />
-    <Item Id="202" Name="White Phasesaber" />
-    <Item Id="203" Name="Yellow Phaseblade" />
-    <Item Id="203" Name="Yellow Phasesaber" />
+    <Item Id="-19" Name="Blue Phaseblade" />
+    <Item Id="-20" Name="Red Phaseblade" />
+    <Item Id="-21" Name="Green Phaseblade" />
+    <Item Id="-22" Name="Purple Phaseblade" />
+    <Item Id="-23" Name="White Phaseblade" />
+    <Item Id="-24" Name="Yellow Phasesaber" />
     <Item Id="204" Name="Meteor Hamaxe" />
     <Item Id="205" Name="Empty Bucket" />
     <Item Id="206" Name="Water Bucket" />
