@@ -1,3 +1,35 @@
+2012-01-16 Brush of size 1 allowed, also enforcing max/min on textbox. Fixes #217
+2012-01-16 placing signs/chests creates the back-end data storage, fixes #220
+2012-01-16 Adding an exception for unknown tiles, prompting to add to settings.xml. This will partially fix #251, but requires user input.
+2012-01-16 null check tool preview, fixes #218
+2012-01-16 updating build events
+2012-01-13 fix brush shape
+2012-01-13 force square brush for sizes of 1, fixes #212
+2012-01-10 null check for selected sprite, fixes #211
+2012-01-09 Prep for release version
+2012-01-09 Adding file version to error log
+2012-01-09 reverse direction for keyboard scrolling
+2012-01-08 Fix for UV tiles
+2012-01-08 False color image format, also fixes #210 (chest bug)
+2012-01-08 add zip to gitignore
+2012-01-08 remove zips
+2012-01-08 image importing handles walls
+2012-01-08 Keyboard scrolling and zooming (ctrl++, ctrl+-, arrow keys)
+2012-01-08 Import images to clipboard
+2012-01-08 better chest/sign editor, move to tab
+2012-01-06 Implementing IDisposable for undo manager
+2012-01-06 Allow pass-through for keys, need to add conditional if popup is open, partially fixes #205
+2012-01-05 sprite filter closes #203
+2012-01-05 add a rectangle intersection helper
+2012-01-05 Npc Name Editor
+2012-01-05 empty region check for generator plugin
+2012-01-05 rename generator plugin
+2012-01-05 Simple plugins
+2012-01-05 Fixed ctrl+a selecting too many tiles, added a plugin to settle sand
+2012-01-04 Keyboard shortcuts will ONLY work when the map is focused, fixes #201 with only minor inconvenience
+2012-01-04 Attempting to address #197 and #200
+2012-01-03 Fixed potential tile size issue when loading consecutive worlds
+2012-01-03 additional exception logging
 2012-01-03 max item stack fixes #195
 2012-01-03 Snow and desert biome
 2012-01-03 Editing via github is painful.
