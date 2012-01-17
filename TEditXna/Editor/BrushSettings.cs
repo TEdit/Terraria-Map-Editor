@@ -9,8 +9,8 @@ namespace TEditXna.Editor
         private int _maxOutline = 10;
         private int _maxHeight = 200;
         private int _maxWidth = 200;
-        private int _minHeight = 2;
-        private int _minWidth = 2;
+        private int _minHeight = 1;
+        private int _minWidth = 1;
         private int _outline = 1;
 
         private int _width = 20;
@@ -85,6 +85,10 @@ namespace TEditXna.Editor
             get { return _height; }
             set
             {
+                if (value < _minHeight)
+                    value = _minHeight;
+                if (value > _maxHeight)
+                    value = _maxHeight;
                 Set("Height", ref _height, value);
                 if (IsLocked)
                 {
@@ -103,6 +107,10 @@ namespace TEditXna.Editor
             get { return _width; }
             set
             {
+                if (value < _minWidth)
+                    value = _minWidth;
+                if (value > _maxWidth)
+                    value = _maxWidth;
                 Set("Width", ref _width, value);
                 if (IsLocked)
                 {
