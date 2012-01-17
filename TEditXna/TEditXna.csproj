@@ -373,12 +373,16 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties BuildVersion_UseGlobalSettings="True" BuildVersion_AssemblyInfoFilename="Properties\AssemblyInfo.cs" />
+      <UserProperties BuildVersion_AssemblyInfoFilename="Properties\AssemblyInfo.cs" BuildVersion_UseGlobalSettings="True" />
     </VisualStudio>
   </ProjectExtensions>
   <PropertyGroup>
-    <PostBuildEvent>7z a -tzip "$(ProjectDir)..\TEdit_3_BETA2.zip" "$(TargetDir)*" -mx9 -y
-7z a -tzip "$(ProjectDir)..\TEdit_3_BETA2.zip" "$(ProjectDir)..\README" -mx9 -y</PostBuildEvent>
+    <PostBuildEvent>
+7z a -tzip "$(ProjectDir)..\TEdit_3.1.0.0.zip" "$(TargetDir)*" -mx9 -y
+7z a -tzip "$(ProjectDir)..\TEdit_3.1.0.0.zip" "$(ProjectDir)..\README" -mx9 -y</PostBuildEvent>
+  </PropertyGroup>
+  <PropertyGroup>
+    <PreBuildEvent>del "$(ProjectDir)..\TEdit_3.1.0.0.zip"</PreBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
