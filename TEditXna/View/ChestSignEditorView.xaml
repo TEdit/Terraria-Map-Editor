@@ -45,7 +45,7 @@
                     <Button Margin="2" Content="Save" Command="{Binding SaveSignCommand}" CommandParameter="{StaticResource True}" />
                 </UniformGrid>
                 <TextBox Text="{Binding SelectedSign.Text, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="300" MinHeight="150"
-               HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Disabled" AcceptsReturn="True" 
+               HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Visible" AcceptsReturn="True" TextWrapping="Wrap"
 			   Margin="2" FontWeight="Bold" MaxLines="10" PreviewKeyDown="ValidateLines" />
             </DockPanel>
         </StackPanel>

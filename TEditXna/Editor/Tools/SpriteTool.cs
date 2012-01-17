@@ -48,6 +48,7 @@ namespace TEditXna.Editor.Tools
                     _wvm.UpdateRenderPixel(tilex, tiley);
                 }
             }
+            
             _wvm.UndoManager.SaveUndo();
         }
 

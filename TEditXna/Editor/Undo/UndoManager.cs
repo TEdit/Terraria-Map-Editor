@@ -80,10 +80,11 @@ namespace TEditXna.Editor.Undo
                 return;
 
             var lastTile = Buffer.Tiles.Last();
-            
+            var existingLastTile = _wvm.CurrentWorld.Tiles[lastTile.Location.X, lastTile.Location.Y];
+
+            // remove deleted chests or signs if required
             if (lastTile.Tile.Type == 21)
             {
-                var existingLastTile = _wvm.CurrentWorld.Tiles[lastTile.Location.X, lastTile.Location.Y];
                 if (existingLastTile.Type != 21 || !existingLastTile.IsActive)
                 {
                     var curchest = _wvm.CurrentWorld.GetChestAtTile(lastTile.Location.X, lastTile.Location.Y);
@@ -95,7 +96,6 @@ namespace TEditXna.Editor.Undo
             }
             else if (lastTile.Tile.Type == 55 || lastTile.Tile.Type == 85)
             {
-                var existingLastTile = _wvm.CurrentWorld.Tiles[lastTile.Location.X, lastTile.Location.Y];
                 if (existingLastTile.Type != 55 && existingLastTile.Type != 85 || !existingLastTile.IsActive)
                 {
                     var cursign = _wvm.CurrentWorld.GetSignAtTile(lastTile.Location.X, lastTile.Location.Y);
@@ -103,6 +103,25 @@ namespace TEditXna.Editor.Undo
                     {
                         _wvm.CurrentWorld.Signs.Remove(cursign);
                     }
+                }
+            }
+
+            // Add new chests and signs if required
+            if (existingLastTile.Type == 21)
+            {
+                var curchest = _wvm.CurrentWorld.GetChestAtTile(lastTile.Location.X, lastTile.Location.Y);
+                if (curchest == null)
+                {
+                    _wvm.CurrentWorld.Chests.Add(new Chest(lastTile.Location.X, lastTile.Location.Y));
+                }
+
+            }
+            else if (existingLastTile.Type == 55 || existingLastTile.Type == 85)
+            {
+                var cursign = _wvm.CurrentWorld.GetSignAtTile(lastTile.Location.X, lastTile.Location.Y);
+                if (cursign == null)
+                {
+                    _wvm.CurrentWorld.Signs.Add(new Sign(lastTile.Location.X, lastTile.Location.Y, string.Empty));
                 }
             }
         }
@@ -200,7 +219,7 @@ namespace TEditXna.Editor.Undo
             Dispose(true);
             GC.SuppressFinalize(this);
         }
-        
+
         protected virtual void Dispose(bool disposing)
         {
             if (!disposed)
@@ -219,7 +238,7 @@ namespace TEditXna.Editor.Undo
                 disposed = true;
             }
         }
-    
+
         ~UndoManager()
         {
             Dispose(false);
