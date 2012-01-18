@@ -113,6 +113,7 @@
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal">
+                        <Button Content="Add" Margin="2" Command="{Binding DataContext.NpcAddCommand, Mode=Default, RelativeSource={RelativeSource AncestorType={x:Type Window}}}" VerticalAlignment="Stretch" CommandParameter="{Binding}" Padding="2" />
                         <TextBox Text="{Binding Name}" MinWidth="150" Margin="2,0" />
                         <TextBlock Text="{Binding Character}" HorizontalAlignment="Center" Margin="2" />
                     </StackPanel>

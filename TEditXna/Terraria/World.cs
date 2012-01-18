@@ -515,7 +515,7 @@ namespace TEditXNA.Terraria
                                     if (curChest.Items[j].StackSize > 0)
                                     {
                                         var item = World.ItemProperties.FirstOrDefault(x=>x.Name == curChest.Items[j].ItemName);
-                                        bw.Write((int)item.Id); // TODO Verify
+                                        bw.Write(item.Id); // TODO Verify
                                         bw.Write(curChest.Items[j].Prefix);
                                     }
                                 }
@@ -582,7 +582,7 @@ namespace TEditXNA.Terraria
                     File.Copy(temp, filename, true);
                     // delete temp save file
                     File.Delete(temp);
-                    OnProgressChanged(null, new ProgressChangedEventArgs(100, "World Save Complete."));
+                    OnProgressChanged(null, new ProgressChangedEventArgs(0, "World Save Complete."));
                 }
             }
         }
@@ -695,7 +695,7 @@ namespace TEditXNA.Terraria
                                     //if (tile.Type == 128) //armor stand
                                     //    tile.Frame = new PointShort((short)(tile.Frame.X % 100), tile.Frame.Y);
 
-                                    if (tile.Type == 144) //timer
+                                    if ((int)tile.Type == 144) //timer
                                         tile.V = 0;
                                 }
                             }
@@ -747,23 +747,26 @@ namespace TEditXNA.Terraria
                 for (int i = 0; i < 1000; i++)
                 {
                     if (b.ReadBoolean())
-                    {
-                        var stackSize = b.ReadByte();
-                        var chest = new Chest(b.ReadInt32(), b.ReadInt32());
+                    {              
+                        var chest = new Chest(b.ReadInt32(), b.ReadInt32());   
                         for (int slot = 0; slot < Chest.MaxItems; slot++)
                         {
+                            var stackSize = b.ReadByte();
                             chest.Items[slot].StackSize = stackSize;
                             if (chest.Items[slot].StackSize > 0)
                             {
                                 if (w.Version >= 38)
                                 {
                                     var itemCode = b.ReadInt32();
-                                    var item = World.ItemProperties.FirstOrDefault(x=>x.Id == itemCode);
-                                    chest.Items[slot].ItemName = item.Name; // TODO: Verify
+                                    if (World.ItemLookupTable.ContainsKey(itemCode))
+                                    {
+                                        var item = World.ItemLookupTable[itemCode];
+                                        chest.Items[slot].ItemName = item.Name;
+                                    }
                                 }
                                 else
                                     chest.Items[slot].ItemName = b.ReadString();
-
+                                chest.Items[slot].StackSize = stackSize;
                                 // Read prefix
                                 if (w.Version >= 36)
                                     chest.Items[slot].Prefix = b.ReadByte();

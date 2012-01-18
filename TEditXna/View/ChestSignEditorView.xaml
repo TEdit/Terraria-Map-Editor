@@ -9,15 +9,17 @@
         <ItemsPanelTemplate x:Key="Template_ComboPanel" >
             <VirtualizingStackPanel IsItemsHost="True" IsVirtualizing="True" />
         </ItemsPanelTemplate>
+        <CollectionViewSource Source="{Binding Source={x:Static Terraria:World.ItemPrefix}, Mode=OneWay}" x:Key="prefix" />
+        <CollectionViewSource Source="{Binding Source={x:Static Terraria:World.ItemPrefix}, Mode=OneWay}" x:Key="items" />
         <DataTemplate x:Key="ChestItemTemplate">
             <StackPanel Orientation="Horizontal" Margin="1">
                 <TextBox Text="{Binding StackSize, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="30" />
-                <ComboBox ItemsSource="{Binding Source={x:Static Terraria:World.ItemPrefix}, Mode=OneWay}" 
+                <ComboBox ItemsSource="{Binding Source={StaticResource prefix}}" 
                                       SelectedValue="{Binding Prefix, Mode=TwoWay}"
                                       SelectedValuePath="Key" 
                                       DisplayMemberPath="Value" 
                                       Width="75" Margin="1,0" ItemsPanel="{DynamicResource Template_ComboPanel}" />
-                <ComboBox ItemsSource="{Binding Source={x:Static Terraria:World.ItemProperties}, Mode=OneWay}" 
+                <ComboBox ItemsSource="{Binding Source={StaticResource items}}" 
                                       SelectedValue="{Binding ItemName, Mode=TwoWay}"
                                       SelectedValuePath="Name" 
                                       DisplayMemberPath="Name"

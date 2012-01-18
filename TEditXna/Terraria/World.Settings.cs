@@ -26,6 +26,7 @@ namespace TEditXNA.Terraria
 
         private static readonly ObservableCollection<Sprite> _sprites = new ObservableCollection<Sprite>();
         private static readonly Dictionary<Key, string> _shortcuts = new Dictionary<Key, string>();
+        private static readonly Dictionary<int, ItemProperty> _itemLookup = new Dictionary<int, ItemProperty>();
 
         static World()
         {
@@ -205,6 +206,7 @@ namespace TEditXNA.Terraria
                 curItem.Id = (int?)xElement.Attribute("Id") ?? -1;
                 curItem.Name = (string)xElement.Attribute("Name");
                 ItemProperties.Add(curItem);
+                _itemLookup.Add(curItem.Id, curItem);
             }
 
             foreach (var xElement in xmlSettings.Elements("Npcs").Elements("Npc"))
@@ -312,6 +314,11 @@ namespace TEditXNA.Terraria
         public static ObservableCollection<ItemProperty> ItemProperties
         {
             get { return _itemProperties; }
+        }
+
+        public static Dictionary<int, ItemProperty> ItemLookupTable
+        {
+            get { return _itemLookup; }
         }
 
         public static ObservableCollection<Sprite> Sprites

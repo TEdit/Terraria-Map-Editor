@@ -4,8 +4,11 @@ using System.IO;
 using System.Windows;
 using System.Windows.Input;
 using BCCL.Framework.Events;
+using BCCL.Geometry.Primitives;
 using BCCL.MvvmLight.Command;
 using Microsoft.Win32;
+using TEditXNA.Terraria;
+using TEditXNA.Terraria.Objects;
 using TEditXna.Editor;
 using TEditXna.Editor.Clipboard;
 using TEditXna.Editor.Plugins;
@@ -53,6 +56,31 @@ namespace TEditXna.ViewModel
 
         private ICommand _requestScrollCommand;
 
+        private ICommand _npcAddCommand;
+         
+
+        public ICommand NpcAddCommand
+        {
+            get { return _npcAddCommand ?? (_npcAddCommand = new RelayCommand<NpcName>(AddNpc)); }
+        }
+
+        private void AddNpc(NpcName npc)
+        {
+            if (CurrentWorld != null)
+            {
+                if (!CurrentWorld.NPCs.Any(n => n.Name == npc.Character))
+                {
+                    var spawn = new Vector2Int32(CurrentWorld.SpawnX, CurrentWorld.SpawnY);
+                    CurrentWorld.NPCs.Add(new NPC{Home = spawn, IsHomeless = true, Name = npc.Character, Position= new Vector2(spawn.X * 16, spawn.Y * 16), SpriteId = npc.Id});
+                    Points.Add(npc.Character);
+                    MessageBox.Show(string.Format("{1} ({0}) added to spawn.", npc.Character, npc.Name), "NPC Added");
+                }
+                else
+                {
+                    MessageBox.Show(string.Format("{1} ({0}) is already on the map.", npc.Character, npc.Name), "NPC Exists");
+                }
+            }
+        }
 
         public ICommand RequestScrollCommand
         {
