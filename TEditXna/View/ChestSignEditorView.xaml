@@ -10,7 +10,7 @@
             <VirtualizingStackPanel IsItemsHost="True" IsVirtualizing="True" />
         </ItemsPanelTemplate>
         <CollectionViewSource Source="{Binding Source={x:Static Terraria:World.ItemPrefix}, Mode=OneWay}" x:Key="prefix" />
-        <CollectionViewSource Source="{Binding Source={x:Static Terraria:World.ItemPrefix}, Mode=OneWay}" x:Key="items" />
+        <CollectionViewSource Source="{Binding Source={x:Static Terraria:World.ItemProperties}, Mode=OneWay}" x:Key="items" />
         <DataTemplate x:Key="ChestItemTemplate">
             <StackPanel Orientation="Horizontal" Margin="1">
                 <TextBox Text="{Binding StackSize, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="30" />
