@@ -18,11 +18,13 @@
                                       SelectedValue="{Binding Prefix, Mode=TwoWay}"
                                       SelectedValuePath="Key" 
                                       DisplayMemberPath="Value" 
+                                      IsSynchronizedWithCurrentItem="False"
                                       Width="75" Margin="1,0" ItemsPanel="{DynamicResource Template_ComboPanel}" />
                 <ComboBox ItemsSource="{Binding Source={StaticResource items}}" 
                                       SelectedValue="{Binding ItemName, Mode=TwoWay}"
                                       SelectedValuePath="Name" 
                                       DisplayMemberPath="Name"
+                                      IsSynchronizedWithCurrentItem="False"
                                       Width="150" Margin="1,0" ItemsPanel="{DynamicResource Template_ComboPanel}" />
             </StackPanel>
         </DataTemplate>
