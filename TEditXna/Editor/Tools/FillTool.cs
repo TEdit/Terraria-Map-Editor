@@ -121,10 +121,13 @@ namespace TEditXna.Editor.Tools
             int tileIndex = (bitmapWidth * y) + x;
             while (true)
             {
-                _wvm.UndoManager.SaveTile(lFillLoc, y);
-                _wvm.SetPixel(lFillLoc, y);
-                _wvm.UpdateRenderPixel(lFillLoc, y);
-                _wvm.CheckTiles[tileIndex] = true;
+                if (!_wvm.CheckTiles[tileIndex])
+                {
+                    _wvm.UndoManager.SaveTile(lFillLoc, y);
+                    _wvm.SetPixel(lFillLoc, y);
+                    _wvm.UpdateRenderPixel(lFillLoc, y);
+                    _wvm.CheckTiles[tileIndex] = true;
+                }
 
                 lFillLoc--;
                 tileIndex--;
@@ -140,10 +143,13 @@ namespace TEditXna.Editor.Tools
             tileIndex = (bitmapWidth * y) + x;
             while (true)
             {
-                _wvm.UndoManager.SaveTile(rFillLoc, y);
-                _wvm.SetPixel(rFillLoc, y);
-                _wvm.UpdateRenderPixel(rFillLoc, y);
-                _wvm.CheckTiles[tileIndex] = true;
+                if (!_wvm.CheckTiles[tileIndex])
+                {
+                    _wvm.UndoManager.SaveTile(rFillLoc, y);
+                    _wvm.SetPixel(rFillLoc, y);
+                    _wvm.UpdateRenderPixel(rFillLoc, y);
+                    _wvm.CheckTiles[tileIndex] = true;
+                }
 
                 rFillLoc++;
                 tileIndex++;
