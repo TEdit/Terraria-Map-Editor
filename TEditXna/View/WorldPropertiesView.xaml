@@ -63,6 +63,8 @@
                 <Slider Value="{Binding CurrentWorld.RockLevel, Mode=TwoWay}" VerticalAlignment="Center" Minimum="0" Maximum="{Binding Path=CurrentWorld.TilesHigh}" />
             </DockPanel>
             <Separator Grid.ColumnSpan="2" />
+            <TextBlock Text="Meteor" HorizontalAlignment="Right" />
+            <CheckBox IsChecked="{Binding CurrentWorld.SpawnMeteor}" Content="Spawn Meteor" VerticalAlignment="Center" VerticalContentAlignment="Center" />
             <TextBlock Text="Difficulty" HorizontalAlignment="Right" />
             <CheckBox IsChecked="{Binding CurrentWorld.HardMode}" Content="Hardmode" VerticalAlignment="Center" VerticalContentAlignment="Center" />
             <TextBlock Text="Altars Smashed" HorizontalAlignment="Right" />
