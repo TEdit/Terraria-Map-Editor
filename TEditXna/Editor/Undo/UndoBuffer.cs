@@ -88,7 +88,7 @@ namespace TEditXna.Editor.Undo
                                     bw.Write((byte)curChest.Items[j].StackSize);
                                     if (curChest.Items[j].StackSize > 0)
                                     {
-                                        bw.Write(curChest.Items[j].ItemName);
+                                        bw.Write(curChest.Items[j].NetId);
                                         bw.Write(curChest.Items[j].Prefix);
                                     }
                                 }
@@ -168,12 +168,12 @@ namespace TEditXna.Editor.Undo
 
                                 if (curChest.Items[j].StackSize > 0)
                                 {
-                                    curChest.Items[j].ItemName = br.ReadString();
+                                    curChest.Items[j].NetId = br.ReadInt32();
                                     curChest.Items[j].Prefix = br.ReadByte();
                                 }
                                 else
                                 {
-                                    curChest.Items[j].ItemName = "[empty]";
+                                    curChest.Items[j].NetId = 0;
                                 }
                             }
 

@@ -12,23 +12,44 @@ namespace TEditXNA.Terraria
     public class Item : ObservableObject
     {
         private const int MaxStackSize = 255;
-        private static IList<string> _validItems = new ObservableCollection<string>();
-        public static IList<string> ValidItems
+
+        private int _stackSize;
+        private byte _prefix;
+        private int _netId;
+
+
+        public int NetId
         {
-            get
+            get { return _netId; }
+            set
             {
-                if (_validItems.Count <= 0)
-                    _validItems = World.ItemProperties.Select(x => x.Name).ToList();
-                
-                return _validItems;
+                Set("NetId", ref _netId, value);
+                _currentItemProperty = World.ItemProperties.FirstOrDefault(x => x.Id == _netId);
+                if (_netId == 0)
+                    StackSize = 0;
+                else
+                {
+                    if (StackSize == 0)
+                        StackSize = 1;
+                }
             }
         }
 
+        public void SetFromName(string name)
+        {
+            var curItem = World.ItemProperties.FirstOrDefault(x => x.Name == name);
+            NetId = curItem.Id;
+            if (NetId != 0)
+            StackSize = 1;
+        }
 
-        private string _itemName;
-        private int _stackSize;
-        private byte _prefix;
-         
+        public string GetName()
+        {
+            if (_currentItemProperty != null)
+                return _currentItemProperty.Name;
+
+            return "[empty]";
+        }
 
         public byte Prefix
         {
@@ -39,14 +60,16 @@ namespace TEditXNA.Terraria
         public Item()
         {
             StackSize = 0;
-            ItemName = "[empty]";
+            NetId = 0;
         }
 
-        public Item(int stackSize, string itemName)
+        public Item(int stackSize, int netId)
         {
             StackSize = stackSize;
-            ItemName = stackSize > 0 ? itemName : "[empty]";
+            NetId = stackSize > 0 ? netId : 0;
         }
+
+        
 
         private ItemProperty _currentItemProperty;
         public int StackSize
@@ -70,34 +93,22 @@ namespace TEditXNA.Terraria
             }
         }
 
-        public string ItemName
-        {
-            get { return _itemName; }
-            set
-            {
-                Set("StackSize", ref _itemName, value);
-                _currentItemProperty = World.ItemProperties.FirstOrDefault(x => x.Name == _itemName);
-                if (_itemName == "[empty]")
-                    StackSize = 0;
-            }
-        }
-
         public Item Copy()
         {
-            return new Item(_stackSize, _itemName) { Prefix =_prefix};
+            return new Item(_stackSize, _netId) { Prefix = _prefix };
         }
 
         public Visibility IsVisible
         {
-            get { return ItemName == "[empty]" ? Visibility.Collapsed : Visibility.Visible; }
+            get { return _netId == 0 ? Visibility.Collapsed : Visibility.Visible; }
         }
 
         public override string ToString()
         {
             if (StackSize > 0)
-                return string.Format("{0}: {1}", ItemName, StackSize);
+                return string.Format("{0}: {1}", _currentItemProperty.Name, StackSize);
 
-            return ItemName;
+            return _currentItemProperty.Name;
         }
     }
 }

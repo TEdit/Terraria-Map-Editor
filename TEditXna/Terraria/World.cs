@@ -511,11 +511,10 @@ namespace TEditXNA.Terraria
                             {
                                 if (curChest.Items.Count > j)
                                 {
-                                    bw.Write((byte) curChest.Items[j].StackSize);
+                                    bw.Write((byte)curChest.Items[j].StackSize);
                                     if (curChest.Items[j].StackSize > 0)
                                     {
-                                        var item = World.ItemProperties.FirstOrDefault(x=>x.Name == curChest.Items[j].ItemName);
-                                        bw.Write(item.Id); // TODO Verify
+                                        bw.Write(curChest.Items[j].NetId); // TODO Verify
                                         bw.Write(curChest.Items[j].Prefix);
                                     }
                                 }
@@ -554,13 +553,13 @@ namespace TEditXNA.Terraria
                     bw.Write(false);
 
                     OnProgressChanged(null, new ProgressChangedEventArgs(100, "Saving NPC Names..."));
-                    bw.Write(CharacterNames.FirstOrDefault(c=>c.Id == 17).Name);
-                    bw.Write(CharacterNames.FirstOrDefault(c=>c.Id == 18).Name);
-                    bw.Write(CharacterNames.FirstOrDefault(c=>c.Id == 19).Name);
-                    bw.Write(CharacterNames.FirstOrDefault(c=>c.Id == 20).Name);
-                    bw.Write(CharacterNames.FirstOrDefault(c=>c.Id == 22).Name);
-                    bw.Write(CharacterNames.FirstOrDefault(c=>c.Id == 54).Name);
-                    bw.Write(CharacterNames.FirstOrDefault(c=>c.Id == 38).Name);
+                    bw.Write(CharacterNames.FirstOrDefault(c => c.Id == 17).Name);
+                    bw.Write(CharacterNames.FirstOrDefault(c => c.Id == 18).Name);
+                    bw.Write(CharacterNames.FirstOrDefault(c => c.Id == 19).Name);
+                    bw.Write(CharacterNames.FirstOrDefault(c => c.Id == 20).Name);
+                    bw.Write(CharacterNames.FirstOrDefault(c => c.Id == 22).Name);
+                    bw.Write(CharacterNames.FirstOrDefault(c => c.Id == 54).Name);
+                    bw.Write(CharacterNames.FirstOrDefault(c => c.Id == 38).Name);
                     bw.Write(CharacterNames.FirstOrDefault(c => c.Id == 107).Name);
                     bw.Write(CharacterNames.FirstOrDefault(c => c.Id == 108).Name);
                     bw.Write(CharacterNames.FirstOrDefault(c => c.Id == 124).Name);
@@ -679,7 +678,7 @@ namespace TEditXNA.Terraria
 
                             if (tile.Type == (int)sbyte.MaxValue)
                                 tile.IsActive = false;
-                            
+
                             if (tileProperty.IsFramed)
                             {
                                 // torches didn't have extra in older versions.
@@ -747,8 +746,8 @@ namespace TEditXNA.Terraria
                 for (int i = 0; i < 1000; i++)
                 {
                     if (b.ReadBoolean())
-                    {              
-                        var chest = new Chest(b.ReadInt32(), b.ReadInt32());   
+                    {
+                        var chest = new Chest(b.ReadInt32(), b.ReadInt32());
                         for (int slot = 0; slot < Chest.MaxItems; slot++)
                         {
                             var stackSize = b.ReadByte();
@@ -756,16 +755,10 @@ namespace TEditXNA.Terraria
                             if (chest.Items[slot].StackSize > 0)
                             {
                                 if (w.Version >= 38)
-                                {
-                                    var itemCode = b.ReadInt32();
-                                    if (World.ItemLookupTable.ContainsKey(itemCode))
-                                    {
-                                        var item = World.ItemLookupTable[itemCode];
-                                        chest.Items[slot].ItemName = item.Name;
-                                    }
-                                }
+                                    chest.Items[slot].NetId = b.ReadInt32();
                                 else
-                                    chest.Items[slot].ItemName = b.ReadString();
+                                    chest.Items[slot].SetFromName(b.ReadString());
+
                                 chest.Items[slot].StackSize = stackSize;
                                 // Read prefix
                                 if (w.Version >= 36)

@@ -20,7 +20,7 @@ namespace TEditXNA.Terraria
             _y = y;
             for (int i = 0; i < MaxItems; i++)
             {
-                _items.Add(new Item(0, "[empty]"));
+                _items.Add(new Item());
             }
         }
 

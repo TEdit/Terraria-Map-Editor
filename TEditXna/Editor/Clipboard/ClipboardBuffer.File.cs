@@ -12,7 +12,7 @@ namespace TEditXna.Editor.Clipboard
 {
     public partial class ClipboardBuffer
     {
-        public const int SchematicVersion = 2;
+        public const int SchematicVersion = 3;
 
         public void Save(string filename, bool isFalseColor = false)
         {
@@ -23,7 +23,7 @@ namespace TEditXna.Editor.Clipboard
             }
 
             // Catch pngs that are real color
-            if (string.Equals(".png",Path.GetExtension(filename), StringComparison.InvariantCultureIgnoreCase))
+            if (string.Equals(".png", Path.GetExtension(filename), StringComparison.InvariantCultureIgnoreCase))
             {
                 Preview.SavePng(filename);
                 return;
@@ -93,7 +93,7 @@ namespace TEditXna.Editor.Clipboard
                                     bw.Write((byte)curChest.Items[j].StackSize);
                                     if (curChest.Items[j].StackSize > 0)
                                     {
-                                        bw.Write(curChest.Items[j].ItemName);
+                                        bw.Write(curChest.Items[j].NetId);
                                         bw.Write(curChest.Items[j].Prefix);
                                     }
                                 }
@@ -256,12 +256,15 @@ namespace TEditXna.Editor.Clipboard
 
                                 if (curChest.Items[j].StackSize > 0)
                                 {
-                                    curChest.Items[j].ItemName = br.ReadString();
+                                    if (version >= 3)
+                                        curChest.Items[j].NetId = br.ReadInt32();
+                                    else
+                                        curChest.Items[j].SetFromName(br.ReadString());
                                     curChest.Items[j].Prefix = br.ReadByte();
                                 }
                                 else
                                 {
-                                    curChest.Items[j].ItemName = "[empty]";
+                                    curChest.Items[j].SetFromName("[empty]");
                                 }
 
                             }
@@ -361,7 +364,7 @@ namespace TEditXna.Editor.Clipboard
                                 if (stackSize > 0)
                                 {
                                     string itemName = reader.ReadString();
-                                    chest.Items[slot].ItemName = itemName;
+                                    chest.Items[slot].SetFromName(itemName);
                                     chest.Items[slot].StackSize = stackSize;
                                 }
                             }
@@ -469,7 +472,7 @@ namespace TEditXna.Editor.Clipboard
             AppendTileFlagsFromByte(ref tile, a);
             // try and find a matching brick
 
-            var tileProperty = World.TileProperties.FirstOrDefault(t=>t.Id == r);
+            var tileProperty = World.TileProperties.FirstOrDefault(t => t.Id == r);
             if (tileProperty != null && !tileProperty.IsFramed)
             {
                 tile.Type = (byte)tileProperty.Id;
@@ -488,7 +491,7 @@ namespace TEditXna.Editor.Clipboard
             }
 
             tile.Liquid = b;
-            
+
 
             return tile;
         }

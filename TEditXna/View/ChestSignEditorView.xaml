@@ -4,13 +4,21 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:Terraria="clr-namespace:TEditXNA.Terraria"
-             mc:Ignorable="d" >
+             xmlns:ComponentModel="clr-namespace:System.ComponentModel;assembly=WindowsBase" mc:Ignorable="d" >
     <UserControl.Resources>
         <ItemsPanelTemplate x:Key="Template_ComboPanel" >
             <VirtualizingStackPanel IsItemsHost="True" IsVirtualizing="True" />
         </ItemsPanelTemplate>
-        <CollectionViewSource Source="{Binding Source={x:Static Terraria:World.ItemPrefix}, Mode=OneWay}" x:Key="prefix" />
-        <CollectionViewSource Source="{Binding Source={x:Static Terraria:World.ItemProperties}, Mode=OneWay}" x:Key="items" />
+        <CollectionViewSource Source="{Binding Source={x:Static Terraria:World.ItemPrefix}, Mode=OneWay}" x:Key="prefix">
+            <CollectionViewSource.SortDescriptions>
+                <ComponentModel:SortDescription PropertyName="Value" Direction="Ascending" />
+            </CollectionViewSource.SortDescriptions>
+        </CollectionViewSource>
+        <CollectionViewSource Source="{Binding Source={x:Static Terraria:World.ItemProperties}, Mode=OneWay}" x:Key="items">
+            <CollectionViewSource.SortDescriptions>
+                <ComponentModel:SortDescription PropertyName="Name" Direction="Ascending" />
+            </CollectionViewSource.SortDescriptions>
+        </CollectionViewSource>
         <DataTemplate x:Key="ChestItemTemplate">
             <StackPanel Orientation="Horizontal" Margin="1">
                 <TextBox Text="{Binding StackSize, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="30" />
@@ -19,13 +27,13 @@
                                       SelectedValuePath="Key" 
                                       DisplayMemberPath="Value" 
                                       IsSynchronizedWithCurrentItem="False"
-                                      Width="75" Margin="1,0" ItemsPanel="{DynamicResource Template_ComboPanel}" />
+                                      Width="75" Margin="1,0" ItemsPanel="{StaticResource Template_ComboPanel}" />
                 <ComboBox ItemsSource="{Binding Source={StaticResource items}}" 
-                                      SelectedValue="{Binding ItemName, Mode=TwoWay}"
-                                      SelectedValuePath="Name" 
+                                      SelectedValue="{Binding NetId, Mode=TwoWay}"
+                                      SelectedValuePath="Id" 
                                       DisplayMemberPath="Name"
                                       IsSynchronizedWithCurrentItem="False"
-                                      Width="150" Margin="1,0" ItemsPanel="{DynamicResource Template_ComboPanel}" />
+                                      Width="150" Margin="1,0" ItemsPanel="{StaticResource Template_ComboPanel}" />
             </StackPanel>
         </DataTemplate>
     </UserControl.Resources>
