@@ -610,6 +610,10 @@ namespace TEditXNA.Terraria
 
                 w.TilesHigh = b.ReadInt32();
                 w.TilesWide = b.ReadInt32();
+
+                if (w.TilesHigh > 10000 || w.TilesWide > 10000 || w.TilesHigh <= 0 || w.TilesWide <= 0)
+                    throw new FileLoadException(string.Format("Invalid File: {0}", filename));
+
                 w.SpawnX = b.ReadInt32();
                 w.SpawnY = b.ReadInt32();
                 w.GroundLevel = (int)b.ReadDouble();
@@ -847,7 +851,7 @@ namespace TEditXNA.Terraria
                     else
                     {
                         b.Close();
-                        throw new FileLoadException("Error reading world file validation parameters!");
+                        throw new FileLoadException(string.Format("Error reading world file validation parameters! {0}", filename));
                     }
                 }
                 OnProgressChanged(null, new ProgressChangedEventArgs(0, "World Load Complete."));

@@ -5,7 +5,9 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
 using System.Reflection;
+using System.Threading;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Data;
 using System.Windows.Input;
 using BCCL.MvvmLight;
@@ -468,24 +470,43 @@ namespace TEditXna.ViewModel
             _loadTimer.Reset();
             _loadTimer.Start();
             CurrentFile = filename;
-            Task.Factory.StartNew(() => World.LoadWorld(filename))
+
+            Task.Factory.StartNew(() =>
+                                      {
+                                          try
+                                          {
+                                              return World.LoadWorld(filename);
+                                          }
+                                          catch (Exception e)
+                                          {
+                                              MessageBox.Show(e.Message);
+                                          }
+                                          return null;
+                                      })
                 .ContinueWith(t => CurrentWorld = t.Result, TaskFactoryHelper.UiTaskScheduler)
                 .ContinueWith(t => RenderEntireWorld())
                 .ContinueWith(t =>
-                {
-                    PixelMap = t.Result;
-                    UpdateTitle();
-                    Points.Clear();
-                    Points.Add("Spawn");
-                    Points.Add("Dungeon");
-                    foreach (var npc in CurrentWorld.NPCs)
-                    {
-                        Points.Add(npc.Name);
-                    }
-                    _loadTimer.Stop();
-                    OnProgressChanged(this, new ProgressChangedEventArgs(0, string.Format("World loaded in {0} seconds.", _loadTimer.Elapsed.TotalSeconds)));
-                }, TaskFactoryHelper.UiTaskScheduler);
+                                  {
+                                      if (CurrentWorld != null)
+                                      {
+                                          PixelMap = t.Result;
+                                          UpdateTitle();
+                                          Points.Clear();
+                                          Points.Add("Spawn");
+                                          Points.Add("Dungeon");
+                                          foreach (var npc in CurrentWorld.NPCs)
+                                          {
+                                              Points.Add(npc.Name);
+                                          }
+                                          _loadTimer.Stop();
+                                          OnProgressChanged(this, new ProgressChangedEventArgs(0, string.Format("World loaded in {0} seconds.", _loadTimer.Elapsed.TotalSeconds)));
+
+                                      }
+                                      _loadTimer.Stop();
+                                  }, TaskFactoryHelper.UiTaskScheduler);
 
         }
+
+
     }
 }

@@ -219,9 +219,10 @@ namespace TEditXna.ViewModel
         private PixelMapManager RenderEntireWorld()
         {
             var pixels = new PixelMapManager();
-            pixels.InitializeBuffers(CurrentWorld.TilesWide, CurrentWorld.TilesHigh);
             if (CurrentWorld != null)
             {
+                pixels.InitializeBuffers(CurrentWorld.TilesWide, CurrentWorld.TilesHigh);
+
                 for (int y = 0; y < CurrentWorld.TilesHigh; y++)
                 {
                     Color curBgColor = GetBackgroundColor(y);
