@@ -3,6 +3,7 @@ using System.Windows.Media.Imaging;
 using BCCL.Geometry.Primitives;
 using TEditXNA.Terraria;
 using TEditXna.ViewModel;
+using TEditXna.Terraria.Objects;
 
 namespace TEditXna.Editor.Tools
 {
@@ -50,6 +51,9 @@ namespace TEditXna.Editor.Tools
             }
             
             _wvm.UndoManager.SaveUndo();
+
+            /* Heathtech */
+            BlendRules.ResetUVCache(_wvm, e.Location.X, e.Location.Y, _wvm.SelectedSprite.Size.X, _wvm.SelectedSprite.Size.Y);
         }
 
         public override WriteableBitmap PreviewTool()

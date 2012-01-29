@@ -7,6 +7,7 @@ using BCCL.Geometry;
 using BCCL.Geometry.Primitives;
 using TEditXna.ViewModel;
 using System.Linq;
+using TEditXna.Terraria.Objects;
 
 namespace TEditXna.Editor.Tools
 {
@@ -212,6 +213,9 @@ namespace TEditXna.Editor.Tools
                         _wvm.UndoManager.SaveTile(pixel);
                         MorphTile(pixel);
                         _wvm.UpdateRenderPixel(pixel);
+
+                        /* Heathtech */
+                        BlendRules.ResetUVCache(_wvm, pixel.X, pixel.Y, 1, 1);
                     }
                 }
             }

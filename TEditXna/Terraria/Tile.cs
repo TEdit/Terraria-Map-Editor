@@ -1,4 +1,5 @@
 ﻿using System;
+using BCCL.Geometry.Primitives;
 
 namespace TEditXNA.Terraria
 {
@@ -13,6 +14,15 @@ namespace TEditXNA.Terraria
         public byte Wall;
         public byte Liquid;
         public Int16 U, V;
+
+        [NonSerialized] /* Heathtech */
+        public ushort uvTileCache = 0xFFFF; //Caches the UV position of a tile, since it is costly to generate each frame
+        [NonSerialized] /* Heathtech */
+        public ushort uvWallCache = 0xFFFF; //Caches the UV position of a wall tile
+        [NonSerialized] /* Heathtech */
+        public byte lazyMergeId = 0xFF; //The ID here refers to a number that helps blocks know whether they are actually merged with a nearby tile
+        [NonSerialized] /* Heathtech */
+        public bool hasLazyChecked = false; //Whether the above check has taken place
 
         #region BitFlags
         //private const int IsActivePosition = 0;

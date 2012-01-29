@@ -10,6 +10,7 @@ using BCCL.Utility;
 using TEditXna.ViewModel;
 using XNA = Microsoft.Xna.Framework;
 using TEditXNA.Terraria;
+using TEditXna.Terraria.Objects;
 
 namespace TEditXna.Editor.Clipboard
 {
@@ -220,6 +221,9 @@ namespace TEditXna.Editor.Clipboard
                 }
             }
             _wvm.UndoManager.SaveUndo();
+
+            /* Heathtech */
+            BlendRules.ResetUVCache(_wvm, anchor.X, anchor.Y, buffer.Size.X, buffer.Size.Y);
         }
     }
 }

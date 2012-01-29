@@ -16,7 +16,7 @@
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WarningLevel>4</WarningLevel>
     <IsWebBootstrapper>false</IsWebBootstrapper>
-    <PublishUrl>publish\</PublishUrl>
+    <PublishUrl>C:\Users\Heath\Documents\Visual Studio 2010\Projects\TEdit\dist\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
     <UpdateEnabled>false</UpdateEnabled>
@@ -26,9 +26,10 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationRevision>1</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
+    <PublishWizardCompleted>true</PublishWizardCompleted>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
@@ -55,7 +56,25 @@
   <PropertyGroup>
     <ApplicationIcon>Images\tedit.ico</ApplicationIcon>
   </PropertyGroup>
+  <PropertyGroup>
+    <ManifestCertificateThumbprint>CAF2D5DB3BBE06CCAB4B692C63136E5B71CFF6D9</ManifestCertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestKeyFile>TEditXna_TemporaryKey.pfx</ManifestKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>true</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignManifests>true</SignManifests>
+  </PropertyGroup>
   <ItemGroup>
+    <Reference Include="BCCL">
+      <HintPath>..\BCCL.dll</HintPath>
+    </Reference>
+    <Reference Include="BCCL.Xna">
+      <HintPath>..\BCCL.Xna.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Xna.Framework, Version=4.0.0.0, Culture=neutral, PublicKeyToken=842cf8be1de50553, processorArchitecture=x86" />
     <Reference Include="Microsoft.Xna.Framework.Graphics, Version=4.0.0.0, Culture=neutral, PublicKeyToken=842cf8be1de50553, processorArchitecture=x86" />
     <Reference Include="System" />
@@ -122,6 +141,7 @@
     <Compile Include="Terraria\Chest.cs" />
     <Compile Include="Terraria\Item.cs" />
     <Compile Include="Terraria\NPC.cs" />
+    <Compile Include="Terraria\Objects\BlendRules.cs" />
     <Compile Include="Terraria\Objects\Enums.cs" />
     <Compile Include="Terraria\Objects\FrameProperty.cs" />
     <Compile Include="Terraria\Objects\ItemProperty.cs" />
@@ -286,16 +306,7 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\..\BCCL\BCCL.Xna\BCCL.Xna.csproj">
-      <Project>{B1417485-BD24-4A20-A931-BC8659BB33A9}</Project>
-      <Name>BCCL.Xna</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\BCCL\BCCL\BCCL.csproj">
-      <Project>{3D233DE2-586B-49F1-8E83-86399078EAE6}</Project>
-      <Name>BCCL</Name>
-    </ProjectReference>
+    <None Include="TEditXna_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Images\Overlays\dungeon_marker.png" />
@@ -342,12 +353,12 @@
     <Resource Include="Images\Toolbar\arrow_undo.png" />
     <Resource Include="Images\Toolbar\new.png" />
     <EmbeddedResource Include="Images\Overlays\grid.png" />
-    <Content Include="settings.xml">
-      <SubType>Designer</SubType>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="settings.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.0,Profile=Client">
       <Visible>False</Visible>
@@ -378,11 +389,11 @@
   </ProjectExtensions>
   <PropertyGroup>
     <PostBuildEvent>
-7z a -tzip "$(ProjectDir)..\TEdit_3.1.0.0.zip" "$(TargetDir)*" -mx9 -y
-7z a -tzip "$(ProjectDir)..\TEdit_3.1.0.0.zip" "$(ProjectDir)..\README" -mx9 -y</PostBuildEvent>
+    </PostBuildEvent>
   </PropertyGroup>
   <PropertyGroup>
-    <PreBuildEvent>del "$(ProjectDir)..\TEdit_3.1.0.0.zip"</PreBuildEvent>
+    <PreBuildEvent>
+    </PreBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

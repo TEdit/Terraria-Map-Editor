@@ -4,6 +4,7 @@ using System.Windows.Media.Imaging;
 using BCCL.Geometry.Primitives;
 using Microsoft.Xna.Framework;
 using TEditXna.ViewModel;
+using TEditXna.Terraria.Objects;
 
 namespace TEditXna.Editor.Tools
 {
@@ -43,6 +44,9 @@ namespace TEditXna.Editor.Tools
         {
             _wvm.Clipboard.PasteBufferIntoWorld(anchor);
             _wvm.UpdateRenderRegion(new Rectangle(anchor.X, anchor.Y, _wvm.Clipboard.Buffer.Size.X, _wvm.Clipboard.Buffer.Size.Y));
+
+            /* Heathtech */
+            BlendRules.ResetUVCache(_wvm, anchor.X, anchor.Y, _wvm.Clipboard.Buffer.Size.X, _wvm.Clipboard.Buffer.Size.Y);
         }
     }
 }
