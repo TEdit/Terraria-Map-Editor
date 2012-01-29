@@ -6,6 +6,7 @@ using BCCL.Geometry.Primitives;
 using Microsoft.Xna.Framework;
 using TEditXNA.Terraria;
 using TEditXna.ViewModel;
+using TEditXna.Terraria.Objects;
 
 namespace TEditXna.Editor.Tools
 {
@@ -132,9 +133,12 @@ namespace TEditXna.Editor.Tools
                 lFillLoc--;
                 tileIndex--;
                 if (lFillLoc <= 0 || _wvm.CheckTiles[tileIndex] || !CheckTileMatch(ref originTile, ref _wvm.CurrentWorld.Tiles[lFillLoc, y]) || !_wvm.Selection.IsValid(lFillLoc, y))
-                    break;			 	 //exit loop if we're at edge of bitmap or color area
+                    break; //exit loop if we're at edge of bitmap or color area
 
             }
+            /* Heathtech */
+            BlendRules.ResetUVCache(_wvm, lFillLoc + 1, y, x - lFillLoc, 1);
+
             lFillLoc++;
             if (lFillLoc < _minX)
                 _minX = lFillLoc;
@@ -149,14 +153,17 @@ namespace TEditXna.Editor.Tools
                     _wvm.SetPixel(rFillLoc, y);
                     _wvm.UpdateRenderPixel(rFillLoc, y);
                     _wvm.CheckTiles[tileIndex] = true;
+                    BlendRules.ResetUVCache(_wvm, rFillLoc, y, 1, 1);
                 }
 
                 rFillLoc++;
                 tileIndex++;
                 if (rFillLoc >= bitmapWidth || _wvm.CheckTiles[tileIndex] || !CheckTileMatch(ref originTile, ref _wvm.CurrentWorld.Tiles[rFillLoc, y]) || !_wvm.Selection.IsValid(rFillLoc, y))
-                    break;			 	 //exit loop if we're at edge of bitmap or color area
-
+                    break; //exit loop if we're at edge of bitmap or color area
             }
+            /* Heathtech */
+            BlendRules.ResetUVCache(_wvm, x, y, rFillLoc - x, 1);
+
             rFillLoc--;
             if (rFillLoc > _maxX)
                 _maxX = rFillLoc;

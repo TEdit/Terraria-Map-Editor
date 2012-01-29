@@ -7,6 +7,7 @@ using System.Windows.Media.Imaging;
 using BCCL.Geometry;
 using BCCL.Geometry.Primitives;
 using TEditXna.ViewModel;
+using TEditXna.Terraria.Objects;
 
 namespace TEditXna.Editor.Tools
 {
@@ -149,6 +150,9 @@ namespace TEditXna.Editor.Tools
                     {
                         _wvm.UndoManager.SaveTile(pixel);
                         _wvm.SetPixel(pixel.X, pixel.Y);
+
+                        /* Heathtech */
+                        BlendRules.ResetUVCache(_wvm, pixel.X, pixel.Y, 1, 1);
                     }
                 }
             }
@@ -174,6 +178,9 @@ namespace TEditXna.Editor.Tools
                         {
                             _wvm.UndoManager.SaveTile(pixel);
                             _wvm.SetPixel(pixel.X, pixel.Y, mode: PaintMode.Tile);
+
+                            /* Heathtech */
+                            BlendRules.ResetUVCache(_wvm, pixel.X, pixel.Y, 1, 1);
                         }
                     }
                 }
@@ -193,6 +200,9 @@ namespace TEditXna.Editor.Tools
                     {
                         _wvm.SetPixel(pixel.X, pixel.Y, mode: PaintMode.Wall);
                     }
+
+                    /* Heathtech */
+                    BlendRules.ResetUVCache(_wvm, pixel.X, pixel.Y, 1, 1);
                 }
             }
         }

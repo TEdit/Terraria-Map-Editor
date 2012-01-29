@@ -20,6 +20,13 @@ namespace TEditXNA.Terraria.Objects
         private FramePlacement _placement;
         private Vector2Short _textureGrid;
 
+        private bool _isGrass; /* Heathtech */
+        private bool _isPlatform; /* Heathtech */
+        private bool _isCactus; /* Heathtech */
+        private bool _isStone; /* Heathtech */
+        private bool _canBlend; /* Heathtech */
+        private int? _mergeWith; /* Heathtech */
+
         public TileProperty()
         {
             _frameSize = new Vector2Short(1, 1);
@@ -27,6 +34,12 @@ namespace TEditXNA.Terraria.Objects
             _id = -1;
             _name = "UNKNOWN";
             _isFramed = false;
+            _isGrass = false; /* Heathtech */
+            _isPlatform = false; /* Heathtech */
+            _isCactus = false; /* Heathtech */
+            _isStone = false; /* Heathtech */
+            _canBlend = false; /* Heathtech */
+            _mergeWith = null; /* Heathtech */
         }
 
         public Vector2Short TextureGrid
@@ -109,5 +122,46 @@ namespace TEditXNA.Terraria.Objects
             set { Set("Image", ref _image, value); }
         }
 
+        /* Heathtech */
+        public bool IsGrass
+        {
+            get { return _isGrass; }
+            set { Set("IsGrass", ref _isGrass, value); }
+        }
+
+        /* Heathtech */
+        public bool IsPlatform
+        {
+            get { return _isPlatform; }
+            set { Set("IsPlatform", ref _isPlatform, value); }
+        }
+
+        /* Heathtech */
+        public bool IsCactus
+        {
+            get { return _isCactus; }
+            set { Set("IsCactus", ref _isCactus, value); }
+        }
+
+        /* Heathtech */
+        public bool IsStone
+        {
+            get { return _isStone; }
+            set { Set("IsStone", ref _isStone, value); }
+        }
+
+        /* Heathtech */
+        public bool CanBlend
+        {
+            get { return _canBlend; }
+            set { Set("CanBlend", ref _canBlend, value); }
+        }
+
+        /* Heathtech */
+        public int? MergeWith
+        {
+            get { return _mergeWith; }
+            set { Set("MergeWith", ref _mergeWith, value); }
+        }
     }
 }

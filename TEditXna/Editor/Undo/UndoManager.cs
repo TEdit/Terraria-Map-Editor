@@ -6,6 +6,7 @@ using BCCL.Geometry.Primitives;
 using BCCL.MvvmLight;
 using TEditXNA.Terraria;
 using TEditXna.ViewModel;
+using TEditXna.Terraria.Objects;
 
 namespace TEditXna.Editor.Undo
 {
@@ -162,6 +163,9 @@ namespace TEditXna.Editor.Undo
 
                 _wvm.CurrentWorld.Tiles[undoTile.Location.X, undoTile.Location.Y] = (Tile)undoTile.Tile.Clone();
                 _wvm.UpdateRenderPixel(undoTile.Location);
+
+                /* Heathtech */
+                BlendRules.ResetUVCache(_wvm, undoTile.Location.X, undoTile.Location.Y, 1, 1);
             }
             foreach (var chest in buffer.Chests)
             {
@@ -199,6 +203,9 @@ namespace TEditXna.Editor.Undo
 
                 _wvm.CurrentWorld.Tiles[undoTile.Location.X, undoTile.Location.Y] = (Tile)undoTile.Tile.Clone();
                 _wvm.UpdateRenderPixel(undoTile.Location);
+
+                /* Heathtech */
+                BlendRules.ResetUVCache(_wvm, undoTile.Location.X, undoTile.Location.Y, 1, 1);
             }
             foreach (var chest in buffer.Chests)
             {
