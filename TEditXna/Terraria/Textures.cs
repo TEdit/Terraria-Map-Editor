@@ -17,6 +17,8 @@ namespace TEditXNA.Terraria
         private readonly Dictionary<int, Texture2D> _treeBranches = new Dictionary<int, Texture2D>();
         private readonly Dictionary<int, Texture2D> _shrooms = new Dictionary<int, Texture2D>();
         private readonly Dictionary<int, Texture2D> _npcs = new Dictionary<int, Texture2D>();
+        private readonly Dictionary<int, Texture2D> _liquids = new Dictionary<int, Texture2D>(); /* Heathtech */
+        private readonly Dictionary<string, Texture2D> _misc = new Dictionary<string, Texture2D>(); /* Heathtech */
 
         public Dictionary<int, Texture2D> Tiles {get { return _tiles; } }
         public Dictionary<int, Texture2D> Backgrounds { get { return _backgrounds; } }
@@ -25,6 +27,8 @@ namespace TEditXNA.Terraria
         public Dictionary<int, Texture2D> TreeBranches { get { return _treeBranches; } }
         public Dictionary<int, Texture2D> Shrooms { get { return _shrooms; } }
         public Dictionary<int, Texture2D> Npcs { get { return _npcs; } }
+        public Dictionary<int, Texture2D> Liquids { get { return _liquids; } } /* Heathtech */
+        public Dictionary<string, Texture2D> Misc { get { return _misc; } } /* Heathtech */
         readonly ContentManager _cm;
         public ContentManager ContentManager
         {
@@ -62,8 +66,16 @@ namespace TEditXNA.Terraria
         {
             if (!Tiles.ContainsKey(num))
             {
-                string name = String.Format("Images\\Tiles_{0}", num);
-                Tiles[num] = LoadTexture(name);
+                try
+                {
+                    string name = String.Format("Images\\Tiles_{0}", num);
+                    Tiles[num] = LoadTexture(name);
+                }
+                catch
+                {
+                    string name = String.Format("CustomGFX\\Tiles_{0}", num + 50);
+                    Tiles[num] = LoadTexture(name);
+                }
             }
             return Tiles[num];
         }
@@ -120,6 +132,26 @@ namespace TEditXNA.Terraria
                 Npcs[num] = LoadTexture(name);
             }
             return Npcs[num];
+        }
+        /* Heathtech */
+        public Texture GetLiquid(int num)
+        {
+            if (!Liquids.ContainsKey(num))
+            {
+                string name = String.Format("Images\\Liquid_{0}", num);
+                Liquids[num] = LoadTexture(name);
+            }
+            return Liquids[num];
+        }
+        /* Heathtech */
+        public Texture GetMisc(string name)
+        {
+            if (!Misc.ContainsKey(name))
+            {
+                string texName = String.Format("Images\\{0}", name);
+                Misc[name] = LoadTexture(texName);
+            }
+            return Misc[name];
         }
 
         private static Color ColorKey = Color.FromNonPremultiplied(247, 119, 249, 255);

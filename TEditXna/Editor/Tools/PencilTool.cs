@@ -4,6 +4,8 @@ using System.Windows.Media.Imaging;
 using BCCL.Geometry;
 using BCCL.Geometry.Primitives;
 using TEditXna.ViewModel;
+using TEditXNA.Terraria;
+using TEditXna.Terraria.Objects;
 
 namespace TEditXna.Editor.Tools
 {
@@ -83,6 +85,9 @@ namespace TEditXna.Editor.Tools
                     {
                         _wvm.UndoManager.SaveTile(pixel);
                         _wvm.SetPixel(pixel.X, pixel.Y);
+
+                        /* Heathtech */
+                        BlendRules.ResetUVCache(_wvm, pixel.X, pixel.Y, 1, 1);
                     }
                 }
             }
