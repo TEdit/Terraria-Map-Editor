@@ -126,6 +126,12 @@ namespace TEditXNA.Terraria
                 curTile.FrameSize = StringToVector2Short((string)xElement.Attribute("Size"), 1, 1);
                 curTile.Placement = InLineEnumTryParse<FramePlacement>((string)xElement.Attribute("Placement"));
                 curTile.TextureGrid = StringToVector2Short((string)xElement.Attribute("TextureGrid"), 16, 16);
+                curTile.IsGrass = "Grass".Equals((string)xElement.Attribute("Special")); /* Heathtech */
+                curTile.IsPlatform = "Platform".Equals((string)xElement.Attribute("Special")); /* Heathtech */
+                curTile.IsCactus = "Cactus".Equals((string)xElement.Attribute("Special")); /* Heathtech */
+                curTile.IsStone = (bool?)xElement.Attribute("Stone") ?? false; /* Heathtech */
+                curTile.CanBlend = (bool?)xElement.Attribute("Blends") ?? false; /* Heathtech */
+                curTile.MergeWith = (int?)xElement.Attribute("MergeWith") ?? null; /* Heathtech */
                 foreach (var elementFrame in xElement.Elements("Frames").Elements("Frame"))
                 {
 
