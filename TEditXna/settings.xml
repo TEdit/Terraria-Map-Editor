@@ -324,6 +324,9 @@ Single item; tag has no children. Has the following properties:
     </Tile>
     <Tile Id="5" Name="Tree" Color="#FF634631" Framed="true" TextureGrid="20,20">
       <Frames>
+        <Frame UV="22,198" Name="Tree Top Leafy" Anchor="Bottom" Variety="A" />
+        <Frame UV="22,220" Name="Tree Top Leafy" Anchor="Bottom" Variety="B" />
+        <Frame UV="22,242" Name="Tree Top Leafy" Anchor="Bottom" Variety="C" />
         <Frame UV="0,0" Name="Tree Trunk" Anchor="Bottom" Variety="Plain A" />
         <Frame UV="22,0" Name="Tree Trunk" Anchor="Bottom" Variety="Right Indent A" />
         <Frame UV="44,0" Name="Tree Trunk" Anchor="Bottom" Variety="Right Slight Bulge A" />
