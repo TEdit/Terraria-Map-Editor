@@ -134,7 +134,6 @@ namespace TEditXna.View
             // Load services, textures and initialize spritebatch
             _serviceProvider = new SimpleProvider(xnaViewport.GraphicsService);
             _spriteBatch = new SpriteBatch(e.GraphicsDevice);
-            _overlayBatch = new SpriteBatch(e.GraphicsDevice); /* Heathtech */
             _textureDictionary = new Textures(_serviceProvider);
         }
 
@@ -322,24 +321,11 @@ namespace TEditXna.View
             // Start SpriteBatch
             _spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.Default, RasterizerState.CullNone);
 
-            /* Heathtech */ // Start SpriteBatch for overlayed tiles
-            _overlayBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.Default, RasterizerState.CullNone);
-
-
-            // Draw Pixel Map tiles
-
             DrawPixelTiles();
 
             // Draw sprite overlays
             if (_wvm.ShowTextures && _textureDictionary.Valid)
                 DrawSprites();
-
-            /* Heathtech */ // End SpriteBatch to apply proper blending
-            _spriteBatch.End();
-            _overlayBatch.End();
-
-            /* Heathtech */ // Startup SpriteBatch again to finish rendering
-            _spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.Default, RasterizerState.CullNone);
 
             if (_wvm.ShowGrid)
                 DrawGrid();
@@ -1121,7 +1107,7 @@ namespace TEditXna.View
                                     source.X = uv.X * (source.Width + 2);
                                     source.Y = uv.Y * (source.Height + 2);
 
-                                    _overlayBatch.Draw(tileTex, dest, source, Color.White, 0f, default(Vector2), SpriteEffects.None, 0);
+                                    _spriteBatch.Draw(tileTex, dest, source, Color.White, 0f, default(Vector2), SpriteEffects.None, 0);
                                 }
                             }
                         }
@@ -1166,7 +1152,7 @@ namespace TEditXna.View
                                         dest.Y = 1 + (int)((_scrollPosition.Y + y) * _zoom + ((16 - source.Height) * _zoom / 16f));
                                     }
 
-                                    _overlayBatch.Draw(tileTex, dest, source, Color.White * alpha, 0f, default(Vector2), SpriteEffects.None, 0);
+                                    _spriteBatch.Draw(tileTex, dest, source, Color.White * alpha, 0f, default(Vector2), SpriteEffects.None, 0);
                                 }
                             }
                         }
