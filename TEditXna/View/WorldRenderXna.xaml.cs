@@ -118,10 +118,10 @@ namespace TEditXna.View
                 {
                     var preview = _wvm.ActiveTool.PreviewTool();
                     if (preview != null)
-                        _preview = preview.ToTexture2D(xnaViewport.GraphicsService.GraphicsDevice);          
+                        _preview = preview.ToTexture2D(xnaViewport.GraphicsService.GraphicsDevice);
                 }
             }
-                
+
         }
 
         private static Vector2 PointToVector2(Point point)
@@ -137,8 +137,7 @@ namespace TEditXna.View
             _textureDictionary = new Textures(_serviceProvider);
 
             System.Windows.Media.Matrix m = PresentationSource.FromVisual(Application.Current.MainWindow).CompositionTarget.TransformToDevice;
-            _dpiScale.X = (float)m.M11;
-            _dpiScale.Y = (float)m.M22;
+            _dpiScale = new Vector2((float)m.M11, (float)m.M22);
         }
 
         public void CenterOnTile(int x, int y)
@@ -407,7 +406,8 @@ namespace TEditXna.View
 
         }
 
-        /* Heathtech */ //Pretty much overwrote this whole function.  The original part is still intact, but much more hidden
+        /* Heathtech */
+        //Pretty much overwrote this whole function.  The original part is still intact, but much more hidden
         private void DrawSprites()
         {
             Rectangle visibleBounds = GetViewingArea();
@@ -740,7 +740,7 @@ namespace TEditXna.View
                                 }
                                 else if (tileprop.IsCactus)
                                 {
-                                    
+
                                     var tileTex = _textureDictionary.GetTile(curtile.Type);
 
                                     if ((curtile.uvTileCache & 0x00FF) >= 16)
