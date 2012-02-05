@@ -31,10 +31,10 @@ namespace TEditXna.View
         private bool _isMiddleMouseDown;
         private Vector2 _middleClickPoint;
         private Vector2 _mousePosition;
+        private Vector2 _dpiScale;
         private Vector2 _scrollPosition = new Vector2(0, 0);
         private SimpleProvider _serviceProvider;
         private SpriteBatch _spriteBatch;
-        private SpriteBatch _overlayBatch; /* Heathtech */
         private Textures _textureDictionary;
         private Texture2D[] _tileMap;
         private Texture2D _preview;
@@ -135,6 +135,10 @@ namespace TEditXna.View
             _serviceProvider = new SimpleProvider(xnaViewport.GraphicsService);
             _spriteBatch = new SpriteBatch(e.GraphicsDevice);
             _textureDictionary = new Textures(_serviceProvider);
+
+            System.Windows.Media.Matrix m = PresentationSource.FromVisual(Application.Current.MainWindow).CompositionTarget.TransformToDevice;
+            _dpiScale.X = (float)m.M11;
+            _dpiScale.Y = (float)m.M22;
         }
 
         public void CenterOnTile(int x, int y)
@@ -1374,8 +1378,8 @@ namespace TEditXna.View
         {
             return TileMouseState.FromHwndMouseEventArgs(e,
                                                          new Vector2Int32(
-                                                             (int)MathHelper.Clamp((float)(e.Position.X / _zoom - _scrollPosition.X), 0, _wvm.CurrentWorld.TilesWide - 1),
-                                                             (int)MathHelper.Clamp((float)(e.Position.Y / _zoom - _scrollPosition.Y), 0, _wvm.CurrentWorld.TilesHigh - 1)));
+                                                             (int)MathHelper.Clamp((float)(e.Position.X / _dpiScale.X / _zoom - _scrollPosition.X), 0, _wvm.CurrentWorld.TilesWide - 1),
+                                                             (int)MathHelper.Clamp((float)(e.Position.Y / _dpiScale.Y / _zoom - _scrollPosition.Y), 0, _wvm.CurrentWorld.TilesHigh - 1)));
         }
 
         private void xnaViewport_HwndMouseMove(object sender, HwndMouseEventArgs e)
