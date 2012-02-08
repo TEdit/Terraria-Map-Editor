@@ -2,7 +2,7 @@
 
 namespace TEditXna.Editor
 {
-    public class TilePicker : ObservableObject 
+    public class TilePicker : ObservableObject
     {
         private PaintMode _paintMode = PaintMode.Tile;
         private MaskMode _tileMaskMode = MaskMode.Off;
@@ -12,25 +12,39 @@ namespace TEditXna.Editor
         private int _wallMask;
         private int _tileMask;
         private bool _isLava;
-        private bool _isEraser; 
+        private bool _isEraser;
 
         public bool IsEraser
         {
             get { return _isEraser; }
             set { Set("IsEraser", ref _isEraser, value); }
-        } 
+        }
 
         public bool IsLava
         {
             get { return _isLava; }
-            set { Set("IsLava", ref _isLava, value); }
+            set
+            {
+                Set("IsLava", ref _isLava, value);
+                RaisePropertyChanged("IsWater");
+            }
+        }
+
+        public bool IsWater
+        {
+            get { return !_isLava; }
+            set
+            {
+                Set("IsLava", ref _isLava, !value);
+                RaisePropertyChanged("IsWater");
+            }
         }
 
         public int TileMask
         {
             get { return _tileMask; }
             set { Set("TileMask", ref _tileMask, value); }
-        } 
+        }
 
         public int WallMask
         {
@@ -42,25 +56,25 @@ namespace TEditXna.Editor
         {
             get { return _tile; }
             set { Set("Tile", ref _tile, value); }
-        } 
+        }
 
         public int Wall
         {
             get { return _wall; }
             set { Set("Wall", ref _wall, value); }
-        } 
+        }
 
         public MaskMode WallMaskMode
         {
             get { return _wallMaskMode; }
             set { Set("WallMaskMode", ref _wallMaskMode, value); }
-        } 
+        }
 
         public MaskMode TileMaskMode
         {
             get { return _tileMaskMode; }
             set { Set("TileMaskMode", ref _tileMaskMode, value); }
-        } 
+        }
 
         public PaintMode PaintMode
         {

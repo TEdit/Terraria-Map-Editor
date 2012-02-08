@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:Terraria="clr-namespace:TEditXNA.Terraria" mc:Ignorable="d" 
+             xmlns:Terraria="clr-namespace:TEditXNA.Terraria" xmlns:bccl="http://bccl/wpf" mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300" Background="{StaticResource WindowBackgroundBrush}" Foreground="{DynamicResource TextBrush}">
     <UserControl.Resources>
         <DataTemplate x:Key="spriteItemView">
@@ -22,6 +22,7 @@
             <TextBox Text="{Binding SpriteFilter, Mode=TwoWay, UpdateSourceTrigger=LostFocus }" HorizontalAlignment="Stretch" MinWidth="200" />
             <Button Content="Filter" Margin="1" Padding="10,2" />
         </StackPanel>
-    <ListBox HorizontalAlignment="Stretch" ItemTemplate="{StaticResource spriteItemView}" ItemsSource="{Binding SpritesView}" SelectedItem="{Binding SelectedSprite}" MinHeight="300" />
+    <ListBox HorizontalAlignment="Stretch" ItemTemplate="{StaticResource spriteItemView}" ItemsSource="{Binding SpritesView}" SelectedItem="{Binding SelectedSprite}" MinHeight="300"
+             bccl:ListBoxExtenders.AutoScrollToCurrentItem="True" IsSynchronizedWithCurrentItem="True" />
     </DockPanel>
 </UserControl>

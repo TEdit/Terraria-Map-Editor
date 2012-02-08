@@ -52,4 +52,4 @@ using System.Windows;
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
 [assembly: AssemblyVersion("3.2.0.0")]
-[assembly: AssemblyFileVersion("3.2.12039.0000")]
+[assembly: AssemblyFileVersion("3.2.12039.0019")]
