@@ -7,28 +7,19 @@
              xmlns:ComponentModel="clr-namespace:System.ComponentModel;assembly=WindowsBase" mc:Ignorable="d" >
     <UserControl.Resources>
         <ItemsPanelTemplate x:Key="Template_ComboPanel" >
-            <VirtualizingStackPanel IsItemsHost="True" IsVirtualizing="True" />
+            <VirtualizingStackPanel  VirtualizingStackPanel.IsVirtualizing="True" VirtualizingStackPanel.VirtualizationMode="Recycling" />
         </ItemsPanelTemplate>
-        <CollectionViewSource Source="{Binding Source={x:Static Terraria:World.ItemPrefix}, Mode=OneWay}" x:Key="prefix">
-            <CollectionViewSource.SortDescriptions>
-                <ComponentModel:SortDescription PropertyName="Value" Direction="Ascending" />
-            </CollectionViewSource.SortDescriptions>
-        </CollectionViewSource>
-        <CollectionViewSource Source="{Binding Source={x:Static Terraria:World.ItemProperties}, Mode=OneWay}" x:Key="items">
-            <CollectionViewSource.SortDescriptions>
-                <ComponentModel:SortDescription PropertyName="Name" Direction="Ascending" />
-            </CollectionViewSource.SortDescriptions>
-        </CollectionViewSource>
+
         <DataTemplate x:Key="ChestItemTemplate">
-            <StackPanel Orientation="Horizontal" Margin="1">
+            <StackPanel Orientation="Horizontal" Margin="1" >
                 <TextBox Text="{Binding StackSize, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="30" />
-                <ComboBox ItemsSource="{Binding Source={StaticResource prefix}}" 
+                <ComboBox ItemsSource="{Binding Source={StaticResource PrefixCollection}}" 
                                       SelectedValue="{Binding Prefix, Mode=TwoWay}"
                                       SelectedValuePath="Key" 
                                       DisplayMemberPath="Value" 
                                       IsSynchronizedWithCurrentItem="False"
                                       Width="75" Margin="1,0" ItemsPanel="{StaticResource Template_ComboPanel}" />
-                <ComboBox ItemsSource="{Binding Source={StaticResource items}}" 
+                <ComboBox ItemsSource="{Binding Source={StaticResource ItemsCollection}}" 
                                       SelectedValue="{Binding NetId, Mode=TwoWay}"
                                       SelectedValuePath="Id" 
                                       DisplayMemberPath="Name"
@@ -37,21 +28,45 @@
             </StackPanel>
         </DataTemplate>
     </UserControl.Resources>
-    <Grid>
+
+    <ScrollViewer VerticalScrollBarVisibility="Visible" >
         <StackPanel>
             <DockPanel Background="{DynamicResource WindowBackgroundBrush}" LastChildFill="True">
-                <TextBlock Text="Chest Contents:" Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" DockPanel.Dock="Top" />
+                <StackPanel Orientation="Horizontal" DockPanel.Dock="Top">
+                    <TextBlock Text="Chest Contents " Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" />
+                    <TextBlock Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" DockPanel.Dock="Top">
+                    <TextBlock.Text>
+                        <MultiBinding StringFormat="({0}, {1})">
+                            <Binding Path="SelectedChest.X" />
+                            <Binding Path="SelectedChest.Y" />
+                        </MultiBinding>
+                    </TextBlock.Text>
+                    </TextBlock>
+                </StackPanel>
+
                 <UniformGrid Columns="2" DockPanel.Dock="Bottom">
                     <Button Margin="2" Content="Cancel" Command="{Binding SaveChestCommand}" CommandParameter="{StaticResource False}" />
                     <Button Margin="2" Content="Save"  Command="{Binding SaveChestCommand}" CommandParameter="{StaticResource True}" />
                 </UniformGrid>
-                <ListBox Name="ChestList" Padding="5" Foreground="White" Height="200"
+                    <ListBox Name="ChestList" Padding="5" Foreground="White" Height="200"
                          ItemsSource="{Binding SelectedChest.Items}" 
                          ScrollViewer.CanContentScroll="True" 
                          VirtualizingStackPanel.IsVirtualizing="True"
                          ItemTemplate="{DynamicResource ChestItemTemplate}" />
+
             </DockPanel>
-            <DockPanel LastChildFill="True">
+            <DockPanel Background="{DynamicResource WindowBackgroundBrush}" LastChildFill="True">
+                <StackPanel Orientation="Horizontal" DockPanel.Dock="Top">
+                    <TextBlock Text="Sign Text " Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" />
+                    <TextBlock Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" >
+                    <TextBlock.Text>
+                        <MultiBinding StringFormat="({0}, {1})">
+                            <Binding Path="SelectedSign.X" />
+                            <Binding Path="SelectedSign.Y" />
+                        </MultiBinding>
+                    </TextBlock.Text>
+                    </TextBlock>
+                </StackPanel>
                 <UniformGrid Columns="2" DockPanel.Dock="Bottom">
                     <Button Margin="2" Content="Cancel"  Command="{Binding SaveSignCommand}" CommandParameter="{StaticResource False}" />
                     <Button Margin="2" Content="Save" Command="{Binding SaveSignCommand}" CommandParameter="{StaticResource True}" />
@@ -61,5 +76,5 @@
 			   Margin="2" FontWeight="Bold" MaxLines="10" PreviewKeyDown="ValidateLines" />
             </DockPanel>
         </StackPanel>
-    </Grid>
+    </ScrollViewer>
 </UserControl>
