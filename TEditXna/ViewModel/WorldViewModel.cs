@@ -353,11 +353,14 @@ namespace TEditXna.ViewModel
 
         public void MouseMoveTile(TileMouseState e)
         {
-            if (e.Location != MouseOverTile.MouseState.Location)
-                MouseOverTile.Tile = CurrentWorld.Tiles[e.Location.X, e.Location.Y];
+            if (e.Location.X >= 0 && e.Location.Y >= 0 && e.Location.X < CurrentWorld.TilesWide && e.Location.Y < CurrentWorld.TilesHigh)
+            {
+                if (e.Location != MouseOverTile.MouseState.Location)
+                    MouseOverTile.Tile = CurrentWorld.Tiles[e.Location.X, e.Location.Y];
 
-            MouseOverTile.MouseState = e;
-            ActiveTool.MouseMove(e);
+                MouseOverTile.MouseState = e;
+                ActiveTool.MouseMove(e);
+            }
         }
 
         private void OpenWorld()
