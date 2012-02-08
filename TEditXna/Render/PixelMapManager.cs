@@ -74,6 +74,9 @@ namespace TEditXna.Render
                 }
             }
 
+            if (TileWidth < 100) TileWidth = 100;
+            if (TileHeight < 100) TileHeight = 100;
+
             TilesX = (int)Math.Ceiling((double)worldWidth / TileWidth);
             TilesY = (int)Math.Ceiling((double)worldHeight / TileHeight);
 
