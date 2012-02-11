@@ -36,7 +36,7 @@ namespace TEditXNA.Terraria
         }
         public Textures(IServiceProvider serviceProvider)
         {
-            // find steam
+            //// find steam
             string path = "";
             Microsoft.Win32.RegistryKey key;
             key = Microsoft.Win32.Registry.CurrentUser.OpenSubKey(@"Software\\Valve\\Steam");
@@ -49,10 +49,8 @@ namespace TEditXNA.Terraria
                 path = Environment.GetFolderPath(Environment.SpecialFolder.ProgramFilesX86);
                 path = Path.Combine(path, "Steam");
             }
-            path = Path.Combine(path, "steamapps");
-            path = Path.Combine(path, "common");
-            path = Path.Combine(path, "terraria");
-            path = Path.Combine(path, "Content");
+            path = Path.Combine(path, "steamapps", "common", "terraria", "Content");
+
             if (Directory.Exists(path))
             {
                 _cm = new ContentManager(serviceProvider, path);

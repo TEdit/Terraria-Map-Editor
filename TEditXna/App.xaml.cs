@@ -20,6 +20,25 @@ namespace TEditXna
 
         protected override void OnStartup(StartupEventArgs e)
         {
+            if (!DependencyChecker.VerifyDotNet())
+            {
+                MessageBox.Show("Please install .Net 4.0", "Missing .Net", MessageBoxButton.OK, MessageBoxImage.Stop);
+                ErrorLogging.LogException(new ApplicationException("MISSING .NET"));
+                Shutdown();
+            }
+
+            if (!DependencyChecker.VerifyXna())
+            {
+                MessageBox.Show("Please install XNA Framework 4.0", "Missing XNA", MessageBoxButton.OK, MessageBoxImage.Stop);
+                ErrorLogging.LogException(new ApplicationException("MISSING XNA"));
+                Shutdown();
+            }
+
+            if (!DependencyChecker.VerifyTerraria())
+            {
+                ErrorLogging.Log("Unable to locate Terraria. No texture data will be available.");
+            }
+
             if (AppDomain.CurrentDomain.SetupInformation.ActivationArguments != null &&
                 AppDomain.CurrentDomain.SetupInformation.ActivationArguments.ActivationData != null &&
                 AppDomain.CurrentDomain.SetupInformation.ActivationArguments.ActivationData.Length > 0)
