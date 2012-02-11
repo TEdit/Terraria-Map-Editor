@@ -241,7 +241,7 @@ namespace TEditXna.ViewModel
 
         public ICommand EmptyClipboardCommand
         {
-            get { return _emptyClipboardCommand ?? (_emptyClipboardCommand = new RelayCommand(_clipboard.ClearBuffers, () => _clipboard.LoadedBuffers.Count > 0)); }
+            get { return _emptyClipboardCommand ?? (_emptyClipboardCommand = new RelayCommand(_clipboard.ClearBuffers)); }
         }
 
         private void ActivateBuffer(ClipboardBuffer item)
