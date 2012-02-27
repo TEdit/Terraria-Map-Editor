@@ -924,11 +924,11 @@ Single item; tag has no children. Has the following properties:
     <Tile Id="146" Name="Green Candy Cane Block" Color="#FF00FF00" Solid="true" Blends="true" MergeWith="0" />
     <Tile Id="147" Name="Snow Block" Color="#FFEEEEFF" Solid="true" Blends="true" MergeWith="0" />
     <Tile Id="148" Name="Snow Brick" Color="#FFCCCCEE" Solid="true" Blends="true" MergeWith="0" />
-    <Tile Id="149" Name="Blue Light" Color="#FFFF0000" Light="true" Framed="true" Size="1,1">
+    <Tile Id="149" Name="XMas Light" Color="#FFFF0000" Light="true" Framed="true" Size="1,1">
       <Frames>
-        <Frame UV="0,0" Name="Blue Light" />
-        <Frame UV="18,0" Name="Red Light" />
-        <Frame UV="36,0" Name="Green Light" />
+        <Frame UV="0,0" Name="Blue Light" Variety="Blue" />
+        <Frame UV="18,0" Name="Red Light" Variety="Red" />
+        <Frame UV="36,0" Name="Green Light" Variety="Green" />
       </Frames>
     </Tile>
   </Tiles>
