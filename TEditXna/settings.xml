@@ -939,7 +939,7 @@ Single item; tag has no children. Has the following properties:
     <Wall Id="3" Name="Corruption Wall" Color="#ff312545" />
     <Wall Id="4" Name="Wood Wall" Color="#ff4a2e1c" IsHouse="true" />
     <Wall Id="5" Name="Brick Wall" Color="#ff454545" IsHouse="true" />
-    <Wall Id="6" Name="Dungeon Red Wall" Color="#ff500000" IsHouse="true" />
+    <Wall Id="6" Name="Red Brick Wall" Color="#ff500000" IsHouse="true" />
     <Wall Id="7" Name="Dungeon Blue Wall" Color="#ff000060" />
     <Wall Id="8" Name="Dungeon Green Wall" Color="#ff005000" />
     <Wall Id="9" Name="Dungeon Pink Wall" Color="#ff48004F" />
