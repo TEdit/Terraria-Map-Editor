@@ -936,35 +936,35 @@ Single item; tag has no children. Has the following properties:
     <Wall Id="0" Name="Sky" Color="#00000000" />
     <Wall Id="1" Name="Stone Wall" Color="#ff424242" IsHouse="true" />
     <Wall Id="2" Name="Dirt Wall" Color="#ff583d2e" />
-    <Wall Id="3" Name="Corruption Wall" Color="#ff312545" />
+    <Wall Id="3" Name="Ebonstone Wall" Color="#ff312545" />
     <Wall Id="4" Name="Wood Wall" Color="#ff4a2e1c" IsHouse="true" />
-    <Wall Id="5" Name="Brick Wall" Color="#ff454545" IsHouse="true" />
+    <Wall Id="5" Name="Gray Brick Wall" Color="#ff454545" IsHouse="true" />
     <Wall Id="6" Name="Red Brick Wall" Color="#ff500000" IsHouse="true" />
     <Wall Id="7" Name="Dungeon Blue Wall" Color="#ff000060" />
     <Wall Id="8" Name="Dungeon Green Wall" Color="#ff005000" />
     <Wall Id="9" Name="Dungeon Pink Wall" Color="#ff48004F" />
-    <Wall Id="10" Name="Gold Wall" Color="#ff774707" IsHouse="true" />
-    <Wall Id="11" Name="Silver" Color="#ff828282" IsHouse="true" />
-    <Wall Id="12" Name="Copper" Color="#ff3F1907" IsHouse="true" />
-    <Wall Id="13" Name="Hellstone" Color="#ff3F0707" />
-    <Wall Id="14" Name="Obsidian" Color="#ff000060" />
-    <Wall Id="15" Name="Mud" Color="#ff005500" />
+    <Wall Id="10" Name="Gold Brick Wall" Color="#ff774707" IsHouse="true" />
+    <Wall Id="11" Name="Silver Brick Wall" Color="#ff828282" IsHouse="true" />
+    <Wall Id="12" Name="Copper Brick Wall" Color="#ff3F1907" IsHouse="true" />
+    <Wall Id="13" Name="Hellstone Wall" Color="#ff3F0707" />
+    <Wall Id="14" Name="Obsidian Wall" Color="#ff000060" />
+    <Wall Id="15" Name="Mud Wall" Color="#ff005500" />
     <Wall Id="16" Name="Player Dirt Wall" Color="#ff583d2e" IsHouse="true" />
     <Wall Id="17" Name="Player Blue Wall" Color="#ff000043" IsHouse="true" />
     <Wall Id="18" Name="Player Green Wall" Color="#ff003700" IsHouse="true" />
     <Wall Id="19" Name="Player Pink Wall" Color="#ff330037" IsHouse="true" />
     <Wall Id="20" Name="Player Obsidian Wall" Color="#ff000060" IsHouse="true" />
-    <Wall Id="21" Name="Glass Wall" Color="#FF12242C" />
+    <Wall Id="21" Name="Glass Wall" Color="#FF12242C" IsHouse="true" />
     <Wall Id="22" Name="Pearlstone Wall" Color="#FF716363" />
-    <Wall Id="23" Name="Iridescent Brick Wall" Color="#FF4E4042" />
-    <Wall Id="24" Name="Mudstone Brick Wall" Color="#FF403033" />
-    <Wall Id="25" Name="Cobalt Wall" Color="#FF0B233E" />
-    <Wall Id="26" Name="Mythril Wall" Color="#FF3C5B3A" />
-    <Wall Id="27" Name="Wood Panelling" Color="#FF3A291D" />
+    <Wall Id="23" Name="Iridescent Wall" Color="#FF4E4042" IsHouse="true" />
+    <Wall Id="24" Name="Mudstone Wall" Color="#FF403033" IsHouse="true" />
+    <Wall Id="25" Name="Cobalt Brick Wall" Color="#FF0B233E" IsHouse="true" />
+    <Wall Id="26" Name="Mythril Brick Wall" Color="#FF3C5B3A" IsHouse="true" />
+    <Wall Id="27" Name="Planked Wall" Color="#FF3A291D" IsHouse="true" />
     <Wall Id="28" Name="Fragile Stone Wall" Color="#FF515465" />
-    <Wall Id="29" Name="Red Candy Cane Wall" Color="#FFAA0000" />
-    <Wall Id="30" Name="Green Candy Cane Wall" Color="#FF00AA00" />
-    <Wall Id="31" Name="Snow Wall" Color="#FF9999BB" />
+    <Wall Id="29" Name="Red Candy Cane Wall" Color="#FFAA0000" IsHouse="true" />
+    <Wall Id="30" Name="Green Candy Cane Wall" Color="#FF00AA00" IsHouse="true" />
+    <Wall Id="31" Name="Snow Brick Wall" Color="#FF9999BB" IsHouse="true" />
   </Walls>
   <Items>
     <Item Id="-24" Name="Yellow Phasesaber" />
