@@ -17,6 +17,7 @@ namespace TEditXNA.Terraria
 
     public partial class World : ObservableObject
     {
+        private object _fileLock = new object();
         /// <summary>
         /// Triggered when an operation reports progress.
         /// </summary>
@@ -378,6 +379,8 @@ namespace TEditXNA.Terraria
 
         public void Save(string filename, bool resetTime = false)
         {
+            lock (_fileLock)
+            {
             if (resetTime)
             {
                 OnProgressChanged(this, new ProgressChangedEventArgs(0, "Resetting Time..."));
@@ -584,6 +587,7 @@ namespace TEditXNA.Terraria
                     OnProgressChanged(null, new ProgressChangedEventArgs(0, "World Save Complete."));
                 }
             }
+            }
         }
 
         public void ResetTime()
@@ -596,7 +600,10 @@ namespace TEditXNA.Terraria
 
         public static World LoadWorld(string filename)
         {
+            
             var w = new World();
+            lock (_fileLock)
+            {
             using (var b = new BinaryReader(File.OpenRead(filename)))
             {
                 w.Version = b.ReadUInt32(); //now we care about the version
@@ -856,6 +863,7 @@ namespace TEditXNA.Terraria
                 }
                 OnProgressChanged(null, new ProgressChangedEventArgs(0, "World Load Complete."));
 
+            }
             }
             return w;
         }
