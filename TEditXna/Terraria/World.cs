@@ -17,7 +17,7 @@ namespace TEditXNA.Terraria
 
     public partial class World : ObservableObject
     {
-        private object _fileLock = new object();
+        private static object _fileLock = new object();
         /// <summary>
         /// Triggered when an operation reports progress.
         /// </summary>
