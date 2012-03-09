@@ -36,20 +36,7 @@ namespace TEditXNA.Terraria
         }
         public Textures(IServiceProvider serviceProvider)
         {
-            //// find steam
-            string path = "";
-            Microsoft.Win32.RegistryKey key;
-            key = Microsoft.Win32.Registry.CurrentUser.OpenSubKey(@"Software\\Valve\\Steam");
-            if (key != null)
-                path = key.GetValue("SteamPath") as string;
-
-            //no steam key, let's try the default
-            if (string.IsNullOrWhiteSpace(path) || !Directory.Exists(path))
-            {
-                path = Environment.GetFolderPath(Environment.SpecialFolder.ProgramFilesX86);
-                path = Path.Combine(path, "Steam");
-            }
-            path = Path.Combine(path, "steamapps", "common", "terraria", "Content");
+            string path = TEditXna.DependencyChecker.PathToContent;
 
             if (Directory.Exists(path))
             {
