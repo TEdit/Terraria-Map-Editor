@@ -474,18 +474,7 @@ namespace TEditXna.ViewModel
             _loadTimer.Start();
             CurrentFile = filename;
 
-            Task.Factory.StartNew(() =>
-                                      {
-                                          try
-                                          {
-                                              return World.LoadWorld(filename);
-                                          }
-                                          catch (Exception e)
-                                          {
-                                              MessageBox.Show(e.Message);
-                                          }
-                                          return null;
-                                      })
+            Task.Factory.StartNew(() => World.LoadWorld(filename))
                 .ContinueWith(t => CurrentWorld = t.Result, TaskFactoryHelper.UiTaskScheduler)
                 .ContinueWith(t => RenderEntireWorld())
                 .ContinueWith(t =>
