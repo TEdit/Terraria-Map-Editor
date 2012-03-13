@@ -1628,9 +1628,9 @@ Single item; tag has no children. Has the following properties:
     <Prefix Id="15" Name="Light" />
     <Prefix Id="16" Name="Sighted" />
     <Prefix Id="17" Name="Rapid" />
-    <Prefix Id="18" Name="Hasty" />
+    <Prefix Id="18" Name="Hasty (R)" />
     <Prefix Id="19" Name="Intimidating" />
-    <Prefix Id="20" Name="Deadly" />
+    <Prefix Id="20" Name="Deadly (R)" />
     <Prefix Id="21" Name="Staunch" />
     <Prefix Id="22" Name="Awful" />
     <Prefix Id="23" Name="Lethargic" />
@@ -1652,8 +1652,8 @@ Single item; tag has no children. Has the following properties:
     <Prefix Id="39" Name="Broken" />
     <Prefix Id="40" Name="Damaged" />
     <Prefix Id="41" Name="Shoddy" />
-    <Prefix Id="42" Name="Quick" />
-    <Prefix Id="43" Name="Deadly" />
+    <Prefix Id="42" Name="Quick (C)" />
+    <Prefix Id="43" Name="Deadly (C)" />
     <Prefix Id="44" Name="Agile" />
     <Prefix Id="45" Name="Nimble" />
     <Prefix Id="46" Name="Murderous" />
@@ -1685,8 +1685,8 @@ Single item; tag has no children. Has the following properties:
     <Prefix Id="72" Name="Menacing" />
     <Prefix Id="73" Name="Brisk" />
     <Prefix Id="74" Name="Fleeting" />
-    <Prefix Id="75" Name="Hasty" />
-    <Prefix Id="76" Name="Quick" />
+    <Prefix Id="75" Name="Hasty (A)" />
+    <Prefix Id="76" Name="Quick (A)" />
     <Prefix Id="77" Name="Wild" />
     <Prefix Id="78" Name="Rash" />
     <Prefix Id="79" Name="Intrepid" />
