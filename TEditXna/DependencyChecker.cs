@@ -25,6 +25,8 @@ namespace TEditXna
                 path = Path.Combine(path, "Steam");
             }
             path = Path.Combine(path, "steamapps", "common", "terraria", "Content");
+            if (!Directory.Exists(path))
+                path = TEditXNA.Terraria.World.AltC;
             PathToContent = path;
         }
 
