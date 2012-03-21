@@ -1256,7 +1256,7 @@ namespace TEditXna.View
             {
                 Texture2D npcTexture = (Texture2D)_textureDictionary.GetNPC(npcId);
                 //  TODO:  There are 16 frames per NPC so the destination ought to be /16,
-                //  but for some reason /14 and /15 truncates their feet.
+                //  but for some reason /15 and /16 truncate their feet.
                 _spriteBatch.Draw(npcTexture, home, new Rectangle(0, 0, npcTexture.Width, npcTexture.Height / 14), Color.White);
             }
         }
