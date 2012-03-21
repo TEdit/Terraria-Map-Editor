@@ -1608,6 +1608,7 @@ Single item; tag has no children. Has the following properties:
     <Npc Id="107" Name="Goblin Tinkerer" />
     <Npc Id="108" Name="Wizard" />
     <Npc Id="124" Name="Mechanic" />
+    <Npc Id="142" Name="Santa Claus" />
   </Npcs>
   <ItemPrefix>
     <Prefix Id="0" Name="" />

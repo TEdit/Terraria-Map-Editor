@@ -185,6 +185,7 @@ namespace TEditXna.View
             _textures.Add("Goblin Tinkerer", WriteableBitmapEx.ResourceToTexture2D("TEditXna.Images.Overlays.npc_goblin.png", e.GraphicsDevice));
             _textures.Add("Wizard", WriteableBitmapEx.ResourceToTexture2D("TEditXna.Images.Overlays.npc_wizard.png", e.GraphicsDevice));
             _textures.Add("Mechanic", WriteableBitmapEx.ResourceToTexture2D("TEditXna.Images.Overlays.npc_mechanic.png", e.GraphicsDevice));
+            _textures.Add("Santa Claus", WriteableBitmapEx.ResourceToTexture2D("TEditXna.Images.Overlays.npc_santa_claus.png", e.GraphicsDevice));
             _textures.Add("Grid", WriteableBitmapEx.ResourceToTexture2D("TEditXna.Images.Overlays.grid.png", e.GraphicsDevice));
         }
 
@@ -1218,30 +1219,59 @@ namespace TEditXna.View
 
         private void DrawPoints()
         {
+            Boolean useTextures = _textureDictionary.Valid;
+
             foreach (var npc in _wvm.CurrentWorld.NPCs)
             {
-                if (_textures.ContainsKey(npc.Name))
-                {
-                    _spriteBatch.Draw(_textures[npc.Name],
-                                      GetMarkerLocation(npc.Home.X, npc.Home.Y),
-                                      Color.White);
-                }
+                if (useTextures)
+                    DrawNpcTexture(npc, GetTextureLocation(npc.Home.X, npc.Home.Y));
+                else
+                    DrawNpcOverlay(npc, GetOverlayLocation(npc.Home.X, npc.Home.Y));
             }
 
+            //  These overlays are used even when textures are available
+
             _spriteBatch.Draw(_textures["Spawn"],
-                GetMarkerLocation(_wvm.CurrentWorld.SpawnX, _wvm.CurrentWorld.SpawnY),
+                GetOverlayLocation(_wvm.CurrentWorld.SpawnX, _wvm.CurrentWorld.SpawnY),
                 Color.FromNonPremultiplied(255, 255, 255, 128));
 
             _spriteBatch.Draw(_textures["Dungeon"],
-                GetMarkerLocation(_wvm.CurrentWorld.DungeonX, _wvm.CurrentWorld.DungeonY),
+                GetOverlayLocation(_wvm.CurrentWorld.DungeonX, _wvm.CurrentWorld.DungeonY),
                 Color.FromNonPremultiplied(255, 255, 255, 128));
         }
 
-        private Vector2 GetMarkerLocation(int x, int y)
+        private void DrawNpcOverlay(NPC npc, Vector2 home)
+        {
+            string npcName = npc.Name;
+
+            if (_textures.ContainsKey(npcName))
+                _spriteBatch.Draw(_textures[npcName], home, Color.White);
+        }
+
+        private void DrawNpcTexture(NPC npc, Vector2 home)
+        {
+            int npcId = npc.SpriteId;
+
+            if (_textureDictionary.Npcs.ContainsKey(npcId))
+            {
+                Texture2D npcTexture = (Texture2D)_textureDictionary.GetNPC(npcId);
+                //  There are 16 frames per NPC; draw just the first one
+                _spriteBatch.Draw(npcTexture, home, new Rectangle(0, 0, npcTexture.Width, npcTexture.Height / 16), Color.White);
+            }
+        }
+
+        private Vector2 GetOverlayLocation(int x, int y)
         {
             return new Vector2(
                 (_scrollPosition.X + x) * _zoom - 10,
                 (_scrollPosition.Y + y) * _zoom - 34);
+        }
+
+        private Vector2 GetTextureLocation(int x, int y)
+        {
+            return new Vector2(
+                (_scrollPosition.X + x) * _zoom - 10,
+                (_scrollPosition.Y + y) * _zoom - 51);
         }
 
         private void DrawToolPreview()

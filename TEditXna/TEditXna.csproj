@@ -337,6 +337,7 @@
     <EmbeddedResource Include="Images\Overlays\npc_mechanic.png" />
     <EmbeddedResource Include="Images\Overlays\npc_wizard.png" />
     <EmbeddedResource Include="Images\Overlays\npc_goblin.png" />
+    <EmbeddedResource Include="Images\Overlays\npc_santa_claus.png" />
     <Resource Include="Images\Tools\eyedropper.png" />
     <Resource Include="Images\Toolbar\arrow_redo.png" />
     <Resource Include="Images\Toolbar\arrow_undo.png" />
