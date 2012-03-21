@@ -1255,8 +1255,9 @@ namespace TEditXna.View
             if (_textureDictionary.Npcs.ContainsKey(npcId))
             {
                 Texture2D npcTexture = (Texture2D)_textureDictionary.GetNPC(npcId);
-                //  There are 16 frames per NPC; draw just the first one
-                _spriteBatch.Draw(npcTexture, home, new Rectangle(0, 0, npcTexture.Width, npcTexture.Height / 16), Color.White);
+                //  TODO:  There are 16 frames per NPC so the destination ought to be /16,
+                //  but for some reason /14 and /15 truncates their feet.
+                _spriteBatch.Draw(npcTexture, home, new Rectangle(0, 0, npcTexture.Width, npcTexture.Height / 14), Color.White);
             }
         }
 
@@ -1271,7 +1272,7 @@ namespace TEditXna.View
         {
             return new Vector2(
                 (_scrollPosition.X + x) * _zoom - 10,
-                (_scrollPosition.Y + y) * _zoom - 51);
+                (_scrollPosition.Y + y) * _zoom - 54);
         }
 
         private void DrawToolPreview()
