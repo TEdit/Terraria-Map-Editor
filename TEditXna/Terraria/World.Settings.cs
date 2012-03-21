@@ -27,7 +27,8 @@ namespace TEditXNA.Terraria
         private static readonly ObservableCollection<Sprite> _sprites = new ObservableCollection<Sprite>();
         private static readonly Dictionary<Key, string> _shortcuts = new Dictionary<Key, string>();
         private static readonly Dictionary<int, ItemProperty> _itemLookup = new Dictionary<int, ItemProperty>();
-
+        internal static string AltC;
+ 
         static World()
         {
             var settingspath = Path.Combine(Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().GetName().CodeBase), "settings.xml");
@@ -235,6 +236,8 @@ namespace TEditXNA.Terraria
                 var tool = (string)xElement.Attribute("Tool");
                 ShortcutKeys.Add(key, tool);
             }
+
+            AltC = (string)xmlSettings.Element("AltC");
         }
 
         public static TileProperty GetBrickFromColor(byte a, byte r, byte g, byte b)
