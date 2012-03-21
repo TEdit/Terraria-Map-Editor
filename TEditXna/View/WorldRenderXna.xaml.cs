@@ -1224,12 +1224,10 @@ namespace TEditXna.View
             foreach (var npc in _wvm.CurrentWorld.NPCs)
             {
                 if (useTextures)
-                    DrawNpcTexture(npc, GetTextureLocation(npc.Home.X, npc.Home.Y));
+                    DrawNpcTexture(npc);
                 else
-                    DrawNpcOverlay(npc, GetOverlayLocation(npc.Home.X, npc.Home.Y));
+                    DrawNpcOverlay(npc);
             }
-
-            //  These overlays are used even when textures are available
 
             _spriteBatch.Draw(_textures["Spawn"],
                 GetOverlayLocation(_wvm.CurrentWorld.SpawnX, _wvm.CurrentWorld.SpawnY),
@@ -1240,24 +1238,29 @@ namespace TEditXna.View
                 Color.FromNonPremultiplied(255, 255, 255, 128));
         }
 
-        private void DrawNpcOverlay(NPC npc, Vector2 home)
-        {
-            string npcName = npc.Name;
-
-            if (_textures.ContainsKey(npcName))
-                _spriteBatch.Draw(_textures[npcName], home, Color.White);
-        }
-
-        private void DrawNpcTexture(NPC npc, Vector2 home)
+        private void DrawNpcTexture(NPC npc)
         {
             int npcId = npc.SpriteId;
 
             if (_textureDictionary.Npcs.ContainsKey(npcId))
             {
                 Texture2D npcTexture = (Texture2D)_textureDictionary.GetNPC(npcId);
-                //  TODO:  There are 16 frames per NPC so the destination ought to be /16,
-                //  but for some reason /15 and /16 truncate their feet.
-                _spriteBatch.Draw(npcTexture, home, new Rectangle(0, 0, npcTexture.Width, npcTexture.Height / 14), Color.White);
+                int frames = TEditXNA.Terraria.World.NpcFrames[npcId];
+                int width = npcTexture.Width;
+                int height = npcTexture.Height / frames;
+                _spriteBatch.Draw(npcTexture, GetNpcLocation(npc.Home.X, npc.Home.Y, width, height), new Rectangle(0, 0, width, height), Color.White);
+            }
+        }
+
+        private void DrawNpcOverlay(NPC npc)
+        {
+            string npcName = npc.Name;
+
+            if (_textures.ContainsKey(npcName))
+            {
+                _spriteBatch.Draw(_textures[npcName],
+                                  GetOverlayLocation(npc.Home.X, npc.Home.Y),
+                                  Color.White);
             }
         }
 
@@ -1268,11 +1271,11 @@ namespace TEditXna.View
                 (_scrollPosition.Y + y) * _zoom - 34);
         }
 
-        private Vector2 GetTextureLocation(int x, int y)
+        private Vector2 GetNpcLocation(int x, int y, int width, int height)
         {
             return new Vector2(
-                (_scrollPosition.X + x) * _zoom - 10,
-                (_scrollPosition.Y + y) * _zoom - 54);
+                (_scrollPosition.X + x) * _zoom - 6,
+                (_scrollPosition.Y + y) * _zoom - height + 4);
         }
 
         private void DrawToolPreview()

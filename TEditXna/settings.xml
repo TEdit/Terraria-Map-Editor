@@ -1597,18 +1597,18 @@ Single item; tag has no children. Has the following properties:
     <Item Id="603" Name="Carrot" />
   </Items>
   <Npcs>
-    <Npc Id="17" Name="Merchant" />
-    <Npc Id="18" Name="Nurse" />
-    <Npc Id="19" Name="Arms Dealer" />
-    <Npc Id="20" Name="Dryad" />
-    <Npc Id="22" Name="Guide" />
-    <Npc Id="37" Name="Old Man" />
-    <Npc Id="38" Name="Demolitionist" />
-    <Npc Id="54" Name="Clothier" />
-    <Npc Id="107" Name="Goblin Tinkerer" />
-    <Npc Id="108" Name="Wizard" />
-    <Npc Id="124" Name="Mechanic" />
-    <Npc Id="142" Name="Santa Claus" />
+    <Npc Id="17" Name="Merchant" Frames="16" />
+    <Npc Id="18" Name="Nurse" Frames="14" />
+    <Npc Id="19" Name="Arms Dealer" Frames="16" />
+    <Npc Id="20" Name="Dryad" Frames="14" />
+    <Npc Id="22" Name="Guide" Frames="16" />
+    <Npc Id="37" Name="Old Man" Frames="16" />
+    <Npc Id="38" Name="Demolitionist" Frames="16" />
+    <Npc Id="54" Name="Clothier" Frames="16" />
+    <Npc Id="107" Name="Goblin Tinkerer" Frames="16"/>
+    <Npc Id="108" Name="Wizard" Frames="16" />
+    <Npc Id="124" Name="Mechanic" Frames="14" />
+    <Npc Id="142" Name="Santa Claus" Frames="16" />
   </Npcs>
   <ItemPrefix>
     <Prefix Id="0" Name="" />

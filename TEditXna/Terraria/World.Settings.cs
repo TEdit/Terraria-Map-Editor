@@ -18,6 +18,7 @@ namespace TEditXNA.Terraria
         public static uint CompatibleVersion = 39;
         private static readonly Dictionary<string, XNA.Color> _globalColors = new Dictionary<string, XNA.Color>();
         private static readonly Dictionary<string, int> _npcIds = new Dictionary<string, int>();
+        private static readonly Dictionary<int, int> _npcFrames = new Dictionary<int, int>();
         private static readonly Dictionary<byte, string> _prefix = new Dictionary<byte, string>();
         private static readonly ObservableCollection<ItemProperty> _itemProperties = new ObservableCollection<ItemProperty>();
         private static readonly ObservableCollection<TileProperty> _tileProperties = new ObservableCollection<TileProperty>();
@@ -221,6 +222,8 @@ namespace TEditXNA.Terraria
                 int id = (int?)xElement.Attribute("Id") ?? -1;
                 string name = (string)xElement.Attribute("Name");
                 NpcIds.Add(name, id);
+                int frames = (int?)xElement.Attribute("Frames") ?? 16;
+                NpcFrames.Add(id, frames);
             }
 
             foreach (var xElement in xmlSettings.Elements("ItemPrefix").Elements("Prefix"))
@@ -291,6 +294,11 @@ namespace TEditXNA.Terraria
             get { return _npcIds; }
         }
 
+        public static Dictionary<int, int> NpcFrames
+        {
+            get { return _npcFrames; }
+        }
+        
         public static Dictionary<byte, string> ItemPrefix
         {
             get { return _prefix; }
