@@ -261,6 +261,9 @@ Single item; tag has no children. Has the following properties:
     <Shortcut Key="T" Tool="Sprite" />
     <Shortcut Key="Z" Tool="Eraser" />
   </ShortCutKeys>
+  <Tools>
+    <Tool Name="Brush" Width="20" Height="20" Outline="1" />
+  </Tools>
   <GlobalColors>
     <GlobalColor Name="Space" Color="#FF336699" />
     <GlobalColor Name="Sky" Color="#FF9BD1FF" />

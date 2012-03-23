@@ -1,6 +1,7 @@
 ﻿using System;
 using BCCL.Geometry.Primitives;
 using BCCL.MvvmLight;
+using TEditXNA.Terraria;
 
 namespace TEditXna.Editor
 {
@@ -9,6 +10,7 @@ namespace TEditXna.Editor
         private int _maxOutline = 10;
         private int _maxHeight = 200;
         private int _maxWidth = 200;
+        private int _minOutline = 1;
         private int _minHeight = 1;
         private int _minWidth = 1;
         private int _outline = 1;
@@ -21,6 +23,19 @@ namespace TEditXna.Editor
         private bool _isLocked = true;
         private bool _isOutline = false;
         private BrushShape _shape = BrushShape.Square;
+
+        public BrushSettings()
+        {
+            int width = Convert.ToInt32(World.ToolDefaults["Brush.Width"]);
+            int height = Convert.ToInt32(World.ToolDefaults["Brush.Height"]);
+            int outline = Convert.ToInt32(World.ToolDefaults["Brush.Outline"]);
+
+            IsLocked = (width == height);
+
+            Width = width;
+            Height = height;
+            Outline = outline;
+        }
 
         public event EventHandler BrushChanged;
 
@@ -127,7 +142,14 @@ namespace TEditXna.Editor
         public int Outline
         {
             get { return _outline; }
-            set { Set("Outline", ref _outline, value); }
+            set
+            {
+                if (value < _minOutline)
+                    value = _minOutline;
+                if (value > _maxOutline)
+                    value = _maxOutline;
+                Set("Outline", ref _outline, value);
+            }
         }
     }
 }
