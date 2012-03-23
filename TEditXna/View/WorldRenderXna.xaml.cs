@@ -1219,7 +1219,7 @@ namespace TEditXna.View
 
         private void DrawPoints()
         {
-            Boolean useTextures = _textureDictionary.Valid;
+            Boolean useTextures = _wvm.ShowTextures && _textureDictionary.Valid;
 
             foreach (var npc in _wvm.CurrentWorld.NPCs)
             {
@@ -1249,6 +1249,10 @@ namespace TEditXna.View
                 int width = npcTexture.Width;
                 int height = npcTexture.Height / frames;
                 _spriteBatch.Draw(npcTexture, GetNpcLocation(npc.Home.X, npc.Home.Y, width, height), new Rectangle(0, 0, width, height), Color.White);
+            }
+            else
+            {
+                DrawNpcOverlay(npc);
             }
         }
 
