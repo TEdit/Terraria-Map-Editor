@@ -958,13 +958,13 @@ Single item; tag has no children. Has the following properties:
     <Wall Id="19" Name="Player Pink Wall" Color="#ff330037" IsHouse="true" />
     <Wall Id="20" Name="Player Obsidian Wall" Color="#ff000060" IsHouse="true" />
     <Wall Id="21" Name="Glass Wall" Color="#FF12242C" IsHouse="true" />
-    <Wall Id="22" Name="Pearlstone Wall" Color="#FF716363" />
+    <Wall Id="22" Name="Pearlstone Brick" Color="#FF716363" />
     <Wall Id="23" Name="Iridescent Wall" Color="#FF4E4042" IsHouse="true" />
     <Wall Id="24" Name="Mudstone Wall" Color="#FF403033" IsHouse="true" />
     <Wall Id="25" Name="Cobalt Brick Wall" Color="#FF0B233E" IsHouse="true" />
     <Wall Id="26" Name="Mythril Brick Wall" Color="#FF3C5B3A" IsHouse="true" />
     <Wall Id="27" Name="Planked Wall" Color="#FF3A291D" IsHouse="true" />
-    <Wall Id="28" Name="Fragile Stone Wall" Color="#FF515465" />
+    <Wall Id="28" Name="Pearlstone Wall" Color="#FF515465" />
     <Wall Id="29" Name="Red Candy Cane Wall" Color="#FFAA0000" IsHouse="true" />
     <Wall Id="30" Name="Green Candy Cane Wall" Color="#FF00AA00" IsHouse="true" />
     <Wall Id="31" Name="Snow Brick Wall" Color="#FF9999BB" IsHouse="true" />
