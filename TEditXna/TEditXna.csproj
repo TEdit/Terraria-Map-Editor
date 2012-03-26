@@ -145,6 +145,7 @@
     <Compile Include="Terraria\Tile.cs" />
     <Compile Include="Terraria\World.cs" />
     <Compile Include="Terraria\World.Settings.cs" />
+    <Compile Include="Terraria\World.Settings.Tools.cs" />
     <Compile Include="UiHelper\Converters\DoublePercentageConverter.cs" />
     <Compile Include="UiHelper\Converters\ThicknessMultiConverter.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs">

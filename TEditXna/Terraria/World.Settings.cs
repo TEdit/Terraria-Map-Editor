@@ -240,6 +240,8 @@ namespace TEditXNA.Terraria
                 ShortcutKeys.Add(key, tool);
             }
 
+            ToolDefaultData.LoadSettings(xmlSettings.Elements("Tools"));
+
             AltC = (string)xmlSettings.Element("AltC");
         }
 
