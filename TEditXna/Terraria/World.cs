@@ -120,6 +120,8 @@ namespace TEditXNA.Terraria
         private int _tilesHigh;
         private int _tilesWide;
 
+        private DateTime _lastSave;
+
         #region Properties
 
         public int TilesWide
@@ -350,6 +352,12 @@ namespace TEditXNA.Terraria
         {
             get { return _invasionDelay; }
             set { Set("InvasionDelay", ref _invasionDelay, value); }
+        }
+
+        internal DateTime LastSave
+        {
+            get { return _lastSave; }
+            set { Set("LastSave", ref _lastSave, value); }
         }
 
         #endregion
@@ -588,6 +596,8 @@ namespace TEditXNA.Terraria
                         OnProgressChanged(null, new ProgressChangedEventArgs(0, "World Save Complete."));
                     }
                 }
+
+                _lastSave = File.GetLastWriteTimeUtc(filename);
             }
         }
 
@@ -866,6 +876,7 @@ namespace TEditXNA.Terraria
                         OnProgressChanged(null, new ProgressChangedEventArgs(0, "World Load Complete."));
 
                     }
+                    w.LastSave = File.GetLastWriteTimeUtc(filename);
                 }
             }
             catch (Exception err)
