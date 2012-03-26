@@ -5,13 +5,13 @@ namespace TEditXna.Editor
 {
     public class TilePicker : ObservableObject
     {
-        private PaintMode _paintMode = (PaintMode)ToolSettings.Mode(typeof(PaintMode), DefaultSetting.PaintMode);
-        private MaskMode _tileMaskMode = (MaskMode)ToolSettings.Mode(typeof(MaskMode), DefaultSetting.PaintTileMaskMode);
-        private MaskMode _wallMaskMode = (MaskMode)ToolSettings.Mode(typeof(MaskMode), DefaultSetting.PaintWallMaskMode);
-        private int _wall = ToolSettings.Int[DefaultSetting.PaintWall];
-        private int _tile = ToolSettings.Int[DefaultSetting.PaintTile];
-        private int _wallMask = ToolSettings.Int[DefaultSetting.PaintWallMask];
-        private int _tileMask = ToolSettings.Int[DefaultSetting.PaintTileMask];
+        private PaintMode _paintMode = ToolDefaultData.PaintMode;
+        private MaskMode _tileMaskMode = ToolDefaultData.PaintTileMaskMode;
+        private MaskMode _wallMaskMode = ToolDefaultData.PaintWallMaskMode;
+        private int _wall = ToolDefaultData.PaintWall;
+        private int _tile = ToolDefaultData.PaintTile;
+        private int _wallMask = ToolDefaultData.PaintWallMask;
+        private int _tileMask = ToolDefaultData.PaintTileMask;
         private bool _isLava;
         private bool _isEraser;
 

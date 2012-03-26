@@ -22,13 +22,13 @@ namespace TEditXna.Editor
         private int _offsetY = 10;
         private bool _isLocked = true;
         private bool _isOutline = false;
-        private BrushShape _shape = (BrushShape)ToolSettings.Mode(typeof(BrushShape), DefaultSetting.BrushShape);
+        private BrushShape _shape = ToolDefaultData.BrushShape;
 
         public BrushSettings()
         {
-            int width = ToolSettings.Int[DefaultSetting.BrushWidth];
-            int height = ToolSettings.Int[DefaultSetting.BrushHeight];
-            int outline = ToolSettings.Int[DefaultSetting.BrushOutline];
+            int width = ToolDefaultData.BrushWidth;
+            int height = ToolDefaultData.BrushHeight;
+            int outline = ToolDefaultData.BrushOutline;
 
             IsLocked = (width == height);
 

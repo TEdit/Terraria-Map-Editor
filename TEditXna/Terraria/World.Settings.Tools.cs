@@ -5,18 +5,22 @@ using TEditXna.Editor;
 
 namespace TEditXNA.Terraria
 {
-    public enum DefaultSetting
+    public partial class ToolDefaultData
     {
-        PaintMode,
-        BrushWidth, BrushHeight, BrushOutline, BrushShape,
-        PaintTile, PaintTileMask, PaintTileMaskMode,
-        PaintWall, PaintWallMask, PaintWallMaskMode,
-    }
+        private static PaintMode _paintMode;
 
-    public partial class ToolSettings
-    {
-        private static Dictionary<DefaultSetting, int> _intDefaults = new Dictionary<DefaultSetting, int>();
-        private static Dictionary<DefaultSetting, string> _stringDefaults = new Dictionary<DefaultSetting, string>();
+        private static int _brushWidth;
+        private static int _brushHeight;
+        private static int _brushOutline;
+        private static BrushShape _brushShape;
+
+        private static int _paintTile;
+        private static int _paintTileMask;
+        private static MaskMode _paintTileMaskMode;
+
+        private static int _paintWall;
+        private static int _paintWallMask;
+        private static MaskMode _paintWallMaskMode;
 
         //  Invoked from World.Settings
         internal static void LoadSettings(IEnumerable<XElement> xmlToolSettings)
@@ -28,43 +32,86 @@ namespace TEditXNA.Terraria
                 switch (toolName)
                 {
                     case "Paint":
-                        _stringDefaults[DefaultSetting.PaintMode] = (string)xElement.Attribute("Mode") ?? "Tile";
+                        _paintMode = (PaintMode)ToEnum(typeof(PaintMode), (string)xElement.Attribute("Mode") ?? PaintMode.Tile.ToString());
                         break;
                     case "Brush":
-                        _intDefaults[DefaultSetting.BrushWidth] = (int?)xElement.Attribute("Width") ?? 20;
-                        _intDefaults[DefaultSetting.BrushHeight] = (int?)xElement.Attribute("Height") ?? 20;
-                        _intDefaults[DefaultSetting.BrushOutline] = (int?)xElement.Attribute("Outline") ?? 1;
-                        _stringDefaults[DefaultSetting.BrushShape] = (string)xElement.Attribute("Shape") ?? "Rectangle";
+                        _brushWidth = (int?)xElement.Attribute("Width") ?? 20;
+                        _brushHeight = (int?)xElement.Attribute("Height") ?? 20;
+                        _brushOutline = (int?)xElement.Attribute("Outline") ?? 1;
+                        _brushShape = (BrushShape)ToEnum(typeof(BrushShape), (string)xElement.Attribute("Shape") ?? BrushShape.Square.ToString());
                         break;
                     case "Tile":
-                        _intDefaults[DefaultSetting.PaintTile] = (int?)xElement.Attribute("Tile") ?? 0;
-                        _intDefaults[DefaultSetting.PaintTileMask] = (int?)xElement.Attribute("Mask") ?? 0;
-                        _stringDefaults[DefaultSetting.PaintTileMaskMode] = (string)xElement.Attribute("Mode") ?? "Off";
+                        _paintTile = (int?)xElement.Attribute("Tile") ?? 0;
+                        _paintTileMask = (int?)xElement.Attribute("Mask") ?? 0;
+                        _paintTileMaskMode = (MaskMode)ToEnum(typeof(MaskMode), (string)xElement.Attribute("Mode") ?? MaskMode.Off.ToString());
                         break;
                     case "Wall":
-                        _intDefaults[DefaultSetting.PaintWall] = (int?)xElement.Attribute("Wall") ?? 0;
-                        _intDefaults[DefaultSetting.PaintWallMask] = (int?)xElement.Attribute("Mask") ?? 0;
-                        _stringDefaults[DefaultSetting.PaintWallMaskMode] = (string)xElement.Attribute("Mode") ?? "Off";
+                        _paintWall = (int?)xElement.Attribute("Wall") ?? 0;
+                        _paintWallMask = (int?)xElement.Attribute("Mask") ?? 0;
+                        _paintWallMaskMode = (MaskMode)ToEnum(typeof(MaskMode), (string)xElement.Attribute("Mode") ?? MaskMode.Off.ToString());
                         break;
                 }
             }
         }
 
-        public static Dictionary<DefaultSetting, int> Int
+        private static Enum ToEnum(Type type, string name)
         {
-            get { return _intDefaults; }
+              return (Enum)System.Enum.Parse(type, name, true);
         }
 
-        public static Dictionary<DefaultSetting, string> String
+        public static PaintMode PaintMode
         {
-            get { return _stringDefaults; }
+            get { return _paintMode; }
         }
 
-        public static Enum Mode(Type type, DefaultSetting defaultSetting)
+        public static int BrushWidth
         {
-            string value = _stringDefaults[defaultSetting];
+            get { return _brushWidth; }
+        }
 
-            return (Enum)System.Enum.Parse(type, value, true);
+        public static int BrushHeight
+        {
+            get { return _brushHeight; }
+        }
+
+        public static int BrushOutline
+        {
+            get { return _brushOutline; }
+        }
+
+        public static BrushShape BrushShape
+        {
+            get { return _brushShape; }
+        }
+
+        public static int PaintTile
+        {
+            get { return _paintTile; }
+        }
+
+        public static int PaintTileMask
+        {
+            get { return _paintTileMask; }
+        }
+
+        public static MaskMode PaintTileMaskMode
+        {
+            get { return _paintTileMaskMode; }
+        }
+
+        public static int PaintWall
+        {
+            get { return _paintWall; }
+        }
+
+        public static int PaintWallMask
+        {
+            get { return _paintWallMask; }
+        }
+
+        public static MaskMode PaintWallMaskMode
+        {
+            get { return _paintWallMaskMode; }
         }
     }
 }
