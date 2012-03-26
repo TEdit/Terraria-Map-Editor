@@ -27,7 +27,6 @@ namespace TEditXNA.Terraria
 
         private static readonly ObservableCollection<Sprite> _sprites = new ObservableCollection<Sprite>();
         private static readonly Dictionary<Key, string> _shortcuts = new Dictionary<Key, string>();
-        private static readonly Dictionary<string, string> _toolDefaults = new Dictionary<string, string>();
         private static readonly Dictionary<int, ItemProperty> _itemLookup = new Dictionary<int, ItemProperty>();
         internal static string AltC;
  
@@ -241,19 +240,7 @@ namespace TEditXNA.Terraria
                 ShortcutKeys.Add(key, tool);
             }
 
-            foreach (var xElement in xmlSettings.Elements("Tools").Elements("Tool"))
-            {
-                string toolName = (string)xElement.Attribute("Name");
-
-                switch (toolName)
-                {
-                    case "Brush":
-                        _toolDefaults["Brush.Width"] = (string)xElement.Attribute("Width") ?? "20";
-                        _toolDefaults["Brush.Height"] = (string)xElement.Attribute("Height") ?? "20";
-                        _toolDefaults["Brush.Outline"] = (string)xElement.Attribute("Outline") ?? "1";
-                        break;
-                }
-            }
+            ToolSettings.LoadSettings(xmlSettings.Elements("Tools"));
 
             AltC = (string)xmlSettings.Element("AltC");
         }
@@ -322,11 +309,6 @@ namespace TEditXNA.Terraria
         public static Dictionary<Key, string> ShortcutKeys
         {
             get { return _shortcuts; }
-        }
-
-        public static Dictionary<string, string> ToolDefaults
-        {
-            get { return _toolDefaults; }
         }
 
         public static ObservableCollection<TileProperty> TileProperties

@@ -262,7 +262,13 @@ Single item; tag has no children. Has the following properties:
     <Shortcut Key="Z" Tool="Eraser" />
   </ShortCutKeys>
   <Tools>
-    <Tool Name="Brush" Width="20" Height="20" Outline="1" />
+    <!-- Valid Paint Modes are Tile, Wall, TileAndWall, Wire and Liquid. -->
+    <Tool Name="Paint" Mode="Tile" />
+    <!-- Tile, Wall and Mask values correspond with Tile and Wall Id; valid Mask Modes are Off, Empty and Tile. -->
+    <Tool Name="Tile" Tile="0" Mask="0" Mode="Off" />
+    <Tool Name="Wall" Wall="0" Mask="0" Mode="Off" />
+    <!-- Valid Brush Shapes are Square and Round. -->
+    <Tool Name="Brush" Width="20" Height="20" Outline="1" Shape="Square"/>
   </Tools>
   <GlobalColors>
     <GlobalColor Name="Space" Color="#FF336699" />
