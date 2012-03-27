@@ -1,16 +1,17 @@
 ﻿using BCCL.MvvmLight;
+using TEditXNA.Terraria;
 
 namespace TEditXna.Editor
 {
     public class TilePicker : ObservableObject
     {
-        private PaintMode _paintMode = PaintMode.Tile;
-        private MaskMode _tileMaskMode = MaskMode.Off;
-        private MaskMode _wallMaskMode = MaskMode.Off;
-        private int _wall;
-        private int _tile;
-        private int _wallMask;
-        private int _tileMask;
+        private PaintMode _paintMode = ToolDefaultData.PaintMode;
+        private MaskMode _tileMaskMode = ToolDefaultData.PaintTileMaskMode;
+        private MaskMode _wallMaskMode = ToolDefaultData.PaintWallMaskMode;
+        private int _wall = ToolDefaultData.PaintWall;
+        private int _tile = ToolDefaultData.PaintTile;
+        private int _wallMask = ToolDefaultData.PaintWallMask;
+        private int _tileMask = ToolDefaultData.PaintTileMask;
         private bool _isLava;
         private bool _isEraser;
 

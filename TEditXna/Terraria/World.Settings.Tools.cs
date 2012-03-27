@@ -1,0 +1,117 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Xml.Linq;
+using TEditXna.Editor;
+
+namespace TEditXNA.Terraria
+{
+    public partial class ToolDefaultData
+    {
+        private static PaintMode _paintMode;
+
+        private static int _brushWidth;
+        private static int _brushHeight;
+        private static int _brushOutline;
+        private static BrushShape _brushShape;
+
+        private static int _paintTile;
+        private static int _paintTileMask;
+        private static MaskMode _paintTileMaskMode;
+
+        private static int _paintWall;
+        private static int _paintWallMask;
+        private static MaskMode _paintWallMaskMode;
+
+        //  Invoked from World.Settings
+        internal static void LoadSettings(IEnumerable<XElement> xmlToolSettings)
+        {
+            foreach (var xElement in xmlToolSettings.Elements("Tool"))
+            {
+                string toolName = (string)xElement.Attribute("Name");
+
+                switch (toolName)
+                {
+                    case "Paint":
+                        _paintMode = (PaintMode)ToEnum(typeof(PaintMode), (string)xElement.Attribute("Mode") ?? PaintMode.Tile.ToString());
+                        break;
+                    case "Brush":
+                        _brushWidth = (int?)xElement.Attribute("Width") ?? 20;
+                        _brushHeight = (int?)xElement.Attribute("Height") ?? 20;
+                        _brushOutline = (int?)xElement.Attribute("Outline") ?? 1;
+                        _brushShape = (BrushShape)ToEnum(typeof(BrushShape), (string)xElement.Attribute("Shape") ?? BrushShape.Square.ToString());
+                        break;
+                    case "Tile":
+                        _paintTile = (int?)xElement.Attribute("Tile") ?? 0;
+                        _paintTileMask = (int?)xElement.Attribute("Mask") ?? 0;
+                        _paintTileMaskMode = (MaskMode)ToEnum(typeof(MaskMode), (string)xElement.Attribute("Mode") ?? MaskMode.Off.ToString());
+                        break;
+                    case "Wall":
+                        _paintWall = (int?)xElement.Attribute("Wall") ?? 0;
+                        _paintWallMask = (int?)xElement.Attribute("Mask") ?? 0;
+                        _paintWallMaskMode = (MaskMode)ToEnum(typeof(MaskMode), (string)xElement.Attribute("Mode") ?? MaskMode.Off.ToString());
+                        break;
+                }
+            }
+        }
+
+        private static Enum ToEnum(Type type, string name)
+        {
+              return (Enum)System.Enum.Parse(type, name, true);
+        }
+
+        public static PaintMode PaintMode
+        {
+            get { return _paintMode; }
+        }
+
+        public static int BrushWidth
+        {
+            get { return _brushWidth; }
+        }
+
+        public static int BrushHeight
+        {
+            get { return _brushHeight; }
+        }
+
+        public static int BrushOutline
+        {
+            get { return _brushOutline; }
+        }
+
+        public static BrushShape BrushShape
+        {
+            get { return _brushShape; }
+        }
+
+        public static int PaintTile
+        {
+            get { return _paintTile; }
+        }
+
+        public static int PaintTileMask
+        {
+            get { return _paintTileMask; }
+        }
+
+        public static MaskMode PaintTileMaskMode
+        {
+            get { return _paintTileMaskMode; }
+        }
+
+        public static int PaintWall
+        {
+            get { return _paintWall; }
+        }
+
+        public static int PaintWallMask
+        {
+            get { return _paintWallMask; }
+        }
+
+        public static MaskMode PaintWallMaskMode
+        {
+            get { return _paintWallMaskMode; }
+        }
+    }
+}

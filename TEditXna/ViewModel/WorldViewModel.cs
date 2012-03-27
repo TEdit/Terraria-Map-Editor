@@ -463,6 +463,12 @@ namespace TEditXna.ViewModel
 
         private void SaveWorldFile()
         {
+            if (CurrentWorld.LastSave < File.GetLastWriteTimeUtc(CurrentFile))
+            {
+                MessageBoxResult overwrite = MessageBox.Show(_currentWorld.Title + " was externally modified since your last save.\r\nDo you wish to overwrite?", "World Modified", MessageBoxButton.OKCancel, MessageBoxImage.Warning);
+                if (overwrite.Equals(MessageBoxResult.Cancel))
+                    return;
+            }
             Task.Factory.StartNew(() => CurrentWorld.Save(CurrentFile))
                 .ContinueWith(t => CommandManager.InvalidateRequerySuggested(), TaskFactoryHelper.UiTaskScheduler);
         }

@@ -32,6 +32,7 @@ namespace TEditXna.ViewModel
         private ICommand _runPluginCommand;
         private ICommand _saveChestCommand;
         private ICommand _saveSignCommand;
+        private ICommand _npcRemoveCommand;
 
         private ICommand _requestZoomCommand;
 
@@ -78,6 +79,30 @@ namespace TEditXna.ViewModel
                 else
                 {
                     MessageBox.Show(string.Format("{1} ({0}) is already on the map.", npc.Character, npc.Name), "NPC Exists");
+                }
+            }
+        }
+
+        public ICommand NpcRemoveCommand
+        {
+            get { return _npcRemoveCommand ?? (_npcRemoveCommand = new RelayCommand<NpcName>(RemoveNpc)); }
+        }
+
+        private void RemoveNpc(NpcName npcName)
+        {
+            if (CurrentWorld != null)
+            {
+                try
+                {
+                    NPC npc = CurrentWorld.NPCs.First(n => n.Name == npcName.Character);
+
+                    CurrentWorld.NPCs.Remove(npc);
+                    Points.Remove(npcName.Character);
+                    MessageBox.Show(string.Format("{1} ({0}) removed.", npcName.Character, npcName.Name), "NPC Removed");
+                }
+                catch (InvalidOperationException)
+                {
+                    MessageBox.Show(string.Format("{1} ({0}) was not on the map.", npcName.Character, npcName.Name), "NPC Doesn't Exist");
                 }
             }
         }
