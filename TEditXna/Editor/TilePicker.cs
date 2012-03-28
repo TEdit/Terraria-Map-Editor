@@ -1,5 +1,6 @@
 ﻿using BCCL.MvvmLight;
 using TEditXNA.Terraria;
+using System.Windows.Input;
 
 namespace TEditXna.Editor
 {
@@ -81,6 +82,47 @@ namespace TEditXna.Editor
         {
             get { return _paintMode; }
             set { Set("PaintMode", ref _paintMode, value); }
+        }
+
+        public void Swap(ModifierKeys modifier)
+        {
+            switch (PaintMode)
+            {
+                case PaintMode.Tile:
+                    SwapTile();
+                    break;
+                case PaintMode.Wall:
+                    SwapWall();
+                    break;
+                case PaintMode.TileAndWall:
+                    if (modifier.HasFlag(ModifierKeys.Shift))
+                        SwapWall();
+                    else
+                        SwapTile();
+                    break;
+                case PaintMode.Liquid:
+                    SwapLiquid();
+                    break;
+            }
+        }
+
+        public void SwapTile()
+        {
+            int currentTile = Tile;
+            Tile = TileMask;
+            TileMask = currentTile;
+        }
+
+        public void SwapWall()
+        {
+            int currentWall = Wall;
+            Wall = WallMask;
+            WallMask = currentWall;
+        }
+
+        public void SwapLiquid()
+        {
+            IsLava = !IsLava;
         }
     }
 }

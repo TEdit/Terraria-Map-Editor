@@ -147,6 +147,10 @@ namespace TEditXna
                 {
                     _vm.TilePicker.IsEraser = !_vm.TilePicker.IsEraser;
                 }
+                else if (string.Equals("Swap", command, StringComparison.InvariantCultureIgnoreCase))
+                {
+                    _vm.TilePicker.Swap(Keyboard.Modifiers);
+                }
                 else
                 {
                     SetActiveTool(command);

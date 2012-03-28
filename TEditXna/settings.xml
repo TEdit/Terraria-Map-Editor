@@ -260,6 +260,7 @@ Single item; tag has no children. Has the following properties:
     <Shortcut Key="S" Tool="Selection" />
     <Shortcut Key="T" Tool="Sprite" />
     <Shortcut Key="Z" Tool="Eraser" />
+    <Shortcut Key="X" Tool="Swap" />
   </ShortCutKeys>
   <Tools>
     <!-- Valid Paint Modes are Tile, Wall, TileAndWall, Wire and Liquid. -->
