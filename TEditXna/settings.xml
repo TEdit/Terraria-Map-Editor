@@ -10,246 +10,12 @@ Last updated: 2011-09-26
 Primary URL: https://github.com/BinaryConstruct/Terraria-Map-Editor/blob/master/TEdit/settings.xml
 ====================================
 
-<Settings>
-
-This is the root object.
-
-<GlobalColors>
-
-Container of GlobalColor tags. These contain PNG colors of common backgrounds. The GlobalColors
-tag SHOULD contain colors for at least these types: Sky, Water, Lava.
-
-<GlobalColor>
-
-Single tag with no children. Properties are self-explanatory.
-
-<Tiles>
-
-Container of Tile tags. These contain all of the tiles found in Terraria maps. The Tiles tag
-MUST contain Tile tags for all possible tiles that have a Tile_??.xnb file in the Terraria
-game data, found in the Content\Images folder.
-
-<Tile>
-
-Single tile object; may contain Frame tags. Has the following properties:
-
- * num - Required; unique. This tile number MUST match the same ID used in Terraria world files. 
- * color - Required; default is #ffff00ff. Color SHOULD approx. match the color of the tile in-game.
- * name - Required; unique. Name MUST match the tile name in-game, if possible. (The
- TerrariaOnline wiki is a good source for information.) Names MUST be unique among different
- Tile tags. Names MAY be used as a tile identifier, so the names should be reasonably static.
- However, names that are discovered to not match the Terraria game name MUST be changed.
-
- * isSolid - Required if true; default is false. This property MUST be true if the tile can't
- be walked through.
-
- * isFramed - Required if true; default is false. This property MUST be true if the tile contains
- frames that require frame coordinates in Terraria world files. This property MUST be accurate
- to read world files. All tile types that use multiple tiles (tables, doors, chests, etc.)
- always have isFramed set, though some single-tiled objects also have frames. Furthermore,
- some XNB tiles with frames actually don't need frame coordinations. (Yes, it's confusing;
- it usually boils Top to trial-and-error and seeing if the world file can't be read.)
-
- * size - Required if not default; default is "1,1". This is the width and height of tile
- objects that span multiple tiles. If this property is beyond "1,1", then isFramed MUST be true.
- 
- * placement - Required if not default; default is "any". This details how the tile (or full object,
- if multi-tiled) can be placed among other tiles. The property MUST only be one of these options:
- 
- @ any - Is like a block, which can even float in the air
- @ floor - Must be on the floor; affected by gravity
- @ surface - Must be on top of a SolidTop surface object
- @ floorSurface - Either "floor" or "surface"
- @ wall - Must be attached to a tile-based wall (not a background wall)
- @ ceiling - Must be attached to the ceiling
- @ wallFloor - Either "wall" or "floor"
- @ wallFloorCeiling - Either "wall", "floor", or "ceiling" (rare; signs have these)
- @ CFBoth - Must be attached to both ceiling AND floor (rare; doors have these)
-
- * isSolidTop - Required if true; default is false. If the object is a "Flat Surface" object, such
- as a table, this property MUST be set to true. These objects will accept other objects that
- can be placed on top of surfaces, and can usually be stood on by the player, despite being a
- pass-through object itself. In fact, isSolid and isSolidTop SHOULD be mutually exclusive.
- 
- * growsOn - Required if it applies. This property only applies to plant objects (unless we
- happen to discover some sort of growing sword or other bizzare thing). This property is a
- comma-delimited list of Tile numbers that will accept this object on top of it. For example,
- grass flowers can only grow on grass blocks. These type of tiles MUST only be able to have
- the following underneath it: the tiles on the list, itself (other tiles with the same tile
- number), or empty space. Furthermore, the full plant object MUST ultimately have a
- up-most tile attached to one of the tiles on the list.
- 
- All programs MUST NOT use the "placement" property (as an implied default or not) if a growOn
- property exists. The "placement", "growsOn", and "hangsOn" properties are all mutually
- exclusive, and MUST NOT appear together on one Tile tag.
-
- * hangsOn - Required if it applies. This property is exactly like the growsOn property, except
- it applies for a required tile being _above_ the object, like vines. All warnings about
- property exclusivity still apply.
-
- * canMixFrames - Required if true; default is false. The "canMixFrames" property is true if the
- different Frame tags can swap around individual tiles for an object. For example, a Pot is
- a 2x2 object with three different variations. However, each 1x1 tile can be taken from a
- different variation to create a new composite object. (Tiles must still be taken from the
- same location. IOW, you can't take the lower-right corner of Pot A and use it for the
- upper-left corner of your new object.) These type of objects are rare, as it only applies
- so far to Pots and Closed Doors.
- 
- This property MUST NOT be used unless the "size" property is non-default, and "isFramed"
- property is true.
-
- * IsHouseItem - Required if true; default is false. If the object is one of the required objects
- that can be used to build a NPC-qualified house, this property MUST be true. This should be
- used with other properties to identify all of the house objects:
- 
- @ isSolidTop - If true, then this classifies as a "Flat Surface" object for a house.
- @ lightBrightness - If non-zero, then this classified as a "Light Source" object for a house.
- @ None - If the above two don't apply, then it's a "Comfort" object.
-
- * lightBrightness - Required if not default; default is 0. This is the brightness of the light
- given off the object when placed, where 1.0 is torch light. A non-zero value indicates 
- that this tile is a "Light Source", though objects such as Furnaces do qualify, even if it
- can't be used as a house "Light Source" object.
- 
- * contactDmg - Optional. If the object causes damage when touched by the player, this is the
- amount of HP that it drains.
-
-<Frames>
-
-Container of Frame tags. These contain all of the frame found for a individual Tile. A Tile object
-MUST contain a Frames tag, and the Frames tag MUST contain Frame tags for all possible tiles that
-have isFramed set to true, with two exceptions:
-
- * If the Tile only has one Frame tag, the Frames/Frame tag SHOULD NOT appear. Defaults for the frame
- are listed in the <Frame> spec.
- 
- * The tags SHOULD NOT appear if the object is subject to auto-alignment or auto-correction by the game
- itself. (For example, Signs automatically align to the right Frame, whether it's floor, wall, or
- ceiling, whereas Beds do not automatically pick a facing Direction.)
- 
-
-<Frame>
-
-Single frame object with no children. Describes individual frames within a Tile image.
-
-A Frame tag inherits all property information of its parent Tile tag. So, all of the properties
-of the Frame tag can exist in Tile tags and visa-versa. Which means that all of the properties
-on both tags are really optional as long as they appear on one or the other, with the following
-exceptions:
-
- * The "num" property MUST appear on the Tile tag without question.
- * A Tile tag MUST have a name, even if it is later overridden by a Frame tag.
- * A Frame tag MUST have an "upperLeft" property, even if it's default.
- * A Frame tag MUST NOT have a isFramed property. (This is just redundant.)
- * A Frame tag MUST NOT have a canMixFrames property. (This doesn't even make sense.)
- * The following properties SHOULD only appear on Tile tags, as we have not found different ones
- on the same tile: isSolid, isSolidTop, size, placement, IsHouseItem, lightBrightness,
- contactDmg
-
-The following defaults are assumed for Frame tags, including Tiles with frames and no Frame tags:
-
- * The upperLeft property defaults to 0,0.
- * There are no "variety" or "Dir" properties (unless set).
- * Each frame jumps by 18 frame points. (So far this has been accurate for all multi-tile objects,
- so we don't need to create a new property yet...)
-
-Frame tags MUST be ordered by a left-right reading Direction. So, all of the objects on the first
-row, then the second, etc. A zero-based num property can be assumed based on the order of the
-object, but is not actually used (yet).
-
-A Frame tag has the following (other) properties:
- 
- * upperLeft - Required (even if default); default is 0,0. This is the X,Y coordinates of the
- upper-left corner of the Frame object. Frame coordinates Directly relate to the Tile_??.xnb
- file referencing them. Each frame point is equal to 1/2 of a pixel. So, a X,Y of 18,0
- is starting at X,Y of 9,0 on the Tile image.
- 
- A grand majority of tiles (including all multi-tiled objects) use 8x8 pixel tiles (with a
- 1-pixel divider line), so all tiles are assumed to jump by 18 frame points. There are a few
- exceptions, but all of these tiles have size="1,1", so no jumping is required.
- 
- * variety - Optional as long as name+variety+Dir is unique. This further describes the object
- beyond what the name says. For example, the in-game name of a normal wooden Chest is merely
- "Chest", but one frame has a locked Chest. So, the name is "Chest", and the variety is 
- "Locked".
- 
- * Dir - Optional as long as name+variety+Dir is unique. This is used instead of (or in
- combination with) a "variety" property to describe the facing Direction of the object. For
- example, a Toilet comes with both left- and right-facing versions. This property MUST be
- a single character, which (so far) equals: l, r, u, c. Which is Left, Right, up, Center,
- respectively. Top (as "d") may be used later on, so that is also acceptable.
-
-Frame tags have a unique name among the name, variety, and Dir properties. So, they might be 
-displayed in the following fashion:
-
-<Frame UV="22,0" Name="Tree Trunk" Anchor="Bottom" Variety="Right Indent A" />
- Full Name: Tree Trunk - Right Indent A (upwards)
-
-<Frame UV="72,0" Name="Gold Chest" Variety="Locked" />
- Full Name: Gold Chest - Locked
-
-<Frame UV="18,0" Name="Chair" Anchor="Right" />
- Full Name: Chair (Right Facing)
-
-<Walls>
-
-Container of Wall tags. These contain all of the background walls found in Terraria maps. The
-Walls tag MUST contain Wall tags for all possible walls that have a Wall_??.xnb file in the Terraria
-game data, found in the Content\Images folder.
-
-<Wall>
-
-Single wall, with no children. Has the following properties:
-
- * num - Required; unique. This wall number MUST match the same ID used in Terraria world files.
- * name - Required; unique. Name MUST match the wall name in-game, if possible.
- * color - Required. Color SHOULD approx. match the color of the wall in-game.
- * IsHouse - Required if true; default is false. If true, this wall can be used in a house.
-
-<Items>
-
-Container of Item tags. These contain all of the character items found in Terraria maps. The Items
-tag MUST contain Item tags for all possible items that have a Item_??.xnb file in the Terraria
-game data, found in the Content\Images folder, as well as any other items found in the game that
-can be picked up by the player.
-
-<Item>
-
-Single item; tag has no children. Has the following properties:
-
- * num - Required if exists; unique (if exists); starts with 0. This item number MUST match the
- the same ID used in Terraria XNB image files. For some reason, some items don't relate to
- an item ID, so certain items might not have one. (There may be some palette shifting going
- on to reuse item image files...)
- 
- * name - Required; unique. Name MUST match the item name in-game.
- 
- * type - Required except for the [empty] item. This is a (loose) categorization of the item.
- The categories, so far, are somewhat subject to interpretation, and are pidgin-holed into
- a single category, but this will be more strictly defined in a future XML release. The
- item type MUST be one of the categories (in all lowercase):
- 
- @ tool = All mining/gathering tools, like Pickaxe, Hammer, Axe, etc.
- @ weapon = All weapons, including swords, staffs, consumable weapons (like Throwing Knives), etc.
- @ armor = All items that fit into armor slot (including vanity; will split later on)
- @ vanity = Future use for vanity (and useless) items.
- @ accessory = All items that fit into accessory slots
- @ block = Blocks that are normally gathered through mining
- @ light = Items that are primarily used as a light source, ie: Torch, Candles, etc.
- @ storage = All storage furniture, including Chests, Barrels, Trash Cans, etc.
- @ wall = All background wall objects
- @ furniture = All furniture, both decorative and crafting stations (will split later on)
- @ crafter = Future use for crafting stations.
- @ plant = All plants (supersedes all other categories)
- @ material = Objects that are primarily used for crafting material
- @ potion = All items called "Potion" or containers of liquid that buff character
- @ consumable = Other items that are one-use only
- @ ammo = Objects that are primarily used for gun/bow ammo
- @ money = Objects that go Directly in the money slots
+Documentation moved to the end of this file.
 
 -->
 
 <Settings>
+  <App Width="800" Height="600"/>
   <ShortCutKeys>
     <Shortcut Key="A" Tool="Arrow" />
     <Shortcut Key="B" Tool="Brush" />
@@ -1707,3 +1473,244 @@ Single item; tag has no children. Has the following properties:
     <Prefix Id="83" Name="Mythical" />
   </ItemPrefix>
 </Settings>
+
+<!--
+
+<Settings>
+
+This is the root object.
+
+<GlobalColors>
+
+Container of GlobalColor tags. These contain PNG colors of common backgrounds. The GlobalColors
+tag SHOULD contain colors for at least these types: Sky, Water, Lava.
+
+<GlobalColor>
+
+Single tag with no children. Properties are self-explanatory.
+
+<Tiles>
+
+Container of Tile tags. These contain all of the tiles found in Terraria maps. The Tiles tag
+MUST contain Tile tags for all possible tiles that have a Tile_??.xnb file in the Terraria
+game data, found in the Content\Images folder.
+
+<Tile>
+
+Single tile object; may contain Frame tags. Has the following properties:
+
+ * num - Required; unique. This tile number MUST match the same ID used in Terraria world files. 
+ * color - Required; default is #ffff00ff. Color SHOULD approx. match the color of the tile in-game.
+ * name - Required; unique. Name MUST match the tile name in-game, if possible. (The
+ TerrariaOnline wiki is a good source for information.) Names MUST be unique among different
+ Tile tags. Names MAY be used as a tile identifier, so the names should be reasonably static.
+ However, names that are discovered to not match the Terraria game name MUST be changed.
+
+ * isSolid - Required if true; default is false. This property MUST be true if the tile can't
+ be walked through.
+
+ * isFramed - Required if true; default is false. This property MUST be true if the tile contains
+ frames that require frame coordinates in Terraria world files. This property MUST be accurate
+ to read world files. All tile types that use multiple tiles (tables, doors, chests, etc.)
+ always have isFramed set, though some single-tiled objects also have frames. Furthermore,
+ some XNB tiles with frames actually don't need frame coordinations. (Yes, it's confusing;
+ it usually boils Top to trial-and-error and seeing if the world file can't be read.)
+
+ * size - Required if not default; default is "1,1". This is the width and height of tile
+ objects that span multiple tiles. If this property is beyond "1,1", then isFramed MUST be true.
+ 
+ * placement - Required if not default; default is "any". This details how the tile (or full object,
+ if multi-tiled) can be placed among other tiles. The property MUST only be one of these options:
+ 
+ @ any - Is like a block, which can even float in the air
+ @ floor - Must be on the floor; affected by gravity
+ @ surface - Must be on top of a SolidTop surface object
+ @ floorSurface - Either "floor" or "surface"
+ @ wall - Must be attached to a tile-based wall (not a background wall)
+ @ ceiling - Must be attached to the ceiling
+ @ wallFloor - Either "wall" or "floor"
+ @ wallFloorCeiling - Either "wall", "floor", or "ceiling" (rare; signs have these)
+ @ CFBoth - Must be attached to both ceiling AND floor (rare; doors have these)
+
+ * isSolidTop - Required if true; default is false. If the object is a "Flat Surface" object, such
+ as a table, this property MUST be set to true. These objects will accept other objects that
+ can be placed on top of surfaces, and can usually be stood on by the player, despite being a
+ pass-through object itself. In fact, isSolid and isSolidTop SHOULD be mutually exclusive.
+ 
+ * growsOn - Required if it applies. This property only applies to plant objects (unless we
+ happen to discover some sort of growing sword or other bizzare thing). This property is a
+ comma-delimited list of Tile numbers that will accept this object on top of it. For example,
+ grass flowers can only grow on grass blocks. These type of tiles MUST only be able to have
+ the following underneath it: the tiles on the list, itself (other tiles with the same tile
+ number), or empty space. Furthermore, the full plant object MUST ultimately have a
+ up-most tile attached to one of the tiles on the list.
+ 
+ All programs MUST NOT use the "placement" property (as an implied default or not) if a growOn
+ property exists. The "placement", "growsOn", and "hangsOn" properties are all mutually
+ exclusive, and MUST NOT appear together on one Tile tag.
+
+ * hangsOn - Required if it applies. This property is exactly like the growsOn property, except
+ it applies for a required tile being _above_ the object, like vines. All warnings about
+ property exclusivity still apply.
+
+ * canMixFrames - Required if true; default is false. The "canMixFrames" property is true if the
+ different Frame tags can swap around individual tiles for an object. For example, a Pot is
+ a 2x2 object with three different variations. However, each 1x1 tile can be taken from a
+ different variation to create a new composite object. (Tiles must still be taken from the
+ same location. IOW, you can't take the lower-right corner of Pot A and use it for the
+ upper-left corner of your new object.) These type of objects are rare, as it only applies
+ so far to Pots and Closed Doors.
+ 
+ This property MUST NOT be used unless the "size" property is non-default, and "isFramed"
+ property is true.
+
+ * IsHouseItem - Required if true; default is false. If the object is one of the required objects
+ that can be used to build a NPC-qualified house, this property MUST be true. This should be
+ used with other properties to identify all of the house objects:
+ 
+ @ isSolidTop - If true, then this classifies as a "Flat Surface" object for a house.
+ @ lightBrightness - If non-zero, then this classified as a "Light Source" object for a house.
+ @ None - If the above two don't apply, then it's a "Comfort" object.
+
+ * lightBrightness - Required if not default; default is 0. This is the brightness of the light
+ given off the object when placed, where 1.0 is torch light. A non-zero value indicates 
+ that this tile is a "Light Source", though objects such as Furnaces do qualify, even if it
+ can't be used as a house "Light Source" object.
+ 
+ * contactDmg - Optional. If the object causes damage when touched by the player, this is the
+ amount of HP that it drains.
+
+<Frames>
+
+Container of Frame tags. These contain all of the frame found for a individual Tile. A Tile object
+MUST contain a Frames tag, and the Frames tag MUST contain Frame tags for all possible tiles that
+have isFramed set to true, with two exceptions:
+
+ * If the Tile only has one Frame tag, the Frames/Frame tag SHOULD NOT appear. Defaults for the frame
+ are listed in the <Frame> spec.
+ 
+ * The tags SHOULD NOT appear if the object is subject to auto-alignment or auto-correction by the game
+ itself. (For example, Signs automatically align to the right Frame, whether it's floor, wall, or
+ ceiling, whereas Beds do not automatically pick a facing Direction.)
+ 
+
+<Frame>
+
+Single frame object with no children. Describes individual frames within a Tile image.
+
+A Frame tag inherits all property information of its parent Tile tag. So, all of the properties
+of the Frame tag can exist in Tile tags and visa-versa. Which means that all of the properties
+on both tags are really optional as long as they appear on one or the other, with the following
+exceptions:
+
+ * The "num" property MUST appear on the Tile tag without question.
+ * A Tile tag MUST have a name, even if it is later overridden by a Frame tag.
+ * A Frame tag MUST have an "upperLeft" property, even if it's default.
+ * A Frame tag MUST NOT have a isFramed property. (This is just redundant.)
+ * A Frame tag MUST NOT have a canMixFrames property. (This doesn't even make sense.)
+ * The following properties SHOULD only appear on Tile tags, as we have not found different ones
+ on the same tile: isSolid, isSolidTop, size, placement, IsHouseItem, lightBrightness,
+ contactDmg
+
+The following defaults are assumed for Frame tags, including Tiles with frames and no Frame tags:
+
+ * The upperLeft property defaults to 0,0.
+ * There are no "variety" or "Dir" properties (unless set).
+ * Each frame jumps by 18 frame points. (So far this has been accurate for all multi-tile objects,
+ so we don't need to create a new property yet...)
+
+Frame tags MUST be ordered by a left-right reading Direction. So, all of the objects on the first
+row, then the second, etc. A zero-based num property can be assumed based on the order of the
+object, but is not actually used (yet).
+
+A Frame tag has the following (other) properties:
+ 
+ * upperLeft - Required (even if default); default is 0,0. This is the X,Y coordinates of the
+ upper-left corner of the Frame object. Frame coordinates Directly relate to the Tile_??.xnb
+ file referencing them. Each frame point is equal to 1/2 of a pixel. So, a X,Y of 18,0
+ is starting at X,Y of 9,0 on the Tile image.
+ 
+ A grand majority of tiles (including all multi-tiled objects) use 8x8 pixel tiles (with a
+ 1-pixel divider line), so all tiles are assumed to jump by 18 frame points. There are a few
+ exceptions, but all of these tiles have size="1,1", so no jumping is required.
+ 
+ * variety - Optional as long as name+variety+Dir is unique. This further describes the object
+ beyond what the name says. For example, the in-game name of a normal wooden Chest is merely
+ "Chest", but one frame has a locked Chest. So, the name is "Chest", and the variety is 
+ "Locked".
+ 
+ * Dir - Optional as long as name+variety+Dir is unique. This is used instead of (or in
+ combination with) a "variety" property to describe the facing Direction of the object. For
+ example, a Toilet comes with both left- and right-facing versions. This property MUST be
+ a single character, which (so far) equals: l, r, u, c. Which is Left, Right, up, Center,
+ respectively. Top (as "d") may be used later on, so that is also acceptable.
+
+Frame tags have a unique name among the name, variety, and Dir properties. So, they might be 
+displayed in the following fashion:
+
+<Frame UV="22,0" Name="Tree Trunk" Anchor="Bottom" Variety="Right Indent A" />
+ Full Name: Tree Trunk - Right Indent A (upwards)
+
+<Frame UV="72,0" Name="Gold Chest" Variety="Locked" />
+ Full Name: Gold Chest - Locked
+
+<Frame UV="18,0" Name="Chair" Anchor="Right" />
+ Full Name: Chair (Right Facing)
+
+<Walls>
+
+Container of Wall tags. These contain all of the background walls found in Terraria maps. The
+Walls tag MUST contain Wall tags for all possible walls that have a Wall_??.xnb file in the Terraria
+game data, found in the Content\Images folder.
+
+<Wall>
+
+Single wall, with no children. Has the following properties:
+
+ * num - Required; unique. This wall number MUST match the same ID used in Terraria world files.
+ * name - Required; unique. Name MUST match the wall name in-game, if possible.
+ * color - Required. Color SHOULD approx. match the color of the wall in-game.
+ * IsHouse - Required if true; default is false. If true, this wall can be used in a house.
+
+<Items>
+
+Container of Item tags. These contain all of the character items found in Terraria maps. The Items
+tag MUST contain Item tags for all possible items that have a Item_??.xnb file in the Terraria
+game data, found in the Content\Images folder, as well as any other items found in the game that
+can be picked up by the player.
+
+<Item>
+
+Single item; tag has no children. Has the following properties:
+
+ * num - Required if exists; unique (if exists); starts with 0. This item number MUST match the
+ the same ID used in Terraria XNB image files. For some reason, some items don't relate to
+ an item ID, so certain items might not have one. (There may be some palette shifting going
+ on to reuse item image files...)
+ 
+ * name - Required; unique. Name MUST match the item name in-game.
+ 
+ * type - Required except for the [empty] item. This is a (loose) categorization of the item.
+ The categories, so far, are somewhat subject to interpretation, and are pidgin-holed into
+ a single category, but this will be more strictly defined in a future XML release. The
+ item type MUST be one of the categories (in all lowercase):
+ 
+ @ tool = All mining/gathering tools, like Pickaxe, Hammer, Axe, etc.
+ @ weapon = All weapons, including swords, staffs, consumable weapons (like Throwing Knives), etc.
+ @ armor = All items that fit into armor slot (including vanity; will split later on)
+ @ vanity = Future use for vanity (and useless) items.
+ @ accessory = All items that fit into accessory slots
+ @ block = Blocks that are normally gathered through mining
+ @ light = Items that are primarily used as a light source, ie: Torch, Candles, etc.
+ @ storage = All storage furniture, including Chests, Barrels, Trash Cans, etc.
+ @ wall = All background wall objects
+ @ furniture = All furniture, both decorative and crafting stations (will split later on)
+ @ crafter = Future use for crafting stations.
+ @ plant = All plants (supersedes all other categories)
+ @ material = Objects that are primarily used for crafting material
+ @ potion = All items called "Potion" or containers of liquid that buff character
+ @ consumable = Other items that are one-use only
+ @ ammo = Objects that are primarily used for gun/bow ammo
+ @ money = Objects that go Directly in the money slots
+
+-->
