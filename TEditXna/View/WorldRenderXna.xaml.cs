@@ -41,6 +41,7 @@ namespace TEditXna.View
         private Dictionary<string, Texture2D> _textures = new Dictionary<string, Texture2D>();
         private Texture2D _selectionTexture;
         private float _zoom = 1;
+        private float _minNpcScale = 0.75f;
 
         public WorldRenderXna()
         {
@@ -1248,7 +1249,11 @@ namespace TEditXna.View
                 int frames = TEditXNA.Terraria.World.NpcFrames[npcId];
                 int width = npcTexture.Width;
                 int height = npcTexture.Height / frames;
-                _spriteBatch.Draw(npcTexture, GetNpcLocation(npc.Home.X, npc.Home.Y, width, height), new Rectangle(0, 0, width, height), Color.White);
+                float scale = 1.0f * _zoom / 16;
+                if (scale < _minNpcScale)
+                    scale = _minNpcScale;
+                Vector2 home = GetNpcLocation(npc.Home.X, npc.Home.Y, width, (int)(height * scale));
+                _spriteBatch.Draw(npcTexture, home, new Rectangle(0, 0, width, height), Color.White, 0.0f, new Vector2(0, 0), scale, SpriteEffects.None, 0.0f);
             }
             else
             {

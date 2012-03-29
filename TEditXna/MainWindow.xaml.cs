@@ -28,6 +28,8 @@ namespace TEditXna
         public MainWindow()
         {
             InitializeComponent();
+            this.Width = World.AppSize.X;
+            this.Height = World.AppSize.Y;
             DataContext = ViewModelLocator.WorldViewModel;
             _vm = (WorldViewModel)DataContext;
             AddHandler(Keyboard.KeyDownEvent, (KeyEventHandler)HandleKeyDownEvent);

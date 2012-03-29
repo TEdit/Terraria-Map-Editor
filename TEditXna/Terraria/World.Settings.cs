@@ -28,6 +28,7 @@ namespace TEditXNA.Terraria
         private static readonly ObservableCollection<Sprite> _sprites = new ObservableCollection<Sprite>();
         private static readonly Dictionary<Key, string> _shortcuts = new Dictionary<Key, string>();
         private static readonly Dictionary<int, ItemProperty> _itemLookup = new Dictionary<int, ItemProperty>();
+        private static Vector2 _appSize;
         internal static string AltC;
  
         static World()
@@ -240,6 +241,11 @@ namespace TEditXNA.Terraria
                 ShortcutKeys.Add(key, tool);
             }
 
+            XElement appSettings = xmlSettings.Element("App");
+            int appWidth = (int?)appSettings.Attribute("Width") ?? 800;
+            int appHeight = (int?)appSettings.Attribute("Height") ?? 600;
+            _appSize = new Vector2(appWidth, appHeight);
+
             ToolDefaultData.LoadSettings(xmlSettings.Elements("Tools"));
 
             AltC = (string)xmlSettings.Element("AltC");
@@ -343,6 +349,11 @@ namespace TEditXNA.Terraria
         public static ObservableCollection<Sprite> Sprites
         {
             get { return _sprites; }
+        }
+
+        internal static Vector2 AppSize
+        {
+            get { return _appSize; }
         }
     }
 }
