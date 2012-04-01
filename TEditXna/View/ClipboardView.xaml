@@ -23,7 +23,22 @@
             <Button Content="Empty Clipboard"  Padding="2,4" Margin="2" Command="{Binding EmptyClipboardCommand}" />
             <Button Content="Import Schematic or Image" Padding="2,4" Margin="2" Command="{Binding ImportSchematicCommand}" CommandParameter="{StaticResource False}" />
             <Button Content="Import False Color Image" Padding="2,4" Margin="2" Command="{Binding ImportSchematicCommand}" CommandParameter="{StaticResource True}" />
-            <CheckBox Content="Paste Empty Tiles" Padding="2,4" Margin="2" IsChecked="{Binding Clipboard.PasteEmpty}"/>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1*" />
+                    <RowDefinition Height="1*" />
+                </Grid.RowDefinitions>
+                <CheckBox Grid.Row="0" Grid.Column="0" Content="Paste Empty Tiles" Padding="2,4" Margin="2" IsChecked="{Binding Clipboard.PasteEmpty}"/>
+                <CheckBox Grid.Row="0" Grid.Column="1" Content="Paste Tiles" Padding="2,4" Margin="2" IsChecked="{Binding Clipboard.PasteTiles}"/>
+                <CheckBox Grid.Row="0" Grid.Column="2" Content="Paste Walls" Padding="2,4" Margin="2" IsChecked="{Binding Clipboard.PasteWalls}"/>
+                <CheckBox Grid.Row="1" Grid.Column="0" Content="Paste Liquids" Padding="2,4" Margin="2" IsChecked="{Binding Clipboard.PasteLiquids}"/>
+                <CheckBox Grid.Row="1" Grid.Column="1" Content="Paste Wires" Padding="2,4" Margin="2" IsChecked="{Binding Clipboard.PasteWires}"/>
+            </Grid>
         </StackPanel>
         <ScrollViewer>
             <ItemsControl HorizontalAlignment="Stretch" ItemTemplate="{StaticResource clipboardItemView}" ItemsSource="{Binding Clipboard.LoadedBuffers}" />
