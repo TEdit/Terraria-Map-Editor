@@ -285,5 +285,71 @@ namespace TEditXna.Editor.Clipboard
             /* Heathtech */
             BlendRules.ResetUVCache(_wvm, anchor.X, anchor.Y, buffer.Size.X, buffer.Size.Y);
         }
+
+        // Reverse the buffer along the x- or y- axis
+        public void Flip(ClipboardBuffer buffer, bool flipX)
+        {
+            ClipboardBuffer flippedBuffer = new ClipboardBuffer(buffer.Size);
+
+            for (int x = 0, maxX = buffer.Size.X - 1; x <= maxX; x++)
+            {
+                for (int y = 0, maxY = buffer.Size.Y - 1; y <= maxY; y++)
+                {
+                    int bufferX;
+                    int bufferY;
+
+                    if (flipX)
+                    {
+                        bufferX = maxX - x;
+                        bufferY = y;
+                    }
+                    else
+                    {
+                        bufferX = x;
+                        bufferY = maxY - y;
+                    }
+
+                    Tile tile = (Tile)buffer.Tiles[x, y].Clone();
+
+                    Vector2Short tileSize = World.TileProperties[tile.Type].FrameSize;
+
+                    // Ignore multi-tiled Tiles; clear the tile, use the rest.
+                    if (tileSize.X > 1 || tileSize.Y > 1)
+                    {
+                        tile.Type = 0;
+                        tile.IsActive = false;
+                        tile.U = 0;
+                        tile.V = 0;
+                    }
+
+                    flippedBuffer.Tiles[bufferX, bufferY] = (Tile)tile;
+                }
+            }
+
+            // Replace the existing buffer with the new one
+            int bufferIndex = LoadedBuffers.IndexOf(buffer);
+            if (bufferIndex > -1)
+            {
+                LoadedBuffers.Insert(bufferIndex, flippedBuffer);
+                LoadedBuffers.RemoveAt(bufferIndex + 1);
+            }
+
+            flippedBuffer.RenderBuffer();
+
+            if (Buffer == buffer)
+            {
+                Buffer = flippedBuffer;
+                _wvm.PreviewChange();
+            }
+        }
+
+        public void FlipX(ClipboardBuffer buffer)
+        {
+            Flip(buffer, true);
+        }
+        public void FlipY(ClipboardBuffer buffer)
+        {
+            Flip(buffer, false);
+        }
     }
 }
