@@ -313,13 +313,16 @@ namespace TEditXna.Editor.Clipboard
 
                     Vector2Short tileSize = World.TileProperties[tile.Type].FrameSize;
 
-                    // Ignore multi-tiled Tiles; clear the tile, use the rest.
-                    if (tileSize.X > 1 || tileSize.Y > 1)
+                    if (flipX)
                     {
-                        tile.Type = 0;
-                        tile.IsActive = false;
-                        tile.U = 0;
-                        tile.V = 0;
+                        //  Ignore multi-width objects when flipping on x-axis
+                        if (tileSize.X > 1)
+                            ClearTile(tile);
+                    }
+                    //  Ignore multi-height tiles when flipping on y-axis
+                    else if (tileSize.Y > 1)
+                    {
+                            ClearTile(tile);
                     }
 
                     flippedBuffer.Tiles[bufferX, bufferY] = (Tile)tile;
@@ -341,6 +344,14 @@ namespace TEditXna.Editor.Clipboard
                 Buffer = flippedBuffer;
                 _wvm.PreviewChange();
             }
+        }
+
+        protected void ClearTile(Tile tile)
+        {
+            tile.Type = 0;
+            tile.IsActive = false;
+            tile.U = 0;
+            tile.V = 0;
         }
 
         public void FlipX(ClipboardBuffer buffer)
