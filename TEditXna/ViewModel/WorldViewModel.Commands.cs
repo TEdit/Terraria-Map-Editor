@@ -242,6 +242,8 @@ namespace TEditXna.ViewModel
         private ICommand _exportSchematicCommand;
         private ICommand _removeSchematicCommand;
         private ICommand _clipboardSetActiveCommand;
+        private ICommand _clipboardFlipXCommand;
+        private ICommand _clipboardFlipYCommand;
 
 
         public ICommand ClipboardSetActiveCommand
@@ -267,6 +269,15 @@ namespace TEditXna.ViewModel
         public ICommand EmptyClipboardCommand
         {
             get { return _emptyClipboardCommand ?? (_emptyClipboardCommand = new RelayCommand(_clipboard.ClearBuffers)); }
+        }
+
+        public ICommand ClipboardFlipXCommand
+        {
+            get { return _clipboardFlipXCommand ?? (_clipboardFlipXCommand = new RelayCommand<ClipboardBuffer>(_clipboard.FlipX)); }
+        }
+        public ICommand ClipboardFlipYCommand
+        {
+            get { return _clipboardFlipYCommand ?? (_clipboardFlipYCommand = new RelayCommand<ClipboardBuffer>(_clipboard.FlipY)); }
         }
 
         private void ActivateBuffer(ClipboardBuffer item)
