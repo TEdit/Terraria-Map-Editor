@@ -39,19 +39,25 @@ namespace TEditXna
                 ErrorLogging.Log("Unable to locate Terraria. No texture data will be available.");
             }
 
+            if (e.Args != null && e.Args.Count() > 0)
+            {
+                this.Properties["OpenFile"] = e.Args[0];
+            }
+
             if (AppDomain.CurrentDomain.SetupInformation.ActivationArguments != null &&
                 AppDomain.CurrentDomain.SetupInformation.ActivationArguments.ActivationData != null &&
                 AppDomain.CurrentDomain.SetupInformation.ActivationArguments.ActivationData.Length > 0)
             {
+                string fname = "No filename given";
                 try
                 {
-                    string fname = AppDomain.CurrentDomain.SetupInformation.ActivationArguments.ActivationData[0];
+                    fname = AppDomain.CurrentDomain.SetupInformation.ActivationArguments.ActivationData[0];
 
                     // It comes in as a URI; this helps to convert it to a path.
                     var uri = new Uri(fname);
                     fname = uri.LocalPath;
 
-                    Properties["OpenFile"] = fname;
+                    this.Properties["OpenFile"] = fname;
                 }
                 catch (Exception ex)
                 {

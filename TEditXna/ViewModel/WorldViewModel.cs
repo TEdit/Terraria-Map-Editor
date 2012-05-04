@@ -7,6 +7,7 @@ using System.IO;
 using System.Reflection;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Timers;
 using System.Windows;
 using System.Windows.Data;
 using System.Windows.Input;
@@ -27,6 +28,8 @@ namespace TEditXna.ViewModel
 {
     public partial class WorldViewModel : ViewModelBase
     {
+        private System.Timers.Timer _saveTimer = new System.Timers.Timer();
+
         private readonly BrushSettings _brush = new BrushSettings();
         private readonly MouseTile _mouseOverTile = new MouseTile();
         private readonly TilePicker _tilePicker = new TilePicker();
@@ -170,6 +173,26 @@ namespace TEditXna.ViewModel
                 return sprite.TileName.IndexOf(_spriteFilter, StringComparison.InvariantCultureIgnoreCase) >= 0 ||
                        sprite.Name.IndexOf(_spriteFilter, StringComparison.InvariantCultureIgnoreCase) >= 0;
             };
+
+            _saveTimer.AutoReset = true;
+            _saveTimer.Elapsed += SaveTimerTick;
+            // 3 minute save timer
+            _saveTimer.Interval = 3 * 60 * 1000;
+
+            // Test File Association and command line
+            if (Application.Current.Properties["OpenFile"] != null)
+            {
+                string filename = Application.Current.Properties["OpenFile"].ToString();
+                LoadWorld(filename);
+            }
+        }
+
+        private void SaveTimerTick(object sender, ElapsedEventArgs e)
+        {
+            if (!string.IsNullOrWhiteSpace(_currentFile))
+            {
+                SaveWorldThreaded(CurrentFile + "_autosave");
+            }
         }
 
         public UndoManager UndoManager
@@ -384,6 +407,7 @@ namespace TEditXna.ViewModel
             {
                 _loadTimer.Reset();
                 _loadTimer.Start();
+                _saveTimer.Stop();
                 Task.Factory.StartNew(() =>
                                           {
                                               var w = nwDialog.NewWorld;
@@ -432,6 +456,7 @@ namespace TEditXna.ViewModel
                                       }
                                       _loadTimer.Stop();
                                       OnProgressChanged(this, new ProgressChangedEventArgs(0, string.Format("World loaded in {0} seconds.", _loadTimer.Elapsed.TotalSeconds)));
+                                      _saveTimer.Start();
                                   }, TaskFactoryHelper.UiTaskScheduler);
 
             }
@@ -469,7 +494,12 @@ namespace TEditXna.ViewModel
                 if (overwrite.Equals(MessageBoxResult.Cancel))
                     return;
             }
-            Task.Factory.StartNew(() => CurrentWorld.Save(CurrentFile))
+            SaveWorldThreaded(CurrentFile);
+        }
+
+        private void SaveWorldThreaded(string filename)
+        {
+            Task.Factory.StartNew(() => CurrentWorld.Save(filename))
                 .ContinueWith(t => CommandManager.InvalidateRequerySuggested(), TaskFactoryHelper.UiTaskScheduler);
         }
 
@@ -478,6 +508,7 @@ namespace TEditXna.ViewModel
         {
             _loadTimer.Reset();
             _loadTimer.Start();
+            _saveTimer.Stop();
             CurrentFile = filename;
 
             Task.Factory.StartNew(() => World.LoadWorld(filename))
@@ -498,7 +529,7 @@ namespace TEditXna.ViewModel
                                           }
                                           _loadTimer.Stop();
                                           OnProgressChanged(this, new ProgressChangedEventArgs(0, string.Format("World loaded in {0} seconds.", _loadTimer.Elapsed.TotalSeconds)));
-
+                                          _saveTimer.Start();
                                       }
                                       _loadTimer.Stop();
                                   }, TaskFactoryHelper.UiTaskScheduler);
