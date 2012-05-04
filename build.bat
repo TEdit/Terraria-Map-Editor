@@ -1,0 +1,13 @@
+@echo off
+
+rmdir /S /Q .\BIN
+mkdir .\BIN
+
+echo Building Solution...
+set msbuild="C:\Windows\Microsoft.NET\Framework\v4.0.30319\MSBuild.exe"
+%msbuild% .\TEdit.sln /fileLogger /verbosity:m /t:rebuild /property:Configuration=Release;Platform=x86 > .\BIN\build.log
+
+move ".\msbuild.log" .\BIN\
+
+echo Copying Files...
+if exist ".\TEdit3Installer\bin\Release\TEdit3Installer.msi" copy ".\TEdit3Installer\bin\Release\TEdit3Installer.msi" .\BIN\
