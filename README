@@ -4,7 +4,7 @@
 # github: http://github.com/BinaryConstruct/Terraria-Map-Editor
 # binary: http://github.com/BinaryConstruct/Terraria-Map-Editor/downloads
 
-Copyright (c) 2011 BinaryConstruct
+Copyright (c) 2011-2012 BinaryConstruct
  
 This source is subject to the Microsoft Public License.
 See http://www.microsoft.com/opensource/licenses.mspx#Ms-PL.
@@ -18,6 +18,11 @@ WARRANTIES OF MERCHANTABILITY AND/OR FITNESS FOR A PARTICULAR PURPOSE.
 For the changelog, see 
 http://github.com/BinaryConstruct/Terraria-Map-Editor/commits/master
 
+
+=========================================
+Developer Notes
+=========================================
+The installer is built using WiX 3.6
 
 
 =========================================

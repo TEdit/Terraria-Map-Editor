@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+	<Product Id="*" Name="TEdit 3" Language="1033" Version="1.0.0.0" Manufacturer="BinaryConstruct" UpgradeCode="1d9a5baf-12ad-4a55-9e83-bbfd95c7c820">
+		<Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" />
+    <Media Id="1" Cabinet="disk1.cab" EmbedCab="yes" />
+
+    <MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
+
+    <Feature Id="ProductFeature" Title="TEdit" Level="1">
+      <ComponentGroupRef Id="ProductComponents" />
+    </Feature>
+  </Product>
+
+  <Fragment>
+    <Directory Id="TARGETDIR" Name="SourceDir">
+      <Directory Id="ProgramFilesFolder">
+        <Directory Id="INSTALLFOLDER" Name="TEdit" />
+      </Directory>
+      <Directory Id="ProgramMenuFolder" Name="Programs">
+        <Directory Id="ProgramMenuDir" Name="TEdit">
+
+        </Directory>
+      </Directory>
+      <Directory Id="DesktopFolder" Name="Desktop" />
+    </Directory>
+  </Fragment>
+
+  <Fragment>
+
+  </Fragment>
+
+  <Fragment>
+
+    <Icon Id="tedit.ico" SourceFile="..\TEditXna\Images\tedit.ico" />
+    <Property Id="ARPPRODUCTICON">tedit.ico</Property>
+
+
+    <ComponentGroup Id="ProductComponents"  >
+      <Component Id="ProgramMenuDir" Guid="0519DC7A-1429-459E-819A-F01DC138001F" Directory="ProgramMenuDir">
+        <RemoveFolder Id='ProgramMenuDir' On='uninstall' />
+        <RegistryValue Root='HKCU' Key='Software\[Manufacturer]\[ProductName]' Type='string' Value='' KeyPath='yes' />
+      </Component>
+
+      <Component Id="MainExecutable" Guid="dad85bf4-cc44-4e66-9502-0a6e6b37e114" Directory="INSTALLFOLDER">
+        <File Id="TEditXna.exe" Source="..\TEditXna\bin\Release\TEditXna.exe" KeyPath='yes' />
+        <File Id="settings.xml" Source="..\TEditXna\bin\Release\settings.xml" />
+        <File Id="BCCL.dll" Source="..\LIB\BCCL.dll" />
+        <File Id="BCCL.Xna.dll" Source="..\LIB\BCCL.Xna.dll" />
+        
+        <Shortcut Id="TEditStartMenuShortcut"
+          Directory="ProgramMenuDir"
+          Name="TEdit 3"
+          Description="TEdit 3"
+          Icon="tedit.ico"
+          WorkingDirectory="INSTALLFOLDER"
+          Advertise="yes" />
+
+        <?include FileAssociations.wxi ?>
+        <!-- TODO: Insert files, registry keys, and other resources here. -->
+      </Component>
+
+
+      <!--<Component Id='HelperLibrary' Guid='54430CEE-CF2E-4782-8F06-2A2728D05582'>
+        <File Id='HelperDLL' Name='Helper.dll' DiskId='1' Source='Helper.dll' KeyPath='yes' />
+      </Component>-->
+
+      <!--<Component Id='Manual' Guid='7CB87789-EFCB-40EF-B3B5-2A57C2D4BDC8' Directory="INSTALLFOLDER">
+        <File Id='Manual' Name='manual.pdf' DiskId='1' Source="..\TEditXna\bin\Release\manual.pdf" KeyPath='yes'>
+          <Shortcut Id='startmenuManual' Directory='ProgramMenuDir' Name='Reference Manual' Advertise='yes' />
+        </File>
+      </Component>-->
+
+    </ComponentGroup>
+  </Fragment>
+
+  <Fragment>
+
+  </Fragment>
+
+  <Fragment>
+    <UIRef Id="WixUI_Mondo"/>
+
+    <Feature Id='Complete' Level='1'>
+      <ComponentRef Id='MainExecutable' />
+      <ComponentRef Id='ProgramMenuDir' />
+      <ComponentRef Id='Manual' />
+      <!--<ComponentRef Id='ProgramMenuDir' />-->
+    </Feature>
+  </Fragment>
+</Wix>
