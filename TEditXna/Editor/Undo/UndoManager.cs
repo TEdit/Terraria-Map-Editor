@@ -12,7 +12,7 @@ namespace TEditXna.Editor.Undo
 {
     public class UndoManager : ObservableObject, IDisposable
     {
-        private static readonly string Dir = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "undo");
+        private static readonly string Dir = Path.Combine(WorldViewModel.TempPath, "undo");
         private static readonly string UndoFile = Path.Combine(Dir, "undo_temp_{0}");
         private static readonly string RedoFile = Path.Combine(Dir, "redo_temp_{0}");
 
@@ -27,6 +27,7 @@ namespace TEditXna.Editor.Undo
             {
                 Directory.CreateDirectory(Dir);
             }
+
             _wvm = viewModel;
         }
 

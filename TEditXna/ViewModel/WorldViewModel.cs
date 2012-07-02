@@ -82,6 +82,10 @@ namespace TEditXna.ViewModel
         private Sign _selectedSign;
         private int _selectedTabIndex;
 
+        public static string TempPath
+        {
+            get { return Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "TEdit"); }
+        }
 
         public int SelectedTabIndex
         {
@@ -161,6 +165,15 @@ namespace TEditXna.ViewModel
             set { Set("SelectedPoint", ref _selectedPoint, value); }
         }
 
+        static WorldViewModel()
+        {
+            if (!Directory.Exists(TempPath))
+            {
+                Directory.CreateDirectory(TempPath);
+            }
+        }
+
+
         public WorldViewModel()
         {
             _undoManager = new UndoManager(this);
@@ -196,9 +209,12 @@ namespace TEditXna.ViewModel
 
         private void SaveTimerTick(object sender, ElapsedEventArgs e)
         {
-            if (!string.IsNullOrWhiteSpace(_currentFile) && IsAutoSaveEnabled)
+            if (IsAutoSaveEnabled)
             {
-                SaveWorldThreaded(Path.GetFileNameWithoutExtension(CurrentFile + ".autosave"));
+                if (!string.IsNullOrWhiteSpace(CurrentFile))
+                    SaveWorldThreaded(Path.Combine(TempPath, Path.GetFileNameWithoutExtension(CurrentFile) + ".autosave"));
+                else
+                    SaveWorldThreaded(Path.Combine(TempPath, "newworld.autosave"));
             }
         }
 
