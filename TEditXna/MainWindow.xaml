@@ -41,6 +41,8 @@
                     <MenuItem Header="Save" Icon="{StaticResource TB_SaveIcon}" Command="{Binding SaveCommand}"/>
                     <MenuItem Header="Save As" Icon="{StaticResource TB_SaveAsIcon}" Command="{Binding SaveAsCommand}" />
                     <Separator Margin="1"/>
+                    <MenuItem Header="Enable Autosave" IsCheckable="True" IsChecked="{Binding IsAutoSaveEnabled}" />
+                    <Separator Margin="1"/>
                     <MenuItem Header="Exit" Command="{Binding CloseApplicationCommand}"/>
                 </MenuItem>
                 <MenuItem Header="Edit">

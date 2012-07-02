@@ -53,6 +53,7 @@ namespace TEditXna.ViewModel
         public bool[] CheckTiles;
         private bool _showGrid = true;
         private MorphBiome _morphBiomeTarget;
+        private bool _isAutoSaveEnabled = true;
 
         private ICollectionView _spritesView;
         public ICollectionView SpritesView
@@ -115,6 +116,12 @@ namespace TEditXna.ViewModel
         {
             get { return _morphBiomeTarget; }
             set { Set("MorphBiomeTarget", ref _morphBiomeTarget, value); }
+        }
+
+        public bool IsAutoSaveEnabled
+        {
+            get { return _isAutoSaveEnabled; }
+            set { Set("IsAutoSaveEnabled", ref _isAutoSaveEnabled, value); }
         }
 
         public bool ShowGrid
@@ -189,9 +196,9 @@ namespace TEditXna.ViewModel
 
         private void SaveTimerTick(object sender, ElapsedEventArgs e)
         {
-            if (!string.IsNullOrWhiteSpace(_currentFile))
+            if (!string.IsNullOrWhiteSpace(_currentFile) && IsAutoSaveEnabled)
             {
-                SaveWorldThreaded(CurrentFile + "_autosave");
+                SaveWorldThreaded(Path.GetFileNameWithoutExtension(CurrentFile + ".autosave"));
             }
         }
 
