@@ -41,6 +41,15 @@
             <TextBlock Text="Moon Phase" HorizontalAlignment="Right" />
             <DockPanel>
                 <TextBlock Text="{Binding CurrentWorld.MoonPhase}" Width="30" DockPanel.Dock="Right" />
+                <!--<TextBox Width="30" DockPanel.Dock="Right" Height="16">
+                    <TextBox.Text>
+                        <Binding Path="CurrentWorld.MoonPhase" Mode="TwoWay" UpdateSourceTrigger="PropertyChanged">
+                            <Binding.ValidationRules>
+                                <bccl:IntegerRangeValidationRule Min="0" Max="7" />
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </TextBox.Text>
+                </TextBox>-->
                 <Slider Value="{Binding CurrentWorld.MoonPhase, Mode=TwoWay}" VerticalAlignment="Center" Minimum="0" Maximum="7" />
             </DockPanel>
             <Separator Grid.ColumnSpan="2" />
