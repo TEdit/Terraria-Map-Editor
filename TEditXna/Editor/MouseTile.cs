@@ -49,8 +49,17 @@ namespace TEditXna.Editor
             set
             {
                 Set("Tile", ref _tile, value);
-                TileName = _tile.IsActive ? string.Format("{0} ({1})", World.TileProperties[_tile.Type].Name, _tile.Type) : "[empty]";
-                WallName = string.Format("{0} ({1})", World.WallProperties[_tile.Wall].Name, _tile.Wall);
+
+                if (World.TileProperties.Count > _tile.Type)
+                    TileName = _tile.IsActive ? string.Format("{0} ({1})", World.TileProperties[_tile.Type].Name, _tile.Type) : "[empty]";
+                else
+                    TileName = string.Format("INVALID TILE ({0})", _tile.Type);
+
+                if (World.WallProperties.Count > _tile.Wall)
+                    WallName = string.Format("{0} ({1})", World.WallProperties[_tile.Wall].Name, _tile.Wall);
+                else
+                    WallName = string.Format("INVALID WALL ({0})", _tile.Wall);
+
                 UV = new Vector2Short(_tile.U, _tile.V);
                 if (_tile.Liquid > 0)
                     TileExtras = _tile.IsLava ? "Lava: " + _tile.Liquid : "Water: " + _tile.Liquid;
