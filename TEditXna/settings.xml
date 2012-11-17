@@ -69,33 +69,57 @@ Documentation moved to the end of this file.
         <Frame UV="0,0" Name="Torch" Anchor="Bottom" Variety="On" />
         <Frame UV="22,0" Name="Torch" Anchor="Left" Variety="On" />
         <Frame UV="44,0" Name="Torch" Anchor="Right" Variety="On" />
-        <!--<Frame UV="54,0" Name="Torch" Anchor="Top" Variety="Off" />
-        <Frame UV="72,0" Name="Torch" Anchor="Left" Variety="Off" />
-        <Frame UV="90,0" Name="Torch" Anchor="Right" Variety="Off" />-->
+        <Frame UV="66,0" Name="Torch" Anchor="Bottom" Variety="Off" />
+        <Frame UV="88,0" Name="Torch" Anchor="Left" Variety="Off" />
+        <Frame UV="110,0" Name="Torch" Anchor="Right" Variety="Off" />
         <Frame UV="0,22" Name="Blue" Anchor="Bottom" Variety="On" />
         <Frame UV="22,22" Name="Blue" Anchor="Left" Variety="On" />
         <Frame UV="44,22" Name="Blue" Anchor="Right" Variety="On" />
+        <Frame UV="66,22" Name="Blue" Anchor="Bottom" Variety="Off" />
+        <Frame UV="88,22" Name="Blue" Anchor="Left" Variety="Off" />
+        <Frame UV="110,22" Name="Blue" Anchor="Right" Variety="Off" />
         <Frame UV="0,44" Name="Red" Anchor="Bottom" Variety="On" />
         <Frame UV="22,44" Name="Red" Anchor="Left" Variety="On" />
-        <Frame UV="44,44" Name="Blue" Anchor="Right" Variety="On" />
+        <Frame UV="44,44" Name="Red" Anchor="Right" Variety="On" />
+        <Frame UV="66,44" Name="Red" Anchor="Bottom" Variety="Off" />
+        <Frame UV="88,44" Name="Red" Anchor="Left" Variety="Off" />
+        <Frame UV="110,44" Name="Red" Anchor="Right" Variety="Off" />
         <Frame UV="0,66" Name="Green" Anchor="Bottom" Variety="On" />
         <Frame UV="22,66" Name="Green" Anchor="Left" Variety="On" />
         <Frame UV="44,66" Name="Green" Anchor="Right" Variety="On" />
+        <Frame UV="66,66" Name="Green" Anchor="Bottom" Variety="Off" />
+        <Frame UV="88,66" Name="Green" Anchor="Left" Variety="Off" />
+        <Frame UV="110,66" Name="Green" Anchor="Right" Variety="Off" />
         <Frame UV="0,88" Name="Purple" Anchor="Bottom" Variety="On" />
         <Frame UV="22,88" Name="Purple" Anchor="Left" Variety="On" />
         <Frame UV="44,88" Name="Purple" Anchor="Right" Variety="On" />
+        <Frame UV="66,88" Name="Purple" Anchor="Bottom" Variety="Off" />
+        <Frame UV="88,88" Name="Purple" Anchor="Left" Variety="Off" />
+        <Frame UV="110,88" Name="Purple" Anchor="Right" Variety="Off" />
         <Frame UV="0,110" Name="White" Anchor="Bottom" Variety="On" />
         <Frame UV="22,110" Name="White" Anchor="Left" Variety="On" />
         <Frame UV="44,110" Name="White" Anchor="Right" Variety="On" />
+        <Frame UV="66,110" Name="White" Anchor="Bottom" Variety="Off" />
+        <Frame UV="88,110" Name="White" Anchor="Left" Variety="Off" />
+        <Frame UV="110,110" Name="White" Anchor="Right" Variety="Off" />
         <Frame UV="0,132" Name="Yellow" Anchor="Bottom" Variety="On" />
         <Frame UV="22,132" Name="Yellow" Anchor="Left" Variety="On" />
         <Frame UV="44,132" Name="Yellow" Anchor="Right" Variety="On" />
+        <Frame UV="66,132" Name="Yellow" Anchor="Bottom" Variety="Off" />
+        <Frame UV="88,132" Name="Yellow" Anchor="Left" Variety="Off" />
+        <Frame UV="110,132" Name="Yellow" Anchor="Right" Variety="Off" />
         <Frame UV="0,154" Name="Demon" Anchor="Bottom" Variety="On" />
         <Frame UV="22,154" Name="Demon" Anchor="Left" Variety="On" />
         <Frame UV="44,154" Name="Demon" Anchor="Right" Variety="On" />
+        <Frame UV="66,154" Name="Demon" Anchor="Bottom" Variety="Off" />
+        <Frame UV="88,154" Name="Demon" Anchor="Left" Variety="Off" />
+        <Frame UV="110,154" Name="Demon" Anchor="Right" Variety="Off" />
         <Frame UV="0,176" Name="Cursed" Anchor="Bottom" Variety="On" />
         <Frame UV="22,176" Name="Cursed" Anchor="Left" Variety="On" />
         <Frame UV="44,176" Name="Cursed" Anchor="Right" Variety="On" />
+        <Frame UV="66,176" Name="Cursed" Anchor="Bottom" Variety="Off" />
+        <Frame UV="88,176" Name="Cursed" Anchor="Left" Variety="Off" />
+        <Frame UV="110,176" Name="Cursed" Anchor="Right" Variety="Off" />
       </Frames>
     </Tile>
     <Tile Id="5" Name="Tree" Color="#FF634631" Framed="true" TextureGrid="20,20">
@@ -621,9 +645,42 @@ Documentation moved to the end of this file.
     </Tile>
     <Tile Id="129" Name="Crystal Shard" Color="#FF004979" Light="true" Framed="true">
       <Frames>
-        <Frame UV="0,0" Variety="Blue" Anchor="Bottom" />
-        <Frame UV="18,0" Variety="Pink" Anchor="Bottom" />
-        <Frame UV="36,0" Variety="Purple" Anchor="Bottom" />
+        <Frame UV="0,0" Variety="Large Blue" Anchor="Bottom" />
+        <Frame UV="0,18" Variety="Large Blue" Anchor="Top" />
+        <Frame UV="0,36" Variety="Large Blue" Anchor="Right" />
+        <Frame UV="0,54" Variety="Large Blue" Anchor="Left" />
+        <Frame UV="108,0" Variety="Medium Blue" Anchor="Bottom" />
+        <Frame UV="108,18" Variety="Medium Blue" Anchor="Top" />
+        <Frame UV="108,36" Variety="Medium Blue" Anchor="Right" />
+        <Frame UV="108,54" Variety="Medium Blue" Anchor="Left" />
+        <Frame UV="54,0" Variety="Small Blue" Anchor="Bottom" />
+        <Frame UV="54,18" Variety="Small Blue" Anchor="Top" />
+        <Frame UV="54,36" Variety="Small Blue" Anchor="Right" />
+        <Frame UV="54,54" Variety="Small Blue" Anchor="Left" />
+        <Frame UV="18,0" Variety="Large Pink" Anchor="Bottom" />
+        <Frame UV="18,18" Variety="Large Pink" Anchor="Top" />
+        <Frame UV="18,36" Variety="Large Pink" Anchor="Right" />
+        <Frame UV="18,54" Variety="Large Pink" Anchor="Left" />
+        <Frame UV="126,0" Variety="Medium Pink" Anchor="Bottom" />
+        <Frame UV="126,18" Variety="Medium Pink" Anchor="Top" />
+        <Frame UV="126,36" Variety="Medium Pink" Anchor="Right" />
+        <Frame UV="126,54" Variety="Medium Pink" Anchor="Left" />
+        <Frame UV="72,0" Variety="Small Pink" Anchor="Bottom" />
+        <Frame UV="72,18" Variety="Small Pink" Anchor="Top" />
+        <Frame UV="72,36" Variety="Small Pink" Anchor="Right" />
+        <Frame UV="72,54" Variety="Small Pink" Anchor="Left" />
+        <Frame UV="36,0" Variety="Large Purple" Anchor="Bottom" />
+        <Frame UV="36,18" Variety="Large Purple" Anchor="Top" />
+        <Frame UV="36,36" Variety="Large Purple" Anchor="Right" />
+        <Frame UV="36,54" Variety="Large Purple" Anchor="Left" />
+        <Frame UV="144,0" Variety="Medium Purple" Anchor="Bottom" />
+        <Frame UV="144,18" Variety="Medium Purple" Anchor="Top" />
+        <Frame UV="144,36" Variety="Medium Purple" Anchor="Right" />
+        <Frame UV="144,54" Variety="Medium Purple" Anchor="Left" />
+        <Frame UV="90,0" Variety="Small Purple" Anchor="Bottom" />
+        <Frame UV="90,18" Variety="Small Purple" Anchor="Top" />
+        <Frame UV="90,36" Variety="Small Purple" Anchor="Right" />
+        <Frame UV="90,54" Variety="Small Purple" Anchor="Left" />
       </Frames>
     </Tile>
     <Tile Id="130" Name="Active Stone Block" Color="#FFA5A5A5" Solid="true" Blends="true" MergeWith="0" Stone="true" />
@@ -640,9 +697,20 @@ Documentation moved to the end of this file.
       <Frames>
         <Frame UV="0,0" Variety="Red" />
         <Frame UV="0,18" Variety="Green" />
+        <Frame UV="0,36" Variety="Gray" />
+        <Frame UV="0,54" Variety="Brown" />
       </Frames>
     </Tile>
-    <Tile Id="136" Name="Switch" Color="#FFCCC0C0" Framed="true" />
+    <Tile Id="136" Name="Switch" Color="#FFCCC0C0" Framed="true">
+      <Frames>
+        <Frame UV="0,0" Name="Switch" Anchor="Bottom" Variety="Setting One" />
+        <Frame UV="18,18" Name="Switch" Anchor="Left" Variety="Setting One" />
+        <Frame UV="36,0" Name="Switch" Anchor="Right" Variety="Setting One" />
+        <Frame UV="0,18" Name="Switch" Anchor="Bottom" Variety="Setting Two" />
+        <Frame UV="18,0" Name="Switch" Anchor="Left" Variety="Setting Two" />
+        <Frame UV="36,18" Name="Switch" Anchor="Right" Variety="Setting Two" />
+      </Frames>
+    </Tile>
     <Tile Id="137" Name="Dart Trap" Color="#FF8C8C8C" Solid="true" Framed="true">
       <Frames>
         <Frame UV="0,0" Anchor="Left" />
@@ -691,20 +759,44 @@ Documentation moved to the end of this file.
     <Tile Id="143" Name="Outlet Pump" Color="#FFC90303" Framed="true" Size="2,2" />
     <Tile Id="144" Name="Timer" Color="#FFC90303" Framed="true">
       <Frames>
-        <Frame UV="0,0" Variety="1 Second" />
-        <Frame UV="18,0" Variety="3 Second" />
-        <Frame UV="36,0" Variety="5 Second" />
+        <Frame UV="0,0" Variety="Inactive 1 Second" />
+        <Frame UV="0,18" Variety="Active 1 Second" />
+        <Frame UV="18,0" Variety="Inactive 3 Second" />
+        <Frame UV="18,18" Variety="Active 3 Second" />
+        <Frame UV="36,0" Variety="Inactive 5 Second" />
+        <Frame UV="36,18" Variety="Active 5 Second" />
       </Frames>
     </Tile>
     <Tile Id="145" Name="Candy Cane Block" Color="#FFFF0000" Solid="true" Blends="true" MergeWith="0" />
     <Tile Id="146" Name="Green Candy Cane Block" Color="#FF00FF00" Solid="true" Blends="true" MergeWith="0" />
     <Tile Id="147" Name="Snow Block" Color="#FFEEEEFF" Solid="true" Blends="true" MergeWith="0" />
     <Tile Id="148" Name="Snow Brick" Color="#FFCCCCEE" Solid="true" Blends="true" MergeWith="0" />
-    <Tile Id="149" Name="XMas Light" Color="#FFFF0000" Light="true" Framed="true" Size="1,1">
+    <Tile Id="149" Name="Christmas Light" Color="#FFFF0000" Light="true" Framed="true" Size="1,1">
       <Frames>
-        <Frame UV="0,0" Name="Blue Light" Variety="Blue" />
-        <Frame UV="18,0" Name="Red Light" Variety="Red" />
-        <Frame UV="36,0" Name="Green Light" Variety="Green" />
+        <Frame UV="0,0" Name="Blue Light" Anchor="Bottom" Variety="On" />
+        <Frame UV="0,18" Name="Blue Light" Anchor="Top" Variety="On" />
+        <Frame UV="0,36" Name="Blue Light" Anchor="Right" Variety="On" />
+        <Frame UV="0,54" Name="Blue Light" Anchor="Left" Variety="On" />
+        <Frame UV="54,0" Name="Blue Light" Anchor="Bottom" Variety="Off" />
+        <Frame UV="54,18" Name="Blue Light" Anchor="Top" Variety="Off" />
+        <Frame UV="54,36" Name="Blue Light" Anchor="Right" Variety="Off" />
+        <Frame UV="54,54" Name="Blue Light" Anchor="Left" Variety="Off" />
+        <Frame UV="18,0" Name="Red Light" Anchor="Bottom" Variety="On" />
+        <Frame UV="18,18" Name="Red Light" Anchor="Top" Variety="On" />
+        <Frame UV="18,36" Name="Red Light" Anchor="Right" Variety="On" />
+        <Frame UV="18,54" Name="Red Light" Anchor="Left" Variety="On" />
+        <Frame UV="72,0" Name="Red Light" Anchor="Bottom" Variety="Off" />
+        <Frame UV="72,18" Name="Red Light" Anchor="Top" Variety="Off" />
+        <Frame UV="72,36" Name="Red Light" Anchor="Right" Variety="Off" />
+        <Frame UV="72,54" Name="Red Light" Anchor="Left" Variety="Off" />
+        <Frame UV="36,0" Name="Green Light" Anchor="Bottom" Variety="On" />
+        <Frame UV="36,18" Name="Green Light" Anchor="Top" Variety="On" />
+        <Frame UV="36,36" Name="Green Light" Anchor="Right" Variety="On" />
+        <Frame UV="36,54" Name="Green Light" Anchor="Left" Variety="On" />
+        <Frame UV="90,0" Name="Green Light" Anchor="Bottom" Variety="Off" />
+        <Frame UV="90,18" Name="Green Light" Anchor="Top" Variety="Off" />
+        <Frame UV="90,36" Name="Green Light" Anchor="Right" Variety="Off" />
+        <Frame UV="90,54" Name="Green Light" Anchor="Left" Variety="Off" />
       </Frames>
     </Tile>
   </Tiles>
