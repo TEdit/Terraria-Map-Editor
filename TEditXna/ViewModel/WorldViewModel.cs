@@ -78,6 +78,8 @@ namespace TEditXna.ViewModel
             }
         }
 
+        
+
         private Chest _selectedChest;
         private Sign _selectedSign;
         private int _selectedTabIndex;

@@ -229,6 +229,8 @@ namespace TEditXna.ViewModel
                     OnProgressChanged(this, new ProgressChangedEventArgs(y.ProgressPercentage(CurrentWorld.TilesHigh), "Calculating Colors..."));
                     for (int x = 0; x < CurrentWorld.TilesWide; x++)
                     {
+                        if (y > CurrentWorld.TilesHigh || x > CurrentWorld.TilesWide)
+                            throw new IndexOutOfRangeException(string.Format("Error with world format tile [{0},{1}] is not a valid location. World file version: {2}", x, y, CurrentWorld.Version));
                         pixels.SetPixelColor(x, y, Render.PixelMap.GetTileColor(CurrentWorld.Tiles[x, y], curBgColor, _showWalls, _showTiles, _showLiquid, _showWires));
                     }
                 }

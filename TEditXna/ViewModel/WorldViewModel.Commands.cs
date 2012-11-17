@@ -158,6 +158,17 @@ namespace TEditXna.ViewModel
             }
         }
 
+        private ICommand _updateCommand;
+        public ICommand UpdateCommand
+        {
+            get { return _updateCommand ?? (_updateCommand = new RelayCommand(Update)); }
+        }
+
+        public void Update()
+        {
+            string url = "http://binaryconstruct.com/games/tedit";
+            System.Diagnostics.Process.Start(url);
+        }
 
         public ICommand SaveChestCommand
         {

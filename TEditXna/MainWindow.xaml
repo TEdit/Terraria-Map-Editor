@@ -72,8 +72,8 @@
                 <MenuItem Header="Help">
                     <MenuItem Header="Wiki" Icon="{StaticResource TB_HelpIcon}"/>
                     <Separator Margin="1" />
-                    <MenuItem Header="Update" Icon="{StaticResource TB_UpdateIcon}"/>
-                    <MenuItem Header="Download New XML Data" Icon="{StaticResource TB_UpdateXmlIcon}"/>
+                    <MenuItem Header="Update" Icon="{StaticResource TB_UpdateIcon}" Command="{Binding UpdateCommand}" />
+                    <MenuItem Header="Download New XML Data" Icon="{StaticResource TB_UpdateXmlIcon}"  Command="{Binding UpdateCommand}" />
                     <Separator Margin="1"/>
                     <MenuItem Header="About" />
                 </MenuItem>
