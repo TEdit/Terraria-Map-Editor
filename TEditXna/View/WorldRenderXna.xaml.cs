@@ -157,8 +157,9 @@ namespace TEditXna.View
         {
             // Abort rendering if in design mode or if gameTimer is already running
             if (Debugging.IsInDesignMode || _gameTimer.IsRunning)
+            {
                 return;
-
+            }
             InitializeGraphicsComponents(e);
             if (_textureDictionary.Valid)
                 LoadTerrariaTextures(e);

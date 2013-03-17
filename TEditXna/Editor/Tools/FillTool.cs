@@ -98,7 +98,6 @@ namespace TEditXna.Editor.Tools
                     break;
                 case PaintMode.Wire:
                     return false;
-                    break;
                 case PaintMode.Liquid:
                     if ((originTile.Liquid > 0 != nextTile.Liquid > 0) ||
                         originTile.IsLava != nextTile.IsLava ||

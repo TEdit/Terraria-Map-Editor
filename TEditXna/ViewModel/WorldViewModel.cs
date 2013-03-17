@@ -418,8 +418,8 @@ namespace TEditXna.ViewModel
         private void OpenWorld()
         {
             var ofd = new OpenFileDialog();
-            ofd.Filter = "Terrarial World File|*.wld|Terraria World Backup|*.bak|TEdit Backup File|*.TEdit";
-            ofd.DefaultExt = "Terrarial World File|*.wld";
+            ofd.Filter = "Terraria World File|*.wld|Terraria World Backup|*.bak|TEdit Backup File|*.TEdit";
+            ofd.DefaultExt = "Terraria World File|*.wld";
             ofd.Title = "Load Terraria World File";
             ofd.InitialDirectory = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), @"My Games\Terraria\Worlds");
             ofd.Multiselect = false;

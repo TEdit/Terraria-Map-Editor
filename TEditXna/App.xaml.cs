@@ -63,6 +63,7 @@ namespace TEditXna
                 {
                     // For some reason, this couldn't be read as a URI.
                     // Do what you must...
+                    ErrorLogging.LogException(ex);
                 }
             }
 
