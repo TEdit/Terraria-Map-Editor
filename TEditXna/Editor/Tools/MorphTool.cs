@@ -36,79 +36,152 @@ namespace TEditXna.Editor.Tools
             Biomes.Add(new BiomeData
             {
                 Biome = MorphBiome.Grass,
-                DirtToStone = false,
+                Dirt = 0,
                 Stone = 1,
                 Grass = 2,
-                Plant1 = 3,
-                Plant2 = 73,
+                Plant = 73,
+                Tree = 5,
                 Sand = 53,
-                Wall = 0,
-                Vines = 52
+                Wall = 1,
+                Vines = 52,
+                DirtToSand = false,
+                DirtToStone = false,
+                SandToDirt = true,
+                StoneToDirt = false,
             });
 
             Biomes.Add(new BiomeData
             {
                 Biome = MorphBiome.Corruption,
-                DirtToStone = false,
+                Dirt = 0,
                 Stone = 25,
                 Grass = 23,
-                Plant1 = 24,
-                Plant2 = 73,
+                Plant = 24,
+                Tree = 5,
                 Sand = 112,
                 Wall = 3,
-                Vines = 32
+                Vines = 32,
+                DirtToSand = false,
+                DirtToStone = false,
+                SandToDirt = true,
+                StoneToDirt = false,
             });
 
             Biomes.Add(new BiomeData
             {
                 Biome = MorphBiome.Jungle,
-                DirtToStone = true,
+                Dirt = 0,
                 Stone = 59,
                 Grass = 60,
-                Plant1 = 61,
-                Plant2 = 74,
+                Plant = 61,
+                Tree = 5,
                 Sand = 53,
                 Wall = 15,
-                Vines = 62
+                Vines = 62,
+                DirtToSand = false,
+                DirtToStone = false,
+                SandToDirt = true,
+                StoneToDirt = false,
             });
 
             Biomes.Add(new BiomeData
             {
                 Biome = MorphBiome.Hallowed,
-                DirtToStone = false,
+                Dirt = 0,
                 Stone = 117,
                 Grass = 109,
-                Plant1 = 110,
-                Plant2 = 113,
+                Plant = 110,
+                Tree = 5,
                 Sand = 116,
-                Wall = 0,
-                Vines = 52
+                Wall = 28,
+                Vines = 52,
+                DirtToSand = false,
+                DirtToStone = false,
+                SandToDirt = true,
+                StoneToDirt = false,
             });
 
             Biomes.Add(new BiomeData
             {
                 Biome = MorphBiome.Snow,
-                DirtToStone = true,
-                Stone = 147,
+                Dirt = 147,
+                Stone = 1,
                 Grass = 147,
-                Plant1 = 3,
-                Plant2 = 73,
+                Plant = 3,
+                Tree = 5,
                 Sand = 147,
                 Wall = 0,
-                Vines = 52
+                Vines = 52,
+                DirtToSand = false,
+                DirtToStone = false,
+                SandToDirt = true,
+                StoneToDirt = false,
             });
 
             Biomes.Add(new BiomeData
             {
                 Biome = MorphBiome.Desert,
-                DirtToStone = true,
-                Stone = 53,
+                Dirt = 53,
+                Stone = 1,
                 Grass = 53,
-                Plant1 = 3,
-                Plant2 = 73,
+                Plant = 83,
+                Tree = 80,
                 Sand = 53,
                 Wall = 0,
-                Vines = 52
+                Vines = 52,
+                DirtToSand = false,
+                DirtToStone = false,
+                SandToDirt = true,
+                StoneToDirt = false,
+            });
+
+            Biomes.Add(new BiomeData
+            {
+                Biome = MorphBiome.Corrupt_Desert,
+                Dirt = 112,
+                Stone = 25,
+                Grass = 112,
+                Plant = 3,
+                Tree = 80,
+                Sand = 112,
+                Wall = 3,
+                Vines = 32,
+                DirtToSand = true,
+                DirtToStone = false,
+                SandToDirt = false,
+                StoneToDirt = false,
+            });
+            Biomes.Add(new BiomeData
+            {
+                Biome = MorphBiome.Hallowed_Desert,
+                Dirt = 0,
+                Stone = 117,
+                Grass = 109,
+                Plant = 3,
+                Tree = 80,
+                Sand = 116,
+                Wall = 28,
+                Vines = 52,
+                DirtToSand = true,
+                DirtToStone = false,
+                SandToDirt = false,
+                StoneToDirt = false,
+            });
+            Biomes.Add(new BiomeData
+            {
+                Biome = MorphBiome.Hell,
+                Dirt = 0,
+                Stone = 57,
+                Grass = 0,
+                Plant = 82,
+                Tree = 0,
+                Sand = 57,
+                Wall = 0,
+                Vines = 0,
+                DirtToSand = false,
+                DirtToStone = false,
+                SandToDirt = false,
+                StoneToDirt = false,
             });
         }
 
@@ -227,105 +300,62 @@ namespace TEditXna.Editor.Tools
 
             if (curtile.IsActive)
             {
-                if (curtile.Type == 0 && _currentBiome.DirtToStone)
-                    curtile.Type = _currentBiome.Stone;
-                else
-                {
                     foreach (var biome in Biomes)
                     {
-                        if (curtile.Type == biome.Stone)
-                        {
-                            if (!_currentBiome.DirtToStone && (p.Y < _dirtLayer))
-                                curtile.Type = 0;
-                            else
-                                curtile.Type = _currentBiome.Stone;
-                        }
-                        else if (curtile.Type == biome.Grass)
-                        {
-                            if (!_currentBiome.DirtToStone && (p.Y < _rockLayer))
+                        if (curtile.Type == biome.Stone || ((curtile.Type == biome.Dirt || curtile.Type == biome.Grass) && _currentBiome.DirtToStone))
+                             curtile.Type = _currentBiome.Stone;
+                        else if (curtile.Type == biome.Dirt || (curtile.Type == biome.Sand && _currentBiome.SandToDirt) || (curtile.Type == biome.Stone && _currentBiome.StoneToDirt))
+                            if (BordersAir(p))
                                 curtile.Type = _currentBiome.Grass;
                             else
-                                curtile.Type = _currentBiome.Stone;
-                        }
-                        else if (curtile.Type == biome.Sand)
+                                curtile.Type = _currentBiome.Dirt;
+                        else if (curtile.Type == biome.Grass)
+                            curtile.Type = _currentBiome.Grass;
+                        else if (curtile.Type == biome.Sand || ((curtile.Type == biome.Dirt || curtile.Type == biome.Grass) && _currentBiome.DirtToSand))
                             curtile.Type = _currentBiome.Sand;
-                        else if (curtile.Type == biome.Stone)
-                            curtile.Type = _currentBiome.Stone;
                         else if (curtile.Type == biome.Vines)
                             curtile.Type = _currentBiome.Vines;
-                        else if (curtile.Type == biome.Plant1 || curtile.Type == biome.Plant2)
-                            curtile.IsActive = false;
+                        else if (curtile.Type == biome.Plant)
+                        {
+                            curtile.Type = _currentBiome.Plant;
+                        }
+                        else if (curtile.Type == biome.Tree)
+                        {
+                            curtile.Type = _currentBiome.Tree;
+                        }
                     }
-                }
 
-                // Add grass where appropriate
-                if ((curtile.Type == 0 && p.Y < _rockLayer) || (curtile.Type == _currentBiome.Stone && _currentBiome.DirtToStone))
-                {
-                    if (BordersAir(p))
-                    {
-                        curtile.Type = _currentBiome.Grass;
-                    }
-                }
-
-            }
-
-            
-
-            if (p.Y < _dirtLayer)
-            {
-                if (curtile.Wall != 0)
-                {
-                    if ((Biomes.Any(x => x.Wall == curtile.Wall) || curtile.Wall == 2) || _currentBiome.DirtToStone)
-                    {
-                        curtile.Wall = _currentBiome.Wall == 0 ? (byte)2 : _currentBiome.Wall;
-                    }
-                }
-            }
-            else if (p.Y < _wvm.CurrentWorld.TilesHigh - 182)
-            {
-                if (_currentBiome.DirtToStone)
-                {
-                    curtile.Wall = _currentBiome.Wall;
-                }
-                else if (curtile.Wall != 0)
-                {
-                    if (Biomes.Any(x => x.Wall == curtile.Wall))
-                    {
-                        curtile.Wall = _currentBiome.Wall;
-                    }
-                }
             }
         }
 
         private bool BordersAir(Vector2Int32 p)
         {
-            int x1 = p.X - 1;
-            if (x1 < 0) x1 = 0;
-            int x2 = p.X + 1;
-            if (x2 >= _wvm.CurrentWorld.TilesWide) x2 = p.X;
-            int y1 = p.Y - 1;
-            if (y1 < 0) y1 = 0;
-            int y2 = p.Y + 1;
-            if (y2 >= _wvm.CurrentWorld.TilesHigh) y2 = p.X;
-
-            if (!_wvm.CurrentWorld.Tiles[p.X, y1].IsActive || !_wvm.CurrentWorld.Tiles[p.X, y2].IsActive ||
-                !_wvm.CurrentWorld.Tiles[x1, p.Y].IsActive || !_wvm.CurrentWorld.Tiles[x2, p.Y].IsActive)
-                return true;
+            for (int y = -1; y <= 1; y++)
+            {
+                for (int x = -1; x <= 1; x++)
+                {
+                    if (!_wvm.CurrentWorld.Tiles[p.X + x, p.Y + y].IsActive)
+                        return true;
+                }
+            }
             return false;
         }
 
         private class BiomeData
         {
             public MorphBiome Biome;
-            public byte Plant1;
-            public byte Plant2;
+            public byte Tree;
+            public byte Plant;
             public byte Stone;
             public byte Grass;
             public byte Sand;
             public byte Wall;
             public byte Vines;
+            public byte Dirt;
+            public bool DirtToSand;
             public bool DirtToStone;
-            public bool IsOverwriteAll;
+            public bool SandToDirt;
+            public bool StoneToDirt;
         }
     }
 }

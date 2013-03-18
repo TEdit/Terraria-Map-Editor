@@ -160,10 +160,6 @@ namespace TEditXNA.Terraria
                                         Tile = (byte)curTile.Id,
                                         TileName = curTile.Name
                                     });
-                    if (curTile.FrameSize.X == 0 && curTile.FrameSize.Y == 0)
-                    {
-                        int z = 0;
-                    }
                 }
                 if (curTile.Frames.Count == 0 && curTile.IsFramed)
                 {
