@@ -42,10 +42,27 @@ namespace TEditXna.Editor.Tools
                 Plant = 73,
                 Tree = 5,
                 Sand = 53,
-                Wall = 1,
+                Wall = 2,
                 Vines = 52,
                 DirtToSand = false,
                 DirtToStone = false,
+                SandToDirt = true,
+                StoneToDirt = false,
+            });
+
+            Biomes.Add(new BiomeData
+            {
+                Biome = MorphBiome.Underground,
+                Dirt = 0,
+                Stone = 1,
+                Grass = 2,
+                Plant = 73,
+                Tree = 5,
+                Sand = 53,
+                Wall = 0,
+                Vines = 52,
+                DirtToSand = false,
+                DirtToStone = true,
                 SandToDirt = true,
                 StoneToDirt = false,
             });
@@ -70,8 +87,8 @@ namespace TEditXna.Editor.Tools
             Biomes.Add(new BiomeData
             {
                 Biome = MorphBiome.Jungle,
-                Dirt = 0,
-                Stone = 59,
+                Dirt = 59,
+                Stone = 1,
                 Grass = 60,
                 Plant = 61,
                 Tree = 5,
@@ -82,6 +99,23 @@ namespace TEditXna.Editor.Tools
                 DirtToStone = false,
                 SandToDirt = true,
                 StoneToDirt = false,
+            });
+
+            Biomes.Add(new BiomeData
+            {
+                Biome = MorphBiome.Underground_Jungle,
+                Dirt = 59,
+                Stone = 1,
+                Grass = 60,
+                Plant = 61,
+                Tree = 5,
+                Sand = 53,
+                Wall = 15,
+                Vines = 62,
+                DirtToSand = false,
+                DirtToStone = false,
+                SandToDirt = true,
+                StoneToDirt = true,
             });
 
             Biomes.Add(new BiomeData
@@ -121,7 +155,7 @@ namespace TEditXna.Editor.Tools
             Biomes.Add(new BiomeData
             {
                 Biome = MorphBiome.Desert,
-                Dirt = 53,
+                Dirt = 0,
                 Stone = 1,
                 Grass = 53,
                 Plant = 83,
@@ -129,7 +163,7 @@ namespace TEditXna.Editor.Tools
                 Sand = 53,
                 Wall = 0,
                 Vines = 52,
-                DirtToSand = false,
+                DirtToSand = true,
                 DirtToStone = false,
                 SandToDirt = true,
                 StoneToDirt = false,
@@ -179,7 +213,7 @@ namespace TEditXna.Editor.Tools
                 Wall = 0,
                 Vines = 0,
                 DirtToSand = false,
-                DirtToStone = false,
+                DirtToStone = true,
                 SandToDirt = false,
                 StoneToDirt = false,
             });
@@ -304,7 +338,7 @@ namespace TEditXna.Editor.Tools
                     {
                         if (curtile.Type == biome.Stone || ((curtile.Type == biome.Dirt || curtile.Type == biome.Grass) && _currentBiome.DirtToStone))
                              curtile.Type = _currentBiome.Stone;
-                        else if (curtile.Type == biome.Dirt || (curtile.Type == biome.Sand && _currentBiome.SandToDirt) || (curtile.Type == biome.Stone && _currentBiome.StoneToDirt))
+                        else if (curtile.Type == biome.Dirt || (curtile.Type == biome.Sand && _currentBiome.SandToDirt) || (curtile.Type == biome.Stone && _currentBiome.StoneToDirt) && !_currentBiome.DirtToSand)
                             if (BordersAir(p))
                                 curtile.Type = _currentBiome.Grass;
                             else
@@ -325,6 +359,10 @@ namespace TEditXna.Editor.Tools
                         }
                     }
 
+            }
+            if (curtile.Wall == 1 || curtile.Wall == 2 || curtile.Wall == 3 || curtile.Wall == 15 || curtile.Wall == 16 || curtile.Wall == 28)
+            {
+                curtile.Wall = _currentBiome.Wall;
             }
         }
 
