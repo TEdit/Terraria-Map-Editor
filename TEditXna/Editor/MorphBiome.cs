@@ -3,13 +3,15 @@
     public enum MorphBiome
     {
         Grass = 0,
-        Jungle = 1,
-        Corruption = 2,
-        Hallowed = 3,
-        Snow = 4,
-        Desert = 5,
-        Corrupt_Desert = 6,
-        Hallowed_Desert = 7,
-        Hell = 8
+        Underground = 1,
+        Jungle = 2,
+        Underground_Jungle = 3,
+        Corruption = 4,
+        Hallowed = 5,
+        Snow = 6,
+        Desert = 7,
+        Corrupt_Desert = 8,
+        Hallowed_Desert = 9,
+        Hell = 10
     }
 }
