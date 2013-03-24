@@ -12,6 +12,7 @@
         Desert = 7,
         Corrupt_Desert = 8,
         Hallowed_Desert = 9,
-        Hell = 10
+        Hell = 10,
+        Mushroom = 11
     }
 }

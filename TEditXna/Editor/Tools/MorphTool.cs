@@ -165,7 +165,7 @@ namespace TEditXna.Editor.Tools
                 Vines = 52,
                 DirtToSand = true,
                 DirtToStone = false,
-                SandToDirt = true,
+                SandToDirt = false,
                 StoneToDirt = false,
             });
 
@@ -216,6 +216,22 @@ namespace TEditXna.Editor.Tools
                 DirtToStone = true,
                 SandToDirt = false,
                 StoneToDirt = false,
+            });
+            Biomes.Add(new BiomeData
+            {
+                Biome = MorphBiome.Mushroom,
+                Dirt = 59,
+                Stone = 1,
+                Grass = 70,
+                Plant = 71,
+                Tree = 72,
+                Sand = 57,
+                Wall = 0,
+                Vines = 51,
+                DirtToSand = false,
+                DirtToStone = false,
+                SandToDirt = true,
+                StoneToDirt = true,
             });
         }
 
@@ -336,9 +352,9 @@ namespace TEditXna.Editor.Tools
             {
                     foreach (var biome in Biomes)
                     {
-                        if (curtile.Type == biome.Stone || ((curtile.Type == biome.Dirt || curtile.Type == biome.Grass) && _currentBiome.DirtToStone))
+                        if ((curtile.Type == biome.Stone || ((curtile.Type == biome.Dirt || curtile.Type == biome.Grass) && _currentBiome.DirtToStone)) && !_currentBiome.StoneToDirt)
                              curtile.Type = _currentBiome.Stone;
-                        else if (curtile.Type == biome.Dirt || (curtile.Type == biome.Sand && _currentBiome.SandToDirt) || (curtile.Type == biome.Stone && _currentBiome.StoneToDirt) && !_currentBiome.DirtToSand)
+                        else if ((curtile.Type == biome.Dirt || (curtile.Type == biome.Sand && _currentBiome.SandToDirt) || (curtile.Type == biome.Stone && _currentBiome.StoneToDirt)) && !_currentBiome.DirtToSand)
                             if (BordersAir(p))
                                 curtile.Type = _currentBiome.Grass;
                             else
