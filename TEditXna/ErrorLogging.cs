@@ -7,6 +7,27 @@ namespace TEditXna
 {
     public static class ErrorLogging
     {
+        public static void ViewLog()
+        {
+            Process.Start(LogFilePath);
+        }
+
+        public static void Initialize()
+        {
+            lock (LogFilePath)
+            {
+                if (File.Exists(LogFilePath))
+                {
+                    string destFileName = LogFilePath + ".old";
+                    if (File.Exists(destFileName))
+                        File.Delete(destFileName);
+                    File.Move(LogFilePath, destFileName);
+                }
+            }
+        }
+
+        public static string LogFilePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "My Games", "Terraria", "TEditLog.txt");
+
         #region ErrorLevel enum
 
         public enum ErrorLevel
@@ -22,12 +43,14 @@ namespace TEditXna
 
         public static void Log(string message)
         {
-            File.AppendAllText("log.txt",
-                               string.Format("{0} v{1} {2} {3}",
-                               DateTime.Now.ToString("MM-dd-yyyy HH:mm"),
-                               Version,
-                               message,
-                               Environment.NewLine));
+            lock (LogFilePath)
+            {
+                File.AppendAllText(LogFilePath,
+                                   string.Format("{0}: {1} {2}",
+                                                 DateTime.Now.ToString("MM-dd-yyyy HH:mm"),
+                                                 message,
+                                                 Environment.NewLine));
+            }
         }
 
         public static void LogException(object ex)

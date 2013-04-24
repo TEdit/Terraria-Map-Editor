@@ -4,6 +4,7 @@
         Title="{Binding WindowTitle}" Height="600" Width="800" TextOptions.TextFormattingMode="Display" TextOptions.TextRenderingMode="Aliased"
         UseLayoutRounding="True" Background="{StaticResource WindowBackgroundBrush}" Foreground="{DynamicResource TextBrush}" Icon="/TEditXna;component/Images/tedit.ico">
     <Window.Resources>
+        <Image x:Key="TB_LogIcon" x:Shared="false" Source="/Images/Toolbar/report_magnify.png" Height="16" Width="16" SnapsToDevicePixels="True" RenderOptions.BitmapScalingMode="NearestNeighbor"/>
         <Image x:Key="TB_NewIcon" x:Shared="false" Source="/Images/Toolbar/new.png" Height="16" Width="16" SnapsToDevicePixels="True" RenderOptions.BitmapScalingMode="NearestNeighbor"/>
         <Image x:Key="TB_SaveIcon" x:Shared="false" Source="/Images/Toolbar/save.png" Height="16" Width="16" SnapsToDevicePixels="True" RenderOptions.BitmapScalingMode="NearestNeighbor"/>
         <Image x:Key="TB_SaveAsIcon" x:Shared="false" Source="/Images/Toolbar/saveas.png" Height="16" Width="16" SnapsToDevicePixels="True" RenderOptions.BitmapScalingMode="NearestNeighbor"/>
@@ -70,7 +71,8 @@
 
                 </MenuItem>
                 <MenuItem Header="Help">
-                    <MenuItem Header="Wiki" Icon="{StaticResource TB_HelpIcon}"/>
+                    <MenuItem Header="View Log" Command="{Binding ViewLogCommand}" Icon="{StaticResource TB_LogIcon}"/>
+                    <MenuItem Header="Wiki" Icon="{StaticResource TB_HelpIcon}" Command="{Binding LaunchWikiCommand}"/>
                     <Separator Margin="1" />
                     <MenuItem Header="Update" Icon="{StaticResource TB_UpdateIcon}" Command="{Binding UpdateCommand}" />
                     <MenuItem Header="Download New XML Data" Icon="{StaticResource TB_UpdateXmlIcon}"  Command="{Binding UpdateCommand}" />

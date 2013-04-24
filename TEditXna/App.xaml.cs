@@ -20,11 +20,19 @@ namespace TEditXna
 
         protected override void OnStartup(StartupEventArgs e)
         {
+            ErrorLogging.Initialize();
+            ErrorLogging.Log(string.Format("Starting TEdit {0}",ErrorLogging.Version));
+            ErrorLogging.Log(string.Format("OS: {0}",Environment.OSVersion));
+
             if (!DependencyChecker.VerifyDotNet())
             {
                 MessageBox.Show("Please install .Net 4.0", "Missing .Net", MessageBoxButton.OK, MessageBoxImage.Stop);
                 ErrorLogging.LogException(new ApplicationException("MISSING .NET"));
                 Shutdown();
+            }
+            else
+            {
+                ErrorLogging.Log(".Net >= 4.0");
             }
 
             if (!DependencyChecker.VerifyXna())
@@ -33,14 +41,23 @@ namespace TEditXna
                 ErrorLogging.LogException(new ApplicationException("MISSING XNA"));
                 Shutdown();
             }
+            else
+            {
+                ErrorLogging.Log("XNA 4.0");
+            }
 
             if (!DependencyChecker.VerifyTerraria())
             {
                 ErrorLogging.Log("Unable to locate Terraria. No texture data will be available.");
             }
+            else
+            {
+                ErrorLogging.Log(string.Format("Terraria Data Path: {0}", DependencyChecker.PathToContent));
+            }
 
             if (e.Args != null && e.Args.Count() > 0)
             {
+                ErrorLogging.Log(string.Format("Command Line Open: {0}", e.Args[0]));
                 this.Properties["OpenFile"] = e.Args[0];
             }
 

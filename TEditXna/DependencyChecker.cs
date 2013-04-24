@@ -26,14 +26,18 @@ namespace TEditXna
             }
             path = Path.Combine(path, "steamapps", "common", "terraria", "Content");
             if (!Directory.Exists(path))
+            {
                 path = TEditXNA.Terraria.World.AltC;
+            }
+
             PathToContent = path;
         }
 
         public static bool VerifyDotNet()
         {
             Microsoft.Win32.RegistryKey subKey = Microsoft.Win32.Registry.LocalMachine.OpenSubKey(REGISTRY_DOTNET);
-            return subKey != null;
+            bool dotNetExists = subKey != null;
+            return dotNetExists;
         }
 
         public static bool VerifyXna()

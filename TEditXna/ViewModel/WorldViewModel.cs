@@ -12,6 +12,7 @@ using System.Windows;
 using System.Windows.Data;
 using System.Windows.Input;
 using BCCL.MvvmLight;
+using BCCL.MvvmLight.Command;
 using BCCL.MvvmLight.Threading;
 using Microsoft.Win32;
 using TEditXNA.Terraria;
@@ -78,7 +79,14 @@ namespace TEditXna.ViewModel
             }
         }
 
-        
+
+        private ICommand _launchWikiCommand;
+         
+
+        public ICommand LaunchWikiCommand
+        {
+            get { return _launchWikiCommand ?? (_launchWikiCommand = new RelayCommand(() => Process.Start("http://github.com/BinaryConstruct/Terraria-Map-Editor/wiki"))); }
+        }
 
         private Chest _selectedChest;
         private Sign _selectedSign;
@@ -335,6 +343,19 @@ namespace TEditXna.ViewModel
                 Set("ShowWalls", ref _showWalls, value);
                 UpdateRenderWorld();
             }
+        }
+
+        private ICommand _viewLogCommand;
+         
+
+        public ICommand ViewLogCommand
+        {
+            get { return _viewLogCommand ?? (_viewLogCommand = new RelayCommand(ViewLog)); }
+        }
+
+        private void ViewLog()
+        {
+            ErrorLogging.ViewLog();
         }
 
         private void UpdateTitle()
