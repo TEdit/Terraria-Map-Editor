@@ -16,6 +16,12 @@ namespace TEditXna
         {
             lock (LogFilePath)
             {
+                string fullPath = Path.GetFullPath(LogFilePath);
+                if (Directory.Exists(fullPath))
+                {
+                    Directory.CreateDirectory(fullPath);
+                }
+
                 if (File.Exists(LogFilePath))
                 {
                     string destFileName = LogFilePath + ".old";
