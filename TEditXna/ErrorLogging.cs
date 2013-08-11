@@ -16,10 +16,10 @@ namespace TEditXna
         {
             lock (LogFilePath)
             {
-                string fullPath = Path.GetFullPath(LogFilePath);
-                if (Directory.Exists(fullPath))
+                string dir = Path.GetDirectoryName(LogFilePath);
+                if (!Directory.Exists(dir))
                 {
-                    Directory.CreateDirectory(fullPath);
+                    Directory.CreateDirectory(dir);
                 }
 
                 if (File.Exists(LogFilePath))
@@ -28,6 +28,11 @@ namespace TEditXna
                     if (File.Exists(destFileName))
                         File.Delete(destFileName);
                     File.Move(LogFilePath, destFileName);
+                }
+                else
+                {
+                    File.Create(LogFilePath).Dispose();
+                   
                 }
             }
         }
