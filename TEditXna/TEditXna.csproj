@@ -58,12 +58,6 @@
   </PropertyGroup>
   <PropertyGroup />
   <ItemGroup>
-    <Reference Include="BCCL, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\LIB\BCCL.dll</HintPath>
-    </Reference>
-    <Reference Include="BCCL.Xna, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\LIB\BCCL.Xna.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.Xna.Framework, Version=4.0.0.0, Culture=neutral, PublicKeyToken=842cf8be1de50553, processorArchitecture=x86" />
     <Reference Include="Microsoft.Xna.Framework.Graphics, Version=4.0.0.0, Culture=neutral, PublicKeyToken=842cf8be1de50553, processorArchitecture=x86" />
     <Reference Include="System" />
@@ -374,10 +368,20 @@
       <Install>true</Install>
     </BootstrapperPackage>
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BCCL\BCCL.Xna\BCCL.Xna.csproj">
+      <Project>{b1417485-bd24-4a20-a931-bc8659bb33a9}</Project>
+      <Name>BCCL.Xna</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BCCL\BCCL\BCCL.csproj">
+      <Project>{3d233de2-586b-49f1-8e83-86399078eae6}</Project>
+      <Name>BCCL</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties BuildVersion_AssemblyInfoFilename="Properties\AssemblyInfo.cs" BuildVersion_UseGlobalSettings="True" />
+      <UserProperties BuildVersion_UseGlobalSettings="True" BuildVersion_AssemblyInfoFilename="Properties\AssemblyInfo.cs" />
     </VisualStudio>
   </ProjectExtensions>
   <PropertyGroup>
