@@ -8,7 +8,7 @@ namespace TEditXNA.Terraria
     [Serializable]
     public class Chest : ObservableObject
     {
-        public static int MaxItems = 20;
+        public static int MaxItems = 40;
         public Chest()
         {
 
@@ -18,6 +18,7 @@ namespace TEditXNA.Terraria
         {
             _x = x;
             _y = y;
+
             for (int i = 0; i < MaxItems; i++)
             {
                 _items.Add(new Item());

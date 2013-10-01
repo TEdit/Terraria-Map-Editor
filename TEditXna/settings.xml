@@ -44,8 +44,11 @@ Documentation moved to the end of this file.
     <GlobalColor Name="Rock" Color="#FF484039" />
     <GlobalColor Name="Hell" Color="#FF330000" />
     <GlobalColor Name="Lava" Color="#F0FF1E00" />
+    <GlobalColor Name="Honey" Color="#F0FFAC00" />
     <GlobalColor Name="Water" Color="#80000CFF" />
     <GlobalColor Name="Wire" Color="#70FF0000" />
+    <GlobalColor Name="Wire1" Color="#7000FF00" />
+    <GlobalColor Name="Wire2" Color="#700000FF" />
   </GlobalColors>
   <Tiles>
     <Tile Id="0" Name="Dirt Block" Color="#FF916A4F" Solid="true" Blends="true" />
@@ -799,6 +802,263 @@ Documentation moved to the end of this file.
         <Frame UV="90,54" Name="Green Light" Anchor="Left" Variety="Off" />
       </Frames>
     </Tile>
+    <Tile Id="150" Name="Adamantite Beam"  Solid="true"  />
+    <Tile Id="151" Name="Sandstone Brick"  Solid="true"  />
+    <Tile Id="152" Name="Ebonstone Brick"  Solid="true"  />
+    <Tile Id="153" Name="Red Stucco"  Solid="true"  />
+    <Tile Id="154" Name="Yellow Stucco"  Solid="true"  />
+    <Tile Id="155" Name="Green Stucco"  Solid="true"  />
+    <Tile Id="156" Name="Gray Stucco"  Solid="true"  />
+    <Tile Id="157" Name="Ebonwood"  Solid="true"  />
+    <Tile Id="158" Name="Rich Mahogany"  Solid="true"  />
+    <Tile Id="159" Name="Pearlwood"  Solid="true"  />
+    <Tile Id="160" Name="Rainbow Brick"  Solid="true" Light="true"  />
+    <Tile Id="161" Name="Ice Block"  Solid="true"  />
+    <Tile Id="162" Name=""  Solid="true"  />
+    <Tile Id="163" Name="Purple Ice Block"  Solid="true"  />
+    <Tile Id="164" Name="Pink Ice Block"  Solid="true"  />
+    <Tile Id="165" Name=""  Framed="true" >
+      <Frames>
+        <Frame UV="0,0" Name="Default" Variety="Default" />
+      </Frames>
+    </Tile>
+    <Tile Id="166" Name="Tin Ore"  Solid="true"  />
+    <Tile Id="167" Name="Lead Ore"  Solid="true"  />
+    <Tile Id="168" Name="Tungsten Ore"  Solid="true"  />
+    <Tile Id="169" Name="Platinum Ore"  Solid="true"  />
+    <Tile Id="170" Name="Tin Chandelier"  Framed="true" Light="true" >
+      <Frames>
+        <Frame UV="0,0" Name="Default" Variety="Default" />
+      </Frames>
+    </Tile>
+    <Tile Id="171" Name="Tungsten Chandelier"  Framed="true" Light="true" >
+      <Frames>
+        <Frame UV="0,0" Name="Default" Variety="Default" />
+      </Frames>
+    </Tile>
+    <Tile Id="172" Name="Platinum Chandelier"  Framed="true" Light="true" >
+      <Frames>
+        <Frame UV="0,0" Name="Default" Variety="Default" />
+      </Frames>
+    </Tile>
+    <Tile Id="173" Name="Platinum Candelabra"  Framed="true" Light="true" >
+      <Frames>
+        <Frame UV="0,0" Name="Default" Variety="Default" />
+      </Frames>
+    </Tile>
+    <Tile Id="174" Name="Platinum Candle"  Framed="true" Light="true" >
+      <Frames>
+        <Frame UV="0,0" Name="Default" Variety="Default" />
+      </Frames>
+    </Tile>
+    <Tile Id="175" Name="Tin Brick"  Solid="true"  />
+    <Tile Id="176" Name="Tungsten Brick"  Solid="true"  />
+    <Tile Id="177" Name="Platinum Brick"  Solid="true"  />
+    <Tile Id="178" Name="Sapphire"  Framed="true" >
+      <Frames>
+        <Frame UV="0,0" Name="Default" Variety="Default" />
+      </Frames>
+    </Tile>
+    <Tile Id="179" Name=""  Solid="true"  />
+    <Tile Id="180" Name=""  Solid="true"  />
+    <Tile Id="181" Name=""  Solid="true"  />
+    <Tile Id="182" Name=""  Solid="true"  />
+    <Tile Id="183" Name=""  Solid="true"  />
+    <Tile Id="184" Name=""  Framed="true" >
+      <Frames>
+        <Frame UV="0,0" Name="Default" Variety="Default" />
+      </Frames>
+    </Tile>
+    <Tile Id="185" Name=""  Framed="true" >
+      <Frames>
+        <Frame UV="0,0" Name="Default" Variety="Default" />
+      </Frames>
+    </Tile>
+    <Tile Id="186" Name=""  Framed="true" >
+      <Frames>
+        <Frame UV="0,0" Name="Default" Variety="Default" />
+      </Frames>
+    </Tile>
+    <Tile Id="187" Name=""  Framed="true" >
+      <Frames>
+        <Frame UV="0,0" Name="Default" Variety="Default" />
+      </Frames>
+    </Tile>
+    <Tile Id="188" Name="Cactus"  Solid="true"  />
+    <Tile Id="189" Name="Cloud"  Solid="true"  />
+    <Tile Id="190" Name="Glowing Mushroom"  Solid="true" Light="true"  />
+    <Tile Id="191" Name="Living Wood Wand"  Solid="true"  />
+    <Tile Id="192" Name="Leaf Wand"  Solid="true"  />
+    <Tile Id="193" Name="Slime Block"  Solid="true"  />
+    <Tile Id="194" Name="Bone Block"  Solid="true"  />
+    <Tile Id="195" Name="Flesh Block"  Solid="true"  />
+    <Tile Id="196" Name="Rain Cloud"  Solid="true"  />
+    <Tile Id="197" Name="Frozen Slime Block"  Solid="true"  />
+    <Tile Id="198" Name="Asphalt Block"  Solid="true"  />
+    <Tile Id="199" Name=""  Solid="true"  />
+    <Tile Id="200" Name="Red Ice Block"  Solid="true"  />
+    <Tile Id="201" Name=""  Framed="true" >
+      <Frames>
+        <Frame UV="0,0" Name="Default" Variety="Default" />
+      </Frames>
+    </Tile>
+    <Tile Id="202" Name="Sunplate Block"  Solid="true"  />
+    <Tile Id="203" Name="Crimstone Block"  Solid="true"  />
+    <Tile Id="204" Name="Crimtane Ore"  Solid="true" Light="true"  />
+    <Tile Id="205" Name=""   />
+    <Tile Id="206" Name="Ice Brick"  Solid="true"  />
+    <Tile Id="207" Name="Pure Water Fountain"  Framed="true" >
+      <Frames>
+        <Frame UV="0,0" Name="Default" Variety="Default" />
+      </Frames>
+    </Tile>
+    <Tile Id="208" Name="Shadewood"  Solid="true"  />
+    <Tile Id="209" Name="Cannon"  Framed="true" >
+      <Frames>
+        <Frame UV="0,0" Name="Default" Variety="Default" />
+      </Frames>
+    </Tile>
+    <Tile Id="210" Name="Land Mine"  Framed="true" >
+      <Frames>
+        <Frame UV="0,0" Name="Default" Variety="Default" />
+      </Frames>
+    </Tile>
+    <Tile Id="211" Name="Chlorophyte Ore"  Solid="true"  />
+    <Tile Id="212" Name="Snowball Launcher"  Framed="true" >
+      <Frames>
+        <Frame UV="0,0" Name="Default" Variety="Default" />
+      </Frames>
+    </Tile>
+    <Tile Id="213" Name="Rope"   />
+    <Tile Id="214" Name="Chain"   />
+    <Tile Id="215" Name="Campfire"  Framed="true" Light="true" >
+      <Frames>
+        <Frame UV="0,0" Name="Default" Variety="Default" />
+      </Frames>
+    </Tile>
+    <Tile Id="216" Name="Red Rocket"  Framed="true" >
+      <Frames>
+        <Frame UV="0,0" Name="Default" Variety="Default" />
+      </Frames>
+    </Tile>
+    <Tile Id="217" Name="Blend-O-Matic"  Framed="true" >
+      <Frames>
+        <Frame UV="0,0" Name="Default" Variety="Default" />
+      </Frames>
+    </Tile>
+    <Tile Id="218" Name="Meat Grinder"  Framed="true" >
+      <Frames>
+        <Frame UV="0,0" Name="Default" Variety="Default" />
+      </Frames>
+    </Tile>
+    <Tile Id="219" Name="Extractinator"  Framed="true" >
+      <Frames>
+        <Frame UV="0,0" Name="Default" Variety="Default" />
+      </Frames>
+    </Tile>
+    <Tile Id="220" Name="Solidifier"  Framed="true" >
+      <Frames>
+        <Frame UV="0,0" Name="Default" Variety="Default" />
+      </Frames>
+    </Tile>
+    <Tile Id="221" Name="Palladium Ore"  Solid="true"  />
+    <Tile Id="222" Name="Orichalcum Ore"  Solid="true"  />
+    <Tile Id="223" Name="Titanium Ore"  Solid="true"  />
+    <Tile Id="224" Name="Slush Block"  Solid="true"  />
+    <Tile Id="225" Name="Hive Wand"  Solid="true"  />
+    <Tile Id="226" Name="Lihzahrd Brick"  Solid="true"  />
+    <Tile Id="227" Name="Teal Mushroom"  Framed="true" >
+      <Frames>
+        <Frame UV="0,0" Name="Default" Variety="Default" />
+      </Frames>
+    </Tile>
+    <Tile Id="228" Name="Dye Vat"  Framed="true" >
+      <Frames>
+        <Frame UV="0,0" Name="Default" Variety="Default" />
+      </Frames>
+    </Tile>
+    <Tile Id="229" Name="Honey Block"  Solid="true"  />
+    <Tile Id="230" Name="Crispy Honey Block"  Solid="true"  />
+    <Tile Id="231" Name=""  Framed="true" >
+      <Frames>
+        <Frame UV="0,0" Name="Default" Variety="Default" />
+      </Frames>
+    </Tile>
+    <Tile Id="232" Name="Wooden Spike"  Solid="true"  />
+    <Tile Id="233" Name=""  Framed="true" >
+      <Frames>
+        <Frame UV="0,0" Name="Default" Variety="Default" />
+      </Frames>
+    </Tile>
+    <Tile Id="234" Name="Crimsand Block"  Solid="true"  />
+    <Tile Id="235" Name="Teleporter"  Framed="true" Solid="true" >
+      <Frames>
+        <Frame UV="0,0" Name="Default" Variety="Default" />
+      </Frames>
+    </Tile>
+    <Tile Id="236" Name=""  Framed="true" >
+      <Frames>
+        <Frame UV="0,0" Name="Default" Variety="Default" />
+      </Frames>
+    </Tile>
+    <Tile Id="237" Name="Lihzahrd Altar"  Framed="true" Light="true" >
+      <Frames>
+        <Frame UV="0,0" Name="Default" Variety="Default" />
+      </Frames>
+    </Tile>
+    <Tile Id="238" Name=""  Framed="true" Light="true" >
+      <Frames>
+        <Frame UV="0,0" Name="Default" Variety="Default" />
+      </Frames>
+    </Tile>
+    <Tile Id="239" Name="Gold Bar"  Framed="true" Solid="true" SolidTop="true" >
+      <Frames>
+        <Frame UV="0,0" Name="Default" Variety="Default" />
+      </Frames>
+    </Tile>
+    <Tile Id="240" Name="Eye of Cthulhu Trophy"  Framed="true" >
+      <Frames>
+        <Frame UV="0,0" Name="Default" Variety="Default" />
+      </Frames>
+    </Tile>
+    <Tile Id="241" Name="Catacomb"  Framed="true" >
+      <Frames>
+        <Frame UV="0,0" Name="Default" Variety="Default" />
+      </Frames>
+    </Tile>
+    <Tile Id="242" Name="The Eye Sees the End"  Framed="true" >
+      <Frames>
+        <Frame UV="0,0" Name="Default" Variety="Default" />
+      </Frames>
+    </Tile>
+    <Tile Id="243" Name="Imbuing Station"  Framed="true" >
+      <Frames>
+        <Frame UV="0,0" Name="Default" Variety="Default" />
+      </Frames>
+    </Tile>
+    <Tile Id="244" Name="Bubble Machine"  Framed="true" >
+      <Frames>
+        <Frame UV="0,0" Name="Default" Variety="Default" />
+      </Frames>
+    </Tile>
+    <Tile Id="245" Name="Waldo"  Framed="true" >
+      <Frames>
+        <Frame UV="0,0" Name="Default" Variety="Default" />
+      </Frames>
+    </Tile>
+    <Tile Id="246" Name="Demon's Eye"  Framed="true" >
+      <Frames>
+        <Frame UV="0,0" Name="Default" Variety="Default" />
+      </Frames>
+    </Tile>
+    <Tile Id="247" Name="Autohammer"  Framed="true" >
+      <Frames>
+        <Frame UV="0,0" Name="Default" Variety="Default" />
+      </Frames>
+    </Tile>
+    <Tile Id="248" Name="Palladium Column"  Solid="true"  />
+    <Tile Id="249" Name="Bubblegum Block"  Solid="true"  />
+    <Tile Id="250" Name="Titanstone Block"  Solid="true"  />
   </Tiles>
   <Walls>
     <Wall Id="0" Name="Sky" Color="#00000000" />
@@ -833,636 +1093,1750 @@ Documentation moved to the end of this file.
     <Wall Id="29" Name="Red Candy Cane Wall" Color="#FFAA0000" IsHouse="true" />
     <Wall Id="30" Name="Green Candy Cane Wall" Color="#FF00AA00" IsHouse="true" />
     <Wall Id="31" Name="Snow Brick Wall" Color="#FF9999BB" IsHouse="true" />
+    <Wall Id="32" Name="Adamantite Beam Wall" Color="#FFFF00FF" IsHouse="True"/>
+    <Wall Id="33" Name="Demonite Brick Wall" Color="#FFFF00FF" IsHouse="True"/>
+    <Wall Id="34" Name="Sandstone Brick Wall" Color="#FFFF00FF" IsHouse="True"/>
+    <Wall Id="35" Name="Ebonstone Brick Wall" Color="#FFFF00FF" IsHouse="True"/>
+    <Wall Id="36" Name="Red Stucco Wall" Color="#FFFF00FF" IsHouse="True"/>
+    <Wall Id="37" Name="Yellow Stucco Wall" Color="#FFFF00FF" IsHouse="True"/>
+    <Wall Id="38" Name="Green Stucco Wall" Color="#FFFF00FF" IsHouse="True"/>
+    <Wall Id="39" Name="Gray Stucco Wall" Color="#FFFF00FF" IsHouse="True"/>
+    <Wall Id="40" Name="" Color="#FFFF00FF" IsHouse="False"/>
+    <Wall Id="41" Name="Ebonwood Wall" Color="#FFFF00FF" IsHouse="True"/>
+    <Wall Id="42" Name="Rich Mahogany Wall" Color="#FFFF00FF" IsHouse="True"/>
+    <Wall Id="43" Name="Pearlwood Wall" Color="#FFFF00FF" IsHouse="True"/>
+    <Wall Id="44" Name="Rainbow Brick Wall" Color="#FFFF00FF" IsHouse="True"/>
+    <Wall Id="45" Name="Tin Brick Wall" Color="#FFFF00FF" IsHouse="True"/>
+    <Wall Id="46" Name="Tungsten Brick Wall" Color="#FFFF00FF" IsHouse="True"/>
+    <Wall Id="47" Name="Platinum Brick Wall" Color="#FFFF00FF" IsHouse="True"/>
+    <Wall Id="48" Name="" Color="#FFFF00FF" IsHouse="False"/>
+    <Wall Id="49" Name="" Color="#FFFF00FF" IsHouse="False"/>
+    <Wall Id="50" Name="" Color="#FFFF00FF" IsHouse="False"/>
+    <Wall Id="51" Name="" Color="#FFFF00FF" IsHouse="False"/>
+    <Wall Id="52" Name="" Color="#FFFF00FF" IsHouse="False"/>
+    <Wall Id="53" Name="" Color="#FFFF00FF" IsHouse="False"/>
+    <Wall Id="54" Name="" Color="#FFFF00FF" IsHouse="False"/>
+    <Wall Id="55" Name="" Color="#FFFF00FF" IsHouse="False"/>
+    <Wall Id="56" Name="" Color="#FFFF00FF" IsHouse="False"/>
+    <Wall Id="57" Name="" Color="#FFFF00FF" IsHouse="False"/>
+    <Wall Id="58" Name="" Color="#FFFF00FF" IsHouse="False"/>
+    <Wall Id="59" Name="" Color="#FFFF00FF" IsHouse="False"/>
+    <Wall Id="60" Name="" Color="#FFFF00FF" IsHouse="False"/>
+    <Wall Id="61" Name="" Color="#FFFF00FF" IsHouse="False"/>
+    <Wall Id="62" Name="" Color="#FFFF00FF" IsHouse="False"/>
+    <Wall Id="63" Name="" Color="#FFFF00FF" IsHouse="False"/>
+    <Wall Id="64" Name="" Color="#FFFF00FF" IsHouse="False"/>
+    <Wall Id="65" Name="" Color="#FFFF00FF" IsHouse="False"/>
+    <Wall Id="66" Name="Grass Wall" Color="#FFFF00FF" IsHouse="True"/>
+    <Wall Id="67" Name="Jungle Wall" Color="#FFFF00FF" IsHouse="True"/>
+    <Wall Id="68" Name="Flower Wall" Color="#FFFF00FF" IsHouse="True"/>
+    <Wall Id="69" Name="" Color="#FFFF00FF" IsHouse="False"/>
+    <Wall Id="70" Name="" Color="#FFFF00FF" IsHouse="False"/>
+    <Wall Id="71" Name="" Color="#FFFF00FF" IsHouse="False"/>
+    <Wall Id="72" Name="Cactus Wall" Color="#FFFF00FF" IsHouse="True"/>
+    <Wall Id="73" Name="Cloud Wall" Color="#FFFF00FF" IsHouse="True"/>
+    <Wall Id="74" Name="Mushroom Wall" Color="#FFFF00FF" IsHouse="True"/>
+    <Wall Id="75" Name="Bone Block Wall" Color="#FFFF00FF" IsHouse="True"/>
+    <Wall Id="76" Name="Slime Block Wall" Color="#FFFF00FF" IsHouse="True"/>
+    <Wall Id="77" Name="Flesh Block Wall" Color="#FFFF00FF" IsHouse="True"/>
+    <Wall Id="78" Name="" Color="#FFFF00FF" IsHouse="True"/>
+    <Wall Id="79" Name="" Color="#FFFF00FF" IsHouse="False"/>
+    <Wall Id="80" Name="" Color="#FFFF00FF" IsHouse="False"/>
+    <Wall Id="81" Name="" Color="#FFFF00FF" IsHouse="False"/>
+    <Wall Id="82" Name="Disc Wall" Color="#FFFF00FF" IsHouse="True"/>
+    <Wall Id="83" Name="" Color="#FFFF00FF" IsHouse="False"/>
+    <Wall Id="84" Name="Ice Brick Wall" Color="#FFFF00FF" IsHouse="True"/>
+    <Wall Id="85" Name="Shadewood Wall" Color="#FFFF00FF" IsHouse="True"/>
+    <Wall Id="86" Name="" Color="#FFFF00FF" IsHouse="False"/>
+    <Wall Id="87" Name="Lihzahrd Brick Wall" Color="#FFFF00FF" IsHouse="False"/>
+    <Wall Id="88" Name="Purple Stained Glass" Color="#FFFF00FF" IsHouse="True"/>
+    <Wall Id="89" Name="Yellow Stained Glass" Color="#FFFF00FF" IsHouse="True"/>
+    <Wall Id="90" Name="Blue Stained Glass" Color="#FFFF00FF" IsHouse="True"/>
+    <Wall Id="91" Name="Green Stained Glass" Color="#FFFF00FF" IsHouse="True"/>
+    <Wall Id="92" Name="Red Stained Glass" Color="#FFFF00FF" IsHouse="True"/>
+    <Wall Id="93" Name="Multicolored Stained Glass" Color="#FFFF00FF" IsHouse="True"/>
+    <Wall Id="94" Name="" Color="#FFFF00FF" IsHouse="False"/>
+    <Wall Id="95" Name="" Color="#FFFF00FF" IsHouse="False"/>
+    <Wall Id="96" Name="" Color="#FFFF00FF" IsHouse="False"/>
+    <Wall Id="97" Name="" Color="#FFFF00FF" IsHouse="False"/>
+    <Wall Id="98" Name="" Color="#FFFF00FF" IsHouse="False"/>
+    <Wall Id="99" Name="" Color="#FFFF00FF" IsHouse="False"/>
+    <Wall Id="100" Name="Blue Slab Wall" Color="#FFFF00FF" IsHouse="False"/>
+    <Wall Id="101" Name="Blue Tiled Wall" Color="#FFFF00FF" IsHouse="True"/>
+    <Wall Id="102" Name="Pink Slab Wall" Color="#FFFF00FF" IsHouse="True"/>
+    <Wall Id="103" Name="Pink Tiled Wall" Color="#FFFF00FF" IsHouse="True"/>
+    <Wall Id="104" Name="Green Slab Wall" Color="#FFFF00FF" IsHouse="True"/>
+    <Wall Id="105" Name="Green Tiled Wall" Color="#FFFF00FF" IsHouse="True"/>
+    <Wall Id="106" Name="Wooden Fence" Color="#FFFF00FF" IsHouse="False"/>
+    <Wall Id="107" Name="Metal Fence" Color="#FFFF00FF" IsHouse="False"/>
+    <Wall Id="108" Name="Hive Wall" Color="#FFFF00FF" IsHouse="True"/>
+    <Wall Id="109" Name="Palladium Column Wall" Color="#FFFF00FF" IsHouse="True"/>
+    <Wall Id="110" Name="Bubblegum Block Wall" Color="#FFFF00FF" IsHouse="True"/>
+    <Wall Id="111" Name="Titanstone Block Wall" Color="#FFFF00FF" IsHouse="True"/>
   </Walls>
   <Items>
-    <Item Id="-24" Name="Yellow Phasesaber" />
-    <Item Id="-23" Name="White Phasesaber" />
-    <Item Id="-22" Name="Purple Phasesaber" />
-    <Item Id="-21" Name="Green Phasesaber" />
-    <Item Id="-20" Name="Red Phasesaber" />
-    <Item Id="-19" Name="Blue Phasesaber" />
-    <Item Id="-18" Name="Copper Bow" />
-    <Item Id="-17" Name="Copper Hammer" />
-    <Item Id="-16" Name="Copper Axe" />
-    <Item Id="-15" Name="Copper Shortsword" />
-    <Item Id="-14" Name="Copper Broadsword" />
-    <Item Id="-13" Name="Copper Pickaxe" />
-    <Item Id="-12" Name="Silver Bow" />
-    <Item Id="-11" Name="Silver Hammer" />
-    <Item Id="-10" Name="Silver Axe" />
-    <Item Id="-9" Name="Silver Shortsword" />
-    <Item Id="-8" Name="Silver Broadsword" />
-    <Item Id="-7" Name="Silver Pickaxe" />
-    <Item Id="-6" Name="Gold Bow" />
-    <Item Id="-5" Name="Gold Hammer" />
-    <Item Id="-4" Name="Gold Axe" />
-    <Item Id="-3" Name="Gold Shortsword" />
-    <Item Id="-2" Name="Gold Broadsword" />
-    <Item Id="-1" Name="Gold Pickaxe" />
-    <Item Id="0" Name="[empty]" />
-    <Item Id="1" Name="Iron Pickaxe" />
-    <Item Id="2" Name="Dirt Block" />
-    <Item Id="3" Name="Stone Block" />
-    <Item Id="4" Name="Iron Broadsword" />
-    <Item Id="5" Name="Mushroom" />
-    <Item Id="6" Name="Iron Shortsword" />
-    <Item Id="7" Name="Iron Hammer" />
-    <Item Id="8" Name="Torch" />
-    <Item Id="9" Name="Wood" />
-    <Item Id="10" Name="Iron Axe" />
-    <Item Id="11" Name="Iron Ore" />
-    <Item Id="12" Name="Copper Ore" />
-    <Item Id="13" Name="Gold Ore" />
-    <Item Id="14" Name="Silver Ore" />
-    <Item Id="15" Name="Copper Watch" />
-    <Item Id="16" Name="Silver Watch" />
-    <Item Id="17" Name="Gold Watch" />
-    <Item Id="18" Name="Depth Meter" />
-    <Item Id="19" Name="Gold Bar" />
-    <Item Id="20" Name="Copper Bar" />
-    <Item Id="21" Name="Silver Bar" />
-    <Item Id="22" Name="Iron Bar" />
-    <Item Id="23" Name="Gel" />
-    <Item Id="24" Name="Wooden Sword" />
-    <Item Id="25" Name="Wooden Door" />
-    <Item Id="26" Name="Stone Wall" />
-    <Item Id="27" Name="Acorn" />
-    <Item Id="28" Name="Lesser Healing Potion" />
-    <Item Id="29" Name="Life Crystal" />
-    <Item Id="30" Name="Dirt Wall" />
-    <Item Id="31" Name="Bottle" />
-    <Item Id="32" Name="Wooden Table" />
-    <Item Id="33" Name="Furnace" />
-    <Item Id="34" Name="Wooden Chair" />
-    <Item Id="35" Name="Iron Anvil" />
-    <Item Id="36" Name="Work Bench" />
-    <Item Id="37" Name="Goggles" />
-    <Item Id="38" Name="Lens" />
-    <Item Id="39" Name="Wooden Bow" />
-    <Item Id="40" Name="Wooden Arrow" />
-    <Item Id="41" Name="Flaming Arrow" />
-    <Item Id="42" Name="Shuriken" />
-    <Item Id="43" Name="Suspicious Looking Eye" />
-    <Item Id="44" Name="Demon Bow" />
-    <Item Id="45" Name="War Axe of the Night" />
-    <Item Id="46" Name="Light's Bane" />
-    <Item Id="47" Name="Unholy Arrow" />
-    <Item Id="48" Name="Chest" />
-    <Item Id="49" Name="Band of Regeneration" />
-    <Item Id="50" Name="Magic Mirror" />
-    <Item Id="51" Name="Jester's Arrow" />
-    <Item Id="52" Name="Angel Statue" />
-    <Item Id="53" Name="Cloud in a Bottle" />
-    <Item Id="54" Name="Hermes Boots" />
-    <Item Id="55" Name="Enchanted Boomerang" />
-    <Item Id="56" Name="Demonite Ore" />
-    <Item Id="57" Name="Demonite Bar" />
-    <Item Id="58" Name="Heart" />
-    <Item Id="59" Name="Corrupt Seeds" />
-    <Item Id="60" Name="Vile Mushroom" />
-    <Item Id="61" Name="Ebonstone Block" />
-    <Item Id="62" Name="Grass Seeds" />
-    <Item Id="63" Name="Sunflower" />
-    <Item Id="64" Name="Vilethorn" />
-    <Item Id="65" Name="Starfury" />
-    <Item Id="66" Name="Purification Powder" />
-    <Item Id="67" Name="Vile Powder" />
-    <Item Id="68" Name="Rotten Chunk" />
-    <Item Id="69" Name="Worm Tooth" />
-    <Item Id="70" Name="Worm Food" />
-    <Item Id="71" Name="Copper Coin" />
-    <Item Id="72" Name="Silver Coin" />
-    <Item Id="73" Name="Gold Coin" />
-    <Item Id="74" Name="Platinum Coin" />
-    <Item Id="75" Name="Fallen Star" />
-    <Item Id="76" Name="Copper Greaves" />
-    <Item Id="77" Name="Iron Greaves" />
-    <Item Id="78" Name="Silver Greaves" />
-    <Item Id="79" Name="Gold Greaves" />
-    <Item Id="80" Name="Copper Chainmail" />
-    <Item Id="81" Name="Iron Chainmail" />
-    <Item Id="82" Name="Silver Chainmail" />
-    <Item Id="83" Name="Gold Chainmail" />
-    <Item Id="84" Name="Grappling Hook" />
-    <Item Id="85" Name="Iron Chain" />
-    <Item Id="86" Name="Shadow Scale" />
-    <Item Id="87" Name="Piggy Bank" />
-    <Item Id="88" Name="Mining Helmet" />
-    <Item Id="89" Name="Copper Helmet" />
-    <Item Id="90" Name="Iron Helmet" />
-    <Item Id="91" Name="Silver Helmet" />
-    <Item Id="92" Name="Gold Helmet" />
-    <Item Id="93" Name="Wood Wall" />
-    <Item Id="94" Name="Wood Platform" />
-    <Item Id="95" Name="Flintlock Pistol" />
-    <Item Id="96" Name="Musket" />
-    <Item Id="97" Name="Musket Ball" />
-    <Item Id="98" Name="Minishark" />
-    <Item Id="99" Name="Iron Bow" />
-    <Item Id="100" Name="Shadow Greaves" />
-    <Item Id="101" Name="Shadow Scalemail" />
-    <Item Id="102" Name="Shadow Helmet" />
-    <Item Id="103" Name="Nightmare Pickaxe" />
-    <Item Id="104" Name="The Breaker" />
-    <Item Id="105" Name="Candle" />
-    <Item Id="106" Name="Copper Chandelier" />
-    <Item Id="107" Name="Silver Chandelier" />
-    <Item Id="108" Name="Gold Chandelier" />
-    <Item Id="109" Name="Mana Crystal" />
-    <Item Id="110" Name="Lesser Mana Potion" />
-    <Item Id="111" Name="Band of Starpower" />
-    <Item Id="112" Name="Flower of Fire" />
-    <Item Id="113" Name="Magic Missile" />
-    <Item Id="114" Name="Dirt Rod" />
-    <Item Id="115" Name="Orb of Light" />
-    <Item Id="116" Name="Meteorite" />
-    <Item Id="117" Name="Meteorite Bar" />
-    <Item Id="118" Name="Hook" />
-    <Item Id="119" Name="Flamarang" />
-    <Item Id="120" Name="Molten Fury" />
-    <Item Id="121" Name="Fiery Greatsword" />
-    <Item Id="122" Name="Molten Pickaxe" />
-    <Item Id="123" Name="Meteor Helmet" />
-    <Item Id="124" Name="Meteor Suit" />
-    <Item Id="125" Name="Meteor Leggings" />
-    <Item Id="126" Name="Bottled Water" />
-    <Item Id="127" Name="Space Gun" />
-    <Item Id="128" Name="Rocket Boots" />
-    <Item Id="129" Name="Gray Brick" />
-    <Item Id="130" Name="Gray Brick Wall" />
-    <Item Id="131" Name="Red Brick" />
-    <Item Id="132" Name="Red Brick Wall" />
-    <Item Id="133" Name="Clay Block" />
-    <Item Id="134" Name="Blue Brick" />
-    <Item Id="135" Name="Blue Brick Wall" />
-    <Item Id="136" Name="Chain Lantern" />
-    <Item Id="137" Name="Green Brick" />
-    <Item Id="138" Name="Green Brick Wall" />
-    <Item Id="139" Name="Pink Brick" />
-    <Item Id="140" Name="Pink Brick Wall" />
-    <Item Id="141" Name="Gold Brick" />
-    <Item Id="142" Name="Gold Brick Wall" />
-    <Item Id="143" Name="Silver Brick" />
-    <Item Id="144" Name="Silver Brick Wall" />
-    <Item Id="145" Name="Copper Brick" />
-    <Item Id="146" Name="Copper Brick Wall" />
-    <Item Id="147" Name="Spike" />
-    <Item Id="148" Name="Water Candle" />
-    <Item Id="149" Name="Book" />
-    <Item Id="150" Name="Cobweb" />
-    <Item Id="151" Name="Necro Helmet" />
-    <Item Id="152" Name="Necro Breastplate" />
-    <Item Id="153" Name="Necro Greaves" />
-    <Item Id="154" Name="Bone" />
-    <Item Id="155" Name="Muramasa" />
-    <Item Id="156" Name="Cobalt Shield" />
-    <Item Id="157" Name="Aqua Scepter" />
-    <Item Id="158" Name="Lucky Horseshoe" />
-    <Item Id="159" Name="Shiny Red Balloon" />
-    <Item Id="160" Name="Harpoon" />
-    <Item Id="161" Name="Spiky Ball" />
-    <Item Id="162" Name="Ball O' Hurt" />
-    <Item Id="163" Name="Blue Moon" />
-    <Item Id="164" Name="Handgun" />
-    <Item Id="165" Name="Water Bolt" />
-    <Item Id="166" Name="Bomb" />
-    <Item Id="167" Name="Dynamite" />
-    <Item Id="168" Name="Grenade" />
-    <Item Id="169" Name="Sand Block" />
-    <Item Id="170" Name="Glass" />
-    <Item Id="171" Name="Sign" />
-    <Item Id="172" Name="Ash Block" />
-    <Item Id="173" Name="Obsidian" />
-    <Item Id="174" Name="Hellstone" />
-    <Item Id="175" Name="Hellstone Bar" />
-    <Item Id="176" Name="Mud Block" />
-    <Item Id="177" Name="Sapphire" />
-    <Item Id="178" Name="Ruby" />
-    <Item Id="179" Name="Emerald" />
-    <Item Id="180" Name="Topaz" />
-    <Item Id="181" Name="Amethyst" />
-    <Item Id="182" Name="Diamond" />
-    <Item Id="183" Name="Glowing Mushroom" />
-    <Item Id="184" Name="Star" />
-    <Item Id="185" Name="Ivy Whip" />
-    <Item Id="186" Name="Breathing Reed" />
-    <Item Id="187" Name="Flipper" />
-    <Item Id="188" Name="Healing Potion" />
-    <Item Id="189" Name="Mana Potion" />
-    <Item Id="190" Name="Blade of Grass" />
-    <Item Id="191" Name="Thorn Chakram" />
-    <Item Id="192" Name="Obsidian Brick" />
-    <Item Id="193" Name="Obsidian Skull" />
-    <Item Id="194" Name="Mushroom Grass Seeds" />
-    <Item Id="195" Name="Jungle Grass Seeds" />
-    <Item Id="196" Name="Wooden Hammer" />
-    <Item Id="197" Name="Star Cannon" />
-    <Item Id="198" Name="Blue Phaseblade" />
-    <Item Id="199" Name="Red Phaseblade" />
-    <Item Id="200" Name="Green Phaseblade" />
-    <Item Id="201" Name="Purple Phaseblade" />
-    <Item Id="202" Name="White Phaseblade" />
-    <Item Id="203" Name="Yellow Phaseblade" />
-    <Item Id="204" Name="Meteor Hamaxe" />
-    <Item Id="205" Name="Empty Bucket" />
-    <Item Id="206" Name="Water Bucket" />
-    <Item Id="207" Name="Lava Bucket" />
-    <Item Id="208" Name="Jungle Rose" />
-    <Item Id="209" Name="Stinger" />
-    <Item Id="210" Name="Vine" />
-    <Item Id="211" Name="Feral Claws" />
-    <Item Id="212" Name="Anklet of the Wind" />
-    <Item Id="213" Name="Staff of Regrowth" />
-    <Item Id="214" Name="Hellstone Brick" />
-    <Item Id="215" Name="Whoopie Cushion" />
-    <Item Id="216" Name="Shackle" />
-    <Item Id="217" Name="Molten Hamaxe" />
-    <Item Id="218" Name="Flamelash" />
-    <Item Id="219" Name="Phoenix Blaster" />
-    <Item Id="220" Name="Sunfury" />
-    <Item Id="221" Name="Hellforge" />
-    <Item Id="222" Name="Clay Pot" />
-    <Item Id="223" Name="Nature's Gift" />
-    <Item Id="224" Name="Bed" />
-    <Item Id="225" Name="Silk" />
-    <Item Id="226" Name="Lesser Restoration Potion" />
-    <Item Id="227" Name="Restoration Potion" />
-    <Item Id="228" Name="Jungle Hat" />
-    <Item Id="229" Name="Jungle Shirt" />
-    <Item Id="230" Name="Jungle Pants" />
-    <Item Id="231" Name="Molten Helmet" />
-    <Item Id="232" Name="Molten Breastplate" />
-    <Item Id="233" Name="Molten Greaves" />
-    <Item Id="234" Name="Meteor Shot" />
-    <Item Id="235" Name="Sticky Bomb" />
-    <Item Id="236" Name="Black Lens" />
-    <Item Id="237" Name="Sunglasses" />
-    <Item Id="238" Name="Wizard Hat" />
-    <Item Id="239" Name="Top Hat" />
-    <Item Id="240" Name="Tuxedo Shirt" />
-    <Item Id="241" Name="Tuxedo Pants" />
-    <Item Id="242" Name="Summer Hat" />
-    <Item Id="243" Name="Bunny Hood" />
-    <Item Id="244" Name="Plumber's Hat" />
-    <Item Id="245" Name="Plumber's Shirt" />
-    <Item Id="246" Name="Plumber's Pants" />
-    <Item Id="247" Name="Hero's Hat" />
-    <Item Id="248" Name="Hero's Shirt" />
-    <Item Id="249" Name="Hero's Pants" />
-    <Item Id="250" Name="Fish Bowl" />
-    <Item Id="251" Name="Archaeologist's Hat" />
-    <Item Id="252" Name="Archaeologist's Jacket" />
-    <Item Id="253" Name="Archaeologist's Pants" />
-    <Item Id="254" Name="Black Dye" />
-    <Item Id="255" Name="Green Dye" />
-    <Item Id="256" Name="Ninja Hood" />
-    <Item Id="257" Name="Ninja Shirt" />
-    <Item Id="258" Name="Ninja Pants" />
-    <Item Id="259" Name="Leather" />
-    <Item Id="260" Name="Red Hat" />
-    <Item Id="261" Name="Goldfish" />
-    <Item Id="262" Name="Robe" />
-    <Item Id="263" Name="Robot Hat" />
-    <Item Id="264" Name="Gold Crown" />
-    <Item Id="265" Name="Hellfire Arrow" />
-    <Item Id="266" Name="Sandgun" />
-    <Item Id="267" Name="Guide Voodoo Doll" />
-    <Item Id="268" Name="Diving Helmet" />
-    <Item Id="269" Name="Familiar Shirt" />
-    <Item Id="270" Name="Familiar Pants" />
-    <Item Id="271" Name="Familiar Wig" />
-    <Item Id="272" Name="Demon Scythe" />
-    <Item Id="273" Name="Night's Edge" />
-    <Item Id="274" Name="Dark Lance" />
-    <Item Id="275" Name="Coral" />
-    <Item Id="276" Name="Cactus" />
-    <Item Id="277" Name="Trident" />
-    <Item Id="278" Name="Silver Bullet" />
-    <Item Id="279" Name="Throwing Knife" />
-    <Item Id="280" Name="Spear" />
-    <Item Id="281" Name="Blowpipe" />
-    <Item Id="282" Name="Glowstick" />
-    <Item Id="283" Name="Seed" />
-    <Item Id="284" Name="Wooden Boomerang" />
-    <Item Id="285" Name="Aglet" />
-    <Item Id="286" Name="Sticky Glowstick" />
-    <Item Id="287" Name="Poisoned Knife" />
-    <Item Id="288" Name="Obsidian Skin Potion" />
-    <Item Id="289" Name="Regeneration Potion" />
-    <Item Id="290" Name="Swiftness Potion" />
-    <Item Id="291" Name="Gills Potion" />
-    <Item Id="292" Name="Ironskin Potion" />
-    <Item Id="293" Name="Mana Regeneration Potion" />
-    <Item Id="294" Name="Magic Power Potion" />
-    <Item Id="295" Name="Featherfall Potion" />
-    <Item Id="296" Name="Spelunker Potion" />
-    <Item Id="297" Name="Invisibility Potion" />
-    <Item Id="298" Name="Shine Potion" />
-    <Item Id="299" Name="Night Owl Potion" />
-    <Item Id="300" Name="Battle Potion" />
-    <Item Id="301" Name="Thorns Potion" />
-    <Item Id="302" Name="Water Walking Potion" />
-    <Item Id="303" Name="Archery Potion" />
-    <Item Id="304" Name="Hunter Potion" />
-    <Item Id="305" Name="Gravitation Potion" />
-    <Item Id="306" Name="Gold Chest" />
-    <Item Id="307" Name="Daybloom Seeds" />
-    <Item Id="308" Name="Moonglow Seeds" />
-    <Item Id="309" Name="Blinkroot Seeds" />
-    <Item Id="310" Name="Deathweed Seeds" />
-    <Item Id="311" Name="Waterleaf Seeds" />
-    <Item Id="312" Name="Fireblossom Seeds" />
-    <Item Id="313" Name="Daybloom" />
-    <Item Id="314" Name="Moonglow" />
-    <Item Id="315" Name="Blinkroot" />
-    <Item Id="316" Name="Deathweed" />
-    <Item Id="317" Name="Waterleaf" />
-    <Item Id="318" Name="Fireblossom" />
-    <Item Id="319" Name="Shark Fin" />
-    <Item Id="320" Name="Feather" />
-    <Item Id="321" Name="Tombstone" />
-    <Item Id="322" Name="Mime Mask" />
-    <Item Id="323" Name="Antlion Mandible" />
-    <Item Id="324" Name="Illegal Gun Parts" />
-    <Item Id="325" Name="The Doctor's Shirt" />
-    <Item Id="326" Name="The Doctor's Pants" />
-    <Item Id="327" Name="Golden Key" />
-    <Item Id="328" Name="Shadow Chest" />
-    <Item Id="329" Name="Shadow Key" />
-    <Item Id="330" Name="Obsidian Brick Wall" />
-    <Item Id="331" Name="Jungle Spores" />
-    <Item Id="332" Name="Loom" />
-    <Item Id="333" Name="Piano" />
-    <Item Id="334" Name="Dresser" />
-    <Item Id="335" Name="Bench" />
-    <Item Id="336" Name="Bathtub" />
-    <Item Id="337" Name="Red Banner" />
-    <Item Id="338" Name="Green Banner" />
-    <Item Id="339" Name="Blue Banner" />
-    <Item Id="340" Name="Yellow Banner" />
-    <Item Id="341" Name="Lamp Post" />
-    <Item Id="342" Name="Tiki Torch" />
-    <Item Id="343" Name="Barrel" />
-    <Item Id="344" Name="Chinese Lantern" />
-    <Item Id="345" Name="Cooking Pot" />
-    <Item Id="346" Name="Safe" />
-    <Item Id="347" Name="Skull Lantern" />
-    <Item Id="348" Name="Trash Can" />
-    <Item Id="349" Name="Candelabra" />
-    <Item Id="350" Name="Pink Vase" />
-    <Item Id="351" Name="Mug" />
-    <Item Id="352" Name="Keg" />
-    <Item Id="353" Name="Ale" />
-    <Item Id="354" Name="Bookcase" />
-    <Item Id="355" Name="Throne" />
-    <Item Id="356" Name="Bowl" />
-    <Item Id="357" Name="Bowl of Soup" />
-    <Item Id="358" Name="Toilet" />
-    <Item Id="359" Name="Grandfather Clock" />
-    <Item Id="360" Name="Armor Statue" />
-    <Item Id="361" Name="Goblin Battle Standard" />
-    <Item Id="362" Name="Tattered Cloth" />
-    <Item Id="363" Name="Sawmill" />
-    <Item Id="364" Name="Cobalt Ore" />
-    <Item Id="365" Name="Mythril Ore" />
-    <Item Id="366" Name="Adamantite Ore" />
-    <Item Id="367" Name="Pwnhammer" />
-    <Item Id="368" Name="Excalibur" />
-    <Item Id="369" Name="Hallowed Seeds" />
-    <Item Id="370" Name="Ebonsand Block" />
-    <Item Id="371" Name="Cobalt Hat" />
-    <Item Id="372" Name="Cobalt Helmet" />
-    <Item Id="373" Name="Cobalt Mask" />
-    <Item Id="374" Name="Cobalt Breastplate" />
-    <Item Id="375" Name="Cobalt Leggings" />
-    <Item Id="376" Name="Mythril Hood" />
-    <Item Id="377" Name="Mythril Helmet" />
-    <Item Id="378" Name="Mythril Hat" />
-    <Item Id="379" Name="Mythril Chainmail" />
-    <Item Id="380" Name="Mythril Greaves" />
-    <Item Id="381" Name="Cobalt Bar" />
-    <Item Id="382" Name="Mythril Bar" />
-    <Item Id="383" Name="Cobalt Chainsaw" />
-    <Item Id="384" Name="Mythril Chainsaw" />
-    <Item Id="385" Name="Cobalt Drill" />
-    <Item Id="386" Name="Mythril Drill" />
-    <Item Id="387" Name="Adamantite Chainsaw" />
-    <Item Id="388" Name="Adamantite Drill" />
-    <Item Id="389" Name="Dao of Pow" />
-    <Item Id="390" Name="Mythril Halberd" />
-    <Item Id="391" Name="Adamantite Bar" />
-    <Item Id="392" Name="Glass Wall" />
-    <Item Id="393" Name="Compass" />
-    <Item Id="394" Name="Diving Gear" />
-    <Item Id="395" Name="GPS" />
-    <Item Id="396" Name="Obsidian Horseshoe" />
-    <Item Id="397" Name="Obsidian Shield" />
-    <Item Id="398" Name="Tinkerer's Workshop" />
-    <Item Id="399" Name="Cloud in a Balloon" />
-    <Item Id="400" Name="Adamantite Headgear" />
-    <Item Id="401" Name="Adamantite Helmet" />
-    <Item Id="402" Name="Adamantite Mask" />
-    <Item Id="403" Name="Adamantite Breastplate" />
-    <Item Id="404" Name="Adamantite Leggings" />
-    <Item Id="405" Name="Spectre Boots" />
-    <Item Id="406" Name="Adamantite Glaive" />
-    <Item Id="407" Name="Toolbelt" />
-    <Item Id="408" Name="Pearlsand Block" />
-    <Item Id="409" Name="Pearlstone Block" />
-    <Item Id="410" Name="Mining Shirt" />
-    <Item Id="411" Name="Mining Pants" />
-    <Item Id="412" Name="Pearlstone Brick" />
-    <Item Id="413" Name="Iridescent Brick" />
-    <Item Id="414" Name="Mudstone Block" />
-    <Item Id="415" Name="Cobalt Brick" />
-    <Item Id="416" Name="Mythril Brick" />
-    <Item Id="417" Name="Pearlstone Brick Wall" />
-    <Item Id="418" Name="Iridescent Brick Wall" />
-    <Item Id="419" Name="Mudstone Brick Wall" />
-    <Item Id="420" Name="Cobalt Brick Wall" />
-    <Item Id="421" Name="Mythril Brick Wall" />
-    <Item Id="422" Name="Holy Water" />
-    <Item Id="423" Name="Unholy Water" />
-    <Item Id="424" Name="Silt Block" />
-    <Item Id="425" Name="Fairy Bell" />
-    <Item Id="426" Name="Breaker Blade" />
-    <Item Id="427" Name="Blue Torch" />
-    <Item Id="428" Name="Red Torch" />
-    <Item Id="429" Name="Green Torch" />
-    <Item Id="430" Name="Purple Torch" />
-    <Item Id="431" Name="White Torch" />
-    <Item Id="432" Name="Yellow Torch" />
-    <Item Id="433" Name="Demon Torch" />
-    <Item Id="434" Name="Clockwork Assault Rifle" />
-    <Item Id="435" Name="Cobalt Repeater" />
-    <Item Id="436" Name="Mythril Repeater" />
-    <Item Id="437" Name="Dual Hook" />
-    <Item Id="438" Name="Star Statue" />
-    <Item Id="439" Name="Sword Statue" />
-    <Item Id="440" Name="Slime Statue" />
-    <Item Id="441" Name="Goblin Statue" />
-    <Item Id="442" Name="Shield Statue" />
-    <Item Id="443" Name="Bat Statue" />
-    <Item Id="444" Name="Fish Statue" />
-    <Item Id="445" Name="Bunny Statue" />
-    <Item Id="446" Name="Skeleton Statue" />
-    <Item Id="447" Name="Reaper Statue" />
-    <Item Id="448" Name="Woman Statue" />
-    <Item Id="449" Name="Imp Statue" />
-    <Item Id="450" Name="Gargoyle Statue" />
-    <Item Id="451" Name="Gloom Statue" />
-    <Item Id="452" Name="Hornet Statue" />
-    <Item Id="453" Name="Bomb Statue" />
-    <Item Id="454" Name="Crab Statue" />
-    <Item Id="455" Name="Hammer Statue" />
-    <Item Id="456" Name="Potion Statue" />
-    <Item Id="457" Name="Spear Statue" />
-    <Item Id="458" Name="Cross Statue" />
-    <Item Id="459" Name="Jellyfish Statue" />
-    <Item Id="460" Name="Bow Statue" />
-    <Item Id="461" Name="Boomerang Statue" />
-    <Item Id="462" Name="Boot Statue" />
-    <Item Id="463" Name="Chest Statue" />
-    <Item Id="464" Name="Bird Statue" />
-    <Item Id="465" Name="Axe Statue" />
-    <Item Id="466" Name="Corrupt Statue" />
-    <Item Id="467" Name="Tree Statue" />
-    <Item Id="468" Name="Anvil Statue" />
-    <Item Id="469" Name="Pickaxe Statue" />
-    <Item Id="470" Name="Mushroom Statue" />
-    <Item Id="471" Name="Eyeball Statue" />
-    <Item Id="472" Name="Pillar Statue" />
-    <Item Id="473" Name="Heart Statue" />
-    <Item Id="474" Name="Pot Statue" />
-    <Item Id="475" Name="Sunflower Statue" />
-    <Item Id="476" Name="King Statue" />
-    <Item Id="477" Name="Queen Statue" />
-    <Item Id="478" Name="Pirahna Statue" />
-    <Item Id="479" Name="Planked Wall" />
-    <Item Id="480" Name="Wooden Beam" />
-    <Item Id="481" Name="Adamantite Repeater" />
-    <Item Id="482" Name="Adamantite Sword" />
-    <Item Id="483" Name="Cobalt Sword" />
-    <Item Id="484" Name="Mythril Sword" />
-    <Item Id="485" Name="Moon Charm" />
-    <Item Id="486" Name="Ruler" />
-    <Item Id="487" Name="Crystal Ball" />
-    <Item Id="488" Name="Disco Ball" />
-    <Item Id="489" Name="Sorcerer Emblem" />
-    <Item Id="490" Name="Warrior Emblem" />
-    <Item Id="491" Name="Ranger Emblem" />
-    <Item Id="492" Name="Demon Wings" />
-    <Item Id="493" Name="Angel Wings" />
-    <Item Id="494" Name="Magical Harp" />
-    <Item Id="495" Name="Rainbow Rod" />
-    <Item Id="496" Name="Ice Rod" />
-    <Item Id="497" Name="Neptune's Shell" />
-    <Item Id="498" Name="Mannequin" />
-    <Item Id="499" Name="Greater Healing Potion" />
-    <Item Id="500" Name="Greater Mana Potion" />
-    <Item Id="501" Name="Pixie Dust" />
-    <Item Id="502" Name="Crystal Shard" />
-    <Item Id="503" Name="Clown Hat" />
-    <Item Id="504" Name="Clown Shirt" />
-    <Item Id="505" Name="Clown Pants" />
-    <Item Id="506" Name="Flamethrower" />
-    <Item Id="507" Name="Bell" />
-    <Item Id="508" Name="Harp" />
-    <Item Id="509" Name="Wrench" />
-    <Item Id="510" Name="Wire Cutter" />
-    <Item Id="511" Name="Active Stone Block" />
-    <Item Id="512" Name="Inactive Stone Block" />
-    <Item Id="513" Name="Lever" />
-    <Item Id="514" Name="Laser Rifle" />
-    <Item Id="515" Name="Crystal Bullet" />
-    <Item Id="516" Name="Holy Arrow" />
-    <Item Id="517" Name="Magic Dagger" />
-    <Item Id="518" Name="Crystal Storm" />
-    <Item Id="519" Name="Cursed Flames" />
-    <Item Id="520" Name="Soul of Light" />
-    <Item Id="521" Name="Soul of Night" />
-    <Item Id="522" Name="Cursed Flame" />
-    <Item Id="523" Name="Cursed Torch" />
-    <Item Id="524" Name="Adamantite Forge" />
-    <Item Id="525" Name="Mythril Anvil" />
-    <Item Id="526" Name="Unicorn Horn" />
-    <Item Id="527" Name="Dark Shard" />
-    <Item Id="528" Name="Light Shard" />
-    <Item Id="529" Name="Red Pressure Plate" />
-    <Item Id="530" Name="Wire" />
-    <Item Id="531" Name="Spell Tome" />
-    <Item Id="532" Name="Star Cloak" />
-    <Item Id="533" Name="Megashark" />
-    <Item Id="534" Name="Shotgun" />
-    <Item Id="535" Name="Philosopher's Stone" />
-    <Item Id="536" Name="Titan Glove" />
-    <Item Id="537" Name="Cobalt Naginata" />
-    <Item Id="538" Name="Switch" />
-    <Item Id="539" Name="Dart Trap" />
-    <Item Id="540" Name="Boulder" />
-    <Item Id="541" Name="Green Pressure Plate" />
-    <Item Id="542" Name="Gray Pressure Plate" />
-    <Item Id="543" Name="Brown Pressure Plate" />
-    <Item Id="544" Name="Mechanical Eye" />
-    <Item Id="545" Name="Cursed Arrow" />
-    <Item Id="546" Name="Cursed Bullet" />
-    <Item Id="547" Name="Soul of Fright" />
-    <Item Id="548" Name="Soul of Might" />
-    <Item Id="549" Name="Soul of Sight" />
-    <Item Id="550" Name="Gungnir" />
-    <Item Id="551" Name="Hallowed Plate Mail" />
-    <Item Id="552" Name="Hallowed Greaves" />
-    <Item Id="553" Name="Hallowed Helmet" />
-    <Item Id="554" Name="Cross Necklace" />
-    <Item Id="555" Name="Mana Flower" />
-    <Item Id="556" Name="Mechanical Worm" />
-    <Item Id="557" Name="Mechanical Skull" />
-    <Item Id="558" Name="Hallowed Headgear" />
-    <Item Id="559" Name="Hallowed Mask" />
-    <Item Id="560" Name="Slime Crown" />
-    <Item Id="561" Name="Light Disc" />
-    <Item Id="562" Name="Music Box (Overworld Day)" />
-    <Item Id="563" Name="Music Box (Eerie)" />
-    <Item Id="564" Name="Music Box (Night)" />
-    <Item Id="565" Name="Music Box (Title)" />
-    <Item Id="566" Name="Music Box (Underground)" />
-    <Item Id="567" Name="Music Box (Boss 1)" />
-    <Item Id="568" Name="Music Box (Jungle)" />
-    <Item Id="569" Name="Music Box (Corruption)" />
-    <Item Id="570" Name="Music Box (Underground Corruption)" />
-    <Item Id="571" Name="Music Box (The Hallow)" />
-    <Item Id="572" Name="Music Box (Boss 2)" />
-    <Item Id="573" Name="Music Box (Underground Hallow)" />
-    <Item Id="574" Name="Music Box (Boss 3)" />
-    <Item Id="575" Name="Soul of Flight" />
-    <Item Id="576" Name="Music Box" />
-    <Item Id="577" Name="Demonite Brick" />
-    <Item Id="578" Name="Hallowed Repeater" />
-    <Item Id="579" Name="Hamdrax" />
-    <Item Id="580" Name="Explosives" />
-    <Item Id="581" Name="Inlet Pump" />
-    <Item Id="582" Name="Outlet Pump" />
-    <Item Id="583" Name="1 Second Timer" />
-    <Item Id="584" Name="3 Second Timer" />
-    <Item Id="585" Name="5 Second Timer" />
-    <Item Id="586" Name="Candy Cane Block" />
-    <Item Id="587" Name="Candy Cane Wall" />
-    <Item Id="588" Name="Santa Hat" />
-    <Item Id="589" Name="Santa Shirt" />
-    <Item Id="590" Name="Santa Pants" />
-    <Item Id="591" Name="Green Candy Cane Block" />
-    <Item Id="592" Name="Green Candy Cane Wall" />
-    <Item Id="593" Name="Snow Block" />
-    <Item Id="594" Name="Snow Brick" />
-    <Item Id="595" Name="Snow Brick Wall" />
-    <Item Id="596" Name="Blue Light" />
-    <Item Id="597" Name="Red Light" />
-    <Item Id="598" Name="Green Light" />
-    <Item Id="599" Name="Blue Present" />
-    <Item Id="600" Name="Green Present" />
-    <Item Id="601" Name="Yellow Present" />
-    <Item Id="602" Name="Snow Globe" />
-    <Item Id="603" Name="Carrot" />
+    <Item Id="-48" Name="Platinum Bow"/>
+    <Item Id="-47" Name="Platinum Hammer"/>
+    <Item Id="-46" Name="Platinum Axe"/>
+    <Item Id="-45" Name="Platinum Shortsword"/>
+    <Item Id="-44" Name="Platinum Broadsword"/>
+    <Item Id="-43" Name="Platinum Pickaxe"/>
+    <Item Id="-42" Name="Tungsten Bow"/>
+    <Item Id="-41" Name="Tungsten Hammer"/>
+    <Item Id="-40" Name="Tungsten Axe"/>
+    <Item Id="-39" Name="Tungsten Shortsword"/>
+    <Item Id="-38" Name="Tungsten Broadsword"/>
+    <Item Id="-37" Name="Tungsten Pickaxe"/>
+    <Item Id="-36" Name="Lead Bow"/>
+    <Item Id="-35" Name="Lead Hammer"/>
+    <Item Id="-34" Name="Lead Axe"/>
+    <Item Id="-33" Name="Lead Shortsword"/>
+    <Item Id="-32" Name="Lead Broadsword"/>
+    <Item Id="-31" Name="Lead Pickaxe"/>
+    <Item Id="-30" Name="Tin Bow"/>
+    <Item Id="-29" Name="Tin Hammer"/>
+    <Item Id="-28" Name="Tin Axe"/>
+    <Item Id="-27" Name="Tin Shortsword"/>
+    <Item Id="-26" Name="Tin Broadsword"/>
+    <Item Id="-25" Name="Tin Pickaxe"/>
+    <Item Id="-24" Name="Yellow Phasesaber"/>
+    <Item Id="-23" Name="White Phasesaber"/>
+    <Item Id="-22" Name="Purple Phasesaber"/>
+    <Item Id="-21" Name="Green Phasesaber"/>
+    <Item Id="-20" Name="Red Phasesaber"/>
+    <Item Id="-19" Name="Blue Phasesaber"/>
+    <Item Id="-18" Name="Copper Bow"/>
+    <Item Id="-17" Name="Copper Hammer"/>
+    <Item Id="-16" Name="Copper Axe"/>
+    <Item Id="-15" Name="Copper Shortsword"/>
+    <Item Id="-14" Name="Copper Broadsword"/>
+    <Item Id="-13" Name="Copper Pickaxe"/>
+    <Item Id="-12" Name="Silver Bow"/>
+    <Item Id="-11" Name="Silver Hammer"/>
+    <Item Id="-10" Name="Silver Axe"/>
+    <Item Id="-9" Name="Silver Shortsword"/>
+    <Item Id="-8" Name="Silver Broadsword"/>
+    <Item Id="-7" Name="Silver Pickaxe"/>
+    <Item Id="-6" Name="Gold Bow"/>
+    <Item Id="-5" Name="Gold Hammer"/>
+    <Item Id="-4" Name="Gold Axe"/>
+    <Item Id="-3" Name="Gold Shortsword"/>
+    <Item Id="-2" Name="Gold Broadsword"/>
+    <Item Id="-1" Name="Gold Pickaxe"/>
+    <Item Id="0" Name=""/>
+    <Item Id="1" Name="Iron Pickaxe"/>
+    <Item Id="2" Name="Dirt Block"/>
+    <Item Id="3" Name="Stone Block"/>
+    <Item Id="4" Name="Iron Broadsword"/>
+    <Item Id="5" Name="Mushroom"/>
+    <Item Id="6" Name="Iron Shortsword"/>
+    <Item Id="7" Name="Iron Hammer"/>
+    <Item Id="8" Name="Torch"/>
+    <Item Id="9" Name="Wood"/>
+    <Item Id="10" Name="Iron Axe"/>
+    <Item Id="11" Name="Iron Ore"/>
+    <Item Id="12" Name="Copper Ore"/>
+    <Item Id="13" Name="Gold Ore"/>
+    <Item Id="14" Name="Silver Ore"/>
+    <Item Id="15" Name="Copper Watch"/>
+    <Item Id="16" Name="Silver Watch"/>
+    <Item Id="17" Name="Gold Watch"/>
+    <Item Id="18" Name="Depth Meter"/>
+    <Item Id="19" Name="Gold Bar"/>
+    <Item Id="20" Name="Copper Bar"/>
+    <Item Id="21" Name="Silver Bar"/>
+    <Item Id="22" Name="Iron Bar"/>
+    <Item Id="23" Name="Gel"/>
+    <Item Id="24" Name="Wooden Sword"/>
+    <Item Id="25" Name="Wooden Door"/>
+    <Item Id="26" Name="Stone Wall"/>
+    <Item Id="27" Name="Acorn"/>
+    <Item Id="28" Name="Lesser Healing Potion"/>
+    <Item Id="29" Name="Life Crystal"/>
+    <Item Id="30" Name="Dirt Wall"/>
+    <Item Id="31" Name="Bottle"/>
+    <Item Id="32" Name="Wooden Table"/>
+    <Item Id="33" Name="Furnace"/>
+    <Item Id="34" Name="Wooden Chair"/>
+    <Item Id="35" Name="Iron Anvil"/>
+    <Item Id="36" Name="Work Bench"/>
+    <Item Id="37" Name="Goggles"/>
+    <Item Id="38" Name="Lens"/>
+    <Item Id="39" Name="Wooden Bow"/>
+    <Item Id="40" Name="Wooden Arrow"/>
+    <Item Id="41" Name="Flaming Arrow"/>
+    <Item Id="42" Name="Shuriken"/>
+    <Item Id="43" Name="Suspicious Looking Eye"/>
+    <Item Id="44" Name="Demon Bow"/>
+    <Item Id="45" Name="War Axe of the Night"/>
+    <Item Id="46" Name="Light's Bane"/>
+    <Item Id="47" Name="Unholy Arrow"/>
+    <Item Id="48" Name="Chest"/>
+    <Item Id="49" Name="Band of Regeneration"/>
+    <Item Id="50" Name="Magic Mirror"/>
+    <Item Id="51" Name="Jester's Arrow"/>
+    <Item Id="52" Name="Angel Statue"/>
+    <Item Id="53" Name="Cloud in a Bottle"/>
+    <Item Id="54" Name="Hermes Boots"/>
+    <Item Id="55" Name="Enchanted Boomerang"/>
+    <Item Id="56" Name="Demonite Ore"/>
+    <Item Id="57" Name="Demonite Bar"/>
+    <Item Id="58" Name="Heart"/>
+    <Item Id="59" Name="Corrupt Seeds"/>
+    <Item Id="60" Name="Vile Mushroom"/>
+    <Item Id="61" Name="Ebonstone Block"/>
+    <Item Id="62" Name="Grass Seeds"/>
+    <Item Id="63" Name="Sunflower"/>
+    <Item Id="64" Name="Vilethorn"/>
+    <Item Id="65" Name="Starfury"/>
+    <Item Id="66" Name="Purification Powder"/>
+    <Item Id="67" Name="Vile Powder"/>
+    <Item Id="68" Name="Rotten Chunk"/>
+    <Item Id="69" Name="Worm Tooth"/>
+    <Item Id="70" Name="Worm Food"/>
+    <Item Id="71" Name="Copper Coin"/>
+    <Item Id="72" Name="Silver Coin"/>
+    <Item Id="73" Name="Gold Coin"/>
+    <Item Id="74" Name="Platinum Coin"/>
+    <Item Id="75" Name="Fallen Star"/>
+    <Item Id="76" Name="Copper Greaves"/>
+    <Item Id="77" Name="Iron Greaves"/>
+    <Item Id="78" Name="Silver Greaves"/>
+    <Item Id="79" Name="Gold Greaves"/>
+    <Item Id="80" Name="Copper Chainmail"/>
+    <Item Id="81" Name="Iron Chainmail"/>
+    <Item Id="82" Name="Silver Chainmail"/>
+    <Item Id="83" Name="Gold Chainmail"/>
+    <Item Id="84" Name="Grappling Hook"/>
+    <Item Id="85" Name="Chain"/>
+    <Item Id="86" Name="Shadow Scale"/>
+    <Item Id="87" Name="Piggy Bank"/>
+    <Item Id="88" Name="Mining Helmet"/>
+    <Item Id="89" Name="Copper Helmet"/>
+    <Item Id="90" Name="Iron Helmet"/>
+    <Item Id="91" Name="Silver Helmet"/>
+    <Item Id="92" Name="Gold Helmet"/>
+    <Item Id="93" Name="Wood Wall"/>
+    <Item Id="94" Name="Wood Platform"/>
+    <Item Id="95" Name="Flintlock Pistol"/>
+    <Item Id="96" Name="Musket"/>
+    <Item Id="97" Name="Musket Ball"/>
+    <Item Id="98" Name="Minishark"/>
+    <Item Id="99" Name="Iron Bow"/>
+    <Item Id="100" Name="Shadow Greaves"/>
+    <Item Id="101" Name="Shadow Scalemail"/>
+    <Item Id="102" Name="Shadow Helmet"/>
+    <Item Id="103" Name="Nightmare Pickaxe"/>
+    <Item Id="104" Name="The Breaker"/>
+    <Item Id="105" Name="Candle"/>
+    <Item Id="106" Name="Copper Chandelier"/>
+    <Item Id="107" Name="Silver Chandelier"/>
+    <Item Id="108" Name="Gold Chandelier"/>
+    <Item Id="109" Name="Mana Crystal"/>
+    <Item Id="110" Name="Lesser Mana Potion"/>
+    <Item Id="111" Name="Band of Starpower"/>
+    <Item Id="112" Name="Flower of Fire"/>
+    <Item Id="113" Name="Magic Missile"/>
+    <Item Id="114" Name="Dirt Rod"/>
+    <Item Id="115" Name="Shadow Orb"/>
+    <Item Id="116" Name="Meteorite"/>
+    <Item Id="117" Name="Meteorite Bar"/>
+    <Item Id="118" Name="Hook"/>
+    <Item Id="119" Name="Flamarang"/>
+    <Item Id="120" Name="Molten Fury"/>
+    <Item Id="121" Name="Fiery Greatsword"/>
+    <Item Id="122" Name="Molten Pickaxe"/>
+    <Item Id="123" Name="Meteor Helmet"/>
+    <Item Id="124" Name="Meteor Suit"/>
+    <Item Id="125" Name="Meteor Leggings"/>
+    <Item Id="126" Name="Bottled Water"/>
+    <Item Id="127" Name="Space Gun"/>
+    <Item Id="128" Name="Rocket Boots"/>
+    <Item Id="129" Name="Gray Brick"/>
+    <Item Id="130" Name="Gray Brick Wall"/>
+    <Item Id="131" Name="Red Brick"/>
+    <Item Id="132" Name="Red Brick Wall"/>
+    <Item Id="133" Name="Clay Block"/>
+    <Item Id="134" Name="Blue Brick"/>
+    <Item Id="135" Name="Blue Brick Wall"/>
+    <Item Id="136" Name="Chain Lantern"/>
+    <Item Id="137" Name="Green Brick"/>
+    <Item Id="138" Name="Green Brick Wall"/>
+    <Item Id="139" Name="Pink Brick"/>
+    <Item Id="140" Name="Pink Brick Wall"/>
+    <Item Id="141" Name="Gold Brick"/>
+    <Item Id="142" Name="Gold Brick Wall"/>
+    <Item Id="143" Name="Silver Brick"/>
+    <Item Id="144" Name="Silver Brick Wall"/>
+    <Item Id="145" Name="Copper Brick"/>
+    <Item Id="146" Name="Copper Brick Wall"/>
+    <Item Id="147" Name="Spike"/>
+    <Item Id="148" Name="Water Candle"/>
+    <Item Id="149" Name="Book"/>
+    <Item Id="150" Name="Cobweb"/>
+    <Item Id="151" Name="Necro Helmet"/>
+    <Item Id="152" Name="Necro Breastplate"/>
+    <Item Id="153" Name="Necro Greaves"/>
+    <Item Id="154" Name="Bone"/>
+    <Item Id="155" Name="Muramasa"/>
+    <Item Id="156" Name="Cobalt Shield"/>
+    <Item Id="157" Name="Aqua Scepter"/>
+    <Item Id="158" Name="Lucky Horseshoe"/>
+    <Item Id="159" Name="Shiny Red Balloon"/>
+    <Item Id="160" Name="Harpoon"/>
+    <Item Id="161" Name="Spiky Ball"/>
+    <Item Id="162" Name="Ball O' Hurt"/>
+    <Item Id="163" Name="Blue Moon"/>
+    <Item Id="164" Name="Handgun"/>
+    <Item Id="165" Name="Water Bolt"/>
+    <Item Id="166" Name="Bomb"/>
+    <Item Id="167" Name="Dynamite"/>
+    <Item Id="168" Name="Grenade"/>
+    <Item Id="169" Name="Sand Block"/>
+    <Item Id="170" Name="Glass"/>
+    <Item Id="171" Name="Sign"/>
+    <Item Id="172" Name="Ash Block"/>
+    <Item Id="173" Name="Obsidian"/>
+    <Item Id="174" Name="Hellstone"/>
+    <Item Id="175" Name="Hellstone Bar"/>
+    <Item Id="176" Name="Mud Block"/>
+    <Item Id="177" Name="Sapphire"/>
+    <Item Id="178" Name="Ruby"/>
+    <Item Id="179" Name="Emerald"/>
+    <Item Id="180" Name="Topaz"/>
+    <Item Id="181" Name="Amethyst"/>
+    <Item Id="182" Name="Diamond"/>
+    <Item Id="183" Name="Glowing Mushroom"/>
+    <Item Id="184" Name="Star"/>
+    <Item Id="185" Name="Ivy Whip"/>
+    <Item Id="186" Name="Breathing Reed"/>
+    <Item Id="187" Name="Flipper"/>
+    <Item Id="188" Name="Healing Potion"/>
+    <Item Id="189" Name="Mana Potion"/>
+    <Item Id="190" Name="Blade of Grass"/>
+    <Item Id="191" Name="Thorn Chakram"/>
+    <Item Id="192" Name="Obsidian Brick"/>
+    <Item Id="193" Name="Obsidian Skull"/>
+    <Item Id="194" Name="Mushroom Grass Seeds"/>
+    <Item Id="195" Name="Jungle Grass Seeds"/>
+    <Item Id="196" Name="Wooden Hammer"/>
+    <Item Id="197" Name="Star Cannon"/>
+    <Item Id="198" Name="Blue Phaseblade"/>
+    <Item Id="199" Name="Red Phaseblade"/>
+    <Item Id="200" Name="Green Phaseblade"/>
+    <Item Id="201" Name="Purple Phaseblade"/>
+    <Item Id="202" Name="White Phaseblade"/>
+    <Item Id="203" Name="Yellow Phaseblade"/>
+    <Item Id="204" Name="Meteor Hamaxe"/>
+    <Item Id="205" Name="Empty Bucket"/>
+    <Item Id="206" Name="Water Bucket"/>
+    <Item Id="207" Name="Lava Bucket"/>
+    <Item Id="208" Name="Jungle Rose"/>
+    <Item Id="209" Name="Stinger"/>
+    <Item Id="210" Name="Vine"/>
+    <Item Id="211" Name="Feral Claws"/>
+    <Item Id="212" Name="Anklet of the Wind"/>
+    <Item Id="213" Name="Staff of Regrowth"/>
+    <Item Id="214" Name="Hellstone Brick"/>
+    <Item Id="215" Name="Whoopie Cushion"/>
+    <Item Id="216" Name="Shackle"/>
+    <Item Id="217" Name="Molten Hamaxe"/>
+    <Item Id="218" Name="Flamelash"/>
+    <Item Id="219" Name="Phoenix Blaster"/>
+    <Item Id="220" Name="Sunfury"/>
+    <Item Id="221" Name="Hellforge"/>
+    <Item Id="222" Name="Clay Pot"/>
+    <Item Id="223" Name="Nature's Gift"/>
+    <Item Id="224" Name="Bed"/>
+    <Item Id="225" Name="Silk"/>
+    <Item Id="226" Name="Lesser Restoration Potion"/>
+    <Item Id="227" Name="Restoration Potion"/>
+    <Item Id="228" Name="Jungle Hat"/>
+    <Item Id="229" Name="Jungle Shirt"/>
+    <Item Id="230" Name="Jungle Pants"/>
+    <Item Id="231" Name="Molten Helmet"/>
+    <Item Id="232" Name="Molten Breastplate"/>
+    <Item Id="233" Name="Molten Greaves"/>
+    <Item Id="234" Name="Meteor Shot"/>
+    <Item Id="235" Name="Sticky Bomb"/>
+    <Item Id="236" Name="Black Lens"/>
+    <Item Id="237" Name="Sunglasses"/>
+    <Item Id="238" Name="Wizard Hat"/>
+    <Item Id="239" Name="Top Hat"/>
+    <Item Id="240" Name="Tuxedo Shirt"/>
+    <Item Id="241" Name="Tuxedo Pants"/>
+    <Item Id="242" Name="Summer Hat"/>
+    <Item Id="243" Name="Bunny Hood"/>
+    <Item Id="244" Name="Plumber's Hat"/>
+    <Item Id="245" Name="Plumber's Shirt"/>
+    <Item Id="246" Name="Plumber's Pants"/>
+    <Item Id="247" Name="Hero's Hat"/>
+    <Item Id="248" Name="Hero's Shirt"/>
+    <Item Id="249" Name="Hero's Pants"/>
+    <Item Id="250" Name="Fish Bowl"/>
+    <Item Id="251" Name="Archaeologist's Hat"/>
+    <Item Id="252" Name="Archaeologist's Jacket"/>
+    <Item Id="253" Name="Archaeologist's Pants"/>
+    <Item Id="254" Name="Black Thread"/>
+    <Item Id="255" Name="Green Thread"/>
+    <Item Id="256" Name="Ninja Hood"/>
+    <Item Id="257" Name="Ninja Shirt"/>
+    <Item Id="258" Name="Ninja Pants"/>
+    <Item Id="259" Name="Leather"/>
+    <Item Id="260" Name="Red Hat"/>
+    <Item Id="261" Name="Goldfish"/>
+    <Item Id="262" Name="Robe"/>
+    <Item Id="263" Name="Robot Hat"/>
+    <Item Id="264" Name="Gold Crown"/>
+    <Item Id="265" Name="Hellfire Arrow"/>
+    <Item Id="266" Name="Sandgun"/>
+    <Item Id="267" Name="Guide Voodoo Doll"/>
+    <Item Id="268" Name="Diving Helmet"/>
+    <Item Id="269" Name="Familiar Shirt"/>
+    <Item Id="270" Name="Familiar Pants"/>
+    <Item Id="271" Name="Familiar Wig"/>
+    <Item Id="272" Name="Demon Scythe"/>
+    <Item Id="273" Name="Night's Edge"/>
+    <Item Id="274" Name="Dark Lance"/>
+    <Item Id="275" Name="Coral"/>
+    <Item Id="276" Name="Cactus"/>
+    <Item Id="277" Name="Trident"/>
+    <Item Id="278" Name="Silver Bullet"/>
+    <Item Id="279" Name="Throwing Knife"/>
+    <Item Id="280" Name="Spear"/>
+    <Item Id="281" Name="Blowpipe"/>
+    <Item Id="282" Name="Glowstick"/>
+    <Item Id="283" Name="Seed"/>
+    <Item Id="284" Name="Wooden Boomerang"/>
+    <Item Id="285" Name="Aglet"/>
+    <Item Id="286" Name="Sticky Glowstick"/>
+    <Item Id="287" Name="Poisoned Knife"/>
+    <Item Id="288" Name="Obsidian Skin Potion"/>
+    <Item Id="289" Name="Regeneration Potion"/>
+    <Item Id="290" Name="Swiftness Potion"/>
+    <Item Id="291" Name="Gills Potion"/>
+    <Item Id="292" Name="Ironskin Potion"/>
+    <Item Id="293" Name="Mana Regeneration Potion"/>
+    <Item Id="294" Name="Magic Power Potion"/>
+    <Item Id="295" Name="Featherfall Potion"/>
+    <Item Id="296" Name="Spelunker Potion"/>
+    <Item Id="297" Name="Invisibility Potion"/>
+    <Item Id="298" Name="Shine Potion"/>
+    <Item Id="299" Name="Night Owl Potion"/>
+    <Item Id="300" Name="Battle Potion"/>
+    <Item Id="301" Name="Thorns Potion"/>
+    <Item Id="302" Name="Water Walking Potion"/>
+    <Item Id="303" Name="Archery Potion"/>
+    <Item Id="304" Name="Hunter Potion"/>
+    <Item Id="305" Name="Gravitation Potion"/>
+    <Item Id="306" Name="Gold Chest"/>
+    <Item Id="307" Name="Daybloom Seeds"/>
+    <Item Id="308" Name="Moonglow Seeds"/>
+    <Item Id="309" Name="Blinkroot Seeds"/>
+    <Item Id="310" Name="Deathweed Seeds"/>
+    <Item Id="311" Name="Waterleaf Seeds"/>
+    <Item Id="312" Name="Fireblossom Seeds"/>
+    <Item Id="313" Name="Daybloom"/>
+    <Item Id="314" Name="Moonglow"/>
+    <Item Id="315" Name="Blinkroot"/>
+    <Item Id="316" Name="Deathweed"/>
+    <Item Id="317" Name="Waterleaf"/>
+    <Item Id="318" Name="Fireblossom"/>
+    <Item Id="319" Name="Shark Fin"/>
+    <Item Id="320" Name="Feather"/>
+    <Item Id="321" Name="Tombstone"/>
+    <Item Id="322" Name="Mime Mask"/>
+    <Item Id="323" Name="Antlion Mandible"/>
+    <Item Id="324" Name="Illegal Gun Parts"/>
+    <Item Id="325" Name="The Doctor's Shirt"/>
+    <Item Id="326" Name="The Doctor's Pants"/>
+    <Item Id="327" Name="Golden Key"/>
+    <Item Id="328" Name="Shadow Chest"/>
+    <Item Id="329" Name="Shadow Key"/>
+    <Item Id="330" Name="Obsidian Brick Wall"/>
+    <Item Id="331" Name="Jungle Spores"/>
+    <Item Id="332" Name="Loom"/>
+    <Item Id="333" Name="Piano"/>
+    <Item Id="334" Name="Dresser"/>
+    <Item Id="335" Name="Bench"/>
+    <Item Id="336" Name="Bathtub"/>
+    <Item Id="337" Name="Red Banner"/>
+    <Item Id="338" Name="Green Banner"/>
+    <Item Id="339" Name="Blue Banner"/>
+    <Item Id="340" Name="Yellow Banner"/>
+    <Item Id="341" Name="Lamp Post"/>
+    <Item Id="342" Name="Tiki Torch"/>
+    <Item Id="343" Name="Barrel"/>
+    <Item Id="344" Name="Chinese Lantern"/>
+    <Item Id="345" Name="Cooking Pot"/>
+    <Item Id="346" Name="Safe"/>
+    <Item Id="347" Name="Skull Lantern"/>
+    <Item Id="348" Name="Trash Can"/>
+    <Item Id="349" Name="Candelabra"/>
+    <Item Id="350" Name="Pink Vase"/>
+    <Item Id="351" Name="Mug"/>
+    <Item Id="352" Name="Keg"/>
+    <Item Id="353" Name="Ale"/>
+    <Item Id="354" Name="Bookcase"/>
+    <Item Id="355" Name="Throne"/>
+    <Item Id="356" Name="Bowl"/>
+    <Item Id="357" Name="Bowl of Soup"/>
+    <Item Id="358" Name="Toilet"/>
+    <Item Id="359" Name="Grandfather Clock"/>
+    <Item Id="360" Name="Armor Statue"/>
+    <Item Id="361" Name="Goblin Battle Standard"/>
+    <Item Id="362" Name="Tattered Cloth"/>
+    <Item Id="363" Name="Sawmill"/>
+    <Item Id="364" Name="Cobalt Ore"/>
+    <Item Id="365" Name="Mythril Ore"/>
+    <Item Id="366" Name="Adamantite Ore"/>
+    <Item Id="367" Name="Pwnhammer"/>
+    <Item Id="368" Name="Excalibur"/>
+    <Item Id="369" Name="Hallowed Seeds"/>
+    <Item Id="370" Name="Ebonsand Block"/>
+    <Item Id="371" Name="Cobalt Hat"/>
+    <Item Id="372" Name="Cobalt Helmet"/>
+    <Item Id="373" Name="Cobalt Mask"/>
+    <Item Id="374" Name="Cobalt Breastplate"/>
+    <Item Id="375" Name="Cobalt Leggings"/>
+    <Item Id="376" Name="Mythril Hood"/>
+    <Item Id="377" Name="Mythril Helmet"/>
+    <Item Id="378" Name="Mythril Hat"/>
+    <Item Id="379" Name="Mythril Chainmail"/>
+    <Item Id="380" Name="Mythril Greaves"/>
+    <Item Id="381" Name="Cobalt Bar"/>
+    <Item Id="382" Name="Mythril Bar"/>
+    <Item Id="383" Name="Cobalt Chainsaw"/>
+    <Item Id="384" Name="Mythril Chainsaw"/>
+    <Item Id="385" Name="Cobalt Drill"/>
+    <Item Id="386" Name="Mythril Drill"/>
+    <Item Id="387" Name="Adamantite Chainsaw"/>
+    <Item Id="388" Name="Adamantite Drill"/>
+    <Item Id="389" Name="Dao of Pow"/>
+    <Item Id="390" Name="Mythril Halberd"/>
+    <Item Id="391" Name="Adamantite Bar"/>
+    <Item Id="392" Name="Glass Wall"/>
+    <Item Id="393" Name="Compass"/>
+    <Item Id="394" Name="Diving Gear"/>
+    <Item Id="395" Name="GPS"/>
+    <Item Id="396" Name="Obsidian Horseshoe"/>
+    <Item Id="397" Name="Obsidian Shield"/>
+    <Item Id="398" Name="Tinkerer's Workshop"/>
+    <Item Id="399" Name="Cloud in a Balloon"/>
+    <Item Id="400" Name="Adamantite Headgear"/>
+    <Item Id="401" Name="Adamantite Helmet"/>
+    <Item Id="402" Name="Adamantite Mask"/>
+    <Item Id="403" Name="Adamantite Breastplate"/>
+    <Item Id="404" Name="Adamantite Leggings"/>
+    <Item Id="405" Name="Spectre Boots"/>
+    <Item Id="406" Name="Adamantite Glaive"/>
+    <Item Id="407" Name="Toolbelt"/>
+    <Item Id="408" Name="Pearlsand Block"/>
+    <Item Id="409" Name="Pearlstone Block"/>
+    <Item Id="410" Name="Mining Shirt"/>
+    <Item Id="411" Name="Mining Pants"/>
+    <Item Id="412" Name="Pearlstone Brick"/>
+    <Item Id="413" Name="Iridescent Brick"/>
+    <Item Id="414" Name="Mudstone Block"/>
+    <Item Id="415" Name="Cobalt Brick"/>
+    <Item Id="416" Name="Mythril Brick"/>
+    <Item Id="417" Name="Pearlstone Brick Wall"/>
+    <Item Id="418" Name="Iridescent Brick Wall"/>
+    <Item Id="419" Name="Mudstone Brick Wall"/>
+    <Item Id="420" Name="Cobalt Brick Wall"/>
+    <Item Id="421" Name="Mythril Brick Wall"/>
+    <Item Id="422" Name="Holy Water"/>
+    <Item Id="423" Name="Unholy Water"/>
+    <Item Id="424" Name="Silt Block"/>
+    <Item Id="425" Name="Fairy Bell"/>
+    <Item Id="426" Name="Breaker Blade"/>
+    <Item Id="427" Name="Blue Torch"/>
+    <Item Id="428" Name="Red Torch"/>
+    <Item Id="429" Name="Green Torch"/>
+    <Item Id="430" Name="Purple Torch"/>
+    <Item Id="431" Name="White Torch"/>
+    <Item Id="432" Name="Yellow Torch"/>
+    <Item Id="433" Name="Demon Torch"/>
+    <Item Id="434" Name="Clockwork Assault Rifle"/>
+    <Item Id="435" Name="Cobalt Repeater"/>
+    <Item Id="436" Name="Mythril Repeater"/>
+    <Item Id="437" Name="Dual Hook"/>
+    <Item Id="438" Name="Star Statue"/>
+    <Item Id="439" Name="Sword Statue"/>
+    <Item Id="440" Name="Slime Statue"/>
+    <Item Id="441" Name="Goblin Statue"/>
+    <Item Id="442" Name="Shield Statue"/>
+    <Item Id="443" Name="Bat Statue"/>
+    <Item Id="444" Name="Fish Statue"/>
+    <Item Id="445" Name="Bunny Statue"/>
+    <Item Id="446" Name="Skeleton Statue"/>
+    <Item Id="447" Name="Reaper Statue"/>
+    <Item Id="448" Name="Woman Statue"/>
+    <Item Id="449" Name="Imp Statue"/>
+    <Item Id="450" Name="Gargoyle Statue"/>
+    <Item Id="451" Name="Gloom Statue"/>
+    <Item Id="452" Name="Hornet Statue"/>
+    <Item Id="453" Name="Bomb Statue"/>
+    <Item Id="454" Name="Crab Statue"/>
+    <Item Id="455" Name="Hammer Statue"/>
+    <Item Id="456" Name="Potion Statue"/>
+    <Item Id="457" Name="Spear Statue"/>
+    <Item Id="458" Name="Cross Statue"/>
+    <Item Id="459" Name="Jellyfish Statue"/>
+    <Item Id="460" Name="Bow Statue"/>
+    <Item Id="461" Name="Boomerang Statue"/>
+    <Item Id="462" Name="Boot Statue"/>
+    <Item Id="463" Name="Chest Statue"/>
+    <Item Id="464" Name="Bird Statue"/>
+    <Item Id="465" Name="Axe Statue"/>
+    <Item Id="466" Name="Corrupt Statue"/>
+    <Item Id="467" Name="Tree Statue"/>
+    <Item Id="468" Name="Anvil Statue"/>
+    <Item Id="469" Name="Pickaxe Statue"/>
+    <Item Id="470" Name="Mushroom Statue"/>
+    <Item Id="471" Name="Eyeball Statue"/>
+    <Item Id="472" Name="Pillar Statue"/>
+    <Item Id="473" Name="Heart Statue"/>
+    <Item Id="474" Name="Pot Statue"/>
+    <Item Id="475" Name="Sunflower Statue"/>
+    <Item Id="476" Name="King Statue"/>
+    <Item Id="477" Name="Queen Statue"/>
+    <Item Id="478" Name="Pirahna Statue"/>
+    <Item Id="479" Name="Planked Wall"/>
+    <Item Id="480" Name="Wooden Beam"/>
+    <Item Id="481" Name="Adamantite Repeater"/>
+    <Item Id="482" Name="Adamantite Sword"/>
+    <Item Id="483" Name="Cobalt Sword"/>
+    <Item Id="484" Name="Mythril Sword"/>
+    <Item Id="485" Name="Moon Charm"/>
+    <Item Id="486" Name="Ruler"/>
+    <Item Id="487" Name="Crystal Ball"/>
+    <Item Id="488" Name="Disco Ball"/>
+    <Item Id="489" Name="Sorcerer Emblem"/>
+    <Item Id="490" Name="Warrior Emblem"/>
+    <Item Id="491" Name="Ranger Emblem"/>
+    <Item Id="492" Name="Demon Wings"/>
+    <Item Id="493" Name="Angel Wings"/>
+    <Item Id="494" Name="Magical Harp"/>
+    <Item Id="495" Name="Rainbow Rod"/>
+    <Item Id="496" Name="Ice Rod"/>
+    <Item Id="497" Name="Neptune's Shell"/>
+    <Item Id="498" Name="Mannequin"/>
+    <Item Id="499" Name="Greater Healing Potion"/>
+    <Item Id="500" Name="Greater Mana Potion"/>
+    <Item Id="501" Name="Pixie Dust"/>
+    <Item Id="502" Name="Crystal Shard"/>
+    <Item Id="503" Name="Clown Hat"/>
+    <Item Id="504" Name="Clown Shirt"/>
+    <Item Id="505" Name="Clown Pants"/>
+    <Item Id="506" Name="Flamethrower"/>
+    <Item Id="507" Name="Bell"/>
+    <Item Id="508" Name="Harp"/>
+    <Item Id="509" Name="Wrench"/>
+    <Item Id="510" Name="Wire Cutter"/>
+    <Item Id="511" Name="Active Stone Block"/>
+    <Item Id="512" Name="Inactive Stone Block"/>
+    <Item Id="513" Name="Lever"/>
+    <Item Id="514" Name="Laser Rifle"/>
+    <Item Id="515" Name="Crystal Bullet"/>
+    <Item Id="516" Name="Holy Arrow"/>
+    <Item Id="517" Name="Magic Dagger"/>
+    <Item Id="518" Name="Crystal Storm"/>
+    <Item Id="519" Name="Cursed Flames"/>
+    <Item Id="520" Name="Soul of Light"/>
+    <Item Id="521" Name="Soul of Night"/>
+    <Item Id="522" Name="Cursed Flame"/>
+    <Item Id="523" Name="Cursed Torch"/>
+    <Item Id="524" Name="Adamantite Forge"/>
+    <Item Id="525" Name="Mythril Anvil"/>
+    <Item Id="526" Name="Unicorn Horn"/>
+    <Item Id="527" Name="Dark Shard"/>
+    <Item Id="528" Name="Light Shard"/>
+    <Item Id="529" Name="Red Pressure Plate"/>
+    <Item Id="530" Name="Wire"/>
+    <Item Id="531" Name="Spell Tome"/>
+    <Item Id="532" Name="Star Cloak"/>
+    <Item Id="533" Name="Megashark"/>
+    <Item Id="534" Name="Shotgun"/>
+    <Item Id="535" Name="Philosopher's Stone"/>
+    <Item Id="536" Name="Titan Glove"/>
+    <Item Id="537" Name="Cobalt Naginata"/>
+    <Item Id="538" Name="Switch"/>
+    <Item Id="539" Name="Dart Trap"/>
+    <Item Id="540" Name="Boulder"/>
+    <Item Id="541" Name="Green Pressure Plate"/>
+    <Item Id="542" Name="Gray Pressure Plate"/>
+    <Item Id="543" Name="Brown Pressure Plate"/>
+    <Item Id="544" Name="Mechanical Eye"/>
+    <Item Id="545" Name="Cursed Arrow"/>
+    <Item Id="546" Name="Cursed Bullet"/>
+    <Item Id="547" Name="Soul of Fright"/>
+    <Item Id="548" Name="Soul of Might"/>
+    <Item Id="549" Name="Soul of Sight"/>
+    <Item Id="550" Name="Gungnir"/>
+    <Item Id="551" Name="Hallowed Plate Mail"/>
+    <Item Id="552" Name="Hallowed Greaves"/>
+    <Item Id="553" Name="Hallowed Helmet"/>
+    <Item Id="554" Name="Cross Necklace"/>
+    <Item Id="555" Name="Mana Flower"/>
+    <Item Id="556" Name="Mechanical Worm"/>
+    <Item Id="557" Name="Mechanical Skull"/>
+    <Item Id="558" Name="Hallowed Headgear"/>
+    <Item Id="559" Name="Hallowed Mask"/>
+    <Item Id="560" Name="Slime Crown"/>
+    <Item Id="561" Name="Light Disc"/>
+    <Item Id="562" Name="Music Box (Overworld Day)"/>
+    <Item Id="563" Name="Music Box (Eerie)"/>
+    <Item Id="564" Name="Music Box (Night)"/>
+    <Item Id="565" Name="Music Box (Title)"/>
+    <Item Id="566" Name="Music Box (Underground)"/>
+    <Item Id="567" Name="Music Box (Boss 1)"/>
+    <Item Id="568" Name="Music Box (Jungle)"/>
+    <Item Id="569" Name="Music Box (Corruption)"/>
+    <Item Id="570" Name="Music Box (Underground Corruption)"/>
+    <Item Id="571" Name="Music Box (The Hallow)"/>
+    <Item Id="572" Name="Music Box (Boss 2)"/>
+    <Item Id="573" Name="Music Box (Underground Hallow)"/>
+    <Item Id="574" Name="Music Box (Boss 3)"/>
+    <Item Id="575" Name="Soul of Flight"/>
+    <Item Id="576" Name="Music Box"/>
+    <Item Id="577" Name="Demonite Brick"/>
+    <Item Id="578" Name="Hallowed Repeater"/>
+    <Item Id="579" Name="Drax"/>
+    <Item Id="580" Name="Explosives"/>
+    <Item Id="581" Name="Inlet Pump"/>
+    <Item Id="582" Name="Outlet Pump"/>
+    <Item Id="583" Name="1 Second Timer"/>
+    <Item Id="584" Name="3 Second Timer"/>
+    <Item Id="585" Name="5 Second Timer"/>
+    <Item Id="586" Name="Candy Cane Block"/>
+    <Item Id="587" Name="Candy Cane Wall"/>
+    <Item Id="588" Name="Santa Hat"/>
+    <Item Id="589" Name="Santa Shirt"/>
+    <Item Id="590" Name="Santa Pants"/>
+    <Item Id="591" Name="Green Candy Cane Block"/>
+    <Item Id="592" Name="Green Candy Cane Wall"/>
+    <Item Id="593" Name="Snow Block"/>
+    <Item Id="594" Name="Snow Brick"/>
+    <Item Id="595" Name="Snow Brick Wall"/>
+    <Item Id="596" Name="Blue Light"/>
+    <Item Id="597" Name="Red Light"/>
+    <Item Id="598" Name="Green Light"/>
+    <Item Id="599" Name="Blue Present"/>
+    <Item Id="600" Name="Green Present"/>
+    <Item Id="601" Name="Yellow Present"/>
+    <Item Id="602" Name="Snow Globe"/>
+    <Item Id="603" Name="Carrot"/>
+    <Item Id="604" Name="Adamantite Beam"/>
+    <Item Id="605" Name="Adamantite Beam Wall"/>
+    <Item Id="606" Name="Demonite Brick Wall"/>
+    <Item Id="607" Name="Sandstone Brick"/>
+    <Item Id="608" Name="Sandstone Brick Wall"/>
+    <Item Id="609" Name="Ebonstone Brick"/>
+    <Item Id="610" Name="Ebonstone Brick Wall"/>
+    <Item Id="611" Name="Red Stucco"/>
+    <Item Id="612" Name="Yellow Stucco"/>
+    <Item Id="613" Name="Green Stucco"/>
+    <Item Id="614" Name="Gray Stucco"/>
+    <Item Id="615" Name="Red Stucco Wall"/>
+    <Item Id="616" Name="Yellow Stucco Wall"/>
+    <Item Id="617" Name="Green Stucco Wall"/>
+    <Item Id="618" Name="Gray Stucco Wall"/>
+    <Item Id="619" Name="Ebonwood"/>
+    <Item Id="620" Name="Rich Mahogany"/>
+    <Item Id="621" Name="Pearlwood"/>
+    <Item Id="622" Name="Ebonwood Wall"/>
+    <Item Id="623" Name="Rich Mahogany Wall"/>
+    <Item Id="624" Name="Pearlwood Wall"/>
+    <Item Id="625" Name="Ebonwood Chest"/>
+    <Item Id="626" Name="Rich Mahogany Chest"/>
+    <Item Id="627" Name="Pearlwood Chest"/>
+    <Item Id="628" Name="Ebonwood Chair"/>
+    <Item Id="629" Name="Rich Mahogany Chair"/>
+    <Item Id="630" Name="Pearlwood Chair"/>
+    <Item Id="631" Name="Ebonwood Platform"/>
+    <Item Id="632" Name="Rich Mahogany Platform"/>
+    <Item Id="633" Name="Pearlwood Platform"/>
+    <Item Id="634" Name="Bone Platform"/>
+    <Item Id="635" Name="Ebonwood Work Bench"/>
+    <Item Id="636" Name="Rich Mahogany Work Bench"/>
+    <Item Id="637" Name="Pearlwood Work Bench"/>
+    <Item Id="638" Name="Ebonwood Table"/>
+    <Item Id="639" Name="Rich Mahogany Table"/>
+    <Item Id="640" Name="Pearlwood Table"/>
+    <Item Id="641" Name="Ebonwood Piano"/>
+    <Item Id="642" Name="Rich Mahogany Piano"/>
+    <Item Id="643" Name="Pearlwood Piano"/>
+    <Item Id="644" Name="Ebonwood Bed"/>
+    <Item Id="645" Name="Rich Mahogany Bed"/>
+    <Item Id="646" Name="Pearlwood Bed"/>
+    <Item Id="647" Name="Ebonwood Dresser"/>
+    <Item Id="648" Name="Rich Mahogany Dresser"/>
+    <Item Id="649" Name="Pearlwood Dresser"/>
+    <Item Id="650" Name="Ebonwood Door"/>
+    <Item Id="651" Name="Rich Mahogany Door"/>
+    <Item Id="652" Name="Pearlwood Door"/>
+    <Item Id="653" Name="Ebonwood Sword"/>
+    <Item Id="654" Name="Ebonwood Hammer"/>
+    <Item Id="655" Name="Ebonwood Bow"/>
+    <Item Id="656" Name="Rich Mahogany Sword"/>
+    <Item Id="657" Name="Rich Mahogany Hammer"/>
+    <Item Id="658" Name="Rich Mahogany Bow"/>
+    <Item Id="659" Name="Pearlwood Sword"/>
+    <Item Id="660" Name="Pearlwood Hammer"/>
+    <Item Id="661" Name="Pearlwood Bow"/>
+    <Item Id="662" Name="Rainbow Brick"/>
+    <Item Id="663" Name="Rainbow Brick Wall"/>
+    <Item Id="664" Name="Ice Block"/>
+    <Item Id="665" Name="Red's Wings"/>
+    <Item Id="666" Name="Red's Helmet"/>
+    <Item Id="667" Name="Red's Breastplate"/>
+    <Item Id="668" Name="Red's Leggings"/>
+    <Item Id="669" Name="Fish"/>
+    <Item Id="670" Name="Ice Boomerang"/>
+    <Item Id="671" Name="Keybrand"/>
+    <Item Id="672" Name="Cutlass"/>
+    <Item Id="673" Name="Angel Statue"/>
+    <Item Id="674" Name="True Excalibur"/>
+    <Item Id="675" Name="True Night's Edge"/>
+    <Item Id="676" Name="Frostbrand"/>
+    <Item Id="677" Name="Angel Statue"/>
+    <Item Id="678" Name="Angel Statue"/>
+    <Item Id="679" Name="Tactical Shotgun"/>
+    <Item Id="680" Name="Ivy Chest"/>
+    <Item Id="681" Name="Ice Chest"/>
+    <Item Id="682" Name="Marrow"/>
+    <Item Id="683" Name="Unholy Trident"/>
+    <Item Id="684" Name="Frost Helmet"/>
+    <Item Id="685" Name="Frost Breastplate"/>
+    <Item Id="686" Name="Frost Leggings"/>
+    <Item Id="687" Name="Tin Helmet"/>
+    <Item Id="688" Name="Tin Chainmail"/>
+    <Item Id="689" Name="Tin Greaves"/>
+    <Item Id="690" Name="Lead Helmet"/>
+    <Item Id="691" Name="Lead Chainmail"/>
+    <Item Id="692" Name="Lead Greaves"/>
+    <Item Id="693" Name="Tungsten Helmet"/>
+    <Item Id="694" Name="Tungsten Chainmail"/>
+    <Item Id="695" Name="Tungsten Greaves"/>
+    <Item Id="696" Name="Platinum Helmet"/>
+    <Item Id="697" Name="Platinum Chainmail"/>
+    <Item Id="698" Name="Platinum Greaves"/>
+    <Item Id="699" Name="Tin Ore"/>
+    <Item Id="700" Name="Lead Ore"/>
+    <Item Id="701" Name="Tungsten Ore"/>
+    <Item Id="702" Name="Platinum Ore"/>
+    <Item Id="703" Name="Tin Bar"/>
+    <Item Id="704" Name="Lead Bar"/>
+    <Item Id="705" Name="Tungsten Bar"/>
+    <Item Id="706" Name="Platinum Bar"/>
+    <Item Id="707" Name="Tin Watch"/>
+    <Item Id="708" Name="Tungsten Watch"/>
+    <Item Id="709" Name="Platinum Watch"/>
+    <Item Id="710" Name="Tin Chandelier"/>
+    <Item Id="711" Name="Tungsten Chandelier"/>
+    <Item Id="712" Name="Platinum Chandelier"/>
+    <Item Id="713" Name="Platinum Candle"/>
+    <Item Id="714" Name="Platinum Candelabra"/>
+    <Item Id="715" Name="Platinum Crown"/>
+    <Item Id="716" Name="Lead Anvil"/>
+    <Item Id="717" Name="Tin Brick"/>
+    <Item Id="718" Name="Tungsten Brick"/>
+    <Item Id="719" Name="Platinum Brick"/>
+    <Item Id="720" Name="Tin Brick Wall"/>
+    <Item Id="721" Name="Tungsten Brick Wall"/>
+    <Item Id="722" Name="Platinum Brick Wall"/>
+    <Item Id="723" Name="Beam Sword"/>
+    <Item Id="724" Name="Ice Blade"/>
+    <Item Id="725" Name="Ice Bow"/>
+    <Item Id="726" Name="Frost Staff"/>
+    <Item Id="727" Name="Wood Helmet"/>
+    <Item Id="728" Name="Wood Breastplate"/>
+    <Item Id="729" Name="Wood Greaves"/>
+    <Item Id="730" Name="Ebonwood Helmet"/>
+    <Item Id="731" Name="Ebonwood Breastplate"/>
+    <Item Id="732" Name="Ebonwood Greaves"/>
+    <Item Id="733" Name="Rich Mahogany Helmet"/>
+    <Item Id="734" Name="Rich Mahogany Breastplate"/>
+    <Item Id="735" Name="Rich Mahogany Greaves"/>
+    <Item Id="736" Name="Pearlwood Helmet"/>
+    <Item Id="737" Name="Pearlwood Breastplate"/>
+    <Item Id="738" Name="Pearlwood Greaves"/>
+    <Item Id="739" Name="Amethyst Staff"/>
+    <Item Id="740" Name="Topaz Staff"/>
+    <Item Id="741" Name="Sapphire Staff"/>
+    <Item Id="742" Name="Emerald Staff"/>
+    <Item Id="743" Name="Ruby Staff"/>
+    <Item Id="744" Name="Diamond Staff"/>
+    <Item Id="745" Name="Grass Wall"/>
+    <Item Id="746" Name="Jungle Wall"/>
+    <Item Id="747" Name="Flower Wall"/>
+    <Item Id="748" Name="Jetpack"/>
+    <Item Id="749" Name="Butterfly Wings"/>
+    <Item Id="750" Name="Cactus Wall"/>
+    <Item Id="751" Name="Cloud"/>
+    <Item Id="752" Name="Cloud Wall"/>
+    <Item Id="753" Name="Seaweed"/>
+    <Item Id="754" Name="Rune Hat"/>
+    <Item Id="755" Name="Rune Robe"/>
+    <Item Id="756" Name="Mushroom Spear"/>
+    <Item Id="757" Name="Terra Blade"/>
+    <Item Id="758" Name="Grenade Launcher"/>
+    <Item Id="759" Name="Rocket Launcher"/>
+    <Item Id="760" Name="Proximity Mine Launcher"/>
+    <Item Id="761" Name="Fairy Wings"/>
+    <Item Id="762" Name="Slime Block"/>
+    <Item Id="763" Name="Flesh Block"/>
+    <Item Id="764" Name="Mushroom Wall"/>
+    <Item Id="765" Name="Rain Cloud"/>
+    <Item Id="766" Name="Bone Block"/>
+    <Item Id="767" Name="Frozen Slime Block"/>
+    <Item Id="768" Name="Bone Block Wall"/>
+    <Item Id="769" Name="Slime Block Wall"/>
+    <Item Id="770" Name="Flesh Block Wall"/>
+    <Item Id="771" Name="Rocket I"/>
+    <Item Id="772" Name="Rocket II"/>
+    <Item Id="773" Name="Rocket III"/>
+    <Item Id="774" Name="Rocket IV"/>
+    <Item Id="775" Name="Asphalt Block"/>
+    <Item Id="776" Name="Cobalt Pickaxe"/>
+    <Item Id="777" Name="Mythril Pickaxe"/>
+    <Item Id="778" Name="Adamantite Pickaxe"/>
+    <Item Id="779" Name="Clentaminator"/>
+    <Item Id="780" Name="Green Solution"/>
+    <Item Id="781" Name="Blue Solution"/>
+    <Item Id="782" Name="Purple Solution"/>
+    <Item Id="783" Name="Dark Blue Solution"/>
+    <Item Id="784" Name="Red Solution"/>
+    <Item Id="785" Name="Harpy Wings"/>
+    <Item Id="786" Name="Bone Wings"/>
+    <Item Id="787" Name="Hammush"/>
+    <Item Id="788" Name="Nettle Burst"/>
+    <Item Id="789" Name="Ankh Banner"/>
+    <Item Id="790" Name="Snake Banner"/>
+    <Item Id="791" Name="Omega Banner"/>
+    <Item Id="792" Name="Crimson Helmet"/>
+    <Item Id="793" Name="Crimson Scalemail"/>
+    <Item Id="794" Name="Crimson Greaves"/>
+    <Item Id="795" Name="Blood Butcherer"/>
+    <Item Id="796" Name="Tendon Bow"/>
+    <Item Id="797" Name="Meat Grinder"/>
+    <Item Id="798" Name="Deathbringer Pickaxe"/>
+    <Item Id="799" Name="Blood Lust Cluster"/>
+    <Item Id="800" Name="The Undertaker"/>
+    <Item Id="801" Name="The Meatball"/>
+    <Item Id="802" Name="The Rotted Fork"/>
+    <Item Id="803" Name="Eskimo Hood"/>
+    <Item Id="804" Name="Eskimo Coat"/>
+    <Item Id="805" Name="Eskimo Pants"/>
+    <Item Id="806" Name="Living Wood Chair"/>
+    <Item Id="807" Name="Cactus Chair"/>
+    <Item Id="808" Name="Bone Chair"/>
+    <Item Id="809" Name="Flesh Chair"/>
+    <Item Id="810" Name="Mushroom Chair"/>
+    <Item Id="811" Name="Bone Work Bench"/>
+    <Item Id="812" Name="Cactus Work Bench"/>
+    <Item Id="813" Name="Flesh Work Bench"/>
+    <Item Id="814" Name="Mushroom Work Bench"/>
+    <Item Id="815" Name="Slime Work Bench"/>
+    <Item Id="816" Name="Cactus Door"/>
+    <Item Id="817" Name="Flesh Door"/>
+    <Item Id="818" Name="Mushroom Door"/>
+    <Item Id="819" Name="Living Wood Door"/>
+    <Item Id="820" Name="Bone Door"/>
+    <Item Id="821" Name="Flame Wings"/>
+    <Item Id="822" Name="Frozen Wings"/>
+    <Item Id="823" Name="Ghost Wings"/>
+    <Item Id="824" Name="Sunplate Block"/>
+    <Item Id="825" Name="Disc Wall"/>
+    <Item Id="826" Name="Skyware Chair"/>
+    <Item Id="827" Name="Bone Table"/>
+    <Item Id="828" Name="Flesh Table"/>
+    <Item Id="829" Name="Living Wood Table"/>
+    <Item Id="830" Name="Skyware Table"/>
+    <Item Id="831" Name="Living Wood Chest"/>
+    <Item Id="832" Name="Living Wood Wand"/>
+    <Item Id="833" Name="Purple Ice Block"/>
+    <Item Id="834" Name="Pink Ice Block"/>
+    <Item Id="835" Name="Red Ice Block"/>
+    <Item Id="836" Name="Crimstone Block"/>
+    <Item Id="837" Name="Skyware Door"/>
+    <Item Id="838" Name="Skyware Chest"/>
+    <Item Id="839" Name="Steampunk Hat"/>
+    <Item Id="840" Name="Steampunk Shirt"/>
+    <Item Id="841" Name="Steampunk Pants"/>
+    <Item Id="842" Name="Bee Hat"/>
+    <Item Id="843" Name="Bee Shirt"/>
+    <Item Id="844" Name="Bee Pants"/>
+    <Item Id="845" Name="World Banner"/>
+    <Item Id="846" Name="Sun Banner"/>
+    <Item Id="847" Name="Gravity Banner"/>
+    <Item Id="848" Name="Pharaoh's Mask"/>
+    <Item Id="849" Name="Actuator"/>
+    <Item Id="850" Name="Blue Wrench"/>
+    <Item Id="851" Name="Green Wrench"/>
+    <Item Id="852" Name="Blue Pressure Plate"/>
+    <Item Id="853" Name="Yellow Pressure Plate"/>
+    <Item Id="854" Name="Discount Card"/>
+    <Item Id="855" Name="Lucky Coin"/>
+    <Item Id="856" Name="Unicorn on a Stick"/>
+    <Item Id="857" Name="Sandstorm in a Bottle"/>
+    <Item Id="858" Name="Angel Statue"/>
+    <Item Id="859" Name="Beach Ball"/>
+    <Item Id="860" Name="Charm of Myths"/>
+    <Item Id="861" Name="Moon Shell"/>
+    <Item Id="862" Name="Star Veil"/>
+    <Item Id="863" Name="Water Walking Boots"/>
+    <Item Id="864" Name="Tiara"/>
+    <Item Id="865" Name="Princess Dress"/>
+    <Item Id="866" Name="Pharaoh's Robe"/>
+    <Item Id="867" Name="Green Cap"/>
+    <Item Id="868" Name="Mushroom Cap"/>
+    <Item Id="869" Name="Tam O' Shanter"/>
+    <Item Id="870" Name="Mummy Mask"/>
+    <Item Id="871" Name="Mummy Shirt"/>
+    <Item Id="872" Name="Mummy Pants"/>
+    <Item Id="873" Name="Cowboy Hat"/>
+    <Item Id="874" Name="Cowboy Jacket"/>
+    <Item Id="875" Name="Cowboy Pants"/>
+    <Item Id="876" Name="Pirate Hat"/>
+    <Item Id="877" Name="Pirate Shirt"/>
+    <Item Id="878" Name="Pirate Pants"/>
+    <Item Id="879" Name="Viking Helmet"/>
+    <Item Id="880" Name="Crimtane Ore"/>
+    <Item Id="881" Name="Cactus Sword"/>
+    <Item Id="882" Name="Cactus Pickaxe"/>
+    <Item Id="883" Name="Ice Brick"/>
+    <Item Id="884" Name="Ice Brick Wall"/>
+    <Item Id="885" Name="Adhesive Bandage"/>
+    <Item Id="886" Name="Armor Polish"/>
+    <Item Id="887" Name="Bezoar"/>
+    <Item Id="888" Name="Blindfold"/>
+    <Item Id="889" Name="Fast Clock"/>
+    <Item Id="890" Name="Megaphone"/>
+    <Item Id="891" Name="Nazar"/>
+    <Item Id="892" Name="Vitamins"/>
+    <Item Id="893" Name="Trifold Map"/>
+    <Item Id="894" Name="Cactus Helmet"/>
+    <Item Id="895" Name="Cactus Breastplate"/>
+    <Item Id="896" Name="Cactus Leggings"/>
+    <Item Id="897" Name="Power Glove"/>
+    <Item Id="898" Name="Lightning Boots"/>
+    <Item Id="899" Name="Sun Stone"/>
+    <Item Id="900" Name="Moon Stone"/>
+    <Item Id="901" Name="Armor Bracing"/>
+    <Item Id="902" Name="Medicated Bandage"/>
+    <Item Id="903" Name="The Plan"/>
+    <Item Id="904" Name="Countercurse Mantra"/>
+    <Item Id="905" Name="Coin Gun"/>
+    <Item Id="906" Name="Lava Charm"/>
+    <Item Id="907" Name="Obsidian Water Walking Boots"/>
+    <Item Id="908" Name="Lava Waders"/>
+    <Item Id="909" Name="Pure Water Fountain"/>
+    <Item Id="910" Name="Desert Water Fountain"/>
+    <Item Id="911" Name="Shadewood"/>
+    <Item Id="912" Name="Shadewood Door"/>
+    <Item Id="913" Name="Shadewood Platform"/>
+    <Item Id="914" Name="Shadewood Chest"/>
+    <Item Id="915" Name="Shadewood Chair"/>
+    <Item Id="916" Name="Shadewood Work Bench"/>
+    <Item Id="917" Name="Shadewood Table"/>
+    <Item Id="918" Name="Shadewood Dresser"/>
+    <Item Id="919" Name="Shadewood Piano"/>
+    <Item Id="920" Name="Shadewood Bed"/>
+    <Item Id="921" Name="Shadewood Sword"/>
+    <Item Id="922" Name="Shadewood Hammer"/>
+    <Item Id="923" Name="Shadewood Bow"/>
+    <Item Id="924" Name="Shadewood Helmet"/>
+    <Item Id="925" Name="Shadewood Breastplate"/>
+    <Item Id="926" Name="Shadewood Greaves"/>
+    <Item Id="927" Name="Shadewood Wall"/>
+    <Item Id="928" Name="Cannon"/>
+    <Item Id="929" Name="Cannonball"/>
+    <Item Id="930" Name="Flare Gun"/>
+    <Item Id="931" Name="Flare"/>
+    <Item Id="932" Name="Bone Wand"/>
+    <Item Id="933" Name="Leaf Wand"/>
+    <Item Id="934" Name="Flying Carpet"/>
+    <Item Id="935" Name="Avenger Emblem"/>
+    <Item Id="936" Name="Mechanical Glove"/>
+    <Item Id="937" Name="Land Mine"/>
+    <Item Id="938" Name="Paladin's Shield"/>
+    <Item Id="939" Name="Web Slinger"/>
+    <Item Id="940" Name="Jungle Water Fountain"/>
+    <Item Id="941" Name="Icy Water Fountain"/>
+    <Item Id="942" Name="Corrupt Water Fountain"/>
+    <Item Id="943" Name="Crimson Water Fountain"/>
+    <Item Id="944" Name="Hallowed Water Fountain"/>
+    <Item Id="945" Name="Blood Water Fountain"/>
+    <Item Id="946" Name="Umbrella"/>
+    <Item Id="947" Name="Chlorophyte Ore"/>
+    <Item Id="948" Name="Steampunk Wings"/>
+    <Item Id="949" Name="Snowball"/>
+    <Item Id="950" Name="Ice Skates"/>
+    <Item Id="951" Name="Snowball Launcher"/>
+    <Item Id="952" Name="Web Covered Chest"/>
+    <Item Id="953" Name="Climbing Claws"/>
+    <Item Id="954" Name="Ancient Iron Helmet"/>
+    <Item Id="955" Name="Ancient Gold Helmet"/>
+    <Item Id="956" Name="Ancient Shadow Helmet"/>
+    <Item Id="957" Name="Ancient Shadow Scalemail"/>
+    <Item Id="958" Name="Ancient Shadow Greaves"/>
+    <Item Id="959" Name="Ancient Necro Helmet"/>
+    <Item Id="960" Name="Ancient Cobalt Helmet"/>
+    <Item Id="961" Name="Ancient Cobalt Breastplate"/>
+    <Item Id="962" Name="Ancient Cobalt Leggings"/>
+    <Item Id="963" Name="Black Belt"/>
+    <Item Id="964" Name="Boomstick"/>
+    <Item Id="965" Name="Rope"/>
+    <Item Id="966" Name="Campfire"/>
+    <Item Id="967" Name="Marshmellow"/>
+    <Item Id="968" Name="Marshmellow on a Stick"/>
+    <Item Id="969" Name="Cooked Marshmellow"/>
+    <Item Id="970" Name="Red Rocket"/>
+    <Item Id="971" Name="Green Rocket"/>
+    <Item Id="972" Name="Blue Rocket"/>
+    <Item Id="973" Name="Yellow Rocket"/>
+    <Item Id="974" Name="Ice Torch"/>
+    <Item Id="975" Name="Shoe Spikes"/>
+    <Item Id="976" Name="Tiger Climbing Gear"/>
+    <Item Id="977" Name="Tabi"/>
+    <Item Id="978" Name="Pink Eskimo Hood"/>
+    <Item Id="979" Name="Pink Eskimo Coat"/>
+    <Item Id="980" Name="Pink Eskimo Pants"/>
+    <Item Id="981" Name="Pink Thread"/>
+    <Item Id="982" Name="Mana Regeneration Band"/>
+    <Item Id="983" Name="Sandstorm in a Balloon"/>
+    <Item Id="984" Name="Master Ninja Gear"/>
+    <Item Id="985" Name="Rope Coil"/>
+    <Item Id="986" Name="Blowgun"/>
+    <Item Id="987" Name="Blizzard in a Bottle"/>
+    <Item Id="988" Name="Frostburn Arrow"/>
+    <Item Id="989" Name="Enchanted Sword"/>
+    <Item Id="990" Name="Pickaxe Axe"/>
+    <Item Id="991" Name="Cobalt Waraxe"/>
+    <Item Id="992" Name="Mythril Waraxe"/>
+    <Item Id="993" Name="Adamantite Waraxe"/>
+    <Item Id="994" Name="Eater's Bone"/>
+    <Item Id="995" Name="Blend-O-Matic"/>
+    <Item Id="996" Name="Meat Grinder"/>
+    <Item Id="997" Name="Extractinator"/>
+    <Item Id="998" Name="Solidifier"/>
+    <Item Id="999" Name="Amber"/>
+    <Item Id="1000" Name="Confetti Gun"/>
+    <Item Id="1001" Name="Chlorophyte Mask"/>
+    <Item Id="1002" Name="Chlorophyte Helmet"/>
+    <Item Id="1003" Name="Chlorophyte Headgear"/>
+    <Item Id="1004" Name="Chlorophyte Plate Mail"/>
+    <Item Id="1005" Name="Chlorophyte Greaves"/>
+    <Item Id="1006" Name="Chlorophyte Bar"/>
+    <Item Id="1007" Name="Red Dye"/>
+    <Item Id="1008" Name="Orange Dye"/>
+    <Item Id="1009" Name="Yellow Dye"/>
+    <Item Id="1010" Name="Lime Dye"/>
+    <Item Id="1011" Name="Green Dye"/>
+    <Item Id="1012" Name="Teal Dye"/>
+    <Item Id="1013" Name="Cyan Dye"/>
+    <Item Id="1014" Name="Sky Blue Dye"/>
+    <Item Id="1015" Name="Blue Dye"/>
+    <Item Id="1016" Name="Purple Dye"/>
+    <Item Id="1017" Name="Violet Dye"/>
+    <Item Id="1018" Name="Pink Dye"/>
+    <Item Id="1019" Name="Red and Black Dye"/>
+    <Item Id="1020" Name="Orange and Black Dye"/>
+    <Item Id="1021" Name="Yellow and Black Dye"/>
+    <Item Id="1022" Name="Lime and Black Dye"/>
+    <Item Id="1023" Name="Green and Black Dye"/>
+    <Item Id="1024" Name="Teal and Black Dye"/>
+    <Item Id="1025" Name="Cyan and Black Dye"/>
+    <Item Id="1026" Name="Sky Blue and Black Dye"/>
+    <Item Id="1027" Name="Blue and Black Dye"/>
+    <Item Id="1028" Name="Purple and Black Dye"/>
+    <Item Id="1029" Name="Violet and Black Dye"/>
+    <Item Id="1030" Name="Pink and Black Dye"/>
+    <Item Id="1031" Name="Flame Dye"/>
+    <Item Id="1032" Name="Flame and Black Dye"/>
+    <Item Id="1033" Name="Green Flame Dye"/>
+    <Item Id="1034" Name="Green Flame and Black Dye"/>
+    <Item Id="1035" Name="Blue Flame Dye"/>
+    <Item Id="1036" Name="Blue Flame and Black Dye"/>
+    <Item Id="1037" Name="Silver Dye"/>
+    <Item Id="1038" Name="Bright Red Dye"/>
+    <Item Id="1039" Name="Bright Orange Dye"/>
+    <Item Id="1040" Name="Bright Yellow Dye"/>
+    <Item Id="1041" Name="Bright Lime Dye"/>
+    <Item Id="1042" Name="Bright Green Dye"/>
+    <Item Id="1043" Name="Bright Teal Dye"/>
+    <Item Id="1044" Name="Bright Cyan Dye"/>
+    <Item Id="1045" Name="Bright Sky Blue Dye"/>
+    <Item Id="1046" Name="Bright Blue Dye"/>
+    <Item Id="1047" Name="Bright Purple Dye"/>
+    <Item Id="1048" Name="Bright Violet Dye"/>
+    <Item Id="1049" Name="Bright Pink Dye"/>
+    <Item Id="1050" Name="Black Dye"/>
+    <Item Id="1051" Name="Red and Silver Dye"/>
+    <Item Id="1052" Name="Orange and Silver Dye"/>
+    <Item Id="1053" Name="Yellow and Silver Dye"/>
+    <Item Id="1054" Name="Lime and Silver Dye"/>
+    <Item Id="1055" Name="Green and Silver Dye"/>
+    <Item Id="1056" Name="Teal and Silver Dye"/>
+    <Item Id="1057" Name="Cyan and Silver Dye"/>
+    <Item Id="1058" Name="Sky Blue and Silver Dye"/>
+    <Item Id="1059" Name="Blue and Silver Dye"/>
+    <Item Id="1060" Name="Purple and Silver Dye"/>
+    <Item Id="1061" Name="Violet and Silver Dye"/>
+    <Item Id="1062" Name="Pink and Silver Dye"/>
+    <Item Id="1063" Name="Intense Flame Dye"/>
+    <Item Id="1064" Name="Intense Green Flame Dye"/>
+    <Item Id="1065" Name="Intense Blue Flame Dye"/>
+    <Item Id="1066" Name="Rainbow Dye"/>
+    <Item Id="1067" Name="Intense Rainbow Dye"/>
+    <Item Id="1068" Name="Yellow Gradient Dye"/>
+    <Item Id="1069" Name="Cyan Gradient Dye"/>
+    <Item Id="1070" Name="Violet Gradient Dye"/>
+    <Item Id="1071" Name="Paintbrush"/>
+    <Item Id="1072" Name="Paint Roller"/>
+    <Item Id="1073" Name="Red Paint"/>
+    <Item Id="1074" Name="Orange Paint"/>
+    <Item Id="1075" Name="Yellow Paint"/>
+    <Item Id="1076" Name="Lime Paint"/>
+    <Item Id="1077" Name="Green Paint"/>
+    <Item Id="1078" Name="Teal Paint"/>
+    <Item Id="1079" Name="Cyan Paint"/>
+    <Item Id="1080" Name="Sky Blue Paint"/>
+    <Item Id="1081" Name="Blue Paint"/>
+    <Item Id="1082" Name="Purple Paint"/>
+    <Item Id="1083" Name="Violet Paint"/>
+    <Item Id="1084" Name="Pink Paint"/>
+    <Item Id="1085" Name="Deep Red Paint"/>
+    <Item Id="1086" Name="Deep Orange Paint"/>
+    <Item Id="1087" Name="Deep Yellow Paint"/>
+    <Item Id="1088" Name="Deep Lime Paint"/>
+    <Item Id="1089" Name="Deep Green Paint"/>
+    <Item Id="1090" Name="Deep Teal Paint"/>
+    <Item Id="1091" Name="Deep Cyan Paint"/>
+    <Item Id="1092" Name="Deep Sky Blue Paint"/>
+    <Item Id="1093" Name="Deep Blue Paint"/>
+    <Item Id="1094" Name="Deep Purple Paint"/>
+    <Item Id="1095" Name="Deep Violet Paint"/>
+    <Item Id="1096" Name="Deep Pink Paint"/>
+    <Item Id="1097" Name="Black Paint"/>
+    <Item Id="1098" Name="White Paint"/>
+    <Item Id="1099" Name="Gray Paint"/>
+    <Item Id="1100" Name="Paint Scraper"/>
+    <Item Id="1101" Name="Lihzahrd Brick"/>
+    <Item Id="1102" Name="Lihzahrd Brick Wall"/>
+    <Item Id="1103" Name="Slush Block"/>
+    <Item Id="1104" Name="Palladium Ore"/>
+    <Item Id="1105" Name="Orichalcum Ore"/>
+    <Item Id="1106" Name="Titanium Ore"/>
+    <Item Id="1107" Name="Teal Mushroom"/>
+    <Item Id="1108" Name="Green Mushroom"/>
+    <Item Id="1109" Name="Sky Blue Flower"/>
+    <Item Id="1110" Name="Yellow Marigold"/>
+    <Item Id="1111" Name="Blue Berries"/>
+    <Item Id="1112" Name="Lime Kelp"/>
+    <Item Id="1113" Name="Pink Prickly Pear"/>
+    <Item Id="1114" Name="Orange Bloodroot"/>
+    <Item Id="1115" Name="Red Husk"/>
+    <Item Id="1116" Name="Cyan Husk"/>
+    <Item Id="1117" Name="Violet Husk"/>
+    <Item Id="1118" Name="Purple Mucos"/>
+    <Item Id="1119" Name="Black Ink"/>
+    <Item Id="1120" Name="Dye Vat"/>
+    <Item Id="1121" Name="Bee Gun"/>
+    <Item Id="1122" Name="Possessed Hatchet"/>
+    <Item Id="1123" Name="Bee Keeper"/>
+    <Item Id="1124" Name="Hive"/>
+    <Item Id="1125" Name="Honey Block"/>
+    <Item Id="1126" Name="Hive Wall"/>
+    <Item Id="1127" Name="Crispy Honey Block"/>
+    <Item Id="1128" Name="Honey Bucket"/>
+    <Item Id="1129" Name="Hive Wand"/>
+    <Item Id="1130" Name="Beenade"/>
+    <Item Id="1131" Name="Gravity Globe"/>
+    <Item Id="1132" Name="Honey Comb"/>
+    <Item Id="1133" Name="Abeemination"/>
+    <Item Id="1134" Name="Bottled Honey"/>
+    <Item Id="1135" Name="Rain Hat"/>
+    <Item Id="1136" Name="Rain Coat"/>
+    <Item Id="1137" Name="Lihzahrd Door"/>
+    <Item Id="1138" Name="Dungeon Door"/>
+    <Item Id="1139" Name="Lead Door"/>
+    <Item Id="1140" Name="Iron Door"/>
+    <Item Id="1141" Name="Temple Key"/>
+    <Item Id="1142" Name="Lihzahrd Chest"/>
+    <Item Id="1143" Name="Lihzahrd Chair"/>
+    <Item Id="1144" Name="Lihzahrd Table"/>
+    <Item Id="1145" Name="Lihzahrd Work Bench"/>
+    <Item Id="1146" Name="Super Dart Trap"/>
+    <Item Id="1147" Name="Flame Trap"/>
+    <Item Id="1148" Name="Spiky Ball Trap"/>
+    <Item Id="1149" Name="Spear Trap"/>
+    <Item Id="1150" Name="Wooden Spike"/>
+    <Item Id="1151" Name="Lihzahrd Pressure Plate"/>
+    <Item Id="1152" Name="Lihzahrd Statue"/>
+    <Item Id="1153" Name="Lihzahrd Watcher Statue"/>
+    <Item Id="1154" Name="Lihzahrd Guardian Statue"/>
+    <Item Id="1155" Name="Wasp Gun"/>
+    <Item Id="1156" Name="Piranha Gun"/>
+    <Item Id="1157" Name="Pygmy Staff"/>
+    <Item Id="1158" Name="Pygmy Necklace"/>
+    <Item Id="1159" Name="Tiki Mask"/>
+    <Item Id="1160" Name="Tiki Shirt"/>
+    <Item Id="1161" Name="Tiki Pants"/>
+    <Item Id="1162" Name="Leaf Wings"/>
+    <Item Id="1163" Name="Blizzard in a Balloon"/>
+    <Item Id="1164" Name="Bundle of Balloons"/>
+    <Item Id="1165" Name="Bat Wings"/>
+    <Item Id="1166" Name="Bone Sword"/>
+    <Item Id="1167" Name="Hercules Beetle"/>
+    <Item Id="1168" Name="Smoke Bomb"/>
+    <Item Id="1169" Name="Bone Key"/>
+    <Item Id="1170" Name="Nectar"/>
+    <Item Id="1171" Name="Tiki Totem"/>
+    <Item Id="1172" Name="Lizard Egg"/>
+    <Item Id="1173" Name="Grave Marker"/>
+    <Item Id="1174" Name="Cross Grave Marker"/>
+    <Item Id="1175" Name="Headstone"/>
+    <Item Id="1176" Name="Gravestone"/>
+    <Item Id="1177" Name="Obelisk"/>
+    <Item Id="1178" Name="Leaf Blower"/>
+    <Item Id="1179" Name="Chlorophyte Bullet"/>
+    <Item Id="1180" Name="Parrot Cracker"/>
+    <Item Id="1181" Name="Strange Glowing Mushroom"/>
+    <Item Id="1182" Name="Seedling"/>
+    <Item Id="1183" Name="Wisp in a Bottle"/>
+    <Item Id="1184" Name="Palladium Bar"/>
+    <Item Id="1185" Name="Palladium Sword"/>
+    <Item Id="1186" Name="Palladium Pike"/>
+    <Item Id="1187" Name="Palladium Repeater"/>
+    <Item Id="1188" Name="Palladium Pickaxe"/>
+    <Item Id="1189" Name="Palladium Drill"/>
+    <Item Id="1190" Name="Palladium Chainsaw"/>
+    <Item Id="1191" Name="Orichalcum Bar"/>
+    <Item Id="1192" Name="Orichalcum Sword"/>
+    <Item Id="1193" Name="Orichalcum Halberd"/>
+    <Item Id="1194" Name="Orichalcum Repeater"/>
+    <Item Id="1195" Name="Orichalcum Pickaxe"/>
+    <Item Id="1196" Name="Orichalcum Drill"/>
+    <Item Id="1197" Name="Orichalcum Chainsaw"/>
+    <Item Id="1198" Name="Titanium Bar"/>
+    <Item Id="1199" Name="Titanium Sword"/>
+    <Item Id="1200" Name="Titanium Trident"/>
+    <Item Id="1201" Name="Titanium Repeater"/>
+    <Item Id="1202" Name="Titanium Pickaxe"/>
+    <Item Id="1203" Name="Titanium Drill"/>
+    <Item Id="1204" Name="Titanium Chainsaw"/>
+    <Item Id="1205" Name="Palladium Mask"/>
+    <Item Id="1206" Name="Palladium Helmet"/>
+    <Item Id="1207" Name="Palladium Headgear"/>
+    <Item Id="1208" Name="Palladium Breastplate"/>
+    <Item Id="1209" Name="Palladium Leggings"/>
+    <Item Id="1210" Name="Orichalcum Mask"/>
+    <Item Id="1211" Name="Orichalcum Helmet"/>
+    <Item Id="1212" Name="Orichalcum Headgear"/>
+    <Item Id="1213" Name="Orichalcum Breastplate"/>
+    <Item Id="1214" Name="Orichalcum Leggings"/>
+    <Item Id="1215" Name="Titanium Mask"/>
+    <Item Id="1216" Name="Titanium Helmet"/>
+    <Item Id="1217" Name="Titanium Headgear"/>
+    <Item Id="1218" Name="Titanium Breastplate"/>
+    <Item Id="1219" Name="Titanium Leggings"/>
+    <Item Id="1220" Name="Orichalcum Anvil"/>
+    <Item Id="1221" Name="Titanium Forge"/>
+    <Item Id="1222" Name="Palladium Waraxe"/>
+    <Item Id="1223" Name="Orichalcum Waraxe"/>
+    <Item Id="1224" Name="Titanium Waraxe"/>
+    <Item Id="1225" Name="Hallowed Bar"/>
+    <Item Id="1226" Name="Chlorophyte Claymore"/>
+    <Item Id="1227" Name="Chlorophyte Saber"/>
+    <Item Id="1228" Name="Chlorophyte Partisan"/>
+    <Item Id="1229" Name="Chlorophyte Shotbow"/>
+    <Item Id="1230" Name="Chlorophyte Pickaxe"/>
+    <Item Id="1231" Name="Chlorophyte Drill"/>
+    <Item Id="1232" Name="Chlorophyte Chainsaw"/>
+    <Item Id="1233" Name="Chlorophyte Greataxe"/>
+    <Item Id="1234" Name="Chlorophyte Warhammer"/>
+    <Item Id="1235" Name="Chlorophyte Arrow"/>
+    <Item Id="1236" Name="Amethyst Hook"/>
+    <Item Id="1237" Name="Topaz Hook"/>
+    <Item Id="1238" Name="Sapphire Hook"/>
+    <Item Id="1239" Name="Emerald Hook"/>
+    <Item Id="1240" Name="Ruby Hook"/>
+    <Item Id="1241" Name="Diamond Hook"/>
+    <Item Id="1242" Name="Amber Mosquito"/>
+    <Item Id="1243" Name="Umbrella Hat"/>
+    <Item Id="1244" Name="Nimbus Rod"/>
+    <Item Id="1245" Name="Orange Torch"/>
+    <Item Id="1246" Name="Crimsand Block"/>
+    <Item Id="1247" Name="Bee Cloak"/>
+    <Item Id="1248" Name="Eye of the Golem"/>
+    <Item Id="1249" Name="Honey Balloon"/>
+    <Item Id="1250" Name="Blue Horseshoe Balloon"/>
+    <Item Id="1251" Name="White Horseshoe Balloon"/>
+    <Item Id="1252" Name="Yellow Horseshoe Balloon"/>
+    <Item Id="1253" Name="Frozen Turtle Shell"/>
+    <Item Id="1254" Name="Sniper Rifle"/>
+    <Item Id="1255" Name="Venus Magnum"/>
+    <Item Id="1256" Name="Crimson Rod"/>
+    <Item Id="1257" Name="Crimtane Bar"/>
+    <Item Id="1258" Name="Stynger"/>
+    <Item Id="1259" Name="Flower Pow"/>
+    <Item Id="1260" Name="Rainbow Gun"/>
+    <Item Id="1261" Name="Stynger Bolt"/>
+    <Item Id="1262" Name="Chlorophyte Jackhammer"/>
+    <Item Id="1263" Name="Teleporter"/>
+    <Item Id="1264" Name="Flower of Frost"/>
+    <Item Id="1265" Name="Uzi"/>
+    <Item Id="1266" Name="Magnet Sphere"/>
+    <Item Id="1267" Name="Purple Stained Glass"/>
+    <Item Id="1268" Name="Yellow Stained Glass"/>
+    <Item Id="1269" Name="Blue Stained Glass"/>
+    <Item Id="1270" Name="Green Stained Glass"/>
+    <Item Id="1271" Name="Red Stained Glass"/>
+    <Item Id="1272" Name="Multicolored Stained Glass"/>
+    <Item Id="1273" Name="Skeletron Hand"/>
+    <Item Id="1274" Name="Skull"/>
+    <Item Id="1275" Name="Balla Hat"/>
+    <Item Id="1276" Name="Gangsta Hat"/>
+    <Item Id="1277" Name="Sailor Hat"/>
+    <Item Id="1278" Name="Eye Patch"/>
+    <Item Id="1279" Name="Sailor Shirt"/>
+    <Item Id="1280" Name="Sailor Pants"/>
+    <Item Id="1281" Name="Skeletron Mask"/>
+    <Item Id="1282" Name="Amethyst Robe"/>
+    <Item Id="1283" Name="Topaz Robe"/>
+    <Item Id="1284" Name="Sapphire Robe"/>
+    <Item Id="1285" Name="Emerald Robe"/>
+    <Item Id="1286" Name="Ruby Robe"/>
+    <Item Id="1287" Name="Diamond Robe"/>
+    <Item Id="1288" Name="White Tuxedo Shirt"/>
+    <Item Id="1289" Name="White Tuxedo Pants"/>
+    <Item Id="1290" Name="Panic Necklace"/>
+    <Item Id="1291" Name="Life Fruit"/>
+    <Item Id="1292" Name="Lihzahrd Altar"/>
+    <Item Id="1293" Name="Lihzahrd Power Cell"/>
+    <Item Id="1294" Name="Picksaw"/>
+    <Item Id="1295" Name="Heat Ray"/>
+    <Item Id="1296" Name="Staff of Earth"/>
+    <Item Id="1297" Name="Golem Fist"/>
+    <Item Id="1298" Name="Water Chest"/>
+    <Item Id="1299" Name="Binoculars"/>
+    <Item Id="1300" Name="Rifle Scope"/>
+    <Item Id="1301" Name="Destroyer Emblem"/>
+    <Item Id="1302" Name="High Velocity Bullet"/>
+    <Item Id="1303" Name="Jellyfish Necklace"/>
+    <Item Id="1304" Name="Zombie Arm"/>
+    <Item Id="1305" Name="The Axe"/>
+    <Item Id="1306" Name="Ice Sickle"/>
+    <Item Id="1307" Name="Clothier Voodoo Doll"/>
+    <Item Id="1308" Name="Poison Staff"/>
+    <Item Id="1309" Name="Slime Staff"/>
+    <Item Id="1310" Name="Poison Dart"/>
+    <Item Id="1311" Name="Eye Spring"/>
+    <Item Id="1312" Name="Toy Sled"/>
+    <Item Id="1313" Name="Book of Skulls"/>
+    <Item Id="1314" Name="KO Cannon"/>
+    <Item Id="1315" Name="Pirate Map"/>
+    <Item Id="1316" Name="Turtle Helmet"/>
+    <Item Id="1317" Name="Turtle Scale Mail"/>
+    <Item Id="1318" Name="Turtle Leggings"/>
+    <Item Id="1319" Name="Snowball Cannon"/>
+    <Item Id="1320" Name="Bone Pickaxe"/>
+    <Item Id="1321" Name="Magic Quiver"/>
+    <Item Id="1322" Name="Magma Stone"/>
+    <Item Id="1323" Name="Obsidian Rose"/>
+    <Item Id="1324" Name="Bananarang"/>
+    <Item Id="1325" Name="Chain Knife"/>
+    <Item Id="1326" Name="Rod of Discord"/>
+    <Item Id="1327" Name="Death Sickle"/>
+    <Item Id="1328" Name="Turtle Shell"/>
+    <Item Id="1329" Name="Tissue Sample"/>
+    <Item Id="1330" Name="Vertebrae"/>
+    <Item Id="1331" Name="Bloody Spine"/>
+    <Item Id="1332" Name="Ichor"/>
+    <Item Id="1333" Name="Ichor Torch"/>
+    <Item Id="1334" Name="Ichor Arrow"/>
+    <Item Id="1335" Name="Ichor Bullet"/>
+    <Item Id="1336" Name="Golden Shower"/>
+    <Item Id="1337" Name="Bunny Cannon"/>
+    <Item Id="1338" Name="Explosive Bunny"/>
+    <Item Id="1339" Name="Vial of Venom"/>
+    <Item Id="1340" Name="Flask of Venom"/>
+    <Item Id="1341" Name="Venom Arrow"/>
+    <Item Id="1342" Name="Venom Bullet"/>
+    <Item Id="1343" Name="Fire Gauntlet"/>
+    <Item Id="1344" Name="Cog"/>
+    <Item Id="1345" Name="Confetti"/>
+    <Item Id="1346" Name="Nanites"/>
+    <Item Id="1347" Name="Explosive Powder"/>
+    <Item Id="1348" Name="Gold Dust"/>
+    <Item Id="1349" Name="Party Bullet"/>
+    <Item Id="1350" Name="Nano Bullet"/>
+    <Item Id="1351" Name="Exploding Bullet"/>
+    <Item Id="1352" Name="Golden Bullet"/>
+    <Item Id="1353" Name="Flask of Cursed Flames"/>
+    <Item Id="1354" Name="Flask of Fire"/>
+    <Item Id="1355" Name="Flask of Gold"/>
+    <Item Id="1356" Name="Flask of Ichor"/>
+    <Item Id="1357" Name="Flask of Nanites"/>
+    <Item Id="1358" Name="Flask of Party"/>
+    <Item Id="1359" Name="Flask of Poison"/>
+    <Item Id="1360" Name="Eye of Cthulhu Trophy"/>
+    <Item Id="1361" Name="Eater of Worlds Trophy"/>
+    <Item Id="1362" Name="Brain of Cthulhu Trophy"/>
+    <Item Id="1363" Name="Skeletron Trophy"/>
+    <Item Id="1364" Name="Queen Bee Trophy"/>
+    <Item Id="1365" Name="Wall of Flesh Trophy"/>
+    <Item Id="1366" Name="Destroyer Trophy"/>
+    <Item Id="1367" Name="Skeletron Prime Trophy"/>
+    <Item Id="1368" Name="Retinazer Trophy"/>
+    <Item Id="1369" Name="Spazmatism Trophy"/>
+    <Item Id="1370" Name="Plantera Trophy"/>
+    <Item Id="1371" Name="Golem Trophy"/>
+    <Item Id="1372" Name="Blood Moon Rising"/>
+    <Item Id="1373" Name="The Hanged Man"/>
+    <Item Id="1374" Name="Glory of the Fire"/>
+    <Item Id="1375" Name="Bone Warp"/>
+    <Item Id="1376" Name="Wall Skeleton"/>
+    <Item Id="1377" Name="Hanging Skeleton"/>
+    <Item Id="1378" Name="Blue Slab Wall"/>
+    <Item Id="1379" Name="Blue Tiled Wall"/>
+    <Item Id="1380" Name="Pink Slab Wall"/>
+    <Item Id="1381" Name="Pink Tiled Wall"/>
+    <Item Id="1382" Name="Green Slab Wall"/>
+    <Item Id="1383" Name="Green Tiled Wall"/>
+    <Item Id="1384" Name="Blue Brick Platform"/>
+    <Item Id="1385" Name="Pink Brick Platform"/>
+    <Item Id="1386" Name="Green Brick Platform"/>
+    <Item Id="1387" Name="Metal Shelf"/>
+    <Item Id="1388" Name="Brass Shelf"/>
+    <Item Id="1389" Name="Wood Shelf"/>
+    <Item Id="1390" Name="Brass Lantern"/>
+    <Item Id="1391" Name="Caged Lantern"/>
+    <Item Id="1392" Name="Carriage Lantern"/>
+    <Item Id="1393" Name="Alchemy Lantern"/>
+    <Item Id="1394" Name="Diablost Lamp"/>
+    <Item Id="1395" Name="Oil Rag Sconse"/>
+    <Item Id="1396" Name="Blue Dungeon Chair"/>
+    <Item Id="1397" Name="Blue Dungeon Table"/>
+    <Item Id="1398" Name="Blue Dungeon Work Bench"/>
+    <Item Id="1399" Name="Green Dungeon Chair"/>
+    <Item Id="1400" Name="Green Dungeon Table"/>
+    <Item Id="1401" Name="Green Dungeon Work Bench"/>
+    <Item Id="1402" Name="Pink Dungeon Chair"/>
+    <Item Id="1403" Name="Pink Dungeon Table"/>
+    <Item Id="1404" Name="Pink Dungeon Work Bench"/>
+    <Item Id="1405" Name="Blue Dungeon Candle"/>
+    <Item Id="1406" Name="Green Dungeon Candle"/>
+    <Item Id="1407" Name="Pink Dungeon Candle"/>
+    <Item Id="1408" Name="Blue Dungeon Vase"/>
+    <Item Id="1409" Name="Green Dungeon Vase"/>
+    <Item Id="1410" Name="Pink Dungeon Vase"/>
+    <Item Id="1411" Name="Blue Dungeon Door"/>
+    <Item Id="1412" Name="Green Dungeon Door"/>
+    <Item Id="1413" Name="Pink Dungeon Door"/>
+    <Item Id="1414" Name="Blue Dungeon Bookcase"/>
+    <Item Id="1415" Name="Green Dungeon Bookcase"/>
+    <Item Id="1416" Name="Pink Dungeon Bookcase"/>
+    <Item Id="1417" Name="Catacomb"/>
+    <Item Id="1418" Name="Dungeon Shelf"/>
+    <Item Id="1419" Name="Skellington J Skellingsworth"/>
+    <Item Id="1420" Name="The Cursed Man"/>
+    <Item Id="1421" Name="The Eye Sees the End"/>
+    <Item Id="1422" Name="Something Evil is Watching You"/>
+    <Item Id="1423" Name="The Twins Have Awoken"/>
+    <Item Id="1424" Name="The Screamer"/>
+    <Item Id="1425" Name="Goblins Playing Poker"/>
+    <Item Id="1426" Name="Dryadisque"/>
+    <Item Id="1427" Name="Sunflowers"/>
+    <Item Id="1428" Name="Terrarian Gothic"/>
+    <Item Id="1429" Name="Beanie"/>
+    <Item Id="1430" Name="Imbuing Station"/>
+    <Item Id="1431" Name="Star in a Bottle"/>
+    <Item Id="1432" Name="Empty Bullet"/>
+    <Item Id="1433" Name="Impact"/>
+    <Item Id="1434" Name="Powered by Birds"/>
+    <Item Id="1435" Name="The Destroyer"/>
+    <Item Id="1436" Name="The Persistency of Eyes"/>
+    <Item Id="1437" Name="Unicorn Crossing the Hallows"/>
+    <Item Id="1438" Name="Great Wave"/>
+    <Item Id="1439" Name="Starry Night"/>
+    <Item Id="1440" Name="Guide Picasso"/>
+    <Item Id="1441" Name="The Guardian's Gaze"/>
+    <Item Id="1442" Name="Father of Someone"/>
+    <Item Id="1443" Name="Nurse Lisa"/>
+    <Item Id="1444" Name="Shadowbeam Staff"/>
+    <Item Id="1445" Name="Inferno Fork"/>
+    <Item Id="1446" Name="Spectre Staff"/>
+    <Item Id="1447" Name="Wooden Fence"/>
+    <Item Id="1448" Name="Metal Fence"/>
+    <Item Id="1449" Name="Bubble Machine"/>
+    <Item Id="1450" Name="Bubble Wand"/>
+    <Item Id="1451" Name="Marching Bones Banner"/>
+    <Item Id="1452" Name="Necromantic Sign"/>
+    <Item Id="1453" Name="Rusted Company Standard"/>
+    <Item Id="1454" Name="Ragged Brotherhood Sigil"/>
+    <Item Id="1455" Name="Molten Legion Flag"/>
+    <Item Id="1456" Name="Diabolic Sigil"/>
+    <Item Id="1457" Name="Obsidian Platform"/>
+    <Item Id="1458" Name="Obsidian Door"/>
+    <Item Id="1459" Name="Obsidian Chair"/>
+    <Item Id="1460" Name="Obsidian Table"/>
+    <Item Id="1461" Name="Obsidian Work Bench"/>
+    <Item Id="1462" Name="Obsidian Vase"/>
+    <Item Id="1463" Name="Obsidian Bookcase"/>
+    <Item Id="1464" Name="Hellbound Banner"/>
+    <Item Id="1465" Name="Hell Hammer Banner"/>
+    <Item Id="1466" Name="Helltower Banner"/>
+    <Item Id="1467" Name="Lost Hopes of Man Banner"/>
+    <Item Id="1468" Name="Obsidian Watcher Banner"/>
+    <Item Id="1469" Name="Lava Erupts Banner"/>
+    <Item Id="1470" Name="Blue Dungeon Bed"/>
+    <Item Id="1471" Name="Green Dungeon Bed"/>
+    <Item Id="1472" Name="Red Dungeon Bed"/>
+    <Item Id="1473" Name="Obsidian Bed"/>
+    <Item Id="1474" Name="Waldo"/>
+    <Item Id="1475" Name="Darkness"/>
+    <Item Id="1476" Name="Dark Soul Reaper"/>
+    <Item Id="1477" Name="Land"/>
+    <Item Id="1478" Name="Trapped Ghost"/>
+    <Item Id="1479" Name="Demon's Eye"/>
+    <Item Id="1480" Name="Finding Gold"/>
+    <Item Id="1481" Name="First Encounter"/>
+    <Item Id="1482" Name="Good Morning"/>
+    <Item Id="1483" Name="Underground Reward"/>
+    <Item Id="1484" Name="Through the Window"/>
+    <Item Id="1485" Name="Place Above the Clouds"/>
+    <Item Id="1486" Name="Do Not Step on the Grass"/>
+    <Item Id="1487" Name="Cold Waters in the White Land"/>
+    <Item Id="1488" Name="Lightless Chasms"/>
+    <Item Id="1489" Name="The Land of Deceiving Looks"/>
+    <Item Id="1490" Name="Daylight"/>
+    <Item Id="1491" Name="Secret of the Sands"/>
+    <Item Id="1492" Name="Deadland Comes Alive"/>
+    <Item Id="1493" Name="Evil Presence"/>
+    <Item Id="1494" Name="Sky Guardian"/>
+    <Item Id="1495" Name="American Explosive"/>
+    <Item Id="1496" Name="Discover"/>
+    <Item Id="1497" Name="Hand Earth"/>
+    <Item Id="1498" Name="Old Miner"/>
+    <Item Id="1499" Name="Skelehead"/>
+    <Item Id="1500" Name="Facing the Cerebral Mastermind"/>
+    <Item Id="1501" Name="Lake of Fire"/>
+    <Item Id="1502" Name="Trio Super Heroes"/>
+    <Item Id="1503" Name="Spectre Hood"/>
+    <Item Id="1504" Name="Spectre Robe"/>
+    <Item Id="1505" Name="Spectre Pants"/>
+    <Item Id="1506" Name="Spectre Pickaxe"/>
+    <Item Id="1507" Name="Spectre Hamaxe"/>
+    <Item Id="1508" Name="Ectoplasm"/>
+    <Item Id="1509" Name="Gothic Chair"/>
+    <Item Id="1510" Name="Gothic Table"/>
+    <Item Id="1511" Name="Gothic Work Bench"/>
+    <Item Id="1512" Name="Gothic Bookcase"/>
+    <Item Id="1513" Name="Paladin's Hammer"/>
+    <Item Id="1514" Name="SWAT Helmet"/>
+    <Item Id="1515" Name="Bee Wings"/>
+    <Item Id="1516" Name="Giant Harpey Feather"/>
+    <Item Id="1517" Name="Bone Feather"/>
+    <Item Id="1518" Name="Fire Feather"/>
+    <Item Id="1519" Name="Ice Feather"/>
+    <Item Id="1520" Name="Broken Bat Wing"/>
+    <Item Id="1521" Name="Tattered Bee Wing"/>
+    <Item Id="1522" Name="Large Amethyst"/>
+    <Item Id="1523" Name="Large Topaz"/>
+    <Item Id="1524" Name="Large Sapphire"/>
+    <Item Id="1525" Name="Large Emerald"/>
+    <Item Id="1526" Name="Large Ruby"/>
+    <Item Id="1527" Name="Large Diamond"/>
+    <Item Id="1528" Name="Jungle Chest"/>
+    <Item Id="1529" Name="Corruption Chest"/>
+    <Item Id="1530" Name="Crimson Chest"/>
+    <Item Id="1531" Name="Hallowed Chest"/>
+    <Item Id="1532" Name="Frozen Chest"/>
+    <Item Id="1533" Name="Jungle Key"/>
+    <Item Id="1534" Name="Corruption Key"/>
+    <Item Id="1535" Name="Crimson Key"/>
+    <Item Id="1536" Name="Hallowed Key"/>
+    <Item Id="1537" Name="Frozen Key"/>
+    <Item Id="1538" Name="Imp Face"/>
+    <Item Id="1539" Name="Ominous Presence"/>
+    <Item Id="1540" Name="Shining Moon"/>
+    <Item Id="1541" Name="Living Gore"/>
+    <Item Id="1542" Name="Flowing Magma"/>
+    <Item Id="1543" Name="Spectre Paintbrush"/>
+    <Item Id="1544" Name="Spectre Paint Roller"/>
+    <Item Id="1545" Name="Spectre Paint Scraper"/>
+    <Item Id="1546" Name="Shroomite Headgear"/>
+    <Item Id="1547" Name="Shroomite Mask"/>
+    <Item Id="1548" Name="Shroomite Helmet"/>
+    <Item Id="1549" Name="Shroomite Breastplate"/>
+    <Item Id="1550" Name="Shroomite Leggings"/>
+    <Item Id="1551" Name="Autohammer"/>
+    <Item Id="1552" Name="Shroomite Bar"/>
+    <Item Id="1553" Name="S.D.M.G."/>
+    <Item Id="1554" Name="Cenx's Tiara"/>
+    <Item Id="1555" Name="Cenx's Breastplate"/>
+    <Item Id="1556" Name="Cenx's Leggings"/>
+    <Item Id="1557" Name="Crowno's Mask"/>
+    <Item Id="1558" Name="Crowno's Breastplate"/>
+    <Item Id="1559" Name="Crowno's Leggings"/>
+    <Item Id="1560" Name="Will's Helmet"/>
+    <Item Id="1561" Name="Will's Breastplate"/>
+    <Item Id="1562" Name="Will's Leggings"/>
+    <Item Id="1563" Name="Jim's Helmet"/>
+    <Item Id="1564" Name="Jim's Breastplate"/>
+    <Item Id="1565" Name="Jim's Leggings"/>
+    <Item Id="1566" Name="Aaron's Helmet"/>
+    <Item Id="1567" Name="Aaron's Breastplate"/>
+    <Item Id="1568" Name="Aaron's Leggings"/>
+    <Item Id="1569" Name="Vampire Knives"/>
+    <Item Id="1570" Name="Broken Hero Sword"/>
+    <Item Id="1571" Name="Scourge of the Corruptor"/>
+    <Item Id="1572" Name="Staff of the Frost Hydra"/>
+    <Item Id="1573" Name="The Creation of the Guide"/>
+    <Item Id="1574" Name="The Merchant"/>
+    <Item Id="1575" Name="Crowno Devours His Lunch"/>
+    <Item Id="1576" Name="Rare Enchantment"/>
+    <Item Id="1577" Name="Glorious Night"/>
+    <Item Id="1578" Name="Sweetheart Necklace"/>
+    <Item Id="1579" Name="Flurry Boots"/>
+    <Item Id="1580" Name="D-Town's Helmet"/>
+    <Item Id="1581" Name="D-Town's Breastplate"/>
+    <Item Id="1582" Name="D-Town's Leggings"/>
+    <Item Id="1583" Name="D-Town's Wings"/>
+    <Item Id="1584" Name="Will's Wings"/>
+    <Item Id="1585" Name="Crowno's Wings"/>
+    <Item Id="1586" Name="Cenx's Wings"/>
+    <Item Id="1587" Name="Cenx's Dress"/>
+    <Item Id="1588" Name="Cenx's Dress Pants"/>
+    <Item Id="1589" Name="Palladium Column"/>
+    <Item Id="1590" Name="Palladium Column Wall"/>
+    <Item Id="1591" Name="Bubblegum Block"/>
+    <Item Id="1592" Name="Bubblegum Block Wall"/>
+    <Item Id="1593" Name="Titanstone Block"/>
+    <Item Id="1594" Name="Titanstone Block Wall"/>
+    <Item Id="1595" Name="Magic Cuffs"/>
+    <Item Id="1596" Name="Music Box (Snow)"/>
+    <Item Id="1597" Name="Music Box (Space)"/>
+    <Item Id="1598" Name="Music Box (Crimson)"/>
+    <Item Id="1599" Name="Music Box (Boss 4)"/>
+    <Item Id="1600" Name="Music Box (Alt Overworld Day)"/>
+    <Item Id="1601" Name="Music Box (Rain)"/>
+    <Item Id="1602" Name="Music Box (Ice)"/>
+    <Item Id="1603" Name="Music Box (Desert)"/>
+    <Item Id="1604" Name="Music Box (Ocean)"/>
+    <Item Id="1605" Name="Music Box (Dungeon)"/>
+    <Item Id="1606" Name="Music Box (Plantera)"/>
+    <Item Id="1607" Name="Music Box (Boss 5)"/>
+    <Item Id="1608" Name="Music Box (Temple)"/>
+    <Item Id="1609" Name="Music Box (Eclipse)"/>
+    <Item Id="1610" Name="Music Box (Mushrooms)"/>
+    <Item Id="1611" Name="Butterfly Dust"/>
+    <Item Id="1612" Name="Ankh Charm"/>
+    <Item Id="1613" Name="Ankh Shield"/>
   </Items>
   <Npcs>
     <Npc Id="17" Name="Merchant" Frames="16" />
@@ -1477,6 +2851,14 @@ Documentation moved to the end of this file.
     <Npc Id="108" Name="Wizard" Frames="16" />
     <Npc Id="124" Name="Mechanic" Frames="14" />
     <Npc Id="142" Name="Santa Claus" Frames="16" />
+    <Npc Id="160" Name="Truffle" Frames="16" />
+    <Npc Id="178" Name="Steampunker" Frames="14" />
+    <Npc Id="207" Name="Dye Trader" Frames="16" />
+    <Npc Id="208" Name="Party Girl" Frames="14" />
+    <Npc Id="209" Name="Cyborg" Frames="16" />
+    <Npc Id="227" Name="Painter" Frames="16" />
+    <Npc Id="228" Name="Witch Doctor" Frames="16" />
+    <Npc Id="229" Name="Pirate" Frames="15" />
   </Npcs>
   <ItemPrefix>
     <Prefix Id="0" Name="" />

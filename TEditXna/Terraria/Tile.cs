@@ -8,11 +8,19 @@ namespace TEditXNA.Terraria
     {
         public bool IsActive;
         public bool HasWire;
+        public bool HasWire2;
+        public bool HasWire3;
         public bool IsLava;
-        
+        public bool IsHoney;
+        public byte Color;
         public byte Type;
         public byte Wall;
+        public byte WallColor;
         public byte Liquid;
+        public bool HalfBrick;
+        public byte Slope;
+        public bool Actuator;
+        public bool InActive;
         public Int16 U, V;
 
         [NonSerialized] /* Heathtech */
@@ -81,18 +89,16 @@ namespace TEditXNA.Terraria
             return MemberwiseClone();
         }
 
-        public bool Equals(Tile other)
+        protected bool Equals(Tile other)
         {
-            if (ReferenceEquals(null, other)) return false;
-            if (ReferenceEquals(this, other)) return true;
-            return other.IsActive.Equals(IsActive) && other.Type == Type && other.Wall == Wall && other.Liquid == Liquid && other.IsLava.Equals(IsLava) && other.U == U && other.V == V && other.HasWire.Equals(HasWire);
+            return IsActive.Equals(other.IsActive) && HasWire.Equals(other.HasWire) && HasWire2.Equals(other.HasWire2) && HasWire3.Equals(other.HasWire3) && IsHoney.Equals(other.IsHoney) && IsLava.Equals(other.IsLava) && Color == other.Color && Wall == other.Wall && Type == other.Type && WallColor == other.WallColor && Liquid == other.Liquid && HalfBrick.Equals(other.HalfBrick) && Actuator.Equals(other.Actuator) && Slope == other.Slope && InActive.Equals(other.InActive) && U == other.U && V == other.V;
         }
 
         public override bool Equals(object obj)
         {
             if (ReferenceEquals(null, obj)) return false;
             if (ReferenceEquals(this, obj)) return true;
-            if (obj.GetType() != typeof(Tile)) return false;
+            if (obj.GetType() != this.GetType()) return false;
             return Equals((Tile)obj);
         }
 
@@ -100,16 +106,35 @@ namespace TEditXNA.Terraria
         {
             unchecked
             {
-                int result = IsActive.GetHashCode();
-                result = (result * 397) ^ Type.GetHashCode();
-                result = (result * 397) ^ Wall.GetHashCode();
-                result = (result * 397) ^ Liquid.GetHashCode();
-                result = (result * 397) ^ IsLava.GetHashCode();
-                result = (result * 397) ^ U.GetHashCode();
-                result = (result * 397) ^ V.GetHashCode();
-                result = (result * 397) ^ HasWire.GetHashCode();
-                return result;
+                int hashCode = IsActive.GetHashCode();
+                hashCode = (hashCode * 397) ^ HasWire.GetHashCode();
+                hashCode = (hashCode * 397) ^ HasWire2.GetHashCode();
+                hashCode = (hashCode * 397) ^ HasWire3.GetHashCode();
+                hashCode = (hashCode * 397) ^ IsHoney.GetHashCode();
+                hashCode = (hashCode * 397) ^ IsLava.GetHashCode();
+                hashCode = (hashCode * 397) ^ Color.GetHashCode();
+                hashCode = (hashCode * 397) ^ Wall.GetHashCode();
+                hashCode = (hashCode * 397) ^ Type.GetHashCode();
+                hashCode = (hashCode * 397) ^ WallColor.GetHashCode();
+                hashCode = (hashCode * 397) ^ Liquid.GetHashCode();
+                hashCode = (hashCode * 397) ^ HalfBrick.GetHashCode();
+                hashCode = (hashCode * 397) ^ Actuator.GetHashCode();
+                hashCode = (hashCode * 397) ^ Slope.GetHashCode();
+                hashCode = (hashCode * 397) ^ InActive.GetHashCode();
+                hashCode = (hashCode * 397) ^ U.GetHashCode();
+                hashCode = (hashCode * 397) ^ V.GetHashCode();
+                return hashCode;
             }
+        }
+
+        public static bool operator ==(Tile left, Tile right)
+        {
+            return Equals(left, right);
+        }
+
+        public static bool operator !=(Tile left, Tile right)
+        {
+            return !Equals(left, right);
         }
     }
 }
