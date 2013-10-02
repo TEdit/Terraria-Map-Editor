@@ -231,7 +231,11 @@ Documentation moved to the end of this file.
         <Frame UV="72,0" Name="Mug" />
       </Frames>
     </Tile>
-    <Tile Id="14" Name="Wooden Table" Color="#FF00FFF2" Placement="floor" SolidTop="true" Framed="true" Size="3,2" TextureGrid="16,16" />
+    <Tile Id="14" Name="Wooden Table" Color="#FF00FFF2" Placement="floor" SolidTop="true" Framed="true" Size="3,2" TextureGrid="16,16">
+      <Frames>
+        <Frame UV="0,0" Name="Default" Anchor="Left" />
+      </Frames>
+    </Tile>
     <Tile Id="15" Name="Chair" Color="#FF00FFF2" Placement="floor" Framed="true" Size="1,2">
       <Frames>
         <Frame UV="0,0" Name="Wooden Chair" Anchor="Left" />
@@ -243,7 +247,7 @@ Documentation moved to the end of this file.
     <Tile Id="16" Name="Iron Anvil" Color="#FF00FFF2" Placement="floor" SolidTop="true" Framed="true" Size="2,1" TextureGrid="16,18" />
     <Tile Id="17" Name="Furnace" Color="#FF00FFF2" Placement="floor" Light="true" Framed="true" Size="3,2" />
     <Tile Id="18" Name="Work Bench" Color="#FF00FFF2" Placement="floor" SolidTop="true" Framed="true" Size="2,1" TextureGrid="16,18" />
-    <Tile Id="19" Name="Wood Platform" Color="#FF6B3A18" Placement="wall" Light="true" Solid="true" SolidTop="true" Special="Platform" />
+    <Tile Id="19" Name="Wood Platform" Color="#FF6B3A18" Placement="wall" Light="true" Solid="true" SolidTop="true" Special="Platform" Framed="true"  />
     <Tile Id="20" Name="Sapling" Color="#FF0D6524" Framed="true" Size="1,2">
       <Frames>
         <Frame UV="0,0" Anchor="Left" />

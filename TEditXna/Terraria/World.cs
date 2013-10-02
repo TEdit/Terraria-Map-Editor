@@ -1,20 +1,19 @@
-﻿using System.ComponentModel;
+﻿using System.Collections.Generic;
+using System.ComponentModel;
+using System.Diagnostics;
 using System.Windows;
-using BCCL.Geometry;
 using BCCL.MvvmLight;
 using BCCL.Utility;
-using Microsoft.Xna.Framework;
 using TEditXNA.Terraria.Objects;
 using BCCL.Geometry.Primitives;
 using Vector2 = BCCL.Geometry.Primitives.Vector2;
+using System;
+using System.Collections.ObjectModel;
+using System.IO;
+using System.Linq;
 
 namespace TEditXNA.Terraria
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Collections.ObjectModel;
-    using System.IO;
-    using System.Linq;
 
     public partial class World : ObservableObject
     {
@@ -52,315 +51,7 @@ namespace TEditXNA.Terraria
             _charNames.Clear();
         }
 
-        public Tile[,] Tiles;
 
-        private readonly ObservableCollection<NPC> _npcs = new ObservableCollection<NPC>();
-
-        public ObservableCollection<NPC> NPCs
-        {
-            get { return _npcs; }
-        }
-
-        private readonly ObservableCollection<Sign> _signs = new ObservableCollection<Sign>();
-
-        public ObservableCollection<Sign> Signs
-        {
-            get { return _signs; }
-        }
-
-        private readonly ObservableCollection<Chest> _chests = new ObservableCollection<Chest>();
-
-        public ObservableCollection<Chest> Chests
-        {
-            get { return _chests; }
-        }
-
-        private readonly ObservableCollection<NpcName> _charNames = new ObservableCollection<NpcName>();
-
-        public ObservableCollection<NpcName> CharacterNames
-        {
-            get { return _charNames; }
-        }
-
-        public uint Version;
-        private string _title;
-        private int _spawnX;
-        private int _spawnY;
-        private double _groundLevel;
-        private double _rockLevel;
-        private double _time;
-        private bool _dayTime;
-        private int _moonPhase;
-        private bool _bloodMoon;
-        private int _dungeonX;
-        private int _dungeonY;
-        private bool _downedBoss1;
-        private bool _downedBoss2;
-        private bool _downedBoss3;
-        private bool _savedGoblin;
-        private bool _savedWizard;
-        private bool _downedGoblins;
-        private bool _savedMech;
-        private bool _downedClown;
-        private bool _downedFrost;
-        private bool _shadowOrbSmashed;
-        private bool _spawnMeteor;
-        private int _shadowOrbCount;
-        private int _altarCount;
-        private bool _hardMode;
-        private double _invasionX;
-        private int _invasionType;
-        private int _invasionSize;
-        private int _invasionDelay;
-        private int _worldId;
-        private float _leftWorld;
-        private float _rightWorld;
-        private float _topWorld;
-        private float _bottomWorld;
-        private int _tilesHigh;
-        private int _tilesWide;
-
-        private DateTime _lastSave;
-
-        #region Properties
-
-        public int TilesWide
-        {
-            get { return _tilesWide; }
-            set { Set("TilesWide", ref _tilesWide, value); }
-        }
-
-        public int TilesHigh
-        {
-            get { return _tilesHigh; }
-            set { Set("TilesHigh", ref _tilesHigh, value); }
-        }
-
-        public float BottomWorld
-        {
-            get { return _bottomWorld; }
-            set { Set("BottomWorld", ref _bottomWorld, value); }
-        }
-
-        public float TopWorld
-        {
-            get { return _topWorld; }
-            set { Set("TopWorld", ref _topWorld, value); }
-        }
-
-        public float RightWorld
-        {
-            get { return _rightWorld; }
-            set { Set("RightWorld", ref _rightWorld, value); }
-        }
-
-        public float LeftWorld
-        {
-            get { return _leftWorld; }
-            set { Set("LeftWorld", ref _leftWorld, value); }
-        }
-
-        public int WorldId
-        {
-            get { return _worldId; }
-            set { Set("WorldId", ref _worldId, value); }
-        }
-
-        public bool DownedFrost
-        {
-            get { return _downedFrost; }
-            set { Set("DownedFrost", ref _downedFrost, value); }
-        }
-
-        public string Title
-        {
-            get { return _title; }
-            set { Set("Title", ref _title, value); }
-        }
-
-        public int SpawnX
-        {
-            get { return _spawnX; }
-            set { Set("SpawnX", ref _spawnX, value); }
-        }
-
-        public int SpawnY
-        {
-            get { return _spawnY; }
-            set { Set("SpawnY", ref _spawnY, value); }
-        }
-
-        public double GroundLevel
-        {
-            get { return _groundLevel; }
-            set
-            {
-                Set("GroundLevel", ref _groundLevel, value);
-                if (_groundLevel > _rockLevel)
-                    RockLevel = _groundLevel;
-            }
-        }
-
-        public double RockLevel
-        {
-            get { return _rockLevel; }
-            set
-            {
-                Set("RockLevel", ref _rockLevel, value);
-                if (_groundLevel > _rockLevel)
-                    GroundLevel = _rockLevel;
-            }
-        }
-
-        public double Time
-        {
-            get { return _time; }
-            set { Set("Time", ref _time, value); }
-        }
-
-        public bool DayTime
-        {
-            get { return _dayTime; }
-            set { Set("DayTime", ref _dayTime, value); }
-        }
-
-        public int MoonPhase
-        {
-            get { return _moonPhase; }
-            set { Set("MoonPhase", ref _moonPhase, value); }
-        }
-
-        public bool BloodMoon
-        {
-            get { return _bloodMoon; }
-            set { Set("BloodMoon", ref _bloodMoon, value); }
-        }
-
-        public int DungeonX
-        {
-            get { return _dungeonX; }
-            set { Set("DungeonX", ref _dungeonX, value); }
-        }
-
-        public int DungeonY
-        {
-            get { return _dungeonY; }
-            set { Set("DungeonY", ref _dungeonY, value); }
-        }
-
-        public bool DownedBoss1
-        {
-            get { return _downedBoss1; }
-            set { Set("DownedBoss1", ref _downedBoss1, value); }
-        }
-
-        public bool DownedBoss2
-        {
-            get { return _downedBoss2; }
-            set { Set("DownedBoss2", ref _downedBoss2, value); }
-        }
-
-        public bool DownedBoss3
-        {
-            get { return _downedBoss3; }
-            set { Set("DownedBoss3", ref _downedBoss3, value); }
-        }
-
-        public bool SavedGoblin
-        {
-            get { return _savedGoblin; }
-            set { Set("SavedGoblin", ref _savedGoblin, value); }
-        }
-
-        public bool SavedWizard
-        {
-            get { return _savedWizard; }
-            set { Set("SavedWizard", ref _savedWizard, value); }
-        }
-
-        public bool DownedGoblins
-        {
-            get { return _downedGoblins; }
-            set { Set("DownedGoblins", ref _downedGoblins, value); }
-        }
-
-        public bool SavedMech
-        {
-            get { return _savedMech; }
-            set { Set("SavedMech", ref _savedMech, value); }
-        }
-
-        public bool DownedClown
-        {
-            get { return _downedClown; }
-            set { Set("DownedClown", ref _downedClown, value); }
-        }
-
-        public bool ShadowOrbSmashed
-        {
-            get { return _shadowOrbSmashed; }
-            set { Set("ShadowOrbSmashed", ref _shadowOrbSmashed, value); }
-        }
-
-        public bool SpawnMeteor
-        {
-            get { return _spawnMeteor; }
-            set { Set("SpawnMeteor", ref _spawnMeteor, value); }
-        }
-
-        public int ShadowOrbCount
-        {
-            get { return _shadowOrbCount; }
-            set
-            {
-                Set("ShadowOrbCount", ref _shadowOrbCount, value);
-                ShadowOrbSmashed = _shadowOrbCount > 0;
-            }
-        }
-
-        public int AltarCount
-        {
-            get { return _altarCount; }
-            set { Set("AltarCount", ref _altarCount, value); }
-        }
-
-        public bool HardMode
-        {
-            get { return _hardMode; }
-            set { Set("HardMode", ref _hardMode, value); }
-        }
-
-        public double InvasionX
-        {
-            get { return _invasionX; }
-            set { Set("InvasionX", ref _invasionX, value); }
-        }
-
-        public int InvasionType
-        {
-            get { return _invasionType; }
-            set { Set("InvasionType", ref _invasionType, value); }
-        }
-
-        public int InvasionSize
-        {
-            get { return _invasionSize; }
-            set { Set("InvasionSize", ref _invasionSize, value); }
-        }
-
-        public int InvasionDelay
-        {
-            get { return _invasionDelay; }
-            set { Set("InvasionDelay", ref _invasionDelay, value); }
-        }
-
-        internal DateTime LastSave
-        {
-            get { return _lastSave; }
-            set { Set("LastSave", ref _lastSave, value); }
-        }
-
-        #endregion
 
         public bool ValidTileLocation(Vector2Int32 point)
         {
@@ -609,8 +300,22 @@ namespace TEditXNA.Terraria
             BloodMoon = false;
         }
 
+
+        public static List<string> Log = new List<string>();
+
+        public static void DebugLog(string message)
+        {
+            Log.Add(message);
+
+            if (Log.Count > 100)
+            {
+                Log.RemoveAt(0);
+            }
+        }
+
         public static World LoadWorld(string filename)
         {
+
             var w = new World();
             try
             {
@@ -620,18 +325,65 @@ namespace TEditXNA.Terraria
                     {
                         w.Version = b.ReadUInt32(); //now we care about the version
                         w.Title = b.ReadString();
-
                         w.WorldId = b.ReadInt32();
+
+                        w.Rand = new Random(w.WorldId);
+
                         w.LeftWorld = (float)b.ReadInt32();
                         w.RightWorld = (float)b.ReadInt32();
                         w.TopWorld = (float)b.ReadInt32();
                         w.BottomWorld = (float)b.ReadInt32();
-
                         w.TilesHigh = b.ReadInt32();
                         w.TilesWide = b.ReadInt32();
 
-                        if (w.TilesHigh > 10000 || w.TilesWide > 10000 || w.TilesHigh <= 0 || w.TilesWide <= 0)
-                            throw new FileLoadException(string.Format("Invalid File: {0}", filename));
+                        //if (w.TilesHigh > 10000 || w.TilesWide > 10000 || w.TilesHigh <= 0 || w.TilesWide <= 0)
+                        //    throw new FileLoadException(string.Format("Invalid File: {0}", filename));
+
+                        if (w.Version >= 63)
+                            w.MoonType = (int)b.ReadByte();
+                        else
+                            w.MoonType = w.Rand.Next(MaxMoons);
+
+
+                        if (w.Version >= 44)
+                        {
+                            w.TreeX[0] = b.ReadInt32();
+                            w.TreeX[1] = b.ReadInt32();
+                            w.TreeX[2] = b.ReadInt32();
+                            w.TreeStyle[0] = b.ReadInt32();
+                            w.TreeStyle[1] = b.ReadInt32();
+                            w.TreeStyle[2] = b.ReadInt32();
+                            w.TreeStyle[3] = b.ReadInt32();
+                        }
+                        if (w.Version >= 60)
+                        {
+                            w.CaveBackX[0] = b.ReadInt32();
+                            w.CaveBackX[1] = b.ReadInt32();
+                            w.CaveBackX[2] = b.ReadInt32();
+                            w.CaveBackStyle[0] = b.ReadInt32();
+                            w.CaveBackStyle[1] = b.ReadInt32();
+                            w.CaveBackStyle[2] = b.ReadInt32();
+                            w.CaveBackStyle[3] = b.ReadInt32();
+                            w.IceBackStyle = b.ReadInt32();
+                            if (w.Version >= 61)
+                            {
+                                w.JungleBackStyle = b.ReadInt32();
+                                w.HellBackStyle = b.ReadInt32();
+                            }
+                        }
+                        else
+                        {
+                            w.CaveBackX[0] = w.TilesWide / 2;
+                            w.CaveBackX[1] = w.TilesWide;
+                            w.CaveBackX[2] = w.TilesWide;
+                            w.CaveBackStyle[0] = 0;
+                            w.CaveBackStyle[1] = 1;
+                            w.CaveBackStyle[2] = 2;
+                            w.CaveBackStyle[3] = 3;
+                            w.IceBackStyle = 0;
+                            w.JungleBackStyle = 0;
+                            w.HellBackStyle = 0;
+                        }
 
                         w.SpawnX = b.ReadInt32();
                         w.SpawnY = b.ReadInt32();
@@ -643,39 +395,137 @@ namespace TEditXNA.Terraria
                         w.DayTime = b.ReadBoolean();
                         w.MoonPhase = b.ReadInt32();
                         w.BloodMoon = b.ReadBoolean();
+
                         w.DungeonX = b.ReadInt32();
                         w.DungeonY = b.ReadInt32();
+
+                        if (w.Version >= 56)
+                        {
+                            w.IsCrimson = b.ReadBoolean();
+                        }
+                        else
+                        {
+                            w.IsCrimson = false;
+                        }
+
                         w.DownedBoss1 = b.ReadBoolean();
                         w.DownedBoss2 = b.ReadBoolean();
                         w.DownedBoss3 = b.ReadBoolean();
+
+                        if (w.Version >= 66)
+                        {
+                            w.DownedQueenBee = b.ReadBoolean();
+                        }
+                        if (w.Version >= 44)
+                        {
+                            w.DownedMechBoss1 = b.ReadBoolean();
+                            w.DownedMechBoss2 = b.ReadBoolean();
+                            w.DownedMechBoss3 = b.ReadBoolean();
+                            w.DownedMechBossAny = b.ReadBoolean();
+                        }
+                        if (w.Version >= 64)
+                        {
+                            w.DownedPlantBoss = b.ReadBoolean();
+                            w.DownedGolemBoss = b.ReadBoolean();
+                        }
                         if (w.Version >= 29)
                         {
                             w.SavedGoblin = b.ReadBoolean();
                             w.SavedWizard = b.ReadBoolean();
                             if (w.Version >= 34)
+                            {
                                 w.SavedMech = b.ReadBoolean();
+                            }
                             w.DownedGoblins = b.ReadBoolean();
                         }
                         if (w.Version >= 32)
                             w.DownedClown = b.ReadBoolean();
                         if (w.Version >= 37)
                             w.DownedFrost = b.ReadBoolean();
+                        if (w.Version >= 56)
+                            w.DownedPirates = b.ReadBoolean();
+
+
                         w.ShadowOrbSmashed = b.ReadBoolean();
                         w.SpawnMeteor = b.ReadBoolean();
                         w.ShadowOrbCount = (int)b.ReadByte();
+
                         if (w.Version >= 23)
                         {
                             w.AltarCount = b.ReadInt32();
                             w.HardMode = b.ReadBoolean();
                         }
+
                         w.InvasionDelay = b.ReadInt32();
                         w.InvasionSize = b.ReadInt32();
                         w.InvasionType = b.ReadInt32();
                         w.InvasionX = b.ReadDouble();
 
+                        if (w.Version >= 53)
+                        {
+                            w.TempRaining = b.ReadBoolean();
+                            w.TempRainTime = b.ReadInt32();
+                            w.TempMaxRain = b.ReadSingle();
+                        }
+                        if (w.Version >= 54)
+                        {
+                            w.OreTier1 = b.ReadInt32();
+                            w.OreTier2 = b.ReadInt32();
+                            w.OreTier3 = b.ReadInt32();
+                        }
+                        else if (w.Version < 23 || w.AltarCount != 0)
+                        {
+                            w.OreTier1 = 107;
+                            w.OreTier2 = 108;
+                            w.OreTier3 = 111;
+                        }
+                        else
+                        {
+                            w.OreTier1 = -1;
+                            w.OreTier2 = -1;
+                            w.OreTier3 = -1;
+                        }
 
+                        if (w.Version >= 55)
+                        {
+                            w.BgTree = b.ReadByte();
+                            w.BgCorruption = b.ReadByte();
+                            w.BgJungle = b.ReadByte();
+                        }
+                        if (w.Version >= 60)
+                        {
+                            w.BgSnow = b.ReadByte();
+                            w.BgHallow = b.ReadByte();
+                            w.BgCorruption = b.ReadByte();
+                            w.BgDesert = b.ReadByte();
+                            w.BgOcean = b.ReadByte();
+                        }
+
+                        if (w.Version >= 60)
+                        {
+                            w.CloudBgActive = (float)b.ReadInt32();
+                        }
+                        else
+                        {
+                            w.CloudBgActive = -w.Rand.Next(8640, 86400);
+                        }
+
+                        if (w.Version >= 62)
+                        {
+                            w.NumClouds = b.ReadInt16();
+                            w.WindSpeedSet = b.ReadSingle();
+                        }
 
                         w.Tiles = new Tile[w.TilesWide, w.TilesHigh];
+                        for (int i = 0; i < w.TilesWide; i++)
+                        {
+                            for (int j = 0; j < w.TilesHigh; j++)
+                            {
+                                w.Tiles[i, j] = new Tile();
+                            }
+                        }
+
+
                         for (int x = 0; x < w.TilesWide; ++x)
                         {
                             OnProgressChanged(null, new ProgressChangedEventArgs(x.ProgressPercentage(w.TilesWide), "Loading Tiles..."));
@@ -683,29 +533,38 @@ namespace TEditXNA.Terraria
                             Tile prevtype = new Tile();
                             for (int y = 0; y < w.TilesHigh; y++)
                             {
+                                if (x == 1046 && y == 1080)
+                                {
+                                    int zzz = x + 1;
+                                }
 
                                 var tile = new Tile();
 
                                 tile.IsActive = b.ReadBoolean();
 
+                                if (!tile.IsActive)
+                                    DebugLog(string.Format("Reading Empty Tile [{0},{1}]", x, y));
+
+                                TileProperty tileProperty = null;
                                 if (tile.IsActive)
                                 {
-
                                     tile.Type = b.ReadByte();
-                                    var tileProperty = TileProperties[tile.Type];
-                                    if (string.Equals(tileProperty.Name, "UNKNOWN", StringComparison.InvariantCultureIgnoreCase))
-                                    {
-                                        throw new ArgumentOutOfRangeException(string.Format("Unknown tile tile: {0}, please add tile id {0} too your settings.xml.\r\nBE SURE TO INCLUDE THE isFramed PROPERTY (sprites=true, blocks=false).\r\nYou are seeing this message due to an update or mod.", tile.Type));
-                                    }
+                                    tileProperty = TileProperties[tile.Type];
 
+                                    DebugLog(string.Format("Reading Tile {2} [{0},{1}] {3}", x, y, tile.Type, tileProperty.IsFramed ? "Framed" : ""));
 
-                                    if (tile.Type == (int)sbyte.MaxValue)
+                                    if (tile.Type == 127)
                                         tile.IsActive = false;
 
                                     if (tileProperty.IsFramed)
                                     {
-                                        // torches didn't have extra in older versions.
                                         if (w.Version < 28 && tile.Type == 4)
+                                        {
+                                            // torches didn't have extra in older versions.
+                                            tile.U = 0;
+                                            tile.V = 0;
+                                        }
+                                        else if (w.Version < 40 && tile.Type == 19)
                                         {
                                             tile.U = 0;
                                             tile.V = 0;
@@ -714,10 +573,8 @@ namespace TEditXNA.Terraria
                                         {
                                             tile.U = b.ReadInt16();
                                             tile.V = b.ReadInt16();
-                                            //if (tile.Type == 128) //armor stand
-                                            //    tile.Frame = new PointShort((short)(tile.Frame.X % 100), tile.Frame.Y);
 
-                                            if ((int)tile.Type == 144) //timer
+                                            if (tile.Type == 144) //timer
                                                 tile.V = 0;
                                         }
                                     }
@@ -726,44 +583,95 @@ namespace TEditXNA.Terraria
                                         tile.U = -1;
                                         tile.V = -1;
                                     }
+
+                                    if (w.Version >= 48 && b.ReadBoolean())
+                                    {
+                                        tile.Color = b.ReadByte();
+                                    }
                                 }
+
+                                //skip obsolete hasLight
                                 if (w.Version <= 25)
-                                    b.ReadBoolean(); //skip obsolete hasLight
+                                    b.ReadBoolean();
+
                                 if (b.ReadBoolean())
                                 {
                                     tile.Wall = b.ReadByte();
+                                    if (w.Version >= 48 && b.ReadBoolean())
+                                        tile.WallColor = b.ReadByte();
                                 }
-                                //else
-                                //    tile.Wall = 0;
+
                                 if (b.ReadBoolean())
                                 {
                                     tile.Liquid = b.ReadByte();
                                     tile.IsLava = b.ReadBoolean();
+                                    if (w.Version >= 51)
+                                    {
+                                        tile.IsHoney = b.ReadBoolean();
+                                    }
                                 }
 
                                 if (w.Version >= 33)
+                                {
                                     tile.HasWire = b.ReadBoolean();
-                                //else
-                                //    tile.HasWire = false;
+                                }
+                                if (w.Version >= 43)
+                                {
+                                    tile.HasWire2 = b.ReadBoolean();
+                                    tile.HasWire3 = b.ReadBoolean();
+                                }
+
+                                if (w.Version >= 41)
+                                {
+                                    tile.HalfBrick = b.ReadBoolean();
+
+                                    if (tileProperty == null || !tileProperty.IsSolid)
+                                        tile.HalfBrick = false;
+
+                                    if (w.Version >= 49)
+                                    {
+                                        tile.Slope = b.ReadByte();
+
+                                        if (tileProperty == null || !tileProperty.IsSolid)
+                                            tile.Slope = 0;
+                                    }
+                                }
+                                if (w.Version >= 42)
+                                {
+                                    tile.Actuator = b.ReadBoolean();
+                                    tile.InActive = b.ReadBoolean();
+                                }
+
+
+                                // read complete, start compression
                                 w.Tiles[x, y] = tile;
 
-                                var ptype = (Tile)prevtype.Clone();
-                                prevtype = (Tile)tile.Clone();
-                                if (w.Version >= 25) //compression ftw :)
+                                if (w.Version >= 25)
                                 {
                                     int rle = b.ReadInt16();
+
+                                    if (rle < 0)
+                                        throw new ApplicationException("Invalid Tile Data!");
+
+                                    DebugLog(string.Format("RLE {0}", rle));
                                     if (rle > 0)
                                     {
-                                        for (int r = y + 1; r < y + rle + 1; r++)
+                                        for (int k = y + 1; k < y + rle + 1; k++)
                                         {
                                             var tcopy = (Tile)tile.Clone();
-                                            w.Tiles[x, r] = tcopy;
+                                            w.Tiles[x, k] = tcopy;
                                         }
-                                        y += rle;
+                                        y = y + rle;
                                     }
                                 }
                             }
                         }
+
+                        if (w.Version < 67)
+                            w.FixSunflowers();
+                        int chestSize = Chest.MaxItems;
+                        if (w.Version < 58)
+                            chestSize = 20;
                         w.Chests.Clear();
                         OnProgressChanged(null, new ProgressChangedEventArgs(100, "Loading Chests..."));
                         for (int i = 0; i < 1000; i++)
@@ -773,19 +681,24 @@ namespace TEditXNA.Terraria
                                 var chest = new Chest(b.ReadInt32(), b.ReadInt32());
                                 for (int slot = 0; slot < Chest.MaxItems; slot++)
                                 {
-                                    var stackSize = b.ReadByte();
-                                    chest.Items[slot].StackSize = stackSize;
-                                    if (chest.Items[slot].StackSize > 0)
+                                    if (slot < chestSize)
                                     {
-                                        if (w.Version >= 38)
-                                            chest.Items[slot].NetId = b.ReadInt32();
-                                        else
-                                            chest.Items[slot].SetFromName(b.ReadString());
 
+                                        int stackSize = w.Version < 59 ? b.ReadByte() : (int)b.ReadInt16();
                                         chest.Items[slot].StackSize = stackSize;
-                                        // Read prefix
-                                        if (w.Version >= 36)
-                                            chest.Items[slot].Prefix = b.ReadByte();
+
+                                        if (chest.Items[slot].StackSize > 0)
+                                        {
+                                            if (w.Version >= 38)
+                                                chest.Items[slot].NetId = b.ReadInt32();
+                                            else
+                                                chest.Items[slot].SetFromName(b.ReadString());
+
+                                            chest.Items[slot].StackSize = stackSize;
+                                            // Read prefix
+                                            if (w.Version >= 36)
+                                                chest.Items[slot].Prefix = b.ReadByte();
+                                        }
                                     }
                                 }
                                 w.Chests.Add(chest);
@@ -801,7 +714,9 @@ namespace TEditXNA.Terraria
                                 sign.Text = b.ReadString();
                                 sign.X = b.ReadInt32();
                                 sign.Y = b.ReadInt32();
-                                w.Signs.Add(sign);
+
+                                if (w.Tiles[sign.X, sign.Y].IsActive && (int)w.Tiles[sign.X, sign.Y].Type == 55 && (int)w.Tiles[sign.X, sign.Y].Type == 85)
+                                    w.Signs.Add(sign);
                             }
                         }
                         w.NPCs.Clear();
@@ -840,8 +755,29 @@ namespace TEditXNA.Terraria
                             if (w.Version >= 35)
                                 w.CharacterNames.Add(new NpcName(124, b.ReadString()));
                             else
-                            {
                                 w.CharacterNames.Add(new NpcName(124, "Nancy"));
+
+                            if (w.Version >= 65)
+                            {
+                                w.CharacterNames.Add(new NpcName(160, b.ReadString()));
+                                w.CharacterNames.Add(new NpcName(178, b.ReadString()));
+                                w.CharacterNames.Add(new NpcName(207, b.ReadString()));
+                                w.CharacterNames.Add(new NpcName(208, b.ReadString()));
+                                w.CharacterNames.Add(new NpcName(209, b.ReadString()));
+                                w.CharacterNames.Add(new NpcName(227, b.ReadString()));
+                                w.CharacterNames.Add(new NpcName(228, b.ReadString()));
+                                w.CharacterNames.Add(new NpcName(229, b.ReadString()));
+                            }
+                            else
+                            {
+                                w.CharacterNames.Add(new NpcName(160, "Truffle"));
+                                w.CharacterNames.Add(new NpcName(178, "Steampunker"));
+                                w.CharacterNames.Add(new NpcName(207, "Dye Trader"));
+                                w.CharacterNames.Add(new NpcName(208, "Party Girl"));
+                                w.CharacterNames.Add(new NpcName(209, "Cyborg"));
+                                w.CharacterNames.Add(new NpcName(227, "Painter"));
+                                w.CharacterNames.Add(new NpcName(228, "Witch Doctor"));
+                                w.CharacterNames.Add(new NpcName(229, "Pirate"));
                             }
                         }
                         else
@@ -856,6 +792,15 @@ namespace TEditXNA.Terraria
                             w.CharacterNames.Add(new NpcName(107, "Knogs"));
                             w.CharacterNames.Add(new NpcName(108, "Fizban"));
                             w.CharacterNames.Add(new NpcName(124, "Nancy"));
+                            w.CharacterNames.Add(new NpcName(160, "Truffle"));
+                            w.CharacterNames.Add(new NpcName(178, "Steampunker"));
+                            w.CharacterNames.Add(new NpcName(207, "Dye Trader"));
+                            w.CharacterNames.Add(new NpcName(208, "Party Girl"));
+                            w.CharacterNames.Add(new NpcName(209, "Cyborg"));
+                            w.CharacterNames.Add(new NpcName(227, "Painter"));
+                            w.CharacterNames.Add(new NpcName(228, "Witch Doctor"));
+                            w.CharacterNames.Add(new NpcName(229, "Pirate"));
+
                         }
                         if (w.Version >= 7)
                         {
@@ -888,6 +833,32 @@ namespace TEditXNA.Terraria
                     return null;
             }
             return w;
+        }
+
+        private void FixSunflowers()
+        {
+            for (int i = 5; i < TilesWide - 5; ++i)
+            {
+                for (int j = 5; (double)j < GroundLevel; ++j)
+                {
+                    if (Tiles[i, j].IsActive && (int)Tiles[i, j].Type == 27)
+                    {
+                        int u = (int)Tiles[i, j].U / 18;
+                        int v = j + (int)Tiles[i, j].V / 18 * -1;
+                        while (u > 1)
+                            u -= 2;
+                        int xStart = u * -1 + i;
+                        int uStart = this.Rand.Next(3) * 36;
+                        int uShift = 0;
+                        for (int xx = xStart; xx < xStart + 2; ++xx)
+                        {
+                            for (int yy = v; yy < v + 4; ++yy)
+                                Tiles[xx, yy].U = (short)(uShift + uStart);
+                            uShift += 18;
+                        }
+                    }
+                }
+            }
         }
     }
 }
