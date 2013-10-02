@@ -520,7 +520,7 @@ namespace TEditXNA.Terraria
             set { Set("InvasionDelay", ref _invasionDelay, value); }
         }
 
-        internal DateTime LastSave
+        public DateTime LastSave
         {
             get { return _lastSave; }
             set { Set("LastSave", ref _lastSave, value); }

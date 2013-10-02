@@ -91,7 +91,22 @@ namespace TEditXNA.Terraria
 
         protected bool Equals(Tile other)
         {
-            return IsActive.Equals(other.IsActive) && HasWire.Equals(other.HasWire) && HasWire2.Equals(other.HasWire2) && HasWire3.Equals(other.HasWire3) && IsHoney.Equals(other.IsHoney) && IsLava.Equals(other.IsLava) && Color == other.Color && Wall == other.Wall && Type == other.Type && WallColor == other.WallColor && Liquid == other.Liquid && HalfBrick.Equals(other.HalfBrick) && Actuator.Equals(other.Actuator) && Slope == other.Slope && InActive.Equals(other.InActive) && U == other.U && V == other.V;
+            return IsActive.Equals(other.IsActive) &&
+                Type == other.Type &&
+                Color == other.Color &&
+                U == other.U && V == other.V && 
+                Liquid == other.Liquid &&               
+                IsLava.Equals(other.IsLava) &&
+                IsHoney.Equals(other.IsHoney) &&
+                Wall == other.Wall && 
+                WallColor == other.WallColor &&
+                HasWire.Equals(other.HasWire) &&
+                HasWire2.Equals(other.HasWire2) &&
+                HasWire3.Equals(other.HasWire3) &&
+                HalfBrick.Equals(other.HalfBrick) && 
+                Slope == other.Slope &&
+                Actuator.Equals(other.Actuator) && 
+                InActive.Equals(other.InActive);
         }
 
         public override bool Equals(object obj)

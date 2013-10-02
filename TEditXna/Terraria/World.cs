@@ -77,10 +77,48 @@ namespace TEditXNA.Terraria
             return Signs.FirstOrDefault(c => (c.X == x || c.X == x - 1) && (c.Y == y || c.Y == y - 1));
         }
 
+
+        public void Validate()
+        {
+            for (int x = 0; x < TilesWide; x++)
+            {
+                OnProgressChanged(this, new ProgressChangedEventArgs((int)(x / (float)TilesWide * 100.0), "Validating World..."));
+
+                for (int y = 0; y < TilesHigh; y++)
+                {
+                    var curTile = Tiles[x, y];
+
+                    if (curTile.Type == 127)
+                        curTile.IsActive = false;
+
+                    // TODO: Let Validate handle these
+                    //validate chest entry exists
+                    if (curTile.Type == 21)
+                    {
+                        if (GetChestAtTile(x, y) == null)
+                        {
+                            Chests.Add(new Chest(x, y));
+                        }
+                    }
+                    //validate sign entry exists
+                    else if (curTile.Type == 55 || curTile.Type == 85)
+                    {
+                        if (GetSignAtTile(x, y) == null)
+                        {
+                            Signs.Add(new Sign(x, y, string.Empty));
+                        }
+                    }
+                }
+            }
+        }
+
         public void Save(string filename, bool resetTime = false)
         {
             lock (_fileLock)
             {
+                OnProgressChanged(this, new ProgressChangedEventArgs(0, "Validating World..."));
+                Validate();
+
                 if (resetTime)
                 {
                     OnProgressChanged(this, new ProgressChangedEventArgs(0, "Resetting Time..."));
@@ -104,6 +142,26 @@ namespace TEditXNA.Terraria
                         bw.Write((int)BottomWorld);
                         bw.Write(TilesHigh);
                         bw.Write(TilesWide);
+
+                        bw.Write((byte)MoonType);
+                        bw.Write(TreeX[0]);
+                        bw.Write(TreeX[1]);
+                        bw.Write(TreeX[2]);
+                        bw.Write(TreeStyle[0]);
+                        bw.Write(TreeStyle[1]);
+                        bw.Write(TreeStyle[2]);
+                        bw.Write(TreeStyle[3]);
+                        bw.Write(CaveBackX[0]);
+                        bw.Write(CaveBackX[1]);
+                        bw.Write(CaveBackX[2]);
+                        bw.Write(CaveBackStyle[0]);
+                        bw.Write(CaveBackStyle[1]);
+                        bw.Write(CaveBackStyle[2]);
+                        bw.Write(CaveBackStyle[3]);
+                        bw.Write(IceBackStyle);
+                        bw.Write(JungleBackStyle);
+                        bw.Write(HellBackStyle);
+
                         bw.Write(SpawnX);
                         bw.Write(SpawnY);
                         bw.Write(GroundLevel);
@@ -114,15 +172,27 @@ namespace TEditXNA.Terraria
                         bw.Write(BloodMoon);
                         bw.Write(DungeonX);
                         bw.Write(DungeonY);
+
+                        bw.Write(IsCrimson);
+
                         bw.Write(DownedBoss1);
                         bw.Write(DownedBoss2);
                         bw.Write(DownedBoss3);
+                        bw.Write(DownedQueenBee);
+                        bw.Write(DownedMechBoss1);
+                        bw.Write(DownedMechBoss2);
+                        bw.Write(DownedMechBoss3);
+                        bw.Write(DownedMechBossAny);
+                        bw.Write(DownedPlantBoss);
+                        bw.Write(DownedGolemBoss);
                         bw.Write(SavedGoblin);
                         bw.Write(SavedWizard);
                         bw.Write(SavedMech);
                         bw.Write(DownedGoblins);
                         bw.Write(DownedClown);
                         bw.Write(DownedFrost);
+                        bw.Write(DownedPirates);
+
                         bw.Write(ShadowOrbSmashed);
                         bw.Write(SpawnMeteor);
                         bw.Write((byte)ShadowOrbCount);
@@ -132,6 +202,24 @@ namespace TEditXNA.Terraria
                         bw.Write(InvasionSize);
                         bw.Write(InvasionType);
                         bw.Write(InvasionX);
+
+                        bw.Write(TempRaining);
+                        bw.Write(TempRainTime);
+                        bw.Write((float)TempMaxRain);
+                        bw.Write(OreTier1);
+                        bw.Write(OreTier2);
+                        bw.Write(OreTier3);
+                        bw.Write((byte)BgTree);
+                        bw.Write((byte)BgCorruption);
+                        bw.Write((byte)BgJungle);
+                        bw.Write((byte)BgSnow);
+                        bw.Write((byte)BgHallow);
+                        bw.Write((byte)BgCrimson);
+                        bw.Write((byte)BgDesert);
+                        bw.Write((byte)BgOcean);
+                        bw.Write((int)CloudBgActive);
+                        bw.Write((short)NumClouds);
+                        bw.Write((float)WindSpeedSet);
 
 
                         for (int x = 0; x < TilesWide; ++x)
@@ -143,7 +231,10 @@ namespace TEditXNA.Terraria
                             {
 
                                 var curTile = Tiles[x, y];
-                                bw.Write(curTile.IsActive);
+                                if (curTile.Type == 127)
+                                    curTile.IsActive = false;
+
+                                bw.Write(curTile.IsActive );
                                 if (curTile.IsActive)
                                 {
                                     bw.Write(curTile.Type);
@@ -151,30 +242,28 @@ namespace TEditXNA.Terraria
                                     {
                                         bw.Write(curTile.U);
                                         bw.Write(curTile.V);
-
-                                        // TODO: Let Validate handle these
-                                        //validate chest entry exists
-                                        if (curTile.Type == 21)
-                                        {
-                                            if (GetChestAtTile(x, y) == null)
-                                            {
-                                                Chests.Add(new Chest(x, y));
-                                            }
-                                        }
-                                        //validate sign entry exists
-                                        else if (curTile.Type == 55 || curTile.Type == 85)
-                                        {
-                                            if (GetSignAtTile(x, y) == null)
-                                            {
-                                                Signs.Add(new Sign(x, y, string.Empty));
-                                            }
-                                        }
                                     }
+
+                                    if (curTile.Color > 0)
+                                    {
+                                        bw.Write(true);
+                                        bw.Write(curTile.Color);
+                                    }
+                                    else
+                                        bw.Write(false);
                                 }
                                 if ((int)curTile.Wall > 0)
                                 {
                                     bw.Write(true);
                                     bw.Write(curTile.Wall);
+
+                                    if (curTile.WallColor > 0)
+                                    {
+                                        bw.Write(true);
+                                        bw.Write(curTile.WallColor);
+                                    }
+                                    else
+                                        bw.Write(false);
                                 }
                                 else
                                     bw.Write(false);
@@ -184,11 +273,18 @@ namespace TEditXNA.Terraria
                                     bw.Write(true);
                                     bw.Write(curTile.Liquid);
                                     bw.Write(curTile.IsLava);
+                                    bw.Write(curTile.IsHoney);
                                 }
                                 else
                                     bw.Write(false);
 
                                 bw.Write(curTile.HasWire);
+                                bw.Write(curTile.HasWire2);
+                                bw.Write(curTile.HasWire3);
+                                bw.Write(curTile.HalfBrick);
+                                bw.Write(curTile.Slope);
+                                bw.Write(curTile.Actuator);
+                                bw.Write(curTile.InActive);
 
                                 int rleTemp = 1;
                                 while (y + rleTemp < TilesHigh && curTile.Equals(Tiles[x, (y + rleTemp)]))
@@ -214,7 +310,10 @@ namespace TEditXNA.Terraria
                                 {
                                     if (curChest.Items.Count > j)
                                     {
-                                        bw.Write((byte)curChest.Items[j].StackSize);
+                                        if (curChest.Items[j].NetId == 0)
+                                            curChest.Items[j].StackSize = 0;
+
+                                        bw.Write((short)curChest.Items[j].StackSize);
                                         if (curChest.Items[j].StackSize > 0)
                                         {
                                             bw.Write(curChest.Items[j].NetId); // TODO Verify
@@ -266,6 +365,14 @@ namespace TEditXNA.Terraria
                         bw.Write(CharacterNames.FirstOrDefault(c => c.Id == 107).Name);
                         bw.Write(CharacterNames.FirstOrDefault(c => c.Id == 108).Name);
                         bw.Write(CharacterNames.FirstOrDefault(c => c.Id == 124).Name);
+                        bw.Write(CharacterNames.FirstOrDefault(c => c.Id == 160).Name);
+                        bw.Write(CharacterNames.FirstOrDefault(c => c.Id == 178).Name);
+                        bw.Write(CharacterNames.FirstOrDefault(c => c.Id == 207).Name);
+                        bw.Write(CharacterNames.FirstOrDefault(c => c.Id == 208).Name);
+                        bw.Write(CharacterNames.FirstOrDefault(c => c.Id == 209).Name);
+                        bw.Write(CharacterNames.FirstOrDefault(c => c.Id == 227).Name);
+                        bw.Write(CharacterNames.FirstOrDefault(c => c.Id == 228).Name);
+                        bw.Write(CharacterNames.FirstOrDefault(c => c.Id == 229).Name);
 
                         OnProgressChanged(null, new ProgressChangedEventArgs(100, "Saving Validation Data..."));
                         bw.Write(true);
