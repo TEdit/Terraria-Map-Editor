@@ -5,6 +5,7 @@ using System.Data;
 using System.Linq;
 using System.Threading;
 using System.Windows;
+using BCCL.MvvmLight.Threading;
 
 namespace TEditXna
 {
@@ -84,6 +85,7 @@ namespace TEditXna
                 }
             }
 
+            DispatcherHelper.Initialize();
             BCCL.MvvmLight.Threading.TaskFactoryHelper.Initialize();
             AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
             base.OnStartup(e);

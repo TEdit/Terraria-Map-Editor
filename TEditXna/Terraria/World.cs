@@ -2,7 +2,9 @@
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Windows;
+using System.Windows.Threading;
 using BCCL.MvvmLight;
+using BCCL.MvvmLight.Threading;
 using BCCL.Utility;
 using TEditXNA.Terraria.Objects;
 using BCCL.Geometry.Primitives;
@@ -29,12 +31,15 @@ namespace TEditXNA.Terraria
                 ProgressChanged(sender, e);
         }
 
+        
+
         public World()
         {
             NPCs.Clear();
             Signs.Clear();
             Chests.Clear();
             CharacterNames.Clear();
+            
         }
 
         public World(int height, int width, string title, int seed = -1)
@@ -234,7 +239,7 @@ namespace TEditXNA.Terraria
                                 if (curTile.Type == 127)
                                     curTile.IsActive = false;
 
-                                bw.Write(curTile.IsActive );
+                                bw.Write(curTile.IsActive);
                                 if (curTile.IsActive)
                                 {
                                     bw.Write(curTile.Type);
@@ -354,7 +359,11 @@ namespace TEditXNA.Terraria
                         }
                         bw.Write(false);
 
+                        
                         OnProgressChanged(null, new ProgressChangedEventArgs(100, "Saving NPC Names..."));
+
+                        FixNpcs();
+
                         bw.Write(CharacterNames.FirstOrDefault(c => c.Id == 17).Name);
                         bw.Write(CharacterNames.FirstOrDefault(c => c.Id == 18).Name);
                         bw.Write(CharacterNames.FirstOrDefault(c => c.Id == 19).Name);
@@ -940,6 +949,48 @@ namespace TEditXNA.Terraria
                     return null;
             }
             return w;
+        }
+
+        public void FixNpcs()
+        {
+            DispatcherHelper.CheckBeginInvokeOnUI(()=>{
+                if (CharacterNames.All(c => c.Id != 17))
+                    CharacterNames.Add(new NpcName(17, "Harold"));
+                if (CharacterNames.All(c => c.Id != 18))
+                    CharacterNames.Add(new NpcName(18, "Molly"));
+                if (CharacterNames.All(c => c.Id != 19))
+                    CharacterNames.Add(new NpcName(19, "Dominique"));
+                if (CharacterNames.All(c => c.Id != 20))
+                    CharacterNames.Add(new NpcName(20, "Felicitae"));
+                if (CharacterNames.All(c => c.Id != 22))
+                    CharacterNames.Add(new NpcName(22, "Steve"));
+                if (CharacterNames.All(c => c.Id != 54))
+                    CharacterNames.Add(new NpcName(54, "Fitz"));
+                if (CharacterNames.All(c => c.Id != 38))
+                    CharacterNames.Add(new NpcName(38, "Gimut"));
+                if (CharacterNames.All(c => c.Id != 107))
+                    CharacterNames.Add(new NpcName(107, "Knogs"));
+                if (CharacterNames.All(c => c.Id != 108))
+                    CharacterNames.Add(new NpcName(108, "Fizban"));
+                if (CharacterNames.All(c => c.Id != 124))
+                    CharacterNames.Add(new NpcName(124, "Nancy"));
+                if (CharacterNames.All(c => c.Id != 160))
+                    CharacterNames.Add(new NpcName(160, "Truffle"));
+                if (CharacterNames.All(c => c.Id != 178))
+                    CharacterNames.Add(new NpcName(178, "Steampunker"));
+                if (CharacterNames.All(c => c.Id != 207))
+                    CharacterNames.Add(new NpcName(207, "Dye Trader"));
+                if (CharacterNames.All(c => c.Id != 208))
+                    CharacterNames.Add(new NpcName(208, "Party Girl"));
+                if (CharacterNames.All(c => c.Id != 209))
+                    CharacterNames.Add(new NpcName(209, "Cyborg"));
+                if (CharacterNames.All(c => c.Id != 227))
+                    CharacterNames.Add(new NpcName(227, "Painter"));
+                if (CharacterNames.All(c => c.Id != 228))
+                    CharacterNames.Add(new NpcName(228, "Witch Doctor"));
+                if (CharacterNames.All(c => c.Id != 229))
+                    CharacterNames.Add(new NpcName(229, "Pirate"));
+            });
         }
 
         private void FixSunflowers()
