@@ -11,7 +11,7 @@ namespace TEditXNA.Terraria
     [Serializable]
     public class Item : ObservableObject
     {
-        private const int MaxStackSize = 255;
+        private const int MaxStackSize = 999;
 
         private int _stackSize;
         private byte _prefix;
