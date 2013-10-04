@@ -646,14 +646,8 @@ namespace TEditXNA.Terraria
                         {
                             OnProgressChanged(null, new ProgressChangedEventArgs(x.ProgressPercentage(w.TilesWide), "Loading Tiles..."));
 
-                            Tile prevtype = new Tile();
                             for (int y = 0; y < w.TilesHigh; y++)
                             {
-                                if (x == 1046 && y == 1080)
-                                {
-                                    int zzz = x + 1;
-                                }
-
                                 var tile = new Tile();
 
                                 tile.IsActive = b.ReadBoolean();

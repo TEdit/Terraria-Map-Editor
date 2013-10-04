@@ -180,9 +180,13 @@ namespace TEditXna.Editor.Clipboard
                             // if pasting tiles is disabled, use the existing tile with buffer's wall & extras
                             curTile = (Tile)world.Tiles[worldX, worldY].Clone();
                             curTile.Wall = buffer.Tiles[x, y].Wall;
+                            curTile.WallColor = buffer.Tiles[x, y].WallColor;
                             curTile.Liquid = buffer.Tiles[x, y].Liquid;
                             curTile.IsLava = buffer.Tiles[x, y].IsLava;
+                            curTile.IsHoney = buffer.Tiles[x, y].IsHoney;
                             curTile.HasWire = buffer.Tiles[x, y].HasWire;
+                            curTile.HasWire2 = buffer.Tiles[x, y].HasWire2;
+                            curTile.HasWire3 = buffer.Tiles[x, y].HasWire3;
                         }
 
                         if (!PasteEmpty && (curTile.Liquid == 0 && !curTile.IsActive && curTile.Wall == 0 && !curTile.HasWire))
@@ -194,17 +198,21 @@ namespace TEditXna.Editor.Clipboard
                         {
                             // if pasting walls is disabled, use the existing wall
                             curTile.Wall = world.Tiles[worldX, worldY].Wall;
+                            curTile.WallColor = world.Tiles[worldX, worldY].WallColor;
                         }
                         if (!PasteLiquids)
                         {
                             // if pasting liquids is disabled, use any existing liquid
                             curTile.Liquid = world.Tiles[worldX, worldY].Liquid;
                             curTile.IsLava = world.Tiles[worldX, worldY].IsLava;
+                            curTile.IsHoney = world.Tiles[worldX, worldY].IsHoney;
                         }
                         if (!PasteWires)
                         {
                             // if pasting wires is disabled, use any existing wire
-                            curTile.HasWire = world.Tiles[worldX, worldY].HasWire;
+                            curTile.HasWire = buffer.Tiles[x, y].HasWire;
+                            curTile.HasWire2 = buffer.Tiles[x, y].HasWire2;
+                            curTile.HasWire3 = buffer.Tiles[x, y].HasWire3;
                         }
                         //  Update chest/sign data only if we've pasted tiles
                         if (PasteTiles)
