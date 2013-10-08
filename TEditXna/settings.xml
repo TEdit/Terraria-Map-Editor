@@ -817,8 +817,8 @@ Documentation moved to the end of this file.
     <Tile Id="158" Name="Rich Mahogany"  Solid="true"  />
     <Tile Id="159" Name="Pearlwood"  Solid="true"  />
     <Tile Id="160" Name="Rainbow Brick"  Solid="true" Light="true"  />
-    <Tile Id="161" Name="Ice Block"  Solid="true"  />
-    <Tile Id="162" Name=""  Solid="true"  />
+    <Tile Id="161" Name="Ice Block"  Color="#FF4DB8FF"  Solid="true" Blends="true" />
+    <Tile Id="162" Name="Thin Ice"  Color="#FFADD6FF" Solid="true" Blends="true" />
     <Tile Id="163" Name="Purple Ice Block"  Solid="true"  />
     <Tile Id="164" Name="Pink Ice Block"  Solid="true"  />
     <Tile Id="165" Name=""  Framed="true" >
@@ -826,10 +826,10 @@ Documentation moved to the end of this file.
         <Frame UV="0,0" Name="Default" Variety="Default" />
       </Frames>
     </Tile>
-    <Tile Id="166" Name="Tin Ore"  Solid="true"  />
-    <Tile Id="167" Name="Lead Ore"  Solid="true"  />
-    <Tile Id="168" Name="Tungsten Ore"  Solid="true"  />
-    <Tile Id="169" Name="Platinum Ore"  Solid="true"  />
+    <Tile Id="166" Name="Tin Ore"  Color="#FFB8B800" Solid="true" Blends="true" />
+    <Tile Id="167" Name="Lead Ore"  Color="#FF29297A" Solid="true" Blends="true" />
+    <Tile Id="168" Name="Tungsten Ore"  Color="#FF66C266" Solid="true" Blends="true" />
+    <Tile Id="169" Name="Platinum Ore"  Color="#FF6B8FB2" Solid="true" Blends="true" />
     <Tile Id="170" Name="Tin Chandelier"  Framed="true" Light="true" >
       <Frames>
         <Frame UV="0,0" Name="Default" Variety="Default" />
@@ -863,11 +863,11 @@ Documentation moved to the end of this file.
         <Frame UV="0,0" Name="Default" Variety="Default" />
       </Frames>
     </Tile>
-    <Tile Id="179" Name=""  Solid="true"  />
-    <Tile Id="180" Name=""  Solid="true"  />
-    <Tile Id="181" Name=""  Solid="true"  />
-    <Tile Id="182" Name=""  Solid="true"  />
-    <Tile Id="183" Name=""  Solid="true"  />
+    <Tile Id="179" Name=""  Solid="true" Blends="true" />
+    <Tile Id="180" Name=""  Color="#FF336600" Solid="true" Blends="true" />
+    <Tile Id="181" Name=""  Color="#FFB82E00" Solid="true" Blends="true" />
+    <Tile Id="182" Name=""  Color="#FF00004C" Solid="true" Blends="true" />
+    <Tile Id="183" Name=""  Solid="true" Blends="true" />
     <Tile Id="184" Name=""  Framed="true" >
       <Frames>
         <Frame UV="0,0" Name="Default" Variety="Default" />
@@ -889,14 +889,14 @@ Documentation moved to the end of this file.
       </Frames>
     </Tile>
     <Tile Id="188" Name="Cactus"  Solid="true"  />
-    <Tile Id="189" Name="Cloud"  Solid="true"  />
+    <Tile Id="189" Name="Cloud" Color="#FFF5FFFF" Solid="true" Blends="true" />
     <Tile Id="190" Name="Glowing Mushroom"  Solid="true" Light="true"  />
     <Tile Id="191" Name="Living Wood Wand"  Solid="true"  />
     <Tile Id="192" Name="Leaf Wand"  Solid="true"  />
     <Tile Id="193" Name="Slime Block"  Solid="true"  />
     <Tile Id="194" Name="Bone Block"  Solid="true"  />
     <Tile Id="195" Name="Flesh Block"  Solid="true"  />
-    <Tile Id="196" Name="Rain Cloud"  Solid="true"  />
+    <Tile Id="196" Name="Rain Cloud" Color="#FFB8E6E6" Solid="true" Blends="true" />
     <Tile Id="197" Name="Frozen Slime Block"  Solid="true"  />
     <Tile Id="198" Name="Asphalt Block"  Solid="true"  />
     <Tile Id="199" Name=""  Solid="true"  />
@@ -906,7 +906,7 @@ Documentation moved to the end of this file.
         <Frame UV="0,0" Name="Default" Variety="Default" />
       </Frames>
     </Tile>
-    <Tile Id="202" Name="Sunplate Block"  Solid="true"  />
+    <Tile Id="202" Name="Sunplate Block"  Solid="true" Blends="true" />
     <Tile Id="203" Name="Crimstone Block"  Solid="true"  />
     <Tile Id="204" Name="Crimtane Ore"  Solid="true" Light="true"  />
     <Tile Id="205" Name=""   />
@@ -968,9 +968,9 @@ Documentation moved to the end of this file.
     <Tile Id="221" Name="Palladium Ore"  Solid="true"  />
     <Tile Id="222" Name="Orichalcum Ore"  Solid="true"  />
     <Tile Id="223" Name="Titanium Ore"  Solid="true"  />
-    <Tile Id="224" Name="Slush Block"  Solid="true"  />
-    <Tile Id="225" Name="Hive Wand"  Solid="true"  />
-    <Tile Id="226" Name="Lihzahrd Brick"  Solid="true"  />
+    <Tile Id="224" Name="Slush Block" Color="#FFB2B2CC" Solid="true" Blends="true" />
+    <Tile Id="225" Name="Hive Block"  Color="#FFE68A2E" Solid="true" Blends="true" />
+    <Tile Id="226" Name="Lihzahrd Brick" Color="#FF800000" Solid="true" Blends="true" />
     <Tile Id="227" Name="Teal Mushroom"  Framed="true" >
       <Frames>
         <Frame UV="0,0" Name="Default" Variety="Default" />
@@ -1097,74 +1097,74 @@ Documentation moved to the end of this file.
     <Wall Id="29" Name="Red Candy Cane Wall" Color="#FFAA0000" IsHouse="true" />
     <Wall Id="30" Name="Green Candy Cane Wall" Color="#FF00AA00" IsHouse="true" />
     <Wall Id="31" Name="Snow Brick Wall" Color="#FF9999BB" IsHouse="true" />
-    <Wall Id="32" Name="Adamantite Beam Wall" Color="#FFFF00FF" IsHouse="True"/>
-    <Wall Id="33" Name="Demonite Brick Wall" Color="#FFFF00FF" IsHouse="True"/>
-    <Wall Id="34" Name="Sandstone Brick Wall" Color="#FFFF00FF" IsHouse="True"/>
-    <Wall Id="35" Name="Ebonstone Brick Wall" Color="#FFFF00FF" IsHouse="True"/>
-    <Wall Id="36" Name="Red Stucco Wall" Color="#FFFF00FF" IsHouse="True"/>
-    <Wall Id="37" Name="Yellow Stucco Wall" Color="#FFFF00FF" IsHouse="True"/>
-    <Wall Id="38" Name="Green Stucco Wall" Color="#FFFF00FF" IsHouse="True"/>
-    <Wall Id="39" Name="Gray Stucco Wall" Color="#FFFF00FF" IsHouse="True"/>
-    <Wall Id="40" Name="" Color="#FFFF00FF" IsHouse="False"/>
-    <Wall Id="41" Name="Ebonwood Wall" Color="#FFFF00FF" IsHouse="True"/>
+    <Wall Id="32" Name="Adamantite Beam Wall" Color="#FF990000" IsHouse="True"/>
+    <Wall Id="33" Name="Demonite Brick Wall" Color="#FF140014" IsHouse="True"/>
+    <Wall Id="34" Name="Sandstone Brick Wall" Color="#FF7A5C00" IsHouse="True"/>
+    <Wall Id="35" Name="Ebonstone Brick Wall" Color="#FF3D3D5C" IsHouse="True"/>
+    <Wall Id="36" Name="Red Stucco Wall" Color="#FFB24747" IsHouse="True"/>
+    <Wall Id="37" Name="Yellow Stucco Wall" Color="#FFB88A00" IsHouse="True"/>
+    <Wall Id="38" Name="Green Stucco Wall" Color="#FF006B24" IsHouse="True"/>
+    <Wall Id="39" Name="Gray Stucco Wall" Color="#FFCCCCCC" IsHouse="True"/>
+    <Wall Id="40" Name="Snow Wall" Color="#FF7AA3CC" IsHouse="False"/>
+    <Wall Id="41" Name="Ebonwood Wall" Color="#FF52527A" IsHouse="True"/>
     <Wall Id="42" Name="Rich Mahogany Wall" Color="#FFFF00FF" IsHouse="True"/>
     <Wall Id="43" Name="Pearlwood Wall" Color="#FFFF00FF" IsHouse="True"/>
-    <Wall Id="44" Name="Rainbow Brick Wall" Color="#FFFF00FF" IsHouse="True"/>
-    <Wall Id="45" Name="Tin Brick Wall" Color="#FFFF00FF" IsHouse="True"/>
+    <Wall Id="44" Name="Tin Brick Wall" Color="#FFFF00FF" IsHouse="True"/>
+    <Wall Id="45" Name="Lead Brick Wall" Color="#FFFF00FF" IsHouse="True"/>
     <Wall Id="46" Name="Tungsten Brick Wall" Color="#FFFF00FF" IsHouse="True"/>
     <Wall Id="47" Name="Platinum Brick Wall" Color="#FFFF00FF" IsHouse="True"/>
-    <Wall Id="48" Name="" Color="#FFFF00FF" IsHouse="False"/>
-    <Wall Id="49" Name="" Color="#FFFF00FF" IsHouse="False"/>
-    <Wall Id="50" Name="" Color="#FFFF00FF" IsHouse="False"/>
-    <Wall Id="51" Name="" Color="#FFFF00FF" IsHouse="False"/>
-    <Wall Id="52" Name="" Color="#FFFF00FF" IsHouse="False"/>
-    <Wall Id="53" Name="" Color="#FFFF00FF" IsHouse="False"/>
+    <Wall Id="48" Name="Amethyst Gemstone Wall" Color="#FFFF00FF" IsHouse="False"/>
+    <Wall Id="49" Name="Topaz Gemstone Wall" Color="#FFFF00FF" IsHouse="False"/>
+    <Wall Id="50" Name="Sapphire Gemstone Wall" Color="#FFFF00FF" IsHouse="False"/>
+    <Wall Id="51" Name="Emerald Gemstone Wall" Color="#FFFF00FF" IsHouse="False"/>
+    <Wall Id="52" Name="Ruby Gemstone Wall" Color="#FFFF00FF" IsHouse="False"/>
+    <Wall Id="53" Name="Diamond Gemstone Wall" Color="#FFFF00FF" IsHouse="False"/>
     <Wall Id="54" Name="" Color="#FFFF00FF" IsHouse="False"/>
-    <Wall Id="55" Name="" Color="#FFFF00FF" IsHouse="False"/>
-    <Wall Id="56" Name="" Color="#FFFF00FF" IsHouse="False"/>
-    <Wall Id="57" Name="" Color="#FFFF00FF" IsHouse="False"/>
+    <Wall Id="55" Name="Green ???" Color="#FF295200" IsHouse="False"/>
+    <Wall Id="56" Name="Red ???" Color="#FF932500" IsHouse="False"/>
+    <Wall Id="57" Name="Blue ???" Color="#FF00003D" IsHouse="False"/>
     <Wall Id="58" Name="" Color="#FFFF00FF" IsHouse="False"/>
-    <Wall Id="59" Name="" Color="#FFFF00FF" IsHouse="False"/>
+    <Wall Id="59" Name="Cave Wall" Color="#FF8F4700" IsHouse="False"/>
     <Wall Id="60" Name="" Color="#FFFF00FF" IsHouse="False"/>
-    <Wall Id="61" Name="" Color="#FFFF00FF" IsHouse="False"/>
-    <Wall Id="62" Name="" Color="#FFFF00FF" IsHouse="False"/>
+    <Wall Id="61" Name="" Color="#FF522900" IsHouse="False"/>
+    <Wall Id="62" Name="Spider Wall" Color="#FF1F0F00" IsHouse="False"/>
     <Wall Id="63" Name="" Color="#FFFF00FF" IsHouse="False"/>
-    <Wall Id="64" Name="" Color="#FFFF00FF" IsHouse="False"/>
+    <Wall Id="64" Name="Jungle Wall" Color="#FF006600" IsHouse="False"/>
     <Wall Id="65" Name="" Color="#FFFF00FF" IsHouse="False"/>
     <Wall Id="66" Name="Grass Wall" Color="#FFFF00FF" IsHouse="True"/>
     <Wall Id="67" Name="Jungle Wall" Color="#FFFF00FF" IsHouse="True"/>
     <Wall Id="68" Name="Flower Wall" Color="#FFFF00FF" IsHouse="True"/>
     <Wall Id="69" Name="" Color="#FFFF00FF" IsHouse="False"/>
     <Wall Id="70" Name="" Color="#FFFF00FF" IsHouse="False"/>
-    <Wall Id="71" Name="" Color="#FFFF00FF" IsHouse="False"/>
+    <Wall Id="71" Name="Ice Wall" Color="#FF336680" IsHouse="False"/>
     <Wall Id="72" Name="Cactus Wall" Color="#FFFF00FF" IsHouse="True"/>
-    <Wall Id="73" Name="Cloud Wall" Color="#FFFF00FF" IsHouse="True"/>
+    <Wall Id="73" Name="Cloud Wall" Color="#FFF5FFFF" IsHouse="True"/>
     <Wall Id="74" Name="Mushroom Wall" Color="#FFFF00FF" IsHouse="True"/>
     <Wall Id="75" Name="Bone Block Wall" Color="#FFFF00FF" IsHouse="True"/>
     <Wall Id="76" Name="Slime Block Wall" Color="#FFFF00FF" IsHouse="True"/>
     <Wall Id="77" Name="Flesh Block Wall" Color="#FFFF00FF" IsHouse="True"/>
     <Wall Id="78" Name="" Color="#FFFF00FF" IsHouse="True"/>
-    <Wall Id="79" Name="" Color="#FFFF00FF" IsHouse="False"/>
+    <Wall Id="79" Name="" Color="#FF1A1A4C" IsHouse="False"/>
     <Wall Id="80" Name="" Color="#FFFF00FF" IsHouse="False"/>
     <Wall Id="81" Name="" Color="#FFFF00FF" IsHouse="False"/>
     <Wall Id="82" Name="Disc Wall" Color="#FFFF00FF" IsHouse="True"/>
     <Wall Id="83" Name="" Color="#FFFF00FF" IsHouse="False"/>
     <Wall Id="84" Name="Ice Brick Wall" Color="#FFFF00FF" IsHouse="True"/>
     <Wall Id="85" Name="Shadewood Wall" Color="#FFFF00FF" IsHouse="True"/>
-    <Wall Id="86" Name="" Color="#FFFF00FF" IsHouse="False"/>
-    <Wall Id="87" Name="Lihzahrd Brick Wall" Color="#FFFF00FF" IsHouse="False"/>
+    <Wall Id="86" Name="Hive Wall" Color="#FFCC7A29" IsHouse="False"/>
+    <Wall Id="87" Name="Lihzahrd Brick Wall" Color="#FF660000" IsHouse="False"/>
     <Wall Id="88" Name="Purple Stained Glass" Color="#FFFF00FF" IsHouse="True"/>
     <Wall Id="89" Name="Yellow Stained Glass" Color="#FFFF00FF" IsHouse="True"/>
     <Wall Id="90" Name="Blue Stained Glass" Color="#FFFF00FF" IsHouse="True"/>
     <Wall Id="91" Name="Green Stained Glass" Color="#FFFF00FF" IsHouse="True"/>
     <Wall Id="92" Name="Red Stained Glass" Color="#FFFF00FF" IsHouse="True"/>
     <Wall Id="93" Name="Multicolored Stained Glass" Color="#FFFF00FF" IsHouse="True"/>
-    <Wall Id="94" Name="" Color="#FFFF00FF" IsHouse="False"/>
-    <Wall Id="95" Name="" Color="#FFFF00FF" IsHouse="False"/>
-    <Wall Id="96" Name="" Color="#FFFF00FF" IsHouse="False"/>
-    <Wall Id="97" Name="" Color="#FFFF00FF" IsHouse="False"/>
-    <Wall Id="98" Name="" Color="#FFFF00FF" IsHouse="False"/>
-    <Wall Id="99" Name="" Color="#FFFF00FF" IsHouse="False"/>
+    <Wall Id="94" Name="Dungeon Wall Blue" Color="#FFFF00FF" IsHouse="False"/>
+    <Wall Id="95" Name="Dungeon Wall Purple" Color="#FFFF00FF" IsHouse="False"/>
+    <Wall Id="96" Name="Dungeon Wall Pink" Color="#FF3D002E" IsHouse="False"/>
+    <Wall Id="97" Name="Dungeon Wall Bright Pink" Color="#FFFF00FF" IsHouse="False"/>
+    <Wall Id="98" Name="Dungeon Wall Green" Color="#FFFF00FF" IsHouse="False"/>
+    <Wall Id="99" Name="???" Color="#FFFF00FF" IsHouse="False"/>
     <Wall Id="100" Name="Blue Slab Wall" Color="#FFFF00FF" IsHouse="False"/>
     <Wall Id="101" Name="Blue Tiled Wall" Color="#FFFF00FF" IsHouse="True"/>
     <Wall Id="102" Name="Pink Slab Wall" Color="#FFFF00FF" IsHouse="True"/>
