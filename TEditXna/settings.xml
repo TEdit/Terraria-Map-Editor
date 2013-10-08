@@ -863,7 +863,7 @@ Documentation moved to the end of this file.
         <Frame UV="0,0" Name="Default" Variety="Default" />
       </Frames>
     </Tile>
-    <Tile Id="179" Name=""  Solid="true" Blends="true" />
+    <Tile Id="179" Name=""  Color="#FF336600" Solid="true" Blends="true" />
     <Tile Id="180" Name=""  Color="#FF336600" Solid="true" Blends="true" />
     <Tile Id="181" Name=""  Color="#FFB82E00" Solid="true" Blends="true" />
     <Tile Id="182" Name=""  Color="#FF00004C" Solid="true" Blends="true" />
@@ -891,8 +891,8 @@ Documentation moved to the end of this file.
     <Tile Id="188" Name="Cactus"  Solid="true"  />
     <Tile Id="189" Name="Cloud" Color="#FFF5FFFF" Solid="true" Blends="true" />
     <Tile Id="190" Name="Glowing Mushroom"  Solid="true" Light="true"  />
-    <Tile Id="191" Name="Living Wood Wand"  Solid="true"  />
-    <Tile Id="192" Name="Leaf Wand"  Solid="true"  />
+    <Tile Id="191" Name="Living Wood" Color="#FFA37A00" Solid="true" Blends="true" />
+    <Tile Id="192" Name="Leaves" Color="#FF19A319" Solid="true" Blends="true" />
     <Tile Id="193" Name="Slime Block"  Solid="true"  />
     <Tile Id="194" Name="Bone Block"  Solid="true"  />
     <Tile Id="195" Name="Flesh Block"  Solid="true"  />
@@ -900,14 +900,14 @@ Documentation moved to the end of this file.
     <Tile Id="197" Name="Frozen Slime Block"  Solid="true"  />
     <Tile Id="198" Name="Asphalt Block"  Solid="true"  />
     <Tile Id="199" Name=""  Solid="true"  />
-    <Tile Id="200" Name="Red Ice Block"  Solid="true"  />
+    <Tile Id="200" Name="Red Ice Block" Color="#FFFF4D4D" Solid="true" Blends="true" />
     <Tile Id="201" Name=""  Framed="true" >
       <Frames>
         <Frame UV="0,0" Name="Default" Variety="Default" />
       </Frames>
     </Tile>
     <Tile Id="202" Name="Sunplate Block"  Solid="true" Blends="true" />
-    <Tile Id="203" Name="Crimstone Block"  Solid="true"  />
+    <Tile Id="203" Name="Crimstone Block" Color="#FFE60000" Solid="true" Blends="true" />
     <Tile Id="204" Name="Crimtane Ore"  Solid="true" Light="true"  />
     <Tile Id="205" Name=""   />
     <Tile Id="206" Name="Ice Brick"  Solid="true"  />
@@ -994,7 +994,7 @@ Documentation moved to the end of this file.
         <Frame UV="0,0" Name="Default" Variety="Default" />
       </Frames>
     </Tile>
-    <Tile Id="234" Name="Crimsand Block"  Solid="true"  />
+    <Tile Id="234" Name="Crimsand Block" Color="#FFFF1919" Solid="true" Blends="true" />
     <Tile Id="235" Name="Teleporter"  Framed="true" Solid="true" >
       <Frames>
         <Frame UV="0,0" Name="Default" Variety="Default" />
@@ -1119,7 +1119,7 @@ Documentation moved to the end of this file.
     <Wall Id="51" Name="Emerald Gemstone Wall" Color="#FFFF00FF" IsHouse="False"/>
     <Wall Id="52" Name="Ruby Gemstone Wall" Color="#FFFF00FF" IsHouse="False"/>
     <Wall Id="53" Name="Diamond Gemstone Wall" Color="#FFFF00FF" IsHouse="False"/>
-    <Wall Id="54" Name="" Color="#FFFF00FF" IsHouse="False"/>
+    <Wall Id="54" Name="Green ???" Color="#FF295200" IsHouse="False"/>
     <Wall Id="55" Name="Green ???" Color="#FF295200" IsHouse="False"/>
     <Wall Id="56" Name="Red ???" Color="#FF932500" IsHouse="False"/>
     <Wall Id="57" Name="Blue ???" Color="#FF00003D" IsHouse="False"/>
@@ -1128,7 +1128,7 @@ Documentation moved to the end of this file.
     <Wall Id="60" Name="" Color="#FFFF00FF" IsHouse="False"/>
     <Wall Id="61" Name="" Color="#FF522900" IsHouse="False"/>
     <Wall Id="62" Name="Spider Wall" Color="#FF1F0F00" IsHouse="False"/>
-    <Wall Id="63" Name="" Color="#FFFF00FF" IsHouse="False"/>
+    <Wall Id="63" Name="Leafy Wall" Color="#FF005200" IsHouse="False"/>
     <Wall Id="64" Name="Jungle Wall" Color="#FF006600" IsHouse="False"/>
     <Wall Id="65" Name="" Color="#FFFF00FF" IsHouse="False"/>
     <Wall Id="66" Name="Grass Wall" Color="#FFFF00FF" IsHouse="True"/>
@@ -1143,12 +1143,12 @@ Documentation moved to the end of this file.
     <Wall Id="75" Name="Bone Block Wall" Color="#FFFF00FF" IsHouse="True"/>
     <Wall Id="76" Name="Slime Block Wall" Color="#FFFF00FF" IsHouse="True"/>
     <Wall Id="77" Name="Flesh Block Wall" Color="#FFFF00FF" IsHouse="True"/>
-    <Wall Id="78" Name="" Color="#FFFF00FF" IsHouse="True"/>
+    <Wall Id="78" Name="Livingwood Wall" Color="#FF522900" IsHouse="True"/>
     <Wall Id="79" Name="" Color="#FF1A1A4C" IsHouse="False"/>
     <Wall Id="80" Name="" Color="#FFFF00FF" IsHouse="False"/>
     <Wall Id="81" Name="" Color="#FFFF00FF" IsHouse="False"/>
     <Wall Id="82" Name="Disc Wall" Color="#FFFF00FF" IsHouse="True"/>
-    <Wall Id="83" Name="" Color="#FFFF00FF" IsHouse="False"/>
+    <Wall Id="83" Name="Crimstone Wall" Color="#FF800000" IsHouse="False"/>
     <Wall Id="84" Name="Ice Brick Wall" Color="#FFFF00FF" IsHouse="True"/>
     <Wall Id="85" Name="Shadewood Wall" Color="#FFFF00FF" IsHouse="True"/>
     <Wall Id="86" Name="Hive Wall" Color="#FFCC7A29" IsHouse="False"/>
