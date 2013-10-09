@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
-	<Product Id="*" Name="TEdit 3" Language="1033" Version="1.0.0.0" Manufacturer="BinaryConstruct" UpgradeCode="1d9a5baf-12ad-4a55-9e83-bbfd95c7c820">
-		<Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" />
+	<Product Id="*" Name="TEdit 3" Language="1033" Version="3.4.13281.0" Manufacturer="BinaryConstruct" UpgradeCode="1d9a5baf-12ad-4a55-9e83-bbfd95c7c820">
+    <Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" />
     <Media Id="1" Cabinet="disk1.cab" EmbedCab="yes" />
     <Directory Id="TARGETDIR" Name="SourceDir">
       <Directory Id="ProgramFilesFolder">
@@ -36,7 +36,7 @@
     <Property Id="WIXUI_INSTALLDIR" Value="INSTALLFOLDER" />  
     <Icon Id="tedit.ico" SourceFile="..\TEditXna\Images\tedit.ico" />
     <Property Id="ARPPRODUCTICON">tedit.ico</Property>  
-    <MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
+    <!--<MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />-->
     <Feature Id="ProductFeature" Title="TEdit" Level="1">
       <ComponentRef Id='MainExecutable' />
       <ComponentRef Id='ProgramMenuDir' />
@@ -48,4 +48,20 @@
       <Publish Dialog="InstallDirDlg" Control="Back" Event="NewDialog" Value="WelcomeDlg" Order="2">1</Publish>
     </UI>
   </Product>
+  <Fragment>
+    <Property Id="PREVIOUSVERSIONSINSTALLED" Secure="yes" />
+  </Fragment>
+  <Fragment>
+    <Upgrade Id="1d9a5baf-12ad-4a55-9e83-bbfd95c7c820">
+      <UpgradeVersion
+         Minimum="1.0.0.0" Maximum="3.4.13281.0"
+         Property="PREVIOUSVERSIONSINSTALLED"
+         IncludeMinimum="yes" IncludeMaximum="no" />
+    </Upgrade>
+  </Fragment>
+  <Fragment>
+    <InstallExecuteSequence>
+      <RemoveExistingProducts After="InstallInitialize"></RemoveExistingProducts>
+    </InstallExecuteSequence>
+  </Fragment>
 </Wix>
