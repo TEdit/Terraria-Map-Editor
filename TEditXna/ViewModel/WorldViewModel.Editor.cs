@@ -79,6 +79,12 @@ namespace TEditXna.ViewModel
                 case PaintMode.Wire:
                     SetPixelAutomatic(curTile, wire: !isErase);
                     break;
+                case PaintMode.Wire2:
+                    SetPixelAutomatic(curTile, wire2: !isErase);
+                    break;
+                case PaintMode.Wire3:
+                    SetPixelAutomatic(curTile, wire3: !isErase);
+                    break;
                 case PaintMode.Liquid:
                     SetPixelAutomatic(curTile, liquid: isErase ? (byte)0 : (byte)255, isLava: TilePicker.IsLava);
                     break;
@@ -177,7 +183,9 @@ namespace TEditXna.ViewModel
                                        bool? isLava = null,
                                        bool? wire = null,
                                        short? u = null,
-                                       short? v = null)
+                                       short? v = null,
+                                       bool? wire2 = null,
+                                       bool? wire3 = null)
         {
             // Set Tile Data
             if (u != null)
@@ -210,6 +218,12 @@ namespace TEditXna.ViewModel
 
             if (wire != null)
                 curTile.HasWire = (bool)wire;
+
+            if (wire2 != null)
+                curTile.HasWire2 = (bool)wire2;
+
+            if (wire3 != null)
+                curTile.HasWire3 = (bool)wire3;
 
             if (curTile.IsActive)
                 if (World.TileProperties[curTile.Type].IsSolid)

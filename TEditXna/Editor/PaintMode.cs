@@ -10,9 +10,13 @@ namespace TEditXna.Editor
         Wall,
         [Description("Tile and Wall")]
         TileAndWall,
-        [Description("Wire")]
+        [Description("Red Wire")]
         Wire,
+        [Description("Blue Wire")]
+        Wire2,
+        [Description("Green Wire")]
+        Wire3,
         [Description("Liquid")]
-        Liquid
+        Liquid,
     }
 }
