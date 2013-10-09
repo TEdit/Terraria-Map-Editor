@@ -247,7 +247,24 @@ Documentation moved to the end of this file.
     <Tile Id="16" Name="Iron Anvil" Color="#FF00FFF2" Placement="floor" SolidTop="true" Framed="true" Size="2,1" TextureGrid="16,18" />
     <Tile Id="17" Name="Furnace" Color="#FF00FFF2" Placement="floor" Light="true" Framed="true" Size="3,2" />
     <Tile Id="18" Name="Work Bench" Color="#FF00FFF2" Placement="floor" SolidTop="true" Framed="true" Size="2,1" TextureGrid="16,18" />
-    <Tile Id="19" Name="Wood Platform" Color="#FF6B3A18" Placement="wall" Light="true" Solid="true" SolidTop="true" Special="Platform" Framed="true"  />
+    <Tile Id="19" Name="Platform" Color="#FF6B3A18" Placement="wall" Light="true" Solid="true" SolidTop="true" Special="Platform" Framed="true" TextureGrid="16,16">
+      <Frames>
+        <Frame UV="0,0" Name="Platform" Variety="Wood" />
+        <Frame UV="0,18" Name="Platform" Variety="Ebonwood" />
+        <Frame UV="0,36" Name="Platform" Variety="Rich Mahogany" />
+        <Frame UV="0,54" Name="Platform" Variety="Pearlwood" />
+        <Frame UV="0,72" Name="Platform" Variety="Bone" />
+        <Frame UV="0,90" Name="Platform" Variety="Shadewood" />
+        <Frame UV="0,108" Name="Platform" Variety="Blue Brick" />
+        <Frame UV="0,126" Name="Platform" Variety="Pink Brick" />
+        <Frame UV="0,144" Name="Platform" Variety="Green Brick" />
+        <Frame UV="0,162" Name="Platform" Variety="Metal Shelf" />
+        <Frame UV="0,180" Name="Platform" Variety="Brass Shelf" />
+        <Frame UV="0,198" Name="Platform" Variety="Wood Shelf" />
+        <Frame UV="0,216" Name="Platform" Variety="Dungeon Shelf" />
+        <Frame UV="0,234" Name="Platform" Variety="Obsidian" />
+      </Frames>
+    </Tile>
     <Tile Id="20" Name="Sapling" Color="#FF0D6524" Framed="true" Size="1,2">
       <Frames>
         <Frame UV="0,0" Anchor="Left" />
