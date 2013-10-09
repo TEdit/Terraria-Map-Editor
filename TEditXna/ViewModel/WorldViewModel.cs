@@ -569,6 +569,8 @@ namespace TEditXna.ViewModel
             _loadTimer.Start();
             _saveTimer.Stop();
             CurrentFile = filename;
+            CurrentWorld = null;
+            GC.WaitForFullGCComplete();
 
             Task.Factory.StartNew(() => World.LoadWorld(filename))
                 .ContinueWith(t => CurrentWorld = t.Result, TaskFactoryHelper.UiTaskScheduler)
