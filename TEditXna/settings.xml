@@ -460,7 +460,7 @@ Documentation moved to the end of this file.
     <Tile Id="82" Name="Herb Sprout"                  Color="#FFFF7800"   Framed="true"   >
       <Frames>
         <Frame UV="0,0"     Name="Daybloom"       growsOn="2,78"        />
-        <Frame UV="18,0"    Name="Moonglow"       growsOn="60,78        />
+        <Frame UV="18,0"    Name="Moonglow"       growsOn="60,78"        />
         <Frame UV="36,0"    Name="Blinkroot"      growsOn="0,59,78"     />
         <Frame UV="54,0"    Name="Deathweed"      growsOn="23,25,78"    />
         <Frame UV="72,0"    Name="Waterleaf"      growsOn="53,78"       />
