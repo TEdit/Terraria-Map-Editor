@@ -135,7 +135,12 @@ namespace TEditXna.ViewModel
         public bool IsAutoSaveEnabled
         {
             get { return _isAutoSaveEnabled; }
-            set { Set("IsAutoSaveEnabled", ref _isAutoSaveEnabled, value); }
+            set
+            {
+                Set("IsAutoSaveEnabled", ref _isAutoSaveEnabled, value);
+                Properties.Settings.Default.Autosave = _isAutoSaveEnabled;
+                Properties.Settings.Default.Save();
+            }
         }
 
         public bool ShowGrid
@@ -181,11 +186,15 @@ namespace TEditXna.ViewModel
             {
                 Directory.CreateDirectory(TempPath);
             }
+
+           
         }
 
 
         public WorldViewModel()
         {
+            IsAutoSaveEnabled = Properties.Settings.Default.Autosave;
+
             _undoManager = new UndoManager(this);
             _clipboard = new ClipboardManager(this);
             World.ProgressChanged += OnProgressChanged;
