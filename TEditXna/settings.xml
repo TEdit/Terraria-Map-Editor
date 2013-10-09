@@ -127,81 +127,81 @@ Documentation moved to the end of this file.
     </Tile>
     <Tile Id="5" Name="Tree" Color="#FF634631" Framed="true" TextureGrid="20,20">
       <Frames>
-        <Frame UV="22,198" Name="Tree Top Leafy" Anchor="Bottom" Variety="A" />
-        <Frame UV="22,220" Name="Tree Top Leafy" Anchor="Bottom" Variety="B" />
-        <Frame UV="22,242" Name="Tree Top Leafy" Anchor="Bottom" Variety="C" />
-        <Frame UV="0,0" Name="Tree Trunk" Anchor="Bottom" Variety="Plain A" />
-        <Frame UV="22,0" Name="Tree Trunk" Anchor="Bottom" Variety="Right Indent A" />
-        <Frame UV="44,0" Name="Tree Trunk" Anchor="Bottom" Variety="Right Slight Bulge A" />
-        <Frame UV="66,0" Name="Tree Branch" Anchor="Left" Variety="Plain A" />
-        <Frame UV="88,0" Name="Tree Trunk" Anchor="Bottom" Variety="Left Slight Bulge A" />
-        <Frame UV="110,0" Name="Tree Top" Anchor="Bottom" Variety="Medium A" />
-        <Frame UV="132,0" Name="Tree Top" Anchor="Bottom" Variety="Small A" />
-        <Frame UV="154,0" Name="Tree Top" Anchor="Right" Variety="Large A" />
-        <Frame UV="0,22" Name="Tree Trunk" Anchor="Bottom" Variety="Plain B" />
-        <Frame UV="22,22" Name="Tree Trunk" Anchor="Bottom" Variety="Right Indent B" />
-        <Frame UV="44,22" Name="Tree Trunk" Anchor="Bottom" Variety="Right Slight Bulge B" />
-        <Frame UV="66,22" Name="Tree Branch" Anchor="Left" Variety="Plain B" />
-        <Frame UV="88,22" Name="Tree Trunk" Anchor="Bottom" Variety="Left Slight Bulge B" />
-        <Frame UV="110,22" Name="Tree Top" Anchor="Bottom" Variety="Medium B" />
-        <Frame UV="132,22" Name="Tree Top" Anchor="Bottom" Variety="Small B" />
-        <Frame UV="154,22" Name="Tree Top" Anchor="Right" Variety="Large B" />
-        <Frame UV="0,44" Name="Tree Trunk" Anchor="Bottom" Variety="Plain C" />
-        <Frame UV="22,44" Name="Tree Trunk" Anchor="Bottom" Variety="Right Indent C" />
-        <Frame UV="44,44" Name="Tree Trunk" Anchor="Bottom" Variety="Right Slight Bulge C" />
-        <Frame UV="66,44" Name="Tree Branch" Anchor="Left" Variety="Plain C" />
-        <Frame UV="88,44" Name="Tree Trunk" Anchor="Bottom" Variety="Left Slight Bulge C" />
-        <Frame UV="110,44" Name="Tree Top" Anchor="Bottom" Variety="Medium C" />
-        <Frame UV="132,44" Name="Tree Top" Anchor="Bottom" Variety="Small C" />
-        <Frame UV="154,44" Name="Tree Top" Anchor="Right" Variety="Large C" />
-        <Frame UV="0,66" Name="Tree Trunk" Anchor="Bottom" Variety="Left Indent A" />
-        <Frame UV="22,66" Name="Tree Trunk" Anchor="Bottom" Variety="Right Bulge A" />
-        <Frame UV="44,66" Name="Tree Trunk" Anchor="Bottom" Variety="Left Bulge A" />
-        <Frame UV="66,66" Name="Tree Trunk" Anchor="Bottom" Variety="Right Slight Bulge D" />
-        <Frame UV="88,66" Name="Tree Branch" Anchor="Right" Variety="Plain A" />
-        <Frame UV="110,66" Name="Tree Trunk" Anchor="Bottom" Variety="Double Slight Bulge A" />
-        <Frame UV="132,66" Name="Tree Top" Anchor="Bottom" Variety="Small Right Slight Bulge A" />
-        <Frame UV="154,66" Name="Tree Top" Anchor="Left" Variety="Large A" />
-        <Frame UV="0,88" Name="Tree Trunk" Anchor="Bottom" Variety="Left Indent B" />
-        <Frame UV="22,88" Name="Tree Trunk" Anchor="Bottom" Variety="Right Bulge B" />
-        <Frame UV="44,88" Name="Tree Trunk" Anchor="Bottom" Variety="Left Bulge B" />
-        <Frame UV="66,88" Name="Tree Trunk" Anchor="Bottom" Variety="Right Slight Bulge E" />
-        <Frame UV="88,88" Name="Tree Branch" Anchor="Right" Variety="Plain B" />
-        <Frame UV="110,88" Name="Tree Trunk" Anchor="Bottom" Variety="Double Slight Bulge B" />
-        <Frame UV="132,88" Name="Tree Top" Anchor="Bottom" Variety="Small Right Slight Bulge B" />
-        <Frame UV="154,88" Name="Tree Top" Anchor="Left" Variety="Large B" />
-        <Frame UV="0,110" Name="Tree Trunk" Anchor="Bottom" Variety="Left Indent C" />
-        <Frame UV="22,110" Name="Tree Trunk" Anchor="Bottom" Variety="Right Bulge C" />
-        <Frame UV="44,110" Name="Tree Trunk" Anchor="Bottom" Variety="Left Bulge C" />
-        <Frame UV="66,110" Name="Tree Trunk" Anchor="Bottom" Variety="Right Slight Bulge F" />
-        <Frame UV="88,110" Name="Tree Branch" Anchor="Right" Variety="Plain C" />
-        <Frame UV="110,110" Name="Tree Trunk" Anchor="Bottom" Variety="Double Slight Bulge C" />
-        <Frame UV="132,110" Name="Tree Top" Anchor="Bottom" Variety="Small Right Slight Bulge C" />
-        <Frame UV="154,110" Name="Tree Top" Anchor="Left" Variety="Large C" />
-        <Frame UV="0,132" Name="Tree Trunk" Anchor="Left" Variety="Large A" />
-        <Frame UV="22,132" Name="Tree Base" Anchor="Right" Variety="Plain A" />
-        <Frame UV="44,132" Name="Tree Base" Anchor="Left" Variety="Plain A" />
-        <Frame UV="66,132" Name="Tree Trunk" Anchor="Right" Variety="Large A" />
-        <Frame UV="88,132" Name="Tree Trunk" Anchor="Center" Variety="Large A" />
-        <Frame UV="132,132" Name="Tree Top" Anchor="Bottom" Variety="Small Double Slight Bulge A" />
-        <Frame UV="154,132" Name="Tree Top" Anchor="Left" Variety="Huge" />
-        <Frame UV="0,154" Name="Tree Trunk" Anchor="Left" Variety="Large B" />
-        <Frame UV="22,154" Name="Tree Base" Anchor="Right" Variety="Plain B" />
-        <Frame UV="44,154" Name="Tree Base" Anchor="Left" Variety="Plain B" />
-        <Frame UV="66,154" Name="Tree Trunk" Anchor="Right" Variety="Large B" />
-        <Frame UV="88,154" Name="Tree Trunk" Anchor="Center" Variety="Large B" />
-        <Frame UV="132,154" Name="Tree Top" Anchor="Bottom" Variety="Small Double Slight Bulge B" />
-        <Frame UV="154,154" Name="Tree Top" Anchor="Center" Variety="Huge" />
-        <Frame UV="0,176" Name="Tree Trunk" Anchor="Left" Variety="Large C" />
-        <Frame UV="22,176" Name="Tree Base" Anchor="Right" Variety="Plain C" />
-        <Frame UV="44,176" Name="Tree Base" Anchor="Left" Variety="Plain C" />
-        <Frame UV="66,176" Name="Tree Trunk" Anchor="Right" Variety="Large C" />
-        <Frame UV="88,176" Name="Tree Trunk" Anchor="Center" Variety="Large C" />
-        <Frame UV="132,176" Name="Tree Top" Anchor="Bottom" Variety="Small Double Slight Bulge C" />
-        <Frame UV="154,176" Name="Tree Top" Anchor="Right" Variety="Huge" />
-        <Frame UV="0,198" Name="Tree Top" Anchor="Right" Variety="Jagged" />
-        <Frame UV="0,220" Name="Tree Trunk" Anchor="Bottom" Variety="Jagged" />
-        <Frame UV="0,242" Name="Tree Trunk" Anchor="Left" Variety="Jagged" />
+        <Frame UV="22,198"    Name="Tree Top Leafy"   Anchor="Bottom"   Variety="A"                             />
+        <Frame UV="22,220"    Name="Tree Top Leafy"   Anchor="Bottom"   Variety="B"                             />
+        <Frame UV="22,242"    Name="Tree Top Leafy"   Anchor="Bottom"   Variety="C"                             />
+        <Frame UV="0,0"       Name="Tree Trunk"       Anchor="Bottom"   Variety="Plain A"                       />
+        <Frame UV="22,0"      Name="Tree Trunk"       Anchor="Bottom"   Variety="Right Indent A"                />
+        <Frame UV="44,0"      Name="Tree Trunk"       Anchor="Bottom"   Variety="Right Slight Bulge A"          />
+        <Frame UV="66,0"      Name="Tree Branch"      Anchor="Left"     Variety="Plain A"                       />
+        <Frame UV="88,0"      Name="Tree Trunk"       Anchor="Bottom"   Variety="Left Slight Bulge A"           />
+        <Frame UV="110,0"     Name="Tree Top"         Anchor="Bottom"   Variety="Medium A"                      />
+        <Frame UV="132,0"     Name="Tree Top"         Anchor="Bottom"   Variety="Small A"                       />
+        <Frame UV="154,0"     Name="Tree Top"         Anchor="Right"    Variety="Large A"                       />
+        <Frame UV="0,22"      Name="Tree Trunk"       Anchor="Bottom"   Variety="Plain B"                       />
+        <Frame UV="22,22"     Name="Tree Trunk"       Anchor="Bottom"   Variety="Right Indent B"                />
+        <Frame UV="44,22"     Name="Tree Trunk"       Anchor="Bottom"   Variety="Right Slight Bulge B"          />
+        <Frame UV="66,22"     Name="Tree Branch"      Anchor="Left"     Variety="Plain B"                       />
+        <Frame UV="88,22"     Name="Tree Trunk"       Anchor="Bottom"   Variety="Left Slight Bulge B"           />
+        <Frame UV="110,22"    Name="Tree Top"         Anchor="Bottom"   Variety="Medium B"                      />
+        <Frame UV="132,22"    Name="Tree Top"         Anchor="Bottom"   Variety="Small B"                       />
+        <Frame UV="154,22"    Name="Tree Top"         Anchor="Right"    Variety="Large B"                       />
+        <Frame UV="0,44"      Name="Tree Trunk"       Anchor="Bottom"   Variety="Plain C"                       />
+        <Frame UV="22,44"     Name="Tree Trunk"       Anchor="Bottom"   Variety="Right Indent C"                />
+        <Frame UV="44,44"     Name="Tree Trunk"       Anchor="Bottom"   Variety="Right Slight Bulge C"          />
+        <Frame UV="66,44"     Name="Tree Branch"      Anchor="Left"     Variety="Plain C"                       />
+        <Frame UV="88,44"     Name="Tree Trunk"       Anchor="Bottom"   Variety="Left Slight Bulge C"           />
+        <Frame UV="110,44"    Name="Tree Top"         Anchor="Bottom"   Variety="Medium C"                      />
+        <Frame UV="132,44"    Name="Tree Top"         Anchor="Bottom"   Variety="Small C"                       />
+        <Frame UV="154,44"    Name="Tree Top"         Anchor="Right"    Variety="Large C"                       />
+        <Frame UV="0,66"      Name="Tree Trunk"       Anchor="Bottom"   Variety="Left Indent A"                 />
+        <Frame UV="22,66"     Name="Tree Trunk"       Anchor="Bottom"   Variety="Right Bulge A"                 />
+        <Frame UV="44,66"     Name="Tree Trunk"       Anchor="Bottom"   Variety="Left Bulge A"                  />
+        <Frame UV="66,66"     Name="Tree Trunk"       Anchor="Bottom"   Variety="Right Slight Bulge D"          />
+        <Frame UV="88,66"     Name="Tree Branch"      Anchor="Right"    Variety="Plain A"                       />
+        <Frame UV="110,66"    Name="Tree Trunk"       Anchor="Bottom"   Variety="Double Slight Bulge A"         />
+        <Frame UV="132,66"    Name="Tree Top"         Anchor="Bottom"   Variety="Small Right Slight Bulge A"    />
+        <Frame UV="154,66"    Name="Tree Top"         Anchor="Left"     Variety="Large A"                       />
+        <Frame UV="0,88"      Name="Tree Trunk"       Anchor="Bottom"   Variety="Left Indent B"                 />
+        <Frame UV="22,88"     Name="Tree Trunk"       Anchor="Bottom"   Variety="Right Bulge B"                 />
+        <Frame UV="44,88"     Name="Tree Trunk"       Anchor="Bottom"   Variety="Left Bulge B"                  />
+        <Frame UV="66,88"     Name="Tree Trunk"       Anchor="Bottom"   Variety="Right Slight Bulge E"          />
+        <Frame UV="88,88"     Name="Tree Branch"      Anchor="Right"    Variety="Plain B"                       />
+        <Frame UV="110,88"    Name="Tree Trunk"       Anchor="Bottom"   Variety="Double Slight Bulge B"         />
+        <Frame UV="132,88"    Name="Tree Top"         Anchor="Bottom"   Variety="Small Right Slight Bulge B"    />
+        <Frame UV="154,88"    Name="Tree Top"         Anchor="Left"     Variety="Large B"                       />
+        <Frame UV="0,110"     Name="Tree Trunk"       Anchor="Bottom"   Variety="Left Indent C"                 />
+        <Frame UV="22,110"    Name="Tree Trunk"       Anchor="Bottom"   Variety="Right Bulge C"                 />
+        <Frame UV="44,110"    Name="Tree Trunk"       Anchor="Bottom"   Variety="Left Bulge C"                  />
+        <Frame UV="66,110"    Name="Tree Trunk"       Anchor="Bottom"   Variety="Right Slight Bulge F"          />
+        <Frame UV="88,110"    Name="Tree Branch"      Anchor="Right"    Variety="Plain C"                       />
+        <Frame UV="110,110"   Name="Tree Trunk"       Anchor="Bottom"   Variety="Double Slight Bulge C"         />
+        <Frame UV="132,110"   Name="Tree Top"         Anchor="Bottom"   Variety="Small Right Slight Bulge C"    />
+        <Frame UV="154,110"   Name="Tree Top"         Anchor="Left"     Variety="Large C"                       />
+        <Frame UV="0,132"     Name="Tree Trunk"       Anchor="Left"     Variety="Large A"                       />
+        <Frame UV="22,132"    Name="Tree Base"        Anchor="Right"    Variety="Plain A"                       />
+        <Frame UV="44,132"    Name="Tree Base"        Anchor="Left"     Variety="Plain A"                       />
+        <Frame UV="66,132"    Name="Tree Trunk"       Anchor="Right"    Variety="Large A"                       />
+        <Frame UV="88,132"    Name="Tree Trunk"       Anchor="Center"   Variety="Large A"                       />
+        <Frame UV="132,132"   Name="Tree Top"         Anchor="Bottom"   Variety="Small Double Slight Bulge A"   />
+        <Frame UV="154,132"   Name="Tree Top"         Anchor="Left"     Variety="Huge"                          />
+        <Frame UV="0,154"     Name="Tree Trunk"       Anchor="Left"     Variety="Large B"                       />
+        <Frame UV="22,154"    Name="Tree Base"        Anchor="Right"    Variety="Plain B"                       />
+        <Frame UV="44,154"    Name="Tree Base"        Anchor="Left"     Variety="Plain B"                       />
+        <Frame UV="66,154"    Name="Tree Trunk"       Anchor="Right"    Variety="Large B"                       />
+        <Frame UV="88,154"    Name="Tree Trunk"       Anchor="Center"   Variety="Large B"                       />
+        <Frame UV="132,154"   Name="Tree Top"         Anchor="Bottom"   Variety="Small Double Slight Bulge B"   />
+        <Frame UV="154,154"   Name="Tree Top"         Anchor="Center"   Variety="Huge"                          />
+        <Frame UV="0,176"     Name="Tree Trunk"       Anchor="Left"     Variety="Large C"                       />
+        <Frame UV="22,176"    Name="Tree Base"        Anchor="Right"    Variety="Plain C"                       />
+        <Frame UV="44,176"    Name="Tree Base"        Anchor="Left"     Variety="Plain C"                       />
+        <Frame UV="66,176"    Name="Tree Trunk"       Anchor="Right"    Variety="Large C"                       />
+        <Frame UV="88,176"    Name="Tree Trunk"       Anchor="Center"   Variety="Large C"                       />
+        <Frame UV="132,176"   Name="Tree Top"         Anchor="Bottom"   Variety="Small Double Slight Bulge C"   />
+        <Frame UV="154,176"   Name="Tree Top"         Anchor="Right"    Variety="Huge"                          />
+        <Frame UV="0,198"     Name="Tree Top"         Anchor="Right"    Variety="Jagged"                        />
+        <Frame UV="0,220"     Name="Tree Trunk"       Anchor="Bottom"   Variety="Jagged"                        />
+        <Frame UV="0,242"     Name="Tree Trunk"       Anchor="Left"     Variety="Jagged"                        />
       </Frames>
     </Tile>
     <Tile Id="6" Name="Iron Ore" Color="#FF6B594E" Solid="true" Blends="true" MergeWith="0" />
@@ -384,110 +384,110 @@ Documentation moved to the end of this file.
         <Frame UV="162,0" Name="Nature's Gift" Anchor="Right" Variety="Immature" />
       </Frames>
     </Tile>
-    <Tile Id="62" Name="Jungle Vines" Color="#FF8ACE1C" Blends="true" />
-    <Tile Id="63" Name="Gem Sapphire" Color="#FF2A82FA" Solid="true" Blends="true" MergeWith="0" Stone="true" />
-    <Tile Id="64" Name="Gem Ruby" Color="#FF2A82FA" Solid="true" Blends="true" MergeWith="0" Stone="true" />
-    <Tile Id="65" Name="Gem Emerald" Color="#FF2A82FA" Solid="true" Blends="true" MergeWith="0" Stone="true" />
-    <Tile Id="66" Name="Gem Topaz" Color="#FF2A82FA" Solid="true" Blends="true" MergeWith="0" Stone="true" />
-    <Tile Id="67" Name="Gem Amethyst" Color="#FF2A82FA" Solid="true" Blends="true" MergeWith="0" Stone="true" />
-    <Tile Id="68" Name="Gem Diamond" Color="#FF2A82FA" Solid="true" Blends="true" MergeWith="0" Stone="true" />
-    <Tile Id="69" Name="Jungle Thorns" Color="#FF5E3037" Blends="true" />
-    <Tile Id="70" Name="Mushroom Grass" Color="#FF5D7FFF" Light="true" Solid="true" Blends="true" MergeWith="59" Special="Grass" />
-    <Tile Id="71" Name="Mushroom Plant" Color="#FFB1AE83" Light="true" Framed="true" TextureGrid="16,20">
+    <Tile Id="62" Name="Jungle Vines"                 Color="#FF8ACE1C" Blends="true" />
+    <Tile Id="63" Name="Gem Sapphire"                 Color="#FF2A82FA" Solid="true" Blends="true" MergeWith="0" Stone="true" />
+    <Tile Id="64" Name="Gem Ruby"                     Color="#FF2A82FA" Solid="true" Blends="true" MergeWith="0" Stone="true" />
+    <Tile Id="65" Name="Gem Emerald"                  Color="#FF2A82FA" Solid="true" Blends="true" MergeWith="0" Stone="true" />
+    <Tile Id="66" Name="Gem Topaz"                    Color="#FF2A82FA" Solid="true" Blends="true" MergeWith="0" Stone="true" />
+    <Tile Id="67" Name="Gem Amethyst"                 Color="#FF2A82FA" Solid="true" Blends="true" MergeWith="0" Stone="true" />
+    <Tile Id="68" Name="Gem Diamond"                  Color="#FF2A82FA" Solid="true" Blends="true" MergeWith="0" Stone="true" />
+    <Tile Id="69" Name="Jungle Thorns"                Color="#FF5E3037" Blends="true" />
+    <Tile Id="70" Name="Mushroom Grass"               Color="#FF5D7FFF" Light="true" Solid="true" Blends="true" MergeWith="59" Special="Grass" />
+    <Tile Id="71" Name="Mushroom Plant"               Color="#FFB1AE83" Light="true" Framed="true" TextureGrid="16,20">
       <Frames>
-        <Frame UV="0,0" Variety="Double Small" />
-        <Frame UV="18,0" Variety="Small" />
-        <Frame UV="36,0" Variety="Malformed" />
-        <Frame UV="54,0" Variety="Thin" />
-        <Frame UV="72,0" Variety="Standard" />
+        <Frame UV="0,0"     Variety="Double Small"    />
+        <Frame UV="18,0"    Variety="Small"           />
+        <Frame UV="36,0"    Variety="Malformed"       />
+        <Frame UV="54,0"    Variety="Thin"            />
+        <Frame UV="72,0"    Variety="Standard"        />
       </Frames>
     </Tile>
     <Tile Id="72" Name="Mushroom Tree" Color="#FF968F6E" Light="true" Framed="true">
       <Frames>
-        <Frame UV="0,0" Variety="Trunk A" />
-        <Frame UV="18,0" Variety="Tree Top" Anchor="Bottom" />
-        <Frame UV="0,18" Variety="Trunk B" />
-        <Frame UV="18,18" Variety="Tree Top" Anchor="Right" />
-        <Frame UV="0,36" Variety="Trunk C" />
-        <Frame UV="18,36" Variety="Tree Top" Anchor="Left" />
+        <Frame UV="0,0"     Variety="Trunk A"     />
+        <Frame UV="18,0"    Variety="Tree Top"    Anchor="Bottom"   />
+        <Frame UV="0,18"    Variety="Trunk B"     />
+        <Frame UV="18,18"   Variety="Tree Top"    Anchor="Right"    />
+        <Frame UV="0,36"    Variety="Trunk C"     />
+        <Frame UV="18,36"   Variety="Tree Top"    Anchor="Left"     />
       </Frames>
     </Tile>
-    <Tile Id="73" Name="Tall Grass" Color="#FF0D6524" Framed="true" Size="1,1" TextureGrid="16,32">
+    <Tile Id="73" Name="Tall Grass"                   Color="#FF0D6524"   Framed="true"   Size="1,1"    TextureGrid="16,32"   >
       <Frames>
-        <Frame UV="0,0" Name="Grass" Variety="G" Anchor="Bottom" />
-        <Frame UV="18,0" Name="Grass" Variety="C" Anchor="Bottom" />
-        <Frame UV="36,0" Name="Grass" Variety="?" Anchor="Bottom" />
-        <Frame UV="54,0" Name="Grass" Variety="u" Anchor="Bottom" />
-        <Frame UV="72,0" Name="Grass" Variety="w" Anchor="Bottom" />
-        <Frame UV="90,0" Name="Grass" Variety="W" Anchor="Bottom" />
-        <Frame UV="108,0" Name="Rose" Variety="A" Anchor="Bottom" />
-        <Frame UV="126,0" Name="Rose" Variety="B" Anchor="Bottom" />
+        <Frame UV="0,0"     Name="Grass"    Variety="G"   Anchor="Bottom"   />
+        <Frame UV="18,0"    Name="Grass"    Variety="C"   Anchor="Bottom"   />
+        <Frame UV="36,0"    Name="Grass"    Variety="?"   Anchor="Bottom"   />
+        <Frame UV="54,0"    Name="Grass"    Variety="u"   Anchor="Bottom"   />
+        <Frame UV="72,0"    Name="Grass"    Variety="w"   Anchor="Bottom"   />
+        <Frame UV="90,0"    Name="Grass"    Variety="W"   Anchor="Bottom"   />
+        <Frame UV="108,0"   Name="Rose"     Variety="A"   Anchor="Bottom"   />
+        <Frame UV="126,0"   Name="Rose"     Variety="B"   Anchor="Bottom"   />
       </Frames>
     </Tile>
-    <Tile Id="74" Name="Tall Jungle Grass" Color="#FF0D6524" Framed="true" Size="1,1" TextureGrid="16,32">
+    <Tile Id="74" Name="Tall Jungle Grass"            Color="#FF0D6524"   Framed="true"   Size="1,1"    TextureGrid="16,32"   >
       <Frames>
-        <Frame UV="0,0" Name="Jungle Grass" Variety="G" Anchor="Bottom" />
-        <Frame UV="18,0" Name="Jungle Grass" Variety="C" Anchor="Bottom" />
-        <Frame UV="36,0" Name="Jungle Grass" Variety="?" Anchor="Bottom" />
-        <Frame UV="54,0" Name="Jungle Grass" Variety="u" Anchor="Bottom" />
-        <Frame UV="72,0" Name="Jungle Grass" Variety="w" Anchor="Bottom" />
-        <Frame UV="90,0" Name="Jungle Grass" Variety="W" Anchor="Bottom" />
-        <Frame UV="108,0" Name="Jungle Rose" Variety="A" Anchor="Bottom" />
-        <Frame UV="126,0" Name="Jungle Rose" Variety="B" Anchor="Bottom" />
+        <Frame UV="0,0"     Name="Jungle Grass"   Variety="G"   Anchor="Bottom"   />
+        <Frame UV="18,0"    Name="Jungle Grass"   Variety="C"   Anchor="Bottom"   />
+        <Frame UV="36,0"    Name="Jungle Grass"   Variety="?"   Anchor="Bottom"   />
+        <Frame UV="54,0"    Name="Jungle Grass"   Variety="u"   Anchor="Bottom"   />
+        <Frame UV="72,0"    Name="Jungle Grass"   Variety="w"   Anchor="Bottom"   />
+        <Frame UV="90,0"    Name="Jungle Grass"   Variety="W"   Anchor="Bottom"   />
+        <Frame UV="108,0"   Name="Jungle Rose"    Variety="A"   Anchor="Bottom"   />
+        <Frame UV="126,0"   Name="Jungle Rose"    Variety="B"   Anchor="Bottom"   />
       </Frames>
     </Tile>
-    <Tile Id="75" Name="Obsidian Brick" Color="#FFB200FF" Solid="true" Blends="true" MergeWith="0" />
-    <Tile Id="76" Name="Hellstone Brick" Color="#FFC6001D" Light="true" Solid="true" Blends="true" MergeWith="0" />
-    <Tile Id="77" Name="Hellforge" Color="#FFD50010" Placement="floor" Light="true" Framed="true" Size="3,2" />
-    <Tile Id="78" Name="Clay Pot" Color="#FF00FFF2" Placement="floor" Framed="true" Size="1,1" />
-    <Tile Id="79" Name="Bed" Color="#FF00FFF2" Placement="floor" Framed="true" Size="4,2">
+    <Tile Id="75" Name="Obsidian Brick"               Color="#FFB200FF"   Solid="true"        Blends="true"   MergeWith="0"   />
+    <Tile Id="76" Name="Hellstone Brick"              Color="#FFC6001D"   Light="true"        Solid="true"    Blends="true"   MergeWith="0"   />
+    <Tile Id="77" Name="Hellforge"                    Color="#FFD50010"   Placement="floor"   Light="true"    Framed="true"   Size="3,2"      />
+    <Tile Id="78" Name="Clay Pot"                     Color="#FF00FFF2"   Placement="floor"   Framed="true"   Size="1,1"      />
+    <Tile Id="79" Name="Bed"                          Color="#FF00FFF2"   Placement="floor"   Framed="true"   Size="4,2"      >
       <Frames>
-        <Frame UV="0,0" Anchor="Left" />
-        <Frame UV="72,0" Variety="Right" />
+        <Frame UV="0,0"     Anchor="Left"     />
+        <Frame UV="72,0"    Variety="Right"   />
       </Frames>
     </Tile>
-    <Tile Id="80" Name="Cactus" Color="#FF00A500" Special="Cactus" />
-    <Tile Id="81" Name="Coral" Color="#FFE55340" Framed="true" TextureGrid="24,26">
+    <Tile Id="80" Name="Cactus"                       Color="#FF00A500"   Special="Cactus"    />
+    <Tile Id="81" Name="Coral"                        Color="#FFE55340"   Framed="true"       TextureGrid="24,26"   >
       <Frames>
-        <Frame UV="0,0" Variety="Red" />
-        <Frame UV="26,0" Variety="Pink" />
-        <Frame UV="52,0" Variety="Yellow" />
-        <Frame UV="78,0" Variety="Green" />
-        <Frame UV="104,0" Variety="Blue" />
-        <Frame UV="130,0" Variety="Sponge" />
+        <Frame UV="0,0"     Variety="Red"       />
+        <Frame UV="26,0"    Variety="Pink"      />
+        <Frame UV="52,0"    Variety="Yellow"    />
+        <Frame UV="78,0"    Variety="Green"     />
+        <Frame UV="104,0"   Variety="Blue"      />
+        <Frame UV="130,0"   Variety="Sponge"    />
       </Frames>
     </Tile>
-    <Tile Id="82" Name="Herb Sprout" Color="#FFFF7800" Framed="true">
+    <Tile Id="82" Name="Herb Sprout"                  Color="#FFFF7800"   Framed="true"   >
       <Frames>
-        <Frame UV="0,0" Name="Daybloom" growsOn="2,78" />
-        <Frame UV="18,0" Name="Moonglow" growsOn="60,78" />
-        <Frame UV="36,0" Name="Blinkroot" growsOn="0,59,78" />
-        <Frame UV="54,0" Name="Deathweed" growsOn="23,25,78" />
-        <Frame UV="72,0" Name="Waterleaf" growsOn="53,78" />
-        <Frame UV="90,0" Name="Fireblossom" growsOn="57,76,78" />
+        <Frame UV="0,0"     Name="Daybloom"       growsOn="2,78"        />
+        <Frame UV="18,0"    Name="Moonglow"       growsOn="60,78        />
+        <Frame UV="36,0"    Name="Blinkroot"      growsOn="0,59,78"     />
+        <Frame UV="54,0"    Name="Deathweed"      growsOn="23,25,78"    />
+        <Frame UV="72,0"    Name="Waterleaf"      growsOn="53,78"       />
+        <Frame UV="90,0"    Name="Fireblossom"    growsOn="57,76,78"    />
       </Frames>
     </Tile>
-    <Tile Id="83" Name="Herb Mature" Color="#FFFF7800" Light="true" Framed="true">
+    <Tile Id="83" Name="Herb Mature"                  Color="#FFFF7800"   Light="true"    Framed="true"   >
       <Frames>
-        <Frame UV="0,0" Name="Daybloom" growsOn="2,78" />
-        <Frame UV="18,0" Name="Moonglow" growsOn="60,78" />
-        <Frame UV="36,0" Name="Blinkroot" growsOn="0,59,78" />
-        <Frame UV="54,0" Name="Deathweed" growsOn="23,25,78" />
-        <Frame UV="72,0" Name="Waterleaf" growsOn="53,78" />
-        <Frame UV="90,0" Name="Fireblossom" growsOn="57,76,78" />
+        <Frame UV="0,0"     Name="Daybloom"       growsOn="2,78"        />
+        <Frame UV="18,0"    Name="Moonglow"       growsOn="60,78"       />
+        <Frame UV="36,0"    Name="Blinkroot"      growsOn="0,59,78"     />
+        <Frame UV="54,0"    Name="Deathweed"      growsOn="23,25,78"    />
+        <Frame UV="72,0"    Name="Waterleaf"      growsOn="53,78"       />
+        <Frame UV="90,0"    Name="Fireblossom"    growsOn="57,76,78"    />
       </Frames>
     </Tile>
-    <Tile Id="84" Name="Herb Bloom" Color="#FFFF7800" Light="true" Framed="true">
+    <Tile Id="84" Name="Herb Bloom"                   Color="#FFFF7800"   Light="true"    Framed="true"   >
       <Frames>
-        <Frame UV="0,0" Name="Daybloom" growsOn="2,78" />
-        <Frame UV="18,0" Name="Moonglow" growsOn="60,78" />
-        <Frame UV="36,0" Name="Blinkroot" growsOn="0,59,78" />
-        <Frame UV="54,0" Name="Deathweed" growsOn="23,25,78" />
-        <Frame UV="72,0" Name="Waterleaf" growsOn="53,78" />
-        <Frame UV="90,0" Name="Fireblossom" growsOn="57,76,78" />
+        <Frame UV="0,0"     Name="Daybloom"       growsOn="2,78"        />
+        <Frame UV="18,0"    Name="Moonglow"       growsOn="60,78"       />
+        <Frame UV="36,0"    Name="Blinkroot"      growsOn="0,59,78"     />
+        <Frame UV="54,0"    Name="Deathweed"      growsOn="23,25,78"    />
+        <Frame UV="72,0"    Name="Waterleaf"      growsOn="53,78"       />
+        <Frame UV="90,0"    Name="Fireblossom"    growsOn="57,76,78"    />
       </Frames>
     </Tile>
-    <Tile Id="85" Name="Tombstone" Color="#FFC0C0C0" Placement="floor" Framed="true" Size="2,2">
+    <Tile Id="85" Name="Tombstone"                    Color="#FFC0C0C0" Placement="floor" Framed="true" Size="2,2">
       <Frames>
         <Frame UV="0,0" Variety="A" />
         <Frame UV="36,0" Variety="B" />

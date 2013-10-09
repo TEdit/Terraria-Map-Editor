@@ -8,11 +8,14 @@
         Underground_Jungle = 3,
         Corruption = 4,
         Hallowed = 5,
-        Snow = 6,
-        Desert = 7,
-        Corrupt_Desert = 8,
-        Hallowed_Desert = 9,
-        Hell = 10,
-        Mushroom = 11
+        Crimson = 6,
+        Snow = 7,
+        Ice = 8,
+        Desert = 9,
+        Corrupt_Desert = 10,
+        Hallowed_Desert = 11,
+        Crimson_Desert = 12,
+        Hell = 13,
+        Mushroom = 14
     }
 }

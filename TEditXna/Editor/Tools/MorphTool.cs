@@ -42,6 +42,7 @@ namespace TEditXna.Editor.Tools
                 Plant = 73,
                 Tree = 5,
                 Sand = 53,
+                Silt = 40,
                 Wall = 2,
                 Vines = 52,
                 DirtToSand = false,
@@ -59,27 +60,11 @@ namespace TEditXna.Editor.Tools
                 Plant = 73,
                 Tree = 5,
                 Sand = 53,
+                Silt = 123,
                 Wall = 0,
                 Vines = 52,
                 DirtToSand = false,
                 DirtToStone = true,
-                SandToDirt = true,
-                StoneToDirt = false,
-            });
-
-            Biomes.Add(new BiomeData
-            {
-                Biome = MorphBiome.Corruption,
-                Dirt = 0,
-                Stone = 25,
-                Grass = 23,
-                Plant = 24,
-                Tree = 5,
-                Sand = 112,
-                Wall = 3,
-                Vines = 32,
-                DirtToSand = false,
-                DirtToStone = false,
                 SandToDirt = true,
                 StoneToDirt = false,
             });
@@ -93,6 +78,7 @@ namespace TEditXna.Editor.Tools
                 Plant = 61,
                 Tree = 5,
                 Sand = 53,
+                Silt = 123,
                 Wall = 15,
                 Vines = 62,
                 DirtToSand = false,
@@ -110,12 +96,31 @@ namespace TEditXna.Editor.Tools
                 Plant = 61,
                 Tree = 5,
                 Sand = 53,
+                Silt = 123,
                 Wall = 15,
                 Vines = 62,
                 DirtToSand = false,
                 DirtToStone = false,
                 SandToDirt = true,
                 StoneToDirt = true,
+            });
+
+            Biomes.Add(new BiomeData
+            {
+                Biome = MorphBiome.Corruption,
+                Dirt = 0,
+                Stone = 25,
+                Grass = 23,
+                Plant = 24,
+                Tree = 5,
+                Sand = 112,
+                Silt = 123,
+                Wall = 3,
+                Vines = 32,
+                DirtToSand = false,
+                DirtToStone = false,
+                SandToDirt = true,
+                StoneToDirt = false,
             });
 
             Biomes.Add(new BiomeData
@@ -127,6 +132,7 @@ namespace TEditXna.Editor.Tools
                 Plant = 110,
                 Tree = 5,
                 Sand = 116,
+                Silt = 123,
                 Wall = 28,
                 Vines = 52,
                 DirtToSand = false,
@@ -137,15 +143,52 @@ namespace TEditXna.Editor.Tools
 
             Biomes.Add(new BiomeData
             {
+                Biome = MorphBiome.Crimson,
+                Dirt = 0,
+                Stone = 203,
+                Grass = 199,
+                Plant = 201,
+                Tree = 5,
+                Sand = 112,
+                Silt = 123,
+                Wall = 83,
+                Vines = 32,
+                DirtToSand = false,
+                DirtToStone = false,
+                SandToDirt = true,
+                StoneToDirt = false,
+            });
+
+            Biomes.Add(new BiomeData
+            {
                 Biome = MorphBiome.Snow,
                 Dirt = 147,
-                Stone = 1,
+                Stone = 161,
                 Grass = 147,
                 Plant = 3,
                 Tree = 5,
                 Sand = 147,
-                Wall = 0,
+                Silt = 224,
+                Wall = 40,
                 Vines = 52,
+                DirtToSand = false,
+                DirtToStone = false,
+                SandToDirt = true,
+                StoneToDirt = false,
+            });
+
+            Biomes.Add(new BiomeData
+            {
+                Biome = MorphBiome.Ice,
+                Dirt = 147,
+                Stone = 161,
+                Grass = 147,
+                Plant = 185,
+                Tree = 5,
+                Sand = 147,
+                Silt = 224,
+                Wall = 71,
+                Vines = 165,
                 DirtToSand = false,
                 DirtToStone = false,
                 SandToDirt = true,
@@ -195,6 +238,22 @@ namespace TEditXna.Editor.Tools
                 Tree = 80,
                 Sand = 116,
                 Wall = 28,
+                Vines = 52,
+                DirtToSand = true,
+                DirtToStone = false,
+                SandToDirt = false,
+                StoneToDirt = false,
+            });
+            Biomes.Add(new BiomeData
+            {
+                Biome = MorphBiome.Crimson_Desert,
+                Dirt = 0,
+                Stone = 203,
+                Grass = 109,
+                Plant = 201,
+                Tree = 80,
+                Sand = 234,
+                Wall = 83,
                 Vines = 52,
                 DirtToSand = true,
                 DirtToStone = false,
@@ -403,6 +462,7 @@ namespace TEditXna.Editor.Tools
             public byte Stone;
             public byte Grass;
             public byte Sand;
+            public byte Silt;
             public byte Wall;
             public byte Vines;
             public byte Dirt;
