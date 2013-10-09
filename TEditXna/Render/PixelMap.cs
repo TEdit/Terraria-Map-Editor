@@ -59,8 +59,20 @@ namespace TEditXna.Render
             if (tile.Liquid > 0 && showLiquid)
                 c = c.AlphaBlend(tile.IsLava ? World.GlobalColors["Lava"] : World.GlobalColors["Water"]);
 
-            if (tile.HasWire && showWire)
-                c = c.AlphaBlend(World.GlobalColors["Wire"]);
+            if (showWire){
+                if (tile.HasWire)
+                {
+                    c = c.AlphaBlend(World.GlobalColors["Wire"]);
+                }
+                if (tile.HasWire2)
+                {
+                    c = c.AlphaBlend(World.GlobalColors["Wire1"]);
+                }
+                if (tile.HasWire3)
+                {
+                    c = c.AlphaBlend(World.GlobalColors["Wire2"]);
+                }
+            }
 
             return c;
         }
