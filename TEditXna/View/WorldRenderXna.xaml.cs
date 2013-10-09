@@ -1117,6 +1117,86 @@ namespace TEditXna.View
                                     _spriteBatch.Draw(tileTex, dest, source, Color.White, 0f, default(Vector2), SpriteEffects.None, 0);
                                 }
                             }
+                            if (curtile.HasWire2)
+                            {
+                                var tileTex = (Texture2D)_textureDictionary.GetMisc("Wires2");
+
+                                if (tileTex != null)
+                                {
+                                    var source = new Rectangle(0, 0, 16, 16);
+                                    var dest = new Rectangle(1 + (int)((_scrollPosition.X + x) * _zoom), 1 + (int)((_scrollPosition.Y + y) * _zoom), (int)_zoom, (int)_zoom);
+
+                                    byte state = 0x00;
+                                    state |= (byte)((neighborTile[e] != null && neighborTile[e].HasWire2 == true) ? 0x01 : 0x00);
+                                    state |= (byte)((neighborTile[n] != null && neighborTile[n].HasWire2 == true) ? 0x02 : 0x00);
+                                    state |= (byte)((neighborTile[w] != null && neighborTile[w].HasWire2 == true) ? 0x04 : 0x00);
+                                    state |= (byte)((neighborTile[s] != null && neighborTile[s].HasWire2 == true) ? 0x08 : 0x00);
+                                    Vector2Int32 uv = new Vector2Int32(0, 0);
+                                    switch (state)
+                                    {
+                                        case 0x00: uv.X = 0; uv.Y = 3; break;
+                                        case 0x01: uv.X = 4; uv.Y = 2; break;
+                                        case 0x02: uv.X = 2; uv.Y = 2; break;
+                                        case 0x03: uv.X = 2; uv.Y = 1; break;
+                                        case 0x04: uv.X = 3; uv.Y = 2; break;
+                                        case 0x05: uv.X = 1; uv.Y = 0; break;
+                                        case 0x06: uv.X = 3; uv.Y = 1; break;
+                                        case 0x07: uv.X = 0; uv.Y = 1; break;
+                                        case 0x08: uv.X = 1; uv.Y = 2; break;
+                                        case 0x09: uv.X = 0; uv.Y = 2; break;
+                                        case 0x0A: uv.X = 0; uv.Y = 0; break;
+                                        case 0x0B: uv.X = 2; uv.Y = 0; break;
+                                        case 0x0C: uv.X = 4; uv.Y = 1; break;
+                                        case 0x0D: uv.X = 4; uv.Y = 0; break;
+                                        case 0x0E: uv.X = 3; uv.Y = 0; break;
+                                        case 0x0F: uv.X = 1; uv.Y = 1; break;
+                                    }
+                                    source.X = uv.X * (source.Width + 2);
+                                    source.Y = uv.Y * (source.Height + 2);
+
+                                    _spriteBatch.Draw(tileTex, dest, source, Color.White, 0f, default(Vector2), SpriteEffects.None, 0);
+                                }
+                            }
+                            if (curtile.HasWire3)
+                            {
+                                var tileTex = (Texture2D)_textureDictionary.GetMisc("Wires3");
+
+                                if (tileTex != null)
+                                {
+                                    var source = new Rectangle(0, 0, 16, 16);
+                                    var dest = new Rectangle(1 + (int)((_scrollPosition.X + x) * _zoom), 1 + (int)((_scrollPosition.Y + y) * _zoom), (int)_zoom, (int)_zoom);
+
+                                    byte state = 0x00;
+                                    state |= (byte)((neighborTile[e] != null && neighborTile[e].HasWire3 == true) ? 0x01 : 0x00);
+                                    state |= (byte)((neighborTile[n] != null && neighborTile[n].HasWire3 == true) ? 0x02 : 0x00);
+                                    state |= (byte)((neighborTile[w] != null && neighborTile[w].HasWire3 == true) ? 0x04 : 0x00);
+                                    state |= (byte)((neighborTile[s] != null && neighborTile[s].HasWire3 == true) ? 0x08 : 0x00);
+                                    Vector2Int32 uv = new Vector2Int32(0, 0);
+                                    switch (state)
+                                    {
+                                        case 0x00: uv.X = 0; uv.Y = 3; break;
+                                        case 0x01: uv.X = 4; uv.Y = 2; break;
+                                        case 0x02: uv.X = 2; uv.Y = 2; break;
+                                        case 0x03: uv.X = 2; uv.Y = 1; break;
+                                        case 0x04: uv.X = 3; uv.Y = 2; break;
+                                        case 0x05: uv.X = 1; uv.Y = 0; break;
+                                        case 0x06: uv.X = 3; uv.Y = 1; break;
+                                        case 0x07: uv.X = 0; uv.Y = 1; break;
+                                        case 0x08: uv.X = 1; uv.Y = 2; break;
+                                        case 0x09: uv.X = 0; uv.Y = 2; break;
+                                        case 0x0A: uv.X = 0; uv.Y = 0; break;
+                                        case 0x0B: uv.X = 2; uv.Y = 0; break;
+                                        case 0x0C: uv.X = 4; uv.Y = 1; break;
+                                        case 0x0D: uv.X = 4; uv.Y = 0; break;
+                                        case 0x0E: uv.X = 3; uv.Y = 0; break;
+                                        case 0x0F: uv.X = 1; uv.Y = 1; break;
+                                    }
+                                    source.X = uv.X * (source.Width + 2);
+                                    source.Y = uv.Y * (source.Height + 2);
+
+                                    _spriteBatch.Draw(tileTex, dest, source, Color.White, 0f, default(Vector2), SpriteEffects.None, 0);
+                                }
+                            }
                         }
                         if (_wvm.ShowLiquid)
                         {
