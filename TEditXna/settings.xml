@@ -47,8 +47,8 @@ Documentation moved to the end of this file.
     <GlobalColor Name="Honey"   Color="#F0FFAC00"   />
     <GlobalColor Name="Water"   Color="#80000CFF"   />
     <GlobalColor Name="Wire"    Color="#70FF0000"   />
-    <GlobalColor Name="Wire1"   Color="#7000FF00"   />
-    <GlobalColor Name="Wire2"   Color="#700000FF"   />
+    <GlobalColor Name="Wire1"   Color="#700000FF"   />
+    <GlobalColor Name="Wire2"   Color="#7000FF00"   />
   </GlobalColors>
   <Tiles>
     <Tile Id="0" Name="Dirt Block"    Color="#FF916A4F"   Solid="true"    Blends="true"   />
