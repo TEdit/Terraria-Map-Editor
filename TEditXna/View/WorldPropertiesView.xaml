@@ -4,8 +4,11 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:bccl="http://bccl/wpf" xmlns:Terraria="clr-namespace:TEditXNA.Terraria"
-             xmlns:System="clr-namespace:System;assembly=mscorlib" mc:Ignorable="d" 
-             d:DesignWidth="260" Background="{StaticResource WindowBackgroundBrush}" Foreground="{StaticResource TextBrush}">
+             xmlns:System="clr-namespace:System;assembly=mscorlib"
+             xmlns:viewModel="clr-namespace:TEditXna.ViewModel"
+             mc:Ignorable="d" 
+             d:DesignWidth="260" Background="{StaticResource WindowBackgroundBrush}" Foreground="{StaticResource TextBrush}"
+             d:DataContext="{d:DesignInstance Type=viewModel:WorldViewModel}">
     <UserControl.Resources>
         <bccl:EnumItemList x:Key="invasionTypeList" EnumType="{x:Type System:Int32}" SortBy="Value" >
             <bccl:EnumItem Value="0">None</bccl:EnumItem>
@@ -25,7 +28,6 @@
             <Setter Property="VerticalAlignment" Value="Center" />
         </Style>
     </UserControl.Resources>
-    <StackPanel Orientation="Vertical">
         <bccl:AutoGrid HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="2">
             <bccl:AutoGrid.ColumnDefinitions>
                 <ColumnDefinition Width="1*" />
@@ -52,7 +54,9 @@
                 </TextBox>-->
                 <Slider Value="{Binding CurrentWorld.MoonPhase, Mode=TwoWay}" VerticalAlignment="Center" Minimum="0" Maximum="7" />
             </DockPanel>
-            <Separator Grid.ColumnSpan="2" />
+        <TextBlock />
+        <CheckBox IsChecked="{Binding CurrentWorld.IsEclipse}" Content="Is Eclipse" VerticalAlignment="Center" VerticalContentAlignment="Center" />
+        <Separator Grid.ColumnSpan="2" />
             <TextBlock Text="Time" HorizontalAlignment="Right" />
             <Grid Height="20">
                 <Rectangle Style="{DynamicResource TimeBackgroundStyle}" VerticalAlignment="Stretch" Margin="0,1"/>
@@ -60,6 +64,30 @@
             </Grid>
             <TextBlock />
             <CheckBox x:Name="dayCheckBox" Content="Is Day Time" VerticalAlignment="Center" Grid.Row="12" Grid.Column="1" IsChecked="{Binding Path=CurrentWorld.DayTime, Mode=TwoWay}"/>
+            <Separator Grid.ColumnSpan="2" />
+            <TextBlock Text="Rain" HorizontalAlignment="Right" />
+            <CheckBox IsChecked="{Binding Path=CurrentWorld.TempRaining, Mode=TwoWay}" Content="Is Raining" VerticalAlignment="Center" Grid.Row="12" Grid.Column="1" />
+            <TextBlock Text="Rain Time" HorizontalAlignment="Right" />
+            <DockPanel>
+                <TextBlock Text="{Binding CurrentWorld.TempRainTime, StringFormat={}{0:0}}" Width="30" DockPanel.Dock="Right" />
+                <Slider Value="{Binding CurrentWorld.TempRainTime, Mode=TwoWay}" VerticalAlignment="Center" Minimum="0" Maximum="999999" SmallChange="1" />
+            </DockPanel>
+            <TextBlock Text="Max Rain" HorizontalAlignment="Right" />
+            <DockPanel>
+                <TextBlock Text="{Binding CurrentWorld.TempRainTime, StringFormat={}{0:0}}" Width="30" DockPanel.Dock="Right" />
+                <Slider Value="{Binding CurrentWorld.TempRainTime, Mode=TwoWay}" VerticalAlignment="Center" Minimum="0" Maximum="65534" SmallChange="1" />
+            </DockPanel>
+            <Separator Grid.ColumnSpan="2" />
+            <TextBlock Text="Number Clouds" HorizontalAlignment="Right" />
+            <DockPanel>
+                <TextBlock Text="{Binding CurrentWorld.NumClouds, StringFormat={}{0:0}}" Width="30" DockPanel.Dock="Right" />
+                <Slider Value="{Binding CurrentWorld.NumClouds, Mode=TwoWay}" VerticalAlignment="Center" Minimum="0" Maximum="128" />
+            </DockPanel>
+            <TextBlock Text="Wind Speed" HorizontalAlignment="Right" />
+            <DockPanel>
+                <TextBlock Text="{Binding CurrentWorld.WindSpeedSet, StringFormat={}{0:0}}" Width="30" DockPanel.Dock="Right" />
+                <Slider Value="{Binding CurrentWorld.WindSpeedSet, Mode=TwoWay}" VerticalAlignment="Center" Minimum="-16000" Maximum="16000" />
+            </DockPanel>
             <Separator Grid.ColumnSpan="2" />
             <TextBlock Text="Surface Level" HorizontalAlignment="Right" />
             <DockPanel>
@@ -76,6 +104,8 @@
             <CheckBox IsChecked="{Binding CurrentWorld.SpawnMeteor}" Content="Spawn Meteor" VerticalAlignment="Center" VerticalContentAlignment="Center" />
             <TextBlock Text="Difficulty" HorizontalAlignment="Right" />
             <CheckBox IsChecked="{Binding CurrentWorld.HardMode}" Content="Hardmode" VerticalAlignment="Center" VerticalContentAlignment="Center" />
+            <TextBlock />
+            <CheckBox IsChecked="{Binding CurrentWorld.IsCrimson}" Content="Is Crimson" VerticalAlignment="Center" VerticalContentAlignment="Center" />
             <TextBlock Text="Altars Smashed" HorizontalAlignment="Right" />
             <DockPanel>
                 <TextBlock Text="{Binding CurrentWorld.AltarCount, StringFormat={}{0:0}}" Width="30" DockPanel.Dock="Right" />
@@ -86,6 +116,12 @@
                 <TextBlock Text="{Binding CurrentWorld.ShadowOrbCount, StringFormat={}{0:0}}" Width="30" DockPanel.Dock="Right" />
                 <Slider Value="{Binding CurrentWorld.ShadowOrbCount, Mode=TwoWay}" VerticalAlignment="Center" Minimum="0" Maximum="3" />
             </DockPanel>
+            <TextBlock Text="Ores" HorizontalAlignment="Right" />
+            <CheckBox IsChecked="{Binding CurrentWorld.OreTier1}" Content="OreTier1" VerticalAlignment="Center" VerticalContentAlignment="Center" />
+            <TextBlock  />
+            <CheckBox IsChecked="{Binding CurrentWorld.OreTier2}" Content="OreTier2" VerticalAlignment="Center" VerticalContentAlignment="Center" />
+            <TextBlock />
+            <CheckBox IsChecked="{Binding CurrentWorld.OreTier3}" Content="OreTier3" VerticalAlignment="Center" VerticalContentAlignment="Center" />
             <Separator Grid.ColumnSpan="2" />
             <TextBlock Text="Bosses Downed" HorizontalAlignment="Right" />
             <CheckBox IsChecked="{Binding CurrentWorld.DownedBoss1}" Content="Eye of Cthulhu Downed" VerticalAlignment="Center" VerticalContentAlignment="Center" />
@@ -99,6 +135,20 @@
             <CheckBox IsChecked="{Binding CurrentWorld.DownedFrost}" Content="Frost Legion Downed" VerticalAlignment="Center" VerticalContentAlignment="Center" />
             <TextBlock />
             <CheckBox IsChecked="{Binding CurrentWorld.DownedGoblins}" Content="Goblin Invasion Downed" VerticalAlignment="Center" VerticalContentAlignment="Center" />
+            <TextBlock />
+            <CheckBox IsChecked="{Binding CurrentWorld.QueenBee}" Content="Queen Bee Downed" VerticalAlignment="Center" VerticalContentAlignment="Center" />
+            <TextBlock />
+            <CheckBox IsChecked="{Binding CurrentWorld.DownedMechBoss1}" Content="Mech Boss 1 Downed" VerticalAlignment="Center" VerticalContentAlignment="Center" />
+            <TextBlock />
+            <CheckBox IsChecked="{Binding CurrentWorld.DownedMechBoss2}" Content="Mech Boss 2 Downed" VerticalAlignment="Center" VerticalContentAlignment="Center" />
+            <TextBlock />
+            <CheckBox IsChecked="{Binding CurrentWorld.DownedMechBoss3}" Content="Mech Boss 3 Downed" VerticalAlignment="Center" VerticalContentAlignment="Center" />
+            <TextBlock />
+            <CheckBox IsChecked="{Binding CurrentWorld.DownedMechBossAny}" Content="Mech Boss Any Downed" VerticalAlignment="Center" VerticalContentAlignment="Center" />
+            <TextBlock />
+            <CheckBox IsChecked="{Binding CurrentWorld.DownedPlantBoss}" Content="Plant Boss Downed" VerticalAlignment="Center" VerticalContentAlignment="Center" />
+            <TextBlock />
+            <CheckBox IsChecked="{Binding CurrentWorld.DownedGolemBoss}" Content="Golem Downed" VerticalAlignment="Center" VerticalContentAlignment="Center" />
             <Separator Grid.ColumnSpan="2" />
             <TextBlock Text="NPC's Saved" HorizontalAlignment="Right" />
             <CheckBox IsChecked="{Binding CurrentWorld.SavedGoblin}" Content="Saved Goblin Tinkerer" VerticalAlignment="Center" VerticalContentAlignment="Center" />
@@ -117,20 +167,7 @@
             <TextBlock Text="Invasion X Target" HorizontalAlignment="Right" />
             <DockPanel>
                 <TextBlock Text="{Binding CurrentWorld.InvasionX, StringFormat={}{0:0}}" Width="30" DockPanel.Dock="Right" />
-                <Slider Value="{Binding CurrentWorld.InvasionX, Mode=TwoWay}" VerticalAlignment="Center"  Minimum="0" Maximum="{Binding Path=CurrentWorld.TilesWide}" />
+                <Slider Value="{Binding CurrentWorld.InvasionX, Mode=TwoWay}" VerticalAlignment="Center" Minimum="0" Maximum="{Binding Path=CurrentWorld.TilesWide}" />
             </DockPanel>
         </bccl:AutoGrid>
-        <ListBox MinHeight="100" ItemsSource="{Binding CurrentWorld.CharacterNames}">
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <StackPanel Orientation="Horizontal">
-                        <Button Content="+" Margin="2" Command="{Binding DataContext.NpcAddCommand, Mode=Default, RelativeSource={RelativeSource AncestorType={x:Type Window}}}" VerticalAlignment="Stretch" CommandParameter="{Binding}" Padding="4" />
-                        <Button Content="-" Margin="2" Command="{Binding DataContext.NpcRemoveCommand, Mode=Default, RelativeSource={RelativeSource AncestorType={x:Type Window}}}" VerticalAlignment="Stretch" CommandParameter="{Binding}" Padding="4" />
-                        <TextBox Text="{Binding Name}" MinWidth="150" Margin="2,0" />
-                        <TextBlock Text="{Binding Character}" HorizontalAlignment="Center" Margin="2" />
-                    </StackPanel>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
-    </StackPanel>
 </UserControl>

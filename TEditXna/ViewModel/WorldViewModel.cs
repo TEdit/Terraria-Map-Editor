@@ -56,8 +56,8 @@ namespace TEditXna.ViewModel
         private MorphBiome _morphBiomeTarget;
         private bool _isAutoSaveEnabled = true;
 
-        private ICollectionView _spritesView;
-        public ICollectionView SpritesView
+        private ListCollectionView _spritesView;
+        public ListCollectionView SpritesView
         {
             get { return _spritesView; }
             set
@@ -81,7 +81,7 @@ namespace TEditXna.ViewModel
 
 
         private ICommand _launchWikiCommand;
-         
+
 
         public ICommand LaunchWikiCommand
         {
@@ -187,12 +187,15 @@ namespace TEditXna.ViewModel
                 Directory.CreateDirectory(TempPath);
             }
 
-           
+
         }
 
 
         public WorldViewModel()
         {
+            if (ViewModelBase.IsInDesignModeStatic)
+                return;
+
             IsAutoSaveEnabled = Properties.Settings.Default.Autosave;
 
             _undoManager = new UndoManager(this);
@@ -202,15 +205,19 @@ namespace TEditXna.ViewModel
             UpdateTitle();
 
             _spriteFilter = string.Empty;
-            _spritesView = CollectionViewSource.GetDefaultView(World.Sprites);
+            _spritesView = (ListCollectionView)CollectionViewSource.GetDefaultView(World.Sprites);
             _spritesView.Filter = o =>
             {
-                var sprite = o as Sprite;
-                if (sprite == null || string.IsNullOrWhiteSpace(sprite.TileName))
-                    return false;
+                if (string.IsNullOrWhiteSpace(_spriteFilter)) return true;
 
-                return sprite.TileName.IndexOf(_spriteFilter, StringComparison.InvariantCultureIgnoreCase) >= 0 ||
-                       sprite.Name.IndexOf(_spriteFilter, StringComparison.InvariantCultureIgnoreCase) >= 0;
+                var sprite = (Sprite)o;
+
+                if (sprite.TileName == _spriteFilter) return true;
+                if (sprite.Name == _spriteFilter) return true;
+                if (sprite.TileName != null && sprite.TileName.IndexOf(_spriteFilter, StringComparison.OrdinalIgnoreCase) >= 0) return true;
+                if (sprite.Name != null && sprite.Name.IndexOf(_spriteFilter, StringComparison.OrdinalIgnoreCase) >= 0) return true;
+
+                return false;
             };
 
             _saveTimer.AutoReset = true;
@@ -355,7 +362,7 @@ namespace TEditXna.ViewModel
         }
 
         private ICommand _viewLogCommand;
-         
+
 
         public ICommand ViewLogCommand
         {

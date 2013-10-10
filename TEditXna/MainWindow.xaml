@@ -199,6 +199,11 @@
                     <TabItem Header="Chest-Sign" x:Name="ChestSignTab">
                         <View:ChestSignEditorView VerticalAlignment="Stretch" HorizontalAlignment="Stretch" />
                     </TabItem>
+                    <TabItem Header="Npc Names" >
+                        <ScrollViewer VerticalScrollBarVisibility="Auto">
+                            <View:NpcNameEditor HorizontalAlignment="Stretch" VerticalAlignment="Top"/>
+                        </ScrollViewer>
+                    </TabItem>
                 </TabControl>
             </Expander>
             <View:WorldRenderXna HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
