@@ -847,22 +847,22 @@ Documentation moved to the end of this file.
     <Tile Id="167" Name="Lead Ore"                    Color="#FF29297A"   Solid="true"    Blends="true"   />
     <Tile Id="168" Name="Tungsten Ore"                Color="#FF66C266"   Solid="true"    Blends="true"   />
     <Tile Id="169" Name="Platinum Ore"                Color="#FF6B8FB2"   Solid="true"    Blends="true"   />
-    <Tile Id="170" Name="Tin Chandelier"              Color="#FFFF00FF"   Framed="true"   Light="true"    >
+    <Tile Id="170" Name="Tin Chandelier"              Color="#FFFF00FF"   Framed="true"   Light="true" Size="3,3"   >
       <Frames>
         <Frame UV="0,0" Name="Default" Variety="Default" />
       </Frames>
     </Tile>
-    <Tile Id="171" Name="Tungsten Chandelier"         Color="#FFFF00FF"   Framed="true"   Light="true"    >
+    <Tile Id="171" Name="Tungsten Chandelier"         Color="#FFFF00FF"   Framed="true"   Light="true"  Size="3,3"  >
       <Frames>
         <Frame UV="0,0" Name="Default" Variety="Default" />
       </Frames>
     </Tile>
-    <Tile Id="172" Name="Platinum Chandelier"         Color="#FFFF00FF"   Framed="true"   Light="true"    >
+    <Tile Id="172" Name="Platinum Chandelier"         Color="#FFFF00FF"   Framed="true"   Light="true" Size="3,3"   >
       <Frames>
         <Frame UV="0,0" Name="Default" Variety="Default" />
       </Frames>
     </Tile>
-    <Tile Id="173" Name="Platinum Candelabra"         Color="#FFFF00FF"   Framed="true"   Light="true"    >
+    <Tile Id="173" Name="Platinum Candelabra"         Color="#FFFF00FF"   Framed="true"   Light="true" Size="2,2"   >
       <Frames>
         <Frame UV="0,0" Name="Default" Variety="Default" />
       </Frames>
@@ -875,9 +875,15 @@ Documentation moved to the end of this file.
     <Tile Id="175" Name="Tin Brick"                   Color="#FFFF00FF"   Solid="true"    />
     <Tile Id="176" Name="Tungsten Brick"              Color="#FFFF00FF"   Solid="true"    />
     <Tile Id="177" Name="Platinum Brick"              Color="#FFFF00FF"   Solid="true"    />
-    <Tile Id="178" Name="Sapphire"                    Color="#FFFF00FF"   Framed="true"   >
+    <Tile Id="178" Name="Gems"                        Color="#FFFF00FF"   Framed="true"   >
       <Frames>
-        <Frame UV="0,0" Name="Default" Variety="Default" />
+        <Frame UV="0,0" Name="Amethyst" Variety="Default" />
+        <Frame UV="18,0" Name="Topaz" Variety="Default" />
+        <Frame UV="36,0" Name="Sapphire" Variety="Default" />
+        <Frame UV="54,0" Name="Emerald" Variety="Default" />
+        <Frame UV="72,0" Name="Ruby" Variety="Default" />
+        <Frame UV="90,0" Name="Diamond" Variety="Default" />
+        <Frame UV="108,0" Name="Amber" Variety="Default" />
       </Frames>
     </Tile>
     <Tile Id="179" Name=""                            Color="#FF336600"   Solid="true"    Blends="true"   />
@@ -890,11 +896,175 @@ Documentation moved to the end of this file.
         <Frame UV="0,0" Name="Default" Variety="Default" />
       </Frames>
     </Tile>
-    <Tile Id="185" Name=""                            Color="#FFFF00FF"   Framed="true"   >
+    <Tile Id="185" Name="Deco Small"                            Color="#FFFF00FF"   Framed="true" Size="1,1"  >
       <Frames>
-        <Frame UV="0,0" Name="Default" Variety="Default" />
+        <Frame UV="0,0" Name="" Variety="" />
+        <Frame UV="18,0" Name="" Variety="" />
+        <Frame UV="36,0" Name="" Variety="" />
+        <Frame UV="54,0" Name="" Variety="" />
+        <Frame UV="72,0" Name="" Variety="" />
+        <Frame UV="90,0" Name="" Variety="" />
+        <Frame UV="108,0" Name="" Variety="" />
+        <Frame UV="126,0" Name="" Variety="" />
+        <Frame UV="144,0" Name="" Variety="" />
+        <Frame UV="162,0" Name="" Variety="" />
+        <Frame UV="180,0" Name="" Variety="" />
+        <Frame UV="198,0" Name="" Variety="" />
+        <Frame UV="216,0" Name="" Variety="" />
+        <Frame UV="234,0" Name="" Variety="" />
+        <Frame UV="252,0" Name="" Variety="" />
+        <Frame UV="270,0" Name="" Variety="" />
+        <Frame UV="288,0" Name="" Variety="" />
+        <Frame UV="306,0" Name="" Variety="" />
+        <Frame UV="324,0" Name="" Variety="" />
+        <Frame UV="342,0" Name="" Variety="" />
+        <Frame UV="360,0" Name="" Variety="" />
+        <Frame UV="378,0" Name="" Variety="" />
+        <Frame UV="396,0" Name="" Variety="" />
+        <Frame UV="414,0" Name="" Variety="" />
+        <Frame UV="432,0" Name="" Variety="" />
+        <Frame UV="450,0" Name="" Variety="" />
+        <Frame UV="468,0" Name="" Variety="" />
+        <Frame UV="486,0" Name="" Variety="" />
+        <Frame UV="504,0" Name="" Variety="" />
+        <Frame UV="522,0" Name="" Variety="" />
+        <Frame UV="540,0" Name="" Variety="" />
+        <Frame UV="558,0" Name="" Variety="" />
+        <Frame UV="576,0" Name="" Variety="" />
+        <Frame UV="594,0" Name="" Variety="" />
+        <Frame UV="612,0" Name="" Variety="" />
+        <Frame UV="630,0" Name="" Variety="" />
+        <Frame UV="648,0" Name="" Variety="" />
+        <Frame UV="666,0" Name="" Variety="" />
+        <Frame UV="684,0" Name="" Variety="" />
+        <Frame UV="702,0" Name="" Variety="" />
+        <Frame UV="720,0" Name="" Variety="" />
+        <Frame UV="738,0" Name="" Variety="" />
+        <Frame UV="756,0" Name="" Variety="" />
+        <Frame UV="774,0" Name="" Variety="" />
+        <Frame UV="792,0" Name="" Variety="" />
+        <Frame UV="810,0" Name="" Variety="" />
+        <Frame UV="828,0" Name="" Variety="" />
+        <Frame UV="846,0" Name="" Variety="" />
+        <Frame UV="864,0" Name="" Variety="" />
+        <Frame UV="882,0" Name="" Variety="" />
+        <Frame UV="900,0" Name="" Variety="" />
+        <Frame UV="918,0" Name="" Variety="" />
+        <Frame UV="936,0" Name="" Variety="" />
+        <Frame UV="954,0" Name="" Variety="" />
+        <Frame UV="972,0" Name="" Variety="" />
+        <Frame UV="990,0" Name="" Variety="" />
+        <Frame UV="1008,0" Name="" Variety="" />
+        <Frame UV="1026,0" Name="" Variety="" />
+        <Frame UV="1044,0" Name="" Variety="" />
+        <Frame UV="1062,0" Name="" Variety="" />
+        <Frame UV="1080,0" Name="" Variety="" />
+        <Frame UV="1098,0" Name="" Variety="" />
+        <Frame UV="1116,0" Name="" Variety="" />
+        <Frame UV="1134,0" Name="" Variety="" />
+        <Frame UV="1152,0" Name="" Variety="" />
+        <Frame UV="1170,0" Name="" Variety="" />
+        <Frame UV="1188,0" Name="" Variety="" />
+        <Frame UV="1206,0" Name="" Variety="" />
+        <Frame UV="1224,0" Name="" Variety="" />
+        <Frame UV="1242,0" Name="" Variety="" />
+        <Frame UV="1260,0" Name="" Variety="" />
+        <Frame UV="1278,0" Name="" Variety="" />
+        <Frame UV="1296,0" Name="" Variety="" />
+        <Frame UV="1314,0" Name="" Variety="" />
+        <Frame UV="1332,0" Name="" Variety="" />
+        <Frame UV="1350,0" Name="" Variety="" />
+        <Frame UV="1368,0" Name="" Variety="" />
+        <Frame UV="1386,0" Name="" Variety="" />
+        <Frame UV="1404,0" Name="" Variety="" />
+        <Frame UV="1422,0" Name="" Variety="" />
+        <Frame UV="1440,0" Name="" Variety="" />
+        <Frame UV="1458,0" Name="" Variety="" />
+        <Frame UV="0,18" Name="" Variety="" />
+        <Frame UV="18,18" Name="" Variety="" />
+        <Frame UV="36,18" Name="" Variety="" />
+        <Frame UV="54,18" Name="" Variety="" />
+        <Frame UV="72,18" Name="" Variety="" />
+        <Frame UV="90,18" Name="" Variety="" />
+        <Frame UV="108,18" Name="" Variety="" />
+        <Frame UV="126,18" Name="" Variety="" />
+        <Frame UV="144,18" Name="" Variety="" />
+        <Frame UV="162,18" Name="" Variety="" />
+        <Frame UV="180,18" Name="" Variety="" />
+        <Frame UV="198,18" Name="" Variety="" />
+        <Frame UV="216,18" Name="" Variety="" />
+        <Frame UV="234,18" Name="" Variety="" />
+        <Frame UV="252,18" Name="" Variety="" />
+        <Frame UV="270,18" Name="" Variety="" />
+        <Frame UV="288,18" Name="" Variety="" />
+        <Frame UV="306,18" Name="" Variety="" />
+        <Frame UV="324,18" Name="" Variety="" />
+        <Frame UV="342,18" Name="" Variety="" />
+        <Frame UV="360,18" Name="" Variety="" />
+        <Frame UV="378,18" Name="" Variety="" />
+        <Frame UV="396,18" Name="" Variety="" />
+        <Frame UV="414,18" Name="" Variety="" />
+        <Frame UV="432,18" Name="" Variety="" />
+        <Frame UV="450,18" Name="" Variety="" />
+        <Frame UV="468,18" Name="" Variety="" />
+        <Frame UV="486,18" Name="" Variety="" />
+        <Frame UV="504,18" Name="" Variety="" />
+        <Frame UV="522,18" Name="" Variety="" />
+        <Frame UV="540,18" Name="" Variety="" />
+        <Frame UV="558,18" Name="" Variety="" />
+        <Frame UV="576,18" Name="" Variety="" />
+        <Frame UV="594,18" Name="" Variety="" />
+        <Frame UV="612,18" Name="" Variety="" />
+        <Frame UV="630,18" Name="" Variety="" />
+        <Frame UV="648,18" Name="" Variety="" />
+        <Frame UV="666,18" Name="" Variety="" />
+        <Frame UV="684,18" Name="" Variety="" />
+        <Frame UV="702,18" Name="" Variety="" />
+        <Frame UV="720,18" Name="" Variety="" />
+        <Frame UV="738,18" Name="" Variety="" />
+        <Frame UV="756,18" Name="" Variety="" />
+        <Frame UV="774,18" Name="" Variety="" />
+        <Frame UV="792,18" Name="" Variety="" />
+        <Frame UV="810,18" Name="" Variety="" />
+        <Frame UV="828,18" Name="" Variety="" />
+        <Frame UV="846,18" Name="" Variety="" />
+        <Frame UV="864,18" Name="" Variety="" />
+        <Frame UV="882,18" Name="" Variety="" />
+        <Frame UV="900,18" Name="" Variety="" />
+        <Frame UV="918,18" Name="" Variety="" />
+        <Frame UV="936,18" Name="" Variety="" />
+        <Frame UV="954,18" Name="" Variety="" />
+        <Frame UV="972,18" Name="" Variety="" />
+        <Frame UV="990,18" Name="" Variety="" />
+        <Frame UV="1008,18" Name="" Variety="" />
+        <Frame UV="1026,18" Name="" Variety="" />
+        <Frame UV="1044,18" Name="" Variety="" />
+        <Frame UV="1062,18" Name="" Variety="" />
+        <Frame UV="1080,18" Name="" Variety="" />
+        <Frame UV="1098,18" Name="" Variety="" />
+        <Frame UV="1116,18" Name="" Variety="" />
+        <Frame UV="1134,18" Name="" Variety="" />
+        <Frame UV="1152,18" Name="" Variety="" />
+        <Frame UV="1170,18" Name="" Variety="" />
+        <Frame UV="1188,18" Name="" Variety="" />
+        <Frame UV="1206,18" Name="" Variety="" />
+        <Frame UV="1224,18" Name="" Variety="" />
+        <Frame UV="1242,18" Name="" Variety="" />
+        <Frame UV="1260,18" Name="" Variety="" />
+        <Frame UV="1278,18" Name="" Variety="" />
+        <Frame UV="1296,18" Name="" Variety="" />
+        <Frame UV="1314,18" Name="" Variety="" />
+        <Frame UV="1332,18" Name="" Variety="" />
+        <Frame UV="1350,18" Name="" Variety="" />
+        <Frame UV="1368,18" Name="" Variety="" />
+        <Frame UV="1386,18" Name="" Variety="" />
+        <Frame UV="1404,18" Name="" Variety="" />
+        <Frame UV="1422,18" Name="" Variety="" />
+        <Frame UV="1440,18" Name="" Variety="" />
+        <Frame UV="1458,18" Name="" Variety="" />
       </Frames>
     </Tile>
+
     <Tile Id="186" Name=""                            Color="#FFFF00FF"   Framed="true"   >
       <Frames>
         <Frame UV="0,0" Name="Default" Variety="Default" />
@@ -1012,7 +1182,7 @@ Documentation moved to the end of this file.
       </Frames>
     </Tile>
     <Tile Id="234" Name="Crimsand Block"              Color="#FFFF1919"   Solid="true"    Blends="true" />
-    <Tile Id="235" Name="Teleporter"                  Color="#FFFF00FF"   Framed="true"   Solid="true" >
+    <Tile Id="235" Name="Teleporter"                  Color="#FFFF00FF"   Framed="true"   Solid="true" Size="3,1" >
       <Frames>
         <Frame UV="0,0" Name="Default" Variety="Default" />
       </Frames>
