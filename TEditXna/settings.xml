@@ -944,7 +944,7 @@ Documentation moved to the end of this file.
         <Frame UV="0,0" Name="Default" Variety="Default" />
       </Frames>
     </Tile>
-    <Tile Id="211" Name="Chlorophyte Ore"             Color="#FFFF00FF"   Solid="true"    />
+    <Tile Id="211" Name="Chlorophyte Ore"             Color="#FF844831"   Solid="true"    />
     <Tile Id="212" Name="Snowball Launcher"           Color="#FFFF00FF"   Framed="true"   >
       <Frames>
         <Frame UV="0,0" Name="Default" Variety="Default" />

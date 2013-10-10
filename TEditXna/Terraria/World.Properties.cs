@@ -105,7 +105,14 @@ namespace TEditXNA.Terraria
         private float _windSpeedSet;
         public Random Rand;
         private bool _isCrimson;
-         
+        private bool _isEclipse;
+
+
+        public bool IsEclipse
+        {
+            get { return _isEclipse; }
+            set { Set("IsEclipse", ref _isEclipse, value); }
+        } 
 
         public bool IsCrimson
         {

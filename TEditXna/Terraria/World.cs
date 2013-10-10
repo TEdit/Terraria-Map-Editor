@@ -175,6 +175,7 @@ namespace TEditXNA.Terraria
                         bw.Write(DayTime);
                         bw.Write(MoonPhase);
                         bw.Write(BloodMoon);
+                        bw.Write(IsEclipse);
                         bw.Write(DungeonX);
                         bw.Write(DungeonY);
 
@@ -511,6 +512,11 @@ namespace TEditXNA.Terraria
                         w.DayTime = b.ReadBoolean();
                         w.MoonPhase = b.ReadInt32();
                         w.BloodMoon = b.ReadBoolean();
+
+                        if (w.Version >= 70)
+                        {
+                            w.IsEclipse = b.ReadBoolean();
+                        }
 
                         w.DungeonX = b.ReadInt32();
                         w.DungeonY = b.ReadInt32();
