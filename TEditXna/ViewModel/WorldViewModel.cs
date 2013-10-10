@@ -191,6 +191,15 @@ namespace TEditXna.ViewModel
         }
 
 
+        private Item _selectedChestItem;
+         
+
+        public Item SelectedChestItem
+        {
+            get { return _selectedChestItem; }
+            set { Set("SelectedChestItem", ref _selectedChestItem, value); }
+        }
+
         public WorldViewModel()
         {
             if (ViewModelBase.IsInDesignModeStatic)

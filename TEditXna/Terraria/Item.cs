@@ -32,6 +32,7 @@ namespace TEditXNA.Terraria
                     if (StackSize == 0)
                         StackSize = 1;
                 }
+                RaisePropertyChanged("Name");
             }
         }
 
@@ -41,6 +42,16 @@ namespace TEditXNA.Terraria
             NetId = curItem.Id;
             if (NetId != 0)
             StackSize = 1;
+        }
+
+        public string Name
+        {
+            get { return GetName(); }
+        }
+
+        public string PrefixName
+        {
+            get { return World.ItemPrefix[Prefix]; }
         }
 
         public string GetName()
@@ -54,7 +65,7 @@ namespace TEditXNA.Terraria
         public byte Prefix
         {
             get { return _prefix; }
-            set { Set("Prefix", ref _prefix, value); }
+            set { Set("Prefix", ref _prefix, value); RaisePropertyChanged("PrefixName"); }
         }
 
         public Item()
