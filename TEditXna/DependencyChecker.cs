@@ -13,10 +13,18 @@ namespace TEditXna
         static DependencyChecker()
         {
             Properties.Settings.Default.Reload();
-            // find steam
+            
             string path = Properties.Settings.Default.TerrariaPath;
 
+            // if the folder is missing, reset.
+            if (!Directory.Exists(path))
+            {
+                Properties.Settings.Default.TerrariaPath = null;
+                Properties.Settings.Default.Save();
+                path = string.Empty;
+            }
 
+            // find steam
             if (string.IsNullOrWhiteSpace(path))
             {
                 // try with dionadar's fix
@@ -49,24 +57,24 @@ namespace TEditXna
             // ug...we still don't have a path. Prompt the user.
             if (!Directory.Exists(path))
             {
-                path = BrowseForTerraria();
+                string tempPath = BrowseForTerraria();
 
                 bool retry = true;
-                while (!DirectoryHasContentFolder(path) && retry)
+                while (!DirectoryHasContentFolder(tempPath) && retry)
                 {
                     if (MessageBox.Show(
                         string.Format("Directory does not appear to contain Content.\r\nPress retry to pick a new folder or cancel to use \r\n{0}\r\n as your terraria path.", path),
                         "Terraria Content not Found",
                         MessageBoxButtons.RetryCancel, MessageBoxIcon.Error) == DialogResult.Retry)
                     {
-                        path = BrowseForTerraria();
+                        tempPath = BrowseForTerraria();
                     }
                     else
                     {
                         retry = false;
                     }
                 }
-                Properties.Settings.Default.TerrariaPath = path;
+                Properties.Settings.Default.TerrariaPath = Path.Combine(tempPath, "Content");
                 Properties.Settings.Default.Save();
             }
 
@@ -94,6 +102,7 @@ namespace TEditXna
             if (fbd.ShowDialog() == DialogResult.OK)
             {
                 return fbd.SelectedPath;
+
             }
 
             return null;
