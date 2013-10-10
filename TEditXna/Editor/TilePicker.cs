@@ -1,6 +1,7 @@
 ﻿using BCCL.MvvmLight;
 using TEditXNA.Terraria;
 using System.Windows.Input;
+using TEditXNA.Terraria.Objects;
 
 namespace TEditXna.Editor
 {
@@ -13,8 +14,9 @@ namespace TEditXna.Editor
         private int _tile = ToolDefaultData.PaintTile;
         private int _wallMask = ToolDefaultData.PaintWallMask;
         private int _tileMask = ToolDefaultData.PaintTileMask;
-        private bool _isLava;
+        //private bool _isLava;
         private bool _isEraser;
+        private Liquid _liquid = Liquid.Water;
 
         public bool IsEraser
         {
@@ -24,21 +26,37 @@ namespace TEditXna.Editor
 
         public bool IsLava
         {
-            get { return _isLava; }
+            get { return _liquid.HasFlag(Liquid.Lava); }
             set
             {
-                Set("IsLava", ref _isLava, value);
+                _liquid = value ? Liquid.Lava : Liquid.Water;
                 RaisePropertyChanged("IsWater");
+                RaisePropertyChanged("IsLava");
+                RaisePropertyChanged("IsHoney");
             }
         }
 
         public bool IsWater
         {
-            get { return !_isLava; }
+            get { return _liquid.HasFlag(Liquid.Water); }
             set
             {
-                Set("IsLava", ref _isLava, !value);
+                _liquid = !value ? Liquid.Lava : Liquid.Water;
                 RaisePropertyChanged("IsWater");
+                RaisePropertyChanged("IsLava");
+                RaisePropertyChanged("IsHoney");
+            }
+        }
+
+        public bool IsHoney
+        {
+            get { return _liquid.HasFlag(Liquid.Honey); }
+            set
+            {
+                _liquid = value ? Liquid.Honey : Liquid.Water;
+                RaisePropertyChanged("IsWater");
+                RaisePropertyChanged("IsLava");
+                RaisePropertyChanged("IsHoney");
             }
         }
 
@@ -122,7 +140,16 @@ namespace TEditXna.Editor
 
         public void SwapLiquid()
         {
-            IsLava = !IsLava;
+            switch (_liquid)
+            {
+                case Liquid.Lava: _liquid = Liquid.Honey; break;
+                case Liquid.Water: _liquid = Liquid.Lava; break;
+                default: _liquid = Liquid.Water; break;
+            }
+
+            RaisePropertyChanged("IsWater");
+            RaisePropertyChanged("IsLava");
+            RaisePropertyChanged("IsHoney");
         }
     }
 }

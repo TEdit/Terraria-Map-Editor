@@ -56,6 +56,7 @@ namespace TEditXna.Editor.Tools
 
             _wvm.TilePicker.Wall = curTile.Wall;
             _wvm.TilePicker.IsLava = curTile.IsLava;
+            _wvm.TilePicker.IsHoney = curTile.IsHoney;
         }
 
         private void PickmaskTile(int x, int y)

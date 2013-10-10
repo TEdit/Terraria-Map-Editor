@@ -9,8 +9,9 @@ namespace TEditXNA.Terraria.Objects
 
         Water = 0x01,
         Lava = 0x02,
+        Honey = 0x04,
 
-        All = Water | Lava
+        All = Water | Lava | Honey
     }
 
     public enum FrameAnchor
