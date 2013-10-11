@@ -56,7 +56,7 @@ Documentation moved to the end of this file.
     <Tile Id="0" Name="Dirt Block"                    Color="#FF916A4F"   Solid="true"    Blends="true"   />
     <Tile Id="1" Name="Stone Block"                   Color="#FF808080"   Solid="true"    Blends="true"   MergeWith="0"   Stone="true"    />
     <Tile Id="2" Name="Grass"                         Color="#FF1CD85E"   Solid="true"    Blends="true"   MergeWith="0"   Special="Grass" />
-    <Tile Id="3" Name="Grass Flowers"                 Color="#FF0D6524"   Framed="true"   TextureGrid="16,20">
+    <Tile Id="3" Name="Grass Flowers"                 Color="#FF0D6524"   Framed="true"   TextureGrid="16,20"   >
       <Frames>
         <Frame UV="0,0"     Name="Grass"      Anchor="Right"    Variety="Single Blade"        />
         <Frame UV="18,0"    Name="Grass"      Anchor="Right"    Variety="Double Blade"        />
@@ -210,7 +210,7 @@ Documentation moved to the end of this file.
     <Tile Id="7"  Name="Copper Ore"                   Color="#FFC6561D"   Solid="true"    Blends="true"   MergeWith="0"   />
     <Tile Id="8"  Name="Gold Ore"                     Color="#FFB9A417"   Solid="true"    Blends="true"   MergeWith="0"   />
     <Tile Id="9"  Name="Silver Ore"                   Color="#FFD9DFDF"   Solid="true"    Blends="true"   MergeWith="0"   />
-    <Tile Id="10" Name="Wooden Door"                  Color="#FF00FFF2"   Placement="CFBoth"    Solid="true"    Framed="true"   Size="1,3"    >
+    <Tile Id="10" Name="Wooden Door"                  Color="#FF00FFF2"   Placement="CFBoth"              Solid="true"    Framed="true"   Size="1,3"    >
       <Frames>
         <Frame UV="0,0"     Variety="A"   />
         <Frame UV="18,0"    Variety="B"   />
@@ -235,7 +235,7 @@ Documentation moved to the end of this file.
     </Tile>
     <Tile Id="14" Name="Wooden Table"                 Color="#FF00FFF2"   Placement="floor"   SolidTop="true"   Framed="true"   Size="3,2"    TextureGrid="16,16"   >
       <Frames>
-        <Frame UV="0,0"     Name="Default"        Anchor="Left"     />
+        <Frame UV="0,0"     Name="Default"      Anchor="Left"       />
       </Frames>
     </Tile>
     <Tile Id="15" Name="Chair"                        Color="#FF00FFF2"   Placement="floor"   Framed="true"   Size="1,2"    >
@@ -251,20 +251,20 @@ Documentation moved to the end of this file.
     <Tile Id="18" Name="Work Bench"                   Color="#FF00FFF2"   Placement="floor"   SolidTop="true"   Framed="true"   Size="2,1"        TextureGrid="16,18"   />
     <Tile Id="19" Name="Platform"                     Color="#FF6B3A18"   Placement="wall"    Light="true"      Solid="true"    SolidTop="true"   Special="Platform"    Framed="true"   TextureGrid="16,16"     >
         <Frames>
-        <Frame UV="0,0" Name="Platform" Variety="Wood" />
-        <Frame UV="0,18" Name="Platform" Variety="Ebonwood" />
-        <Frame UV="0,36" Name="Platform" Variety="Rich Mahogany" />
-        <Frame UV="0,54" Name="Platform" Variety="Pearlwood" />
-        <Frame UV="0,72" Name="Platform" Variety="Bone" />
-        <Frame UV="0,90" Name="Platform" Variety="Shadewood" />
-        <Frame UV="0,108" Name="Platform" Variety="Blue Brick" />
-        <Frame UV="0,126" Name="Platform" Variety="Pink Brick" />
-        <Frame UV="0,144" Name="Platform" Variety="Green Brick" />
-        <Frame UV="0,162" Name="Platform" Variety="Metal Shelf" />
-        <Frame UV="0,180" Name="Platform" Variety="Brass Shelf" />
-        <Frame UV="0,198" Name="Platform" Variety="Wood Shelf" />
-        <Frame UV="0,216" Name="Platform" Variety="Dungeon Shelf" />
-        <Frame UV="0,234" Name="Platform" Variety="Obsidian" />
+        <Frame UV="0,0"     Name="Platform"     Variety="Wood"              />
+        <Frame UV="0,18"    Name="Platform"     Variety="Ebonwood"          />
+        <Frame UV="0,36"    Name="Platform"     Variety="Rich Mahogany"     />
+        <Frame UV="0,54"    Name="Platform"     Variety="Pearlwood"         />
+        <Frame UV="0,72"    Name="Platform"     Variety="Bone"              />
+        <Frame UV="0,90"    Name="Platform"     Variety="Shadewood"         />
+        <Frame UV="0,108"   Name="Platform"     Variety="Blue Brick"        />
+        <Frame UV="0,126"   Name="Platform"     Variety="Pink Brick"        />
+        <Frame UV="0,144"   Name="Platform"     Variety="Green Brick"       />
+        <Frame UV="0,162"   Name="Platform"     Variety="Metal Shelf"       />
+        <Frame UV="0,180"   Name="Platform"     Variety="Brass Shelf"       />
+        <Frame UV="0,198"   Name="Platform"     Variety="Wood Shelf"        />
+        <Frame UV="0,216"   Name="Platform"     Variety="Dungeon Shelf"     />
+        <Frame UV="0,234"   Name="Platform"     Variety="Obsidian"          />
       </Frames>
     </Tile>
     <Tile Id="20" Name="Sapling"                      Color="#FF0D6524"   Framed="true"       Size="1,2"        >
@@ -632,7 +632,7 @@ Documentation moved to the end of this file.
     </Tile>
     <Tile Id="111" Name="Adamantite Ore"              Color="#FF801A34"   Solid="true"    Blends="true"   MergeWith="0" />
     <Tile Id="112" Name="Ebonsand Block"              Color="#FF67627A"   Solid="true"    Blends="true"   MergeWith="0" />
-    <Tile Id="113" Name="Hallowed Tall Plants"        Color="#FF1E9648"   Framed="true"   TextureGrid="16,32"   >
+    <Tile Id="113" Name="Hallowed Tall Plants"        Color="#FF1E9648"   Framed="true"   TextureGrid="16,32"           >
       <Frames>
         <Frame UV="0,0"     Name="Grass"    Variety="G"   Anchor="Bottom" />
         <Frame UV="18,0"    Name="Grass"    Variety="C"   Anchor="Bottom" />
@@ -653,10 +653,10 @@ Documentation moved to the end of this file.
     <Tile Id="120" Name="Mudstone Block"              Color="#FF967A7D"   Solid="true"    Blends="true"   MergeWith="0" />
     <Tile Id="121" Name="Cobalt Brick"                Color="#FF2576AB"   Solid="true"    Blends="true"   MergeWith="0" />
     <Tile Id="122" Name="Mythril Brick"               Color="#FF91BF75"   Solid="true"    Blends="true"   MergeWith="0" />
-    <Tile Id="123" Name="Silt Block"                  Color="#FF595353"   Solid="true"    Blends="true"   MergeWith="0"   />
+    <Tile Id="123" Name="Silt Block"                  Color="#FF595353"   Solid="true"    Blends="true"   MergeWith="0" />
     <Tile Id="124" Name="Wooden Beam"                 Color="#FF5C4436"   Blends="true"   />
-    <Tile Id="125" Name="Crystal Ball"                Color="#FF81A5FF"   Light="true"    Framed="true"   Size="2,2"      />
-    <Tile Id="126" Name="Disco Ball"                  Color="#FFDBDBDB"   Light="true"    Framed="true"   Size="2,2"      >
+    <Tile Id="125" Name="Crystal Ball"                Color="#FF81A5FF"   Light="true"    Framed="true"   Size="2,2"    />
+    <Tile Id="126" Name="Disco Ball"                  Color="#FFDBDBDB"   Light="true"    Framed="true"   Size="2,2"    >
       <Frames>
         <Frame UV="0,0"     Variety="On" />
         <Frame UV="36,0"    Variety="Off" />
@@ -746,32 +746,32 @@ Documentation moved to the end of this file.
     <Tile Id="138" Name="Boulder"                     Color="#FF636363"   Solid="true"    Framed="true"   Size="2,2"    />
     <Tile Id="139" Name="Music Box"                   Color="#FF996343"   Framed="true"   Size="2,2"      >
       <Frames>
-        <Frame UV="0,0"     Name="Music Box (Overworld Day)" Variety="Off" />
-        <Frame UV="36,0"    Name="Music Box (Overworld Day)" Variety="On" />
-        <Frame UV="0,36"    Name="Music Box (Eerie)"                    Variety="Off" />
-        <Frame UV="36,36"   Name="Music Box (Eerie)"                    Variety="On" />
-        <Frame UV="0,72"    Name="Music Box (Night)"                    Variety="Off" />
-        <Frame UV="36,72"   Name="Music Box (Night)"                    Variety="On" />
-        <Frame UV="0,108"   Name="Music Box (Title)"                    Variety="Off" />
-        <Frame UV="36,108"  Name="Music Box (Title)"                    Variety="On" />
-        <Frame UV="0,144"   Name="Music Box (Underground)"              Variety="Off" />
-        <Frame UV="36,144"  Name="Music Box (Underground)"              Variety="On" />
-        <Frame UV="0,180"   Name="Music Box (Boss 1)"                   Variety="Off" />
-        <Frame UV="36,180"  Name="Music Box (Boss 1)"                   Variety="On" />
-        <Frame UV="0,216"   Name="Music Box (Jungle)"                   Variety="Off" />
-        <Frame UV="36,216"  Name="Music Box (Jungle)"                   Variety="On" />
-        <Frame UV="0,252"   Name="Music Box (Corruption)"               Variety="Off" />
-        <Frame UV="36,252"  Name="Music Box (Corruption)"               Variety="On" />
-        <Frame UV="0,288"   Name="Music Box (Underground Corruption)"   Variety="Off" />
-        <Frame UV="36,288"  Name="Music Box (Underground Corruption)"   Variety="On" />
-        <Frame UV="0,324"   Name="Music Box (The Hallow)"               Variety="Off" />
-        <Frame UV="36,324"  Name="Music Box (The Hallow)"               Variety="On" />
-        <Frame UV="0,360"   Name="Music Box (Boss 2)"                   Variety="Off" />
-        <Frame UV="36,360"  Name="Music Box (Boss 2)"                   Variety="On" />
-        <Frame UV="0,396"   Name="Music Box (Underground Hallow)"       Variety="Off" />
-        <Frame UV="36,396"  Name="Music Box (Underground Hallow)"       Variety="On" />
-        <Frame UV="0,432"   Name="Music Box (Boss 3)"                   Variety="Off" />
-        <Frame UV="36,432"  Name="Music Box (Boss 3)"                   Variety="On" />
+        <Frame UV="0,0"     Name="Music Box (Overworld Day)"            Variety="Off"   />
+        <Frame UV="36,0"    Name="Music Box (Overworld Day)"            Variety="On"    />
+        <Frame UV="0,36"    Name="Music Box (Eerie)"                    Variety="Off"   />
+        <Frame UV="36,36"   Name="Music Box (Eerie)"                    Variety="On"    />
+        <Frame UV="0,72"    Name="Music Box (Night)"                    Variety="Off"   />
+        <Frame UV="36,72"   Name="Music Box (Night)"                    Variety="On"    />
+        <Frame UV="0,108"   Name="Music Box (Title)"                    Variety="Off"   />
+        <Frame UV="36,108"  Name="Music Box (Title)"                    Variety="On"    />
+        <Frame UV="0,144"   Name="Music Box (Underground)"              Variety="Off"   />
+        <Frame UV="36,144"  Name="Music Box (Underground)"              Variety="On"    />
+        <Frame UV="0,180"   Name="Music Box (Boss 1)"                   Variety="Off"   />
+        <Frame UV="36,180"  Name="Music Box (Boss 1)"                   Variety="On"    />
+        <Frame UV="0,216"   Name="Music Box (Jungle)"                   Variety="Off"   />
+        <Frame UV="36,216"  Name="Music Box (Jungle)"                   Variety="On"    />
+        <Frame UV="0,252"   Name="Music Box (Corruption)"               Variety="Off"   />
+        <Frame UV="36,252"  Name="Music Box (Corruption)"               Variety="On"    />
+        <Frame UV="0,288"   Name="Music Box (Underground Corruption)"   Variety="Off"   />
+        <Frame UV="36,288"  Name="Music Box (Underground Corruption)"   Variety="On"    />
+        <Frame UV="0,324"   Name="Music Box (The Hallow)"               Variety="Off"   />
+        <Frame UV="36,324"  Name="Music Box (The Hallow)"               Variety="On"    />
+        <Frame UV="0,360"   Name="Music Box (Boss 2)"                   Variety="Off"   />
+        <Frame UV="36,360"  Name="Music Box (Boss 2)"                   Variety="On"    />
+        <Frame UV="0,396"   Name="Music Box (Underground Hallow)"       Variety="Off"   />
+        <Frame UV="36,396"  Name="Music Box (Underground Hallow)"       Variety="On"    />
+        <Frame UV="0,432"   Name="Music Box (Boss 3)"                   Variety="Off"   />
+        <Frame UV="36,432"  Name="Music Box (Boss 3)"                   Variety="On"    />
       </Frames>
     </Tile>
     <Tile Id="140" Name="Demonite Brick"              Color="#FF7875B3"   Light="true"    Solid="true"    Blends="true"   MergeWith="0"   />
@@ -845,11 +845,11 @@ Documentation moved to the end of this file.
         <Frame UV="0,0" Name="Default" Variety="Default" />
       </Frames>
     </Tile>
-    <Tile Id="166" Name="Tin Ore"                     Color="#FFB8B800"   Solid="true"    Blends="true"   />
-    <Tile Id="167" Name="Lead Ore"                    Color="#FF29297A"   Solid="true"    Blends="true"   />
-    <Tile Id="168" Name="Tungsten Ore"                Color="#FF66C266"   Solid="true"    Blends="true"   />
-    <Tile Id="169" Name="Platinum Ore"                Color="#FF6B8FB2"   Solid="true"    Blends="true"   />
-    <Tile Id="170" Name="Tin Chandelier"              Color="#FFFF00FF"   Framed="true"   Light="true" Size="3,3"   >
+    <Tile Id="166" Name="Tin Ore"                     Color="#FFB8B800"   Solid="true"    Blends="true"     />
+    <Tile Id="167" Name="Lead Ore"                    Color="#FF29297A"   Solid="true"    Blends="true"     />
+    <Tile Id="168" Name="Tungsten Ore"                Color="#FF66C266"   Solid="true"    Blends="true"     />
+    <Tile Id="169" Name="Platinum Ore"                Color="#FF6B8FB2"   Solid="true"    Blends="true"     />
+    <Tile Id="170" Name="Tin Chandelier"              Color="#FFFF00FF"   Framed="true"   Light="true"      Size="3,3"   >
       <Frames>
         <Frame UV="0,0" Name="Default" Variety="Default" />
       </Frames>
