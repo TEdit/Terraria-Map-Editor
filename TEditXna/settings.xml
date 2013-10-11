@@ -53,10 +53,10 @@ Documentation moved to the end of this file.
     <GlobalColor Name="Wire2"   Color="#7000FF00"   />
   </GlobalColors>
   <Tiles>
-    <Tile Id="0" Name="Dirt Block"    Color="#FF916A4F"   Solid="true"    Blends="true"   />
-    <Tile Id="1" Name="Stone Block"   Color="#FF808080"   Solid="true"    Blends="true"   MergeWith="0"   Stone="true"    />
-    <Tile Id="2" Name="Grass"         Color="#FF1CD85E"   Solid="true"    Blends="true"   MergeWith="0"   Special="Grass" />
-    <Tile Id="3" Name="Grass Flowers" Color="#FF0D6524"   Framed="true"   TextureGrid="16,20">
+    <Tile Id="0" Name="Dirt Block"                    Color="#FF916A4F"   Solid="true"    Blends="true"   />
+    <Tile Id="1" Name="Stone Block"                   Color="#FF808080"   Solid="true"    Blends="true"   MergeWith="0"   Stone="true"    />
+    <Tile Id="2" Name="Grass"                         Color="#FF1CD85E"   Solid="true"    Blends="true"   MergeWith="0"   Special="Grass" />
+    <Tile Id="3" Name="Grass Flowers"                 Color="#FF0D6524"   Framed="true"   TextureGrid="16,20">
       <Frames>
         <Frame UV="0,0"     Name="Grass"      Anchor="Right"    Variety="Single Blade"        />
         <Frame UV="18,0"    Name="Grass"      Anchor="Right"    Variety="Double Blade"        />
@@ -69,7 +69,7 @@ Documentation moved to the end of this file.
         <Frame UV="144,0"   Name="Mushroom"   Anchor="Bottom"   />
       </Frames>
     </Tile>
-    <Tile Id="4" Name="Torch" Color="#FFFD3E03" Placement="wallFloor" Light="true" Framed="true" Size="1,1" TextureGrid="20,20">
+    <Tile Id="4" Name="Torch"                         Color="#FFFD3E03"   Placement="wallFloor"   Light="true"    Framed="true"   Size="1,1"    TextureGrid="20,20"   >
       <Frames>
         <Frame UV="0,0"       Name="Torch"    Anchor="Bottom"   Variety="On"    />
         <Frame UV="22,0"      Name="Torch"    Anchor="Left"     Variety="On"    />
@@ -127,7 +127,7 @@ Documentation moved to the end of this file.
         <Frame UV="110,176"   Name="Cursed"   Anchor="Right"    Variety="Off"   />
       </Frames>
     </Tile>
-    <Tile Id="5" Name="Tree" Color="#FF634631" Framed="true" TextureGrid="20,20">
+    <Tile Id="5" Name="Tree"                          Color="#FF634631"   Framed="true"   TextureGrid="20,20"   >
       <Frames>
         <Frame UV="22,198"    Name="Tree Top Leafy"   Anchor="Bottom"   Variety="A"                             />
         <Frame UV="22,220"    Name="Tree Top Leafy"   Anchor="Bottom"   Variety="B"                             />
@@ -206,51 +206,51 @@ Documentation moved to the end of this file.
         <Frame UV="0,242"     Name="Tree Trunk"       Anchor="Left"     Variety="Jagged"                        />
       </Frames>
     </Tile>
-    <Tile Id="6" Name="Iron Ore" Color="#FF6B594E" Solid="true" Blends="true" MergeWith="0" />
-    <Tile Id="7" Name="Copper Ore" Color="#FFC6561D" Solid="true" Blends="true" MergeWith="0" />
-    <Tile Id="8" Name="Gold Ore" Color="#FFB9A417" Solid="true" Blends="true" MergeWith="0" />
-    <Tile Id="9" Name="Silver Ore" Color="#FFD9DFDF" Solid="true" Blends="true" MergeWith="0" />
-    <Tile Id="10" Name="Wooden Door" Color="#FF00FFF2" Placement="CFBoth" Solid="true" Framed="true" Size="1,3">
+    <Tile Id="6"  Name="Iron Ore"                     Color="#FF6B594E"   Solid="true"    Blends="true"   MergeWith="0"   />
+    <Tile Id="7"  Name="Copper Ore"                   Color="#FFC6561D"   Solid="true"    Blends="true"   MergeWith="0"   />
+    <Tile Id="8"  Name="Gold Ore"                     Color="#FFB9A417"   Solid="true"    Blends="true"   MergeWith="0"   />
+    <Tile Id="9"  Name="Silver Ore"                   Color="#FFD9DFDF"   Solid="true"    Blends="true"   MergeWith="0"   />
+    <Tile Id="10" Name="Wooden Door"                  Color="#FF00FFF2"   Placement="CFBoth"    Solid="true"    Framed="true"   Size="1,3"    >
       <Frames>
-        <Frame UV="0,0" Variety="A" />
-        <Frame UV="18,0" Variety="B" />
-        <Frame UV="36,0" Variety="C" />
+        <Frame UV="0,0"     Variety="A"   />
+        <Frame UV="18,0"    Variety="B"   />
+        <Frame UV="36,0"    Variety="C"   />
       </Frames>
     </Tile>
-    <Tile Id="11" Name="Door Open" Color="#FF00FFF2" Placement="CFBoth" Framed="true" Size="2,3">
+    <Tile Id="11" Name="Door Open"                    Color="#FF00FFF2"   Placement="CFBoth"    Framed="true"   Size="2,3"    >
       <Frames>
-        <Frame UV="0,0" Anchor="Right" />
-        <Frame UV="36,0" Anchor="Left" />
+        <Frame UV="0,0"     Anchor="Right"    />
+        <Frame UV="36,0"    Anchor="Left"     />
       </Frames>
     </Tile>
-    <Tile Id="12" Name="Crystal Heart" Color="#FFFF0000" Placement="floor" Framed="true" Size="2,2" />
-    <Tile Id="13" Name="Bottle" Color="#FF00FFF2" Placement="surface" Framed="true">
+    <Tile Id="12" Name="Crystal Heart"                Color="#FFFF0000"   Placement="floor"     Framed="true"   Size="2,2"    />
+    <Tile Id="13" Name="Bottle"                       Color="#FF00FFF2"   Placement="surface"   Framed="true"   >
       <Frames>
-        <Frame UV="0,0" Name="Bottle" />
-        <Frame UV="18,0" Name="Healing Potion" />
-        <Frame UV="36,0" Name="Mana Potion" />
-        <Frame UV="54,0" Name="Pink Vase" />
-        <Frame UV="72,0" Name="Mug" />
+        <Frame UV="0,0"     Name="Bottle"           />
+        <Frame UV="18,0"    Name="Healing Potion"   />
+        <Frame UV="36,0"    Name="Mana Potion"      />
+        <Frame UV="54,0"    Name="Pink Vase"        />
+        <Frame UV="72,0"    Name="Mug"              />
       </Frames>
     </Tile>
-    <Tile Id="14" Name="Wooden Table" Color="#FF00FFF2" Placement="floor" SolidTop="true" Framed="true" Size="3,2" TextureGrid="16,16">
+    <Tile Id="14" Name="Wooden Table"                 Color="#FF00FFF2"   Placement="floor"   SolidTop="true"   Framed="true"   Size="3,2"    TextureGrid="16,16"   >
       <Frames>
-        <Frame UV="0,0" Name="Default" Anchor="Left" />
+        <Frame UV="0,0"     Name="Default"        Anchor="Left"     />
       </Frames>
     </Tile>
-    <Tile Id="15" Name="Chair" Color="#FF00FFF2" Placement="floor" Framed="true" Size="1,2">
+    <Tile Id="15" Name="Chair"                        Color="#FF00FFF2"   Placement="floor"   Framed="true"   Size="1,2"    >
       <Frames>
-        <Frame UV="0,0" Name="Wooden Chair" Anchor="Left" />
-        <Frame UV="18,0" Name="Wooden Chair" Anchor="Right" />
-        <Frame UV="0,40" Name="Toilet" Anchor="Left" />
-        <Frame UV="18,40" Name="Toilet" Anchor="Right" />
+        <Frame UV="0,0"     Name="Wooden Chair"   Anchor="Left"     />
+        <Frame UV="18,0"    Name="Wooden Chair"   Anchor="Right"    />
+        <Frame UV="0,40"    Name="Toilet"         Anchor="Left"     />
+        <Frame UV="18,40"   Name="Toilet"         Anchor="Right"    />
       </Frames>
     </Tile>
-    <Tile Id="16" Name="Iron Anvil" Color="#FF00FFF2" Placement="floor" SolidTop="true" Framed="true" Size="2,1" TextureGrid="16,18" />
-    <Tile Id="17" Name="Furnace" Color="#FF00FFF2" Placement="floor" Light="true" Framed="true" Size="3,2" />
-    <Tile Id="18" Name="Work Bench" Color="#FF00FFF2" Placement="floor" SolidTop="true" Framed="true" Size="2,1" TextureGrid="16,18" />
-    <Tile Id="19" Name="Platform" Color="#FF6B3A18" Placement="wall" Light="true" Solid="true" SolidTop="true" Special="Platform" Framed="true" TextureGrid="16,16">
-      <Frames>
+    <Tile Id="16" Name="Iron Anvil"                   Color="#FF00FFF2"   Placement="floor"   SolidTop="true"   Framed="true"   Size="2,1"        TextureGrid="16,18"   />
+    <Tile Id="17" Name="Furnace"                      Color="#FF00FFF2"   Placement="floor"   Light="true"      Framed="true"   Size="3,2"        />
+    <Tile Id="18" Name="Work Bench"                   Color="#FF00FFF2"   Placement="floor"   SolidTop="true"   Framed="true"   Size="2,1"        TextureGrid="16,18"   />
+    <Tile Id="19" Name="Platform"                     Color="#FF6B3A18"   Placement="wall"    Light="true"      Solid="true"    SolidTop="true"   Special="Platform"    Framed="true"   TextureGrid="16,16"     >
+        <Frames>
         <Frame UV="0,0" Name="Platform" Variety="Wood" />
         <Frame UV="0,18" Name="Platform" Variety="Ebonwood" />
         <Frame UV="0,36" Name="Platform" Variety="Rich Mahogany" />
@@ -267,152 +267,152 @@ Documentation moved to the end of this file.
         <Frame UV="0,234" Name="Platform" Variety="Obsidian" />
       </Frames>
     </Tile>
-    <Tile Id="20" Name="Sapling" Color="#FF0D6524" Framed="true" Size="1,2">
+    <Tile Id="20" Name="Sapling"                      Color="#FF0D6524"   Framed="true"       Size="1,2"        >
       <Frames>
-        <Frame UV="0,0" Anchor="Left" />
-        <Frame UV="18,0" Anchor="Bottom" />
-        <Frame UV="36,0" Anchor="Right" />
+        <Frame UV="0,0"     Anchor="Left"     />
+        <Frame UV="18,0"    Anchor="Bottom"   />
+        <Frame UV="36,0"    Anchor="Right"    />
       </Frames>
     </Tile>
-    <Tile Id="21" Name="Chest" Color="#FFDDB800" Placement="floor" Framed="true" Size="2,2">
+    <Tile Id="21" Name="Chest"                        Color="#FFDDB800"   Placement="floor"   Framed="true"   Size="2,2"    >
       <Frames>
-        <Frame UV="0,0" Name="Chest" />
-        <Frame UV="36,0" Name="Gold Chest" />
-        <Frame UV="72,0" Name="Gold Chest" Variety="Locked" />
-        <Frame UV="108,0" Name="Shadow Chest" />
-        <Frame UV="144,0" Name="Shadow Chest" Variety="Locked" />
-        <Frame UV="180,0" Name="Barrel" />
-        <Frame UV="216,0" Name="Trash Can" />
+        <Frame UV="0,0"     Name="Chest"          />
+        <Frame UV="36,0"    Name="Gold Chest"     />
+        <Frame UV="72,0"    Name="Gold Chest"     Variety="Locked"    />
+        <Frame UV="108,0"   Name="Shadow Chest"   />
+        <Frame UV="144,0"   Name="Shadow Chest"   Variety="Locked"    />
+        <Frame UV="180,0"   Name="Barrel"         />
+        <Frame UV="216,0"   Name="Trash Can"      />
       </Frames>
     </Tile>
-    <Tile Id="22" Name="Demonite Ore" Color="#FF625FA7" Light="true" Solid="true" Blends="true" MergeWith="0" />
-    <Tile Id="23" Name="Corruption" Color="#FF8D89DF" Solid="true" Blends="true" MergeWith="0" Special="Grass" />
-    <Tile Id="24" Name="Corruption Plants" Color="#FF8D89DF" Framed="true" TextureGrid="16,20">
+    <Tile Id="22" Name="Demonite Ore"                 Color="#FF625FA7"   Light="true"    Solid="true"    Blends="true"   MergeWith="0"     />
+    <Tile Id="23" Name="Corruption"                   Color="#FF8D89DF"   Solid="true"    Blends="true"   MergeWith="0"   Special="Grass"   />
+    <Tile Id="24" Name="Corruption Plants"            Color="#FF8D89DF"   Framed="true"   TextureGrid="16,20"             >
       <Frames>
-        <Frame UV="0,0" Name="Vile Grass" Anchor="Right" Variety="Single Blade" />
-        <Frame UV="18,0" Name="Vile Grass" Anchor="Right" Variety="Double Blade" />
-        <Frame UV="36,0" Name="Vile Grass" Anchor="Bottom" Variety="Small Y" />
-        <Frame UV="54,0" Name="Vile Grass" Anchor="Right" Variety="Three Small" />
-        <Frame UV="72,0" Name="Vile Grass" Anchor="Left" Variety="Single Blade" />
-        <Frame UV="90,0" Name="Vile Grass" Anchor="Left" Variety="Three Large" />
-        <Frame UV="108,0" Name="Vile Flower" Anchor="Left" Variety="Yellow" />
-        <Frame UV="126,0" Name="Vile Flower" Anchor="Right" Variety="Red" />
-        <Frame UV="144,0" Name="Vile Mushroom" Anchor="Bottom" />
+        <Frame UV="0,0"     Name="Vile Grass"       Anchor="Right"    Variety="Single Blade"    />
+        <Frame UV="18,0"    Name="Vile Grass"       Anchor="Right"    Variety="Double Blade"    />
+        <Frame UV="36,0"    Name="Vile Grass"       Anchor="Bottom"   Variety="Small Y"         />
+        <Frame UV="54,0"    Name="Vile Grass"       Anchor="Right"    Variety="Three Small"     />
+        <Frame UV="72,0"    Name="Vile Grass"       Anchor="Left"     Variety="Single Blade"    />
+        <Frame UV="90,0"    Name="Vile Grass"       Anchor="Left"     Variety="Three Large"     />
+        <Frame UV="108,0"   Name="Vile Flower"      Anchor="Left"     Variety="Yellow"          />
+        <Frame UV="126,0"   Name="Vile Flower"      Anchor="Right"    Variety="Red"             />
+        <Frame UV="144,0"   Name="Vile Mushroom"    Anchor="Bottom"   />
       </Frames>
     </Tile>
-    <Tile Id="25" Name="Ebonstone Block" Color="#FF4B4A82" Solid="true" Blends="true" MergeWith="0" />
-    <Tile Id="26" Name="Demon Altar" Color="#FF9000FF" Placement="floor" Light="true" Framed="true" Size="3,2" />
-    <Tile Id="27" Name="Sunflower" Color="#FFC4FF14" Framed="true" Size="2,4">
+    <Tile Id="25" Name="Ebonstone Block"              Color="#FF4B4A82"   Solid="true"          Blends="true"   MergeWith="0"   />
+    <Tile Id="26" Name="Demon Altar"                  Color="#FF9000FF"   Placement="floor"     Light="true"    Framed="true"   Size="3,2"    />
+    <Tile Id="27" Name="Sunflower"                    Color="#FFC4FF14"   Framed="true"         Size="2,4"      >
       <Frames>
-        <Frame UV="0,0" Variety="A" />
-        <Frame UV="36,0" Variety="B" />
-        <Frame UV="72,0" Variety="C" />
+        <Frame UV="0,0"     Variety="A"   />
+        <Frame UV="36,0"    Variety="B"   />
+        <Frame UV="72,0"    Variety="C"   />
       </Frames>
     </Tile>
-    <Tile Id="28" Name="Pot" Color="#FF8C2726" Placement="floor" Framed="true" Size="2,2">
+    <Tile Id="28" Name="Pot"                          Color="#FF8C2726"   Placement="floor"     Framed="true"   Size="2,2"      >
       <Frames>
-        <Frame UV="0,0" Variety="Oval" />
-        <Frame UV="36,0" Variety="Wide" />
-        <Frame UV="72,0" Variety="Round" />
+        <Frame UV="0,0"     Variety="Oval"    />
+        <Frame UV="36,0"    Variety="Wide"    />
+        <Frame UV="72,0"    Variety="Round"   />
       </Frames>
     </Tile>
-    <Tile Id="29" Name="Piggy Bank" Color="#FF00FFF2" Placement="surface" Framed="true" Size="2,1" />
-    <Tile Id="30" Name="Wood" Color="#FF684934" Solid="true" Blends="true" MergeWith="0" />
-    <Tile Id="31" Name="Shadow Orb" Color="#FF000000" Placement="floor" Light="true" Framed="true" Size="2,2" />
-    <Tile Id="32" Name="Corruption Vines" Color="#FF7A618F" Blends="true" />
-    <Tile Id="33" Name="Candle" Color="#FFFD3E03" Placement="surface" Light="true" Framed="true" TextureGrid="16,20">
-      <Frames>
-        <Frame UV="0,0" Variety="On" />
-        <Frame UV="18,0" Variety="Off" />
-      </Frames>
-    </Tile>
-    <Tile Id="34" Name="Copper Chandelier" Color="#FFFD3E03" Placement="ceiling" Light="true" Framed="true" Size="3,3">
-      <Frames>
-        <Frame UV="0,0" Variety="On" />
-        <Frame UV="54,0" Variety="Off" />
-      </Frames>
-    </Tile>
-    <Tile Id="35" Name="Silver Chandelier" Color="#FFFD3E03" Placement="ceiling" Light="true" Framed="true" Size="3,3">
-      <Frames>
-        <Frame UV="0,0" Variety="On" />
-        <Frame UV="54,0" Variety="Off" />
-      </Frames>
-    </Tile>
-    <Tile Id="36" Name="Gold Chandelier" Color="#FFFD3E03" Placement="ceiling" Light="true" Framed="true" Size="3,3">
-      <Frames>
-        <Frame UV="0,0" Variety="On" />
-        <Frame UV="54,0" Variety="Off" />
-      </Frames>
-    </Tile>
-    <Tile Id="37" Name="Meteorite" Color="#FFDF9F89" Light="true" Solid="true" Blends="true" MergeWith="0" />
-    <Tile Id="38" Name="Gray Brick" Color="#FF909090" Solid="true" Blends="true" MergeWith="0" />
-    <Tile Id="39" Name="Red Brick" Color="#FFB200FF" Solid="true" Blends="true" MergeWith="0" />
-    <Tile Id="40" Name="Clay Block" Color="#FFAC5B4D" Solid="true" Blends="true" MergeWith="0" />
-    <Tile Id="41" Name="Blue Brick" Color="#FF545498" Solid="true" Blends="true" MergeWith="0" />
-    <Tile Id="42" Name="Chain Lantern" Color="#FFEF904B" Placement="ceiling" Light="true" Framed="true" Size="1,2">
+    <Tile Id="29" Name="Piggy Bank"                   Color="#FF00FFF2"   Placement="surface"   Framed="true"   Size="2,1"      />
+    <Tile Id="30" Name="Wood"                         Color="#FF684934"   Solid="true"          Blends="true"   MergeWith="0"   />
+    <Tile Id="31" Name="Shadow Orb"                   Color="#FF000000"   Placement="floor"     Light="true"    Framed="true"   Size="2,2"    />
+    <Tile Id="32" Name="Corruption Vines"             Color="#FF7A618F"   Blends="true"         />
+    <Tile Id="33" Name="Candle"                       Color="#FFFD3E03"   Placement="surface"   Light="true"    Framed="true"   TextureGrid="16,20"   >
       <Frames>
         <Frame UV="0,0" Variety="On" />
         <Frame UV="18,0" Variety="Off" />
       </Frames>
     </Tile>
-    <Tile Id="43" Name="Green Brick" Color="#FF39A851" Solid="true" Blends="true" MergeWith="0" />
-    <Tile Id="44" Name="Pink Brick" Color="#FFB200FF" Solid="true" Blends="true" MergeWith="0" />
-    <Tile Id="45" Name="Gold Brick" Color="#FFFFD514" Solid="true" Blends="true" MergeWith="0" />
-    <Tile Id="46" Name="Silver Brick" Color="#FFE5E5E5" Solid="true" Blends="true" MergeWith="0" />
-    <Tile Id="47" Name="Copper Brick" Color="#FFFF5900" Solid="true" Blends="true" MergeWith="0" />
-    <Tile Id="48" Name="Spike" Color="#FF6D6D6D" Placement="wallFloorCeiling" Solid="true" Blends="true" />
-    <Tile Id="49" Name="Water Candle" Color="#FF2B8FFF" Placement="surface" Light="true" TextureGrid="16,20" />
-    <Tile Id="50" Name="Book" Color="#FF00FFF2" Placement="surface" Framed="true">
+    <Tile Id="34" Name="Copper Chandelier"            Color="#FFFD3E03"   Placement="ceiling"   Light="true"    Framed="true"   Size="3,3"    >
       <Frames>
-        <Frame UV="0,0" Variety="Blue, Red, Brown" />
-        <Frame UV="18,0" Variety="Yellow, Pink" />
-        <Frame UV="36,0" Variety="Teal, Brown" />
-        <Frame UV="54,0" Variety="Purple, Blue" />
-        <Frame UV="72,0" Variety="Green, Orange" />
-        <Frame UV="90,0" Variety="Brown, Water Bolt, Gray" />
+        <Frame UV="0,0"     Variety="On"    />
+        <Frame UV="54,0"    Variety="Off"   />
       </Frames>
     </Tile>
-    <Tile Id="51" Name="Cobweb" Color="#FFFFFFFF" Blends="true" MergeWith="-1" />
-    <Tile Id="52" Name="Vines" Color="#FF0D6524" Blends="true" />
-    <Tile Id="53" Name="Sand Block" Color="#FFFFDA38" Solid="true" Blends="true" MergeWith="0" />
-    <Tile Id="54" Name="Glass" Color="#40FFFFFF" Solid="true" Blends="true" />
-    <Tile Id="55" Name="Sign" Color="#FFFFAE5E" Placement="wallFloorCeiling" Framed="true" Size="2,2">
+    <Tile Id="35" Name="Silver Chandelier"            Color="#FFFD3E03"   Placement="ceiling"   Light="true"    Framed="true"   Size="3,3"    >
       <Frames>
-        <Frame UV="0,0" Anchor="Top" />
-        <Frame UV="36,0" Anchor="Bottom" />
-        <Frame UV="72,0" Anchor="Left" />
-        <Frame UV="108,0" Anchor="Right" />
+        <Frame UV="0,0"     Variety="On"    />
+        <Frame UV="54,0"    Variety="Off"   />
       </Frames>
     </Tile>
-    <Tile Id="56" Name="Obsidian" Color="#FF5751AD" Solid="true" Blends="true" MergeWith="0" />
-    <Tile Id="57" Name="Ash Block" Color="#FF44444C" Solid="true" Blends="true" MergeWith="0" />
-    <Tile Id="58" Name="Hellstone" Color="#FF662222" Light="true" Solid="true" Blends="true" MergeWith="57" />
-    <Tile Id="59" Name="Mud Block" Color="#FF5C4449" Solid="true" Blends="true" MergeWith="0" />
-    <Tile Id="60" Name="Jungle Grass" Color="#FF8FD71D" Solid="true" Blends="true" MergeWith="59" Special="Grass" />
-    <Tile Id="61" Name="Jungle Plants" Color="#FF8FD71D" Light="true" Framed="true" TextureGrid="16,20">
+    <Tile Id="36" Name="Gold Chandelier"              Color="#FFFD3E03"   Placement="ceiling"   Light="true"    Framed="true"   Size="3,3"    >
       <Frames>
-        <Frame UV="0,0" Name="Jungle Grass" Anchor="Right" Variety="Single Blade" />
-        <Frame UV="18,0" Name="Jungle Grass" Anchor="Right" Variety="Double Blade" />
-        <Frame UV="36,0" Name="Jungle Grass" Anchor="Bottom" Variety="Small Y" />
-        <Frame UV="54,0" Name="Jungle Grass" Anchor="Right" Variety="Three Small" />
-        <Frame UV="72,0" Name="Jungle Grass" Anchor="Left" Variety="Single Blade" />
-        <Frame UV="90,0" Name="Jungle Grass" Anchor="Left" Variety="Three Large" />
-        <Frame UV="108,0" Name="Jungle Rose" Anchor="Left" Variety="Immature" />
-        <Frame UV="126,0" Name="Jungle Rose" Anchor="Right" Variety="Immature" />
-        <Frame UV="144,0" Name="Puff Light" Anchor="Bottom" />
-        <Frame UV="162,0" Name="Nature's Gift" Anchor="Right" Variety="Immature" />
+        <Frame UV="0,0"     Variety="On"    />
+        <Frame UV="54,0"    Variety="Off"   />
       </Frames>
     </Tile>
-    <Tile Id="62" Name="Jungle Vines"                 Color="#FF8ACE1C" Blends="true" />
-    <Tile Id="63" Name="Gem Sapphire"                 Color="#FF2A82FA" Solid="true" Blends="true" MergeWith="0" Stone="true" />
-    <Tile Id="64" Name="Gem Ruby"                     Color="#FF2A82FA" Solid="true" Blends="true" MergeWith="0" Stone="true" />
-    <Tile Id="65" Name="Gem Emerald"                  Color="#FF2A82FA" Solid="true" Blends="true" MergeWith="0" Stone="true" />
-    <Tile Id="66" Name="Gem Topaz"                    Color="#FF2A82FA" Solid="true" Blends="true" MergeWith="0" Stone="true" />
-    <Tile Id="67" Name="Gem Amethyst"                 Color="#FF2A82FA" Solid="true" Blends="true" MergeWith="0" Stone="true" />
-    <Tile Id="68" Name="Gem Diamond"                  Color="#FF2A82FA" Solid="true" Blends="true" MergeWith="0" Stone="true" />
-    <Tile Id="69" Name="Jungle Thorns"                Color="#FF5E3037" Blends="true" />
-    <Tile Id="70" Name="Mushroom Grass"               Color="#FF5D7FFF" Light="true" Solid="true" Blends="true" MergeWith="59" Special="Grass" />
-    <Tile Id="71" Name="Mushroom Plant"               Color="#FFB1AE83" Light="true" Framed="true" TextureGrid="16,20">
+    <Tile Id="37" Name="Meteorite"                    Color="#FFDF9F89"   Light="true"    Solid="true"    Blends="true"   MergeWith="0"   />
+    <Tile Id="38" Name="Gray Brick"                   Color="#FF909090"   Solid="true"    Blends="true"   MergeWith="0"   />
+    <Tile Id="39" Name="Red Brick"                    Color="#FFB200FF"   Solid="true"    Blends="true"   MergeWith="0"   />
+    <Tile Id="40" Name="Clay Block"                   Color="#FFAC5B4D"   Solid="true"    Blends="true"   MergeWith="0"   />
+    <Tile Id="41" Name="Blue Brick"                   Color="#FF545498"   Solid="true"    Blends="true"   MergeWith="0"   />
+    <Tile Id="42" Name="Chain Lantern"                Color="#FFEF904B"   Placement="ceiling"             Light="true"    Framed="true"   Size="1,2"    >
+      <Frames>
+        <Frame UV="0,0"     Variety="On"    />
+        <Frame UV="18,0"    Variety="Off"   />
+      </Frames>
+    </Tile>
+    <Tile Id="43" Name="Green Brick"                  Color="#FF39A851"   Solid="true"    Blends="true"   MergeWith="0"   />
+    <Tile Id="44" Name="Pink Brick"                   Color="#FFB200FF"   Solid="true"    Blends="true"   MergeWith="0"   />
+    <Tile Id="45" Name="Gold Brick"                   Color="#FFFFD514"   Solid="true"    Blends="true"   MergeWith="0"   />
+    <Tile Id="46" Name="Silver Brick"                 Color="#FFE5E5E5"   Solid="true"    Blends="true"   MergeWith="0"   />
+    <Tile Id="47" Name="Copper Brick"                 Color="#FFFF5900"   Solid="true"    Blends="true"   MergeWith="0"   />
+    <Tile Id="48" Name="Spike"                        Color="#FF6D6D6D"   Placement="wallFloorCeiling"    Solid="true"    Blends="true"         />
+    <Tile Id="49" Name="Water Candle"                 Color="#FF2B8FFF"   Placement="surface"             Light="true"    TextureGrid="16,20"   />
+    <Tile Id="50" Name="Book"                         Color="#FF00FFF2"   Placement="surface"             Framed="true"   >
+      <Frames>
+        <Frame UV="0,0"     Variety="Blue, Red, Brown"          />
+        <Frame UV="18,0"    Variety="Yellow, Pink"              />
+        <Frame UV="36,0"    Variety="Teal, Brown"               />
+        <Frame UV="54,0"    Variety="Purple, Blue"              />
+        <Frame UV="72,0"    Variety="Green, Orange"             />
+        <Frame UV="90,0"    Variety="Brown, Water Bolt, Gray"   />
+      </Frames>
+    </Tile>
+    <Tile Id="51" Name="Cobweb"                       Color="#FFFFFFFF"   Blends="true"   MergeWith="-1"    />
+    <Tile Id="52" Name="Vines"                        Color="#FF0D6524"   Blends="true"   />
+    <Tile Id="53" Name="Sand Block"                   Color="#FFFFDA38"   Solid="true"    Blends="true"   MergeWith="0"   />
+    <Tile Id="54" Name="Glass"                        Color="#40FFFFFF"   Solid="true"    Blends="true"   />
+    <Tile Id="55" Name="Sign"                         Color="#FFFFAE5E"   Placement="wallFloorCeiling"    Framed="true"   Size="2,2"    >
+      <Frames>
+        <Frame UV="0,0"     Anchor="Top"      />
+        <Frame UV="36,0"    Anchor="Bottom"   />
+        <Frame UV="72,0"    Anchor="Left"     />
+        <Frame UV="108,0"   Anchor="Right"    />
+      </Frames>
+    </Tile>
+    <Tile Id="56" Name="Obsidian"                     Color="#FF5751AD"   Solid="true"    Blends="true"   MergeWith="0"         />
+    <Tile Id="57" Name="Ash Block"                    Color="#FF44444C"   Solid="true"    Blends="true"   MergeWith="0"         />
+    <Tile Id="58" Name="Hellstone"                    Color="#FF662222"   Light="true"    Solid="true"    Blends="true"         MergeWith="57" />
+    <Tile Id="59" Name="Mud Block"                    Color="#FF5C4449"   Solid="true"    Blends="true"   MergeWith="0"         />
+    <Tile Id="60" Name="Jungle Grass"                 Color="#FF8FD71D"   Solid="true"    Blends="true"   MergeWith="59"        Special="Grass" />
+    <Tile Id="61" Name="Jungle Plants"                Color="#FF8FD71D"   Light="true"    Framed="true"   TextureGrid="16,20"   >
+      <Frames>
+        <Frame UV="0,0"     Name="Jungle Grass"     Anchor="Right"    Variety="Single Blade"    />
+        <Frame UV="18,0"    Name="Jungle Grass"     Anchor="Right"    Variety="Double Blade"    />
+        <Frame UV="36,0"    Name="Jungle Grass"     Anchor="Bottom"   Variety="Small Y"         />
+        <Frame UV="54,0"    Name="Jungle Grass"     Anchor="Right"    Variety="Three Small"     />
+        <Frame UV="72,0"    Name="Jungle Grass"     Anchor="Left"     Variety="Single Blade"    />
+        <Frame UV="90,0"    Name="Jungle Grass"     Anchor="Left"     Variety="Three Large"     />
+        <Frame UV="108,0"   Name="Jungle Rose"      Anchor="Left"     Variety="Immature"        />
+        <Frame UV="126,0"   Name="Jungle Rose"      Anchor="Right"    Variety="Immature"        />
+        <Frame UV="144,0"   Name="Puff Light"       Anchor="Bottom"                             />
+        <Frame UV="162,0"   Name="Nature's Gift"    Anchor="Right"    Variety="Immature"        />
+      </Frames>
+    </Tile>
+    <Tile Id="62" Name="Jungle Vines"                 Color="#FF8ACE1C"   Blends="true"   />
+    <Tile Id="63" Name="Gem Sapphire"                 Color="#FF2A82FA"   Solid="true"    Blends="true"   MergeWith="0"   Stone="true"    />
+    <Tile Id="64" Name="Gem Ruby"                     Color="#FF2A82FA"   Solid="true"    Blends="true"   MergeWith="0"   Stone="true"    />
+    <Tile Id="65" Name="Gem Emerald"                  Color="#FF2A82FA"   Solid="true"    Blends="true"   MergeWith="0"   Stone="true"    />
+    <Tile Id="66" Name="Gem Topaz"                    Color="#FF2A82FA"   Solid="true"    Blends="true"   MergeWith="0"   Stone="true"    />
+    <Tile Id="67" Name="Gem Amethyst"                 Color="#FF2A82FA"   Solid="true"    Blends="true"   MergeWith="0"   Stone="true"    />
+    <Tile Id="68" Name="Gem Diamond"                  Color="#FF2A82FA"   Solid="true"    Blends="true"   MergeWith="0"   Stone="true"    />
+    <Tile Id="69" Name="Jungle Thorns"                Color="#FF5E3037"   Blends="true"   />
+    <Tile Id="70" Name="Mushroom Grass"               Color="#FF5D7FFF"   Light="true"    Solid="true"    Blends="true"   MergeWith="59"    Special="Grass"   />
+    <Tile Id="71" Name="Mushroom Plant"               Color="#FFB1AE83"   Light="true"    Framed="true"   TextureGrid="16,20"   >
       <Frames>
         <Frame UV="0,0"     Variety="Double Small"    />
         <Frame UV="18,0"    Variety="Small"           />
@@ -479,7 +479,7 @@ Documentation moved to the end of this file.
     <Tile Id="82" Name="Herb Sprout"                  Color="#FFFF7800"   Framed="true"   >
       <Frames>
         <Frame UV="0,0"     Name="Daybloom"       growsOn="2,78"        />
-        <Frame UV="18,0"    Name="Moonglow"       growsOn="60,78"        />
+        <Frame UV="18,0"    Name="Moonglow"       growsOn="60,78"       />
         <Frame UV="36,0"    Name="Blinkroot"      growsOn="0,59,78"     />
         <Frame UV="54,0"    Name="Deathweed"      growsOn="23,25,78"    />
         <Frame UV="72,0"    Name="Waterleaf"      growsOn="53,78"       />
@@ -506,12 +506,12 @@ Documentation moved to the end of this file.
         <Frame UV="90,0"    Name="Fireblossom"    growsOn="57,76,78"    />
       </Frames>
     </Tile>
-    <Tile Id="85" Name="Tombstone"                    Color="#FFC0C0C0" Placement="floor" Framed="true" Size="2,2">
+    <Tile Id="85" Name="Tombstone"                    Color="#FFC0C0C0"   Placement="floor"   Framed="true"   Size="2,2"    >
       <Frames>
-        <Frame UV="0,0" Variety="A" />
-        <Frame UV="36,0" Variety="B" />
-        <Frame UV="72,0" Variety="C" />
-        <Frame UV="108,0" Variety="D" />
+        <Frame UV="0,0"     Variety="A"   />
+        <Frame UV="36,0"    Variety="B"   />
+        <Frame UV="72,0"    Variety="C"   />
+        <Frame UV="108,0"   Variety="D"   />
       </Frames>
     </Tile>
     <Tile Id="86" Name="Loom"                         Color="#FFFF00FF"   Placement="floor"           Framed="true"     Size="3,2"      />
@@ -854,17 +854,17 @@ Documentation moved to the end of this file.
         <Frame UV="0,0" Name="Default" Variety="Default" />
       </Frames>
     </Tile>
-    <Tile Id="171" Name="Tungsten Chandelier"         Color="#FFFF00FF"   Framed="true"   Light="true"  Size="3,3"  >
+    <Tile Id="171" Name="Tungsten Chandelier"         Color="#FFFF00FF"   Framed="true"   Light="true"      Size="3,3"  >
       <Frames>
         <Frame UV="0,0" Name="Default" Variety="Default" />
       </Frames>
     </Tile>
-    <Tile Id="172" Name="Platinum Chandelier"         Color="#FFFF00FF"   Framed="true"   Light="true" Size="3,3"   >
+    <Tile Id="172" Name="Platinum Chandelier"         Color="#FFFF00FF"   Framed="true"   Light="true"      Size="3,3"   >
       <Frames>
         <Frame UV="0,0" Name="Default" Variety="Default" />
       </Frames>
     </Tile>
-    <Tile Id="173" Name="Platinum Candelabra"         Color="#FFFF00FF"   Framed="true"   Light="true" Size="2,2"   >
+    <Tile Id="173" Name="Platinum Candelabra"         Color="#FFFF00FF"   Framed="true"   Light="true"      Size="2,2"   >
       <Frames>
         <Frame UV="0,0" Name="Default" Variety="Default" />
       </Frames>
@@ -879,13 +879,13 @@ Documentation moved to the end of this file.
     <Tile Id="177" Name="Platinum Brick"              Color="#FFFF00FF"   Solid="true"    />
     <Tile Id="178" Name="Gems"                        Color="#FFFF00FF"   Framed="true"   >
       <Frames>
-        <Frame UV="0,0" Name="Amethyst" Variety="Default" />
-        <Frame UV="18,0" Name="Topaz" Variety="Default" />
-        <Frame UV="36,0" Name="Sapphire" Variety="Default" />
-        <Frame UV="54,0" Name="Emerald" Variety="Default" />
-        <Frame UV="72,0" Name="Ruby" Variety="Default" />
-        <Frame UV="90,0" Name="Diamond" Variety="Default" />
-        <Frame UV="108,0" Name="Amber" Variety="Default" />
+        <Frame UV="0,0"         Name="Amethyst"     Variety="Default" />
+        <Frame UV="18,0"        Name="Topaz"        Variety="Default" />
+        <Frame UV="36,0"        Name="Sapphire"     Variety="Default" />
+        <Frame UV="54,0"        Name="Emerald"      Variety="Default" />
+        <Frame UV="72,0"        Name="Ruby"         Variety="Default" />
+        <Frame UV="90,0"        Name="Diamond"      Variety="Default" />
+        <Frame UV="108,0"       Name="Amber"        Variety="Default" />
       </Frames>
     </Tile>
     <Tile Id="179" Name=""                            Color="#FF336600"   Solid="true"    Blends="true"   />
@@ -898,175 +898,174 @@ Documentation moved to the end of this file.
         <Frame UV="0,0" Name="Default" Variety="Default" />
       </Frames>
     </Tile>
-    <Tile Id="185" Name="Deco Small"                            Color="#FFFF00FF"   Framed="true" Size="1,1"  >
+    <Tile Id="185" Name="Deco Small"                  Color="#FFFF00FF"   Framed="true" Size="1,1"  >
       <Frames>
-        <Frame UV="0,0" Name="" Variety="" />
-        <Frame UV="18,0" Name="" Variety="" />
-        <Frame UV="36,0" Name="" Variety="" />
-        <Frame UV="54,0" Name="" Variety="" />
-        <Frame UV="72,0" Name="" Variety="" />
-        <Frame UV="90,0" Name="" Variety="" />
-        <Frame UV="108,0" Name="" Variety="" />
-        <Frame UV="126,0" Name="" Variety="" />
-        <Frame UV="144,0" Name="" Variety="" />
-        <Frame UV="162,0" Name="" Variety="" />
-        <Frame UV="180,0" Name="" Variety="" />
-        <Frame UV="198,0" Name="" Variety="" />
-        <Frame UV="216,0" Name="" Variety="" />
-        <Frame UV="234,0" Name="" Variety="" />
-        <Frame UV="252,0" Name="" Variety="" />
-        <Frame UV="270,0" Name="" Variety="" />
-        <Frame UV="288,0" Name="" Variety="" />
-        <Frame UV="306,0" Name="" Variety="" />
-        <Frame UV="324,0" Name="" Variety="" />
-        <Frame UV="342,0" Name="" Variety="" />
-        <Frame UV="360,0" Name="" Variety="" />
-        <Frame UV="378,0" Name="" Variety="" />
-        <Frame UV="396,0" Name="" Variety="" />
-        <Frame UV="414,0" Name="" Variety="" />
-        <Frame UV="432,0" Name="" Variety="" />
-        <Frame UV="450,0" Name="" Variety="" />
-        <Frame UV="468,0" Name="" Variety="" />
-        <Frame UV="486,0" Name="" Variety="" />
-        <Frame UV="504,0" Name="" Variety="" />
-        <Frame UV="522,0" Name="" Variety="" />
-        <Frame UV="540,0" Name="" Variety="" />
-        <Frame UV="558,0" Name="" Variety="" />
-        <Frame UV="576,0" Name="" Variety="" />
-        <Frame UV="594,0" Name="" Variety="" />
-        <Frame UV="612,0" Name="" Variety="" />
-        <Frame UV="630,0" Name="" Variety="" />
-        <Frame UV="648,0" Name="" Variety="" />
-        <Frame UV="666,0" Name="" Variety="" />
-        <Frame UV="684,0" Name="" Variety="" />
-        <Frame UV="702,0" Name="" Variety="" />
-        <Frame UV="720,0" Name="" Variety="" />
-        <Frame UV="738,0" Name="" Variety="" />
-        <Frame UV="756,0" Name="" Variety="" />
-        <Frame UV="774,0" Name="" Variety="" />
-        <Frame UV="792,0" Name="" Variety="" />
-        <Frame UV="810,0" Name="" Variety="" />
-        <Frame UV="828,0" Name="" Variety="" />
-        <Frame UV="846,0" Name="" Variety="" />
-        <Frame UV="864,0" Name="" Variety="" />
-        <Frame UV="882,0" Name="" Variety="" />
-        <Frame UV="900,0" Name="" Variety="" />
-        <Frame UV="918,0" Name="" Variety="" />
-        <Frame UV="936,0" Name="" Variety="" />
-        <Frame UV="954,0" Name="" Variety="" />
-        <Frame UV="972,0" Name="" Variety="" />
-        <Frame UV="990,0" Name="" Variety="" />
-        <Frame UV="1008,0" Name="" Variety="" />
-        <Frame UV="1026,0" Name="" Variety="" />
-        <Frame UV="1044,0" Name="" Variety="" />
-        <Frame UV="1062,0" Name="" Variety="" />
-        <Frame UV="1080,0" Name="" Variety="" />
-        <Frame UV="1098,0" Name="" Variety="" />
-        <Frame UV="1116,0" Name="" Variety="" />
-        <Frame UV="1134,0" Name="" Variety="" />
-        <Frame UV="1152,0" Name="" Variety="" />
-        <Frame UV="1170,0" Name="" Variety="" />
-        <Frame UV="1188,0" Name="" Variety="" />
-        <Frame UV="1206,0" Name="" Variety="" />
-        <Frame UV="1224,0" Name="" Variety="" />
-        <Frame UV="1242,0" Name="" Variety="" />
-        <Frame UV="1260,0" Name="" Variety="" />
-        <Frame UV="1278,0" Name="" Variety="" />
-        <Frame UV="1296,0" Name="" Variety="" />
-        <Frame UV="1314,0" Name="" Variety="" />
-        <Frame UV="1332,0" Name="" Variety="" />
-        <Frame UV="1350,0" Name="" Variety="" />
-        <Frame UV="1368,0" Name="" Variety="" />
-        <Frame UV="1386,0" Name="" Variety="" />
-        <Frame UV="1404,0" Name="" Variety="" />
-        <Frame UV="1422,0" Name="" Variety="" />
-        <Frame UV="1440,0" Name="" Variety="" />
-        <Frame UV="1458,0" Name="" Variety="" />
-        <Frame UV="0,18" Name="" Variety="" />
-        <Frame UV="18,18" Name="" Variety="" />
-        <Frame UV="36,18" Name="" Variety="" />
-        <Frame UV="54,18" Name="" Variety="" />
-        <Frame UV="72,18" Name="" Variety="" />
-        <Frame UV="90,18" Name="" Variety="" />
-        <Frame UV="108,18" Name="" Variety="" />
-        <Frame UV="126,18" Name="" Variety="" />
-        <Frame UV="144,18" Name="" Variety="" />
-        <Frame UV="162,18" Name="" Variety="" />
-        <Frame UV="180,18" Name="" Variety="" />
-        <Frame UV="198,18" Name="" Variety="" />
-        <Frame UV="216,18" Name="" Variety="" />
-        <Frame UV="234,18" Name="" Variety="" />
-        <Frame UV="252,18" Name="" Variety="" />
-        <Frame UV="270,18" Name="" Variety="" />
-        <Frame UV="288,18" Name="" Variety="" />
-        <Frame UV="306,18" Name="" Variety="" />
-        <Frame UV="324,18" Name="" Variety="" />
-        <Frame UV="342,18" Name="" Variety="" />
-        <Frame UV="360,18" Name="" Variety="" />
-        <Frame UV="378,18" Name="" Variety="" />
-        <Frame UV="396,18" Name="" Variety="" />
-        <Frame UV="414,18" Name="" Variety="" />
-        <Frame UV="432,18" Name="" Variety="" />
-        <Frame UV="450,18" Name="" Variety="" />
-        <Frame UV="468,18" Name="" Variety="" />
-        <Frame UV="486,18" Name="" Variety="" />
-        <Frame UV="504,18" Name="" Variety="" />
-        <Frame UV="522,18" Name="" Variety="" />
-        <Frame UV="540,18" Name="" Variety="" />
-        <Frame UV="558,18" Name="" Variety="" />
-        <Frame UV="576,18" Name="" Variety="" />
-        <Frame UV="594,18" Name="" Variety="" />
-        <Frame UV="612,18" Name="" Variety="" />
-        <Frame UV="630,18" Name="" Variety="" />
-        <Frame UV="648,18" Name="" Variety="" />
-        <Frame UV="666,18" Name="" Variety="" />
-        <Frame UV="684,18" Name="" Variety="" />
-        <Frame UV="702,18" Name="" Variety="" />
-        <Frame UV="720,18" Name="" Variety="" />
-        <Frame UV="738,18" Name="" Variety="" />
-        <Frame UV="756,18" Name="" Variety="" />
-        <Frame UV="774,18" Name="" Variety="" />
-        <Frame UV="792,18" Name="" Variety="" />
-        <Frame UV="810,18" Name="" Variety="" />
-        <Frame UV="828,18" Name="" Variety="" />
-        <Frame UV="846,18" Name="" Variety="" />
-        <Frame UV="864,18" Name="" Variety="" />
-        <Frame UV="882,18" Name="" Variety="" />
-        <Frame UV="900,18" Name="" Variety="" />
-        <Frame UV="918,18" Name="" Variety="" />
-        <Frame UV="936,18" Name="" Variety="" />
-        <Frame UV="954,18" Name="" Variety="" />
-        <Frame UV="972,18" Name="" Variety="" />
-        <Frame UV="990,18" Name="" Variety="" />
-        <Frame UV="1008,18" Name="" Variety="" />
-        <Frame UV="1026,18" Name="" Variety="" />
-        <Frame UV="1044,18" Name="" Variety="" />
-        <Frame UV="1062,18" Name="" Variety="" />
-        <Frame UV="1080,18" Name="" Variety="" />
-        <Frame UV="1098,18" Name="" Variety="" />
-        <Frame UV="1116,18" Name="" Variety="" />
-        <Frame UV="1134,18" Name="" Variety="" />
-        <Frame UV="1152,18" Name="" Variety="" />
-        <Frame UV="1170,18" Name="" Variety="" />
-        <Frame UV="1188,18" Name="" Variety="" />
-        <Frame UV="1206,18" Name="" Variety="" />
-        <Frame UV="1224,18" Name="" Variety="" />
-        <Frame UV="1242,18" Name="" Variety="" />
-        <Frame UV="1260,18" Name="" Variety="" />
-        <Frame UV="1278,18" Name="" Variety="" />
-        <Frame UV="1296,18" Name="" Variety="" />
-        <Frame UV="1314,18" Name="" Variety="" />
-        <Frame UV="1332,18" Name="" Variety="" />
-        <Frame UV="1350,18" Name="" Variety="" />
-        <Frame UV="1368,18" Name="" Variety="" />
-        <Frame UV="1386,18" Name="" Variety="" />
-        <Frame UV="1404,18" Name="" Variety="" />
-        <Frame UV="1422,18" Name="" Variety="" />
-        <Frame UV="1440,18" Name="" Variety="" />
-        <Frame UV="1458,18" Name="" Variety="" />
+        <Frame UV="0,0"         Name="" Variety="" />
+        <Frame UV="18,0"        Name="" Variety="" />
+        <Frame UV="36,0"        Name="" Variety="" />
+        <Frame UV="54,0"        Name="" Variety="" />
+        <Frame UV="72,0"        Name="" Variety="" />
+        <Frame UV="90,0"        Name="" Variety="" />
+        <Frame UV="108,0"       Name="" Variety="" />
+        <Frame UV="126,0"       Name="" Variety="" />
+        <Frame UV="144,0"       Name="" Variety="" />
+        <Frame UV="162,0"       Name="" Variety="" />
+        <Frame UV="180,0"       Name="" Variety="" />
+        <Frame UV="198,0"       Name="" Variety="" />
+        <Frame UV="216,0"       Name="" Variety="" />
+        <Frame UV="234,0"       Name="" Variety="" />
+        <Frame UV="252,0"       Name="" Variety="" />
+        <Frame UV="270,0"       Name="" Variety="" />
+        <Frame UV="288,0"       Name="" Variety="" />
+        <Frame UV="306,0"       Name="" Variety="" />
+        <Frame UV="324,0"       Name="" Variety="" />
+        <Frame UV="342,0"       Name="" Variety="" />
+        <Frame UV="360,0"       Name="" Variety="" />
+        <Frame UV="378,0"       Name="" Variety="" />
+        <Frame UV="396,0"       Name="" Variety="" />
+        <Frame UV="414,0"       Name="" Variety="" />
+        <Frame UV="432,0"       Name="" Variety="" />
+        <Frame UV="450,0"       Name="" Variety="" />
+        <Frame UV="468,0"       Name="" Variety="" />
+        <Frame UV="486,0"       Name="" Variety="" />
+        <Frame UV="504,0"       Name="" Variety="" />
+        <Frame UV="522,0"       Name="" Variety="" />
+        <Frame UV="540,0"       Name="" Variety="" />
+        <Frame UV="558,0"       Name="" Variety="" />
+        <Frame UV="576,0"       Name="" Variety="" />
+        <Frame UV="594,0"       Name="" Variety="" />
+        <Frame UV="612,0"       Name="" Variety="" />
+        <Frame UV="630,0"       Name="" Variety="" />
+        <Frame UV="648,0"       Name="" Variety="" />
+        <Frame UV="666,0"       Name="" Variety="" />
+        <Frame UV="684,0"       Name="" Variety="" />
+        <Frame UV="702,0"       Name="" Variety="" />
+        <Frame UV="720,0"       Name="" Variety="" />
+        <Frame UV="738,0"       Name="" Variety="" />
+        <Frame UV="756,0"       Name="" Variety="" />
+        <Frame UV="774,0"       Name="" Variety="" />
+        <Frame UV="792,0"       Name="" Variety="" />
+        <Frame UV="810,0"       Name="" Variety="" />
+        <Frame UV="828,0"       Name="" Variety="" />
+        <Frame UV="846,0"       Name="" Variety="" />
+        <Frame UV="864,0"       Name="" Variety="" />
+        <Frame UV="882,0"       Name="" Variety="" />
+        <Frame UV="900,0"       Name="" Variety="" />
+        <Frame UV="918,0"       Name="" Variety="" />
+        <Frame UV="936,0"       Name="" Variety="" />
+        <Frame UV="954,0"       Name="" Variety="" />
+        <Frame UV="972,0"       Name="" Variety="" />
+        <Frame UV="990,0"       Name="" Variety="" />
+        <Frame UV="1008,0"      Name="" Variety="" />
+        <Frame UV="1026,0"      Name="" Variety="" />
+        <Frame UV="1044,0"      Name="" Variety="" />
+        <Frame UV="1062,0"      Name="" Variety="" />
+        <Frame UV="1080,0"      Name="" Variety="" />
+        <Frame UV="1098,0"      Name="" Variety="" />
+        <Frame UV="1116,0"      Name="" Variety="" />
+        <Frame UV="1134,0"      Name="" Variety="" />
+        <Frame UV="1152,0"      Name="" Variety="" />
+        <Frame UV="1170,0"      Name="" Variety="" />
+        <Frame UV="1188,0"      Name="" Variety="" />
+        <Frame UV="1206,0"      Name="" Variety="" />
+        <Frame UV="1224,0"      Name="" Variety="" />
+        <Frame UV="1242,0"      Name="" Variety="" />
+        <Frame UV="1260,0"      Name="" Variety="" />
+        <Frame UV="1278,0"      Name="" Variety="" />
+        <Frame UV="1296,0"      Name="" Variety="" />
+        <Frame UV="1314,0"      Name="" Variety="" />
+        <Frame UV="1332,0"      Name="" Variety="" />
+        <Frame UV="1350,0"      Name="" Variety="" />
+        <Frame UV="1368,0"      Name="" Variety="" />
+        <Frame UV="1386,0"      Name="" Variety="" />
+        <Frame UV="1404,0"      Name="" Variety="" />
+        <Frame UV="1422,0"      Name="" Variety="" />
+        <Frame UV="1440,0"      Name="" Variety="" />
+        <Frame UV="1458,0"      Name="" Variety="" />
+        <Frame UV="0,18"        Name="" Variety="" />
+        <Frame UV="18,18"       Name="" Variety="" />
+        <Frame UV="36,18"       Name="" Variety="" />
+        <Frame UV="54,18"       Name="" Variety="" />
+        <Frame UV="72,18"       Name="" Variety="" />
+        <Frame UV="90,18"       Name="" Variety="" />
+        <Frame UV="108,18"      Name="" Variety="" />
+        <Frame UV="126,18"      Name="" Variety="" />
+        <Frame UV="144,18"      Name="" Variety="" />
+        <Frame UV="162,18"      Name="" Variety="" />
+        <Frame UV="180,18"      Name="" Variety="" />
+        <Frame UV="198,18"      Name="" Variety="" />
+        <Frame UV="216,18"      Name="" Variety="" />
+        <Frame UV="234,18"      Name="" Variety="" />
+        <Frame UV="252,18"      Name="" Variety="" />
+        <Frame UV="270,18"      Name="" Variety="" />
+        <Frame UV="288,18"      Name="" Variety="" />
+        <Frame UV="306,18"      Name="" Variety="" />
+        <Frame UV="324,18"      Name="" Variety="" />
+        <Frame UV="342,18"      Name="" Variety="" />
+        <Frame UV="360,18"      Name="" Variety="" />
+        <Frame UV="378,18"      Name="" Variety="" />
+        <Frame UV="396,18"      Name="" Variety="" />
+        <Frame UV="414,18"      Name="" Variety="" />
+        <Frame UV="432,18"      Name="" Variety="" />
+        <Frame UV="450,18"      Name="" Variety="" />
+        <Frame UV="468,18"      Name="" Variety="" />
+        <Frame UV="486,18"      Name="" Variety="" />
+        <Frame UV="504,18"      Name="" Variety="" />
+        <Frame UV="522,18"      Name="" Variety="" />
+        <Frame UV="540,18"      Name="" Variety="" />
+        <Frame UV="558,18"      Name="" Variety="" />
+        <Frame UV="576,18"      Name="" Variety="" />
+        <Frame UV="594,18"      Name="" Variety="" />
+        <Frame UV="612,18"      Name="" Variety="" />
+        <Frame UV="630,18"      Name="" Variety="" />
+        <Frame UV="648,18"      Name="" Variety="" />
+        <Frame UV="666,18"      Name="" Variety="" />
+        <Frame UV="684,18"      Name="" Variety="" />
+        <Frame UV="702,18"      Name="" Variety="" />
+        <Frame UV="720,18"      Name="" Variety="" />
+        <Frame UV="738,18"      Name="" Variety="" />
+        <Frame UV="756,18"      Name="" Variety="" />
+        <Frame UV="774,18"      Name="" Variety="" />
+        <Frame UV="792,18"      Name="" Variety="" />
+        <Frame UV="810,18"      Name="" Variety="" />
+        <Frame UV="828,18"      Name="" Variety="" />
+        <Frame UV="846,18"      Name="" Variety="" />
+        <Frame UV="864,18"      Name="" Variety="" />
+        <Frame UV="882,18"      Name="" Variety="" />
+        <Frame UV="900,18"      Name="" Variety="" />
+        <Frame UV="918,18"      Name="" Variety="" />
+        <Frame UV="936,18"      Name="" Variety="" />
+        <Frame UV="954,18"      Name="" Variety="" />
+        <Frame UV="972,18"      Name="" Variety="" />
+        <Frame UV="990,18"      Name="" Variety="" />
+        <Frame UV="1008,18"     Name="" Variety="" />
+        <Frame UV="1026,18"     Name="" Variety="" />
+        <Frame UV="1044,18"     Name="" Variety="" />
+        <Frame UV="1062,18"     Name="" Variety="" />
+        <Frame UV="1080,18"     Name="" Variety="" />
+        <Frame UV="1098,18"     Name="" Variety="" />
+        <Frame UV="1116,18"     Name="" Variety="" />
+        <Frame UV="1134,18"     Name="" Variety="" />
+        <Frame UV="1152,18"     Name="" Variety="" />
+        <Frame UV="1170,18"     Name="" Variety="" />
+        <Frame UV="1188,18"     Name="" Variety="" />
+        <Frame UV="1206,18"     Name="" Variety="" />
+        <Frame UV="1224,18"     Name="" Variety="" />
+        <Frame UV="1242,18"     Name="" Variety="" />
+        <Frame UV="1260,18"     Name="" Variety="" />
+        <Frame UV="1278,18"     Name="" Variety="" />
+        <Frame UV="1296,18"     Name="" Variety="" />
+        <Frame UV="1314,18"     Name="" Variety="" />
+        <Frame UV="1332,18"     Name="" Variety="" />
+        <Frame UV="1350,18"     Name="" Variety="" />
+        <Frame UV="1368,18"     Name="" Variety="" />
+        <Frame UV="1386,18"     Name="" Variety="" />
+        <Frame UV="1404,18"     Name="" Variety="" />
+        <Frame UV="1422,18"     Name="" Variety="" />
+        <Frame UV="1440,18"     Name="" Variety="" />
+        <Frame UV="1458,18"     Name="" Variety="" />
       </Frames>
     </Tile>
-
     <Tile Id="186" Name=""                            Color="#FFFF00FF"   Framed="true"   >
       <Frames>
         <Frame UV="0,0" Name="Default" Variety="Default" />
@@ -1088,7 +1087,7 @@ Documentation moved to the end of this file.
     <Tile Id="196" Name="Rain Cloud"                  Color="#FFB8E6E6"   Solid="true"    Blends="true"   />
     <Tile Id="197" Name="Frozen Slime Block"          Color="#FFFF00FF"   Solid="true"    />
     <Tile Id="198" Name="Asphalt Block"               Color="#FFFF00FF"   Solid="true"    />
-    <Tile Id="199" Name=""                            Color="#FFFF00FF"   Solid="true"    Blends="true"   />
+    <Tile Id="199" Name="Crimson Grass"               Color="#FFFF00FF"   Solid="true"    Blends="true"   />
     <Tile Id="200" Name="Red Ice Block"               Color="#FFFF4D4D"   Solid="true"    Blends="true"   />
     <Tile Id="201" Name=""                            Color="#FFFF00FF"   Framed="true"   >
       <Frames>
@@ -1098,7 +1097,7 @@ Documentation moved to the end of this file.
     <Tile Id="202" Name="Sunplate Block"              Color="#FFFF00FF"   Solid="true"    Blends="true"   />
     <Tile Id="203" Name="Crimstone Block"             Color="#FFE60000"   Solid="true"    Blends="true"   />
     <Tile Id="204" Name="Crimtane Ore"                Color="#FFFF00FF"   Solid="true"    Light="true"    />
-    <Tile Id="205" Name=""                            Color="#FFFF00FF"   />
+    <Tile Id="205" Name="Crimson Vine"                Color="#FFFF00FF"   Blends="true"   />
     <Tile Id="206" Name="Ice Brick"                   Color="#FFFF00FF"   Solid="true"    />
     <Tile Id="207" Name="Pure Water Fountain"         Color="#FFFF00FF"   Framed="true"   >
       <Frames>
@@ -1116,15 +1115,15 @@ Documentation moved to the end of this file.
         <Frame UV="0,0" Name="Default" Variety="Default" />
       </Frames>
     </Tile>
-    <Tile Id="211" Name="Chlorophyte Ore"             Color="#FF844831"   Solid="true"    />
+    <Tile Id="211" Name="Chlorophyte Ore"             Color="#FF844831"   Solid="true"    Blends="true"   />
     <Tile Id="212" Name="Snowball Launcher"           Color="#FFFF00FF"   Framed="true"   >
       <Frames>
         <Frame UV="0,0" Name="Default" Variety="Default" />
       </Frames>
     </Tile>
-    <Tile Id="213" Name="Rope"                        Color="#FFFF00FF"   />
-    <Tile Id="214" Name="Chain"                       Color="#FFFF00FF"   />
-    <Tile Id="215" Name="Campfire"                    Color="#FFFF00FF"   Framed="true"   Light="true" >
+    <Tile Id="213" Name="Rope"                        Color="#FFFF00FF"   Blends="true"   />
+    <Tile Id="214" Name="Chain"                       Color="#FFFF00FF"   Blends="true"   />
+    <Tile Id="215" Name="Campfire"                    Color="#FFFF00FF"   Framed="true"   Light="true"    >
       <Frames>
         <Frame UV="0,0" Name="Default" Variety="Default" />
       </Frames>
@@ -1170,21 +1169,21 @@ Documentation moved to the end of this file.
         <Frame UV="0,0" Name="Default" Variety="Default" />
       </Frames>
     </Tile>
-    <Tile Id="229" Name="Honey Block"                 Color="#FFFF00FF"   Solid="true"  />
-    <Tile Id="230" Name="Crispy Honey Block"          Color="#FFFF00FF"   Solid="true"  />
-    <Tile Id="231" Name=""                            Color="#FFFF00FF"   Framed="true" >
+    <Tile Id="229" Name="Honey Block"                 Color="#FFFF00FF"   Solid="true"    />
+    <Tile Id="230" Name="Crispy Honey Block"          Color="#FFFF00FF"   Solid="true"    />
+    <Tile Id="231" Name=""                            Color="#FFFF00FF"   Framed="true"   >
       <Frames>
         <Frame UV="0,0" Name="Default" Variety="Default" />
       </Frames>
     </Tile>
-    <Tile Id="232" Name="Wooden Spike"  Solid="true"  />
+    <Tile Id="232" Name="Wooden Spike"                Color="#FFFF00FF"   Solid="true"    />
     <Tile Id="233" Name=""  Framed="true" >
       <Frames>
         <Frame UV="0,0" Name="Default" Variety="Default" />
       </Frames>
     </Tile>
-    <Tile Id="234" Name="Crimsand Block"              Color="#FFFF1919"   Solid="true"    Blends="true" />
-    <Tile Id="235" Name="Teleporter"                  Color="#FFFF00FF"   Framed="true"   Solid="true" Size="3,1" >
+    <Tile Id="234" Name="Crimsand Block"              Color="#FFFF1919"   Solid="true"    Blends="true"     />
+    <Tile Id="235" Name="Teleporter"                  Color="#FFFF00FF"   Framed="true"   Solid="true"      Size="3,1" >
       <Frames>
         <Frame UV="0,0" Name="Default" Variety="Default" />
       </Frames>
@@ -1255,26 +1254,26 @@ Documentation moved to the end of this file.
   </Tiles>
   <Walls>
     <Wall Id="0"    Name="Sky"                        Color="#00000000"                     />
-    <Wall Id="1"    Name="Stone Wall"                 Color="#ff424242"   IsHouse="true"    />
-    <Wall Id="2"    Name="Dirt Wall"                  Color="#ff583d2e"                     />
-    <Wall Id="3"    Name="Ebonstone Wall"             Color="#ff312545"                     />
-    <Wall Id="4"    Name="Wood Wall"                  Color="#ff4a2e1c"   IsHouse="true"    />
-    <Wall Id="5"    Name="Gray Brick Wall"            Color="#ff454545"   IsHouse="true"    />
-    <Wall Id="6"    Name="Red Brick Wall"             Color="#ff500000"   IsHouse="true"    />
-    <Wall Id="7"    Name="Dungeon Blue Wall"          Color="#ff000060"                     />
-    <Wall Id="8"    Name="Dungeon Green Wall"         Color="#ff005000"                     />
-    <Wall Id="9"    Name="Dungeon Pink Wall"          Color="#ff48004F"                     />
-    <Wall Id="10"   Name="Gold Brick Wall"            Color="#ff774707"   IsHouse="true"    />
-    <Wall Id="11"   Name="Silver Brick Wall"          Color="#ff828282"   IsHouse="true"    />
-    <Wall Id="12"   Name="Copper Brick Wall"          Color="#ff3F1907"   IsHouse="true"    />
-    <Wall Id="13"   Name="Hellstone Wall"             Color="#ff3F0707"                     />
-    <Wall Id="14"   Name="Obsidian Wall"              Color="#ff000060"                     />
-    <Wall Id="15"   Name="Mud Wall"                   Color="#ff005500"                     />
-    <Wall Id="16"   Name="Player Dirt Wall"           Color="#ff583d2e"   IsHouse="true"    />
-    <Wall Id="17"   Name="Player Blue Wall"           Color="#ff000043"   IsHouse="true"    />
-    <Wall Id="18"   Name="Player Green Wall"          Color="#ff003700"   IsHouse="true"    />
-    <Wall Id="19"   Name="Player Pink Wall"           Color="#ff330037"   IsHouse="true"    />
-    <Wall Id="20"   Name="Player Obsidian Wall"       Color="#ff000060"   IsHouse="true"    />
+    <Wall Id="1"    Name="Stone Wall"                 Color="#FF424242"   IsHouse="true"    />
+    <Wall Id="2"    Name="Dirt Wall"                  Color="#FF583d2E"                     />
+    <Wall Id="3"    Name="Ebonstone Wall"             Color="#FF312545"                     />
+    <Wall Id="4"    Name="Wood Wall"                  Color="#FF4A2E1C"   IsHouse="true"    />
+    <Wall Id="5"    Name="Gray Brick Wall"            Color="#FF454545"   IsHouse="true"    />
+    <Wall Id="6"    Name="Red Brick Wall"             Color="#FF500000"   IsHouse="true"    />
+    <Wall Id="7"    Name="Dungeon Blue Wall"          Color="#FF000060"                     />
+    <Wall Id="8"    Name="Dungeon Green Wall"         Color="#FF005000"                     />
+    <Wall Id="9"    Name="Dungeon Pink Wall"          Color="#FF48004F"                     />
+    <Wall Id="10"   Name="Gold Brick Wall"            Color="#FF774707"   IsHouse="true"    />
+    <Wall Id="11"   Name="Silver Brick Wall"          Color="#FF828282"   IsHouse="true"    />
+    <Wall Id="12"   Name="Copper Brick Wall"          Color="#FF3F1907"   IsHouse="true"    />
+    <Wall Id="13"   Name="Hellstone Wall"             Color="#FF3F0707"                     />
+    <Wall Id="14"   Name="Obsidian Wall"              Color="#FF000060"                     />
+    <Wall Id="15"   Name="Mud Wall"                   Color="#FF005500"                     />
+    <Wall Id="16"   Name="Player Dirt Wall"           Color="#FF583D2E"   IsHouse="true"    />
+    <Wall Id="17"   Name="Player Blue Wall"           Color="#FF000043"   IsHouse="true"    />
+    <Wall Id="18"   Name="Player Green Wall"          Color="#FF003700"   IsHouse="true"    />
+    <Wall Id="19"   Name="Player Pink Wall"           Color="#FF330037"   IsHouse="true"    />
+    <Wall Id="20"   Name="Player Obsidian Wall"       Color="#FF000060"   IsHouse="true"    />
     <Wall Id="21"   Name="Glass Wall"                 Color="#FF12242C"   IsHouse="true"    />
     <Wall Id="22"   Name="Pearlstone Brick"           Color="#FF716363"                     />
     <Wall Id="23"   Name="Iridescent Wall"            Color="#FF4E4042"   IsHouse="true"    />
@@ -3166,7 +3165,7 @@ game data, found in the Content\Images folder.
 
 Single tile object; may contain Frame tags. Has the following properties:
 
- * num - Required; unique. This tile number MUST match the same ID used in Terraria world files. 
+ * num - Required; unique. This tile number MUST match the same ID used in Terraria world files.
  * color - Required; default is #ffff00ff. Color SHOULD approx. match the color of the tile in-game.
  * name - Required; unique. Name MUST match the tile name in-game, if possible. (The
  TerrariaOnline wiki is a good source for information.) Names MUST be unique among different
@@ -3185,10 +3184,10 @@ Single tile object; may contain Frame tags. Has the following properties:
 
  * size - Required if not default; default is "1,1". This is the width and height of tile
  objects that span multiple tiles. If this property is beyond "1,1", then isFramed MUST be true.
- 
+
  * placement - Required if not default; default is "any". This details how the tile (or full object,
  if multi-tiled) can be placed among other tiles. The property MUST only be one of these options:
- 
+
  @ any - Is like a block, which can even float in the air
  @ floor - Must be on the floor; affected by gravity
  @ surface - Must be on top of a SolidTop surface object
@@ -3203,7 +3202,7 @@ Single tile object; may contain Frame tags. Has the following properties:
  as a table, this property MUST be set to true. These objects will accept other objects that
  can be placed on top of surfaces, and can usually be stood on by the player, despite being a
  pass-through object itself. In fact, isSolid and isSolidTop SHOULD be mutually exclusive.
- 
+
  * growsOn - Required if it applies. This property only applies to plant objects (unless we
  happen to discover some sort of growing sword or other bizzare thing). This property is a
  comma-delimited list of Tile numbers that will accept this object on top of it. For example,
@@ -3211,7 +3210,7 @@ Single tile object; may contain Frame tags. Has the following properties:
  the following underneath it: the tiles on the list, itself (other tiles with the same tile
  number), or empty space. Furthermore, the full plant object MUST ultimately have a
  up-most tile attached to one of the tiles on the list.
- 
+
  All programs MUST NOT use the "placement" property (as an implied default or not) if a growOn
  property exists. The "placement", "growsOn", and "hangsOn" properties are all mutually
  exclusive, and MUST NOT appear together on one Tile tag.
@@ -3227,23 +3226,23 @@ Single tile object; may contain Frame tags. Has the following properties:
  same location. IOW, you can't take the lower-right corner of Pot A and use it for the
  upper-left corner of your new object.) These type of objects are rare, as it only applies
  so far to Pots and Closed Doors.
- 
+
  This property MUST NOT be used unless the "size" property is non-default, and "isFramed"
  property is true.
 
  * IsHouseItem - Required if true; default is false. If the object is one of the required objects
  that can be used to build a NPC-qualified house, this property MUST be true. This should be
  used with other properties to identify all of the house objects:
- 
+
  @ isSolidTop - If true, then this classifies as a "Flat Surface" object for a house.
  @ lightBrightness - If non-zero, then this classified as a "Light Source" object for a house.
  @ None - If the above two don't apply, then it's a "Comfort" object.
 
  * lightBrightness - Required if not default; default is 0. This is the brightness of the light
- given off the object when placed, where 1.0 is torch light. A non-zero value indicates 
+ given off the object when placed, where 1.0 is torch light. A non-zero value indicates
  that this tile is a "Light Source", though objects such as Furnaces do qualify, even if it
  can't be used as a house "Light Source" object.
- 
+
  * contactDmg - Optional. If the object causes damage when touched by the player, this is the
  amount of HP that it drains.
 
@@ -3255,11 +3254,11 @@ have isFramed set to true, with two exceptions:
 
  * If the Tile only has one Frame tag, the Frames/Frame tag SHOULD NOT appear. Defaults for the frame
  are listed in the <Frame> spec.
- 
+
  * The tags SHOULD NOT appear if the object is subject to auto-alignment or auto-correction by the game
  itself. (For example, Signs automatically align to the right Frame, whether it's floor, wall, or
  ceiling, whereas Beds do not automatically pick a facing Direction.)
- 
+
 
 <Frame>
 
@@ -3291,28 +3290,28 @@ row, then the second, etc. A zero-based num property can be assumed based on the
 object, but is not actually used (yet).
 
 A Frame tag has the following (other) properties:
- 
+
  * upperLeft - Required (even if default); default is 0,0. This is the X,Y coordinates of the
  upper-left corner of the Frame object. Frame coordinates Directly relate to the Tile_??.xnb
  file referencing them. Each frame point is equal to 1/2 of a pixel. So, a X,Y of 18,0
  is starting at X,Y of 9,0 on the Tile image.
- 
+
  A grand majority of tiles (including all multi-tiled objects) use 8x8 pixel tiles (with a
  1-pixel divider line), so all tiles are assumed to jump by 18 frame points. There are a few
  exceptions, but all of these tiles have size="1,1", so no jumping is required.
- 
+
  * variety - Optional as long as name+variety+Dir is unique. This further describes the object
  beyond what the name says. For example, the in-game name of a normal wooden Chest is merely
- "Chest", but one frame has a locked Chest. So, the name is "Chest", and the variety is 
+ "Chest", but one frame has a locked Chest. So, the name is "Chest", and the variety is
  "Locked".
- 
+
  * Dir - Optional as long as name+variety+Dir is unique. This is used instead of (or in
  combination with) a "variety" property to describe the facing Direction of the object. For
  example, a Toilet comes with both left- and right-facing versions. This property MUST be
  a single character, which (so far) equals: l, r, u, c. Which is Left, Right, up, Center,
  respectively. Top (as "d") may be used later on, so that is also acceptable.
 
-Frame tags have a unique name among the name, variety, and Dir properties. So, they might be 
+Frame tags have a unique name among the name, variety, and Dir properties. So, they might be
 displayed in the following fashion:
 
 <Frame UV="22,0" Name="Tree Trunk" Anchor="Bottom" Variety="Right Indent A" />
@@ -3354,14 +3353,14 @@ Single item; tag has no children. Has the following properties:
  the same ID used in Terraria XNB image files. For some reason, some items don't relate to
  an item ID, so certain items might not have one. (There may be some palette shifting going
  on to reuse item image files...)
- 
+
  * name - Required; unique. Name MUST match the item name in-game.
- 
+
  * type - Required except for the [empty] item. This is a (loose) categorization of the item.
  The categories, so far, are somewhat subject to interpretation, and are pidgin-holed into
  a single category, but this will be more strictly defined in a future XML release. The
  item type MUST be one of the categories (in all lowercase):
- 
+
  @ tool = All mining/gathering tools, like Pickaxe, Hammer, Axe, etc.
  @ weapon = All weapons, including swords, staffs, consumable weapons (like Throwing Knives), etc.
  @ armor = All items that fit into armor slot (including vanity; will split later on)
