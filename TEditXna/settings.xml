@@ -1154,12 +1154,12 @@ Documentation moved to the end of this file.
         <Frame UV="0,0" Name="Default" Variety="Default" />
       </Frames>
     </Tile>
-    <Tile Id="221"  Name="Palladium Ore"    Solid="true"  Color="#FFEF5A32" Blends="true"/>
-    <Tile Id="222"  Name="Orichalcum Ore"   Solid="true"  Color="#FFE760E4" Blends="true"/>
-    <Tile Id="223"  Name="Titanium Ore"     Solid="true"  Color="#FF395565" Blends="true"/>
-    <Tile Id="224"  Name="Slush Block"      Solid="true"  Color="#FF6B848B" Blends="true"/>
-    <Tile Id="225"  Name="Hive Wand"        Solid="true"  Color="#FFE37D16" Blends="true"/>
-    <Tile Id="226"  Name="Lihzahrd Brick"   Solid="true"  Color="#FF8D3800" Blends="true" />
+    <Tile Id="221"  Name="Palladium Ore"              Color="#FFEF5A32"   Solid="true"    Blends="true"/>
+    <Tile Id="222"  Name="Orichalcum Ore"             Color="#FFE760E4"   Solid="true"    Blends="true"/>
+    <Tile Id="223"  Name="Titanium Ore"               Color="#FF395565"   Solid="true"    Blends="true"/>
+    <Tile Id="224"  Name="Slush Block"                Color="#FF6B848B"   Solid="true"    Blends="true"/>
+    <Tile Id="225"  Name="Hive Wand"                  Color="#FFE37D16"   Solid="true"    Blends="true"/>
+    <Tile Id="226"  Name="Lihzahrd Brick"             Color="#FF8D3800"   Solid="true"    Blends="true" />
     <Tile Id="227"  Name="Teal Mushroom"              Color="#FFFF00FF"   Framed="true" >
       <Frames>
         <Frame UV="0,0" Name="Default" Variety="Default" />
