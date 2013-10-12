@@ -11,6 +11,8 @@ using System.Timers;
 using System.Windows;
 using System.Windows.Data;
 using System.Windows.Input;
+using System.Windows.Media.Imaging;
+using System.Windows.Threading;
 using BCCL.MvvmLight;
 using BCCL.MvvmLight.Command;
 using BCCL.MvvmLight.Threading;
@@ -30,6 +32,8 @@ namespace TEditXna.ViewModel
     public partial class WorldViewModel : ViewModelBase
     {
         private System.Timers.Timer _saveTimer = new System.Timers.Timer();
+
+        private DispatcherTimer _minimapRenderTimer;
 
         private readonly BrushSettings _brush = new BrushSettings();
         private readonly MouseTile _mouseOverTile = new MouseTile();
@@ -55,6 +59,15 @@ namespace TEditXna.ViewModel
         private bool _showGrid = true;
         private MorphBiome _morphBiomeTarget;
         private bool _isAutoSaveEnabled = true;
+
+        private WriteableBitmap _minimapImage;
+         
+
+        public WriteableBitmap MinimapImage
+        {
+            get { return _minimapImage; }
+            set { Set("MinimapImage", ref _minimapImage, value); }
+        }
 
         private ListCollectionView _spritesView;
         public ListCollectionView SpritesView
@@ -234,11 +247,22 @@ namespace TEditXna.ViewModel
             // 3 minute save timer
             _saveTimer.Interval = 3 * 60 * 1000;
 
+            _minimapRenderTimer = new DispatcherTimer(TimeSpan.FromSeconds(20), DispatcherPriority.Normal, UpdateMinimap, Dispatcher.CurrentDispatcher);
+            _minimapRenderTimer.Start();
             // Test File Association and command line
             if (Application.Current.Properties["OpenFile"] != null)
             {
                 string filename = Application.Current.Properties["OpenFile"].ToString();
                 LoadWorld(filename);
+            }
+        }
+
+        private void UpdateMinimap(object sender, EventArgs eventArgs)
+        {
+            if (this.CurrentWorld != null)
+            {
+                if (this.MinimapImage != null)
+                    RenderMiniMap.UpdateMinimap(this.CurrentWorld, ref _minimapImage);
             }
         }
 
@@ -529,6 +553,7 @@ namespace TEditXna.ViewModel
                                       {
                                           Points.Add(npc.Name);
                                       }
+                                      MinimapImage = RenderMiniMap.Render(this.CurrentWorld);
                                       _loadTimer.Stop();
                                       OnProgressChanged(this, new ProgressChangedEventArgs(0, string.Format("World loaded in {0} seconds.", _loadTimer.Elapsed.TotalSeconds)));
                                       _saveTimer.Start();
@@ -604,6 +629,7 @@ namespace TEditXna.ViewModel
                                           {
                                               Points.Add(npc.Name);
                                           }
+                                          MinimapImage = RenderMiniMap.Render(this.CurrentWorld);
                                           _loadTimer.Stop();
                                           OnProgressChanged(this, new ProgressChangedEventArgs(0, string.Format("World loaded in {0} seconds.", _loadTimer.Elapsed.TotalSeconds)));
                                           _saveTimer.Start();

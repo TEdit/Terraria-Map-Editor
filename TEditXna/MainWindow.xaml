@@ -86,10 +86,10 @@
                         <TextBlock Text="Position" VerticalAlignment="Center" Margin="5,0"/>
                         <TextBox Text="{Binding MouseOverTile.MouseState.Location, StringFormat={}{0}, Mode=OneWay}" Width="75" IsReadOnly="True" />
                         <TextBlock Text="Tile" VerticalAlignment="Center" Margin="5,0"  />
-                        <TextBox Text="{Binding MouseOverTile.TileName, Mode=OneWay}" Width="125" IsReadOnly="True" />
+                        <TextBox Text="{Binding MouseOverTile.TileName, Mode=OneWay}" Width="150" IsReadOnly="True" />
                         <TextBlock Text="Wall" VerticalAlignment="Center" Margin="5,0"/>
-                        <TextBox Text="{Binding MouseOverTile.WallName, Mode=OneWay}" Width="125" IsReadOnly="True" />
-                        <TextBlock Text="Extra" VerticalAlignment="Center" Margin="5,0"/>
+                        <TextBox Text="{Binding MouseOverTile.WallName, Mode=OneWay}" Width="150" IsReadOnly="True" />
+                        <TextBlock Text="Extra Info" VerticalAlignment="Center" Margin="5,0"/>
                         <TextBox Text="{Binding MouseOverTile.TileExtras, Mode=OneWay}" Width="100" IsReadOnly="True" />
                         <TextBlock Text="Frame" VerticalAlignment="Center" Margin="5,0"/>
                         <TextBox Text="{Binding MouseOverTile.UV, StringFormat={}{0}, Mode=OneWay}" Width="50" IsReadOnly="True" />
@@ -115,7 +115,8 @@
             <DockPanel DockPanel.Dock="Top" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                 <Border DockPanel.Dock="Right" BorderThickness="1" BorderBrush="{StaticResource SolidBorderBrush}" Background="{StaticResource ControlBackgroundBrush}">
                     <Grid  Width="200" Height="75">
-                        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Text="Minimap coming soon..." />
+                        <Image Source="{Binding MinimapImage}" Stretch="UniformToFill" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" RenderOptions.BitmapScalingMode="Linear" />
+                        
                     </Grid>
                 </Border>
                 <ScrollViewer HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Hidden" Height="110">

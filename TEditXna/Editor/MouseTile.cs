@@ -62,9 +62,26 @@ namespace TEditXna.Editor
 
                 UV = new Vector2Short(_tile.U, _tile.V);
                 if (_tile.Liquid > 0)
-                    TileExtras = _tile.IsLava ? "Lava: " + _tile.Liquid : "Water: " + _tile.Liquid;
+                {
+                    if (_tile.IsLava)
+                        TileExtras = "Lava: ";
+                    else if (_tile.IsHoney)
+                        TileExtras = "Honey: ";
+                    else
+                        TileExtras = "Water: ";
+
+                    TileExtras += _tile.Liquid;
+                }
                 else
                     TileExtras = string.Empty;
+
+                if (_tile.Actuator)
+                {
+                    if (_tile.InActive)
+                        TileExtras += " Inactive Actuator";
+                    else
+                        TileExtras += " Active Actuator ";
+                }
 
                 if (_tile.HasWire)
                 {
