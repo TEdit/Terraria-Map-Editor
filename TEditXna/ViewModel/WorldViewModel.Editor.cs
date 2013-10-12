@@ -8,6 +8,7 @@ using Microsoft.Xna.Framework;
 using TEditXNA.Terraria;
 using TEditXna.Editor;
 using TEditXna.Render;
+using TEditXNA.Terraria.Objects;
 
 namespace TEditXna.ViewModel
 {
@@ -86,7 +87,7 @@ namespace TEditXna.ViewModel
                     SetPixelAutomatic(curTile, wire3: !isErase);
                     break;
                 case PaintMode.Liquid:
-                    SetPixelAutomatic(curTile, liquid: isErase ? (byte)0 : (byte)255, isLava: TilePicker.IsLava);
+                    SetPixelAutomatic(curTile, liquid: isErase ? (byte)0 : (byte)255, isLava: TilePicker.IsLava, isHoney: TilePicker.IsHoney);
                     break;
             }
 
@@ -185,7 +186,8 @@ namespace TEditXna.ViewModel
                                        short? u = null,
                                        short? v = null,
                                        bool? wire2 = null,
-                                       bool? wire3 = null)
+                                       bool? wire3 = null,
+                                       bool? isHoney = null)
         {
             // Set Tile Data
             if (u != null)
@@ -211,10 +213,15 @@ namespace TEditXna.ViewModel
                 curTile.Wall = (byte)wall;
 
             if (liquid != null)
+            {
                 curTile.Liquid = (byte)liquid;
+            }
 
-            if (isLava != null)
-                curTile.IsLava = (bool)isLava;
+            if (isLava != null || isHoney != null)
+            {
+                curTile.IsLava = isLava ?? false;
+                curTile.IsHoney = isHoney ?? false;
+            }
 
             if (wire != null)
                 curTile.HasWire = (bool)wire;

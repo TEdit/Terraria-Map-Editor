@@ -114,6 +114,7 @@
                 <StackPanel Visibility="{Binding ElementName=LiquidText, Path=Visibility}" Margin="3">
                     <RadioButton Content="Water" IsChecked="{Binding Path=TilePicker.IsWater, Mode=TwoWay}" />
                     <RadioButton Content="Lava" IsChecked="{Binding Path=TilePicker.IsLava, Mode=TwoWay}" />
+                    <RadioButton Content="Honey" IsChecked="{Binding Path=TilePicker.IsHoney, Mode=TwoWay}" />
                 </StackPanel>
             </GroupBox>
 
