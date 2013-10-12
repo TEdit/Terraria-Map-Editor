@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
+using System.Diagnostics;
 using System.Linq;
+using System.Reflection;
 using System.Threading;
 using System.Windows;
 using BCCL.MvvmLight.Threading;
@@ -19,11 +21,16 @@ namespace TEditXna
             BCCL.MvvmLight.Threading.DispatcherHelper.Initialize();
         }
 
+        public static FileVersionInfo Version { get; set; }
+
         protected override void OnStartup(StartupEventArgs e)
         {
             ErrorLogging.Initialize();
             ErrorLogging.Log(string.Format("Starting TEdit {0}",ErrorLogging.Version));
             ErrorLogging.Log(string.Format("OS: {0}",Environment.OSVersion));
+
+            Assembly asm = Assembly.GetExecutingAssembly();
+            Version = FileVersionInfo.GetVersionInfo(asm.Location);
 
             if (!DependencyChecker.VerifyDotNet())
             {

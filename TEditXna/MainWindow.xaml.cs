@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Net;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -37,6 +39,9 @@ namespace TEditXna
 
         void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
+
+
+
             //string fname = Application.Current.Properties["OpenFile"].ToString();
             //if (!string.IsNullOrWhiteSpace(fname))
             //{

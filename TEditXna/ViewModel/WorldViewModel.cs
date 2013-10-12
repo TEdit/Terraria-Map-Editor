@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
+using System.Net;
 using System.Reflection;
 using System.Threading;
 using System.Threading.Tasks;
@@ -61,7 +62,7 @@ namespace TEditXna.ViewModel
         private bool _isAutoSaveEnabled = true;
 
         private WriteableBitmap _minimapImage;
-         
+
 
         public WriteableBitmap MinimapImage
         {
@@ -205,7 +206,7 @@ namespace TEditXna.ViewModel
 
 
         private Item _selectedChestItem;
-         
+
 
         public Item SelectedChestItem
         {
@@ -215,8 +216,13 @@ namespace TEditXna.ViewModel
 
         public WorldViewModel()
         {
+
             if (ViewModelBase.IsInDesignModeStatic)
                 return;
+
+            CheckVersion();
+
+
 
             IsAutoSaveEnabled = Properties.Settings.Default.Autosave;
 
@@ -416,6 +422,64 @@ namespace TEditXna.ViewModel
             WindowTitle = string.Format("TEdit v{0}.{1}.{2}.{3} {4}",
                                         fvi.ProductMajorPart, fvi.ProductMinorPart, fvi.FileBuildPart, fvi.FilePrivatePart,
                                         Path.GetFileName(_currentFile));
+        }
+
+        public void CheckVersion()
+        {
+            Task.Factory.StartNew<bool?>(() =>
+            {
+                try
+                {
+
+
+                    using (WebClient Client = new WebClient())
+                    {
+                        var dl = Client.DownloadData("http://www.binaryconstruct.com/downloads/teditversion.txt");
+
+                        var vers = System.Text.Encoding.UTF8.GetString(dl);
+                        var verstrimmed = vers.Split('v');
+
+                        if (verstrimmed.Length != 2) return null;
+
+                        var split = verstrimmed[1].Split('.');
+
+                        if (split.Length != 3) return null;
+
+                        int major;
+                        int minor;
+                        int build;
+
+                        if (!int.TryParse(split[0], out major)) return null;
+                        if (!int.TryParse(split[1], out minor)) return null;
+                        if (!int.TryParse(split[2], out build)) return null;
+
+                        if (major > App.Version.ProductMajorPart) return true;
+                        if (minor > App.Version.ProductMinorPart) return true;
+                        if (build > App.Version.ProductBuildPart) return true;
+                    }
+                }
+                catch (Exception)
+                {
+                    return null;
+                }
+                return false;
+            }).ContinueWith(t =>
+            {
+                bool? isoutofdate = t.Result;
+
+                if (isoutofdate == null)
+                {
+                    MessageBox.Show("Unable to check version.");
+                }
+
+                if (isoutofdate == true)
+                {
+                    if (MessageBox.Show("You are using an outdated version of TEdit. Do you wish to download the update?", "Update?", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+                    {
+                        Process.Start("http://www.binaryconstruct.com/games/tedit");
+                    }
+                }
+            }, TaskFactoryHelper.UiTaskScheduler);
         }
 
         public event EventHandler PreviewChanged;

@@ -358,6 +358,7 @@
     <EmbeddedResource Include="Images\Overlays\grid.png" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="teditversion.txt" />
     <Resource Include="Images\Toolbar\report_magnify.png" />
     <Content Include="settings.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
