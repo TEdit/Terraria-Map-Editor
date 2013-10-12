@@ -372,7 +372,7 @@ Documentation moved to the end of this file.
         <Frame UV="90,0"    Variety="Brown, Water Bolt, Gray"   />
       </Frames>
     </Tile>
-    <Tile Id="51" Name="Cobweb"                       Color="#FFFFFFFF"   Blends="true"   MergeWith="-1"    />
+    <Tile Id="51" Name="Cobweb"                       Color="#FFFFFFFF"   Blends="true"   MergeWith="-1"  />
     <Tile Id="52" Name="Vines"                        Color="#FF0D6524"   Blends="true"   />
     <Tile Id="53" Name="Sand Block"                   Color="#FFFFDA38"   Solid="true"    Blends="true"   MergeWith="0"   />
     <Tile Id="54" Name="Glass"                        Color="#40FFFFFF"   Solid="true"    Blends="true"   />
@@ -1087,7 +1087,7 @@ Documentation moved to the end of this file.
     <Tile Id="196" Name="Rain Cloud"                  Color="#FF98ABC6"   Solid="true"    Blends="true"   />
     <Tile Id="197" Name="Frozen Slime Block"          Color="#FFFF00FF"   Solid="true"    />
     <Tile Id="198" Name="Asphalt Block"               Color="#FFFF00FF"   Solid="true"    />
-    <Tile Id="199" Name="Crimson Grass"               Color="#FF5050D0"   Solid="true"    Blends="true"   MergeWith="0"   Special="Grass"   />
+    <Tile Id="199" Name="Crimson Grass"               Color="#FFB03800"   Solid="true"    Blends="true"   MergeWith="0"   Special="Grass"   />
     <Tile Id="200" Name="Red Ice Block"               Color="#FFFF4D4D"   Solid="true"    Blends="true"   />
     <Tile Id="201" Name="Crimson Plants"              Color="#FFB80000"   Framed="true"   >
       <Frames>
