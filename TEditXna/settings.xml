@@ -826,7 +826,7 @@ Documentation moved to the end of this file.
       </Frames>
     </Tile>
     <Tile Id="150" Name="Adamantite Beam"             Color="#FFFF00FF"   Solid="true"    />
-    <Tile Id="151" Name="Sandstone Brick"             Color="#FFFF00FF"   Solid="true"    />
+    <Tile Id="151" Name="Sandstone Brick"             Color="#FFBEAB5E"   Solid="true"    Blends="true"/>
     <Tile Id="152" Name="Ebonstone Brick"             Color="#FFFF00FF"   Solid="true"    />
     <Tile Id="153" Name="Red Stucco"                  Color="#FFFF00FF"   Solid="true"    />
     <Tile Id="154" Name="Yellow Stucco"               Color="#FFFF00FF"   Solid="true"    />
@@ -836,9 +836,9 @@ Documentation moved to the end of this file.
     <Tile Id="158" Name="Rich Mahogany"               Color="#FFFF00FF"   Solid="true"    />
     <Tile Id="159" Name="Pearlwood"                   Color="#FFFF00FF"   Solid="true"    />
     <Tile Id="160" Name="Rainbow Brick"               Color="#FFFF00FF"   Solid="true"    Light="true"    />
-    <Tile Id="161" Name="Ice Block"                   Color="#FF4DB8FF"   Solid="true"    Blends="true"   />
+    <Tile Id="161" Name="Ice Block"                   Color="#FF90C3E8"   Solid="true"    Blends="true"   />
     <Tile Id="162" Name="Thin Ice"                    Color="#FFADD6FF"   Solid="true"    Blends="true"   />
-    <Tile Id="163" Name="Purple Ice Block"            Color="#FFFF00FF"   Solid="true"    />
+    <Tile Id="163" Name="Purple Ice Block"            Color="#FFAE91D6"   Solid="true"    Blends="true"/>
     <Tile Id="164" Name="Pink Ice Block"              Color="#FFFF00FF"   Solid="true"    />
     <Tile Id="165" Name=""                            Color="#FFFF00FF"   Framed="true"   >
       <Frames>
@@ -1077,26 +1077,26 @@ Documentation moved to the end of this file.
       </Frames>
     </Tile>
     <Tile Id="188" Name="Cactus"                      Color="#FF00A500"   Solid="true"    />
-    <Tile Id="189" Name="Cloud"                       Color="#FFF5FFFF"   Solid="true"    Blends="true"   />
+    <Tile Id="189" Name="Cloud"                       Color="#FFDFFFFF"   Solid="true"    Blends="true"   />
     <Tile Id="190" Name="Glowing Mushroom"            Color="#FFFF00FF"   Solid="true"    Light="true"    />
     <Tile Id="191" Name="Living Wood"                 Color="#FFA37A00"   Solid="true"    Blends="true"   />
     <Tile Id="192" Name="Leaves"                      Color="#FF19A319"   Solid="true"    Blends="true"   />
     <Tile Id="193" Name="Slime Block"                 Color="#FFFF00FF"   Solid="true"    />
     <Tile Id="194" Name="Bone Block"                  Color="#FFFF00FF"   Solid="true"    />
     <Tile Id="195" Name="Flesh Block"                 Color="#FFFF00FF"   Solid="true"    />
-    <Tile Id="196" Name="Rain Cloud"                  Color="#FFB8E6E6"   Solid="true"    Blends="true"   />
+    <Tile Id="196" Name="Rain Cloud"                  Color="#FF98ABC6"   Solid="true"    Blends="true"   />
     <Tile Id="197" Name="Frozen Slime Block"          Color="#FFFF00FF"   Solid="true"    />
     <Tile Id="198" Name="Asphalt Block"               Color="#FFFF00FF"   Solid="true"    />
-    <Tile Id="199" Name="Crimson Grass"               Color="#FF8A0000"   Solid="true"    Blends="true"   MergeWith="0"   Special="Grass"   />
-    <Tile Id="200" Name="Red Ice Block"               Color="#FFF28080"   Solid="true"    Blends="true"   />
+    <Tile Id="199" Name="Crimson Grass"               Color="#FF5050D0"   Solid="true"    Blends="true"   MergeWith="0"   Special="Grass"   />
+    <Tile Id="200" Name="Red Ice Block"               Color="#FFFF4D4D"   Solid="true"    Blends="true"   />
     <Tile Id="201" Name="Crimson Plants"              Color="#FFB80000"   Framed="true"   >
       <Frames>
         <Frame UV="0,0" Name="Default" Variety="Default" />
       </Frames>
     </Tile>
-    <Tile Id="202" Name="Sunplate Block"              Color="#FFE6E600"   Solid="true"    Blends="true"   />
-    <Tile Id="203" Name="Crimstone Block"             Color="#FF730000"   Solid="true"    Blends="true"   />
-    <Tile Id="204" Name="Crimtane Ore"                Color="#FFB80000"   Solid="true"    Blends="true"   Light="true"      />
+    <Tile Id="202" Name="Sunplate Block"              Color="#FFD5B21C"   Solid="true"    Blends="true"   />
+    <Tile Id="203" Name="Crimstone Block"             Color="#FF802C2D"   Solid="true"    Blends="true"   />
+    <Tile Id="204" Name="Crimtane Ore"                Color="#FF7D3741"   Solid="true"    Blends="true"   Light="true"    />
     <Tile Id="205" Name="Crimson Vine"                Color="#FFB80000"   Blends="true"   />
     <Tile Id="206" Name="Ice Brick"                   Color="#FFFF00FF"   Solid="true"    />
     <Tile Id="207" Name="Pure Water Fountain"         Color="#FFFF00FF"   Framed="true"   >
@@ -1182,7 +1182,7 @@ Documentation moved to the end of this file.
         <Frame UV="0,0" Name="Default" Variety="Default" />
       </Frames>
     </Tile>
-    <Tile Id="234" Name="Crimsand Block"              Color="#FFFF1919"   Solid="true"    Blends="true"     />
+    <Tile Id="234" Name="Crimsand Block"              Color="#FF352C29"   Solid="true"    Blends="true" />
     <Tile Id="235" Name="Teleporter"                  Color="#FFFF00FF"   Framed="true"   Solid="true"      Size="3,1" >
       <Frames>
         <Frame UV="0,0" Name="Default" Variety="Default" />
@@ -1347,11 +1347,11 @@ Documentation moved to the end of this file.
     <Wall Id="91"   Name="Green Stained Glass"        Color="#FF66E0A3"   IsHouse="true"    />
     <Wall Id="92"   Name="Red Stained Glass"          Color="#FFFF3385"   IsHouse="true"    />
     <Wall Id="93"   Name="Multicolored Stained Glass" Color="#FFB280B2"   IsHouse="true"    />
-    <Wall Id="94"   Name="Dungeon Wall Blue"          Color="#FF29297A"   IsHouse="false"   />
-    <Wall Id="95"   Name="Dungeon Wall Purple"        Color="#FF420042"   IsHouse="false"   />
-    <Wall Id="96"   Name="Dungeon Wall Pink"          Color="#FF3D002E"   IsHouse="false"   />
-    <Wall Id="97"   Name="Dungeon Wall Bright Pink"   Color="#FF852163"   IsHouse="false"   />
-    <Wall Id="98"   Name="Dungeon Wall Green"         Color="#FF005400"   IsHouse="false"   />
+    <Wall Id="94"   Name="Dungeon Wall Blue"          Color="#FF20282D"   IsHouse="false"   />
+    <Wall Id="95"   Name="Dungeon Wall Purple"        Color="#FF2C2932"   IsHouse="false"   />
+    <Wall Id="96"   Name="Dungeon Wall Pink"          Color="#FF48324D"   IsHouse="false"   />
+    <Wall Id="97"   Name="Dungeon Wall Bright Pink"   Color="#FF4E3245"   IsHouse="false"   />
+    <Wall Id="98"   Name="Dungeon Wall Green"         Color="#FF242C2D"   IsHouse="false"   />
     <Wall Id="99"   Name="???"                        Color="#FF215775"   IsHouse="false"   />
     <Wall Id="100"  Name="Blue Slab Wall"             Color="#FFFF00FF"   IsHouse="false"   />
     <Wall Id="101"  Name="Blue Tiled Wall"            Color="#FF002B82"   IsHouse="true"    />

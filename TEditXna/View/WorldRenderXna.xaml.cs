@@ -1204,13 +1204,17 @@ namespace TEditXna.View
                             if (curtile.Liquid > 0)
                             {
                                 Texture2D tileTex = null;
-                                if (curtile.IsLava == false)
+                                if (curtile.IsLava)
                                 {
-                                    tileTex = (Texture2D)_textureDictionary.GetLiquid(0);
+                                    tileTex = (Texture2D)_textureDictionary.GetLiquid(1);
+                                }
+                                else if (curtile.IsHoney)
+                                {
+                                    tileTex = (Texture2D)_textureDictionary.GetLiquid(11); // Not sure if yellow Desert water, or Honey, but looks fine.
                                 }
                                 else
                                 {
-                                    tileTex = (Texture2D)_textureDictionary.GetLiquid(1);
+                                    tileTex = (Texture2D)_textureDictionary.GetLiquid(0);
                                 }
 
                                 if (tileTex != null)
