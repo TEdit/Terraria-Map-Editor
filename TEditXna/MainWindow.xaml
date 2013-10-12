@@ -43,6 +43,8 @@
                     <MenuItem Header="Save As" Icon="{StaticResource TB_SaveAsIcon}" Command="{Binding SaveAsCommand}" />
                     <Separator Margin="1"/>
                     <MenuItem Header="Enable Autosave" IsCheckable="True" IsChecked="{Binding IsAutoSaveEnabled}" />
+                    <MenuItem Header="Auto Check Updates" IsCheckable="True" IsChecked="{Binding CheckUpdates}" />
+                    <MenuItem Header="Auto Check Updates" Command="{Binding CheckUpdatesCommand}" />
                     <Separator Margin="1"/>
                     <MenuItem Header="Exit" Command="{Binding CloseApplicationCommand}"/>
                 </MenuItem>

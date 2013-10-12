@@ -46,5 +46,17 @@ namespace TEditXna.Properties {
                 this["Autosave"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool CheckUpdates {
+            get {
+                return ((bool)(this["CheckUpdates"]));
+            }
+            set {
+                this["CheckUpdates"] = value;
+            }
+        }
     }
 }
