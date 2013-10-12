@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
-	<Product Id="*" Name="TEdit 3" Language="1033" Version="3.4.13282.2" Manufacturer="BinaryConstruct" UpgradeCode="1d9a5baf-12ad-4a55-9e83-bbfd95c7c820">
+  <Product Id="*" Name="TEdit 3" Language="1033" Version="3.4.13282.2" Manufacturer="BinaryConstruct" UpgradeCode="1d9a5baf-12ad-4a55-9e83-bbfd95c7c820">
     <Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" />
     <Media Id="1" Cabinet="disk1.cab" EmbedCab="yes" />
     <Directory Id="TARGETDIR" Name="SourceDir">
@@ -18,8 +18,36 @@
               Icon="tedit.ico"
               WorkingDirectory="INSTALLFOLDER"
               Advertise="yes" />
-            <?include FileAssociations.wxi ?>
-            <!-- TODO: Insert files, registry keys, and other resources here. -->
+            <ProgId Id="TEditXna.World.TEdit" Description="TEdit World Backup File" Advertise="no" >
+              <Extension Id="TEdit" ContentType="application/text" Advertise="no" >
+                <Verb Id="open" Command="Open" TargetFile="TEditXna.exe" Argument='"%1"' />
+              </Extension>
+            </ProgId>
+            <ProgId Id="TEdit.World.Autosave" Description="TEdit World Autosave File" Advertise="no" >
+              <Extension Id="wld_autosave" ContentType="application/text" Advertise="no" >
+                <Verb Id="open" Command="Open" TargetFile="TEditXna.exe" Argument='"%1"' />
+              </Extension>
+            </ProgId>
+            <ProgId Id="TEdit.World.TEditAutosave" Description="TEdit Backup Autosave File" Advertise="no" >
+              <Extension Id="TEdit_autosave" ContentType="application/text" Advertise="no" >
+                <Verb Id="open" Command="Open" TargetFile="TEditXna.exe" Argument='"%1"' />
+              </Extension>
+            </ProgId> 
+
+          </Component>
+            <Component Id="AssociationWld" Guid="4F357816-38E0-4ACE-8C5D-C708CFC53DA3" KeyPath="yes" >
+            <ProgId Id="TEditXna.World.File" Description="Terraria World File" Advertise="no" >
+              <Extension Id="wld" ContentType="application/text" Advertise="no" >
+                <Verb Id="open" Command="Open" TargetFile="TEditXna.exe" Argument='"%1"' />
+              </Extension>
+            </ProgId>
+          </Component>
+          <Component Id="AssociationBak" Guid="4B04D1E7-A7CC-4A60-9B5C-E34D9E57D8E4"  KeyPath="yes">
+            <ProgId Id="TEditXna.World.Backup" Description="Terraria World Backup File" Advertise="no" >
+              <Extension Id="bak" ContentType="application/text" Advertise="no" >
+                <Verb Id="open" Command="Open" TargetFile="TEditXna.exe" Argument='"%1"' />
+              </Extension>
+            </ProgId>
           </Component>
         </Directory>
       </Directory>
@@ -33,19 +61,38 @@
       </Directory>
       <Directory Id="DesktopFolder" Name="Desktop" />
     </Directory>
-    <Property Id="WIXUI_INSTALLDIR" Value="INSTALLFOLDER" />  
+    <!-- Optional Associations -->
+
+    <Property Id="WIXUI_INSTALLDIR" Value="INSTALLFOLDER" />
     <Icon Id="tedit.ico" SourceFile="..\TEditXna\Images\tedit.ico" />
-    <Property Id="ARPPRODUCTICON">tedit.ico</Property>  
+    <Property Id="ARPPRODUCTICON">tedit.ico</Property>
     <!--<MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />-->
     <Feature Id="ProductFeature" Title="TEdit" Level="1">
-      <ComponentRef Id='MainExecutable' />
-      <ComponentRef Id='ProgramMenuDir' />
+      <Feature Id="MainProgram" Level="1" Title="TEdit" Absent="disallow">
+        <ComponentRef Id='MainExecutable' />
+      </Feature>
+      <Feature Id="StartMenu" Level="1" Title="Start Menu Shortcuts">
+        <ComponentRef Id='ProgramMenuDir' />
+      </Feature>
+      <Feature Id="AssociateWldFeature" Title ="Associate .wld" Level="1">
+        <ComponentRef Id='AssociationWld' />
+      </Feature>
+      <Feature Id="AssociateBakFeature" Title="Associate .bak" Level="1">
+        <ComponentRef Id='AssociationBak' />
+      </Feature>
     </Feature>
     <UI>
-      <UIRef Id="WixUI_InstallDir" />
+      <UIRef Id="WixUI_FeatureTree" />
       <!-- skip licence dialog -->
+      <Publish Dialog="BrowseDlg" Control="OK" Event="DoAction" Value="WixUIValidatePath" Order="3">1</Publish>
+      <Publish Dialog="BrowseDlg" Control="OK" Event="SpawnDialog" Value="InvalidDirDlg" Order="4"><![CDATA[WIXUI_INSTALLDIR_VALID<>"1"]]></Publish>
+
       <Publish Dialog="WelcomeDlg" Control="Next" Event="NewDialog" Value="InstallDirDlg" Order="2">1</Publish>
       <Publish Dialog="InstallDirDlg" Control="Back" Event="NewDialog" Value="WelcomeDlg" Order="2">1</Publish>
+      <Publish Dialog="InstallDirDlg" Control="Next" Event="NewDialog" Value="CustomizeDlg" Order="2">1</Publish>
+      <Publish Dialog="InstallDirDlg" Control="ChangeFolder" Property="_BrowseProperty" Value="[WIXUI_INSTALLDIR]" Order="1">1</Publish>
+      <Publish Dialog="InstallDirDlg" Control="ChangeFolder" Event="SpawnDialog" Value="BrowseDlg" Order="2">1</Publish>
+      <Publish Dialog="CustomizeDlg" Control="Back" Event="NewDialog" Value="InstallDirDlg" Order="3">1</Publish>
     </UI>
   </Product>
   <Fragment>
