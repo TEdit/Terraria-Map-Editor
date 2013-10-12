@@ -45,6 +45,16 @@ namespace TEditXna.View.Popups
             _newWorld.CharacterNames.Add(new NpcName(107, "Knogs"));
             _newWorld.CharacterNames.Add(new NpcName(108, "Fizban"));
             _newWorld.CharacterNames.Add(new NpcName(124, "Nancy"));
+
+            // New for 1.2
+            _newWorld.CharacterNames.Add(new NpcName(160, "Truffle"));
+            _newWorld.CharacterNames.Add(new NpcName(178, "Steampunker"));
+            _newWorld.CharacterNames.Add(new NpcName(207, "Dye Trader"));
+            _newWorld.CharacterNames.Add(new NpcName(208, "Party Girl"));
+            _newWorld.CharacterNames.Add(new NpcName(209, "Cyborg"));
+            _newWorld.CharacterNames.Add(new NpcName(227, "Painter"));
+            _newWorld.CharacterNames.Add(new NpcName(228, "Witch Doctor"));
+            _newWorld.CharacterNames.Add(new NpcName(229, "Pirate"));
         }
 
         public World NewWorld
