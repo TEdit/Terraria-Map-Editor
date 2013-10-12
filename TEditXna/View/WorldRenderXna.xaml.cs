@@ -155,6 +155,7 @@ namespace TEditXna.View
 
         private void xnaViewport_LoadContent(object sender, GraphicsDeviceEventArgs e)
         {
+
             // Abort rendering if in design mode or if gameTimer is already running
             if (Debugging.IsInDesignMode || _gameTimer.IsRunning)
             {

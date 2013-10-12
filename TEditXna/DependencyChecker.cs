@@ -83,6 +83,11 @@ namespace TEditXna
                 path = TEditXNA.Terraria.World.AltC;
             }
 
+            if (!string.IsNullOrWhiteSpace(path) && path.IndexOf("Content", StringComparison.OrdinalIgnoreCase) < 0)
+            {
+                path = Path.Combine(path, "Content");
+            }
+
             PathToContent = path;
         }
 

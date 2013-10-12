@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using BCCL.MvvmLight;
 using TEditXNA.Terraria.Objects;
 
@@ -156,6 +158,25 @@ namespace TEditXNA.Terraria
         public ObservableCollection<NpcName> CharacterNames
         {
             get { return _charNames; }
+        }
+
+        public NpcName GetNpc(int id)
+        {
+            var npc = CharacterNames.FirstOrDefault(c => c.Id == id);
+            if (npc != null) return npc;
+
+            return GetNewNpc(id);
+        }
+
+        private static NpcName GetNewNpc(int id)
+        {
+            string name;
+            if (NpcNames.TryGetValue(id, out name))
+            {
+                return new NpcName(id, name);
+            }
+
+            return new NpcName(id, "Unknown");
         }
 
         public int MoonType

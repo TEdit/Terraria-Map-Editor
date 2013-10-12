@@ -219,6 +219,7 @@ namespace TEditXNA.Terraria
                 int id = (int?)xElement.Attribute("Id") ?? -1;
                 string name = (string)xElement.Attribute("Name");
                 NpcIds.Add(name, id);
+                NpcNames.Add(id, name);
                 int frames = (int?)xElement.Attribute("Frames") ?? 16;
                 NpcFrames.Add(id, frames);
             }
@@ -296,6 +297,12 @@ namespace TEditXNA.Terraria
         public static Dictionary<string, int> NpcIds
         {
             get { return _npcIds; }
+        }
+
+        private static Dictionary<int, string> _npcNames = new Dictionary<int, string>();
+        public static Dictionary<int, string> NpcNames
+        {
+            get { return _npcNames; }
         }
 
         public static Dictionary<int, int> NpcFrames

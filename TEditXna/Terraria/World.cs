@@ -365,24 +365,24 @@ namespace TEditXNA.Terraria
 
                         FixNpcs();
 
-                        bw.Write(CharacterNames.FirstOrDefault(c => c.Id == 17).Name);
-                        bw.Write(CharacterNames.FirstOrDefault(c => c.Id == 18).Name);
-                        bw.Write(CharacterNames.FirstOrDefault(c => c.Id == 19).Name);
-                        bw.Write(CharacterNames.FirstOrDefault(c => c.Id == 20).Name);
-                        bw.Write(CharacterNames.FirstOrDefault(c => c.Id == 22).Name);
-                        bw.Write(CharacterNames.FirstOrDefault(c => c.Id == 54).Name);
-                        bw.Write(CharacterNames.FirstOrDefault(c => c.Id == 38).Name);
-                        bw.Write(CharacterNames.FirstOrDefault(c => c.Id == 107).Name);
-                        bw.Write(CharacterNames.FirstOrDefault(c => c.Id == 108).Name);
-                        bw.Write(CharacterNames.FirstOrDefault(c => c.Id == 124).Name);
-                        bw.Write(CharacterNames.FirstOrDefault(c => c.Id == 160).Name);
-                        bw.Write(CharacterNames.FirstOrDefault(c => c.Id == 178).Name);
-                        bw.Write(CharacterNames.FirstOrDefault(c => c.Id == 207).Name);
-                        bw.Write(CharacterNames.FirstOrDefault(c => c.Id == 208).Name);
-                        bw.Write(CharacterNames.FirstOrDefault(c => c.Id == 209).Name);
-                        bw.Write(CharacterNames.FirstOrDefault(c => c.Id == 227).Name);
-                        bw.Write(CharacterNames.FirstOrDefault(c => c.Id == 228).Name);
-                        bw.Write(CharacterNames.FirstOrDefault(c => c.Id == 229).Name);
+                        bw.Write(GetNpc(17).Name);
+                        bw.Write(GetNpc(18).Name);
+                        bw.Write(GetNpc(19).Name);
+                        bw.Write(GetNpc(20).Name);
+                        bw.Write(GetNpc(22).Name);
+                        bw.Write(GetNpc(54).Name);
+                        bw.Write(GetNpc(38).Name);
+                        bw.Write(GetNpc(107).Name);
+                        bw.Write(GetNpc(108).Name);
+                        bw.Write(GetNpc(124).Name);
+                        bw.Write(GetNpc(160).Name);
+                        bw.Write(GetNpc(178).Name);
+                        bw.Write(GetNpc(207).Name);
+                        bw.Write(GetNpc(208).Name);
+                        bw.Write(GetNpc(209).Name);
+                        bw.Write(GetNpc(227).Name);
+                        bw.Write(GetNpc(228).Name);
+                        bw.Write(GetNpc(229).Name);
 
                         OnProgressChanged(null, new ProgressChangedEventArgs(100, "Saving Validation Data..."));
                         bw.Write(true);
@@ -886,36 +886,36 @@ namespace TEditXNA.Terraria
                             }
                             else
                             {
-                                w.CharacterNames.Add(new NpcName(160, "Truffle"));
-                                w.CharacterNames.Add(new NpcName(178, "Steampunker"));
-                                w.CharacterNames.Add(new NpcName(207, "Dye Trader"));
-                                w.CharacterNames.Add(new NpcName(208, "Party Girl"));
-                                w.CharacterNames.Add(new NpcName(209, "Cyborg"));
-                                w.CharacterNames.Add(new NpcName(227, "Painter"));
-                                w.CharacterNames.Add(new NpcName(228, "Witch Doctor"));
-                                w.CharacterNames.Add(new NpcName(229, "Pirate"));
+                                w.CharacterNames.Add(GetNewNpc(160));
+                                w.CharacterNames.Add(GetNewNpc(178));
+                                w.CharacterNames.Add(GetNewNpc(207));
+                                w.CharacterNames.Add(GetNewNpc(208));
+                                w.CharacterNames.Add(GetNewNpc(209));
+                                w.CharacterNames.Add(GetNewNpc(227));
+                                w.CharacterNames.Add(GetNewNpc(228));
+                                w.CharacterNames.Add(GetNewNpc(229));
                             }
                         }
                         else
                         {
-                            w.CharacterNames.Add(new NpcName(17, "Harold"));
-                            w.CharacterNames.Add(new NpcName(18, "Molly"));
-                            w.CharacterNames.Add(new NpcName(19, "Dominique"));
-                            w.CharacterNames.Add(new NpcName(20, "Felicitae"));
-                            w.CharacterNames.Add(new NpcName(22, "Steve"));
-                            w.CharacterNames.Add(new NpcName(54, "Fitz"));
-                            w.CharacterNames.Add(new NpcName(38, "Gimut"));
-                            w.CharacterNames.Add(new NpcName(107, "Knogs"));
-                            w.CharacterNames.Add(new NpcName(108, "Fizban"));
-                            w.CharacterNames.Add(new NpcName(124, "Nancy"));
-                            w.CharacterNames.Add(new NpcName(160, "Truffle"));
-                            w.CharacterNames.Add(new NpcName(178, "Steampunker"));
-                            w.CharacterNames.Add(new NpcName(207, "Dye Trader"));
-                            w.CharacterNames.Add(new NpcName(208, "Party Girl"));
-                            w.CharacterNames.Add(new NpcName(209, "Cyborg"));
-                            w.CharacterNames.Add(new NpcName(227, "Painter"));
-                            w.CharacterNames.Add(new NpcName(228, "Witch Doctor"));
-                            w.CharacterNames.Add(new NpcName(229, "Pirate"));
+                            w.CharacterNames.Add(GetNewNpc(17));
+                            w.CharacterNames.Add(GetNewNpc(18));
+                            w.CharacterNames.Add(GetNewNpc(19));
+                            w.CharacterNames.Add(GetNewNpc(20));
+                            w.CharacterNames.Add(GetNewNpc(22));
+                            w.CharacterNames.Add(GetNewNpc(54));
+                            w.CharacterNames.Add(GetNewNpc(38));
+                            w.CharacterNames.Add(GetNewNpc(107));
+                            w.CharacterNames.Add(GetNewNpc(108));
+                            w.CharacterNames.Add(GetNewNpc(124));
+                            w.CharacterNames.Add(GetNewNpc(160));
+                            w.CharacterNames.Add(GetNewNpc(178));
+                            w.CharacterNames.Add(GetNewNpc(207));
+                            w.CharacterNames.Add(GetNewNpc(208));
+                            w.CharacterNames.Add(GetNewNpc(209));
+                            w.CharacterNames.Add(GetNewNpc(227));
+                            w.CharacterNames.Add(GetNewNpc(228));
+                            w.CharacterNames.Add(GetNewNpc(229));
 
                         }
                         if (w.Version >= 7)
@@ -953,43 +953,15 @@ namespace TEditXNA.Terraria
 
         public void FixNpcs()
         {
-            DispatcherHelper.CheckBeginInvokeOnUI(()=>{
-                if (CharacterNames.All(c => c.Id != 17))
-                    CharacterNames.Add(new NpcName(17, "Harold"));
-                if (CharacterNames.All(c => c.Id != 18))
-                    CharacterNames.Add(new NpcName(18, "Molly"));
-                if (CharacterNames.All(c => c.Id != 19))
-                    CharacterNames.Add(new NpcName(19, "Dominique"));
-                if (CharacterNames.All(c => c.Id != 20))
-                    CharacterNames.Add(new NpcName(20, "Felicitae"));
-                if (CharacterNames.All(c => c.Id != 22))
-                    CharacterNames.Add(new NpcName(22, "Steve"));
-                if (CharacterNames.All(c => c.Id != 54))
-                    CharacterNames.Add(new NpcName(54, "Fitz"));
-                if (CharacterNames.All(c => c.Id != 38))
-                    CharacterNames.Add(new NpcName(38, "Gimut"));
-                if (CharacterNames.All(c => c.Id != 107))
-                    CharacterNames.Add(new NpcName(107, "Knogs"));
-                if (CharacterNames.All(c => c.Id != 108))
-                    CharacterNames.Add(new NpcName(108, "Fizban"));
-                if (CharacterNames.All(c => c.Id != 124))
-                    CharacterNames.Add(new NpcName(124, "Nancy"));
-                if (CharacterNames.All(c => c.Id != 160))
-                    CharacterNames.Add(new NpcName(160, "Truffle"));
-                if (CharacterNames.All(c => c.Id != 178))
-                    CharacterNames.Add(new NpcName(178, "Steampunker"));
-                if (CharacterNames.All(c => c.Id != 207))
-                    CharacterNames.Add(new NpcName(207, "Dye Trader"));
-                if (CharacterNames.All(c => c.Id != 208))
-                    CharacterNames.Add(new NpcName(208, "Party Girl"));
-                if (CharacterNames.All(c => c.Id != 209))
-                    CharacterNames.Add(new NpcName(209, "Cyborg"));
-                if (CharacterNames.All(c => c.Id != 227))
-                    CharacterNames.Add(new NpcName(227, "Painter"));
-                if (CharacterNames.All(c => c.Id != 228))
-                    CharacterNames.Add(new NpcName(228, "Witch Doctor"));
-                if (CharacterNames.All(c => c.Id != 229))
-                    CharacterNames.Add(new NpcName(229, "Pirate"));
+            DispatcherHelper.CheckBeginInvokeOnUI(
+                ()=>{
+                int[] npcids = {17,18,19,20,22,54,38,107,108,124,160,178,207,208,209,227,228,229};
+
+                foreach (var npcid in npcids)
+                {
+                    if (CharacterNames.All(c => c.Id != npcid))
+                        CharacterNames.Add(GetNewNpc(npcid));                                       
+                }
             });
         }
 
