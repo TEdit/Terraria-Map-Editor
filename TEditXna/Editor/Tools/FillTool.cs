@@ -101,6 +101,7 @@ namespace TEditXna.Editor.Tools
                 case PaintMode.Liquid:
                     if ((originTile.Liquid > 0 != nextTile.Liquid > 0) ||
                         originTile.IsLava != nextTile.IsLava ||
+                        originTile.IsHoney != nextTile.IsHoney ||
                         (originTile.IsActive && World.TileProperties[originTile.Type].IsSolid) ||
                         (nextTile.IsActive && World.TileProperties[nextTile.Type].IsSolid))
                         return false;
