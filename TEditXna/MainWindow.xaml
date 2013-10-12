@@ -44,7 +44,7 @@
                     <Separator Margin="1"/>
                     <MenuItem Header="Enable Autosave" IsCheckable="True" IsChecked="{Binding IsAutoSaveEnabled}" />
                     <MenuItem Header="Auto Check Updates" IsCheckable="True" IsChecked="{Binding CheckUpdates}" />
-                    <MenuItem Header="Auto Check Updates" Command="{Binding CheckUpdatesCommand}" />
+                    <MenuItem Header="Auto Check Updates" Command="{Binding CheckUpdatesCommand}" CommandParameter="{StaticResource False}" />
                     <Separator Margin="1"/>
                     <MenuItem Header="Exit" Command="{Binding CloseApplicationCommand}"/>
                 </MenuItem>

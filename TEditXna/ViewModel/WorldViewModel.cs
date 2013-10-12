@@ -78,7 +78,7 @@ namespace TEditXna.ViewModel
 
         public ICommand CheckUpdatesCommand
         {
-            get { return _checkUpdatesCommand ?? (_checkUpdatesCommand = new RelayCommand(CheckVersion)); }
+            get { return _checkUpdatesCommand ?? (_checkUpdatesCommand = new RelayCommand<bool>(CheckVersion)); }
         }
 
         static WorldViewModel()
