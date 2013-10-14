@@ -511,6 +511,7 @@ namespace TEditXna.View
                                                         case 60: treeType = 2; break; //Jungle
                                                         case 109: treeType = 3; break; //Hallow
                                                         case 147: treeType = 4; break; //Snow
+                                                        case 199: treeType = 5; break; //Crimson
                                                         default: found = false; break;
                                                     }
                                                     if (found == true)
