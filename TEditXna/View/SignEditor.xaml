@@ -5,9 +5,13 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
-    <ScrollViewer VerticalScrollBarVisibility="Visible" >
-        <DockPanel Background="{DynamicResource WindowBackgroundBrush}" LastChildFill="True">
-            <StackPanel Orientation="Horizontal" DockPanel.Dock="Top">
+    <Grid Background="{DynamicResource WindowBackgroundBrush}" >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+            <StackPanel Orientation="Horizontal" Grid.Row="0">
                 <TextBlock Text="Sign Text " Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" />
                 <TextBlock Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" >
                     <TextBlock.Text>
@@ -18,13 +22,13 @@
                     </TextBlock.Text>
                 </TextBlock>
             </StackPanel>
-            <UniformGrid Columns="2" DockPanel.Dock="Bottom">
+        <TextBox Grid.Row="1" Text="{Binding SelectedSign.Text, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="300" MinHeight="150"
+               HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Visible" AcceptsReturn="True" TextWrapping="Wrap"
+			   Margin="2" FontWeight="Bold" MaxLines="10" PreviewKeyDown="ValidateLines" />
+        <UniformGrid Columns="2" Grid.Row="2">
                 <Button Margin="2" Content="Cancel"  Command="{Binding SaveSignCommand}" CommandParameter="{StaticResource False}" />
                 <Button Margin="2" Content="Save" Command="{Binding SaveSignCommand}" CommandParameter="{StaticResource True}" />
             </UniformGrid>
-            <TextBox Text="{Binding SelectedSign.Text, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="300" MinHeight="150"
-               HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Visible" AcceptsReturn="True" TextWrapping="Wrap"
-			   Margin="2" FontWeight="Bold" MaxLines="10" PreviewKeyDown="ValidateLines" />
-        </DockPanel>
-    </ScrollViewer>
+
+    </Grid>
 </UserControl>
