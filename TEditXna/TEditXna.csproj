@@ -154,8 +154,8 @@
     <Compile Include="ViewModel\WorldViewModel.Editor.cs">
       <DependentUpon>WorldViewModel.cs</DependentUpon>
     </Compile>
-    <Compile Include="View\ChestSignEditorView.xaml.cs">
-      <DependentUpon>ChestSignEditorView.xaml</DependentUpon>
+    <Compile Include="View\ChestEditorView.xaml.cs">
+      <DependentUpon>ChestEditorView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\ClipboardView.xaml.cs">
       <DependentUpon>ClipboardView.xaml</DependentUpon>
@@ -223,7 +223,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\ChestSignEditorView.xaml">
+    <Page Include="View\ChestEditorView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -400,7 +400,7 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties BuildVersion_AssemblyInfoFilename="Properties\AssemblyInfo.cs" BuildVersion_UseGlobalSettings="True" />
+      <UserProperties BuildVersion_UseGlobalSettings="True" BuildVersion_AssemblyInfoFilename="Properties\AssemblyInfo.cs" />
     </VisualStudio>
   </ProjectExtensions>
   <PropertyGroup>

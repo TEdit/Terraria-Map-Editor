@@ -200,7 +200,7 @@
                         <View:ClipboardView VerticalAlignment="Stretch" HorizontalAlignment="Stretch" />
                     </TabItem>
                     <TabItem Header="Chest" x:Name="ChestSignTab">
-                        <View:ChestSignEditorView VerticalAlignment="Stretch" HorizontalAlignment="Stretch" />
+                        <View:ChestEditorView VerticalAlignment="Stretch" HorizontalAlignment="Stretch" />
                     </TabItem>
                     <TabItem Header="Npc Names" >
                         <ScrollViewer VerticalScrollBarVisibility="Auto">

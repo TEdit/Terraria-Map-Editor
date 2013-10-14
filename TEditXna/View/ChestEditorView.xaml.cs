@@ -17,9 +17,9 @@ namespace TEditXna.View
     /// <summary>
     /// Interaction logic for ChestSignEditorView.xaml
     /// </summary>
-    public partial class ChestSignEditorView : UserControl
+    public partial class ChestEditorView : UserControl
     {
-        public ChestSignEditorView()
+        public ChestEditorView()
         {
             InitializeComponent();
         }
