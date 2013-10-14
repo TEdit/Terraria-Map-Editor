@@ -831,7 +831,7 @@ namespace TEditXNA.Terraria
                                 sign.X = b.ReadInt32();
                                 sign.Y = b.ReadInt32();
 
-                                if (w.Tiles[sign.X, sign.Y].IsActive && (int)w.Tiles[sign.X, sign.Y].Type == 55 && (int)w.Tiles[sign.X, sign.Y].Type == 85)
+                                if (w.Tiles[sign.X, sign.Y].IsActive && ((int)w.Tiles[sign.X, sign.Y].Type == 55 || (int)w.Tiles[sign.X, sign.Y].Type == 85))
                                     w.Signs.Add(sign);
                             }
                         }

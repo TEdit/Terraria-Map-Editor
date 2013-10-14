@@ -186,7 +186,7 @@ namespace TEditXna.ViewModel
             set
             {
                 Set("SelectedSign", ref _selectedSign, value);
-                SelectedTabIndex = 3;
+                SelectedTabIndex = 5;
             }
         }
 
