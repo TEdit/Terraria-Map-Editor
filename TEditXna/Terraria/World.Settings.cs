@@ -8,6 +8,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Xml.Linq;
 using BCCL.Geometry.Primitives;
+using BCCL.MvvmLight;
 using XNA = Microsoft.Xna.Framework;
 using TEditXNA.Terraria.Objects;
 
@@ -33,6 +34,8 @@ namespace TEditXNA.Terraria
  
         static World()
         {
+            if (ViewModelBase.IsInDesignModeStatic) return;
+
             var settingspath = Path.Combine(Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().GetName().CodeBase), "settings.xml");
             LoadObjectDbXml(settingspath);
             Sprites.Add(new Sprite());

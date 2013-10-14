@@ -149,7 +149,7 @@ namespace TEditXna.ViewModel
                         int index = CurrentWorld.Chests.IndexOf(worldChest);
                         CurrentWorld.Chests[index] = SelectedChest.Copy();
                     }
-                    SelectedChest = null;
+                    //SelectedChest = null;
                 }
             }
             else

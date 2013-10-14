@@ -54,11 +54,18 @@
                     <Button Margin="2" Content="Save"  Command="{Binding SaveChestCommand}" CommandParameter="{StaticResource True}" />
                 </UniformGrid>
                 <StackPanel Orientation="Vertical">
-                <ListBox Name="ChestList" Padding="5" Foreground="White" Height="200"
+                    <ListBox Name="ChestList" Padding="5" Foreground="White" Height="200"
                          ItemsSource="{Binding SelectedChest.Items}" 
                          ScrollViewer.CanContentScroll="True" 
-                         VirtualizingStackPanel.IsVirtualizing="True"
-                         ItemTemplate="{StaticResource FastChestItem}" />
+                         VirtualizingStackPanel.IsVirtualizing="True" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch"
+                         ItemTemplate="{StaticResource FastChestItem}" >
+                        <ListBox.ItemContainerStyle>
+                            <Style TargetType="ListBoxItem">
+                                <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                                <Setter Property="Background" Value="Transparent" />
+                            </Style>
+                        </ListBox.ItemContainerStyle>
+                    </ListBox>
                     <TextBlock Text="Edit Selected Item" Margin="2" Foreground="{DynamicResource TextBrush}"/>
                     <ContentControl ContentTemplate="{StaticResource ChestItemTemplate}" Content="{Binding ElementName=ChestList, Path=SelectedItem}" />
                 </StackPanel>
