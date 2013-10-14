@@ -423,10 +423,23 @@ namespace TEditXna.Editor.Clipboard
                             if (curTile.IsActive)
                             {
                                 curTile.Type = br.ReadByte();
-                                if (World.TileProperties[curTile.Type].IsFramed)
+                                if (curTile.Type == 19) // fix for platforms
+                                {
+                                    curTile.U = 0;
+                                    curTile.V = 0;
+                                }
+                                else if (World.TileProperties[curTile.Type].IsFramed)
                                 {
                                     curTile.U = br.ReadInt16();
                                     curTile.V = br.ReadInt16();
+                                    
+                                    if (curTile.Type == 144) //timer
+                                        tile.V = 0;
+                                }
+                                else
+                                {
+                                    curTile.U = -1;
+                                    curTile.V = -1;
                                 }
                             }
 
