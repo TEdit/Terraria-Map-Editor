@@ -8,11 +8,16 @@
             <VirtualizingStackPanel  VirtualizingStackPanel.IsVirtualizing="True" VirtualizingStackPanel.VirtualizationMode="Recycling" />
         </ItemsPanelTemplate>
         <DataTemplate x:Key="FastChestItem">
-            <StackPanel Orientation="Horizontal" Margin="1" >
-                <TextBlock Text="{Binding StackSize}" Width="30" Margin="2"/>
-                <TextBlock Text="{Binding PrefixName}" Margin="2" />
-                <TextBlock Text="{Binding Name}" Margin="2"/>
-            </StackPanel>
+            <Grid HorizontalAlignment="Stretch"  d:DesignWidth="200">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="60"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0" Foreground="White" Text="{Binding StackSize}" Width="30" Margin="2"/>
+                <TextBlock Grid.Column="1" Foreground="White" Text="{Binding PrefixName}" Margin="2" />
+                <TextBlock Grid.Column="2" Foreground="White"  Text="{Binding Name}" Margin="2"/>
+            </Grid>
         </DataTemplate>
         <DataTemplate x:Key="ChestItemTemplate">
             <StackPanel Orientation="Horizontal" Margin="1" >
@@ -57,12 +62,11 @@
                     <ListBox Name="ChestList" Padding="5" Foreground="White" Height="200"
                          ItemsSource="{Binding SelectedChest.Items}" 
                          ScrollViewer.CanContentScroll="True" 
-                         VirtualizingStackPanel.IsVirtualizing="True" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch"
-                         ItemTemplate="{StaticResource FastChestItem}" >
+                             VirtualizingStackPanel.IsVirtualizing="True" 
+                             ItemTemplate="{StaticResource FastChestItem}" >
                         <ListBox.ItemContainerStyle>
-                            <Style TargetType="ListBoxItem">
+                            <Style TargetType="ListBoxItem" BasedOn="{StaticResource {x:Type ListBoxItem}}">
                                 <Setter Property="HorizontalContentAlignment" Value="Stretch" />
-                                <Setter Property="Background" Value="Transparent" />
                             </Style>
                         </ListBox.ItemContainerStyle>
                     </ListBox>
