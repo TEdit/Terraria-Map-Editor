@@ -209,7 +209,7 @@
                     </TabItem>
                     <TabItem Header="Sign Editor" >
                         <ScrollViewer VerticalScrollBarVisibility="Auto">
-                            <View:SignEditor HorizontalAlignment="Stretch" VerticalAlignment="Top"/>
+                            <View:SignEditor HorizontalAlignment="Stretch"  VerticalAlignment="Stretch"/>
                         </ScrollViewer>
                     </TabItem>
                 </TabControl>
