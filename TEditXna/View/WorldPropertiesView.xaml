@@ -136,7 +136,7 @@
             <TextBlock />
             <CheckBox IsChecked="{Binding CurrentWorld.DownedGoblins}" Content="Goblin Invasion Downed" VerticalAlignment="Center" VerticalContentAlignment="Center" />
             <TextBlock />
-            <CheckBox IsChecked="{Binding CurrentWorld.QueenBee}" Content="Queen Bee Downed" VerticalAlignment="Center" VerticalContentAlignment="Center" />
+            <CheckBox IsChecked="{Binding CurrentWorld.DownedQueenBee}" Content="Queen Bee Downed" VerticalAlignment="Center" VerticalContentAlignment="Center" />
             <TextBlock />
             <CheckBox IsChecked="{Binding CurrentWorld.DownedMechBoss1}" Content="Mech Boss 1 Downed" VerticalAlignment="Center" VerticalContentAlignment="Center" />
             <TextBlock />
