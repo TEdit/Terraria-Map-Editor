@@ -718,8 +718,32 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Tile Id="78" Name="Clay Pot"                     Color="#FF00FFF2"   Placement="floor"   Framed="true"   Size="1,1"      />
     <Tile Id="79" Name="Bed"                          Color="#FF00FFF2"   Placement="floor"   Framed="true"   Size="4,2"      >
       <Frames>
-        <Frame UV="0,0"     Anchor="Left"     />
-        <Frame UV="72,0"    Variety="Right"   />
+        <Frame UV="0,0"     Name="Wooden Bed"    Anchor="Left"     />
+        <Frame UV="72,0"    Name="Wooden Bed"    Variety="Right"   />
+         <Frame UV="0,36"     Name="Ebonwood Bed"    Anchor="Left"     />
+        <Frame UV="72,36"    Name="Ebonwood Bed"    Variety="Right"   />
+         <Frame UV="0,72"     Name="Rich Mahogany Bed"    Anchor="Left"     />
+        <Frame UV="72,72"    Name="Rich Mahogany Bed"    Variety="Right"   />
+         <Frame UV="0,108"     Name="Pearlwood Bed"    Anchor="Left"     />
+        <Frame UV="72,108"    Name="Pearlwood Bed"    Variety="Right"   />
+         <Frame UV="0,144"     Name="Shadewood Bed"    Anchor="Left"     />
+        <Frame UV="72,144"    Name="Shadewood Bed"    Variety="Right"   />
+         <Frame UV="0,180"     Name="Blue Dungeon Bed"    Anchor="Left"     />
+        <Frame UV="72,180"    Name="Blue Dungeon Bed"    Variety="Right"   />
+         <Frame UV="0,216"     Name="Green Dungeon Bed"    Anchor="Left"     />
+        <Frame UV="72,216"    Name="Green Dungeon Bed"    Variety="Right"   />
+         <Frame UV="0,252"     Name="Pink Dungeon Bed"    Anchor="Left"     />
+        <Frame UV="72,252"    Name="Pink Dungeon Bed"    Variety="Right"   />
+         <Frame UV="0,288"     Name="Obsidian Bed"    Anchor="Left"     />
+        <Frame UV="72,288"    Name="Obsidian Bed"    Variety="Right"   />
+         <Frame UV="0,324"     Name="Glass Bed"    Anchor="Left"     />
+        <Frame UV="72,324"    Name="Glass Bed"    Variety="Right"   />
+         <Frame UV="0,360"     Name="Golden Bed"    Anchor="Left"     />
+        <Frame UV="72,360"    Name="Golden Bed"    Variety="Right"   />
+         <Frame UV="0,396"     Name="Honey Bed"    Anchor="Left"     />
+        <Frame UV="72,396"    Name="Honey Bed"    Variety="Right"   />
+         <Frame UV="0,432"     Name="Steam Punk Bed"    Anchor="Left"     />
+        <Frame UV="72,432"    Name="Steam Punk Bed"    Variety="Right"   />
       </Frames>
     </Tile>
     <Tile Id="80" Name="Cactus"                       Color="#FF00A500"   Special="Cactus"    />
