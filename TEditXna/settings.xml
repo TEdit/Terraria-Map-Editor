@@ -918,6 +918,13 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="1440,0"  Variety="King Statue"         />
         <Frame UV="1476,0"  Variety="Queen Statue"        />
         <Frame UV="1512,0"  Variety="Pirahna Statue"      />
+        <Frame UV="1548,0"  Variety="Lihzahrd Statue A"      />
+        <Frame UV="1584,0"  Variety="Lihzahrd Statue B"      />
+        <Frame UV="1620,0"  Variety="Lihzahrd Statue C"      />
+        <Frame UV="1656,0"  Variety="Blue Dungeon Vase"      />
+        <Frame UV="1692,0"  Variety="Green Dungeon Vase"      />
+        <Frame UV="1728,0"  Variety="Pink Dungeon Vase"      />
+        <Frame UV="1764,0"  Variety="Obsidian Vase"      />
       </Frames>
     </Tile>
     <Tile Id="106" Name="Sawmill"                     Color="#FF00FFF2"   Placement="floor"   Framed="true"         Size="3,3"      />
@@ -1025,14 +1032,27 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="36,0" Anchor="Right" />
       </Frames>
     </Tile>
-    <Tile Id="133" Name="Adamantite Forge"            Color="#FF891012"   Light="true"    Framed="true"   Size="3,2" />
-    <Tile Id="134" Name="Mythril Anvil"               Color="#FF96AE87"   Framed="true"   Size="2,1"      />
+    <Tile Id="133" Name="Forge"            Color="#FF891012"   Light="true"    Framed="true"   Size="3,2" >
+		<Frames>
+			<Frame UV="0,0"     Name="Adamantite Forge"     />
+			<Frame UV="54,0"     Name="Titanium Forge"     />
+		</Frames>
+    </Tile>
+    <Tile Id="134" Name="Anvil Hardmode"               Color="#FF96AE87"   Framed="true"   Size="2,1"      >
+		<Frames>
+			<Frame UV="0,0"     Name="Mythril Anvil"     />
+			<Frame UV="36,0"     Name="Orichalcum Anvil"     />
+		</Frames>
+    </Tile>
     <Tile Id="135" Name="Pressure Plate"              Color="#FFFD7272"   Framed="true"   >
       <Frames>
         <Frame UV="0,0"     Variety="Red"     />
         <Frame UV="0,18"    Variety="Green"   />
         <Frame UV="0,36"    Variety="Gray"    />
         <Frame UV="0,54"    Variety="Brown"   />
+        <Frame UV="0,72"    Variety="Blue"   />
+        <Frame UV="0,90"    Variety="Yellow"   />
+        <Frame UV="0,108"    Variety="Lihzahrd"   />
       </Frames>
     </Tile>
     <Tile Id="136" Name="Switch"                      Color="#FFCCC0C0"   Framed="true"   >
