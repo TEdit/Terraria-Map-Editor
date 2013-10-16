@@ -469,6 +469,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="0,198"   Name="Platform"     Variety="Wood Shelf"        />
         <Frame UV="0,216"   Name="Platform"     Variety="Dungeon Shelf"     />
         <Frame UV="0,234"   Name="Platform"     Variety="Obsidian"          />
+         <Frame UV="0,252"   Name="Platform"     Variety="Glass"          />
       </Frames>
     </Tile>
     <Tile Id="20" Name="Sapling"                      Color="#FF0D6524"   Framed="true"       Size="1,2"        >
@@ -487,6 +488,28 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="144,0"   Name="Shadow Chest"   Variety="Locked"    />
         <Frame UV="180,0"   Name="Barrel"         />
         <Frame UV="216,0"   Name="Trash Can"      />
+        <Frame UV="252,0"    Name="Ebonwood Chest"     />
+        <Frame UV="288,0"    Name="Rich Mahogany Chest"     />
+        <Frame UV="324,0"    Name="Pearlwood Chest"     />
+        <Frame UV="360,0"    Name="Ivy Chest"     />
+        <Frame UV="396,0"    Name="Ice Chest"     />
+        <Frame UV="432,0"    Name="Living Wood Chest"     />
+        <Frame UV="468,0"    Name="Skyware Chest"     />
+        <Frame UV="504,0"    Name="Shadewood Chest"     />
+        <Frame UV="540,0"    Name="Web Coverd Chest"     />
+        <Frame UV="576,0"    Name="Lihzahrd Chest"     />
+        <Frame UV="612,0"    Name="Water Chest"     />
+        <Frame UV="648,0"    Name="Jungle Chest"     />
+        <Frame UV="684,0"    Name="Corruption Chest"     />
+        <Frame UV="720,0"    Name="Crimson Chest"     />
+        <Frame UV="756,0"    Name="Hallowed Chest"     />
+        <Frame UV="792,0"    Name="Frozen Chest"     />
+        <Frame UV="828,0"    Name="Jungle Chest"   Variety="Locked"     />
+        <Frame UV="864,0"    Name="Corruption Chest"   Variety="Locked"     />
+        <Frame UV="900,0"    Name="Crimson Chest"   Variety="Locked"     />
+        <Frame UV="936,0"    Name="Hallowed Chest"   Variety="Locked"     />
+        <Frame UV="972,0"    Name="Frozen Chest"   Variety="Locked"     />
+        
       </Frames>
     </Tile>
     <Tile Id="22" Name="Demonite Ore"                 Color="#FF625FA7"   Light="true"    Solid="true"    Blends="true"   MergeWith="0"     />
