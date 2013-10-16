@@ -43,8 +43,8 @@
                     <MenuItem Header="Save As" Icon="{StaticResource TB_SaveAsIcon}" Command="{Binding SaveAsCommand}" />
                     <Separator Margin="1"/>
                     <MenuItem Header="Enable Autosave" IsCheckable="True" IsChecked="{Binding IsAutoSaveEnabled}" />
-                    <MenuItem Header="Auto Check Updates" IsCheckable="True" IsChecked="{Binding CheckUpdates}" />
-                    <MenuItem Header="Auto Check Updates" Command="{Binding CheckUpdatesCommand}" CommandParameter="{StaticResource False}" />
+                    <MenuItem Header="On Startup Check Updates" IsCheckable="True" IsChecked="{Binding CheckUpdates}" />
+                    <MenuItem Header="Check For Updates" Command="{Binding CheckUpdatesCommand}" CommandParameter="{StaticResource False}" />
                     <Separator Margin="1"/>
                     <MenuItem Header="Exit" Command="{Binding CloseApplicationCommand}"/>
                 </MenuItem>
@@ -54,7 +54,6 @@
                     <Separator Margin="1" />
                     <MenuItem Header="Copy" Command="{Binding CopyCommand}" Icon="{StaticResource TB_CopyIcon}" />
                     <MenuItem Header="Paste" Command="{Binding PasteCommand}" Icon="{StaticResource TB_PasteIcon}" />
-                    <MenuItem Header="Paste Empty Tiles" IsCheckable="True" IsChecked="{Binding Clipboard.PasteEmpty}" />
                     <Separator Margin="1" />
                     <MenuItem Header="Delete" Command="{Binding DeleteCommand}" Icon="{StaticResource TB_DeleteIcon}" />
                 </MenuItem>

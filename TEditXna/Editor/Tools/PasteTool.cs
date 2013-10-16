@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using System.Windows.Input;
 using System.Windows.Media.Imaging;
 using BCCL.Geometry.Primitives;
@@ -10,7 +11,8 @@ namespace TEditXna.Editor.Tools
 {
     public sealed class PasteTool : BaseTool
     {
-        public PasteTool(WorldViewModel worldViewModel) : base(worldViewModel)
+        public PasteTool(WorldViewModel worldViewModel)
+            : base(worldViewModel)
         {
             Icon = new BitmapImage(new Uri(@"pack://application:,,,/TEditXna;component/Images/Tools/paste.png"));
             Name = "Paste";
@@ -27,8 +29,8 @@ namespace TEditXna.Editor.Tools
             }
             if (e.RightButton == MouseButtonState.Pressed && e.LeftButton == MouseButtonState.Released)
             {
-                _wvm.Clipboard.Buffer = null;
-                _wvm.PreviewChange();
+               
+                base._wvm.SetTool.Execute(_wvm.Tools.FirstOrDefault(t => t.Name == "Arrow"));
             }
         }
 

@@ -434,7 +434,7 @@ namespace TEditXna.Editor.Clipboard
                                     curTile.V = br.ReadInt16();
                                     
                                     if (curTile.Type == 144) //timer
-                                        tile.V = 0;
+                                        curTile.V = 0;
                                 }
                                 else
                                 {
