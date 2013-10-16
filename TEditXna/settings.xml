@@ -560,7 +560,16 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="36,0"    Variety="Off"   />
       </Frames>
     </Tile>
-    <Tile Id="101" Name="Bookcase"                    Color="#FFFF00FF"   Placement="floor"     SolidTop="true"   Framed="true"   Size="3,4"    />
+    <Tile Id="101" Name="Bookcase"                    Color="#FFFF00FF"   Placement="floor"     SolidTop="true"   Framed="true"   Size="3,4"    >
+    <Frames>
+        <Frame UV="0,0"     Variety="Wooden"    />
+        <Frame UV="54,0"     Variety="Blue Dungeon"    />
+        <Frame UV="108,0"     Variety="Green Dungeon"    />
+        <Frame UV="162,0"     Variety="Pink Dungeon"    />
+        <Frame UV="216,0"    Variety="Obsidian"   />
+        <Frame UV="270,0"     Variety="Gothic"    />
+      </Frames>
+    </Tile>
     <Tile Id="102" Name="Throne"                      Color="#FFFF00FF"   Placement="floor"     Framed="true"     Size="3,4"      />
     <Tile Id="103" Name="Bowl"                        Color="#FFFF00FF"   Placement="surface"   Framed="true"     Size="2,1"      />
     <Tile Id="104" Name="Grandfather Clock"           Color="#FFFF00FF"   Placement="floor"     Framed="true"     Size="2,5"      />
