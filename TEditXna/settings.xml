@@ -1065,10 +1065,16 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="36,18"   Name="Switch"   Anchor="Right"    Variety="Setting Two"   />
       </Frames>
     </Tile>
-    <Tile Id="137" Name="Dart Trap"                   Color="#FF8C8C8C"   Solid="true"    Framed="true"   >
+    <Tile Id="137" Name="Trap"                   Color="#FF8C8C8C"   Solid="true"    Framed="true"   >
       <Frames>
-        <Frame UV="0,0"     Anchor="Left"     />
-        <Frame UV="18,0"    Variety="Right"   />
+        <Frame UV="0,0"     Name="Dart Trap"	Anchor="Left"     />
+        <Frame UV="18,0"   Name="Dart Trap"	Variety="Right"   />
+        <Frame UV="0,18"     Name="Super Dart Trap"	Anchor="Left"     />
+        <Frame UV="18,18"   Name="Super Dart Trap"	Variety="Right"   />
+        <Frame UV="0,36"     Name="Flame  Trap"	Anchor="Left"     />
+        <Frame UV="18,36"   Name="Flame  Trap"	Variety="Right"   />
+		<Frame UV="0,54"     Name="Spiky Ball Trap"	Anchor="Top"     />
+        <Frame UV="0,72"     Name="Spear Trap"	Anchor="Top"     />
       </Frames>
     </Tile>
     <Tile Id="138" Name="Boulder"                     Color="#FF636363"   Solid="true"    Framed="true"   Size="2,2"    />
