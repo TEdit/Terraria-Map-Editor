@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:bccl="http://bccl/wpf"
              xmlns:editor="clr-namespace:TEditXna.Editor" xmlns:Terraria="clr-namespace:TEditXNA.Terraria"
              mc:Ignorable="d" 
-             Background="{StaticResource WindowBackgroundBrush}" Foreground="{StaticResource TextBrush}">
+             Background="{StaticResource WindowBackgroundBrush}" Foreground="{StaticResource TextBrush}" Height="90">
     <UserControl.Resources>
         <Style TargetType="{x:Type ComboBox}" BasedOn="{StaticResource {x:Type ComboBox}}">
             <Setter Property="Padding" Value="1" />

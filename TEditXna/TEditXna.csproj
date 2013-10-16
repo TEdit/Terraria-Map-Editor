@@ -96,6 +96,10 @@
     <Compile Include="Editor\Plugins\BasePlugin.cs" />
     <Compile Include="Editor\Plugins\IPlugin.cs" />
     <Compile Include="Editor\Plugins\PerlinNoise.cs" />
+    <Compile Include="Editor\Plugins\ReplaceAllPlugin.cs" />
+    <Compile Include="Editor\Plugins\ReplaceAllPluginView.xaml.cs">
+      <DependentUpon>ReplaceAllPluginView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Editor\Plugins\SandSettlePlugin.cs" />
     <Compile Include="Editor\Plugins\SimplePerlinGeneratorPlugin.cs" />
     <Compile Include="Editor\RectangleExt.cs" />
@@ -199,6 +203,10 @@
     <Compile Include="View\WorldRenderXna.xaml.cs">
       <DependentUpon>WorldRenderXna.xaml</DependentUpon>
     </Compile>
+    <Page Include="Editor\Plugins\ReplaceAllPluginView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -400,7 +408,7 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties BuildVersion_UseGlobalSettings="True" BuildVersion_AssemblyInfoFilename="Properties\AssemblyInfo.cs" />
+      <UserProperties BuildVersion_AssemblyInfoFilename="Properties\AssemblyInfo.cs" BuildVersion_UseGlobalSettings="True" />
     </VisualStudio>
   </ProjectExtensions>
   <PropertyGroup>
