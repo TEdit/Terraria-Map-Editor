@@ -6,9 +6,9 @@ namespace TEditXna.Editor
     {
         [Description("Disable Mask")]
         Off,
-        [Description("Edit Empty Tiles")]
+        [Description("Edit Empty")]
         Empty,
-        [Description("Edit Matching Tiles")]
+        [Description("Edit Matching")]
         Tile
     }
 }
