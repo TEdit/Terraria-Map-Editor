@@ -105,7 +105,7 @@ namespace TEditXna
             throw (Exception)e.ExceptionObject;
 #else
             ErrorLogging.LogException(e.ExceptionObject);
-            MessageBox.Show("An unhandled exception has occured. Please copy the log from \"log.txt\" to the GitHub Issues list.\r\nThe program will now exit.", "Unhandled Exception");
+            MessageBox.Show(string.Format("An unhandled exception has occured. Please copy the log from:\r\n{0}\r\n to the GitHub Issues list.\r\nThe program will now exit.", ErrorLogging.LogFilePath), "Unhandled Exception");
             Current.Shutdown();
 #endif
         }
