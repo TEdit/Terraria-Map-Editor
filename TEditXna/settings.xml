@@ -367,8 +367,8 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="672,0"     Name="Banquet Table"  	Variety="Wodden Banquet"     Anchor="Left"	/>
         <Frame UV="720,0"     Name="Bar Table"  	Variety="Wodden Bar"     Anchor="Left"	/>
         <Frame UV="768,0"     Name="Banquet Table"  	Variety="Golden Banquet"     Anchor="Left"	/>
-        <Frame UV="816,0"     Name="Bar Table"  	Variety="Golden Bar"     Anchor="Left"	/>
-        <Frame UV="864,0"     Name="Table"  	Variety="Unknown Table"     Anchor="Left"	/>
+        <Frame UV="816,0"     Name="Table"  	Variety="Honey Table"     Anchor="Left"	/>
+        <Frame UV="864,0"     Name="Table"  	Variety="Steam Punk Table"     Anchor="Left"	/>
         
       </Frames>
     </Tile>
@@ -378,6 +378,51 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="18,0"    Name="Wooden Chair"   Anchor="Right"    />
         <Frame UV="0,40"    Name="Toilet"         Anchor="Left"     />
         <Frame UV="18,40"   Name="Toilet"         Anchor="Right"    />
+        <Frame UV="0,80"     Name="Ebonwood Chair"   Anchor="Left"     />
+        <Frame UV="18,80"    Name="Ebonwood Chair"   Anchor="Right"    />
+        <Frame UV="0,120"     Name="Unknown Chair"   Anchor="Left"     />
+        <Frame UV="18,120"    Name="Unknown Chair"   Anchor="Right"    />
+        <Frame UV="0,160"     Name="Unknown Chair"   Anchor="Left"     />
+        <Frame UV="18,160"    Name="Unknown  Chair"   Anchor="Right"    />
+        <Frame UV="0,200"     Name="Living Wood  Chair"   Anchor="Left"     />
+        <Frame UV="18,200"    Name="Living Wood  Chair"   Anchor="Right"    />
+        <Frame UV="0,240"     Name="Cactus Chair"   Anchor="Left"     />
+        <Frame UV="18,240"    Name="Cactus Chair"   Anchor="Right"    />
+        <Frame UV="0,280"     Name="Bone Chair"   Anchor="Left"     />
+        <Frame UV="18,280"    Name="Bone Chair"   Anchor="Right"    />
+        <Frame UV="0,320"     Name="Flesh Chair"   Anchor="Left"     />
+        <Frame UV="18,320"    Name="Flesh Chair"   Anchor="Right"    />
+        <Frame UV="0,360"     Name="Mushroom Chair"   Anchor="Left"     />
+        <Frame UV="18,360"    Name="Mushroom Chair"   Anchor="Right"    />
+        <Frame UV="0,400"     Name="Skyware Chair"   Anchor="Left"     />
+        <Frame UV="18,400"    Name="Skyware Chair"   Anchor="Right"    />
+        <Frame UV="0,440"     Name="Shadewood Chair"   Anchor="Left"     />
+        <Frame UV="18,440"    Name="Shadewood Chair"   Anchor="Right"    />
+        <Frame UV="0,480"     Name="Lihzahrd Chair"   Anchor="Left"     />
+        <Frame UV="18,480"    Name="Lihzahrd Chair"   Anchor="Right"    />
+        <Frame UV="0,520"     Name="Blue Dungeon Chair"   Anchor="Left"     />
+        <Frame UV="18,520"    Name="Blue Dungeon Chair"   Anchor="Right"    />
+        <Frame UV="0,560"     Name="Green Dungeon Chair"   Anchor="Left"     />
+        <Frame UV="18,560"    Name="Green Dungeon Chair"   Anchor="Right"    />
+        <Frame UV="0,600"     Name="Pink Dungeon Chair"   Anchor="Left"     />
+        <Frame UV="18,600"    Name="Pink Dungeon Chair"   Anchor="Right"    />
+        <Frame UV="0,640"     Name="Obsidian Chair"   Anchor="Left"     />
+        <Frame UV="18,640"    Name="Obsidian Chair"   Anchor="Right"    />
+        <Frame UV="0,680"     Name="Gothic Chair"   Anchor="Left"     />
+        <Frame UV="18,680"    Name="Gothic Chair"   Anchor="Right"    />
+        <Frame UV="0,720"     Name="Glass Chair"   Anchor="Left"     />
+        <Frame UV="18,720"    Name="Glass Chair"   Anchor="Right"    />
+        <Frame UV="0,760"     Name="Golden Chair"   Anchor="Left"     />
+        <Frame UV="18,760"    Name="Golden Chair"   Anchor="Right"    />
+        <Frame UV="0,800"     Name="Golden Toilet"   Anchor="Left"     />
+        <Frame UV="18,800"    Name="Golden Toilet"   Anchor="Right"    />
+        <Frame UV="0,840"     Name="Barstool"   Anchor="Left"     />
+        <Frame UV="18,840"    Name="Barstool"   Anchor="Right"    />
+        <Frame UV="0,880"     Name="Honey Chair"   Anchor="Left"     />
+        <Frame UV="18,880"    Name="Honey Chair"   Anchor="Right"    />
+        <Frame UV="0,920"     Name="Steam Punk Chair"   Anchor="Left"     />
+        <Frame UV="18,920"    Name="Steam Punk Chair"   Anchor="Right"    />
+        
       </Frames>
     </Tile>
     <Tile Id="16" Name="Iron Anvil"                   Color="#FF00FFF2"   Placement="floor"   SolidTop="true"   Framed="true"   Size="2,1"        TextureGrid="16,18"   />
