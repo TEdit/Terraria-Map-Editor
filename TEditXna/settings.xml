@@ -793,6 +793,8 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="36,0"    Variety="B"   />
         <Frame UV="72,0"    Variety="C"   />
         <Frame UV="108,0"   Variety="D"   />
+        <Frame UV="144,0"   Variety="E"   />
+        <Frame UV="180,0"   Variety="F"   />
       </Frames>
     </Tile>
     <Tile Id="86" Name="Loom"                         Color="#FFFF00FF"   Placement="floor"           Framed="true"     Size="3,2"      />
