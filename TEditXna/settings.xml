@@ -209,17 +209,131 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Tile Id="7"  Name="Copper Ore"                   Color="#FFC6561D"   Solid="true"    Blends="true"   MergeWith="0"   />
     <Tile Id="8"  Name="Gold Ore"                     Color="#FFB9A417"   Solid="true"    Blends="true"   MergeWith="0"   />
     <Tile Id="9"  Name="Silver Ore"                   Color="#FFD9DFDF"   Solid="true"    Blends="true"   MergeWith="0"   />
-    <Tile Id="10" Name="Wooden Door"                  Color="#FF00FFF2"   Placement="CFBoth"              Solid="true"    Framed="true"   Size="1,3"    >
+    <Tile Id="10" Name="Door"                  Color="#FF00FFF2"   Placement="CFBoth"              Solid="true"    Framed="true"   Size="1,3"    >
       <Frames>
-        <Frame UV="0,0"     Variety="A"   />
-        <Frame UV="18,0"    Variety="B"   />
-        <Frame UV="36,0"    Variety="C"   />
+        <Frame UV="0,0"     Variety="Wooden Door A"   />
+        <Frame UV="18,0"    Variety="Wooden Door B"   />
+        <Frame UV="36,0"    Variety="Wooden Door C"   />
+        <Frame UV="0,54"     Variety="Ebonwood Door A"   />
+        <Frame UV="18,54"    Variety="Ebonwood Door B"   />
+        <Frame UV="36,54"    Variety="Ebonwood Door C"   />
+        <Frame UV="0,108"     Variety="Rich Mahogany Door A"   />
+        <Frame UV="18,108"    Variety="Rich Mahogany Door B"   />
+        <Frame UV="36,108"    Variety="Rich Mahogany Door C"   />
+        <Frame UV="0,162"     Variety="Unknown Door A"   />
+        <Frame UV="18,162"    Variety="Unknown Door B"   />
+        <Frame UV="36,162"    Variety="Unknown Door C"   />
+        <Frame UV="0,216"     Variety="Cactus Door A"   />
+        <Frame UV="18,216"    Variety="Cactus Door B"   />
+        <Frame UV="36,216"    Variety="Cactus Door C"   />
+        <Frame UV="0,270"     Variety="Flesh Door A"   />
+        <Frame UV="18,270"    Variety="Flesh Door B"   />
+        <Frame UV="36,270"    Variety="Flesh Door C"   />
+        <Frame UV="0,324"     Variety="Mushroom Door A"   />
+        <Frame UV="18,324"    Variety="Mushroom Door B"   />
+        <Frame UV="36,324"    Variety="Mushroom Door C"   />
+        <Frame UV="0,378"     Variety="Living Wood Door A"   />
+        <Frame UV="18,378"    Variety="Living Wood Door B"   />
+        <Frame UV="36,378"    Variety="Living Wood Door C"   />
+        <Frame UV="0,432"     Variety="Unknown Door A"   />
+        <Frame UV="18,432"    Variety="Unknown Door B"   />
+        <Frame UV="36,432"    Variety="Unknown Door C"   />
+        <Frame UV="0,486"     Variety="Skyware Door A"   />
+        <Frame UV="18,486"    Variety="Skyware Door B"   />
+        <Frame UV="36,486"    Variety="Skyware Door C"   />
+        <Frame UV="0,540"     Variety="Shadewood Door A"   />
+        <Frame UV="18,540"    Variety="Shadewood Door B"   />
+        <Frame UV="36,540"    Variety="Shadewood Door C"   />
+        <Frame UV="0,594"     Variety="Lihzahrd Locked Door A"   />
+        <Frame UV="18,594"    Variety="Lihzahrd Locked Door B"   />
+        <Frame UV="36,594"    Variety="Lihzahrd Locked Door C"   />
+        <Frame UV="0,648"     Variety="Lihzahrd Door A"   />
+        <Frame UV="18,648"    Variety="Lihzahrd Door B"   />
+        <Frame UV="36,648"    Variety="Lihzahrd Door C"   />
+        <Frame UV="0,702"     Variety="Dungeon Door A"   />
+        <Frame UV="18,702"    Variety="Dungeon Door B"   />
+        <Frame UV="36,702"    Variety="Dungeon Door C"   />
+        <Frame UV="0,756"     Variety="Lead Door A"   />
+        <Frame UV="18,756"    Variety="Lead Door B"   />
+        <Frame UV="36,756"    Variety="Lead Door C"   />
+        <Frame UV="0,810"     Variety="Iron Door A"   />
+        <Frame UV="18,810"    Variety="Iron Door B"   />
+        <Frame UV="36,810"    Variety="Iron Door C"   />
+        <Frame UV="0,864"     Variety="Blue Dungeon Door A"   />
+        <Frame UV="18,864"    Variety="Blue Dungeon Door B"   />
+        <Frame UV="36,864"    Variety="Blue Dungeon Door C"   />
+        <Frame UV="0,918"     Variety="Green Dungeon Door A"   />
+        <Frame UV="18,918"    Variety="Green Dungeon Door B"   />
+        <Frame UV="36,918"    Variety="Green Dungeon Door C"   />
+        <Frame UV="0,972"     Variety="Pink Dungeon Door A"   />
+        <Frame UV="18,972"    Variety="Pink Dungeon Door B"   />
+        <Frame UV="36,972"    Variety="Pink Dungeon Door C"   />
+        <Frame UV="0,1026"     Variety="Obsidian Door A"   />
+        <Frame UV="18,1026"    Variety="Obsidian Door B"   />
+        <Frame UV="36,1026"    Variety="Obsidian Door C"   />
+        <Frame UV="0,1080"     Variety="Glass Door A"   />
+        <Frame UV="18,1080"    Variety="Glass Door B"   />
+        <Frame UV="36,1080"    Variety="Glass Door C"   />
+        <Frame UV="0,1134"     Variety="Golden Door A"   />
+        <Frame UV="18,1134"    Variety="Golden Door B"   />
+        <Frame UV="36,1134"    Variety="Golden Door C"   />
+        <Frame UV="0,1188"     Variety="Honey Door A"   />
+        <Frame UV="18,1188"    Variety="Honey Door B"   />
+        <Frame UV="36,1188"    Variety="Honey Door C"   />
+        <Frame UV="0,1242"     Variety="Steam Punk Door A"   />
+        <Frame UV="18,1242"    Variety="Steam Punk Door B"   />
+        <Frame UV="36,1242"    Variety="Steam Punk Door C"   />
       </Frames>
     </Tile>
     <Tile Id="11" Name="Door Open"                    Color="#FF00FFF2"   Placement="CFBoth"    Framed="true"   Size="2,3"    >
       <Frames>
-        <Frame UV="0,0"     Anchor="Right"    />
-        <Frame UV="36,0"    Anchor="Left"     />
+        <Frame UV="0,0"     Anchor="Wooden Door Right"    />
+        <Frame UV="36,0"    Anchor="Wooden Door Left"     />
+        <Frame UV="0,54"     Anchor="Ebonwood Door Right"    />
+        <Frame UV="36,54"    Anchor="Ebonwood Door Left"     />
+        <Frame UV="0,108"     Anchor="Rich Mahogany Door Right"    />
+        <Frame UV="36,108"    Anchor="Rich Mahogany Door Left"     />
+        <Frame UV="0,162"     Anchor="Unknown Door Right"    />
+        <Frame UV="36,162"    Anchor="Unknown Door Left"     />
+        <Frame UV="0,216"     Anchor="Cactus Door Right"    />
+        <Frame UV="36,216"    Anchor="Cactus Door Left"     />
+        <Frame UV="0,270"     Anchor="Flesh Door Right"    />
+        <Frame UV="36,270"    Anchor="Flesh Door Left"     />
+        <Frame UV="0,324"     Anchor="Mushroom Door Right"    />
+        <Frame UV="36,324"    Anchor="Mushroom Door Left"     />
+        <Frame UV="0,378"     Anchor="Living Wood Door Right"    />
+        <Frame UV="36,378"    Anchor="Living Wood Door Left"     />
+        <Frame UV="0,432"     Anchor="Unknown Door Right"    />
+        <Frame UV="36,432"    Anchor="Unknown Door Left"     />
+        <Frame UV="0,486"     Anchor="Skyware Door Right"    />
+        <Frame UV="36,486"    Anchor="Skyware Door Left"     />
+        <Frame UV="0,540"     Anchor="Shadewood Door Right"    />
+        <Frame UV="36,540"    Anchor="Shadewood Door Left"     />
+        <Frame UV="0,648"     Anchor="Lihzahrd Door Right"    />
+        <Frame UV="36,648"    Anchor="Lihzahrd Door Left"     />
+		<Frame UV="0,702"     Anchor="Dungeon Door Right"    />
+        <Frame UV="36,702"    Anchor="Dungeon Door Left"     />
+		<Frame UV="0,756"     Anchor="Lead Door Right"    />
+        <Frame UV="36,756"    Anchor="Lead Door Left"     />
+		<Frame UV="0,810"     Anchor="Iron Door Right"    />
+        <Frame UV="36,810"    Anchor="Iron Door Left"     />
+		<Frame UV="0,864"     Anchor="Blue Dungeon Door Right"    />
+        <Frame UV="36,864"    Anchor="Blue Dungeon Door Left"     />
+		<Frame UV="0,918"     Anchor="Green Dungeon Door Right"    />
+        <Frame UV="36,918"     Anchor="Green Dungeon Door Left"    />
+        <Frame UV="0,972"    Anchor="Pink Dungeon Door Right"     />
+		<Frame UV="36,972"    Anchor="Pink Dungeon Door Left"     />
+        <Frame UV="0,1026"    Anchor="Obsidian Door Right"     />
+		<Frame UV="36,1026"    Anchor="Obsidian Door Left"     />
+		<Frame UV="0,1080"    Anchor="Glass Door Right"     />
+		<Frame UV="36,1080"    Anchor="Glass Door Left"     />
+		<Frame UV="0,1134"    Anchor="Golden Door Right"     />
+		<Frame UV="36,1134"    Anchor="Golden Door Left"     />
+		<Frame UV="0,1188"    Anchor="Honey Door Right"     />
+		<Frame UV="36,1188"    Anchor="Honey Door Left"     />
+		<Frame UV="0,1242"    Anchor="Steam Punk Door Right"     />
+		<Frame UV="36,1242"    Anchor="Steam Punk Door Left"     />
+
       </Frames>
     </Tile>
     <Tile Id="12" Name="Crystal Heart"                Color="#FFFF0000"   Placement="floor"     Framed="true"   Size="2,2"    />
@@ -563,11 +677,11 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Tile Id="101" Name="Bookcase"                    Color="#FFFF00FF"   Placement="floor"     SolidTop="true"   Framed="true"   Size="3,4"    >
     <Frames>
         <Frame UV="0,0"     Variety="Wooden"    />
-        <Frame UV="54,0"     Variety="Blue Dungeon"    />
-        <Frame UV="108,0"     Variety="Green Dungeon"    />
-        <Frame UV="162,0"     Variety="Pink Dungeon"    />
-        <Frame UV="216,0"    Variety="Obsidian"   />
-        <Frame UV="270,0"     Variety="Gothic"    />
+        <Frame UV="54,0"     Variety="Blue Dungeon Bookcase"    />
+        <Frame UV="108,0"     Variety="Green Dungeon Bookcase"    />
+        <Frame UV="162,0"     Variety="Pink Dungeon Bookcase"    />
+        <Frame UV="216,0"    Variety="Obsidian Bookcase"   />
+        <Frame UV="270,0"     Variety="Gothic Bookcase"    />
       </Frames>
     </Tile>
     <Tile Id="102" Name="Throne"                      Color="#FFFF00FF"   Placement="floor"     Framed="true"     Size="3,4"      />
