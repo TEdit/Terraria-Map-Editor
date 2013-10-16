@@ -1505,7 +1505,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     </Tile>
     <Tile Id="229" Name="Honey Block"                 Color="#FFFF00FF"   Solid="true"    Blends="true"   />
     <Tile Id="230" Name="Crispy Honey Block"          Color="#FFFF00FF"   Solid="true"    Blends="true"   />
-    <Tile Id="231" Name=""                            Color="#FFFF00FF"   Framed="true"   >
+    <Tile Id="231" Name=" Crystallized Larva"                            Color="#FFFF00FF"   Framed="true"   >
       <Frames>
         <Frame UV="0,0" Name="Default" Variety="Default" />
       </Frames>
@@ -1532,7 +1532,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="0,0" Name="Default" Variety="Default" />
       </Frames>
     </Tile>
-    <Tile Id="238" Name=""  Framed="true" Light="true" >
+    <Tile Id="238" Name="Pink Bulb"  Framed="true" Light="true" >
       <Frames>
         <Frame UV="0,0" Name="Default" Variety="Default" />
       </Frames>
