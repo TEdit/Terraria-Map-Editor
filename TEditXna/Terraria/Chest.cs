@@ -54,7 +54,12 @@ namespace TEditXNA.Terraria
             //chest.Items.Clear();
             for (int i = 0; i < Chest.MaxItems; i++)
             {
-                chest.Items[i] = Items[i].Copy();
+                if (Items.Count > i)
+                    chest.Items[i] = Items[i].Copy();
+                else
+                {
+                    chest.Items[i] = new Item();
+                }
             }
 
             return chest;
