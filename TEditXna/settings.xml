@@ -559,8 +559,14 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Tile Id="32" Name="Corruption Vines"             Color="#FF7A618F"   Blends="true"         />
     <Tile Id="33" Name="Candle"                       Color="#FFFD3E03"   Placement="surface"   Light="true"    Framed="true"   TextureGrid="16,20"   >
       <Frames>
-        <Frame UV="0,0" Variety="On" />
-        <Frame UV="18,0" Variety="Off" />
+        <Frame UV="0,0" Name="Candle" Variety="On" />
+        <Frame UV="18,0" Name="Candle" Variety="Off" />
+         <Frame UV="0,22" Name="Blue Dungeon Candle" Variety="On" />
+        <Frame UV="18,22" Name="Blue Dungeon Candle" Variety="Off" />
+         <Frame UV="0,44" Name="Green Dungeon Candle" Variety="On" />
+        <Frame UV="18,44" Name="Green Dungeon Candle" Variety="Off" />
+         <Frame UV="0,66" Name="Pink Dungeon Candle" Variety="On" />
+        <Frame UV="18,66" Name="Pink Dungeon Candle" Variety="Off" />
       </Frames>
     </Tile>
     <Tile Id="34" Name="Copper Chandelier"            Color="#FFFD3E03"   Placement="ceiling"   Light="true"    Framed="true"   Size="3,3"    >
@@ -586,10 +592,24 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Tile Id="39" Name="Red Brick"                    Color="#FFB200FF"   Solid="true"    Blends="true"   MergeWith="0"   />
     <Tile Id="40" Name="Clay Block"                   Color="#FFAC5B4D"   Solid="true"    Blends="true"   MergeWith="0"   />
     <Tile Id="41" Name="Blue Brick"                   Color="#FF545498"   Solid="true"    Blends="true"   MergeWith="0"   />
-    <Tile Id="42" Name="Chain Lantern"                Color="#FFEF904B"   Placement="ceiling"             Light="true"    Framed="true"   Size="1,2"    >
+    <Tile Id="42" Name="Lantern"                Color="#FFEF904B"   Placement="ceiling"             Light="true"    Framed="true"   Size="1,2"    >
       <Frames>
-        <Frame UV="0,0"     Variety="On"    />
-        <Frame UV="18,0"    Variety="Off"   />
+        <Frame UV="0,0"     Name="Chain Lantern"	Variety="On"    />
+        <Frame UV="18,0"    Name="Chain Lantern"	Variety="Off"   />
+        <Frame UV="0,36"     Name="Brass Lantern"	Variety="On"    />
+        <Frame UV="18,36"    Name="Brass Lantern"	Variety="Off"   />
+        <Frame UV="0,72"     Name="Caged Lantern"	Variety="On"    />
+        <Frame UV="18,72"    Name="Caged Lantern"	Variety="Off"   />
+        <Frame UV="0,108"     Name="Carriage Lantern"	Variety="On"    />
+        <Frame UV="18,108"    Name="Carriage Lantern"	Variety="Off"   />
+        <Frame UV="0,144"     Name="Alchemy Lantern"	Variety="On"    />
+        <Frame UV="18,144"    Name="Alchemy Lantern"	Variety="Off"   />
+        <Frame UV="0,180"     Name="Diablost Lamp"	Variety="On"    />
+        <Frame UV="18,180"    Name="Diablost Lamp"	Variety="Off"   />
+        <Frame UV="0,216"     Name="Oil Rag Sconse"	Variety="On"    />
+        <Frame UV="18,216"    Name="Oil Rag Sconse"	Variety="Off"   />
+        <Frame UV="0,252"     Name="Bulb"	Variety="On"    />
+        <Frame UV="18,252"    Name="Bulb"	Variety="Off"   />
       </Frames>
     </Tile>
     <Tile Id="43" Name="Green Brick"                  Color="#FF39A851"   Solid="true"    Blends="true"   MergeWith="0"   />
