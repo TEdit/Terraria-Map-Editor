@@ -528,7 +528,12 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
       </Frames>
     </Tile>
     <Tile Id="25" Name="Ebonstone Block"              Color="#FF4B4A82"   Solid="true"          Blends="true"   MergeWith="0"   />
-    <Tile Id="26" Name="Demon Altar"                  Color="#FF9000FF"   Placement="floor"     Light="true"    Framed="true"   Size="3,2"    />
+    <Tile Id="26" Name="Altar"                  Color="#FF9000FF"   Placement="floor"     Light="true"    Framed="true"   Size="3,2"    >
+		<Frames>
+		   <Frame UV="0,0"     Name="Demon Altar"          />
+		   <Frame UV="54,0"     Name="Crimson Altar"          />
+		 </Frames>
+    </Tile>
     <Tile Id="27" Name="Sunflower"                    Color="#FFC4FF14"   Framed="true"         Size="2,4"      >
       <Frames>
         <Frame UV="0,0"     Variety="A"   />
@@ -545,7 +550,12 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     </Tile>
     <Tile Id="29" Name="Piggy Bank"                   Color="#FF00FFF2"   Placement="surface"   Framed="true"   Size="2,1"      />
     <Tile Id="30" Name="Wood"                         Color="#FF684934"   Solid="true"          Blends="true"   MergeWith="0"   />
-    <Tile Id="31" Name="Shadow Orb"                   Color="#FF000000"   Placement="floor"     Light="true"    Framed="true"   Size="2,2"    />
+    <Tile Id="31" Name="Orb Heart"                   Color="#FF000000"   Placement="floor"     Light="true"    Framed="true"   Size="2,2"    >
+		<Frames>
+		    <Frame UV="0,0"     Name="Shadow Orb"          />
+			<Frame UV="36,0"     Name="Demon Heart"          />
+		</Frames>
+    </Tile>
     <Tile Id="32" Name="Corruption Vines"             Color="#FF7A618F"   Blends="true"         />
     <Tile Id="33" Name="Candle"                       Color="#FFFD3E03"   Placement="surface"   Light="true"    Framed="true"   TextureGrid="16,20"   >
       <Frames>
