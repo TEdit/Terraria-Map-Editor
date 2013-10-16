@@ -124,6 +124,7 @@
     <Compile Include="Editor\Undo\UndoManager.cs" />
     <Compile Include="Editor\Undo\UndoTile.cs" />
     <Compile Include="ErrorLogging.cs" />
+    <Compile Include="Helper\Extensions.cs" />
     <Compile Include="Render\PixelMap.cs" />
     <Compile Include="Render\PixelMapManager.cs" />
     <Compile Include="Render\RenderMiniMap.cs" />
@@ -146,8 +147,8 @@
     <Compile Include="Terraria\World.cs" />
     <Compile Include="Terraria\World.Settings.cs" />
     <Compile Include="Terraria\World.Settings.Tools.cs" />
-    <Compile Include="UiHelper\Converters\DoublePercentageConverter.cs" />
-    <Compile Include="UiHelper\Converters\ThicknessMultiConverter.cs" />
+    <Compile Include="Helper\Converters\DoublePercentageConverter.cs" />
+    <Compile Include="Helper\Converters\ThicknessMultiConverter.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -408,7 +409,7 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties BuildVersion_AssemblyInfoFilename="Properties\AssemblyInfo.cs" BuildVersion_UseGlobalSettings="True" />
+      <UserProperties BuildVersion_UseGlobalSettings="True" BuildVersion_AssemblyInfoFilename="Properties\AssemblyInfo.cs" />
     </VisualStudio>
   </ProjectExtensions>
   <PropertyGroup>

@@ -7,27 +7,26 @@ namespace TEditXna.Editor.Undo
 {
     public class UndoBuffer
     {
-        private readonly IList<UndoTile> _tiles = new List<UndoTile>();
-        private readonly IList<Sign> _signs = new List<Sign>();
-        private readonly IList<Chest> _chests = new List<Chest>();
+        private readonly List<UndoTile> _tiles = new List<UndoTile>();
+        private readonly List<Sign> _signs = new List<Sign>();
+        private readonly List<Chest> _chests = new List<Chest>();
 
-        public IList<Chest> Chests
+        public List<Chest> Chests
         {
             get { return _chests; }
-        } 
+        }
 
-        public IList<Sign> Signs
+        public List<Sign> Signs
         {
             get { return _signs; }
         }
-        public IList<UndoTile> Tiles
+        public List<UndoTile> Tiles
         {
             get { return _tiles; }
         }
 
-
         public void Write(string filename)
-		{
+        {
             using (var stream = new FileStream(filename, FileMode.Create))
             {
                 using (var bw = new BinaryWriter(stream))
@@ -39,84 +38,16 @@ namespace TEditXna.Editor.Undo
                         var curLocation = Tiles[i].Location;
                         bw.Write(curLocation.X);
                         bw.Write(curLocation.Y);
-                        var curTile = Tiles[i].Tile;
-                        bw.Write(curTile.IsActive);
-                        if (curTile.IsActive)
-                        {
-                            bw.Write(curTile.Type);
-                            if (World.TileProperties[curTile.Type].IsFramed)
-                            {
-                                bw.Write(curTile.U);
-                                bw.Write(curTile.V);
-                            }
-                        }
-                        if ((int)curTile.Wall > 0)
-                        {
-                            bw.Write(true);
-                            bw.Write(curTile.Wall);
-                        }
-                        else
-                            bw.Write(false);
-
-                        if ((int)curTile.Liquid > 0)
-                        {
-                            bw.Write(true);
-                            bw.Write(curTile.Liquid);
-                            bw.Write(curTile.IsLava);
-                        }
-                        else
-                            bw.Write(false);
-
-                        bw.Write(curTile.HasWire);
+                        World.WriteTileDataToStream(Tiles[i].Tile, bw);
                     }
-                    for (int chestIndex = 0; chestIndex < 1000; chestIndex++)
-                    {
-                        if (chestIndex >= Chests.Count)
-                        {
-                            bw.Write(false);
-                        }
-                        else
-                        {
-                            Chest curChest = Chests[chestIndex];
-                            bw.Write(true);
-                            bw.Write(curChest.X);
-                            bw.Write(curChest.Y);
-                            for (int j = 0; j < Chest.MaxItems; ++j)
-                            {
-                                if (curChest.Items.Count > j)
-                                {
-                                    bw.Write((byte)curChest.Items[j].StackSize);
-                                    if (curChest.Items[j].StackSize > 0)
-                                    {
-                                        bw.Write(curChest.Items[j].NetId);
-                                        bw.Write(curChest.Items[j].Prefix);
-                                    }
-                                }
-                                else
-                                    bw.Write((byte)0);
-                            }
-                        }
-                    }
-                    for (int signIndex = 0; signIndex < 1000; signIndex++)
-                    {
-                        if (signIndex >= Signs.Count || string.IsNullOrWhiteSpace(Signs[signIndex].Text))
-                        {
-                            bw.Write(false);
-                        }
-                        else
-                        {
-                            var curSign = Signs[signIndex];
-                            bw.Write(true);
-                            bw.Write(curSign.Text);
-                            bw.Write(curSign.X);
-                            bw.Write(curSign.Y);
-                        }
-                    }
+                    World.WriteChestDataToStream(Chests, bw);
+                    World.WriteSignDataToStream(Signs, bw);
+                    
                     bw.Close();
                 }
-                
+
             }
-		}
+        }
 
         public static UndoBuffer Read(string filename)
         {
@@ -131,65 +62,14 @@ namespace TEditXna.Editor.Undo
                     {
                         int x = br.ReadInt32();
                         int y = br.ReadInt32();
-                        var curTile = new Tile();
-                        curTile.IsActive = br.ReadBoolean();
-
-                        if (curTile.IsActive)
-                        {
-                            curTile.Type = br.ReadByte();
-                            if (World.TileProperties[curTile.Type].IsFramed)
-                            {
-                                curTile.U = br.ReadInt16();
-                                curTile.V = br.ReadInt16();
-                            }
-                        }
-
-                        if (br.ReadBoolean())
-                            curTile.Wall = br.ReadByte();
-
-                        if (br.ReadBoolean())
-                        {
-                            curTile.Liquid = br.ReadByte();
-                            curTile.IsLava = br.ReadBoolean();
-                        }
-
-                        curTile.HasWire = br.ReadBoolean();
-                        buffer.Tiles.Add(new UndoTile(new Vector2Int32(x,y), curTile));
+                        var curTile = World.ReadTileDataFromStream(br, World.CompatibleVersion); 
+                        buffer.Tiles.Add(new UndoTile(new Vector2Int32(x, y), curTile));
                     }
+                    buffer.Chests.Clear();
+                    buffer.Chests.AddRange(World.ReadChestDataFromStream(br, World.CompatibleVersion));
 
-                    for (int chestIndex = 0; chestIndex < 1000; chestIndex++)
-                    {
-                        if (br.ReadBoolean())
-                        {
-                            var curChest = new Chest(br.ReadInt32(), br.ReadInt32());
-                            for (int j = 0; j < Chest.MaxItems; ++j)
-                            {
-                                curChest.Items[j].StackSize = br.ReadByte();
-
-                                if (curChest.Items[j].StackSize > 0)
-                                {
-                                    curChest.Items[j].NetId = br.ReadInt32();
-                                    curChest.Items[j].Prefix = br.ReadByte();
-                                }
-                                else
-                                {
-                                    curChest.Items[j].NetId = 0;
-                                }
-                            }
-
-                            buffer.Chests.Add(curChest);
-                        }
-                    }
-                    for (int signIndex = 0; signIndex < 1000; signIndex++)
-                    {
-                        if (br.ReadBoolean())
-                        {
-                            string text = br.ReadString();
-                            int x = br.ReadInt32();
-                            int y = br.ReadInt32();
-                            buffer.Signs.Add(new Sign(x, y, text));
-                        }
-                    }
+                    buffer.Signs.Clear();
+                    buffer.Signs.AddRange(World.ReadSignDataFromStream(br));
                 }
             }
             return buffer;
