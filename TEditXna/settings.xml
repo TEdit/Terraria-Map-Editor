@@ -798,8 +798,24 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
       </Frames>
     </Tile>
     <Tile Id="86" Name="Loom"                         Color="#FFFF00FF"   Placement="floor"           Framed="true"     Size="3,2"      />
-    <Tile Id="87" Name="Piano"                        Color="#FF00FFF2"   Placement="floor"           SolidTop="true"   Framed="true"   Size="3,2"    />
-    <Tile Id="88" Name="Dresser"                      Color="#FF00FFF2"   Placement="floor"           SolidTop="true"   Framed="true"   Size="3,2"    />
+    <Tile Id="87" Name="Piano"                        Color="#FF00FFF2"   Placement="floor"           SolidTop="true"   Framed="true"   Size="3,2"    >
+		<Frames>
+			<Frame UV="0,0"     Variety="Wooden"   />
+			<Frame UV="54,0"     Variety="Ebonwood"   />
+			<Frame UV="108,0"     Variety="Rich Mahogany"   />
+			<Frame UV="162,0"     Variety="Pearlwood"   />
+			<Frame UV="216,0"     Variety="Shadewood"   />
+        </Frames>
+    </Tile>
+    <Tile Id="88" Name="Dresser"                      Color="#FF00FFF2"   Placement="floor"           SolidTop="true"   Framed="true"   Size="3,2"   >
+    	<Frames>
+			<Frame UV="0,0"     Variety="Wooden"   />
+			<Frame UV="54,0"     Variety="Ebonwood"   />
+			<Frame UV="108,0"     Variety="Rich Mahogany"   />
+			<Frame UV="162,0"     Variety="Pearlwood"   />
+			<Frame UV="216,0"     Variety="Shadewood"   />
+		</Frames>
+    </Tile>
     <Tile Id="89" Name="Bench"                        Color="#FF00FFF2"   Placement="floor"           Framed="true"     Size="3,2"      />
     <Tile Id="90" Name="Bathtub"                      Color="#FF00FFF2"   Placement="floor"           Framed="true"     Size="4,2"      >
       <Frames>
