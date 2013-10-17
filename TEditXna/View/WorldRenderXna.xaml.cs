@@ -135,7 +135,7 @@ namespace TEditXna.View
             // Load services, textures and initialize spritebatch
             _serviceProvider = new SimpleProvider(xnaViewport.GraphicsService);
             _spriteBatch = new SpriteBatch(e.GraphicsDevice);
-            _textureDictionary = new Textures(_serviceProvider);
+            _textureDictionary = new Textures(_serviceProvider, e.GraphicsDevice);
 
             System.Windows.Media.Matrix m = PresentationSource.FromVisual(Application.Current.MainWindow).CompositionTarget.TransformToDevice;
             _dpiScale = new Vector2((float)m.M11, (float)m.M22);

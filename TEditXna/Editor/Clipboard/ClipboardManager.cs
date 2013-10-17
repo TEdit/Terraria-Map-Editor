@@ -174,6 +174,7 @@ namespace TEditXna.Editor.Clipboard
                         if (PasteTiles)
                         {
                             curTile = (Tile)buffer.Tiles[x, y].Clone();
+                            curTile.Color = buffer.Tiles[x, y].Color;
                         }
                         else
                         {
@@ -187,6 +188,8 @@ namespace TEditXna.Editor.Clipboard
                             curTile.HasWire = buffer.Tiles[x, y].HasWire;
                             curTile.HasWire2 = buffer.Tiles[x, y].HasWire2;
                             curTile.HasWire3 = buffer.Tiles[x, y].HasWire3;
+                            curTile.Actuator = buffer.Tiles[x, y].Actuator;
+                            curTile.InActive = buffer.Tiles[x, y].InActive;
                         }
 
                         if (!PasteEmpty && (curTile.Liquid == 0 && !curTile.IsActive && curTile.Wall == 0 && !curTile.HasWire))
@@ -213,6 +216,8 @@ namespace TEditXna.Editor.Clipboard
                             curTile.HasWire = buffer.Tiles[x, y].HasWire;
                             curTile.HasWire2 = buffer.Tiles[x, y].HasWire2;
                             curTile.HasWire3 = buffer.Tiles[x, y].HasWire3;
+                            curTile.Actuator = buffer.Tiles[x, y].Actuator;
+                            curTile.InActive = buffer.Tiles[x, y].InActive;
                         }
                         //  Update chest/sign data only if we've pasted tiles
                         if (PasteTiles)

@@ -5,11 +5,13 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Graphics.PackedVector;
+using TEditXna;
 
 namespace TEditXNA.Terraria
 {
     public class Textures
     {
+        private readonly GraphicsDevice _gdDevice;
         private readonly Dictionary<int, Texture2D> _tiles = new Dictionary<int, Texture2D>();
         private readonly Dictionary<int, Texture2D> _backgrounds = new Dictionary<int, Texture2D>();
         private readonly Dictionary<int, Texture2D> _walls = new Dictionary<int, Texture2D>();
@@ -20,7 +22,7 @@ namespace TEditXNA.Terraria
         private readonly Dictionary<int, Texture2D> _liquids = new Dictionary<int, Texture2D>(); /* Heathtech */
         private readonly Dictionary<string, Texture2D> _misc = new Dictionary<string, Texture2D>(); /* Heathtech */
 
-        public Dictionary<int, Texture2D> Tiles {get { return _tiles; } }
+        public Dictionary<int, Texture2D> Tiles { get { return _tiles; } }
         public Dictionary<int, Texture2D> Backgrounds { get { return _backgrounds; } }
         public Dictionary<int, Texture2D> Walls { get { return _walls; } }
         public Dictionary<int, Texture2D> TreeTops { get { return _treeTops; } }
@@ -34,9 +36,13 @@ namespace TEditXNA.Terraria
         {
             get { return _cm; }
         }
-        public Textures(IServiceProvider serviceProvider)
+        public Textures(IServiceProvider serviceProvider, GraphicsDevice gdDevice)
         {
+            _gdDevice = gdDevice;
             string path = TEditXna.DependencyChecker.PathToContent;
+
+            _defaultTexture = new Texture2D(_gdDevice, 1, 1);
+            _defaultTexture.SetData(new Color[] { Color.Transparent });
 
             if (Directory.Exists(path))
             {
@@ -140,20 +146,32 @@ namespace TEditXNA.Terraria
         }
 
         private static Color ColorKey = Color.FromNonPremultiplied(247, 119, 249, 255);
+        private Texture2D _defaultTexture;
+
         private Texture2D LoadTexture(string path)
         {
-            var loadTexture = _cm.Load<Texture2D>(path);
-            var pixels = new Color[loadTexture.Height * loadTexture.Width];
-            loadTexture.GetData(pixels);
-            for (int i = 0; i < pixels.Length; i++)
+            try
             {
-                if (pixels[i] == Color.Magenta || pixels[i] == ColorKey)
+                var loadTexture = _cm.Load<Texture2D>(path);
+                var pixels = new Color[loadTexture.Height * loadTexture.Width];
+                loadTexture.GetData(pixels);
+                for (int i = 0; i < pixels.Length; i++)
                 {
-                    pixels[i] = Color.Transparent;
+                    if (pixels[i] == Color.Magenta || pixels[i] == ColorKey)
+                    {
+                        pixels[i] = Color.Transparent;
+                    }
                 }
+                loadTexture.SetData(pixels);
+                return loadTexture;
             }
-            loadTexture.SetData(pixels);
-            return loadTexture;
+            catch (Exception err)
+            {
+                ErrorLogging.Log(string.Format("Failed to load texture: {0}", path));
+                ErrorLogging.Log(err.Message);
+            }
+
+            return _defaultTexture;
         }
     }
 }
