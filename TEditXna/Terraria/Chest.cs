@@ -11,18 +11,16 @@ namespace TEditXNA.Terraria
         public static int MaxItems = 40;
         public Chest()
         {
-
+            for (int i = 0; i < MaxItems; i++)
+            {
+                _items.Add(new Item());
+            }
         }
         public Chest(int x, int y)
             : this()
         {
             _x = x;
             _y = y;
-
-            for (int i = 0; i < MaxItems; i++)
-            {
-                _items.Add(new Item());
-            }
         }
 
         private int _x;
