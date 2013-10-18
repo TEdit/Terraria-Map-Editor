@@ -52,10 +52,10 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <GlobalColor Name="Wire2"   Color="#7000FF00"   />
   </GlobalColors>
   <Tiles>
-    <Tile Id="0" Name="Dirt Block"                    Color="#FF916A4F"   Solid="true"    Blends="true"   />
+    <Tile Id="0" Name="Dirt Block"                    Color="#FF976B4B"   Solid="true"    Blends="true"   />
     <Tile Id="1" Name="Stone Block"                   Color="#FF808080"   Solid="true"    Blends="true"   MergeWith="0"   Stone="true"    />
     <Tile Id="2" Name="Grass"                         Color="#FF1CD85E"   Solid="true"    Blends="true"   MergeWith="0"   Special="Grass" />
-    <Tile Id="3" Name="Grass Flowers"                 Color="#FF0D6524"   Framed="true"   TextureGrid="16,20"   >
+    <Tile Id="3" Name="Grass Flowers"                 Color="#FF1BC56D"   Framed="true"   TextureGrid="16,20"   >
       <Frames>
         <Frame UV="0,0"     Name="Grass"      Anchor="Right"    Variety="Single Blade"        />
         <Frame UV="18,0"    Name="Grass"      Anchor="Right"    Variety="Double Blade"        />
@@ -68,7 +68,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="144,0"   Name="Mushroom"   Anchor="Bottom"   />
       </Frames>
     </Tile>
-    <Tile Id="4" Name="Torch"                         Color="#FFFD3E03"   Placement="wallFloor"   Light="true"    Framed="true"   Size="1,1"    TextureGrid="20,20"   >
+    <Tile Id="4" Name="Torch"                         Color="#FFFDDD03"   Placement="wallFloor"   Light="true"    Framed="true"   Size="1,1"    TextureGrid="20,20"   >
       <Frames>
         <Frame UV="0,0"       Name="Torch"    Anchor="Bottom"   Variety="On"    />
         <Frame UV="22,0"      Name="Torch"    Anchor="Left"     Variety="On"    />
@@ -126,7 +126,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="110,176"   Name="Cursed"   Anchor="Right"    Variety="Off"   />
       </Frames>
     </Tile>
-    <Tile Id="5" Name="Tree"                          Color="#FF634631"   Framed="true"   TextureGrid="20,20"   >
+    <Tile Id="5" Name="Tree"                          Color="#FF976B4B"   Framed="true"   TextureGrid="20,20"   >
       <Frames>
         <Frame UV="22,198"    Name="Tree Top Leafy"   Anchor="Bottom"   Variety="A"                             />
         <Frame UV="22,220"    Name="Tree Top Leafy"   Anchor="Bottom"   Variety="B"                             />
@@ -205,11 +205,11 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="0,242"     Name="Tree Trunk"       Anchor="Left"     Variety="Jagged"                        />
       </Frames>
     </Tile>
-    <Tile Id="6"  Name="Iron Ore"                     Color="#FF6B594E"   Solid="true"    Blends="true"   MergeWith="0"   />
-    <Tile Id="7"  Name="Copper Ore"                   Color="#FFC6561D"   Solid="true"    Blends="true"   MergeWith="0"   />
+    <Tile Id="6"  Name="Iron Ore"                     Color="#FF8C6550"   Solid="true"    Blends="true"   MergeWith="0"   />
+    <Tile Id="7"  Name="Copper Ore"                   Color="#FF964316"   Solid="true"    Blends="true"   MergeWith="0"   />
     <Tile Id="8"  Name="Gold Ore"                     Color="#FFB9A417"   Solid="true"    Blends="true"   MergeWith="0"   />
-    <Tile Id="9"  Name="Silver Ore"                   Color="#FFD9DFDF"   Solid="true"    Blends="true"   MergeWith="0"   />
-    <Tile Id="10" Name="Door"                  Color="#FF00FFF2"   Placement="CFBoth"              Solid="true"    Framed="true"   Size="1,3"    >
+    <Tile Id="9"  Name="Silver Ore"                   Color="#FFB9C2C3"   Solid="true"    Blends="true"   MergeWith="0"   />
+    <Tile Id="10" Name="Door"                  Color="#FF77694F"   Placement="CFBoth"              Solid="true"    Framed="true"   Size="1,3"    >
       <Frames>
         <Frame UV="0,0"     Variety="Wooden Door A"   />
         <Frame UV="18,0"    Variety="Wooden Door B"   />
@@ -220,9 +220,9 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="0,108"     Variety="Rich Mahogany Door A"   />
         <Frame UV="18,108"    Variety="Rich Mahogany Door B"   />
         <Frame UV="36,108"    Variety="Rich Mahogany Door C"   />
-        <Frame UV="0,162"     Variety="Unknown Door A"   />
-        <Frame UV="18,162"    Variety="Unknown Door B"   />
-        <Frame UV="36,162"    Variety="Unknown Door C"   />
+        <Frame UV="0,162"     Variety="Pearlwood Door A"   />
+        <Frame UV="18,162"    Variety="Pearlwood Door B"   />
+        <Frame UV="36,162"    Variety="Pearlwood Door C"   />
         <Frame UV="0,216"     Variety="Cactus Door A"   />
         <Frame UV="18,216"    Variety="Cactus Door B"   />
         <Frame UV="36,216"    Variety="Cactus Door C"   />
@@ -285,7 +285,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="36,1242"    Variety="Steam Punk Door C"   />
       </Frames>
     </Tile>
-    <Tile Id="11" Name="Door Open"                    Color="#FF00FFF2"   Placement="CFBoth"    Framed="true"   Size="2,3"    >
+    <Tile Id="11" Name="Door Open"                    Color="#FF77694F"   Placement="CFBoth"    Framed="true"   Size="2,3"    >
       <Frames>
         <Frame UV="0,0"     Variety="Wooden Door" 	Anchor="Door Right"    />
         <Frame UV="36,0"    Variety="Wooden Door"	Anchor="Door Left"     />
@@ -293,8 +293,8 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="36,54"    Variety="Ebonwood Door"	Anchor="Door Left"     />
         <Frame UV="0,108"     Variety="Rich Mahogany Door"	Anchor="Door Right"    />
         <Frame UV="36,108"    Variety="Rich Mahogany Door"	Anchor="Door Left"     />
-        <Frame UV="0,162"     Variety="Unknown Door"	Anchor="Door Right"    />
-        <Frame UV="36,162"    Variety="Unknown Door"	Anchor="Door Left"     />
+        <Frame UV="0,162"     Variety="Pearlwood Door"	Anchor="Door Right"    />
+        <Frame UV="36,162"    Variety="Pearlwood Door"	Anchor="Door Left"     />
         <Frame UV="0,216"     Variety="Cactus Door"	Anchor="Door Right"    />
         <Frame UV="36,216"    Variety="Cactus Door"	Anchor="Door Left"     />
         <Frame UV="0,270"     Variety="Flesh Door"	Anchor="Door Right"    />
@@ -336,8 +336,8 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
 
       </Frames>
     </Tile>
-    <Tile Id="12" Name="Crystal Heart"                Color="#FFFF0000"   Placement="floor"     Framed="true"   Size="2,2"    />
-    <Tile Id="13" Name="Bottle"                       Color="#FF00FFF2"   Placement="surface"   Framed="true"   >
+    <Tile Id="12" Name="Crystal Heart"                Color="#FFAE1845"   Placement="floor"     Framed="true"   Size="2,2"    />
+    <Tile Id="13" Name="Bottle"                       Color="#FF85D5F7"   Placement="surface"   Framed="true"   >
       <Frames>
         <Frame UV="0,0"     Name="Bottle"           />
         <Frame UV="18,0"    Name="Healing Potion"   />
@@ -346,7 +346,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="72,0"    Name="Mug"              />
       </Frames>
     </Tile>
-    <Tile Id="14" Name="Table"                 Color="#FF00FFF2"   Placement="floor"   SolidTop="true"   Framed="true"   Size="3,2"    TextureGrid="16,16"   >
+    <Tile Id="14" Name="Table"                 Color="#FFBF8E6F"   Placement="floor"   SolidTop="true"   Framed="true"   Size="3,2"    TextureGrid="16,16"   >
       <Frames>
         <Frame UV="0,0"     Name="Table"  	Variety="Wooden Table"     Anchor="Left"	/>
         <Frame UV="54,0"     Name="Table"  	Variety="Ebonwood Table"     Anchor="Left"	/>
@@ -371,7 +371,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="1080,0"     Name="Table"  	Variety="Steam Punk Table"     Anchor="Left"	/>
       </Frames>
     </Tile>
-    <Tile Id="15" Name="Chair"                        Color="#FF00FFF2"   Placement="floor"   Framed="true"   Size="1,2"    >
+    <Tile Id="15" Name="Chair"                        Color="#FFBF8E6F"   Placement="floor"   Framed="true"   Size="1,2"    >
       <Frames>
         <Frame UV="0,0"     Name="Wooden Chair"   Anchor="Left"     />
         <Frame UV="18,0"    Name="Wooden Chair"   Anchor="Right"    />
@@ -379,12 +379,12 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="18,40"   Name="Toilet"         Anchor="Right"    />
         <Frame UV="0,80"     Name="Ebonwood Chair"   Anchor="Left"     />
         <Frame UV="18,80"    Name="Ebonwood Chair"   Anchor="Right"    />
-        <Frame UV="0,120"     Name="Unknown Chair"   Anchor="Left"     />
-        <Frame UV="18,120"    Name="Unknown Chair"   Anchor="Right"    />
-        <Frame UV="0,160"     Name="Unknown Chair"   Anchor="Left"     />
-        <Frame UV="18,160"    Name="Unknown  Chair"   Anchor="Right"    />
-        <Frame UV="0,200"     Name="Living Wood  Chair"   Anchor="Left"     />
-        <Frame UV="18,200"    Name="Living Wood  Chair"   Anchor="Right"    />
+        <Frame UV="0,120"     Name="Rich Mahogany Chair"   Anchor="Left"     />
+        <Frame UV="18,120"    Name="Rich Mahogany Chair"   Anchor="Right"    />
+        <Frame UV="0,160"     Name="Pearlwood Chair"   Anchor="Left"     />
+        <Frame UV="18,160"    Name="Pearlwood Chair"   Anchor="Right"    />
+        <Frame UV="0,200"     Name="Living Wood Chair"   Anchor="Left"     />
+        <Frame UV="18,200"    Name="Living Wood Chair"   Anchor="Right"    />
         <Frame UV="0,240"     Name="Cactus Chair"   Anchor="Left"     />
         <Frame UV="18,240"    Name="Cactus Chair"   Anchor="Right"    />
         <Frame UV="0,280"     Name="Bone Chair"   Anchor="Left"     />
@@ -424,14 +424,14 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         
       </Frames>
     </Tile>
-    <Tile Id="16" Name="Anvil"                   Color="#FF00FFF2"   Placement="floor"   SolidTop="true"   Framed="true"   Size="2,1"        TextureGrid="16,18">
+    <Tile Id="16" Name="Anvil"                   Color="#FF8C8274"   Placement="floor"   SolidTop="true"   Framed="true"   Size="2,1"        TextureGrid="16,18">
 		<Frames>
 			<Frame UV="0,0"    Name="Iron Anvil"  />
 			<Frame UV="36,0"    Name="Lead Anvil"  />
 		</Frames>
 	</Tile>
-    <Tile Id="17" Name="Furnace"                      Color="#FF00FFF2"   Placement="floor"   Light="true"      Framed="true"   Size="3,2"        />
-    <Tile Id="18" Name="Work Bench"                   Color="#FF00FFF2"   Placement="floor"   SolidTop="true"   Framed="true"   Size="2,1"        TextureGrid="16,18"   >
+    <Tile Id="17" Name="Furnace"                      Color="#FF909490"   Placement="floor"   Light="true"      Framed="true"   Size="3,2"        />
+    <Tile Id="18" Name="Work Bench"                   Color="#FFBF8E6F"   Placement="floor"   SolidTop="true"   Framed="true"   Size="2,1"        TextureGrid="16,18"   >
 		<Frames>
 			<Frame UV="0,0"     Name="Work Bench"     Variety="Wood" />
 			<Frame UV="36,0"     Name="Work Bench"     Variety="Ebonwood" />
@@ -452,7 +452,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
 
 		</Frames>
     </Tile>
-    <Tile Id="19" Name="Platform"                     Color="#FF6B3A18"   Placement="wall"    Light="true"      Solid="true"    SolidTop="true"   Special="Platform"    Framed="true"   TextureGrid="16,16"     >
+    <Tile Id="19" Name="Platform"                     Color="#FFBF8E6F"   Placement="wall"    Light="true"      Solid="true"    SolidTop="true"   Special="Platform"    Framed="true"   TextureGrid="16,16"     >
         <Frames>
         <Frame UV="0,0"     Name="Platform"     Variety="Wood"              />
         <Frame UV="0,18"    Name="Platform"     Variety="Ebonwood"          />
@@ -471,14 +471,14 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
          <Frame UV="0,252"   Name="Platform"     Variety="Glass"          />
       </Frames>
     </Tile>
-    <Tile Id="20" Name="Sapling"                      Color="#FF0D6524"   Framed="true"       Size="1,2"        >
+    <Tile Id="20" Name="Sapling"                      Color="#FFA37451"   Framed="true"       Size="1,2"        >
       <Frames>
         <Frame UV="0,0"     Anchor="Left"     />
         <Frame UV="18,0"    Anchor="Bottom"   />
         <Frame UV="36,0"    Anchor="Right"    />
       </Frames>
     </Tile>
-    <Tile Id="21" Name="Chest"                        Color="#FFDDB800"   Placement="floor"   Framed="true"   Size="2,2"    >
+    <Tile Id="21" Name="Chest"                        Color="#FFE9CF5E"   Placement="floor"   Framed="true"   Size="2,2"    >
       <Frames>
         <Frame UV="0,0"     Name="Chest"          />
         <Frame UV="36,0"    Name="Gold Chest"     />
@@ -513,7 +513,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     </Tile>
     <Tile Id="22" Name="Demonite Ore"                 Color="#FF625FA7"   Light="true"    Solid="true"    Blends="true"   MergeWith="0"     />
     <Tile Id="23" Name="Corruption"                   Color="#FF8D89DF"   Solid="true"    Blends="true"   MergeWith="0"   Special="Grass"   />
-    <Tile Id="24" Name="Corruption Plants"            Color="#FF8D89DF"   Framed="true"   TextureGrid="16,20"             >
+    <Tile Id="24" Name="Corruption Plants"            Color="#FF7A74DA"   Framed="true"   TextureGrid="16,20"             >
       <Frames>
         <Frame UV="0,0"     Name="Vile Grass"       Anchor="Right"    Variety="Single Blade"    />
         <Frame UV="18,0"    Name="Vile Grass"       Anchor="Right"    Variety="Double Blade"    />
@@ -526,29 +526,29 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="144,0"   Name="Vile Mushroom"    Anchor="Bottom"   />
       </Frames>
     </Tile>
-    <Tile Id="25" Name="Ebonstone Block"              Color="#FF4B4A82"   Solid="true"          Blends="true"   MergeWith="0"   />
-    <Tile Id="26" Name="Altar"                  Color="#FF9000FF"   Placement="floor"     Light="true"    Framed="true"   Size="3,2"    >
+    <Tile Id="25" Name="Ebonstone Block"              Color="#FF6D5A80"   Solid="true"          Blends="true"   MergeWith="0"   />
+    <Tile Id="26" Name="Altar"                  Color="#FF77657D"   Placement="floor"     Light="true"    Framed="true"   Size="3,2"    >
 		<Frames>
 		   <Frame UV="0,0"     Name="Demon Altar"          />
 		   <Frame UV="54,0"     Name="Crimson Altar"          />
 		 </Frames>
     </Tile>
-    <Tile Id="27" Name="Sunflower"                    Color="#FFC4FF14"   Framed="true"         Size="2,4"      >
+    <Tile Id="27" Name="Sunflower"                    Color="#FFE2C431"   Framed="true"         Size="2,4"      >
       <Frames>
         <Frame UV="0,0"     Variety="A"   />
         <Frame UV="36,0"    Variety="B"   />
         <Frame UV="72,0"    Variety="C"   />
       </Frames>
     </Tile>
-    <Tile Id="28" Name="Pot"                          Color="#FF8C2726"   Placement="floor"     Framed="true"   Size="2,2"      >
+    <Tile Id="28" Name="Pot"                          Color="#FF974F50"   Placement="floor"     Framed="true"   Size="2,2"      >
       <Frames>
         <Frame UV="0,0"     Variety="Oval"    />
         <Frame UV="36,0"    Variety="Wide"    />
         <Frame UV="72,0"    Variety="Round"   />
       </Frames>
     </Tile>
-    <Tile Id="29" Name="Piggy Bank"                   Color="#FF00FFF2"   Placement="surface"   Framed="true"   Size="2,1"      />
-    <Tile Id="30" Name="Wood"                         Color="#FF684934"   Solid="true"          Blends="true"   MergeWith="0"   />
+    <Tile Id="29" Name="Piggy Bank"                   Color="#FFAF6980"   Placement="surface"   Framed="true"   Size="2,1"      />
+    <Tile Id="30" Name="Wood"                         Color="#FF976B4B"   Solid="true"          Blends="true"   MergeWith="0"   />
     <Tile Id="31" Name="Orb Heart"                   Color="#FF000000"   Placement="floor"     Light="true"    Framed="true"   Size="2,2"    >
 		<Frames>
 		    <Frame UV="0,0"     Name="Shadow Orb"          />
