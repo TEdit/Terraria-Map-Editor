@@ -1,10 +1,25 @@
-﻿using BCCL.MvvmLight;
+﻿using System.ComponentModel;
+using BCCL.MvvmLight;
 using TEditXNA.Terraria;
 using System.Windows.Input;
 using TEditXNA.Terraria.Objects;
 
 namespace TEditXna.Editor
 {
+    public enum HalfBlockMode
+    {
+        [Description("No Change")]
+        NoAction = -2,
+        [Description("Set Solid")]
+        Solid = -1,
+        [Description("Half Block")]
+        HalfBlock = 0,
+        [Description("Ramp Left")]
+        RampLeft = 1,
+        [Description("Ramp Right")]
+        RampRight = 2
+    }
+
     public class TilePicker : ObservableObject
     {
         private PaintMode _paintMode = ToolDefaultData.PaintMode;
@@ -14,6 +29,16 @@ namespace TEditXna.Editor
         private int _tile = ToolDefaultData.PaintTile;
         private int _wallMask = ToolDefaultData.PaintWallMask;
         private int _tileMask = ToolDefaultData.PaintTileMask;
+
+        private HalfBlockMode _halfBlockMode = HalfBlockMode.NoAction;
+         
+
+        public HalfBlockMode HalfBlockMode
+        {
+            get { return _halfBlockMode; }
+            set { Set("HalfBlockMode", ref _halfBlockMode, value); }
+        }
+
         //private bool _isLava;
         private bool _isEraser;
         private Liquid _liquid = Liquid.Water;

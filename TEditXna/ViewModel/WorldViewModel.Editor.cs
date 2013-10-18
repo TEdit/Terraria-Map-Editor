@@ -86,6 +86,29 @@ namespace TEditXna.ViewModel
                     break;
             }
 
+            switch (TilePicker.HalfBlockMode)
+            {
+                case HalfBlockMode.HalfBlock:
+                    curTile.HalfBrick = true;
+                    curTile.Slope = (byte)TilePicker.HalfBlockMode;
+                    break;
+                case HalfBlockMode.RampLeft:
+                    curTile.HalfBrick = true;
+                    curTile.Slope = (byte)TilePicker.HalfBlockMode;
+                    break;
+                case HalfBlockMode.RampRight:
+                    curTile.HalfBrick = true;
+                    curTile.Slope = (byte)TilePicker.HalfBlockMode;
+                    break;
+                case HalfBlockMode.Solid:
+                    curTile.HalfBrick = false;
+                    curTile.Slope = 0;
+                    break;
+                case HalfBlockMode.NoAction:
+                default:
+                    break;
+            }
+
             Color curBgColor = GetBackgroundColor(y);
             PixelMap.SetPixelColor(x, y, Render.PixelMap.GetTileColor(CurrentWorld.Tiles[x, y], curBgColor, _showWalls, _showTiles, _showLiquid, _showWires));
         }

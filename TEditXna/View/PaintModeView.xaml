@@ -59,14 +59,23 @@
     <Grid>
         <StackPanel Orientation="Horizontal">
             <StackPanel Orientation="Vertical" >
-                <ToggleButton ToolTip="Eraser" IsChecked="{Binding Path=TilePicker.IsEraser, Mode=TwoWay}" VerticalAlignment="Top" Margin="2" BorderThickness="2" HorizontalAlignment="Left">
-                    <Image Source="../Images/Tools/eraser.png" Height="32" Width="32" RenderOptions.BitmapScalingMode="NearestNeighbor" Stretch="None" />
+                <ToggleButton ToolTip="Eraser" IsChecked="{Binding Path=TilePicker.IsEraser, Mode=TwoWay}" VerticalAlignment="Top" Margin="2 0" BorderThickness="2" HorizontalAlignment="Left">
+                    <Image Source="../Images/Tools/eraser.png" Height="32" Width="32" RenderOptions.BitmapScalingMode="NearestNeighbor" Stretch="UniformToFill" />
                 </ToggleButton>
-                <TextBlock Text="Paint Mode" HorizontalAlignment="Left" />
-                <ComboBox ItemsSource="{StaticResource PaintModeEnum}" 
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Paint Mode" HorizontalAlignment="Left"  Width="65" VerticalAlignment="Center" />
+                    <ComboBox ItemsSource="{StaticResource PaintModeEnum}" 
                           SelectedValue="{Binding TilePicker.PaintMode}" 
                           SelectedValuePath="Value" Width="100"
                           ItemTemplate="{StaticResource EnumTemplate}" />
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Half Blocks" HorizontalAlignment="Left" Width="65"  VerticalAlignment="Center" />
+                    <ComboBox ItemsSource="{StaticResource HalfBlockMode}" 
+                          SelectedValue="{Binding TilePicker.HalfBlockMode}" 
+                          SelectedValuePath="Value" Width="100"
+                          ItemTemplate="{StaticResource EnumTemplate}" />
+                </StackPanel>
             </StackPanel>
             <GroupBox Header="Tile" BorderThickness="1" Style="{StaticResource TileVisibleStyle}">
                 <bccl:AutoGrid Width="220" VerticalAlignment="Top" >

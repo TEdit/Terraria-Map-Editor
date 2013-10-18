@@ -558,7 +558,6 @@ namespace TEditXna.ViewModel
 
                 MouseOverTile.MouseState = e;
 
-                Debug.WriteLine(string.Join(",", MouseOverTile.Tile.HalfBrick, MouseOverTile.Tile.Slope));
                 ActiveTool.MouseMove(e);
             }
         }
