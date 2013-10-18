@@ -79,9 +79,10 @@ namespace TEditXna.Editor.Clipboard
 
         public void Import(string filename, bool isFalseColor = false)
         {
+            ClipboardBuffer buffer = null;
             try
             {
-                ClipboardBuffer buffer;
+
                 if (isFalseColor && string.Equals(".png", Path.GetExtension(filename), StringComparison.InvariantCultureIgnoreCase))
                 {
                     buffer = ClipboardBuffer.LoadFalseColor(filename);
@@ -90,16 +91,18 @@ namespace TEditXna.Editor.Clipboard
                 {
                     buffer = ClipboardBuffer.Load(filename);
                 }
-                
-                if (buffer != null)
-                {
-                    buffer.RenderBuffer();
-                    LoadedBuffers.Add(buffer);
-                }
+
+
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Schematic File Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+
+            if (buffer != null)
+            {
+                buffer.RenderBuffer();
+                LoadedBuffers.Add(buffer);
             }
 
         }
@@ -109,7 +112,7 @@ namespace TEditXna.Editor.Clipboard
             World world = _wvm.CurrentWorld;
             XNA.Rectangle area = _wvm.Selection.SelectionArea;
             var buffer = new ClipboardBuffer(new Vector2Int32(area.Width, area.Height));
-            
+
             for (int x = 0; x < area.Width; x++)
             {
                 for (int y = 0; y < area.Height; y++)
@@ -256,7 +259,7 @@ namespace TEditXna.Editor.Clipboard
                                         // Copied chest
                                         var newChest = data.Copy();
                                         newChest.X = x + anchor.X;
-                                        newChest.Y =  y + anchor.Y;
+                                        newChest.Y = y + anchor.Y;
                                         world.Chests.Add(newChest);
                                     }
                                     else
@@ -278,7 +281,7 @@ namespace TEditXna.Editor.Clipboard
                                         // Copied sign
                                         var newSign = data.Copy();
                                         newSign.X = x + anchor.X;
-                                        newSign.Y =  y + anchor.Y;
+                                        newSign.Y = y + anchor.Y;
                                         world.Signs.Add(newSign);
                                     }
                                     else
@@ -335,7 +338,7 @@ namespace TEditXna.Editor.Clipboard
                     //  Ignore multi-height tiles when flipping on y-axis
                     else if (tileSize.Y > 1)
                     {
-                            ClearTile(tile);
+                        ClearTile(tile);
                     }
 
                     flippedBuffer.Tiles[bufferX, bufferY] = (Tile)tile;

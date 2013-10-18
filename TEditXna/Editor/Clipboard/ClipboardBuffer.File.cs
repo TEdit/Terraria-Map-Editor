@@ -237,19 +237,6 @@ namespace TEditXna.Editor.Clipboard
                     string name = b.ReadString();
                     int version = b.ReadInt32();
 
-                    if (version < 3)
-                    {
-                        b.Close();
-                        stream.Close();
-                        return LoadOld(filename);
-                    }
-                    if (version == 3)
-                    {
-                        b.Close();
-                        stream.Close();
-                        return Load3(filename);
-                    }
-
                     int sizeX = b.ReadInt32();
                     int sizeY = b.ReadInt32();
                     var buffer = new ClipboardBuffer(new Vector2Int32(sizeX, sizeY));
@@ -489,16 +476,13 @@ namespace TEditXna.Editor.Clipboard
                         }
                     }
 
-                    if (buffer.Name == br.ReadString() &&
-                        version == br.ReadInt32() &&
-                        buffer.Size.X == br.ReadInt32() &&
-                        buffer.Size.Y == br.ReadInt32())
+                    if (buffer.Name != br.ReadString() || version != br.ReadInt32() || buffer.Size.X != br.ReadInt32() || buffer.Size.Y != br.ReadInt32())
                     {
-                        // valid;
-                        return buffer;
+                        System.Windows.MessageBox.Show("Verification failed. Some schematic data may be missing.", "Legacy Schematic Version");
                     }
+
                     br.Close();
-                    return null;
+                    return buffer;
                 }
             }
         }
