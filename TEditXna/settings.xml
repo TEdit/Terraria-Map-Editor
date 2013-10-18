@@ -549,14 +549,14 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     </Tile>
     <Tile Id="29" Name="Piggy Bank"                   Color="#FFAF6980"   Placement="surface"   Framed="true"   Size="2,1"      />
     <Tile Id="30" Name="Wood"                         Color="#FF976B4B"   Solid="true"          Blends="true"   MergeWith="0"   />
-    <Tile Id="31" Name="Orb Heart"                   Color="#FF000000"   Placement="floor"     Light="true"    Framed="true"   Size="2,2"    >
+    <Tile Id="31" Name="Orb Heart"                   Color="#FF8D78A8"   Placement="floor"     Light="true"    Framed="true"   Size="2,2"    >
 		<Frames>
 		    <Frame UV="0,0"     Name="Shadow Orb"          />
 			<Frame UV="36,0"     Name="Demon Heart"          />
 		</Frames>
     </Tile>
-    <Tile Id="32" Name="Corruption Vines"             Color="#FF7A618F"   Blends="true"         />
-    <Tile Id="33" Name="Candle"                       Color="#FFFD3E03"   Placement="surface"   Light="true"    Framed="true"   TextureGrid="16,20"   >
+    <Tile Id="32" Name="Corruption Thorns"            Color="#FF9787B7"   Blends="true"         />
+    <Tile Id="33" Name="Candle"                       Color="#FFFDDD03"   Placement="surface"   Light="true"    Framed="true"   TextureGrid="16,20"   >
       <Frames>
         <Frame UV="0,0" Name="Candle" Variety="On" />
         <Frame UV="18,0" Name="Candle" Variety="Off" />
@@ -568,28 +568,28 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="18,66" Name="Pink Dungeon Candle" Variety="Off" />
       </Frames>
     </Tile>
-    <Tile Id="34" Name="Copper Chandelier"            Color="#FFFD3E03"   Placement="ceiling"   Light="true"    Framed="true"   Size="3,3"    >
+    <Tile Id="34" Name="Copper Chandelier"            Color="#FFEBA687"   Placement="ceiling"   Light="true"    Framed="true"   Size="3,3"    >
       <Frames>
         <Frame UV="0,0"     Variety="On"    />
         <Frame UV="54,0"    Variety="Off"   />
       </Frames>
     </Tile>
-    <Tile Id="35" Name="Silver Chandelier"            Color="#FFFD3E03"   Placement="ceiling"   Light="true"    Framed="true"   Size="3,3"    >
+    <Tile Id="35" Name="Silver Chandelier"            Color="#FFC5D8DB"   Placement="ceiling"   Light="true"    Framed="true"   Size="3,3"    >
       <Frames>
         <Frame UV="0,0"     Variety="On"    />
         <Frame UV="54,0"    Variety="Off"   />
       </Frames>
     </Tile>
-    <Tile Id="36" Name="Gold Chandelier"              Color="#FFFD3E03"   Placement="ceiling"   Light="true"    Framed="true"   Size="3,3"    >
+    <Tile Id="36" Name="Gold Chandelier"              Color="#FFE5D449"   Placement="ceiling"   Light="true"    Framed="true"   Size="3,3"    >
       <Frames>
         <Frame UV="0,0"     Variety="On"    />
         <Frame UV="54,0"    Variety="Off"   />
       </Frames>
     </Tile>
-    <Tile Id="37" Name="Meteorite"                    Color="#FFDF9F89"   Light="true"    Solid="true"    Blends="true"   MergeWith="0"   />
+    <Tile Id="37" Name="Meteorite"                    Color="#FF685654"   Light="true"    Solid="true"    Blends="true"   MergeWith="0"   />
     <Tile Id="38" Name="Gray Brick"                   Color="#FF909090"   Solid="true"    Blends="true"   MergeWith="0"   />
-    <Tile Id="39" Name="Red Brick"                    Color="#FFB200FF"   Solid="true"    Blends="true"   MergeWith="0"   />
-    <Tile Id="40" Name="Clay Block"                   Color="#FFAC5B4D"   Solid="true"    Blends="true"   MergeWith="0"   />
+    <Tile Id="39" Name="Red Brick"                    Color="#FFB53E3B"   Solid="true"    Blends="true"   MergeWith="0"   />
+    <Tile Id="40" Name="Clay Block"                   Color="#FF925144"   Solid="true"    Blends="true"   MergeWith="0"   />
     <Tile Id="41" Name="Blue Brick"                   Color="#FF545498"   Solid="true"    Blends="true"   MergeWith="0"   />
     <Tile Id="42" Name="Lantern"                Color="#FFEF904B"   Placement="ceiling"             Light="true"    Framed="true"   Size="1,2"    >
       <Frames>
