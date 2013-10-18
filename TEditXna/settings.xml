@@ -1749,7 +1749,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="-3"   Name="Gold Shortsword"/>
     <Item Id="-2"   Name="Gold Broadsword"/>
     <Item Id="-1"   Name="Gold Pickaxe"/>
-    <Item Id="0"    Name=""/>
+    <Item Id="0"    Name="[empty]"/>
     <Item Id="1"    Name="Iron Pickaxe"/>
     <Item Id="2"    Name="Dirt Block"/>
     <Item Id="3"    Name="Stone Block"/>
