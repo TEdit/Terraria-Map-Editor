@@ -9,6 +9,6 @@ namespace TEditXna.Editor
         [Description("Edit Empty")]
         Empty,
         [Description("Edit Matching")]
-        Tile
+        Match
     }
 }

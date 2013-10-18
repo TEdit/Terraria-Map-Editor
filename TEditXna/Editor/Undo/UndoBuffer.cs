@@ -42,7 +42,7 @@ namespace TEditXna.Editor.Undo
                     }
                     World.WriteChestDataToStream(Chests, bw);
                     World.WriteSignDataToStream(Signs, bw);
-                    
+
                     bw.Close();
                 }
 
@@ -62,7 +62,7 @@ namespace TEditXna.Editor.Undo
                     {
                         int x = br.ReadInt32();
                         int y = br.ReadInt32();
-                        var curTile = World.ReadTileDataFromStream(br, World.CompatibleVersion); 
+                        var curTile = World.ReadTileDataFromStream(br, World.CompatibleVersion);
                         buffer.Tiles.Add(new UndoTile(new Vector2Int32(x, y), curTile));
                     }
                     buffer.Chests.Clear();
@@ -73,6 +73,18 @@ namespace TEditXna.Editor.Undo
                 }
             }
             return buffer;
+        }
+
+        public static IEnumerable<UndoTile> ReadUndoTilesFromStream(BinaryReader br)
+        {
+            var tilecount = br.ReadInt32();
+            for (int i = 0; i < tilecount; i++)
+            {
+                int x = br.ReadInt32();
+                int y = br.ReadInt32();
+                var curTile = World.ReadTileDataFromStream(br, World.CompatibleVersion);
+                yield return new UndoTile(new Vector2Int32(x, y), curTile);
+            }
         }
     }
 }

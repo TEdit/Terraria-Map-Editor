@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -20,6 +21,26 @@ namespace TEditXna.Editor.Undo
         private UndoBuffer _buffer = new UndoBuffer();
         private int _currentIndex = 0;
         private int _maxIndex = 0;
+
+        public event EventHandler Undid;
+        public event EventHandler Redid;
+        public event EventHandler UndoSaved;
+
+
+        protected virtual void OnUndoSaved(object sender, EventArgs e)
+        {
+            if (UndoSaved != null) UndoSaved(sender, e);
+        }
+
+        protected virtual void OnRedid(object sender, EventArgs e)
+        {
+            if (Redid != null) Redid(sender, e);
+        }
+
+        protected virtual void OnUndid(object sender, EventArgs e)
+        {
+            if (Undid != null) Undid(sender, e);
+        }
 
         public UndoManager(WorldViewModel viewModel)
         {
@@ -44,6 +65,7 @@ namespace TEditXna.Editor.Undo
             _buffer.Write(string.Format(UndoFile, _currentIndex));
             _currentIndex++;
             Buffer = new UndoBuffer();
+            OnUndoSaved(this, EventArgs.Empty);
         }
 
         public void SaveTile(Vector2Int32 p)
@@ -134,49 +156,68 @@ namespace TEditXna.Editor.Undo
                 return;
 
             _currentIndex--;
-            var buffer = UndoBuffer.Read(string.Format(UndoFile, _currentIndex));
-            var redo = new UndoBuffer();
+            List<Chest> Chests = new List<Chest>();
+            List<Sign> Signs = new List<Sign>();
 
-            foreach (var undoTile in buffer.Tiles)
+            using (var ws = new FileStream(string.Format(RedoFile, _currentIndex), FileMode.Create))
+            using (var bw = new BinaryWriter(ws))
+            using (var stream = new FileStream(string.Format(UndoFile, _currentIndex), FileMode.Open))
+            using (BinaryReader br = new BinaryReader(stream))
             {
-                var curTile = (Tile)_wvm.CurrentWorld.Tiles[undoTile.Location.X, undoTile.Location.Y].Clone();
-                if (curTile.Type == 21)
+                int count = br.ReadInt32();
+                br.BaseStream.Position -= 4;
+                bw.Write(count);
+
+                foreach (var undoTile in UndoBuffer.ReadUndoTilesFromStream(br))
                 {
-                    var curchest = _wvm.CurrentWorld.GetChestAtTile(undoTile.Location.X, undoTile.Location.Y);
-                    if (curchest != null)
+                    var curTile = (Tile)_wvm.CurrentWorld.Tiles[undoTile.Location.X, undoTile.Location.Y];
+                    if (curTile.Type == 21)
                     {
-                        _wvm.CurrentWorld.Chests.Remove(curchest);
-                        var chest = curchest.Copy();
-                        redo.Chests.Add(chest);
+                        var curchest = _wvm.CurrentWorld.GetChestAtTile(undoTile.Location.X, undoTile.Location.Y);
+                        if (curchest != null)
+                        {
+                            _wvm.CurrentWorld.Chests.Remove(curchest);
+                            var chest = curchest.Copy();
+                            Chests.Add(chest);
+                        }
                     }
+                    if (curTile.Type == 55 || curTile.Type == 85)
+                    {
+                        var cursign = _wvm.CurrentWorld.GetSignAtTile(undoTile.Location.X, undoTile.Location.Y);
+                        if (cursign != null)
+                        {
+                            _wvm.CurrentWorld.Signs.Remove(cursign);
+                            var sign = cursign.Copy();
+                            Signs.Add(sign);
+                        }
+                    }
+
+                    bw.Write(undoTile.Location.X);
+                    bw.Write(undoTile.Location.Y);
+                    World.WriteTileDataToStream(curTile, bw);
+
+                    _wvm.CurrentWorld.Tiles[undoTile.Location.X, undoTile.Location.Y] = (Tile)undoTile.Tile;
+                    _wvm.UpdateRenderPixel(undoTile.Location);
+
+                    /* Heathtech */
+                    BlendRules.ResetUVCache(_wvm, undoTile.Location.X, undoTile.Location.Y, 1, 1);
                 }
-                if (curTile.Type == 55 || curTile.Type == 85)
+                World.WriteChestDataToStream(Chests, bw);
+                World.WriteSignDataToStream(Signs, bw);
+                foreach (var chest in World.ReadChestDataFromStream(br, World.CompatibleVersion))
                 {
-                    var cursign = _wvm.CurrentWorld.GetSignAtTile(undoTile.Location.X, undoTile.Location.Y);
-                    if (cursign != null)
-                    {
-                        _wvm.CurrentWorld.Signs.Remove(cursign);
-                        var sign = cursign.Copy();
-                        redo.Signs.Add(sign);
-                    }
+                    _wvm.CurrentWorld.Chests.Add(chest);
                 }
-                redo.Tiles.Add(new UndoTile(undoTile.Location, curTile));
+                foreach (var sign in World.ReadSignDataFromStream(br))
+                {
+                    _wvm.CurrentWorld.Signs.Add(sign);
+                }
+            }
 
-                _wvm.CurrentWorld.Tiles[undoTile.Location.X, undoTile.Location.Y] = (Tile)undoTile.Tile.Clone();
-                _wvm.UpdateRenderPixel(undoTile.Location);
 
-                /* Heathtech */
-                BlendRules.ResetUVCache(_wvm, undoTile.Location.X, undoTile.Location.Y, 1, 1);
-            }
-            foreach (var chest in buffer.Chests)
-            {
-                _wvm.CurrentWorld.Chests.Add(chest.Copy());
-            }
-            foreach (var sign in buffer.Signs)
-            {
-                _wvm.CurrentWorld.Signs.Add(sign.Copy());
-            }
-            redo.Write(string.Format(RedoFile, _currentIndex));
+
+
+            OnUndid(this, EventArgs.Empty);
         }
 
         public void Redo()
@@ -184,39 +225,42 @@ namespace TEditXna.Editor.Undo
             if (_currentIndex > _maxIndex || _currentIndex < 0)
                 return;
 
-            var buffer = UndoBuffer.Read(string.Format(RedoFile, _currentIndex));
-
-            foreach (var undoTile in buffer.Tiles)
+            using (var stream = new FileStream(string.Format(RedoFile, _currentIndex), FileMode.Open))
+            using (BinaryReader br = new BinaryReader(stream))
             {
-                var curTile = (Tile)_wvm.CurrentWorld.Tiles[undoTile.Location.X, undoTile.Location.Y].Clone();
-                if (curTile.Type == 21)
+                foreach (var undoTile in UndoBuffer.ReadUndoTilesFromStream(br))
                 {
-                    var curchest = _wvm.CurrentWorld.GetChestAtTile(undoTile.Location.X, undoTile.Location.Y);
-                    if (curchest != null)
-                        _wvm.CurrentWorld.Chests.Remove(curchest);
+                    var curTile = (Tile)_wvm.CurrentWorld.Tiles[undoTile.Location.X, undoTile.Location.Y];
+                    if (curTile.Type == 21)
+                    {
+                        var curchest = _wvm.CurrentWorld.GetChestAtTile(undoTile.Location.X, undoTile.Location.Y);
+                        if (curchest != null)
+                            _wvm.CurrentWorld.Chests.Remove(curchest);
+                    }
+                    if (curTile.Type == 55 || curTile.Type == 85)
+                    {
+                        var cursign = _wvm.CurrentWorld.GetSignAtTile(undoTile.Location.X, undoTile.Location.Y);
+                        if (cursign != null)
+                            _wvm.CurrentWorld.Signs.Remove(cursign);
+                    }
+
+                    _wvm.CurrentWorld.Tiles[undoTile.Location.X, undoTile.Location.Y] = (Tile)undoTile.Tile;
+                    _wvm.UpdateRenderPixel(undoTile.Location);
+
+                    /* Heathtech */
+                    BlendRules.ResetUVCache(_wvm, undoTile.Location.X, undoTile.Location.Y, 1, 1);
                 }
-                if (curTile.Type == 55 || curTile.Type == 85)
+                foreach (var chest in World.ReadChestDataFromStream(br, World.CompatibleVersion))
                 {
-                    var cursign = _wvm.CurrentWorld.GetSignAtTile(undoTile.Location.X, undoTile.Location.Y);
-                    if (cursign != null)
-                        _wvm.CurrentWorld.Signs.Remove(cursign);
+                    _wvm.CurrentWorld.Chests.Add(chest);
                 }
-
-                _wvm.CurrentWorld.Tiles[undoTile.Location.X, undoTile.Location.Y] = (Tile)undoTile.Tile.Clone();
-                _wvm.UpdateRenderPixel(undoTile.Location);
-
-                /* Heathtech */
-                BlendRules.ResetUVCache(_wvm, undoTile.Location.X, undoTile.Location.Y, 1, 1);
-            }
-            foreach (var chest in buffer.Chests)
-            {
-                _wvm.CurrentWorld.Chests.Add(chest.Copy());
-            }
-            foreach (var sign in buffer.Signs)
-            {
-                _wvm.CurrentWorld.Signs.Add(sign.Copy());
+                foreach (var sign in World.ReadSignDataFromStream(br))
+                {
+                    _wvm.CurrentWorld.Signs.Add(sign);
+                }
             }
             _currentIndex++;
+            OnRedid(this, EventArgs.Empty);
         }
 
         #region Destructor to cleanup files

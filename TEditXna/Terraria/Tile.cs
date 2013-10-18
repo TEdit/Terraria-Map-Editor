@@ -36,7 +36,7 @@ namespace TEditXNA.Terraria
         //private const int IsActivePosition = 0;
         //private const int IsLavaPosition = 1;
         //private const int HasWirePosition = 2;
-        
+
         // Condense all bools to one byte, slow saves ~100mb memory in large world,
         //private byte _flags;
         //public bool IsActive
@@ -89,23 +89,42 @@ namespace TEditXNA.Terraria
             return MemberwiseClone();
         }
 
+        public void Reset()
+        {
+            IsActive = false;
+            HasWire = false;
+            HasWire2 = false;
+            HasWire3 = false;
+            IsLava = false;
+            IsHoney = false;
+            Color = 0;
+            Type = 0;
+            Wall = 0;
+            WallColor = 0;
+            Liquid = 0;
+            HalfBrick = false;
+            Slope = 0;
+            Actuator = false;
+            InActive = false;
+        }
+
         protected bool Equals(Tile other)
         {
             return IsActive.Equals(other.IsActive) &&
                 Type == other.Type &&
                 Color == other.Color &&
-                U == other.U && V == other.V && 
-                Liquid == other.Liquid &&               
+                U == other.U && V == other.V &&
+                Liquid == other.Liquid &&
                 IsLava.Equals(other.IsLava) &&
                 IsHoney.Equals(other.IsHoney) &&
-                Wall == other.Wall && 
+                Wall == other.Wall &&
                 WallColor == other.WallColor &&
                 HasWire.Equals(other.HasWire) &&
                 HasWire2.Equals(other.HasWire2) &&
                 HasWire3.Equals(other.HasWire3) &&
-                HalfBrick.Equals(other.HalfBrick) && 
+                HalfBrick.Equals(other.HalfBrick) &&
                 Slope == other.Slope &&
-                Actuator.Equals(other.Actuator) && 
+                Actuator.Equals(other.Actuator) &&
                 InActive.Equals(other.InActive);
         }
 
@@ -151,5 +170,7 @@ namespace TEditXNA.Terraria
         {
             return !Equals(left, right);
         }
+
+
     }
 }

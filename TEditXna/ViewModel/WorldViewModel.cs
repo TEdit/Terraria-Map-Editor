@@ -52,7 +52,6 @@ namespace TEditXna.ViewModel
         private bool _isAutoSaveEnabled = true;
         private ICommand _launchWikiCommand;
         private WriteableBitmap _minimapImage;
-        private DispatcherTimer _minimapRenderTimer;
         private MorphBiome _morphBiomeTarget;
         private PixelMapManager _pixelMap;
         private ProgressChangedEventArgs _progress;
@@ -74,7 +73,7 @@ namespace TEditXna.ViewModel
         private ICommand _viewLogCommand;
         private string _windowTitle;
         private ICommand _checkUpdatesCommand;
-         
+
 
         public ICommand CheckUpdatesCommand
         {
@@ -97,7 +96,7 @@ namespace TEditXna.ViewModel
             CheckUpdates = Properties.Settings.Default.CheckUpdates;
 
             if (CheckUpdates)
-            CheckVersion();
+                CheckVersion();
 
 
             IsAutoSaveEnabled = Settings.Default.Autosave;
@@ -129,8 +128,10 @@ namespace TEditXna.ViewModel
             // 3 minute save timer
             _saveTimer.Interval = 3 * 60 * 1000;
 
-            _minimapRenderTimer = new DispatcherTimer(TimeSpan.FromSeconds(20), DispatcherPriority.Normal, UpdateMinimap, Dispatcher.CurrentDispatcher);
-            _minimapRenderTimer.Start();
+            _undoManager.Redid += UpdateMinimap;
+            _undoManager.Undid += UpdateMinimap;
+            _undoManager.UndoSaved += UpdateMinimap;
+
             // Test File Association and command line
             if (Application.Current.Properties["OpenFile"] != null)
             {
@@ -556,6 +557,8 @@ namespace TEditXna.ViewModel
                     MouseOverTile.Tile = CurrentWorld.Tiles[e.Location.X, e.Location.Y];
 
                 MouseOverTile.MouseState = e;
+
+                Debug.WriteLine(string.Join(",", MouseOverTile.Tile.HalfBrick, MouseOverTile.Tile.Slope));
                 ActiveTool.MouseMove(e);
             }
         }
@@ -598,13 +601,13 @@ namespace TEditXna.ViewModel
                         OnProgressChanged(w, new ProgressChangedEventArgs(Calc.ProgressPercentage(y, w.TilesHigh), "Generating World..."));
 
                         if (y == (int)w.GroundLevel - 10)
-                            cloneTile = new Tile {HasWire = false, IsActive = true, IsLava = false, Liquid = 0, Type = 2, U = -1, V = -1, Wall = 2};
+                            cloneTile = new Tile { HasWire = false, IsActive = true, IsLava = false, Liquid = 0, Type = 2, U = -1, V = -1, Wall = 2 };
                         if (y == (int)w.GroundLevel - 9)
-                            cloneTile = new Tile {HasWire = false, IsActive = true, IsLava = false, Liquid = 0, Type = 0, U = -1, V = -1, Wall = 2};
+                            cloneTile = new Tile { HasWire = false, IsActive = true, IsLava = false, Liquid = 0, Type = 0, U = -1, V = -1, Wall = 2 };
                         else if (y == (int)w.GroundLevel + 1)
-                            cloneTile = new Tile {HasWire = false, IsActive = true, IsLava = false, Liquid = 0, Type = 0, U = -1, V = -1, Wall = 0};
+                            cloneTile = new Tile { HasWire = false, IsActive = true, IsLava = false, Liquid = 0, Type = 0, U = -1, V = -1, Wall = 0 };
                         else if (y == (int)w.RockLevel)
-                            cloneTile = new Tile {HasWire = false, IsActive = true, IsLava = false, Liquid = 0, Type = 1, U = -1, V = -1, Wall = 0};
+                            cloneTile = new Tile { HasWire = false, IsActive = true, IsLava = false, Liquid = 0, Type = 1, U = -1, V = -1, Wall = 0 };
                         else if (y == w.TilesHigh - 182)
                             cloneTile = new Tile();
                         for (int x = 0; x < w.TilesWide; x++)

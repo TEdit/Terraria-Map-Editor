@@ -58,7 +58,7 @@ namespace TEditXna.Editor.Plugins
             }
 
             int wallMask = _wvm.TilePicker.WallMask;
-            int tileMask = _wvm.TilePicker.WallMask;
+            int tileMask = _wvm.TilePicker.TileMask;
             int tileTarget = _wvm.TilePicker.Tile;
             int wallTarget = _wvm.TilePicker.Wall;
 
@@ -70,14 +70,24 @@ namespace TEditXna.Editor.Plugins
                     bool doReplaceWall = false;
 
                     Tile curTile = _wvm.CurrentWorld.Tiles[x, y];
+
+
                     if (replaceTiles)
                     {
-                        if (curTile.Type == tileMask || (_wvm.TilePicker.TileMaskMode == MaskMode.Empty && !curTile.IsActive)) doReplaceTile = true;
+                        if ((curTile.IsActive && curTile.Type == tileMask && _wvm.TilePicker.TileMaskMode == MaskMode.Match)
+                            || (!curTile.IsActive && _wvm.TilePicker.TileMaskMode == MaskMode.Empty))
+                        {
+                            doReplaceTile = true;
+                        }
                     }
 
                     if (replaceWalls)
                     {
-                        if (curTile.Wall == wallMask) doReplaceWall = true;
+                        if ((curTile.Wall == wallMask && _wvm.TilePicker.WallMaskMode == MaskMode.Match)
+                            || (curTile.Wall == 0 && _wvm.TilePicker.WallMaskMode == MaskMode.Empty))
+                        {
+                            doReplaceWall = true;
+                        }
                     }
 
                     if (doReplaceTile || doReplaceWall)
