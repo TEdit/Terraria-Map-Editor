@@ -660,15 +660,15 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
       </Frames>
     </Tile>
     <Tile Id="62" Name="Jungle Vines"                 Color="#FF79B018"   Blends="true"   />
-    <Tile Id="63" Name="Gem Sapphire"                 Color="#FF2A82FA"   Solid="true"    Blends="true"   MergeWith="0"   Stone="true"    />
-    <Tile Id="64" Name="Gem Ruby"                     Color="#FF2A82FA"   Solid="true"    Blends="true"   MergeWith="0"   Stone="true"    />
-    <Tile Id="65" Name="Gem Emerald"                  Color="#FF2A82FA"   Solid="true"    Blends="true"   MergeWith="0"   Stone="true"    />
-    <Tile Id="66" Name="Gem Topaz"                    Color="#FF2A82FA"   Solid="true"    Blends="true"   MergeWith="0"   Stone="true"    />
-    <Tile Id="67" Name="Gem Amethyst"                 Color="#FF2A82FA"   Solid="true"    Blends="true"   MergeWith="0"   Stone="true"    />
-    <Tile Id="68" Name="Gem Diamond"                  Color="#FF2A82FA"   Solid="true"    Blends="true"   MergeWith="0"   Stone="true"    />
-    <Tile Id="69" Name="Jungle Thorns"                Color="#FF5E3037"   Blends="true"   />
+    <Tile Id="63" Name="Gem Sapphire"                 Color="#FF6E8CB6"   Solid="true"    Blends="true"   MergeWith="0"   Stone="true"    />
+    <Tile Id="64" Name="Gem Ruby"                     Color="#FFC46072"   Solid="true"    Blends="true"   MergeWith="0"   Stone="true"    />
+    <Tile Id="65" Name="Gem Emerald"                  Color="#FF389661"   Solid="true"    Blends="true"   MergeWith="0"   Stone="true"    />
+    <Tile Id="66" Name="Gem Topaz"                    Color="#FFA0763A"   Solid="true"    Blends="true"   MergeWith="0"   Stone="true"    />
+    <Tile Id="67" Name="Gem Amethyst"                 Color="#FF8C3AA6"   Solid="true"    Blends="true"   MergeWith="0"   Stone="true"    />
+    <Tile Id="68" Name="Gem Diamond"                  Color="#FF7DBFC5"   Solid="true"    Blends="true"   MergeWith="0"   Stone="true"    />
+    <Tile Id="69" Name="Jungle Thorns"                Color="#FFBE965C"   Blends="true"   />
     <Tile Id="70" Name="Mushroom Grass"               Color="#FF5D7FFF"   Light="true"    Solid="true"    Blends="true"   MergeWith="59"    Special="Grass"   />
-    <Tile Id="71" Name="Mushroom Plant"               Color="#FFB1AE83"   Light="true"    Framed="true"   TextureGrid="16,20"   >
+    <Tile Id="71" Name="Mushroom Plant"               Color="#FFB6AF82"   Light="true"    Framed="true"   TextureGrid="16,20"   >
       <Frames>
         <Frame UV="0,0"     Variety="Double Small"    />
         <Frame UV="18,0"    Variety="Small"           />
@@ -677,7 +677,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="72,0"    Variety="Standard"        />
       </Frames>
     </Tile>
-    <Tile Id="72" Name="Mushroom Tree" Color="#FF968F6E" Light="true" Framed="true">
+    <Tile Id="72" Name="Mushroom Tree" Color="#FFB6AF82" Light="true" Framed="true">
       <Frames>
         <Frame UV="0,0"     Variety="Trunk A"     />
         <Frame UV="18,0"    Variety="Tree Top"    Anchor="Bottom"   />
@@ -687,7 +687,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="18,36"   Variety="Tree Top"    Anchor="Left"     />
       </Frames>
     </Tile>
-    <Tile Id="73" Name="Tall Grass"                   Color="#FF0D6524"   Framed="true"   Size="1,1"    TextureGrid="16,32"   >
+    <Tile Id="73" Name="Tall Grass"                   Color="#FF1BC56D"   Framed="true"   Size="1,1"    TextureGrid="16,32"   >
       <Frames>
         <Frame UV="0,0"     Name="Grass"    Variety="G"   Anchor="Bottom"   />
         <Frame UV="18,0"    Name="Grass"    Variety="C"   Anchor="Bottom"   />
@@ -699,7 +699,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="126,0"   Name="Rose"     Variety="B"   Anchor="Bottom"   />
       </Frames>
     </Tile>
-    <Tile Id="74" Name="Tall Jungle Grass"            Color="#FF0D6524"   Framed="true"   Size="1,1"    TextureGrid="16,32"   >
+    <Tile Id="74" Name="Tall Jungle Grass"            Color="#FF60C51B"   Framed="true"   Size="1,1"    TextureGrid="16,32"   >
       <Frames>
         <Frame UV="0,0"     Name="Jungle Grass"   Variety="G"   Anchor="Bottom"   />
         <Frame UV="18,0"    Name="Jungle Grass"   Variety="C"   Anchor="Bottom"   />
@@ -711,11 +711,11 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="126,0"   Name="Jungle Rose"    Variety="B"   Anchor="Bottom"   />
       </Frames>
     </Tile>
-    <Tile Id="75" Name="Obsidian Brick"               Color="#FFB200FF"   Solid="true"        Blends="true"   MergeWith="0"   />
-    <Tile Id="76" Name="Hellstone Brick"              Color="#FFC6001D"   Light="true"        Solid="true"    Blends="true"   MergeWith="0"   />
-    <Tile Id="77" Name="Hellforge"                    Color="#FFD50010"   Placement="floor"   Light="true"    Framed="true"   Size="3,2"      />
-    <Tile Id="78" Name="Clay Pot"                     Color="#FF00FFF2"   Placement="floor"   Framed="true"   Size="1,1"      />
-    <Tile Id="79" Name="Bed"                          Color="#FF00FFF2"   Placement="floor"   Framed="true"   Size="4,2"      >
+    <Tile Id="75" Name="Obsidian Brick"               Color="#FF1A1A1A"   Solid="true"        Blends="true"   MergeWith="0"   />
+    <Tile Id="76" Name="Hellstone Brick"              Color="#FF8E4242"   Light="true"        Solid="true"    Blends="true"   MergeWith="0"   />
+    <Tile Id="77" Name="Hellforge"                    Color="#FFEE5546"   Placement="floor"   Light="true"    Framed="true"   Size="3,2"      />
+    <Tile Id="78" Name="Clay Pot"                     Color="#FF796E61"   Placement="floor"   Framed="true"   Size="1,1"      />
+    <Tile Id="79" Name="Bed"                          Color="#FFBF8E6F"   Placement="floor"   Framed="true"   Size="4,2"      >
       <Frames>
         <Frame UV="0,0"     Name="Wooden Bed"    Anchor="Left"     />
         <Frame UV="72,0"    Name="Wooden Bed"    Variety="Right"   />
