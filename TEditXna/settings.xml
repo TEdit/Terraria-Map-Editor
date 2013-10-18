@@ -745,8 +745,8 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="72,432"    Name="Steam Punk Bed"    Variety="Right"   />
       </Frames>
     </Tile>
-    <Tile Id="80" Name="Cactus"                       Color="#FF00A500"   Special="Cactus"    />
-    <Tile Id="81" Name="Coral"                        Color="#FFE55340"   Framed="true"       TextureGrid="24,26"   >
+    <Tile Id="80" Name="Cactus"                       Color="#FF497811"   Special="Cactus"    />
+    <Tile Id="81" Name="Coral"                        Color="#FFF585BF"   Framed="true"       TextureGrid="24,26"   >
       <Frames>
         <Frame UV="0,0"     Variety="Red"       />
         <Frame UV="26,0"    Variety="Pink"      />
@@ -796,8 +796,8 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="180,0"   Variety="F"   />
       </Frames>
     </Tile>
-    <Tile Id="86" Name="Loom"                         Color="#FFFF00FF"   Placement="floor"           Framed="true"     Size="3,2"      />
-    <Tile Id="87" Name="Piano"                        Color="#FF00FFF2"   Placement="floor"           SolidTop="true"   Framed="true"   Size="3,2"    >
+    <Tile Id="86" Name="Loom"                         Color="#FFBF8E6F"   Placement="floor"           Framed="true"     Size="3,2"      />
+    <Tile Id="87" Name="Piano"                        Color="#FFBF8E6F"   Placement="floor"           SolidTop="true"   Framed="true"   Size="3,2"    >
 		<Frames>
 			<Frame UV="0,0"     Variety="Wooden"   />
 			<Frame UV="54,0"     Variety="Ebonwood"   />
@@ -806,7 +806,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
 			<Frame UV="216,0"     Variety="Shadewood"   />
         </Frames>
     </Tile>
-    <Tile Id="88" Name="Dresser"                      Color="#FF00FFF2"   Placement="floor"           SolidTop="true"   Framed="true"   Size="3,2"   >
+    <Tile Id="88" Name="Dresser"                      Color="#FFBF8E6F"   Placement="floor"           SolidTop="true"   Framed="true"   Size="3,2"   >
     	<Frames>
 			<Frame UV="0,0"     Variety="Wooden"   />
 			<Frame UV="54,0"     Variety="Ebonwood"   />
@@ -815,14 +815,14 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
 			<Frame UV="216,0"     Variety="Shadewood"   />
 		</Frames>
     </Tile>
-    <Tile Id="89" Name="Bench"                        Color="#FF00FFF2"   Placement="floor"           Framed="true"     Size="3,2"      />
-    <Tile Id="90" Name="Bathtub"                      Color="#FF00FFF2"   Placement="floor"           Framed="true"     Size="4,2"      >
+    <Tile Id="89" Name="Bench"                        Color="#FFBF8E6F"   Placement="floor"           Framed="true"     Size="3,2"      />
+    <Tile Id="90" Name="Bathtub"                      Color="#FF909490"   Placement="floor"           Framed="true"     Size="4,2"      >
       <Frames>
         <Frame UV="0,0"     Anchor="Left"     />
         <Frame UV="72,0"    Anchor="Right"    />
       </Frames>
     </Tile>
-    <Tile Id="91" Name="Red Banner"                   Color="#FF00FFF2"   Placement="ceiling"         Framed="true"   Size="1,3"    >
+    <Tile Id="91" Name="Red Banner"                   Color="#FF0D5882"   Placement="ceiling"         Framed="true"   Size="1,3"    >
       <Frames>
         <Frame UV="0,0"     Name="Red Banner"       />
         <Frame UV="18,0"    Name="Green Banner"     />
@@ -830,30 +830,30 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="54,0"    Name="Yellow Banner"    />
       </Frames>
     </Tile>
-    <Tile Id="92" Name="Lamp Post"                    Color="#FF00FFF2"   Placement="floor"           Light="true"    Framed="true"   Size="1,6"    >
+    <Tile Id="92" Name="Lamp Post"                    Color="#FFD5E5ED"   Placement="floor"           Light="true"    Framed="true"   Size="1,6"    >
       <Frames>
         <Frame UV="0,0"     Variety="On"    />
         <Frame UV="18,0"    Variety="Off"   />
       </Frames>
     </Tile>
-    <Tile Id="93" Name="Tiki Torch"                   Color="#FF00FFF2"   Placement="floor"           Light="true"    Framed="true"   Size="1,3"    >
+    <Tile Id="93" Name="Tiki Torch"                   Color="#FFFDDD03"   Placement="floor"           Light="true"    Framed="true"   Size="1,3"    >
       <Frames>
         <Frame UV="0,0"     Variety="On"    />
         <Frame UV="18,0"    Variety="Off"   />
       </Frames>
     </Tile>
-    <Tile Id="94" Name="Keg"                          Color="#FF00FFF2"   Placement="floor"           Framed="true"   Size="2,2"      />
-    <Tile Id="95" Name="Chinese Lantern"              Color="#FF00FFF2"   Placement="floorSurface"    Light="true"    Framed="true"   Size="2,2"    >
+    <Tile Id="94" Name="Keg"                          Color="#FFBF8E6F"   Placement="floor"           Framed="true"   Size="2,2"      />
+    <Tile Id="95" Name="Chinese Lantern"              Color="#FFFFA21F"   Placement="floorSurface"    Light="true"    Framed="true"   Size="2,2"    >
       <Frames>
         <Frame UV="0,0"     Variety="On"    />
         <Frame UV="36,0"    Variety="Off"   />
       </Frames>
     </Tile>
-    <Tile Id="96" Name="Cooking Pot"                  Color="#FF00FFF2"   Placement="floorSurface"    Framed="true"   Size="2,2"      />
-    <Tile Id="97" Name="Safe"                         Color="#FFFF00FF"   Placement="floor"           Framed="true"   Size="2,2"      />
-    <Tile Id="98" Name="Skull Lantern"                Color="#FFFF00FF"   Placement="floorSurface"    Light="true"    Framed="true"   Size="2,2"    />
-    <Tile Id="99" Name="Trash Can"                    Color="#FFFF00D0"   Placement="floor"           Framed="true"   Size="2,2"      />
-    <Tile Id="100" Name="Candelabra"                  Color="#FFFF00FF"   Placement="surface"         Light="true"    Framed="true"   Size="2,2"    >
+    <Tile Id="96" Name="Cooking Pot"                  Color="#FF909490"   Placement="floorSurface"    Framed="true"   Size="2,2"      />
+    <Tile Id="97" Name="Safe"                         Color="#FF909490"   Placement="floor"           Framed="true"   Size="2,2"      />
+    <Tile Id="98" Name="Skull Lantern"                Color="#FFFDDD03"   Placement="floorSurface"    Light="true"    Framed="true"   Size="2,2"    />
+    <Tile Id="99" Name="Trash Can"                    Color="#FF909490"   Placement="floor"           Framed="true"   Size="2,2"      />
+    <Tile Id="100" Name="Candelabra"                  Color="#FFFDDD03"   Placement="surface"         Light="true"    Framed="true"   Size="2,2"    >
       <Frames>
         <Frame UV="0,0"     Variety="On"    />
         <Frame UV="36,0"    Variety="Off"   />
