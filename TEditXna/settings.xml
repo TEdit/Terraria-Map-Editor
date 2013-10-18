@@ -590,8 +590,8 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Tile Id="38" Name="Gray Brick"                   Color="#FF909090"   Solid="true"    Blends="true"   MergeWith="0"   />
     <Tile Id="39" Name="Red Brick"                    Color="#FFB53E3B"   Solid="true"    Blends="true"   MergeWith="0"   />
     <Tile Id="40" Name="Clay Block"                   Color="#FF925144"   Solid="true"    Blends="true"   MergeWith="0"   />
-    <Tile Id="41" Name="Blue Brick"                   Color="#FF545498"   Solid="true"    Blends="true"   MergeWith="0"   />
-    <Tile Id="42" Name="Lantern"                Color="#FFEF904B"   Placement="ceiling"             Light="true"    Framed="true"   Size="1,2"    >
+    <Tile Id="41" Name="Blue Brick"                   Color="#FF42546D"   Solid="true"    Blends="true"   MergeWith="0"   />
+    <Tile Id="42" Name="Lantern"                Color="#FFFBEB7F"   Placement="ceiling"             Light="true"    Framed="true"   Size="1,2"    >
       <Frames>
         <Frame UV="0,0"     Name="Chain Lantern"	Variety="On"    />
         <Frame UV="18,0"    Name="Chain Lantern"	Variety="Off"   />
@@ -607,18 +607,18 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="18,180"    Name="Diablost Lamp"	Variety="Off"   />
         <Frame UV="0,216"     Name="Oil Rag Sconse"	Variety="On"    />
         <Frame UV="18,216"    Name="Oil Rag Sconse"	Variety="Off"   />
-        <Frame UV="0,252"     Name="Bulb"	Variety="On"    />
-        <Frame UV="18,252"    Name="Bulb"	Variety="Off"   />
+        <Frame UV="0,252"     Name="Star in a Bottle"	Variety="On"    />
+        <Frame UV="18,252"    Name="Star in a Bottle"	Variety="Off"   />
       </Frames>
     </Tile>
-    <Tile Id="43" Name="Green Brick"                  Color="#FF39A851"   Solid="true"    Blends="true"   MergeWith="0"   />
-    <Tile Id="44" Name="Pink Brick"                   Color="#FFB200FF"   Solid="true"    Blends="true"   MergeWith="0"   />
-    <Tile Id="45" Name="Gold Brick"                   Color="#FFFFD514"   Solid="true"    Blends="true"   MergeWith="0"   />
-    <Tile Id="46" Name="Silver Brick"                 Color="#FFE5E5E5"   Solid="true"    Blends="true"   MergeWith="0"   />
-    <Tile Id="47" Name="Copper Brick"                 Color="#FFFF5900"   Solid="true"    Blends="true"   MergeWith="0"   />
-    <Tile Id="48" Name="Spike"                        Color="#FF6D6D6D"   Placement="wallFloorCeiling"    Solid="true"    Blends="true"         />
+    <Tile Id="43" Name="Green Brick"                  Color="#FF54643F"   Solid="true"    Blends="true"   MergeWith="0"   />
+    <Tile Id="44" Name="Pink Brick"                   Color="#FF6B4463"   Solid="true"    Blends="true"   MergeWith="0"   />
+    <Tile Id="45" Name="Gold Brick"                   Color="#FFB9A417"   Solid="true"    Blends="true"   MergeWith="0"   />
+    <Tile Id="46" Name="Silver Brick"                 Color="#FFB9C2C3"   Solid="true"    Blends="true"   MergeWith="0"   />
+    <Tile Id="47" Name="Copper Brick"                 Color="#FF964316"   Solid="true"    Blends="true"   MergeWith="0"   />
+    <Tile Id="48" Name="Spike"                        Color="#FF808080"   Placement="wallFloorCeiling"    Solid="true"    Blends="true"         />
     <Tile Id="49" Name="Water Candle"                 Color="#FF2B8FFF"   Placement="surface"             Light="true"    TextureGrid="16,20"   />
-    <Tile Id="50" Name="Book"                         Color="#FF00FFF2"   Placement="surface"             Framed="true"   >
+    <Tile Id="50" Name="Book"                         Color="#FFAA3072"   Placement="surface"             Framed="true"   >
       <Frames>
         <Frame UV="0,0"     Variety="Blue, Red, Brown"          />
         <Frame UV="18,0"    Variety="Yellow, Pink"              />
@@ -628,11 +628,11 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="90,0"    Variety="Brown, Water Bolt, Gray"   />
       </Frames>
     </Tile>
-    <Tile Id="51" Name="Cobweb"                       Color="#FFFFFFFF"   Blends="true"   MergeWith="-1"  />
-    <Tile Id="52" Name="Vines"                        Color="#FF0D6524"   Blends="true"   />
+    <Tile Id="51" Name="Web"                          Color="#FFC0CACB"   Blends="true"   MergeWith="-1"  />
+    <Tile Id="52" Name="Vines"                        Color="#FF17B14C"   Blends="true"   />
     <Tile Id="53" Name="Sand Block"                   Color="#FFFFDA38"   Solid="true"    Blends="true"   MergeWith="0"   />
-    <Tile Id="54" Name="Glass"                        Color="#40FFFFFF"   Solid="true"    Blends="true"   />
-    <Tile Id="55" Name="Sign"                         Color="#FFFFAE5E"   Placement="wallFloorCeiling"    Framed="true"   Size="2,2"    >
+    <Tile Id="54" Name="Glass"                        Color="#FFC8F6FE"   Solid="true"    Blends="true"   />
+    <Tile Id="55" Name="Sign"                         Color="#FFBF8E6F"   Placement="wallFloorCeiling"    Framed="true"   Size="2,2"    >
       <Frames>
         <Frame UV="0,0"     Anchor="Top"      />
         <Frame UV="36,0"    Anchor="Bottom"   />
@@ -640,12 +640,12 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="108,0"   Anchor="Right"    />
       </Frames>
     </Tile>
-    <Tile Id="56" Name="Obsidian"                     Color="#FF5751AD"   Solid="true"    Blends="true"   MergeWith="0"         />
+    <Tile Id="56" Name="Obsidian"                     Color="#FF2B2854"   Solid="true"    Blends="true"   MergeWith="0"         />
     <Tile Id="57" Name="Ash Block"                    Color="#FF44444C"   Solid="true"    Blends="true"   MergeWith="0"         />
-    <Tile Id="58" Name="Hellstone"                    Color="#FF662222"   Light="true"    Solid="true"    Blends="true"         MergeWith="57" />
+    <Tile Id="58" Name="Hellstone"                    Color="#FF8E4242"   Light="true"    Solid="true"    Blends="true"         MergeWith="57" />
     <Tile Id="59" Name="Mud Block"                    Color="#FF5C4449"   Solid="true"    Blends="true"   MergeWith="0"         />
     <Tile Id="60" Name="Jungle Grass"                 Color="#FF8FD71D"   Solid="true"    Blends="true"   MergeWith="59"        Special="Grass" />
-    <Tile Id="61" Name="Jungle Plants"                Color="#FF8FD71D"   Light="true"    Framed="true"   TextureGrid="16,20"   >
+    <Tile Id="61" Name="Jungle Plants"                Color="#FF87C41A"   Light="true"    Framed="true"   TextureGrid="16,20"   >
       <Frames>
         <Frame UV="0,0"     Name="Jungle Grass"     Anchor="Right"    Variety="Single Blade"    />
         <Frame UV="18,0"    Name="Jungle Grass"     Anchor="Right"    Variety="Double Blade"    />
@@ -659,7 +659,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="162,0"   Name="Nature's Gift"    Anchor="Right"    Variety="Immature"        />
       </Frames>
     </Tile>
-    <Tile Id="62" Name="Jungle Vines"                 Color="#FF8ACE1C"   Blends="true"   />
+    <Tile Id="62" Name="Jungle Vines"                 Color="#FF79B018"   Blends="true"   />
     <Tile Id="63" Name="Gem Sapphire"                 Color="#FF2A82FA"   Solid="true"    Blends="true"   MergeWith="0"   Stone="true"    />
     <Tile Id="64" Name="Gem Ruby"                     Color="#FF2A82FA"   Solid="true"    Blends="true"   MergeWith="0"   Stone="true"    />
     <Tile Id="65" Name="Gem Emerald"                  Color="#FF2A82FA"   Solid="true"    Blends="true"   MergeWith="0"   Stone="true"    />
