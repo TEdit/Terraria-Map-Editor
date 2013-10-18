@@ -51,15 +51,13 @@ namespace TEditXna.View
             if (ViewModelBase.IsInDesignModeStatic)
                 return;
 
-            if (!Debugging.IsInDesignMode)
-            {
-                InitializeComponent();
-                _gameTimer = new GameTimer();
-                _wvm.PreviewChanged += PreviewChanged;
-                _wvm.PropertyChanged += _wvm_PropertyChanged;
-                _wvm.RequestZoom += _wvm_RequestZoom;
-                _wvm.RequestScroll += _wvm_RequestScroll;
-            }
+            InitializeComponent();
+            _gameTimer = new GameTimer();
+            _wvm.PreviewChanged += PreviewChanged;
+            _wvm.PropertyChanged += _wvm_PropertyChanged;
+            _wvm.RequestZoom += _wvm_RequestZoom;
+            _wvm.RequestScroll += _wvm_RequestScroll;
+
         }
 
         void _wvm_RequestScroll(object sender, BCCL.Framework.Events.EventArgs<ScrollDirection> e)
@@ -160,7 +158,7 @@ namespace TEditXna.View
         {
 
             // Abort rendering if in design mode or if gameTimer is already running
-            if (Debugging.IsInDesignMode || _gameTimer.IsRunning)
+            if (ViewModelBase.IsInDesignModeStatic || _gameTimer.IsRunning)
             {
                 return;
             }
@@ -254,7 +252,7 @@ namespace TEditXna.View
         private void xnaViewport_RenderXna(object sender, GraphicsDeviceEventArgs e)
         {
             // Abort rendering if in design mode or if gameTimer is not running
-            if (Debugging.IsInDesignMode || !_gameTimer.IsRunning || _wvm.CurrentWorld == null || ViewModelBase.IsInDesignModeStatic)
+            if (!_gameTimer.IsRunning || _wvm.CurrentWorld == null || ViewModelBase.IsInDesignModeStatic)
                 return;
 
             // Clear the graphics device and texture buffer

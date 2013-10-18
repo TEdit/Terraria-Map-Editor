@@ -488,7 +488,13 @@ namespace TEditXna.Editor.Clipboard
 
                         if (buffer.Name != br.ReadString() || version != br.ReadInt32() || buffer.Size.X != br.ReadInt32() || buffer.Size.Y != br.ReadInt32())
                         {
-                            System.Windows.MessageBox.Show("Verification failed. Some schematic data may be missing.", "Legacy Schematic Version");
+                            if (!frame19)
+                            {
+                                br.Close();
+                                return Load3(filename, true);
+                            }
+                            else
+                                System.Windows.MessageBox.Show("Verification failed. Some schematic data may be missing.", "Legacy Schematic Version");
                         }
 
                         br.Close();

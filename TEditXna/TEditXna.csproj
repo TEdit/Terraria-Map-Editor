@@ -52,7 +52,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-    <UseVSHostingProcess>true</UseVSHostingProcess>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationIcon>Images\tedit.ico</ApplicationIcon>
@@ -368,7 +368,6 @@
     <EmbeddedResource Include="Images\Overlays\grid.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="teditversion.txt" />
     <Resource Include="Images\Toolbar\report_magnify.png" />
     <Content Include="settings.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -410,7 +409,7 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties BuildVersion_AssemblyInfoFilename="Properties\AssemblyInfo.cs" BuildVersion_UseGlobalSettings="True" />
+      <UserProperties BuildVersion_UseGlobalSettings="True" BuildVersion_AssemblyInfoFilename="Properties\AssemblyInfo.cs" />
     </VisualStudio>
   </ProjectExtensions>
   <PropertyGroup>
