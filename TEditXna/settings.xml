@@ -1226,17 +1226,17 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="108,0"       Name="Amber"        Variety="Default" />
       </Frames>
     </Tile>
-    <Tile Id="179" Name=""                            Color="#FF336600"   Solid="true"    Blends="true"   />
-    <Tile Id="180" Name=""                            Color="#FF336600"   Solid="true"    Blends="true"   />
-    <Tile Id="181" Name=""                            Color="#FFB82E00"   Solid="true"    Blends="true"   />
-    <Tile Id="182" Name=""                            Color="#FF00004C"   Solid="true"    Blends="true"   />
-    <Tile Id="183" Name=""                            Color="#FFFF00FF"   Solid="true"    Blends="true"   />
-    <Tile Id="184" Name=""                            Color="#FFFF00FF"   Framed="true"   >
+    <Tile Id="179" Name="Green Moss"                  Color="#FF318672"   Solid="true"    Blends="true"   Stone="true"   Special="Grass"   />
+    <Tile Id="180" Name="Yellow Moss"                 Color="#FF7E8631"   Solid="true"    Blends="true"   Stone="true"   Special="Grass"   />
+    <Tile Id="181" Name="Red Moss"                    Color="#FF863B31"   Solid="true"    Blends="true"   Stone="true"   Special="Grass"   />
+    <Tile Id="182" Name="Blue Moss"                   Color="#FF2B568C"   Solid="true"    Blends="true"   Stone="true"   Special="Grass"   />
+    <Tile Id="183" Name="Purple Moss"                 Color="#FF793186"   Solid="true"    Blends="true"   Stone="true"   Special="Grass"   />
+    <Tile Id="184" Name="Moss Plants"                 Color="#FF646464"   Framed="true"   >
       <Frames>
         <Frame UV="0,0" Name="Default" Variety="Default" />
       </Frames>
     </Tile>
-    <Tile Id="185" Name="Deco Small"                  Color="#FFFF00FF"   Framed="true" Size="1,1"  >
+    <Tile Id="185" Name="Deco Small"                  Color="#FF959573"   Framed="true" Size="1,1"  >
       <Frames>
         <Frame UV="0,0"         Name="" Variety="" />
         <Frame UV="18,0"        Name="" Variety="" />
