@@ -1481,7 +1481,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="0,0" Name="Default" Variety="Default" />
       </Frames>
     </Tile>
-    <Tile Id="220" Name="Solidifier"                  Color="#FFFF00FF"   Framed="true" Size="3,2">
+    <Tile Id="220" Name="Solidifier"                  Color="#FFFF00FF"   Framed="true" Size="3,3">
       <Frames>
         <Frame UV="0,0" Name="Default" Variety="Default" />
       </Frames>
@@ -1497,7 +1497,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="0,0" Name="Default" Variety="Default" />
       </Frames>
     </Tile>
-    <Tile Id="228" Name="Dye Vat"                     Color="#FFFF00FF"   Framed="true"   Size="3,2" >
+    <Tile Id="228" Name="Dye Vat"                     Color="#FFFF00FF"   Framed="true"   Size="3,3" >
       <Frames>
         <Frame UV="0,0" Name="Default" Variety="Default" />
       </Frames>
@@ -1576,7 +1576,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="0,0" Name="Default" Variety="Default" />
       </Frames>
     </Tile>
-    <Tile Id="247" Name="Autohammer"                  Color="#FFFF00FF"   Framed="true" Size="3,2" >
+    <Tile Id="247" Name="Autohammer"                  Color="#FFFF00FF"   Framed="true" Size="3,3" >
       <Frames>
         <Frame UV="0,0" Name="Default" Variety="Default" />
       </Frames>
