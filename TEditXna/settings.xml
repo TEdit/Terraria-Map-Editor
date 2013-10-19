@@ -965,25 +965,25 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Tile Id="118" Name="Pearlstone Brick"            Color="#FFEEE1DA"   Solid="true"    Blends="true"   MergeWith="0" />
     <Tile Id="119" Name="Iridescent Brick"            Color="#FF6B5C6C"   Solid="true"    Blends="true"   MergeWith="0" />
     <Tile Id="120" Name="Mudstone Block"              Color="#FF5C4449"   Solid="true"    Blends="true"   MergeWith="0" />
-    <Tile Id="121" Name="Cobalt Brick"                Color="#FF2576AB"   Solid="true"    Blends="true"   MergeWith="0" />
-    <Tile Id="122" Name="Mythril Brick"               Color="#FF91BF75"   Solid="true"    Blends="true"   MergeWith="0" />
-    <Tile Id="123" Name="Silt Block"                  Color="#FF595353"   Solid="true"    Blends="true"   MergeWith="0" />
-    <Tile Id="124" Name="Wooden Beam"                 Color="#FF5C4436"   Blends="true"   />
-    <Tile Id="125" Name="Crystal Ball"                Color="#FF81A5FF"   Light="true"    Framed="true"   Size="2,2"    />
-    <Tile Id="126" Name="Disco Ball"                  Color="#FFDBDBDB"   Light="true"    Framed="true"   Size="2,2"    >
+    <Tile Id="121" Name="Cobalt Brick"                Color="#FF0B508F"   Solid="true"    Blends="true"   MergeWith="0" />
+    <Tile Id="122" Name="Mythril Brick"               Color="#FF5BA9A9"   Solid="true"    Blends="true"   MergeWith="0" />
+    <Tile Id="123" Name="Silt Block"                  Color="#FF6A6B76"   Solid="true"    Blends="true"   MergeWith="0" />
+    <Tile Id="124" Name="Wooden Beam"                 Color="#FF493324"   Blends="true"   />
+    <Tile Id="125" Name="Crystal Ball"                Color="#FF8DAFFF"   Light="true"    Framed="true"   Size="2,2"    />
+    <Tile Id="126" Name="Disco Ball"                  Color="#FF9FD1E5"   Light="true"    Framed="true"   Size="2,2"    >
       <Frames>
         <Frame UV="0,0"     Variety="On" />
         <Frame UV="36,0"    Variety="Off" />
       </Frames>
     </Tile>
     <Tile Id="127" Name="Ice"                         Color="#FF80CCE6"   Solid="true"    Blends="true"   />
-    <Tile Id="128" Name="Mannequin"                   Color="#FF906850"   Framed="true"   Size="2,3"      >
+    <Tile Id="128" Name="Mannequin"                   Color="#FFBF8E6F"   Framed="true"   Size="2,3"      >
       <Frames>
         <Frame UV="0,0"     Anchor="Left" />
         <Frame UV="36,0"    Anchor="Right" />
       </Frames>
     </Tile>
-    <Tile Id="129" Name="Crystal Shard"               Color="#FF004979"   Light="true"    Framed="true"   >
+    <Tile Id="129" Name="Crystal Shard"               Color="#FFFF75E0"   Light="true"    Framed="true"   >
       <Frames>
         <Frame UV="0,0"     Variety="Large Blue"      Anchor="Bottom"   />
         <Frame UV="0,18"    Variety="Large Blue"      Anchor="Top"      />
@@ -1023,8 +1023,8 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="90,54"   Variety="Small Purple"    Anchor="Left"     />
       </Frames>
     </Tile>
-    <Tile Id="130" Name="Active Stone Block"          Color="#FFA5A5A5"   Solid="true"    Blends="true"   MergeWith="0"   Stone="true"    />
-    <Tile Id="131" Name="Inactive Stone Block"        Color="#FF1A1A1A"   Blends="true"   MergeWith="0"   Stone="true"    />
+    <Tile Id="130" Name="Active Stone Block"          Color="#FFA0A0A0"   Solid="true"    Blends="true"   MergeWith="0"   Stone="true"    />
+    <Tile Id="131" Name="Inactive Stone Block"        Color="#FF343434"   Blends="true"   MergeWith="0"   Stone="true"    />
     <Tile Id="132" Name="Lever"                       Color="#FFC90303"   Framed="true"   Size="2,2"      >
       <Frames>
         <Frame UV="0,0" Anchor="Left" />
