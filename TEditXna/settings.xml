@@ -1492,16 +1492,16 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Tile Id="224"  Name="Slush Block"                Color="#FFB2B2CC"   Solid="true"    Blends="true"   />
     <Tile Id="225"  Name="Hive Block"                 Color="#FFE68A2E"   Solid="true"    Blends="true"   />
     <Tile Id="226"  Name="Lihzahrd Brick"             Color="#FF800000"   Solid="true"    Blends="true"   />
-    <Tile Id="227"  Name="Dye Plant"                  Color="#FFFFFFFF"   Framed="true"   Size="1,1"   TextureGrid="32,36"   >
+    <Tile Id="227"  Name="Dye Plant"                  Color="#FFFFFFFF"   Framed="true"   TextureGrid="32,36"   >
       <Frames>
-        <Frame UV="0,0"      Name="Dye Plant"    Variety="Teal Mushroom"        />
-        <Frame UV="34,0"     Name="Dye Plant"    Variety="Green Mushroom"       />
-        <Frame UV="68,0"     Name="Dye Plant"    Variety="Sky Blue Flower"      />
-        <Frame UV="102,0"    Name="Dye Plant"    Variety="Yellow Marigold"      />
-        <Frame UV="136,0"    Name="Dye Plant"    Variety="Blue Berries"         />
-        <Frame UV="170,0"    Name="Dye Plant"    Variety="Lime Kelp"            />
-        <Frame UV="204,0"    Name="Dye Plant"    Variety="Pink Prickly Pear"    />
-        <Frame UV="238,0"    Name="Dye Plant"    Variety="Orange Bloodroot"     />
+        <Frame UV="0,0"     Name="Dye Plant"   Variety="Teal Mushroom"       />
+        <Frame UV="34,0"    Name="Dye Plant"   Variety="Green Mushroom"      />
+        <Frame UV="68,0"    Name="Dye Plant"   Variety="Sky Blue Flower"     />
+        <Frame UV="102,0"   Name="Dye Plant"   Variety="Yellow Marigold"     />
+        <Frame UV="136,0"   Name="Dye Plant"   Variety="Blue Berries"        />
+        <Frame UV="170,0"   Name="Dye Plant"   Variety="Lime Kelp"           />
+        <Frame UV="204,0"   Name="Dye Plant"   Variety="Pink Prickly Pear"   />
+        <Frame UV="238,0"   Name="Dye Plant"   Variety="Orange Bloodroot"    />
       </Frames>
     </Tile>
     <Tile Id="228" Name="Dye Vat"                     Color="#FFFF00FF"   Framed="true"   Size="3,2" >
