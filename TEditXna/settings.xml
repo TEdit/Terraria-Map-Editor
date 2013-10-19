@@ -1173,7 +1173,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Tile Id="162" Name="Thin Ice"                    Color="#FFB8DBF0"   Solid="true"    Blends="true"    />
     <Tile Id="163" Name="Purple Ice Block"            Color="#FFAE91D6"   Solid="true"    Blends="true"    />
     <Tile Id="164" Name="Pink Ice Block"              Color="#FFDAB6CC"   Solid="true"    Blends="true"    />
-    <Tile Id="165" Name="Icicle"                      Color="#FF73ADE5"   Framed="true"   Size="1,2" >
+    <Tile Id="165" Name="Large Deco"                  Color="#FF646464"   Framed="true"   Size="1,2" >
       <Frames>
         <Frame UV="0,0" Name="Default" Variety="Default" />
       </Frames>
