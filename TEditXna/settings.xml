@@ -548,7 +548,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
       </Frames>
     </Tile>
     <Tile Id="29" Name="Piggy Bank"                   Color="#FFAF6980"   Placement="surface"   Framed="true"   Size="2,1"      />
-    <Tile Id="30" Name="Wood"                         Color="#FF976B4B"   Solid="true"          Blends="true"   MergeWith="0"   />
+    <Tile Id="30" Name="Wood"                         Color="#FFAA7854"   Solid="true"          Blends="true"   MergeWith="0"   />
     <Tile Id="31" Name="Orb Heart"                   Color="#FF8D78A8"   Placement="floor"     Light="true"    Framed="true"   Size="2,2"    >
 		<Frames>
 		    <Frame UV="0,0"     Name="Shadow Orb"          />
