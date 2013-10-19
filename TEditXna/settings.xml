@@ -1414,20 +1414,20 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="0,0" Name="Default" Variety="Default" />
       </Frames>
     </Tile>
-    <Tile Id="188" Name="Cactus"                      Color="#FF00A500"   Solid="true"    />
+    <Tile Id="188" Name="Cactus"                      Color="#FF497811"   Solid="true"    Blends="true"   />
     <Tile Id="189" Name="Cloud"                       Color="#FFDFFFFF"   Solid="true"    Blends="true"   />
-    <Tile Id="190" Name="Glowing Mushroom"            Color="#FFFF00FF"   Solid="true"    Light="true"    />
-    <Tile Id="191" Name="Living Wood"                 Color="#FFA37A00"   Solid="true"    Blends="true"   />
-    <Tile Id="192" Name="Leaves"                      Color="#FF19A319"   Solid="true"    Blends="true"   />
-    <Tile Id="193" Name="Slime Block"                 Color="#FFFF00FF"   Solid="true"    />
-    <Tile Id="194" Name="Bone Block"                  Color="#FFFF00FF"   Solid="true"    />
-    <Tile Id="195" Name="Flesh Block"                 Color="#FFFF00FF"   Solid="true"    />
-    <Tile Id="196" Name="Rain Cloud"                  Color="#FF98ABC6"   Solid="true"    Blends="true"   />
-    <Tile Id="197" Name="Frozen Slime Block"          Color="#FFFF00FF"   Solid="true"    />
-    <Tile Id="198" Name="Asphalt Block"               Color="#FFFF00FF"   Solid="true"    />
-    <Tile Id="199" Name="Crimson Grass"               Color="#FFB03800"   Solid="true"    Blends="true"   MergeWith="0"   Special="Grass"   />
-    <Tile Id="200" Name="Red Ice Block"               Color="#FFFF4D4D"   Solid="true"    Blends="true"   />
-    <Tile Id="201" Name="Crimson Plants"              Color="#FFB80000"   Framed="true"   >
+    <Tile Id="190" Name="Glowing Mushroom"            Color="#FFB6AF82"   Solid="true"    Blends="true"   Light="true"    />
+    <Tile Id="191" Name="Living Wood"                 Color="#FF976B4B"   Solid="true"    Blends="true"   />
+    <Tile Id="192" Name="Leaves"                      Color="#FF1AC454"   Solid="true"    Blends="true"   />
+    <Tile Id="193" Name="Slime Block"                 Color="#FF3879FF"   Solid="true"    Blends="true"   />
+    <Tile Id="194" Name="Bone Block"                  Color="#FF9D9D6B"   Solid="true"    Blends="true"   />
+    <Tile Id="195" Name="Flesh Block"                 Color="#FF861622"   Solid="true"    Blends="true"   />
+    <Tile Id="196" Name="Rain Cloud"                  Color="#FF9390B2"   Solid="true"    Blends="true"   />
+    <Tile Id="197" Name="Frozen Slime Block"          Color="#FF61C8E1"   Solid="true"    Blends="true"   />
+    <Tile Id="198" Name="Asphalt Block"               Color="#FF3E3D34"   Solid="true"    Blends="true"   />
+    <Tile Id="199" Name="Crimson Grass"               Color="#FFD05050"   Solid="true"    Blends="true"   MergeWith="0"   Special="Grass"   />
+    <Tile Id="200" Name="Red Ice Block"               Color="#FFD89890"   Solid="true"    Blends="true"   />
+    <Tile Id="201" Name="Crimson Plants"              Color="#FFCB3D40"   Framed="true"   >
       <Frames>
         <Frame UV="0,0" Name="Default" Variety="Default" />
       </Frames>
@@ -1435,8 +1435,8 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Tile Id="202" Name="Sunplate Block"              Color="#FFD5B21C"   Solid="true"    Blends="true"   />
     <Tile Id="203" Name="Crimstone Block"             Color="#FF802C2D"   Solid="true"    Blends="true"   />
     <Tile Id="204" Name="Crimtane Ore"                Color="#FF7D3741"   Solid="true"    Blends="true"   Light="true"    />
-    <Tile Id="205" Name="Crimson Vine"                Color="#FFB80000"   Blends="true"   />
-    <Tile Id="206" Name="Ice Brick"                   Color="#FFFF00FF"   Solid="true"    />
+    <Tile Id="205" Name="Crimson Vine"                Color="#FFBA3234"   Blends="true"   />
+    <Tile Id="206" Name="Ice Brick"                   Color="#FF7CAFC9"   Solid="true"    Blends="true"   />
     <Tile Id="207" Name="Pure Water Fountain"         Color="#FFFF00FF"   Framed="true"   >
       <Frames>
         <Frame UV="0,0" Name="Default" Variety="Default" />
