@@ -1527,104 +1527,213 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="0,0" Name="Default" Variety="Default" />
       </Frames>
     </Tile>
-    <Tile Id="221"  Name="Palladium Ore"              Color="#FFFF6600"   Solid="true"    Blends="true"   />
-    <Tile Id="222"  Name="Orichalcum Ore"             Color="#FFA329CC"   Solid="true"    Blends="true"   />
-    <Tile Id="223"  Name="Titanium Ore"               Color="#FF668080"   Solid="true"    Blends="true"   />
-    <Tile Id="224"  Name="Slush Block"                Color="#FFB2B2CC"   Solid="true"    Blends="true"   />
-    <Tile Id="225"  Name="Hive Block"                 Color="#FFE68A2E"   Solid="true"    Blends="true"   />
-    <Tile Id="226"  Name="Lihzahrd Brick"             Color="#FF800000"   Solid="true"    Blends="true"   />
-    <Tile Id="227"  Name="Teal Mushroom"              Color="#FFFF00FF"   Framed="true"   Size="2,2" >
+    <Tile Id="221"  Name="Palladium Ore"              Color="#FFEF5A32"   Solid="true"    Blends="true"   />
+    <Tile Id="222"  Name="Orichalcum Ore"             Color="#FFE760E4"   Solid="true"    Blends="true"   />
+    <Tile Id="223"  Name="Titanium Ore"               Color="#FF395565"   Solid="true"    Blends="true"   />
+    <Tile Id="224"  Name="Slush Block"                Color="#FF6B848B"   Solid="true"    Blends="true"   />
+    <Tile Id="225"  Name="Hive Block"                 Color="#FFE37D16"   Solid="true"    Blends="true"   />
+    <Tile Id="226"  Name="Lihzahrd Brick"             Color="#FF8D3800"   Solid="true"    Blends="true"   />
+    <Tile Id="227"  Name="Dye Plant"                  Color="#FFFFFFFF"   Framed="true"   TextureGrid="32,36"   >
+      <Frames>
+        <Frame UV="0,0"     Name="Dye Plant"   Variety="Teal Mushroom"       />
+        <Frame UV="34,0"    Name="Dye Plant"   Variety="Green Mushroom"      />
+        <Frame UV="68,0"    Name="Dye Plant"   Variety="Sky Blue Flower"     />
+        <Frame UV="102,0"   Name="Dye Plant"   Variety="Yellow Marigold"     />
+        <Frame UV="136,0"   Name="Dye Plant"   Variety="Blue Berries"        />
+        <Frame UV="170,0"   Name="Dye Plant"   Variety="Lime Kelp"           />
+        <Frame UV="204,0"   Name="Dye Plant"   Variety="Pink Prickly Pear"   />
+        <Frame UV="238,0"   Name="Dye Plant"   Variety="Orange Bloodroot"    />
+      </Frames>
+    </Tile>
+    <Tile Id="228" Name="Dye Vat"                     Color="#FF909490"   Framed="true"   Size="3,3"   >
       <Frames>
         <Frame UV="0,0" Name="Default" Variety="Default" />
       </Frames>
     </Tile>
-    <Tile Id="228" Name="Dye Vat"                     Color="#FFFF00FF"   Framed="true"   Size="3,2" >
+    <Tile Id="229" Name="Honey Block"                 Color="#FFFF9C0C"   Solid="true"    Blends="true"   />
+    <Tile Id="230" Name="Crispy Honey Block"          Color="#FF834F0D"   Solid="true"    Blends="true"   />
+    <Tile Id="231" Name="Larva"                       Color="#FFE0C265"   Framed="true"   Size="3,3"   >
       <Frames>
         <Frame UV="0,0" Name="Default" Variety="Default" />
       </Frames>
     </Tile>
-    <Tile Id="229" Name="Honey Block"                 Color="#FFFF00FF"   Solid="true"    Blends="true"   />
-    <Tile Id="230" Name="Crispy Honey Block"          Color="#FFFF00FF"   Solid="true"    Blends="true"   />
-    <Tile Id="231" Name=" Crystallized Larva"                            Color="#FFFF00FF"   Framed="true"   >
+    <Tile Id="232" Name="Wooden Spike"                Color="#FF915155"   Solid="true"    Blends="true"   />
+    <Tile Id="233" Name=""                            Color="#FFFF00FF"   Framed="true"   Size="3,2"   >
       <Frames>
         <Frame UV="0,0" Name="Default" Variety="Default" />
       </Frames>
     </Tile>
-    <Tile Id="232" Name="Wooden Spike"                Color="#FFFF00FF"   Solid="true"    Blends="true"   />
-    <Tile Id="233" Name=""  Framed="true" >
+    <Tile Id="234" Name="Crimsand Block"              Color="#FF352C29"   Solid="true"    Blends="true"   />
+    <Tile Id="235" Name="Teleporter"                  Color="#FFD6B82E"   Framed="true"   Solid="true"   Size="3,1"   >
       <Frames>
         <Frame UV="0,0" Name="Default" Variety="Default" />
       </Frames>
     </Tile>
-    <Tile Id="234" Name="Crimsand Block"              Color="#FF352C29"   Solid="true"    Blends="true" />
-    <Tile Id="235" Name="Teleporter"                  Color="#FFFF00FF"   Framed="true"   Solid="true"      Size="3,1" >
+    <Tile Id="236" Name="Life Fruit Plant"            Color="#FF95E857"   Framed="true"   Size="2,2"   >
       <Frames>
         <Frame UV="0,0" Name="Default" Variety="Default" />
       </Frames>
     </Tile>
-    <Tile Id="236" Name="Life Fruit Plant"  Framed="true" Size="2,2">
+    <Tile Id="237" Name="Lihzahrd Altar"              Color="#FFFFF133"   Framed="true"   Light="true" Size="3,2"   >
       <Frames>
         <Frame UV="0,0" Name="Default" Variety="Default" />
       </Frames>
     </Tile>
-    <Tile Id="237" Name="Lihzahrd Altar"              Color="#FFFF00FF"   Framed="true"   Light="true" Size="3,2">
+    <Tile Id="238" Name="Plantera's Bulb"             Color="#FFE180CE"   Framed="true"   Light="true" Size="2,2"   >
       <Frames>
         <Frame UV="0,0" Name="Default" Variety="Default" />
       </Frames>
     </Tile>
-    <Tile Id="238" Name="Pink Bulb"  Framed="true" Light="true" >
+    <Tile Id="239" Name="Metal Bar"                   Color="#FFE0C265"   Framed="true"   Solid="true"    SolidTop="true"   >
+      <Frames>
+        <Frame UV="0,0"      Name="Metal Bar"   Variety="Copper Bar"        />
+        <Frame UV="18,0"     Name="Metal Bar"   Variety="Tin Bar"           />
+        <Frame UV="36,0"     Name="Metal Bar"   Variety="Iron Bar"          />
+        <Frame UV="54,0"     Name="Metal Bar"   Variety="Lead Bar"          />
+        <Frame UV="72,0"     Name="Metal Bar"   Variety="Silver Bar"        />
+        <Frame UV="90,0"     Name="Metal Bar"   Variety="Tungsten Bar"      />
+        <Frame UV="108,0"    Name="Metal Bar"   Variety="Gold Bar"          />
+        <Frame UV="126,0"    Name="Metal Bar"   Variety="Platinum Bar"      />
+        <Frame UV="144,0"    Name="Metal Bar"   Variety="Demonite Bar"      />
+        <Frame UV="162,0"    Name="Metal Bar"   Variety="Meteorite Bar"     />
+        <Frame UV="180,0"    Name="Metal Bar"   Variety="Hellstone Bar"     />
+        <Frame UV="198,0"    Name="Metal Bar"   Variety="Cobalt Bar"        />
+        <Frame UV="216,0"    Name="Metal Bar"   Variety="Palladium Bar"     />
+        <Frame UV="234,0"    Name="Metal Bar"   Variety="Mythril Bar"       />
+        <Frame UV="252,0"    Name="Metal Bar"   Variety="Orichalcum Bar"    />
+        <Frame UV="270,0"    Name="Metal Bar"   Variety="Adamantite Bar"    />
+        <Frame UV="288,0"    Name="Metal Bar"   Variety="Titanium Bar"      />
+        <Frame UV="306,0"    Name="Metal Bar"   Variety="Chlorophyte Bar"   />
+        <Frame UV="324,0"    Name="Metal Bar"   Variety="Hallowed Bar"      />
+        <Frame UV="342,0"    Name="Metal Bar"   Variety="Crimtane Bar"      />
+        <Frame UV="360,0"    Name="Metal Bar"   Variety="Shroomite Bar"     />
+      </Frames>
+    </Tile>
+    <Tile Id="240" Name="Wall Deco 3x3"               Color="#FF63321E"   Framed="true"   Size="3,3"   >
+      <Frames>
+        <Frame UV="0,0"      Name="Trophy"     Variety="Eye of Cthulhu"                 />
+        <Frame UV="54,0"     Name="Trophy"     Variety="Eater of Worlds"                />
+        <Frame UV="108,0"    Name="Trophy"     Variety="Brain of Cthulhu"               />
+        <Frame UV="162,0"    Name="Trophy"     Variety="Skeletron"                      />
+        <Frame UV="216,0"    Name="Trophy"     Variety="Queen Bee"                      />
+        <Frame UV="270,0"    Name="Trophy"     Variety="Wall of Flesh"                  />
+        <Frame UV="324,0"    Name="Trophy"     Variety="Destroyer"                      />
+        <Frame UV="378,0"    Name="Trophy"     Variety="Skeletron Prime"                />
+        <Frame UV="432,0"    Name="Trophy"     Variety="Retinazer"                      />
+        <Frame UV="486,0"    Name="Trophy"     Variety="Spazmatism"                     />
+        <Frame UV="540,0"    Name="Trophy"     Variety="Plantera"                       />
+        <Frame UV="594,0"    Name="Trophy"     Variety="Golem"                          />
+        <Frame UV="648,0"    Name="Painting"   Variety="Blood Moon Rising"              />
+        <Frame UV="702,0"    Name="Painting"   Variety="The Hanged Man"                 />
+        <Frame UV="756,0"    Name="Painting"   Variety="Glory of the Fire"              />
+        <Frame UV="810,0"    Name="Painting"   Variety="Bone Warp"                      />
+        <Frame UV="864,0"    Name="Hanging"    Variety="Wall Skeleton"                  />
+        <Frame UV="918,0"    Name="Hanging"    Variety="Hanging Skeleton"               />
+        <Frame UV="972,0"    Name="Painting"   Variety="Skellington J Skellingsworth"   />
+        <Frame UV="1026,0"   Name="Painting"   Variety="The Cursed Man"                 />
+        <Frame UV="1080,0"   Name="Painting"   Variety="Sunflowers"                     />
+        <Frame UV="1134,0"   Name="Painting"   Variety="Terrarian Gothic"               />
+        <Frame UV="1188,0"   Name="Painting"   Variety="Guide Picasso"                  />
+        <Frame UV="1242,0"   Name="Painting"   Variety="The Guardian's Gaze"            />
+        <Frame UV="1296,0"   Name="Painting"   Variety="Father of Someone"              />
+        <Frame UV="1350,0"   Name="Painting"   Variety="Nurse Lisa"                     />
+        <Frame UV="1404,0"   Name="Painting"   Variety="Discover"                       />
+        <Frame UV="1458,0"   Name="Painting"   Variety="Hand Earth"                     />
+        <Frame UV="1512,0"   Name="Painting"   Variety="Old Miner"                      />
+        <Frame UV="1566,0"   Name="Painting"   Variety="Skelehead"                      />
+        <Frame UV="1620,0"   Name="Painting"   Variety="Imp Face"                       />
+        <Frame UV="1674,0"   Name="Painting"   Variety="Ominous Presence"               />
+        <Frame UV="1728,0"   Name="Painting"   Variety="Shining Moon"                   />
+        <Frame UV="1782,0"   Name="Painting"   Variety="The Merchant"                   />
+        <Frame UV="1836,0"   Name="Painting"   Variety="Crowno Devours His Lunch"       />
+        <Frame UV="1890,0"   Name="Painting"   Variety="Rare Enchantment"               />
+      </Frames>
+    </Tile>
+    <Tile Id="241" Name="Wall Deco 4x3"               Color="#FF4D4A48"   Framed="true"   Size="4,3"   >
+      <Frames>
+        <Frame UV="0,0"      Name="Catacomb"   Variety="A"   />
+        <Frame UV="0,54"     Name="Catacomb"   Variety="B"   />
+        <Frame UV="0,108"    Name="Catacomb"   Variety="C"   />
+        <Frame UV="0,162"    Name="Catacomb"   Variety="D"   />
+        <Frame UV="0,216"    Name="Catacomb"   Variety="E"   />
+        <Frame UV="0,270"    Name="Catacomb"   Variety="F"   />
+        <Frame UV="0,324"    Name="Catacomb"   Variety="G"   />
+        <Frame UV="0,378"    Name="Catacomb"   Variety="H"   />
+        <Frame UV="0,432"    Name="Catacomb"   Variety="I"   />
+      </Frames>
+    </Tile>
+    <Tile Id="242" Name="Wall Deco 6x4"               Color="#FF63321E"   Framed="true"   Size="6,4"   >
+      <Frames>
+        <Frame UV="0,0"      Name="Painting"   Variety="The Eye Sees the End" />
+        <Frame UV="0,72"     Name="Painting"   Variety="Something Evil is Watching You" />
+        <Frame UV="0,144"    Name="Painting"   Variety="The Twins Have Awoken" />
+        <Frame UV="0,216"    Name="Painting"   Variety="The Screamer" />
+        <Frame UV="0,288"    Name="Painting"   Variety="Goblins Playing Poker" />
+        <Frame UV="0,360"    Name="Painting"   Variety="Dryadisque" />
+        <Frame UV="0,432"    Name="Painting"   Variety="Impact" />
+        <Frame UV="0,504"    Name="Painting"   Variety="Powered by Birds" />
+        <Frame UV="0,576"    Name="Painting"   Variety="The Destroyer" />
+        <Frame UV="0,648"    Name="Painting"   Variety="The Persistency of Eyes" />
+        <Frame UV="0,720"    Name="Painting"   Variety="Unicorn Crossing the Hallows" />
+        <Frame UV="0,792"    Name="Painting"   Variety="Great Wave" />
+        <Frame UV="0,864"    Name="Painting"   Variety="Starry Night" />
+        <Frame UV="0,936"    Name="Painting"   Variety="Facing the Cerebral Mastermind" />
+        <Frame UV="0,1008"   Name="Painting"   Variety="Lake of Fire" />
+        <Frame UV="0,1080"   Name="Painting"   Variety="Trio Super Heroes" />
+        <Frame UV="0,1152"   Name="Painting"   Variety="The Creation of the Guide" />
+      </Frames>
+    </Tile>
+    <Tile Id="243" Name="Imbuing Station"             Color="#FF8CB3FE"   Framed="true"   Size="3,3"   >
       <Frames>
         <Frame UV="0,0" Name="Default" Variety="Default" />
       </Frames>
     </Tile>
-    <Tile Id="239" Name="Gold Bar"                    Color="#FFFF00FF"   Framed="true"   Solid="true"    SolidTop="true" >
+    <Tile Id="244" Name="Bubble Machine"              Color="#FFC8F5FD"   Framed="true"   Size="3,2"   >
       <Frames>
         <Frame UV="0,0" Name="Default" Variety="Default" />
       </Frames>
     </Tile>
-    <Tile Id="240" Name="Eye of Cthulhu Trophy"       Color="#FFFF00FF"   Framed="true" >
+    <Tile Id="245" Name="Wall Deco 2x3"               Color="#FF63321E"   Framed="true"   Size="2,3"   >
+      <Frames>
+        <Frame UV="0,0"      Name="Painting"   Variety="Waldo"                />
+        <Frame UV="36,0"     Name="Painting"   Variety="Darkness"             />
+        <Frame UV="72,0"     Name="Painting"   Variety="Dark Soul Reaper"     />
+        <Frame UV="108,0"    Name="Painting"   Variety="Land"                 />
+        <Frame UV="144,0"    Name="Painting"   Variety="Trapped Ghost"        />
+        <Frame UV="180,0"    Name="Painting"   Variety="American Explosive"   />
+        <Frame UV="216,0"    Name="Painting"   Variety="Glorious Night"       />
+      </Frames>
+    </Tile>
+    <Tile Id="246" Name="Wall Deco 3x2"               Color="#FF63321E"   Framed="true"   Size="3,2"   >
+      <Frames>
+        <Frame UV="0,0"      Name="Painting"   Variety="Demon's Eye"                     />
+        <Frame UV="0,36"     Name="Painting"   Variety="Finding Gold"                    />
+        <Frame UV="0,72"     Name="Painting"   Variety="First Encounter"                 />
+        <Frame UV="0,108"    Name="Painting"   Variety="Good Morning"                    />
+        <Frame UV="0,144"    Name="Painting"   Variety="Underground Reward"              />
+        <Frame UV="0,180"    Name="Painting"   Variety="Through the Window"              />
+        <Frame UV="0,216"    Name="Painting"   Variety="Place Above the Clouds"          />
+        <Frame UV="0,252"    Name="Painting"   Variety="Do Not Step on the Grass"        />
+        <Frame UV="0,288"    Name="Painting"   Variety="Cold Waters in the White Land"   />
+        <Frame UV="0,324"    Name="Painting"   Variety="Lightless Chasms"                />
+        <Frame UV="0,360"    Name="Painting"   Variety="The Land of Deceiving Looks"     />
+        <Frame UV="0,396"    Name="Painting"   Variety="Daylight"                        />
+        <Frame UV="0,432"    Name="Painting"   Variety="Secret of the Sands"             />
+        <Frame UV="0,468"    Name="Painting"   Variety="Deadland Comes Alive"            />
+        <Frame UV="0,504"    Name="Painting"   Variety="Evil Presence"                   />
+        <Frame UV="0,540"    Name="Painting"   Variety="Sky Guardian"                    />
+        <Frame UV="0,576"    Name="Painting"   Variety="Living Gore"                     />
+        <Frame UV="0,612"    Name="Painting"   Variety="Flowing Magma"                   />
+      </Frames>
+    </Tile>
+    <Tile Id="247" Name="Autohammer"                  Color="#FF8C9696"   Framed="true"   Size="3,3"   >
       <Frames>
         <Frame UV="0,0" Name="Default" Variety="Default" />
       </Frames>
     </Tile>
-    <Tile Id="241" Name="Catacomb"                    Color="#FFFF00FF"   Framed="true" >
-      <Frames>
-        <Frame UV="0,0" Name="Default" Variety="Default" />
-      </Frames>
-    </Tile>
-    <Tile Id="242" Name="The Eye Sees the End"        Color="#FFFF00FF"   Framed="true" >
-      <Frames>
-        <Frame UV="0,0" Name="Default" Variety="Default" />
-      </Frames>
-    </Tile>
-    <Tile Id="243" Name="Imbuing Station"             Color="#FFFF00FF"   Framed="true" Size="3,3" >
-      <Frames>
-        <Frame UV="0,0" Name="Default" Variety="Default" />
-      </Frames>
-    </Tile>
-    <Tile Id="244" Name="Bubble Machine"              Color="#FFFF00FF"   Framed="true" Size="3,2">
-      <Frames>
-        <Frame UV="0,0" Name="Default" Variety="Default" />
-      </Frames>
-    </Tile>
-    <Tile Id="245" Name="Waldo"                       Color="#FFFF00FF"   Framed="true" >
-      <Frames>
-        <Frame UV="0,0" Name="Default" Variety="Default" />
-      </Frames>
-    </Tile>
-    <Tile Id="246" Name="Demon's Eye"                 Color="#FFFF00FF"   Framed="true" >
-      <Frames>
-        <Frame UV="0,0" Name="Default" Variety="Default" />
-      </Frames>
-    </Tile>
-    <Tile Id="247" Name="Autohammer"                  Color="#FFFF00FF"   Framed="true" Size="3,2" >
-      <Frames>
-        <Frame UV="0,0" Name="Default" Variety="Default" />
-      </Frames>
-    </Tile>
-    <Tile Id="248"  Name="Palladium Column"           Color="#FFFF00FF"   Solid="true"  Blends="true"   />
-    <Tile Id="249"  Name="Bubblegum Block"            Color="#FFFF00FF"   Solid="true"  Blends="true"   />
-    <Tile Id="250"  Name="Titanstone Block"           Color="#FFFF00FF"   Solid="true"  Blends="true"   />
+    <Tile Id="248" Name="Palladium Column"            Color="#FFDB4726"   Solid="true"   Blends="true"   />
+    <Tile Id="249" Name="Bubblegum Block"             Color="#FFF934F3"   Solid="true"   Blends="true"   />
+    <Tile Id="250" Name="Titanstone Block"            Color="#FF4C4A53"   Solid="true"   Blends="true"   />
   </Tiles>
   <Walls>
     <Wall Id="0"    Name="Sky"                        Color="#00000000"                     />
