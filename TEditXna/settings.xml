@@ -1432,9 +1432,34 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Tile Id="204" Name="Crimtane Ore"                Color="#FF7D3741"   Solid="true"    Blends="true"   Light="true"    />
     <Tile Id="205" Name="Crimson Vine"                Color="#FFB80000"   Blends="true"   />
     <Tile Id="206" Name="Ice Brick"                   Color="#FFFF00FF"   Solid="true"    />
-    <Tile Id="207" Name="Pure Water Fountain"         Color="#FFFF00FF"   Framed="true"   >
+    <Tile Id="207" Name="Water Fountain"         Color="#FFFF00FF"   Framed="true"  Size="2,4" >
       <Frames>
-        <Frame UV="0,0" Name="Default" Variety="Default" />
+        <Frame UV="0,0" Name="Pure Water Fountain" Variety="Off" />
+        <Frame UV="0,72" Name="Pure Water Fountain" Variety="On" />
+        <Frame UV="36,0" Name="Desert Water Fountain" Variety="Off" />
+        <Frame UV="36,72" Name="Desert Water Fountain" Variety="On" />
+        <Frame UV="72,0" Name="Jungle Water Fountain" Variety="Off" />
+        <Frame UV="72,72" Name="Jungle Water Fountain" Variety="On" />
+        <Frame UV="108,0" Name="Icy Water Fountain" Variety="Off" />
+        <Frame UV="108,72" Name="Icy Water Fountain" Variety="On" />
+        <Frame UV="144,0" Name="Corrupt Water Fountain" Variety="Off" />
+        <Frame UV="144,72" Name="Corrupt Water Fountain" Variety="On" />
+        <Frame UV="180,0" Name="Crimson Water Fountain" Variety="Off" />
+        <Frame UV="180,72" Name="Crimson Water Fountain" Variety="On" />
+        <Frame UV="216,0" Name="Hallowed Water Fountain" Variety="Off" />
+        <Frame UV="216,72" Name="Hallowed Water Fountain" Variety="On" />
+        <Frame UV="252,0" Name="Blood Water Fountain" Variety="Off" />
+        <Frame UV="252,72" Name="Blood Water Fountain" Variety="On" />
+        
+<!-- these fountains need also added to items -->
+<!--        
+        <Frame UV="288,0" Name="Unknown Water Fountain" Variety="Off" />
+        <Frame UV="288,72" Name="Unknown Water Fountain" Variety="On" />
+        <Frame UV="324,0" Name="Unknown Water Fountain" Variety="Off" />
+        <Frame UV="324,72" Name="Unknown Water Fountain" Variety="On" />
+        <Frame UV="360,0" Name="Unknown Water Fountain" Variety="Off" />
+        <Frame UV="360,72" Name="Unknown Water Fountain" Variety="On" />
+-->
       </Frames>
     </Tile>
     <Tile Id="208" Name="Shadewood"                   Color="#FFFF00FF"   Solid="true"    />
