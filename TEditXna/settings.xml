@@ -859,7 +859,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="36,0"    Variety="Off"   />
       </Frames>
     </Tile>
-    <Tile Id="101" Name="Bookcase"                    Color="#FFFF00FF"   Placement="floor"     SolidTop="true"   Framed="true"   Size="3,4"    >
+    <Tile Id="101" Name="Bookcase"                    Color="#FFBF8E6F"   Placement="floor"     SolidTop="true"   Framed="true"   Size="3,4"    >
     <Frames>
         <Frame UV="0,0"     Variety="Wooden"    />
         <Frame UV="54,0"     Variety="Blue Dungeon Bookcase"    />
@@ -869,10 +869,10 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="270,0"     Variety="Gothic Bookcase"    />
       </Frames>
     </Tile>
-    <Tile Id="102" Name="Throne"                      Color="#FFFF00FF"   Placement="floor"     Framed="true"     Size="3,4"      />
-    <Tile Id="103" Name="Bowl"                        Color="#FFFF00FF"   Placement="surface"   Framed="true"     Size="2,1"      />
-    <Tile Id="104" Name="Grandfather Clock"           Color="#FFFF00FF"   Placement="floor"     Framed="true"     Size="2,5"      />
-    <Tile Id="105" Name="Statue"                      Color="#FF00FFF2"   Placement="floor"     Framed="true"     Size="2,3"      >
+    <Tile Id="102" Name="Throne"                      Color="#FFE5D449"   Placement="floor"     Framed="true"     Size="3,4"      />
+    <Tile Id="103" Name="Bowl"                        Color="#FF8D624D"   Placement="surface"   Framed="true"     Size="2,1"      />
+    <Tile Id="104" Name="Grandfather Clock"           Color="#FFBF8E6F"   Placement="floor"     Framed="true"     Size="2,5"      />
+    <Tile Id="105" Name="Statue"                      Color="#FF909490"   Placement="floor"     Framed="true"     Size="2,3"      >
       <Frames>
         <Frame UV="0,0"     Variety="Armor Statue"        />
         <Frame UV="36,0"    Variety="Angel Statue"        />
@@ -926,11 +926,11 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="1764,0"  Variety="Obsidian Vase"      />
       </Frames>
     </Tile>
-    <Tile Id="106" Name="Sawmill"                     Color="#FF00FFF2"   Placement="floor"   Framed="true"         Size="3,3"      />
+    <Tile Id="106" Name="Sawmill"                     Color="#FFBF8E6F"   Placement="floor"   Framed="true"         Size="3,3"      />
     <Tile Id="107" Name="Cobalt Ore"                  Color="#FF0B508F"   Solid="true"        Blends="true"         MergeWith="0"   />
     <Tile Id="108" Name="Mythril Ore"                 Color="#FF5BA9A9"   Solid="true"        Blends="true"         MergeWith="0"   />
     <Tile Id="109" Name="Hallowed"                    Color="#FF4EC1E3"   Light="true"        Solid="true"          Blends="true"   MergeWith="0"   Special="Grass"   />
-    <Tile Id="110" Name="Hallowed Plants"             Color="#FF1E9648"   Framed="true"       TextureGrid="16,20"   >
+    <Tile Id="110" Name="Hallowed Plants"             Color="#FF30BA87"   Framed="true"       TextureGrid="16,20"   >
       <Frames>
         <Frame UV="0,0"     Name="Grass"      Anchor="Right"    Variety="Single Blade"        />
         <Frame UV="18,0"    Name="Grass"      Anchor="Right"    Variety="Double Blade"        />
@@ -946,7 +946,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     </Tile>
     <Tile Id="111" Name="Adamantite Ore"              Color="#FF801A34"   Solid="true"    Blends="true"   MergeWith="0" />
     <Tile Id="112" Name="Ebonsand Block"              Color="#FF67627A"   Solid="true"    Blends="true"   MergeWith="0" />
-    <Tile Id="113" Name="Hallowed Tall Plants"        Color="#FF1E9648"   Framed="true"   TextureGrid="16,32"           >
+    <Tile Id="113" Name="Hallowed Tall Plants"        Color="#FF30D0EA"   Framed="true"   TextureGrid="16,32"           >
       <Frames>
         <Frame UV="0,0"     Name="Grass"    Variety="G"   Anchor="Bottom" />
         <Frame UV="18,0"    Name="Grass"    Variety="C"   Anchor="Bottom" />
@@ -958,13 +958,13 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="126,0"   Name="Rose"     Variety="B"   Anchor="Bottom" />
       </Frames>
     </Tile>
-    <Tile Id="114" Name="Tinkerer's Workshop"         Color="#FF7F5C45"   SolidTop="true" Framed="true"   Size="3,2"    TextureGrid="16,18"   />
-    <Tile Id="115" Name="Vines"                       Color="#FF327FA1"   Blends="true"   />
-    <Tile Id="116" Name="Pearlsand Block"             Color="#FFD5C4C5"   Solid="true"    Blends="true"   MergeWith="0" />
+    <Tile Id="114" Name="Tinkerer's Workshop"         Color="#FFBF8E6F"   SolidTop="true" Framed="true"   Size="3,2"    TextureGrid="16,18"   />
+    <Tile Id="115" Name="Hallowed Vines"              Color="#FF21ABCF"   Blends="true"   />
+    <Tile Id="116" Name="Pearlsand Block"             Color="#FFEEE1DA"   Solid="true"    Blends="true"   MergeWith="0" />
     <Tile Id="117" Name="Pearlstone Block"            Color="#FFB5ACBE"   Solid="true"    Blends="true"   MergeWith="0" />
-    <Tile Id="118" Name="Pearlstone Brick"            Color="#FFD5C4C5"   Solid="true"    Blends="true"   MergeWith="0" />
-    <Tile Id="119" Name="Iridescent Brick"            Color="#FF3F3F49"   Solid="true"    Blends="true"   MergeWith="0" />
-    <Tile Id="120" Name="Mudstone Block"              Color="#FF967A7D"   Solid="true"    Blends="true"   MergeWith="0" />
+    <Tile Id="118" Name="Pearlstone Brick"            Color="#FFEEE1DA"   Solid="true"    Blends="true"   MergeWith="0" />
+    <Tile Id="119" Name="Iridescent Brick"            Color="#FF6B5C6C"   Solid="true"    Blends="true"   MergeWith="0" />
+    <Tile Id="120" Name="Mudstone Block"              Color="#FF5C4449"   Solid="true"    Blends="true"   MergeWith="0" />
     <Tile Id="121" Name="Cobalt Brick"                Color="#FF2576AB"   Solid="true"    Blends="true"   MergeWith="0" />
     <Tile Id="122" Name="Mythril Brick"               Color="#FF91BF75"   Solid="true"    Blends="true"   MergeWith="0" />
     <Tile Id="123" Name="Silt Block"                  Color="#FF595353"   Solid="true"    Blends="true"   MergeWith="0" />
