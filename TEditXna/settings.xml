@@ -1107,16 +1107,16 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="36,432"  Name="Music Box (Boss 3)"                   Variety="On"    />
       </Frames>
     </Tile>
-    <Tile Id="140" Name="Demonite Brick"              Color="#FF7875B3"   Light="true"    Solid="true"    Blends="true"   MergeWith="0"   />
-    <Tile Id="141" Name="Explosives"                  Color="#FFAD2323"   Framed="true"   Size="1,1"      >
+    <Tile Id="140" Name="Demonite Brick"              Color="#FF625FA7"   Light="true"    Solid="true"    Blends="true"   MergeWith="0"   />
+    <Tile Id="141" Name="Explosives"                  Color="#FFC03B3B"   Framed="true"   Size="1,1"      >
       <Frames>
         <Frame UV="0,0"     Variety="Single"    />
         <Frame UV="0,18"    Variety="Multi"     />
       </Frames>
     </Tile>
-    <Tile Id="142" Name="Inlet Pump"                  Color="#FFC90303"   Framed="true"   Size="2,2"    />
-    <Tile Id="143" Name="Outlet Pump"                 Color="#FFC90303"   Framed="true"   Size="2,2"    />
-    <Tile Id="144" Name="Timer"                       Color="#FFC90303"   Framed="true"                 >
+    <Tile Id="142" Name="Inlet Pump"                  Color="#FF909490"   Framed="true"   Size="2,2"    />
+    <Tile Id="143" Name="Outlet Pump"                 Color="#FF909490"   Framed="true"   Size="2,2"    />
+    <Tile Id="144" Name="Timer"                       Color="#FF909490"   Framed="true"                 >
       <Frames>
         <Frame UV="0,0"     Variety="Inactive 1 Second"   />
         <Frame UV="0,18"    Variety="Active 1 Second"     />
@@ -1126,11 +1126,11 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="36,18"   Variety="Active 5 Second"     />
       </Frames>
     </Tile>
-    <Tile Id="145" Name="Candy Cane Block"            Color="#FFFF0000"   Solid="true"    Blends="true"   MergeWith="0"   />
-    <Tile Id="146" Name="Green Candy Cane Block"      Color="#FF00FF00"   Solid="true"    Blends="true"   MergeWith="0"   />
-    <Tile Id="147" Name="Snow Block"                  Color="#FFEEEEFF"   Solid="true"    Blends="true"   MergeWith="0"   />
-    <Tile Id="148" Name="Snow Brick"                  Color="#FFCCCCEE"   Solid="true"    Blends="true"   MergeWith="0"   />
-    <Tile Id="149" Name="Christmas Light"             Color="#FFFF0000"   Light="true"    Framed="true"   Size="1,1"      >
+    <Tile Id="145" Name="Candy Cane Block"            Color="#FFC01E1E"   Solid="true"    Blends="true"   MergeWith="0"   />
+    <Tile Id="146" Name="Green Candy Cane Block"      Color="#FF2BC01E"   Solid="true"    Blends="true"   MergeWith="0"   />
+    <Tile Id="147" Name="Snow Block"                  Color="#FFD3ECF1"   Solid="true"    Blends="true"   MergeWith="0"   />
+    <Tile Id="148" Name="Snow Brick"                  Color="#FFB5D3D2"   Solid="true"    Blends="true"   MergeWith="0"   />
+    <Tile Id="149" Name="Christmas Light"             Color="#FFDC3232"   Light="true"    Framed="true"   Size="1,1"      >
       <Frames>
         <Frame UV="0,0"     Name="Blue Light"     Anchor="Bottom"   Variety="On"    />
         <Frame UV="0,18"    Name="Blue Light"     Anchor="Top"      Variety="On"    />
