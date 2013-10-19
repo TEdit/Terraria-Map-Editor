@@ -52,6 +52,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationIcon>Images\tedit.ico</ApplicationIcon>
@@ -367,7 +368,6 @@
     <EmbeddedResource Include="Images\Overlays\grid.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="teditversion.txt" />
     <Resource Include="Images\Toolbar\report_magnify.png" />
     <Content Include="settings.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -413,8 +413,8 @@
     </VisualStudio>
   </ProjectExtensions>
   <PropertyGroup>
-    <PostBuildEvent>
-    </PostBuildEvent>
+    <PostBuildEvent>"C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\vcvars32.bat"
+editbin /largeaddressaware $(TargetPath)</PostBuildEvent>
   </PropertyGroup>
   <PropertyGroup>
     <PreBuildEvent>

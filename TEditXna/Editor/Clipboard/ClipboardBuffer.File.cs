@@ -234,21 +234,9 @@ namespace TEditXna.Editor.Clipboard
             {
                 using (var b = new BinaryReader(stream))
                 {
+
                     string name = b.ReadString();
                     int version = b.ReadInt32();
-
-                    if (version < 3)
-                    {
-                        b.Close();
-                        stream.Close();
-                        return LoadOld(filename);
-                    }
-                    if (version == 3)
-                    {
-                        b.Close();
-                        stream.Close();
-                        return Load3(filename);
-                    }
 
                     int sizeX = b.ReadInt32();
                     int sizeY = b.ReadInt32();
@@ -395,112 +383,136 @@ namespace TEditXna.Editor.Clipboard
             }
         }
 
-        public static ClipboardBuffer Load3(string filename)
+        public static ClipboardBuffer Load3(string filename, bool frame19 = false)
         {
-            using (var stream = new FileStream(filename, FileMode.Open))
+            bool failed = false;
+            try
             {
-                using (var br = new BinaryReader(stream))
+                using (var stream = new FileStream(filename, FileMode.Open))
                 {
-                    string name = br.ReadString();
-                    int version = br.ReadInt32();
-
-                    int sizeX = br.ReadInt32();
-                    int sizeY = br.ReadInt32();
-                    var buffer = new ClipboardBuffer(new Vector2Int32(sizeX, sizeY));
-                    buffer.Name = name;
-
-                    for (int x = 0; x < sizeX; x++)
+                    using (var br = new BinaryReader(stream))
                     {
-                        for (int y = 0; y < sizeY; y++)
+                        string name = br.ReadString();
+                        int version = br.ReadInt32();
+
+                        int sizeX = br.ReadInt32();
+                        int sizeY = br.ReadInt32();
+                        var buffer = new ClipboardBuffer(new Vector2Int32(sizeX, sizeY));
+                        buffer.Name = name;
+
+                        for (int x = 0; x < sizeX; x++)
                         {
-                            var curTile = new Tile();
-                            curTile.IsActive = br.ReadBoolean();
-
-                            if (curTile.IsActive)
+                            for (int y = 0; y < sizeY; y++)
                             {
-                                curTile.Type = br.ReadByte();
-                                if (curTile.Type == 19) // fix for platforms
-                                {
-                                    curTile.U = 0;
-                                    curTile.V = 0;
-                                }
-                                else if (World.TileProperties[curTile.Type].IsFramed)
-                                {
-                                    curTile.U = br.ReadInt16();
-                                    curTile.V = br.ReadInt16();
+                                var curTile = new Tile();
+                                curTile.IsActive = br.ReadBoolean();
 
-                                    if (curTile.Type == 144) //timer
+                                if (curTile.IsActive)
+                                {
+                                    curTile.Type = br.ReadByte();
+                                    if (curTile.Type == 19) // fix for platforms
+                                    {
+
+                                        curTile.U = 0;
                                         curTile.V = 0;
-                                }
-                                else
-                                {
-                                    curTile.U = -1;
-                                    curTile.V = -1;
-                                }
-                            }
+                                        if (frame19)
+                                        {
+                                            curTile.U = br.ReadInt16();
+                                            curTile.V = br.ReadInt16();
+                                        }
+                                    }
+                                    else if (World.TileProperties[curTile.Type].IsFramed)
+                                    {
+                                        curTile.U = br.ReadInt16();
+                                        curTile.V = br.ReadInt16();
 
-                            if (br.ReadBoolean())
-                                curTile.Wall = br.ReadByte();
-
-                            if (br.ReadBoolean())
-                            {
-                                curTile.Liquid = br.ReadByte();
-                                curTile.IsLava = br.ReadBoolean();
-                            }
-
-                            curTile.HasWire = br.ReadBoolean();
-                            buffer.Tiles[x, y] = curTile;
-                        }
-                    }
-                    for (int chestIndex = 0; chestIndex < 1000; chestIndex++)
-                    {
-                        if (br.ReadBoolean())
-                        {
-                            var curChest = new Chest(br.ReadInt32(), br.ReadInt32());
-                            for (int j = 0; j < 20; ++j)
-                            {
-                                curChest.Items[j].StackSize = br.ReadByte();
-
-                                if (curChest.Items[j].StackSize > 0)
-                                {
-                                    if (version >= 3)
-                                        curChest.Items[j].NetId = br.ReadInt32();
+                                        if (curTile.Type == 144) //timer
+                                            curTile.V = 0;
+                                    }
                                     else
-                                        curChest.Items[j].SetFromName(br.ReadString());
-                                    curChest.Items[j].Prefix = br.ReadByte();
+                                    {
+                                        curTile.U = -1;
+                                        curTile.V = -1;
+                                    }
                                 }
-                                else
+
+                                if (br.ReadBoolean())
+                                    curTile.Wall = br.ReadByte();
+
+                                if (br.ReadBoolean())
                                 {
-                                    curChest.Items[j].SetFromName("[empty]");
+                                    curTile.Liquid = br.ReadByte();
+                                    curTile.IsLava = br.ReadBoolean();
                                 }
 
+                                curTile.HasWire = br.ReadBoolean();
+                                buffer.Tiles[x, y] = curTile;
                             }
-                            buffer.Chests.Add(curChest);
                         }
-                    }
-                    for (int signIndex = 0; signIndex < 1000; signIndex++)
-                    {
-                        if (br.ReadBoolean())
+                        for (int chestIndex = 0; chestIndex < 1000; chestIndex++)
                         {
-                            string text = br.ReadString();
-                            int x = br.ReadInt32();
-                            int y = br.ReadInt32();
-                            buffer.Signs.Add(new Sign(x, y, text));
-                        }
-                    }
+                            if (br.ReadBoolean())
+                            {
+                                var curChest = new Chest(br.ReadInt32(), br.ReadInt32());
+                                for (int j = 0; j < 20; ++j)
+                                {
+                                    curChest.Items[j].StackSize = br.ReadByte();
 
-                    if (buffer.Name == br.ReadString() &&
-                        version == br.ReadInt32() &&
-                        buffer.Size.X == br.ReadInt32() &&
-                        buffer.Size.Y == br.ReadInt32())
-                    {
-                        // valid;
+                                    if (curChest.Items[j].StackSize > 0)
+                                    {
+                                        if (version >= 3)
+                                            curChest.Items[j].NetId = br.ReadInt32();
+                                        else
+                                            curChest.Items[j].SetFromName(br.ReadString());
+                                        curChest.Items[j].Prefix = br.ReadByte();
+                                    }
+                                    else
+                                    {
+                                        curChest.Items[j].SetFromName("[empty]");
+                                    }
+
+                                }
+                                buffer.Chests.Add(curChest);
+                            }
+                        }
+                        for (int signIndex = 0; signIndex < 1000; signIndex++)
+                        {
+                            if (br.ReadBoolean())
+                            {
+                                string text = br.ReadString();
+                                int x = br.ReadInt32();
+                                int y = br.ReadInt32();
+                                buffer.Signs.Add(new Sign(x, y, text));
+                            }
+                        }
+
+                        if (buffer.Name != br.ReadString() || version != br.ReadInt32() || buffer.Size.X != br.ReadInt32() || buffer.Size.Y != br.ReadInt32())
+                        {
+                            if (!frame19)
+                            {
+                                br.Close();
+                                return Load3(filename, true);
+                            }
+                            else
+                                System.Windows.MessageBox.Show("Verification failed. Some schematic data may be missing.", "Legacy Schematic Version");
+                        }
+
+                        br.Close();
                         return buffer;
                     }
-                    br.Close();
-                    return null;
                 }
             }
+            catch (Exception)
+            {
+                failed = true;
+            }
+
+            if (failed && !frame19)
+            {
+                return Load3(filename, true);
+            }
+
+            return null;
         }
 
         public static ClipboardBuffer Load2(string filename)

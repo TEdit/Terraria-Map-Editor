@@ -23,12 +23,7 @@ namespace TEditXna.ViewModel
                     for (int y = Selection.SelectionArea.Top; y < Selection.SelectionArea.Bottom; y++)
                     {
                         UndoManager.SaveTile(x, y);
-                        var curTile = CurrentWorld.Tiles[x, y];
-                        curTile.IsActive = false;
-                        curTile.Wall = 0;
-                        curTile.HasWire = false;
-                        curTile.Liquid = 0;
-                        curTile.IsLava = false;
+                        CurrentWorld.Tiles[x, y].Reset();
 
                         Color curBgColor = GetBackgroundColor(y);
                         PixelMap.SetPixelColor(x, y, Render.PixelMap.GetTileColor(CurrentWorld.Tiles[x, y], curBgColor, _showWalls, _showTiles, _showLiquid, _showWires));
@@ -88,6 +83,29 @@ namespace TEditXna.ViewModel
                     break;
                 case PaintMode.Liquid:
                     SetPixelAutomatic(curTile, liquid: isErase ? (byte)0 : (byte)255, isLava: TilePicker.IsLava, isHoney: TilePicker.IsHoney);
+                    break;
+            }
+
+            switch (TilePicker.HalfBlockMode)
+            {
+                case HalfBlockMode.HalfBlock:
+                    curTile.HalfBrick = true;
+                    curTile.Slope = (byte)TilePicker.HalfBlockMode;
+                    break;
+                case HalfBlockMode.RampLeft:
+                    curTile.HalfBrick = true;
+                    curTile.Slope = (byte)TilePicker.HalfBlockMode;
+                    break;
+                case HalfBlockMode.RampRight:
+                    curTile.HalfBrick = true;
+                    curTile.Slope = (byte)TilePicker.HalfBlockMode;
+                    break;
+                case HalfBlockMode.Solid:
+                    curTile.HalfBrick = false;
+                    curTile.Slope = 0;
+                    break;
+                case HalfBlockMode.NoAction:
+                default:
                     break;
             }
 
@@ -154,7 +172,7 @@ namespace TEditXna.ViewModel
         private void SetWall(Tile curTile, bool erase)
         {
             if (TilePicker.WallMaskMode == MaskMode.Off ||
-                (TilePicker.WallMaskMode == MaskMode.Tile && curTile.Wall == TilePicker.WallMask) ||
+                (TilePicker.WallMaskMode == MaskMode.Match && curTile.Wall == TilePicker.WallMask) ||
                 (TilePicker.WallMaskMode == MaskMode.Empty && curTile.Wall == 0))
             {
                 if (erase)
@@ -167,7 +185,7 @@ namespace TEditXna.ViewModel
         private void SetTile(Tile curTile, bool erase)
         {
             if (TilePicker.TileMaskMode == MaskMode.Off ||
-                (TilePicker.TileMaskMode == MaskMode.Tile && curTile.Type == TilePicker.TileMask && curTile.IsActive) ||
+                (TilePicker.TileMaskMode == MaskMode.Match && curTile.Type == TilePicker.TileMask && curTile.IsActive) ||
                 (TilePicker.TileMaskMode == MaskMode.Empty && !curTile.IsActive))
             {
                 if (erase)
