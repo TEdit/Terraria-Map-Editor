@@ -1437,56 +1437,92 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Tile Id="204" Name="Crimtane Ore"                Color="#FF7D3741"   Solid="true"    Blends="true"   Light="true"    />
     <Tile Id="205" Name="Crimson Vine"                Color="#FFBA3234"   Blends="true"   />
     <Tile Id="206" Name="Ice Brick"                   Color="#FF7CAFC9"   Solid="true"    Blends="true"   />
-    <Tile Id="207" Name="Pure Water Fountain"         Color="#FFFF00FF"   Framed="true"   >
+    <Tile Id="207" Name="Water Fountain"              Color="#FF909490"   Framed="true"   Size="2,4" >
+      <Frames>
+        <Frame UV="0,0"       Name="Pure Water Fountain"        Variety="Off"   />
+        <Frame UV="0,72"      Name="Pure Water Fountain"        Variety="On"    />
+        <Frame UV="36,0"      Name="Desert Water Fountain"      Variety="Off"   />
+        <Frame UV="36,72"     Name="Desert Water Fountain"      Variety="On"    />
+        <Frame UV="72,0"      Name="Jungle Water Fountain"      Variety="Off"   />
+        <Frame UV="72,72"     Name="Jungle Water Fountain"      Variety="On"    />
+        <Frame UV="108,0"     Name="Icy Water Fountain"         Variety="Off"   />
+        <Frame UV="108,72"    Name="Icy Water Fountain"         Variety="On"    />
+        <Frame UV="144,0"     Name="Corrupt Water Fountain"     Variety="Off"   />
+        <Frame UV="144,72"    Name="Corrupt Water Fountain"     Variety="On"    />
+        <Frame UV="180,0"     Name="Crimson Water Fountain"     Variety="Off"   />
+        <Frame UV="180,72"    Name="Crimson Water Fountain"     Variety="On"    />
+        <Frame UV="216,0"     Name="Hallowed Water Fountain"    Variety="Off"   />
+        <Frame UV="216,72"    Name="Hallowed Water Fountain"    Variety="On"    />
+        <Frame UV="252,0"     Name="Blood Water Fountain"       Variety="Off"   />
+        <Frame UV="252,72"    Name="Blood Water Fountain"       Variety="On"    />
+      </Frames>
+    </Tile>
+    <Tile Id="208" Name="Shadewood"                   Color="#FF586976"   Solid="true"    Blends="true"   />
+    <Tile Id="209" Name="Cannon"                      Color="#FF909490"   Framed="true"   Size="4,3">
+      <Frames>
+        <Frame UV="0,0"       Name="Cannon"           Variety="0° Elevation Right"       />
+        <Frame UV="72,0"      Name="Bunny Cannon"     Variety="0° Elevation Right"       />
+        <Frame UV="0,54"      Name="Cannon"           Variety="22.5° Elevation Right"    />
+        <Frame UV="72,54"     Name="Bunny Cannon"     Variety="22.5° Elevation Right"    />
+        <Frame UV="0,108"     Name="Cannon"           Variety="45° Elevation Right"      />
+        <Frame UV="72,108"    Name="Bunny Cannon"     Variety="45° Elevation Right"      />
+        <Frame UV="0,162"     Name="Cannon"           Variety="67.5° Elevation Right"    />
+        <Frame UV="72,162"    Name="Bunny Cannon"     Variety="67.5° Elevation Right"    />
+        <Frame UV="0,216"     Name="Cannon"           Variety="90° Elevation"            />
+        <Frame UV="72,216"    Name="Bunny Cannon"     Variety="90° Elevation"            />
+        <Frame UV="0,270"     Name="Cannon"           Variety="67.5° Elevation Left"     />
+        <Frame UV="72,270"    Name="Bunny Cannon"     Variety="67.5° Elevation Left"     />
+        <Frame UV="0,324"     Name="Cannon"           Variety="45° Elevation Left"       />
+        <Frame UV="72,324"    Name="Bunny Cannon"     Variety="45° Elevation Left"       />
+        <Frame UV="0,378"     Name="Cannon"           Variety="22.5° Elevation Left"     />
+        <Frame UV="72,378"    Name="Bunny Cannon"     Variety="22.5° Elevation Left"     />
+        <Frame UV="0,432"     Name="Cannon"           Variety="0° Elevation Left"        />
+        <Frame UV="72,432"    Name="Bunny Cannon"     Variety="0° Elevation Left"        />
+      </Frames>
+    </Tile>
+    <Tile Id="210" Name="Land Mine"                   Color="#FFC03B3B"   Framed="true"   >
       <Frames>
         <Frame UV="0,0" Name="Default" Variety="Default" />
       </Frames>
     </Tile>
-    <Tile Id="208" Name="Shadewood"                   Color="#FFFF00FF"   Solid="true"    />
-    <Tile Id="209" Name="Cannon"                      Color="#FFFF00FF"   Framed="true"   Size="4,3">
+    <Tile Id="211" Name="Chlorophyte Ore"             Color="#FFBFE973"   Solid="true"    Blends="true"   />
+    <Tile Id="212" Name="Snowball Launcher"           Color="#FF909490"   Framed="true"   Size="3,3">
+      <Frames>
+        <Frame UV="0,0"     Anchor="Left"     />
+        <Frame UV="54,0"    Anchor="Right"    />
+      </Frames>
+    </Tile>
+    <Tile Id="213" Name="Rope"                        Color="#FF897843"   Blends="true"   />
+    <Tile Id="214" Name="Chain"                       Color="#FF676767"   Blends="true"   />
+    <Tile Id="215" Name="Campfire"                    Color="#FFFE7902"   Framed="true"   Light="true"   Size="3,2" >
       <Frames>
         <Frame UV="0,0" Name="Default" Variety="Default" />
       </Frames>
     </Tile>
-    <Tile Id="210" Name="Land Mine"                   Color="#FFFF00FF"   Framed="true"   >
+    <Tile Id="216" Name="Rocket"                      Color="#FFBF8E6F"   Framed="true" Size="1,2">
+      <Frames>
+        <Frame UV="0,0"      Name="Rocket"    Variety="Red Rocket"       />
+        <Frame UV="0,40"     Name="Rocket"    Variety="Green Rocket"     />
+        <Frame UV="0,80"     Name="Rocket"    Variety="Blue Rocket"      />
+        <Frame UV="0,120"    Name="Rocket"    Variety="Yellow Rocket"    />
+      </Frames>
+    </Tile>
+    <Tile Id="217" Name="Blend-O-Matic"               Color="#FF909490"   Framed="true" Size="3,2">
       <Frames>
         <Frame UV="0,0" Name="Default" Variety="Default" />
       </Frames>
     </Tile>
-    <Tile Id="211" Name="Chlorophyte Ore"             Color="#FF00B200"   Solid="true"    Blends="true"   />
-    <Tile Id="212" Name="Snowball Launcher"           Color="#FFFF00FF"   Framed="true"   >
+    <Tile Id="218" Name="Meat Grinder"                Color="#FF909490"   Framed="true" Size="3,2">
       <Frames>
         <Frame UV="0,0" Name="Default" Variety="Default" />
       </Frames>
     </Tile>
-    <Tile Id="213" Name="Rope"                        Color="#FFCC9900"   Blends="true"   />
-    <Tile Id="214" Name="Chain"                       Color="#FF3D5C5C"   Blends="true"   />
-    <Tile Id="215" Name="Campfire"                    Color="#FFFF00FF"   Framed="true"   Light="true"   Size="3,2" >
+    <Tile Id="219" Name="Extractinator"               Color="#FF909490"   Framed="true" Size="3,3" >
       <Frames>
         <Frame UV="0,0" Name="Default" Variety="Default" />
       </Frames>
     </Tile>
-    <Tile Id="216" Name="Red Rocket"                  Color="#FFFF00FF"   Framed="true" Size="1,2">
-      <Frames>
-        <Frame UV="0,0" Name="Default" Variety="Default" />
-      </Frames>
-    </Tile>
-    <Tile Id="217" Name="Blend-O-Matic"               Color="#FFFF00FF"   Framed="true" Size="3,2">
-      <Frames>
-        <Frame UV="0,0" Name="Default" Variety="Default" />
-      </Frames>
-    </Tile>
-    <Tile Id="218" Name="Meat Grinder"                Color="#FFFF00FF"   Framed="true" Size="3,2">
-      <Frames>
-        <Frame UV="0,0" Name="Default" Variety="Default" />
-      </Frames>
-    </Tile>
-    <Tile Id="219" Name="Extractinator"               Color="#FFFF00FF"   Framed="true" Size="3,3" >
-      <Frames>
-        <Frame UV="0,0" Name="Default" Variety="Default" />
-      </Frames>
-    </Tile>
-    <Tile Id="220" Name="Solidifier"                  Color="#FFFF00FF"   Framed="true" Size="3,2">
+    <Tile Id="220" Name="Solidifier"                  Color="#FF909490"   Framed="true" Size="3,3">
       <Frames>
         <Frame UV="0,0" Name="Default" Variety="Default" />
       </Frames>
