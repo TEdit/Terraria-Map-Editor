@@ -1025,19 +1025,19 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     </Tile>
     <Tile Id="130" Name="Active Stone Block"          Color="#FFA0A0A0"   Solid="true"    Blends="true"   MergeWith="0"   Stone="true"    />
     <Tile Id="131" Name="Inactive Stone Block"        Color="#FF343434"   Blends="true"   MergeWith="0"   Stone="true"    />
-    <Tile Id="132" Name="Lever"                       Color="#FFC90303"   Framed="true"   Size="2,2"      >
+    <Tile Id="132" Name="Lever"                       Color="#FF909490"   Framed="true"   Size="2,2"      >
       <Frames>
         <Frame UV="0,0" Anchor="Left" />
         <Frame UV="36,0" Anchor="Right" />
       </Frames>
     </Tile>
-    <Tile Id="133" Name="Forge"            Color="#FF891012"   Light="true"    Framed="true"   Size="3,2" >
+    <Tile Id="133" Name="Forge"            Color="#FFE73538"   Light="true"    Framed="true"   Size="3,2" >
 		<Frames>
 			<Frame UV="0,0"     Name="Adamantite Forge"     />
 			<Frame UV="54,0"     Name="Titanium Forge"     />
 		</Frames>
     </Tile>
-    <Tile Id="134" Name="Anvil Hardmode"               Color="#FF96AE87"   Framed="true"   Size="2,1"      >
+    <Tile Id="134" Name="Anvil Hardmode"               Color="#FFA6BB99"   Framed="true"   Size="2,1"      >
 		<Frames>
 			<Frame UV="0,0"     Name="Mythril Anvil"     />
 			<Frame UV="36,0"     Name="Orichalcum Anvil"     />
@@ -1054,7 +1054,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="0,108"    Variety="Lihzahrd"   />
       </Frames>
     </Tile>
-    <Tile Id="136" Name="Switch"                      Color="#FFCCC0C0"   Framed="true"   >
+    <Tile Id="136" Name="Switch"                      Color="#FFD5CBCC"   Framed="true"   >
       <Frames>
         <Frame UV="0,0"     Name="Switch"   Anchor="Bottom"   Variety="Setting One"   />
         <Frame UV="18,18"   Name="Switch"   Anchor="Left"     Variety="Setting One"   />
@@ -1064,7 +1064,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="36,18"   Name="Switch"   Anchor="Right"    Variety="Setting Two"   />
       </Frames>
     </Tile>
-    <Tile Id="137" Name="Trap"                   Color="#FF8C8C8C"   Solid="true"    Framed="true"   >
+    <Tile Id="137" Name="Trap"                   Color="#FF909490"   Solid="true"    Framed="true"   >
       <Frames>
         <Frame UV="0,0"     Name="Dart Trap"	Anchor="Left"     />
         <Frame UV="18,0"   Name="Dart Trap"	Variety="Right"   />
@@ -1076,8 +1076,8 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="0,72"     Name="Spear Trap"	Anchor="Top"     />
       </Frames>
     </Tile>
-    <Tile Id="138" Name="Boulder"                     Color="#FF636363"   Solid="true"    Framed="true"   Size="2,2"    />
-    <Tile Id="139" Name="Music Box"                   Color="#FF996343"   Framed="true"   Size="2,2"      >
+    <Tile Id="138" Name="Boulder"                     Color="#FF606060"   Solid="true"    Framed="true"   Size="2,2"    />
+    <Tile Id="139" Name="Music Box"                   Color="#FFBF8E6F"   Framed="true"   Size="2,2"      >
       <Frames>
         <Frame UV="0,0"     Name="Music Box (Overworld Day)"            Variety="Off"   />
         <Frame UV="36,0"    Name="Music Box (Overworld Day)"            Variety="On"    />
