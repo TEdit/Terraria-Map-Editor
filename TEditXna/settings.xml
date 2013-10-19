@@ -1206,7 +1206,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="36,0"    Variety="Off"   />
       </Frames>
     </Tile>
-    <Tile Id="174" Name="Platinum Candle"             Color="#FFFDDD03"   Placement="surface"   Light="true"    >
+    <Tile Id="174" Name="Platinum Candle"             Color="#FFFDDD03"   Placement="surface"   Framed="true"   Light="true"    >
       <Frames>
         <Frame UV="0,0"     Variety="On"    />
         <Frame UV="18,0"    Variety="Off"   />
