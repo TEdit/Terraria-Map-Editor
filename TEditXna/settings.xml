@@ -1158,30 +1158,30 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="90,54"   Name="Green Light"    Anchor="Left"     Variety="Off"   />
       </Frames>
     </Tile>
-    <Tile Id="150" Name="Adamantite Beam"             Color="#FFFF00FF"   Solid="true"    />
-    <Tile Id="151" Name="Sandstone Brick"             Color="#FFBEAB5E"   Solid="true"    Blends="true"/>
-    <Tile Id="152" Name="Ebonstone Brick"             Color="#FFFF00FF"   Solid="true"    />
-    <Tile Id="153" Name="Red Stucco"                  Color="#FFFF00FF"   Solid="true"    />
-    <Tile Id="154" Name="Yellow Stucco"               Color="#FFFF00FF"   Solid="true"    />
-    <Tile Id="155" Name="Green Stucco"                Color="#FFFF00FF"   Solid="true"    />
-    <Tile Id="156" Name="Gray Stucco"                 Color="#FFFF00FF"   Solid="true"    />
-    <Tile Id="157" Name="Ebonwood"                    Color="#FFFF00FF"   Solid="true"    />
-    <Tile Id="158" Name="Rich Mahogany"               Color="#FFFF00FF"   Solid="true"    />
-    <Tile Id="159" Name="Pearlwood"                   Color="#FFFF00FF"   Solid="true"    />
-    <Tile Id="160" Name="Rainbow Brick"               Color="#FFFF00FF"   Solid="true"    Light="true"    />
-    <Tile Id="161" Name="Ice Block"                   Color="#FF90C3E8"   Solid="true"    Blends="true"   />
-    <Tile Id="162" Name="Thin Ice"                    Color="#FFADD6FF"   Solid="true"    Blends="true"   />
-    <Tile Id="163" Name="Purple Ice Block"            Color="#FFAE91D6"   Solid="true"    Blends="true"/>
-    <Tile Id="164" Name="Pink Ice Block"              Color="#FFFF00FF"   Solid="true"    />
-    <Tile Id="165" Name="Large Deco"                  Color="#FFFF00FF"   Framed="true"   Size="1,2" >
+    <Tile Id="150" Name="Adamantite Beam"             Color="#FF801A34"   Solid="true"    Blends="true"    />
+    <Tile Id="151" Name="Sandstone Brick"             Color="#FFBEAB5E"   Solid="true"    Blends="true"    />
+    <Tile Id="152" Name="Ebonstone Brick"             Color="#FF8085B8"   Solid="true"    Blends="true"    />
+    <Tile Id="153" Name="Red Stucco"                  Color="#FFEF8D7E"   Solid="true"    Blends="true"    />
+    <Tile Id="154" Name="Yellow Stucco"               Color="#FFBEAB5E"   Solid="true"    Blends="true"    />
+    <Tile Id="155" Name="Green Stucco"                Color="#FF83A2A1"   Solid="true"    Blends="true"    />
+    <Tile Id="156" Name="Gray Stucco"                 Color="#FFAAAB9D"   Solid="true"    Blends="true"    />
+    <Tile Id="157" Name="Ebonwood"                    Color="#FF68647E"   Solid="true"    Blends="true"    />
+    <Tile Id="158" Name="Rich Mahogany"               Color="#FF915155"   Solid="true"    Blends="true"    />
+    <Tile Id="159" Name="Pearlwood"                   Color="#FF948562"   Solid="true"    Blends="true"    />
+    <Tile Id="160" Name="Rainbow Brick"               Color="#FF0000C8"   Solid="true"    Blends="true"    Light="true"    />
+    <Tile Id="161" Name="Ice Block"                   Color="#FF90C3E8"   Solid="true"    Blends="true"    />
+    <Tile Id="162" Name="Thin Ice"                    Color="#FFB8DBF0"   Solid="true"    Blends="true"    />
+    <Tile Id="163" Name="Purple Ice Block"            Color="#FFAE91D6"   Solid="true"    Blends="true"    />
+    <Tile Id="164" Name="Pink Ice Block"              Color="#FFDAB6CC"   Solid="true"    Blends="true"    />
+    <Tile Id="165" Name="Icicle"                      Color="#FF73ADE5"   Framed="true"   Size="1,2" >
       <Frames>
         <Frame UV="0,0" Name="Default" Variety="Default" />
       </Frames>
     </Tile>
-    <Tile Id="166" Name="Tin Ore"                     Color="#FFB8B800"   Solid="true"    Blends="true"     />
-    <Tile Id="167" Name="Lead Ore"                    Color="#FF29297A"   Solid="true"    Blends="true"     />
-    <Tile Id="168" Name="Tungsten Ore"                Color="#FF66C266"   Solid="true"    Blends="true"     />
-    <Tile Id="169" Name="Platinum Ore"                Color="#FF6B8FB2"   Solid="true"    Blends="true"     />
+    <Tile Id="166" Name="Tin Ore"                     Color="#FF817D5D"   Solid="true"    Blends="true"    />
+    <Tile Id="167" Name="Lead Ore"                    Color="#FF3E5272"   Solid="true"    Blends="true"    />
+    <Tile Id="168" Name="Tungsten Ore"                Color="#FF849D7F"   Solid="true"    Blends="true"    />
+    <Tile Id="169" Name="Platinum Ore"                Color="#FF98ABC6"   Solid="true"    Blends="true"    />
     <Tile Id="170" Name="Tin Chandelier"              Color="#FFFF00FF"   Framed="true"   Light="true"      Size="3,3"   >
       <Frames>
         <Frame UV="0,0" Name="Default" Variety="Default" />
