@@ -1182,34 +1182,39 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Tile Id="167" Name="Lead Ore"                    Color="#FF3E5272"   Solid="true"    Blends="true"    />
     <Tile Id="168" Name="Tungsten Ore"                Color="#FF849D7F"   Solid="true"    Blends="true"    />
     <Tile Id="169" Name="Platinum Ore"                Color="#FF98ABC6"   Solid="true"    Blends="true"    />
-    <Tile Id="170" Name="Tin Chandelier"              Color="#FFFF00FF"   Framed="true"   Light="true"      Size="3,3"   >
+    <Tile Id="170" Name="Tin Chandelier"              Color="#FFE4DBA2"   Placement="ceiling"   Framed="true"   Light="true"      Size="3,3"   >
       <Frames>
-        <Frame UV="0,0" Name="Default" Variety="Default" />
+        <Frame UV="0,0"     Variety="On"    />
+        <Frame UV="54,0"    Variety="Off"   />
       </Frames>
     </Tile>
-    <Tile Id="171" Name="Tungsten Chandelier"         Color="#FFFF00FF"   Framed="true"   Light="true"      Size="3,3"  >
+    <Tile Id="171" Name="Tungsten Chandelier"         Color="#FFB1C0B0"   Placement="ceiling"   Framed="true"   Light="true"      Size="3,3"  >
       <Frames>
-        <Frame UV="0,0" Name="Default" Variety="Default" />
+        <Frame UV="0,0"     Variety="On"    />
+        <Frame UV="54,0"    Variety="Off"   />
       </Frames>
     </Tile>
-    <Tile Id="172" Name="Platinum Chandelier"         Color="#FFFF00FF"   Framed="true"   Light="true"      Size="3,3"   >
+    <Tile Id="172" Name="Platinum Chandelier"         Color="#FFB5C2D9"   Placement="ceiling"   Framed="true"   Light="true"      Size="3,3"   >
       <Frames>
-        <Frame UV="0,0" Name="Default" Variety="Default" />
+        <Frame UV="0,0"     Variety="On"    />
+        <Frame UV="54,0"    Variety="Off"   />
       </Frames>
     </Tile>
-    <Tile Id="173" Name="Platinum Candelabra"         Color="#FFFF00FF"   Framed="true"   Light="true"      Size="2,2"   >
+    <Tile Id="173" Name="Platinum Candelabra"         Color="#FFFDDD03"   Placement="floorSurface"   Framed="true"   Light="true"      Size="2,2"   >
       <Frames>
-        <Frame UV="0,0" Name="Default" Variety="Default" />
+        <Frame UV="0,0"     Variety="On"    />
+        <Frame UV="36,0"    Variety="Off"   />
       </Frames>
     </Tile>
-    <Tile Id="174" Name="Platinum Candle"             Color="#FFFF00FF"   Framed="true"   Light="true"    >
+    <Tile Id="174" Name="Platinum Candle"             Color="#FFFDDD03"   Placement="surface"   Light="true"    >
       <Frames>
-        <Frame UV="0,0" Name="Default" Variety="Default" />
+        <Frame UV="0,0"     Variety="On"    />
+        <Frame UV="18,0"    Variety="Off"   />
       </Frames>
     </Tile>
-    <Tile Id="175" Name="Tin Brick"                   Color="#FFFF00FF"   Solid="true"    />
-    <Tile Id="176" Name="Tungsten Brick"              Color="#FFFF00FF"   Solid="true"    />
-    <Tile Id="177" Name="Platinum Brick"              Color="#FFFF00FF"   Solid="true"    />
+    <Tile Id="175" Name="Tin Brick"                   Color="#FFFDDD03"   Solid="true"    Blends="true"     />
+    <Tile Id="176" Name="Tungsten Brick"              Color="#FF849D7F"   Solid="true"    Blends="true"     />
+    <Tile Id="177" Name="Platinum Brick"              Color="#FF98ABC6"   Solid="true"    Blends="true"     />
     <Tile Id="178" Name="Gems"                        Color="#FFFF00FF"   Framed="true"   >
       <Frames>
         <Frame UV="0,0"         Name="Amethyst"     Variety="Default" />
