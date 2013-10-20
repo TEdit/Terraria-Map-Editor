@@ -1063,7 +1063,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="126,0"   Name="Rose"     Variety="B"   Anchor="Bottom" />
       </Frames>
     </Tile>
-    <Tile Id="114" Name="Tinkerer's Workshop"         Color="#FFBF8E6F"   SolidTop="true" Framed="true"   Size="3,2"    TextureGrid="16,18"   />
+    <Tile Id="114" Name="Tinkerer's Workshop"         Color="#FFBF8E6F"   SolidTop="true" Framed="true"   Size="3,2"    TextureGrid="16,16"   />
     <Tile Id="115" Name="Hallowed Vines"              Color="#FF21ABCF"   Blends="true"   />
     <Tile Id="116" Name="Pearlsand Block"             Color="#FFEEE1DA"   Solid="true"    Blends="true"   MergeWith="0" />
     <Tile Id="117" Name="Pearlstone Block"            Color="#FFB5ACBE"   Solid="true"    Blends="true"   MergeWith="0" />
