@@ -44,10 +44,16 @@ namespace TEditXna.Editor.Plugins
                     var result = TestOctaveGenerator(x, y);
                     if (result > 0.6 && result < 0.75)
                     {
-                        _wvm.UndoManager.SaveTile(x, y);
-                        _wvm.CurrentWorld.Tiles[x, y].IsActive = true;
-                        _wvm.CurrentWorld.Tiles[x, y].Type = tile;
-                        _wvm.UpdateRenderPixel(x, y);
+                        var curTile = _wvm.CurrentWorld.Tiles[x, y];
+
+                        // Only replace if the tile is dirt or stone and if the wall is empty, stone or dirt.
+                        if (curTile.IsActive && (curTile.Type == 0 || curTile.Type == 1) && (curTile.Wall == 0 || curTile.Wall == 1 || curTile.Wall == 2))
+                        {
+                            _wvm.UndoManager.SaveTile(x, y);
+                            _wvm.CurrentWorld.Tiles[x, y].IsActive = true;
+                            _wvm.CurrentWorld.Tiles[x, y].Type = tile;
+                            _wvm.UpdateRenderPixel(x, y);
+                        }
                     }
                 }
             }
