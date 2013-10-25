@@ -688,8 +688,9 @@ namespace TEditXNA.Terraria
 
                         if (version < 67)
                             w.FixSunflowers();
+                        if (version < 72)
+                            w.FixChand();
 
-                        
                         OnProgressChanged(null, new ProgressChangedEventArgs(100, "Loading Chests..."));
                         w.Chests.Clear();
                         w.Chests.AddRange(ReadChestDataFromStream(b, version));
@@ -820,6 +821,84 @@ namespace TEditXNA.Terraria
             return w;
         }
 
+        private void FixChand()
+        {
+            for (int x = 5; x < TilesWide - 5; x++)
+            {
+                for (int y = 5; y < TilesHigh - 5; y++)
+                {
+                    if (Tiles[x,y].IsActive)
+                    {
+                        int tileType = Tiles[x, y].Type;
+                        if (Tiles[x, y].IsActive && (tileType == 35 || tileType == 36 || tileType == 170 || tileType == 171 || tileType == 172))
+                        {
+                            FixChand(x, y);
+                        }
+                    }
+                }
+            }
+        }
+
+        public void FixChand(int x, int y)
+        {
+            int newPosition = 0;
+            int type = Tiles[x, y].Type;
+            if (Tiles[x, y].IsActive)
+            {
+                if (type == 35)
+                {
+                    newPosition = 1;
+                }
+                if (type == 36)
+                {
+                    newPosition = 2;
+                }
+                if (type == 170)
+                {
+                    newPosition = 3;
+                }
+                if (type == 171)
+                {
+                    newPosition = 4;
+                }
+                if (type == 172)
+                {
+                    newPosition = 5;
+                }
+            }
+            if (newPosition > 0)
+            {
+                int xShift = x;
+                int yShift = y;
+                xShift = Tiles[x, y].U / 18;
+                while (xShift >= 3)
+                {
+                    xShift = xShift - 3;
+                }
+                if (xShift >= 3)
+                {
+                    xShift = xShift - 3;
+                }
+                xShift = x - xShift;
+                yShift = yShift + Tiles[x, y].V / 18 * -1;
+                for (int x1 = xShift; x1 < xShift + 3; x1++)
+                {
+                    for (int y1 = yShift; y1 < yShift + 3; y1++)
+                    {
+                        if (Tiles[x1, y1] == null)
+                        {
+                            Tiles[x1, y1] = new Tile();
+                        }
+                        if (Tiles[x1, y1].IsActive && Tiles[x1, y1].Type == type)
+                        {
+                            Tiles[x1, y1].Type = 34;
+                            Tiles[x1, y1].V = (short)(Tiles[x1, y1].V + newPosition * 54);
+                        }
+                    }
+                }
+            }
+        }
+
         public static IEnumerable<Sign> ReadSignDataFromStream(BinaryReader b)
         {
             for (int i = 0; i < 1000; i++)
@@ -891,33 +970,37 @@ namespace TEditXNA.Terraria
                 if (tile.Type == 127)
                     tile.IsActive = false;
 
-                if (tileProperty.IsFramed)
+                if (version < 72 && (tile.Type == 35 || tile.Type == 36 || tile.Type == 170 || tile.Type == 171 || tile.Type == 172))
                 {
-                    if (version < 28 && tile.Type == 4)
-                    {
-                        // torches didn't have extra in older versions.
-                        tile.U = 0;
-                        tile.V = 0;
-                    }
-                    else if (version < 40 && tile.Type == 19)
-                    {
-                        tile.U = 0;
-                        tile.V = 0;
-                    }
-                    else
-                    {
-                        tile.U = b.ReadInt16();
-                        tile.V = b.ReadInt16();
-
-                        if (tile.Type == 144) //timer
-                            tile.V = 0;
-                    }
+                    tile.U = b.ReadInt16();
+                    tile.V = b.ReadInt16();
                 }
-                else
+                if (!tileProperty.IsFramed)
                 {
                     tile.U = -1;
                     tile.V = -1;
                 }
+                else if (version < 28 && tile.Type == 4)
+                {
+                    // torches didn't have extra in older versions.
+                    tile.U = 0;
+                    tile.V = 0;
+                }
+                else if (version < 40 && tile.Type == 19)
+                {
+                    tile.U = 0;
+                    tile.V = 0;
+                }
+                else
+                {
+                    tile.U = b.ReadInt16();
+                    tile.V = b.ReadInt16();
+
+                    if (tile.Type == 144) //timer
+                        tile.V = 0;
+                    
+                }
+
 
                 if (version >= 48 && b.ReadBoolean())
                 {

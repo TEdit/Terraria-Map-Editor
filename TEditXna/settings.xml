@@ -568,19 +568,47 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="18,66" Name="Pink Dungeon Candle" Variety="Off" />
       </Frames>
     </Tile>
-    <Tile Id="34" Name="Copper Chandelier"            Color="#FFEBA687"   Placement="ceiling"   Light="true"    Framed="true"   Size="3,3"    >
+    <Tile Id="34" Name="Chandelier"            Color="#FFEBA687"   Placement="ceiling"   Light="true"    Framed="true"   Size="3,3"    >
       <Frames>
-        <Frame UV="0,0"     Variety="On"    />
-        <Frame UV="54,0"    Variety="Off"   />
+        <Frame UV="0,0"   Name="Copper Chandelier"   Variety="On"    />
+        <Frame UV="54,0"  Name="Copper Chandelier"   Variety="Off"   />
+        <Frame UV="0,54"   Name="Silver Chandelier"   Variety="On"    />
+        <Frame UV="54,54"  Name="Silver Chandelier"   Variety="Off"   />
+        <Frame UV="0,108"   Name="Gold Chandelier"   Variety="On"    />
+        <Frame UV="54,108"  Name="Gold Chandelier"   Variety="Off"   />
+        <Frame UV="0,162"   Name="Tin Chandelier"   Variety="On"    />
+        <Frame UV="54,162"  Name="Tin Chandelier"   Variety="Off"   />
+        <Frame UV="0,216"   Name="Tungsten Chandelier"   Variety="On"    />
+        <Frame UV="54,216"  Name="Tungsten Chandelier"   Variety="Off"   />
+        <Frame UV="0,270"   Name="Platinum Chandelier"   Variety="On"    />
+        <Frame UV="54,270"  Name="Platinum Chandelier"   Variety="Off"   />
+        <Frame UV="0,324"   Name="Jack 'O Chandelier"   Variety="On"    />
+        <Frame UV="54,324"  Name="Jack 'O Chandelier"   Variety="Off"   />
       </Frames>
     </Tile>
-    <Tile Id="35" Name="Silver Chandelier"            Color="#FFFD3E03"   Placement="ceiling"   Light="true"    Framed="true"   Size="3,3"    >
+    <Tile Id="35" Name="Jack 'O Lantern"  Framed="true" Light="true"  Size="2,2">
       <Frames>
-        <Frame UV="0,0"     Variety="On"    />
-        <Frame UV="54,0"    Variety="Off"   />
+        <Frame UV="0,0"     Name="Jack 'O Lantern 1"  Variety="On"    />
+        <Frame UV="36,0"    Name="Jack 'O Lantern 1" Variety="Off"  />
+        <Frame UV="0,36"     Name="Jack 'O Lantern 2"  Variety="On"    />
+        <Frame UV="36,36"    Name="Jack 'O Lantern 2" Variety="Off"  />
+        <Frame UV="0,72"     Name="Jack 'O Lantern 3"  Variety="On"    />
+        <Frame UV="36,72"    Name="Jack 'O Lantern 3" Variety="Off"  />
+        <Frame UV="0,108"     Name="Jack 'O Lantern 4"  Variety="On"    />
+        <Frame UV="36,108"    Name="Jack 'O Lantern 4" Variety="Off"  />
+        <Frame UV="0,144"     Name="Jack 'O Lantern 5"  Variety="On"    />
+        <Frame UV="36,144"    Name="Jack 'O Lantern 5" Variety="Off"  />
+        <Frame UV="0,180"     Name="Jack 'O Lantern 6"  Variety="On"    />
+        <Frame UV="36,180"    Name="Jack 'O Lantern 6" Variety="Off"  />
+        <Frame UV="0,216"     Name="Jack 'O Lantern 7"  Variety="On"    />
+        <Frame UV="36,216"    Name="Jack 'O Lantern 7" Variety="Off"  />
+        <Frame UV="0,252"     Name="Jack 'O Lantern 8"  Variety="On"    />
+        <Frame UV="36,252"    Name="Jack 'O Lantern 8" Variety="Off"  />
+        <Frame UV="0,288"     Name="Jack 'O Lantern 9"  Variety="On"    />
+        <Frame UV="36,288"    Name="Jack 'O Lantern 9" Variety="Off"  />
       </Frames>
     </Tile>
-    <Tile Id="36" Name="Gold Chandelier"              Color="#FFE5D449"   Placement="ceiling"   Light="true"    Framed="true"   Size="3,3"    >
+    <Tile Id="36" Name="Fake Chandelier"              Color="#FF0030f0"   Placement="ceiling"   Light="true"    Framed="false"   Size="3,3"    >
       <Frames>
         <Frame UV="0,0"     Variety="On"    />
         <Frame UV="54,0"    Variety="Off"   />
@@ -1287,19 +1315,19 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Tile Id="167" Name="Lead Ore"                    Color="#FF3E5272"   Solid="true"    Blends="true"    />
     <Tile Id="168" Name="Tungsten Ore"                Color="#FF849D7F"   Solid="true"    Blends="true"    />
     <Tile Id="169" Name="Platinum Ore"                Color="#FF98ABC6"   Solid="true"    Blends="true"    />
-    <Tile Id="170" Name="Tin Chandelier"              Color="#FFE4DBA2"   Placement="ceiling"   Framed="true"   Light="true"      Size="3,3"   >
+    <Tile Id="170" Name="Fake Chandelier"              Color="#FFE4DBA2"   Placement="ceiling"   Framed="false"   Light="true"      Size="3,3"   >
       <Frames>
         <Frame UV="0,0"     Variety="On"    />
         <Frame UV="54,0"    Variety="Off"   />
       </Frames>
     </Tile>
-    <Tile Id="171" Name="Tungsten Chandelier"         Color="#FFB1C0B0"   Placement="ceiling"   Framed="true"   Light="true"      Size="3,3"  >
+    <Tile Id="171" Name="Fake Chandelier"         Color="#FFB1C0B0"   Placement="ceiling"   Framed="false"   Light="true"      Size="3,3"  >
       <Frames>
         <Frame UV="0,0"     Variety="On"    />
         <Frame UV="54,0"    Variety="Off"   />
       </Frames>
     </Tile>
-    <Tile Id="172" Name="Platinum Chandelier"         Color="#FFB5C2D9"   Placement="ceiling"   Framed="true"   Light="true"      Size="3,3"   >
+    <Tile Id="172" Name="Fake Chandelier"         Color="#FFB5C2D9"   Placement="ceiling"   Framed="false"   Light="true"      Size="3,3"   >
       <Frames>
         <Frame UV="0,0"     Variety="On"    />
         <Frame UV="54,0"    Variety="Off"   />
