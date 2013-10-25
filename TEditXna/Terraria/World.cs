@@ -975,7 +975,7 @@ namespace TEditXNA.Terraria
                     tile.U = b.ReadInt16();
                     tile.V = b.ReadInt16();
                 }
-                if (!tileProperty.IsFramed)
+                else if (!tileProperty.IsFramed)
                 {
                     tile.U = -1;
                     tile.V = -1;

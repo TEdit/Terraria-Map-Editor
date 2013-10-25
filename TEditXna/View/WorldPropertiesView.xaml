@@ -116,12 +116,12 @@
                 <TextBlock Text="{Binding CurrentWorld.ShadowOrbCount, StringFormat={}{0:0}}" Width="30" DockPanel.Dock="Right" />
                 <Slider Value="{Binding CurrentWorld.ShadowOrbCount, Mode=TwoWay}" VerticalAlignment="Center" Minimum="0" Maximum="3" />
             </DockPanel>
-            <TextBlock Text="Extra Hard" HorizontalAlignment="Right" />
+            <!--<TextBlock Text="Extra Hard" HorizontalAlignment="Right" />
             <CheckBox IsChecked="{Binding CurrentWorld.OreTier1}" Content="Disable Cobalt" VerticalAlignment="Center" VerticalContentAlignment="Center" />
             <TextBlock  />
             <CheckBox IsChecked="{Binding CurrentWorld.OreTier2}" Content="Disable Mythril" VerticalAlignment="Center" VerticalContentAlignment="Center" />
             <TextBlock />
-            <CheckBox IsChecked="{Binding CurrentWorld.OreTier3}" Content="Disable Adamantite" VerticalAlignment="Center" VerticalContentAlignment="Center" />
+            <CheckBox IsChecked="{Binding CurrentWorld.OreTier3}" Content="Disable Adamantite" VerticalAlignment="Center" VerticalContentAlignment="Center" />-->
             <Separator Grid.ColumnSpan="2" />
             <TextBlock Text="Bosses Downed" HorizontalAlignment="Right" />
             <CheckBox IsChecked="{Binding CurrentWorld.DownedBoss1}" Content="Eye of Cthulhu Downed" VerticalAlignment="Center" VerticalContentAlignment="Center" />
