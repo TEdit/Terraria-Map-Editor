@@ -574,7 +574,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="54,0"    Variety="Off"   />
       </Frames>
     </Tile>
-    <Tile Id="35" Name="Silver Chandelier"            Color="#FFC5D8DB"   Placement="ceiling"   Light="true"    Framed="true"   Size="3,3"    >
+    <Tile Id="35" Name="Silver Chandelier"            Color="#FFFD3E03"   Placement="ceiling"   Light="true"    Framed="true"   Size="3,3"    >
       <Frames>
         <Frame UV="0,0"     Variety="On"    />
         <Frame UV="54,0"    Variety="Off"   />
@@ -1677,6 +1677,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Tile Id="236" Name="Life Fruit Plant"            Color="#FF95E857"   Framed="true"   Size="2,2"   >
       <Frames>
         <Frame UV="0,0" Name="Default" Variety="Default" />
+        <Frame UV="36,0" Name="Life Fruit" Variety="Default" />
       </Frames>
     </Tile>
     <Tile Id="237" Name="Lihzahrd Altar"              Color="#FFFFF133"   Framed="true"   Light="true" Size="3,2"   >
@@ -1839,6 +1840,14 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Tile Id="248" Name="Palladium Column"            Color="#FFDB4726"   Solid="true"   Blends="true"   />
     <Tile Id="249" Name="Bubblegum Block"             Color="#FFF934F3"   Solid="true"   Blends="true"   />
     <Tile Id="250" Name="Titanstone Block"            Color="#FF4C4A53"   Solid="true"   Blends="true"   />
+    <Tile Id="251" Name="Pumpkin"                                         Solid="true"  />
+    <Tile Id="252" Name="Hay"                                             Solid="true"  />
+    <Tile Id="253" Name="Spooky Wood"                                     Solid="true"  />
+    <Tile Id="254" Name="Pumpkin Seed"                Framed="true"       Size="2,2">
+      <Frames>
+        <Frame UV="0,0"      Name="Default"   Variety="Default"                     />
+      </Frames>
+    </Tile>
   </Tiles>
   <Walls>
     <Wall Id="0"    Name="Sky"                        Color="#00000000"                     />
@@ -1953,6 +1962,10 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Wall Id="109"  Name="Palladium Column Wall"      Color="#FF5E1911"   IsHouse="true"    />
     <Wall Id="110"  Name="Bubblegum Block Wall"       Color="#FF6C1469"   IsHouse="true"    />
     <Wall Id="111"  Name="Titanstone Block Wall"      Color="#FF3F2B21"   IsHouse="true"    />
+    <Wall Id="112"  Name="Lihzahrd Brick Wall"        Color="#FFFF00FF"   IsHouse="True"/>
+    <Wall Id="113"  Name="Pumpkin Wall"               Color="#FFFF00FF"   IsHouse="True"/>
+    <Wall Id="114"  Name="Hay Wall"                   Color="#FFFF00FF"   IsHouse="True"/>
+    <Wall Id="115"  Name="Spooky Wood Wall"           Color="#FFFF00FF"   IsHouse="True"/>
   </Walls>
   <Items>
     <Item Id="-48"  Name="Platinum Bow"/>
@@ -3617,6 +3630,250 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="1611" Name="Butterfly Dust"/>
     <Item Id="1612" Name="Ankh Charm"/>
     <Item Id="1613" Name="Ankh Shield"/>
+    <Item Id="1614" Name="Blue Flare"/>
+    <Item Id="1615" Name="Angler Fish Banner"/>
+    <Item Id="1616" Name="Angry Nimbus Banner"/>
+    <Item Id="1617" Name="Anomura Fungus Banner"/>
+    <Item Id="1618" Name="Antlion Banner"/>
+    <Item Id="1619" Name="Arapaima Banner"/>
+    <Item Id="1620" Name="Armored Skeleton Banner"/>
+    <Item Id="1621" Name="Bat Banner"/>
+    <Item Id="1622" Name="Bird Banner"/>
+    <Item Id="1623" Name="Black Recluse Banner"/>
+    <Item Id="1624" Name="Blood Feeder Banner"/>
+    <Item Id="1625" Name="Blood Jelly Banner"/>
+    <Item Id="1626" Name="Blood Crawler Banner"/>
+    <Item Id="1627" Name="Bone Serpent Banner"/>
+    <Item Id="1628" Name="Bunny Banner"/>
+    <Item Id="1629" Name="Chaos Elemental Banner"/>
+    <Item Id="1630" Name="Mimic Banner"/>
+    <Item Id="1631" Name="Clown Banner"/>
+    <Item Id="1632" Name="Corrupt Bunny Banner"/>
+    <Item Id="1633" Name="Corrupt Goldfish Banner"/>
+    <Item Id="1634" Name="Crab Banner"/>
+    <Item Id="1635" Name="Crimera Banner"/>
+    <Item Id="1636" Name="Crimson Axe Banner"/>
+    <Item Id="1637" Name="Cursed Hammer Banner"/>
+    <Item Id="1638" Name="Demon Banner"/>
+    <Item Id="1639" Name="Demon Eye Banner"/>
+    <Item Id="1640" Name="Derpling Banner"/>
+    <Item Id="1641" Name="Eater of Souls Banner"/>
+    <Item Id="1642" Name="Enchanted Sword Banner"/>
+    <Item Id="1643" Name="Zombie Eskimo Banner"/>
+    <Item Id="1644" Name="Face Monster Banner"/>
+    <Item Id="1645" Name="Floaty Gross Banner"/>
+    <Item Id="1646" Name="Flying Fish Banner"/>
+    <Item Id="1647" Name="Flying Snake Banner"/>
+    <Item Id="1648" Name="Frankenstein Banner"/>
+    <Item Id="1649" Name="Fungi Bulb Banner"/>
+    <Item Id="1650" Name="Fungo Fish Banner"/>
+    <Item Id="1651" Name="Gastropod Banner"/>
+    <Item Id="1652" Name="Goblin Archer Banner"/>
+    <Item Id="1653" Name="Goblin Sorcerer Banner"/>
+    <Item Id="1654" Name="Goblin Scout Banner"/>
+    <Item Id="1655" Name="Goblin Thief Banner"/>
+    <Item Id="1656" Name="Goblin Warrior Banner"/>
+    <Item Id="1657" Name="Goldfish Banner"/>
+    <Item Id="1658" Name="Harpy Banner"/>
+    <Item Id="1659" Name="Hellbat Banner"/>
+    <Item Id="1660" Name="Herpling Banner"/>
+    <Item Id="1661" Name="Hornet Banner"/>
+    <Item Id="1662" Name="Ice Elemental Banner"/>
+    <Item Id="1663" Name="Icy Merman Banner"/>
+    <Item Id="1664" Name="Fire Imp Banner"/>
+    <Item Id="1665" Name="Jellyfish Banner"/>
+    <Item Id="1666" Name="Jungle Creeper Banner"/>
+    <Item Id="1667" Name="Lihzahrd Banner"/>
+    <Item Id="1668" Name="Man Eater Banner"/>
+    <Item Id="1669" Name="Meteor Head Banner"/>
+    <Item Id="1670" Name="Moth Banner"/>
+    <Item Id="1671" Name="Mummy Banner"/>
+    <Item Id="1672" Name="Mushi Ladybug Banner"/>
+    <Item Id="1673" Name="Parrot Banner"/>
+    <Item Id="1674" Name="Pigron Banner"/>
+    <Item Id="1675" Name="Piranha Banner"/>
+    <Item Id="1676" Name="Pirate Banner"/>
+    <Item Id="1677" Name="Pixie Banner"/>
+    <Item Id="1678" Name="Raincoat Zombie Banner"/>
+    <Item Id="1679" Name="Reaper Banner"/>
+    <Item Id="1680" Name="Shark Banner"/>
+    <Item Id="1681" Name="Skeleton Banner"/>
+    <Item Id="1682" Name="Skeleton Mage Banner"/>
+    <Item Id="1683" Name="Slime Banner"/>
+    <Item Id="1684" Name="Snow Flinx Banner"/>
+    <Item Id="1685" Name="Spider Banner"/>
+    <Item Id="1686" Name="Spore Zombie Banner"/>
+    <Item Id="1687" Name="Swamp Thing Banner"/>
+    <Item Id="1688" Name="Tortoise Banner"/>
+    <Item Id="1689" Name="Toxic Sludge Banner"/>
+    <Item Id="1690" Name="Umbrella Slime Banner"/>
+    <Item Id="1691" Name="Unicorn Banner"/>
+    <Item Id="1692" Name="Vampire Banner"/>
+    <Item Id="1693" Name="Vulture Banner"/>
+    <Item Id="1694" Name="Nypmh Banner"/>
+    <Item Id="1695" Name="Werewolf Banner"/>
+    <Item Id="1696" Name="Wolf Banner"/>
+    <Item Id="1697" Name="World Feeder Banner"/>
+    <Item Id="1698" Name="Worm Banner"/>
+    <Item Id="1699" Name="Wraith Banner"/>
+    <Item Id="1700" Name="Wyvern Banner"/>
+    <Item Id="1701" Name="Zombie Banner"/>
+    <Item Id="1702" Name="Glass Platform"/>
+    <Item Id="1703" Name="Glass Chair"/>
+    <Item Id="1704" Name="Golden Chair"/>
+    <Item Id="1705" Name="Golden Toilet"/>
+    <Item Id="1706" Name="Bar Stool"/>
+    <Item Id="1707" Name="Honey Chair"/>
+    <Item Id="1708" Name="Steam Punk Chair"/>
+    <Item Id="1709" Name="Glass Door"/>
+    <Item Id="1710" Name="Golden Door"/>
+    <Item Id="1711" Name="Honey Door"/>
+    <Item Id="1712" Name="Steam Punk Door"/>
+    <Item Id="1713" Name="Glass Table"/>
+    <Item Id="1714" Name="Banquet Table"/>
+    <Item Id="1715" Name="Bar"/>
+    <Item Id="1716" Name="Golden Table"/>
+    <Item Id="1717" Name="Honey Table"/>
+    <Item Id="1718" Name="Steam Punk Table"/>
+    <Item Id="1719" Name="Glass Bed"/>
+    <Item Id="1720" Name="Golden Bed"/>
+    <Item Id="1721" Name="Honey Bed"/>
+    <Item Id="1722" Name="Steam Punk Bed"/>
+    <Item Id="1723" Name="Living Wood Wall"/>
+    <Item Id="1724" Name="Fart in a Jar"/>
+    <Item Id="1725" Name="Pumpkin"/>
+    <Item Id="1726" Name="Pumpkin Wall"/>
+    <Item Id="1727" Name="Hay"/>
+    <Item Id="1728" Name="Hay Wall"/>
+    <Item Id="1729" Name="Spooky Wood"/>
+    <Item Id="1730" Name="Spooky Wood Wall"/>
+    <Item Id="1731" Name="Pumpkin Helmet"/>
+    <Item Id="1732" Name="Pumpkin Breastplate"/>
+    <Item Id="1733" Name="Pumpkin Leggings"/>
+    <Item Id="1734" Name="Candy Apple"/>
+    <Item Id="1735" Name="Soul Cake"/>
+    <Item Id="1736" Name="Nurse Hat"/>
+    <Item Id="1737" Name="Nurse Shirt"/>
+    <Item Id="1738" Name="Nurse Pants"/>
+    <Item Id="1739" Name="Wizard's Hat"/>
+    <Item Id="1740" Name="Guy Fawkes Mask"/>
+    <Item Id="1741" Name="Dye Trader Robe"/>
+    <Item Id="1742" Name="Steam Punk Goggles"/>
+    <Item Id="1743" Name="Cyborg Helmet"/>
+    <Item Id="1744" Name="Cyborg Shirt"/>
+    <Item Id="1745" Name="Cyborg Pants"/>
+    <Item Id="1746" Name="Creeper Mask"/>
+    <Item Id="1747" Name="Creeper Shirt"/>
+    <Item Id="1748" Name="Creeper Pants"/>
+    <Item Id="1749" Name="Cat Mask"/>
+    <Item Id="1750" Name="Cat Shirt"/>
+    <Item Id="1751" Name="Cat Pants"/>
+    <Item Id="1752" Name="Ghost Mask"/>
+    <Item Id="1753" Name="Ghost Shirt"/>
+    <Item Id="1754" Name="Pumpkin Mask"/>
+    <Item Id="1755" Name="Pumpkin Shirt"/>
+    <Item Id="1756" Name="Pumpkin Pants"/>
+    <Item Id="1757" Name="Robot Mask"/>
+    <Item Id="1758" Name="Robot Shirt"/>
+    <Item Id="1759" Name="Robot Pants"/>
+    <Item Id="1760" Name="Unicorn Mask"/>
+    <Item Id="1761" Name="Unicorn Shirt"/>
+    <Item Id="1762" Name="Unicorn Pants"/>
+    <Item Id="1763" Name="Vampire Mask"/>
+    <Item Id="1764" Name="Vampire Shirt"/>
+    <Item Id="1765" Name="Vampire Pants"/>
+    <Item Id="1766" Name="Witch Hat"/>
+    <Item Id="1767" Name="Leprechaun Hat"/>
+    <Item Id="1768" Name="Leprechaun Shirt"/>
+    <Item Id="1769" Name="Leprechaun Pants"/>
+    <Item Id="1770" Name="Pixie Shirt"/>
+    <Item Id="1771" Name="Pixie Pants"/>
+    <Item Id="1772" Name="Princess Hat"/>
+    <Item Id="1773" Name="Princess Dress"/>
+    <Item Id="1774" Name="Goodie Bag"/>
+    <Item Id="1775" Name="Witch Dress"/>
+    <Item Id="1776" Name="Witch Boots"/>
+    <Item Id="1777" Name="Bride of Frankenstein Mask"/>
+    <Item Id="1778" Name="Bride of Frankenstein Dress"/>
+    <Item Id="1779" Name="Karate Tortoise Mask"/>
+    <Item Id="1780" Name="Karate Tortoise Shirt"/>
+    <Item Id="1781" Name="Karate Tortoise Pants"/>
+    <Item Id="1782" Name="Candy Corn Rifle"/>
+    <Item Id="1783" Name="Candy Corn"/>
+    <Item Id="1784" Name="Jack 'O Lantern Launcher"/>
+    <Item Id="1785" Name="Explosive Jack 'O Lantern"/>
+    <Item Id="1786" Name="Sickle"/>
+    <Item Id="1787" Name="Pumpkin Pie"/>
+    <Item Id="1788" Name="Scarecrow Hat"/>
+    <Item Id="1789" Name="Scarecrow Shirt"/>
+    <Item Id="1790" Name="Scarecrow Pants"/>
+    <Item Id="1791" Name="Cauldron"/>
+    <Item Id="1792" Name="Pumpkin Chair"/>
+    <Item Id="1793" Name="Pumpkin Door"/>
+    <Item Id="1794" Name="Pumpkin Table"/>
+    <Item Id="1795" Name="Pumpkin Work Bench"/>
+    <Item Id="1796" Name="Pumpkin Platform"/>
+    <Item Id="1797" Name="Tattered Fairy Wings"/>
+    <Item Id="1798" Name="Spider Egg"/>
+    <Item Id="1799" Name="Magical Pumpkin Seed"/>
+    <Item Id="1800" Name="Bat Hook"/>
+    <Item Id="1801" Name="Bat Scepter"/>
+    <Item Id="1802" Name="Raven Staff"/>
+    <Item Id="1803" Name="Jungle Key Mold"/>
+    <Item Id="1804" Name="Corruption Key Mold"/>
+    <Item Id="1805" Name="Crimson Key Mold"/>
+    <Item Id="1806" Name="Hallowed Key Mold"/>
+    <Item Id="1807" Name="Frozen Key Mold"/>
+    <Item Id="1808" Name="Hanging Jack 'O Lantern"/>
+    <Item Id="1809" Name="Rotten Egg"/>
+    <Item Id="1810" Name="Unlucky Yarn"/>
+    <Item Id="1811" Name="Black Fairy Dust"/>
+    <Item Id="1812" Name="Jackelier"/>
+    <Item Id="1813" Name="Jack 'O Lantern"/>
+    <Item Id="1814" Name="Spooky Chair"/>
+    <Item Id="1815" Name="Spooky Door"/>
+    <Item Id="1816" Name="Spooky Table"/>
+    <Item Id="1817" Name="Spooky Work Bench"/>
+    <Item Id="1818" Name="Spooky Platform"/>
+    <Item Id="1819" Name="Reaper Hood"/>
+    <Item Id="1820" Name="Reaper Robe"/>
+    <Item Id="1821" Name="Fox Mask"/>
+    <Item Id="1822" Name="Fox Shirt"/>
+    <Item Id="1823" Name="Fox Pants"/>
+    <Item Id="1824" Name="Cat Ears"/>
+    <Item Id="1825" Name="Bloody Machete"/>
+    <Item Id="1826" Name="The Horseman's Blade"/>
+    <Item Id="1827" Name="Bladed Glove"/>
+    <Item Id="1828" Name="Pumpkin Seed"/>
+    <Item Id="1829" Name="Spooky Hook"/>
+    <Item Id="1830" Name="Spooky Wings"/>
+    <Item Id="1831" Name="Spooky Twig"/>
+    <Item Id="1832" Name="Spooky Helmet"/>
+    <Item Id="1833" Name="Spooky Breastplate"/>
+    <Item Id="1834" Name="Spooky Leggings"/>
+    <Item Id="1835" Name="Stake Launcher"/>
+    <Item Id="1836" Name="Stake"/>
+    <Item Id="1837" Name="Cursed Sapling"/>
+    <Item Id="1838" Name="Space Creature Mask"/>
+    <Item Id="1839" Name="Space Creature Shirt"/>
+    <Item Id="1840" Name="Space Creature Pants"/>
+    <Item Id="1841" Name="Wolf Mask"/>
+    <Item Id="1842" Name="Wolf Shirt"/>
+    <Item Id="1843" Name="Wolf Pants"/>
+    <Item Id="1844" Name="Pumpkin Moon Medallion"/>
+    <Item Id="1845" Name="Necromantic Scroll"/>
+    <Item Id="1846" Name="Jacking Skeletron"/>
+    <Item Id="1847" Name="Bitter Harvest"/>
+    <Item Id="1848" Name="Blood Moon Countess"/>
+    <Item Id="1849" Name="Hallow's Eve"/>
+    <Item Id="1850" Name="Morbid Curiosity"/>
+    <Item Id="1851" Name="Treasure Hunter Shirt"/>
+    <Item Id="1852" Name="Treasure Hunter Pants"/>
+    <Item Id="1853" Name="Dryad Coverings"/>
+    <Item Id="1854" Name="Dryad Loincloth"/>
+    <Item Id="1855" Name="Mourning Wood Trophy"/>
+    <Item Id="1856" Name="Pumpking Trophy"/>
+    <Item Id="1857" Name="Jack 'O Lantern Mask"/>
   </Items>
   <Npcs>
     <Npc Id="17"    Name="Merchant"         Frames="16"   />
