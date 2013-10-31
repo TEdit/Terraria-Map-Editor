@@ -3898,6 +3898,15 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="1855" Name="Mourning Wood Trophy"/>
     <Item Id="1856" Name="Pumpking Trophy"/>
     <Item Id="1857" Name="Jack 'O Lantern Mask"/>
+    <Item Id="1858" Name="Sniper Scope"/>
+    <Item Id="1859" Name="Heart Lantern"/>
+    <Item Id="1860" Name="Jellyfish Diving Gear"/>
+    <Item Id="1861" Name="Arctic Diving Gear"/>
+    <Item Id="1862" Name="Frostspark Boots"/>
+    <Item Id="1863" Name="Fart in a Balloon"/>
+    <Item Id="1864" Name="Papyrus Scarab"/>
+    <Item Id="1865" Name="Celestial Stone"/>
+    <Item Id="1866" Name="Hoverboard"/>
   </Items>
   <Npcs>
     <Npc Id="17"    Name="Merchant"         Frames="16"   />

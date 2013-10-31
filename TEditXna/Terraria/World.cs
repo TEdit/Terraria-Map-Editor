@@ -83,6 +83,25 @@ namespace TEditXNA.Terraria
             return Signs.FirstOrDefault(c => (c.X == x || c.X == x - 1) && (c.Y == y || c.Y == y - 1));
         }
 
+        public Vector2Int32 GetChestAnchor(int x, int y)
+        {
+            var tile = Tiles[x, y];
+
+            int xShift = tile.U % 36 / 18;
+            int yShift = tile.V % 36 / 18;
+
+            return new Vector2Int32(x-xShift, y-yShift);
+        }
+
+        public Vector2Int32 GetSignAnchor(int x, int y)
+        {
+            var tile = Tiles[x, y];
+
+            int xShift = tile.U % 36 / 18;
+            int yShift = tile.V % 36 / 18;
+
+            return new Vector2Int32(x - xShift, y - yShift);
+        }
 
         public void Validate()
         {
@@ -827,7 +846,7 @@ namespace TEditXNA.Terraria
             {
                 for (int y = 5; y < TilesHigh - 5; y++)
                 {
-                    if (Tiles[x,y].IsActive)
+                    if (Tiles[x, y].IsActive)
                     {
                         int tileType = Tiles[x, y].Type;
                         if (Tiles[x, y].IsActive && (tileType == 35 || tileType == 36 || tileType == 170 || tileType == 171 || tileType == 172))
@@ -998,7 +1017,7 @@ namespace TEditXNA.Terraria
 
                     if (tile.Type == 144) //timer
                         tile.V = 0;
-                    
+
                 }
 
 

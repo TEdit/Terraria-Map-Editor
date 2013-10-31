@@ -16,7 +16,7 @@ namespace TEditXNA.Terraria
 {
     public partial class World
     {
-        public static uint CompatibleVersion = 72;
+        public static uint CompatibleVersion = 73;
         private static readonly Dictionary<string, XNA.Color> _globalColors = new Dictionary<string, XNA.Color>();
         private static readonly Dictionary<string, int> _npcIds = new Dictionary<string, int>();
         private static readonly Dictionary<int, int> _npcFrames = new Dictionary<int, int>();
