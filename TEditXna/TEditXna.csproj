@@ -132,6 +132,7 @@
     <Compile Include="Render\TextureData.cs" />
     <Compile Include="Terraria\Chest.cs" />
     <Compile Include="Terraria\Item.cs" />
+    <Compile Include="Terraria\Map.cs" />
     <Compile Include="Terraria\NPC.cs" />
     <Compile Include="Terraria\Objects\BlendRules.cs" />
     <Compile Include="Terraria\Objects\Enums.cs" />
@@ -409,7 +410,7 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties BuildVersion_UseGlobalSettings="True" BuildVersion_AssemblyInfoFilename="Properties\AssemblyInfo.cs" />
+      <UserProperties BuildVersion_AssemblyInfoFilename="Properties\AssemblyInfo.cs" BuildVersion_UseGlobalSettings="True" />
     </VisualStudio>
   </ProjectExtensions>
   <PropertyGroup>
