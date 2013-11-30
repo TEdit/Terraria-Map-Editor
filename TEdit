@@ -1,0 +1,7 @@
+11-30-2013 16:37 v3.1.12019.2351 Error - Referencia a objeto no establecida como instancia de un objeto.
+   en TEditXna.ViewModel.WorldViewModel.RenderEntireWorld() en D:\Dev\_PROJECTS\Terraria\Terraria-Map-Editor\TEditXna\ViewModel\WorldViewModel.Editor.cs:línea 221
+   en TEditXna.ViewModel.WorldViewModel.<LoadWorld>b__25(Task`1 t) en D:\Dev\_PROJECTS\Terraria\Terraria-Map-Editor\TEditXna\ViewModel\WorldViewModel.cs:línea 473
+   en System.Threading.Tasks.Task`1.<>c__DisplayClass1a`1.<ContinueWith>b__19()
+   en System.Threading.Tasks.Task`1.InvokeFuture(Object futureAsObj)
+   en System.Threading.Tasks.Task.InnerInvoke()
+   en System.Threading.Tasks.Task.Execute() 
