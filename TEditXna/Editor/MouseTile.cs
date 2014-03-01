@@ -61,16 +61,9 @@ namespace TEditXna.Editor
                     WallName = string.Format("INVALID WALL ({0})", _tile.Wall);
 
                 UV = new Vector2Short(_tile.U, _tile.V);
-                if (_tile.Liquid > 0)
+                if (_tile.LiquidAmount > 0)
                 {
-                    if (_tile.IsLava)
-                        TileExtras = "Lava: ";
-                    else if (_tile.IsHoney)
-                        TileExtras = "Honey: ";
-                    else
-                        TileExtras = "Water: ";
-
-                    TileExtras += _tile.Liquid;
+                    TileExtras = string.Format("{0}: {1}", _tile.LiquidType, _tile.LiquidAmount);
                 }
                 else
                     TileExtras = string.Empty;
@@ -83,7 +76,7 @@ namespace TEditXna.Editor
                         TileExtras += " Active Actuator ";
                 }
 
-                if (_tile.HasWire)
+                if (_tile.WireRed)
                 {
                     if (!string.IsNullOrWhiteSpace(TileExtras))
                         TileExtras += ", Wire";

@@ -30,18 +30,24 @@ namespace TEditXna.Editor
         private int _wallMask = ToolDefaultData.PaintWallMask;
         private int _tileMask = ToolDefaultData.PaintTileMask;
 
-        private HalfBlockMode _halfBlockMode = HalfBlockMode.NoAction;
+        private BrickStyle _brickStyle = BrickStyle.Full;
+        private bool _writeBrickStyle;
          
 
-        public HalfBlockMode HalfBlockMode
+        public bool WriteBrickStyle
         {
-            get { return _halfBlockMode; }
-            set { Set("HalfBlockMode", ref _halfBlockMode, value); }
+            get { return _writeBrickStyle; }
+            set { Set("WriteBrickStyle", ref _writeBrickStyle, value); }
+        }
+
+        public BrickStyle BrickStyle
+        {
+            get { return _brickStyle; }
+            set { Set("BrickStyle", ref _brickStyle, value); }
         }
 
         //private bool _isLava;
         private bool _isEraser;
-        private Liquid _liquid = Liquid.Water;
 
         public bool IsEraser
         {
@@ -49,40 +55,11 @@ namespace TEditXna.Editor
             set { Set("IsEraser", ref _isEraser, value); }
         }
 
-        public bool IsLava
+        private LiquidType _liquidType;
+        public LiquidType LiquidType
         {
-            get { return _liquid.HasFlag(Liquid.Lava); }
-            set
-            {
-                _liquid = value ? Liquid.Lava : Liquid.Water;
-                RaisePropertyChanged("IsWater");
-                RaisePropertyChanged("IsLava");
-                RaisePropertyChanged("IsHoney");
-            }
-        }
-
-        public bool IsWater
-        {
-            get { return _liquid.HasFlag(Liquid.Water); }
-            set
-            {
-                _liquid = !value ? Liquid.Lava : Liquid.Water;
-                RaisePropertyChanged("IsWater");
-                RaisePropertyChanged("IsLava");
-                RaisePropertyChanged("IsHoney");
-            }
-        }
-
-        public bool IsHoney
-        {
-            get { return _liquid.HasFlag(Liquid.Honey); }
-            set
-            {
-                _liquid = value ? Liquid.Honey : Liquid.Water;
-                RaisePropertyChanged("IsWater");
-                RaisePropertyChanged("IsLava");
-                RaisePropertyChanged("IsHoney");
-            }
+            get { return _liquidType; }
+            set { Set("LiquidType", ref _liquidType, value);}
         }
 
         public int TileMask
@@ -165,16 +142,14 @@ namespace TEditXna.Editor
 
         public void SwapLiquid()
         {
-            switch (_liquid)
+            switch (_liquidType)
             {
-                case Liquid.Lava: _liquid = Liquid.Honey; break;
-                case Liquid.Water: _liquid = Liquid.Lava; break;
-                default: _liquid = Liquid.Water; break;
+                case LiquidType.Lava: _liquidType = LiquidType.Honey; break;
+                case LiquidType.Water: _liquidType = LiquidType.Lava; break;
+                default: _liquidType = LiquidType.Water; break;
             }
 
-            RaisePropertyChanged("IsWater");
-            RaisePropertyChanged("IsLava");
-            RaisePropertyChanged("IsHoney");
+            RaisePropertyChanged("LiquidType");
         }
     }
 }

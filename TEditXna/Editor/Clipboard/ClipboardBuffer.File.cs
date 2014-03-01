@@ -14,14 +14,8 @@ namespace TEditXna.Editor.Clipboard
 {
     public partial class ClipboardBuffer
     {
-        public void Save(string filename, bool isFalseColor = false)
+        public void Save(string filename)
         {
-            if (isFalseColor)
-            {
-                SaveFalseColor(filename);
-                return;
-            }
-
             // Catch pngs that are real color
             if (string.Equals(".png", Path.GetExtension(filename), StringComparison.InvariantCultureIgnoreCase))
             {
@@ -276,7 +270,7 @@ namespace TEditXna.Editor.Clipboard
 
                                 if (b.ReadBoolean())
                                 {
-                                    tile.Color = b.ReadByte();
+                                    tile.TileColor = b.ReadByte();
                                 }
                             }
 
@@ -289,22 +283,27 @@ namespace TEditXna.Editor.Clipboard
 
                             if (b.ReadBoolean())
                             {
-                                tile.Liquid = b.ReadByte();
-                                tile.IsLava = b.ReadBoolean();
-                                tile.IsHoney = b.ReadBoolean();
+                                tile.LiquidType = LiquidType.Water;
+                                
+                                tile.LiquidAmount = b.ReadByte();
+                                bool IsLava = b.ReadBoolean();
+                                if (IsLava) tile.LiquidType = LiquidType.Lava;
+                                bool IsHoney = b.ReadBoolean();
+                                if (IsHoney) tile.LiquidType = LiquidType.Honey;
                             }
 
-                            tile.HasWire = b.ReadBoolean();
-                            tile.HasWire2 = b.ReadBoolean();
-                            tile.HasWire3 = b.ReadBoolean();
-                            tile.HalfBrick = b.ReadBoolean();
+                            tile.WireRed = b.ReadBoolean();
+                            tile.WireGreen = b.ReadBoolean();
+                            tile.WireBlue = b.ReadBoolean();
 
-                            if (tileProperty == null || !tileProperty.IsSolid)
-                                tile.HalfBrick = false;
+                            bool isHalfBrick = b.ReadBoolean();
 
-                            tile.Slope = b.ReadByte();
+                           
+                            var brickByte = b.ReadByte();
                             if (tileProperty == null || !tileProperty.IsSolid)
-                                tile.Slope = 0;
+                                tile.BrickStyle = 0;
+                            else
+                                tile.BrickStyle = (BrickStyle)brickByte;
 
                             tile.Actuator = b.ReadBoolean();
                             tile.InActive = b.ReadBoolean();
@@ -441,11 +440,13 @@ namespace TEditXna.Editor.Clipboard
 
                                 if (br.ReadBoolean())
                                 {
-                                    curTile.Liquid = br.ReadByte();
-                                    curTile.IsLava = br.ReadBoolean();
+                                    curTile.LiquidType = LiquidType.Water;
+                                    curTile.LiquidAmount = br.ReadByte();
+                                    if (br.ReadBoolean()) // lava byte
+                                        curTile.LiquidType = LiquidType.Lava;
                                 }
 
-                                curTile.HasWire = br.ReadBoolean();
+                                curTile.WireRed = br.ReadBoolean();
                                 buffer.Tiles[x, y] = curTile;
                             }
                         }
@@ -567,11 +568,12 @@ namespace TEditXna.Editor.Clipboard
 
                                 if (reader.ReadBoolean())
                                 {
-                                    curTile.Liquid = reader.ReadByte();
-                                    curTile.IsLava = reader.ReadBoolean();
+                                    curTile.LiquidAmount = reader.ReadByte();
+                                    bool lava = reader.ReadBoolean();
+                                    curTile.LiquidType = lava ? LiquidType.Lava : LiquidType.Water;
                                 }
 
-                                curTile.HasWire = reader.ReadBoolean();
+                                curTile.WireRed = reader.ReadBoolean();
                                 buffer.Tiles[x, y] = curTile;
                             }
 
@@ -702,8 +704,10 @@ namespace TEditXna.Editor.Clipboard
 
                                 if (reader.ReadBoolean())
                                 {
-                                    tile.Liquid = reader.ReadByte();
-                                    tile.IsLava = reader.ReadBoolean();
+                                    tile.LiquidType = LiquidType.Water;
+                                    tile.LiquidAmount = reader.ReadByte();
+                                    if (reader.ReadBoolean()) // lava
+                                        tile.LiquidType = LiquidType.Lava;
                                 }
 
                                 buffer.Tiles[x, y] = tile;
@@ -776,99 +780,6 @@ namespace TEditXna.Editor.Clipboard
             return null;
         }
 
-        public void SaveFalseColor(string filename)
-        {
-            var wbmp = new WriteableBitmap(Size.X, Size.Y, 96, 96, PixelFormats.Bgra32, null);
-
-            for (int y = 0; y < Size.Y; y++)
-            {
-
-                for (int x = 0; x < Size.X; x++)
-                {
-                    var curtile = Tiles[x, y];
-                    byte a = TileArgsToByte(curtile);
-                    byte r = curtile.Type;
-                    byte g = curtile.Wall;
-                    byte b = curtile.Liquid;
-
-                    wbmp.SetPixel(x, y, a, r, g, b);
-                }
-            }
-            wbmp.SavePng(filename);
-        }
-
-
-        public static ClipboardBuffer LoadFalseColor(string filename)
-        {
-            var urifrompath = new Uri(filename);
-            var bmp = new BitmapImage(urifrompath);
-            if (bmp.Width > 8400)
-                return null;
-            if (bmp.Height > 2400)
-                return null;
-
-            string name = Path.GetFileNameWithoutExtension(filename);
-            var buffer = new ClipboardBuffer(new Vector2Int32(bmp.PixelWidth, bmp.PixelHeight));
-            buffer.Name = name;
-
-            var wbmp = new WriteableBitmap(bmp);
-            if (wbmp.Format.BitsPerPixel < 32)
-                return null;
-            wbmp.Lock();
-            unsafe
-            {
-                var pixels = (int*)wbmp.BackBuffer;
-                for (int y = 0; y < bmp.PixelHeight; y++)
-                {
-                    int row = y * bmp.PixelWidth;
-                    for (int x = 0; x < bmp.PixelWidth; x++)
-                    {
-
-                        buffer.Tiles[x, y] = TileFromFalseColor(pixels[x + row]);
-                    }
-                }
-
-            }
-            wbmp.Unlock();
-
-            return buffer;
-        }
-
-
-        private static Tile TileFromFalseColor(int color)
-        {
-            byte a = (byte)(color >> 24);
-            byte r = (byte)(color >> 16);
-            byte g = (byte)(color >> 8);
-            byte b = (byte)(color >> 0);
-            var tile = new Tile();
-
-            AppendTileFlagsFromByte(ref tile, a);
-            // try and find a matching brick
-
-            var tileProperty = World.TileProperties.FirstOrDefault(t => t.Id == r);
-            if (tileProperty != null && !tileProperty.IsFramed)
-            {
-                tile.Type = (byte)tileProperty.Id;
-            }
-            else
-            {
-                // disable missing and framed tiles
-                tile.IsActive = false;
-            }
-
-            // try and find a matching wall
-            var wallproperty = World.WallProperties[g];
-            if (wallproperty != null && !tile.IsActive)
-            {
-                tile.Wall = (byte)wallproperty.Id;
-            }
-
-            tile.Liquid = b;
-
-
-            return tile;
-        }
 
         [Flags]
         public enum TileFlags : byte
@@ -884,54 +795,7 @@ namespace TEditXna.Editor.Clipboard
 
             // still have 0x08, 0x04, 0x02, 0x01 available for additional flags
         }
-        public byte TileArgsToByte(Tile tile)
-        {
-            byte b = 0;
-            if (tile.IsActive)
-                b |= (byte)TileFlags.IsActive;
-            if (tile.IsLava)
-                b |= (byte)TileFlags.IsLava;
-            if (tile.HasWire)
-                b |= (byte)TileFlags.HasWire;
-            if (tile.IsHoney)
-                b |= (byte)TileFlags.IsHoney;
-            if (tile.HasWire2)
-                b |= (byte)TileFlags.HasWire2;
-            if (tile.HasWire3)
-                b |= (byte)TileFlags.HasWire3;
-            if (tile.Actuator)
-                b |= (byte)TileFlags.Actuator;
-            if (tile.InActive)
-                b |= (byte)TileFlags.InActive;
-            return b;
-        }
 
-        public static void AppendTileFlagsFromByte(ref Tile tile, byte flags)
-        {
-            if ((flags & (byte)TileFlags.IsActive) == (byte)TileFlags.IsActive)
-                tile.IsActive = true;
-
-            if ((flags & (byte)TileFlags.IsLava) == (byte)TileFlags.IsLava)
-                tile.IsLava = true;
-
-            if ((flags & (byte)TileFlags.HasWire) == (byte)TileFlags.HasWire)
-                tile.HasWire = true;
-
-            if ((flags & (byte)TileFlags.IsHoney) == (byte)TileFlags.IsHoney)
-                tile.IsHoney = true;
-
-            if ((flags & (byte)TileFlags.HasWire2) == (byte)TileFlags.HasWire2)
-                tile.HasWire2 = true;
-
-            if ((flags & (byte)TileFlags.HasWire3) == (byte)TileFlags.HasWire3)
-                tile.HasWire3 = true;
-
-            if ((flags & (byte)TileFlags.Actuator) == (byte)TileFlags.Actuator)
-                tile.Actuator = true;
-
-            if ((flags & (byte)TileFlags.InActive) == (byte)TileFlags.InActive)
-                tile.InActive = true;
-        }
 
     }
 }

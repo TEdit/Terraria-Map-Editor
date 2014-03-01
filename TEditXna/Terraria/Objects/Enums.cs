@@ -2,17 +2,6 @@
 
 namespace TEditXNA.Terraria.Objects
 {
-    [Flags]
-    public enum Liquid
-    {
-        None = 0x00,
-
-        Water = 0x01,
-        Lava = 0x02,
-        Honey = 0x04,
-
-        All = Water | Lava | Honey
-    }
 
     public enum FrameAnchor
     {

@@ -56,23 +56,23 @@ namespace TEditXna.Render
                     c = c.AlphaBlend(Color.Magenta); // Add out-of-range colors
             }
 
-            if (tile.Liquid > 0 && showLiquid)
+            if (tile.LiquidAmount > 0 && showLiquid)
             {
-                if (tile.IsLava) c = c.AlphaBlend(World.GlobalColors["Lava"]);
-                else if (tile.IsHoney) c = c.AlphaBlend(World.GlobalColors["Honey"]);
+                if (tile.LiquidType == LiquidType.Lava) c = c.AlphaBlend(World.GlobalColors["Lava"]);
+                else if (tile.LiquidType == LiquidType.Honey) c = c.AlphaBlend(World.GlobalColors["Honey"]);
                 else c = c.AlphaBlend(World.GlobalColors["Water"]);
             }
 
             if (showWire){
-                if (tile.HasWire)
+                if (tile.WireRed)
                 {
                     c = c.AlphaBlend(World.GlobalColors["Wire"]);
                 }
-                if (tile.HasWire2)
+                if (tile.WireGreen)
                 {
                     c = c.AlphaBlend(World.GlobalColors["Wire1"]);
                 }
-                if (tile.HasWire3)
+                if (tile.WireBlue)
                 {
                     c = c.AlphaBlend(World.GlobalColors["Wire2"]);
                 }

@@ -99,15 +99,20 @@ namespace TEditXna.Editor.Tools
                 case PaintMode.Wire:
                     return false;
                 case PaintMode.Liquid:
-                    if ((originTile.Liquid > 0 != nextTile.Liquid > 0) ||
-                        originTile.IsLava != nextTile.IsLava ||
-                        originTile.IsHoney != nextTile.IsHoney ||
+                    if ((originTile.LiquidAmount > 0 != nextTile.LiquidAmount > 0) ||
+                        originTile.LiquidType != nextTile.LiquidType ||
                         (originTile.IsActive && World.TileProperties[originTile.Type].IsSolid) ||
                         (nextTile.IsActive && World.TileProperties[nextTile.Type].IsSolid))
                         return false;
 
                     break;
             }
+            if (_wvm.TilePicker.WriteBrickStyle)
+            {
+                if (originTile.BrickStyle != nextTile.BrickStyle)
+                    return false;
+            }
+            
 
             return true;
         }

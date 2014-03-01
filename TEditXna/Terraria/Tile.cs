@@ -3,22 +3,41 @@ using BCCL.Geometry.Primitives;
 
 namespace TEditXNA.Terraria
 {
+    public enum BrickStyle : byte
+    {
+        Full = 0x0,
+        HalfBrick = 0x1,
+        SlopeTopLeftDown = 0x2,
+        SlopeBottomLeftDown = 0x3,
+        SlopeTopLeftUp = 0x4,
+        SlopeBottomLeftUp = 0x5,
+        Unknown06 = 0x6,
+        Unknown07 = 0x7,
+    }
+
+    public enum LiquidType : byte
+    {
+        Dry = 0x0,
+        Water = 0x01,
+        Lava = 0x02,
+        Honey = 0x03
+    }
+
+
     [Serializable]
     public class Tile
     {
         public bool IsActive;
-        public bool HasWire;
-        public bool HasWire2;
-        public bool HasWire3;
-        public bool IsLava;
-        public bool IsHoney;
-        public byte Color;
+        public bool WireRed;
+        public bool WireGreen;
+        public bool WireBlue;
+        public byte TileColor;
         public byte Type;
         public byte Wall;
         public byte WallColor;
-        public byte Liquid;
-        public bool HalfBrick;
-        public byte Slope;
+        public LiquidType LiquidType;
+        public byte LiquidAmount;
+        public BrickStyle BrickStyle;
         public bool Actuator;
         public bool InActive;
         public Int16 U, V;
@@ -54,7 +73,7 @@ namespace TEditXNA.Terraria
         //    }
         //}
 
-        //public bool HasWire
+        //public bool WireRed
         //{
         //    set
         //    {
@@ -92,18 +111,16 @@ namespace TEditXNA.Terraria
         public void Reset()
         {
             IsActive = false;
-            HasWire = false;
-            HasWire2 = false;
-            HasWire3 = false;
-            IsLava = false;
-            IsHoney = false;
-            Color = 0;
+            WireRed = false;
+            WireGreen = false;
+            WireBlue = false;
+            TileColor = 0;
             Type = 0;
             Wall = 0;
+            LiquidType = 0;
             WallColor = 0;
-            Liquid = 0;
-            HalfBrick = false;
-            Slope = 0;
+            LiquidAmount = 0;
+            BrickStyle = 0;
             Actuator = false;
             InActive = false;
         }
@@ -112,18 +129,17 @@ namespace TEditXNA.Terraria
         {
             return IsActive.Equals(other.IsActive) &&
                 Type == other.Type &&
-                Color == other.Color &&
+                TileColor == other.TileColor &&
                 U == other.U && V == other.V &&
-                Liquid == other.Liquid &&
-                IsLava.Equals(other.IsLava) &&
-                IsHoney.Equals(other.IsHoney) &&
+                LiquidType.Equals(other.LiquidType) &&
+                LiquidAmount == other.LiquidAmount &&
                 Wall == other.Wall &&
                 WallColor == other.WallColor &&
-                HasWire.Equals(other.HasWire) &&
-                HasWire2.Equals(other.HasWire2) &&
-                HasWire3.Equals(other.HasWire3) &&
-                HalfBrick.Equals(other.HalfBrick) &&
-                Slope == other.Slope &&
+                WireRed.Equals(other.WireRed) &&
+                WireGreen.Equals(other.WireGreen) &&
+                WireBlue.Equals(other.WireBlue) &&
+                BrickStyle.Equals(other.BrickStyle) &&
+                BrickStyle == other.BrickStyle &&
                 Actuator.Equals(other.Actuator) &&
                 InActive.Equals(other.InActive);
         }
@@ -141,19 +157,18 @@ namespace TEditXNA.Terraria
             unchecked
             {
                 int hashCode = IsActive.GetHashCode();
-                hashCode = (hashCode * 397) ^ HasWire.GetHashCode();
-                hashCode = (hashCode * 397) ^ HasWire2.GetHashCode();
-                hashCode = (hashCode * 397) ^ HasWire3.GetHashCode();
-                hashCode = (hashCode * 397) ^ IsHoney.GetHashCode();
-                hashCode = (hashCode * 397) ^ IsLava.GetHashCode();
-                hashCode = (hashCode * 397) ^ Color.GetHashCode();
+                hashCode = (hashCode * 397) ^ WireRed.GetHashCode();
+                hashCode = (hashCode * 397) ^ WireGreen.GetHashCode();
+                hashCode = (hashCode * 397) ^ WireBlue.GetHashCode();
+                hashCode = (hashCode * 397) ^ LiquidType.GetHashCode();
+                hashCode = (hashCode * 397) ^ TileColor.GetHashCode();
                 hashCode = (hashCode * 397) ^ Wall.GetHashCode();
                 hashCode = (hashCode * 397) ^ Type.GetHashCode();
                 hashCode = (hashCode * 397) ^ WallColor.GetHashCode();
-                hashCode = (hashCode * 397) ^ Liquid.GetHashCode();
-                hashCode = (hashCode * 397) ^ HalfBrick.GetHashCode();
+                hashCode = (hashCode * 397) ^ LiquidAmount.GetHashCode();
+                hashCode = (hashCode * 397) ^ BrickStyle.GetHashCode();
                 hashCode = (hashCode * 397) ^ Actuator.GetHashCode();
-                hashCode = (hashCode * 397) ^ Slope.GetHashCode();
+                hashCode = (hashCode * 397) ^ BrickStyle.GetHashCode();
                 hashCode = (hashCode * 397) ^ InActive.GetHashCode();
                 hashCode = (hashCode * 397) ^ U.GetHashCode();
                 hashCode = (hashCode * 397) ^ V.GetHashCode();

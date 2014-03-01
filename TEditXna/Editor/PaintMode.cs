@@ -16,7 +16,7 @@ namespace TEditXna.Editor
         Wire2,
         [Description("Green Wire")]
         Wire3,
-        [Description("Liquid")]
+        [Description("LiquidAmount")]
         Liquid,
     }
 }

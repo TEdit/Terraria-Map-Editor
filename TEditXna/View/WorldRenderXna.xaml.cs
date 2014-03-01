@@ -323,7 +323,7 @@ namespace TEditXna.View
         private void Render(GraphicsDeviceEventArgs e)
         {
             // Clear the graphics device and texture buffer
-            //e.GraphicsDevice.Clear(Color.Black);
+            //e.GraphicsDevice.Clear(TileColor.Black);
             e.GraphicsDevice.Textures[0] = null;
 
             GenPixelTiles(e);
@@ -1082,7 +1082,7 @@ namespace TEditXna.View
                         }
                         if (_wvm.ShowWires)
                         {
-                            if (curtile.HasWire)
+                            if (curtile.WireRed)
                             {
                                 var tileTex = (Texture2D)_textureDictionary.GetMisc("Wires");
 
@@ -1092,10 +1092,10 @@ namespace TEditXna.View
                                     var dest = new Rectangle(1 + (int)((_scrollPosition.X + x) * _zoom), 1 + (int)((_scrollPosition.Y + y) * _zoom), (int)_zoom, (int)_zoom);
 
                                     byte state = 0x00;
-                                    state |= (byte)((neighborTile[e] != null && neighborTile[e].HasWire == true) ? 0x01 : 0x00);
-                                    state |= (byte)((neighborTile[n] != null && neighborTile[n].HasWire == true) ? 0x02 : 0x00);
-                                    state |= (byte)((neighborTile[w] != null && neighborTile[w].HasWire == true) ? 0x04 : 0x00);
-                                    state |= (byte)((neighborTile[s] != null && neighborTile[s].HasWire == true) ? 0x08 : 0x00);
+                                    state |= (byte)((neighborTile[e] != null && neighborTile[e].WireRed == true) ? 0x01 : 0x00);
+                                    state |= (byte)((neighborTile[n] != null && neighborTile[n].WireRed == true) ? 0x02 : 0x00);
+                                    state |= (byte)((neighborTile[w] != null && neighborTile[w].WireRed == true) ? 0x04 : 0x00);
+                                    state |= (byte)((neighborTile[s] != null && neighborTile[s].WireRed == true) ? 0x08 : 0x00);
                                     Vector2Int32 uv = new Vector2Int32(0, 0);
                                     switch (state)
                                     {
@@ -1122,7 +1122,7 @@ namespace TEditXna.View
                                     _spriteBatch.Draw(tileTex, dest, source, Color.White, 0f, default(Vector2), SpriteEffects.None, 0);
                                 }
                             }
-                            if (curtile.HasWire2)
+                            if (curtile.WireGreen)
                             {
                                 var tileTex = (Texture2D)_textureDictionary.GetMisc("Wires2");
 
@@ -1132,10 +1132,10 @@ namespace TEditXna.View
                                     var dest = new Rectangle(1 + (int)((_scrollPosition.X + x) * _zoom), 1 + (int)((_scrollPosition.Y + y) * _zoom), (int)_zoom, (int)_zoom);
 
                                     byte state = 0x00;
-                                    state |= (byte)((neighborTile[e] != null && neighborTile[e].HasWire2 == true) ? 0x01 : 0x00);
-                                    state |= (byte)((neighborTile[n] != null && neighborTile[n].HasWire2 == true) ? 0x02 : 0x00);
-                                    state |= (byte)((neighborTile[w] != null && neighborTile[w].HasWire2 == true) ? 0x04 : 0x00);
-                                    state |= (byte)((neighborTile[s] != null && neighborTile[s].HasWire2 == true) ? 0x08 : 0x00);
+                                    state |= (byte)((neighborTile[e] != null && neighborTile[e].WireGreen == true) ? 0x01 : 0x00);
+                                    state |= (byte)((neighborTile[n] != null && neighborTile[n].WireGreen == true) ? 0x02 : 0x00);
+                                    state |= (byte)((neighborTile[w] != null && neighborTile[w].WireGreen == true) ? 0x04 : 0x00);
+                                    state |= (byte)((neighborTile[s] != null && neighborTile[s].WireGreen == true) ? 0x08 : 0x00);
                                     Vector2Int32 uv = new Vector2Int32(0, 0);
                                     switch (state)
                                     {
@@ -1162,7 +1162,7 @@ namespace TEditXna.View
                                     _spriteBatch.Draw(tileTex, dest, source, Color.White, 0f, default(Vector2), SpriteEffects.None, 0);
                                 }
                             }
-                            if (curtile.HasWire3)
+                            if (curtile.WireBlue)
                             {
                                 var tileTex = (Texture2D)_textureDictionary.GetMisc("Wires3");
 
@@ -1172,10 +1172,10 @@ namespace TEditXna.View
                                     var dest = new Rectangle(1 + (int)((_scrollPosition.X + x) * _zoom), 1 + (int)((_scrollPosition.Y + y) * _zoom), (int)_zoom, (int)_zoom);
 
                                     byte state = 0x00;
-                                    state |= (byte)((neighborTile[e] != null && neighborTile[e].HasWire3 == true) ? 0x01 : 0x00);
-                                    state |= (byte)((neighborTile[n] != null && neighborTile[n].HasWire3 == true) ? 0x02 : 0x00);
-                                    state |= (byte)((neighborTile[w] != null && neighborTile[w].HasWire3 == true) ? 0x04 : 0x00);
-                                    state |= (byte)((neighborTile[s] != null && neighborTile[s].HasWire3 == true) ? 0x08 : 0x00);
+                                    state |= (byte)((neighborTile[e] != null && neighborTile[e].WireBlue == true) ? 0x01 : 0x00);
+                                    state |= (byte)((neighborTile[n] != null && neighborTile[n].WireBlue == true) ? 0x02 : 0x00);
+                                    state |= (byte)((neighborTile[w] != null && neighborTile[w].WireBlue == true) ? 0x04 : 0x00);
+                                    state |= (byte)((neighborTile[s] != null && neighborTile[s].WireBlue == true) ? 0x08 : 0x00);
                                     Vector2Int32 uv = new Vector2Int32(0, 0);
                                     switch (state)
                                     {
@@ -1205,14 +1205,14 @@ namespace TEditXna.View
                         }
                         if (_wvm.ShowLiquid)
                         {
-                            if (curtile.Liquid > 0)
+                            if (curtile.LiquidAmount > 0)
                             {
                                 Texture2D tileTex = null;
-                                if (curtile.IsLava)
+                                if (curtile.LiquidType == LiquidType.Lava)
                                 {
                                     tileTex = (Texture2D)_textureDictionary.GetLiquid(1);
                                 }
-                                else if (curtile.IsHoney)
+                                else if (curtile.LiquidType == LiquidType.Honey)
                                 {
                                     tileTex = (Texture2D)_textureDictionary.GetLiquid(11); // Not sure if yellow Desert water, or Honey, but looks fine.
                                 }
@@ -1227,7 +1227,7 @@ namespace TEditXna.View
                                     var dest = new Rectangle(1 + (int)((_scrollPosition.X + x) * _zoom), 1 + (int)((_scrollPosition.Y + y) * _zoom), (int)_zoom, (int)_zoom);
                                     float alpha = 1f;
 
-                                    if (curtile.IsLava == false)
+                                    if (curtile.LiquidType != LiquidType.Lava)
                                     {
                                         alpha = 0.5f;
                                     }
@@ -1236,14 +1236,14 @@ namespace TEditXna.View
                                         alpha = 0.85f;
                                     }
 
-                                    if (neighborTile[n] != null && neighborTile[n].Liquid > 0)
+                                    if (neighborTile[n] != null && neighborTile[n].LiquidAmount > 0)
                                     {
                                         source.Y = 8;
                                         source.Height = 8;
                                     }
                                     else
                                     {
-                                        source.Height = 4 + ((int)Math.Round(curtile.Liquid * 6f / 255f)) * 2;
+                                        source.Height = 4 + ((int)Math.Round(curtile.LiquidAmount * 6f / 255f)) * 2;
                                         dest.Height = (int)(source.Height * _zoom / 16f);
                                         dest.Y = 1 + (int)((_scrollPosition.Y + y) * _zoom + ((16 - source.Height) * _zoom / 16f));
                                     }

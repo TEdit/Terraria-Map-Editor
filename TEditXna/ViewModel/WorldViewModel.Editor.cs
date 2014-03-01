@@ -82,32 +82,12 @@ namespace TEditXna.ViewModel
                     SetPixelAutomatic(curTile, wire3: !isErase);
                     break;
                 case PaintMode.Liquid:
-                    SetPixelAutomatic(curTile, liquid: isErase ? (byte)0 : (byte)255, isLava: TilePicker.IsLava, isHoney: TilePicker.IsHoney);
+                    SetPixelAutomatic(curTile, liquid: isErase ? (byte)0 : (byte)255, liquidType: TilePicker.LiquidType);
                     break;
             }
 
-            switch (TilePicker.HalfBlockMode)
-            {
-                case HalfBlockMode.HalfBlock:
-                    curTile.HalfBrick = true;
-                    curTile.Slope = (byte)TilePicker.HalfBlockMode;
-                    break;
-                case HalfBlockMode.RampLeft:
-                    curTile.HalfBrick = true;
-                    curTile.Slope = (byte)TilePicker.HalfBlockMode;
-                    break;
-                case HalfBlockMode.RampRight:
-                    curTile.HalfBrick = true;
-                    curTile.Slope = (byte)TilePicker.HalfBlockMode;
-                    break;
-                case HalfBlockMode.Solid:
-                    curTile.HalfBrick = false;
-                    curTile.Slope = 0;
-                    break;
-                case HalfBlockMode.NoAction:
-                default:
-                    break;
-            }
+
+            curTile.BrickStyle = TilePicker.BrickStyle;
 
             Color curBgColor = GetBackgroundColor(y);
             PixelMap.SetPixelColor(x, y, Render.PixelMap.GetTileColor(CurrentWorld.Tiles[x, y], curBgColor, _showWalls, _showTiles, _showLiquid, _showWires));
@@ -199,13 +179,13 @@ namespace TEditXna.ViewModel
                                        int? tile = null,
                                        int? wall = null,
                                        byte? liquid = null,
-                                       bool? isLava = null,
+                                       LiquidType? liquidType = null,
                                        bool? wire = null,
                                        short? u = null,
                                        short? v = null,
                                        bool? wire2 = null,
                                        bool? wire3 = null,
-                                       bool? isHoney = null)
+                                       BrickStyle? brickStyle = null)
         {
             // Set Tile Data
             if (u != null)
@@ -227,32 +207,36 @@ namespace TEditXna.ViewModel
                 }
             }
 
+            if (brickStyle != null)
+            {
+                curTile.BrickStyle = (BrickStyle) brickStyle;
+            }
+
             if (wall != null)
                 curTile.Wall = (byte)wall;
 
             if (liquid != null)
             {
-                curTile.Liquid = (byte)liquid;
+                curTile.LiquidAmount = (byte)liquid;
             }
 
-            if (isLava != null || isHoney != null)
+            if (liquidType != null)
             {
-                curTile.IsLava = isLava ?? false;
-                curTile.IsHoney = isHoney ?? false;
+                curTile.LiquidType = (LiquidType)liquidType;
             }
 
             if (wire != null)
-                curTile.HasWire = (bool)wire;
+                curTile.WireRed = (bool)wire;
 
             if (wire2 != null)
-                curTile.HasWire2 = (bool)wire2;
+                curTile.WireGreen = (bool)wire2;
 
             if (wire3 != null)
-                curTile.HasWire3 = (bool)wire3;
+                curTile.WireBlue = (bool)wire3;
 
             if (curTile.IsActive)
                 if (World.TileProperties[curTile.Type].IsSolid)
-                    curTile.Liquid = 0;
+                    curTile.LiquidAmount = 0;
         }
 
         private PixelMapManager RenderEntireWorld()

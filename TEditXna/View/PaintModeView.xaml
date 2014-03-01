@@ -50,7 +50,7 @@
         <Style TargetType="{x:Type GroupBox}" x:Key="LiquidVisibleStyle" BasedOn="{StaticResource {x:Type GroupBox}}">
             <Setter Property="Visibility" Value="Collapsed" />
             <Style.Triggers>
-                <DataTrigger Binding="{Binding TilePicker.PaintMode}" Value="Liquid">
+                <DataTrigger Binding="{Binding TilePicker.PaintMode}" Value="LiquidAmount">
                     <Setter Property="Visibility" Value="Visible" />
                 </DataTrigger>
             </Style.Triggers>
@@ -119,7 +119,7 @@
                       IsTextSearchEnabled="True" TextSearch.TextPath="Name" />
                 </bccl:AutoGrid>
             </GroupBox>
-            <GroupBox Header="Liquid" Style="{StaticResource LiquidVisibleStyle}">
+            <GroupBox Header="LiquidAmount" Style="{StaticResource LiquidVisibleStyle}">
                 <StackPanel Visibility="{Binding ElementName=LiquidText, Path=Visibility}" Margin="3">
                     <RadioButton Content="Water" IsChecked="{Binding Path=TilePicker.IsWater, Mode=TwoWay}" />
                     <RadioButton Content="Lava" IsChecked="{Binding Path=TilePicker.IsLava, Mode=TwoWay}" />

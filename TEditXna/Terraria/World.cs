@@ -401,10 +401,10 @@ namespace TEditXNA.Terraria
                     bw.Write(curTile.V);
                 }
 
-                if (curTile.Color > 0)
+                if (curTile.TileColor > 0)
                 {
                     bw.Write(true);
-                    bw.Write(curTile.Color);
+                    bw.Write(curTile.TileColor);
                 }
                 else
                     bw.Write(false);
@@ -425,21 +425,21 @@ namespace TEditXNA.Terraria
             else
                 bw.Write(false);
 
-            if ((int)curTile.Liquid > 0)
+            if ((int)curTile.LiquidAmount > 0)
             {
                 bw.Write(true);
-                bw.Write(curTile.Liquid);
-                bw.Write(curTile.IsLava);
-                bw.Write(curTile.IsHoney);
+                bw.Write(curTile.LiquidAmount);
+                bw.Write((bool)(curTile.LiquidType == LiquidType.Lava));
+                bw.Write((bool)(curTile.LiquidType == LiquidType.Honey));
             }
             else
                 bw.Write(false);
 
-            bw.Write(curTile.HasWire);
-            bw.Write(curTile.HasWire2);
-            bw.Write(curTile.HasWire3);
-            bw.Write(curTile.HalfBrick);
-            bw.Write(curTile.Slope);
+            bw.Write(curTile.WireRed);
+            bw.Write(curTile.WireGreen);
+            bw.Write(curTile.WireBlue);
+            bw.Write((bool)(curTile.BrickStyle != 0));
+            bw.Write((byte)curTile.BrickStyle);
             bw.Write(curTile.Actuator);
             bw.Write(curTile.InActive);
         }
@@ -1023,7 +1023,7 @@ namespace TEditXNA.Terraria
 
                 if (version >= 48 && b.ReadBoolean())
                 {
-                    tile.Color = b.ReadByte();
+                    tile.TileColor = b.ReadByte();
                 }
             }
 
@@ -1040,37 +1040,38 @@ namespace TEditXNA.Terraria
 
             if (b.ReadBoolean())
             {
-                tile.Liquid = b.ReadByte();
-                tile.IsLava = b.ReadBoolean();
+                tile.LiquidType = LiquidType.Water;
+                tile.LiquidAmount = b.ReadByte();
+                if (b.ReadBoolean()) tile.LiquidType = LiquidType.Lava;
                 if (version >= 51)
                 {
-                    tile.IsHoney = b.ReadBoolean();
+                    if (b.ReadBoolean()) tile.LiquidType = LiquidType.Honey;
                 }
             }
 
             if (version >= 33)
             {
-                tile.HasWire = b.ReadBoolean();
+                tile.WireRed = b.ReadBoolean();
             }
             if (version >= 43)
             {
-                tile.HasWire2 = b.ReadBoolean();
-                tile.HasWire3 = b.ReadBoolean();
+                tile.WireGreen = b.ReadBoolean();
+                tile.WireBlue = b.ReadBoolean();
             }
 
             if (version >= 41)
             {
-                tile.HalfBrick = b.ReadBoolean();
+                bool isHalfBrick = b.ReadBoolean();
 
                 if (tileProperty == null || !tileProperty.IsSolid)
-                    tile.HalfBrick = false;
+                    isHalfBrick = false;
 
                 if (version >= 49)
                 {
-                    tile.Slope = b.ReadByte();
+                    tile.BrickStyle = (BrickStyle)b.ReadByte();
 
                     if (tileProperty == null || !tileProperty.IsSolid)
-                        tile.Slope = 0;
+                        tile.BrickStyle = 0;
                 }
             }
             if (version >= 42)

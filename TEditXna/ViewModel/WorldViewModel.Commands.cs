@@ -301,9 +301,7 @@ namespace TEditXna.ViewModel
         {
 
             var ofd = new OpenFileDialog();
-            ofd.Filter = "TEdit Schematic File|*.TEditSch|Png Image (Real Color)|*.png|Bitmap Image (Real Color)|*.bmp";
-            if (isFalseColor)
-                ofd.Filter = "Png Image (False Color)|*.png";
+            ofd.Filter = "TEdit Schematic File|*.TEditSch|Png Image (Real TileColor)|*.png|Bitmap Image (Real TileColor)|*.bmp";
             ofd.DefaultExt = "TEdit Schematic File|*.TEditSch";
             ofd.Title = "Import TEdit Schematic File";
             ofd.InitialDirectory = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), @"My Games\Terraria\Schematics");
@@ -312,14 +310,14 @@ namespace TEditXna.ViewModel
             ofd.Multiselect = false;
             if ((bool)ofd.ShowDialog())
             {
-                _clipboard.Import(ofd.FileName, isFalseColor);
+                _clipboard.Import(ofd.FileName);
             }
         }
 
         private void ExportSchematicFile(ClipboardBuffer buffer)
         {
             var sfd = new SaveFileDialog();
-            sfd.Filter = "TEdit Schematic File|*.TEditSch|Png Image (False Color)|*.png|Png Image (Real Color)|*.png";
+            sfd.Filter = "TEdit Schematic File|*.TEditSch|Png Image (Real TileColor)|*.png";
             sfd.Title = "Export Schematic File";
             sfd.InitialDirectory = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), @"My Games\Terraria\Schematics");
             if (!Directory.Exists(sfd.InitialDirectory))
@@ -329,7 +327,7 @@ namespace TEditXna.ViewModel
             {
                 try
                 {
-                    buffer.Save(sfd.FileName, (sfd.FilterIndex == 2));
+                    buffer.Save(sfd.FileName);
                 }
                 catch (Exception ex)
                 {

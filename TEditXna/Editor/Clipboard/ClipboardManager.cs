@@ -77,21 +77,12 @@ namespace TEditXna.Editor.Clipboard
                 LoadedBuffers.Remove(item);
         }
 
-        public void Import(string filename, bool isFalseColor = false)
+        public void Import(string filename)
         {
             ClipboardBuffer buffer = null;
             try
             {
-
-                if (isFalseColor && string.Equals(".png", Path.GetExtension(filename), StringComparison.InvariantCultureIgnoreCase))
-                {
-                    buffer = ClipboardBuffer.LoadFalseColor(filename);
-                }
-                else
-                {
-                    buffer = ClipboardBuffer.Load(filename);
-                }
-
+                buffer = ClipboardBuffer.Load(filename);
 
             }
             catch (Exception ex)
@@ -177,7 +168,7 @@ namespace TEditXna.Editor.Clipboard
                         if (PasteTiles)
                         {
                             curTile = (Tile)buffer.Tiles[x, y].Clone();
-                            curTile.Color = buffer.Tiles[x, y].Color;
+                            curTile.TileColor = buffer.Tiles[x, y].TileColor;
                         }
                         else
                         {
@@ -185,17 +176,16 @@ namespace TEditXna.Editor.Clipboard
                             curTile = (Tile)world.Tiles[worldX, worldY].Clone();
                             curTile.Wall = buffer.Tiles[x, y].Wall;
                             curTile.WallColor = buffer.Tiles[x, y].WallColor;
-                            curTile.Liquid = buffer.Tiles[x, y].Liquid;
-                            curTile.IsLava = buffer.Tiles[x, y].IsLava;
-                            curTile.IsHoney = buffer.Tiles[x, y].IsHoney;
-                            curTile.HasWire = buffer.Tiles[x, y].HasWire;
-                            curTile.HasWire2 = buffer.Tiles[x, y].HasWire2;
-                            curTile.HasWire3 = buffer.Tiles[x, y].HasWire3;
+                            curTile.LiquidAmount = buffer.Tiles[x, y].LiquidAmount;
+                            curTile.LiquidType = buffer.Tiles[x, y].LiquidType;
+                            curTile.WireRed = buffer.Tiles[x, y].WireRed;
+                            curTile.WireGreen = buffer.Tiles[x, y].WireGreen;
+                            curTile.WireBlue = buffer.Tiles[x, y].WireBlue;
                             curTile.Actuator = buffer.Tiles[x, y].Actuator;
                             curTile.InActive = buffer.Tiles[x, y].InActive;
                         }
 
-                        if (!PasteEmpty && (curTile.Liquid == 0 && !curTile.IsActive && curTile.Wall == 0 && !curTile.HasWire))
+                        if (!PasteEmpty && (curTile.LiquidAmount == 0 && !curTile.IsActive && curTile.Wall == 0 && !curTile.WireRed))
                         {
                             // skip tiles that are empty if paste empty is not true
                             continue;
@@ -209,16 +199,15 @@ namespace TEditXna.Editor.Clipboard
                         if (!PasteLiquids)
                         {
                             // if pasting liquids is disabled, use any existing liquid
-                            curTile.Liquid = world.Tiles[worldX, worldY].Liquid;
-                            curTile.IsLava = world.Tiles[worldX, worldY].IsLava;
-                            curTile.IsHoney = world.Tiles[worldX, worldY].IsHoney;
+                            curTile.LiquidAmount = world.Tiles[worldX, worldY].LiquidAmount;
+                            curTile.LiquidType = world.Tiles[worldX, worldY].LiquidType;
                         }
                         if (!PasteWires)
                         {
                             // if pasting wires is disabled, use any existing wire
-                            curTile.HasWire = buffer.Tiles[x, y].HasWire;
-                            curTile.HasWire2 = buffer.Tiles[x, y].HasWire2;
-                            curTile.HasWire3 = buffer.Tiles[x, y].HasWire3;
+                            curTile.WireRed = buffer.Tiles[x, y].WireRed;
+                            curTile.WireGreen = buffer.Tiles[x, y].WireGreen;
+                            curTile.WireBlue = buffer.Tiles[x, y].WireBlue;
                             curTile.Actuator = buffer.Tiles[x, y].Actuator;
                             curTile.InActive = buffer.Tiles[x, y].InActive;
                         }
