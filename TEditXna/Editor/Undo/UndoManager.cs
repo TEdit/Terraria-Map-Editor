@@ -60,7 +60,7 @@ namespace TEditXna.Editor.Undo
 
         public void SaveUndo()
         {
-            ValidateAndRemoveChests();
+            //ValidateAndRemoveChests();
             _maxIndex = _currentIndex;
             _buffer.Write(string.Format(UndoFile, _currentIndex));
             _currentIndex++;
@@ -120,7 +120,7 @@ namespace TEditXna.Editor.Undo
             }
             else if (lastTile.Tile.Type == 55 || lastTile.Tile.Type == 85)
             {
-                if (existingLastTile.Type != 55 && existingLastTile.Type != 85 || !existingLastTile.IsActive)
+                if ((existingLastTile.Type != 55 && existingLastTile.Type != 85) || !existingLastTile.IsActive)
                 {
                     var cursign = _wvm.CurrentWorld.GetSignAtTile(lastTile.Location.X, lastTile.Location.Y);
                     if (cursign != null)
