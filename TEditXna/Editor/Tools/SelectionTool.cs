@@ -14,6 +14,7 @@ namespace TEditXna.Editor.Tools
         private readonly WorldViewModel _wvm;
         private bool _isActive;
         private Vector2Int32 _startSelection;
+        private double _previewScale = 1;
 
         public SelectionTool(WorldViewModel worldViewModel)
         {
@@ -66,6 +67,12 @@ namespace TEditXna.Editor.Tools
 
         public void MouseWheel(TileMouseState e)
         {
+        }
+
+        public double PreviewScale
+        {
+            get { return _previewScale; }
+            protected set { _previewScale = value; }
         }
 
         public WriteableBitmap PreviewTool()

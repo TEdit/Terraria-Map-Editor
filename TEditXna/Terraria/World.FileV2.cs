@@ -48,7 +48,7 @@ namespace TEditXNA.Terraria
             sectionPointers[0] = SaveSectionHeader(world, bw);
             sectionPointers[1] = SaveHeaderFlags(world, bw);
             OnProgressChanged(null, new ProgressChangedEventArgs(0, "Save UndoTiles..."));
-            sectionPointers[2] = SaveTiles(world, bw);
+            sectionPointers[2] = SaveTiles(world.Tiles, world.TilesWide, world.TilesHigh, bw);
 
             OnProgressChanged(null, new ProgressChangedEventArgs(100, "Save Chests..."));
             sectionPointers[3] = SaveChests(world.Chests, bw);
@@ -62,14 +62,14 @@ namespace TEditXNA.Terraria
             OnProgressChanged(null, new ProgressChangedEventArgs(100, "Save Complete."));
         }
 
-        public static int SaveTiles(World world, BinaryWriter bw)
+        public static int SaveTiles(Tile[,] tiles, int maxX, int maxY, BinaryWriter bw)
         {
-            Tile[,] tiles = world.Tiles;
-            for (int x = 0; x < world.TilesWide; x++)
+            for (int x = 0; x < maxX; x++)
             {
-                OnProgressChanged(null, new ProgressChangedEventArgs(x.ProgressPercentage(world.TilesWide), "Loading UndoTiles..."));
+                OnProgressChanged(null, new ProgressChangedEventArgs(x.ProgressPercentage(maxX), "Saving Tiles..."));
 
-                for (int y = 0; y < world.TilesHigh; y++)
+
+                for (int y = 0; y < maxY; y++)
                 {
                     Tile tile = tiles[x, y];
 
@@ -83,7 +83,7 @@ namespace TEditXNA.Terraria
 
                     short rle = 0;
                     int nextY = y + 1;
-                    int remainingY = world.TilesHigh - y - 1;
+                    int remainingY = maxY - y - 1;
                     while (remainingY > 0 && tile.Equals(tiles[x, nextY]))
                     {
                         rle = (short)(rle + 1);
@@ -482,7 +482,7 @@ namespace TEditXNA.Terraria
                 throw new FileFormatException("Unexpected Position: Invalid Header Flags");
 
             OnProgressChanged(null, new ProgressChangedEventArgs(0, "Loading UndoTiles..."));
-            LoadTileData(b, w);
+            w.Tiles = LoadTileData(b, w.TilesWide, w.TilesHigh);
             if (b.BaseStream.Position != sectionPointers[2])
                 throw new FileFormatException("Unexpected Position: Invalid Tile Data");
 
@@ -510,7 +510,7 @@ namespace TEditXNA.Terraria
                     w.Signs.Add(sign);
                 }
             }
-            
+
             if (b.BaseStream.Position != sectionPointers[4])
                 throw new FileFormatException("Unexpected Position: Invalid Sign Data");
 
@@ -525,33 +525,35 @@ namespace TEditXNA.Terraria
             OnProgressChanged(null, new ProgressChangedEventArgs(100, "Load Complete."));
         }
 
-        public static void LoadTileData(BinaryReader r, World w)
+        public static Tile[,] LoadTileData(BinaryReader r, int maxX, int maxY)
         {
-            w.Tiles = new Tile[w.TilesWide, w.TilesHigh];
+            var tiles = new Tile[maxX, maxY];
 
             int rle;
-            for (int x = 0; x < w.TilesWide; x++)
+            for (int x = 0; x < maxX; x++)
             {
                 OnProgressChanged(null,
-                    new ProgressChangedEventArgs(x.ProgressPercentage(w.TilesWide), "Loading UndoTiles..."));
+                    new ProgressChangedEventArgs(x.ProgressPercentage(maxX), "Loading UndoTiles..."));
 
-                for (int y = 0; y < w.TilesHigh; y++)
+                for (int y = 0; y < maxY; y++)
                 {
                     Tile tile = DeserializeTileData(r, out rle);
 
-                    w.Tiles[x, y] = tile;
+                    tiles[x, y] = tile;
                     while (rle > 0)
                     {
                         y++;
 
-                        if (y > w.TilesHigh)
+                        if (y > maxY)
                             throw new FileFormatException(string.Format("Invalid Tile Data: RLE Compression outside of bounds [{0},{1}]", x, y));
 
-                        w.Tiles[x, y] = (Tile)tile.Clone();
+                        tiles[x, y] = (Tile)tile.Clone();
                         rle--;
                     }
                 }
             }
+
+            return tiles;
         }
 
         public static Tile DeserializeTileData(BinaryReader r, out int rle)

@@ -37,8 +37,10 @@ namespace TEditXna.Editor.Tools
         public override WriteableBitmap PreviewTool()
         {
             if (_wvm.Clipboard.Buffer != null)
+            {
+                PreviewScale = _wvm.Clipboard.Buffer.RenderScale;
                 return _wvm.Clipboard.Buffer.Preview;
-
+            }
             return base.PreviewTool();
         }
 

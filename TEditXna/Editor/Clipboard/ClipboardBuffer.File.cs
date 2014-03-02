@@ -16,12 +16,100 @@ namespace TEditXna.Editor.Clipboard
     {
         public void Save(string filename)
         {
-            throw new NotImplementedException();
+            // Catch pngs that are real color
+            if (string.Equals(".png", Path.GetExtension(filename), StringComparison.InvariantCultureIgnoreCase))
+            {
+                Preview.SavePng(filename);
+                return;
+            }
+
+            Name = Path.GetFileNameWithoutExtension(filename);
+            using (var stream = new FileStream(filename, FileMode.Create))
+            {
+                using (var bw = new BinaryWriter(stream))
+                {
+                    SaveV2(bw);
+                    bw.Close();
+                }
+            }
         }
 
-        private static ClipboardBuffer LoadV2(BinaryReader binaryReader, string name, uint tVersion, int version)
+        private void SaveV1(BinaryWriter bw)
         {
-            throw new NotImplementedException();
+            bw.Write(Name);
+            bw.Write(World.CompatibleVersion);
+            bw.Write(Size.X);
+            bw.Write(Size.Y);
+
+            for (int x = 0; x < Size.X; x++)
+            {
+                int rle = 0;
+
+                for (int y = 0; y < Size.Y; y = y + rle + 1)
+                {
+                    var curTile = Tiles[x, y];
+
+                    World.WriteTileDataToStreamV1(curTile, bw);
+
+                    int rleTemp = 1;
+                    while (y + rleTemp < Size.Y && curTile.Equals(Tiles[x, (y + rleTemp)]))
+                        ++rleTemp;
+                    rle = rleTemp - 1;
+                    bw.Write((short)rle);
+                }
+            }
+            World.WriteChestDataToStreamV1(Chests, bw);
+            World.WriteSignDataToStreamV1(Signs, bw);
+
+            bw.Write(Name);
+            bw.Write(World.CompatibleVersion);
+            bw.Write(Size.X);
+            bw.Write(Size.Y);
+        }
+
+        private void SaveV2(BinaryWriter bw)
+        {
+            bw.Write(Name);
+            bw.Write(World.CompatibleVersion);
+            bw.Write(Size.X);
+            bw.Write(Size.Y);
+
+            World.SaveTiles(Tiles, this.Size.X, this.Size.Y, bw);
+            World.SaveChests(Chests, bw);
+            World.SaveSigns(Signs, bw);
+
+            bw.Write(Name);
+            bw.Write(World.CompatibleVersion);
+            bw.Write(Size.X);
+            bw.Write(Size.Y);
+        }
+
+        private static ClipboardBuffer LoadV2(BinaryReader b, string name, uint tVersion, int version)
+        {
+            int sizeX = b.ReadInt32();
+            int sizeY = b.ReadInt32();
+            var buffer = new ClipboardBuffer(new Vector2Int32(sizeX, sizeY));
+            buffer.Name = name;
+
+            buffer.Tiles = World.LoadTileData(b, sizeX, sizeY);
+            buffer.Chests.AddRange(World.LoadChestData(b));
+            buffer.Signs.AddRange(World.LoadSignData(b));
+
+            string verifyName = b.ReadString();
+            int verifyVersion = b.ReadInt32();
+            int verifyX = b.ReadInt32();
+            int verifyY = b.ReadInt32();
+            if (buffer.Name == verifyName &&
+                version == verifyVersion &&
+                buffer.Size.X == verifyX &&
+                buffer.Size.Y == verifyY)
+            {
+                // valid;
+                return buffer;
+            }
+            b.Close();
+
+            return buffer;
         }
 
         public static ClipboardBuffer Load(string filename)
@@ -77,55 +165,6 @@ namespace TEditXna.Editor.Clipboard
         }
 
         #region Old Versions
-
-        public void SaveV1(string filename)
-        {
-            // Catch pngs that are real color
-            if (string.Equals(".png", Path.GetExtension(filename), StringComparison.InvariantCultureIgnoreCase))
-            {
-                Preview.SavePng(filename);
-                return;
-            }
-
-            Name = Path.GetFileNameWithoutExtension(filename);
-            using (var stream = new FileStream(filename, FileMode.Create))
-            {
-                using (var bw = new BinaryWriter(stream))
-                {
-                    bw.Write(Name);
-                    bw.Write(World.CompatibleVersion);
-                    bw.Write(Size.X);
-                    bw.Write(Size.Y);
-
-                    for (int x = 0; x < Size.X; x++)
-                    {
-                        int rle = 0;
-
-                        for (int y = 0; y < Size.Y; y = y + rle + 1)
-                        {
-                            var curTile = Tiles[x, y];
-
-                            World.WriteTileDataToStreamV1(curTile, bw);
-
-                            int rleTemp = 1;
-                            while (y + rleTemp < Size.Y && curTile.Equals(Tiles[x, (y + rleTemp)]))
-                                ++rleTemp;
-                            rle = rleTemp - 1;
-                            bw.Write((short)rle);
-                        }
-                    }
-                    World.WriteChestDataToStreamV1(Chests, bw);
-                    World.WriteSignDataToStreamV1(Signs, bw);
-
-                    bw.Write(Name);
-                    bw.Write(World.CompatibleVersion);
-                    bw.Write(Size.X);
-                    bw.Write(Size.Y);
-                    bw.Close();
-
-                }
-            }
-        }
 
         public static ClipboardBuffer LoadFromImage(string filename)
         {

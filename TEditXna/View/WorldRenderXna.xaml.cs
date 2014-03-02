@@ -1434,7 +1434,7 @@ namespace TEditXna.View
                     Color.White,
                     0,
                     Vector2.Zero,
-                    _zoom / 16,
+                    (_zoom / 16) * (float)_wvm.ActiveTool.PreviewScale,
                     SpriteEffects.None,
                     0);
             }
@@ -1447,7 +1447,7 @@ namespace TEditXna.View
                     Color.White,
                     0,
                     Vector2.Zero,
-                    _zoom,
+                    _zoom * (float)_wvm.ActiveTool.PreviewScale,
                     SpriteEffects.None,
                     0);
             }

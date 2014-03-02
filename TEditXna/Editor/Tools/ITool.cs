@@ -13,7 +13,7 @@ namespace TEditXna.Editor.Tools
         void MouseMove(TileMouseState e);
         void MouseUp(TileMouseState e);
         void MouseWheel(TileMouseState e);
-
+        double PreviewScale { get; }
         WriteableBitmap PreviewTool();
     }
 }
