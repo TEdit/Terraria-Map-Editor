@@ -2046,7 +2046,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="-3" Name="Gold Shortsword"/>
     <Item Id="-2" Name="Gold Broadsword"/>
     <Item Id="-1" Name="Gold Pickaxe"/>
-    <Item Id="0" Name=""/>
+    <Item Id="0" Name="[empty]"/>
     <Item Id="1" Name="Iron Pickaxe"/>
     <Item Id="2" Name="Dirt Block"/>
     <Item Id="3" Name="Stone Block"/>
@@ -2719,11 +2719,11 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="670" Name="Ice Boomerang"/>
     <Item Id="671" Name="Keybrand"/>
     <Item Id="672" Name="Cutlass"/>
-    <Item Id="673" Name="Angel Statue"/>
+    <Item Id="673" Name="Icemourne"/>
     <Item Id="674" Name="True Excalibur"/>
     <Item Id="675" Name="True Night's Edge"/>
     <Item Id="676" Name="Frostbrand"/>
-    <Item Id="677" Name="Angel Statue"/>
+    <Item Id="677" Name="Scythe"/>
     <Item Id="678" Name="Red Potion"/>
     <Item Id="679" Name="Tactical Shotgun"/>
     <Item Id="680" Name="Ivy Chest"/>
@@ -2904,7 +2904,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="855" Name="Lucky Coin"/>
     <Item Id="856" Name="Unicorn on a Stick"/>
     <Item Id="857" Name="Sandstorm in a Bottle"/>
-    <Item Id="858" Name="Angel Statue"/>
+    <Item Id="858" Name="bl"/>
     <Item Id="859" Name="Beach Ball"/>
     <Item Id="860" Name="Charm of Myths"/>
     <Item Id="861" Name="Moon Shell"/>
@@ -3740,7 +3740,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="1691" Name="Unicorn Banner"/>
     <Item Id="1692" Name="Vampire Banner"/>
     <Item Id="1693" Name="Vulture Banner"/>
-    <Item Id="1694" Name="Nypmh Banner"/>
+    <Item Id="1694" Name="Nymph Banner"/>
     <Item Id="1695" Name="Werewolf Banner"/>
     <Item Id="1696" Name="Wolf Banner"/>
     <Item Id="1697" Name="World Feeder Banner"/>
@@ -3965,7 +3965,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="1916" Name="Christmas Hook"/>
     <Item Id="1917" Name="Candy Cane Pickaxe"/>
     <Item Id="1918" Name="Fruitcake Chakram"/>
-    <Item Id="1919" Name="Suger Cookie"/>
+    <Item Id="1919" Name="Sugar Cookie"/>
     <Item Id="1920" Name="Gingerbread Cookie"/>
     <Item Id="1921" Name="Hand Warmer"/>
     <Item Id="1922" Name="Coal"/>
@@ -3978,9 +3978,9 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="1929" Name="Chain Gun"/>
     <Item Id="1930" Name="Razorpine"/>
     <Item Id="1931" Name="Blizzard Staff"/>
-    <Item Id="1932" Name="Mrs. Clause Hat"/>
-    <Item Id="1933" Name="Mrs. Clause Shirt"/>
-    <Item Id="1934" Name="Mrs. Clause Heels"/>
+    <Item Id="1932" Name="Mrs. Claus Hat"/>
+    <Item Id="1933" Name="Mrs. Claus Shirt"/>
+    <Item Id="1934" Name="Mrs. Claus Heels"/>
     <Item Id="1935" Name="Parka Hood"/>
     <Item Id="1936" Name="Parka Coat"/>
     <Item Id="1937" Name="Parka Pants"/>
@@ -4005,13 +4005,336 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="1956" Name="Bluegreen Wallpaper"/>
     <Item Id="1957" Name="Grinch Finger Wallpaper"/>
     <Item Id="1958" Name="Naughty Present"/>
-    <Item Id="1959" Name="Baby Grinch Mischief's Whistle"/>
+    <Item Id="1959" Name="Baby Grinch's Mischief Whistle"/>
     <Item Id="1960" Name="Ice Queen Trophy"/>
     <Item Id="1961" Name="Santa-NK1 Trophy"/>
     <Item Id="1962" Name="Everscream Trophy"/>
     <Item Id="1963" Name="Music Box (Pumpkin Moon)"/>
-    <Item Id="1964" Name="Music Box (Alt Ungerground)"/>
+    <Item Id="1964" Name="Music Box (Alt Underground)"/>
     <Item Id="1965" Name="Music Box (Frost Moon)"/>
+    <Item Id="1966" Name="Brown Paint"/>
+    <Item Id="1967" Name="Shadow Paint"/>
+    <Item Id="1968" Name="Negative Paint"/>
+    <Item Id="1969" Name="Team Dye"/>
+    <Item Id="1970" Name="Amethyst Gemspark Block"/>
+    <Item Id="1971" Name="Topaz Gemspark Block"/>
+    <Item Id="1972" Name="Sapphire Gemspark Block"/>
+    <Item Id="1973" Name="Emerald Gemspark Block"/>
+    <Item Id="1974" Name="Ruby Gemspark Block"/>
+    <Item Id="1975" Name="Diamond Gemspark Block"/>
+    <Item Id="1976" Name="Amber Gemspark Block"/>
+    <Item Id="1977" Name="Life Hair Dye"/>
+    <Item Id="1978" Name="Mana Hair Dye"/>
+    <Item Id="1979" Name="Depth Hair Dye"/>
+    <Item Id="1980" Name="Money Hair Dye"/>
+    <Item Id="1981" Name="Time Hair Dye"/>
+    <Item Id="1982" Name="Team Hair Dye"/>
+    <Item Id="1983" Name="Biome Hair Dye"/>
+    <Item Id="1984" Name="Party Hair Dye"/>
+    <Item Id="1985" Name="Rainbow Hair Dye"/>
+    <Item Id="1986" Name="Speed Hair Dye"/>
+    <Item Id="1987" Name="Angel Halo"/>
+    <Item Id="1988" Name="Fez"/>
+    <Item Id="1989" Name="Womannequin"/>
+    <Item Id="1990" Name="Hair Dye Remover"/>
+    <Item Id="1991" Name="Bug Net"/>
+    <Item Id="1992" Name="Firefly"/>
+    <Item Id="1993" Name="Firefly in a Bottle"/>
+    <Item Id="1994" Name="Monarch Butterfly"/>
+    <Item Id="1995" Name="Purple Emperor Butterfly"/>
+    <Item Id="1996" Name="Red Admiral Butterfly"/>
+    <Item Id="1997" Name="Ulysses Butterfly"/>
+    <Item Id="1998" Name="Sulphur Butterfly"/>
+    <Item Id="1999" Name="Tree Nymph Butterfly"/>
+    <Item Id="2000" Name="Zebra Swallowtail Butterfly"/>
+    <Item Id="2001" Name="Julia Butterfly"/>
+    <Item Id="2002" Name="Worm"/>
+    <Item Id="2003" Name="Mouse"/>
+    <Item Id="2004" Name="Lightning Bug"/>
+    <Item Id="2005" Name="Lightning Bug in a Bottle"/>
+    <Item Id="2006" Name="Snail"/>
+    <Item Id="2007" Name="Glowing Snail"/>
+    <Item Id="2008" Name="Fancy Grey Wallpaper"/>
+    <Item Id="2009" Name="Ice Floe Wallpaper"/>
+    <Item Id="2010" Name="Music Wallpaper"/>
+    <Item Id="2011" Name="Purple Rain Wallpaper"/>
+    <Item Id="2012" Name="Rainbow Wallpaper"/>
+    <Item Id="2013" Name="Sparkle Stone Wallpaper"/>
+    <Item Id="2014" Name="Starlit Heaven Wallpaper"/>
+    <Item Id="2015" Name="Bird"/>
+    <Item Id="2016" Name="Blue Jay"/>
+    <Item Id="2017" Name="Cardinal"/>
+    <Item Id="2018" Name="Squirrel"/>
+    <Item Id="2019" Name="Bunny"/>
+    <Item Id="2020" Name="Cactus Bookcase"/>
+    <Item Id="2021" Name="Ebonwood Bookcase"/>
+    <Item Id="2022" Name="Flesh Bookcase"/>
+    <Item Id="2023" Name="Honey Bookcase"/>
+    <Item Id="2024" Name="Steampunk Bookcase"/>
+    <Item Id="2025" Name="Glass Bookcase"/>
+    <Item Id="2026" Name="Rich Mahogany Bookcase"/>
+    <Item Id="2027" Name="Pearlwood Bookcase"/>
+    <Item Id="2028" Name="Spooky Bookcase"/>
+    <Item Id="2029" Name="Skyware Bookcase"/>
+    <Item Id="2030" Name="Lihzahrd Bookcase"/>
+    <Item Id="2031" Name="Frozen Bookcase"/>
+    <Item Id="2032" Name="Cactus Lantern"/>
+    <Item Id="2033" Name="Ebonwood Lantern"/>
+    <Item Id="2034" Name="Flesh Lantern"/>
+    <Item Id="2035" Name="Honey Lantern"/>
+    <Item Id="2036" Name="Steampunk Lantern"/>
+    <Item Id="2037" Name="Glass Lantern"/>
+    <Item Id="2038" Name="Rich Mahogany Lantern"/>
+    <Item Id="2039" Name="Pearlwood Lantern"/>
+    <Item Id="2040" Name="Frozen Lantern"/>
+    <Item Id="2041" Name="Lihzahrd Lantern"/>
+    <Item Id="2042" Name="Skyware Lantern"/>
+    <Item Id="2043" Name="Spooky Lantern"/>
+    <Item Id="2044" Name="Frozen Door"/>
+    <Item Id="2045" Name="Cactus Candle"/>
+    <Item Id="2046" Name="Ebonwood Candle"/>
+    <Item Id="2047" Name="Flesh Candle"/>
+    <Item Id="2048" Name="Glass Candle"/>
+    <Item Id="2049" Name="Frozen Candle"/>
+    <Item Id="2050" Name="Rich Mahogany Candle"/>
+    <Item Id="2051" Name="Pearlwood Candle"/>
+    <Item Id="2052" Name="Lihzahrd Candle"/>
+    <Item Id="2053" Name="Skyware Candle"/>
+    <Item Id="2054" Name="Pumpkin Candle"/>
+    <Item Id="2055" Name="Cactus Chandelier"/>
+    <Item Id="2056" Name="Ebonwood Chandelier"/>
+    <Item Id="2057" Name="Flesh Chandelier"/>
+    <Item Id="2058" Name="Honey Chandelier"/>
+    <Item Id="2059" Name="Frozen Chandelier"/>
+    <Item Id="2060" Name="Rich Mahogany Chandelier"/>
+    <Item Id="2061" Name="Pearlwood Chandelier"/>
+    <Item Id="2062" Name="Lihzahrd Chandelier"/>
+    <Item Id="2063" Name="Skyware Chandelier"/>
+    <Item Id="2064" Name="Spooky Chandelier"/>
+    <Item Id="2065" Name="Glass Chandelier"/>
+    <Item Id="2066" Name="Cactus Bed"/>
+    <Item Id="2067" Name="Flesh Bed"/>
+    <Item Id="2068" Name="Frozen Bed"/>
+    <Item Id="2069" Name="Lihzahrd Bed"/>
+    <Item Id="2070" Name="Skyware Bed"/>
+    <Item Id="2071" Name="Spooky Bed"/>
+    <Item Id="2072" Name="Cactus Bathtub"/>
+    <Item Id="2073" Name="Ebonwood Bathtub"/>
+    <Item Id="2074" Name="Flesh Bathtub"/>
+    <Item Id="2075" Name="Glass Bathtub"/>
+    <Item Id="2076" Name="Frozen Bathtub"/>
+    <Item Id="2077" Name="Rich Mahogany Bathtub"/>
+    <Item Id="2078" Name="Pearlwood Bathtub"/>
+    <Item Id="2079" Name="Lihzahrd Bathtub"/>
+    <Item Id="2080" Name="Skyware Bathtub"/>
+    <Item Id="2081" Name="Spooky Bathtub"/>
+    <Item Id="2082" Name="Cactus Lamp"/>
+    <Item Id="2083" Name="Ebonwood Lamp"/>
+    <Item Id="2084" Name="Flesh Lamp"/>
+    <Item Id="2085" Name="Glass Lamp"/>
+    <Item Id="2086" Name="Frozen Lamp"/>
+    <Item Id="2087" Name="Rich Mahogany Lamp"/>
+    <Item Id="2088" Name="Pearlwood Lamp"/>
+    <Item Id="2089" Name="Lihzahrd Lamp"/>
+    <Item Id="2090" Name="Skyware Lamp"/>
+    <Item Id="2091" Name="Spooky Lamp"/>
+    <Item Id="2092" Name="Cactus Candelabra"/>
+    <Item Id="2093" Name="Ebonwood Candelabra"/>
+    <Item Id="2094" Name="Flesh Candelabra"/>
+    <Item Id="2095" Name="Honey Candelabra"/>
+    <Item Id="2096" Name="Steampunk Candelabra"/>
+    <Item Id="2097" Name="Glass Candelabra"/>
+    <Item Id="2098" Name="Rich Mahogany Candelabra"/>
+    <Item Id="2099" Name="Pearlwood Candelabra"/>
+    <Item Id="2100" Name="Frozen Candelabra"/>
+    <Item Id="2101" Name="Lihzahrd Candelabra"/>
+    <Item Id="2102" Name="Skyware Candelabra"/>
+    <Item Id="2103" Name="Spooky Candelabra"/>
+    <Item Id="2104" Name="Brain of Cthulhu Mask"/>
+    <Item Id="2105" Name="Wall of Flesh Mask"/>
+    <Item Id="2106" Name="Twin Mask"/>
+    <Item Id="2107" Name="Skeletron Prime Mask"/>
+    <Item Id="2108" Name="Queen Bee Mask"/>
+    <Item Id="2109" Name="Plantera Mask"/>
+    <Item Id="2110" Name="Golem Mask"/>
+    <Item Id="2111" Name="Eater of Worlds Mask"/>
+    <Item Id="2112" Name="Eye of Cthulhu Mask"/>
+    <Item Id="2113" Name="Destroyer Mask"/>
+    <Item Id="2114" Name="Blacksmith Rack"/>
+    <Item Id="2115" Name="Carpentry Rack"/>
+    <Item Id="2116" Name="Helmet Rack"/>
+    <Item Id="2117" Name="Spear Rack"/>
+    <Item Id="2118" Name="Sword Rack"/>
+    <Item Id="2119" Name="Stone Slab"/>
+    <Item Id="2120" Name="Sandstone Slab"/>
+    <Item Id="2121" Name="Frog"/>
+    <Item Id="2122" Name="Mallard Duck"/>
+    <Item Id="2123" Name="Duck"/>
+    <Item Id="2124" Name="Honey Bathtub"/>
+    <Item Id="2125" Name="Steampunk Bathtub"/>
+    <Item Id="2126" Name="Living Wood Bathtub"/>
+    <Item Id="2127" Name="Shadewood Bathtub"/>
+    <Item Id="2128" Name="Bone Bathtub"/>
+    <Item Id="2129" Name="Honey Lamp"/>
+    <Item Id="2130" Name="Steampunk Lamp"/>
+    <Item Id="2131" Name="Living Wood Lamp"/>
+    <Item Id="2132" Name="Shadewood Lamp"/>
+    <Item Id="2133" Name="Golden Lamp"/>
+    <Item Id="2134" Name="Bone Lamp"/>
+    <Item Id="2135" Name="Living Wood Bookcase"/>
+    <Item Id="2136" Name="Shadewood Bookcase"/>
+    <Item Id="2137" Name="Golden Bookcase"/>
+    <Item Id="2138" Name="Bone Bookcase"/>
+    <Item Id="2139" Name="Living Wood Bed"/>
+    <Item Id="2140" Name="Bone Bed"/>
+    <Item Id="2141" Name="Living Wood Chandelier"/>
+    <Item Id="2142" Name="Shadewood Chandelier"/>
+    <Item Id="2143" Name="Golden Chandelier"/>
+    <Item Id="2144" Name="Bone Chandelier"/>
+    <Item Id="2145" Name="Living Wood Lantern"/>
+    <Item Id="2146" Name="Shadewood Lantern"/>
+    <Item Id="2147" Name="Golden Lantern"/>
+    <Item Id="2148" Name="Bone Lantern"/>
+    <Item Id="2149" Name="Living Wood Candelabra"/>
+    <Item Id="2150" Name="Shadewood Candelabra"/>
+    <Item Id="2151" Name="Golden Candelabra"/>
+    <Item Id="2152" Name="Bone Candelabra"/>
+    <Item Id="2153" Name="Living Wood Candle"/>
+    <Item Id="2154" Name="Shadewood Candle"/>
+    <Item Id="2155" Name="Golden Candle"/>
+    <Item Id="2156" Name="Black Scorpion"/>
+    <Item Id="2157" Name="Scorpion"/>
+    <Item Id="2158" Name="Bubble Wallpaper"/>
+    <Item Id="2159" Name="Copper Pipe Wallpaper"/>
+    <Item Id="2160" Name="Ducky Wallpaper"/>
+    <Item Id="2161" Name="Frost Core"/>
+    <Item Id="2162" Name="Bunny Cage"/>
+    <Item Id="2163" Name="Squirrel Cage"/>
+    <Item Id="2164" Name="Mallard Duck Cage"/>
+    <Item Id="2165" Name="Duck Cage"/>
+    <Item Id="2166" Name="Bird Cage"/>
+    <Item Id="2167" Name="Blue Jay Cage"/>
+    <Item Id="2168" Name="Cardinal Cage"/>
+    <Item Id="2169" Name="Waterfall Wall"/>
+    <Item Id="2170" Name="Lavafall Wall"/>
+    <Item Id="2171" Name="Crimson Seeds"/>
+    <Item Id="2172" Name="Heavy Work Bench"/>
+    <Item Id="2173" Name="Copper Plating"/>
+    <Item Id="2174" Name="Snail Cage"/>
+    <Item Id="2175" Name="Glowing Snail Cage"/>
+    <Item Id="2176" Name="Shroomite Digging Claw"/>
+    <Item Id="2177" Name="Ammo Box"/>
+    <Item Id="2178" Name="Monarch Butterfly Jar"/>
+    <Item Id="2179" Name="Purple Emperor Butterfly Jar"/>
+    <Item Id="2180" Name="Red Admiral Butterfly Jar"/>
+    <Item Id="2181" Name="Ulysses Butterfly Jar"/>
+    <Item Id="2182" Name="Sulphur Butterfly Jar"/>
+    <Item Id="2183" Name="Tree Nymph Butterfly Jar"/>
+    <Item Id="2184" Name="Zebra Swallowtail Butterfly Jar"/>
+    <Item Id="2185" Name="Julia Butterfly Jar"/>
+    <Item Id="2186" Name="Scorpion Cage"/>
+    <Item Id="2187" Name="Black Scorpion Cage"/>
+    <Item Id="2188" Name="Venom Staff"/>
+    <Item Id="2189" Name="Spectre Mask"/>
+    <Item Id="2190" Name="Frog Cage"/>
+    <Item Id="2191" Name="Mouse Cage"/>
+    <Item Id="2192" Name="Bone Welder"/>
+    <Item Id="2193" Name="Flesh Cloning Vat"/>
+    <Item Id="2194" Name="Glass Kiln"/>
+    <Item Id="2195" Name="Lihzahrd Furnace"/>
+    <Item Id="2196" Name="Living Loom"/>
+    <Item Id="2197" Name="Sky Mill"/>
+    <Item Id="2198" Name="Ice Machine"/>
+    <Item Id="2199" Name="Beetle Helmet"/>
+    <Item Id="2200" Name="Beetle Scale Mail"/>
+    <Item Id="2201" Name="Beetle Shell"/>
+    <Item Id="2202" Name="Beetle Leggings"/>
+    <Item Id="2203" Name="Steampunk Boiler"/>
+    <Item Id="2204" Name="Honey Dispenser"/>
+    <Item Id="2205" Name="Penguin"/>
+    <Item Id="2206" Name="Penguin Cage"/>
+    <Item Id="2207" Name="Worm Cage"/>
+    <Item Id="2208" Name="Terrarium"/>
+    <Item Id="2209" Name="Super Mana Potion"/>
+    <Item Id="2210" Name="Ebonwood Fence"/>
+    <Item Id="2211" Name="Rich Mahogany Fence"/>
+    <Item Id="2212" Name="Pearlwood Fence"/>
+    <Item Id="2213" Name="Shadewood Fence"/>
+    <Item Id="2214" Name="Brick Layer"/>
+    <Item Id="2215" Name="Extendo Grip"/>
+    <Item Id="2216" Name="Paint Sprayer"/>
+    <Item Id="2217" Name="Portable Cement Mixer"/>
+    <Item Id="2218" Name="Beetle Husk"/>
+    <Item Id="2219" Name="Celestial Magnet"/>
+    <Item Id="2220" Name="Celestial Emblem"/>
+    <Item Id="2221" Name="Celestial Cuffs"/>
+    <Item Id="2222" Name="Peddler's Hat"/>
+    <Item Id="2223" Name="Pulse Bow"/>
+    <Item Id="2224" Name="Large Dynasty Lantern"/>
+    <Item Id="2225" Name="Dynasty Lamp"/>
+    <Item Id="2226" Name="Dynasty Lantern"/>
+    <Item Id="2227" Name="Large Dynasty Candle"/>
+    <Item Id="2228" Name="Dynasty Chair"/>
+    <Item Id="2229" Name="Dynasty Work Bench"/>
+    <Item Id="2230" Name="Dynasty Chest"/>
+    <Item Id="2231" Name="Dynasty Bed"/>
+    <Item Id="2232" Name="Dynasty Bathtub"/>
+    <Item Id="2233" Name="Dynasty Bookcase"/>
+    <Item Id="2234" Name="Dynasty Cup"/>
+    <Item Id="2235" Name="Dynasty Bowl"/>
+    <Item Id="2236" Name="Dynasty Candle"/>
+    <Item Id="2237" Name="Dynasty Grandfather Clock"/>
+    <Item Id="2238" Name="Golden Grandfather Clock"/>
+    <Item Id="2239" Name="Glass Grandfather Clock"/>
+    <Item Id="2240" Name="Honey Grandfather Clock"/>
+    <Item Id="2241" Name="Steampunk Grandfather Clock"/>
+    <Item Id="2242" Name="Fancy Dishes"/>
+    <Item Id="2243" Name="Glass Bowl"/>
+    <Item Id="2244" Name="Wine Glass"/>
+    <Item Id="2245" Name="Living Wood Piano"/>
+    <Item Id="2246" Name="Flesh Piano"/>
+    <Item Id="2247" Name="Frozen Piano"/>
+    <Item Id="2248" Name="Frozen Table"/>
+    <Item Id="2249" Name="Honey Chest"/>
+    <Item Id="2250" Name="Steampunk Chest"/>
+    <Item Id="2251" Name="Honey Work Bench"/>
+    <Item Id="2252" Name="Frozen Work Bench"/>
+    <Item Id="2253" Name="Steampunk Work Bench"/>
+    <Item Id="2254" Name="Glass Piano"/>
+    <Item Id="2255" Name="Honey Piano"/>
+    <Item Id="2256" Name="Steampunk Piano"/>
+    <Item Id="2257" Name="Honey Cup"/>
+    <Item Id="2258" Name="Chalice"/>
+    <Item Id="2259" Name="Dynasty Table"/>
+    <Item Id="2260" Name="Dynasty Wood"/>
+    <Item Id="2261" Name="Red Dynasty Shingles"/>
+    <Item Id="2262" Name="Blue Dynasty Shingles"/>
+    <Item Id="2263" Name="White Dynasty Wall"/>
+    <Item Id="2264" Name="Blue Dynasty Wall"/>
+    <Item Id="2265" Name="Dynasty Door"/>
+    <Item Id="2266" Name="Sake"/>
+    <Item Id="2267" Name="Pad Thai"/>
+    <Item Id="2268" Name="Pho"/>
+    <Item Id="2269" Name="Revolver"/>
+    <Item Id="2270" Name="Gatligator"/>
+    <Item Id="2271" Name="Arcane Rune Wall"/>
+    <Item Id="2272" Name="Water Gun"/>
+    <Item Id="2273" Name="Katana"/>
+    <Item Id="2274" Name="Ultrabright Torch"/>
+    <Item Id="2275" Name="Magic Hat"/>
+    <Item Id="2276" Name="Diamond Ring"/>
+    <Item Id="2277" Name="Gi"/>
+    <Item Id="2278" Name="Kimono"/>
+    <Item Id="2279" Name="Gypsy Robe"/>
+    <Item Id="2280" Name="Beetle Wings"/>
+    <Item Id="2281" Name="Tiger Skin"/>
+    <Item Id="2282" Name="Leopard Skin"/>
+    <Item Id="2283" Name="Zebra Skin"/>
+    <Item Id="2284" Name="Crimson Cloak"/>
+    <Item Id="2285" Name="Mysterious Cape"/>
+    <Item Id="2286" Name="Red Cape"/>
+    <Item Id="2287" Name="Winter Cape"/>
+    <Item Id="2288" Name="Frozen Chair"/>
   </Items>
   <Npcs>
     <Npc Id="17"    Name="Merchant"         Frames="16"   />

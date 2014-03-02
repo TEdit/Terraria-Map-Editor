@@ -50,7 +50,15 @@
         <Style TargetType="{x:Type GroupBox}" x:Key="LiquidVisibleStyle" BasedOn="{StaticResource {x:Type GroupBox}}">
             <Setter Property="Visibility" Value="Collapsed" />
             <Style.Triggers>
-                <DataTrigger Binding="{Binding TilePicker.PaintMode}" Value="LiquidAmount">
+                <DataTrigger Binding="{Binding TilePicker.PaintMode}" Value="Liquid">
+                    <Setter Property="Visibility" Value="Visible" />
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+        <Style TargetType="{x:Type GroupBox}" x:Key="BrickStyleVisiblity" BasedOn="{StaticResource {x:Type GroupBox}}">
+            <Setter Property="Visibility" Value="Collapsed" />
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding TilePicker.PaintMode}" Value="BrickStyle">
                     <Setter Property="Visibility" Value="Visible" />
                 </DataTrigger>
             </Style.Triggers>
@@ -69,13 +77,7 @@
                           SelectedValuePath="Value" Width="100"
                           ItemTemplate="{StaticResource EnumTemplate}" />
                 </StackPanel>
-                <StackPanel Orientation="Horizontal">
-                    <TextBlock Text="Half Blocks" HorizontalAlignment="Left" Width="65"  VerticalAlignment="Center" />
-                    <ComboBox ItemsSource="{StaticResource HalfBlockMode}" 
-                          SelectedValue="{Binding TilePicker.HalfBlockMode}" 
-                          SelectedValuePath="Value" Width="100"
-                          ItemTemplate="{StaticResource EnumTemplate}" />
-                </StackPanel>
+                
             </StackPanel>
             <GroupBox Header="Tile" BorderThickness="1" Style="{StaticResource TileVisibleStyle}">
                 <bccl:AutoGrid Width="220" VerticalAlignment="Top" >
@@ -119,11 +121,22 @@
                       IsTextSearchEnabled="True" TextSearch.TextPath="Name" />
                 </bccl:AutoGrid>
             </GroupBox>
-            <GroupBox Header="LiquidAmount" Style="{StaticResource LiquidVisibleStyle}">
-                <StackPanel Visibility="{Binding ElementName=LiquidText, Path=Visibility}" Margin="3">
-                    <RadioButton Content="Water" IsChecked="{Binding Path=TilePicker.IsWater, Mode=TwoWay}" />
-                    <RadioButton Content="Lava" IsChecked="{Binding Path=TilePicker.IsLava, Mode=TwoWay}" />
-                    <RadioButton Content="Honey" IsChecked="{Binding Path=TilePicker.IsHoney, Mode=TwoWay}" />
+            <GroupBox Header="Liquid" Style="{StaticResource LiquidVisibleStyle}">
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Top">
+                    <TextBlock Text="Liquid" HorizontalAlignment="Left" Width="65"  VerticalAlignment="Center" />
+                    <ComboBox ItemsSource="{StaticResource LiquidType}" 
+                          SelectedValue="{Binding TilePicker.LiquidType}" 
+                          SelectedValuePath="Value" Width="100"
+                          ItemTemplate="{StaticResource EnumTemplate}" />
+                </StackPanel>
+            </GroupBox>
+            <GroupBox Header="BrickStyle" Style="{StaticResource BrickStyleVisiblity}">
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Top">
+                    <TextBlock Text="Half Blocks" HorizontalAlignment="Left" Width="65"  VerticalAlignment="Center" />
+                    <ComboBox ItemsSource="{StaticResource BrickStyle}" 
+                          SelectedValue="{Binding TilePicker.BrickStyle}" 
+                          SelectedValuePath="Value" Width="100"
+                          ItemTemplate="{StaticResource EnumTemplate}" />
                 </StackPanel>
             </GroupBox>
 

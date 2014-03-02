@@ -84,6 +84,9 @@ namespace TEditXna.ViewModel
                 case PaintMode.Liquid:
                     SetPixelAutomatic(curTile, liquid: isErase ? (byte)0 : (byte)255, liquidType: TilePicker.LiquidType);
                     break;
+                case PaintMode.BrickStyle:
+                    SetPixelAutomatic(curTile, brickStyle: TilePicker.BrickStyle);
+                    break;
             }
 
 
@@ -209,7 +212,7 @@ namespace TEditXna.ViewModel
 
             if (brickStyle != null)
             {
-                curTile.BrickStyle = (BrickStyle) brickStyle;
+                curTile.BrickStyle = (BrickStyle)brickStyle;
             }
 
             if (wall != null)

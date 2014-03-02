@@ -109,6 +109,14 @@ namespace TEditXNA.Terraria
         private bool _isCrimson;
         private bool _isEclipse;
 
+        private byte[] _unknownData;
+         
+
+        public byte[] UnknownData
+        {
+            get { return _unknownData; }
+            set { Set("UnknownData", ref _unknownData, value); }
+        }
 
         public bool IsEclipse
         {

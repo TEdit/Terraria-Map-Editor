@@ -6,6 +6,8 @@
     <bccl:EnumItemList x:Key="PaintModeEnum" EnumType="{x:Type Editor:PaintMode}" SortBy="Value"  />
     <bccl:EnumItemList x:Key="MaskModeEnum" EnumType="{x:Type Editor:MaskMode}" x:Shared="false" SortBy="Value" />
     <bccl:EnumItemList x:Key="HalfBlockMode" EnumType="{x:Type Editor:HalfBlockMode}" x:Shared="false" SortBy="Value" />
+    <bccl:EnumItemList x:Key="BrickStyle" EnumType="{x:Type Terraria:BrickStyle}" x:Shared="false" SortBy="Value" />
+    <bccl:EnumItemList x:Key="LiquidType" EnumType="{x:Type Terraria:LiquidType}" x:Shared="false" SortBy="Value" />
     <DataTemplate x:Key="ColorPickerTemplate" >
         <DockPanel LastChildFill="True">
             <Border BorderBrush="Black" BorderThickness="1" Margin="2,1" DockPanel.Dock="Left" >

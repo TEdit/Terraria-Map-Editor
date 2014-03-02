@@ -31,15 +31,6 @@ namespace TEditXna.Editor
         private int _tileMask = ToolDefaultData.PaintTileMask;
 
         private BrickStyle _brickStyle = BrickStyle.Full;
-        private bool _writeBrickStyle;
-         
-
-        public bool WriteBrickStyle
-        {
-            get { return _writeBrickStyle; }
-            set { Set("WriteBrickStyle", ref _writeBrickStyle, value); }
-        }
-
         public BrickStyle BrickStyle
         {
             get { return _brickStyle; }

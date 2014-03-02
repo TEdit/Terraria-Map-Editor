@@ -23,10 +23,25 @@ namespace TEditXNA.Terraria
             _y = y;
         }
 
+        public Chest(int x, int y, string name)
+            : this()
+        {
+            _x = x;
+            _y = y;
+            _name = name;
+        }
+
         private int _x;
         private int _y;
 
+        private string _name;
+         
 
+        public string Name
+        {
+            get { return _name; }
+            set { Set("Name", ref _name, value); }
+        }
         public int Y
         {
             get { return _y; }

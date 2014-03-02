@@ -194,7 +194,7 @@ namespace TEditXna.Editor.Undo
 
                     bw.Write(undoTile.Location.X);
                     bw.Write(undoTile.Location.Y);
-                    World.WriteTileDataToStream(curTile, bw);
+                    World.WriteTileDataToStreamV1(curTile, bw);
 
                     _wvm.CurrentWorld.Tiles[undoTile.Location.X, undoTile.Location.Y] = (Tile)undoTile.Tile;
                     _wvm.UpdateRenderPixel(undoTile.Location);
@@ -202,13 +202,13 @@ namespace TEditXna.Editor.Undo
                     /* Heathtech */
                     BlendRules.ResetUVCache(_wvm, undoTile.Location.X, undoTile.Location.Y, 1, 1);
                 }
-                World.WriteChestDataToStream(Chests, bw);
-                World.WriteSignDataToStream(Signs, bw);
-                foreach (var chest in World.ReadChestDataFromStream(br, World.CompatibleVersion))
+                World.WriteChestDataToStreamV1(Chests, bw);
+                World.WriteSignDataToStreamV1(Signs, bw);
+                foreach (var chest in World.ReadChestDataFromStreamV1(br, World.CompatibleVersion))
                 {
                     _wvm.CurrentWorld.Chests.Add(chest);
                 }
-                foreach (var sign in World.ReadSignDataFromStream(br))
+                foreach (var sign in World.ReadSignDataFromStreamV1(br))
                 {
                     _wvm.CurrentWorld.Signs.Add(sign);
                 }
@@ -250,11 +250,11 @@ namespace TEditXna.Editor.Undo
                     /* Heathtech */
                     BlendRules.ResetUVCache(_wvm, undoTile.Location.X, undoTile.Location.Y, 1, 1);
                 }
-                foreach (var chest in World.ReadChestDataFromStream(br, World.CompatibleVersion))
+                foreach (var chest in World.ReadChestDataFromStreamV1(br, World.CompatibleVersion))
                 {
                     _wvm.CurrentWorld.Chests.Add(chest);
                 }
-                foreach (var sign in World.ReadSignDataFromStream(br))
+                foreach (var sign in World.ReadSignDataFromStreamV1(br))
                 {
                     _wvm.CurrentWorld.Signs.Add(sign);
                 }

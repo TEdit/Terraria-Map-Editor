@@ -16,6 +16,70 @@ namespace TEditXna.Editor.Clipboard
     {
         public void Save(string filename)
         {
+            throw new NotImplementedException();
+        }
+
+        private static ClipboardBuffer LoadV2(BinaryReader binaryReader, string name, uint tVersion, int version)
+        {
+            throw new NotImplementedException();
+        }
+
+        public static ClipboardBuffer Load(string filename)
+        {
+            string ext = Path.GetExtension(filename);
+            if (string.Equals(ext, ".jpg", StringComparison.InvariantCultureIgnoreCase) || string.Equals(ext, ".png", StringComparison.InvariantCultureIgnoreCase) || string.Equals(ext, ".bmp", StringComparison.InvariantCultureIgnoreCase))
+                return LoadFromImage(filename);
+
+            using (var stream = new FileStream(filename, FileMode.Open))
+            {
+                using (var b = new BinaryReader(stream))
+                {
+
+                    string name = b.ReadString();
+                    int version = b.ReadInt32();
+                    uint tVersion = (uint)version;
+
+                    // check all the old versions
+                    if (version < 78)
+                    {
+                        return Load5(b, name, tVersion, version);
+                    }
+                    else if (version == 4)
+                    {
+                        b.Close();
+                        stream.Close();
+                        return Load4(filename);
+                    }
+                    else if (version == 3)
+                    {
+                        b.Close();
+                        stream.Close();
+                        return Load3(filename);
+                    }
+                    else if (version == 2)
+                    {
+                        b.Close();
+                        stream.Close();
+                        return Load2(filename);
+                    }
+                    else if (version < 2)
+                    {
+                        b.Close();
+                        stream.Close();
+                        return LoadOld(filename);
+                    }
+
+                    // not and old version, use new version
+                    return LoadV2(b, name, tVersion, version);
+
+                }
+            }
+        }
+
+        #region Old Versions
+
+        public void SaveV1(string filename)
+        {
             // Catch pngs that are real color
             if (string.Equals(".png", Path.GetExtension(filename), StringComparison.InvariantCultureIgnoreCase))
             {
@@ -41,7 +105,7 @@ namespace TEditXna.Editor.Clipboard
                         {
                             var curTile = Tiles[x, y];
 
-                            World.WriteTileDataToStream(curTile, bw);
+                            World.WriteTileDataToStreamV1(curTile, bw);
 
                             int rleTemp = 1;
                             while (y + rleTemp < Size.Y && curTile.Equals(Tiles[x, (y + rleTemp)]))
@@ -50,8 +114,8 @@ namespace TEditXna.Editor.Clipboard
                             bw.Write((short)rle);
                         }
                     }
-                    World.WriteChestDataToStream(Chests, bw);
-                    World.WriteSignDataToStream(Signs, bw);
+                    World.WriteChestDataToStreamV1(Chests, bw);
+                    World.WriteSignDataToStreamV1(Signs, bw);
 
                     bw.Write(Name);
                     bw.Write(World.CompatibleVersion);
@@ -126,100 +190,61 @@ namespace TEditXna.Editor.Clipboard
             return tile;
         }
 
-        public static ClipboardBuffer Load(string filename)
+        private static ClipboardBuffer Load5(BinaryReader b, string name, uint tVersion, int version)
         {
-            string ext = Path.GetExtension(filename);
-            if (string.Equals(ext, ".jpg", StringComparison.InvariantCultureIgnoreCase) || string.Equals(ext, ".png", StringComparison.InvariantCultureIgnoreCase) || string.Equals(ext, ".bmp", StringComparison.InvariantCultureIgnoreCase))
-                return LoadFromImage(filename);
+            int sizeX = b.ReadInt32();
+            int sizeY = b.ReadInt32();
+            var buffer = new ClipboardBuffer(new Vector2Int32(sizeX, sizeY));
+            buffer.Name = name;
 
-            using (var stream = new FileStream(filename, FileMode.Open))
+            for (int x = 0; x < sizeX; ++x)
             {
-                using (var b = new BinaryReader(stream))
+                for (int y = 0; y < sizeY; y++)
                 {
-                    string name = b.ReadString();
-                    int version = b.ReadInt32();
-                    uint tVersion = (uint)version;
+                    var tile = World.ReadTileDataFromStreamV1(b, tVersion);
+                    // read complete, start compression
+                    buffer.Tiles[x, y] = tile;
 
-                    if (version == 4)
-                    {
-                        b.Close();
-                        stream.Close();
-                        return Load4(filename);
-                    }
-                    else if (version == 3)
-                    {
-                        b.Close();
-                        stream.Close();
-                        return Load3(filename);
-                    }
-                    else if (version == 2)
-                    {
-                        b.Close();
-                        stream.Close();
-                        return Load2(filename);
-                    }
-                    else if (version < 2)
-                    {
-                        b.Close();
-                        stream.Close();
-                        return LoadOld(filename);
-                    }
+                    int rle = b.ReadInt16();
+                    if (rle < 0)
+                        throw new ApplicationException("Invalid Tile Data!");
 
-
-                    int sizeX = b.ReadInt32();
-                    int sizeY = b.ReadInt32();
-                    var buffer = new ClipboardBuffer(new Vector2Int32(sizeX, sizeY));
-                    buffer.Name = name;
-
-                    for (int x = 0; x < sizeX; ++x)
+                    if (rle > 0)
                     {
-                        for (int y = 0; y < sizeY; y++)
+                        for (int k = y + 1; k < y + rle + 1; k++)
                         {
-                            var tile = World.ReadTileDataFromStream(b, tVersion);
-                            // read complete, start compression
-                            buffer.Tiles[x, y] = tile;
-
-                            int rle = b.ReadInt16();
-                            if (rle < 0)
-                                throw new ApplicationException("Invalid Tile Data!");
-
-                            if (rle > 0)
-                            {
-                                for (int k = y + 1; k < y + rle + 1; k++)
-                                {
-                                    var tcopy = (Tile)tile.Clone();
-                                    buffer.Tiles[x, k] = tcopy;
-                                }
-                                y = y + rle;
-                            }
+                            var tcopy = (Tile) tile.Clone();
+                            buffer.Tiles[x, k] = tcopy;
                         }
+                        y = y + rle;
                     }
-                    buffer.Chests.Clear();
-                    buffer.Chests.AddRange(World.ReadChestDataFromStream(b, tVersion));
-
-                    buffer.Signs.Clear();
-                    foreach (Sign sign in World.ReadSignDataFromStream(b))
-                    {
-                        if (buffer.Tiles[sign.X, sign.Y].IsActive && (int)buffer.Tiles[sign.X, sign.Y].Type == 55 && (int)buffer.Tiles[sign.X, sign.Y].Type == 85)
-                            buffer.Signs.Add(sign);
-                    }
-
-                    string verifyName = b.ReadString();
-                    int verifyVersion = b.ReadInt32();
-                    int verifyX = b.ReadInt32();
-                    int verifyY = b.ReadInt32();
-                    if (buffer.Name == verifyName &&
-                        version == verifyVersion &&
-                        buffer.Size.X == verifyX &&
-                        buffer.Size.Y == verifyY)
-                    {
-                        // valid;
-                        return buffer;
-                    }
-                    b.Close();
-                    return null;
                 }
             }
+            buffer.Chests.Clear();
+            buffer.Chests.AddRange(World.ReadChestDataFromStreamV1(b, tVersion));
+
+            buffer.Signs.Clear();
+            foreach (Sign sign in World.ReadSignDataFromStreamV1(b))
+            {
+                if (buffer.Tiles[sign.X, sign.Y].IsActive && (int) buffer.Tiles[sign.X, sign.Y].Type == 55 &&
+                    (int) buffer.Tiles[sign.X, sign.Y].Type == 85)
+                    buffer.Signs.Add(sign);
+            }
+
+            string verifyName = b.ReadString();
+            int verifyVersion = b.ReadInt32();
+            int verifyX = b.ReadInt32();
+            int verifyY = b.ReadInt32();
+            if (buffer.Name == verifyName &&
+                version == verifyVersion &&
+                buffer.Size.X == verifyX &&
+                buffer.Size.Y == verifyY)
+            {
+                // valid;
+                return buffer;
+            }
+            b.Close();
+            return null;
         }
 
         public static ClipboardBuffer Load4(string filename)
@@ -780,22 +805,6 @@ namespace TEditXna.Editor.Clipboard
             return null;
         }
 
-
-        [Flags]
-        public enum TileFlags : byte
-        {
-            IsHoney = 0x80,
-            IsActive = 0x40,
-            IsLava = 0x20,
-            HasWire = 0x10,
-            HasWire2 = 0x08,
-            HasWire3 = 0x04,
-            Actuator = 0x02,
-            InActive = 0x01,
-
-            // still have 0x08, 0x04, 0x02, 0x01 available for additional flags
-        }
-
-
+        #endregion
     }
 }

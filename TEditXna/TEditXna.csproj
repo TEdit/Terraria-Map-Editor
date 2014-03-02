@@ -147,6 +147,7 @@
     <Compile Include="Terraria\Textures.cs" />
     <Compile Include="Terraria\Tile.cs" />
     <Compile Include="Terraria\World.cs" />
+    <Compile Include="Terraria\World.FileV2.cs" />
     <Compile Include="Terraria\World.Settings.cs" />
     <Compile Include="Terraria\World.Settings.Tools.cs" />
     <Compile Include="Helper\Converters\DoublePercentageConverter.cs" />
@@ -320,6 +321,7 @@
     </None>
     <AppDesigner Include="Properties\" />
     <Compile Include="Terraria\World.Properties.cs" />
+    <Compile Include="Terraria\World.FileV1.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Images\Overlays\dungeon_marker.png" />
@@ -410,7 +412,7 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties BuildVersion_AssemblyInfoFilename="Properties\AssemblyInfo.cs" BuildVersion_UseGlobalSettings="True" />
+      <UserProperties BuildVersion_UseGlobalSettings="True" BuildVersion_AssemblyInfoFilename="Properties\AssemblyInfo.cs" />
     </VisualStudio>
   </ProjectExtensions>
   <PropertyGroup>

@@ -106,13 +106,11 @@ namespace TEditXna.Editor.Tools
                         return false;
 
                     break;
+                case PaintMode.BrickStyle:
+                    if (originTile.BrickStyle != nextTile.BrickStyle)
+                        return false;
+                    break;
             }
-            if (_wvm.TilePicker.WriteBrickStyle)
-            {
-                if (originTile.BrickStyle != nextTile.BrickStyle)
-                    return false;
-            }
-            
 
             return true;
         }

@@ -13,6 +13,14 @@ namespace TEditXNA.Terraria
         private Vector2 _position;
         private int _spriteId;
 
+        private string _displayName;
+         
+
+        public string DisplayName
+        {
+            get { return _displayName; }
+            set { Set("DisplayName", ref _displayName, value); }
+        }
 
         public int SpriteId
         {

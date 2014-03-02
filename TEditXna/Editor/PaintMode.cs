@@ -16,7 +16,9 @@ namespace TEditXna.Editor
         Wire2,
         [Description("Green Wire")]
         Wire3,
-        [Description("LiquidAmount")]
+        [Description("Liquid")]
         Liquid,
+        [Description("BrickStyle")]
+        BrickStyle,
     }
 }

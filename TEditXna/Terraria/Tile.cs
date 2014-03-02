@@ -1,10 +1,12 @@
 ﻿using System;
+using System.ComponentModel;
 using BCCL.Geometry.Primitives;
 
 namespace TEditXNA.Terraria
 {
     public enum BrickStyle : byte
     {
+        [Description("Full Brick")]
         Full = 0x0,
         HalfBrick = 0x1,
         SlopeTopLeftDown = 0x2,
@@ -17,7 +19,7 @@ namespace TEditXNA.Terraria
 
     public enum LiquidType : byte
     {
-        Dry = 0x0,
+        None = 0x0,
         Water = 0x01,
         Lava = 0x02,
         Honey = 0x03
@@ -32,7 +34,7 @@ namespace TEditXNA.Terraria
         public bool WireGreen;
         public bool WireBlue;
         public byte TileColor;
-        public byte Type;
+        public ushort Type;
         public byte Wall;
         public byte WallColor;
         public LiquidType LiquidType;

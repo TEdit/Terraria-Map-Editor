@@ -600,13 +600,13 @@ namespace TEditXna.ViewModel
                         OnProgressChanged(w, new ProgressChangedEventArgs(Calc.ProgressPercentage(y, w.TilesHigh), "Generating World..."));
 
                         if (y == (int)w.GroundLevel - 10)
-                            cloneTile = new Tile { WireRed = false, IsActive = true, LiquidType = LiquidType.Dry, LiquidAmount = 0, Type = 2, U = -1, V = -1, Wall = 2 };
+                            cloneTile = new Tile { WireRed = false, IsActive = true, LiquidType = LiquidType.None, LiquidAmount = 0, Type = 2, U = -1, V = -1, Wall = 2 };
                         if (y == (int)w.GroundLevel - 9)
-                            cloneTile = new Tile { WireRed = false, IsActive = true, LiquidType = LiquidType.Dry, LiquidAmount = 0, Type = 0, U = -1, V = -1, Wall = 2 };
+                            cloneTile = new Tile { WireRed = false, IsActive = true, LiquidType = LiquidType.None, LiquidAmount = 0, Type = 0, U = -1, V = -1, Wall = 2 };
                         else if (y == (int)w.GroundLevel + 1)
-                            cloneTile = new Tile { WireRed = false, IsActive = true, LiquidType = LiquidType.Dry, LiquidAmount = 0, Type = 0, U = -1, V = -1, Wall = 0 };
+                            cloneTile = new Tile { WireRed = false, IsActive = true, LiquidType = LiquidType.None, LiquidAmount = 0, Type = 0, U = -1, V = -1, Wall = 0 };
                         else if (y == (int)w.RockLevel)
-                            cloneTile = new Tile { WireRed = false, IsActive = true, LiquidType = LiquidType.Dry, LiquidAmount = 0, Type = 1, U = -1, V = -1, Wall = 0 };
+                            cloneTile = new Tile { WireRed = false, IsActive = true, LiquidType = LiquidType.None, LiquidAmount = 0, Type = 1, U = -1, V = -1, Wall = 0 };
                         else if (y == w.TilesHigh - 182)
                             cloneTile = new Tile();
                         for (int x = 0; x < w.TilesWide; x++)
@@ -675,7 +675,7 @@ namespace TEditXna.ViewModel
 
         private void SaveWorldThreaded(string filename)
         {
-            Task.Factory.StartNew(() => CurrentWorld.Save(filename))
+            Task.Factory.StartNew(() => World.Save(CurrentWorld, filename))
                 .ContinueWith(t => CommandManager.InvalidateRequerySuggested(), TaskFactoryHelper.UiTaskScheduler);
         }
 

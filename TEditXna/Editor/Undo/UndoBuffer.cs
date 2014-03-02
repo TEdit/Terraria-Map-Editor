@@ -38,11 +38,10 @@ namespace TEditXna.Editor.Undo
                         var curLocation = Tiles[i].Location;
                         bw.Write(curLocation.X);
                         bw.Write(curLocation.Y);
-                        World.WriteTileDataToStream(Tiles[i].Tile, bw);
+                        World.WriteTileDataToStreamV1(Tiles[i].Tile, bw);
                     }
-                    World.WriteChestDataToStream(Chests, bw);
-                    World.WriteSignDataToStream(Signs, bw);
-
+                    World.WriteChestDataToStreamV1(Chests, bw);
+                    World.WriteSignDataToStreamV1(Signs, bw);
                     bw.Close();
                 }
 
@@ -62,14 +61,14 @@ namespace TEditXna.Editor.Undo
                     {
                         int x = br.ReadInt32();
                         int y = br.ReadInt32();
-                        var curTile = World.ReadTileDataFromStream(br, World.CompatibleVersion);
+                        var curTile = World.ReadTileDataFromStreamV1(br, World.CompatibleVersion);
                         buffer.Tiles.Add(new UndoTile(new Vector2Int32(x, y), curTile));
                     }
                     buffer.Chests.Clear();
-                    buffer.Chests.AddRange(World.ReadChestDataFromStream(br, World.CompatibleVersion));
+                    buffer.Chests.AddRange(World.ReadChestDataFromStreamV1(br, World.CompatibleVersion));
 
                     buffer.Signs.Clear();
-                    buffer.Signs.AddRange(World.ReadSignDataFromStream(br));
+                    buffer.Signs.AddRange(World.ReadSignDataFromStreamV1(br));
                 }
             }
             return buffer;
@@ -82,7 +81,7 @@ namespace TEditXna.Editor.Undo
             {
                 int x = br.ReadInt32();
                 int y = br.ReadInt32();
-                var curTile = World.ReadTileDataFromStream(br, World.CompatibleVersion);
+                var curTile = World.ReadTileDataFromStreamV1(br, World.CompatibleVersion);
                 yield return new UndoTile(new Vector2Int32(x, y), curTile);
             }
         }
