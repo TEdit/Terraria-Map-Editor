@@ -1,9 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
+using System.Windows.Documents;
 using BCCL.Geometry.Primitives;
 
 namespace TEditXNA.Terraria
 {
+
     public enum BrickStyle : byte
     {
         [Description("Full Brick")]
@@ -29,6 +32,8 @@ namespace TEditXNA.Terraria
     [Serializable]
     public class Tile
     {
+        public static readonly Tile Empty = new Tile();
+
         public bool IsActive;
         public bool WireRed;
         public bool WireGreen;

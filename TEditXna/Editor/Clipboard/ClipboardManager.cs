@@ -161,7 +161,7 @@ namespace TEditXna.Editor.Clipboard
 
                     if (world.ValidTileLocation(new Vector2Int32(x + anchor.X, y + anchor.Y)))
                     {
-                        //HistMan.AddTileToBuffer(x + anchor.X, y + anchor.Y, ref world.Tiles[x + anchor.X, y + anchor.Y]);
+                        //HistMan.AddTileToBuffer(x + anchor.X, y + anchor.Y, ref world.UndoTiles[x + anchor.X, y + anchor.Y]);
 
                         Tile curTile;
 

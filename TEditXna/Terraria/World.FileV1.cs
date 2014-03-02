@@ -112,7 +112,7 @@ namespace TEditXNA.Terraria
             for (int x = 0; x < world.TilesWide; ++x)
             {
                 OnProgressChanged(world,
-                    new ProgressChangedEventArgs(x.ProgressPercentage(world.TilesWide), "Saving Tiles..."));
+                    new ProgressChangedEventArgs(x.ProgressPercentage(world.TilesWide), "Saving UndoTiles..."));
 
                 int rle = 0;
                 for (int y = 0; y < world.TilesHigh; y = y + rle + 1)
@@ -500,7 +500,7 @@ namespace TEditXNA.Terraria
             for (int x = 0; x < w.TilesWide; ++x)
             {
                 OnProgressChanged(null,
-                    new ProgressChangedEventArgs(x.ProgressPercentage(w.TilesWide), "Loading Tiles..."));
+                    new ProgressChangedEventArgs(x.ProgressPercentage(w.TilesWide), "Loading UndoTiles..."));
 
                 for (int y = 0; y < w.TilesHigh; y++)
                 {
@@ -536,7 +536,7 @@ namespace TEditXNA.Terraria
 
             OnProgressChanged(null, new ProgressChangedEventArgs(100, "Loading Chests..."));
             w.Chests.Clear();
-            w.Chests.AddRange(ReadChestDataFromStreamV1(reader, version));
+            ((ObservableCollection<Chest>)w.Chests).AddRange(ReadChestDataFromStreamV1(reader, version));
 
             OnProgressChanged(null, new ProgressChangedEventArgs(100, "Loading Signs..."));
             w.Signs.Clear();

@@ -16,6 +16,7 @@ using System.Linq;
 
 namespace TEditXNA.Terraria
 {
+
     public partial class World
     {
         public static uint CompatibleVersion = 94;
@@ -41,155 +42,49 @@ namespace TEditXNA.Terraria
                 }
             }
 
-            int[] sectionPointers = new int[]
-            {
-                SaveSectionHeader(world, bw),
-                SaveHeaderFlags(world, bw),
-                SaveTiles(world, bw),
-                SaveChests(world, bw),
-                SaveSigns(world, bw),
-                SaveNPCs(world, bw),
-                0,0,0,0
-            };
+            int[] sectionPointers = new int[SectionCount];
+
+            OnProgressChanged(null, new ProgressChangedEventArgs(0, "Save headers..."));
+            sectionPointers[0] = SaveSectionHeader(world, bw);
+            sectionPointers[1] = SaveHeaderFlags(world, bw);
+            OnProgressChanged(null, new ProgressChangedEventArgs(0, "Save UndoTiles..."));
+            sectionPointers[2] = SaveTiles(world, bw);
+
+            OnProgressChanged(null, new ProgressChangedEventArgs(100, "Save Chests..."));
+            sectionPointers[3] = SaveChests(world.Chests, bw);
+            OnProgressChanged(null, new ProgressChangedEventArgs(100, "Save Signs..."));
+            sectionPointers[4] = SaveSigns(world.Signs, bw);
+            OnProgressChanged(null, new ProgressChangedEventArgs(100, "Save NPCs..."));
+            sectionPointers[5] = SaveNPCs(world.NPCs, bw);
+            OnProgressChanged(null, new ProgressChangedEventArgs(100, "Save Footers..."));
             SaveFooter(world, bw);
             UpdateSectionPointers(sectionPointers, bw);
+            OnProgressChanged(null, new ProgressChangedEventArgs(100, "Save Complete."));
         }
 
-        private static int SaveTiles(World world, BinaryWriter bw)
+        public static int SaveTiles(World world, BinaryWriter bw)
         {
+            Tile[,] tiles = world.Tiles;
             for (int x = 0; x < world.TilesWide; x++)
             {
-                OnProgressChanged(null, new ProgressChangedEventArgs(x.ProgressPercentage(world.TilesWide), "Loading Tiles..."));
+                OnProgressChanged(null, new ProgressChangedEventArgs(x.ProgressPercentage(world.TilesWide), "Loading UndoTiles..."));
 
                 for (int y = 0; y < world.TilesHigh; y++)
                 {
-                    // get read for bit packing...
-                    Tile tile = world.Tiles[x, y];
+                    Tile tile = tiles[x, y];
 
-                    byte[] tileData = new byte[13];
-                    int tdPosition = 3;
+                    int dataIndex;
+                    int headerIndex;
 
-                    byte header3 = (byte)0;
-                    byte header2 = (byte)0;
-                    byte header1 = (byte)0;
-
-                    // tile data
-                    if (tile.IsActive)
-                    {
-                        // activate bit[1]
-                        header1 = (byte)(header1 | 2);
-
-                        if (tile.Type == 127 && tile.IsActive)
-                        {
-                            tile.IsActive = false;
-                        }
-
-                        // save tile type as byte or int16
-                        tileData[tdPosition++] = (byte)tile.Type;
-                        if (tile.Type > 255)
-                        {
-                            // write high byte
-                            tileData[tdPosition++] = (byte)(tile.Type >> 8);
-
-                            // set header1 bit[5] for int16 tile type
-                            header1 = (byte)(header1 | 32);
-                        }
-
-                        if (TileFrameImportant[tile.Type])
-                        {
-                            // pack UV coords
-                            tileData[tdPosition++] = (byte)(tile.U & 255);
-                            tileData[tdPosition++] = (byte)((tile.U & 65280) >> 8);
-                            tileData[tdPosition++] = (byte)(tile.V & 255);
-                            tileData[tdPosition++] = (byte)((tile.V & 65280) >> 8);
-                        }
-
-                        if (tile.TileColor != 0)
-                        {
-                            // set header3 bit[3] for tile color active
-                            header3 = (byte)(header3 | 8);
-                            tileData[tdPosition++] = tile.TileColor;
-                        }
-                    }
-
-                    // wall data
-                    if (tile.Wall != 0)
-                    {
-                        // set header1 bit[2] for wall active
-                        header1 = (byte)(header1 | 4);
-                        tileData[tdPosition++] = tile.Wall;
-
-                        // save tile wall color
-                        if (tile.WallColor != 0)
-                        {
-                            // set header3 bit[4] for wall color active
-                            header3 = (byte)(header3 | 16);
-                            tileData[tdPosition++] = tile.WallColor;
-                        }
-                    }
-
-                    // liquid data
-                    if (tile.LiquidAmount != 0)
-                    {
-                        // set bits[3,4] using left shift
-                        header1 = (byte)(header1 | (byte)((byte)tile.LiquidType << 3));
-                        tileData[tdPosition++] = tile.LiquidAmount;
-                    }
-
-                    // wire data
-                    if (tile.WireRed)
-                    {
-                        // red wire = header2 bit[1]
-                        header2 = (byte)(header2 | 2);
-                    }
-                    if (tile.WireGreen)
-                    {
-                        // green wire = header2 bit[2]
-                        header2 = (byte)(header2 | 4);
-                    }
-                    if (tile.WireBlue)
-                    {
-                        // blue wire = header2 bit[3]
-                        header2 = (byte)(header2 | 8);
-                    }
-
-                    // brick style
-                    byte brickStyle = (byte)((byte)tile.BrickStyle << 4);
-                    // set bits[4,5,6] of header2
-                    header2 = (byte)(header2 | brickStyle);
-
-                    // actuator data
-                    if (tile.Actuator)
-                    {
-                        // set bit[1] of header3
-                        header3 = (byte) (header3 | 2);
-                    }
-                    if (tile.InActive)
-                    {
-                        // set bit[2] of header3
-                        header3 = (byte)(header3 | 4);
-                    }
-
-                    int tdPositionHeaders = 2;
-                    if (header3 != 0)
-                    {
-                        // set header3 active flag bit[0] of header2
-                        header2 = (byte)(header2 | 1);
-                        tileData[tdPositionHeaders--] = header3;
-                    }
-                    if (header2 != 0)
-                    {
-                        // set header2 active flag bit[0] of header1
-                        header1 = (byte)(header1 | 1);
-                        tileData[tdPositionHeaders--] = header2;
-                    }
-                    
+                    byte[] tileData = SerializeTileData(tile, out dataIndex, out headerIndex);
 
                     // rle compression
+                    byte header1 = tileData[headerIndex];
+
                     short rle = 0;
                     int nextY = y + 1;
                     int remainingY = world.TilesHigh - y - 1;
-                    while (remainingY > 0 && tile.Equals(world.Tiles[x,nextY]))
+                    while (remainingY > 0 && tile.Equals(tiles[x, nextY]))
                     {
                         rle = (short)(rle + 1);
                         remainingY--;
@@ -200,7 +95,7 @@ namespace TEditXNA.Terraria
 
                     if (rle > 0)
                     {
-                        tileData[tdPosition++] = (byte)(rle & 255);
+                        tileData[dataIndex++] = (byte)(rle & 255);
 
                         if (rle <= 255)
                         {
@@ -213,13 +108,14 @@ namespace TEditXNA.Terraria
                             header1 = (byte)(header1 | 128);
 
                             // grab the upper half of the int16 and stick it in tiledata
-                            tileData[tdPosition++] = (byte)((rle & 65280) >> 8);
+                            tileData[dataIndex++] = (byte)((rle & 65280) >> 8);
                         }
                     }
 
-                    tileData[tdPositionHeaders] = header1;
+                    tileData[headerIndex] = header1;
+                    // end rle compression
 
-                    bw.Write(tileData, tdPositionHeaders, tdPosition-tdPositionHeaders);
+                    bw.Write(tileData, headerIndex, dataIndex - headerIndex);
                 }
             }
 
@@ -227,16 +123,144 @@ namespace TEditXNA.Terraria
             return (int)bw.BaseStream.Position;
         }
 
-        private static int SaveChests(World world, BinaryWriter bw)
+        /// <summary>
+        /// BitPack tile data and headers
+        /// </summary>
+        public static byte[] SerializeTileData(Tile tile, out int dataIndex, out int headerIndex)
         {
-            bw.Write((Int16)world.Chests.Count);
+
+            byte[] tileData = new byte[13];
+            dataIndex = 3;
+
+            byte header3 = (byte)0;
+            byte header2 = (byte)0;
+            byte header1 = (byte)0;
+
+            // tile data
+            if (tile.IsActive)
+            {
+                // activate bit[1]
+                header1 = (byte)(header1 | 2);
+
+                if (tile.Type == 127 && tile.IsActive)
+                {
+                    tile.IsActive = false;
+                }
+
+                // save tile type as byte or int16
+                tileData[dataIndex++] = (byte)tile.Type;
+                if (tile.Type > 255)
+                {
+                    // write high byte
+                    tileData[dataIndex++] = (byte)(tile.Type >> 8);
+
+                    // set header1 bit[5] for int16 tile type
+                    header1 = (byte)(header1 | 32);
+                }
+
+                if (TileFrameImportant[tile.Type])
+                {
+                    // pack UV coords
+                    tileData[dataIndex++] = (byte)(tile.U & 255);
+                    tileData[dataIndex++] = (byte)((tile.U & 65280) >> 8);
+                    tileData[dataIndex++] = (byte)(tile.V & 255);
+                    tileData[dataIndex++] = (byte)((tile.V & 65280) >> 8);
+                }
+
+                if (tile.TileColor != 0)
+                {
+                    // set header3 bit[3] for tile color active
+                    header3 = (byte)(header3 | 8);
+                    tileData[dataIndex++] = tile.TileColor;
+                }
+            }
+
+            // wall data
+            if (tile.Wall != 0)
+            {
+                // set header1 bit[2] for wall active
+                header1 = (byte)(header1 | 4);
+                tileData[dataIndex++] = tile.Wall;
+
+                // save tile wall color
+                if (tile.WallColor != 0)
+                {
+                    // set header3 bit[4] for wall color active
+                    header3 = (byte)(header3 | 16);
+                    tileData[dataIndex++] = tile.WallColor;
+                }
+            }
+
+            // liquid data
+            if (tile.LiquidAmount != 0)
+            {
+                // set bits[3,4] using left shift
+                header1 = (byte)(header1 | (byte)((byte)tile.LiquidType << 3));
+                tileData[dataIndex++] = tile.LiquidAmount;
+            }
+
+            // wire data
+            if (tile.WireRed)
+            {
+                // red wire = header2 bit[1]
+                header2 = (byte)(header2 | 2);
+            }
+            if (tile.WireGreen)
+            {
+                // green wire = header2 bit[2]
+                header2 = (byte)(header2 | 4);
+            }
+            if (tile.WireBlue)
+            {
+                // blue wire = header2 bit[3]
+                header2 = (byte)(header2 | 8);
+            }
+
+            // brick style
+            byte brickStyle = (byte)((byte)tile.BrickStyle << 4);
+            // set bits[4,5,6] of header2
+            header2 = (byte)(header2 | brickStyle);
+
+            // actuator data
+            if (tile.Actuator)
+            {
+                // set bit[1] of header3
+                header3 = (byte)(header3 | 2);
+            }
+            if (tile.InActive)
+            {
+                // set bit[2] of header3
+                header3 = (byte)(header3 | 4);
+            }
+
+            headerIndex = 2;
+            if (header3 != 0)
+            {
+                // set header3 active flag bit[0] of header2
+                header2 = (byte)(header2 | 1);
+                tileData[headerIndex--] = header3;
+            }
+            if (header2 != 0)
+            {
+                // set header2 active flag bit[0] of header1
+                header1 = (byte)(header1 | 1);
+                tileData[headerIndex--] = header2;
+            }
+
+            tileData[headerIndex] = header1;
+            return tileData;
+        }
+
+        public static int SaveChests(IList<Chest> chests, BinaryWriter bw)
+        {
+            bw.Write((Int16)chests.Count);
             bw.Write((Int16)Chest.MaxItems);
 
-            foreach (Chest chest in world.Chests)
+            foreach (Chest chest in chests)
             {
                 bw.Write(chest.X);
                 bw.Write(chest.Y);
-                bw.Write(chest.Name);
+                bw.Write(chest.Name ?? string.Empty);
 
                 for (int slot = 0; slot < Chest.MaxItems; slot++)
                 {
@@ -260,11 +284,11 @@ namespace TEditXNA.Terraria
             return (int)bw.BaseStream.Position;
         }
 
-        private static int SaveSigns(World world, BinaryWriter bw)
+        public static int SaveSigns(IList<Sign> signs, BinaryWriter bw)
         {
-            bw.Write((Int16)world.Signs.Count);
+            bw.Write((Int16)signs.Count);
 
-            foreach (Sign sign in world.Signs)
+            foreach (Sign sign in signs)
             {
                 if (sign.Text != null)
                 {
@@ -277,9 +301,9 @@ namespace TEditXNA.Terraria
             return (int)bw.BaseStream.Position;
         }
 
-        private static int SaveNPCs(World world, BinaryWriter bw)
+        public static int SaveNPCs(IEnumerable<NPC> npcs, BinaryWriter bw)
         {
-            foreach (NPC npc in world.NPCs)
+            foreach (NPC npc in npcs)
             {
                 bw.Write(true);
                 bw.Write(npc.Name);
@@ -295,7 +319,7 @@ namespace TEditXNA.Terraria
             return (int)bw.BaseStream.Position;
         }
 
-        private static int SaveFooter(World world, BinaryWriter bw)
+        public static int SaveFooter(World world, BinaryWriter bw)
         {
             bw.Write(true);
             bw.Write(world.Title);
@@ -304,7 +328,7 @@ namespace TEditXNA.Terraria
             return (int)bw.BaseStream.Position;
         }
 
-        private static int UpdateSectionPointers(int[] sectionPointers, BinaryWriter bw)
+        public static int UpdateSectionPointers(int[] sectionPointers, BinaryWriter bw)
         {
             bw.BaseStream.Position = 0L;
             bw.Write(CompatibleVersion);
@@ -318,7 +342,7 @@ namespace TEditXNA.Terraria
             return (int)bw.BaseStream.Position;
         }
 
-        private static int SaveSectionHeader(World world, BinaryWriter bw)
+        public static int SaveSectionHeader(World world, BinaryWriter bw)
         {
             bw.Write(CompatibleVersion);
             bw.Write(SectionCount);
@@ -335,7 +359,7 @@ namespace TEditXNA.Terraria
             return (int)bw.BaseStream.Position;
         }
 
-        private static int SaveHeaderFlags(World world, BinaryWriter bw)
+        public static int SaveHeaderFlags(World world, BinaryWriter bw)
         {
             bw.Write(world.Title);
             bw.Write(world.WorldId);
@@ -441,6 +465,7 @@ namespace TEditXNA.Terraria
             // reset the stream
             b.BaseStream.Position = (long)0;
 
+            OnProgressChanged(null, new ProgressChangedEventArgs(0, "Loading File Header..."));
             // read section pointers and tile frame data
             if (!LoadSectionHeader(b, out tileFrameImportant, out sectionPointers))
                 throw new FileFormatException("Invalid File Format Section");
@@ -456,26 +481,51 @@ namespace TEditXNA.Terraria
             if (b.BaseStream.Position != sectionPointers[1])
                 throw new FileFormatException("Unexpected Position: Invalid Header Flags");
 
+            OnProgressChanged(null, new ProgressChangedEventArgs(0, "Loading UndoTiles..."));
             LoadTileData(b, w);
             if (b.BaseStream.Position != sectionPointers[2])
                 throw new FileFormatException("Unexpected Position: Invalid Tile Data");
 
-            LoadChestData(b, w);
+            OnProgressChanged(null, new ProgressChangedEventArgs(100, "Loading Chests..."));
+
+            foreach (Chest chest in LoadChestData(b))
+            {
+                //Tile tile = w.Tiles[chest.X, chest.Y];
+                //if (tile.IsActive && (tile.Type == 55 || tile.Type == 85))
+                {
+                    w.Chests.Add(chest);
+                }
+            }
+
             if (b.BaseStream.Position != sectionPointers[3])
                 throw new FileFormatException("Unexpected Position: Invalid Chest Data");
 
-            LoadSignData(b, w);
+            OnProgressChanged(null, new ProgressChangedEventArgs(100, "Loading Signs..."));
+
+            foreach (Sign sign in LoadSignData(b))
+            {
+                Tile tile = w.Tiles[sign.X, sign.Y];
+                if (tile.IsActive && (tile.Type == 55 || tile.Type == 85))
+                {
+                    w.Signs.Add(sign);
+                }
+            }
+            
             if (b.BaseStream.Position != sectionPointers[4])
                 throw new FileFormatException("Unexpected Position: Invalid Sign Data");
 
+            OnProgressChanged(null, new ProgressChangedEventArgs(100, "Loading NPCs..."));
             LoadNPCsData(b, w);
             if (b.BaseStream.Position != sectionPointers[5])
                 throw new FileFormatException("Unexpected Position: Invalid NPC Data");
 
+            OnProgressChanged(null, new ProgressChangedEventArgs(100, "Verifying File..."));
             LoadFooter(b, w);
+
+            OnProgressChanged(null, new ProgressChangedEventArgs(100, "Load Complete."));
         }
 
-        private static void LoadTileData(BinaryReader r, World w)
+        public static void LoadTileData(BinaryReader r, World w)
         {
             w.Tiles = new Tile[w.TilesWide, w.TilesHigh];
 
@@ -483,11 +533,11 @@ namespace TEditXNA.Terraria
             for (int x = 0; x < w.TilesWide; x++)
             {
                 OnProgressChanged(null,
-                    new ProgressChangedEventArgs(x.ProgressPercentage(w.TilesWide), "Loading Tiles..."));
+                    new ProgressChangedEventArgs(x.ProgressPercentage(w.TilesWide), "Loading UndoTiles..."));
 
                 for (int y = 0; y < w.TilesHigh; y++)
                 {
-                    Tile tile = ReadSingleTile(r, out rle);
+                    Tile tile = DeserializeTileData(r, out rle);
 
                     w.Tiles[x, y] = tile;
                     while (rle > 0)
@@ -504,7 +554,7 @@ namespace TEditXNA.Terraria
             }
         }
 
-        private static Tile ReadSingleTile(BinaryReader r, out int rle)
+        public static Tile DeserializeTileData(BinaryReader r, out int rle)
         {
             Tile tile = new Tile();
 
@@ -667,7 +717,7 @@ namespace TEditXNA.Terraria
             return tile;
         }
 
-        private static void LoadChestData(BinaryReader r, World w)
+        public static IEnumerable<Chest> LoadChestData(BinaryReader r)
         {
             int totalChests = r.ReadInt16();
             int maxItems = r.ReadInt16();
@@ -726,12 +776,12 @@ namespace TEditXNA.Terraria
                     }
                 }
 
-                w.Chests.Add(chest);
+                yield return chest;
             }
 
         }
 
-        private static void LoadSignData(BinaryReader r, World w)
+        public static IEnumerable<Sign> LoadSignData(BinaryReader r)
         {
             short totalSigns = r.ReadInt16();
 
@@ -740,17 +790,11 @@ namespace TEditXNA.Terraria
                 string text = r.ReadString();
                 int x = r.ReadInt32();
                 int y = r.ReadInt32();
-
-                Tile tile = w.Tiles[x, y];
-                if (tile.IsActive && (tile.Type == 55 || tile.Type == 85))
-                {
-                    var sign = new Sign(x, y, text);
-                    w.Signs.Add(sign);
-                }
+                yield return new Sign(x, y, text);
             }
         }
 
-        private static void LoadNPCsData(BinaryReader r, World w)
+        public static void LoadNPCsData(BinaryReader r, World w)
         {
             int totalNpcs = 0;
             for (bool i = r.ReadBoolean(); i; i = r.ReadBoolean())
@@ -770,7 +814,7 @@ namespace TEditXNA.Terraria
             }
         }
 
-        private static void LoadFooter(BinaryReader r, World w)
+        public static void LoadFooter(BinaryReader r, World w)
         {
             if (!r.ReadBoolean())
                 throw new FileFormatException("Invalid Footer");
@@ -782,7 +826,7 @@ namespace TEditXNA.Terraria
                 throw new FileFormatException("Invalid Footer");
         }
 
-        private static void LoadHeaderFlags(BinaryReader r, World w, int expectedPosition)
+        public static void LoadHeaderFlags(BinaryReader r, World w, int expectedPosition)
         {
             w.Title = r.ReadString();
             w.WorldId = r.ReadInt32();
@@ -879,7 +923,7 @@ namespace TEditXNA.Terraria
             }
         }
 
-        private static bool LoadSectionHeader(BinaryReader r, out bool[] tileFrameImportant, out int[] sectionPointers)
+        public static bool LoadSectionHeader(BinaryReader r, out bool[] tileFrameImportant, out int[] sectionPointers)
         {
             tileFrameImportant = null;
             sectionPointers = null;
@@ -978,5 +1022,7 @@ namespace TEditXNA.Terraria
                 writer.Write(data);
             }
         }
+
+
     }
 }

@@ -11,7 +11,7 @@ namespace TEditXna.Editor.Plugins
         public ReplaceAllPlugin(WorldViewModel worldViewModel)
             : base(worldViewModel)
         {
-            Name = "Replace All Tiles";
+            Name = "Replace All UndoTiles";
         }
 
 
