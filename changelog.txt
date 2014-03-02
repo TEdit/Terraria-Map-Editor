@@ -1,3 +1,244 @@
+2014-03-01 Support for 1.2.3
+2014-03-01 Structure for new world format in place
+2014-03-01 update version
+2013-11-02 add terraria minimap file in prep for fixing renaming worlds
+2013-10-31 Support Terraria 1.2.1.2 update
+2013-10-25 Merge pull request #464 from zinfinion/patch-2.1
+2013-10-25 Colors, formatting, typos, etc...
+2013-10-25 quick fix for old worlds
+2013-10-25 Update for Terraria 1.2.1 Halloween!
+2013-10-25 settings for 1.2.1
+2013-10-20 only replace stone and dirt tiles fixes #446
+2013-10-20 fix #448
+2013-10-19 Merge pull request #452 from zinfinion/patch-1
+2013-10-19 Incorporated @HerbertV's banner UV coords from #449.
+2013-10-19 Updated colors of wall IDs 1-111 to match map colors. More...
+2013-10-19 Corrected 175 Tin Brick color.
+2013-10-19 Updated colors of tile items 221-250 to match map colors. More...
+2013-10-19 Updated colors of tile items 206-220 to match map colors. More...
+2013-10-19 Updated colors of tile items 186-206 to match map colors. More...
+2013-10-19 Restored Framed="true" to 174 Platinum Candle
+2013-10-19 Updated colors of tile items 178-185 to match map colors. More...
+2013-10-18 Reverted 165 Large Deco name from Icicle change. Updated color also.
+2013-10-18 Updated colors of tile items 170-177 to match map colors. More...
+2013-10-18 Updated colors of tile items 150-169 to match map colors. Added Blends="true" as needed.
+2013-10-18 Updated colors of tile items 140-149 to match map colors.
+2013-10-18 Updated colors of tile items 132-139 to match map colors.
+2013-10-18 Updated colors of tile items 121-131 to match map colors.
+2013-10-18 Increased color luminance of tile item 30 Wood.
+2013-10-18 Updated colors of tile items 101-120 to match map colors.
+2013-10-18 Updated colors of tile items 80-100 to match map colors.
+2013-10-18 Updated colors of tile items 63-79 to match map colors.
+2013-10-18 Updated colors of tile items 41-62 to match map colors.
+2013-10-18 Updated colors of tile items 30-40 to match map colors.
+2013-10-18 Updated colors of tile items 1-30 to match map colors.
+2013-10-18 fix schematics again
+2013-10-17 version
+2013-10-17 fix for table alignment
+2013-10-17 testing for LAA flag
+2013-10-17 strange schematic files.
+2013-10-17 formatting
+2013-10-17 Half block editing
+2013-10-17 undo memory usage tuning and fix replaceplugin window size and tile masking
+2013-10-16 fix for schematics part 2
+2013-10-16 Fix for schematic v2.
+2013-10-16 Lots of clipboard, undo and world file changes. This unifies saving and loading procedures.
+2013-10-16 change mask text #416
+2013-10-16 Possible fix for #409
+2013-10-16 Merge pull request #439 from HerbertV/master
+2013-10-16 forget to save after nameing tile 231 and 238. Now both are renamed.
+2013-10-16 added new traps. Named tile 231 and 238.
+2013-10-16 added new statues, titanium forge, orichalcum anvil and new pressure plates.
+2013-10-16 added new pianos and dressers.
+2013-10-16 added new tombstone variants.
+2013-10-16 added bed variants.
+2013-10-16 added lantern variants.
+2013-10-16 added Demon Heart and Crimson Altar.
+2013-10-16 added chest variants.
+2013-10-16 added lead anvil and work bench variants.
+2013-10-16 fixed last two table (honey/steam punk). added chairs (2 remain unknown.
+2013-10-16 fixed anchor/variety missmatch in all open doors. added table sprite variants. replaced one unknown door as bone door.
+2013-10-16 added sprites for all new door variants. 2 marked as unknown.
+2013-10-16 added all new bookcase variants.
+2013-10-16 modify build script a little
+2013-10-16 fix queen bee binding #435
+2013-10-16 update version
+2013-10-16 Add tile replacer plugin. closes #372
+2013-10-15 more work on #416
+2013-10-15 Work on #416
+2013-10-15 Update settings.xml
+2013-10-14 Update ClipboardBuffer.File.cs
+2013-10-14 add hash bat
+2013-10-14 Fix signs not loading, really fixes #364
+2013-10-14 Fix installer version
+2013-10-14 update version for release
+2013-10-14 Adding sizes from #393
+2013-10-14 more adjustments for sign/chest tabs,  #424
+2013-10-14 Size fixes to sign tab
+2013-10-14 adjust chest editor fill, fixes #424
+2013-10-14 fix templates for list boxes, fixes #419
+2013-10-13 Merge remote-tracking branch 'origin/Rlon's-Patch'
+2013-10-13 Fixing chest editor selection
+2013-10-13 Merge pull request #426 from NeilWhite/AdditionalNPCs
+2013-10-12 Add new NPCs to new world dialog
+2013-10-12 If a tree falls in the forest...
+2013-10-12 fix command binding
+2013-10-12 Make checking updates optional and add manual update button.
+2013-10-12 modify version number
+2013-10-12 super basic version checking
+2013-10-12 update versions
+2013-10-12 Minimap
+2013-10-12 Suppress meaningless WIX error message.
+2013-10-12 Merge remote-tracking branch 'origin/master'
+2013-10-12 Bug fix for NPC on new world creation.
+2013-10-11 Merge pull request #404 from NeilWhite/HoneyRendering
+2013-10-12 Merge remote-tracking branch 'origin/master'
+2013-10-12 Optional file associations. Fixes #410
+2013-10-12 And some more conflict resolution.
+2013-10-12 More conflict resolution
+2013-10-12 Resolve conflicts from @RIonRyan's last commit.
+2013-10-11 Wall that was fun!
+2013-10-11 Settings.xml Extra spaces to align tags
+2013-10-11 Settings.xml Conflict resolution
+2013-10-11 Settings.xml formatting change.
+2013-10-10 Remind me not to take on hand formatting a file like this again.
+2013-10-10 Tweaks
+2013-10-10 Update drawing code to include honey
+2013-10-10 Honey Updates
+2013-10-10 Massive performance improvements to chest editor.
+2013-10-09 alternate terraria path fixes for #399
+2013-10-09 update versions again
+2013-10-09 fix version number
+2013-10-09 update version
+2013-10-09 reverting sprite search update mode, too slow
+2013-10-09 udpate build
+2013-10-09 added some deco
+2013-10-09 Terraria 1.2.0.3 fix part 2
+2013-10-09 New GUI controls, tweaking sprite editor
+2013-10-09 Terraria 1.2.0.3 fix
+2013-10-09 added multiple platform types
+2013-10-09 fix for missing quote
+2013-10-09 Merge pull request #390 from RlonRyan/master
+2013-10-08 Morph on, Morph off.
+2013-10-08 hacky hack for fix #363
+2013-10-08 Autosave preserve settings, fixes #318
+2013-10-08 Add options for Terraria path, including prompt. Fixes #337 and related.
+2013-10-08 fix wix installer version, closes #376
+2013-10-08 Supplied blue and green wires, fixes #384
+2013-10-08 Merge branch 'master' of github.com:BinaryConstruct/Terraria-Map-Editor
+2013-10-08 Modify file associations, hopefully fixes #375
+2013-10-08 Merge pull request #385 from RlonRyan/master
+2013-10-08 Raid Dungeon. Get Wire.
+2013-10-08 Formatting among other tweaks.
+2013-10-07 Forgot a few!
+2013-10-07 I can see clearly now the pink is gone.
+2013-10-03 udpate version
+2013-10-03 fix schematic saving/loading, closes #362
+2013-10-03 fix npc save error, closes #367
+2013-10-03 fix stack size, closes #368
+2013-10-01 update version
+2013-10-01 saving of 1.2 worlds
+2013-10-01 successful world loading 1.2
+2013-10-01 added new tile, wall, npc settings and world properties for 1.2
+2013-08-28 fix solution
+2013-08-28 add bccl submodule
+2013-08-22 update build
+2013-08-11 log file fix
+2013-04-24 add check to make sure path exists
+2013-04-24 Change logging and fix a few help menus, fixes #336
+2013-03-26 Merge pull request #328 from RlonRyan/master
+2013-03-24 Mushroom! Mushroom!
+2013-03-23 Better Morphing
+2013-03-17 Merge pull request #326 from RlonRyan/master
+2013-03-17 Morph Biome Changes
+2012-11-17 Fix version display on main window, release version 3.3.12322.1200 (2012_11_17)
+2012-11-17 Add UI to installer
+2012-11-17 add update links and error message for invalid worlds
+2012-11-17 Adding all tile updates from #304 Thanks!
+2012-11-17 fix potential tooltip crash #310
+2012-11-17 possible fix #310
+2012-07-05 working on possibility of implementing #296 edit field next to every slide bar
+2012-07-02 Move autosave and undo dir to %appdata%
+2012-07-01 Added toggle to autosave and change autosave filename. Fixes #293
+2012-05-04 Add batch build script
+2012-05-04 Add Autosave,Command line support and file associations, closes #144 and closes #262
+2012-05-04 Add Installer, closes #102
+2012-05-02 Merge pull request #280 from SinisterStairs/flip
+2012-04-10 Marginally permissive multi-tile flipping
+2012-04-09 Flip clipboard buffers horizontally or vertically
+2012-04-01 Merge pull request #279 from SinisterStairs/patch-6
+2012-03-29 Added more Clipboard options
+2012-03-29 Scale NPC textures
+2012-03-28 Added default app width/height to settings.xml
+2012-03-28 Merge pull request #278 from SinisterStairs/patch-6
+2012-03-27 Issue #260:  "Swap" shortcut key (no UI)
+2012-03-27 Merge pull request #275 from SinisterStairs/patch-6
+2012-03-26 Refactored ToolSettings -> ToolDefaultData and removed Dictionaries
+2012-03-26 Allow NPCs to be removed
+2012-03-26 Check if world was modified externally before Save
+2012-03-26 Added more default settings for Tools
+2012-03-25 Identified Pearlstone Walls
+2012-03-23 Default Brush settings read from settings.xml
+2012-03-23 Merge pull request #273 from SinisterStairs/patch-6
+2012-03-22 Overlays used when textures unavailable or disabled
+2012-03-21 NPC textures calculated based on frames
+2012-03-21 Minor typo fix
+2012-03-21 Adjusted NPC texture
+2012-03-21 Use NPC textures when available
+2012-03-20 Merge pull request #272 from SinisterStairs/patch-6
+2012-03-20 Color coded NPC overlays
+2012-03-20 Update TEditXna/DependencyChecker.cs
+2012-03-20 Update TEditXna/Terraria/World.Settings.cs
+2012-03-20 Fixed Arms Dealer to use npc_arms_dealer.png (not npc_old_man.png)
+2012-03-15 Update AssemblyVersion in prep for 3.3 release.
+2012-03-13 Merge pull request #267 from SinisterStairs/patch-4
+2012-03-11 Added SmallChange to New World popup
+2012-03-11 Differentiated identically named prefixes
+2012-03-10 Ability to force load corrupt or invalid files. fixes #253
+2012-03-09 Merge pull request #265 from SinisterStairs/patch-3
+2012-03-09 File lock is static
+2012-03-09 Removed redundant code for finding Steam content
+2012-03-06 add locks to file io, probably fixes #264, but needs to be tested.
+2012-03-06 Merge pull request #263 from SinisterStairs/patch-2
+2012-03-06 Added SmallChange to Level sliders
+2012-03-05 Merge pull request #261 from SinisterStairs/patch-1
+2012-03-05 Shortened wall names so they fit the GUI; never should have opened this can of worms :)
+2012-03-05 Updated wall IsHouse flags
+2012-03-05 Updated more wall names to match in-game
+2012-03-05 Updated wall names to correspond with in-game name, updated some IsHouse wall flags
+2012-03-05 Updating settings.xml, closes #259
+2012-02-27 Changing Christmas light text in settings.xml
+2012-02-11 fix disabled empty clipboard, fixes #251
+2012-02-11 Add .net, xna and terraria dependency checker
+2012-02-08 remove ns
+2012-02-08 tweaks to chest-sign editor, still needs performance improvement for control generation
+2012-02-08 fix picker issues, closes #240 closes #239
+2012-02-08 attempting to fix "blank screen bug"
+2012-02-07 min tile size, fixes #245
+2012-02-05 better syntax
+2012-02-05 Mouse DPI scaling, fixes #247
+2012-02-03 consolidating spritebatches
+2012-02-03 adding leafy tops to settings.xml
+2012-02-03 setting.xml bug, fixed up solution, 3.2.0.0
+2012-02-02 Merge pull request #244 from Heathtech/master
+2012-01-30 Forgot to undo my version compatibility
+2012-01-30 Trying once more to remove ClickOnce stuff...
+2012-01-30 Disabled ClickOnce
+2012-01-30 Disabled ClickOnce
+2012-01-30 Added the missing BlendRules.cs
+2012-01-29 Made viewing of tile and wall textures possible
+2012-01-21 Catch invalid file exception
+2012-01-19 improvements with item data handling, sorting chest item lists
+2012-01-19 enforce fill tool tile check, fixes #226
+2012-01-19 added spawn meteor to world properties view, fixes #230
+2012-01-18 Another patch for chest editor.
+2012-01-18 updating version
+2012-01-18 chest item list bug, fixes 224
+2012-01-17 Completed 1.1.2 migration, added ability to add npcs to map.
+2012-01-17 Patch world version for terraria 1.1.2
+2012-01-17 Update for Net IDs
+2012-01-17 Terraria 1.1.2 world files
+2012-01-16 Updating version
 2012-01-16 Brush of size 1 allowed, also enforcing max/min on textbox. Fixes #217
 2012-01-16 placing signs/chests creates the back-end data storage, fixes #220
 2012-01-16 Adding an exception for unknown tiles, prompting to add to settings.xml. This will partially fix #251, but requires user input.
