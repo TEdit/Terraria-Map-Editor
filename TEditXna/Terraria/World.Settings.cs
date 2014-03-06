@@ -9,6 +9,7 @@ using System.Windows.Media;
 using System.Xml.Linq;
 using BCCL.Geometry.Primitives;
 using BCCL.MvvmLight;
+using TEditXna.Editor.Clipboard;
 using XNA = Microsoft.Xna.Framework;
 using TEditXNA.Terraria.Objects;
 
@@ -244,7 +245,10 @@ namespace TEditXNA.Terraria
             XElement appSettings = xmlSettings.Element("App");
             int appWidth = (int?)appSettings.Attribute("Width") ?? 800;
             int appHeight = (int?)appSettings.Attribute("Height") ?? 600;
+            int clipboardSize = (int)XNA.MathHelper.Clamp((int?)appSettings.Attribute("ClipboardRenderSize") ?? 512, 64, 4096);
+
             _appSize = new Vector2(appWidth, appHeight);
+            ClipboardBuffer.ClipboardRenderSize = clipboardSize;
 
             ToolDefaultData.LoadSettings(xmlSettings.Elements("Tools"));
 

@@ -10,6 +10,6 @@ echo Copying Files...
 if exist ".\TEdit3Installer\bin\Release\TEdit3Installer.msi" copy ".\TEdit3Installer\bin\Release\TEdit3Installer.msi" .\BIN\
 
 
-xcopy .\TEditXna\bin\Release .\BIN\Portable /S /Y /I
+xcopy .\TEditXna\bin\Release .\BIN\Portable /S /Y /I /EXCLUDE:exclude.txt
 
 pause

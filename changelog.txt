@@ -1,3 +1,13 @@
+2014-03-05 Hopefully catch some potential for errors.
+2014-03-05 fix degrees, again
+2014-03-05 add back some missing tile names
+2014-03-05 Remove degree symbol from XML file
+2014-03-02 update all tile data
+2014-03-02 Lots of clipboard improvements. No longer limited to 4000x4000. Export/import working.
+2014-03-02 update bccl
+2014-03-02 Lots of improvements to Undo/Redo system. Less memory usage, streaming files, faster. Oh, and it doesn't crash every time you undo.
+2014-03-02 Add BCL
+2014-03-01 Update versions and tweak build script.
 2014-03-01 Support for 1.2.3
 2014-03-01 Structure for new world format in place
 2014-03-01 update version

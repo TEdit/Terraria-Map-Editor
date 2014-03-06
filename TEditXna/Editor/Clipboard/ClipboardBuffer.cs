@@ -62,7 +62,7 @@ namespace TEditXna.Editor.Clipboard
         }
 
         private double _renderScale;
-         
+
 
         public double RenderScale
         {
@@ -93,11 +93,10 @@ namespace TEditXna.Editor.Clipboard
             int previewY = this.Size.Y;
             if (scale > 1.0)
             {
-                previewX = (int)Math.Min(ClipboardRenderSize, this.Size.X / scale);
-                previewY = (int)Math.Min(ClipboardRenderSize, this.Size.Y / scale);
+                previewX = (int)MathHelper.Clamp((float)Math.Min(ClipboardRenderSize, this.Size.X / scale), 1, ClipboardRenderSize);
+                previewY = (int)MathHelper.Clamp((float)Math.Min(ClipboardRenderSize, this.Size.Y / scale), 1, ClipboardRenderSize);
             }
-
-            if (scale <= 1.0)
+            else
                 scale = 1;
 
             var bmp = new WriteableBitmap(previewX, previewY, 96, 96, PixelFormats.Bgra32, null);

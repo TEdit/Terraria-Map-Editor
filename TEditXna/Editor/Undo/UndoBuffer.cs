@@ -75,7 +75,7 @@ namespace TEditXna.Editor.Undo
 
                     var tile = tiles[i];
 
-                    if (tile == null)
+                    if (tile == null || tile.Tile == null)
                         continue;
 
 
