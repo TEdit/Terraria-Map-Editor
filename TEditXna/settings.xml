@@ -1583,24 +1583,24 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Tile Color="#FF586976" Blends="true" Id="208" Name="Shadewood" Solid="true" />
     <Tile Color="#FF909490" Size="4,3" Id="209" Name="Cannon" Framed="true">
       <Frames>
-        <Frame UV="0,0" Name="Cannon" Variety="0° Elevation Right" />
-        <Frame UV="72,0" Name="Bunny Cannon" Variety="0° Elevation Right" />
-        <Frame UV="0,54" Name="Cannon" Variety="22.5° Elevation Right" />
-        <Frame UV="72,54" Name="Bunny Cannon" Variety="22.5° Elevation Right" />
-        <Frame UV="0,108" Name="Cannon" Variety="45° Elevation Right" />
-        <Frame UV="72,108" Name="Bunny Cannon" Variety="45° Elevation Right" />
-        <Frame UV="0,162" Name="Cannon" Variety="67.5° Elevation Right" />
-        <Frame UV="72,162" Name="Bunny Cannon" Variety="67.5° Elevation Right" />
-        <Frame UV="0,216" Name="Cannon" Variety="90° Elevation" />
-        <Frame UV="72,216" Name="Bunny Cannon" Variety="90° Elevation" />
-        <Frame UV="0,270" Name="Cannon" Variety="67.5° Elevation Left" />
-        <Frame UV="72,270" Name="Bunny Cannon" Variety="67.5° Elevation Left" />
-        <Frame UV="0,324" Name="Cannon" Variety="45° Elevation Left" />
-        <Frame UV="72,324" Name="Bunny Cannon" Variety="45° Elevation Left" />
-        <Frame UV="0,378" Name="Cannon" Variety="22.5° Elevation Left" />
-        <Frame UV="72,378" Name="Bunny Cannon" Variety="22.5° Elevation Left" />
-        <Frame UV="0,432" Name="Cannon" Variety="0° Elevation Left" />
-        <Frame UV="72,432" Name="Bunny Cannon" Variety="0° Elevation Left" />
+        <Frame UV="0,0" Name="Cannon" Variety="0 deg Elevation Right" />
+        <Frame UV="72,0" Name="Bunny Cannon" Variety="0 deg Elevation Right" />
+        <Frame UV="0,54" Name="Cannon" Variety="22.5 deg Elevation Right" />
+        <Frame UV="72,54" Name="Bunny Cannon" Variety="22.5 deg Elevation Right" />
+        <Frame UV="0,108" Name="Cannon" Variety="45 deg Elevation Right" />
+        <Frame UV="72,108" Name="Bunny Cannon" Variety="45 deg Elevation Right" />
+        <Frame UV="0,162" Name="Cannon" Variety="67.5 deg Elevation Right" />
+        <Frame UV="72,162" Name="Bunny Cannon" Variety="67.5 deg Elevation Right" />
+        <Frame UV="0,216" Name="Cannon" Variety="90 deg Elevation" />
+        <Frame UV="72,216" Name="Bunny Cannon" Variety="90 deg Elevation" />
+        <Frame UV="0,270" Name="Cannon" Variety="67.5 deg Elevation Left" />
+        <Frame UV="72,270" Name="Bunny Cannon" Variety="67.5 deg Elevation Left" />
+        <Frame UV="0,324" Name="Cannon" Variety="45 deg Elevation Left" />
+        <Frame UV="72,324" Name="Bunny Cannon" Variety="45 deg Elevation Left" />
+        <Frame UV="0,378" Name="Cannon" Variety="22.5 deg Elevation Left" />
+        <Frame UV="72,378" Name="Bunny Cannon" Variety="22.5 deg Elevation Left" />
+        <Frame UV="0,432" Name="Cannon" Variety="0 deg Elevation Left" />
+        <Frame UV="72,432" Name="Bunny Cannon" Variety="0 deg Elevation Left" />
       </Frames>
     </Tile>
     <Tile Color="#FFC03B3B" Id="210" Name="Land Mine" Framed="true">
