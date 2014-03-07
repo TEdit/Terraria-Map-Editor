@@ -457,15 +457,15 @@ namespace TEditXna.Editor.Tools
         private class BiomeData
         {
             public MorphBiome Biome;
-            public byte Tree;
-            public byte Plant;
-            public byte Stone;
-            public byte Grass;
-            public byte Sand;
-            public byte Silt;
+            public ushort Tree;
+            public ushort Plant;
+            public ushort Stone;
+            public ushort Grass;
+            public ushort Sand;
+            public ushort Silt;
             public byte Wall;
-            public byte Vines;
-            public byte Dirt;
+            public ushort Vines;
+            public ushort Dirt;
             public bool DirtToSand;
             public bool DirtToStone;
             public bool SandToDirt;

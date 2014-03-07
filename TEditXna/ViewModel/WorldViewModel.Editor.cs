@@ -205,7 +205,7 @@ namespace TEditXna.ViewModel
                 }
                 else
                 {
-                    curTile.Type = (byte)tile;
+                    curTile.Type = (ushort)tile;
                     curTile.IsActive = true;
                 }
             }

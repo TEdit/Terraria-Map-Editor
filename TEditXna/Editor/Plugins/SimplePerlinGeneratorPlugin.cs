@@ -36,7 +36,7 @@ namespace TEditXna.Editor.Plugins
             if (area.Width <= 0 || area.Height <= 0)
                 return;
 
-            var tile = (byte)_wvm.TilePicker.Tile;
+            var tile = (ushort)_wvm.TilePicker.Tile;
             for (int x = area.Left; x < area.Right; x++)
             {
                 for (int y = area.Top; y < area.Bottom; y++)

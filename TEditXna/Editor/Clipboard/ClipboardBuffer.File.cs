@@ -217,7 +217,7 @@ namespace TEditXna.Editor.Clipboard
             if (tileProperty != null && !tileProperty.IsFramed)
             {
                 tile.IsActive = true;
-                tile.Type = (byte)tileProperty.Id;
+                tile.Type = (ushort)tileProperty.Id;
             }
 
             // try and find a matching wall

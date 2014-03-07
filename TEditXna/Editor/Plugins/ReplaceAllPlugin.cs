@@ -95,7 +95,7 @@ namespace TEditXna.Editor.Plugins
                         _wvm.UndoManager.SaveTile(x, y);
 
                         if (doReplaceTile)
-                            curTile.Type = (byte)tileTarget;
+                            curTile.Type = (ushort)tileTarget;
 
                         if (doReplaceWall)
                             curTile.Wall = (byte)wallTarget;
