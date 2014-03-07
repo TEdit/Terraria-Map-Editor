@@ -69,7 +69,7 @@ namespace TEditXna.Editor.Undo
                 var tiles = UndoTiles.ToArray();
                 _undoTiles.RemoveRange(0, count);
 
-                Debug.WriteLine("Flushing Undo Buffer");
+                Debug.WriteLine("Flushing Undo Buffer: {0} Tiles", count);
                 for (int i = 0; i < count; i++)
                 {
 

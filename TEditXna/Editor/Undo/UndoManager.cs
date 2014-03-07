@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -18,7 +19,7 @@ namespace TEditXna.Editor.Undo
         private static readonly string RedoFile = Path.Combine(Dir, "redo_temp_{0}");
 
         private readonly WorldViewModel _wvm;
-        private UndoBuffer _buffer ;
+        private UndoBuffer _buffer;
         private int _currentIndex = 0;
         private int _maxIndex = 0;
 
@@ -64,32 +65,30 @@ namespace TEditXna.Editor.Undo
 
         public void SaveUndo()
         {
+            // no tiles to undo, skip save
+            if (_buffer == null)
+            {
+                return;
+            }
+
             //ValidateAndRemoveChests();
             _maxIndex = _currentIndex;
             _buffer.Close();
-
             _currentIndex++;
-
             _buffer = null;
 
             OnUndoSaved(this, EventArgs.Empty);
-        }
 
-        public void CreateUndo()
-        {
-            if (_buffer == null)
-                Buffer = new UndoBuffer(GetUndoFileName());
         }
 
         public void SaveTile(Vector2Int32 p)
         {
-            
             SaveTile(p.X, p.Y);
         }
         public void SaveTile(int x, int y)
         {
             if (_buffer == null)
-                CreateUndo();
+                Buffer = new UndoBuffer(GetUndoFileName());
 
             ValidateAndRemoveChests();
             var curTile = (Tile)_wvm.CurrentWorld.Tiles[x, y].Clone();
@@ -182,7 +181,7 @@ namespace TEditXna.Editor.Undo
             {
                 foreach (var undoTile in UndoBuffer.ReadUndoTilesFromStream(br))
                 {
-                    
+
                     var curTile = (Tile)_wvm.CurrentWorld.Tiles[undoTile.Location.X, undoTile.Location.Y];
                     redo.Add(undoTile.Location, curTile);
 
