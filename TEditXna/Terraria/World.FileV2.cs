@@ -344,7 +344,7 @@ namespace TEditXNA.Terraria
 
         public static int SaveSectionHeader(World world, BinaryWriter bw)
         {
-            bw.Write(CompatibleVersion);
+            bw.Write(Math.Max(CompatibleVersion, world.Version));
             bw.Write(SectionCount);
 
             // write section pointer placeholders
