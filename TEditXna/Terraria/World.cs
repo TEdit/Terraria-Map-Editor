@@ -135,19 +135,17 @@ namespace TEditXNA.Terraria
             BloodMoon = false;
         }
 
-        public bool ValidTileLocation(Vector2Int32 point)
+        public bool ValidTileLocation(Vector2Int32 v)
         {
-            if (point.X < 0)
-                return false;
-            if (point.Y < 0)
-                return false;
-            if (point.Y >= _tilesHigh)
-                return false;
-            if (point.X >= _tilesWide)
-                return false;
-
-            return true;
+            return ValidTileLocation(v.X, v.Y);
         }
+
+
+        public bool ValidTileLocation(int x, int y)
+        {
+            return (x >= 0 && y >= 0 && y < _tilesHigh && x < _tilesWide);
+        }
+
 
         public Chest GetChestAtTile(int x, int y)
         {

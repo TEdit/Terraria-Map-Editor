@@ -19,7 +19,7 @@ namespace TEditXNA.Terraria
 
     public partial class World
     {
-        public static uint CompatibleVersion = 94;
+        public static uint CompatibleVersion = 102;
         public static short TileCount = 314;
         public static short SectionCount = 10;
 
@@ -448,6 +448,15 @@ namespace TEditXNA.Terraria
             bw.Write((int)world.CloudBgActive);
             bw.Write(world.NumClouds);
             bw.Write(world.WindSpeedSet);
+
+            //1.2.4
+            bw.Write(world.Anglers.Count);
+            foreach (string angler in world.Anglers)
+            {
+                bw.Write(angler);
+            }
+            bw.Write(world.SavedAngler);
+            bw.Write(world.AnglerQuest);
 
             if (world.UnknownData != null && world.UnknownData.Length > 0)
                 bw.Write(world.UnknownData);
@@ -917,6 +926,24 @@ namespace TEditXNA.Terraria
             w.CloudBgActive = (float)r.ReadInt32();
             w.NumClouds = r.ReadInt16();
             w.WindSpeedSet = r.ReadSingle();
+
+            if (w.Version >= 95)
+            {
+                for (int i = r.ReadInt32(); i > 0; i--)
+                {
+                    w.Anglers.Add(r.ReadString());
+                }
+            }
+
+            if (w.Version >= 99)
+            {
+                w.SavedAngler = r.ReadBoolean();
+            }
+
+            if (w.Version >= 101)
+            {
+                w.AnglerQuest = r.ReadBoolean();
+            }
 
             // a little future proofing, read any "unknown" flags from the end of the list and save them. We will write these back after we write our "known" flags.
             if (r.BaseStream.Position < expectedPosition)

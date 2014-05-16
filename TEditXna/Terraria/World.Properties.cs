@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using BCCL.MvvmLight;
@@ -20,10 +19,12 @@ namespace TEditXNA.Terraria
         // 7 = ocean 1 2
 
         public static int MaxMoons = 3;
+        private readonly ObservableCollection<String> _anglers = new ObservableCollection<String>();
         private readonly ObservableCollection<NpcName> _charNames = new ObservableCollection<NpcName>();
         private readonly ObservableCollection<Chest> _chests = new ObservableCollection<Chest>();
         private readonly ObservableCollection<NPC> _npcs = new ObservableCollection<NPC>();
         private readonly ObservableCollection<Sign> _signs = new ObservableCollection<Sign>();
+
         public int[] CaveBackStyle = new int[4];
         public int[] CaveBackX = new int[4];
         public int[] CorruptBG = new int[3];
@@ -34,6 +35,7 @@ namespace TEditXNA.Terraria
         public int IceBackStyle;
         public int[] JungleBG = new int[3];
         public int JungleBackStyle;
+        public Random Rand;
         public int[] SnowBG = new int[3];
         public int[] SnowMntBG = new int[2];
         public Tile[,] Tiles;
@@ -43,6 +45,7 @@ namespace TEditXNA.Terraria
         public int[] TreeX = new int[4];
         public uint Version;
         private int _altarCount;
+        private bool _anglerQuest;
         private byte _bgCorruption;
         private byte _bgCrimson;
         private byte _bgDesert;
@@ -53,6 +56,7 @@ namespace TEditXNA.Terraria
         private byte _bgTree;
         private bool _bloodMoon;
         private float _bottomWorld;
+        private float _cloudBgActive;
         private bool _dayTime;
         private bool _downedBoss1;
         private bool _downedBoss2;
@@ -76,15 +80,19 @@ namespace TEditXNA.Terraria
         private int _invasionSize;
         private int _invasionType;
         private double _invasionX;
+        private bool _isCrimson;
+        private bool _isEclipse;
         private DateTime _lastSave;
         private float _leftWorld;
         private int _moonPhase;
         private int _moonType;
+        private short _numClouds;
         private int _oreTier1;
         private int _oreTier2;
         private int _oreTier3;
         private float _rightWorld;
         private double _rockLevel;
+        private bool _savedAngler;
         private bool _savedGoblin;
         private bool _savedMech;
         private bool _savedWizard;
@@ -101,16 +109,10 @@ namespace TEditXNA.Terraria
         private double _time;
         private string _title;
         private float _topWorld;
-        private int _worldId;
-		private float _cloudBgActive;
-        private short _numClouds;
-        private float _windSpeedSet;
-        public Random Rand;
-        private bool _isCrimson;
-        private bool _isEclipse;
-
         private byte[] _unknownData;
-         
+        private float _windSpeedSet;
+        private int _worldId;
+
 
         public byte[] UnknownData
         {
@@ -118,11 +120,24 @@ namespace TEditXNA.Terraria
             set { Set("UnknownData", ref _unknownData, value); }
         }
 
+
+        public bool AnglerQuest
+        {
+            get { return _anglerQuest; }
+            set { Set("AnglerQuest", ref _anglerQuest, value); }
+        }
+
+        public bool SavedAngler
+        {
+            get { return _savedAngler; }
+            set { Set("SavedAngler", ref _savedAngler, value); }
+        }
+
         public bool IsEclipse
         {
             get { return _isEclipse; }
             set { Set("IsEclipse", ref _isEclipse, value); }
-        } 
+        }
 
         public bool IsCrimson
         {
@@ -134,7 +149,7 @@ namespace TEditXNA.Terraria
         {
             get { return _windSpeedSet; }
             set { Set("WindSpeedSet", ref _windSpeedSet, value); }
-        } 
+        }
 
         public short NumClouds
         {
@@ -146,6 +161,12 @@ namespace TEditXNA.Terraria
         {
             get { return _cloudBgActive; }
             set { Set("CloudBgActive", ref _cloudBgActive, value); }
+        }
+
+
+        public ObservableCollection<String> Anglers
+        {
+            get { return _anglers; }
         }
 
         public ObservableCollection<NPC> NPCs
@@ -166,25 +187,6 @@ namespace TEditXNA.Terraria
         public ObservableCollection<NpcName> CharacterNames
         {
             get { return _charNames; }
-        }
-
-        public NpcName GetNpc(int id)
-        {
-            var npc = CharacterNames.FirstOrDefault(c => c.Id == id);
-            if (npc != null) return npc;
-
-            return GetNewNpc(id);
-        }
-
-        private static NpcName GetNewNpc(int id)
-        {
-            string name;
-            if (NpcNames.TryGetValue(id, out name))
-            {
-                return new NpcName(id, name);
-            }
-
-            return new NpcName(id, "Unknown");
         }
 
         public int MoonType
@@ -560,6 +562,25 @@ namespace TEditXNA.Terraria
         {
             get { return _lastSave; }
             set { Set("LastSave", ref _lastSave, value); }
+        }
+
+        public NpcName GetNpc(int id)
+        {
+            NpcName npc = CharacterNames.FirstOrDefault(c => c.Id == id);
+            if (npc != null) return npc;
+
+            return GetNewNpc(id);
+        }
+
+        private static NpcName GetNewNpc(int id)
+        {
+            string name;
+            if (NpcNames.TryGetValue(id, out name))
+            {
+                return new NpcName(id, name);
+            }
+
+            return new NpcName(id, "Unknown");
         }
     }
 }

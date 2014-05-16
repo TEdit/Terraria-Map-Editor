@@ -140,7 +140,11 @@ namespace TEditXna.Editor.Tools
         {
             foreach (Vector2Int32 pixel in area)
             {
-                if (!_wvm.CurrentWorld.ValidTileLocation(pixel)) continue;
+                bool test1 = _wvm.CurrentWorld.ValidTileLocation(pixel);
+                bool test2 = _wvm.CurrentWorld.ValidTileLocation(pixel.X, pixel.Y);
+                bool test3 = _wvm.CurrentWorld.ValidTileLocation(pixel.X, pixel.Y);
+
+                if (!test1 && !test2 && !test3) continue;
 
                 int index = pixel.X + pixel.Y * _wvm.CurrentWorld.TilesWide;
                 if (!_wvm.CheckTiles[index])
