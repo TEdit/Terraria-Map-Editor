@@ -1,6 +1,6 @@
 using System.Windows;
 using System.Windows.Input;
-using BCCL.MvvmLight.Command;
+using GalaSoft.MvvmLight.Command;
 using TEditXNA.Terraria;
 using TEditXna.ViewModel;
 

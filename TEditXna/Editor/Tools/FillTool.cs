@@ -2,7 +2,7 @@ using System;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media.Imaging;
-using BCCL.Geometry.Primitives;
+using TEdit.Geometry.Primitives;
 using Microsoft.Xna.Framework;
 using TEditXNA.Terraria;
 using TEditXna.ViewModel;

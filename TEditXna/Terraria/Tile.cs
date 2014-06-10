@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Windows.Documents;
-using BCCL.Geometry.Primitives;
+using TEdit.Geometry.Primitives;
 
 namespace TEditXNA.Terraria
 {

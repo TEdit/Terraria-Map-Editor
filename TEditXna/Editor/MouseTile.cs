@@ -1,5 +1,5 @@
-using BCCL.Geometry.Primitives;
-using BCCL.MvvmLight;
+using TEdit.Geometry.Primitives;
+using GalaSoft.MvvmLight;
 using TEditXNA.Terraria;
 
 namespace TEditXna.Editor

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework;
-using BCCL.Geometry.Primitives;
+using TEdit.Geometry.Primitives;
 using TEditXna.Editor;
 using TEditXna.ViewModel;
 using TEditXNA.Terraria;

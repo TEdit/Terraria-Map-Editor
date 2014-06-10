@@ -14,7 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using BCCL.Geometry.Primitives;
+using TEdit.Geometry.Primitives;
 using TEditXNA.Terraria;
 using TEditXna.Editor;
 using TEditXna.ViewModel;

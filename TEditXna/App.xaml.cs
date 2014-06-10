@@ -7,7 +7,8 @@ using System.Linq;
 using System.Reflection;
 using System.Threading;
 using System.Windows;
-using BCCL.MvvmLight.Threading;
+using TEdit.MvvmLight.Threading;
+using DispatcherHelper = GalaSoft.MvvmLight.Threading.DispatcherHelper;
 
 namespace TEditXna
 {
@@ -18,7 +19,7 @@ namespace TEditXna
     {
         static App()
         {
-            BCCL.MvvmLight.Threading.DispatcherHelper.Initialize();
+            GalaSoft.MvvmLight.Threading.DispatcherHelper.Initialize();
         }
 
         public static FileVersionInfo Version { get; set; }
@@ -93,7 +94,7 @@ namespace TEditXna
             }
 
             DispatcherHelper.Initialize();
-            BCCL.MvvmLight.Threading.TaskFactoryHelper.Initialize();
+            TaskFactoryHelper.Initialize();
             AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
             base.OnStartup(e);
         }

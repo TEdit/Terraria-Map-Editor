@@ -1,11 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel;
 using System.Windows;
-using BCCL.Utility;
+using TEdit.Utility;
 using TEditXna.Helper;
 using TEditXNA.Terraria.Objects;
-using BCCL.Geometry.Primitives;
-using Vector2 = BCCL.Geometry.Primitives.Vector2;
+using TEdit.Geometry.Primitives;
+using Vector2 = TEdit.Geometry.Primitives.Vector2;
 using System;
 using System.Collections.ObjectModel;
 using System.IO;

@@ -1,6 +1,6 @@
 using System;
 using System.Windows.Media.Imaging;
-using BCCL.Geometry.Primitives;
+using TEdit.Geometry.Primitives;
 using TEditXNA.Terraria;
 using TEditXna.ViewModel;
 using TEditXna.Terraria.Objects;

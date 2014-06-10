@@ -1,5 +1,5 @@
 ﻿using System;
-using BCCL.MvvmLight;
+using GalaSoft.MvvmLight;
 using Microsoft.Xna.Framework;
 
 namespace TEditXna.Render

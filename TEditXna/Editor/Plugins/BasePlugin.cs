@@ -1,5 +1,5 @@
 using System;
-using BCCL.MvvmLight;
+using GalaSoft.MvvmLight;
 using TEditXna.Editor.Undo;
 using TEditXna.ViewModel;
 

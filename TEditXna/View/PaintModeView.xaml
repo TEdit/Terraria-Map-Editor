@@ -2,7 +2,7 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:bccl="http://bccl/wpf"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:tedit="clr-namespace:TEdit.UI.Xaml"
              xmlns:editor="clr-namespace:TEditXna.Editor" xmlns:Terraria="clr-namespace:TEditXNA.Terraria"
              mc:Ignorable="d" 
              Background="{StaticResource WindowBackgroundBrush}" Foreground="{StaticResource TextBrush}" Height="90">
@@ -80,11 +80,11 @@
                 
             </StackPanel>
             <GroupBox Header="Tile" BorderThickness="1" Style="{StaticResource TileVisibleStyle}">
-                <bccl:AutoGrid Width="220" VerticalAlignment="Top" >
-                    <bccl:AutoGrid.ColumnDefinitions>
+                <tedit:AutoGrid Width="220" VerticalAlignment="Top" >
+                    <tedit:AutoGrid.ColumnDefinitions>
                         <ColumnDefinition Width="1*" />
                         <ColumnDefinition Width="2*" />
-                    </bccl:AutoGrid.ColumnDefinitions>
+                    </tedit:AutoGrid.ColumnDefinitions>
                     <ComboBox Grid.ColumnSpan="2" ItemsSource="{Binding Source={x:Static Terraria:World.TileBricks}, Mode=OneTime}" Visibility="{Binding ElementName=TileText, Path=Visibility}"
                       ItemTemplate="{StaticResource ColorPickerTemplate}" 
                       SelectedValue="{Binding Path=TilePicker.Tile, Mode=TwoWay}"
@@ -98,14 +98,14 @@
                       SelectedValue="{Binding Path=TilePicker.TileMask, Mode=TwoWay}"
                       SelectedValuePath="Id"
                       IsTextSearchEnabled="True" TextSearch.TextPath="Name" />
-                </bccl:AutoGrid>
+                </tedit:AutoGrid>
             </GroupBox>
             <GroupBox Header="Wall" BorderThickness="1"  Style="{StaticResource WallVisibleStyle}">
-                <bccl:AutoGrid Width="220" VerticalAlignment="Top" >
-                    <bccl:AutoGrid.ColumnDefinitions>
+                <tedit:AutoGrid Width="220" VerticalAlignment="Top" >
+                    <tedit:AutoGrid.ColumnDefinitions>
                         <ColumnDefinition Width="1*" />
                         <ColumnDefinition Width="2*" />
-                    </bccl:AutoGrid.ColumnDefinitions>
+                    </tedit:AutoGrid.ColumnDefinitions>
                     <ComboBox ItemsSource="{Binding Source={x:Static Terraria:World.WallProperties}, Mode=OneTime}" Visibility="{Binding ElementName=WallText, Path=Visibility}"
                       ItemTemplate="{StaticResource ColorPickerTemplate}" 
                       SelectedValue="{Binding Path=TilePicker.Wall, Mode=TwoWay}"
@@ -119,7 +119,7 @@
                       SelectedValue="{Binding Path=TilePicker.WallMask, Mode=TwoWay}"
                       SelectedValuePath="Id"
                       IsTextSearchEnabled="True" TextSearch.TextPath="Name" />
-                </bccl:AutoGrid>
+                </tedit:AutoGrid>
             </GroupBox>
             <GroupBox Header="Liquid" Style="{StaticResource LiquidVisibleStyle}">
                 <StackPanel Orientation="Horizontal" VerticalAlignment="Top">

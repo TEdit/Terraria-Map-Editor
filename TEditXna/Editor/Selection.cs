@@ -1,6 +1,6 @@
 ﻿using System;
-using BCCL.Geometry.Primitives;
-using BCCL.MvvmLight;
+using TEdit.Geometry.Primitives;
+using GalaSoft.MvvmLight;
 using Microsoft.Xna.Framework;
 
 namespace TEditXna.Editor

@@ -4,10 +4,10 @@ using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Windows;
-using BCCL.Geometry.Primitives;
-using BCCL.MvvmLight;
-using BCCL.MvvmLight.Threading;
-using BCCL.Utility;
+using TEdit.Geometry.Primitives;
+using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.Threading;
+using TEdit.Utility;
 using TEditXna.Helper;
 using TEditXNA.Terraria.Objects;
 

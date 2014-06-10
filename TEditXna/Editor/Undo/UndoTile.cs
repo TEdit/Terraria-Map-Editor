@@ -1,4 +1,4 @@
-﻿using BCCL.Geometry.Primitives;
+﻿using TEdit.Geometry.Primitives;
 using TEditXNA.Terraria;
 
 namespace TEditXna.Editor.Undo

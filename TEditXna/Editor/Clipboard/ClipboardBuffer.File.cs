@@ -5,7 +5,7 @@ using System.Windows;
 using System.Windows.Forms;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using BCCL.Geometry.Primitives;
+using TEdit.Geometry.Primitives;
 using TEditXna.Helper;
 using TEditXNA.Terraria;
 using TEditXNA.Terraria.Objects;

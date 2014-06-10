@@ -4,10 +4,10 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-using BCCL.Geometry.Primitives;
-using BCCL.MvvmLight;
-using BCCL.UI.Xaml.XnaContentHost;
-using BCCL.Utility;
+using TEdit.Geometry.Primitives;
+using GalaSoft.MvvmLight;
+using TEdit.UI.Xaml.XnaContentHost;
+using TEdit.Utility;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using TEditXNA.Terraria;
@@ -60,7 +60,7 @@ namespace TEditXna.View
 
         }
 
-        void _wvm_RequestScroll(object sender, BCCL.Framework.Events.EventArgs<ScrollDirection> e)
+        void _wvm_RequestScroll(object sender, TEdit.Framework.Events.EventArgs<ScrollDirection> e)
         {
             float x = _scrollPosition.X;
             float y = _scrollPosition.Y;
@@ -85,7 +85,7 @@ namespace TEditXna.View
             ClampScroll();
         }
 
-        void _wvm_RequestZoom(object sender, BCCL.Framework.Events.EventArgs<bool> e)
+        void _wvm_RequestZoom(object sender, TEdit.Framework.Events.EventArgs<bool> e)
         {
             if (e.Value1)
             {

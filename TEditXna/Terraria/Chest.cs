@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.ObjectModel;
-using BCCL.Geometry;
-using BCCL.MvvmLight;
+using TEdit.Geometry;
+using GalaSoft.MvvmLight;
 
 namespace TEditXNA.Terraria
 {

@@ -2,8 +2,8 @@
 using System.ComponentModel;
 using System.Linq;
 using System.Threading.Tasks;
-using BCCL.Geometry.Primitives;
-using BCCL.Utility;
+using TEdit.Geometry.Primitives;
+using TEdit.Utility;
 using Microsoft.Xna.Framework;
 using TEditXNA.Terraria;
 using TEditXna.Editor;

@@ -1,6 +1,6 @@
 ﻿using System.Collections.ObjectModel;
 using System.IO;
-using BCCL.MvvmLight;
+using GalaSoft.MvvmLight;
 
 namespace TEditXNA.Terraria
 {

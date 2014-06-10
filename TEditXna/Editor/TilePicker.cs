@@ -1,5 +1,5 @@
 ﻿using System.ComponentModel;
-using BCCL.MvvmLight;
+using GalaSoft.MvvmLight;
 using TEditXNA.Terraria;
 using System.Windows.Input;
 using TEditXNA.Terraria.Objects;

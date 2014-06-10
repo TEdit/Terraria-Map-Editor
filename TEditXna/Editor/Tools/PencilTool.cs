@@ -1,8 +1,8 @@
 using System;
 using System.Windows.Input;
 using System.Windows.Media.Imaging;
-using BCCL.Geometry;
-using BCCL.Geometry.Primitives;
+using TEdit.Geometry;
+using TEdit.Geometry.Primitives;
 using TEditXna.ViewModel;
 using TEditXNA.Terraria;
 using TEditXna.Terraria.Objects;

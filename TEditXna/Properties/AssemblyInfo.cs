@@ -7,6 +7,8 @@ using System.Windows;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
+using System.Windows.Markup;
+
 [assembly: AssemblyTitle("TEditXna")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
@@ -52,4 +54,8 @@ using System.Windows;
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
 [assembly: AssemblyVersion("3.5.0.0")]
-[assembly: AssemblyFileVersion("3.5.14135.0")]
+[assembly: AssemblyFileVersion("3.5.14160.0")]
+
+[assembly: XmlnsDefinition("http://tedit/wpf", "TEdit.UI.Xaml")]
+[assembly: XmlnsDefinition("http://tedit/wpf", "TEdit.UI.Xaml.Enum")]
+[assembly: XmlnsPrefix("http://tedit/wpf", "tedit")]

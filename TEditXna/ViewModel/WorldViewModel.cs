@@ -13,10 +13,10 @@ using System.Windows.Data;
 using System.Windows.Input;
 using System.Windows.Media.Imaging;
 using System.Windows.Threading;
-using BCCL.MvvmLight;
-using BCCL.MvvmLight.Command;
-using BCCL.MvvmLight.Threading;
-using BCCL.Utility;
+using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.Command;
+using TEdit.MvvmLight.Threading;
+using TEdit.Utility;
 using Microsoft.Win32;
 using TEditXna.Editor;
 using TEditXna.Editor.Clipboard;
@@ -28,6 +28,7 @@ using TEditXna.Render;
 using TEditXNA.Terraria;
 using TEditXNA.Terraria.Objects;
 using TEditXna.View.Popups;
+using DispatcherHelper = GalaSoft.MvvmLight.Threading.DispatcherHelper;
 
 namespace TEditXna.ViewModel
 {

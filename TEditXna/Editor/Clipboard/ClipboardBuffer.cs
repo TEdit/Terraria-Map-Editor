@@ -5,8 +5,8 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using BCCL.Geometry.Primitives;
-using BCCL.MvvmLight;
+using TEdit.Geometry.Primitives;
+using GalaSoft.MvvmLight;
 using Microsoft.Xna.Framework;
 using TEditXNA.Terraria;
 

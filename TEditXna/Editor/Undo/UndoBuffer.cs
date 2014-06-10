@@ -4,7 +4,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
-using BCCL.Geometry.Primitives;
+using TEdit.Geometry.Primitives;
 using TEditXNA.Terraria;
 
 namespace TEditXna.Editor.Undo

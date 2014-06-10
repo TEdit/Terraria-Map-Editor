@@ -1,6 +1,6 @@
 ﻿using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using BCCL.MvvmLight;
+using GalaSoft.MvvmLight;
 using TEditXna.ViewModel;
 
 namespace TEditXna.Editor.Tools
