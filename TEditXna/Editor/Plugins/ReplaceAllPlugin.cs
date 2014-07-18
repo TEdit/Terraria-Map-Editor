@@ -11,7 +11,7 @@ namespace TEditXna.Editor.Plugins
         public ReplaceAllPlugin(WorldViewModel worldViewModel)
             : base(worldViewModel)
         {
-            Name = "Replace All UndoTiles";
+            Name = "Replace All Tiles";
         }
 
 
@@ -74,7 +74,7 @@ namespace TEditXna.Editor.Plugins
 
                     if (replaceTiles)
                     {
-                        if ((curTile.IsActive && curTile.Type == tileMask && _wvm.TilePicker.TileMaskMode == MaskMode.Match)
+                        if ((_wvm.Selection.IsValid(x,y)) && (curTile.IsActive && curTile.Type == tileMask && _wvm.TilePicker.TileMaskMode == MaskMode.Match)
                             || (!curTile.IsActive && _wvm.TilePicker.TileMaskMode == MaskMode.Empty))
                         {
                             doReplaceTile = true;
@@ -83,7 +83,7 @@ namespace TEditXna.Editor.Plugins
 
                     if (replaceWalls)
                     {
-                        if ((curTile.Wall == wallMask && _wvm.TilePicker.WallMaskMode == MaskMode.Match)
+                        if ((_wvm.Selection.IsValid(x, y)) && (curTile.Wall == wallMask && _wvm.TilePicker.WallMaskMode == MaskMode.Match)
                             || (curTile.Wall == 0 && _wvm.TilePicker.WallMaskMode == MaskMode.Empty))
                         {
                             doReplaceWall = true;
