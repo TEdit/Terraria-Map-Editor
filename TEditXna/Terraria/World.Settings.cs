@@ -161,7 +161,7 @@ namespace TEditXNA.Terraria
                                         Name = curFrame.Name + ", " + curFrame.Variety,
                                         Origin = curFrame.UV,
                                         Size = curTile.FrameSize,
-                                        Tile = (byte)curTile.Id,
+                                        Tile = (ushort)curTile.Id, /* SBlogic */
                                         TileName = curTile.Name
                                     });
                 }
