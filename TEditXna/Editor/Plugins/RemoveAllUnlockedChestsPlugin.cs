@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Windows;
 using TEdit.Geometry.Primitives;
 using TEditXNA.Terraria;
 using TEditXna.ViewModel;
@@ -31,6 +32,11 @@ namespace TEditXna.Editor.Plugins
         public override void Execute()
         {
             if (_wvm.CurrentWorld == null) return;
+
+            if (
+                MessageBox.Show("Are you sure you wish to delete all unlocked chests?", "Delete Chests",
+                    MessageBoxButton.OKCancel, MessageBoxImage.Question) != MessageBoxResult.OK)
+                return;
 
             var chestLocations = _wvm.CurrentWorld.Chests.Select(chest => new Vector2Int32 { X = chest.X, Y = chest.Y }).ToList();
 
