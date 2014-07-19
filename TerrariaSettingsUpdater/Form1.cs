@@ -78,7 +78,7 @@ namespace TerrariaSettingsUpdater
 
             List<int> diffs = new List<int>();
 
-            for (int i = 0; i <= 314; i++)
+            for (int i = 0; i <= 339; i++)
             {
                 var otile = orgXML.Elements("Tile").FirstOrDefault(x => (int)x.Attribute("Id") == i);
                 var ntile = newXML.Elements("Tile").FirstOrDefault(x => (int)x.Attribute("Id") == i);
