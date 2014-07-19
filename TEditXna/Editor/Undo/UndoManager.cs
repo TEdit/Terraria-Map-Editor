@@ -14,9 +14,22 @@ namespace TEditXna.Editor.Undo
 {
     public class UndoManager : ObservableObject, IDisposable
     {
-        private static readonly string Dir = Path.Combine(WorldViewModel.TempPath, "undo");
-        private static readonly string UndoFile = Path.Combine(Dir, "undo_temp_{0}");
-        private static readonly string RedoFile = Path.Combine(Dir, "redo_temp_{0}");
+        private static Random r = new Random();
+        private static int uniqueVal;
+
+
+        static UndoManager()
+        {
+            r = new Random();
+            uniqueVal = r.Next(999999999);
+            Dir = Path.Combine(WorldViewModel.TempPath, "undo_" + uniqueVal);
+            UndoFile = Path.Combine(Dir, "undo_temp_{0}");
+            RedoFile = Path.Combine(Dir, "redo_temp_{0}");
+        }
+
+        private static readonly string Dir;
+        private static readonly string UndoFile;
+        private static readonly string RedoFile;
 
         private readonly WorldViewModel _wvm;
         private UndoBuffer _buffer;

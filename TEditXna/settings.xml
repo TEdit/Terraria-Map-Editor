@@ -2004,70 +2004,54 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Tile Id="314" Name="Minecart Track" Framed="true">
       <Frames></Frames>
     </Tile>
-    <Tile Id="314" Name="Minecart Track"  Framed="true" >
-      <Frames>
-      </Frames>
+    <Tile Id="315" Name="Coralstone Block" Solid="true" />
+    <Tile Id="316" Name="Blue Jellyfish Jar" Framed="true" Light="true">
+      <Frames></Frames>
     </Tile>
-    <Tile Id="315" Name="Coralstone Block"  Solid="true"  />
-    <Tile Id="316" Name="Blue Jellyfish Jar"  Framed="true" Light="true" >
-      <Frames>
-      </Frames>
+    <Tile Id="317" Name="Green Jellyfish Jar" Framed="true" Light="true">
+      <Frames></Frames>
     </Tile>
-    <Tile Id="317" Name="Green Jellyfish Jar"  Framed="true" Light="true" >
-      <Frames>
-      </Frames>
+    <Tile Id="318" Name="Pink Jellyfish Jar" Framed="true" Light="true">
+      <Frames></Frames>
     </Tile>
-    <Tile Id="318" Name="Pink Jellyfish Jar"  Framed="true" Light="true" >
-      <Frames>
-      </Frames>
+    <Tile Id="319" Name="Ship in a Bottle" Framed="true">
+      <Frames></Frames>
     </Tile>
-    <Tile Id="319" Name="Ship in a Bottle"  Framed="true" >
-      <Frames>
-      </Frames>
+    <Tile Id="320" Name="Seaweed Planter" Framed="true">
+      <Frames></Frames>
     </Tile>
-    <Tile Id="320" Name="Seaweed Planter"  Framed="true" >
-      <Frames>
-      </Frames>
+    <Tile Id="321" Name="Boreal Wood" Solid="true" />
+    <Tile Id="322" Name="Palm Wood" Solid="true" />
+    <Tile Name="" Id="323" Framed="true">
+      <Frames></Frames>
     </Tile>
-    <Tile Id="321" Name="Boreal Wood"  Solid="true"  />
-    <Tile Id="322" Name="Palm Wood"  Solid="true"  />
-    <Tile Id="323" Name=""  Framed="true" >
-      <Frames>
-      </Frames>
+    <Tile Id="324" Name="Seashell" Framed="true">
+      <Frames></Frames>
     </Tile>
-    <Tile Id="324" Name="Seashell"  Framed="true" >
-      <Frames>
-      </Frames>
+    <Tile Id="325" Name="Tin Plating" Solid="true" />
+    <Tile Id="326" Name="Waterfall Block" Solid="true" />
+    <Tile Id="327" Name="Lavafall Block" Solid="true" Light="true" />
+    <Tile Id="328" Name="Confetti Block" Solid="true" />
+    <Tile Id="329" Name="Midnight Confetti Block" Solid="true" />
+    <Tile Id="330" Name="Copper Coin" />
+    <Tile Id="331" Name="Silver Coin" />
+    <Tile Id="332" Name="Gold Coin" />
+    <Tile Id="333" Name="Platinum Coin" />
+    <Tile Id="334" Name="Weapon Rack" Framed="true">
+      <Frames></Frames>
     </Tile>
-    <Tile Id="325" Name="Tin Plating"  Solid="true"  />
-    <Tile Id="326" Name="Waterfall Block"  Solid="true"  />
-    <Tile Id="327" Name="Lavafall Block"  Solid="true" Light="true"  />
-    <Tile Id="328" Name="Confetti Block"  Solid="true"  />
-    <Tile Id="329" Name="Midnight Confetti Block"  Solid="true"  />
-    <Tile Id="330" Name="Copper Coin"   />
-    <Tile Id="331" Name="Silver Coin"   />
-    <Tile Id="332" Name="Gold Coin"   />
-    <Tile Id="333" Name="Platinum Coin"   />
-    <Tile Id="334" Name="Weapon Rack"  Framed="true" >
-      <Frames>
-      </Frames>
+    <Tile Id="335" Name="Fireworks Box" Framed="true">
+      <Frames></Frames>
     </Tile>
-    <Tile Id="335" Name="Fireworks Box"  Framed="true" >
-      <Frames>
-      </Frames>
+    <Tile Id="336" Name="Living Fire Block" Light="true" />
+    <Tile Id="337" Name="'0' Statue" Framed="true">
+      <Frames></Frames>
     </Tile>
-    <Tile Id="336" Name="Living Fire Block"  Light="true"  />
-    <Tile Id="337" Name="'0' Statue"  Framed="true" >
-      <Frames>
-      </Frames>
+    <Tile Id="338" Name="Firework Fountain" Framed="true">
+      <Frames></Frames>
     </Tile>
-    <Tile Id="338" Name="Firework Fountain"  Framed="true" >
-      <Frames>
-      </Frames>
-    </Tile>
-    <Tile Id="339" Name="Grasshopper Cage"  Framed="true" >
-      <Frames>
-      </Frames>
+    <Tile Id="339" Name="Grasshopper Cage" Framed="true">
+      <Frames></Frames>
     </Tile>
   </Tiles>
   <Walls>
