@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -127,6 +127,9 @@
     <Compile Include="Editor\Plugins\BasePlugin.cs" />
     <Compile Include="Editor\Plugins\IPlugin.cs" />
     <Compile Include="Editor\Plugins\PerlinNoise.cs" />
+    <Compile Include="Editor\Plugins\UnlockAllChestsPlugin.cs" />
+    <Compile Include="Editor\Plugins\RemoveAllUnlockedChestsPlugin.cs" />
+    <Compile Include="Editor\Plugins\RemoveAllChestsPlugin.cs" />
     <Compile Include="Editor\Plugins\ReplaceAllPlugin.cs" />
     <Compile Include="Editor\Plugins\ReplaceAllPluginView.xaml.cs">
       <DependentUpon>ReplaceAllPluginView.xaml</DependentUpon>
@@ -514,12 +517,12 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties BuildVersion_UseGlobalSettings="True" BuildVersion_AssemblyInfoFilename="Properties\AssemblyInfo.cs" />
+      <UserProperties BuildVersion_AssemblyInfoFilename="Properties\AssemblyInfo.cs" BuildVersion_UseGlobalSettings="True" />
     </VisualStudio>
   </ProjectExtensions>
   <PropertyGroup>
-    <PostBuildEvent>"C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\vcvars32.bat"
-editbin /largeaddressaware $(TargetPath)</PostBuildEvent>
+    <PostBuildEvent>
+    </PostBuildEvent>
   </PropertyGroup>
   <PropertyGroup>
     <PreBuildEvent>
