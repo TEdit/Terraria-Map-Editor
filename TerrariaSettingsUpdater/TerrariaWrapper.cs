@@ -17,11 +17,16 @@ namespace TerrariaSettingsUpdater
         public int Id { get; set; }
         public string Type { get; set; }
     }
-    public class TerrariaWrapper : Terraria.Main
+    public class TerrariaWrapper : Main
     {
+        public Main Game { get; set; }
+
         public TerrariaWrapper()
         {
-            base.Initialize();
+
+            Main.dedServ = true;
+            Main.showSplash = false;
+            this.Initialize();
 
             Terraria.Item curItem = new Item();
             for (int i = -1; i > -255; i--)

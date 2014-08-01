@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="TEditXna.View.ChestEditorView"
+<UserControl x:Class="TEditXna.View.ChestEditorView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -51,14 +51,18 @@
           HorizontalAlignment="Stretch">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
-
+            <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-
-
+        
         <StackPanel Orientation="Horizontal" Grid.Row="0">
+            <TextBlock Text="Chest Name: " Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" VerticalAlignment="Center" />
+            <TextBox Margin="2" Width="100px" Height="20px" MaxLength="20" MaxLines="1" Text="{Binding SelectedChest.Name}" />
+        </StackPanel>
+        
+        <StackPanel Orientation="Horizontal" Grid.Row="1">
             <TextBlock Text="Chest Contents " Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" />
             <TextBlock Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" DockPanel.Dock="Top">
                 <TextBlock.Text>
@@ -70,7 +74,7 @@
             </TextBlock>
         </StackPanel>
 
-        <ListBox Grid.Row="1" Name="ChestList" Padding="5" Foreground="White" MinHeight="200"
+        <ListBox Grid.Row="2" Name="ChestList" Padding="5" Foreground="White" MinHeight="200"
                  ItemsSource="{Binding SelectedChest.Items}"
                  ScrollViewer.CanContentScroll="True"
                  VirtualizingStackPanel.IsVirtualizing="True"
@@ -81,12 +85,12 @@
                 </Style>
             </ListBox.ItemContainerStyle>
         </ListBox>
-        <StackPanel Grid.Row="2">
+        <StackPanel Grid.Row="3">
             <TextBlock Text="Edit Selected Item" Margin="2" Foreground="{DynamicResource TextBrush}" />
             <ContentControl ContentTemplate="{StaticResource ChestItemTemplate}"
                             Content="{Binding ElementName=ChestList, Path=SelectedItem}" />
         </StackPanel>
-        <UniformGrid Grid.Row="3" Columns="2">
+        <UniformGrid Grid.Row="4" Columns="2">
             <Button Margin="2" Content="Cancel" Command="{Binding SaveChestCommand}"
                     CommandParameter="{StaticResource False}" />
             <Button Margin="2" Content="Save" Command="{Binding SaveChestCommand}"

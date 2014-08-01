@@ -45,6 +45,9 @@ namespace TEditXna.ViewModel
             wvm.Plugins.Add(new SandSettlePlugin(wvm));
             wvm.Plugins.Add(new SimplePerlinGeneratorPlugin(wvm));
             wvm.Plugins.Add(new ReplaceAllPlugin(wvm));
+            wvm.Plugins.Add(new RemoveAllChestsPlugin(wvm));
+            wvm.Plugins.Add(new RemoveAllUnlockedChestsPlugin(wvm));
+            wvm.Plugins.Add(new UnlockAllChestsPlugin(wvm));
             return wvm;
         }
     }
