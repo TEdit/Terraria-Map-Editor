@@ -486,6 +486,7 @@
     <EmbeddedResource Include="Images\Overlays\grid.png" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="settings_1241.xml" />
     <Resource Include="Images\Toolbar\report_magnify.png" />
     <Content Include="settings.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
