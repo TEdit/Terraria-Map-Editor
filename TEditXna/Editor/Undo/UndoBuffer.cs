@@ -11,6 +11,8 @@ namespace TEditXna.Editor.Undo
 {
     public class UndoBuffer
     {
+        private static readonly object UndoSaveLock = new object();
+
         public UndoBuffer(string fileName)
         {
             var stream = new FileStream(fileName, FileMode.Create);
@@ -48,7 +50,7 @@ namespace TEditXna.Editor.Undo
                 throw new Exception("Null undo?");
             }
 
-            lock (UndoTiles)
+            lock (UndoSaveLock)
             {
                 UndoTiles.Add(undoTile);
                 LastTile = undoTile;
@@ -63,7 +65,7 @@ namespace TEditXna.Editor.Undo
 
         public void Flush()
         {
-            lock (UndoTiles)
+            lock (UndoSaveLock)
             {
                 int count = _undoTiles.Count;
                 var tiles = UndoTiles.ToArray();
@@ -72,12 +74,10 @@ namespace TEditXna.Editor.Undo
                 Debug.WriteLine("Flushing Undo Buffer: {0} Tiles", count);
                 for (int i = 0; i < count; i++)
                 {
-
                     var tile = tiles[i];
 
                     if (tile == null || tile.Tile == null)
                         continue;
-
 
                     _writer.Write(tile.Location.X);
                     _writer.Write(tile.Location.Y);
