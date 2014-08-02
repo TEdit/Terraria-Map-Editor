@@ -52,7 +52,7 @@
 								  m.Groups["major"].Value,
 								  m.Groups["minor"].Value,
 								  datedBuildNumber,
-								  0);
+								  revisionNumber);
 
 						// Write new version numbers
 						string result = Regex.Replace(content, findAssmVers, assmVers);
