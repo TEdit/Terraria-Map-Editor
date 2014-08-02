@@ -23,7 +23,8 @@
 
 						string findAssmVers = @"AssemblyVersion\(\""(?<major>\d+)\.(?<minor>\d+)\.(?<build>\d+)\.(?<revision>\d+)";
 						string findAssmFileVers = @"AssemblyFileVersion\(\""(?<major>\d+)\.(?<minor>\d+)\.(?<build>\d+)\.(?<revision>\d+)";
-
+						string findWixVers = @"Version=""(?<major>\d+)\.(?<minor>\d+)\.(?<build>\d+)\.(?<revision>\d+)""";
+						
 						if (!File.Exists(fileName))
 						{
 							Log.LogError(null, null, null, null, 0, 0, 0, 0, String.Format("Could not find version file: {0}", fileName), new object[0]);
@@ -31,7 +32,15 @@
 						string content = File.ReadAllText(fileName);
 
 						var m = Regex.Match(content, findAssmVers);
+					var mw = Regex.Match(content, findWixVers);
 
+						string wixVers = string.Format(
+								  "Version=\"{0}.{1}.{2}.{3}\"",
+								  mw.Groups["major"].Value,
+								  mw.Groups["minor"].Value,
+								  datedBuildNumber,
+								  revisionNumber);
+								  
 
 						// Generate new Version Numbers
 						string assmVers = string.Format("AssemblyVersion(\"{0}.{1}.0.0",
@@ -48,6 +57,7 @@
 						// Write new version numbers
 						string result = Regex.Replace(content, findAssmVers, assmVers);
 						result = Regex.Replace(result, findAssmFileVers, assmFileVers);
+						result = Regex.Replace(result, findWixVers, wixVers);
 						File.WriteAllText(fileName, result);
 					}
 				]]>
