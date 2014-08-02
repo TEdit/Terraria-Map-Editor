@@ -67,7 +67,7 @@ namespace TEditXna.ViewModel
 
         private void AddNpc(int npcId)
         {
-            if (CurrentWorld != null && npcId > 0) /* SBLogic */
+            if (CurrentWorld != null && World.NpcNames.ContainsKey(npcId))
             {
                 string name = World.NpcNames[npcId];
                 if (!CurrentWorld.NPCs.Any(n => n.SpriteId == npcId))
