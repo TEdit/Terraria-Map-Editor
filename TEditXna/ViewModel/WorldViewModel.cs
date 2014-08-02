@@ -495,6 +495,31 @@ namespace TEditXna.ViewModel
             }, TaskFactoryHelper.UiTaskScheduler);
         }
 
+        private ICommand _analyzeWorldCommand;
+         
+
+        /// <summary>
+        /// Relay command to execute AnalizeWorld.
+        /// </summary>
+        public ICommand AnalyzeWorldCommand
+        {
+            get { return _analyzeWorldCommand ?? (_analyzeWorldCommand = new RelayCommand(AnalyzeWorld)); }
+        }
+
+        private void AnalyzeWorld()
+        {
+            WorldAnalysis = TEditXNA.Terraria.WorldAnalysis.AnalyseWorld(this.CurrentWorld);
+        }
+
+        private string _worldAnalysis;
+         
+
+        public string WorldAnalysis
+        {
+            get { return _worldAnalysis; }
+            set { Set("WorldAnalysis", ref _worldAnalysis, value); }
+        }
+
         public event EventHandler PreviewChanged;
 
         public void PreviewChange()

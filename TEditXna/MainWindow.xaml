@@ -210,6 +210,11 @@
                             <View:SignEditor HorizontalAlignment="Stretch"  VerticalAlignment="Stretch"/>
                         </ScrollViewer>
                     </TabItem>
+                    <TabItem Header="Analysis">
+                        <ScrollViewer VerticalScrollBarVisibility="Auto">
+                            <View:WorldAnalysis HorizontalAlignment="Stretch"  VerticalAlignment="Stretch"/>
+                        </ScrollViewer>
+                    </TabItem>
                 </TabControl>
             </Expander>
             <View:WorldRenderXna HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
