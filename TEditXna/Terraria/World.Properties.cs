@@ -45,7 +45,7 @@ namespace TEditXNA.Terraria
         public int[] TreeX = new int[4];
         public uint Version;
         private int _altarCount;
-        private bool _anglerQuest;
+        private int _anglerQuest;
         private byte _bgCorruption;
         private byte _bgCrimson;
         private byte _bgDesert;
@@ -121,7 +121,7 @@ namespace TEditXNA.Terraria
         }
 
 
-        public bool AnglerQuest
+        public int AnglerQuest
         {
             get { return _anglerQuest; }
             set { Set("AnglerQuest", ref _anglerQuest, value); }
