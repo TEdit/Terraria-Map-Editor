@@ -70,7 +70,7 @@ namespace TEditXna.ViewModel
             if (CurrentWorld != null && World.NpcNames.ContainsKey(npcId))
             {
                 string name = World.NpcNames[npcId];
-                if (!CurrentWorld.NPCs.Any(n => n.SpriteId == npcId))
+                if (CurrentWorld.NPCs.All(n => n.SpriteId != npcId))
                 {
                     var spawn = new Vector2Int32(CurrentWorld.SpawnX, CurrentWorld.SpawnY);
                     CurrentWorld.NPCs.Add(new NPC{Home = spawn, IsHomeless = true, DisplayName = name, Name = name, Position= new Vector2(spawn.X * 16, spawn.Y * 16), SpriteId = npcId});
