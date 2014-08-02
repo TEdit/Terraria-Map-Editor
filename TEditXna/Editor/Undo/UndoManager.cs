@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Threading;
 using TEdit.Geometry.Primitives;
 using GalaSoft.MvvmLight;
 using TEditXNA.Terraria;
@@ -16,7 +17,8 @@ namespace TEditXna.Editor.Undo
     {
         private static Random r = new Random();
         private static int uniqueVal;
-
+        private static Timer undoAliveTimer;
+        private static string UndoAliveFile;
 
         static UndoManager()
         {
@@ -25,6 +27,61 @@ namespace TEditXna.Editor.Undo
             Dir = Path.Combine(WorldViewModel.TempPath, "undo_" + uniqueVal);
             UndoFile = Path.Combine(Dir, "undo_temp_{0}");
             RedoFile = Path.Combine(Dir, "redo_temp_{0}");
+            UndoAliveFile = Path.Combine(Dir, "alive.txt");
+
+            if (!Directory.Exists(Dir))
+                Directory.CreateDirectory(Dir);
+
+            undoAliveTimer = new Timer(UndoAlive, null, TimeSpan.Zero, TimeSpan.FromMinutes(5));
+        }
+
+        private static void UndoAlive(object state)
+        {
+            if (!File.Exists(UndoAliveFile))
+                File.Create(UndoAliveFile).Close();
+            
+
+            File.SetLastWriteTimeUtc(UndoAliveFile, DateTime.UtcNow);
+
+            CleanupOldUndoFiles();
+        }
+
+        private static bool IsUndoDirAlive(string directory)
+        {
+            string aliveFile = Path.Combine(directory, "alive.txt");
+
+            // if the keep alive file is missing, this undo dir is dead, remove it 
+            if (!File.Exists(aliveFile))
+                return false;
+
+            // if the keep alive file is older than 20 minutes, this undo dir is dead, remove it 
+            if (File.GetLastAccessTimeUtc(aliveFile) < DateTime.UtcNow.AddMinutes(-20))
+                return false;
+
+            return true;
+        }
+
+        private static void CleanupOldUndoFiles()
+        {
+            try
+            {
+                foreach (var file in Directory.GetFiles(WorldViewModel.TempPath).ToList())
+                {
+                    File.Delete(file);
+                }
+
+                foreach (var dir in Directory.GetDirectories(WorldViewModel.TempPath).ToList())
+                {
+                    if (!IsUndoDirAlive(dir))
+                    {
+                        Directory.Delete(dir, true);
+                    }
+                }
+            }
+            catch (Exception err)
+            {
+                ErrorLogging.LogException(err);
+            }
         }
 
         private static readonly string Dir;
@@ -305,10 +362,7 @@ namespace TEditXna.Editor.Undo
                 // Free your own state (unmanaged objects).
                 // Set large fields to null.
                 _buffer = null;
-                foreach (var file in Directory.GetFiles(Dir))
-                {
-                    File.Delete(file);
-                }
+                CleanupOldUndoFiles();
                 disposed = true;
             }
         }
