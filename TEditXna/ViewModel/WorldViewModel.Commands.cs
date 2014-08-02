@@ -82,6 +82,10 @@ namespace TEditXna.ViewModel
                     MessageBox.Show(string.Format("{0} is already on the map.", name), "NPC Exists");
                 }
             }
+            else
+            {
+                MessageBox.Show(string.Format("Choose an NPC. NPC {0} not found.", npcId), "NPC Error");
+            }
         }
 
         public ICommand NpcRemoveCommand
