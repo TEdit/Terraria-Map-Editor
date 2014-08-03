@@ -40,6 +40,18 @@ namespace TEditXNA.Terraria
             var settingspath = Path.Combine(Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().GetName().CodeBase), "settings.xml");
             LoadObjectDbXml(settingspath);
             Sprites.Add(new Sprite());
+
+            if (TileFrameImportant == null || TileFrameImportant.Length <= 0)
+            {
+                TileFrameImportant = new bool[TileCount];
+                for (int i = 0; i < TileCount; i++)
+                {
+                    if (World.TileProperties.Count > i)
+                    {
+                        TileFrameImportant[i] = World.TileProperties[i].IsFramed;
+                    }
+                }
+            }
         }
 
         private static IEnumerable<TOut> StringToList<TOut>(string xmlcsv)

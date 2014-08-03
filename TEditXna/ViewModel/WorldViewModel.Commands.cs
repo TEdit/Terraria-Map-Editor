@@ -67,10 +67,10 @@ namespace TEditXna.ViewModel
 
         private void AddNpc(int npcId)
         {
-            if (CurrentWorld != null && npcId > 0) /* SBLogic */
+            if (CurrentWorld != null && World.NpcNames.ContainsKey(npcId))
             {
                 string name = World.NpcNames[npcId];
-                if (!CurrentWorld.NPCs.Any(n => n.SpriteId == npcId))
+                if (CurrentWorld.NPCs.All(n => n.SpriteId != npcId))
                 {
                     var spawn = new Vector2Int32(CurrentWorld.SpawnX, CurrentWorld.SpawnY);
                     CurrentWorld.NPCs.Add(new NPC{Home = spawn, IsHomeless = true, DisplayName = name, Name = name, Position= new Vector2(spawn.X * 16, spawn.Y * 16), SpriteId = npcId});
@@ -81,6 +81,10 @@ namespace TEditXna.ViewModel
                 {
                     MessageBox.Show(string.Format("{0} is already on the map.", name), "NPC Exists");
                 }
+            }
+            else
+            {
+                MessageBox.Show(string.Format("Choose an NPC. NPC {0} not found.", npcId), "NPC Error");
             }
         }
 

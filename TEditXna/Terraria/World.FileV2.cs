@@ -942,7 +942,7 @@ namespace TEditXNA.Terraria
 
             if (w.Version >= 101)
             {
-                w.AnglerQuest = r.ReadBoolean();
+                w.AnglerQuest = r.ReadInt32();
             }
 
             // a little future proofing, read any "unknown" flags from the end of the list and save them. We will write these back after we write our "known" flags.

@@ -11,6 +11,8 @@ namespace TEditXna.Editor.Undo
 {
     public class UndoBuffer
     {
+        private const int FlushSize = 10000;
+
         private static readonly object UndoSaveLock = new object();
 
         public UndoBuffer(string fileName)
@@ -55,7 +57,7 @@ namespace TEditXna.Editor.Undo
                 UndoTiles.Add(undoTile);
                 LastTile = undoTile;
             }
-            if (UndoTiles.Count > 1000)
+            if (UndoTiles.Count > FlushSize)
             {
                 Flush();
             }

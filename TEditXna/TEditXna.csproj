@@ -199,6 +199,7 @@
     <Compile Include="Terraria\World.Settings.Tools.cs" />
     <Compile Include="Helper\Converters\DoublePercentageConverter.cs" />
     <Compile Include="Helper\Converters\ThicknessMultiConverter.cs" />
+    <Compile Include="Terraria\WorldAnalysis.cs" />
     <Compile Include="UI\Xaml\AutoGrid.cs" />
     <Compile Include="UI\Xaml\Dialog\DialogEnum.cs" />
     <Compile Include="UI\Xaml\Dialog\IDialogService.cs" />
@@ -280,6 +281,9 @@
     </Compile>
     <Compile Include="View\ToolSelectorView.xaml.cs">
       <DependentUpon>ToolSelectorView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\WorldAnalysis.xaml.cs">
+      <DependentUpon>WorldAnalysis.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\WorldPropertiesView.xaml.cs">
       <DependentUpon>WorldPropertiesView.xaml</DependentUpon>
@@ -398,6 +402,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\ToolSelectorView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\WorldAnalysis.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

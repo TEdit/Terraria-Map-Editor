@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
-  <Product Id="*" Name="TEdit 3" Language="1033" Version="3.5.14135.0" Manufacturer="BinaryConstruct" UpgradeCode="1d9a5baf-12ad-4a55-9e83-bbfd95c7c820">
+  <Product Id="*" Name="TEdit 3" Language="1033" Version="3.5.14214.0210" Manufacturer="BinaryConstruct" UpgradeCode="1d9a5baf-12ad-4a55-9e83-bbfd95c7c820">
     <Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" />
     <Media Id="1" Cabinet="disk1.cab" EmbedCab="yes" />
     <Directory Id="TARGETDIR" Name="SourceDir">
@@ -9,8 +9,15 @@
           <Component Id="MainExecutable" Guid="dad85bf4-cc44-4e66-9502-0a6e6b37e114">
             <File Id="TEditXna.exe" Source="..\TEditXna\bin\Release\TEditXna.exe" KeyPath='yes' />
             <File Id="settings.xml" Source="..\TEditXna\bin\Release\settings.xml" />
-            <File Id="BCCL.dll" Source="..\LIB\BCCL.dll" />
-            <File Id="BCCL.Xna.dll" Source="..\LIB\BCCL.Xna.dll" />
+            <File Id="GalaSoft.MvvmLight.dll" Source="..\TEditXna\bin\Release\GalaSoft.MvvmLight.dll" />
+            <File Id="GalaSoft.MvvmLight.Extras.dll" Source="..\TEditXna\bin\Release\GalaSoft.MvvmLight.Extras.dll" />
+            <File Id="Microsoft.Practices.ServiceLocation.dll" Source="..\TEditXna\bin\Release\Microsoft.Practices.ServiceLocation.dll" />
+            <File Id="Microsoft.Threading.Tasks.dll" Source="..\TEditXna\bin\Release\Microsoft.Threading.Tasks.dll" />
+            <File Id="Microsoft.Threading.Tasks.Extensions.Desktop.dll" Source="..\TEditXna\bin\Release\Microsoft.Threading.Tasks.Extensions.Desktop.dll" />
+            <File Id="Microsoft.Threading.Tasks.Extensions.dll" Source="..\TEditXna\bin\Release\Microsoft.Threading.Tasks.Extensions.dll" />
+            <File Id="System.Runtime.dll" Source="..\TEditXna\bin\Release\System.Runtime.dll" />
+            <File Id="System.Threading.Tasks.dll" Source="..\TEditXna\bin\Release\System.Threading.Tasks.dll" />
+            <File Id="System.Windows.Interactivity.dll" Source="..\TEditXna\bin\Release\System.Windows.Interactivity.dll" />
             <Shortcut Id="TEditStartMenuShortcut"
               Directory="ProgramMenuDir"
               Name="TEdit 3"
@@ -32,23 +39,24 @@
               <Extension Id="TEdit_autosave" ContentType="application/text" Advertise="no" >
                 <Verb Id="open" Command="Open" TargetFile="TEditXna.exe" Argument='"%1"' />
               </Extension>
-            </ProgId> 
-
-          </Component>
-            <Component Id="AssociationWld" Guid="4F357816-38E0-4ACE-8C5D-C708CFC53DA3" KeyPath="yes" >
+            </ProgId>
             <ProgId Id="TEditXna.World.File" Description="Terraria World File" Advertise="no" >
               <Extension Id="wld" ContentType="application/text" Advertise="no" >
                 <Verb Id="open" Command="Open" TargetFile="TEditXna.exe" Argument='"%1"' />
               </Extension>
             </ProgId>
-          </Component>
-          <Component Id="AssociationBak" Guid="4B04D1E7-A7CC-4A60-9B5C-E34D9E57D8E4"  KeyPath="yes">
             <ProgId Id="TEditXna.World.Backup" Description="Terraria World Backup File" Advertise="no" >
               <Extension Id="bak" ContentType="application/text" Advertise="no" >
                 <Verb Id="open" Command="Open" TargetFile="TEditXna.exe" Argument='"%1"' />
               </Extension>
             </ProgId>
           </Component>
+          <!--<Component Id="AssociationWld" Guid="4F357816-38E0-4ACE-8C5D-C708CFC53DA3" KeyPath="yes" >
+
+          </Component>
+          <Component Id="AssociationBak" Guid="4B04D1E7-A7CC-4A60-9B5C-E34D9E57D8E4"  KeyPath="yes">
+            
+          </Component>-->
         </Directory>
       </Directory>
       <Directory Id="ProgramMenuFolder" Name="Programs">
@@ -73,12 +81,6 @@
       </Feature>
       <Feature Id="StartMenu" Level="1" Title="Start Menu Shortcuts">
         <ComponentRef Id='ProgramMenuDir' />
-      </Feature>
-      <Feature Id="AssociateWldFeature" Title ="Associate .wld" Level="1">
-        <ComponentRef Id='AssociationWld' />
-      </Feature>
-      <Feature Id="AssociateBakFeature" Title="Associate .bak" Level="1">
-        <ComponentRef Id='AssociationBak' />
       </Feature>
     </Feature>
     <UI>
