@@ -9,7 +9,7 @@ Branch URL:  https:
 ====================================
 
 //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //
-EXPERIMENTAL VERSION - This version is provided AS IS.  It may not be complete and
+EXPERIMENTAL VERSION: This version is provided AS IS.  It may not be complete and
 may still contain errors and/or missing data.  Use this update as your own discretion.
 
 Known issues:
@@ -1229,30 +1229,30 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Tile Color="#FFBF8E6F" Placement="floor" Size="3,2" Id="89" Name="Bench" Framed="true">
       <Frames>
         <Frame UV="0,0" Variety="Wood Bench" />
-        <Frame UV="54,0" Variety="Boreal Wood Sofa" />
-        <Frame UV="108,0" Variety="Sofa" />
-        <Frame UV="162,0" Variety="Ebonwood Sofa" />
-        <Frame UV="216,0" Variety="Rich Mahogany Sofa" />
-        <Frame UV="270,0" Variety="Pearlwood Sofa" />
-        <Frame UV="324,0" Variety="Shadewood Sofa" />
-        <Frame UV="378,0" Variety="Blue Dungeon Sofa" />
-        <Frame UV="432,0" Variety="Green Dungeon Sofa" />
-        <Frame UV="486,0" Variety="Pink Dungeon Sofa" />
-        <Frame UV="540,0" Variety="Golden Sofa" />
-        <Frame UV="594,0" Variety="Obsidian Sofa" />
-        <Frame UV="648,0" Variety="Bone Sofa" />
-        <Frame UV="702,0" Variety="Cactus Sofa" />
-        <Frame UV="756,0" Variety="Spooky Sofa" />
-        <Frame UV="810,0" Variety="Skyware Sofa" />
-        <Frame UV="864,0" Variety="Honey Sofa" />
-        <Frame UV="918,0" Variety="Steampunk Sofa" />
-        <Frame UV="972,0" Variety="Mushroom Sofa" />
-        <Frame UV="1026,0" Variety="Glass Sofa" />
-        <Frame UV="1080,0" Variety="Pumpkin Sofa" />
-        <Frame UV="1134,0" Variety="Lihzahrd Sofa" />
-        <Frame UV="1188,0" Variety="Palm Wood Bench" />
-        <Frame UV="1242,0" Variety="Palm Wood Sofa" />
-        <Frame UV="1296,0" Variety="Mushroom Bench" />
+        <Frame UV="54,0" Variety="Sofa" />
+        <Frame UV="108,0" Variety="Ebonwood Sofa" />
+        <Frame UV="162,0" Variety="Rich Mahogany Sofa" />
+        <Frame UV="216,0" Variety="Pearlwood Sofa" />
+        <Frame UV="270,0" Variety="Shadewood Sofa" />
+        <Frame UV="324,0" Variety="Blue Dungeon Sofa" />
+        <Frame UV="378,0" Variety="Green Dungeon Sofa" />
+        <Frame UV="432,0" Variety="Pink Dungeon Sofa" />
+        <Frame UV="486,0" Variety="Golden Sofa" />
+        <Frame UV="540,0" Variety="Obsidian Sofa" />
+        <Frame UV="594,0" Variety="Bone Sofa" />
+        <Frame UV="648,0" Variety="Cactus Sofa" />
+        <Frame UV="702,0" Variety="Spooky Sofa" />
+        <Frame UV="756,0" Variety="Skyware Sofa" />
+        <Frame UV="810,0" Variety="Honey Sofa" />
+        <Frame UV="864,0" Variety="Steampunk Sofa" />
+        <Frame UV="918,0" Variety="Mushroom Sofa" />
+        <Frame UV="972,0" Variety="Glass Sofa" />
+        <Frame UV="1026,0" Variety="Pumpkin Sofa" />
+        <Frame UV="1080,0" Variety="Lihzahrd Sofa" />
+        <Frame UV="1134,0" Variety="Palm Wood Bench" />
+        <Frame UV="1188,0" Variety="Palm Wood Sofa" />
+        <Frame UV="1242,0" Variety="Mushroom Bench" />
+        <Frame UV="1296,0" Variety="Boreal Wood Sofa" />
         <Frame UV="1350,0" Variety="Slime Sofa" />
         <Frame UV="1404,0" Variety="Flesh Sofa" />
         <Frame UV="1458,0" Variety="Frozen Sofa" />
@@ -1263,6 +1263,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
       <Frames>
         <Frame UV="0,0" Anchor="Left" />
         <Frame UV="72,0" Anchor="Right" />
+        <!-- TODO -->
       </Frames>
     </Tile>
     <Tile Color="#FF0D5882" Placement="ceiling" Size="1,3" Id="91" Name="Red Banner" Framed="true">
@@ -1796,7 +1797,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="0,72" Name="Spear Trap" Anchor="Top" />
       </Frames>
     </Tile>
-    <Tile Color="#FF606060" Size="2,2" Id="138" Name="Boulder" Solid="true" />
+    <Tile Color="#FF606060" Size="2,2" Id="138" Name="Boulder" Framed="true" />
     <Tile Color="#FFBF8E6F" Size="2,2" Id="139" Name="Music Box (Overworld Day)" Framed="true">
       <Frames>
         <Frame UV="0,0" Name="Music Box (Overworld Day)" Variety="Off" />
@@ -2637,133 +2638,86 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="144,180" Variety="Mature 6" />
       </Frames>
     </Tile>
-    <Tile Id="255" Name="Amethyst Gemspark Block" Solid="true" />
-    <Tile Id="256" Name="Topaz Gemspark Block" Solid="true" />
-    <Tile Id="257" Name="Sapphire Gemspark Block" Solid="true" />
-    <Tile Id="258" Name="Emerald Gemspark Block" Solid="true" />
-    <Tile Id="259" Name="Ruby Gemspark Block" Solid="true" />
-    <Tile Id="260" Name="Diamond Gemspark Block" Solid="true" />
-    <Tile Id="261" Name="Amber Gemspark Block" Solid="true" />
-    <Tile Id="262" Name="Amethyst Gemspark Block" Solid="true" Light="true" />
-    <Tile Id="263" Name="Topaz Gemspark Block" Solid="true" Light="true" />
-    <Tile Id="264" Name="Sapphire Gemspark Block" Solid="true" Light="true" />
-    <Tile Id="265" Name="Emerald Gemspark Block" Solid="true" Light="true" />
-    <Tile Id="266" Name="Ruby Gemspark Block" Solid="true" Light="true" />
-    <Tile Id="267" Name="Diamond Gemspark Block" Solid="true" Light="true" />
-    <Tile Id="268" Name="Amber Gemspark Block" Solid="true" Light="true" />
+    <Tile Color="#FF6B319A" Id="255" Name="Amethyst Gemspark Block (Offline)" Solid="true" />
+    <Tile Color="#FF9A9431" Id="256" Name="Topaz Gemspark Block (Offline)" Solid="true" />
+    <Tile Color="#FF31319A" Id="257" Name="Sapphire Gemspark Block (Offline)" Solid="true" />
+    <Tile Color="#FF319A44" Id="258" Name="Emerald Gemspark Block (Offline)" Solid="true" />
+    <Tile Color="#FF9A314D" Id="259" Name="Ruby Gemspark Block (Offline)" Solid="true" />
+    <Tile Color="#FF555976" Id="260" Name="Diamond Gemspark Block (Offline)" Solid="true" />
+    <Tile Color="#FF9A5331" Id="261" Name="Amber Gemspark Block (Offline)" Solid="true" />
+    <Tile Color="#FFDD4FFF" Id="262" Name="Amethyst Gemspark Block" Solid="true" Light="true" />
+    <Tile Color="#FFFAFF4F" Id="263" Name="Topaz Gemspark Block" Solid="true" Light="true" />
+    <Tile Color="#FF4F66FF" Id="264" Name="Sapphire Gemspark Block" Solid="true" Light="true" />
+    <Tile Color="#FF4FFF59" Id="265" Name="Emerald Gemspark Block" Solid="true" Light="true" />
+    <Tile Color="#FFFF4F4F" Id="266" Name="Ruby Gemspark Block" Solid="true" Light="true" />
+    <Tile Color="#FFF0F0F7" Id="267" Name="Diamond Gemspark Block" Solid="true" Light="true" />
+    <Tile Color="#FFFF914F" Id="268" Name="Amber Gemspark Block" Solid="true" Light="true" />
     <Tile Color="#FFBF8E6F" Size="2,3" Id="269" Name="Womannequin" Framed="true">
       <Frames>
         <Frame UV="0,0" Anchor="Left" />
         <Frame UV="36,0" Anchor="Right" />
       </Frames>
     </Tile>
-    <Tile Id="270" Size="1,2" Name="Firefly in a Bottle" Framed="true" Light="true">
-      <Frames>
-        <Frame UV="0,0" Name="Default" Variety="Default" />
-      </Frames>
-    </Tile>
-    <Tile Id="271" Size="1,2" Name="Lightning Bug in a Bottle" Framed="true" Light="true">
-      <Frames>
-        <Frame UV="0,0" Name="Default" Variety="Default" />
-      </Frames>
-    </Tile>
-    <Tile Id="272" Name="Cog" Solid="true" />
-    <Tile Id="273" Name="Stone Slab" Solid="true" />
-    <Tile Id="274" Name="Sandstone Slab" Solid="true" />
-    <Tile Id="275" Size="6,3" Name="Bunny Cage" Framed="true">
-      <Frames>
-        <Frame UV="0,0" Name="Default" Variety="Default" />
-      </Frames>
-    </Tile>
-    <Tile Id="276" Size="6,3" Name="Squirrel Cage" Framed="true">
-      <Frames>
-        <Frame UV="0,0" Name="Default" Variety="Default" />
-      </Frames>
-    </Tile>
-    <Tile Id="277" Size="6,3" Name="Mallard Duck Cage" Framed="true">
-      <Frames>
-        <Frame UV="0,0" Name="Default" Variety="Default" />
-      </Frames>
-    </Tile>
-    <Tile Id="278" Size="6,3" Name="Duck Cage" Framed="true">
-      <Frames>
-        <Frame UV="0,0" Name="Default" Variety="Default" />
-      </Frames>
-    </Tile>
-    <Tile Id="279" Size="6,3" Name="Bird Cage" Framed="true">
-      <Frames>
-        <Frame UV="0,0" Name="Default" Variety="Default" />
-      </Frames>
-    </Tile>
-    <Tile Id="280" Size="6,3" Name="Blue Jay Cage" Framed="true">
-      <Frames>
-        <Frame UV="0,0" Name="Default" Variety="Default" />
-      </Frames>
-    </Tile>
-    <Tile Id="281" Size="6,3" Name="Cardinal Cage" Framed="true">
-      <Frames>
-        <Frame UV="0,0" Name="Default" Variety="Default" />
-      </Frames>
-    </Tile>
-    <Tile Id="282" Size="2,2" Name="Fish Bowl" Framed="true">
-      <Frames>
-        <Frame UV="0,0" Name="Default" Variety="Default" />
-      </Frames>
-    </Tile>
-    <Tile Id="283" Size="3,3" Name="Heavy Work Bench" Framed="true">
-      <Frames>
-        <Frame UV="0,0" Name="Default" Variety="Default" />
-      </Frames>
-    </Tile>
-    <Tile Id="284" Name="Copper Plating" />
-    <Tile Id="285" Size="3,2" Name="Snail Cage" Framed="true">
-      <Frames>
-        <Frame UV="0,0" Name="Default" Variety="Default" />
-      </Frames>
-    </Tile>
-    <Tile Id="286" Size="3,2" Name="Glowing Snail Cage" Framed="true" Light="true" />
+    <Tile Color="#FF7AD9E8" Id="270" Size="1,2" Name="Firefly in a Bottle" Framed="true" Light="true" />
+    <Tile Color="#FF7AD9E8" Id="271" Size="1,2" Name="Lightning Bug in a Bottle" Framed="true" Light="true" />
+    <Tile Color="#FF797765" Id="272" Name="Cog" Solid="true" />
+    <Tile Color="#FF808080" Id="273" Name="Stone Slab" Solid="true" />
+    <Tile Color="#FFBEAB5E" Id="274" Name="Sandstone Slab" Solid="true" />
+    <Tile Color="#FF7AD9E8" Id="275" Size="6,3" Name="Bunny Cage" Framed="true" />
+    <Tile Color="#FF7AD9E8" Id="276" Size="6,3" Name="Squirrel Cage" Framed="true" />
+    <Tile Color="#FF7AD9E8" Id="277" Size="6,3" Name="Mallard Duck Cage" Framed="true" />
+    <Tile Color="#FF7AD9E8" Id="278" Size="6,3" Name="Duck Cage" Framed="true" />
+    <Tile Color="#FF7AD9E8" Id="279" Size="6,3" Name="Bird Cage" Framed="true" />
+    <Tile Color="#FF7AD9E8" Id="280" Size="6,3" Name="Blue Jay Cage" Framed="true" />
+    <Tile Color="#FF7AD9E8" Id="281" Size="6,3" Name="Cardinal Cage" Framed="true" />
+    <Tile Color="#FF7AD9E8" Id="282" Size="2,2" Name="Fish Bowl" Framed="true" />
+    <Tile Color="#FF808080" Id="283" Size="3,3" Name="Heavy Work Bench" Framed="true" />
+    <Tile Color="#FF964316" Id="284" Name="Copper Plating" />
+    <Tile Color="#FF7AD9E8" Id="285" Size="3,2" Name="Snail Cage" Framed="true" />
+    <Tile Color="#FF7AD9E8" Id="286" Size="3,2" Name="Glowing Snail Cage" Framed="true" Light="true" />
     <Tile Id="287" Size="2,2" Name="Ammo Box" Framed="true" />
-    <Tile Id="288" Size="2,2" Name="Monarch Butterfly Jar" Framed="true" />
-    <Tile Id="289" Size="2,2" Name="Purple Emperor Butterfly Jar" Framed="true" />
-    <Tile Id="290" Size="2,2" Name="Red Admiral Butterfly Jar" Framed="true" />
-    <Tile Id="291" Size="2,2" Name="Ulysses Butterfly Jar" Framed="true" />
-    <Tile Id="292" Size="2,2" Name="Sulphur Butterfly Jar" Framed="true" />
-    <Tile Id="293" Size="2,2" Name="Tree Nymph Butterfly Jar" Framed="true" />
-    <Tile Id="294" Size="2,2" Name="Zebra Swallowtail Butterfly Jar" Framed="true" />
-    <Tile Id="295" Size="2,2" Name="Julia Butterfly Jar" Framed="true" />
-    <Tile Id="296" Size="6,3" Name="Scorpion Cage" Framed="true" />
-    <Tile Id="297" Size="6,3" Name="Black Scorpion Cage" Framed="true" />
-    <Tile Id="298" Size="3,2" Name="Frog Cage" Framed="true" />
-    <Tile Id="299" Size="3,2" Name="Mouse Cage" Framed="true" />
-    <Tile Id="300" Size="3,3" Name="Bone Welder" Framed="true" />
-    <Tile Id="301" Size="3,3" Name="Flesh Cloning Vat" Framed="true" />
-    <Tile Id="302" Size="3,3" Name="Glass Kiln" Framed="true" />
-    <Tile Id="303" Size="3,3" Name="Lihzahrd Furnace" Framed="true" />
-    <Tile Id="304" Size="3,3" Name="Living Loom" Framed="true" />
-    <Tile Id="305" Size="3,3" Name="Sky Mill" Framed="true" />
-    <Tile Id="306" Size="3,3" Name="Ice Machine" Framed="true" />
-    <Tile Id="307" Size="3,3" Name="Steampunk Boiler" Framed="true" />
-    <Tile Id="308" Size="3,3" Name="Honey Dispenser" Framed="true" />
-    <Tile Id="309" Size="6,3" Name="Penguin Cage" Framed="true" />
-    <Tile Id="310" Size="3,2" Name="Worm Cage" Framed="true" />
-    <Tile Id="311" Name="Dynasty Wood" Solid="true" />
-    <Tile Id="312" Name="Red Dynasty Shingles" Solid="true" />
-    <Tile Id="313" Name="Blue Dynasty Shingles" Solid="true" />
+    <Tile Color="#FF7AD9E8" Id="288" Size="2,2" Name="Monarch Butterfly Jar" Framed="true" />
+    <Tile Color="#FF7AD9E8" Id="289" Size="2,2" Name="Purple Emperor Butterfly Jar" Framed="true" />
+    <Tile Color="#FF7AD9E8" Id="290" Size="2,2" Name="Red Admiral Butterfly Jar" Framed="true" />
+    <Tile Color="#FF7AD9E8" Id="291" Size="2,2" Name="Ulysses Butterfly Jar" Framed="true" />
+    <Tile Color="#FF7AD9E8" Id="292" Size="2,2" Name="Sulphur Butterfly Jar" Framed="true" />
+    <Tile Color="#FF7AD9E8" Id="293" Size="2,2" Name="Tree Nymph Butterfly Jar" Framed="true" />
+    <Tile Color="#FF7AD9E8" Id="294" Size="2,2" Name="Zebra Swallowtail Butterfly Jar" Framed="true" />
+    <Tile Color="#FF7AD9E8" Id="295" Size="2,2" Name="Julia Butterfly Jar" Framed="true" />
+    <Tile Color="#FF7AD9E8" Id="296" Size="6,3" Name="Scorpion Cage" Framed="true" />
+    <Tile Color="#FF7AD9E8" Id="297" Size="6,3" Name="Black Scorpion Cage" Framed="true" />
+    <Tile Color="#FF7AD9E8" Id="298" Size="3,2" Name="Frog Cage" Framed="true" />
+    <Tile Color="#FF7AD9E8" Id="299" Size="3,2" Name="Mouse Cage" Framed="true" />
+    <Tile Color="#FF909490" Id="300" Size="3,3" Name="Bone Welder" Framed="true" />
+    <Tile Color="#FF909490" Id="301" Size="3,3" Name="Flesh Cloning Vat" Framed="true" />
+    <Tile Color="#FF909490" Id="302" Size="3,3" Name="Glass Kiln" Framed="true" />
+    <Tile Color="#FF909490" Id="303" Size="3,3" Name="Lihzahrd Furnace" Framed="true" />
+    <Tile Color="#FF909490" Id="304" Size="3,3" Name="Living Loom" Framed="true" />
+    <Tile Color="#FF909490" Id="305" Size="3,3" Name="Sky Mill" Framed="true" />
+    <Tile Color="#FF909490" Id="306" Size="3,3" Name="Ice Machine" Framed="true" />
+    <Tile Color="#FF909490" Id="307" Size="3,3" Name="Steampunk Boiler" Framed="true" />
+    <Tile Color="#FF909490" Id="308" Size="3,3" Name="Honey Dispenser" Framed="true" />
+    <Tile Color="#FF7AD9E8" Id="309" Size="6,3" Name="Penguin Cage" Framed="true" />
+    <Tile Color="#FF7AD9E8" Id="310" Size="3,2" Name="Worm Cage" Framed="true" />
+    <Tile Color="#FF753D19" Id="311" Name="Dynasty Wood" Solid="true" />
+    <Tile Color="#FFCC5D49" Id="312" Name="Red Dynasty Shingles" Solid="true" />
+    <Tile Color="#FF57969A" Id="313" Name="Blue Dynasty Shingles" Solid="true" />
     <Tile Id="314" Name="Minecart Track" Framed="True">
       <Frames>
         <Frame UV="0,0" Name="Placeholder" />
         <!-- TODO -->
       </Frames>
     </Tile>
-    <Tile Id="315" Name="Coralstone Block" Solid="True" />
+    <Tile Color="#FFEB7250" Id="315" Name="Coralstone Block" Solid="True" />
     <Tile Id="316" Size="2,2" Name="Blue Jellyfish Jar" Framed="true" />
     <Tile Id="317" Size="2,2" Name="Green Jellyfish Jar" Framed="true" />
     <Tile Id="318" Size="2,2" Name="Pink Jellyfish Jar" Framed="true" />
     <Tile Id="319" Size="2,2" Name="Ship in a Bottle" Framed="true" />
     <Tile Id="320" Size="2,3" Name="Seaweed Planter" Framed="true" />
-    <Tile Id="321" Name="Boreal Wood" Solid="true" />
-    <Tile Id="322" Name="Palm Wood" Solid="true" />
-    <Tile Id="323" Name="Palm Tree" />
+    <Tile Color="#FF604D40" Id="321" Name="Boreal Wood" Solid="true" />
+    <Tile Color="#FFC6AA68" Id="322" Name="Palm Wood" Solid="true" />
+    <Tile Id="323" Name="Palm Tree" Framed="true" />
+    <!-- TODO -->
     <Tile Id="324" TextureGrid="20,20" Name="Seashell" Framed="true">
       <Frames>
         <Frame UV="0,0" Variety="Seashell A" />
@@ -2774,64 +2728,60 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="44,22" Variety="Starfish C" />
       </Frames>
     </Tile>
-    <Tile Id="325" Name="Tin Plating" />
-    <Tile Id="326" Name="Waterfall Block" Solid="True" />
-    <Tile Id="327" Name="Lavafall Block" Solid="True" />
-    <Tile Id="328" Name="Confetti Block" Solid="True" />
-    <Tile Id="329" Name="Midnight Confetti Block" Solid="true" />
+    <Tile Color="#FF817D5D" Id="325" Name="Tin Plating" Solid="True" />
+    <Tile Color="#FF093DBF" Id="326" Name="Waterfall Block" Solid="True" />
+    <Tile Color="#FFFD2003" Id="327" Name="Lavafall Block" Solid="True" />
+    <Tile Color="#FFC8F6FE" Id="328" Name="Confetti Block" Solid="True" />
+    <Tile Color="#FF0F0F0F" Id="329" Name="Midnight Confetti Block" Solid="true" />
     <Tile Id="330" Name="Copper Coin Pile" Framed="true" />
     <Tile Id="331" Name="Silver Coin Pile" Framed="true" />
     <Tile Id="332" Name="Gold Coin Pile" Framed="true" />
     <Tile Id="333" Name="Platinum Coin Pile" Framed="true" />
     <Tile Id="334" Size="3,3" Name="Weapon Rack" Framed="true" />
-    <Tile Id="335" Size="2,2" Name="Fireworks Box" />
-    <Tile Id="336" Name="Living Fire Block" />
-    <Tile Color="#FF909490" Size="2,3" Id="337" Name="Text Statue" />
-    <Frames>
-      <Frame UV="0,0" Name="Statue" Variety="0 Statue" />
-      <Frame UV="36,0" Name="Statue" Variety="1 Statue" />
-      <Frame UV="72,0" Name="Statue" Variety="2 Statue" />
-      <Frame UV="108,0" Name="Statue" Variety="3 Statue" />
-      <Frame UV="144,0" Name="Statue" Variety="4 Statue" />
-      <Frame UV="180,0" Name="Statue" Variety="5 Statue" />
-      <Frame UV="216,0" Name="Statue" Variety="6 Statue" />
-      <Frame UV="252,0" Name="Statue" Variety="7 Statue" />
-      <Frame UV="280,0" Name="Statue" Variety="8 Statue" />
-      <Frame UV="324,0" Name="Statue" Variety="9 Statue" />
-      <Frame UV="360,0" Name="Statue" Variety="A Statue" />
-      <Frame UV="396,0" Name="Statue" Variety="B Statue" />
-      <Frame UV="432,0" Name="Statue" Variety="C Statue" />
-      <Frame UV="468,0" Name="Statue" Variety="D Statue" />
-      <Frame UV="504,0" Name="Statue" Variety="E Statue" />
-      <Frame UV="540,0" Name="Statue" Variety="F Statue" />
-      <Frame UV="576,0" Name="Statue" Variety="G Statue" />
-      <Frame UV="612,0" Name="Statue" Variety="H Statue" />
-      <Frame UV="648,0" Name="Statue" Variety="I Statue" />
-      <Frame UV="684,0" Name="Statue" Variety="J Statue" />
-      <Frame UV="720,0" Name="Statue" Variety="K Statue" />
-      <Frame UV="756,0" Name="Statue" Variety="L Statue" />
-      <Frame UV="792,0" Name="Statue" Variety="M Statue" />
-      <Frame UV="828,0" Name="Statue" Variety="N Statue" />
-      <Frame UV="864,0" Name="Statue" Variety="O Statue" />
-      <Frame UV="900,0" Name="Statue" Variety="P Statue" />
-      <Frame UV="936,0" Name="Statue" Variety="Q Statue" />
-      <Frame UV="972,0" Name="Statue" Variety="R Statue" />
-      <Frame UV="1008,0" Name="Statue" Variety="S Statue" />
-      <Frame UV="1044,0" Name="Statue" Variety="T Statue" />
-      <Frame UV="1080,0" Name="Statue" Variety="U Statue" />
-      <Frame UV="1116,0" Name="Statue" Variety="V Statue" />
-      <Frame UV="1152,0" Name="Statue" Variety="W Statue" />
-      <Frame UV="1188,0" Name="Statue" Variety="X Statue" />
-      <Frame UV="1224,0" Name="Statue" Variety="Y Statue" />
-      <Frame UV="1260,0" Name="Statue" Variety="Z Statue" />
-    </Frames>
-    <Tile Id="338" Size="1,2" Name="Firework Fountain" />
-    <Tile Id="339" Size="3,2" Name="Grasshopper Cage" Framed="true">
+    <Tile Id="335" Size="2,2" Name="Fireworks Box" Framed="true" />
+    <Tile Id="336" Name="Living Fire Block" Framed="true" />
+    <Tile Color="#FF909490" Placement="floor" Size="2,3" Id="337" Name="Text Statue" Framed="true">
       <Frames>
-        <Frame UV="0,0" Name="Default" Variety="Default" />
+        <Frame UV="0,0" Name="Text Statue" Variety="0 Statue" />
+        <Frame UV="36,0" Name="Text Statue" Variety="1 Statue" />
+        <Frame UV="72,0" Name="Text Statue" Variety="2 Statue" />
+        <Frame UV="108,0" Name="Text Statue" Variety="3 Statue" />
+        <Frame UV="144,0" Name="Text Statue" Variety="4 Statue" />
+        <Frame UV="180,0" Name="Text Statue" Variety="5 Statue" />
+        <Frame UV="216,0" Name="Text Statue" Variety="6 Statue" />
+        <Frame UV="252,0" Name="Text Statue" Variety="7 Statue" />
+        <Frame UV="280,0" Name="Text Statue" Variety="8 Statue" />
+        <Frame UV="324,0" Name="Text Statue" Variety="9 Statue" />
+        <Frame UV="360,0" Name="Text Statue" Variety="A Statue" />
+        <Frame UV="396,0" Name="Text Statue" Variety="B Statue" />
+        <Frame UV="432,0" Name="Text Statue" Variety="C Statue" />
+        <Frame UV="468,0" Name="Text Statue" Variety="D Statue" />
+        <Frame UV="504,0" Name="Text Statue" Variety="E Statue" />
+        <Frame UV="540,0" Name="Text Statue" Variety="F Statue" />
+        <Frame UV="576,0" Name="Text Statue" Variety="G Statue" />
+        <Frame UV="612,0" Name="Text Statue" Variety="H Statue" />
+        <Frame UV="648,0" Name="Text Statue" Variety="I Statue" />
+        <Frame UV="684,0" Name="Text Statue" Variety="J Statue" />
+        <Frame UV="720,0" Name="Text Statue" Variety="K Statue" />
+        <Frame UV="756,0" Name="Text Statue" Variety="L Statue" />
+        <Frame UV="792,0" Name="Text Statue" Variety="M Statue" />
+        <Frame UV="828,0" Name="Text Statue" Variety="N Statue" />
+        <Frame UV="864,0" Name="Text Statue" Variety="O Statue" />
+        <Frame UV="900,0" Name="Text Statue" Variety="P Statue" />
+        <Frame UV="936,0" Name="Text Statue" Variety="Q Statue" />
+        <Frame UV="972,0" Name="Text Statue" Variety="R Statue" />
+        <Frame UV="1008,0" Name="Text Statue" Variety="S Statue" />
+        <Frame UV="1044,0" Name="Text Statue" Variety="T Statue" />
+        <Frame UV="1080,0" Name="Text Statue" Variety="U Statue" />
+        <Frame UV="1116,0" Name="Text Statue" Variety="V Statue" />
+        <Frame UV="1152,0" Name="Text Statue" Variety="W Statue" />
+        <Frame UV="1188,0" Name="Text Statue" Variety="X Statue" />
+        <Frame UV="1224,0" Name="Text Statue" Variety="Y Statue" />
+        <Frame UV="1260,0" Name="Text Statue" Variety="Z Statue" />
       </Frames>
     </Tile>
-    <!-- -->
+    <Tile Id="338" Size="1,2" Name="Firework Fountain" Framed="true" />
+    <Tile Id="339" Size="3,2" Name="Grasshopper Cage" Framed="true" />
   </Tiles>
   <Walls>
     <Wall Id="0"    Name="Sky"                            Color="#00000000"                    />
