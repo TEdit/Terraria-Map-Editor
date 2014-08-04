@@ -53,6 +53,20 @@ namespace TEditXna.Editor
             set { Set("LiquidType", ref _liquidType, value);}
         }
 
+        private bool _actuator;
+        public bool Actuator
+        {
+            get { return _actuator; }
+            set { Set("Actuator", ref _actuator, value); }
+        }
+
+        private bool _actuatorInActive;
+        public bool ActuatorInActive
+        {
+            get { return _actuatorInActive; }
+            set { Set("ActuatorInActive", ref _actuatorInActive, value); }
+        }   
+
         public int TileMask
         {
             get { return _tileMask; }

@@ -1138,7 +1138,7 @@ namespace TEditXna.View
 
                                         // Actuator Overlay
                                         if (curtile.Actuator)
-                                            _spriteBatch.Draw(_textureDictionary.Actuator, dest, _textureDictionary.ZeroSixteenRectangle, Color.White, 0f, default(Vector2), SpriteEffects.None, 0);
+                                            _spriteBatch.Draw(_textureDictionary.Actuator, dest, _textureDictionary.ZeroSixteenRectangle, curtile.InActive ? Color.Gray : Color.White, 0f, default(Vector2), SpriteEffects.None, 0);
 
                                     }
                                 }
