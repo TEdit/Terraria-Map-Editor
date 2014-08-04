@@ -61,6 +61,12 @@
                 <DataTrigger Binding="{Binding TilePicker.PaintMode}" Value="BrickStyle">
                     <Setter Property="Visibility" Value="Visible" />
                 </DataTrigger>
+                <DataTrigger Binding="{Binding TilePicker.PaintMode}" Value="Tile">
+                    <Setter Property="Visibility" Value="Visible" />
+                </DataTrigger>
+                <DataTrigger Binding="{Binding TilePicker.PaintMode}" Value="TileAndWall">
+                    <Setter Property="Visibility" Value="Visible" />
+                </DataTrigger>
             </Style.Triggers>
         </Style>
     </UserControl.Resources>

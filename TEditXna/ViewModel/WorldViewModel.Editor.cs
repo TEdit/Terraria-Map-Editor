@@ -90,7 +90,7 @@ namespace TEditXna.ViewModel
             }
 
 
-            curTile.BrickStyle = TilePicker.BrickStyle;
+           // curTile.BrickStyle = TilePicker.BrickStyle;
 
             Color curBgColor = GetBackgroundColor(y);
             PixelMap.SetPixelColor(x, y, Render.PixelMap.GetTileColor(CurrentWorld.Tiles[x, y], curBgColor, _showWalls, _showTiles, _showLiquid, _showWires));
@@ -172,9 +172,9 @@ namespace TEditXna.ViewModel
                 (TilePicker.TileMaskMode == MaskMode.Empty && !curTile.IsActive))
             {
                 if (erase)
-                    SetPixelAutomatic(curTile, tile: -1);
+                    SetPixelAutomatic(curTile, tile: -1, brickStyle: BrickStyle.Full);
                 else
-                    SetPixelAutomatic(curTile, tile: TilePicker.Tile);
+                    SetPixelAutomatic(curTile, tile: TilePicker.Tile, brickStyle: TilePicker.BrickStyle);
             }
         }
 

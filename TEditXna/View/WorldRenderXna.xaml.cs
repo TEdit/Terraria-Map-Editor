@@ -1075,7 +1075,71 @@ namespace TEditXna.View
                                         var source = new Rectangle((curtile.uvTileCache & 0x00FF) * (texsize.X + 2), (curtile.uvTileCache >> 8) * (texsize.Y + 2), texsize.X, texsize.Y);
                                         var dest = new Rectangle(1 + (int)((_scrollPosition.X + x) * _zoom), 1 + (int)((_scrollPosition.Y + y) * _zoom), (int)_zoom, (int)_zoom);
 
-                                        _spriteBatch.Draw(tileTex, dest, source, Color.White, 0f, default(Vector2), SpriteEffects.None, 0);
+
+                                        // hack for some slopes
+                                        switch (curtile.BrickStyle)
+                                        {
+
+                                            case BrickStyle.HalfBrick:
+                                                source.Height /= 2;
+                                                dest.Y += (int)(_zoom * 0.5);
+                                                dest.Height = (int)(_zoom / 2.0f);
+                                                _spriteBatch.Draw(tileTex, dest, source, Color.White, 0f, default(Vector2), SpriteEffects.None, 0);
+                                                break;
+                                            case BrickStyle.SlopeTopLeftDown:
+
+                                                for (int slice = 0; slice < 8; slice++)
+                                                {
+                                                    Rectangle? sourceSlice = new Rectangle(source.X + slice * 2, source.Y, 2, 16 - slice * 2);
+                                                    Vector2 destSlice = new Vector2((int)(dest.X + slice * _zoom / 8.0f), (int)(dest.Y + slice * _zoom / 8.0f));
+
+                                                    _spriteBatch.Draw(tileTex, destSlice, sourceSlice, Color.White, 0f, default(Vector2), _zoom / 16, SpriteEffects.None, 0);
+                                                }
+
+                                                break;
+                                            case BrickStyle.SlopeBottomLeftDown:
+                                                for (int slice = 0; slice < 8; slice++)
+                                                {
+                                                    Rectangle? sourceSlice = new Rectangle(source.X + slice * 2, source.Y, 2, slice * 2 +2);
+                                                    Vector2 destSlice = new Vector2((int)(dest.X + slice * _zoom / 8.0f), (int)(dest.Y + (7 - slice) * _zoom / 8.0f));
+
+                                                    _spriteBatch.Draw(tileTex, destSlice, sourceSlice, Color.White, 0f, default(Vector2), _zoom / 16, SpriteEffects.None, 0);
+                                                }
+
+                                                break;
+                                            case BrickStyle.SlopeTopLeftUp:
+                                                for (int slice = 0; slice < 8; slice++)
+                                                {
+                                                    Rectangle? sourceSlice = new Rectangle(source.X + slice * 2, source.Y + slice * 2, 2, 16 - slice * 2);
+                                                    Vector2 destSlice = new Vector2((int)(dest.X + slice * _zoom / 8.0f), dest.Y);
+
+                                                    _spriteBatch.Draw(tileTex, destSlice, sourceSlice, Color.White, 0f, default(Vector2), _zoom / 16, SpriteEffects.None, 0);
+                                                }
+
+                                                break;
+                                            case BrickStyle.SlopeBottomLeftUp:
+                                                for (int slice = 0; slice < 8; slice++)
+                                                {
+                                                    Rectangle? sourceSlice = new Rectangle(source.X + slice * 2, source.Y, 2, slice * 2 + 2);
+                                                    Vector2 destSlice = new Vector2((int)(dest.X + slice * _zoom / 8.0f), dest.Y);
+
+                                                    _spriteBatch.Draw(tileTex, destSlice, sourceSlice, Color.White, 0f, default(Vector2), _zoom / 16, SpriteEffects.None, 0);
+                                                }
+
+                                                break;
+                                            case BrickStyle.Unknown06:
+                                            case BrickStyle.Unknown07:
+                                            case BrickStyle.Full:
+                                            default:
+                                                _spriteBatch.Draw(tileTex, dest, source, Color.White, 0f, default(Vector2), SpriteEffects.None, 0);
+                                                break;
+                                        }
+
+
+                                        // Actuator Overlay
+                                        if (curtile.Actuator)
+                                            _spriteBatch.Draw(_textureDictionary.Actuator, dest, _textureDictionary.ZeroSixteenRectangle, Color.White, 0f, default(Vector2), SpriteEffects.None, 0);
+
                                     }
                                 }
                             }
