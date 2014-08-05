@@ -31,6 +31,8 @@ namespace TEditXNA.Terraria
         public Dictionary<int, Texture2D> Npcs { get { return _npcs; } }
         public Dictionary<int, Texture2D> Liquids { get { return _liquids; } } /* Heathtech */
         public Dictionary<string, Texture2D> Misc { get { return _misc; } } /* Heathtech */
+        public Texture2D Actuator { get { return _actuator ?? (_actuator = (Texture2D)GetMisc("Actuator")); } }
+
         readonly ContentManager _cm;
         public ContentManager ContentManager
         {
@@ -147,6 +149,9 @@ namespace TEditXNA.Terraria
 
         private static Color ColorKey = Color.FromNonPremultiplied(247, 119, 249, 255);
         private Texture2D _defaultTexture;
+        private Texture2D _actuator;
+        private readonly Rectangle _zeroSixteenRectangle = new Rectangle(0, 0, 16, 16);
+        public Rectangle ZeroSixteenRectangle { get { return _zeroSixteenRectangle; } }
 
         private Texture2D LoadTexture(string path)
         {

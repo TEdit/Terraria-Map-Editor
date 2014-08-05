@@ -90,7 +90,7 @@ namespace TEditXna.ViewModel
             }
 
 
-            curTile.BrickStyle = TilePicker.BrickStyle;
+            // curTile.BrickStyle = TilePicker.BrickStyle;
 
             Color curBgColor = GetBackgroundColor(y);
             PixelMap.SetPixelColor(x, y, Render.PixelMap.GetTileColor(CurrentWorld.Tiles[x, y], curBgColor, _showWalls, _showTiles, _showLiquid, _showWires));
@@ -172,9 +172,9 @@ namespace TEditXna.ViewModel
                 (TilePicker.TileMaskMode == MaskMode.Empty && !curTile.IsActive))
             {
                 if (erase)
-                    SetPixelAutomatic(curTile, tile: -1);
+                    SetPixelAutomatic(curTile, tile: -1, brickStyle: BrickStyle.Full);
                 else
-                    SetPixelAutomatic(curTile, tile: TilePicker.Tile);
+                    SetPixelAutomatic(curTile, tile: TilePicker.Tile, brickStyle: TilePicker.BrickStyle, actuator: TilePicker.Actuator, actuatorInActive: TilePicker.ActuatorInActive);
             }
         }
 
@@ -188,7 +188,8 @@ namespace TEditXna.ViewModel
                                        short? v = null,
                                        bool? wire2 = null,
                                        bool? wire3 = null,
-                                       BrickStyle? brickStyle = null)
+                                       BrickStyle? brickStyle = null,
+                                       bool? actuator = null, bool? actuatorInActive = null)
         {
             // Set Tile Data
             if (u != null)
@@ -208,6 +209,16 @@ namespace TEditXna.ViewModel
                     curTile.Type = (ushort)tile;
                     curTile.IsActive = true;
                 }
+            }
+
+            if (actuator != null)
+            {
+                curTile.Actuator = (bool)actuator;
+            }
+
+            if (curTile.Actuator && actuatorInActive != null)
+            {
+                curTile.InActive = (bool)actuatorInActive;
             }
 
             if (brickStyle != null)

@@ -61,6 +61,15 @@
                 <DataTrigger Binding="{Binding TilePicker.PaintMode}" Value="BrickStyle">
                     <Setter Property="Visibility" Value="Visible" />
                 </DataTrigger>
+                <DataTrigger Binding="{Binding TilePicker.PaintMode}" Value="Tile">
+                    <Setter Property="Visibility" Value="Visible" />
+                </DataTrigger>
+                <DataTrigger Binding="{Binding TilePicker.PaintMode}" Value="TileAndWall">
+                    <Setter Property="Visibility" Value="Visible" />
+                </DataTrigger>
+                <DataTrigger Binding="{Binding TilePicker.PaintMode}" Value="Actuator">
+                    <Setter Property="Visibility" Value="Visible" />
+                </DataTrigger>
             </Style.Triggers>
         </Style>
     </UserControl.Resources>
@@ -77,7 +86,7 @@
                           SelectedValuePath="Value" Width="100"
                           ItemTemplate="{StaticResource EnumTemplate}" />
                 </StackPanel>
-                
+
             </StackPanel>
             <GroupBox Header="Tile" BorderThickness="1" Style="{StaticResource TileVisibleStyle}">
                 <tedit:AutoGrid Width="220" VerticalAlignment="Top" >
@@ -131,12 +140,16 @@
                 </StackPanel>
             </GroupBox>
             <GroupBox Header="BrickStyle" Style="{StaticResource BrickStyleVisiblity}">
-                <StackPanel Orientation="Horizontal" VerticalAlignment="Top">
-                    <TextBlock Text="Half Blocks" HorizontalAlignment="Left" Width="65"  VerticalAlignment="Center" />
-                    <ComboBox ItemsSource="{StaticResource BrickStyle}" 
+                <StackPanel Orientation="Vertical">
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Top">
+                        <TextBlock Text="Half Blocks" HorizontalAlignment="Left" Width="65"  VerticalAlignment="Center" />
+                        <ComboBox ItemsSource="{StaticResource BrickStyle}" 
                           SelectedValue="{Binding TilePicker.BrickStyle}" 
                           SelectedValuePath="Value" Width="100"
                           ItemTemplate="{StaticResource EnumTemplate}" />
+                    </StackPanel>
+                    <CheckBox IsChecked="{Binding TilePicker.Actuator}" Content="Is Actuator" />
+                    <CheckBox IsChecked="{Binding TilePicker.ActuatorInActive}" Content="Actuator InActive" />
                 </StackPanel>
             </GroupBox>
 
