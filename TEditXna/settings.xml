@@ -17,6 +17,21 @@ Sprites for new trees and alternate wood (ID 5) are not yet added.
 Some sprites may not have suitable color codes.
 Some tile sets are still incomplete.  Known deficiencies are marked "TODO".
 
+Update 1:
+* Fixed some missing Framed="true" properties.
+* Removed redundant frame data.
+* Added colors to missing items
+* Corrected misaligned sofas/benches
+* Added missing tubs
+
+Outstanding:
+* Minecart track sprites (important)
+* Rope and Chain are currently configured like solid tiles, probably should be broken down into sprites
+* Some jungle plants
+* Overhaul wood, handle alternate wood types
+* Stalactite/stalagmite sprites
+* tagged some additional minor issues
+
 //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //
 
 Documentation moved to the end of this file.
@@ -537,11 +552,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="36,0" Name="Lead Anvil" />
       </Frames>
     </Tile>
-    <Tile Color="#FF909490" Placement="floor" Size="3,2" Id="17" Name="Furnace" Framed="true" Light="true">
-      <Frames>
-        <Frame UV="0,0" Name="Default" Variety="Default" />
-      </Frames>
-    </Tile>
+    <Tile Color="#FF909490" Placement="floor" Size="3,2" Id="17" Name="Furnace" Framed="true" Light="true" />
     <Tile Color="#FFBF8E6F" Placement="floor" Size="2,1" TextureGrid="16,18" Id="18" Name="Work Bench" Framed="true" SolidTop="true">
       <Frames>
         <Frame UV="0,0" Name="Work Bench" Variety="Wood" />
@@ -687,10 +698,100 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     </Tile>
     <Tile Name="Pot" Color="#FF974F50" Placement="floor" Size="2,2" Id="28" Framed="true">
       <Frames>
-        <Frame UV="0,0" Variety="Oval" />
-        <Frame UV="36,0" Variety="Wide" />
-        <Frame UV="72,0" Variety="Round" />
-        <!-- TODO : incomplete -->
+        <Frame UV="0,0" Variety="Clay Pot A1" />
+        <Frame UV="36,0" Variety="Clay Pot A2" />
+        <Frame UV="72,0" Variety="Clay Pot A3" />
+        <Frame UV="0,36" Variety="Clay Pot B1" />
+        <Frame UV="36,36" Variety="Clay Pot B2" />
+        <Frame UV="72,36" Variety="Clay Pot B3" />
+        <Frame UV="0,72" Variety="Clay Pot C1" />
+        <Frame UV="36,72" Variety="Clay Pot C2" />
+        <Frame UV="72,72" Variety="Clay Pot C3" />
+        <Frame UV="0,108" Variety="Clay Pot D1" />
+        <Frame UV="36,108" Variety="Clay Pot D2" />
+        <Frame UV="72,108" Variety="Clay Pot D3" />
+        <Frame UV="0,144" Variety="Frozen Pot A1" />
+        <Frame UV="36,144" Variety="Frozen Pot A2" />
+        <Frame UV="72,144" Variety="Frozen Pot A3" />
+        <Frame UV="0,180" Variety="Frozen Pot B1" />
+        <Frame UV="36,180" Variety="Frozen Pot B2" />
+        <Frame UV="72,180" Variety="Frozen Pot B3" />
+        <Frame UV="0,216" Variety="Frozen Pot C1" />
+        <Frame UV="36,216" Variety="Frozen Pot C2" />
+        <Frame UV="72,216" Variety="Frozen Pot C3" />
+        <Frame UV="0,252" Variety="Jungle Pot A1" />
+        <Frame UV="36,252" Variety="Jungle Pot A2" />
+        <Frame UV="72,252" Variety="Jungle Pot A3" />
+        <Frame UV="0,288" Variety="Jungle Pot B1" />
+        <Frame UV="36,288" Variety="Jungle Pot B2" />
+        <Frame UV="72,288" Variety="Jungle Pot B3" />
+        <Frame UV="0,324" Variety="Jungle Pot C1" />
+        <Frame UV="36,324" Variety="Jungle Pot C2" />
+        <Frame UV="72,324" Variety="Jungle Pot C3" />
+        <Frame UV="0,360" Variety="Skull Pot A1" />
+        <Frame UV="36,360" Variety="Skull Pot A2" />
+        <Frame UV="72,360" Variety="Skull Pot A3" />
+        <Frame UV="0,396" Variety="Skull Pot B1" />
+        <Frame UV="36,396" Variety="Skull Pot B2" />
+        <Frame UV="72,396" Variety="Skull Pot B3" />
+        <Frame UV="0,432" Variety="Skull Pot C1" />
+        <Frame UV="36,432" Variety="Skull Pot C2" />
+        <Frame UV="72,432" Variety="Skull Pot C3" />
+        <Frame UV="0,468" Variety="Obsidian Pot A1" />
+        <Frame UV="36,468" Variety="Obsidian Pot A2" />
+        <Frame UV="72,468" Variety="Obsidian Pot A3" />
+        <Frame UV="0,504" Variety="Obsidian Pot B1" />
+        <Frame UV="36,504" Variety="Obsidian Pot B2" />
+        <Frame UV="72,504" Variety="Obsidian Pot B3" />
+        <Frame UV="0,540" Variety="Obsidian Pot C1" />
+        <Frame UV="36,540" Variety="Obsidian Pot C2" />
+        <Frame UV="72,540" Variety="Obsidian Pot C3" />
+        <Frame UV="0,576" Variety="Corrupt Pot A1" />
+        <Frame UV="36,576" Variety="Corrupt Pot A2" />
+        <Frame UV="72,576" Variety="Corrupt Pot A3" />
+        <Frame UV="0,612" Variety="Corrupt Pot B1" />
+        <Frame UV="36,612" Variety="Corrupt Pot B2" />
+        <Frame UV="72,612" Variety="Corrupt Pot B3" />
+        <Frame UV="0,648" Variety="Corrupt Pot C1" />
+        <Frame UV="36,648" Variety="Corrupt Pot C2" />
+        <Frame UV="36,648" Variety="Corrupt Pot C2" />
+        <Frame UV="72,648" Variety="Corrupt Pot C3" />
+        <Frame UV="0,684" Variety="Webbed Pot A1" />
+        <Frame UV="36,684" Variety="Webbed Pot A2" />
+        <Frame UV="72,684" Variety="Webbed Pot A3" />
+        <Frame UV="0,720" Variety="Webbed Pot B1" />
+        <Frame UV="36,720" Variety="Webbed Pot B2" />
+        <Frame UV="72,720" Variety="Webbed Pot B3" />
+        <Frame UV="0,756" Variety="Webbed Pot C1" />
+        <Frame UV="36,756" Variety="Webbed Pot C2" />
+        <Frame UV="72,756" Variety="Webbed Pot C3" />
+        <Frame UV="0,792" Variety="Crimson Pot A1" />
+        <Frame UV="36,792" Variety="Crimson Pot A2" />
+        <Frame UV="72,792" Variety="Crimson Pot A3" />
+        <Frame UV="0,828" Variety="Crimson Pot B1" />
+        <Frame UV="36,828" Variety="Crimson Pot B2" />
+        <Frame UV="72,828" Variety="Crimson Pot B3" />
+        <Frame UV="0,864" Variety="Crimson Pot C1" />
+        <Frame UV="36,864" Variety="Crimson Pot C2" />
+        <Frame UV="72,864" Variety="Crimson Pot C3" />
+        <Frame UV="0,900" Variety="Elegant Pot A1" />
+        <Frame UV="36,900" Variety="Elegant Pot A2" />
+        <Frame UV="72,900" Variety="Elegant Pot A3" />
+        <Frame UV="0,936" Variety="Elegant Pot B1" />
+        <Frame UV="36,936" Variety="Elegant Pot B2" />
+        <Frame UV="72,936" Variety="Elegant Pot B3" />
+        <Frame UV="0,972" Variety="Elegant Pot C1" />
+        <Frame UV="36,972" Variety="Elegant Pot C2" />
+        <Frame UV="72,972" Variety="Elegant Pot C3" />
+        <Frame UV="0,1008" Variety="Lihzahrd Pot A1" />
+        <Frame UV="36,1008" Variety="Lihzahrd Pot A2" />
+        <Frame UV="72,1008" Variety="Lihzahrd Pot A3" />
+        <Frame UV="0,1044" Variety="Lihzahrd Pot B1" />
+        <Frame UV="36,1044" Variety="Lihzahrd Pot B2" />
+        <Frame UV="72,1044" Variety="Lihzahrd Pot B3" />
+        <Frame UV="0,1080" Variety="Lihzahrd Pot C1" />
+        <Frame UV="36,1080" Variety="Lihzahrd Pot C2" />
+        <Frame UV="72,1080" Variety="Lihzahrd Pot C3" />
       </Frames>
     </Tile>
     <Tile Color="#FFAF6980" Placement="surface" Size="2,1" Id="29" Name="Piggy Bank" Framed="True">
@@ -852,7 +953,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="36,288" Name="Jack 'O Lantern 9" Variety="Off" />
       </Frames>
     </Tile>
-    <Tile Id="36" Name="Present" Framed="true">
+    <Tile Color="#FFE6595C" Id="36" Name="Present" Framed="true">
       <Frames>
         <Frame UV="0,0" Name="Present" Variety="Red with White Ribbon" />
         <Frame UV="18,0" Name="Present" Variety="Red with Blue Ribbon" />
@@ -1040,11 +1141,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     </Tile>
     <Tile Color="#FF242424" Blends="true" MergeWith="0" Id="75" Name="Obsidian Brick" Solid="true" />
     <Tile Color="#FF8E4242" Blends="true" MergeWith="0" Id="76" Name="Hellstone Brick" Solid="true" Light="true" />
-    <Tile Color="#FFEE5546" Placement="floor" Size="3,2" Id="77" Name="Hellforge" Framed="true" Light="true">
-      <Frames>
-        <Frame UV="0,0" Name="Default" Variety="Default" />
-      </Frames>
-    </Tile>
+    <Tile Color="#FFEE5546" Placement="floor" Size="3,2" Id="77" Name="Hellforge" Framed="true" Light="true" />
     <Tile Color="#FF796E61" Placement="floor" Size="1,1" Id="78" Name="Clay Pot" Framed="true" />
     <Tile Color="#FFBF8E6F" Placement="floor" Size="4,2" Id="79" Name="Bed" Framed="true">
       <Frames>
@@ -1163,11 +1260,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="180,0" Variety="F" />
       </Frames>
     </Tile>
-    <Tile Color="#FFBF8E6F" Placement="floor" Size="3,2" Id="86" Name="Loom" Framed="true">
-      <Frames>
-        <Frame UV="0,0" Name="Default" Variety="Default" />
-      </Frames>
-    </Tile>
+    <Tile Color="#FFBF8E6F" Placement="floor" Size="3,2" Id="86" Name="Loom" Framed="true" />
     <Tile Color="#FFBF8E6F" Placement="floor" Size="3,2" Id="87" Name="Piano" Framed="true" SolidTop="true">
       <Frames>
         <Frame UV="0,0" Variety="Wooden" />
@@ -1261,9 +1354,60 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     </Tile>
     <Tile Color="#FF909490" Placement="floor" Size="4,2" Id="90" Name="Bathtub" Framed="true">
       <Frames>
-        <Frame UV="0,0" Anchor="Left" />
-        <Frame UV="72,0" Anchor="Right" />
-        <!-- TODO -->
+        <Frame UV="0,0" Variety="Metal Bathtub" Anchor="Left" />
+        <Frame UV="72,0" Variety="Metal Bathtub" Anchor="Left" />
+        <Frame UV="0,36" Variety="Cactus Bathtub" Anchor="Left" />
+        <Frame UV="72,36" Variety="Cactus Bathtub" Anchor="Left" />
+        <Frame UV="0,72" Variety="Ebonwood Bathtub" Anchor="Left" />
+        <Frame UV="72,72" Variety="Ebonwood Bathtub" Anchor="Left" />
+        <Frame UV="0,108" Variety="Flesh Bathtub" Anchor="Left" />
+        <Frame UV="72,108" Variety="Flesh Bathtub" Anchor="Left" />
+        <Frame UV="0,144" Variety="Glass Bathtub" Anchor="Left" />
+        <Frame UV="72,144" Variety="Glass Bathtub" Anchor="Left" />
+        <Frame UV="0,180" Variety="Frozen Bathtub" Anchor="Left" />
+        <Frame UV="72,180" Variety="Frozen Bathtub" Anchor="Left" />
+        <Frame UV="0,216" Variety="Rich Mahogany Bathtub" Anchor="Left" />
+        <Frame UV="72,216" Variety="Rich Mahogany Bathtub" Anchor="Left" />
+        <Frame UV="0,252" Variety="Pearlwood Bathtub" Anchor="Left" />
+        <Frame UV="72,252" Variety="Pearlwood Bathtub" Anchor="Left" />
+        <Frame UV="0,288" Variety="Lihzahrd Bathtub" Anchor="Left" />
+        <Frame UV="72,288" Variety="Lihzahrd Bathtub" Anchor="Left" />
+        <Frame UV="0,324" Variety="Skyware Bathtub" Anchor="Left" />
+        <Frame UV="72,324" Variety="Skyware Bathtub" Anchor="Left" />
+        <Frame UV="0,360" Variety="Spooky Bathtub" Anchor="Left" />
+        <Frame UV="72,360" Variety="Spooky Bathtub" Anchor="Left" />
+        <Frame UV="0,396" Variety="Honey Bathtub" Anchor="Left" />
+        <Frame UV="72,396" Variety="Honey Bathtub" Anchor="Left" />
+        <Frame UV="0,432" Variety="Steampunk Bathtub" Anchor="Left" />
+        <Frame UV="72,432" Variety="Steampunk Bathtub" Anchor="Left" />
+        <Frame UV="0,468" Variety="Living Wood Bathtub" Anchor="Left" />
+        <Frame UV="72,468" Variety="Living Wood Bathtub" Anchor="Left" />
+        <Frame UV="0,504" Variety="Shadewood Bathtub" Anchor="Left" />
+        <Frame UV="72,504" Variety="Shadewood Bathtub" Anchor="Left" />
+        <Frame UV="0,540" Variety="Bone Bathtub" Anchor="Left" />
+        <Frame UV="72,540" Variety="Bone Bathtub" Anchor="Left" />
+        <Frame UV="0,576" Variety="Dynasty Bathtub" Anchor="Left" />
+        <Frame UV="72,576" Variety="Dynasty Bathtub" Anchor="Left" />
+        <Frame UV="0,612" Variety="Palm Wood Bathtub" Anchor="Left" />
+        <Frame UV="72,612" Variety="Palm Wood Bathtub" Anchor="Left" />
+        <Frame UV="0,648" Variety="Mushroom Bathtub" Anchor="Left" />
+        <Frame UV="72,648" Variety="Mushroom Bathtub" Anchor="Left" />
+        <Frame UV="0,684" Variety="Boreal Wood Bathtub" Anchor="Left" />
+        <Frame UV="72,684" Variety="Boreal Wood Bathtub" Anchor="Left" />
+        <Frame UV="0,720" Variety="Slime Bathtub" Anchor="Left" />
+        <Frame UV="72,720" Variety="Slime Bathtub" Anchor="Left" />
+        <Frame UV="0,756" Variety="Blue Dungeon Bathtub" Anchor="Left" />
+        <Frame UV="72,756" Variety="Blue Dungeon Bathtub" Anchor="Left" />
+        <Frame UV="0,792" Variety="Green Dungeon Bathtub" Anchor="Left" />
+        <Frame UV="72,792" Variety="Green Dungeon Bathtub" Anchor="Left" />
+        <Frame UV="0,828" Variety="Pink Dungeon Bathtub" Anchor="Left" />
+        <Frame UV="72,828" Variety="Pink Dungeon Bathtub" Anchor="Left" />
+        <Frame UV="0,864" Variety="Pumpkin Bathtub" Anchor="Left" />
+        <Frame UV="72,864" Variety="Pumpkin Bathtub" Anchor="Left" />
+        <Frame UV="0,900" Variety="Obsidian Bathtub" Anchor="Left" />
+        <Frame UV="72,900" Variety="Obsidian Bathtub" Anchor="Left" />
+        <Frame UV="0,936" Variety="Golden Bathtub" Anchor="Left" />
+        <Frame UV="72,936" Variety="Golden Bathtub" Anchor="Left" />
       </Frames>
     </Tile>
     <Tile Color="#FF0D5882" Placement="ceiling" Size="1,3" Id="91" Name="Red Banner" Framed="true">
@@ -1641,11 +1785,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="1800,0" Variety="Shark Statue" />
       </Frames>
     </Tile>
-    <Tile Color="#FFBF8E6F" Placement="floor" Size="3,3" Id="106" Name="Sawmill" Framed="true">
-      <Frames>
-        <Frame UV="0,0" Name="Default" Variety="Default" />
-      </Frames>
-    </Tile>
+    <Tile Color="#FFBF8E6F" Placement="floor" Size="3,3" Id="106" Name="Sawmill" Framed="true" />
     <Tile Color="#FF0B508F" Blends="true" MergeWith="0" Id="107" Name="Cobalt Ore" Solid="true" />
     <Tile Color="#FF5BA9A9" Blends="true" MergeWith="0" Id="108" Name="Mythril Ore" Solid="true" />
     <Tile Color="#FF4EC1E3" Blends="true" MergeWith="0" Special="Grass" Id="109" Name="Hallowed Seeds" Solid="true" Light="true" />
@@ -1762,7 +1902,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="36,0" Name="Orichalcum Anvil" />
       </Frames>
     </Tile>
-    <Tile Color="#FFFD7272" Id="135" Name="Red Pressure Plate" Framed="true">
+    <Tile Color="#FFFD7272" Id="135" Name="Pressure Plate" Framed="true">
       <Frames>
         <Frame UV="0,0" Variety="Red" />
         <Frame UV="0,18" Variety="Green" />
@@ -1941,7 +2081,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="18,72" Name="Small Icicle 1" />
         <Frame UV="36,72" Name="Small Icicle 2" />
         <Frame UV="54,72" Name="Small Icicle 3" />
-        <Frame UV="," Name="Stalactite 1" />
+        <!-- <Frame UV="," Name="Stalactite 1" />
         <Frame UV="," Name="Stalactite 2" />
         <Frame UV="," Name="Stalactite 3" />
         <Frame UV="," Name="Stalagmite 1" />
@@ -1979,7 +2119,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="," Name="Crimson Stalagmite 3" />
         <Frame UV="," Name="Crimson Stalactite/Stalagmite 1" />
         <Frame UV="," Name="Crimson Stalactite/Stalagmite 2" />
-        <Frame UV="," Name="Crimson Stalactite/Stalagmite 3" />
+        <Frame UV="," Name="Crimson Stalactite/Stalagmite 3" /> -->
         <!-- TODO -->
       </Frames>
     </Tile>
@@ -1993,7 +2133,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="54,0" Variety="Off" />
       </Frames>
     </Tile>
-    <Tile Id="171" TextureGrid="64,128" Name="Christmas Tree" Light="true" />
+    <Tile Color="#FF218755" Id="171" TextureGrid="64,128" Name="Christmas Tree" Light="true" />
     <Tile Name="Fake Chandelier" Color="#FFB5C2D9" Placement="ceiling" Framed="false" Light="true" Size="3,3" Id="172">
       <Frames>
         <Frame UV="0,0" Variety="On" />
@@ -2034,6 +2174,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Tile Name="Moss Plants" Color="#FF646464" Id="184" Framed="true">
       <Frames>
         <Frame UV="0,0" Name="Default" Variety="Default" />
+        <!-- TODO -->
       </Frames>
     </Tile>
     <Tile Name="Small Decos" Color="#FF959573" Size="1,1" Id="185" Framed="true">
@@ -2176,7 +2317,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="1458,18" Variety="Stony Moss 6" />
       </Frames>
     </Tile>
-    <Tile Name="3x2 Decos" Size="2,2" Color="#FFFF00FF" Id="186" Framed="true">
+    <Tile Name="3x2 Decos" Size="3,2" Color="#FFFF00FF" Id="186" Framed="true">
       <Frames>
         <Frame UV="0,0" Name="Bones 1" />
         <Frame UV="54,0" Name="Bones 2" />
@@ -2264,6 +2405,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Tile Name="Crimson Plants" Color="#FFCB3D40" Id="201" Framed="true">
       <Frames>
         <Frame UV="0,0" Name="Default" Variety="Default" />
+        <!-- TODO -->
       </Frames>
     </Tile>
     <Tile Color="#FFD5B21C" Blends="true" Id="202" Name="Sunplate Block" Solid="true" />
@@ -2314,11 +2456,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="72,432" Name="Bunny Cannon" Variety="0 deg Elevation Left" />
       </Frames>
     </Tile>
-    <Tile Color="#FFC03B3B" Id="210" Name="Land Mine" Framed="true">
-      <Frames>
-        <Frame UV="0,0" Name="Default" Variety="Default" />
-      </Frames>
-    </Tile>
+    <Tile Color="#FFC03B3B" Id="210" Name="Land Mine" Framed="true" />
     <Tile Color="#FFBFE973" Blends="true" Id="211" Name="Chlorophyte Ore" Solid="true" />
     <Tile Color="#FF909490" Size="3,3" Id="212" Name="Snowball Launcher" Framed="true">
       <Frames>
@@ -2327,12 +2465,10 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
       </Frames>
     </Tile>
     <Tile Color="#FF897843" Blends="true" Id="213" Name="Rope" />
+    <!-- TODO -->
     <Tile Color="#FF676767" Blends="true" Id="214" Name="Chain" />
-    <Tile Color="#FFFE7902" Size="3,2" Id="215" Name="Campfire" Framed="true" Light="true">
-      <Frames>
-        <Frame UV="0,0" Name="Default" Variety="Default" />
-      </Frames>
-    </Tile>
+    <!-- TODO -->
+    <Tile Color="#FFFE7902" Size="3,2" Id="215" Name="Campfire" Framed="true" Light="true" />
     <Tile Color="#FFBF8E6F" Size="1,2" Id="216" Name="Rocket" Framed="true">
       <Frames>
         <Frame UV="0,0" Name="Rocket" Variety="Red Rocket" />
@@ -2341,26 +2477,10 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="0,120" Name="Rocket" Variety="Yellow Rocket" />
       </Frames>
     </Tile>
-    <Tile Color="#FF909490" Size="3,2" Id="217" Name="Blend-O-Matic" Framed="true">
-      <Frames>
-        <Frame UV="0,0" Name="Default" Variety="Default" />
-      </Frames>
-    </Tile>
-    <Tile Color="#FF909490" Size="3,2" Id="218" Name="Meat Grinder" Framed="true">
-      <Frames>
-        <Frame UV="0,0" Name="Default" Variety="Default" />
-      </Frames>
-    </Tile>
-    <Tile Color="#FF909490" Size="3,3" Id="219" Name="Extractinator" Framed="true">
-      <Frames>
-        <Frame UV="0,0" Name="Default" Variety="Default" />
-      </Frames>
-    </Tile>
-    <Tile Color="#FF909490" Size="3,3" Id="220" Name="Solidifier" Framed="true">
-      <Frames>
-        <Frame UV="0,0" Name="Default" Variety="Default" />
-      </Frames>
-    </Tile>
+    <Tile Color="#FF909490" Size="3,2" Id="217" Name="Blend-O-Matic" Framed="true" />
+    <Tile Color="#FF909490" Size="3,2" Id="218" Name="Meat Grinder" Framed="true" />
+    <Tile Color="#FF909490" Size="3,3" Id="219" Name="Extractinator" Framed="true" />
+    <Tile Color="#FF909490" Size="3,3" Id="220" Name="Solidifier" Framed="true" />
     <Tile Color="#FFEF5A32" Blends="true" Id="221" Name="Palladium Ore" Solid="true" />
     <Tile Color="#FFE760E4" Blends="true" Id="222" Name="Orichalcum Ore" Solid="true" />
     <Tile Color="#FF395565" Blends="true" Id="223" Name="Titanium Ore" Solid="true" />
@@ -2379,18 +2499,10 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="238,0" Name="Dye Plant" Variety="Orange Bloodroot" />
       </Frames>
     </Tile>
-    <Tile Color="#FF909490" Size="3,3" Id="228" Name="Dye Vat" Framed="true">
-      <Frames>
-        <Frame UV="0,0" Name="Default" Variety="Default" />
-      </Frames>
-    </Tile>
+    <Tile Color="#FF909490" Size="3,3" Id="228" Name="Dye Vat" Framed="true" />
     <Tile Color="#FFFF9C0C" Blends="true" Id="229" Name="Honey Block" Solid="true" />
     <Tile Color="#FF834F0D" Blends="true" Id="230" Name="Crispy Honey Block" Solid="true" />
-    <Tile Name="Larva" Color="#FFE0C265" Size="3,3" Id="231" Framed="true">
-      <Frames>
-        <Frame UV="0,0" Name="Default" Variety="Default" />
-      </Frames>
-    </Tile>
+    <Tile Name="Larva" Color="#FFE0C265" Size="3,3" Id="231" Framed="true" />
     <Tile Color="#FF915155" Blends="true" Id="232" Name="Wooden Spike" Solid="true" />
     <Tile Name="Jungle Vegetation" Color="#FFFF00FF" Size="3,2" Id="233" Framed="true">
       <Frames>
@@ -2399,27 +2511,15 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
       </Frames>
     </Tile>
     <Tile Color="#FF352C29" Blends="true" Id="234" Name="Crimsand Block" Solid="true" />
-    <Tile Color="#FFD6B82E" Size="3,1" Id="235" Name="Teleporter" Framed="true" Solid="true">
-      <Frames>
-        <Frame UV="0,0" Name="Default" Variety="Default" />
-      </Frames>
-    </Tile>
+    <Tile Color="#FFD6B82E" Size="3,1" Id="235" Name="Teleporter" Framed="true" Solid="true" />
     <Tile Name="Life Fruit Plant" Color="#FF95E857" Size="2,2" Id="236" Framed="true">
       <Frames>
         <Frame UV="0,0" Name="Default" Variety="Default" />
         <Frame UV="36,0" Name="Life Fruit" Variety="Default" />
       </Frames>
     </Tile>
-    <Tile Color="#FFFFF133" Size="3,2" Id="237" Name="Lihzahrd Altar" Framed="true" Light="true">
-      <Frames>
-        <Frame UV="0,0" Name="Default" Variety="Default" />
-      </Frames>
-    </Tile>
-    <Tile Name="Plantera's Bulb" Color="#FFE180CE" Size="2,2" Id="238" Framed="true" Light="true">
-      <Frames>
-        <Frame UV="0,0" Name="Default" Variety="Default" />
-      </Frames>
-    </Tile>
+    <Tile Color="#FFFFF133" Size="3,2" Id="237" Name="Lihzahrd Altar" Framed="true" Light="true" />
+    <Tile Name="Plantera's Bulb" Color="#FFE180CE" Size="2,2" Id="238" Framed="true" Light="true" />
     <Tile Color="#FFE0C265" Id="239" Name="Gold Bar" Framed="true" Solid="true" SolidTop="true">
       <Frames>
         <Frame UV="0,0" Name="Metal Bar" Variety="Copper Bar" />
@@ -2549,16 +2649,8 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="0,1872" Name="Painting" Variety="Pillagin Me Pixels" />
       </Frames>
     </Tile>
-    <Tile Color="#FF8CB3FE" Size="3,3" Id="243" Name="Imbuing Station" Framed="true">
-      <Frames>
-        <Frame UV="0,0" Name="Default" Variety="Default" />
-      </Frames>
-    </Tile>
-    <Tile Color="#FFC8F5FD" Size="3,2" Id="244" Name="Bubble Machine" Framed="true">
-      <Frames>
-        <Frame UV="0,0" Name="Default" Variety="Default" />
-      </Frames>
-    </Tile>
+    <Tile Color="#FF8CB3FE" Size="3,3" Id="243" Name="Imbuing Station" Framed="true" />
+    <Tile Color="#FFC8F5FD" Size="3,2" Id="244" Name="Bubble Machine" Framed="true" />
     <Tile Color="#FF63321E" Size="2,3" Id="245" Name="2x3 Painting" Framed="true">
       <Frames>
         <Frame UV="0,0" Name="Painting" Variety="Waldo" />
@@ -2675,7 +2767,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Tile Color="#FF964316" Id="284" Name="Copper Plating" />
     <Tile Color="#FF7AD9E8" Id="285" Size="3,2" Name="Snail Cage" Framed="true" />
     <Tile Color="#FF7AD9E8" Id="286" Size="3,2" Name="Glowing Snail Cage" Framed="true" Light="true" />
-    <Tile Id="287" Size="2,2" Name="Ammo Box" Framed="true" />
+    <Tile Color="#FF4F8011" Id="287" Size="2,2" Name="Ammo Box" Framed="true" />
     <Tile Color="#FF7AD9E8" Id="288" Size="2,2" Name="Monarch Butterfly Jar" Framed="true" />
     <Tile Color="#FF7AD9E8" Id="289" Size="2,2" Name="Purple Emperor Butterfly Jar" Framed="true" />
     <Tile Color="#FF7AD9E8" Id="290" Size="2,2" Name="Red Admiral Butterfly Jar" Framed="true" />
@@ -2702,23 +2794,23 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Tile Color="#FF753D19" Id="311" Name="Dynasty Wood" Solid="true" />
     <Tile Color="#FFCC5D49" Id="312" Name="Red Dynasty Shingles" Solid="true" />
     <Tile Color="#FF57969A" Id="313" Name="Blue Dynasty Shingles" Solid="true" />
-    <Tile Id="314" Name="Minecart Track" Framed="True">
+    <Tile Color="#FFB5A47D" Id="314" Name="Minecart Track" Framed="True">
       <Frames>
         <Frame UV="0,0" Name="Placeholder" />
         <!-- TODO -->
       </Frames>
     </Tile>
     <Tile Color="#FFEB7250" Id="315" Name="Coralstone Block" Solid="True" />
-    <Tile Id="316" Size="2,2" Name="Blue Jellyfish Jar" Framed="true" />
-    <Tile Id="317" Size="2,2" Name="Green Jellyfish Jar" Framed="true" />
-    <Tile Id="318" Size="2,2" Name="Pink Jellyfish Jar" Framed="true" />
-    <Tile Id="319" Size="2,2" Name="Ship in a Bottle" Framed="true" />
-    <Tile Id="320" Size="2,3" Name="Seaweed Planter" Framed="true" />
+    <Tile Color="#FF7AD9E8" Id="316" Size="2,2" Name="Blue Jellyfish Jar" Framed="true" />
+    <Tile Color="#FF7AD9E8" Id="317" Size="2,2" Name="Green Jellyfish Jar" Framed="true" />
+    <Tile Color="#FF7AD9E8" Id="318" Size="2,2" Name="Pink Jellyfish Jar" Framed="true" />
+    <Tile Color="#FF604430" Id="319" Size="2,2" Name="Ship in a Bottle" Framed="true" />
+    <Tile Color="#FFCBB997" Id="320" Size="2,3" Name="Seaweed Planter" Framed="true" />
     <Tile Color="#FF604D40" Id="321" Name="Boreal Wood" Solid="true" />
     <Tile Color="#FFC6AA68" Id="322" Name="Palm Wood" Solid="true" />
-    <Tile Id="323" Name="Palm Tree" Framed="true" />
+    <Tile Color="#FFB68D56" Id="323" Name="Palm Tree" Framed="true" />
     <!-- TODO -->
-    <Tile Id="324" TextureGrid="20,20" Name="Seashell" Framed="true">
+    <Tile Color="#FFE4D5AD" Id="324" TextureGrid="20,20" Name="Seashell" Framed="true">
       <Frames>
         <Frame UV="0,0" Variety="Seashell A" />
         <Frame UV="22,0" Variety="Seashell B" />
@@ -2733,13 +2825,13 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Tile Color="#FFFD2003" Id="327" Name="Lavafall Block" Solid="True" />
     <Tile Color="#FFC8F6FE" Id="328" Name="Confetti Block" Solid="True" />
     <Tile Color="#FF0F0F0F" Id="329" Name="Midnight Confetti Block" Solid="true" />
-    <Tile Id="330" Name="Copper Coin Pile" Framed="true" />
-    <Tile Id="331" Name="Silver Coin Pile" Framed="true" />
-    <Tile Id="332" Name="Gold Coin Pile" Framed="true" />
-    <Tile Id="333" Name="Platinum Coin Pile" Framed="true" />
-    <Tile Id="334" Size="3,3" Name="Weapon Rack" Framed="true" />
-    <Tile Id="335" Size="2,2" Name="Fireworks Box" Framed="true" />
-    <Tile Id="336" Name="Living Fire Block" Framed="true" />
+    <Tile Color="#FFE2764C" Id="330" Name="Copper Coin Pile" Framed="true" />
+    <Tile Color="#FFA1ACAD" Id="331" Name="Silver Coin Pile" Framed="true" />
+    <Tile Color="#FFCCB548" Id="332" Name="Gold Coin Pile" Framed="true" />
+    <Tile Color="#FFBEBEB2" Id="333" Name="Platinum Coin Pile" Framed="true" />
+    <Tile Color="#FFBF8E6F" Id="334" Size="3,3" Name="Weapon Rack" Framed="true" />
+    <Tile Color="#FFD9AE89" Id="335" Size="2,2" Name="Fireworks Box" Framed="true" />
+    <Tile Color="#FFFD3E03" Id="336" Name="Living Fire Block" Framed="true" />
     <Tile Color="#FF909490" Placement="floor" Size="2,3" Id="337" Name="Text Statue" Framed="true">
       <Frames>
         <Frame UV="0,0" Name="Text Statue" Variety="0 Statue" />
@@ -2780,8 +2872,8 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="1260,0" Name="Text Statue" Variety="Z Statue" />
       </Frames>
     </Tile>
-    <Tile Id="338" Size="1,2" Name="Firework Fountain" Framed="true" />
-    <Tile Id="339" Size="3,2" Name="Grasshopper Cage" Framed="true" />
+    <Tile Color="#FF55FFA0" Id="338" Size="1,2" Name="Firework Fountain" Framed="true" />
+    <Tile Color="#FF7AD9E8" Id="339" Size="3,2" Name="Grasshopper Cage" Framed="true" />
   </Tiles>
   <Walls>
     <Wall Id="0"    Name="Sky"                            Color="#00000000"                    />
