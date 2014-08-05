@@ -30,9 +30,12 @@ namespace TEditXna.Editor.Undo
             UndoAliveFile = Path.Combine(Dir, "alive.txt");
 
             if (!Directory.Exists(Dir))
+            {
                 Directory.CreateDirectory(Dir);
+                ErrorLogging.Log(string.Format("Creating Undo cache: {0}", Dir));
+            }
 
-            undoAliveTimer = new Timer(UndoAlive, null, TimeSpan.Zero, TimeSpan.FromMinutes(5));
+            undoAliveTimer = new Timer(UndoAlive, null, TimeSpan.FromSeconds(10), TimeSpan.FromMinutes(5));
         }
 
         private static void UndoAlive(object state)
@@ -40,7 +43,6 @@ namespace TEditXna.Editor.Undo
             if (!File.Exists(UndoAliveFile))
                 File.Create(UndoAliveFile).Close();
             
-
             File.SetLastWriteTimeUtc(UndoAliveFile, DateTime.UtcNow);
 
             CleanupOldUndoFiles();
@@ -61,21 +63,29 @@ namespace TEditXna.Editor.Undo
             return true;
         }
 
-        private static void CleanupOldUndoFiles()
+        private static void CleanupOldUndoFiles(bool forceCleanup = false)
         {
             try
             {
                 foreach (var file in Directory.GetFiles(WorldViewModel.TempPath).ToList())
                 {
+                    ErrorLogging.Log(string.Format("Removing old undo file: {0}", file));
                     File.Delete(file);
                 }
 
                 foreach (var dir in Directory.GetDirectories(WorldViewModel.TempPath).ToList())
                 {
-                    if (!IsUndoDirAlive(dir))
+                    if (!Path.Equals(dir, Dir) && !IsUndoDirAlive(dir))
                     {
+                        ErrorLogging.Log(string.Format("Removing old undo cache: {0}", dir));
                         Directory.Delete(dir, true);
                     }
+                }
+
+                if (forceCleanup)
+                {
+                    ErrorLogging.Log(string.Format("Removing undo cache: {0}", Dir));
+                    Directory.Delete(Dir, true);
                 }
             }
             catch (Exception err)
@@ -357,12 +367,19 @@ namespace TEditXna.Editor.Undo
             {
                 if (disposing)
                 {
-                    // free managed
+                    if (_buffer != null)
+                    {
+                        _buffer.Dispose();
+                    }
+                    _buffer = null;
                 }
                 // Free your own state (unmanaged objects).
                 // Set large fields to null.
-                _buffer = null;
-                CleanupOldUndoFiles();
+
+                
+
+              
+                CleanupOldUndoFiles(true);
                 disposed = true;
             }
         }
