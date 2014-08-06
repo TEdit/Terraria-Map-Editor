@@ -2730,20 +2730,20 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="144,180" Variety="Mature 6" />
       </Frames>
     </Tile>
-    <Tile Color="#FF6B319A" Id="255" Name="Amethyst Gemspark Block (Offline)" Solid="true" />
-    <Tile Color="#FF9A9431" Id="256" Name="Topaz Gemspark Block (Offline)" Solid="true" />
-    <Tile Color="#FF31319A" Id="257" Name="Sapphire Gemspark Block (Offline)" Solid="true" />
-    <Tile Color="#FF319A44" Id="258" Name="Emerald Gemspark Block (Offline)" Solid="true" />
-    <Tile Color="#FF9A314D" Id="259" Name="Ruby Gemspark Block (Offline)" Solid="true" />
-    <Tile Color="#FF555976" Id="260" Name="Diamond Gemspark Block (Offline)" Solid="true" />
-    <Tile Color="#FF9A5331" Id="261" Name="Amber Gemspark Block (Offline)" Solid="true" />
-    <Tile Color="#FFDD4FFF" Id="262" Name="Amethyst Gemspark Block" Solid="true" Light="true" />
-    <Tile Color="#FFFAFF4F" Id="263" Name="Topaz Gemspark Block" Solid="true" Light="true" />
-    <Tile Color="#FF4F66FF" Id="264" Name="Sapphire Gemspark Block" Solid="true" Light="true" />
-    <Tile Color="#FF4FFF59" Id="265" Name="Emerald Gemspark Block" Solid="true" Light="true" />
-    <Tile Color="#FFFF4F4F" Id="266" Name="Ruby Gemspark Block" Solid="true" Light="true" />
-    <Tile Color="#FFF0F0F7" Id="267" Name="Diamond Gemspark Block" Solid="true" Light="true" />
-    <Tile Color="#FFFF914F" Id="268" Name="Amber Gemspark Block" Solid="true" Light="true" />
+    <Tile Color="#FF6B319A" Id="255" Blends="true" Name="Amethyst Gemspark Block (Offline)" Solid="true" />
+    <Tile Color="#FF9A9431" Id="256" Blends="true" Name="Topaz Gemspark Block (Offline)" Solid="true" />
+    <Tile Color="#FF31319A" Id="257" Blends="true" Name="Sapphire Gemspark Block (Offline)" Solid="true" />
+    <Tile Color="#FF319A44" Id="258" Blends="true" Name="Emerald Gemspark Block (Offline)" Solid="true" />
+    <Tile Color="#FF9A314D" Id="259" Blends="true" Name="Ruby Gemspark Block (Offline)" Solid="true" />
+    <Tile Color="#FF555976" Id="260" Blends="true" Name="Diamond Gemspark Block (Offline)" Solid="true" />
+    <Tile Color="#FF9A5331" Id="261" Blends="true" Name="Amber Gemspark Block (Offline)" Solid="true" />
+    <Tile Color="#FFDD4FFF" Id="262" Blends="true" Name="Amethyst Gemspark Block" Solid="true" Light="true" />
+    <Tile Color="#FFFAFF4F" Id="263" Blends="true" Name="Topaz Gemspark Block" Solid="true" Light="true" />
+    <Tile Color="#FF4F66FF" Id="264" Blends="true" Name="Sapphire Gemspark Block" Solid="true" Light="true" />
+    <Tile Color="#FF4FFF59" Id="265" Blends="true" Name="Emerald Gemspark Block" Solid="true" Light="true" />
+    <Tile Color="#FFFF4F4F" Id="266" Blends="true" Name="Ruby Gemspark Block" Solid="true" Light="true" />
+    <Tile Color="#FFF0F0F7" Id="267" Blends="true" Name="Diamond Gemspark Block" Solid="true" Light="true" />
+    <Tile Color="#FFFF914F" Id="268" Blends="true" Name="Amber Gemspark Block" Solid="true" Light="true" />
     <Tile Color="#FFBF8E6F" Size="2,3" Id="269" Name="Womannequin" Framed="true">
       <Frames>
         <Frame UV="0,0" Anchor="Left" />
@@ -2752,9 +2752,9 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     </Tile>
     <Tile Color="#FF7AD9E8" Id="270" Size="1,2" Name="Firefly in a Bottle" Framed="true" Light="true" />
     <Tile Color="#FF7AD9E8" Id="271" Size="1,2" Name="Lightning Bug in a Bottle" Framed="true" Light="true" />
-    <Tile Color="#FF797765" Id="272" Name="Cog" Solid="true" />
-    <Tile Color="#FF808080" Id="273" Name="Stone Slab" Solid="true" />
-    <Tile Color="#FFBEAB5E" Id="274" Name="Sandstone Slab" Solid="true" />
+    <Tile Color="#FF797765" Blends="true" Id="272" Name="Cog" Solid="true" />
+    <Tile Color="#FF808080" Blends="true" Id="273" Name="Stone Slab" Solid="true" />
+    <Tile Color="#FFBEAB5E" Blends="true" Id="274" Name="Sandstone Slab" Solid="true" />
     <Tile Color="#FF7AD9E8" Id="275" Size="6,3" Name="Bunny Cage" Framed="true" />
     <Tile Color="#FF7AD9E8" Id="276" Size="6,3" Name="Squirrel Cage" Framed="true" />
     <Tile Color="#FF7AD9E8" Id="277" Size="6,3" Name="Mallard Duck Cage" Framed="true" />
@@ -2764,7 +2764,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Tile Color="#FF7AD9E8" Id="281" Size="6,3" Name="Cardinal Cage" Framed="true" />
     <Tile Color="#FF7AD9E8" Id="282" Size="2,2" Name="Fish Bowl" Framed="true" />
     <Tile Color="#FF808080" Id="283" Size="3,3" Name="Heavy Work Bench" Framed="true" />
-    <Tile Color="#FF964316" Id="284" Name="Copper Plating" />
+    <Tile Color="#FF964316" Blends="true" Id="284" Name="Copper Plating" Solid="true" />
     <Tile Color="#FF7AD9E8" Id="285" Size="3,2" Name="Snail Cage" Framed="true" />
     <Tile Color="#FF7AD9E8" Id="286" Size="3,2" Name="Glowing Snail Cage" Framed="true" Light="true" />
     <Tile Color="#FF4F8011" Id="287" Size="2,2" Name="Ammo Box" Framed="true" />
@@ -2791,24 +2791,24 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Tile Color="#FF909490" Id="308" Size="3,3" Name="Honey Dispenser" Framed="true" />
     <Tile Color="#FF7AD9E8" Id="309" Size="6,3" Name="Penguin Cage" Framed="true" />
     <Tile Color="#FF7AD9E8" Id="310" Size="3,2" Name="Worm Cage" Framed="true" />
-    <Tile Color="#FF753D19" Id="311" Name="Dynasty Wood" Solid="true" />
-    <Tile Color="#FFCC5D49" Id="312" Name="Red Dynasty Shingles" Solid="true" />
-    <Tile Color="#FF57969A" Id="313" Name="Blue Dynasty Shingles" Solid="true" />
+    <Tile Color="#FF753D19" Id="311" Blends="true" Name="Dynasty Wood" Solid="true" />
+    <Tile Color="#FFCC5D49" Id="312" Blends="true" Name="Red Dynasty Shingles" Solid="true" />
+    <Tile Color="#FF57969A" Id="313" Blends="true" Name="Blue Dynasty Shingles" Solid="true" />
     <Tile Color="#FFB5A47D" Id="314" Name="Minecart Track" Framed="True">
       <Frames>
         <Frame UV="0,0" Name="Placeholder" />
         <!-- TODO -->
       </Frames>
     </Tile>
-    <Tile Color="#FFEB7250" Id="315" Name="Coralstone Block" Solid="True" />
+    <Tile Color="#FFEB7250" Id="315" Blends="true" Name="Coralstone Block" Solid="True" />
     <Tile Color="#FF7AD9E8" Id="316" Size="2,2" Name="Blue Jellyfish Jar" Framed="true" />
     <Tile Color="#FF7AD9E8" Id="317" Size="2,2" Name="Green Jellyfish Jar" Framed="true" />
     <Tile Color="#FF7AD9E8" Id="318" Size="2,2" Name="Pink Jellyfish Jar" Framed="true" />
     <Tile Color="#FF604430" Id="319" Size="2,2" Name="Ship in a Bottle" Framed="true" />
     <Tile Color="#FFCBB997" Id="320" Size="2,3" Name="Seaweed Planter" Framed="true" />
-    <Tile Color="#FF604D40" Id="321" Name="Boreal Wood" Solid="true" />
-    <Tile Color="#FFC6AA68" Id="322" Name="Palm Wood" Solid="true" />
-    <Tile Color="#FFB68D56" Id="323" Name="Palm Tree" Framed="true" />
+    <Tile Color="#FF604D40" Id="321" Blends="true" Name="Boreal Wood" Solid="true" />
+    <Tile Color="#FFC6AA68" Id="322" Blends="true" Name="Palm Wood" Solid="true" />
+    <Tile Color="#FFB68D56" Id="323" Blends="true" Name="Palm Tree" Framed="true" />
     <!-- TODO -->
     <Tile Color="#FFE4D5AD" Id="324" TextureGrid="20,20" Name="Seashell" Framed="true">
       <Frames>
@@ -2820,18 +2820,18 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="44,22" Variety="Starfish C" />
       </Frames>
     </Tile>
-    <Tile Color="#FF817D5D" Id="325" Name="Tin Plating" Solid="True" />
-    <Tile Color="#FF093DBF" Id="326" Name="Waterfall Block" Solid="True" />
-    <Tile Color="#FFFD2003" Id="327" Name="Lavafall Block" Solid="True" />
-    <Tile Color="#FFC8F6FE" Id="328" Name="Confetti Block" Solid="True" />
-    <Tile Color="#FF0F0F0F" Id="329" Name="Midnight Confetti Block" Solid="true" />
-    <Tile Color="#FFE2764C" Id="330" Name="Copper Coin Pile" Framed="true" />
-    <Tile Color="#FFA1ACAD" Id="331" Name="Silver Coin Pile" Framed="true" />
-    <Tile Color="#FFCCB548" Id="332" Name="Gold Coin Pile" Framed="true" />
-    <Tile Color="#FFBEBEB2" Id="333" Name="Platinum Coin Pile" Framed="true" />
+    <Tile Color="#FF817D5D" Id="325" Blends="true" Name="Tin Plating" Solid="True" />
+    <Tile Color="#FF093DBF" Id="326" Blends="true" Name="Waterfall Block" Solid="True" />
+    <Tile Color="#FFFD2003" Id="327" Blends="true" Name="Lavafall Block" Solid="True" />
+    <Tile Color="#FFC8F6FE" Id="328" Blends="true" Name="Confetti Block" Solid="True" />
+    <Tile Color="#FF0F0F0F" Id="329" Blends="true" Name="Midnight Confetti Block" Solid="true" />
+    <Tile Color="#FFE2764C" Id="330" Blends="true" Name="Copper Coin Pile" Framed="true" />
+    <Tile Color="#FFA1ACAD" Id="331" Blends="true" Name="Silver Coin Pile" Framed="true" />
+    <Tile Color="#FFCCB548" Id="332" Blends="true" Name="Gold Coin Pile" Framed="true" />
+    <Tile Color="#FFBEBEB2" Id="333" Blends="true" Name="Platinum Coin Pile" Framed="true" />
     <Tile Color="#FFBF8E6F" Id="334" Size="3,3" Name="Weapon Rack" Framed="true" />
     <Tile Color="#FFD9AE89" Id="335" Size="2,2" Name="Fireworks Box" Framed="true" />
-    <Tile Color="#FFFD3E03" Id="336" Name="Living Fire Block" Framed="true" />
+    <Tile Color="#FFFD3E03" Id="336" Blends="true" Name="Living Fire Block" Framed="true" />
     <Tile Color="#FF909490" Placement="floor" Size="2,3" Id="337" Name="Text Statue" Framed="true">
       <Frames>
         <Frame UV="0,0" Name="Text Statue" Variety="0 Statue" />
