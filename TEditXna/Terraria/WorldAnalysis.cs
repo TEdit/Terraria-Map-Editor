@@ -10,7 +10,7 @@ namespace TEditXNA.Terraria
 {
     public static class WorldAnalysis
     {
-        private const string propFormat = "{0}: {1}\r\n";
+        private const string propFormat = "{0}: {1}";
 
         private static void WriteProperty(this StreamWriter sb, string prop, object value)
         {
