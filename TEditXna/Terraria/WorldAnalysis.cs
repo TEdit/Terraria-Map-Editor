@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Runtime.CompilerServices;
@@ -11,177 +12,199 @@ namespace TEditXNA.Terraria
     {
         private const string propFormat = "{0}: {1}\r\n";
 
-        public static void Write(this StringBuilder sb, string prop, object value)
+        private static void WriteProperty(this StreamWriter sb, string prop, object value)
         {
-            sb.AppendFormat(propFormat, prop, value);
+            sb.WriteLine(propFormat, prop, value);
         }
 
-        public static string AnalyseWorld(World world)
-        {
-            var sb = new StringBuilder();
 
+        public static string AnalyzeWorld(World world)
+        {
+            using (var ms = new MemoryStream())
+            using (var writer = new StreamWriter(ms))
+            using (var reader = new StreamReader(ms))
+            {
+                WriteAnalyzeWorld(writer, world);
+                writer.Flush();
+                ms.Position = 0;
+
+                var text = reader.ReadToEnd();
+                return text;
+            }
+        }
+
+        public static void AnalyzeWorld(World world, string file)
+        {
+            using (var writer = new StreamWriter(file, false))
+            {
+                WriteAnalyzeWorld(writer, world, true);
+            }
+        }
+
+        private static void WriteAnalyzeWorld(StreamWriter sb, World world, bool fullAnalysis = false)
+        {
             WriteHeader(sb, world);
             WriteFlags(sb, world);
 
-            sb.AppendLine("===SECTION: Chests===");
-            sb.Write("Chest Count", world.Chests.Count);
-            sb.Write("Chest Max Items", Chest.MaxItems);
+            if (!fullAnalysis) return;
+
+
+            sb.WriteLine("===SECTION: Chests===");
+            sb.WriteProperty("Chest Count", world.Chests.Count);
+            sb.WriteProperty("Chest Max Items", Chest.MaxItems);
 
             foreach (var chest in world.Chests)
             {
-                sb.AppendFormat("[{0}, {1}] {2} - Contents: ", chest.X, chest.Y, chest.Name);
+                sb.Write("[{0}, {1}] {2} - Contents: ", chest.X, chest.Y, chest.Name);
 
                 for (int i = 0; i < Chest.MaxItems; i++)
                 {
                     Item item = chest.Items[i];
                     if (item == null)
-                        sb.AppendFormat("[{0}]: Empty,", i.ToString());
+                        sb.Write("[{0}]: Empty,", i.ToString());
                     else
                     {
-                        sb.AppendFormat("[{0}]: {1} - {2}{3},", i.ToString(), item.StackSize, item.PrefixName, item.Name);
+                        sb.Write("[{0}]: {1} - {2}{3},", i.ToString(), item.StackSize, item.PrefixName, item.Name);
                     }
                 }
 
-                sb.AppendLine();
+                sb.WriteLine();
             }
 
-            sb.AppendLine("===SECTION: Signs===");
-            sb.Write("Sign Count", world.Signs.Count);
+            sb.WriteLine("===SECTION: Signs===");
+            sb.WriteProperty("Sign Count", world.Signs.Count);
 
             foreach (var sign in world.Signs)
             {
-                sb.AppendFormat("[{0}, {1}] {2}", sign.X, sign.Y, sign.Text);
+                sb.Write("[{0}, {1}] {2}", sign.X, sign.Y, sign.Text);
             }
 
-            sb.AppendLine("===SECTION: NPCs===");
-            sb.Write("NPC Count", world.NPCs.Count);
+            sb.WriteLine("===SECTION: NPCs===");
+            sb.WriteProperty("NPC Count", world.NPCs.Count);
             foreach (var npc in world.NPCs)
             {
-                sb.AppendFormat("ID: {0}, Name: {1}, Position: [{2:0.00}, {3:0.00}], {4}: [{5}, {6}]\r\n", npc.Name, npc.DisplayName, npc.Position.X, npc.Position.Y, npc.IsHomeless ? "Homeless" : "Home", npc.Home.X, npc.Home.Y);
+                sb.Write("ID: {0}, Name: {1}, Position: [{2:0.00}, {3:0.00}], {4}: [{5}, {6}]\r\n", npc.Name, npc.DisplayName, npc.Position.X, npc.Position.Y, npc.IsHomeless ? "Homeless" : "Home", npc.Home.X, npc.Home.Y);
             }
-
-
-            return sb.ToString();
         }
 
 
 
-        private static void WriteHeader(StringBuilder sb, World world)
+        private static void WriteHeader(StreamWriter sb, World world)
         {
-            sb.AppendLine("===SECTION: Header===");
-            sb.Write("Compatible Version", world.Version);
-            sb.Write("Section Count", World.SectionCount);
-            sb.Append("Frames: ");
+            sb.WriteLine("===SECTION: Header===");
+            sb.WriteProperty("Compatible Version", world.Version);
+            sb.WriteProperty("Section Count", World.SectionCount);
+            sb.Write("Frames: ");
             foreach (bool t in World.TileFrameImportant)
             {
-                sb.Append(t ? 1 : 0);
+                sb.Write(t ? 1 : 0);
             }
-            sb.Append(Environment.NewLine);
+            sb.Write(Environment.NewLine);
         }
 
-        private static void WriteFlags(StringBuilder sb, World world)
+        private static void WriteFlags(StreamWriter sb, World world)
         {
-            sb.AppendLine("===SECTION: Flags===");
+            sb.WriteLine("===SECTION: Flags===");
 
-            sb.Write("world.Title", world.Title);
-            sb.Write("world.WorldId", world.WorldId);
-            sb.Write("world.LeftWorld", world.LeftWorld);
-            sb.Write("world.RightWorld", world.RightWorld);
-            sb.Write("world.TopWorld", world.TopWorld);
-            sb.Write("world.BottomWorld", world.BottomWorld);
-            sb.Write("world.TilesHigh", world.TilesHigh);
-            sb.Write("world.TilesWide", world.TilesWide);
+            sb.WriteProperty("world.Title", world.Title);
+            sb.WriteProperty("world.WorldId", world.WorldId);
+            sb.WriteProperty("world.LeftWorld", world.LeftWorld);
+            sb.WriteProperty("world.RightWorld", world.RightWorld);
+            sb.WriteProperty("world.TopWorld", world.TopWorld);
+            sb.WriteProperty("world.BottomWorld", world.BottomWorld);
+            sb.WriteProperty("world.TilesHigh", world.TilesHigh);
+            sb.WriteProperty("world.TilesWide", world.TilesWide);
 
-            sb.Write("world.MoonType", world.MoonType);
-            sb.Write("world.TreeX[0]", world.TreeX[0]);
-            sb.Write("world.TreeX[1]", world.TreeX[1]);
-            sb.Write("world.TreeX[2]", world.TreeX[2]);
-            sb.Write("world.TreeStyle[0]", world.TreeStyle[0]);
-            sb.Write("world.TreeStyle[1]", world.TreeStyle[1]);
-            sb.Write("world.TreeStyle[2]", world.TreeStyle[2]);
-            sb.Write("world.TreeStyle[3]", world.TreeStyle[3]);
-            sb.Write("world.CaveBackX[0]", world.CaveBackX[0]);
-            sb.Write("world.CaveBackX[1]", world.CaveBackX[1]);
-            sb.Write("world.CaveBackX[2]", world.CaveBackX[2]);
-            sb.Write("world.CaveBackStyle[0]", world.CaveBackStyle[0]);
-            sb.Write("world.CaveBackStyle[1]", world.CaveBackStyle[1]);
-            sb.Write("world.CaveBackStyle[2]", world.CaveBackStyle[2]);
-            sb.Write("world.CaveBackStyle[3]", world.CaveBackStyle[3]);
-            sb.Write("world.IceBackStyle", world.IceBackStyle);
-            sb.Write("world.JungleBackStyle", world.JungleBackStyle);
-            sb.Write("world.HellBackStyle", world.HellBackStyle);
+            sb.WriteProperty("world.MoonType", world.MoonType);
+            sb.WriteProperty("world.TreeX[0]", world.TreeX[0]);
+            sb.WriteProperty("world.TreeX[1]", world.TreeX[1]);
+            sb.WriteProperty("world.TreeX[2]", world.TreeX[2]);
+            sb.WriteProperty("world.TreeStyle[0]", world.TreeStyle[0]);
+            sb.WriteProperty("world.TreeStyle[1]", world.TreeStyle[1]);
+            sb.WriteProperty("world.TreeStyle[2]", world.TreeStyle[2]);
+            sb.WriteProperty("world.TreeStyle[3]", world.TreeStyle[3]);
+            sb.WriteProperty("world.CaveBackX[0]", world.CaveBackX[0]);
+            sb.WriteProperty("world.CaveBackX[1]", world.CaveBackX[1]);
+            sb.WriteProperty("world.CaveBackX[2]", world.CaveBackX[2]);
+            sb.WriteProperty("world.CaveBackStyle[0]", world.CaveBackStyle[0]);
+            sb.WriteProperty("world.CaveBackStyle[1]", world.CaveBackStyle[1]);
+            sb.WriteProperty("world.CaveBackStyle[2]", world.CaveBackStyle[2]);
+            sb.WriteProperty("world.CaveBackStyle[3]", world.CaveBackStyle[3]);
+            sb.WriteProperty("world.IceBackStyle", world.IceBackStyle);
+            sb.WriteProperty("world.JungleBackStyle", world.JungleBackStyle);
+            sb.WriteProperty("world.HellBackStyle", world.HellBackStyle);
 
-            sb.Write("world.SpawnX", world.SpawnX);
-            sb.Write("world.SpawnY", world.SpawnY);
-            sb.Write("world.GroundLevel", world.GroundLevel);
-            sb.Write("world.RockLevel", world.RockLevel);
-            sb.Write("world.Time", world.Time);
-            sb.Write("world.DayTime", world.DayTime);
-            sb.Write("world.MoonPhase", world.MoonPhase);
-            sb.Write("world.BloodMoon", world.BloodMoon);
-            sb.Write("world.IsEclipse", world.IsEclipse);
-            sb.Write("world.DungeonX", world.DungeonX);
-            sb.Write("world.DungeonY", world.DungeonY);
+            sb.WriteProperty("world.SpawnX", world.SpawnX);
+            sb.WriteProperty("world.SpawnY", world.SpawnY);
+            sb.WriteProperty("world.GroundLevel", world.GroundLevel);
+            sb.WriteProperty("world.RockLevel", world.RockLevel);
+            sb.WriteProperty("world.Time", world.Time);
+            sb.WriteProperty("world.DayTime", world.DayTime);
+            sb.WriteProperty("world.MoonPhase", world.MoonPhase);
+            sb.WriteProperty("world.BloodMoon", world.BloodMoon);
+            sb.WriteProperty("world.IsEclipse", world.IsEclipse);
+            sb.WriteProperty("world.DungeonX", world.DungeonX);
+            sb.WriteProperty("world.DungeonY", world.DungeonY);
 
-            sb.Write("world.IsCrimson", world.IsCrimson);
+            sb.WriteProperty("world.IsCrimson", world.IsCrimson);
 
-            sb.Write("world.DownedBoss1", world.DownedBoss1);
-            sb.Write("world.DownedBoss2", world.DownedBoss2);
-            sb.Write("world.DownedBoss3", world.DownedBoss3);
-            sb.Write("world.DownedQueenBee", world.DownedQueenBee);
-            sb.Write("world.DownedMechBoss1", world.DownedMechBoss1);
-            sb.Write("world.DownedMechBoss2", world.DownedMechBoss2);
-            sb.Write("world.DownedMechBoss3", world.DownedMechBoss3);
-            sb.Write("world.DownedMechBossAny", world.DownedMechBossAny);
-            sb.Write("world.DownedPlantBoss", world.DownedPlantBoss);
-            sb.Write("world.DownedGolemBoss", world.DownedGolemBoss);
-            sb.Write("world.SavedGoblin", world.SavedGoblin);
-            sb.Write("world.SavedWizard", world.SavedWizard);
-            sb.Write("world.SavedMech", world.SavedMech);
-            sb.Write("world.DownedGoblins", world.DownedGoblins);
-            sb.Write("world.DownedClown", world.DownedClown);
-            sb.Write("world.DownedFrost", world.DownedFrost);
-            sb.Write("world.DownedPirates", world.DownedPirates);
+            sb.WriteProperty("world.DownedBoss1", world.DownedBoss1);
+            sb.WriteProperty("world.DownedBoss2", world.DownedBoss2);
+            sb.WriteProperty("world.DownedBoss3", world.DownedBoss3);
+            sb.WriteProperty("world.DownedQueenBee", world.DownedQueenBee);
+            sb.WriteProperty("world.DownedMechBoss1", world.DownedMechBoss1);
+            sb.WriteProperty("world.DownedMechBoss2", world.DownedMechBoss2);
+            sb.WriteProperty("world.DownedMechBoss3", world.DownedMechBoss3);
+            sb.WriteProperty("world.DownedMechBossAny", world.DownedMechBossAny);
+            sb.WriteProperty("world.DownedPlantBoss", world.DownedPlantBoss);
+            sb.WriteProperty("world.DownedGolemBoss", world.DownedGolemBoss);
+            sb.WriteProperty("world.SavedGoblin", world.SavedGoblin);
+            sb.WriteProperty("world.SavedWizard", world.SavedWizard);
+            sb.WriteProperty("world.SavedMech", world.SavedMech);
+            sb.WriteProperty("world.DownedGoblins", world.DownedGoblins);
+            sb.WriteProperty("world.DownedClown", world.DownedClown);
+            sb.WriteProperty("world.DownedFrost", world.DownedFrost);
+            sb.WriteProperty("world.DownedPirates", world.DownedPirates);
 
-            sb.Write("world.ShadowOrbSmashed", world.ShadowOrbSmashed);
-            sb.Write("world.SpawnMeteor", world.SpawnMeteor);
-            sb.Write("world.ShadowOrbCount", world.ShadowOrbCount);
-            sb.Write("world.AltarCount", world.AltarCount);
-            sb.Write("world.HardMode", world.HardMode);
-            sb.Write("world.InvasionDelay", world.InvasionDelay);
-            sb.Write("world.InvasionSize", world.InvasionSize);
-            sb.Write("world.InvasionType", world.InvasionType);
-            sb.Write("world.InvasionX", world.InvasionX);
+            sb.WriteProperty("world.ShadowOrbSmashed", world.ShadowOrbSmashed);
+            sb.WriteProperty("world.SpawnMeteor", world.SpawnMeteor);
+            sb.WriteProperty("world.ShadowOrbCount", world.ShadowOrbCount);
+            sb.WriteProperty("world.AltarCount", world.AltarCount);
+            sb.WriteProperty("world.HardMode", world.HardMode);
+            sb.WriteProperty("world.InvasionDelay", world.InvasionDelay);
+            sb.WriteProperty("world.InvasionSize", world.InvasionSize);
+            sb.WriteProperty("world.InvasionType", world.InvasionType);
+            sb.WriteProperty("world.InvasionX", world.InvasionX);
 
-            sb.Write("world.TempRaining", world.TempRaining);
-            sb.Write("world.TempRainTime", world.TempRainTime);
-            sb.Write("world.TempMaxRain", world.TempMaxRain);
-            sb.Write("world.OreTier1", world.OreTier1);
-            sb.Write("world.OreTier2", world.OreTier2);
-            sb.Write("world.OreTier3", world.OreTier3);
-            sb.Write("world.BgTree", world.BgTree);
-            sb.Write("world.BgCorruption", world.BgCorruption);
-            sb.Write("world.BgJungle", world.BgJungle);
-            sb.Write("world.BgSnow", world.BgSnow);
-            sb.Write("world.BgHallow", world.BgHallow);
-            sb.Write("world.BgCrimson", world.BgCrimson);
-            sb.Write("world.BgDesert", world.BgDesert);
-            sb.Write("world.BgOcean", world.BgOcean);
-            sb.Write("world.CloudBgActive", world.CloudBgActive);
-            sb.Write("world.NumClouds", world.NumClouds);
-            sb.Write("world.WindSpeedSet", world.WindSpeedSet);
-            sb.Write("world.Anglers.Count", world.Anglers.Count);
+            sb.WriteProperty("world.TempRaining", world.TempRaining);
+            sb.WriteProperty("world.TempRainTime", world.TempRainTime);
+            sb.WriteProperty("world.TempMaxRain", world.TempMaxRain);
+            sb.WriteProperty("world.OreTier1", world.OreTier1);
+            sb.WriteProperty("world.OreTier2", world.OreTier2);
+            sb.WriteProperty("world.OreTier3", world.OreTier3);
+            sb.WriteProperty("world.BgTree", world.BgTree);
+            sb.WriteProperty("world.BgCorruption", world.BgCorruption);
+            sb.WriteProperty("world.BgJungle", world.BgJungle);
+            sb.WriteProperty("world.BgSnow", world.BgSnow);
+            sb.WriteProperty("world.BgHallow", world.BgHallow);
+            sb.WriteProperty("world.BgCrimson", world.BgCrimson);
+            sb.WriteProperty("world.BgDesert", world.BgDesert);
+            sb.WriteProperty("world.BgOcean", world.BgOcean);
+            sb.WriteProperty("world.CloudBgActive", world.CloudBgActive);
+            sb.WriteProperty("world.NumClouds", world.NumClouds);
+            sb.WriteProperty("world.WindSpeedSet", world.WindSpeedSet);
+            sb.WriteProperty("world.Anglers.Count", world.Anglers.Count);
 
             for (int i = 0; i < world.Anglers.Count; i++)
             {
-                sb.Write("Angler " + i, world.Anglers[i]);
+                sb.WriteProperty("Angler " + i, world.Anglers[i]);
             }
 
-            sb.Write("world.SavedAngler", world.SavedAngler);
-            sb.Write("world.AnglerQuest", world.AnglerQuest);
+            sb.WriteProperty("world.SavedAngler", world.SavedAngler);
+            sb.WriteProperty("world.AnglerQuest", world.AnglerQuest);
 
             if (world.UnknownData != null && world.UnknownData.Length > 0)
-                sb.Write("world.UnknownData", BitConverter.ToString(world.UnknownData));
+                sb.WriteProperty("world.UnknownData", BitConverter.ToString(world.UnknownData));
         }
     }
 }

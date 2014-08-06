@@ -496,7 +496,29 @@ namespace TEditXna.ViewModel
         }
 
         private ICommand _analyzeWorldCommand;
+        private ICommand _analyzeWorldSaveCommand;
          
+
+        /// <summary>
+        /// Relay command to execute AnalyzeWorldSave.
+        /// </summary>
+        public ICommand AnalyzeWorldSaveCommand
+        {
+            get { return _analyzeWorldSaveCommand ?? (_analyzeWorldSaveCommand = new RelayCommand(AnalyzeWorldSave)); }
+        }
+
+        private void AnalyzeWorldSave()
+        {
+            var sfd = new SaveFileDialog();
+            sfd.DefaultExt = "Text File|*.txt";
+            sfd.Title = "Save world analysis.";
+            sfd.OverwritePrompt = true;
+            if (sfd.ShowDialog() == true)
+            {
+                TEditXNA.Terraria.WorldAnalysis.AnalyzeWorld(this.CurrentWorld, sfd.FileName);
+               
+            }
+        }
 
         /// <summary>
         /// Relay command to execute AnalizeWorld.
@@ -508,7 +530,7 @@ namespace TEditXna.ViewModel
 
         private void AnalyzeWorld()
         {
-            WorldAnalysis = TEditXNA.Terraria.WorldAnalysis.AnalyseWorld(this.CurrentWorld);
+            WorldAnalysis = TEditXNA.Terraria.WorldAnalysis.AnalyzeWorld(this.CurrentWorld);
         }
 
         private string _worldAnalysis;
