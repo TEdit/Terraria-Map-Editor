@@ -57,24 +57,35 @@ namespace TEditXNA.Terraria
 
             var tileCounts = new Dictionary<int, int>();
 
+            int activeTiles = 0;
             for (int x = 0; x < world.TilesWide; x++)
             {
                 for (int y = 0; y < world.TilesHigh; y++)
                 {
+                    
                     var tile = world.Tiles[x, y];
 
-                    if (tileCounts.ContainsKey(tile.Type))
+                    if (tile.IsActive)
                     {
-                        tileCounts[tile.Type] += 1;
+                        if (tileCounts.ContainsKey(tile.Type))
+                        {
+                            tileCounts[tile.Type] += 1;
+                        }
+                        else
+                        {
+                            tileCounts.Add(tile.Type, 1);
+                        }
+                        activeTiles++;
                     }
-                    else
-                    {
-                        tileCounts.Add(tile.Type, 1);
-                    }
+
                 }
             }
 
             float totalTiles = world.TilesWide * world.TilesHigh;
+            int airTiles = (int)(totalTiles - activeTiles);
+            sb.WriteLine("Air: {0} ({1:P2})", airTiles, airTiles / totalTiles);
+
+
             var tiles = tileCounts.OrderByDescending(kvp => kvp.Value);
             foreach (var tilePair in tiles)
             {
