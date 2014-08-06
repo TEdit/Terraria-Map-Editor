@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Linq;
@@ -52,6 +53,44 @@ namespace TEditXNA.Terraria
 
             if (!fullAnalysis) return;
 
+            sb.WriteLine("===SECTION: Tiles===");
+
+            var tileCounts = new Dictionary<int, int>();
+
+            for (int x = 0; x < world.TilesWide; x++)
+            {
+                for (int y = 0; y < world.TilesHigh; y++)
+                {
+                    var tile = world.Tiles[x, y];
+
+                    if (tileCounts.ContainsKey(tile.Type))
+                    {
+                        tileCounts[tile.Type] += 1;
+                    }
+                    else
+                    {
+                        tileCounts.Add(tile.Type, 1);
+                    }
+                }
+            }
+
+            float totalTiles = world.TilesWide * world.TilesHigh;
+            var tiles = tileCounts.OrderByDescending(kvp => kvp.Value);
+            foreach (var tilePair in tiles)
+            {
+                string name = tilePair.Key.ToString();
+                if (World.TileProperties.Count >= tilePair.Key)
+                {
+                    var prop = World.TileProperties[tilePair.Key];
+                    if (prop != null)
+                    {
+                        name = prop.Name;
+                    }
+                }
+
+                sb.WriteLine("{0}: {1} ({2:P2})", name, tilePair.Value, tilePair.Value / totalTiles);
+            }
+
 
             sb.WriteLine("===SECTION: Chests===");
             sb.WriteProperty("Chest Count", world.Chests.Count);
@@ -74,6 +113,8 @@ namespace TEditXNA.Terraria
 
                 sb.WriteLine();
             }
+
+
 
             sb.WriteLine("===SECTION: Signs===");
             sb.WriteProperty("Sign Count", world.Signs.Count);
