@@ -20,11 +20,13 @@ namespace TEditXNA.Terraria
 
         public static string AnalyzeWorld(World world)
         {
+            if (world == null) return string.Empty;
+
             using (var ms = new MemoryStream())
             using (var writer = new StreamWriter(ms))
             using (var reader = new StreamReader(ms))
             {
-                WriteAnalyzeWorld(writer, world);
+                WriteAnalyzeWorld(writer, world, true);
                 writer.Flush();
                 ms.Position = 0;
 
@@ -35,6 +37,8 @@ namespace TEditXNA.Terraria
 
         public static void AnalyzeWorld(World world, string file)
         {
+            if (world == null) return;
+
             using (var writer = new StreamWriter(file, false))
             {
                 WriteAnalyzeWorld(writer, world, true);

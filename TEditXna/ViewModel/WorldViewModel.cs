@@ -509,8 +509,11 @@ namespace TEditXna.ViewModel
 
         private void AnalyzeWorldSave()
         {
+            if (this.CurrentWorld == null) return;
             var sfd = new SaveFileDialog();
             sfd.DefaultExt = "Text File|*.txt";
+            sfd.Filter = "Text Files|*.txt";
+            sfd.FileName = this.CurrentWorld.Title + " Analysis.txt";
             sfd.Title = "Save world analysis.";
             sfd.OverwritePrompt = true;
             if (sfd.ShowDialog() == true)
