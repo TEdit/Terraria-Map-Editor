@@ -5,7 +5,7 @@ Terraria Settings.XML Specifications
 ====================================
 Compatible Ver: Terraria 1.2.4.1
 Primary URL: https://raw.github.com/BinaryConstruct/Terraria-Map-Editor/master/TEditXna/settings.xml
-Fork URL:  https://github.com/SBlogic/Terraria-Map-Editor/blob/master/TEditXna/settings_1241.xml
+Fork URL:  https://github.com/SBlogic/Terraria-Map-Editor/blob/master/TEditXna/settings.xml
 ====================================
 
 //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //
@@ -24,13 +24,16 @@ Update 1:
 * Corrected misaligned sofas/benches
 * Added missing tubs
 
+Update 2:
+* Manually merged corrections for solid blocks missing Blends property
+* Removed TODO flag from ropes and chains
+* Added minecart track sprites
+* Added missing crimson altar
+
 Outstanding:
-* Minecart track sprites (important)
-* Rope and Chain are currently configured like solid tiles, probably should be broken down into sprites
-* Some jungle plants
+* Some jungle/crimson plants
 * Overhaul wood, handle alternate wood types
 * Stalactite/stalagmite sprites
-* tagged some additional minor issues
 
 //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //
 
@@ -688,7 +691,12 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
       </Frames>
     </Tile>
     <Tile Color="#FF6D5A80" Blends="true" MergeWith="0" Id="25" Name="Ebonstone Block" Solid="true" />
-    <Tile Name="Altar" Color="#FF77657D" Placement="floor" Size="3,2" Id="26" Framed="true" Light="true" />
+    <Tile Name="Altar" Color="#FF77657D" Placement="floor" Size="3,2" Id="26" Framed="true" Light="true">
+      <Frames>
+        <Frame UV="0,0" Variety="Demon Altar" />
+        <Frame UV="54,0" Variety="Crimson Altar" />
+      </Frames>
+    </Tile>
     <Tile Color="#FFE2C431" Size="2,4" Id="27" Name="Sunflower" Framed="true">
       <Frames>
         <Frame UV="0,0" Variety="A" />
@@ -2465,9 +2473,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
       </Frames>
     </Tile>
     <Tile Color="#FF897843" Blends="true" Id="213" Name="Rope" />
-    <!-- TODO -->
     <Tile Color="#FF676767" Blends="true" Id="214" Name="Chain" />
-    <!-- TODO -->
     <Tile Color="#FFFE7902" Size="3,2" Id="215" Name="Campfire" Framed="true" Light="true" />
     <Tile Color="#FFBF8E6F" Size="1,2" Id="216" Name="Rocket" Framed="true">
       <Frames>
@@ -2685,11 +2691,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="0,684" Name="Hanging" Variety="Holly" />
       </Frames>
     </Tile>
-    <Tile Color="#FF8C9696" Size="3,3" Id="247" Name="Autohammer" Framed="true">
-      <Frames>
-        <Frame UV="0,0" Name="Default" Variety="Default" />
-      </Frames>
-    </Tile>
+    <Tile Color="#FF8C9696" Size="3,3" Id="247" Name="Autohammer" Framed="true" />
     <Tile Color="#FFDB4726" Blends="true" Id="248" Name="Palladium Column" Solid="true" />
     <Tile Color="#FFF934F3" Blends="true" Id="249" Name="Bubblegum Block" Solid="true" />
     <Tile Color="#FF4C4A53" Blends="true" Id="250" Name="Titanstone Block" Solid="true" />
@@ -2730,20 +2732,20 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="144,180" Variety="Mature 6" />
       </Frames>
     </Tile>
-    <Tile Color="#FF6B319A" Id="255" Name="Amethyst Gemspark Block (Offline)" Solid="true" />
-    <Tile Color="#FF9A9431" Id="256" Name="Topaz Gemspark Block (Offline)" Solid="true" />
-    <Tile Color="#FF31319A" Id="257" Name="Sapphire Gemspark Block (Offline)" Solid="true" />
-    <Tile Color="#FF319A44" Id="258" Name="Emerald Gemspark Block (Offline)" Solid="true" />
-    <Tile Color="#FF9A314D" Id="259" Name="Ruby Gemspark Block (Offline)" Solid="true" />
-    <Tile Color="#FF555976" Id="260" Name="Diamond Gemspark Block (Offline)" Solid="true" />
-    <Tile Color="#FF9A5331" Id="261" Name="Amber Gemspark Block (Offline)" Solid="true" />
-    <Tile Color="#FFDD4FFF" Id="262" Name="Amethyst Gemspark Block" Solid="true" Light="true" />
-    <Tile Color="#FFFAFF4F" Id="263" Name="Topaz Gemspark Block" Solid="true" Light="true" />
-    <Tile Color="#FF4F66FF" Id="264" Name="Sapphire Gemspark Block" Solid="true" Light="true" />
-    <Tile Color="#FF4FFF59" Id="265" Name="Emerald Gemspark Block" Solid="true" Light="true" />
-    <Tile Color="#FFFF4F4F" Id="266" Name="Ruby Gemspark Block" Solid="true" Light="true" />
-    <Tile Color="#FFF0F0F7" Id="267" Name="Diamond Gemspark Block" Solid="true" Light="true" />
-    <Tile Color="#FFFF914F" Id="268" Name="Amber Gemspark Block" Solid="true" Light="true" />
+    <Tile Color="#FF6B319A" Id="255" Blends="true" Name="Amethyst Gemspark Block (Offline)" Solid="true" />
+    <Tile Color="#FF9A9431" Id="256" Blends="true" Name="Topaz Gemspark Block (Offline)" Solid="true" />
+    <Tile Color="#FF31319A" Id="257" Blends="true" Name="Sapphire Gemspark Block (Offline)" Solid="true" />
+    <Tile Color="#FF319A44" Id="258" Blends="true" Name="Emerald Gemspark Block (Offline)" Solid="true" />
+    <Tile Color="#FF9A314D" Id="259" Blends="true" Name="Ruby Gemspark Block (Offline)" Solid="true" />
+    <Tile Color="#FF555976" Id="260" Blends="true" Name="Diamond Gemspark Block (Offline)" Solid="true" />
+    <Tile Color="#FF9A5331" Id="261" Blends="true" Name="Amber Gemspark Block (Offline)" Solid="true" />
+    <Tile Color="#FFDD4FFF" Id="262" Blends="true" Name="Amethyst Gemspark Block" Solid="true" Light="true" />
+    <Tile Color="#FFFAFF4F" Id="263" Blends="true" Name="Topaz Gemspark Block" Solid="true" Light="true" />
+    <Tile Color="#FF4F66FF" Id="264" Blends="true" Name="Sapphire Gemspark Block" Solid="true" Light="true" />
+    <Tile Color="#FF4FFF59" Id="265" Blends="true" Name="Emerald Gemspark Block" Solid="true" Light="true" />
+    <Tile Color="#FFFF4F4F" Id="266" Blends="true" Name="Ruby Gemspark Block" Solid="true" Light="true" />
+    <Tile Color="#FFF0F0F7" Id="267" Blends="true" Name="Diamond Gemspark Block" Solid="true" Light="true" />
+    <Tile Color="#FFFF914F" Id="268" Blends="true" Name="Amber Gemspark Block" Solid="true" Light="true" />
     <Tile Color="#FFBF8E6F" Size="2,3" Id="269" Name="Womannequin" Framed="true">
       <Frames>
         <Frame UV="0,0" Anchor="Left" />
@@ -2752,9 +2754,9 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     </Tile>
     <Tile Color="#FF7AD9E8" Id="270" Size="1,2" Name="Firefly in a Bottle" Framed="true" Light="true" />
     <Tile Color="#FF7AD9E8" Id="271" Size="1,2" Name="Lightning Bug in a Bottle" Framed="true" Light="true" />
-    <Tile Color="#FF797765" Id="272" Name="Cog" Solid="true" />
-    <Tile Color="#FF808080" Id="273" Name="Stone Slab" Solid="true" />
-    <Tile Color="#FFBEAB5E" Id="274" Name="Sandstone Slab" Solid="true" />
+    <Tile Color="#FF797765" Blends="true" Id="272" Name="Cog" Solid="true" />
+    <Tile Color="#FF808080" Blends="true" Id="273" Name="Stone Slab" Solid="true" />
+    <Tile Color="#FFBEAB5E" Blends="true" Id="274" Name="Sandstone Slab" Solid="true" />
     <Tile Color="#FF7AD9E8" Id="275" Size="6,3" Name="Bunny Cage" Framed="true" />
     <Tile Color="#FF7AD9E8" Id="276" Size="6,3" Name="Squirrel Cage" Framed="true" />
     <Tile Color="#FF7AD9E8" Id="277" Size="6,3" Name="Mallard Duck Cage" Framed="true" />
@@ -2764,7 +2766,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Tile Color="#FF7AD9E8" Id="281" Size="6,3" Name="Cardinal Cage" Framed="true" />
     <Tile Color="#FF7AD9E8" Id="282" Size="2,2" Name="Fish Bowl" Framed="true" />
     <Tile Color="#FF808080" Id="283" Size="3,3" Name="Heavy Work Bench" Framed="true" />
-    <Tile Color="#FF964316" Id="284" Name="Copper Plating" />
+    <Tile Color="#FF964316" Blends="true" Id="284" Name="Copper Plating" Solid="true" />
     <Tile Color="#FF7AD9E8" Id="285" Size="3,2" Name="Snail Cage" Framed="true" />
     <Tile Color="#FF7AD9E8" Id="286" Size="3,2" Name="Glowing Snail Cage" Framed="true" Light="true" />
     <Tile Color="#FF4F8011" Id="287" Size="2,2" Name="Ammo Box" Framed="true" />
@@ -2791,24 +2793,62 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Tile Color="#FF909490" Id="308" Size="3,3" Name="Honey Dispenser" Framed="true" />
     <Tile Color="#FF7AD9E8" Id="309" Size="6,3" Name="Penguin Cage" Framed="true" />
     <Tile Color="#FF7AD9E8" Id="310" Size="3,2" Name="Worm Cage" Framed="true" />
-    <Tile Color="#FF753D19" Id="311" Name="Dynasty Wood" Solid="true" />
-    <Tile Color="#FFCC5D49" Id="312" Name="Red Dynasty Shingles" Solid="true" />
-    <Tile Color="#FF57969A" Id="313" Name="Blue Dynasty Shingles" Solid="true" />
+    <Tile Color="#FF753D19" Id="311" Blends="true" Name="Dynasty Wood" Solid="true" />
+    <Tile Color="#FFCC5D49" Id="312" Blends="true" Name="Red Dynasty Shingles" Solid="true" />
+    <Tile Color="#FF57969A" Id="313" Blends="true" Name="Blue Dynasty Shingles" Solid="true" />
     <Tile Color="#FFB5A47D" Id="314" Name="Minecart Track" Framed="True">
       <Frames>
-        <Frame UV="0,0" Name="Placeholder" />
-        <!-- TODO -->
+        <Frame UV="0,0" Variety="Rail A" />
+        <Frame UV="18,0" Variety="Rail B" />
+        <Frame UV="36,0" Variety="Rail C" />
+        <Frame UV="54,0" Variety="Rail D" />
+        <Frame UV="72,0" Variety="Diagonal A" />
+        <Frame UV="90,0" Variety="Diagonal B" />
+        <Frame UV="108,0" Variety="Diagonal C" />
+        <Frame UV="126,0" Variety="Diagonal D" />
+        <Frame UV="18,18" Variety="Slope Transition Up-Right" />
+        <Frame UV="0,18" Variety="Slope Transition Up-Left" />
+        <Frame UV="0,36" Variety="Half Height Slope A" />
+        <Frame UV="18,36" Variety="Half Height Slope B" />
+        <Frame UV="0,54" Variety="Slope A" />
+        <Frame UV="18,54" Variety="Slope B" />
+        <Frame UV="0,108" Variety="Tie Upper Left" />
+        <Frame UV="18,108" Variety="Tie Upper Right" />
+        <Frame UV="0,126" Variety="End Cap" />
+        <Frame UV="36,18" Variety="End Cap Level A" />
+        <Frame UV="54,18" Variety="End Cap Level B" />
+        <Frame UV="72,18" Variety="End Cap Diagonal A" />
+        <Frame UV="90,18" Variety="End Cap Diagonal B" />
+        <Frame UV="108,18" Variety="End Cap Diagonal C" />
+        <Frame UV="126,18" Variety="End Cap Diagonal D" />
+        <Frame UV="18,126" Variety="Bumper" />
+        <Frame UV="36,36" Variety="Bumper Level A" />
+        <Frame UV="54,36" Variety="Bumper Level B" />
+        <Frame UV="72,36" Variety="Bumper Diagonal A" />
+        <Frame UV="90,36" Variety="Bumper Diagonal B" />
+        <Frame UV="108,36" Variety="Bumper Diagonal C" />
+        <Frame UV="126,36" Variety="Bumper Diagonal D" />
+        <Frame UV="36,54" Variety="Booster Right Level" />
+        <Frame UV="54,54" Variety="Booster Left Level" />
+        <Frame UV="72,54" Variety="Booster Down-Right" />
+        <Frame UV="90,54" Variety="Booster Down-Left" />
+        <Frame UV="108,54" Variety="Booster Up-Left" />
+        <Frame UV="126,54" Variety="Booster Up-Right" />
+        <Frame UV="0,72" Variety="Pressure Plate Track A" />
+        <Frame UV="18,72" Variety="Pressure Plate Track B" />
+        <Frame UV="0,90" Variety="Pressure Plate Track C" />
+        <Frame UV="18,90" Variety="Pressure Plate Track D" />
       </Frames>
     </Tile>
-    <Tile Color="#FFEB7250" Id="315" Name="Coralstone Block" Solid="True" />
+    <Tile Color="#FFEB7250" Id="315" Blends="true" Name="Coralstone Block" Solid="True" />
     <Tile Color="#FF7AD9E8" Id="316" Size="2,2" Name="Blue Jellyfish Jar" Framed="true" />
     <Tile Color="#FF7AD9E8" Id="317" Size="2,2" Name="Green Jellyfish Jar" Framed="true" />
     <Tile Color="#FF7AD9E8" Id="318" Size="2,2" Name="Pink Jellyfish Jar" Framed="true" />
     <Tile Color="#FF604430" Id="319" Size="2,2" Name="Ship in a Bottle" Framed="true" />
     <Tile Color="#FFCBB997" Id="320" Size="2,3" Name="Seaweed Planter" Framed="true" />
-    <Tile Color="#FF604D40" Id="321" Name="Boreal Wood" Solid="true" />
-    <Tile Color="#FFC6AA68" Id="322" Name="Palm Wood" Solid="true" />
-    <Tile Color="#FFB68D56" Id="323" Name="Palm Tree" Framed="true" />
+    <Tile Color="#FF604D40" Id="321" Blends="true" Name="Boreal Wood" Solid="true" />
+    <Tile Color="#FFC6AA68" Id="322" Blends="true" Name="Palm Wood" Solid="true" />
+    <Tile Color="#FFB68D56" Id="323" Blends="true" Name="Palm Tree" Framed="true" />
     <!-- TODO -->
     <Tile Color="#FFE4D5AD" Id="324" TextureGrid="20,20" Name="Seashell" Framed="true">
       <Frames>
@@ -2820,18 +2860,18 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="44,22" Variety="Starfish C" />
       </Frames>
     </Tile>
-    <Tile Color="#FF817D5D" Id="325" Name="Tin Plating" Solid="True" />
-    <Tile Color="#FF093DBF" Id="326" Name="Waterfall Block" Solid="True" />
-    <Tile Color="#FFFD2003" Id="327" Name="Lavafall Block" Solid="True" />
-    <Tile Color="#FFC8F6FE" Id="328" Name="Confetti Block" Solid="True" />
-    <Tile Color="#FF0F0F0F" Id="329" Name="Midnight Confetti Block" Solid="true" />
-    <Tile Color="#FFE2764C" Id="330" Name="Copper Coin Pile" Framed="true" />
-    <Tile Color="#FFA1ACAD" Id="331" Name="Silver Coin Pile" Framed="true" />
-    <Tile Color="#FFCCB548" Id="332" Name="Gold Coin Pile" Framed="true" />
-    <Tile Color="#FFBEBEB2" Id="333" Name="Platinum Coin Pile" Framed="true" />
+    <Tile Color="#FF817D5D" Id="325" Blends="true" Name="Tin Plating" Solid="True" />
+    <Tile Color="#FF093DBF" Id="326" Blends="true" Name="Waterfall Block" Solid="True" />
+    <Tile Color="#FFFD2003" Id="327" Blends="true" Name="Lavafall Block" Solid="True" />
+    <Tile Color="#FFC8F6FE" Id="328" Blends="true" Name="Confetti Block" Solid="True" />
+    <Tile Color="#FF0F0F0F" Id="329" Blends="true" Name="Midnight Confetti Block" Solid="true" />
+    <Tile Color="#FFE2764C" Id="330" Blends="true" Name="Copper Coin Pile" Framed="true" />
+    <Tile Color="#FFA1ACAD" Id="331" Blends="true" Name="Silver Coin Pile" Framed="true" />
+    <Tile Color="#FFCCB548" Id="332" Blends="true" Name="Gold Coin Pile" Framed="true" />
+    <Tile Color="#FFBEBEB2" Id="333" Blends="true" Name="Platinum Coin Pile" Framed="true" />
     <Tile Color="#FFBF8E6F" Id="334" Size="3,3" Name="Weapon Rack" Framed="true" />
     <Tile Color="#FFD9AE89" Id="335" Size="2,2" Name="Fireworks Box" Framed="true" />
-    <Tile Color="#FFFD3E03" Id="336" Name="Living Fire Block" Framed="true" />
+    <Tile Color="#FFFD3E03" Id="336" Blends="true" Name="Living Fire Block" Framed="true" />
     <Tile Color="#FF909490" Placement="floor" Size="2,3" Id="337" Name="Text Statue" Framed="true">
       <Frames>
         <Frame UV="0,0" Name="Text Statue" Variety="0 Statue" />

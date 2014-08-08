@@ -30,20 +30,20 @@ namespace TEditXNA.Terraria
             bw.Write(world.TilesWide);
 
             bw.Write((byte) world.MoonType);
-            bw.Write(world.TreeX[0]);
-            bw.Write(world.TreeX[1]);
-            bw.Write(world.TreeX[2]);
-            bw.Write(world.TreeStyle[0]);
-            bw.Write(world.TreeStyle[1]);
-            bw.Write(world.TreeStyle[2]);
-            bw.Write(world.TreeStyle[3]);
-            bw.Write(world.CaveBackX[0]);
-            bw.Write(world.CaveBackX[1]);
-            bw.Write(world.CaveBackX[2]);
-            bw.Write(world.CaveBackStyle[0]);
-            bw.Write(world.CaveBackStyle[1]);
-            bw.Write(world.CaveBackStyle[2]);
-            bw.Write(world.CaveBackStyle[3]);
+            bw.Write(world.TreeX0);
+            bw.Write(world.TreeX1);
+            bw.Write(world.TreeX2);
+            bw.Write(world.TreeStyle0);
+            bw.Write(world.TreeStyle1);
+            bw.Write(world.TreeStyle2);
+            bw.Write(world.TreeStyle3);
+            bw.Write(world.CaveBackX0);
+            bw.Write(world.CaveBackX1);
+            bw.Write(world.CaveBackX2);
+            bw.Write(world.CaveBackStyle0);
+            bw.Write(world.CaveBackStyle1);
+            bw.Write(world.CaveBackStyle2);
+            bw.Write(world.CaveBackStyle3);
             bw.Write(world.IceBackStyle);
             bw.Write(world.JungleBackStyle);
             bw.Write(world.HellBackStyle);
@@ -308,28 +308,28 @@ namespace TEditXNA.Terraria
             if (version >= 63)
                 w.MoonType = reader.ReadByte();
             else
-                w.MoonType = w.Rand.Next(MaxMoons);
+                w.MoonType = (byte)w.Rand.Next(MaxMoons);
 
 
             if (version >= 44)
             {
-                w.TreeX[0] = reader.ReadInt32();
-                w.TreeX[1] = reader.ReadInt32();
-                w.TreeX[2] = reader.ReadInt32();
-                w.TreeStyle[0] = reader.ReadInt32();
-                w.TreeStyle[1] = reader.ReadInt32();
-                w.TreeStyle[2] = reader.ReadInt32();
-                w.TreeStyle[3] = reader.ReadInt32();
+                w.TreeX0 = reader.ReadInt32();
+                w.TreeX1 = reader.ReadInt32();
+                w.TreeX2 = reader.ReadInt32();
+                w.TreeStyle0 = reader.ReadInt32();
+                w.TreeStyle1 = reader.ReadInt32();
+                w.TreeStyle2 = reader.ReadInt32();
+                w.TreeStyle3 = reader.ReadInt32();
             }
             if (version >= 60)
             {
-                w.CaveBackX[0] = reader.ReadInt32();
-                w.CaveBackX[1] = reader.ReadInt32();
-                w.CaveBackX[2] = reader.ReadInt32();
-                w.CaveBackStyle[0] = reader.ReadInt32();
-                w.CaveBackStyle[1] = reader.ReadInt32();
-                w.CaveBackStyle[2] = reader.ReadInt32();
-                w.CaveBackStyle[3] = reader.ReadInt32();
+                w.CaveBackX0 = reader.ReadInt32();
+                w.CaveBackX1 = reader.ReadInt32();
+                w.CaveBackX2 = reader.ReadInt32();
+                w.CaveBackStyle0 = reader.ReadInt32();
+                w.CaveBackStyle1 = reader.ReadInt32();
+                w.CaveBackStyle2 = reader.ReadInt32();
+                w.CaveBackStyle3 = reader.ReadInt32();
                 w.IceBackStyle = reader.ReadInt32();
                 if (version >= 61)
                 {
@@ -342,10 +342,10 @@ namespace TEditXNA.Terraria
                 w.CaveBackX[0] = w.TilesWide/2;
                 w.CaveBackX[1] = w.TilesWide;
                 w.CaveBackX[2] = w.TilesWide;
-                w.CaveBackStyle[0] = 0;
-                w.CaveBackStyle[1] = 1;
-                w.CaveBackStyle[2] = 2;
-                w.CaveBackStyle[3] = 3;
+                w.CaveBackStyle0 = 0;
+                w.CaveBackStyle1 = 1;
+                w.CaveBackStyle2 = 2;
+                w.CaveBackStyle3 = 3;
                 w.IceBackStyle = 0;
                 w.JungleBackStyle = 0;
                 w.HellBackStyle = 0;

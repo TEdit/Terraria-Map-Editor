@@ -18,34 +18,43 @@ namespace TEditXNA.Terraria
         // 6 = desert 1
         // 7 = ocean 1 2
 
-        public static int MaxMoons = 3;
+        public static byte MaxMoons = 3;
         private readonly ObservableCollection<String> _anglers = new ObservableCollection<String>();
         private readonly ObservableCollection<NpcName> _charNames = new ObservableCollection<NpcName>();
         private readonly ObservableCollection<Chest> _chests = new ObservableCollection<Chest>();
         private readonly ObservableCollection<NPC> _npcs = new ObservableCollection<NPC>();
         private readonly ObservableCollection<Sign> _signs = new ObservableCollection<Sign>();
 
-        public int[] CaveBackStyle = new int[4];
-        public int[] CaveBackX = new int[4];
-        public int[] CorruptBG = new int[3];
-        public int[] CrimsonBG = new int[3];
-        public int[] DesertBG = new int[2];
-        public int[] HallowBG = new int[3];
-        public int HellBackStyle;
-        public int IceBackStyle;
-        public int[] JungleBG = new int[3];
-        public int JungleBackStyle;
+        // [SBLogic] These variables are used internally for composing background layers, not currently needed here:
+        // public int[] CorruptBG = new int[3];
+        // public int[] CrimsonBG = new int[3];
+        // public int[] DesertBG = new int[2];
+        // public int[] HallowBG = new int[3];
+        // public int[] JungleBG = new int[3];
+        // public int[] SnowBG = new int[3];
+        // public int[] SnowMntBG = new int[2];
+
+        // [SBLogic] Moved these to private with a public interface method:
+        // public int HellBackStyle;
+        // public int IceBackStyle;
+        // public int JungleBackStyle;
+        
+        // [SBLogic] Unrolled arrays to discrete private variables (possibly a better way to do this?):
+        // public int[] TreeStyle = new int[4];
+        // public int[] CaveBackStyle = new int[4];
         public Random Rand;
-        public int[] SnowBG = new int[3];
-        public int[] SnowMntBG = new int[2];
         public Tile[,] Tiles;
         public int[] TreeBG = new int[3];
         public int[] TreeMntBG = new int[2];
-        public int[] TreeStyle = new int[4];
-        public int[] TreeX = new int[4];
+        // [SBLogic] Still using TreeX and CaveBackX to read in from file to ensure sliders work correctly:
+        public int[] TreeX = new int[3];
+        public int[] CaveBackX = new int[4];
         public uint Version;
         private int _altarCount;
         private int _anglerQuest;
+        private int _iceBackStyle;
+        private int _jungleBackStyle;
+        private int _hellBackStyle;
         private byte _bgCorruption;
         private byte _bgCrimson;
         private byte _bgDesert;
@@ -85,7 +94,7 @@ namespace TEditXNA.Terraria
         private DateTime _lastSave;
         private float _leftWorld;
         private int _moonPhase;
-        private int _moonType;
+        private byte _moonType;
         private short _numClouds;
         private int _oreTier1;
         private int _oreTier2;
@@ -112,6 +121,20 @@ namespace TEditXNA.Terraria
         private byte[] _unknownData;
         private float _windSpeedSet;
         private int _worldId;
+        private int _treeX0;
+        private int _treeX1;
+        private int _treeX2;
+        private int _treeStyle0;
+        private int _treeStyle1;
+        private int _treeStyle2;
+        private int _treeStyle3;
+        private int _caveBackX0;
+        private int _caveBackX1;
+        private int _caveBackX2;
+        private int _caveBackStyle0;
+        private int _caveBackStyle1;
+        private int _caveBackStyle2;
+        private int _caveBackStyle3;
 
 
         public byte[] UnknownData
@@ -131,6 +154,24 @@ namespace TEditXNA.Terraria
         {
             get { return _savedAngler; }
             set { Set("SavedAngler", ref _savedAngler, value); }
+        }
+
+        public int IceBackStyle
+        {
+            get { return _iceBackStyle; }
+            set { Set("IceBackStyle", ref _iceBackStyle, value); }
+        }
+
+        public int JungleBackStyle
+        {
+            get { return _jungleBackStyle; }
+            set { Set("JungleBackStyle", ref _jungleBackStyle, value); }
+        }
+
+        public int HellBackStyle
+        {
+            get { return _hellBackStyle; }
+            set { Set("HellBackStyle", ref _hellBackStyle, value); }
         }
 
         public bool IsEclipse
@@ -189,7 +230,7 @@ namespace TEditXNA.Terraria
             get { return _charNames; }
         }
 
-        public int MoonType
+        public byte MoonType
         {
             get { return _moonType; }
             set { Set("MoonType", ref _moonType, value); }
@@ -557,6 +598,128 @@ namespace TEditXNA.Terraria
             get { return _invasionDelay; }
             set { Set("InvasionDelay", ref _invasionDelay, value); }
         }
+
+        public int TreeX0
+        {
+            get { return _treeX0; }
+            set
+            {
+                Set("TreeX0", ref _treeX0, value);
+                if (_treeX0 > _treeX1)
+                    TreeX0 = _treeX1;
+            }
+
+        }
+
+        public int TreeX1
+        {
+            get { return _treeX1; }
+            set
+            {
+                Set("TreeX1", ref _treeX1, value);
+                if (_treeX1 < _treeX0)
+                    TreeX1 = _treeX0;
+                if (_treeX1 > _treeX2)
+                    TreeX1 = _treeX2;
+            }
+        }
+
+        public int TreeX2
+        {
+            get { return _treeX2; }
+            set
+            {
+                Set("TreeX2", ref _treeX2, value);
+                if (_treeX2 < _treeX1)
+                    TreeX2 = _treeX1;
+            }
+        }
+
+        public int TreeStyle0
+        {
+            get { return _treeStyle0; }
+            set { Set("TreeStyle0", ref _treeStyle0, value); }
+        }
+
+        public int TreeStyle1
+        {
+            get { return _treeStyle1; }
+            set { Set("TreeStyle1", ref _treeStyle1, value); }
+        }
+
+        public int TreeStyle2
+        {
+            get { return _treeStyle2; }
+            set { Set("TreeStyle2", ref _treeStyle2, value); }
+        }
+
+        public int TreeStyle3
+        {
+            get { return _treeStyle3; }
+            set { Set("TreeStyle3", ref _treeStyle3, value); }
+        }
+
+        public int CaveBackX0
+        {
+            get { return _caveBackX0; }
+            set
+            {
+                Set("CaveBackX0", ref _caveBackX0, value);
+                if (_caveBackX0 > _caveBackX1)
+                    CaveBackX0 = _caveBackX1;
+            }
+
+        }
+
+        public int CaveBackX1
+        {
+            get { return _caveBackX1; }
+            set
+            {
+                Set("CaveBackX1", ref _caveBackX1, value);
+                if (_caveBackX1 < _caveBackX0)
+                    CaveBackX1 = _caveBackX0;
+                if (_caveBackX1 > _caveBackX2)
+                    CaveBackX1 = _caveBackX2;
+            }
+        }
+
+        public int CaveBackX2
+        {
+            get { return _caveBackX2; }
+            set
+            {
+                Set("CaveBackX2", ref _caveBackX2, value);
+                if (_caveBackX2 < _caveBackX1)
+                    CaveBackX2 = _caveBackX1;
+            }
+        }
+
+        public int CaveBackStyle0
+        {
+            get { return _caveBackStyle0; }
+            set { Set("CaveBackStyle0", ref _caveBackStyle0, value); }
+        }
+
+        public int CaveBackStyle1
+        {
+            get { return _caveBackStyle1; }
+            set { Set("CaveBackStyle1", ref _caveBackStyle1, value); }
+        }
+
+        public int CaveBackStyle2
+        {
+            get { return _caveBackStyle2; }
+            set { Set("CaveBackStyle2", ref _caveBackStyle2, value); }
+        }
+
+        public int CaveBackStyle3
+        {
+            get { return _caveBackStyle3; }
+            set { Set("CaveBackStyle3", ref _caveBackStyle3, value); }
+        }
+
+
 
         public DateTime LastSave
         {
