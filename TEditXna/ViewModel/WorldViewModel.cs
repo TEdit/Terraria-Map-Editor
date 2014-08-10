@@ -115,6 +115,15 @@ namespace TEditXna.ViewModel
                 if (string.IsNullOrWhiteSpace(_spriteFilter)) return true;
 
                 var sprite = (Sprite)o;
+                
+                string [] _spriteFilterSplit = _spriteFilter.Split('/');
+                foreach (string _spriteWord in _spriteFilterSplit)
+                {
+                    if (sprite.TileName == _spriteWord) return true;
+                    if (sprite.Name == _spriteWord) return true;
+                    if (sprite.TileName != null && sprite.TileName.IndexOf(_spriteWord, StringComparison.OrdinalIgnoreCase) >= 0) return true;
+                    if (sprite.Name != null && sprite.Name.IndexOf(_spriteWord, StringComparison.OrdinalIgnoreCase) >= 0) return true;
+                }
 
                 if (sprite.TileName == _spriteFilter) return true;
                 if (sprite.Name == _spriteFilter) return true;
