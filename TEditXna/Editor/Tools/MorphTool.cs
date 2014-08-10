@@ -447,8 +447,11 @@ namespace TEditXna.Editor.Tools
             {
                 for (int x = -1; x <= 1; x++)
                 {
-                    if (!_wvm.CurrentWorld.Tiles[p.X + x, p.Y + y].IsActive)
+                    if (_wvm.CurrentWorld.ValidTileLocation(x, y) &&
+                        !_wvm.CurrentWorld.Tiles[p.X + x, p.Y + y].IsActive)
+                    {
                         return true;
+                    }
                 }
             }
             return false;
