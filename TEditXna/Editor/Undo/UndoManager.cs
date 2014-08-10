@@ -31,8 +31,10 @@ namespace TEditXna.Editor.Undo
 
             if (!Directory.Exists(Dir))
             {
-                Directory.CreateDirectory(Dir);
                 ErrorLogging.Log(string.Format("Creating Undo cache: {0}", Dir));
+
+                Directory.CreateDirectory(Dir);
+                File.Create(UndoAliveFile).Close();
             }
 
             undoAliveTimer = new Timer(UndoAlive, null, TimeSpan.FromSeconds(10), TimeSpan.FromMinutes(5));
@@ -44,8 +46,6 @@ namespace TEditXna.Editor.Undo
                 File.Create(UndoAliveFile).Close();
             
             File.SetLastWriteTimeUtc(UndoAliveFile, DateTime.UtcNow);
-
-            CleanupOldUndoFiles();
         }
 
         private static bool IsUndoDirAlive(string directory)

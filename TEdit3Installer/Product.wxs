@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
-  <Product Id="*" Name="TEdit 3" Language="1033" Version="3.5.14215.2357" Manufacturer="BinaryConstruct" UpgradeCode="1d9a5baf-12ad-4a55-9e83-bbfd95c7c820">
+  <Product Id="*" Name="TEdit 3" Language="1033" Version="3.5.14222.1623" Manufacturer="BinaryConstruct" UpgradeCode="1d9a5baf-12ad-4a55-9e83-bbfd95c7c820">
     <Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" />
     <Media Id="1" Cabinet="disk1.cab" EmbedCab="yes" />
     <Directory Id="TARGETDIR" Name="SourceDir">
@@ -25,6 +25,7 @@
               Icon="tedit.ico"
               WorkingDirectory="INSTALLFOLDER"
               Advertise="yes" />
+            <RemoveRegistryKey Id="TEditXnaWorldBackupCleanup" Root="HKCR" Action="removeOnInstall" Key="TEditXna.World.Backup"/>
             <ProgId Id="TEditXna.World.TEdit" Description="TEdit World Backup File" Advertise="no" >
               <Extension Id="TEdit" ContentType="application/text" Advertise="no" >
                 <Verb Id="open" Command="Open" TargetFile="TEditXna.exe" Argument='"%1"' />
@@ -45,11 +46,11 @@
                 <Verb Id="open" Command="Open" TargetFile="TEditXna.exe" Argument='"%1"' />
               </Extension>
             </ProgId>
-            <ProgId Id="TEditXna.World.Backup" Description="Terraria World Backup File" Advertise="no" >
+            <!--<ProgId Id="TEditXna.World.Backup" Description="Terraria World Backup File" Advertise="no" >
               <Extension Id="bak" ContentType="application/text" Advertise="no" >
                 <Verb Id="open" Command="Open" TargetFile="TEditXna.exe" Argument='"%1"' />
               </Extension>
-            </ProgId>
+            </ProgId>-->
           </Component>
           <!--<Component Id="AssociationWld" Guid="4F357816-38E0-4ACE-8C5D-C708CFC53DA3" KeyPath="yes" >
 

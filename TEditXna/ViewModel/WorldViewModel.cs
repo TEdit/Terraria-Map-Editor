@@ -115,6 +115,15 @@ namespace TEditXna.ViewModel
                 if (string.IsNullOrWhiteSpace(_spriteFilter)) return true;
 
                 var sprite = (Sprite)o;
+                
+                string [] _spriteFilterSplit = _spriteFilter.Split('/');
+                foreach (string _spriteWord in _spriteFilterSplit)
+                {
+                    if (sprite.TileName == _spriteWord) return true;
+                    if (sprite.Name == _spriteWord) return true;
+                    if (sprite.TileName != null && sprite.TileName.IndexOf(_spriteWord, StringComparison.OrdinalIgnoreCase) >= 0) return true;
+                    if (sprite.Name != null && sprite.Name.IndexOf(_spriteWord, StringComparison.OrdinalIgnoreCase) >= 0) return true;
+                }
 
                 if (sprite.TileName == _spriteFilter) return true;
                 if (sprite.Name == _spriteFilter) return true;
@@ -496,7 +505,32 @@ namespace TEditXna.ViewModel
         }
 
         private ICommand _analyzeWorldCommand;
+        private ICommand _analyzeWorldSaveCommand;
          
+
+        /// <summary>
+        /// Relay command to execute AnalyzeWorldSave.
+        /// </summary>
+        public ICommand AnalyzeWorldSaveCommand
+        {
+            get { return _analyzeWorldSaveCommand ?? (_analyzeWorldSaveCommand = new RelayCommand(AnalyzeWorldSave)); }
+        }
+
+        private void AnalyzeWorldSave()
+        {
+            if (this.CurrentWorld == null) return;
+            var sfd = new SaveFileDialog();
+            sfd.DefaultExt = "Text File|*.txt";
+            sfd.Filter = "Text Files|*.txt";
+            sfd.FileName = this.CurrentWorld.Title + " Analysis.txt";
+            sfd.Title = "Save world analysis.";
+            sfd.OverwritePrompt = true;
+            if (sfd.ShowDialog() == true)
+            {
+                TEditXNA.Terraria.WorldAnalysis.AnalyzeWorld(this.CurrentWorld, sfd.FileName);
+               
+            }
+        }
 
         /// <summary>
         /// Relay command to execute AnalizeWorld.
@@ -508,7 +542,7 @@ namespace TEditXna.ViewModel
 
         private void AnalyzeWorld()
         {
-            WorldAnalysis = TEditXNA.Terraria.WorldAnalysis.AnalyseWorld(this.CurrentWorld);
+            WorldAnalysis = TEditXNA.Terraria.WorldAnalysis.AnalyzeWorld(this.CurrentWorld);
         }
 
         private string _worldAnalysis;

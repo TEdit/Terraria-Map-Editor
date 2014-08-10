@@ -11,13 +11,14 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <UniformGrid Grid.Row="0" Columns="2" HorizontalAlignment="Stretch">
+        <UniformGrid Grid.Row="0" Columns="3" HorizontalAlignment="Stretch">
             <TextBlock Grid.Column="0" Text="World Analysis" Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" />
-            <Button Grid.Column="1" Margin="2" Content="Analyze World"  Command="{Binding AnalyzeWorldCommand}" />
+            <Button Grid.Column="1" Margin="2" Content="Analyze"  Command="{Binding AnalyzeWorldCommand}" />
+            <Button Grid.Column="2" Margin="2" Content="Save"  Command="{Binding AnalyzeWorldSaveCommand}" />
         </UniformGrid>
 
         <TextBox Grid.Row="1" Text="{Binding WorldAnalysis}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" MinHeight="150"
-               HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Visible" AcceptsReturn="True" TextWrapping="Wrap" IsReadOnly="True"
+               HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Visible" AcceptsReturn="True" TextWrapping="Wrap"
 			   Margin="2"  />
 
 

@@ -118,7 +118,7 @@
                 <Border DockPanel.Dock="Right" BorderThickness="1" BorderBrush="{StaticResource SolidBorderBrush}" Background="{StaticResource ControlBackgroundBrush}">
                     <Grid  Width="200" Height="75">
                         <Image Source="{Binding MinimapImage}" Stretch="UniformToFill" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" RenderOptions.BitmapScalingMode="Linear" />
-                        
+
                     </Grid>
                 </Border>
                 <ScrollViewer HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Hidden" Height="110">
@@ -203,7 +203,7 @@
                         <View:ChestEditorView VerticalAlignment="Stretch" HorizontalAlignment="Stretch" />
                     </TabItem>
                     <TabItem Header="Npc Names" >
-                            <View:NpcNameEditor HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+                        <View:NpcNameEditor HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
                     </TabItem>
                     <TabItem Header="Sign Editor" >
                         <ScrollViewer VerticalScrollBarVisibility="Auto">
@@ -211,9 +211,7 @@
                         </ScrollViewer>
                     </TabItem>
                     <TabItem Header="Analysis">
-                        <ScrollViewer VerticalScrollBarVisibility="Auto">
-                            <View:WorldAnalysis HorizontalAlignment="Stretch"  VerticalAlignment="Stretch"/>
-                        </ScrollViewer>
+                        <View:WorldAnalysis HorizontalAlignment="Stretch"  VerticalAlignment="Stretch"/>
                     </TabItem>
                 </TabControl>
             </Expander>
