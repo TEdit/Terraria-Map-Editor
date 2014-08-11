@@ -50,9 +50,9 @@ namespace TEditXna.Editor.Tools
             if (e.LeftButton == MouseButtonState.Pressed)
                 _startSelection = e.Location;
             if (e.RightButton == MouseButtonState.Pressed && e.LeftButton == MouseButtonState.Released)
-            {
                 _wvm.Selection.IsActive = false;
-            }
+            if (e.RightButton == MouseButtonState.Pressed && (Keyboard.IsKeyDown(Key.LeftCtrl) || Keyboard.IsKeyDown(Key.RightCtrl)))
+                _wvm.Selection.IsActive = true;
         }
 
         public void MouseMove(TileMouseState e)
