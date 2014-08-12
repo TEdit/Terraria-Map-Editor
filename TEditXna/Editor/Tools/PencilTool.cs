@@ -66,14 +66,44 @@ namespace TEditXna.Editor.Tools
             }
             else if (_isLeftDown)
             {
-                DrawLine(p);
-                _startPoint = p;
+                if ((Keyboard.IsKeyUp(Key.LeftShift)) && (Keyboard.IsKeyUp(Key.RightShift)))
+                {
+                    DrawLine(p);
+                    _startPoint = p;
+                    _endPoint = p;
+                }
+                else if ((Keyboard.IsKeyDown(Key.LeftShift)) || (Keyboard.IsKeyDown(Key.RightShift)))
+                {
+                    DrawLineP2P(p2);
+                    _endPoint = p2;
+                }
             }
         }
 
         private void DrawLine(Vector2Int32 to)
         {
             foreach (Vector2Int32 pixel in Shape.DrawLineTool(_startPoint, to))
+            {
+                if (!_wvm.CurrentWorld.ValidTileLocation(pixel)) continue;
+
+                int index = pixel.X + pixel.Y * _wvm.CurrentWorld.TilesWide;
+                if (!_wvm.CheckTiles[index])
+                {
+                    _wvm.CheckTiles[index] = true;
+                    if (_wvm.Selection.IsValid(pixel))
+                    {
+                        _wvm.UndoManager.SaveTile(pixel);
+                        _wvm.SetPixel(pixel.X, pixel.Y);
+
+                        /* Heathtech */
+                        BlendRules.ResetUVCache(_wvm, pixel.X, pixel.Y, 1, 1);
+                    }
+                }
+            }
+        }
+        private void DrawLineP2P(Vector2Int32 endPoint)
+        {
+            foreach (Vector2Int32 pixel in Shape.DrawLineTool(_startPoint, _endPoint))
             {
                 if (!_wvm.CurrentWorld.ValidTileLocation(pixel)) continue;
 
