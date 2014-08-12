@@ -17,6 +17,7 @@ namespace TEditXna.Editor.Tools
         private bool _isLeftDown;
         private bool _isRightDown;
         private Vector2Int32 _startPoint;
+        private Vector2Int32 _endPoint;
         private int _dirtLayer;
         private int _rockLayer;
         private List<BiomeData> Biomes = new List<BiomeData>();
@@ -344,6 +345,7 @@ namespace TEditXna.Editor.Tools
             if (_currentBiome != null)
             {
                 Vector2Int32 p = tile;
+                Vector2Int32 p2 = tile;
                 if (_isRightDown)
                 {
                     if (_isLeftDown)
@@ -356,8 +358,17 @@ namespace TEditXna.Editor.Tools
                 }
                 else if (_isLeftDown)
                 {
-                    DrawLine(p);
-                    _startPoint = p;
+                    if ((Keyboard.IsKeyUp(Key.LeftShift)) && (Keyboard.IsKeyUp(Key.RightShift)))
+                    {
+                        DrawLine(p);
+                        _startPoint = p;
+                        _endPoint = p;
+                    }
+                    else if ((Keyboard.IsKeyDown(Key.LeftShift)) || (Keyboard.IsKeyDown(Key.RightShift)))
+                    {
+                        DrawLineP2P(p2);
+                        _endPoint = p2;
+                    }
                 }
             }
         }
@@ -366,6 +377,24 @@ namespace TEditXna.Editor.Tools
         {
             IEnumerable<Vector2Int32> area;
             foreach (Vector2Int32 point in Shape.DrawLineTool(_startPoint, to))
+            {
+                if (_wvm.Brush.Shape == BrushShape.Round)
+                {
+                    area = Fill.FillEllipseCentered(point, new Vector2Int32(_wvm.Brush.Width / 2, _wvm.Brush.Height / 2));
+                    FillSolid(area);
+                }
+                else if (_wvm.Brush.Shape == BrushShape.Square)
+                {
+                    area = Fill.FillRectangleCentered(point, new Vector2Int32(_wvm.Brush.Width, _wvm.Brush.Height));
+                    FillSolid(area);
+                }
+            }
+        }
+
+        private void DrawLineP2P(Vector2Int32 endPoint)
+        {
+            IEnumerable<Vector2Int32> area;
+            foreach (Vector2Int32 point in Shape.DrawLineTool(_startPoint, _endPoint))
             {
                 if (_wvm.Brush.Shape == BrushShape.Round)
                 {
