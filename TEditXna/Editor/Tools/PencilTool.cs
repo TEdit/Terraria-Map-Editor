@@ -14,6 +14,7 @@ namespace TEditXna.Editor.Tools
         private bool _isLeftDown;
         private bool _isRightDown;
         private Vector2Int32 _startPoint;
+        private Vector2Int32 _endPoint;
 
         public PencilTool(WorldViewModel worldViewModel)
             : base(worldViewModel)
