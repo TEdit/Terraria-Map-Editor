@@ -55,6 +55,7 @@ namespace TEditXna.Editor.Tools
         private void CheckDirectionandDraw(Vector2Int32 tile)
         {
             Vector2Int32 p = tile;
+            Vector2Int32 p2 = tile;
             if (_isRightDown)
             {
                 if (_isLeftDown)
