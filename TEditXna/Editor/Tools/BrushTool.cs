@@ -16,6 +16,7 @@ namespace TEditXna.Editor.Tools
         private bool _isLeftDown;
         private bool _isRightDown;
         private Vector2Int32 _startPoint;
+        private Vector2Int32 _endPoint;
 
         public BrushTool(WorldViewModel worldViewModel)
             : base(worldViewModel)
@@ -70,6 +71,7 @@ namespace TEditXna.Editor.Tools
         private void CheckDirectionandDraw(Vector2Int32 tile)
         {
             Vector2Int32 p = tile;
+            Vector2Int32 p2 = tile;
             if (_isRightDown)
             {
                 if (_isLeftDown)
@@ -82,14 +84,38 @@ namespace TEditXna.Editor.Tools
             }
             else if (_isLeftDown)
             {
-                DrawLine(p);
-                _startPoint = p;
+                if ((Keyboard.IsKeyUp(Key.LeftShift)) && (Keyboard.IsKeyUp(Key.RightShift)))
+                {
+                    DrawLine(p);
+                    _startPoint = p;
+                    _endPoint = p;
+                }
+                else if ((Keyboard.IsKeyDown(Key.LeftShift)) || (Keyboard.IsKeyDown(Key.RightShift)))
+                {
+                    DrawLineP2P(p2);
+                    _endPoint = p2;
+                }
             }
         }
 
         private void DrawLine(Vector2Int32 to)
         {
             foreach (Vector2Int32 point in Shape.DrawLineTool(_startPoint, to))
+            {
+                if (_wvm.Brush.Shape == BrushShape.Square || _wvm.Brush.Height <= 1 || _wvm.Brush.Width <= 1)
+                {
+                    FillRectangle(point);
+                }
+                else if (_wvm.Brush.Shape == BrushShape.Round)
+                {
+                    FillRound(point);
+                }
+            }
+        }
+
+        private void DrawLineP2P(Vector2Int32 endPoint)
+        {
+            foreach (Vector2Int32 point in Shape.DrawLineTool(_startPoint, _endPoint))
             {
                 if (_wvm.Brush.Shape == BrushShape.Square || _wvm.Brush.Height <= 1 || _wvm.Brush.Width <= 1)
                 {
