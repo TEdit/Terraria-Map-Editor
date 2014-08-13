@@ -14,6 +14,7 @@ namespace TEditXna.Editor.Tools
         private readonly WorldViewModel _wvm;
         private bool _isActive;
         private Vector2Int32 _startSelection;
+        private Vector2Int32 _modifySelection;
         private double _previewScale = 1;
 
         public SelectionTool(WorldViewModel worldViewModel)
@@ -47,12 +48,14 @@ namespace TEditXna.Editor.Tools
 
         public void MouseDown(TileMouseState e)
         {
-            if (e.LeftButton == MouseButtonState.Pressed)
+            if ((e.LeftButton == MouseButtonState.Pressed) && (Keyboard.IsKeyUp(Key.LeftShift) && Keyboard.IsKeyUp(Key.RightShift)))
                 _startSelection = e.Location;
+            if ((Keyboard.IsKeyDown(Key.LeftShift) || Keyboard.IsKeyDown(Key.RightShift)))
+                _modifySelection= e.Location;
             if (e.RightButton == MouseButtonState.Pressed && e.LeftButton == MouseButtonState.Released)
-            {
                 _wvm.Selection.IsActive = false;
-            }
+            if (e.RightButton == MouseButtonState.Pressed && (Keyboard.IsKeyDown(Key.LeftCtrl) || Keyboard.IsKeyDown(Key.RightCtrl)))
+                _wvm.Selection.IsActive = true;
         }
 
         public void MouseMove(TileMouseState e)
