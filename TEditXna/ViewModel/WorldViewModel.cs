@@ -460,19 +460,22 @@ namespace TEditXna.ViewModel
 
                         string[] split = verstrimmed[1].Split('.');
 
-                        if (split.Length != 3) return null;
+                        if (split.Length < 3) return null; // SBLogic -- accept revision part if present
 
                         int major;
                         int minor;
                         int build;
+                        int revis = -1;
 
                         if (!int.TryParse(split[0], out major)) return null;
                         if (!int.TryParse(split[1], out minor)) return null;
                         if (!int.TryParse(split[2], out build)) return null;
+                        if ((split.Length == 4) && (split[3].Length > 0) && (!int.TryParse(split[3], out revis))) return null;
 
                         if (major > App.Version.ProductMajorPart) return true;
                         if (minor > App.Version.ProductMinorPart) return true;
                         if (build > App.Version.ProductBuildPart) return true;
+                        if ((revis != -1) && (revis > App.Version.ProductPrivatePart)) return true;
                     }
                 }
                 catch (Exception)
