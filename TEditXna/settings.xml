@@ -30,6 +30,11 @@ Update 2:
 * Added minecart track sprites
 * Added missing crimson altar
 
+Update 3:
+* Fixed UV alignment on 8 statue
+* Fixed UV alignment on tables
+* Extended sprites for platforms
+
 Outstanding:
 * Some jungle/crimson plants
 * Overhaul wood, handle alternate wood types
@@ -477,8 +482,9 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="1350,0" name="Table" Variety="Dynasty Table" Anchor="Left" />
         <Frame UV="1404,0" name="Table" Variety="Palm Wood Table" Anchor="Left" />
         <Frame UV="1458,0" name="Table" Variety="Mushroom Table" Anchor="Left" />
-        <Frame UV="1512,0" name="Table" Variety="Slime Table" Anchor="Left" />
-        <Frame UV="1566,0" name="Table" Variety="Cactus Table" Anchor="Left" />
+        <Frame UV="1512,0" name="Table" Variety="Boreal Wood Table" Anchor="Left" />
+        <Frame UV="1566,0" name="Table" Variety="Slime Table" Anchor="Left" />
+        <Frame UV="1620,0" name="Table" Variety="Cactus Table" Anchor="Left" />
       </Frames>
     </Tile>
     <Tile Color="#FFBF8E6F" Placement="floor" Size="1,2" Id="15" Name="Wooden Chair" Framed="true">
@@ -588,32 +594,708 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     </Tile>
     <Tile Color="#FFBF8E6F" Placement="wall" Special="Platform" TextureGrid="16,16" Id="19" Name="Platform" Framed="true" Solid="true" SolidTop="true" Light="true">
       <Frames>
-        <Frame UV="0,0" Name="Platform" Variety="Wood" />
-        <Frame UV="0,18" Name="Platform" Variety="Ebonwood" />
-        <Frame UV="0,36" Name="Platform" Variety="Rich Mahogany" />
-        <Frame UV="0,54" Name="Platform" Variety="Pearlwood" />
-        <Frame UV="0,72" Name="Platform" Variety="Bone" />
-        <Frame UV="0,90" Name="Platform" Variety="Shadewood" />
-        <Frame UV="0,108" Name="Platform" Variety="Blue Brick" />
-        <Frame UV="0,126" Name="Platform" Variety="Pink Brick" />
-        <Frame UV="0,144" Name="Platform" Variety="Green Brick" />
-        <Frame UV="0,162" Name="Platform" Variety="Metal Shelf" />
-        <Frame UV="0,180" Name="Platform" Variety="Brass Shelf" />
-        <Frame UV="0,198" Name="Platform" Variety="Wood Shelf" />
-        <Frame UV="0,216" Name="Platform" Variety="Dungeon Shelf" />
-        <Frame UV="0,234" Name="Platform" Variety="Obsidian" />
-        <Frame UV="0,252" Name="Platform" Variety="Glass" />
-        <Frame UV="0,270" Name="Platform" Variety="Pumpkin Platform" />
-        <Frame UV="0,288" Name="Platform" Variety="Spooky Platform" />
-        <Frame UV="0,306" Name="Platform" Variety="Palm Wood Platform" />
-        <Frame UV="0,324" Name="Platform" Variety="Mushroom Platform" />
-        <Frame UV="0,342" Name="Platform" Variety="Boreal Wood Platform" />
-        <Frame UV="0,360" Name="Platform" Variety="Slime Platform" />
-        <Frame UV="0,378" Name="Platform" Variety="Steampunk Platform" />
-        <Frame UV="0,396" Name="Platform" Variety="Skyware Platform" />
-        <Frame UV="0,414" Name="Platform" Variety="Living Wood Platform" />
-        <Frame UV="0,432" Name="Platform" Variety="Honey Platform" />
-        <Frame UV="0,450" Name="Platform" Variety="Cactus Platform" />
+        <Frame UV="0,0" Name="Platform" Variety="Wood Flat" />
+        <Frame UV="18,0" Name="Platform" Variety="Wood Endcap Right" />
+        <Frame UV="36,0" Name="Platform" Variety="Wood Endcap Left" />
+        <Frame UV="54,0" Name="Platform" Variety="Wood Attach Left" />
+        <Frame UV="72,0" Name="Platform" Variety="Wood Attach Right" />
+        <Frame UV="90,0" Name="Platform" Variety="Wood Single" />
+        <Frame UV="108,0" Name="Platform" Variety="Wood Attach Left Endcap" />
+        <Frame UV="126,0" Name="Platform" Variety="Wood Attach Right Endcap" />
+        <Frame UV="144,0" Name="Stair" Variety="Wood Up-Right Riser" />
+        <Frame UV="162,0" Name="Stair" Variety="Wood Up-Right Stringer" />
+        <Frame UV="180,0" Name="Stair" Variety="Wood Up-Left Riser" />
+        <Frame UV="198,0" Name="Stair" Variety="Wood Up-Left Stringer" />
+        <Frame UV="216,0" Name="Stair" Variety="Wood Top Landing R" />
+        <Frame UV="234,0" Name="Stair" Variety="Wood Top Landing L" />
+        <Frame UV="252,0" Name="Stair" Variety="Wood Top Landing L-R" />
+        <Frame UV="270,0" Name="Stair" Variety="Wood Top Landing R Endcap" />
+        <Frame UV="288,0" Name="Stair" Variety="Wood Top Landing L Endcap" />
+        <Frame UV="306,0" Name="Stair" Variety="Wood Bottom Landing R" />
+        <Frame UV="324,0" Name="Stair" Variety="Wood Bottom Landing L" />
+        <Frame UV="342,0" Name="Stair" Variety="Wood Inset Up-Right 1" />
+        <Frame UV="360,0" Name="Stair" Variety="Wood Inset Up-Left 1" />
+        <Frame UV="378,0" Name="Stair" Variety="Wood Inset Up-Right 2" />
+        <Frame UV="396,0" Name="Stair" Variety="Wood Inset Up-Left 2" />
+        <Frame UV="414,0" Name="Stair" Variety="Wood Inset Up-Right 3" />
+        <Frame UV="432,0" Name="Stair" Variety="Wood Inset Up-Left 3" />
+        <Frame UV="450,0" Name="Stair" Variety="Wood Inverted Right" />
+        <Frame UV="468,0" Name="Stair" Variety="Wood Inverted Left" />
+        <Frame UV="0,18" Name="Platform" Variety="Ebonwood Flat" />
+        <Frame UV="18,18" Name="Platform" Variety="Ebonwood Endcap Right" />
+        <Frame UV="36,18" Name="Platform" Variety="Ebonwood Endcap Left" />
+        <Frame UV="54,18" Name="Platform" Variety="Ebonwood Attach Left" />
+        <Frame UV="72,18" Name="Platform" Variety="Ebonwood Attach Right" />
+        <Frame UV="90,18" Name="Platform" Variety="Ebonwood Single" />
+        <Frame UV="108,18" Name="Platform" Variety="Ebonwood Attach Left Endcap" />
+        <Frame UV="126,18" Name="Platform" Variety="Ebonwood Attach Right Endcap" />
+        <Frame UV="144,18" Name="Stair" Variety="Ebonwood Up-Right Riser" />
+        <Frame UV="162,18" Name="Stair" Variety="Ebonwood Up-Right Stringer" />
+        <Frame UV="180,18" Name="Stair" Variety="Ebonwood Up-Left Riser" />
+        <Frame UV="198,18" Name="Stair" Variety="Ebonwood Up-Left Stringer" />
+        <Frame UV="216,18" Name="Stair" Variety="Ebonwood Top Landing R" />
+        <Frame UV="234,18" Name="Stair" Variety="Ebonwood Top Landing L" />
+        <Frame UV="252,18" Name="Stair" Variety="Ebonwood Top Landing L-R" />
+        <Frame UV="270,18" Name="Stair" Variety="Ebonwood Top Landing R Endcap" />
+        <Frame UV="288,18" Name="Stair" Variety="Ebonwood Top Landing L Endcap" />
+        <Frame UV="306,18" Name="Stair" Variety="Ebonwood Bottom Landing R" />
+        <Frame UV="324,18" Name="Stair" Variety="Ebonwood Bottom Landing L" />
+        <Frame UV="342,18" Name="Stair" Variety="Ebonwood Inset Up-Right 1" />
+        <Frame UV="360,18" Name="Stair" Variety="Ebonwood Inset Up-Left 1" />
+        <Frame UV="378,18" Name="Stair" Variety="Ebonwood Inset Up-Right 2" />
+        <Frame UV="396,18" Name="Stair" Variety="Ebonwood Inset Up-Left 2" />
+        <Frame UV="414,18" Name="Stair" Variety="Ebonwood Inset Up-Right 3" />
+        <Frame UV="432,18" Name="Stair" Variety="Ebonwood Inset Up-Left 3" />
+        <Frame UV="450,18" Name="Stair" Variety="Ebonwood Inverted Right" />
+        <Frame UV="468,18" Name="Stair" Variety="Ebonwood Inverted Left" />
+        <Frame UV="0,36" Name="Platform" Variety="Rich Mahogany Flat" />
+        <Frame UV="18,36" Name="Platform" Variety="Rich Mahogany Endcap Right" />
+        <Frame UV="36,36" Name="Platform" Variety="Rich Mahogany Endcap Left" />
+        <Frame UV="54,36" Name="Platform" Variety="Rich Mahogany Attach Left" />
+        <Frame UV="72,36" Name="Platform" Variety="Rich Mahogany Attach Right" />
+        <Frame UV="90,36" Name="Platform" Variety="Rich Mahogany Single" />
+        <Frame UV="108,36" Name="Platform" Variety="Rich Mahogany Attach Left Endcap" />
+        <Frame UV="126,36" Name="Platform" Variety="Rich Mahogany Attach Right Endcap" />
+        <Frame UV="144,36" Name="Stair" Variety="Rich Mahogany Up-Right Riser" />
+        <Frame UV="162,36" Name="Stair" Variety="Rich Mahogany Up-Right Stringer" />
+        <Frame UV="180,36" Name="Stair" Variety="Rich Mahogany Up-Left Riser" />
+        <Frame UV="198,36" Name="Stair" Variety="Rich Mahogany Up-Left Stringer" />
+        <Frame UV="216,36" Name="Stair" Variety="Rich Mahogany Top Landing R" />
+        <Frame UV="234,36" Name="Stair" Variety="Rich Mahogany Top Landing L" />
+        <Frame UV="252,36" Name="Stair" Variety="Rich Mahogany Top Landing L-R" />
+        <Frame UV="270,36" Name="Stair" Variety="Rich Mahogany Top Landing R Endcap" />
+        <Frame UV="288,36" Name="Stair" Variety="Rich Mahogany Top Landing L Endcap" />
+        <Frame UV="306,36" Name="Stair" Variety="Rich Mahogany Bottom Landing R" />
+        <Frame UV="324,36" Name="Stair" Variety="Rich Mahogany Bottom Landing L" />
+        <Frame UV="342,36" Name="Stair" Variety="Rich Mahogany Inset Up-Right 1" />
+        <Frame UV="360,36" Name="Stair" Variety="Rich Mahogany Inset Up-Left 1" />
+        <Frame UV="378,36" Name="Stair" Variety="Rich Mahogany Inset Up-Right 2" />
+        <Frame UV="396,36" Name="Stair" Variety="Rich Mahogany Inset Up-Left 2" />
+        <Frame UV="414,36" Name="Stair" Variety="Rich Mahogany Inset Up-Right 3" />
+        <Frame UV="432,36" Name="Stair" Variety="Rich Mahogany Inset Up-Left 3" />
+        <Frame UV="450,36" Name="Stair" Variety="Rich Mahogany Inverted Right" />
+        <Frame UV="468,36" Name="Stair" Variety="Rich Mahogany Inverted Left" />
+        <Frame UV="0,54" Name="Platform" Variety="Pearlwood Flat" />
+        <Frame UV="18,54" Name="Platform" Variety="Pearlwood Endcap Right" />
+        <Frame UV="36,54" Name="Platform" Variety="Pearlwood Endcap Left" />
+        <Frame UV="54,54" Name="Platform" Variety="Pearlwood Attach Left" />
+        <Frame UV="72,54" Name="Platform" Variety="Pearlwood Attach Right" />
+        <Frame UV="90,54" Name="Platform" Variety="Pearlwood Single" />
+        <Frame UV="108,54" Name="Platform" Variety="Pearlwood Attach Left Endcap" />
+        <Frame UV="126,54" Name="Platform" Variety="Pearlwood Attach Right Endcap" />
+        <Frame UV="144,54" Name="Stair" Variety="Pearlwood Up-Right Riser" />
+        <Frame UV="162,54" Name="Stair" Variety="Pearlwood Up-Right Stringer" />
+        <Frame UV="180,54" Name="Stair" Variety="Pearlwood Up-Left Riser" />
+        <Frame UV="198,54" Name="Stair" Variety="Pearlwood Up-Left Stringer" />
+        <Frame UV="216,54" Name="Stair" Variety="Pearlwood Top Landing R" />
+        <Frame UV="234,54" Name="Stair" Variety="Pearlwood Top Landing L" />
+        <Frame UV="252,54" Name="Stair" Variety="Pearlwood Top Landing L-R" />
+        <Frame UV="270,54" Name="Stair" Variety="Pearlwood Top Landing R Endcap" />
+        <Frame UV="288,54" Name="Stair" Variety="Pearlwood Top Landing L Endcap" />
+        <Frame UV="306,54" Name="Stair" Variety="Pearlwood Bottom Landing R" />
+        <Frame UV="324,54" Name="Stair" Variety="Pearlwood Bottom Landing L" />
+        <Frame UV="342,54" Name="Stair" Variety="Pearlwood Inset Up-Right 1" />
+        <Frame UV="360,54" Name="Stair" Variety="Pearlwood Inset Up-Left 1" />
+        <Frame UV="378,54" Name="Stair" Variety="Pearlwood Inset Up-Right 2" />
+        <Frame UV="396,54" Name="Stair" Variety="Pearlwood Inset Up-Left 2" />
+        <Frame UV="414,54" Name="Stair" Variety="Pearlwood Inset Up-Right 3" />
+        <Frame UV="432,54" Name="Stair" Variety="Pearlwood Inset Up-Left 3" />
+        <Frame UV="450,54" Name="Stair" Variety="Pearlwood Inverted Right" />
+        <Frame UV="468,54" Name="Stair" Variety="Pearlwood Inverted Left" />
+        <Frame UV="0,72" Name="Platform" Variety="Bone Flat" />
+        <Frame UV="18,72" Name="Platform" Variety="Bone Endcap Right" />
+        <Frame UV="36,72" Name="Platform" Variety="Bone Endcap Left" />
+        <Frame UV="54,72" Name="Platform" Variety="Bone Attach Left" />
+        <Frame UV="72,72" Name="Platform" Variety="Bone Attach Right" />
+        <Frame UV="90,72" Name="Platform" Variety="Bone Single" />
+        <Frame UV="108,72" Name="Platform" Variety="Bone Attach Left Endcap" />
+        <Frame UV="126,72" Name="Platform" Variety="Bone Attach Right Endcap" />
+        <Frame UV="144,72" Name="Stair" Variety="Bone Up-Right Riser" />
+        <Frame UV="162,72" Name="Stair" Variety="Bone Up-Right Stringer" />
+        <Frame UV="180,72" Name="Stair" Variety="Bone Up-Left Riser" />
+        <Frame UV="198,72" Name="Stair" Variety="Bone Up-Left Stringer" />
+        <Frame UV="216,72" Name="Stair" Variety="Bone Top Landing R" />
+        <Frame UV="234,72" Name="Stair" Variety="Bone Top Landing L" />
+        <Frame UV="252,72" Name="Stair" Variety="Bone Top Landing L-R" />
+        <Frame UV="270,72" Name="Stair" Variety="Bone Top Landing R Endcap" />
+        <Frame UV="288,72" Name="Stair" Variety="Bone Top Landing L Endcap" />
+        <Frame UV="306,72" Name="Stair" Variety="Bone Bottom Landing R" />
+        <Frame UV="324,72" Name="Stair" Variety="Bone Bottom Landing L" />
+        <Frame UV="342,72" Name="Stair" Variety="Bone Inset Up-Right 1" />
+        <Frame UV="360,72" Name="Stair" Variety="Bone Inset Up-Left 1" />
+        <Frame UV="378,72" Name="Stair" Variety="Bone Inset Up-Right 2" />
+        <Frame UV="396,72" Name="Stair" Variety="Bone Inset Up-Left 2" />
+        <Frame UV="414,72" Name="Stair" Variety="Bone Inset Up-Right 3" />
+        <Frame UV="432,72" Name="Stair" Variety="Bone Inset Up-Left 3" />
+        <Frame UV="450,72" Name="Stair" Variety="Bone Inverted Right" />
+        <Frame UV="468,72" Name="Stair" Variety="Bone Inverted Left" />
+        <Frame UV="0,90" Name="Platform" Variety="Shadewood Flat" />
+        <Frame UV="18,90" Name="Platform" Variety="Shadewood Endcap Right" />
+        <Frame UV="36,90" Name="Platform" Variety="Shadewood Endcap Left" />
+        <Frame UV="54,90" Name="Platform" Variety="Shadewood Attach Left" />
+        <Frame UV="72,90" Name="Platform" Variety="Shadewood Attach Right" />
+        <Frame UV="90,90" Name="Platform" Variety="Shadewood Single" />
+        <Frame UV="108,90" Name="Platform" Variety="Shadewood Attach Left Endcap" />
+        <Frame UV="126,90" Name="Platform" Variety="Shadewood Attach Right Endcap" />
+        <Frame UV="144,90" Name="Stair" Variety="Shadewood Up-Right Riser" />
+        <Frame UV="162,90" Name="Stair" Variety="Shadewood Up-Right Stringer" />
+        <Frame UV="180,90" Name="Stair" Variety="Shadewood Up-Left Riser" />
+        <Frame UV="198,90" Name="Stair" Variety="Shadewood Up-Left Stringer" />
+        <Frame UV="216,90" Name="Stair" Variety="Shadewood Top Landing R" />
+        <Frame UV="234,90" Name="Stair" Variety="Shadewood Top Landing L" />
+        <Frame UV="252,90" Name="Stair" Variety="Shadewood Top Landing L-R" />
+        <Frame UV="270,90" Name="Stair" Variety="Shadewood Top Landing R Endcap" />
+        <Frame UV="288,90" Name="Stair" Variety="Shadewood Top Landing L Endcap" />
+        <Frame UV="306,90" Name="Stair" Variety="Shadewood Bottom Landing R" />
+        <Frame UV="324,90" Name="Stair" Variety="Shadewood Bottom Landing L" />
+        <Frame UV="342,90" Name="Stair" Variety="Shadewood Inset Up-Right 1" />
+        <Frame UV="360,90" Name="Stair" Variety="Shadewood Inset Up-Left 1" />
+        <Frame UV="378,90" Name="Stair" Variety="Shadewood Inset Up-Right 2" />
+        <Frame UV="396,90" Name="Stair" Variety="Shadewood Inset Up-Left 2" />
+        <Frame UV="414,90" Name="Stair" Variety="Shadewood Inset Up-Right 3" />
+        <Frame UV="432,90" Name="Stair" Variety="Shadewood Inset Up-Left 3" />
+        <Frame UV="450,90" Name="Stair" Variety="Shadewood Inverted Right" />
+        <Frame UV="468,90" Name="Stair" Variety="Shadewood Inverted Left" />
+        <Frame UV="0,108" Name="Platform" Variety="Blue Brick Flat" />
+        <Frame UV="18,108" Name="Platform" Variety="Blue Brick Endcap Right" />
+        <Frame UV="36,108" Name="Platform" Variety="Blue Brick Endcap Left" />
+        <Frame UV="54,108" Name="Platform" Variety="Blue Brick Attach Left" />
+        <Frame UV="72,108" Name="Platform" Variety="Blue Brick Attach Right" />
+        <Frame UV="90,108" Name="Platform" Variety="Blue Brick Single" />
+        <Frame UV="108,108" Name="Platform" Variety="Blue Brick Attach Left Endcap" />
+        <Frame UV="126,108" Name="Platform" Variety="Blue Brick Attach Right Endcap" />
+        <Frame UV="144,108" Name="Stair" Variety="Blue Brick Up-Right Riser" />
+        <Frame UV="162,108" Name="Stair" Variety="Blue Brick Up-Right Stringer" />
+        <Frame UV="180,108" Name="Stair" Variety="Blue Brick Up-Left Riser" />
+        <Frame UV="198,108" Name="Stair" Variety="Blue Brick Up-Left Stringer" />
+        <Frame UV="216,108" Name="Stair" Variety="Blue Brick Top Landing R" />
+        <Frame UV="234,108" Name="Stair" Variety="Blue Brick Top Landing L" />
+        <Frame UV="252,108" Name="Stair" Variety="Blue Brick Top Landing L-R" />
+        <Frame UV="270,108" Name="Stair" Variety="Blue Brick Top Landing R Endcap" />
+        <Frame UV="288,108" Name="Stair" Variety="Blue Brick Top Landing L Endcap" />
+        <Frame UV="306,108" Name="Stair" Variety="Blue Brick Bottom Landing R" />
+        <Frame UV="324,108" Name="Stair" Variety="Blue Brick Bottom Landing L" />
+        <Frame UV="342,108" Name="Stair" Variety="Blue Brick Inset Up-Right 1" />
+        <Frame UV="360,108" Name="Stair" Variety="Blue Brick Inset Up-Left 1" />
+        <Frame UV="378,108" Name="Stair" Variety="Blue Brick Inset Up-Right 2" />
+        <Frame UV="396,108" Name="Stair" Variety="Blue Brick Inset Up-Left 2" />
+        <Frame UV="414,108" Name="Stair" Variety="Blue Brick Inset Up-Right 3" />
+        <Frame UV="432,108" Name="Stair" Variety="Blue Brick Inset Up-Left 3" />
+        <Frame UV="450,108" Name="Stair" Variety="Blue Brick Inverted Right" />
+        <Frame UV="468,108" Name="Stair" Variety="Blue Brick Inverted Left" />
+        <Frame UV="0,126" Name="Platform" Variety="Pink Brick Flat" />
+        <Frame UV="18,126" Name="Platform" Variety="Pink Brick Endcap Right" />
+        <Frame UV="36,126" Name="Platform" Variety="Pink Brick Endcap Left" />
+        <Frame UV="54,126" Name="Platform" Variety="Pink Brick Attach Left" />
+        <Frame UV="72,126" Name="Platform" Variety="Pink Brick Attach Right" />
+        <Frame UV="90,126" Name="Platform" Variety="Pink Brick Single" />
+        <Frame UV="108,126" Name="Platform" Variety="Pink Brick Attach Left Endcap" />
+        <Frame UV="126,126" Name="Platform" Variety="Pink Brick Attach Right Endcap" />
+        <Frame UV="144,126" Name="Stair" Variety="Pink Brick Up-Right Riser" />
+        <Frame UV="162,126" Name="Stair" Variety="Pink Brick Up-Right Stringer" />
+        <Frame UV="180,126" Name="Stair" Variety="Pink Brick Up-Left Riser" />
+        <Frame UV="198,126" Name="Stair" Variety="Pink Brick Up-Left Stringer" />
+        <Frame UV="216,126" Name="Stair" Variety="Pink Brick Top Landing R" />
+        <Frame UV="234,126" Name="Stair" Variety="Pink Brick Top Landing L" />
+        <Frame UV="252,126" Name="Stair" Variety="Pink Brick Top Landing L-R" />
+        <Frame UV="270,126" Name="Stair" Variety="Pink Brick Top Landing R Endcap" />
+        <Frame UV="288,126" Name="Stair" Variety="Pink Brick Top Landing L Endcap" />
+        <Frame UV="306,126" Name="Stair" Variety="Pink Brick Bottom Landing R" />
+        <Frame UV="324,126" Name="Stair" Variety="Pink Brick Bottom Landing L" />
+        <Frame UV="342,126" Name="Stair" Variety="Pink Brick Inset Up-Right 1" />
+        <Frame UV="360,126" Name="Stair" Variety="Pink Brick Inset Up-Left 1" />
+        <Frame UV="378,126" Name="Stair" Variety="Pink Brick Inset Up-Right 2" />
+        <Frame UV="396,126" Name="Stair" Variety="Pink Brick Inset Up-Left 2" />
+        <Frame UV="414,126" Name="Stair" Variety="Pink Brick Inset Up-Right 3" />
+        <Frame UV="432,126" Name="Stair" Variety="Pink Brick Inset Up-Left 3" />
+        <Frame UV="450,126" Name="Stair" Variety="Pink Brick Inverted Right" />
+        <Frame UV="468,126" Name="Stair" Variety="Pink Brick Inverted Left" />
+        <Frame UV="0,144" Name="Platform" Variety="Green Brick Flat" />
+        <Frame UV="18,144" Name="Platform" Variety="Green Brick Endcap Right" />
+        <Frame UV="36,144" Name="Platform" Variety="Green Brick Endcap Left" />
+        <Frame UV="54,144" Name="Platform" Variety="Green Brick Attach Left" />
+        <Frame UV="72,144" Name="Platform" Variety="Green Brick Attach Right" />
+        <Frame UV="90,144" Name="Platform" Variety="Green Brick Single" />
+        <Frame UV="108,144" Name="Platform" Variety="Green Brick Attach Left Endcap" />
+        <Frame UV="126,144" Name="Platform" Variety="Green Brick Attach Right Endcap" />
+        <Frame UV="144,144" Name="Stair" Variety="Green Brick Up-Right Riser" />
+        <Frame UV="162,144" Name="Stair" Variety="Green Brick Up-Right Stringer" />
+        <Frame UV="180,144" Name="Stair" Variety="Green Brick Up-Left Riser" />
+        <Frame UV="198,144" Name="Stair" Variety="Green Brick Up-Left Stringer" />
+        <Frame UV="216,144" Name="Stair" Variety="Green Brick Top Landing R" />
+        <Frame UV="234,144" Name="Stair" Variety="Green Brick Top Landing L" />
+        <Frame UV="252,144" Name="Stair" Variety="Green Brick Top Landing L-R" />
+        <Frame UV="270,144" Name="Stair" Variety="Green Brick Top Landing R Endcap" />
+        <Frame UV="288,144" Name="Stair" Variety="Green Brick Top Landing L Endcap" />
+        <Frame UV="306,144" Name="Stair" Variety="Green Brick Bottom Landing R" />
+        <Frame UV="324,144" Name="Stair" Variety="Green Brick Bottom Landing L" />
+        <Frame UV="342,144" Name="Stair" Variety="Green Brick Inset Up-Right 1" />
+        <Frame UV="360,144" Name="Stair" Variety="Green Brick Inset Up-Left 1" />
+        <Frame UV="378,144" Name="Stair" Variety="Green Brick Inset Up-Right 2" />
+        <Frame UV="396,144" Name="Stair" Variety="Green Brick Inset Up-Left 2" />
+        <Frame UV="414,144" Name="Stair" Variety="Green Brick Inset Up-Right 3" />
+        <Frame UV="432,144" Name="Stair" Variety="Green Brick Inset Up-Left 3" />
+        <Frame UV="450,144" Name="Stair" Variety="Green Brick Inverted Right" />
+        <Frame UV="468,144" Name="Stair" Variety="Green Brick Inverted Left" />
+        <Frame UV="0,162" Name="Platform" Variety="Metal Shelf Flat" />
+        <Frame UV="18,162" Name="Platform" Variety="Metal Shelf Endcap Right" />
+        <Frame UV="36,162" Name="Platform" Variety="Metal Shelf Endcap Left" />
+        <Frame UV="54,162" Name="Platform" Variety="Metal Shelf Attach Left" />
+        <Frame UV="72,162" Name="Platform" Variety="Metal Shelf Attach Right" />
+        <Frame UV="90,162" Name="Platform" Variety="Metal Shelf Single" />
+        <Frame UV="108,162" Name="Platform" Variety="Metal Shelf Attach Left Endcap" />
+        <Frame UV="126,162" Name="Platform" Variety="Metal Shelf Attach Right Endcap" />
+        <Frame UV="144,162" Name="Stair" Variety="Metal Shelf Up-Right Riser" />
+        <Frame UV="162,162" Name="Stair" Variety="Metal Shelf Up-Right Stringer" />
+        <Frame UV="180,162" Name="Stair" Variety="Metal Shelf Up-Left Riser" />
+        <Frame UV="198,162" Name="Stair" Variety="Metal Shelf Up-Left Stringer" />
+        <Frame UV="216,162" Name="Stair" Variety="Metal Shelf Top Landing R" />
+        <Frame UV="234,162" Name="Stair" Variety="Metal Shelf Top Landing L" />
+        <Frame UV="252,162" Name="Stair" Variety="Metal Shelf Top Landing L-R" />
+        <Frame UV="270,162" Name="Stair" Variety="Metal Shelf Top Landing R Endcap" />
+        <Frame UV="288,162" Name="Stair" Variety="Metal Shelf Top Landing L Endcap" />
+        <Frame UV="306,162" Name="Stair" Variety="Metal Shelf Bottom Landing R" />
+        <Frame UV="324,162" Name="Stair" Variety="Metal Shelf Bottom Landing L" />
+        <Frame UV="342,162" Name="Stair" Variety="Metal Shelf Inset Up-Right 1" />
+        <Frame UV="360,162" Name="Stair" Variety="Metal Shelf Inset Up-Left 1" />
+        <Frame UV="378,162" Name="Stair" Variety="Metal Shelf Inset Up-Right 2" />
+        <Frame UV="396,162" Name="Stair" Variety="Metal Shelf Inset Up-Left 2" />
+        <Frame UV="414,162" Name="Stair" Variety="Metal Shelf Inset Up-Right 3" />
+        <Frame UV="432,162" Name="Stair" Variety="Metal Shelf Inset Up-Left 3" />
+        <Frame UV="450,162" Name="Stair" Variety="Metal Shelf Inverted Right" />
+        <Frame UV="468,162" Name="Stair" Variety="Metal Shelf Inverted Left" />
+        <Frame UV="0,180" Name="Platform" Variety="Brass Shelf Flat" />
+        <Frame UV="18,180" Name="Platform" Variety="Brass Shelf Endcap Right" />
+        <Frame UV="36,180" Name="Platform" Variety="Brass Shelf Endcap Left" />
+        <Frame UV="54,180" Name="Platform" Variety="Brass Shelf Attach Left" />
+        <Frame UV="72,180" Name="Platform" Variety="Brass Shelf Attach Right" />
+        <Frame UV="90,180" Name="Platform" Variety="Brass Shelf Single" />
+        <Frame UV="108,180" Name="Platform" Variety="Brass Shelf Attach Left Endcap" />
+        <Frame UV="126,180" Name="Platform" Variety="Brass Shelf Attach Right Endcap" />
+        <Frame UV="144,180" Name="Stair" Variety="Brass Shelf Up-Right Riser" />
+        <Frame UV="162,180" Name="Stair" Variety="Brass Shelf Up-Right Stringer" />
+        <Frame UV="180,180" Name="Stair" Variety="Brass Shelf Up-Left Riser" />
+        <Frame UV="198,180" Name="Stair" Variety="Brass Shelf Up-Left Stringer" />
+        <Frame UV="216,180" Name="Stair" Variety="Brass Shelf Top Landing R" />
+        <Frame UV="234,180" Name="Stair" Variety="Brass Shelf Top Landing L" />
+        <Frame UV="252,180" Name="Stair" Variety="Brass Shelf Top Landing L-R" />
+        <Frame UV="270,180" Name="Stair" Variety="Brass Shelf Top Landing R Endcap" />
+        <Frame UV="288,180" Name="Stair" Variety="Brass Shelf Top Landing L Endcap" />
+        <Frame UV="306,180" Name="Stair" Variety="Brass Shelf Bottom Landing R" />
+        <Frame UV="324,180" Name="Stair" Variety="Brass Shelf Bottom Landing L" />
+        <Frame UV="342,180" Name="Stair" Variety="Brass Shelf Inset Up-Right 1" />
+        <Frame UV="360,180" Name="Stair" Variety="Brass Shelf Inset Up-Left 1" />
+        <Frame UV="378,180" Name="Stair" Variety="Brass Shelf Inset Up-Right 2" />
+        <Frame UV="396,180" Name="Stair" Variety="Brass Shelf Inset Up-Left 2" />
+        <Frame UV="414,180" Name="Stair" Variety="Brass Shelf Inset Up-Right 3" />
+        <Frame UV="432,180" Name="Stair" Variety="Brass Shelf Inset Up-Left 3" />
+        <Frame UV="450,180" Name="Stair" Variety="Brass Shelf Inverted Right" />
+        <Frame UV="468,180" Name="Stair" Variety="Brass Shelf Inverted Left" />
+        <Frame UV="0,198" Name="Platform" Variety="Wood Shelf Flat" />
+        <Frame UV="18,198" Name="Platform" Variety="Wood Shelf Endcap Right" />
+        <Frame UV="36,198" Name="Platform" Variety="Wood Shelf Endcap Left" />
+        <Frame UV="54,198" Name="Platform" Variety="Wood Shelf Attach Left" />
+        <Frame UV="72,198" Name="Platform" Variety="Wood Shelf Attach Right" />
+        <Frame UV="90,198" Name="Platform" Variety="Wood Shelf Single" />
+        <Frame UV="108,198" Name="Platform" Variety="Wood Shelf Attach Left Endcap" />
+        <Frame UV="126,198" Name="Platform" Variety="Wood Shelf Attach Right Endcap" />
+        <Frame UV="144,198" Name="Stair" Variety="Wood Shelf Up-Right Riser" />
+        <Frame UV="162,198" Name="Stair" Variety="Wood Shelf Up-Right Stringer" />
+        <Frame UV="180,198" Name="Stair" Variety="Wood Shelf Up-Left Riser" />
+        <Frame UV="198,198" Name="Stair" Variety="Wood Shelf Up-Left Stringer" />
+        <Frame UV="216,198" Name="Stair" Variety="Wood Shelf Top Landing R" />
+        <Frame UV="234,198" Name="Stair" Variety="Wood Shelf Top Landing L" />
+        <Frame UV="252,198" Name="Stair" Variety="Wood Shelf Top Landing L-R" />
+        <Frame UV="270,198" Name="Stair" Variety="Wood Shelf Top Landing R Endcap" />
+        <Frame UV="288,198" Name="Stair" Variety="Wood Shelf Top Landing L Endcap" />
+        <Frame UV="306,198" Name="Stair" Variety="Wood Shelf Bottom Landing R" />
+        <Frame UV="324,198" Name="Stair" Variety="Wood Shelf Bottom Landing L" />
+        <Frame UV="342,198" Name="Stair" Variety="Wood Shelf Inset Up-Right 1" />
+        <Frame UV="360,198" Name="Stair" Variety="Wood Shelf Inset Up-Left 1" />
+        <Frame UV="378,198" Name="Stair" Variety="Wood Shelf Inset Up-Right 2" />
+        <Frame UV="396,198" Name="Stair" Variety="Wood Shelf Inset Up-Left 2" />
+        <Frame UV="414,198" Name="Stair" Variety="Wood Shelf Inset Up-Right 3" />
+        <Frame UV="432,198" Name="Stair" Variety="Wood Shelf Inset Up-Left 3" />
+        <Frame UV="450,198" Name="Stair" Variety="Wood Shelf Inverted Right" />
+        <Frame UV="468,198" Name="Stair" Variety="Wood Shelf Inverted Left" />
+        <Frame UV="0,216" Name="Platform" Variety="Dungeon Shelf Flat" />
+        <Frame UV="18,216" Name="Platform" Variety="Dungeon Shelf Endcap Right" />
+        <Frame UV="36,216" Name="Platform" Variety="Dungeon Shelf Endcap Left" />
+        <Frame UV="54,216" Name="Platform" Variety="Dungeon Shelf Attach Left" />
+        <Frame UV="72,216" Name="Platform" Variety="Dungeon Shelf Attach Right" />
+        <Frame UV="90,216" Name="Platform" Variety="Dungeon Shelf Single" />
+        <Frame UV="108,216" Name="Platform" Variety="Dungeon Shelf Attach Left Endcap" />
+        <Frame UV="126,216" Name="Platform" Variety="Dungeon Shelf Attach Right Endcap" />
+        <Frame UV="144,216" Name="Stair" Variety="Dungeon Shelf Up-Right Riser" />
+        <Frame UV="162,216" Name="Stair" Variety="Dungeon Shelf Up-Right Stringer" />
+        <Frame UV="180,216" Name="Stair" Variety="Dungeon Shelf Up-Left Riser" />
+        <Frame UV="198,216" Name="Stair" Variety="Dungeon Shelf Up-Left Stringer" />
+        <Frame UV="216,216" Name="Stair" Variety="Dungeon Shelf Top Landing R" />
+        <Frame UV="234,216" Name="Stair" Variety="Dungeon Shelf Top Landing L" />
+        <Frame UV="252,216" Name="Stair" Variety="Dungeon Shelf Top Landing L-R" />
+        <Frame UV="270,216" Name="Stair" Variety="Dungeon Shelf Top Landing R Endcap" />
+        <Frame UV="288,216" Name="Stair" Variety="Dungeon Shelf Top Landing L Endcap" />
+        <Frame UV="306,216" Name="Stair" Variety="Dungeon Shelf Bottom Landing R" />
+        <Frame UV="324,216" Name="Stair" Variety="Dungeon Shelf Bottom Landing L" />
+        <Frame UV="342,216" Name="Stair" Variety="Dungeon Shelf Inset Up-Right 1" />
+        <Frame UV="360,216" Name="Stair" Variety="Dungeon Shelf Inset Up-Left 1" />
+        <Frame UV="378,216" Name="Stair" Variety="Dungeon Shelf Inset Up-Right 2" />
+        <Frame UV="396,216" Name="Stair" Variety="Dungeon Shelf Inset Up-Left 2" />
+        <Frame UV="414,216" Name="Stair" Variety="Dungeon Shelf Inset Up-Right 3" />
+        <Frame UV="432,216" Name="Stair" Variety="Dungeon Shelf Inset Up-Left 3" />
+        <Frame UV="450,216" Name="Stair" Variety="Dungeon Shelf Inverted Right" />
+        <Frame UV="468,216" Name="Stair" Variety="Dungeon Shelf Inverted Left" />
+        <Frame UV="0,234" Name="Platform" Variety="Obsidian Flat" />
+        <Frame UV="18,234" Name="Platform" Variety="Obsidian Endcap Right" />
+        <Frame UV="36,234" Name="Platform" Variety="Obsidian Endcap Left" />
+        <Frame UV="54,234" Name="Platform" Variety="Obsidian Attach Left" />
+        <Frame UV="72,234" Name="Platform" Variety="Obsidian Attach Right" />
+        <Frame UV="90,234" Name="Platform" Variety="Obsidian Single" />
+        <Frame UV="108,234" Name="Platform" Variety="Obsidian Attach Left Endcap" />
+        <Frame UV="126,234" Name="Platform" Variety="Obsidian Attach Right Endcap" />
+        <Frame UV="144,234" Name="Stair" Variety="Obsidian Up-Right Riser" />
+        <Frame UV="162,234" Name="Stair" Variety="Obsidian Up-Right Stringer" />
+        <Frame UV="180,234" Name="Stair" Variety="Obsidian Up-Left Riser" />
+        <Frame UV="198,234" Name="Stair" Variety="Obsidian Up-Left Stringer" />
+        <Frame UV="216,234" Name="Stair" Variety="Obsidian Top Landing R" />
+        <Frame UV="234,234" Name="Stair" Variety="Obsidian Top Landing L" />
+        <Frame UV="252,234" Name="Stair" Variety="Obsidian Top Landing L-R" />
+        <Frame UV="270,234" Name="Stair" Variety="Obsidian Top Landing R Endcap" />
+        <Frame UV="288,234" Name="Stair" Variety="Obsidian Top Landing L Endcap" />
+        <Frame UV="306,234" Name="Stair" Variety="Obsidian Bottom Landing R" />
+        <Frame UV="324,234" Name="Stair" Variety="Obsidian Bottom Landing L" />
+        <Frame UV="342,234" Name="Stair" Variety="Obsidian Inset Up-Right 1" />
+        <Frame UV="360,234" Name="Stair" Variety="Obsidian Inset Up-Left 1" />
+        <Frame UV="378,234" Name="Stair" Variety="Obsidian Inset Up-Right 2" />
+        <Frame UV="396,234" Name="Stair" Variety="Obsidian Inset Up-Left 2" />
+        <Frame UV="414,234" Name="Stair" Variety="Obsidian Inset Up-Right 3" />
+        <Frame UV="432,234" Name="Stair" Variety="Obsidian Inset Up-Left 3" />
+        <Frame UV="450,234" Name="Stair" Variety="Obsidian Inverted Right" />
+        <Frame UV="468,234" Name="Stair" Variety="Obsidian Inverted Left" />
+        <Frame UV="0,252" Name="Platform" Variety="Glass Flat" />
+        <Frame UV="18,252" Name="Platform" Variety="Glass Endcap Right" />
+        <Frame UV="36,252" Name="Platform" Variety="Glass Endcap Left" />
+        <Frame UV="54,252" Name="Platform" Variety="Glass Attach Left" />
+        <Frame UV="72,252" Name="Platform" Variety="Glass Attach Right" />
+        <Frame UV="90,252" Name="Platform" Variety="Glass Single" />
+        <Frame UV="108,252" Name="Platform" Variety="Glass Attach Left Endcap" />
+        <Frame UV="126,252" Name="Platform" Variety="Glass Attach Right Endcap" />
+        <Frame UV="144,252" Name="Stair" Variety="Glass Up-Right Riser" />
+        <Frame UV="162,252" Name="Stair" Variety="Glass Up-Right Stringer" />
+        <Frame UV="180,252" Name="Stair" Variety="Glass Up-Left Riser" />
+        <Frame UV="198,252" Name="Stair" Variety="Glass Up-Left Stringer" />
+        <Frame UV="216,252" Name="Stair" Variety="Glass Top Landing R" />
+        <Frame UV="234,252" Name="Stair" Variety="Glass Top Landing L" />
+        <Frame UV="252,252" Name="Stair" Variety="Glass Top Landing L-R" />
+        <Frame UV="270,252" Name="Stair" Variety="Glass Top Landing R Endcap" />
+        <Frame UV="288,252" Name="Stair" Variety="Glass Top Landing L Endcap" />
+        <Frame UV="306,252" Name="Stair" Variety="Glass Bottom Landing R" />
+        <Frame UV="324,252" Name="Stair" Variety="Glass Bottom Landing L" />
+        <Frame UV="342,252" Name="Stair" Variety="Glass Inset Up-Right 1" />
+        <Frame UV="360,252" Name="Stair" Variety="Glass Inset Up-Left 1" />
+        <Frame UV="378,252" Name="Stair" Variety="Glass Inset Up-Right 2" />
+        <Frame UV="396,252" Name="Stair" Variety="Glass Inset Up-Left 2" />
+        <Frame UV="414,252" Name="Stair" Variety="Glass Inset Up-Right 3" />
+        <Frame UV="432,252" Name="Stair" Variety="Glass Inset Up-Left 3" />
+        <Frame UV="450,252" Name="Stair" Variety="Glass Inverted Right" />
+        <Frame UV="468,252" Name="Stair" Variety="Glass Inverted Left" />
+        <Frame UV="0,270" Name="Platform" Variety="Pumpkin Flat" />
+        <Frame UV="18,270" Name="Platform" Variety="Pumpkin Endcap Right" />
+        <Frame UV="36,270" Name="Platform" Variety="Pumpkin Endcap Left" />
+        <Frame UV="54,270" Name="Platform" Variety="Pumpkin Attach Left" />
+        <Frame UV="72,270" Name="Platform" Variety="Pumpkin Attach Right" />
+        <Frame UV="90,270" Name="Platform" Variety="Pumpkin Single" />
+        <Frame UV="108,270" Name="Platform" Variety="Pumpkin Attach Left Endcap" />
+        <Frame UV="126,270" Name="Platform" Variety="Pumpkin Attach Right Endcap" />
+        <Frame UV="144,270" Name="Stair" Variety="Pumpkin Up-Right Riser" />
+        <Frame UV="162,270" Name="Stair" Variety="Pumpkin Up-Right Stringer" />
+        <Frame UV="180,270" Name="Stair" Variety="Pumpkin Up-Left Riser" />
+        <Frame UV="198,270" Name="Stair" Variety="Pumpkin Up-Left Stringer" />
+        <Frame UV="216,270" Name="Stair" Variety="Pumpkin Top Landing R" />
+        <Frame UV="234,270" Name="Stair" Variety="Pumpkin Top Landing L" />
+        <Frame UV="252,270" Name="Stair" Variety="Pumpkin Top Landing L-R" />
+        <Frame UV="270,270" Name="Stair" Variety="Pumpkin Top Landing R Endcap" />
+        <Frame UV="288,270" Name="Stair" Variety="Pumpkin Top Landing L Endcap" />
+        <Frame UV="306,270" Name="Stair" Variety="Pumpkin Bottom Landing R" />
+        <Frame UV="324,270" Name="Stair" Variety="Pumpkin Bottom Landing L" />
+        <Frame UV="342,270" Name="Stair" Variety="Pumpkin Inset Up-Right 1" />
+        <Frame UV="360,270" Name="Stair" Variety="Pumpkin Inset Up-Left 1" />
+        <Frame UV="378,270" Name="Stair" Variety="Pumpkin Inset Up-Right 2" />
+        <Frame UV="396,270" Name="Stair" Variety="Pumpkin Inset Up-Left 2" />
+        <Frame UV="414,270" Name="Stair" Variety="Pumpkin Inset Up-Right 3" />
+        <Frame UV="432,270" Name="Stair" Variety="Pumpkin Inset Up-Left 3" />
+        <Frame UV="450,270" Name="Stair" Variety="Pumpkin Inverted Right" />
+        <Frame UV="468,270" Name="Stair" Variety="Pumpkin Inverted Left" />
+        <Frame UV="0,288" Name="Platform" Variety="Spooky Flat" />
+        <Frame UV="18,288" Name="Platform" Variety="Spooky Endcap Right" />
+        <Frame UV="36,288" Name="Platform" Variety="Spooky Endcap Left" />
+        <Frame UV="54,288" Name="Platform" Variety="Spooky Attach Left" />
+        <Frame UV="72,288" Name="Platform" Variety="Spooky Attach Right" />
+        <Frame UV="90,288" Name="Platform" Variety="Spooky Single" />
+        <Frame UV="108,288" Name="Platform" Variety="Spooky Attach Left Endcap" />
+        <Frame UV="126,288" Name="Platform" Variety="Spooky Attach Right Endcap" />
+        <Frame UV="144,288" Name="Stair" Variety="Spooky Up-Right Riser" />
+        <Frame UV="162,288" Name="Stair" Variety="Spooky Up-Right Stringer" />
+        <Frame UV="180,288" Name="Stair" Variety="Spooky Up-Left Riser" />
+        <Frame UV="198,288" Name="Stair" Variety="Spooky Up-Left Stringer" />
+        <Frame UV="216,288" Name="Stair" Variety="Spooky Top Landing R" />
+        <Frame UV="234,288" Name="Stair" Variety="Spooky Top Landing L" />
+        <Frame UV="252,288" Name="Stair" Variety="Spooky Top Landing L-R" />
+        <Frame UV="270,288" Name="Stair" Variety="Spooky Top Landing R Endcap" />
+        <Frame UV="288,288" Name="Stair" Variety="Spooky Top Landing L Endcap" />
+        <Frame UV="306,288" Name="Stair" Variety="Spooky Bottom Landing R" />
+        <Frame UV="324,288" Name="Stair" Variety="Spooky Bottom Landing L" />
+        <Frame UV="342,288" Name="Stair" Variety="Spooky Inset Up-Right 1" />
+        <Frame UV="360,288" Name="Stair" Variety="Spooky Inset Up-Left 1" />
+        <Frame UV="378,288" Name="Stair" Variety="Spooky Inset Up-Right 2" />
+        <Frame UV="396,288" Name="Stair" Variety="Spooky Inset Up-Left 2" />
+        <Frame UV="414,288" Name="Stair" Variety="Spooky Inset Up-Right 3" />
+        <Frame UV="432,288" Name="Stair" Variety="Spooky Inset Up-Left 3" />
+        <Frame UV="450,288" Name="Stair" Variety="Spooky Inverted Right" />
+        <Frame UV="468,288" Name="Stair" Variety="Spooky Inverted Left" />
+        <Frame UV="0,306" Name="Platform" Variety="Palm Wood Flat" />
+        <Frame UV="18,306" Name="Platform" Variety="Palm Wood Endcap Right" />
+        <Frame UV="36,306" Name="Platform" Variety="Palm Wood Endcap Left" />
+        <Frame UV="54,306" Name="Platform" Variety="Palm Wood Attach Left" />
+        <Frame UV="72,306" Name="Platform" Variety="Palm Wood Attach Right" />
+        <Frame UV="90,306" Name="Platform" Variety="Palm Wood Single" />
+        <Frame UV="108,306" Name="Platform" Variety="Palm Wood Attach Left Endcap" />
+        <Frame UV="126,306" Name="Platform" Variety="Palm Wood Attach Right Endcap" />
+        <Frame UV="144,306" Name="Stair" Variety="Palm Wood Up-Right Riser" />
+        <Frame UV="162,306" Name="Stair" Variety="Palm Wood Up-Right Stringer" />
+        <Frame UV="180,306" Name="Stair" Variety="Palm Wood Up-Left Riser" />
+        <Frame UV="198,306" Name="Stair" Variety="Palm Wood Up-Left Stringer" />
+        <Frame UV="216,306" Name="Stair" Variety="Palm Wood Top Landing R" />
+        <Frame UV="234,306" Name="Stair" Variety="Palm Wood Top Landing L" />
+        <Frame UV="252,306" Name="Stair" Variety="Palm Wood Top Landing L-R" />
+        <Frame UV="270,306" Name="Stair" Variety="Palm Wood Top Landing R Endcap" />
+        <Frame UV="288,306" Name="Stair" Variety="Palm Wood Top Landing L Endcap" />
+        <Frame UV="306,306" Name="Stair" Variety="Palm Wood Bottom Landing R" />
+        <Frame UV="324,306" Name="Stair" Variety="Palm Wood Bottom Landing L" />
+        <Frame UV="342,306" Name="Stair" Variety="Palm Wood Inset Up-Right 1" />
+        <Frame UV="360,306" Name="Stair" Variety="Palm Wood Inset Up-Left 1" />
+        <Frame UV="378,306" Name="Stair" Variety="Palm Wood Inset Up-Right 2" />
+        <Frame UV="396,306" Name="Stair" Variety="Palm Wood Inset Up-Left 2" />
+        <Frame UV="414,306" Name="Stair" Variety="Palm Wood Inset Up-Right 3" />
+        <Frame UV="432,306" Name="Stair" Variety="Palm Wood Inset Up-Left 3" />
+        <Frame UV="450,306" Name="Stair" Variety="Palm Wood Inverted Right" />
+        <Frame UV="468,306" Name="Stair" Variety="Palm Wood Inverted Left" />
+        <Frame UV="0,324" Name="Platform" Variety="Mushroom Flat" />
+        <Frame UV="18,324" Name="Platform" Variety="Mushroom Endcap Right" />
+        <Frame UV="36,324" Name="Platform" Variety="Mushroom Endcap Left" />
+        <Frame UV="54,324" Name="Platform" Variety="Mushroom Attach Left" />
+        <Frame UV="72,324" Name="Platform" Variety="Mushroom Attach Right" />
+        <Frame UV="90,324" Name="Platform" Variety="Mushroom Single" />
+        <Frame UV="108,324" Name="Platform" Variety="Mushroom Attach Left Endcap" />
+        <Frame UV="126,324" Name="Platform" Variety="Mushroom Attach Right Endcap" />
+        <Frame UV="144,324" Name="Stair" Variety="Mushroom Up-Right Riser" />
+        <Frame UV="162,324" Name="Stair" Variety="Mushroom Up-Right Stringer" />
+        <Frame UV="180,324" Name="Stair" Variety="Mushroom Up-Left Riser" />
+        <Frame UV="198,324" Name="Stair" Variety="Mushroom Up-Left Stringer" />
+        <Frame UV="216,324" Name="Stair" Variety="Mushroom Top Landing R" />
+        <Frame UV="234,324" Name="Stair" Variety="Mushroom Top Landing L" />
+        <Frame UV="252,324" Name="Stair" Variety="Mushroom Top Landing L-R" />
+        <Frame UV="270,324" Name="Stair" Variety="Mushroom Top Landing R Endcap" />
+        <Frame UV="288,324" Name="Stair" Variety="Mushroom Top Landing L Endcap" />
+        <Frame UV="306,324" Name="Stair" Variety="Mushroom Bottom Landing R" />
+        <Frame UV="324,324" Name="Stair" Variety="Mushroom Bottom Landing L" />
+        <Frame UV="342,324" Name="Stair" Variety="Mushroom Inset Up-Right 1" />
+        <Frame UV="360,324" Name="Stair" Variety="Mushroom Inset Up-Left 1" />
+        <Frame UV="378,324" Name="Stair" Variety="Mushroom Inset Up-Right 2" />
+        <Frame UV="396,324" Name="Stair" Variety="Mushroom Inset Up-Left 2" />
+        <Frame UV="414,324" Name="Stair" Variety="Mushroom Inset Up-Right 3" />
+        <Frame UV="432,324" Name="Stair" Variety="Mushroom Inset Up-Left 3" />
+        <Frame UV="450,324" Name="Stair" Variety="Mushroom Inverted Right" />
+        <Frame UV="468,324" Name="Stair" Variety="Mushroom Inverted Left" />
+        <Frame UV="0,342" Name="Platform" Variety="Boreal Wood Flat" />
+        <Frame UV="18,342" Name="Platform" Variety="Boreal Wood Endcap Right" />
+        <Frame UV="36,342" Name="Platform" Variety="Boreal Wood Endcap Left" />
+        <Frame UV="54,342" Name="Platform" Variety="Boreal Wood Attach Left" />
+        <Frame UV="72,342" Name="Platform" Variety="Boreal Wood Attach Right" />
+        <Frame UV="90,342" Name="Platform" Variety="Boreal Wood Single" />
+        <Frame UV="108,342" Name="Platform" Variety="Boreal Wood Attach Left Endcap" />
+        <Frame UV="126,342" Name="Platform" Variety="Boreal Wood Attach Right Endcap" />
+        <Frame UV="144,342" Name="Stair" Variety="Boreal Wood Up-Right Riser" />
+        <Frame UV="162,342" Name="Stair" Variety="Boreal Wood Up-Right Stringer" />
+        <Frame UV="180,342" Name="Stair" Variety="Boreal Wood Up-Left Riser" />
+        <Frame UV="198,342" Name="Stair" Variety="Boreal Wood Up-Left Stringer" />
+        <Frame UV="216,342" Name="Stair" Variety="Boreal Wood Top Landing R" />
+        <Frame UV="234,342" Name="Stair" Variety="Boreal Wood Top Landing L" />
+        <Frame UV="252,342" Name="Stair" Variety="Boreal Wood Top Landing L-R" />
+        <Frame UV="270,342" Name="Stair" Variety="Boreal Wood Top Landing R Endcap" />
+        <Frame UV="288,342" Name="Stair" Variety="Boreal Wood Top Landing L Endcap" />
+        <Frame UV="306,342" Name="Stair" Variety="Boreal Wood Bottom Landing R" />
+        <Frame UV="324,342" Name="Stair" Variety="Boreal Wood Bottom Landing L" />
+        <Frame UV="342,342" Name="Stair" Variety="Boreal Wood Inset Up-Right 1" />
+        <Frame UV="360,342" Name="Stair" Variety="Boreal Wood Inset Up-Left 1" />
+        <Frame UV="378,342" Name="Stair" Variety="Boreal Wood Inset Up-Right 2" />
+        <Frame UV="396,342" Name="Stair" Variety="Boreal Wood Inset Up-Left 2" />
+        <Frame UV="414,342" Name="Stair" Variety="Boreal Wood Inset Up-Right 3" />
+        <Frame UV="432,342" Name="Stair" Variety="Boreal Wood Inset Up-Left 3" />
+        <Frame UV="450,342" Name="Stair" Variety="Boreal Wood Inverted Right" />
+        <Frame UV="468,342" Name="Stair" Variety="Boreal Wood Inverted Left" />
+        <Frame UV="0,360" Name="Platform" Variety="Slime Platform Flat" />
+        <Frame UV="18,360" Name="Platform" Variety="Slime Platform Endcap Right" />
+        <Frame UV="36,360" Name="Platform" Variety="Slime Platform Endcap Left" />
+        <Frame UV="54,360" Name="Platform" Variety="Slime Platform Attach Left" />
+        <Frame UV="72,360" Name="Platform" Variety="Slime Platform Attach Right" />
+        <Frame UV="90,360" Name="Platform" Variety="Slime Platform Single" />
+        <Frame UV="108,360" Name="Platform" Variety="Slime Platform Attach Left Endcap" />
+        <Frame UV="126,360" Name="Platform" Variety="Slime Platform Attach Right Endcap" />
+        <Frame UV="144,360" Name="Stair" Variety="Slime Platform Up-Right Riser" />
+        <Frame UV="162,360" Name="Stair" Variety="Slime Platform Up-Right Stringer" />
+        <Frame UV="180,360" Name="Stair" Variety="Slime Platform Up-Left Riser" />
+        <Frame UV="198,360" Name="Stair" Variety="Slime Platform Up-Left Stringer" />
+        <Frame UV="216,360" Name="Stair" Variety="Slime Platform Top Landing R" />
+        <Frame UV="234,360" Name="Stair" Variety="Slime Platform Top Landing L" />
+        <Frame UV="252,360" Name="Stair" Variety="Slime Platform Top Landing L-R" />
+        <Frame UV="270,360" Name="Stair" Variety="Slime Platform Top Landing R Endcap" />
+        <Frame UV="288,360" Name="Stair" Variety="Slime Platform Top Landing L Endcap" />
+        <Frame UV="306,360" Name="Stair" Variety="Slime Platform Bottom Landing R" />
+        <Frame UV="324,360" Name="Stair" Variety="Slime Platform Bottom Landing L" />
+        <Frame UV="342,360" Name="Stair" Variety="Slime Platform Inset Up-Right 1" />
+        <Frame UV="360,360" Name="Stair" Variety="Slime Platform Inset Up-Left 1" />
+        <Frame UV="378,360" Name="Stair" Variety="Slime Platform Inset Up-Right 2" />
+        <Frame UV="396,360" Name="Stair" Variety="Slime Platform Inset Up-Left 2" />
+        <Frame UV="414,360" Name="Stair" Variety="Slime Platform Inset Up-Right 3" />
+        <Frame UV="432,360" Name="Stair" Variety="Slime Platform Inset Up-Left 3" />
+        <Frame UV="450,360" Name="Stair" Variety="Slime Platform Inverted Right" />
+        <Frame UV="468,360" Name="Stair" Variety="Slime Platform Inverted Left" />
+        <Frame UV="0,378" Name="Platform" Variety="Steampunk Flat" />
+        <Frame UV="18,378" Name="Platform" Variety="Steampunk Endcap Right" />
+        <Frame UV="36,378" Name="Platform" Variety="Steampunk Endcap Left" />
+        <Frame UV="54,378" Name="Platform" Variety="Steampunk Attach Left" />
+        <Frame UV="72,378" Name="Platform" Variety="Steampunk Attach Right" />
+        <Frame UV="90,378" Name="Platform" Variety="Steampunk Single" />
+        <Frame UV="108,378" Name="Platform" Variety="Steampunk Attach Left Endcap" />
+        <Frame UV="126,378" Name="Platform" Variety="Steampunk Attach Right Endcap" />
+        <Frame UV="144,378" Name="Stair" Variety="Steampunk Up-Right Riser" />
+        <Frame UV="162,378" Name="Stair" Variety="Steampunk Up-Right Stringer" />
+        <Frame UV="180,378" Name="Stair" Variety="Steampunk Up-Left Riser" />
+        <Frame UV="198,378" Name="Stair" Variety="Steampunk Up-Left Stringer" />
+        <Frame UV="216,378" Name="Stair" Variety="Steampunk Top Landing R" />
+        <Frame UV="234,378" Name="Stair" Variety="Steampunk Top Landing L" />
+        <Frame UV="252,378" Name="Stair" Variety="Steampunk Top Landing L-R" />
+        <Frame UV="270,378" Name="Stair" Variety="Steampunk Top Landing R Endcap" />
+        <Frame UV="288,378" Name="Stair" Variety="Steampunk Top Landing L Endcap" />
+        <Frame UV="306,378" Name="Stair" Variety="Steampunk Bottom Landing R" />
+        <Frame UV="324,378" Name="Stair" Variety="Steampunk Bottom Landing L" />
+        <Frame UV="342,378" Name="Stair" Variety="Steampunk Inset Up-Right 1" />
+        <Frame UV="360,378" Name="Stair" Variety="Steampunk Inset Up-Left 1" />
+        <Frame UV="378,378" Name="Stair" Variety="Steampunk Inset Up-Right 2" />
+        <Frame UV="396,378" Name="Stair" Variety="Steampunk Inset Up-Left 2" />
+        <Frame UV="414,378" Name="Stair" Variety="Steampunk Inset Up-Right 3" />
+        <Frame UV="432,378" Name="Stair" Variety="Steampunk Inset Up-Left 3" />
+        <Frame UV="450,378" Name="Stair" Variety="Steampunk Inverted Right" />
+        <Frame UV="468,378" Name="Stair" Variety="Steampunk Inverted Left" />
+        <Frame UV="0,396" Name="Platform" Variety="Skyware Flat" />
+        <Frame UV="18,396" Name="Platform" Variety="Skyware Endcap Right" />
+        <Frame UV="36,396" Name="Platform" Variety="Skyware Endcap Left" />
+        <Frame UV="54,396" Name="Platform" Variety="Skyware Attach Left" />
+        <Frame UV="72,396" Name="Platform" Variety="Skyware Attach Right" />
+        <Frame UV="90,396" Name="Platform" Variety="Skyware Single" />
+        <Frame UV="108,396" Name="Platform" Variety="Skyware Attach Left Endcap" />
+        <Frame UV="126,396" Name="Platform" Variety="Skyware Attach Right Endcap" />
+        <Frame UV="144,396" Name="Stair" Variety="Skyware Up-Right Riser" />
+        <Frame UV="162,396" Name="Stair" Variety="Skyware Up-Right Stringer" />
+        <Frame UV="180,396" Name="Stair" Variety="Skyware Up-Left Riser" />
+        <Frame UV="198,396" Name="Stair" Variety="Skyware Up-Left Stringer" />
+        <Frame UV="216,396" Name="Stair" Variety="Skyware Top Landing R" />
+        <Frame UV="234,396" Name="Stair" Variety="Skyware Top Landing L" />
+        <Frame UV="252,396" Name="Stair" Variety="Skyware Top Landing L-R" />
+        <Frame UV="270,396" Name="Stair" Variety="Skyware Top Landing R Endcap" />
+        <Frame UV="288,396" Name="Stair" Variety="Skyware Top Landing L Endcap" />
+        <Frame UV="306,396" Name="Stair" Variety="Skyware Bottom Landing R" />
+        <Frame UV="324,396" Name="Stair" Variety="Skyware Bottom Landing L" />
+        <Frame UV="342,396" Name="Stair" Variety="Skyware Inset Up-Right 1" />
+        <Frame UV="360,396" Name="Stair" Variety="Skyware Inset Up-Left 1" />
+        <Frame UV="378,396" Name="Stair" Variety="Skyware Inset Up-Right 2" />
+        <Frame UV="396,396" Name="Stair" Variety="Skyware Inset Up-Left 2" />
+        <Frame UV="414,396" Name="Stair" Variety="Skyware Inset Up-Right 3" />
+        <Frame UV="432,396" Name="Stair" Variety="Skyware Inset Up-Left 3" />
+        <Frame UV="450,396" Name="Stair" Variety="Skyware Inverted Right" />
+        <Frame UV="468,396" Name="Stair" Variety="Skyware Inverted Left" />
+        <Frame UV="0,414" Name="Platform" Variety="Living Wood Flat" />
+        <Frame UV="18,414" Name="Platform" Variety="Living Wood Endcap Right" />
+        <Frame UV="36,414" Name="Platform" Variety="Living Wood Endcap Left" />
+        <Frame UV="54,414" Name="Platform" Variety="Living Wood Attach Left" />
+        <Frame UV="72,414" Name="Platform" Variety="Living Wood Attach Right" />
+        <Frame UV="90,414" Name="Platform" Variety="Living Wood Single" />
+        <Frame UV="108,414" Name="Platform" Variety="Living Wood Attach Left Endcap" />
+        <Frame UV="126,414" Name="Platform" Variety="Living Wood Attach Right Endcap" />
+        <Frame UV="144,414" Name="Stair" Variety="Living Wood Up-Right Riser" />
+        <Frame UV="162,414" Name="Stair" Variety="Living Wood Up-Right Stringer" />
+        <Frame UV="180,414" Name="Stair" Variety="Living Wood Up-Left Riser" />
+        <Frame UV="198,414" Name="Stair" Variety="Living Wood Up-Left Stringer" />
+        <Frame UV="216,414" Name="Stair" Variety="Living Wood Top Landing R" />
+        <Frame UV="234,414" Name="Stair" Variety="Living Wood Top Landing L" />
+        <Frame UV="252,414" Name="Stair" Variety="Living Wood Top Landing L-R" />
+        <Frame UV="270,414" Name="Stair" Variety="Living Wood Top Landing R Endcap" />
+        <Frame UV="288,414" Name="Stair" Variety="Living Wood Top Landing L Endcap" />
+        <Frame UV="306,414" Name="Stair" Variety="Living Wood Bottom Landing R" />
+        <Frame UV="324,414" Name="Stair" Variety="Living Wood Bottom Landing L" />
+        <Frame UV="342,414" Name="Stair" Variety="Living Wood Inset Up-Right 1" />
+        <Frame UV="360,414" Name="Stair" Variety="Living Wood Inset Up-Left 1" />
+        <Frame UV="378,414" Name="Stair" Variety="Living Wood Inset Up-Right 2" />
+        <Frame UV="396,414" Name="Stair" Variety="Living Wood Inset Up-Left 2" />
+        <Frame UV="414,414" Name="Stair" Variety="Living Wood Inset Up-Right 3" />
+        <Frame UV="432,414" Name="Stair" Variety="Living Wood Inset Up-Left 3" />
+        <Frame UV="450,414" Name="Stair" Variety="Living Wood Inverted Right" />
+        <Frame UV="468,414" Name="Stair" Variety="Living Wood Inverted Left" />
+        <Frame UV="0,432" Name="Platform" Variety="Honey Flat" />
+        <Frame UV="18,432" Name="Platform" Variety="Honey Endcap Right" />
+        <Frame UV="36,432" Name="Platform" Variety="Honey Endcap Left" />
+        <Frame UV="54,432" Name="Platform" Variety="Honey Attach Left" />
+        <Frame UV="72,432" Name="Platform" Variety="Honey Attach Right" />
+        <Frame UV="90,432" Name="Platform" Variety="Honey Single" />
+        <Frame UV="108,432" Name="Platform" Variety="Honey Attach Left Endcap" />
+        <Frame UV="126,432" Name="Platform" Variety="Honey Attach Right Endcap" />
+        <Frame UV="144,432" Name="Stair" Variety="Honey Up-Right Riser" />
+        <Frame UV="162,432" Name="Stair" Variety="Honey Up-Right Stringer" />
+        <Frame UV="180,432" Name="Stair" Variety="Honey Up-Left Riser" />
+        <Frame UV="198,432" Name="Stair" Variety="Honey Up-Left Stringer" />
+        <Frame UV="216,432" Name="Stair" Variety="Honey Top Landing R" />
+        <Frame UV="234,432" Name="Stair" Variety="Honey Top Landing L" />
+        <Frame UV="252,432" Name="Stair" Variety="Honey Top Landing L-R" />
+        <Frame UV="270,432" Name="Stair" Variety="Honey Top Landing R Endcap" />
+        <Frame UV="288,432" Name="Stair" Variety="Honey Top Landing L Endcap" />
+        <Frame UV="306,432" Name="Stair" Variety="Honey Bottom Landing R" />
+        <Frame UV="324,432" Name="Stair" Variety="Honey Bottom Landing L" />
+        <Frame UV="342,432" Name="Stair" Variety="Honey Inset Up-Right 1" />
+        <Frame UV="360,432" Name="Stair" Variety="Honey Inset Up-Left 1" />
+        <Frame UV="378,432" Name="Stair" Variety="Honey Inset Up-Right 2" />
+        <Frame UV="396,432" Name="Stair" Variety="Honey Inset Up-Left 2" />
+        <Frame UV="414,432" Name="Stair" Variety="Honey Inset Up-Right 3" />
+        <Frame UV="432,432" Name="Stair" Variety="Honey Inset Up-Left 3" />
+        <Frame UV="450,432" Name="Stair" Variety="Honey Inverted Right" />
+        <Frame UV="468,432" Name="Stair" Variety="Honey Inverted Left" />
+        <Frame UV="0,450" Name="Platform" Variety="Cactus Flat" />
+        <Frame UV="18,450" Name="Platform" Variety="Cactus Endcap Right" />
+        <Frame UV="36,450" Name="Platform" Variety="Cactus Endcap Left" />
+        <Frame UV="54,450" Name="Platform" Variety="Cactus Attach Left" />
+        <Frame UV="72,450" Name="Platform" Variety="Cactus Attach Right" />
+        <Frame UV="90,450" Name="Platform" Variety="Cactus Single" />
+        <Frame UV="108,450" Name="Platform" Variety="Cactus Attach Left Endcap" />
+        <Frame UV="126,450" Name="Platform" Variety="Cactus Attach Right Endcap" />
+        <Frame UV="144,450" Name="Stair" Variety="Cactus Up-Right Riser" />
+        <Frame UV="162,450" Name="Stair" Variety="Cactus Up-Right Stringer" />
+        <Frame UV="180,450" Name="Stair" Variety="Cactus Up-Left Riser" />
+        <Frame UV="198,450" Name="Stair" Variety="Cactus Up-Left Stringer" />
+        <Frame UV="216,450" Name="Stair" Variety="Cactus Top Landing R" />
+        <Frame UV="234,450" Name="Stair" Variety="Cactus Top Landing L" />
+        <Frame UV="252,450" Name="Stair" Variety="Cactus Top Landing L-R" />
+        <Frame UV="270,450" Name="Stair" Variety="Cactus Top Landing R Endcap" />
+        <Frame UV="288,450" Name="Stair" Variety="Cactus Top Landing L Endcap" />
+        <Frame UV="306,450" Name="Stair" Variety="Cactus Bottom Landing R" />
+        <Frame UV="324,450" Name="Stair" Variety="Cactus Bottom Landing L" />
+        <Frame UV="342,450" Name="Stair" Variety="Cactus Inset Up-Right 1" />
+        <Frame UV="360,450" Name="Stair" Variety="Cactus Inset Up-Left 1" />
+        <Frame UV="378,450" Name="Stair" Variety="Cactus Inset Up-Right 2" />
+        <Frame UV="396,450" Name="Stair" Variety="Cactus Inset Up-Left 2" />
+        <Frame UV="414,450" Name="Stair" Variety="Cactus Inset Up-Right 3" />
+        <Frame UV="432,450" Name="Stair" Variety="Cactus Inset Up-Left 3" />
+        <Frame UV="450,450" Name="Stair" Variety="Cactus Inverted Right" />
+        <Frame UV="468,450" Name="Stair" Variety="Cactus Inverted Left" />
       </Frames>
     </Tile>
     <Tile Color="#FFA37451" Size="1,2" Id="20" Name="Acorn" Framed="true">
@@ -2882,7 +3564,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="180,0" Name="Text Statue" Variety="5 Statue" />
         <Frame UV="216,0" Name="Text Statue" Variety="6 Statue" />
         <Frame UV="252,0" Name="Text Statue" Variety="7 Statue" />
-        <Frame UV="280,0" Name="Text Statue" Variety="8 Statue" />
+        <Frame UV="288,0" Name="Text Statue" Variety="8 Statue" />
         <Frame UV="324,0" Name="Text Statue" Variety="9 Statue" />
         <Frame UV="360,0" Name="Text Statue" Variety="A Statue" />
         <Frame UV="396,0" Name="Text Statue" Variety="B Statue" />
