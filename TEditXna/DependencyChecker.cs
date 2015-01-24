@@ -24,6 +24,16 @@ namespace TEditXna
                 path = string.Empty;
             }
 
+            // SBLogic - attempt to find GOG version
+            if (string.IsNullOrWhiteSpace(path))
+            {
+                using (Microsoft.Win32.RegistryKey key = Microsoft.Win32.Registry.LocalMachine.OpenSubKey(@"SOFTWARE\GOG.com\Games\1207665503\"))
+                {
+                    if (key != null)
+                        path = Path.Combine((string)key.GetValue("PATH"), "Content");
+                }
+            }
+
             // find steam
             if (string.IsNullOrWhiteSpace(path))
             {
