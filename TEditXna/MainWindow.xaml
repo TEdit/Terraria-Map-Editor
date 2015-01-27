@@ -63,8 +63,8 @@
                     <MenuItem Header="Show Grid" IsCheckable="True" IsChecked="{Binding ShowGrid}" />
                     <Separator Margin="1" />
                     <MenuItem Header="Show Walls" IsCheckable="True" IsChecked="{Binding ShowWalls}" />
-                    <MenuItem Header="Show UndoTiles" IsCheckable="True" IsChecked="{Binding ShowTiles}" />
-                    <MenuItem Header="Show LiquidAmount" IsCheckable="True" IsChecked="{Binding ShowLiquid}" />
+                    <MenuItem Header="Show Tiles" IsCheckable="True" IsChecked="{Binding ShowTiles}" />
+                    <MenuItem Header="Show Liquid" IsCheckable="True" IsChecked="{Binding ShowLiquid}" />
                     <MenuItem Header="Show Wires" IsCheckable="True" IsChecked="{Binding ShowWires}" />
                     <Separator Margin="1" />
                     <MenuItem Header="Show Points" IsCheckable="True" IsChecked="{Binding ShowPoints}" />

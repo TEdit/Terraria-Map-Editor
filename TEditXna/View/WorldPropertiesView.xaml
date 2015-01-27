@@ -71,7 +71,11 @@
             <enum:EnumItem Value="1">1</enum:EnumItem>
             <enum:EnumItem Value="2">2</enum:EnumItem>
         </enum:EnumItemList>
-
+        <enum:EnumItemList x:Key="CrimsonBGStyleList" EnumType="{x:Type System:Int32}" SortBy="Value">
+            <enum:EnumItem Value="0">0</enum:EnumItem>
+            <enum:EnumItem Value="1">1</enum:EnumItem>
+            <enum:EnumItem Value="2">2</enum:EnumItem>
+        </enum:EnumItemList>
         <enum:EnumItemList x:Key="CommonBGStyleList" EnumType="{x:Type System:Byte}" SortBy="Value">
             <enum:EnumItem Value="0">0</enum:EnumItem>
             <enum:EnumItem Value="1">1</enum:EnumItem>
@@ -386,7 +390,7 @@
             <TextBlock Text="Crimson BG" HorizontalAlignment="Right" />
         </DockPanel>
         <DockPanel>
-            <ComboBox Height="20" Width="40" HorizontalAlignment="Left" ItemsSource="{StaticResource CommonBGStyleList}" SelectedValue="{Binding CurrentWorld.BgCrimson, Mode=TwoWay}" SelectedValuePath="Value" />
+            <ComboBox Height="20" Width="40" HorizontalAlignment="Left" ItemsSource="{StaticResource CrimsonBGStyleList}" SelectedValue="{Binding CurrentWorld.BgCrimson, Mode=TwoWay}" SelectedValuePath="Value" />
         </DockPanel>
         <DockPanel>
             <TextBlock Text="Desert BG" HorizontalAlignment="Right" />
