@@ -5,12 +5,7 @@ Terraria Settings.XML Specifications
 ====================================
 Compatible Ver: Terraria 1.2.4.1
 Primary URL: https://raw.github.com/BinaryConstruct/Terraria-Map-Editor/master/TEditXna/settings.xml
-Branch URL:  https:
 ====================================
-
-//  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //
-EXPERIMENTAL VERSION: This version is provided AS IS.  It may not be complete and
-may still contain errors and/or missing data.  Use this update as your own discretion.
 
 Known issues:
 Sprites for new trees and alternate wood (ID 5) are not yet added.
@@ -35,12 +30,17 @@ Update 3:
 * Fixed UV alignment on tables
 * Extended sprites for platforms
 
+Update 4:
+
+* Fix crimson plants (201)
+* Rename ambiguous "Seeds" tiles (2, 23, 60, 70, 109, 199)
+* Add missing lever sprites (132)
+* Minor cleanup of notes/comments
+
 Outstanding:
 * Some jungle/crimson plants
 * Overhaul wood, handle alternate wood types
 * Stalactite/stalagmite sprites
-
-//  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //  //
 
 Documentation moved to the end of this file.
 
@@ -89,7 +89,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
   <Tiles>
     <Tile Color="#FF976B4B" Blends="true" Id="0" Name="Dirt Block" Solid="true" />
     <Tile Color="#FF808080" Blends="true" MergeWith="0" Stone="true" Id="1" Name="Stone Block" Solid="true" />
-    <Tile Color="#FF1CD85E" Blends="true" MergeWith="0" Special="Grass" Id="2" Name="Grass Seeds" Solid="true" />
+    <Tile Color="#FF1CD85E" Blends="true" MergeWith="0" Special="Grass" Id="2" Name="Grass Block" Solid="true" />
     <Tile Name="Grass Flowers" Color="#FF1BC56D" TextureGrid="16,20" Id="3" Framed="true">
       <Frames>
         <Frame UV="0,0" Name="Grass" Anchor="Right" Variety="Single Blade" />
@@ -1358,7 +1358,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
       </Frames>
     </Tile>
     <Tile Color="#FF625FA7" Blends="true" MergeWith="0" Id="22" Name="Demonite Ore" Solid="true" Light="true" />
-    <Tile Color="#FF8D89DF" Blends="true" MergeWith="0" Special="Grass" Id="23" Name="Corrupt Seeds" Solid="true" />
+    <Tile Color="#FF8D89DF" Blends="true" MergeWith="0" Special="Grass" Id="23" Name="Corrupt Grass Block" Solid="true" />
     <Tile Name="Corruption Plants" Color="#FF7A74DA" TextureGrid="16,20" Id="24" Framed="true">
       <Frames>
         <Frame UV="0,0" Name="Vile Grass" Anchor="Right" Variety="Single Blade" />
@@ -1762,7 +1762,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Tile Color="#FF44444C" Blends="true" MergeWith="0" Id="57" Name="Ash Block" Solid="true" />
     <Tile Color="#FF8E4242" Blends="true" MergeWith="57" Id="58" Name="Hellstone" Solid="true" Light="true" />
     <Tile Color="#FF5C4449" Blends="true" MergeWith="0" Id="59" Name="Mud Block" Solid="true" />
-    <Tile Color="#FF8FD71D" Blends="true" MergeWith="59" Special="Grass" Id="60" Name="Jungle Grass Seeds" Solid="true" />
+    <Tile Color="#FF8FD71D" Blends="true" MergeWith="59" Special="Grass" Id="60" Name="Jungle Grass Block" Solid="true" />
     <Tile Name="Jungle Plants" Color="#FF87C41A" TextureGrid="16,20" Id="61" Framed="true" Light="true">
       <Frames>
         <Frame UV="0,0" Name="Jungle Grass" Anchor="Right" Variety="Single Blade" />
@@ -1785,7 +1785,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Tile Name="Gem Amethyst" Color="#FF8C3AA6" Blends="true" MergeWith="0" Stone="true" Id="67" Solid="true" />
     <Tile Name="Gem Diamond" Color="#FF7DBFC5" Blends="true" MergeWith="0" Stone="true" Id="68" Solid="true" />
     <Tile Name="Jungle Thorns" Color="#FFBE965C" Blends="true" Id="69" />
-    <Tile Color="#FF5D7FFF" Blends="true" MergeWith="59" Special="Grass" Id="70" Name="Mushroom Grass Seeds" Solid="true" Light="true" />
+    <Tile Color="#FF5D7FFF" Blends="true" MergeWith="59" Special="Grass" Id="70" Name="Mushroom Grass Block" Solid="true" Light="true" />
     <Tile Name="Mushroom Plant" Color="#FFB6AF82" TextureGrid="16,20" Id="71" Framed="true" Light="true">
       <Frames>
         <Frame UV="0,0" Variety="Double Small" />
@@ -2478,7 +2478,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Tile Color="#FFBF8E6F" Placement="floor" Size="3,3" Id="106" Name="Sawmill" Framed="true" />
     <Tile Color="#FF0B508F" Blends="true" MergeWith="0" Id="107" Name="Cobalt Ore" Solid="true" />
     <Tile Color="#FF5BA9A9" Blends="true" MergeWith="0" Id="108" Name="Mythril Ore" Solid="true" />
-    <Tile Color="#FF4EC1E3" Blends="true" MergeWith="0" Special="Grass" Id="109" Name="Hallowed Seeds" Solid="true" Light="true" />
+    <Tile Color="#FF4EC1E3" Blends="true" MergeWith="0" Special="Grass" Id="109" Name="Hallowed Grass Block" Solid="true" Light="true" />
     <Tile Name="Hallowed Plants" Color="#FF30BA87" TextureGrid="16,20" Id="110" Framed="true">
       <Frames>
         <Frame UV="0,0" Name="Grass" Anchor="Right" Variety="Single Blade" />
@@ -2525,7 +2525,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="36,0" Variety="Off" />
       </Frames>
     </Tile>
-    <Tile Name="Ice" Color="#FF80CCE6" Blends="true" Id="127" Solid="true" />
+    <Tile Name="Ice (Ice Rod)" Color="#FF80CCE6" Blends="true" Id="127" Solid="true" />
     <Tile Color="#FFBF8E6F" Size="2,3" Id="128" Name="Mannequin" Framed="true">
       <Frames>
         <Frame UV="0,0" Anchor="Left" />
@@ -2576,8 +2576,10 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Tile Color="#FF343434" Blends="true" MergeWith="0" Stone="true" Id="131" Name="Inactive Stone Block" />
     <Tile Color="#FF909490" Size="2,2" Id="132" Name="Lever" Framed="true">
       <Frames>
-        <Frame UV="0,0" Anchor="Left" />
-        <Frame UV="36,0" Anchor="Right" />
+        <Frame UV="0,0" Anchor="Left" Variety="Right" />
+        <Frame UV="36,0" Anchor="Right" Variety="Left" />
+        <Frame UV="72,0" Anchor="Center" Variety="Up" />
+        <Frame UV="108,0" Anchor="Center" Variety="Down" />
       </Frames>
     </Tile>
     <Tile Color="#FFE73538" Size="3,2" Id="133" Name="Adamantite Forge" Framed="true" Light="true">
@@ -3090,12 +3092,25 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Tile Color="#FF9390B2" Blends="true" Id="196" Name="Rain Cloud" Solid="true" />
     <Tile Color="#FF61C8E1" Blends="true" Id="197" Name="Frozen Slime Block" Solid="true" />
     <Tile Color="#FF3E3D34" Blends="true" Id="198" Name="Asphalt Block" Solid="true" />
-    <Tile Color="#FFD05050" Blends="true" MergeWith="0" Special="Grass" Id="199" Name="Crimson Seeds" Solid="true" />
+    <Tile Color="#FFD05050" Blends="true" MergeWith="0" Special="Grass" Id="199" Name="Crimson Grass Block" Solid="true" />
     <Tile Color="#FFD89890" Blends="true" Id="200" Name="Red Ice Block" Solid="true" />
-    <Tile Name="Crimson Plants" Color="#FFCB3D40" Id="201" Framed="true">
+    <Tile Name="Crimson Grass" Color="#FFCB3D40" Id="201" Framed="true">
       <Frames>
-        <Frame UV="0,0" Name="Default" Variety="Default" />
-        <!-- TODO -->
+        <Frame UV="0,0" Name="Crimson Grass" Variety="Three Blades" />
+        <Frame UV="18,0" Name="Crimson Grass" Variety="Two Blades" />
+        <Frame UV="36,0" Name="Crimson Grass" Variety="Hooked" />
+        <Frame UV="54,0" Name="Crimson Grass" Variety="Short" />
+        <Frame UV="72,0" Name="Crimson Grass" Variety="Thick 1" />
+        <Frame UV="90,0" Name="Crimson Grass" Variety="Fleshy 1" />
+        <Frame UV="108,0" Name="Crimson Grass" Variety="Sparse" />
+        <Frame UV="126,0" Name="Crimson Grass" Variety="Fleshy 2" />
+        <Frame UV="144,0" Name="Crimson Grass" Variety="Thick 2" />
+        <Frame UV="162,0" Name="Crimson Grass" Variety="Thick 3" />
+        <Frame UV="180,0" Name="Crimson Grass" Variety="Fleshy 3" />
+        <Frame UV="198,0" Name="Crimson Grass" Variety="Thick 4" />
+        <Frame UV="216,0" Name="Crimson Grass" Variety="Thick 5" />
+        <Frame UV="234,0" Name="Crimson Grass" Variety="Thick 6" />
+        <Frame UV="252,0" Name="Crimson Grass" Variety="Thick 7" />
       </Frames>
     </Tile>
     <Tile Color="#FFD5B21C" Blends="true" Id="202" Name="Sunplate Block" Solid="true" />

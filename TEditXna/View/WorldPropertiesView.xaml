@@ -140,7 +140,6 @@
             <Separator Grid.ColumnSpan="2" />
             <TextBlock Text="Moon Phase" HorizontalAlignment="Right" />
             <DockPanel>
-                <TextBlock Text="{Binding CurrentWorld.MoonPhase}" Width="30" DockPanel.Dock="Right" />
                 <!--<TextBox Width="30" DockPanel.Dock="Right" Height="16">
                     <TextBox.Text>
                         <Binding Path="CurrentWorld.MoonPhase" Mode="TwoWay" UpdateSourceTrigger="PropertyChanged">
@@ -150,8 +149,9 @@
                         </Binding>
                     </TextBox.Text>
                 </TextBox>-->
-                <Slider Value="{Binding CurrentWorld.MoonPhase, Mode=TwoWay}" VerticalAlignment="Center" Minimum="0" Maximum="7" />
-            </DockPanel>
+                <Slider Value="{Binding CurrentWorld.MoonPhase, Mode=TwoWay}" VerticalAlignment="Center" Minimum="0" Maximum="7" Width="128" />
+                <TextBox Text="{Binding CurrentWorld.MoonPhase, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="16" DockPanel.Dock="Right" />
+        </DockPanel>
         <TextBlock Text="Moon Style" HorizontalAlignment="Right" />
         <ComboBox Height="20" ItemsSource="{StaticResource moonTypeList}" SelectedValue="{Binding CurrentWorld.MoonType, Mode=TwoWay}" SelectedValuePath="Value" />
         <TextBlock />
@@ -193,13 +193,13 @@
             <Separator Grid.ColumnSpan="2" />
             <TextBlock Text="Surface Level" HorizontalAlignment="Right" />
             <DockPanel>
-                <TextBlock Text="{Binding CurrentWorld.GroundLevel, StringFormat={}{0:0}}" Width="30" DockPanel.Dock="Right" />
-                <Slider Value="{Binding CurrentWorld.GroundLevel, Mode=TwoWay}" VerticalAlignment="Center"  Minimum="0" Maximum="{Binding Path=CurrentWorld.TilesHigh}" SmallChange="1" />
+                <Slider Value="{Binding CurrentWorld.GroundLevel, Mode=TwoWay}" VerticalAlignment="Center"  Minimum="0" Maximum="{Binding Path=CurrentWorld.TilesHigh}" SmallChange="1" Width="120" />
+                <TextBox Text="{Binding CurrentWorld.GroundLevel, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="32" DockPanel.Dock="Right" />
             </DockPanel>
             <TextBlock Text="Cavern Level" HorizontalAlignment="Right" />
             <DockPanel>
-                <TextBlock Text="{Binding CurrentWorld.RockLevel, StringFormat={}{0:0}}" Width="30" DockPanel.Dock="Right" />
-                <Slider Value="{Binding CurrentWorld.RockLevel, Mode=TwoWay}" VerticalAlignment="Center" Minimum="0" Maximum="{Binding Path=CurrentWorld.TilesHigh}" SmallChange="1" />
+                <Slider Value="{Binding CurrentWorld.RockLevel, Mode=TwoWay}" VerticalAlignment="Center" Minimum="0" Maximum="{Binding Path=CurrentWorld.TilesHigh}" SmallChange="1" Width="120" />
+                <TextBox Text="{Binding CurrentWorld.RockLevel, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="32" DockPanel.Dock="Right" />
             </DockPanel>
             <Separator Grid.ColumnSpan="2" />
             <TextBlock Text="Meteor" HorizontalAlignment="Right" />
@@ -280,22 +280,22 @@
             <TextBlock Text="Tree X 0" HorizontalAlignment="Right" />
         </DockPanel>
         <DockPanel>
-            <TextBlock Text="{Binding CurrentWorld.TreeX0, StringFormat={}{0:0}}" Width="30" DockPanel.Dock="Right" />
-            <Slider Value="{Binding Path=CurrentWorld.TreeX0, Mode=TwoWay}" VerticalAlignment="Center" Minimum="0" Maximum="{Binding Path=CurrentWorld.TilesWide}" />
+            <Slider Value="{Binding Path=CurrentWorld.TreeX0, Mode=TwoWay}" VerticalAlignment="Center" Minimum="0" Maximum="{Binding Path=CurrentWorld.TilesWide}" Width="120" />
+            <TextBox Text="{Binding CurrentWorld.TreeX0, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="32" DockPanel.Dock="Right" />
         </DockPanel>
         <DockPanel>
             <TextBlock Text="Tree X 1" HorizontalAlignment="Right" />
         </DockPanel>
         <DockPanel>
-            <TextBlock Text="{Binding CurrentWorld.TreeX1, StringFormat={}{0:0}}" Width="30" DockPanel.Dock="Right" />
-            <Slider Value="{Binding Path=CurrentWorld.TreeX1, Mode=TwoWay}" VerticalAlignment="Center" Minimum="0" Maximum="{Binding Path=CurrentWorld.TilesWide}" />
+            <Slider Value="{Binding Path=CurrentWorld.TreeX1, Mode=TwoWay}" VerticalAlignment="Center" Minimum="0" Maximum="{Binding Path=CurrentWorld.TilesWide}" Width="120" />
+            <TextBox Text="{Binding CurrentWorld.TreeX1, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="32" DockPanel.Dock="Right" />
         </DockPanel>
         <DockPanel>
             <TextBlock Text="Tree X 2" HorizontalAlignment="Right" />
         </DockPanel>
         <DockPanel>
-            <TextBlock Text="{Binding CurrentWorld.TreeX2, StringFormat={}{0:0}}" Width="30" DockPanel.Dock="Right" />
-            <Slider Value="{Binding Path=CurrentWorld.TreeX2, Mode=TwoWay}" VerticalAlignment="Center" Minimum="0" Maximum="{Binding Path=CurrentWorld.TilesWide}" />
+            <Slider Value="{Binding Path=CurrentWorld.TreeX2, Mode=TwoWay}" VerticalAlignment="Center" Minimum="0" Maximum="{Binding Path=CurrentWorld.TilesWide}" Width="120" />
+            <TextBox Text="{Binding CurrentWorld.TreeX2, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="32" DockPanel.Dock="Right" />
         </DockPanel>
         <DockPanel>
             <TextBlock Text="Tree Styles" HorizontalAlignment="Right" />
@@ -311,22 +311,22 @@
             <TextBlock Text="Cave X 0" HorizontalAlignment="Right" />
         </DockPanel>
         <DockPanel>
-            <TextBlock Text="{Binding CurrentWorld.CaveBackX0, StringFormat={}{0:0}}" Width="30" DockPanel.Dock="Right" />
-            <Slider Value="{Binding Path=CurrentWorld.CaveBackX0, Mode=TwoWay}" VerticalAlignment="Center" Minimum="0" Maximum="{Binding Path=CurrentWorld.TilesWide}" />
+            <Slider Value="{Binding Path=CurrentWorld.CaveBackX0, Mode=TwoWay}" VerticalAlignment="Center" Minimum="0" Maximum="{Binding Path=CurrentWorld.TilesWide}" Width="120" />
+            <TextBox Text="{Binding CurrentWorld.CaveBackX0, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="32" DockPanel.Dock="Right" />
         </DockPanel>
         <DockPanel>
             <TextBlock Text="Cave X 1" HorizontalAlignment="Right" />
         </DockPanel>
         <DockPanel>
-            <TextBlock Text="{Binding CurrentWorld.CaveBackX1, StringFormat={}{0:0}}" Width="30" DockPanel.Dock="Right" />
-            <Slider Value="{Binding Path=CurrentWorld.CaveBackX1, Mode=TwoWay}" VerticalAlignment="Center" Minimum="0" Maximum="{Binding Path=CurrentWorld.TilesWide}" />
+            <Slider Value="{Binding Path=CurrentWorld.CaveBackX1, Mode=TwoWay}" VerticalAlignment="Center" Minimum="0" Maximum="{Binding Path=CurrentWorld.TilesWide}" Width="120" />
+            <TextBox Text="{Binding CurrentWorld.CaveBackX1, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="32" DockPanel.Dock="Right" />
         </DockPanel>
         <DockPanel>
             <TextBlock Text="Cave X 2" HorizontalAlignment="Right" />
         </DockPanel>
         <DockPanel>
-            <TextBlock Text="{Binding CurrentWorld.CaveBackX2, StringFormat={}{0:0}}" Width="30" DockPanel.Dock="Right" />
-            <Slider Value="{Binding Path=CurrentWorld.CaveBackX2, Mode=TwoWay}" VerticalAlignment="Center" Minimum="0" Maximum="{Binding Path=CurrentWorld.TilesWide}" />
+            <Slider Value="{Binding Path=CurrentWorld.CaveBackX2, Mode=TwoWay}" VerticalAlignment="Center" Minimum="0" Maximum="{Binding Path=CurrentWorld.TilesWide}" Width="120" />
+            <TextBox Text="{Binding CurrentWorld.CaveBackX2, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="32" DockPanel.Dock="Right" />
         </DockPanel>
         <DockPanel>
             <TextBlock Text="Cave Styles" HorizontalAlignment="Right" />
