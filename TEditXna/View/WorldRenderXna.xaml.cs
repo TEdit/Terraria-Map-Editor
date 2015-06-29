@@ -419,8 +419,8 @@ namespace TEditXna.View
         {
             Rectangle visibleBounds = GetViewingArea();
             TEditXna.Terraria.Objects.BlendRules blendRules = TEditXna.Terraria.Objects.BlendRules.Instance;
-            var W = _wvm.CurrentWorld.TilesWide;
-            var H = _wvm.CurrentWorld.TilesHigh;
+            var width  = _wvm.CurrentWorld.TilesWide;
+            var height = _wvm.CurrentWorld.TilesHigh;
 
 
             if (visibleBounds.Height * visibleBounds.Width < 25000)
@@ -441,14 +441,14 @@ namespace TEditXna.View
                         //Neighbor tiles are often used when dynamically determining which UV position to render
                         int e = 0, n = 1, w = 2, s = 3, ne = 4, nw = 5, sw = 6, se = 7;
                         Tile[] neighborTile = new Tile[8];
-                        neighborTile[ e] = (x + 1) < W                ? _wvm.CurrentWorld.Tiles[x + 1, y    ] : null;
-                        neighborTile[ n] = (y - 1) > 0                ? _wvm.CurrentWorld.Tiles[x    , y - 1] : null;
-                        neighborTile[ w] = (x - 1) > 0                ? _wvm.CurrentWorld.Tiles[x - 1, y    ] : null;
-                        neighborTile[ s] = (y + 1) < H                ? _wvm.CurrentWorld.Tiles[x    , y + 1] : null;
-                        neighborTile[ne] = (x + 1) < W && (y - 1) > 0 ? _wvm.CurrentWorld.Tiles[x + 1, y - 1] : null;
-                        neighborTile[nw] = (x - 1) > 0 && (y - 1) > 0 ? _wvm.CurrentWorld.Tiles[x - 1, y - 1] : null;
-                        neighborTile[sw] = (x - 1) > 0 && (y + 1) < H ? _wvm.CurrentWorld.Tiles[x - 1, y + 1] : null;
-                        neighborTile[se] = (x + 1) < W && (y + 1) < H ? _wvm.CurrentWorld.Tiles[x + 1, y + 1] : null;
+                        neighborTile[ e] = (x + 1) < width                     ? _wvm.CurrentWorld.Tiles[x + 1, y    ] : null;
+                        neighborTile[ n] = (y - 1) > 0                         ? _wvm.CurrentWorld.Tiles[x    , y - 1] : null;
+                        neighborTile[ w] = (x - 1) > 0                         ? _wvm.CurrentWorld.Tiles[x - 1, y    ] : null;
+                        neighborTile[ s] = (y + 1) < height                    ? _wvm.CurrentWorld.Tiles[x    , y + 1] : null;
+                        neighborTile[ne] = (x + 1) < width && (y - 1) > 0      ? _wvm.CurrentWorld.Tiles[x + 1, y - 1] : null;
+                        neighborTile[nw] = (x - 1) > 0     && (y - 1) > 0      ? _wvm.CurrentWorld.Tiles[x - 1, y - 1] : null;
+                        neighborTile[sw] = (x - 1) > 0     && (y + 1) < height ? _wvm.CurrentWorld.Tiles[x - 1, y + 1] : null;
+                        neighborTile[se] = (x + 1) < width && (y + 1) < height ? _wvm.CurrentWorld.Tiles[x + 1, y + 1] : null;
 
                         if (_wvm.ShowWalls)
                         {
