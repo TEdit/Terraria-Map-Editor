@@ -43,24 +43,33 @@ namespace TEditXNA.Terraria
         private int _y;
 
         private string _name = string.Empty;
-        private Vector2Short _uV;
+        private Vector2Short _uV = new Vector2Short(-1, -1);
 
         public Vector2Short UV
         {
             get 
             {
-                WorldViewModel wvm = ViewModelLocator.WorldViewModel;
-                var curTile = wvm.CurrentWorld.Tiles[X, Y];
-                _uV.X = curTile.U;
-                _uV.Y = curTile.V;
+                if (_uV.X == -1 && _uV.Y == -1)
+                {
+                    WorldViewModel wvm = ViewModelLocator.WorldViewModel;
+                    World world = wvm.CurrentWorld;
+                    _uV.X = world.Tiles[X, Y].U;
+                    _uV.Y = world.Tiles[X, Y].V;
+                }
                 return _uV; 
             }
             set
             {
                 WorldViewModel wvm = ViewModelLocator.WorldViewModel;
-                var curTile = wvm.CurrentWorld.Tiles[X, Y];
-                curTile.U = _uV.X;
-                curTile.V = _uV.Y;
+                World world = wvm.CurrentWorld;
+                for (int i = 0; i < 2; ++i)
+                {
+                    for (int j = 0; j < 2; ++j)
+                    {
+                        world.Tiles[X + i, Y + j].U = (short)(value.X + 18 * i);
+                        world.Tiles[X + i, Y + j].V = (short)(value.Y + 18 * j);
+                    }
+                }
                 Set("UV", ref _uV, value); 
             }
         } 
