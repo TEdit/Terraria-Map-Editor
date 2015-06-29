@@ -1,14 +1,20 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using TEdit.Geometry;
+using System.Linq;
+using System.Windows;
 using GalaSoft.MvvmLight;
+using TEditXNA.Terraria.Objects;
+using TEditXna.ViewModel;
+using TEdit.Geometry.Primitives;
 
 namespace TEditXNA.Terraria
 {
     [Serializable]
     public class Chest : ObservableObject
     {
-        public static int MaxItems = 40;
+        public static int MaxItems = 40; 
+
         public Chest()
         {
             for (int i = 0; i < MaxItems; i++)
@@ -32,11 +38,32 @@ namespace TEditXNA.Terraria
             _name = name;
         }
 
+
         private int _x;
         private int _y;
 
         private string _name = string.Empty;
-         
+        private Vector2Short _uV;
+
+        public Vector2Short UV
+        {
+            get 
+            {
+                WorldViewModel wvm = ViewModelLocator.WorldViewModel;
+                var curTile = wvm.CurrentWorld.Tiles[X, Y];
+                _uV.X = curTile.U;
+                _uV.Y = curTile.V;
+                return _uV; 
+            }
+            set
+            {
+                WorldViewModel wvm = ViewModelLocator.WorldViewModel;
+                var curTile = wvm.CurrentWorld.Tiles[X, Y];
+                curTile.U = _uV.X;
+                curTile.V = _uV.Y;
+                Set("UV", ref _uV, value); 
+            }
+        } 
 
         public string Name
         {

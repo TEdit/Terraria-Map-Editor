@@ -23,6 +23,7 @@ namespace TEditXNA.Terraria
         private static readonly Dictionary<int, int> _npcFrames = new Dictionary<int, int>();
         private static readonly Dictionary<byte, string> _prefix = new Dictionary<byte, string>();
         private static readonly ObservableCollection<ItemProperty> _itemProperties = new ObservableCollection<ItemProperty>();
+        private static readonly ObservableCollection<ChestProperty> _chestProperties = new ObservableCollection<ChestProperty>();
         private static readonly ObservableCollection<TileProperty> _tileProperties = new ObservableCollection<TileProperty>();
         private static readonly ObservableCollection<TileProperty> _tileBricks = new ObservableCollection<TileProperty>();
         private static readonly ObservableCollection<WallProperty> _wallProperties = new ObservableCollection<WallProperty>();
@@ -230,6 +231,20 @@ namespace TEditXNA.Terraria
                 _itemLookup.Add(curItem.Id, curItem);
             }
 
+            foreach (var xElement in xmlSettings.Elements("Chests").Elements("Chest"))
+            {
+                var curItem = new ChestProperty();
+                curItem.Id = (int?)xElement.Attribute("Id") ?? -1;
+                curItem.Name = (string)xElement.Attribute("Name");
+                string variety = (string)xElement.Attribute("Variety");
+                if (variety != null)
+                {
+                    curItem.Name = curItem.Name + " " + variety;
+                }
+                curItem.UV = StringToVector2Short((string)xElement.Attribute("UV"), 0, 0);
+                ChestProperties.Add(curItem);
+            }
+
             foreach (var xElement in xmlSettings.Elements("Npcs").Elements("Npc"))
             {
                 int id = (int?)xElement.Attribute("Id") ?? -1;
@@ -361,6 +376,11 @@ namespace TEditXNA.Terraria
         public static ObservableCollection<ItemProperty> ItemProperties
         {
             get { return _itemProperties; }
+        }
+
+        public static ObservableCollection<ChestProperty> ChestProperties
+        {
+            get { return _chestProperties; }
         }
 
         public static Dictionary<int, ItemProperty> ItemLookupTable
