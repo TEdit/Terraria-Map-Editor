@@ -3785,7 +3785,61 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Wall Id="169"  Name="Midnight Confetti Wall"         Color="#FF577C7D"  IsHouse="True"   />
     <Wall Id="170"  Name="Unique Cave Wall 7 (natural)"   Color="#FF6C4A44"  IsHouse="False"  />
     <Wall Id="171"  Name="Unique Cave Wall 8 (natural)"   Color="#FF643F42"  IsHouse="False"  />
+    <Wall Id="172" Name="Honeyfall Wall"                  Color="#FFA36000"  IsHouse="True" />
+    <Wall Id="173" Name="Chlorophyte Brick Wall"          Color="#FF5EA32E"  IsHouse="True" />
+    <Wall Id="174" Name="Crimtane Brick Wall"             Color="#FF75203B"  IsHouse="True" />
+    <Wall Id="175" Name="Shroomite Plating Wall"          Color="#FF140BCB"  IsHouse="True" />
+    <Wall Id="176" Name="Martian Conduit Wall"            Color="#FF4A4558"  IsHouse="True" />
+    <Wall Id="177" Name="Hellstone Brick Wall"            Color="#FF3C1E1E"  IsHouse="True" />
+    <Wall Id="178" Name="Marble (natural)"                Color="#FF6F7587"  IsHouse="False" />
+    <Wall Id="179" Name="Marble Block Wall"               Color="#FF6F7587"  IsHouse="True" />
+    <Wall Id="180" Name="Granite (natural)"               Color="#FF191736"  IsHouse="False" />
+    <Wall Id="181" Name="Granite Block Wall"              Color="#FF191736"  IsHouse="True" />
+    <Wall Id="182" Name="Meteorite Brick Wall"            Color="#FF4A4781"  IsHouse="True" />
+    <Wall Id="183" Name="Smooth Marble Wall"              Color="#FF6F7587"  IsHouse="True" />
+    <Wall Id="184" Name="Smooth Granite Wall"             Color="#FF191736"  IsHouse="True" />
+    <Wall Id="185" Name="Cave 8 (natural)"                Color="#FF343434"  IsHouse="False" />
+    <Wall Id="186" Name="Crystal Block Wall"              Color="#FF260942"  IsHouse="True" />
+    <Wall Id="187" Name="Sandstone Wall"                  Color="#FF955033"  IsHouse="True" />
+    <Wall Id="188" Name="Corruption 1 (natural)"          Color="#FF523F50"  IsHouse="False" />
+    <Wall Id="189" Name="Corruption 2 (natural)"          Color="#FF413D4D"  IsHouse="False" />
+    <Wall Id="190" Name="Corruption 3 (natural)"          Color="#FF40415C"  IsHouse="False" />
+    <Wall Id="191" Name="Corruption 4 (natural)"          Color="#FF4C3554"  IsHouse="False" />
+    <Wall Id="192" Name="Crimson 1 (natural)"             Color="#FF904334"  IsHouse="False" />
+    <Wall Id="193" Name="Crimson 2 (natural)"             Color="#FF953030"  IsHouse="False" />
+    <Wall Id="194" Name="Crimson 3 (natural)"             Color="#FF6F2024"  IsHouse="False" />
+    <Wall Id="195" Name="Crimson 4 (natural)"             Color="#FF933037"  IsHouse="False" />
+    <Wall Id="196" Name="Dirt 1 (natural)"                Color="#FF614333"  IsHouse="False" />
+    <Wall Id="197" Name="Dirt 2 (natural)"                Color="#FF70503E"  IsHouse="False" />
+    <Wall Id="198" Name="Dirt 3 (natural)"                Color="#FF583D2E"  IsHouse="False" />
+    <Wall Id="199" Name="Dirt 4 (natural)"                Color="#FF7F5E4C"  IsHouse="False" />
+    <Wall Id="200" Name="Hallow 1 (natural)"              Color="#FF8F327B"  IsHouse="False" />
+    <Wall Id="201" Name="Hallow 2 (natural)"              Color="#FF887883"  IsHouse="False" />
+    <Wall Id="202" Name="Hallow 3 (natural)"              Color="#FFDB5C8F"  IsHouse="False" />
+    <Wall Id="203" Name="Hallow 4 (natural)"              Color="#FF714096"  IsHouse="False" />
+    <Wall Id="204" Name="Jungle 1 (natural)"              Color="#FF4A433C"  IsHouse="False" />
+    <Wall Id="205" Name="Jungle 2 (natural)"              Color="#FF3C4E3B"  IsHouse="False" />
+    <Wall Id="206" Name="Jungle 3 (natural)"              Color="#FF003615"  IsHouse="False" />
+    <Wall Id="207" Name="Jungle 4 (natural)"              Color="#FF4A6148"  IsHouse="False" />
+    <Wall Id="208" Name="Lava 1 (natural)"                Color="#FF282523"  IsHouse="False" />
+    <Wall Id="209" Name="Lava 2 (natural)"                Color="#FF4D3F42"  IsHouse="False" />
+    <Wall Id="210" Name="Lava 3 (natural)"                Color="#FF6F0606"  IsHouse="False" />
+    <Wall Id="211" Name="Lava 4 (natural)"                Color="#FF58433B"  IsHouse="False" />
+    <Wall Id="212" Name="Rocks 1 (natural)"               Color="#FF585750"  IsHouse="False" />
+    <Wall Id="213" Name="Rocks 2 (natural)"               Color="#FF474743"  IsHouse="False" />
+    <Wall Id="214" Name="Rocks 3 (natural)"               Color="#FF4C343C"  IsHouse="False" />
+    <Wall Id="215" Name="Rocks 4 (natural)"               Color="#FF59303B"  IsHouse="False" />
+    <Wall Id="216" Name="Hardened Sand Wall"              Color="#FF9E6440"  IsHouse="True" />
+    <Wall Id="217" Name="Hardened Ebonsand Wall"          Color="#FF3E2D4B"  IsHouse="True" />
+    <Wall Id="218" Name="Hardened Crimsand Wall"          Color="#FF390E0C"  IsHouse="True" />
+    <Wall Id="219" Name="Hardened Pearlsand Wall"         Color="#FF604885"  IsHouse="True" />
+    <Wall Id="220" Name="Ebonsandstone Wall"              Color="#FF433750"  IsHouse="True" />
+    <Wall Id="221" Name="Crimsandstone Wall"              Color="#FF40251D"  IsHouse="True" />
+    <Wall Id="222" Name="Pearlsandstone Wall"             Color="#FF46335B"  IsHouse="True" />
+    <Wall Id="223" Name="Desert Fossil Wall"              Color="#FF331204"  IsHouse="True" />
+    <Wall Id="224" Name="Lunar Brick Wall"                Color="#FF393734"  IsHouse="True" />
   </Walls>
+  
   <Items>
     <Item Id="-48" Name="Platinum Bow"/>
     <Item Id="-47" Name="Platinum Hammer"/>
@@ -6633,7 +6687,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="2795" Name="Laser Machinegun" />
     <Item Id="2796" Name="Electrosphere Launcher" />
     <Item Id="2797" Name="Xenopopper" />
-    <Item Id="2798" Name="Laser Drill"
+    <Item Id="2798" Name="Laser Drill" />
     <Item Id="2799" Name="Mechanical Ruler" />
     <Item Id="2800" Name="Anti-Gravity Hook" />
     <Item Id="2801" Name="Moon Mask" />
