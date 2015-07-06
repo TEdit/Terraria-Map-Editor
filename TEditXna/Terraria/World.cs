@@ -193,7 +193,7 @@ namespace TEditXNA.Terraria
 
                     // TODO: Let Validate handle these
                     //validate chest entry exists
-                    if (curTile.Type == 21)
+                    if (curTile.Type == 21 || curTile.Type == 88)
                     {
                         if (GetChestAtTile(x, y) == null)
                         {
