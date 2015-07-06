@@ -3614,19 +3614,19 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Tile Color="#FF60F802" Id="340" Blends="true" Name="Living Cursed Fire" Solid="true" Framed="false" />
     <Tile Color="#FF694ACA" Id="341" Blends="true" Name="Living Demon Fire" Solid="true" Framed="false" />
     <Tile Color="#FF1DF0FF" Id="342" Blends="true" Name="Living Frost Fire" Solid="true" Framed="false" />
-    <Tile Color="#FFFECA50" Id="343" Blends="true" Name="Living Ichor" Solid="true" Framed="true" />
+    <Tile Color="#FFFECA50" Id="343" Blends="true" Name="Living Ichor" Solid="true" Framed="false" />
     <Tile Color="#FF83FCF5" Id="344" Blends="true" Name="Living Ultrabright Fire" Solid="true" />
     <Tile Color="#FFFF9C0C" Id="345" Blends="true" Name="Honeyfall Block" Solid="true" />
     <Tile Color="#FF95D459" Id="346" Blends="true" Name="Chlorophyte Brick" Solid="true" />
     <Tile Color="#FFEC4A4F" Id="347" Blends="true" Name="Crimtane Brick" Solid="true" />
     <Tile Color="#FF2C1AE9" Id="348" Blends="true" Name="Shroomite Plating" Solid="true" />
     <Tile Color="#FF909490" Id="349" Size="2,3" Name="Mushroom Statue" Framed="true" />
-    <Tile Color="#FF37619B" Id="350" Blends="true" Name="MartianConduitPlating" Solid="true" />
-    <Tile Color="#FF1F1F1F" Id="351" Blends="true" Name="ChimneySmoke" Solid="true" Framed="false" />
-    <Tile Color="#FFEE615E" Id="352" Blends="true" Name="CrimtaneThorns" Solid="true" Framed="false" />
-    <Tile Color="#FF1CD85E" Id="353" Blends="true" Name="VineRope" Solid="true" Framed="false" />
-    <Tile Color="#FF8D6B59" Id="354" Size="3,2" Name="BewitchingTable" Framed="true" />
-    <Tile Color="#FF8D6B59" Id="355" Size="3,2" Name="AlchemyTable" Framed="true" />
+    <Tile Color="#FF37619B" Id="350" Blends="true" Name="Martian Conduit Plating" Solid="true" />
+    <Tile Color="#FF1F1F1F" Id="351" Blends="true" Name="Chimney Smoke" Solid="true" Framed="false" />
+    <Tile Color="#FFEE615E" Id="352" Blends="true" Name="Crimtane Thorns" Solid="true" Framed="false" />
+    <Tile Color="#FF1CD85E" Id="353" Blends="true" Name="Vine Rope" Solid="true" Framed="false" />
+    <Tile Color="#FF8D6B59" Id="354" Size="3,2" Name="Bewitching Table" Framed="true" />
+    <Tile Color="#FF8D6B59" Id="355" Size="3,2" Name="Alchemy Table" Framed="true" />
     <Tile Color="#FFE9CB18" Id="356" Size="2,3" Name="Enchanted Sundial" Framed="true" />
     <Tile Color="#FFA8B2CC" Id="357" Blends="true" Name="Marble Block" Solid="true" Framed="false" />
     <Tile Color="#FF7AD9E8" Id="358" Size="6,3" Name="Gold Bird Cage" Framed="true" />
@@ -3660,7 +3660,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="288,0" Name="Fishing Crate" Variety="Jungle Crate" />
       </Frames>
       </Tile>
-    <Tile Color="#FFBF8E6F" Id="377" Size="" Name="Sharpening Station" Framed="true">
+    <Tile Color="#FFBF8E6F" Id="377" Size="3,2" Name="Sharpening Station" Framed="true">
       <Frames>
         <Frame UV="0,0" Name="Sharpening Station" Variety="Left" />
         <Frame UV="54,0" Name="Sharpening Station" Variety="Right" />
@@ -3674,17 +3674,73 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     </Tile>
     <Tile Color="#FFFBD1F0" Id="379" Blends="true" Name="Bubble" Solid="true" Framed="false" />
     <Tile Color="#FFBF8E6F" Id="380" Size="" Name="Planter Box" Framed="true">
+      <Frames>
+        <Frame UV="0,0" Name="Daybloom Planter" Variety="Left" />
+        <Frame UV="18,0" Name="Daybloom Planter" Variety="Middle" />
+        <Frame UV="36,0" Name="Daybloom Planter" Variety="Right" />
+        <Frame UV="54,0" Name="Daybloom Planter" Variety="Single" />
+        
+        <Frame UV="0,18" Name="Moonglow Planter" Variety="Left" />
+        <Frame UV="18,18" Name="Moonglow Planter" Variety="Middle" />
+        <Frame UV="36,18" Name="Moonglow Planter" Variety="Right" />
+        <Frame UV="54,18" Name="Moonglow Planter" Variety="Single" />
+        
+        <Frame UV="0,36" Name="Deathweed Planter" Variety="Left" />
+        <Frame UV="18,36" Name="Deathweed Planter" Variety="Middle" />
+        <Frame UV="36,36" Name="Deathweed Planter" Variety="Right" />
+        <Frame UV="54,36" Name="Deathweed Planter" Variety="Single" />
+        
+        <Frame UV="0,54" Name="Crimsonweed Planter" Variety="Left" />
+        <Frame UV="18,54" Name="Crimsonweed Planter" Variety="Middle" />
+        <Frame UV="36,54" Name="Crimsonweed Planter" Variety="Right" />
+        <Frame UV="54,54" Name="Crimsonweed Planter" Variety="Single" />
+        
+        <Frame UV="0,72" Name="Blinkroot Planter" Variety="Left" />
+        <Frame UV="18,72" Name="Blinkroot Planter" Variety="Middle" />
+        <Frame UV="36,72" Name="Blinkroot Planter" Variety="Right" />
+        <Frame UV="54,72" Name="Blinkroot Planter" Variety="Single" />
+        
+        <Frame UV="0,90" Name="Waterleaf Planter" Variety="Left" />
+        <Frame UV="18,90" Name="Waterleaf Planter" Variety="Middle" />
+        <Frame UV="36,90" Name="Waterleaf Planter" Variety="Right" />
+        <Frame UV="54,90" Name="Waterleaf Planter" Variety="Single" />
+        
+        <Frame UV="0,108" Name="Shiverthorn Planter" Variety="Left" />
+        <Frame UV="18,108" Name="Shiverthorn Planter" Variety="Middle" />
+        <Frame UV="36,108" Name="Shiverthorn Planter" Variety="Right" />
+        <Frame UV="54,108" Name="Shiverthorn Planter" Variety="Single" />
+        
+        <Frame UV="0,126" Name="Fireblossom Planter" Variety="Left" />
+        <Frame UV="18,126" Name="Fireblossom Planter" Variety="Middle" />
+        <Frame UV="36,126" Name="Fireblossom Planter" Variety="Right" />
+        <Frame UV="54,126" Name="Fireblossom Planter" Variety="Single" />
+      </Frames>
     </Tile>
     <Tile Color="#FFFE7902" Id="381" Blends="true" Name="Lava Moss" Solid="true" Framed="false" />
     <Tile Color="#FF1CD85E" Id="382" Blends="true" Name="Vine Flowers" Solid="true" Framed="false" />
     <Tile Color="#FFDD8890" Id="383" Blends="true" Name="Living Mahogany" Framed="false" />
     <Tile Color="#FF83CE0C" Id="384" Blends="true" Name="Living MahoganyLeaves" Framed="false" />
     <Tile Color="#FF571590" Id="385" Blends="true" Name="Crystal Block" Framed="false" />
-    <Tile Color="#FF7F5C45" Id="386" Size="2,2" Name="Trapdoor Open" Framed="true" />
+    <Tile Color="#FF7F5C45" Id="386" Size="2,2" Name="Trapdoor Open" Framed="true">
+      <Frames>
+        <Frame UV="0,0" Name="Trapdoor Open" Variety="Up" />
+        <Frame UV="36,0" Name="Trapdoor Open" Variety="Down" />
+      </Frames>
+    </Tile>
     <Tile Color="#FF7F5C45" Id="387" Size="2,1" Name="Trapdoor Closed" Framed="true" />
-    <Tile Color="#FF7F5C45" Id="388" Size="1,5" Name="Tall Gate Closed" Framed="true" />
-    <Tile Color="#FF7F5C45" Id="389" Size="1,5" Name="Tall Gate Open" Framed="true" />
-    <Tile Color="#FFFD2003" Id="390" Size="2,1" Name="Lava Lamp" Framed="true" />
+    <Tile Color="#FF7F5C45" Id="388" Size="1,5" Name="Tall Gate Closed" Framed="true">
+      <Frames>
+        <Frame UV="0,0" Name="Closed" Variety="Style 1" />
+        <Frame UV="0,94" Name="Closed" Variety="Style 1" />
+      </Frames>
+    </Tile>
+    <Tile Color="#FF7F5C45" Id="389" Size="1,5" Name="Tall Gate Open" Framed="true">
+      <Frames>
+        <Frame UV="0,0" Name="Open" Variety="Style 1" />
+        <Frame UV="0,94" Name="Open" Variety="Style 1" />
+      </Frames>
+    </Tile>
+    <Tile Color="#FFFD2003" Id="390" Size="1,2" Name="Lava Lamp" Framed="true" />
     <Tile Color="#FF7AD9E8" Id="391" Size="3,2" Name="Cage Enchanted Nightcrawler" Framed="true" />
     <Tile Color="#FF7AD9E8" Id="392" Size="3,2" Name="Buggy Cage" Framed="true" />
     <Tile Color="#FF7AD9E8" Id="393" Size="3,2" Name="Grubby Cage" Framed="true" />
@@ -3699,13 +3755,30 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Tile Color="#FFAEA8BA" Id="402" Blends="true" Name="Hallow Hardened Sand" Solid="true" Framed="false" />
     <Tile Color="#FFCD98BA" Id="403" Blends="true" Name="Hallow Sandstone" Solid="true" Framed="false" />
     <Tile Color="#FF8C543C" Id="404" Blends="true" Name="Desert Fossil" Solid="true" Framed="false" />
-    <Tile Color="#FF8C8C8C" Id="405" Size="3,2" Name="Fireplace" Framed="true" />
-    <Tile Color="#FF787878" Id="406" Name="Chimney" Framed="true" />
+    <Tile Color="#FF8C8C8C" Id="405" Size="3,2" Name="Fireplace" Framed="true">
+      <Frames>
+        <Frame UV="0,0" Name="Fireplace" Variety="Lit" />
+        <Frame UV="54,0" Name="Fireplace" Variety="Unlit" />
+      </Frames>
+    </Tile>
+    <Tile Color="#FF787878" Id="406" Size="3,3" Name="Chimney" Framed="true" />
     <Tile Color="#FFFFE384" Id="407" Blends="true" Name="Fossil Ore" Solid="true" Framed="false" />
     <Tile Color="#FF555352" Id="408" Blends="true" Name="Lunar Ore" Solid="true" Framed="false" />
     <Tile Color="#FF555352" Id="409" Blends="true" Name="Lunar Brick" Solid="true" Framed="false" />
-    <Tile Color="#FF4B8BA6" Id="410" Size="2,3" Name="Lunar Monolith" Framed="true" />
-    <Tile Color="#FFE32E2E" Id="411" Size="2,2" Name="Detonator" Framed="true" />
+    <Tile Color="#FF4B8BA6" Id="410" Size="2,3" Name="Lunar Monolith" Framed="true">
+      <Frames>
+        <Frame UV="0,0" Name="Lunar Monolith" Variety="Vortex" />
+        <Frame UV="36,0" Name="Lunar Monolith" Variety="Nebula" />
+        <Frame UV="72,0" Name="Lunar Monolith" Variety="Stardust" />
+        <Frame UV="108,0" Name="Lunar Monolith" Variety="Solar" />
+      </Frames>
+    </Tile>
+    <Tile Color="#FFE32E2E" Id="411" Size="2,2" Name="Detonator" Framed="true">
+      <Frames>
+        <Frame UV="0,0" Name="Detonator" Variety="Trigger Up" />
+        <Frame UV="36,0" Name="Detonator" Variety="Trigger Down" />
+      </Frames>
+    </Tile>
     <Tile Color="#FF4B8BA6" Id="412" Size="3,3" Name="Lunar Crafting Station" Framed="true" />
     <Tile Color="#FF7AD9E8" Id="413" Size="6,3" Name="Red Squirrel Cage" Framed="true" />
     <Tile Color="#FF7AD9E8" Id="414" Size="6,3" Name="Gold Squirrel Cage" Framed="true" />
