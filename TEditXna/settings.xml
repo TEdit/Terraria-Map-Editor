@@ -3568,7 +3568,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Tile Color="#FFBEBEB2" Id="333" Blends="true" Name="Platinum Coin Pile" Framed="true" />
     <Tile Color="#FFBF8E6F" Id="334" Size="3,3" Name="Weapon Rack" Framed="true" />
     <Tile Color="#FFD9AE89" Id="335" Size="2,2" Name="Fireworks Box" Framed="true" />
-    <Tile Color="#FFFD3E03" Id="336" Blends="true" Name="Living Fire Block" Framed="true" />
+    <Tile Color="#FFFD3E03" Id="336" Blends="true" Name="Living Fire Block" Solid="true" Framed="false" />
     <Tile Color="#FF909490" Placement="floor" Size="2,3" Id="337" Name="Text Statue" Framed="true">
       <Frames>
         <Frame UV="0,0" Name="Text Statue" Variety="0 Statue" />
@@ -3611,6 +3611,108 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     </Tile>
     <Tile Color="#FF55FFA0" Id="338" Size="1,2" Name="Firework Fountain" Framed="true" />
     <Tile Color="#FF7AD9E8" Id="339" Size="3,2" Name="Grasshopper Cage" Framed="true" />
+    <Tile Color="#FF60F802" Id="340" Blends="true" Name="Living Cursed Fire" Solid="true" Framed="false" />
+    <Tile Color="#FF694ACA" Id="341" Blends="true" Name="Living Demon Fire" Solid="true" Framed="false" />
+    <Tile Color="#FF1DF0FF" Id="342" Blends="true" Name="Living Frost Fire" Solid="true" Framed="false" />
+    <Tile Color="#FFFECA50" Id="343" Blends="true" Name="Living Ichor" Solid="true" Framed="true" />
+    <Tile Color="#FF83FCF5" Id="344" Blends="true" Name="Living Ultrabright Fire" Solid="true" />
+    <Tile Color="#FFFF9C0C" Id="345" Blends="true" Name="Honeyfall Block" Solid="true" />
+    <Tile Color="#FF95D459" Id="346" Blends="true" Name="Chlorophyte Brick" Solid="true" />
+    <Tile Color="#FFEC4A4F" Id="347" Blends="true" Name="Crimtane Brick" Solid="true" />
+    <Tile Color="#FF2C1AE9" Id="348" Blends="true" Name="Shroomite Plating" Solid="true" />
+    <Tile Color="#FF909490" Id="349" Size="2,3" Name="Mushroom Statue" Framed="true" />
+    <Tile Color="#FF37619B" Id="350" Blends="true" Name="MartianConduitPlating" Solid="true" />
+    <Tile Color="#FF1F1F1F" Id="351" Blends="true" Name="ChimneySmoke" Solid="true" Framed="false" />
+    <Tile Color="#FFEE615E" Id="352" Blends="true" Name="CrimtaneThorns" Solid="true" Framed="false" />
+    <Tile Color="#FF1CD85E" Id="353" Blends="true" Name="VineRope" Solid="true" Framed="false" />
+    <Tile Color="#FF8D6B59" Id="354" Size="3,2" Name="BewitchingTable" Framed="true" />
+    <Tile Color="#FF8D6B59" Id="355" Size="3,2" Name="AlchemyTable" Framed="true" />
+    <Tile Color="#FFE9CB18" Id="356" Size="2,3" Name="Enchanted Sundial" Framed="true" />
+    <Tile Color="#FFA8B2CC" Id="357" Blends="true" Name="Marble Block" Solid="true" Framed="false" />
+    <Tile Color="#FF7AD9E8" Id="358" Size="6,3" Name="Gold Bird Cage" Framed="true" />
+    <Tile Color="#FF7AD9E8" Id="359" Size="6,3" Name="Gold Bunny Cage" Framed="true" />
+    <Tile Color="#FF7AD9E8" Id="360" Size="2,2" Name="Gold Butterfly Cage" Framed="true" />
+    <Tile Color="#FF7AD9E8" Id="361" Size="3,2" Name="Gold Frog Cage" Framed="true" />
+    <Tile Color="#FF7AD9E8" Id="362" Size="3,2" Name="Gold Grasshopper Cage" Framed="true" />
+    <Tile Color="#FF7AD9E8" Id="363" Size="3,2" Name="Gold Mouse Cage" Framed="true" />
+    <Tile Color="#FF7AD9E8" Id="364" Size="3,2" Name="Gold Worm Cage" Framed="true" />
+    <Tile Color="#FF9288CD" Id="365" Blends="true" Name="Silk Rope" Solid="true" Framed="false" />
+    <Tile Color="#FFDFE8E9" Id="366" Blends="true" Name="Web Rope" Solid="true" Framed="false" />
+    <Tile Color="#FFA8B2CC" Id="367" Blends="true" Name="Marble" Solid="true" Framed="false" />
+    <Tile Color="#FF322E68" Id="368" Blends="true" Name="Granite" Solid="true" Framed="false" />
+    <Tile Color="#FF322E68" Id="369" Blends="true" Name="Granite Block" Solid="true" Framed="false" />
+    <Tile Color="#FF7F74C2" Id="370" Blends="true" Name="Meteorite Brick" Solid="true" Framed="false" />
+    <Tile Color="#FFF965BD" Id="371" Blends="true" Name="Pink Slime Block" Solid="true" Framed="false" />
+    <Tile Color="#FFFC80C9" Id="372" Size="1,1" Name="Peace Candle" Framed="true" />
+    <Tile Color="#FF093DBF" Id="373" Size="1,1" Name="Water Drip" Framed="true" />
+    <Tile Color="#FFFD2003" Id="374" Size="1,1" Name="Lava Drip" Framed="true" />
+    <Tile Color="#FFFF9C0C" Id="375" Size="1,1" Name="Honey Drip" Framed="true" />
+    <Tile Color="#FFA0785C" Id="376" Size="2,2" Name="Fishing Crate" Framed="true">
+      <Frames>
+        <Frame UV="0,0" Name="Fishing Crate" Variety="Wooden Crate" />
+        <Frame UV="36,0" Name="Fishing Crate" Variety="Iron Crate" />
+        <Frame UV="72,0" Name="Fishing Crate" Variety="Gold Crate" />
+        <Frame UV="108,0" Name="Fishing Crate" Variety="Corrupt Crate" />
+        <Frame UV="144,0" Name="Fishing Crate" Variety="Crimson Crate" />
+        <Frame UV="180,0" Name="Fishing Crate" Variety="Dungeon Crate" />
+        <Frame UV="216,0" Name="Fishing Crate" Variety="Sky Crate" />
+        <Frame UV="252,0" Name="Fishing Crate" Variety="Hallow Crate" />
+        <Frame UV="288,0" Name="Fishing Crate" Variety="Jungle Crate" />
+      </Frames>
+      </Tile>
+    <Tile Color="#FFBF8E6F" Id="377" Size="" Name="Sharpening Station" Framed="true">
+      <Frames>
+        <Frame UV="0,0" Name="Sharpening Station" Variety="Left" />
+        <Frame UV="54,0" Name="Sharpening Station" Variety="Right" />
+      </Frames>
+    </Tile>
+    <Tile Color="#FFA07864" Id="378" Size="2,3" Name="Target Dummy" Framed="True">
+      <Frames>
+        <Frame UV="0,0" Name="Target Dummy" Variety="Left" />
+        <Frame UV="36,0" Name="Target Dummy" Variety="Right" />
+      </Frames>
+    </Tile>
+    <Tile Color="#FFFBD1F0" Id="379" Blends="true" Name="Bubble" Solid="true" Framed="false" />
+    <Tile Color="#FFBF8E6F" Id="380" Size="" Name="Planter Box" Framed="true">
+    </Tile>
+    <Tile Color="#FFFE7902" Id="381" Blends="true" Name="Lava Moss" Solid="true" Framed="false" />
+    <Tile Color="#FF1CD85E" Id="382" Blends="true" Name="Vine Flowers" Solid="true" Framed="false" />
+    <Tile Color="#FFDD8890" Id="383" Blends="true" Name="Living Mahogany" Framed="false" />
+    <Tile Color="#FF83CE0C" Id="384" Blends="true" Name="Living MahoganyLeaves" Framed="false" />
+    <Tile Color="#FF571590" Id="385" Blends="true" Name="Crystal Block" Framed="false" />
+    <Tile Color="#FF7F5C45" Id="386" Size="2,2" Name="Trapdoor Open" Framed="true" />
+    <Tile Color="#FF7F5C45" Id="387" Size="2,1" Name="Trapdoor Closed" Framed="true" />
+    <Tile Color="#FF7F5C45" Id="388" Size="1,5" Name="Tall Gate Closed" Framed="true" />
+    <Tile Color="#FF7F5C45" Id="389" Size="1,5" Name="Tall Gate Open" Framed="true" />
+    <Tile Color="#FFFD2003" Id="390" Size="2,1" Name="Lava Lamp" Framed="true" />
+    <Tile Color="#FF7AD9E8" Id="391" Size="3,2" Name="Cage Enchanted Nightcrawler" Framed="true" />
+    <Tile Color="#FF7AD9E8" Id="392" Size="3,2" Name="Buggy Cage" Framed="true" />
+    <Tile Color="#FF7AD9E8" Id="393" Size="3,2" Name="Grubby Cage" Framed="true" />
+    <Tile Color="#FF7AD9E8" Id="394" Size="3,2" Name="Sluggy Cage" Framed="true" />
+    <Tile Color="#FFBF8E6F" Id="395" Size="2,2" Name="Item Frame" Framed="true" />
+    <Tile Color="#FFC67C4E" Id="396" Blends="true" Name="Sandstone" Solid="true" Framed="false" />
+    <Tile Color="#FFD4C064" Id="397" Blends="true" Name="Hardened Sand" Solid="true" Framed="false" />
+    <Tile Color="#FF64527E" Id="398" Blends="true" Name="Corrupt Hardened Sand" Solid="true" Framed="false" />
+    <Tile Color="#FF4D4C42" Id="399" Blends="true" Name="Crimson Hardened Sand" Solid="true" Framed="false" />
+    <Tile Color="#FF604475" Id="400" Blends="true" Name="Corrupt Sandstone" Solid="true" Framed="false" />
+    <Tile Color="#FF443C33" Id="401" Blends="true" Name="Crimson Sandstone" Solid="true" Framed="false" />
+    <Tile Color="#FFAEA8BA" Id="402" Blends="true" Name="Hallow Hardened Sand" Solid="true" Framed="false" />
+    <Tile Color="#FFCD98BA" Id="403" Blends="true" Name="Hallow Sandstone" Solid="true" Framed="false" />
+    <Tile Color="#FF8C543C" Id="404" Blends="true" Name="Desert Fossil" Solid="true" Framed="false" />
+    <Tile Color="#FF8C8C8C" Id="405" Size="3,2" Name="Fireplace" Framed="true" />
+    <Tile Color="#FF787878" Id="406" Name="Chimney" Framed="true" />
+    <Tile Color="#FFFFE384" Id="407" Blends="true" Name="Fossil Ore" Solid="true" Framed="false" />
+    <Tile Color="#FF555352" Id="408" Blends="true" Name="Lunar Ore" Solid="true" Framed="false" />
+    <Tile Color="#FF555352" Id="409" Blends="true" Name="Lunar Brick" Solid="true" Framed="false" />
+    <Tile Color="#FF4B8BA6" Id="410" Size="2,3" Name="Lunar Monolith" Framed="true" />
+    <Tile Color="#FFE32E2E" Id="411" Size="2,2" Name="Detonator" Framed="true" />
+    <Tile Color="#FF4B8BA6" Id="412" Size="3,3" Name="Lunar Crafting Station" Framed="true" />
+    <Tile Color="#FF7AD9E8" Id="413" Size="6,3" Name="Red Squirrel Cage" Framed="true" />
+    <Tile Color="#FF7AD9E8" Id="414" Size="6,3" Name="Gold Squirrel Cage" Framed="true" />
+    <Tile Color="#FFF94B07" Id="415" Blends="true" Name="Lunar Block Solar" Solid="true" Framed="false" />
+    <Tile Color="#FF00A0AA" Id="416" Blends="true" Name="Lunar Block Vortex" Solid="true" Framed="false" />
+    <Tile Color="#FFA057EA" Id="417" Blends="true" Name="Lunar Block Nebula" Solid="true" Framed="false" />
+    <Tile Color="#FF16ADFE" Id="418" Blends="true" Name="Lunar Block Stardust" Solid="true" Framed="false" />
   </Tiles>
   <Walls>
     <Wall Id="0"    Name="Sky"                            Color="#00000000"                    />
@@ -7492,29 +7594,29 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="3600" Name="Shadowflame Hades Dye" />
   </Items>
   <Npcs>
-    <Npc Id="17"    Name="Merchant"         Frames="16"   />
-    <Npc Id="18"    Name="Nurse"            Frames="14"   />
-    <Npc Id="19"    Name="Arms Dealer"      Frames="16"   />
-    <Npc Id="20"    Name="Dryad"            Frames="14"   />
-    <Npc Id="22"    Name="Guide"            Frames="16"   />
-    <Npc Id="37"    Name="Old Man"          Frames="16"   />
-    <Npc Id="38"    Name="Demolitionist"    Frames="16"   />
-    <Npc Id="54"    Name="Clothier"         Frames="16"   />
-    <Npc Id="107"   Name="Goblin Tinkerer"  Frames="16"   />
-    <Npc Id="108"   Name="Wizard"           Frames="16"   />
-    <Npc Id="124"   Name="Mechanic"         Frames="14"   />
-    <Npc Id="142"   Name="Santa Claus"      Frames="16"   />
-    <Npc Id="160"   Name="Truffle"          Frames="16"   />
-    <Npc Id="178"   Name="Steampunker"      Frames="14"   />
-    <Npc Id="207"   Name="Dye Trader"       Frames="16"   />
-    <Npc Id="208"   Name="Party Girl"       Frames="14"   />
-    <Npc Id="209"   Name="Cyborg"           Frames="16"   />
-    <Npc Id="227"   Name="Painter"          Frames="16"   />
-    <Npc Id="228"   Name="Witch Doctor"     Frames="16"   />
-    <Npc Id="229"   Name="Pirate"           Frames="15"   />
-    <Npc Id="353"   Name="Stylist"          Frames="14"   />
-    <Npc Id="369"   Name="Angler"           Frames="14"   />
-    <Npc Id="441"   Name="Tax Collector"    Frames="14"   />
+    <Npc Id="17"    Name="Merchant"         Frames="25"   />
+    <Npc Id="18"    Name="Nurse"            Frames="23"   />
+    <Npc Id="19"    Name="Arms Dealer"      Frames="25"   />
+    <Npc Id="20"    Name="Dryad"            Frames="21"   />
+    <Npc Id="22"    Name="Guide"            Frames="26"   />
+    <Npc Id="37"    Name="Old Man"          Frames="21"   />
+    <Npc Id="38"    Name="Demolitionist"    Frames="25"   />
+    <Npc Id="54"    Name="Clothier"         Frames="23"   />
+    <Npc Id="107"   Name="Goblin Tinkerer"  Frames="25"   />
+    <Npc Id="108"   Name="Wizard"           Frames="23"   />
+    <Npc Id="124"   Name="Mechanic"         Frames="23"   />
+    <Npc Id="142"   Name="Santa Claus"      Frames="25"   />
+    <Npc Id="160"   Name="Truffle"          Frames="23"   />
+    <Npc Id="178"   Name="Steampunker"      Frames="23"   />
+    <Npc Id="207"   Name="Dye Trader"       Frames="25"   />
+    <Npc Id="208"   Name="Party Girl"       Frames="23"   />
+    <Npc Id="209"   Name="Cyborg"           Frames="26"   />
+    <Npc Id="227"   Name="Painter"          Frames="25"   />
+    <Npc Id="228"   Name="Witch Doctor"     Frames="26"   />
+    <Npc Id="229"   Name="Pirate"           Frames="26"   />
+    <Npc Id="353"   Name="Stylist"          Frames="23"   />
+    <Npc Id="369"   Name="Angler"           Frames="23"   />
+    <Npc Id="441"   Name="Tax Collector"    Frames="25"   />
   </Npcs>
   <ItemPrefix>
     <Prefix Id="0"  Name=""                 />
