@@ -60,8 +60,8 @@ namespace TEditXNA.Terraria
             {
                 OnProgressChanged(null, new ProgressChangedEventArgs(100, "Save Mobs..."));
                 sectionPointers[5] = SaveMobs(world.Mobs, bw);
-                OnProgressChanged(null, new ProgressChangedEventArgs(100, "Save Unknown Section..."));
-                sectionPointers[6] = SaveUnknownSection(world.UnknownSection, bw);
+                OnProgressChanged(null, new ProgressChangedEventArgs(100, "Save Tile Entities Section..."));
+                sectionPointers[6] = SaveTileEntities(world, bw);
             }
             OnProgressChanged(null, new ProgressChangedEventArgs(100, "Save Footers..."));
             SaveFooter(world, bw);
@@ -564,9 +564,28 @@ namespace TEditXNA.Terraria
             return (int)bw.BaseStream.Position;
         }
 
-        public static int SaveUnknownSection(uint data, BinaryWriter bw)
+        public static int SaveTileEntities(World w, BinaryWriter bw)
         {
-            bw.Write(data);
+            bw.Write(w.TileEntitiesNumber);
+
+            foreach(TileEntity tentity in w.TileEntities)
+            {
+                bw.Write(tentity.Type);
+                bw.Write(tentity.Id);
+                bw.Write(tentity.PosX);
+                bw.Write(tentity.PosY);
+                switch (tentity.Type)
+                {
+                    case 0: //it is a dummy                        
+                        bw.Write(tentity.Npc);
+                        break;
+                    case 1: //it is a item frame                        
+                        bw.Write(tentity.ItemNetId);
+                        bw.Write(tentity.Prefix);
+                        bw.Write(tentity.Stack);
+                        break;
+                }
+            }
 
             return (int)bw.BaseStream.Position;
         }
@@ -639,10 +658,10 @@ namespace TEditXNA.Terraria
                 if (b.BaseStream.Position != sectionPointers[5])
                     throw new FileFormatException("Unexpected Position: Invalid Mob and NPC Data");
 
-                OnProgressChanged(null, new ProgressChangedEventArgs(100, "Loading Unknown Section..."));
-                LoadUnknownSection(b, w);
+                OnProgressChanged(null, new ProgressChangedEventArgs(100, "Loading Tile Entities Section..."));
+                LoadTileEntities(b, w);
                 if (b.BaseStream.Position != sectionPointers[6])
-                    throw new FileFormatException("Unexpected Position: Invalid Unknown Section");
+                    throw new FileFormatException("Unexpected Position: Invalid Tile Entities Section");
             }
             else
             {
@@ -955,7 +974,7 @@ namespace TEditXNA.Terraria
             {
                 NPC npc = new NPC();
                 npc.Name = r.ReadString();                    
-                npc.Position = new Vector2(r.ReadSingle(), r.ReadSingle());                
+                npc.Position = new Vector2(r.ReadSingle(), r.ReadSingle());
 
                 if (NpcIds.ContainsKey(npc.Name))
                     npc.SpriteId = NpcIds[npc.Name];
@@ -978,9 +997,30 @@ namespace TEditXNA.Terraria
                 throw new FileFormatException("Invalid Footer");
         }
 
-        public static void LoadUnknownSection(BinaryReader r, World w)
+        public static void LoadTileEntities(BinaryReader r, World w)
         {
-            w.UnknownSection = r.ReadUInt32();
+            w.TileEntitiesNumber = r.ReadInt32();
+
+            for (int counter = 0; counter < w.TileEntitiesNumber; counter++ )
+            {
+                TileEntity entity = new TileEntity();
+                entity.Type = r.ReadByte();
+                entity.Id = r.ReadInt32();
+                entity.PosX = r.ReadInt16();
+                entity.PosY = r.ReadInt16();
+                switch (entity.Type)
+                {
+                    case 0: //it is a dummy
+                        entity.Npc = r.ReadInt16();
+                        break;
+                    case 1: //it is a item frame
+                        entity.ItemNetId = r.ReadInt16();
+                        entity.Prefix = r.ReadByte();
+                        entity.Stack = r.ReadInt16();
+                        break;
+                }
+                w.TileEntities.Add(entity);
+            }
         }
 
         public static void LoadHeaderFlags(BinaryReader r, World w, int expectedPosition)

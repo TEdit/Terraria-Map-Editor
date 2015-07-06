@@ -26,6 +26,7 @@ namespace TEditXNA.Terraria
         private readonly ObservableCollection<int> _killedMobs = new ObservableCollection<int>();
         private readonly ObservableCollection<NPC> _mobs = new ObservableCollection<NPC>();
         private readonly ObservableCollection<Sign> _signs = new ObservableCollection<Sign>();
+        private readonly ObservableCollection<TileEntity> _tileEntities = new ObservableCollection<TileEntity>();
 
         // [SBLogic] These variables are used internally for composing background layers, not currently needed here:
         // public int[] CorruptBG = new int[3];
@@ -52,7 +53,7 @@ namespace TEditXNA.Terraria
         public int[] TreeX = new int[3];
         public int[] CaveBackX = new int[4];
         public uint Version;
-        private uint _unknownSection;
+        private int _tileEntitiesNumber;
         private int _numberOfMobs;
         private int _altarCount;
         private int _anglerQuest;
@@ -171,10 +172,10 @@ namespace TEditXNA.Terraria
         private uint _fileRevision;
         private UInt64 _unknownHeaderField;
 
-        public uint UnknownSection
+        public int TileEntitiesNumber
         {
-            get { return _unknownSection; }
-            set { Set("UnknownSection", ref _unknownSection, value); }
+            get { return _tileEntitiesNumber; }
+            set { Set("TileEntitiesNumber", ref _tileEntitiesNumber, value); }
         }  
 
         public int NumberOfMobs
@@ -332,6 +333,11 @@ namespace TEditXNA.Terraria
         public ObservableCollection<NpcName> CharacterNames
         {
             get { return _charNames; }
+        }
+
+        public ObservableCollection<TileEntity> TileEntities
+        {
+            get { return _tileEntities; }
         }
 
         public byte MoonType
