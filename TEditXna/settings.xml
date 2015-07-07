@@ -2335,7 +2335,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="0,1080" Variety="Marble Bathtub" Anchor="Left" />
       </Frames>
     </Tile>
-    <Tile Color="#FF0D5882" Placement="ceiling" Size="1,3" Id="91" Name="Red Banner" Framed="true">
+    <Tile Color="#FF0D5882" Placement="ceiling" Size="1,3" Id="91" Name="Banner" Framed="true">
       <Frames>
         <Frame UV="0,0" Name="Craftable Banner" Variety="Red Banner" />
         <Frame UV="18,0" Name="Craftable Banner" Variety="Green Banner" />
@@ -2446,6 +2446,169 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="1908,0" Name="Monster Banner" Variety="Wraith Banner" />
         <Frame UV="1926,0" Name="Monster Banner" Variety="Wyvern Banner" />
         <Frame UV="1944,0" Name="Monster Banner" Variety="Zombie Banner" />
+        <Frame UV="1962,0" Name="Monster Banner"  Variety="Angry Trapper Banner" />
+        <Frame UV="1980,0" Name="Monster Banner"  Variety="Armored Viking Banner" />
+        <Frame UV="0,54" Name="Monster Banner"  Variety="Black Slime Banner" />
+        <Frame UV="18,54" Name="Monster Banner"  Variety="Blue Armored Bones Banner" />
+        <Frame UV="36,54" Name="Monster Banner"  Variety="Blue Cultist Archer Banner" />
+        <Frame UV="54,54" Name="Monster Banner"  Variety="Blue Cultist Caster Banner" />
+        <Frame UV="72,54" Name="Monster Banner"  Variety="Blue Cultist Fighter Banner" />
+        <Frame UV="90,54" Name="Monster Banner"  Variety="Bone Lee Banner" />
+        <Frame UV="108,54" Name="Monster Banner"  Variety="Clinger Banner" />
+        <Frame UV="126,54" Name="Monster Banner"  Variety="Cochineal Beetle Banner" />
+        <Frame UV="144,54" Name="Monster Banner"  Variety="Corrupt Penguin Banner" />
+        <Frame UV="162,54" Name="Monster Banner"  Variety="Corrupt Slime Banner" />
+        <Frame UV="180,54" Name="Monster Banner"  Variety="Corruptor Banner" />
+        <Frame UV="198,54" Name="Monster Banner"  Variety="Crimslime Banner" />
+        <Frame UV="216,54" Name="Monster Banner"  Variety="Cursed Skull Banner" />
+        <Frame UV="234,54" Name="Monster Banner"  Variety="Cyan Beetle Banner" />
+        <Frame UV="252,54" Name="Monster Banner"  Variety="Devourer Banner" />
+        <Frame UV="270,54" Name="Monster Banner"  Variety="Diabolist Banner" />
+        <Frame UV="288,54" Name="Monster Banner"  Variety="Doctor Bones Banner" />
+        <Frame UV="306,54" Name="Monster Banner"  Variety="Dungeon Slime Banner" />
+        <Frame UV="324,54" Name="Monster Banner"  Variety="Dungeon Spirit Banner" />
+        <Frame UV="342,54" Name="Monster Banner"  Variety="Elf Archer Banner" />
+        <Frame UV="360,54" Name="Monster Banner"  Variety="Elf Copter Banner" />
+        <Frame UV="378,54" Name="Monster Banner"  Variety="Eyezor Banner" />
+        <Frame UV="396,54" Name="Monster Banner"  Variety="Flocko Banner" />
+        <Frame UV="414,54" Name="Monster Banner"  Variety="Ghost Banner" />
+        <Frame UV="432,54" Name="Monster Banner"  Variety="Giant Bat Banner" />
+        <Frame UV="450,54" Name="Monster Banner"  Variety="Giant Cursed Skull Banner" />
+        <Frame UV="468,54" Name="Monster Banner"  Variety="Giant Flying Fox Banner" />
+        <Frame UV="486,54" Name="Monster Banner"  Variety="Gingerbread Man Banner" />
+        <Frame UV="504,54" Name="Monster Banner"  Variety="Goblin Archer Banner" />
+        <Frame UV="522,54" Name="Monster Banner"  Variety="Green Slime Banner" />
+        <Frame UV="540,54" Name="Monster Banner"  Variety="Headless Horseman Banner" />
+        <Frame UV="558,54" Name="Monster Banner"  Variety="Hell Armored Bones Banner" />
+        <Frame UV="576,54" Name="Monster Banner"  Variety="Hellhound Banner" />
+        <Frame UV="594,54" Name="Monster Banner"  Variety="Hoppin' Jack Banner" />
+        <Frame UV="612,54" Name="Monster Banner"  Variety="Ice Bat Banner" />
+        <Frame UV="630,54" Name="Monster Banner"  Variety="Ice Golem Banner" />
+        <Frame UV="648,54" Name="Monster Banner"  Variety="Ice Slime Banner" />
+        <Frame UV="666,54" Name="Monster Banner"  Variety="Ichor Sticker Banner" />
+        <Frame UV="684,54" Name="Monster Banner"  Variety="Illuminant Bat Banner" />
+        <Frame UV="702,54" Name="Monster Banner"  Variety="Illuminant Slime Banner" />
+        <Frame UV="720,54" Name="Monster Banner"  Variety="Jungle Bat Banner" />
+        <Frame UV="738,54" Name="Monster Banner"  Variety="Jungle Slime Banner" />
+        <Frame UV="756,54" Name="Monster Banner"  Variety="Krampus Banner" />
+        <Frame UV="774,54" Name="Monster Banner"  Variety="Lac Beetle Banner" />
+        <Frame UV="792,54" Name="Monster Banner"  Variety="Lava Bat Banner" />
+        <Frame UV="810,54" Name="Monster Banner"  Variety="Lava Slime Banner" />
+        <Frame UV="828,54" Name="Monster Banner"  Variety="Martian Brainscrambler Banner" />
+        <Frame UV="846,54" Name="Monster Banner"  Variety="Martian Drone Banner" />
+        <Frame UV="864,54" Name="Monster Banner"  Variety="Martian Engineer Banner" />
+        <Frame UV="882,54" Name="Monster Banner"  Variety="Martian Gigazapper Banner" />
+        <Frame UV="900,54" Name="Monster Banner"  Variety="Martian Gray Grunt Banner" />
+        <Frame UV="918,54" Name="Monster Banner"  Variety="Martian Officer Banner" />
+        <Frame UV="936,54" Name="Monster Banner"  Variety="Martian Raygunner Banner" />
+        <Frame UV="954,54" Name="Monster Banner"  Variety="Martian Scutlix Gunner Banner" />
+        <Frame UV="972,54" Name="Monster Banner"  Variety="Martian Tesla Turret Banner" />
+        <Frame UV="990,54" Name="Monster Banner"  Variety="Mister Stabby Banner" />
+        <Frame UV="1008,54" Name="Monster Banner"  Variety="Mother Slime Banner" />
+        <Frame UV="1026,54" Name="Monster Banner"  Variety="Necromancer Banner" />
+        <Frame UV="1044,54" Name="Monster Banner"  Variety="Nutcracker Banner" />
+        <Frame UV="1062,54" Name="Monster Banner"  Variety="Paladin Banner" />
+        <Frame UV="1080,54" Name="Monster Banner"  Variety="Penguin Banner" />
+        <Frame UV="1098,54" Name="Monster Banner"  Variety="Pinky Banner" />
+        <Frame UV="1116,54" Name="Monster Banner"  Variety="Poltergeist Banner" />
+        <Frame UV="1134,54" Name="Monster Banner"  Variety="Possessed Armor Banner" />
+        <Frame UV="1152,54" Name="Monster Banner"  Variety="Present Mimic Banner" />
+        <Frame UV="1170,54" Name="Monster Banner"  Variety="Purple Slime Banner" />
+        <Frame UV="1188,54" Name="Monster Banner"  Variety="Ragged Caster Banner" />
+        <Frame UV="1206,54" Name="Monster Banner"  Variety="Rainbow Slime Banner" />
+        <Frame UV="1224,54" Name="Monster Banner"  Variety="Raven Banner" />
+        <Frame UV="1242,54" Name="Monster Banner"  Variety="Red Slime Banner" />
+        <Frame UV="1260,54" Name="Monster Banner"  Variety="Rune Wizard Banner" />
+        <Frame UV="1278,54" Name="Monster Banner"  Variety="Rusty Armored Bones Banner" />
+        <Frame UV="1296,54" Name="Monster Banner"  Variety="Scarecrow Banner" />
+        <Frame UV="1314,54" Name="Monster Banner"  Variety="Scutlix Banner" />
+        <Frame UV="1332,54" Name="Monster Banner"  Variety="Skeleton Archer Banner" />
+        <Frame UV="1350,54" Name="Monster Banner"  Variety="Skeleton Commando Banner" />
+        <Frame UV="1368,54" Name="Monster Banner"  Variety="Skeleton Sniper Banner" />
+        <Frame UV="1386,54" Name="Monster Banner"  Variety="Slimer Banner" />
+        <Frame UV="1404,54" Name="Monster Banner"  Variety="Snatcher Banner" />
+        <Frame UV="1422,54" Name="Monster Banner"  Variety="Snow Balla Banner" />
+        <Frame UV="1440,54" Name="Monster Banner"  Variety="Snowman Gangsta Banner" />
+        <Frame UV="1458,54" Name="Monster Banner"  Variety="Spiked Ice Slime Banner" />
+        <Frame UV="1476,54" Name="Monster Banner"  Variety="Spiked Jungle Slime Banner" />
+        <Frame UV="1494,54" Name="Monster Banner"  Variety="Splinterling Banner" />
+        <Frame UV="1512,54" Name="Monster Banner"  Variety="Squid Banner" />
+        <Frame UV="1530,54" Name="Monster Banner"  Variety="Tactical Skeleton Banner" />
+        <Frame UV="1548,54" Name="Monster Banner"  Variety="The Groom Banner" />
+        <Frame UV="1566,54" Name="Monster Banner"  Variety="Tim Banner" />
+        <Frame UV="1584,54" Name="Monster Banner"  Variety="Undead Miner Banner" />
+        <Frame UV="1602,54" Name="Monster Banner"  Variety="Undead Viking Banner" />
+        <Frame UV="1620,54" Name="Monster Banner"  Variety="White Cultist Archer Banner" />
+        <Frame UV="1638,54" Name="Monster Banner"  Variety="White Cultist Caster Banner" />
+        <Frame UV="1656,54" Name="Monster Banner"  Variety="White Cultist Fighter Banner" />
+        <Frame UV="1674,54" Name="Monster Banner"  Variety="Yellow Slime Banner" />
+        <Frame UV="1692,54" Name="Monster Banner"  Variety="Yeti Banner" />
+        <Frame UV="1710,54" Name="Monster Banner"  Variety="Zombie Elf Banner" />
+        <Frame UV="1728,54" Name="Monster Banner"  Variety="Goblin Summoner Banner" />
+        <Frame UV="1746,54" Name="Monster Banner"  Variety="Salamander Banner" />
+        <Frame UV="1764,54" Name="Monster Banner"  Variety="Giant Shelly Banner" />
+        <Frame UV="1782,54" Name="Monster Banner"  Variety="Crawdad Banner" />
+        <Frame UV="1800,54" Name="Monster Banner"  Variety="Fritz Banner" />
+        <Frame UV="1818,54" Name="Monster Banner"  Variety="Creature From The Deep Banner" />
+        <Frame UV="1836,54" Name="Monster Banner"  Variety="Dr. Man Fly Banner" />
+        <Frame UV="1854,54" Name="Monster Banner"  Variety="Mothron Banner" />
+        <Frame UV="1872,54" Name="Monster Banner"  Variety="Severed Hand Banner" />
+        <Frame UV="1890,54" Name="Monster Banner"  Variety="The Possessed Banner" />
+        <Frame UV="1908,54" Name="Monster Banner"  Variety="Butcher Banner" />
+        <Frame UV="1926,54" Name="Monster Banner"  Variety="Psycho Banner" />
+        <Frame UV="1944,54" Name="Monster Banner"  Variety="Deadly Sphere Banner" />
+        <Frame UV="1962,54" Name="Monster Banner"  Variety="Nailhead Banner" />
+        <Frame UV="1980,54" Name="Monster Banner"  Variety="Poisonous Spore Banner" />
+        <Frame UV="0,108" Name="Monster Banner"  Variety="Medusa Banner" />
+        <Frame UV="18,108" Name="Monster Banner"  Variety="Hoplite Banner" />
+        <Frame UV="36,108" Name="Monster Banner"  Variety="Granite Elemental Banner" />
+        <Frame UV="54,108" Name="Monster Banner"  Variety="Grolem Banner" />
+        <Frame UV="72,108" Name="Monster Banner"  Variety="Blood Zombie Banner" />
+        <Frame UV="90,108" Name="Monster Banner"  Variety="Drippler Banner" />
+        <Frame UV="108,108" Name="Monster Banner"  Variety="Tomb Crawler Banner" />
+        <Frame UV="126,108" Name="Monster Banner"  Variety="Dune Splicer Banner" />
+        <Frame UV="144,108" Name="Monster Banner"  Variety="Antlion Swarmer Banner" />
+        <Frame UV="162,108" Name="Monster Banner"  Variety="Antlion Charger Banner" />
+        <Frame UV="180,108" Name="Monster Banner"  Variety="Ghoul Banner" />
+        <Frame UV="198,108" Name="Monster Banner"  Variety="Lamia Banner" />
+        <Frame UV="216,108" Name="Monster Banner"  Variety="Desert Spirit Banner" />
+        <Frame UV="234,108" Name="Monster Banner"  Variety="Basilisk Banner" />
+        <Frame UV="252,108" Name="Monster Banner"  Variety="Ravager Scorpion Banner" />
+        <Frame UV="270,108" Name="Monster Banner"  Variety="Stardust Soldier Banner" />
+        <Frame UV="288,108" Name="Monster Banner"  Variety="Milkyway Weaver Banner" />
+        <Frame UV="306,108" Name="Monster Banner"  Variety="Flow Invader Banner" />
+        <Frame UV="324,108" Name="Monster Banner"  Variety="Twinkle Popper Banner" />
+        <Frame UV="342,108" Name="Monster Banner"  Variety="Small Star Cell Banner" />
+        <Frame UV="360,108" Name="Monster Banner"  Variety="Star Cell Banner" />
+        <Frame UV="378,108" Name="Monster Banner"  Variety="Corite Banner" />
+        <Frame UV="396,108" Name="Monster Banner"  Variety="Sroller Banner" />
+        <Frame UV="414,108" Name="Monster Banner"  Variety="Crawltipede Banner" />
+        <Frame UV="432,108" Name="Monster Banner"  Variety="Drakomire Rider Banner" />
+        <Frame UV="450,108" Name="Monster Banner"  Variety="Drakomire Banner" />
+        <Frame UV="468,108" Name="Monster Banner"  Variety="Solar Solenian Banner" />
+        <Frame UV="486,108" Name="Monster Banner"  Variety="Nebula Soldier Banner" />
+        <Frame UV="504,108" Name="Monster Banner"  Variety="Nebula Headcrab Banner" />
+        <Frame UV="522,108" Name="Monster Banner"  Variety="Nebula Floater Banner" />
+        <Frame UV="540,108" Name="Monster Banner"  Variety="Nebula Beast Banner" />
+        <Frame UV="558,108" Name="Monster Banner"  Variety="Alien Larva Banner" />
+        <Frame UV="576,108" Name="Monster Banner"  Variety="Alien Queen Banner" />
+        <Frame UV="594,108" Name="Monster Banner"  Variety="Alien Hornet Banner" />
+        <Frame UV="612,108" Name="Monster Banner"  Variety="Vortex Soldier Banner" />
+        <Frame UV="630,108" Name="Monster Banner"  Variety="Vortex Rifleman Banner" />
+        <Frame UV="648,108" Name="Monster Banner"  Variety="Pirate Captain Banner" />
+        <Frame UV="666,108" Name="Monster Banner"  Variety="Pirate Deadeye Banner" />
+        <Frame UV="684,108" Name="Monster Banner"  Variety="Pirate Corsair Banner" />
+        <Frame UV="702,108" Name="Monster Banner"  Variety="Pirate Crossbower Banner" />
+        <Frame UV="720,108" Name="Monster Banner"  Variety="Martian Walker Banner" />
+        <Frame UV="738,108" Name="Monster Banner"  Variety="Red Devil Banner" />
+        <Frame UV="756,108" Name="Monster Banner"  Variety="Pink Jellyfish Banner" />
+        <Frame UV="774,108" Name="Monster Banner"  Variety="Green Jellyfish Banner" />
+        <Frame UV="792,108" Name="Monster Banner"  Variety="Dark Mummy Banner" />
+        <Frame UV="810,108" Name="Monster Banner"  Variety="Light Mummy Banner" />
+        <Frame UV="828,108" Name="Monster Banner"  Variety="Angry Bones Banner" />
+        <Frame UV="846,108" Name="Monster Banner"  Variety="Ice Tortoise Banner" />
+        <Frame UV="864,108" Name="Monster Banner"  Variety="Sand Slime Banner" />
+        <Frame UV="882,108" Name="Monster Banner"  Variety="Sea Snail Banner" />
       </Frames>
     </Tile>
     <Tile Color="#FFD5E5ED" Placement="floor" Size="1,6" Id="92" Name="Lamp Post" Framed="true" Light="true">
@@ -2529,8 +2692,8 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     </Tile>
     <Tile Color="#FF909490" Placement="floorSurface" Size="2,2" Id="96" Name="Cooking Pot" Framed="true" Light="true">
       <Frames>
-        <Frame UV="0,0" Name="Default" Variety="Default" />
-        <!-- TODO : alternate sprite? -->
+        <Frame UV="0,0" Variety="Cooking Pot" />
+        <Frame UV="36,0" Variety="Cauldron" />
       </Frames>
     </Tile>
     <Tile Color="#FF909490" Placement="floor" Size="2,2" Id="97" Name="Safe" Framed="true" />
