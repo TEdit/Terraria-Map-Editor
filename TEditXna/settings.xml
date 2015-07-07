@@ -183,6 +183,24 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="66,264" Name="Ultrabright" Anchor="Bottom" Variety="Off" />
         <Frame UV="88,264" Name="Ultrabright" Anchor="Left" Variety="Off" />
         <Frame UV="110,264" Name="Ultrabright" Anchor="Right" Variety="Off" />
+        <Frame UV="0,286" Name="Bone" Anchor="Bottom" Variety="On" />
+        <Frame UV="22,286" Name="Bone" Anchor="Left" Variety="On" />
+        <Frame UV="44,286" Name="Bone" Anchor="Right" Variety="On" />
+        <Frame UV="66,286" Name="Bone" Anchor="Bottom" Variety="Off" />
+        <Frame UV="88,286" Name="Bone" Anchor="Left" Variety="Off" />
+        <Frame UV="110,286" Name="Bone" Anchor="Right" Variety="Off" />
+        <Frame UV="0,308" Name="Rainbow" Anchor="Bottom" Variety="On" />
+        <Frame UV="22,308" Name="Rainbow" Anchor="Left" Variety="On" />
+        <Frame UV="44,308" Name="Rainbow" Anchor="Right" Variety="On" />
+        <Frame UV="66,308" Name="Rainbow" Anchor="Bottom" Variety="Off" />
+        <Frame UV="88,308" Name="Rainbow" Anchor="Left" Variety="Off" />
+        <Frame UV="110,308" Name="Rainbow" Anchor="Right" Variety="Off" />
+        <Frame UV="0,330" Name="Pink" Anchor="Bottom" Variety="On" />
+        <Frame UV="22,330" Name="Pink" Anchor="Left" Variety="On" />
+        <Frame UV="44,330" Name="Pink" Anchor="Right" Variety="On" />
+        <Frame UV="66,330" Name="Pink" Anchor="Bottom" Variety="Off" />
+        <Frame UV="88,330" Name="Pink" Anchor="Left" Variety="Off" />
+        <Frame UV="110,330" Name="Pink" Anchor="Right" Variety="Off" />
       </Frames>
     </Tile>
     <Tile Name="Tree" Color="#FF976B4B" TextureGrid="20,20" Id="5" Framed="true">
@@ -366,6 +384,18 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="0,1674" Variety="Slime Door A" />
         <Frame UV="18,1674" Variety="Slime Door B" />
         <Frame UV="36,1674" Variety="Slime Door C" />
+        <Frame UV="0,1728" Variety="Martian Door A" />
+        <Frame UV="18,1728" Variety="Martian Door B" />
+        <Frame UV="36,1728" Variety="Martian Door C" />
+        <Frame UV="0,1782" Variety="Meteorite Door A" />
+        <Frame UV="18,1782" Variety="Meteorite Door B" />
+        <Frame UV="36,1782" Variety="Meteorite Door C" />
+        <Frame UV="0,1836" Variety="Granite Door A" />
+        <Frame UV="18,1836" Variety="Granite Door B" />
+        <Frame UV="36,1836" Variety="Granite Door C" />
+        <Frame UV="0,1890" Variety="Marble Door A" />
+        <Frame UV="18,1890" Variety="Marble Door B" />
+        <Frame UV="36,1890" Variety="Marble Door C" />
       </Frames>
     </Tile>
     <Tile Name="Door Open" Color="#FF77694F" Placement="CFBoth" Size="2,3" Id="11" Framed="true">
@@ -432,6 +462,14 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="36,1620" Variety="Boreal Wood Door" Anchor="Door Left" />
         <Frame UV="0,1674" Variety="Slime Door" Anchor="Door Right" />
         <Frame UV="36,1674" Variety="Slime Door" Anchor="Door Left" />
+        <Frame UV="0,1728" Variety="Martian Door" Anchor="Door Right" />
+        <Frame UV="36,1728" Variety="Martian Door" Anchor="Door Left" />
+        <Frame UV="0,1782" Variety="Meteorite Door" Anchor="Door Right" />
+        <Frame UV="36,1782" Variety="Meteorite Door" Anchor="Door Left" />
+        <Frame UV="0,1836" Variety="Granite Door" Anchor="Door Right" />
+        <Frame UV="36,1836" Variety="Granite Door" Anchor="Door Left" />
+        <Frame UV="0,1890" Variety="Marble Door" Anchor="Door Right" />
+        <Frame UV="36,1890" Variety="Marble Door" Anchor="Door Left" />
       </Frames>
     </Tile>
     <Tile Name="Crystal Heart" Color="#FFAE1845" Placement="floor" Size="2,2" Id="12" Framed="true">
@@ -485,9 +523,13 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="1512,0" name="Table" Variety="Boreal Wood Table" Anchor="Left" />
         <Frame UV="1566,0" name="Table" Variety="Slime Table" Anchor="Left" />
         <Frame UV="1620,0" name="Table" Variety="Cactus Table" Anchor="Left" />
+        <Frame UV="1674,0" name="Table" Variety="Martian Table" Anchor="Left" />
+        <Frame UV="1728,0" name="Table" Variety="Meteorite Table" Anchor="Left" />
+        <Frame UV="1782,0" name="Table" Variety="Granite Table" Anchor="Left" />
+        <Frame UV="1836,0" name="Table" Variety="Marble Table" Anchor="Left" />
       </Frames>
     </Tile>
-    <Tile Color="#FFBF8E6F" Placement="floor" Size="1,2" Id="15" Name="Wooden Chair" Framed="true">
+    <Tile Color="#FFBF8E6F" Placement="floor" Size="1,2" Id="15" Name="Chair" Framed="true">
       <Frames>
         <Frame UV="0,0" Name="Wooden Chair" Anchor="Left" />
         <Frame UV="18,0" Name="Wooden Chair" Anchor="Right" />
@@ -553,6 +595,14 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="18,1200" Name="Boreal Wood Chair" Anchor="Right" />
         <Frame UV="0,1240" Name="Slime Chair" Anchor="Left" />
         <Frame UV="18,1240" Name="Slime Chair" Anchor="Right" />
+        <Frame UV="0,1280" Name="Martian Hover Chair" Anchor="Left" />
+        <Frame UV="18,1280" Name="Martian Hover Chair" Anchor="Right" />
+        <Frame UV="0,1320" Name="Meteorite Chair" Anchor="Left" />
+        <Frame UV="18,1320" Name="Meteorite Chair" Anchor="Right" />
+        <Frame UV="0,1360" Name="Granite Chair" Anchor="Left" />
+        <Frame UV="18,1360" Name="Granite Chair" Anchor="Right" />
+        <Frame UV="0,1400" Name="Marble Chair" Anchor="Left" />
+        <Frame UV="18,1400" Name="Marble Chair" Anchor="Right" />
       </Frames>
     </Tile>
     <Tile Color="#FF8C8274" Placement="floor" Size="2,1" TextureGrid="16,18" Id="16" Name="Iron Anvil" Framed="true" SolidTop="true">
@@ -580,16 +630,21 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="468,0" Name="Work Bench" Variety="Pink Dungeon" />
         <Frame UV="504,0" Name="Work Bench" Variety="Obsidian" />
         <Frame UV="540,0" Name="Work Bench" Variety="Gothic" />
-        <Frame UV="576,0" Name="Work Bench" Variety="Pumpkin Work Bench" />
-        <Frame UV="612,0" Name="Work Bench" Variety="Spooky Work Bench" />
-        <Frame UV="648,0" Name="Work Bench" Variety="Dynasty Work Bench" />
-        <Frame UV="684,0" Name="Work Bench" Variety="Honey Work Bench" />
-        <Frame UV="720,0" Name="Work Bench" Variety="Frozen Work Bench" />
-        <Frame UV="756,0" Name="Work Bench" Variety="Steampunk Work Bench" />
-        <Frame UV="792,0" Name="Work Bench" Variety="Palm Wood Work Bench" />
-        <Frame UV="828,0" Name="Work Bench" Variety="Skyware Work Bench" />
-        <Frame UV="864,0" Name="Work Bench" Variety="Glass Work Bench" />
-        <Frame UV="900,0" Name="Work Bench" Variety="Living Wood Work Bench" />
+        <Frame UV="576,0" Name="Work Bench" Variety="Pumpkin" />
+        <Frame UV="612,0" Name="Work Bench" Variety="Spooky" />
+        <Frame UV="648,0" Name="Work Bench" Variety="Dynasty" />
+        <Frame UV="684,0" Name="Work Bench" Variety="Honey" />
+        <Frame UV="720,0" Name="Work Bench" Variety="Frozen" />
+        <Frame UV="756,0" Name="Work Bench" Variety="Steampunk" />
+        <Frame UV="792,0" Name="Work Bench" Variety="Palm Wood" />
+        <Frame UV="828,0" Name="Work Bench" Variety="Boreal" />
+        <Frame UV="864,0" Name="Work Bench" Variety="Skyware" />
+        <Frame UV="900,0" Name="Work Bench" Variety="Glass" />
+        <Frame UV="936,0" Name="Work Bench" Variety="Living Wood" />
+        <Frame UV="972,0" Name="Work Bench" Variety="Martian" />
+        <Frame UV="1008,0" Name="Work Bench" Variety="Meteorite" />
+        <Frame UV="1044,0" Name="Work Bench" Variety="Granite" />
+        <Frame UV="1080,0" Name="Work Bench" Variety="Marble" />
       </Frames>
     </Tile>
     <Tile Color="#FFBF8E6F" Placement="wall" Special="Platform" TextureGrid="16,16" Id="19" Name="Platform" Framed="true" Solid="true" SolidTop="true" Light="true">
@@ -1296,6 +1351,114 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="432,450" Name="Stair" Variety="Cactus Inset Up-Left 3" />
         <Frame UV="450,450" Name="Stair" Variety="Cactus Inverted Right" />
         <Frame UV="468,450" Name="Stair" Variety="Cactus Inverted Left" />
+        <Frame UV="0,468" Name="Platform" Variety="Martian Flat" />
+        <Frame UV="18,468" Name="Platform" Variety="Martian Endcap Right" />
+        <Frame UV="36,468" Name="Platform" Variety="Martian Endcap Left" />
+        <Frame UV="54,468" Name="Platform" Variety="Martian Attach Left" />
+        <Frame UV="72,468" Name="Platform" Variety="Martian Attach Right" />
+        <Frame UV="90,468" Name="Platform" Variety="Martian Single" />
+        <Frame UV="108,468" Name="Platform" Variety="Martian Attach Left Endcap" />
+        <Frame UV="126,468" Name="Platform" Variety="Martian Attach Right Endcap" />
+        <Frame UV="144,468" Name="Stair" Variety="Martian Up-Right Riser" />
+        <Frame UV="162,468" Name="Stair" Variety="Martian Up-Right Stringer" />
+        <Frame UV="180,468" Name="Stair" Variety="Martian Up-Left Riser" />
+        <Frame UV="198,468" Name="Stair" Variety="Martian Up-Left Stringer" />
+        <Frame UV="216,468" Name="Stair" Variety="Martian Top Landing R" />
+        <Frame UV="234,468" Name="Stair" Variety="Martian Top Landing L" />
+        <Frame UV="252,468" Name="Stair" Variety="Martian Top Landing L-R" />
+        <Frame UV="270,468" Name="Stair" Variety="Martian Top Landing R Endcap" />
+        <Frame UV="288,468" Name="Stair" Variety="Martian Top Landing L Endcap" />
+        <Frame UV="306,468" Name="Stair" Variety="Martian Bottom Landing R" />
+        <Frame UV="324,468" Name="Stair" Variety="Martian Bottom Landing L" />
+        <Frame UV="342,468" Name="Stair" Variety="Martian Inset Up-Right 1" />
+        <Frame UV="360,468" Name="Stair" Variety="Martian Inset Up-Left 1" />
+        <Frame UV="378,468" Name="Stair" Variety="Martian Inset Up-Right 2" />
+        <Frame UV="396,468" Name="Stair" Variety="Martian Inset Up-Left 2" />
+        <Frame UV="414,468" Name="Stair" Variety="Martian Inset Up-Right 3" />
+        <Frame UV="432,468" Name="Stair" Variety="Martian Inset Up-Left 3" />
+        <Frame UV="450,468" Name="Stair" Variety="Martian Inverted Right" />
+        <Frame UV="468,468" Name="Stair" Variety="Martian Inverted Left" />
+        <Frame UV="0,486" Name="Platform" Variety="Meteorite Flat" />
+        <Frame UV="18,486" Name="Platform" Variety="Meteorite Endcap Right" />
+        <Frame UV="36,486" Name="Platform" Variety="Meteorite Endcap Left" />
+        <Frame UV="54,486" Name="Platform" Variety="Meteorite Attach Left" />
+        <Frame UV="72,486" Name="Platform" Variety="Meteorite Attach Right" />
+        <Frame UV="90,486" Name="Platform" Variety="Meteorite Single" />
+        <Frame UV="108,486" Name="Platform" Variety="Meteorite Attach Left Endcap" />
+        <Frame UV="126,486" Name="Platform" Variety="Meteorite Attach Right Endcap" />
+        <Frame UV="144,486" Name="Stair" Variety="Meteorite Up-Right Riser" />
+        <Frame UV="162,486" Name="Stair" Variety="Meteorite Up-Right Stringer" />
+        <Frame UV="180,486" Name="Stair" Variety="Meteorite Up-Left Riser" />
+        <Frame UV="198,486" Name="Stair" Variety="Meteorite Up-Left Stringer" />
+        <Frame UV="216,486" Name="Stair" Variety="Meteorite Top Landing R" />
+        <Frame UV="234,486" Name="Stair" Variety="Meteorite Top Landing L" />
+        <Frame UV="252,486" Name="Stair" Variety="Meteorite Top Landing L-R" />
+        <Frame UV="270,486" Name="Stair" Variety="Meteorite Top Landing R Endcap" />
+        <Frame UV="288,486" Name="Stair" Variety="Meteorite Top Landing L Endcap" />
+        <Frame UV="306,486" Name="Stair" Variety="Meteorite Bottom Landing R" />
+        <Frame UV="324,486" Name="Stair" Variety="Meteorite Bottom Landing L" />
+        <Frame UV="342,486" Name="Stair" Variety="Meteorite Inset Up-Right 1" />
+        <Frame UV="360,486" Name="Stair" Variety="Meteorite Inset Up-Left 1" />
+        <Frame UV="378,486" Name="Stair" Variety="Meteorite Inset Up-Right 2" />
+        <Frame UV="396,486" Name="Stair" Variety="Meteorite Inset Up-Left 2" />
+        <Frame UV="414,486" Name="Stair" Variety="Meteorite Inset Up-Right 3" />
+        <Frame UV="432,486" Name="Stair" Variety="Meteorite Inset Up-Left 3" />
+        <Frame UV="450,486" Name="Stair" Variety="Meteorite Inverted Right" />
+        <Frame UV="468,486" Name="Stair" Variety="Meteorite Inverted Left" />
+        <Frame UV="0,504" Name="Platform" Variety="Granite Flat" />
+        <Frame UV="18,504" Name="Platform" Variety="Granite Endcap Right" />
+        <Frame UV="36,504" Name="Platform" Variety="Granite Endcap Left" />
+        <Frame UV="54,504" Name="Platform" Variety="Granite Attach Left" />
+        <Frame UV="72,504" Name="Platform" Variety="Granite Attach Right" />
+        <Frame UV="90,504" Name="Platform" Variety="Granite Single" />
+        <Frame UV="108,504" Name="Platform" Variety="Granite Attach Left Endcap" />
+        <Frame UV="126,504" Name="Platform" Variety="Granite Attach Right Endcap" />
+        <Frame UV="144,504" Name="Stair" Variety="Granite Up-Right Riser" />
+        <Frame UV="162,504" Name="Stair" Variety="Granite Up-Right Stringer" />
+        <Frame UV="180,504" Name="Stair" Variety="Granite Up-Left Riser" />
+        <Frame UV="198,504" Name="Stair" Variety="Granite Up-Left Stringer" />
+        <Frame UV="216,504" Name="Stair" Variety="Granite Top Landing R" />
+        <Frame UV="234,504" Name="Stair" Variety="Granite Top Landing L" />
+        <Frame UV="252,504" Name="Stair" Variety="Granite Top Landing L-R" />
+        <Frame UV="270,504" Name="Stair" Variety="Granite Top Landing R Endcap" />
+        <Frame UV="288,504" Name="Stair" Variety="Granite Top Landing L Endcap" />
+        <Frame UV="306,504" Name="Stair" Variety="Granite Bottom Landing R" />
+        <Frame UV="324,504" Name="Stair" Variety="Granite Bottom Landing L" />
+        <Frame UV="342,504" Name="Stair" Variety="Granite Inset Up-Right 1" />
+        <Frame UV="360,504" Name="Stair" Variety="Granite Inset Up-Left 1" />
+        <Frame UV="378,504" Name="Stair" Variety="Granite Inset Up-Right 2" />
+        <Frame UV="396,504" Name="Stair" Variety="Granite Inset Up-Left 2" />
+        <Frame UV="414,504" Name="Stair" Variety="Granite Inset Up-Right 3" />
+        <Frame UV="432,504" Name="Stair" Variety="Granite Inset Up-Left 3" />
+        <Frame UV="450,504" Name="Stair" Variety="Granite Inverted Right" />
+        <Frame UV="468,504" Name="Stair" Variety="Granite Inverted Left" />
+        <Frame UV="0,522" Name="Platform" Variety="Marble Flat" />
+        <Frame UV="18,522" Name="Platform" Variety="Marble Endcap Right" />
+        <Frame UV="36,522" Name="Platform" Variety="Marble Endcap Left" />
+        <Frame UV="54,522" Name="Platform" Variety="Marble Attach Left" />
+        <Frame UV="72,522" Name="Platform" Variety="Marble Attach Right" />
+        <Frame UV="90,522" Name="Platform" Variety="Marble Single" />
+        <Frame UV="108,522" Name="Platform" Variety="Marble Attach Left Endcap" />
+        <Frame UV="126,522" Name="Platform" Variety="Marble Attach Right Endcap" />
+        <Frame UV="144,522" Name="Stair" Variety="Marble Up-Right Riser" />
+        <Frame UV="162,522" Name="Stair" Variety="Marble Up-Right Stringer" />
+        <Frame UV="180,522" Name="Stair" Variety="Marble Up-Left Riser" />
+        <Frame UV="198,522" Name="Stair" Variety="Marble Up-Left Stringer" />
+        <Frame UV="216,522" Name="Stair" Variety="Marble Top Landing R" />
+        <Frame UV="234,522" Name="Stair" Variety="Marble Top Landing L" />
+        <Frame UV="252,522" Name="Stair" Variety="Marble Top Landing L-R" />
+        <Frame UV="270,522" Name="Stair" Variety="Marble Top Landing R Endcap" />
+        <Frame UV="288,522" Name="Stair" Variety="Marble Top Landing L Endcap" />
+        <Frame UV="306,522" Name="Stair" Variety="Marble Bottom Landing R" />
+        <Frame UV="324,522" Name="Stair" Variety="Marble Bottom Landing L" />
+        <Frame UV="342,522" Name="Stair" Variety="Marble Inset Up-Right 1" />
+        <Frame UV="360,522" Name="Stair" Variety="Marble Inset Up-Left 1" />
+        <Frame UV="378,522" Name="Stair" Variety="Marble Inset Up-Right 2" />
+        <Frame UV="396,522" Name="Stair" Variety="Marble Inset Up-Left 2" />
+        <Frame UV="414,522" Name="Stair" Variety="Marble Inset Up-Right 3" />
+        <Frame UV="432,522" Name="Stair" Variety="Marble Inset Up-Left 3" />
+        <Frame UV="450,522" Name="Stair" Variety="Marble Inverted Right" />
+        <Frame UV="468,522" Name="Stair" Variety="Marble Inverted Left" />
       </Frames>
     </Tile>
     <Tile Color="#FFA37451" Size="1,2" Id="20" Name="Acorn" Framed="true">
@@ -1355,6 +1518,10 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="1620,0" Name="Pumpkin Chest" />
         <Frame UV="1656,0" Name="Spooky Chest" />
         <Frame UV="1692,0" Name="Glass Chest" />
+        <Frame UV="1728,0" Name="Martian Chest" />
+        <Frame UV="1764,0" Name="Meteorite Chest" />
+        <Frame UV="1800,0" Name="Granite Chest" />
+        <Frame UV="1836,0" Name="Marble Chest" />
       </Frames>
     </Tile>
     <Tile Color="#FF625FA7" Blends="true" MergeWith="0" Id="22" Name="Demonite Ore" Solid="true" Light="true" />
@@ -1482,6 +1649,15 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="0,1080" Variety="Lihzahrd Pot C1" />
         <Frame UV="36,1080" Variety="Lihzahrd Pot C2" />
         <Frame UV="72,1080" Variety="Lihzahrd Pot C3" />
+        <Frame UV="0,1116" Variety="Marble Pot A1" />
+        <Frame UV="36,1116" Variety="Marble Pot A2" />
+        <Frame UV="72,1116" Variety="Marble Pot A3" />
+        <Frame UV="0,1152" Variety="Marble Pot B1" />
+        <Frame UV="36,1152" Variety="Marble Pot B2" />
+        <Frame UV="72,1152" Variety="Marble Pot B3" />
+        <Frame UV="0,1188" Variety="Marble Pot C1" />
+        <Frame UV="36,1188" Variety="Marble Pot C2" />
+        <Frame UV="72,1188" Variety="Marble Pot C3" />
       </Frames>
     </Tile>
     <Tile Color="#FFAF6980" Placement="surface" Size="2,1" Id="29" Name="Piggy Bank" Framed="True">
@@ -1549,6 +1725,16 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="18,506" Name="Steampunk Candle" Variety="Off" />
         <Frame UV="0,528" Name="Spooky Candle" Variety="On" />
         <Frame UV="18,528" Name="Spooky Candle" Variety="Off" />
+        <Frame UV="0,550" Name="Obsidian Candle" Variety="On" />
+        <Frame UV="18,550" Name="Obsidian Candle" Variety="Off" />
+        <Frame UV="0,572" Name="Martian Hover Candle" Variety="On" />
+        <Frame UV="18,572" Name="Martian Hover Candle" Variety="Off" />
+        <Frame UV="0,594" Name="Meteorite Candle" Variety="On" />
+        <Frame UV="18,594" Name="Meteorite Candle" Variety="Off" />
+        <Frame UV="0,616" Name="Granite Candle" Variety="On" />
+        <Frame UV="18,616" Name="Granite Candle" Variety="Off" />
+        <Frame UV="0,638" Name="Marble Candle" Variety="On" />
+        <Frame UV="18,638" Name="Marble Candle" Variety="Off" />
       </Frames>
     </Tile>
     <Tile Color="#FFEBA687" Placement="ceiling" Size="3,3" Id="34" Name="Chandelier" Framed="true" Light="true">
@@ -1619,6 +1805,14 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="54,1674" Name="Pumpkin Chandelier" Variety="Off" />
         <Frame UV="0,1728" Name="Obsidian Chandelier" Variety="On" />
         <Frame UV="54,1728" Name="Obsidian Chandelier" Variety="Off" />
+        <Frame UV="0,1782" Name="Martian Chandelier" Variety="On" />
+        <Frame UV="54,1782" Name="Martian Chandelier" Variety="Off" />
+        <Frame UV="0,1836" Name="Meteorite Chandelier" Variety="On" />
+        <Frame UV="54,1836" Name="Meteorite Chandelier" Variety="Off" />
+        <Frame UV="0,1890" Name="Granite Chandelier" Variety="On" />
+        <Frame UV="54,1890" Name="Granite Chandelier" Variety="Off" />
+        <Frame UV="0,1944" Name="Marble Chandelier" Variety="On" />
+        <Frame UV="54,1944" Name="Marble Chandelier" Variety="Off" />
       </Frames>
     </Tile>
     <Tile Color="#FFC5D8DB" Size="2,2" Id="35" Name="Jack 'O Lantern" Framed="true" Light="true">
@@ -1727,6 +1921,14 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="18,1116" Name="Pumpkin Lantern" Variety="Off" />
         <Frame UV="0,1152" Name="Obsidian Lantern" Variety="On" />
         <Frame UV="18,1152" Name="Obsidian Lantern" Variety="Off" />
+        <Frame UV="0,1188" Name="Martian Lantern" Variety="On" />
+        <Frame UV="18,1188" Name="Martian Lantern" Variety="Off" />
+        <Frame UV="0,1224" Name="Meteorite Lantern" Variety="On" />
+        <Frame UV="18,1224" Name="Meteorite Lantern" Variety="Off" />
+        <Frame UV="0,1260" Name="Granite Lantern" Variety="On" />
+        <Frame UV="18,1260" Name="Granite Lantern" Variety="Off" />
+        <Frame UV="0,1296" Name="Marble Lantern" Variety="On" />
+        <Frame UV="18,1296" Name="Marble Lantern" Variety="Off" />
       </Frames>
     </Tile>
     <Tile Color="#FF54643F" Blends="true" MergeWith="0" Id="43" Name="Green Brick" Solid="true" />
@@ -1889,6 +2091,14 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="72,900" Name="Slime Bed" Variety="Right" />
         <Frame UV="0,936" Name="Pumpkin Bed" Anchor="Left" />
         <Frame UV="72,936" Name="Pumpkin Bed" Variety="Right" />
+        <Frame UV="0,972" Name="Martian Bed" Anchor="Left" />
+        <Frame UV="72,972" Name="Martian Bed" Variety="Right" />
+        <Frame UV="0,1008" Name="Meteorite Bed" Anchor="Left" />
+        <Frame UV="72,1008" Name="Meteorite Bed" Variety="Right" />
+        <Frame UV="0,1044" Name="Granite Bed" Anchor="Left" />
+        <Frame UV="72,1044" Name="Granite Bed" Variety="Right" />
+        <Frame UV="0,1080" Name="Marble Bed" Anchor="Left" />
+        <Frame UV="72,1080" Name="Marble Bed" Variety="Right" />
       </Frames>
     </Tile>
     <Tile Name="Cactus" Color="#FF497811" Special="Cactus" Id="80" Framed="true">
@@ -1940,14 +2150,19 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="108,0" Name="Shiverthorn" growsOn="147,161" />
       </Frames>
     </Tile>
-    <Tile Color="#FFC0C0C0" Placement="floor" Size="2,2" Id="85" Name="Tombstone" Framed="true">
+    <Tile Color="#FFC0C0C0" Placement="floor" Size="2,2" Id="85" Name="Grave Marker" Framed="true">
       <Frames>
-        <Frame UV="0,0" Variety="A" />
-        <Frame UV="36,0" Variety="B" />
-        <Frame UV="72,0" Variety="C" />
-        <Frame UV="108,0" Variety="D" />
-        <Frame UV="144,0" Variety="E" />
-        <Frame UV="180,0" Variety="F" />
+        <Frame UV="0,0" Variety="Tombstone" />
+        <Frame UV="36,0" Variety="Grave Marker" />
+        <Frame UV="72,0" Variety="Cross Grave Marker" />
+        <Frame UV="108,0" Variety="Headstone" />
+        <Frame UV="144,0" Variety="Gravestone" />
+        <Frame UV="180,0" Variety="Obelisk" />
+        <Frame UV="216,0" Variety="Golden Cross Grave Marker" />
+        <Frame UV="252,0" Variety="Golden Tombstone" />
+        <Frame UV="288,0" Variety="Golden Grave Marker" />
+        <Frame UV="324,0" Variety="Golden Gravestone" />
+        <Frame UV="360,0" Variety="Golden Headstone" />
       </Frames>
     </Tile>
     <Tile Color="#FFBF8E6F" Placement="floor" Size="3,2" Id="86" Name="Loom" Framed="true" />
@@ -1979,6 +2194,10 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="1242,0" Variety="Boreal Wood" />
         <Frame UV="1296,0" Variety="Slime" />
         <Frame UV="1350,0" Variety="Pumpkin" />
+        <Frame UV="1404,0" Variety="Martian" />
+        <Frame UV="1458,0" Variety="Meteorite" />
+        <Frame UV="1512,0" Variety="Granite" />
+        <Frame UV="1566,0" Variety="Marble" />
       </Frames>
     </Tile>
     <Tile Color="#FFBF8E6F" Placement="floor" Size="3,2" Id="88" Name="Dresser" Framed="true" SolidTop="true">
@@ -2007,6 +2226,10 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="1134,0" Variety="Steampunk" />
         <Frame UV="1188,0" Variety="Glass" />
         <Frame UV="1242,0" Variety="Flesh" />
+        <Frame UV="1296,0" Variety="Martian" />
+        <Frame UV="1350,0" Variety="Meteorite" />
+        <Frame UV="1404,0" Variety="Granite" />
+        <Frame UV="1458,0" Variety="Marble" />
       </Frames>
     </Tile>
     <Tile Color="#FFBF8E6F" Placement="floor" Size="3,2" Id="89" Name="Bench" Framed="true">
@@ -2040,6 +2263,10 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="1404,0" Variety="Flesh Sofa" />
         <Frame UV="1458,0" Variety="Frozen Sofa" />
         <Frame UV="1512,0" Variety="Living Wood Sofa" />
+        <Frame UV="1566,0" Variety="Martian Sofa" />
+        <Frame UV="1620,0" Variety="Meteorite Sofa" />
+        <Frame UV="1674,0" Variety="Granite Sofa" />
+        <Frame UV="1728,0" Variety="Marble Sofa" />
       </Frames>
     </Tile>
     <Tile Color="#FF909490" Placement="floor" Size="4,2" Id="90" Name="Bathtub" Framed="true">
@@ -2096,8 +2323,16 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="72,864" Variety="Pumpkin Bathtub" Anchor="Left" />
         <Frame UV="0,900" Variety="Obsidian Bathtub" Anchor="Left" />
         <Frame UV="72,900" Variety="Obsidian Bathtub" Anchor="Left" />
-        <Frame UV="0,936" Variety="Golden Bathtub" Anchor="Left" />
         <Frame UV="72,936" Variety="Golden Bathtub" Anchor="Left" />
+        <Frame UV="0,936" Variety="Golden Bathtub" Anchor="Left" />
+        <Frame UV="72,972" Variety="Martian Bathtub" Anchor="Left" />
+        <Frame UV="0,972" Variety="Martian Bathtub" Anchor="Left" />
+        <Frame UV="72,1008" Variety="Meteorite Bathtub" Anchor="Left" />
+        <Frame UV="0,1008" Variety="Meteorite Bathtub" Anchor="Left" />
+        <Frame UV="72,1044" Variety="Granite Bathtub" Anchor="Left" />
+        <Frame UV="0,1044" Variety="Granite Bathtub" Anchor="Left" />
+        <Frame UV="72,1080" Variety="Marble Bathtub" Anchor="Left" />
+        <Frame UV="0,1080" Variety="Marble Bathtub" Anchor="Left" />
       </Frames>
     </Tile>
     <Tile Color="#FF0D5882" Placement="ceiling" Size="1,3" Id="91" Name="Red Banner" Framed="true">
@@ -2275,6 +2510,14 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="18,1350" Name="Green Dungeon Lamp" Variety="Off" />
         <Frame UV="0,1404" Name="Pink Dungeon Lamp" Variety="On" />
         <Frame UV="18,1404" Name="Pink Dungeon Lamp" Variety="Off" />
+        <Frame UV="0,1458" Name="Martian Lamppost" Variety="On" />
+        <Frame UV="18,1458" Name="Martian Lamppost" Variety="Off" />
+        <Frame UV="0,1512" Name="Meteorite Lamp" Variety="On" />
+        <Frame UV="18,1512" Name="Meteorite Lamp" Variety="Off" />
+        <Frame UV="0,1566" Name="Granite Lamp" Variety="On" />
+        <Frame UV="18,1566" Name="Granite Lamp" Variety="Off" />
+        <Frame UV="0,1620" Name="Marble Lamp" Variety="On" />
+        <Frame UV="18,1620" Name="Marble Lamp" Variety="Off" />
       </Frames>
     </Tile>
     <Tile Color="#FFBF8E6F" Placement="floor" Size="2,2" Id="94" Name="Keg" Framed="true" />
@@ -2349,6 +2592,14 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="36,900" Name="Obsidian Candelabra" Variety="Off" />
         <Frame UV="0,936" Name="Pumpkin Candelabra" Variety="On" />
         <Frame UV="36,936" Name="Pumpkin Candelabra" Variety="Off" />
+        <Frame UV="0,972" Name="Martian Candelabra" Variety="On" />
+        <Frame UV="36,972" Name="Martian Candelabra" Variety="Off" />
+        <Frame UV="0,1008" Name="Meteorite Candelabra" Variety="On" />
+        <Frame UV="36,1008" Name="Meteorite Candelabra" Variety="Off" />
+        <Frame UV="0,1044" Name="Granite Candelabra" Variety="On" />
+        <Frame UV="36,1044" Name="Granite Candelabra" Variety="Off" />
+        <Frame UV="0,1080" Name="Marble Candelabra" Variety="On" />
+        <Frame UV="36,1080" Name="Marble Candelabra" Variety="Off" />
       </Frames>
     </Tile>
     <Tile Color="#FFBF8E6F" Placement="floor" Size="3,4" Id="101" Name="Bookcase" Framed="true" SolidTop="true">
@@ -2381,6 +2632,10 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="1350,0" Variety="Boreal Wood Bookcase" />
         <Frame UV="1404,0" Variety="Slime Bookcase" />
         <Frame UV="1458,0" Variety="Pumpkin Bookcase" />
+        <Frame UV="1512,0" Variety="Martian Holobookcase" />
+        <Frame UV="1566,0" Variety="Meteorite Bookcase" />
+        <Frame UV="1620,0" Variety="Granite Bookcase" />
+        <Frame UV="1674,0" Variety="Marble Bookcase" />
       </Frames>
     </Tile>
     <Tile Color="#FFE5D449" Placement="floor" Size="3,4" Id="102" Name="Throne" Framed="true" />
@@ -2418,6 +2673,10 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="756,0" Name="Shadewood Clock" />
         <Frame UV="792,0" Name="Spooky Clock" />
         <Frame UV="828,0" Name="Sunplate Clock" />
+        <Frame UV="864,0" Name="Martian Astro Clock" />
+        <Frame UV="900,0" Name="Meteorite Clock" />
+        <Frame UV="936,0" Name="Granite Clock" />
+        <Frame UV="972,0" Name="Marble Clock" />
       </Frames>
     </Tile>
     <Tile Color="#FF909490" Placement="floor" Size="2,3" Id="105" Name="Statue" Framed="true">
@@ -2696,6 +2955,18 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="36,1080" Name="Music Box (Frost Moon)" Variety="On" />
         <Frame UV="0,1116" Name="Music Box (Underground Crimson)" Variety="Off" />
         <Frame UV="36,1116" Name="Music Box (Underground Crimson)" Variety="On" />
+        <Frame UV="0,1152" Name="Music Box (Lunar Boss)" Variety="Off" />
+        <Frame UV="36,1152" Name="Music Box (Lunar Boss)" Variety="On" />
+        <Frame UV="0,1188" Name="Music Box (Martian Madness)" Variety="Off" />
+        <Frame UV="36,1188" Name="Music Box (Martian Madness)" Variety="On" />
+        <Frame UV="0,1224" Name="Music Box (Pirate Invasion)" Variety="Off" />
+        <Frame UV="36,1224" Name="Music Box (Pirate Invasion)" Variety="On" />
+        <Frame UV="0,1260" Name="Music Box (Hell)" Variety="Off" />
+        <Frame UV="36,1260" Name="Music Box (Hell)" Variety="On" />
+        <Frame UV="0,1296" Name="Music Box (The Towers)" Variety="Off" />
+        <Frame UV="36,1296" Name="Music Box (The Towers)" Variety="On" />
+        <Frame UV="0,1332" Name="Music Box (Goblin Invasion)" Variety="Off" />
+        <Frame UV="36,1332" Name="Music Box (Goblin Invasion)" Variety="On" />
       </Frames>
     </Tile>
     <Tile Color="#FF625FA7" Blends="true" MergeWith="0" Id="140" Name="Demonite Brick" Solid="true" Light="true" />
@@ -2826,10 +3097,9 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
       </Frames>
     </Tile>
     <Tile Color="#FF218755" Id="171" TextureGrid="64,128" Name="Christmas Tree" Light="true" />
-    <Tile Name="Fake Chandelier" Color="#FFB5C2D9" Placement="ceiling" Framed="false" Light="true" Size="3,3" Id="172">
+    <Tile Name="Sink" Color="#FFB5C2D9" Placement="floor" Framed="false" Size="2,2" Id="172">
       <Frames>
-        <Frame UV="0,0" Variety="On" />
-        <Frame UV="54,0" Variety="Off" />
+        <!-- TODO:  The upper and lower halves of sinks have different frame sizes (issue) -->
       </Frames>
     </Tile>
     <Tile Color="#FFFDDD03" Placement="floorSurface" Size="2,2" Id="173" Name="Platinum Candelabra" Framed="true" Light="true">
@@ -3143,22 +3413,31 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
       <Frames>
         <Frame UV="0,0" Name="Cannon" Variety="0 deg Elevation Right" />
         <Frame UV="72,0" Name="Bunny Cannon" Variety="0 deg Elevation Right" />
+        <Frame UV="144,0" Name="Confetti Cannon" Variety="0 deg Elevation Right" />
         <Frame UV="0,54" Name="Cannon" Variety="22.5 deg Elevation Right" />
         <Frame UV="72,54" Name="Bunny Cannon" Variety="22.5 deg Elevation Right" />
+        <Frame UV="144,54" Name="Confetti Cannon" Variety="22.5 deg Elevation Right" />
         <Frame UV="0,108" Name="Cannon" Variety="45 deg Elevation Right" />
         <Frame UV="72,108" Name="Bunny Cannon" Variety="45 deg Elevation Right" />
+        <Frame UV="144,108" Name="Confetti Cannon" Variety="45 deg Elevation Right" />
         <Frame UV="0,162" Name="Cannon" Variety="67.5 deg Elevation Right" />
         <Frame UV="72,162" Name="Bunny Cannon" Variety="67.5 deg Elevation Right" />
+        <Frame UV="144,162" Name="Confetti Cannon" Variety="67.5 deg Elevation Right" />
         <Frame UV="0,216" Name="Cannon" Variety="90 deg Elevation" />
         <Frame UV="72,216" Name="Bunny Cannon" Variety="90 deg Elevation" />
+        <Frame UV="144,216" Name="Confetti Cannon" Variety="90 deg Elevation" />
         <Frame UV="0,270" Name="Cannon" Variety="67.5 deg Elevation Left" />
         <Frame UV="72,270" Name="Bunny Cannon" Variety="67.5 deg Elevation Left" />
+        <Frame UV="144,270" Name="Confetti Cannon" Variety="67.5 deg Elevation Left" />
         <Frame UV="0,324" Name="Cannon" Variety="45 deg Elevation Left" />
         <Frame UV="72,324" Name="Bunny Cannon" Variety="45 deg Elevation Left" />
+        <Frame UV="144,324" Name="Confetti Cannon" Variety="45 deg Elevation Left" />
         <Frame UV="0,378" Name="Cannon" Variety="22.5 deg Elevation Left" />
         <Frame UV="72,378" Name="Bunny Cannon" Variety="22.5 deg Elevation Left" />
+        <Frame UV="144,378" Name="Confetti Cannon" Variety="22.5 deg Elevation Left" />
         <Frame UV="0,432" Name="Cannon" Variety="0 deg Elevation Left" />
         <Frame UV="72,432" Name="Bunny Cannon" Variety="0 deg Elevation Left" />
+        <Frame UV="144,432" Name="Confetti Cannon" Variety="0 deg Elevation Left" />
       </Frames>
     </Tile>
     <Tile Color="#FFC03B3B" Id="210" Name="Land Mine" Framed="true" />
@@ -3171,7 +3450,22 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     </Tile>
     <Tile Color="#FF897843" Blends="true" Id="213" Name="Rope" />
     <Tile Color="#FF676767" Blends="true" Id="214" Name="Chain" />
-    <Tile Color="#FFFE7902" Size="3,2" Id="215" Name="Campfire" Framed="true" Light="true" />
+    <Tile Color="#FFFE7902" Size="3,2" Id="215" Name="Campfire" Framed="true" Light="true">
+      <Frames>
+        <Frame UV="0,0" Name="Campfire" Variety="Lit" />
+        <Frame UV="0,288" Name="Campfire" Variety="Unlit" />
+        <Frame UV="54,0" Name="Cursed Campfire" Variety="Lit" />
+        <Frame UV="54,288" Name="Cursed Campfire" Variety="Unlit" />
+        <Frame UV="108,0" Name="Demon Campfire" Variety="Lit" />
+        <Frame UV="108,288" Name="Demon Campfire" Variety="Unlit" />
+        <Frame UV="162,0" Name="Frozen Campfire" Variety="Lit" />
+        <Frame UV="162,288" Name="Frozen Campfire" Variety="Unlit" />
+        <Frame UV="216,0" Name="Ichor Campfire" Variety="Lit" />
+        <Frame UV="216,288" Name="Ichor Campfire" Variety="Unlit" />
+        <Frame UV="270,0" Name="Rainbow Campfire" Variety="Lit" />
+        <Frame UV="270,288" Name="Rainbow Campfire" Variety="Unlit" />
+      </Frames>
+    </Tile>
     <Tile Color="#FFBF8E6F" Size="1,2" Id="216" Name="Rocket" Framed="true">
       <Frames>
         <Frame UV="0,0" Name="Rocket" Variety="Red Rocket" />
@@ -3200,6 +3494,10 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="170,0" Name="Dye Plant" Variety="Lime Kelp" />
         <Frame UV="204,0" Name="Dye Plant" Variety="Pink Prickly Pear" />
         <Frame UV="238,0" Name="Dye Plant" Variety="Orange Bloodroot" />
+        <Frame UV="272,0" Name="Dye Plant" Variety="Strange Plant 1" />
+        <Frame UV="306,0" Name="Dye Plant" Variety="Strange Plant 2" />
+        <Frame UV="340,0" Name="Dye Plant" Variety="Strange Plant 3" />
+        <Frame UV="374,0" Name="Dye Plant" Variety="Strange Plant 4" />
       </Frames>
     </Tile>
     <Tile Color="#FF909490" Size="3,3" Id="228" Name="Dye Vat" Framed="true" />
@@ -3246,6 +3544,8 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="324,0" Name="Metal Bar" Variety="Hallowed Bar" />
         <Frame UV="342,0" Name="Metal Bar" Variety="Crimtane Bar" />
         <Frame UV="360,0" Name="Metal Bar" Variety="Shroomite Bar" />
+        <Frame UV="378,0" Name="Metal Bar" Variety="Spectre Bar" />
+        <Frame UV="396,0" Name="Metal Bar" Variety="Luminite Bar" />
       </Frames>
     </Tile>
     <Tile Color="#FF63321E" Size="3,3" Id="240" Name="3x3 Wall Hangings" Framed="true">
@@ -3306,6 +3606,10 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="918,54" Name="Fishing Trophy" Variety="Sharkteeth Trophy" />
         <Frame UV="972,54" Name="Boss Trophy" Variety="King Slime Trophy" />
         <Frame UV="1026,54" Name="Boss Trophy" Variety="Duke Fishron Trophy" />
+        <Frame UV="1080,54" Name="Boss Trophy" Variety="Ancient Cultist Trophy" />
+        <Frame UV="1134,54" Name="Boss Trophy" Variety="Martian Saucer Trophy" />
+        <Frame UV="1188,54" Name="Boss Trophy" Variety="Flying Dutchman Trophy" />
+        <Frame UV="1242,54" Name="Boss Trophy" Variety="Moon Lord Trophy" />
       </Frames>
     </Tile>
     <Tile Color="#FF4D4A48" Size="4,3" Id="241" Name="Catacomb" Framed="true">
@@ -3350,6 +3654,16 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="0,1728" Name="Hanging" Variety="Zebra Skin" />
         <Frame UV="0,1800" Name="Hanging" Variety="Treasure Map" />
         <Frame UV="0,1872" Name="Painting" Variety="Pillagin Me Pixels" />
+        <Frame UV="108,0" Name="Painting" Variety="Castle Marsberg" />
+        <Frame UV="108,72" Name="Painting" Variety="Martia Lisa" />
+        <Frame UV="108,144" Name="Painting" Variety="The Truth Is Up There" />
+        <Frame UV="108,216" Name="Painting" Variety="Sparky" />
+        <Frame UV="108,288" Name="Painting" Variety="Acorns" />
+        <Frame UV="108,360" Name="Painting" Variety="Cold Snap" />
+        <Frame UV="108,432" Name="Painting" Variety="Cursed Saint" />
+        <Frame UV="108,504" Name="Painting" Variety="Snowfellas" />
+        <Frame UV="108,576" Name="Painting" Variety="The Season" />
+        <Frame UV="108,648" Name="Painting" Variety="Not a Kid, nor a Squid" />
       </Frames>
     </Tile>
     <Tile Color="#FF8CB3FE" Size="3,3" Id="243" Name="Imbuing Station" Framed="true" />
@@ -3673,43 +3987,36 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
       </Frames>
     </Tile>
     <Tile Color="#FFFBD1F0" Id="379" Blends="true" Name="Bubble" Solid="true" Framed="false" />
-    <Tile Color="#FFBF8E6F" Id="380" Size="" Name="Planter Box" Framed="true">
+    <Tile Color="#FFBF8E6F" Id="380" Size="1,1" Name="Planter Box" Framed="true">
       <Frames>
         <Frame UV="0,0" Name="Daybloom Planter" Variety="Left" />
         <Frame UV="18,0" Name="Daybloom Planter" Variety="Middle" />
         <Frame UV="36,0" Name="Daybloom Planter" Variety="Right" />
         <Frame UV="54,0" Name="Daybloom Planter" Variety="Single" />
-        
         <Frame UV="0,18" Name="Moonglow Planter" Variety="Left" />
         <Frame UV="18,18" Name="Moonglow Planter" Variety="Middle" />
         <Frame UV="36,18" Name="Moonglow Planter" Variety="Right" />
         <Frame UV="54,18" Name="Moonglow Planter" Variety="Single" />
-        
         <Frame UV="0,36" Name="Deathweed Planter" Variety="Left" />
         <Frame UV="18,36" Name="Deathweed Planter" Variety="Middle" />
         <Frame UV="36,36" Name="Deathweed Planter" Variety="Right" />
         <Frame UV="54,36" Name="Deathweed Planter" Variety="Single" />
-        
         <Frame UV="0,54" Name="Crimsonweed Planter" Variety="Left" />
         <Frame UV="18,54" Name="Crimsonweed Planter" Variety="Middle" />
         <Frame UV="36,54" Name="Crimsonweed Planter" Variety="Right" />
         <Frame UV="54,54" Name="Crimsonweed Planter" Variety="Single" />
-        
         <Frame UV="0,72" Name="Blinkroot Planter" Variety="Left" />
         <Frame UV="18,72" Name="Blinkroot Planter" Variety="Middle" />
         <Frame UV="36,72" Name="Blinkroot Planter" Variety="Right" />
         <Frame UV="54,72" Name="Blinkroot Planter" Variety="Single" />
-        
         <Frame UV="0,90" Name="Waterleaf Planter" Variety="Left" />
         <Frame UV="18,90" Name="Waterleaf Planter" Variety="Middle" />
         <Frame UV="36,90" Name="Waterleaf Planter" Variety="Right" />
         <Frame UV="54,90" Name="Waterleaf Planter" Variety="Single" />
-        
         <Frame UV="0,108" Name="Shiverthorn Planter" Variety="Left" />
         <Frame UV="18,108" Name="Shiverthorn Planter" Variety="Middle" />
         <Frame UV="36,108" Name="Shiverthorn Planter" Variety="Right" />
         <Frame UV="54,108" Name="Shiverthorn Planter" Variety="Single" />
-        
         <Frame UV="0,126" Name="Fireblossom Planter" Variety="Left" />
         <Frame UV="18,126" Name="Fireblossom Planter" Variety="Middle" />
         <Frame UV="36,126" Name="Fireblossom Planter" Variety="Right" />
@@ -3731,13 +4038,13 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Tile Color="#FF7F5C45" Id="388" Size="1,5" Name="Tall Gate Closed" Framed="true">
       <Frames>
         <Frame UV="0,0" Name="Closed" Variety="Style 1" />
-        <Frame UV="0,94" Name="Closed" Variety="Style 1" />
+        <Frame UV="0,94" Name="Closed" Variety="Style 2" />
       </Frames>
     </Tile>
     <Tile Color="#FF7F5C45" Id="389" Size="1,5" Name="Tall Gate Open" Framed="true">
       <Frames>
         <Frame UV="0,0" Name="Open" Variety="Style 1" />
-        <Frame UV="0,94" Name="Open" Variety="Style 1" />
+        <Frame UV="0,94" Name="Open" Variety="Style 2" />
       </Frames>
     </Tile>
     <Tile Color="#FFFD2003" Id="390" Size="1,2" Name="Lava Lamp" Framed="true" />
