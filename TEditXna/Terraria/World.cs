@@ -70,7 +70,7 @@ namespace TEditXNA.Terraria
                 {
                     using (var bw = new BinaryWriter(fs))
                     {
-                        if (CompatibleVersion > 87)
+                        if (world.Version > 87)
                             SaveV2(world, bw);
                         else
                             SaveV1(world, bw);
@@ -193,7 +193,7 @@ namespace TEditXNA.Terraria
 
                     // TODO: Let Validate handle these
                     //validate chest entry exists
-                    if (curTile.Type == 21)
+                    if (curTile.Type == 21 || curTile.Type == 88)
                     {
                         if (GetChestAtTile(x, y) == null)
                         {
@@ -218,7 +218,7 @@ namespace TEditXNA.Terraria
                 {
                     for (int y = chest.Y; y < chest.Y + 1; y++)
                     {
-                        if (!Tiles[x, y].IsActive || Tiles[x, y].Type != 21)
+                        if (!Tiles[x, y].IsActive || (Tiles[x, y].Type != 21 && Tiles[x, y].Type != 88))
                         {
                             Chests.Remove(chest);
                             removed = true;

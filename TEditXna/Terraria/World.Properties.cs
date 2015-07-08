@@ -23,7 +23,10 @@ namespace TEditXNA.Terraria
         private readonly ObservableCollection<NpcName> _charNames = new ObservableCollection<NpcName>();
         private readonly ObservableCollection<Chest> _chests = new ObservableCollection<Chest>();
         private readonly ObservableCollection<NPC> _npcs = new ObservableCollection<NPC>();
+        private readonly ObservableCollection<int> _killedMobs = new ObservableCollection<int>();
+        private readonly ObservableCollection<NPC> _mobs = new ObservableCollection<NPC>();
         private readonly ObservableCollection<Sign> _signs = new ObservableCollection<Sign>();
+        private readonly ObservableCollection<TileEntity> _tileEntities = new ObservableCollection<TileEntity>();
 
         // [SBLogic] These variables are used internally for composing background layers, not currently needed here:
         // public int[] CorruptBG = new int[3];
@@ -50,6 +53,8 @@ namespace TEditXNA.Terraria
         public int[] TreeX = new int[3];
         public int[] CaveBackX = new int[4];
         public uint Version;
+        private int _tileEntitiesNumber;
+        private int _numberOfMobs;
         private int _altarCount;
         private int _anglerQuest;
         private int _iceBackStyle;
@@ -64,6 +69,7 @@ namespace TEditXNA.Terraria
         private byte _bgSnow;
         private byte _bgTree;
         private bool _bloodMoon;
+        private byte _sundialCooldown;
         private float _bottomWorld;
         private float _cloudBgActive;
         private bool _dayTime;
@@ -74,6 +80,7 @@ namespace TEditXNA.Terraria
         private bool _downedFrost;
         private bool _downedGoblins;
         private bool _downedGolemBoss;
+        private bool _downedSlimeKingBoss;
         private bool _downedMechBoss1;
         private bool _downedMechBoss2;
         private bool _downedMechBoss3;
@@ -81,6 +88,24 @@ namespace TEditXNA.Terraria
         private bool _downedPirates;
         private bool _downedPlantBoss;
         private bool _downedQueenBee;
+        private bool _downedFishron;
+        private bool _downedMartians;
+        private bool _downedLunaticCultist;
+        private bool _downedMoonlord;
+        private bool _downedHalloweeenKing;
+        private bool _downedHalloweenTree;
+        private bool _downedChristmasQueen;
+        private bool _downedSanta;
+        private bool _downedChristmasTree;
+        private bool _downedCelestialSolar;
+        private bool _downedCelestialVortex;
+        private bool _downedCeslestialNebula;
+        private bool _downedCelestialStardust;
+        private bool _celestialSolarActive;
+        private bool _celestialVortexActive;
+        private bool _celestialNebulaActive;
+        private bool _celestialStardustActive;
+        private bool _apocalypse;
         private int _dungeonX;
         private int _dungeonY;
         private double _groundLevel;
@@ -88,7 +113,10 @@ namespace TEditXNA.Terraria
         private int _invasionDelay;
         private int _invasionSize;
         private int _invasionType;
+        private int _invasionSizeStart;
+        private int _cultistDelay;
         private double _invasionX;
+        private double _slimeRainTime;
         private bool _isCrimson;
         private bool _isEclipse;
         private DateTime _lastSave;
@@ -105,6 +133,8 @@ namespace TEditXNA.Terraria
         private bool _savedGoblin;
         private bool _savedMech;
         private bool _savedWizard;
+        private bool _savedStylist;
+        private bool _savedTaxCollector;
         private int _shadowOrbCount;
         private bool _shadowOrbSmashed;
         private bool _spawnMeteor;
@@ -115,6 +145,8 @@ namespace TEditXNA.Terraria
         private bool _tempRaining;
         private int _tilesHigh;
         private int _tilesWide;
+        private bool _expertMode;
+        private Int64 _creationTime;
         private double _time;
         private string _title;
         private float _topWorld;
@@ -135,12 +167,63 @@ namespace TEditXNA.Terraria
         private int _caveBackStyle1;
         private int _caveBackStyle2;
         private int _caveBackStyle3;
+        private bool _fastForwardTime;
 
+        private uint _fileRevision;
+        private UInt64 _unknownHeaderField;
+
+        public int TileEntitiesNumber
+        {
+            get { return _tileEntitiesNumber; }
+            set { Set("TileEntitiesNumber", ref _tileEntitiesNumber, value); }
+        }  
+
+        public int NumberOfMobs
+        {
+            get { return _numberOfMobs; }
+            set { Set("NumberOfMobs", ref _numberOfMobs, value); }
+        }       
+
+        public double SlimeRainTime
+        {
+            get { return _slimeRainTime; }
+            set { Set("SlimeRainTime", ref _slimeRainTime, value); }
+        }
+
+        public byte SundialCooldown
+        {
+            get { return _sundialCooldown; }
+            set { Set("SundialCooldown", ref _sundialCooldown, value); }
+        }
+
+        public uint FileRevision
+        {
+            get { return _fileRevision; }
+            set { Set("FileRevision", ref _fileRevision, value); }
+        }
+
+        public UInt64 UnknownHeaderField
+        {
+            get { return _unknownHeaderField; }
+            set { Set("UnknownHeaderField", ref _unknownHeaderField, value); }
+        }
 
         public byte[] UnknownData
         {
             get { return _unknownData; }
             set { Set("UnknownData", ref _unknownData, value); }
+        }
+
+        public Int64 CreationTime
+        {
+            get { return _creationTime; }
+            set { Set("CreationTime", ref _creationTime, value); }
+        }
+
+        public bool ExpertMode
+        {
+            get { return _expertMode; }
+            set { Set("ExpertMode", ref _expertMode, value); }
         }
 
 
@@ -154,6 +237,18 @@ namespace TEditXNA.Terraria
         {
             get { return _savedAngler; }
             set { Set("SavedAngler", ref _savedAngler, value); }
+        }
+
+        public bool SavedStylist
+        {
+            get { return _savedStylist; }
+            set { Set("SavedStylist", ref _savedStylist, value); }
+        }
+
+        public bool SavedTaxCollector
+        {
+            get { return _savedTaxCollector; }
+            set { Set("SavedTaxCollector", ref _savedTaxCollector, value); }
         }
 
         public int IceBackStyle
@@ -215,6 +310,16 @@ namespace TEditXNA.Terraria
             get { return _npcs; }
         }
 
+        public ObservableCollection<int> KilledMobs
+        {
+            get { return _killedMobs; }
+        }
+
+        public ObservableCollection<NPC> Mobs
+        {
+            get { return _mobs; }
+        } 
+
         public ObservableCollection<Sign> Signs
         {
             get { return _signs; }
@@ -228,6 +333,11 @@ namespace TEditXNA.Terraria
         public ObservableCollection<NpcName> CharacterNames
         {
             get { return _charNames; }
+        }
+
+        public ObservableCollection<TileEntity> TileEntities
+        {
+            get { return _tileEntities; }
         }
 
         public byte MoonType
@@ -333,6 +443,12 @@ namespace TEditXNA.Terraria
             set { Set("DownedGolemBoss", ref _downedGolemBoss, value); }
         }
 
+        public bool DownedSlimeKingBoss
+        {
+            get { return _downedSlimeKingBoss; }
+            set { Set("DownedSlimeKingBoss", ref _downedSlimeKingBoss, value); }
+        }
+
         public bool DownedPlantBoss
         {
             get { return _downedPlantBoss; }
@@ -367,6 +483,108 @@ namespace TEditXNA.Terraria
         {
             get { return _downedQueenBee; }
             set { Set("DownedQueenBee", ref _downedQueenBee, value); }
+        }
+
+        public bool DownedFishron
+        {
+            get { return _downedFishron; }
+            set { Set("DownedFishron", ref _downedFishron, value); }
+        }
+
+        public bool DownedMartians
+        {
+            get { return _downedMartians; }
+            set { Set("DownedMartians", ref _downedMartians, value); }
+        }
+
+        public bool DownedLunaticCultist
+        {
+            get { return _downedLunaticCultist; }
+            set { Set("DownedLunaticCultist", ref _downedLunaticCultist, value); }
+        }
+
+        public bool DownedMoonlord
+        {
+            get { return _downedMoonlord; }
+            set { Set("DownedMoonlord", ref _downedMoonlord, value); }
+        }
+
+        public bool DownedHalloweeenKing
+        {
+            get { return _downedHalloweeenKing; }
+            set { Set("DownedHalloweeenKing", ref _downedHalloweeenKing, value); }
+        }
+
+        public bool DownedHalloweenTree
+        {
+            get { return _downedHalloweenTree; }
+            set { Set("DownedHalloweenTree", ref _downedHalloweenTree, value); }
+        }
+
+        public bool DownedChristmasQueen
+        {
+            get { return _downedChristmasQueen; }
+            set { Set("DownedChristmasQueen", ref _downedChristmasQueen, value); }
+        }
+
+        public bool DownedSanta
+        {
+            get { return _downedSanta; }
+            set { Set("DownedSanta", ref _downedSanta, value); }
+        }
+
+        public bool DownedChristmasTree
+        {
+            get { return _downedChristmasTree; }
+            set { Set("DownedChristmasTree", ref _downedChristmasTree, value); }
+        }
+
+        public bool DownedCelestialSolar
+        {
+            get { return _downedCelestialSolar; }
+            set { Set("DownedCelestialSolar", ref _downedCelestialSolar, value); }
+        }
+
+        public bool DownedCelestialVortex
+        {
+            get { return _downedCelestialVortex; }
+            set { Set("DownedCelestialVortex", ref _downedCelestialVortex, value); }
+        }
+
+        public bool DownedCelestialNebula
+        {
+            get { return _downedCeslestialNebula; }
+            set { Set("DownedCelestialNebula", ref _downedCeslestialNebula, value); }
+        }
+
+        public bool DownedCelestialStardust
+        {
+            get { return _downedCelestialStardust; }
+            set { Set("DownedCelestialStardust", ref _downedCelestialStardust, value); }
+        }
+
+        public bool CelestialSolarActive
+        {
+            get { return _celestialSolarActive; }
+            set { Set("CelestialSolarActive", ref _celestialSolarActive, value); }
+        }
+
+        public bool CelestialVortexActive
+        {
+            get { return _celestialVortexActive; }
+            set { Set("CelestialVortexActive", ref _celestialVortexActive, value); }
+        }
+
+        public bool CelestialNebulaActive
+        {
+            get { return _celestialNebulaActive; }
+            set { Set("CelestialNebulaActive", ref _celestialNebulaActive, value); }
+        }
+
+        public bool CelestialStardustActive
+        {
+            get { return _celestialStardustActive; }
+            set { Set("CelestialStardustActive", ref _celestialStardustActive, value); }
         }
 
         public int TilesWide
@@ -593,6 +811,12 @@ namespace TEditXNA.Terraria
             set { Set("InvasionSize", ref _invasionSize, value); }
         }
 
+        public int InvasionSizeStart
+        {
+            get { return _invasionSizeStart; }
+            set { Set("InvasionSizeStart", ref _invasionSizeStart, value); }
+        }
+
         public int InvasionDelay
         {
             get { return _invasionDelay; }
@@ -717,6 +941,24 @@ namespace TEditXNA.Terraria
         {
             get { return _caveBackStyle3; }
             set { Set("CaveBackStyle3", ref _caveBackStyle3, value); }
+        }
+
+        public int CultistDelay
+        {
+            get { return _cultistDelay; }
+            set { Set("CultistDelay", ref _cultistDelay, value); }
+        }
+
+        public bool FastForwardTime
+        {
+            get { return _fastForwardTime; }
+            set { Set("FastForwardTime", ref _fastForwardTime, value); }
+        }
+
+        public bool Apocalypse
+        {
+            get { return _apocalypse; }
+            set { Set("Apocalypse", ref _apocalypse, value); }
         }
 
 
