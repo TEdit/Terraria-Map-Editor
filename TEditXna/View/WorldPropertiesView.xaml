@@ -16,6 +16,7 @@
             <enum:EnumItem Value="1">Goblin Invasion</enum:EnumItem>
             <enum:EnumItem Value="2">Frost Legion</enum:EnumItem>
             <enum:EnumItem Value="3">Pirate Invasion</enum:EnumItem>
+            <enum:EnumItem Value="4">Martian Madness</enum:EnumItem>
         </enum:EnumItemList>
         <enum:EnumItemList x:Key="moonTypeList" EnumType="{x:Type System:Byte}" SortBy="Value" >
             <enum:EnumItem Value="0">Grey</enum:EnumItem>
@@ -114,6 +115,47 @@
             <enum:EnumItem Value="72">72</enum:EnumItem>
             <enum:EnumItem Value="73">73</enum:EnumItem>
         </enum:EnumItemList>
+        <enum:EnumItemList x:Key="anglerQuestList" EnumType="{x:Type System:Int32}" SortBy="Value">
+            <enum:EnumItem Value="0">Batfish</enum:EnumItem>
+            <enum:EnumItem Value="1">Bumblebee Tuna</enum:EnumItem>
+            <enum:EnumItem Value="2">Catfish</enum:EnumItem>
+            <enum:EnumItem Value="3">Cloudfish</enum:EnumItem>
+            <enum:EnumItem Value="4">Cursedfish</enum:EnumItem>
+            <enum:EnumItem Value="5">Dirtfish</enum:EnumItem>
+            <enum:EnumItem Value="6">Dynamite Fish</enum:EnumItem>
+            <enum:EnumItem Value="7">Eater of Plankton</enum:EnumItem>
+            <enum:EnumItem Value="8">Fallen Starfish</enum:EnumItem>
+            <enum:EnumItem Value="9">The Fish of Cthulhu</enum:EnumItem>
+            <enum:EnumItem Value="10">Fishotron</enum:EnumItem>
+            <enum:EnumItem Value="11">Harpyfish</enum:EnumItem>
+            <enum:EnumItem Value="12">Hungerfish</enum:EnumItem>
+            <enum:EnumItem Value="13">Ichorfish</enum:EnumItem>
+            <enum:EnumItem Value="14">Jewelfish</enum:EnumItem>
+            <enum:EnumItem Value="15">Mirage Fish</enum:EnumItem>
+            <enum:EnumItem Value="16">Mutant Flinxfin</enum:EnumItem>
+            <enum:EnumItem Value="17">Pengfish</enum:EnumItem>
+            <enum:EnumItem Value="18">Pixiefish</enum:EnumItem>
+            <enum:EnumItem Value="19">Spiderfish</enum:EnumItem>
+            <enum:EnumItem Value="20">Tundra Trout</enum:EnumItem>
+            <enum:EnumItem Value="21">Unicorn Fish</enum:EnumItem>
+            <enum:EnumItem Value="22">Guide Voodoo Fish</enum:EnumItem>
+            <enum:EnumItem Value="23">Wyverntail</enum:EnumItem>
+            <enum:EnumItem Value="24">Zombie Fish</enum:EnumItem>
+            <enum:EnumItem Value="25">Amanitia Fungifin</enum:EnumItem>
+            <enum:EnumItem Value="26">Angelfish</enum:EnumItem>
+            <enum:EnumItem Value="27">Bloody Manowar</enum:EnumItem>
+            <enum:EnumItem Value="28">Bonefish</enum:EnumItem>
+            <enum:EnumItem Value="29">Bunnyfish</enum:EnumItem>
+            <enum:EnumItem Value="30">Cap'n Tunabeard</enum:EnumItem>
+            <enum:EnumItem Value="31">Clownfish</enum:EnumItem>
+            <enum:EnumItem Value="32">Demonic Hellfish</enum:EnumItem>
+            <enum:EnumItem Value="33">Derpfish</enum:EnumItem>
+            <enum:EnumItem Value="34">Fishron</enum:EnumItem>
+            <enum:EnumItem Value="35">Infected Scabbardfish</enum:EnumItem>
+            <enum:EnumItem Value="36">Mudfish</enum:EnumItem>
+            <enum:EnumItem Value="37">Slimefish</enum:EnumItem>
+            <enum:EnumItem Value="38">Tropical Barracuda</enum:EnumItem>
+        </enum:EnumItemList>
 
         <Style x:Key="TimeBackgroundStyle" TargetType="{x:Type Rectangle}">
             <Setter Property="Fill" Value="{DynamicResource DayGradient}" />
@@ -137,6 +179,8 @@
             <TextBox Text="{Binding CurrentWorld.Title, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
             <TextBlock Text="World Id" HorizontalAlignment="Right" />
             <TextBlock Text="{Binding CurrentWorld.WorldId}" HorizontalAlignment="Left" />
+            <TextBlock Text="Revision" HorizontalAlignment="Right" />
+            <TextBlock Text="{Binding CurrentWorld.FileRevision}" HorizontalAlignment="Left" />
             <Separator Grid.ColumnSpan="2" />
             <TextBlock Text="Moon Phase" HorizontalAlignment="Right" />
             <DockPanel>
@@ -166,6 +210,13 @@
             </Grid>
             <TextBlock />
             <CheckBox x:Name="dayCheckBox" Content="Is Day Time" VerticalAlignment="Center" Grid.Row="12" Grid.Column="1" IsChecked="{Binding Path=CurrentWorld.DayTime, Mode=TwoWay}"/>
+            <TextBlock />
+            <CheckBox IsChecked="{Binding CurrentWorld.FastForwardTime}" Content="Use Sundial" VerticalAlignment="Center" VerticalContentAlignment="Center" />
+            <TextBlock Text="Sundial Cooldown" HorizontalAlignment="Right" />
+            <DockPanel>
+                <TextBlock Text="{Binding CurrentWorld.SundialCooldown, StringFormat={}{0:0}}" Width="30" DockPanel.Dock="Right" />
+                <Slider Value="{Binding CurrentWorld.SundialCooldown, Mode=TwoWay}" VerticalAlignment="Center" Minimum="0" Maximum="127" SmallChange="1" />
+            </DockPanel>
             <Separator Grid.ColumnSpan="2" />
             <TextBlock Text="Rain" HorizontalAlignment="Right" />
             <CheckBox IsChecked="{Binding Path=CurrentWorld.TempRaining, Mode=TwoWay}" Content="Is Raining" VerticalAlignment="Center" Grid.Row="12" Grid.Column="1" />
@@ -176,8 +227,13 @@
             </DockPanel>
             <TextBlock Text="Max Rain" HorizontalAlignment="Right" />
             <DockPanel>
-                <TextBlock Text="{Binding CurrentWorld.TempRainTime, StringFormat={}{0:0}}" Width="30" DockPanel.Dock="Right" />
-                <Slider Value="{Binding CurrentWorld.TempRainTime, Mode=TwoWay}" VerticalAlignment="Center" Minimum="0" Maximum="65534" SmallChange="1" />
+                <TextBlock Text="{Binding CurrentWorld.MaxRain, StringFormat={}{0:0}}" Width="30" DockPanel.Dock="Right" />
+                <Slider Value="{Binding CurrentWorld.MaxRain, Mode=TwoWay}" VerticalAlignment="Center" Minimum="0" Maximum="65534" SmallChange="1" />
+            </DockPanel>
+            <TextBlock Text="Slime Rain Time" HorizontalAlignment="Right" />
+            <DockPanel>
+                <TextBlock Text="{Binding CurrentWorld.SlimeRainTime, StringFormat={}{0:0}}" Width="30" DockPanel.Dock="Right" />
+                <Slider Value="{Binding CurrentWorld.SlimeRainTime, Mode=TwoWay}" VerticalAlignment="Center" Minimum="0" Maximum="65534" SmallChange="1" />
             </DockPanel>
             <Separator Grid.ColumnSpan="2" />
             <TextBlock Text="Number Clouds" HorizontalAlignment="Right" />
@@ -207,6 +263,8 @@
             <TextBlock Text="Difficulty" HorizontalAlignment="Right" />
             <CheckBox IsChecked="{Binding CurrentWorld.HardMode}" Content="Hardmode" VerticalAlignment="Center" VerticalContentAlignment="Center" />
             <TextBlock />
+            <CheckBox IsChecked="{Binding CurrentWorld.ExpertMode}" Content="Expert Mode" VerticalAlignment="Center" VerticalContentAlignment="Center" />
+            <TextBlock />
             <CheckBox IsChecked="{Binding CurrentWorld.IsCrimson}" Content="Is Crimson" VerticalAlignment="Center" VerticalContentAlignment="Center" />
             <TextBlock Text="Altars Smashed" HorizontalAlignment="Right" />
             <DockPanel>
@@ -225,34 +283,56 @@
         <TextBlock Text="Hardmode Ore 3" HorizontalAlignment="Right" />
         <ComboBox Height="20" ItemsSource="{StaticResource oreTier3List}" SelectedValue="{Binding CurrentWorld.OreTier3, Mode=TwoWay}" SelectedValuePath="Value" />
             <Separator Grid.ColumnSpan="2" />
+            <TextBlock Text="Pre-Hardmode" HorizontalAlignment="Right" />
+            <CheckBox IsChecked="{Binding CurrentWorld.DownedSlimeKingBoss}" Content="King Slime" VerticalAlignment="Center" VerticalContentAlignment="Center" />
             <TextBlock Text="Bosses Downed" HorizontalAlignment="Right" />
-            <CheckBox IsChecked="{Binding CurrentWorld.DownedBoss1}" Content="Eye of Cthulhu Downed" VerticalAlignment="Center" VerticalContentAlignment="Center" />
+            <CheckBox IsChecked="{Binding CurrentWorld.DownedBoss1}" Content="Eye of Cthulhu" VerticalAlignment="Center" VerticalContentAlignment="Center" />
             <TextBlock />
-            <CheckBox IsChecked="{Binding CurrentWorld.DownedBoss2}" Content="Eater of Worlds Downed" VerticalAlignment="Center" VerticalContentAlignment="Center" />
+            <CheckBox IsChecked="{Binding CurrentWorld.DownedBoss2}" Content="Eater of Worlds" VerticalAlignment="Center" VerticalContentAlignment="Center" />
             <TextBlock />
-            <CheckBox IsChecked="{Binding CurrentWorld.DownedBoss3}" Content="Skeletron Downed" VerticalAlignment="Center" VerticalContentAlignment="Center" />
+            <CheckBox IsChecked="{Binding CurrentWorld.DownedQueenBee}" Content="Queen Bee" VerticalAlignment="Center" VerticalContentAlignment="Center" />
             <TextBlock />
-            <CheckBox IsChecked="{Binding CurrentWorld.DownedClown}" Content="Clowns Downed" VerticalAlignment="Center" VerticalContentAlignment="Center" />
+            <CheckBox IsChecked="{Binding CurrentWorld.DownedBoss3}" Content="Skeletron" VerticalAlignment="Center" VerticalContentAlignment="Center" />
             <TextBlock />
-            <CheckBox IsChecked="{Binding CurrentWorld.DownedFrost}" Content="Frost Legion Downed" VerticalAlignment="Center" VerticalContentAlignment="Center" />
+            <CheckBox IsChecked="{Binding CurrentWorld.HardMode}" Content="Wall of Flesh" VerticalAlignment="Center" VerticalContentAlignment="Center" />
+            <Separator Grid.ColumnSpan="2" />
+            <TextBlock Text="Hardmode" HorizontalAlignment="Right" />
+            <CheckBox IsChecked="{Binding CurrentWorld.DownedMechBoss2}" Content="The Twins" VerticalAlignment="Center" VerticalContentAlignment="Center" />
+            <TextBlock Text="Bosses Downed" HorizontalAlignment="Right" />
+            <CheckBox IsChecked="{Binding CurrentWorld.DownedMechBoss1}" Content="The Destroyer" VerticalAlignment="Center" VerticalContentAlignment="Center" />
             <TextBlock />
-            <CheckBox IsChecked="{Binding CurrentWorld.DownedGoblins}" Content="Goblin Invasion Downed" VerticalAlignment="Center" VerticalContentAlignment="Center" />
+            <CheckBox IsChecked="{Binding CurrentWorld.DownedMechBoss3}" Content="Skeletron Prime" VerticalAlignment="Center" VerticalContentAlignment="Center" />
             <TextBlock />
-            <CheckBox IsChecked="{Binding CurrentWorld.DownedPirates}" Content="Pirate Invasion Downed" VerticalAlignment="Center" VerticalContentAlignment="Center" />
+            <CheckBox IsChecked="{Binding CurrentWorld.DownedPlantBoss}" Content="Plantera" VerticalAlignment="Center" VerticalContentAlignment="Center" />
             <TextBlock />
-            <CheckBox IsChecked="{Binding CurrentWorld.DownedQueenBee}" Content="Queen Bee Downed" VerticalAlignment="Center" VerticalContentAlignment="Center" />
+            <CheckBox IsChecked="{Binding CurrentWorld.DownedGolemBoss}" Content="Golem" VerticalAlignment="Center" VerticalContentAlignment="Center" />
             <TextBlock />
-            <CheckBox IsChecked="{Binding CurrentWorld.DownedMechBoss1}" Content="The Destroyer Downed" VerticalAlignment="Center" VerticalContentAlignment="Center" />
+            <CheckBox IsChecked="{Binding CurrentWorld.DownedFishron}" Content="Duke Fishron" VerticalAlignment="Center" VerticalContentAlignment="Center" />
             <TextBlock />
-            <CheckBox IsChecked="{Binding CurrentWorld.DownedMechBoss2}" Content="The Twins Downed" VerticalAlignment="Center" VerticalContentAlignment="Center" />
+            <CheckBox IsChecked="{Binding CurrentWorld.DownedLunaticCultist}" Content="Lunatic Cultist" VerticalAlignment="Center" VerticalContentAlignment="Center" />
             <TextBlock />
-            <CheckBox IsChecked="{Binding CurrentWorld.DownedMechBoss3}" Content="Skeletron Prime Downed" VerticalAlignment="Center" VerticalContentAlignment="Center" />
+            <CheckBox IsChecked="{Binding CurrentWorld.DownedMoonlord}" Content="Moon Lord" VerticalAlignment="Center" VerticalContentAlignment="Center" />
+            <Separator Grid.ColumnSpan="2" />
+            <TextBlock Text="Event" HorizontalAlignment="Right" />
+            <CheckBox IsChecked="{Binding CurrentWorld.DownedHalloweenTree}" Content="Mourning Wood" VerticalAlignment="Center" VerticalContentAlignment="Center" />
+            <TextBlock Text="Bosses Downed" HorizontalAlignment="Right" />
+            <CheckBox IsChecked="{Binding CurrentWorld.DownedHalloweenKing}" Content="Pumpking" VerticalAlignment="Center" VerticalContentAlignment="Center" />
             <TextBlock />
-            <CheckBox IsChecked="{Binding CurrentWorld.DownedMechBossAny}" Content="Mech Boss Any Downed" VerticalAlignment="Center" VerticalContentAlignment="Center" />
+            <CheckBox IsChecked="{Binding CurrentWorld.DownedChristmasTree}" Content="Everscream" VerticalAlignment="Center" VerticalContentAlignment="Center" />
             <TextBlock />
-            <CheckBox IsChecked="{Binding CurrentWorld.DownedPlantBoss}" Content="Plantera Downed" VerticalAlignment="Center" VerticalContentAlignment="Center" />
+            <CheckBox IsChecked="{Binding CurrentWorld.DownedSanta}" Content="Santa-NK1" VerticalAlignment="Center" VerticalContentAlignment="Center" />
             <TextBlock />
-            <CheckBox IsChecked="{Binding CurrentWorld.DownedGolemBoss}" Content="Golem Downed" VerticalAlignment="Center" VerticalContentAlignment="Center" />
+            <CheckBox IsChecked="{Binding CurrentWorld.DownedChristmasQueen}" Content="Ice Queen" VerticalAlignment="Center" VerticalContentAlignment="Center" />
+            <TextBlock />
+            <CheckBox IsChecked="{Binding CurrentWorld.DownedFishron}" Content="Flying Dutchman" VerticalAlignment="Center" VerticalContentAlignment="Center" />
+            <TextBlock />
+            <CheckBox IsChecked="{Binding CurrentWorld.DownedCelestialSolar}" Content="Solar Pillar" VerticalAlignment="Center" VerticalContentAlignment="Center" />
+            <TextBlock />
+            <CheckBox IsChecked="{Binding CurrentWorld.DownedCelestialNebula}" Content="Nebula Pillar" VerticalAlignment="Center" VerticalContentAlignment="Center" />
+            <TextBlock />
+            <CheckBox IsChecked="{Binding CurrentWorld.DownedCelestialVortex}" Content="Vortex Pillar" VerticalAlignment="Center" VerticalContentAlignment="Center" />
+            <TextBlock />
+            <CheckBox IsChecked="{Binding CurrentWorld.DownedCelestialStardust}" Content="Stardust Pillar" VerticalAlignment="Center" VerticalContentAlignment="Center" />
             <Separator Grid.ColumnSpan="2" />
             <TextBlock Text="NPC's Saved" HorizontalAlignment="Right" />
             <CheckBox IsChecked="{Binding CurrentWorld.SavedGoblin}" Content="Saved Goblin Tinkerer" VerticalAlignment="Center" VerticalContentAlignment="Center" />
@@ -261,8 +341,22 @@
             <TextBlock />
             <CheckBox IsChecked="{Binding CurrentWorld.SavedWizard}" Content="Saved Wizard" VerticalAlignment="Center" VerticalContentAlignment="Center" />
             <TextBlock />
+            <CheckBox IsChecked="{Binding CurrentWorld.SavedStylist}" Content="Saved Stylist" VerticalAlignment="Center" VerticalContentAlignment="Center" />
+            <TextBlock />
+            <CheckBox IsChecked="{Binding CurrentWorld.SavedTaxCollector}" Content="Saved Tax Collector" VerticalAlignment="Center" VerticalContentAlignment="Center" />
+            <TextBlock />
             <CheckBox IsChecked="{Binding CurrentWorld.SavedAngler}" Content="Saved Angler" VerticalAlignment="Center" VerticalContentAlignment="Center" />
+            <TextBlock Text="Angler Mission" HorizontalAlignment="Right" />
+            <ComboBox Height="20" ItemsSource="{StaticResource anglerQuestList}" SelectedValue="{Binding CurrentWorld.AnglerQuest, Mode=TwoWay}" SelectedValuePath="Value" />
         <Separator Grid.ColumnSpan="2" />
+            <TextBlock Text="Invasions Downed" HorizontalAlignment="Right" />
+            <CheckBox IsChecked="{Binding CurrentWorld.DownedGoblins}" Content="Goblin Army" VerticalAlignment="Center" VerticalContentAlignment="Center" />
+            <TextBlock />
+            <CheckBox IsChecked="{Binding CurrentWorld.DownedFrost}" Content="Frost Legion" VerticalAlignment="Center" VerticalContentAlignment="Center" />
+            <TextBlock />
+            <CheckBox IsChecked="{Binding CurrentWorld.DownedPirates}" Content="Pirate Invasion" VerticalAlignment="Center" VerticalContentAlignment="Center" />
+            <TextBlock />
+            <CheckBox IsChecked="{Binding CurrentWorld.DownedMartians}" Content="Martian Madness" VerticalAlignment="Center" VerticalContentAlignment="Center" />
             <TextBlock Text="Invasion Type" HorizontalAlignment="Right" />
             <ComboBox Height="20" ItemsSource="{StaticResource invasionTypeList}" SelectedValue="{Binding CurrentWorld.InvasionType, Mode=TwoWay}" SelectedValuePath="Value" />
         <TextBlock Text="Invasion Size" HorizontalAlignment="Right" />

@@ -56,9 +56,23 @@ namespace TEditXNA.Terraria
             sectionPointers[4] = SaveSigns(world.Signs, bw);
             OnProgressChanged(null, new ProgressChangedEventArgs(100, "Save NPCs..."));
             sectionPointers[5] = SaveNPCs(world.NPCs, bw);
+            if( world.Version > 140 )
+            {
+                OnProgressChanged(null, new ProgressChangedEventArgs(100, "Save Mobs..."));
+                sectionPointers[5] = SaveMobs(world.Mobs, bw);
+                OnProgressChanged(null, new ProgressChangedEventArgs(100, "Save Tile Entities Section..."));
+                sectionPointers[6] = SaveTileEntities(world, bw);
+            }
             OnProgressChanged(null, new ProgressChangedEventArgs(100, "Save Footers..."));
             SaveFooter(world, bw);
-            UpdateSectionPointers(sectionPointers, bw);
+            if (world.Version > 140)
+            {
+                UpdateSectionPointersVer140(sectionPointers, bw);
+            }
+            else
+            {
+                UpdateSectionPointers(sectionPointers, bw);
+            }
             OnProgressChanged(null, new ProgressChangedEventArgs(100, "Save Complete."));
         }
 
@@ -319,6 +333,20 @@ namespace TEditXNA.Terraria
             return (int)bw.BaseStream.Position;
         }
 
+        public static int SaveMobs(IEnumerable<NPC> mobs, BinaryWriter bw)
+        {
+            foreach (NPC mob in mobs)
+            {
+                bw.Write(true);
+                bw.Write(mob.Name);                
+                bw.Write(mob.Position.X);
+                bw.Write(mob.Position.Y);                
+            }
+            bw.Write(false);
+
+            return (int)bw.BaseStream.Position;
+        }
+
         public static int SaveFooter(World world, BinaryWriter bw)
         {
             bw.Write(true);
@@ -330,8 +358,20 @@ namespace TEditXNA.Terraria
 
         public static int UpdateSectionPointers(int[] sectionPointers, BinaryWriter bw)
         {
-            bw.BaseStream.Position = 0L;
-            bw.Write(CompatibleVersion);
+            bw.BaseStream.Position = 0x4L;            
+            bw.Write((short)sectionPointers.Length);
+
+            for (int i = 0; i < sectionPointers.Length; i++)
+            {
+                bw.Write(sectionPointers[i]);
+            }
+
+            return (int)bw.BaseStream.Position;
+        }
+
+        public static int UpdateSectionPointersVer140(int[] sectionPointers, BinaryWriter bw)
+        {
+            bw.BaseStream.Position = 0x18L;        
             bw.Write((short)sectionPointers.Length);
 
             for (int i = 0; i < sectionPointers.Length; i++)
@@ -345,6 +385,12 @@ namespace TEditXNA.Terraria
         public static int SaveSectionHeader(World world, BinaryWriter bw)
         {
             bw.Write(Math.Max(CompatibleVersion, world.Version));
+            if(world.Version > 140)
+            {
+                bw.Write((UInt64)0x026369676f6c6572ul);
+                bw.Write((int)world.FileRevision+1);
+                bw.Write(world.UnknownHeaderField);                
+            }
             bw.Write(SectionCount);
 
             // write section pointer placeholders
@@ -369,6 +415,12 @@ namespace TEditXNA.Terraria
             bw.Write((int)world.BottomWorld);
             bw.Write(world.TilesHigh);
             bw.Write(world.TilesWide);
+
+            if (world.Version >= 147)
+            {
+                bw.Write(world.ExpertMode);
+                bw.Write(world.CreationTime);
+            }
 
             bw.Write((byte)world.MoonType);
             bw.Write(world.TreeX0);
@@ -413,6 +465,10 @@ namespace TEditXNA.Terraria
             bw.Write(world.DownedMechBossAny);
             bw.Write(world.DownedPlantBoss);
             bw.Write(world.DownedGolemBoss);
+
+            if(world.Version >= 147)
+                bw.Write(world.DownedSlimeKingBoss);
+
             bw.Write(world.SavedGoblin);
             bw.Write(world.SavedWizard);
             bw.Write(world.SavedMech);
@@ -430,6 +486,12 @@ namespace TEditXNA.Terraria
             bw.Write(world.InvasionSize);
             bw.Write(world.InvasionType);
             bw.Write(world.InvasionX);
+
+            if (world.Version >= 147)
+            {
+                bw.Write(world.SlimeRainTime);
+                bw.Write((byte)world.SundialCooldown);
+            }
 
             bw.Write(world.TempRaining);
             bw.Write(world.TempRainTime);
@@ -458,8 +520,72 @@ namespace TEditXNA.Terraria
             bw.Write(world.SavedAngler);
             bw.Write(world.AnglerQuest);
 
+            if (world.Version > 104)
+            {
+                bw.Write(world.SavedStylist);
+            }
+
+            if (world.Version > 140)
+            {
+                bw.Write(world.SavedTaxCollector);
+                bw.Write(world.InvasionSizeStart);
+                bw.Write(world.CultistDelay);
+                bw.Write((Int16)world.NumberOfMobs);
+                foreach (int count in world.KilledMobs)
+                {
+                    bw.Write(count);
+                }
+                bw.Write(world.FastForwardTime);
+
+                bw.Write(world.DownedFishron);
+                bw.Write(world.DownedMartians);
+                bw.Write(world.DownedLunaticCultist);
+                bw.Write(world.DownedMoonlord);
+                bw.Write(world.DownedHalloweeenKing);
+                bw.Write(world.DownedHalloweenTree);
+                bw.Write(world.DownedChristmasQueen);
+                bw.Write(world.DownedSanta);
+                bw.Write(world.DownedChristmasTree);
+                bw.Write(world.DownedCelestialSolar);
+                bw.Write(world.DownedCelestialVortex);
+                bw.Write(world.DownedCelestialNebula);
+                bw.Write(world.DownedCelestialStardust);
+                
+                bw.Write(world.CelestialSolarActive);
+                bw.Write(world.CelestialVortexActive);
+                bw.Write(world.CelestialNebulaActive);
+                bw.Write(world.CelestialStardustActive);
+                bw.Write(world.Apocalypse);
+            }
+
             if (world.UnknownData != null && world.UnknownData.Length > 0)
                 bw.Write(world.UnknownData);
+
+            return (int)bw.BaseStream.Position;
+        }
+
+        public static int SaveTileEntities(World w, BinaryWriter bw)
+        {
+            bw.Write(w.TileEntitiesNumber);
+
+            foreach(TileEntity tentity in w.TileEntities)
+            {
+                bw.Write(tentity.Type);
+                bw.Write(tentity.Id);
+                bw.Write(tentity.PosX);
+                bw.Write(tentity.PosY);
+                switch (tentity.Type)
+                {
+                    case 0: //it is a dummy                        
+                        bw.Write(tentity.Npc);
+                        break;
+                    case 1: //it is a item frame                        
+                        bw.Write(tentity.ItemNetId);
+                        bw.Write(tentity.Prefix);
+                        bw.Write(tentity.Stack);
+                        break;
+                }
+            }
 
             return (int)bw.BaseStream.Position;
         }
@@ -476,7 +602,7 @@ namespace TEditXNA.Terraria
 
             OnProgressChanged(null, new ProgressChangedEventArgs(0, "Loading File Header..."));
             // read section pointers and tile frame data
-            if (!LoadSectionHeader(b, out tileFrameImportant, out sectionPointers))
+            if (!LoadSectionHeader(b, out tileFrameImportant, out sectionPointers, w))
                 throw new FileFormatException("Invalid File Format Section");
 
             TileFrameImportant = tileFrameImportant;
@@ -525,8 +651,23 @@ namespace TEditXNA.Terraria
 
             OnProgressChanged(null, new ProgressChangedEventArgs(100, "Loading NPCs..."));
             LoadNPCsData(b, w);
-            if (b.BaseStream.Position != sectionPointers[5])
-                throw new FileFormatException("Unexpected Position: Invalid NPC Data");
+            if(w.Version >= 140)
+            {
+                OnProgressChanged(null, new ProgressChangedEventArgs(100, "Loading Mobs..."));
+                LoadMobsData(b, w);
+                if (b.BaseStream.Position != sectionPointers[5])
+                    throw new FileFormatException("Unexpected Position: Invalid Mob and NPC Data");
+
+                OnProgressChanged(null, new ProgressChangedEventArgs(100, "Loading Tile Entities Section..."));
+                LoadTileEntities(b, w);
+                if (b.BaseStream.Position != sectionPointers[6])
+                    throw new FileFormatException("Unexpected Position: Invalid Tile Entities Section");
+            }
+            else
+            {
+                if (b.BaseStream.Position != sectionPointers[5])
+                    throw new FileFormatException("Unexpected Position: Invalid NPC Data");
+            }
 
             OnProgressChanged(null, new ProgressChangedEventArgs(100, "Verifying File..."));
             LoadFooter(b, w);
@@ -825,6 +966,25 @@ namespace TEditXNA.Terraria
             }
         }
 
+        public static void LoadMobsData(BinaryReader r, World w)
+        {
+            int totalMobs = 0;
+            bool flag = r.ReadBoolean();
+            while (flag)            
+            {
+                NPC npc = new NPC();
+                npc.Name = r.ReadString();                    
+                npc.Position = new Vector2(r.ReadSingle(), r.ReadSingle());
+
+                if (NpcIds.ContainsKey(npc.Name))
+                    npc.SpriteId = NpcIds[npc.Name];
+
+                w.Mobs.Add(npc);
+                totalMobs++;
+                flag = r.ReadBoolean();
+            }
+        }
+
         public static void LoadFooter(BinaryReader r, World w)
         {
             if (!r.ReadBoolean())
@@ -837,6 +997,32 @@ namespace TEditXNA.Terraria
                 throw new FileFormatException("Invalid Footer");
         }
 
+        public static void LoadTileEntities(BinaryReader r, World w)
+        {
+            w.TileEntitiesNumber = r.ReadInt32();
+
+            for (int counter = 0; counter < w.TileEntitiesNumber; counter++ )
+            {
+                TileEntity entity = new TileEntity();
+                entity.Type = r.ReadByte();
+                entity.Id = r.ReadInt32();
+                entity.PosX = r.ReadInt16();
+                entity.PosY = r.ReadInt16();
+                switch (entity.Type)
+                {
+                    case 0: //it is a dummy
+                        entity.Npc = r.ReadInt16();
+                        break;
+                    case 1: //it is a item frame
+                        entity.ItemNetId = r.ReadInt16();
+                        entity.Prefix = r.ReadByte();
+                        entity.Stack = r.ReadInt16();
+                        break;
+                }
+                w.TileEntities.Add(entity);
+            }
+        }
+
         public static void LoadHeaderFlags(BinaryReader r, World w, int expectedPosition)
         {
             w.Title = r.ReadString();
@@ -847,6 +1033,12 @@ namespace TEditXNA.Terraria
             w.BottomWorld = (float)r.ReadInt32();
             w.TilesHigh = r.ReadInt32();
             w.TilesWide = r.ReadInt32();
+
+            if (w.Version >= 147)
+            {
+                w.ExpertMode = r.ReadBoolean();
+                w.CreationTime = r.ReadInt64();
+            }
 
             w.MoonType = r.ReadByte();
             w.TreeX[0] = r.ReadInt32();
@@ -897,6 +1089,7 @@ namespace TEditXNA.Terraria
             w.DownedMechBossAny = r.ReadBoolean();
             w.DownedPlantBoss = r.ReadBoolean();
             w.DownedGolemBoss = r.ReadBoolean();
+            if (w.Version >= 147) w.DownedSlimeKingBoss = r.ReadBoolean();
             w.SavedGoblin = r.ReadBoolean();
             w.SavedWizard = r.ReadBoolean();
             w.SavedMech = r.ReadBoolean();
@@ -914,6 +1107,12 @@ namespace TEditXNA.Terraria
             w.InvasionSize = r.ReadInt32();
             w.InvasionType = r.ReadInt32();
             w.InvasionX = r.ReadDouble();
+
+            if (w.Version >= 147)
+            {                 
+                 w.SlimeRainTime = r.ReadDouble();
+                 w.SundialCooldown = r.ReadByte();
+            }
 
             w.TempRaining = r.ReadBoolean();
             w.TempRainTime = r.ReadInt32();
@@ -951,6 +1150,63 @@ namespace TEditXNA.Terraria
                 w.AnglerQuest = r.ReadInt32();
             }
 
+            if (w.Version >= 104)
+            {
+                w.SavedStylist = r.ReadBoolean();
+            }
+
+            if (w.Version >= 140)
+            {
+                w.SavedTaxCollector = r.ReadBoolean();
+            }
+
+            if (w.Version >= 140)
+            {
+                w.InvasionSizeStart = r.ReadInt32();
+            }
+
+            if (w.Version >= 140)
+            {
+                w.CultistDelay = r.ReadInt32();
+            }
+
+            if (w.Version >= 140)
+            {
+                int numberOfMobs = r.ReadInt16();
+                w.NumberOfMobs = numberOfMobs;
+                for (int counter = 0; counter < numberOfMobs; counter++)
+                {
+                    w.KilledMobs.Add(r.ReadInt32());
+                }
+            }
+
+            if (w.Version >= 140)
+            {
+                w.FastForwardTime = r.ReadBoolean();
+            }
+
+            if (w.Version >= 140)
+            {
+                w.DownedFishron = r.ReadBoolean();
+                w.DownedMartians = r.ReadBoolean();
+                w.DownedLunaticCultist = r.ReadBoolean();
+                w.DownedMoonlord = r.ReadBoolean();
+                w.DownedHalloweeenKing = r.ReadBoolean();
+                w.DownedHalloweenTree = r.ReadBoolean();
+                w.DownedChristmasQueen = r.ReadBoolean();
+                w.DownedSanta = r.ReadBoolean();
+                w.DownedChristmasTree = r.ReadBoolean();
+                w.DownedCelestialSolar = r.ReadBoolean();
+                w.DownedCelestialVortex = r.ReadBoolean();
+                w.DownedCelestialNebula = r.ReadBoolean();
+                w.DownedCelestialStardust = r.ReadBoolean();
+                w.CelestialSolarActive = r.ReadBoolean();
+                w.CelestialVortexActive = r.ReadBoolean();
+                w.CelestialNebulaActive = r.ReadBoolean();
+                w.CelestialStardustActive = r.ReadBoolean();
+                w.Apocalypse = r.ReadBoolean();
+            }
+
             // a little future proofing, read any "unknown" flags from the end of the list and save them. We will write these back after we write our "known" flags.
             if (r.BaseStream.Position < expectedPosition)
             {
@@ -958,11 +1214,20 @@ namespace TEditXNA.Terraria
             }
         }
 
-        public static bool LoadSectionHeader(BinaryReader r, out bool[] tileFrameImportant, out int[] sectionPointers)
+        public static bool LoadSectionHeader(BinaryReader r, out bool[] tileFrameImportant, out int[] sectionPointers, World w)
         {
             tileFrameImportant = null;
             sectionPointers = null;
             int versionNumber = r.ReadInt32();
+            if(versionNumber > 140)
+            {
+                UInt64 versionTypecheck = r.ReadUInt64();
+                if (versionTypecheck != 0x026369676f6c6572ul )
+                    throw new FileFormatException("Invalid Header");
+
+                w.FileRevision = r.ReadUInt32();
+                w.UnknownHeaderField = r.ReadUInt64();//I have no idea what this is for...
+            }
 
             // read file section stream positions
             short fileSectionCount = r.ReadInt16();

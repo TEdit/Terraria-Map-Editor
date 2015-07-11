@@ -3,7 +3,7 @@
 
 Terraria Settings.XML Specifications
 ====================================
-Compatible Ver: Terraria 1.2.4.1
+Compatible Ver: Terraria 1.3 (interim)
 Primary URL: https://raw.github.com/BinaryConstruct/Terraria-Map-Editor/master/TEditXna/settings.xml
 ====================================
 
@@ -183,6 +183,24 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="66,264" Name="Ultrabright" Anchor="Bottom" Variety="Off" />
         <Frame UV="88,264" Name="Ultrabright" Anchor="Left" Variety="Off" />
         <Frame UV="110,264" Name="Ultrabright" Anchor="Right" Variety="Off" />
+        <Frame UV="0,286" Name="Bone" Anchor="Bottom" Variety="On" />
+        <Frame UV="22,286" Name="Bone" Anchor="Left" Variety="On" />
+        <Frame UV="44,286" Name="Bone" Anchor="Right" Variety="On" />
+        <Frame UV="66,286" Name="Bone" Anchor="Bottom" Variety="Off" />
+        <Frame UV="88,286" Name="Bone" Anchor="Left" Variety="Off" />
+        <Frame UV="110,286" Name="Bone" Anchor="Right" Variety="Off" />
+        <Frame UV="0,308" Name="Rainbow" Anchor="Bottom" Variety="On" />
+        <Frame UV="22,308" Name="Rainbow" Anchor="Left" Variety="On" />
+        <Frame UV="44,308" Name="Rainbow" Anchor="Right" Variety="On" />
+        <Frame UV="66,308" Name="Rainbow" Anchor="Bottom" Variety="Off" />
+        <Frame UV="88,308" Name="Rainbow" Anchor="Left" Variety="Off" />
+        <Frame UV="110,308" Name="Rainbow" Anchor="Right" Variety="Off" />
+        <Frame UV="0,330" Name="Pink" Anchor="Bottom" Variety="On" />
+        <Frame UV="22,330" Name="Pink" Anchor="Left" Variety="On" />
+        <Frame UV="44,330" Name="Pink" Anchor="Right" Variety="On" />
+        <Frame UV="66,330" Name="Pink" Anchor="Bottom" Variety="Off" />
+        <Frame UV="88,330" Name="Pink" Anchor="Left" Variety="Off" />
+        <Frame UV="110,330" Name="Pink" Anchor="Right" Variety="Off" />
       </Frames>
     </Tile>
     <Tile Name="Tree" Color="#FF976B4B" TextureGrid="20,20" Id="5" Framed="true">
@@ -366,6 +384,18 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="0,1674" Variety="Slime Door A" />
         <Frame UV="18,1674" Variety="Slime Door B" />
         <Frame UV="36,1674" Variety="Slime Door C" />
+        <Frame UV="0,1728" Variety="Martian Door A" />
+        <Frame UV="18,1728" Variety="Martian Door B" />
+        <Frame UV="36,1728" Variety="Martian Door C" />
+        <Frame UV="0,1782" Variety="Meteorite Door A" />
+        <Frame UV="18,1782" Variety="Meteorite Door B" />
+        <Frame UV="36,1782" Variety="Meteorite Door C" />
+        <Frame UV="0,1836" Variety="Granite Door A" />
+        <Frame UV="18,1836" Variety="Granite Door B" />
+        <Frame UV="36,1836" Variety="Granite Door C" />
+        <Frame UV="0,1890" Variety="Marble Door A" />
+        <Frame UV="18,1890" Variety="Marble Door B" />
+        <Frame UV="36,1890" Variety="Marble Door C" />
       </Frames>
     </Tile>
     <Tile Name="Door Open" Color="#FF77694F" Placement="CFBoth" Size="2,3" Id="11" Framed="true">
@@ -432,6 +462,14 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="36,1620" Variety="Boreal Wood Door" Anchor="Door Left" />
         <Frame UV="0,1674" Variety="Slime Door" Anchor="Door Right" />
         <Frame UV="36,1674" Variety="Slime Door" Anchor="Door Left" />
+        <Frame UV="0,1728" Variety="Martian Door" Anchor="Door Right" />
+        <Frame UV="36,1728" Variety="Martian Door" Anchor="Door Left" />
+        <Frame UV="0,1782" Variety="Meteorite Door" Anchor="Door Right" />
+        <Frame UV="36,1782" Variety="Meteorite Door" Anchor="Door Left" />
+        <Frame UV="0,1836" Variety="Granite Door" Anchor="Door Right" />
+        <Frame UV="36,1836" Variety="Granite Door" Anchor="Door Left" />
+        <Frame UV="0,1890" Variety="Marble Door" Anchor="Door Right" />
+        <Frame UV="36,1890" Variety="Marble Door" Anchor="Door Left" />
       </Frames>
     </Tile>
     <Tile Name="Crystal Heart" Color="#FFAE1845" Placement="floor" Size="2,2" Id="12" Framed="true">
@@ -485,9 +523,13 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="1512,0" name="Table" Variety="Boreal Wood Table" Anchor="Left" />
         <Frame UV="1566,0" name="Table" Variety="Slime Table" Anchor="Left" />
         <Frame UV="1620,0" name="Table" Variety="Cactus Table" Anchor="Left" />
+        <Frame UV="1674,0" name="Table" Variety="Martian Table" Anchor="Left" />
+        <Frame UV="1728,0" name="Table" Variety="Meteorite Table" Anchor="Left" />
+        <Frame UV="1782,0" name="Table" Variety="Granite Table" Anchor="Left" />
+        <Frame UV="1836,0" name="Table" Variety="Marble Table" Anchor="Left" />
       </Frames>
     </Tile>
-    <Tile Color="#FFBF8E6F" Placement="floor" Size="1,2" Id="15" Name="Wooden Chair" Framed="true">
+    <Tile Color="#FFBF8E6F" Placement="floor" Size="1,2" Id="15" Name="Chair" Framed="true">
       <Frames>
         <Frame UV="0,0" Name="Wooden Chair" Anchor="Left" />
         <Frame UV="18,0" Name="Wooden Chair" Anchor="Right" />
@@ -553,6 +595,14 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="18,1200" Name="Boreal Wood Chair" Anchor="Right" />
         <Frame UV="0,1240" Name="Slime Chair" Anchor="Left" />
         <Frame UV="18,1240" Name="Slime Chair" Anchor="Right" />
+        <Frame UV="0,1280" Name="Martian Hover Chair" Anchor="Left" />
+        <Frame UV="18,1280" Name="Martian Hover Chair" Anchor="Right" />
+        <Frame UV="0,1320" Name="Meteorite Chair" Anchor="Left" />
+        <Frame UV="18,1320" Name="Meteorite Chair" Anchor="Right" />
+        <Frame UV="0,1360" Name="Granite Chair" Anchor="Left" />
+        <Frame UV="18,1360" Name="Granite Chair" Anchor="Right" />
+        <Frame UV="0,1400" Name="Marble Chair" Anchor="Left" />
+        <Frame UV="18,1400" Name="Marble Chair" Anchor="Right" />
       </Frames>
     </Tile>
     <Tile Color="#FF8C8274" Placement="floor" Size="2,1" TextureGrid="16,18" Id="16" Name="Iron Anvil" Framed="true" SolidTop="true">
@@ -580,16 +630,21 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="468,0" Name="Work Bench" Variety="Pink Dungeon" />
         <Frame UV="504,0" Name="Work Bench" Variety="Obsidian" />
         <Frame UV="540,0" Name="Work Bench" Variety="Gothic" />
-        <Frame UV="576,0" Name="Work Bench" Variety="Pumpkin Work Bench" />
-        <Frame UV="612,0" Name="Work Bench" Variety="Spooky Work Bench" />
-        <Frame UV="648,0" Name="Work Bench" Variety="Dynasty Work Bench" />
-        <Frame UV="684,0" Name="Work Bench" Variety="Honey Work Bench" />
-        <Frame UV="720,0" Name="Work Bench" Variety="Frozen Work Bench" />
-        <Frame UV="756,0" Name="Work Bench" Variety="Steampunk Work Bench" />
-        <Frame UV="792,0" Name="Work Bench" Variety="Palm Wood Work Bench" />
-        <Frame UV="828,0" Name="Work Bench" Variety="Skyware Work Bench" />
-        <Frame UV="864,0" Name="Work Bench" Variety="Glass Work Bench" />
-        <Frame UV="900,0" Name="Work Bench" Variety="Living Wood Work Bench" />
+        <Frame UV="576,0" Name="Work Bench" Variety="Pumpkin" />
+        <Frame UV="612,0" Name="Work Bench" Variety="Spooky" />
+        <Frame UV="648,0" Name="Work Bench" Variety="Dynasty" />
+        <Frame UV="684,0" Name="Work Bench" Variety="Honey" />
+        <Frame UV="720,0" Name="Work Bench" Variety="Frozen" />
+        <Frame UV="756,0" Name="Work Bench" Variety="Steampunk" />
+        <Frame UV="792,0" Name="Work Bench" Variety="Palm Wood" />
+        <Frame UV="828,0" Name="Work Bench" Variety="Boreal" />
+        <Frame UV="864,0" Name="Work Bench" Variety="Skyware" />
+        <Frame UV="900,0" Name="Work Bench" Variety="Glass" />
+        <Frame UV="936,0" Name="Work Bench" Variety="Living Wood" />
+        <Frame UV="972,0" Name="Work Bench" Variety="Martian" />
+        <Frame UV="1008,0" Name="Work Bench" Variety="Meteorite" />
+        <Frame UV="1044,0" Name="Work Bench" Variety="Granite" />
+        <Frame UV="1080,0" Name="Work Bench" Variety="Marble" />
       </Frames>
     </Tile>
     <Tile Color="#FFBF8E6F" Placement="wall" Special="Platform" TextureGrid="16,16" Id="19" Name="Platform" Framed="true" Solid="true" SolidTop="true" Light="true">
@@ -1296,6 +1351,114 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="432,450" Name="Stair" Variety="Cactus Inset Up-Left 3" />
         <Frame UV="450,450" Name="Stair" Variety="Cactus Inverted Right" />
         <Frame UV="468,450" Name="Stair" Variety="Cactus Inverted Left" />
+        <Frame UV="0,468" Name="Platform" Variety="Martian Flat" />
+        <Frame UV="18,468" Name="Platform" Variety="Martian Endcap Right" />
+        <Frame UV="36,468" Name="Platform" Variety="Martian Endcap Left" />
+        <Frame UV="54,468" Name="Platform" Variety="Martian Attach Left" />
+        <Frame UV="72,468" Name="Platform" Variety="Martian Attach Right" />
+        <Frame UV="90,468" Name="Platform" Variety="Martian Single" />
+        <Frame UV="108,468" Name="Platform" Variety="Martian Attach Left Endcap" />
+        <Frame UV="126,468" Name="Platform" Variety="Martian Attach Right Endcap" />
+        <Frame UV="144,468" Name="Stair" Variety="Martian Up-Right Riser" />
+        <Frame UV="162,468" Name="Stair" Variety="Martian Up-Right Stringer" />
+        <Frame UV="180,468" Name="Stair" Variety="Martian Up-Left Riser" />
+        <Frame UV="198,468" Name="Stair" Variety="Martian Up-Left Stringer" />
+        <Frame UV="216,468" Name="Stair" Variety="Martian Top Landing R" />
+        <Frame UV="234,468" Name="Stair" Variety="Martian Top Landing L" />
+        <Frame UV="252,468" Name="Stair" Variety="Martian Top Landing L-R" />
+        <Frame UV="270,468" Name="Stair" Variety="Martian Top Landing R Endcap" />
+        <Frame UV="288,468" Name="Stair" Variety="Martian Top Landing L Endcap" />
+        <Frame UV="306,468" Name="Stair" Variety="Martian Bottom Landing R" />
+        <Frame UV="324,468" Name="Stair" Variety="Martian Bottom Landing L" />
+        <Frame UV="342,468" Name="Stair" Variety="Martian Inset Up-Right 1" />
+        <Frame UV="360,468" Name="Stair" Variety="Martian Inset Up-Left 1" />
+        <Frame UV="378,468" Name="Stair" Variety="Martian Inset Up-Right 2" />
+        <Frame UV="396,468" Name="Stair" Variety="Martian Inset Up-Left 2" />
+        <Frame UV="414,468" Name="Stair" Variety="Martian Inset Up-Right 3" />
+        <Frame UV="432,468" Name="Stair" Variety="Martian Inset Up-Left 3" />
+        <Frame UV="450,468" Name="Stair" Variety="Martian Inverted Right" />
+        <Frame UV="468,468" Name="Stair" Variety="Martian Inverted Left" />
+        <Frame UV="0,486" Name="Platform" Variety="Meteorite Flat" />
+        <Frame UV="18,486" Name="Platform" Variety="Meteorite Endcap Right" />
+        <Frame UV="36,486" Name="Platform" Variety="Meteorite Endcap Left" />
+        <Frame UV="54,486" Name="Platform" Variety="Meteorite Attach Left" />
+        <Frame UV="72,486" Name="Platform" Variety="Meteorite Attach Right" />
+        <Frame UV="90,486" Name="Platform" Variety="Meteorite Single" />
+        <Frame UV="108,486" Name="Platform" Variety="Meteorite Attach Left Endcap" />
+        <Frame UV="126,486" Name="Platform" Variety="Meteorite Attach Right Endcap" />
+        <Frame UV="144,486" Name="Stair" Variety="Meteorite Up-Right Riser" />
+        <Frame UV="162,486" Name="Stair" Variety="Meteorite Up-Right Stringer" />
+        <Frame UV="180,486" Name="Stair" Variety="Meteorite Up-Left Riser" />
+        <Frame UV="198,486" Name="Stair" Variety="Meteorite Up-Left Stringer" />
+        <Frame UV="216,486" Name="Stair" Variety="Meteorite Top Landing R" />
+        <Frame UV="234,486" Name="Stair" Variety="Meteorite Top Landing L" />
+        <Frame UV="252,486" Name="Stair" Variety="Meteorite Top Landing L-R" />
+        <Frame UV="270,486" Name="Stair" Variety="Meteorite Top Landing R Endcap" />
+        <Frame UV="288,486" Name="Stair" Variety="Meteorite Top Landing L Endcap" />
+        <Frame UV="306,486" Name="Stair" Variety="Meteorite Bottom Landing R" />
+        <Frame UV="324,486" Name="Stair" Variety="Meteorite Bottom Landing L" />
+        <Frame UV="342,486" Name="Stair" Variety="Meteorite Inset Up-Right 1" />
+        <Frame UV="360,486" Name="Stair" Variety="Meteorite Inset Up-Left 1" />
+        <Frame UV="378,486" Name="Stair" Variety="Meteorite Inset Up-Right 2" />
+        <Frame UV="396,486" Name="Stair" Variety="Meteorite Inset Up-Left 2" />
+        <Frame UV="414,486" Name="Stair" Variety="Meteorite Inset Up-Right 3" />
+        <Frame UV="432,486" Name="Stair" Variety="Meteorite Inset Up-Left 3" />
+        <Frame UV="450,486" Name="Stair" Variety="Meteorite Inverted Right" />
+        <Frame UV="468,486" Name="Stair" Variety="Meteorite Inverted Left" />
+        <Frame UV="0,504" Name="Platform" Variety="Granite Flat" />
+        <Frame UV="18,504" Name="Platform" Variety="Granite Endcap Right" />
+        <Frame UV="36,504" Name="Platform" Variety="Granite Endcap Left" />
+        <Frame UV="54,504" Name="Platform" Variety="Granite Attach Left" />
+        <Frame UV="72,504" Name="Platform" Variety="Granite Attach Right" />
+        <Frame UV="90,504" Name="Platform" Variety="Granite Single" />
+        <Frame UV="108,504" Name="Platform" Variety="Granite Attach Left Endcap" />
+        <Frame UV="126,504" Name="Platform" Variety="Granite Attach Right Endcap" />
+        <Frame UV="144,504" Name="Stair" Variety="Granite Up-Right Riser" />
+        <Frame UV="162,504" Name="Stair" Variety="Granite Up-Right Stringer" />
+        <Frame UV="180,504" Name="Stair" Variety="Granite Up-Left Riser" />
+        <Frame UV="198,504" Name="Stair" Variety="Granite Up-Left Stringer" />
+        <Frame UV="216,504" Name="Stair" Variety="Granite Top Landing R" />
+        <Frame UV="234,504" Name="Stair" Variety="Granite Top Landing L" />
+        <Frame UV="252,504" Name="Stair" Variety="Granite Top Landing L-R" />
+        <Frame UV="270,504" Name="Stair" Variety="Granite Top Landing R Endcap" />
+        <Frame UV="288,504" Name="Stair" Variety="Granite Top Landing L Endcap" />
+        <Frame UV="306,504" Name="Stair" Variety="Granite Bottom Landing R" />
+        <Frame UV="324,504" Name="Stair" Variety="Granite Bottom Landing L" />
+        <Frame UV="342,504" Name="Stair" Variety="Granite Inset Up-Right 1" />
+        <Frame UV="360,504" Name="Stair" Variety="Granite Inset Up-Left 1" />
+        <Frame UV="378,504" Name="Stair" Variety="Granite Inset Up-Right 2" />
+        <Frame UV="396,504" Name="Stair" Variety="Granite Inset Up-Left 2" />
+        <Frame UV="414,504" Name="Stair" Variety="Granite Inset Up-Right 3" />
+        <Frame UV="432,504" Name="Stair" Variety="Granite Inset Up-Left 3" />
+        <Frame UV="450,504" Name="Stair" Variety="Granite Inverted Right" />
+        <Frame UV="468,504" Name="Stair" Variety="Granite Inverted Left" />
+        <Frame UV="0,522" Name="Platform" Variety="Marble Flat" />
+        <Frame UV="18,522" Name="Platform" Variety="Marble Endcap Right" />
+        <Frame UV="36,522" Name="Platform" Variety="Marble Endcap Left" />
+        <Frame UV="54,522" Name="Platform" Variety="Marble Attach Left" />
+        <Frame UV="72,522" Name="Platform" Variety="Marble Attach Right" />
+        <Frame UV="90,522" Name="Platform" Variety="Marble Single" />
+        <Frame UV="108,522" Name="Platform" Variety="Marble Attach Left Endcap" />
+        <Frame UV="126,522" Name="Platform" Variety="Marble Attach Right Endcap" />
+        <Frame UV="144,522" Name="Stair" Variety="Marble Up-Right Riser" />
+        <Frame UV="162,522" Name="Stair" Variety="Marble Up-Right Stringer" />
+        <Frame UV="180,522" Name="Stair" Variety="Marble Up-Left Riser" />
+        <Frame UV="198,522" Name="Stair" Variety="Marble Up-Left Stringer" />
+        <Frame UV="216,522" Name="Stair" Variety="Marble Top Landing R" />
+        <Frame UV="234,522" Name="Stair" Variety="Marble Top Landing L" />
+        <Frame UV="252,522" Name="Stair" Variety="Marble Top Landing L-R" />
+        <Frame UV="270,522" Name="Stair" Variety="Marble Top Landing R Endcap" />
+        <Frame UV="288,522" Name="Stair" Variety="Marble Top Landing L Endcap" />
+        <Frame UV="306,522" Name="Stair" Variety="Marble Bottom Landing R" />
+        <Frame UV="324,522" Name="Stair" Variety="Marble Bottom Landing L" />
+        <Frame UV="342,522" Name="Stair" Variety="Marble Inset Up-Right 1" />
+        <Frame UV="360,522" Name="Stair" Variety="Marble Inset Up-Left 1" />
+        <Frame UV="378,522" Name="Stair" Variety="Marble Inset Up-Right 2" />
+        <Frame UV="396,522" Name="Stair" Variety="Marble Inset Up-Left 2" />
+        <Frame UV="414,522" Name="Stair" Variety="Marble Inset Up-Right 3" />
+        <Frame UV="432,522" Name="Stair" Variety="Marble Inset Up-Left 3" />
+        <Frame UV="450,522" Name="Stair" Variety="Marble Inverted Right" />
+        <Frame UV="468,522" Name="Stair" Variety="Marble Inverted Left" />
       </Frames>
     </Tile>
     <Tile Color="#FFA37451" Size="1,2" Id="20" Name="Acorn" Framed="true">
@@ -1355,6 +1518,10 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="1620,0" Name="Pumpkin Chest" />
         <Frame UV="1656,0" Name="Spooky Chest" />
         <Frame UV="1692,0" Name="Glass Chest" />
+        <Frame UV="1728,0" Name="Martian Chest" />
+        <Frame UV="1764,0" Name="Meteorite Chest" />
+        <Frame UV="1800,0" Name="Granite Chest" />
+        <Frame UV="1836,0" Name="Marble Chest" />
       </Frames>
     </Tile>
     <Tile Color="#FF625FA7" Blends="true" MergeWith="0" Id="22" Name="Demonite Ore" Solid="true" Light="true" />
@@ -1482,6 +1649,15 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="0,1080" Variety="Lihzahrd Pot C1" />
         <Frame UV="36,1080" Variety="Lihzahrd Pot C2" />
         <Frame UV="72,1080" Variety="Lihzahrd Pot C3" />
+        <Frame UV="0,1116" Variety="Marble Pot A1" />
+        <Frame UV="36,1116" Variety="Marble Pot A2" />
+        <Frame UV="72,1116" Variety="Marble Pot A3" />
+        <Frame UV="0,1152" Variety="Marble Pot B1" />
+        <Frame UV="36,1152" Variety="Marble Pot B2" />
+        <Frame UV="72,1152" Variety="Marble Pot B3" />
+        <Frame UV="0,1188" Variety="Marble Pot C1" />
+        <Frame UV="36,1188" Variety="Marble Pot C2" />
+        <Frame UV="72,1188" Variety="Marble Pot C3" />
       </Frames>
     </Tile>
     <Tile Color="#FFAF6980" Placement="surface" Size="2,1" Id="29" Name="Piggy Bank" Framed="True">
@@ -1549,6 +1725,16 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="18,506" Name="Steampunk Candle" Variety="Off" />
         <Frame UV="0,528" Name="Spooky Candle" Variety="On" />
         <Frame UV="18,528" Name="Spooky Candle" Variety="Off" />
+        <Frame UV="0,550" Name="Obsidian Candle" Variety="On" />
+        <Frame UV="18,550" Name="Obsidian Candle" Variety="Off" />
+        <Frame UV="0,572" Name="Martian Hover Candle" Variety="On" />
+        <Frame UV="18,572" Name="Martian Hover Candle" Variety="Off" />
+        <Frame UV="0,594" Name="Meteorite Candle" Variety="On" />
+        <Frame UV="18,594" Name="Meteorite Candle" Variety="Off" />
+        <Frame UV="0,616" Name="Granite Candle" Variety="On" />
+        <Frame UV="18,616" Name="Granite Candle" Variety="Off" />
+        <Frame UV="0,638" Name="Marble Candle" Variety="On" />
+        <Frame UV="18,638" Name="Marble Candle" Variety="Off" />
       </Frames>
     </Tile>
     <Tile Color="#FFEBA687" Placement="ceiling" Size="3,3" Id="34" Name="Chandelier" Framed="true" Light="true">
@@ -1619,6 +1805,14 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="54,1674" Name="Pumpkin Chandelier" Variety="Off" />
         <Frame UV="0,1728" Name="Obsidian Chandelier" Variety="On" />
         <Frame UV="54,1728" Name="Obsidian Chandelier" Variety="Off" />
+        <Frame UV="0,1782" Name="Martian Chandelier" Variety="On" />
+        <Frame UV="54,1782" Name="Martian Chandelier" Variety="Off" />
+        <Frame UV="0,1836" Name="Meteorite Chandelier" Variety="On" />
+        <Frame UV="54,1836" Name="Meteorite Chandelier" Variety="Off" />
+        <Frame UV="0,1890" Name="Granite Chandelier" Variety="On" />
+        <Frame UV="54,1890" Name="Granite Chandelier" Variety="Off" />
+        <Frame UV="0,1944" Name="Marble Chandelier" Variety="On" />
+        <Frame UV="54,1944" Name="Marble Chandelier" Variety="Off" />
       </Frames>
     </Tile>
     <Tile Color="#FFC5D8DB" Size="2,2" Id="35" Name="Jack 'O Lantern" Framed="true" Light="true">
@@ -1727,6 +1921,14 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="18,1116" Name="Pumpkin Lantern" Variety="Off" />
         <Frame UV="0,1152" Name="Obsidian Lantern" Variety="On" />
         <Frame UV="18,1152" Name="Obsidian Lantern" Variety="Off" />
+        <Frame UV="0,1188" Name="Martian Lantern" Variety="On" />
+        <Frame UV="18,1188" Name="Martian Lantern" Variety="Off" />
+        <Frame UV="0,1224" Name="Meteorite Lantern" Variety="On" />
+        <Frame UV="18,1224" Name="Meteorite Lantern" Variety="Off" />
+        <Frame UV="0,1260" Name="Granite Lantern" Variety="On" />
+        <Frame UV="18,1260" Name="Granite Lantern" Variety="Off" />
+        <Frame UV="0,1296" Name="Marble Lantern" Variety="On" />
+        <Frame UV="18,1296" Name="Marble Lantern" Variety="Off" />
       </Frames>
     </Tile>
     <Tile Color="#FF54643F" Blends="true" MergeWith="0" Id="43" Name="Green Brick" Solid="true" />
@@ -1889,6 +2091,14 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="72,900" Name="Slime Bed" Variety="Right" />
         <Frame UV="0,936" Name="Pumpkin Bed" Anchor="Left" />
         <Frame UV="72,936" Name="Pumpkin Bed" Variety="Right" />
+        <Frame UV="0,972" Name="Martian Bed" Anchor="Left" />
+        <Frame UV="72,972" Name="Martian Bed" Variety="Right" />
+        <Frame UV="0,1008" Name="Meteorite Bed" Anchor="Left" />
+        <Frame UV="72,1008" Name="Meteorite Bed" Variety="Right" />
+        <Frame UV="0,1044" Name="Granite Bed" Anchor="Left" />
+        <Frame UV="72,1044" Name="Granite Bed" Variety="Right" />
+        <Frame UV="0,1080" Name="Marble Bed" Anchor="Left" />
+        <Frame UV="72,1080" Name="Marble Bed" Variety="Right" />
       </Frames>
     </Tile>
     <Tile Name="Cactus" Color="#FF497811" Special="Cactus" Id="80" Framed="true">
@@ -1940,14 +2150,19 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="108,0" Name="Shiverthorn" growsOn="147,161" />
       </Frames>
     </Tile>
-    <Tile Color="#FFC0C0C0" Placement="floor" Size="2,2" Id="85" Name="Tombstone" Framed="true">
+    <Tile Color="#FFC0C0C0" Placement="floor" Size="2,2" Id="85" Name="Grave Marker" Framed="true">
       <Frames>
-        <Frame UV="0,0" Variety="A" />
-        <Frame UV="36,0" Variety="B" />
-        <Frame UV="72,0" Variety="C" />
-        <Frame UV="108,0" Variety="D" />
-        <Frame UV="144,0" Variety="E" />
-        <Frame UV="180,0" Variety="F" />
+        <Frame UV="0,0" Variety="Tombstone" />
+        <Frame UV="36,0" Variety="Grave Marker" />
+        <Frame UV="72,0" Variety="Cross Grave Marker" />
+        <Frame UV="108,0" Variety="Headstone" />
+        <Frame UV="144,0" Variety="Gravestone" />
+        <Frame UV="180,0" Variety="Obelisk" />
+        <Frame UV="216,0" Variety="Golden Cross Grave Marker" />
+        <Frame UV="252,0" Variety="Golden Tombstone" />
+        <Frame UV="288,0" Variety="Golden Grave Marker" />
+        <Frame UV="324,0" Variety="Golden Gravestone" />
+        <Frame UV="360,0" Variety="Golden Headstone" />
       </Frames>
     </Tile>
     <Tile Color="#FFBF8E6F" Placement="floor" Size="3,2" Id="86" Name="Loom" Framed="true" />
@@ -1979,6 +2194,10 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="1242,0" Variety="Boreal Wood" />
         <Frame UV="1296,0" Variety="Slime" />
         <Frame UV="1350,0" Variety="Pumpkin" />
+        <Frame UV="1404,0" Variety="Martian" />
+        <Frame UV="1458,0" Variety="Meteorite" />
+        <Frame UV="1512,0" Variety="Granite" />
+        <Frame UV="1566,0" Variety="Marble" />
       </Frames>
     </Tile>
     <Tile Color="#FFBF8E6F" Placement="floor" Size="3,2" Id="88" Name="Dresser" Framed="true" SolidTop="true">
@@ -2007,6 +2226,10 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="1134,0" Variety="Steampunk" />
         <Frame UV="1188,0" Variety="Glass" />
         <Frame UV="1242,0" Variety="Flesh" />
+        <Frame UV="1296,0" Variety="Martian" />
+        <Frame UV="1350,0" Variety="Meteorite" />
+        <Frame UV="1404,0" Variety="Granite" />
+        <Frame UV="1458,0" Variety="Marble" />
       </Frames>
     </Tile>
     <Tile Color="#FFBF8E6F" Placement="floor" Size="3,2" Id="89" Name="Bench" Framed="true">
@@ -2040,6 +2263,10 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="1404,0" Variety="Flesh Sofa" />
         <Frame UV="1458,0" Variety="Frozen Sofa" />
         <Frame UV="1512,0" Variety="Living Wood Sofa" />
+        <Frame UV="1566,0" Variety="Martian Sofa" />
+        <Frame UV="1620,0" Variety="Meteorite Sofa" />
+        <Frame UV="1674,0" Variety="Granite Sofa" />
+        <Frame UV="1728,0" Variety="Marble Sofa" />
       </Frames>
     </Tile>
     <Tile Color="#FF909490" Placement="floor" Size="4,2" Id="90" Name="Bathtub" Framed="true">
@@ -2096,11 +2323,19 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="72,864" Variety="Pumpkin Bathtub" Anchor="Left" />
         <Frame UV="0,900" Variety="Obsidian Bathtub" Anchor="Left" />
         <Frame UV="72,900" Variety="Obsidian Bathtub" Anchor="Left" />
-        <Frame UV="0,936" Variety="Golden Bathtub" Anchor="Left" />
         <Frame UV="72,936" Variety="Golden Bathtub" Anchor="Left" />
+        <Frame UV="0,936" Variety="Golden Bathtub" Anchor="Left" />
+        <Frame UV="72,972" Variety="Martian Bathtub" Anchor="Left" />
+        <Frame UV="0,972" Variety="Martian Bathtub" Anchor="Left" />
+        <Frame UV="72,1008" Variety="Meteorite Bathtub" Anchor="Left" />
+        <Frame UV="0,1008" Variety="Meteorite Bathtub" Anchor="Left" />
+        <Frame UV="72,1044" Variety="Granite Bathtub" Anchor="Left" />
+        <Frame UV="0,1044" Variety="Granite Bathtub" Anchor="Left" />
+        <Frame UV="72,1080" Variety="Marble Bathtub" Anchor="Left" />
+        <Frame UV="0,1080" Variety="Marble Bathtub" Anchor="Left" />
       </Frames>
     </Tile>
-    <Tile Color="#FF0D5882" Placement="ceiling" Size="1,3" Id="91" Name="Red Banner" Framed="true">
+    <Tile Color="#FF0D5882" Placement="ceiling" Size="1,3" Id="91" Name="Banner" Framed="true">
       <Frames>
         <Frame UV="0,0" Name="Craftable Banner" Variety="Red Banner" />
         <Frame UV="18,0" Name="Craftable Banner" Variety="Green Banner" />
@@ -2211,6 +2446,169 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="1908,0" Name="Monster Banner" Variety="Wraith Banner" />
         <Frame UV="1926,0" Name="Monster Banner" Variety="Wyvern Banner" />
         <Frame UV="1944,0" Name="Monster Banner" Variety="Zombie Banner" />
+        <Frame UV="1962,0" Name="Monster Banner"  Variety="Angry Trapper Banner" />
+        <Frame UV="1980,0" Name="Monster Banner"  Variety="Armored Viking Banner" />
+        <Frame UV="0,54" Name="Monster Banner"  Variety="Black Slime Banner" />
+        <Frame UV="18,54" Name="Monster Banner"  Variety="Blue Armored Bones Banner" />
+        <Frame UV="36,54" Name="Monster Banner"  Variety="Blue Cultist Archer Banner" />
+        <Frame UV="54,54" Name="Monster Banner"  Variety="Blue Cultist Caster Banner" />
+        <Frame UV="72,54" Name="Monster Banner"  Variety="Blue Cultist Fighter Banner" />
+        <Frame UV="90,54" Name="Monster Banner"  Variety="Bone Lee Banner" />
+        <Frame UV="108,54" Name="Monster Banner"  Variety="Clinger Banner" />
+        <Frame UV="126,54" Name="Monster Banner"  Variety="Cochineal Beetle Banner" />
+        <Frame UV="144,54" Name="Monster Banner"  Variety="Corrupt Penguin Banner" />
+        <Frame UV="162,54" Name="Monster Banner"  Variety="Corrupt Slime Banner" />
+        <Frame UV="180,54" Name="Monster Banner"  Variety="Corruptor Banner" />
+        <Frame UV="198,54" Name="Monster Banner"  Variety="Crimslime Banner" />
+        <Frame UV="216,54" Name="Monster Banner"  Variety="Cursed Skull Banner" />
+        <Frame UV="234,54" Name="Monster Banner"  Variety="Cyan Beetle Banner" />
+        <Frame UV="252,54" Name="Monster Banner"  Variety="Devourer Banner" />
+        <Frame UV="270,54" Name="Monster Banner"  Variety="Diabolist Banner" />
+        <Frame UV="288,54" Name="Monster Banner"  Variety="Doctor Bones Banner" />
+        <Frame UV="306,54" Name="Monster Banner"  Variety="Dungeon Slime Banner" />
+        <Frame UV="324,54" Name="Monster Banner"  Variety="Dungeon Spirit Banner" />
+        <Frame UV="342,54" Name="Monster Banner"  Variety="Elf Archer Banner" />
+        <Frame UV="360,54" Name="Monster Banner"  Variety="Elf Copter Banner" />
+        <Frame UV="378,54" Name="Monster Banner"  Variety="Eyezor Banner" />
+        <Frame UV="396,54" Name="Monster Banner"  Variety="Flocko Banner" />
+        <Frame UV="414,54" Name="Monster Banner"  Variety="Ghost Banner" />
+        <Frame UV="432,54" Name="Monster Banner"  Variety="Giant Bat Banner" />
+        <Frame UV="450,54" Name="Monster Banner"  Variety="Giant Cursed Skull Banner" />
+        <Frame UV="468,54" Name="Monster Banner"  Variety="Giant Flying Fox Banner" />
+        <Frame UV="486,54" Name="Monster Banner"  Variety="Gingerbread Man Banner" />
+        <Frame UV="504,54" Name="Monster Banner"  Variety="Goblin Archer Banner" />
+        <Frame UV="522,54" Name="Monster Banner"  Variety="Green Slime Banner" />
+        <Frame UV="540,54" Name="Monster Banner"  Variety="Headless Horseman Banner" />
+        <Frame UV="558,54" Name="Monster Banner"  Variety="Hell Armored Bones Banner" />
+        <Frame UV="576,54" Name="Monster Banner"  Variety="Hellhound Banner" />
+        <Frame UV="594,54" Name="Monster Banner"  Variety="Hoppin' Jack Banner" />
+        <Frame UV="612,54" Name="Monster Banner"  Variety="Ice Bat Banner" />
+        <Frame UV="630,54" Name="Monster Banner"  Variety="Ice Golem Banner" />
+        <Frame UV="648,54" Name="Monster Banner"  Variety="Ice Slime Banner" />
+        <Frame UV="666,54" Name="Monster Banner"  Variety="Ichor Sticker Banner" />
+        <Frame UV="684,54" Name="Monster Banner"  Variety="Illuminant Bat Banner" />
+        <Frame UV="702,54" Name="Monster Banner"  Variety="Illuminant Slime Banner" />
+        <Frame UV="720,54" Name="Monster Banner"  Variety="Jungle Bat Banner" />
+        <Frame UV="738,54" Name="Monster Banner"  Variety="Jungle Slime Banner" />
+        <Frame UV="756,54" Name="Monster Banner"  Variety="Krampus Banner" />
+        <Frame UV="774,54" Name="Monster Banner"  Variety="Lac Beetle Banner" />
+        <Frame UV="792,54" Name="Monster Banner"  Variety="Lava Bat Banner" />
+        <Frame UV="810,54" Name="Monster Banner"  Variety="Lava Slime Banner" />
+        <Frame UV="828,54" Name="Monster Banner"  Variety="Martian Brainscrambler Banner" />
+        <Frame UV="846,54" Name="Monster Banner"  Variety="Martian Drone Banner" />
+        <Frame UV="864,54" Name="Monster Banner"  Variety="Martian Engineer Banner" />
+        <Frame UV="882,54" Name="Monster Banner"  Variety="Martian Gigazapper Banner" />
+        <Frame UV="900,54" Name="Monster Banner"  Variety="Martian Gray Grunt Banner" />
+        <Frame UV="918,54" Name="Monster Banner"  Variety="Martian Officer Banner" />
+        <Frame UV="936,54" Name="Monster Banner"  Variety="Martian Raygunner Banner" />
+        <Frame UV="954,54" Name="Monster Banner"  Variety="Martian Scutlix Gunner Banner" />
+        <Frame UV="972,54" Name="Monster Banner"  Variety="Martian Tesla Turret Banner" />
+        <Frame UV="990,54" Name="Monster Banner"  Variety="Mister Stabby Banner" />
+        <Frame UV="1008,54" Name="Monster Banner"  Variety="Mother Slime Banner" />
+        <Frame UV="1026,54" Name="Monster Banner"  Variety="Necromancer Banner" />
+        <Frame UV="1044,54" Name="Monster Banner"  Variety="Nutcracker Banner" />
+        <Frame UV="1062,54" Name="Monster Banner"  Variety="Paladin Banner" />
+        <Frame UV="1080,54" Name="Monster Banner"  Variety="Penguin Banner" />
+        <Frame UV="1098,54" Name="Monster Banner"  Variety="Pinky Banner" />
+        <Frame UV="1116,54" Name="Monster Banner"  Variety="Poltergeist Banner" />
+        <Frame UV="1134,54" Name="Monster Banner"  Variety="Possessed Armor Banner" />
+        <Frame UV="1152,54" Name="Monster Banner"  Variety="Present Mimic Banner" />
+        <Frame UV="1170,54" Name="Monster Banner"  Variety="Purple Slime Banner" />
+        <Frame UV="1188,54" Name="Monster Banner"  Variety="Ragged Caster Banner" />
+        <Frame UV="1206,54" Name="Monster Banner"  Variety="Rainbow Slime Banner" />
+        <Frame UV="1224,54" Name="Monster Banner"  Variety="Raven Banner" />
+        <Frame UV="1242,54" Name="Monster Banner"  Variety="Red Slime Banner" />
+        <Frame UV="1260,54" Name="Monster Banner"  Variety="Rune Wizard Banner" />
+        <Frame UV="1278,54" Name="Monster Banner"  Variety="Rusty Armored Bones Banner" />
+        <Frame UV="1296,54" Name="Monster Banner"  Variety="Scarecrow Banner" />
+        <Frame UV="1314,54" Name="Monster Banner"  Variety="Scutlix Banner" />
+        <Frame UV="1332,54" Name="Monster Banner"  Variety="Skeleton Archer Banner" />
+        <Frame UV="1350,54" Name="Monster Banner"  Variety="Skeleton Commando Banner" />
+        <Frame UV="1368,54" Name="Monster Banner"  Variety="Skeleton Sniper Banner" />
+        <Frame UV="1386,54" Name="Monster Banner"  Variety="Slimer Banner" />
+        <Frame UV="1404,54" Name="Monster Banner"  Variety="Snatcher Banner" />
+        <Frame UV="1422,54" Name="Monster Banner"  Variety="Snow Balla Banner" />
+        <Frame UV="1440,54" Name="Monster Banner"  Variety="Snowman Gangsta Banner" />
+        <Frame UV="1458,54" Name="Monster Banner"  Variety="Spiked Ice Slime Banner" />
+        <Frame UV="1476,54" Name="Monster Banner"  Variety="Spiked Jungle Slime Banner" />
+        <Frame UV="1494,54" Name="Monster Banner"  Variety="Splinterling Banner" />
+        <Frame UV="1512,54" Name="Monster Banner"  Variety="Squid Banner" />
+        <Frame UV="1530,54" Name="Monster Banner"  Variety="Tactical Skeleton Banner" />
+        <Frame UV="1548,54" Name="Monster Banner"  Variety="The Groom Banner" />
+        <Frame UV="1566,54" Name="Monster Banner"  Variety="Tim Banner" />
+        <Frame UV="1584,54" Name="Monster Banner"  Variety="Undead Miner Banner" />
+        <Frame UV="1602,54" Name="Monster Banner"  Variety="Undead Viking Banner" />
+        <Frame UV="1620,54" Name="Monster Banner"  Variety="White Cultist Archer Banner" />
+        <Frame UV="1638,54" Name="Monster Banner"  Variety="White Cultist Caster Banner" />
+        <Frame UV="1656,54" Name="Monster Banner"  Variety="White Cultist Fighter Banner" />
+        <Frame UV="1674,54" Name="Monster Banner"  Variety="Yellow Slime Banner" />
+        <Frame UV="1692,54" Name="Monster Banner"  Variety="Yeti Banner" />
+        <Frame UV="1710,54" Name="Monster Banner"  Variety="Zombie Elf Banner" />
+        <Frame UV="1728,54" Name="Monster Banner"  Variety="Goblin Summoner Banner" />
+        <Frame UV="1746,54" Name="Monster Banner"  Variety="Salamander Banner" />
+        <Frame UV="1764,54" Name="Monster Banner"  Variety="Giant Shelly Banner" />
+        <Frame UV="1782,54" Name="Monster Banner"  Variety="Crawdad Banner" />
+        <Frame UV="1800,54" Name="Monster Banner"  Variety="Fritz Banner" />
+        <Frame UV="1818,54" Name="Monster Banner"  Variety="Creature From The Deep Banner" />
+        <Frame UV="1836,54" Name="Monster Banner"  Variety="Dr. Man Fly Banner" />
+        <Frame UV="1854,54" Name="Monster Banner"  Variety="Mothron Banner" />
+        <Frame UV="1872,54" Name="Monster Banner"  Variety="Severed Hand Banner" />
+        <Frame UV="1890,54" Name="Monster Banner"  Variety="The Possessed Banner" />
+        <Frame UV="1908,54" Name="Monster Banner"  Variety="Butcher Banner" />
+        <Frame UV="1926,54" Name="Monster Banner"  Variety="Psycho Banner" />
+        <Frame UV="1944,54" Name="Monster Banner"  Variety="Deadly Sphere Banner" />
+        <Frame UV="1962,54" Name="Monster Banner"  Variety="Nailhead Banner" />
+        <Frame UV="1980,54" Name="Monster Banner"  Variety="Poisonous Spore Banner" />
+        <Frame UV="0,108" Name="Monster Banner"  Variety="Medusa Banner" />
+        <Frame UV="18,108" Name="Monster Banner"  Variety="Hoplite Banner" />
+        <Frame UV="36,108" Name="Monster Banner"  Variety="Granite Elemental Banner" />
+        <Frame UV="54,108" Name="Monster Banner"  Variety="Grolem Banner" />
+        <Frame UV="72,108" Name="Monster Banner"  Variety="Blood Zombie Banner" />
+        <Frame UV="90,108" Name="Monster Banner"  Variety="Drippler Banner" />
+        <Frame UV="108,108" Name="Monster Banner"  Variety="Tomb Crawler Banner" />
+        <Frame UV="126,108" Name="Monster Banner"  Variety="Dune Splicer Banner" />
+        <Frame UV="144,108" Name="Monster Banner"  Variety="Antlion Swarmer Banner" />
+        <Frame UV="162,108" Name="Monster Banner"  Variety="Antlion Charger Banner" />
+        <Frame UV="180,108" Name="Monster Banner"  Variety="Ghoul Banner" />
+        <Frame UV="198,108" Name="Monster Banner"  Variety="Lamia Banner" />
+        <Frame UV="216,108" Name="Monster Banner"  Variety="Desert Spirit Banner" />
+        <Frame UV="234,108" Name="Monster Banner"  Variety="Basilisk Banner" />
+        <Frame UV="252,108" Name="Monster Banner"  Variety="Ravager Scorpion Banner" />
+        <Frame UV="270,108" Name="Monster Banner"  Variety="Stardust Soldier Banner" />
+        <Frame UV="288,108" Name="Monster Banner"  Variety="Milkyway Weaver Banner" />
+        <Frame UV="306,108" Name="Monster Banner"  Variety="Flow Invader Banner" />
+        <Frame UV="324,108" Name="Monster Banner"  Variety="Twinkle Popper Banner" />
+        <Frame UV="342,108" Name="Monster Banner"  Variety="Small Star Cell Banner" />
+        <Frame UV="360,108" Name="Monster Banner"  Variety="Star Cell Banner" />
+        <Frame UV="378,108" Name="Monster Banner"  Variety="Corite Banner" />
+        <Frame UV="396,108" Name="Monster Banner"  Variety="Sroller Banner" />
+        <Frame UV="414,108" Name="Monster Banner"  Variety="Crawltipede Banner" />
+        <Frame UV="432,108" Name="Monster Banner"  Variety="Drakomire Rider Banner" />
+        <Frame UV="450,108" Name="Monster Banner"  Variety="Drakomire Banner" />
+        <Frame UV="468,108" Name="Monster Banner"  Variety="Solar Solenian Banner" />
+        <Frame UV="486,108" Name="Monster Banner"  Variety="Nebula Soldier Banner" />
+        <Frame UV="504,108" Name="Monster Banner"  Variety="Nebula Headcrab Banner" />
+        <Frame UV="522,108" Name="Monster Banner"  Variety="Nebula Floater Banner" />
+        <Frame UV="540,108" Name="Monster Banner"  Variety="Nebula Beast Banner" />
+        <Frame UV="558,108" Name="Monster Banner"  Variety="Alien Larva Banner" />
+        <Frame UV="576,108" Name="Monster Banner"  Variety="Alien Queen Banner" />
+        <Frame UV="594,108" Name="Monster Banner"  Variety="Alien Hornet Banner" />
+        <Frame UV="612,108" Name="Monster Banner"  Variety="Vortex Soldier Banner" />
+        <Frame UV="630,108" Name="Monster Banner"  Variety="Vortex Rifleman Banner" />
+        <Frame UV="648,108" Name="Monster Banner"  Variety="Pirate Captain Banner" />
+        <Frame UV="666,108" Name="Monster Banner"  Variety="Pirate Deadeye Banner" />
+        <Frame UV="684,108" Name="Monster Banner"  Variety="Pirate Corsair Banner" />
+        <Frame UV="702,108" Name="Monster Banner"  Variety="Pirate Crossbower Banner" />
+        <Frame UV="720,108" Name="Monster Banner"  Variety="Martian Walker Banner" />
+        <Frame UV="738,108" Name="Monster Banner"  Variety="Red Devil Banner" />
+        <Frame UV="756,108" Name="Monster Banner"  Variety="Pink Jellyfish Banner" />
+        <Frame UV="774,108" Name="Monster Banner"  Variety="Green Jellyfish Banner" />
+        <Frame UV="792,108" Name="Monster Banner"  Variety="Dark Mummy Banner" />
+        <Frame UV="810,108" Name="Monster Banner"  Variety="Light Mummy Banner" />
+        <Frame UV="828,108" Name="Monster Banner"  Variety="Angry Bones Banner" />
+        <Frame UV="846,108" Name="Monster Banner"  Variety="Ice Tortoise Banner" />
+        <Frame UV="864,108" Name="Monster Banner"  Variety="Sand Slime Banner" />
+        <Frame UV="882,108" Name="Monster Banner"  Variety="Sea Snail Banner" />
       </Frames>
     </Tile>
     <Tile Color="#FFD5E5ED" Placement="floor" Size="1,6" Id="92" Name="Lamp Post" Framed="true" Light="true">
@@ -2275,6 +2673,14 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="18,1350" Name="Green Dungeon Lamp" Variety="Off" />
         <Frame UV="0,1404" Name="Pink Dungeon Lamp" Variety="On" />
         <Frame UV="18,1404" Name="Pink Dungeon Lamp" Variety="Off" />
+        <Frame UV="0,1458" Name="Martian Lamppost" Variety="On" />
+        <Frame UV="18,1458" Name="Martian Lamppost" Variety="Off" />
+        <Frame UV="0,1512" Name="Meteorite Lamp" Variety="On" />
+        <Frame UV="18,1512" Name="Meteorite Lamp" Variety="Off" />
+        <Frame UV="0,1566" Name="Granite Lamp" Variety="On" />
+        <Frame UV="18,1566" Name="Granite Lamp" Variety="Off" />
+        <Frame UV="0,1620" Name="Marble Lamp" Variety="On" />
+        <Frame UV="18,1620" Name="Marble Lamp" Variety="Off" />
       </Frames>
     </Tile>
     <Tile Color="#FFBF8E6F" Placement="floor" Size="2,2" Id="94" Name="Keg" Framed="true" />
@@ -2286,8 +2692,8 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     </Tile>
     <Tile Color="#FF909490" Placement="floorSurface" Size="2,2" Id="96" Name="Cooking Pot" Framed="true" Light="true">
       <Frames>
-        <Frame UV="0,0" Name="Default" Variety="Default" />
-        <!-- TODO : alternate sprite? -->
+        <Frame UV="0,0" Variety="Cooking Pot" />
+        <Frame UV="36,0" Variety="Cauldron" />
       </Frames>
     </Tile>
     <Tile Color="#FF909490" Placement="floor" Size="2,2" Id="97" Name="Safe" Framed="true" />
@@ -2349,6 +2755,14 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="36,900" Name="Obsidian Candelabra" Variety="Off" />
         <Frame UV="0,936" Name="Pumpkin Candelabra" Variety="On" />
         <Frame UV="36,936" Name="Pumpkin Candelabra" Variety="Off" />
+        <Frame UV="0,972" Name="Martian Candelabra" Variety="On" />
+        <Frame UV="36,972" Name="Martian Candelabra" Variety="Off" />
+        <Frame UV="0,1008" Name="Meteorite Candelabra" Variety="On" />
+        <Frame UV="36,1008" Name="Meteorite Candelabra" Variety="Off" />
+        <Frame UV="0,1044" Name="Granite Candelabra" Variety="On" />
+        <Frame UV="36,1044" Name="Granite Candelabra" Variety="Off" />
+        <Frame UV="0,1080" Name="Marble Candelabra" Variety="On" />
+        <Frame UV="36,1080" Name="Marble Candelabra" Variety="Off" />
       </Frames>
     </Tile>
     <Tile Color="#FFBF8E6F" Placement="floor" Size="3,4" Id="101" Name="Bookcase" Framed="true" SolidTop="true">
@@ -2381,6 +2795,10 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="1350,0" Variety="Boreal Wood Bookcase" />
         <Frame UV="1404,0" Variety="Slime Bookcase" />
         <Frame UV="1458,0" Variety="Pumpkin Bookcase" />
+        <Frame UV="1512,0" Variety="Martian Holobookcase" />
+        <Frame UV="1566,0" Variety="Meteorite Bookcase" />
+        <Frame UV="1620,0" Variety="Granite Bookcase" />
+        <Frame UV="1674,0" Variety="Marble Bookcase" />
       </Frames>
     </Tile>
     <Tile Color="#FFE5D449" Placement="floor" Size="3,4" Id="102" Name="Throne" Framed="true" />
@@ -2418,6 +2836,10 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="756,0" Name="Shadewood Clock" />
         <Frame UV="792,0" Name="Spooky Clock" />
         <Frame UV="828,0" Name="Sunplate Clock" />
+        <Frame UV="864,0" Name="Martian Astro Clock" />
+        <Frame UV="900,0" Name="Meteorite Clock" />
+        <Frame UV="936,0" Name="Granite Clock" />
+        <Frame UV="972,0" Name="Marble Clock" />
       </Frames>
     </Tile>
     <Tile Color="#FF909490" Placement="floor" Size="2,3" Id="105" Name="Statue" Framed="true">
@@ -2696,6 +3118,18 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="36,1080" Name="Music Box (Frost Moon)" Variety="On" />
         <Frame UV="0,1116" Name="Music Box (Underground Crimson)" Variety="Off" />
         <Frame UV="36,1116" Name="Music Box (Underground Crimson)" Variety="On" />
+        <Frame UV="0,1152" Name="Music Box (Lunar Boss)" Variety="Off" />
+        <Frame UV="36,1152" Name="Music Box (Lunar Boss)" Variety="On" />
+        <Frame UV="0,1188" Name="Music Box (Martian Madness)" Variety="Off" />
+        <Frame UV="36,1188" Name="Music Box (Martian Madness)" Variety="On" />
+        <Frame UV="0,1224" Name="Music Box (Pirate Invasion)" Variety="Off" />
+        <Frame UV="36,1224" Name="Music Box (Pirate Invasion)" Variety="On" />
+        <Frame UV="0,1260" Name="Music Box (Hell)" Variety="Off" />
+        <Frame UV="36,1260" Name="Music Box (Hell)" Variety="On" />
+        <Frame UV="0,1296" Name="Music Box (The Towers)" Variety="Off" />
+        <Frame UV="36,1296" Name="Music Box (The Towers)" Variety="On" />
+        <Frame UV="0,1332" Name="Music Box (Goblin Invasion)" Variety="Off" />
+        <Frame UV="36,1332" Name="Music Box (Goblin Invasion)" Variety="On" />
       </Frames>
     </Tile>
     <Tile Color="#FF625FA7" Blends="true" MergeWith="0" Id="140" Name="Demonite Brick" Solid="true" Light="true" />
@@ -2826,10 +3260,9 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
       </Frames>
     </Tile>
     <Tile Color="#FF218755" Id="171" TextureGrid="64,128" Name="Christmas Tree" Light="true" />
-    <Tile Name="Fake Chandelier" Color="#FFB5C2D9" Placement="ceiling" Framed="false" Light="true" Size="3,3" Id="172">
+    <Tile Name="Sink" Color="#FFB5C2D9" Placement="floor" Framed="false" Size="2,2" Id="172">
       <Frames>
-        <Frame UV="0,0" Variety="On" />
-        <Frame UV="54,0" Variety="Off" />
+        <!-- TODO:  The upper and lower halves of sinks have different frame sizes (issue) -->
       </Frames>
     </Tile>
     <Tile Color="#FFFDDD03" Placement="floorSurface" Size="2,2" Id="173" Name="Platinum Candelabra" Framed="true" Light="true">
@@ -3143,22 +3576,31 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
       <Frames>
         <Frame UV="0,0" Name="Cannon" Variety="0 deg Elevation Right" />
         <Frame UV="72,0" Name="Bunny Cannon" Variety="0 deg Elevation Right" />
+        <Frame UV="144,0" Name="Confetti Cannon" Variety="0 deg Elevation Right" />
         <Frame UV="0,54" Name="Cannon" Variety="22.5 deg Elevation Right" />
         <Frame UV="72,54" Name="Bunny Cannon" Variety="22.5 deg Elevation Right" />
+        <Frame UV="144,54" Name="Confetti Cannon" Variety="22.5 deg Elevation Right" />
         <Frame UV="0,108" Name="Cannon" Variety="45 deg Elevation Right" />
         <Frame UV="72,108" Name="Bunny Cannon" Variety="45 deg Elevation Right" />
+        <Frame UV="144,108" Name="Confetti Cannon" Variety="45 deg Elevation Right" />
         <Frame UV="0,162" Name="Cannon" Variety="67.5 deg Elevation Right" />
         <Frame UV="72,162" Name="Bunny Cannon" Variety="67.5 deg Elevation Right" />
+        <Frame UV="144,162" Name="Confetti Cannon" Variety="67.5 deg Elevation Right" />
         <Frame UV="0,216" Name="Cannon" Variety="90 deg Elevation" />
         <Frame UV="72,216" Name="Bunny Cannon" Variety="90 deg Elevation" />
+        <Frame UV="144,216" Name="Confetti Cannon" Variety="90 deg Elevation" />
         <Frame UV="0,270" Name="Cannon" Variety="67.5 deg Elevation Left" />
         <Frame UV="72,270" Name="Bunny Cannon" Variety="67.5 deg Elevation Left" />
+        <Frame UV="144,270" Name="Confetti Cannon" Variety="67.5 deg Elevation Left" />
         <Frame UV="0,324" Name="Cannon" Variety="45 deg Elevation Left" />
         <Frame UV="72,324" Name="Bunny Cannon" Variety="45 deg Elevation Left" />
+        <Frame UV="144,324" Name="Confetti Cannon" Variety="45 deg Elevation Left" />
         <Frame UV="0,378" Name="Cannon" Variety="22.5 deg Elevation Left" />
         <Frame UV="72,378" Name="Bunny Cannon" Variety="22.5 deg Elevation Left" />
+        <Frame UV="144,378" Name="Confetti Cannon" Variety="22.5 deg Elevation Left" />
         <Frame UV="0,432" Name="Cannon" Variety="0 deg Elevation Left" />
         <Frame UV="72,432" Name="Bunny Cannon" Variety="0 deg Elevation Left" />
+        <Frame UV="144,432" Name="Confetti Cannon" Variety="0 deg Elevation Left" />
       </Frames>
     </Tile>
     <Tile Color="#FFC03B3B" Id="210" Name="Land Mine" Framed="true" />
@@ -3171,7 +3613,22 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     </Tile>
     <Tile Color="#FF897843" Blends="true" Id="213" Name="Rope" />
     <Tile Color="#FF676767" Blends="true" Id="214" Name="Chain" />
-    <Tile Color="#FFFE7902" Size="3,2" Id="215" Name="Campfire" Framed="true" Light="true" />
+    <Tile Color="#FFFE7902" Size="3,2" Id="215" Name="Campfire" Framed="true" Light="true">
+      <Frames>
+        <Frame UV="0,0" Name="Campfire" Variety="Lit" />
+        <Frame UV="0,288" Name="Campfire" Variety="Unlit" />
+        <Frame UV="54,0" Name="Cursed Campfire" Variety="Lit" />
+        <Frame UV="54,288" Name="Cursed Campfire" Variety="Unlit" />
+        <Frame UV="108,0" Name="Demon Campfire" Variety="Lit" />
+        <Frame UV="108,288" Name="Demon Campfire" Variety="Unlit" />
+        <Frame UV="162,0" Name="Frozen Campfire" Variety="Lit" />
+        <Frame UV="162,288" Name="Frozen Campfire" Variety="Unlit" />
+        <Frame UV="216,0" Name="Ichor Campfire" Variety="Lit" />
+        <Frame UV="216,288" Name="Ichor Campfire" Variety="Unlit" />
+        <Frame UV="270,0" Name="Rainbow Campfire" Variety="Lit" />
+        <Frame UV="270,288" Name="Rainbow Campfire" Variety="Unlit" />
+      </Frames>
+    </Tile>
     <Tile Color="#FFBF8E6F" Size="1,2" Id="216" Name="Rocket" Framed="true">
       <Frames>
         <Frame UV="0,0" Name="Rocket" Variety="Red Rocket" />
@@ -3200,6 +3657,10 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="170,0" Name="Dye Plant" Variety="Lime Kelp" />
         <Frame UV="204,0" Name="Dye Plant" Variety="Pink Prickly Pear" />
         <Frame UV="238,0" Name="Dye Plant" Variety="Orange Bloodroot" />
+        <Frame UV="272,0" Name="Dye Plant" Variety="Strange Plant 1" />
+        <Frame UV="306,0" Name="Dye Plant" Variety="Strange Plant 2" />
+        <Frame UV="340,0" Name="Dye Plant" Variety="Strange Plant 3" />
+        <Frame UV="374,0" Name="Dye Plant" Variety="Strange Plant 4" />
       </Frames>
     </Tile>
     <Tile Color="#FF909490" Size="3,3" Id="228" Name="Dye Vat" Framed="true" />
@@ -3246,6 +3707,8 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="324,0" Name="Metal Bar" Variety="Hallowed Bar" />
         <Frame UV="342,0" Name="Metal Bar" Variety="Crimtane Bar" />
         <Frame UV="360,0" Name="Metal Bar" Variety="Shroomite Bar" />
+        <Frame UV="378,0" Name="Metal Bar" Variety="Spectre Bar" />
+        <Frame UV="396,0" Name="Metal Bar" Variety="Luminite Bar" />
       </Frames>
     </Tile>
     <Tile Color="#FF63321E" Size="3,3" Id="240" Name="3x3 Wall Hangings" Framed="true">
@@ -3306,6 +3769,10 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="918,54" Name="Fishing Trophy" Variety="Sharkteeth Trophy" />
         <Frame UV="972,54" Name="Boss Trophy" Variety="King Slime Trophy" />
         <Frame UV="1026,54" Name="Boss Trophy" Variety="Duke Fishron Trophy" />
+        <Frame UV="1080,54" Name="Boss Trophy" Variety="Ancient Cultist Trophy" />
+        <Frame UV="1134,54" Name="Boss Trophy" Variety="Martian Saucer Trophy" />
+        <Frame UV="1188,54" Name="Boss Trophy" Variety="Flying Dutchman Trophy" />
+        <Frame UV="1242,54" Name="Boss Trophy" Variety="Moon Lord Trophy" />
       </Frames>
     </Tile>
     <Tile Color="#FF4D4A48" Size="4,3" Id="241" Name="Catacomb" Framed="true">
@@ -3350,6 +3817,16 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="0,1728" Name="Hanging" Variety="Zebra Skin" />
         <Frame UV="0,1800" Name="Hanging" Variety="Treasure Map" />
         <Frame UV="0,1872" Name="Painting" Variety="Pillagin Me Pixels" />
+        <Frame UV="108,0" Name="Painting" Variety="Castle Marsberg" />
+        <Frame UV="108,72" Name="Painting" Variety="Martia Lisa" />
+        <Frame UV="108,144" Name="Painting" Variety="The Truth Is Up There" />
+        <Frame UV="108,216" Name="Painting" Variety="Sparky" />
+        <Frame UV="108,288" Name="Painting" Variety="Acorns" />
+        <Frame UV="108,360" Name="Painting" Variety="Cold Snap" />
+        <Frame UV="108,432" Name="Painting" Variety="Cursed Saint" />
+        <Frame UV="108,504" Name="Painting" Variety="Snowfellas" />
+        <Frame UV="108,576" Name="Painting" Variety="The Season" />
+        <Frame UV="108,648" Name="Painting" Variety="Not a Kid, nor a Squid" />
       </Frames>
     </Tile>
     <Tile Color="#FF8CB3FE" Size="3,3" Id="243" Name="Imbuing Station" Framed="true" />
@@ -3568,7 +4045,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Tile Color="#FFBEBEB2" Id="333" Blends="true" Name="Platinum Coin Pile" Framed="true" />
     <Tile Color="#FFBF8E6F" Id="334" Size="3,3" Name="Weapon Rack" Framed="true" />
     <Tile Color="#FFD9AE89" Id="335" Size="2,2" Name="Fireworks Box" Framed="true" />
-    <Tile Color="#FFFD3E03" Id="336" Blends="true" Name="Living Fire Block" Framed="true" />
+    <Tile Color="#FFFD3E03" Id="336" Blends="true" Name="Living Fire Block" Solid="true" Framed="false" />
     <Tile Color="#FF909490" Placement="floor" Size="2,3" Id="337" Name="Text Statue" Framed="true">
       <Frames>
         <Frame UV="0,0" Name="Text Statue" Variety="0 Statue" />
@@ -3611,6 +4088,174 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     </Tile>
     <Tile Color="#FF55FFA0" Id="338" Size="1,2" Name="Firework Fountain" Framed="true" />
     <Tile Color="#FF7AD9E8" Id="339" Size="3,2" Name="Grasshopper Cage" Framed="true" />
+    <Tile Color="#FF60F802" Id="340" Blends="true" Name="Living Cursed Fire" Solid="true" Framed="false" />
+    <Tile Color="#FF694ACA" Id="341" Blends="true" Name="Living Demon Fire" Solid="true" Framed="false" />
+    <Tile Color="#FF1DF0FF" Id="342" Blends="true" Name="Living Frost Fire" Solid="true" Framed="false" />
+    <Tile Color="#FFFECA50" Id="343" Blends="true" Name="Living Ichor" Solid="true" Framed="false" />
+    <Tile Color="#FF83FCF5" Id="344" Blends="true" Name="Living Ultrabright Fire" Solid="true" />
+    <Tile Color="#FFFF9C0C" Id="345" Blends="true" Name="Honeyfall Block" Solid="true" />
+    <Tile Color="#FF95D459" Id="346" Blends="true" Name="Chlorophyte Brick" Solid="true" />
+    <Tile Color="#FFEC4A4F" Id="347" Blends="true" Name="Crimtane Brick" Solid="true" />
+    <Tile Color="#FF2C1AE9" Id="348" Blends="true" Name="Shroomite Plating" Solid="true" />
+    <Tile Color="#FF909490" Id="349" Size="2,3" Name="Mushroom Statue" Framed="true" />
+    <Tile Color="#FF37619B" Id="350" Blends="true" Name="Martian Conduit Plating" Solid="true" />
+    <Tile Color="#FF1F1F1F" Id="351" Blends="true" Name="Chimney Smoke" Solid="true" Framed="false" />
+    <Tile Color="#FFEE615E" Id="352" Blends="true" Name="Crimtane Thorns" Solid="true" Framed="false" />
+    <Tile Color="#FF1CD85E" Id="353" Blends="true" Name="Vine Rope" Solid="true" Framed="false" />
+    <Tile Color="#FF8D6B59" Id="354" Size="3,2" Name="Bewitching Table" Framed="true" />
+    <Tile Color="#FF8D6B59" Id="355" Size="3,2" Name="Alchemy Table" Framed="true" />
+    <Tile Color="#FFE9CB18" Id="356" Size="2,3" Name="Enchanted Sundial" Framed="true" />
+    <Tile Color="#FFA8B2CC" Id="357" Blends="true" Name="Marble Block" Solid="true" Framed="false" />
+    <Tile Color="#FF7AD9E8" Id="358" Size="6,3" Name="Gold Bird Cage" Framed="true" />
+    <Tile Color="#FF7AD9E8" Id="359" Size="6,3" Name="Gold Bunny Cage" Framed="true" />
+    <Tile Color="#FF7AD9E8" Id="360" Size="2,2" Name="Gold Butterfly Cage" Framed="true" />
+    <Tile Color="#FF7AD9E8" Id="361" Size="3,2" Name="Gold Frog Cage" Framed="true" />
+    <Tile Color="#FF7AD9E8" Id="362" Size="3,2" Name="Gold Grasshopper Cage" Framed="true" />
+    <Tile Color="#FF7AD9E8" Id="363" Size="3,2" Name="Gold Mouse Cage" Framed="true" />
+    <Tile Color="#FF7AD9E8" Id="364" Size="3,2" Name="Gold Worm Cage" Framed="true" />
+    <Tile Color="#FF9288CD" Id="365" Blends="true" Name="Silk Rope" Solid="true" Framed="false" />
+    <Tile Color="#FFDFE8E9" Id="366" Blends="true" Name="Web Rope" Solid="true" Framed="false" />
+    <Tile Color="#FFA8B2CC" Id="367" Blends="true" Name="Marble" Solid="true" Framed="false" />
+    <Tile Color="#FF322E68" Id="368" Blends="true" Name="Granite" Solid="true" Framed="false" />
+    <Tile Color="#FF322E68" Id="369" Blends="true" Name="Granite Block" Solid="true" Framed="false" />
+    <Tile Color="#FF7F74C2" Id="370" Blends="true" Name="Meteorite Brick" Solid="true" Framed="false" />
+    <Tile Color="#FFF965BD" Id="371" Blends="true" Name="Pink Slime Block" Solid="true" Framed="false" />
+    <Tile Color="#FFFC80C9" Id="372" Size="1,1" Name="Peace Candle" Framed="true" />
+    <Tile Color="#FF093DBF" Id="373" Size="1,1" Name="Water Drip" Framed="true" />
+    <Tile Color="#FFFD2003" Id="374" Size="1,1" Name="Lava Drip" Framed="true" />
+    <Tile Color="#FFFF9C0C" Id="375" Size="1,1" Name="Honey Drip" Framed="true" />
+    <Tile Color="#FFA0785C" Id="376" Size="2,2" Name="Fishing Crate" Framed="true">
+      <Frames>
+        <Frame UV="0,0" Name="Fishing Crate" Variety="Wooden Crate" />
+        <Frame UV="36,0" Name="Fishing Crate" Variety="Iron Crate" />
+        <Frame UV="72,0" Name="Fishing Crate" Variety="Gold Crate" />
+        <Frame UV="108,0" Name="Fishing Crate" Variety="Corrupt Crate" />
+        <Frame UV="144,0" Name="Fishing Crate" Variety="Crimson Crate" />
+        <Frame UV="180,0" Name="Fishing Crate" Variety="Dungeon Crate" />
+        <Frame UV="216,0" Name="Fishing Crate" Variety="Sky Crate" />
+        <Frame UV="252,0" Name="Fishing Crate" Variety="Hallow Crate" />
+        <Frame UV="288,0" Name="Fishing Crate" Variety="Jungle Crate" />
+      </Frames>
+      </Tile>
+    <Tile Color="#FFBF8E6F" Id="377" Size="3,2" Name="Sharpening Station" Framed="true">
+      <Frames>
+        <Frame UV="0,0" Name="Sharpening Station" Variety="Left" />
+        <Frame UV="54,0" Name="Sharpening Station" Variety="Right" />
+      </Frames>
+    </Tile>
+    <Tile Color="#FFA07864" Id="378" Size="2,3" Name="Target Dummy" Framed="True">
+      <Frames>
+        <Frame UV="0,0" Name="Target Dummy" Variety="Left" />
+        <Frame UV="36,0" Name="Target Dummy" Variety="Right" />
+      </Frames>
+    </Tile>
+    <Tile Color="#FFFBD1F0" Id="379" Blends="true" Name="Bubble" Solid="true" Framed="false" />
+    <Tile Color="#FFBF8E6F" Id="380" Size="1,1" Name="Planter Box" Framed="true">
+      <Frames>
+        <Frame UV="0,0" Name="Daybloom Planter" Variety="Left" />
+        <Frame UV="18,0" Name="Daybloom Planter" Variety="Middle" />
+        <Frame UV="36,0" Name="Daybloom Planter" Variety="Right" />
+        <Frame UV="54,0" Name="Daybloom Planter" Variety="Single" />
+        <Frame UV="0,18" Name="Moonglow Planter" Variety="Left" />
+        <Frame UV="18,18" Name="Moonglow Planter" Variety="Middle" />
+        <Frame UV="36,18" Name="Moonglow Planter" Variety="Right" />
+        <Frame UV="54,18" Name="Moonglow Planter" Variety="Single" />
+        <Frame UV="0,36" Name="Deathweed Planter" Variety="Left" />
+        <Frame UV="18,36" Name="Deathweed Planter" Variety="Middle" />
+        <Frame UV="36,36" Name="Deathweed Planter" Variety="Right" />
+        <Frame UV="54,36" Name="Deathweed Planter" Variety="Single" />
+        <Frame UV="0,54" Name="Crimsonweed Planter" Variety="Left" />
+        <Frame UV="18,54" Name="Crimsonweed Planter" Variety="Middle" />
+        <Frame UV="36,54" Name="Crimsonweed Planter" Variety="Right" />
+        <Frame UV="54,54" Name="Crimsonweed Planter" Variety="Single" />
+        <Frame UV="0,72" Name="Blinkroot Planter" Variety="Left" />
+        <Frame UV="18,72" Name="Blinkroot Planter" Variety="Middle" />
+        <Frame UV="36,72" Name="Blinkroot Planter" Variety="Right" />
+        <Frame UV="54,72" Name="Blinkroot Planter" Variety="Single" />
+        <Frame UV="0,90" Name="Waterleaf Planter" Variety="Left" />
+        <Frame UV="18,90" Name="Waterleaf Planter" Variety="Middle" />
+        <Frame UV="36,90" Name="Waterleaf Planter" Variety="Right" />
+        <Frame UV="54,90" Name="Waterleaf Planter" Variety="Single" />
+        <Frame UV="0,108" Name="Shiverthorn Planter" Variety="Left" />
+        <Frame UV="18,108" Name="Shiverthorn Planter" Variety="Middle" />
+        <Frame UV="36,108" Name="Shiverthorn Planter" Variety="Right" />
+        <Frame UV="54,108" Name="Shiverthorn Planter" Variety="Single" />
+        <Frame UV="0,126" Name="Fireblossom Planter" Variety="Left" />
+        <Frame UV="18,126" Name="Fireblossom Planter" Variety="Middle" />
+        <Frame UV="36,126" Name="Fireblossom Planter" Variety="Right" />
+        <Frame UV="54,126" Name="Fireblossom Planter" Variety="Single" />
+      </Frames>
+    </Tile>
+    <Tile Color="#FFFE7902" Id="381" Blends="true" Name="Lava Moss" Solid="true" Framed="false" />
+    <Tile Color="#FF1CD85E" Id="382" Blends="true" Name="Vine Flowers" Solid="true" Framed="false" />
+    <Tile Color="#FFDD8890" Id="383" Blends="true" Name="Living Mahogany" Framed="false" />
+    <Tile Color="#FF83CE0C" Id="384" Blends="true" Name="Living MahoganyLeaves" Framed="false" />
+    <Tile Color="#FF571590" Id="385" Blends="true" Name="Crystal Block" Framed="false" />
+    <Tile Color="#FF7F5C45" Id="386" Size="2,2" Name="Trapdoor Open" Framed="true">
+      <Frames>
+        <Frame UV="0,0" Name="Trapdoor Open" Variety="Up" />
+        <Frame UV="36,0" Name="Trapdoor Open" Variety="Down" />
+      </Frames>
+    </Tile>
+    <Tile Color="#FF7F5C45" Id="387" Size="2,1" Name="Trapdoor Closed" Framed="true" />
+    <Tile Color="#FF7F5C45" Id="388" Size="1,5" Name="Tall Gate Closed" Framed="true">
+      <Frames>
+        <Frame UV="0,0" Name="Closed" Variety="Style 1" />
+        <Frame UV="0,94" Name="Closed" Variety="Style 2" />
+      </Frames>
+    </Tile>
+    <Tile Color="#FF7F5C45" Id="389" Size="1,5" Name="Tall Gate Open" Framed="true">
+      <Frames>
+        <Frame UV="0,0" Name="Open" Variety="Style 1" />
+        <Frame UV="0,94" Name="Open" Variety="Style 2" />
+      </Frames>
+    </Tile>
+    <Tile Color="#FFFD2003" Id="390" Size="1,2" Name="Lava Lamp" Framed="true" />
+    <Tile Color="#FF7AD9E8" Id="391" Size="3,2" Name="Cage Enchanted Nightcrawler" Framed="true" />
+    <Tile Color="#FF7AD9E8" Id="392" Size="3,2" Name="Buggy Cage" Framed="true" />
+    <Tile Color="#FF7AD9E8" Id="393" Size="3,2" Name="Grubby Cage" Framed="true" />
+    <Tile Color="#FF7AD9E8" Id="394" Size="3,2" Name="Sluggy Cage" Framed="true" />
+    <Tile Color="#FFBF8E6F" Id="395" Size="2,2" Name="Item Frame" Framed="true" />
+    <Tile Color="#FFC67C4E" Id="396" Blends="true" Name="Sandstone" Solid="true" Framed="false" />
+    <Tile Color="#FFD4C064" Id="397" Blends="true" Name="Hardened Sand" Solid="true" Framed="false" />
+    <Tile Color="#FF64527E" Id="398" Blends="true" Name="Corrupt Hardened Sand" Solid="true" Framed="false" />
+    <Tile Color="#FF4D4C42" Id="399" Blends="true" Name="Crimson Hardened Sand" Solid="true" Framed="false" />
+    <Tile Color="#FF604475" Id="400" Blends="true" Name="Corrupt Sandstone" Solid="true" Framed="false" />
+    <Tile Color="#FF443C33" Id="401" Blends="true" Name="Crimson Sandstone" Solid="true" Framed="false" />
+    <Tile Color="#FFAEA8BA" Id="402" Blends="true" Name="Hallow Hardened Sand" Solid="true" Framed="false" />
+    <Tile Color="#FFCD98BA" Id="403" Blends="true" Name="Hallow Sandstone" Solid="true" Framed="false" />
+    <Tile Color="#FF8C543C" Id="404" Blends="true" Name="Desert Fossil" Solid="true" Framed="false" />
+    <Tile Color="#FF8C8C8C" Id="405" Size="3,2" Name="Fireplace" Framed="true">
+      <Frames>
+        <Frame UV="0,0" Name="Fireplace" Variety="Lit" />
+        <Frame UV="54,0" Name="Fireplace" Variety="Unlit" />
+      </Frames>
+    </Tile>
+    <Tile Color="#FF787878" Id="406" Size="3,3" Name="Chimney" Framed="true" />
+    <Tile Color="#FFFFE384" Id="407" Blends="true" Name="Fossil Ore" Solid="true" Framed="false" />
+    <Tile Color="#FF555352" Id="408" Blends="true" Name="Lunar Ore" Solid="true" Framed="false" />
+    <Tile Color="#FF555352" Id="409" Blends="true" Name="Lunar Brick" Solid="true" Framed="false" />
+    <Tile Color="#FF4B8BA6" Id="410" Size="2,3" Name="Lunar Monolith" Framed="true">
+      <Frames>
+        <Frame UV="0,0" Name="Lunar Monolith" Variety="Vortex" />
+        <Frame UV="36,0" Name="Lunar Monolith" Variety="Nebula" />
+        <Frame UV="72,0" Name="Lunar Monolith" Variety="Stardust" />
+        <Frame UV="108,0" Name="Lunar Monolith" Variety="Solar" />
+      </Frames>
+    </Tile>
+    <Tile Color="#FFE32E2E" Id="411" Size="2,2" Name="Detonator" Framed="true">
+      <Frames>
+        <Frame UV="0,0" Name="Detonator" Variety="Trigger Up" />
+        <Frame UV="36,0" Name="Detonator" Variety="Trigger Down" />
+      </Frames>
+    </Tile>
+    <Tile Color="#FF4B8BA6" Id="412" Size="3,3" Name="Lunar Crafting Station" Framed="true" />
+    <Tile Color="#FF7AD9E8" Id="413" Size="6,3" Name="Red Squirrel Cage" Framed="true" />
+    <Tile Color="#FF7AD9E8" Id="414" Size="6,3" Name="Gold Squirrel Cage" Framed="true" />
+    <Tile Color="#FFF94B07" Id="415" Blends="true" Name="Lunar Block Solar" Solid="true" Framed="false" />
+    <Tile Color="#FF00A0AA" Id="416" Blends="true" Name="Lunar Block Vortex" Solid="true" Framed="false" />
+    <Tile Color="#FFA057EA" Id="417" Blends="true" Name="Lunar Block Nebula" Solid="true" Framed="false" />
+    <Tile Color="#FF16ADFE" Id="418" Blends="true" Name="Lunar Block Stardust" Solid="true" Framed="false" />
   </Tiles>
   <Walls>
     <Wall Id="0"    Name="Sky"                            Color="#00000000"                    />
@@ -3785,7 +4430,61 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Wall Id="169"  Name="Midnight Confetti Wall"         Color="#FF577C7D"  IsHouse="True"   />
     <Wall Id="170"  Name="Unique Cave Wall 7 (natural)"   Color="#FF6C4A44"  IsHouse="False"  />
     <Wall Id="171"  Name="Unique Cave Wall 8 (natural)"   Color="#FF643F42"  IsHouse="False"  />
+    <Wall Id="172" Name="Honeyfall Wall"                  Color="#FFA36000"  IsHouse="True" />
+    <Wall Id="173" Name="Chlorophyte Brick Wall"          Color="#FF5EA32E"  IsHouse="True" />
+    <Wall Id="174" Name="Crimtane Brick Wall"             Color="#FF75203B"  IsHouse="True" />
+    <Wall Id="175" Name="Shroomite Plating Wall"          Color="#FF140BCB"  IsHouse="True" />
+    <Wall Id="176" Name="Martian Conduit Wall"            Color="#FF4A4558"  IsHouse="True" />
+    <Wall Id="177" Name="Hellstone Brick Wall"            Color="#FF3C1E1E"  IsHouse="True" />
+    <Wall Id="178" Name="Marble (natural)"                Color="#FF6F7587"  IsHouse="False" />
+    <Wall Id="179" Name="Marble Block Wall"               Color="#FF6F7587"  IsHouse="True" />
+    <Wall Id="180" Name="Granite (natural)"               Color="#FF191736"  IsHouse="False" />
+    <Wall Id="181" Name="Granite Block Wall"              Color="#FF191736"  IsHouse="True" />
+    <Wall Id="182" Name="Meteorite Brick Wall"            Color="#FF4A4781"  IsHouse="True" />
+    <Wall Id="183" Name="Smooth Marble Wall"              Color="#FF6F7587"  IsHouse="True" />
+    <Wall Id="184" Name="Smooth Granite Wall"             Color="#FF191736"  IsHouse="True" />
+    <Wall Id="185" Name="Cave 8 (natural)"                Color="#FF343434"  IsHouse="False" />
+    <Wall Id="186" Name="Crystal Block Wall"              Color="#FF260942"  IsHouse="True" />
+    <Wall Id="187" Name="Sandstone Wall"                  Color="#FF955033"  IsHouse="True" />
+    <Wall Id="188" Name="Corruption 1 (natural)"          Color="#FF523F50"  IsHouse="False" />
+    <Wall Id="189" Name="Corruption 2 (natural)"          Color="#FF413D4D"  IsHouse="False" />
+    <Wall Id="190" Name="Corruption 3 (natural)"          Color="#FF40415C"  IsHouse="False" />
+    <Wall Id="191" Name="Corruption 4 (natural)"          Color="#FF4C3554"  IsHouse="False" />
+    <Wall Id="192" Name="Crimson 1 (natural)"             Color="#FF904334"  IsHouse="False" />
+    <Wall Id="193" Name="Crimson 2 (natural)"             Color="#FF953030"  IsHouse="False" />
+    <Wall Id="194" Name="Crimson 3 (natural)"             Color="#FF6F2024"  IsHouse="False" />
+    <Wall Id="195" Name="Crimson 4 (natural)"             Color="#FF933037"  IsHouse="False" />
+    <Wall Id="196" Name="Dirt 1 (natural)"                Color="#FF614333"  IsHouse="False" />
+    <Wall Id="197" Name="Dirt 2 (natural)"                Color="#FF70503E"  IsHouse="False" />
+    <Wall Id="198" Name="Dirt 3 (natural)"                Color="#FF583D2E"  IsHouse="False" />
+    <Wall Id="199" Name="Dirt 4 (natural)"                Color="#FF7F5E4C"  IsHouse="False" />
+    <Wall Id="200" Name="Hallow 1 (natural)"              Color="#FF8F327B"  IsHouse="False" />
+    <Wall Id="201" Name="Hallow 2 (natural)"              Color="#FF887883"  IsHouse="False" />
+    <Wall Id="202" Name="Hallow 3 (natural)"              Color="#FFDB5C8F"  IsHouse="False" />
+    <Wall Id="203" Name="Hallow 4 (natural)"              Color="#FF714096"  IsHouse="False" />
+    <Wall Id="204" Name="Jungle 1 (natural)"              Color="#FF4A433C"  IsHouse="False" />
+    <Wall Id="205" Name="Jungle 2 (natural)"              Color="#FF3C4E3B"  IsHouse="False" />
+    <Wall Id="206" Name="Jungle 3 (natural)"              Color="#FF003615"  IsHouse="False" />
+    <Wall Id="207" Name="Jungle 4 (natural)"              Color="#FF4A6148"  IsHouse="False" />
+    <Wall Id="208" Name="Lava 1 (natural)"                Color="#FF282523"  IsHouse="False" />
+    <Wall Id="209" Name="Lava 2 (natural)"                Color="#FF4D3F42"  IsHouse="False" />
+    <Wall Id="210" Name="Lava 3 (natural)"                Color="#FF6F0606"  IsHouse="False" />
+    <Wall Id="211" Name="Lava 4 (natural)"                Color="#FF58433B"  IsHouse="False" />
+    <Wall Id="212" Name="Rocks 1 (natural)"               Color="#FF585750"  IsHouse="False" />
+    <Wall Id="213" Name="Rocks 2 (natural)"               Color="#FF474743"  IsHouse="False" />
+    <Wall Id="214" Name="Rocks 3 (natural)"               Color="#FF4C343C"  IsHouse="False" />
+    <Wall Id="215" Name="Rocks 4 (natural)"               Color="#FF59303B"  IsHouse="False" />
+    <Wall Id="216" Name="Hardened Sand Wall"              Color="#FF9E6440"  IsHouse="True" />
+    <Wall Id="217" Name="Hardened Ebonsand Wall"          Color="#FF3E2D4B"  IsHouse="True" />
+    <Wall Id="218" Name="Hardened Crimsand Wall"          Color="#FF390E0C"  IsHouse="True" />
+    <Wall Id="219" Name="Hardened Pearlsand Wall"         Color="#FF604885"  IsHouse="True" />
+    <Wall Id="220" Name="Ebonsandstone Wall"              Color="#FF433750"  IsHouse="True" />
+    <Wall Id="221" Name="Crimsandstone Wall"              Color="#FF40251D"  IsHouse="True" />
+    <Wall Id="222" Name="Pearlsandstone Wall"             Color="#FF46335B"  IsHouse="True" />
+    <Wall Id="223" Name="Desert Fossil Wall"              Color="#FF331204"  IsHouse="True" />
+    <Wall Id="224" Name="Lunar Brick Wall"                Color="#FF393734"  IsHouse="True" />
   </Walls>
+  
   <Items>
     <Item Id="-48" Name="Platinum Bow"/>
     <Item Id="-47" Name="Platinum Hammer"/>
@@ -6584,6 +7283,858 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="2746" Name="Boreal Wood Hammer"/>
     <Item Id="2747" Name="Boreal Wood Bow"/>
     <Item Id="2748" Name="Glass Chest"/>
+    <Item Id="2749" Name="Xeno Staff" />
+    <Item Id="2750" Name="Meteor Staff" />
+    <Item Id="2751" Name="Living Cursed Fire Block" />
+    <Item Id="2752" Name="Living Demon Fire Block" />
+    <Item Id="2753" Name="Living Frost Fire Block" />
+    <Item Id="2754" Name="Living Ichor Block" />
+    <Item Id="2755" Name="Living Ultrabright Fire Block" />
+    <Item Id="2756" Name="Gender Change Potion" />
+    <Item Id="2757" Name="Vortex Helmet" />
+    <Item Id="2758" Name="Vortex Breastplate" />
+    <Item Id="2759" Name="Vortex Leggings" />
+    <Item Id="2760" Name="Nebula Helmet" />
+    <Item Id="2761" Name="Nebula Breastplate" />
+    <Item Id="2762" Name="Nebula Leggings" />
+    <Item Id="2763" Name="Solar Flare Helmet" />
+    <Item Id="2764" Name="Solar Flare Breastplate" />
+    <Item Id="2765" Name="Solar Flare Leggings" />
+    <Item Id="2766" Name="Solar Tablet Fragment" />
+    <Item Id="2767" Name="Solar Tablet" />
+    <Item Id="2768" Name="Drill Containment Unit" />
+    <Item Id="2769" Name="Cosmic Car Key" />
+    <Item Id="2770" Name="Mothron Wings" />
+    <Item Id="2771" Name="Brain Scrambler" />
+    <Item Id="2772" Name="Vortex Axe" />
+    <Item Id="2773" Name="Vortex Chainsaw" />
+    <Item Id="2774" Name="Vortex Drill" />
+    <Item Id="2775" Name="Vortex Hammer" />
+    <Item Id="2776" Name="Vortex Pickaxe" />
+    <Item Id="2777" Name="Nebula Axe" />
+    <Item Id="2778" Name="Nebula Chainsaw" />
+    <Item Id="2779" Name="Nebula Drill" />
+    <Item Id="2780" Name="Nebula Hammer" />
+    <Item Id="2781" Name="Nebula Pickaxe" />
+    <Item Id="2782" Name="Solar Flare Axe" />
+    <Item Id="2783" Name="Solar Flare Chainsaw" />
+    <Item Id="2784" Name="Solar Flare Drill" />
+    <Item Id="2785" Name="Solar Flare Hammer" />
+    <Item Id="2786" Name="Solar Flare Pickaxe" />
+    <Item Id="2787" Name="Honeyfall Block" />
+    <Item Id="2788" Name="Honeyfall Wall" />
+    <Item Id="2789" Name="Chlorophyte Brick Wall" />
+    <Item Id="2790" Name="Crimtane Brick Wall" />
+    <Item Id="2791" Name="Shroomite Plating Wall" />
+    <Item Id="2792" Name="Chlorophyte Brick" />
+    <Item Id="2793" Name="Crimtane Brick" />
+    <Item Id="2794" Name="Shroomite Plating" />
+    <Item Id="2795" Name="Laser Machinegun" />
+    <Item Id="2796" Name="Electrosphere Launcher" />
+    <Item Id="2797" Name="Xenopopper" />
+    <Item Id="2798" Name="Laser Drill" />
+    <Item Id="2799" Name="Mechanical Ruler" />
+    <Item Id="2800" Name="Anti-Gravity Hook" />
+    <Item Id="2801" Name="Moon Mask" />
+    <Item Id="2802" Name="Sun Mask" />
+    <Item Id="2803" Name="Martian Costume Mask" />
+    <Item Id="2804" Name="Martian Costume Shirt" />
+    <Item Id="2805" Name="Martian Costume Pants" />
+    <Item Id="2806" Name="Martian Uniform Helmet" />
+    <Item Id="2807" Name="Martian Uniform Torso" />
+    <Item Id="2808" Name="Martian Uniform Pants" />
+    <Item Id="2809" Name="Martian Astro Clock" />
+    <Item Id="2810" Name="Martian Bathtub" />
+    <Item Id="2811" Name="Martian Bed" />
+    <Item Id="2812" Name="Martian Hover Chair" />
+    <Item Id="2813" Name="Martian Chandelier" />
+    <Item Id="2814" Name="Martian Chest" />
+    <Item Id="2815" Name="Martian Door" />
+    <Item Id="2816" Name="Martian Dresser" />
+    <Item Id="2817" Name="Martian Holobookcase" />
+    <Item Id="2818" Name="Martian Hover Candle" />
+    <Item Id="2819" Name="Martian Lamppost" />
+    <Item Id="2820" Name="Martian Lantern" />
+    <Item Id="2821" Name="Martian Piano" />
+    <Item Id="2822" Name="Martian Platform" />
+    <Item Id="2823" Name="Martian Sofa" />
+    <Item Id="2824" Name="Martian Table" />
+    <Item Id="2825" Name="Martian Table Lamp" />
+    <Item Id="2826" Name="Martian Work Bench" />
+    <Item Id="2827" Name="Wooden Sink" />
+    <Item Id="2828" Name="Ebonwood Sink" />
+    <Item Id="2829" Name="Rich Mahogany Sink" />
+    <Item Id="2830" Name="Pearlwood Sink" />
+    <Item Id="2831" Name="Bone Sink" />
+    <Item Id="2832" Name="Flesh Sink" />
+    <Item Id="2833" Name="Living Wood Sink" />
+    <Item Id="2834" Name="Skyware Sink" />
+    <Item Id="2835" Name="Shadewood Sink" />
+    <Item Id="2836" Name="Lihzahrd Sink" />
+    <Item Id="2837" Name="Blue Dungeon Sink" />
+    <Item Id="2838" Name="Green Dungeon Sink" />
+    <Item Id="2839" Name="Pink Dungeon Sink" />
+    <Item Id="2840" Name="Obsidian Sink" />
+    <Item Id="2841" Name="Metal Sink" />
+    <Item Id="2842" Name="Glass Sink" />
+    <Item Id="2843" Name="Golden Sink" />
+    <Item Id="2844" Name="Honey Sink" />
+    <Item Id="2845" Name="Steampunk Sink" />
+    <Item Id="2846" Name="Pumpkin Sink" />
+    <Item Id="2847" Name="Spooky Sink" />
+    <Item Id="2848" Name="Frozen Sink" />
+    <Item Id="2849" Name="Dynasty Sink" />
+    <Item Id="2850" Name="Palm Wood Sink" />
+    <Item Id="2851" Name="Mushroom Sink" />
+    <Item Id="2852" Name="Boreal Wood Sink" />
+    <Item Id="2853" Name="Slime Sink" />
+    <Item Id="2854" Name="Cactus Sink" />
+    <Item Id="2855" Name="Martian Sink" />
+    <Item Id="2856" Name="Solar Cultist Hood" />
+    <Item Id="2857" Name="Lunar Cultist Hood" />
+    <Item Id="2858" Name="Solar Cultist Robe" />
+    <Item Id="2859" Name="Lunar Cultist Robe" />
+    <Item Id="2860" Name="Martian Conduit Plating" />
+    <Item Id="2861" Name="Martian Conduit Wall" />
+    <Item Id="2862" Name="HiTek Sunglasses" />
+    <Item Id="2863" Name="Martian Hair Dye" />
+    <Item Id="2864" Name="Martian Dye" />
+    <Item Id="2865" Name="Castle Marsberg" />
+    <Item Id="2866" Name="Martia Lisa" />
+    <Item Id="2867" Name="The Truth Is Up There" />
+    <Item Id="2868" Name="Smoke Block" />
+    <Item Id="2869" Name="Living Flame Dye" />
+    <Item Id="2870" Name="Living Rainbow Dye" />
+    <Item Id="2871" Name="Shadow Dye" />
+    <Item Id="2872" Name="Negative Dye" />
+    <Item Id="2873" Name="Living Ocean Dye" />
+    <Item Id="2874" Name="Brown Dye" />
+    <Item Id="2875" Name="Brown and Black Dye" />
+    <Item Id="2876" Name="Bright Brown Dye" />
+    <Item Id="2877" Name="Brown and Silver Dye" />
+    <Item Id="2878" Name="Wisp Dye" />
+    <Item Id="2879" Name="Pixie Dye" />
+    <Item Id="2880" Name="Influx Waver" />
+    <Item Id="2881" Name="Phasic Warp Ejector" />
+    <Item Id="2882" Name="Charged Blaster Cannon" />
+    <Item Id="2883" Name="Chlorophyte Dye" />
+    <Item Id="2884" Name="Unicorn Wisp Dye" />
+    <Item Id="2885" Name="Infernal Wisp Dye" />
+    <Item Id="2886" Name="Vicious Powder" />
+    <Item Id="2887" Name="Vicious Mushroom" />
+    <Item Id="2888" Name="The Bee's Knees" />
+    <Item Id="2889" Name="Gold Bird" />
+    <Item Id="2890" Name="Gold Bunny" />
+    <Item Id="2891" Name="Gold Butterfly" />
+    <Item Id="2892" Name="Gold Frog" />
+    <Item Id="2893" Name="Gold Grasshopper" />
+    <Item Id="2894" Name="Gold Mouse" />
+    <Item Id="2895" Name="Gold Worm" />
+    <Item Id="2896" Name="Sticky Dynamite" />
+    <Item Id="2897" Name="Angry Trapper Banner" />
+    <Item Id="2898" Name="Armored Viking Banner" />
+    <Item Id="2899" Name="Black Slime Banner" />
+    <Item Id="2900" Name="Blue Armored Bones Banner" />
+    <Item Id="2901" Name="Blue Cultist Archer Banner" />
+    <Item Id="2902" Name="Blue Cultist Caster Banner" />
+    <Item Id="2903" Name="Blue Cultist Fighter Banner" />
+    <Item Id="2904" Name="Bone Lee Banner" />
+    <Item Id="2905" Name="Clinger Banner" />
+    <Item Id="2906" Name="Cochineal Beetle Banner" />
+    <Item Id="2907" Name="Corrupt Penguin Banner" />
+    <Item Id="2908" Name="Corrupt Slime Banner" />
+    <Item Id="2909" Name="Corruptor Banner" />
+    <Item Id="2910" Name="Crimslime Banner" />
+    <Item Id="2911" Name="Cursed Skull Banner" />
+    <Item Id="2912" Name="Cyan Beetle Banner" />
+    <Item Id="2913" Name="Devourer Banner" />
+    <Item Id="2914" Name="Diabolist Banner" />
+    <Item Id="2915" Name="Doctor Bones Banner" />
+    <Item Id="2916" Name="Dungeon Slime Banner" />
+    <Item Id="2917" Name="Dungeon Spirit Banner" />
+    <Item Id="2918" Name="Elf Archer Banner" />
+    <Item Id="2919" Name="Elf Copter Banner" />
+    <Item Id="2920" Name="Eyezor Banner" />
+    <Item Id="2921" Name="Flocko Banner" />
+    <Item Id="2922" Name="Ghost Banner" />
+    <Item Id="2923" Name="Giant Bat Banner" />
+    <Item Id="2924" Name="Giant Cursed Skull Banner" />
+    <Item Id="2925" Name="Giant Flying Fox Banner" />
+    <Item Id="2926" Name="Gingerbread Man Banner" />
+    <Item Id="2927" Name="Goblin Archer Banner" />
+    <Item Id="2928" Name="Green Slime Banner" />
+    <Item Id="2929" Name="Headless Horseman Banner" />
+    <Item Id="2930" Name="Hell Armored Bones Banner" />
+    <Item Id="2931" Name="Hellhound Banner" />
+    <Item Id="2932" Name="Hoppin' Jack Banner" />
+    <Item Id="2933" Name="Ice Bat Banner" />
+    <Item Id="2934" Name="Ice Golem Banner" />
+    <Item Id="2935" Name="Ice Slime Banner" />
+    <Item Id="2936" Name="Ichor Sticker Banner" />
+    <Item Id="2937" Name="Illuminant Bat Banner" />
+    <Item Id="2938" Name="Illuminant Slime Banner" />
+    <Item Id="2939" Name="Jungle Bat Banner" />
+    <Item Id="2940" Name="Jungle Slime Banner" />
+    <Item Id="2941" Name="Krampus Banner" />
+    <Item Id="2942" Name="Lac Beetle Banner" />
+    <Item Id="2943" Name="Lava Bat Banner" />
+    <Item Id="2944" Name="Lava Slime Banner" />
+    <Item Id="2945" Name="Martian Brainscrambler Banner" />
+    <Item Id="2946" Name="Martian Drone Banner" />
+    <Item Id="2947" Name="Martian Engineer Banner" />
+    <Item Id="2948" Name="Martian Gigazapper Banner" />
+    <Item Id="2949" Name="Martian Gray Grunt Banner" />
+    <Item Id="2950" Name="Martian Officer Banner" />
+    <Item Id="2951" Name="Martian Raygunner Banner" />
+    <Item Id="2952" Name="Martian Scutlix Gunner Banner" />
+    <Item Id="2953" Name="Martian Tesla Turret Banner" />
+    <Item Id="2954" Name="Mister Stabby Banner" />
+    <Item Id="2955" Name="Mother Slime Banner" />
+    <Item Id="2956" Name="Necromancer Banner" />
+    <Item Id="2957" Name="Nutcracker Banner" />
+    <Item Id="2958" Name="Paladin Banner" />
+    <Item Id="2959" Name="Penguin Banner" />
+    <Item Id="2960" Name="Pinky Banner" />
+    <Item Id="2961" Name="Poltergeist Banner" />
+    <Item Id="2962" Name="Possessed Armor Banner" />
+    <Item Id="2963" Name="Present Mimic Banner" />
+    <Item Id="2964" Name="Purple Slime Banner" />
+    <Item Id="2965" Name="Ragged Caster Banner" />
+    <Item Id="2966" Name="Rainbow Slime Banner" />
+    <Item Id="2967" Name="Raven Banner" />
+    <Item Id="2968" Name="Red Slime Banner" />
+    <Item Id="2969" Name="Rune Wizard Banner" />
+    <Item Id="2970" Name="Rusty Armored Bones Banner" />
+    <Item Id="2971" Name="Scarecrow Banner" />
+    <Item Id="2972" Name="Scutlix Banner" />
+    <Item Id="2973" Name="Skeleton Archer Banner" />
+    <Item Id="2974" Name="Skeleton Commando Banner" />
+    <Item Id="2975" Name="Skeleton Sniper Banner" />
+    <Item Id="2976" Name="Slimer Banner" />
+    <Item Id="2977" Name="Snatcher Banner" />
+    <Item Id="2978" Name="Snow Balla Banner" />
+    <Item Id="2979" Name="Snowman Gangsta Banner" />
+    <Item Id="2980" Name="Spiked Ice Slime Banner" />
+    <Item Id="2981" Name="Spiked Jungle Slime Banner" />
+    <Item Id="2982" Name="Splinterling Banner" />
+    <Item Id="2983" Name="Squid Banner" />
+    <Item Id="2984" Name="Tactical Skeleton Banner" />
+    <Item Id="2985" Name="The Groom Banner" />
+    <Item Id="2986" Name="Tim Banner" />
+    <Item Id="2987" Name="Undead Miner Banner" />
+    <Item Id="2988" Name="Undead Viking Banner" />
+    <Item Id="2989" Name="White Cultist Archer Banner" />
+    <Item Id="2990" Name="White Cultist Caster Banner" />
+    <Item Id="2991" Name="White Cultist Fighter Banner" />
+    <Item Id="2992" Name="Yellow Slime Banner" />
+    <Item Id="2993" Name="Yeti Banner" />
+    <Item Id="2994" Name="Zombie Elf Banner" />
+    <Item Id="2995" Name="Sparky" />
+    <Item Id="2996" Name="Vine Rope" />
+    <Item Id="2997" Name="Wormhole Potion" />
+    <Item Id="2998" Name="Summoner Emblem" />
+    <Item Id="2999" Name="Bewitching Table" />
+    <Item Id="3000" Name="Alchemy Table" />
+    <Item Id="3001" Name="Strange Brew" />
+    <Item Id="3002" Name="Spelunker Glowstick" />
+    <Item Id="3003" Name="Bone Arrow" />
+    <Item Id="3004" Name="Bone Torch" />
+    <Item Id="3005" Name="Vine Rope Coil" />
+    <Item Id="3006" Name="Life Drain" />
+    <Item Id="3007" Name="Dart Pistol" />
+    <Item Id="3008" Name="Dart Rifle" />
+    <Item Id="3009" Name="Crystal Dart" />
+    <Item Id="3010" Name="Cursed Dart" />
+    <Item Id="3011" Name="Ichor Dart" />
+    <Item Id="3012" Name="Chain Guillotines" />
+    <Item Id="3013" Name="Fetid Baghnakhs" />
+    <Item Id="3014" Name="Clinger Staff" />
+    <Item Id="3015" Name="Putrid Scent" />
+    <Item Id="3016" Name="Flesh Knuckles" />
+    <Item Id="3017" Name="Flower Boots" />
+    <Item Id="3018" Name="Seedler" />
+    <Item Id="3019" Name="Hellwing Bow" />
+    <Item Id="3020" Name="Tendon Hook" />
+    <Item Id="3021" Name="Thorn Hook" />
+    <Item Id="3022" Name="Illuminant Hook" />
+    <Item Id="3023" Name="Worm Hook" />
+    <Item Id="3024" Name="Skiphs's Blood" />
+    <Item Id="3025" Name="Purple Ooze Dye" />
+    <Item Id="3026" Name="Reflective Silver Dye" />
+    <Item Id="3027" Name="Reflective Gold Dye" />
+    <Item Id="3028" Name="Blue Acid Dye" />
+    <Item Id="3029" Name="Daedalus Stormbow" />
+    <Item Id="3030" Name="Flying Knife" />
+    <Item Id="3031" Name="Bottomless Water Bucket" />
+    <Item Id="3032" Name="Super Absorbant Sponge" />
+    <Item Id="3033" Name="Gold Ring" />
+    <Item Id="3034" Name="Coin Ring" />
+    <Item Id="3035" Name="Greedy Ring" />
+    <Item Id="3036" Name="Fish Finder" />
+    <Item Id="3037" Name="Weather Radio" />
+    <Item Id="3038" Name="Hades Dye" />
+    <Item Id="3039" Name="Twilight Dye" />
+    <Item Id="3040" Name="Acid Dye" />
+    <Item Id="3041" Name="Glowing Mushroom Dye" />
+    <Item Id="3042" Name="Phase Dye" />
+    <Item Id="3043" Name="Magic Lantern" />
+    <Item Id="3044" Name="Music Box (Lunar Boss)" />
+    <Item Id="3045" Name="Rainbow Torch" />
+    <Item Id="3046" Name="Cursed Campfire" />
+    <Item Id="3047" Name="Demon Campfire" />
+    <Item Id="3048" Name="Frozen Campfire" />
+    <Item Id="3049" Name="Ichor Campfire" />
+    <Item Id="3050" Name="Rainbow Campfire" />
+    <Item Id="3051" Name="Crystal Vile Shard" />
+    <Item Id="3052" Name="Shadowflame Bow" />
+    <Item Id="3053" Name="Shadowflame Hex Doll" />
+    <Item Id="3054" Name="Shadowflame Knife" />
+    <Item Id="3055" Name="Acorns" />
+    <Item Id="3056" Name="Cold Snap" />
+    <Item Id="3057" Name="Cursed Saint" />
+    <Item Id="3058" Name="Snowfellas" />
+    <Item Id="3059" Name="The Season" />
+    <Item Id="3060" Name="Bone Rattle" />
+    <Item Id="3061" Name="Architect Gizmo Pack" />
+    <Item Id="3062" Name="Crimson Heart" />
+    <Item Id="3063" Name="Meowmere" />
+    <Item Id="3064" Name="Enchanted Sundial" />
+    <Item Id="3065" Name="Star Wrath" />
+    <Item Id="3066" Name="Smooth Marble Block" />
+    <Item Id="3067" Name="Hellstone Brick Wall" />
+    <Item Id="3068" Name="Guide to Plant Fiber Cordage" />
+    <Item Id="3069" Name="Wand of Sparking" />
+    <Item Id="3070" Name="Gold Bird Cage" />
+    <Item Id="3071" Name="Gold Bunny Cage" />
+    <Item Id="3072" Name="Gold Butterfly Jar" />
+    <Item Id="3073" Name="Gold Frog Cage" />
+    <Item Id="3074" Name="Gold Grasshopper Cage" />
+    <Item Id="3075" Name="Gold Mouse Cage" />
+    <Item Id="3076" Name="Gold Worm Cage" />
+    <Item Id="3077" Name="Silk Rope" />
+    <Item Id="3078" Name="Web Rope" />
+    <Item Id="3079" Name="Silk Rope Coil" />
+    <Item Id="3080" Name="Web Rope Coil" />
+    <Item Id="3081" Name="Marble Block" />
+    <Item Id="3082" Name="Marble Wall" />
+    <Item Id="3083" Name="Smooth Marble Wall" />
+    <Item Id="3084" Name="Radar" />
+    <Item Id="3085" Name="Golden Lock Box" />
+    <Item Id="3086" Name="Granite Block" />
+    <Item Id="3087" Name="Smooth Granite Block" />
+    <Item Id="3088" Name="Granite Wall" />
+    <Item Id="3089" Name="Smooth Granite Wall" />
+    <Item Id="3090" Name="Royal Gel" />
+    <Item Id="3091" Name="Key of Night" />
+    <Item Id="3092" Name="Key of Light" />
+    <Item Id="3093" Name="Herb Bag" />
+    <Item Id="3094" Name="Javelin" />
+    <Item Id="3095" Name="Tally Counter" />
+    <Item Id="3096" Name="Sextant" />
+    <Item Id="3097" Name="Shield of Cthulhu" />
+    <Item Id="3098" Name="Butcher's Chainsaw" />
+    <Item Id="3099" Name="Stopwatch" />
+    <Item Id="3100" Name="Meteorite Brick" />
+    <Item Id="3101" Name="Meteorite Brick Wall" />
+    <Item Id="3102" Name="Metal Detector" />
+    <Item Id="3103" Name="Endless Quiver" />
+    <Item Id="3104" Name="Endless Musket Pouch" />
+    <Item Id="3105" Name="Toxic Flask" />
+    <Item Id="3106" Name="Psycho Knife" />
+    <Item Id="3107" Name="Nail Gun" />
+    <Item Id="3108" Name="Nail" />
+    <Item Id="3109" Name="Night Vision Helmet" />
+    <Item Id="3110" Name="Celestial Shell" />
+    <Item Id="3111" Name="Pink Gel" />
+    <Item Id="3112" Name="Bouncy Glowstick" />
+    <Item Id="3113" Name="Pink Slime Block" />
+    <Item Id="3114" Name="Pink Torch" />
+    <Item Id="3115" Name="Bouncy Bomb" />
+    <Item Id="3116" Name="Bouncy Grenade" />
+    <Item Id="3117" Name="Peace Candle" />
+    <Item Id="3118" Name="Lifeform Analyzer" />
+    <Item Id="3119" Name="DPS Meter" />
+    <Item Id="3120" Name="Fisherman's Pocket Guide" />
+    <Item Id="3121" Name="Goblin Tech" />
+    <Item Id="3122" Name="R.E.K. 3000" />
+    <Item Id="3123" Name="PDA" />
+    <Item Id="3124" Name="Cell Phone" />
+    <Item Id="3125" Name="Granite Chest" />
+    <Item Id="3126" Name="Meteorite Clock" />
+    <Item Id="3127" Name="Marble Clock" />
+    <Item Id="3128" Name="Granite Clock" />
+    <Item Id="3129" Name="Meteorite Door" />
+    <Item Id="3130" Name="Marble Door" />
+    <Item Id="3131" Name="Granite Door" />
+    <Item Id="3132" Name="Meteorite Dresser" />
+    <Item Id="3133" Name="Marble Dresser" />
+    <Item Id="3134" Name="Granite Dresser" />
+    <Item Id="3135" Name="Meteorite Lamp" />
+    <Item Id="3136" Name="Marble Lamp" />
+    <Item Id="3137" Name="Granite Lamp" />
+    <Item Id="3138" Name="Meteorite Lantern" />
+    <Item Id="3139" Name="Marble Lantern" />
+    <Item Id="3140" Name="Granite Lantern" />
+    <Item Id="3141" Name="Meteorite Piano" />
+    <Item Id="3142" Name="Marble Piano" />
+    <Item Id="3143" Name="Granite Piano" />
+    <Item Id="3144" Name="Meteorite Platform" />
+    <Item Id="3145" Name="Marble Platform" />
+    <Item Id="3146" Name="Granite Platform" />
+    <Item Id="3147" Name="Meteorite Sink" />
+    <Item Id="3148" Name="Marble Sink" />
+    <Item Id="3149" Name="Granite Sink" />
+    <Item Id="3150" Name="Meteorite Sofa" />
+    <Item Id="3151" Name="Marble Sofa" />
+    <Item Id="3152" Name="Granite Sofa" />
+    <Item Id="3153" Name="Meteorite Table" />
+    <Item Id="3154" Name="Marble Table" />
+    <Item Id="3155" Name="Granite Table" />
+    <Item Id="3156" Name="Meteorite Work Bench" />
+    <Item Id="3157" Name="Marble Work Bench" />
+    <Item Id="3158" Name="Granite Work Bench" />
+    <Item Id="3159" Name="Meteorite Bathtub" />
+    <Item Id="3160" Name="Marble Bathtub" />
+    <Item Id="3161" Name="Granite Bathtub" />
+    <Item Id="3162" Name="Meteorite Bed" />
+    <Item Id="3163" Name="Marble Bed" />
+    <Item Id="3164" Name="Granite Bed" />
+    <Item Id="3165" Name="Meteorite Bookcase" />
+    <Item Id="3166" Name="Marble Bookcase" />
+    <Item Id="3167" Name="Granite Bookcase" />
+    <Item Id="3168" Name="Meteorite Candelabra" />
+    <Item Id="3169" Name="Marble Candelabra" />
+    <Item Id="3170" Name="Granite Candelabra" />
+    <Item Id="3171" Name="Meteorite Candle" />
+    <Item Id="3172" Name="Marble Candle" />
+    <Item Id="3173" Name="Granite Candle" />
+    <Item Id="3174" Name="Meteorite Chair" />
+    <Item Id="3175" Name="Marble Chair" />
+    <Item Id="3176" Name="Granite Chair" />
+    <Item Id="3177" Name="Meteorite Chandelier" />
+    <Item Id="3178" Name="Marble Chandelier" />
+    <Item Id="3179" Name="Granite Chandelier" />
+    <Item Id="3180" Name="Meteorite Chest" />
+    <Item Id="3181" Name="Marble Chest" />
+    <Item Id="3182" Name="Magic Water Dropper" />
+    <Item Id="3183" Name="Golden Bug Net" />
+    <Item Id="3184" Name="Magic Lava Dropper" />
+    <Item Id="3185" Name="Magic Honey Dropper" />
+    <Item Id="3186" Name="Empty Dropper" />
+    <Item Id="3187" Name="Gladiator Helmet" />
+    <Item Id="3188" Name="Gladiator Breastplate" />
+    <Item Id="3189" Name="Gladiator Leggings" />
+    <Item Id="3190" Name="Reflective Dye" />
+    <Item Id="3191" Name="Enchanted Nightcrawler" />
+    <Item Id="3192" Name="Grubby" />
+    <Item Id="3193" Name="Sluggy" />
+    <Item Id="3194" Name="Buggy" />
+    <Item Id="3195" Name="Grub Soup" />
+    <Item Id="3196" Name="Bomb Fish" />
+    <Item Id="3197" Name="Frost Daggerfish" />
+    <Item Id="3198" Name="Sharpening Station" />
+    <Item Id="3199" Name="Ice Mirror" />
+    <Item Id="3200" Name="Sailfish Boots" />
+    <Item Id="3201" Name="Tsunami in a Bottle" />
+    <Item Id="3202" Name="Target Dummy" />
+    <Item Id="3203" Name="Corrupt Crate" />
+    <Item Id="3204" Name="Crimson Crate" />
+    <Item Id="3205" Name="Dungeon Crate" />
+    <Item Id="3206" Name="Sky Crate" />
+    <Item Id="3207" Name="Hallowed Crate" />
+    <Item Id="3208" Name="Jungle Crate" />
+    <Item Id="3209" Name="Crystal Serpent" />
+    <Item Id="3210" Name="Toxikarp" />
+    <Item Id="3211" Name="Bladetongue" />
+    <Item Id="3212" Name="Shark Tooth Necklace" />
+    <Item Id="3213" Name="Money Trough" />
+    <Item Id="3214" Name="Bubble" />
+    <Item Id="3215" Name="Daybloom Planter Box" />
+    <Item Id="3216" Name="Moonglow Planter Box" />
+    <Item Id="3217" Name="Deathweed Planter Box" />
+    <Item Id="3218" Name="Deathweed Planter Box" />
+    <Item Id="3219" Name="Blinkroot Planter Box" />
+    <Item Id="3220" Name="Waterleaf Planter Box" />
+    <Item Id="3221" Name="Shiverthorn Planter Box" />
+    <Item Id="3222" Name="Fireblossom Planter Box" />
+    <Item Id="3223" Name="Brain of Confusion" />
+    <Item Id="3224" Name="Worm Scarf" />
+    <Item Id="3225" Name="Balloon Pufferfish" />
+    <Item Id="3226" Name="Lazure's Valkyrie Circlet" />
+    <Item Id="3227" Name="Lazure's Valkyrie Cloak" />
+    <Item Id="3228" Name="Lazure's Barrier Platform" />
+    <Item Id="3229" Name="Golden Cross Grave Marker" />
+    <Item Id="3230" Name="Golden Tombstone" />
+    <Item Id="3231" Name="Golden Grave Marker" />
+    <Item Id="3232" Name="Golden Gravestone" />
+    <Item Id="3233" Name="Golden Headstone" />
+    <Item Id="3234" Name="Crystal Block" />
+    <Item Id="3235" Name="Music Box (Martian Madness)" />
+    <Item Id="3236" Name="Music Box (Pirate Invasion)" />
+    <Item Id="3237" Name="Music Box (Hell)" />
+    <Item Id="3238" Name="Crystal Block Wall" />
+    <Item Id="3239" Name="Trap Door" />
+    <Item Id="3240" Name="Tall Gate" />
+    <Item Id="3241" Name="Sharkron Balloon" />
+    <Item Id="3242" Name="Tax Collector's Hat" />
+    <Item Id="3243" Name="Tax Collector's Suit" />
+    <Item Id="3244" Name="Tax Collector's Pants" />
+    <Item Id="3245" Name="Bone Glove" />
+    <Item Id="3246" Name="Clothier's Jacket" />
+    <Item Id="3247" Name="Clothier's Pants" />
+    <Item Id="3248" Name="Dye Trader's Turban" />
+    <Item Id="3249" Name="Deadly Sphere Staff" />
+    <Item Id="3250" Name="Green Horseshoe Balloon" />
+    <Item Id="3251" Name="Amber Horseshoe Balloon" />
+    <Item Id="3252" Name="Pink Horseshoe Balloon" />
+    <Item Id="3253" Name="Lava Lamp" />
+    <Item Id="3254" Name="Enchanted Nightcrawler Cage" />
+    <Item Id="3255" Name="Buggy Cage" />
+    <Item Id="3256" Name="Grubby Cage" />
+    <Item Id="3257" Name="Sluggy Cage" />
+    <Item Id="3258" Name="Slap Hand" />
+    <Item Id="3259" Name="Twilight Hair Dye" />
+    <Item Id="3260" Name="Blessed Apple" />
+    <Item Id="3261" Name="Spectre Bar" />
+    <Item Id="3262" Name="Code 1" />
+    <Item Id="3263" Name="Buccaneer Bandana" />
+    <Item Id="3264" Name="Buccaneer Tunic" />
+    <Item Id="3265" Name="Buccaneer Pantaloons" />
+    <Item Id="3266" Name="Obsidian Outlaw Hat" />
+    <Item Id="3267" Name="Obsidian Longcoat" />
+    <Item Id="3268" Name="Obsidian Pants" />
+    <Item Id="3269" Name="Medusa Head" />
+    <Item Id="3270" Name="Item Frame" />
+    <Item Id="3271" Name="Sandstone Block" />
+    <Item Id="3272" Name="Hardened Sand Block" />
+    <Item Id="3273" Name="Sandstone Wall" />
+    <Item Id="3274" Name="Hardened Ebonsand Block" />
+    <Item Id="3275" Name="Hardened Crimsand Block" />
+    <Item Id="3276" Name="Ebonsandstone Block" />
+    <Item Id="3277" Name="Crimsandstone Block" />
+    <Item Id="3278" Name="Wooden Yoyo" />
+    <Item Id="3279" Name="Malaise" />
+    <Item Id="3280" Name="Artery" />
+    <Item Id="3281" Name="Amazon" />
+    <Item Id="3282" Name="Cascade" />
+    <Item Id="3283" Name="Chik" />
+    <Item Id="3284" Name="Code 2" />
+    <Item Id="3285" Name="Rally" />
+    <Item Id="3286" Name="Yelets" />
+    <Item Id="3287" Name="Red's Throw" />
+    <Item Id="3288" Name="Valkyrie Yoyo" />
+    <Item Id="3289" Name="Amarok" />
+    <Item Id="3290" Name="Hel-Fire" />
+    <Item Id="3291" Name="Kraken" />
+    <Item Id="3292" Name="The Eye of Cthulhu" />
+    <Item Id="3293" Name="Red String" />
+    <Item Id="3294" Name="Orange String" />
+    <Item Id="3295" Name="Yellow String" />
+    <Item Id="3296" Name="Lime String" />
+    <Item Id="3297" Name="Green String" />
+    <Item Id="3298" Name="Teal String" />
+    <Item Id="3299" Name="Cyan String" />
+    <Item Id="3300" Name="Sky Blue String" />
+    <Item Id="3301" Name="Blue String" />
+    <Item Id="3302" Name="Purple String" />
+    <Item Id="3303" Name="Violet String" />
+    <Item Id="3304" Name="Pink String" />
+    <Item Id="3305" Name="Brown String" />
+    <Item Id="3306" Name="White String" />
+    <Item Id="3307" Name="Rainbow String" />
+    <Item Id="3308" Name="Black String" />
+    <Item Id="3309" Name="Black Counterweight" />
+    <Item Id="3310" Name="Blue Counterweight" />
+    <Item Id="3311" Name="Green Counterweight" />
+    <Item Id="3312" Name="Purple Counterweight" />
+    <Item Id="3313" Name="Red Counterweight" />
+    <Item Id="3314" Name="Yellow Counterweight" />
+    <Item Id="3315" Name="Format:C" />
+    <Item Id="3316" Name="Gradient" />
+    <Item Id="3317" Name="Valor" />
+    <Item Id="3318" Name="Treasure Bag" />
+    <Item Id="3319" Name="Treasure Bag" />
+    <Item Id="3320" Name="Treasure Bag" />
+    <Item Id="3321" Name="Treasure Bag" />
+    <Item Id="3322" Name="Treasure Bag" />
+    <Item Id="3323" Name="Treasure Bag" />
+    <Item Id="3324" Name="Treasure Bag" />
+    <Item Id="3325" Name="Treasure Bag" />
+    <Item Id="3326" Name="Treasure Bag" />
+    <Item Id="3327" Name="Treasure Bag" />
+    <Item Id="3328" Name="Treasure Bag" />
+    <Item Id="3329" Name="Treasure Bag" />
+    <Item Id="3330" Name="Treasure Bag" />
+    <Item Id="3331" Name="Treasure Bag" />
+    <Item Id="3332" Name="Treasure Bag" />
+    <Item Id="3333" Name="Hive Pack" />
+    <Item Id="3334" Name="Yoyo Glove" />
+    <Item Id="3335" Name="Demon Heart" />
+    <Item Id="3336" Name="Spore Sac" />
+    <Item Id="3337" Name="Shiny Stone" />
+    <Item Id="3338" Name="Hardened Pearlsand Block" />
+    <Item Id="3339" Name="Pearlsandstone Block" />
+    <Item Id="3340" Name="Hardened Sand Wall" />
+    <Item Id="3341" Name="Hardened Ebonsand Wall" />
+    <Item Id="3342" Name="Hardened Crimsand Wall" />
+    <Item Id="3343" Name="Hardened Pearlsand Wall" />
+    <Item Id="3344" Name="Ebonsandstone Wall" />
+    <Item Id="3345" Name="Crimsandstone Wall" />
+    <Item Id="3346" Name="Pearlsandstone Wall" />
+    <Item Id="3347" Name="Desert Fossil" />
+    <Item Id="3348" Name="Desert Fossil Wall" />
+    <Item Id="3349" Name="Exotic Scimitar" />
+    <Item Id="3350" Name="Paintball Gun" />
+    <Item Id="3351" Name="Classy Cane" />
+    <Item Id="3352" Name="Stylish Scissors" />
+    <Item Id="3353" Name="Mechanical Cart" />
+    <Item Id="3354" Name="Mechanical Wheel Piece" />
+    <Item Id="3355" Name="Mechanical Wagon Piece" />
+    <Item Id="3356" Name="Mechanical Battery Piece" />
+    <Item Id="3357" Name="Ancient Cultist Trophy" />
+    <Item Id="3358" Name="Martian Saucer Trophy" />
+    <Item Id="3359" Name="Flying Dutchman Trophy" />
+    <Item Id="3360" Name="Living Mahogany Wand" />
+    <Item Id="3361" Name="Rich Mahogany Leaf Wand" />
+    <Item Id="3362" Name="Fallen Tuxedo Shirt" />
+    <Item Id="3363" Name="Fallen Tuxedo Pants" />
+    <Item Id="3364" Name="Fireplace" />
+    <Item Id="3365" Name="Chimney" />
+    <Item Id="3366" Name="Yoyo Bag" />
+    <Item Id="3367" Name="Shrimpy Truffle" />
+    <Item Id="3368" Name="Arkhalis" />
+    <Item Id="3369" Name="Confetti Cannon" />
+    <Item Id="3370" Name="Music Box (The Towers)" />
+    <Item Id="3371" Name="Music Box (Goblin Invasion)" />
+    <Item Id="3372" Name="Ancient Cultist Mask" />
+    <Item Id="3373" Name="Moon Lord Mask" />
+    <Item Id="3374" Name="Fossil Helmet" />
+    <Item Id="3375" Name="Fossil Plate" />
+    <Item Id="3376" Name="Fossil Greaves" />
+    <Item Id="3377" Name="Amber Staff" />
+    <Item Id="3378" Name="Bone Javelin" />
+    <Item Id="3379" Name="Bone Throwing Knife" />
+    <Item Id="3380" Name="Sturdy Fossil" />
+    <Item Id="3381" Name="Stardust Helmet" />
+    <Item Id="3382" Name="Stardust Plate" />
+    <Item Id="3383" Name="Stardust Leggings" />
+    <Item Id="3384" Name="Portal Gun" />
+    <Item Id="3385" Name="Strange Plant" />
+    <Item Id="3386" Name="Strange Plant" />
+    <Item Id="3387" Name="Strange Plant" />
+    <Item Id="3388" Name="Strange Plant" />
+    <Item Id="3389" Name="Terrarian" />
+    <Item Id="3390" Name="Goblin Summoner Banner" />
+    <Item Id="3391" Name="Salamander Banner" />
+    <Item Id="3392" Name="Giant Shelly Banner" />
+    <Item Id="3393" Name="Crawdad Banner" />
+    <Item Id="3394" Name="Fritz Banner" />
+    <Item Id="3395" Name="Creature From The Deep Banner" />
+    <Item Id="3396" Name="Dr. Man Fly Banner" />
+    <Item Id="3397" Name="Mothron Banner" />
+    <Item Id="3398" Name="Severed Hand Banner" />
+    <Item Id="3399" Name="The Possessed Banner" />
+    <Item Id="3400" Name="Butcher Banner" />
+    <Item Id="3401" Name="Psycho Banner" />
+    <Item Id="3402" Name="Deadly Sphere Banner" />
+    <Item Id="3403" Name="Nailhead Banner" />
+    <Item Id="3404" Name="Poisonous Spore Banner" />
+    <Item Id="3405" Name="Medusa Banner" />
+    <Item Id="3406" Name="Hoplite Banner" />
+    <Item Id="3407" Name="Granite Elemental Banner" />
+    <Item Id="3408" Name="Grolem Banner" />
+    <Item Id="3409" Name="Blood Zombie Banner" />
+    <Item Id="3410" Name="Drippler Banner" />
+    <Item Id="3411" Name="Tomb Crawler Banner" />
+    <Item Id="3412" Name="Dune Splicer Banner" />
+    <Item Id="3413" Name="Antlion Swarmer Banner" />
+    <Item Id="3414" Name="Antlion Charger Banner" />
+    <Item Id="3415" Name="Ghoul Banner" />
+    <Item Id="3416" Name="Lamia Banner" />
+    <Item Id="3417" Name="Desert Spirit Banner" />
+    <Item Id="3418" Name="Basilisk Banner" />
+    <Item Id="3419" Name="Ravager Scorpion Banner" />
+    <Item Id="3420" Name="Stardust Soldier Banner" />
+    <Item Id="3421" Name="Milkyway Weaver Banner" />
+    <Item Id="3422" Name="Flow Invader Banner" />
+    <Item Id="3423" Name="Twinkle Popper Banner" />
+    <Item Id="3424" Name="Small Star Cell Banner" />
+    <Item Id="3425" Name="Star Cell Banner" />
+    <Item Id="3426" Name="Corite Banner" />
+    <Item Id="3427" Name="Sroller Banner" />
+    <Item Id="3428" Name="Crawltipede Banner" />
+    <Item Id="3429" Name="Drakomire Rider Banner" />
+    <Item Id="3430" Name="Drakomire Banner" />
+    <Item Id="3431" Name="Solar Solenian Banner" />
+    <Item Id="3432" Name="Nebula Soldier Banner" />
+    <Item Id="3433" Name="Nebula Headcrab Banner" />
+    <Item Id="3434" Name="Nebula Floater Banner" />
+    <Item Id="3435" Name="Nebula Beast Banner" />
+    <Item Id="3436" Name="Alien Larva Banner" />
+    <Item Id="3437" Name="Alien Queen Banner" />
+    <Item Id="3438" Name="Alien Hornet Banner" />
+    <Item Id="3439" Name="Vortex Soldier Banner" />
+    <Item Id="3440" Name="Vortex Rifleman Banner" />
+    <Item Id="3441" Name="Pirate Captain Banner" />
+    <Item Id="3442" Name="Pirate Deadeye Banner" />
+    <Item Id="3443" Name="Pirate Corsair Banner" />
+    <Item Id="3444" Name="Pirate Crossbower Banner" />
+    <Item Id="3445" Name="Martian Walker Banner" />
+    <Item Id="3446" Name="Red Devil Banner" />
+    <Item Id="3447" Name="Pink Jellyfish Banner" />
+    <Item Id="3448" Name="Green Jellyfish Banner" />
+    <Item Id="3449" Name="Dark Mummy Banner" />
+    <Item Id="3450" Name="Light Mummy Banner" />
+    <Item Id="3451" Name="Angry Bones Banner" />
+    <Item Id="3452" Name="Ice Tortoise Banner" />
+    <Item Id="3453" Name="Damage Booster" />
+    <Item Id="3454" Name="Life Booster" />
+    <Item Id="3455" Name="Mana Booster" />
+    <Item Id="3456" Name="Vortex Fragment" />
+    <Item Id="3457" Name="Nebula Fragment" />
+    <Item Id="3458" Name="Solar Fragment" />
+    <Item Id="3459" Name="Stardust Fragment" />
+    <Item Id="3460" Name="Luminite" />
+    <Item Id="3461" Name="Luminite Brick" />
+    <Item Id="3462" Name="Stardust Axe" />
+    <Item Id="3463" Name="Stardust Chainsaw" />
+    <Item Id="3464" Name="Stardust Drill" />
+    <Item Id="3465" Name="Stardust Hammer" />
+    <Item Id="3466" Name="Stardust Pickaxe" />
+    <Item Id="3467" Name="Luminite Bar" />
+    <Item Id="3468" Name="Solar Wings" />
+    <Item Id="3469" Name="Vortex Booster" />
+    <Item Id="3470" Name="Nebula Mantle" />
+    <Item Id="3471" Name="Stardust Wings" />
+    <Item Id="3472" Name="Luminite Brick Wall" />
+    <Item Id="3473" Name="Solar Eruption" />
+    <Item Id="3474" Name="Stardust Cell Staff" />
+    <Item Id="3475" Name="Vortex Beater" />
+    <Item Id="3476" Name="Nebula Arcanum" />
+    <Item Id="3477" Name="Blood Water" />
+    <Item Id="3478" Name="Wedding Veil" />
+    <Item Id="3479" Name="Wedding Dress" />
+    <Item Id="3480" Name="Platinum Bow" />
+    <Item Id="3481" Name="Platinum Hammer" />
+    <Item Id="3482" Name="Platinum Axe" />
+    <Item Id="3483" Name="Platinum Shortsword" />
+    <Item Id="3484" Name="Platinum Broadsword" />
+    <Item Id="3485" Name="Platinum Pickaxe" />
+    <Item Id="3486" Name="Tungsten Bow" />
+    <Item Id="3487" Name="Tungsten Hammer" />
+    <Item Id="3488" Name="Tungsten Axe" />
+    <Item Id="3489" Name="Tungsten Shortsword" />
+    <Item Id="3490" Name="Tungsten Broadsword" />
+    <Item Id="3491" Name="Tungsten Pickaxe" />
+    <Item Id="3492" Name="Lead Bow" />
+    <Item Id="3493" Name="Lead Hammer" />
+    <Item Id="3494" Name="Lead Axe" />
+    <Item Id="3495" Name="Lead Shortsword" />
+    <Item Id="3496" Name="Lead Broadsword" />
+    <Item Id="3497" Name="Lead Pickaxe" />
+    <Item Id="3498" Name="Tin Bow" />
+    <Item Id="3499" Name="Tin Hammer" />
+    <Item Id="3500" Name="Tin Axe" />
+    <Item Id="3501" Name="Tin Shortsword" />
+    <Item Id="3502" Name="Tin Broadsword" />
+    <Item Id="3503" Name="Tin Pickaxe" />
+    <Item Id="3504" Name="Copper Bow" />
+    <Item Id="3505" Name="Copper Hammer" />
+    <Item Id="3506" Name="Copper Axe" />
+    <Item Id="3507" Name="Copper Shortsword" />
+    <Item Id="3508" Name="Copper Broadsword" />
+    <Item Id="3509" Name="Copper Pickaxe" />
+    <Item Id="3510" Name="Silver Bow" />
+    <Item Id="3511" Name="Silver Hammer" />
+    <Item Id="3512" Name="Silver Axe" />
+    <Item Id="3513" Name="Silver Shortsword" />
+    <Item Id="3514" Name="Silver Broadsword" />
+    <Item Id="3515" Name="Silver Pickaxe" />
+    <Item Id="3516" Name="Gold Bow" />
+    <Item Id="3517" Name="Gold Hammer" />
+    <Item Id="3518" Name="Gold Axe" />
+    <Item Id="3519" Name="Gold Shortsword" />
+    <Item Id="3520" Name="Gold Broadsword" />
+    <Item Id="3521" Name="Gold Pickaxe" />
+    <Item Id="3522" Name="Solar Flare Hamaxe" />
+    <Item Id="3523" Name="Vortex Hamaxe" />
+    <Item Id="3524" Name="Nebula Hamaxe" />
+    <Item Id="3525" Name="Stardust Hamaxe" />
+    <Item Id="3526" Name="Solar Dye" />
+    <Item Id="3527" Name="Nebula Dye" />
+    <Item Id="3528" Name="Vortex Dye" />
+    <Item Id="3529" Name="Stardust Dye" />
+    <Item Id="3530" Name="Void Dye" />
+    <Item Id="3531" Name="Stardust Dragon Staff" />
+    <Item Id="3532" Name="Bacon" />
+    <Item Id="3533" Name="Shifting Sands Dye" />
+    <Item Id="3534" Name="Mirage Dye" />
+    <Item Id="3535" Name="Shifting Pearlsands Dye" />
+    <Item Id="3536" Name="Vortex Monolith" />
+    <Item Id="3537" Name="Nebula Monolith" />
+    <Item Id="3538" Name="Stardust Monolith" />
+    <Item Id="3539" Name="Solar Monolith" />
+    <Item Id="3540" Name="Phantasm" />
+    <Item Id="3541" Name="Last Prism" />
+    <Item Id="3542" Name="Nebula Blaze" />
+    <Item Id="3543" Name="Daybreak" />
+    <Item Id="3544" Name="Super Healing Potion" />
+    <Item Id="3545" Name="Detonator" />
+    <Item Id="3546" Name="Celebration" />
+    <Item Id="3547" Name="Bouncy Dynamite" />
+    <Item Id="3548" Name="Happy Grenade" />
+    <Item Id="3549" Name="Ancient Manipulator" />
+    <Item Id="3550" Name="Flame and Silver Dye" />
+    <Item Id="3551" Name="Green Flame and Silver Dye" />
+    <Item Id="3552" Name="Blue Flame and Silver Dye" />
+    <Item Id="3553" Name="Reflective Copper Dye" />
+    <Item Id="3554" Name="Reflective Obsidian Dye" />
+    <Item Id="3555" Name="Reflective Metal Dye" />
+    <Item Id="3556" Name="Midnight Rainbow Dye" />
+    <Item Id="3557" Name="Black and White Dye" />
+    <Item Id="3558" Name="Bright Silver Dye" />
+    <Item Id="3559" Name="Silver and Black Dye" />
+    <Item Id="3560" Name="Red Acid Dye" />
+    <Item Id="3561" Name="Gel Dye" />
+    <Item Id="3562" Name="Pink Gel Dye" />
+    <Item Id="3563" Name="Red Squirrel" />
+    <Item Id="3564" Name="Gold Squirrel" />
+    <Item Id="3565" Name="Red Squirrel Cage" />
+    <Item Id="3566" Name="Gold Squirrel Cage" />
+    <Item Id="3567" Name="Luminite Bullet" />
+    <Item Id="3568" Name="Luminite Arrow" />
+    <Item Id="3569" Name="Lunar Portal Staff" />
+    <Item Id="3570" Name="Lunar Flare" />
+    <Item Id="3571" Name="Rainbow Crystal Staff" />
+    <Item Id="3572" Name="Lunar Hook" />
+    <Item Id="3573" Name="Solar Fragment Block" />
+    <Item Id="3574" Name="Vortex Fragment Block" />
+    <Item Id="3575" Name="Nebula Fragment Block" />
+    <Item Id="3576" Name="Stardust Fragment Block" />
+    <Item Id="3577" Name="Suspicious Looking Tentacle" />
+    <Item Id="3578" Name="Yoraiz0r's Uniform" />
+    <Item Id="3579" Name="Yoraiz0r's Skirt" />
+    <Item Id="3580" Name="Yoraiz0r's Spell" />
+    <Item Id="3581" Name="Yoraiz0r's Scowl" />
+    <Item Id="3582" Name="Jim's Wings" />
+    <Item Id="3583" Name="Yoraiz0r's Recolored Goggles" />
+    <Item Id="3584" Name="Living Leaf Wall" />
+    <Item Id="3585" Name="Skiphs's Mask" />
+    <Item Id="3586" Name="Skiphs's Skin" />
+    <Item Id="3587" Name="Skiphs's Bear Butt" />
+    <Item Id="3588" Name="Skiphs's Paws" />
+    <Item Id="3589" Name="Loki's Helmet" />
+    <Item Id="3590" Name="Loki's Breastplate" />
+    <Item Id="3591" Name="Loki's Greaves" />
+    <Item Id="3592" Name="Loki's Wings" />
+    <Item Id="3593" Name="Sand Slime Banner" />
+    <Item Id="3594" Name="Sea Snail Banner" />
+    <Item Id="3595" Name="Moon Lord Trophy" />
+    <Item Id="3596" Name="Not a Kid, nor a Squid" />
+    <Item Id="3597" Name="Burning Hades Dye" />
+    <Item Id="3598" Name="Grim Dye" />
+    <Item Id="3599" Name="Loki's Dye" />
+    <Item Id="3600" Name="Shadowflame Hades Dye" />
   </Items>
   <Chests>
     <Chest UV="0,0" Name="Chest" />
@@ -6636,28 +8187,29 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Chest UV="1692,0" Name="Glass Chest" />
   </Chests>
   <Npcs>
-    <Npc Id="17"    Name="Merchant"         Frames="16"   />
-    <Npc Id="18"    Name="Nurse"            Frames="14"   />
-    <Npc Id="19"    Name="Arms Dealer"      Frames="16"   />
-    <Npc Id="20"    Name="Dryad"            Frames="14"   />
-    <Npc Id="22"    Name="Guide"            Frames="16"   />
-    <Npc Id="37"    Name="Old Man"          Frames="16"   />
-    <Npc Id="38"    Name="Demolitionist"    Frames="16"   />
-    <Npc Id="54"    Name="Clothier"         Frames="16"   />
-    <Npc Id="107"   Name="Goblin Tinkerer"  Frames="16"   />
-    <Npc Id="108"   Name="Wizard"           Frames="16"   />
-    <Npc Id="124"   Name="Mechanic"         Frames="14"   />
-    <Npc Id="142"   Name="Santa Claus"      Frames="16"   />
-    <Npc Id="160"   Name="Truffle"          Frames="16"   />
-    <Npc Id="178"   Name="Steampunker"      Frames="14"   />
-    <Npc Id="207"   Name="Dye Trader"       Frames="16"   />
-    <Npc Id="208"   Name="Party Girl"       Frames="14"   />
-    <Npc Id="209"   Name="Cyborg"           Frames="16"   />
-    <Npc Id="227"   Name="Painter"          Frames="16"   />
-    <Npc Id="228"   Name="Witch Doctor"     Frames="16"   />
-    <Npc Id="229"   Name="Pirate"           Frames="15"   />
-    <Npc Id="353"   Name="Stylist"          Frames="14"   />
-    <Npc Id="369"   Name="Angler"           Frames="14"   />
+    <Npc Id="17"    Name="Merchant"         Frames="25"   />
+    <Npc Id="18"    Name="Nurse"            Frames="23"   />
+    <Npc Id="19"    Name="Arms Dealer"      Frames="25"   />
+    <Npc Id="20"    Name="Dryad"            Frames="21"   />
+    <Npc Id="22"    Name="Guide"            Frames="26"   />
+    <Npc Id="37"    Name="Old Man"          Frames="21"   />
+    <Npc Id="38"    Name="Demolitionist"    Frames="25"   />
+    <Npc Id="54"    Name="Clothier"         Frames="23"   />
+    <Npc Id="107"   Name="Goblin Tinkerer"  Frames="25"   />
+    <Npc Id="108"   Name="Wizard"           Frames="23"   />
+    <Npc Id="124"   Name="Mechanic"         Frames="23"   />
+    <Npc Id="142"   Name="Santa Claus"      Frames="25"   />
+    <Npc Id="160"   Name="Truffle"          Frames="23"   />
+    <Npc Id="178"   Name="Steampunker"      Frames="23"   />
+    <Npc Id="207"   Name="Dye Trader"       Frames="25"   />
+    <Npc Id="208"   Name="Party Girl"       Frames="23"   />
+    <Npc Id="209"   Name="Cyborg"           Frames="26"   />
+    <Npc Id="227"   Name="Painter"          Frames="25"   />
+    <Npc Id="228"   Name="Witch Doctor"     Frames="26"   />
+    <Npc Id="229"   Name="Pirate"           Frames="26"   />
+    <Npc Id="353"   Name="Stylist"          Frames="23"   />
+    <Npc Id="369"   Name="Angler"           Frames="23"   />
+    <Npc Id="441"   Name="Tax Collector"    Frames="25"   />
   </Npcs>
   <ItemPrefix>
     <Prefix Id="0"  Name=""                 />

@@ -178,6 +178,7 @@
     <Compile Include="Render\RenderMiniMap.cs" />
     <Compile Include="Render\TextureData.cs" />
     <Compile Include="Terraria\Chest.cs" />
+    <Compile Include="Terraria\TileEntity.cs" />
     <Compile Include="Terraria\Item.cs" />
     <Compile Include="Terraria\Map.cs" />
     <Compile Include="Terraria\NPC.cs" />

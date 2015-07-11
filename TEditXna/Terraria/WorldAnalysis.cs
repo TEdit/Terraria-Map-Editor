@@ -160,6 +160,9 @@ namespace TEditXNA.Terraria
 
         private static void WriteFlags(StreamWriter sb, World world)
         {
+            sb.WriteProperty("world.FileRevision", world.FileRevision);
+            sb.WriteProperty("world.UnknownHeaderField", world.UnknownHeaderField);
+
             sb.WriteLine("===SECTION: Flags===");
 
             sb.WriteProperty("world.Title", world.Title);
@@ -170,6 +173,9 @@ namespace TEditXNA.Terraria
             sb.WriteProperty("world.BottomWorld", world.BottomWorld);
             sb.WriteProperty("world.TilesHigh", world.TilesHigh);
             sb.WriteProperty("world.TilesWide", world.TilesWide);
+
+            sb.WriteProperty("world.ExpertMode", world.ExpertMode);
+            sb.WriteProperty("world.CreationTime", world.CreationTime);
 
             sb.WriteProperty("world.MoonType", world.MoonType);
             sb.WriteProperty("world.TreeX[0]", world.TreeX0);
@@ -214,6 +220,7 @@ namespace TEditXNA.Terraria
             sb.WriteProperty("world.DownedMechBossAny", world.DownedMechBossAny);
             sb.WriteProperty("world.DownedPlantBoss", world.DownedPlantBoss);
             sb.WriteProperty("world.DownedGolemBoss", world.DownedGolemBoss);
+            sb.WriteProperty("world.DownedSlimeKingBoss", world.DownedSlimeKingBoss);
             sb.WriteProperty("world.SavedGoblin", world.SavedGoblin);
             sb.WriteProperty("world.SavedWizard", world.SavedWizard);
             sb.WriteProperty("world.SavedMech", world.SavedMech);
@@ -260,7 +267,7 @@ namespace TEditXNA.Terraria
             sb.WriteProperty("world.AnglerQuest", world.AnglerQuest);
 
             if (world.UnknownData != null && world.UnknownData.Length > 0)
-                sb.WriteProperty("world.UnknownData", BitConverter.ToString(world.UnknownData));
+                sb.WriteProperty("world.UnknownData", BitConverter.ToString(world.UnknownData));            
         }
     }
 }
