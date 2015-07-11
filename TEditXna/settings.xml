@@ -8185,6 +8185,10 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Chest UV="1620,0" Name="Pumpkin Chest" />
     <Chest UV="1656,0" Name="Spooky Chest" />
     <Chest UV="1692,0" Name="Glass Chest" />
+    <Chest UV="1728,0" Name="Martian Chest" />
+    <Chest UV="1764,0" Name="Meteorite Chest" />
+    <Chest UV="1800,0" Name="Granite Chest" />
+    <Chest UV="1836,0" Name="Marble Chest" />
   </Chests>
   <Npcs>
     <Npc Id="17"    Name="Merchant"         Frames="25"   />
