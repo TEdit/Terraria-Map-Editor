@@ -80,7 +80,8 @@ namespace TEditXNA.Terraria
                     // sb.WriteProperty(index.ToString(), count.ToString());
                     sb.WriteLine("{0} {1}: {2} ({3} earned)", index, World.TallyNames[index], count, banners);
                     killcount = killcount + count;
-                    uniquecount = uniquecount + 1;
+                    if (banners > 0)
+                        uniquecount = uniquecount + 1;
                     bannercount = bannercount + banners;
                 }
                 index++;
