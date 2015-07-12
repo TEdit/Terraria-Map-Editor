@@ -6149,93 +6149,93 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="1612" Name="Ankh Charm"/>
     <Item Id="1613" Name="Ankh Shield"/>
     <Item Id="1614" Name="Blue Flare"/>
-    <Item Id="1615" Name="Angler Fish Banner"/>
-    <Item Id="1616" Name="Angry Nimbus Banner"/>
-    <Item Id="1617" Name="Anomura Fungus Banner"/>
-    <Item Id="1618" Name="Antlion Banner"/>
-    <Item Id="1619" Name="Arapaima Banner"/>
-    <Item Id="1620" Name="Armored Skeleton Banner"/>
-    <Item Id="1621" Name="Bat Banner"/>
-    <Item Id="1622" Name="Bird Banner"/>
-    <Item Id="1623" Name="Black Recluse Banner"/>
-    <Item Id="1624" Name="Blood Feeder Banner"/>
-    <Item Id="1625" Name="Blood Jelly Banner"/>
-    <Item Id="1626" Name="Blood Crawler Banner"/>
-    <Item Id="1627" Name="Bone Serpent Banner"/>
-    <Item Id="1628" Name="Bunny Banner"/>
-    <Item Id="1629" Name="Chaos Elemental Banner"/>
-    <Item Id="1630" Name="Mimic Banner"/>
-    <Item Id="1631" Name="Clown Banner"/>
-    <Item Id="1632" Name="Corrupt Bunny Banner"/>
-    <Item Id="1633" Name="Corrupt Goldfish Banner"/>
-    <Item Id="1634" Name="Crab Banner"/>
-    <Item Id="1635" Name="Crimera Banner"/>
-    <Item Id="1636" Name="Crimson Axe Banner"/>
-    <Item Id="1637" Name="Cursed Hammer Banner"/>
-    <Item Id="1638" Name="Demon Banner"/>
-    <Item Id="1639" Name="Demon Eye Banner"/>
-    <Item Id="1640" Name="Derpling Banner"/>
-    <Item Id="1641" Name="Eater of Souls Banner"/>
-    <Item Id="1642" Name="Enchanted Sword Banner"/>
-    <Item Id="1643" Name="Zombie Eskimo Banner"/>
-    <Item Id="1644" Name="Face Monster Banner"/>
-    <Item Id="1645" Name="Floaty Gross Banner"/>
-    <Item Id="1646" Name="Flying Fish Banner"/>
-    <Item Id="1647" Name="Flying Snake Banner"/>
-    <Item Id="1648" Name="Frankenstein Banner"/>
-    <Item Id="1649" Name="Fungi Bulb Banner"/>
-    <Item Id="1650" Name="Fungo Fish Banner"/>
-    <Item Id="1651" Name="Gastropod Banner"/>
-    <Item Id="1652" Name="Goblin Archer Banner"/>
-    <Item Id="1653" Name="Goblin Sorcerer Banner"/>
-    <Item Id="1654" Name="Goblin Scout Banner"/>
-    <Item Id="1655" Name="Goblin Thief Banner"/>
-    <Item Id="1656" Name="Goblin Warrior Banner"/>
-    <Item Id="1657" Name="Goldfish Banner"/>
-    <Item Id="1658" Name="Harpy Banner"/>
-    <Item Id="1659" Name="Hellbat Banner"/>
-    <Item Id="1660" Name="Herpling Banner"/>
-    <Item Id="1661" Name="Hornet Banner"/>
-    <Item Id="1662" Name="Ice Elemental Banner"/>
-    <Item Id="1663" Name="Icy Merman Banner"/>
-    <Item Id="1664" Name="Fire Imp Banner"/>
-    <Item Id="1665" Name="Jellyfish Banner"/>
-    <Item Id="1666" Name="Jungle Creeper Banner"/>
-    <Item Id="1667" Name="Lihzahrd Banner"/>
-    <Item Id="1668" Name="Man Eater Banner"/>
-    <Item Id="1669" Name="Meteor Head Banner"/>
-    <Item Id="1670" Name="Moth Banner"/>
-    <Item Id="1671" Name="Mummy Banner"/>
-    <Item Id="1672" Name="Mushi Ladybug Banner"/>
-    <Item Id="1673" Name="Parrot Banner"/>
-    <Item Id="1674" Name="Pigron Banner"/>
-    <Item Id="1675" Name="Piranha Banner"/>
-    <Item Id="1676" Name="Pirate Banner"/>
-    <Item Id="1677" Name="Pixie Banner"/>
-    <Item Id="1678" Name="Raincoat Zombie Banner"/>
-    <Item Id="1679" Name="Reaper Banner"/>
-    <Item Id="1680" Name="Shark Banner"/>
-    <Item Id="1681" Name="Skeleton Banner"/>
-    <Item Id="1682" Name="Skeleton Mage Banner"/>
-    <Item Id="1683" Name="Slime Banner"/>
-    <Item Id="1684" Name="Snow Flinx Banner"/>
-    <Item Id="1685" Name="Spider Banner"/>
-    <Item Id="1686" Name="Spore Zombie Banner"/>
-    <Item Id="1687" Name="Swamp Thing Banner"/>
-    <Item Id="1688" Name="Tortoise Banner"/>
-    <Item Id="1689" Name="Toxic Sludge Banner"/>
-    <Item Id="1690" Name="Umbrella Slime Banner"/>
-    <Item Id="1691" Name="Unicorn Banner"/>
-    <Item Id="1692" Name="Vampire Banner"/>
-    <Item Id="1693" Name="Vulture Banner"/>
-    <Item Id="1694" Name="Nymph Banner"/>
-    <Item Id="1695" Name="Werewolf Banner"/>
-    <Item Id="1696" Name="Wolf Banner"/>
-    <Item Id="1697" Name="World Feeder Banner"/>
-    <Item Id="1698" Name="Worm Banner"/>
-    <Item Id="1699" Name="Wraith Banner"/>
-    <Item Id="1700" Name="Wyvern Banner"/>
-    <Item Id="1701" Name="Zombie Banner"/>
+    <Item Id="1615" Name="Angler Fish Banner" Tally="1"/>
+    <Item Id="1616" Name="Angry Nimbus Banner" Tally="2"/>
+    <Item Id="1617" Name="Anomura Fungus Banner" Tally="3"/>
+    <Item Id="1618" Name="Antlion Banner" Tally="4"/>
+    <Item Id="1619" Name="Arapaima Banner" Tally="5"/>
+    <Item Id="1620" Name="Armored Skeleton Banner" Tally="6"/>
+    <Item Id="1621" Name="Bat Banner" Tally="7"/>
+    <Item Id="1622" Name="Bird Banner" Tally="8"/>
+    <Item Id="1623" Name="Black Recluse Banner" Tally="9"/>
+    <Item Id="1624" Name="Blood Feeder Banner" Tally="10"/>
+    <Item Id="1625" Name="Blood Jelly Banner" Tally="11"/>
+    <Item Id="1626" Name="Blood Crawler Banner" Tally="12"/>
+    <Item Id="1627" Name="Bone Serpent Banner" Tally="13"/>
+    <Item Id="1628" Name="Bunny Banner"  Tally="14"/>
+    <Item Id="1629" Name="Chaos Elemental Banner" Tally="15"/>
+    <Item Id="1630" Name="Mimic Banner" Tally="16"/>
+    <Item Id="1631" Name="Clown Banner" Tally="17"/>
+    <Item Id="1632" Name="Corrupt Bunny Banner" Tally="18"/>
+    <Item Id="1633" Name="Corrupt Goldfish Banner" Tally="19"/>
+    <Item Id="1634" Name="Crab Banner" Tally="20"/>
+    <Item Id="1635" Name="Crimera Banner" Tally="21"/>
+    <Item Id="1636" Name="Crimson Axe Banner" Tally="22"/>
+    <Item Id="1637" Name="Cursed Hammer Banner" Tally="23"/>
+    <Item Id="1638" Name="Demon Banner" Tally="24"/>
+    <Item Id="1639" Name="Demon Eye Banner" Tally="25"/>
+    <Item Id="1640" Name="Derpling Banner" Tally="26"/>
+    <Item Id="1641" Name="Eater of Souls Banner" Tally="27"/>
+    <Item Id="1642" Name="Enchanted Sword Banner" Tally="28"/>
+    <Item Id="1643" Name="Zombie Eskimo Banner" Tally="29"/>
+    <Item Id="1644" Name="Face Monster Banner" Tally="30"/>
+    <Item Id="1645" Name="Floaty Gross Banner" Tally="31"/>
+    <Item Id="1646" Name="Flying Fish Banner" Tally="32"/>
+    <Item Id="1647" Name="Flying Snake Banner" Tally="33"/>
+    <Item Id="1648" Name="Frankenstein Banner" Tally="34"/>
+    <Item Id="1649" Name="Fungi Bulb Banner" Tally="35"/>
+    <Item Id="1650" Name="Fungo Fish Banner" Tally="36"/>
+    <Item Id="1651" Name="Gastropod Banner" Tally="37"/>
+    <Item Id="1652" Name="Goblin Archer Banner" Tally="38"/>
+    <Item Id="1653" Name="Goblin Sorcerer Banner" Tally="39"/>
+    <Item Id="1654" Name="Goblin Scout Banner" Tally="40"/>
+    <Item Id="1655" Name="Goblin Thief Banner" Tally="41"/>
+    <Item Id="1656" Name="Goblin Warrior Banner" Tally="42"/>
+    <Item Id="1657" Name="Goldfish Banner" Tally="43"/>
+    <Item Id="1658" Name="Harpy Banner" Tally="44"/>
+    <Item Id="1659" Name="Hellbat Banner" Tally="45"/>
+    <Item Id="1660" Name="Herpling Banner" Tally="46"/>
+    <Item Id="1661" Name="Hornet Banner" Tally="47"/>
+    <Item Id="1662" Name="Ice Elemental Banner" Tally="48"/>
+    <Item Id="1663" Name="Icy Merman Banner" Tally="49"/>
+    <Item Id="1664" Name="Fire Imp Banner" Tally="50"/>
+    <Item Id="1665" Name="Jellyfish Banner" Tally="51"/>
+    <Item Id="1666" Name="Jungle Creeper Banner" Tally="52"/>
+    <Item Id="1667" Name="Lihzahrd Banner" Tally="53"/>
+    <Item Id="1668" Name="Man Eater Banner" Tally="54"/>
+    <Item Id="1669" Name="Meteor Head Banner" Tally="55"/>
+    <Item Id="1670" Name="Moth Banner" Tally="56"/>
+    <Item Id="1671" Name="Mummy Banner" Tally="57"/>
+    <Item Id="1672" Name="Mushi Ladybug Banner" Tally="58"/>
+    <Item Id="1673" Name="Parrot Banner" Tally="59"/>
+    <Item Id="1674" Name="Pigron Banner" Tally="60"/>
+    <Item Id="1675" Name="Piranha Banner"  Tally="61"/>
+    <Item Id="1676" Name="Pirate Banner" Tally="62"/>
+    <Item Id="1677" Name="Pixie Banner" Tally="63"/>
+    <Item Id="1678" Name="Raincoat Zombie Banner" Tally="64"/>
+    <Item Id="1679" Name="Reaper Banner" Tally="65"/>
+    <Item Id="1680" Name="Shark Banner" Tally="66"/>
+    <Item Id="1681" Name="Skeleton Banner" Tally="67"/>
+    <Item Id="1682" Name="Skeleton Mage Banner" Tally="68"/>
+    <Item Id="1683" Name="Slime Banner" Tally="69"/>
+    <Item Id="1684" Name="Snow Flinx Banner" Tally="70"/>
+    <Item Id="1685" Name="Spider Banner" Tally="71"/>
+    <Item Id="1686" Name="Spore Zombie Banner" Tally="72"/>
+    <Item Id="1687" Name="Swamp Thing Banner" Tally="73"/>
+    <Item Id="1688" Name="Tortoise Banner" Tally="74"/>
+    <Item Id="1689" Name="Toxic Sludge Banner" Tally="75"/>
+    <Item Id="1690" Name="Umbrella Slime Banner" Tally="76"/>
+    <Item Id="1691" Name="Unicorn Banner" Tally="77"/>
+    <Item Id="1692" Name="Vampire Banner" Tally="78"/>
+    <Item Id="1693" Name="Vulture Banner" Tally="79"/>
+    <Item Id="1694" Name="Nymph Banner" Tally="80"/>
+    <Item Id="1695" Name="Werewolf Banner" Tally="81"/>
+    <Item Id="1696" Name="Wolf Banner" Tally="82"/>
+    <Item Id="1697" Name="World Feeder Banner" Tally="83"/>
+    <Item Id="1698" Name="Worm Banner" Tally="84"/>
+    <Item Id="1699" Name="Wraith Banner" Tally="85"/>
+    <Item Id="1700" Name="Wyvern Banner" Tally="86"/>
+    <Item Id="1701" Name="Zombie Banner" Tally="87"/>
     <Item Id="1702" Name="Glass Platform"/>
     <Item Id="1703" Name="Glass Chair"/>
     <Item Id="1704" Name="Golden Chair"/>
@@ -7431,104 +7431,104 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="2894" Name="Gold Mouse" />
     <Item Id="2895" Name="Gold Worm" />
     <Item Id="2896" Name="Sticky Dynamite" />
-    <Item Id="2897" Name="Angry Trapper Banner" />
-    <Item Id="2898" Name="Armored Viking Banner" />
-    <Item Id="2899" Name="Black Slime Banner" />
-    <Item Id="2900" Name="Blue Armored Bones Banner" />
-    <Item Id="2901" Name="Blue Cultist Archer Banner" />
-    <Item Id="2902" Name="Blue Cultist Caster Banner" />
-    <Item Id="2903" Name="Blue Cultist Fighter Banner" />
-    <Item Id="2904" Name="Bone Lee Banner" />
-    <Item Id="2905" Name="Clinger Banner" />
-    <Item Id="2906" Name="Cochineal Beetle Banner" />
-    <Item Id="2907" Name="Corrupt Penguin Banner" />
-    <Item Id="2908" Name="Corrupt Slime Banner" />
-    <Item Id="2909" Name="Corruptor Banner" />
-    <Item Id="2910" Name="Crimslime Banner" />
-    <Item Id="2911" Name="Cursed Skull Banner" />
-    <Item Id="2912" Name="Cyan Beetle Banner" />
-    <Item Id="2913" Name="Devourer Banner" />
-    <Item Id="2914" Name="Diabolist Banner" />
-    <Item Id="2915" Name="Doctor Bones Banner" />
-    <Item Id="2916" Name="Dungeon Slime Banner" />
-    <Item Id="2917" Name="Dungeon Spirit Banner" />
-    <Item Id="2918" Name="Elf Archer Banner" />
-    <Item Id="2919" Name="Elf Copter Banner" />
-    <Item Id="2920" Name="Eyezor Banner" />
-    <Item Id="2921" Name="Flocko Banner" />
-    <Item Id="2922" Name="Ghost Banner" />
-    <Item Id="2923" Name="Giant Bat Banner" />
-    <Item Id="2924" Name="Giant Cursed Skull Banner" />
-    <Item Id="2925" Name="Giant Flying Fox Banner" />
-    <Item Id="2926" Name="Gingerbread Man Banner" />
-    <Item Id="2927" Name="Goblin Archer Banner" />
-    <Item Id="2928" Name="Green Slime Banner" />
-    <Item Id="2929" Name="Headless Horseman Banner" />
-    <Item Id="2930" Name="Hell Armored Bones Banner" />
-    <Item Id="2931" Name="Hellhound Banner" />
-    <Item Id="2932" Name="Hoppin' Jack Banner" />
-    <Item Id="2933" Name="Ice Bat Banner" />
-    <Item Id="2934" Name="Ice Golem Banner" />
-    <Item Id="2935" Name="Ice Slime Banner" />
-    <Item Id="2936" Name="Ichor Sticker Banner" />
-    <Item Id="2937" Name="Illuminant Bat Banner" />
-    <Item Id="2938" Name="Illuminant Slime Banner" />
-    <Item Id="2939" Name="Jungle Bat Banner" />
-    <Item Id="2940" Name="Jungle Slime Banner" />
-    <Item Id="2941" Name="Krampus Banner" />
-    <Item Id="2942" Name="Lac Beetle Banner" />
-    <Item Id="2943" Name="Lava Bat Banner" />
-    <Item Id="2944" Name="Lava Slime Banner" />
-    <Item Id="2945" Name="Martian Brainscrambler Banner" />
-    <Item Id="2946" Name="Martian Drone Banner" />
-    <Item Id="2947" Name="Martian Engineer Banner" />
-    <Item Id="2948" Name="Martian Gigazapper Banner" />
-    <Item Id="2949" Name="Martian Gray Grunt Banner" />
-    <Item Id="2950" Name="Martian Officer Banner" />
-    <Item Id="2951" Name="Martian Raygunner Banner" />
-    <Item Id="2952" Name="Martian Scutlix Gunner Banner" />
-    <Item Id="2953" Name="Martian Tesla Turret Banner" />
-    <Item Id="2954" Name="Mister Stabby Banner" />
-    <Item Id="2955" Name="Mother Slime Banner" />
-    <Item Id="2956" Name="Necromancer Banner" />
-    <Item Id="2957" Name="Nutcracker Banner" />
-    <Item Id="2958" Name="Paladin Banner" />
-    <Item Id="2959" Name="Penguin Banner" />
-    <Item Id="2960" Name="Pinky Banner" />
-    <Item Id="2961" Name="Poltergeist Banner" />
-    <Item Id="2962" Name="Possessed Armor Banner" />
-    <Item Id="2963" Name="Present Mimic Banner" />
-    <Item Id="2964" Name="Purple Slime Banner" />
-    <Item Id="2965" Name="Ragged Caster Banner" />
-    <Item Id="2966" Name="Rainbow Slime Banner" />
-    <Item Id="2967" Name="Raven Banner" />
-    <Item Id="2968" Name="Red Slime Banner" />
-    <Item Id="2969" Name="Rune Wizard Banner" />
-    <Item Id="2970" Name="Rusty Armored Bones Banner" />
-    <Item Id="2971" Name="Scarecrow Banner" />
-    <Item Id="2972" Name="Scutlix Banner" />
-    <Item Id="2973" Name="Skeleton Archer Banner" />
-    <Item Id="2974" Name="Skeleton Commando Banner" />
-    <Item Id="2975" Name="Skeleton Sniper Banner" />
-    <Item Id="2976" Name="Slimer Banner" />
-    <Item Id="2977" Name="Snatcher Banner" />
-    <Item Id="2978" Name="Snow Balla Banner" />
-    <Item Id="2979" Name="Snowman Gangsta Banner" />
-    <Item Id="2980" Name="Spiked Ice Slime Banner" />
-    <Item Id="2981" Name="Spiked Jungle Slime Banner" />
-    <Item Id="2982" Name="Splinterling Banner" />
-    <Item Id="2983" Name="Squid Banner" />
-    <Item Id="2984" Name="Tactical Skeleton Banner" />
-    <Item Id="2985" Name="The Groom Banner" />
-    <Item Id="2986" Name="Tim Banner" />
-    <Item Id="2987" Name="Undead Miner Banner" />
-    <Item Id="2988" Name="Undead Viking Banner" />
-    <Item Id="2989" Name="White Cultist Archer Banner" />
-    <Item Id="2990" Name="White Cultist Caster Banner" />
-    <Item Id="2991" Name="White Cultist Fighter Banner" />
-    <Item Id="2992" Name="Yellow Slime Banner" />
-    <Item Id="2993" Name="Yeti Banner" />
-    <Item Id="2994" Name="Zombie Elf Banner" />
+    <Item Id="2897" Name="Angry Trapper Banner" Tally="88" />
+    <Item Id="2898" Name="Armored Viking Banner" Tally="89" />
+    <Item Id="2899" Name="Black Slime Banner" Tally="90" />
+    <Item Id="2900" Name="Blue Armored Bones Banner" Tally="91" />
+    <Item Id="2901" Name="Blue Cultist Archer Banner" Tally="92" />
+    <Item Id="2902" Name="Blue Cultist Caster Banner" Tally="93" />
+    <Item Id="2903" Name="Blue Cultist Fighter Banner" Tally="94" />
+    <Item Id="2904" Name="Bone Lee Banner" Tally="95" />
+    <Item Id="2905" Name="Clinger Banner" Tally="96" />
+    <Item Id="2906" Name="Cochineal Beetle Banner" Tally="97" />
+    <Item Id="2907" Name="Corrupt Penguin Banner" Tally="98" />
+    <Item Id="2908" Name="Corrupt Slime Banner" Tally="99" />
+    <Item Id="2909" Name="Corruptor Banner" Tally="100" />
+    <Item Id="2910" Name="Crimslime Banner" Tally="101" />
+    <Item Id="2911" Name="Cursed Skull Banner" Tally="102" />
+    <Item Id="2912" Name="Cyan Beetle Banner" Tally="103" />
+    <Item Id="2913" Name="Devourer Banner" Tally="104" />
+    <Item Id="2914" Name="Diabolist Banner" Tally="105" />
+    <Item Id="2915" Name="Doctor Bones Banner" Tally="106" />
+    <Item Id="2916" Name="Dungeon Slime Banner" Tally="107" />
+    <Item Id="2917" Name="Dungeon Spirit Banner" Tally="108" />
+    <Item Id="2918" Name="Elf Archer Banner" Tally="109" />
+    <Item Id="2919" Name="Elf Copter Banner" Tally="110" />
+    <Item Id="2920" Name="Eyezor Banner" Tally="111" />
+    <Item Id="2921" Name="Flocko Banner" Tally="112" />
+    <Item Id="2922" Name="Ghost Banner" Tally="113" />
+    <Item Id="2923" Name="Giant Bat Banner" Tally="114" />
+    <Item Id="2924" Name="Giant Cursed Skull Banner" Tally="115" />
+    <Item Id="2925" Name="Giant Flying Fox Banner" Tally="116" />
+    <Item Id="2926" Name="Gingerbread Man Banner" Tally="117" />
+    <Item Id="2927" Name="Goblin Archer Banner" Tally="118" />
+    <Item Id="2928" Name="Green Slime Banner" Tally="119" />
+    <Item Id="2929" Name="Headless Horseman Banner" Tally="120" />
+    <Item Id="2930" Name="Hell Armored Bones Banner" Tally="121" />
+    <Item Id="2931" Name="Hellhound Banner" Tally="122" />
+    <Item Id="2932" Name="Hoppin' Jack Banner" Tally="123" />
+    <Item Id="2933" Name="Ice Bat Banner" Tally="124" />
+    <Item Id="2934" Name="Ice Golem Banner" Tally="125" />
+    <Item Id="2935" Name="Ice Slime Banner" Tally="126" />
+    <Item Id="2936" Name="Ichor Sticker Banner" Tally="127" />
+    <Item Id="2937" Name="Illuminant Bat Banner" Tally="128" />
+    <Item Id="2938" Name="Illuminant Slime Banner" Tally="129" />
+    <Item Id="2939" Name="Jungle Bat Banner" Tally="130" />
+    <Item Id="2940" Name="Jungle Slime Banner" Tally="131" />
+    <Item Id="2941" Name="Krampus Banner" Tally="132" />
+    <Item Id="2942" Name="Lac Beetle Banner" Tally="133" />
+    <Item Id="2943" Name="Lava Bat Banner" Tally="134" />
+    <Item Id="2944" Name="Lava Slime Banner" Tally="135" />
+    <Item Id="2945" Name="Martian Brainscrambler Banner" Tally="136" />
+    <Item Id="2946" Name="Martian Drone Banner" Tally="137" />
+    <Item Id="2947" Name="Martian Engineer Banner" Tally="138" />
+    <Item Id="2948" Name="Martian Gigazapper Banner" Tally="139" />
+    <Item Id="2949" Name="Martian Gray Grunt Banner" Tally="140" />
+    <Item Id="2950" Name="Martian Officer Banner" Tally="141" />
+    <Item Id="2951" Name="Martian Raygunner Banner" Tally="142" />
+    <Item Id="2952" Name="Martian Scutlix Gunner Banner" Tally="143" />
+    <Item Id="2953" Name="Martian Tesla Turret Banner" Tally="144" />
+    <Item Id="2954" Name="Mister Stabby Banner" Tally="145" />
+    <Item Id="2955" Name="Mother Slime Banner" Tally="146" />
+    <Item Id="2956" Name="Necromancer Banner" Tally="147" />
+    <Item Id="2957" Name="Nutcracker Banner" Tally="148" />
+    <Item Id="2958" Name="Paladin Banner" Tally="149" />
+    <Item Id="2959" Name="Penguin Banner" Tally="150" />
+    <Item Id="2960" Name="Pinky Banner" Tally="151" />
+    <Item Id="2961" Name="Poltergeist Banner" Tally="152" />
+    <Item Id="2962" Name="Possessed Armor Banner" Tally="153" />
+    <Item Id="2963" Name="Present Mimic Banner" Tally="154" />
+    <Item Id="2964" Name="Purple Slime Banner" Tally="155" />
+    <Item Id="2965" Name="Ragged Caster Banner" Tally="156" />
+    <Item Id="2966" Name="Rainbow Slime Banner" Tally="157" />
+    <Item Id="2967" Name="Raven Banner" Tally="158" />
+    <Item Id="2968" Name="Red Slime Banner" Tally="159" />
+    <Item Id="2969" Name="Rune Wizard Banner" Tally="160" />
+    <Item Id="2970" Name="Rusty Armored Bones Banner" Tally="161" />
+    <Item Id="2971" Name="Scarecrow Banner" Tally="162" />
+    <Item Id="2972" Name="Scutlix Banner" Tally="163" />
+    <Item Id="2973" Name="Skeleton Archer Banner" Tally="164" />
+    <Item Id="2974" Name="Skeleton Commando Banner" Tally="165" />
+    <Item Id="2975" Name="Skeleton Sniper Banner" Tally="166" />
+    <Item Id="2976" Name="Slimer Banner" Tally="167" />
+    <Item Id="2977" Name="Snatcher Banner" Tally="168" />
+    <Item Id="2978" Name="Snow Balla Banner" Tally="169" />
+    <Item Id="2979" Name="Snowman Gangsta Banner" Tally="170" />
+    <Item Id="2980" Name="Spiked Ice Slime Banner" Tally="171" />
+    <Item Id="2981" Name="Spiked Jungle Slime Banner" Tally="172" />
+    <Item Id="2982" Name="Splinterling Banner" Tally="173" />
+    <Item Id="2983" Name="Squid Banner" Tally="174" />
+    <Item Id="2984" Name="Tactical Skeleton Banner" Tally="175" />
+    <Item Id="2985" Name="The Groom Banner" Tally="176" />
+    <Item Id="2986" Name="Tim Banner" Tally="177" />
+    <Item Id="2987" Name="Undead Miner Banner" Tally="178" />
+    <Item Id="2988" Name="Undead Viking Banner" Tally="179" />
+    <Item Id="2989" Name="White Cultist Archer Banner" Tally="180" />
+    <Item Id="2990" Name="White Cultist Caster Banner" Tally="181" />
+    <Item Id="2991" Name="White Cultist Fighter Banner" Tally="182" />
+    <Item Id="2992" Name="Yellow Slime Banner" Tally="183" />
+    <Item Id="2993" Name="Yeti Banner" Tally="184" />
+    <Item Id="2994" Name="Zombie Elf Banner" Tally="185" />
     <Item Id="2995" Name="Sparky" />
     <Item Id="2996" Name="Vine Rope" />
     <Item Id="2997" Name="Wormhole Potion" />
@@ -7924,69 +7924,69 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="3387" Name="Strange Plant" />
     <Item Id="3388" Name="Strange Plant" />
     <Item Id="3389" Name="Terrarian" />
-    <Item Id="3390" Name="Goblin Summoner Banner" />
-    <Item Id="3391" Name="Salamander Banner" />
-    <Item Id="3392" Name="Giant Shelly Banner" />
-    <Item Id="3393" Name="Crawdad Banner" />
-    <Item Id="3394" Name="Fritz Banner" />
-    <Item Id="3395" Name="Creature From The Deep Banner" />
-    <Item Id="3396" Name="Dr. Man Fly Banner" />
-    <Item Id="3397" Name="Mothron Banner" />
-    <Item Id="3398" Name="Severed Hand Banner" />
-    <Item Id="3399" Name="The Possessed Banner" />
-    <Item Id="3400" Name="Butcher Banner" />
-    <Item Id="3401" Name="Psycho Banner" />
-    <Item Id="3402" Name="Deadly Sphere Banner" />
-    <Item Id="3403" Name="Nailhead Banner" />
-    <Item Id="3404" Name="Poisonous Spore Banner" />
-    <Item Id="3405" Name="Medusa Banner" />
-    <Item Id="3406" Name="Hoplite Banner" />
-    <Item Id="3407" Name="Granite Elemental Banner" />
-    <Item Id="3408" Name="Grolem Banner" />
-    <Item Id="3409" Name="Blood Zombie Banner" />
-    <Item Id="3410" Name="Drippler Banner" />
-    <Item Id="3411" Name="Tomb Crawler Banner" />
-    <Item Id="3412" Name="Dune Splicer Banner" />
-    <Item Id="3413" Name="Antlion Swarmer Banner" />
-    <Item Id="3414" Name="Antlion Charger Banner" />
-    <Item Id="3415" Name="Ghoul Banner" />
-    <Item Id="3416" Name="Lamia Banner" />
-    <Item Id="3417" Name="Desert Spirit Banner" />
-    <Item Id="3418" Name="Basilisk Banner" />
-    <Item Id="3419" Name="Ravager Scorpion Banner" />
-    <Item Id="3420" Name="Stardust Soldier Banner" />
-    <Item Id="3421" Name="Milkyway Weaver Banner" />
-    <Item Id="3422" Name="Flow Invader Banner" />
-    <Item Id="3423" Name="Twinkle Popper Banner" />
-    <Item Id="3424" Name="Small Star Cell Banner" />
-    <Item Id="3425" Name="Star Cell Banner" />
-    <Item Id="3426" Name="Corite Banner" />
-    <Item Id="3427" Name="Sroller Banner" />
-    <Item Id="3428" Name="Crawltipede Banner" />
-    <Item Id="3429" Name="Drakomire Rider Banner" />
-    <Item Id="3430" Name="Drakomire Banner" />
-    <Item Id="3431" Name="Solar Solenian Banner" />
-    <Item Id="3432" Name="Nebula Soldier Banner" />
-    <Item Id="3433" Name="Nebula Headcrab Banner" />
-    <Item Id="3434" Name="Nebula Floater Banner" />
-    <Item Id="3435" Name="Nebula Beast Banner" />
-    <Item Id="3436" Name="Alien Larva Banner" />
-    <Item Id="3437" Name="Alien Queen Banner" />
-    <Item Id="3438" Name="Alien Hornet Banner" />
-    <Item Id="3439" Name="Vortex Soldier Banner" />
-    <Item Id="3440" Name="Vortex Rifleman Banner" />
-    <Item Id="3441" Name="Pirate Captain Banner" />
-    <Item Id="3442" Name="Pirate Deadeye Banner" />
-    <Item Id="3443" Name="Pirate Corsair Banner" />
-    <Item Id="3444" Name="Pirate Crossbower Banner" />
-    <Item Id="3445" Name="Martian Walker Banner" />
-    <Item Id="3446" Name="Red Devil Banner" />
-    <Item Id="3447" Name="Pink Jellyfish Banner" />
-    <Item Id="3448" Name="Green Jellyfish Banner" />
-    <Item Id="3449" Name="Dark Mummy Banner" />
-    <Item Id="3450" Name="Light Mummy Banner" />
-    <Item Id="3451" Name="Angry Bones Banner" />
-    <Item Id="3452" Name="Ice Tortoise Banner" />
+    <Item Id="3390" Name="Goblin Summoner Banner" Tally="186" />
+    <Item Id="3391" Name="Salamander Banner" Tally="187" />
+    <Item Id="3392" Name="Giant Shelly Banner" Tally="188" />
+    <Item Id="3393" Name="Crawdad Banner" Tally="189" />
+    <Item Id="3394" Name="Fritz Banner" Tally="190" />
+    <Item Id="3395" Name="Creature From The Deep Banner" Tally="191" />
+    <Item Id="3396" Name="Dr. Man Fly Banner" Tally="192" />
+    <Item Id="3397" Name="Mothron Banner" Tally="193" />
+    <Item Id="3398" Name="Severed Hand Banner" Tally="194" />
+    <Item Id="3399" Name="The Possessed Banner" Tally="195" />
+    <Item Id="3400" Name="Butcher Banner" Tally="196" />
+    <Item Id="3401" Name="Psycho Banner" Tally="197" />
+    <Item Id="3402" Name="Deadly Sphere Banner" Tally="198" />
+    <Item Id="3403" Name="Nailhead Banner" Tally="199" />
+    <Item Id="3404" Name="Poisonous Spore Banner" Tally="200" />
+    <Item Id="3405" Name="Medusa Banner" Tally="201" />
+    <Item Id="3406" Name="Hoplite Banner" Tally="202" />
+    <Item Id="3407" Name="Granite Elemental Banner" Tally="203" />
+    <Item Id="3408" Name="Grolem Banner" Tally="204" />
+    <Item Id="3409" Name="Blood Zombie Banner" Tally="205" />
+    <Item Id="3410" Name="Drippler Banner" Tally="206" />
+    <Item Id="3411" Name="Tomb Crawler Banner" Tally="207" />
+    <Item Id="3412" Name="Dune Splicer Banner" Tally="208" />
+    <Item Id="3413" Name="Antlion Swarmer Banner" Tally="209" />
+    <Item Id="3414" Name="Antlion Charger Banner" Tally="210" />
+    <Item Id="3415" Name="Ghoul Banner" Tally="211" />
+    <Item Id="3416" Name="Lamia Banner" Tally="212" />
+    <Item Id="3417" Name="Desert Spirit Banner" Tally="213" />
+    <Item Id="3418" Name="Basilisk Banner" Tally="214" />
+    <Item Id="3419" Name="Ravager Scorpion Banner" Tally="215" />
+    <Item Id="3420" Name="Stardust Soldier Banner" Tally="216" />
+    <Item Id="3421" Name="Milkyway Weaver Banner" Tally="217" />
+    <Item Id="3422" Name="Flow Invader Banner" Tally="218" />
+    <Item Id="3423" Name="Twinkle Popper Banner" Tally="219" />
+    <Item Id="3424" Name="Small Star Cell Banner" Tally="220" />
+    <Item Id="3425" Name="Star Cell Banner" Tally="221" />
+    <Item Id="3426" Name="Corite Banner" Tally="222" />
+    <Item Id="3427" Name="Sroller Banner" Tally="223" />
+    <Item Id="3428" Name="Crawltipede Banner" Tally="224" />
+    <Item Id="3429" Name="Drakomire Rider Banner" Tally="225" />
+    <Item Id="3430" Name="Drakomire Banner" Tally="226" />
+    <Item Id="3431" Name="Solar Solenian Banner" Tally="227" />
+    <Item Id="3432" Name="Nebula Soldier Banner" Tally="228" />
+    <Item Id="3433" Name="Nebula Headcrab Banner" Tally="229" />
+    <Item Id="3434" Name="Nebula Floater Banner" Tally="230" />
+    <Item Id="3435" Name="Nebula Beast Banner" Tally="231" />
+    <Item Id="3436" Name="Alien Larva Banner" Tally="232" />
+    <Item Id="3437" Name="Alien Queen Banner" Tally="233" />
+    <Item Id="3438" Name="Alien Hornet Banner" Tally="234" />
+    <Item Id="3439" Name="Vortex Soldier Banner" Tally="235" />
+    <Item Id="3440" Name="Vortex Rifleman Banner" Tally="236" />
+    <Item Id="3441" Name="Pirate Captain Banner" Tally="237" />
+    <Item Id="3442" Name="Pirate Deadeye Banner" Tally="238" />
+    <Item Id="3443" Name="Pirate Corsair Banner" Tally="239" />
+    <Item Id="3444" Name="Pirate Crossbower Banner" Tally="240" />
+    <Item Id="3445" Name="Martian Walker Banner" Tally="241" />
+    <Item Id="3446" Name="Red Devil Banner" Tally="242" />
+    <Item Id="3447" Name="Pink Jellyfish Banner" Tally="243" />
+    <Item Id="3448" Name="Green Jellyfish Banner" Tally="244" />
+    <Item Id="3449" Name="Dark Mummy Banner" Tally="245" />
+    <Item Id="3450" Name="Light Mummy Banner" Tally="246" />
+    <Item Id="3451" Name="Angry Bones Banner" Tally="247" />
+    <Item Id="3452" Name="Ice Tortoise Banner" Tally="248" />
     <Item Id="3453" Name="Damage Booster" />
     <Item Id="3454" Name="Life Booster" />
     <Item Id="3455" Name="Mana Booster" />
@@ -8127,8 +8127,8 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="3590" Name="Loki's Breastplate" />
     <Item Id="3591" Name="Loki's Greaves" />
     <Item Id="3592" Name="Loki's Wings" />
-    <Item Id="3593" Name="Sand Slime Banner" />
-    <Item Id="3594" Name="Sea Snail Banner" />
+    <Item Id="3593" Name="Sand Slime Banner" Tally="249" />
+    <Item Id="3594" Name="Sea Snail Banner" Tally="250" />
     <Item Id="3595" Name="Moon Lord Trophy" />
     <Item Id="3596" Name="Not a Kid, nor a Squid" />
     <Item Id="3597" Name="Burning Hades Dye" />
@@ -8160,6 +8160,11 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Npc Id="353"   Name="Stylist"          Frames="23"   />
     <Npc Id="369"   Name="Angler"           Frames="23"   />
     <Npc Id="441"   Name="Tax Collector"    Frames="25"   />
+    <!-- currently ignored by NPC loader: -->
+    <Npc Id="422"   Name="Vortex Pillar"    Frames="1"    />
+    <Npc Id="493"   Name="Stardust Pillar"  Frames="1"    />
+    <Npc Id="507"   Name="Nebula Pillar"    Frames="1"    />
+    <Npc Id="517"   Name="Solar Pillar"     Frames="1"    />
   </Npcs>
   <ItemPrefix>
     <Prefix Id="0"  Name=""                 />
@@ -8469,6 +8474,9 @@ Single item; tag has no children. Has the following properties:
  The categories, so far, are somewhat subject to interpretation, and are pidgin-holed into
  a single category, but this will be more strictly defined in a future XML release. The
  item type MUST be one of the categories (in all lowercase):
+ 
+ * tally - [New for 1.3 Support] Optional; unique (if exists); associates the banner with its
+   corresponding kill tally value.
 
  @ tool = All mining/gathering tools, like Pickaxe, Hammer, Axe, etc.
  @ weapon = All weapons, including swords, staffs, consumable weapons (like Throwing Knives), etc.

@@ -178,6 +178,7 @@
     <Compile Include="Render\RenderMiniMap.cs" />
     <Compile Include="Render\TextureData.cs" />
     <Compile Include="Terraria\Chest.cs" />
+    <Compile Include="Terraria\KillTally.cs" />
     <Compile Include="Terraria\TileEntity.cs" />
     <Compile Include="Terraria\Item.cs" />
     <Compile Include="Terraria\Map.cs" />
@@ -249,6 +250,9 @@
     </Compile>
     <Compile Include="View\ClipboardView.xaml.cs">
       <DependentUpon>ClipboardView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\KillTallyView.xaml.cs">
+      <DependentUpon>KillTallyView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\MorphBiomeView.xaml.cs">
       <DependentUpon>MorphBiomeView.xaml</DependentUpon>
@@ -359,6 +363,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\ClipboardView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\KillTallyView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -526,7 +534,7 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties BuildVersion_AssemblyInfoFilename="Properties\AssemblyInfo.cs" BuildVersion_UseGlobalSettings="True" />
+      <UserProperties BuildVersion_UseGlobalSettings="True" BuildVersion_AssemblyInfoFilename="Properties\AssemblyInfo.cs" />
     </VisualStudio>
   </ProjectExtensions>
   <PropertyGroup>

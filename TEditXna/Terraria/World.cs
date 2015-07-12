@@ -338,7 +338,7 @@ namespace TEditXNA.Terraria
             DispatcherHelper.CheckBeginInvokeOnUI(
                 () =>
                 {
-                    int[] npcids = {17, 18, 19, 20, 22, 54, 38, 107, 108, 124, 160, 178, 207, 208, 209, 227, 228, 229};
+                    int[] npcids = {17, 18, 19, 20, 22, 54, 38, 107, 108, 124, 160, 178, 207, 208, 209, 227, 228, 229, 353, 369, 441 };
 
                     foreach (int npcid in npcids)
                     {
