@@ -41,5 +41,10 @@
             <ComponentModel:SortDescription PropertyName="Name" Direction="Ascending" />
         </CollectionViewSource.SortDescriptions>
     </CollectionViewSource>
+    <CollectionViewSource Source="{Binding Source={x:Static Terraria:World.ChestProperties}, Mode=OneTime}" x:Key="ChestsCollection">
+        <CollectionViewSource.SortDescriptions>
+            <ComponentModel:SortDescription PropertyName="Name" Direction="Ascending" />
+        </CollectionViewSource.SortDescriptions>
+    </CollectionViewSource>
 
 </ResourceDictionary>

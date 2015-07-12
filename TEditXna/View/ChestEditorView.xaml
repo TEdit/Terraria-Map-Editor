@@ -52,6 +52,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
@@ -63,6 +64,17 @@
         </StackPanel>
         
         <StackPanel Orientation="Horizontal" Grid.Row="1">
+            <TextBlock Text="Chest Type: " Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" VerticalAlignment="Center" />
+            <ComboBox Width="150px"
+                      ItemsSource="{Binding Source={StaticResource ChestsCollection}}"
+                      SelectedValue="{Binding SelectedChest.UV, Mode=TwoWay}"
+                      SelectedValuePath="UV"
+                      DisplayMemberPath="Name"
+                      IsSynchronizedWithCurrentItem="True"
+                      HorizontalAlignment="Stretch" Margin="1,0" ItemsPanel="{StaticResource Template_ComboPanel}" />
+        </StackPanel>
+        
+        <StackPanel Orientation="Horizontal" Grid.Row="2">
             <TextBlock Text="Chest Contents " Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" />
             <TextBlock Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" DockPanel.Dock="Top">
                 <TextBlock.Text>
@@ -74,7 +86,7 @@
             </TextBlock>
         </StackPanel>
 
-        <ListBox Grid.Row="2" Name="ChestList" Padding="5" Foreground="White" MinHeight="200"
+        <ListBox Grid.Row="3" Name="ChestList" Padding="5" Foreground="White" MinHeight="200"
                  ItemsSource="{Binding SelectedChest.Items}"
                  ScrollViewer.CanContentScroll="True"
                  VirtualizingStackPanel.IsVirtualizing="True"
@@ -85,12 +97,12 @@
                 </Style>
             </ListBox.ItemContainerStyle>
         </ListBox>
-        <StackPanel Grid.Row="3">
+        <StackPanel Grid.Row="4">
             <TextBlock Text="Edit Selected Item" Margin="2" Foreground="{DynamicResource TextBrush}" />
             <ContentControl ContentTemplate="{StaticResource ChestItemTemplate}"
                             Content="{Binding ElementName=ChestList, Path=SelectedItem}" />
         </StackPanel>
-        <UniformGrid Grid.Row="4" Columns="2">
+        <UniformGrid Grid.Row="5" Columns="2">
             <Button Margin="2" Content="Cancel" Command="{Binding SaveChestCommand}"
                     CommandParameter="{StaticResource False}" />
             <Button Margin="2" Content="Save" Command="{Binding SaveChestCommand}"

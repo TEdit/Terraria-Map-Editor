@@ -8136,6 +8136,60 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="3599" Name="Loki's Dye" />
     <Item Id="3600" Name="Shadowflame Hades Dye" />
   </Items>
+  <Chests>
+    <Chest UV="0,0" Name="Chest" />
+    <Chest UV="36,0" Name="Gold Chest" />
+    <Chest UV="72,0" Name="Gold Chest" Variety="Locked" />
+    <Chest UV="108,0" Name="Shadow Chest" />
+    <Chest UV="144,0" Name="Shadow Chest" Variety="Locked" />
+    <Chest UV="180,0" Name="Barrel" />
+    <Chest UV="216,0" Name="Trash Can" />
+    <Chest UV="252,0" Name="Ebonwood Chest" />
+    <Chest UV="288,0" Name="Rich Mahogany Chest" />
+    <Chest UV="324,0" Name="Pearlwood Chest" />
+    <Chest UV="360,0" Name="Ivy Chest" />
+    <Chest UV="396,0" Name="Ice Chest" />
+    <Chest UV="432,0" Name="Living Wood Chest" />
+    <Chest UV="468,0" Name="Skyware Chest" />
+    <Chest UV="504,0" Name="Shadewood Chest" />
+    <Chest UV="540,0" Name="Web Coverd Chest" />
+    <Chest UV="576,0" Name="Lihzahrd Chest" />
+    <Chest UV="612,0" Name="Water Chest" />
+    <Chest UV="648,0" Name="Jungle Chest" />
+    <Chest UV="684,0" Name="Corruption Chest" />
+    <Chest UV="720,0" Name="Crimson Chest" />
+    <Chest UV="756,0" Name="Hallowed Chest" />
+    <Chest UV="792,0" Name="Frozen Chest" />
+    <Chest UV="828,0" Name="Jungle Chest" Variety="Locked" />
+    <Chest UV="864,0" Name="Corruption Chest" Variety="Locked" />
+    <Chest UV="900,0" Name="Crimson Chest" Variety="Locked" />
+    <Chest UV="936,0" Name="Hallowed Chest" Variety="Locked" />
+    <Chest UV="972,0" Name="Frozen Chest" Variety="Locked" />
+    <Chest UV="1008,0" Name="Dynasty Chest" />
+    <Chest UV="1044,0" Name="Honey Chest" />
+    <Chest UV="1080,0" Name="Steampunk Chest" />
+    <Chest UV="1116,0" Name="Palm Wood Chest" />
+    <Chest UV="1152,0" Name="Mushroom Chest" />
+    <Chest UV="1188,0" Name="Boreal Wood Chest" />
+    <Chest UV="1224,0" Name="Slime Chest" />
+    <Chest UV="1260,0" Name="Green Dungeon Chest" />
+    <Chest UV="1296,0" Name="Green Dungeon Chest" Variety="Locked" />
+    <Chest UV="1332,0" Name="Pink Dungeon Chest" />
+    <Chest UV="1368,0" Name="Pink Dungeon Chest" Variety="Locked" />
+    <Chest UV="1404,0" Name="Blue Dungeon Chest" />
+    <Chest UV="1440,0" Name="Blue Dungeon Chest" Variety="Locked" />
+    <Chest UV="1476,0" Name="Bone Chest" />
+    <Chest UV="1512,0" Name="Cactus Chest" />
+    <Chest UV="1548,0" Name="Flesh Chest" />
+    <Chest UV="1584,0" Name="Obsidian Chest" />
+    <Chest UV="1620,0" Name="Pumpkin Chest" />
+    <Chest UV="1656,0" Name="Spooky Chest" />
+    <Chest UV="1692,0" Name="Glass Chest" />
+    <Chest UV="1728,0" Name="Martian Chest" />
+    <Chest UV="1764,0" Name="Meteorite Chest" />
+    <Chest UV="1800,0" Name="Granite Chest" />
+    <Chest UV="1836,0" Name="Marble Chest" />
+  </Chests>
   <Npcs>
     <Npc Id="17"    Name="Merchant"         Frames="25"   />
     <Npc Id="18"    Name="Nurse"            Frames="23"   />
