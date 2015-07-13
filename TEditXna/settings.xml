@@ -8135,6 +8135,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="3598" Name="Grim Dye" />
     <Item Id="3599" Name="Loki's Dye" />
     <Item Id="3600" Name="Shadowflame Hades Dye" />
+    <Item Id="3601" Name="Celestial Sigil" />
   </Items>
   <Npcs>
     <Npc Id="17"    Name="Merchant"         Frames="25"   />
