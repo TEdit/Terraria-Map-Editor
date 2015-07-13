@@ -240,7 +240,6 @@ namespace TEditXNA.Terraria
                     foreach (var xElement in tileElement.Elements("Frames").Elements("Frame"))
                     {
                         var curItem = new ChestProperty();
-                        curItem.Id = (int?)xElement.Attribute("Id") ?? -1;
                         curItem.Name = (string)xElement.Attribute("Name");
                         string variety = (string)xElement.Attribute("Variety");
                         if (variety != null)
@@ -254,20 +253,34 @@ namespace TEditXNA.Terraria
                 }
             }
 
-            foreach (var xElement in xmlSettings.Elements("Signs").Elements("Sign"))
+            int signId = 0;
+            foreach (var tileElement in xmlSettings.Elements("Tiles").Elements("Tile"))
             {
-                var curItem = new SignProperty();
-                curItem.Id = (int?)xElement.Attribute("Id") ?? -1;
-                curItem.Name = (string)xElement.Attribute("Name");
-                string variety = (string)xElement.Attribute("Variety");
-                if (variety != null)
+                string tileName = (string)tileElement.Attribute("Name");
+                if (tileName == "Sign" || tileName == "Grave Marker")
                 {
-                    curItem.Name = curItem.Name + " " + variety;
+                    ushort type = (ushort)((int?)tileElement.Attribute("Id") ?? 55);
+                    foreach (var xElement in tileElement.Elements("Frames").Elements("Frame"))
+                    {
+                        var curItem = new SignProperty();
+                        string variety = (string)xElement.Attribute("Variety");
+                        if (variety != null)
+                        {
+                            if (tileName == "Sign")
+                            {
+                                curItem.Name = "Sign " + variety;
+                            }
+                            else
+                            {
+                                curItem.Name = variety;
+                            }
+                        }
+                        curItem.SignId = signId++;
+                        curItem.UV = StringToVector2Short((string)xElement.Attribute("UV"), 0, 0);
+                        curItem.TileType = type;
+                        SignProperties.Add(curItem);
+                    }
                 }
-                curItem.SignId = (int?)xElement.Attribute("SignId") ?? -1;
-                curItem.UV = StringToVector2Short((string)xElement.Attribute("UV"), 0, 0);
-                curItem.TileType = (ushort)((int?)xElement.Attribute("Type") ?? 55);
-                SignProperties.Add(curItem);
             }
 
             foreach (var xElement in xmlSettings.Elements("Npcs").Elements("Npc"))

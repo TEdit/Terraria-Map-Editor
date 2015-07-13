@@ -8136,23 +8136,6 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="3599" Name="Loki's Dye" />
     <Item Id="3600" Name="Shadowflame Hades Dye" />
   </Items>
-  <Signs>
-    <Sign SignId="0" UV="0,0" Type="55" Name="Sign" Variety="Ground" />
-    <Sign SignId="1" UV="36,0" Type="55" Name="Sign" Variety="Hanging" />
-    <Sign SignId="2" UV="72,0" Type="55" Name="Sign" Variety="Left Side" />
-    <Sign SignId="3" UV="108,0" Type="55" Name="Sign" Variety="Right Side" />
-    <Sign SignId="4" UV="0,0" Type="85" Name="Tombstone" />
-    <Sign SignId="5" UV="36,0" Type="85" Name="Grave Marker" />
-    <Sign SignId="6" UV="72,0" Type="85" Name="Cross Grave Marker" />
-    <Sign SignId="7" UV="108,0" Type="85" Name="Headstone" />
-    <Sign SignId="8" UV="144,0" Type="85" Name="Gravestone" />
-    <Sign SignId="9" UV="180,0" Type="85" Name="Obelisk" />
-    <Sign SignId="10" UV="216,0" Type="85" Name="Golden Cross Grave Marker" />
-    <Sign SignId="11" UV="252,0" Type="85" Name="Golden Tombstone" />
-    <Sign SignId="12" UV="288,0" Type="85" Name="Golden Grave Marker" />
-    <Sign SignId="13" UV="324,0" Type="85" Name="Golden Gravestone" />
-    <Sign SignId="14" UV="360,0" Type="85" Name="Golden Headstone" />
-  </Signs>
   <Npcs>
     <Npc Id="17"    Name="Merchant"         Frames="25"   />
     <Npc Id="18"    Name="Nurse"            Frames="23"   />
