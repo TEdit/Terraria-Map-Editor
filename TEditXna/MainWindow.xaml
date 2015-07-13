@@ -213,6 +213,9 @@
                     <TabItem Header="Analysis">
                         <View:WorldAnalysis HorizontalAlignment="Stretch"  VerticalAlignment="Stretch"/>
                     </TabItem>
+                    <TabItem Header="Tally">
+                        <View:KillTallyView HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
+                    </TabItem>
                 </TabControl>
             </Expander>
             <View:WorldRenderXna HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />

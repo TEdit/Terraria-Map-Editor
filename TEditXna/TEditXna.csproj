@@ -178,7 +178,7 @@
     <Compile Include="Render\RenderMiniMap.cs" />
     <Compile Include="Render\TextureData.cs" />
     <Compile Include="Terraria\Chest.cs" />
-    <Compile Include="Terraria\Objects\SignProperty.cs" />
+    <Compile Include="Terraria\KillTally.cs" />
     <Compile Include="Terraria\TileEntity.cs" />
     <Compile Include="Terraria\Item.cs" />
     <Compile Include="Terraria\Map.cs" />
@@ -190,6 +190,7 @@
     <Compile Include="Terraria\Objects\ItemProperty.cs" />
     <Compile Include="Terraria\Objects\ITile.cs" />
     <Compile Include="Terraria\Objects\NpcName.cs" />
+    <Compile Include="Terraria\Objects\SignProperty.cs" />
     <Compile Include="Terraria\Objects\Sprite.cs" />
     <Compile Include="Terraria\Objects\TileProperty.cs" />
     <Compile Include="Terraria\Objects\WallProperty.cs" />
@@ -251,6 +252,9 @@
     </Compile>
     <Compile Include="View\ClipboardView.xaml.cs">
       <DependentUpon>ClipboardView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\KillTallyView.xaml.cs">
+      <DependentUpon>KillTallyView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\MorphBiomeView.xaml.cs">
       <DependentUpon>MorphBiomeView.xaml</DependentUpon>
@@ -361,6 +365,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\ClipboardView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\KillTallyView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

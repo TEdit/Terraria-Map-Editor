@@ -509,6 +509,8 @@ namespace TEditXna.ViewModel
 
         private ICommand _analyzeWorldCommand;
         private ICommand _analyzeWorldSaveCommand;
+        private ICommand _tallyCountCommand;
+        private ICommand _tallyCountSaveCommand;
          
 
         /// <summary>
@@ -535,6 +537,27 @@ namespace TEditXna.ViewModel
             }
         }
 
+        public ICommand TallyCountSaveCommand
+        {
+            get { return _tallyCountSaveCommand ?? (_tallyCountSaveCommand = new RelayCommand(TallyCountSave)); }
+        }
+
+        private void TallyCountSave()
+        {
+            if (this.CurrentWorld == null) return;
+            var sfd = new SaveFileDialog();
+            sfd.DefaultExt = "Text File|*.txt";
+            sfd.Filter = "Text Files|*.txt";
+            sfd.FileName = this.CurrentWorld.Title + " Tally.txt";
+            sfd.Title = "Save world analysis.";
+            sfd.OverwritePrompt = true;
+            if (sfd.ShowDialog() == true)
+            {
+                TEditXNA.Terraria.KillTally.SaveTally(this.CurrentWorld, sfd.FileName);
+
+            }
+        }
+
         /// <summary>
         /// Relay command to execute AnalizeWorld.
         /// </summary>
@@ -549,12 +572,32 @@ namespace TEditXna.ViewModel
         }
 
         private string _worldAnalysis;
-         
+
 
         public string WorldAnalysis
         {
             get { return _worldAnalysis; }
             set { Set("WorldAnalysis", ref _worldAnalysis, value); }
+        }
+
+        /* SBLogic - Relay command to execute KillTally */
+
+        public ICommand LoadTallyCommand
+        {
+            get { return _tallyCountCommand ?? (_tallyCountCommand = new RelayCommand(GetTallyCount)); }
+        }
+
+        private void GetTallyCount()
+        {
+            TallyCount = TEditXNA.Terraria.KillTally.LoadTally(this.CurrentWorld);
+        }
+
+        private string _tallyCount;
+
+        public string TallyCount
+        {
+            get { return _tallyCount; }
+            set { Set("TallyCount", ref _tallyCount, value); }
         }
 
         public event EventHandler PreviewChanged;

@@ -32,6 +32,7 @@ namespace TEditXNA.Terraria
         private static readonly ObservableCollection<Sprite> _sprites = new ObservableCollection<Sprite>();
         private static readonly Dictionary<Key, string> _shortcuts = new Dictionary<Key, string>();
         private static readonly Dictionary<int, ItemProperty> _itemLookup = new Dictionary<int, ItemProperty>();
+        private static readonly Dictionary<int, string> _tallynames = new Dictionary<int, string>();
         private static Vector2 _appSize;
         internal static string AltC;
  
@@ -230,6 +231,9 @@ namespace TEditXNA.Terraria
                 curItem.Name = (string)xElement.Attribute("Name");
                 ItemProperties.Add(curItem);
                 _itemLookup.Add(curItem.Id, curItem);
+                int tally = (int?)xElement.Attribute("Tally") ?? 0;
+                if (tally > 0)
+                    _tallynames.Add(tally, curItem.Name);
             }
 
             foreach (var tileElement in xmlSettings.Elements("Tiles").Elements("Tile"))
@@ -434,6 +438,11 @@ namespace TEditXNA.Terraria
         public static ObservableCollection<Sprite> Sprites
         {
             get { return _sprites; }
+        }
+
+        public static Dictionary<int, string> TallyNames
+        {
+            get { return _tallynames;  }
         }
 
         internal static Vector2 AppSize
