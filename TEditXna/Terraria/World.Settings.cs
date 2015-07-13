@@ -24,6 +24,7 @@ namespace TEditXNA.Terraria
         private static readonly Dictionary<byte, string> _prefix = new Dictionary<byte, string>();
         private static readonly ObservableCollection<ItemProperty> _itemProperties = new ObservableCollection<ItemProperty>();
         private static readonly ObservableCollection<ChestProperty> _chestProperties = new ObservableCollection<ChestProperty>();
+        private static readonly ObservableCollection<SignProperty> _signProperties = new ObservableCollection<SignProperty>();
         private static readonly ObservableCollection<TileProperty> _tileProperties = new ObservableCollection<TileProperty>();
         private static readonly ObservableCollection<TileProperty> _tileBricks = new ObservableCollection<TileProperty>();
         private static readonly ObservableCollection<WallProperty> _wallProperties = new ObservableCollection<WallProperty>();
@@ -235,18 +236,55 @@ namespace TEditXNA.Terraria
                     _tallynames.Add(tally, curItem.Name);
             }
 
-            foreach (var xElement in xmlSettings.Elements("Chests").Elements("Chest"))
+            foreach (var tileElement in xmlSettings.Elements("Tiles").Elements("Tile"))
             {
-                var curItem = new ChestProperty();
-                curItem.Id = (int?)xElement.Attribute("Id") ?? -1;
-                curItem.Name = (string)xElement.Attribute("Name");
-                string variety = (string)xElement.Attribute("Variety");
-                if (variety != null)
+                string tileName = (string)tileElement.Attribute("Name");
+                if (tileName == "Chest")
                 {
-                    curItem.Name = curItem.Name + " " + variety;
+                    foreach (var xElement in tileElement.Elements("Frames").Elements("Frame"))
+                    {
+                        var curItem = new ChestProperty();
+                        curItem.Name = (string)xElement.Attribute("Name");
+                        string variety = (string)xElement.Attribute("Variety");
+                        if (variety != null)
+                        {
+                            curItem.Name = curItem.Name + " " + variety;
+                        }
+                        curItem.UV = StringToVector2Short((string)xElement.Attribute("UV"), 0, 0);
+                        ChestProperties.Add(curItem);
+                    }
+                    break;
                 }
-                curItem.UV = StringToVector2Short((string)xElement.Attribute("UV"), 0, 0);
-                ChestProperties.Add(curItem);
+            }
+
+            int signId = 0;
+            foreach (var tileElement in xmlSettings.Elements("Tiles").Elements("Tile"))
+            {
+                string tileName = (string)tileElement.Attribute("Name");
+                if (tileName == "Sign" || tileName == "Grave Marker")
+                {
+                    ushort type = (ushort)((int?)tileElement.Attribute("Id") ?? 55);
+                    foreach (var xElement in tileElement.Elements("Frames").Elements("Frame"))
+                    {
+                        var curItem = new SignProperty();
+                        string variety = (string)xElement.Attribute("Variety");
+                        if (variety != null)
+                        {
+                            if (tileName == "Sign")
+                            {
+                                curItem.Name = "Sign " + variety;
+                            }
+                            else
+                            {
+                                curItem.Name = variety;
+                            }
+                        }
+                        curItem.SignId = signId++;
+                        curItem.UV = StringToVector2Short((string)xElement.Attribute("UV"), 0, 0);
+                        curItem.TileType = type;
+                        SignProperties.Add(curItem);
+                    }
+                }
             }
 
             foreach (var xElement in xmlSettings.Elements("Npcs").Elements("Npc"))
@@ -385,6 +423,11 @@ namespace TEditXNA.Terraria
         public static ObservableCollection<ChestProperty> ChestProperties
         {
             get { return _chestProperties; }
+        }
+
+        public static ObservableCollection<SignProperty> SignProperties
+        {
+            get { return _signProperties; }
         }
 
         public static Dictionary<int, ItemProperty> ItemLookupTable

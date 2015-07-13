@@ -46,5 +46,10 @@
             <ComponentModel:SortDescription PropertyName="Name" Direction="Ascending" />
         </CollectionViewSource.SortDescriptions>
     </CollectionViewSource>
+    <CollectionViewSource Source="{Binding Source={x:Static Terraria:World.SignProperties}, Mode=OneTime}" x:Key="SignsCollection">
+        <CollectionViewSource.SortDescriptions>
+            <ComponentModel:SortDescription PropertyName="Name" Direction="Ascending" />
+        </CollectionViewSource.SortDescriptions>
+    </CollectionViewSource>
 
 </ResourceDictionary>

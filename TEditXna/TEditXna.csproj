@@ -190,6 +190,7 @@
     <Compile Include="Terraria\Objects\ItemProperty.cs" />
     <Compile Include="Terraria\Objects\ITile.cs" />
     <Compile Include="Terraria\Objects\NpcName.cs" />
+    <Compile Include="Terraria\Objects\SignProperty.cs" />
     <Compile Include="Terraria\Objects\Sprite.cs" />
     <Compile Include="Terraria\Objects\TileProperty.cs" />
     <Compile Include="Terraria\Objects\WallProperty.cs" />
@@ -535,7 +536,7 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties BuildVersion_UseGlobalSettings="True" BuildVersion_AssemblyInfoFilename="Properties\AssemblyInfo.cs" />
+      <UserProperties BuildVersion_AssemblyInfoFilename="Properties\AssemblyInfo.cs" BuildVersion_UseGlobalSettings="True" />
     </VisualStudio>
   </ProjectExtensions>
   <PropertyGroup>
