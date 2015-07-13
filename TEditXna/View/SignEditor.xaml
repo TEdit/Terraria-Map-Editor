@@ -23,8 +23,8 @@
             <TextBlock Text="Sign Type: " Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" VerticalAlignment="Center" />
             <ComboBox Width="150px"
                       ItemsSource="{Binding Source={StaticResource SignsCollection}}"
-                      SelectedValue="{Binding SelectedSign.UV, Mode=TwoWay}"
-                      SelectedValuePath="UV"
+                      SelectedValue="{Binding SelectedSign.SignId, Mode=TwoWay}"
+                      SelectedValuePath="SignId"
                       DisplayMemberPath="Name"
                       IsSynchronizedWithCurrentItem="True"
                       HorizontalAlignment="Stretch" Margin="1,0" ItemsPanel="{StaticResource Template_ComboPanel}" />

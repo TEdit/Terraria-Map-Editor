@@ -2,6 +2,7 @@ using System;
 using GalaSoft.MvvmLight;
 using TEdit.Geometry.Primitives;
 using TEditXna.ViewModel;
+using TEditXNA.Terraria.Objects;
 
 namespace TEditXNA.Terraria
 {
@@ -21,36 +22,51 @@ namespace TEditXNA.Terraria
         }
 
         private string _name = string.Empty;
-        private Vector2Short _uV = new Vector2Short(-1, -1);
-        private ushort _tileType = 55;
+        private int _signId = -1;
 
-        public Vector2Short UV
+        public int SignId
         {
             get
             {
-                if (_uV.X == -1 && _uV.Y == -1)
+                if (_signId == -1)
                 {
                     WorldViewModel wvm = ViewModelLocator.WorldViewModel;
                     World world = wvm.CurrentWorld;
-                    _uV.X = world.Tiles[X, Y].U;
-                    _uV.Y = world.Tiles[X, Y].V;
-                    _tileType = world.Tiles[X, Y].Type;
+                    var uvX = world.Tiles[X, Y].U;
+                    var uvY = world.Tiles[X, Y].V;
+                    var type = world.Tiles[X, Y].Type;
+                    foreach (SignProperty prop in World.SignProperties)
+                    {
+                        if (prop.TileType == type && prop.UV.X == uvX && prop.UV.Y == uvY)
+                        {
+                            _signId = prop.SignId;
+                            break;
+                        }
+                    }
                 }
-                return _uV;
+                return _signId;
             }
             set
             {
-                WorldViewModel wvm = ViewModelLocator.WorldViewModel;
-                World world = wvm.CurrentWorld;
-                for (int i = 0; i < 2; ++i)
+                foreach (SignProperty prop in World.SignProperties)
                 {
-                    for (int j = 0; j < 2; ++j)
+                    if (prop.SignId == value)
                     {
-                        world.Tiles[X + i, Y + j].U = (short)(value.X + 18 * i);
-                        world.Tiles[X + i, Y + j].V = (short)(value.Y + 18 * j);
+                        WorldViewModel wvm = ViewModelLocator.WorldViewModel;
+                        World world = wvm.CurrentWorld;
+                        for (int i = 0; i < 2; ++i)
+                        {
+                            for (int j = 0; j < 2; ++j)
+                            {
+                                world.Tiles[X + i, Y + j].U = (short)(prop.UV.X + 18 * i);
+                                world.Tiles[X + i, Y + j].V = (short)(prop.UV.Y + 18 * j);
+                                world.Tiles[X + i, Y + j].Type = prop.TileType;
+                            }
+                        }
+                        Set("SignId", ref _signId, value);
+                        break;
                     }
                 }
-                Set("UV", ref _uV, value);
             }
         }
 

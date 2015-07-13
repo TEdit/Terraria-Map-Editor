@@ -21,8 +21,15 @@ namespace TEditXNA.Terraria.Objects
         private int _id;
         private string _name;
         private Vector2Short _size;
+        private int _signId;
         private Vector2Short _uV;
         private ushort _tileType;
+
+        public int SignId
+        {
+            get { return _signId; }
+            set { Set("SignId", ref _signId, value); }
+        }
 
         public Vector2Short UV
         {

@@ -256,6 +256,7 @@ namespace TEditXNA.Terraria
                 {
                     curItem.Name = curItem.Name + " " + variety;
                 }
+                curItem.SignId = (int?)xElement.Attribute("SignId") ?? -1;
                 curItem.UV = StringToVector2Short((string)xElement.Attribute("UV"), 0, 0);
                 curItem.TileType = (ushort)((int?)xElement.Attribute("Type") ?? 55);
                 SignProperties.Add(curItem);
