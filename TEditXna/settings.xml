@@ -8190,6 +8190,23 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Chest UV="1800,0" Name="Granite Chest" />
     <Chest UV="1836,0" Name="Marble Chest" />
   </Chests>
+  <Signs>
+    <Sign UV="0,0" Type="55" Name="Sign" Variety="Ground" />
+    <Sign UV="36,0" Type="55" Name="Sign" Variety="Hanging" />
+    <Sign UV="72,0" Type="55" Name="Sign" Variety="Left Side" />
+    <Sign UV="108,0" Type="55" Name="Sign" Variety="Right Side" />
+    <Sign UV="0,0" Type="85" Name="Tombstone" />
+    <Sign UV="36,0" Type="85" Name="Grave Marker" />
+    <Sign UV="72,0" Type="85" Name="Cross Grave Marker" />
+    <Sign UV="108,0" Type="85" Name="Headstone" />
+    <Sign UV="144,0" Type="85" Name="Gravestone" />
+    <Sign UV="180,0" Type="85" Name="Obelisk" />
+    <Sign UV="216,0" Type="85" Name="Golden Cross Grave Marker" />
+    <Sign UV="252,0" Type="85" Name="Golden Tombstone" />
+    <Sign UV="288,0" Type="85" Name="Golden Grave Marker" />
+    <Sign UV="324,0" Type="85" Name="Golden Gravestone" />
+    <Sign UV="360,0" Type="85" Name="Golden Headstone" />
+  </Signs>
   <Npcs>
     <Npc Id="17"    Name="Merchant"         Frames="25"   />
     <Npc Id="18"    Name="Nurse"            Frames="23"   />

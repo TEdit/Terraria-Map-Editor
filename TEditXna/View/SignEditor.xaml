@@ -5,14 +5,32 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
+    <UserControl.Resources>
+        <ItemsPanelTemplate x:Key="Template_ComboPanel">
+            <VirtualizingStackPanel VirtualizingStackPanel.IsVirtualizing="True"
+                                    VirtualizingStackPanel.VirtualizationMode="Recycling" />
+        </ItemsPanelTemplate>
+    </UserControl.Resources>
+    
     <Grid Background="{DynamicResource WindowBackgroundBrush}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" >
         <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-            <StackPanel Orientation="Horizontal" Grid.Row="0">
-                <TextBlock Text="Sign Text " Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" />
+        <StackPanel Orientation="Horizontal" Grid.Row="0">
+            <TextBlock Text="Sign Type: " Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" VerticalAlignment="Center" />
+            <ComboBox Width="150px"
+                      ItemsSource="{Binding Source={StaticResource SignsCollection}}"
+                      SelectedValue="{Binding SelectedSign.UV, Mode=TwoWay}"
+                      SelectedValuePath="UV"
+                      DisplayMemberPath="Name"
+                      IsSynchronizedWithCurrentItem="True"
+                      HorizontalAlignment="Stretch" Margin="1,0" ItemsPanel="{StaticResource Template_ComboPanel}" />
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Grid.Row="1">
+            <TextBlock Text="Sign Text " Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" />
                 <TextBlock Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" >
                     <TextBlock.Text>
                         <MultiBinding StringFormat="({0}, {1})">
@@ -22,10 +40,10 @@
                     </TextBlock.Text>
                 </TextBlock>
             </StackPanel>
-        <TextBox Grid.Row="1" Text="{Binding SelectedSign.Text, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" MinHeight="150"
+        <TextBox Grid.Row="2" Text="{Binding SelectedSign.Text, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" MinHeight="150"
                HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Visible" AcceptsReturn="True" TextWrapping="Wrap"
 			   Margin="2" FontWeight="Bold" MaxLines="10" PreviewKeyDown="ValidateLines" />
-        <UniformGrid Columns="2" Grid.Row="2">
+        <UniformGrid Columns="2" Grid.Row="3">
                 <Button Margin="2" Content="Cancel"  Command="{Binding SaveSignCommand}" CommandParameter="{StaticResource False}" />
                 <Button Margin="2" Content="Save" Command="{Binding SaveSignCommand}" CommandParameter="{StaticResource True}" />
             </UniformGrid>

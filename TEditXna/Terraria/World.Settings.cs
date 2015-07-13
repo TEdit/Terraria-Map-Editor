@@ -24,6 +24,7 @@ namespace TEditXNA.Terraria
         private static readonly Dictionary<byte, string> _prefix = new Dictionary<byte, string>();
         private static readonly ObservableCollection<ItemProperty> _itemProperties = new ObservableCollection<ItemProperty>();
         private static readonly ObservableCollection<ChestProperty> _chestProperties = new ObservableCollection<ChestProperty>();
+        private static readonly ObservableCollection<SignProperty> _signProperties = new ObservableCollection<SignProperty>();
         private static readonly ObservableCollection<TileProperty> _tileProperties = new ObservableCollection<TileProperty>();
         private static readonly ObservableCollection<TileProperty> _tileBricks = new ObservableCollection<TileProperty>();
         private static readonly ObservableCollection<WallProperty> _wallProperties = new ObservableCollection<WallProperty>();
@@ -245,6 +246,21 @@ namespace TEditXNA.Terraria
                 ChestProperties.Add(curItem);
             }
 
+            foreach (var xElement in xmlSettings.Elements("Signs").Elements("Sign"))
+            {
+                var curItem = new SignProperty();
+                curItem.Id = (int?)xElement.Attribute("Id") ?? -1;
+                curItem.Name = (string)xElement.Attribute("Name");
+                string variety = (string)xElement.Attribute("Variety");
+                if (variety != null)
+                {
+                    curItem.Name = curItem.Name + " " + variety;
+                }
+                curItem.UV = StringToVector2Short((string)xElement.Attribute("UV"), 0, 0);
+                curItem.TileType = (ushort)((int?)xElement.Attribute("Type") ?? 55);
+                SignProperties.Add(curItem);
+            }
+
             foreach (var xElement in xmlSettings.Elements("Npcs").Elements("Npc"))
             {
                 int id = (int?)xElement.Attribute("Id") ?? -1;
@@ -381,6 +397,11 @@ namespace TEditXNA.Terraria
         public static ObservableCollection<ChestProperty> ChestProperties
         {
             get { return _chestProperties; }
+        }
+
+        public static ObservableCollection<SignProperty> SignProperties
+        {
+            get { return _signProperties; }
         }
 
         public static Dictionary<int, ItemProperty> ItemLookupTable

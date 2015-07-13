@@ -1,5 +1,7 @@
 using System;
 using GalaSoft.MvvmLight;
+using TEdit.Geometry.Primitives;
+using TEditXna.ViewModel;
 
 namespace TEditXNA.Terraria
 {
@@ -16,6 +18,46 @@ namespace TEditXNA.Terraria
             _text = text;
             _x = x;
             _y = y;
+        }
+
+        private string _name = string.Empty;
+        private Vector2Short _uV = new Vector2Short(-1, -1);
+        private ushort _tileType = 55;
+
+        public Vector2Short UV
+        {
+            get
+            {
+                if (_uV.X == -1 && _uV.Y == -1)
+                {
+                    WorldViewModel wvm = ViewModelLocator.WorldViewModel;
+                    World world = wvm.CurrentWorld;
+                    _uV.X = world.Tiles[X, Y].U;
+                    _uV.Y = world.Tiles[X, Y].V;
+                    _tileType = world.Tiles[X, Y].Type;
+                }
+                return _uV;
+            }
+            set
+            {
+                WorldViewModel wvm = ViewModelLocator.WorldViewModel;
+                World world = wvm.CurrentWorld;
+                for (int i = 0; i < 2; ++i)
+                {
+                    for (int j = 0; j < 2; ++j)
+                    {
+                        world.Tiles[X + i, Y + j].U = (short)(value.X + 18 * i);
+                        world.Tiles[X + i, Y + j].V = (short)(value.Y + 18 * j);
+                    }
+                }
+                Set("UV", ref _uV, value);
+            }
+        }
+
+        public string Name
+        {
+            get { return _name; }
+            set { Set("Name", ref _name, value); }
         }
 
         private string _text;
