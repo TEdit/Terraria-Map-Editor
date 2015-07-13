@@ -232,18 +232,26 @@ namespace TEditXNA.Terraria
                 _itemLookup.Add(curItem.Id, curItem);
             }
 
-            foreach (var xElement in xmlSettings.Elements("Chests").Elements("Chest"))
+            foreach (var tileElement in xmlSettings.Elements("Tiles").Elements("Tile"))
             {
-                var curItem = new ChestProperty();
-                curItem.Id = (int?)xElement.Attribute("Id") ?? -1;
-                curItem.Name = (string)xElement.Attribute("Name");
-                string variety = (string)xElement.Attribute("Variety");
-                if (variety != null)
+                string tileName = (string)tileElement.Attribute("Name");
+                if (tileName == "Chest")
                 {
-                    curItem.Name = curItem.Name + " " + variety;
+                    foreach (var xElement in tileElement.Elements("Frames").Elements("Frame"))
+                    {
+                        var curItem = new ChestProperty();
+                        curItem.Id = (int?)xElement.Attribute("Id") ?? -1;
+                        curItem.Name = (string)xElement.Attribute("Name");
+                        string variety = (string)xElement.Attribute("Variety");
+                        if (variety != null)
+                        {
+                            curItem.Name = curItem.Name + " " + variety;
+                        }
+                        curItem.UV = StringToVector2Short((string)xElement.Attribute("UV"), 0, 0);
+                        ChestProperties.Add(curItem);
+                    }
+                    break;
                 }
-                curItem.UV = StringToVector2Short((string)xElement.Attribute("UV"), 0, 0);
-                ChestProperties.Add(curItem);
             }
 
             foreach (var xElement in xmlSettings.Elements("Signs").Elements("Sign"))
