@@ -314,7 +314,7 @@ namespace TEditXna.Editor.Clipboard
                                 tile.Type = b.ReadByte();
                                 tileProperty = World.TileProperties[tile.Type];
 
-                                if (tile.Type == 127)
+                                if (tile.Type == (int)TileType.IceByRod)
                                     tile.IsActive = false;
 
                                 if (tileProperty.IsFramed)
@@ -322,7 +322,7 @@ namespace TEditXna.Editor.Clipboard
                                     tile.U = b.ReadInt16();
                                     tile.V = b.ReadInt16();
 
-                                    if (tile.Type == 144) //timer
+                                    if (tile.Type == (int)TileType.Timer)
                                         tile.V = 0;
                                 }
                                 else
@@ -474,7 +474,7 @@ namespace TEditXna.Editor.Clipboard
                                 if (curTile.IsActive)
                                 {
                                     curTile.Type = br.ReadByte();
-                                    if (curTile.Type == 19) // fix for platforms
+                                    if (curTile.Type == (int)TileType.Platform)
                                     {
 
                                         curTile.U = 0;
@@ -490,7 +490,7 @@ namespace TEditXna.Editor.Clipboard
                                         curTile.U = br.ReadInt16();
                                         curTile.V = br.ReadInt16();
 
-                                        if (curTile.Type == 144) //timer
+                                        if (curTile.Type == (int)TileType.Timer)
                                             curTile.V = 0;
                                     }
                                     else
@@ -608,7 +608,7 @@ namespace TEditXna.Editor.Clipboard
                                 if (curTile.IsActive)
                                 {
                                     curTile.Type = reader.ReadByte();
-                                    if (curTile.Type == 19) // fix for platforms
+                                    if (curTile.Type == (int)TileType.Platform)
                                     {
                                         curTile.U = 0;
                                         curTile.V = 0;
@@ -618,7 +618,7 @@ namespace TEditXna.Editor.Clipboard
                                         curTile.U = reader.ReadInt16();
                                         curTile.V = reader.ReadInt16();
 
-                                        if (curTile.Type == 144) //timer
+                                        if (curTile.Type == (int)TileType.Timer)
                                             curTile.V = 0;
                                     }
                                     else
@@ -742,7 +742,7 @@ namespace TEditXna.Editor.Clipboard
                                 {
                                     tile.Type = reader.ReadByte();
 
-                                    if (tile.Type == 19)
+                                    if (tile.Type == (int)TileType.Platform)
                                     {
                                         tile.U = 0;
                                         tile.V = 0;

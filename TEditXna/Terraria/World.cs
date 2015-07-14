@@ -188,7 +188,7 @@ namespace TEditXNA.Terraria
                 {
                     Tile curTile = Tiles[x, y];
 
-                    if (curTile.Type == 127)
+                    if (curTile.Type == (int)TileType.IceByRod)
                         curTile.IsActive = false;
 
                     // TODO: Let Validate handle these
@@ -325,7 +325,7 @@ namespace TEditXNA.Terraria
                         }
                         if (Tiles[x1, y1].IsActive && Tiles[x1, y1].Type == type)
                         {
-                            Tiles[x1, y1].Type = 34;
+                            Tiles[x1, y1].Type = (int)TileType.Chandelier;
                             Tiles[x1, y1].V = (short) (Tiles[x1, y1].V + newPosition*54);
                         }
                     }
@@ -354,7 +354,7 @@ namespace TEditXNA.Terraria
             {
                 for (int j = 5; (double) j < GroundLevel; ++j)
                 {
-                    if (Tiles[i, j].IsActive && Tiles[i, j].Type == 27)
+                    if (Tiles[i, j].IsActive && Tiles[i, j].Type == (int)TileType.Sunflower)
                     {
                         int u = Tiles[i, j].U/18;
                         int v = j + Tiles[i, j].V/18*-1;

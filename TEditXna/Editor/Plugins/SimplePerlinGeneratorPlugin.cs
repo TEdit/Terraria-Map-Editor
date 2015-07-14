@@ -1,6 +1,7 @@
 using System;
 using Microsoft.Xna.Framework;
 using TEditXna.ViewModel;
+using TEditXNA.Terraria;
 
 namespace TEditXna.Editor.Plugins
 {
@@ -47,7 +48,7 @@ namespace TEditXna.Editor.Plugins
                         var curTile = _wvm.CurrentWorld.Tiles[x, y];
 
                         // Only replace if the tile is dirt or stone and if the wall is empty, stone or dirt.
-                        if (curTile.IsActive && (curTile.Type == 0 || curTile.Type == 1) && (curTile.Wall == 0 || curTile.Wall == 1 || curTile.Wall == 2))
+                        if (curTile.IsActive && (curTile.Type == (int)TileType.DirtBlock || curTile.Type == (int)TileType.StoneBlock) && (curTile.Wall == 0 || curTile.Wall == 1 || curTile.Wall == 2))
                         {
                             _wvm.UndoManager.SaveTile(x, y);
                             _wvm.CurrentWorld.Tiles[x, y].IsActive = true;

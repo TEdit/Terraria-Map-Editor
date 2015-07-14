@@ -156,7 +156,7 @@ namespace TEditXNA.Terraria
                 // activate bit[1]
                 header1 = (byte)(header1 | 2);
 
-                if (tile.Type == 127 && tile.IsActive)
+                if (tile.Type == (int)TileType.IceByRod && tile.IsActive)
                 {
                     tile.IsActive = false;
                 }
@@ -769,7 +769,7 @@ namespace TEditXNA.Terraria
                     tile.V = r.ReadInt16();
 
                     // reset timers
-                    if (tile.Type == 144)
+                    if (tile.Type == (int)TileType.Timer)
                     {
                         tile.V = 0;
                     }
