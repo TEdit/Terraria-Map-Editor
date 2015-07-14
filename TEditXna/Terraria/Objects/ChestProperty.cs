@@ -16,13 +16,27 @@ namespace TEditXNA.Terraria.Objects
         private int _id;
         private string _name;
         private Vector2Short _size;
-        private Vector2Short _uV; 
+        private int _chestId;
+        private Vector2Short _uV;
+        private ushort _tileType;
+
+        public int ChestId
+        {
+            get { return _chestId; }
+            set { Set("ChestId", ref _chestId, value); }
+        }
 
         public Vector2Short UV
         {
             get { return _uV; }
             set { Set("UV", ref _uV, value); }
-        } 
+        }
+
+        public ushort TileType
+        {
+            get { return _tileType; }
+            set { Set("TileType", ref _tileType, value); }
+        }
 
         public Vector2Short Size
         {

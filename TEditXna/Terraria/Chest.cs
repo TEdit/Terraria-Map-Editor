@@ -43,34 +43,54 @@ namespace TEditXNA.Terraria
         private int _y;
 
         private string _name = string.Empty;
-        private Vector2Short _uV = new Vector2Short(-1, -1);
+        private int _chestId = -1;
 
-        public Vector2Short UV
+        public int ChestId
         {
-            get 
-            {
-                if (_uV.X == -1 && _uV.Y == -1)
-                {
-                    WorldViewModel wvm = ViewModelLocator.WorldViewModel;
-                    World world = wvm.CurrentWorld;
-                    _uV.X = world.Tiles[X, Y].U;
-                    _uV.Y = world.Tiles[X, Y].V;
-                }
-                return _uV; 
-            }
-            set
+            get
             {
                 WorldViewModel wvm = ViewModelLocator.WorldViewModel;
                 World world = wvm.CurrentWorld;
-                for (int i = 0; i < 2; ++i)
+                var uvX = world.Tiles[X, Y].U;
+                var uvY = world.Tiles[X, Y].V;
+                var type = world.Tiles[X, Y].Type;
+                foreach (ChestProperty prop in World.ChestProperties)
                 {
-                    for (int j = 0; j < 2; ++j)
+                    if (prop.TileType == type && prop.UV.X == uvX && prop.UV.Y == uvY)
                     {
-                        world.Tiles[X + i, Y + j].U = (short)(value.X + 18 * i);
-                        world.Tiles[X + i, Y + j].V = (short)(value.Y + 18 * j);
+                        _chestId = prop.ChestId;
+                        break;
                     }
                 }
-                Set("UV", ref _uV, value); 
+                return _chestId;
+            }
+            set
+            {
+                foreach (ChestProperty prop in World.ChestProperties)
+                {
+                    if (prop.ChestId == value)
+                    {
+                        WorldViewModel wvm = ViewModelLocator.WorldViewModel;
+                        World world = wvm.CurrentWorld;
+                        int rowNum = 2, colNum = 2;
+                        // Chests are 2 * 2, dressers are 2 * 3.
+                        if (prop.TileType == 88)
+                        {
+                            colNum = 3;
+                        }
+                        for (int i = 0; i < colNum; ++i)
+                        {
+                            for (int j = 0; j < rowNum; ++j)
+                            {
+                                world.Tiles[X + i, Y + j].U = (short)(prop.UV.X + 18 * i);
+                                world.Tiles[X + i, Y + j].V = (short)(prop.UV.Y + 18 * j);
+                                world.Tiles[X + i, Y + j].Type = prop.TileType;
+                            }
+                        }
+                        Set("ChestId", ref _chestId, value);
+                        break;
+                    }
+                }
             }
         } 
 
