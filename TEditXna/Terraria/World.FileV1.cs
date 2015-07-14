@@ -543,11 +543,11 @@ namespace TEditXNA.Terraria
 
             foreach (Sign sign in ReadSignDataFromStreamV1(reader))
             {
-                if (w.Tiles[sign.X, sign.Y].IsActive &&
-                    (w.Tiles[sign.X, sign.Y].Type == 55 || w.Tiles[sign.X, sign.Y].Type == 85))
+                if (w.Tiles[sign.X, sign.Y].IsActive && Tile.IsSign(w.Tiles[sign.X, sign.Y].Type))
+                {
                     w.Signs.Add(sign);
+                }
             }
-
 
             w.NPCs.Clear();
             OnProgressChanged(null, new ProgressChangedEventArgs(100, "Loading NPC Data..."));

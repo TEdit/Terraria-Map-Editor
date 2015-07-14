@@ -28,6 +28,14 @@ namespace TEditXNA.Terraria
         Honey = 0x03
     }
 
+    public enum TileType : int
+    {
+        Chest = 21,
+        Sign = 55,
+        GraveMarker = 85,
+        Dresser = 88
+    }
+
 
     [Serializable]
     public class Tile
@@ -193,6 +201,15 @@ namespace TEditXNA.Terraria
             return !Equals(left, right);
         }
 
+        public static bool IsChest(int tileType)
+        {
+            return tileType == (int)TileType.Chest || tileType == (int)TileType.Dresser;
+        }
+
+        public static bool IsSign(int tileType)
+        {
+            return tileType == (int)TileType.Sign || tileType == (int)TileType.GraveMarker;
+        }
 
     }
 }

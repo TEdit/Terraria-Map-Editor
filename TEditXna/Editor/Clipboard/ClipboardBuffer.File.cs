@@ -265,8 +265,7 @@ namespace TEditXna.Editor.Clipboard
             buffer.Signs.Clear();
             foreach (Sign sign in World.ReadSignDataFromStreamV1(b))
             {
-                if (buffer.Tiles[sign.X, sign.Y].IsActive && (int) buffer.Tiles[sign.X, sign.Y].Type == 55 &&
-                    (int) buffer.Tiles[sign.X, sign.Y].Type == 85)
+                if (buffer.Tiles[sign.X, sign.Y].IsActive && Tile.IsSign(buffer.Tiles[sign.X, sign.Y].Type))
                     buffer.Signs.Add(sign);
             }
 
@@ -423,8 +422,10 @@ namespace TEditXna.Editor.Clipboard
                             sign.X = b.ReadInt32();
                             sign.Y = b.ReadInt32();
 
-                            if (buffer.Tiles[sign.X, sign.Y].IsActive && (int)buffer.Tiles[sign.X, sign.Y].Type == 55 && (int)buffer.Tiles[sign.X, sign.Y].Type == 85)
+                            if (buffer.Tiles[sign.X, sign.Y].IsActive && Tile.IsSign(buffer.Tiles[sign.X, sign.Y].Type))
+                            {
                                 buffer.Signs.Add(sign);
+                            }
                         }
                     }
 
@@ -687,7 +688,7 @@ namespace TEditXna.Editor.Clipboard
                             string signText = reader.ReadString();
                             int x = reader.ReadInt32();
                             int y = reader.ReadInt32();
-                            if (buffer.Tiles[x, y].IsActive && (buffer.Tiles[x, y].Type == 55 || buffer.Tiles[x, y].Type == 85))
+                            if (buffer.Tiles[x, y].IsActive && Tile.IsSign(buffer.Tiles[x, y].Type))
                             // validate tile location
                             {
                                 var sign = new Sign(x, y, signText);
@@ -822,7 +823,7 @@ namespace TEditXna.Editor.Clipboard
                             string signText = reader.ReadString();
                             int x = reader.ReadInt32();
                             int y = reader.ReadInt32();
-                            if (buffer.Tiles[x, y].IsActive && (buffer.Tiles[x, y].Type == 55 || buffer.Tiles[x, y].Type == 85))
+                            if (buffer.Tiles[x, y].IsActive && Tile.IsSign(buffer.Tiles[x, y].Type))
                             // validate tile location
                             {
                                 var sign = new Sign(x, y, signText);

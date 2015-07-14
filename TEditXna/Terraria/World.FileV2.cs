@@ -640,7 +640,7 @@ namespace TEditXNA.Terraria
             foreach (Sign sign in LoadSignData(b))
             {
                 Tile tile = w.Tiles[sign.X, sign.Y];
-                if (tile.IsActive && (tile.Type == 55 || tile.Type == 85))
+                if (tile.IsActive && Tile.IsSign(tile.Type))
                 {
                     w.Signs.Add(sign);
                 }
