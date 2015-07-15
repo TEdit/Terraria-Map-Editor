@@ -484,7 +484,7 @@ namespace TEditXna.View
 
                                     bool isTree = false, isMushroom = false;
                                     bool isLeft = false, isBase = false, isRight = false;
-                                    if (curtile.Type == 5 && curtile.U >= 22 && curtile.V >= 198)
+                                    if (curtile.Type == (int)TileType.Tree && curtile.U >= 22 && curtile.V >= 198)
                                     {
                                         isTree = true;
                                         switch (curtile.U)
@@ -534,7 +534,7 @@ namespace TEditXna.View
                                             tileTex = (Texture2D)_textureDictionary.GetTreeBranches(treeType);
                                         }
                                     }
-                                    if (curtile.Type == 72 && curtile.U >= 36)
+                                    if (curtile.Type == (int)TileType.MushroomTree && curtile.U >= 36)
                                     {
                                         isMushroom = true;
                                         tileTex = (Texture2D)_textureDictionary.GetShroomTop(0);
@@ -952,12 +952,12 @@ namespace TEditXna.View
                                             {
                                                 int baseX = (isLeft) ? 1 : (isRight) ? -1 : 0;
                                                 Tile checkTile = (y + i) < _wvm.CurrentWorld.TilesHigh ? _wvm.CurrentWorld.Tiles[x + baseX, y + i] : null;
-                                                if (checkTile != null && checkTile.IsActive && checkTile.Type == 112) //Corruption
+                                                if (checkTile != null && checkTile.IsActive && checkTile.Type == (int)TileType.EbonsandBlock) //Corruption
                                                 {
                                                     uv.X += 16;
                                                     break;
                                                 }
-                                                else if (checkTile != null && checkTile.IsActive && checkTile.Type == 116) //Hallow
+                                                else if (checkTile != null && checkTile.IsActive && checkTile.Type == (int)TileType.PearlsandBlock) //Hallow
                                                 {
                                                     uv.X += 8;
                                                     break;

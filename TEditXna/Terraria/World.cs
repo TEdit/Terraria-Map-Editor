@@ -188,12 +188,12 @@ namespace TEditXNA.Terraria
                 {
                     Tile curTile = Tiles[x, y];
 
-                    if (curTile.Type == 127)
+                    if (curTile.Type == (int)TileType.IceByRod)
                         curTile.IsActive = false;
 
                     // TODO: Let Validate handle these
                     //validate chest entry exists
-                    if (curTile.Type == 21 || curTile.Type == 88)
+                    if (Tile.IsChest(curTile.Type))
                     {
                         if (GetChestAtTile(x, y) == null)
                         {
@@ -201,7 +201,7 @@ namespace TEditXNA.Terraria
                         }
                     }
                         //validate sign entry exists
-                    else if (curTile.Type == 55 || curTile.Type == 85)
+                    else if (Tile.IsSign(curTile.Type))
                     {
                         if (GetSignAtTile(x, y) == null)
                         {
@@ -218,7 +218,7 @@ namespace TEditXNA.Terraria
                 {
                     for (int y = chest.Y; y < chest.Y + 1; y++)
                     {
-                        if (!Tiles[x, y].IsActive || (Tiles[x, y].Type != 21 && Tiles[x, y].Type != 88))
+                        if (!Tiles[x, y].IsActive || !Tile.IsChest(Tiles[x, y].Type))
                         {
                             Chests.Remove(chest);
                             removed = true;
@@ -242,7 +242,7 @@ namespace TEditXNA.Terraria
                 {
                     for (int y = sign.Y; y < sign.Y + 1; y++)
                     {
-                        if (!Tiles[x, y].IsActive || (Tiles[x, y].Type != 55 && Tiles[x, y].Type != 85))
+                        if (!Tiles[x, y].IsActive || !Tile.IsSign(Tiles[x, y].Type))
                         {
                             Signs.Remove(sign);
                             removed = true;
@@ -325,7 +325,7 @@ namespace TEditXNA.Terraria
                         }
                         if (Tiles[x1, y1].IsActive && Tiles[x1, y1].Type == type)
                         {
-                            Tiles[x1, y1].Type = 34;
+                            Tiles[x1, y1].Type = (int)TileType.Chandelier;
                             Tiles[x1, y1].V = (short) (Tiles[x1, y1].V + newPosition*54);
                         }
                     }
@@ -354,7 +354,7 @@ namespace TEditXNA.Terraria
             {
                 for (int j = 5; (double) j < GroundLevel; ++j)
                 {
-                    if (Tiles[i, j].IsActive && Tiles[i, j].Type == 27)
+                    if (Tiles[i, j].IsActive && Tiles[i, j].Type == (int)TileType.Sunflower)
                     {
                         int u = Tiles[i, j].U/18;
                         int v = j + Tiles[i, j].V/18*-1;

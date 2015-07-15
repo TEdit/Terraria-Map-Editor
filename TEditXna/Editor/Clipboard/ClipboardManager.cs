@@ -110,7 +110,7 @@ namespace TEditXna.Editor.Clipboard
                 {
                     Tile curTile = (Tile)world.Tiles[x + area.X, y + area.Y].Clone();
 
-                    if (curTile.Type == 21) // 21 Chest , 55 sign
+                    if (Tile.IsChest(curTile.Type))
                     {
                         if (buffer.GetChestAtTile(x, y) == null)
                         {
@@ -124,7 +124,7 @@ namespace TEditXna.Editor.Clipboard
                             }
                         }
                     }
-                    if (curTile.Type == 55 || curTile.Type == 85) // 21 Chest , 55 sign
+                    if (Tile.IsSign(curTile.Type))
                     {
                         if (buffer.GetSignAtTile(x, y) == null)
                         {
@@ -215,7 +215,7 @@ namespace TEditXna.Editor.Clipboard
                         if (PasteTiles)
                         {
                             // Remove overwritten chests data
-                            if (world.Tiles[x + anchor.X, y + anchor.Y].Type == 21)
+                            if (Tile.IsChest(world.Tiles[x + anchor.X, y + anchor.Y].Type))
                             {
                                 var data = world.GetChestAtTile(x + anchor.X, y + anchor.Y);
                                 if (data != null)
@@ -226,7 +226,7 @@ namespace TEditXna.Editor.Clipboard
                             }
 
                             // Remove overwritten sign data
-                            if (world.Tiles[x + anchor.X, y + anchor.Y].Type == 55 || world.Tiles[x + anchor.X, y + anchor.Y].Type == 85)
+                            if (Tile.IsSign(world.Tiles[x + anchor.X, y + anchor.Y].Type))
                             {
                                 var data = world.GetSignAtTile(x + anchor.X, y + anchor.Y);
                                 if (data != null)
@@ -238,7 +238,7 @@ namespace TEditXna.Editor.Clipboard
 
 
                             // Add new chest data
-                            if (curTile.Type == 21)
+                            if (Tile.IsChest(curTile.Type))
                             {
                                 if (world.GetChestAtTile(x + anchor.X, y + anchor.Y) == null)
                                 {
@@ -260,7 +260,7 @@ namespace TEditXna.Editor.Clipboard
                             }
 
                             // Add new sign data
-                            if (curTile.Type == 55 || curTile.Type == 85)
+                            if (Tile.IsSign(curTile.Type))
                             {
                                 if (world.GetSignAtTile(x + anchor.X, y + anchor.Y) == null)
                                 {

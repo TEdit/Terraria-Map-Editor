@@ -156,7 +156,7 @@ namespace TEditXNA.Terraria
                 // activate bit[1]
                 header1 = (byte)(header1 | 2);
 
-                if (tile.Type == 127 && tile.IsActive)
+                if (tile.Type == (int)TileType.IceByRod && tile.IsActive)
                 {
                     tile.IsActive = false;
                 }
@@ -640,7 +640,7 @@ namespace TEditXNA.Terraria
             foreach (Sign sign in LoadSignData(b))
             {
                 Tile tile = w.Tiles[sign.X, sign.Y];
-                if (tile.IsActive && (tile.Type == 55 || tile.Type == 85))
+                if (tile.IsActive && Tile.IsSign(tile.Type))
                 {
                     w.Signs.Add(sign);
                 }
@@ -769,7 +769,7 @@ namespace TEditXNA.Terraria
                     tile.V = r.ReadInt16();
 
                     // reset timers
-                    if (tile.Type == 144)
+                    if (tile.Type == (int)TileType.Timer)
                     {
                         tile.V = 0;
                     }

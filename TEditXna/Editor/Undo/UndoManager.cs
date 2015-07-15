@@ -172,7 +172,7 @@ namespace TEditXna.Editor.Undo
 
             ValidateAndRemoveChests();
             var curTile = (Tile)_wvm.CurrentWorld.Tiles[x, y].Clone();
-            if (curTile.Type == 21 && !Buffer.Chests.Any(c => c.X == x && c.Y == y))
+            if (Tile.IsChest(curTile.Type) && !Buffer.Chests.Any(c => c.X == x && c.Y == y))
             {
 
                 var curchest = _wvm.CurrentWorld.GetChestAtTile(x, y);
@@ -182,7 +182,7 @@ namespace TEditXna.Editor.Undo
                     Buffer.Chests.Add(chest);
                 }
             }
-            else if ((curTile.Type == 55 || curTile.Type == 85) && !Buffer.Signs.Any(c => c.X == x && c.Y == y))
+            else if (Tile.IsSign(curTile.Type) && !Buffer.Signs.Any(c => c.X == x && c.Y == y))
             {
                 var cursign = _wvm.CurrentWorld.GetSignAtTile(x, y);
                 if (cursign != null)
@@ -204,9 +204,9 @@ namespace TEditXna.Editor.Undo
             var existingLastTile = _wvm.CurrentWorld.Tiles[lastTile.Location.X, lastTile.Location.Y];
 
             // remove deleted chests or signs if required
-            if (lastTile.Tile.Type == 21)
+            if (Tile.IsChest(lastTile.Tile.Type))
             {
-                if (existingLastTile.Type != 21 || !existingLastTile.IsActive)
+                if (!Tile.IsChest(existingLastTile.Type) || !existingLastTile.IsActive)
                 {
                     var curchest = _wvm.CurrentWorld.GetChestAtTile(lastTile.Location.X, lastTile.Location.Y);
                     if (curchest != null)
@@ -215,9 +215,9 @@ namespace TEditXna.Editor.Undo
                     }
                 }
             }
-            else if (lastTile.Tile.Type == 55 || lastTile.Tile.Type == 85)
+            else if (Tile.IsSign(lastTile.Tile.Type))
             {
-                if ((existingLastTile.Type != 55 && existingLastTile.Type != 85) || !existingLastTile.IsActive)
+                if (!Tile.IsSign(existingLastTile.Type) || !existingLastTile.IsActive)
                 {
                     var cursign = _wvm.CurrentWorld.GetSignAtTile(lastTile.Location.X, lastTile.Location.Y);
                     if (cursign != null)
@@ -228,7 +228,7 @@ namespace TEditXna.Editor.Undo
             }
 
             // Add new chests and signs if required
-            if (existingLastTile.Type == 21)
+            if (Tile.IsChest(existingLastTile.Type))
             {
                 var curchest = _wvm.CurrentWorld.GetChestAtTile(lastTile.Location.X, lastTile.Location.Y);
                 if (curchest == null)
@@ -237,7 +237,7 @@ namespace TEditXna.Editor.Undo
                 }
 
             }
-            else if (existingLastTile.Type == 55 || existingLastTile.Type == 85)
+            else if (Tile.IsSign(existingLastTile.Type))
             {
                 var cursign = _wvm.CurrentWorld.GetSignAtTile(lastTile.Location.X, lastTile.Location.Y);
                 if (cursign == null)
@@ -265,7 +265,7 @@ namespace TEditXna.Editor.Undo
                     var curTile = (Tile)_wvm.CurrentWorld.Tiles[undoTile.Location.X, undoTile.Location.Y];
                     redo.Add(undoTile.Location, curTile);
 
-                    if (curTile.Type == 21)
+                    if (Tile.IsChest(curTile.Type))
                     {
                         var curchest = _wvm.CurrentWorld.GetChestAtTile(undoTile.Location.X, undoTile.Location.Y);
                         if (curchest != null)
@@ -275,7 +275,7 @@ namespace TEditXna.Editor.Undo
                             redo.Chests.Add(chest);
                         }
                     }
-                    if (curTile.Type == 55 || curTile.Type == 85)
+                    if (Tile.IsSign(curTile.Type))
                     {
                         var cursign = _wvm.CurrentWorld.GetSignAtTile(undoTile.Location.X, undoTile.Location.Y);
                         if (cursign != null)
@@ -320,13 +320,13 @@ namespace TEditXna.Editor.Undo
                 foreach (var undoTile in UndoBuffer.ReadUndoTilesFromStream(br))
                 {
                     var curTile = (Tile)_wvm.CurrentWorld.Tiles[undoTile.Location.X, undoTile.Location.Y];
-                    if (curTile.Type == 21)
+                    if (Tile.IsChest(curTile.Type))
                     {
                         var curchest = _wvm.CurrentWorld.GetChestAtTile(undoTile.Location.X, undoTile.Location.Y);
                         if (curchest != null)
                             _wvm.CurrentWorld.Chests.Remove(curchest);
                     }
-                    if (curTile.Type == 55 || curTile.Type == 85)
+                    if (Tile.IsSign(curTile.Type))
                     {
                         var cursign = _wvm.CurrentWorld.GetSignAtTile(undoTile.Location.X, undoTile.Location.Y);
                         if (cursign != null)

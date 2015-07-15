@@ -47,7 +47,7 @@ namespace TEditXna.Editor.Plugins
                 for (int y = 0; y < _wvm.CurrentWorld.TilesHigh; y++)
                 {
                     short unlockedU = 0;
-                    if (_wvm.CurrentWorld.Tiles[x, y].Type == 21 && isLocked(_wvm.CurrentWorld.Tiles[x, y].U, out unlockedU))
+                    if (_wvm.CurrentWorld.Tiles[x, y].Type == (int)TileType.Chest && isLocked(_wvm.CurrentWorld.Tiles[x, y].U, out unlockedU))
                     {
                         _wvm.UndoManager.SaveTile(x, y);
                         _wvm.CurrentWorld.Tiles[x, y].U = unlockedU;

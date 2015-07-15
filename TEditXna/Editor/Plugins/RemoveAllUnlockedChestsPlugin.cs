@@ -47,7 +47,7 @@ namespace TEditXna.Editor.Plugins
                     for (int y = location.Y; y < location.Y + 2; y++)
                     {
 
-                        if (_wvm.CurrentWorld.ValidTileLocation(x, y) && _wvm.CurrentWorld.Tiles[x, y].Type == 21 && !isLocked(_wvm.CurrentWorld.Tiles[x, y].U))
+                        if (_wvm.CurrentWorld.ValidTileLocation(x, y) && _wvm.CurrentWorld.Tiles[x, y].Type == (int)TileType.Chest && !isLocked(_wvm.CurrentWorld.Tiles[x, y].U))
                         {
                             _wvm.UndoManager.SaveTile(x, y);
                             _wvm.CurrentWorld.Tiles[x, y].Type = 0;

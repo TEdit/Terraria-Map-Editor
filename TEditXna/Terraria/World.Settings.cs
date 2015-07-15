@@ -236,11 +236,13 @@ namespace TEditXNA.Terraria
                     _tallynames.Add(tally, curItem.Name);
             }
 
+            int chestId = 0;
             foreach (var tileElement in xmlSettings.Elements("Tiles").Elements("Tile"))
             {
                 string tileName = (string)tileElement.Attribute("Name");
-                if (tileName == "Chest")
+                if (tileName == "Chest" || tileName == "Dresser")
                 {
+                    ushort type = (ushort)((int?)tileElement.Attribute("Id") ?? 21);
                     foreach (var xElement in tileElement.Elements("Frames").Elements("Frame"))
                     {
                         var curItem = new ChestProperty();
@@ -248,12 +250,20 @@ namespace TEditXNA.Terraria
                         string variety = (string)xElement.Attribute("Variety");
                         if (variety != null)
                         {
-                            curItem.Name = curItem.Name + " " + variety;
+                            if (tileName == "Dresser")
+                            {
+                                curItem.Name = variety + " " + "Dresser";
+                            }
+                            else
+                            {
+                                curItem.Name = curItem.Name + " " + variety;
+                            }
                         }
+                        curItem.ChestId = chestId++;
                         curItem.UV = StringToVector2Short((string)xElement.Attribute("UV"), 0, 0);
+                        curItem.TileType = type;
                         ChestProperties.Add(curItem);
                     }
-                    break;
                 }
             }
 

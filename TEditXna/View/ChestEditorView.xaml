@@ -67,8 +67,8 @@
             <TextBlock Text="Chest Type: " Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" VerticalAlignment="Center" />
             <ComboBox Width="150px"
                       ItemsSource="{Binding Source={StaticResource ChestsCollection}}"
-                      SelectedValue="{Binding SelectedChest.UV, Mode=TwoWay}"
-                      SelectedValuePath="UV"
+                      SelectedValue="{Binding SelectedChest.ChestId, Mode=TwoWay}"
+                      SelectedValuePath="ChestId"
                       DisplayMemberPath="Name"
                       IsSynchronizedWithCurrentItem="True"
                       HorizontalAlignment="Stretch" Margin="1,0" ItemsPanel="{StaticResource Template_ComboPanel}" />

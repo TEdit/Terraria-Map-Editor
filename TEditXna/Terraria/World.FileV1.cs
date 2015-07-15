@@ -230,7 +230,7 @@ namespace TEditXNA.Terraria
 
         public static void WriteTileDataToStreamV1(Tile curTile, BinaryWriter bw)
         {
-            if (curTile.Type == 127)
+            if (curTile.Type == (int)TileType.IceByRod)
                 curTile.IsActive = false;
 
             bw.Write(curTile.IsActive);
@@ -543,11 +543,11 @@ namespace TEditXNA.Terraria
 
             foreach (Sign sign in ReadSignDataFromStreamV1(reader))
             {
-                if (w.Tiles[sign.X, sign.Y].IsActive &&
-                    (w.Tiles[sign.X, sign.Y].Type == 55 || w.Tiles[sign.X, sign.Y].Type == 85))
+                if (w.Tiles[sign.X, sign.Y].IsActive && Tile.IsSign(w.Tiles[sign.X, sign.Y].Type))
+                {
                     w.Signs.Add(sign);
+                }
             }
-
 
             w.NPCs.Clear();
             OnProgressChanged(null, new ProgressChangedEventArgs(100, "Loading NPC Data..."));
@@ -718,7 +718,7 @@ namespace TEditXNA.Terraria
                 tileProperty = TileProperties[tile.Type];
 
 
-                if (tile.Type == 127)
+                if (tile.Type == (int)TileType.IceByRod)
                     tile.IsActive = false;
 
                 if (version < 72 &&
@@ -732,13 +732,13 @@ namespace TEditXNA.Terraria
                     tile.U = -1;
                     tile.V = -1;
                 }
-                else if (version < 28 && tile.Type == 4)
+                else if (version < 28 && tile.Type == (int)(TileType.Torch))
                 {
                     // torches didn't have extra in older versions.
                     tile.U = 0;
                     tile.V = 0;
                 }
-                else if (version < 40 && tile.Type == 19)
+                else if (version < 40 && tile.Type == (int)TileType.Platform)
                 {
                     tile.U = 0;
                     tile.V = 0;
@@ -748,7 +748,7 @@ namespace TEditXNA.Terraria
                     tile.U = b.ReadInt16();
                     tile.V = b.ReadInt16();
 
-                    if (tile.Type == 144) //timer
+                    if (tile.Type == (int)TileType.Timer)
                         tile.V = 0;
                 }
 
