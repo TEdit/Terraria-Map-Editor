@@ -2410,7 +2410,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="1242,0" Name="Monster Banner" Variety="Ice Elemental Banner" />
         <Frame UV="1260,0" Name="Monster Banner" Variety="Icy Merman Banner" />
         <Frame UV="1278,0" Name="Monster Banner" Variety="Fire Imp Banner" />
-        <Frame UV="1296,0" Name="Monster Banner" Variety="Jellyfish Banner" />
+        <Frame UV="1296,0" Name="Monster Banner" Variety="Blue Jellyfish Banner" />
         <Frame UV="1314,0" Name="Monster Banner" Variety="Jungle Creeper Banner" />
         <Frame UV="1332,0" Name="Monster Banner" Variety="Lihzahrd Banner" />
         <Frame UV="1350,0" Name="Monster Banner" Variety="Man Eater Banner" />
@@ -4103,8 +4103,8 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Tile Color="#FF1F1F1F" Id="351" Blends="true" Name="Chimney Smoke" Solid="true" Framed="false" />
     <Tile Color="#FFEE615E" Id="352" Blends="true" Name="Crimtane Thorns" Solid="true" Framed="false" />
     <Tile Color="#FF1CD85E" Id="353" Blends="true" Name="Vine Rope" Solid="true" Framed="false" />
-    <Tile Color="#FF8D6B59" Id="354" Size="3,2" Name="Bewitching Table" Framed="true" />
-    <Tile Color="#FF8D6B59" Id="355" Size="3,2" Name="Alchemy Table" Framed="true" />
+    <Tile Color="#FF8D6B59" Id="354" Size="3,3" Name="Bewitching Table" Framed="true" />
+    <Tile Color="#FF8D6B59" Id="355" Size="3,3" Name="Alchemy Table" Framed="true" />
     <Tile Color="#FFE9CB18" Id="356" Size="2,3" Name="Enchanted Sundial" Framed="true" />
     <Tile Color="#FFA8B2CC" Id="357" Blends="true" Name="Marble Block" Solid="true" Framed="false" />
     <Tile Color="#FF7AD9E8" Id="358" Size="6,3" Name="Gold Bird Cage" Framed="true" />
@@ -6200,7 +6200,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="1662" Name="Ice Elemental Banner" Tally="48"/>
     <Item Id="1663" Name="Icy Merman Banner" Tally="49"/>
     <Item Id="1664" Name="Fire Imp Banner" Tally="50"/>
-    <Item Id="1665" Name="Jellyfish Banner" Tally="51"/>
+    <Item Id="1665" Name="Blue Jellyfish Banner" Tally="51"/>
     <Item Id="1666" Name="Jungle Creeper Banner" Tally="52"/>
     <Item Id="1667" Name="Lihzahrd Banner" Tally="53"/>
     <Item Id="1668" Name="Man Eater Banner" Tally="54"/>
