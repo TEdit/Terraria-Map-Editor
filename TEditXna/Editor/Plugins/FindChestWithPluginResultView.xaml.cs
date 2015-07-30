@@ -24,6 +24,7 @@ namespace TEditXna.Editor.Plugins
             InitializeComponent();
             foreach (Vector2 location in locations)
             {
+                // Was to lazy to do it with Bindings (sorry)
                 LocationList.Items.Add(String.Format("{0} - {1}", location.X, location.Y));
             }
         }

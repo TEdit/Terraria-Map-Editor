@@ -13,7 +13,7 @@ namespace TEditXna.Editor.Plugins
         public FindChestWithPlugin(WorldViewModel worldViewModel)
             : base(worldViewModel)
         {
-            Name = "Find Chest With";
+            Name = "Find Chests With";
         }
 
         public override void Execute()
@@ -25,19 +25,25 @@ namespace TEditXna.Editor.Plugins
             {
                 return;
             }
-            string text = view.ItemToFind;
+
+            string itemName = view.ItemToFind.ToLower();
             List<Vector2> locations = new List<Vector2>();
 
+            // Search the whole World
             for (int x = 0; x < _wvm.CurrentWorld.TilesWide; x++)
             {
                 for (int y = 0; y < _wvm.CurrentWorld.TilesHigh; y++)
                 {
+                    // Check if a tile is a chest
                     if (_wvm.CurrentWorld.Tiles[x, y].Type == (int)TileType.Chest)
                     {
+                        // Convert the tile to its respective chest
                         Chest chest = _wvm.CurrentWorld.GetChestAtTile(x, y);
+                        // Only use the chest once (chest = 2x2 so it would add 4 entries)
                         if (x == chest.X && y == chest.Y)
                         {
-                            if (chest.Items.Count(c => c.GetName().ToLower().Contains(text)) > 0)
+                            // check if the item exists in the chest
+                            if (chest.Items.Count(c => c.GetName().ToLower().Contains(itemName)) > 0)
                             {
                                 locations.Add(new Vector2(x, y));
                             }
@@ -46,6 +52,7 @@ namespace TEditXna.Editor.Plugins
                 }
             }
 
+            // show the result view with the list of locations
             FindChestWithPluginResultView resultView = new FindChestWithPluginResultView(locations);
             resultView.Show();
         }
