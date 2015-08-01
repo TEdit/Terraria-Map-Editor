@@ -76,7 +76,7 @@ namespace TEditXNA.Terraria
             {
                 if (count > 0)
                 {
-                    int banners = (int)Math.Floor((double)count / 50f);
+                    int banners = count / 50;
                     // sb.WriteProperty(index.ToString(), count.ToString());
                     sb.WriteLine("{0} {1}: {2} ({3} earned)", index, World.TallyNames[index], count, banners);
                     killcount = killcount + count;
