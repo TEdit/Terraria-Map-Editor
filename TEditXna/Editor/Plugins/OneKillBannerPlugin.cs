@@ -32,7 +32,6 @@ namespace TEditXna.Editor.Plugins
                 int increasedNum = ((currentNum / 50) + 1) * 50 - 1;
                 _wvm.CurrentWorld.KilledMobs[idx] = increasedNum;
             }
-            _wvm.UndoManager.SaveUndo();
         }
     }
 }
