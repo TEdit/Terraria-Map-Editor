@@ -57,7 +57,12 @@ namespace TEditXna.View
             _wvm.PropertyChanged += _wvm_PropertyChanged;
             _wvm.RequestZoom += _wvm_RequestZoom;
             _wvm.RequestScroll += _wvm_RequestScroll;
+            _wvm.RequestDrag += _wvm_RequestDrag;
+        }
 
+        void _wvm_RequestDrag(object sender, Vector2EventArgs e)
+        {
+            ScrollWorld(e.Vector2);
         }
 
         void _wvm_RequestScroll(object sender, TEdit.Framework.Events.EventArgs<ScrollDirection> e)
@@ -278,15 +283,19 @@ namespace TEditXna.View
             ClampScroll();
         }
 
+        public void ScrollWorld(Vector2 distance)
+        {
+            _scrollPosition = _scrollPosition + distance;
+            ClampScroll();
+        }
+
         private void ScrollWorld()
         {
             if (_isMiddleMouseDown)
             {
                 Vector2 stretchDistance = (_mousePosition - _middleClickPoint);
-                Vector2 clampedScroll = _scrollPosition + stretchDistance / _zoom;
-                _scrollPosition = clampedScroll;
+                ScrollWorld(stretchDistance / _zoom);
                 _middleClickPoint = _mousePosition;
-                ClampScroll();
             }
         }
 

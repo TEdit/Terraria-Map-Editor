@@ -238,6 +238,7 @@
     <Compile Include="Utility\Format.cs" />
     <Compile Include="Utility\GenericOperator.cs" />
     <Compile Include="Utility\Serialization.cs" />
+    <Compile Include="ViewModel\Vector2EventArgs.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -537,7 +538,7 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties BuildVersion_UseGlobalSettings="True" BuildVersion_AssemblyInfoFilename="Properties\AssemblyInfo.cs" />
+      <UserProperties BuildVersion_AssemblyInfoFilename="Properties\AssemblyInfo.cs" BuildVersion_UseGlobalSettings="True" />
     </VisualStudio>
   </ProjectExtensions>
   <PropertyGroup>
