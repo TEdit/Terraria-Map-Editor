@@ -3,7 +3,7 @@
 
 Terraria Settings.XML Specifications
 ====================================
-Compatible Ver: Terraria 1.3 (interim)
+Compatible Ver: Terraria 1.3.0.6
 Primary URL: https://raw.github.com/BinaryConstruct/Terraria-Map-Editor/master/TEditXna/settings.xml
 ====================================
 
@@ -41,6 +41,7 @@ Outstanding:
 * Some jungle/crimson plants
 * Overhaul wood, handle alternate wood types
 * Stalactite/stalagmite sprites
+* Sinks excluded due to mismatched sub-frames
 
 Documentation moved to the end of this file.
 
@@ -2409,7 +2410,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="1242,0" Name="Monster Banner" Variety="Ice Elemental Banner" />
         <Frame UV="1260,0" Name="Monster Banner" Variety="Icy Merman Banner" />
         <Frame UV="1278,0" Name="Monster Banner" Variety="Fire Imp Banner" />
-        <Frame UV="1296,0" Name="Monster Banner" Variety="Jellyfish Banner" />
+        <Frame UV="1296,0" Name="Monster Banner" Variety="Blue Jellyfish Banner" />
         <Frame UV="1314,0" Name="Monster Banner" Variety="Jungle Creeper Banner" />
         <Frame UV="1332,0" Name="Monster Banner" Variety="Lihzahrd Banner" />
         <Frame UV="1350,0" Name="Monster Banner" Variety="Man Eater Banner" />
@@ -2420,14 +2421,14 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="1440,0" Name="Monster Banner" Variety="Parrot Banner" />
         <Frame UV="1458,0" Name="Monster Banner" Variety="Pigron Banner" />
         <Frame UV="1476,0" Name="Monster Banner" Variety="Piranha Banner" />
-        <Frame UV="1494,0" Name="Monster Banner" Variety="Pirate Banner" />
+        <Frame UV="1494,0" Name="Monster Banner" Variety="Pirate Deckhand Banner" />
         <Frame UV="1512,0" Name="Monster Banner" Variety="Pixie Banner" />
         <Frame UV="1530,0" Name="Monster Banner" Variety="Raincoat Zombie Banner" />
         <Frame UV="1548,0" Name="Monster Banner" Variety="Reaper Banner" />
         <Frame UV="1566,0" Name="Monster Banner" Variety="Shark Banner" />
         <Frame UV="1584,0" Name="Monster Banner" Variety="Skeleton Banner" />
         <Frame UV="1602,0" Name="Monster Banner" Variety="Skeleton Mage Banner" />
-        <Frame UV="1620,0" Name="Monster Banner" Variety="Slime Banner" />
+        <Frame UV="1620,0" Name="Monster Banner" Variety="Blue Slime Banner" />
         <Frame UV="1638,0" Name="Monster Banner" Variety="Snow Flinx Banner" />
         <Frame UV="1656,0" Name="Monster Banner" Variety="Spider Banner" />
         <Frame UV="1674,0" Name="Monster Banner" Variety="Spore Zombie Banner" />
@@ -2585,16 +2586,16 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="414,108" Name="Monster Banner"  Variety="Crawltipede Banner" />
         <Frame UV="432,108" Name="Monster Banner"  Variety="Drakomire Rider Banner" />
         <Frame UV="450,108" Name="Monster Banner"  Variety="Drakomire Banner" />
-        <Frame UV="468,108" Name="Monster Banner"  Variety="Solar Solenian Banner" />
-        <Frame UV="486,108" Name="Monster Banner"  Variety="Nebula Soldier Banner" />
-        <Frame UV="504,108" Name="Monster Banner"  Variety="Nebula Headcrab Banner" />
+        <Frame UV="468,108" Name="Monster Banner"  Variety="Solenian Banner" />
+        <Frame UV="486,108" Name="Monster Banner"  Variety="Predictor Banner" />
+        <Frame UV="504,108" Name="Monster Banner"  Variety="Brain Suckler Banner" />
         <Frame UV="522,108" Name="Monster Banner"  Variety="Nebula Floater Banner" />
-        <Frame UV="540,108" Name="Monster Banner"  Variety="Nebula Beast Banner" />
+        <Frame UV="540,108" Name="Monster Banner"  Variety="Evolution Beast Banner" />
         <Frame UV="558,108" Name="Monster Banner"  Variety="Alien Larva Banner" />
         <Frame UV="576,108" Name="Monster Banner"  Variety="Alien Queen Banner" />
         <Frame UV="594,108" Name="Monster Banner"  Variety="Alien Hornet Banner" />
-        <Frame UV="612,108" Name="Monster Banner"  Variety="Vortex Soldier Banner" />
-        <Frame UV="630,108" Name="Monster Banner"  Variety="Vortex Rifleman Banner" />
+        <Frame UV="612,108" Name="Monster Banner"  Variety="Vortexian Banner" />
+        <Frame UV="630,108" Name="Monster Banner"  Variety="Storm Diver Banner" />
         <Frame UV="648,108" Name="Monster Banner"  Variety="Pirate Captain Banner" />
         <Frame UV="666,108" Name="Monster Banner"  Variety="Pirate Deadeye Banner" />
         <Frame UV="684,108" Name="Monster Banner"  Variety="Pirate Corsair Banner" />
@@ -4102,8 +4103,8 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Tile Color="#FF1F1F1F" Id="351" Blends="true" Name="Chimney Smoke" Solid="true" Framed="false" />
     <Tile Color="#FFEE615E" Id="352" Blends="true" Name="Crimtane Thorns" Solid="true" Framed="false" />
     <Tile Color="#FF1CD85E" Id="353" Blends="true" Name="Vine Rope" Solid="true" Framed="false" />
-    <Tile Color="#FF8D6B59" Id="354" Size="3,2" Name="Bewitching Table" Framed="true" />
-    <Tile Color="#FF8D6B59" Id="355" Size="3,2" Name="Alchemy Table" Framed="true" />
+    <Tile Color="#FF8D6B59" Id="354" Size="3,3" Name="Bewitching Table" Framed="true" />
+    <Tile Color="#FF8D6B59" Id="355" Size="3,3" Name="Alchemy Table" Framed="true" />
     <Tile Color="#FFE9CB18" Id="356" Size="2,3" Name="Enchanted Sundial" Framed="true" />
     <Tile Color="#FFA8B2CC" Id="357" Blends="true" Name="Marble Block" Solid="true" Framed="false" />
     <Tile Color="#FF7AD9E8" Id="358" Size="6,3" Name="Gold Bird Cage" Framed="true" />
@@ -6199,7 +6200,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="1662" Name="Ice Elemental Banner" Tally="48"/>
     <Item Id="1663" Name="Icy Merman Banner" Tally="49"/>
     <Item Id="1664" Name="Fire Imp Banner" Tally="50"/>
-    <Item Id="1665" Name="Jellyfish Banner" Tally="51"/>
+    <Item Id="1665" Name="Blue Jellyfish Banner" Tally="51"/>
     <Item Id="1666" Name="Jungle Creeper Banner" Tally="52"/>
     <Item Id="1667" Name="Lihzahrd Banner" Tally="53"/>
     <Item Id="1668" Name="Man Eater Banner" Tally="54"/>
@@ -7965,16 +7966,16 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="3428" Name="Crawltipede Banner" Tally="224" />
     <Item Id="3429" Name="Drakomire Rider Banner" Tally="225" />
     <Item Id="3430" Name="Drakomire Banner" Tally="226" />
-    <Item Id="3431" Name="Solar Solenian Banner" Tally="227" />
-    <Item Id="3432" Name="Nebula Soldier Banner" Tally="228" />
-    <Item Id="3433" Name="Nebula Headcrab Banner" Tally="229" />
+    <Item Id="3431" Name="Solenian Banner" Tally="227" />
+    <Item Id="3432" Name="Predictor Banner" Tally="228" />
+    <Item Id="3433" Name="Brain Suckler Banner" Tally="229" />
     <Item Id="3434" Name="Nebula Floater Banner" Tally="230" />
-    <Item Id="3435" Name="Nebula Beast Banner" Tally="231" />
+    <Item Id="3435" Name="Evolution Beast Banner" Tally="231" />
     <Item Id="3436" Name="Alien Larva Banner" Tally="232" />
     <Item Id="3437" Name="Alien Queen Banner" Tally="233" />
     <Item Id="3438" Name="Alien Hornet Banner" Tally="234" />
-    <Item Id="3439" Name="Vortex Soldier Banner" Tally="235" />
-    <Item Id="3440" Name="Vortex Rifleman Banner" Tally="236" />
+    <Item Id="3439" Name="Vortexian Banner" Tally="235" />
+    <Item Id="3440" Name="Storm Diver Banner" Tally="236" />
     <Item Id="3441" Name="Pirate Captain Banner" Tally="237" />
     <Item Id="3442" Name="Pirate Deadeye Banner" Tally="238" />
     <Item Id="3443" Name="Pirate Corsair Banner" Tally="239" />
