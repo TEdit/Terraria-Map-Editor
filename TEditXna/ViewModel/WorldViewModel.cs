@@ -177,8 +177,26 @@ namespace TEditXna.ViewModel
 
         public ICommand LaunchWikiCommand
         {
-            get { return _launchWikiCommand ?? (_launchWikiCommand = new RelayCommand(() => Process.Start("http://github.com/BinaryConstruct/Terraria-Map-Editor/wiki"))); }
+            get { return _launchWikiCommand ?? (_launchWikiCommand = new RelayCommand(() => LaunchUrl("http://github.com/BinaryConstruct/Terraria-Map-Editor/wiki"))); }
         }
+
+        /* SBLogic - catch exception if browser can't be launched */
+        private void LaunchUrl(string url)
+        {
+            try
+            {
+                Process.Start(url);
+            }
+            catch
+            {
+                var result = System.Windows.Forms.MessageBox.Show("Unable to open external browser.  Copy to clipboard?", "Link Error", System.Windows.Forms.MessageBoxButtons.YesNo);
+                if (result == System.Windows.Forms.DialogResult.Yes)
+                {
+                    System.Windows.Clipboard.SetText(url);
+                }
+            }
+        }
+
 
         public static string TempPath
         {

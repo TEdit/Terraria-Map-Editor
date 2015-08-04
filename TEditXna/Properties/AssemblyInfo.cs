@@ -54,7 +54,7 @@ using System.Windows.Markup;
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
 [assembly: AssemblyVersion("3.5.0.0")]
-[assembly: AssemblyFileVersion("3.5.15204.1556")]
+[assembly: AssemblyFileVersion("3.5.15215.2016")]
 
 [assembly: XmlnsDefinition("http://tedit/wpf", "TEdit.UI.Xaml")]
 [assembly: XmlnsDefinition("http://tedit/wpf", "TEdit.UI.Xaml.Enum")]
