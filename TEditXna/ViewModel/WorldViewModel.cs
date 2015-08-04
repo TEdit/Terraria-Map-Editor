@@ -189,7 +189,7 @@ namespace TEditXna.ViewModel
             }
             catch
             {
-                var result = System.Windows.Forms.MessageBox.Show("Unable to open external browser.  Copy to clipboard?", "Link Error", System.Windows.Forms.MessageBoxButtons.YesNo);
+                var result = System.Windows.Forms.MessageBox.Show("Unable to open external browser.  Copy to clipboard?", "Link Error", System.Windows.Forms.MessageBoxButtons.YesNo, System.Windows.Forms.MessageBoxIcon.Exclamation );
                 if (result == System.Windows.Forms.DialogResult.Yes)
                 {
                     System.Windows.Clipboard.SetText(url);
