@@ -1,3 +1,4 @@
+using Microsoft.Xna.Framework;
 using System;
 using System.Windows.Input;
 using System.Windows.Media.Imaging;
@@ -19,35 +20,58 @@ namespace TEditXna.Editor.Tools
             Name = "Arrow";
         }
 
-        private bool _rightClick;
+        private bool _leftClick = false;
+        private bool _rightClick = false;
+
+        private Vector2 _lastLeftPoint;
+
         public override void MouseDown(TileMouseState e)
         {
+            if (e.LeftButton == MouseButtonState.Pressed)
+            {
+                _leftClick = true;
+                _lastLeftPoint = new Vector2(e.Location.X, e.Location.Y);
+            }
             if (e.RightButton == MouseButtonState.Pressed)
+            {
                 _rightClick = true;
+            }
+        }
+
+        public override void MouseMove(TileMouseState e)
+        {
+            if (_leftClick)
+            {
+                Vector2 current = new Vector2(e.Location.X, e.Location.Y);
+                Vector2 distance = current - _lastLeftPoint;
+                _wvm.RequestDragCommand.Execute(distance);
+            }
         }
 
         public override void MouseUp(TileMouseState e)
         {
-            if (!_rightClick)
-                return;
-
-            _rightClick = false;
-
-            Chest chest = _wvm.CurrentWorld.GetChestAtTile(e.Location.X, e.Location.Y);
-
-            if (chest != null)
+            if (_leftClick)
             {
-                _wvm.SelectedChest = chest.Copy();
-                return;
+                _leftClick = false;
             }
-
-            Sign sign = _wvm.CurrentWorld.GetSignAtTile(e.Location.X, e.Location.Y);
-            if (sign != null)
+            if (_rightClick)
             {
-                _wvm.SelectedSign = sign.Copy();
-                return;
-            }
+                _rightClick = false;
 
+                Chest chest = _wvm.CurrentWorld.GetChestAtTile(e.Location.X, e.Location.Y);
+                if (chest != null)
+                {
+                    _wvm.SelectedChest = chest.Copy();
+                    return;
+                }
+
+                Sign sign = _wvm.CurrentWorld.GetSignAtTile(e.Location.X, e.Location.Y);
+                if (sign != null)
+                {
+                    _wvm.SelectedSign = sign.Copy();
+                    return;
+                }
+            }
         }
     }
 }

@@ -4,7 +4,6 @@ using System.IO;
 using System.Windows;
 using System.Windows.Input;
 using TEdit.Framework.Events;
-using TEdit.Geometry.Primitives;
 using GalaSoft.MvvmLight.Command;
 using Microsoft.Win32;
 using TEditXNA.Terraria;
@@ -13,6 +12,7 @@ using TEditXna.Editor;
 using TEditXna.Editor.Clipboard;
 using TEditXna.Editor.Plugins;
 using TEditXna.Editor.Tools;
+using TEdit.Geometry.Primitives;
 
 namespace TEditXna.ViewModel
 {
@@ -49,13 +49,29 @@ namespace TEditXna.ViewModel
 
         public event EventHandler<EventArgs<ScrollDirection>> RequestScroll;
 
-
         protected virtual void OnRequestScroll(object sender, EventArgs<ScrollDirection> e)
         {
             if (RequestScroll != null) RequestScroll(sender, e);
         }
 
         private ICommand _requestScrollCommand;
+
+        public event EventHandler<Vector2EventArgs> RequestDrag;
+
+        protected virtual void OnRequestDrag(object sender, Vector2EventArgs e)
+        {
+            if (RequestDrag != null)
+            {
+                RequestDrag(sender, e);
+            }
+        }
+
+        private ICommand _requestDragCommand;
+
+        public ICommand RequestDragCommand
+        {
+            get { return _requestDragCommand ?? (_requestDragCommand = new RelayCommand<Microsoft.Xna.Framework.Vector2>(o => OnRequestDrag(this, new Vector2EventArgs(o)))); }
+        }
 
         private ICommand _npcAddCommand;
          

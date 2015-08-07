@@ -103,7 +103,6 @@ namespace TEditXna.Editor.Clipboard
             World world = _wvm.CurrentWorld;
             XNA.Rectangle area = _wvm.Selection.SelectionArea;
             var buffer = new ClipboardBuffer(new Vector2Int32(area.Width, area.Height));
-
             for (int x = 0; x < area.Width; x++)
             {
                 for (int y = 0; y < area.Height; y++)
@@ -220,7 +219,7 @@ namespace TEditXna.Editor.Clipboard
                                 var data = world.GetChestAtTile(x + anchor.X, y + anchor.Y);
                                 if (data != null)
                                 {
-                                    _wvm.UndoManager.Buffer.Chests.Add(data);
+                                    _wvm.UndoManager.SafeBuffer.Chests.Add(data);
                                     world.Chests.Remove(data);
                                 }
                             }
@@ -231,7 +230,7 @@ namespace TEditXna.Editor.Clipboard
                                 var data = world.GetSignAtTile(x + anchor.X, y + anchor.Y);
                                 if (data != null)
                                 {
-                                    _wvm.UndoManager.Buffer.Signs.Add(data);
+                                    _wvm.UndoManager.SafeBuffer.Signs.Add(data);
                                     world.Signs.Remove(data);
                                 }
                             }
