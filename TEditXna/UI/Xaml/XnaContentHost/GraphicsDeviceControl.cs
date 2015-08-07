@@ -337,7 +337,8 @@ namespace TEdit.UI.Xaml.XnaContentHost
 
             // Present to the screen, but only use the visible area of the back buffer
             if (graphicsService.GraphicsDevice.GraphicsDeviceStatus == GraphicsDeviceStatus.Normal)
-                graphicsService.GraphicsDevice.Present(viewport.Bounds, null, hWnd);
+                GraphicsService.GraphicsDevice.Present();
+                //graphicsService.GraphicsDevice.Present(viewport.Bounds, null, hWnd);
         }
 
         void XnaWindowHost_Loaded(object sender, RoutedEventArgs e)

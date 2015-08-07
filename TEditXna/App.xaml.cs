@@ -44,17 +44,6 @@ namespace TEditXna
                 ErrorLogging.Log(".Net >= 4.0");
             }
 
-            if (!DependencyChecker.VerifyXna())
-            {
-                MessageBox.Show("Please install XNA Framework 4.0", "Missing XNA", MessageBoxButton.OK, MessageBoxImage.Stop);
-                ErrorLogging.LogException(new ApplicationException("MISSING XNA"));
-                Shutdown();
-            }
-            else
-            {
-                ErrorLogging.Log("XNA 4.0");
-            }
-
             if (!DependencyChecker.VerifyTerraria())
             {
                 ErrorLogging.Log("Unable to locate Terraria. No texture data will be available.");

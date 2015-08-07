@@ -130,18 +130,6 @@ namespace TEditXna
             return dotNetExists;
         }
 
-        public static bool VerifyXna()
-        {
-            Microsoft.Win32.RegistryKey subKey = Microsoft.Win32.Registry.LocalMachine.OpenSubKey(REGISTRY_XNA);
-            if (subKey != null)
-            {
-                int i = (int)subKey.GetValue("Installed");
-                if (i == 1)
-                    return true;
-            }
-            return false;
-        }
-
         public static bool VerifyTerraria()
         {
             return Directory.Exists(PathToContent);
