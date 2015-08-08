@@ -194,6 +194,7 @@
     <Compile Include="Terraria\Objects\Sprite.cs" />
     <Compile Include="Terraria\Objects\TileProperty.cs" />
     <Compile Include="Terraria\Objects\WallProperty.cs" />
+    <Compile Include="Terraria\Objects\PaintProperty.cs" />
     <Compile Include="Terraria\Sign.cs" />
     <Compile Include="Terraria\Textures.cs" />
     <Compile Include="Terraria\Tile.cs" />
