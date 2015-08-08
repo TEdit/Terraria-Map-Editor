@@ -8254,6 +8254,39 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Prefix Id="82" Name="Unreal"           />
     <Prefix Id="83" Name="Mythical"         />
   </ItemPrefix>
+  <Paints>
+    <Paint Id="0"  Name="None" Color="#00000000"/>
+    <Paint Id="1"  Name="Red" Color="#FFFF0000"/>
+    <Paint Id="2"  Name="Orange" Color="#FFFF7F00"/>
+    <Paint Id="3"  Name="Yellow" Color="#FFFFFF00"/>
+    <Paint Id="4"  Name="Lime" Color="#FF7FFF00"/>
+    <Paint Id="5"  Name="Green" Color="#FF00FF00"/>
+    <Paint Id="6"  Name="Teal" Color="#FF00FF7F"/>
+    <Paint Id="7"  Name="Cyan" Color="#FF00FFFF"/>
+    <Paint Id="8"  Name="Sky Blue" Color="#FF007FFF"/>
+    <Paint Id="9"  Name="Blue" Color="#FF0000FF"/>
+    <Paint Id="10" Name="Purple" Color="#FF7F00FF"/>
+    <Paint Id="11" Name="Violet" Color="#FFFF00FF"/>
+    <Paint Id="12" Name="Pink" Color="#FFFF007F"/>
+    <Paint Id="13" Name="Deep Red" Color="#FFFF0000"/>
+    <Paint Id="14" Name="Deep Orange" Color="#FFFF7F00"/>
+    <Paint Id="15" Name="Deep Yellow" Color="#FFFFFF00"/>
+    <Paint Id="16" Name="Deep Lime" Color="#FF7FFF00"/>
+    <Paint Id="17" Name="Deep Green" Color="#FF00FF00"/>
+    <Paint Id="18" Name="Deep Teal" Color="#FF00FF7F"/>
+    <Paint Id="19" Name="Deep Cyan" Color="#FF00FFFF"/>
+    <Paint Id="20" Name="Deep Sky Blue" Color="#FF007FFF"/>
+    <Paint Id="21" Name="Deep Blue" Color="#FF0000FF"/>
+    <Paint Id="22" Name="Deep Purple" Color="#FF7F00FF"/>
+    <Paint Id="23" Name="Deep Violet" Color="#FFFF00FF"/>
+    <Paint Id="24" Name="Deep Pink" Color="#FFFF007F"/>
+    <Paint Id="25" Name="Black" Color="#FF4B4B4B"/>
+    <Paint Id="26" Name="White" Color="#FFFFFFFF"/>
+    <Paint Id="27" Name="Gray" Color="#FFAFAFAF"/>
+    <Paint Id="28" Name="Brown" Color="#FFFFB27D"/>
+    <Paint Id="29" Name="Shadow" Color="#FF191919"/>
+    <Paint Id="30" Name="Negative" Color="#96C8C8C8"/>
+  </Paints>
 </Settings>
 
 <!--

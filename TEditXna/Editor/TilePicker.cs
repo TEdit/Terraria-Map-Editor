@@ -79,6 +79,20 @@ namespace TEditXna.Editor
             set { Set("WallMask", ref _wallMask, value); }
         }
 
+        private int _wallColor;
+        public int WallColor
+        {
+            get { return _wallColor; }
+            set { Set("WallColor", ref _wallColor, value); }
+        }
+
+        private int _tileColor;
+        public int TileColor
+        {
+            get { return _tileColor; }
+            set { Set("TileColor", ref _tileColor, value); }
+        }
+
         public int Tile
         {
             get { return _tile; }
