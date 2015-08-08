@@ -134,13 +134,23 @@ namespace TEditXna.Editor.Undo
             }
 
             _wvm = viewModel;
-            _buffer = new UndoBuffer(GetUndoFileName());
         }
 
-        public UndoBuffer Buffer
+        public UndoBuffer SafeBuffer
         {
-            get { return _buffer; }
-            set { Set("Buffer", ref _buffer, value); }
+            /* CyberZHG
+             * This is used to ensure that whenever you want to add something to the buffer,
+             * the buffer will never be null.
+             */
+            get 
+            { 
+                if (_buffer == null)
+                {
+                    _buffer = new UndoBuffer(GetUndoFileName());
+                }
+                return _buffer; 
+            }
+            set { Set("SafeBuffer", ref _buffer, value); }
         }
 
         public void SaveUndo()
@@ -167,40 +177,36 @@ namespace TEditXna.Editor.Undo
         }
         public void SaveTile(int x, int y)
         {
-            if (_buffer == null)
-                Buffer = new UndoBuffer(GetUndoFileName());
-
             ValidateAndRemoveChests();
             var curTile = (Tile)_wvm.CurrentWorld.Tiles[x, y].Clone();
-            if (Tile.IsChest(curTile.Type) && !Buffer.Chests.Any(c => c.X == x && c.Y == y))
+            if (Tile.IsChest(curTile.Type) && !SafeBuffer.Chests.Any(c => c.X == x && c.Y == y))
             {
 
                 var curchest = _wvm.CurrentWorld.GetChestAtTile(x, y);
                 if (curchest != null)
                 {
                     var chest = curchest.Copy();
-                    Buffer.Chests.Add(chest);
+                    SafeBuffer.Chests.Add(chest);
                 }
             }
-            else if (Tile.IsSign(curTile.Type) && !Buffer.Signs.Any(c => c.X == x && c.Y == y))
+            else if (Tile.IsSign(curTile.Type) && !SafeBuffer.Signs.Any(c => c.X == x && c.Y == y))
             {
                 var cursign = _wvm.CurrentWorld.GetSignAtTile(x, y);
                 if (cursign != null)
                 {
                     var sign = cursign.Copy();
-                    Buffer.Signs.Add(sign);
+                    SafeBuffer.Signs.Add(sign);
                 }
             }
-            Buffer.Add(new Vector2Int32(x, y), curTile);
+            SafeBuffer.Add(new Vector2Int32(x, y), curTile);
         }
 
         private void ValidateAndRemoveChests()
         {
-            if (Buffer == null || Buffer.LastTile == null)
+            if (_buffer == null || _buffer.LastTile == null)
                 return;
 
-
-            var lastTile = Buffer.LastTile;
+            var lastTile = _buffer.LastTile;
             var existingLastTile = _wvm.CurrentWorld.Tiles[lastTile.Location.X, lastTile.Location.Y];
 
             // remove deleted chests or signs if required
