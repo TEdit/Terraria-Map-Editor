@@ -494,9 +494,7 @@
     <Resource Include="Images\Toolbar\arrow_redo.png" />
     <Resource Include="Images\Toolbar\arrow_undo.png" />
     <Resource Include="Images\Toolbar\new.png" />
-    <EmbeddedResource Include="Images\Overlays\grid.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
+    <EmbeddedResource Include="Images\Overlays\grid.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\Toolbar\report_magnify.png" />
@@ -530,7 +528,7 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties BuildVersion_UseGlobalSettings="True" BuildVersion_AssemblyInfoFilename="Properties\AssemblyInfo.cs" />
+      <UserProperties BuildVersion_AssemblyInfoFilename="Properties\AssemblyInfo.cs" BuildVersion_UseGlobalSettings="True" />
     </VisualStudio>
   </ProjectExtensions>
   <PropertyGroup>
@@ -543,7 +541,7 @@
   </PropertyGroup>
   <ItemGroup>
     <VersionItems Include="$(ProjectDir)Properties\AssemblyInfo.cs" />
-	<VersionItems Include="$(SolutionDir)teditversion.txt" />
+    <VersionItems Include="$(SolutionDir)teditversion.txt" />
   </ItemGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

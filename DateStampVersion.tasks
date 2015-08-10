@@ -34,7 +34,7 @@
 						{
 							Log.LogError(null, null, null, null, 0, 0, 0, 0, String.Format("Could not find version file: {0}", fileName), new object[0]);
 						}
-						bool isUnicode = fileName.EndsWith(".txt");
+						bool isUnicode = false;// fileName.EndsWith(".txt");
 						string content = isUnicode ? File.ReadAllText(fileName, System.Text.Encoding.Unicode) : File.ReadAllText(fileName);
 
 						var m = Regex.Match(content, findAssmVers);
