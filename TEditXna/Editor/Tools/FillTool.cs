@@ -96,6 +96,8 @@ namespace TEditXna.Editor.Tools
                     if (_wvm.TilePicker.WallPaintActive && (originTile.Wall != nextTile.Wall || (originTile.IsActive && World.TileProperties[originTile.Type].IsSolid) ||
                         (nextTile.IsActive && World.TileProperties[nextTile.Type].IsSolid)))
                         return false;
+                    if (_wvm.TilePicker.ExtrasActive)
+                        return false;
                     break;
                 case PaintMode.Wire:
                     return false;
