@@ -66,8 +66,8 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Shortcut Key="X"   Tool="Swap"         />
   </ShortCutKeys>
   <Tools>
-    <!-- Valid Paint Modes are Tile, Wall, TileAndWall, Wire and Liquid. -->
-    <Tool Name="Paint" Mode="Tile" />
+    <!-- Valid Paint Modes are TileAndWall, Wire and Liquid. -->
+    <Tool Name="Paint" Mode="TileAndWall" />
     <!-- Tile, Wall and Mask values correspond with Tile and Wall Id; valid Mask Modes are Off, Empty and Tile. -->
     <Tool Name="Tile" Tile="0" Mask="0" Mode="Off" />
     <Tool Name="Wall" Wall="0" Mask="0" Mode="Off" />

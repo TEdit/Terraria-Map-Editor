@@ -60,6 +60,63 @@ namespace TEditXna.Editor
             set { Set("Actuator", ref _actuator, value); }
         }
 
+        private bool _tilepaintActive;
+        public bool TilePaintActive
+        {
+            get { return _tilepaintActive; }
+            set { Set("TilePaintActive", ref _tilepaintActive, value); }
+        }
+
+        private bool _wallpaintActive;
+        public bool WallPaintActive
+        {
+            get { return _wallpaintActive; }
+            set { Set("WallPaintActive", ref _wallpaintActive, value); }
+        }
+
+
+        private bool _brickStyleActive;
+        public bool BrickStyleActive
+        {
+            get { return _brickStyleActive; }
+            set { Set("BrickStyleActive", ref _brickStyleActive, value); }
+        }
+
+        private bool _tileStyleActive;
+        public bool TileStyleActive
+        {
+            get { return _tileStyleActive; }
+            set { Set("TileStyleActive", ref _tileStyleActive, value); }
+        }
+
+        private bool _wallStyleActive;
+        public bool WallStyleActive
+        {
+            get { return _wallStyleActive; }
+            set { Set("WallStyleActive", ref _wallStyleActive, value); }
+        }
+
+        private bool _redWireActive;
+        public bool RedWireActive
+        {
+            get { return _redWireActive; }
+            set { Set("RedWireActive", ref _redWireActive, value); }
+        }
+
+        private bool _blueWireActive;
+        public bool BlueWireActive
+        {
+            get { return _blueWireActive; }
+            set { Set("BlueWireActive", ref _blueWireActive, value); }
+        }
+
+        private bool _greenWireActive;
+        public bool GreenWireActive
+        {
+            get { return _greenWireActive; }
+            set { Set("GreenWireActive", ref _greenWireActive, value); }
+        }
+
         private bool _actuatorInActive;
         public bool ActuatorInActive
         {
@@ -127,12 +184,12 @@ namespace TEditXna.Editor
         {
             switch (PaintMode)
             {
-                case PaintMode.Tile:
-                    SwapTile();
-                    break;
-                case PaintMode.Wall:
-                    SwapWall();
-                    break;
+//                case PaintMode.Tile:
+//                    SwapTile();
+//                    break;
+//                case PaintMode.Wall:
+//                    SwapWall();
+//                    break;
                 case PaintMode.TileAndWall:
                     if (modifier.HasFlag(ModifierKeys.Shift))
                         SwapWall();

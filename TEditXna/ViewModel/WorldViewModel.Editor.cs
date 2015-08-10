@@ -62,33 +62,29 @@ namespace TEditXna.ViewModel
 
             switch (curMode)
             {
-                case PaintMode.Tile:
-                    SetTile(curTile, isErase);
-                    break;
-                case PaintMode.Wall:
-                    SetWall(curTile, isErase);
-                    break;
                 case PaintMode.TileAndWall:
-                    SetTile(curTile, isErase);
-                    SetWall(curTile, isErase);
+                    if (TilePicker.TileStyleActive)
+                        SetTile(curTile, isErase);
+                    if (TilePicker.WallStyleActive)
+                        SetWall(curTile, isErase);
+                    if (TilePicker.BrickStyleActive)
+                        SetPixelAutomatic(curTile, brickStyle: TilePicker.BrickStyle);
+                    if (TilePicker.TilePaintActive)
+                        SetPixelAutomatic(curTile, tileColor: isErase ? 0 : TilePicker.TileColor);
+                    if (TilePicker.WallPaintActive)
+                        SetPixelAutomatic(curTile, wallColor: isErase ? 0 : TilePicker.WallColor);
+                    SetPixelAutomatic(curTile, actuator: TilePicker.Actuator, actuatorInActive: TilePicker.ActuatorInActive);
                     break;
                 case PaintMode.Wire:
-                    SetPixelAutomatic(curTile, wire: !isErase);
-                    break;
-                case PaintMode.Wire2:
-                    SetPixelAutomatic(curTile, wire2: !isErase);
-                    break;
-                case PaintMode.Wire3:
-                    SetPixelAutomatic(curTile, wire3: !isErase);
+                    if (TilePicker.RedWireActive)
+                        SetPixelAutomatic(curTile, wire: !isErase);
+                    if (TilePicker.BlueWireActive)
+                        SetPixelAutomatic(curTile, wire2: !isErase);
+                    if (TilePicker.GreenWireActive)
+                        SetPixelAutomatic(curTile, wire3: !isErase);
                     break;
                 case PaintMode.Liquid:
                     SetPixelAutomatic(curTile, liquid: isErase ? (byte)0 : (byte)255, liquidType: TilePicker.LiquidType);
-                    break;
-                case PaintMode.BrickStyle:
-                    SetPixelAutomatic(curTile, brickStyle: TilePicker.BrickStyle);
-                    break;
-                case PaintMode.Paint:
-                    SetPixelAutomatic(curTile, wallColor: isErase ? 0 : TilePicker.WallColor, tileColor: isErase ? 0 : TilePicker.TileColor);
                     break;
             }
 
@@ -164,7 +160,7 @@ namespace TEditXna.ViewModel
                 if (erase)
                     SetPixelAutomatic(curTile, wall: 0);
                 else
-                    SetPixelAutomatic(curTile, wall: TilePicker.Wall, wallColor: TilePicker.WallColor);
+                    SetPixelAutomatic(curTile, wall: TilePicker.Wall);
             }
         }
 
@@ -175,9 +171,9 @@ namespace TEditXna.ViewModel
                 (TilePicker.TileMaskMode == MaskMode.Empty && !curTile.IsActive))
             {
                 if (erase)
-                    SetPixelAutomatic(curTile, tile: -1, brickStyle: BrickStyle.Full);
+                    SetPixelAutomatic(curTile, tile: -1);
                 else
-                    SetPixelAutomatic(curTile, tile: TilePicker.Tile, brickStyle: TilePicker.BrickStyle, actuator: TilePicker.Actuator, actuatorInActive: TilePicker.ActuatorInActive, tileColor: TilePicker.TileColor);
+                    SetPixelAutomatic(curTile, tile: TilePicker.Tile);
             }
         }
 
@@ -216,17 +212,17 @@ namespace TEditXna.ViewModel
                 }
             }
 
-            if (actuator != null)
+            if (actuator != null && curTile.IsActive)
             {
                 curTile.Actuator = (bool)actuator;
             }
 
-            if (curTile.Actuator && actuatorInActive != null)
+            if (actuatorInActive != null && curTile.IsActive)
             {
                 curTile.InActive = (bool)actuatorInActive;
             }
 
-            if (brickStyle != null)
+            if (brickStyle != null && TilePicker.BrickStyleActive)
             {
                 curTile.BrickStyle = (BrickStyle)brickStyle;
             }

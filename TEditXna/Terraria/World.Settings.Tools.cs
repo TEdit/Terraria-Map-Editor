@@ -32,7 +32,7 @@ namespace TEditXNA.Terraria
                 switch (toolName)
                 {
                     case "Paint":
-                        _paintMode = (PaintMode)ToEnum(typeof(PaintMode), (string)xElement.Attribute("Mode") ?? PaintMode.Tile.ToString());
+                        _paintMode = (PaintMode)ToEnum(typeof(PaintMode), (string)xElement.Attribute("Mode") ?? PaintMode.TileAndWall.ToString());
                         break;
                     case "Brush":
                         _brushWidth = (int?)xElement.Attribute("Width") ?? 20;
@@ -40,12 +40,10 @@ namespace TEditXNA.Terraria
                         _brushOutline = (int?)xElement.Attribute("Outline") ?? 1;
                         _brushShape = (BrushShape)ToEnum(typeof(BrushShape), (string)xElement.Attribute("Shape") ?? BrushShape.Square.ToString());
                         break;
-                    case "Tile":
+                    case "TileAndWall":
                         _paintTile = (int?)xElement.Attribute("Tile") ?? 0;
                         _paintTileMask = (int?)xElement.Attribute("Mask") ?? 0;
                         _paintTileMaskMode = (MaskMode)ToEnum(typeof(MaskMode), (string)xElement.Attribute("Mode") ?? MaskMode.Off.ToString());
-                        break;
-                    case "Wall":
                         _paintWall = (int?)xElement.Attribute("Wall") ?? 0;
                         _paintWallMask = (int?)xElement.Attribute("Mask") ?? 0;
                         _paintWallMaskMode = (MaskMode)ToEnum(typeof(MaskMode), (string)xElement.Attribute("Mode") ?? MaskMode.Off.ToString());

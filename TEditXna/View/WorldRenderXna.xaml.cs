@@ -1086,7 +1086,7 @@ namespace TEditXna.View
                                                 dest.Height = (int)(_zoom / 2.0f);
                                                 _spriteBatch.Draw(tileTex, dest, source, Color.White, 0f, default(Vector2), SpriteEffects.None, 0);
                                                 break;
-                                            case BrickStyle.SlopeTopLeftDown:
+                                            case BrickStyle.SlopeTopRight:
 
                                                 for (int slice = 0; slice < 8; slice++)
                                                 {
@@ -1097,7 +1097,7 @@ namespace TEditXna.View
                                                 }
 
                                                 break;
-                                            case BrickStyle.SlopeBottomLeftDown:
+                                            case BrickStyle.SlopeTopLeft:
                                                 for (int slice = 0; slice < 8; slice++)
                                                 {
                                                     Rectangle? sourceSlice = new Rectangle(source.X + slice * 2, source.Y, 2, slice * 2 +2);
@@ -1107,7 +1107,7 @@ namespace TEditXna.View
                                                 }
 
                                                 break;
-                                            case BrickStyle.SlopeTopLeftUp:
+                                            case BrickStyle.SlopeBottomRight:
                                                 for (int slice = 0; slice < 8; slice++)
                                                 {
                                                     Rectangle? sourceSlice = new Rectangle(source.X + slice * 2, source.Y + slice * 2, 2, 16 - slice * 2);
@@ -1117,7 +1117,7 @@ namespace TEditXna.View
                                                 }
 
                                                 break;
-                                            case BrickStyle.SlopeBottomLeftUp:
+                                            case BrickStyle.SlopeBottomLeft:
                                                 for (int slice = 0; slice < 8; slice++)
                                                 {
                                                     Rectangle? sourceSlice = new Rectangle(source.X + slice * 2, source.Y, 2, slice * 2 + 2);

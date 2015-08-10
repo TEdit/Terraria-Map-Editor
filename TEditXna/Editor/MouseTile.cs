@@ -91,12 +91,14 @@ namespace TEditXna.Editor
                     Paint = "None";
                 }
 
+                if (_tile.InActive)
+                {
+                    TileExtras += " Inactive";
+                }
+
                 if (_tile.Actuator)
                 {
-                    if (_tile.InActive)
-                        TileExtras += " Inactive Actuator";
-                    else
-                        TileExtras += " Active Actuator ";
+                    TileExtras += " Actuator";
                 }
 
                 if (_tile.WireRed)
