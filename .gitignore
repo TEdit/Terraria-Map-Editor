@@ -40,3 +40,5 @@ hash.txt
 *.psess
 *.vspx
 packages/
+build/
+!build/7zip
