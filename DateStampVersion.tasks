@@ -1,9 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Go" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-    <UsingTask TaskName="RegexTransform" TaskFactory="CodeTaskFactory" AssemblyFile="$(MSBuildToolsPath)\Microsoft.Build.Tasks.v4.0.dll">
+    <UsingTask TaskName="DateStampVersion" TaskFactory="CodeTaskFactory" AssemblyFile="$(MSBuildToolsPath)\Microsoft.Build.Tasks.v4.0.dll">
         <ParameterGroup>
             <Items ParameterType="Microsoft.Build.Framework.ITaskItem[]" />
-		    <Vers ParameterType="System.String" Required="False" />
         </ParameterGroup>
         <Task>
 		    <Using Namespace="System" />
@@ -13,8 +12,8 @@
             <Code Type="Fragment" Language="cs">
 				<![CDATA[
 					// Generate Version Numbers
-					string datedBuildNumber = string.Format("{0}{1:000}", DateTime.Now.ToString("yy"), DateTime.Now.DayOfYear);
-					string revisionNumber = !string.IsNullOrWhiteSpace(Vers) ? Vers : DateTime.Now.ToString("HHmm");
+					string datedBuildNumber = string.Format("{0}{1}{2}", DateTime.Now.ToString("yy"), DateTime.Now.ToString("MM"), DateTime.Now.ToString("dd"));
+					string revisionNumber = DateTime.Now.ToString("HHmm");
 
 					foreach (ITaskItem item in Items)
 					{

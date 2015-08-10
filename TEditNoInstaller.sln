@@ -5,6 +5,11 @@ VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TEditXna", "TEditXna\TEditXna.csproj", "{62D9688B-DB6F-44A9-A4E9-FDF197642C00}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".build", ".build", "{4AF11D34-6C22-4B0B-AC6C-385DFE9CC96D}"
+	ProjectSection(SolutionItems) = preProject
+		DateStampVersion.tasks = DateStampVersion.tasks
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
