@@ -96,6 +96,14 @@ namespace TEditXna.Editor
             set { Set("WallStyleActive", ref _wallStyleActive, value); }
         }
 
+        private bool _extrasActive;
+        public bool ExtrasActive
+        {
+            get { return _extrasActive; }
+            set { Set("ExtrasActive", ref _extrasActive, value); }
+        }
+
+
         private bool _redWireActive;
         public bool RedWireActive
         {

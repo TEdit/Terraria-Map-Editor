@@ -146,7 +146,10 @@
                           ItemTemplate="{StaticResource EnumTemplate}" />
                 </StackPanel>
             </GroupBox>
-            <GroupBox Header="Extras" Style="{StaticResource BrickStyleVisiblity}">
+            <GroupBox Style="{StaticResource BrickStyleVisiblity}">
+                <GroupBox.Header>
+                    <CheckBox IsChecked="{Binding TilePicker.ExtrasActive}" Content="Extras" />
+                </GroupBox.Header>
                 <StackPanel Orientation="Vertical">
                     <StackPanel Orientation="Horizontal" VerticalAlignment="Top">
                         <CheckBox IsChecked="{Binding TilePicker.BrickStyleActive}" Content="BrickStyle" Width="75" VerticalAlignment="Center" />

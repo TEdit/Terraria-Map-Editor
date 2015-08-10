@@ -67,13 +67,14 @@ namespace TEditXna.ViewModel
                         SetTile(curTile, isErase);
                     if (TilePicker.WallStyleActive)
                         SetWall(curTile, isErase);
-                    if (TilePicker.BrickStyleActive)
+                    if (TilePicker.BrickStyleActive && TilePicker.ExtrasActive)
                         SetPixelAutomatic(curTile, brickStyle: TilePicker.BrickStyle);
                     if (TilePicker.TilePaintActive)
                         SetPixelAutomatic(curTile, tileColor: isErase ? 0 : TilePicker.TileColor);
                     if (TilePicker.WallPaintActive)
                         SetPixelAutomatic(curTile, wallColor: isErase ? 0 : TilePicker.WallColor);
-                    SetPixelAutomatic(curTile, actuator: TilePicker.Actuator, actuatorInActive: TilePicker.ActuatorInActive);
+                    if (TilePicker.ExtrasActive)
+                        SetPixelAutomatic(curTile, actuator: TilePicker.Actuator, actuatorInActive: TilePicker.ActuatorInActive);
                     break;
                 case PaintMode.Wire:
                     if (TilePicker.RedWireActive)
