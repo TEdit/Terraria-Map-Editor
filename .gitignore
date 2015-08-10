@@ -39,3 +39,4 @@ _ReSharper*/
 hash.txt
 *.psess
 *.vspx
+packages/

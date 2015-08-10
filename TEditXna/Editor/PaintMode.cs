@@ -20,5 +20,7 @@ namespace TEditXna.Editor
         Liquid,
         [Description("BrickStyle")]
         BrickStyle,
+        [Description("Actuator")]
+        Actuator,
     }
 }

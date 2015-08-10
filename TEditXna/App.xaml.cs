@@ -33,17 +33,6 @@ namespace TEditXna
             Assembly asm = Assembly.GetExecutingAssembly();
             Version = FileVersionInfo.GetVersionInfo(asm.Location);
 
-            if (!DependencyChecker.VerifyDotNet())
-            {
-                MessageBox.Show("Please install .Net 4.0", "Missing .Net", MessageBoxButton.OK, MessageBoxImage.Stop);
-                ErrorLogging.LogException(new ApplicationException("MISSING .NET"));
-                Shutdown();
-            }
-            else
-            {
-                ErrorLogging.Log(".Net >= 4.0");
-            }
-
             if (!DependencyChecker.VerifyTerraria())
             {
                 ErrorLogging.Log("Unable to locate Terraria. No texture data will be available.");

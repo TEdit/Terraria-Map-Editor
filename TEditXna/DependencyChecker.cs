@@ -123,13 +123,6 @@ namespace TEditXna
             return null;
         }
 
-        public static bool VerifyDotNet()
-        {
-            Microsoft.Win32.RegistryKey subKey = Microsoft.Win32.Registry.LocalMachine.OpenSubKey(REGISTRY_DOTNET);
-            bool dotNetExists = subKey != null;
-            return dotNetExists;
-        }
-
         public static bool VerifyTerraria()
         {
             return Directory.Exists(PathToContent);
