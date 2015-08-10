@@ -206,10 +206,7 @@ namespace TEditXna.View
             _textures.Add("Wizard", WriteableBitmapEx.ResourceToTexture2D("TEditXna.Images.Overlays.npc_wizard.png", e.GraphicsDevice));
             _textures.Add("Mechanic", WriteableBitmapEx.ResourceToTexture2D("TEditXna.Images.Overlays.npc_mechanic.png", e.GraphicsDevice));
             _textures.Add("Santa Claus", WriteableBitmapEx.ResourceToTexture2D("TEditXna.Images.Overlays.npc_santa_claus.png", e.GraphicsDevice));
-            _textures.Add("Grid", WriteableBitmapEx.ResourceToTexture2DFixed("TEditXna.Images.Overlays.grid.png", e.GraphicsDevice));
-
-            //var cm = new Microsoft.Xna.Framework.Content.ContentManager(_serviceProvider, System.IO.Path.GetFullPath((new System.Uri(Assembly.GetExecutingAssembly().CodeBase)).AbsolutePath));
-            //_textures["grid"] = cm.Load<Texture2D>("Images/Overlays/TEditXna.Images.Overlays.grid.png");
+            _textures.Add("Grid", WriteableBitmapEx.ResourceToTexture2D("TEditXna.Images.Overlays.grid.png", e.GraphicsDevice));
         }
 
         private void LoadTerrariaTextures(GraphicsDeviceEventArgs e)
