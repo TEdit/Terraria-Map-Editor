@@ -91,6 +91,11 @@ namespace TEditXna.Editor.Tools
                         return false;
                     if (originTile.BrickStyle != nextTile.BrickStyle && _wvm.TilePicker.BrickStyleActive)
                         return false;
+                    if (_wvm.TilePicker.TilePaintActive && (originTile.Type != nextTile.Type || originTile.IsActive != nextTile.IsActive))
+                        return false;
+                    if (_wvm.TilePicker.WallPaintActive && (originTile.Wall != nextTile.Wall || (originTile.IsActive && World.TileProperties[originTile.Type].IsSolid) ||
+                        (nextTile.IsActive && World.TileProperties[nextTile.Type].IsSolid)))
+                        return false;
                     break;
                 case PaintMode.Wire:
                     return false;
