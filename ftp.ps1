@@ -12,6 +12,7 @@ Param(
 
 # Config
 $files = Get-ChildItem .\build -Filter *.zip
+Set-Location .\build
 foreach ($LocalFile in $files)
 {
     $RemoteFile = $Server + [System.IO.Path]::GetFileName($LocalFile)
