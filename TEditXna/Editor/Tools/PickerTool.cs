@@ -55,7 +55,15 @@ namespace TEditXna.Editor.Tools
             }
 
             _wvm.TilePicker.Wall = curTile.Wall;
+            _wvm.TilePicker.WallColor = curTile.WallColor;
+            _wvm.TilePicker.TileColor = curTile.TileColor;
             _wvm.TilePicker.LiquidType = curTile.LiquidType;
+            _wvm.TilePicker.BrickStyle = curTile.BrickStyle;
+            _wvm.TilePicker.RedWireActive = curTile.WireRed;
+            _wvm.TilePicker.BlueWireActive = curTile.WireGreen;
+            _wvm.TilePicker.GreenWireActive = curTile.WireBlue;
+            _wvm.TilePicker.Actuator = curTile.Actuator;
+            _wvm.TilePicker.ActuatorInActive = curTile.InActive;
         }
 
         private void PickmaskTile(int x, int y)
