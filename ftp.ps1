@@ -15,7 +15,7 @@ $files = Get-ChildItem .\build -Filter *.zip
 Set-Location .\build
 foreach ($LocalFile in $files)
 {
-    $RemoteFile = $Server + [System.IO.Path]::GetFileName($LocalFile)
+    $RemoteFile = $Server + "/downloads/" [System.IO.Path]::GetFileName($LocalFile)
     Write-Host "Uploading $LocalFile to $RemoteFile..."
      # Create FTP Rquest Object
     $FTPRequest = [System.Net.FtpWebRequest]::Create("$RemoteFile")
