@@ -15,7 +15,7 @@ $files = Get-ChildItem .\build -Filter *.zip
 foreach ($LocalFile in $files)
 {
     $RemoteFile = $Server + [System.IO.Path]::GetFileName($LocalFile)
-     
+    Write-Host "Uploading $LocalFile to $RemoteFile..."
      # Create FTP Rquest Object
     $FTPRequest = [System.Net.FtpWebRequest]::Create("$RemoteFile")
     $FTPRequest = [System.Net.FtpWebRequest]$FTPRequest
@@ -32,6 +32,7 @@ foreach ($LocalFile in $files)
     # Cleanup
     $Run.Close()
     $Run.Dispose()
+    Write-Host "FTP done."
 }
 
  #download
