@@ -1,10 +1,10 @@
-CmdletBinding()]
+[CmdletBinding()]
 Param(
   [Parameter(Mandatory=$True)]
   [string]$Username,
 	
   [Parameter()]
-  [string]$Password
+  [string]$Password,
   
   [Parameter(Mandatory=$True)]
   [string]$Server
