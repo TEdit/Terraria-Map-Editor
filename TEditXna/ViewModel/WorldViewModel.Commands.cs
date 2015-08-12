@@ -169,7 +169,7 @@ namespace TEditXna.ViewModel
 
         public void Update()
         {
-            string url = "http://binaryconstruct.com/games/tedit";
+            string url = "http://www.binaryconstruct.com/downloads/";
             try { System.Diagnostics.Process.Start(url); }
             catch { }
         }

@@ -522,7 +522,7 @@ namespace TEditXna.ViewModel
                     {
                         try
                         {
-                            Process.Start("http://www.binaryconstruct.com/games/tedit");
+                            Process.Start("http://www.binaryconstruct.com/downloads/");
                         }
                         catch { }
                         
