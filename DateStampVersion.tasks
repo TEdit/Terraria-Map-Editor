@@ -13,7 +13,7 @@
             <Code Type="Fragment" Language="cs">
 				<![CDATA[
 					// Generate Version Numbers
-					string datedBuildNumber = string.Format("{0}{1}{2}", DateTime.Now.ToString("yy"), DateTime.Now.ToString("MM"), DateTime.Now.ToString("dd"));
+					string datedBuildNumber = string.Format("{0}{1:000}", DateTime.Now.ToString("yy"), DateTime.Now.DayOfYear);
 					string revisionNumber = DateTime.Now.ToString("HHmm");
 
 					foreach (ITaskItem item in Items)
