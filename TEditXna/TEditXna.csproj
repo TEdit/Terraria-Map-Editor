@@ -171,6 +171,7 @@
     <Compile Include="Geometry\Shape.cs" />
     <Compile Include="Geometry\Spline.cs" />
     <Compile Include="Helper\Extensions.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Render\PixelMap.cs" />
     <Compile Include="Render\PixelMapManager.cs" />
     <Compile Include="Render\RenderMiniMap.cs" />
@@ -528,7 +529,7 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties BuildVersion_AssemblyInfoFilename="Properties\AssemblyInfo.cs" BuildVersion_UseGlobalSettings="True" />
+      <UserProperties BuildVersion_UseGlobalSettings="True" BuildVersion_AssemblyInfoFilename="Properties\AssemblyInfo.cs" />
     </VisualStudio>
   </ProjectExtensions>
   <PropertyGroup>
@@ -540,7 +541,6 @@
     </PreBuildEvent>
   </PropertyGroup>
   <ItemGroup>
-    <VersionItems Include="$(ProjectDir)Properties\AssemblyInfo.cs" />
     <VersionItems Include="$(SolutionDir)teditversion.txt" />
   </ItemGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
