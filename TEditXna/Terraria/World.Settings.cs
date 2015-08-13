@@ -35,6 +35,7 @@ namespace TEditXNA.Terraria
         private static readonly Dictionary<int, string> _tallynames = new Dictionary<int, string>();
         private static Vector2 _appSize;
         internal static string AltC;
+        internal static int? SteamUserId;
  
         static World()
         {
@@ -332,6 +333,7 @@ namespace TEditXNA.Terraria
             ToolDefaultData.LoadSettings(xmlSettings.Elements("Tools"));
 
             AltC = (string)xmlSettings.Element("AltC");
+            SteamUserId = (int?)xmlSettings.Element("SteamUserId") ?? null;
         }
 
         public static TileProperty GetBrickFromColor(byte a, byte r, byte g, byte b)

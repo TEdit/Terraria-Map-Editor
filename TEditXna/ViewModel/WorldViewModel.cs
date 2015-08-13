@@ -704,7 +704,7 @@ namespace TEditXna.ViewModel
             ofd.Filter = "Terraria World File|*.wld|Terraria World Backup|*.bak|TEdit Backup File|*.TEdit";
             ofd.DefaultExt = "Terraria World File|*.wld";
             ofd.Title = "Load Terraria World File";
-            ofd.InitialDirectory = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), @"My Games\Terraria\Worlds");
+            ofd.InitialDirectory = DependencyChecker.PathToWorlds;
             ofd.Multiselect = false;
             if ((bool)ofd.ShowDialog())
             {
@@ -790,7 +790,7 @@ namespace TEditXna.ViewModel
             var sfd = new SaveFileDialog();
             sfd.Filter = "Terraria World File|*.wld|TEdit Backup File|*.TEdit";
             sfd.Title = "Save World As";
-            sfd.InitialDirectory = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), @"My Games\Terraria\Worlds");
+            sfd.InitialDirectory = DependencyChecker.PathToWorlds;
             if ((bool)sfd.ShowDialog())
             {
                 CurrentFile = sfd.FileName;
