@@ -9,12 +9,14 @@ namespace TEditXna
         public const string REGISTRY_DOTNET = @"SOFTWARE\Microsoft\.NETFramework\policy\v4.0";
         public const string REGISTRY_XNA = @"Software\Microsoft\XNA\Framework\v4.0";
         public static string PathToContent;
+        public static string PathToWorlds;
 
         static DependencyChecker()
         {
             Properties.Settings.Default.Reload();
             
             string path = Properties.Settings.Default.TerrariaPath;
+            int? steamUserId = TEditXNA.Terraria.World.SteamUserId;
 
             // if the folder is missing, reset.
             if (!Directory.Exists(path))
@@ -99,6 +101,45 @@ namespace TEditXna
             }
 
             PathToContent = path;
+            PathToWorlds = GetPathToWorlds(steamUserId);
+        }
+
+        /**
+         *  TODO:  Update this to work with OS X
+         */
+        private static string GetPathToWorlds(int? steamUserId)
+        {
+            //  Are we editing Steam Cloud worlds?
+            if (steamUserId != null)
+            {
+                using (Microsoft.Win32.RegistryKey key = Microsoft.Win32.Registry.CurrentUser.OpenSubKey(@"Software\\Valve\\Steam"))
+                {
+                    if (key != null)
+                    {
+                        string steamWorlds = Path.Combine(key.GetValue("SteamPath") as string, "userdata");
+
+                        //  No Steam UserID was specified; we'll guess it if there's only a single user
+                        if (steamUserId == 0)
+                        {
+                            string[] userDirectories = Directory.GetDirectories(steamWorlds);
+
+                            if (userDirectories.Length == 1)
+                            {
+                                steamUserId = Convert.ToInt32(Path.GetFileName(userDirectories[0]));
+                            }
+                        }
+
+                        steamWorlds = Path.Combine(steamWorlds, steamUserId.ToString(), "105600", "remote", "worlds").Replace("/", "\\");
+
+                        if (Directory.Exists(steamWorlds))
+                        {
+                            return steamWorlds;
+                        }
+                    }
+                }
+            }
+            
+            return Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), @"My Games\Terraria\Worlds");
         }
 
         public static bool DirectoryHasContentFolder(string path)
