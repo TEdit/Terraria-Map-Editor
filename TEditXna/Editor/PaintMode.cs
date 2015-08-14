@@ -22,5 +22,7 @@ namespace TEditXna.Editor
         BrickStyle,
         [Description("Paint")]
         Paint,
+        [Description("Actuator")]
+        Actuator,
     }
 }
