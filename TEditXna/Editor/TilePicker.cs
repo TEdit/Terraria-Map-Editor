@@ -29,6 +29,11 @@ namespace TEditXna.Editor
         private int _tile = ToolDefaultData.PaintTile;
         private int _wallMask = ToolDefaultData.PaintWallMask;
         private int _tileMask = ToolDefaultData.PaintTileMask;
+        private bool _blueWireActive = ToolDefaultData.BlueWire;
+        private bool _redWireActive = ToolDefaultData.RedWire;
+        private bool _greenWireActive = ToolDefaultData.GreenWire;
+        private bool _tileStyleActive = ToolDefaultData.PaintTileActive;
+        private bool _wallStyleActive = ToolDefaultData.PaintWallActive;
 
         private BrickStyle _brickStyle = BrickStyle.Full;
         public BrickStyle BrickStyle
@@ -82,14 +87,12 @@ namespace TEditXna.Editor
             set { Set("BrickStyleActive", ref _brickStyleActive, value); }
         }
 
-        private bool _tileStyleActive;
         public bool TileStyleActive
         {
             get { return _tileStyleActive; }
             set { Set("TileStyleActive", ref _tileStyleActive, value); }
         }
 
-        private bool _wallStyleActive;
         public bool WallStyleActive
         {
             get { return _wallStyleActive; }
@@ -103,22 +106,18 @@ namespace TEditXna.Editor
             set { Set("ExtrasActive", ref _extrasActive, value); }
         }
 
-
-        private bool _redWireActive;
         public bool RedWireActive
         {
             get { return _redWireActive; }
             set { Set("RedWireActive", ref _redWireActive, value); }
         }
 
-        private bool _blueWireActive;
         public bool BlueWireActive
         {
             get { return _blueWireActive; }
             set { Set("BlueWireActive", ref _blueWireActive, value); }
         }
 
-        private bool _greenWireActive;
         public bool GreenWireActive
         {
             get { return _greenWireActive; }

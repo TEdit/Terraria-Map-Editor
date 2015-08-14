@@ -74,10 +74,11 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <!-- Valid Paint Modes are TileAndWall, Wire and Liquid. -->
     <Tool Name="Paint" Mode="TileAndWall" />
     <!-- Tile, Wall and Mask values correspond with Tile and Wall Id; valid Mask Modes are Off, Empty and Tile. -->
-    <Tool Name="Tile" Tile="0" Mask="0" Mode="Off" />
-    <Tool Name="Wall" Wall="0" Mask="0" Mode="Off" />
+    <Tool Name="Tile" Tile="0" Mask="0" Mode="Off" Active="True"/>
+    <Tool Name="Wall" Wall="0" Mask="0" Mode="Off" Active="True"/>
     <!-- Valid Brush Shapes are Square and Round. -->
     <Tool Name="Brush" Width="20" Height="20" Outline="1" Shape="Square"/>
+    <Tool Name="Wire" Red="True" Green="False" Blue="False"/>
   </Tools>
   <GlobalColors>
     <GlobalColor Name="Space"   Color="#FF336699"   />

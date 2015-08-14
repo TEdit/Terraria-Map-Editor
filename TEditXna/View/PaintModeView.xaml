@@ -159,7 +159,7 @@
                           ItemTemplate="{StaticResource EnumTemplate}" />
                     </StackPanel>
                     <CheckBox IsChecked="{Binding TilePicker.Actuator}" Content="Is Actuator" VerticalAlignment="Center" Height="22"/>
-                    <CheckBox IsChecked="{Binding TilePicker.ActuatorInActive}" Content="Actuator InActive" VerticalAlignment="Center" Height="22"/>
+                    <CheckBox IsChecked="{Binding TilePicker.ActuatorInActive}" Content="Actuator/Tile InActive" VerticalAlignment="Center" Height="22"/>
                 </StackPanel>
             </GroupBox>
             <GroupBox Header="Paint" Style="{StaticResource PaintVisibleStyle}">
