@@ -50,14 +50,12 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
 -->
 
 <Settings>
-  <!-- Uncomment the following and set to custom path if desired.  -->
-  <!--<AltC>D:\Dev\CODE\Terraria\Content</AltC>-->
   <!--
     Uncomment the following to edit Steam Cloud worlds.  Set the value to your Steam User ID;
     otherwise 0 will try to guess your ID and fail if you have multiple Steam users.
   -->
   <!--SteamUserId>0</SteamUserId-->
-  <App Width="800" Height="600" ClipboardRenderSize="512" />
+  <App Width="1024" Height="768" ClipboardRenderSize="512" />
   <ShortCutKeys>
     <Shortcut Key="A"   Tool="Arrow"        />
     <Shortcut Key="B"   Tool="Brush"        />
@@ -79,6 +77,11 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <!-- Valid Brush Shapes are Square and Round. -->
     <Tool Name="Brush" Width="20" Height="20" Outline="1" Shape="Square"/>
   </Tools>
+  <!--
+    Uncomment the following and set Terraria/Content path.
+    Perhaps useful if Terraria isn't installed locally or in a custom location.
+  -->
+  <!--<AltC>D:\Dev\CODE\Terraria\Content</AltC>-->
   <GlobalColors>
     <GlobalColor Name="Space"   Color="#FF336699"   />
     <GlobalColor Name="Sky"     Color="#FF9BD1FF"   />
