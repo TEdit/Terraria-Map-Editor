@@ -242,7 +242,7 @@ namespace TEdit.UI.Xaml.XnaContentHost
         }
 
         private IntPtr _cursorPtr = IntPtr.Zero;
-        
+
         public void SetCursor(Cursor cursor)
         {
             // TODO: this doesn't quite work...
@@ -337,7 +337,8 @@ namespace TEdit.UI.Xaml.XnaContentHost
 
             // Present to the screen, but only use the visible area of the back buffer
             if (graphicsService.GraphicsDevice.GraphicsDeviceStatus == GraphicsDeviceStatus.Normal)
-                graphicsService.GraphicsDevice.Present(viewport.Bounds, null, hWnd);
+                GraphicsService.GraphicsDevice.Present();
+            //graphicsService.GraphicsDevice.Present(viewport.Bounds, null, hWnd);
         }
 
         void XnaWindowHost_Loaded(object sender, RoutedEventArgs e)
@@ -464,163 +465,176 @@ namespace TEdit.UI.Xaml.XnaContentHost
 
         protected override IntPtr WndProc(IntPtr hwnd, int msg, IntPtr wParam, IntPtr lParam, ref bool handled)
         {
-
-
-            switch (msg)
+            try
             {
-                case NativeMethods.WM_MOUSEWHEEL:
-                    if (mouseInWindow)
-                    {
-                        int delta = wParam.ToInt32();
-                        if (HwndMouseWheel != null)
-                            HwndMouseWheel(this, new HwndMouseEventArgs(mouseState, delta, 0));
-                    }
-                    break;
-                case NativeMethods.WM_LBUTTONDOWN:
-                    mouseState.LeftButton = MouseButtonState.Pressed;
-                    if (HwndLButtonDown != null)
-                        HwndLButtonDown(this, new HwndMouseEventArgs(mouseState));
-                    break;
-                case NativeMethods.WM_LBUTTONUP:
-                    mouseState.LeftButton = MouseButtonState.Released;
-                    if (HwndLButtonUp != null)
-                        HwndLButtonUp(this, new HwndMouseEventArgs(mouseState));
-                    break;
-                case NativeMethods.WM_LBUTTONDBLCLK:
-                    if (HwndLButtonDblClick != null)
-                        HwndLButtonDblClick(this, new HwndMouseEventArgs(mouseState, MouseButton.Left));
-                    break;
-                case NativeMethods.WM_RBUTTONDOWN:
-                    mouseState.RightButton = MouseButtonState.Pressed;
-                    if (HwndRButtonDown != null)
-                        HwndRButtonDown(this, new HwndMouseEventArgs(mouseState));
-                    break;
-                case NativeMethods.WM_RBUTTONUP:
-                    mouseState.RightButton = MouseButtonState.Released;
-                    if (HwndRButtonUp != null)
-                        HwndRButtonUp(this, new HwndMouseEventArgs(mouseState));
-                    break;
-                case NativeMethods.WM_RBUTTONDBLCLK:
-                    if (HwndRButtonDblClick != null)
-                        HwndRButtonDblClick(this, new HwndMouseEventArgs(mouseState, MouseButton.Right));
-                    break;
-                case NativeMethods.WM_MBUTTONDOWN:
-                    mouseState.MiddleButton = MouseButtonState.Pressed;
-                    if (HwndMButtonDown != null)
-                        HwndMButtonDown(this, new HwndMouseEventArgs(mouseState));
-                    break;
-                case NativeMethods.WM_MBUTTONUP:
-                    mouseState.MiddleButton = MouseButtonState.Released;
-                    if (HwndMButtonUp != null)
-                        HwndMButtonUp(this, new HwndMouseEventArgs(mouseState));
-                    break;
-                case NativeMethods.WM_MBUTTONDBLCLK:
-                    if (HwndMButtonDblClick != null)
-                        HwndMButtonDblClick(this, new HwndMouseEventArgs(mouseState, MouseButton.Middle));
-                    break;
-                case NativeMethods.WM_XBUTTONDOWN:
-                    if (((int)wParam & NativeMethods.MK_XBUTTON1) != 0)
-                    {
-                        mouseState.X1Button = MouseButtonState.Pressed;
-                        if (HwndX1ButtonDown != null)
-                            HwndX1ButtonDown(this, new HwndMouseEventArgs(mouseState));
-                    }
-                    else if (((int)wParam & NativeMethods.MK_XBUTTON2) != 0)
-                    {
-                        mouseState.X2Button = MouseButtonState.Pressed;
-                        if (HwndX2ButtonDown != null)
-                            HwndX2ButtonDown(this, new HwndMouseEventArgs(mouseState));
-                    }
-                    break;
-                case NativeMethods.WM_XBUTTONUP:
-                    if (((int)wParam & NativeMethods.MK_XBUTTON1) != 0)
-                    {
-                        mouseState.X1Button = MouseButtonState.Released;
-                        if (HwndX1ButtonUp != null)
-                            HwndX1ButtonUp(this, new HwndMouseEventArgs(mouseState));
-                    }
-                    else if (((int)wParam & NativeMethods.MK_XBUTTON2) != 0)
-                    {
-                        mouseState.X2Button = MouseButtonState.Released;
-                        if (HwndX2ButtonUp != null)
-                            HwndX2ButtonUp(this, new HwndMouseEventArgs(mouseState));
-                    }
-                    break;
-                case NativeMethods.WM_XBUTTONDBLCLK:
-                    if (((int)wParam & NativeMethods.MK_XBUTTON1) != 0)
-                    {
-                        if (HwndX1ButtonDblClick != null)
-                            HwndX1ButtonDblClick(this, new HwndMouseEventArgs(mouseState, MouseButton.XButton1));
-                    }
-                    else if (((int)wParam & NativeMethods.MK_XBUTTON2) != 0)
-                    {
-                        if (HwndX2ButtonDblClick != null)
-                            HwndX2ButtonDblClick(this, new HwndMouseEventArgs(mouseState, MouseButton.XButton2));
-                    }
-                    break;
-                case NativeMethods.WM_MOUSEMOVE:
-                    // If the application isn't in focus, we don't handle this message
-                    if (!applicationHasFocus)
+
+
+
+                switch (msg)
+                {
+                    case NativeMethods.WM_MOUSEWHEEL:
+                        if (mouseInWindow)
+                        {
+                            try
+                            {
+                                int delta = wParam.ToInt32();
+                                if (HwndMouseWheel != null)
+                                    HwndMouseWheel(this, new HwndMouseEventArgs(mouseState, delta, 0));
+                            }
+                            catch (Exception) { /*supress error*/ }
+
+                        }
                         break;
+                    case NativeMethods.WM_LBUTTONDOWN:
+                        mouseState.LeftButton = MouseButtonState.Pressed;
+                        if (HwndLButtonDown != null)
+                            HwndLButtonDown(this, new HwndMouseEventArgs(mouseState));
+                        break;
+                    case NativeMethods.WM_LBUTTONUP:
+                        mouseState.LeftButton = MouseButtonState.Released;
+                        if (HwndLButtonUp != null)
+                            HwndLButtonUp(this, new HwndMouseEventArgs(mouseState));
+                        break;
+                    case NativeMethods.WM_LBUTTONDBLCLK:
+                        if (HwndLButtonDblClick != null)
+                            HwndLButtonDblClick(this, new HwndMouseEventArgs(mouseState, MouseButton.Left));
+                        break;
+                    case NativeMethods.WM_RBUTTONDOWN:
+                        mouseState.RightButton = MouseButtonState.Pressed;
+                        if (HwndRButtonDown != null)
+                            HwndRButtonDown(this, new HwndMouseEventArgs(mouseState));
+                        break;
+                    case NativeMethods.WM_RBUTTONUP:
+                        mouseState.RightButton = MouseButtonState.Released;
+                        if (HwndRButtonUp != null)
+                            HwndRButtonUp(this, new HwndMouseEventArgs(mouseState));
+                        break;
+                    case NativeMethods.WM_RBUTTONDBLCLK:
+                        if (HwndRButtonDblClick != null)
+                            HwndRButtonDblClick(this, new HwndMouseEventArgs(mouseState, MouseButton.Right));
+                        break;
+                    case NativeMethods.WM_MBUTTONDOWN:
+                        mouseState.MiddleButton = MouseButtonState.Pressed;
+                        if (HwndMButtonDown != null)
+                            HwndMButtonDown(this, new HwndMouseEventArgs(mouseState));
+                        break;
+                    case NativeMethods.WM_MBUTTONUP:
+                        mouseState.MiddleButton = MouseButtonState.Released;
+                        if (HwndMButtonUp != null)
+                            HwndMButtonUp(this, new HwndMouseEventArgs(mouseState));
+                        break;
+                    case NativeMethods.WM_MBUTTONDBLCLK:
+                        if (HwndMButtonDblClick != null)
+                            HwndMButtonDblClick(this, new HwndMouseEventArgs(mouseState, MouseButton.Middle));
+                        break;
+                    case NativeMethods.WM_XBUTTONDOWN:
+                        if (((int)wParam & NativeMethods.MK_XBUTTON1) != 0)
+                        {
+                            mouseState.X1Button = MouseButtonState.Pressed;
+                            if (HwndX1ButtonDown != null)
+                                HwndX1ButtonDown(this, new HwndMouseEventArgs(mouseState));
+                        }
+                        else if (((int)wParam & NativeMethods.MK_XBUTTON2) != 0)
+                        {
+                            mouseState.X2Button = MouseButtonState.Pressed;
+                            if (HwndX2ButtonDown != null)
+                                HwndX2ButtonDown(this, new HwndMouseEventArgs(mouseState));
+                        }
+                        break;
+                    case NativeMethods.WM_XBUTTONUP:
+                        if (((int)wParam & NativeMethods.MK_XBUTTON1) != 0)
+                        {
+                            mouseState.X1Button = MouseButtonState.Released;
+                            if (HwndX1ButtonUp != null)
+                                HwndX1ButtonUp(this, new HwndMouseEventArgs(mouseState));
+                        }
+                        else if (((int)wParam & NativeMethods.MK_XBUTTON2) != 0)
+                        {
+                            mouseState.X2Button = MouseButtonState.Released;
+                            if (HwndX2ButtonUp != null)
+                                HwndX2ButtonUp(this, new HwndMouseEventArgs(mouseState));
+                        }
+                        break;
+                    case NativeMethods.WM_XBUTTONDBLCLK:
+                        if (((int)wParam & NativeMethods.MK_XBUTTON1) != 0)
+                        {
+                            if (HwndX1ButtonDblClick != null)
+                                HwndX1ButtonDblClick(this, new HwndMouseEventArgs(mouseState, MouseButton.XButton1));
+                        }
+                        else if (((int)wParam & NativeMethods.MK_XBUTTON2) != 0)
+                        {
+                            if (HwndX2ButtonDblClick != null)
+                                HwndX2ButtonDblClick(this, new HwndMouseEventArgs(mouseState, MouseButton.XButton2));
+                        }
+                        break;
+                    case NativeMethods.WM_MOUSEMOVE:
+                        // If the application isn't in focus, we don't handle this message
+                        if (!applicationHasFocus)
+                            break;
 
-                    // record the prevous and new position of the mouse
-                    mouseState.PreviousPosition = mouseState.Position;
-                    mouseState.Position = new Point(
-                        NativeMethods.GetXLParam((int)lParam),
-                        NativeMethods.GetYLParam((int)lParam));
-
-                    if (!mouseInWindow)
-                    {
-                        mouseInWindow = true;
-
-                        // if the mouse is just entering, use the same position for the previous state
-                        // so we don't get weird deltas happening when the move event fires
+                        // record the prevous and new position of the mouse
                         mouseState.PreviousPosition = mouseState.Position;
+                        mouseState.Position = new Point(
+                            NativeMethods.GetXLParam((int)lParam),
+                            NativeMethods.GetYLParam((int)lParam));
 
-                        if (HwndMouseEnter != null)
-                            HwndMouseEnter(this, new HwndMouseEventArgs(mouseState));
-                        hWndprev = NativeMethods.GetFocus();
-                        NativeMethods.SetFocus(hWnd);
-                        // send the track mouse event so that we get the WM_MOUSELEAVE message
-                        NativeMethods.TRACKMOUSEEVENT tme = new NativeMethods.TRACKMOUSEEVENT();
-                        tme.cbSize = Marshal.SizeOf(typeof(NativeMethods.TRACKMOUSEEVENT));
-                        tme.dwFlags = NativeMethods.TME_LEAVE;
-                        tme.hWnd = hwnd;
-                        NativeMethods.TrackMouseEvent(ref tme);
-                    }
+                        if (!mouseInWindow)
+                        {
+                            mouseInWindow = true;
 
-                    // Only fire the mouse move if the position actually changed
-                    if (mouseState.Position != mouseState.PreviousPosition)
-                    {
-                        if (HwndMouseMove != null)
-                            HwndMouseMove(this, new HwndMouseEventArgs(mouseState));
-                    }
+                            // if the mouse is just entering, use the same position for the previous state
+                            // so we don't get weird deltas happening when the move event fires
+                            mouseState.PreviousPosition = mouseState.Position;
 
-                    break;
-                case NativeMethods.WM_MOUSELEAVE:
+                            if (HwndMouseEnter != null)
+                                HwndMouseEnter(this, new HwndMouseEventArgs(mouseState));
+                            hWndprev = NativeMethods.GetFocus();
+                            NativeMethods.SetFocus(hWnd);
+                            // send the track mouse event so that we get the WM_MOUSELEAVE message
+                            NativeMethods.TRACKMOUSEEVENT tme = new NativeMethods.TRACKMOUSEEVENT();
+                            tme.cbSize = Marshal.SizeOf(typeof(NativeMethods.TRACKMOUSEEVENT));
+                            tme.dwFlags = NativeMethods.TME_LEAVE;
+                            tme.hWnd = hwnd;
+                            NativeMethods.TrackMouseEvent(ref tme);
+                        }
 
-                    // If we have capture, we ignore this message because we're just
-                    // going to reset the cursor position back into the window
-                    if (isMouseCaptured)
+                        // Only fire the mouse move if the position actually changed
+                        if (mouseState.Position != mouseState.PreviousPosition)
+                        {
+                            if (HwndMouseMove != null)
+                                HwndMouseMove(this, new HwndMouseEventArgs(mouseState));
+                        }
+
                         break;
+                    case NativeMethods.WM_MOUSELEAVE:
 
-                    // Reset the state which releases all buttons and 
-                    // marks the mouse as not being in the window.
-                    ResetMouseState();
+                        // If we have capture, we ignore this message because we're just
+                        // going to reset the cursor position back into the window
+                        if (isMouseCaptured)
+                            break;
 
-                    if (HwndMouseLeave != null)
-                        HwndMouseLeave(this, new HwndMouseEventArgs(mouseState));
+                        // Reset the state which releases all buttons and 
+                        // marks the mouse as not being in the window.
+                        ResetMouseState();
 
-                    NativeMethods.SetFocus(hWndprev);
-                    break;
-                default:
-                    break;
+                        if (HwndMouseLeave != null)
+                            HwndMouseLeave(this, new HwndMouseEventArgs(mouseState));
+
+                        NativeMethods.SetFocus(hWndprev);
+                        break;
+                    default:
+                        break;
+                }
+            }
+            catch (Exception ex)
+            {
+                // log this
             }
 
             return base.WndProc(hwnd, msg, wParam, lParam, ref handled);
         }
 
-        
+
 
         #endregion
     }

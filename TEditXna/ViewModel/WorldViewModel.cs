@@ -183,18 +183,25 @@ namespace TEditXna.ViewModel
         /* SBLogic - catch exception if browser can't be launched */
         private void LaunchUrl(string url)
         {
+            System.Windows.Forms.DialogResult result = System.Windows.Forms.DialogResult.None;
             try
             {
                 Process.Start(url);
             }
             catch
             {
-                var result = System.Windows.Forms.MessageBox.Show("Unable to open external browser.  Copy to clipboard?", "Link Error", System.Windows.Forms.MessageBoxButtons.YesNo, System.Windows.Forms.MessageBoxIcon.Exclamation );
+                result = System.Windows.Forms.MessageBox.Show("Unable to open external browser.  Copy to clipboard?", "Link Error", System.Windows.Forms.MessageBoxButtons.YesNo, System.Windows.Forms.MessageBoxIcon.Exclamation);
+            }
+
+            // Just in case
+            try
+            {
                 if (result == System.Windows.Forms.DialogResult.Yes)
                 {
                     System.Windows.Clipboard.SetText(url);
                 }
             }
+            catch { } 
         }
 
 
@@ -513,7 +520,12 @@ namespace TEditXna.ViewModel
                 {
                     if (MessageBox.Show("You are using an outdated version of TEdit. Do you wish to download the update?", "Update?", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
                     {
-                        Process.Start("http://www.binaryconstruct.com/games/tedit");
+                        try
+                        {
+                            Process.Start("http://www.binaryconstruct.com/downloads/");
+                        }
+                        catch { }
+                        
                     }
                 }
                 else
@@ -692,7 +704,7 @@ namespace TEditXna.ViewModel
             ofd.Filter = "Terraria World File|*.wld|Terraria World Backup|*.bak|TEdit Backup File|*.TEdit";
             ofd.DefaultExt = "Terraria World File|*.wld";
             ofd.Title = "Load Terraria World File";
-            ofd.InitialDirectory = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), @"My Games\Terraria\Worlds");
+            ofd.InitialDirectory = DependencyChecker.PathToWorlds;
             ofd.Multiselect = false;
             if ((bool)ofd.ShowDialog())
             {
@@ -778,7 +790,7 @@ namespace TEditXna.ViewModel
             var sfd = new SaveFileDialog();
             sfd.Filter = "Terraria World File|*.wld|TEdit Backup File|*.TEdit";
             sfd.Title = "Save World As";
-            sfd.InitialDirectory = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), @"My Games\Terraria\Worlds");
+            sfd.InitialDirectory = DependencyChecker.PathToWorlds;
             if ((bool)sfd.ShowDialog())
             {
                 CurrentFile = sfd.FileName;

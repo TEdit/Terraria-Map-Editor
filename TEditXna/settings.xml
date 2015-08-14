@@ -52,6 +52,11 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
 <Settings>
   <!-- Uncomment the following and set to custom path if desired.  -->
   <!--<AltC>D:\Dev\CODE\Terraria\Content</AltC>-->
+  <!--
+    Uncomment the following to edit Steam Cloud worlds.  Set the value to your Steam User ID;
+    otherwise 0 will try to guess your ID and fail if you have multiple Steam users.
+  -->
+  <!--SteamUserId>0</SteamUserId-->
   <App Width="800" Height="600" ClipboardRenderSize="512" />
   <ShortCutKeys>
     <Shortcut Key="A"   Tool="Arrow"        />

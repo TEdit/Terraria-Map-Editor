@@ -169,8 +169,9 @@ namespace TEditXna.ViewModel
 
         public void Update()
         {
-            string url = "http://binaryconstruct.com/games/tedit";
-            System.Diagnostics.Process.Start(url);
+            string url = "http://www.binaryconstruct.com/downloads/";
+            try { System.Diagnostics.Process.Start(url); }
+            catch { }
         }
 
         public ICommand SaveChestCommand
