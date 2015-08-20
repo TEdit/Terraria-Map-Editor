@@ -9,6 +9,8 @@ namespace TEditXna.Editor
         [Description("Edit Empty")]
         Empty,
         [Description("Edit Matching")]
-        Match
+        Match,
+        [Description("Edit Not Matching")]
+        NotMatching,
     }
 }
