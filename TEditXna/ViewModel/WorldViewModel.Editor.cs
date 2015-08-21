@@ -159,7 +159,8 @@ namespace TEditXna.ViewModel
         {
             if (TilePicker.WallMaskMode == MaskMode.Off ||
                 (TilePicker.WallMaskMode == MaskMode.Match && curTile.Wall == TilePicker.WallMask) ||
-                (TilePicker.WallMaskMode == MaskMode.Empty && curTile.Wall == 0))
+                (TilePicker.WallMaskMode == MaskMode.Empty && curTile.Wall == 0) ||
+                (TilePicker.WallMaskMode == MaskMode.NotMatching && curTile.Wall != TilePicker.WallMask))
             {
                 if (erase)
                     SetPixelAutomatic(curTile, wall: 0);
@@ -172,7 +173,8 @@ namespace TEditXna.ViewModel
         {
             if (TilePicker.TileMaskMode == MaskMode.Off ||
                 (TilePicker.TileMaskMode == MaskMode.Match && curTile.Type == TilePicker.TileMask && curTile.IsActive) ||
-                (TilePicker.TileMaskMode == MaskMode.Empty && !curTile.IsActive))
+                (TilePicker.TileMaskMode == MaskMode.Empty && !curTile.IsActive) ||
+                (TilePicker.TileMaskMode == MaskMode.NotMatching && curTile.Type != TilePicker.TileMask || !curTile.IsActive))
             {
                 if (erase)
                     SetPixelAutomatic(curTile, tile: -1, brickStyle: BrickStyle.Full);
