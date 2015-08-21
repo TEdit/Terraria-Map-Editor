@@ -643,7 +643,7 @@ namespace TEditXna.View
 
                                     if (tileTex != null)
                                     {
-                                        if (!isTreeSpecial && !isMushroom)
+                                        if (!isTreeSpecial && !isMushroom && curtile.Type != 314)
                                         {
                                             source = new Rectangle(curtile.U, curtile.V, tileprop.TextureGrid.X, tileprop.TextureGrid.Y);
                                             if (source.Width <= 0)
@@ -694,6 +694,60 @@ namespace TEditXna.View
                                                         break;
                                                 }
                                             }
+                                        }
+                                        else if (curtile.Type == 314)
+                                        {
+                                            source = new Rectangle(0, 0, 16, 16);
+                                            dest = new Rectangle(1 + (int)((_scrollPosition.X + x) * _zoom), 1 + (int)((_scrollPosition.Y + y) * _zoom), (int)_zoom, (int)_zoom);
+                                            Vector2Int32 uv = new Vector2Int32(0, 0);
+                                            switch (curtile.U)
+                                            {
+                                                case 0: uv.X = 0; uv.Y = 0; break;
+                                                case 1: uv.X = 1; uv.Y = 0; break;
+                                                case 2: uv.X = 2; uv.Y = 1; break;
+                                                case 3: uv.X = 3; uv.Y = 1; break;
+                                                case 4: uv.X = 0; uv.Y = 2; break;
+                                                case 5: uv.X = 1; uv.Y = 2; break;
+                                                case 6: uv.X = 0; uv.Y = 1; break;
+                                                case 7: uv.X = 1; uv.Y = 1; break;
+                                                case 8: uv.X = 0; uv.Y = 3; break;
+                                                case 9: uv.X = 1; uv.Y = 3; break;
+                                                case 10: uv.X = 4; uv.Y = 1; break;
+                                                case 11: uv.X = 5; uv.Y = 1; break;
+                                                case 12: uv.X = 6; uv.Y = 1; break;
+                                                case 13: uv.X = 7; uv.Y = 1; break;
+                                                case 14: uv.X = 2; uv.Y = 0; break;
+                                                case 15: uv.X = 3; uv.Y = 0; break;
+                                                case 16: uv.X = 4; uv.Y = 0; break;
+                                                case 17: uv.X = 5; uv.Y = 0; break;
+                                                case 18: uv.X = 6; uv.Y = 0; break;
+                                                case 19: uv.X = 7; uv.Y = 0; break;
+                                                case 20: uv.X = 0; uv.Y = 4; break;
+                                                case 21: uv.X = 1; uv.Y = 4; break;
+                                                case 22: uv.X = 0; uv.Y = 5; break;
+                                                case 23: uv.X = 1; uv.Y = 5; break;
+                                                case 24: uv.X = 2; uv.Y = 2; break;
+                                                case 25: uv.X = 3; uv.Y = 2; break;
+                                                case 26: uv.X = 4; uv.Y = 2; break;
+                                                case 27: uv.X = 5; uv.Y = 2; break;
+                                                case 28: uv.X = 6; uv.Y = 2; break;
+                                                case 29: uv.X = 7; uv.Y = 2; break;
+                                                case 30: uv.X = 2; uv.Y = 3; break;
+                                                case 31: uv.X = 3; uv.Y = 3; break;
+                                                case 32: uv.X = 4; uv.Y = 3; break;
+                                                case 33: uv.X = 5; uv.Y = 3; break;
+                                                case 34: uv.X = 6; uv.Y = 3; break;
+                                                case 35: uv.X = 7; uv.Y = 3; break;
+                                                case 36: uv.X = 0; uv.Y = 6; break;
+                                                case 37: uv.X = 1; uv.Y = 6; break;
+                                                case 38: uv.X = 0; uv.Y = 7; break;
+                                                case 39: uv.X = 1; uv.Y = 7; break;
+                                            }
+                                            source.X = uv.X * (source.Width + 2);
+                                            source.Y = uv.Y * (source.Height + 2);
+
+                                            _spriteBatch.Draw(tileTex, dest, source, Color.White, 0f, default(Vector2), SpriteEffects.None, LayerWires);
+
                                         }
                                         else if (isTreeSpecial)
                                         {
