@@ -87,6 +87,9 @@ namespace TEditXna.ViewModel
                 case PaintMode.BrickStyle:
                     SetPixelAutomatic(curTile, brickStyle: TilePicker.BrickStyle);
                     break;
+                case PaintMode.Paint:
+                    SetPixelAutomatic(curTile, wallColor: isErase ? 0 : TilePicker.WallColor, tileColor: isErase ? 0 : TilePicker.TileColor);
+                    break;
             }
 
 
@@ -162,7 +165,7 @@ namespace TEditXna.ViewModel
                 if (erase)
                     SetPixelAutomatic(curTile, wall: 0);
                 else
-                    SetPixelAutomatic(curTile, wall: TilePicker.Wall);
+                    SetPixelAutomatic(curTile, wall: TilePicker.Wall, wallColor: TilePicker.WallColor);
             }
         }
 
@@ -176,7 +179,7 @@ namespace TEditXna.ViewModel
                 if (erase)
                     SetPixelAutomatic(curTile, tile: -1, brickStyle: BrickStyle.Full);
                 else
-                    SetPixelAutomatic(curTile, tile: TilePicker.Tile, brickStyle: TilePicker.BrickStyle, actuator: TilePicker.Actuator, actuatorInActive: TilePicker.ActuatorInActive);
+                    SetPixelAutomatic(curTile, tile: TilePicker.Tile, brickStyle: TilePicker.BrickStyle, actuator: TilePicker.Actuator, actuatorInActive: TilePicker.ActuatorInActive, tileColor: TilePicker.TileColor);
             }
         }
 
@@ -191,7 +194,9 @@ namespace TEditXna.ViewModel
                                        bool? wire2 = null,
                                        bool? wire3 = null,
                                        BrickStyle? brickStyle = null,
-                                       bool? actuator = null, bool? actuatorInActive = null)
+                                       bool? actuator = null, bool? actuatorInActive = null,
+                                       int? tileColor = null,
+                                       int? wallColor = null)
         {
             // Set Tile Data
             if (u != null)
@@ -249,6 +254,30 @@ namespace TEditXna.ViewModel
 
             if (wire3 != null)
                 curTile.WireBlue = (bool)wire3;
+
+            if (tileColor != null)
+            {
+                if (curTile.IsActive)
+                {
+                    curTile.TileColor = (byte)tileColor;
+                }
+                else
+                {
+                    curTile.TileColor = (byte)0;
+                }
+            }
+
+            if (wallColor != null)
+            {
+                if (curTile.Wall != 0)
+                {
+                    curTile.WallColor = (byte)wallColor;
+                }
+                else
+                {
+                    curTile.WallColor = (byte)0;
+                }
+            }
 
             if (curTile.IsActive)
                 if (World.TileProperties[curTile.Type].IsSolid)

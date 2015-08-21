@@ -72,6 +72,33 @@
                 </DataTrigger>
             </Style.Triggers>
         </Style>
+        <Style TargetType="{x:Type GroupBox}" x:Key="PaintVisibleStyle" BasedOn="{StaticResource {x:Type GroupBox}}">
+            <Setter Property="Visibility" Value="Collapsed" />
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding TilePicker.PaintMode}" Value="TileAndWall">
+                    <Setter Property="Visibility" Value="Visible" />
+                </DataTrigger>
+                <DataTrigger Binding="{Binding TilePicker.PaintMode}" Value="Paint">
+                    <Setter Property="Visibility" Value="Visible" />
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+        <Style TargetType="{x:Type GroupBox}" x:Key="TilePaintVisibleStyle" BasedOn="{StaticResource {x:Type GroupBox}}">
+            <Setter Property="Visibility" Value="Collapsed" />
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding TilePicker.PaintMode}" Value="Tile">
+                    <Setter Property="Visibility" Value="Visible" />
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+        <Style TargetType="{x:Type GroupBox}" x:Key="WallPaintVisibleStyle" BasedOn="{StaticResource {x:Type GroupBox}}">
+            <Setter Property="Visibility" Value="Collapsed" />
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding TilePicker.PaintMode}" Value="Wall">
+                    <Setter Property="Visibility" Value="Visible" />
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
     </UserControl.Resources>
     <Grid>
         <StackPanel Orientation="Horizontal">
@@ -152,6 +179,41 @@
                     <CheckBox IsChecked="{Binding TilePicker.ActuatorInActive}" Content="Actuator InActive" />
                 </StackPanel>
             </GroupBox>
+            <GroupBox Header="Paint" Style="{StaticResource PaintVisibleStyle}">
+                <StackPanel Orientation="Vertical">
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Top">
+                        <TextBlock Text="Tile" Width="30"/>
+                        <ComboBox ItemsSource="{Binding Source={x:Static Terraria:World.PaintProperties}, Mode=OneTime}" 
+                          ItemTemplate="{StaticResource ColorPickerTemplate}" 
+                          SelectedValue="{Binding Path=TilePicker.TileColor, Mode=TwoWay}"
+                          SelectedValuePath="Id" Width="150" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Top">
+                        <TextBlock Text="Wall" Width="30"/>
+                        <ComboBox ItemsSource="{Binding Source={x:Static Terraria:World.PaintProperties}, Mode=OneTime}" 
+                          ItemTemplate="{StaticResource ColorPickerTemplate}" 
+                          SelectedValue="{Binding Path=TilePicker.WallColor, Mode=TwoWay}"
+                          SelectedValuePath="Id" Width="150" />
+                    </StackPanel>
+                </StackPanel>
+            </GroupBox>
+            <GroupBox Header="Paint" Style="{StaticResource TilePaintVisibleStyle}">
+                <StackPanel Orientation="Vertical">
+                    <ComboBox ItemsSource="{Binding Source={x:Static Terraria:World.PaintProperties}, Mode=OneTime}" 
+                      ItemTemplate="{StaticResource ColorPickerTemplate}" 
+                      SelectedValue="{Binding Path=TilePicker.TileColor, Mode=TwoWay}"
+                      SelectedValuePath="Id" Width="150" />
+                </StackPanel>
+            </GroupBox>
+            <GroupBox Header="Paint" Style="{StaticResource WallPaintVisibleStyle}">
+                <StackPanel Orientation="Vertical">
+                    <ComboBox ItemsSource="{Binding Source={x:Static Terraria:World.PaintProperties}, Mode=OneTime}" 
+                      ItemTemplate="{StaticResource ColorPickerTemplate}" 
+                      SelectedValue="{Binding Path=TilePicker.WallColor, Mode=TwoWay}"
+                      SelectedValuePath="Id" Width="150" />
+                </StackPanel>
+            </GroupBox>
+
 
         </StackPanel>
     </Grid>
