@@ -192,21 +192,21 @@ namespace TEditXna.View
 
         private void LoadResourceTextures(GraphicsDeviceEventArgs e)
         {
-            _textures.Add("Spawn", WriteableBitmapEx.ResourceToTexture2D("TEditXna.Images.Overlays.spawn_marker.png", e.GraphicsDevice));
-            _textures.Add("Dungeon", WriteableBitmapEx.ResourceToTexture2D("TEditXna.Images.Overlays.dungeon_marker.png", e.GraphicsDevice));
-            _textures.Add("Old Man", WriteableBitmapEx.ResourceToTexture2D("TEditXna.Images.Overlays.npc_old_man.png", e.GraphicsDevice));
-            _textures.Add("Arms Dealer", WriteableBitmapEx.ResourceToTexture2D("TEditXna.Images.Overlays.npc_arms_dealer.png", e.GraphicsDevice));
-            _textures.Add("Clothier", WriteableBitmapEx.ResourceToTexture2D("TEditXna.Images.Overlays.npc_clothier.png", e.GraphicsDevice));
-            _textures.Add("Demolitionist", WriteableBitmapEx.ResourceToTexture2D("TEditXna.Images.Overlays.npc_demolitionist.png", e.GraphicsDevice));
-            _textures.Add("Dryad", WriteableBitmapEx.ResourceToTexture2D("TEditXna.Images.Overlays.npc_dryad.png", e.GraphicsDevice));
-            _textures.Add("Guide", WriteableBitmapEx.ResourceToTexture2D("TEditXna.Images.Overlays.npc_guide.png", e.GraphicsDevice));
-            _textures.Add("Merchant", WriteableBitmapEx.ResourceToTexture2D("TEditXna.Images.Overlays.npc_merchant.png", e.GraphicsDevice));
-            _textures.Add("Nurse", WriteableBitmapEx.ResourceToTexture2D("TEditXna.Images.Overlays.npc_nurse.png", e.GraphicsDevice));
+            _textures.Add("Spawn"          , WriteableBitmapEx.ResourceToTexture2D("TEditXna.Images.Overlays.spawn_marker.png", e.GraphicsDevice));
+            _textures.Add("Dungeon"        , WriteableBitmapEx.ResourceToTexture2D("TEditXna.Images.Overlays.dungeon_marker.png", e.GraphicsDevice));
+            _textures.Add("Old Man"        , WriteableBitmapEx.ResourceToTexture2D("TEditXna.Images.Overlays.npc_old_man.png", e.GraphicsDevice));
+            _textures.Add("Arms Dealer"    , WriteableBitmapEx.ResourceToTexture2D("TEditXna.Images.Overlays.npc_arms_dealer.png", e.GraphicsDevice));
+            _textures.Add("Clothier"       , WriteableBitmapEx.ResourceToTexture2D("TEditXna.Images.Overlays.npc_clothier.png", e.GraphicsDevice));
+            _textures.Add("Demolitionist"  , WriteableBitmapEx.ResourceToTexture2D("TEditXna.Images.Overlays.npc_demolitionist.png", e.GraphicsDevice));
+            _textures.Add("Dryad"          , WriteableBitmapEx.ResourceToTexture2D("TEditXna.Images.Overlays.npc_dryad.png", e.GraphicsDevice));
+            _textures.Add("Guide"          , WriteableBitmapEx.ResourceToTexture2D("TEditXna.Images.Overlays.npc_guide.png", e.GraphicsDevice));
+            _textures.Add("Merchant"       , WriteableBitmapEx.ResourceToTexture2D("TEditXna.Images.Overlays.npc_merchant.png", e.GraphicsDevice));
+            _textures.Add("Nurse"          , WriteableBitmapEx.ResourceToTexture2D("TEditXna.Images.Overlays.npc_nurse.png", e.GraphicsDevice));
             _textures.Add("Goblin Tinkerer", WriteableBitmapEx.ResourceToTexture2D("TEditXna.Images.Overlays.npc_goblin.png", e.GraphicsDevice));
-            _textures.Add("Wizard", WriteableBitmapEx.ResourceToTexture2D("TEditXna.Images.Overlays.npc_wizard.png", e.GraphicsDevice));
-            _textures.Add("Mechanic", WriteableBitmapEx.ResourceToTexture2D("TEditXna.Images.Overlays.npc_mechanic.png", e.GraphicsDevice));
-            _textures.Add("Santa Claus", WriteableBitmapEx.ResourceToTexture2D("TEditXna.Images.Overlays.npc_santa_claus.png", e.GraphicsDevice));
-            _textures.Add("Grid", WriteableBitmapEx.ResourceToTexture2D("TEditXna.Images.Overlays.grid.png", e.GraphicsDevice));
+            _textures.Add("Wizard"         , WriteableBitmapEx.ResourceToTexture2D("TEditXna.Images.Overlays.npc_wizard.png", e.GraphicsDevice));
+            _textures.Add("Mechanic"       , WriteableBitmapEx.ResourceToTexture2D("TEditXna.Images.Overlays.npc_mechanic.png", e.GraphicsDevice));
+            _textures.Add("Santa Claus"    , WriteableBitmapEx.ResourceToTexture2D("TEditXna.Images.Overlays.npc_santa_claus.png", e.GraphicsDevice));
+            _textures.Add("Grid"           , WriteableBitmapEx.ResourceToTexture2D("TEditXna.Images.Overlays.grid.png", e.GraphicsDevice));
         }
 
         private void LoadTerrariaTextures(GraphicsDeviceEventArgs e)
@@ -437,6 +437,10 @@ namespace TEditXna.View
         {
             Rectangle visibleBounds = GetViewingArea();
             TEditXna.Terraria.Objects.BlendRules blendRules = TEditXna.Terraria.Objects.BlendRules.Instance;
+            var width  = _wvm.CurrentWorld.TilesWide;
+            var height = _wvm.CurrentWorld.TilesHigh;
+
+
             if (visibleBounds.Height * visibleBounds.Width < 25000)
             {
                 //Extended the viewing space to give tiles time to cache their UV's
@@ -455,14 +459,14 @@ namespace TEditXna.View
                         //Neighbor tiles are often used when dynamically determining which UV position to render
                         int e = 0, n = 1, w = 2, s = 3, ne = 4, nw = 5, sw = 6, se = 7;
                         Tile[] neighborTile = new Tile[8];
-                        neighborTile[e] = (x + 1) < _wvm.CurrentWorld.TilesWide ? _wvm.CurrentWorld.Tiles[x + 1, y] : null;
-                        neighborTile[n] = (y - 1) > 0 ? _wvm.CurrentWorld.Tiles[x, y - 1] : null;
-                        neighborTile[w] = (x - 1) > 0 ? _wvm.CurrentWorld.Tiles[x - 1, y] : null;
-                        neighborTile[s] = (y + 1) < _wvm.CurrentWorld.TilesHigh ? _wvm.CurrentWorld.Tiles[x, y + 1] : null;
-                        neighborTile[ne] = (x + 1) < _wvm.CurrentWorld.TilesWide && (y - 1) > 0 ? _wvm.CurrentWorld.Tiles[x + 1, y - 1] : null;
-                        neighborTile[nw] = (x - 1) > 0 && (y - 1) > 0 ? _wvm.CurrentWorld.Tiles[x - 1, y - 1] : null;
-                        neighborTile[sw] = (x - 1) > 0 && (y + 1) < _wvm.CurrentWorld.TilesHigh ? _wvm.CurrentWorld.Tiles[x - 1, y + 1] : null;
-                        neighborTile[se] = (x + 1) < _wvm.CurrentWorld.TilesWide && (y + 1) < _wvm.CurrentWorld.TilesHigh ? _wvm.CurrentWorld.Tiles[x + 1, y + 1] : null;
+                        neighborTile[ e] = (x + 1) < width                     ? _wvm.CurrentWorld.Tiles[x + 1, y    ] : null;
+                        neighborTile[ n] = (y - 1) > 0                         ? _wvm.CurrentWorld.Tiles[x    , y - 1] : null;
+                        neighborTile[ w] = (x - 1) > 0                         ? _wvm.CurrentWorld.Tiles[x - 1, y    ] : null;
+                        neighborTile[ s] = (y + 1) < height                    ? _wvm.CurrentWorld.Tiles[x    , y + 1] : null;
+                        neighborTile[ne] = (x + 1) < width && (y - 1) > 0      ? _wvm.CurrentWorld.Tiles[x + 1, y - 1] : null;
+                        neighborTile[nw] = (x - 1) > 0     && (y - 1) > 0      ? _wvm.CurrentWorld.Tiles[x - 1, y - 1] : null;
+                        neighborTile[sw] = (x - 1) > 0     && (y + 1) < height ? _wvm.CurrentWorld.Tiles[x - 1, y + 1] : null;
+                        neighborTile[se] = (x + 1) < width && (y + 1) < height ? _wvm.CurrentWorld.Tiles[x + 1, y + 1] : null;
 
                         if (_wvm.ShowWalls)
                         {
