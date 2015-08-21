@@ -27,20 +27,55 @@ namespace TEditXna
         protected override void OnStartup(StartupEventArgs e)
         {
             ErrorLogging.Initialize();
-            ErrorLogging.Log(string.Format("Starting TEdit {0}",ErrorLogging.Version));
-            ErrorLogging.Log(string.Format("OS: {0}",Environment.OSVersion));
+            ErrorLogging.Log(string.Format("Starting TEdit {0}", ErrorLogging.Version));
+            ErrorLogging.Log(string.Format("OS: {0}", Environment.OSVersion));
 
             Assembly asm = Assembly.GetExecutingAssembly();
             Version = FileVersionInfo.GetVersionInfo(asm.Location);
 
-            if (!DependencyChecker.VerifyTerraria())
+            try
             {
-                ErrorLogging.Log("Unable to locate Terraria. No texture data will be available.");
+                int directxMajorVersion = DependencyChecker.GetDirectxMajorVersion();
+                if (directxMajorVersion < 11)
+                {
+                    ErrorLogging.Log(string.Format("DirectX {0} unsupported. DirectX 11 or higher is required.", directxMajorVersion));
+                }
             }
-            else
+            catch (Exception ex)
             {
-                ErrorLogging.Log(string.Format("Terraria Data Path: {0}", DependencyChecker.PathToContent));
+                ErrorLogging.Log("Failed to verify DirectX Version. TEdit may not run properly.");
+                ErrorLogging.LogException(ex);
             }
+
+            try
+            {
+                DependencyChecker.CheckPaths();
+            }
+            catch (Exception ex)
+            {
+                ErrorLogging.Log("Failed to verify Terraria Paths. TEdit may not run properly.");
+                ErrorLogging.LogException(ex);
+            }
+
+
+            try
+            {
+
+                if (!DependencyChecker.VerifyTerraria())
+                {
+                    ErrorLogging.Log("Unable to locate Terraria. No texture data will be available.");
+                }
+                else
+                {
+                    ErrorLogging.Log(string.Format("Terraria Data Path: {0}", DependencyChecker.PathToContent));
+                }
+            }
+            catch (Exception ex)
+            {
+                ErrorLogging.Log("Failed to verify Terraria Paths. No texture data will be available.");
+                ErrorLogging.LogException(ex);
+            }
+
 
             if (e.Args != null && e.Args.Count() > 0)
             {
