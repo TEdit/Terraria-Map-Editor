@@ -15,6 +15,7 @@ namespace TEditXNA.Terraria
         private readonly Dictionary<int, Texture2D> _tiles = new Dictionary<int, Texture2D>();
         private readonly Dictionary<int, Texture2D> _backgrounds = new Dictionary<int, Texture2D>();
         private readonly Dictionary<int, Texture2D> _walls = new Dictionary<int, Texture2D>();
+        private readonly Dictionary<int, Texture2D> _trees = new Dictionary<int, Texture2D>();
         private readonly Dictionary<int, Texture2D> _treeTops = new Dictionary<int, Texture2D>();
         private readonly Dictionary<int, Texture2D> _treeBranches = new Dictionary<int, Texture2D>();
         private readonly Dictionary<int, Texture2D> _shrooms = new Dictionary<int, Texture2D>();
@@ -25,6 +26,7 @@ namespace TEditXNA.Terraria
         public Dictionary<int, Texture2D> Tiles { get { return _tiles; } }
         public Dictionary<int, Texture2D> Backgrounds { get { return _backgrounds; } }
         public Dictionary<int, Texture2D> Walls { get { return _walls; } }
+        public Dictionary<int, Texture2D> Trees { get { return _trees; } }
         public Dictionary<int, Texture2D> TreeTops { get { return _treeTops; } }
         public Dictionary<int, Texture2D> TreeBranches { get { return _treeBranches; } }
         public Dictionary<int, Texture2D> Shrooms { get { return _shrooms; } }
@@ -89,6 +91,23 @@ namespace TEditXNA.Terraria
                 Walls[num] = LoadTexture(name);
             }
             return Walls[num];
+        }
+        public Texture2D GetTree(int num)
+        {
+            if (!Trees.ContainsKey(num))
+            {
+                if (num >= 0)
+                {
+                    string name = String.Format("Images\\Tiles_5_{0}", num);
+                    Trees[num] = LoadTexture(name);
+                }
+                else
+                {
+                    string name = "Images\\Tiles_5";
+                    Trees[num] = LoadTexture(name);
+                }
+            }
+            return Trees[num];
         }
         public Texture GetTreeTops(int num)
         {

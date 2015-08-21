@@ -28,6 +28,7 @@ namespace TEditXNA.Terraria
         private static readonly ObservableCollection<TileProperty> _tileProperties = new ObservableCollection<TileProperty>();
         private static readonly ObservableCollection<TileProperty> _tileBricks = new ObservableCollection<TileProperty>();
         private static readonly ObservableCollection<WallProperty> _wallProperties = new ObservableCollection<WallProperty>();
+        private static readonly ObservableCollection<PaintProperty> _paintProperties = new ObservableCollection<PaintProperty>();
 
         private static readonly ObservableCollection<Sprite> _sprites = new ObservableCollection<Sprite>();
         private static readonly Dictionary<Key, string> _shortcuts = new Dictionary<Key, string>();
@@ -237,6 +238,15 @@ namespace TEditXNA.Terraria
                     _tallynames.Add(tally, curItem.Name);
             }
 
+            foreach (var xElement in xmlSettings.Elements("Paints").Elements("Paint"))
+            {
+                var curPaint = new PaintProperty();
+                curPaint.Id = (int?)xElement.Attribute("Id") ?? -1;
+                curPaint.Name = (string)xElement.Attribute("Name");
+                curPaint.Color = ColorFromString((string)xElement.Attribute("Color"));
+                PaintProperties.Add(curPaint);
+            }
+
             int chestId = 0;
             foreach (var tileElement in xmlSettings.Elements("Tiles").Elements("Tile"))
             {
@@ -425,6 +435,11 @@ namespace TEditXNA.Terraria
         public static ObservableCollection<WallProperty> WallProperties
         {
             get { return _wallProperties; }
+        }
+
+        public static ObservableCollection<PaintProperty> PaintProperties
+        {
+            get { return _paintProperties; }
         }
 
         public static ObservableCollection<ItemProperty> ItemProperties

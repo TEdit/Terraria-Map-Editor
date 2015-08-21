@@ -12,6 +12,7 @@ namespace TEditXna.Editor
         private string _tileExtras;
         private string _tileName;
         private string _wallName;
+        private string _paint;
 
         public TileMouseState MouseState
         {
@@ -29,6 +30,12 @@ namespace TEditXna.Editor
         {
             get { return _tileName; }
             set { Set("TileName", ref _tileName, value); }
+        }
+
+        public string Paint
+        {
+            get { return _paint; }
+            set { Set("Paint", ref _paint, value); }
         }
 
         public string TileExtras
@@ -67,13 +74,31 @@ namespace TEditXna.Editor
                 }
                 else
                     TileExtras = string.Empty;
+                
+                if (_tile.TileColor > 0)
+                {
+                    if (_tile.WallColor > 0)
+                        Paint = string.Format("Tile: {0}, Wall: {1}", World.PaintProperties[_tile.TileColor].Name, World.PaintProperties[_tile.WallColor].Name);
+                    else
+                        Paint = string.Format("Tile: {0}", World.PaintProperties[_tile.TileColor].Name);
+                }
+                else if (_tile.WallColor > 0)
+                {
+                    Paint = string.Format("Wall: {0}", World.PaintProperties[_tile.WallColor].Name);
+                }
+                else
+                {
+                    Paint = "None";
+                }
+
+                if (_tile.InActive)
+                {
+                    TileExtras += " Inactive";
+                }
 
                 if (_tile.Actuator)
                 {
-                    if (_tile.InActive)
-                        TileExtras += " Inactive Actuator";
-                    else
-                        TileExtras += " Active Actuator ";
+                    TileExtras += " Actuator";
                 }
 
                 if (_tile.WireRed)

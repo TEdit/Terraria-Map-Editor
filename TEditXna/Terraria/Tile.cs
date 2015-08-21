@@ -12,10 +12,10 @@ namespace TEditXNA.Terraria
         [Description("Full Brick")]
         Full = 0x0,
         HalfBrick = 0x1,
-        SlopeTopLeftDown = 0x2,
-        SlopeBottomLeftDown = 0x3,
-        SlopeTopLeftUp = 0x4,
-        SlopeBottomLeftUp = 0x5,
+        SlopeTopRight = 0x2,
+        SlopeTopLeft = 0x3,
+        SlopeBottomRight = 0x4,
+        SlopeBottomLeft = 0x5,
         Unknown06 = 0x6,
         Unknown07 = 0x7,
     }

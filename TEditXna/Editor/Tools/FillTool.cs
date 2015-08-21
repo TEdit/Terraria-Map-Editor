@@ -84,16 +84,19 @@ namespace TEditXna.Editor.Tools
         {
             switch (_wvm.TilePicker.PaintMode)
             {
-                case PaintMode.Tile:
-                    if (originTile.Type != nextTile.Type || originTile.IsActive != nextTile.IsActive)
-                        return false;
-                    break;
-                case PaintMode.Wall:
-                    if (originTile.Wall != nextTile.Wall)
-                        return false;
-                    break;
                 case PaintMode.TileAndWall:
-                    if (originTile.Type != nextTile.Type || originTile.IsActive != nextTile.IsActive || originTile.Wall != nextTile.Wall)
+                    if ((originTile.Type != nextTile.Type || originTile.IsActive != nextTile.IsActive) && _wvm.TilePicker.TileStyleActive)
+                        return false;
+                    if (originTile.Wall != nextTile.Wall && _wvm.TilePicker.WallStyleActive)
+                        return false;
+                    if (originTile.BrickStyle != nextTile.BrickStyle && _wvm.TilePicker.BrickStyleActive)
+                        return false;
+                    if (_wvm.TilePicker.TilePaintActive && (originTile.Type != nextTile.Type || originTile.IsActive != nextTile.IsActive))
+                        return false;
+                    if (_wvm.TilePicker.WallPaintActive && (originTile.Wall != nextTile.Wall || (originTile.IsActive && World.TileProperties[originTile.Type].IsSolid) ||
+                        (nextTile.IsActive && World.TileProperties[nextTile.Type].IsSolid)))
+                        return false;
+                    if (_wvm.TilePicker.ExtrasActive)
                         return false;
                     break;
                 case PaintMode.Wire:
@@ -103,11 +106,6 @@ namespace TEditXna.Editor.Tools
                         originTile.LiquidType != nextTile.LiquidType ||
                         (originTile.IsActive && World.TileProperties[originTile.Type].IsSolid) ||
                         (nextTile.IsActive && World.TileProperties[nextTile.Type].IsSolid))
-                        return false;
-
-                    break;
-                case PaintMode.BrickStyle:
-                    if (originTile.BrickStyle != nextTile.BrickStyle)
                         return false;
                     break;
             }
