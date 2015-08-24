@@ -50,9 +50,12 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
 -->
 
 <Settings>
-  <!-- Uncomment the following and set to custom path if desired.  -->
-  <!--<AltC>D:\Dev\CODE\Terraria\Content</AltC>-->
-  <App Width="800" Height="600" ClipboardRenderSize="512" />
+  <!--
+    Uncomment the following to edit Steam Cloud worlds.  Set the value to your Steam User ID;
+    otherwise 0 will try to guess your ID and fail if you have multiple Steam users.
+  -->
+  <!--SteamUserId>0</SteamUserId-->
+  <App Width="1024" Height="768" ClipboardRenderSize="512" />
   <ShortCutKeys>
     <Shortcut Key="A"   Tool="Arrow"        />
     <Shortcut Key="B"   Tool="Brush"        />
@@ -66,14 +69,20 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Shortcut Key="X"   Tool="Swap"         />
   </ShortCutKeys>
   <Tools>
-    <!-- Valid Paint Modes are Tile, Wall, TileAndWall, Wire and Liquid. -->
-    <Tool Name="Paint" Mode="Tile" />
+    <!-- Valid Paint Modes are TileAndWall, Wire and Liquid. -->
+    <Tool Name="Paint" Mode="TileAndWall" />
     <!-- Tile, Wall and Mask values correspond with Tile and Wall Id; valid Mask Modes are Off, Empty and Tile. -->
-    <Tool Name="Tile" Tile="0" Mask="0" Mode="Off" />
-    <Tool Name="Wall" Wall="0" Mask="0" Mode="Off" />
+    <Tool Name="Tile" Tile="0" Mask="0" Mode="Off" Active="True"/>
+    <Tool Name="Wall" Wall="0" Mask="0" Mode="Off" Active="True"/>
     <!-- Valid Brush Shapes are Square and Round. -->
     <Tool Name="Brush" Width="20" Height="20" Outline="1" Shape="Square"/>
+    <Tool Name="Wire" Red="True" Green="False" Blue="False"/>
   </Tools>
+  <!--
+    Uncomment the following and set Terraria/Content path.
+    Perhaps useful if Terraria isn't installed locally or in a custom location.
+  -->
+  <!--<AltC>D:\Dev\CODE\Terraria\Content</AltC>-->
   <GlobalColors>
     <GlobalColor Name="Space"   Color="#FF336699"   />
     <GlobalColor Name="Sky"     Color="#FF9BD1FF"   />
@@ -3973,46 +3982,46 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Tile Color="#FF57969A" Id="313" Blends="true" Name="Blue Dynasty Shingles" Solid="true" />
     <Tile Color="#FFB5A47D" Id="314" Name="Minecart Track" Framed="True">
       <Frames>
-        <Frame UV="0,0" Variety="Rail A" />
-        <Frame UV="18,0" Variety="Rail B" />
-        <Frame UV="36,0" Variety="Rail C" />
-        <Frame UV="54,0" Variety="Rail D" />
-        <Frame UV="72,0" Variety="Diagonal A" />
-        <Frame UV="90,0" Variety="Diagonal B" />
-        <Frame UV="108,0" Variety="Diagonal C" />
-        <Frame UV="126,0" Variety="Diagonal D" />
-        <Frame UV="18,18" Variety="Slope Transition Up-Right" />
-        <Frame UV="0,18" Variety="Slope Transition Up-Left" />
-        <Frame UV="0,36" Variety="Half Height Slope A" />
-        <Frame UV="18,36" Variety="Half Height Slope B" />
-        <Frame UV="0,54" Variety="Slope A" />
-        <Frame UV="18,54" Variety="Slope B" />
-        <Frame UV="0,108" Variety="Tie Upper Left" />
-        <Frame UV="18,108" Variety="Tie Upper Right" />
-        <Frame UV="0,126" Variety="End Cap" />
-        <Frame UV="36,18" Variety="End Cap Level A" />
-        <Frame UV="54,18" Variety="End Cap Level B" />
-        <Frame UV="72,18" Variety="End Cap Diagonal A" />
-        <Frame UV="90,18" Variety="End Cap Diagonal B" />
-        <Frame UV="108,18" Variety="End Cap Diagonal C" />
-        <Frame UV="126,18" Variety="End Cap Diagonal D" />
-        <Frame UV="18,126" Variety="Bumper" />
-        <Frame UV="36,36" Variety="Bumper Level A" />
-        <Frame UV="54,36" Variety="Bumper Level B" />
-        <Frame UV="72,36" Variety="Bumper Diagonal A" />
-        <Frame UV="90,36" Variety="Bumper Diagonal B" />
-        <Frame UV="108,36" Variety="Bumper Diagonal C" />
-        <Frame UV="126,36" Variety="Bumper Diagonal D" />
-        <Frame UV="36,54" Variety="Booster Right Level" />
-        <Frame UV="54,54" Variety="Booster Left Level" />
-        <Frame UV="72,54" Variety="Booster Down-Right" />
-        <Frame UV="90,54" Variety="Booster Down-Left" />
+        <Frame UV="0,0"    Variety="Single Rail" />
+        <Frame UV="18,0"   Variety="Straight Rail" />
+        <Frame UV="36,0"   Variety="Left End Open" />
+        <Frame UV="54,0"   Variety="Right End Open" />
+        <Frame UV="72,0"   Variety="Diagonal Up-Right Open" />
+        <Frame UV="90,0"   Variety="Diagonal Up-Left Open" />
+        <Frame UV="108,0"  Variety="Diagonal Down-Right Open" />
+        <Frame UV="126,0"  Variety="Diagonal Down-Left Open1" />
+        <Frame UV="0,18"   Variety="Flat to Up-Right" />
+        <Frame UV="18,18"  Variety="Flat to Up-Left" />
+        <Frame UV="36,18"  Variety="Left End Closed" />
+        <Frame UV="54,18"  Variety="Right End Closed" />
+        <Frame UV="72,18"  Variety="Diagonal Up-Right Closed" />
+        <Frame UV="90,18"  Variety="Diagonal Up-Left Closed" />
+        <Frame UV="108,18" Variety="Diagonal Down-Right Closed" />
+        <Frame UV="126,18" Variety="Diagonal Down-Left Closed" />
+        <Frame UV="0,36"   Variety="Up-Right to Flat" />
+        <Frame UV="18,36"  Variety="Up-Left to Flat" />
+        <Frame UV="36,36"  Variety="Left End Bumper" />
+        <Frame UV="54,36"  Variety="Right End Bumper" />
+        <Frame UV="72,36"  Variety="Diagonal Up-Right Bumper" />
+        <Frame UV="90,36"  Variety="Diagonal Up-Left Bumper" />
+        <Frame UV="108,36" Variety="Diagonal Down-Right Bumper" />
+        <Frame UV="126,36" Variety="Diagonal Down-Left Bumper" />
+        <Frame UV="0,54"   Variety="Slope Left" />
+        <Frame UV="18,54"  Variety="Slope Right" />
+        <Frame UV="36,54"  Variety="Booster Right" />
+        <Frame UV="54,54"  Variety="Booster Left" />
+        <Frame UV="72,54"  Variety="Booster Down-Right" />
+        <Frame UV="90,54"  Variety="Booster Down-Left" />
         <Frame UV="108,54" Variety="Booster Up-Left" />
         <Frame UV="126,54" Variety="Booster Up-Right" />
-        <Frame UV="0,72" Variety="Pressure Plate Track A" />
-        <Frame UV="18,72" Variety="Pressure Plate Track B" />
-        <Frame UV="0,90" Variety="Pressure Plate Track C" />
-        <Frame UV="18,90" Variety="Pressure Plate Track D" />
+        <Frame UV="0,72"   Variety="Single Rail Pressure Plate" />
+        <Frame UV="18,72"  Variety="Straight Rail Pressure Plate" />
+        <Frame UV="0,90"   Variety="Left End Open Pressure Plate" />
+        <Frame UV="18,90"  Variety="Right End Open Pressure Plate" />
+        <Frame UV="0,108"  Variety="Tie Upper Left" />
+        <Frame UV="18,108" Variety="Tie Upper Right" />
+        <Frame UV="0,126"  Variety="End Closed Top" />
+        <Frame UV="18,126" Variety="End Bumper Top" />
       </Frames>
     </Tile>
     <Tile Color="#FFEB7250" Id="315" Blends="true" Name="Coralstone Block" Solid="True" />
@@ -8254,6 +8263,39 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Prefix Id="82" Name="Unreal"           />
     <Prefix Id="83" Name="Mythical"         />
   </ItemPrefix>
+  <Paints>
+    <Paint Id="0"  Name="None" Color="#00000000"/>
+    <Paint Id="1"  Name="Red" Color="#FFFF0000"/>
+    <Paint Id="2"  Name="Orange" Color="#FFFF7F00"/>
+    <Paint Id="3"  Name="Yellow" Color="#FFFFFF00"/>
+    <Paint Id="4"  Name="Lime" Color="#FF7FFF00"/>
+    <Paint Id="5"  Name="Green" Color="#FF00FF00"/>
+    <Paint Id="6"  Name="Teal" Color="#FF00FF7F"/>
+    <Paint Id="7"  Name="Cyan" Color="#FF00FFFF"/>
+    <Paint Id="8"  Name="Sky Blue" Color="#FF007FFF"/>
+    <Paint Id="9"  Name="Blue" Color="#FF0000FF"/>
+    <Paint Id="10" Name="Purple" Color="#FF7F00FF"/>
+    <Paint Id="11" Name="Violet" Color="#FFFF00FF"/>
+    <Paint Id="12" Name="Pink" Color="#FFFF007F"/>
+    <Paint Id="13" Name="Deep Red" Color="#FFFF0000"/>
+    <Paint Id="14" Name="Deep Orange" Color="#FFFF7F00"/>
+    <Paint Id="15" Name="Deep Yellow" Color="#FFFFFF00"/>
+    <Paint Id="16" Name="Deep Lime" Color="#FF7FFF00"/>
+    <Paint Id="17" Name="Deep Green" Color="#FF00FF00"/>
+    <Paint Id="18" Name="Deep Teal" Color="#FF00FF7F"/>
+    <Paint Id="19" Name="Deep Cyan" Color="#FF00FFFF"/>
+    <Paint Id="20" Name="Deep Sky Blue" Color="#FF007FFF"/>
+    <Paint Id="21" Name="Deep Blue" Color="#FF0000FF"/>
+    <Paint Id="22" Name="Deep Purple" Color="#FF7F00FF"/>
+    <Paint Id="23" Name="Deep Violet" Color="#FFFF00FF"/>
+    <Paint Id="24" Name="Deep Pink" Color="#FFFF007F"/>
+    <Paint Id="25" Name="Black" Color="#FF4B4B4B"/>
+    <Paint Id="26" Name="White" Color="#FFFFFFFF"/>
+    <Paint Id="27" Name="Gray" Color="#FFAFAFAF"/>
+    <Paint Id="28" Name="Brown" Color="#FFFFB27D"/>
+    <Paint Id="29" Name="Shadow" Color="#FF191919"/>
+    <Paint Id="30" Name="Negative" Color="#96C8C8C8"/>
+  </Paints>
 </Settings>
 
 <!--

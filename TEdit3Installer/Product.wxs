@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
-  <Product Id="*" Name="TEdit 3" Language="1033" Version="3.5.15215.2016" Manufacturer="BinaryConstruct" UpgradeCode="1d9a5baf-12ad-4a55-9e83-bbfd95c7c820">
+  <Product Id="*" Name="TEdit 3" Language="1033" Version="3.5.15221.1943" Manufacturer="BinaryConstruct" UpgradeCode="1d9a5baf-12ad-4a55-9e83-bbfd95c7c820">
     <Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" />
     <Media Id="1" Cabinet="disk1.cab" EmbedCab="yes" />
     <Directory Id="TARGETDIR" Name="SourceDir">
       <Directory Id="ProgramFilesFolder">
         <Directory Id="INSTALLFOLDER" Name="TEdit">
           <Component Id="MainExecutable" Guid="dad85bf4-cc44-4e66-9502-0a6e6b37e114">
-            <File Id="TEditXna.exe" Source="..\TEditXna\bin\Release\TEditXna.exe" KeyPath='yes' />
-            <File Id="settings.xml" Source="..\TEditXna\bin\Release\settings.xml" />
-            <File Id="GalaSoft.MvvmLight.dll" Source="..\TEditXna\bin\Release\GalaSoft.MvvmLight.dll" />
-            <File Id="GalaSoft.MvvmLight.Extras.dll" Source="..\TEditXna\bin\Release\GalaSoft.MvvmLight.Extras.dll" />
-            <File Id="Microsoft.Practices.ServiceLocation.dll" Source="..\TEditXna\bin\Release\Microsoft.Practices.ServiceLocation.dll" />
-            <File Id="Microsoft.Threading.Tasks.dll" Source="..\TEditXna\bin\Release\Microsoft.Threading.Tasks.dll" />
-            <File Id="Microsoft.Threading.Tasks.Extensions.Desktop.dll" Source="..\TEditXna\bin\Release\Microsoft.Threading.Tasks.Extensions.Desktop.dll" />
-            <File Id="Microsoft.Threading.Tasks.Extensions.dll" Source="..\TEditXna\bin\Release\Microsoft.Threading.Tasks.Extensions.dll" />
-            <File Id="System.Runtime.dll" Source="..\TEditXna\bin\Release\System.Runtime.dll" />
-            <File Id="System.Threading.Tasks.dll" Source="..\TEditXna\bin\Release\System.Threading.Tasks.dll" />
-            <File Id="System.Windows.Interactivity.dll" Source="..\TEditXna\bin\Release\System.Windows.Interactivity.dll" />
+            <File Id="TEditXna.exe" Source="$(SolutionDir)TEditXna\bin\Release\TEditXna.exe" KeyPath='yes' />
+            <File Id="settings.xml" Source="$(SolutionDir)TEditXna\bin\Release\settings.xml" />
+            <File Id="GalaSoft.MvvmLight.dll" Source="$(SolutionDir)TEditXna\bin\Release\GalaSoft.MvvmLight.dll" />
+            <File Id="GalaSoft.MvvmLight.Extras.dll" Source="$(SolutionDir)TEditXna\bin\Release\GalaSoft.MvvmLight.Extras.dll" />
+            <File Id="Microsoft.Practices.ServiceLocation.dll" Source="$(SolutionDir)TEditXna\bin\Release\Microsoft.Practices.ServiceLocation.dll" />
+            <File Id="Microsoft.Threading.Tasks.dll" Source="$(SolutionDir)TEditXna\bin\Release\Microsoft.Threading.Tasks.dll" />
+            <File Id="Microsoft.Threading.Tasks.Extensions.Desktop.dll" Source="$(SolutionDir)TEditXna\bin\Release\Microsoft.Threading.Tasks.Extensions.Desktop.dll" />
+            <File Id="Microsoft.Threading.Tasks.Extensions.dll" Source="$(SolutionDir)TEditXna\bin\Release\Microsoft.Threading.Tasks.Extensions.dll" />
+            <File Id="System.Runtime.dll" Source="$(SolutionDir)TEditXna\bin\Release\System.Runtime.dll" />
+            <File Id="System.Threading.Tasks.dll" Source="$(SolutionDir)TEditXna\bin\Release\System.Threading.Tasks.dll" />
+            <File Id="System.Windows.Interactivity.dll" Source="$(SolutionDir)TEditXna\bin\Release\System.Windows.Interactivity.dll" />
             <Shortcut Id="TEditStartMenuShortcut"
               Directory="ProgramMenuDir"
               Name="TEdit 3"
@@ -73,7 +73,7 @@
     <!-- Optional Associations -->
 
     <Property Id="WIXUI_INSTALLDIR" Value="INSTALLFOLDER" />
-    <Icon Id="tedit.ico" SourceFile="..\TEditXna\Images\tedit.ico" />
+    <Icon Id="tedit.ico" SourceFile="$(SolutionDir)TEditXna\Images\tedit.ico" />
     <Property Id="ARPPRODUCTICON">tedit.ico</Property>
     <!--<MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />-->
     <Feature Id="ProductFeature" Title="TEdit" Level="1">

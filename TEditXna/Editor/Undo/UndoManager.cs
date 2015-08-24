@@ -44,7 +44,7 @@ namespace TEditXna.Editor.Undo
         {
             if (!File.Exists(UndoAliveFile))
                 File.Create(UndoAliveFile).Close();
-            
+
             File.SetLastWriteTimeUtc(UndoAliveFile, DateTime.UtcNow);
         }
 
@@ -156,7 +156,7 @@ namespace TEditXna.Editor.Undo
             _buffer.Close();
             _currentIndex++;
             _buffer = null;
-
+            Buffer = new UndoBuffer(GetUndoFileName());
             OnUndoSaved(this, EventArgs.Empty);
 
         }
@@ -376,9 +376,9 @@ namespace TEditXna.Editor.Undo
                 // Free your own state (unmanaged objects).
                 // Set large fields to null.
 
-                
 
-              
+
+
                 CleanupOldUndoFiles(true);
                 disposed = true;
             }

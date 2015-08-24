@@ -280,46 +280,8 @@ namespace TEditXna.Terraria.Objects
         //This function resets the UV state for the specified tile locations (as well as nearby tiles) such that the UV cache must be re-evaluated
         public static void ResetUVCache(WorldViewModel _wvm, int tileStartX, int tileStartY, int regionWidth, int regionHeight)
         {
-            PaintMode curMode = _wvm.TilePicker.PaintMode;
-            switch (curMode)
+            if (_wvm.TilePicker.PaintMode == PaintMode.TileAndWall)
             {
-                case PaintMode.Tile:
-                    //Reset UV Cache for nearby tiles
-                    for (int x = -1; x < regionWidth + 1; x++)
-                    {
-                        int tilex = x + tileStartX;
-                        for (int y = -1; y < regionHeight + 1; y++)
-                        {
-                            int tiley = y + tileStartY;
-                            if (tilex < 0 || tiley < 0 || tilex >= _wvm.CurrentWorld.TilesWide || tiley >= _wvm.CurrentWorld.TilesHigh)
-                            {
-                                continue;
-                            }
-                            Tile curtile = _wvm.CurrentWorld.Tiles[tilex, tiley];
-                            curtile.uvTileCache = 0xFFFF;
-                            curtile.lazyMergeId = 0xFF;
-                            curtile.hasLazyChecked = false;
-                        }
-                    }
-                    break;
-                case PaintMode.Wall:
-                    //Reset UV Cache for nearby walls
-                    for (int x = -1; x < regionWidth + 1; x++)
-                    {
-                        int tilex = x + tileStartX;
-                        for (int y = -1; y < regionHeight + 1; y++)
-                        {
-                            int tiley = y + tileStartY;
-                            if (tilex < 0 || tiley < 0 || tilex >= _wvm.CurrentWorld.TilesWide || tiley >= _wvm.CurrentWorld.TilesHigh)
-                            {
-                                continue;
-                            }
-                            Tile curtile = _wvm.CurrentWorld.Tiles[tilex, tiley];
-                            curtile.uvWallCache = 0xFFFF;
-                        }
-                    }
-                    break;
-                case PaintMode.TileAndWall:
                     //Reset UV Cache for nearby tiles and walls
                     for (int x = -1; x < regionWidth + 1; x++)
                     {
@@ -332,13 +294,16 @@ namespace TEditXna.Terraria.Objects
                                 continue;
                             }
                             Tile curtile = _wvm.CurrentWorld.Tiles[tilex, tiley];
-                            curtile.uvTileCache = 0xFFFF;
-                            curtile.uvWallCache = 0xFFFF;
-                            curtile.lazyMergeId = 0xFF;
-                            curtile.hasLazyChecked = false;
+                            if (_wvm.TilePicker.TileStyleActive)
+                            {
+                                curtile.uvTileCache = 0xFFFF;
+                                curtile.lazyMergeId = 0xFF;
+                                curtile.hasLazyChecked = false;
+                            }
+                            if (_wvm.TilePicker.WallStyleActive)
+                                curtile.uvWallCache = 0xFFFF;
                         }
                     }
-                    break;
             }
         }
     }

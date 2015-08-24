@@ -57,23 +57,31 @@ namespace TEdit.UI.Xaml.XnaContentHost
 
         private void CreateDevice(IntPtr windowHandle, int width, int height)
         {
-            parameters = new PresentationParameters();
+            try
+            {
+                parameters = new PresentationParameters();
 
-            parameters.BackBufferWidth = Math.Max(width, 1);
-            parameters.BackBufferHeight = Math.Max(height, 1);
-            parameters.BackBufferFormat = SurfaceFormat.Color;
-            parameters.DepthStencilFormat = DepthFormat.Depth24;
-            parameters.DeviceWindowHandle = windowHandle;
-            parameters.PresentationInterval = PresentInterval.Immediate;
-            parameters.IsFullScreen = false;
+                parameters.BackBufferWidth = Math.Max(width, 1);
+                parameters.BackBufferHeight = Math.Max(height, 1);
+                parameters.BackBufferFormat = SurfaceFormat.Color;
+                parameters.DepthStencilFormat = DepthFormat.Depth24;
+                parameters.DeviceWindowHandle = windowHandle;
+                parameters.PresentationInterval = PresentInterval.Immediate;
+                parameters.IsFullScreen = false;
 
-            graphicsDevice = new GraphicsDevice(
-                GraphicsAdapter.DefaultAdapter,
-                GraphicsProfile.Reach,
-                parameters);
+                graphicsDevice = new GraphicsDevice(
+                    GraphicsAdapter.DefaultAdapter,
+                    GraphicsProfile.Reach,
+                    parameters);
 
-            if (DeviceCreated != null)
-                DeviceCreated(this, EventArgs.Empty);
+                if (DeviceCreated != null)
+                    DeviceCreated(this, EventArgs.Empty);
+
+            }
+            catch (Exception ex)
+            {
+                throw new ApplicationException("Failed to initialize GraphicsDeviceService. See inner exception for details.", ex);
+            }
         }
 
 
@@ -116,7 +124,7 @@ namespace TEdit.UI.Xaml.XnaContentHost
             }
         }
 
-        
+
         /// <summary>
         /// Resets the graphics device to whichever is bigger out of the specified
         /// resolution or its current size. This behavior means the device will

@@ -28,9 +28,6 @@
         <Style TargetType="{x:Type GroupBox}" x:Key="TileVisibleStyle" BasedOn="{StaticResource {x:Type GroupBox}}">
             <Setter Property="Visibility" Value="Collapsed" />
             <Style.Triggers>
-                <DataTrigger Binding="{Binding TilePicker.PaintMode}" Value="Tile">
-                    <Setter Property="Visibility" Value="Visible" />
-                </DataTrigger>
                 <DataTrigger Binding="{Binding TilePicker.PaintMode}" Value="TileAndWall">
                     <Setter Property="Visibility" Value="Visible" />
                 </DataTrigger>
@@ -39,9 +36,6 @@
         <Style TargetType="{x:Type GroupBox}" x:Key="WallVisibleStyle" BasedOn="{StaticResource {x:Type GroupBox}}">
             <Setter Property="Visibility" Value="Collapsed" />
             <Style.Triggers>
-                <DataTrigger Binding="{Binding TilePicker.PaintMode}" Value="Wall">
-                    <Setter Property="Visibility" Value="Visible" />
-                </DataTrigger>
                 <DataTrigger Binding="{Binding TilePicker.PaintMode}" Value="TileAndWall">
                     <Setter Property="Visibility" Value="Visible" />
                 </DataTrigger>
@@ -58,16 +52,23 @@
         <Style TargetType="{x:Type GroupBox}" x:Key="BrickStyleVisiblity" BasedOn="{StaticResource {x:Type GroupBox}}">
             <Setter Property="Visibility" Value="Collapsed" />
             <Style.Triggers>
-                <DataTrigger Binding="{Binding TilePicker.PaintMode}" Value="BrickStyle">
-                    <Setter Property="Visibility" Value="Visible" />
-                </DataTrigger>
-                <DataTrigger Binding="{Binding TilePicker.PaintMode}" Value="Tile">
-                    <Setter Property="Visibility" Value="Visible" />
-                </DataTrigger>
                 <DataTrigger Binding="{Binding TilePicker.PaintMode}" Value="TileAndWall">
                     <Setter Property="Visibility" Value="Visible" />
                 </DataTrigger>
-                <DataTrigger Binding="{Binding TilePicker.PaintMode}" Value="Actuator">
+            </Style.Triggers>
+        </Style>
+        <Style TargetType="{x:Type GroupBox}" x:Key="PaintVisibleStyle" BasedOn="{StaticResource {x:Type GroupBox}}">
+            <Setter Property="Visibility" Value="Collapsed" />
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding TilePicker.PaintMode}" Value="TileAndWall">
+                    <Setter Property="Visibility" Value="Visible" />
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+        <Style TargetType="{x:Type GroupBox}" x:Key="WireStyle" BasedOn="{StaticResource {x:Type GroupBox}}">
+            <Setter Property="Visibility" Value="Collapsed" />
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding TilePicker.PaintMode}" Value="Wire">
                     <Setter Property="Visibility" Value="Visible" />
                 </DataTrigger>
             </Style.Triggers>
@@ -88,7 +89,10 @@
                 </StackPanel>
 
             </StackPanel>
-            <GroupBox Header="Tile" BorderThickness="1" Style="{StaticResource TileVisibleStyle}">
+            <GroupBox BorderThickness="1" Style="{StaticResource TileVisibleStyle}">
+                <GroupBox.Header>
+                    <CheckBox IsChecked="{Binding TilePicker.TileStyleActive}" Content="Tile" />
+                </GroupBox.Header>
                 <tedit:AutoGrid Width="220" VerticalAlignment="Top" >
                     <tedit:AutoGrid.ColumnDefinitions>
                         <ColumnDefinition Width="1*" />
@@ -109,7 +113,10 @@
                       IsTextSearchEnabled="True" TextSearch.TextPath="Name" />
                 </tedit:AutoGrid>
             </GroupBox>
-            <GroupBox Header="Wall" BorderThickness="1"  Style="{StaticResource WallVisibleStyle}">
+            <GroupBox BorderThickness="1"  Style="{StaticResource WallVisibleStyle}">
+                <GroupBox.Header>
+                    <CheckBox IsChecked="{Binding TilePicker.WallStyleActive}" Content="Wall" />
+                </GroupBox.Header>
                 <tedit:AutoGrid Width="220" VerticalAlignment="Top" >
                     <tedit:AutoGrid.ColumnDefinitions>
                         <ColumnDefinition Width="1*" />
@@ -139,17 +146,45 @@
                           ItemTemplate="{StaticResource EnumTemplate}" />
                 </StackPanel>
             </GroupBox>
-            <GroupBox Header="BrickStyle" Style="{StaticResource BrickStyleVisiblity}">
+            <GroupBox Style="{StaticResource BrickStyleVisiblity}">
+                <GroupBox.Header>
+                    <CheckBox IsChecked="{Binding TilePicker.ExtrasActive}" Content="Extras" />
+                </GroupBox.Header>
                 <StackPanel Orientation="Vertical">
                     <StackPanel Orientation="Horizontal" VerticalAlignment="Top">
-                        <TextBlock Text="Half Blocks" HorizontalAlignment="Left" Width="65"  VerticalAlignment="Center" />
+                        <CheckBox IsChecked="{Binding TilePicker.BrickStyleActive}" Content="BrickStyle" Width="75" VerticalAlignment="Center" />
                         <ComboBox ItemsSource="{StaticResource BrickStyle}" 
                           SelectedValue="{Binding TilePicker.BrickStyle}" 
-                          SelectedValuePath="Value" Width="100"
+                          SelectedValuePath="Value" Width="120"
                           ItemTemplate="{StaticResource EnumTemplate}" />
                     </StackPanel>
-                    <CheckBox IsChecked="{Binding TilePicker.Actuator}" Content="Is Actuator" />
-                    <CheckBox IsChecked="{Binding TilePicker.ActuatorInActive}" Content="Actuator InActive" />
+                    <CheckBox IsChecked="{Binding TilePicker.Actuator}" Content="Is Actuator" VerticalAlignment="Center" Height="22"/>
+                    <CheckBox IsChecked="{Binding TilePicker.ActuatorInActive}" Content="Actuator/Tile InActive" VerticalAlignment="Center" Height="22"/>
+                </StackPanel>
+            </GroupBox>
+            <GroupBox Header="Paint" Style="{StaticResource PaintVisibleStyle}">
+                <StackPanel Orientation="Vertical">
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Top">
+                        <CheckBox IsChecked="{Binding TilePicker.TilePaintActive}" Content="Tile" Width="50" VerticalAlignment="Center" />
+                        <ComboBox ItemsSource="{Binding Source={x:Static Terraria:World.PaintProperties}, Mode=OneTime}" 
+                          ItemTemplate="{StaticResource ColorPickerTemplate}" 
+                          SelectedValue="{Binding Path=TilePicker.TileColor, Mode=TwoWay}"
+                          SelectedValuePath="Id" Width="140" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Top">
+                        <CheckBox IsChecked="{Binding TilePicker.WallPaintActive}" Content="Wall" Width="50" VerticalAlignment="Center" />
+                        <ComboBox ItemsSource="{Binding Source={x:Static Terraria:World.PaintProperties}, Mode=OneTime}" 
+                          ItemTemplate="{StaticResource ColorPickerTemplate}" 
+                          SelectedValue="{Binding Path=TilePicker.WallColor, Mode=TwoWay}"
+                          SelectedValuePath="Id" Width="140" />
+                    </StackPanel>
+                </StackPanel>
+            </GroupBox>
+            <GroupBox Header="Wire" Style="{StaticResource WireStyle}">
+                <StackPanel Orientation="Vertical">
+                    <CheckBox IsChecked="{Binding TilePicker.RedWireActive}" Content="Red" Width="75" VerticalAlignment="Center" Height="22"/>
+                    <CheckBox IsChecked="{Binding TilePicker.BlueWireActive}" Content="Blue" Width="75" VerticalAlignment="Center" Height="22"/>
+                    <CheckBox IsChecked="{Binding TilePicker.GreenWireActive}" Content="Green" Width="75" VerticalAlignment="Center" Height="22"/>                    
                 </StackPanel>
             </GroupBox>
 

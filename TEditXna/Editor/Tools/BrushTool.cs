@@ -193,7 +193,7 @@ namespace TEditXna.Editor.Tools
             IEnumerable<Vector2Int32> border = area.Except(interrior);
 
             // Draw the border
-            if (_wvm.TilePicker.PaintMode == PaintMode.Tile || _wvm.TilePicker.PaintMode == PaintMode.TileAndWall)
+            if (_wvm.TilePicker.TileStyleActive)
             {
                 foreach (Vector2Int32 pixel in border)
                 {
@@ -207,7 +207,7 @@ namespace TEditXna.Editor.Tools
                         if (_wvm.Selection.IsValid(pixel))
                         {
                             _wvm.UndoManager.SaveTile(pixel);
-                            _wvm.SetPixel(pixel.X, pixel.Y, mode: PaintMode.Tile);
+                            _wvm.SetPixel(pixel.X, pixel.Y, mode: PaintMode.TileAndWall);
 
                             /* Heathtech */
                             BlendRules.ResetUVCache(_wvm, pixel.X, pixel.Y, 1, 1);
@@ -226,9 +226,9 @@ namespace TEditXna.Editor.Tools
                     _wvm.UndoManager.SaveTile(pixel);
                     _wvm.SetPixel(pixel.X, pixel.Y, erase: true);
 
-                    if (_wvm.TilePicker.PaintMode == PaintMode.Wall || _wvm.TilePicker.PaintMode == PaintMode.TileAndWall)
+                    if (_wvm.TilePicker.WallStyleActive)
                     {
-                        _wvm.SetPixel(pixel.X, pixel.Y, mode: PaintMode.Wall);
+                        _wvm.SetPixel(pixel.X, pixel.Y, mode: PaintMode.TileAndWall);
                     }
 
                     /* Heathtech */

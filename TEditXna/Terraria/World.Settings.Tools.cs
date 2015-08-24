@@ -16,11 +16,17 @@ namespace TEditXNA.Terraria
 
         private static int _paintTile;
         private static int _paintTileMask;
+        private static bool _paintTileActive;
         private static MaskMode _paintTileMaskMode;
 
         private static int _paintWall;
         private static int _paintWallMask;
+        private static bool _paintWallActive;
         private static MaskMode _paintWallMaskMode;
+        
+        private static bool _redWire;
+        private static bool _greenWire;
+        private static bool _blueWire;
 
         //  Invoked from World.Settings
         internal static void LoadSettings(IEnumerable<XElement> xmlToolSettings)
@@ -32,7 +38,7 @@ namespace TEditXNA.Terraria
                 switch (toolName)
                 {
                     case "Paint":
-                        _paintMode = (PaintMode)ToEnum(typeof(PaintMode), (string)xElement.Attribute("Mode") ?? PaintMode.Tile.ToString());
+                        _paintMode = (PaintMode)ToEnum(typeof(PaintMode), (string)xElement.Attribute("Mode") ?? PaintMode.TileAndWall.ToString());
                         break;
                     case "Brush":
                         _brushWidth = (int?)xElement.Attribute("Width") ?? 20;
@@ -43,12 +49,19 @@ namespace TEditXNA.Terraria
                     case "Tile":
                         _paintTile = (int?)xElement.Attribute("Tile") ?? 0;
                         _paintTileMask = (int?)xElement.Attribute("Mask") ?? 0;
+                        _paintTileActive = (bool)xElement.Attribute("Active");
                         _paintTileMaskMode = (MaskMode)ToEnum(typeof(MaskMode), (string)xElement.Attribute("Mode") ?? MaskMode.Off.ToString());
                         break;
                     case "Wall":
                         _paintWall = (int?)xElement.Attribute("Wall") ?? 0;
                         _paintWallMask = (int?)xElement.Attribute("Mask") ?? 0;
+                        _paintWallActive = (bool)xElement.Attribute("Active");
                         _paintWallMaskMode = (MaskMode)ToEnum(typeof(MaskMode), (string)xElement.Attribute("Mode") ?? MaskMode.Off.ToString());
+                        break;
+                    case "Wire":
+                        _redWire = (bool)xElement.Attribute("Red");
+                        _blueWire = (bool)xElement.Attribute("Blue");
+                        _greenWire = (bool)xElement.Attribute("Green");
                         break;
                 }
             }
@@ -94,6 +107,11 @@ namespace TEditXNA.Terraria
             get { return _paintTileMask; }
         }
 
+        public static bool PaintTileActive
+        {
+            get { return _paintTileActive; }
+        }
+
         public static MaskMode PaintTileMaskMode
         {
             get { return _paintTileMaskMode; }
@@ -109,9 +127,29 @@ namespace TEditXNA.Terraria
             get { return _paintWallMask; }
         }
 
+        public static bool PaintWallActive
+        {
+            get { return _paintWallActive; }
+        }
+
         public static MaskMode PaintWallMaskMode
         {
             get { return _paintWallMaskMode; }
+        }
+
+        public static bool RedWire
+        {
+            get { return _redWire; }
+        }
+
+        public static bool GreenWire
+        {
+            get { return _greenWire; }
+        }
+
+        public static bool BlueWire
+        {
+            get { return _blueWire; }
         }
     }
 }

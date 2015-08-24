@@ -1,20 +1,19 @@
-using System.Reflection;
+﻿using System.Reflection;
 using System.Resources;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Windows;
+using System.Windows.Markup;
 
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-using System.Windows.Markup;
-
-[assembly: AssemblyTitle("TEditXna")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("TEdit")]
+[assembly: AssemblyDescription("Terraria Map Editor")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("TEditXna")]
-[assembly: AssemblyCopyright("Copyright © BinaryConstruct 2012")]
+[assembly: AssemblyProduct("TEdit")]
+[assembly: AssemblyCopyright("Copyright BinaryConstruct © 2015")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -23,15 +22,9 @@ using System.Windows.Markup;
 // COM, set the ComVisible attribute to true on that type.
 [assembly: ComVisible(false)]
 
-//In order to begin building localizable applications, set 
-//<UICulture>CultureYouAreCodingWith</UICulture> in your .csproj file
-//inside a <PropertyGroup>.  For example, if you are using US english
-//in your source files, set the <UICulture> to en-US.  Then uncomment
-//the NeutralResourceLanguage attribute below.  Update the "en-US" in
-//the line below to match the UICulture setting in the project file.
-
+// The following GUID is for the ID of the typelib if this project is exposed to COM
+//[assembly: Guid("9d968d08-c3ec-4d94-b3ed-f28a9123c789")]
 //[assembly: NeutralResourcesLanguage("en-US", UltimateResourceFallbackLocation.Satellite)]
-
 
 [assembly: ThemeInfo(
     ResourceDictionaryLocation.None, //where theme specific resource dictionaries are located
@@ -50,11 +43,10 @@ using System.Windows.Markup;
 //      Build Number
 //      Revision
 //
-// You can specify all the values or you can default the Build and Revision Numbers 
-// by using the '*' as shown below:
-// [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("3.5.0.0")]
-[assembly: AssemblyFileVersion("3.5.15215.2016")]
+
+[assembly: AssemblyVersion("3.6.0.0")]
+[assembly: AssemblyFileVersion("3.6.150812.0114")]
+
 
 [assembly: XmlnsDefinition("http://tedit/wpf", "TEdit.UI.Xaml")]
 [assembly: XmlnsDefinition("http://tedit/wpf", "TEdit.UI.Xaml.Enum")]

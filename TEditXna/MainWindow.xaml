@@ -95,6 +95,8 @@
                         <TextBox Text="{Binding MouseOverTile.TileExtras, Mode=OneWay}" Width="100" IsReadOnly="True" />
                         <TextBlock Text="Frame" VerticalAlignment="Center" Margin="5,0"/>
                         <TextBox Text="{Binding MouseOverTile.UV, StringFormat={}{0}, Mode=OneWay}" Width="50" IsReadOnly="True" />
+                        <TextBlock Text="Paint" VerticalAlignment="Center" Margin="5,0"/>
+                        <TextBox Text="{Binding MouseOverTile.Paint, Mode=OneWay}" Width="180" IsReadOnly="True" />
                     </StackPanel>
                 </StatusBarItem>
                 <StatusBarItem HorizontalAlignment="Right">
