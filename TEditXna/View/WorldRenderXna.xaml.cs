@@ -32,6 +32,7 @@ namespace TEditXna.View
 
         private const float LayerTileWallTextures = 0.01f;
         private const float LayerTileTextures = 0.02f;
+        private const float LayerTileTrack = 0.03f;
         private const float LayerTileActuator = 0.04f;
         private const float LayerWires = 0.06f;
         private const float LayerLiquid = 0.07f;
@@ -703,54 +704,46 @@ namespace TEditXna.View
                                         {
                                             source = new Rectangle(0, 0, 16, 16);
                                             dest = new Rectangle(1 + (int)((_scrollPosition.X + x) * _zoom), 1 + (int)((_scrollPosition.Y + y) * _zoom), (int)_zoom, (int)_zoom);
-                                            Vector2Int32 uv = new Vector2Int32(0, 0);
-                                            switch (curtile.U)
+                                            if (curtile.V >= 0) // Switch Track, Y is back tile if not -1
                                             {
-                                                case 0: uv.X = 0; uv.Y = 0; break;
-                                                case 1: uv.X = 1; uv.Y = 0; break;
-                                                case 2: uv.X = 2; uv.Y = 1; break;
-                                                case 3: uv.X = 3; uv.Y = 1; break;
-                                                case 4: uv.X = 0; uv.Y = 2; break;
-                                                case 5: uv.X = 1; uv.Y = 2; break;
-                                                case 6: uv.X = 0; uv.Y = 1; break;
-                                                case 7: uv.X = 1; uv.Y = 1; break;
-                                                case 8: uv.X = 0; uv.Y = 3; break;
-                                                case 9: uv.X = 1; uv.Y = 3; break;
-                                                case 10: uv.X = 4; uv.Y = 1; break;
-                                                case 11: uv.X = 5; uv.Y = 1; break;
-                                                case 12: uv.X = 6; uv.Y = 1; break;
-                                                case 13: uv.X = 7; uv.Y = 1; break;
-                                                case 14: uv.X = 2; uv.Y = 0; break;
-                                                case 15: uv.X = 3; uv.Y = 0; break;
-                                                case 16: uv.X = 4; uv.Y = 0; break;
-                                                case 17: uv.X = 5; uv.Y = 0; break;
-                                                case 18: uv.X = 6; uv.Y = 0; break;
-                                                case 19: uv.X = 7; uv.Y = 0; break;
-                                                case 20: uv.X = 0; uv.Y = 4; break;
-                                                case 21: uv.X = 1; uv.Y = 4; break;
-                                                case 22: uv.X = 0; uv.Y = 5; break;
-                                                case 23: uv.X = 1; uv.Y = 5; break;
-                                                case 24: uv.X = 2; uv.Y = 2; break;
-                                                case 25: uv.X = 3; uv.Y = 2; break;
-                                                case 26: uv.X = 4; uv.Y = 2; break;
-                                                case 27: uv.X = 5; uv.Y = 2; break;
-                                                case 28: uv.X = 6; uv.Y = 2; break;
-                                                case 29: uv.X = 7; uv.Y = 2; break;
-                                                case 30: uv.X = 2; uv.Y = 3; break;
-                                                case 31: uv.X = 3; uv.Y = 3; break;
-                                                case 32: uv.X = 4; uv.Y = 3; break;
-                                                case 33: uv.X = 5; uv.Y = 3; break;
-                                                case 34: uv.X = 6; uv.Y = 3; break;
-                                                case 35: uv.X = 7; uv.Y = 3; break;
-                                                case 36: uv.X = 0; uv.Y = 6; break;
-                                                case 37: uv.X = 1; uv.Y = 6; break;
-                                                case 38: uv.X = 0; uv.Y = 7; break;
-                                                case 39: uv.X = 1; uv.Y = 7; break;
+                                                Vector2Int32 uvback = TrackUV(curtile.V);
+                                                source.X = uvback.X * (source.Width + 2);
+                                                source.Y = uvback.Y * (source.Height + 2);
+                                                _spriteBatch.Draw(tileTex, dest, source, Color.White, 0f, default(Vector2), SpriteEffects.None, LayerTileTextures);
                                             }
+                                            Vector2Int32 uv = TrackUV(curtile.U);
                                             source.X = uv.X * (source.Width + 2);
                                             source.Y = uv.Y * (source.Height + 2);
-
-                                            _spriteBatch.Draw(tileTex, dest, source, Color.White, 0f, default(Vector2), SpriteEffects.None, LayerWires);
+                                            _spriteBatch.Draw(tileTex, dest, source, Color.White, 0f, default(Vector2), SpriteEffects.None, LayerTileTrack);
+                                            
+                                            if ((curtile.U >= 2 && curtile.U <= 3) || (curtile.U >= 10 && curtile.U <= 13))
+                                            { // Adding regular endcap
+                                                dest = new Rectangle(1 + (int)((_scrollPosition.X + x) * _zoom), 1 + (int)((_scrollPosition.Y + y - 1) * _zoom), (int)_zoom, (int)_zoom);
+                                                source.X = 0;
+                                                source.Y = 126;
+                                                _spriteBatch.Draw(tileTex, dest, source, Color.White, 0f, default(Vector2), SpriteEffects.None, LayerTileTrack);
+                                            }
+                                            if (curtile.U >= 24 && curtile.U <= 29)
+                                            { // Adding bumper endcap
+                                                dest = new Rectangle(1 + (int)((_scrollPosition.X + x) * _zoom), 1 + (int)((_scrollPosition.Y + y - 1) * _zoom), (int)_zoom, (int)_zoom);
+                                                source.X = 18;
+                                                source.Y = 126;
+                                                _spriteBatch.Draw(tileTex, dest, source, Color.White, 0f, default(Vector2), SpriteEffects.None, LayerTileTrack);
+                                            }
+                                            if (curtile.U == 4 || curtile.U == 9 || curtile.U == 10 || curtile.U == 16 || curtile.U == 26)
+                                            { // Adding angle track bottom left
+                                                dest = new Rectangle(1 + (int)((_scrollPosition.X + x) * _zoom), 1 + (int)((_scrollPosition.Y + y + 1) * _zoom), (int)_zoom, (int)_zoom);
+                                                source.X = 0;
+                                                source.Y = 108;
+                                                _spriteBatch.Draw(tileTex, dest, source, Color.White, 0f, default(Vector2), SpriteEffects.None, LayerTileTrack);
+                                            }
+                                            if (curtile.U == 5 || curtile.U == 8 || curtile.U == 11 || curtile.U == 17 || curtile.U == 27)
+                                            { // Adding angle track bottom right
+                                                dest = new Rectangle(1 + (int)((_scrollPosition.X + x) * _zoom), 1 + (int)((_scrollPosition.Y + y + 1) * _zoom), (int)_zoom, (int)_zoom);
+                                                source.X = 18;
+                                                source.Y = 108;
+                                                _spriteBatch.Draw(tileTex, dest, source, Color.White, 0f, default(Vector2), SpriteEffects.None, LayerTileTrack);
+                                            }
 
                                         }
                                         else if (isTreeSpecial)
@@ -1485,6 +1478,54 @@ namespace TEditXna.View
             }
         }
 
+        private Vector2Int32 TrackUV(int num)
+        {
+            var uv = new Vector2Int32(0, 0);
+            switch (num)
+            {
+                case 0: uv.X = 0; uv.Y = 0; break;
+                case 1: uv.X = 1; uv.Y = 0; break;
+                case 2: uv.X = 2; uv.Y = 1; break;
+                case 3: uv.X = 3; uv.Y = 1; break;
+                case 4: uv.X = 0; uv.Y = 2; break;
+                case 5: uv.X = 1; uv.Y = 2; break;
+                case 6: uv.X = 0; uv.Y = 1; break;
+                case 7: uv.X = 1; uv.Y = 1; break;
+                case 8: uv.X = 0; uv.Y = 3; break;
+                case 9: uv.X = 1; uv.Y = 3; break;
+                case 10: uv.X = 4; uv.Y = 1; break;
+                case 11: uv.X = 5; uv.Y = 1; break;
+                case 12: uv.X = 6; uv.Y = 1; break;
+                case 13: uv.X = 7; uv.Y = 1; break;
+                case 14: uv.X = 2; uv.Y = 0; break;
+                case 15: uv.X = 3; uv.Y = 0; break;
+                case 16: uv.X = 4; uv.Y = 0; break;
+                case 17: uv.X = 5; uv.Y = 0; break;
+                case 18: uv.X = 6; uv.Y = 0; break;
+                case 19: uv.X = 7; uv.Y = 0; break;
+                case 20: uv.X = 0; uv.Y = 4; break;
+                case 21: uv.X = 1; uv.Y = 4; break;
+                case 22: uv.X = 0; uv.Y = 5; break;
+                case 23: uv.X = 1; uv.Y = 5; break;
+                case 24: uv.X = 2; uv.Y = 2; break;
+                case 25: uv.X = 3; uv.Y = 2; break;
+                case 26: uv.X = 4; uv.Y = 2; break;
+                case 27: uv.X = 5; uv.Y = 2; break;
+                case 28: uv.X = 6; uv.Y = 2; break;
+                case 29: uv.X = 7; uv.Y = 2; break;
+                case 30: uv.X = 2; uv.Y = 3; break;
+                case 31: uv.X = 3; uv.Y = 3; break;
+                case 32: uv.X = 4; uv.Y = 3; break;
+                case 33: uv.X = 5; uv.Y = 3; break;
+                case 34: uv.X = 6; uv.Y = 3; break;
+                case 35: uv.X = 7; uv.Y = 3; break;
+                case 36: uv.X = 0; uv.Y = 6; break;
+                case 37: uv.X = 1; uv.Y = 6; break;
+                case 38: uv.X = 0; uv.Y = 7; break;
+                case 39: uv.X = 1; uv.Y = 7; break;
+            }
+            return uv;
+        }
         private Rectangle GetViewingArea()
         {
             if (_wvm.CurrentWorld == null)
