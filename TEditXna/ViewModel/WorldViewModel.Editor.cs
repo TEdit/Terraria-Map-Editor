@@ -157,7 +157,7 @@ namespace TEditXna.ViewModel
             if (TilePicker.WallMaskMode == MaskMode.Off ||
                 (TilePicker.WallMaskMode == MaskMode.Match && curTile.Wall == TilePicker.WallMask) ||
                 (TilePicker.WallMaskMode == MaskMode.Empty && curTile.Wall == 0) ||
-                (TilePicker.WallMaskMode == MaskMode.NotMatching && curTile.Wall != TilePicker.WallMask))
+                (TilePicker.WallMaskMode == MaskMode.NotMatching && (curTile.Wall != TilePicker.WallMask)))
             {
                 if (erase)
                     SetPixelAutomatic(curTile, wall: 0);
