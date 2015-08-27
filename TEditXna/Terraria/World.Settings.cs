@@ -198,7 +198,7 @@ namespace TEditXNA.Terraria
                         {
                             herbName += " Bloom";
                         }
-                        HerbNames.Add(getHerbKey(curTile.Id, curFrame.UV.X, curFrame.UV.Y), herbName);
+                        HerbNames.Add(GetHerbKey(curTile.Id, curFrame.UV.X, curFrame.UV.Y), herbName);
                     }
                 }
                 if (curTile.Frames.Count == 0 && curTile.IsFramed)
