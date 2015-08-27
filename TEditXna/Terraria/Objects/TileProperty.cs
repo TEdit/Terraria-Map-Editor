@@ -23,6 +23,7 @@ namespace TEditXNA.Terraria.Objects
         private bool _isGrass; /* Heathtech */
         private bool _isPlatform; /* Heathtech */
         private bool _isCactus; /* Heathtech */
+        private bool _isHerb;
         private bool _isStone; /* Heathtech */
         private bool _canBlend; /* Heathtech */
         private int? _mergeWith; /* Heathtech */
@@ -141,6 +142,12 @@ namespace TEditXNA.Terraria.Objects
         {
             get { return _isCactus; }
             set { Set("IsCactus", ref _isCactus, value); }
+        }
+
+        public bool IsHerb
+        {
+            get { return _isHerb; }
+            set { Set("IsHerb", ref _isHerb, value);  }
         }
 
         /* Heathtech */

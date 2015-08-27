@@ -34,6 +34,7 @@ namespace TEditXNA.Terraria
         private static readonly Dictionary<Key, string> _shortcuts = new Dictionary<Key, string>();
         private static readonly Dictionary<int, ItemProperty> _itemLookup = new Dictionary<int, ItemProperty>();
         private static readonly Dictionary<int, string> _tallynames = new Dictionary<int, string>();
+        private static readonly Dictionary<string, string> _herbNames = new Dictionary<string, string>();
         private static Vector2 _appSize;
         internal static string AltC;
         internal static int? SteamUserId;
@@ -156,6 +157,7 @@ namespace TEditXNA.Terraria
                 curTile.IsStone = (bool?)xElement.Attribute("Stone") ?? false; /* Heathtech */
                 curTile.CanBlend = (bool?)xElement.Attribute("Blends") ?? false; /* Heathtech */
                 curTile.MergeWith = (int?)xElement.Attribute("MergeWith") ?? null; /* Heathtech */
+                curTile.IsHerb = curTile.Id >= 82 && curTile.Id <= 84;
                 foreach (var elementFrame in xElement.Elements("Frames").Elements("Frame"))
                 {
 
@@ -181,6 +183,23 @@ namespace TEditXNA.Terraria
                                         Tile = (ushort)curTile.Id, /* SBlogic */
                                         TileName = curTile.Name
                                     });
+                    if (curTile.IsHerb)
+                    {
+                        string herbName = curFrame.Name;
+                        if (curTile.Id == 82)
+                        {
+                            herbName += " Seed";
+                        }
+                        else if (curTile.Id == 83)
+                        {
+                            herbName += " Mature";
+                        }
+                        else if (curTile.Id == 84)
+                        {
+                            herbName += " Bloom";
+                        }
+                        HerbNames.Add(getHerbKey(curTile.Id, curFrame.UV.X, curFrame.UV.Y), herbName);
+                    }
                 }
                 if (curTile.Frames.Count == 0 && curTile.IsFramed)
                 {
@@ -472,9 +491,19 @@ namespace TEditXNA.Terraria
             get { return _tallynames;  }
         }
 
+        public static Dictionary<string, string> HerbNames
+        {
+            get { return _herbNames; }
+        }
+
         internal static Vector2 AppSize
         {
             get { return _appSize; }
+        }
+
+        public static string GetHerbKey(int id, short u, short v)
+        {
+            return id + "," + u + "," + v;
         }
     }
 }
