@@ -58,7 +58,17 @@ namespace TEditXna.Editor
                 Set("Tile", ref _tile, value);
 
                 if (World.TileProperties.Count > _tile.Type)
-                    TileName = _tile.IsActive ? string.Format("{0} ({1})", World.TileProperties[_tile.Type].Name, _tile.Type) : "[empty]";
+                {
+                    TEditXNA.Terraria.Objects.TileProperty tileProperty = World.TileProperties[_tile.Type];
+                    string herbKey = World.GetHerbKey(_tile.Type, _tile.U, _tile.V);
+                    if (!tileProperty.IsHerb || !World.HerbNames.ContainsKey(herbKey))
+                    {
+                        TileName = tileProperty.Name;
+                    } else {
+                        TileName = World.HerbNames[herbKey];
+                    }
+                    TileName = _tile.IsActive ? string.Format("{0} ({1})", TileName, _tile.Type) : "[empty]";
+                }
                 else
                     TileName = string.Format("INVALID TILE ({0})", _tile.Type);
 
