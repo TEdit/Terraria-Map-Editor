@@ -195,8 +195,10 @@ namespace TEditXNA.Terraria
 
                         for (int i=0, j=curTile.FrameSize.X; i<j; i++)
                         {
+                            //  TODO:  This needs to be fixed to handle frames correctly
                             string frameNameKey = GetFrameNameKey(curTile.Id, (short) (curFrame.UV.X + (i * 18)), curFrame.UV.Y);
-                            FrameNames.Add(frameNameKey, frameName);
+                            if (!FrameNames.ContainsKey(frameNameKey))
+                                FrameNames.Add(frameNameKey, frameName);
                         }
                     }
                 }
