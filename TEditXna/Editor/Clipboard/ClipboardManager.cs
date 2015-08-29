@@ -205,11 +205,12 @@ namespace TEditXna.Editor.Clipboard
                         if (!PasteWires)
                         {
                             // if pasting wires is disabled, use any existing wire
-                            curTile.WireRed = buffer.Tiles[x, y].WireRed;
-                            curTile.WireGreen = buffer.Tiles[x, y].WireGreen;
-                            curTile.WireBlue = buffer.Tiles[x, y].WireBlue;
-                            curTile.Actuator = buffer.Tiles[x, y].Actuator;
-                            curTile.InActive = buffer.Tiles[x, y].InActive;
+                            Tile worldTile = world.Tiles[worldX, worldY];
+                            curTile.WireRed = worldTile.WireRed;
+                            curTile.WireGreen = worldTile.WireGreen;
+                            curTile.WireBlue = worldTile.WireBlue;
+                            curTile.Actuator = worldTile.Actuator;
+                            curTile.InActive = worldTile.InActive;
                         }
                         //  Update chest/sign data only if we've pasted tiles
                         if (PasteTiles)

@@ -3,7 +3,7 @@
 
 Terraria Settings.XML Specifications
 ====================================
-Compatible Ver: Terraria 1.3.0.6
+Compatible Ver: Terraria 1.3.0.8
 Primary URL: https://raw.github.com/BinaryConstruct/Terraria-Map-Editor/master/TEditXna/settings.xml
 ====================================
 
@@ -37,11 +37,17 @@ Update 4:
 * Add missing lever sprites (132)
 * Minor cleanup of notes/comments
 
+Update 5:
+
+* Added sinks back into tiles (172)
+* Fixed some banner names consistent with 1.3.0.8
+* Updated item names to be consistent with 1.3.0.8
+
 Outstanding:
 * Some jungle/crimson plants
 * Overhaul wood, handle alternate wood types
 * Stalactite/stalagmite sprites
-* Sinks excluded due to mismatched sub-frames
+
 
 Documentation moved to the end of this file.
 
@@ -2375,7 +2381,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="450,0" Name="Monster Banner" Variety="Antlion Banner" />
         <Frame UV="468,0" Name="Monster Banner" Variety="Arapaima Banner" />
         <Frame UV="486,0" Name="Monster Banner" Variety="Armored Skeleton Banner" />
-        <Frame UV="504,0" Name="Monster Banner" Variety="Bat Banner" />
+        <Frame UV="504,0" Name="Monster Banner" Variety="Cave Bat Banner" />
         <Frame UV="522,0" Name="Monster Banner" Variety="Bird Banner" />
         <Frame UV="540,0" Name="Monster Banner" Variety="Black Recluse Banner" />
         <Frame UV="558,0" Name="Monster Banner" Variety="Blood Feeder Banner" />
@@ -2406,10 +2412,10 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="1008,0" Name="Monster Banner" Variety="Fungi Bulb Banner" />
         <Frame UV="1026,0" Name="Monster Banner" Variety="Fungo Fish Banner" />
         <Frame UV="1044,0" Name="Monster Banner" Variety="Gastropod Banner" />
-        <Frame UV="1062,0" Name="Monster Banner" Variety="Goblin Archer Banner" />
+        <Frame UV="1062,0" Name="Monster Banner" Variety="Goblin Thief Banner" />
         <Frame UV="1080,0" Name="Monster Banner" Variety="Goblin Sorcerer Banner" />
-        <Frame UV="1098,0" Name="Monster Banner" Variety="Goblin Scout Banner" />
-        <Frame UV="1116,0" Name="Monster Banner" Variety="Goblin Thief Banner" />
+        <Frame UV="1098,0" Name="Monster Banner" Variety="Goblin Peon Banner" />
+        <Frame UV="1116,0" Name="Monster Banner" Variety="Goblin Scout Banner" />
         <Frame UV="1134,0" Name="Monster Banner" Variety="Goblin Warrior Banner" />
         <Frame UV="1152,0" Name="Monster Banner" Variety="Goldfish Banner" />
         <Frame UV="1170,0" Name="Monster Banner" Variety="Harpy Banner" />
@@ -2439,10 +2445,10 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="1602,0" Name="Monster Banner" Variety="Skeleton Mage Banner" />
         <Frame UV="1620,0" Name="Monster Banner" Variety="Blue Slime Banner" />
         <Frame UV="1638,0" Name="Monster Banner" Variety="Snow Flinx Banner" />
-        <Frame UV="1656,0" Name="Monster Banner" Variety="Spider Banner" />
+        <Frame UV="1656,0" Name="Monster Banner" Variety="Wall Creeper Banner" />
         <Frame UV="1674,0" Name="Monster Banner" Variety="Spore Zombie Banner" />
         <Frame UV="1692,0" Name="Monster Banner" Variety="Swamp Thing Banner" />
-        <Frame UV="1710,0" Name="Monster Banner" Variety="Tortoise Banner" />
+        <Frame UV="1710,0" Name="Monster Banner" Variety="Giant Tortoise Banner" />
         <Frame UV="1728,0" Name="Monster Banner" Variety="Toxic Sludge Banner" />
         <Frame UV="1746,0" Name="Monster Banner" Variety="Umbrella Slime Banner" />
         <Frame UV="1764,0" Name="Monster Banner" Variety="Unicorn Banner" />
@@ -2510,7 +2516,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="882,54" Name="Monster Banner"  Variety="Martian Gigazapper Banner" />
         <Frame UV="900,54" Name="Monster Banner"  Variety="Martian Gray Grunt Banner" />
         <Frame UV="918,54" Name="Monster Banner"  Variety="Martian Officer Banner" />
-        <Frame UV="936,54" Name="Monster Banner"  Variety="Martian Raygunner Banner" />
+        <Frame UV="936,54" Name="Monster Banner"  Variety="Martian Ray Gunner Banner" />
         <Frame UV="954,54" Name="Monster Banner"  Variety="Martian Scutlix Gunner Banner" />
         <Frame UV="972,54" Name="Monster Banner"  Variety="Martian Tesla Turret Banner" />
         <Frame UV="990,54" Name="Monster Banner"  Variety="Mister Stabby Banner" />
@@ -2584,7 +2590,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="216,108" Name="Monster Banner"  Variety="Desert Spirit Banner" />
         <Frame UV="234,108" Name="Monster Banner"  Variety="Basilisk Banner" />
         <Frame UV="252,108" Name="Monster Banner"  Variety="Ravager Scorpion Banner" />
-        <Frame UV="270,108" Name="Monster Banner"  Variety="Stardust Soldier Banner" />
+        <Frame UV="270,108" Name="Monster Banner"  Variety="Stargazer Banner" />
         <Frame UV="288,108" Name="Monster Banner"  Variety="Milkyway Weaver Banner" />
         <Frame UV="306,108" Name="Monster Banner"  Variety="Flow Invader Banner" />
         <Frame UV="324,108" Name="Monster Banner"  Variety="Twinkle Popper Banner" />
@@ -2595,7 +2601,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="414,108" Name="Monster Banner"  Variety="Crawltipede Banner" />
         <Frame UV="432,108" Name="Monster Banner"  Variety="Drakomire Rider Banner" />
         <Frame UV="450,108" Name="Monster Banner"  Variety="Drakomire Banner" />
-        <Frame UV="468,108" Name="Monster Banner"  Variety="Solenian Banner" />
+        <Frame UV="468,108" Name="Monster Banner"  Variety="Selenian Banner" />
         <Frame UV="486,108" Name="Monster Banner"  Variety="Predictor Banner" />
         <Frame UV="504,108" Name="Monster Banner"  Variety="Brain Suckler Banner" />
         <Frame UV="522,108" Name="Monster Banner"  Variety="Nebula Floater Banner" />
@@ -3270,9 +3276,40 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
       </Frames>
     </Tile>
     <Tile Color="#FF218755" Id="171" TextureGrid="64,128" Name="Christmas Tree" Light="true" />
-    <Tile Name="Sink" Color="#FFB5C2D9" Placement="floor" Framed="false" Size="2,2" Id="172">
+    <Tile Color="#FFB5C2D9" Placement="floor" Size="2,2" Id="172" Name="Sink"  Framed="true">
       <Frames>
-        <!-- TODO:  The upper and lower halves of sinks have different frame sizes (issue) -->
+        <Frame UV="0,0" Name="Wooden Sink" />
+        <Frame UV="0,38" Name="Ebonwood Sink" />
+        <Frame UV="0,76" Name="Rich Mahogany Sink" />
+        <Frame UV="0,114" Name="Pearlwood Sink" />
+        <Frame UV="0,152" Name="Bone Sink" />
+        <Frame UV="0,190" Name="Flesh Sink" />
+        <Frame UV="0,228" Name="Living Wood Sink" />
+        <Frame UV="0,266" Name="Skyware Sink" />
+        <Frame UV="0,304" Name="Shadewood Sink" />
+        <Frame UV="0,342" Name="Lihzahrd Sink" />
+        <Frame UV="0,380" Name="Blue Dungeon Sink" />
+        <Frame UV="0,418" Name="Green Dungeon Sink" />
+        <Frame UV="0,456" Name="Pink Dungeon Sink" />
+        <Frame UV="0,494" Name="Obsidian Sink" />
+        <Frame UV="0,532" Name="Metal Sink" />
+        <Frame UV="0,570" Name="Glass Sink" />
+        <Frame UV="0,608" Name="Golden Sink" />
+        <Frame UV="0,646" Name="Honey Sink" />
+        <Frame UV="0,684" Name="Steampunk Sink" />
+        <Frame UV="0,722" Name="Pumpkin Sink" />
+        <Frame UV="0,760" Name="Spooky Sink" />
+        <Frame UV="0,798" Name="Frozen Sink" />
+        <Frame UV="0,836" Name="Dynasty Sink" />
+        <Frame UV="0,874" Name="Palm Wood Sink" />
+        <Frame UV="0,912" Name="Mushroom Sink" />
+        <Frame UV="0,950" Name="Boreal Wood Sink" />
+        <Frame UV="0,988" Name="Slime Sink" />
+        <Frame UV="0,1026" Name="Cactus Sink" />
+        <Frame UV="0,1064" Name="Martian Sink" />
+        <Frame UV="0,1102" Name="Meteorite Sink" />
+        <Frame UV="0,1140" Name="Granite Sink" />
+        <Frame UV="0,1178" Name="Marble Sink" />
       </Frames>
     </Tile>
     <Tile Color="#FFFDDD03" Placement="floorSurface" Size="2,2" Id="173" Name="Platinum Candelabra" Framed="true" Light="true">
@@ -5217,11 +5254,11 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="670" Name="Ice Boomerang"/>
     <Item Id="671" Name="Keybrand"/>
     <Item Id="672" Name="Cutlass"/>
-    <Item Id="673" Name="Icemourne"/>
+    <Item Id="673" Name="Boreal Wood Work Bench"/>
     <Item Id="674" Name="True Excalibur"/>
     <Item Id="675" Name="True Night's Edge"/>
     <Item Id="676" Name="Frostbrand"/>
-    <Item Id="677" Name="Scythe"/>
+    <Item Id="677" Name="Boreal Wood Table"/>
     <Item Id="678" Name="Red Potion"/>
     <Item Id="679" Name="Tactical Shotgun"/>
     <Item Id="680" Name="Ivy Chest"/>
@@ -5367,7 +5404,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="820" Name="Bone Door"/>
     <Item Id="821" Name="Flame Wings"/>
     <Item Id="822" Name="Frozen Wings"/>
-    <Item Id="823" Name="Ghost Wings"/>
+    <Item Id="823" Name="Spectre Wings"/>
     <Item Id="824" Name="Sunplate Block"/>
     <Item Id="825" Name="Disc Wall"/>
     <Item Id="826" Name="Skyware Chair"/>
@@ -5938,7 +5975,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="1391" Name="Caged Lantern"/>
     <Item Id="1392" Name="Carriage Lantern"/>
     <Item Id="1393" Name="Alchemy Lantern"/>
-    <Item Id="1394" Name="Diablost Lamp"/>
+    <Item Id="1394" Name="Diabolist Lamp"/>
     <Item Id="1395" Name="Oil Rag Sconse"/>
     <Item Id="1396" Name="Blue Dungeon Chair"/>
     <Item Id="1397" Name="Blue Dungeon Table"/>
@@ -5992,7 +6029,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="1445" Name="Inferno Fork"/>
     <Item Id="1446" Name="Spectre Staff"/>
     <Item Id="1447" Name="Wooden Fence"/>
-    <Item Id="1448" Name="Metal Fence"/>
+    <Item Id="1448" Name="Lead Fence"/>
     <Item Id="1449" Name="Bubble Machine"/>
     <Item Id="1450" Name="Bubble Wand"/>
     <Item Id="1451" Name="Marching Bones Banner"/>
@@ -6016,7 +6053,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="1469" Name="Lava Erupts Banner"/>
     <Item Id="1470" Name="Blue Dungeon Bed"/>
     <Item Id="1471" Name="Green Dungeon Bed"/>
-    <Item Id="1472" Name="Red Dungeon Bed"/>
+    <Item Id="1472" Name="Pink Dungeon Bed"/>
     <Item Id="1473" Name="Obsidian Bed"/>
     <Item Id="1474" Name="Waldo"/>
     <Item Id="1475" Name="Darkness"/>
@@ -6165,14 +6202,14 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="1618" Name="Antlion Banner" Tally="4"/>
     <Item Id="1619" Name="Arapaima Banner" Tally="5"/>
     <Item Id="1620" Name="Armored Skeleton Banner" Tally="6"/>
-    <Item Id="1621" Name="Bat Banner" Tally="7"/>
+    <Item Id="1621" Name="Cave Bat Banner" Tally="7"/>
     <Item Id="1622" Name="Bird Banner" Tally="8"/>
     <Item Id="1623" Name="Black Recluse Banner" Tally="9"/>
     <Item Id="1624" Name="Blood Feeder Banner" Tally="10"/>
     <Item Id="1625" Name="Blood Jelly Banner" Tally="11"/>
     <Item Id="1626" Name="Blood Crawler Banner" Tally="12"/>
     <Item Id="1627" Name="Bone Serpent Banner" Tally="13"/>
-    <Item Id="1628" Name="Bunny Banner"  Tally="14"/>
+    <Item Id="1628" Name="Bunny Banner" Tally="14"/>
     <Item Id="1629" Name="Chaos Elemental Banner" Tally="15"/>
     <Item Id="1630" Name="Mimic Banner" Tally="16"/>
     <Item Id="1631" Name="Clown Banner" Tally="17"/>
@@ -6196,10 +6233,10 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="1649" Name="Fungi Bulb Banner" Tally="35"/>
     <Item Id="1650" Name="Fungo Fish Banner" Tally="36"/>
     <Item Id="1651" Name="Gastropod Banner" Tally="37"/>
-    <Item Id="1652" Name="Goblin Archer Banner" Tally="38"/>
+    <Item Id="1652" Name="Goblin Thief Banner" Tally="38"/>
     <Item Id="1653" Name="Goblin Sorcerer Banner" Tally="39"/>
-    <Item Id="1654" Name="Goblin Scout Banner" Tally="40"/>
-    <Item Id="1655" Name="Goblin Thief Banner" Tally="41"/>
+    <Item Id="1654" Name="Goblin Peon Banner" Tally="40"/>
+    <Item Id="1655" Name="Goblin Scout Banner" Tally="41"/>
     <Item Id="1656" Name="Goblin Warrior Banner" Tally="42"/>
     <Item Id="1657" Name="Goldfish Banner" Tally="43"/>
     <Item Id="1658" Name="Harpy Banner" Tally="44"/>
@@ -6220,19 +6257,19 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="1673" Name="Parrot Banner" Tally="59"/>
     <Item Id="1674" Name="Pigron Banner" Tally="60"/>
     <Item Id="1675" Name="Piranha Banner"  Tally="61"/>
-    <Item Id="1676" Name="Pirate Banner" Tally="62"/>
+    <Item Id="1676" Name="Pirate Deckhand Banner" Tally="62"/>
     <Item Id="1677" Name="Pixie Banner" Tally="63"/>
     <Item Id="1678" Name="Raincoat Zombie Banner" Tally="64"/>
     <Item Id="1679" Name="Reaper Banner" Tally="65"/>
     <Item Id="1680" Name="Shark Banner" Tally="66"/>
     <Item Id="1681" Name="Skeleton Banner" Tally="67"/>
-    <Item Id="1682" Name="Skeleton Mage Banner" Tally="68"/>
+    <Item Id="1682" Name="Dark Caster Banner" Tally="68"/>
     <Item Id="1683" Name="Blue Slime Banner" Tally="69"/>
     <Item Id="1684" Name="Snow Flinx Banner" Tally="70"/>
-    <Item Id="1685" Name="Spider Banner" Tally="71"/>
+    <Item Id="1685" Name="Wall Creeper Banner" Tally="71"/>
     <Item Id="1686" Name="Spore Zombie Banner" Tally="72"/>
     <Item Id="1687" Name="Swamp Thing Banner" Tally="73"/>
-    <Item Id="1688" Name="Tortoise Banner" Tally="74"/>
+    <Item Id="1688" Name="Giant Tortoise Banner" Tally="74"/>
     <Item Id="1689" Name="Toxic Sludge Banner" Tally="75"/>
     <Item Id="1690" Name="Umbrella Slime Banner" Tally="76"/>
     <Item Id="1691" Name="Unicorn Banner" Tally="77"/>
@@ -6252,21 +6289,21 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="1705" Name="Golden Toilet"/>
     <Item Id="1706" Name="Bar Stool"/>
     <Item Id="1707" Name="Honey Chair"/>
-    <Item Id="1708" Name="Steam Punk Chair"/>
+    <Item Id="1708" Name="Steampunk Chair"/>
     <Item Id="1709" Name="Glass Door"/>
     <Item Id="1710" Name="Golden Door"/>
     <Item Id="1711" Name="Honey Door"/>
-    <Item Id="1712" Name="Steam Punk Door"/>
+    <Item Id="1712" Name="Steampunk Door"/>
     <Item Id="1713" Name="Glass Table"/>
     <Item Id="1714" Name="Banquet Table"/>
     <Item Id="1715" Name="Bar"/>
     <Item Id="1716" Name="Golden Table"/>
     <Item Id="1717" Name="Honey Table"/>
-    <Item Id="1718" Name="Steam Punk Table"/>
+    <Item Id="1718" Name="Steampunk Table"/>
     <Item Id="1719" Name="Glass Bed"/>
     <Item Id="1720" Name="Golden Bed"/>
     <Item Id="1721" Name="Honey Bed"/>
-    <Item Id="1722" Name="Steam Punk Bed"/>
+    <Item Id="1722" Name="Steampunk Bed"/>
     <Item Id="1723" Name="Living Wood Wall"/>
     <Item Id="1724" Name="Fart in a Jar"/>
     <Item Id="1725" Name="Pumpkin"/>
@@ -6286,7 +6323,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="1739" Name="Wizard's Hat"/>
     <Item Id="1740" Name="Guy Fawkes Mask"/>
     <Item Id="1741" Name="Dye Trader Robe"/>
-    <Item Id="1742" Name="Steam Punk Goggles"/>
+    <Item Id="1742" Name="Steampunk Goggles"/>
     <Item Id="1743" Name="Cyborg Helmet"/>
     <Item Id="1744" Name="Cyborg Shirt"/>
     <Item Id="1745" Name="Cyborg Pants"/>
@@ -6552,7 +6589,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="2005" Name="Lightning Bug in a Bottle"/>
     <Item Id="2006" Name="Snail"/>
     <Item Id="2007" Name="Glowing Snail"/>
-    <Item Id="2008" Name="Fancy Grey Wallpaper"/>
+    <Item Id="2008" Name="Fancy Gray Wallpaper"/>
     <Item Id="2009" Name="Ice Floe Wallpaper"/>
     <Item Id="2010" Name="Music Wallpaper"/>
     <Item Id="2011" Name="Purple Rain Wallpaper"/>
@@ -6781,11 +6818,11 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="2234" Name="Dynasty Cup"/>
     <Item Id="2235" Name="Dynasty Bowl"/>
     <Item Id="2236" Name="Dynasty Candle"/>
-    <Item Id="2237" Name="Dynasty Grandfather Clock"/>
-    <Item Id="2238" Name="Golden Grandfather Clock"/>
-    <Item Id="2239" Name="Glass Grandfather Clock"/>
-    <Item Id="2240" Name="Honey Grandfather Clock"/>
-    <Item Id="2241" Name="Steampunk Grandfather Clock"/>
+    <Item Id="2237" Name="Dynasty Clock"/>
+    <Item Id="2238" Name="Golden Clock"/>
+    <Item Id="2239" Name="Glass Clock"/>
+    <Item Id="2240" Name="Honey Clock"/>
+    <Item Id="2241" Name="Steampunk Clock"/>
     <Item Id="2242" Name="Fancy Dishes"/>
     <Item Id="2243" Name="Glass Bowl"/>
     <Item Id="2244" Name="Wine Glass"/>
@@ -7059,9 +7096,9 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="2512" Name="Palm Wood Helmet"/>
     <Item Id="2513" Name="Palm Wood Breastplate"/>
     <Item Id="2514" Name="Palm Wood Greaves"/>
-    <Item Id="2515" Name="Palm Wood Sword"/>
+    <Item Id="2515" Name="Palm Wood Bow"/>
     <Item Id="2516" Name="Palm Wood Hammer"/>
-    <Item Id="2517" Name="Palm Wood Bow"/>
+    <Item Id="2517" Name="Palm Wood Sword"/>
     <Item Id="2518" Name="Palm Wood Platform"/>
     <Item Id="2519" Name="Palm Wood Bathtub"/>
     <Item Id="2520" Name="Palm Wood Bed"/>
@@ -7150,7 +7187,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="2603" Name="Pumpkin Clock"/>
     <Item Id="2604" Name="Shadewood Clock"/>
     <Item Id="2605" Name="Spooky Clock"/>
-    <Item Id="2606" Name="Sunplate Clock"/>
+    <Item Id="2606" Name="Skyware Clock"/>
     <Item Id="2607" Name="Spider Fang"/>
     <Item Id="2608" Name="Falcon Blade"/>
     <Item Id="2609" Name="Fishron Wings"/>
@@ -7246,42 +7283,42 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="2699" Name="Weapon Rack"/>
     <Item Id="2700" Name="Fireworks Box"/>
     <Item Id="2701" Name="Living Fire Block"/>
-    <Item Id="2702" Name="0 Statue"/>
-    <Item Id="2703" Name="1 Statue"/>
-    <Item Id="2704" Name="2 Statue"/>
-    <Item Id="2705" Name="3 Statue"/>
-    <Item Id="2706" Name="4 Statue"/>
-    <Item Id="2707" Name="5 Statue"/>
-    <Item Id="2708" Name="6 Statue"/>
-    <Item Id="2709" Name="7 Statue"/>
-    <Item Id="2710" Name="8 Statue"/>
-    <Item Id="2711" Name="9 Statue"/>
-    <Item Id="2712" Name="A Statue"/>
-    <Item Id="2713" Name="B Statue"/>
-    <Item Id="2714" Name="C Statue"/>
-    <Item Id="2715" Name="D Statue"/>
-    <Item Id="2716" Name="E Statue"/>
-    <Item Id="2717" Name="F Statue"/>
-    <Item Id="2718" Name="G Statue"/>
-    <Item Id="2719" Name="H Statue"/>
-    <Item Id="2720" Name="I Statue"/>
-    <Item Id="2721" Name="J Statue"/>
-    <Item Id="2722" Name="K Statue"/>
-    <Item Id="2723" Name="L Statue"/>
-    <Item Id="2724" Name="M Statue"/>
-    <Item Id="2725" Name="N Statue"/>
-    <Item Id="2726" Name="O Statue"/>
-    <Item Id="2727" Name="P Statue"/>
-    <Item Id="2728" Name="Q Statue"/>
-    <Item Id="2729" Name="R Statue"/>
-    <Item Id="2730" Name="S Statue"/>
-    <Item Id="2731" Name="T Statue"/>
-    <Item Id="2732" Name="U Statue"/>
-    <Item Id="2733" Name="V Statue"/>
-    <Item Id="2734" Name="W Statue"/>
-    <Item Id="2735" Name="X Statue"/>
-    <Item Id="2736" Name="Y Statue"/>
-    <Item Id="2737" Name="Z Statue"/>
+    <Item Id="2702" Name="'0' Statue"/>
+    <Item Id="2703" Name="'1' Statue"/>
+    <Item Id="2704" Name="'2' Statue"/>
+    <Item Id="2705" Name="'3' Statue"/>
+    <Item Id="2706" Name="'4' Statue"/>
+    <Item Id="2707" Name="'5' Statue"/>
+    <Item Id="2708" Name="'6' Statue"/>
+    <Item Id="2709" Name="'7' Statue"/>
+    <Item Id="2710" Name="'8' Statue"/>
+    <Item Id="2711" Name="'9' Statue"/>
+    <Item Id="2712" Name="'A' Statue"/>
+    <Item Id="2713" Name="'B' Statue"/>
+    <Item Id="2714" Name="'C' Statue"/>
+    <Item Id="2715" Name="'D' Statue"/>
+    <Item Id="2716" Name="'E' Statue"/>
+    <Item Id="2717" Name="'F' Statue"/>
+    <Item Id="2718" Name="'G' Statue"/>
+    <Item Id="2719" Name="'H' Statue"/>
+    <Item Id="2720" Name="'I' Statue"/>
+    <Item Id="2721" Name="'J' Statue"/>
+    <Item Id="2722" Name="'K' Statue"/>
+    <Item Id="2723" Name="'L' Statue"/>
+    <Item Id="2724" Name="'M' Statue"/>
+    <Item Id="2725" Name="'N' Statue"/>
+    <Item Id="2726" Name="'O' Statue"/>
+    <Item Id="2727" Name="'P' Statue"/>
+    <Item Id="2728" Name="'Q' Statue"/>
+    <Item Id="2729" Name="'R' Statue"/>
+    <Item Id="2730" Name="'S' Statue"/>
+    <Item Id="2731" Name="'T' Statue"/>
+    <Item Id="2732" Name="'U' Statue"/>
+    <Item Id="2733" Name="'V' Statue"/>
+    <Item Id="2734" Name="'W' Statue"/>
+    <Item Id="2735" Name="'X' Statue"/>
+    <Item Id="2736" Name="'Y' Statue"/>
+    <Item Id="2737" Name="'Z' Statue"/>
     <Item Id="2738" Name="Firework Fountain"/>
     <Item Id="2739" Name="Booster Track"/>
     <Item Id="2740" Name="Grasshopper"/>
@@ -7495,7 +7532,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="2948" Name="Martian Gigazapper Banner" Tally="139" />
     <Item Id="2949" Name="Martian Gray Grunt Banner" Tally="140" />
     <Item Id="2950" Name="Martian Officer Banner" Tally="141" />
-    <Item Id="2951" Name="Martian Raygunner Banner" Tally="142" />
+    <Item Id="2951" Name="Martian Ray Gunner Banner" Tally="142" />
     <Item Id="2952" Name="Martian Scutlix Gunner Banner" Tally="143" />
     <Item Id="2953" Name="Martian Tesla Turret Banner" Tally="144" />
     <Item Id="2954" Name="Mister Stabby Banner" Tally="145" />
@@ -7964,7 +8001,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="3417" Name="Desert Spirit Banner" Tally="213" />
     <Item Id="3418" Name="Basilisk Banner" Tally="214" />
     <Item Id="3419" Name="Ravager Scorpion Banner" Tally="215" />
-    <Item Id="3420" Name="Stardust Soldier Banner" Tally="216" />
+    <Item Id="3420" Name="Stargazer Banner" Tally="216" />
     <Item Id="3421" Name="Milkyway Weaver Banner" Tally="217" />
     <Item Id="3422" Name="Flow Invader Banner" Tally="218" />
     <Item Id="3423" Name="Twinkle Popper Banner" Tally="219" />
@@ -7975,7 +8012,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="3428" Name="Crawltipede Banner" Tally="224" />
     <Item Id="3429" Name="Drakomire Rider Banner" Tally="225" />
     <Item Id="3430" Name="Drakomire Banner" Tally="226" />
-    <Item Id="3431" Name="Solenian Banner" Tally="227" />
+    <Item Id="3431" Name="Selenian Banner" Tally="227" />
     <Item Id="3432" Name="Predictor Banner" Tally="228" />
     <Item Id="3433" Name="Brain Suckler Banner" Tally="229" />
     <Item Id="3434" Name="Nebula Floater Banner" Tally="230" />
