@@ -193,12 +193,17 @@ namespace TEditXNA.Terraria
                         if (curFrame.Variety != null)
                             frameName += ", " + curFrame.Variety;
 
-                        for (int i=0, j=curTile.FrameSize.X; i<j; i++)
+                        //  TODO:  There must be a more efficient way than to store each frame...
+                        for (int x = 0, mx = curTile.FrameSize.X; x < mx; x++)
                         {
-                            //  TODO:  This needs to be fixed to handle frames correctly
-                            string frameNameKey = GetFrameNameKey(curTile.Id, (short) (curFrame.UV.X + (i * 18)), curFrame.UV.Y);
-                            if (!FrameNames.ContainsKey(frameNameKey))
-                                FrameNames.Add(frameNameKey, frameName);
+                            for (int y = 0, my = curTile.FrameSize.Y; y < my; y++)
+                            {
+                                string frameNameKey = GetFrameNameKey(curTile.Id, (short)(curFrame.UV.X + (x * 18)), (short)(curFrame.UV.Y + (y * 18)));
+                                if (!FrameNames.ContainsKey(frameNameKey))
+                                    FrameNames.Add(frameNameKey, frameName);
+                                else
+                                    System.Diagnostics.Debug.WriteLine(curFrame.Name + " collided with " + frameNameKey);
+                            }
                         }
                     }
                 }
@@ -504,7 +509,7 @@ namespace TEditXNA.Terraria
 
         public static string GetFrameNameKey(int id, short u, short v)
         {
-            return id + ":" + u;
+            return id + ":" + u + "," + v;
         }
     }
 }
