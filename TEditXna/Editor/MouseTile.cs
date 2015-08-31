@@ -60,12 +60,14 @@ namespace TEditXna.Editor
                 if (World.TileProperties.Count > _tile.Type)
                 {
                     TEditXNA.Terraria.Objects.TileProperty tileProperty = World.TileProperties[_tile.Type];
-                    string herbKey = World.GetHerbKey(_tile.Type, _tile.U, _tile.V);
-                    if (!tileProperty.IsHerb || !World.HerbNames.ContainsKey(herbKey))
+                    if (!tileProperty.HasFrameName)
                     {
                         TileName = tileProperty.Name;
-                    } else {
-                        TileName = World.HerbNames[herbKey];
+                    }
+                    else
+                    {
+                        string frameNameKey = World.GetFrameNameKey(_tile.Type, _tile.U, _tile.V);
+                        TileName = World.FrameNames.ContainsKey(frameNameKey) ? World.FrameNames[frameNameKey] : tileProperty.Name + "*";
                     }
                     TileName = _tile.IsActive ? string.Format("{0} ({1})", TileName, _tile.Type) : "[empty]";
                 }

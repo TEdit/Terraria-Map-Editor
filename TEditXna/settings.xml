@@ -1484,7 +1484,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="36,0" Anchor="Right" />
       </Frames>
     </Tile>
-    <Tile Color="#FFE9CF5E" Placement="floor" Size="2,2" Id="21" Name="Chest" Framed="true">
+    <Tile Color="#FFE9CF5E" Placement="floor" Size="2,2" Id="21" Name="Chest" Framed="true" UseFrameName="true">
       <Frames>
         <Frame UV="0,0" Name="Chest" />
         <Frame UV="36,0" Name="Gold Chest" />
@@ -2133,7 +2133,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="130,0" Variety="Sponge" />
       </Frames>
     </Tile>
-    <Tile Color="#FFFF7800" Id="82" Name="Daybloom Seeds" Framed="true">
+    <Tile Color="#FFFF7800" Id="82" Name="Daybloom Seeds" Framed="true" UseFrameName="true" FrameNamePostfix="seed">
       <Frames>
         <Frame UV="0,0" Name="Daybloom" growsOn="2,78" />
         <Frame UV="18,0" Name="Moonglow" growsOn="60,78" />
@@ -2144,7 +2144,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="108,0" Name="Shiverthorn" growsOn="147,161" />
       </Frames>
     </Tile>
-    <Tile Name="Herb Mature" Color="#FFFF7800" Id="83" Framed="true" Light="true">
+    <Tile Name="Herb Mature" Color="#FFFF7800" Id="83" Framed="true" UseFrameName="true" Light="true">
       <Frames>
         <Frame UV="0,0" Name="Daybloom" growsOn="2,78" />
         <Frame UV="18,0" Name="Moonglow" growsOn="60,78" />
@@ -2155,7 +2155,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="108,0" Name="Shiverthorn" growsOn="147,161" />
       </Frames>
     </Tile>
-    <Tile Name="Herb Bloom" Color="#FFFF7800" Id="84" Framed="true" Light="true">
+    <Tile Name="Herb Bloom" Color="#FFFF7800" Id="84" Framed="true" UseFrameName="true" FrameNamePostfix="bloom" Light="true">
       <Frames>
         <Frame UV="0,0" Name="Daybloom" growsOn="2,78" />
         <Frame UV="18,0" Name="Moonglow" growsOn="60,78" />
@@ -8376,6 +8376,9 @@ Single tile object; may contain Frame tags. Has the following properties:
  always have isFramed set, though some single-tiled objects also have frames. Furthermore,
  some XNB tiles with frames actually don't need frame coordinations. (Yes, it's confusing;
  it usually boils Top to trial-and-error and seeing if the world file can't be read.)
+ 
+ * useFrameName - Default is false; if true, isFramed is required.  When mousing over tiles, display the frame name rather than the tile name.
+ * frameNamePostfix - Default is empty.  When useFrameName is true, append a postfix to the display name.
 
  * size - Required if not default; default is "1,1". This is the width and height of tile
  objects that span multiple tiles. If this property is beyond "1,1", then isFramed MUST be true.
