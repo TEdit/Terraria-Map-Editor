@@ -109,7 +109,7 @@ namespace TEditXna.Editor.Clipboard
             }
             b.Close();
 
-            return buffer;
+            return null;
         }
 
         public static ClipboardBuffer Load(string filename)
@@ -156,10 +156,11 @@ namespace TEditXna.Editor.Clipboard
                         stream.Close();
                         return LoadOld(filename);
                     }
-
+                    else
+                    {
                     // not and old version, use new version
-                    return LoadV2(b, name, tVersion, version);
-
+                        return LoadV2(b, name, tVersion, version);
+                    }
                 }
             }
         }
