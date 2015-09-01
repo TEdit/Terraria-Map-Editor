@@ -22,6 +22,11 @@ namespace TEditXNA.Terraria
         private static readonly Dictionary<string, int> _npcIds = new Dictionary<string, int>();
         private static readonly Dictionary<int, int> _npcFrames = new Dictionary<int, int>();
         private static readonly Dictionary<byte, string> _prefix = new Dictionary<byte, string>();
+        private static readonly Dictionary<Key, string> _shortcuts = new Dictionary<Key, string>();
+        private static readonly Dictionary<int, ItemProperty> _itemLookup = new Dictionary<int, ItemProperty>();
+        private static readonly Dictionary<int, string> _tallynames = new Dictionary<int, string>();
+        private static readonly Dictionary<string, string> _frameNames = new Dictionary<string, string>();
+
         private static readonly ObservableCollection<ItemProperty> _itemProperties = new ObservableCollection<ItemProperty>();
         private static readonly ObservableCollection<ChestProperty> _chestProperties = new ObservableCollection<ChestProperty>();
         private static readonly ObservableCollection<SignProperty> _signProperties = new ObservableCollection<SignProperty>();
@@ -29,12 +34,8 @@ namespace TEditXNA.Terraria
         private static readonly ObservableCollection<TileProperty> _tileBricks = new ObservableCollection<TileProperty>();
         private static readonly ObservableCollection<WallProperty> _wallProperties = new ObservableCollection<WallProperty>();
         private static readonly ObservableCollection<PaintProperty> _paintProperties = new ObservableCollection<PaintProperty>();
-
         private static readonly ObservableCollection<Sprite> _sprites = new ObservableCollection<Sprite>();
-        private static readonly Dictionary<Key, string> _shortcuts = new Dictionary<Key, string>();
-        private static readonly Dictionary<int, ItemProperty> _itemLookup = new Dictionary<int, ItemProperty>();
-        private static readonly Dictionary<int, string> _tallynames = new Dictionary<int, string>();
-        private static readonly Dictionary<string, string> _herbNames = new Dictionary<string, string>();
+
         private static Vector2 _appSize;
         internal static string AltC;
         internal static int? SteamUserId;
@@ -157,10 +158,11 @@ namespace TEditXNA.Terraria
                 curTile.IsStone = (bool?)xElement.Attribute("Stone") ?? false; /* Heathtech */
                 curTile.CanBlend = (bool?)xElement.Attribute("Blends") ?? false; /* Heathtech */
                 curTile.MergeWith = (int?)xElement.Attribute("MergeWith") ?? null; /* Heathtech */
-                curTile.IsHerb = curTile.Id >= 82 && curTile.Id <= 84;
+                curTile.HasFrameName = curTile.IsFramed && ((bool?)xElement.Attribute("UseFrameName") ?? false);
+                string frameNamePostfix = (string)xElement.Attribute("FrameNamePostfix") ?? null;
+
                 foreach (var elementFrame in xElement.Elements("Frames").Elements("Frame"))
                 {
-
                     var curFrame = new FrameProperty();
                     // Read XML attributes
                     curFrame.Name = (string)elementFrame.Attribute("Name");
@@ -183,22 +185,26 @@ namespace TEditXNA.Terraria
                                         Tile = (ushort)curTile.Id, /* SBlogic */
                                         TileName = curTile.Name
                                     });
-                    if (curTile.IsHerb)
+                    if (curTile.HasFrameName)
                     {
-                        string herbName = curFrame.Name;
-                        if (curTile.Id == 82)
+                        string frameName = curFrame.Name;
+                        if (frameNamePostfix != null)
+                            frameName += " (" + frameNamePostfix + ")";
+                        if (curFrame.Variety != null)
+                            frameName += ", " + curFrame.Variety;
+
+                        //  TODO:  There must be a more efficient way than to store each frame...
+                        for (int x = 0, mx = curTile.FrameSize.X; x < mx; x++)
                         {
-                            herbName += " Seed";
+                            for (int y = 0, my = curTile.FrameSize.Y; y < my; y++)
+                            {
+                                string frameNameKey = GetFrameNameKey(curTile.Id, (short)(curFrame.UV.X + (x * 18)), (short)(curFrame.UV.Y + (y * 18)));
+                                if (!FrameNames.ContainsKey(frameNameKey))
+                                    FrameNames.Add(frameNameKey, frameName);
+                                else
+                                    System.Diagnostics.Debug.WriteLine(curFrame.Name + " collided with " + frameNameKey);
+                            }
                         }
-                        else if (curTile.Id == 83)
-                        {
-                            herbName += " Mature";
-                        }
-                        else if (curTile.Id == 84)
-                        {
-                            herbName += " Bloom";
-                        }
-                        HerbNames.Add(GetHerbKey(curTile.Id, curFrame.UV.X, curFrame.UV.Y), herbName);
                     }
                 }
                 if (curTile.Frames.Count == 0 && curTile.IsFramed)
@@ -491,9 +497,9 @@ namespace TEditXNA.Terraria
             get { return _tallynames;  }
         }
 
-        public static Dictionary<string, string> HerbNames
+        public static Dictionary<string, string> FrameNames
         {
-            get { return _herbNames; }
+            get { return _frameNames; }
         }
 
         internal static Vector2 AppSize
@@ -501,9 +507,9 @@ namespace TEditXNA.Terraria
             get { return _appSize; }
         }
 
-        public static string GetHerbKey(int id, short u, short v)
+        public static string GetFrameNameKey(int id, short u, short v)
         {
-            return id + "," + u + "," + v;
+            return id + ":" + u + "," + v;
         }
     }
 }
