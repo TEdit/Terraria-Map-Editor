@@ -48,6 +48,7 @@ namespace TEditXna.ViewModel
             wvm.Plugins.Add(new RemoveAllChestsPlugin(wvm));
             wvm.Plugins.Add(new RemoveAllUnlockedChestsPlugin(wvm));
             wvm.Plugins.Add(new UnlockAllChestsPlugin(wvm));
+            wvm.Plugins.Add(new FindChestWithPlugin(wvm));
             return wvm;
         }
     }

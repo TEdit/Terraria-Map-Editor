@@ -123,16 +123,23 @@
     <Compile Include="Editor\MouseTile.cs" />
     <Compile Include="Editor\PaintMode.cs" />
     <Compile Include="Editor\Plugins\BasePlugin.cs" />
+    <Compile Include="Editor\Plugins\FindChestWithPluginResultView.xaml.cs">
+      <DependentUpon>FindChestWithPluginResultView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Editor\Plugins\IPlugin.cs" />
     <Compile Include="Editor\Plugins\PerlinNoise.cs" />
     <Compile Include="Editor\Plugins\RemoveAllChestsPlugin.cs" />
     <Compile Include="Editor\Plugins\RemoveAllUnlockedChestsPlugin.cs" />
     <Compile Include="Editor\Plugins\ReplaceAllPlugin.cs" />
+    <Compile Include="Editor\Plugins\FindChestWithPluginView.xaml.cs">
+      <DependentUpon>FindChestWithPluginView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Editor\Plugins\ReplaceAllPluginView.xaml.cs">
       <DependentUpon>ReplaceAllPluginView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Editor\Plugins\SandSettlePlugin.cs" />
     <Compile Include="Editor\Plugins\SimplePerlinGeneratorPlugin.cs" />
+    <Compile Include="Editor\Plugins\FindChestWithPlugin.cs" />
     <Compile Include="Editor\Plugins\UnlockAllChestsPlugin.cs" />
     <Compile Include="Editor\RectangleExt.cs" />
     <Compile Include="Editor\ScrollDirection.cs" />
@@ -324,6 +331,14 @@
       <SubType>
       </SubType>
     </Compile>
+    <Page Include="Editor\Plugins\FindChestWithPluginResultView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Editor\Plugins\FindChestWithPluginView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Editor\Plugins\ReplaceAllPluginView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
