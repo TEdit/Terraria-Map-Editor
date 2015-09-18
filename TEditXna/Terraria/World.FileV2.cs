@@ -20,7 +20,7 @@ namespace TEditXNA.Terraria
     public partial class World
     {
         public static uint CompatibleVersion = 102;
-        public static short TileCount = 314;
+        public static short TileCount = 418;
         public static short SectionCount = 10;
 
         public static bool[] TileFrameImportant;
@@ -30,7 +30,7 @@ namespace TEditXNA.Terraria
             world.Validate();
 
             // initialize tileframeimportance array if empty
-            if (TileFrameImportant == null || TileFrameImportant.Length <= 0)
+            if (TileFrameImportant == null || TileFrameImportant.Length < TileCount)
             {
                 TileFrameImportant = new bool[TileCount];
                 for (int i = 0; i < TileCount; i++)
