@@ -495,6 +495,54 @@ namespace TEditXna.View
                                     _spriteBatch.Draw(wallTex, dest, source, Color.White, 0f, default(Vector2), SpriteEffects.None, LayerTileWallTextures);
                                 }
                             }
+                            else
+                            {
+                                var wallTex = _textureDictionary.GetBackground(0);
+                                var source = new Rectangle(0, 0, 16, 16);
+                                if (y >= 80 && y < _wvm.CurrentWorld.GroundLevel)
+                                {
+                                    source.Y += (y - 80) * 4;
+                                    if (source.Y > 1784)
+                                    {
+                                        source.Y = 1784;
+                                    }
+                                }
+                                else if (y == _wvm.CurrentWorld.GroundLevel)
+                                {
+                                    wallTex = _textureDictionary.GetBackground(1);
+                                    source.X += (x % 8) * 16;
+                                }
+                                else if (y > _wvm.CurrentWorld.GroundLevel && y < _wvm.CurrentWorld.RockLevel)
+                                {
+                                    wallTex = _textureDictionary.GetBackground(2);
+                                    source.X += (x % 8) * 16;
+                                    source.Y += ((y - 1 - (int)_wvm.CurrentWorld.GroundLevel) % 6) * 16;
+                                }
+                                else if (y == _wvm.CurrentWorld.RockLevel)
+                                {
+                                    wallTex = _textureDictionary.GetBackground(4);
+                                    source.X += (x % 8) * 16;
+                                }
+                                else if (y > _wvm.CurrentWorld.RockLevel && y < (_wvm.CurrentWorld.TilesHigh - 250))
+                                {
+                                    wallTex = _textureDictionary.GetBackground(3);
+                                    source.X += (x % 8) * 16;
+                                    source.Y += ((y - 1 - (int)_wvm.CurrentWorld.RockLevel) % 6) * 16;
+                                }
+                                else if (y == (_wvm.CurrentWorld.TilesHigh - 200))
+                                {
+                                    wallTex = _textureDictionary.GetBackground(6);
+                                    source.X += (x % 8) * 16;
+                                }
+                                else if (y > (_wvm.CurrentWorld.TilesHigh - 200))
+                                {
+                                    wallTex = _textureDictionary.GetBackground(5);
+                                    source.X += (x % 8) * 16;
+                                    source.Y += ((y - 1 - (int)_wvm.CurrentWorld.TilesHigh + 250) % 18) * 16;
+                                }
+                                var dest = new Rectangle(1 + (int)((_scrollPosition.X + x) * _zoom), 1 + (int)((_scrollPosition.Y + y) * _zoom), (int)_zoom, (int)_zoom);
+                                _spriteBatch.Draw(wallTex, dest, source, Color.White, 0f, default(Vector2), SpriteEffects.None, LayerTileWallTextures);
+                            }
                         }
                         if (_wvm.ShowTiles)
                         {
@@ -731,18 +779,30 @@ namespace TEditXna.View
                                                 _spriteBatch.Draw(tileTex, dest, source, Color.White, 0f, default(Vector2), SpriteEffects.None, LayerTileTrack);
                                             }
                                             if (curtile.U == 4 || curtile.U == 9 || curtile.U == 10 || curtile.U == 16 || curtile.U == 26)
-                                            { // Adding angle track bottom left
+                                            { // Adding angle track bottom right
                                                 dest = new Rectangle(1 + (int)((_scrollPosition.X + x) * _zoom), 1 + (int)((_scrollPosition.Y + y + 1) * _zoom), (int)_zoom, (int)_zoom);
                                                 source.X = 0;
                                                 source.Y = 108;
-                                                _spriteBatch.Draw(tileTex, dest, source, Color.White, 0f, default(Vector2), SpriteEffects.None, LayerTileTrack);
+                                                for (int slice = 0; slice < 8; slice++)
+                                                {
+                                                    Rectangle? sourceSlice = new Rectangle(source.X + slice * 2, source.Y, 2, 16 - slice * 2);
+                                                    Vector2 destSlice = new Vector2((int)(dest.X + slice * _zoom / 8.0f), dest.Y);
+
+                                                    _spriteBatch.Draw(tileTex, destSlice, sourceSlice, Color.White, 0f, default(Vector2), _zoom / 16, SpriteEffects.None, LayerTileTrack);
+                                                }
                                             }
                                             if (curtile.U == 5 || curtile.U == 8 || curtile.U == 11 || curtile.U == 17 || curtile.U == 27)
-                                            { // Adding angle track bottom right
+                                            { // Adding angle track bottom left
                                                 dest = new Rectangle(1 + (int)((_scrollPosition.X + x) * _zoom), 1 + (int)((_scrollPosition.Y + y + 1) * _zoom), (int)_zoom, (int)_zoom);
                                                 source.X = 18;
                                                 source.Y = 108;
-                                                _spriteBatch.Draw(tileTex, dest, source, Color.White, 0f, default(Vector2), SpriteEffects.None, LayerTileTrack);
+                                                for (int slice = 0; slice < 8; slice++)
+                                                {
+                                                    Rectangle? sourceSlice = new Rectangle(source.X + slice * 2, source.Y, 2, slice * 2 + 2);
+                                                    Vector2 destSlice = new Vector2((int)(dest.X + slice * _zoom / 8.0f), dest.Y);
+
+                                                    _spriteBatch.Draw(tileTex, destSlice, sourceSlice, Color.White, 0f, default(Vector2), _zoom / 16, SpriteEffects.None, LayerTileTrack);
+                                                }
                                             }
 
                                         }
@@ -771,7 +831,7 @@ namespace TEditXna.View
                                                         break;
                                                 }
                                                 source.X += ((curtile.V - 198) / 22) * (source.Width + 2);
-                                                frameAnchor = FrameAnchor.Bottom;
+                                                frameAnchor = FrameAnchor.None;
                                             }
                                             else if (isLeft)
                                             {
