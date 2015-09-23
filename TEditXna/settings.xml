@@ -4235,9 +4235,9 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     </Tile>
     <Tile Color="#FFFE7902" Id="381" Blends="true" Name="Lava Moss" Solid="true" Framed="false" />
     <Tile Color="#FF1CD85E" Id="382" Blends="true" Name="Vine Flowers" Solid="true" Framed="false" />
-    <Tile Color="#FFDD8890" Id="383" Blends="true" Name="Living Mahogany" Framed="false" />
-    <Tile Color="#FF83CE0C" Id="384" Blends="true" Name="Living MahoganyLeaves" Framed="false" />
-    <Tile Color="#FF571590" Id="385" Blends="true" Name="Crystal Block" Framed="false" />
+    <Tile Color="#FFDD8890" Id="383" Blends="true" Name="Living Mahogany" Solid="true" Framed="false" />
+    <Tile Color="#FF83CE0C" Id="384" Blends="true" Name="Living Mahogany Leaves" Solid="true" Framed="false" />
+    <Tile Color="#FF571590" Id="385" Blends="true" Name="Crystal Block" Solid="true" Framed="false" />
     <Tile Color="#FF7F5C45" Id="386" Size="2,2" Name="Trapdoor Open" Framed="true">
       <Frames>
         <Frame UV="0,0" Name="Trapdoor Open" Variety="Up" />

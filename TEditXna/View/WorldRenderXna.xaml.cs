@@ -831,7 +831,7 @@ namespace TEditXna.View
                                                         break;
                                                 }
                                                 source.X += ((curtile.V - 198) / 22) * (source.Width + 2);
-                                                frameAnchor = FrameAnchor.None;
+                                                frameAnchor = FrameAnchor.Bottom;
                                             }
                                             else if (isLeft)
                                             {
