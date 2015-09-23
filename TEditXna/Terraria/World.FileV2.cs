@@ -19,7 +19,7 @@ namespace TEditXNA.Terraria
 
     public partial class World
     {
-        public static uint CompatibleVersion = 102;
+        public static uint CompatibleVersion = 156;
         public static short TileCount = 418;
         public static short SectionCount = 10;
 
@@ -56,23 +56,13 @@ namespace TEditXNA.Terraria
             sectionPointers[4] = SaveSigns(world.Signs, bw);
             OnProgressChanged(null, new ProgressChangedEventArgs(100, "Save NPCs..."));
             sectionPointers[5] = SaveNPCs(world.NPCs, bw);
-            if( world.Version > 140 )
-            {
-                OnProgressChanged(null, new ProgressChangedEventArgs(100, "Save Mobs..."));
-                sectionPointers[5] = SaveMobs(world.Mobs, bw);
-                OnProgressChanged(null, new ProgressChangedEventArgs(100, "Save Tile Entities Section..."));
-                sectionPointers[6] = SaveTileEntities(world, bw);
-            }
+            OnProgressChanged(null, new ProgressChangedEventArgs(100, "Save Mobs..."));
+            sectionPointers[5] = SaveMobs(world.Mobs, bw);
+            OnProgressChanged(null, new ProgressChangedEventArgs(100, "Save Tile Entities Section..."));
+            sectionPointers[6] = SaveTileEntities(world, bw);
             OnProgressChanged(null, new ProgressChangedEventArgs(100, "Save Footers..."));
             SaveFooter(world, bw);
-            if (world.Version > 140)
-            {
-                UpdateSectionPointersVer140(sectionPointers, bw);
-            }
-            else
-            {
-                UpdateSectionPointers(sectionPointers, bw);
-            }
+            UpdateSectionPointers(sectionPointers, bw);
             OnProgressChanged(null, new ProgressChangedEventArgs(100, "Save Complete."));
         }
 
@@ -358,19 +348,6 @@ namespace TEditXNA.Terraria
 
         public static int UpdateSectionPointers(int[] sectionPointers, BinaryWriter bw)
         {
-            bw.BaseStream.Position = 0x4L;            
-            bw.Write((short)sectionPointers.Length);
-
-            for (int i = 0; i < sectionPointers.Length; i++)
-            {
-                bw.Write(sectionPointers[i]);
-            }
-
-            return (int)bw.BaseStream.Position;
-        }
-
-        public static int UpdateSectionPointersVer140(int[] sectionPointers, BinaryWriter bw)
-        {
             bw.BaseStream.Position = 0x18L;        
             bw.Write((short)sectionPointers.Length);
 
@@ -385,12 +362,9 @@ namespace TEditXNA.Terraria
         public static int SaveSectionHeader(World world, BinaryWriter bw)
         {
             bw.Write(Math.Max(CompatibleVersion, world.Version));
-            if(world.Version > 140)
-            {
-                bw.Write((UInt64)0x026369676f6c6572ul);
-                bw.Write((int)world.FileRevision+1);
-                bw.Write(world.UnknownHeaderField);                
-            }
+            bw.Write((UInt64)0x026369676f6c6572ul);
+            bw.Write((int)world.FileRevision+1);
+            bw.Write(Convert.ToUInt64(world.IsFavorite));                
             bw.Write(SectionCount);
 
             // write section pointer placeholders
@@ -415,13 +389,8 @@ namespace TEditXNA.Terraria
             bw.Write((int)world.BottomWorld);
             bw.Write(world.TilesHigh);
             bw.Write(world.TilesWide);
-
-            if (world.Version >= 147)
-            {
-                bw.Write(world.ExpertMode);
-                bw.Write(world.CreationTime);
-            }
-
+            bw.Write(world.ExpertMode);
+            bw.Write(world.CreationTime);
             bw.Write((byte)world.MoonType);
             bw.Write(world.TreeX0);
             bw.Write(world.TreeX1);
@@ -440,7 +409,6 @@ namespace TEditXNA.Terraria
             bw.Write(world.IceBackStyle);
             bw.Write(world.JungleBackStyle);
             bw.Write(world.HellBackStyle);
-
             bw.Write(world.SpawnX);
             bw.Write(world.SpawnY);
             bw.Write(world.GroundLevel);
@@ -452,9 +420,7 @@ namespace TEditXNA.Terraria
             bw.Write(world.IsEclipse);
             bw.Write(world.DungeonX);
             bw.Write(world.DungeonY);
-
             bw.Write(world.IsCrimson);
-
             bw.Write(world.DownedBoss1);
             bw.Write(world.DownedBoss2);
             bw.Write(world.DownedBoss3);
@@ -465,10 +431,7 @@ namespace TEditXNA.Terraria
             bw.Write(world.DownedMechBossAny);
             bw.Write(world.DownedPlantBoss);
             bw.Write(world.DownedGolemBoss);
-
-            if(world.Version >= 147)
-                bw.Write(world.DownedSlimeKingBoss);
-
+            bw.Write(world.DownedSlimeKingBoss);
             bw.Write(world.SavedGoblin);
             bw.Write(world.SavedWizard);
             bw.Write(world.SavedMech);
@@ -476,7 +439,6 @@ namespace TEditXNA.Terraria
             bw.Write(world.DownedClown);
             bw.Write(world.DownedFrost);
             bw.Write(world.DownedPirates);
-
             bw.Write(world.ShadowOrbSmashed);
             bw.Write(world.SpawnMeteor);
             bw.Write((byte)world.ShadowOrbCount);
@@ -486,13 +448,8 @@ namespace TEditXNA.Terraria
             bw.Write(world.InvasionSize);
             bw.Write(world.InvasionType);
             bw.Write(world.InvasionX);
-
-            if (world.Version >= 147)
-            {
-                bw.Write(world.SlimeRainTime);
-                bw.Write((byte)world.SundialCooldown);
-            }
-
+            bw.Write(world.SlimeRainTime);
+            bw.Write((byte)world.SundialCooldown);
             bw.Write(world.TempRaining);
             bw.Write(world.TempRainTime);
             bw.Write(world.TempMaxRain);
@@ -510,8 +467,6 @@ namespace TEditXNA.Terraria
             bw.Write((int)world.CloudBgActive);
             bw.Write(world.NumClouds);
             bw.Write(world.WindSpeedSet);
-
-            //1.2.4
             bw.Write(world.Anglers.Count);
             foreach (string angler in world.Anglers)
             {
@@ -519,44 +474,34 @@ namespace TEditXNA.Terraria
             }
             bw.Write(world.SavedAngler);
             bw.Write(world.AnglerQuest);
-
-            if (world.Version > 104)
+            bw.Write(world.SavedStylist);
+            bw.Write(world.SavedTaxCollector);
+            bw.Write(world.InvasionSizeStart);
+            bw.Write(world.CultistDelay);
+            bw.Write((Int16)world.NumberOfMobs);
+            foreach (int count in world.KilledMobs)
             {
-                bw.Write(world.SavedStylist);
+                bw.Write(count);
             }
-
-            if (world.Version > 140)
-            {
-                bw.Write(world.SavedTaxCollector);
-                bw.Write(world.InvasionSizeStart);
-                bw.Write(world.CultistDelay);
-                bw.Write((Int16)world.NumberOfMobs);
-                foreach (int count in world.KilledMobs)
-                {
-                    bw.Write(count);
-                }
-                bw.Write(world.FastForwardTime);
-
-                bw.Write(world.DownedFishron);
-                bw.Write(world.DownedMartians);
-                bw.Write(world.DownedLunaticCultist);
-                bw.Write(world.DownedMoonlord);
-                bw.Write(world.DownedHalloweeenKing);
-                bw.Write(world.DownedHalloweenTree);
-                bw.Write(world.DownedChristmasQueen);
-                bw.Write(world.DownedSanta);
-                bw.Write(world.DownedChristmasTree);
-                bw.Write(world.DownedCelestialSolar);
-                bw.Write(world.DownedCelestialVortex);
-                bw.Write(world.DownedCelestialNebula);
-                bw.Write(world.DownedCelestialStardust);
-                
-                bw.Write(world.CelestialSolarActive);
-                bw.Write(world.CelestialVortexActive);
-                bw.Write(world.CelestialNebulaActive);
-                bw.Write(world.CelestialStardustActive);
-                bw.Write(world.Apocalypse);
-            }
+            bw.Write(world.FastForwardTime);
+            bw.Write(world.DownedFishron);
+            bw.Write(world.DownedMartians);
+            bw.Write(world.DownedLunaticCultist);
+            bw.Write(world.DownedMoonlord);
+            bw.Write(world.DownedHalloweeenKing);
+            bw.Write(world.DownedHalloweenTree);
+            bw.Write(world.DownedChristmasQueen);
+            bw.Write(world.DownedSanta);
+            bw.Write(world.DownedChristmasTree);
+            bw.Write(world.DownedCelestialSolar);
+            bw.Write(world.DownedCelestialVortex);
+            bw.Write(world.DownedCelestialNebula);
+            bw.Write(world.DownedCelestialStardust);
+            bw.Write(world.CelestialSolarActive);
+            bw.Write(world.CelestialVortexActive);
+            bw.Write(world.CelestialNebulaActive);
+            bw.Write(world.CelestialStardustActive);
+            bw.Write(world.Apocalypse);
 
             if (world.UnknownData != null && world.UnknownData.Length > 0)
                 bw.Write(world.UnknownData);
@@ -1039,6 +984,10 @@ namespace TEditXNA.Terraria
                 w.ExpertMode = r.ReadBoolean();
                 w.CreationTime = r.ReadInt64();
             }
+            else
+            {
+                w.CreationTime = DateTime.Now.ToBinary();
+            }
 
             w.MoonType = r.ReadByte();
             w.TreeX[0] = r.ReadInt32();
@@ -1226,7 +1175,8 @@ namespace TEditXNA.Terraria
                     throw new FileFormatException("Invalid Header");
 
                 w.FileRevision = r.ReadUInt32();
-                w.UnknownHeaderField = r.ReadUInt64();//I have no idea what this is for...
+                UInt64 temp = r.ReadUInt64();//I have no idea what this is for...
+                w.IsFavorite = ((temp & 1uL) == 1uL);
             }
 
             // read file section stream positions

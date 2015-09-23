@@ -161,7 +161,7 @@ namespace TEditXNA.Terraria
         private static void WriteFlags(StreamWriter sb, World world)
         {
             sb.WriteProperty("world.FileRevision", world.FileRevision);
-            sb.WriteProperty("world.UnknownHeaderField", world.UnknownHeaderField);
+            sb.WriteProperty("world.IsFavorite", world.IsFavorite);
 
             sb.WriteLine("===SECTION: Flags===");
 

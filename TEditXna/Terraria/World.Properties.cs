@@ -170,7 +170,7 @@ namespace TEditXNA.Terraria
         private bool _fastForwardTime;
 
         private uint _fileRevision;
-        private UInt64 _unknownHeaderField;
+        private bool _isFavorite;
 
         public int TileEntitiesNumber
         {
@@ -202,10 +202,10 @@ namespace TEditXNA.Terraria
             set { Set("FileRevision", ref _fileRevision, value); }
         }
 
-        public UInt64 UnknownHeaderField
+        public bool IsFavorite
         {
-            get { return _unknownHeaderField; }
-            set { Set("UnknownHeaderField", ref _unknownHeaderField, value); }
+            get { return _isFavorite; }
+            set { Set("IsFavorite", ref _isFavorite, value); }
         }
 
         public byte[] UnknownData
