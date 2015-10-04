@@ -2117,7 +2117,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="72,1080" Name="Marble Bed" Variety="Right" />
       </Frames>
     </Tile>
-    <Tile Name="Cactus" Color="#FF497811" Special="Cactus" Id="80" Framed="true">
+    <Tile Name="Cactus" Color="#FF497811" Special="Cactus" Id="80" >
       <Frames>
         <Frame UV="0,0" Variety="Default" />
         <!-- TODO -->
@@ -4069,7 +4069,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Tile Color="#FFCBB997" Id="320" Size="2,3" Name="Seaweed Planter" Framed="true" />
     <Tile Color="#FF604D40" Id="321" Blends="true" Name="Boreal Wood" Solid="true" />
     <Tile Color="#FFC6AA68" Id="322" Blends="true" Name="Palm Wood" Solid="true" />
-    <Tile Color="#FFB68D56" Id="323" Blends="true" Name="Palm Tree" Framed="true" />
+    <Tile Color="#FFB68D56" Id="323" TextureGrid="20,20" Blends="true" Name="Palm Tree" Framed="true" />
     <!-- TODO -->
     <Tile Color="#FFE4D5AD" Id="324" TextureGrid="20,20" Name="Seashell" Framed="true">
       <Frames>
