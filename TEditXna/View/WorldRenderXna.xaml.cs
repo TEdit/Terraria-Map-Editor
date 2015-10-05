@@ -524,7 +524,7 @@ namespace TEditXna.View
                                     wallTex = _textureDictionary.GetBackground(4);
                                     source.X += (x % 8) * 16;
                                 }
-                                else if (y > _wvm.CurrentWorld.RockLevel && y < (_wvm.CurrentWorld.TilesHigh - 250))
+                                else if (y > _wvm.CurrentWorld.RockLevel && y < (_wvm.CurrentWorld.TilesHigh - 200))
                                 {
                                     wallTex = _textureDictionary.GetBackground(3);
                                     source.X += (x % 8) * 16;
