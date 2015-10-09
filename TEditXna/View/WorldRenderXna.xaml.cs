@@ -31,9 +31,10 @@ namespace TEditXna.View
 
 
         private const float LayerTileWallTextures = 0.01f;
-        private const float LayerTileTextures = 0.02f;
-        private const float LayerTileTrack = 0.03f;
-        private const float LayerTileActuator = 0.04f;
+        private const float LayerTileTrackBack = 0.02f;
+        private const float LayerTileTextures = 0.03f;
+        private const float LayerTileTrack = 0.04f;
+        private const float LayerTileActuator = 0.05f;
         private const float LayerWires = 0.06f;
         private const float LayerLiquid = 0.07f;
 
@@ -523,7 +524,7 @@ namespace TEditXna.View
                                     wallTex = _textureDictionary.GetBackground(4);
                                     source.X += (x % 8) * 16;
                                 }
-                                else if (y > _wvm.CurrentWorld.RockLevel && y < (_wvm.CurrentWorld.TilesHigh - 250))
+                                else if (y > _wvm.CurrentWorld.RockLevel && y < (_wvm.CurrentWorld.TilesHigh - 200))
                                 {
                                     wallTex = _textureDictionary.GetBackground(3);
                                     source.X += (x % 8) * 16;
@@ -693,6 +694,35 @@ namespace TEditXna.View
                                         isMushroom = true;
                                         tileTex = (Texture2D)_textureDictionary.GetShroomTop(0);
                                     }
+                                    if (curtile.Type == 323)
+                                    {
+                                        if (curtile.U >= 88)
+                                        {
+                                            isTreeSpecial = true;
+                                            isBase = true;
+                                            tileTex = (Texture2D)_textureDictionary.GetTreeTops(15);
+                                        }
+                                        int treeType = 0;
+                                        for (int i = 0; i < 100; i++)
+                                        {
+                                            Tile checkTile = (y + i) < _wvm.CurrentWorld.TilesHigh ? _wvm.CurrentWorld.Tiles[x, y + i] : null;
+                                            if (checkTile != null && checkTile.IsActive)
+                                            {
+                                                bool found = true;
+                                                switch (checkTile.Type)
+                                                {
+                                                    case 53: treeType = 0; break; //Palm
+                                                    case 112: treeType = 3; break; //Ebonsand Palm
+                                                    case 116: treeType = 2; break; //Pearlsand Palm
+                                                    case 234: treeType = 1; break; //Crimsand Palm
+                                                    default: found = false; break;
+                                                }
+                                                if (found)
+                                                    break;
+                                            }
+                                        }
+                                        curtile.uvTileCache = (ushort)((0x00 << 8) + 0x01 * treeType);
+                                    }
 
                                     if (tileTex != null)
                                     {
@@ -713,6 +743,12 @@ namespace TEditXna.View
                                                 continue;
 
                                             dest = new Rectangle(1 + (int)((_scrollPosition.X + x) * _zoom), 1 + (int)((_scrollPosition.Y + y) * _zoom), (int)_zoom, (int)_zoom);
+                                            if (curtile.Type == 323)
+                                            {
+                                                dest.X += (int)(curtile.V * _zoom / 16);
+                                                int treeType = (curtile.uvTileCache & 0x000F);
+                                                source.Y = 22 * treeType;
+                                            }
                                             var texsize = tileprop.TextureGrid;
                                             if (texsize.X != 16 || texsize.Y != 16)
                                             {
@@ -757,35 +793,30 @@ namespace TEditXna.View
                                                 Vector2Int32 uvback = TrackUV(curtile.V);
                                                 source.X = uvback.X * (source.Width + 2);
                                                 source.Y = uvback.Y * (source.Height + 2);
-                                                _spriteBatch.Draw(tileTex, dest, source, Color.White, 0f, default(Vector2), SpriteEffects.None, LayerTileTextures);
+                                                _spriteBatch.Draw(tileTex, dest, source, Color.White, 0f, default(Vector2), SpriteEffects.None, LayerTileTrackBack);
                                             }
-                                            Vector2Int32 uv = TrackUV(curtile.U);
-                                            source.X = uv.X * (source.Width + 2);
-                                            source.Y = uv.Y * (source.Height + 2);
-                                            _spriteBatch.Draw(tileTex, dest, source, Color.White, 0f, default(Vector2), SpriteEffects.None, LayerTileTrack);
-                                            
                                             if ((curtile.U >= 2 && curtile.U <= 3) || (curtile.U >= 10 && curtile.U <= 13))
                                             { // Adding regular endcap
-                                                dest = new Rectangle(1 + (int)((_scrollPosition.X + x) * _zoom), 1 + (int)((_scrollPosition.Y + y - 1) * _zoom), (int)_zoom, (int)_zoom);
+                                                dest.Y = 1 + (int)((_scrollPosition.Y + y - 1) * _zoom);
                                                 source.X = 0;
                                                 source.Y = 126;
                                                 _spriteBatch.Draw(tileTex, dest, source, Color.White, 0f, default(Vector2), SpriteEffects.None, LayerTileTrack);
                                             }
                                             if (curtile.U >= 24 && curtile.U <= 29)
                                             { // Adding bumper endcap
-                                                dest = new Rectangle(1 + (int)((_scrollPosition.X + x) * _zoom), 1 + (int)((_scrollPosition.Y + y - 1) * _zoom), (int)_zoom, (int)_zoom);
+                                                dest.Y = 1 + (int)((_scrollPosition.Y + y - 1) * _zoom);
                                                 source.X = 18;
                                                 source.Y = 126;
                                                 _spriteBatch.Draw(tileTex, dest, source, Color.White, 0f, default(Vector2), SpriteEffects.None, LayerTileTrack);
                                             }
                                             if (curtile.U == 4 || curtile.U == 9 || curtile.U == 10 || curtile.U == 16 || curtile.U == 26)
                                             { // Adding angle track bottom right
-                                                dest = new Rectangle(1 + (int)((_scrollPosition.X + x) * _zoom), 1 + (int)((_scrollPosition.Y + y + 1) * _zoom), (int)_zoom, (int)_zoom);
+                                                dest.Y = 1 + (int)((_scrollPosition.Y + y + 1) * _zoom);
                                                 source.X = 0;
                                                 source.Y = 108;
-                                                for (int slice = 0; slice < 8; slice++)
+                                                for (int slice = 0; slice < 6; slice++)
                                                 {
-                                                    Rectangle? sourceSlice = new Rectangle(source.X + slice * 2, source.Y, 2, 16 - slice * 2);
+                                                    Rectangle? sourceSlice = new Rectangle(source.X + slice * 2, source.Y, 2, 12 - slice * 2);
                                                     Vector2 destSlice = new Vector2((int)(dest.X + slice * _zoom / 8.0f), dest.Y);
 
                                                     _spriteBatch.Draw(tileTex, destSlice, sourceSlice, Color.White, 0f, default(Vector2), _zoom / 16, SpriteEffects.None, LayerTileTrack);
@@ -793,17 +824,21 @@ namespace TEditXna.View
                                             }
                                             if (curtile.U == 5 || curtile.U == 8 || curtile.U == 11 || curtile.U == 17 || curtile.U == 27)
                                             { // Adding angle track bottom left
-                                                dest = new Rectangle(1 + (int)((_scrollPosition.X + x) * _zoom), 1 + (int)((_scrollPosition.Y + y + 1) * _zoom), (int)_zoom, (int)_zoom);
+                                                dest.Y =  1 + (int)((_scrollPosition.Y + y + 1) * _zoom);
                                                 source.X = 18;
                                                 source.Y = 108;
-                                                for (int slice = 0; slice < 8; slice++)
+                                                for (int slice = 2; slice < 8; slice++)
                                                 {
-                                                    Rectangle? sourceSlice = new Rectangle(source.X + slice * 2, source.Y, 2, slice * 2 + 2);
+                                                    Rectangle? sourceSlice = new Rectangle(source.X + slice * 2, source.Y, 2, slice * 2 - 2);
                                                     Vector2 destSlice = new Vector2((int)(dest.X + slice * _zoom / 8.0f), dest.Y);
 
                                                     _spriteBatch.Draw(tileTex, destSlice, sourceSlice, Color.White, 0f, default(Vector2), _zoom / 16, SpriteEffects.None, LayerTileTrack);
                                                 }
                                             }
+                                            dest.Y =  1 + (int)((_scrollPosition.Y + y) * _zoom);
+                                            Vector2Int32 uv = TrackUV(curtile.U);
+                                            source.X = uv.X * (source.Width + 2);
+                                            source.Y = uv.Y * (source.Height + 2);
 
                                         }
                                         else if (isTreeSpecial)
@@ -817,20 +852,29 @@ namespace TEditXna.View
                                             {
                                                 source.Width = 80;
                                                 source.Height = 80;
-                                                switch (treeStyle)
+                                                if (curtile.Type == 323)
                                                 {
-                                                    case 2:
-                                                    case 11:
-                                                    case 13:
-                                                        source.Width = 114;
-                                                        source.Height = 96;
-                                                        break;
-                                                    case 3:
-                                                        source.X = (x % 3) * (82 * 3);
-                                                        source.Height = 140;
-                                                        break;
+                                                    source.Y = treeStyle * (source.Height + 2);
+                                                    source.X = ((curtile.U - 88) / 22) * (source.Width + 2);
+                                                    dest.X += (int)(curtile.V * _zoom / 16);
                                                 }
-                                                source.X += ((curtile.V - 198) / 22) * (source.Width + 2);
+                                                else
+                                                {
+                                                    switch (treeStyle)
+                                                    {
+                                                        case 2:
+                                                        case 11:
+                                                        case 13:
+                                                            source.Width = 114;
+                                                            source.Height = 96;
+                                                            break;
+                                                        case 3:
+                                                            source.X = (x % 3) * (82 * 3);
+                                                            source.Height = 140;
+                                                            break;
+                                                    }
+                                                    source.X += ((curtile.V - 198) / 22) * (source.Width + 2);
+                                                }
                                                 frameAnchor = FrameAnchor.Bottom;
                                             }
                                             else if (isLeft)
