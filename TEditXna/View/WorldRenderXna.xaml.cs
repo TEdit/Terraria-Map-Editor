@@ -696,7 +696,7 @@ namespace TEditXna.View
                                     }
                                     if (curtile.Type == 323)
                                     {
-                                        if (curtile.U >= 88)
+                                        if (curtile.U >= 88 && curtile.U <= 132)
                                         {
                                             isTreeSpecial = true;
                                             isBase = true;
