@@ -72,6 +72,13 @@
                     <Setter Property="Visibility" Value="Visible" />
                 </DataTrigger>
             </Style.Triggers>
+        </Style><Style TargetType="{x:Type GroupBox}" x:Key="TrackStyle" BasedOn="{StaticResource {x:Type GroupBox}}">
+            <Setter Property="Visibility" Value="Collapsed" />
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding TilePicker.PaintMode}" Value="Track">
+                    <Setter Property="Visibility" Value="Visible" />
+                </DataTrigger>
+            </Style.Triggers>
         </Style>
     </UserControl.Resources>
     <Grid>
@@ -185,6 +192,15 @@
                     <CheckBox IsChecked="{Binding TilePicker.RedWireActive}" Content="Red" Width="75" VerticalAlignment="Center" Height="22"/>
                     <CheckBox IsChecked="{Binding TilePicker.BlueWireActive}" Content="Blue" Width="75" VerticalAlignment="Center" Height="22"/>
                     <CheckBox IsChecked="{Binding TilePicker.GreenWireActive}" Content="Green" Width="75" VerticalAlignment="Center" Height="22"/>                    
+                </StackPanel>
+            </GroupBox>
+            <GroupBox Header="Minecart Track" Style="{StaticResource TrackStyle}">
+                <StackPanel Orientation="Vertical">
+                    <ComboBox ItemsSource="{StaticResource TrackModeEnum}" 
+                          SelectedValue="{Binding TilePicker.TrackMode}" 
+                          SelectedValuePath="Value" Width="100"
+                          ItemTemplate="{StaticResource EnumTemplate}" />
+                    <TextBlock Text="Use Hammer to modify track" HorizontalAlignment="Left" Width="100"  VerticalAlignment="Center" TextWrapping="Wrap"/>
                 </StackPanel>
             </GroupBox>
 

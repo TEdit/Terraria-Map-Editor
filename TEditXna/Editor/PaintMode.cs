@@ -10,5 +10,18 @@ namespace TEditXna.Editor
         Wire,
         [Description("Liquid")]
         Liquid,
+        [Description("Track")]
+        Track,
+    }
+    public enum TrackMode
+    {
+        [Description("Track")]
+        Track,
+        [Description("Booster")]
+        Booster,
+        [Description("PressurePlate")]
+        Pressure,
+        [Description("Hammer")]
+        Hammer,
     }
 }

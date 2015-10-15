@@ -87,6 +87,9 @@ namespace TEditXna.ViewModel
                 case PaintMode.Liquid:
                     SetPixelAutomatic(curTile, liquid: isErase ? (byte)0 : (byte)255, liquidType: TilePicker.LiquidType);
                     break;
+                case PaintMode.Track:
+                    SetTrack(curTile, isErase, True);
+                    break;
             }
 
 
@@ -178,6 +181,14 @@ namespace TEditXna.ViewModel
                 else
                     SetPixelAutomatic(curTile, tile: TilePicker.Tile);
             }
+        }
+        
+        private void SetTrack(Tile curTile, bool erase, bool check)
+        {
+            if (erase)
+                SetPixelAutomatic(curTile, tile: -1);
+            else
+                SetPixelAutomatic(curTile, tile: 314, u: 0, v: -1);
         }
 
         private void SetPixelAutomatic(Tile curTile,
