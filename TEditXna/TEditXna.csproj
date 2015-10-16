@@ -188,6 +188,7 @@
     <Compile Include="Terraria\TileEntity.cs" />
     <Compile Include="Terraria\Item.cs" />
     <Compile Include="Terraria\Map.cs" />
+    <Compile Include="Terraria\Minecart.cs" />
     <Compile Include="Terraria\NPC.cs" />
     <Compile Include="Terraria\Objects\BlendRules.cs" />
     <Compile Include="Terraria\Objects\ChestProperty.cs" />
