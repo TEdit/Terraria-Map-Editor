@@ -72,11 +72,26 @@
                     <Setter Property="Visibility" Value="Visible" />
                 </DataTrigger>
             </Style.Triggers>
-        </Style><Style TargetType="{x:Type GroupBox}" x:Key="TrackStyle" BasedOn="{StaticResource {x:Type GroupBox}}">
+        </Style>
+        <Style TargetType="{x:Type GroupBox}" x:Key="TrackStyle" BasedOn="{StaticResource {x:Type GroupBox}}">
             <Setter Property="Visibility" Value="Collapsed" />
             <Style.Triggers>
                 <DataTrigger Binding="{Binding TilePicker.PaintMode}" Value="Track">
                     <Setter Property="Visibility" Value="Visible" />
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+        <Style TargetType="{x:Type TextBlock}" x:Key="TrackStyleText" BasedOn="{StaticResource {x:Type TextBlock}}">
+            <Setter Property="Text" Value="" />
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding TilePicker.TrackMode}" Value="Booster">
+                        <Setter Property="Text" Value="Add Booster to existing track, use with Eraser to remove booster only" />
+                </DataTrigger>
+                <DataTrigger Binding="{Binding TilePicker.TrackMode}" Value="Pressure">
+                        <Setter Property="Text" Value="Add Pressure Plate to existing track, use with Eraser to remove plate only" />
+                </DataTrigger>
+                <DataTrigger Binding="{Binding TilePicker.TrackMode}" Value="Hammer">
+                        <Setter Property="Text" Value="Use Hammer to modify track ends, intersections and booster direction" />
                 </DataTrigger>
             </Style.Triggers>
         </Style>
@@ -146,7 +161,6 @@
             </GroupBox>
             <GroupBox Header="Liquid" Style="{StaticResource LiquidVisibleStyle}">
                 <StackPanel Orientation="Horizontal" VerticalAlignment="Top">
-                    <TextBlock Text="Liquid" HorizontalAlignment="Left" Width="65"  VerticalAlignment="Center" />
                     <ComboBox ItemsSource="{StaticResource LiquidType}" 
                           SelectedValue="{Binding TilePicker.LiquidType}" 
                           SelectedValuePath="Value" Width="100"
@@ -195,15 +209,14 @@
                 </StackPanel>
             </GroupBox>
             <GroupBox Header="Minecart Track" Style="{StaticResource TrackStyle}">
-                <StackPanel Orientation="Vertical">
+                <StackPanel Orientation="Vertical" >
                     <ComboBox ItemsSource="{StaticResource TrackModeEnum}" 
                           SelectedValue="{Binding TilePicker.TrackMode}" 
                           SelectedValuePath="Value" Width="100"
                           ItemTemplate="{StaticResource EnumTemplate}" />
-                    <TextBlock Text="Use Hammer to modify track" HorizontalAlignment="Left" Width="100"  VerticalAlignment="Center" TextWrapping="Wrap"/>
+                    <TextBlock Style="{StaticResource TrackStyleText}" Width="150" HorizontalAlignment="Center" VerticalAlignment="Center" TextWrapping="Wrap"/>
                 </StackPanel>
             </GroupBox>
-
         </StackPanel>
     </Grid>
 </UserControl>

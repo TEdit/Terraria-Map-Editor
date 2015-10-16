@@ -88,7 +88,7 @@ namespace TEditXna.ViewModel
                     SetPixelAutomatic(curTile, liquid: isErase ? (byte)0 : (byte)255, liquidType: TilePicker.LiquidType);
                     break;
                 case PaintMode.Track:
-                    SetTrack(curTile, isErase, True);
+                    SetTrack(curTile, isErase, true);
                     break;
             }
 
@@ -185,10 +185,97 @@ namespace TEditXna.ViewModel
         
         private void SetTrack(Tile curTile, bool erase, bool check)
         {
-            if (erase)
-                SetPixelAutomatic(curTile, tile: -1);
-            else
-                SetPixelAutomatic(curTile, tile: 314, u: 0, v: -1);
+            if (TilePicker.TrackMode == TrackMode.Track)
+            {
+                if (erase)
+                    SetPixelAutomatic(curTile, tile: -1, u: -1, v: -1);
+                else
+                    SetPixelAutomatic(curTile, tile: 314, u: 0, v: -1);
+            }
+            else if (TilePicker.TrackMode == TrackMode.Pressure)
+            {
+                if (erase)
+                    if (curTile.V == 21)
+                        curTile.V = 1;
+                    else
+                    {
+                        if (curTile.U >= 20 && curTile.U <= 23)
+                            curTile.U -= 20;
+                    }
+                else
+                {
+                    if (curTile.V == 1)
+                        curTile.V = 21;
+                    else
+                    {
+                        if (curTile.U >= 0 && curTile.U <= 3)
+                            curTile.U += 20;
+                        if (curTile.U == 14 || curTile.U == 24)
+                            curTile.U += 22;
+                        if (curTile.U == 15 || curTile.U == 25)
+                            curTile.U += 23;
+                    }
+                }
+            }
+            else if (TilePicker.TrackMode == TrackMode.Booster)
+            {
+                if (erase)
+                {
+                    if (curTile.U == 30 || curTile.U == 31)
+                        curTile.U = 1;
+                    if (curTile.U == 32 || curTile.U == 34)
+                        curTile.U = 8;
+                    if (curTile.U == 33 || curTile.U == 35)
+                        curTile.U = 9;
+                }
+                else
+                {
+                    if (curTile.U == 1)
+                        curTile.U = 30;
+                    if (curTile.U == 8)
+                        curTile.U = 32;
+                    if (curTile.U == 9)
+                        curTile.U = 33;
+                }
+            }
+            else if (TilePicker.TrackMode == TrackMode.Hammer)
+            {
+                if (curTile.V > 0)
+                {
+                    
+                }
+                else
+                {
+                    switch (curTile.U)
+                    {
+                        case 2:
+                        case 3: curTile.U += 12; break;
+                        case 10:
+                        case 11:
+                        case 12:
+                        case 13: curTile.U += 6; break;
+                        case 14:
+                        case 15:
+                        case 16:
+                        case 17:
+                        case 18:
+                        case 19: curTile.U += 10; break;
+                        case 24:
+                        case 25: curTile.U -= 22; break;
+                        case 26:
+                        case 27:
+                        case 28:
+                        case 29: curTile.U -= 16; break;
+                        case 30: curTile.U = 31; break;
+                        case 31: curTile.U = 30; break;
+                        case 32: curTile.U = 34; break;
+                        case 33: curTile.U = 35; break;
+                        case 34: curTile.U = 32; break;
+                        case 35: curTile.U = 33; break;
+                        default: break;
+                    }
+                }
+            }
         }
 
         private void SetPixelAutomatic(Tile curTile,
