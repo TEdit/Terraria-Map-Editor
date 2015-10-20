@@ -169,6 +169,14 @@
             <Setter Property="Margin" Value="3,2" />
             <Setter Property="VerticalAlignment" Value="Center" />
         </Style>
+        <Style TargetType="{x:Type CheckBox}" x:Key="Boss2" BasedOn="{StaticResource {x:Type CheckBox}}">
+            <Setter Property="Content" Value="Eater of Worlds" />
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding CurrentWorld.IsCrimson}" Value="True">
+                        <Setter Property="Content" Value="Brain of Cthulhu" />
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
     </UserControl.Resources>
         <tedit:AutoGrid HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="2">
             <tedit:AutoGrid.ColumnDefinitions>
@@ -288,7 +296,7 @@
             <TextBlock Text="Bosses Downed" HorizontalAlignment="Right" />
             <CheckBox IsChecked="{Binding CurrentWorld.DownedBoss1}" Content="Eye of Cthulhu" VerticalAlignment="Center" VerticalContentAlignment="Center" />
             <TextBlock />
-            <CheckBox IsChecked="{Binding CurrentWorld.DownedBoss2}" Content="Eater of Worlds" VerticalAlignment="Center" VerticalContentAlignment="Center" />
+            <CheckBox IsChecked="{Binding CurrentWorld.DownedBoss2}" Style="{StaticResource Boss2}" VerticalAlignment="Center" VerticalContentAlignment="Center" />
             <TextBlock />
             <CheckBox IsChecked="{Binding CurrentWorld.DownedQueenBee}" Content="Queen Bee" VerticalAlignment="Center" VerticalContentAlignment="Center" />
             <TextBlock />

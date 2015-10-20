@@ -5,6 +5,7 @@
                     xmlns:Terraria="clr-namespace:TEditXNA.Terraria"
                     xmlns:enum="clr-namespace:TEdit.UI.Xaml.Enum">
     <enum:EnumItemList x:Key="PaintModeEnum" EnumType="{x:Type Editor:PaintMode}" SortBy="Value"  />
+    <enum:EnumItemList x:Key="TrackModeEnum" EnumType="{x:Type Editor:TrackMode}" SortBy="Value"  />
     <enum:EnumItemList x:Key="MaskModeEnum" EnumType="{x:Type Editor:MaskMode}" x:Shared="false" SortBy="Value" />
     <enum:EnumItemList x:Key="HalfBlockMode" EnumType="{x:Type Editor:HalfBlockMode}" x:Shared="false" SortBy="Value" />
     <enum:EnumItemList x:Key="BrickStyle" EnumType="{x:Type Terraria:BrickStyle}" x:Shared="false" SortBy="Value" />

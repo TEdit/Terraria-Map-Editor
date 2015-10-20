@@ -34,6 +34,7 @@ namespace TEditXna.Editor
         private bool _greenWireActive = ToolDefaultData.GreenWire;
         private bool _tileStyleActive = ToolDefaultData.PaintTileActive;
         private bool _wallStyleActive = ToolDefaultData.PaintWallActive;
+        private TrackMode _trackMode = TrackMode.Track;
 
         private BrickStyle _brickStyle = BrickStyle.Full;
         public BrickStyle BrickStyle
@@ -42,6 +43,12 @@ namespace TEditXna.Editor
             set { Set("BrickStyle", ref _brickStyle, value); }
         }
 
+        public TrackMode TrackMode
+        {
+            get { return _trackMode; }
+            set { Set("TrackMode", ref _trackMode, value); }
+        }
+        
         //private bool _isLava;
         private bool _isEraser;
 

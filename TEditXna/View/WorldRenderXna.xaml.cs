@@ -809,7 +809,7 @@ namespace TEditXna.View
                                                 source.Y = 126;
                                                 _spriteBatch.Draw(tileTex, dest, source, Color.White, 0f, default(Vector2), SpriteEffects.None, LayerTileTrack);
                                             }
-                                            if (curtile.U == 4 || curtile.U == 9 || curtile.U == 10 || curtile.U == 16 || curtile.U == 26)
+                                            if (curtile.U == 4 || curtile.U == 9 || curtile.U == 10 || curtile.U == 16 || curtile.U == 26 || curtile.U == 33 || curtile.U == 35 || curtile.V == 4)
                                             { // Adding angle track bottom right
                                                 dest.Y = 1 + (int)((_scrollPosition.Y + y + 1) * _zoom);
                                                 source.X = 0;
@@ -822,7 +822,7 @@ namespace TEditXna.View
                                                     _spriteBatch.Draw(tileTex, destSlice, sourceSlice, Color.White, 0f, default(Vector2), _zoom / 16, SpriteEffects.None, LayerTileTrack);
                                                 }
                                             }
-                                            if (curtile.U == 5 || curtile.U == 8 || curtile.U == 11 || curtile.U == 17 || curtile.U == 27)
+                                            if (curtile.U == 5 || curtile.U == 8 || curtile.U == 11 || curtile.U == 17 || curtile.U == 27 || curtile.U == 32 || curtile.U == 34 || curtile.V == 5)
                                             { // Adding angle track bottom left
                                                 dest.Y =  1 + (int)((_scrollPosition.Y + y + 1) * _zoom);
                                                 source.X = 18;
