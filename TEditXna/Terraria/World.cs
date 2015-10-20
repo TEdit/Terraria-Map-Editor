@@ -51,10 +51,24 @@ namespace TEditXNA.Terraria
 
         public static void Save(World world, string filename, bool resetTime = false)
         {
-            lock (_fileLock)
+            try
             {
                 OnProgressChanged(world, new ProgressChangedEventArgs(0, "Validating World..."));
                 world.Validate();
+            }
+            catch (ArgumentOutOfRangeException err)
+            {
+                string msg = string.Format("There is a problem in your world.\r\n" + 
+                                           "{0}\r\nThis world will not open in Terraria\r\n" + 
+                                           "Would you like to save anyways??\r\n"
+                                           , err.ParamName);
+                if (MessageBox.Show(msg, "World Error", MessageBoxButton.YesNo, MessageBoxImage.Error) !=
+                    MessageBoxResult.Yes)
+                    return;
+            }
+            lock (_fileLock)
+            {
+                
 
                 if (resetTime)
                 {
@@ -258,6 +272,12 @@ namespace TEditXNA.Terraria
                     if (removed) break;
                 }
             }
+            OnProgressChanged(this,
+                    new ProgressChangedEventArgs(0, "Validating Complete..."));
+            if (Chests.Count > 1000)
+                throw new ArgumentOutOfRangeException(string.Format("Chest Count is {0} which is greater than 1000",Chests.Count));
+            if (Signs.Count > 1000)
+                throw new ArgumentOutOfRangeException(string.Format("Sign Count is {0} which is greater than 1000",Signs.Count));
         }
 
         private void FixChand()

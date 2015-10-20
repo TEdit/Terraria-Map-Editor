@@ -4074,7 +4074,8 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Tile Id="320" Color="#FFCBB997" Name="Seaweed Planter" Framed="true" Size="2,3" />
     <Tile Id="321" Color="#FF604D40" Name="Boreal Wood" Solid="true" Blends="true" MergeWith="0" />
     <Tile Id="322" Color="#FFC6AA68" Name="Palm Wood" Solid="true" Blends="true" MergeWith="0" />
-    <Tile Id="323" Color="#FFB68D56" Name="Palm Tree" Framed="true" Blends="true" TextureGrid="20,20" />
+    <Tile Id="323" Color="#FFB68D56" Name="Palm Tree" Framed="true" Blends="true" TextureGrid="20,20" >
+      <Frames>
         <Frame UV="0,0" Variety="Trunk 1" />
         <Frame UV="22,0" Variety="Trunk 2" />
         <Frame UV="44,0" Variety="Trunk 3" />
