@@ -84,6 +84,10 @@ namespace TEditXNA.Terraria
                         uniquecount = uniquecount + 1;
                     bannercount = bannercount + banners;
                 }
+                else
+                {
+                    sb.WriteLine("{0} {1} (never killed)", index, World.TallyNames[index]);
+                }
                 index++;
             }
             sb.Write(Environment.NewLine);
