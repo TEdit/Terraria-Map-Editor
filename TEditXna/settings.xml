@@ -4203,7 +4203,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Tile Id="354" Color="#FF8D6B59" Name="Bewitching Table" Framed="true" Size="3,3" />
     <Tile Id="355" Color="#FF8D6B59" Name="Alchemy Table" Framed="true" Size="3,3" />
     <Tile Id="356" Color="#FFE9CB18" Name="Enchanted Sundial" Framed="true" Size="2,3" />
-    <Tile Id="357" Color="#FFA8B2CC" Name="Marble Block" Solid="true" Blends="true" />
+    <Tile Id="357" Color="#FFA8B2CC" Name="Smooth Marble Block" Solid="true" Blends="true" />
     <Tile Id="358" Color="#FF7AD9E8" Name="Gold Bird Cage" Framed="true" Size="6,3" />
     <Tile Id="359" Color="#FF7AD9E8" Name="Gold Bunny Cage" Framed="true" Size="6,3" />
     <Tile Id="360" Color="#FF7AD9E8" Name="Gold Butterfly Cage" Framed="true" Size="2,2" />
@@ -4213,9 +4213,9 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Tile Id="364" Color="#FF7AD9E8" Name="Gold Worm Cage" Framed="true" Size="3,2" />
     <Tile Id="365" Color="#FF9288CD" Name="Silk Rope" Solid="true" Blends="true" />
     <Tile Id="366" Color="#FFDFE8E9" Name="Web Rope" Solid="true" Blends="true" />
-    <Tile Id="367" Color="#FFA8B2CC" Name="Marble" Solid="true" Blends="true" MergeWith="0" />
-    <Tile Id="368" Color="#FF322E68" Name="Granite" Solid="true" Blends="true" MergeWith="0" />
-    <Tile Id="369" Color="#FF322E68" Name="Granite Block" Solid="true" Blends="true" MergeWith="0" />
+    <Tile Id="367" Color="#FFA8B2CC" Name="Marble Block" Solid="true" Blends="true" MergeWith="0" />
+    <Tile Id="368" Color="#FF322E68" Name="Granite Block" Solid="true" Blends="true" MergeWith="0" />
+    <Tile Id="369" Color="#FF322E68" Name="Smooth Granite Block" Solid="true" Blends="true" MergeWith="0" />
     <Tile Id="370" Color="#FF7F74C2" Name="Meteorite Brick" Solid="true" Blends="true" MergeWith="0" />
     <Tile Id="371" Color="#FFF965BD" Name="Pink Slime Block" Solid="true" Blends="true" MergeWith="0" />
     <Tile Id="372" Color="#FFFC80C9" Name="Peace Candle" Framed="true" Size="1,1" />
@@ -4535,12 +4535,12 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Wall Id="176" Name="Martian Conduit Wall"            Color="#FF4A4558"  IsHouse="True" />
     <Wall Id="177" Name="Hellstone Brick Wall"            Color="#FF3C1E1E"  IsHouse="True" />
     <Wall Id="178" Name="Marble (natural)"                Color="#FF6F7587"  IsHouse="False" />
-    <Wall Id="179" Name="Marble Block Wall"               Color="#FF6F7587"  IsHouse="True" />
+    <Wall Id="179" Name="Smooth Marble Wall"              Color="#FF6F7587"  IsHouse="True" />
     <Wall Id="180" Name="Granite (natural)"               Color="#FF191736"  IsHouse="False" />
-    <Wall Id="181" Name="Granite Block Wall"              Color="#FF191736"  IsHouse="True" />
+    <Wall Id="181" Name="Smooth Granite Wall"             Color="#FF191736"  IsHouse="True" />
     <Wall Id="182" Name="Meteorite Brick Wall"            Color="#FF4A4781"  IsHouse="True" />
-    <Wall Id="183" Name="Smooth Marble Wall"              Color="#FF6F7587"  IsHouse="True" />
-    <Wall Id="184" Name="Smooth Granite Wall"             Color="#FF191736"  IsHouse="True" />
+    <Wall Id="183" Name="Marble Wall"                     Color="#FF6F7587"  IsHouse="True" />
+    <Wall Id="184" Name="Granite Wall"                    Color="#FF191736"  IsHouse="True" />
     <Wall Id="185" Name="Cave 8 (natural)"                Color="#FF343434"  IsHouse="False" />
     <Wall Id="186" Name="Crystal Block Wall"              Color="#FF260942"  IsHouse="True" />
     <Wall Id="187" Name="Sandstone Wall"                  Color="#FF955033"  IsHouse="True" />
