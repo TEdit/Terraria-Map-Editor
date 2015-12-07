@@ -72,21 +72,30 @@ namespace TEditXNA.Terraria
             int bannercount = 0;
             int uniquecount = 0;
 
+            sb.WriteLine("=== Kills ===");
             foreach (int count in world.KilledMobs)
             {
                 if (count > 0)
                 {
                     int banners = (int)Math.Floor((double)count / 50f);
                     // sb.WriteProperty(index.ToString(), count.ToString());
-                    sb.WriteLine("{0} {1}: {2} ({3} earned)", index, World.TallyNames[index], count, banners);
+                    sb.WriteLine("[{0}] {1} - {2} ({3} earned)", index, World.TallyNames[index], count, banners);
                     killcount = killcount + count;
                     if (banners > 0)
                         uniquecount = uniquecount + 1;
                     bannercount = bannercount + banners;
                 }
-                else
+                index++;
+            }
+            sb.Write(Environment.NewLine);
+            sb.WriteLine("=== No Kills ===");
+            index = 0;
+            foreach (int count in world.KilledMobs)
+            {
+                if (count == 0)
                 {
-                    sb.WriteLine("{0} {1} (never killed)", index, World.TallyNames[index]);
+                    if (index > 0 && index <= World.TallyNames.Count)
+                        sb.WriteLine("[{0}] {1}", index, World.TallyNames[index]);
                 }
                 index++;
             }
