@@ -241,10 +241,11 @@ namespace TEditXna.View
                         for (int y = 0; y < sprite.Size.Y; y++)
                         {
                             var source = new Rectangle(x * (tile.TextureGrid.X + 2) + sprite.Origin.X, y * (tile.TextureGrid.Y + 2) + sprite.Origin.Y, tile.TextureGrid.X, tile.TextureGrid.Y);
+                            /* // These tests can lead to an overflow. Seems fine if we get rid of them.
                             if (source.Bottom > tileTex.Height)
-                                source.Height -= (source.Bottom - tileTex.Height);
+                                source.Height -= source.Bottom - tileTex.Height;
                             if (source.Right > tileTex.Width)
-                                source.Width -= (source.Right - tileTex.Width);
+                                source.Width -= source.Right - tileTex.Width; */
 
                             var color = new Color[source.Height * source.Width];
                             var dest = new Rectangle(x * tile.TextureGrid.X, y * tile.TextureGrid.Y, source.Width, source.Height);
@@ -1761,12 +1762,12 @@ namespace TEditXna.View
             if (_wvm.ActiveTool.ToolType == ToolType.Brush)
             {
                 position = new Vector2(1 + (_scrollPosition.X + _wvm.MouseOverTile.MouseState.Location.X - _wvm.Brush.OffsetX) * _zoom,
-                                       1 + (_scrollPosition.Y + _wvm.MouseOverTile.MouseState.Location.Y - _wvm.Brush.OffsetY) * _zoom);
+                                       (_scrollPosition.Y + _wvm.MouseOverTile.MouseState.Location.Y - _wvm.Brush.OffsetY) * _zoom);
             }
             else
             {
                 position = new Vector2(1 + (_scrollPosition.X + _wvm.MouseOverTile.MouseState.Location.X) * _zoom,
-                                       1 + (_scrollPosition.Y + _wvm.MouseOverTile.MouseState.Location.Y) * _zoom);
+                                       (_scrollPosition.Y + _wvm.MouseOverTile.MouseState.Location.Y) * _zoom);
             }
             if (_wvm.ActiveTool.Name == "Sprite" && _wvm.SelectedSprite != null)
             {

@@ -822,7 +822,7 @@ namespace TEditXNA.Terraria
             // overflow item check?
             int itemsPerChest;
             int overflowItems;
-            if (maxItems >= Chest.MaxItems)
+            if (maxItems > Chest.MaxItems)
             {
                 itemsPerChest = Chest.MaxItems;
                 overflowItems = maxItems - Chest.MaxItems;
@@ -1107,35 +1107,15 @@ namespace TEditXNA.Terraria
             if (w.Version >= 140)
             {
                 w.SavedTaxCollector = r.ReadBoolean();
-            }
-
-            if (w.Version >= 140)
-            {
                 w.InvasionSizeStart = r.ReadInt32();
-            }
-
-            if (w.Version >= 140)
-            {
                 w.CultistDelay = r.ReadInt32();
-            }
-
-            if (w.Version >= 140)
-            {
                 int numberOfMobs = r.ReadInt16();
                 w.NumberOfMobs = numberOfMobs;
                 for (int counter = 0; counter < numberOfMobs; counter++)
                 {
                     w.KilledMobs.Add(r.ReadInt32());
                 }
-            }
-
-            if (w.Version >= 140)
-            {
                 w.FastForwardTime = r.ReadBoolean();
-            }
-
-            if (w.Version >= 140)
-            {
                 w.DownedFishron = r.ReadBoolean();
                 w.DownedMartians = r.ReadBoolean();
                 w.DownedLunaticCultist = r.ReadBoolean();
@@ -1156,6 +1136,7 @@ namespace TEditXNA.Terraria
                 w.Apocalypse = r.ReadBoolean();
             }
 
+            
             // a little future proofing, read any "unknown" flags from the end of the list and save them. We will write these back after we write our "known" flags.
             if (r.BaseStream.Position < expectedPosition)
             {

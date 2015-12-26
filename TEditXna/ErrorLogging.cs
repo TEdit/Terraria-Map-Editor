@@ -58,7 +58,7 @@ namespace TEditXna
             {
                 File.AppendAllText(LogFilePath,
                                    string.Format("{0}: {1} {2}",
-                                                 DateTime.Now.ToString("MM-dd-yyyy HH:mm"),
+                                                 DateTime.Now.ToString("MM-dd-yyyy HH:mm:ss"),
                                                  message,
                                                  Environment.NewLine));
             }
