@@ -488,7 +488,7 @@ namespace TEditXNA.Terraria
             bw.Write(world.DownedMartians);
             bw.Write(world.DownedLunaticCultist);
             bw.Write(world.DownedMoonlord);
-            bw.Write(world.DownedHalloweeenKing);
+            bw.Write(world.DownedHalloweenKing);
             bw.Write(world.DownedHalloweenTree);
             bw.Write(world.DownedChristmasQueen);
             bw.Write(world.DownedSanta);
@@ -1140,7 +1140,7 @@ namespace TEditXNA.Terraria
                 w.DownedMartians = r.ReadBoolean();
                 w.DownedLunaticCultist = r.ReadBoolean();
                 w.DownedMoonlord = r.ReadBoolean();
-                w.DownedHalloweeenKing = r.ReadBoolean();
+                w.DownedHalloweenKing = r.ReadBoolean();
                 w.DownedHalloweenTree = r.ReadBoolean();
                 w.DownedChristmasQueen = r.ReadBoolean();
                 w.DownedSanta = r.ReadBoolean();

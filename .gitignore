@@ -43,3 +43,5 @@ build/
 
 #Includes
 !.nuget/nuget.exe
+teditversion.txt
+TEdit.sln
