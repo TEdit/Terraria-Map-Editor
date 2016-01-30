@@ -1878,6 +1878,13 @@ namespace TEditXna.View
 
         private void xnaViewport_SizeChanged(object sender, SizeChangedEventArgs e)
         {
+            if (xnaViewport.GraphicsService == null)
+                return;
+
+            var present = xnaViewport.GraphicsService.GraphicsDevice.PresentationParameters;
+            present.BackBufferWidth  = (int) xnaViewport.RenderSize.Width;
+            present.BackBufferHeight = (int) xnaViewport.RenderSize.Height;
+            xnaViewport.GraphicsService.GraphicsDevice.Reset(present);
         }
 
         #endregion
