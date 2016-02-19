@@ -235,8 +235,8 @@
             </DockPanel>
             <TextBlock Text="Max Rain" HorizontalAlignment="Right" />
             <DockPanel>
-                <TextBlock Text="{Binding CurrentWorld.MaxRain, StringFormat={}{0:0}}" Width="30" DockPanel.Dock="Right" />
-                <Slider Value="{Binding CurrentWorld.MaxRain, Mode=TwoWay}" VerticalAlignment="Center" Minimum="0" Maximum="65534" SmallChange="1" />
+                <TextBlock Text="{Binding CurrentWorld.TempMaxRain, StringFormat={}{0:0}}" Width="30" DockPanel.Dock="Right" />
+                <Slider Value="{Binding CurrentWorld.TempMaxRain, Mode=TwoWay}" VerticalAlignment="Center" Minimum="0" Maximum="65534" SmallChange="1" />
             </DockPanel>
             <TextBlock Text="Slime Rain Time" HorizontalAlignment="Right" />
             <DockPanel>

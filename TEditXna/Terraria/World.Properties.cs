@@ -92,8 +92,9 @@ namespace TEditXNA.Terraria
         private bool _downedMartians;
         private bool _downedLunaticCultist;
         private bool _downedMoonlord;
-        private bool _downedHalloweeenKing;
+        private bool _downedHalloweenKing;
         private bool _downedHalloweenTree;
+        private bool c;
         private bool _downedChristmasQueen;
         private bool _downedSanta;
         private bool _downedChristmasTree;
@@ -509,10 +510,10 @@ namespace TEditXNA.Terraria
             set { Set("DownedMoonlord", ref _downedMoonlord, value); }
         }
 
-        public bool DownedHalloweeenKing
+        public bool DownedHalloweenKing
         {
-            get { return _downedHalloweeenKing; }
-            set { Set("DownedHalloweeenKing", ref _downedHalloweeenKing, value); }
+            get { return _downedHalloweenKing; }
+            set { Set("DownedHalloweenKing", ref _downedHalloweenKing, value); }
         }
 
         public bool DownedHalloweenTree

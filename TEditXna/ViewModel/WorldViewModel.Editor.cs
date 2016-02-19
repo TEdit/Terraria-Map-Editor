@@ -116,7 +116,7 @@ namespace TEditXna.ViewModel
                             }
                         }
                     }
-                    OnProgressChanged(this, new ProgressChangedEventArgs(0, "Render Complete"));
+                    OnProgressChanged(this, new ProgressChangedEventArgs(100, "Render Complete"));
                 });
         }
 
@@ -151,7 +151,7 @@ namespace TEditXna.ViewModel
                         }
                     }
                 }
-                OnProgressChanged(this, new ProgressChangedEventArgs(0, "Render Complete"));
+                OnProgressChanged(this, new ProgressChangedEventArgs(100, "Render Complete"));
             });
         }
 
@@ -531,6 +531,11 @@ namespace TEditXna.ViewModel
             if (wire3 != null)
                 curTile.WireBlue = (bool)wire3;
 
+            /* // For a later update
+            if (wire3 != null)
+                curTile.WireYellow = (bool)wire4;
+            */
+
             if (tileColor != null)
             {
                 if (curTile.IsActive)
@@ -579,7 +584,7 @@ namespace TEditXna.ViewModel
                     }
                 }
             }
-            OnProgressChanged(this, new ProgressChangedEventArgs(0, "Render Complete"));
+            OnProgressChanged(this, new ProgressChangedEventArgs(100, "Render Complete"));
             return pixels;
         }
 
@@ -587,14 +592,15 @@ namespace TEditXna.ViewModel
         {
             if (y < 80)
                 return World.GlobalColors["Space"];
-            if (y > CurrentWorld.TilesHigh - 192)
+            else if (y > CurrentWorld.TilesHigh - 192)
                 return World.GlobalColors["Hell"];
-            if (y > CurrentWorld.RockLevel)
+            else if (y > CurrentWorld.RockLevel)
                 return World.GlobalColors["Rock"];
-            if (y > CurrentWorld.GroundLevel)
+            else if (y > CurrentWorld.GroundLevel)
                 return World.GlobalColors["Earth"];
-
-            return World.GlobalColors["Sky"];
+            else 
+                return World.GlobalColors["Sky"];
         }
     }
 }
+ 
