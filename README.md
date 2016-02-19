@@ -1,3 +1,5 @@
+[![Build status](https://ci.appveyor.com/api/projects/status/xi3k3j54un10a0o4?svg=true)](https://ci.appveyor.com/project/BinaryConstruct/terraria-map-editor)
+
 # Terraria Map Editor
 # Author: BinaryConstruct
 # Homepage and Downloads: http://binaryconstruct.com/games/tedit
