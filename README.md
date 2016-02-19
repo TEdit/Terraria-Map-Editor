@@ -1,10 +1,10 @@
 [![Build status](https://ci.appveyor.com/api/projects/status/xi3k3j54un10a0o4?svg=true)](https://ci.appveyor.com/project/BinaryConstruct/terraria-map-editor)
 
-# Terraria Map Editor
-# Author: BinaryConstruct
-# Homepage and Downloads: http://binaryconstruct.com/games/tedit
-# github: http://github.com/TEdit/Terraria-Map-Editor
-# binary: http://github.com/TEdit/Terraria-Map-Editor/downloads
+## Terraria Map Editor
+Author: BinaryConstruct
+Homepage and Downloads: http://binaryconstruct.com/games/tedit
+github: http://github.com/TEdit/Terraria-Map-Editor
+binary: http://www.binaryconstruct.com/downloads/ or http://github.com/TEdit/Terraria-Map-Editor/downloads
 
 Copyright (c) 2011-2012 BinaryConstruct
  
@@ -19,12 +19,6 @@ WARRANTIES OF MERCHANTABILITY AND/OR FITNESS FOR A PARTICULAR PURPOSE.
 
 For the changelog, see 
 http://github.com/TEdit/Terraria-Map-Editor/commits/master
-
-
-=========================================
-Developer Notes
-=========================================
-The installer is built using WiX 3.6
 
 
 =========================================
