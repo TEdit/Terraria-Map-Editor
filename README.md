@@ -1,3 +1,4 @@
+[![Stories in Ready](https://badge.waffle.io/TEdit/Terraria-Map-Editor.png?label=ready&title=Ready)](https://waffle.io/TEdit/Terraria-Map-Editor)
 # Terraria Map Editor - BinaryConstruct  
 [![Build status](https://ci.appveyor.com/api/projects/status/xi3k3j54un10a0o4?svg=true)](https://ci.appveyor.com/project/BinaryConstruct/terraria-map-editor)
 
