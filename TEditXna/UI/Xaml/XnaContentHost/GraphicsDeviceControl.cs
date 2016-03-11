@@ -343,20 +343,28 @@ namespace TEdit.UI.Xaml.XnaContentHost
 
         void XnaWindowHost_Loaded(object sender, RoutedEventArgs e)
         {
+            InitGraphicsDevice();
+        }
+
+        bool InitGraphicsDevice()
+        {
             // If we don't yet have a GraphicsDeviceService reference, we must add one for this control
-            if (graphicsService == null)
+            if (graphicsService == null || graphicsService.GraphicsDevice == null || graphicsService.GraphicsDevice.IsDisposed)
             {
                 graphicsService = GraphicsDeviceService.AddRef(hWnd, (int)ActualWidth, (int)ActualHeight);
                 // Invoke the LoadContent event
                 if (LoadContent != null)
                     LoadContent(this, new GraphicsDeviceEventArgs(graphicsService.GraphicsDevice));
+
+                return true;
             }
+
+            return false;
         }
 
         void XnaWindowHost_SizeChanged(object sender, SizeChangedEventArgs e)
         {
-            // If we have a reference to the GraphicsDeviceService, we must reset it based on our updated size
-            if (graphicsService != null)
+            if (!InitGraphicsDevice() && graphicsService != null)
                 graphicsService.ResetDevice((int)ActualWidth, (int)ActualHeight);
         }
 

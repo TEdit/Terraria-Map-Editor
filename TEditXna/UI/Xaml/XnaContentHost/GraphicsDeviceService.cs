@@ -91,7 +91,7 @@ namespace TEdit.UI.Xaml.XnaContentHost
         public static GraphicsDeviceService AddRef(IntPtr windowHandle, int width, int height)
         {
             // Increment the "how many controls sharing the device" reference count.
-            if (Interlocked.Increment(ref referenceCount) == 1)
+            if (Interlocked.Increment(ref referenceCount) == 1 || singletonInstance.GraphicsDevice == null || singletonInstance.GraphicsDevice.IsDisposed)
             {
                 // If this is the first control to start using the
                 // device, we must create the device.

@@ -246,6 +246,8 @@ namespace TEditXna.View
                             if (source.Right > tileTex.Width)
                                 source.Width -= (source.Right - tileTex.Width);
 
+                            if (source.Height <= 0 || source.Width <= 0) continue;
+
                             var color = new Color[source.Height * source.Width];
                             var dest = new Rectangle(x * tile.TextureGrid.X, y * tile.TextureGrid.Y, source.Width, source.Height);
                             tileTex.GetData(0, source, color, 0, color.Length);
