@@ -101,6 +101,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <GlobalColor Name="Wire"    Color="#70FF0000"   />
     <GlobalColor Name="Wire1"   Color="#700000FF"   />
     <GlobalColor Name="Wire2"   Color="#7000FF00"   />
+    <GlobalColor Name="Wire3"   Color="#70FFFF00"   />
   </GlobalColors>
   <Tiles>
     <Tile Id="0" Color="#FF976B4B" Name="Dirt Block" Solid="true" Blends="true" />
@@ -4354,33 +4355,86 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Tile Id="416" Color="#FF00A0AA" Name="Lunar Block Vortex" Solid="true" Blends="true" />
     <Tile Id="417" Color="#FFA057EA" Name="Lunar Block Nebula" Solid="true" Blends="true" />
     <Tile Id="418" Color="#FF16ADFE" Name="Lunar Block Stardust" Solid="true" Blends="true" />
-	<Tile Id="419" Color="#FFFFFFFF" Name="Logic Lamp" Framed="true" />
-	<Tile Id="420" Color="#FFFFFFFF" Name="Logic Gate" Framed="true" />
-	<Tile Id="421" Color="#FFFFFFFF" Name="Conveyor Belt (Clockwise)" Solid="true" />
-	<Tile Id="422" Color="#FFFFFFFF" Name="Conveyor Belt (Counter Clockwise)" Solid="true" />
-	<Tile Id="423" Color="#FFFFFFFF" Name="Logic Sensor" Framed="true" />
-	<Tile Id="424" Color="#FFFFFFFF" Name="Junction Box" Framed="true" />
-	<Tile Id="425" Color="#FFFFFFFF" Name="Announcement Box" Framed="true" Size="2,2" />
-	<Tile Id="426" Color="#FFFFFFFF" Name="Red Team Block" Solid="true" />
-	<Tile Id="427" Color="#FFFFFFFF" Name="Red Team Platfrom" Framed="true" />
-	<Tile Id="428" Color="#FFFFFFFF" Name="Weighted Pressure Plate" Framed="true" /> 
-	<Tile Id="429" Color="#FFFFFFFF" Name="Wire Bulb" Framed="true" />
-	<Tile Id="430" Color="#FFFFFFFF" Name="Green Team Block" Solid="true" />
-	<Tile Id="431" Color="#FFFFFFFF" Name="Blue Team Block" Solid="true" />
-	<Tile Id="432" Color="#FFFFFFFF" Name="Yellow Team Block" Solid="true" />
-	<Tile Id="433" Color="#FFFFFFFF" Name="Pink Team Block" Solid="true" />
-	<Tile Id="434" Color="#FFFFFFFF" Name="White Team Block" Solid="true" />
-	<Tile Id="435" Color="#FFFFFFFF" Name="Green Team Platform" Framed="true" />
-	<Tile Id="436" Color="#FFFFFFFF" Name="Blue Team Platform" Framed="true" />
-	<Tile Id="437" Color="#FFFFFFFF" Name="Tellow Team Platform" Framed="true" />
-	<Tile Id="438" Color="#FFFFFFFF" Name="Pink Team Platform" Framed="true" />
-	<Tile Id="439" Color="#FFFFFFFF" Name="White Team Platform" Framed="true" />
-	<Tile Id="440" Color="#FFFFFFFF" Name="Gem Locks" Framed="true" Size="3,3" />
-	<Tile Id="441" Color="#FFFFFFFF" Name="Trapped Chests" Framed="true" Size="2,2" />
-	<Tile Id="442" Color="#FFFFFFFF" Name="Teal Pressure Pad (Projectile)" Framed="true" />
-	<Tile Id="443" Color="#FFFFFFFF" Name="Geyser" Framed="true" Size="2,1" />
-	<Tile Id="444" Color="#FFFFFFFF" Name="Bee Hive" Framed="true" Size="2,2" />
-	<Tile Id="445" Color="#FFFFFFFF" Name="Pixel Box" Framed="true" />
+    <Tile Id="419" Color="#FFFFFFFF" Name="Logic Lamp" Framed="true">
+      <Frames>
+        <Frame UV="0,0" Variety="Off" />
+        <Frame UV="18,0" Variety="On" />
+        <Frame UV="36,0" Variety="Faulty" />
+      </Frames>
+    </Tile> 
+    <Tile Id="420" Color="#FFFFFFFF" Name="Logic Gate" Framed="true" />
+    <Tile Id="421" Color="#FFFFFFFF" Name="Conveyor Belt (Clockwise)" Solid="true" />
+    <Tile Id="422" Color="#FFFFFFFF" Name="Conveyor Belt (Counter Clockwise)" Solid="true" />
+    <Tile Id="423" Color="#FFFFFFFF" Name="Logic Sensor" Framed="true">
+      <Frames>
+        <Frame UV="0,0" Name="Logic Sensor (Day)" />
+        <Frame UV="0,18" Name="Logic Sensor (Night)" />
+        <Frame UV="0,36" Name="Logic Sensor (Player Above)" />
+        <Frame UV="0,54" Name="Liquid Sensor (Water)" />
+        <Frame UV="0,72" Name="Liquid Sensor (Lava)" />
+        <Frame UV="0,90" Name="Liquid Sensor (Honey)" />
+        <Frame UV="0,108" Name="Liquid Sensor (Any)" />
+      </Frames>
+    </Tile> 
+    <Tile Id="424" Color="#FFFFFFFF" Name="Junction Box" Framed="true">
+      <Frames>
+        <Frame UV="0,0" Variety="Top to Bottom, Left to Right" />
+        <Frame UV="18,0" Variety="Top to Left, Bottom to Right" />
+        <Frame UV="36,0" Variety="Top to Right, Bottom to Left" />
+      </Frames>
+    </Tile>
+    <Tile Id="425" Color="#FFFFFFFF" Name="Announcement Box" Framed="true" Size="2,2" />
+    <Tile Id="426" Color="#FFFFFFFF" Name="Red Team Block" Solid="true" />
+    <Tile Id="427" Color="#FFFFFFFF" Name="Red Team Platfrom" Framed="true" />
+    <Tile Id="428" Color="#FFFFFFFF" Name="Weighted Pressure Plate" Framed="true"> 
+      <Frames>
+        <Frame UV="0,0" Variety="Orange" />
+        <Frame UV="0,18" Variety="Cyan" />
+        <Frame UV="0,36" Variety="Pruple" />
+        <Frame UV="0,54" Variety="Pink" />
+      </Frames>
+    </Tile>
+    <Tile Id="429" Color="#FFFFFFFF" Name="Wire Bulb" Framed="true" />
+    <Tile Id="430" Color="#FFFFFFFF" Name="Green Team Block" Solid="true" />
+    <Tile Id="431" Color="#FFFFFFFF" Name="Blue Team Block" Solid="true" />
+    <Tile Id="432" Color="#FFFFFFFF" Name="Yellow Team Block" Solid="true" />
+    <Tile Id="433" Color="#FFFFFFFF" Name="Pink Team Block" Solid="true" />
+    <Tile Id="434" Color="#FFFFFFFF" Name="White Team Block" Solid="true" />
+    <Tile Id="435" Color="#FFFFFFFF" Name="Green Team Platform" Framed="true" />
+    <Tile Id="436" Color="#FFFFFFFF" Name="Blue Team Platform" Framed="true" />
+    <Tile Id="437" Color="#FFFFFFFF" Name="Tellow Team Platform" Framed="true" />
+    <Tile Id="438" Color="#FFFFFFFF" Name="Pink Team Platform" Framed="true" />
+    <Tile Id="439" Color="#FFFFFFFF" Name="White Team Platform" Framed="true" />
+    <Tile Id="440" Color="#FFFFFFFF" Name="Gem Locks" Framed="true" Size="3,3">
+      <Frames>
+        <Frame UV="0,0" Name="Ruby Gem Lock" Variety="Empty"/>
+        <Frame UV="0,54" Name="Ruby Gem Lock" Variety="Filled"/>
+        <Frame UV="54,0" Name="Sapphire Gem Lock" Variety="Empty"/>
+        <Frame UV="54,54" Name="Sapphire Gem Lock" Variety="Filled"/>
+        <Frame UV="108,0" Name="Emerald Gem Lock" Variety="Empty"/>
+        <Frame UV="108,54" Name="Emerald Gem Lock" Variety="Filled"/>
+        <Frame UV="162,0" Name="Topaz Gem Lock" Variety="Empty"/>
+        <Frame UV="162,54" Name="Topaz Gem Lock" Variety="Filled"/>
+        <Frame UV="216,0" Name="Amethyst Gem Lock" Variety="Empty"/>
+        <Frame UV="216,54" Name="Amethyst Gem Lock" Variety="Filled"/>
+        <Frame UV="270,0" Name="Diamond Gem Lock" Variety="Empty"/>
+        <Frame UV="270,54" Name="Diamond Gem Lock" Variety="Filled"/>
+        <Frame UV="324,0" Name="Amber Gem Lock" Variety="Empty"/>
+        <Frame UV="324,54" Name="Amber Gem Lock" Variety="Filled"/>
+      </Frames>
+    </Tile>
+    <Tile Id="441" Color="#FFFFFFFF" Name="Trapped Chests" Framed="true" Size="2,2" />
+    <Tile Id="442" Color="#FFFFFFFF" Name="Teal Pressure Pad" Framed="true" TextureGrid="20,20">
+      <Frames>
+        <Frame UV="0,0" Variety="Floor" Anchor="Bottom" />
+        <Frame UV="22,0" Variety="Ceiling" Anchor="Top" />
+        <Frame UV="44,0" Variety="Left Wall" Anchor="Left" />
+        <Frame UV="66,0" Variety="Right Wall" Anchor="Right" />
+      </Frames>
+    </Tile> 
+    <Tile Id="443" Color="#FFFFFFFF" Name="Geyser" Framed="true" Size="2,1" />
+    <Tile Id="444" Color="#FFFFFFFF" Name="Bee Hive" Framed="true" Size="2,2" />
+    <Tile Id="445" Color="#FFFFFFFF" Name="Pixel Box" Framed="true" />
   </Tiles>
   <Walls>
     <Wall Id="0"    Name="Sky"                            Color="#00000000"                    />
