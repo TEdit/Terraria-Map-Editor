@@ -4354,6 +4354,33 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Tile Id="416" Color="#FF00A0AA" Name="Lunar Block Vortex" Solid="true" Blends="true" />
     <Tile Id="417" Color="#FFA057EA" Name="Lunar Block Nebula" Solid="true" Blends="true" />
     <Tile Id="418" Color="#FF16ADFE" Name="Lunar Block Stardust" Solid="true" Blends="true" />
+	<Tile Id="419" Color="#FFFFFFFF" Name="Logic Lamp" Framed="true" />
+	<Tile Id="420" Color="#FFFFFFFF" Name="Logic Gate" Framed="true" />
+	<Tile Id="421" Color="#FFFFFFFF" Name="Conveyor Belt (Clockwise)" Solid="true" />
+	<Tile Id="422" Color="#FFFFFFFF" Name="Conveyor Belt (Counter Clockwise)" Solid="true" />
+	<Tile Id="423" Color="#FFFFFFFF" Name="Logic Sensor" Framed="true" />
+	<Tile Id="424" Color="#FFFFFFFF" Name="Junction Box" Framed="true" />
+	<Tile Id="425" Color="#FFFFFFFF" Name="Announcement Box" Framed="true" Size="2,2" />
+	<Tile Id="426" Color="#FFFFFFFF" Name="Red Team Block" Solid="true" />
+	<Tile Id="427" Color="#FFFFFFFF" Name="Red Team Platfrom" Framed="true" />
+	<Tile Id="428" Color="#FFFFFFFF" Name="Weighted Pressure Plate" Framed="true" /> 
+	<Tile Id="429" Color="#FFFFFFFF" Name="Wire Bulb" Framed="true" />
+	<Tile Id="430" Color="#FFFFFFFF" Name="Green Team Block" Solid="true" />
+	<Tile Id="431" Color="#FFFFFFFF" Name="Blue Team Block" Solid="true" />
+	<Tile Id="432" Color="#FFFFFFFF" Name="Yellow Team Block" Solid="true" />
+	<Tile Id="433" Color="#FFFFFFFF" Name="Pink Team Block" Solid="true" />
+	<Tile Id="434" Color="#FFFFFFFF" Name="White Team Block" Solid="true" />
+	<Tile Id="435" Color="#FFFFFFFF" Name="Green Team Platform" Framed="true" />
+	<Tile Id="436" Color="#FFFFFFFF" Name="Blue Team Platform" Framed="true" />
+	<Tile Id="437" Color="#FFFFFFFF" Name="Tellow Team Platform" Framed="true" />
+	<Tile Id="438" Color="#FFFFFFFF" Name="Pink Team Platform" Framed="true" />
+	<Tile Id="439" Color="#FFFFFFFF" Name="White Team Platform" Framed="true" />
+	<Tile Id="440" Color="#FFFFFFFF" Name="Gem Locks" Framed="true" Size="3,3" />
+	<Tile Id="441" Color="#FFFFFFFF" Name="Trapped Chests" Framed="true" Size="2,2" />
+	<Tile Id="442" Color="#FFFFFFFF" Name="Teal Pressure Pad (Projectile)" Framed="true" />
+	<Tile Id="443" Color="#FFFFFFFF" Name="Geyser" Framed="true" Size="2,1" />
+	<Tile Id="444" Color="#FFFFFFFF" Name="Bee Hive" Framed="true" Size="2,2" />
+	<Tile Id="445" Color="#FFFFFFFF" Name="Pixel Box" Framed="true" />
   </Tiles>
   <Walls>
     <Wall Id="0"    Name="Sky"                            Color="#00000000"                    />
@@ -8234,6 +8261,134 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="3599" Name="Loki's Dye" />
     <Item Id="3600" Name="Shadowflame Hades Dye" />
     <Item Id="3601" Name="Celestial Sigil" />
+    <Item Id="3602" Name="Logic Gate Lamp (Off)"/>
+    <Item Id="3603" Name="Logic Gate (AND)"/>
+    <Item Id="3604" Name="Logic Gate (OR)"/>
+    <Item Id="3605" Name="Logic Gate (NAND)"/>
+    <Item Id="3606" Name="Logic Gate (NOR)"/>
+    <Item Id="3607" Name="Logic Gate (XOR)"/>
+    <Item Id="3608" Name="Logic Gate (NXOR)"/>
+    <Item Id="3609" Name="Conveyor Belt (Clockwise)"/>
+    <Item Id="3610" Name="Conveyor Belt (Counter Clockwise)"/>
+    <Item Id="3611" Name="The Grand Design"/>
+    <Item Id="3612" Name="Yellow Wrench"/>
+    <Item Id="3613" Name="Logic Sensor (Day)"/>
+    <Item Id="3614" Name="Logic Sensor (Night)"/>
+    <Item Id="3615" Name="Logic Sensor (Player Above)"/>
+    <Item Id="3616" Name="Junction Box"/>
+    <Item Id="3617" Name="Announcement Box"/>
+    <Item Id="3618" Name="Logic Gate Lamp (On)"/>
+    <Item Id="3619" Name="Mechanical Lens"/>
+    <Item Id="3620" Name="Actuation Rod"/>
+    <Item Id="3621" Name="Red Team Block"/>
+    <Item Id="3622" Name="Red Team Platform"/>
+    <Item Id="3623" Name="Static Hook"/>
+    <Item Id="3624" Name="Presserator"/>
+    <Item Id="3625" Name="Multicolor Wrench"/>
+    <Item Id="3626" Name="Pink Weighted Pressure Plate"/>
+    <Item Id="3627" Name="Engineering Helmet"/>
+    <Item Id="3628" Name="Companion Cube"/>
+    <Item Id="3629" Name="Wire Bulb"/>
+    <Item Id="3630" Name="Orange Weighted Pressure Plate"/>
+    <Item Id="3631" Name="Purple Weighted Pressure Plate"/>
+    <Item Id="3632" Name="Cyan Weighted Pressure Plate"/>
+    <Item Id="3633" Name="Green Team Block"/>
+    <Item Id="3634" Name="Blue Team Block"/>
+    <Item Id="3635" Name="Yellow Team Block"/>
+    <Item Id="3636" Name="Pink Team Block"/>
+    <Item Id="3637" Name="White Team Block"/>
+    <Item Id="3638" Name="Green Team Platform"/>
+    <Item Id="3639" Name="Blue Team Platform"/>
+    <Item Id="3640" Name="Yellow Team Platform"/>
+    <Item Id="3641" Name="Pink Team Platform"/>
+    <Item Id="3642" Name="White Team Platform"/>
+    <Item Id="3643" Name="Large Amber"/>
+    <Item Id="3644" Name="Ruby Gem Lock"/>
+    <Item Id="3645" Name="Sapphire Gem Lock"/>
+    <Item Id="3646" Name="Emerald Gem Lock"/>
+    <Item Id="3647" Name="Topaz Gem Lock"/>
+    <Item Id="3648" Name="Amethyst Gem Lock"/>
+    <Item Id="3649" Name="Diamond Gem Lock"/>
+    <Item Id="3650" Name="Amber Gem Lock"/>
+    <Item Id="3651" Name="Squirrel Statue"/>
+    <Item Id="3652" Name="Butterfly Statue"/>
+    <Item Id="3653" Name="Worm Statue"/>
+    <Item Id="3654" Name="Firefly Statue"/>
+    <Item Id="3655" Name="Scorpion Statue"/>
+    <Item Id="3656" Name="Snail Statue"/>
+    <Item Id="3657" Name="Grasshopper Statue"/>
+    <Item Id="3658" Name="Mouse Statue"/>
+    <Item Id="3659" Name="Duck Statue"/>
+    <Item Id="3660" Name="Penguin Statue"/>
+    <Item Id="3661" Name="Frog Statue"/>
+    <Item Id="3662" Name="Buggy Statue"/>
+    <Item Id="3663" Name="Logic Gate Lamp (Faulty)"/>
+    <Item Id="3664" Name="Portal Gun Station"/>
+    <Item Id="3665" Name="Trapped Chest"/>
+    <Item Id="3666" Name="Trapped Gold Chest"/>
+    <Item Id="3667" Name="Trapped Shadow Chest"/>
+    <Item Id="3668" Name="Trapped Ebonwood Chest"/>
+    <Item Id="3669" Name="Trapped Rich Mahogany Chest"/>
+    <Item Id="3670" Name="Trapped Pearlwood Chest"/>
+    <Item Id="3671" Name="Trapped Ivy Chest"/>
+    <Item Id="3672" Name="Trapped Ice Chest"/>
+    <Item Id="3673" Name="Trapped Living Wood Chest"/>
+    <Item Id="3674" Name="Trapped Skyware Chest"/>
+    <Item Id="3675" Name="Trapped Shadewood Chest"/>
+    <Item Id="3676" Name="Trapped Web Covered Chest"/>
+    <Item Id="3677" Name="Trapped Lihzahrd Chest"/>
+    <Item Id="3678" Name="Trapped Water Chest"/>
+    <Item Id="3679" Name="Trapped Jungle Chest"/>
+    <Item Id="3680" Name="Trapped Corruption Chest"/>
+    <Item Id="3681" Name="Trapped Crimson Chest"/>
+    <Item Id="3682" Name="Trapped Hallowed Chest"/>
+    <Item Id="3683" Name="Trapped Frozen Chest"/>
+    <Item Id="3684" Name="Trapped Dynasty Chest"/>
+    <Item Id="3685" Name="Trapped Honey Chest"/>
+    <Item Id="3686" Name="Trapped Steampunk Chest"/>
+    <Item Id="3687" Name="Trapped Palm Wood Chest"/>
+    <Item Id="3688" Name="Trapped Mushroom Chest"/>
+    <Item Id="3689" Name="Trapped Boreal Wood Chest"/>
+    <Item Id="3690" Name="Trapped Slime Chest"/>
+    <Item Id="3691" Name="Trapped Green Dungeon Chest"/>
+    <Item Id="3692" Name="Trapped Pink Dungeon Chest"/>
+    <Item Id="3693" Name="Trapped Blue Dungeon Chest"/>
+    <Item Id="3694" Name="Trapped Bone Chest"/>
+    <Item Id="3695" Name="Trapped Cactus Chest"/>
+    <Item Id="3696" Name="Trapped Flesh Chest"/>
+    <Item Id="3697" Name="Trapped Obsidian Chest"/>
+    <Item Id="3698" Name="Trapped Pumpkin Chest"/>
+    <Item Id="3699" Name="Trapped Spooky Chest"/>
+    <Item Id="3700" Name="Trapped Glass Chest"/>
+    <Item Id="3701" Name="Trapped Martian Chest"/>
+    <Item Id="3702" Name="Trapped Meteroite Chest"/>
+    <Item Id="3703" Name="Trapped Granite Chest"/>
+    <Item Id="3704" Name="Trapped Marble Chest"/>
+    <Item Id="3705" Name="Trapped NewChest1"/>
+    <Item Id="3706" Name="Trapped NewChest2"/>
+    <Item Id="3707" Name="Teal Pressure Pad"/>
+    <Item Id="3708" Name="Wall Creeper Statue"/>
+    <Item Id="3709" Name="Unicorn Statue"/>
+    <Item Id="3710" Name="Drippler Statue"/>
+    <Item Id="3711" Name="Wraith Statue"/>
+    <Item Id="3712" Name="Bone Skeleton Statue"/>
+    <Item Id="3713" Name="Undead Viking Statue"/>
+    <Item Id="3714" Name="Medusa Statue"/>
+    <Item Id="3715" Name="Harpy Statue"/>
+    <Item Id="3716" Name="Pigron Statue"/>
+    <Item Id="3717" Name="Hoplite Statue"/>
+    <Item Id="3718" Name="Granite Golem Statue"/>
+    <Item Id="3719" Name="Armed Zombie Statue"/>
+    <Item Id="3720" Name="Blood Zombie Statue"/>
+    <Item Id="3721" Name="Angler Tackle Bag"/>
+    <Item Id="3722" Name="Geyser"/>
+    <Item Id="3723" Name="Ultra Bright Campfire"/>
+    <Item Id="3724" Name="Bone Campfire"/>
+    <Item Id="3725" Name="Pixel Box"/>
+    <Item Id="3726" Name="Liquid Sensor (Water)"/>
+    <Item Id="3727" Name="Liquid Sensor (Lava)"/>
+    <Item Id="3728" Name="Liquid Sensor (Honey)"/>
+    <Item Id="3729" Name="Liquid Sensor (Any)"/>
   </Items>
   <Npcs>
     <Npc Id="17"    Name="Merchant"         Frames="25"   />
