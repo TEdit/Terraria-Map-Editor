@@ -307,7 +307,7 @@ namespace TEditXNA.Terraria
             foreach (var tileElement in xmlSettings.Elements("Tiles").Elements("Tile"))
             {
                 string tileName = (string)tileElement.Attribute("Name");
-                if (tileName == "Sign" || tileName == "Grave Marker")
+                if (tileName == "Sign" || tileName == "Grave Marker" ||  tileName == "Announcement Box")
                 {
                     ushort type = (ushort)((int?)tileElement.Attribute("Id") ?? 55);
                     foreach (var xElement in tileElement.Elements("Frames").Elements("Frame"))
