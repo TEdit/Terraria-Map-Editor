@@ -82,6 +82,10 @@ namespace TEditXna.Render
                 {
                     c = c.AlphaBlend(World.GlobalColors["Wire2"]);
                 }
+                if (tile.WireYellow)
+                {
+                    c = c.AlphaBlend(World.GlobalColors["Wire3"]);
+                }
             }
 
             return c;

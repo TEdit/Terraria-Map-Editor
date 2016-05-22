@@ -19,6 +19,10 @@ namespace TEditXNA.Terraria
         private Int16 _itemNetId;
         private byte _prefix;
         private Int16 _stack;
+        
+        //data for Logic Sensro
+        private byte _logicCheck;
+        private bool _on;
 
         public byte Type
         {
@@ -68,5 +72,19 @@ namespace TEditXNA.Terraria
             get { return _stack; }
             set { Set("Stack", ref _stack, value); }
         }
+
+        public byte LogicCheck
+        {
+            get { return _logicCheck; }
+            set { Set("LogicCheck", ref _logicCheck, value); }
+        }
+
+        public bool On
+        {
+            get { return _on; }
+            set { Set("On", ref _on, value); }
+        }
+        
+        
     }
 }

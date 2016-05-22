@@ -236,6 +236,10 @@ namespace TEditXNA.Terraria
                 // set bit[2] of header3
                 header3 = (byte)(header3 | 4);
             }
+            if(tile.WireYellow)
+            {
+                header3 = (byte)(header3 | 32);
+            }
 
             headerIndex = 2;
             if (header3 != 0)
@@ -529,6 +533,10 @@ namespace TEditXNA.Terraria
                         bw.Write(tentity.Prefix);
                         bw.Write(tentity.Stack);
                         break;
+                    case 2: //it is a logic sensor
+                        bw.Write(tentity.LogicCheck);
+                        bw.Write(tentity.On);
+                        break;
                 }
             }
 
@@ -788,6 +796,11 @@ namespace TEditXNA.Terraria
                 {
                     tile.InActive = true;
                 }
+                
+                if ((header3 & 32) == 32)
+                {
+                    tile.WireYellow = true;
+                }
             }
 
             // get bit[6,7] shift to 0,1 for RLE encoding type
@@ -962,6 +975,10 @@ namespace TEditXNA.Terraria
                         entity.ItemNetId = r.ReadInt16();
                         entity.Prefix = r.ReadByte();
                         entity.Stack = r.ReadInt16();
+                        break;
+                    case 2: //it is a logic sensor
+                        entity.LogicCheck = r.ReadByte();
+                        entity.On = r.ReadBoolean();
                         break;
                 }
                 w.TileEntities.Add(entity);

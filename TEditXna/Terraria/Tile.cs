@@ -57,6 +57,7 @@ namespace TEditXNA.Terraria
         public bool WireRed;
         public bool WireGreen;
         public bool WireBlue;
+        public bool WireYellow;
         public byte TileColor;
         public ushort Type;
         public byte Wall;
