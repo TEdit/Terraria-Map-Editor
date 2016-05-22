@@ -45,7 +45,8 @@ namespace TEditXNA.Terraria
         EbonsandBlock = 112,
         PearlsandBlock = 116,
         IceByRod = 127,
-        Timer = 144
+        Timer = 144,
+        AnnouncementBox = 425
     }
 
     [Serializable]
@@ -220,7 +221,7 @@ namespace TEditXNA.Terraria
 
         public static bool IsSign(int tileType)
         {
-            return tileType == (int)TileType.Sign || tileType == (int)TileType.GraveMarker;
+            return tileType == (int)TileType.Sign || tileType == (int)TileType.GraveMarker || tileType == (int)TileType.AnnouncementBox;
         }
 
     }

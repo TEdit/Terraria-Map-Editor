@@ -4363,8 +4363,8 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
       </Frames>
     </Tile> 
     <Tile Id="420" Color="#FFFFFFFF" Name="Logic Gate" Framed="true" />
-    <Tile Id="421" Color="#FFFFFFFF" Name="Conveyor Belt (Clockwise)" Solid="true" />
-    <Tile Id="422" Color="#FFFFFFFF" Name="Conveyor Belt (Counter Clockwise)" Solid="true" />
+    <Tile Id="421" Color="#FFFFFFFF" Name="Conveyor Belt (Clockwise)" Solid="true" Blends="true" />
+    <Tile Id="422" Color="#FFFFFFFF" Name="Conveyor Belt (Counter Clockwise)" Solid="true" Blends="true" />
     <Tile Id="423" Color="#FFFFFFFF" Name="Logic Sensor" Framed="true">
       <Frames>
         <Frame UV="0,0" Name="Logic Sensor (Day)" />
@@ -4383,7 +4383,11 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="36,0" Variety="Top to Right, Bottom to Left" />
       </Frames>
     </Tile>
-    <Tile Id="425" Color="#FFFFFFFF" Name="Announcement Box" Framed="true" Size="2,2" />
+    <Tile Id="425" Color="#FFFFFFFF" Name="Announcement Box" Framed="true" Size="2,2">
+      <Frames>
+        <Frame UV="0,0" Variety="Announcement Box" />
+      </Frames>
+    </Tile>
     <Tile Id="426" Color="#FFFFFFFF" Name="Red Team Block" Solid="true" />
     <Tile Id="427" Color="#FFFFFFFF" Name="Red Team Platfrom" Framed="true" />
     <Tile Id="428" Color="#FFFFFFFF" Name="Weighted Pressure Plate" Framed="true"> 
