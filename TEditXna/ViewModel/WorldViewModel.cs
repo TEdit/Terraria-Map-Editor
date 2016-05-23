@@ -68,7 +68,11 @@ namespace TEditXna.ViewModel
         private bool _showTextures = true;
         private bool _showTiles = true;
         private bool _showWalls = true;
-        private bool _showWires = true;
+        private bool _showActuators = true;
+        private bool _showRedWires = true;
+        private bool _showBlueWires = true;
+        private bool _showGreenWires = true;
+        private bool _showYellowWires = true;
         private string _spriteFilter;
         private ListCollectionView _spritesView;
         private ICommand _viewLogCommand;
@@ -370,12 +374,52 @@ namespace TEditXna.ViewModel
             set { Set("PixelMap", ref _pixelMap, value); }
         }
 
-        public bool ShowWires
+        public bool ShowRedWires
         {
-            get { return _showWires; }
+            get { return _showRedWires; }
             set
             {
-                Set("ShowWires", ref _showWires, value);
+                Set("ShowRedWires", ref _showRedWires, value);
+                UpdateRenderWorld();
+            }
+        }
+
+        public bool ShowBlueWires
+        {
+            get { return _showBlueWires; }
+            set
+            {
+                Set("ShowBlueWires", ref _showBlueWires, value);
+                UpdateRenderWorld();
+            }
+        }
+
+        public bool ShowGreenWires
+        {
+            get { return _showGreenWires; }
+            set
+            {
+                Set("ShowGreenWires", ref _showGreenWires, value);
+                UpdateRenderWorld();
+            }
+        }
+
+        public bool ShowYellowWires
+        {
+            get { return _showYellowWires; }
+            set
+            {
+                Set("ShowYellowWires", ref _showYellowWires, value);
+                UpdateRenderWorld();
+            }
+        }
+
+        public bool ShowActuators
+        {
+            get { return _showActuators; }
+            set
+            {
+                Set("ShowActuators", ref _showActuators, value);
                 UpdateRenderWorld();
             }
         }

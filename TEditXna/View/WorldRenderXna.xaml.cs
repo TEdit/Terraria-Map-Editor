@@ -940,7 +940,7 @@ namespace TEditXna.View
 
                                         _spriteBatch.Draw(tileTex, dest, source, curtile.InActive ? Color.Gray : Color.White, 0f, default(Vector2), SpriteEffects.None, LayerTileTextures);
                                         // Actuator Overlay
-                                        if (curtile.Actuator && _wvm.ShowWires)
+                                        if (curtile.Actuator && _wvm.ShowActuators)
                                             _spriteBatch.Draw(_textureDictionary.Actuator, dest, _textureDictionary.ZeroSixteenRectangle, Color.White, 0f, default(Vector2), SpriteEffects.None, LayerTileActuator);
 
                                     }
@@ -1002,7 +1002,7 @@ namespace TEditXna.View
 
                                         _spriteBatch.Draw(tileTex, dest, source, curtile.InActive ? Color.Gray : Color.White, 0f, default(Vector2), SpriteEffects.None, LayerTileTextures);
                                         // Actuator Overlay
-                                        if (curtile.Actuator && _wvm.ShowWires)
+                                        if (curtile.Actuator && _wvm.ShowActuators)
                                             _spriteBatch.Draw(_textureDictionary.Actuator, dest, _textureDictionary.ZeroSixteenRectangle, Color.White, 0f, default(Vector2), SpriteEffects.None, LayerTileActuator);
 
                                     }
@@ -1398,16 +1398,16 @@ namespace TEditXna.View
 
 
                                         // Actuator Overlay
-                                        if (curtile.Actuator && _wvm.ShowWires)
+                                        if (curtile.Actuator && _wvm.ShowActuators)
                                             _spriteBatch.Draw(_textureDictionary.Actuator, dest, _textureDictionary.ZeroSixteenRectangle, Color.White, 0f, default(Vector2), SpriteEffects.None, LayerTileActuator);
 
                                     }
                                 }
                             }
                         }
-                        if (_wvm.ShowWires)
+                        if (_wvm.ShowRedWires || _wvm.ShowBlueWires || _wvm.ShowGreenWires || _wvm.ShowYellowWires)
                         {
-                            if (curtile.WireRed)
+                            if (curtile.WireRed && _wvm.ShowRedWires)
                             {
                                 var tileTex = (Texture2D)_textureDictionary.GetMisc("Wires");
 
@@ -1447,9 +1447,9 @@ namespace TEditXna.View
                                     _spriteBatch.Draw(tileTex, dest, source, Color.White, 0f, default(Vector2), SpriteEffects.None, LayerWires);
                                 }
                             }
-                            if (curtile.WireGreen)
+                            if (curtile.WireGreen && _wvm.ShowGreenWires)
                             {
-                                var tileTex = (Texture2D)_textureDictionary.GetMisc("Wires2");
+                                var tileTex = (Texture2D)_textureDictionary.GetMisc("Wires3");
 
                                 if (tileTex != null)
                                 {
@@ -1487,9 +1487,9 @@ namespace TEditXna.View
                                     _spriteBatch.Draw(tileTex, dest, source, Color.White, 0f, default(Vector2), SpriteEffects.None, LayerWires);
                                 }
                             }
-                            if (curtile.WireBlue)
+                            if (curtile.WireBlue && _wvm.ShowBlueWires)
                             {
-                                var tileTex = (Texture2D)_textureDictionary.GetMisc("Wires3");
+                                var tileTex = (Texture2D)_textureDictionary.GetMisc("Wires2");
 
                                 if (tileTex != null)
                                 {
@@ -1527,7 +1527,7 @@ namespace TEditXna.View
                                     _spriteBatch.Draw(tileTex, dest, source, Color.White, 0f, default(Vector2), SpriteEffects.None, LayerWires);
                                 }
                             }
-                            if (curtile.WireYellow)
+                            if (curtile.WireYellow && _wvm.ShowYellowWires)
                             {
                                 var tileTex = (Texture2D)_textureDictionary.GetMisc("Wires4");
 

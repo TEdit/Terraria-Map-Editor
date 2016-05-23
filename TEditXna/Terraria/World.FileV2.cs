@@ -209,14 +209,14 @@ namespace TEditXNA.Terraria
                 // red wire = header2 bit[1]
                 header2 = (byte)(header2 | 2);
             }
-            if (tile.WireGreen)
-            {
-                // green wire = header2 bit[2]
-                header2 = (byte)(header2 | 4);
-            }
             if (tile.WireBlue)
             {
-                // blue wire = header2 bit[3]
+                // blue wire = header2 bit[2]
+                header2 = (byte)(header2 | 4);
+            }
+            if (tile.WireGreen)
+            {
+                // green wire = header2 bit[3]
                 header2 = (byte)(header2 | 8);
             }
 
@@ -763,15 +763,15 @@ namespace TEditXNA.Terraria
                 {
                     tile.WireRed = true;
                 }
-                // check bit[2] for green wire
+                // check bit[2] for blue wire
                 if ((header2 & 4) == 4)
                 {
-                    tile.WireGreen = true;
+                    tile.WireBlue = true;
                 }
-                // check bit[3] for blue wire
+                // check bit[3] for green wire
                 if ((header2 & 8) == 8)
                 {
-                    tile.WireBlue = true;
+                    tile.WireGreen = true;
                 }
 
                 // grab bits[4, 5, 6] and shift 4 places to 0,1,2. This byte is our brick style
