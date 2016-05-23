@@ -202,11 +202,15 @@
                 </StackPanel>
             </GroupBox>
             <GroupBox Header="Wire" Style="{StaticResource WireStyle}">
-                <StackPanel Orientation="Vertical">
-                    <CheckBox IsChecked="{Binding TilePicker.RedWireActive}" Content="Red" Width="75" VerticalAlignment="Center" Height="22"/>
-                    <CheckBox IsChecked="{Binding TilePicker.BlueWireActive}" Content="Blue" Width="75" VerticalAlignment="Center" Height="22"/>
-                    <CheckBox IsChecked="{Binding TilePicker.GreenWireActive}" Content="Green" Width="75" VerticalAlignment="Center" Height="22"/>
-                    <CheckBox IsChecked="{Binding TilePicker.YellowWireActive}" Content="Yellow" Width="75" VerticalAlignment="Center" Height="22"/>                    
+                <StackPanel Orientation="Horizontal">
+                    <StackPanel Orientation="Vertical">
+                        <CheckBox IsChecked="{Binding TilePicker.RedWireActive}" Content="Red" Width="75" VerticalAlignment="Center" Height="22"/>
+                        <CheckBox IsChecked="{Binding TilePicker.BlueWireActive}" Content="Blue" Width="75" VerticalAlignment="Center" Height="22"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Vertical">
+                        <CheckBox IsChecked="{Binding TilePicker.GreenWireActive}" Content="Green" Width="75" VerticalAlignment="Center" Height="22"/>
+                        <CheckBox IsChecked="{Binding TilePicker.YellowWireActive}" Content="Yellow" Width="75" VerticalAlignment="Center" Height="22"/>
+                    </StackPanel>
                 </StackPanel>
             </GroupBox>
             <GroupBox Header="Minecart Track" Style="{StaticResource TrackStyle}">

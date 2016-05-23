@@ -65,7 +65,12 @@
                     <MenuItem Header="Show Walls" IsCheckable="True" IsChecked="{Binding ShowWalls}" />
                     <MenuItem Header="Show Tiles" IsCheckable="True" IsChecked="{Binding ShowTiles}" />
                     <MenuItem Header="Show Liquid" IsCheckable="True" IsChecked="{Binding ShowLiquid}" />
-                    <MenuItem Header="Show Wires/Actuators" IsCheckable="True" IsChecked="{Binding ShowWires}" />
+                    <Separator Margin="1" />
+                    <MenuItem Header="Show Actuators" IsCheckable="True" IsChecked="{Binding ShowActuators}" />
+                    <MenuItem Header="Show Red Wires" IsCheckable="True" IsChecked="{Binding ShowRedWires}" />
+                    <MenuItem Header="Show Green Wires" IsCheckable="True" IsChecked="{Binding ShowGreenWires}" />
+                    <MenuItem Header="Show Blue Wires" IsCheckable="True" IsChecked="{Binding ShowBlueWires}" />
+                    <MenuItem Header="Show Yellow Wires" IsCheckable="True" IsChecked="{Binding ShowYellowWires}" />
                     <Separator Margin="1" />
                     <MenuItem Header="Show Points" IsCheckable="True" IsChecked="{Binding ShowPoints}" />
                 </MenuItem>

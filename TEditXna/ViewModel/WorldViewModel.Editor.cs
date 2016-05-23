@@ -26,7 +26,7 @@ namespace TEditXna.ViewModel
                         CurrentWorld.Tiles[x, y].Reset();
 
                         Color curBgColor = GetBackgroundColor(y);
-                        PixelMap.SetPixelColor(x, y, Render.PixelMap.GetTileColor(CurrentWorld.Tiles[x, y], curBgColor, _showWalls, _showTiles, _showLiquid, _showWires));
+                        PixelMap.SetPixelColor(x, y, Render.PixelMap.GetTileColor(CurrentWorld.Tiles[x, y], curBgColor, _showWalls, _showTiles, _showLiquid, _showRedWires, _showBlueWires, _showGreenWires, _showYellowWires));
                     }
                 }
                 UndoManager.SaveUndo();
@@ -98,7 +98,7 @@ namespace TEditXna.ViewModel
             // curTile.BrickStyle = TilePicker.BrickStyle;
 
             Color curBgColor = GetBackgroundColor(y);
-            PixelMap.SetPixelColor(x, y, Render.PixelMap.GetTileColor(CurrentWorld.Tiles[x, y], curBgColor, _showWalls, _showTiles, _showLiquid, _showWires));
+            PixelMap.SetPixelColor(x, y, Render.PixelMap.GetTileColor(CurrentWorld.Tiles[x, y], curBgColor, _showWalls, _showTiles, _showLiquid, _showRedWires, _showBlueWires, _showGreenWires, _showYellowWires));
         }
 
         private void UpdateRenderWorld()
@@ -114,7 +114,7 @@ namespace TEditXna.ViewModel
                             OnProgressChanged(this, new ProgressChangedEventArgs(y.ProgressPercentage(CurrentWorld.TilesHigh), "Calculating Colors..."));
                             for (int x = 0; x < CurrentWorld.TilesWide; x++)
                             {
-                                PixelMap.SetPixelColor(x, y, Render.PixelMap.GetTileColor(CurrentWorld.Tiles[x, y], curBgColor, _showWalls, _showTiles, _showLiquid, _showWires));
+                                PixelMap.SetPixelColor(x, y, Render.PixelMap.GetTileColor(CurrentWorld.Tiles[x, y], curBgColor, _showWalls, _showTiles, _showLiquid, _showRedWires, _showBlueWires, _showGreenWires, _showYellowWires));
                             }
                         }
                     }
@@ -129,7 +129,7 @@ namespace TEditXna.ViewModel
         public void UpdateRenderPixel(int x, int y)
         {
             Color curBgColor = GetBackgroundColor(y);
-            PixelMap.SetPixelColor(x, y, Render.PixelMap.GetTileColor(CurrentWorld.Tiles[x, y], curBgColor, _showWalls, _showTiles, _showLiquid, _showWires));
+            PixelMap.SetPixelColor(x, y, Render.PixelMap.GetTileColor(CurrentWorld.Tiles[x, y], curBgColor, _showWalls, _showTiles, _showLiquid, _showRedWires, _showBlueWires, _showGreenWires, _showYellowWires));
         }
 
         public void UpdateRenderRegion(Rectangle area)
@@ -149,7 +149,7 @@ namespace TEditXna.ViewModel
                         OnProgressChanged(this, new ProgressChangedEventArgs(y.ProgressPercentage(CurrentWorld.TilesHigh), "Calculating Colors..."));
                         for (int x = bounded.Left; x < bounded.Right; x++)
                         {
-                            PixelMap.SetPixelColor(x, y, Render.PixelMap.GetTileColor(CurrentWorld.Tiles[x, y], curBgColor, _showWalls, _showTiles, _showLiquid, _showWires));
+                            PixelMap.SetPixelColor(x, y, Render.PixelMap.GetTileColor(CurrentWorld.Tiles[x, y], curBgColor, _showWalls, _showTiles, _showLiquid, _showRedWires, _showBlueWires, _showGreenWires, _showYellowWires));
                         }
                     }
                 }
@@ -529,10 +529,10 @@ namespace TEditXna.ViewModel
                 curTile.WireRed = (bool)wire;
 
             if (wire2 != null)
-                curTile.WireGreen = (bool)wire2;
+                curTile.WireBlue = (bool)wire2;
 
             if (wire3 != null)
-                curTile.WireBlue = (bool)wire3;
+                curTile.WireGreen = (bool)wire3;
 
             if (wire4 != null)
                 curTile.WireYellow = (bool)wire4;
@@ -581,7 +581,7 @@ namespace TEditXna.ViewModel
                     {
                         if (y > CurrentWorld.TilesHigh || x > CurrentWorld.TilesWide)
                             throw new IndexOutOfRangeException(string.Format("Error with world format tile [{0},{1}] is not a valid location. World file version: {2}", x, y, CurrentWorld.Version));
-                        pixels.SetPixelColor(x, y, Render.PixelMap.GetTileColor(CurrentWorld.Tiles[x, y], curBgColor, _showWalls, _showTiles, _showLiquid, _showWires));
+                        pixels.SetPixelColor(x, y, Render.PixelMap.GetTileColor(CurrentWorld.Tiles[x, y], curBgColor, _showWalls, _showTiles, _showLiquid, _showRedWires, _showBlueWires, _showGreenWires, _showYellowWires));
                     }
                 }
             }

@@ -116,9 +116,17 @@ namespace TEditXna.Editor
                 if (_tile.WireRed || _tile.WireBlue || _tile.WireGreen || _tile.WireYellow)
                 {
                     if (!string.IsNullOrWhiteSpace(TileExtras))
-                        TileExtras += ", Wire";
+                        TileExtras += ", Wire ";
                     else
-                        TileExtras += "Wire";
+                        TileExtras += "Wire ";
+                    if (_tile.WireRed)
+                        TileExtras += "R";
+                    if (_tile.WireGreen)
+                        TileExtras += "G";
+                    if (_tile.WireBlue)
+                        TileExtras += "B";
+                    if (_tile.WireYellow)
+                        TileExtras += "Y";
                 }
             }
         }
