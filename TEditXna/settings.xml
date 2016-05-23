@@ -82,7 +82,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Tool Name="Wall" Wall="0" Mask="0" Mode="Off" Active="True"/>
     <!-- Valid Brush Shapes are Square and Round. -->
     <Tool Name="Brush" Width="20" Height="20" Outline="1" Shape="Square"/>
-    <Tool Name="Wire" Red="True" Green="False" Blue="False"/>
+    <Tool Name="Wire" Red="True" Green="False" Blue="False" Yellow="False"/>
   </Tools>
   <!--
     Uncomment the following and set Terraria/Content path.
@@ -4365,7 +4365,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Tile Id="420" Color="#FFFFFFFF" Name="Logic Gate" Framed="true" />
     <Tile Id="421" Color="#FFFFFFFF" Name="Conveyor Belt (Clockwise)" Solid="true" Blends="true" />
     <Tile Id="422" Color="#FFFFFFFF" Name="Conveyor Belt (Counter Clockwise)" Solid="true" Blends="true" />
-    <Tile Id="423" Color="#FFFFFFFF" Name="Logic Sensor" Framed="true">
+    <Tile Id="423" Color="#FFFFFFFF" Name="Logic Sensor" Framed="true" UseFrameName="true">
       <Frames>
         <Frame UV="0,0" Name="Logic Sensor (Day)" />
         <Frame UV="0,18" Name="Logic Sensor (Night)" />
@@ -4409,7 +4409,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Tile Id="437" Color="#FFFFFFFF" Name="Tellow Team Platform" Framed="true" />
     <Tile Id="438" Color="#FFFFFFFF" Name="Pink Team Platform" Framed="true" />
     <Tile Id="439" Color="#FFFFFFFF" Name="White Team Platform" Framed="true" />
-    <Tile Id="440" Color="#FFFFFFFF" Name="Gem Locks" Framed="true" Size="3,3">
+    <Tile Id="440" Color="#FFFFFFFF" Name="Gem Locks" Framed="true" Size="3,3" UseFrameName="true">
       <Frames>
         <Frame UV="0,0" Name="Ruby Gem Lock" Variety="Empty"/>
         <Frame UV="0,54" Name="Ruby Gem Lock" Variety="Filled"/>

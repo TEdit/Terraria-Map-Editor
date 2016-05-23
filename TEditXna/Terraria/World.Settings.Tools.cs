@@ -27,6 +27,7 @@ namespace TEditXNA.Terraria
         private static bool _redWire;
         private static bool _greenWire;
         private static bool _blueWire;
+        private static bool _yellowWire;
 
         //  Invoked from World.Settings
         internal static void LoadSettings(IEnumerable<XElement> xmlToolSettings)
@@ -62,6 +63,7 @@ namespace TEditXNA.Terraria
                         _redWire = (bool)xElement.Attribute("Red");
                         _blueWire = (bool)xElement.Attribute("Blue");
                         _greenWire = (bool)xElement.Attribute("Green");
+                        _yellowWire = (bool)xElement.Attribute("Yellow");
                         break;
                 }
             }
@@ -150,6 +152,11 @@ namespace TEditXNA.Terraria
         public static bool BlueWire
         {
             get { return _blueWire; }
+        }
+
+        public static bool YellowWire
+        {
+            get { return _yellowWire; }
         }
     }
 }

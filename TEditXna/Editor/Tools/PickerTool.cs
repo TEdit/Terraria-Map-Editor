@@ -62,6 +62,7 @@ namespace TEditXna.Editor.Tools
             _wvm.TilePicker.RedWireActive = curTile.WireRed;
             _wvm.TilePicker.BlueWireActive = curTile.WireGreen;
             _wvm.TilePicker.GreenWireActive = curTile.WireBlue;
+            _wvm.TilePicker.YellowWireActive = curTile.WireYellow;
             _wvm.TilePicker.Actuator = curTile.Actuator;
             _wvm.TilePicker.ActuatorInActive = curTile.InActive;
         }
