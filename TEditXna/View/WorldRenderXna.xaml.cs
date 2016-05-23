@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -171,21 +172,23 @@ namespace TEditXna.View
 
         #region Load Content
 
-        private void xnaViewport_LoadContent(object sender, GraphicsDeviceEventArgs e)
+        private async void xnaViewport_LoadContent(object sender, GraphicsDeviceEventArgs e)
         {
-
             // Abort rendering if in design mode or if gameTimer is already running
             if (ViewModelBase.IsInDesignModeStatic || _gameTimer.IsRunning)
             {
                 return;
             }
             InitializeGraphicsComponents(e);
-            if (_textureDictionary.Valid)
-                LoadTerrariaTextures(e);
 
-            _selectionTexture = new Texture2D(e.GraphicsDevice, 1, 1);
-            LoadResourceTextures(e);
+            await Task.Run(() =>
+            {
+                if (_textureDictionary.Valid)
+                    LoadTerrariaTextures(e);
 
+                _selectionTexture = new Texture2D(e.GraphicsDevice, 1, 1);
+                LoadResourceTextures(e);
+            });
             _selectionTexture.SetData(new[] { Color.FromNonPremultiplied(0, 128, 255, 128) }, 0, 1);
             // Start the Game Timer
             _gameTimer.Start();
