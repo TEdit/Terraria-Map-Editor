@@ -113,7 +113,7 @@ namespace TEditXna.Editor
                     TileExtras += " Actuator";
                 }
 
-                if (_tile.WireRed)
+                if (_tile.WireRed || _tile.WireBlue || _tile.WireGreen || _tile.WireYellow)
                 {
                     if (!string.IsNullOrWhiteSpace(TileExtras))
                         TileExtras += ", Wire";

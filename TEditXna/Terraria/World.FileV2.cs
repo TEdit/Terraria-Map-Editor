@@ -19,7 +19,7 @@ namespace TEditXNA.Terraria
 
     public partial class World
     {
-        public static uint CompatibleVersion = 156;
+        public static uint CompatibleVersion = 168;
         public static short TileCount = 418;
         public static short SectionCount = 10;
 
@@ -236,7 +236,7 @@ namespace TEditXNA.Terraria
                 // set bit[2] of header3
                 header3 = (byte)(header3 | 4);
             }
-            if(tile.WireYellow)
+            if (tile.WireYellow)
             {
                 header3 = (byte)(header3 | 32);
             }

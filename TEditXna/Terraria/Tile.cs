@@ -142,6 +142,7 @@ namespace TEditXNA.Terraria
             WireRed = false;
             WireGreen = false;
             WireBlue = false;
+            WireYellow = false;
             TileColor = 0;
             Type = 0;
             Wall = 0;
