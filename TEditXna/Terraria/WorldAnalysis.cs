@@ -133,7 +133,7 @@ namespace TEditXNA.Terraria
 
             foreach (var sign in world.Signs)
             {
-                sb.Write("[{0}, {1}] {2}", sign.X, sign.Y, sign.Text);
+                sb.Write("[{0}, {1}] {2}\r\n", sign.X, sign.Y, sign.Text);
             }
 
             sb.WriteLine("===SECTION: NPCs===");
@@ -141,6 +141,24 @@ namespace TEditXNA.Terraria
             foreach (var npc in world.NPCs)
             {
                 sb.Write("ID: {0}, Name: {1}, Position: [{2:0.00}, {3:0.00}], {4}: [{5}, {6}]\r\n", npc.Name, npc.DisplayName, npc.Position.X, npc.Position.Y, npc.IsHomeless ? "Homeless" : "Home", npc.Home.X, npc.Home.Y);
+            }
+            
+            sb.WriteLine("===SECTION: Tile Entities===");
+            sb.WriteProperty("Tile Entities Count", world.TileEntities.Count);
+            foreach (var entity in world.TileEntities)
+            {
+                switch (entity.Type)
+                {
+                    case 0:
+                        sb.Write("Dummy - ID: {0}, Position: [{1}, {2}], NPC: {3}\r\n", entity.Id, entity.PosX, entity.PosY, entity.Npc);
+                        break;
+                    case 1:
+                        sb.Write("ItemFrame - ID: {0}, Position: [{1}, {2}], ItemID: {3}, Prefix: {4}, Stack: {5}\r\n", entity.Id, entity.PosX, entity.PosY, entity.ItemNetId, entity.Prefix, entity.Stack);
+                        break;
+                    case 2:
+                        sb.Write("Logic Sensor - ID: {0}, Position: [{1}, {2}], LogicCheck: {3}, On: {4}\r\n", entity.Id, entity.PosX, entity.PosY, entity.LogicCheck, entity.On);
+                        break;
+                }
             }
         }
 

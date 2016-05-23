@@ -32,6 +32,7 @@ namespace TEditXna.Editor
         private bool _blueWireActive = ToolDefaultData.BlueWire;
         private bool _redWireActive = ToolDefaultData.RedWire;
         private bool _greenWireActive = ToolDefaultData.GreenWire;
+        private bool _yellowWireActive = ToolDefaultData.YellowWire;
         private bool _tileStyleActive = ToolDefaultData.PaintTileActive;
         private bool _wallStyleActive = ToolDefaultData.PaintWallActive;
         private TrackMode _trackMode = TrackMode.Track;
@@ -129,6 +130,12 @@ namespace TEditXna.Editor
         {
             get { return _greenWireActive; }
             set { Set("GreenWireActive", ref _greenWireActive, value); }
+        }
+
+        public bool YellowWireActive
+        {
+            get { return _yellowWireActive; }
+            set { Set("YellowWireActive", ref _yellowWireActive, value); }
         }
 
         private bool _actuatorInActive;

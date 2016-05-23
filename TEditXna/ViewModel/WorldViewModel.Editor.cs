@@ -83,6 +83,8 @@ namespace TEditXna.ViewModel
                         SetPixelAutomatic(curTile, wire2: !isErase);
                     if (TilePicker.GreenWireActive)
                         SetPixelAutomatic(curTile, wire3: !isErase);
+                    if (TilePicker.YellowWireActive)
+                        SetPixelAutomatic(curTile, wire4: !isErase);
                     break;
                 case PaintMode.Liquid:
                     SetPixelAutomatic(curTile, liquid: isErase ? (byte)0 : (byte)255, liquidType: TilePicker.LiquidType);
@@ -469,6 +471,7 @@ namespace TEditXna.ViewModel
                                        short? v = null,
                                        bool? wire2 = null,
                                        bool? wire3 = null,
+                                       bool? wire4 = null,
                                        BrickStyle? brickStyle = null,
                                        bool? actuator = null, bool? actuatorInActive = null,
                                        int? tileColor = null,
@@ -531,10 +534,8 @@ namespace TEditXna.ViewModel
             if (wire3 != null)
                 curTile.WireBlue = (bool)wire3;
 
-            /* // For a later update
-            if (wire3 != null)
+            if (wire4 != null)
                 curTile.WireYellow = (bool)wire4;
-            */
 
             if (tileColor != null)
             {

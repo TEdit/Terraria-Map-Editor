@@ -142,6 +142,7 @@ namespace TEditXNA.Terraria
             WireRed = false;
             WireGreen = false;
             WireBlue = false;
+            WireYellow = false;
             TileColor = 0;
             Type = 0;
             Wall = 0;
@@ -166,6 +167,7 @@ namespace TEditXNA.Terraria
                 WireRed.Equals(other.WireRed) &&
                 WireGreen.Equals(other.WireGreen) &&
                 WireBlue.Equals(other.WireBlue) &&
+                WireYellow.Equals(other.WireYellow) &&
                 BrickStyle.Equals(other.BrickStyle) &&
                 BrickStyle == other.BrickStyle &&
                 Actuator.Equals(other.Actuator) &&
@@ -188,6 +190,7 @@ namespace TEditXNA.Terraria
                 hashCode = (hashCode * 397) ^ WireRed.GetHashCode();
                 hashCode = (hashCode * 397) ^ WireGreen.GetHashCode();
                 hashCode = (hashCode * 397) ^ WireBlue.GetHashCode();
+                hashCode = (hashCode * 397) ^ WireYellow.GetHashCode();
                 hashCode = (hashCode * 397) ^ LiquidType.GetHashCode();
                 hashCode = (hashCode * 397) ^ TileColor.GetHashCode();
                 hashCode = (hashCode * 397) ^ Wall.GetHashCode();
