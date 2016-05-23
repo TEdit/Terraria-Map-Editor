@@ -27,21 +27,20 @@ namespace TEditXna.View
     /// </summary>
     public partial class WorldRenderXna : UserControl
     {
-        private const float LayerTilePixels = 0;
+        private const float LayerTilePixels = 1 - 0;
 
+        private const float LayerTileWallTextures = 1 - 0.01f;
+        private const float LayerTileTrackBack = 1 - 0.02f;
+        private const float LayerTileTextures = 1 - 0.03f;
+        private const float LayerTileTrack = 1 - 0.04f;
+        private const float LayerTileActuator = 1 - 0.05f;
+        private const float LayerWires = 1 - 0.06f;
+        private const float LayerLiquid = 1 - 0.07f;
 
-        private const float LayerTileWallTextures = 0.01f;
-        private const float LayerTileTrackBack = 0.02f;
-        private const float LayerTileTextures = 0.03f;
-        private const float LayerTileTrack = 0.04f;
-        private const float LayerTileActuator = 0.05f;
-        private const float LayerWires = 0.06f;
-        private const float LayerLiquid = 0.07f;
-
-        private const float LayerGrid = 0.10f;
-        private const float LayerLocations = 0.15f;
-        private const float LayerSelection = 0.20f;
-        private const float LayerTools = 0.25f;
+        private const float LayerGrid = 1 - 0.10f;
+        private const float LayerLocations = 1 - 0.15f;
+        private const float LayerSelection = 1 - 0.20f;
+        private const float LayerTools = 1 - 0.25f;
 
         private Color _backgroundColor = Color.FromNonPremultiplied(32, 32, 32, 255);
         private readonly GameTimer _gameTimer;
@@ -350,8 +349,11 @@ namespace TEditXna.View
 
             // Start SpriteBatch
             _spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.Default, RasterizerState.CullNone);
-            DrawPixelTiles();
 
+            DrawPixelTiles();
+            _spriteBatch.End();
+
+            _spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.Default, RasterizerState.CullNone);
 
 
             // Draw sprite overlays
@@ -362,13 +364,7 @@ namespace TEditXna.View
                 DrawGrid();
 
             if (_wvm.ShowPoints)
-            {
-                _spriteBatch.End();
-                _spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.LinearClamp, DepthStencilState.Default, RasterizerState.CullNone);
                 DrawPoints();
-                _spriteBatch.End();
-                _spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.Default, RasterizerState.CullNone);
-            }
 
             if (_wvm.Selection.IsActive)
                 DrawSelection();

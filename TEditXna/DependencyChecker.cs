@@ -101,6 +101,8 @@ namespace TEditXna
                 path = Path.Combine(path, "Content");
             }
 
+
+            path = Path.GetFullPath(path);
             PathToContent = path;
             PathToWorlds = GetPathToWorlds(steamUserId);
         }
@@ -134,7 +136,7 @@ namespace TEditXna
 
                         if (Directory.Exists(steamWorlds))
                         {
-                            return steamWorlds;
+                            return Path.GetFullPath(steamWorlds);
                         }
                     }
                 }
