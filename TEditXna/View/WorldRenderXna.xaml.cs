@@ -181,14 +181,13 @@ namespace TEditXna.View
             }
             InitializeGraphicsComponents(e);
 
-            await Task.Run(() =>
-            {
-                if (_textureDictionary.Valid)
-                    LoadTerrariaTextures(e);
+           
+            if (_textureDictionary.Valid)
+                LoadTerrariaTextures(e);
 
-                _selectionTexture = new Texture2D(e.GraphicsDevice, 1, 1);
-                LoadResourceTextures(e);
-            });
+            _selectionTexture = new Texture2D(e.GraphicsDevice, 1, 1);
+            LoadResourceTextures(e);
+            
             _selectionTexture.SetData(new[] { Color.FromNonPremultiplied(0, 128, 255, 128) }, 0, 1);
             // Start the Game Timer
             _gameTimer.Start();
