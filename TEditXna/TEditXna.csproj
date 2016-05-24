@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\DateStampVersion.tasks" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
@@ -10,8 +11,9 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>TEditXna</RootNamespace>
     <AssemblyName>TEditXna</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
-    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WarningLevel>4</WarningLevel>
@@ -32,38 +34,64 @@
     <PublishWizardCompleted>true</PublishWizardCompleted>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
-    <PlatformTarget>x86</PlatformTarget>
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
-    <PlatformTarget>x86</PlatformTarget>
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-    <UseVSHostingProcess>false</UseVSHostingProcess>
-  </PropertyGroup>
   <PropertyGroup>
     <ApplicationIcon>Images\tedit.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.Xna.Framework, Version=4.0.0.0, Culture=neutral, PublicKeyToken=842cf8be1de50553, processorArchitecture=x86" />
-    <Reference Include="Microsoft.Xna.Framework.Graphics, Version=4.0.0.0, Culture=neutral, PublicKeyToken=842cf8be1de50553, processorArchitecture=x86" />
+    <Reference Include="GalaSoft.MvvmLight, Version=5.3.0.19026, Culture=neutral, PublicKeyToken=e7570ab207bcb616, processorArchitecture=MSIL">
+      <HintPath>..\packages\MvvmLightLibs.5.3.0.0\lib\net45\GalaSoft.MvvmLight.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="GalaSoft.MvvmLight.Extras, Version=5.3.0.19032, Culture=neutral, PublicKeyToken=669f0b5e8f868abf, processorArchitecture=MSIL">
+      <HintPath>..\packages\MvvmLightLibs.5.3.0.0\lib\net45\GalaSoft.MvvmLight.Extras.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="GalaSoft.MvvmLight.Platform, Version=5.3.0.19032, Culture=neutral, PublicKeyToken=5f873c45e98af8a1, processorArchitecture=MSIL">
+      <HintPath>..\packages\MvvmLightLibs.5.3.0.0\lib\net45\GalaSoft.MvvmLight.Platform.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\CommonServiceLocator.1.3\lib\portable-net4+sl5+netcore45+wpa81+wp8\Microsoft.Practices.ServiceLocation.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="MonoGame.Framework, Version=3.5.1.1679, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MonoGame.Framework.WindowsDX.3.5.1.1679\lib\net40\MonoGame.Framework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\MvvmLightLibs.5.3.0.0\lib\net45\System.Windows.Interactivity.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -95,14 +123,24 @@
     <Compile Include="Editor\MouseTile.cs" />
     <Compile Include="Editor\PaintMode.cs" />
     <Compile Include="Editor\Plugins\BasePlugin.cs" />
+    <Compile Include="Editor\Plugins\FindChestWithPluginResultView.xaml.cs">
+      <DependentUpon>FindChestWithPluginResultView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Editor\Plugins\IPlugin.cs" />
     <Compile Include="Editor\Plugins\PerlinNoise.cs" />
+    <Compile Include="Editor\Plugins\RemoveAllChestsPlugin.cs" />
+    <Compile Include="Editor\Plugins\RemoveAllUnlockedChestsPlugin.cs" />
     <Compile Include="Editor\Plugins\ReplaceAllPlugin.cs" />
+    <Compile Include="Editor\Plugins\FindChestWithPluginView.xaml.cs">
+      <DependentUpon>FindChestWithPluginView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Editor\Plugins\ReplaceAllPluginView.xaml.cs">
       <DependentUpon>ReplaceAllPluginView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Editor\Plugins\SandSettlePlugin.cs" />
     <Compile Include="Editor\Plugins\SimplePerlinGeneratorPlugin.cs" />
+    <Compile Include="Editor\Plugins\FindChestWithPlugin.cs" />
+    <Compile Include="Editor\Plugins\UnlockAllChestsPlugin.cs" />
     <Compile Include="Editor\RectangleExt.cs" />
     <Compile Include="Editor\ScrollDirection.cs" />
     <Compile Include="Editor\Selection.cs" />
@@ -125,24 +163,45 @@
     <Compile Include="Editor\Undo\UndoManager.cs" />
     <Compile Include="Editor\Undo\UndoTile.cs" />
     <Compile Include="ErrorLogging.cs" />
+    <Compile Include="Framework\Collections\BindingObservableCollection.cs" />
+    <Compile Include="Framework\Collections\HashTable.cs" />
+    <Compile Include="Framework\Collections\SafeObservableCollection.cs" />
+    <Compile Include="Framework\Events\EventArgExtensions.cs" />
+    <Compile Include="Framework\Events\EventArgs.cs" />
+    <Compile Include="Framework\Events\WeakEventHandler.cs" />
+    <Compile Include="Framework\Threading\DispatcherHelper.cs" />
+    <Compile Include="Framework\Threading\OneManyLock.cs" />
+    <Compile Include="Framework\Threading\TaskFactoryHelper.cs" />
+    <Compile Include="Geometry\Fill.cs" />
+    <Compile Include="Geometry\Primitives\Shapes.cs" />
+    <Compile Include="Geometry\Primitives\Vectors.cs" />
+    <Compile Include="Geometry\Shape.cs" />
+    <Compile Include="Geometry\Spline.cs" />
     <Compile Include="Helper\Extensions.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Render\PixelMap.cs" />
     <Compile Include="Render\PixelMapManager.cs" />
     <Compile Include="Render\RenderMiniMap.cs" />
     <Compile Include="Render\TextureData.cs" />
     <Compile Include="Terraria\Chest.cs" />
+    <Compile Include="Terraria\KillTally.cs" />
+    <Compile Include="Terraria\TileEntity.cs" />
     <Compile Include="Terraria\Item.cs" />
     <Compile Include="Terraria\Map.cs" />
+    <Compile Include="Terraria\Minecart.cs" />
     <Compile Include="Terraria\NPC.cs" />
     <Compile Include="Terraria\Objects\BlendRules.cs" />
+    <Compile Include="Terraria\Objects\ChestProperty.cs" />
     <Compile Include="Terraria\Objects\Enums.cs" />
     <Compile Include="Terraria\Objects\FrameProperty.cs" />
     <Compile Include="Terraria\Objects\ItemProperty.cs" />
     <Compile Include="Terraria\Objects\ITile.cs" />
     <Compile Include="Terraria\Objects\NpcName.cs" />
+    <Compile Include="Terraria\Objects\SignProperty.cs" />
     <Compile Include="Terraria\Objects\Sprite.cs" />
     <Compile Include="Terraria\Objects\TileProperty.cs" />
     <Compile Include="Terraria\Objects\WallProperty.cs" />
+    <Compile Include="Terraria\Objects\PaintProperty.cs" />
     <Compile Include="Terraria\Sign.cs" />
     <Compile Include="Terraria\Textures.cs" />
     <Compile Include="Terraria\Tile.cs" />
@@ -152,6 +211,37 @@
     <Compile Include="Terraria\World.Settings.Tools.cs" />
     <Compile Include="Helper\Converters\DoublePercentageConverter.cs" />
     <Compile Include="Helper\Converters\ThicknessMultiConverter.cs" />
+    <Compile Include="Terraria\WorldAnalysis.cs" />
+    <Compile Include="UI\Xaml\AutoGrid.cs" />
+    <Compile Include="UI\Xaml\Dialog\DialogEnum.cs" />
+    <Compile Include="UI\Xaml\Dialog\IDialogService.cs" />
+    <Compile Include="UI\Xaml\DropDownButton.cs" />
+    <Compile Include="UI\Xaml\ElementSpy.cs" />
+    <Compile Include="UI\Xaml\Enum\EnumItem.cs" />
+    <Compile Include="UI\Xaml\Enum\EnumItemList.cs" />
+    <Compile Include="UI\Xaml\Enum\EnumItemTypeConverter.cs" />
+    <Compile Include="UI\Xaml\Enum\ImageSourceHelpers.cs" />
+    <Compile Include="UI\Xaml\HslColorExtension.cs" />
+    <Compile Include="UI\Xaml\IntegerRangeValidationRule.cs" />
+    <Compile Include="UI\Xaml\ListBoxExtenders.cs" />
+    <Compile Include="UI\Xaml\MeasurableCanvas.cs" />
+    <Compile Include="UI\Xaml\ScrollViewerThumbnail.cs" />
+    <Compile Include="UI\Xaml\ToggleButtonDataBound.cs" />
+    <Compile Include="UI\Xaml\Utility\DependencyHelpers.cs" />
+    <Compile Include="UI\Xaml\XnaContentHost\GameTimer.cs" />
+    <Compile Include="UI\Xaml\XnaContentHost\GraphicsDeviceControl.cs" />
+    <Compile Include="UI\Xaml\XnaContentHost\GraphicsDeviceEventArgs.cs" />
+    <Compile Include="UI\Xaml\XnaContentHost\GraphicsDeviceService.cs" />
+    <Compile Include="UI\Xaml\XnaContentHost\HwndMouseEventArgs.cs" />
+    <Compile Include="UI\Xaml\XnaContentHost\HwndMouseState.cs" />
+    <Compile Include="UI\Xaml\XnaContentHost\NativeMethods.cs" />
+    <Compile Include="UI\Xaml\XnaContentHost\Primitives2D\AnimatedTexture2D.cs" />
+    <Compile Include="UI\Xaml\XnaContentHost\SimpleProvider.cs" />
+    <Compile Include="Utility\Calc.cs" />
+    <Compile Include="Utility\Csv.cs" />
+    <Compile Include="Utility\Format.cs" />
+    <Compile Include="Utility\GenericOperator.cs" />
+    <Compile Include="Utility\Serialization.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -167,6 +257,9 @@
     </Compile>
     <Compile Include="View\ClipboardView.xaml.cs">
       <DependentUpon>ClipboardView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\KillTallyView.xaml.cs">
+      <DependentUpon>KillTallyView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\MorphBiomeView.xaml.cs">
       <DependentUpon>MorphBiomeView.xaml</DependentUpon>
@@ -201,12 +294,52 @@
     <Compile Include="View\ToolSelectorView.xaml.cs">
       <DependentUpon>ToolSelectorView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\WorldAnalysis.xaml.cs">
+      <DependentUpon>WorldAnalysis.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\WorldPropertiesView.xaml.cs">
       <DependentUpon>WorldPropertiesView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\WorldRenderXna.xaml.cs">
       <DependentUpon>WorldRenderXna.xaml</DependentUpon>
     </Compile>
+    <Compile Include="WriteableBitmapEx\WriteableBitmapEx.cs" />
+    <Compile Include="writeablebitmapwpf\MoreExtensions.cs">
+      <SubType>
+      </SubType>
+    </Compile>
+    <Compile Include="writeablebitmapwpf\NativeMethods.cs">
+      <SubType>
+      </SubType>
+    </Compile>
+    <Compile Include="writeablebitmapwpf\WriteableBitmapBaseExtensions.cs">
+      <SubType>
+      </SubType>
+    </Compile>
+    <Compile Include="writeablebitmapwpf\WriteableBitmapFillExtensions.cs">
+      <SubType>
+      </SubType>
+    </Compile>
+    <Compile Include="writeablebitmapwpf\WriteableBitmapShapeExtensions.cs">
+      <SubType>
+      </SubType>
+    </Compile>
+    <Compile Include="writeablebitmapwpf\WriteableBitmapSplineExtensions.cs">
+      <SubType>
+      </SubType>
+    </Compile>
+    <Compile Include="writeablebitmapwpf\WriteableBitmapTransformationExtensions.cs">
+      <SubType>
+      </SubType>
+    </Compile>
+    <Page Include="Editor\Plugins\FindChestWithPluginResultView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Editor\Plugins\FindChestWithPluginView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Editor\Plugins\ReplaceAllPluginView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -235,11 +368,20 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="UI\Xaml\ScrollViewerThumbnail.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <DependentUpon>ScrollViewerThumbnail.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="View\ChestEditorView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\ClipboardView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\KillTallyView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -287,6 +429,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\WorldAnalysis.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\WorldPropertiesView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -297,9 +443,6 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Properties\AssemblyInfo.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -315,6 +458,7 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="app.config" />
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -399,16 +543,6 @@
       <Install>true</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\BCCL\BCCL.Xna\BCCL.Xna.csproj">
-      <Project>{b1417485-bd24-4a20-a931-bc8659bb33a9}</Project>
-      <Name>BCCL.Xna</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\BCCL\BCCL\BCCL.csproj">
-      <Project>{3d233de2-586b-49f1-8e83-86399078eae6}</Project>
-      <Name>BCCL</Name>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>
     <VisualStudio>
@@ -416,18 +550,24 @@
     </VisualStudio>
   </ProjectExtensions>
   <PropertyGroup>
-    <PostBuildEvent>"C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\vcvars32.bat"
-editbin /largeaddressaware $(TargetPath)</PostBuildEvent>
+    <PostBuildEvent>
+    </PostBuildEvent>
   </PropertyGroup>
   <PropertyGroup>
     <PreBuildEvent>
     </PreBuildEvent>
   </PropertyGroup>
+  <ItemGroup>
+    <VersionItems Include="$(SolutionDir)teditversion.txt" />
+    <VersionItems Include="$(ProjectDir)Properties\AssemblyInfo.cs" />
+  </ItemGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
+	    -->
   <Target Name="BeforeBuild">
+    <DateStampVersion Items="@(VersionItems)" />
   </Target>
-  <Target Name="AfterBuild">
+  <!--<Target Name="AfterBuild">
   </Target>
   -->
 </Project>

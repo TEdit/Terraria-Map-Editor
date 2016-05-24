@@ -23,5 +23,14 @@ namespace TEditXna.View
         {
             InitializeComponent();
         }
+
+        private void TextBox_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                BindingExpression binding = ((TextBox)sender).GetBindingExpression(TextBox.TextProperty);
+                binding.UpdateSource();
+            }
+        }
     }
 }

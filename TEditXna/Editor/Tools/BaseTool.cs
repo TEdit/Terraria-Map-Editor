@@ -1,6 +1,6 @@
 ﻿using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using BCCL.MvvmLight;
+using GalaSoft.MvvmLight;
 using TEditXna.ViewModel;
 
 namespace TEditXna.Editor.Tools
@@ -10,6 +10,7 @@ namespace TEditXna.Editor.Tools
         protected bool _isActive;
         protected WriteableBitmap _preview;
         protected WorldViewModel _wvm;
+        private double _previewScale = 1;
 
         protected BaseTool(WorldViewModel worldViewModel)
         {
@@ -47,6 +48,12 @@ namespace TEditXna.Editor.Tools
 
         public virtual void MouseWheel(TileMouseState e)
         {
+        }
+
+        public double PreviewScale
+        {
+            get { return _previewScale; }
+            protected set { _previewScale = value; }
         }
 
         public virtual WriteableBitmap PreviewTool()

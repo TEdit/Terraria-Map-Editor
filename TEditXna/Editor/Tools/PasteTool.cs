@@ -2,7 +2,7 @@ using System;
 using System.Linq;
 using System.Windows.Input;
 using System.Windows.Media.Imaging;
-using BCCL.Geometry.Primitives;
+using TEdit.Geometry.Primitives;
 using Microsoft.Xna.Framework;
 using TEditXna.ViewModel;
 using TEditXna.Terraria.Objects;
@@ -37,8 +37,10 @@ namespace TEditXna.Editor.Tools
         public override WriteableBitmap PreviewTool()
         {
             if (_wvm.Clipboard.Buffer != null)
+            {
+                PreviewScale = _wvm.Clipboard.Buffer.RenderScale;
                 return _wvm.Clipboard.Buffer.Preview;
-
+            }
             return base.PreviewTool();
         }
 

@@ -1,18 +1,21 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
-using BCCL.Geometry.Primitives;
+using System.Windows.Documents;
+using TEdit.Geometry.Primitives;
 
 namespace TEditXNA.Terraria
 {
+
     public enum BrickStyle : byte
     {
         [Description("Full Brick")]
         Full = 0x0,
         HalfBrick = 0x1,
-        SlopeTopLeftDown = 0x2,
-        SlopeBottomLeftDown = 0x3,
-        SlopeTopLeftUp = 0x4,
-        SlopeBottomLeftUp = 0x5,
+        SlopeTopRight = 0x2,
+        SlopeTopLeft = 0x3,
+        SlopeBottomRight = 0x4,
+        SlopeBottomLeft = 0x5,
         Unknown06 = 0x6,
         Unknown07 = 0x7,
     }
@@ -25,14 +28,37 @@ namespace TEditXNA.Terraria
         Honey = 0x03
     }
 
+    public enum TileType : int
+    {
+        DirtBlock = 0,
+        StoneBlock = 1,
+        Torch = 4,
+        Tree = 5,
+        Platform = 19,
+        Chest = 21,
+        Sunflower = 27,
+        Chandelier = 34,
+        Sign = 55,
+        MushroomTree = 72,
+        GraveMarker = 85,
+        Dresser = 88,
+        EbonsandBlock = 112,
+        PearlsandBlock = 116,
+        IceByRod = 127,
+        Timer = 144,
+        AnnouncementBox = 425
+    }
 
     [Serializable]
     public class Tile
     {
+        public static readonly Tile Empty = new Tile();
+
         public bool IsActive;
         public bool WireRed;
         public bool WireGreen;
         public bool WireBlue;
+        public bool WireYellow;
         public byte TileColor;
         public ushort Type;
         public byte Wall;
@@ -116,6 +142,7 @@ namespace TEditXNA.Terraria
             WireRed = false;
             WireGreen = false;
             WireBlue = false;
+            WireYellow = false;
             TileColor = 0;
             Type = 0;
             Wall = 0;
@@ -140,6 +167,7 @@ namespace TEditXNA.Terraria
                 WireRed.Equals(other.WireRed) &&
                 WireGreen.Equals(other.WireGreen) &&
                 WireBlue.Equals(other.WireBlue) &&
+                WireYellow.Equals(other.WireYellow) &&
                 BrickStyle.Equals(other.BrickStyle) &&
                 BrickStyle == other.BrickStyle &&
                 Actuator.Equals(other.Actuator) &&
@@ -162,6 +190,7 @@ namespace TEditXNA.Terraria
                 hashCode = (hashCode * 397) ^ WireRed.GetHashCode();
                 hashCode = (hashCode * 397) ^ WireGreen.GetHashCode();
                 hashCode = (hashCode * 397) ^ WireBlue.GetHashCode();
+                hashCode = (hashCode * 397) ^ WireYellow.GetHashCode();
                 hashCode = (hashCode * 397) ^ LiquidType.GetHashCode();
                 hashCode = (hashCode * 397) ^ TileColor.GetHashCode();
                 hashCode = (hashCode * 397) ^ Wall.GetHashCode();
@@ -188,6 +217,15 @@ namespace TEditXNA.Terraria
             return !Equals(left, right);
         }
 
+        public static bool IsChest(int tileType)
+        {
+            return tileType == (int)TileType.Chest || tileType == (int)TileType.Dresser;
+        }
+
+        public static bool IsSign(int tileType)
+        {
+            return tileType == (int)TileType.Sign || tileType == (int)TileType.GraveMarker || tileType == (int)TileType.AnnouncementBox;
+        }
 
     }
 }

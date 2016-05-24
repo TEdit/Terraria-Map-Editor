@@ -1,14 +1,14 @@
 ﻿using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using BCCL.Geometry.Primitives;
-using BCCL.MvvmLight;
+using TEdit.Geometry.Primitives;
+using GalaSoft.MvvmLight;
 
 namespace TEditXNA.Terraria.Objects
 {
     public class Sprite : ObservableObject
     {
         private WriteableBitmap _preview;
-        private byte _tile;
+        private ushort _tile;
         private Vector2Short _size;
         private Vector2Short _origin;
         private FrameAnchor _anchor;
@@ -52,7 +52,7 @@ namespace TEditXNA.Terraria.Objects
             set { Set("Size", ref _size, value); }
         }
 
-        public byte Tile
+        public ushort Tile
         {
             get { return _tile; }
             set { Set("Tile", ref _tile, value); }

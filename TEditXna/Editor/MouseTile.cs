@@ -1,5 +1,5 @@
-using BCCL.Geometry.Primitives;
-using BCCL.MvvmLight;
+using TEdit.Geometry.Primitives;
+using GalaSoft.MvvmLight;
 using TEditXNA.Terraria;
 
 namespace TEditXna.Editor
@@ -12,6 +12,7 @@ namespace TEditXna.Editor
         private string _tileExtras;
         private string _tileName;
         private string _wallName;
+        private string _paint;
 
         public TileMouseState MouseState
         {
@@ -29,6 +30,12 @@ namespace TEditXna.Editor
         {
             get { return _tileName; }
             set { Set("TileName", ref _tileName, value); }
+        }
+
+        public string Paint
+        {
+            get { return _paint; }
+            set { Set("Paint", ref _paint, value); }
         }
 
         public string TileExtras
@@ -51,7 +58,19 @@ namespace TEditXna.Editor
                 Set("Tile", ref _tile, value);
 
                 if (World.TileProperties.Count > _tile.Type)
-                    TileName = _tile.IsActive ? string.Format("{0} ({1})", World.TileProperties[_tile.Type].Name, _tile.Type) : "[empty]";
+                {
+                    TEditXNA.Terraria.Objects.TileProperty tileProperty = World.TileProperties[_tile.Type];
+                    if (!tileProperty.HasFrameName)
+                    {
+                        TileName = tileProperty.Name;
+                    }
+                    else
+                    {
+                        string frameNameKey = World.GetFrameNameKey(_tile.Type, _tile.U, _tile.V);
+                        TileName = World.FrameNames.ContainsKey(frameNameKey) ? World.FrameNames[frameNameKey] : tileProperty.Name + "*";
+                    }
+                    TileName = _tile.IsActive ? string.Format("{0} ({1})", TileName, _tile.Type) : "[empty]";
+                }
                 else
                     TileName = string.Format("INVALID TILE ({0})", _tile.Type);
 
@@ -67,21 +86,47 @@ namespace TEditXna.Editor
                 }
                 else
                     TileExtras = string.Empty;
+                
+                if (_tile.TileColor > 0)
+                {
+                    if (_tile.WallColor > 0)
+                        Paint = string.Format("Tile: {0}, Wall: {1}", World.PaintProperties[_tile.TileColor].Name, World.PaintProperties[_tile.WallColor].Name);
+                    else
+                        Paint = string.Format("Tile: {0}", World.PaintProperties[_tile.TileColor].Name);
+                }
+                else if (_tile.WallColor > 0)
+                {
+                    Paint = string.Format("Wall: {0}", World.PaintProperties[_tile.WallColor].Name);
+                }
+                else
+                {
+                    Paint = "None";
+                }
+
+                if (_tile.InActive)
+                {
+                    TileExtras += " Inactive";
+                }
 
                 if (_tile.Actuator)
                 {
-                    if (_tile.InActive)
-                        TileExtras += " Inactive Actuator";
-                    else
-                        TileExtras += " Active Actuator ";
+                    TileExtras += " Actuator";
                 }
 
-                if (_tile.WireRed)
+                if (_tile.WireRed || _tile.WireBlue || _tile.WireGreen || _tile.WireYellow)
                 {
                     if (!string.IsNullOrWhiteSpace(TileExtras))
-                        TileExtras += ", Wire";
+                        TileExtras += ", Wire ";
                     else
-                        TileExtras += "Wire";
+                        TileExtras += "Wire ";
+                    if (_tile.WireRed)
+                        TileExtras += "R";
+                    if (_tile.WireGreen)
+                        TileExtras += "G";
+                    if (_tile.WireBlue)
+                        TileExtras += "B";
+                    if (_tile.WireYellow)
+                        TileExtras += "Y";
                 }
             }
         }

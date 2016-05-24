@@ -2,10 +2,12 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:Editor="clr-namespace:TEditXna.Editor"
-             xmlns:bccl="http://bccl/wpf" mc:Ignorable="d"
+             xmlns:tedit="clr-namespace:TEdit.UI.Xaml"
+             xmlns:enum="clr-namespace:TEdit.UI.Xaml.Enum"
+             mc:Ignorable="d"
              Background="{StaticResource WindowBackgroundBrush}" Foreground="{StaticResource TextBrush}">
     <UserControl.Resources>
-        <bccl:EnumItemList x:Key="BrushShapeEnum" EnumType="{x:Type Editor:BrushShape}" x:Shared="false" SortBy="Value" />
+        <enum:EnumItemList x:Key="BrushShapeEnum" EnumType="{x:Type Editor:BrushShape}" x:Shared="false" SortBy="Value" />
     </UserControl.Resources>
     <Grid>
         <Grid>

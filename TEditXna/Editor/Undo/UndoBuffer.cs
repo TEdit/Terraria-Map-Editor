@@ -1,77 +1,112 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
-using BCCL.Geometry.Primitives;
+using System.Linq;
+using System.Threading.Tasks;
+using TEdit.Geometry.Primitives;
 using TEditXNA.Terraria;
 
 namespace TEditXna.Editor.Undo
 {
     public class UndoBuffer
     {
-        private readonly List<UndoTile> _tiles = new List<UndoTile>();
+        private const int FlushSize = 10000;
+
+        private static readonly object UndoSaveLock = new object();
+
+        public UndoBuffer(string fileName)
+        {
+            var stream = new FileStream(fileName, FileMode.Create);
+            _writer = new BinaryWriter(stream);
+            _writer.Write((Int32)0);
+        }
+
+        private readonly List<UndoTile> _undoTiles = new List<UndoTile>();
         private readonly List<Sign> _signs = new List<Sign>();
         private readonly List<Chest> _chests = new List<Chest>();
 
-        public List<Chest> Chests
+        public IList<Chest> Chests
         {
             get { return _chests; }
         }
 
-        public List<Sign> Signs
+        public IList<Sign> Signs
         {
             get { return _signs; }
         }
-        public List<UndoTile> Tiles
+
+        public List<UndoTile> UndoTiles
         {
-            get { return _tiles; }
+            get { return _undoTiles; }
         }
 
-        public void Write(string filename)
+        public UndoTile LastTile { get; set; }
+
+        public void Add(Vector2Int32 location, Tile tile)
         {
-            using (var stream = new FileStream(filename, FileMode.Create))
+            var undoTile = new UndoTile(location, tile);
+
+            if (undoTile == null)
             {
-                using (var bw = new BinaryWriter(stream))
-                {
-                    bw.Write(_tiles.Count);
+                throw new Exception("Null undo?");
+            }
 
-                    for (int i = 0; i < _tiles.Count; i++)
-                    {
-                        var curLocation = Tiles[i].Location;
-                        bw.Write(curLocation.X);
-                        bw.Write(curLocation.Y);
-                        World.WriteTileDataToStreamV1(Tiles[i].Tile, bw);
-                    }
-                    World.WriteChestDataToStreamV1(Chests, bw);
-                    World.WriteSignDataToStreamV1(Signs, bw);
-                    bw.Close();
-                }
-
+            lock (UndoSaveLock)
+            {
+                UndoTiles.Add(undoTile);
+                LastTile = undoTile;
+            }
+            if (UndoTiles.Count > FlushSize)
+            {
+                Flush();
             }
         }
 
-        public static UndoBuffer Read(string filename)
+        public int Count { get; private set; }
+
+        public void Flush()
         {
-            var buffer = new UndoBuffer();
-
-            using (var stream = new FileStream(filename, FileMode.Open))
+            lock (UndoSaveLock)
             {
-                using (var br = new BinaryReader(stream))
-                {
-                    var tilecount = br.ReadInt32();
-                    for (int i = 0; i < tilecount; i++)
-                    {
-                        int x = br.ReadInt32();
-                        int y = br.ReadInt32();
-                        var curTile = World.ReadTileDataFromStreamV1(br, World.CompatibleVersion);
-                        buffer.Tiles.Add(new UndoTile(new Vector2Int32(x, y), curTile));
-                    }
-                    buffer.Chests.Clear();
-                    buffer.Chests.AddRange(World.ReadChestDataFromStreamV1(br, World.CompatibleVersion));
+                int count = _undoTiles.Count;
+                var tiles = UndoTiles.ToArray();
+                _undoTiles.RemoveRange(0, count);
 
-                    buffer.Signs.Clear();
-                    buffer.Signs.AddRange(World.ReadSignDataFromStreamV1(br));
+                Debug.WriteLine("Flushing Undo Buffer: {0} Tiles", count);
+                for (int i = 0; i < count; i++)
+                {
+                    var tile = tiles[i];
+
+                    if (tile == null || tile.Tile == null)
+                        continue;
+
+                    _writer.Write(tile.Location.X);
+                    _writer.Write(tile.Location.Y);
+
+                    int dataIndex;
+                    int headerIndex;
+
+                    byte[] tileData = World.SerializeTileData(tile.Tile, out dataIndex, out headerIndex);
+
+                    _writer.Write(tileData, headerIndex, dataIndex - headerIndex);
                 }
+
+                Count += count;
             }
-            return buffer;
+        }
+
+        public void Close()
+        {
+            Flush();
+
+            World.SaveChests(Chests, _writer);
+            World.SaveSigns(Signs, _writer);
+
+            _writer.BaseStream.Position = (long)0;
+            _writer.Write(Count);
+            _writer.Close();
+            _writer.Dispose();
         }
 
         public static IEnumerable<UndoTile> ReadUndoTilesFromStream(BinaryReader br)
@@ -79,11 +114,49 @@ namespace TEditXna.Editor.Undo
             var tilecount = br.ReadInt32();
             for (int i = 0; i < tilecount; i++)
             {
+                int rle;
                 int x = br.ReadInt32();
                 int y = br.ReadInt32();
-                var curTile = World.ReadTileDataFromStreamV1(br, World.CompatibleVersion);
+                var curTile = World.DeserializeTileData(br, out rle);
+
                 yield return new UndoTile(new Vector2Int32(x, y), curTile);
             }
         }
+
+        #region Destructor to cleanup files
+        private bool disposed = false;
+        private readonly BinaryWriter _writer;
+        //Implement IDisposable.
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (!disposed)
+            {
+                if (disposing)
+                {
+                    // free managed
+                    if (_writer != null)
+                    {
+                        _writer.Dispose();
+                    }
+                }
+                // Free your own state (unmanaged objects).
+                // Set large fields to null.
+
+                disposed = true;
+            }
+        }
+
+        ~UndoBuffer()
+        {
+            Dispose(false);
+        }
+
+        #endregion
     }
 }

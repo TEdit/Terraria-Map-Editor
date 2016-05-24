@@ -1,6 +1,6 @@
 using System.Windows;
 using System.Windows.Input;
-using BCCL.MvvmLight.Command;
+using GalaSoft.MvvmLight.Command;
 using TEditXNA.Terraria;
 using TEditXna.ViewModel;
 
@@ -24,25 +24,12 @@ namespace TEditXna.Editor.Plugins
             bool replaceWalls = false;
 
 
-            switch (_wvm.TilePicker.PaintMode)
+            if (_wvm.TilePicker.PaintMode == PaintMode.TileAndWall)
             {
-                case PaintMode.Tile:
+                if (_wvm.TilePicker.TileStyleActive)
                     replaceTiles = true;
-                    break;
-                case PaintMode.Wall:
+                if (_wvm.TilePicker.WallStyleActive)
                     replaceWalls = true;
-                    break;
-                case PaintMode.TileAndWall:
-                    replaceTiles = true;
-                    replaceWalls = true;
-                    break;
-                case PaintMode.Wire:
-                case PaintMode.Wire2:
-                case PaintMode.Wire3:
-                case PaintMode.Liquid:
-                default:
-                    MessageBox.Show("Set the paint mode to \"Tile\", \"Wall\" or \"Tile and Wall\" and enable masks.");
-                    return;
             }
 
             if (replaceTiles && _wvm.TilePicker.TileMaskMode == MaskMode.Off)
@@ -74,8 +61,9 @@ namespace TEditXna.Editor.Plugins
 
                     if (replaceTiles)
                     {
-                        if ((curTile.IsActive && curTile.Type == tileMask && _wvm.TilePicker.TileMaskMode == MaskMode.Match)
-                            || (!curTile.IsActive && _wvm.TilePicker.TileMaskMode == MaskMode.Empty))
+                        if ((_wvm.Selection.IsValid(x,y)) && (curTile.IsActive && curTile.Type == tileMask && _wvm.TilePicker.TileMaskMode == MaskMode.Match)
+                            || (!curTile.IsActive && _wvm.TilePicker.TileMaskMode == MaskMode.Empty)
+                            || (curTile.Type != tileMask && _wvm.TilePicker.TileMaskMode == MaskMode.NotMatching))
                         {
                             doReplaceTile = true;
                         }
@@ -83,8 +71,9 @@ namespace TEditXna.Editor.Plugins
 
                     if (replaceWalls)
                     {
-                        if ((curTile.Wall == wallMask && _wvm.TilePicker.WallMaskMode == MaskMode.Match)
-                            || (curTile.Wall == 0 && _wvm.TilePicker.WallMaskMode == MaskMode.Empty))
+                        if ((_wvm.Selection.IsValid(x, y)) && (curTile.Wall == wallMask && _wvm.TilePicker.WallMaskMode == MaskMode.Match)
+                            || (curTile.Wall == 0 && _wvm.TilePicker.WallMaskMode == MaskMode.Empty)
+                            || (curTile.Wall != wallMask && _wvm.TilePicker.TileMaskMode == MaskMode.NotMatching))
                         {
                             doReplaceWall = true;
                         }
@@ -95,7 +84,7 @@ namespace TEditXna.Editor.Plugins
                         _wvm.UndoManager.SaveTile(x, y);
 
                         if (doReplaceTile)
-                            curTile.Type = (byte)tileTarget;
+                            curTile.Type = (ushort)tileTarget;
 
                         if (doReplaceWall)
                             curTile.Wall = (byte)wallTarget;

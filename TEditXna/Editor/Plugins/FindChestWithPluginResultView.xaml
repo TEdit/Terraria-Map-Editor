@@ -1,0 +1,14 @@
+﻿<Window x:Class="TEditXna.Editor.Plugins.FindChestWithPluginResultView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:view="clr-namespace:TEditXna.View" SizeToContent="WidthAndHeight"
+        Title="FindChestWithPlugin" ResizeMode="CanResizeWithGrip" WindowStartupLocation="CenterOwner" Icon="/TEditXna;component/Images/tedit.ico">
+    <DockPanel Background="{StaticResource ControlBackgroundBrush}" VerticalAlignment="Stretch" Height="200">
+        <TextBlock Text="These location could be found." Margin="10 2" TextWrapping="Wrap" HorizontalAlignment="Center" Foreground="{StaticResource TextBrush}" DockPanel.Dock="Top"/>
+        <Grid DockPanel.Dock="Bottom">
+            <Button Margin="5" Content="Close" HorizontalAlignment="Center" Padding="20, 3" Click="CloseButtonClick" />
+        </Grid>
+
+        <ListBox Name="LocationList"/>
+    </DockPanel>
+</Window>

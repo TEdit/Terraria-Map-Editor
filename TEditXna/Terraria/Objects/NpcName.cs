@@ -1,5 +1,5 @@
 ﻿using System.Linq;
-using BCCL.MvvmLight;
+using GalaSoft.MvvmLight;
 
 namespace TEditXNA.Terraria.Objects
 {

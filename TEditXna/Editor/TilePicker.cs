@@ -1,5 +1,5 @@
 ﻿using System.ComponentModel;
-using BCCL.MvvmLight;
+using GalaSoft.MvvmLight;
 using TEditXNA.Terraria;
 using System.Windows.Input;
 using TEditXNA.Terraria.Objects;
@@ -29,6 +29,13 @@ namespace TEditXna.Editor
         private int _tile = ToolDefaultData.PaintTile;
         private int _wallMask = ToolDefaultData.PaintWallMask;
         private int _tileMask = ToolDefaultData.PaintTileMask;
+        private bool _blueWireActive = ToolDefaultData.BlueWire;
+        private bool _redWireActive = ToolDefaultData.RedWire;
+        private bool _greenWireActive = ToolDefaultData.GreenWire;
+        private bool _yellowWireActive = ToolDefaultData.YellowWire;
+        private bool _tileStyleActive = ToolDefaultData.PaintTileActive;
+        private bool _wallStyleActive = ToolDefaultData.PaintWallActive;
+        private TrackMode _trackMode = TrackMode.Track;
 
         private BrickStyle _brickStyle = BrickStyle.Full;
         public BrickStyle BrickStyle
@@ -37,6 +44,12 @@ namespace TEditXna.Editor
             set { Set("BrickStyle", ref _brickStyle, value); }
         }
 
+        public TrackMode TrackMode
+        {
+            get { return _trackMode; }
+            set { Set("TrackMode", ref _trackMode, value); }
+        }
+        
         //private bool _isLava;
         private bool _isEraser;
 
@@ -53,6 +66,85 @@ namespace TEditXna.Editor
             set { Set("LiquidType", ref _liquidType, value);}
         }
 
+        private bool _actuator;
+        public bool Actuator
+        {
+            get { return _actuator; }
+            set { Set("Actuator", ref _actuator, value); }
+        }
+
+        private bool _tilepaintActive;
+        public bool TilePaintActive
+        {
+            get { return _tilepaintActive; }
+            set { Set("TilePaintActive", ref _tilepaintActive, value); }
+        }
+
+        private bool _wallpaintActive;
+        public bool WallPaintActive
+        {
+            get { return _wallpaintActive; }
+            set { Set("WallPaintActive", ref _wallpaintActive, value); }
+        }
+
+
+        private bool _brickStyleActive;
+        public bool BrickStyleActive
+        {
+            get { return _brickStyleActive; }
+            set { Set("BrickStyleActive", ref _brickStyleActive, value); }
+        }
+
+        public bool TileStyleActive
+        {
+            get { return _tileStyleActive; }
+            set { Set("TileStyleActive", ref _tileStyleActive, value); }
+        }
+
+        public bool WallStyleActive
+        {
+            get { return _wallStyleActive; }
+            set { Set("WallStyleActive", ref _wallStyleActive, value); }
+        }
+
+        private bool _extrasActive;
+        public bool ExtrasActive
+        {
+            get { return _extrasActive; }
+            set { Set("ExtrasActive", ref _extrasActive, value); }
+        }
+
+        public bool RedWireActive
+        {
+            get { return _redWireActive; }
+            set { Set("RedWireActive", ref _redWireActive, value); }
+        }
+
+        public bool BlueWireActive
+        {
+            get { return _blueWireActive; }
+            set { Set("BlueWireActive", ref _blueWireActive, value); }
+        }
+
+        public bool GreenWireActive
+        {
+            get { return _greenWireActive; }
+            set { Set("GreenWireActive", ref _greenWireActive, value); }
+        }
+
+        public bool YellowWireActive
+        {
+            get { return _yellowWireActive; }
+            set { Set("YellowWireActive", ref _yellowWireActive, value); }
+        }
+
+        private bool _actuatorInActive;
+        public bool ActuatorInActive
+        {
+            get { return _actuatorInActive; }
+            set { Set("ActuatorInActive", ref _actuatorInActive, value); }
+        }   
+
         public int TileMask
         {
             get { return _tileMask; }
@@ -63,6 +155,20 @@ namespace TEditXna.Editor
         {
             get { return _wallMask; }
             set { Set("WallMask", ref _wallMask, value); }
+        }
+
+        private int _wallColor;
+        public int WallColor
+        {
+            get { return _wallColor; }
+            set { Set("WallColor", ref _wallColor, value); }
+        }
+
+        private int _tileColor;
+        public int TileColor
+        {
+            get { return _tileColor; }
+            set { Set("TileColor", ref _tileColor, value); }
         }
 
         public int Tile
@@ -99,12 +205,12 @@ namespace TEditXna.Editor
         {
             switch (PaintMode)
             {
-                case PaintMode.Tile:
-                    SwapTile();
-                    break;
-                case PaintMode.Wall:
-                    SwapWall();
-                    break;
+//                case PaintMode.Tile:
+//                    SwapTile();
+//                    break;
+//                case PaintMode.Wall:
+//                    SwapWall();
+//                    break;
                 case PaintMode.TileAndWall:
                     if (modifier.HasFlag(ModifierKeys.Shift))
                         SwapWall();

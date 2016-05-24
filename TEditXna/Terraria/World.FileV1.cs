@@ -1,11 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel;
 using System.Windows;
-using BCCL.Utility;
+using TEdit.Utility;
 using TEditXna.Helper;
 using TEditXNA.Terraria.Objects;
-using BCCL.Geometry.Primitives;
-using Vector2 = BCCL.Geometry.Primitives.Vector2;
+using TEdit.Geometry.Primitives;
+using Vector2 = TEdit.Geometry.Primitives.Vector2;
 using System;
 using System.Collections.ObjectModel;
 using System.IO;
@@ -30,20 +30,20 @@ namespace TEditXNA.Terraria
             bw.Write(world.TilesWide);
 
             bw.Write((byte) world.MoonType);
-            bw.Write(world.TreeX[0]);
-            bw.Write(world.TreeX[1]);
-            bw.Write(world.TreeX[2]);
-            bw.Write(world.TreeStyle[0]);
-            bw.Write(world.TreeStyle[1]);
-            bw.Write(world.TreeStyle[2]);
-            bw.Write(world.TreeStyle[3]);
-            bw.Write(world.CaveBackX[0]);
-            bw.Write(world.CaveBackX[1]);
-            bw.Write(world.CaveBackX[2]);
-            bw.Write(world.CaveBackStyle[0]);
-            bw.Write(world.CaveBackStyle[1]);
-            bw.Write(world.CaveBackStyle[2]);
-            bw.Write(world.CaveBackStyle[3]);
+            bw.Write(world.TreeX0);
+            bw.Write(world.TreeX1);
+            bw.Write(world.TreeX2);
+            bw.Write(world.TreeStyle0);
+            bw.Write(world.TreeStyle1);
+            bw.Write(world.TreeStyle2);
+            bw.Write(world.TreeStyle3);
+            bw.Write(world.CaveBackX0);
+            bw.Write(world.CaveBackX1);
+            bw.Write(world.CaveBackX2);
+            bw.Write(world.CaveBackStyle0);
+            bw.Write(world.CaveBackStyle1);
+            bw.Write(world.CaveBackStyle2);
+            bw.Write(world.CaveBackStyle3);
             bw.Write(world.IceBackStyle);
             bw.Write(world.JungleBackStyle);
             bw.Write(world.HellBackStyle);
@@ -112,7 +112,7 @@ namespace TEditXNA.Terraria
             for (int x = 0; x < world.TilesWide; ++x)
             {
                 OnProgressChanged(world,
-                    new ProgressChangedEventArgs(x.ProgressPercentage(world.TilesWide), "Saving Tiles..."));
+                    new ProgressChangedEventArgs(x.ProgressPercentage(world.TilesWide), "Saving UndoTiles..."));
 
                 int rle = 0;
                 for (int y = 0; y < world.TilesHigh; y = y + rle + 1)
@@ -230,7 +230,7 @@ namespace TEditXNA.Terraria
 
         public static void WriteTileDataToStreamV1(Tile curTile, BinaryWriter bw)
         {
-            if (curTile.Type == 127)
+            if (curTile.Type == (int)TileType.IceByRod)
                 curTile.IsActive = false;
 
             bw.Write(curTile.IsActive);
@@ -308,28 +308,28 @@ namespace TEditXNA.Terraria
             if (version >= 63)
                 w.MoonType = reader.ReadByte();
             else
-                w.MoonType = w.Rand.Next(MaxMoons);
+                w.MoonType = (byte)w.Rand.Next(MaxMoons);
 
 
             if (version >= 44)
             {
-                w.TreeX[0] = reader.ReadInt32();
-                w.TreeX[1] = reader.ReadInt32();
-                w.TreeX[2] = reader.ReadInt32();
-                w.TreeStyle[0] = reader.ReadInt32();
-                w.TreeStyle[1] = reader.ReadInt32();
-                w.TreeStyle[2] = reader.ReadInt32();
-                w.TreeStyle[3] = reader.ReadInt32();
+                w.TreeX0 = reader.ReadInt32();
+                w.TreeX1 = reader.ReadInt32();
+                w.TreeX2 = reader.ReadInt32();
+                w.TreeStyle0 = reader.ReadInt32();
+                w.TreeStyle1 = reader.ReadInt32();
+                w.TreeStyle2 = reader.ReadInt32();
+                w.TreeStyle3 = reader.ReadInt32();
             }
             if (version >= 60)
             {
-                w.CaveBackX[0] = reader.ReadInt32();
-                w.CaveBackX[1] = reader.ReadInt32();
-                w.CaveBackX[2] = reader.ReadInt32();
-                w.CaveBackStyle[0] = reader.ReadInt32();
-                w.CaveBackStyle[1] = reader.ReadInt32();
-                w.CaveBackStyle[2] = reader.ReadInt32();
-                w.CaveBackStyle[3] = reader.ReadInt32();
+                w.CaveBackX0 = reader.ReadInt32();
+                w.CaveBackX1 = reader.ReadInt32();
+                w.CaveBackX2 = reader.ReadInt32();
+                w.CaveBackStyle0 = reader.ReadInt32();
+                w.CaveBackStyle1 = reader.ReadInt32();
+                w.CaveBackStyle2 = reader.ReadInt32();
+                w.CaveBackStyle3 = reader.ReadInt32();
                 w.IceBackStyle = reader.ReadInt32();
                 if (version >= 61)
                 {
@@ -342,10 +342,10 @@ namespace TEditXNA.Terraria
                 w.CaveBackX[0] = w.TilesWide/2;
                 w.CaveBackX[1] = w.TilesWide;
                 w.CaveBackX[2] = w.TilesWide;
-                w.CaveBackStyle[0] = 0;
-                w.CaveBackStyle[1] = 1;
-                w.CaveBackStyle[2] = 2;
-                w.CaveBackStyle[3] = 3;
+                w.CaveBackStyle0 = 0;
+                w.CaveBackStyle1 = 1;
+                w.CaveBackStyle2 = 2;
+                w.CaveBackStyle3 = 3;
                 w.IceBackStyle = 0;
                 w.JungleBackStyle = 0;
                 w.HellBackStyle = 0;
@@ -500,7 +500,7 @@ namespace TEditXNA.Terraria
             for (int x = 0; x < w.TilesWide; ++x)
             {
                 OnProgressChanged(null,
-                    new ProgressChangedEventArgs(x.ProgressPercentage(w.TilesWide), "Loading Tiles..."));
+                    new ProgressChangedEventArgs(x.ProgressPercentage(w.TilesWide), "Loading UndoTiles..."));
 
                 for (int y = 0; y < w.TilesHigh; y++)
                 {
@@ -536,18 +536,18 @@ namespace TEditXNA.Terraria
 
             OnProgressChanged(null, new ProgressChangedEventArgs(100, "Loading Chests..."));
             w.Chests.Clear();
-            w.Chests.AddRange(ReadChestDataFromStreamV1(reader, version));
+            ((ObservableCollection<Chest>)w.Chests).AddRange(ReadChestDataFromStreamV1(reader, version));
 
             OnProgressChanged(null, new ProgressChangedEventArgs(100, "Loading Signs..."));
             w.Signs.Clear();
 
             foreach (Sign sign in ReadSignDataFromStreamV1(reader))
             {
-                if (w.Tiles[sign.X, sign.Y].IsActive &&
-                    (w.Tiles[sign.X, sign.Y].Type == 55 || w.Tiles[sign.X, sign.Y].Type == 85))
+                if (w.Tiles[sign.X, sign.Y].IsActive && Tile.IsSign(w.Tiles[sign.X, sign.Y].Type))
+                {
                     w.Signs.Add(sign);
+                }
             }
-
 
             w.NPCs.Clear();
             OnProgressChanged(null, new ProgressChangedEventArgs(100, "Loading NPC Data..."));
@@ -718,7 +718,7 @@ namespace TEditXNA.Terraria
                 tileProperty = TileProperties[tile.Type];
 
 
-                if (tile.Type == 127)
+                if (tile.Type == (int)TileType.IceByRod)
                     tile.IsActive = false;
 
                 if (version < 72 &&
@@ -732,13 +732,13 @@ namespace TEditXNA.Terraria
                     tile.U = -1;
                     tile.V = -1;
                 }
-                else if (version < 28 && tile.Type == 4)
+                else if (version < 28 && tile.Type == (int)(TileType.Torch))
                 {
                     // torches didn't have extra in older versions.
                     tile.U = 0;
                     tile.V = 0;
                 }
-                else if (version < 40 && tile.Type == 19)
+                else if (version < 40 && tile.Type == (int)TileType.Platform)
                 {
                     tile.U = 0;
                     tile.V = 0;
@@ -748,7 +748,7 @@ namespace TEditXNA.Terraria
                     tile.U = b.ReadInt16();
                     tile.V = b.ReadInt16();
 
-                    if (tile.Type == 144) //timer
+                    if (tile.Type == (int)TileType.Timer)
                         tile.V = 0;
                 }
 

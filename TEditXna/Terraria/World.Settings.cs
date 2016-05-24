@@ -7,8 +7,9 @@ using System.IO;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Xml.Linq;
-using BCCL.Geometry.Primitives;
-using BCCL.MvvmLight;
+using TEdit.Geometry.Primitives;
+using GalaSoft.MvvmLight;
+using TEditXna.Editor.Clipboard;
 using XNA = Microsoft.Xna.Framework;
 using TEditXNA.Terraria.Objects;
 
@@ -21,16 +22,23 @@ namespace TEditXNA.Terraria
         private static readonly Dictionary<string, int> _npcIds = new Dictionary<string, int>();
         private static readonly Dictionary<int, int> _npcFrames = new Dictionary<int, int>();
         private static readonly Dictionary<byte, string> _prefix = new Dictionary<byte, string>();
+        private static readonly Dictionary<Key, string> _shortcuts = new Dictionary<Key, string>();
+        private static readonly Dictionary<int, ItemProperty> _itemLookup = new Dictionary<int, ItemProperty>();
+        private static readonly Dictionary<int, string> _tallynames = new Dictionary<int, string>();
+        private static readonly Dictionary<string, string> _frameNames = new Dictionary<string, string>();
+
         private static readonly ObservableCollection<ItemProperty> _itemProperties = new ObservableCollection<ItemProperty>();
+        private static readonly ObservableCollection<ChestProperty> _chestProperties = new ObservableCollection<ChestProperty>();
+        private static readonly ObservableCollection<SignProperty> _signProperties = new ObservableCollection<SignProperty>();
         private static readonly ObservableCollection<TileProperty> _tileProperties = new ObservableCollection<TileProperty>();
         private static readonly ObservableCollection<TileProperty> _tileBricks = new ObservableCollection<TileProperty>();
         private static readonly ObservableCollection<WallProperty> _wallProperties = new ObservableCollection<WallProperty>();
-
+        private static readonly ObservableCollection<PaintProperty> _paintProperties = new ObservableCollection<PaintProperty>();
         private static readonly ObservableCollection<Sprite> _sprites = new ObservableCollection<Sprite>();
-        private static readonly Dictionary<Key, string> _shortcuts = new Dictionary<Key, string>();
-        private static readonly Dictionary<int, ItemProperty> _itemLookup = new Dictionary<int, ItemProperty>();
+
         private static Vector2 _appSize;
         internal static string AltC;
+        internal static int? SteamUserId;
  
         static World()
         {
@@ -39,6 +47,18 @@ namespace TEditXNA.Terraria
             var settingspath = Path.Combine(Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().GetName().CodeBase), "settings.xml");
             LoadObjectDbXml(settingspath);
             Sprites.Add(new Sprite());
+
+            if (TileFrameImportant == null || TileFrameImportant.Length <= 0)
+            {
+                TileFrameImportant = new bool[TileCount];
+                for (int i = 0; i < TileCount; i++)
+                {
+                    if (World.TileProperties.Count > i)
+                    {
+                        TileFrameImportant[i] = World.TileProperties[i].IsFramed;
+                    }
+                }
+            }
         }
 
         private static IEnumerable<TOut> StringToList<TOut>(string xmlcsv)
@@ -138,9 +158,11 @@ namespace TEditXNA.Terraria
                 curTile.IsStone = (bool?)xElement.Attribute("Stone") ?? false; /* Heathtech */
                 curTile.CanBlend = (bool?)xElement.Attribute("Blends") ?? false; /* Heathtech */
                 curTile.MergeWith = (int?)xElement.Attribute("MergeWith") ?? null; /* Heathtech */
+                curTile.HasFrameName = curTile.IsFramed && ((bool?)xElement.Attribute("UseFrameName") ?? false);
+                string frameNamePostfix = (string)xElement.Attribute("FrameNamePostfix") ?? null;
+
                 foreach (var elementFrame in xElement.Elements("Frames").Elements("Frame"))
                 {
-
                     var curFrame = new FrameProperty();
                     // Read XML attributes
                     curFrame.Name = (string)elementFrame.Attribute("Name");
@@ -160,9 +182,30 @@ namespace TEditXNA.Terraria
                                         Name = curFrame.Name + ", " + curFrame.Variety,
                                         Origin = curFrame.UV,
                                         Size = curTile.FrameSize,
-                                        Tile = (byte)curTile.Id,
+                                        Tile = (ushort)curTile.Id, /* SBlogic */
                                         TileName = curTile.Name
                                     });
+                    if (curTile.HasFrameName)
+                    {
+                        string frameName = curFrame.Name;
+                        if (frameNamePostfix != null)
+                            frameName += " (" + frameNamePostfix + ")";
+                        if (curFrame.Variety != null)
+                            frameName += ", " + curFrame.Variety;
+
+                        //  TODO:  There must be a more efficient way than to store each frame...
+                        for (int x = 0, mx = curTile.FrameSize.X; x < mx; x++)
+                        {
+                            for (int y = 0, my = curTile.FrameSize.Y; y < my; y++)
+                            {
+                                string frameNameKey = GetFrameNameKey(curTile.Id, (short)(curFrame.UV.X + (x * 18)), (short)(curFrame.UV.Y + (y * 18)));
+                                if (!FrameNames.ContainsKey(frameNameKey))
+                                    FrameNames.Add(frameNameKey, frameName);
+                                else
+                                    System.Diagnostics.Debug.WriteLine(curFrame.Name + " collided with " + frameNameKey);
+                            }
+                        }
+                    }
                 }
                 if (curTile.Frames.Count == 0 && curTile.IsFramed)
                 {
@@ -185,7 +228,7 @@ namespace TEditXNA.Terraria
                                         Name = curFrame.Name + ", " + curFrame.Variety,
                                         Origin = curFrame.UV,
                                         Size = curTile.FrameSize,
-                                        Tile = (byte)curTile.Id,
+                                        Tile = (ushort)curTile.Id,
                                         TileName = curTile.Name
                                     });
                 }
@@ -215,6 +258,79 @@ namespace TEditXNA.Terraria
                 curItem.Name = (string)xElement.Attribute("Name");
                 ItemProperties.Add(curItem);
                 _itemLookup.Add(curItem.Id, curItem);
+                int tally = (int?)xElement.Attribute("Tally") ?? 0;
+                if (tally > 0)
+                    _tallynames.Add(tally, curItem.Name);
+            }
+
+            foreach (var xElement in xmlSettings.Elements("Paints").Elements("Paint"))
+            {
+                var curPaint = new PaintProperty();
+                curPaint.Id = (int?)xElement.Attribute("Id") ?? -1;
+                curPaint.Name = (string)xElement.Attribute("Name");
+                curPaint.Color = ColorFromString((string)xElement.Attribute("Color"));
+                PaintProperties.Add(curPaint);
+            }
+
+            int chestId = 0;
+            foreach (var tileElement in xmlSettings.Elements("Tiles").Elements("Tile"))
+            {
+                string tileName = (string)tileElement.Attribute("Name");
+                if (tileName == "Chest" || tileName == "Dresser")
+                {
+                    ushort type = (ushort)((int?)tileElement.Attribute("Id") ?? 21);
+                    foreach (var xElement in tileElement.Elements("Frames").Elements("Frame"))
+                    {
+                        var curItem = new ChestProperty();
+                        curItem.Name = (string)xElement.Attribute("Name");
+                        string variety = (string)xElement.Attribute("Variety");
+                        if (variety != null)
+                        {
+                            if (tileName == "Dresser")
+                            {
+                                curItem.Name = variety + " " + "Dresser";
+                            }
+                            else
+                            {
+                                curItem.Name = curItem.Name + " " + variety;
+                            }
+                        }
+                        curItem.ChestId = chestId++;
+                        curItem.UV = StringToVector2Short((string)xElement.Attribute("UV"), 0, 0);
+                        curItem.TileType = type;
+                        ChestProperties.Add(curItem);
+                    }
+                }
+            }
+
+            int signId = 0;
+            foreach (var tileElement in xmlSettings.Elements("Tiles").Elements("Tile"))
+            {
+                string tileName = (string)tileElement.Attribute("Name");
+                if (tileName == "Sign" || tileName == "Grave Marker" ||  tileName == "Announcement Box")
+                {
+                    ushort type = (ushort)((int?)tileElement.Attribute("Id") ?? 55);
+                    foreach (var xElement in tileElement.Elements("Frames").Elements("Frame"))
+                    {
+                        var curItem = new SignProperty();
+                        string variety = (string)xElement.Attribute("Variety");
+                        if (variety != null)
+                        {
+                            if (tileName == "Sign")
+                            {
+                                curItem.Name = "Sign " + variety;
+                            }
+                            else
+                            {
+                                curItem.Name = variety;
+                            }
+                        }
+                        curItem.SignId = signId++;
+                        curItem.UV = StringToVector2Short((string)xElement.Attribute("UV"), 0, 0);
+                        curItem.TileType = type;
+                        SignProperties.Add(curItem);
+                    }
+                }
             }
 
             foreach (var xElement in xmlSettings.Elements("Npcs").Elements("Npc"))
@@ -244,11 +360,15 @@ namespace TEditXNA.Terraria
             XElement appSettings = xmlSettings.Element("App");
             int appWidth = (int?)appSettings.Attribute("Width") ?? 800;
             int appHeight = (int?)appSettings.Attribute("Height") ?? 600;
+            int clipboardSize = (int)XNA.MathHelper.Clamp((int?)appSettings.Attribute("ClipboardRenderSize") ?? 512, 64, 4096);
+
             _appSize = new Vector2(appWidth, appHeight);
+            ClipboardBuffer.ClipboardRenderSize = clipboardSize;
 
             ToolDefaultData.LoadSettings(xmlSettings.Elements("Tools"));
 
             AltC = (string)xmlSettings.Element("AltC");
+            SteamUserId = (int?)xmlSettings.Element("SteamUserId") ?? null;
         }
 
         public static TileProperty GetBrickFromColor(byte a, byte r, byte g, byte b)
@@ -342,9 +462,24 @@ namespace TEditXNA.Terraria
             get { return _wallProperties; }
         }
 
+        public static ObservableCollection<PaintProperty> PaintProperties
+        {
+            get { return _paintProperties; }
+        }
+
         public static ObservableCollection<ItemProperty> ItemProperties
         {
             get { return _itemProperties; }
+        }
+
+        public static ObservableCollection<ChestProperty> ChestProperties
+        {
+            get { return _chestProperties; }
+        }
+
+        public static ObservableCollection<SignProperty> SignProperties
+        {
+            get { return _signProperties; }
         }
 
         public static Dictionary<int, ItemProperty> ItemLookupTable
@@ -357,9 +492,24 @@ namespace TEditXNA.Terraria
             get { return _sprites; }
         }
 
+        public static Dictionary<int, string> TallyNames
+        {
+            get { return _tallynames;  }
+        }
+
+        public static Dictionary<string, string> FrameNames
+        {
+            get { return _frameNames; }
+        }
+
         internal static Vector2 AppSize
         {
             get { return _appSize; }
+        }
+
+        public static string GetFrameNameKey(int id, short u, short v)
+        {
+            return id + ":" + u + "," + v;
         }
     }
 }

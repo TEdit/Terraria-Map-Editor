@@ -2,7 +2,9 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:bccl="http://bccl/wpf" mc:Ignorable="d" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:xnaContentHost="clr-namespace:TEdit.UI.Xaml.XnaContentHost"
+             mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid>
         <Grid.ColumnDefinitions>
@@ -15,7 +17,7 @@
         </Grid.RowDefinitions>
         <ScrollBar x:Name="ScrollBarV" Orientation="Vertical" Grid.Column="2" Scroll="ScrollBar_Scroll" />
         <ScrollBar x:Name="ScrollBarH" Orientation="Horizontal" Grid.Row="2"  Scroll="ScrollBar_Scroll" />
-      <bccl:GraphicsDeviceControl x:Name="xnaViewport" 
+      <xnaContentHost:GraphicsDeviceControl x:Name="xnaViewport" 
                                     LoadContent="xnaViewport_LoadContent" 
                                     RenderXna="xnaViewport_RenderXna" 
                                     HwndMouseMove="xnaViewport_HwndMouseMove" 

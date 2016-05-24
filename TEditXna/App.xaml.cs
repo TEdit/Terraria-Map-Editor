@@ -7,7 +7,8 @@ using System.Linq;
 using System.Reflection;
 using System.Threading;
 using System.Windows;
-using BCCL.MvvmLight.Threading;
+using TEdit.MvvmLight.Threading;
+using DispatcherHelper = GalaSoft.MvvmLight.Threading.DispatcherHelper;
 
 namespace TEditXna
 {
@@ -18,7 +19,7 @@ namespace TEditXna
     {
         static App()
         {
-            BCCL.MvvmLight.Threading.DispatcherHelper.Initialize();
+            GalaSoft.MvvmLight.Threading.DispatcherHelper.Initialize();
         }
 
         public static FileVersionInfo Version { get; set; }
@@ -26,42 +27,55 @@ namespace TEditXna
         protected override void OnStartup(StartupEventArgs e)
         {
             ErrorLogging.Initialize();
-            ErrorLogging.Log(string.Format("Starting TEdit {0}",ErrorLogging.Version));
-            ErrorLogging.Log(string.Format("OS: {0}",Environment.OSVersion));
+            ErrorLogging.Log(string.Format("Starting TEdit {0}", ErrorLogging.Version));
+            ErrorLogging.Log(string.Format("OS: {0}", Environment.OSVersion));
 
             Assembly asm = Assembly.GetExecutingAssembly();
             Version = FileVersionInfo.GetVersionInfo(asm.Location);
 
-            if (!DependencyChecker.VerifyDotNet())
+            try
             {
-                MessageBox.Show("Please install .Net 4.0", "Missing .Net", MessageBoxButton.OK, MessageBoxImage.Stop);
-                ErrorLogging.LogException(new ApplicationException("MISSING .NET"));
-                Shutdown();
+                int directxMajorVersion = DependencyChecker.GetDirectxMajorVersion();
+                if (directxMajorVersion < 11)
+                {
+                    ErrorLogging.Log(string.Format("DirectX {0} unsupported. DirectX 11 or higher is required.", directxMajorVersion));
+                }
             }
-            else
+            catch (Exception ex)
             {
-                ErrorLogging.Log(".Net >= 4.0");
-            }
-
-            if (!DependencyChecker.VerifyXna())
-            {
-                MessageBox.Show("Please install XNA Framework 4.0", "Missing XNA", MessageBoxButton.OK, MessageBoxImage.Stop);
-                ErrorLogging.LogException(new ApplicationException("MISSING XNA"));
-                Shutdown();
-            }
-            else
-            {
-                ErrorLogging.Log("XNA 4.0");
+                ErrorLogging.Log("Failed to verify DirectX Version. TEdit may not run properly.");
+                ErrorLogging.LogException(ex);
             }
 
-            if (!DependencyChecker.VerifyTerraria())
+            try
             {
-                ErrorLogging.Log("Unable to locate Terraria. No texture data will be available.");
+                DependencyChecker.CheckPaths();
             }
-            else
+            catch (Exception ex)
             {
-                ErrorLogging.Log(string.Format("Terraria Data Path: {0}", DependencyChecker.PathToContent));
+                ErrorLogging.Log("Failed to verify Terraria Paths. TEdit may not run properly.");
+                ErrorLogging.LogException(ex);
             }
+
+
+            try
+            {
+
+                if (!DependencyChecker.VerifyTerraria())
+                {
+                    ErrorLogging.Log("Unable to locate Terraria. No texture data will be available.");
+                }
+                else
+                {
+                    ErrorLogging.Log(string.Format("Terraria Data Path: {0}", DependencyChecker.PathToContent));
+                }
+            }
+            catch (Exception ex)
+            {
+                ErrorLogging.Log("Failed to verify Terraria Paths. No texture data will be available.");
+                ErrorLogging.LogException(ex);
+            }
+
 
             if (e.Args != null && e.Args.Count() > 0)
             {
@@ -93,7 +107,7 @@ namespace TEditXna
             }
 
             DispatcherHelper.Initialize();
-            BCCL.MvvmLight.Threading.TaskFactoryHelper.Initialize();
+            TaskFactoryHelper.Initialize();
             AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
             base.OnStartup(e);
         }

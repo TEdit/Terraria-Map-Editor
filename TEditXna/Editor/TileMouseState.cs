@@ -1,6 +1,6 @@
 ﻿using System.Windows.Input;
-using BCCL.Geometry.Primitives;
-using BCCL.UI.Xaml.XnaContentHost;
+using TEdit.Geometry.Primitives;
+using TEdit.UI.Xaml.XnaContentHost;
 
 namespace TEditXna.Editor
 {

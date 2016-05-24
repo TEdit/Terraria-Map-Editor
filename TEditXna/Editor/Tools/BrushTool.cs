@@ -4,8 +4,8 @@ using System.Linq;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using BCCL.Geometry;
-using BCCL.Geometry.Primitives;
+using TEdit.Geometry;
+using TEdit.Geometry.Primitives;
 using TEditXna.ViewModel;
 using TEditXna.Terraria.Objects;
 
@@ -16,6 +16,7 @@ namespace TEditXna.Editor.Tools
         private bool _isLeftDown;
         private bool _isRightDown;
         private Vector2Int32 _startPoint;
+        private Vector2Int32 _endPoint;
 
         public BrushTool(WorldViewModel worldViewModel)
             : base(worldViewModel)
@@ -70,6 +71,7 @@ namespace TEditXna.Editor.Tools
         private void CheckDirectionandDraw(Vector2Int32 tile)
         {
             Vector2Int32 p = tile;
+            Vector2Int32 p2 = tile;
             if (_isRightDown)
             {
                 if (_isLeftDown)
@@ -82,14 +84,38 @@ namespace TEditXna.Editor.Tools
             }
             else if (_isLeftDown)
             {
-                DrawLine(p);
-                _startPoint = p;
+                if ((Keyboard.IsKeyUp(Key.LeftShift)) && (Keyboard.IsKeyUp(Key.RightShift)))
+                {
+                    DrawLine(p);
+                    _startPoint = p;
+                    _endPoint = p;
+                }
+                else if ((Keyboard.IsKeyDown(Key.LeftShift)) || (Keyboard.IsKeyDown(Key.RightShift)))
+                {
+                    DrawLineP2P(p2);
+                    _endPoint = p2;
+                }
             }
         }
 
         private void DrawLine(Vector2Int32 to)
         {
             foreach (Vector2Int32 point in Shape.DrawLineTool(_startPoint, to))
+            {
+                if (_wvm.Brush.Shape == BrushShape.Square || _wvm.Brush.Height <= 1 || _wvm.Brush.Width <= 1)
+                {
+                    FillRectangle(point);
+                }
+                else if (_wvm.Brush.Shape == BrushShape.Round)
+                {
+                    FillRound(point);
+                }
+            }
+        }
+
+        private void DrawLineP2P(Vector2Int32 endPoint)
+        {
+            foreach (Vector2Int32 point in Shape.DrawLineTool(_startPoint, _endPoint))
             {
                 if (_wvm.Brush.Shape == BrushShape.Square || _wvm.Brush.Height <= 1 || _wvm.Brush.Width <= 1)
                 {
@@ -140,7 +166,11 @@ namespace TEditXna.Editor.Tools
         {
             foreach (Vector2Int32 pixel in area)
             {
-                if (!_wvm.CurrentWorld.ValidTileLocation(pixel)) continue;
+                bool test1 = _wvm.CurrentWorld.ValidTileLocation(pixel);
+                bool test2 = _wvm.CurrentWorld.ValidTileLocation(pixel.X, pixel.Y);
+                bool test3 = _wvm.CurrentWorld.ValidTileLocation(pixel.X, pixel.Y);
+
+                if (!test1 && !test2 && !test3) continue;
 
                 int index = pixel.X + pixel.Y * _wvm.CurrentWorld.TilesWide;
                 if (!_wvm.CheckTiles[index])
@@ -163,7 +193,7 @@ namespace TEditXna.Editor.Tools
             IEnumerable<Vector2Int32> border = area.Except(interrior);
 
             // Draw the border
-            if (_wvm.TilePicker.PaintMode == PaintMode.Tile || _wvm.TilePicker.PaintMode == PaintMode.TileAndWall)
+            if (_wvm.TilePicker.TileStyleActive)
             {
                 foreach (Vector2Int32 pixel in border)
                 {
@@ -177,7 +207,7 @@ namespace TEditXna.Editor.Tools
                         if (_wvm.Selection.IsValid(pixel))
                         {
                             _wvm.UndoManager.SaveTile(pixel);
-                            _wvm.SetPixel(pixel.X, pixel.Y, mode: PaintMode.Tile);
+                            _wvm.SetPixel(pixel.X, pixel.Y, mode: PaintMode.TileAndWall);
 
                             /* Heathtech */
                             BlendRules.ResetUVCache(_wvm, pixel.X, pixel.Y, 1, 1);
@@ -196,9 +226,9 @@ namespace TEditXna.Editor.Tools
                     _wvm.UndoManager.SaveTile(pixel);
                     _wvm.SetPixel(pixel.X, pixel.Y, erase: true);
 
-                    if (_wvm.TilePicker.PaintMode == PaintMode.Wall || _wvm.TilePicker.PaintMode == PaintMode.TileAndWall)
+                    if (_wvm.TilePicker.WallStyleActive)
                     {
-                        _wvm.SetPixel(pixel.X, pixel.Y, mode: PaintMode.Wall);
+                        _wvm.SetPixel(pixel.X, pixel.Y, mode: PaintMode.TileAndWall);
                     }
 
                     /* Heathtech */

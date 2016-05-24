@@ -13,10 +13,10 @@ using System.Windows.Data;
 using System.Windows.Input;
 using System.Windows.Media.Imaging;
 using System.Windows.Threading;
-using BCCL.MvvmLight;
-using BCCL.MvvmLight.Command;
-using BCCL.MvvmLight.Threading;
-using BCCL.Utility;
+using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.Command;
+using TEdit.MvvmLight.Threading;
+using TEdit.Utility;
 using Microsoft.Win32;
 using TEditXna.Editor;
 using TEditXna.Editor.Clipboard;
@@ -28,6 +28,7 @@ using TEditXna.Render;
 using TEditXNA.Terraria;
 using TEditXNA.Terraria.Objects;
 using TEditXna.View.Popups;
+using DispatcherHelper = GalaSoft.MvvmLight.Threading.DispatcherHelper;
 
 namespace TEditXna.ViewModel
 {
@@ -67,7 +68,11 @@ namespace TEditXna.ViewModel
         private bool _showTextures = true;
         private bool _showTiles = true;
         private bool _showWalls = true;
-        private bool _showWires = true;
+        private bool _showActuators = true;
+        private bool _showRedWires = true;
+        private bool _showBlueWires = true;
+        private bool _showGreenWires = true;
+        private bool _showYellowWires = true;
         private string _spriteFilter;
         private ListCollectionView _spritesView;
         private ICommand _viewLogCommand;
@@ -114,6 +119,15 @@ namespace TEditXna.ViewModel
                 if (string.IsNullOrWhiteSpace(_spriteFilter)) return true;
 
                 var sprite = (Sprite)o;
+                
+                string [] _spriteFilterSplit = _spriteFilter.Split('/');
+                foreach (string _spriteWord in _spriteFilterSplit)
+                {
+                    if (sprite.TileName == _spriteWord) return true;
+                    if (sprite.Name == _spriteWord) return true;
+                    if (sprite.TileName != null && sprite.TileName.IndexOf(_spriteWord, StringComparison.OrdinalIgnoreCase) >= 0) return true;
+                    if (sprite.Name != null && sprite.Name.IndexOf(_spriteWord, StringComparison.OrdinalIgnoreCase) >= 0) return true;
+                }
 
                 if (sprite.TileName == _spriteFilter) return true;
                 if (sprite.Name == _spriteFilter) return true;
@@ -167,8 +181,33 @@ namespace TEditXna.ViewModel
 
         public ICommand LaunchWikiCommand
         {
-            get { return _launchWikiCommand ?? (_launchWikiCommand = new RelayCommand(() => Process.Start("http://github.com/BinaryConstruct/Terraria-Map-Editor/wiki"))); }
+            get { return _launchWikiCommand ?? (_launchWikiCommand = new RelayCommand(() => LaunchUrl("http://github.com/BinaryConstruct/Terraria-Map-Editor/wiki"))); }
         }
+
+        /* SBLogic - catch exception if browser can't be launched */
+        private void LaunchUrl(string url)
+        {
+            System.Windows.Forms.DialogResult result = System.Windows.Forms.DialogResult.None;
+            try
+            {
+                Process.Start(url);
+            }
+            catch
+            {
+                result = System.Windows.Forms.MessageBox.Show("Unable to open external browser.  Copy to clipboard?", "Link Error", System.Windows.Forms.MessageBoxButtons.YesNo, System.Windows.Forms.MessageBoxIcon.Exclamation);
+            }
+
+            // Just in case
+            try
+            {
+                if (result == System.Windows.Forms.DialogResult.Yes)
+                {
+                    System.Windows.Clipboard.SetText(url);
+                }
+            }
+            catch { } 
+        }
+
 
         public static string TempPath
         {
@@ -335,12 +374,52 @@ namespace TEditXna.ViewModel
             set { Set("PixelMap", ref _pixelMap, value); }
         }
 
-        public bool ShowWires
+        public bool ShowRedWires
         {
-            get { return _showWires; }
+            get { return _showRedWires; }
             set
             {
-                Set("ShowWires", ref _showWires, value);
+                Set("ShowRedWires", ref _showRedWires, value);
+                UpdateRenderWorld();
+            }
+        }
+
+        public bool ShowBlueWires
+        {
+            get { return _showBlueWires; }
+            set
+            {
+                Set("ShowBlueWires", ref _showBlueWires, value);
+                UpdateRenderWorld();
+            }
+        }
+
+        public bool ShowGreenWires
+        {
+            get { return _showGreenWires; }
+            set
+            {
+                Set("ShowGreenWires", ref _showGreenWires, value);
+                UpdateRenderWorld();
+            }
+        }
+
+        public bool ShowYellowWires
+        {
+            get { return _showYellowWires; }
+            set
+            {
+                Set("ShowYellowWires", ref _showYellowWires, value);
+                UpdateRenderWorld();
+            }
+        }
+
+        public bool ShowActuators
+        {
+            get { return _showActuators; }
+            set
+            {
+                Set("ShowActuators", ref _showActuators, value);
                 UpdateRenderWorld();
             }
         }
@@ -450,19 +529,22 @@ namespace TEditXna.ViewModel
 
                         string[] split = verstrimmed[1].Split('.');
 
-                        if (split.Length != 3) return null;
+                        if (split.Length < 3) return null; // SBLogic -- accept revision part if present
 
                         int major;
                         int minor;
                         int build;
+                        int revis = -1;
 
                         if (!int.TryParse(split[0], out major)) return null;
                         if (!int.TryParse(split[1], out minor)) return null;
                         if (!int.TryParse(split[2], out build)) return null;
+                        if ((split.Length == 4) && (split[3].Length > 0) && (!int.TryParse(split[3], out revis))) return null;
 
                         if (major > App.Version.ProductMajorPart) return true;
                         if (minor > App.Version.ProductMinorPart) return true;
                         if (build > App.Version.ProductBuildPart) return true;
+                        if ((revis != -1) && (revis > App.Version.ProductPrivatePart)) return true;
                     }
                 }
                 catch (Exception)
@@ -482,7 +564,12 @@ namespace TEditXna.ViewModel
                 {
                     if (MessageBox.Show("You are using an outdated version of TEdit. Do you wish to download the update?", "Update?", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
                     {
-                        Process.Start("http://www.binaryconstruct.com/games/tedit");
+                        try
+                        {
+                            Process.Start("http://www.binaryconstruct.com/downloads/");
+                        }
+                        catch { }
+                        
                     }
                 }
                 else
@@ -492,6 +579,99 @@ namespace TEditXna.ViewModel
                 }
 
             }, TaskFactoryHelper.UiTaskScheduler);
+        }
+
+        private ICommand _analyzeWorldCommand;
+        private ICommand _analyzeWorldSaveCommand;
+        private ICommand _tallyCountCommand;
+        private ICommand _tallyCountSaveCommand;
+         
+
+        /// <summary>
+        /// Relay command to execute AnalyzeWorldSave.
+        /// </summary>
+        public ICommand AnalyzeWorldSaveCommand
+        {
+            get { return _analyzeWorldSaveCommand ?? (_analyzeWorldSaveCommand = new RelayCommand(AnalyzeWorldSave)); }
+        }
+
+        private void AnalyzeWorldSave()
+        {
+            if (this.CurrentWorld == null) return;
+            var sfd = new SaveFileDialog();
+            sfd.DefaultExt = "Text File|*.txt";
+            sfd.Filter = "Text Files|*.txt";
+            sfd.FileName = this.CurrentWorld.Title + " Analysis.txt";
+            sfd.Title = "Save world analysis.";
+            sfd.OverwritePrompt = true;
+            if (sfd.ShowDialog() == true)
+            {
+                TEditXNA.Terraria.WorldAnalysis.AnalyzeWorld(this.CurrentWorld, sfd.FileName);
+               
+            }
+        }
+
+        public ICommand TallyCountSaveCommand
+        {
+            get { return _tallyCountSaveCommand ?? (_tallyCountSaveCommand = new RelayCommand(TallyCountSave)); }
+        }
+
+        private void TallyCountSave()
+        {
+            if (this.CurrentWorld == null) return;
+            var sfd = new SaveFileDialog();
+            sfd.DefaultExt = "Text File|*.txt";
+            sfd.Filter = "Text Files|*.txt";
+            sfd.FileName = this.CurrentWorld.Title + " Tally.txt";
+            sfd.Title = "Save world analysis.";
+            sfd.OverwritePrompt = true;
+            if (sfd.ShowDialog() == true)
+            {
+                TEditXNA.Terraria.KillTally.SaveTally(this.CurrentWorld, sfd.FileName);
+
+            }
+        }
+
+        /// <summary>
+        /// Relay command to execute AnalizeWorld.
+        /// </summary>
+        public ICommand AnalyzeWorldCommand
+        {
+            get { return _analyzeWorldCommand ?? (_analyzeWorldCommand = new RelayCommand(AnalyzeWorld)); }
+        }
+
+        private void AnalyzeWorld()
+        {
+            WorldAnalysis = TEditXNA.Terraria.WorldAnalysis.AnalyzeWorld(this.CurrentWorld);
+        }
+
+        private string _worldAnalysis;
+
+
+        public string WorldAnalysis
+        {
+            get { return _worldAnalysis; }
+            set { Set("WorldAnalysis", ref _worldAnalysis, value); }
+        }
+
+        /* SBLogic - Relay command to execute KillTally */
+
+        public ICommand LoadTallyCommand
+        {
+            get { return _tallyCountCommand ?? (_tallyCountCommand = new RelayCommand(GetTallyCount)); }
+        }
+
+        private void GetTallyCount()
+        {
+            TallyCount = TEditXNA.Terraria.KillTally.LoadTally(this.CurrentWorld);
+        }
+
+        private string _tallyCount;
+
+        public string TallyCount
+        {
+            get { return _tallyCount; }
+            set { Set("TallyCount", ref _tallyCount, value); }
         }
 
         public event EventHandler PreviewChanged;
@@ -568,7 +748,7 @@ namespace TEditXna.ViewModel
             ofd.Filter = "Terraria World File|*.wld|Terraria World Backup|*.bak|TEdit Backup File|*.TEdit";
             ofd.DefaultExt = "Terraria World File|*.wld";
             ofd.Title = "Load Terraria World File";
-            ofd.InitialDirectory = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), @"My Games\Terraria\Worlds");
+            ofd.InitialDirectory = DependencyChecker.PathToWorlds;
             ofd.Multiselect = false;
             if ((bool)ofd.ShowDialog())
             {
@@ -654,7 +834,7 @@ namespace TEditXna.ViewModel
             var sfd = new SaveFileDialog();
             sfd.Filter = "Terraria World File|*.wld|TEdit Backup File|*.TEdit";
             sfd.Title = "Save World As";
-            sfd.InitialDirectory = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), @"My Games\Terraria\Worlds");
+            sfd.InitialDirectory = DependencyChecker.PathToWorlds;
             if ((bool)sfd.ShowDialog())
             {
                 CurrentFile = sfd.FileName;

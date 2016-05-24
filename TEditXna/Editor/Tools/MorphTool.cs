@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using BCCL.Geometry;
-using BCCL.Geometry.Primitives;
+using TEdit.Geometry;
+using TEdit.Geometry.Primitives;
 using TEditXna.ViewModel;
 using System.Linq;
 using TEditXna.Terraria.Objects;
@@ -17,288 +17,36 @@ namespace TEditXna.Editor.Tools
         private bool _isLeftDown;
         private bool _isRightDown;
         private Vector2Int32 _startPoint;
+        private Vector2Int32 _endPoint;
         private int _dirtLayer;
         private int _rockLayer;
-        private List<BiomeData> Biomes = new List<BiomeData>();
-        private BiomeData _currentBiome;
+        private int _morphtype;
+        private int[] _wallGrass = {63, 64, 65, 66, 67, 68, 69, 70, 81};
+        private int[] _wallStone = {1, 3, 83, 28};
+        private int[] _wallHardenedSand = {216, 217, 218, 219};
+        private int[] _wallSandstone = {187, 220, 221, 222};
+        private int[] _tileStone = {1, 25, 203, 117};
+        private int[] _tileGrass = {2, 23, 199, 109};
+        private int[] _tileIce = {161, 163, 200, 164};
+        private int[] _tileSand = {53, 112, 234, 116};
+        private int[] _tileHardenedSand = {397, 398, 399, 402};
+        private int[] _tileSandstone = {396, 400, 401, 403};
+        private int[] _tileMoss = {182, 180, 179, 381, 183, 181};
+        private int[] _tileGrassSprite = {3, 23, 201, 110};
 
         public MorphTool(WorldViewModel worldViewModel)
             : base(worldViewModel)
         {
-            CreateTileLookup();
             Icon = new BitmapImage(new Uri(@"pack://application:,,,/TEditXna;component/Images/Tools/paintbrush.png"));
             Name = "Morph";
             ToolType = ToolType.Brush;
-        }
-
-        private void CreateTileLookup()
-        {
-            Biomes.Add(new BiomeData
-            {
-                Biome = MorphBiome.Grass,
-                Dirt = 0,
-                Stone = 1,
-                Grass = 2,
-                Plant = 73,
-                Tree = 5,
-                Sand = 53,
-                Silt = 40,
-                Wall = 2,
-                Vines = 52,
-                DirtToSand = false,
-                DirtToStone = false,
-                SandToDirt = true,
-                StoneToDirt = false,
-            });
-
-            Biomes.Add(new BiomeData
-            {
-                Biome = MorphBiome.Underground,
-                Dirt = 0,
-                Stone = 1,
-                Grass = 2,
-                Plant = 73,
-                Tree = 5,
-                Sand = 53,
-                Silt = 123,
-                Wall = 0,
-                Vines = 52,
-                DirtToSand = false,
-                DirtToStone = true,
-                SandToDirt = true,
-                StoneToDirt = false,
-            });
-
-            Biomes.Add(new BiomeData
-            {
-                Biome = MorphBiome.Jungle,
-                Dirt = 59,
-                Stone = 1,
-                Grass = 60,
-                Plant = 61,
-                Tree = 5,
-                Sand = 53,
-                Silt = 123,
-                Wall = 15,
-                Vines = 62,
-                DirtToSand = false,
-                DirtToStone = false,
-                SandToDirt = true,
-                StoneToDirt = false,
-            });
-
-            Biomes.Add(new BiomeData
-            {
-                Biome = MorphBiome.Underground_Jungle,
-                Dirt = 59,
-                Stone = 1,
-                Grass = 60,
-                Plant = 61,
-                Tree = 5,
-                Sand = 53,
-                Silt = 123,
-                Wall = 15,
-                Vines = 62,
-                DirtToSand = false,
-                DirtToStone = false,
-                SandToDirt = true,
-                StoneToDirt = true,
-            });
-
-            Biomes.Add(new BiomeData
-            {
-                Biome = MorphBiome.Corruption,
-                Dirt = 0,
-                Stone = 25,
-                Grass = 23,
-                Plant = 24,
-                Tree = 5,
-                Sand = 112,
-                Silt = 123,
-                Wall = 3,
-                Vines = 32,
-                DirtToSand = false,
-                DirtToStone = false,
-                SandToDirt = true,
-                StoneToDirt = false,
-            });
-
-            Biomes.Add(new BiomeData
-            {
-                Biome = MorphBiome.Hallowed,
-                Dirt = 0,
-                Stone = 117,
-                Grass = 109,
-                Plant = 110,
-                Tree = 5,
-                Sand = 116,
-                Silt = 123,
-                Wall = 28,
-                Vines = 52,
-                DirtToSand = false,
-                DirtToStone = false,
-                SandToDirt = true,
-                StoneToDirt = false,
-            });
-
-            Biomes.Add(new BiomeData
-            {
-                Biome = MorphBiome.Crimson,
-                Dirt = 0,
-                Stone = 203,
-                Grass = 199,
-                Plant = 201,
-                Tree = 5,
-                Sand = 112,
-                Silt = 123,
-                Wall = 83,
-                Vines = 32,
-                DirtToSand = false,
-                DirtToStone = false,
-                SandToDirt = true,
-                StoneToDirt = false,
-            });
-
-            Biomes.Add(new BiomeData
-            {
-                Biome = MorphBiome.Snow,
-                Dirt = 147,
-                Stone = 161,
-                Grass = 147,
-                Plant = 3,
-                Tree = 5,
-                Sand = 147,
-                Silt = 224,
-                Wall = 40,
-                Vines = 52,
-                DirtToSand = false,
-                DirtToStone = false,
-                SandToDirt = true,
-                StoneToDirt = false,
-            });
-
-            Biomes.Add(new BiomeData
-            {
-                Biome = MorphBiome.Ice,
-                Dirt = 147,
-                Stone = 161,
-                Grass = 147,
-                Plant = 185,
-                Tree = 5,
-                Sand = 147,
-                Silt = 224,
-                Wall = 71,
-                Vines = 165,
-                DirtToSand = false,
-                DirtToStone = false,
-                SandToDirt = true,
-                StoneToDirt = false,
-            });
-
-            Biomes.Add(new BiomeData
-            {
-                Biome = MorphBiome.Desert,
-                Dirt = 0,
-                Stone = 1,
-                Grass = 53,
-                Plant = 83,
-                Tree = 80,
-                Sand = 53,
-                Wall = 0,
-                Vines = 52,
-                DirtToSand = true,
-                DirtToStone = false,
-                SandToDirt = false,
-                StoneToDirt = false,
-            });
-
-            Biomes.Add(new BiomeData
-            {
-                Biome = MorphBiome.Corrupt_Desert,
-                Dirt = 112,
-                Stone = 25,
-                Grass = 112,
-                Plant = 3,
-                Tree = 80,
-                Sand = 112,
-                Wall = 3,
-                Vines = 32,
-                DirtToSand = true,
-                DirtToStone = false,
-                SandToDirt = false,
-                StoneToDirt = false,
-            });
-            Biomes.Add(new BiomeData
-            {
-                Biome = MorphBiome.Hallowed_Desert,
-                Dirt = 0,
-                Stone = 117,
-                Grass = 109,
-                Plant = 3,
-                Tree = 80,
-                Sand = 116,
-                Wall = 28,
-                Vines = 52,
-                DirtToSand = true,
-                DirtToStone = false,
-                SandToDirt = false,
-                StoneToDirt = false,
-            });
-            Biomes.Add(new BiomeData
-            {
-                Biome = MorphBiome.Crimson_Desert,
-                Dirt = 0,
-                Stone = 203,
-                Grass = 109,
-                Plant = 201,
-                Tree = 80,
-                Sand = 234,
-                Wall = 83,
-                Vines = 52,
-                DirtToSand = true,
-                DirtToStone = false,
-                SandToDirt = false,
-                StoneToDirt = false,
-            });
-            Biomes.Add(new BiomeData
-            {
-                Biome = MorphBiome.Hell,
-                Dirt = 0,
-                Stone = 57,
-                Grass = 0,
-                Plant = 82,
-                Tree = 0,
-                Sand = 57,
-                Wall = 0,
-                Vines = 0,
-                DirtToSand = false,
-                DirtToStone = true,
-                SandToDirt = false,
-                StoneToDirt = false,
-            });
-            Biomes.Add(new BiomeData
-            {
-                Biome = MorphBiome.Mushroom,
-                Dirt = 59,
-                Stone = 1,
-                Grass = 70,
-                Plant = 71,
-                Tree = 72,
-                Sand = 57,
-                Wall = 0,
-                Vines = 51,
-                DirtToSand = false,
-                DirtToStone = false,
-                SandToDirt = true,
-                StoneToDirt = true,
-            });
         }
 
         public override void MouseDown(TileMouseState e)
         {
             if (!_isRightDown && !_isLeftDown)
             {
-                _currentBiome = Biomes.FirstOrDefault(b=>b.Biome== _wvm.MorphBiomeTarget);
+                _morphtype = (int)_wvm.MorphBiomeTarget;
                 _startPoint = e.Location;
                 _dirtLayer = (int)_wvm.CurrentWorld.GroundLevel;
                 _rockLayer = (int)_wvm.CurrentWorld.RockLevel;
@@ -341,9 +89,8 @@ namespace TEditXna.Editor.Tools
 
         private void CheckDirectionandDraw(Vector2Int32 tile)
         {
-            if (_currentBiome != null)
-            {
                 Vector2Int32 p = tile;
+                Vector2Int32 p2 = tile;
                 if (_isRightDown)
                 {
                     if (_isLeftDown)
@@ -356,16 +103,42 @@ namespace TEditXna.Editor.Tools
                 }
                 else if (_isLeftDown)
                 {
-                    DrawLine(p);
-                    _startPoint = p;
+                    if ((Keyboard.IsKeyUp(Key.LeftShift)) && (Keyboard.IsKeyUp(Key.RightShift)))
+                    {
+                        DrawLine(p);
+                        _startPoint = p;
+                        _endPoint = p;
+                    }
+                    else if ((Keyboard.IsKeyDown(Key.LeftShift)) || (Keyboard.IsKeyDown(Key.RightShift)))
+                    {
+                        DrawLineP2P(p2);
+                        _endPoint = p2;
+                    }
                 }
-            }
         }
 
         private void DrawLine(Vector2Int32 to)
         {
             IEnumerable<Vector2Int32> area;
             foreach (Vector2Int32 point in Shape.DrawLineTool(_startPoint, to))
+            {
+                if (_wvm.Brush.Shape == BrushShape.Round)
+                {
+                    area = Fill.FillEllipseCentered(point, new Vector2Int32(_wvm.Brush.Width / 2, _wvm.Brush.Height / 2));
+                    FillSolid(area);
+                }
+                else if (_wvm.Brush.Shape == BrushShape.Square)
+                {
+                    area = Fill.FillRectangleCentered(point, new Vector2Int32(_wvm.Brush.Width, _wvm.Brush.Height));
+                    FillSolid(area);
+                }
+            }
+        }
+
+        private void DrawLineP2P(Vector2Int32 endPoint)
+        {
+            IEnumerable<Vector2Int32> area;
+            foreach (Vector2Int32 point in Shape.DrawLineTool(_startPoint, _endPoint))
             {
                 if (_wvm.Brush.Shape == BrushShape.Round)
                 {
@@ -406,70 +179,156 @@ namespace TEditXna.Editor.Tools
         private void MorphTile(Vector2Int32 p)
         {
             var curtile = _wvm.CurrentWorld.Tiles[p.X, p.Y];
-
-            if (curtile.IsActive)
+            
+            if (_wallGrass.Contains(curtile.Wall))
             {
-                    foreach (var biome in Biomes)
-                    {
-                        if ((curtile.Type == biome.Stone || ((curtile.Type == biome.Dirt || curtile.Type == biome.Grass) && _currentBiome.DirtToStone)) && !_currentBiome.StoneToDirt)
-                             curtile.Type = _currentBiome.Stone;
-                        else if ((curtile.Type == biome.Dirt || (curtile.Type == biome.Sand && _currentBiome.SandToDirt) || (curtile.Type == biome.Stone && _currentBiome.StoneToDirt)) && !_currentBiome.DirtToSand)
-                            if (BordersAir(p))
-                                curtile.Type = _currentBiome.Grass;
-                            else
-                                curtile.Type = _currentBiome.Dirt;
-                        else if (curtile.Type == biome.Grass)
-                            curtile.Type = _currentBiome.Grass;
-                        else if (curtile.Type == biome.Sand || ((curtile.Type == biome.Dirt || curtile.Type == biome.Grass) && _currentBiome.DirtToSand))
-                            curtile.Type = _currentBiome.Sand;
-                        else if (curtile.Type == biome.Vines)
-                            curtile.Type = _currentBiome.Vines;
-                        else if (curtile.Type == biome.Plant)
-                        {
-                            curtile.Type = _currentBiome.Plant;
-                        }
-                        else if (curtile.Type == biome.Tree)
-                        {
-                            curtile.Type = _currentBiome.Tree;
-                        }
-                    }
-
-            }
-            if (curtile.Wall == 1 || curtile.Wall == 2 || curtile.Wall == 3 || curtile.Wall == 15 || curtile.Wall == 16 || curtile.Wall == 28)
-            {
-                curtile.Wall = _currentBiome.Wall;
-            }
-        }
-
-        private bool BordersAir(Vector2Int32 p)
-        {
-            for (int y = -1; y <= 1; y++)
-            {
-                for (int x = -1; x <= 1; x++)
+                if (_morphtype != 0)
                 {
-                    if (!_wvm.CurrentWorld.Tiles[p.X + x, p.Y + y].IsActive)
-                        return true;
+                    switch(_morphtype)
+                    {
+                        case 1:
+                            curtile.Wall = 69;
+                            break;
+                        case 2:
+                            curtile.Wall = 81;
+                            break;
+                        case 3:
+                            curtile.Wall = 70;
+                            break;
+                    }
+                }
+                else if (curtile.Wall == 69 || curtile.Wall == 70 || curtile.Wall == 81)
+                {
+                    if (p.Y < _dirtLayer)
+                        curtile.Wall = 63;
+                    else
+                        curtile.Wall = 64;
                 }
             }
-            return false;
-        }
-
-        private class BiomeData
-        {
-            public MorphBiome Biome;
-            public byte Tree;
-            public byte Plant;
-            public byte Stone;
-            public byte Grass;
-            public byte Sand;
-            public byte Silt;
-            public byte Wall;
-            public byte Vines;
-            public byte Dirt;
-            public bool DirtToSand;
-            public bool DirtToStone;
-            public bool SandToDirt;
-            public bool StoneToDirt;
+            if (_wallStone.Contains(curtile.Wall))
+                curtile.Wall = (byte)_wallStone[_morphtype];
+            if (_wallHardenedSand.Contains(curtile.Wall))
+                curtile.Wall = (byte)_wallHardenedSand[_morphtype];
+            if (_wallSandstone.Contains(curtile.Wall))
+                curtile.Wall = (byte)_wallSandstone[_morphtype];
+            if (curtile.IsActive)
+            {
+                if (_tileStone.Contains(curtile.Type) || _tileMoss.Contains(curtile.Type))
+                {
+                    if (_morphtype != 0)
+                        curtile.Type = (ushort)_tileStone[_morphtype];
+                    else if (curtile.Type == 25 || curtile.Type == 203 || curtile.Type == 117)
+                        curtile.Type = 1;
+                }
+                else if (_tileGrass.Contains(curtile.Type))
+                    curtile.Type = (ushort)_tileGrass[_morphtype];
+                else if (_tileIce.Contains(curtile.Type))
+                    curtile.Type = (ushort)_tileIce[_morphtype];
+                else if (_tileSand.Contains(curtile.Type))
+                    curtile.Type = (ushort)_tileSand[_morphtype];
+                else if (_tileHardenedSand.Contains(curtile.Type))
+                    curtile.Type = (ushort)_tileHardenedSand[_morphtype];
+                else if (_tileSandstone.Contains(curtile.Type))
+                    curtile.Type = (ushort)_tileSandstone[_morphtype];
+                else if (curtile.Type == 32 || curtile.Type == 352)
+                {
+                    switch(_morphtype)
+                    {
+                        case 0:
+                        case 3:
+                            curtile.Type = 0;
+                            curtile.IsActive = false;
+                            break;
+                        case 1:
+                            curtile.Type = 32;
+                            break;
+                        case 2:
+                            curtile.Type = 352;
+                            break;
+                    }
+                }
+                else if (curtile.Type == 52 || curtile.Type == 115 || curtile.Type == 205)
+                {
+                    switch(_morphtype)
+                    {
+                        case 0:
+                            curtile.Type = 52;
+                            break;
+                        case 1:
+                            curtile.Type = 0;
+                            curtile.IsActive = false;
+                            break;
+                        case 2:
+                            curtile.Type = 205;
+                            break;
+                        case 3:
+                            curtile.Type = 115;
+                            break;
+                    }
+                }
+                else if (_tileGrassSprite.Contains(curtile.Type))
+                    curtile.Type = (ushort)_tileGrassSprite[_morphtype];
+                else if ((curtile.Type == 73 && _morphtype != 0) || ((curtile.Type == 113) && _morphtype != 3))
+                {
+                    curtile.Type = 0;
+                    curtile.IsActive = false;
+                }
+                else if (curtile.Type == 165)
+                {
+                    if (54 <= curtile.U && curtile.U <= 90)
+                        switch(_morphtype)
+                        {
+                            case 1:
+                                curtile.U += 216;
+                                break;
+                            case 2:
+                                curtile.U += 270;
+                                break;
+                            case 3:
+                                curtile.U += 162;
+                                break;
+                        }
+                    else if (216 <= curtile.U && curtile.U <= 252)
+                        switch(_morphtype)
+                        {
+                            case 0:
+                                curtile.U -= 162;
+                                break;
+                            case 1:
+                                curtile.U += 54;
+                                break;
+                            case 2:
+                                curtile.U += 108;
+                                break;
+                        }
+                    else if (270 <= curtile.U && curtile.U <= 306)
+                        switch(_morphtype)
+                        {
+                            case 0:
+                                curtile.U -= 216;
+                                break;
+                            case 2:
+                                curtile.U += 54;
+                                break;
+                            case 3:
+                                curtile.U -= 54;
+                                break;
+                        }
+                    else if (324 <= curtile.U && curtile.U <= 362)
+                        switch(_morphtype)
+                        {
+                            case 0:
+                                curtile.U -= 270;
+                                break;
+                            case 1:
+                                curtile.U -= 54;
+                                break;
+                            case 3:
+                                curtile.U -= 108;
+                                break;
+                        }
+                }
+            }
         }
     }
 }

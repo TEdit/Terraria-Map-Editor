@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows;
-using BCCL.MvvmLight;
+using GalaSoft.MvvmLight;
 using TEditXNA.Terraria.Objects;
 
 namespace TEditXNA.Terraria

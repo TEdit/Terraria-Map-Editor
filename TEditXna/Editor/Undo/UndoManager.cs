@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Reflection;
-using BCCL.Geometry.Primitives;
-using BCCL.MvvmLight;
+using System.Threading;
+using TEdit.Geometry.Primitives;
+using GalaSoft.MvvmLight;
 using TEditXNA.Terraria;
 using TEditXna.ViewModel;
 using TEditXna.Terraria.Objects;
@@ -13,12 +15,91 @@ namespace TEditXna.Editor.Undo
 {
     public class UndoManager : ObservableObject, IDisposable
     {
-        private static readonly string Dir = Path.Combine(WorldViewModel.TempPath, "undo");
-        private static readonly string UndoFile = Path.Combine(Dir, "undo_temp_{0}");
-        private static readonly string RedoFile = Path.Combine(Dir, "redo_temp_{0}");
+        private static Random r = new Random();
+        private static int uniqueVal;
+        private static Timer undoAliveTimer;
+        private static string UndoAliveFile;
+
+        static UndoManager()
+        {
+            r = new Random();
+            uniqueVal = r.Next(999999999);
+            Dir = Path.Combine(WorldViewModel.TempPath, "undo_" + uniqueVal);
+            UndoFile = Path.Combine(Dir, "undo_temp_{0}");
+            RedoFile = Path.Combine(Dir, "redo_temp_{0}");
+            UndoAliveFile = Path.Combine(Dir, "alive.txt");
+
+            if (!Directory.Exists(Dir))
+            {
+                ErrorLogging.Log(string.Format("Creating Undo cache: {0}", Dir));
+
+                Directory.CreateDirectory(Dir);
+                File.Create(UndoAliveFile).Close();
+            }
+
+            undoAliveTimer = new Timer(UndoAlive, null, TimeSpan.FromSeconds(10), TimeSpan.FromMinutes(5));
+        }
+
+        private static void UndoAlive(object state)
+        {
+            if (!File.Exists(UndoAliveFile))
+                File.Create(UndoAliveFile).Close();
+
+            File.SetLastWriteTimeUtc(UndoAliveFile, DateTime.UtcNow);
+        }
+
+        private static bool IsUndoDirAlive(string directory)
+        {
+            string aliveFile = Path.Combine(directory, "alive.txt");
+
+            // if the keep alive file is missing, this undo dir is dead, remove it 
+            if (!File.Exists(aliveFile))
+                return false;
+
+            // if the keep alive file is older than 20 minutes, this undo dir is dead, remove it 
+            if (File.GetLastAccessTimeUtc(aliveFile) < DateTime.UtcNow.AddMinutes(-20))
+                return false;
+
+            return true;
+        }
+
+        private static void CleanupOldUndoFiles(bool forceCleanup = false)
+        {
+            try
+            {
+                foreach (var file in Directory.GetFiles(WorldViewModel.TempPath).ToList())
+                {
+                    ErrorLogging.Log(string.Format("Removing old undo file: {0}", file));
+                    File.Delete(file);
+                }
+
+                foreach (var dir in Directory.GetDirectories(WorldViewModel.TempPath).ToList())
+                {
+                    if (!Path.Equals(dir, Dir) && !IsUndoDirAlive(dir))
+                    {
+                        ErrorLogging.Log(string.Format("Removing old undo cache: {0}", dir));
+                        Directory.Delete(dir, true);
+                    }
+                }
+
+                if (forceCleanup)
+                {
+                    ErrorLogging.Log(string.Format("Removing undo cache: {0}", Dir));
+                    Directory.Delete(Dir, true);
+                }
+            }
+            catch (Exception err)
+            {
+                ErrorLogging.LogException(err);
+            }
+        }
+
+        private static readonly string Dir;
+        private static readonly string UndoFile;
+        private static readonly string RedoFile;
 
         private readonly WorldViewModel _wvm;
-        private UndoBuffer _buffer = new UndoBuffer();
+        private UndoBuffer _buffer;
         private int _currentIndex = 0;
         private int _maxIndex = 0;
 
@@ -26,7 +107,10 @@ namespace TEditXna.Editor.Undo
         public event EventHandler Redid;
         public event EventHandler UndoSaved;
 
-
+        public string GetUndoFileName()
+        {
+            return string.Format(UndoFile, _currentIndex);
+        }
         protected virtual void OnUndoSaved(object sender, EventArgs e)
         {
             if (UndoSaved != null) UndoSaved(sender, e);
@@ -50,6 +134,7 @@ namespace TEditXna.Editor.Undo
             }
 
             _wvm = viewModel;
+            _buffer = new UndoBuffer(GetUndoFileName());
         }
 
         public UndoBuffer Buffer
@@ -60,12 +145,20 @@ namespace TEditXna.Editor.Undo
 
         public void SaveUndo()
         {
+            // no tiles to undo, skip save
+            if (_buffer == null)
+            {
+                return;
+            }
+
             //ValidateAndRemoveChests();
             _maxIndex = _currentIndex;
-            _buffer.Write(string.Format(UndoFile, _currentIndex));
+            _buffer.Close();
             _currentIndex++;
-            Buffer = new UndoBuffer();
+            _buffer = null;
+            Buffer = new UndoBuffer(GetUndoFileName());
             OnUndoSaved(this, EventArgs.Empty);
+
         }
 
         public void SaveTile(Vector2Int32 p)
@@ -74,9 +167,12 @@ namespace TEditXna.Editor.Undo
         }
         public void SaveTile(int x, int y)
         {
+            if (_buffer == null)
+                Buffer = new UndoBuffer(GetUndoFileName());
+
             ValidateAndRemoveChests();
             var curTile = (Tile)_wvm.CurrentWorld.Tiles[x, y].Clone();
-            if (curTile.Type == 21 && !Buffer.Chests.Any(c => c.X == x && c.Y == y))
+            if (Tile.IsChest(curTile.Type) && !Buffer.Chests.Any(c => c.X == x && c.Y == y))
             {
 
                 var curchest = _wvm.CurrentWorld.GetChestAtTile(x, y);
@@ -86,7 +182,7 @@ namespace TEditXna.Editor.Undo
                     Buffer.Chests.Add(chest);
                 }
             }
-            else if ((curTile.Type == 55 || curTile.Type == 85) && !Buffer.Signs.Any(c => c.X == x && c.Y == y))
+            else if (Tile.IsSign(curTile.Type) && !Buffer.Signs.Any(c => c.X == x && c.Y == y))
             {
                 var cursign = _wvm.CurrentWorld.GetSignAtTile(x, y);
                 if (cursign != null)
@@ -95,21 +191,22 @@ namespace TEditXna.Editor.Undo
                     Buffer.Signs.Add(sign);
                 }
             }
-            Buffer.Tiles.Add(new UndoTile(new Vector2Int32(x, y), curTile));
+            Buffer.Add(new Vector2Int32(x, y), curTile);
         }
 
         private void ValidateAndRemoveChests()
         {
-            if (Buffer == null || Buffer.Tiles.Count <= 0)
+            if (Buffer == null || Buffer.LastTile == null)
                 return;
 
-            var lastTile = Buffer.Tiles.Last();
+
+            var lastTile = Buffer.LastTile;
             var existingLastTile = _wvm.CurrentWorld.Tiles[lastTile.Location.X, lastTile.Location.Y];
 
             // remove deleted chests or signs if required
-            if (lastTile.Tile.Type == 21)
+            if (Tile.IsChest(lastTile.Tile.Type))
             {
-                if (existingLastTile.Type != 21 || !existingLastTile.IsActive)
+                if (!Tile.IsChest(existingLastTile.Type) || !existingLastTile.IsActive)
                 {
                     var curchest = _wvm.CurrentWorld.GetChestAtTile(lastTile.Location.X, lastTile.Location.Y);
                     if (curchest != null)
@@ -118,9 +215,9 @@ namespace TEditXna.Editor.Undo
                     }
                 }
             }
-            else if (lastTile.Tile.Type == 55 || lastTile.Tile.Type == 85)
+            else if (Tile.IsSign(lastTile.Tile.Type))
             {
-                if ((existingLastTile.Type != 55 && existingLastTile.Type != 85) || !existingLastTile.IsActive)
+                if (!Tile.IsSign(existingLastTile.Type) || !existingLastTile.IsActive)
                 {
                     var cursign = _wvm.CurrentWorld.GetSignAtTile(lastTile.Location.X, lastTile.Location.Y);
                     if (cursign != null)
@@ -131,7 +228,7 @@ namespace TEditXna.Editor.Undo
             }
 
             // Add new chests and signs if required
-            if (existingLastTile.Type == 21)
+            if (Tile.IsChest(existingLastTile.Type))
             {
                 var curchest = _wvm.CurrentWorld.GetChestAtTile(lastTile.Location.X, lastTile.Location.Y);
                 if (curchest == null)
@@ -140,7 +237,7 @@ namespace TEditXna.Editor.Undo
                 }
 
             }
-            else if (existingLastTile.Type == 55 || existingLastTile.Type == 85)
+            else if (Tile.IsSign(existingLastTile.Type))
             {
                 var cursign = _wvm.CurrentWorld.GetSignAtTile(lastTile.Location.X, lastTile.Location.Y);
                 if (cursign == null)
@@ -156,66 +253,58 @@ namespace TEditXna.Editor.Undo
                 return;
 
             _currentIndex--;
-            List<Chest> Chests = new List<Chest>();
-            List<Sign> Signs = new List<Sign>();
 
-            using (var ws = new FileStream(string.Format(RedoFile, _currentIndex), FileMode.Create))
-            using (var bw = new BinaryWriter(ws))
+            UndoBuffer redo = new UndoBuffer(string.Format(RedoFile, _currentIndex));
+
             using (var stream = new FileStream(string.Format(UndoFile, _currentIndex), FileMode.Open))
             using (BinaryReader br = new BinaryReader(stream))
             {
-                int count = br.ReadInt32();
-                br.BaseStream.Position -= 4;
-                bw.Write(count);
-
                 foreach (var undoTile in UndoBuffer.ReadUndoTilesFromStream(br))
                 {
+
                     var curTile = (Tile)_wvm.CurrentWorld.Tiles[undoTile.Location.X, undoTile.Location.Y];
-                    if (curTile.Type == 21)
+                    redo.Add(undoTile.Location, curTile);
+
+                    if (Tile.IsChest(curTile.Type))
                     {
                         var curchest = _wvm.CurrentWorld.GetChestAtTile(undoTile.Location.X, undoTile.Location.Y);
                         if (curchest != null)
                         {
                             _wvm.CurrentWorld.Chests.Remove(curchest);
                             var chest = curchest.Copy();
-                            Chests.Add(chest);
+                            redo.Chests.Add(chest);
                         }
                     }
-                    if (curTile.Type == 55 || curTile.Type == 85)
+                    if (Tile.IsSign(curTile.Type))
                     {
                         var cursign = _wvm.CurrentWorld.GetSignAtTile(undoTile.Location.X, undoTile.Location.Y);
                         if (cursign != null)
                         {
                             _wvm.CurrentWorld.Signs.Remove(cursign);
                             var sign = cursign.Copy();
-                            Signs.Add(sign);
+                            redo.Signs.Add(sign);
                         }
                     }
-
-                    bw.Write(undoTile.Location.X);
-                    bw.Write(undoTile.Location.Y);
-                    World.WriteTileDataToStreamV1(curTile, bw);
-
                     _wvm.CurrentWorld.Tiles[undoTile.Location.X, undoTile.Location.Y] = (Tile)undoTile.Tile;
                     _wvm.UpdateRenderPixel(undoTile.Location);
 
                     /* Heathtech */
                     BlendRules.ResetUVCache(_wvm, undoTile.Location.X, undoTile.Location.Y, 1, 1);
                 }
-                World.WriteChestDataToStreamV1(Chests, bw);
-                World.WriteSignDataToStreamV1(Signs, bw);
-                foreach (var chest in World.ReadChestDataFromStreamV1(br, World.CompatibleVersion))
+
+                redo.Close();
+                redo.Dispose();
+                redo = null;
+
+                foreach (var chest in World.LoadChestData(br))
                 {
                     _wvm.CurrentWorld.Chests.Add(chest);
                 }
-                foreach (var sign in World.ReadSignDataFromStreamV1(br))
+                foreach (var sign in World.LoadSignData(br))
                 {
                     _wvm.CurrentWorld.Signs.Add(sign);
                 }
             }
-
-
-
 
             OnUndid(this, EventArgs.Empty);
         }
@@ -231,13 +320,13 @@ namespace TEditXna.Editor.Undo
                 foreach (var undoTile in UndoBuffer.ReadUndoTilesFromStream(br))
                 {
                     var curTile = (Tile)_wvm.CurrentWorld.Tiles[undoTile.Location.X, undoTile.Location.Y];
-                    if (curTile.Type == 21)
+                    if (Tile.IsChest(curTile.Type))
                     {
                         var curchest = _wvm.CurrentWorld.GetChestAtTile(undoTile.Location.X, undoTile.Location.Y);
                         if (curchest != null)
                             _wvm.CurrentWorld.Chests.Remove(curchest);
                     }
-                    if (curTile.Type == 55 || curTile.Type == 85)
+                    if (Tile.IsSign(curTile.Type))
                     {
                         var cursign = _wvm.CurrentWorld.GetSignAtTile(undoTile.Location.X, undoTile.Location.Y);
                         if (cursign != null)
@@ -250,11 +339,11 @@ namespace TEditXna.Editor.Undo
                     /* Heathtech */
                     BlendRules.ResetUVCache(_wvm, undoTile.Location.X, undoTile.Location.Y, 1, 1);
                 }
-                foreach (var chest in World.ReadChestDataFromStreamV1(br, World.CompatibleVersion))
+                foreach (var chest in World.LoadChestData(br))
                 {
                     _wvm.CurrentWorld.Chests.Add(chest);
                 }
-                foreach (var sign in World.ReadSignDataFromStreamV1(br))
+                foreach (var sign in World.LoadSignData(br))
                 {
                     _wvm.CurrentWorld.Signs.Add(sign);
                 }
@@ -278,15 +367,19 @@ namespace TEditXna.Editor.Undo
             {
                 if (disposing)
                 {
-                    // free managed
+                    if (_buffer != null)
+                    {
+                        _buffer.Dispose();
+                    }
+                    _buffer = null;
                 }
                 // Free your own state (unmanaged objects).
                 // Set large fields to null.
-                _buffer = null;
-                foreach (var file in Directory.GetFiles(Dir))
-                {
-                    File.Delete(file);
-                }
+
+
+
+
+                CleanupOldUndoFiles(true);
                 disposed = true;
             }
         }

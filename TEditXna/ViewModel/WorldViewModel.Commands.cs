@@ -3,9 +3,9 @@ using System.Linq;
 using System.IO;
 using System.Windows;
 using System.Windows.Input;
-using BCCL.Framework.Events;
-using BCCL.Geometry.Primitives;
-using BCCL.MvvmLight.Command;
+using TEdit.Framework.Events;
+using TEdit.Geometry.Primitives;
+using GalaSoft.MvvmLight.Command;
 using Microsoft.Win32;
 using TEditXNA.Terraria;
 using TEditXNA.Terraria.Objects;
@@ -62,47 +62,50 @@ namespace TEditXna.ViewModel
 
         public ICommand NpcAddCommand
         {
-            get { return _npcAddCommand ?? (_npcAddCommand = new RelayCommand<NpcName>(AddNpc)); }
+            get { return _npcAddCommand ?? (_npcAddCommand = new RelayCommand<int>(AddNpc)); }
         }
 
-        private void AddNpc(NpcName npc)
+        private void AddNpc(int npcId)
         {
-            if (CurrentWorld != null)
+            if (CurrentWorld != null && World.NpcNames.ContainsKey(npcId))
             {
-                if (!CurrentWorld.NPCs.Any(n => n.Name == npc.Character))
+                string name = World.NpcNames[npcId];
+                if (CurrentWorld.NPCs.All(n => n.SpriteId != npcId))
                 {
                     var spawn = new Vector2Int32(CurrentWorld.SpawnX, CurrentWorld.SpawnY);
-                    CurrentWorld.NPCs.Add(new NPC{Home = spawn, IsHomeless = true, Name = npc.Character, Position= new Vector2(spawn.X * 16, spawn.Y * 16), SpriteId = npc.Id});
-                    Points.Add(npc.Character);
-                    MessageBox.Show(string.Format("{1} ({0}) added to spawn.", npc.Character, npc.Name), "NPC Added");
+                    CurrentWorld.NPCs.Add(new NPC{Home = spawn, IsHomeless = true, DisplayName = name, Name = name, Position= new Vector2(spawn.X * 16, spawn.Y * 16), SpriteId = npcId});
+                    Points.Add(name);
+                    MessageBox.Show(string.Format("{0} added to spawn.", name), "NPC Added");
                 }
                 else
                 {
-                    MessageBox.Show(string.Format("{1} ({0}) is already on the map.", npc.Character, npc.Name), "NPC Exists");
+                    MessageBox.Show(string.Format("{0} is already on the map.", name), "NPC Exists");
                 }
+            }
+            else
+            {
+                MessageBox.Show(string.Format("Choose an NPC. NPC {0} not found.", npcId), "NPC Error");
             }
         }
 
         public ICommand NpcRemoveCommand
         {
-            get { return _npcRemoveCommand ?? (_npcRemoveCommand = new RelayCommand<NpcName>(RemoveNpc)); }
+            get { return _npcRemoveCommand ?? (_npcRemoveCommand = new RelayCommand<NPC>(RemoveNpc)); }
         }
 
-        private void RemoveNpc(NpcName npcName)
+        private void RemoveNpc(NPC npc)
         {
             if (CurrentWorld != null)
             {
                 try
                 {
-                    NPC npc = CurrentWorld.NPCs.First(n => n.Name == npcName.Character);
-
                     CurrentWorld.NPCs.Remove(npc);
-                    Points.Remove(npcName.Character);
-                    MessageBox.Show(string.Format("{1} ({0}) removed.", npcName.Character, npcName.Name), "NPC Removed");
+                    Points.Remove(npc.Name);
+                    MessageBox.Show(string.Format("{1} ({0}) removed.", npc.Name, npc.DisplayName), "NPC Removed");
                 }
                 catch (InvalidOperationException)
                 {
-                    MessageBox.Show(string.Format("{1} ({0}) was not on the map.", npcName.Character, npcName.Name), "NPC Doesn't Exist");
+                    MessageBox.Show(string.Format("{1} ({0}) was not on the map.", npc.Name, npc.DisplayName), "NPC Doesn't Exist");
                 }
             }
         }
@@ -166,8 +169,9 @@ namespace TEditXna.ViewModel
 
         public void Update()
         {
-            string url = "http://binaryconstruct.com/games/tedit";
-            System.Diagnostics.Process.Start(url);
+            string url = "http://www.binaryconstruct.com/downloads/";
+            try { System.Diagnostics.Process.Start(url); }
+            catch { }
         }
 
         public ICommand SaveChestCommand
