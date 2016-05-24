@@ -273,6 +273,61 @@ namespace TEditXna.Editor.Tools
                     curtile.Type = 0;
                     curtile.IsActive = false;
                 }
+                else if (curtile.Type == 165)
+                {
+                    if (54 <= curtile.U && curtile.U <= 90)
+                        switch(_morphtype)
+                        {
+                            case 1:
+                                curtile.U += 216;
+                                break;
+                            case 2:
+                                curtile.U += 270;
+                                break;
+                            case 3:
+                                curtile.U += 162;
+                                break;
+                        }
+                    else if (216 <= curtile.U && curtile.U <= 252)
+                        switch(_morphtype)
+                        {
+                            case 0:
+                                curtile.U -= 162;
+                                break;
+                            case 1:
+                                curtile.U += 54;
+                                break;
+                            case 2:
+                                curtile.U += 108;
+                                break;
+                        }
+                    else if (270 <= curtile.U && curtile.U <= 306)
+                        switch(_morphtype)
+                        {
+                            case 0:
+                                curtile.U -= 216;
+                                break;
+                            case 2:
+                                curtile.U += 54;
+                                break;
+                            case 3:
+                                curtile.U -= 54;
+                                break;
+                        }
+                    else if (324 <= curtile.U && curtile.U <= 362)
+                        switch(_morphtype)
+                        {
+                            case 0:
+                                curtile.U -= 270;
+                                break;
+                            case 1:
+                                curtile.U -= 54;
+                                break;
+                            case 3:
+                                curtile.U -= 108;
+                                break;
+                        }
+                }
             }
         }
     }
