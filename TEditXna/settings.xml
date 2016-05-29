@@ -2907,6 +2907,31 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="1728,0" Variety="Pink Dungeon Vase" />
         <Frame UV="1764,0" Variety="Obsidian Vase" />
         <Frame UV="1800,0" Variety="Shark Statue" />
+        <Frame UV="1836,0" Variety="Squirrel Statue" />
+        <Frame UV="1872,0" Variety="Butterfly Statue" />
+        <Frame UV="1908,0" Variety="Worm Statue" />
+        <Frame UV="1944,0" Variety="Firefly Statue" />
+        <Frame UV="0,54" Variety="Scorpion Statue" />
+        <Frame UV="36,54" Variety="Snail Statue" />
+        <Frame UV="72,54" Variety="Grasshopper Statue" />
+        <Frame UV="108,54" Variety="Mouse Statue" />
+        <Frame UV="144,54" Variety="Duck Statue" />
+        <Frame UV="180,54" Variety="Penguin Statue" />
+        <Frame UV="216,54" Variety="Frog Statue" />
+        <Frame UV="252,54" Variety="Buggy Statue" />
+        <Frame UV="288,54" Variety="Wall Creeper Statue" />
+        <Frame UV="324,54" Variety="Unicorn Statue" />
+        <Frame UV="360,54" Variety="Drippler Statue" />
+        <Frame UV="396,54" Variety="Wraith Statue" />
+        <Frame UV="432,54" Variety="Bone Skeleton Statue" />
+        <Frame UV="468,54" Variety="Undead Viking Statue" />
+        <Frame UV="504,54" Variety="Medusa Statue" />
+        <Frame UV="540,54" Variety="Harpy Statue" />
+        <Frame UV="576,54" Variety="Pigron Statue" />
+        <Frame UV="612,54" Variety="Hoplite Statue" />
+        <Frame UV="648,54" Variety="Granite Golem Statue" />
+        <Frame UV="684,54" Variety="Armed Zombie Statue" />
+        <Frame UV="720,54" Variety="Blood Zombie Statue" />
       </Frames>
     </Tile>
     <Tile Id="106" Color="#FFBF8E6F" Name="Sawmill" Framed="true" Size="3,3" Placement="floor" />
