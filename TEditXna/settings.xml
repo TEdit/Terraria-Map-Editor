@@ -4434,7 +4434,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="0,0" Variety="Announcement Box" />
       </Frames>
     </Tile>
-    <Tile Id="426" Color="#FFFFFFFF" Name="Red Team Block" Solid="true" />
+    <Tile Id="426" Color="#FFFFFFFF" Name="Red Team Block" Solid="true" Blends="true" />
     <Tile Id="427" Color="#FFFFFFFF" Name="Red Team Platform" Framed="true" TextureGrid="16,16" Special="Platform" />
     <Tile Id="428" Color="#FFFFFFFF" Name="Weighted Pressure Plate" Framed="true"> 
       <Frames>
@@ -4464,11 +4464,11 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="270,0" Variety="Red, Green, Blue, Yellow" />
       </Frames>
     </Tile> 
-    <Tile Id="430" Color="#FFFFFFFF" Name="Green Team Block" Solid="true" />
-    <Tile Id="431" Color="#FFFFFFFF" Name="Blue Team Block" Solid="true" />
-    <Tile Id="432" Color="#FFFFFFFF" Name="Yellow Team Block" Solid="true" />
-    <Tile Id="433" Color="#FFFFFFFF" Name="Pink Team Block" Solid="true" />
-    <Tile Id="434" Color="#FFFFFFFF" Name="White Team Block" Solid="true" />
+    <Tile Id="430" Color="#FFFFFFFF" Name="Green Team Block" Solid="true" Blends="true" />
+    <Tile Id="431" Color="#FFFFFFFF" Name="Blue Team Block" Solid="true" Blends="true" />
+    <Tile Id="432" Color="#FFFFFFFF" Name="Yellow Team Block" Solid="true" Blends="true" />
+    <Tile Id="433" Color="#FFFFFFFF" Name="Pink Team Block" Solid="true" Blends="true" />
+    <Tile Id="434" Color="#FFFFFFFF" Name="White Team Block" Solid="true" Blends="true" />
     <Tile Id="435" Color="#FFFFFFFF" Name="Green Team Platform" Framed="true" TextureGrid="16,16" Special="Platform" />
     <Tile Id="436" Color="#FFFFFFFF" Name="Blue Team Platform" Framed="true" TextureGrid="16,16" Special="Platform" />
     <Tile Id="437" Color="#FFFFFFFF" Name="Tellow Team Platform" Framed="true" TextureGrid="16,16" Special="Platform" />
