@@ -1,5 +1,7 @@
 using TEditXNA.Terraria;
 using TEditXna.ViewModel;
+using System.Linq;
+using TEditXna.Terraria.Objects;
 
 namespace TEditXna.Editor.Plugins
 {
@@ -15,13 +17,14 @@ namespace TEditXna.Editor.Plugins
         {
             if (_wvm.CurrentWorld == null)
                 return;
+            int[] _tileSand = {53, 112, 234, 116};
 
             for (int y = _wvm.CurrentWorld.TilesHigh - 1; y > 0; y--)
             {
                 for (int x = 0; x < _wvm.CurrentWorld.TilesWide; x++)
                 {
                     var curTile = _wvm.CurrentWorld.Tiles[x, y];
-                    if (World.TileProperties[curTile.Type].Name.Contains("Sand"))
+                    if (_tileSand.Contains(curTile.Type))
                     {
                         // check if tile below current tile is empty and move sand to there if it is.
                         int shiftAmmount = 1;
@@ -39,6 +42,7 @@ namespace TEditXna.Editor.Plugins
                                 belowTile.IsActive = true;
                                 belowTile.Type = curTile.Type;
                                 curTile.IsActive = false;
+                                BlendRules.ResetUVCache(_wvm, x, y, 1, 1 + shiftAmmount);
                                 _wvm.UpdateRenderPixel(x, y);
                                 _wvm.UpdateRenderPixel(x, y + shiftAmmount);
                             }
