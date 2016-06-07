@@ -324,11 +324,45 @@ namespace TEditXna.Editor.Clipboard
                         //  Ignore multi-width objects when flipping on x-axis
                         if (tileSize.X > 1)
                             ClearTile(tile);
+                        // Flip brick-style
+                        switch (tile.BrickStyle)
+                        {
+                            case BrickStyle.SlopeTopRight:
+                                tile.BrickStyle = BrickStyle.SlopeTopLeft;
+                                break;
+                            case BrickStyle.SlopeTopLeft:
+                                tile.BrickStyle = BrickStyle.SlopeTopRight;
+                                break;
+                            case BrickStyle.SlopeBottomRight:
+                                tile.BrickStyle = BrickStyle.SlopeBottomLeft;
+                                break;
+                            case BrickStyle.SlopeBottomLeft:
+                                tile.BrickStyle = BrickStyle.SlopeBottomRight;
+                                break;
+                        }
                     }
-                    //  Ignore multi-height tiles when flipping on y-axis
-                    else if (tileSize.Y > 1)
+                    
+                    else 
                     {
-                        ClearTile(tile);
+                        //  Ignore multi-height tiles when flipping on y-axis
+                        if (tileSize.Y > 1)
+                            ClearTile(tile);
+                        // Flip brick-style
+                        switch (tile.BrickStyle)
+                        {
+                            case BrickStyle.SlopeTopRight:
+                                tile.BrickStyle = BrickStyle.SlopeBottomRight;
+                                break;
+                            case BrickStyle.SlopeTopLeft:
+                                tile.BrickStyle = BrickStyle.SlopeBottomLeft;
+                                break;
+                            case BrickStyle.SlopeBottomRight:
+                                tile.BrickStyle = BrickStyle.SlopeTopRight;
+                                break;
+                            case BrickStyle.SlopeBottomLeft:
+                                tile.BrickStyle = BrickStyle.SlopeTopLeft;
+                                break;
+                        }
                     }
 
                     flippedBuffer.Tiles[bufferX, bufferY] = (Tile)tile;
