@@ -488,12 +488,18 @@ namespace TEditXna.View
                                         Vector2Int32 uvBlend = blendRules.GetUVForMasks((uint)sameStyle, 0x00000000, 0);
                                         curtile.uvWallCache = (ushort)((uvBlend.Y << 8) + uvBlend.X);
                                     }
+                                    var spriteColor = Color.White;
+                                    if (curtile.WallColor > 0)
+                                    {
+                                        var c = World.PaintProperties[curtile.WallColor].Color;
+                                        spriteColor = Color.FromNonPremultiplied(c.R, c.G, c.B, c.A);
+                                    }
 
                                     var texsize = new Vector2Int32(32, 32);
                                     var source = new Rectangle((curtile.uvWallCache & 0x00FF) * (texsize.X + 4), (curtile.uvWallCache >> 8) * (texsize.Y + 4), texsize.X, texsize.Y);
                                     var dest = new Rectangle(1 + (int)((_scrollPosition.X + x - 0.5) * _zoom), 1 + (int)((_scrollPosition.Y + y - 0.5) * _zoom), (int)_zoom * 2, (int)_zoom * 2);
 
-                                    _spriteBatch.Draw(wallTex, dest, source, Color.White, 0f, default(Vector2), SpriteEffects.None, LayerTileWallTextures);
+                                    _spriteBatch.Draw(wallTex, dest, source, spriteColor, 0f, default(Vector2), SpriteEffects.None, LayerTileWallTextures);
                                 }
                             }
                             else
