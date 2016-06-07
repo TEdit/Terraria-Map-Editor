@@ -489,11 +489,19 @@ namespace TEditXna.ViewModel
                 {
                     curTile.Type = 0;
                     curTile.IsActive = false;
+                    curTile.BrickStyle = BrickStyle.Full;
+                    curTile.U = 0;
+                    curTile.V = 0;
                 }
                 else
                 {
                     curTile.Type = (ushort)tile;
                     curTile.IsActive = true;
+                    if (World.TileProperties[curTile.Type].IsSolid)
+                    {
+                        curTile.U = -1;
+                        curTile.V = -1;
+                    }
                 }
             }
 
