@@ -3076,16 +3076,36 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="54,18" Name="Switch" Variety="Setting Two" Anchor="Center" />
       </Frames>
     </Tile>
-    <Tile Id="137" Color="#FF909490" Name="Dart Trap" Solid="true" Framed="true" >
+    <Tile Id="137" Color="#FF909490" Name="Dart Trap" Solid="true" Framed="true" UseFrameName="true" >
       <Frames>
-        <Frame UV="0,0" Name="Dart Trap" Anchor="Left" />
+        <Frame UV="0,0" Name="Dart Trap" Variety="Left" />
         <Frame UV="18,0" Name="Dart Trap" Variety="Right" />
-        <Frame UV="0,18" Name="Super Dart Trap" Anchor="Left" />
+        <Frame UV="36,0" Name="Dart Trap" Variety="Up-Left" />
+        <Frame UV="54,0" Name="Dart Trap" Variety="Up-Right" />
+        <Frame UV="72,0" Name="Dart Trap" Variety="Down-Left" />
+        <Frame UV="90,0" Name="Dart Trap" Variety="Down-Right" />
+        <Frame UV="0,18" Name="Super Dart Trap" Variety="Left" />
         <Frame UV="18,18" Name="Super Dart Trap" Variety="Right" />
-        <Frame UV="0,36" Name="Flame  Trap" Anchor="Left" />
+        <Frame UV="36,18" Name="Super Dart Trap" Variety="Up-Left" />
+        <Frame UV="54,18" Name="Super Dart Trap" Variety="Up-Right" />
+        <Frame UV="72,18" Name="Super Dart Trap" Variety="Down-Left" />
+        <Frame UV="90,18" Name="Super Dart Trap" Variety="Down-Right" />
+        <Frame UV="0,36" Name="Flame  Trap" Variety="Left" />
         <Frame UV="18,36" Name="Flame  Trap" Variety="Right" />
-        <Frame UV="0,54" Name="Spiky Ball Trap" Anchor="Top" />
-        <Frame UV="0,72" Name="Spear Trap" Anchor="Top" />
+        <Frame UV="36,36" Name="Flame  Trap" Variety="Up-Left" />
+        <Frame UV="54,36" Name="Flame  Trap" Variety="Up-Right" />
+        <Frame UV="72,36" Name="Flame  Trap" Variety="Down-Left" />
+        <Frame UV="90,36" Name="Flame  Trap" Variety="Down-Right" />
+        <Frame UV="0,54" Name="Spiky Ball Trap" Variety="Top" />
+        <Frame UV="18,54" Name="Spiky Ball Trap" Variety="Down" />
+        <Frame UV="36,54" Name="Spiky Ball Trap" Variety="Up" />
+        <Frame UV="54,54" Name="Spiky Ball Trap" Variety="Left" />
+        <Frame UV="72,54" Name="Spiky Ball Trap" Variety="Right" />
+        <Frame UV="0,72" Name="Spear Trap" Variety="Top" />
+        <Frame UV="0,72" Name="Spear Trap" Variety="Down" />
+        <Frame UV="0,72" Name="Spear Trap" Variety="Up" />
+        <Frame UV="0,72" Name="Spear Trap" Variety="Left" />
+        <Frame UV="0,72" Name="Spear Trap" Variety="Right" />
       </Frames>
     </Tile>
     <Tile Id="138" Color="#FF606060" Name="Boulder" Framed="true" Size="2,2" />
