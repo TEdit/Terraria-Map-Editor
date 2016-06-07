@@ -3255,7 +3255,58 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Tile Id="162" Color="#FFB8DBF0" Name="Thin Ice" Solid="true" Blends="true" />
     <Tile Id="163" Color="#FFAE91D6" Name="Purple Ice Block" Solid="true" Blends="true" />
     <Tile Id="164" Color="#FFDAB6CC" Name="Pink Ice Block" Solid="true" Blends="true" />
-    <Tile Id="165" Color="#FF646464" Name="Cave Deco" Framed="true" Size="1,2" />
+    <Tile Id="165" Color="#FF646464" Name="Cave Deco" Framed="true" Size="1,2" >
+      <Frames>
+        <Frame UV="0,0" Name="Icicle" Variety="A" />
+        <Frame UV="18,0" Name="Icicle" Variety="B" />
+        <Frame UV="36,0" Name="Icicle" Variety="C" />
+        <Frame UV="54,0" Name="Stalactite" Variety="Rock A" />
+        <Frame UV="72,0" Name="Stalactite" Variety="Rock B" />
+        <Frame UV="90,0" Name="Stalactite" Variety="Rock C" />
+        <Frame UV="54,36" Name="Stalagmite" Variety="Rock A" />
+        <Frame UV="72,36" Name="Stalagmite" Variety="Rock B" />
+        <Frame UV="90,36" Name="Stalagmite" Variety="Rock C" />
+        <Frame UV="108,0" Name="Spider Web" Variety="A" />
+        <Frame UV="126,0" Name="Spider Web" Variety="B" />
+        <Frame UV="144,0" Name="Spider Web" Variety="C" />
+        <Frame UV="216,0" Name="Stalactite" Variety="Hallow A" />
+        <Frame UV="234,0" Name="Stalactite" Variety="Hallow B" />
+        <Frame UV="252,0" Name="Stalactite" Variety="Hallow C" />
+        <Frame UV="216,36" Name="Stalagmite" Variety="Hallow A" />
+        <Frame UV="234,36" Name="Stalagmite" Variety="Hallow B" />
+        <Frame UV="252,36" Name="Stalagmite" Variety="Hallow C" />
+        <Frame UV="270,0" Name="Stalactite" Variety="Corruption A" />
+        <Frame UV="288,0" Name="Stalactite" Variety="Corruption B" />
+        <Frame UV="306,0" Name="Stalactite" Variety="Corruption C" />
+        <Frame UV="270,36" Name="Stalagmite" Variety="Corruption A" />
+        <Frame UV="288,36" Name="Stalagmite" Variety="Corruption B" />
+        <Frame UV="306,36" Name="Stalagmite" Variety="Corruption C" />
+        <Frame UV="324,0" Name="Stalactite" Variety="Crimson A" />
+        <Frame UV="342,0" Name="Stalactite" Variety="Crimson B" />
+        <Frame UV="360,0" Name="Stalactite" Variety="Crimson C" />
+        <Frame UV="324,36" Name="Stalagmite" Variety="Crimson A" />
+        <Frame UV="342,36" Name="Stalagmite" Variety="Crimson B" />
+        <Frame UV="360,36" Name="Stalagmite" Variety="Crimson C" />
+        <Frame UV="378,0" Name="Stalactite" Variety="Sandstone A" />
+        <Frame UV="396,0" Name="Stalactite" Variety="Sandstone B" />
+        <Frame UV="414,0" Name="Stalactite" Variety="Sandstone C" />
+        <Frame UV="378,36" Name="Stalagmite" Variety="Sandstone A" />
+        <Frame UV="396,36" Name="Stalagmite" Variety="Sandstone B" />
+        <Frame UV="414,36" Name="Stalagmite" Variety="Sandstone C" />
+        <Frame UV="432,0" Name="Stalactite" Variety="Granite A" />
+        <Frame UV="450,0" Name="Stalactite" Variety="Granite B" />
+        <Frame UV="468,0" Name="Stalactite" Variety="Granite C" />
+        <Frame UV="432,36" Name="Stalagmite" Variety="Granite A" />
+        <Frame UV="450,36" Name="Stalagmite" Variety="Granite B" />
+        <Frame UV="468,36" Name="Stalagmite" Variety="Granite C" />
+        <Frame UV="486,0" Name="Stalactite" Variety="Marble A" />
+        <Frame UV="504,0" Name="Stalactite" Variety="Marble B" />
+        <Frame UV="522,0" Name="Stalactite" Variety="Marble C" />
+        <Frame UV="486,36" Name="Stalagmite" Variety="Marble A" />
+        <Frame UV="504,36" Name="Stalagmite" Variety="Marble B" />
+        <Frame UV="522,36" Name="Stalagmite" Variety="Marble C" />
+      </Frames>
+    </Tile>
     <Tile Id="166" Color="#FF817D5D" Name="Tin Ore" Solid="true" Blends="true" MergeWith="0" />
     <Tile Id="167" Color="#FF3E5272" Name="Lead Ore" Solid="true" Blends="true" MergeWith="0" />
     <Tile Id="168" Color="#FF849D7F" Name="Tungsten Ore" Solid="true" Blends="true" MergeWith="0" />
