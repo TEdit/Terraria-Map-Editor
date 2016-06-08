@@ -4511,7 +4511,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
       <Frames>
         <Frame UV="0,0" Variety="Orange" />
         <Frame UV="0,18" Variety="Cyan" />
-        <Frame UV="0,36" Variety="Pruple" />
+        <Frame UV="0,36" Variety="Purple" />
         <Frame UV="0,54" Variety="Pink" />
       </Frames>
     </Tile>
