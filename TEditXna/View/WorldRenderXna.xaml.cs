@@ -1407,162 +1407,71 @@ namespace TEditXna.View
                         }
                         if (_wvm.ShowRedWires || _wvm.ShowBlueWires || _wvm.ShowGreenWires || _wvm.ShowYellowWires)
                         {
-                            if (curtile.WireRed && _wvm.ShowRedWires)
+                            var tileTex = (Texture2D)_textureDictionary.GetMisc("WiresNew");
+                            if (tileTex != null)
                             {
-                                var tileTex = (Texture2D)_textureDictionary.GetMisc("Wires");
-
-                                if (tileTex != null)
+                                int voffset = 0;
+                                if (curtile.Type == 424)
+                                    voffset = (curtile.U / 18 + 1) * 72;
+                                if (curtile.Type == 445)
+                                    voffset = 72;
+                                if (curtile.WireRed && _wvm.ShowRedWires)
                                 {
                                     var source = new Rectangle(0, 0, 16, 16);
                                     var dest = new Rectangle(1 + (int)((_scrollPosition.X + x) * _zoom), 1 + (int)((_scrollPosition.Y + y) * _zoom), (int)_zoom, (int)_zoom);
 
                                     byte state = 0x00;
-                                    state |= (byte)((neighborTile[e] != null && neighborTile[e].WireRed == true) ? 0x01 : 0x00);
-                                    state |= (byte)((neighborTile[n] != null && neighborTile[n].WireRed == true) ? 0x02 : 0x00);
-                                    state |= (byte)((neighborTile[w] != null && neighborTile[w].WireRed == true) ? 0x04 : 0x00);
-                                    state |= (byte)((neighborTile[s] != null && neighborTile[s].WireRed == true) ? 0x08 : 0x00);
-                                    Vector2Int32 uv = new Vector2Int32(0, 0);
-                                    switch (state)
-                                    {
-                                        case 0x00: uv.X = 0; uv.Y = 3; break;
-                                        case 0x01: uv.X = 4; uv.Y = 2; break;
-                                        case 0x02: uv.X = 2; uv.Y = 2; break;
-                                        case 0x03: uv.X = 2; uv.Y = 1; break;
-                                        case 0x04: uv.X = 3; uv.Y = 2; break;
-                                        case 0x05: uv.X = 1; uv.Y = 0; break;
-                                        case 0x06: uv.X = 3; uv.Y = 1; break;
-                                        case 0x07: uv.X = 0; uv.Y = 1; break;
-                                        case 0x08: uv.X = 1; uv.Y = 2; break;
-                                        case 0x09: uv.X = 0; uv.Y = 2; break;
-                                        case 0x0A: uv.X = 0; uv.Y = 0; break;
-                                        case 0x0B: uv.X = 2; uv.Y = 0; break;
-                                        case 0x0C: uv.X = 4; uv.Y = 1; break;
-                                        case 0x0D: uv.X = 4; uv.Y = 0; break;
-                                        case 0x0E: uv.X = 3; uv.Y = 0; break;
-                                        case 0x0F: uv.X = 1; uv.Y = 1; break;
-                                    }
-                                    source.X = uv.X * (source.Width + 2);
-                                    source.Y = uv.Y * (source.Height + 2);
+                                    state |= (byte)((neighborTile[n] != null && neighborTile[n].WireRed == true) ? 0x01 : 0x00);
+                                    state |= (byte)((neighborTile[e] != null && neighborTile[e].WireRed == true) ? 0x02 : 0x00);
+                                    state |= (byte)((neighborTile[s] != null && neighborTile[s].WireRed == true) ? 0x04 : 0x00);
+                                    state |= (byte)((neighborTile[w] != null && neighborTile[w].WireRed == true) ? 0x08 : 0x00);
+                                    source.X = state * 18;
+                                    source.Y = voffset;
 
                                     _spriteBatch.Draw(tileTex, dest, source, Color.White, 0f, default(Vector2), SpriteEffects.None, LayerWires);
                                 }
-                            }
-                            if (curtile.WireGreen && _wvm.ShowGreenWires)
-                            {
-                                var tileTex = (Texture2D)_textureDictionary.GetMisc("Wires3");
-
-                                if (tileTex != null)
+                                if (curtile.WireBlue && _wvm.ShowBlueWires)
                                 {
                                     var source = new Rectangle(0, 0, 16, 16);
                                     var dest = new Rectangle(1 + (int)((_scrollPosition.X + x) * _zoom), 1 + (int)((_scrollPosition.Y + y) * _zoom), (int)_zoom, (int)_zoom);
 
                                     byte state = 0x00;
-                                    state |= (byte)((neighborTile[e] != null && neighborTile[e].WireGreen == true) ? 0x01 : 0x00);
-                                    state |= (byte)((neighborTile[n] != null && neighborTile[n].WireGreen == true) ? 0x02 : 0x00);
-                                    state |= (byte)((neighborTile[w] != null && neighborTile[w].WireGreen == true) ? 0x04 : 0x00);
-                                    state |= (byte)((neighborTile[s] != null && neighborTile[s].WireGreen == true) ? 0x08 : 0x00);
-                                    Vector2Int32 uv = new Vector2Int32(0, 0);
-                                    switch (state)
-                                    {
-                                        case 0x00: uv.X = 0; uv.Y = 3; break;
-                                        case 0x01: uv.X = 4; uv.Y = 2; break;
-                                        case 0x02: uv.X = 2; uv.Y = 2; break;
-                                        case 0x03: uv.X = 2; uv.Y = 1; break;
-                                        case 0x04: uv.X = 3; uv.Y = 2; break;
-                                        case 0x05: uv.X = 1; uv.Y = 0; break;
-                                        case 0x06: uv.X = 3; uv.Y = 1; break;
-                                        case 0x07: uv.X = 0; uv.Y = 1; break;
-                                        case 0x08: uv.X = 1; uv.Y = 2; break;
-                                        case 0x09: uv.X = 0; uv.Y = 2; break;
-                                        case 0x0A: uv.X = 0; uv.Y = 0; break;
-                                        case 0x0B: uv.X = 2; uv.Y = 0; break;
-                                        case 0x0C: uv.X = 4; uv.Y = 1; break;
-                                        case 0x0D: uv.X = 4; uv.Y = 0; break;
-                                        case 0x0E: uv.X = 3; uv.Y = 0; break;
-                                        case 0x0F: uv.X = 1; uv.Y = 1; break;
-                                    }
-                                    source.X = uv.X * (source.Width + 2);
-                                    source.Y = uv.Y * (source.Height + 2);
+                                    state |= (byte)((neighborTile[n] != null && neighborTile[n].WireBlue == true) ? 0x01 : 0x00);
+                                    state |= (byte)((neighborTile[e] != null && neighborTile[e].WireBlue == true) ? 0x02 : 0x00);
+                                    state |= (byte)((neighborTile[s] != null && neighborTile[s].WireBlue == true) ? 0x04 : 0x00);
+                                    state |= (byte)((neighborTile[w] != null && neighborTile[w].WireBlue == true) ? 0x08 : 0x00);
+                                    source.X = state * 18;
+                                    source.Y = 18 + voffset;
 
                                     _spriteBatch.Draw(tileTex, dest, source, Color.White, 0f, default(Vector2), SpriteEffects.None, LayerWires);
                                 }
-                            }
-                            if (curtile.WireBlue && _wvm.ShowBlueWires)
-                            {
-                                var tileTex = (Texture2D)_textureDictionary.GetMisc("Wires2");
-
-                                if (tileTex != null)
+                                if (curtile.WireGreen && _wvm.ShowGreenWires)
                                 {
                                     var source = new Rectangle(0, 0, 16, 16);
                                     var dest = new Rectangle(1 + (int)((_scrollPosition.X + x) * _zoom), 1 + (int)((_scrollPosition.Y + y) * _zoom), (int)_zoom, (int)_zoom);
 
                                     byte state = 0x00;
-                                    state |= (byte)((neighborTile[e] != null && neighborTile[e].WireBlue == true) ? 0x01 : 0x00);
-                                    state |= (byte)((neighborTile[n] != null && neighborTile[n].WireBlue == true) ? 0x02 : 0x00);
-                                    state |= (byte)((neighborTile[w] != null && neighborTile[w].WireBlue == true) ? 0x04 : 0x00);
-                                    state |= (byte)((neighborTile[s] != null && neighborTile[s].WireBlue == true) ? 0x08 : 0x00);
-                                    Vector2Int32 uv = new Vector2Int32(0, 0);
-                                    switch (state)
-                                    {
-                                        case 0x00: uv.X = 0; uv.Y = 3; break;
-                                        case 0x01: uv.X = 4; uv.Y = 2; break;
-                                        case 0x02: uv.X = 2; uv.Y = 2; break;
-                                        case 0x03: uv.X = 2; uv.Y = 1; break;
-                                        case 0x04: uv.X = 3; uv.Y = 2; break;
-                                        case 0x05: uv.X = 1; uv.Y = 0; break;
-                                        case 0x06: uv.X = 3; uv.Y = 1; break;
-                                        case 0x07: uv.X = 0; uv.Y = 1; break;
-                                        case 0x08: uv.X = 1; uv.Y = 2; break;
-                                        case 0x09: uv.X = 0; uv.Y = 2; break;
-                                        case 0x0A: uv.X = 0; uv.Y = 0; break;
-                                        case 0x0B: uv.X = 2; uv.Y = 0; break;
-                                        case 0x0C: uv.X = 4; uv.Y = 1; break;
-                                        case 0x0D: uv.X = 4; uv.Y = 0; break;
-                                        case 0x0E: uv.X = 3; uv.Y = 0; break;
-                                        case 0x0F: uv.X = 1; uv.Y = 1; break;
-                                    }
-                                    source.X = uv.X * (source.Width + 2);
-                                    source.Y = uv.Y * (source.Height + 2);
+                                    state |= (byte)((neighborTile[n] != null && neighborTile[n].WireGreen == true) ? 0x01 : 0x00);
+                                    state |= (byte)((neighborTile[e] != null && neighborTile[e].WireGreen == true) ? 0x02 : 0x00);
+                                    state |= (byte)((neighborTile[s] != null && neighborTile[s].WireGreen == true) ? 0x04 : 0x00);
+                                    state |= (byte)((neighborTile[w] != null && neighborTile[w].WireGreen == true) ? 0x08 : 0x00);
+                                    source.X = state * 18;
+                                    source.Y = 36 + voffset;
 
                                     _spriteBatch.Draw(tileTex, dest, source, Color.White, 0f, default(Vector2), SpriteEffects.None, LayerWires);
                                 }
-                            }
-                            if (curtile.WireYellow && _wvm.ShowYellowWires)
-                            {
-                                var tileTex = (Texture2D)_textureDictionary.GetMisc("Wires4");
-
-                                if (tileTex != null)
+                                if (curtile.WireYellow && _wvm.ShowYellowWires)
                                 {
                                     var source = new Rectangle(0, 0, 16, 16);
                                     var dest = new Rectangle(1 + (int)((_scrollPosition.X + x) * _zoom), 1 + (int)((_scrollPosition.Y + y) * _zoom), (int)_zoom, (int)_zoom);
 
                                     byte state = 0x00;
-                                    state |= (byte)((neighborTile[e] != null && neighborTile[e].WireYellow == true) ? 0x01 : 0x00);
-                                    state |= (byte)((neighborTile[n] != null && neighborTile[n].WireYellow == true) ? 0x02 : 0x00);
-                                    state |= (byte)((neighborTile[w] != null && neighborTile[w].WireYellow == true) ? 0x04 : 0x00);
-                                    state |= (byte)((neighborTile[s] != null && neighborTile[s].WireYellow == true) ? 0x08 : 0x00);
-                                    Vector2Int32 uv = new Vector2Int32(0, 0);
-                                    switch (state)
-                                    {
-                                        case 0x00: uv.X = 0; uv.Y = 3; break;
-                                        case 0x01: uv.X = 4; uv.Y = 2; break;
-                                        case 0x02: uv.X = 2; uv.Y = 2; break;
-                                        case 0x03: uv.X = 2; uv.Y = 1; break;
-                                        case 0x04: uv.X = 3; uv.Y = 2; break;
-                                        case 0x05: uv.X = 1; uv.Y = 0; break;
-                                        case 0x06: uv.X = 3; uv.Y = 1; break;
-                                        case 0x07: uv.X = 0; uv.Y = 1; break;
-                                        case 0x08: uv.X = 1; uv.Y = 2; break;
-                                        case 0x09: uv.X = 0; uv.Y = 2; break;
-                                        case 0x0A: uv.X = 0; uv.Y = 0; break;
-                                        case 0x0B: uv.X = 2; uv.Y = 0; break;
-                                        case 0x0C: uv.X = 4; uv.Y = 1; break;
-                                        case 0x0D: uv.X = 4; uv.Y = 0; break;
-                                        case 0x0E: uv.X = 3; uv.Y = 0; break;
-                                        case 0x0F: uv.X = 1; uv.Y = 1; break;
-                                    }
-                                    source.X = uv.X * (source.Width + 2);
-                                    source.Y = uv.Y * (source.Height + 2);
+                                    state |= (byte)((neighborTile[n] != null && neighborTile[n].WireYellow == true) ? 0x01 : 0x00);
+                                    state |= (byte)((neighborTile[e] != null && neighborTile[e].WireYellow == true) ? 0x02 : 0x00);
+                                    state |= (byte)((neighborTile[s] != null && neighborTile[s].WireYellow == true) ? 0x04 : 0x00);
+                                    state |= (byte)((neighborTile[w] != null && neighborTile[w].WireYellow == true) ? 0x08 : 0x00);
+                                    source.X = state * 18;
+                                    source.Y = 54 + voffset;
 
                                     _spriteBatch.Draw(tileTex, dest, source, Color.White, 0f, default(Vector2), SpriteEffects.None, LayerWires);
                                 }
