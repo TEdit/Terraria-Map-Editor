@@ -1954,7 +1954,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Tile Id="46" Color="#FFB9C2C3" Name="Silver Brick" Solid="true" Blends="true" MergeWith="0" />
     <Tile Id="47" Color="#FF964316" Name="Copper Brick" Solid="true" Blends="true" MergeWith="0" />
     <Tile Id="48" Color="#FF808080" Name="Spike" Solid="true" Blends="true" Placement="wallFloorCeiling" />
-    <Tile Id="49" Color="#FF2B8FFF" Name="Water Candle" Placement="surface" Light="true" />
+    <Tile Id="49" Color="#FF2B8FFF" Name="Water Candle" Framed="true" TextureGrid="16,20" Placement="surface" Light="true" />
     <Tile Id="50" Color="#FFAA3072" Name="Book" Framed="true" Placement="surface" >
       <Frames>
         <Frame UV="0,0" Variety="Blue Red Brown" />
