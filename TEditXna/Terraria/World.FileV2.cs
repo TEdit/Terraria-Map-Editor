@@ -515,7 +515,7 @@ namespace TEditXNA.Terraria
 
         public static int SaveTileEntities(World w, BinaryWriter bw)
         {
-            bw.Write(w.TileEntitiesNumber);
+            bw.Write(w.TileEntities.Count);
 
             foreach(TileEntity tentity in w.TileEntities)
             {
