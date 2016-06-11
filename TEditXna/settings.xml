@@ -3102,10 +3102,10 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="54,54" Name="Spiky Ball Trap" Variety="Left" />
         <Frame UV="72,54" Name="Spiky Ball Trap" Variety="Right" />
         <Frame UV="0,72" Name="Spear Trap" Variety="Top" />
-        <Frame UV="0,72" Name="Spear Trap" Variety="Down" />
-        <Frame UV="0,72" Name="Spear Trap" Variety="Up" />
-        <Frame UV="0,72" Name="Spear Trap" Variety="Left" />
-        <Frame UV="0,72" Name="Spear Trap" Variety="Right" />
+        <Frame UV="18,72" Name="Spear Trap" Variety="Down" />
+        <Frame UV="36,72" Name="Spear Trap" Variety="Up" />
+        <Frame UV="54,72" Name="Spear Trap" Variety="Left" />
+        <Frame UV="72,72" Name="Spear Trap" Variety="Right" />
       </Frames>
     </Tile>
     <Tile Id="138" Color="#FF606060" Name="Boulder" Framed="true" Size="2,2" />
@@ -3198,14 +3198,14 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     </Tile>
     <Tile Id="142" Color="#FF909490" Name="Inlet Pump" Framed="true" Size="2,2" />
     <Tile Id="143" Color="#FF909490" Name="Outlet Pump" Framed="true" Size="2,2" />
-    <Tile Id="144" Color="#FF909490" Name="1 Second Timer" Framed="true" >
+    <Tile Id="144" Color="#FF909490" Name="Timer" Framed="true" UseFrameName="true">
       <Frames>
-        <Frame UV="0,0" Variety="Inactive 1 Second" />
-        <Frame UV="0,18" Variety="Active 1 Second" />
-        <Frame UV="18,0" Variety="Inactive 3 Second" />
-        <Frame UV="18,18" Variety="Active 3 Second" />
-        <Frame UV="36,0" Variety="Inactive 5 Second" />
-        <Frame UV="36,18" Variety="Active 5 Second" />
+        <Frame UV="0,0" Name="1 Second Timer" Variety="Inactive" />
+        <Frame UV="0,18" Name="1 Second Timer" Variety="Active" />
+        <Frame UV="18,0" Name="3 Second Timer" Variety="Inactive" />
+        <Frame UV="18,18" Name="3 Second Timer" Variety="Active" />
+        <Frame UV="36,0" Name="5 Second Timer" Variety="Inactive" />
+        <Frame UV="36,18" Name="5 Second Timer" Variety="Active" />
       </Frames>
     </Tile>
     <Tile Id="145" Color="#FFC01E1E" Name="Candy Cane Block" Solid="true" Blends="true" MergeWith="0" />
