@@ -177,6 +177,11 @@ namespace TEditXNA.Terraria
             return Signs.FirstOrDefault(c => (c.X == x || c.X == x - 1) && (c.Y == y || c.Y == y - 1));
         }
 
+        public TileEntity GetTileEntityAtTile(int x, int y)
+        {
+        	return TileEntities.FirstOrDefault(c => (c.PosX == x) && (c.PosY == y));
+        }
+
         public Vector2Int32 GetChestAnchor(int x, int y)
         {
             Tile tile = Tiles[x, y];
@@ -227,6 +232,21 @@ namespace TEditXNA.Terraria
                         {
                             Signs.Add(new Sign(x, y, string.Empty));
                         }
+                    }
+                    //validate logic sensors
+                    else if (curTile.Type == 423)
+                    {
+                    	if (GetTileEntityAtTile(x, y) == null)
+                    	{
+                    		TileEntity TE = new TileEntity();
+                    		TE.Type = 2;
+                    		TE.PosX = (short)x;
+                    		TE.PosY = (short)y;
+                    		TE.On = false;
+                    		TE.LogicCheck = (byte)(curTile.V / 18 + 1);
+                    		TE.Id = TileEntities.Count;
+                    		TileEntities.Add(TE);
+                    	}
                     }
                 }
             }
