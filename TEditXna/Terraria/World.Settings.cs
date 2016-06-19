@@ -169,6 +169,7 @@ namespace TEditXNA.Terraria
                     curFrame.Variety = (string)elementFrame.Attribute("Variety");
                     curFrame.UV = StringToVector2Short((string)elementFrame.Attribute("UV"), 0, 0);
                     curFrame.Anchor = InLineEnumTryParse<FrameAnchor>((string)elementFrame.Attribute("Anchor"));
+                    var frameSize = StringToVector2Short((string)elementFrame.Attribute("FrameSize"), curTile.FrameSize.X, curTile.FrameSize.Y);
 
                     // Assign a default name if none existed
                     if (string.IsNullOrWhiteSpace(curFrame.Name))
@@ -181,7 +182,7 @@ namespace TEditXNA.Terraria
                                         IsPreviewTexture = false,
                                         Name = curFrame.Name + ", " + curFrame.Variety,
                                         Origin = curFrame.UV,
-                                        Size = curTile.FrameSize,
+                                        Size = frameSize,
                                         Tile = (ushort)curTile.Id, /* SBlogic */
                                         TileName = curTile.Name
                                     });
