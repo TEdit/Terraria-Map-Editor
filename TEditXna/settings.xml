@@ -109,15 +109,29 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Tile Id="2" Color="#FF1CD85E" Name="Grass Block" Solid="true" Blends="true" MergeWith="0" Special="Grass" />
     <Tile Id="3" Color="#FF1BC56D" Name="Grass Flowers" Framed="true" TextureGrid="16,20" >
       <Frames>
-        <Frame UV="0,0" Name="Grass" Variety="Single Blade" Anchor="Right" />
-        <Frame UV="18,0" Name="Grass" Variety="Double Blade" Anchor="Right" />
-        <Frame UV="36,0" Name="Grass" Variety="Small Y" Anchor="Bottom" />
-        <Frame UV="54,0" Name="Grass" Variety="Three Small" Anchor="Right" />
-        <Frame UV="72,0" Name="Grass" Variety="Single Blade" Anchor="Left" />
-        <Frame UV="90,0" Name="Grass" Variety="Three Large" Anchor="Left" />
-        <Frame UV="108,0" Name="Flowers" Variety="Purple, Immature" Anchor="Left" />
-        <Frame UV="126,0" Name="Flowers" Variety="Pink, Immature" Anchor="Right" />
-        <Frame UV="144,0" Name="Mushroom" Anchor="Bottom" />
+        <Frame UV="0,0" Name="Grass" Variety="Single Blade" />
+        <Frame UV="18,0" Name="Grass" Variety="Double Blade" />
+        <Frame UV="36,0" Name="Grass" Variety="Small Y" />
+        <Frame UV="54,0" Name="Grass" Variety="Three Small" />
+        <Frame UV="72,0" Name="Grass" Variety="Single Blade" />
+        <Frame UV="90,0" Name="Grass" Variety="Three Large" />
+        <Frame UV="144,0" Name="Mushroom" />
+        <Frame UV="108,0" Name="Flowers" Variety="A" />
+        <Frame UV="126,0" Name="Flowers" Variety="B" />
+        <Frame UV="162,0" Name="Flowers" Variety="C" />
+        <Frame UV="180,0" Name="Flowers" Variety="D" />
+        <Frame UV="198,0" Name="Flowers" Variety="E" />
+        <Frame UV="216,0" Name="Flowers" Variety="F" />
+        <Frame UV="234,0" Name="Flowers" Variety="G" />
+        <Frame UV="252,0" Name="Flowers" Variety="H" />
+        <Frame UV="270,0" Name="Flowers" Variety="I" />
+        <Frame UV="288,0" Name="Flowers" Variety="J" />
+        <Frame UV="306,0" Name="Flowers" Variety="K" />
+        <Frame UV="324,0" Name="Flowers" Variety="L" />
+        <Frame UV="342,0" Name="Flowers" Variety="M" />
+        <Frame UV="360,0" Name="Flowers" Variety="N" />
+        <Frame UV="378,0" Name="Flowers" Variety="O" />
+        <Frame UV="396,0" Name="Flowers" Variety="P" />
       </Frames>
     </Tile>
     <Tile Id="4" Color="#FFFDDD03" Name="Torch" Framed="true" Size="1,1" TextureGrid="20,20" Placement="wallFloor" Light="true" >
@@ -1545,15 +1559,29 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Tile Id="23" Color="#FF8D89DF" Name="Corrupt Grass Block" Solid="true" Blends="true" MergeWith="0" Special="Grass" />
     <Tile Id="24" Color="#FF7A74DA" Name="Corruption Plants" Framed="true" TextureGrid="16,20" >
       <Frames>
-        <Frame UV="0,0" Name="Vile Grass" Variety="Single Blade" Anchor="Right" />
-        <Frame UV="18,0" Name="Vile Grass" Variety="Double Blade" Anchor="Right" />
-        <Frame UV="36,0" Name="Vile Grass" Variety="Small Y" Anchor="Bottom" />
-        <Frame UV="54,0" Name="Vile Grass" Variety="Three Small" Anchor="Right" />
-        <Frame UV="72,0" Name="Vile Grass" Variety="Single Blade" Anchor="Left" />
-        <Frame UV="90,0" Name="Vile Grass" Variety="Three Large" Anchor="Left" />
-        <Frame UV="108,0" Name="Vile Flower" Variety="Yellow" Anchor="Left" />
-        <Frame UV="126,0" Name="Vile Flower" Variety="Red" Anchor="Right" />
-        <Frame UV="144,0" Name="Vile Mushroom" Anchor="Bottom" />
+        <Frame UV="0,0" Name="Vile Grass" Variety="Single Blade" />
+        <Frame UV="18,0" Name="Vile Grass" Variety="Double Blade" />
+        <Frame UV="36,0" Name="Vile Grass" Variety="Small Y" />
+        <Frame UV="54,0" Name="Vile Grass" Variety="Three Small" />
+        <Frame UV="72,0" Name="Vile Grass" Variety="Single Blade" />
+        <Frame UV="90,0" Name="Vile Grass" Variety="Three Large" />
+        <Frame UV="144,0" Name="Vile Mushroom" />
+        <Frame UV="108,0" Name="Vile Flowers" Variety="A" />
+        <Frame UV="126,0" Name="Vile Flowers" Variety="B" />
+        <Frame UV="162,0" Name="Vile Flowers" Variety="C" />
+        <Frame UV="180,0" Name="Vile Flowers" Variety="D" />
+        <Frame UV="198,0" Name="Vile Flowers" Variety="E" />
+        <Frame UV="216,0" Name="Vile Flowers" Variety="F" />
+        <Frame UV="234,0" Name="Vile Flowers" Variety="G" />
+        <Frame UV="252,0" Name="Vile Flowers" Variety="H" />
+        <Frame UV="270,0" Name="Vile Flowers" Variety="I" />
+        <Frame UV="288,0" Name="Vile Flowers" Variety="J" />
+        <Frame UV="306,0" Name="Vile Flowers" Variety="K" />
+        <Frame UV="324,0" Name="Vile Flowers" Variety="L" />
+        <Frame UV="342,0" Name="Vile Flowers" Variety="M" />
+        <Frame UV="360,0" Name="Vile Flowers" Variety="N" />
+        <Frame UV="378,0" Name="Vile Flowers" Variety="O" />
+        <Frame UV="396,0" Name="Vile Flowers" Variety="P" />
       </Frames>
     </Tile>
     <Tile Id="25" Color="#FF6D5A80" Name="Ebonstone Block" Solid="true" Blends="true" MergeWith="0" />
@@ -1861,8 +1889,9 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="36,0" Variety="Green with White Ribbon" />
         <Frame UV="54,0" Variety="Green with Red Ribbon" />
         <Frame UV="72,0" Variety="Yellow with White Ribbon" />
-        <Frame UV="90,0" Variety="Blue with White Ribbon" />
-        <Frame UV="108,0" Variety="Blue with Yellow Ribbon" />
+        <Frame UV="90,0" Variety="Yellow with Green Ribbon" />
+        <Frame UV="108,0" Variety="Blue with White Ribbon" />
+        <Frame UV="126,0" Variety="Blue with Yellow Ribbon" />
       </Frames>
     </Tile>
     <Tile Id="37" Color="#FF685654" Name="Meteorite" Solid="true" Blends="true" MergeWith="0" Light="true" />
@@ -1965,8 +1994,8 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="90,0" Variety="Brown Water Bolt Gray" />
       </Frames>
     </Tile>
-    <Tile Id="51" Color="#FFC0CACB" Name="Cobweb" Blends="true" MergeWith="-1" />
-    <Tile Id="52" Color="#FF17B14C" Name="Vines" Blends="true" />
+    <Tile Id="51" Color="#FFC0CACB" Name="Cobweb" Solid="true" Blends="true" MergeWith="-1" />
+    <Tile Id="52" Color="#FF17B14C" Name="Vines" Solid="true" Blends="true" />
     <Tile Id="53" Color="#FFFFDA38" Name="Sand Block" Solid="true" Blends="true" MergeWith="0" />
     <Tile Id="54" Color="#FFC8F6FE" Name="Glass" Solid="true" Blends="true" />
     <Tile Id="55" Color="#FFBF8E6F" Name="Sign" Framed="true" Size="2,2" Placement="wallFloorCeiling" >
@@ -1984,19 +2013,32 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Tile Id="60" Color="#FF8FD71D" Name="Jungle Grass Block" Solid="true" Blends="true" MergeWith="59" Special="Grass" />
     <Tile Id="61" Color="#FF87C41A" Name="Jungle Plants" Framed="true" TextureGrid="16,20" Light="true" >
       <Frames>
-        <Frame UV="0,0" Name="Jungle Grass" Variety="Single Blade" Anchor="Right" />
-        <Frame UV="18,0" Name="Jungle Grass" Variety="Double Blade" Anchor="Right" />
-        <Frame UV="36,0" Name="Jungle Grass" Variety="Small Y" Anchor="Bottom" />
-        <Frame UV="54,0" Name="Jungle Grass" Variety="Three Small" Anchor="Right" />
-        <Frame UV="72,0" Name="Jungle Grass" Variety="Single Blade" Anchor="Left" />
-        <Frame UV="90,0" Name="Jungle Grass" Variety="Three Large" Anchor="Left" />
-        <Frame UV="108,0" Name="Jungle Rose" Variety="Immature" Anchor="Left" />
-        <Frame UV="126,0" Name="Jungle Rose" Variety="Immature" Anchor="Right" />
-        <Frame UV="144,0" Name="Puff Light" Anchor="Bottom" />
-        <Frame UV="162,0" Name="Nature's Gift" Variety="Immature" Anchor="Right" />
+        <Frame UV="0,0" Name="Jungle Grass" Variety="Single Blade" />
+        <Frame UV="18,0" Name="Jungle Grass" Variety="Double Blade" />
+        <Frame UV="36,0" Name="Jungle Grass" Variety="Small Y" />
+        <Frame UV="54,0" Name="Jungle Grass" Variety="Three Small" />
+        <Frame UV="72,0" Name="Jungle Grass" Variety="Single Blade" />
+        <Frame UV="90,0" Name="Jungle Grass" Variety="Three Large" />
+        <Frame UV="144,0" Name="Jungle Spores" />
+        <Frame UV="108,0" Name="Jungle Flowers" Variety="A" />
+        <Frame UV="126,0" Name="Jungle Flowers" Variety="B" />
+        <Frame UV="162,0" Name="Jungle Flowers" Variety="C" />
+        <Frame UV="180,0" Name="Jungle Flowers" Variety="D" />
+        <Frame UV="198,0" Name="Jungle Flowers" Variety="E" />
+        <Frame UV="216,0" Name="Jungle Flowers" Variety="F" />
+        <Frame UV="234,0" Name="Jungle Flowers" Variety="G" />
+        <Frame UV="252,0" Name="Jungle Flowers" Variety="H" />
+        <Frame UV="270,0" Name="Jungle Flowers" Variety="I" />
+        <Frame UV="288,0" Name="Jungle Flowers" Variety="J" />
+        <Frame UV="306,0" Name="Jungle Flowers" Variety="K" />
+        <Frame UV="324,0" Name="Jungle Flowers" Variety="L" />
+        <Frame UV="342,0" Name="Jungle Flowers" Variety="M" />
+        <Frame UV="360,0" Name="Jungle Flowers" Variety="N" />
+        <Frame UV="378,0" Name="Jungle Flowers" Variety="O" />
+        <Frame UV="396,0" Name="Jungle Flowers" Variety="P" />
       </Frames>
     </Tile>
-    <Tile Id="62" Color="#FF79B018" Name="Jungle Vines" Blends="true" />
+    <Tile Id="62" Color="#FF79B018" Name="Jungle Vines" Solid="true" Blends="true" />
     <Tile Id="63" Color="#FF6E8CB6" Name="Gem Sapphire" Solid="true" Blends="true" Stone="true" />
     <Tile Id="64" Color="#FFC46072" Name="Gem Ruby" Solid="true" Blends="true" Stone="true" />
     <Tile Id="65" Color="#FF389661" Name="Gem Emerald" Solid="true" Blends="true" Stone="true" />
@@ -2940,16 +2982,29 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Tile Id="109" Color="#FF4EC1E3" Name="Hallowed Grass Block" Solid="true" Blends="true" MergeWith="0" Special="Grass" Light="true" />
     <Tile Id="110" Color="#FF30BA87" Name="Hallowed Plants" Framed="true" TextureGrid="16,20" >
       <Frames>
-        <Frame UV="0,0" Name="Grass" Variety="Single Blade" Anchor="Right" />
-        <Frame UV="18,0" Name="Grass" Variety="Double Blade" Anchor="Right" />
-        <Frame UV="36,0" Name="Grass" Variety="Single Blade" Anchor="Bottom" />
-        <Frame UV="54,0" Name="Grass" Variety="Three Small" Anchor="Right" />
-        <Frame UV="72,0" Name="Grass" Variety="Gold Flower" Anchor="Left" />
-        <Frame UV="90,0" Name="Grass" Variety="Three Medium" Anchor="Left" />
-        <Frame UV="108,0" Name="Flowers" Variety="Purple, Immature" Anchor="Left" />
-        <Frame UV="126,0" Name="Flowers" Variety="Pink, Immature" Anchor="Right" />
-        <Frame UV="144,0" Name="Mushroom" Anchor="Bottom" />
-        <Frame UV="162,0" Name="Small Y" Anchor="Bottom" />
+        <Frame UV="0,0" Name="Hallowed Grass" Variety="Single Blade" />
+        <Frame UV="18,0" Name="Hallowed Grass" Variety="Double Blade" />
+        <Frame UV="36,0" Name="Hallowed Grass" Variety="Small Y" />
+        <Frame UV="54,0" Name="Hallowed Grass" Variety="Three Small" />
+        <Frame UV="72,0" Name="Hallowed Grass" Variety="Single Blade" />
+        <Frame UV="90,0" Name="Hallowed Grass" Variety="Three Large" />
+        <Frame UV="144,0" Name="Mushroom" />
+        <Frame UV="108,0" Name="Hallowed Flowers" Variety="A" />
+        <Frame UV="126,0" Name="Hallowed Flowers" Variety="B" />
+        <Frame UV="162,0" Name="Hallowed Flowers" Variety="C" />
+        <Frame UV="180,0" Name="Hallowed Flowers" Variety="D" />
+        <Frame UV="198,0" Name="Hallowed Flowers" Variety="E" />
+        <Frame UV="216,0" Name="Hallowed Flowers" Variety="F" />
+        <Frame UV="234,0" Name="Hallowed Flowers" Variety="G" />
+        <Frame UV="252,0" Name="Hallowed Flowers" Variety="H" />
+        <Frame UV="270,0" Name="Hallowed Flowers" Variety="I" />
+        <Frame UV="288,0" Name="Hallowed Flowers" Variety="J" />
+        <Frame UV="306,0" Name="Hallowed Flowers" Variety="K" />
+        <Frame UV="324,0" Name="Hallowed Flowers" Variety="L" />
+        <Frame UV="342,0" Name="Hallowed Flowers" Variety="M" />
+        <Frame UV="360,0" Name="Hallowed Flowers" Variety="N" />
+        <Frame UV="378,0" Name="Hallowed Flowers" Variety="O" />
+        <Frame UV="396,0" Name="Hallowed Flowers" Variety="P" />
       </Frames>
     </Tile>
     <Tile Id="111" Color="#FF801A34" Name="Adamantite Ore" Solid="true" Blends="true" MergeWith="0" />
@@ -2967,7 +3022,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
       </Frames>
     </Tile>
     <Tile Id="114" Color="#FFBF8E6F" Name="Tinkerer's Workshop" Framed="true" Size="3,2" TextureGrid="16,16" SolidTop="true" />
-    <Tile Id="115" Color="#FF21ABCF" Name="Hallowed Vines" Blends="true" />
+    <Tile Id="115" Color="#FF21ABCF" Name="Hallowed Vines" Solid="true" Blends="true" />
     <Tile Id="116" Color="#FFEEE1DA" Name="Pearlsand Block" Solid="true" Blends="true" MergeWith="0" />
     <Tile Id="117" Color="#FFB5ACBE" Name="Pearlstone Block" Solid="true" Blends="true" MergeWith="0" />
     <Tile Id="118" Color="#FFEEE1DA" Name="Pearlstone Brick" Solid="true" Blends="true" MergeWith="0" />
@@ -3090,12 +3145,12 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="54,18" Name="Super Dart Trap" Variety="Up-Right" />
         <Frame UV="72,18" Name="Super Dart Trap" Variety="Down-Left" />
         <Frame UV="90,18" Name="Super Dart Trap" Variety="Down-Right" />
-        <Frame UV="0,36" Name="Flame  Trap" Variety="Left" />
-        <Frame UV="18,36" Name="Flame  Trap" Variety="Right" />
-        <Frame UV="36,36" Name="Flame  Trap" Variety="Up-Left" />
-        <Frame UV="54,36" Name="Flame  Trap" Variety="Up-Right" />
-        <Frame UV="72,36" Name="Flame  Trap" Variety="Down-Left" />
-        <Frame UV="90,36" Name="Flame  Trap" Variety="Down-Right" />
+        <Frame UV="0,36" Name="Flame Trap" Variety="Left" />
+        <Frame UV="18,36" Name="Flame Trap" Variety="Right" />
+        <Frame UV="36,36" Name="Flame Trap" Variety="Up-Left" />
+        <Frame UV="54,36" Name="Flame Trap" Variety="Up-Right" />
+        <Frame UV="72,36" Name="Flame Trap" Variety="Down-Left" />
+        <Frame UV="90,36" Name="Flame Trap" Variety="Down-Right" />
         <Frame UV="0,54" Name="Spiky Ball Trap" Variety="Top" />
         <Frame UV="18,54" Name="Spiky Ball Trap" Variety="Down" />
         <Frame UV="36,54" Name="Spiky Ball Trap" Variety="Up" />
@@ -3212,7 +3267,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Tile Id="146" Color="#FF2BC01E" Name="Green Candy Cane Block" Solid="true" Blends="true" MergeWith="0" />
     <Tile Id="147" Color="#FFD3ECF1" Name="Snow Block" Solid="true" Blends="true" />
     <Tile Id="148" Color="#FFB5D3D2" Name="Snow Brick" Solid="true" Blends="true" MergeWith="0" />
-    <Tile Id="149" Color="#FFDC3232" Name="Blue Light" Framed="true" Size="1,1" Light="true" >
+    <Tile Id="149" Color="#FFDC3232" Name="Holiday Light" Framed="true" Size="1,1" Light="true" >
       <Frames>
         <Frame UV="0,0" Name="Blue Light" Variety="On" Anchor="Bottom" />
         <Frame UV="0,18" Name="Blue Light" Variety="On" Anchor="Top" />
@@ -3305,6 +3360,57 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="486,36" Name="Stalagmite" Variety="Marble A" />
         <Frame UV="504,36" Name="Stalagmite" Variety="Marble B" />
         <Frame UV="522,36" Name="Stalagmite" Variety="Marble C" />
+        <Frame UV="0,72" Name="Icicle" Variety="A" FrameSize = "1,1" />
+        <Frame UV="18,72" Name="Icicle" Variety="B" FrameSize = "1,1" />
+        <Frame UV="36,72" Name="Icicle" Variety="C" FrameSize = "1,1" />
+        <Frame UV="54,72" Name="Stalactite" Variety="Rock A" FrameSize = "1,1" />
+        <Frame UV="72,72" Name="Stalactite" Variety="Rock B" FrameSize = "1,1" />
+        <Frame UV="90,72" Name="Stalactite" Variety="Rock C" FrameSize = "1,1" />
+        <Frame UV="54,90" Name="Stalagmite" Variety="Rock A" FrameSize = "1,1" />
+        <Frame UV="72,90" Name="Stalagmite" Variety="Rock B" FrameSize = "1,1" />
+        <Frame UV="90,90" Name="Stalagmite" Variety="Rock C" FrameSize = "1,1" />
+        <Frame UV="162,72" Name="Stalactite" Variety="Honey A" FrameSize = "1,1" />
+        <Frame UV="180,72" Name="Stalactite" Variety="Honey B" FrameSize = "1,1" />
+        <Frame UV="198,72" Name="Stalactite" Variety="Honey C" FrameSize = "1,1" />
+        <Frame UV="162,90" Name="Stalagmite" Variety="Honey A" FrameSize = "1,1" />
+        <Frame UV="180,90" Name="Stalagmite" Variety="Honey B" FrameSize = "1,1" />
+        <Frame UV="198,90" Name="Stalagmite" Variety="Honey C" FrameSize = "1,1" />
+        <Frame UV="216,72" Name="Stalactite" Variety="Hallow A" FrameSize = "1,1" />
+        <Frame UV="234,72" Name="Stalactite" Variety="Hallow B" FrameSize = "1,1" />
+        <Frame UV="252,72" Name="Stalactite" Variety="Hallow C" FrameSize = "1,1" />
+        <Frame UV="216,90" Name="Stalagmite" Variety="Hallow A" FrameSize = "1,1" />
+        <Frame UV="234,90" Name="Stalagmite" Variety="Hallow B" FrameSize = "1,1" />
+        <Frame UV="252,90" Name="Stalagmite" Variety="Hallow C" FrameSize = "1,1" />
+        <Frame UV="270,72" Name="Stalactite" Variety="Corruption A" FrameSize = "1,1" />
+        <Frame UV="288,72" Name="Stalactite" Variety="Corruption B" FrameSize = "1,1" />
+        <Frame UV="306,72" Name="Stalactite" Variety="Corruption C" FrameSize = "1,1" />
+        <Frame UV="270,90" Name="Stalagmite" Variety="Corruption A" FrameSize = "1,1" />
+        <Frame UV="288,90" Name="Stalagmite" Variety="Corruption B" FrameSize = "1,1" />
+        <Frame UV="306,90" Name="Stalagmite" Variety="Corruption C" FrameSize = "1,1" />
+        <Frame UV="324,72" Name="Stalactite" Variety="Crimson A" FrameSize = "1,1" />
+        <Frame UV="342,72" Name="Stalactite" Variety="Crimson B" FrameSize = "1,1" />
+        <Frame UV="360,72" Name="Stalactite" Variety="Crimson C" FrameSize = "1,1" />
+        <Frame UV="324,90" Name="Stalagmite" Variety="Crimson A" FrameSize = "1,1" />
+        <Frame UV="342,90" Name="Stalagmite" Variety="Crimson B" FrameSize = "1,1" />
+        <Frame UV="360,90" Name="Stalagmite" Variety="Crimson C" FrameSize = "1,1" />
+        <Frame UV="378,72" Name="Stalactite" Variety="Sandstone A" FrameSize = "1,1" />
+        <Frame UV="396,72" Name="Stalactite" Variety="Sandstone B" FrameSize = "1,1" />
+        <Frame UV="414,72" Name="Stalactite" Variety="Sandstone C" FrameSize = "1,1" />
+        <Frame UV="378,90" Name="Stalagmite" Variety="Sandstone A" FrameSize = "1,1" />
+        <Frame UV="396,90" Name="Stalagmite" Variety="Sandstone B" FrameSize = "1,1" />
+        <Frame UV="414,90" Name="Stalagmite" Variety="Sandstone C" FrameSize = "1,1" />
+        <Frame UV="432,72" Name="Stalactite" Variety="Granite A" FrameSize = "1,1" />
+        <Frame UV="450,72" Name="Stalactite" Variety="Granite B" FrameSize = "1,1" />
+        <Frame UV="468,72" Name="Stalactite" Variety="Granite C" FrameSize = "1,1" />
+        <Frame UV="432,90" Name="Stalagmite" Variety="Granite A" FrameSize = "1,1" />
+        <Frame UV="450,90" Name="Stalagmite" Variety="Granite B" FrameSize = "1,1" />
+        <Frame UV="468,90" Name="Stalagmite" Variety="Granite C" FrameSize = "1,1" />
+        <Frame UV="486,72" Name="Stalactite" Variety="Marble A" FrameSize = "1,1" />
+        <Frame UV="504,72" Name="Stalactite" Variety="Marble B" FrameSize = "1,1" />
+        <Frame UV="522,72" Name="Stalactite" Variety="Marble C" FrameSize = "1,1" />
+        <Frame UV="486,90" Name="Stalagmite" Variety="Marble A" FrameSize = "1,1" />
+        <Frame UV="504,90" Name="Stalagmite" Variety="Marble B" FrameSize = "1,1" />
+        <Frame UV="522,90" Name="Stalagmite" Variety="Marble C" FrameSize = "1,1" />
       </Frames>
     </Tile>
     <Tile Id="166" Color="#FF817D5D" Name="Tin Ore" Solid="true" Blends="true" MergeWith="0" />
@@ -3364,15 +3470,92 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Tile Id="175" Color="#FF817D5D" Name="Tin Brick" Solid="true" Blends="true" MergeWith="0" />
     <Tile Id="176" Color="#FF849D7F" Name="Tungsten Brick" Solid="true" Blends="true" MergeWith="0" />
     <Tile Id="177" Color="#FF98ABC6" Name="Platinum Brick" Solid="true" Blends="true" MergeWith="0" />
-    <Tile Id="178" Color="#FFFF00FF" Name="Sapphire" Framed="true" >
+    <Tile Id="178" Color="#FFFF00FF" Name="Gems" Framed="true" >
       <Frames>
-        <Frame UV="0,0" Name="Amethyst" Variety="Default" />
-        <Frame UV="18,0" Name="Topaz" Variety="Default" />
-        <Frame UV="36,0" Name="Sapphire" Variety="Default" />
-        <Frame UV="54,0" Name="Emerald" Variety="Default" />
-        <Frame UV="72,0" Name="Ruby" Variety="Default" />
-        <Frame UV="90,0" Name="Diamond" Variety="Default" />
-        <Frame UV="108,0" Name="Amber" Variety="Default" />
+        <Frame UV="0,0" Name="Amethyst" Variety="A" Anchor="Bottom" />
+        <Frame UV="0,18" Name="Amethyst" Variety="B" Anchor="Bottom" />
+        <Frame UV="0,36" Name="Amethyst" Variety="C" Anchor="Bottom" />
+        <Frame UV="0,54" Name="Amethyst" Variety="C" Anchor="Top" />
+        <Frame UV="0,72" Name="Amethyst" Variety="B" Anchor="Top" />
+        <Frame UV="0,90" Name="Amethyst" Variety="A" Anchor="Top" />
+        <Frame UV="0,108" Name="Amethyst" Variety="C" Anchor="Left" />
+        <Frame UV="0,126" Name="Amethyst" Variety="B" Anchor="Left" />
+        <Frame UV="0,144" Name="Amethyst" Variety="A" Anchor="Left" />
+        <Frame UV="0,162" Name="Amethyst" Variety="A" Anchor="Right" />
+        <Frame UV="0,180" Name="Amethyst" Variety="B" Anchor="Right" />
+        <Frame UV="0,198" Name="Amethyst" Variety="C" Anchor="Right" />
+        <Frame UV="18,0" Name="Topaz" Variety="A" Anchor="Bottom" />
+        <Frame UV="18,18" Name="Topaz" Variety="B" Anchor="Bottom" />
+        <Frame UV="18,36" Name="Topaz" Variety="C" Anchor="Bottom" />
+        <Frame UV="18,54" Name="Topaz" Variety="C" Anchor="Top" />
+        <Frame UV="18,72" Name="Topaz" Variety="B" Anchor="Top" />
+        <Frame UV="18,90" Name="Topaz" Variety="A" Anchor="Top" />
+        <Frame UV="18,108" Name="Topaz" Variety="C" Anchor="Left" />
+        <Frame UV="18,126" Name="Topaz" Variety="B" Anchor="Left" />
+        <Frame UV="18,144" Name="Topaz" Variety="A" Anchor="Left" />
+        <Frame UV="18,162" Name="Topaz" Variety="A" Anchor="Right" />
+        <Frame UV="18,180" Name="Topaz" Variety="B" Anchor="Right" />
+        <Frame UV="18,198" Name="Topaz" Variety="C" Anchor="Right" />
+        <Frame UV="36,0" Name="Sapphire" Variety="A" Anchor="Bottom" />
+        <Frame UV="36,18" Name="Sapphire" Variety="B" Anchor="Bottom" />
+        <Frame UV="36,36" Name="Sapphire" Variety="C" Anchor="Bottom" />
+        <Frame UV="36,54" Name="Sapphire" Variety="C" Anchor="Top" />
+        <Frame UV="36,72" Name="Sapphire" Variety="B" Anchor="Top" />
+        <Frame UV="36,90" Name="Sapphire" Variety="A" Anchor="Top" />
+        <Frame UV="36,108" Name="Sapphire" Variety="C" Anchor="Left" />
+        <Frame UV="36,126" Name="Sapphire" Variety="B" Anchor="Left" />
+        <Frame UV="36,144" Name="Sapphire" Variety="A" Anchor="Left" />
+        <Frame UV="36,162" Name="Sapphire" Variety="A" Anchor="Right" />
+        <Frame UV="36,180" Name="Sapphire" Variety="B" Anchor="Right" />
+        <Frame UV="36,198" Name="Sapphire" Variety="C" Anchor="Right" />
+        <Frame UV="54,0" Name="Emerald" Variety="A" Anchor="Bottom" />
+        <Frame UV="54,18" Name="Emerald" Variety="B" Anchor="Bottom" />
+        <Frame UV="54,36" Name="Emerald" Variety="C" Anchor="Bottom" />
+        <Frame UV="54,54" Name="Emerald" Variety="C" Anchor="Top" />
+        <Frame UV="54,72" Name="Emerald" Variety="B" Anchor="Top" />
+        <Frame UV="54,90" Name="Emerald" Variety="A" Anchor="Top" />
+        <Frame UV="54,108" Name="Emerald" Variety="C" Anchor="Left" />
+        <Frame UV="54,126" Name="Emerald" Variety="B" Anchor="Left" />
+        <Frame UV="54,144" Name="Emerald" Variety="A" Anchor="Left" />
+        <Frame UV="54,162" Name="Emerald" Variety="A" Anchor="Right" />
+        <Frame UV="54,180" Name="Emerald" Variety="B" Anchor="Right" />
+        <Frame UV="54,198" Name="Emerald" Variety="C" Anchor="Right" />
+        <Frame UV="72,0" Name="Ruby" Variety="A" Anchor="Bottom" />
+        <Frame UV="72,18" Name="Ruby" Variety="B" Anchor="Bottom" />
+        <Frame UV="72,36" Name="Ruby" Variety="C" Anchor="Bottom" />
+        <Frame UV="72,54" Name="Ruby" Variety="C" Anchor="Top" />
+        <Frame UV="72,72" Name="Ruby" Variety="B" Anchor="Top" />
+        <Frame UV="72,90" Name="Ruby" Variety="A" Anchor="Top" />
+        <Frame UV="72,108" Name="Ruby" Variety="C" Anchor="Left" />
+        <Frame UV="72,126" Name="Ruby" Variety="B" Anchor="Left" />
+        <Frame UV="72,144" Name="Ruby" Variety="A" Anchor="Left" />
+        <Frame UV="72,162" Name="Ruby" Variety="A" Anchor="Right" />
+        <Frame UV="72,180" Name="Ruby" Variety="B" Anchor="Right" />
+        <Frame UV="72,198" Name="Ruby" Variety="C" Anchor="Right" />
+        <Frame UV="90,0" Name="Diamond" Variety="A" Anchor="Bottom" />
+        <Frame UV="90,18" Name="Diamond" Variety="B" Anchor="Bottom" />
+        <Frame UV="90,36" Name="Diamond" Variety="C" Anchor="Bottom" />
+        <Frame UV="90,54" Name="Diamond" Variety="C" Anchor="Top" />
+        <Frame UV="90,72" Name="Diamond" Variety="B" Anchor="Top" />
+        <Frame UV="90,90" Name="Diamond" Variety="A" Anchor="Top" />
+        <Frame UV="90,108" Name="Diamond" Variety="C" Anchor="Left" />
+        <Frame UV="90,126" Name="Diamond" Variety="B" Anchor="Left" />
+        <Frame UV="90,144" Name="Diamond" Variety="A" Anchor="Left" />
+        <Frame UV="90,162" Name="Diamond" Variety="A" Anchor="Right" />
+        <Frame UV="90,180" Name="Diamond" Variety="B" Anchor="Right" />
+        <Frame UV="90,198" Name="Diamond" Variety="C" Anchor="Right" />
+        <Frame UV="108,0" Name="Amber" Variety="A" Anchor="Bottom" />
+        <Frame UV="108,18" Name="Amber" Variety="B" Anchor="Bottom" />
+        <Frame UV="108,36" Name="Amber" Variety="C" Anchor="Bottom" />
+        <Frame UV="108,54" Name="Amber" Variety="C" Anchor="Top" />
+        <Frame UV="108,72" Name="Amber" Variety="B" Anchor="Top" />
+        <Frame UV="108,90" Name="Amber" Variety="A" Anchor="Top" />
+        <Frame UV="108,108" Name="Amber" Variety="C" Anchor="Left" />
+        <Frame UV="108,126" Name="Amber" Variety="B" Anchor="Left" />
+        <Frame UV="108,144" Name="Amber" Variety="A" Anchor="Left" />
+        <Frame UV="108,162" Name="Amber" Variety="A" Anchor="Right" />
+        <Frame UV="108,180" Name="Amber" Variety="B" Anchor="Right" />
+        <Frame UV="108,198" Name="Amber" Variety="C" Anchor="Right" />
       </Frames>
     </Tile>
     <Tile Id="179" Color="#FF318672" Name="Green Moss" Solid="true" Blends="true" Special="Grass" Stone="true" />
@@ -3380,7 +3563,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Tile Id="181" Color="#FF863B31" Name="Red Moss" Solid="true" Blends="true" Special="Grass" Stone="true" />
     <Tile Id="182" Color="#FF2B568C" Name="Blue Moss" Solid="true" Blends="true" Special="Grass" Stone="true" />
     <Tile Id="183" Color="#FF793186" Name="Purple Moss" Solid="true" Blends="true" Special="Grass" Stone="true" />
-    <Tile Id="184" Color="#FF646464" Name="Moss Plants" Framed="true" >
+    <Tile Id="184" Color="#FF646464" Name="Moss Plants" Framed="true" TextureGrid="20,16">
       <Frames>
         <Frame UV="0,0" Name="Green Moss" Variety="Bottom A" Anchor="Bottom" />
         <Frame UV="22,0" Name="Yellow Moss" Variety="Bottom A" Anchor="Bottom" />
@@ -3388,72 +3571,72 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="66,0" Name="Blue Moss" Variety="Bottom A" Anchor="Bottom" />
         <Frame UV="88,0" Name="Purple Moss" Variety="Bottom A" Anchor="Bottom" />
         <Frame UV="110,0" Name="Fire Moss" Variety="Bottom A" Anchor="Bottom" />
-        <Frame UV="0,22" Name="Green Moss" Variety="Bottom B" Anchor="Bottom" />
-        <Frame UV="22,22" Name="Yellow Moss" Variety="Bottom B" Anchor="Bottom" />
-        <Frame UV="44,22" Name="Red Moss" Variety="Bottom B" Anchor="Bottom" />
-        <Frame UV="66,22" Name="Blue Moss" Variety="Bottom B" Anchor="Bottom" />
-        <Frame UV="88,22" Name="Purple Moss" Variety="Bottom B" Anchor="Bottom" />
-        <Frame UV="110,22" Name="Fire Moss" Variety="Bottom B" Anchor="Bottom" />
-        <Frame UV="0,44" Name="Green Moss" Variety="Bottom C" Anchor="Bottom" />
-        <Frame UV="22,44" Name="Yellow Moss" Variety="Bottom C" Anchor="Bottom" />
-        <Frame UV="44,44" Name="Red Moss" Variety="Bottom C" Anchor="Bottom" />
-        <Frame UV="66,44" Name="Blue Moss" Variety="Bottom C" Anchor="Bottom" />
-        <Frame UV="88,44" Name="Purple Moss" Variety="Bottom C" Anchor="Bottom" />
-        <Frame UV="110,44" Name="Fire Moss" Variety="Bottom C" Anchor="Bottom" />
-        <Frame UV="0,66" Name="Green Moss" Variety="Top A" Anchor="Top" />
-        <Frame UV="22,66" Name="Yellow Moss" Variety="Top A" Anchor="Top" />
-        <Frame UV="44,66" Name="Red Moss" Variety="Top A" Anchor="Top" />
-        <Frame UV="66,66" Name="Blue Moss" Variety="Top A" Anchor="Top" />
-        <Frame UV="88,66" Name="Purple Moss" Variety="Top A" Anchor="Top" />
-        <Frame UV="110,66" Name="Fire Moss" Variety="Top A" Anchor="Top" />
-        <Frame UV="0,88" Name="Green Moss" Variety="Top B" Anchor="Top" />
-        <Frame UV="22,88" Name="Yellow Moss" Variety="Top B" Anchor="Top" />
-        <Frame UV="44,88" Name="Red Moss" Variety="Top B" Anchor="Top" />
-        <Frame UV="66,88" Name="Blue Moss" Variety="Top B" Anchor="Top" />
-        <Frame UV="88,88" Name="Purple Moss" Variety="Top B" Anchor="Top" />
-        <Frame UV="110,88" Name="Fire Moss" Variety="Top B" Anchor="Top" />
-        <Frame UV="0,110" Name="Green Moss" Variety="Top C" Anchor="Top" />
-        <Frame UV="22,110" Name="Yellow Moss" Variety="Top C" Anchor="Top" />
-        <Frame UV="44,110" Name="Red Moss" Variety="Top C" Anchor="Top" />
-        <Frame UV="66,110" Name="Blue Moss" Variety="Top C" Anchor="Top" />
-        <Frame UV="88,110" Name="Purple Moss" Variety="Top C" Anchor="Top" />
-        <Frame UV="110,110" Name="Fire Moss" Variety="Top C" Anchor="Top" />
-        <Frame UV="0,132" Name="Green Moss" Variety="Left A" Anchor="Left" />
-        <Frame UV="22,132" Name="Yellow Moss" Variety="Left A" Anchor="Left" />
-        <Frame UV="44,132" Name="Red Moss" Variety="Left A" Anchor="Left" />
-        <Frame UV="66,132" Name="Blue Moss" Variety="Left A" Anchor="Left" />
-        <Frame UV="88,132" Name="Purple Moss" Variety="Left A" Anchor="Left" />
-        <Frame UV="110,132" Name="Fire Moss" Variety="Left A" Anchor="Left" />
-        <Frame UV="0,154" Name="Green Moss" Variety="Left B" Anchor="Left" />
-        <Frame UV="22,154" Name="Yellow Moss" Variety="Left B" Anchor="Left" />
-        <Frame UV="44,154" Name="Red Moss" Variety="Left B" Anchor="Left" />
-        <Frame UV="66,154" Name="Blue Moss" Variety="Left B" Anchor="Left" />
-        <Frame UV="88,154" Name="Purple Moss" Variety="Left B" Anchor="Left" />
-        <Frame UV="110,154" Name="Fire Moss" Variety="Left B" Anchor="Left" />
-        <Frame UV="0,176" Name="Green Moss" Variety="Left C" Anchor="Left" />
-        <Frame UV="22,176" Name="Yellow Moss" Variety="Left C" Anchor="Left" />
-        <Frame UV="44,176" Name="Red Moss" Variety="Left C" Anchor="Left" />
-        <Frame UV="66,176" Name="Blue Moss" Variety="Left C" Anchor="Left" />
-        <Frame UV="88,176" Name="Purple Moss" Variety="Left C" Anchor="Left" />
-        <Frame UV="110,176" Name="Fire Moss" Variety="Left C" Anchor="Left" />
-        <Frame UV="0,198" Name="Green Moss" Variety="Right A" Anchor="Right" />
-        <Frame UV="22,198" Name="Yellow Moss" Variety="Right A" Anchor="Right" />
-        <Frame UV="44,198" Name="Red Moss" Variety="Right A" Anchor="Right" />
-        <Frame UV="66,198" Name="Blue Moss" Variety="Right A" Anchor="Right" />
-        <Frame UV="88,198" Name="Purple Moss" Variety="Right A" Anchor="Right" />
-        <Frame UV="110,198" Name="Fire Moss" Variety="Right B" Anchor="Right" />
-        <Frame UV="0,220" Name="Green Moss" Variety="Right B" Anchor="Right" />
-        <Frame UV="22,220" Name="Yellow Moss" Variety="Right B" Anchor="Right" />
-        <Frame UV="44,220" Name="Red Moss" Variety="Right B" Anchor="Right" />
-        <Frame UV="66,220" Name="Blue Moss" Variety="Right B" Anchor="Right" />
-        <Frame UV="88,220" Name="Purple Moss" Variety="Right B" Anchor="Right" />
-        <Frame UV="110,220" Name="Fire Moss" Variety="Right B" Anchor="Right" />
-        <Frame UV="0,242" Name="Green Moss" Variety="Right C" Anchor="Right" />
-        <Frame UV="22,242" Name="Yellow Moss" Variety="Right C" Anchor="Right" />
-        <Frame UV="44,242" Name="Red Moss" Variety="Right C" Anchor="Right" />
-        <Frame UV="66,242" Name="Blue Moss" Variety="Right C" Anchor="Right" />
-        <Frame UV="88,242" Name="Purple Moss" Variety="Right C" Anchor="Right" />
-        <Frame UV="110,242" Name="Fire Moss" Variety="Right C" Anchor="Right" />
+        <Frame UV="0,18" Name="Green Moss" Variety="Bottom B" Anchor="Bottom" />
+        <Frame UV="22,18" Name="Yellow Moss" Variety="Bottom B" Anchor="Bottom" />
+        <Frame UV="44,18" Name="Red Moss" Variety="Bottom B" Anchor="Bottom" />
+        <Frame UV="66,18" Name="Blue Moss" Variety="Bottom B" Anchor="Bottom" />
+        <Frame UV="88,18" Name="Purple Moss" Variety="Bottom B" Anchor="Bottom" />
+        <Frame UV="110,18" Name="Fire Moss" Variety="Bottom B" Anchor="Bottom" />
+        <Frame UV="0,36" Name="Green Moss" Variety="Bottom C" Anchor="Bottom" />
+        <Frame UV="22,36" Name="Yellow Moss" Variety="Bottom C" Anchor="Bottom" />
+        <Frame UV="44,36" Name="Red Moss" Variety="Bottom C" Anchor="Bottom" />
+        <Frame UV="66,36" Name="Blue Moss" Variety="Bottom C" Anchor="Bottom" />
+        <Frame UV="88,36" Name="Purple Moss" Variety="Bottom C" Anchor="Bottom" />
+        <Frame UV="110,36" Name="Fire Moss" Variety="Bottom C" Anchor="Bottom" />
+        <Frame UV="0,54" Name="Green Moss" Variety="Top A" Anchor="Top" />
+        <Frame UV="22,54" Name="Yellow Moss" Variety="Top A" Anchor="Top" />
+        <Frame UV="44,54" Name="Red Moss" Variety="Top A" Anchor="Top" />
+        <Frame UV="66,54" Name="Blue Moss" Variety="Top A" Anchor="Top" />
+        <Frame UV="88,54" Name="Purple Moss" Variety="Top A" Anchor="Top" />
+        <Frame UV="110,54" Name="Fire Moss" Variety="Top A" Anchor="Top" />
+        <Frame UV="0,72" Name="Green Moss" Variety="Top B" Anchor="Top" />
+        <Frame UV="22,72" Name="Yellow Moss" Variety="Top B" Anchor="Top" />
+        <Frame UV="44,72" Name="Red Moss" Variety="Top B" Anchor="Top" />
+        <Frame UV="66,72" Name="Blue Moss" Variety="Top B" Anchor="Top" />
+        <Frame UV="88,72" Name="Purple Moss" Variety="Top B" Anchor="Top" />
+        <Frame UV="110,72" Name="Fire Moss" Variety="Top B" Anchor="Top" />
+        <Frame UV="0,90" Name="Green Moss" Variety="Top C" Anchor="Top" />
+        <Frame UV="22,90" Name="Yellow Moss" Variety="Top C" Anchor="Top" />
+        <Frame UV="44,90" Name="Red Moss" Variety="Top C" Anchor="Top" />
+        <Frame UV="66,90" Name="Blue Moss" Variety="Top C" Anchor="Top" />
+        <Frame UV="88,90" Name="Purple Moss" Variety="Top C" Anchor="Top" />
+        <Frame UV="110,90" Name="Fire Moss" Variety="Top C" Anchor="Top" />
+        <Frame UV="0,108" Name="Green Moss" Variety="Left A" Anchor="Left" />
+        <Frame UV="22,108" Name="Yellow Moss" Variety="Left A" Anchor="Left" />
+        <Frame UV="44,108" Name="Red Moss" Variety="Left A" Anchor="Left" />
+        <Frame UV="66,108" Name="Blue Moss" Variety="Left A" Anchor="Left" />
+        <Frame UV="88,108" Name="Purple Moss" Variety="Left A" Anchor="Left" />
+        <Frame UV="110,108" Name="Fire Moss" Variety="Left A" Anchor="Left" />
+        <Frame UV="0,126" Name="Green Moss" Variety="Left B" Anchor="Left" />
+        <Frame UV="22,126" Name="Yellow Moss" Variety="Left B" Anchor="Left" />
+        <Frame UV="44,126" Name="Red Moss" Variety="Left B" Anchor="Left" />
+        <Frame UV="66,126" Name="Blue Moss" Variety="Left B" Anchor="Left" />
+        <Frame UV="88,126" Name="Purple Moss" Variety="Left B" Anchor="Left" />
+        <Frame UV="110,126" Name="Fire Moss" Variety="Left B" Anchor="Left" />
+        <Frame UV="0,144" Name="Green Moss" Variety="Left C" Anchor="Left" />
+        <Frame UV="22,144" Name="Yellow Moss" Variety="Left C" Anchor="Left" />
+        <Frame UV="44,144" Name="Red Moss" Variety="Left C" Anchor="Left" />
+        <Frame UV="66,144" Name="Blue Moss" Variety="Left C" Anchor="Left" />
+        <Frame UV="88,144" Name="Purple Moss" Variety="Left C" Anchor="Left" />
+        <Frame UV="110,144" Name="Fire Moss" Variety="Left C" Anchor="Left" />
+        <Frame UV="0,162" Name="Green Moss" Variety="Right A" Anchor="Right" />
+        <Frame UV="22,162" Name="Yellow Moss" Variety="Right A" Anchor="Right" />
+        <Frame UV="44,162" Name="Red Moss" Variety="Right A" Anchor="Right" />
+        <Frame UV="66,162" Name="Blue Moss" Variety="Right A" Anchor="Right" />
+        <Frame UV="88,162" Name="Purple Moss" Variety="Right A" Anchor="Right" />
+        <Frame UV="110,162" Name="Fire Moss" Variety="Right B" Anchor="Right" />
+        <Frame UV="0,180" Name="Green Moss" Variety="Right B" Anchor="Right" />
+        <Frame UV="22,180" Name="Yellow Moss" Variety="Right B" Anchor="Right" />
+        <Frame UV="44,180" Name="Red Moss" Variety="Right B" Anchor="Right" />
+        <Frame UV="66,180" Name="Blue Moss" Variety="Right B" Anchor="Right" />
+        <Frame UV="88,180" Name="Purple Moss" Variety="Right B" Anchor="Right" />
+        <Frame UV="110,180" Name="Fire Moss" Variety="Right B" Anchor="Right" />
+        <Frame UV="0,196" Name="Green Moss" Variety="Right C" Anchor="Right" />
+        <Frame UV="22,196" Name="Yellow Moss" Variety="Right C" Anchor="Right" />
+        <Frame UV="44,196" Name="Red Moss" Variety="Right C" Anchor="Right" />
+        <Frame UV="66,196" Name="Blue Moss" Variety="Right C" Anchor="Right" />
+        <Frame UV="88,196" Name="Purple Moss" Variety="Right C" Anchor="Right" />
+        <Frame UV="110,196" Name="Fire Moss" Variety="Right C" Anchor="Right" />
       </Frames>
     </Tile>
     <Tile Id="185" Color="#FF959573" Name="Small Decos" Framed="true" Size="1,1" >
@@ -3512,88 +3695,83 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="918,0" Variety="White 1" />
         <Frame UV="936,0" Variety="White 2" />
         <Frame UV="954,0" Variety="White 3" />
-        <Frame UV="0,18" Variety="Stone 1" />
-        <Frame UV="18,18" Variety="Stone 2" />
-        <Frame UV="36,18" Variety="Stone 3" />
-        <Frame UV="54,18" Variety="Stone 4" />
-        <Frame UV="72,18" Variety="Stone 5" />
-        <Frame UV="90,18" Variety="Stone 6" />
-        <Frame UV="108,18" Variety="Stone 7" />
-        <Frame UV="126,18" Variety="Stone 8" />
-        <Frame UV="144,18" Variety="Stone 9" />
-        <Frame UV="162,18" Variety="Stone 10" />
-        <Frame UV="180,18" Variety="Stone 11" />
-        <Frame UV="198,18" Variety="Stone 12" />
-        <Frame UV="216,18" Variety="Skull Up Reverse" />
-        <Frame UV="234,18" Variety="Bone 5" />
-        <Frame UV="252,18" Variety="Bone 6" />
-        <Frame UV="270,18" Variety="Bone 7" />
-        <Frame UV="288,18" Variety="Bone 8" />
-        <Frame UV="306,18" Variety="Bone 9" />
-        <Frame UV="324,18" Variety="Bone 10" />
-        <Frame UV="342,18" Variety="Bone 11" />
-        <Frame UV="360,18" Variety="Bone 12" />
-        <Frame UV="378,18" Variety="Bone 13" />
-        <Frame UV="396,18" Variety="Gore 5" />
-        <Frame UV="414,18" Variety="Gore Skull Up Reverse" />
-        <Frame UV="432,18" Variety="Gore 6" />
-        <Frame UV="450,18" Variety="Gore 7" />
-        <Frame UV="468,18" Variety="Gore 8" />
-        <Frame UV="486,18" Variety="Gore 9" />
-        <Frame UV="504,18" Variety="Gore 10" />
-        <Frame UV="522,18" Variety="Gore 11" />
-        <Frame UV="540,18" Variety="Gore 12" />
-        <Frame UV="558,18" Variety="Gore 13" />
-        <Frame UV="576,18" Variety="Copper Stash Left" />
-        <Frame UV="594,18" Variety="Copper Stash Right" />
-        <Frame UV="612,18" Variety="Sliver Stash Left" />
-        <Frame UV="630,18" Variety="Silver Stash Right" />
-        <Frame UV="648,18" Variety="Gold Stash Left" />
-        <Frame UV="666,18" Variety="Gold Stash Right" />
-        <Frame UV="684,18" Variety="Amethyst Stash Left" />
-        <Frame UV="702,18" Variety="Amethyst Stash Right" />
-        <Frame UV="720,18" Variety="Topaz Stash Left" />
-        <Frame UV="738,18" Variety="Topaz Stash Right" />
-        <Frame UV="756,18" Variety="Sapphire Stash Left" />
-        <Frame UV="774,18" Variety="Sapphire Stash Right" />
-        <Frame UV="792,18" Variety="Emerald Stash Left" />
-        <Frame UV="810,18" Variety="Emerald Stash Right" />
-        <Frame UV="828,18" Variety="Ruby Stash Left" />
-        <Frame UV="846,18" Variety="Ruby Stash Right" />
-        <Frame UV="864,18" Variety="Diamond Stash Left" />
-        <Frame UV="882,18" Variety="Diamond Stash Right" />
-        <Frame UV="900,18" Variety="Ice Junk 1" />
-        <Frame UV="918,18" Variety="Ice Junk 2" />
-        <Frame UV="936,18" Variety="Ice Junk 3" />
-        <Frame UV="954,18" Variety="Ice Junk 4" />
-        <Frame UV="972,18" Variety="Ice Junk 5" />
-        <Frame UV="990,18" Variety="Ice Junk 6" />
-        <Frame UV="1008,18" Variety="Ice Junk 7" />
-        <Frame UV="1026,18" Variety="Ice Junk 8" />
-        <Frame UV="1044,18" Variety="Ice Junk 9" />
-        <Frame UV="1062,18" Variety="Ice Junk 10" />
-        <Frame UV="1080,18" Variety="Ice Junk 11" />
-        <Frame UV="1098,18" Variety="Ice Junk 12" />
-        <Frame UV="1116,18" Variety="Debris 1 Left" />
-        <Frame UV="1134,18" Variety="Debris 1 Right" />
-        <Frame UV="1152,18" Variety="Debris 2 Left" />
-        <Frame UV="1170,18" Variety="Debris 2 Right" />
-        <Frame UV="1188,18" Variety="Debris 3 Left" />
-        <Frame UV="1206,18" Variety="Debris 3 Right" />
-        <Frame UV="1224,18" Variety="Dark 1 Left" />
-        <Frame UV="1242,18" Variety="Dark 1 Right" />
-        <Frame UV="1260,18" Variety="Dark 2 Left" />
-        <Frame UV="1278,18" Variety="Dark 2 Right" />
-        <Frame UV="1296,18" Variety="Dark 3 Left" />
-        <Frame UV="1314,18" Variety="Dark 3 Right" />
-        <Frame UV="1332,18" Variety="Dark 4 Left" />
-        <Frame UV="1350,18" Variety="Dark 4 Right" />
-        <Frame UV="1368,18" Variety="Stony Moss 1" />
-        <Frame UV="1386,18" Variety="Stony Moss 2" />
-        <Frame UV="1404,18" Variety="Stony Moss 3" />
-        <Frame UV="1422,18" Variety="Stony Moss 4" />
-        <Frame UV="1440,18" Variety="Stony Moss 5" />
-        <Frame UV="1458,18" Variety="Stony Moss 6" />
+        <Frame UV="972,0" Variety="Sandstone 1" />
+        <Frame UV="990,0" Variety="Sandstone 2" />
+        <Frame UV="1008,0" Variety="Sandstone 3" />
+        <Frame UV="1026,0" Variety="Sandstone 4" />
+        <Frame UV="1044,0" Variety="Sandstone 5" />
+        <Frame UV="1062,0" Variety="Sandstone 6" />
+        <Frame UV="1080,0" Variety="Granite 1" />
+        <Frame UV="1098,0" Variety="Granite 2" />
+        <Frame UV="1116,0" Variety="Granite 3" />
+        <Frame UV="1134,0" Variety="Granite 4" />
+        <Frame UV="1152,0" Variety="Granite 5" />
+        <Frame UV="1170,0" Variety="Granite 6" />
+        <Frame UV="1188,0" Variety="Marble 1" />
+        <Frame UV="1206,0" Variety="Marble 2" />
+        <Frame UV="1224,0" Variety="Marble 3" />
+        <Frame UV="1242,0" Variety="Marble 4" />
+        <Frame UV="1260,0" Variety="Marble 5" />
+        <Frame UV="1278,0" Variety="Marble 6" />
+        <Frame UV="0,18" Variety="Stone 1" FrameSize="2,1" />
+        <Frame UV="36,18" Variety="Stone 2" FrameSize="2,1" />
+        <Frame UV="72,18" Variety="Stone 3" FrameSize="2,1" />
+        <Frame UV="108,18" Variety="Stone 4" FrameSize="2,1" />
+        <Frame UV="144,18" Variety="Stone 5" FrameSize="2,1" />
+        <Frame UV="180,18" Variety="Stone 6" FrameSize="2,1" />
+        <Frame UV="216,18" Variety="Skeleton Left" FrameSize="2,1" />
+        <Frame UV="252,18" Variety="Skeleton Right" FrameSize="2,1" />
+        <Frame UV="288,18" Variety="Bone 1" FrameSize="2,1" />
+        <Frame UV="324,18" Variety="Bone 2" FrameSize="2,1" />
+        <Frame UV="360,18" Variety="Bone 3" FrameSize="2,1" />
+        <Frame UV="396,18" Variety="Gore Skeleton Left" FrameSize="2,1" />
+        <Frame UV="432,18" Variety="Gore Skeleton Right" FrameSize="2,1" />
+        <Frame UV="468,18" Variety="Gore 1" FrameSize="2,1" />
+        <Frame UV="504,18" Variety="Gore 2" FrameSize="2,1" />
+        <Frame UV="540,18" Variety="Gore 3" FrameSize="2,1" />
+        <Frame UV="576,18" Variety="Copper Stash" FrameSize="2,1" />
+        <Frame UV="612,18" Variety="Sliver Stash" FrameSize="2,1" />
+        <Frame UV="648,18" Variety="Gold Stash" FrameSize="2,1" />
+        <Frame UV="684,18" Variety="Amethyst Stash" FrameSize="2,1" />
+        <Frame UV="720,18" Variety="Topaz Stash" FrameSize="2,1" />
+        <Frame UV="756,18" Variety="Sapphire Stash" FrameSize="2,1" />
+        <Frame UV="792,18" Variety="Emerald Stash" FrameSize="2,1" />
+        <Frame UV="828,18" Variety="Ruby Stash" FrameSize="2,1" />
+        <Frame UV="864,18" Variety="Diamond Stash" FrameSize="2,1" />
+        <Frame UV="900,18" Variety="Ice Junk 1" FrameSize="2,1" />
+        <Frame UV="936,18" Variety="Ice Junk 2" FrameSize="2,1" />
+        <Frame UV="972,18" Variety="Ice Junk 3" FrameSize="2,1" />
+        <Frame UV="1008,18" Variety="Ice Junk 4" FrameSize="2,1" />
+        <Frame UV="1044,18" Variety="Ice Junk 5" FrameSize="2,1" />
+        <Frame UV="1080,18" Variety="Ice Junk 6" FrameSize="2,1" />
+        <Frame UV="1116,18" Variety="Debris 1" FrameSize="2,1" />
+        <Frame UV="1152,18" Variety="Debris 2" FrameSize="2,1" />
+        <Frame UV="1188,18" Variety="Debris 3" FrameSize="2,1" />
+        <Frame UV="1224,18" Variety="Dark 1" FrameSize="2,1" />
+        <Frame UV="1260,18" Variety="Dark 2" FrameSize="2,1" />
+        <Frame UV="1296,18" Variety="Dark 3" FrameSize="2,1" />
+        <Frame UV="1332,18" Variety="Dark 4" FrameSize="2,1" />
+        <Frame UV="1368,18" Variety="Stony Moss 1" FrameSize="2,1" />
+        <Frame UV="1404,18" Variety="Stony Moss 2" FrameSize="2,1" />
+        <Frame UV="1440,18" Variety="Stony Moss 3" FrameSize="2,1" />
+        <Frame UV="1476,18" Variety="Sandstone 1" FrameSize="2,1" />
+        <Frame UV="1512,18" Variety="Sandstone 2" FrameSize="2,1" />
+        <Frame UV="1548,18" Variety="Sandstone 3" FrameSize="2,1" />
+        <Frame UV="1584,18" Variety="Sandstone 4" FrameSize="2,1" />
+        <Frame UV="1620,18" Variety="Sandstone 5" FrameSize="2,1" />
+        <Frame UV="1656,18" Variety="Sandstone 6" FrameSize="2,1" />
+        <Frame UV="1692,18" Variety="Granite 1" FrameSize="2,1" />
+        <Frame UV="1728,18" Variety="Granite 2" FrameSize="2,1" />
+        <Frame UV="1764,18" Variety="Granite 3" FrameSize="2,1" />
+        <Frame UV="1800,18" Variety="Granite 4" FrameSize="2,1" />
+        <Frame UV="1836,18" Variety="Granite 5" FrameSize="2,1" />
+        <Frame UV="1872,18" Variety="Granite 6" FrameSize="2,1" />
+        <Frame UV="0,54" Variety="Marble 1" FrameSize="2,1" />
+        <Frame UV="36,54" Variety="Marble 2" FrameSize="2,1" />
+        <Frame UV="72,54" Variety="Marble 3" FrameSize="2,1" />
+        <Frame UV="108,54" Variety="Marble 4" FrameSize="2,1" />
+        <Frame UV="144,54" Variety="Marble 5" FrameSize="2,1" />
+        <Frame UV="180,54" Variety="Marble 6" FrameSize="2,1" />
       </Frames>
     </Tile>
     <Tile Id="186" Color="#FFFF00FF" Name="3x2 Decos" Framed="true" Size="3,2" >
@@ -3666,6 +3844,24 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="1404,0" Name="Abandoned Tent" />
         <Frame UV="1458,0" Name="Wheelbarrow" />
         <Frame UV="1512,0" Name="Peg" />
+        <Frame UV="1566,0" Name="Sandstone 1" />
+        <Frame UV="1620,0" Name="Sandstone 2" />
+        <Frame UV="1674,0" Name="Sandstone 3" />
+        <Frame UV="1728,0" Name="Sandstone 4" />
+        <Frame UV="1782,0" Name="Sandstone 5" />
+        <Frame UV="1836,0" Name="Sandstone 6" />
+        <Frame UV="0,36" Name="Granite 1" />
+        <Frame UV="54,36" Name="Granite 2" />
+        <Frame UV="108,36" Name="Granite 3" />
+        <Frame UV="162,36" Name="Granite 4" />
+        <Frame UV="216,36" Name="Granite 5" />
+        <Frame UV="270,36" Name="Granite 6" />
+        <Frame UV="324,36" Name="Marble 1" />
+        <Frame UV="378,36" Name="Marble 2" />
+        <Frame UV="432,36" Name="Marble 3" />
+        <Frame UV="486,36" Name="Marble 4" />
+        <Frame UV="540,36" Name="Marble 5" />
+        <Frame UV="594,36" Name="Marble 6" />
       </Frames>
     </Tile>
     <Tile Id="188" Color="#FF497811" Name="Cactus" Solid="true" Blends="true" MergeWith="0" />
@@ -3703,7 +3899,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Tile Id="202" Color="#FFD5B21C" Name="Sunplate Block" Solid="true" Blends="true" MergeWith="0" />
     <Tile Id="203" Color="#FF802C2D" Name="Crimstone Block" Solid="true" Blends="true" MergeWith="0" />
     <Tile Id="204" Color="#FF7D3741" Name="Crimtane Ore" Solid="true" Blends="true" MergeWith="0" Light="true" />
-    <Tile Id="205" Color="#FFBA3234" Name="Crimson Vine" Blends="true" />
+    <Tile Id="205" Color="#FFBA3234" Name="Crimson Vine" Solid="true" Blends="true" />
     <Tile Id="206" Color="#FF7CAFC9" Name="Ice Brick" Solid="true" Blends="true" MergeWith="0" />
     <Tile Id="207" Color="#FF909490" Name="Water Fountain" Framed="true" Size="2,4" >
       <Frames>
@@ -3731,30 +3927,39 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="0,0" Name="Cannon" Variety="0 deg Elevation Right" />
         <Frame UV="72,0" Name="Bunny Cannon" Variety="0 deg Elevation Right" />
         <Frame UV="144,0" Name="Confetti Cannon" Variety="0 deg Elevation Right" />
+        <Frame UV="216,0" Name="Portal Gun Station" Variety="0 deg Elevation Right" />
         <Frame UV="0,54" Name="Cannon" Variety="22.5 deg Elevation Right" />
         <Frame UV="72,54" Name="Bunny Cannon" Variety="22.5 deg Elevation Right" />
         <Frame UV="144,54" Name="Confetti Cannon" Variety="22.5 deg Elevation Right" />
+        <Frame UV="216,54" Name="Portal Gun Station" Variety="22.5 deg Elevation Right" />
         <Frame UV="0,108" Name="Cannon" Variety="45 deg Elevation Right" />
         <Frame UV="72,108" Name="Bunny Cannon" Variety="45 deg Elevation Right" />
         <Frame UV="144,108" Name="Confetti Cannon" Variety="45 deg Elevation Right" />
+        <Frame UV="216,108" Name="Portal Gun Station" Variety="45 deg Elevation Right" />
         <Frame UV="0,162" Name="Cannon" Variety="67.5 deg Elevation Right" />
         <Frame UV="72,162" Name="Bunny Cannon" Variety="67.5 deg Elevation Right" />
         <Frame UV="144,162" Name="Confetti Cannon" Variety="67.5 deg Elevation Right" />
+        <Frame UV="216,162" Name="Portal Gun Station" Variety="67.5 deg Elevation Right" />
         <Frame UV="0,216" Name="Cannon" Variety="90 deg Elevation" />
         <Frame UV="72,216" Name="Bunny Cannon" Variety="90 deg Elevation" />
         <Frame UV="144,216" Name="Confetti Cannon" Variety="90 deg Elevation" />
+        <Frame UV="216,216" Name="Portal Gun Station" Variety="90 deg Elevation" />
         <Frame UV="0,270" Name="Cannon" Variety="67.5 deg Elevation Left" />
         <Frame UV="72,270" Name="Bunny Cannon" Variety="67.5 deg Elevation Left" />
         <Frame UV="144,270" Name="Confetti Cannon" Variety="67.5 deg Elevation Left" />
+        <Frame UV="216,270" Name="Portal Gun Station" Variety="67.5 deg Elevation Left" />
         <Frame UV="0,324" Name="Cannon" Variety="45 deg Elevation Left" />
         <Frame UV="72,324" Name="Bunny Cannon" Variety="45 deg Elevation Left" />
         <Frame UV="144,324" Name="Confetti Cannon" Variety="45 deg Elevation Left" />
+        <Frame UV="216,324" Name="Portal Gun Station" Variety="45 deg Elevation Left" />
         <Frame UV="0,378" Name="Cannon" Variety="22.5 deg Elevation Left" />
         <Frame UV="72,378" Name="Bunny Cannon" Variety="22.5 deg Elevation Left" />
         <Frame UV="144,378" Name="Confetti Cannon" Variety="22.5 deg Elevation Left" />
+        <Frame UV="216,378" Name="Portal Gun Station" Variety="22.5 deg Elevation Left" />
         <Frame UV="0,432" Name="Cannon" Variety="0 deg Elevation Left" />
         <Frame UV="72,432" Name="Bunny Cannon" Variety="0 deg Elevation Left" />
         <Frame UV="144,432" Name="Confetti Cannon" Variety="0 deg Elevation Left" />
+        <Frame UV="216,432" Name="Portal Gun Station" Variety="0 deg Elevation Left" />
       </Frames>
     </Tile>
     <Tile Id="210" Color="#FFC03B3B" Name="Land Mine" Framed="true" />
@@ -3781,6 +3986,10 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="216,288" Name="Ichor Campfire" Variety="Unlit" />
         <Frame UV="270,0" Name="Rainbow Campfire" Variety="Lit" />
         <Frame UV="270,288" Name="Rainbow Campfire" Variety="Unlit" />
+        <Frame UV="324,0" Name="Ultra Bright Campfire" Variety="Lit" />
+        <Frame UV="324,288" Name="Ultra Bright Campfire" Variety="Unlit" />
+        <Frame UV="378,0" Name="Bone Campfire" Variety="Lit" />
+        <Frame UV="378,288" Name="Bone Campfire" Variety="Unlit" />
       </Frames>
     </Tile>
     <Tile Id="216" Color="#FFBF8E6F" Name="Rocket" Framed="true" Size="1,2" >
@@ -3822,7 +4031,31 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Tile Id="230" Color="#FF834F0D" Name="Crispy Honey Block" Solid="true" Blends="true" MergeWith="0" />
     <Tile Id="231" Color="#FFE0C265" Name="Larva" Framed="true" Size="3,3" />
     <Tile Id="232" Color="#FF915155" Name="Wooden Spike" Solid="true" Blends="true" />
-    <Tile Id="233" Color="#FFFF00FF" Name="Jungle Vegetation" Framed="true" Size="3,2" />
+    <Tile Id="233" Color="#FFFF00FF" Name="Jungle Vegetation" Framed="true" Size="3,2" >
+      <Frames>
+        <Frame UV="0,0" Variety="Plant A" />
+        <Frame UV="54,0" Variety="Plant B" />
+        <Frame UV="108,0" Variety="Plant C" />
+        <Frame UV="162,0" Variety="Plant D" />
+        <Frame UV="216,0" Variety="Plant E" />
+        <Frame UV="270,0" Variety="Plant F" />
+        <Frame UV="324,0" Variety="Plant G" />
+        <Frame UV="378,0" Variety="Plant H" />
+        <Frame UV="432,0" Variety="Plant I" />
+        <Frame UV="0,36" Variety="Plant A" FrameSize="2,2" />
+        <Frame UV="36,36" Variety="Plant B" FrameSize="2,2" />
+        <Frame UV="72,36" Variety="Plant C" FrameSize="2,2" />
+        <Frame UV="108,36" Variety="Plant D" FrameSize="2,2" />
+        <Frame UV="144,36" Variety="Plant E" FrameSize="2,2" />
+        <Frame UV="180,36" Variety="Plant F" FrameSize="2,2" />
+        <Frame UV="216,36" Variety="Plant G" FrameSize="2,2" />
+        <Frame UV="252,36" Variety="Plant H" FrameSize="2,2" />
+        <Frame UV="288,36" Variety="Plant I" FrameSize="2,2" />
+        <Frame UV="324,36" Variety="Plant J" FrameSize="2,2" />
+        <Frame UV="360,36" Variety="Plant K" FrameSize="2,2" />
+        <Frame UV="396,36" Variety="Plant L" FrameSize="2,2" />
+      </Frames>
+    </Tile>
     <Tile Id="234" Color="#FF352C29" Name="Crimsand Block" Solid="true" Blends="true" MergeWith="0" />
     <Tile Id="235" Color="#FFD6B82E" Name="Teleporter" Solid="true" Framed="true" Size="3,1" />
     <Tile Id="236" Color="#FF95E857" Name="Life Fruit Plant" Framed="true" Size="2,2" >
@@ -4011,7 +4244,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="0,540" Name="Painting" Variety="Sky Guardian" />
         <Frame UV="0,576" Name="Painting" Variety="Living Gore" />
         <Frame UV="0,612" Name="Painting" Variety="Flowing Magma" />
-        <Frame UV="0,684" Name="Hanging" Variety="Holly" />
+        <Frame UV="0,648" Name="Hanging" Variety="Holly" />
       </Frames>
     </Tile>
     <Tile Id="247" Color="#FF8C9696" Name="Autohammer" Framed="true" Size="3,3" />
@@ -4119,50 +4352,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Tile Id="311" Color="#FF753D19" Name="Dynasty Wood" Solid="true" Blends="true" MergeWith="0" />
     <Tile Id="312" Color="#FFCC5D49" Name="Red Dynasty Shingles" Solid="true" Blends="true" />
     <Tile Id="313" Color="#FF57969A" Name="Blue Dynasty Shingles" Solid="true" Blends="true" />
-    <Tile Id="314" Color="#FFB5A47D" Name="Minecart Track" Framed="True" >
-      <Frames>
-        <Frame UV="0,0" Variety="Single Rail" />
-        <Frame UV="18,0" Variety="Straight Rail" />
-        <Frame UV="36,0" Variety="Left End Open" />
-        <Frame UV="54,0" Variety="Right End Open" />
-        <Frame UV="72,0" Variety="Diagonal Up-Right Open" />
-        <Frame UV="90,0" Variety="Diagonal Up-Left Open" />
-        <Frame UV="108,0" Variety="Diagonal Down-Right Open" />
-        <Frame UV="126,0" Variety="Diagonal Down-Left Open" />
-        <Frame UV="0,18" Variety="Flat to Up-Right" />
-        <Frame UV="18,18" Variety="Flat to Up-Left" />
-        <Frame UV="36,18" Variety="Left End Closed" />
-        <Frame UV="54,18" Variety="Right End Closed" />
-        <Frame UV="72,18" Variety="Diagonal Up-Right Closed" />
-        <Frame UV="90,18" Variety="Diagonal Up-Left Closed" />
-        <Frame UV="108,18" Variety="Diagonal Down-Right Closed" />
-        <Frame UV="126,18" Variety="Diagonal Down-Left Closed" />
-        <Frame UV="0,36" Variety="Up-Right to Flat" />
-        <Frame UV="18,36" Variety="Up-Left to Flat" />
-        <Frame UV="36,36" Variety="Left End Bumper" />
-        <Frame UV="54,36" Variety="Right End Bumper" />
-        <Frame UV="72,36" Variety="Diagonal Up-Right Bumper" />
-        <Frame UV="90,36" Variety="Diagonal Up-Left Bumper" />
-        <Frame UV="108,36" Variety="Diagonal Down-Right Bumper" />
-        <Frame UV="126,36" Variety="Diagonal Down-Left Bumper" />
-        <Frame UV="0,54" Variety="Slope Left" />
-        <Frame UV="18,54" Variety="Slope Right" />
-        <Frame UV="36,54" Variety="Booster Right" />
-        <Frame UV="54,54" Variety="Booster Left" />
-        <Frame UV="72,54" Variety="Booster Down-Right" />
-        <Frame UV="90,54" Variety="Booster Down-Left" />
-        <Frame UV="108,54" Variety="Booster Up-Left" />
-        <Frame UV="126,54" Variety="Booster Up-Right" />
-        <Frame UV="0,72" Variety="Single Rail Pressure Plate" />
-        <Frame UV="18,72" Variety="Straight Rail Pressure Plate" />
-        <Frame UV="0,90" Variety="Left End Open Pressure Plate" />
-        <Frame UV="18,90" Variety="Right End Open Pressure Plate" />
-        <Frame UV="0,108" Variety="Tie Upper Left" />
-        <Frame UV="18,108" Variety="Tie Upper Right" />
-        <Frame UV="0,126" Variety="End Closed Top" />
-        <Frame UV="18,126" Variety="End Bumper Top" />
-      </Frames>
-    </Tile>
+    <Tile Id="314" Color="#FFB5A47D" Name="Minecart Track" Framed="True" />
     <Tile Id="315" Color="#FFEB7250" Name="Coralstone Block" Solid="True" Blends="true" MergeWith="0" />
     <Tile Id="316" Color="#FF7AD9E8" Name="Blue Jellyfish Jar" Framed="true" Size="2,2" />
     <Tile Id="317" Color="#FF7AD9E8" Name="Green Jellyfish Jar" Framed="true" Size="2,2" />
@@ -4506,7 +4696,37 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
       </Frames>
     </Tile>
     <Tile Id="426" Color="#FFFFFFFF" Name="Red Team Block" Solid="true" Blends="true" />
-    <Tile Id="427" Color="#FFFFFFFF" Name="Red Team Platform" Framed="true" TextureGrid="16,16" Special="Platform" />
+    <Tile Id="427" Color="#FFFFFFFF" Name="Red Team Platform" Framed="true" TextureGrid="16,16" Special="Platform" >
+      <Frames>
+        <Frame UV="0,0" Name="Platform" Variety="Flat" />
+        <Frame UV="18,0" Name="Platform" Variety="Endcap Right" />
+        <Frame UV="36,0" Name="Platform" Variety="Endcap Left" />
+        <Frame UV="54,0" Name="Platform" Variety="Attach Left" />
+        <Frame UV="72,0" Name="Platform" Variety="Attach Right" />
+        <Frame UV="90,0" Name="Platform" Variety="Single" />
+        <Frame UV="108,0" Name="Platform" Variety="Attach Left Endcap" />
+        <Frame UV="126,0" Name="Platform" Variety="Attach Right Endcap" />
+        <Frame UV="144,0" Name="Stair" Variety="Up-Right Riser" />
+        <Frame UV="162,0" Name="Stair" Variety="Up-Right Stringer" />
+        <Frame UV="180,0" Name="Stair" Variety="Up-Left Riser" />
+        <Frame UV="198,0" Name="Stair" Variety="Up-Left Stringer" />
+        <Frame UV="216,0" Name="Stair" Variety="Top Landing R" />
+        <Frame UV="234,0" Name="Stair" Variety="Top Landing L" />
+        <Frame UV="252,0" Name="Stair" Variety="Top Landing L-R" />
+        <Frame UV="270,0" Name="Stair" Variety="Top Landing R Endcap" />
+        <Frame UV="288,0" Name="Stair" Variety="Top Landing L Endcap" />
+        <Frame UV="306,0" Name="Stair" Variety="Bottom Landing R" />
+        <Frame UV="324,0" Name="Stair" Variety="Bottom Landing L" />
+        <Frame UV="342,0" Name="Stair" Variety="Inset Up-Right 1" />
+        <Frame UV="360,0" Name="Stair" Variety="Inset Up-Left 1" />
+        <Frame UV="378,0" Name="Stair" Variety="Inset Up-Right 2" />
+        <Frame UV="396,0" Name="Stair" Variety="Inset Up-Left 2" />
+        <Frame UV="414,0" Name="Stair" Variety="Inset Up-Right 3" />
+        <Frame UV="432,0" Name="Stair" Variety="Inset Up-Left 3" />
+        <Frame UV="450,0" Name="Stair" Variety="Inverted Right" />
+        <Frame UV="468,0" Name="Stair" Variety="Inverted Left" />
+      </Frames>
+    </Tile>
     <Tile Id="428" Color="#FFFFFFFF" Name="Weighted Pressure Plate" Framed="true"> 
       <Frames>
         <Frame UV="0,0" Variety="Orange" />
@@ -4540,11 +4760,161 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Tile Id="432" Color="#FFFFFFFF" Name="Yellow Team Block" Solid="true" Blends="true" />
     <Tile Id="433" Color="#FFFFFFFF" Name="Pink Team Block" Solid="true" Blends="true" />
     <Tile Id="434" Color="#FFFFFFFF" Name="White Team Block" Solid="true" Blends="true" />
-    <Tile Id="435" Color="#FFFFFFFF" Name="Green Team Platform" Framed="true" TextureGrid="16,16" Special="Platform" />
-    <Tile Id="436" Color="#FFFFFFFF" Name="Blue Team Platform" Framed="true" TextureGrid="16,16" Special="Platform" />
-    <Tile Id="437" Color="#FFFFFFFF" Name="Tellow Team Platform" Framed="true" TextureGrid="16,16" Special="Platform" />
-    <Tile Id="438" Color="#FFFFFFFF" Name="Pink Team Platform" Framed="true" TextureGrid="16,16" Special="Platform" />
-    <Tile Id="439" Color="#FFFFFFFF" Name="White Team Platform" Framed="true" TextureGrid="16,16" Special="Platform" />
+    <Tile Id="435" Color="#FFFFFFFF" Name="Green Team Platform" Framed="true" TextureGrid="16,16" Special="Platform" >
+      <Frames>
+        <Frame UV="0,0" Name="Platform" Variety="Flat" />
+        <Frame UV="18,0" Name="Platform" Variety="Endcap Right" />
+        <Frame UV="36,0" Name="Platform" Variety="Endcap Left" />
+        <Frame UV="54,0" Name="Platform" Variety="Attach Left" />
+        <Frame UV="72,0" Name="Platform" Variety="Attach Right" />
+        <Frame UV="90,0" Name="Platform" Variety="Single" />
+        <Frame UV="108,0" Name="Platform" Variety="Attach Left Endcap" />
+        <Frame UV="126,0" Name="Platform" Variety="Attach Right Endcap" />
+        <Frame UV="144,0" Name="Stair" Variety="Up-Right Riser" />
+        <Frame UV="162,0" Name="Stair" Variety="Up-Right Stringer" />
+        <Frame UV="180,0" Name="Stair" Variety="Up-Left Riser" />
+        <Frame UV="198,0" Name="Stair" Variety="Up-Left Stringer" />
+        <Frame UV="216,0" Name="Stair" Variety="Top Landing R" />
+        <Frame UV="234,0" Name="Stair" Variety="Top Landing L" />
+        <Frame UV="252,0" Name="Stair" Variety="Top Landing L-R" />
+        <Frame UV="270,0" Name="Stair" Variety="Top Landing R Endcap" />
+        <Frame UV="288,0" Name="Stair" Variety="Top Landing L Endcap" />
+        <Frame UV="306,0" Name="Stair" Variety="Bottom Landing R" />
+        <Frame UV="324,0" Name="Stair" Variety="Bottom Landing L" />
+        <Frame UV="342,0" Name="Stair" Variety="Inset Up-Right 1" />
+        <Frame UV="360,0" Name="Stair" Variety="Inset Up-Left 1" />
+        <Frame UV="378,0" Name="Stair" Variety="Inset Up-Right 2" />
+        <Frame UV="396,0" Name="Stair" Variety="Inset Up-Left 2" />
+        <Frame UV="414,0" Name="Stair" Variety="Inset Up-Right 3" />
+        <Frame UV="432,0" Name="Stair" Variety="Inset Up-Left 3" />
+        <Frame UV="450,0" Name="Stair" Variety="Inverted Right" />
+        <Frame UV="468,0" Name="Stair" Variety="Inverted Left" />
+      </Frames>
+    </Tile>
+    <Tile Id="436" Color="#FFFFFFFF" Name="Blue Team Platform" Framed="true" TextureGrid="16,16" Special="Platform" >
+      <Frames>
+        <Frame UV="0,0" Name="Platform" Variety="Flat" />
+        <Frame UV="18,0" Name="Platform" Variety="Endcap Right" />
+        <Frame UV="36,0" Name="Platform" Variety="Endcap Left" />
+        <Frame UV="54,0" Name="Platform" Variety="Attach Left" />
+        <Frame UV="72,0" Name="Platform" Variety="Attach Right" />
+        <Frame UV="90,0" Name="Platform" Variety="Single" />
+        <Frame UV="108,0" Name="Platform" Variety="Attach Left Endcap" />
+        <Frame UV="126,0" Name="Platform" Variety="Attach Right Endcap" />
+        <Frame UV="144,0" Name="Stair" Variety="Up-Right Riser" />
+        <Frame UV="162,0" Name="Stair" Variety="Up-Right Stringer" />
+        <Frame UV="180,0" Name="Stair" Variety="Up-Left Riser" />
+        <Frame UV="198,0" Name="Stair" Variety="Up-Left Stringer" />
+        <Frame UV="216,0" Name="Stair" Variety="Top Landing R" />
+        <Frame UV="234,0" Name="Stair" Variety="Top Landing L" />
+        <Frame UV="252,0" Name="Stair" Variety="Top Landing L-R" />
+        <Frame UV="270,0" Name="Stair" Variety="Top Landing R Endcap" />
+        <Frame UV="288,0" Name="Stair" Variety="Top Landing L Endcap" />
+        <Frame UV="306,0" Name="Stair" Variety="Bottom Landing R" />
+        <Frame UV="324,0" Name="Stair" Variety="Bottom Landing L" />
+        <Frame UV="342,0" Name="Stair" Variety="Inset Up-Right 1" />
+        <Frame UV="360,0" Name="Stair" Variety="Inset Up-Left 1" />
+        <Frame UV="378,0" Name="Stair" Variety="Inset Up-Right 2" />
+        <Frame UV="396,0" Name="Stair" Variety="Inset Up-Left 2" />
+        <Frame UV="414,0" Name="Stair" Variety="Inset Up-Right 3" />
+        <Frame UV="432,0" Name="Stair" Variety="Inset Up-Left 3" />
+        <Frame UV="450,0" Name="Stair" Variety="Inverted Right" />
+        <Frame UV="468,0" Name="Stair" Variety="Inverted Left" />
+      </Frames>
+    </Tile>
+    <Tile Id="437" Color="#FFFFFFFF" Name="Tellow Team Platform" Framed="true" TextureGrid="16,16" Special="Platform" >
+      <Frames>
+        <Frame UV="0,0" Name="Platform" Variety="Flat" />
+        <Frame UV="18,0" Name="Platform" Variety="Endcap Right" />
+        <Frame UV="36,0" Name="Platform" Variety="Endcap Left" />
+        <Frame UV="54,0" Name="Platform" Variety="Attach Left" />
+        <Frame UV="72,0" Name="Platform" Variety="Attach Right" />
+        <Frame UV="90,0" Name="Platform" Variety="Single" />
+        <Frame UV="108,0" Name="Platform" Variety="Attach Left Endcap" />
+        <Frame UV="126,0" Name="Platform" Variety="Attach Right Endcap" />
+        <Frame UV="144,0" Name="Stair" Variety="Up-Right Riser" />
+        <Frame UV="162,0" Name="Stair" Variety="Up-Right Stringer" />
+        <Frame UV="180,0" Name="Stair" Variety="Up-Left Riser" />
+        <Frame UV="198,0" Name="Stair" Variety="Up-Left Stringer" />
+        <Frame UV="216,0" Name="Stair" Variety="Top Landing R" />
+        <Frame UV="234,0" Name="Stair" Variety="Top Landing L" />
+        <Frame UV="252,0" Name="Stair" Variety="Top Landing L-R" />
+        <Frame UV="270,0" Name="Stair" Variety="Top Landing R Endcap" />
+        <Frame UV="288,0" Name="Stair" Variety="Top Landing L Endcap" />
+        <Frame UV="306,0" Name="Stair" Variety="Bottom Landing R" />
+        <Frame UV="324,0" Name="Stair" Variety="Bottom Landing L" />
+        <Frame UV="342,0" Name="Stair" Variety="Inset Up-Right 1" />
+        <Frame UV="360,0" Name="Stair" Variety="Inset Up-Left 1" />
+        <Frame UV="378,0" Name="Stair" Variety="Inset Up-Right 2" />
+        <Frame UV="396,0" Name="Stair" Variety="Inset Up-Left 2" />
+        <Frame UV="414,0" Name="Stair" Variety="Inset Up-Right 3" />
+        <Frame UV="432,0" Name="Stair" Variety="Inset Up-Left 3" />
+        <Frame UV="450,0" Name="Stair" Variety="Inverted Right" />
+        <Frame UV="468,0" Name="Stair" Variety="Inverted Left" />
+      </Frames>
+    </Tile>
+    <Tile Id="438" Color="#FFFFFFFF" Name="Pink Team Platform" Framed="true" TextureGrid="16,16" Special="Platform" >
+      <Frames>
+        <Frame UV="0,0" Name="Platform" Variety="Flat" />
+        <Frame UV="18,0" Name="Platform" Variety="Endcap Right" />
+        <Frame UV="36,0" Name="Platform" Variety="Endcap Left" />
+        <Frame UV="54,0" Name="Platform" Variety="Attach Left" />
+        <Frame UV="72,0" Name="Platform" Variety="Attach Right" />
+        <Frame UV="90,0" Name="Platform" Variety="Single" />
+        <Frame UV="108,0" Name="Platform" Variety="Attach Left Endcap" />
+        <Frame UV="126,0" Name="Platform" Variety="Attach Right Endcap" />
+        <Frame UV="144,0" Name="Stair" Variety="Up-Right Riser" />
+        <Frame UV="162,0" Name="Stair" Variety="Up-Right Stringer" />
+        <Frame UV="180,0" Name="Stair" Variety="Up-Left Riser" />
+        <Frame UV="198,0" Name="Stair" Variety="Up-Left Stringer" />
+        <Frame UV="216,0" Name="Stair" Variety="Top Landing R" />
+        <Frame UV="234,0" Name="Stair" Variety="Top Landing L" />
+        <Frame UV="252,0" Name="Stair" Variety="Top Landing L-R" />
+        <Frame UV="270,0" Name="Stair" Variety="Top Landing R Endcap" />
+        <Frame UV="288,0" Name="Stair" Variety="Top Landing L Endcap" />
+        <Frame UV="306,0" Name="Stair" Variety="Bottom Landing R" />
+        <Frame UV="324,0" Name="Stair" Variety="Bottom Landing L" />
+        <Frame UV="342,0" Name="Stair" Variety="Inset Up-Right 1" />
+        <Frame UV="360,0" Name="Stair" Variety="Inset Up-Left 1" />
+        <Frame UV="378,0" Name="Stair" Variety="Inset Up-Right 2" />
+        <Frame UV="396,0" Name="Stair" Variety="Inset Up-Left 2" />
+        <Frame UV="414,0" Name="Stair" Variety="Inset Up-Right 3" />
+        <Frame UV="432,0" Name="Stair" Variety="Inset Up-Left 3" />
+        <Frame UV="450,0" Name="Stair" Variety="Inverted Right" />
+        <Frame UV="468,0" Name="Stair" Variety="Inverted Left" />
+      </Frames>
+    </Tile>
+    <Tile Id="439" Color="#FFFFFFFF" Name="White Team Platform" Framed="true" TextureGrid="16,16" Special="Platform" >
+      <Frames>
+        <Frame UV="0,0" Name="Platform" Variety="Flat" />
+        <Frame UV="18,0" Name="Platform" Variety="Endcap Right" />
+        <Frame UV="36,0" Name="Platform" Variety="Endcap Left" />
+        <Frame UV="54,0" Name="Platform" Variety="Attach Left" />
+        <Frame UV="72,0" Name="Platform" Variety="Attach Right" />
+        <Frame UV="90,0" Name="Platform" Variety="Single" />
+        <Frame UV="108,0" Name="Platform" Variety="Attach Left Endcap" />
+        <Frame UV="126,0" Name="Platform" Variety="Attach Right Endcap" />
+        <Frame UV="144,0" Name="Stair" Variety="Up-Right Riser" />
+        <Frame UV="162,0" Name="Stair" Variety="Up-Right Stringer" />
+        <Frame UV="180,0" Name="Stair" Variety="Up-Left Riser" />
+        <Frame UV="198,0" Name="Stair" Variety="Up-Left Stringer" />
+        <Frame UV="216,0" Name="Stair" Variety="Top Landing R" />
+        <Frame UV="234,0" Name="Stair" Variety="Top Landing L" />
+        <Frame UV="252,0" Name="Stair" Variety="Top Landing L-R" />
+        <Frame UV="270,0" Name="Stair" Variety="Top Landing R Endcap" />
+        <Frame UV="288,0" Name="Stair" Variety="Top Landing L Endcap" />
+        <Frame UV="306,0" Name="Stair" Variety="Bottom Landing R" />
+        <Frame UV="324,0" Name="Stair" Variety="Bottom Landing L" />
+        <Frame UV="342,0" Name="Stair" Variety="Inset Up-Right 1" />
+        <Frame UV="360,0" Name="Stair" Variety="Inset Up-Left 1" />
+        <Frame UV="378,0" Name="Stair" Variety="Inset Up-Right 2" />
+        <Frame UV="396,0" Name="Stair" Variety="Inset Up-Left 2" />
+        <Frame UV="414,0" Name="Stair" Variety="Inset Up-Right 3" />
+        <Frame UV="432,0" Name="Stair" Variety="Inset Up-Left 3" />
+        <Frame UV="450,0" Name="Stair" Variety="Inverted Right" />
+        <Frame UV="468,0" Name="Stair" Variety="Inverted Left" />
+      </Frames>
+    </Tile>
     <Tile Id="440" Color="#FFFFFFFF" Name="Gem Locks" Framed="true" Size="3,3" UseFrameName="true">
       <Frames>
         <Frame UV="0,0" Name="Ruby Gem Lock" Variety="Empty"/>
