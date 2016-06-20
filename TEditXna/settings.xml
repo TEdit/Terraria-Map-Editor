@@ -4692,7 +4692,11 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     </Tile>
     <Tile Id="425" Color="#FFFFFFFF" Name="Announcement Box" Framed="true" Size="2,2">
       <Frames>
-        <Frame UV="0,0" Variety="Announcement Box" />
+        <Frame UV="0,0" Variety="Ground" />
+        <Frame UV="36,0" Variety="Ceiling" />
+        <Frame UV="72,0" Variety="Left" />
+        <Frame UV="108,0" Variety="Right" />
+        <Frame UV="144,0" Variety="Air" />
       </Frames>
     </Tile>
     <Tile Id="426" Color="#FFFFFFFF" Name="Red Team Block" Solid="true" Blends="true" />
