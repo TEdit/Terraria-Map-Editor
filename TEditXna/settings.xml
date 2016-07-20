@@ -311,6 +311,15 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="0,198" Name="Tree Top" Variety="Jagged" Anchor="Right" />
         <Frame UV="0,220" Name="Tree Trunk" Variety="Jagged" Anchor="Bottom" />
         <Frame UV="0,242" Name="Tree Trunk" Variety="Jagged" Anchor="Left" />
+        <Frame UV="22,198" Name="Tree Top" Variety="Leafy A - No Sprite" />
+        <Frame UV="22,220" Name="Tree Top" Variety="Leafy B - No Sprite" />
+        <Frame UV="22,242" Name="Tree Top" Variety="Leafy C - No Sprite" />
+        <Frame UV="44,198" Name="Tree Branch" Variety="Left Leafy A - No Sprite" />
+        <Frame UV="44,220" Name="Tree Branch" Variety="Left Leafy B - No Sprite" />
+        <Frame UV="44,242" Name="Tree Branch" Variety="Left Leafy C - No Sprite" />
+        <Frame UV="66,198" Name="Tree Branch" Variety="Right Leafy A - No Sprite" />
+        <Frame UV="66,220" Name="Tree Branch" Variety="Right Leafy B - No Sprite" />
+        <Frame UV="66,242" Name="Tree Branch" Variety="Right Leafy C - No Sprite" />
       </Frames>
     </Tile>
     <Tile Id="6" Color="#FF8C6550" Name="Iron Ore" Solid="true" Blends="true" MergeWith="0" />
@@ -5000,6 +5009,38 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Tile Id="443" Color="#FFFFFFFF" Name="Geyser" Framed="true" Size="2,1" />
     <Tile Id="444" Color="#FFFFFFFF" Name="Bee Hive" Framed="true" Size="2,2" />
     <Tile Id="445" Color="#FFFFFFFF" Name="Pixel Box" Framed="true" />
+    <Tile Id="446" Color="#FFFFFFFF" Name="Silly Pink Balloon" Solid="true" Blends="true" />
+    <Tile Id="447" Color="#FFFFFFFF" Name="Silly Purple Balloon" Solid="true" Blends="true" />
+    <Tile Id="448" Color="#FFFFFFFF" Name="Silly Green Balloon" Solid="true" Blends="true" />
+    <Tile Id="449" Color="#FFFFFFFF" Name="Blue Streamer" Solid="true" Blends="true" />
+    <Tile Id="450" Color="#FFFFFFFF" Name="Green Streamer" Solid="true" Blends="true" />
+    <Tile Id="451" Color="#FFFFFFFF" Name="Pink Streamer" Solid="true" Blends="true" />
+    <Tile Id="452" Color="#FFFFFFFF" Name="Silly Balloon Machine" Framed="true" Size="2,2" />
+    <Tile Id="453" Color="#FFFFFFFF" Name="Silly Tied Balloon" Framed="true" Size="1,3" >
+      <Frames>
+        <Frame UV="0,0" Name="Purple" Variety="Left"/>
+        <Frame UV="18,0" Name="Purple" Variety="Right"/>
+        <Frame UV="36,0" Name="Green" Variety="Left"/>
+        <Frame UV="54,0" Name="Green" Variety="Right"/>
+        <Frame UV="72,0" Name="Pink" Variety="Left"/>
+        <Frame UV="90,0" Name="Pink" Variety="Right"/>
+      </Frames>
+    </Tile> 
+    <Tile Id="454" Color="#FFFFFFFF" Name="Pigronata" Framed="true" Size="4,3" />
+    <Tile Id="455" Color="#FFFFFFFF" Name="Party Center" Framed="true" Size="3,3" />
+    <Tile Id="456" Color="#FFFFFFFF" Name="Silly Tied Bundle of Balloons" Framed="true" Size="2,3" />
+    <Tile Id="457" Color="#FFFFFFFF" Name="Party Present" Framed="true" Size="2,2" >
+      <Frames>
+        <Frame UV="0,0" Variety="Blue with Green Ribbon"/>
+        <Frame UV="36,0" Variety="Pink with Blue Ribbon"/>
+        <Frame UV="72,0" Variety="Cyan with Pink Ribbon"/>
+        <Frame UV="108,0" Variety="Purple with Green Ribbon"/>
+        <Frame UV="144,0" Variety="White with Pink Ribbon"/>
+      </Frames>
+    </Tile>     
+    <Tile Id="458" Color="#FFFFFFFF" Name="Sandfall" Solid="true" Blends="true" />
+    <Tile Id="459" Color="#FFFFFFFF" Name="Snowfall" Solid="true" Blends="true" />
+    <Tile Id="460" Color="#FFFFFFFF" Name="Snow Cloud" Solid="true" Blends="true" />
   </Tiles>
   <Walls>
     <Wall Id="0"    Name="Sky"                            Color="#00000000"                    />
@@ -5227,6 +5268,12 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Wall Id="222" Name="Pearlsandstone Wall"             Color="#FF46335B"  IsHouse="True" />
     <Wall Id="223" Name="Desert Fossil Wall"              Color="#FF331204"  IsHouse="True" />
     <Wall Id="224" Name="Lunar Brick Wall"                Color="#FF393734"  IsHouse="True" />
+    <Wall Id="225" Name="Cog Wall"                        Color="#FFFFFFFF" />
+    <Wall Id="226" Name="Sandfall Wall"                   Color="#FFFFFFFF" />
+    <Wall Id="227" Name="Snowfall Wall"                   Color="#FFFFFFFF" />
+    <Wall Id="228" Name="Silly Pink Balloon Wall"         Color="#FFFFFFFF" />
+    <Wall Id="229" Name="Silly Purple Balloon Wall"       Color="#FFFFFFFF" />
+    <Wall Id="230" Name="Silly Green Balloon Wall"        Color="#FFFFFFFF" />
   </Walls>
   
   <Items>
@@ -5254,12 +5301,12 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="-27" Name="Tin Shortsword"/>
     <Item Id="-26" Name="Tin Broadsword"/>
     <Item Id="-25" Name="Tin Pickaxe"/>
-    <Item Id="-24" Name="Yellow Phasesaber"/>
-    <Item Id="-23" Name="White Phasesaber"/>
-    <Item Id="-22" Name="Purple Phasesaber"/>
-    <Item Id="-21" Name="Green Phasesaber"/>
-    <Item Id="-20" Name="Red Phasesaber"/>
-    <Item Id="-19" Name="Blue Phasesaber"/>
+    <Item Id="-24" Name="Yellow Phasesaber Old"/>
+    <Item Id="-23" Name="White Phasesaber Old"/>
+    <Item Id="-22" Name="Purple Phasesaber Old"/>
+    <Item Id="-21" Name="Green Phasesaber Old"/>
+    <Item Id="-20" Name="Red Phasesaber Old"/>
+    <Item Id="-19" Name="Blue Phasesaber Old"/>
     <Item Id="-18" Name="Copper Bow"/>
     <Item Id="-17" Name="Copper Hammer"/>
     <Item Id="-16" Name="Copper Axe"/>
@@ -9008,6 +9055,46 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="3727" Name="Liquid Sensor (Lava)"/>
     <Item Id="3728" Name="Liquid Sensor (Honey)"/>
     <Item Id="3729" Name="Liquid Sensor (Any)"/>
+    <Item Id="3730" Name="Bundled Party Balloons"/>
+    <Item Id="3731" Name="Balloon Animal"/>
+    <Item Id="3732" Name="Party Hat"/>
+    <Item Id="3733" Name="Silly Sunflower Petals"/>
+    <Item Id="3734" Name="Silly Sunflower Tops"/>
+    <Item Id="3735" Name="Silly Sunflower Bottoms"/>
+    <Item Id="3736" Name="Silly Pink Balloon"/>
+    <Item Id="3737" Name="Silly Purple Balloon"/>
+    <Item Id="3738" Name="Silly Green Balloon"/>
+    <Item Id="3739" Name="Blue Streamer"/>
+    <Item Id="3740" Name="Green Streamer"/>
+    <Item Id="3741" Name="Pink Streamer"/>
+    <Item Id="3742" Name="Silly Balloon Machine"/>
+    <Item Id="3743" Name="Silly Tied Balloon (Pink)"/>
+    <Item Id="3744" Name="Silly Tied Balloon (Purple)"/>
+    <Item Id="3745" Name="Silly Tied Balloon (Green)"/>
+    <Item Id="3746" Name="Pigronata"/>
+    <Item Id="3747" Name="Party Center"/>
+    <Item Id="3748" Name="Silly Tied Bundle of Balloons"/>
+    <Item Id="3749" Name="Party Present"/>
+    <Item Id="3750" Name="Slice of Cake"/>
+    <Item Id="3751" Name="Cog Wall"/>
+    <Item Id="3752" Name="Sandfall Wall"/>
+    <Item Id="3753" Name="Snowfall Wall"/>
+    <Item Id="3754" Name="Sandfall"/>
+    <Item Id="3755" Name="Snowfall"/>
+    <Item Id="3756" Name="Snow Cloud"/>
+    <Item Id="3757" Name="Pedguin's Hood"/>
+    <Item Id="3758" Name="Pedguin's Jacket"/>
+    <Item Id="3759" Name="Pedguin's Trousers"/>
+    <Item Id="3760" Name="Silly Pink Balloon Wall"/>
+    <Item Id="3761" Name="Silly Purple Balloon Wall"/>
+    <Item Id="3762" Name="Silly Green Balloon Wall"/>
+    <Item Id="3763" Name="0x33's Aviators"/>
+    <Item Id="3764" Name="Blue Phasesaber"/>
+    <Item Id="3765" Name="Red Phasesaber"/>
+    <Item Id="3766" Name="Green Phasesaber"/>
+    <Item Id="3767" Name="Purple Phasesaber"/>
+    <Item Id="3768" Name="White Phasesaber"/>
+    <Item Id="3769" Name="Yellow Phasesaber"/>
   </Items>
   <Npcs>
     <Npc Id="17"    Name="Merchant"         Frames="25"   />
