@@ -19,8 +19,8 @@ namespace TEditXNA.Terraria
 
     public partial class World
     {
-        public static uint CompatibleVersion = 168;
-        public static short TileCount = 446;
+        public static uint CompatibleVersion = 172;
+        public static short TileCount = 461;
         public static short SectionCount = 10;
 
         public static bool[] TileFrameImportant;
@@ -60,6 +60,8 @@ namespace TEditXNA.Terraria
             sectionPointers[5] = SaveMobs(world.Mobs, bw);
             OnProgressChanged(null, new ProgressChangedEventArgs(100, "Save Tile Entities Section..."));
             sectionPointers[6] = SaveTileEntities(world, bw);
+            OnProgressChanged(null, new ProgressChangedEventArgs(100, "Save Weighted Pressure Plates..."));
+            sectionPointers[7] = SavePressurePlate(world.PressurePlates, bw);            
             OnProgressChanged(null, new ProgressChangedEventArgs(100, "Save Footers..."));
             SaveFooter(world, bw);
             UpdateSectionPointers(sectionPointers, bw);
@@ -341,6 +343,19 @@ namespace TEditXNA.Terraria
             return (int)bw.BaseStream.Position;
         }
 
+        public static int SavePressurePlate(IList<PressurePlate> plates, BinaryWriter bw)
+        {
+            bw.Write(plates.Count);
+
+            foreach (PressurePlate plate in plates)
+            {
+                bw.Write(plate.PosX);
+                bw.Write(plate.PosY);
+            }
+
+            return (int)bw.BaseStream.Position;
+        }
+
         public static int SaveFooter(World world, BinaryWriter bw)
         {
             bw.Write(true);
@@ -506,6 +521,14 @@ namespace TEditXNA.Terraria
             bw.Write(world.CelestialNebulaActive);
             bw.Write(world.CelestialStardustActive);
             bw.Write(world.Apocalypse);
+            bw.Write(world.PartyManual);
+            bw.Write(world.PartyGenuine);
+            bw.Write(world.PartyCooldown);
+            bw.Write(world.PartyingNPCs.Count);
+            foreach (int partier in world.PartyingNPCs)
+            {
+                bw.Write(partier);
+            }
 
             if (world.UnknownData != null && world.UnknownData.Length > 0)
                 bw.Write(world.UnknownData);
@@ -621,6 +644,12 @@ namespace TEditXNA.Terraria
                 if (b.BaseStream.Position != sectionPointers[5])
                     throw new FileFormatException("Unexpected Position: Invalid NPC Data");
             }
+			if(w.Version >= 170)
+			{
+				LoadPressurePlate(b, w);
+                if (b.BaseStream.Position != sectionPointers[7])
+                    throw new FileFormatException("Unexpected Position: Invalid Weighted Pressure Plate Section");
+			}
 
             OnProgressChanged(null, new ProgressChangedEventArgs(100, "Verifying File..."));
             LoadFooter(b, w);
@@ -984,6 +1013,18 @@ namespace TEditXNA.Terraria
                 w.TileEntities.Add(entity);
             }
         }
+        public static void LoadPressurePlate(BinaryReader r, World w)
+        {
+            int count = r.ReadInt32();
+
+            for (int counter = 0; counter < count; counter++ )
+            {
+                PressurePlate plates = new PressurePlate();
+                plates.PosX = r.ReadInt32();
+                plates.PosY = r.ReadInt32();
+                w.PressurePlates.Add(plates);
+            }
+        }
 
         public static void LoadHeaderFlags(BinaryReader r, World w, int expectedPosition)
         {
@@ -1151,6 +1192,17 @@ namespace TEditXNA.Terraria
                 w.CelestialNebulaActive = r.ReadBoolean();
                 w.CelestialStardustActive = r.ReadBoolean();
                 w.Apocalypse = r.ReadBoolean();
+            }
+            if (w.Version >= 170)
+            {
+                w.PartyManual = r.ReadBoolean();
+                w.PartyGenuine = r.ReadBoolean();
+                w.PartyCooldown = r.ReadInt32();
+                int numparty = r.ReadInt32();
+                for (int counter = 0; counter < numparty; counter++)
+                {
+                    w.PartyingNPCs.Add(r.ReadInt32());
+                }
             }
 
             
