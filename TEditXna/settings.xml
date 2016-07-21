@@ -4650,7 +4650,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Tile Id="416" Color="#FF00A0AA" Name="Lunar Block Vortex" Solid="true" Blends="true" />
     <Tile Id="417" Color="#FFA057EA" Name="Lunar Block Nebula" Solid="true" Blends="true" />
     <Tile Id="418" Color="#FF16ADFE" Name="Lunar Block Stardust" Solid="true" Blends="true" />
-    <Tile Id="419" Color="#FFFFFFFF" Name="Logic Lamp" Framed="true">
+    <Tile Id="419" Color="#FF757d97" Name="Logic Lamp" Framed="true">
       <Frames>
         <Frame UV="0,0" Variety="Off" />
         <Frame UV="18,0" Variety="On" />
@@ -4679,8 +4679,8 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="36,90" Name="Logic Gate (NXOR)" Variety="Faulty" />
       </Frames>
     </Tile> 
-    <Tile Id="421" Color="#FFFFFFFF" Name="Conveyor Belt (CW)" Solid="true" Blends="true" />
-    <Tile Id="422" Color="#FFFFFFFF" Name="Conveyor Belt (CCW)" Solid="true" Blends="true" />
+    <Tile Id="421" Color="#FF494646" Name="Conveyor Belt (CW)" Solid="true" Blends="true" />
+    <Tile Id="422" Color="#FF494646" Name="Conveyor Belt (CCW)" Solid="true" Blends="true" />
     <Tile Id="423" Color="#FFFFFFFF" Name="Logic Sensor" Framed="true" UseFrameName="true">
       <Frames>
         <Frame UV="0,0" Name="Logic Sensor (Day)" />
@@ -4692,20 +4692,24 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="0,108" Name="Liquid Sensor (Any)" />
       </Frames>
     </Tile> 
-    <Tile Id="424" Color="#FFFFFFFF" Name="Junction Box" Framed="true">
+    <Tile Id="424" Color="#FF929bbb" Name="Junction Box" Framed="true">
       <Frames>
         <Frame UV="0,0" Variety="Top to Bottom, Left to Right" />
         <Frame UV="18,0" Variety="Top to Left, Bottom to Right" />
         <Frame UV="36,0" Variety="Top to Right, Bottom to Left" />
       </Frames>
     </Tile>
-    <Tile Id="425" Color="#FFFFFFFF" Name="Announcement Box" Framed="true" Size="2,2">
+    <Tile Id="425" Color="#FFaec3d7" Name="Announcement Box" Framed="true" Size="2,2">
       <Frames>
-        <Frame UV="0,0" Variety="Announcement Box" />
+        <Frame UV="0,0" Variety="Ground" Anchor="Top" />
+        <Frame UV="36,0" Variety="Hanging" Anchor="Bottom" />
+        <Frame UV="72,0" Variety="Left Side" Anchor="Left" />
+        <Frame UV="108,0" Variety="Right Side" Anchor="Right" />
+        <Frame UV="144,0" Variety="Floating" />
       </Frames>
     </Tile>
-    <Tile Id="426" Color="#FFFFFFFF" Name="Red Team Block" Solid="true" Blends="true" />
-    <Tile Id="427" Color="#FFFFFFFF" Name="Red Team Platform" Framed="true" TextureGrid="16,16" Special="Platform" >
+    <Tile Id="426" Color="#FF4d0b23" Name="Red Team Block" Solid="true" Blends="true" />
+    <Tile Id="427" Color="#FF771634" Name="Red Team Platform" Framed="true" TextureGrid="16,16" Special="Platform" >
       <Frames>
         <Frame UV="0,0" Name="Platform" Variety="Flat" />
         <Frame UV="18,0" Name="Platform" Variety="Endcap Right" />
@@ -4744,7 +4748,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="0,54" Variety="Pink" />
       </Frames>
     </Tile>
-    <Tile Id="429" Color="#FFFFFFFF" Name="Wire Bulb" Framed="true" >
+    <Tile Id="429" Color="#FF3f3f3f" Name="Wire Bulb" Framed="true" >
       <Frames>
         <Frame UV="0,0" Variety="None" />
         <Frame UV="18,0" Variety="Red" />
@@ -4764,12 +4768,12 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="270,0" Variety="Red, Green, Blue, Yellow" />
       </Frames>
     </Tile> 
-    <Tile Id="430" Color="#FFFFFFFF" Name="Green Team Block" Solid="true" Blends="true" />
-    <Tile Id="431" Color="#FFFFFFFF" Name="Blue Team Block" Solid="true" Blends="true" />
-    <Tile Id="432" Color="#FFFFFFFF" Name="Yellow Team Block" Solid="true" Blends="true" />
-    <Tile Id="433" Color="#FFFFFFFF" Name="Pink Team Block" Solid="true" Blends="true" />
-    <Tile Id="434" Color="#FFFFFFFF" Name="White Team Block" Solid="true" Blends="true" />
-    <Tile Id="435" Color="#FFFFFFFF" Name="Green Team Platform" Framed="true" TextureGrid="16,16" Special="Platform" >
+    <Tile Id="430" Color="#FF17774f" Name="Green Team Block" Solid="true" Blends="true" />
+    <Tile Id="431" Color="#FF173677" Name="Blue Team Block" Solid="true" Blends="true" />
+    <Tile Id="432" Color="#FF774417" Name="Yellow Team Block" Solid="true" Blends="true" />
+    <Tile Id="433" Color="#FF4a1777" Name="Pink Team Block" Solid="true" Blends="true" />
+    <Tile Id="434" Color="#FF4e526d" Name="White Team Block" Solid="true" Blends="true" />
+    <Tile Id="435" Color="#FF27a860" Name="Green Team Platform" Framed="true" TextureGrid="16,16" Special="Platform" >
       <Frames>
         <Frame UV="0,0" Name="Platform" Variety="Flat" />
         <Frame UV="18,0" Name="Platform" Variety="Endcap Right" />
@@ -4800,7 +4804,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="468,0" Name="Stair" Variety="Inverted Left" />
       </Frames>
     </Tile>
-    <Tile Id="436" Color="#FFFFFFFF" Name="Blue Team Platform" Framed="true" TextureGrid="16,16" Special="Platform" >
+    <Tile Id="436" Color="#FF275ea8" Name="Blue Team Platform" Framed="true" TextureGrid="16,16" Special="Platform" >
       <Frames>
         <Frame UV="0,0" Name="Platform" Variety="Flat" />
         <Frame UV="18,0" Name="Platform" Variety="Endcap Right" />
@@ -4831,7 +4835,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="468,0" Name="Stair" Variety="Inverted Left" />
       </Frames>
     </Tile>
-    <Tile Id="437" Color="#FFFFFFFF" Name="Tellow Team Platform" Framed="true" TextureGrid="16,16" Special="Platform" >
+    <Tile Id="437" Color="#FFa87927" Name="Tellow Team Platform" Framed="true" TextureGrid="16,16" Special="Platform" >
       <Frames>
         <Frame UV="0,0" Name="Platform" Variety="Flat" />
         <Frame UV="18,0" Name="Platform" Variety="Endcap Right" />
@@ -4862,7 +4866,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="468,0" Name="Stair" Variety="Inverted Left" />
       </Frames>
     </Tile>
-    <Tile Id="438" Color="#FFFFFFFF" Name="Pink Team Platform" Framed="true" TextureGrid="16,16" Special="Platform" >
+    <Tile Id="438" Color="#FF6f27a8" Name="Pink Team Platform" Framed="true" TextureGrid="16,16" Special="Platform" >
       <Frames>
         <Frame UV="0,0" Name="Platform" Variety="Flat" />
         <Frame UV="18,0" Name="Platform" Variety="Endcap Right" />
@@ -4893,7 +4897,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="468,0" Name="Stair" Variety="Inverted Left" />
       </Frames>
     </Tile>
-    <Tile Id="439" Color="#FFFFFFFF" Name="White Team Platform" Framed="true" TextureGrid="16,16" Special="Platform" >
+    <Tile Id="439" Color="#FF9694ae" Name="White Team Platform" Framed="true" TextureGrid="16,16" Special="Platform" >
       <Frames>
         <Frame UV="0,0" Name="Platform" Variety="Flat" />
         <Frame UV="18,0" Name="Platform" Variety="Endcap Right" />
@@ -4998,7 +5002,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="1836,0" Name="Trapped Marble Chest" />
       </Frames>
     </Tile>
-    <Tile Id="442" Color="#FFFFFFFF" Name="Teal Pressure Pad" Framed="true" TextureGrid="20,20">
+    <Tile Id="442" Color="#FF0390c9" Name="Teal Pressure Pad" Framed="true" TextureGrid="20,20">
       <Frames>
         <Frame UV="0,0" Variety="Floor" Anchor="Bottom" />
         <Frame UV="22,0" Variety="Ceiling" Anchor="Top" />
@@ -5006,16 +5010,16 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="66,0" Variety="Right Wall" Anchor="Right" />
       </Frames>
     </Tile> 
-    <Tile Id="443" Color="#FFFFFFFF" Name="Geyser" Framed="true" Size="2,1" />
-    <Tile Id="444" Color="#FFFFFFFF" Name="Bee Hive" Framed="true" Size="2,2" />
-    <Tile Id="445" Color="#FFFFFFFF" Name="Pixel Box" Framed="true" />
-    <Tile Id="446" Color="#FFFFFFFF" Name="Silly Pink Balloon" Solid="true" Blends="true" />
-    <Tile Id="447" Color="#FFFFFFFF" Name="Silly Purple Balloon" Solid="true" Blends="true" />
-    <Tile Id="448" Color="#FFFFFFFF" Name="Silly Green Balloon" Solid="true" Blends="true" />
-    <Tile Id="449" Color="#FFFFFFFF" Name="Blue Streamer" Solid="true" Blends="true" />
-    <Tile Id="450" Color="#FFFFFFFF" Name="Green Streamer" Solid="true" Blends="true" />
-    <Tile Id="451" Color="#FFFFFFFF" Name="Pink Streamer" Solid="true" Blends="true" />
-    <Tile Id="452" Color="#FFFFFFFF" Name="Silly Balloon Machine" Framed="true" Size="2,2" />
+    <Tile Id="443" Color="#FF7b7b7b" Name="Geyser" Framed="true" Size="2,1" />
+    <Tile Id="444" Color="#FFbfb07c" Name="Bee Hive" Framed="true" Size="2,2" />
+    <Tile Id="445" Color="#FF373749" Name="Pixel Box" Framed="true" />
+    <Tile Id="446" Color="#FFFF4298" Name="Silly Pink Balloon" Solid="true" Blends="true" />
+    <Tile Id="447" Color="#FFB384FF" Name="Silly Purple Balloon" Solid="true" Blends="true" />
+    <Tile Id="448" Color="#FF00CEB4" Name="Silly Green Balloon" Solid="true" Blends="true" />
+    <Tile Id="449" Color="#FF5bbaf0" Name="Blue Streamer" Solid="true" Blends="true" />
+    <Tile Id="450" Color="#FF5cf05b" Name="Green Streamer" Solid="true" Blends="true" />
+    <Tile Id="451" Color="#FFf05b93" Name="Pink Streamer" Solid="true" Blends="true" />
+    <Tile Id="452" Color="#FFff96b5" Name="Silly Balloon Machine" Framed="true" Size="2,2" />
     <Tile Id="453" Color="#FFFFFFFF" Name="Silly Tied Balloon" Framed="true" Size="1,3" >
       <Frames>
         <Frame UV="0,0" Name="Purple" Variety="Left"/>
@@ -5026,9 +5030,9 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="90,0" Name="Pink" Variety="Right"/>
       </Frames>
     </Tile> 
-    <Tile Id="454" Color="#FFFFFFFF" Name="Pigronata" Framed="true" Size="4,3" />
-    <Tile Id="455" Color="#FFFFFFFF" Name="Party Center" Framed="true" Size="3,3" />
-    <Tile Id="456" Color="#FFFFFFFF" Name="Silly Tied Bundle of Balloons" Framed="true" Size="2,3" />
+    <Tile Id="454" Color="#FFae10b0" Name="Pigronata" Framed="true" Size="4,3" />
+    <Tile Id="455" Color="#FF30ff6e" Name="Party Center" Framed="true" Size="3,3" />
+    <Tile Id="456" Color="#FFb384ff" Name="Silly Tied Bundle of Balloons" Framed="true" Size="2,3" />
     <Tile Id="457" Color="#FFFFFFFF" Name="Party Present" Framed="true" Size="2,2" >
       <Frames>
         <Frame UV="0,0" Variety="Blue with Green Ribbon"/>
@@ -5038,9 +5042,9 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="144,0" Variety="White with Pink Ribbon"/>
       </Frames>
     </Tile>     
-    <Tile Id="458" Color="#FFFFFFFF" Name="Sandfall" Solid="true" Blends="true" />
-    <Tile Id="459" Color="#FFFFFFFF" Name="Snowfall" Solid="true" Blends="true" />
-    <Tile Id="460" Color="#FFFFFFFF" Name="Snow Cloud" Solid="true" Blends="true" />
+    <Tile Id="458" Color="#FFd3c66f" Name="Sandfall" Solid="true" Blends="true" />
+    <Tile Id="459" Color="#FFbedfe8" Name="Snowfall" Solid="true" Blends="true" />
+    <Tile Id="460" Color="#FF8da3b5" Name="Snow Cloud" Solid="true" Blends="true" />
   </Tiles>
   <Walls>
     <Wall Id="0"    Name="Sky"                            Color="#00000000"                    />
@@ -5268,12 +5272,12 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Wall Id="222" Name="Pearlsandstone Wall"             Color="#FF46335B"  IsHouse="True" />
     <Wall Id="223" Name="Desert Fossil Wall"              Color="#FF331204"  IsHouse="True" />
     <Wall Id="224" Name="Lunar Brick Wall"                Color="#FF393734"  IsHouse="True" />
-    <Wall Id="225" Name="Cog Wall"                        Color="#FFFFFFFF" />
-    <Wall Id="226" Name="Sandfall Wall"                   Color="#FFFFFFFF" />
-    <Wall Id="227" Name="Snowfall Wall"                   Color="#FFFFFFFF" />
-    <Wall Id="228" Name="Silly Pink Balloon Wall"         Color="#FFFFFFFF" />
-    <Wall Id="229" Name="Silly Purple Balloon Wall"       Color="#FFFFFFFF" />
-    <Wall Id="230" Name="Silly Green Balloon Wall"        Color="#FFFFFFFF" />
+    <Wall Id="225" Name="Cog Wall"                        Color="#FF444444" />
+    <Wall Id="226" Name="Sandfall Wall"                   Color="#FF948A4A" />
+    <Wall Id="227" Name="Snowfall Wall"                   Color="#FF5F89BF" />
+    <Wall Id="228" Name="Silly Pink Balloon Wall"         Color="#FFA0024B" />
+    <Wall Id="229" Name="Silly Purple Balloon Wall"       Color="#FF6437A4" />
+    <Wall Id="230" Name="Silly Green Balloon Wall"        Color="#FF007565" />
   </Walls>
   
   <Items>

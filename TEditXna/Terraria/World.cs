@@ -182,6 +182,11 @@ namespace TEditXNA.Terraria
         	return TileEntities.FirstOrDefault(c => (c.PosX == x) && (c.PosY == y));
         }
 
+        public PressurePlate GetPlateAtTile(int x, int y)
+        {
+            return PressurePlates.FirstOrDefault(c => (c.PosX == x) && (c.PosY == y));
+        }
+
         public Vector2Int32 GetChestAnchor(int x, int y)
         {
             Tile tile = Tiles[x, y];
@@ -247,6 +252,17 @@ namespace TEditXNA.Terraria
                     		TE.Id = TileEntities.Count;
                     		TileEntities.Add(TE);
                     	}
+                    }
+                    //validate weighted pressure plates
+                    else if (curTile.Type == 428)
+                    {
+                        if (GetPlateAtTile(x,y) == null)
+                        {
+                            PressurePlate plate = new PressurePlate();
+                            plate.PosX = x;
+                            plate.PosY = y;
+                            PressurePlates.Add(plate);
+                        }
                     }
                 }
             }
