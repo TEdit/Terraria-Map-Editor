@@ -5272,12 +5272,12 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Wall Id="222" Name="Pearlsandstone Wall"             Color="#FF46335B"  IsHouse="True" />
     <Wall Id="223" Name="Desert Fossil Wall"              Color="#FF331204"  IsHouse="True" />
     <Wall Id="224" Name="Lunar Brick Wall"                Color="#FF393734"  IsHouse="True" />
-    <Wall Id="225" Name="Cog Wall"                        Color="#FF444444" />
-    <Wall Id="226" Name="Sandfall Wall"                   Color="#FF948A4A" />
-    <Wall Id="227" Name="Snowfall Wall"                   Color="#FF5F89BF" />
-    <Wall Id="228" Name="Silly Pink Balloon Wall"         Color="#FFA0024B" />
-    <Wall Id="229" Name="Silly Purple Balloon Wall"       Color="#FF6437A4" />
-    <Wall Id="230" Name="Silly Green Balloon Wall"        Color="#FF007565" />
+    <Wall Id="225" Name="Cog Wall"                        Color="#FF444444"  IsHouse="False" />
+    <Wall Id="226" Name="Sandfall Wall"                   Color="#FF948A4A"  IsHouse="False" />
+    <Wall Id="227" Name="Snowfall Wall"                   Color="#FF5F89BF"  IsHouse="False" />
+    <Wall Id="228" Name="Silly Pink Balloon Wall"         Color="#FFA0024B"  IsHouse="False" />
+    <Wall Id="229" Name="Silly Purple Balloon Wall"       Color="#FF6437A4"  IsHouse="False" />
+    <Wall Id="230" Name="Silly Green Balloon Wall"        Color="#FF007565"  IsHouse="False" />
   </Walls>
   
   <Items>
