@@ -5,7 +5,7 @@
 
 Terraria Map Editor, TEdit, is a stand alone, open source map editor for Terraria. It lets you edit maps just like (almost) paint!
 
-Tested to support Terraria (v1.3.2.1) world files (172).
+Tested to support Terraria (v1.3.2.1) world files (173).
 
 * Wiki https://github.com/TEdit/Terraria-Map-Editor/wiki/Getting-Started  
 * Homepage http://binaryconstruct.com/games/tedit  
