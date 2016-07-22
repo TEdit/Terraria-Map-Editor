@@ -570,7 +570,7 @@ namespace TEditXna.ViewModel
             }
 
             if (curTile.IsActive)
-                if (World.TileProperties[curTile.Type].IsSolid)
+                if (World.TileProperties[curTile.Type].IsSolid && !curTile.InActive && !World.TileProperties[curTile.Type].IsPlatform)
                     curTile.LiquidAmount = 0;
         }
 
