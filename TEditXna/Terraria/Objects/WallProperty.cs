@@ -9,7 +9,6 @@ namespace TEditXNA.Terraria.Objects
         private Color _color;
         private int _id;
         private string _name;
-        private bool _isHouse;
 
         public WallProperty()
         {
@@ -24,14 +23,6 @@ namespace TEditXNA.Terraria.Objects
             _id = id;
             _name = name;
         }
-
-        public bool IsHouse
-        {
-            get { return _isHouse; }
-            set { Set("IsHouse", ref _isHouse, value); }
-        }
-
-
 
         public Color Color
         {
