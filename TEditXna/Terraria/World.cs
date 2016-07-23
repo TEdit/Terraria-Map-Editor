@@ -134,12 +134,13 @@ namespace TEditXNA.Terraria
             {
 
                 string msg =
-                    string.Format("There was an error reading the world file. This is usually caused by a corrupt save file or a world version newer than supported.\r\n" +
-                                  "TEdit Max World Version: {0}    World Version: {1}\r\n" +
+                    string.Format("There was an error reading the world file. This is usually caused by a corrupt save file or a world version newer than supported.\r\n\r\n" +
+                                  "TEdit v{0}\r\n" +
+                                  "TEdit Max World: {1}    Current World: {2}\r\n\r\n" +
                                   "Do you wish to force it to load anyway?\r\n\r\n" +
                                   "WARNING: This may have unexpected results including corrupt world files and program crashes.\r\n\r\n" +
-                                   "The error is :\r\n{2}\r\n\r\n{3}\r\n"
-                    , World.CompatibleVersion, curVersion, err.Message, err);
+                                   "The error is :\r\n{3}\r\n\r\n{4}\r\n"
+                    , TEditXna.App.Version.FileVersion, World.CompatibleVersion, curVersion, err.Message, err);
                 if (MessageBox.Show(msg, "World File Error", MessageBoxButton.YesNo, MessageBoxImage.Error) !=
                     MessageBoxResult.Yes)
                     return null;
