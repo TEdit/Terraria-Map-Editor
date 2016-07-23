@@ -14,6 +14,7 @@ namespace TEditXNA.Terraria
         private readonly GraphicsDevice _gdDevice;
         private readonly Dictionary<int, Texture2D> _tiles = new Dictionary<int, Texture2D>();
         private readonly Dictionary<int, Texture2D> _backgrounds = new Dictionary<int, Texture2D>();
+        private readonly Dictionary<int, Texture2D> _underworld = new Dictionary<int, Texture2D>();
         private readonly Dictionary<int, Texture2D> _walls = new Dictionary<int, Texture2D>();
         private readonly Dictionary<int, Texture2D> _trees = new Dictionary<int, Texture2D>();
         private readonly Dictionary<int, Texture2D> _treeTops = new Dictionary<int, Texture2D>();
@@ -24,6 +25,7 @@ namespace TEditXNA.Terraria
         private readonly Dictionary<string, Texture2D> _misc = new Dictionary<string, Texture2D>(); /* Heathtech */
 
         public Dictionary<int, Texture2D> Tiles { get { return _tiles; } }
+        public Dictionary<int, Texture2D> Underworld { get { return _underworld; } }
         public Dictionary<int, Texture2D> Backgrounds { get { return _backgrounds; } }
         public Dictionary<int, Texture2D> Walls { get { return _walls; } }
         public Dictionary<int, Texture2D> Trees { get { return _trees; } }
@@ -73,6 +75,15 @@ namespace TEditXNA.Terraria
                 }
             }
             return Tiles[num];
+        }
+        public Texture2D GetUnderworld(int num)
+        {
+            if (!Underworld.ContainsKey(num))
+            {
+                string name = String.Format("Images\\Backgrounds\\Underworld {0}", num);
+                Underworld[num] = LoadTexture(name);
+            }
+            return Underworld[num];
         }
         public Texture2D GetBackground(int num)
         {

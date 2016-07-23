@@ -45,7 +45,12 @@ namespace TEditXna.Render
                 if (tile.WallColor > 0 && (!showTile || tile.TileColor == 0))
                     c = c.AlphaBlend(World.PaintProperties[tile.WallColor].Color);
                 else if (World.WallProperties.Count > tile.Wall)
-                    c = c.AlphaBlend(World.WallProperties[tile.Wall].Color);
+                {
+                    if (World.WallProperties[tile.Wall].Color.A != 0)
+                        c = c.AlphaBlend(World.WallProperties[tile.Wall].Color);
+                    else
+                        c = background;
+                }
                 else
                     c = c.AlphaBlend(Color.Magenta); // Add out-of-range colors
             }

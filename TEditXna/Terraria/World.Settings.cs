@@ -248,7 +248,6 @@ namespace TEditXNA.Terraria
                 curWall.Color = ColorFromString((string)xElement.Attribute("Color"));
                 curWall.Name = (string)xElement.Attribute("Name");
                 curWall.Id = (int?)xElement.Attribute("Id") ?? -1;
-                curWall.IsHouse = (bool?)xElement.Attribute("IsHouse") ?? false;
                 WallProperties.Add(curWall);
             }
 

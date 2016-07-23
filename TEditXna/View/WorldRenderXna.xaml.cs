@@ -30,13 +30,14 @@ namespace TEditXna.View
     {
         private const float LayerTilePixels = 1 - 0;
 
-        private const float LayerTileWallTextures = 1 - 0.01f;
-        private const float LayerTileTrackBack = 1 - 0.02f;
-        private const float LayerTileTextures = 1 - 0.03f;
-        private const float LayerTileTrack = 1 - 0.04f;
-        private const float LayerTileActuator = 1 - 0.05f;
-        private const float LayerWires = 1 - 0.06f;
-        private const float LayerLiquid = 1 - 0.07f;
+        private const float LayerTileBackgroundTextures = 1 - 0.01f;
+        private const float LayerTileWallTextures = 1 - 0.02f;
+        private const float LayerTileTrackBack = 1 - 0.03f;
+        private const float LayerTileTextures = 1 - 0.04f;
+        private const float LayerTileTrack = 1 - 0.05f;
+        private const float LayerTileActuator = 1 - 0.06f;
+        private const float LayerWires = 1 - 0.07f;
+        private const float LayerLiquid = 1 - 0.08f;
 
         private const float LayerGrid = 1 - 0.10f;
         private const float LayerLocations = 1 - 0.15f;
@@ -470,6 +471,80 @@ namespace TEditXna.View
                         neighborTile[sw] = (x - 1) > 0     && (y + 1) < height ? _wvm.CurrentWorld.Tiles[x - 1, y + 1] : null;
                         neighborTile[se] = (x + 1) < width && (y + 1) < height ? _wvm.CurrentWorld.Tiles[x + 1, y + 1] : null;
 
+                        //draw background textures
+                        if (y >= _wvm.CurrentWorld.GroundLevel)
+                        {
+                            int[,] backstyle = {
+                                {66, 67, 68, 69, 128, 125, 185},
+                                {70, 71, 68, 72, 128, 125, 185},
+                                {73, 74, 75, 76, 134, 125, 185},
+                                {77, 78, 79, 82, 134, 125, 185},
+                                {83, 84, 85, 86, 137, 125, 185},
+                                {83, 87, 88, 89, 137, 125, 185},
+                                {121, 122, 123, 124, 140, 125, 185},
+                                {153, 147, 148, 149, 150, 125, 185},
+                                {146, 154, 155, 156, 157, 125, 185}
+                            };
+                            int hellback = _wvm.CurrentWorld.HellBackStyle;
+                            int backX = 0;
+                            if (x <= _wvm.CurrentWorld.CaveBackX0)
+                                backX = _wvm.CurrentWorld.CaveBackStyle0;
+                            else if (x > _wvm.CurrentWorld.CaveBackX0 && x <= _wvm.CurrentWorld.CaveBackX1)
+                                backX = _wvm.CurrentWorld.CaveBackStyle1;
+                            else if (x > _wvm.CurrentWorld.CaveBackX1 && x <= _wvm.CurrentWorld.CaveBackX2)
+                                backX = _wvm.CurrentWorld.CaveBackStyle2;
+                            else if (x > _wvm.CurrentWorld.CaveBackX2)
+                                backX = _wvm.CurrentWorld.CaveBackStyle3;
+                            var source = new Rectangle(0, 0, 16, 16);
+                            var backTex = _textureDictionary.GetBackground(0);
+                            if (y == _wvm.CurrentWorld.GroundLevel)
+                            {
+                                backTex = _textureDictionary.GetBackground(backstyle[backX, 0]);
+                                source.X += (x % 8) * 16;
+                            }
+                            else if (y > _wvm.CurrentWorld.GroundLevel && y < _wvm.CurrentWorld.RockLevel)
+                            {
+                                backTex = _textureDictionary.GetBackground(backstyle[backX, 1]);
+                                source.X += (x % 8) * 16;
+                                source.Y += ((y - 1 - (int)_wvm.CurrentWorld.GroundLevel) % 6) * 16;
+                            }
+                            else if (y == _wvm.CurrentWorld.RockLevel)
+                            {
+                                backTex = _textureDictionary.GetBackground(backstyle[backX, 2]);
+                                source.X += (x % 8) * 16;
+                            }
+                            else if (y > _wvm.CurrentWorld.RockLevel && y < (_wvm.CurrentWorld.TilesHigh - 327))
+                            {
+                                backTex = _textureDictionary.GetBackground(backstyle[backX, 3]);
+                                source.X += (x % 8) * 16;
+                                source.Y += ((y - 1 - (int)_wvm.CurrentWorld.RockLevel) % 6) * 16;
+                            }
+                            else if (y == (_wvm.CurrentWorld.TilesHigh - 327))
+                            {
+                                backTex = _textureDictionary.GetBackground(backstyle[backX, 4] + hellback);
+                                source.X += (x % 8) * 16;
+                            }
+                            else if (y > (_wvm.CurrentWorld.TilesHigh - 327) && y < (_wvm.CurrentWorld.TilesHigh - 200))
+                            {
+                                backTex = _textureDictionary.GetBackground(backstyle[backX, 5] + hellback);
+                                source.X += (x % 8) * 16;
+                                source.Y += ((y - 1 - (int)_wvm.CurrentWorld.TilesHigh + 327) % 18) * 16;
+                            }
+                            else if (y == (_wvm.CurrentWorld.TilesHigh - 200))
+                            {
+                                backTex = _textureDictionary.GetBackground(backstyle[backX, 6] + hellback);
+                                source.X += (x % 8) * 16;
+                            }
+                            else
+                            {
+                                backTex = _textureDictionary.GetUnderworld(4);
+                                source.Y += (y - (int)_wvm.CurrentWorld.TilesHigh + 200) * 16;
+                            }
+
+                            var dest = new Rectangle(1 + (int)((_scrollPosition.X + x) * _zoom), 1 + (int)((_scrollPosition.Y + y) * _zoom), (int)_zoom, (int)_zoom);
+                            _spriteBatch.Draw(backTex, dest, source, Color.White, 0f, default(Vector2), SpriteEffects.None, LayerTileBackgroundTextures);
+                        }
+
                         if (_wvm.ShowWalls)
                         {
                             if (curtile.Wall > 0)
@@ -485,6 +560,7 @@ namespace TEditXna.View
                                         sameStyle |= (neighborTile[n] != null && neighborTile[n].Wall == curtile.Wall) ? 0x0010 : 0x0000;
                                         sameStyle |= (neighborTile[w] != null && neighborTile[w].Wall == curtile.Wall) ? 0x0100 : 0x0000;
                                         sameStyle |= (neighborTile[s] != null && neighborTile[s].Wall == curtile.Wall) ? 0x1000 : 0x0000;
+
                                         Vector2Int32 uvBlend = blendRules.GetUVForMasks((uint)sameStyle, 0x00000000, 0);
                                         curtile.uvWallCache = (ushort)((uvBlend.Y << 8) + uvBlend.X);
                                     }
@@ -495,54 +571,6 @@ namespace TEditXna.View
 
                                     _spriteBatch.Draw(wallTex, dest, source, Color.White, 0f, default(Vector2), SpriteEffects.None, LayerTileWallTextures);
                                 }
-                            }
-                            else
-                            {
-                                var wallTex = _textureDictionary.GetBackground(0);
-                                var source = new Rectangle(0, 0, 16, 16);
-                                if (y >= 80 && y < _wvm.CurrentWorld.GroundLevel)
-                                {
-                                    source.Y += (y - 80) * 4;
-                                    if (source.Y > 1784)
-                                    {
-                                        source.Y = 1784;
-                                    }
-                                }
-                                else if (y == _wvm.CurrentWorld.GroundLevel)
-                                {
-                                    wallTex = _textureDictionary.GetBackground(1);
-                                    source.X += (x % 8) * 16;
-                                }
-                                else if (y > _wvm.CurrentWorld.GroundLevel && y < _wvm.CurrentWorld.RockLevel)
-                                {
-                                    wallTex = _textureDictionary.GetBackground(2);
-                                    source.X += (x % 8) * 16;
-                                    source.Y += ((y - 1 - (int)_wvm.CurrentWorld.GroundLevel) % 6) * 16;
-                                }
-                                else if (y == _wvm.CurrentWorld.RockLevel)
-                                {
-                                    wallTex = _textureDictionary.GetBackground(4);
-                                    source.X += (x % 8) * 16;
-                                }
-                                else if (y > _wvm.CurrentWorld.RockLevel && y < (_wvm.CurrentWorld.TilesHigh - 200))
-                                {
-                                    wallTex = _textureDictionary.GetBackground(3);
-                                    source.X += (x % 8) * 16;
-                                    source.Y += ((y - 1 - (int)_wvm.CurrentWorld.RockLevel) % 6) * 16;
-                                }
-                                else if (y == (_wvm.CurrentWorld.TilesHigh - 200))
-                                {
-                                    wallTex = _textureDictionary.GetBackground(6);
-                                    source.X += (x % 8) * 16;
-                                }
-                                else if (y > (_wvm.CurrentWorld.TilesHigh - 200))
-                                {
-                                    wallTex = _textureDictionary.GetBackground(5);
-                                    source.X += (x % 8) * 16;
-                                    source.Y += ((y - 1 - (int)_wvm.CurrentWorld.TilesHigh + 250) % 18) * 16;
-                                }
-                                var dest = new Rectangle(1 + (int)((_scrollPosition.X + x) * _zoom), 1 + (int)((_scrollPosition.Y + y) * _zoom), (int)_zoom, (int)_zoom);
-                                _spriteBatch.Draw(wallTex, dest, source, Color.White, 0f, default(Vector2), SpriteEffects.None, LayerTileWallTextures);
                             }
                         }
                         if (_wvm.ShowTiles)
