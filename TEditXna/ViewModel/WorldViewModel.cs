@@ -522,7 +522,7 @@ namespace TEditXna.ViewModel
                     {
                         byte[] dl = Client.DownloadData("http://www.binaryconstruct.com/downloads/teditversion.txt");
 
-                        string vers = Encoding.UTF8.GetString(dl);
+                        string vers = Encoding.Unicode.GetString(dl);
                         string[] verstrimmed = vers.Split('v');
 
                         if (verstrimmed.Length != 2) return null;
