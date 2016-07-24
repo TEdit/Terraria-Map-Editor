@@ -236,81 +236,81 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     </Tile>
     <Tile Id="5" Color="#FF976B4B" Name="Tree" Framed="true" TextureGrid="20,20" >
       <Frames>
-        <Frame UV="22,198" Name="Tree Top Leafy" Variety="A" Anchor="Bottom" />
-        <Frame UV="22,220" Name="Tree Top Leafy" Variety="B" Anchor="Bottom" />
-        <Frame UV="22,242" Name="Tree Top Leafy" Variety="C" Anchor="Bottom" />
-        <Frame UV="0,0" Name="Tree Trunk" Variety="Plain A" Anchor="Bottom" />
-        <Frame UV="22,0" Name="Tree Trunk" Variety="Right Indent A" Anchor="Bottom" />
-        <Frame UV="44,0" Name="Tree Trunk" Variety="Right Slight Bulge A" Anchor="Bottom" />
-        <Frame UV="66,0" Name="Tree Branch" Variety="Plain A" Anchor="Left" />
-        <Frame UV="88,0" Name="Tree Trunk" Variety="Left Slight Bulge A" Anchor="Bottom" />
-        <Frame UV="110,0" Name="Tree Top" Variety="Medium A" Anchor="Bottom" />
-        <Frame UV="132,0" Name="Tree Top" Variety="Small A" Anchor="Bottom" />
-        <Frame UV="154,0" Name="Tree Top" Variety="Large A" Anchor="Right" />
-        <Frame UV="0,22" Name="Tree Trunk" Variety="Plain B" Anchor="Bottom" />
-        <Frame UV="22,22" Name="Tree Trunk" Variety="Right Indent B" Anchor="Bottom" />
-        <Frame UV="44,22" Name="Tree Trunk" Variety="Right Slight Bulge B" Anchor="Bottom" />
-        <Frame UV="66,22" Name="Tree Branch" Variety="Plain B" Anchor="Left" />
-        <Frame UV="88,22" Name="Tree Trunk" Variety="Left Slight Bulge B" Anchor="Bottom" />
-        <Frame UV="110,22" Name="Tree Top" Variety="Medium B" Anchor="Bottom" />
-        <Frame UV="132,22" Name="Tree Top" Variety="Small B" Anchor="Bottom" />
-        <Frame UV="154,22" Name="Tree Top" Variety="Large B" Anchor="Right" />
-        <Frame UV="0,44" Name="Tree Trunk" Variety="Plain C" Anchor="Bottom" />
-        <Frame UV="22,44" Name="Tree Trunk" Variety="Right Indent C" Anchor="Bottom" />
-        <Frame UV="44,44" Name="Tree Trunk" Variety="Right Slight Bulge C" Anchor="Bottom" />
-        <Frame UV="66,44" Name="Tree Branch" Variety="Plain C" Anchor="Left" />
-        <Frame UV="88,44" Name="Tree Trunk" Variety="Left Slight Bulge C" Anchor="Bottom" />
-        <Frame UV="110,44" Name="Tree Top" Variety="Medium C" Anchor="Bottom" />
-        <Frame UV="132,44" Name="Tree Top" Variety="Small C" Anchor="Bottom" />
-        <Frame UV="154,44" Name="Tree Top" Variety="Large C" Anchor="Right" />
-        <Frame UV="0,66" Name="Tree Trunk" Variety="Left Indent A" Anchor="Bottom" />
-        <Frame UV="22,66" Name="Tree Trunk" Variety="Right Bulge A" Anchor="Bottom" />
-        <Frame UV="44,66" Name="Tree Trunk" Variety="Left Bulge A" Anchor="Bottom" />
-        <Frame UV="66,66" Name="Tree Trunk" Variety="Right Slight Bulge D" Anchor="Bottom" />
-        <Frame UV="88,66" Name="Tree Branch" Variety="Plain A" Anchor="Right" />
-        <Frame UV="110,66" Name="Tree Trunk" Variety="Double Slight Bulge A" Anchor="Bottom" />
-        <Frame UV="132,66" Name="Tree Top" Variety="Small Right Slight Bulge A" Anchor="Bottom" />
-        <Frame UV="154,66" Name="Tree Top" Variety="Large A" Anchor="Left" />
-        <Frame UV="0,88" Name="Tree Trunk" Variety="Left Indent B" Anchor="Bottom" />
-        <Frame UV="22,88" Name="Tree Trunk" Variety="Right Bulge B" Anchor="Bottom" />
-        <Frame UV="44,88" Name="Tree Trunk" Variety="Left Bulge B" Anchor="Bottom" />
-        <Frame UV="66,88" Name="Tree Trunk" Variety="Right Slight Bulge E" Anchor="Bottom" />
-        <Frame UV="88,88" Name="Tree Branch" Variety="Plain B" Anchor="Right" />
-        <Frame UV="110,88" Name="Tree Trunk" Variety="Double Slight Bulge B" Anchor="Bottom" />
-        <Frame UV="132,88" Name="Tree Top" Variety="Small Right Slight Bulge B" Anchor="Bottom" />
-        <Frame UV="154,88" Name="Tree Top" Variety="Large B" Anchor="Left" />
-        <Frame UV="0,110" Name="Tree Trunk" Variety="Left Indent C" Anchor="Bottom" />
-        <Frame UV="22,110" Name="Tree Trunk" Variety="Right Bulge C" Anchor="Bottom" />
-        <Frame UV="44,110" Name="Tree Trunk" Variety="Left Bulge C" Anchor="Bottom" />
-        <Frame UV="66,110" Name="Tree Trunk" Variety="Right Slight Bulge F" Anchor="Bottom" />
-        <Frame UV="88,110" Name="Tree Branch" Variety="Plain C" Anchor="Right" />
-        <Frame UV="110,110" Name="Tree Trunk" Variety="Double Slight Bulge C" Anchor="Bottom" />
-        <Frame UV="132,110" Name="Tree Top" Variety="Small Right Slight Bulge C" Anchor="Bottom" />
-        <Frame UV="154,110" Name="Tree Top" Variety="Large C" Anchor="Left" />
-        <Frame UV="0,132" Name="Tree Trunk" Variety="Large A" Anchor="Left" />
-        <Frame UV="22,132" Name="Tree Base" Variety="Plain A" Anchor="Right" />
-        <Frame UV="44,132" Name="Tree Base" Variety="Plain A" Anchor="Left" />
-        <Frame UV="66,132" Name="Tree Trunk" Variety="Large A" Anchor="Right" />
-        <Frame UV="88,132" Name="Tree Trunk" Variety="Large A" Anchor="Center" />
-        <Frame UV="132,132" Name="Tree Top" Variety="Small Double Slight Bulge A" Anchor="Bottom" />
-        <Frame UV="154,132" Name="Tree Top" Variety="Huge" Anchor="Left" />
-        <Frame UV="0,154" Name="Tree Trunk" Variety="Large B" Anchor="Left" />
-        <Frame UV="22,154" Name="Tree Base" Variety="Plain B" Anchor="Right" />
-        <Frame UV="44,154" Name="Tree Base" Variety="Plain B" Anchor="Left" />
-        <Frame UV="66,154" Name="Tree Trunk" Variety="Large B" Anchor="Right" />
-        <Frame UV="88,154" Name="Tree Trunk" Variety="Large B" Anchor="Center" />
-        <Frame UV="132,154" Name="Tree Top" Variety="Small Double Slight Bulge B" Anchor="Bottom" />
-        <Frame UV="154,154" Name="Tree Top" Variety="Huge" Anchor="Center" />
-        <Frame UV="0,176" Name="Tree Trunk" Variety="Large C" Anchor="Left" />
-        <Frame UV="22,176" Name="Tree Base" Variety="Plain C" Anchor="Right" />
-        <Frame UV="44,176" Name="Tree Base" Variety="Plain C" Anchor="Left" />
-        <Frame UV="66,176" Name="Tree Trunk" Variety="Large C" Anchor="Right" />
-        <Frame UV="88,176" Name="Tree Trunk" Variety="Large C" Anchor="Center" />
-        <Frame UV="132,176" Name="Tree Top" Variety="Small Double Slight Bulge C" Anchor="Bottom" />
-        <Frame UV="154,176" Name="Tree Top" Variety="Huge" Anchor="Right" />
-        <Frame UV="0,198" Name="Tree Top" Variety="Jagged" Anchor="Right" />
-        <Frame UV="0,220" Name="Tree Trunk" Variety="Jagged" Anchor="Bottom" />
-        <Frame UV="0,242" Name="Tree Trunk" Variety="Jagged" Anchor="Left" />
+        <Frame UV="22,198" Name="Tree Top Leafy" Variety="A" />
+        <Frame UV="22,220" Name="Tree Top Leafy" Variety="B" />
+        <Frame UV="22,242" Name="Tree Top Leafy" Variety="C" />
+        <Frame UV="0,0" Name="Tree Trunk" Variety="Plain A" />
+        <Frame UV="22,0" Name="Tree Trunk" Variety="Right Indent A" />
+        <Frame UV="44,0" Name="Tree Trunk" Variety="Right Slight Bulge A" />
+        <Frame UV="66,0" Name="Tree Branch" Variety="Plain A" />
+        <Frame UV="88,0" Name="Tree Trunk" Variety="Left Slight Bulge A" />
+        <Frame UV="110,0" Name="Tree Top" Variety="Medium A" />
+        <Frame UV="132,0" Name="Tree Top" Variety="Small A" />
+        <Frame UV="154,0" Name="Tree Top" Variety="Large A" />
+        <Frame UV="0,22" Name="Tree Trunk" Variety="Plain B" />
+        <Frame UV="22,22" Name="Tree Trunk" Variety="Right Indent B" />
+        <Frame UV="44,22" Name="Tree Trunk" Variety="Right Slight Bulge B" />
+        <Frame UV="66,22" Name="Tree Branch" Variety="Plain B" />
+        <Frame UV="88,22" Name="Tree Trunk" Variety="Left Slight Bulge B" />
+        <Frame UV="110,22" Name="Tree Top" Variety="Medium B" />
+        <Frame UV="132,22" Name="Tree Top" Variety="Small B" />
+        <Frame UV="154,22" Name="Tree Top" Variety="Large B" />
+        <Frame UV="0,44" Name="Tree Trunk" Variety="Plain C" />
+        <Frame UV="22,44" Name="Tree Trunk" Variety="Right Indent C" />
+        <Frame UV="44,44" Name="Tree Trunk" Variety="Right Slight Bulge C" />
+        <Frame UV="66,44" Name="Tree Branch" Variety="Plain C" />
+        <Frame UV="88,44" Name="Tree Trunk" Variety="Left Slight Bulge C" />
+        <Frame UV="110,44" Name="Tree Top" Variety="Medium C" />
+        <Frame UV="132,44" Name="Tree Top" Variety="Small C" />
+        <Frame UV="154,44" Name="Tree Top" Variety="Large C" />
+        <Frame UV="0,66" Name="Tree Trunk" Variety="Left Indent A" />
+        <Frame UV="22,66" Name="Tree Trunk" Variety="Right Bulge A" />
+        <Frame UV="44,66" Name="Tree Trunk" Variety="Left Bulge A" />
+        <Frame UV="66,66" Name="Tree Trunk" Variety="Right Slight Bulge D" />
+        <Frame UV="88,66" Name="Tree Branch" Variety="Plain A" />
+        <Frame UV="110,66" Name="Tree Trunk" Variety="Double Slight Bulge A" />
+        <Frame UV="132,66" Name="Tree Top" Variety="Small Right Slight Bulge A" />
+        <Frame UV="154,66" Name="Tree Top" Variety="Large A" />
+        <Frame UV="0,88" Name="Tree Trunk" Variety="Left Indent B" />
+        <Frame UV="22,88" Name="Tree Trunk" Variety="Right Bulge B" />
+        <Frame UV="44,88" Name="Tree Trunk" Variety="Left Bulge B" />
+        <Frame UV="66,88" Name="Tree Trunk" Variety="Right Slight Bulge E" />
+        <Frame UV="88,88" Name="Tree Branch" Variety="Plain B" />
+        <Frame UV="110,88" Name="Tree Trunk" Variety="Double Slight Bulge B" />
+        <Frame UV="132,88" Name="Tree Top" Variety="Small Right Slight Bulge B" />
+        <Frame UV="154,88" Name="Tree Top" Variety="Large B" />
+        <Frame UV="0,110" Name="Tree Trunk" Variety="Left Indent C" />
+        <Frame UV="22,110" Name="Tree Trunk" Variety="Right Bulge C" />
+        <Frame UV="44,110" Name="Tree Trunk" Variety="Left Bulge C" />
+        <Frame UV="66,110" Name="Tree Trunk" Variety="Right Slight Bulge F" />
+        <Frame UV="88,110" Name="Tree Branch" Variety="Plain C" />
+        <Frame UV="110,110" Name="Tree Trunk" Variety="Double Slight Bulge C" />
+        <Frame UV="132,110" Name="Tree Top" Variety="Small Right Slight Bulge C" />
+        <Frame UV="154,110" Name="Tree Top" Variety="Large C" />
+        <Frame UV="0,132" Name="Tree Trunk" Variety="Large A" />
+        <Frame UV="22,132" Name="Tree Base" Variety="Plain A" />
+        <Frame UV="44,132" Name="Tree Base" Variety="Plain A" />
+        <Frame UV="66,132" Name="Tree Trunk" Variety="Large A" />
+        <Frame UV="88,132" Name="Tree Trunk" Variety="Large A" />
+        <Frame UV="132,132" Name="Tree Top" Variety="Small Double Slight Bulge A" />
+        <Frame UV="154,132" Name="Tree Top" Variety="Huge" />
+        <Frame UV="0,154" Name="Tree Trunk" Variety="Large B" />
+        <Frame UV="22,154" Name="Tree Base" Variety="Plain B" />
+        <Frame UV="44,154" Name="Tree Base" Variety="Plain B" />
+        <Frame UV="66,154" Name="Tree Trunk" Variety="Large B" />
+        <Frame UV="88,154" Name="Tree Trunk" Variety="Large B" />
+        <Frame UV="132,154" Name="Tree Top" Variety="Small Double Slight Bulge B" />
+        <Frame UV="154,154" Name="Tree Top" Variety="Huge" />
+        <Frame UV="0,176" Name="Tree Trunk" Variety="Large C" />
+        <Frame UV="22,176" Name="Tree Base" Variety="Plain C" />
+        <Frame UV="44,176" Name="Tree Base" Variety="Plain C" />
+        <Frame UV="66,176" Name="Tree Trunk" Variety="Large C" />
+        <Frame UV="88,176" Name="Tree Trunk" Variety="Large C" />
+        <Frame UV="132,176" Name="Tree Top" Variety="Small Double Slight Bulge C" />
+        <Frame UV="154,176" Name="Tree Top" Variety="Huge" />
+        <Frame UV="0,198" Name="Tree Top" Variety="Jagged" />
+        <Frame UV="0,220" Name="Tree Trunk" Variety="Jagged" />
+        <Frame UV="0,242" Name="Tree Trunk" Variety="Jagged" />
         <Frame UV="22,198" Name="Tree Top" Variety="Leafy A - No Sprite" />
         <Frame UV="22,220" Name="Tree Top" Variety="Leafy B - No Sprite" />
         <Frame UV="22,242" Name="Tree Top" Variety="Leafy C - No Sprite" />

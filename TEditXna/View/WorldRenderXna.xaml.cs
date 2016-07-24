@@ -472,7 +472,7 @@ namespace TEditXna.View
                         neighborTile[se] = (x + 1) < width && (y + 1) < height ? _wvm.CurrentWorld.Tiles[x + 1, y + 1] : null;
 
                         //draw background textures
-                        if (y >= _wvm.CurrentWorld.GroundLevel)
+                        if (y >= 80)
                         {
                             int[,] backstyle = {
                                 {66, 67, 68, 69, 128, 125, 185},
@@ -497,7 +497,12 @@ namespace TEditXna.View
                                 backX = _wvm.CurrentWorld.CaveBackStyle3;
                             var source = new Rectangle(0, 0, 16, 16);
                             var backTex = _textureDictionary.GetBackground(0);
-                            if (y == _wvm.CurrentWorld.GroundLevel)
+                            if (y < _wvm.CurrentWorld.GroundLevel)
+                            {
+                                backTex = _textureDictionary.GetBackground(0);
+                                source.Y += (y - 80) * 16;
+                            }
+                            else if (y == _wvm.CurrentWorld.GroundLevel)
                             {
                                 backTex = _textureDictionary.GetBackground(backstyle[backX, 0]);
                                 source.X += (x % 8) * 16;
@@ -556,10 +561,10 @@ namespace TEditXna.View
                                     if (curtile.uvWallCache == 0xFFFF)
                                     {
                                         int sameStyle = 0x00000000;
-                                        sameStyle |= (neighborTile[e] != null && neighborTile[e].Wall == curtile.Wall) ? 0x0001 : 0x0000;
-                                        sameStyle |= (neighborTile[n] != null && neighborTile[n].Wall == curtile.Wall) ? 0x0010 : 0x0000;
-                                        sameStyle |= (neighborTile[w] != null && neighborTile[w].Wall == curtile.Wall) ? 0x0100 : 0x0000;
-                                        sameStyle |= (neighborTile[s] != null && neighborTile[s].Wall == curtile.Wall) ? 0x1000 : 0x0000;
+                                        sameStyle |= (neighborTile[e] != null && neighborTile[e].Wall > 0) ? 0x0001 : 0x0000;
+                                        sameStyle |= (neighborTile[n] != null && neighborTile[n].Wall > 0) ? 0x0010 : 0x0000;
+                                        sameStyle |= (neighborTile[w] != null && neighborTile[w].Wall > 0) ? 0x0100 : 0x0000;
+                                        sameStyle |= (neighborTile[s] != null && neighborTile[s].Wall > 0) ? 0x1000 : 0x0000;
 
                                         Vector2Int32 uvBlend = blendRules.GetUVForMasks((uint)sameStyle, 0x00000000, 0);
                                         curtile.uvWallCache = (ushort)((uvBlend.Y << 8) + uvBlend.X);
