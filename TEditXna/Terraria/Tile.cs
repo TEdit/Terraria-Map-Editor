@@ -44,6 +44,7 @@ namespace TEditXNA.Terraria
         Dresser = 88,
         EbonsandBlock = 112,
         PearlsandBlock = 116,
+        CrimsandBlock = 234,
         IceByRod = 127,
         Timer = 144,
         AnnouncementBox = 425
