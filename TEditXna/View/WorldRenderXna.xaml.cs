@@ -1045,7 +1045,11 @@ namespace TEditXna.View
 
                                     var tileTex = _textureDictionary.GetTile(curtile.Type);
 
-                                    if ((curtile.uvTileCache & 0x00FF) >= 16)
+                                    if ((curtile.uvTileCache & 0x00FF) >= 24)
+                                    {
+                                        tileTex = (Texture2D)_textureDictionary.GetMisc("Crimson_Cactus");
+                                    }
+                                    else if ((curtile.uvTileCache & 0x00FF) >= 16)
                                     {
                                         tileTex = (Texture2D)_textureDictionary.GetMisc("Evil_Cactus");
                                     }
@@ -1246,6 +1250,11 @@ namespace TEditXna.View
                                             {
                                                 int baseX = (isLeft) ? 1 : (isRight) ? -1 : 0;
                                                 Tile checkTile = (y + i) < _wvm.CurrentWorld.TilesHigh ? _wvm.CurrentWorld.Tiles[x + baseX, y + i] : null;
+                                                if (checkTile != null && checkTile.IsActive && checkTile.Type == (int)TileType.CrimsandBlock) //Crimson
+                                                {
+                                                    uv.X += 24;
+                                                    break;
+                                                }
                                                 if (checkTile != null && checkTile.IsActive && checkTile.Type == (int)TileType.EbonsandBlock) //Corruption
                                                 {
                                                     uv.X += 16;
