@@ -2013,6 +2013,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="36,0" Variety="Hanging" Anchor="Bottom" />
         <Frame UV="72,0" Variety="Left Side" Anchor="Left" />
         <Frame UV="108,0" Variety="Right Side" Anchor="Right" />
+        <Frame UV="144,0" Variety="Floating" />
       </Frames>
     </Tile>
     <Tile Id="56" Color="#FF2B2854" Name="Obsidian" Solid="true" Blends="true" MergeWith="0" />
