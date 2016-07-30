@@ -74,7 +74,7 @@ namespace TEditXna.ViewModel
                     if (TilePicker.WallPaintActive)
                         SetPixelAutomatic(curTile, wallColor: isErase ? 0 : TilePicker.WallColor);
                     if (TilePicker.ExtrasActive)
-                        SetPixelAutomatic(curTile, actuator: TilePicker.Actuator, actuatorInActive: TilePicker.ActuatorInActive);
+                        SetPixelAutomatic(curTile, actuator: isErase ? false : TilePicker.Actuator, actuatorInActive: isErase ? false : TilePicker.ActuatorInActive);
                     break;
                 case PaintMode.Wire:
                     if (TilePicker.RedWireActive)
@@ -489,6 +489,8 @@ namespace TEditXna.ViewModel
                 {
                     curTile.Type = 0;
                     curTile.IsActive = false;
+                    curTile.InActive = false;
+                    curTile.Actuator = false;
                     curTile.BrickStyle = BrickStyle.Full;
                     curTile.U = 0;
                     curTile.V = 0;
