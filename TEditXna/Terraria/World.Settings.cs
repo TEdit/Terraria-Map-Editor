@@ -176,11 +176,23 @@ namespace TEditXNA.Terraria
                         curFrame.Name = curTile.Name;
 
                     curTile.Frames.Add(curFrame);
+                    string spriteName = null;
+                    if (curFrame.Name == curTile.Name)
+                    {
+                        if (!string.IsNullOrWhiteSpace(curFrame.Variety))
+                            spriteName += curFrame.Variety;
+                    }
+                    else
+                    {
+                        spriteName += curFrame.Name;
+                        if (!string.IsNullOrWhiteSpace(curFrame.Variety))
+                            spriteName += " - " + curFrame.Variety;
+                    }
                     Sprites.Add(new Sprite
                                     {
                                         Anchor = curFrame.Anchor,
                                         IsPreviewTexture = false,
-                                        Name = curFrame.Name + ", " + curFrame.Variety,
+                                        Name = spriteName,
                                         Origin = curFrame.UV,
                                         Size = frameSize,
                                         Tile = (ushort)curTile.Id, /* SBlogic */
@@ -217,16 +229,12 @@ namespace TEditXNA.Terraria
                     curFrame.UV = new Vector2Short(0, 0);
                     //curFrame.Anchor = InLineEnumTryParse<FrameAnchor>((string)xElement.Attribute("Anchor"));
 
-                    // Assign a default name if none existed
-                    if (string.IsNullOrWhiteSpace(curFrame.Name))
-                        curFrame.Name = curTile.Name;
-
                     curTile.Frames.Add(curFrame);
                     Sprites.Add(new Sprite
                                     {
                                         Anchor = curFrame.Anchor,
                                         IsPreviewTexture = false,
-                                        Name = curFrame.Name + ", " + curFrame.Variety,
+                                        Name = null,
                                         Origin = curFrame.UV,
                                         Size = curTile.FrameSize,
                                         Tile = (ushort)curTile.Id,

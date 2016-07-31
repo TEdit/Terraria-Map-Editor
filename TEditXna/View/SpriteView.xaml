@@ -26,7 +26,7 @@
             <TextBox Text="{Binding SpriteFilter, Mode=TwoWay, UpdateSourceTrigger=LostFocus }" HorizontalAlignment="Stretch" MinWidth="200" KeyUp="TextBox_KeyUp" />
             <Button Content="Filter" Margin="1" Padding="10,2" />
         </StackPanel>
-        <ListBox HorizontalAlignment="Stretch" ItemTemplate="{StaticResource SpriteItemViewTemplate}" ItemsSource="{Binding SpritesView}" SelectedItem="{Binding SelectedSprite}" MinHeight="300"
+        <ListBox HorizontalAlignment="Stretch" ItemTemplate="{StaticResource SpriteItemViewTemplate}" ItemsSource="{Binding SpritesView}" SelectedItem="{Binding SelectedSprite}"
              tedit:ListBoxExtenders.AutoScrollToCurrentItem="True" IsSynchronizedWithCurrentItem="True" VirtualizingStackPanel.IsVirtualizing="True">
             <ListBox.ItemContainerStyle>
                 <Style TargetType="ListBoxItem" BasedOn="{StaticResource {x:Type ListBoxItem}}">
