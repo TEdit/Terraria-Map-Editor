@@ -356,7 +356,7 @@ namespace TEditXna.View
             DrawPixelTiles();
             _spriteBatch.End();
 
-            _spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.Default, RasterizerState.CullNone);
+            _spriteBatch.Begin(SpriteSortMode.BackToFront, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.Default, RasterizerState.CullNone);
 
 
             // Draw sprite overlays
@@ -759,63 +759,47 @@ namespace TEditXna.View
 
                                     if (tileTex != null)
                                     {
-                                        if (!isTreeSpecial && !isMushroom && curtile.Type != 314)
+                                        if ((curtile.Type == 128 || curtile.Type == 269) && curtile.U >= 100)
                                         {
-                                            source = new Rectangle(curtile.U, curtile.V, tileprop.TextureGrid.X, tileprop.TextureGrid.Y);
-                                            if (source.Width <= 0)
-                                                source.Width = 16;
-                                            if (source.Height <= 0)
-                                                source.Height = 16;
-
-                                            if (source.Bottom > tileTex.Height)
-                                                source.Height -= (source.Bottom - tileTex.Height);
-                                            if (source.Right > tileTex.Width)
-                                                source.Width -= (source.Right - tileTex.Width);
-
-                                            if (source.Width <= 0 || source.Height <= 0)
-                                                continue;
-
+                                            int armor = curtile.U / 100;
                                             dest = new Rectangle(1 + (int)((_scrollPosition.X + x) * _zoom), 1 + (int)((_scrollPosition.Y + y) * _zoom), (int)_zoom, (int)_zoom);
-                                            if (curtile.Type == 323)
+                                            switch (curtile.V / 18)
                                             {
-                                                dest.X += (int)(curtile.V * _zoom / 16);
-                                                int treeType = (curtile.uvTileCache & 0x000F);
-                                                source.Y = 22 * treeType;
+                                                case 0:
+                                                    tileTex = (Texture2D)_textureDictionary.GetArmorHead(armor);
+                                                    source = new Rectangle (2, 0, 36, 36);
+                                                    dest.Width = (int)(_zoom * source.Width / 16f);
+                                                    dest.Height = (int)(_zoom * source.Height / 16f);
+                                                    dest.Y += (int)(((16 - source.Height - 4) / 2F) * _zoom / 16);
+                                                    dest.X -= (int)((2 * _zoom / 16));
+                                                    break;
+                                                case 1:
+                                                    if (curtile.Type == 128)
+                                                        tileTex = (Texture2D)_textureDictionary.GetArmorBody(armor);
+                                                    else
+                                                        tileTex = (Texture2D)_textureDictionary.GetArmorFemale(armor);
+                                                    source = new Rectangle (2, 0, 36, 54);
+                                                    dest.Width = (int)(_zoom * source.Width / 16f);
+                                                    dest.Height = (int)(_zoom * source.Height / 16f);
+                                                    dest.Y += (int)(((16 - source.Height - 18) / 2F) * _zoom / 16);
+                                                    dest.X -= (int)((2 * _zoom / 16));
+                                                    break;
+                                                case 2:
+                                                    tileTex = (Texture2D)_textureDictionary.GetArmorLegs(armor);
+                                                    source = new Rectangle (2, 42, 36, 12);
+                                                    dest.Width = (int)(_zoom * source.Width / 16f);
+                                                    dest.Height = (int)(_zoom * source.Height / 16f);
+                                                    dest.Y -= (int)((2 * _zoom / 16));
+                                                    dest.X -= (int)((2 * _zoom / 16));
+                                                    break;
                                             }
-                                            var texsize = tileprop.TextureGrid;
-                                            if (texsize.X != 16 || texsize.Y != 16)
-                                            {
-                                                dest.Width = (int)(texsize.X * (_zoom / 16));
-                                                dest.Height = (int)(texsize.Y * (_zoom / 16));
-
-                                                var frame = (tileprop.Frames.FirstOrDefault(f => f.UV == new Vector2Short(curtile.U, curtile.V)));
-                                                var frameAnchor = FrameAnchor.None;
-                                                if (frame != null)
-                                                    frameAnchor = frame.Anchor;
-                                                switch (frameAnchor)
-                                                {
-                                                    case FrameAnchor.None:
-                                                        dest.X += (int)(((16 - texsize.X) / 2F) * _zoom / 16);
-                                                        dest.Y += (int)(((16 - texsize.Y) / 2F) * _zoom / 16);
-                                                        break;
-                                                    case FrameAnchor.Left:
-                                                        //position.X += (16 - texsize.X) / 2;
-                                                        dest.Y += (int)(((16 - texsize.Y) / 2F) * _zoom / 16);
-                                                        break;
-                                                    case FrameAnchor.Right:
-                                                        dest.X += (int)((16 - texsize.X) * _zoom / 16);
-                                                        dest.Y += (int)(((16 - texsize.Y) / 2F) * _zoom / 16);
-                                                        break;
-                                                    case FrameAnchor.Top:
-                                                        dest.X += (int)(((16 - texsize.X) / 2F) * _zoom / 16);
-                                                        //position.Y += (16 - texsize.Y);
-                                                        break;
-                                                    case FrameAnchor.Bottom:
-                                                        dest.X += (int)(((16 - texsize.X) / 2F) * _zoom / 16);
-                                                        dest.Y += (int)((16 - texsize.Y) * _zoom / 16);
-                                                        break;
-                                                }
-                                            }
+                                            if (curtile.U % 100 < 36)
+                                                _spriteBatch.Draw(tileTex, dest, source, Color.White, 0f, default(Vector2), SpriteEffects.FlipHorizontally, LayerTileTrack);
+                                            else
+                                                _spriteBatch.Draw(tileTex, dest, source, Color.White, 0f, default(Vector2), SpriteEffects.None, LayerTileTrack);
+                                            tileTex = _textureDictionary.GetTile(curtile.Type);
+                                            source = new Rectangle((curtile.U % 100), curtile.V, tileprop.TextureGrid.X, tileprop.TextureGrid.Y);
+                                            dest = new Rectangle(1 + (int)((_scrollPosition.X + x) * _zoom), 1 + (int)((_scrollPosition.Y + y) * _zoom), (int)_zoom, (int)_zoom);
                                         }
                                         else if (curtile.Type == 314)
                                         {
@@ -969,6 +953,64 @@ namespace TEditXna.View
                                             dest.Height = (int)(_zoom * source.Height / 16f);
                                             dest.X += (int)(((16 - source.Width) / 2F) * _zoom / 16);
                                             dest.Y += (int)((16 - source.Height) * _zoom / 16);
+                                        }
+                                        else
+                                        {
+                                            source = new Rectangle(curtile.U, curtile.V, tileprop.TextureGrid.X, tileprop.TextureGrid.Y);
+                                            if (source.Width <= 0)
+                                                source.Width = 16;
+                                            if (source.Height <= 0)
+                                                source.Height = 16;
+
+                                            if (source.Bottom > tileTex.Height)
+                                                source.Height -= (source.Bottom - tileTex.Height);
+                                            if (source.Right > tileTex.Width)
+                                                source.Width -= (source.Right - tileTex.Width);
+
+                                            if (source.Width <= 0 || source.Height <= 0)
+                                                continue;
+
+                                            dest = new Rectangle(1 + (int)((_scrollPosition.X + x) * _zoom), 1 + (int)((_scrollPosition.Y + y) * _zoom), (int)_zoom, (int)_zoom);
+                                            if (curtile.Type == 323)
+                                            {
+                                                dest.X += (int)(curtile.V * _zoom / 16);
+                                                int treeType = (curtile.uvTileCache & 0x000F);
+                                                source.Y = 22 * treeType;
+                                            }
+                                            var texsize = tileprop.TextureGrid;
+                                            if (texsize.X != 16 || texsize.Y != 16)
+                                            {
+                                                dest.Width = (int)(texsize.X * (_zoom / 16));
+                                                dest.Height = (int)(texsize.Y * (_zoom / 16));
+
+                                                var frame = (tileprop.Frames.FirstOrDefault(f => f.UV == new Vector2Short(curtile.U, curtile.V)));
+                                                var frameAnchor = FrameAnchor.None;
+                                                if (frame != null)
+                                                    frameAnchor = frame.Anchor;
+                                                switch (frameAnchor)
+                                                {
+                                                    case FrameAnchor.None:
+                                                        dest.X += (int)(((16 - texsize.X) / 2F) * _zoom / 16);
+                                                        dest.Y += (int)(((16 - texsize.Y) / 2F) * _zoom / 16);
+                                                        break;
+                                                    case FrameAnchor.Left:
+                                                        //position.X += (16 - texsize.X) / 2;
+                                                        dest.Y += (int)(((16 - texsize.Y) / 2F) * _zoom / 16);
+                                                        break;
+                                                    case FrameAnchor.Right:
+                                                        dest.X += (int)((16 - texsize.X) * _zoom / 16);
+                                                        dest.Y += (int)(((16 - texsize.Y) / 2F) * _zoom / 16);
+                                                        break;
+                                                    case FrameAnchor.Top:
+                                                        dest.X += (int)(((16 - texsize.X) / 2F) * _zoom / 16);
+                                                        //position.Y += (16 - texsize.Y);
+                                                        break;
+                                                    case FrameAnchor.Bottom:
+                                                        dest.X += (int)(((16 - texsize.X) / 2F) * _zoom / 16);
+                                                        dest.Y += (int)((16 - texsize.Y) * _zoom / 16);
+                                                        break;
+                                                }
+                                            }
                                         }
 
                                         _spriteBatch.Draw(tileTex, dest, source, curtile.InActive ? Color.Gray : Color.White, 0f, default(Vector2), SpriteEffects.None, LayerTileTextures);
