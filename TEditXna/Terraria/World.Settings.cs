@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.ComponentModel;
 using System.Linq;
 using System.Collections.Generic;
@@ -26,6 +26,9 @@ namespace TEditXNA.Terraria
         private static readonly Dictionary<int, ItemProperty> _itemLookup = new Dictionary<int, ItemProperty>();
         private static readonly Dictionary<int, string> _tallynames = new Dictionary<int, string>();
         private static readonly Dictionary<string, string> _frameNames = new Dictionary<string, string>();
+        private static readonly Dictionary<int, string> _armorHeadNames = new Dictionary<int, string>();
+        private static readonly Dictionary<int, string> _armorBodyNames = new Dictionary<int, string>();
+        private static readonly Dictionary<int, string> _armorLegsNames = new Dictionary<int, string>();
 
         private static readonly ObservableCollection<ItemProperty> _itemProperties = new ObservableCollection<ItemProperty>();
         private static readonly ObservableCollection<ChestProperty> _chestProperties = new ObservableCollection<ChestProperty>();
@@ -264,11 +267,22 @@ namespace TEditXNA.Terraria
                 var curItem = new ItemProperty();
                 curItem.Id = (int?)xElement.Attribute("Id") ?? -1;
                 curItem.Name = (string)xElement.Attribute("Name");
+                string scale = (string)xElement.Attribute("Scale") ?? "1";
+                curItem.Scale = Convert.ToSingle(scale);
                 ItemProperties.Add(curItem);
                 _itemLookup.Add(curItem.Id, curItem);
                 int tally = (int?)xElement.Attribute("Tally") ?? 0;
                 if (tally > 0)
                     _tallynames.Add(tally, curItem.Name);
+                int head = (int?)xElement.Attribute("Head") ?? 0;
+                if (head > 0)
+                    _armorHeadNames.Add(head, curItem.Name);
+                int body = (int?)xElement.Attribute("Body") ?? 0;
+                if (body > 0)
+                    _armorBodyNames.Add(body, curItem.Name);
+                int legs = (int?)xElement.Attribute("Legs") ?? 0;
+                if (legs > 0)
+                    _armorLegsNames.Add(legs, curItem.Name);
             }
 
             foreach (var xElement in xmlSettings.Elements("Paints").Elements("Paint"))

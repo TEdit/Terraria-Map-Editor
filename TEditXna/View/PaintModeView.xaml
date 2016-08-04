@@ -102,14 +102,11 @@
                 <ToggleButton ToolTip="Eraser" IsChecked="{Binding Path=TilePicker.IsEraser, Mode=TwoWay}" VerticalAlignment="Top" Margin="2 0" BorderThickness="2" HorizontalAlignment="Left">
                     <Image Source="../Images/Tools/eraser.png" Height="32" Width="32" RenderOptions.BitmapScalingMode="NearestNeighbor" Stretch="UniformToFill" />
                 </ToggleButton>
-                <StackPanel Orientation="Horizontal">
-                    <TextBlock Text="Paint Mode" HorizontalAlignment="Left"  Width="65" VerticalAlignment="Center" />
-                    <ComboBox ItemsSource="{StaticResource PaintModeEnum}" 
-                          SelectedValue="{Binding TilePicker.PaintMode}" 
-                          SelectedValuePath="Value" Width="100"
-                          ItemTemplate="{StaticResource EnumTemplate}" />
-                </StackPanel>
-
+                <TextBlock Text="Paint Mode" HorizontalAlignment="Center"  Width="65" VerticalAlignment="Center" />
+                <ComboBox ItemsSource="{StaticResource PaintModeEnum}" 
+                      SelectedValue="{Binding TilePicker.PaintMode}" 
+                      SelectedValuePath="Value" Width="100"
+                      ItemTemplate="{StaticResource EnumTemplate}" />
             </StackPanel>
             <GroupBox BorderThickness="1" Style="{StaticResource TileVisibleStyle}">
                 <GroupBox.Header>

@@ -96,7 +96,6 @@ namespace TEditXNA.Terraria
         private bool _downedMoonlord;
         private bool _downedHalloweenKing;
         private bool _downedHalloweenTree;
-        private bool c;
         private bool _downedChristmasQueen;
         private bool _downedSanta;
         private bool _downedChristmasTree;

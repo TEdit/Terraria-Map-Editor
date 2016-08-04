@@ -27,6 +27,7 @@ namespace TEditXNA.Terraria
         private readonly Dictionary<int, Texture2D> _armorBody = new Dictionary<int, Texture2D>();
         private readonly Dictionary<int, Texture2D> _armorFemale = new Dictionary<int, Texture2D>();
         private readonly Dictionary<int, Texture2D> _armorLegs = new Dictionary<int, Texture2D>();
+        private readonly Dictionary<int, Texture2D> _item = new Dictionary<int, Texture2D>();
 
         public Dictionary<int, Texture2D> Tiles { get { return _tiles; } }
         public Dictionary<int, Texture2D> Underworld { get { return _underworld; } }
@@ -43,6 +44,7 @@ namespace TEditXNA.Terraria
         public Dictionary<int, Texture2D> ArmorBody { get { return _armorBody; } }
         public Dictionary<int, Texture2D> ArmorFemale { get { return _armorFemale; } }
         public Dictionary<int, Texture2D> ArmorLegs { get { return _armorLegs; } }
+        public Dictionary<int, Texture2D> Item { get { return _item; } }
         public Texture2D Actuator { get { return _actuator ?? (_actuator = (Texture2D)GetMisc("Actuator")); } }
 
         readonly ContentManager _cm;
@@ -219,6 +221,15 @@ namespace TEditXNA.Terraria
                 ArmorLegs[num] = LoadTexture(name);
             }
             return ArmorLegs[num];
+        }
+        public Texture2D GetItem(int num)
+        {
+            if (!Item.ContainsKey(num))
+            {
+                string name = String.Format("Images\\Item_{0}", num);
+                Item[num] = LoadTexture(name);
+            }
+            return Item[num];
         }
 
         private static Color ColorKey = Color.FromNonPremultiplied(247, 119, 249, 255);
