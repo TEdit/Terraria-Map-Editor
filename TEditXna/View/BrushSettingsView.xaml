@@ -13,7 +13,7 @@
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="205" />
+                <ColumnDefinition Width="135" />
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
@@ -30,22 +30,22 @@
                 <Image Source="../Images/Tools/outline.png" RenderOptions.BitmapScalingMode="NearestNeighbor" Height="16" Stretch="None" />
             </ToggleButton>
             <TextBlock Grid.Row="0" Grid.Column="0" Text="Width" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="2" />
-            <TextBox Grid.Row="0" Grid.Column="1" Width="50" HorizontalAlignment="Left" Text="{Binding Path=Brush.Width, Mode=TwoWay}" Margin="0,1,0,0" VerticalAlignment="Center" />
-            <Slider Grid.Row="0" Grid.Column="1" Width="150" HorizontalAlignment="Right" 
+            <TextBox Grid.Row="0" Grid.Column="1" Width="30" HorizontalAlignment="Left" Text="{Binding Path=Brush.Width, Mode=TwoWay}" Margin="0,1,0,0" VerticalAlignment="Center" />
+            <Slider Grid.Row="0" Grid.Column="1" Width="100" HorizontalAlignment="Right" 
                     Value="{Binding Path=Brush.Width, Mode=TwoWay}" Minimum="{Binding Path=Brush.MinWidth}" Maximum="{Binding Path=Brush.MaxWidth}" 
                     LargeChange="10" SmallChange="1" VerticalAlignment="Center" />
             <TextBlock Grid.Row="1" Grid.Column="0" Text="Height" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="2" />
-            <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding Path=Brush.Height, Mode=TwoWay}" Margin="0,1,0,0" VerticalAlignment="Center" HorizontalAlignment="Left" Width="50" />
-            <Slider Grid.Row="1" Grid.Column="1" Width="150" HorizontalAlignment="Right"
+            <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding Path=Brush.Height, Mode=TwoWay}" Margin="0,1,0,0" VerticalAlignment="Center" HorizontalAlignment="Left" Width="30" />
+            <Slider Grid.Row="1" Grid.Column="1" Width="100" HorizontalAlignment="Right"
               Value="{Binding Path=Brush.Height, Mode=TwoWay}" Minimum="{Binding Path=Brush.MinHeight}"  Maximum="{Binding Path=Brush.MaxHeight}" 
                     LargeChange="10" SmallChange="1" VerticalAlignment="Center" />
             <TextBlock Grid.Row="2" Grid.Column="0" Text="Outline" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="2" />
-            <TextBox Grid.Row="2" Grid.Column="1" Width="50" HorizontalAlignment="Left"
+            <TextBox Grid.Row="2" Grid.Column="1" Width="30" HorizontalAlignment="Left"
                Text="{Binding Path=Brush.Outline, Mode=TwoWay}" Margin="0,1,0,0" VerticalAlignment="Center" />
-            <Slider Grid.Row="2" Grid.Column="1" Width="150" HorizontalAlignment="Right"
+            <Slider Grid.Row="2" Grid.Column="1" Width="100" HorizontalAlignment="Right"
               Value="{Binding Path=Brush.Outline, Mode=TwoWay}" Minimum="1"
               Maximum="{Binding Path=Brush.MaxOutline}" LargeChange="10" SmallChange="1" VerticalAlignment="Center" />
-            <TextBlock Text="Shape" VerticalAlignment="Center" Margin="2" Grid.Row="3" Grid.Column="0" />
+            <TextBlock Text="Shape" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="2" Grid.Row="3" Grid.Column="0" />
             <ComboBox ItemsSource="{StaticResource BrushShapeEnum}" SelectedValue="{Binding Path=Brush.Shape}" SelectedValuePath="Value" Height="22"
                       Grid.Row="3" Grid.Column="1" HorizontalAlignment="Stretch" Margin="0,1,0,0" />
         </Grid>

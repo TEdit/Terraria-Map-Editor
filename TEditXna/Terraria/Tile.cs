@@ -16,8 +16,6 @@ namespace TEditXNA.Terraria
         SlopeTopLeft = 0x3,
         SlopeBottomRight = 0x4,
         SlopeBottomLeft = 0x5,
-        Unknown06 = 0x6,
-        Unknown07 = 0x7,
     }
 
     public enum LiquidType : byte

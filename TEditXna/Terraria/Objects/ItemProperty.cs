@@ -16,6 +16,7 @@ namespace TEditXNA.Terraria.Objects
         private int _maxStackSize;
         private int _id;
         private string _name;
+        private float _scale;
         private Vector2Short _size;
         private Vector2Short _uV; 
 
@@ -35,6 +36,12 @@ namespace TEditXNA.Terraria.Objects
         {
             get { return _name; }
             set { Set("Name", ref _name, value); }
+        }
+
+        public float Scale
+        {
+            get { return _scale; }
+            set { Set("Scale", ref _scale, value); }
         }
 
         private WriteableBitmap _image;

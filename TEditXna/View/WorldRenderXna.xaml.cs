@@ -36,8 +36,8 @@ namespace TEditXna.View
         private const float LayerTileTextures = 1 - 0.04f;
         private const float LayerTileTrack = 1 - 0.05f;
         private const float LayerTileActuator = 1 - 0.06f;
-        private const float LayerWires = 1 - 0.07f;
-        private const float LayerLiquid = 1 - 0.08f;
+        private const float LayerLiquid = 1 - 0.07f;
+        private const float LayerWires = 1 - 0.08f;
 
         private const float LayerGrid = 1 - 0.10f;
         private const float LayerLocations = 1 - 0.15f;
@@ -801,6 +801,60 @@ namespace TEditXna.View
                                             source = new Rectangle((curtile.U % 100), curtile.V, tileprop.TextureGrid.X, tileprop.TextureGrid.Y);
                                             dest = new Rectangle(1 + (int)((_scrollPosition.X + x) * _zoom), 1 + (int)((_scrollPosition.Y + y) * _zoom), (int)_zoom, (int)_zoom);
                                         }
+                                        else if (curtile.Type == 334 && curtile.U >= 5000)
+                                        {
+                                            if (_wvm.CurrentWorld.Tiles[x + 1, y].U >= 5000)
+                                            {
+                                                int weapon = (curtile.U % 5000) - 100;
+                                                tileTex = (Texture2D)_textureDictionary.GetItem(weapon);
+                                                int flip = curtile.U / 5000;
+                                                float scale = 1f;
+                                                if (tileTex.Width > 40 || tileTex.Height > 40)
+                                                {
+                                                    if (tileTex.Width > tileTex.Height)
+                                                        scale = 40f / (float)tileTex.Width;
+                                                    else
+                                                        scale = 40f / (float)tileTex.Height;
+                                                }
+                                                scale *= World.ItemProperties[weapon].Scale;
+                                                source = new Rectangle(0, 0, tileTex.Width, tileTex.Height);
+                                                SpriteEffects effect = SpriteEffects.None;
+                                                if (flip >= 3)
+                                                {
+                                                    effect = SpriteEffects.FlipHorizontally;
+                                                }
+                                                _spriteBatch.Draw(tileTex, new Vector2(1 + (int)((_scrollPosition.X + x + 1.5) * _zoom) , 1 + (int)((_scrollPosition.Y + y + .5) * _zoom)), source, Color.White, 0f, new Vector2((float)(tileTex.Width / 2), (float)(tileTex.Height / 2)), scale * _zoom / 16f, effect, LayerTileTrack);
+                                            }
+                                            source = new Rectangle(((curtile.U / 5000) - 1) * 18, curtile.V, tileprop.TextureGrid.X, tileprop.TextureGrid.Y);
+                                            tileTex = _textureDictionary.GetTile(curtile.Type);
+                                            dest = new Rectangle(1 + (int)((_scrollPosition.X + x) * _zoom), 1 + (int)((_scrollPosition.Y + y) * _zoom), (int)_zoom, (int)_zoom);
+                                        }
+                                        else if (curtile.Type == 395 && curtile.V == 0 && curtile.U % 36 == 0)
+                                        {
+                                            TileEntity entity = _wvm.CurrentWorld.GetTileEntityAtTile(x, y);
+                                            if (entity != null)
+                                            {
+                                                int item = entity.ItemNetId;
+                                                if (item > 0)
+                                                {
+                                                    tileTex = (Texture2D)_textureDictionary.GetItem(item);
+                                                    float scale = 1f;
+                                                    if (tileTex.Width > 20 || tileTex.Height > 20)
+                                                    {
+                                                        if (tileTex.Width > tileTex.Height)
+                                                            scale = 20f / (float)tileTex.Width;
+                                                        else
+                                                            scale = 20f / (float)tileTex.Height;
+                                                    }
+                                                    scale *= World.ItemProperties[item].Scale;
+                                                    source = new Rectangle(0, 0, tileTex.Width, tileTex.Height);
+                                                    _spriteBatch.Draw(tileTex, new Vector2(1 + (int)((_scrollPosition.X + x + 1) * _zoom) , 1 + (int)((_scrollPosition.Y + y + 1) * _zoom)), source, Color.White, 0f, new Vector2((float)(tileTex.Width / 2), (float)(tileTex.Height / 2)), scale * _zoom / 16f, SpriteEffects.FlipHorizontally, LayerTileTrack);
+                                                }
+                                            }
+                                            source = new Rectangle(curtile.U, curtile.V, tileprop.TextureGrid.X, tileprop.TextureGrid.Y);
+                                            tileTex = _textureDictionary.GetTile(curtile.Type);
+                                            dest = new Rectangle(1 + (int)((_scrollPosition.X + x) * _zoom), 1 + (int)((_scrollPosition.Y + y) * _zoom), (int)_zoom, (int)_zoom);
+                                        }
                                         else if (curtile.Type == 314)
                                         {
                                             source = new Rectangle(0, 0, 16, 16);
@@ -1472,8 +1526,6 @@ namespace TEditXna.View
                                                 }
 
                                                 break;
-                                            case BrickStyle.Unknown06:
-                                            case BrickStyle.Unknown07:
                                             case BrickStyle.Full:
                                             default:
                                                 _spriteBatch.Draw(tileTex, dest, source, curtile.InActive ? Color.Gray : Color.White, 0f, default(Vector2), SpriteEffects.None, LayerTileTextures);
