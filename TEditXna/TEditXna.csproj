@@ -289,6 +289,9 @@
     <Compile Include="View\SignEditor.xaml.cs">
       <DependentUpon>SignEditor.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\SpecialTileView.xaml.cs">
+      <DependentUpon>SpecialTileView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\SpriteView.xaml.cs">
       <DependentUpon>SpriteView.xaml</DependentUpon>
     </Compile>
@@ -419,6 +422,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\SignEditor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\SpecialTileView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

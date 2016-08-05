@@ -33,20 +33,35 @@ namespace TEditXna.Editor.Tools
 
             _rightClick = false;
 
-            Chest chest = _wvm.CurrentWorld.GetChestAtTile(e.Location.X, e.Location.Y);
-
-            if (chest != null)
+            Tile curTile = _wvm.CurrentWorld.Tiles[e.Location.X, e.Location.Y];
+            if (Tile.IsChest(curTile.Type))
             {
-                _wvm.SelectedChest = chest.Copy();
-                return;
+                Chest chest = _wvm.CurrentWorld.GetChestAtTile(e.Location.X, e.Location.Y);
+                if (chest != null)
+                {
+                    _wvm.SelectedChest = chest.Copy();
+                    return;
+                }
+            }
+            if (Tile.IsSign(curTile.Type))
+            {
+                Sign sign = _wvm.CurrentWorld.GetSignAtTile(e.Location.X, e.Location.Y);
+                if (sign != null)
+                {
+                    _wvm.SelectedSign = sign.Copy();
+                    return;
+                }
+            }
+            if (curTile.Type == 395)
+            {
+                TileEntity frame = _wvm.CurrentWorld.GetTileEntityAtTile(e.Location.X, e.Location.Y);
+                if (frame != null)
+                {
+                    _wvm.SelectedItemFrame = frame.CopyFrame();
+                    return;
+                }
             }
 
-            Sign sign = _wvm.CurrentWorld.GetSignAtTile(e.Location.X, e.Location.Y);
-            if (sign != null)
-            {
-                _wvm.SelectedSign = sign.Copy();
-                return;
-            }
 
         }
     }

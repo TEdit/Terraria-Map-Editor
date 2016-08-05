@@ -834,7 +834,7 @@ namespace TEditXna.View
                                             TileEntity entity = _wvm.CurrentWorld.GetTileEntityAtTile(x, y);
                                             if (entity != null)
                                             {
-                                                int item = entity.ItemNetId;
+                                                int item = entity.NetId;
                                                 if (item > 0)
                                                 {
                                                     tileTex = (Texture2D)_textureDictionary.GetItem(item);

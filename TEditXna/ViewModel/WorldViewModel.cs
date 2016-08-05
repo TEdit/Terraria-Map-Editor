@@ -61,7 +61,9 @@ namespace TEditXna.ViewModel
         private string _selectedPoint;
         private Sign _selectedSign;
         private Sprite _selectedSprite;
+        private TileEntity _selectedItemFrame;
         private int _selectedTabIndex;
+        private int _selectedSpecialTile = 0;
         private bool _showGrid = true;
         private bool _showLiquid = true;
         private bool _showPoints = true;
@@ -220,13 +222,20 @@ namespace TEditXna.ViewModel
             set { Set("SelectedTabIndex", ref _selectedTabIndex, value); }
         }
 
+        public int SelectedSpecialTile
+        {
+            get { return _selectedSpecialTile; }
+            set { Set("SelectedSpecialTile", ref _selectedSpecialTile, value); }
+        }
+
         public Sign SelectedSign
         {
             get { return _selectedSign; }
             set
             {
                 Set("SelectedSign", ref _selectedSign, value);
-                SelectedTabIndex = 5;
+                SelectedTabIndex = 1;
+                SelectedSpecialTile = 1;
             }
         }
 
@@ -236,7 +245,19 @@ namespace TEditXna.ViewModel
             set
             {
                 Set("SelectedChest", ref _selectedChest, value);
-                SelectedTabIndex = 3;
+                SelectedTabIndex = 1;
+                SelectedSpecialTile = 2;
+            }
+        }
+
+        public TileEntity SelectedItemFrame
+        {
+            get { return _selectedItemFrame; }
+            set
+            {
+                Set("SelectedItemFrame", ref _selectedItemFrame, value);
+                SelectedTabIndex = 1;
+                SelectedSpecialTile = 3;
             }
         }
 

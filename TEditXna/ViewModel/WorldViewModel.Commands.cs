@@ -32,6 +32,7 @@ namespace TEditXna.ViewModel
         private ICommand _runPluginCommand;
         private ICommand _saveChestCommand;
         private ICommand _saveSignCommand;
+        private ICommand _saveTileEntityCommand;
         private ICommand _npcRemoveCommand;
 
         private ICommand _requestZoomCommand;
@@ -120,6 +121,32 @@ namespace TEditXna.ViewModel
             get { return _saveSignCommand ?? (_saveSignCommand = new RelayCommand<bool>(SaveSign)); }
         }
 
+        public ICommand SaveTileEntityCommand
+        {
+            get { return _saveTileEntityCommand ?? (_saveTileEntityCommand = new RelayCommand<bool>(SaveTileEntity)); }
+        }
+
+        private void SaveTileEntity(bool save)
+        {
+            if (save)
+            {
+                if (SelectedItemFrame != null)
+                {
+                    var worldFrame = CurrentWorld.GetTileEntityAtTile(SelectedSign.X, SelectedSign.Y);
+                    if (worldFrame != null)
+                    {
+                        int index = CurrentWorld.TileEntities.IndexOf(worldFrame);
+                        CurrentWorld.TileEntities[index] = SelectedItemFrame.CopyFrame();
+                    }
+                }
+            }
+            else
+            {
+                SelectedItemFrame = null;
+                SelectedSpecialTile = 0;
+            }
+        }
+
         private void SaveSign(bool save)
         {
             if (save)
@@ -131,12 +158,12 @@ namespace TEditXna.ViewModel
                     {
                         worldSign.Text = SelectedSign.Text;
                     }
-                    SelectedSign = null;
                 }
             }
             else
             {
                 SelectedSign = null;
+                SelectedSpecialTile = 0;
             }
         }
 
@@ -158,6 +185,7 @@ namespace TEditXna.ViewModel
             else
             {
                 SelectedChest = null;
+                SelectedSpecialTile = 0;
             }
         }
 
