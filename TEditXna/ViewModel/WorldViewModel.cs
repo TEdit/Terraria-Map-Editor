@@ -64,6 +64,9 @@ namespace TEditXna.ViewModel
         private Sprite _selectedSprite;
         private TileEntity _selectedItemFrame;
         private Vector2Int32 _selectedMannequin;
+        private Vector2Int32 _selectedRack;
+        private byte _selectedRackPrefix;
+        private int _selectedRackNetId;
         private int _selectedMannHead;
         private int _selectedMannBody;
         private int _selectedMannLegs;
@@ -251,6 +254,18 @@ namespace TEditXna.ViewModel
             set { Set("SelectedMannLegs", ref _selectedMannLegs, value); }
         }
 
+        public byte SelectedRackPrefix
+        {
+            get { return _selectedRackPrefix; }
+            set { Set("SelectedRackPrefix", ref _selectedRackPrefix, value); }
+        }
+
+        public int SelectedRackNetId
+        {
+            get { return _selectedRackNetId; }
+            set { Set("SelectedRackNetId", ref _selectedRackNetId, value); }
+        }
+
         public Sign SelectedSign
         {
             get { return _selectedSign; }
@@ -292,6 +307,17 @@ namespace TEditXna.ViewModel
                 Set("SelectedMannequin", ref _selectedMannequin, value);
                 SelectedTabIndex = 1;
                 SelectedSpecialTile = 4;
+            }
+        }
+
+        public Vector2Int32 SelectedRack
+        {
+            get { return _selectedRack; }
+            set
+            {
+                Set("SelectedRack", ref _selectedRack, value);
+                SelectedTabIndex = 1;
+                SelectedSpecialTile = 5;
             }
         }
 

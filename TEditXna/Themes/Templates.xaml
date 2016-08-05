@@ -69,5 +69,10 @@
             <ComponentModel:SortDescription PropertyName="Value" Direction="Ascending" />
         </CollectionViewSource.SortDescriptions>
     </CollectionViewSource>
+    <CollectionViewSource Source="{Binding Source={x:Static Terraria:World.Rackable}, Mode=OneTime}" x:Key="RackCollection">
+        <CollectionViewSource.SortDescriptions>
+            <ComponentModel:SortDescription PropertyName="Value" Direction="Ascending" />
+        </CollectionViewSource.SortDescriptions>
+    </CollectionViewSource>
 
 </ResourceDictionary>
