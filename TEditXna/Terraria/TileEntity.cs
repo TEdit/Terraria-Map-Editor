@@ -16,9 +16,9 @@ namespace TEditXNA.Terraria
         private Int16 _npc;
 
         //data for this is a item frame
-        private Int16 _itemNetId;
+        private int _netId;
         private byte _prefix;
-        private Int16 _stack;
+        private Int16 _stackSize;
         
         //data for Logic Sensro
         private byte _logicCheck;
@@ -55,10 +55,10 @@ namespace TEditXNA.Terraria
         }
 
 
-        public Int16 ItemNetId
+        public int NetId
         {
-            get { return _itemNetId; }
-            set { Set("ItemNetId", ref _itemNetId, value); }
+            get { return _netId; }
+            set { Set("NetId", ref _netId, value); }
         }
 
         public byte Prefix
@@ -67,10 +67,10 @@ namespace TEditXNA.Terraria
             set { Set("Prefix", ref _prefix, value); }
         }
 
-        public Int16 Stack
+        public Int16 StackSize
         {
-            get { return _stack; }
-            set { Set("Stack", ref _stack, value); }
+            get { return _stackSize; }
+            set { Set("StackSize", ref _stackSize, value); }
         }
 
         public byte LogicCheck
@@ -83,6 +83,18 @@ namespace TEditXNA.Terraria
         {
             get { return _on; }
             set { Set("On", ref _on, value); }
+        }
+
+        public TileEntity CopyFrame()
+        {
+            var frame = new TileEntity();
+            frame.Type = Type;
+            frame.PosX = PosX;
+            frame.PosY = PosY;
+            frame.NetId = NetId;
+            frame.StackSize = StackSize;
+            frame.Prefix = Prefix;
+            return frame;
         }
         
         

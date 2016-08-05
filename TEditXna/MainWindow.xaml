@@ -200,22 +200,17 @@
                             <View:WorldPropertiesView HorizontalAlignment="Stretch" VerticalAlignment="Top"/>
                         </ScrollViewer>
                     </TabItem>
+                    <TabItem Header="Special Tiles">
+                        <View:SpecialTileView HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
+                    </TabItem>
                     <TabItem Header="Sprites">
                         <View:SpriteView VerticalAlignment="Stretch" HorizontalAlignment="Stretch" />
                     </TabItem>
                     <TabItem Header="Clipboard">
                         <View:ClipboardView VerticalAlignment="Stretch" HorizontalAlignment="Stretch" />
                     </TabItem>
-                    <TabItem Header="Chest" x:Name="ChestSignTab">
-                        <View:ChestEditorView VerticalAlignment="Stretch" HorizontalAlignment="Stretch" />
-                    </TabItem>
                     <TabItem Header="Npc Names" >
                         <View:NpcNameEditor HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
-                    </TabItem>
-                    <TabItem Header="Sign Editor" >
-                        <ScrollViewer VerticalScrollBarVisibility="Auto">
-                            <View:SignEditor HorizontalAlignment="Stretch"  VerticalAlignment="Stretch"/>
-                        </ScrollViewer>
                     </TabItem>
                     <TabItem Header="Analysis">
                         <View:WorldAnalysis HorizontalAlignment="Stretch"  VerticalAlignment="Stretch"/>

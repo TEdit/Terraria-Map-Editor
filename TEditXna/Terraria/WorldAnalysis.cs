@@ -153,7 +153,7 @@ namespace TEditXNA.Terraria
                         sb.Write("Dummy - ID: {0}, Position: [{1}, {2}], NPC: {3}\r\n", entity.Id, entity.PosX, entity.PosY, entity.Npc);
                         break;
                     case 1:
-                        sb.Write("ItemFrame - ID: {0}, Position: [{1}, {2}], ItemID: {3}, Prefix: {4}, Stack: {5}\r\n", entity.Id, entity.PosX, entity.PosY, entity.ItemNetId, entity.Prefix, entity.Stack);
+                        sb.Write("ItemFrame - ID: {0}, Position: [{1}, {2}], ItemID: {3}, Prefix: {4}, Stack: {5}\r\n", entity.Id, entity.PosX, entity.PosY, entity.NetId, entity.Prefix, entity.StackSize);
                         break;
                     case 2:
                         sb.Write("Logic Sensor - ID: {0}, Position: [{1}, {2}], LogicCheck: {3}, On: {4}\r\n", entity.Id, entity.PosX, entity.PosY, entity.LogicCheck, entity.On);

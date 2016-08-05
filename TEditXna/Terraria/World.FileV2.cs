@@ -552,9 +552,9 @@ namespace TEditXNA.Terraria
                         bw.Write(tentity.Npc);
                         break;
                     case 1: //it is a item frame                        
-                        bw.Write(tentity.ItemNetId);
+                        bw.Write((Int16)tentity.NetId);
                         bw.Write(tentity.Prefix);
-                        bw.Write(tentity.Stack);
+                        bw.Write(tentity.StackSize);
                         break;
                     case 2: //it is a logic sensor
                         bw.Write(tentity.LogicCheck);
@@ -1001,9 +1001,9 @@ namespace TEditXNA.Terraria
                         entity.Npc = r.ReadInt16();
                         break;
                     case 1: //it is a item frame
-                        entity.ItemNetId = r.ReadInt16();
+                        entity.NetId = (int)r.ReadInt16();
                         entity.Prefix = r.ReadByte();
-                        entity.Stack = r.ReadInt16();
+                        entity.StackSize = r.ReadInt16();
                         break;
                     case 2: //it is a logic sensor
                         entity.LogicCheck = r.ReadByte();
