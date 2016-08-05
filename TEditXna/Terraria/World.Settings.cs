@@ -268,8 +268,8 @@ namespace TEditXNA.Terraria
                 var curItem = new ItemProperty();
                 curItem.Id = (int?)xElement.Attribute("Id") ?? -1;
                 curItem.Name = (string)xElement.Attribute("Name");
-                string scale = (string)xElement.Attribute("Scale") ?? "1";
-                curItem.Scale = Convert.ToSingle(scale);
+                float? scale = (float?)xElement.Attribute("Scale");
+                curItem.Scale = scale == null ? 1f : (float)scale;
                 ItemProperties.Add(curItem);
                 _itemLookup.Add(curItem.Id, curItem);
                 int tally = (int?)xElement.Attribute("Tally") ?? 0;
