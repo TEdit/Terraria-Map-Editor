@@ -54,5 +54,20 @@
             <ComponentModel:SortDescription PropertyName="Name" Direction="Ascending" />
         </CollectionViewSource.SortDescriptions>
     </CollectionViewSource>
+    <CollectionViewSource Source="{Binding Source={x:Static Terraria:World.ArmorHeadNames}, Mode=OneTime}" x:Key="MannHeadCollection">
+        <CollectionViewSource.SortDescriptions>
+            <ComponentModel:SortDescription PropertyName="Value" Direction="Ascending" />
+        </CollectionViewSource.SortDescriptions>
+    </CollectionViewSource>
+    <CollectionViewSource Source="{Binding Source={x:Static Terraria:World.ArmorBodyNames}, Mode=OneTime}" x:Key="MannBodyCollection">
+        <CollectionViewSource.SortDescriptions>
+            <ComponentModel:SortDescription PropertyName="Value" Direction="Ascending" />
+        </CollectionViewSource.SortDescriptions>
+    </CollectionViewSource>
+    <CollectionViewSource Source="{Binding Source={x:Static Terraria:World.ArmorLegsNames}, Mode=OneTime}" x:Key="MannLegsCollection">
+        <CollectionViewSource.SortDescriptions>
+            <ComponentModel:SortDescription PropertyName="Value" Direction="Ascending" />
+        </CollectionViewSource.SortDescriptions>
+    </CollectionViewSource>
 
 </ResourceDictionary>

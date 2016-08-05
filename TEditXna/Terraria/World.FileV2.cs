@@ -552,7 +552,7 @@ namespace TEditXNA.Terraria
                         bw.Write(tentity.Npc);
                         break;
                     case 1: //it is a item frame                        
-                        bw.Write(tentity.NetId);
+                        bw.Write((Int16)tentity.NetId);
                         bw.Write(tentity.Prefix);
                         bw.Write(tentity.StackSize);
                         break;
@@ -1001,7 +1001,7 @@ namespace TEditXNA.Terraria
                         entity.Npc = r.ReadInt16();
                         break;
                     case 1: //it is a item frame
-                        entity.NetId = r.ReadInt16();
+                        entity.NetId = (int)r.ReadInt16();
                         entity.Prefix = r.ReadByte();
                         entity.StackSize = r.ReadInt16();
                         break;

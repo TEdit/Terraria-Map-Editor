@@ -32,6 +32,7 @@ namespace TEditXna.ViewModel
         private ICommand _runPluginCommand;
         private ICommand _saveChestCommand;
         private ICommand _saveSignCommand;
+        private ICommand _saveMannCommand;
         private ICommand _saveTileEntityCommand;
         private ICommand _npcRemoveCommand;
 
@@ -121,6 +122,11 @@ namespace TEditXna.ViewModel
             get { return _saveSignCommand ?? (_saveSignCommand = new RelayCommand<bool>(SaveSign)); }
         }
 
+        public ICommand SaveMannCommand
+        {
+            get { return _saveMannCommand ?? (_saveMannCommand = new RelayCommand<bool>(SaveMannequin)); }
+        }
+
         public ICommand SaveTileEntityCommand
         {
             get { return _saveTileEntityCommand ?? (_saveTileEntityCommand = new RelayCommand<bool>(SaveTileEntity)); }
@@ -132,7 +138,7 @@ namespace TEditXna.ViewModel
             {
                 if (SelectedItemFrame != null)
                 {
-                    var worldFrame = CurrentWorld.GetTileEntityAtTile(SelectedSign.X, SelectedSign.Y);
+                    var worldFrame = CurrentWorld.GetTileEntityAtTile(SelectedItemFrame.PosX, SelectedItemFrame.PosY);
                     if (worldFrame != null)
                     {
                         int index = CurrentWorld.TileEntities.IndexOf(worldFrame);
@@ -143,6 +149,23 @@ namespace TEditXna.ViewModel
             else
             {
                 SelectedItemFrame = null;
+                SelectedSpecialTile = 0;
+            }
+        }
+
+        private void SaveMannequin(bool save)
+        {
+            if (save)
+            {
+                if (SelectedMannequin != null)
+                {
+                    CurrentWorld.Tiles[SelectedMannequin.X, SelectedMannequin.Y].U = (short)((CurrentWorld.Tiles[SelectedMannequin.X, SelectedMannequin.Y].U % 100) + (100 * SelectedMannHead));
+                    CurrentWorld.Tiles[SelectedMannequin.X, SelectedMannequin.Y + 1].U = (short)((CurrentWorld.Tiles[SelectedMannequin.X, SelectedMannequin.Y + 1].U % 100) + (100 * SelectedMannBody));
+                    CurrentWorld.Tiles[SelectedMannequin.X, SelectedMannequin.Y + 2].U = (short)((CurrentWorld.Tiles[SelectedMannequin.X, SelectedMannequin.Y + 2].U % 100) + (100 * SelectedMannLegs));
+                }
+            }
+            else
+            {
                 SelectedSpecialTile = 0;
             }
         }

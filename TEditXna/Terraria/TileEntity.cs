@@ -16,7 +16,7 @@ namespace TEditXNA.Terraria
         private Int16 _npc;
 
         //data for this is a item frame
-        private Int16 _netId;
+        private int _netId;
         private byte _prefix;
         private Int16 _stackSize;
         
@@ -55,7 +55,7 @@ namespace TEditXNA.Terraria
         }
 
 
-        public Int16 NetId
+        public int NetId
         {
             get { return _netId; }
             set { Set("NetId", ref _netId, value); }

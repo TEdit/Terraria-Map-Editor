@@ -284,6 +284,9 @@ namespace TEditXNA.Terraria
                 if (legs > 0)
                     _armorLegsNames.Add(legs, curItem.Name);
             }
+            ArmorLegsNames.Add(0, "[Blank]");
+            ArmorBodyNames.Add(0, "[Blank]");
+            ArmorHeadNames.Add(0, "[Blank]");
 
             foreach (var xElement in xmlSettings.Elements("Paints").Elements("Paint"))
             {
@@ -448,6 +451,19 @@ namespace TEditXNA.Terraria
         public static Dictionary<int, string> NpcNames
         {
             get { return _npcNames; }
+        }
+
+        public static Dictionary<int, string> ArmorHeadNames
+        {
+            get { return _armorHeadNames; }
+        }
+        public static Dictionary<int, string> ArmorBodyNames
+        {
+            get { return _armorBodyNames; }
+        }
+        public static Dictionary<int, string> ArmorLegsNames
+        {
+            get { return _armorLegsNames; }
         }
 
         public static Dictionary<int, int> NpcFrames

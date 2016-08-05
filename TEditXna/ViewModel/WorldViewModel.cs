@@ -16,6 +16,7 @@ using System.Windows.Threading;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using TEdit.MvvmLight.Threading;
+using TEdit.Geometry.Primitives;
 using TEdit.Utility;
 using Microsoft.Win32;
 using TEditXna.Editor;
@@ -62,6 +63,10 @@ namespace TEditXna.ViewModel
         private Sign _selectedSign;
         private Sprite _selectedSprite;
         private TileEntity _selectedItemFrame;
+        private Vector2Int32 _selectedMannequin;
+        private int _selectedMannHead;
+        private int _selectedMannBody;
+        private int _selectedMannLegs;
         private int _selectedTabIndex;
         private int _selectedSpecialTile = 0;
         private bool _showGrid = true;
@@ -228,6 +233,24 @@ namespace TEditXna.ViewModel
             set { Set("SelectedSpecialTile", ref _selectedSpecialTile, value); }
         }
 
+        public int SelectedMannHead
+        {
+            get { return _selectedMannHead; }
+            set { Set("SelectedMannHead", ref _selectedMannHead, value); }
+        }
+
+        public int SelectedMannBody
+        {
+            get { return _selectedMannBody; }
+            set { Set("SelectedMannBody", ref _selectedMannBody, value); }
+        }
+
+        public int SelectedMannLegs
+        {
+            get { return _selectedMannLegs; }
+            set { Set("SelectedMannLegs", ref _selectedMannLegs, value); }
+        }
+
         public Sign SelectedSign
         {
             get { return _selectedSign; }
@@ -258,6 +281,17 @@ namespace TEditXna.ViewModel
                 Set("SelectedItemFrame", ref _selectedItemFrame, value);
                 SelectedTabIndex = 1;
                 SelectedSpecialTile = 3;
+            }
+        }
+
+        public Vector2Int32 SelectedMannequin
+        {
+            get { return _selectedMannequin; }
+            set
+            {
+                Set("SelectedMannequin", ref _selectedMannequin, value);
+                SelectedTabIndex = 1;
+                SelectedSpecialTile = 4;
             }
         }
 

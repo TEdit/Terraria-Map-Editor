@@ -180,7 +180,15 @@ namespace TEditXNA.Terraria
 
         public TileEntity GetTileEntityAtTile(int x, int y)
         {
-        	return TileEntities.FirstOrDefault(c => (c.PosX == x) && (c.PosY == y));
+        	return TileEntities.FirstOrDefault(c => (c.PosX == x || c.PosX == x - 1) && (c.PosY == y || c.PosY == y - 1));
+        }
+
+        public Vector2Int32 GetMannequin(int x, int y)
+        {
+            Tile tile = Tiles[x, y];
+            x -= (tile.U % 100) % 36 / 18;
+            y -= tile.V / 18;
+            return new Vector2Int32(x, y);
         }
 
         public Vector2Int32 GetChestAnchor(int x, int y)

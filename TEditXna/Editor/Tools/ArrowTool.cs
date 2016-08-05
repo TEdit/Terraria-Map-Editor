@@ -2,6 +2,7 @@ using System;
 using System.Windows.Input;
 using System.Windows.Media.Imaging;
 using TEditXNA.Terraria;
+using TEdit.Geometry.Primitives;
 using TEditXna.View.Popups;
 using TEditXna.ViewModel;
 
@@ -61,8 +62,14 @@ namespace TEditXna.Editor.Tools
                     return;
                 }
             }
-
-
+            if (curTile.Type == 128 || curTile.Type == 269)
+            {
+                Vector2Int32 MannLocation = _wvm.CurrentWorld.GetMannequin(e.Location.X, e.Location.Y);
+                _wvm.SelectedMannHead = _wvm.CurrentWorld.Tiles[MannLocation.X, MannLocation.Y].U / 100;
+                _wvm.SelectedMannBody = _wvm.CurrentWorld.Tiles[MannLocation.X, MannLocation.Y + 1].U / 100;
+                _wvm.SelectedMannLegs = _wvm.CurrentWorld.Tiles[MannLocation.X, MannLocation.Y + 2].U / 100;
+                _wvm.SelectedMannequin = MannLocation;
+            }
         }
     }
 }
