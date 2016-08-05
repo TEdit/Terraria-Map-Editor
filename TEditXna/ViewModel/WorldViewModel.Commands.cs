@@ -34,6 +34,7 @@ namespace TEditXna.ViewModel
         private ICommand _saveSignCommand;
         private ICommand _saveMannCommand;
         private ICommand _saveTileEntityCommand;
+        private ICommand _saveRackCommand;
         private ICommand _npcRemoveCommand;
 
         private ICommand _requestZoomCommand;
@@ -211,6 +212,28 @@ namespace TEditXna.ViewModel
                 SelectedSpecialTile = 0;
             }
         }
+
+        public ICommand SaveRackCommand
+        {
+            get { return _saveRackCommand ?? (_saveRackCommand = new RelayCommand<bool>(SaveRack)); }
+        }
+
+        private void SaveRack(bool save)
+        {
+            if (save)
+            {
+                if (SelectedRack != null)
+                {
+                    CurrentWorld.Tiles[SelectedRack.X, SelectedRack.Y + 1].U = (short)((((CurrentWorld.Tiles[SelectedRack.X, SelectedRack.Y].U / 18) + 1) * 5000) + 100 + SelectedRackNetId);
+                    CurrentWorld.Tiles[SelectedRack.X + 1, SelectedRack.Y + 1].U = (short)((((CurrentWorld.Tiles[SelectedRack.X + 1, SelectedRack.Y].U / 18) + 1) * 5000) + (int)SelectedRackPrefix);
+                }
+            }
+            else
+            {
+                SelectedSpecialTile = 0;
+            }
+        }
+
 
         private ICommand _updateCommand;
         public ICommand UpdateCommand

@@ -5262,65 +5262,65 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
   </Walls>
   
   <Items>
-    <Item Id="-48" Name="Platinum Bow" />
-    <Item Id="-47" Name="Platinum Hammer" />
-    <Item Id="-46" Name="Platinum Axe" />
-    <Item Id="-45" Name="Platinum Shortsword" />
-    <Item Id="-44" Name="Platinum Broadsword" />
-    <Item Id="-43" Name="Platinum Pickaxe" />
-    <Item Id="-42" Name="Tungsten Bow" />
-    <Item Id="-41" Name="Tungsten Hammer" />
-    <Item Id="-40" Name="Tungsten Axe" />
-    <Item Id="-39" Name="Tungsten Shortsword" />
-    <Item Id="-38" Name="Tungsten Broadsword" />
-    <Item Id="-37" Name="Tungsten Pickaxe" />
-    <Item Id="-36" Name="Lead Bow" />
-    <Item Id="-35" Name="Lead Hammer" />
-    <Item Id="-34" Name="Lead Axe" />
-    <Item Id="-33" Name="Lead Shortsword" />
-    <Item Id="-32" Name="Lead Broadsword" />
-    <Item Id="-31" Name="Lead Pickaxe" />
-    <Item Id="-30" Name="Tin Bow" />
-    <Item Id="-29" Name="Tin Hammer" />
-    <Item Id="-28" Name="Tin Axe" />
-    <Item Id="-27" Name="Tin Shortsword" />
-    <Item Id="-26" Name="Tin Broadsword" />
-    <Item Id="-25" Name="Tin Pickaxe" />
+    <Item Id="-48" Name="Platinum Bow Old" />
+    <Item Id="-47" Name="Platinum Hammer Old" />
+    <Item Id="-46" Name="Platinum Axe Old" />
+    <Item Id="-45" Name="Platinum Shortsword Old" />
+    <Item Id="-44" Name="Platinum Broadsword Old" />
+    <Item Id="-43" Name="Platinum Pickaxe Old" />
+    <Item Id="-42" Name="Tungsten Bow Old" />
+    <Item Id="-41" Name="Tungsten Hammer Old" />
+    <Item Id="-40" Name="Tungsten Axe Old" />
+    <Item Id="-39" Name="Tungsten Shortsword Old" />
+    <Item Id="-38" Name="Tungsten Broadsword Old" />
+    <Item Id="-37" Name="Tungsten Pickaxe Old" />
+    <Item Id="-36" Name="Lead Bow Old" />
+    <Item Id="-35" Name="Lead Hammer Old" />
+    <Item Id="-34" Name="Lead Axe Old" />
+    <Item Id="-33" Name="Lead Shortsword Old" />
+    <Item Id="-32" Name="Lead Broadsword Old" />
+    <Item Id="-31" Name="Lead Pickaxe Old" />
+    <Item Id="-30" Name="Tin Bow Old" />
+    <Item Id="-29" Name="Tin Hammer Old" />
+    <Item Id="-28" Name="Tin Axe Old" />
+    <Item Id="-27" Name="Tin Shortsword Old" />
+    <Item Id="-26" Name="Tin Broadsword Old" />
+    <Item Id="-25" Name="Tin Pickaxe Old" />
     <Item Id="-24" Name="Yellow Phasesaber Old" />
     <Item Id="-23" Name="White Phasesaber Old" />
     <Item Id="-22" Name="Purple Phasesaber Old" />
     <Item Id="-21" Name="Green Phasesaber Old" />
     <Item Id="-20" Name="Red Phasesaber Old" />
     <Item Id="-19" Name="Blue Phasesaber Old" />
-    <Item Id="-18" Name="Copper Bow" />
-    <Item Id="-17" Name="Copper Hammer" />
-    <Item Id="-16" Name="Copper Axe" />
-    <Item Id="-15" Name="Copper Shortsword" />
-    <Item Id="-14" Name="Copper Broadsword" />
-    <Item Id="-13" Name="Copper Pickaxe" />
-    <Item Id="-12" Name="Silver Bow" />
-    <Item Id="-11" Name="Silver Hammer" />
-    <Item Id="-10" Name="Silver Axe" />
-    <Item Id="-9" Name="Silver Shortsword" />
-    <Item Id="-8" Name="Silver Broadsword" />
-    <Item Id="-7" Name="Silver Pickaxe" />
-    <Item Id="-6" Name="Gold Bow" />
-    <Item Id="-5" Name="Gold Hammer" />
-    <Item Id="-4" Name="Gold Axe" />
-    <Item Id="-3" Name="Gold Shortsword" />
-    <Item Id="-2" Name="Gold Broadsword" />
-    <Item Id="-1" Name="Gold Pickaxe" />
-    <Item Id="0" Name="[empty]" />
-    <Item Id="1" Name="Iron Pickaxe" />
+    <Item Id="-18" Name="Copper Bow Old" />
+    <Item Id="-17" Name="Copper Hammer Old" />
+    <Item Id="-16" Name="Copper Axe Old" />
+    <Item Id="-15" Name="Copper Shortsword Old" />
+    <Item Id="-14" Name="Copper Broadsword Old" />
+    <Item Id="-13" Name="Copper Pickaxe Old" />
+    <Item Id="-12" Name="Silver Bow Old" />
+    <Item Id="-11" Name="Silver Hammer Old" />
+    <Item Id="-10" Name="Silver Axe Old" />
+    <Item Id="-9" Name="Silver Shortsword Old" />
+    <Item Id="-8" Name="Silver Broadsword Old" />
+    <Item Id="-7" Name="Silver Pickaxe Old" />
+    <Item Id="-6" Name="Gold Bow Old" />
+    <Item Id="-5" Name="Gold Hammer Old" />
+    <Item Id="-4" Name="Gold Axe Old" />
+    <Item Id="-3" Name="Gold Shortsword Old" />
+    <Item Id="-2" Name="Gold Broadsword Old" />
+    <Item Id="-1" Name="Gold Pickaxe Old" />
+    <Item Id="0" Name="[empty]" Head="0" Body="0" Legs="0" Rack="true" />
+    <Item Id="1" Name="Iron Pickaxe" Rack="true" />
     <Item Id="2" Name="Dirt Block" />
     <Item Id="3" Name="Stone Block" />
-    <Item Id="4" Name="Iron Broadsword" />
+    <Item Id="4" Name="Iron Broadsword" Rack="true" />
     <Item Id="5" Name="Mushroom" />
-    <Item Id="6" Name="Iron Shortsword" Scale="0.9" />
-    <Item Id="7" Name="Iron Hammer" Scale="1.2" />
+    <Item Id="6" Name="Iron Shortsword" Scale="0.9" Rack="true" />
+    <Item Id="7" Name="Iron Hammer" Scale="1.2" Rack="true" />
     <Item Id="8" Name="Torch" />
     <Item Id="9" Name="Wood" />
-    <Item Id="10" Name="Iron Axe" Scale="1.1" />
+    <Item Id="10" Name="Iron Axe" Scale="1.1" Rack="true" />
     <Item Id="11" Name="Iron Ore" />
     <Item Id="12" Name="Copper Ore" />
     <Item Id="13" Name="Gold Ore" />
@@ -5334,7 +5334,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="21" Name="Silver Bar" />
     <Item Id="22" Name="Iron Bar" />
     <Item Id="23" Name="Gel" />
-    <Item Id="24" Name="Wooden Sword" Scale="0.95" />
+    <Item Id="24" Name="Wooden Sword" Scale="0.95" Rack="true" />
     <Item Id="25" Name="Wooden Door" />
     <Item Id="26" Name="Stone Wall" />
     <Item Id="27" Name="Acorn" />
@@ -5349,23 +5349,23 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="36" Name="Work Bench" />
     <Item Id="37" Name="Goggles" Head="10" />
     <Item Id="38" Name="Lens" />
-    <Item Id="39" Name="Wooden Bow" />
-    <Item Id="40" Name="Wooden Arrow" />
-    <Item Id="41" Name="Flaming Arrow" />
-    <Item Id="42" Name="Shuriken" />
+    <Item Id="39" Name="Wooden Bow" Rack="true" />
+    <Item Id="40" Name="Wooden Arrow" Rack="true" />
+    <Item Id="41" Name="Flaming Arrow" Rack="true" />
+    <Item Id="42" Name="Shuriken" Rack="true" />
     <Item Id="43" Name="Suspicious Looking Eye" />
-    <Item Id="44" Name="Demon Bow" />
-    <Item Id="45" Name="War Axe of the Night" Scale="1.2" />
-    <Item Id="46" Name="Light's Bane" Scale="1.1" />
-    <Item Id="47" Name="Unholy Arrow" />
+    <Item Id="44" Name="Demon Bow" Rack="true" />
+    <Item Id="45" Name="War Axe of the Night" Scale="1.2" Rack="true" />
+    <Item Id="46" Name="Light's Bane" Scale="1.1" Rack="true" />
+    <Item Id="47" Name="Unholy Arrow" Rack="true" />
     <Item Id="48" Name="Chest" />
     <Item Id="49" Name="Band of Regeneration" />
     <Item Id="50" Name="Magic Mirror" />
-    <Item Id="51" Name="Jester's Arrow" />
+    <Item Id="51" Name="Jester's Arrow" Rack="true" />
     <Item Id="52" Name="Angel Statue" />
     <Item Id="53" Name="Cloud in a Bottle" />
     <Item Id="54" Name="Hermes Boots" />
-    <Item Id="55" Name="Enchanted Boomerang" />
+    <Item Id="55" Name="Enchanted Boomerang" Rack="true" />
     <Item Id="56" Name="Demonite Ore" />
     <Item Id="57" Name="Demonite Bar" />
     <Item Id="58" Name="Heart" />
@@ -5374,17 +5374,17 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="61" Name="Ebonstone Block" />
     <Item Id="62" Name="Grass Seeds" />
     <Item Id="63" Name="Sunflower" />
-    <Item Id="64" Name="Vilethorn" />
-    <Item Id="65" Name="Starfury" Scale="1.25" />
+    <Item Id="64" Name="Vilethorn" Rack="true" />
+    <Item Id="65" Name="Starfury" Scale="1.25" Rack="true" />
     <Item Id="66" Name="Purification Powder" />
     <Item Id="67" Name="Vile Powder" />
     <Item Id="68" Name="Rotten Chunk" />
     <Item Id="69" Name="Worm Tooth" />
     <Item Id="70" Name="Worm Food" />
-    <Item Id="71" Name="Copper Coin" />
-    <Item Id="72" Name="Silver Coin" />
-    <Item Id="73" Name="Gold Coin" />
-    <Item Id="74" Name="Platinum Coin" />
+    <Item Id="71" Name="Copper Coin" Rack="true" />
+    <Item Id="72" Name="Silver Coin" Rack="true" />
+    <Item Id="73" Name="Gold Coin" Rack="true" />
+    <Item Id="74" Name="Platinum Coin" Rack="true" />
     <Item Id="75" Name="Fallen Star" />
     <Item Id="76" Name="Copper Greaves" Legs="1" />
     <Item Id="77" Name="Iron Greaves" Legs="2" />
@@ -5405,16 +5405,16 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="92" Name="Gold Helmet" Head="4" />
     <Item Id="93" Name="Wood Wall" />
     <Item Id="94" Name="Wood Platform" />
-    <Item Id="95" Name="Flintlock Pistol" Scale="0.9" />
-    <Item Id="96" Name="Musket" />
-    <Item Id="97" Name="Musket Ball" />
-    <Item Id="98" Name="Minishark" />
-    <Item Id="99" Name="Iron Bow" />
+    <Item Id="95" Name="Flintlock Pistol" Scale="0.9" Rack="true" />
+    <Item Id="96" Name="Musket" Rack="true" />
+    <Item Id="97" Name="Musket Ball" Rack="true" />
+    <Item Id="98" Name="Minishark" Rack="true" />
+    <Item Id="99" Name="Iron Bow" Rack="true" />
     <Item Id="100" Name="Shadow Greaves" Legs="5" />
     <Item Id="101" Name="Shadow Scalemail" Body="5" />
     <Item Id="102" Name="Shadow Helmet" Head="5" />
-    <Item Id="103" Name="Nightmare Pickaxe" Scale="1.15" />
-    <Item Id="104" Name="The Breaker" Scale="1.3" />
+    <Item Id="103" Name="Nightmare Pickaxe" Scale="1.15" Rack="true" />
+    <Item Id="104" Name="The Breaker" Scale="1.3" Rack="true" />
     <Item Id="105" Name="Candle" />
     <Item Id="106" Name="Copper Chandelier" />
     <Item Id="107" Name="Silver Chandelier" />
@@ -5422,22 +5422,22 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="109" Name="Mana Crystal" />
     <Item Id="110" Name="Lesser Mana Potion" />
     <Item Id="111" Name="Band of Starpower" />
-    <Item Id="112" Name="Flower of Fire" />
-    <Item Id="113" Name="Magic Missile" />
+    <Item Id="112" Name="Flower of Fire" Rack="true" />
+    <Item Id="113" Name="Magic Missile" Rack="true" />
     <Item Id="114" Name="Dirt Rod" />
-    <Item Id="115" Name="Shadow Orb" />
+    <Item Id="115" Name="Shadow Orb" Rack="true" />
     <Item Id="116" Name="Meteorite" />
     <Item Id="117" Name="Meteorite Bar" />
     <Item Id="118" Name="Hook" />
-    <Item Id="119" Name="Flamarang" />
-    <Item Id="120" Name="Molten Fury" Scale="1.1" />
-    <Item Id="121" Name="Fiery Greatsword" Scale="1.3" />
-    <Item Id="122" Name="Molten Pickaxe" Scale="1.15" />
+    <Item Id="119" Name="Flamarang" Rack="true" />
+    <Item Id="120" Name="Molten Fury" Scale="1.1" Rack="true" />
+    <Item Id="121" Name="Fiery Greatsword" Scale="1.3" Rack="true" />
+    <Item Id="122" Name="Molten Pickaxe" Scale="1.15" Rack="true" />
     <Item Id="123" Name="Meteor Helmet" />
     <Item Id="124" Name="Meteor Suit" Body="6" />
     <Item Id="125" Name="Meteor Leggings" Legs="6" />
     <Item Id="126" Name="Bottled Water" Head="6" />
-    <Item Id="127" Name="Space Gun" Scale="0.8" />
+    <Item Id="127" Name="Space Gun" Scale="0.8" Rack="true" />
     <Item Id="128" Name="Rocket Boots" />
     <Item Id="129" Name="Gray Brick" />
     <Item Id="130" Name="Gray Brick Wall" />
@@ -5464,21 +5464,21 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="151" Name="Necro Helmet" Head="7" />
     <Item Id="152" Name="Necro Breastplate" Body="7" />
     <Item Id="153" Name="Necro Greaves" Legs="7" />
-    <Item Id="154" Name="Bone" />
-    <Item Id="155" Name="Muramasa" Scale="1.1" />
+    <Item Id="154" Name="Bone" Rack="true" />
+    <Item Id="155" Name="Muramasa" Scale="1.1" Rack="true" />
     <Item Id="156" Name="Cobalt Shield" />
-    <Item Id="157" Name="Aqua Scepter" />
+    <Item Id="157" Name="Aqua Scepter" Rack="true" />
     <Item Id="158" Name="Lucky Horseshoe" />
     <Item Id="159" Name="Shiny Red Balloon" />
-    <Item Id="160" Name="Harpoon" Scale="1.1" />
-    <Item Id="161" Name="Spiky Ball" />
-    <Item Id="162" Name="Ball O' Hurt" Scale="1.1" />
-    <Item Id="163" Name="Blue Moon" Scale="1.1" />
-    <Item Id="164" Name="Handgun" Scale="0.85" />
-    <Item Id="165" Name="Water Bolt" Scale="0.9" />
+    <Item Id="160" Name="Harpoon" Scale="1.1" Rack="true" />
+    <Item Id="161" Name="Spiky Ball" Rack="true" />
+    <Item Id="162" Name="Ball O' Hurt" Scale="1.1" Rack="true" />
+    <Item Id="163" Name="Blue Moon" Scale="1.1" Rack="true" />
+    <Item Id="164" Name="Handgun" Scale="0.85" Rack="true" />
+    <Item Id="165" Name="Water Bolt" Scale="0.9" Rack="true" />
     <Item Id="166" Name="Bomb" />
     <Item Id="167" Name="Dynamite" />
-    <Item Id="168" Name="Grenade" />
+    <Item Id="168" Name="Grenade" Rack="true" />
     <Item Id="169" Name="Sand Block" />
     <Item Id="170" Name="Glass" />
     <Item Id="171" Name="Sign" />
@@ -5495,26 +5495,26 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="182" Name="Diamond" />
     <Item Id="183" Name="Glowing Mushroom" />
     <Item Id="184" Name="Star" />
-    <Item Id="185" Name="Ivy Whip" />
+    <Item Id="185" Name="Ivy Whip" Rack="true" />
     <Item Id="186" Name="Breathing Reed" />
     <Item Id="187" Name="Flipper" />
     <Item Id="188" Name="Healing Potion" />
     <Item Id="189" Name="Mana Potion" />
-    <Item Id="190" Name="Blade of Grass" Scale="1.4" />
-    <Item Id="191" Name="Thorn Chakram" />
+    <Item Id="190" Name="Blade of Grass" Scale="1.4" Rack="true" />
+    <Item Id="191" Name="Thorn Chakram" Rack="true" />
     <Item Id="192" Name="Obsidian Brick" />
     <Item Id="193" Name="Obsidian Skull" />
     <Item Id="194" Name="Mushroom Grass Seeds" />
     <Item Id="195" Name="Jungle Grass Seeds" />
-    <Item Id="196" Name="Wooden Hammer" Scale="1.2" />
-    <Item Id="197" Name="Star Cannon" />
-    <Item Id="198" Name="Blue Phaseblade" />
-    <Item Id="199" Name="Red Phaseblade" />
-    <Item Id="200" Name="Green Phaseblade" />
-    <Item Id="201" Name="Purple Phaseblade" />
-    <Item Id="202" Name="White Phaseblade" />
-    <Item Id="203" Name="Yellow Phaseblade" />
-    <Item Id="204" Name="Meteor Hamaxe" Scale="1.2" />
+    <Item Id="196" Name="Wooden Hammer" Scale="1.2" Rack="true" />
+    <Item Id="197" Name="Star Cannon" Rack="true" />
+    <Item Id="198" Name="Blue Phaseblade" Rack="true" />
+    <Item Id="199" Name="Red Phaseblade" Rack="true" />
+    <Item Id="200" Name="Green Phaseblade" Rack="true" />
+    <Item Id="201" Name="Purple Phaseblade" Rack="true" />
+    <Item Id="202" Name="White Phaseblade" Rack="true" />
+    <Item Id="203" Name="Yellow Phaseblade" Rack="true" />
+    <Item Id="204" Name="Meteor Hamaxe" Scale="1.2" Rack="true" />
     <Item Id="205" Name="Empty Bucket" Head="13" />
     <Item Id="206" Name="Water Bucket" />
     <Item Id="207" Name="Lava Bucket" />
@@ -5523,14 +5523,14 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="210" Name="Vine" />
     <Item Id="211" Name="Feral Claws" />
     <Item Id="212" Name="Anklet of the Wind" />
-    <Item Id="213" Name="Staff of Regrowth" />
+    <Item Id="213" Name="Staff of Regrowth" Rack="true" />
     <Item Id="214" Name="Hellstone Brick" />
     <Item Id="215" Name="Whoopie Cushion" />
     <Item Id="216" Name="Shackle" />
-    <Item Id="217" Name="Molten Hamaxe" Scale="1.4" />
-    <Item Id="218" Name="Flamelash" />
-    <Item Id="219" Name="Phoenix Blaster" Scale="0.85" />
-    <Item Id="220" Name="Sunfury" Scale="1.1" />
+    <Item Id="217" Name="Molten Hamaxe" Scale="1.4" Rack="true" />
+    <Item Id="218" Name="Flamelash" Rack="true" />
+    <Item Id="219" Name="Phoenix Blaster" Scale="0.85" Rack="true" />
+    <Item Id="220" Name="Sunfury" Scale="1.1" Rack="true" />
     <Item Id="221" Name="Hellforge" />
     <Item Id="222" Name="Clay Pot" />
     <Item Id="223" Name="Nature's Gift" />
@@ -5544,7 +5544,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="231" Name="Molten Helmet" Head="9" />
     <Item Id="232" Name="Molten Breastplate" Body="9" />
     <Item Id="233" Name="Molten Greaves" Legs="9" />
-    <Item Id="234" Name="Meteor Shot" />
+    <Item Id="234" Name="Meteor Shot" Rack="true" />
     <Item Id="235" Name="Sticky Bomb" />
     <Item Id="236" Name="Black Lens" />
     <Item Id="237" Name="Sunglasses" Head="12" />
@@ -5575,29 +5575,29 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="262" Name="Robe" Body="15" />
     <Item Id="263" Name="Robot Hat" Head="25" />
     <Item Id="264" Name="Gold Crown" Head="26" />
-    <Item Id="265" Name="Hellfire Arrow" />
-    <Item Id="266" Name="Sandgun" />
+    <Item Id="265" Name="Hellfire Arrow" Rack="true" />
+    <Item Id="266" Name="Sandgun" Rack="true" />
     <Item Id="267" Name="Guide Voodoo Doll" />
     <Item Id="268" Name="Diving Helmet" Head="27" />
     <Item Id="269" Name="Familiar Shirt" />
     <Item Id="270" Name="Familiar Pants" />
     <Item Id="271" Name="Familiar Wig" />
-    <Item Id="272" Name="Demon Scythe" Scale="0.9" />
-    <Item Id="273" Name="Night's Edge" Scale="1.15" />
-    <Item Id="274" Name="Dark Lance" Scale="1.1" />
+    <Item Id="272" Name="Demon Scythe" Scale="0.9" Rack="true" />
+    <Item Id="273" Name="Night's Edge" Scale="1.15" Rack="true" />
+    <Item Id="274" Name="Dark Lance" Scale="1.1" Rack="true" />
     <Item Id="275" Name="Coral" />
     <Item Id="276" Name="Cactus" />
-    <Item Id="277" Name="Trident" Scale="1.1" />
-    <Item Id="278" Name="Silver Bullet" />
-    <Item Id="279" Name="Throwing Knife" />
-    <Item Id="280" Name="Spear" />
-    <Item Id="281" Name="Blowpipe" />
+    <Item Id="277" Name="Trident" Scale="1.1" Rack="true" />
+    <Item Id="278" Name="Silver Bullet" Rack="true" />
+    <Item Id="279" Name="Throwing Knife" Rack="true" />
+    <Item Id="280" Name="Spear" Rack="true" />
+    <Item Id="281" Name="Blowpipe" Rack="true" />
     <Item Id="282" Name="Glowstick" />
-    <Item Id="283" Name="Seed" />
-    <Item Id="284" Name="Wooden Boomerang" />
+    <Item Id="283" Name="Seed" Rack="true" />
+    <Item Id="284" Name="Wooden Boomerang" Rack="true" />
     <Item Id="285" Name="Aglet" />
     <Item Id="286" Name="Sticky Glowstick" />
-    <Item Id="287" Name="Poisoned Knife" />
+    <Item Id="287" Name="Poisoned Knife" Rack="true" />
     <Item Id="288" Name="Obsidian Skin Potion" />
     <Item Id="289" Name="Regeneration Potion" />
     <Item Id="290" Name="Swiftness Potion" />
@@ -5677,8 +5677,8 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="364" Name="Cobalt Ore" />
     <Item Id="365" Name="Mythril Ore" />
     <Item Id="366" Name="Adamantite Ore" />
-    <Item Id="367" Name="Pwnhammer" Scale="1.2" />
-    <Item Id="368" Name="Excalibur" Scale="1.15" />
+    <Item Id="367" Name="Pwnhammer" Scale="1.2" Rack="true" />
+    <Item Id="368" Name="Excalibur" Scale="1.15" Rack="true" />
     <Item Id="369" Name="Hallowed Seeds" />
     <Item Id="370" Name="Ebonsand Block" />
     <Item Id="371" Name="Cobalt Hat" Head="29" />
@@ -5693,14 +5693,14 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="380" Name="Mythril Greaves" Legs="17" />
     <Item Id="381" Name="Cobalt Bar" />
     <Item Id="382" Name="Mythril Bar" />
-    <Item Id="383" Name="Cobalt Chainsaw" />
-    <Item Id="384" Name="Mythril Chainsaw" />
-    <Item Id="385" Name="Cobalt Drill" />
-    <Item Id="386" Name="Mythril Drill" />
-    <Item Id="387" Name="Adamantite Chainsaw" />
-    <Item Id="388" Name="Adamantite Drill" />
-    <Item Id="389" Name="Dao of Pow" Scale="1.1" />
-    <Item Id="390" Name="Mythril Halberd" Scale="1.1" />
+    <Item Id="383" Name="Cobalt Chainsaw" Rack="true" />
+    <Item Id="384" Name="Mythril Chainsaw" Rack="true" />
+    <Item Id="385" Name="Cobalt Drill" Rack="true" />
+    <Item Id="386" Name="Mythril Drill" Rack="true" />
+    <Item Id="387" Name="Adamantite Chainsaw" Rack="true" />
+    <Item Id="388" Name="Adamantite Drill" Rack="true" />
+    <Item Id="389" Name="Dao of Pow" Scale="1.1" Rack="true" />
+    <Item Id="390" Name="Mythril Halberd" Scale="1.1" Rack="true" />
     <Item Id="391" Name="Adamantite Bar" />
     <Item Id="392" Name="Glass Wall" />
     <Item Id="393" Name="Compass" />
@@ -5716,7 +5716,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="403" Name="Adamantite Breastplate" Body="19" />
     <Item Id="404" Name="Adamantite Leggings" Legs="18" />
     <Item Id="405" Name="Spectre Boots" />
-    <Item Id="406" Name="Adamantite Glaive" Scale="1.1" />
+    <Item Id="406" Name="Adamantite Glaive" Scale="1.1" Rack="true" />
     <Item Id="407" Name="Toolbelt" />
     <Item Id="408" Name="Pearlsand Block" />
     <Item Id="409" Name="Pearlstone Block" />
@@ -5732,11 +5732,11 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="419" Name="Mudstone Brick Wall" />
     <Item Id="420" Name="Cobalt Brick Wall" />
     <Item Id="421" Name="Mythril Brick Wall" />
-    <Item Id="422" Name="Holy Water" />
-    <Item Id="423" Name="Unholy Water" />
+    <Item Id="422" Name="Holy Water" Rack="true" />
+    <Item Id="423" Name="Unholy Water" Rack="true" />
     <Item Id="424" Name="Silt Block" />
-    <Item Id="425" Name="Fairy Bell" />
-    <Item Id="426" Name="Breaker Blade" Scale="1.05" />
+    <Item Id="425" Name="Fairy Bell" Rack="true" />
+    <Item Id="426" Name="Breaker Blade" Scale="1.05" Rack="true" />
     <Item Id="427" Name="Blue Torch" />
     <Item Id="428" Name="Red Torch" />
     <Item Id="429" Name="Green Torch" />
@@ -5744,9 +5744,9 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="431" Name="White Torch" />
     <Item Id="432" Name="Yellow Torch" />
     <Item Id="433" Name="Demon Torch" />
-    <Item Id="434" Name="Clockwork Assault Rifle" />
-    <Item Id="435" Name="Cobalt Repeater" />
-    <Item Id="436" Name="Mythril Repeater" />
+    <Item Id="434" Name="Clockwork Assault Rifle" Rack="true" />
+    <Item Id="435" Name="Cobalt Repeater" Rack="true" />
+    <Item Id="436" Name="Mythril Repeater" Rack="true" />
     <Item Id="437" Name="Dual Hook" />
     <Item Id="438" Name="Star Statue" />
     <Item Id="439" Name="Sword Statue" />
@@ -5791,10 +5791,10 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="478" Name="Piranha Statue" />
     <Item Id="479" Name="Planked Wall" />
     <Item Id="480" Name="Wooden Beam" />
-    <Item Id="481" Name="Adamantite Repeater" />
-    <Item Id="482" Name="Adamantite Sword" Scale="1.2" />
-    <Item Id="483" Name="Cobalt Sword" Scale="1.1" />
-    <Item Id="484" Name="Mythril Sword" Scale="1.15" />
+    <Item Id="481" Name="Adamantite Repeater" Rack="true" />
+    <Item Id="482" Name="Adamantite Sword" Scale="1.2" Rack="true" />
+    <Item Id="483" Name="Cobalt Sword" Scale="1.1" Rack="true" />
+    <Item Id="484" Name="Mythril Sword" Scale="1.15" Rack="true" />
     <Item Id="485" Name="Moon Charm" />
     <Item Id="486" Name="Ruler" />
     <Item Id="487" Name="Crystal Ball" />
@@ -5804,9 +5804,9 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="491" Name="Ranger Emblem" />
     <Item Id="492" Name="Demon Wings" />
     <Item Id="493" Name="Angel Wings" />
-    <Item Id="494" Name="Magical Harp" />
-    <Item Id="495" Name="Rainbow Rod" />
-    <Item Id="496" Name="Ice Rod" />
+    <Item Id="494" Name="Magical Harp" Rack="true" />
+    <Item Id="495" Name="Rainbow Rod" Rack="true" />
+    <Item Id="496" Name="Ice Rod" Rack="true" />
     <Item Id="497" Name="Neptune's Shell" />
     <Item Id="498" Name="Mannequin" />
     <Item Id="499" Name="Greater Healing Potion" />
@@ -5816,7 +5816,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="503" Name="Clown Hat" Head="40" />
     <Item Id="504" Name="Clown Shirt" Body="23" />
     <Item Id="505" Name="Clown Pants" Legs="22" />
-    <Item Id="506" Name="Flamethrower" />
+    <Item Id="506" Name="Flamethrower" Rack="true" />
     <Item Id="507" Name="Bell" />
     <Item Id="508" Name="Harp" />
     <Item Id="509" Name="Wrench" />
@@ -5824,12 +5824,12 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="511" Name="Active Stone Block" />
     <Item Id="512" Name="Inactive Stone Block" />
     <Item Id="513" Name="Lever" />
-    <Item Id="514" Name="Laser Rifle" />
-    <Item Id="515" Name="Crystal Bullet" />
-    <Item Id="516" Name="Holy Arrow" />
-    <Item Id="517" Name="Magic Dagger" />
-    <Item Id="518" Name="Crystal Storm" Scale="0.9" />
-    <Item Id="519" Name="Cursed Flames" Scale="0.9" />
+    <Item Id="514" Name="Laser Rifle" Rack="true" />
+    <Item Id="515" Name="Crystal Bullet" Rack="true" />
+    <Item Id="516" Name="Holy Arrow" Rack="true" />
+    <Item Id="517" Name="Magic Dagger" Rack="true" />
+    <Item Id="518" Name="Crystal Storm" Scale="0.9" Rack="true" />
+    <Item Id="519" Name="Cursed Flames" Scale="0.9" Rack="true" />
     <Item Id="520" Name="Soul of Light" />
     <Item Id="521" Name="Soul of Night" />
     <Item Id="522" Name="Cursed Flame" />
@@ -5843,11 +5843,11 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="530" Name="Wire" />
     <Item Id="531" Name="Spell Tome" />
     <Item Id="532" Name="Star Cloak" />
-    <Item Id="533" Name="Megashark" />
-    <Item Id="534" Name="Shotgun" />
+    <Item Id="533" Name="Megashark" Rack="true" />
+    <Item Id="534" Name="Shotgun" Rack="true" />
     <Item Id="535" Name="Philosopher's Stone" />
     <Item Id="536" Name="Titan Glove" />
-    <Item Id="537" Name="Cobalt Naginata" Scale="1.1" />
+    <Item Id="537" Name="Cobalt Naginata" Scale="1.1" Rack="true" />
     <Item Id="538" Name="Switch" />
     <Item Id="539" Name="Dart Trap" />
     <Item Id="540" Name="Boulder" />
@@ -5855,12 +5855,12 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="542" Name="Gray Pressure Plate" />
     <Item Id="543" Name="Brown Pressure Plate" />
     <Item Id="544" Name="Mechanical Eye" />
-    <Item Id="545" Name="Cursed Arrow" />
-    <Item Id="546" Name="Cursed Bullet" />
+    <Item Id="545" Name="Cursed Arrow" Rack="true" />
+    <Item Id="546" Name="Cursed Bullet" Rack="true" />
     <Item Id="547" Name="Soul of Fright" />
     <Item Id="548" Name="Soul of Might" />
     <Item Id="549" Name="Soul of Sight" />
-    <Item Id="550" Name="Gungnir" Scale="1.1" />
+    <Item Id="550" Name="Gungnir" Scale="1.1" Rack="true" />
     <Item Id="551" Name="Hallowed Plate Mail" Body="24" />
     <Item Id="552" Name="Hallowed Greaves" Legs="23" />
     <Item Id="553" Name="Hallowed Helmet" Head="41" />
@@ -5871,7 +5871,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="558" Name="Hallowed Headgear" Head="42" />
     <Item Id="559" Name="Hallowed Mask" Head="43" />
     <Item Id="560" Name="Slime Crown" />
-    <Item Id="561" Name="Light Disc" />
+    <Item Id="561" Name="Light Disc" Rack="true" />
     <Item Id="562" Name="Music Box (Overworld Day)" />
     <Item Id="563" Name="Music Box (Eerie)" />
     <Item Id="564" Name="Music Box (Night)" />
@@ -5888,8 +5888,8 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="575" Name="Soul of Flight" />
     <Item Id="576" Name="Music Box" />
     <Item Id="577" Name="Demonite Brick" />
-    <Item Id="578" Name="Hallowed Repeater" />
-    <Item Id="579" Name="Drax" />
+    <Item Id="578" Name="Hallowed Repeater" Rack="true" />
+    <Item Id="579" Name="Drax" Rack="true" />
     <Item Id="580" Name="Explosives" />
     <Item Id="581" Name="Inlet Pump" />
     <Item Id="582" Name="Outlet Pump" />
@@ -5963,15 +5963,15 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="650" Name="Ebonwood Door" />
     <Item Id="651" Name="Rich Mahogany Door" />
     <Item Id="652" Name="Pearlwood Door" />
-    <Item Id="653" Name="Ebonwood Sword" />
-    <Item Id="654" Name="Ebonwood Hammer" Scale="1.2" />
-    <Item Id="655" Name="Ebonwood Bow" />
-    <Item Id="656" Name="Rich Mahogany Sword" />
-    <Item Id="657" Name="Rich Mahogany Hammer" Scale="1.1" />
-    <Item Id="658" Name="Rich Mahogany Bow" />
-    <Item Id="659" Name="Pearlwood Sword" />
-    <Item Id="660" Name="Pearlwood Hammer" Scale="1.25" />
-    <Item Id="661" Name="Pearlwood Bow" />
+    <Item Id="653" Name="Ebonwood Sword" Rack="true" />
+    <Item Id="654" Name="Ebonwood Hammer" Scale="1.2" Rack="true" />
+    <Item Id="655" Name="Ebonwood Bow" Rack="true" />
+    <Item Id="656" Name="Rich Mahogany Sword" Rack="true" />
+    <Item Id="657" Name="Rich Mahogany Hammer" Scale="1.1" Rack="true" />
+    <Item Id="658" Name="Rich Mahogany Bow" Rack="true" />
+    <Item Id="659" Name="Pearlwood Sword" Rack="true" />
+    <Item Id="660" Name="Pearlwood Hammer" Scale="1.25" Rack="true" />
+    <Item Id="661" Name="Pearlwood Bow" Rack="true" />
     <Item Id="662" Name="Rainbow Brick" />
     <Item Id="663" Name="Rainbow Brick Wall" />
     <Item Id="664" Name="Ice Block" />
@@ -5980,20 +5980,20 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="667" Name="Red's Breastplate" Body="26" />
     <Item Id="668" Name="Red's Leggings" Legs="25" />
     <Item Id="669" Name="Fish" />
-    <Item Id="670" Name="Ice Boomerang" />
-    <Item Id="671" Name="Keybrand" Scale="1.2" />
-    <Item Id="672" Name="Cutlass" Scale="1.1" />
+    <Item Id="670" Name="Ice Boomerang" Rack="true" />
+    <Item Id="671" Name="Keybrand" Scale="1.2" Rack="true" />
+    <Item Id="672" Name="Cutlass" Scale="1.1" Rack="true" />
     <Item Id="673" Name="Boreal Wood Work Bench" />
-    <Item Id="674" Name="True Excalibur" Scale="1.05" />
-    <Item Id="675" Name="True Night's Edge" Scale="1.15" />
-    <Item Id="676" Name="Frostbrand" Scale="1.15" />
+    <Item Id="674" Name="True Excalibur" Scale="1.05" Rack="true" />
+    <Item Id="675" Name="True Night's Edge" Scale="1.15" Rack="true" />
+    <Item Id="676" Name="Frostbrand" Scale="1.15" Rack="true" />
     <Item Id="677" Name="Boreal Wood Table" />
     <Item Id="678" Name="Red Potion" />
-    <Item Id="679" Name="Tactical Shotgun" />
+    <Item Id="679" Name="Tactical Shotgun" Rack="true" />
     <Item Id="680" Name="Ivy Chest" />
     <Item Id="681" Name="Ice Chest" />
-    <Item Id="682" Name="Marrow" Scale="1.1" />
-    <Item Id="683" Name="Unholy Trident" />
+    <Item Id="682" Name="Marrow" Scale="1.1" Rack="true" />
+    <Item Id="683" Name="Unholy Trident" Rack="true" />
     <Item Id="684" Name="Frost Helmet" Head="46" />
     <Item Id="685" Name="Frost Breastplate" Body="27" />
     <Item Id="686" Name="Frost Leggings" Legs="26" />
@@ -6033,10 +6033,10 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="720" Name="Tin Brick Wall" />
     <Item Id="721" Name="Tungsten Brick Wall" />
     <Item Id="722" Name="Platinum Brick Wall" />
-    <Item Id="723" Name="Beam Sword" />
-    <Item Id="724" Name="Ice Blade" />
-    <Item Id="725" Name="Ice Bow" />
-    <Item Id="726" Name="Frost Staff" />
+    <Item Id="723" Name="Beam Sword" Rack="true" />
+    <Item Id="724" Name="Ice Blade" Rack="true" />
+    <Item Id="725" Name="Ice Bow" Rack="true" />
+    <Item Id="726" Name="Frost Staff" Rack="true" />
     <Item Id="727" Name="Wood Helmet" Head="52" />
     <Item Id="728" Name="Wood Breastplate" Body="32" />
     <Item Id="729" Name="Wood Greaves" Legs="31" />
@@ -6049,12 +6049,12 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="736" Name="Pearlwood Helmet" Head="55" />
     <Item Id="737" Name="Pearlwood Breastplate" Body="35" />
     <Item Id="738" Name="Pearlwood Greaves" Legs="34" />
-    <Item Id="739" Name="Amethyst Staff" />
-    <Item Id="740" Name="Topaz Staff" />
-    <Item Id="741" Name="Sapphire Staff" />
-    <Item Id="742" Name="Emerald Staff" />
-    <Item Id="743" Name="Ruby Staff" />
-    <Item Id="744" Name="Diamond Staff" />
+    <Item Id="739" Name="Amethyst Staff" Rack="true" />
+    <Item Id="740" Name="Topaz Staff" Rack="true" />
+    <Item Id="741" Name="Sapphire Staff" Rack="true" />
+    <Item Id="742" Name="Emerald Staff" Rack="true" />
+    <Item Id="743" Name="Ruby Staff" Rack="true" />
+    <Item Id="744" Name="Diamond Staff" Rack="true" />
     <Item Id="745" Name="Grass Wall" />
     <Item Id="746" Name="Jungle Wall" />
     <Item Id="747" Name="Flower Wall" />
@@ -6066,11 +6066,11 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="753" Name="Seaweed" />
     <Item Id="754" Name="Rune Hat" Head="56" />
     <Item Id="755" Name="Rune Robe" Body="36" />
-    <Item Id="756" Name="Mushroom Spear" />
-    <Item Id="757" Name="Terra Blade" Scale="1.1" />
-    <Item Id="758" Name="Grenade Launcher" />
-    <Item Id="759" Name="Rocket Launcher" />
-    <Item Id="760" Name="Proximity Mine Launcher" />
+    <Item Id="756" Name="Mushroom Spear" Rack="true" />
+    <Item Id="757" Name="Terra Blade" Scale="1.1" Rack="true" />
+    <Item Id="758" Name="Grenade Launcher" Rack="true" />
+    <Item Id="759" Name="Rocket Launcher" Rack="true" />
+    <Item Id="760" Name="Proximity Mine Launcher" Rack="true" />
     <Item Id="761" Name="Fairy Wings" />
     <Item Id="762" Name="Slime Block" />
     <Item Id="763" Name="Flesh Block" />
@@ -6081,14 +6081,14 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="768" Name="Bone Block Wall" />
     <Item Id="769" Name="Slime Block Wall" />
     <Item Id="770" Name="Flesh Block Wall" />
-    <Item Id="771" Name="Rocket I" />
-    <Item Id="772" Name="Rocket II" />
-    <Item Id="773" Name="Rocket III" />
-    <Item Id="774" Name="Rocket IV" />
+    <Item Id="771" Name="Rocket I" Rack="true" />
+    <Item Id="772" Name="Rocket II" Rack="true" />
+    <Item Id="773" Name="Rocket III" Rack="true" />
+    <Item Id="774" Name="Rocket IV" Rack="true" />
     <Item Id="775" Name="Asphalt Block" />
-    <Item Id="776" Name="Cobalt Pickaxe" Scale="1.15" />
-    <Item Id="777" Name="Mythril Pickaxe" Scale="1.15" />
-    <Item Id="778" Name="Adamantite Pickaxe" Scale="1.15" />
+    <Item Id="776" Name="Cobalt Pickaxe" Scale="1.15" Rack="true" />
+    <Item Id="777" Name="Mythril Pickaxe" Scale="1.15" Rack="true" />
+    <Item Id="778" Name="Adamantite Pickaxe" Scale="1.15" Rack="true" />
     <Item Id="779" Name="Clentaminator" />
     <Item Id="780" Name="Green Solution" />
     <Item Id="781" Name="Blue Solution" />
@@ -6097,22 +6097,22 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="784" Name="Red Solution" />
     <Item Id="785" Name="Harpy Wings" />
     <Item Id="786" Name="Bone Wings" />
-    <Item Id="787" Name="Hammush" Scale="1.1" />
-    <Item Id="788" Name="Nettle Burst" />
+    <Item Id="787" Name="Hammush" Scale="1.1" Rack="true" />
+    <Item Id="788" Name="Nettle Burst" Rack="true" />
     <Item Id="789" Name="Ankh Banner" />
     <Item Id="790" Name="Snake Banner" />
     <Item Id="791" Name="Omega Banner" />
     <Item Id="792" Name="Crimson Helmet" Head="57" />
     <Item Id="793" Name="Crimson Scalemail" Body="37" />
     <Item Id="794" Name="Crimson Greaves" Legs="35" />
-    <Item Id="795" Name="Blood Butcherer" Scale="1.1" />
-    <Item Id="796" Name="Tendon Bow" />
-    <Item Id="797" Name="Flesh Grinder" Scale="1.2" />
-    <Item Id="798" Name="Deathbringer Pickaxe" Scale="1.15" />
-    <Item Id="799" Name="Blood Lust Cluster" Scale="1.2" />
-    <Item Id="800" Name="The Undertaker" Scale="0.9" />
-    <Item Id="801" Name="The Meatball" Scale="1.1" />
-    <Item Id="802" Name="The Rotted Fork" Scale="1.1" />
+    <Item Id="795" Name="Blood Butcherer" Scale="1.1" Rack="true" />
+    <Item Id="796" Name="Tendon Bow" Rack="true" />
+    <Item Id="797" Name="Flesh Grinder" Scale="1.2" Rack="true" />
+    <Item Id="798" Name="Deathbringer Pickaxe" Scale="1.15" Rack="true" />
+    <Item Id="799" Name="Blood Lust Cluster" Scale="1.2" Rack="true" />
+    <Item Id="800" Name="The Undertaker" Scale="0.9" Rack="true" />
+    <Item Id="801" Name="The Meatball" Scale="1.1" Rack="true" />
+    <Item Id="802" Name="The Rotted Fork" Scale="1.1" Rack="true" />
     <Item Id="803" Name="Eskimo Hood" Head="58" />
     <Item Id="804" Name="Eskimo Coat" Body="38" />
     <Item Id="805" Name="Eskimo Pants" Legs="36" />
@@ -6191,8 +6191,8 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="878" Name="Pirate Pants" Legs="41" />
     <Item Id="879" Name="Viking Helmet" Head="69" />
     <Item Id="880" Name="Crimtane Ore" />
-    <Item Id="881" Name="Cactus Sword" />
-    <Item Id="882" Name="Cactus Pickaxe" />
+    <Item Id="881" Name="Cactus Sword" Rack="true" />
+    <Item Id="882" Name="Cactus Pickaxe" Rack="true" />
     <Item Id="883" Name="Ice Brick" />
     <Item Id="884" Name="Ice Brick Wall" />
     <Item Id="885" Name="Adhesive Bandage" />
@@ -6215,7 +6215,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="902" Name="Medicated Bandage" />
     <Item Id="903" Name="The Plan" />
     <Item Id="904" Name="Countercurse Mantra" />
-    <Item Id="905" Name="Coin Gun" />
+    <Item Id="905" Name="Coin Gun" Rack="true" />
     <Item Id="906" Name="Lava Charm" />
     <Item Id="907" Name="Obsidian Water Walking Boots" />
     <Item Id="908" Name="Lava Waders" />
@@ -6231,17 +6231,17 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="918" Name="Shadewood Dresser" />
     <Item Id="919" Name="Shadewood Piano" />
     <Item Id="920" Name="Shadewood Bed" />
-    <Item Id="921" Name="Shadewood Sword" />
-    <Item Id="922" Name="Shadewood Hammer" Scale="1.2" />
-    <Item Id="923" Name="Shadewood Bow" />
+    <Item Id="921" Name="Shadewood Sword" Rack="true" />
+    <Item Id="922" Name="Shadewood Hammer" Scale="1.2" Rack="true" />
+    <Item Id="923" Name="Shadewood Bow" Rack="true" />
     <Item Id="924" Name="Shadewood Helmet" Head="71" />
     <Item Id="925" Name="Shadewood Breastplate" Body="47" />
     <Item Id="926" Name="Shadewood Greaves" Legs="43" />
     <Item Id="927" Name="Shadewood Wall" />
     <Item Id="928" Name="Cannon" />
-    <Item Id="929" Name="Cannonball" />
-    <Item Id="930" Name="Flare Gun" Scale="0.9" />
-    <Item Id="931" Name="Flare" />
+    <Item Id="929" Name="Cannonball" Rack="true" />
+    <Item Id="930" Name="Flare Gun" Scale="0.9" Rack="true" />
+    <Item Id="931" Name="Flare" Rack="true" />
     <Item Id="932" Name="Bone Wand" />
     <Item Id="933" Name="Leaf Wand" />
     <Item Id="934" Name="Flying Carpet" />
@@ -6259,7 +6259,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="946" Name="Umbrella" />
     <Item Id="947" Name="Chlorophyte Ore" />
     <Item Id="948" Name="Steampunk Wings" />
-    <Item Id="949" Name="Snowball" />
+    <Item Id="949" Name="Snowball" Rack="true" />
     <Item Id="950" Name="Ice Skates" />
     <Item Id="951" Name="Snowball Launcher" />
     <Item Id="952" Name="Web Covered Chest" />
@@ -6274,7 +6274,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="961" Name="Ancient Cobalt Breastplate" Body="49" />
     <Item Id="962" Name="Ancient Cobalt Leggings" Legs="45" />
     <Item Id="963" Name="Black Belt" />
-    <Item Id="964" Name="Boomstick" />
+    <Item Id="964" Name="Boomstick" Rack="true" />
     <Item Id="965" Name="Rope" />
     <Item Id="966" Name="Campfire" />
     <Item Id="967" Name="Marshmallow" />
@@ -6296,14 +6296,14 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="983" Name="Sandstorm in a Balloon" />
     <Item Id="984" Name="Master Ninja Gear" />
     <Item Id="985" Name="Rope Coil" />
-    <Item Id="986" Name="Blowgun" />
+    <Item Id="986" Name="Blowgun" Rack="true" />
     <Item Id="987" Name="Blizzard in a Bottle" />
-    <Item Id="988" Name="Frostburn Arrow" />
-    <Item Id="989" Name="Enchanted Sword" Scale="1.1" />
-    <Item Id="990" Name="Pickaxe Axe" Scale="1.1" />
-    <Item Id="991" Name="Cobalt Waraxe" Scale="1.1" />
-    <Item Id="992" Name="Mythril Waraxe" Scale="1.1" />
-    <Item Id="993" Name="Adamantite Waraxe" Scale="1.1" />
+    <Item Id="988" Name="Frostburn Arrow" Rack="true" />
+    <Item Id="989" Name="Enchanted Sword" Scale="1.1" Rack="true" />
+    <Item Id="990" Name="Pickaxe Axe" Scale="1.1" Rack="true" />
+    <Item Id="991" Name="Cobalt Waraxe" Scale="1.1" Rack="true" />
+    <Item Id="992" Name="Mythril Waraxe" Scale="1.1" Rack="true" />
+    <Item Id="993" Name="Adamantite Waraxe" Scale="1.1" Rack="true" />
     <Item Id="994" Name="Eater's Bone" />
     <Item Id="995" Name="Blend-O-Matic" />
     <Item Id="996" Name="Meat Grinder" />
@@ -6431,16 +6431,16 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="1118" Name="Purple Mucos" />
     <Item Id="1119" Name="Black Ink" />
     <Item Id="1120" Name="Dye Vat" />
-    <Item Id="1121" Name="Bee Gun" Scale="0.8" />
-    <Item Id="1122" Name="Possessed Hatchet" />
-    <Item Id="1123" Name="Bee Keeper" Scale="1.1" />
+    <Item Id="1121" Name="Bee Gun" Scale="0.8" Rack="true" />
+    <Item Id="1122" Name="Possessed Hatchet" Rack="true" />
+    <Item Id="1123" Name="Bee Keeper" Scale="1.1" Rack="true" />
     <Item Id="1124" Name="Hive" />
     <Item Id="1125" Name="Honey Block" />
     <Item Id="1126" Name="Hive Wall" />
     <Item Id="1127" Name="Crispy Honey Block" />
     <Item Id="1128" Name="Honey Bucket" />
     <Item Id="1129" Name="Hive Wand" />
-    <Item Id="1130" Name="Beenade" />
+    <Item Id="1130" Name="Beenade" Rack="true" />
     <Item Id="1131" Name="Gravity Globe" />
     <Item Id="1132" Name="Honey Comb" />
     <Item Id="1133" Name="Abeemination" />
@@ -6465,9 +6465,9 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="1152" Name="Lihzahrd Statue" />
     <Item Id="1153" Name="Lihzahrd Watcher Statue" />
     <Item Id="1154" Name="Lihzahrd Guardian Statue" />
-    <Item Id="1155" Name="Wasp Gun" />
-    <Item Id="1156" Name="Piranha Gun" Scale="1.1" />
-    <Item Id="1157" Name="Pygmy Staff" />
+    <Item Id="1155" Name="Wasp Gun" Rack="true" />
+    <Item Id="1156" Name="Piranha Gun" Scale="1.1" Rack="true" />
+    <Item Id="1157" Name="Pygmy Staff" Rack="true" />
     <Item Id="1158" Name="Pygmy Necklace" />
     <Item Id="1159" Name="Tiki Mask" Head="82" />
     <Item Id="1160" Name="Tiki Shirt" Body="53" />
@@ -6476,7 +6476,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="1163" Name="Blizzard in a Balloon" />
     <Item Id="1164" Name="Bundle of Balloons" />
     <Item Id="1165" Name="Bat Wings" />
-    <Item Id="1166" Name="Bone Sword" Scale="1.05" />
+    <Item Id="1166" Name="Bone Sword" Scale="1.05" Rack="true" />
     <Item Id="1167" Name="Hercules Beetle" />
     <Item Id="1168" Name="Smoke Bomb" />
     <Item Id="1169" Name="Bone Key" />
@@ -6488,33 +6488,33 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="1175" Name="Headstone" />
     <Item Id="1176" Name="Gravestone" />
     <Item Id="1177" Name="Obelisk" />
-    <Item Id="1178" Name="Leaf Blower" />
-    <Item Id="1179" Name="Chlorophyte Bullet" />
+    <Item Id="1178" Name="Leaf Blower" Rack="true" />
+    <Item Id="1179" Name="Chlorophyte Bullet" Rack="true" />
     <Item Id="1180" Name="Parrot Cracker" />
     <Item Id="1181" Name="Strange Glowing Mushroom" />
     <Item Id="1182" Name="Seedling" />
     <Item Id="1183" Name="Wisp in a Bottle" />
     <Item Id="1184" Name="Palladium Bar" />
-    <Item Id="1185" Name="Palladium Sword" Scale="1.125" />
-    <Item Id="1186" Name="Palladium Pike" Scale="1.1" />
-    <Item Id="1187" Name="Palladium Repeater" />
-    <Item Id="1188" Name="Palladium Pickaxe" Scale="1.15" />
-    <Item Id="1189" Name="Palladium Drill" />
-    <Item Id="1190" Name="Palladium Chainsaw" />
+    <Item Id="1185" Name="Palladium Sword" Scale="1.125" Rack="true" />
+    <Item Id="1186" Name="Palladium Pike" Scale="1.1" Rack="true" />
+    <Item Id="1187" Name="Palladium Repeater" Rack="true" />
+    <Item Id="1188" Name="Palladium Pickaxe" Scale="1.15" Rack="true" />
+    <Item Id="1189" Name="Palladium Drill" Rack="true" />
+    <Item Id="1190" Name="Palladium Chainsaw" Rack="true" />
     <Item Id="1191" Name="Orichalcum Bar" />
-    <Item Id="1192" Name="Orichalcum Sword" Scale="1.17" />
-    <Item Id="1193" Name="Orichalcum Halberd" Scale="1.1" />
-    <Item Id="1194" Name="Orichalcum Repeater" />
-    <Item Id="1195" Name="Orichalcum Pickaxe" Scale="1.15" />
-    <Item Id="1196" Name="Orichalcum Drill" />
-    <Item Id="1197" Name="Orichalcum Chainsaw" />
+    <Item Id="1192" Name="Orichalcum Sword" Scale="1.17" Rack="true" />
+    <Item Id="1193" Name="Orichalcum Halberd" Scale="1.1" Rack="true" />
+    <Item Id="1194" Name="Orichalcum Repeater" Rack="true" />
+    <Item Id="1195" Name="Orichalcum Pickaxe" Scale="1.15" Rack="true" />
+    <Item Id="1196" Name="Orichalcum Drill" Rack="true" />
+    <Item Id="1197" Name="Orichalcum Chainsaw" Rack="true" />
     <Item Id="1198" Name="Titanium Bar" />
-    <Item Id="1199" Name="Titanium Sword" Scale="1.2" />
-    <Item Id="1200" Name="Titanium Trident" Scale="1.1" />
-    <Item Id="1201" Name="Titanium Repeater" />
-    <Item Id="1202" Name="Titanium Pickaxe" Scale="1.15" />
-    <Item Id="1203" Name="Titanium Drill" />
-    <Item Id="1204" Name="Titanium Chainsaw" />
+    <Item Id="1199" Name="Titanium Sword" Scale="1.2" Rack="true" />
+    <Item Id="1200" Name="Titanium Trident" Scale="1.1" Rack="true" />
+    <Item Id="1201" Name="Titanium Repeater" Rack="true" />
+    <Item Id="1202" Name="Titanium Pickaxe" Scale="1.15" Rack="true" />
+    <Item Id="1203" Name="Titanium Drill" Rack="true" />
+    <Item Id="1204" Name="Titanium Chainsaw" Rack="true" />
     <Item Id="1205" Name="Palladium Mask" Head="83" />
     <Item Id="1206" Name="Palladium Helmet" Head="84" />
     <Item Id="1207" Name="Palladium Headgear" Head="85" />
@@ -6532,20 +6532,20 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="1219" Name="Titanium Leggings" Legs="51" />
     <Item Id="1220" Name="Orichalcum Anvil" />
     <Item Id="1221" Name="Titanium Forge" />
-    <Item Id="1222" Name="Palladium Waraxe" Scale="1.1" />
-    <Item Id="1223" Name="Orichalcum Waraxe" Scale="1.1" />
-    <Item Id="1224" Name="Titanium Waraxe" Scale="1.1" />
+    <Item Id="1222" Name="Palladium Waraxe" Scale="1.1" Rack="true" />
+    <Item Id="1223" Name="Orichalcum Waraxe" Scale="1.1" Rack="true" />
+    <Item Id="1224" Name="Titanium Waraxe" Scale="1.1" Rack="true" />
     <Item Id="1225" Name="Hallowed Bar" />
-    <Item Id="1226" Name="Chlorophyte Claymore" Scale="1.25" />
-    <Item Id="1227" Name="Chlorophyte Saber" />
-    <Item Id="1228" Name="Chlorophyte Partisan" Scale="1.1" />
-    <Item Id="1229" Name="Chlorophyte Shotbow" />
-    <Item Id="1230" Name="Chlorophyte Pickaxe" Scale="1.15" />
-    <Item Id="1231" Name="Chlorophyte Drill" />
-    <Item Id="1232" Name="Chlorophyte Chainsaw" />
-    <Item Id="1233" Name="Chlorophyte Greataxe" Scale="1.15" />
-    <Item Id="1234" Name="Chlorophyte Warhammer" Scale="1.25" />
-    <Item Id="1235" Name="Chlorophyte Arrow" />
+    <Item Id="1226" Name="Chlorophyte Claymore" Scale="1.25" Rack="true" />
+    <Item Id="1227" Name="Chlorophyte Saber" Rack="true" />
+    <Item Id="1228" Name="Chlorophyte Partisan" Scale="1.1" Rack="true" />
+    <Item Id="1229" Name="Chlorophyte Shotbow" Rack="true" />
+    <Item Id="1230" Name="Chlorophyte Pickaxe" Scale="1.15" Rack="true" />
+    <Item Id="1231" Name="Chlorophyte Drill" Rack="true" />
+    <Item Id="1232" Name="Chlorophyte Chainsaw" Rack="true" />
+    <Item Id="1233" Name="Chlorophyte Greataxe" Scale="1.15" Rack="true" />
+    <Item Id="1234" Name="Chlorophyte Warhammer" Scale="1.25" Rack="true" />
+    <Item Id="1235" Name="Chlorophyte Arrow" Rack="true" />
     <Item Id="1236" Name="Amethyst Hook" />
     <Item Id="1237" Name="Topaz Hook" />
     <Item Id="1238" Name="Sapphire Hook" />
@@ -6554,7 +6554,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="1241" Name="Diamond Hook" />
     <Item Id="1242" Name="Amber Mosquito" />
     <Item Id="1243" Name="Umbrella Hat" Head="92" />
-    <Item Id="1244" Name="Nimbus Rod" />
+    <Item Id="1244" Name="Nimbus Rod" Rack="true" />
     <Item Id="1245" Name="Orange Torch" />
     <Item Id="1246" Name="Crimsand Block" />
     <Item Id="1247" Name="Bee Cloak" />
@@ -6564,19 +6564,19 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="1251" Name="White Horseshoe Balloon" />
     <Item Id="1252" Name="Yellow Horseshoe Balloon" />
     <Item Id="1253" Name="Frozen Turtle Shell" />
-    <Item Id="1254" Name="Sniper Rifle" />
-    <Item Id="1255" Name="Venus Magnum" Scale="0.85" />
-    <Item Id="1256" Name="Crimson Rod" />
+    <Item Id="1254" Name="Sniper Rifle" Rack="true" />
+    <Item Id="1255" Name="Venus Magnum" Scale="0.85" Rack="true" />
+    <Item Id="1256" Name="Crimson Rod" Rack="true" />
     <Item Id="1257" Name="Crimtane Bar" />
-    <Item Id="1258" Name="Stynger" />
-    <Item Id="1259" Name="Flower Pow" Scale="1.1" />
-    <Item Id="1260" Name="Rainbow Gun" />
-    <Item Id="1261" Name="Stynger Bolt" />
-    <Item Id="1262" Name="Chlorophyte Jackhammer" />
+    <Item Id="1258" Name="Stynger" Rack="true" />
+    <Item Id="1259" Name="Flower Pow" Scale="1.1" Rack="true" />
+    <Item Id="1260" Name="Rainbow Gun" Rack="true" />
+    <Item Id="1261" Name="Stynger Bolt" Rack="true" />
+    <Item Id="1262" Name="Chlorophyte Jackhammer" Rack="true" />
     <Item Id="1263" Name="Teleporter" />
-    <Item Id="1264" Name="Flower of Frost" />
-    <Item Id="1265" Name="Uzi" Scale="0.75" />
-    <Item Id="1266" Name="Magnet Sphere" />
+    <Item Id="1264" Name="Flower of Frost" Rack="true" />
+    <Item Id="1265" Name="Uzi" Scale="0.75" Rack="true" />
+    <Item Id="1266" Name="Magnet Sphere" Rack="true" />
     <Item Id="1267" Name="Purple Stained Glass" />
     <Item Id="1268" Name="Yellow Stained Glass" />
     <Item Id="1269" Name="Blue Stained Glass" />
@@ -6604,65 +6604,65 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="1291" Name="Life Fruit" />
     <Item Id="1292" Name="Lihzahrd Altar" />
     <Item Id="1293" Name="Lihzahrd Power Cell" />
-    <Item Id="1294" Name="Picksaw" Scale="1.15" />
-    <Item Id="1295" Name="Heat Ray" />
-    <Item Id="1296" Name="Staff of Earth" />
-    <Item Id="1297" Name="Golem Fist" Scale="0.9" />
+    <Item Id="1294" Name="Picksaw" Scale="1.15" Rack="true" />
+    <Item Id="1295" Name="Heat Ray" Rack="true" />
+    <Item Id="1296" Name="Staff of Earth" Rack="true" />
+    <Item Id="1297" Name="Golem Fist" Scale="0.9" Rack="true" />
     <Item Id="1298" Name="Water Chest" />
     <Item Id="1299" Name="Binoculars" />
     <Item Id="1300" Name="Rifle Scope" />
     <Item Id="1301" Name="Destroyer Emblem" />
-    <Item Id="1302" Name="High Velocity Bullet" />
+    <Item Id="1302" Name="High Velocity Bullet" Rack="true" />
     <Item Id="1303" Name="Jellyfish Necklace" />
-    <Item Id="1304" Name="Zombie Arm" />
-    <Item Id="1305" Name="The Axe" Scale="1.15" />
-    <Item Id="1306" Name="Ice Sickle" Scale="1.15" />
+    <Item Id="1304" Name="Zombie Arm" Rack="true" />
+    <Item Id="1305" Name="The Axe" Scale="1.15" Rack="true" />
+    <Item Id="1306" Name="Ice Sickle" Scale="1.15" Rack="true" />
     <Item Id="1307" Name="Clothier Voodoo Doll" />
-    <Item Id="1308" Name="Poison Staff" />
+    <Item Id="1308" Name="Poison Staff" Rack="true" />
     <Item Id="1309" Name="Slime Staff" />
-    <Item Id="1310" Name="Poison Dart" />
+    <Item Id="1310" Name="Poison Dart" Rack="true" />
     <Item Id="1311" Name="Eye Spring" />
     <Item Id="1312" Name="Toy Sled" />
-    <Item Id="1313" Name="Book of Skulls" Scale="0.9" />
-    <Item Id="1314" Name="KO Cannon" Scale="0.9" />
+    <Item Id="1313" Name="Book of Skulls" Scale="0.9" Rack="true" />
+    <Item Id="1314" Name="KO Cannon" Scale="0.9" Rack="true" />
     <Item Id="1315" Name="Pirate Map" />
     <Item Id="1316" Name="Turtle Helmet" Head="99" />
     <Item Id="1317" Name="Turtle Scale Mail" Body="65" />
     <Item Id="1318" Name="Turtle Leggings" Legs="54" />
-    <Item Id="1319" Name="Snowball Cannon" />
-    <Item Id="1320" Name="Bone Pickaxe" Scale="1.15" />
+    <Item Id="1319" Name="Snowball Cannon" Rack="true" />
+    <Item Id="1320" Name="Bone Pickaxe" Scale="1.15" Rack="true" />
     <Item Id="1321" Name="Magic Quiver" />
     <Item Id="1322" Name="Magma Stone" />
     <Item Id="1323" Name="Obsidian Rose" />
-    <Item Id="1324" Name="Bananarang" />
-    <Item Id="1325" Name="Chain Knife" />
-    <Item Id="1326" Name="Rod of Discord" />
-    <Item Id="1327" Name="Death Sickle" Scale="1.15" />
+    <Item Id="1324" Name="Bananarang" Rack="true" />
+    <Item Id="1325" Name="Chain Knife" Rack="true" />
+    <Item Id="1326" Name="Rod of Discord" Rack="true" />
+    <Item Id="1327" Name="Death Sickle" Scale="1.15" Rack="true" />
     <Item Id="1328" Name="Turtle Shell" />
     <Item Id="1329" Name="Tissue Sample" />
     <Item Id="1330" Name="Vertebrae" />
     <Item Id="1331" Name="Bloody Spine" />
     <Item Id="1332" Name="Ichor" />
     <Item Id="1333" Name="Ichor Torch" />
-    <Item Id="1334" Name="Ichor Arrow" />
-    <Item Id="1335" Name="Ichor Bullet" />
-    <Item Id="1336" Name="Golden Shower" />
+    <Item Id="1334" Name="Ichor Arrow" Rack="true" />
+    <Item Id="1335" Name="Ichor Bullet" Rack="true" />
+    <Item Id="1336" Name="Golden Shower" Rack="true" />
     <Item Id="1337" Name="Bunny Cannon" />
-    <Item Id="1338" Name="Explosive Bunny" />
+    <Item Id="1338" Name="Explosive Bunny" Rack="true" />
     <Item Id="1339" Name="Vial of Venom" />
     <Item Id="1340" Name="Flask of Venom" />
-    <Item Id="1341" Name="Venom Arrow" />
-    <Item Id="1342" Name="Venom Bullet" />
+    <Item Id="1341" Name="Venom Arrow" Rack="true" />
+    <Item Id="1342" Name="Venom Bullet" Rack="true" />
     <Item Id="1343" Name="Fire Gauntlet" />
     <Item Id="1344" Name="Cog" />
     <Item Id="1345" Name="Confetti" />
     <Item Id="1346" Name="Nanites" />
     <Item Id="1347" Name="Explosive Powder" />
     <Item Id="1348" Name="Gold Dust" />
-    <Item Id="1349" Name="Party Bullet" />
-    <Item Id="1350" Name="Nano Bullet" />
-    <Item Id="1351" Name="Exploding Bullet" />
-    <Item Id="1352" Name="Golden Bullet" />
+    <Item Id="1349" Name="Party Bullet" Rack="true" />
+    <Item Id="1350" Name="Nano Bullet" Rack="true" />
+    <Item Id="1351" Name="Exploding Bullet" Rack="true" />
+    <Item Id="1352" Name="Golden Bullet" Rack="true" />
     <Item Id="1353" Name="Flask of Cursed Flames" />
     <Item Id="1354" Name="Flask of Fire" />
     <Item Id="1355" Name="Flask of Gold" />
@@ -6754,9 +6754,9 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="1441" Name="The Guardian's Gaze" />
     <Item Id="1442" Name="Father of Someone" />
     <Item Id="1443" Name="Nurse Lisa" />
-    <Item Id="1444" Name="Shadowbeam Staff" />
-    <Item Id="1445" Name="Inferno Fork" />
-    <Item Id="1446" Name="Spectre Staff" />
+    <Item Id="1444" Name="Shadowbeam Staff" Rack="true" />
+    <Item Id="1445" Name="Inferno Fork" Rack="true" />
+    <Item Id="1446" Name="Spectre Staff" Rack="true" />
     <Item Id="1447" Name="Wooden Fence" />
     <Item Id="1448" Name="Lead Fence" />
     <Item Id="1449" Name="Bubble Machine" />
@@ -6816,14 +6816,14 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="1503" Name="Spectre Hood" Head="101" />
     <Item Id="1504" Name="Spectre Robe" Body="66" />
     <Item Id="1505" Name="Spectre Pants" Legs="55" />
-    <Item Id="1506" Name="Spectre Pickaxe" Scale="1.15" />
-    <Item Id="1507" Name="Spectre Hamaxe" Scale="1.05" />
+    <Item Id="1506" Name="Spectre Pickaxe" Scale="1.15" Rack="true" />
+    <Item Id="1507" Name="Spectre Hamaxe" Scale="1.05" Rack="true" />
     <Item Id="1508" Name="Ectoplasm" />
     <Item Id="1509" Name="Gothic Chair" />
     <Item Id="1510" Name="Gothic Table" />
     <Item Id="1511" Name="Gothic Work Bench" />
     <Item Id="1512" Name="Gothic Bookcase" />
-    <Item Id="1513" Name="Paladin's Hammer" />
+    <Item Id="1513" Name="Paladin's Hammer" Rack="true" />
     <Item Id="1514" Name="SWAT Helmet" Head="102" />
     <Item Id="1515" Name="Bee Wings" />
     <Item Id="1516" Name="Giant Harpy Feather" />
@@ -6863,7 +6863,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="1550" Name="Shroomite Leggings" Legs="56" />
     <Item Id="1551" Name="Autohammer" />
     <Item Id="1552" Name="Shroomite Bar" />
-    <Item Id="1553" Name="S.D.M.G." />
+    <Item Id="1553" Name="S.D.M.G." Rack="true" />
     <Item Id="1554" Name="Cenx's Tiara" Head="106" />
     <Item Id="1555" Name="Cenx's Breastplate" Body="68" />
     <Item Id="1556" Name="Cenx's Leggings" Legs="57" />
@@ -6879,10 +6879,10 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="1566" Name="Aaron's Helmet" Head="110" />
     <Item Id="1567" Name="Aaron's Breastplate" Body="72" />
     <Item Id="1568" Name="Aaron's Leggings" Legs="61" />
-    <Item Id="1569" Name="Vampire Knives" />
+    <Item Id="1569" Name="Vampire Knives" Rack="true" />
     <Item Id="1570" Name="Broken Hero Sword" />
-    <Item Id="1571" Name="Scourge of the Corruptor" />
-    <Item Id="1572" Name="Staff of the Frost Hydra" />
+    <Item Id="1571" Name="Scourge of the Corruptor" Rack="true" />
+    <Item Id="1572" Name="Staff of the Frost Hydra" Rack="true" />
     <Item Id="1573" Name="The Creation of the Guide" />
     <Item Id="1574" Name="The Merchant" />
     <Item Id="1575" Name="Crowno Devours His Lunch" />
@@ -6924,7 +6924,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="1611" Name="Butterfly Dust" />
     <Item Id="1612" Name="Ankh Charm" />
     <Item Id="1613" Name="Ankh Shield" />
-    <Item Id="1614" Name="Blue Flare" />
+    <Item Id="1614" Name="Blue Flare" Rack="true" />
     <Item Id="1615" Name="Angler Fish Banner" />
     <Item Id="1616" Name="Angry Nimbus Banner" />
     <Item Id="1617" Name="Anomura Fungus Banner" />
@@ -7092,11 +7092,11 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="1779" Name="Karate Tortoise Mask" Head="129" />
     <Item Id="1780" Name="Karate Tortoise Shirt" Body="91" />
     <Item Id="1781" Name="Karate Tortoise Pants" Legs="76" />
-    <Item Id="1782" Name="Candy Corn Rifle" />
-    <Item Id="1783" Name="Candy Corn" />
-    <Item Id="1784" Name="Jack 'O Lantern Launcher" />
-    <Item Id="1785" Name="Explosive Jack 'O Lantern" />
-    <Item Id="1786" Name="Sickle" />
+    <Item Id="1782" Name="Candy Corn Rifle" Rack="true" />
+    <Item Id="1783" Name="Candy Corn" Rack="true" />
+    <Item Id="1784" Name="Jack 'O Lantern Launcher" Rack="true" />
+    <Item Id="1785" Name="Explosive Jack 'O Lantern" Rack="true" />
+    <Item Id="1786" Name="Sickle" Rack="true" />
     <Item Id="1787" Name="Pumpkin Pie" />
     <Item Id="1788" Name="Scarecrow Hat" Head="130" />
     <Item Id="1789" Name="Scarecrow Shirt" Body="92" />
@@ -7111,7 +7111,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="1798" Name="Spider Egg" />
     <Item Id="1799" Name="Magical Pumpkin Seed" />
     <Item Id="1800" Name="Bat Hook" />
-    <Item Id="1801" Name="Bat Scepter" />
+    <Item Id="1801" Name="Bat Scepter" Rack="true" />
     <Item Id="1802" Name="Raven Staff" />
     <Item Id="1803" Name="Jungle Key Mold" />
     <Item Id="1804" Name="Corruption Key Mold" />
@@ -7119,7 +7119,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="1806" Name="Hallowed Key Mold" />
     <Item Id="1807" Name="Frozen Key Mold" />
     <Item Id="1808" Name="Hanging Jack 'O Lantern" />
-    <Item Id="1809" Name="Rotten Egg" />
+    <Item Id="1809" Name="Rotten Egg" Rack="true" />
     <Item Id="1810" Name="Unlucky Yarn" />
     <Item Id="1811" Name="Black Fairy Dust" />
     <Item Id="1812" Name="Jackelier" />
@@ -7135,9 +7135,9 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="1822" Name="Fox Shirt" Body="94" />
     <Item Id="1823" Name="Fox Pants" Legs="78" />
     <Item Id="1824" Name="Cat Ears" Head="133" />
-    <Item Id="1825" Name="Bloody Machete" />
-    <Item Id="1826" Name="The Horseman's Blade" Scale="1.15" />
-    <Item Id="1827" Name="Bladed Glove" Scale="1.35" />
+    <Item Id="1825" Name="Bloody Machete" Rack="true" />
+    <Item Id="1826" Name="The Horseman's Blade" Scale="1.15" Rack="true" />
+    <Item Id="1827" Name="Bladed Glove" Scale="1.35" Rack="true" />
     <Item Id="1828" Name="Pumpkin Seed" />
     <Item Id="1829" Name="Spooky Hook" />
     <Item Id="1830" Name="Spooky Wings" />
@@ -7145,8 +7145,8 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="1832" Name="Spooky Helmet" Head="134" />
     <Item Id="1833" Name="Spooky Breastplate" Body="95" />
     <Item Id="1834" Name="Spooky Leggings" Legs="79" />
-    <Item Id="1835" Name="Stake Launcher" />
-    <Item Id="1836" Name="Stake" />
+    <Item Id="1835" Name="Stake Launcher" Rack="true" />
+    <Item Id="1836" Name="Stake" Rack="true" />
     <Item Id="1837" Name="Cursed Sapling" />
     <Item Id="1838" Name="Space Creature Mask" Head="135" />
     <Item Id="1839" Name="Space Creature Shirt" Body="96" />
@@ -7180,7 +7180,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="1867" Name="Candy Cane" />
     <Item Id="1868" Name="Sugar Plum" />
     <Item Id="1869" Name="Present" />
-    <Item Id="1870" Name="Red Ryder" />
+    <Item Id="1870" Name="Red Ryder" Rack="true" />
     <Item Id="1871" Name="Festive Wings" />
     <Item Id="1872" Name="Pine Tree Block" />
     <Item Id="1873" Name="Christmas Tree" />
@@ -7219,16 +7219,16 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="1906" Name="Giant Bow" Head="138" />
     <Item Id="1907" Name="Reindeer Antlers" Head="139" />
     <Item Id="1908" Name="Holly" />
-    <Item Id="1909" Name="Candy Cane Sword" Scale="1.1" />
-    <Item Id="1910" Name="Elf Melter" />
+    <Item Id="1909" Name="Candy Cane Sword" Scale="1.1" Rack="true" />
+    <Item Id="1910" Name="Elf Melter" Rack="true" />
     <Item Id="1911" Name="Christmas Pudding" />
     <Item Id="1912" Name="Eggnog" />
-    <Item Id="1913" Name="Star Anise" />
+    <Item Id="1913" Name="Star Anise" Rack="true" />
     <Item Id="1914" Name="Reindeer Bells" />
     <Item Id="1915" Name="Candy Cane Hook" />
     <Item Id="1916" Name="Christmas Hook" />
-    <Item Id="1917" Name="Candy Cane Pickaxe" />
-    <Item Id="1918" Name="Fruitcake Chakram" />
+    <Item Id="1917" Name="Candy Cane Pickaxe" Rack="true" />
+    <Item Id="1918" Name="Fruitcake Chakram" Rack="true" />
     <Item Id="1919" Name="Sugar Cookie" />
     <Item Id="1920" Name="Gingerbread Cookie" />
     <Item Id="1921" Name="Hand Warmer" />
@@ -7238,10 +7238,10 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="1925" Name="Pine Chair" />
     <Item Id="1926" Name="Pine Table" />
     <Item Id="1927" Name="Dog Whistle" />
-    <Item Id="1928" Name="Christmas Tree Sword" Scale="1.1" />
-    <Item Id="1929" Name="Chain Gun" />
-    <Item Id="1930" Name="Razorpine" />
-    <Item Id="1931" Name="Blizzard Staff" />
+    <Item Id="1928" Name="Christmas Tree Sword" Scale="1.1" Rack="true" />
+    <Item Id="1929" Name="Chain Gun" Rack="true" />
+    <Item Id="1930" Name="Razorpine" Rack="true" />
+    <Item Id="1931" Name="Blizzard Staff" Rack="true" />
     <Item Id="1932" Name="Mrs. Claus Hat" Head="140" />
     <Item Id="1933" Name="Mrs. Claus Shirt" Body="100" />
     <Item Id="1934" Name="Mrs. Claus Heels" Legs="84" />
@@ -7256,8 +7256,8 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="1943" Name="Elf Hat" Head="144" />
     <Item Id="1944" Name="Elf Shirt" Body="104" />
     <Item Id="1945" Name="Elf Pants" Legs="87" />
-    <Item Id="1946" Name="Snowman Cannon" />
-    <Item Id="1947" Name="North Pole" Scale="1.1" />
+    <Item Id="1946" Name="Snowman Cannon" Rack="true" />
+    <Item Id="1947" Name="North Pole" Scale="1.1" Rack="true" />
     <Item Id="1948" Name="Christmas Tree Wallpaper" />
     <Item Id="1949" Name="Ornament Wallpaper" />
     <Item Id="1950" Name="Candy Cane Wallpaper" />
@@ -7486,7 +7486,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="2173" Name="Copper Plating" />
     <Item Id="2174" Name="Snail Cage" />
     <Item Id="2175" Name="Glowing Snail Cage" />
-    <Item Id="2176" Name="Shroomite Digging Claw" />
+    <Item Id="2176" Name="Shroomite Digging Claw" Rack="true" />
     <Item Id="2177" Name="Ammo Box" />
     <Item Id="2178" Name="Monarch Butterfly Jar" />
     <Item Id="2179" Name="Purple Emperor Butterfly Jar" />
@@ -7498,7 +7498,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="2185" Name="Julia Butterfly Jar" />
     <Item Id="2186" Name="Scorpion Cage" />
     <Item Id="2187" Name="Black Scorpion Cage" />
-    <Item Id="2188" Name="Venom Staff" />
+    <Item Id="2188" Name="Venom Staff" Rack="true" />
     <Item Id="2189" Name="Spectre Mask" Head="156" />
     <Item Id="2190" Name="Frog Cage" />
     <Item Id="2191" Name="Mouse Cage" />
@@ -7533,7 +7533,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="2220" Name="Celestial Emblem" />
     <Item Id="2221" Name="Celestial Cuffs" />
     <Item Id="2222" Name="Peddler's Hat" Head="158" />
-    <Item Id="2223" Name="Pulse Bow" />
+    <Item Id="2223" Name="Pulse Bow" Rack="true" />
     <Item Id="2224" Name="Large Dynasty Lantern" />
     <Item Id="2225" Name="Dynasty Lamp" />
     <Item Id="2226" Name="Dynasty Lantern" />
@@ -7579,11 +7579,11 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="2266" Name="Sake" />
     <Item Id="2267" Name="Pad Thai" />
     <Item Id="2268" Name="Pho" />
-    <Item Id="2269" Name="Revolver" Scale="0.85" />
-    <Item Id="2270" Name="Gatligator" />
+    <Item Id="2269" Name="Revolver" Scale="0.85" Rack="true" />
+    <Item Id="2270" Name="Gatligator" Rack="true" />
     <Item Id="2271" Name="Arcane Rune Wall" />
     <Item Id="2272" Name="Water Gun" Scale="0.9" />
-    <Item Id="2273" Name="Katana" />
+    <Item Id="2273" Name="Katana" Rack="true" />
     <Item Id="2274" Name="Ultrabright Torch" />
     <Item Id="2275" Name="Magic Hat" Head="159" />
     <Item Id="2276" Name="Diamond Ring" />
@@ -7599,14 +7599,14 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="2286" Name="Red Cape" />
     <Item Id="2287" Name="Winter Cape" />
     <Item Id="2288" Name="Frozen Chair" />
-    <Item Id="2289" Name="Wood Fishing Pole" />
+    <Item Id="2289" Name="Wood Fishing Pole" Rack="true" />
     <Item Id="2290" Name="Bass" />
-    <Item Id="2291" Name="Reinforced Fishing Pole" />
-    <Item Id="2292" Name="Fiberglass Fishing Pole" />
-    <Item Id="2293" Name="Fisher of Souls" />
-    <Item Id="2294" Name="Golden Fishing Rod" />
-    <Item Id="2295" Name="Mechanic's Rod" />
-    <Item Id="2296" Name="Sitting Duck's Fishing Pole" />
+    <Item Id="2291" Name="Reinforced Fishing Pole" Rack="true" />
+    <Item Id="2292" Name="Fiberglass Fishing Pole" Rack="true" />
+    <Item Id="2293" Name="Fisher of Souls" Rack="true" />
+    <Item Id="2294" Name="Golden Fishing Rod" Rack="true" />
+    <Item Id="2295" Name="Mechanic's Rod" Rack="true" />
+    <Item Id="2296" Name="Sitting Duck's Fishing Pole" Rack="true" />
     <Item Id="2297" Name="Trout" />
     <Item Id="2298" Name="Salmon" />
     <Item Id="2299" Name="Atlantic Cod" />
@@ -7630,7 +7630,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="2317" Name="Chaos Fish" />
     <Item Id="2318" Name="Ebonkoi" />
     <Item Id="2319" Name="Hemopiranha" />
-    <Item Id="2320" Name="Rockfish" Scale="1.05" />
+    <Item Id="2320" Name="Rockfish" Scale="1.05" Rack="true" />
     <Item Id="2321" Name="Stinkfish" />
     <Item Id="2322" Name="Mining Potion" />
     <Item Id="2323" Name="Heartreach Potion" />
@@ -7640,9 +7640,9 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="2327" Name="Flipper Potion" />
     <Item Id="2328" Name="Summoning Potion" />
     <Item Id="2329" Name="Dangersense Potion" />
-    <Item Id="2330" Name="Purple Clubberfish" Scale="1.15" />
-    <Item Id="2331" Name="Obsidian Swordfish" />
-    <Item Id="2332" Name="Swordfish" />
+    <Item Id="2330" Name="Purple Clubberfish" Scale="1.15" Rack="true" />
+    <Item Id="2331" Name="Obsidian Swordfish" Rack="true" />
+    <Item Id="2332" Name="Swordfish" Rack="true" />
     <Item Id="2333" Name="Iron Fence" />
     <Item Id="2334" Name="Wooden Crate" />
     <Item Id="2335" Name="Iron Crate" />
@@ -7651,8 +7651,8 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="2338" Name="Seaweed" />
     <Item Id="2339" Name="Tin Can" />
     <Item Id="2340" Name="Minecart Track" />
-    <Item Id="2341" Name="Reaver Shark" Scale="1.15" />
-    <Item Id="2342" Name="Sawtooth Shark" />
+    <Item Id="2341" Name="Reaver Shark" Scale="1.15" Rack="true" />
+    <Item Id="2342" Name="Sawtooth Shark" Rack="true" />
     <Item Id="2343" Name="Minecart" />
     <Item Id="2344" Name="Ammo Reservation Potion" />
     <Item Id="2345" Name="Lifeforce Potion" />
@@ -7674,9 +7674,9 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="2361" Name="Bee Headgear" Head="160" />
     <Item Id="2362" Name="Bee Breastplate" Body="168" />
     <Item Id="2363" Name="Bee Greaves" Legs="103" />
-    <Item Id="2364" Name="Hornet Staff" />
-    <Item Id="2365" Name="Imp Staff" />
-    <Item Id="2366" Name="Queen Spider Staff" />
+    <Item Id="2364" Name="Hornet Staff" Rack="true" />
+    <Item Id="2365" Name="Imp Staff" Rack="true" />
+    <Item Id="2366" Name="Queen Spider Staff" Rack="true" />
     <Item Id="2367" Name="Angler Hat" Head="161" />
     <Item Id="2368" Name="Angler Vest" Body="169" />
     <Item Id="2369" Name="Angler Pants" Legs="104" />
@@ -7731,10 +7731,10 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="2418" Name="Mermaid Adornment" Body="171" />
     <Item Id="2419" Name="Mermaid Tail" Legs="106" />
     <Item Id="2420" Name="Zephyr Fish" />
-    <Item Id="2421" Name="Fleshcatcher" />
-    <Item Id="2422" Name="Hotline Fishing Hook" />
+    <Item Id="2421" Name="Fleshcatcher" Rack="true" />
+    <Item Id="2422" Name="Hotline Fishing Hook" Rack="true" />
     <Item Id="2423" Name="Frog Leg" />
-    <Item Id="2424" Name="Anchor" />
+    <Item Id="2424" Name="Anchor" Rack="true" />
     <Item Id="2425" Name="Cooked Fish" />
     <Item Id="2426" Name="Cooked Shrimp" />
     <Item Id="2427" Name="Sashimi" />
@@ -7825,9 +7825,9 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="2512" Name="Palm Wood Helmet" Head="167" />
     <Item Id="2513" Name="Palm Wood Breastplate" Body="174" />
     <Item Id="2514" Name="Palm Wood Greaves" Legs="109" />
-    <Item Id="2515" Name="Palm Wood Bow" />
-    <Item Id="2516" Name="Palm Wood Hammer" Scale="1.1" />
-    <Item Id="2517" Name="Palm Wood Sword" />
+    <Item Id="2515" Name="Palm Wood Bow" Rack="true" />
+    <Item Id="2516" Name="Palm Wood Hammer" Scale="1.1" Rack="true" />
+    <Item Id="2517" Name="Palm Wood Sword" Rack="true" />
     <Item Id="2518" Name="Palm Wood Platform" />
     <Item Id="2519" Name="Palm Wood Bathtub" />
     <Item Id="2520" Name="Palm Wood Bed" />
@@ -7845,7 +7845,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="2532" Name="Palm Wood Table" />
     <Item Id="2533" Name="Palm Wood Lamp" />
     <Item Id="2534" Name="Palm Wood Work Bench" />
-    <Item Id="2535" Name="Optic Staff" />
+    <Item Id="2535" Name="Optic Staff" Rack="true" />
     <Item Id="2536" Name="Palm Wood Bookcase" />
     <Item Id="2537" Name="Mushroom Bathtub" />
     <Item Id="2538" Name="Mushroom Bed" />
@@ -7861,7 +7861,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="2548" Name="Mushroom Piano" />
     <Item Id="2549" Name="Mushroom Platform" />
     <Item Id="2550" Name="Mushroom Table" />
-    <Item Id="2551" Name="Spider Staff" />
+    <Item Id="2551" Name="Spider Staff" Rack="true" />
     <Item Id="2552" Name="Boreal Wood Bathtub" />
     <Item Id="2553" Name="Boreal Wood Bed" />
     <Item Id="2554" Name="Boreal Wood Bookcase" />
@@ -7894,13 +7894,13 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="2581" Name="Slime Platform" />
     <Item Id="2582" Name="Slime Sofa" />
     <Item Id="2583" Name="Slime Table" />
-    <Item Id="2584" Name="Pirate Staff" />
+    <Item Id="2584" Name="Pirate Staff" Rack="true" />
     <Item Id="2585" Name="Slime Hook" />
-    <Item Id="2586" Name="Sticky Grenade" />
+    <Item Id="2586" Name="Sticky Grenade" Rack="true" />
     <Item Id="2587" Name="Tartar Sauce" />
     <Item Id="2588" Name="Duke Fishron Mask" Head="168" />
     <Item Id="2589" Name="Duke Fishron Trophy" />
-    <Item Id="2590" Name="Molotov Cocktail" />
+    <Item Id="2590" Name="Molotov Cocktail" Rack="true" />
     <Item Id="2591" Name="Bone Clock" />
     <Item Id="2592" Name="Cactus Clock" />
     <Item Id="2593" Name="Ebonwood Clock" />
@@ -7918,10 +7918,10 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="2605" Name="Spooky Clock" />
     <Item Id="2606" Name="Skyware Clock" />
     <Item Id="2607" Name="Spider Fang" />
-    <Item Id="2608" Name="Falcon Blade" Scale="1.05" />
+    <Item Id="2608" Name="Falcon Blade" Scale="1.05" Rack="true" />
     <Item Id="2609" Name="Fishron Wings" />
     <Item Id="2610" Name="Slime Gun" Scale="0.9" />
-    <Item Id="2611" Name="Flairon" />
+    <Item Id="2611" Name="Flairon" Rack="true" />
     <Item Id="2612" Name="Green Dungeon Chest" />
     <Item Id="2613" Name="Pink Dungeon Chest" />
     <Item Id="2614" Name="Blue Dungeon Chest" />
@@ -7931,10 +7931,10 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="2618" Name="Obsidian Chest" />
     <Item Id="2619" Name="Pumpkin Chest" />
     <Item Id="2620" Name="Spooky Chest" />
-    <Item Id="2621" Name="Tempest Staff" />
-    <Item Id="2622" Name="Razorblade Typhoon" Scale="0.9" />
-    <Item Id="2623" Name="Bubble Gun" />
-    <Item Id="2624" Name="Tsunami" />
+    <Item Id="2621" Name="Tempest Staff" Rack="true" />
+    <Item Id="2622" Name="Razorblade Typhoon" Scale="0.9" Rack="true" />
+    <Item Id="2623" Name="Bubble Gun" Rack="true" />
+    <Item Id="2624" Name="Tsunami" Rack="true" />
     <Item Id="2625" Name="Seashell" />
     <Item Id="2626" Name="Starfish" />
     <Item Id="2627" Name="Steampunk Platform" />
@@ -8055,12 +8055,12 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="2742" Name="Music Box (Underground Crimson)" />
     <Item Id="2743" Name="Cactus Table" />
     <Item Id="2744" Name="Cactus Platform" />
-    <Item Id="2745" Name="Boreal Wood Sword" />
-    <Item Id="2746" Name="Boreal Wood Hammer" Scale="1.1" />
-    <Item Id="2747" Name="Boreal Wood Bow" />
+    <Item Id="2745" Name="Boreal Wood Sword" Rack="true" />
+    <Item Id="2746" Name="Boreal Wood Hammer" Scale="1.1" Rack="true" />
+    <Item Id="2747" Name="Boreal Wood Bow" Rack="true" />
     <Item Id="2748" Name="Glass Chest" />
-    <Item Id="2749" Name="Xeno Staff" />
-    <Item Id="2750" Name="Meteor Staff" />
+    <Item Id="2749" Name="Xeno Staff" Rack="true" />
+    <Item Id="2750" Name="Meteor Staff" Rack="true" />
     <Item Id="2751" Name="Living Cursed Fire Block" />
     <Item Id="2752" Name="Living Demon Fire Block" />
     <Item Id="2753" Name="Living Frost Fire Block" />
@@ -8082,21 +8082,21 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="2769" Name="Cosmic Car Key" />
     <Item Id="2770" Name="Mothron Wings" />
     <Item Id="2771" Name="Brain Scrambler" />
-    <Item Id="2772" Name="Vortex Axe" Scale="1.05" />
-    <Item Id="2773" Name="Vortex Chainsaw" />
-    <Item Id="2774" Name="Vortex Drill" />
-    <Item Id="2775" Name="Vortex Hammer" Scale="1.1" />
-    <Item Id="2776" Name="Vortex Pickaxe" />
-    <Item Id="2777" Name="Nebula Axe" />
-    <Item Id="2778" Name="Nebula Chainsaw" />
-    <Item Id="2779" Name="Nebula Drill" />
-    <Item Id="2780" Name="Nebula Hammer" />
-    <Item Id="2781" Name="Nebula Pickaxe" />
-    <Item Id="2782" Name="Solar Flare Axe" />
-    <Item Id="2783" Name="Solar Flare Chainsaw" />
-    <Item Id="2784" Name="Solar Flare Drill" />
-    <Item Id="2785" Name="Solar Flare Hammer" />
-    <Item Id="2786" Name="Solar Flare Pickaxe" />
+    <Item Id="2772" Name="Vortex Axe" Scale="1.05" Rack="true" />
+    <Item Id="2773" Name="Vortex Chainsaw" Rack="true" />
+    <Item Id="2774" Name="Vortex Drill" Rack="true" />
+    <Item Id="2775" Name="Vortex Hammer" Scale="1.1" Rack="true" />
+    <Item Id="2776" Name="Vortex Pickaxe" Rack="true" />
+    <Item Id="2777" Name="Nebula Axe" Rack="true" />
+    <Item Id="2778" Name="Nebula Chainsaw" Rack="true" />
+    <Item Id="2779" Name="Nebula Drill" Rack="true" />
+    <Item Id="2780" Name="Nebula Hammer" Rack="true" />
+    <Item Id="2781" Name="Nebula Pickaxe" Rack="true" />
+    <Item Id="2782" Name="Solar Flare Axe" Rack="true" />
+    <Item Id="2783" Name="Solar Flare Chainsaw" Rack="true" />
+    <Item Id="2784" Name="Solar Flare Drill" Rack="true" />
+    <Item Id="2785" Name="Solar Flare Hammer" Rack="true" />
+    <Item Id="2786" Name="Solar Flare Pickaxe" Rack="true" />
     <Item Id="2787" Name="Honeyfall Block" />
     <Item Id="2788" Name="Honeyfall Wall" />
     <Item Id="2789" Name="Chlorophyte Brick Wall" />
@@ -8105,10 +8105,10 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="2792" Name="Chlorophyte Brick" />
     <Item Id="2793" Name="Crimtane Brick" />
     <Item Id="2794" Name="Shroomite Plating" />
-    <Item Id="2795" Name="Laser Machinegun" />
-    <Item Id="2796" Name="Electrosphere Launcher" />
-    <Item Id="2797" Name="Xenopopper" />
-    <Item Id="2798" Name="Laser Drill" />
+    <Item Id="2795" Name="Laser Machinegun" Rack="true" />
+    <Item Id="2796" Name="Electrosphere Launcher" Rack="true" />
+    <Item Id="2797" Name="Xenopopper" Rack="true" />
+    <Item Id="2798" Name="Laser Drill" Rack="true" />
     <Item Id="2799" Name="Mechanical Ruler" />
     <Item Id="2800" Name="Anti-Gravity Hook" />
     <Item Id="2801" Name="Moon Mask" Head="172" />
@@ -8190,15 +8190,15 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="2877" Name="Brown and Silver Dye" />
     <Item Id="2878" Name="Wisp Dye" />
     <Item Id="2879" Name="Pixie Dye" />
-    <Item Id="2880" Name="Influx Waver" Scale="1.05" />
+    <Item Id="2880" Name="Influx Waver" Scale="1.05" Rack="true" />
     <Item Id="2881" Name="Phasic Warp Ejector" />
-    <Item Id="2882" Name="Charged Blaster Cannon" />
+    <Item Id="2882" Name="Charged Blaster Cannon" Rack="true" />
     <Item Id="2883" Name="Chlorophyte Dye" />
     <Item Id="2884" Name="Unicorn Wisp Dye" />
     <Item Id="2885" Name="Infernal Wisp Dye" />
     <Item Id="2886" Name="Vicious Powder" />
     <Item Id="2887" Name="Vicious Mushroom" />
-    <Item Id="2888" Name="The Bee's Knees" />
+    <Item Id="2888" Name="The Bee's Knees" Rack="true" />
     <Item Id="2889" Name="Gold Bird" />
     <Item Id="2890" Name="Gold Bunny" />
     <Item Id="2891" Name="Gold Butterfly" />
@@ -8313,23 +8313,23 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="3000" Name="Alchemy Table" />
     <Item Id="3001" Name="Strange Brew" />
     <Item Id="3002" Name="Spelunker Glowstick" />
-    <Item Id="3003" Name="Bone Arrow" />
+    <Item Id="3003" Name="Bone Arrow" Rack="true" />
     <Item Id="3004" Name="Bone Torch" />
     <Item Id="3005" Name="Vine Rope Coil" />
-    <Item Id="3006" Name="Life Drain" />
-    <Item Id="3007" Name="Dart Pistol" Scale="0.9" />
-    <Item Id="3008" Name="Dart Rifle" />
-    <Item Id="3009" Name="Crystal Dart" />
-    <Item Id="3010" Name="Cursed Dart" />
-    <Item Id="3011" Name="Ichor Dart" />
-    <Item Id="3012" Name="Chain Guillotines" />
-    <Item Id="3013" Name="Fetid Baghnakhs" Scale="1.35" />
-    <Item Id="3014" Name="Clinger Staff" />
+    <Item Id="3006" Name="Life Drain" Rack="true" />
+    <Item Id="3007" Name="Dart Pistol" Scale="0.9" Rack="true" />
+    <Item Id="3008" Name="Dart Rifle" Rack="true" />
+    <Item Id="3009" Name="Crystal Dart" Rack="true" />
+    <Item Id="3010" Name="Cursed Dart" Rack="true" />
+    <Item Id="3011" Name="Ichor Dart" Rack="true" />
+    <Item Id="3012" Name="Chain Guillotines" Rack="true" />
+    <Item Id="3013" Name="Fetid Baghnakhs" Scale="1.35" Rack="true" />
+    <Item Id="3014" Name="Clinger Staff" Rack="true" />
     <Item Id="3015" Name="Putrid Scent" />
     <Item Id="3016" Name="Flesh Knuckles" />
     <Item Id="3017" Name="Flower Boots" />
-    <Item Id="3018" Name="Seedler" />
-    <Item Id="3019" Name="Hellwing Bow" />
+    <Item Id="3018" Name="Seedler" Rack="true" />
+    <Item Id="3019" Name="Hellwing Bow" Rack="true" />
     <Item Id="3020" Name="Tendon Hook" />
     <Item Id="3021" Name="Thorn Hook" />
     <Item Id="3022" Name="Illuminant Hook" />
@@ -8339,8 +8339,8 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="3026" Name="Reflective Silver Dye" />
     <Item Id="3027" Name="Reflective Gold Dye" />
     <Item Id="3028" Name="Blue Acid Dye" />
-    <Item Id="3029" Name="Daedalus Stormbow" />
-    <Item Id="3030" Name="Flying Knife" />
+    <Item Id="3029" Name="Daedalus Stormbow" Rack="true" />
+    <Item Id="3030" Name="Flying Knife" Rack="true" />
     <Item Id="3031" Name="Bottomless Water Bucket" />
     <Item Id="3032" Name="Super Absorbant Sponge" />
     <Item Id="3033" Name="Gold Ring" />
@@ -8361,10 +8361,10 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="3048" Name="Frozen Campfire" />
     <Item Id="3049" Name="Ichor Campfire" />
     <Item Id="3050" Name="Rainbow Campfire" />
-    <Item Id="3051" Name="Crystal Vile Shard" />
-    <Item Id="3052" Name="Shadowflame Bow" />
-    <Item Id="3053" Name="Shadowflame Hex Doll" />
-    <Item Id="3054" Name="Shadowflame Knife" />
+    <Item Id="3051" Name="Crystal Vile Shard" Rack="true" />
+    <Item Id="3052" Name="Shadowflame Bow" Rack="true" />
+    <Item Id="3053" Name="Shadowflame Hex Doll" Rack="true" />
+    <Item Id="3054" Name="Shadowflame Knife" Rack="true" />
     <Item Id="3055" Name="Acorns" />
     <Item Id="3056" Name="Cold Snap" />
     <Item Id="3057" Name="Cursed Saint" />
@@ -8373,13 +8373,13 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="3060" Name="Bone Rattle" />
     <Item Id="3061" Name="Architect Gizmo Pack" />
     <Item Id="3062" Name="Crimson Heart" />
-    <Item Id="3063" Name="Meowmere" Scale="1.1" />
+    <Item Id="3063" Name="Meowmere" Scale="1.1" Rack="true" />
     <Item Id="3064" Name="Enchanted Sundial" />
-    <Item Id="3065" Name="Star Wrath" Scale="1.1" />
+    <Item Id="3065" Name="Star Wrath" Scale="1.1" Rack="true" />
     <Item Id="3066" Name="Smooth Marble Block" />
     <Item Id="3067" Name="Hellstone Brick Wall" />
     <Item Id="3068" Name="Guide to Plant Fiber Cordage" />
-    <Item Id="3069" Name="Wand of Sparking" />
+    <Item Id="3069" Name="Wand of Sparking" Rack="true" />
     <Item Id="3070" Name="Gold Bird Cage" />
     <Item Id="3071" Name="Gold Bunny Cage" />
     <Item Id="3072" Name="Gold Butterfly Jar" />
@@ -8404,21 +8404,21 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="3091" Name="Key of Night" />
     <Item Id="3092" Name="Key of Light" />
     <Item Id="3093" Name="Herb Bag" />
-    <Item Id="3094" Name="Javelin" />
+    <Item Id="3094" Name="Javelin" Rack="true" />
     <Item Id="3095" Name="Tally Counter" />
     <Item Id="3096" Name="Sextant" />
-    <Item Id="3097" Name="Shield of Cthulhu" />
-    <Item Id="3098" Name="Butcher's Chainsaw" />
+    <Item Id="3097" Name="Shield of Cthulhu" Rack="true" />
+    <Item Id="3098" Name="Butcher's Chainsaw" Rack="true" />
     <Item Id="3099" Name="Stopwatch" />
     <Item Id="3100" Name="Meteorite Brick" />
     <Item Id="3101" Name="Meteorite Brick Wall" />
     <Item Id="3102" Name="Metal Detector" />
-    <Item Id="3103" Name="Endless Quiver" />
-    <Item Id="3104" Name="Endless Musket Pouch" />
-    <Item Id="3105" Name="Toxic Flask" />
-    <Item Id="3106" Name="Psycho Knife" Scale="1.1" />
-    <Item Id="3107" Name="Nail Gun" />
-    <Item Id="3108" Name="Nail" />
+    <Item Id="3103" Name="Endless Quiver" Rack="true" />
+    <Item Id="3104" Name="Endless Musket Pouch" Rack="true" />
+    <Item Id="3105" Name="Toxic Flask" Rack="true" />
+    <Item Id="3106" Name="Psycho Knife" Scale="1.1" Rack="true" />
+    <Item Id="3107" Name="Nail Gun" Rack="true" />
+    <Item Id="3108" Name="Nail" Rack="true" />
     <Item Id="3109" Name="Night Vision Helmet" Head="179" />
     <Item Id="3110" Name="Celestial Shell" />
     <Item Id="3111" Name="Pink Gel" />
@@ -8426,7 +8426,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="3113" Name="Pink Slime Block" />
     <Item Id="3114" Name="Pink Torch" />
     <Item Id="3115" Name="Bouncy Bomb" />
-    <Item Id="3116" Name="Bouncy Grenade" />
+    <Item Id="3116" Name="Bouncy Grenade" Rack="true" />
     <Item Id="3117" Name="Peace Candle" />
     <Item Id="3118" Name="Lifeform Analyzer" />
     <Item Id="3119" Name="DPS Meter" />
@@ -8507,7 +8507,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="3194" Name="Buggy" />
     <Item Id="3195" Name="Grub Soup" />
     <Item Id="3196" Name="Bomb Fish" />
-    <Item Id="3197" Name="Frost Daggerfish" />
+    <Item Id="3197" Name="Frost Daggerfish" Rack="true" />
     <Item Id="3198" Name="Sharpening Station" />
     <Item Id="3199" Name="Ice Mirror" />
     <Item Id="3200" Name="Sailfish Boots" />
@@ -8519,9 +8519,9 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="3206" Name="Sky Crate" />
     <Item Id="3207" Name="Hallowed Crate" />
     <Item Id="3208" Name="Jungle Crate" />
-    <Item Id="3209" Name="Crystal Serpent" />
-    <Item Id="3210" Name="Toxikarp" />
-    <Item Id="3211" Name="Bladetongue" Scale="1.125" />
+    <Item Id="3209" Name="Crystal Serpent" Rack="true" />
+    <Item Id="3210" Name="Toxikarp" Rack="true" />
+    <Item Id="3211" Name="Bladetongue" Scale="1.125" Rack="true" />
     <Item Id="3212" Name="Shark Tooth Necklace" />
     <Item Id="3213" Name="Money Trough" />
     <Item Id="3214" Name="Bubble" />
@@ -8555,11 +8555,11 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="3242" Name="Tax Collector's Hat" Head="182" />
     <Item Id="3243" Name="Tax Collector's Suit" Body="184" />
     <Item Id="3244" Name="Tax Collector's Pants" Legs="124" />
-    <Item Id="3245" Name="Bone Glove" />
+    <Item Id="3245" Name="Bone Glove" Rack="true" />
     <Item Id="3246" Name="Clothier's Jacket" Body="185" />
     <Item Id="3247" Name="Clothier's Pants" Legs="125" />
     <Item Id="3248" Name="Dye Trader's Turban" Head="183" />
-    <Item Id="3249" Name="Deadly Sphere Staff" />
+    <Item Id="3249" Name="Deadly Sphere Staff" Rack="true" />
     <Item Id="3250" Name="Green Horseshoe Balloon" />
     <Item Id="3251" Name="Amber Horseshoe Balloon" />
     <Item Id="3252" Name="Pink Horseshoe Balloon" />
@@ -8568,18 +8568,18 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="3255" Name="Buggy Cage" />
     <Item Id="3256" Name="Grubby Cage" />
     <Item Id="3257" Name="Sluggy Cage" />
-    <Item Id="3258" Name="Slap Hand" Scale="1.1" />
+    <Item Id="3258" Name="Slap Hand" Scale="1.1" Rack="true" />
     <Item Id="3259" Name="Twilight Hair Dye" />
     <Item Id="3260" Name="Blessed Apple" />
     <Item Id="3261" Name="Spectre Bar" />
-    <Item Id="3262" Name="Code 1" />
+    <Item Id="3262" Name="Code 1" Rack="true" />
     <Item Id="3263" Name="Buccaneer Bandana" Head="184" />
     <Item Id="3264" Name="Buccaneer Tunic" Body="186" />
     <Item Id="3265" Name="Buccaneer Pantaloons" Legs="126" />
     <Item Id="3266" Name="Obsidian Outlaw Hat" Head="185" />
     <Item Id="3267" Name="Obsidian Longcoat" Body="187" />
     <Item Id="3268" Name="Obsidian Pants" Legs="127" />
-    <Item Id="3269" Name="Medusa Head" />
+    <Item Id="3269" Name="Medusa Head" Rack="true" />
     <Item Id="3270" Name="Item Frame" />
     <Item Id="3271" Name="Sandstone Block" />
     <Item Id="3272" Name="Hardened Sand Block" />
@@ -8588,21 +8588,21 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="3275" Name="Hardened Crimsand Block" />
     <Item Id="3276" Name="Ebonsandstone Block" />
     <Item Id="3277" Name="Crimsandstone Block" />
-    <Item Id="3278" Name="Wooden Yoyo" />
-    <Item Id="3279" Name="Malaise" />
-    <Item Id="3280" Name="Artery" />
-    <Item Id="3281" Name="Amazon" />
-    <Item Id="3282" Name="Cascade" />
-    <Item Id="3283" Name="Chik" />
-    <Item Id="3284" Name="Code 2" />
-    <Item Id="3285" Name="Rally" />
-    <Item Id="3286" Name="Yelets" />
-    <Item Id="3287" Name="Red's Throw" />
-    <Item Id="3288" Name="Valkyrie Yoyo" />
-    <Item Id="3289" Name="Amarok" />
-    <Item Id="3290" Name="Hel-Fire" />
-    <Item Id="3291" Name="Kraken" />
-    <Item Id="3292" Name="The Eye of Cthulhu" />
+    <Item Id="3278" Name="Wooden Yoyo" Rack="true" />
+    <Item Id="3279" Name="Malaise" Rack="true" />
+    <Item Id="3280" Name="Artery" Rack="true" />
+    <Item Id="3281" Name="Amazon" Rack="true" />
+    <Item Id="3282" Name="Cascade" Rack="true" />
+    <Item Id="3283" Name="Chik" Rack="true" />
+    <Item Id="3284" Name="Code 2" Rack="true" />
+    <Item Id="3285" Name="Rally" Rack="true" />
+    <Item Id="3286" Name="Yelets" Rack="true" />
+    <Item Id="3287" Name="Red's Throw" Rack="true" />
+    <Item Id="3288" Name="Valkyrie Yoyo" Rack="true" />
+    <Item Id="3289" Name="Amarok" Rack="true" />
+    <Item Id="3290" Name="Hel-Fire" Rack="true" />
+    <Item Id="3291" Name="Kraken" Rack="true" />
+    <Item Id="3292" Name="The Eye of Cthulhu" Rack="true" />
     <Item Id="3293" Name="Red String" />
     <Item Id="3294" Name="Orange String" />
     <Item Id="3295" Name="Yellow String" />
@@ -8625,9 +8625,9 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="3312" Name="Purple Counterweight" />
     <Item Id="3313" Name="Red Counterweight" />
     <Item Id="3314" Name="Yellow Counterweight" />
-    <Item Id="3315" Name="Format:C" />
-    <Item Id="3316" Name="Gradient" />
-    <Item Id="3317" Name="Valor" />
+    <Item Id="3315" Name="Format:C" Rack="true" />
+    <Item Id="3316" Name="Gradient" Rack="true" />
+    <Item Id="3317" Name="Valor" Rack="true" />
     <Item Id="3318" Name="Treasure Bag" />
     <Item Id="3319" Name="Treasure Bag" />
     <Item Id="3320" Name="Treasure Bag" />
@@ -8659,10 +8659,10 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="3346" Name="Pearlsandstone Wall" />
     <Item Id="3347" Name="Desert Fossil" />
     <Item Id="3348" Name="Desert Fossil Wall" />
-    <Item Id="3349" Name="Exotic Scimitar" />
-    <Item Id="3350" Name="Paintball Gun" Scale="0.85" />
-    <Item Id="3351" Name="Classy Cane" />
-    <Item Id="3352" Name="Stylish Scissors" />
+    <Item Id="3349" Name="Exotic Scimitar" Rack="true" />
+    <Item Id="3350" Name="Paintball Gun" Scale="0.85" Rack="true" />
+    <Item Id="3351" Name="Classy Cane" Rack="true" />
+    <Item Id="3352" Name="Stylish Scissors" Rack="true" />
     <Item Id="3353" Name="Mechanical Cart" />
     <Item Id="3354" Name="Mechanical Wheel Piece" />
     <Item Id="3355" Name="Mechanical Wagon Piece" />
@@ -8678,7 +8678,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="3365" Name="Chimney" />
     <Item Id="3366" Name="Yoyo Bag" />
     <Item Id="3367" Name="Shrimpy Truffle" />
-    <Item Id="3368" Name="Arkhalis" />
+    <Item Id="3368" Name="Arkhalis" Rack="true" />
     <Item Id="3369" Name="Confetti Cannon" />
     <Item Id="3370" Name="Music Box (The Towers)" />
     <Item Id="3371" Name="Music Box (Goblin Invasion)" />
@@ -8687,9 +8687,9 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="3374" Name="Fossil Helmet" Head="188" />
     <Item Id="3375" Name="Fossil Plate" Body="189" />
     <Item Id="3376" Name="Fossil Greaves" Legs="129" />
-    <Item Id="3377" Name="Amber Staff" />
-    <Item Id="3378" Name="Bone Javelin" />
-    <Item Id="3379" Name="Bone Throwing Knife" />
+    <Item Id="3377" Name="Amber Staff" Rack="true" />
+    <Item Id="3378" Name="Bone Javelin" Rack="true" />
+    <Item Id="3379" Name="Bone Throwing Knife" Rack="true" />
     <Item Id="3380" Name="Sturdy Fossil" />
     <Item Id="3381" Name="Stardust Helmet" Head="189" />
     <Item Id="3382" Name="Stardust Plate" Body="190" />
@@ -8699,7 +8699,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="3386" Name="Strange Plant" />
     <Item Id="3387" Name="Strange Plant" />
     <Item Id="3388" Name="Strange Plant" />
-    <Item Id="3389" Name="Terrarian" />
+    <Item Id="3389" Name="Terrarian" Rack="true" />
     <Item Id="3390" Name="Goblin Summoner Banner" />
     <Item Id="3391" Name="Salamander Banner" />
     <Item Id="3392" Name="Giant Shelly Banner" />
@@ -8783,65 +8783,65 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="3470" Name="Nebula Mantle" />
     <Item Id="3471" Name="Stardust Wings" />
     <Item Id="3472" Name="Luminite Brick Wall" />
-    <Item Id="3473" Name="Solar Eruption" />
-    <Item Id="3474" Name="Stardust Cell Staff" />
-    <Item Id="3475" Name="Vortex Beater" />
-    <Item Id="3476" Name="Nebula Arcanum" />
-    <Item Id="3477" Name="Blood Water" />
+    <Item Id="3473" Name="Solar Eruption" Rack="true" />
+    <Item Id="3474" Name="Stardust Cell Staff" Rack="true" />
+    <Item Id="3475" Name="Vortex Beater" Rack="true" />
+    <Item Id="3476" Name="Nebula Arcanum" Rack="true" />
+    <Item Id="3477" Name="Blood Water" Rack="true" />
     <Item Id="3478" Name="Wedding Veil" Head="190" />
     <Item Id="3479" Name="Wedding Dress" Body="191" />
-    <Item Id="3480" Name="Platinum Bow" />
-    <Item Id="3481" Name="Platinum Hammer" Scale="1.275" />
-    <Item Id="3482" Name="Platinum Axe" Scale="1.175" />
-    <Item Id="3483" Name="Platinum Shortsword" Scale="0.975" />
-    <Item Id="3484" Name="Platinum Broadsword" Scale="1.075" />
-    <Item Id="3485" Name="Platinum Pickaxe" Scale="1.05" />
-    <Item Id="3486" Name="Tungsten Bow" />
-    <Item Id="3487" Name="Tungsten Hammer" Scale="1.25" />
-    <Item Id="3488" Name="Tungsten Axe" Scale="1.15" />
-    <Item Id="3489" Name="Tungsten Shortsword" Scale="0.95" />
-    <Item Id="3490" Name="Tungsten Broadsword" Scale="1.025" />
-    <Item Id="3491" Name="Tungsten Pickaxe" Scale="1.05" />
-    <Item Id="3492" Name="Lead Bow" />
-    <Item Id="3493" Name="Lead Hammer" Scale="1.225" />
-    <Item Id="3494" Name="Lead Axe" Scale="1.125" />
-    <Item Id="3495" Name="Lead Shortsword" Scale="0.925" />
-    <Item Id="3496" Name="Lead Broadsword" />
-    <Item Id="3497" Name="Lead Pickaxe" Scale="1.025" />
-    <Item Id="3498" Name="Tin Bow" />
-    <Item Id="3499" Name="Tin Hammer" Scale="1.15" />
-    <Item Id="3500" Name="Tin Axe" Scale="1.05" />
-    <Item Id="3501" Name="Tin Shortsword" Scale="0.85" />
-    <Item Id="3502" Name="Tin Broadsword" />
-    <Item Id="3503" Name="Tin Pickaxe" Scale="0.95" />
-    <Item Id="3504" Name="Copper Bow" />
-    <Item Id="3505" Name="Copper Hammer" Scale="1.1" />
-    <Item Id="3506" Name="Copper Axe" />
-    <Item Id="3507" Name="Copper Shortsword" Scale="0.8" />
-    <Item Id="3508" Name="Copper Broadsword" />
-    <Item Id="3509" Name="Copper Pickaxe" Scale="0.9" />
-    <Item Id="3510" Name="Silver Bow" />
-    <Item Id="3511" Name="Silver Hammer" Scale="1.25" />
-    <Item Id="3512" Name="Silver Axe" Scale="1.15" />
-    <Item Id="3513" Name="Silver Shortsword" Scale="0.95" />
-    <Item Id="3514" Name="Silver Broadsword" />
-    <Item Id="3515" Name="Silver Pickaxe" Scale="1.05" />
-    <Item Id="3516" Name="Gold Bow" />
-    <Item Id="3517" Name="Gold Hammer" Scale="1.25" />
-    <Item Id="3518" Name="Gold Axe" Scale="1.15" />
-    <Item Id="3519" Name="Gold Shortsword" Scale="0.95" />
-    <Item Id="3520" Name="Gold Broadsword" Scale="1.05" />
-    <Item Id="3521" Name="Gold Pickaxe" Scale="1.05" />
-    <Item Id="3522" Name="Solar Flare Hamaxe" />
-    <Item Id="3523" Name="Vortex Hamaxe" />
-    <Item Id="3524" Name="Nebula Hamaxe" />
-    <Item Id="3525" Name="Stardust Hamaxe" />
+    <Item Id="3480" Name="Platinum Bow" Rack="true" />
+    <Item Id="3481" Name="Platinum Hammer" Scale="1.275" Rack="true" />
+    <Item Id="3482" Name="Platinum Axe" Scale="1.175" Rack="true" />
+    <Item Id="3483" Name="Platinum Shortsword" Scale="0.975" Rack="true" />
+    <Item Id="3484" Name="Platinum Broadsword" Scale="1.075" Rack="true" />
+    <Item Id="3485" Name="Platinum Pickaxe" Scale="1.05" Rack="true" />
+    <Item Id="3486" Name="Tungsten Bow" Rack="true" />
+    <Item Id="3487" Name="Tungsten Hammer" Scale="1.25" Rack="true" />
+    <Item Id="3488" Name="Tungsten Axe" Scale="1.15" Rack="true" />
+    <Item Id="3489" Name="Tungsten Shortsword" Scale="0.95" Rack="true" />
+    <Item Id="3490" Name="Tungsten Broadsword" Scale="1.025" Rack="true" />
+    <Item Id="3491" Name="Tungsten Pickaxe" Scale="1.05" Rack="true" />
+    <Item Id="3492" Name="Lead Bow" Rack="true" />
+    <Item Id="3493" Name="Lead Hammer" Scale="1.225" Rack="true" />
+    <Item Id="3494" Name="Lead Axe" Scale="1.125" Rack="true" />
+    <Item Id="3495" Name="Lead Shortsword" Scale="0.925" Rack="true" />
+    <Item Id="3496" Name="Lead Broadsword" Rack="true" />
+    <Item Id="3497" Name="Lead Pickaxe" Scale="1.025" Rack="true" />
+    <Item Id="3498" Name="Tin Bow" Rack="true" />
+    <Item Id="3499" Name="Tin Hammer" Scale="1.15" Rack="true" />
+    <Item Id="3500" Name="Tin Axe" Scale="1.05" Rack="true" />
+    <Item Id="3501" Name="Tin Shortsword" Scale="0.85" Rack="true" />
+    <Item Id="3502" Name="Tin Broadsword" Rack="true" />
+    <Item Id="3503" Name="Tin Pickaxe" Scale="0.95" Rack="true" />
+    <Item Id="3504" Name="Copper Bow" Rack="true" />
+    <Item Id="3505" Name="Copper Hammer" Scale="1.1" Rack="true" />
+    <Item Id="3506" Name="Copper Axe" Rack="true" />
+    <Item Id="3507" Name="Copper Shortsword" Scale="0.8" Rack="true" />
+    <Item Id="3508" Name="Copper Broadsword" Rack="true" />
+    <Item Id="3509" Name="Copper Pickaxe" Scale="0.9" Rack="true" />
+    <Item Id="3510" Name="Silver Bow" Rack="true" />
+    <Item Id="3511" Name="Silver Hammer" Scale="1.25" Rack="true" />
+    <Item Id="3512" Name="Silver Axe" Scale="1.15" Rack="true" />
+    <Item Id="3513" Name="Silver Shortsword" Scale="0.95" Rack="true" />
+    <Item Id="3514" Name="Silver Broadsword" Rack="true" />
+    <Item Id="3515" Name="Silver Pickaxe" Scale="1.05" Rack="true" />
+    <Item Id="3516" Name="Gold Bow" Rack="true" />
+    <Item Id="3517" Name="Gold Hammer" Scale="1.25" Rack="true" />
+    <Item Id="3518" Name="Gold Axe" Scale="1.15" Rack="true" />
+    <Item Id="3519" Name="Gold Shortsword" Scale="0.95" Rack="true" />
+    <Item Id="3520" Name="Gold Broadsword" Scale="1.05" Rack="true" />
+    <Item Id="3521" Name="Gold Pickaxe" Scale="1.05" Rack="true" />
+    <Item Id="3522" Name="Solar Flare Hamaxe" Rack="true" />
+    <Item Id="3523" Name="Vortex Hamaxe" Rack="true" />
+    <Item Id="3524" Name="Nebula Hamaxe" Rack="true" />
+    <Item Id="3525" Name="Stardust Hamaxe" Rack="true" />
     <Item Id="3526" Name="Solar Dye" />
     <Item Id="3527" Name="Nebula Dye" />
     <Item Id="3528" Name="Vortex Dye" />
     <Item Id="3529" Name="Stardust Dye" />
     <Item Id="3530" Name="Void Dye" />
-    <Item Id="3531" Name="Stardust Dragon Staff" />
+    <Item Id="3531" Name="Stardust Dragon Staff" Rack="true" />
     <Item Id="3532" Name="Bacon" />
     <Item Id="3533" Name="Shifting Sands Dye" />
     <Item Id="3534" Name="Mirage Dye" />
@@ -8850,15 +8850,15 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="3537" Name="Nebula Monolith" />
     <Item Id="3538" Name="Stardust Monolith" />
     <Item Id="3539" Name="Solar Monolith" />
-    <Item Id="3540" Name="Phantasm" />
-    <Item Id="3541" Name="Last Prism" />
-    <Item Id="3542" Name="Nebula Blaze" />
-    <Item Id="3543" Name="Daybreak" />
+    <Item Id="3540" Name="Phantasm" Rack="true" />
+    <Item Id="3541" Name="Last Prism" Rack="true" />
+    <Item Id="3542" Name="Nebula Blaze" Rack="true" />
+    <Item Id="3543" Name="Daybreak" Rack="true" />
     <Item Id="3544" Name="Super Healing Potion" />
     <Item Id="3545" Name="Detonator" />
-    <Item Id="3546" Name="Celebration" />
+    <Item Id="3546" Name="Celebration" Rack="true" />
     <Item Id="3547" Name="Bouncy Dynamite" />
-    <Item Id="3548" Name="Happy Grenade" />
+    <Item Id="3548" Name="Happy Grenade" Rack="true" />
     <Item Id="3549" Name="Ancient Manipulator" />
     <Item Id="3550" Name="Flame and Silver Dye" />
     <Item Id="3551" Name="Green Flame and Silver Dye" />
@@ -8877,11 +8877,11 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="3564" Name="Gold Squirrel" />
     <Item Id="3565" Name="Red Squirrel Cage" />
     <Item Id="3566" Name="Gold Squirrel Cage" />
-    <Item Id="3567" Name="Luminite Bullet" />
-    <Item Id="3568" Name="Luminite Arrow" />
-    <Item Id="3569" Name="Lunar Portal Staff" />
-    <Item Id="3570" Name="Lunar Flare" />
-    <Item Id="3571" Name="Rainbow Crystal Staff" />
+    <Item Id="3567" Name="Luminite Bullet" Rack="true" />
+    <Item Id="3568" Name="Luminite Arrow" Rack="true" />
+    <Item Id="3569" Name="Lunar Portal Staff" Rack="true" />
+    <Item Id="3570" Name="Lunar Flare" Rack="true" />
+    <Item Id="3571" Name="Rainbow Crystal Staff" Rack="true" />
     <Item Id="3572" Name="Lunar Hook" />
     <Item Id="3573" Name="Solar Fragment Block" />
     <Item Id="3574" Name="Vortex Fragment Block" />
@@ -9074,12 +9074,12 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="3761" Name="Silly Purple Balloon Wall" />
     <Item Id="3762" Name="Silly Green Balloon Wall" />
     <Item Id="3763" Name="0x33's Aviators" Head="198" />
-    <Item Id="3764" Name="Blue Phasesaber" Scale="1.15" />
-    <Item Id="3765" Name="Red Phasesaber" Scale="1.15" />
-    <Item Id="3766" Name="Green Phasesaber" Scale="1.15" />
-    <Item Id="3767" Name="Purple Phasesaber" Scale="1.15" />
-    <Item Id="3768" Name="White Phasesaber" Scale="1.15" />
-    <Item Id="3769" Name="Yellow Phasesaber" Scale="1.15" />
+    <Item Id="3764" Name="Blue Phasesaber" Scale="1.15" Rack="true" />
+    <Item Id="3765" Name="Red Phasesaber" Scale="1.15" Rack="true" />
+    <Item Id="3766" Name="Green Phasesaber" Scale="1.15" Rack="true" />
+    <Item Id="3767" Name="Purple Phasesaber" Scale="1.15" Rack="true" />
+    <Item Id="3768" Name="White Phasesaber" Scale="1.15" Rack="true" />
+    <Item Id="3769" Name="Yellow Phasesaber" Scale="1.15" Rack="true" />
   </Items>
   <Npcs>
     <Npc Id="17"    Name="Merchant"         Frames="25"   />

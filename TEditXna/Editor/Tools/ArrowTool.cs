@@ -44,7 +44,7 @@ namespace TEditXna.Editor.Tools
                     return;
                 }
             }
-            if (Tile.IsSign(curTile.Type))
+            else if (Tile.IsSign(curTile.Type))
             {
                 Sign sign = _wvm.CurrentWorld.GetSignAtTile(e.Location.X, e.Location.Y);
                 if (sign != null)
@@ -53,7 +53,7 @@ namespace TEditXna.Editor.Tools
                     return;
                 }
             }
-            if (curTile.Type == 395)
+            else if (curTile.Type == 395)
             {
                 TileEntity frame = _wvm.CurrentWorld.GetTileEntityAtTile(e.Location.X, e.Location.Y);
                 if (frame != null)
@@ -62,13 +62,28 @@ namespace TEditXna.Editor.Tools
                     return;
                 }
             }
-            if (curTile.Type == 128 || curTile.Type == 269)
+            else if (curTile.Type == 128 || curTile.Type == 269)
             {
                 Vector2Int32 MannLocation = _wvm.CurrentWorld.GetMannequin(e.Location.X, e.Location.Y);
                 _wvm.SelectedMannHead = _wvm.CurrentWorld.Tiles[MannLocation.X, MannLocation.Y].U / 100;
                 _wvm.SelectedMannBody = _wvm.CurrentWorld.Tiles[MannLocation.X, MannLocation.Y + 1].U / 100;
                 _wvm.SelectedMannLegs = _wvm.CurrentWorld.Tiles[MannLocation.X, MannLocation.Y + 2].U / 100;
                 _wvm.SelectedMannequin = MannLocation;
+            }
+            else if (curTile.Type == 334)
+            {
+                Vector2Int32 RackLocation = _wvm.CurrentWorld.GetRack(e.Location.X, e.Location.Y);
+                if (_wvm.CurrentWorld.Tiles[RackLocation.X, RackLocation.Y + 1].U >= 5000)
+                {
+                    _wvm.SelectedRackPrefix = (byte)(_wvm.CurrentWorld.Tiles[RackLocation.X + 1, RackLocation.Y + 1].U % 5000);
+                    _wvm.SelectedRackNetId = (_wvm.CurrentWorld.Tiles[RackLocation.X, RackLocation.Y + 1].U % 5000) - 100;
+                }
+                else
+                {
+                    _wvm.SelectedRackPrefix = 0;
+                    _wvm.SelectedRackNetId = 0;
+                }                
+                _wvm.SelectedRack = RackLocation;
             }
         }
     }

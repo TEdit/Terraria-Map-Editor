@@ -29,6 +29,7 @@ namespace TEditXNA.Terraria
         private static readonly Dictionary<int, string> _armorHeadNames = new Dictionary<int, string>();
         private static readonly Dictionary<int, string> _armorBodyNames = new Dictionary<int, string>();
         private static readonly Dictionary<int, string> _armorLegsNames = new Dictionary<int, string>();
+        private static readonly Dictionary<int, string> _rackable = new Dictionary<int, string>();
 
         private static readonly ObservableCollection<ItemProperty> _itemProperties = new ObservableCollection<ItemProperty>();
         private static readonly ObservableCollection<ChestProperty> _chestProperties = new ObservableCollection<ChestProperty>();
@@ -274,19 +275,19 @@ namespace TEditXNA.Terraria
                 int tally = (int?)xElement.Attribute("Tally") ?? 0;
                 if (tally > 0)
                     _tallynames.Add(tally, curItem.Name);
-                int head = (int?)xElement.Attribute("Head") ?? 0;
-                if (head > 0)
+                int head = (int?)xElement.Attribute("Head") ?? -1;
+                if (head >= 0)
                     _armorHeadNames.Add(head, curItem.Name);
-                int body = (int?)xElement.Attribute("Body") ?? 0;
-                if (body > 0)
+                int body = (int?)xElement.Attribute("Body") ?? -1;
+                if (body >= 0)
                     _armorBodyNames.Add(body, curItem.Name);
-                int legs = (int?)xElement.Attribute("Legs") ?? 0;
-                if (legs > 0)
+                int legs = (int?)xElement.Attribute("Legs") ?? -1;
+                if (legs >= 0)
                     _armorLegsNames.Add(legs, curItem.Name);
+                bool rack = (bool?)xElement.Attribute("Rack") ?? false;
+                if (rack)
+                    _rackable.Add(curItem.Id, curItem.Name);
             }
-            ArmorLegsNames.Add(0, "[Blank]");
-            ArmorBodyNames.Add(0, "[Blank]");
-            ArmorHeadNames.Add(0, "[Blank]");
 
             foreach (var xElement in xmlSettings.Elements("Paints").Elements("Paint"))
             {
@@ -464,6 +465,10 @@ namespace TEditXNA.Terraria
         public static Dictionary<int, string> ArmorLegsNames
         {
             get { return _armorLegsNames; }
+        }
+        public static Dictionary<int, string> Rackable
+        {
+            get { return _rackable; }
         }
 
         public static Dictionary<int, int> NpcFrames

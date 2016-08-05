@@ -191,6 +191,21 @@ namespace TEditXNA.Terraria
             return new Vector2Int32(x, y);
         }
 
+        public Vector2Int32 GetRack(int x, int y)
+        {
+            Tile tile = Tiles[x, y];
+            if (tile.U >= 5000)
+            {
+                x -= ((tile.U / 5000) - 1) % 3;
+            }
+            else
+            {
+                x -= tile.U % 54 / 18;
+            }
+            y -= tile.V / 18;
+            return new Vector2Int32(x, y);
+        }
+
         public Vector2Int32 GetChestAnchor(int x, int y)
         {
             Tile tile = Tiles[x, y];
