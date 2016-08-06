@@ -182,13 +182,13 @@ namespace TEditXna.View
             }
             InitializeGraphicsComponents(e);
 
-           
+
             if (_textureDictionary.Valid)
                 LoadTerrariaTextures(e);
 
             _selectionTexture = new Texture2D(e.GraphicsDevice, 1, 1);
             LoadResourceTextures(e);
-            
+
             _selectionTexture.SetData(new[] { Color.FromNonPremultiplied(0, 128, 255, 128) }, 0, 1);
             // Start the Game Timer
             _gameTimer.Start();
@@ -610,7 +610,7 @@ namespace TEditXna.View
                                                 case 66: isRight = true; --baseX; break;
                                             }
                                         }
-                                        
+
                                         //Check tree type
                                         int treeType = -1; //Default to normal in case no grass grows beneath the tree
                                         for (int i = 0; i < 100; i++)
@@ -854,6 +854,44 @@ namespace TEditXna.View
                                             source = new Rectangle(curtile.U, curtile.V, tileprop.TextureGrid.X, tileprop.TextureGrid.Y);
                                             tileTex = _textureDictionary.GetTile(curtile.Type);
                                             dest = new Rectangle(1 + (int)((_scrollPosition.X + x) * _zoom), 1 + (int)((_scrollPosition.Y + y) * _zoom), (int)_zoom, (int)_zoom);
+                                        }
+                                        else if (curtile.Type == 171) // Christmas Tree
+                                        {
+                                            if (curtile.U >= 10)
+                                            {
+                                                int star = curtile.V & 7;
+                                                int garland = (curtile.V >> 3) & 7;
+                                                int bulb = (curtile.V >> 6) & 0xf;
+                                                int light = (curtile.V >> 10) & 0xf;
+                                                source = new Rectangle(0, 0, 64, 128);
+                                                dest = new Rectangle(1 + (int)((_scrollPosition.X + x) * _zoom), 1 + (int)((_scrollPosition.Y + y) * _zoom), (int)_zoom * 4, (int)_zoom * 8);
+                                                if (star > 0)
+                                                {
+                                                    tileTex = (Texture2D)_textureDictionary.GetMisc("Xmas_3");
+                                                    source.X = 66 * (star - 1);
+                                                    _spriteBatch.Draw(tileTex, dest, source, Color.White, 0f, default(Vector2), SpriteEffects.None, LayerTileTrack);
+                                                }
+                                                if (garland > 0)
+                                                {
+                                                    tileTex = (Texture2D)_textureDictionary.GetMisc("Xmas_1");
+                                                    source.X = 66 * (garland - 1);
+                                                    _spriteBatch.Draw(tileTex, dest, source, Color.White, 0f, default(Vector2), SpriteEffects.None, LayerTileTrack);
+                                                }
+                                                if (bulb > 0)
+                                                {
+                                                    tileTex = (Texture2D)_textureDictionary.GetMisc("Xmas_2");
+                                                    source.X = 66 * (bulb - 1);
+                                                    _spriteBatch.Draw(tileTex, dest, source, Color.White, 0f, default(Vector2), SpriteEffects.None, LayerTileTrack);
+                                                }
+                                                if (light > 0)
+                                                {
+                                                    tileTex = (Texture2D)_textureDictionary.GetMisc("Xmas_4");
+                                                    source.X = 66 * (light - 1);
+                                                    _spriteBatch.Draw(tileTex, dest, source, Color.White, 0f, default(Vector2), SpriteEffects.None, LayerTileTrack);
+                                                }
+                                                source.X = 0;
+                                                tileTex = (Texture2D)_textureDictionary.GetMisc("Xmas_0");
+                                            }
                                         }
                                         else if (curtile.Type == 314)
                                         {
