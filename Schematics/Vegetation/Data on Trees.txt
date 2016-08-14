@@ -1,5 +1,0 @@
-The Tree files for Corruption, Jungle, and Grass biomes are identical and interchangable.
-Mushroom Grass trees require different files.
-Make sure you are useing the correct files when building your forests.
-
-The Tree Top files also function as trunks, ie you can have a tree with multiple Canopies. This applies to all trees.
