@@ -37,12 +37,15 @@ namespace TEditXna.View
         private const float LayerTileTrack = 1 - 0.05f;
         private const float LayerTileActuator = 1 - 0.06f;
         private const float LayerLiquid = 1 - 0.07f;
-        private const float LayerWires = 1 - 0.08f;
+        private const float LayerRedWires = 1 - 0.08f;
+        private const float LayerBlueWires = 1 - 0.09f;
+        private const float LayerGreenWires = 1 - 0.10f;
+        private const float LayerYellowWires = 1 - 0.11f;
 
-        private const float LayerGrid = 1 - 0.10f;
-        private const float LayerLocations = 1 - 0.15f;
-        private const float LayerSelection = 1 - 0.20f;
-        private const float LayerTools = 1 - 0.25f;
+        private const float LayerGrid = 1 - 0.15f;
+        private const float LayerLocations = 1 - 0.20f;
+        private const float LayerSelection = 1 - 0.25f;
+        private const float LayerTools = 1 - 0.30f;
 
         private Color _backgroundColor = Color.FromNonPremultiplied(32, 32, 32, 255);
         private readonly GameTimer _gameTimer;
@@ -1602,7 +1605,7 @@ namespace TEditXna.View
                                     source.X = state * 18;
                                     source.Y = voffset;
 
-                                    _spriteBatch.Draw(tileTex, dest, source, Color.White, 0f, default(Vector2), SpriteEffects.None, LayerWires);
+                                    _spriteBatch.Draw(tileTex, dest, source, Color.White, 0f, default(Vector2), SpriteEffects.None, LayerRedWires);
                                 }
                                 if (curtile.WireBlue && _wvm.ShowBlueWires)
                                 {
@@ -1617,7 +1620,7 @@ namespace TEditXna.View
                                     source.X = state * 18;
                                     source.Y = 18 + voffset;
 
-                                    _spriteBatch.Draw(tileTex, dest, source, Color.White, 0f, default(Vector2), SpriteEffects.None, LayerWires);
+                                    _spriteBatch.Draw(tileTex, dest, source, Color.White, 0f, default(Vector2), SpriteEffects.None, LayerBlueWires);
                                 }
                                 if (curtile.WireGreen && _wvm.ShowGreenWires)
                                 {
@@ -1632,7 +1635,7 @@ namespace TEditXna.View
                                     source.X = state * 18;
                                     source.Y = 36 + voffset;
 
-                                    _spriteBatch.Draw(tileTex, dest, source, Color.White, 0f, default(Vector2), SpriteEffects.None, LayerWires);
+                                    _spriteBatch.Draw(tileTex, dest, source, Color.White, 0f, default(Vector2), SpriteEffects.None, LayerGreenWires);
                                 }
                                 if (curtile.WireYellow && _wvm.ShowYellowWires)
                                 {
@@ -1647,7 +1650,7 @@ namespace TEditXna.View
                                     source.X = state * 18;
                                     source.Y = 54 + voffset;
 
-                                    _spriteBatch.Draw(tileTex, dest, source, Color.White, 0f, default(Vector2), SpriteEffects.None, LayerWires);
+                                    _spriteBatch.Draw(tileTex, dest, source, Color.White, 0f, default(Vector2), SpriteEffects.None, LayerYellowWires);
                                 }
                             }
                         }

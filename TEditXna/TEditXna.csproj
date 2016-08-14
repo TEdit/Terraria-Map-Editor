@@ -253,9 +253,6 @@
     <Compile Include="ViewModel\WorldViewModel.Editor.cs">
       <DependentUpon>WorldViewModel.cs</DependentUpon>
     </Compile>
-    <Compile Include="View\ChestEditorView.xaml.cs">
-      <DependentUpon>ChestEditorView.xaml</DependentUpon>
-    </Compile>
     <Compile Include="View\ClipboardView.xaml.cs">
       <DependentUpon>ClipboardView.xaml</DependentUpon>
     </Compile>
@@ -285,9 +282,6 @@
     </Compile>
     <Compile Include="View\Popups\SignPopup.xaml.cs">
       <DependentUpon>SignPopup.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\SignEditor.xaml.cs">
-      <DependentUpon>SignEditor.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\SpecialTileView.xaml.cs">
       <DependentUpon>SpecialTileView.xaml</DependentUpon>
@@ -377,10 +371,6 @@
       <DependentUpon>ScrollViewerThumbnail.cs</DependentUpon>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="View\ChestEditorView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="View\ClipboardView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -418,10 +408,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Popups\SignPopup.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\SignEditor.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -512,6 +498,8 @@
     <Resource Include="Images\Toolbar\update_xml.png" />
     <Resource Include="Images\Tools\point.png" />
     <Resource Include="Images\Tools\cross.png" />
+    <Resource Include="Images\Tools\zoom_in.png" />
+    <Resource Include="Images\Tools\zoom_out.png" />
     <EmbeddedResource Include="Images\Overlays\npc_mechanic.png" />
     <EmbeddedResource Include="Images\Overlays\npc_wizard.png" />
     <EmbeddedResource Include="Images\Overlays\npc_goblin.png" />
@@ -569,7 +557,7 @@
     <VersionItems Include="$(SolutionDir)teditversion.txt" />
     <VersionItems Include="$(ProjectDir)Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
 	    -->
   <Target Name="BeforeBuild">
