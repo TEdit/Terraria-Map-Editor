@@ -33,7 +33,7 @@ namespace TEditXna.Editor.Tools
                 _startPoint = e.Location;
                 _wvm.CheckTiles = new bool[_wvm.CurrentWorld.TilesWide * _wvm.CurrentWorld.TilesHigh];
             }
-        
+
             _isLeftDown = (e.LeftButton == MouseButtonState.Pressed);
             _isRightDown = (e.RightButton == MouseButtonState.Pressed);
             CheckDirectionandDraw(e.Location);
@@ -133,7 +133,7 @@ namespace TEditXna.Editor.Tools
             IEnumerable<Vector2Int32> area = Fill.FillRectangleCentered(point, new Vector2Int32(_wvm.Brush.Width, _wvm.Brush.Height));
             if (_wvm.Brush.IsOutline)
             {
-                
+
                 IEnumerable<Vector2Int32> interrior = Fill.FillRectangleCentered(point,
                                                                                  new Vector2Int32(
                                                                                      _wvm.Brush.Width - _wvm.Brush.Outline * 2,
@@ -207,7 +207,14 @@ namespace TEditXna.Editor.Tools
                         if (_wvm.Selection.IsValid(pixel))
                         {
                             _wvm.UndoManager.SaveTile(pixel);
-                            _wvm.SetPixel(pixel.X, pixel.Y, mode: PaintMode.TileAndWall);
+                            if (_wvm.TilePicker.WallStyleActive)
+                            {
+                                _wvm.TilePicker.WallStyleActive = false;
+                                _wvm.SetPixel(pixel.X, pixel.Y, mode: PaintMode.TileAndWall);
+                                _wvm.TilePicker.WallStyleActive = true;
+                            }
+                            else
+                                _wvm.SetPixel(pixel.X, pixel.Y, mode: PaintMode.TileAndWall);
 
                             /* Heathtech */
                             BlendRules.ResetUVCache(_wvm, pixel.X, pixel.Y, 1, 1);
@@ -224,11 +231,18 @@ namespace TEditXna.Editor.Tools
                 if (_wvm.Selection.IsValid(pixel))
                 {
                     _wvm.UndoManager.SaveTile(pixel);
-                    _wvm.SetPixel(pixel.X, pixel.Y, erase: true);
+                    _wvm.SetPixel(pixel.X, pixel.Y, mode:PaintMode.TileAndWall, erase: true);
 
                     if (_wvm.TilePicker.WallStyleActive)
                     {
-                        _wvm.SetPixel(pixel.X, pixel.Y, mode: PaintMode.TileAndWall);
+                        if (_wvm.TilePicker.TileStyleActive)
+                        {
+                            _wvm.TilePicker.TileStyleActive = false;
+                            _wvm.SetPixel(pixel.X, pixel.Y, mode: PaintMode.TileAndWall);
+                            _wvm.TilePicker.TileStyleActive = true;
+                        }
+                        else
+                            _wvm.SetPixel(pixel.X, pixel.Y, mode: PaintMode.TileAndWall);
                     }
 
                     /* Heathtech */
