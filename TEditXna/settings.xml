@@ -4565,13 +4565,13 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
       </Frames>
     </Tile>
     <Tile Id="387" Color="#FF7F5C45" Name="Trapdoor Closed" Framed="true" Size="2,1" />
-    <Tile Id="388" Color="#FF7F5C45" Name="Tall Gate Closed" Framed="true" Size="1,5" >
+    <Tile Id="388" Color="#FF7F5C45" Name="Tall Gate Closed" TextureGrid="18,18" Framed="true" Size="1,5" >
       <Frames>
         <Frame UV="0,0" Variety="Style 1" />
         <Frame UV="0,94" Variety="Style 2" />
       </Frames>
     </Tile>
-    <Tile Id="389" Color="#FF7F5C45" Name="Tall Gate Open" Framed="true" Size="1,5" >
+    <Tile Id="389" Color="#FF7F5C45" Name="Tall Gate Open" TextureGrid="18,18" Framed="true" Size="1,5" >
       <Frames>
         <Frame UV="0,0" Variety="Style 1" />
         <Frame UV="0,94" Variety="Style 2" />
@@ -5135,7 +5135,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Wall Id="104" Name="Player Green Slab Wall"         Color="#FF242D2C" />
     <Wall Id="105" Name="Player Green Tiled Wall"        Color="#FF263132" />
     <Wall Id="106" Name="Wooden Fence"                   Color="#00000000" />
-    <Wall Id="107" Name="Metal Fence"                    Color="#00000000" />
+    <Wall Id="107" Name="Lead Fence"                     Color="#00000000" />
     <Wall Id="108" Name="Hive Wall"                      Color="#FF8A4926" />
     <Wall Id="109" Name="Palladium Column Wall"          Color="#FF5E1911" />
     <Wall Id="110" Name="Bubblegum Block Wall"           Color="#FF7D247A" />

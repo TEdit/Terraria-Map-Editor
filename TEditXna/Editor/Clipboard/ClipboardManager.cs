@@ -181,11 +181,12 @@ namespace TEditXna.Editor.Clipboard
                             curTile.WireRed = buffer.Tiles[x, y].WireRed;
                             curTile.WireGreen = buffer.Tiles[x, y].WireGreen;
                             curTile.WireBlue = buffer.Tiles[x, y].WireBlue;
+                            curTile.WireYellow = buffer.Tiles[x, y].WireYellow;
                             curTile.Actuator = buffer.Tiles[x, y].Actuator;
                             curTile.InActive = buffer.Tiles[x, y].InActive;
                         }
 
-                        if (!PasteEmpty && (curTile.LiquidAmount == 0 && !curTile.IsActive && curTile.Wall == 0 && !curTile.WireRed))
+                        if (!PasteEmpty && (curTile.LiquidAmount == 0 && !curTile.IsActive && curTile.Wall == 0 && !curTile.WireRed && !curTile.WireBlue && !curTile.WireGreen && !curTile.WireYellow))
                         {
                             // skip tiles that are empty if paste empty is not true
                             continue;
@@ -209,6 +210,7 @@ namespace TEditXna.Editor.Clipboard
                             curTile.WireRed = worldTile.WireRed;
                             curTile.WireGreen = worldTile.WireGreen;
                             curTile.WireBlue = worldTile.WireBlue;
+                            curTile.WireYellow = worldTile.WireYellow;
                             curTile.Actuator = worldTile.Actuator;
                             curTile.InActive = worldTile.InActive;
                         }
@@ -341,8 +343,8 @@ namespace TEditXna.Editor.Clipboard
                                 break;
                         }
                     }
-                    
-                    else 
+
+                    else
                     {
                         //  Ignore multi-height tiles when flipping on y-axis
                         if (tileSize.Y > 1)
