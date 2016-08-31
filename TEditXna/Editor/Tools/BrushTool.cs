@@ -17,6 +17,8 @@ namespace TEditXna.Editor.Tools
         private bool _isRightDown;
         private Vector2Int32 _startPoint;
         private Vector2Int32 _endPoint;
+        private Vector2Int32 _leftPoint;
+        private Vector2Int32 _rightPoint;
 
         public BrushTool(WorldViewModel worldViewModel)
             : base(worldViewModel)
@@ -61,6 +63,10 @@ namespace TEditXna.Editor.Tools
             bmp.Clear();
             if (_wvm.Brush.Shape == BrushShape.Square || _wvm.Brush.Height <= 1 || _wvm.Brush.Width <= 1)
                 bmp.FillRectangle(0, 0, _wvm.Brush.Width, _wvm.Brush.Height, Color.FromArgb(127, 0, 90, 255));
+            else if (_wvm.Brush.Shape == BrushShape.Left)
+                bmp.DrawLine(0, 0, _wvm.Brush.Width, _wvm.Brush.Height, Color.FromArgb(127, 0, 90, 255));
+            else if (_wvm.Brush.Shape == BrushShape.Right)
+                bmp.DrawLine(0, _wvm.Brush.Height, _wvm.Brush.Width, 0, Color.FromArgb(127, 0, 90, 255));
             else
                 bmp.FillEllipse(0, 0, _wvm.Brush.Width, _wvm.Brush.Height, Color.FromArgb(127, 0, 90, 255));
 
@@ -109,6 +115,10 @@ namespace TEditXna.Editor.Tools
                 else if (_wvm.Brush.Shape == BrushShape.Round)
                 {
                     FillRound(point);
+                }
+                else if (_wvm.Brush.Shape == BrushShape.Right || _wvm.Brush.Shape == BrushShape.Left)
+                {
+                    FillSlope(point);
                 }
             }
         }
@@ -247,6 +257,43 @@ namespace TEditXna.Editor.Tools
 
                     /* Heathtech */
                     BlendRules.ResetUVCache(_wvm, pixel.X, pixel.Y, 1, 1);
+                }
+            }
+        }
+
+        private void FillSlope(Vector2Int32 point)
+        {
+            if (_wvm.Brush.Shape == BrushShape.Right)
+            {
+                _leftPoint = new Vector2Int32(point.X - _wvm.Brush.Width / 2, point.Y + _wvm.Brush.Height / 2);
+                _rightPoint = new Vector2Int32(point.X + _wvm.Brush.Width / 2,point.Y - _wvm.Brush.Height / 2);
+            }
+            else
+            {
+                _leftPoint = new Vector2Int32(point.X - _wvm.Brush.Width / 2, point.Y - _wvm.Brush.Height / 2);
+                _rightPoint = new Vector2Int32(point.X + _wvm.Brush.Width / 2,point.Y + _wvm.Brush.Height / 2);
+            }
+            IEnumerable<Vector2Int32> area = Shape.DrawLine(_leftPoint, _rightPoint);
+            foreach (Vector2Int32 pixel in area)
+            {
+                bool test1 = _wvm.CurrentWorld.ValidTileLocation(pixel);
+                bool test2 = _wvm.CurrentWorld.ValidTileLocation(pixel.X, pixel.Y);
+                bool test3 = _wvm.CurrentWorld.ValidTileLocation(pixel.X, pixel.Y);
+
+                if (!test1 && !test2 && !test3) continue;
+
+                int index = pixel.X + pixel.Y * _wvm.CurrentWorld.TilesWide;
+                if (!_wvm.CheckTiles[index])
+                {
+                    _wvm.CheckTiles[index] = true;
+                    if (_wvm.Selection.IsValid(pixel))
+                    {
+                        _wvm.UndoManager.SaveTile(pixel);
+                        _wvm.SetPixel(pixel.X, pixel.Y);
+
+                        /* Heathtech */
+                        BlendRules.ResetUVCache(_wvm, pixel.X, pixel.Y, 1, 1);
+                    }
                 }
             }
         }
