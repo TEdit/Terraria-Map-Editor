@@ -19,8 +19,8 @@ namespace TEditXNA.Terraria
 
     public partial class World
     {
-        public static uint CompatibleVersion = 173;
-        public static short TileCount = 461;
+        public static uint CompatibleVersion = 175;
+        public static short TileCount = 463;
         public static short SectionCount = 10;
 
         public static bool[] TileFrameImportant;
@@ -61,7 +61,7 @@ namespace TEditXNA.Terraria
             OnProgressChanged(null, new ProgressChangedEventArgs(100, "Save Tile Entities Section..."));
             sectionPointers[6] = SaveTileEntities(world, bw);
             OnProgressChanged(null, new ProgressChangedEventArgs(100, "Save Weighted Pressure Plates..."));
-            sectionPointers[7] = SavePressurePlate(world.PressurePlates, bw);            
+            sectionPointers[7] = SavePressurePlate(world.PressurePlates, bw);
             OnProgressChanged(null, new ProgressChangedEventArgs(100, "Save Footers..."));
             SaveFooter(world, bw);
             UpdateSectionPointers(sectionPointers, bw);
@@ -334,9 +334,9 @@ namespace TEditXNA.Terraria
             foreach (NPC mob in mobs)
             {
                 bw.Write(true);
-                bw.Write(mob.Name);                
+                bw.Write(mob.Name);
                 bw.Write(mob.Position.X);
-                bw.Write(mob.Position.Y);                
+                bw.Write(mob.Position.Y);
             }
             bw.Write(false);
 
@@ -367,7 +367,7 @@ namespace TEditXNA.Terraria
 
         public static int UpdateSectionPointers(int[] sectionPointers, BinaryWriter bw)
         {
-            bw.BaseStream.Position = 0x18L;        
+            bw.BaseStream.Position = 0x18L;
             bw.Write((short)sectionPointers.Length);
 
             for (int i = 0; i < sectionPointers.Length; i++)
@@ -383,7 +383,7 @@ namespace TEditXNA.Terraria
             bw.Write(Math.Max(CompatibleVersion, world.Version));
             bw.Write((UInt64)0x026369676f6c6572ul);
             bw.Write((int)world.FileRevision+1);
-            bw.Write(Convert.ToUInt64(world.IsFavorite));                
+            bw.Write(Convert.ToUInt64(world.IsFavorite));
             bw.Write(SectionCount);
 
             // write section pointer placeholders
@@ -548,10 +548,10 @@ namespace TEditXNA.Terraria
                 bw.Write(tentity.PosY);
                 switch (tentity.Type)
                 {
-                    case 0: //it is a dummy                        
+                    case 0: //it is a dummy
                         bw.Write(tentity.Npc);
                         break;
-                    case 1: //it is a item frame                        
+                    case 1: //it is a item frame
                         bw.Write((Int16)tentity.NetId);
                         bw.Write(tentity.Prefix);
                         bw.Write(tentity.StackSize);
@@ -825,7 +825,7 @@ namespace TEditXNA.Terraria
                 {
                     tile.InActive = true;
                 }
-                
+
                 if ((header3 & 32) == 32)
                 {
                     tile.WireYellow = true;
@@ -957,10 +957,10 @@ namespace TEditXNA.Terraria
         {
             int totalMobs = 0;
             bool flag = r.ReadBoolean();
-            while (flag)            
+            while (flag)
             {
                 NPC npc = new NPC();
-                npc.Name = r.ReadString();                    
+                npc.Name = r.ReadString();
                 npc.Position = new Vector2(r.ReadSingle(), r.ReadSingle());
 
                 if (NpcIds.ContainsKey(npc.Name))
@@ -1116,7 +1116,7 @@ namespace TEditXNA.Terraria
             w.InvasionX = r.ReadDouble();
 
             if (w.Version >= 147)
-            {                 
+            {
                  w.SlimeRainTime = r.ReadDouble();
                  w.SundialCooldown = r.ReadByte();
             }
@@ -1205,7 +1205,7 @@ namespace TEditXNA.Terraria
                 }
             }
 
-            
+
             // a little future proofing, read any "unknown" flags from the end of the list and save them. We will write these back after we write our "known" flags.
             if (r.BaseStream.Position < expectedPosition)
             {
@@ -1259,7 +1259,7 @@ namespace TEditXNA.Terraria
             byte bitMask = 128;
             for (int i = 0; i < length; i++)
             {
-                // If we read the last bit mask (B1000000 = 0x80 = 128), read the next byte from the stream and start the mask over. 
+                // If we read the last bit mask (B1000000 = 0x80 = 128), read the next byte from the stream and start the mask over.
                 // Otherwise, keep incrementing the mask to get the next bit.
                 if (bitMask != 128)
                 {
@@ -1302,7 +1302,7 @@ namespace TEditXNA.Terraria
                     data = (byte)(data | bitMask);
                 }
 
-                // If we wrote the last bit mask (B1000000 = 0x80 = 128), write the data byte to the stream and start the mask over. 
+                // If we wrote the last bit mask (B1000000 = 0x80 = 128), write the data byte to the stream and start the mask over.
                 // Otherwise, keep incrementing the mask to write the next bit.
                 if (bitMask != 128)
                 {

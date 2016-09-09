@@ -2673,6 +2673,12 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="846,108" Name="Monster Banner" Variety="Ice Tortoise Banner" />
         <Frame UV="864,108" Name="Monster Banner" Variety="Sand Slime Banner" />
         <Frame UV="882,108" Name="Monster Banner" Variety="Sea Snail Banner" />
+        <Frame UV="900,108" Name="Monster Banner" Variety="Sand Elemental Banner" />
+        <Frame UV="918,108" Name="Monster Banner" Variety="Sand Shark Banner" />
+        <Frame UV="936,108" Name="Monster Banner" Variety="Bone Biter Banner" />
+        <Frame UV="954,108" Name="Monster Banner" Variety="Flesh Reaver Banner" />
+        <Frame UV="972,108" Name="Monster Banner" Variety="Crystal Thresher Banner" />
+        <Frame UV="990,108" Name="Monster Banner" Variety="Angry Tumbler Banner" />
       </Frames>
     </Tile>
     <Tile Id="92" Color="#FFD5E5ED" Name="Lamp Post" Framed="true" Size="1,6" Placement="floor" Light="true" >
@@ -3174,7 +3180,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
       </Frames>
     </Tile>
     <Tile Id="138" Color="#FF606060" Name="Boulder" Framed="true" Size="2,2" />
-    <Tile Id="139" Color="#FFBF8E6F" Name="Music Box (Overworld Day)" Framed="true" Size="2,2" >
+    <Tile Id="139" Color="#FFBF8E6F" Name="Music Box" Framed="true" Size="2,2" >
       <Frames>
         <Frame UV="0,0" Name="Music Box (Overworld Day)" Variety="Off" />
         <Frame UV="36,0" Name="Music Box (Overworld Day)" Variety="On" />
@@ -3252,6 +3258,8 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="36,1296" Name="Music Box (The Towers)" Variety="On" />
         <Frame UV="0,1332" Name="Music Box (Goblin Invasion)" Variety="Off" />
         <Frame UV="36,1332" Name="Music Box (Goblin Invasion)" Variety="On" />
+        <Frame UV="0,1368" Name="Music Box (Sandstorm)" Variety="Off" />
+        <Frame UV="36,1368" Name="Music Box (Sandstorm)" Variety="On" />
       </Frames>
     </Tile>
     <Tile Id="140" Color="#FF625FA7" Name="Demonite Brick" Solid="true" Blends="true" MergeWith="0" Light="true" />
@@ -5026,6 +5034,8 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Tile Id="458" Color="#FFd3c66f" Name="Sandfall" Solid="true" Blends="true" />
     <Tile Id="459" Color="#FFbedfe8" Name="Snowfall" Solid="true" Blends="true" />
     <Tile Id="460" Color="#FF8da3b5" Name="Snow Cloud" Solid="true" Blends="true" />
+    <Tile Id="461" Color="#FFFFDE64" Name="Sand Drip" Framed="true" Size="1,1" />
+    <Tile Id="462" Color="#FFE7B21C" Name="Desert Spirit Lamp" Framed="true" Size="2,1" />
   </Tiles>
   <Walls>
     <Wall Id="0"   Name="Sky"                            Color="#00000000" />
@@ -9080,6 +9090,33 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="3767" Name="Purple Phasesaber" Scale="1.15" Rack="true" />
     <Item Id="3768" Name="White Phasesaber" Scale="1.15" Rack="true" />
     <Item Id="3769" Name="Yellow Phasesaber" Scale="1.15" Rack="true" />
+    <Item Id="3770" Name="Djinn's Curse" Legs="140" />
+    <Item Id="3771" Name="Ancient Horn" />
+    <Item Id="3772" Name="Mandible Blade" Rack="true" />
+    <Item Id="3773" Name="Ancient Headdress" Head="199" />
+    <Item Id="3774" Name="Ancient Garments" Body="197" />
+    <Item Id="3775" Name="Ancient Slacks" Legs="141" />
+    <Item Id="3776" Name="Forbidden Mask" Head="200" />
+    <Item Id="3777" Name="Forbidden Robes" Body="198" />
+    <Item Id="3778" Name="Forbidden Treads" Legs="142" />
+    <Item Id="3779" Name="Spirit Flame" Rack="true" />
+    <Item Id="3780" Name="Sand Elemental Banner" Tally="251" />
+    <Item Id="3781" Name="Pocket Mirror" />
+    <Item Id="3782" Name="Magic Sand Dropper" />
+    <Item Id="3783" Name="Forbidden Fragment" />
+    <Item Id="3784" Name="Lamia Tail" Legs="143" />
+    <Item Id="3785" Name="Lamia Wraps" Body="199" />
+    <Item Id="3786" Name="Lamia Mask" Head="201" />
+    <Item Id="3787" Name="Sky Fracture" Rack="true" />
+    <Item Id="3788" Name="Onyx Blaster" Rack="true" />
+    <Item Id="3789" Name="Sand Shark Banner" Tally="252" />
+    <Item Id="3790" Name="Bone Biter Banner" Tally="253" />
+    <Item Id="3791" Name="Flesh Reaver Banner" Tally="254" />
+    <Item Id="3792" Name="Crystal Thresher Banner" Tally="255" />
+    <Item Id="3793" Name="Angry Tumbler Banner" Tally="256" />
+    <Item Id="3794" Name="Ancient Cloth" />
+    <Item Id="3795" Name="Desert Spirit Lamp" />
+    <Item Id="3796" Name="Music Box (Sandstorm)" />
   </Items>
   <Npcs>
     <Npc Id="17"    Name="Merchant"         Frames="25"   />
