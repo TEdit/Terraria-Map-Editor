@@ -5034,8 +5034,8 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Tile Id="458" Color="#FFd3c66f" Name="Sandfall" Solid="true" Blends="true" />
     <Tile Id="459" Color="#FFbedfe8" Name="Snowfall" Solid="true" Blends="true" />
     <Tile Id="460" Color="#FF8da3b5" Name="Snow Cloud" Solid="true" Blends="true" />
-    <Tile Id="461" Color="#FF8da3b5" Name="Sand Drip" Framed="true" Size="1,1" />
-    <Tile Id="462" Color="#FF8da3b5" Name="Desert Spirit Lamp" Framed="true" Size="2,1" />
+    <Tile Id="461" Color="#FFFFDE64" Name="Sand Drip" Framed="true" Size="1,1" />
+    <Tile Id="462" Color="#FFE7B21C" Name="Desert Spirit Lamp" Framed="true" Size="2,1" />
   </Tiles>
   <Walls>
     <Wall Id="0"   Name="Sky"                            Color="#00000000" />
