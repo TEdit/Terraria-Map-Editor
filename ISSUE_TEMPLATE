@@ -1,7 +1,0 @@
-**Before you submit an issue please read**
-If you get an unhandled exception, please check your log before posting
-If your log includes *DXGI_ERROR_DEVICE_REMOVED/DeviceRemoved*
-This is a known issue, do not create a new issue, please add your comments to #751
-People have had the most luck in Windows 7 with updating to DirectX 11.1
-This is found in windows update in the optional updates section or by
-following directions here https://support.microsoft.com/en-us/kb/179113
