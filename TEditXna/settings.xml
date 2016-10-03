@@ -397,9 +397,9 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="0,1188" Variety="Honey Door A" />
         <Frame UV="18,1188" Variety="Honey Door B" />
         <Frame UV="36,1188" Variety="Honey Door C" />
-        <Frame UV="0,1242" Variety="Steam Punk Door A" />
-        <Frame UV="18,1242" Variety="Steam Punk Door B" />
-        <Frame UV="36,1242" Variety="Steam Punk Door C" />
+        <Frame UV="0,1242" Variety="Steampunk Door A" />
+        <Frame UV="18,1242" Variety="Steampunk Door B" />
+        <Frame UV="36,1242" Variety="Steampunk Door C" />
         <Frame UV="0,1296" Variety="Pumpkin Door A" />
         <Frame UV="18,1296" Variety="Pumpkin Door A" />
         <Frame UV="36,1296" Variety="Pumpkin Door A" />
@@ -484,8 +484,8 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="36,1134" Variety="Golden Door" Anchor="Door Left" />
         <Frame UV="0,1188" Variety="Honey Door" Anchor="Door Right" />
         <Frame UV="36,1188" Variety="Honey Door" Anchor="Door Left" />
-        <Frame UV="0,1242" Variety="Steam Punk Door" Anchor="Door Right" />
-        <Frame UV="36,1242" Variety="Steam Punk Door" Anchor="Door Left" />
+        <Frame UV="0,1242" Variety="Steampunk Door" Anchor="Door Right" />
+        <Frame UV="36,1242" Variety="Steampunk Door" Anchor="Door Left" />
         <Frame UV="0,1296" Variety="Pumpkin Door" Anchor="Door Right" />
         <Frame UV="36,1296" Variety="Pumpkin Door" Anchor="Door Left" />
         <Frame UV="0,1350" Variety="Spooky Door" Anchor="Door Right" />
@@ -552,7 +552,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="918,0" Name="Bar Table" Variety="Wooden Bar" Anchor="Left" />
         <Frame UV="972,0" Name="Banquet Table" Variety="Golden Banquet" Anchor="Left" />
         <Frame UV="1026,0" Name="Table" Variety="Honey Table" Anchor="Left" />
-        <Frame UV="1080,0" Name="Table" Variety="Steam Punk Table" Anchor="Left" />
+        <Frame UV="1080,0" Name="Table" Variety="Steampunk Table" Anchor="Left" />
         <Frame UV="1134,0" name="Table" Variety="Pumpkin Table" Anchor="Left" />
         <Frame UV="1188,0" name="Table" Variety="Spooky Table" Anchor="Left" />
         <Frame UV="1242,0" name="Table" Variety="Pine Table" Anchor="Left" />
@@ -617,8 +617,8 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="18,840" Name="Barstool" Anchor="Right" />
         <Frame UV="0,880" Name="Honey Chair" Anchor="Left" />
         <Frame UV="18,880" Name="Honey Chair" Anchor="Right" />
-        <Frame UV="0,920" Name="Steam Punk Chair" Anchor="Left" />
-        <Frame UV="18,920" Name="Steam Punk Chair" Anchor="Right" />
+        <Frame UV="0,920" Name="Steampunk Chair" Anchor="Left" />
+        <Frame UV="18,920" Name="Steampunk Chair" Anchor="Right" />
         <Frame UV="0,960" Name="Pumpkin Chair" Anchor="Left" />
         <Frame UV="18,960" Name="Pumpkin Chair" Anchor="Right" />
         <Frame UV="0,1000" Name="Spooky Chair" Anchor="Left" />
@@ -2130,8 +2130,8 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="72,360" Name="Golden Bed" Variety="Right" />
         <Frame UV="0,396" Name="Honey Bed" Anchor="Left" />
         <Frame UV="72,396" Name="Honey Bed" Variety="Right" />
-        <Frame UV="0,432" Name="Steam Punk Bed" Anchor="Left" />
-        <Frame UV="72,432" Name="Steam Punk Bed" Variety="Right" />
+        <Frame UV="0,432" Name="Steampunk Bed" Anchor="Left" />
+        <Frame UV="72,432" Name="Steampunk Bed" Variety="Right" />
         <Frame UV="0,468" Name="Cactus Bed" Anchor="Left" />
         <Frame UV="72,468" Name="Cactus Bed" Variety="Right" />
         <Frame UV="0,504" Name="Flesh Bed" Anchor="Left" />
@@ -5443,10 +5443,10 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="120" Name="Molten Fury" Scale="1.1" Rack="true" />
     <Item Id="121" Name="Fiery Greatsword" Scale="1.3" Rack="true" />
     <Item Id="122" Name="Molten Pickaxe" Scale="1.15" Rack="true" />
-    <Item Id="123" Name="Meteor Helmet" />
+    <Item Id="123" Name="Meteor Helmet" Head="6" />
     <Item Id="124" Name="Meteor Suit" Body="6" />
     <Item Id="125" Name="Meteor Leggings" Legs="6" />
-    <Item Id="126" Name="Bottled Water" Head="6" />
+    <Item Id="126" Name="Bottled Water" />
     <Item Id="127" Name="Space Gun" Scale="0.8" Rack="true" />
     <Item Id="128" Name="Rocket Boots" />
     <Item Id="129" Name="Gray Brick" />

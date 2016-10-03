@@ -1049,6 +1049,10 @@ namespace TEditXna.View
                                             dest.X += (int)(((16 - source.Width) / 2F) * _zoom / 16);
                                             dest.Y += (int)((16 - source.Height) * _zoom / 16);
                                         }
+                                        else if ((curtile.Type >= 373 && curtile.Type <= 375) || curtile.Type == 461)
+                                        {
+                                          //skip rendering drips
+                                        }
                                         else
                                         {
                                             source = new Rectangle(curtile.U, curtile.V, tileprop.TextureGrid.X, tileprop.TextureGrid.Y);

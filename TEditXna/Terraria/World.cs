@@ -58,8 +58,8 @@ namespace TEditXNA.Terraria
             }
             catch (ArgumentOutOfRangeException err)
             {
-                string msg = string.Format("There is a problem in your world.\r\n" + 
-                                           "{0}\r\nThis world will not open in Terraria\r\n" + 
+                string msg = string.Format("There is a problem in your world.\r\n" +
+                                           "{0}\r\nThis world will not open in Terraria\r\n" +
                                            "Would you like to save anyways??\r\n"
                                            , err.ParamName);
                 if (MessageBox.Show(msg, "World Error", MessageBoxButton.YesNo, MessageBoxImage.Error) !=
@@ -68,7 +68,7 @@ namespace TEditXNA.Terraria
             }
             lock (_fileLock)
             {
-                
+
 
                 if (resetTime)
                 {
@@ -95,7 +95,7 @@ namespace TEditXNA.Terraria
                         // make a backup of current file if it exists
                         if (File.Exists(filename))
                         {
-                            string backup = filename + ".TEdit";
+                            string backup = filename + "." + DateTime.Now.ToString("yyyyMMddHHmmss") + ".TEdit";
                             File.Copy(filename, backup, true);
                         }
                         // replace actual file with temp save file
