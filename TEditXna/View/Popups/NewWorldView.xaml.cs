@@ -24,7 +24,7 @@ namespace TEditXna.View.Popups
         public NewWorldView()
         {
             InitializeComponent();
-            _newWorld = new World(1200, 4300, "TEdit World");
+            _newWorld = new World(1200, 4200, "TEdit World");
             _newWorld.Version = World.CompatibleVersion;
             _newWorld.GroundLevel = 350;
             _newWorld.RockLevel = 480;
