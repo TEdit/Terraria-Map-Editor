@@ -19,8 +19,8 @@ namespace TEditXNA.Terraria
 
     public partial class World
     {
-        public static uint CompatibleVersion = 177;
-        public static short TileCount = 463;
+        public static uint CompatibleVersion = 185;
+        public static short TileCount = 467;
         public static short SectionCount = 10;
 
         public static bool[] TileFrameImportant;
@@ -1029,6 +1029,21 @@ namespace TEditXNA.Terraria
         public static void LoadHeaderFlags(BinaryReader r, World w, int expectedPosition)
         {
             w.Title = r.ReadString();
+            if (w.Version >= 179)
+            {
+                if (w.Version == 179)
+                    w.Seed = r.ReadInt32().ToString();
+                else
+                    w.Seed = r.ReadString();
+                w.WorldGenVersion = r.ReadUInt64();
+            }
+            if (w.Version >= 181)
+            {
+                for(int i = 0; i < 16; i++)
+                {
+                    w.Guid[i] = r.ReadByte();
+                }
+            }
             w.WorldId = r.ReadInt32();
             w.LeftWorld = (float)r.ReadInt32();
             w.RightWorld = (float)r.ReadInt32();
@@ -1107,7 +1122,7 @@ namespace TEditXNA.Terraria
 
             w.ShadowOrbSmashed = r.ReadBoolean();
             w.SpawnMeteor = r.ReadBoolean();
-            w.ShadowOrbCount = r.ReadByte();
+            w.ShadowOrbCount = (int)r.ReadByte();
             w.AltarCount = r.ReadInt32();
             w.HardMode = r.ReadBoolean();
             w.InvasionDelay = r.ReadInt32();
@@ -1204,7 +1219,20 @@ namespace TEditXNA.Terraria
                     w.PartyingNPCs.Add(r.ReadInt32());
                 }
             }
-
+            if (w.Version >= 174)
+            {
+                w.SandStormHappening = r.ReadBoolean();
+                w.SandStormTimeLeft = r.ReadInt32();
+                w.SandStormSeverity = r.ReadSingle();
+                w.SandStormIntendedSeverity = r.ReadSingle();
+            }
+            if (w.Version >= 178)
+            {
+                w.SavedBartender = r.ReadBoolean();
+                w.DownedDD2InvasionT1 = r.ReadBoolean();
+                w.DownedDD2InvasionT2 = r.ReadBoolean();
+                w.DownedDD2InvasionT3 = r.ReadBoolean();
+            }
 
             // a little future proofing, read any "unknown" flags from the end of the list and save them. We will write these back after we write our "known" flags.
             if (r.BaseStream.Position < expectedPosition)
