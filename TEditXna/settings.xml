@@ -2679,6 +2679,16 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="954,108" Name="Monster Banner" Variety="Flesh Reaver Banner" />
         <Frame UV="972,108" Name="Monster Banner" Variety="Crystal Thresher Banner" />
         <Frame UV="990,108" Name="Monster Banner" Variety="Angry Tumbler Banner" />
+        <Frame UV="1008,108" Name="Monster Banner" Variety="Etherian Goblin Bomber Banner" />
+        <Frame UV="1026,108" Name="Monster Banner" Variety="Etherian Goblin Banner" />
+        <Frame UV="1044,108" Name="Monster Banner" Variety="Old One's Skeleton Banner" />
+        <Frame UV="1062,108" Name="Monster Banner" Variety="Drakin Banner" />
+        <Frame UV="1080,108" Name="Monster Banner" Variety="Kobold Glider Banner" />
+        <Frame UV="1098,108" Name="Monster Banner" Variety="Kobold Banner" />
+        <Frame UV="1116,108" Name="Monster Banner" Variety="Wither Beast Banner" />
+        <Frame UV="1134,108" Name="Monster Banner" Variety="Etherian Wyvern Banner" />
+        <Frame UV="1152,108" Name="Monster Banner" Variety="Etherian Javelin Thrower Banner" />
+        <Frame UV="1170,108" Name="Monster Banner" Variety="Etherian Lightning Bug Banner" />
       </Frames>
     </Tile>
     <Tile Id="92" Color="#FFD5E5ED" Name="Lamp Post" Framed="true" Size="1,6" Placement="floor" Light="true" >
@@ -3260,6 +3270,8 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="36,1332" Name="Music Box (Goblin Invasion)" Variety="On" />
         <Frame UV="0,1368" Name="Music Box (Sandstorm)" Variety="Off" />
         <Frame UV="36,1368" Name="Music Box (Sandstorm)" Variety="On" />
+        <Frame UV="0,1404" Name="Music Box (Old One's Army)" Variety="Off" />
+        <Frame UV="36,1404" Name="Music Box (Old One's Army)" Variety="On" />
       </Frames>
     </Tile>
     <Tile Id="140" Color="#FF625FA7" Name="Demonite Brick" Solid="true" Blends="true" MergeWith="0" Light="true" />
@@ -4173,6 +4185,9 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="1134,54" Name="Boss Trophy" Variety="Martian Saucer Trophy" />
         <Frame UV="1188,54" Name="Boss Trophy" Variety="Flying Dutchman Trophy" />
         <Frame UV="1242,54" Name="Boss Trophy" Variety="Moon Lord Trophy" />
+        <Frame UV="1295,54" Name="Boss Trophy" Variety="Betsy Trophy" />
+        <Frame UV="1350,54" Name="Boss Trophy" Variety="Dark Mage Trophy" />
+        <Frame UV="1404,54" Name="Boss Trophy" Variety="Ogre Trophy" />
       </Frames>
     </Tile>
     <Tile Id="241" Color="#FF4D4A48" Name="Catacomb" Framed="true" Size="4,3" >
@@ -5036,6 +5051,10 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Tile Id="460" Color="#FF8da3b5" Name="Snow Cloud" Solid="true" Blends="true" />
     <Tile Id="461" Color="#FFFFDE64" Name="Sand Drip" Framed="true" Size="1,1" />
     <Tile Id="462" Color="#FFE7B21C" Name="Desert Spirit Lamp" Framed="true" Size="2,1" />
+    <Tile Id="463" Color="#FF9BD6F0" Name="Defender's Forge" Framed="true" Size="3,4" />
+    <Tile Id="464" Color="#FFE9B780" Name="War Table" Framed="true" Size="5,4" />
+    <Tile Id="465" Color="#FF3354C3" Name="War Table Banner" Framed="true" Size="2,3" />
+    <Tile Id="466" Color="#FFCD9949" Name="Elder Cystal Stand" Framed="true" Size="5,4" />
   </Tiles>
   <Walls>
     <Wall Id="0"   Name="Sky"                            Color="#00000000" />
@@ -9117,6 +9136,93 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="3794" Name="Ancient Cloth" />
     <Item Id="3795" Name="Desert Spirit Lamp" />
     <Item Id="3796" Name="Music Box (Sandstorm)" />
+    <Item Id="3797" Name="Apprentice's Hat" Head="203" />
+    <Item Id="3798" Name="Apprentice's Robe" Body="200" />
+    <Item Id="3799" Name="Apprentice's Trousers" Legs="144" />
+    <Item Id="3800" Name="Squire's Great Helm" Head="204" />
+    <Item Id="3801" Name="Squire's Plating" Body="201" />
+    <Item Id="3802" Name="Squire's Greaves" Legs="145" />
+    <Item Id="3803" Name="Huntress's Wig" Head="205" />
+    <Item Id="3804" Name="Huntress's Jerkin" Body="202" />
+    <Item Id="3805" Name="Huntress's Pants" Legs="146" />
+    <Item Id="3806" Name="Monk's Bushy Brow Bald Cap" Head="206" />
+    <Item Id="3807" Name="Monk's Shirt" Body="203" />
+    <Item Id="3808" Name="Monk's Pants" Legs="148" />
+    <Item Id="3809" Name="Apprentice's Scarf" />
+    <Item Id="3810" Name="Squire's Shield" />
+    <Item Id="3811" Name="Huntress's Buckler" />
+    <Item Id="3812" Name="Monk's Belt" />
+    <Item Id="3813" Name="Defender's Forge" />
+    <Item Id="3814" Name="War Table" />
+    <Item Id="3815" Name="War Table Banner" />
+    <Item Id="3816" Name="Elder Crystal Stand" />
+    <Item Id="3817" Name="Defender Medal" />
+    <Item Id="3818" Name="Flameburst Rod" Rack="true" />
+    <Item Id="3819" Name="Flameburst Cane" Rack="true" />
+    <Item Id="3820" Name="Flameburst Staff" Rack="true" />
+    <Item Id="3821" Name="Ale Tosser" Rack="true" />
+    <Item Id="3822" Name="Etherian Mana" />
+    <Item Id="3823" Name="Brand of the Inferno" Scale="1.15" Rack="true" />
+    <Item Id="3824" Name="Ballista Rod" Rack="true" />
+    <Item Id="3825" Name="Ballista Cane" Rack="true" />
+    <Item Id="3826" Name="Ballista Staff" Rack="true" />
+    <Item Id="3827" Name="Flying Dragon" Rack="true" />
+    <Item Id="3828" Name="Elder Crystal" />
+    <Item Id="3829" Name="Lightning Aura Rod" Rack="true" />
+    <Item Id="3830" Name="Lightning Aura Cane" Rack="true" />
+    <Item Id="3831" Name="Lightning Aura Staff" Rack="true" />
+    <Item Id="3832" Name="Explosive Trap Rod" Rack="true" />
+    <Item Id="3833" Name="Explosive Trap Cane" Rack="true" />
+    <Item Id="3834" Name="Explosive Trap Staff" Rack="true" />
+    <Item Id="3835" Name="Sleepy Octopod" Rack="true" />
+    <Item Id="3836" Name="Ghastly Glaive" Rack="true" />
+    <Item Id="3837" Name="Etherian Goblin Bomber Banner" Tally="257" />
+    <Item Id="3838" Name="Etherian Goblin Banner" Tally="258" />
+    <Item Id="3839" Name="Old One's Skeleton Banner" Tally="259" />
+    <Item Id="3840" Name="Drakin Banner" Tally="260" />
+    <Item Id="3841" Name="Kobold Glider Banner" Tally="261" />
+    <Item Id="3842" Name="Kobold Banner" Tally="262" />
+    <Item Id="3843" Name="Wither Beast Banner" Tally="263" />
+    <Item Id="3844" Name="Etherian Wyvern Banner" Tally="264" />
+    <Item Id="3845" Name="Etherian Javelin Thrower Banner" Tally="265" />
+    <Item Id="3846" Name="Etherian Lightning Bug Banner" Tally="266" />
+    <Item Id="3847" Name="Ogre Mask" />
+    <Item Id="3848" Name="Goblin Mask" />
+    <Item Id="3849" Name="Goblin Bomber Cap" />
+    <Item Id="3850" Name="Etherian Javelin" />
+    <Item Id="3851" Name="Kobold Dynamite Backpack" />
+    <Item Id="3852" Name="Tome of Infinite Wisdom" Rack="true" />
+    <Item Id="3853" Name="Boring Bow" />
+    <Item Id="3854" Name="Phantom Phoenix" Rack="true" />
+    <Item Id="3855" Name="Gato Egg" />
+    <Item Id="3856" Name="Creeper Egg" />
+    <Item Id="3857" Name="Dragon Egg" />
+    <Item Id="3858" Name="Sky Dragon's Fury" Rack="true" />
+    <Item Id="3859" Name="Aerial Bane" Rack="true" />
+    <Item Id="3860" Name="Treasure Bag" />
+    <Item Id="3861" Name="Treasure Bag" />
+    <Item Id="3862" Name="Treasure Bag" />
+    <Item Id="3863" Name="Betsy Mask" Head="207" />
+    <Item Id="3864" Name="Dark Mage Mask" Head="208" />
+    <Item Id="3865" Name="Ogre Mask" Head="209" />
+    <Item Id="3866" Name="Betsy Trophy" />
+    <Item Id="3867" Name="Dark Mage Trophy" />
+    <Item Id="3868" Name="Ogre Trophy" />
+    <Item Id="3869" Name="Music Box (Old One's Army)" />
+    <Item Id="3870" Name="Betsy's Wrath" Rack="true" />
+    <Item Id="3871" Name="Valhalla Knight's Helm" Head="210" />
+    <Item Id="3872" Name="Valhalla Knight's Breastplate" Body="204" />
+    <Item Id="3873" Name="Valhalla Knight's Greaves" Legs="152" />
+    <Item Id="3874" Name="Dark Artist's Hat" Head="211" />
+    <Item Id="3875" Name="Dark Artist's Robes" Body="205" />
+    <Item Id="3876" Name="Dark Artist's Leggings" Legs="153" />
+    <Item Id="3877" Name="Red Riding Hood" Head="212" />
+    <Item Id="3878" Name="Red Riding Dress" Body="206" />
+    <Item Id="3879" Name="Red Riding Leggings" Legs="154" />
+    <Item Id="3880" Name="Shinobi Infiltrator's Helmet" Head="213" />
+    <Item Id="3881" Name="Shinobi Infiltrator's Torso" Body="207" />
+    <Item Id="3882" Name="Shinobi Infiltrator's Pants" Legs="156" />
+    <Item Id="3883" Name="Betsy's Wings" />
   </Items>
   <Npcs>
     <Npc Id="17"    Name="Merchant"         Frames="25"   />
@@ -9142,6 +9248,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Npc Id="353"   Name="Stylist"          Frames="23"   />
     <Npc Id="369"   Name="Angler"           Frames="23"   />
     <Npc Id="441"   Name="Tax Collector"    Frames="25"   />
+    <Npc Id="550"   Name="Tavernkeep"       Frames="24"   />
     <!-- currently ignored by NPC loader: -->
     <Npc Id="422"   Name="Vortex Pillar"    Frames="1"    />
     <Npc Id="493"   Name="Stardust Pillar"  Frames="1"    />

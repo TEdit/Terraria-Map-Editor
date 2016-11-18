@@ -9,7 +9,7 @@ namespace TEditXNA.Terraria
     public partial class World : ObservableObject
     {
         // backgrounds
-        // 0 = tree 1 2 3 31 4 5 51 6 7 71 72 73 8 
+        // 0 = tree 1 2 3 31 4 5 51 6 7 71 72 73 8
         // 1 = corruption 1
         // 2 = jungle 1
         // 3 = snow 1 2 21 22 3 31 32 4 41 42
@@ -27,7 +27,7 @@ namespace TEditXNA.Terraria
         private readonly ObservableCollection<NPC> _mobs = new ObservableCollection<NPC>();
         private readonly ObservableCollection<Sign> _signs = new ObservableCollection<Sign>();
         private readonly ObservableCollection<TileEntity> _tileEntities = new ObservableCollection<TileEntity>();
-        private readonly ObservableCollection<int> _partyingNPCs = new ObservableCollection<int>();        
+        private readonly ObservableCollection<int> _partyingNPCs = new ObservableCollection<int>();
         private readonly ObservableCollection<PressurePlate> _pressurePlates = new ObservableCollection<PressurePlate>();
 
         // [SBLogic] These variables are used internally for composing background layers, not currently needed here:
@@ -43,7 +43,7 @@ namespace TEditXNA.Terraria
         // public int HellBackStyle;
         // public int IceBackStyle;
         // public int JungleBackStyle;
-        
+
         // [SBLogic] Unrolled arrays to discrete private variables (possibly a better way to do this?):
         // public int[] TreeStyle = new int[4];
         // public int[] CaveBackStyle = new int[4];
@@ -170,13 +170,85 @@ namespace TEditXNA.Terraria
         private int _caveBackStyle2;
         private int _caveBackStyle3;
         private bool _fastForwardTime;
-
         private uint _fileRevision;
         private bool _isFavorite;
         private bool _partyManual;
         private bool _partyGenuine;
         private int _partyCooldown;
-        
+
+        private bool _sandStormHappening;
+        private int _sandStormTimeLeft;
+        private float _sandStormSeverity;
+        private float _sandStormIntendedSeverity;
+        private bool _savedBartender;
+        private bool _downedDD2InvasionT1;
+        private bool _downedDD2InvasionT2;
+        private bool _downedDD2InvasionT3;
+        private string _seed;
+        private UInt64 _worldGenVersion;
+        public Guid Guid;
+
+
+        public UInt64 WorldGenVersion
+        {
+            get { return _worldGenVersion; }
+            set { Set("WorldGenVersion", ref _worldGenVersion, value); }
+        }
+
+        public string Seed
+        {
+            get { return _seed; }
+            set { Set("Seed", ref _seed, value); }
+        }
+
+        public bool SandStormHappening
+        {
+            get { return _sandStormHappening; }
+            set { Set("SandStormHappening", ref _sandStormHappening, value); }
+        }
+
+        public int SandStormTimeLeft
+        {
+            get { return _sandStormTimeLeft; }
+            set { Set("SandStormTimeLeft", ref _sandStormTimeLeft, value); }
+        }
+
+        public float SandStormSeverity
+        {
+            get { return _sandStormSeverity; }
+            set { Set("SandStormSeverity", ref _sandStormSeverity, value); }
+        }
+
+        public float SandStormIntendedSeverity
+        {
+            get { return _sandStormIntendedSeverity; }
+            set { Set("SandStormIntendedSeverity", ref _sandStormIntendedSeverity, value); }
+        }
+
+        public bool SavedBartender
+        {
+            get { return _savedBartender; }
+            set { Set("SavedBartender", ref _savedBartender, value); }
+        }
+
+        public bool DownedDD2InvasionT1
+        {
+            get { return _downedDD2InvasionT1; }
+            set { Set("DownedDD2InvasionT1", ref _downedDD2InvasionT1, value); }
+        }
+
+        public bool DownedDD2InvasionT2
+        {
+            get { return _downedDD2InvasionT2; }
+            set { Set("DownedDD2InvasionT2", ref _downedDD2InvasionT2, value); }
+        }
+
+        public bool DownedDD2InvasionT3
+        {
+            get { return _downedDD2InvasionT3; }
+            set { Set("DownedDD2InvasionT3", ref _downedDD2InvasionT3, value); }
+        }
+
         public bool PartyManual
         {
             get { return _partyManual; }
@@ -193,19 +265,19 @@ namespace TEditXNA.Terraria
         {
             get { return _partyCooldown; }
             set { Set("PartyCooldown", ref _partyCooldown, value); }
-        }  
+        }
 
         public int TileEntitiesNumber
         {
             get { return _tileEntitiesNumber; }
             set { Set("TileEntitiesNumber", ref _tileEntitiesNumber, value); }
-        }  
+        }
 
         public int NumberOfMobs
         {
             get { return _numberOfMobs; }
             set { Set("NumberOfMobs", ref _numberOfMobs, value); }
-        }       
+        }
 
         public double SlimeRainTime
         {
@@ -341,7 +413,7 @@ namespace TEditXNA.Terraria
         public ObservableCollection<NPC> Mobs
         {
             get { return _mobs; }
-        } 
+        }
 
         public ObservableCollection<Sign> Signs
         {
@@ -497,19 +569,37 @@ namespace TEditXNA.Terraria
         public bool DownedMechBoss3
         {
             get { return _downedMechBoss3; }
-            set { Set("DownedMechBoss3", ref _downedMechBoss3, value); }
+            set {
+                _downedMechBoss3 = value;
+                if (value)
+                    DownedMechBossAny = true;
+                if (!value && !DownedMechBoss2 && !DownedMechBoss1)
+                    DownedMechBossAny = false;
+            }
         }
 
         public bool DownedMechBoss2
         {
             get { return _downedMechBoss2; }
-            set { Set("DownedMechBoss2", ref _downedMechBoss2, value); }
+            set {
+                _downedMechBoss2 = value;
+                if (value)
+                    DownedMechBossAny = true;
+                if (!value && !DownedMechBoss3 && !DownedMechBoss1)
+                    DownedMechBossAny = false;
+            }
         }
 
         public bool DownedMechBoss1
         {
             get { return _downedMechBoss1; }
-            set { Set("DownedMechBoss1", ref _downedMechBoss1, value); }
+            set {
+                _downedMechBoss1 = value;
+                if (value)
+                    DownedMechBossAny = true;
+                if (!value && !DownedMechBoss2 && !DownedMechBoss3)
+                    DownedMechBossAny = false;
+            }
         }
 
         public bool DownedQueenBee

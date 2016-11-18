@@ -170,7 +170,11 @@ namespace TEditXNA.Terraria
 
         public Chest GetChestAtTile(int x, int y)
         {
-            return Chests.FirstOrDefault(c => (c.X == x || c.X == x - 1) && (c.Y == y || c.Y == y - 1));
+            Tile tile = Tiles[x, y];
+            if (tile.Type == 88)
+                return Chests.FirstOrDefault(c => (c.X == x || c.X == x - 1 || c.X == x - 2) && (c.Y == y || c.Y == y - 1 || c.Y == y - 2));
+            else
+                return Chests.FirstOrDefault(c => (c.X == x || c.X == x - 1) && (c.Y == y || c.Y == y - 1));
         }
 
         public Sign GetSignAtTile(int x, int y)
@@ -209,9 +213,19 @@ namespace TEditXNA.Terraria
         public Vector2Int32 GetChestAnchor(int x, int y)
         {
             Tile tile = Tiles[x, y];
+            int xShift = 0;
+            int yShift = 0;
 
-            int xShift = tile.U % 36 / 18;
-            int yShift = tile.V % 36 / 18;
+            if (tile.Type == 88)
+            {
+                xShift = tile.U % 54 / 18;
+                yShift = tile.V % 54 / 18;
+            }
+            else
+            {
+                xShift = tile.U % 36 / 18;
+                yShift = tile.V % 36 / 18;
+            }
 
             return new Vector2Int32(x - xShift, y - yShift);
         }
