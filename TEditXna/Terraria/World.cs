@@ -43,6 +43,8 @@ namespace TEditXNA.Terraria
             Title = title;
             Random r = seed <= 0 ? new Random((int)DateTime.Now.Ticks) : new Random(seed);
             WorldId = r.Next(int.MaxValue);
+            Guid = Guid.NewGuid();
+            Seed = "";
             _npcs.Clear();
             _signs.Clear();
             _chests.Clear();
