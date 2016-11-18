@@ -401,6 +401,9 @@ namespace TEditXNA.Terraria
         public static int SaveHeaderFlags(World world, BinaryWriter bw)
         {
             bw.Write(world.Title);
+            bw.Write(world.Seed);
+            bw.Write(world.WorldGenVersion);
+            bw.Write(world.Guid.ToByteArray());
             bw.Write(world.WorldId);
             bw.Write((int)world.LeftWorld);
             bw.Write((int)world.RightWorld);
@@ -529,6 +532,15 @@ namespace TEditXNA.Terraria
             {
                 bw.Write(partier);
             }
+
+            bw.Write(world.SandStormHappening);
+            bw.Write(world.SandStormTimeLeft);
+            bw.Write(world.SandStormSeverity);
+            bw.Write(world.SandStormIntendedSeverity);
+            bw.Write(world.SavedBartender);
+            bw.Write(world.DownedDD2InvasionT1);
+            bw.Write(world.DownedDD2InvasionT2);
+            bw.Write(world.DownedDD2InvasionT3);
 
             if (world.UnknownData != null && world.UnknownData.Length > 0)
                 bw.Write(world.UnknownData);
@@ -1039,11 +1051,10 @@ namespace TEditXNA.Terraria
             }
             if (w.Version >= 181)
             {
-                for(int i = 0; i < 16; i++)
-                {
-                    w.Guid[i] = r.ReadByte();
-                }
+                w.Guid = new Guid(r.ReadBytes(16));
             }
+            else
+                w.Guid = Guid.NewGuid();
             w.WorldId = r.ReadInt32();
             w.LeftWorld = (float)r.ReadInt32();
             w.RightWorld = (float)r.ReadInt32();
