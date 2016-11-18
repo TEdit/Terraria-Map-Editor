@@ -186,7 +186,7 @@ namespace TEditXNA.Terraria
         private bool _downedDD2InvasionT3;
         private string _seed;
         private UInt64 _worldGenVersion;
-        public byte[] Guid = new byte[16];
+        public Guid Guid;
 
 
         public UInt64 WorldGenVersion
@@ -569,19 +569,37 @@ namespace TEditXNA.Terraria
         public bool DownedMechBoss3
         {
             get { return _downedMechBoss3; }
-            set { Set("DownedMechBoss3", ref _downedMechBoss3, value); }
+            set {
+                _downedMechBoss3 = value;
+                if (value)
+                    DownedMechBossAny = true;
+                if (!value && !DownedMechBoss2 && !DownedMechBoss1)
+                    DownedMechBossAny = false;
+            }
         }
 
         public bool DownedMechBoss2
         {
             get { return _downedMechBoss2; }
-            set { Set("DownedMechBoss2", ref _downedMechBoss2, value); }
+            set {
+                _downedMechBoss2 = value;
+                if (value)
+                    DownedMechBossAny = true;
+                if (!value && !DownedMechBoss3 && !DownedMechBoss1)
+                    DownedMechBossAny = false;
+            }
         }
 
         public bool DownedMechBoss1
         {
             get { return _downedMechBoss1; }
-            set { Set("DownedMechBoss1", ref _downedMechBoss1, value); }
+            set {
+                _downedMechBoss1 = value;
+                if (value)
+                    DownedMechBossAny = true;
+                if (!value && !DownedMechBoss2 && !DownedMechBoss3)
+                    DownedMechBossAny = false;
+            }
         }
 
         public bool DownedQueenBee
