@@ -1049,6 +1049,8 @@ namespace TEditXNA.Terraria
                     w.Seed = r.ReadString();
                 w.WorldGenVersion = r.ReadUInt64();
             }
+            else
+                w.Seed = "";
             if (w.Version >= 181)
             {
                 w.Guid = new Guid(r.ReadBytes(16));
