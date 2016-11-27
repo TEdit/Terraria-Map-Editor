@@ -19,6 +19,13 @@ namespace TEditXna
             string path = Properties.Settings.Default.TerrariaPath;
             int? steamUserId = TEditXNA.Terraria.World.SteamUserId;
 
+            // if hard coded in settings.xml try that location first
+            if (!string.IsNullOrWhiteSpace(TEditXNA.Terraria.World.AltC))
+            {
+                if(Directory.Exists(TEditXNA.Terraria.World.AltC))
+                    path = TEditXNA.Terraria.World.AltC;
+            }
+
             // if the folder is missing, reset.
             if (!Directory.Exists(path))
             {
@@ -91,16 +98,10 @@ namespace TEditXna
                 Properties.Settings.Default.Save();
             }
 
-            if (!Directory.Exists(path))
-            {
-                path = TEditXNA.Terraria.World.AltC;
-            }
-
             if (!string.IsNullOrWhiteSpace(path) && path.IndexOf("Content", StringComparison.OrdinalIgnoreCase) < 0)
             {
                 path = Path.Combine(path, "Content");
             }
-
 
             path = Path.GetFullPath(path);
             PathToContent = path;
@@ -141,7 +142,7 @@ namespace TEditXna
                     }
                 }
             }
-            
+
             return Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), @"My Games\Terraria\Worlds");
         }
 
