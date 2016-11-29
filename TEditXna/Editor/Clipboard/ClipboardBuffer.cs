@@ -55,6 +55,7 @@ namespace TEditXna.Editor.Clipboard
 
         private readonly ObservableCollection<Chest> _chests = new ObservableCollection<Chest>();
         private readonly ObservableCollection<Sign> _signs = new ObservableCollection<Sign>();
+        private readonly ObservableCollection<TileEntity> _tileEntities = new ObservableCollection<TileEntity>();
 
         public ObservableCollection<Chest> Chests
         {
@@ -75,14 +76,28 @@ namespace TEditXna.Editor.Clipboard
             get { return _signs; }
         }
 
+        public ObservableCollection<TileEntity> TileEntities
+        {
+            get { return _tileEntities; }
+        }
+
         public Chest GetChestAtTile(int x, int y)
         {
-            return Chests.FirstOrDefault(c => (c.X == x || c.X == x - 1) && (c.Y == y || c.Y == y - 1));
+            Tile tile = Tiles[x, y];
+            if (tile.Type == (int)TileType.Dresser)
+                return Chests.FirstOrDefault(c => (c.X == x || c.X == x - 1 || c.X == x - 2) && (c.Y == y || c.Y == y - 1));
+            else
+                return Chests.FirstOrDefault(c => (c.X == x || c.X == x - 1) && (c.Y == y || c.Y == y - 1));
         }
 
         public Sign GetSignAtTile(int x, int y)
         {
             return Signs.FirstOrDefault(c => (c.X == x || c.X == x - 1) && (c.Y == y || c.Y == y - 1));
+        }
+
+        public TileEntity GetTileEntityAtTile(int x, int y)
+        {
+        	return TileEntities.FirstOrDefault(c => (c.PosX == x || c.PosX == x - 1) && (c.PosY == y || c.PosY == y - 1));
         }
 
         public void RenderBuffer()

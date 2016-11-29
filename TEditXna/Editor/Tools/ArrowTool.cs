@@ -58,7 +58,7 @@ namespace TEditXna.Editor.Tools
                 TileEntity frame = _wvm.CurrentWorld.GetTileEntityAtTile(e.Location.X, e.Location.Y);
                 if (frame != null)
                 {
-                    _wvm.SelectedItemFrame = frame.CopyFrame();
+                    _wvm.SelectedItemFrame = frame.Copy();
                     return;
                 }
             }
@@ -82,7 +82,7 @@ namespace TEditXna.Editor.Tools
                 {
                     _wvm.SelectedRackPrefix = 0;
                     _wvm.SelectedRackNetId = 0;
-                }                
+                }
                 _wvm.SelectedRack = RackLocation;
             }
         }
