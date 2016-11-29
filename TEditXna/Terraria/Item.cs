@@ -51,7 +51,7 @@ namespace TEditXNA.Terraria
 
         public string PrefixName
         {
-            get { return World.ItemPrefix[Prefix]; }
+            get { return World.ItemPrefix.Count > Prefix ? World.ItemPrefix[Prefix] : "Unknown " + Prefix.ToString(); }
         }
 
         public string GetName()
@@ -80,7 +80,7 @@ namespace TEditXNA.Terraria
             NetId = stackSize > 0 ? netId : 0;
         }
 
-        
+
 
         private ItemProperty _currentItemProperty;
         public int StackSize
