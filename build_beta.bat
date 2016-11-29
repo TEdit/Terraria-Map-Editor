@@ -9,6 +9,6 @@ set nuget=".\.nuget\nuget.exe"
 REM echo Copying Files...
 REM if exist ".\TEdit3Installer\bin\Release\TEdit3Installer.msi" copy ".\TEdit3Installer\bin\Release\TEdit3Installer.msi" .\BIN\
 
-Powershell.exe -executionpolicy remotesigned -File package.ps1
+Powershell.exe -executionpolicy bypass -File package.ps1
 
 pause
