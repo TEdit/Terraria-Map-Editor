@@ -45,7 +45,10 @@ namespace TEditXNA.Terraria
         CrimsandBlock = 234,
         IceByRod = 127,
         Timer = 144,
-        AnnouncementBox = 425
+        AnnouncementBox = 425,
+        Dummy = 378,
+        ItemFrame = 395,
+        LogicSensor = 423
     }
 
     [Serializable]
@@ -224,6 +227,11 @@ namespace TEditXNA.Terraria
         public static bool IsSign(int tileType)
         {
             return tileType == (int)TileType.Sign || tileType == (int)TileType.GraveMarker || tileType == (int)TileType.AnnouncementBox;
+        }
+
+        public static bool IsTileEntity(int tileType)
+        {
+            return tileType == (int)TileType.Dummy || tileType == (int)TileType.ItemFrame || tileType == (int)TileType.LogicSensor;
         }
 
     }

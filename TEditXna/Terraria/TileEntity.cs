@@ -19,8 +19,8 @@ namespace TEditXNA.Terraria
         private int _netId;
         private byte _prefix;
         private Int16 _stackSize;
-        
-        //data for Logic Sensro
+
+        //data for Logic Sensor
         private byte _logicCheck;
         private bool _on;
 
@@ -41,7 +41,7 @@ namespace TEditXNA.Terraria
             get { return _x; }
             set { Set("PosX", ref _x, value); }
         }
-        
+
         public Int16 PosY
         {
             get { return _y; }
@@ -85,18 +85,30 @@ namespace TEditXNA.Terraria
             set { Set("On", ref _on, value); }
         }
 
-        public TileEntity CopyFrame()
+        public TileEntity Copy()
         {
             var frame = new TileEntity();
             frame.Type = Type;
             frame.PosX = PosX;
             frame.PosY = PosY;
-            frame.NetId = NetId;
-            frame.StackSize = StackSize;
-            frame.Prefix = Prefix;
+            switch (Type)
+            {
+                case 0:
+                    frame.Npc = Npc;
+                    break;
+                case 1:
+                    frame.NetId = NetId;
+                    frame.StackSize = StackSize;
+                    frame.Prefix = Prefix;
+                    break;
+                case 2:
+                    frame.LogicCheck = LogicCheck;
+                    frame.On = On;
+                    break;
+            }
             return frame;
         }
-        
-        
+
+
     }
 }

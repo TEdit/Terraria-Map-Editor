@@ -61,7 +61,7 @@ namespace TEditXna.ViewModel
         private ICommand _requestScrollCommand;
 
         private ICommand _npcAddCommand;
-         
+
 
         public ICommand NpcAddCommand
         {
@@ -143,7 +143,7 @@ namespace TEditXna.ViewModel
                     if (worldFrame != null)
                     {
                         int index = CurrentWorld.TileEntities.IndexOf(worldFrame);
-                        CurrentWorld.TileEntities[index] = SelectedItemFrame.CopyFrame();
+                        CurrentWorld.TileEntities[index] = SelectedItemFrame.Copy();
                     }
                 }
             }
@@ -411,7 +411,7 @@ namespace TEditXna.ViewModel
                 {
                     MessageBox.Show(ex.Message, "Error Saving Schematic");
                 }
-                
+
             }
         }
 
