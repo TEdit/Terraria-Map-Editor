@@ -173,7 +173,7 @@ namespace TEditXNA.Terraria
         public Chest GetChestAtTile(int x, int y)
         {
             Tile tile = Tiles[x, y];
-            if (tile.Type == (int)TileType.Dresser)
+            if (tile.Type == 88)
                 return Chests.FirstOrDefault(c => (c.X == x || c.X == x - 1 || c.X == x - 2) && (c.Y == y || c.Y == y - 1));
             else
                 return Chests.FirstOrDefault(c => (c.X == x || c.X == x - 1) && (c.Y == y || c.Y == y - 1));
@@ -221,7 +221,7 @@ namespace TEditXNA.Terraria
             if (tile.Type == 88)
             {
                 xShift = tile.U % 54 / 18;
-                yShift = tile.V % 54 / 18;
+                yShift = tile.V % 36 / 18;
             }
             else
             {
