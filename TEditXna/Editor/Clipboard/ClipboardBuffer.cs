@@ -81,10 +81,9 @@ namespace TEditXna.Editor.Clipboard
             get { return _tileEntities; }
         }
 
-        public Chest GetChestAtTile(int x, int y)
+        public Chest GetChestAtTile(int x, int y, int tileType)
         {
-            Tile tile = Tiles[x, y];
-            if (tile.Type == (int)TileType.Dresser)
+            if (tileType == 88)
                 return Chests.FirstOrDefault(c => (c.X == x || c.X == x - 1 || c.X == x - 2) && (c.Y == y || c.Y == y - 1));
             else
                 return Chests.FirstOrDefault(c => (c.X == x || c.X == x - 1) && (c.Y == y || c.Y == y - 1));

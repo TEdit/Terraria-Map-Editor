@@ -112,7 +112,7 @@ namespace TEditXna.Editor.Clipboard
 
                     if (Tile.IsChest(curTile.Type))
                     {
-                        if (buffer.GetChestAtTile(x, y) == null)
+                        if (buffer.GetChestAtTile(x, y, curTile.Type) == null)
                         {
                             var data = world.GetChestAtTile(x + area.X, y + area.Y);
                             if (data != null)
@@ -271,7 +271,7 @@ namespace TEditXna.Editor.Clipboard
                             {
                                 if (world.GetChestAtTile(x + anchor.X, y + anchor.Y) == null)
                                 {
-                                    var data = buffer.GetChestAtTile(x, y);
+                                    var data = buffer.GetChestAtTile(x, y, curTile.Type);
                                     if (data != null) // allow? chest copying may not work...
                                     {
                                         // Copied chest
