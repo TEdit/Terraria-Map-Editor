@@ -114,13 +114,17 @@ namespace TEditXna.Editor.Clipboard
                     {
                         if (buffer.GetChestAtTile(x, y, curTile.Type) == null)
                         {
-                            var data = world.GetChestAtTile(x + area.X, y + area.Y);
-                            if (data != null)
+                            var anchor = world.GetAnchor(x + area.X, y + area.Y);
+                            if (anchor.X == x + area.X && anchor.Y == y + area.Y)
                             {
-                                var newChest = data.Copy();
-                                newChest.X = x;
-                                newChest.Y = y;
-                                buffer.Chests.Add(newChest);
+                                var data = world.GetChestAtTile(x + area.X, y + area.Y);
+                                if (data != null)
+                                {
+                                    var newChest = data.Copy();
+                                    newChest.X = x;
+                                    newChest.Y = y;
+                                    buffer.Chests.Add(newChest);
+                                }
                             }
                         }
                     }
@@ -128,13 +132,17 @@ namespace TEditXna.Editor.Clipboard
                     {
                         if (buffer.GetSignAtTile(x, y) == null)
                         {
-                            var data = world.GetSignAtTile(x + area.X, y + area.Y);
-                            if (data != null)
+                            var anchor = world.GetAnchor(x + area.X, y + area.Y);
+                            if (anchor.X == x + area.X && anchor.Y == y + area.Y)
                             {
-                                var newSign = data.Copy();
-                                newSign.X = x;
-                                newSign.Y = y;
-                                buffer.Signs.Add(newSign);
+                                var data = world.GetSignAtTile(x + area.X, y + area.Y);
+                                if (data != null)
+                                {
+                                    var newSign = data.Copy();
+                                    newSign.X = x;
+                                    newSign.Y = y;
+                                    buffer.Signs.Add(newSign);
+                                }
                             }
                         }
                     }
@@ -142,13 +150,17 @@ namespace TEditXna.Editor.Clipboard
                     {
                         if (buffer.GetTileEntityAtTile(x, y) == null)
                         {
-                            var data = world.GetTileEntityAtTile(x + area.X, y + area.Y);
-                            if (data != null)
+                            var anchor = world.GetAnchor(x + area.X, y + area.Y);
+                            if (anchor.X == x + area.X && anchor.Y == y + area.Y)
                             {
-                                var newEntity = data.Copy();
-                                newEntity.PosX = (short)x;
-                                newEntity.PosY = (short)y;
-                                buffer.TileEntities.Add(newEntity);
+                                var data = world.GetTileEntityAtTile(x + area.X, y + area.Y);
+                                if (data != null)
+                                {
+                                    var newEntity = data.Copy();
+                                    newEntity.PosX = (short)x;
+                                    newEntity.PosY = (short)y;
+                                    buffer.TileEntities.Add(newEntity);
+                                }
                             }
                         }
                     }
