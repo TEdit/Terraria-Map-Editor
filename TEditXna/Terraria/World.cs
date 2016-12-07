@@ -186,7 +186,13 @@ namespace TEditXNA.Terraria
 
         public TileEntity GetTileEntityAtTile(int x, int y)
         {
-        	return TileEntities.FirstOrDefault(c => (c.PosX == x || c.PosX == x - 1) && (c.PosY == y || c.PosY == y - 1));
+            Tile tile = Tiles[x, y];
+            if (tile.Type == (int)TileType.Dummy)
+                return TileEntities.FirstOrDefault(c => (c.PosX == x || c.PosX == x - 1) && (c.PosY == y || c.PosY == y - 1 || c.PosY == y - 2));
+            else if (tile.Type == (int)TileType.ItemFrame)
+                return TileEntities.FirstOrDefault(c => (c.PosX == x || c.PosX == x - 1) && (c.PosY == y || c.PosY == y - 1));
+            else
+                return TileEntities.FirstOrDefault(c => (c.PosX == x) && (c.PosY == y));
         }
 
         public Vector2Int32 GetMannequin(int x, int y)
@@ -256,38 +262,8 @@ namespace TEditXNA.Terraria
                     if (curTile.Type == (int)TileType.IceByRod)
                         curTile.IsActive = false;
 
-                    // TODO: Let Validate handle these
-                    //validate chest entry exists
-                    if (Tile.IsChest(curTile.Type))
-                    {
-                        if (GetChestAtTile(x, y) == null)
-                        {
-                            Chests.Add(new Chest(x, y));
-                        }
-                    }
-                    //validate sign entry exists
-                    else if (Tile.IsSign(curTile.Type))
-                    {
-                        if (GetSignAtTile(x, y) == null)
-                        {
-                            Signs.Add(new Sign(x, y, string.Empty));
-                        }
-                    }
-                    //validate logic sensors
-                    else if (curTile.Type == 423)
-                    {
-                    	if (GetTileEntityAtTile(x, y) == null)
-                    	{
-                    		TileEntity TE = new TileEntity();
-                    		TE.Type = 2;
-                    		TE.PosX = (short)x;
-                    		TE.PosY = (short)y;
-                    		TE.On = false;
-                    		TE.LogicCheck = (byte)(curTile.V / 18 + 1);
-                    		TE.Id = TileEntities.Count;
-                    		TileEntities.Add(TE);
-                    	}
-                    }
+                    ValSpecial(x, y);
+
                 }
             }
 
@@ -332,6 +308,15 @@ namespace TEditXNA.Terraria
                     if (removed) break;
                 }
             }
+
+            foreach (TileEntity tileEntity in TileEntities.ToArray())
+            {
+                int x = tileEntity.PosX;
+                int y = tileEntity.PosY;
+                if (!Tiles[x, y].IsActive || !Tile.IsTileEntity(Tiles[x, y].Type))
+                    TileEntities.Remove(tileEntity);
+            }
+
             OnProgressChanged(this,
                     new ProgressChangedEventArgs(0, "Validating Complete..."));
             if (Chests.Count > 1000)
@@ -339,7 +324,56 @@ namespace TEditXNA.Terraria
             if (Signs.Count > 1000)
                 throw new ArgumentOutOfRangeException(string.Format("Sign Count is {0} which is greater than 1000",Signs.Count));
         }
-
+        public void ValSpecial(int x, int y)
+        {
+            Tile curTile = Tiles[x, y];
+            //validate chest entry exists
+            if (Tile.IsChest(curTile.Type))
+            {
+                if (GetChestAtTile(x, y) == null)
+                {
+                    Chests.Add(new Chest(x, y));
+                }
+            }
+            //validate sign entry exists
+            else if (Tile.IsSign(curTile.Type))
+            {
+                if (GetSignAtTile(x, y) == null)
+                {
+                    Signs.Add(new Sign(x, y, string.Empty));
+                }
+            }
+            //validate TileEntity
+            else if (Tile.IsTileEntity(curTile.Type))
+            {
+                if (GetTileEntityAtTile(x, y) == null)
+                {
+                    TileEntity TE = new TileEntity();
+                    TE.PosX = (short)x;
+                    TE.PosY = (short)y;
+                    TE.Id = TileEntities.Count;
+                    if (curTile.Type == (int)TileType.Dummy)
+                    {
+                        TE.Type = 0;
+                        TE.Npc = -1;
+                    }
+                    else if (curTile.Type == (int)TileType.ItemFrame)
+                    {
+                        TE.Type = 1;
+                        TE.NetId = 0;
+                        TE.Prefix = 0;
+                        TE.StackSize = 0;
+                    }
+                    else
+                    {
+                        TE.Type = 2;
+                        TE.On = false;
+                        TE.LogicCheck = (byte)(curTile.V / 18 + 1);
+                    }
+                    TileEntities.Add(TE);
+                }
+            }
+        }
         private void FixChand()
         {
             for (int x = 5; x < TilesWide - 5; x++)
