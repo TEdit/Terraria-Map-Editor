@@ -80,23 +80,20 @@ namespace TEditXna.Editor.Clipboard
         {
             get { return _tileEntities; }
         }
-
+        // since we are using these functions to add chests into the world we don't need to check all spots, only the anchor spot
         public Chest GetChestAtTile(int x, int y, int tileType)
         {
-            if (tileType == 88)
-                return Chests.FirstOrDefault(c => (c.X == x || c.X == x - 1 || c.X == x - 2) && (c.Y == y || c.Y == y - 1));
-            else
-                return Chests.FirstOrDefault(c => (c.X == x || c.X == x - 1) && (c.Y == y || c.Y == y - 1));
+            return Chests.FirstOrDefault(c => (c.X == x) && (c.Y == y));
         }
 
         public Sign GetSignAtTile(int x, int y)
         {
-            return Signs.FirstOrDefault(c => (c.X == x || c.X == x - 1) && (c.Y == y || c.Y == y - 1));
+            return Signs.FirstOrDefault(c => (c.X == x) && (c.Y == y));
         }
 
         public TileEntity GetTileEntityAtTile(int x, int y)
         {
-        	return TileEntities.FirstOrDefault(c => (c.PosX == x || c.PosX == x - 1) && (c.PosY == y || c.PosY == y - 1));
+        	return TileEntities.FirstOrDefault(c => (c.PosX == x) && (c.PosY == y));
         }
 
         public void RenderBuffer()

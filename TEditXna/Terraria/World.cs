@@ -172,27 +172,20 @@ namespace TEditXNA.Terraria
 
         public Chest GetChestAtTile(int x, int y)
         {
-            Tile tile = Tiles[x, y];
-            if (tile.Type == 88)
-                return Chests.FirstOrDefault(c => (c.X == x || c.X == x - 1 || c.X == x - 2) && (c.Y == y || c.Y == y - 1));
-            else
-                return Chests.FirstOrDefault(c => (c.X == x || c.X == x - 1) && (c.Y == y || c.Y == y - 1));
+            Vector2Int32 anchor = GetAnchor(x,y);
+            return Chests.FirstOrDefault(c => (c.X == anchor.X) && (c.Y == anchor.Y));
         }
 
         public Sign GetSignAtTile(int x, int y)
         {
-            return Signs.FirstOrDefault(c => (c.X == x || c.X == x - 1) && (c.Y == y || c.Y == y - 1));
+            Vector2Int32 anchor = GetAnchor(x,y);
+            return Signs.FirstOrDefault(c => (c.X == anchor.X) && (c.Y == anchor.Y));
         }
 
         public TileEntity GetTileEntityAtTile(int x, int y)
         {
-            Tile tile = Tiles[x, y];
-            if (tile.Type == (int)TileType.Dummy)
-                return TileEntities.FirstOrDefault(c => (c.PosX == x || c.PosX == x - 1) && (c.PosY == y || c.PosY == y - 1 || c.PosY == y - 2));
-            else if (tile.Type == (int)TileType.ItemFrame)
-                return TileEntities.FirstOrDefault(c => (c.PosX == x || c.PosX == x - 1) && (c.PosY == y || c.PosY == y - 1));
-            else
-                return TileEntities.FirstOrDefault(c => (c.PosX == x) && (c.PosY == y));
+            Vector2Int32 anchor = GetAnchor(x,y);
+            return TileEntities.FirstOrDefault(c => (c.PosX == anchor.X) && (c.PosY == anchor.Y));
         }
 
         public Vector2Int32 GetMannequin(int x, int y)
@@ -218,34 +211,19 @@ namespace TEditXNA.Terraria
             return new Vector2Int32(x, y);
         }
 
-        public Vector2Int32 GetChestAnchor(int x, int y)
+        // find upper left corner of sprites
+        public Vector2Int32 GetAnchor(int x, int y)
         {
             Tile tile = Tiles[x, y];
-            int xShift = 0;
-            int yShift = 0;
-
-            if (tile.Type == 88)
+            TileProperty tileprop = TileProperties[tile.Type];
+            if (tileprop.IsFramed && (tileprop.FrameSize.X > 1 || tileprop.FrameSize.Y > 1))
             {
-                xShift = tile.U % 54 / 18;
-                yShift = tile.V % 36 / 18;
+                int xShift = tile.U % ((tileprop.TextureGrid.X + 2) * tileprop.FrameSize.X) / (tileprop.TextureGrid.X + 2);
+                int yShift = tile.V % ((tileprop.TextureGrid.Y + 2) * tileprop.FrameSize.Y) / (tileprop.TextureGrid.Y + 2);
+                return new Vector2Int32(x - xShift, y - yShift);
             }
             else
-            {
-                xShift = tile.U % 36 / 18;
-                yShift = tile.V % 36 / 18;
-            }
-
-            return new Vector2Int32(x - xShift, y - yShift);
-        }
-
-        public Vector2Int32 GetSignAnchor(int x, int y)
-        {
-            Tile tile = Tiles[x, y];
-
-            int xShift = tile.U % 36 / 18;
-            int yShift = tile.V % 36 / 18;
-
-            return new Vector2Int32(x - xShift, y - yShift);
+                return new Vector2Int32(x, y);
         }
 
         public void Validate()
