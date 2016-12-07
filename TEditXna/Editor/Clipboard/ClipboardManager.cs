@@ -280,11 +280,6 @@ namespace TEditXna.Editor.Clipboard
                                         newChest.Y = y + anchor.Y;
                                         world.Chests.Add(newChest);
                                     }
-                                    else
-                                    {
-                                        // Empty chest
-                                        world.Chests.Add(new Chest(x + anchor.X, y + anchor.Y));
-                                    }
                                 }
                             }
 
@@ -301,10 +296,6 @@ namespace TEditXna.Editor.Clipboard
                                         newSign.X = x + anchor.X;
                                         newSign.Y = y + anchor.Y;
                                         world.Signs.Add(newSign);
-                                    }
-                                    else
-                                    {
-                                        world.Signs.Add(new Sign(x + anchor.X, y + anchor.Y, string.Empty));
                                     }
                                 }
                             }
