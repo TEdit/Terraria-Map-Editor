@@ -2,6 +2,7 @@
 using System.IO;
 using System.Windows.Forms;
 using Microsoft.Win32;
+using System.Diagnostics;
 
 namespace TEditXna
 {
@@ -215,6 +216,18 @@ namespace TEditXna
         public static bool VerifyTerraria()
         {
             return Directory.Exists(PathToContent);
+        }
+
+        public static string GetTerrariaVersion()
+        {
+            string version = null;
+            try
+            {
+                string terrariaExePath = Directory.GetParent(PathToContent).FullName + "\\Terraria.exe";
+                version = FileVersionInfo.GetVersionInfo(terrariaExePath).FileVersion;
+            }
+            catch { /*no message*/}
+            return version;
         }
 
     }
