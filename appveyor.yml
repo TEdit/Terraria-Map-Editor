@@ -16,6 +16,4 @@ artifacts:
   name: BinaryConstruct FTP
 deploy:
 - provider: Environment
-  name: BinaryConstruct FTP
-- provider: Environment
   name: Github TEdit Releases
