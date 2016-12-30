@@ -126,6 +126,7 @@
     <Compile Include="Editor\Plugins\FindChestWithPluginResultView.xaml.cs">
       <DependentUpon>FindChestWithPluginResultView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Editor\Plugins\FindPlanteraBulbPlugin.cs" />
     <Compile Include="Editor\Plugins\IPlugin.cs" />
     <Compile Include="Editor\Plugins\PerlinNoise.cs" />
     <Compile Include="Editor\Plugins\RemoveAllChestsPlugin.cs" />

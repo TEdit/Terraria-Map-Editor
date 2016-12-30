@@ -224,7 +224,7 @@
                     </TabItem>
                 </TabControl>
             </Expander>
-            <View:WorldRenderXna HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
+            <View:WorldRenderXna x:Name="MapView" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
         </DockPanel>
     </Grid>
 </Window>
