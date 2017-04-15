@@ -180,5 +180,13 @@ namespace TEditXna
                 _vm.SetTool.Execute(tool);
         }
 
+        public void ZoomFocus(int x, int y)
+        {
+            if (this.MapView != null)
+            {
+                this.MapView.ZoomFocus(x, y);
+            }
+        }
+
     }
 }

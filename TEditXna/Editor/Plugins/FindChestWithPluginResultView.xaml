@@ -9,6 +9,6 @@
             <Button Margin="5" Content="Close" HorizontalAlignment="Center" Padding="20, 3" Click="CloseButtonClick" />
         </Grid>
 
-        <ListBox Name="LocationList"/>
+        <ListBox Name="LocationList" MouseDoubleClick="ListBoxMouseDoubleClick"/>
     </DockPanel>
 </Window>

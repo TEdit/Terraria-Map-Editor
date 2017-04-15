@@ -2085,6 +2085,21 @@ namespace TEditXna.View
             }
         }
 
+        public void ZoomFocus(int x, int y)
+        {
+            _zoom = 8;
+            CenterOnTile(x, y);
+
+            if (_wvm.CurrentWorld != null)
+            {
+                var r = GetViewingArea();
+                ScrollBarH.ViewportSize = r.Width;
+                ScrollBarV.ViewportSize = r.Height;
+                ScrollBarH.Maximum = _wvm.CurrentWorld.TilesWide - ScrollBarH.ViewportSize;
+                ScrollBarV.Maximum = _wvm.CurrentWorld.TilesHigh - ScrollBarV.ViewportSize;
+            }
+        }
+
 
 
         private void xnaViewport_HwndMButtonDown(object sender, HwndMouseEventArgs e)
