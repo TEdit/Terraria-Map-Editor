@@ -44,7 +44,7 @@ using System.Windows.Markup;
 //      Revision
 //
 
-[assembly: AssemblyVersion("4.0.0.0")]
+[assembly: AssemblyVersion("3.10.0.0")]
 [assembly: AssemblyFileVersion("4.0.17109.2113")]
 
 
