@@ -62,6 +62,8 @@ namespace TEditXNA.Terraria
             sectionPointers[6] = SaveTileEntities(world, bw);
             OnProgressChanged(null, new ProgressChangedEventArgs(100, "Save Weighted Pressure Plates..."));
             sectionPointers[7] = SavePressurePlate(world.PressurePlates, bw);
+            OnProgressChanged(null, new ProgressChangedEventArgs(100, "Save Town Manager..."));
+            sectionPointers[8] = SavePressurePlate(world.PressurePlates, bw);
             OnProgressChanged(null, new ProgressChangedEventArgs(100, "Save Footers..."));
             SaveFooter(world, bw);
             UpdateSectionPointers(sectionPointers, bw);
@@ -316,7 +318,7 @@ namespace TEditXNA.Terraria
             foreach (NPC npc in npcs)
             {
                 bw.Write(true);
-                bw.Write(npc.Name);
+                bw.Write(npc.SpriteId);
                 bw.Write(npc.DisplayName);
                 bw.Write(npc.Position.X);
                 bw.Write(npc.Position.Y);
@@ -329,12 +331,26 @@ namespace TEditXNA.Terraria
             return (int)bw.BaseStream.Position;
         }
 
+        public static int SaveTownManager(IEnumerable<NPC> npcs, BinaryWriter bw)
+        {
+            foreach (NPC npc in npcs)
+            {
+                if (!npc.IsHomeless)
+                {
+                    bw.Write(npc.SpriteId);
+                    bw.Write(npc.Home.X);
+                    bw.Write(npc.Home.Y);
+                }
+            }
+            return (int)bw.BaseStream.Position;
+        }
+
         public static int SaveMobs(IEnumerable<NPC> mobs, BinaryWriter bw)
         {
             foreach (NPC mob in mobs)
             {
                 bw.Write(true);
-                bw.Write(mob.Name);
+                bw.Write(mob.SpriteId);
                 bw.Write(mob.Position.X);
                 bw.Write(mob.Position.Y);
             }
@@ -662,6 +678,12 @@ namespace TEditXNA.Terraria
                 if (b.BaseStream.Position != sectionPointers[7])
                     throw new FileFormatException("Unexpected Position: Invalid Weighted Pressure Plate Section");
 			}
+      if(w.Version >= 189)
+      {
+        LoadTownManager(b, w);
+                if (b.BaseStream.Position != sectionPointers[8])
+                    throw new FileFormatException("Unexpected Position: Invalid Town Manager Section");
+      }
 
             OnProgressChanged(null, new ProgressChangedEventArgs(100, "Verifying File..."));
             LoadFooter(b, w);
@@ -951,14 +973,21 @@ namespace TEditXNA.Terraria
             for (bool i = r.ReadBoolean(); i; i = r.ReadBoolean())
             {
                 NPC npc = new NPC();
-                npc.Name = r.ReadString();
+                if (w.Version >= 190)
+                {
+                    npc.SpriteId = r.ReadInt32();
+                }
+                else
+                {
+                    npc.Name = r.ReadString();
+                    if (NpcIds.ContainsKey(npc.Name))
+                        npc.SpriteId = NpcIds[npc.Name];
+                }
                 npc.DisplayName = r.ReadString();
                 npc.Position = new Vector2(r.ReadSingle(), r.ReadSingle());
                 npc.IsHomeless = r.ReadBoolean();
                 npc.Home = new Vector2Int32(r.ReadInt32(), r.ReadInt32());
 
-                if (NpcIds.ContainsKey(npc.Name))
-                    npc.SpriteId = NpcIds[npc.Name];
 
                 w.NPCs.Add(npc);
                 totalNpcs++;
@@ -972,15 +1001,30 @@ namespace TEditXNA.Terraria
             while (flag)
             {
                 NPC npc = new NPC();
-                npc.Name = r.ReadString();
+                if (w.Version >= 190)
+                {
+                    npc.SpriteId = r.ReadInt32();
+                }
+                else
+                {
+                    npc.Name = r.ReadString();
+                    if (NpcIds.ContainsKey(npc.Name))
+                        npc.SpriteId = NpcIds[npc.Name];
+                }
                 npc.Position = new Vector2(r.ReadSingle(), r.ReadSingle());
-
-                if (NpcIds.ContainsKey(npc.Name))
-                    npc.SpriteId = NpcIds[npc.Name];
-
                 w.Mobs.Add(npc);
                 totalMobs++;
                 flag = r.ReadBoolean();
+            }
+        }
+
+        public static void LoadTownManager(BinaryReader r, World w)
+        {
+            int totalRooms = r.ReadInt32();
+            for (int i = 0; i < totalRooms; i++)
+            {
+                int NPC = r.ReadInt32();
+                Vector2Int32 Location = new Vector2Int32(r.ReadInt32(), r.ReadInt32());
             }
         }
 
