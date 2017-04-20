@@ -1960,8 +1960,8 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="18,616" Name="Granite Candle" Variety="Off" />
         <Frame UV="0,638" Name="Marble Candle" Variety="On" />
         <Frame UV="18,638" Name="Marble Candle" Variety="Off" />
-        <Frame UV="0,654" Name="Crystal Candle" Variety="On" />
-        <Frame UV="18,654" Name="Crystal Candle" Variety="Off" />
+        <Frame UV="0,660" Name="Crystal Candle" Variety="On" />
+        <Frame UV="18,660" Name="Crystal Candle" Variety="Off" />
       </Frames>
     </Tile>
     <Tile Id="34" Color="#FFEBA687" Name="Chandelier" Framed="true" Size="3,3" Placement="ceiling" Light="true" >
@@ -2517,7 +2517,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="1674,0" Variety="Granite Sofa" />
         <Frame UV="1728,0" Variety="Marble Sofa" />
         <Frame UV="1782,0" Variety="Crystal Sofa" />
-        <Frame UV="1826,0" Variety="Dynasty Sofa" />
+        <Frame UV="1836,0" Variety="Dynasty Sofa" />
       </Frames>
     </Tile>
     <Tile Id="90" Color="#FF909490" Name="Bathtub" Framed="true" Size="4,2" Placement="floor" >
