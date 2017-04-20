@@ -19,8 +19,8 @@ namespace TEditXNA.Terraria
 
     public partial class World
     {
-        public static uint CompatibleVersion = 187;
-        public static short TileCount = 467;
+        public static uint CompatibleVersion = 192;
+        public static short TileCount = 470;
         public static short SectionCount = 10;
 
         public static bool[] TileFrameImportant;
