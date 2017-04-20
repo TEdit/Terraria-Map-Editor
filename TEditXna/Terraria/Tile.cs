@@ -43,6 +43,7 @@ namespace TEditXNA.Terraria
         EbonsandBlock = 112,
         PearlsandBlock = 116,
         CrimsandBlock = 234,
+        PlanteraBulb = 238,
         IceByRod = 127,
         Timer = 144,
         AnnouncementBox = 425,

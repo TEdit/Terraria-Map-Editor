@@ -1,0 +1,19 @@
+version: 3.9.0.{build}
+branches:
+  only:
+  - master
+skip_tags: true
+clone_depth: 1
+init:
+- ps: Update-AppveyorBuild -Version "3.9.$(Get-Date -uformat %y%j).$env:appveyor_build_number"
+environment:
+  github_release_title: TEdit 3.9 for Terraria 1.3.4
+build_script:
+- ps: "Write-Host \"Building Solution...\"\n$msbuild=\"C:\\Windows\\Microsoft.NET\\Framework\\v4.0.30319\\MSBuild.exe\"\n$nuget=\".\\.nuget\\nuget.exe\"\n\n& $nuget ('restore', '.\\TEditNoInstaller.sln')\n& $msbuild ('.\\TEditNoInstaller.sln', '/p:Configuration=Release;Platform=\"Any CPU\"', '/verbosity:m')\n\n$version = \"v$env:APPVEYOR_BUILD_VERSION\"\n$version | Out-File teditversion.txt\n\n$source = \"$env:APPVEYOR_BUILD_FOLDER\\TEditXna\\bin\\Release\"\n$destination = \"$env:APPVEYOR_BUILD_FOLDER\\TEdit3_$version.zip\"\n\nWrite-Host \"Zipping $source ...\" -ForegroundColor Yellow\nIf(Test-path $destination) {\n    Remove-item $destination\n}\n\nAdd-Type -assembly \"system.io.compression.filesystem\"\n[io.compression.zipfile]::CreateFromDirectory($Source, $destination) \n\nWrite-Host \"Created $destination.\" -ForegroundColor Green"
+artifacts:
+- path: TEdit*.zip
+- path: teditversion.txt
+  name: BinaryConstruct FTP
+deploy:
+- provider: Environment
+  name: Github TEdit Releases

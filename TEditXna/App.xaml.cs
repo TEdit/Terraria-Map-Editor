@@ -60,13 +60,13 @@ namespace TEditXna
 
             try
             {
-
                 if (!DependencyChecker.VerifyTerraria())
                 {
                     ErrorLogging.Log("Unable to locate Terraria. No texture data will be available.");
                 }
                 else
                 {
+                    ErrorLogging.Log(string.Format("Terraria v{0}", DependencyChecker.GetTerrariaVersion() ?? "not found"));
                     ErrorLogging.Log(string.Format("Terraria Data Path: {0}", DependencyChecker.PathToContent));
                 }
             }
