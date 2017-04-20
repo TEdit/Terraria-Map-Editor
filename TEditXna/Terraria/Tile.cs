@@ -49,7 +49,8 @@ namespace TEditXNA.Terraria
         AnnouncementBox = 425,
         Dummy = 378,
         ItemFrame = 395,
-        LogicSensor = 423
+        LogicSensor = 423,
+        Chest2 = 467
     }
 
     [Serializable]
@@ -222,7 +223,7 @@ namespace TEditXNA.Terraria
 
         public static bool IsChest(int tileType)
         {
-            return tileType == (int)TileType.Chest || tileType == (int)TileType.Dresser;
+            return tileType == (int)TileType.Chest || tileType == (int)TileType.Dresser || tileType == (int)TileType.Chest2;
         }
 
         public static bool IsSign(int tileType)

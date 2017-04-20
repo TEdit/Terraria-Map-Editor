@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="Go" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-    <UsingTask TaskName="DateStampVersion" TaskFactory="CodeTaskFactory" AssemblyFile="$(MSBuildToolsPath)\Microsoft.Build.Tasks.v4.0.dll">
+<Project ToolsVersion="12.0" DefaultTargets="Go" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <UsingTask TaskName="DateStampVersion" TaskFactory="CodeTaskFactory" AssemblyFile="$(MSBuildToolsPath)\Microsoft.Build.Tasks.v12.0.dll">
         <ParameterGroup>
             <Items ParameterType="Microsoft.Build.Framework.ITaskItem[]" />
         </ParameterGroup>
@@ -27,9 +27,9 @@
 						string findAssmFileVers = @"AssemblyFileVersion\(\""" + versionFormat;
 						string findWixVers = @"Version=""" + versionFormat + "\"";
 						string findTxtVers = "v" +versionFormat;
-						
+
 						Log.LogMessage(MessageImportance.Normal, "Updating Version File: " + fileName);
-						
+
 						if (!File.Exists(fileName))
 						{
 							Log.LogError(null, null, null, null, 0, 0, 0, 0, String.Format("Could not find version file: {0}", fileName), new object[0]);
@@ -51,14 +51,14 @@
 							Log.LogError(null, null, null, null, 0, 0, 0, 0, "No Version number found! Aborting: " + content, new object[0]);
 							continue;
 						}
-						
+
 						string wixVers = string.Format(
 								  "Version=\"{0}.{1}.{2}.{3}\"",
 								  m.Groups["major"].Value,
 								  m.Groups["minor"].Value,
 								  datedBuildNumber,
 								  revisionNumber);
-								  
+
 						string txtVers = string.Format(
 								  "v{0}.{1}.{2}.{3}",
 								  m.Groups["major"].Value,
