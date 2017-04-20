@@ -4,12 +4,15 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
 using System.Net;
+using System.Net.Http;
 using System.Reflection;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Timers;
 using System.Windows;
 using System.Windows.Data;
+using System.Windows.Forms;
 using System.Windows.Input;
 using System.Windows.Media.Imaging;
 using System.Windows.Threading;
@@ -18,7 +21,6 @@ using GalaSoft.MvvmLight.Command;
 using TEdit.MvvmLight.Threading;
 using TEdit.Geometry.Primitives;
 using TEdit.Utility;
-using Microsoft.Win32;
 using TEditXna.Editor;
 using TEditXna.Editor.Clipboard;
 using TEditXna.Editor.Plugins;
@@ -29,7 +31,12 @@ using TEditXna.Render;
 using TEditXNA.Terraria;
 using TEditXNA.Terraria.Objects;
 using TEditXna.View.Popups;
+using Application = System.Windows.Application;
 using DispatcherHelper = GalaSoft.MvvmLight.Threading.DispatcherHelper;
+using MessageBox = System.Windows.MessageBox;
+using OpenFileDialog = Microsoft.Win32.OpenFileDialog;
+using SaveFileDialog = Microsoft.Win32.SaveFileDialog;
+using Timer = System.Timers.Timer;
 
 namespace TEditXna.ViewModel
 {
@@ -130,7 +137,7 @@ namespace TEditXna.ViewModel
 
                 var sprite = (Sprite)o;
 
-                string [] _spriteFilterSplit = _spriteFilter.Split('/');
+                string[] _spriteFilterSplit = _spriteFilter.Split('/');
                 foreach (string _spriteWord in _spriteFilterSplit)
                 {
                     if (sprite.TileName == _spriteWord) return true;
@@ -593,74 +600,72 @@ namespace TEditXna.ViewModel
                 Path.GetFileName(_currentFile));
         }
 
-        public void CheckVersion(bool auto = true)
+        public async void CheckVersion(bool auto = true)
         {
-            Task.Factory.StartNew<bool?>(() =>
+            bool isoutofdate = false;
+
+            const string versionRegex = @"""tag_name"":\s?""(?<version>[0-9\.]*)""";
+            try
+            {
+                using (var client = new HttpClient())
+                {
+                    client.DefaultRequestHeaders.UserAgent.ParseAdd("Mozilla/4.0");
+                    string githubReleases = await client.GetStringAsync("https://api.github.com/repos/TEdit/Terraria-map-Editor/releases");
+                    var versions = Regex.Match(githubReleases, versionRegex);
+
+                    isoutofdate = versions.Success && IsVersionNewerThanApplicationVersion(versions?.Groups?[1].Value);
+                    
+                    // ignore revision, build should be enough
+                    // if ((revis != -1) && (revis > App.Version.ProductPrivatePart)) return true;
+                }
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Unable to check version.", "Update Check Failed");
+            }
+
+
+            if (isoutofdate && MessageBox.Show("You are using an outdated version of TEdit. Do you wish to download the update?", "Update?", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
             {
                 try
                 {
-                    using (var Client = new WebClient())
-                    {
-                        byte[] dl = Client.DownloadData("http://www.binaryconstruct.com/downloads/teditversion.txt");
-
-                        string vers = Encoding.Unicode.GetString(dl);
-                        string[] verstrimmed = vers.Split('v');
-
-                        if (verstrimmed.Length != 2) return null;
-
-                        string[] split = verstrimmed[1].Split('.');
-
-                        if (split.Length < 3) return null; // SBLogic -- accept revision part if present
-
-                        int major;
-                        int minor;
-                        int build;
-                        int revis = -1;
-
-                        if (!int.TryParse(split[0], out major)) return null;
-                        if (!int.TryParse(split[1], out minor)) return null;
-                        if (!int.TryParse(split[2], out build)) return null;
-                        if ((split.Length == 4) && (split[3].Length > 0) && (!int.TryParse(split[3], out revis))) return null;
-
-                        if (major > App.Version.ProductMajorPart) return true;
-                        if (minor > App.Version.ProductMinorPart) return true;
-                        if (build > App.Version.ProductBuildPart) return true;
-                        // ignore revision, build should be enough
-                        // if ((revis != -1) && (revis > App.Version.ProductPrivatePart)) return true;
-                    }
+                    Process.Start("http://www.binaryconstruct.com/downloads/");
                 }
-                catch (Exception)
-                {
-                    return null;
-                }
-                return false;
-            }).ContinueWith(t =>
+                catch { }
+
+            }
+            else if (!auto)
             {
-                bool? isoutofdate = t.Result;
+                MessageBox.Show("TEdit is up to date.", "Update");
+            }
 
-                if (isoutofdate == null)
-                {
-                    MessageBox.Show("Unable to check version.", "Update Check Failed");
-                }
-                else if (isoutofdate == true)
-                {
-                    if (MessageBox.Show("You are using an outdated version of TEdit. Do you wish to download the update?", "Update?", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
-                    {
-                        try
-                        {
-                            Process.Start("http://www.binaryconstruct.com/downloads/");
-                        }
-                        catch { }
+        }
 
-                    }
-                }
-                else
-                {
-                    if (!auto)
-                        MessageBox.Show("TEdit is up to date.", "Update");
-                }
+        private bool IsVersionNewerThanApplicationVersion(string version)
+        {
+            version = version.TrimStart('v');
 
-            }, TaskFactoryHelper.UiTaskScheduler);
+            string[] split = version.Split('.');
+
+            if (split.Length < 3) return false; // SBLogic -- accept revision part if present
+
+            int major;
+            int minor;
+            int build;
+            int revis = -1;
+
+            if (!int.TryParse(split[0], out major)) return false;
+            if (!int.TryParse(split[1], out minor)) return false;
+            if (!int.TryParse(split[2], out build)) return false;
+
+            if ((split.Length == 4) && (split[3].Length > 0) && (!int.TryParse(split[3], out revis))) return false;
+
+            if (major > App.Version.ProductMajorPart) return true;
+            if (minor > App.Version.ProductMinorPart) return true;
+            if (build > App.Version.ProductBuildPart) return true;
+            if (revis > App.Version.ProductPrivatePart) return true;
+
+            return false;
         }
 
         private ICommand _analyzeWorldCommand;
