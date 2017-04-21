@@ -484,14 +484,19 @@ namespace TEdit.UI.Xaml.XnaContentHost
                     case NativeMethods.WM_MOUSEWHEEL:
                         if (mouseInWindow)
                         {
-                            try
-                            {
-                                int delta = wParam.ToInt32();
-                                if (HwndMouseWheel != null)
-                                    HwndMouseWheel(this, new HwndMouseEventArgs(mouseState, delta, 0));
-                            }
+                            int delta = 0;
+                            
+                            try { delta = wParam.ToInt32(); }
                             catch (Exception) { /*supress error*/ }
 
+                            if (delta == 0)
+                            {
+                                try { delta = (int) wParam.ToInt64(); }
+                                catch (Exception) { /*supress error*/ }
+                            }
+
+                            if (HwndMouseWheel != null)
+                                HwndMouseWheel(this, new HwndMouseEventArgs(mouseState, delta, 0));
                         }
                         break;
                     case NativeMethods.WM_LBUTTONDOWN:
