@@ -710,8 +710,6 @@ namespace TEditXna.Editor.Clipboard
 
                 }
             }
-
-            return null;
         }
 
         public static ClipboardBuffer LoadOld(string filename)

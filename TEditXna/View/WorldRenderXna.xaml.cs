@@ -176,7 +176,7 @@ namespace TEditXna.View
 
         #region Load Content
 
-        private async void xnaViewport_LoadContent(object sender, GraphicsDeviceEventArgs e)
+        private void xnaViewport_LoadContent(object sender, GraphicsDeviceEventArgs e)
         {
             // Abort rendering if in design mode or if gameTimer is already running
             if (ViewModelBase.IsInDesignModeStatic || _gameTimer.IsRunning)
@@ -1822,16 +1822,28 @@ namespace TEditXna.View
                 else
                     DrawNpcOverlay(npc);
             }
-
-            _spriteBatch.Draw(_textures["Spawn"],
+  
+            _spriteBatch.Draw(
+                _textures["Spawn"],
                 GetOverlayLocation(_wvm.CurrentWorld.SpawnX, _wvm.CurrentWorld.SpawnY),
-                              color: Color.FromNonPremultiplied(255, 255, 255, 128),
-                              layerDepth: LayerLocations);
+                _textures["Spawn"].Bounds, 
+                Color.FromNonPremultiplied(255, 255, 255, 128), 
+                0f,
+                Vector2.Zero,
+                Vector2.One,
+                SpriteEffects.None,
+                LayerLocations);
 
-            _spriteBatch.Draw(_textures["Dungeon"],
-                              GetOverlayLocation(_wvm.CurrentWorld.DungeonX, _wvm.CurrentWorld.DungeonY),
-                              color: Color.FromNonPremultiplied(255, 255, 255, 128),
-                              layerDepth: LayerLocations);
+            _spriteBatch.Draw(
+                _textures["Dungeon"],
+                GetOverlayLocation(_wvm.CurrentWorld.DungeonX, _wvm.CurrentWorld.DungeonY),
+                _textures["Dungeon"].Bounds,
+                Color.FromNonPremultiplied(255, 255, 255, 128),
+                0f,
+                Vector2.Zero,
+                Vector2.One,
+                SpriteEffects.None,
+                LayerLocations);
         }
 
         private void DrawNpcTexture(NPC npc)
@@ -1862,9 +1874,16 @@ namespace TEditXna.View
 
             if (_textures.ContainsKey(npcName))
             {
-                _spriteBatch.Draw(_textures[npcName],
-                                  GetOverlayLocation(npc.Home.X, npc.Home.Y),
-                                  color: Color.White, layerDepth: LayerLocations);
+                _spriteBatch.Draw(
+                    _textures[npcName],
+                    GetOverlayLocation(npc.Home.X, npc.Home.Y),
+                    _textures[npcName].Bounds,
+                    Color.FromNonPremultiplied(255, 255, 255, 128),
+                    0f,
+                    Vector2.Zero,
+                    Vector2.One,
+                    SpriteEffects.None,
+                    LayerLocations);
             }
         }
 

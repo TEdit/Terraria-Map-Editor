@@ -15,6 +15,7 @@ using System.Windows.Input;
 using System.Windows.Interop;
 using System.Windows.Media;
 using Microsoft.Xna.Framework.Graphics;
+using TEditXna;
 
 namespace TEdit.UI.Xaml.XnaContentHost
 {
@@ -637,6 +638,7 @@ namespace TEdit.UI.Xaml.XnaContentHost
             catch (Exception ex)
             {
                 // log this
+                ErrorLogging.LogException(ex);
             }
 
             return base.WndProc(hwnd, msg, wParam, lParam, ref handled);
