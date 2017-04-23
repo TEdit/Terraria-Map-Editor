@@ -643,7 +643,7 @@ namespace TEditXNA.Terraria
                 {
                     reader.Close();
                     throw new FileLoadException(
-                        string.Format("Error reading world file validation parameters! {0}", filename));
+                        $"Error reading world file validation parameters! {filename}");
                 }
             }
             OnProgressChanged(null, new ProgressChangedEventArgs(0, "World Load Complete."));

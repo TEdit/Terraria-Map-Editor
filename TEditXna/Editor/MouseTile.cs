@@ -69,20 +69,20 @@ namespace TEditXna.Editor
                         string frameNameKey = World.GetFrameNameKey(_tile.Type, _tile.U, _tile.V);
                         TileName = World.FrameNames.ContainsKey(frameNameKey) ? World.FrameNames[frameNameKey] : tileProperty.Name + "*";
                     }
-                    TileName = _tile.IsActive ? string.Format("{0} ({1})", TileName, _tile.Type) : "[empty]";
+                    TileName = _tile.IsActive ? $"{TileName} ({_tile.Type})" : "[empty]";
                 }
                 else
-                    TileName = string.Format("INVALID TILE ({0})", _tile.Type);
+                    TileName = $"INVALID TILE ({_tile.Type})";
 
                 if (World.WallProperties.Count > _tile.Wall)
-                    WallName = string.Format("{0} ({1})", World.WallProperties[_tile.Wall].Name, _tile.Wall);
+                    WallName = $"{World.WallProperties[_tile.Wall].Name} ({_tile.Wall})";
                 else
-                    WallName = string.Format("INVALID WALL ({0})", _tile.Wall);
+                    WallName = $"INVALID WALL ({_tile.Wall})";
 
                 UV = new Vector2Short(_tile.U, _tile.V);
                 if (_tile.LiquidAmount > 0)
                 {
-                    TileExtras = string.Format("{0}: {1}", _tile.LiquidType, _tile.LiquidAmount);
+                    TileExtras = $"{_tile.LiquidType}: {_tile.LiquidAmount}";
                 }
                 else
                     TileExtras = string.Empty;
@@ -90,13 +90,14 @@ namespace TEditXna.Editor
                 if (_tile.TileColor > 0)
                 {
                     if (_tile.WallColor > 0)
-                        Paint = string.Format("Tile: {0}, Wall: {1}", World.PaintProperties[_tile.TileColor].Name, World.PaintProperties[_tile.WallColor].Name);
+                        Paint =
+                            $"Tile: {World.PaintProperties[_tile.TileColor].Name}, Wall: {World.PaintProperties[_tile.WallColor].Name}";
                     else
-                        Paint = string.Format("Tile: {0}", World.PaintProperties[_tile.TileColor].Name);
+                        Paint = $"Tile: {World.PaintProperties[_tile.TileColor].Name}";
                 }
                 else if (_tile.WallColor > 0)
                 {
-                    Paint = string.Format("Wall: {0}", World.PaintProperties[_tile.WallColor].Name);
+                    Paint = $"Wall: {World.PaintProperties[_tile.WallColor].Name}";
                 }
                 else
                 {

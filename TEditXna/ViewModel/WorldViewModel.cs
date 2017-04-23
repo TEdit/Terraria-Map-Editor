@@ -591,9 +591,8 @@ namespace TEditXna.ViewModel
             Assembly asm = Assembly.GetExecutingAssembly();
             FileVersionInfo fvi = FileVersionInfo.GetVersionInfo(asm.Location);
 
-            WindowTitle = string.Format("TEdit v{0}.{1}.{2}.{3} {4}",
-                fvi.ProductMajorPart, fvi.ProductMinorPart, fvi.FileBuildPart, fvi.FilePrivatePart,
-                Path.GetFileName(_currentFile));
+            WindowTitle =
+                $"TEdit v{fvi.ProductMajorPart}.{fvi.ProductMinorPart}.{fvi.FileBuildPart}.{fvi.FilePrivatePart} {Path.GetFileName(_currentFile)}";
         }
 
         public async void CheckVersion(bool auto = true)
@@ -895,7 +894,8 @@ namespace TEditXna.ViewModel
                         }
                         MinimapImage = RenderMiniMap.Render(CurrentWorld);
                         _loadTimer.Stop();
-                        OnProgressChanged(this, new ProgressChangedEventArgs(0, string.Format("World loaded in {0} seconds.", _loadTimer.Elapsed.TotalSeconds)));
+                        OnProgressChanged(this, new ProgressChangedEventArgs(0,
+                            $"World loaded in {_loadTimer.Elapsed.TotalSeconds} seconds."));
                         _saveTimer.Start();
                     }, TaskFactoryHelper.UiTaskScheduler);
             }
@@ -969,7 +969,8 @@ namespace TEditXna.ViewModel
                         }
                         MinimapImage = RenderMiniMap.Render(CurrentWorld);
                         _loadTimer.Stop();
-                        OnProgressChanged(this, new ProgressChangedEventArgs(0, string.Format("World loaded in {0} seconds.", _loadTimer.Elapsed.TotalSeconds)));
+                        OnProgressChanged(this, new ProgressChangedEventArgs(0,
+                            $"World loaded in {_loadTimer.Elapsed.TotalSeconds} seconds."));
                         _saveTimer.Start();
                     }
                     _loadTimer.Stop();

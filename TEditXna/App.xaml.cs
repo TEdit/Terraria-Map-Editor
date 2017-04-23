@@ -23,8 +23,8 @@ namespace TEditXna
         protected override void OnStartup(StartupEventArgs e)
         {
             ErrorLogging.Initialize();
-            ErrorLogging.Log(string.Format("Starting TEdit {0}", ErrorLogging.Version));
-            ErrorLogging.Log(string.Format("OS: {0}", Environment.OSVersion));
+            ErrorLogging.Log($"Starting TEdit {ErrorLogging.Version}");
+            ErrorLogging.Log($"OS: {Environment.OSVersion}");
 
             Assembly asm = Assembly.GetExecutingAssembly();
             Version = FileVersionInfo.GetVersionInfo(asm.Location);
@@ -34,7 +34,7 @@ namespace TEditXna
                 int directxMajorVersion = DependencyChecker.GetDirectxMajorVersion();
                 if (directxMajorVersion < 11)
                 {
-                    ErrorLogging.Log(string.Format("DirectX {0} unsupported. DirectX 11 or higher is required.", directxMajorVersion));
+                    ErrorLogging.Log($"DirectX {directxMajorVersion} unsupported. DirectX 11 or higher is required.");
                 }
             }
             catch (Exception ex)
@@ -62,8 +62,8 @@ namespace TEditXna
                 }
                 else
                 {
-                    ErrorLogging.Log(string.Format("Terraria v{0}", DependencyChecker.GetTerrariaVersion() ?? "not found"));
-                    ErrorLogging.Log(string.Format("Terraria Data Path: {0}", DependencyChecker.PathToContent));
+                    ErrorLogging.Log($"Terraria v{DependencyChecker.GetTerrariaVersion() ?? "not found"}");
+                    ErrorLogging.Log($"Terraria Data Path: {DependencyChecker.PathToContent}");
                 }
             }
             catch (Exception ex)
@@ -75,7 +75,7 @@ namespace TEditXna
 
             if (e.Args != null && e.Args.Count() > 0)
             {
-                ErrorLogging.Log(string.Format("Command Line Open: {0}", e.Args[0]));
+                ErrorLogging.Log($"Command Line Open: {e.Args[0]}");
                 Properties["OpenFile"] = e.Args[0];
             }
 

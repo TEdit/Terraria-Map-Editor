@@ -703,7 +703,8 @@ namespace TEditXNA.Terraria
                         y++;
 
                         if (y > maxY)
-                            throw new FileFormatException(string.Format("Invalid Tile Data: RLE Compression outside of bounds [{0},{1}]", x, y));
+                            throw new FileFormatException(
+                                $"Invalid Tile Data: RLE Compression outside of bounds [{x},{y}]");
 
                         tiles[x, y] = (Tile)tile.Clone();
                         rle--;

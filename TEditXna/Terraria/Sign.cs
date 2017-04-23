@@ -101,7 +101,7 @@ namespace TEditXNA.Terraria
 
         public override string ToString()
         {
-            return String.Format("[Sign: {0}[{1}], ({2},{3})]", Text.Substring(0, Math.Max(25, Text.Length)), Text.Length, X, Y);
+            return $"[Sign: {Text.Substring(0, Math.Max(25, Text.Length))}[{Text.Length}], ({X},{Y})]";
         }
 
 

@@ -81,7 +81,7 @@ namespace TEditXNA.Terraria
                     if (index > 0 && index <= World.TallyNames.Count)
                     {
                         World.TallyNames[index] = Regex.Replace(World.TallyNames[index], @" Banner", "");
-                        bufferNoKill += String.Format("[{0}] {1}\n", index, World.TallyNames[index]);
+                        bufferNoKill += $"[{index}] {World.TallyNames[index]}\n";
                     }
                         
                 }
@@ -89,7 +89,7 @@ namespace TEditXNA.Terraria
                 {
                     // Monster killed, but banner never obtained (less than 50 kills)
                     World.TallyNames[index] = Regex.Replace(World.TallyNames[index], @" Banner", "");
-                    bufferNoBanner += String.Format("[{0}] {1} - {2}\n", index, World.TallyNames[index], count);
+                    bufferNoBanner += $"[{index}] {World.TallyNames[index]} - {count}\n";
                     killcount = killcount + count;
                 }
                 else
@@ -105,7 +105,7 @@ namespace TEditXNA.Terraria
                         bannerText = "banner";
 
                     World.TallyNames[index] = Regex.Replace(World.TallyNames[index], @" Banner", "");
-                    bufferBanner += String.Format("[{0}] {1} - {2} ({3} {4} earned)\n", index, World.TallyNames[index], count, banners, bannerText);
+                    bufferBanner += $"[{index}] {World.TallyNames[index]} - {count} ({banners} {bannerText} earned)\n";
                     killcount = killcount + count;
                     uniquecount = uniquecount + 1;
                     bannercount = bannercount + banners;

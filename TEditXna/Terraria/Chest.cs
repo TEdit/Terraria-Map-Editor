@@ -134,7 +134,7 @@ namespace TEditXNA.Terraria
 
         public override string ToString()
         {
-            return String.Format("[Chest: ({0},{1})]", X, Y);
+            return $"[Chest: ({X},{Y})]";
         }
     }
 }

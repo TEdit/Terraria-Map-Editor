@@ -77,16 +77,16 @@ namespace TEditXna.ViewModel
                     var spawn = new Vector2Int32(CurrentWorld.SpawnX, CurrentWorld.SpawnY);
                     CurrentWorld.NPCs.Add(new NPC{Home = spawn, IsHomeless = true, DisplayName = name, Name = name, Position= new Vector2(spawn.X * 16, spawn.Y * 16), SpriteId = npcId});
                     Points.Add(name);
-                    MessageBox.Show(string.Format("{0} added to spawn.", name), "NPC Added");
+                    MessageBox.Show($"{name} added to spawn.", "NPC Added");
                 }
                 else
                 {
-                    MessageBox.Show(string.Format("{0} is already on the map.", name), "NPC Exists");
+                    MessageBox.Show($"{name} is already on the map.", "NPC Exists");
                 }
             }
             else
             {
-                MessageBox.Show(string.Format("Choose an NPC. NPC {0} not found.", npcId), "NPC Error");
+                MessageBox.Show($"Choose an NPC. NPC {npcId} not found.", "NPC Error");
             }
         }
 

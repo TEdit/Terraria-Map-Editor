@@ -39,7 +39,7 @@ namespace TEdit.Geometry
             var center = new Vector2Int32(xc, yc);
             var radius = new Vector2Int32(xr, yr);
 
-            Debug.WriteLine(string.Format("Center: {0}, Radius: {1}", center, radius));
+            Debug.WriteLine($"Center: {center}, Radius: {radius}");
 
             return FillEllipseCentered(center, radius);
         }

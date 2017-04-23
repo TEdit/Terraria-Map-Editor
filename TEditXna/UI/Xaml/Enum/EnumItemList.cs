@@ -466,7 +466,7 @@ namespace TEdit.UI.Xaml.Enum
                 }
                 else
                 {
-                    throw new ArgumentException(String.Format("'{0}' was not recognized as a valid enumeration value.", value));
+                    throw new ArgumentException($"'{value}' was not recognized as a valid enumeration value.");
                 }
             }
             return item;
@@ -480,7 +480,7 @@ namespace TEdit.UI.Xaml.Enum
             if (item != null && Contains(item)) return item.Value;
             item = FindItemByDisplayValue(value);
             if (item != null) return item.Value;
-            throw new ArgumentException(String.Format("'{0}' was not recognized as a valid enumeration value.", value));
+            throw new ArgumentException($"'{value}' was not recognized as a valid enumeration value.");
         }
 
 

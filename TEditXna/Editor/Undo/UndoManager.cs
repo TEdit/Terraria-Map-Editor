@@ -28,7 +28,7 @@ namespace TEditXna.Editor.Undo
 
             if (!Directory.Exists(Dir))
             {
-                ErrorLogging.Log(string.Format("Creating Undo cache: {0}", Dir));
+                ErrorLogging.Log($"Creating Undo cache: {Dir}");
 
                 Directory.CreateDirectory(Dir);
                 File.Create(UndoAliveFile).Close();
@@ -66,7 +66,7 @@ namespace TEditXna.Editor.Undo
             {
                 foreach (var file in Directory.GetFiles(WorldViewModel.TempPath).ToList())
                 {
-                    ErrorLogging.Log(string.Format("Removing old undo file: {0}", file));
+                    ErrorLogging.Log($"Removing old undo file: {file}");
                     File.Delete(file);
                 }
 
@@ -74,14 +74,14 @@ namespace TEditXna.Editor.Undo
                 {
                     if (!Equals(dir, Dir) && !IsUndoDirAlive(dir))
                     {
-                        ErrorLogging.Log(string.Format("Removing old undo cache: {0}", dir));
+                        ErrorLogging.Log($"Removing old undo cache: {dir}");
                         Directory.Delete(dir, true);
                     }
                 }
 
                 if (forceCleanup)
                 {
-                    ErrorLogging.Log(string.Format("Removing undo cache: {0}", Dir));
+                    ErrorLogging.Log($"Removing undo cache: {Dir}");
                     Directory.Delete(Dir, true);
                 }
             }

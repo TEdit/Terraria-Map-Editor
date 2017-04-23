@@ -23,7 +23,7 @@ namespace TEditXna
             // if hard coded in settings.xml try that location first
             if (!string.IsNullOrWhiteSpace(TEditXNA.Terraria.World.AltC))
             {
-                if(Directory.Exists(TEditXNA.Terraria.World.AltC))
+                if (Directory.Exists(TEditXNA.Terraria.World.AltC))
                     path = TEditXNA.Terraria.World.AltC;
             }
 
@@ -84,7 +84,7 @@ namespace TEditXna
                 while (!DirectoryHasContentFolder(tempPath) && retry)
                 {
                     if (MessageBox.Show(
-                        string.Format("Directory does not appear to contain Content.\r\nPress retry to pick a new folder or cancel to use \r\n{0}\r\n as your terraria path.", path),
+                            $"Directory does not appear to contain Content.\r\nPress retry to pick a new folder or cancel to use \r\n{path}\r\n as your terraria path.",
                         "Terraria Content not Found",
                         MessageBoxButtons.RetryCancel, MessageBoxIcon.Error) == DialogResult.Retry)
                     {
