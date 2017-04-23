@@ -1,6 +1,5 @@
 using System;
 using Microsoft.Xna.Framework;
-using TEdit.Geometry.Primitives;
 using TEditXna.ViewModel;
 using TEditXNA.Terraria;
 

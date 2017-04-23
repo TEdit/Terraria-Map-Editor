@@ -1,5 +1,4 @@
 ﻿using System.Windows.Media;
-using System.Windows.Media.Imaging;
 using GalaSoft.MvvmLight;
 
 namespace TEditXNA.Terraria.Objects

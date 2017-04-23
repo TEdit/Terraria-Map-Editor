@@ -3,19 +3,15 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
-using System.Net;
 using System.Net.Http;
 using System.Reflection;
-using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Timers;
 using System.Windows;
 using System.Windows.Data;
-using System.Windows.Forms;
 using System.Windows.Input;
 using System.Windows.Media.Imaging;
-using System.Windows.Threading;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using TEdit.MvvmLight.Threading;
@@ -115,7 +111,7 @@ namespace TEditXna.ViewModel
             if (IsInDesignModeStatic)
                 return;
 
-            CheckUpdates = Properties.Settings.Default.CheckUpdates;
+            CheckUpdates = Settings.Default.CheckUpdates;
 
             if (CheckUpdates)
                 CheckVersion();
@@ -684,16 +680,16 @@ namespace TEditXna.ViewModel
 
         private void AnalyzeWorldSave()
         {
-            if (this.CurrentWorld == null) return;
+            if (CurrentWorld == null) return;
             var sfd = new SaveFileDialog();
             sfd.DefaultExt = "Text File|*.txt";
             sfd.Filter = "Text Files|*.txt";
-            sfd.FileName = this.CurrentWorld.Title + " Analysis.txt";
+            sfd.FileName = CurrentWorld.Title + " Analysis.txt";
             sfd.Title = "Save world analysis.";
             sfd.OverwritePrompt = true;
             if (sfd.ShowDialog() == true)
             {
-                TEditXNA.Terraria.WorldAnalysis.AnalyzeWorld(this.CurrentWorld, sfd.FileName);
+                TEditXNA.Terraria.WorldAnalysis.AnalyzeWorld(CurrentWorld, sfd.FileName);
 
             }
         }
@@ -705,16 +701,16 @@ namespace TEditXna.ViewModel
 
         private void TallyCountSave()
         {
-            if (this.CurrentWorld == null) return;
+            if (CurrentWorld == null) return;
             var sfd = new SaveFileDialog();
             sfd.DefaultExt = "Text File|*.txt";
             sfd.Filter = "Text Files|*.txt";
-            sfd.FileName = this.CurrentWorld.Title + " Tally.txt";
+            sfd.FileName = CurrentWorld.Title + " Tally.txt";
             sfd.Title = "Save world analysis.";
             sfd.OverwritePrompt = true;
             if (sfd.ShowDialog() == true)
             {
-                TEditXNA.Terraria.KillTally.SaveTally(this.CurrentWorld, sfd.FileName);
+                KillTally.SaveTally(CurrentWorld, sfd.FileName);
 
             }
         }
@@ -729,7 +725,7 @@ namespace TEditXna.ViewModel
 
         private void AnalyzeWorld()
         {
-            WorldAnalysis = TEditXNA.Terraria.WorldAnalysis.AnalyzeWorld(this.CurrentWorld);
+            WorldAnalysis = TEditXNA.Terraria.WorldAnalysis.AnalyzeWorld(CurrentWorld);
         }
 
         private string _worldAnalysis;
@@ -750,7 +746,7 @@ namespace TEditXna.ViewModel
 
         private void GetTallyCount()
         {
-            TallyCount = TEditXNA.Terraria.KillTally.LoadTally(this.CurrentWorld);
+            TallyCount = KillTally.LoadTally(CurrentWorld);
         }
 
         private string _tallyCount;

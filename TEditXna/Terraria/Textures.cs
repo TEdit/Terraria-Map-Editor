@@ -4,7 +4,6 @@ using System.IO;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Graphics.PackedVector;
 using TEditXna;
 
 namespace TEditXNA.Terraria
@@ -55,7 +54,7 @@ namespace TEditXNA.Terraria
         public Textures(IServiceProvider serviceProvider, GraphicsDevice gdDevice)
         {
             _gdDevice = gdDevice;
-            string path = TEditXna.DependencyChecker.PathToContent;
+            string path = DependencyChecker.PathToContent;
 
             _defaultTexture = new Texture2D(_gdDevice, 1, 1);
             _defaultTexture.SetData(new Color[] { Color.Transparent });

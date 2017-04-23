@@ -14,7 +14,7 @@ namespace TEdit.UI.Xaml.XnaContentHost
     {
         public void Update()
         {
-            TimeSpan mark = this.Elapsed;
+            TimeSpan mark = Elapsed;
             _elapsedGameTime = mark - _lastUpdate;
             _lastUpdate = mark;
         }

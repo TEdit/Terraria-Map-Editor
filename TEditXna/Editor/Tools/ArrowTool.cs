@@ -3,7 +3,6 @@ using System.Windows.Input;
 using System.Windows.Media.Imaging;
 using TEditXNA.Terraria;
 using TEdit.Geometry.Primitives;
-using TEditXna.View.Popups;
 using TEditXna.ViewModel;
 
 namespace TEditXna.Editor.Tools

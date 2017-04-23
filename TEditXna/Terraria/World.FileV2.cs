@@ -1,18 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel;
-using System.Runtime.InteropServices;
-using System.Runtime.Remoting.Messaging;
-using System.Windows;
-using System.Xml.Linq;
 using TEdit.Utility;
-using TEditXna.Helper;
-using TEditXNA.Terraria.Objects;
 using TEdit.Geometry.Primitives;
 using Vector2 = TEdit.Geometry.Primitives.Vector2;
 using System;
-using System.Collections.ObjectModel;
 using System.IO;
-using System.Linq;
 
 namespace TEditXNA.Terraria
 {
@@ -35,9 +27,9 @@ namespace TEditXNA.Terraria
                 TileFrameImportant = new bool[TileCount];
                 for (int i = 0; i < TileCount; i++)
                 {
-                    if (World.TileProperties.Count > i)
+                    if (TileProperties.Count > i)
                     {
-                        TileFrameImportant[i] = World.TileProperties[i].IsFramed;
+                        TileFrameImportant[i] = TileProperties[i].IsFramed;
                     }
                 }
             }
@@ -839,7 +831,7 @@ namespace TEditXNA.Terraria
 
                 // grab bits[4, 5, 6] and shift 4 places to 0,1,2. This byte is our brick style
                 byte brickStyle = (byte)((header2 & 112) >> 4);
-                if (brickStyle != 0 && World.TileProperties.Count > tile.Type && World.TileProperties[tile.Type].IsSolid)
+                if (brickStyle != 0 && TileProperties.Count > tile.Type && TileProperties[tile.Type].IsSolid)
                 {
                     tile.BrickStyle = (BrickStyle)brickStyle;
                 }

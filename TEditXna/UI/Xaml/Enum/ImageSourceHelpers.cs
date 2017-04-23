@@ -2,9 +2,6 @@
 // License: The Code Project Open License (CPOL) 1.02
 // License URL: http://www.codeproject.com/info/cpol10.aspx
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Windows.Media;
 using System.Drawing;
 using System.Windows;
@@ -20,7 +17,7 @@ namespace TEdit.UI.Xaml.Enum
             var hBitmap = bmp.GetHbitmap();
             try
             {
-                return System.Windows.Interop.Imaging.CreateBitmapSourceFromHBitmap(hBitmap, IntPtr.Zero, Int32Rect.Empty, BitmapSizeOptions.FromEmptyOptions());
+                return Imaging.CreateBitmapSourceFromHBitmap(hBitmap, IntPtr.Zero, Int32Rect.Empty, BitmapSizeOptions.FromEmptyOptions());
             }
             finally
             {

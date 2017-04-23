@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
 using System.IO;
 using System.Linq;
-using System.Reflection;
 using System.Threading;
 using TEdit.Geometry.Primitives;
 using GalaSoft.MvvmLight;
@@ -75,7 +72,7 @@ namespace TEditXna.Editor.Undo
 
                 foreach (var dir in Directory.GetDirectories(WorldViewModel.TempPath).ToList())
                 {
-                    if (!Path.Equals(dir, Dir) && !IsUndoDirAlive(dir))
+                    if (!Equals(dir, Dir) && !IsUndoDirAlive(dir))
                     {
                         ErrorLogging.Log(string.Format("Removing old undo cache: {0}", dir));
                         Directory.Delete(dir, true);

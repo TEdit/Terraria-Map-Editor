@@ -1,5 +1,4 @@
-﻿using System.Collections.ObjectModel;
-using System.IO;
+﻿using System.IO;
 using GalaSoft.MvvmLight;
 
 namespace TEditXNA.Terraria

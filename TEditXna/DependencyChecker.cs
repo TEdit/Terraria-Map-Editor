@@ -38,7 +38,7 @@ namespace TEditXna
             // SBLogic - attempt to find GOG version
             if (string.IsNullOrWhiteSpace(path))
             {
-                using (Microsoft.Win32.RegistryKey key = Microsoft.Win32.Registry.LocalMachine.OpenSubKey(@"SOFTWARE\GOG.com\Games\1207665503\"))
+                using (RegistryKey key = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\GOG.com\Games\1207665503\"))
                 {
                     if (key != null)
                         path = Path.Combine((string)key.GetValue("PATH"), "Content");
@@ -49,7 +49,7 @@ namespace TEditXna
             if (string.IsNullOrWhiteSpace(path))
             {
                 // try with dionadar's fix
-                using (Microsoft.Win32.RegistryKey key = Microsoft.Win32.Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\Steam App 105600"))
+                using (RegistryKey key = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\Steam App 105600"))
                 {
                     if (key != null)
                         path = Path.Combine((string)key.GetValue("InstallLocation"), "Content");
@@ -59,7 +59,7 @@ namespace TEditXna
             // if that fails, try steam path
             if (string.IsNullOrWhiteSpace(path))
             {
-                using (Microsoft.Win32.RegistryKey key = Microsoft.Win32.Registry.CurrentUser.OpenSubKey(@"Software\\Valve\\Steam"))
+                using (RegistryKey key = Registry.CurrentUser.OpenSubKey(@"Software\\Valve\\Steam"))
                 {
                     if (key != null)
                         path = key.GetValue("SteamPath") as string;
@@ -117,7 +117,7 @@ namespace TEditXna
             //  Are we editing Steam Cloud worlds?
             if (steamUserId != null)
             {
-                using (Microsoft.Win32.RegistryKey key = Microsoft.Win32.Registry.CurrentUser.OpenSubKey(@"Software\\Valve\\Steam"))
+                using (RegistryKey key = Registry.CurrentUser.OpenSubKey(@"Software\\Valve\\Steam"))
                 {
                     if (key != null)
                     {

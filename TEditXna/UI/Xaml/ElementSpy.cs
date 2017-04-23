@@ -37,7 +37,7 @@ namespace TEdit.UI.Xaml
                     _element = prop.GetValue(this, null) as DependencyObject;
 
                     if (_element != null)
-                        base.Freeze();
+                        Freeze();
                 }
                 return _element;
             }
@@ -96,7 +96,7 @@ namespace TEdit.UI.Xaml
         protected override Freezable CreateInstanceCore()
         {
             // We are required to override this abstract method.
-            throw new System.NotSupportedException();
+            throw new NotSupportedException();
         }
 
         #endregion // CreateInstanceCore

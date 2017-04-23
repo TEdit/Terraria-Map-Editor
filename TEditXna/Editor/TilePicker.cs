@@ -2,7 +2,6 @@
 using GalaSoft.MvvmLight;
 using TEditXNA.Terraria;
 using System.Windows.Input;
-using TEditXNA.Terraria.Objects;
 
 namespace TEditXna.Editor
 {

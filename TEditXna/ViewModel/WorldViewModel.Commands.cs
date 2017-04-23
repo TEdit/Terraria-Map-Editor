@@ -8,7 +8,6 @@ using TEdit.Geometry.Primitives;
 using GalaSoft.MvvmLight.Command;
 using Microsoft.Win32;
 using TEditXNA.Terraria;
-using TEditXNA.Terraria.Objects;
 using TEditXna.Editor;
 using TEditXna.Editor.Clipboard;
 using TEditXna.Editor.Plugins;

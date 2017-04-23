@@ -1,12 +1,8 @@
 ﻿using System;
 using System.Collections.ObjectModel;
-using System.IO;
 using System.Windows;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
 using TEdit.Geometry.Primitives;
 using GalaSoft.MvvmLight;
-using TEdit.Utility;
 using TEditXna.ViewModel;
 using XNA = Microsoft.Xna.Framework;
 using TEditXNA.Terraria;

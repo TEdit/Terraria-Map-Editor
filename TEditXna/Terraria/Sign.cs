@@ -1,6 +1,5 @@
 using System;
 using GalaSoft.MvvmLight;
-using TEdit.Geometry.Primitives;
 using TEditXna.ViewModel;
 using TEditXNA.Terraria.Objects;
 

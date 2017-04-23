@@ -41,7 +41,7 @@
         {
             Seed = seed;
             // Initialize the random values array
-            this.values = new int[RANDOM_SIZE * 2];
+            values = new int[RANDOM_SIZE * 2];
 
             // Initialize the random generator
             Random generator = new Random(seed);
@@ -54,7 +54,7 @@
 
             // Copy the source data twice to the generator array
             for (int i = 0; i < RANDOM_SIZE; i++)
-                this.values[i + RANDOM_SIZE] = this.values[i] = source[i];
+                values[i + RANDOM_SIZE] = values[i] = source[i];
         }
 
         /// <summary>
@@ -72,7 +72,7 @@
 
             float u = Fade(x);
 
-            return Lerp(Grad(this.values[X], x), Grad(this.values[X + 1], x - 1), u);
+            return Lerp(Grad(values[X], x), Grad(values[X + 1], x - 1), u);
         }
 
         /// <summary>
@@ -96,15 +96,15 @@
             float v = Fade(y);
 
             // Fetch some randoms values from the table
-            int A = this.values[X] + Y;
-            int B = this.values[X + 1] + Y;
+            int A = values[X] + Y;
+            int B = values[X + 1] + Y;
 
             // Interpolate between directions 
-            return Lerp(Lerp(Grad(this.values[A], x, y),
-                             Grad(this.values[B], x - 1, y),
+            return Lerp(Lerp(Grad(values[A], x, y),
+                             Grad(values[B], x - 1, y),
                              u),
-                        Lerp(Grad(this.values[A + 1], x, y - 1),
-                             Grad(this.values[B + 1], x - 1, y - 1),
+                        Lerp(Grad(values[A + 1], x, y - 1),
+                             Grad(values[B + 1], x - 1, y - 1),
                              u),
                         v);
         }
@@ -134,22 +134,22 @@
             float w = Fade(z);
 
             // Fetch some randoms values from the table
-            int A = this.values[X] + Y;
-            int AA = this.values[A] + Z;
-            int AB = this.values[A + 1] + Z;
-            int B = this.values[X + 1] + Y;
-            int BA = this.values[B] + Z;
-            int BB = this.values[B + 1] + Z;
+            int A = values[X] + Y;
+            int AA = values[A] + Z;
+            int AB = values[A + 1] + Z;
+            int B = values[X + 1] + Y;
+            int BA = values[B] + Z;
+            int BB = values[B + 1] + Z;
 
             // Interpolate between directions
-            return Lerp(Lerp(Lerp(Grad(this.values[AA], x, y, z),
-                                  Grad(this.values[BA], x - 1, y, z), u),
-                             Lerp(Grad(this.values[AB], x, y - 1, z),
-                                  Grad(this.values[BB], x - 1, y - 1, z), u), v),
-                        Lerp(Lerp(Grad(this.values[AA + 1], x, y, z - 1),
-                                  Grad(this.values[BA + 1], x - 1, y, z - 1), u),
-                             Lerp(Grad(this.values[AB + 1], x, y - 1, z - 1),
-                                  Grad(this.values[BB + 1], x - 1, y - 1, z - 1), u), v), w);
+            return Lerp(Lerp(Lerp(Grad(values[AA], x, y, z),
+                                  Grad(values[BA], x - 1, y, z), u),
+                             Lerp(Grad(values[AB], x, y - 1, z),
+                                  Grad(values[BB], x - 1, y - 1, z), u), v),
+                        Lerp(Lerp(Grad(values[AA + 1], x, y, z - 1),
+                                  Grad(values[BA + 1], x - 1, y, z - 1), u),
+                             Lerp(Grad(values[AB + 1], x, y - 1, z - 1),
+                                  Grad(values[BB + 1], x - 1, y - 1, z - 1), u), v), w);
         }
 
 

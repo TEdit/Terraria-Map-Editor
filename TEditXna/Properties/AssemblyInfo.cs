@@ -1,6 +1,4 @@
 using System.Reflection;
-using System.Resources;
-using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Windows;
 using System.Windows.Markup;
@@ -45,7 +43,7 @@ using System.Windows.Markup;
 //
 
 [assembly: AssemblyVersion("3.10.0.0")]
-[assembly: AssemblyFileVersion("3.10.17111.0017")]
+[assembly: AssemblyFileVersion("3.10.17111.0101")]
 
 
 [assembly: XmlnsDefinition("http://tedit/wpf", "TEdit.UI.Xaml")]

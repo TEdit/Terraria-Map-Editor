@@ -14,7 +14,6 @@ WARRANTIES OF MERCHANTABILITY AND/OR FITNESS FOR A PARTICULAR PURPOSE.
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Threading;
 using TEdit.Framework.Threading;
 
 namespace TEdit.Framework.Collections
@@ -77,7 +76,7 @@ namespace TEdit.Framework.Collections
                         return false;
 
                     node = table.array[currentIndex];
-                } while (node.Token != Hashtable<TKey, TData>.Token.Used);
+                } while (node.Token != Token.Used);
 
                 Current = new KeyValuePair<TKey, TData>(node.Key, node.Data);
                 return true;
@@ -103,7 +102,7 @@ namespace TEdit.Framework.Collections
         {
             if (initialCapacity < 1)
                 throw new ArgumentOutOfRangeException("initialCapacity", "cannot be < 1");
-            array = new Hashtable<TKey, TData>.Node[initialCapacity];
+            array = new Node[initialCapacity];
             writeLock = new OneManyLock();
         }
 
@@ -214,7 +213,7 @@ namespace TEdit.Framework.Collections
 
         private bool Find(TKey key, out Node node)
         {
-            node = new Hashtable<TKey, TData>.Node();
+            node = new Node();
             var table = array;
             var initialHash = Math.Abs(key.GetHashCode()) % table.Length;
             var hash = initialHash;

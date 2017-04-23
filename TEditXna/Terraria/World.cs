@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
 using System.Linq;
@@ -7,8 +6,6 @@ using System.Windows;
 using TEdit.Geometry.Primitives;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Threading;
-using TEdit.Utility;
-using TEditXna.Helper;
 using TEditXNA.Terraria.Objects;
 
 namespace TEditXNA.Terraria
@@ -142,7 +139,7 @@ namespace TEditXNA.Terraria
                                   "Do you wish to force it to load anyway?\r\n\r\n" +
                                   "WARNING: This may have unexpected results including corrupt world files and program crashes.\r\n\r\n" +
                                    "The error is :\r\n{3}\r\n\r\n{4}\r\n"
-                    , TEditXna.App.Version.FileVersion, World.CompatibleVersion, curVersion, err.Message, err);
+                    , TEditXna.App.Version.FileVersion, CompatibleVersion, curVersion, err.Message, err);
                 if (MessageBox.Show(msg, "World File Error", MessageBoxButton.YesNo, MessageBoxImage.Error) !=
                     MessageBoxResult.Yes)
                     return null;

@@ -1,19 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
-using System.Net;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using TEdit.Geometry.Primitives;
 using TEditXNA.Terraria;
 using TEditXna.Editor;
@@ -30,8 +18,8 @@ namespace TEditXna
         public MainWindow()
         {
             InitializeComponent();
-            this.Width = World.AppSize.X;
-            this.Height = World.AppSize.Y;
+            Width = World.AppSize.X;
+            Height = World.AppSize.Y;
             DataContext = ViewModelLocator.WorldViewModel;
             _vm = (WorldViewModel)DataContext;
             AddHandler(Keyboard.KeyDownEvent, (KeyEventHandler)HandleKeyDownEvent);
@@ -182,9 +170,9 @@ namespace TEditXna
 
         public void ZoomFocus(int x, int y)
         {
-            if (this.MapView != null)
+            if (MapView != null)
             {
-                this.MapView.ZoomFocus(x, y);
+                MapView.ZoomFocus(x, y);
             }
         }
 

@@ -1,6 +1,4 @@
 using System.Windows;
-using System.Windows.Input;
-using GalaSoft.MvvmLight.Command;
 using TEditXNA.Terraria;
 using TEditXna.ViewModel;
 
@@ -100,7 +98,7 @@ namespace TEditXna.Editor.Plugins
         public override void Execute()
         {
             ReplaceAllPluginView view = new ReplaceAllPluginView();
-            view.Owner = App.Current.MainWindow;
+            view.Owner = Application.Current.MainWindow;
             view.DataContext = _wvm;
             if (view.ShowDialog() == true)
             {

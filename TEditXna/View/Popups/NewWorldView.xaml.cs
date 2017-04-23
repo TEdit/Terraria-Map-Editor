@@ -1,15 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+﻿using System.Windows;
 using TEditXNA.Terraria;
 using TEditXNA.Terraria.Objects;
 
@@ -30,7 +19,7 @@ namespace TEditXna.View.Popups
             _newWorld.RockLevel = 480;
             _newWorld.ResetTime();
             AddCharNames();
-            this.DataContext = NewWorld;
+            DataContext = NewWorld;
         }
 
         private void AddCharNames()
@@ -64,14 +53,14 @@ namespace TEditXna.View.Popups
 
         private void CancelClick(object sender, RoutedEventArgs e)
         {
-            this.DialogResult = false;
-            this.Close();
+            DialogResult = false;
+            Close();
         }
 
         private void OkClick(object sender, RoutedEventArgs e)
         {
-            this.DialogResult = true;
-            this.Close();
+            DialogResult = true;
+            Close();
         }
     }
 }

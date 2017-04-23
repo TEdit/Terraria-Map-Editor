@@ -8,7 +8,6 @@ using Microsoft.Xna.Framework;
 using TEditXNA.Terraria;
 using TEditXna.Editor;
 using TEditXna.Render;
-using TEditXNA.Terraria.Objects;
 
 namespace TEditXna.ViewModel
 {

@@ -1,11 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
 using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
-using System.Threading;
 using System.Windows;
 using TEdit.MvvmLight.Threading;
 using DispatcherHelper = GalaSoft.MvvmLight.Threading.DispatcherHelper;
@@ -19,7 +15,7 @@ namespace TEditXna
     {
         static App()
         {
-            GalaSoft.MvvmLight.Threading.DispatcherHelper.Initialize();
+            DispatcherHelper.Initialize();
         }
 
         public static FileVersionInfo Version { get; set; }
@@ -80,7 +76,7 @@ namespace TEditXna
             if (e.Args != null && e.Args.Count() > 0)
             {
                 ErrorLogging.Log(string.Format("Command Line Open: {0}", e.Args[0]));
-                this.Properties["OpenFile"] = e.Args[0];
+                Properties["OpenFile"] = e.Args[0];
             }
 
             if (AppDomain.CurrentDomain.SetupInformation.ActivationArguments != null &&
@@ -96,7 +92,7 @@ namespace TEditXna
                     var uri = new Uri(fname);
                     fname = uri.LocalPath;
 
-                    this.Properties["OpenFile"] = fname;
+                    Properties["OpenFile"] = fname;
                 }
                 catch (Exception ex)
                 {

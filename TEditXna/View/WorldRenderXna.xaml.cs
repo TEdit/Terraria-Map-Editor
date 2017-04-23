@@ -1,15 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using TEdit.Geometry.Primitives;
 using GalaSoft.MvvmLight;
 using TEdit.UI.Xaml.XnaContentHost;
-using TEdit.Utility;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using TEditXNA.Terraria;
@@ -442,7 +439,7 @@ namespace TEditXna.View
         private void DrawSprites()
         {
             Rectangle visibleBounds = GetViewingArea();
-            TEditXna.Terraria.Objects.BlendRules blendRules = TEditXna.Terraria.Objects.BlendRules.Instance;
+            Terraria.Objects.BlendRules blendRules = Terraria.Objects.BlendRules.Instance;
             var width  = _wvm.CurrentWorld.TilesWide;
             var height = _wvm.CurrentWorld.TilesHigh;
 
@@ -1853,7 +1850,7 @@ namespace TEditXna.View
             if (_textureDictionary.Npcs.ContainsKey(npcId))
             {
                 Texture2D npcTexture = (Texture2D)_textureDictionary.GetNPC(npcId);
-                int frames = TEditXNA.Terraria.World.NpcFrames[npcId];
+                int frames = World.NpcFrames[npcId];
                 int width = npcTexture.Width;
                 int height = npcTexture.Height / frames;
                 float scale = 1.0f * _zoom / 16;
