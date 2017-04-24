@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.ObjectModel;
-using System.ComponentModel;
 using System.Linq;
-using System.Windows;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using TEdit.Geometry.Primitives;
@@ -100,12 +98,12 @@ namespace TEditXna.Editor.Clipboard
         {
             double scale = Math.Max((double)Size.X / ClipboardRenderSize, (double)Size.Y / ClipboardRenderSize);
 
-            int previewX = this.Size.X;
-            int previewY = this.Size.Y;
+            int previewX = Size.X;
+            int previewY = Size.Y;
             if (scale > 1.0)
             {
-                previewX = (int)MathHelper.Clamp((float)Math.Min(ClipboardRenderSize, this.Size.X / scale), 1, ClipboardRenderSize);
-                previewY = (int)MathHelper.Clamp((float)Math.Min(ClipboardRenderSize, this.Size.Y / scale), 1, ClipboardRenderSize);
+                previewX = (int)MathHelper.Clamp((float)Math.Min(ClipboardRenderSize, Size.X / scale), 1, ClipboardRenderSize);
+                previewY = (int)MathHelper.Clamp((float)Math.Min(ClipboardRenderSize, Size.Y / scale), 1, ClipboardRenderSize);
             }
             else
                 scale = 1;
@@ -113,11 +111,11 @@ namespace TEditXna.Editor.Clipboard
             var bmp = new WriteableBitmap(previewX, previewY, 96, 96, PixelFormats.Bgra32, null);
             for (int x = 0; x < previewX; x++)
             {
-                int tileX = (int)MathHelper.Clamp((float)(scale * x), 0, this.Size.X - 1);
+                int tileX = (int)MathHelper.Clamp((float)(scale * x), 0, Size.X - 1);
 
                 for (int y = 0; y < previewY; y++)
                 {
-                    int tileY = (int)MathHelper.Clamp((float)(scale * y), 0, this.Size.Y - 1);
+                    int tileY = (int)MathHelper.Clamp((float)(scale * y), 0, Size.Y - 1);
 
                     var color = Render.PixelMap.GetTileColor(Tiles[tileX, tileY], Microsoft.Xna.Framework.Color.Transparent);
                     bmp.SetPixel(x, y, color.A, color.R, color.G, color.B);

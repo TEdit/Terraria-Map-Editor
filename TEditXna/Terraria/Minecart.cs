@@ -1,5 +1,3 @@
-using System;
-
 namespace TEditXNA.Terraria
 {
     public static class Minecart

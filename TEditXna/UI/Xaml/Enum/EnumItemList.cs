@@ -5,19 +5,15 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Windows.Data;
 using System.ComponentModel;
 using System.Globalization;
 using System.Collections.ObjectModel;
 using System.Reflection;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Media;
 using System.Resources;
 using System.Diagnostics;
 using System.Drawing;
-using TEdit.UI.Xaml.Enum;
 
 namespace TEdit.UI.Xaml.Enum
 {
@@ -121,7 +117,7 @@ namespace TEdit.UI.Xaml.Enum
         {
             for (int index = 0; index < Count; index++)
             {
-                if (Object.Equals(this[index].Value, enumValue)) return index;
+                if (Equals(this[index].Value, enumValue)) return index;
             }
             return -1;
         }
@@ -137,7 +133,7 @@ namespace TEdit.UI.Xaml.Enum
             for (int index = 0; index < Count; index++)
             {
                 EnumItem item = this[index];
-                if (Object.Equals(item.Value, displayValue)) return item;
+                if (Equals(item.Value, displayValue)) return item;
             }
             return null;
         }
@@ -470,7 +466,7 @@ namespace TEdit.UI.Xaml.Enum
                 }
                 else
                 {
-                    throw new ArgumentException(String.Format("'{0}' was not recognized as a valid enumeration value.", value));
+                    throw new ArgumentException($"'{value}' was not recognized as a valid enumeration value.");
                 }
             }
             return item;
@@ -484,7 +480,7 @@ namespace TEdit.UI.Xaml.Enum
             if (item != null && Contains(item)) return item.Value;
             item = FindItemByDisplayValue(value);
             if (item != null) return item.Value;
-            throw new ArgumentException(String.Format("'{0}' was not recognized as a valid enumeration value.", value));
+            throw new ArgumentException($"'{value}' was not recognized as a valid enumeration value.");
         }
 
 

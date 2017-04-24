@@ -155,7 +155,7 @@ namespace TEdit.UI.Xaml
                     int cellCount = 0;
                     foreach (UIElement child in Children)
                     {
-                        cellCount += (isVertical) ? Grid.GetColumnSpan(child) : Grid.GetRowSpan(child);
+                        cellCount += (isVertical) ? GetColumnSpan(child) : GetRowSpan(child);
                     }
 
                     //  Update the number of rows/columns
@@ -193,30 +193,30 @@ namespace TEdit.UI.Xaml
                     {
                         if (isVertical)
                         {
-                            Grid.SetRow(child, position / _rowOrColumnCount);
-                            Grid.SetColumn(child, position % _rowOrColumnCount);
-                            position += Grid.GetColumnSpan(child);
+                            SetRow(child, position / _rowOrColumnCount);
+                            SetColumn(child, position % _rowOrColumnCount);
+                            position += GetColumnSpan(child);
                         }
                         else
                         {
-                            Grid.SetRow(child, position % _rowOrColumnCount);
-                            Grid.SetColumn(child, position / _rowOrColumnCount);
-                            position += Grid.GetRowSpan(child);
+                            SetRow(child, position % _rowOrColumnCount);
+                            SetColumn(child, position / _rowOrColumnCount);
+                            position += GetRowSpan(child);
                         }
                     }
 
                     // Set margin and alignment
                     if (ChildMargin != null)
                     {
-                        DependencyHelpers.SetIfDefault(child, FrameworkElement.MarginProperty, ChildMargin.Value);
+                        DependencyHelpers.SetIfDefault(child, MarginProperty, ChildMargin.Value);
                     }
                     if (ChildHorizontalAlignment != null)
                     {
-                        DependencyHelpers.SetIfDefault(child, FrameworkElement.HorizontalAlignmentProperty, ChildHorizontalAlignment.Value);
+                        DependencyHelpers.SetIfDefault(child, HorizontalAlignmentProperty, ChildHorizontalAlignment.Value);
                     }
                     if (ChildVerticalAlignment != null)
                     {
-                        DependencyHelpers.SetIfDefault(child, FrameworkElement.VerticalAlignmentProperty, ChildVerticalAlignment.Value);
+                        DependencyHelpers.SetIfDefault(child, VerticalAlignmentProperty, ChildVerticalAlignment.Value);
                     }
                 }
             }

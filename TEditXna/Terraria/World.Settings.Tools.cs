@@ -71,7 +71,7 @@ namespace TEditXNA.Terraria
 
         private static Enum ToEnum(Type type, string name)
         {
-              return (Enum)System.Enum.Parse(type, name, true);
+              return (Enum)Enum.Parse(type, name, true);
         }
 
         public static PaintMode PaintMode

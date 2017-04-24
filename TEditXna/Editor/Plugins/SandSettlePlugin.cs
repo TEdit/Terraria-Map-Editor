@@ -1,4 +1,3 @@
-using TEditXNA.Terraria;
 using TEditXna.ViewModel;
 using System.Linq;
 using TEditXna.Terraria.Objects;

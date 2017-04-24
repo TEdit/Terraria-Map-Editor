@@ -4,7 +4,6 @@ using System.IO;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Graphics.PackedVector;
 using TEditXna;
 
 namespace TEditXNA.Terraria
@@ -55,7 +54,7 @@ namespace TEditXNA.Terraria
         public Textures(IServiceProvider serviceProvider, GraphicsDevice gdDevice)
         {
             _gdDevice = gdDevice;
-            string path = TEditXna.DependencyChecker.PathToContent;
+            string path = DependencyChecker.PathToContent;
 
             _defaultTexture = new Texture2D(_gdDevice, 1, 1);
             _defaultTexture.SetData(new Color[] { Color.Transparent });
@@ -75,12 +74,12 @@ namespace TEditXNA.Terraria
             {
                 try
                 {
-                    string name = String.Format("Images\\Tiles_{0}", num);
+                    string name = $"Images\\Tiles_{num}";
                     Tiles[num] = LoadTexture(name);
                 }
                 catch
                 {
-                    string name = String.Format("CustomGFX\\Tiles_{0}", num + 50);
+                    string name = $"CustomGFX\\Tiles_{num + 50}";
                     Tiles[num] = LoadTexture(name);
                 }
             }
@@ -90,7 +89,7 @@ namespace TEditXNA.Terraria
         {
             if (!Underworld.ContainsKey(num))
             {
-                string name = String.Format("Images\\Backgrounds\\Underworld {0}", num);
+                string name = $"Images\\Backgrounds\\Underworld {num}";
                 Underworld[num] = LoadTexture(name);
             }
             return Underworld[num];
@@ -99,7 +98,7 @@ namespace TEditXNA.Terraria
         {
             if (!Backgrounds.ContainsKey(num))
             {
-                string name = String.Format("Images\\Background_{0}", num);
+                string name = $"Images\\Background_{num}";
                 Backgrounds[num] = LoadTexture(name);
             }
             return Backgrounds[num];
@@ -108,7 +107,7 @@ namespace TEditXNA.Terraria
         {
             if (!Walls.ContainsKey(num))
             {
-                string name = String.Format("Images\\Wall_{0}", num);
+                string name = $"Images\\Wall_{num}";
                 Walls[num] = LoadTexture(name);
             }
             return Walls[num];
@@ -119,7 +118,7 @@ namespace TEditXNA.Terraria
             {
                 if (num >= 0)
                 {
-                    string name = String.Format("Images\\Tiles_5_{0}", num);
+                    string name = $"Images\\Tiles_5_{num}";
                     Trees[num] = LoadTexture(name);
                 }
                 else
@@ -134,7 +133,7 @@ namespace TEditXNA.Terraria
         {
             if (!TreeTops.ContainsKey(num))
             {
-                string name = String.Format("Images\\Tree_Tops_{0}", num);
+                string name = $"Images\\Tree_Tops_{num}";
                 TreeTops[num] = LoadTexture(name);
             }
             return TreeTops[num];
@@ -143,7 +142,7 @@ namespace TEditXNA.Terraria
         {
             if (!TreeBranches.ContainsKey(num))
             {
-                string name = String.Format("Images\\Tree_Branches_{0}", num);
+                string name = $"Images\\Tree_Branches_{num}";
                 TreeBranches[num] = LoadTexture(name);
             }
             return TreeBranches[num];
@@ -161,7 +160,7 @@ namespace TEditXNA.Terraria
         {
             if (!Npcs.ContainsKey(num))
             {
-                string name = String.Format("Images\\NPC_{0}", num);
+                string name = $"Images\\NPC_{num}";
                 Npcs[num] = LoadTexture(name);
             }
             return Npcs[num];
@@ -171,7 +170,7 @@ namespace TEditXNA.Terraria
         {
             if (!Liquids.ContainsKey(num))
             {
-                string name = String.Format("Images\\Liquid_{0}", num);
+                string name = $"Images\\Liquid_{num}";
                 Liquids[num] = LoadTexture(name);
             }
             return Liquids[num];
@@ -181,7 +180,7 @@ namespace TEditXNA.Terraria
         {
             if (!Misc.ContainsKey(name))
             {
-                string texName = String.Format("Images\\{0}", name);
+                string texName = $"Images\\{name}";
                 Misc[name] = LoadTexture(texName);
             }
             return Misc[name];
@@ -190,7 +189,7 @@ namespace TEditXNA.Terraria
         {
             if (!ArmorHead.ContainsKey(num))
             {
-                string name = String.Format("Images\\Armor_Head_{0}", num);
+                string name = $"Images\\Armor_Head_{num}";
                 ArmorHead[num] = LoadTexture(name);
             }
             return ArmorHead[num];
@@ -199,7 +198,7 @@ namespace TEditXNA.Terraria
         {
             if (!ArmorBody.ContainsKey(num))
             {
-                string name = String.Format("Images\\Armor_Body_{0}", num);
+                string name = $"Images\\Armor_Body_{num}";
                 ArmorBody[num] = LoadTexture(name);
             }
             return ArmorBody[num];
@@ -208,7 +207,7 @@ namespace TEditXNA.Terraria
         {
             if (!ArmorFemale.ContainsKey(num))
             {
-                string name = String.Format("Images\\Female_Body_{0}", num);
+                string name = $"Images\\Female_Body_{num}";
                 ArmorFemale[num] = LoadTexture(name);
             }
             return ArmorFemale[num];
@@ -217,7 +216,7 @@ namespace TEditXNA.Terraria
         {
             if (!ArmorLegs.ContainsKey(num))
             {
-                string name = String.Format("Images\\Armor_Legs_{0}", num);
+                string name = $"Images\\Armor_Legs_{num}";
                 ArmorLegs[num] = LoadTexture(name);
             }
             return ArmorLegs[num];
@@ -226,7 +225,7 @@ namespace TEditXNA.Terraria
         {
             if (!Item.ContainsKey(num))
             {
-                string name = String.Format("Images\\Item_{0}", num);
+                string name = $"Images\\Item_{num}";
                 Item[num] = LoadTexture(name);
             }
             return Item[num];
@@ -257,7 +256,7 @@ namespace TEditXNA.Terraria
             }
             catch (Exception err)
             {
-                ErrorLogging.Log(string.Format("Failed to load texture: {0}", path));
+                ErrorLogging.Log($"Failed to load texture: {path}");
                 ErrorLogging.Log(err.Message);
             }
 

@@ -21,7 +21,7 @@ namespace TEdit.UI.Xaml
 
             Binding binding = new Binding("DropDown.IsOpen");
             binding.Source = this;
-            this.SetBinding(IsCheckedProperty, binding);
+            SetBinding(IsCheckedProperty, binding);
         }
 
         // *** Properties *** 

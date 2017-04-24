@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel;
-using System.Windows;
 using TEdit.Utility;
 using TEditXna.Helper;
 using TEditXNA.Terraria.Objects;
@@ -9,7 +8,6 @@ using Vector2 = TEdit.Geometry.Primitives.Vector2;
 using System;
 using System.Collections.ObjectModel;
 using System.IO;
-using System.Linq;
 
 namespace TEditXNA.Terraria
 {
@@ -645,7 +643,7 @@ namespace TEditXNA.Terraria
                 {
                     reader.Close();
                     throw new FileLoadException(
-                        string.Format("Error reading world file validation parameters! {0}", filename));
+                        $"Error reading world file validation parameters! {filename}");
                 }
             }
             OnProgressChanged(null, new ProgressChangedEventArgs(0, "World Load Complete."));

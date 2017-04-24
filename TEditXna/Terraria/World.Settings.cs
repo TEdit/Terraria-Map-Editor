@@ -1,6 +1,4 @@
 using System;
-using System.ComponentModel;
-using System.Linq;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
@@ -57,9 +55,9 @@ namespace TEditXNA.Terraria
                 TileFrameImportant = new bool[TileCount];
                 for (int i = 0; i < TileCount; i++)
                 {
-                    if (World.TileProperties.Count > i)
+                    if (TileProperties.Count > i)
                     {
-                        TileFrameImportant[i] = World.TileProperties[i].IsFramed;
+                        TileFrameImportant[i] = TileProperties[i].IsFramed;
                     }
                 }
             }

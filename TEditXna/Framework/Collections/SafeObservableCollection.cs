@@ -28,7 +28,7 @@ namespace TEdit.Framework.Collections
         public SafeObservableCollection()
             : base()
         {
-            this._suspendCollectionChangeNotification = true;
+            _suspendCollectionChangeNotification = true;
         }
 
         /// <summary>
@@ -44,7 +44,7 @@ namespace TEdit.Framework.Collections
         /// <param name="items">The source collection.</param>
         public virtual void AddItems(IList items)
         {
-            this.SuspendCollectionChangeNotification();
+            SuspendCollectionChangeNotification();
             try
             {
                 foreach (var i in items)
@@ -58,7 +58,7 @@ namespace TEdit.Framework.Collections
             }
             finally
             {
-                this.NotifyChanges();
+                NotifyChanges();
             }
         }
 
@@ -67,11 +67,11 @@ namespace TEdit.Framework.Collections
         /// </summary>
         public virtual void NotifyChanges()
         {
-            this.ResumeCollectionChangeNotification();
+            ResumeCollectionChangeNotification();
             var arg
                 = new NotifyCollectionChangedEventArgs
                     (NotifyCollectionChangedAction.Reset);
-            this.OnCollectionChanged(arg);
+            OnCollectionChanged(arg);
         }
 
         /// <summary>
@@ -82,7 +82,7 @@ namespace TEdit.Framework.Collections
         /// <param name="items">The source collection.</param>
         public virtual void RemoveItems(IList items)
         {
-            this.SuspendCollectionChangeNotification();
+            SuspendCollectionChangeNotification();
             try
             {
                 foreach (var i in items)
@@ -97,7 +97,7 @@ namespace TEdit.Framework.Collections
             }
             finally
             {
-                this.NotifyChanges();
+                NotifyChanges();
             }
         }
 
@@ -106,7 +106,7 @@ namespace TEdit.Framework.Collections
         /// </summary>
         public void ResumeCollectionChangeNotification()
         {
-            this._suspendCollectionChangeNotification = false;
+            _suspendCollectionChangeNotification = false;
         }
 
         /// <summary>
@@ -114,7 +114,7 @@ namespace TEdit.Framework.Collections
         /// </summary>
         public void SuspendCollectionChangeNotification()
         {
-            this._suspendCollectionChangeNotification = true;
+            _suspendCollectionChangeNotification = true;
         }
 
         /// <summary>
@@ -128,10 +128,10 @@ namespace TEdit.Framework.Collections
             // is getting changed on other thread.
             using (BlockReentrancy())
             {
-                if (!this._suspendCollectionChangeNotification)
+                if (!_suspendCollectionChangeNotification)
                 {
                     NotifyCollectionChangedEventHandler eventHandler =
-                        this.CollectionChanged;
+                        CollectionChanged;
                     if (eventHandler == null)
                     {
                         return;

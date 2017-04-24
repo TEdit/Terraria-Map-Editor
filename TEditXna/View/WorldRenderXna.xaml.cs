@@ -1,15 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using TEdit.Geometry.Primitives;
 using GalaSoft.MvvmLight;
 using TEdit.UI.Xaml.XnaContentHost;
-using TEdit.Utility;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using TEditXNA.Terraria;
@@ -176,7 +173,7 @@ namespace TEditXna.View
 
         #region Load Content
 
-        private async void xnaViewport_LoadContent(object sender, GraphicsDeviceEventArgs e)
+        private void xnaViewport_LoadContent(object sender, GraphicsDeviceEventArgs e)
         {
             // Abort rendering if in design mode or if gameTimer is already running
             if (ViewModelBase.IsInDesignModeStatic || _gameTimer.IsRunning)
@@ -442,7 +439,7 @@ namespace TEditXna.View
         private void DrawSprites()
         {
             Rectangle visibleBounds = GetViewingArea();
-            TEditXna.Terraria.Objects.BlendRules blendRules = TEditXna.Terraria.Objects.BlendRules.Instance;
+            Terraria.Objects.BlendRules blendRules = Terraria.Objects.BlendRules.Instance;
             var width  = _wvm.CurrentWorld.TilesWide;
             var height = _wvm.CurrentWorld.TilesHigh;
 
@@ -1822,16 +1819,28 @@ namespace TEditXna.View
                 else
                     DrawNpcOverlay(npc);
             }
-
-            _spriteBatch.Draw(_textures["Spawn"],
+  
+            _spriteBatch.Draw(
+                _textures["Spawn"],
                 GetOverlayLocation(_wvm.CurrentWorld.SpawnX, _wvm.CurrentWorld.SpawnY),
-                              color: Color.FromNonPremultiplied(255, 255, 255, 128),
-                              layerDepth: LayerLocations);
+                _textures["Spawn"].Bounds, 
+                Color.FromNonPremultiplied(255, 255, 255, 128), 
+                0f,
+                Vector2.Zero,
+                Vector2.One,
+                SpriteEffects.None,
+                LayerLocations);
 
-            _spriteBatch.Draw(_textures["Dungeon"],
-                              GetOverlayLocation(_wvm.CurrentWorld.DungeonX, _wvm.CurrentWorld.DungeonY),
-                              color: Color.FromNonPremultiplied(255, 255, 255, 128),
-                              layerDepth: LayerLocations);
+            _spriteBatch.Draw(
+                _textures["Dungeon"],
+                GetOverlayLocation(_wvm.CurrentWorld.DungeonX, _wvm.CurrentWorld.DungeonY),
+                _textures["Dungeon"].Bounds,
+                Color.FromNonPremultiplied(255, 255, 255, 128),
+                0f,
+                Vector2.Zero,
+                Vector2.One,
+                SpriteEffects.None,
+                LayerLocations);
         }
 
         private void DrawNpcTexture(NPC npc)
@@ -1841,7 +1850,7 @@ namespace TEditXna.View
             if (_textureDictionary.Npcs.ContainsKey(npcId))
             {
                 Texture2D npcTexture = (Texture2D)_textureDictionary.GetNPC(npcId);
-                int frames = TEditXNA.Terraria.World.NpcFrames[npcId];
+                int frames = World.NpcFrames[npcId];
                 int width = npcTexture.Width;
                 int height = npcTexture.Height / frames;
                 float scale = 1.0f * _zoom / 16;
@@ -1862,9 +1871,16 @@ namespace TEditXna.View
 
             if (_textures.ContainsKey(npcName))
             {
-                _spriteBatch.Draw(_textures[npcName],
-                                  GetOverlayLocation(npc.Home.X, npc.Home.Y),
-                                  color: Color.White, layerDepth: LayerLocations);
+                _spriteBatch.Draw(
+                    _textures[npcName],
+                    GetOverlayLocation(npc.Home.X, npc.Home.Y),
+                    _textures[npcName].Bounds,
+                    Color.FromNonPremultiplied(255, 255, 255, 128),
+                    0f,
+                    Vector2.Zero,
+                    Vector2.One,
+                    SpriteEffects.None,
+                    LayerLocations);
             }
         }
 

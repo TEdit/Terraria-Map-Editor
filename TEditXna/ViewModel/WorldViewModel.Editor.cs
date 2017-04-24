@@ -8,7 +8,6 @@ using Microsoft.Xna.Framework;
 using TEditXNA.Terraria;
 using TEditXna.Editor;
 using TEditXna.Render;
-using TEditXNA.Terraria.Objects;
 
 namespace TEditXna.ViewModel
 {
@@ -590,7 +589,8 @@ namespace TEditXna.ViewModel
                     for (int x = 0; x < CurrentWorld.TilesWide; x++)
                     {
                         if (y > CurrentWorld.TilesHigh || x > CurrentWorld.TilesWide)
-                            throw new IndexOutOfRangeException(string.Format("Error with world format tile [{0},{1}] is not a valid location. World file version: {2}", x, y, CurrentWorld.Version));
+                            throw new IndexOutOfRangeException(
+                                $"Error with world format tile [{x},{y}] is not a valid location. World file version: {CurrentWorld.Version}");
                         pixels.SetPixelColor(x, y, Render.PixelMap.GetTileColor(CurrentWorld.Tiles[x, y], curBgColor, _showWalls, _showTiles, _showLiquid, _showRedWires, _showBlueWires, _showGreenWires, _showYellowWires));
                     }
                 }

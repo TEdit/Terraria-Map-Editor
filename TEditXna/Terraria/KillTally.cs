@@ -1,12 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
 using System.IO;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Windows.Controls;
 
 namespace TEditXNA.Terraria
 {
@@ -73,9 +67,9 @@ namespace TEditXNA.Terraria
             int bannercount = 0;
             int uniquecount = 0;
 
-            string bufferBanner = System.String.Empty;
-            string bufferNoBanner = System.String.Empty;
-            string bufferNoKill = System.String.Empty;
+            string bufferBanner = String.Empty;
+            string bufferNoBanner = String.Empty;
+            string bufferNoKill = String.Empty;
 
             // Let's explore each monster
             foreach (int count in world.KilledMobs)
@@ -87,7 +81,7 @@ namespace TEditXNA.Terraria
                     if (index > 0 && index <= World.TallyNames.Count)
                     {
                         World.TallyNames[index] = Regex.Replace(World.TallyNames[index], @" Banner", "");
-                        bufferNoKill += System.String.Format("[{0}] {1}\n", index, World.TallyNames[index]);
+                        bufferNoKill += $"[{index}] {World.TallyNames[index]}\n";
                     }
                         
                 }
@@ -95,14 +89,14 @@ namespace TEditXNA.Terraria
                 {
                     // Monster killed, but banner never obtained (less than 50 kills)
                     World.TallyNames[index] = Regex.Replace(World.TallyNames[index], @" Banner", "");
-                    bufferNoBanner += System.String.Format("[{0}] {1} - {2}\n", index, World.TallyNames[index], count);
+                    bufferNoBanner += $"[{index}] {World.TallyNames[index]} - {count}\n";
                     killcount = killcount + count;
                 }
                 else
                 {
                     // Banners ! 50+ kills for this monster
                     int banners = (int)Math.Floor((double)count / 50f);
-                    string bannerText = System.String.Empty;
+                    string bannerText = String.Empty;
 
                     // "banner" or "bannerS" ?
                     if (banners > 1)
@@ -111,7 +105,7 @@ namespace TEditXNA.Terraria
                         bannerText = "banner";
 
                     World.TallyNames[index] = Regex.Replace(World.TallyNames[index], @" Banner", "");
-                    bufferBanner += System.String.Format("[{0}] {1} - {2} ({3} {4} earned)\n", index, World.TallyNames[index], count, banners, bannerText);
+                    bufferBanner += $"[{index}] {World.TallyNames[index]} - {count} ({banners} {bannerText} earned)\n";
                     killcount = killcount + count;
                     uniquecount = uniquecount + 1;
                     bannercount = bannercount + banners;

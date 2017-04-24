@@ -24,7 +24,7 @@ namespace TEdit.UI.Xaml
             double maxHeight = 0;
             double maxWidth = 0;
 
-            foreach (UIElement element in base.InternalChildren)
+            foreach (UIElement element in InternalChildren)
             {
                 if (element != null)
                 {

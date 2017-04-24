@@ -8,13 +8,13 @@
 #endregion
 
 using System;
-using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Interop;
 using System.Windows.Media;
 using Microsoft.Xna.Framework.Graphics;
+using TEditXna;
 
 namespace TEdit.UI.Xaml.XnaContentHost
 {
@@ -178,7 +178,7 @@ namespace TEdit.UI.Xaml.XnaContentHost
         public GraphicsDeviceControl()
         {
             // We must be notified of the control finishing loading so we can get the GraphicsDeviceService
-            Loaded += new System.Windows.RoutedEventHandler(XnaWindowHost_Loaded);
+            Loaded += new RoutedEventHandler(XnaWindowHost_Loaded);
 
             // We must be notified of the control changing sizes so we can resize the GraphicsDeviceService
             SizeChanged += new SizeChangedEventHandler(XnaWindowHost_SizeChanged);
@@ -246,22 +246,22 @@ namespace TEdit.UI.Xaml.XnaContentHost
         public void SetCursor(Cursor cursor)
         {
             // TODO: this doesn't quite work...
-            this.Cursor = cursor;
+            Cursor = cursor;
             int cursorID = 0;
-            if (this.Cursor == Cursors.Arrow) cursorID = NativeMethods.IDC_ARROW;
-            else if (this.Cursor == Cursors.IBeam) cursorID = NativeMethods.IDC_IBEAM;
-            else if (this.Cursor == Cursors.Wait) cursorID = NativeMethods.IDC_WAIT;
-            else if (this.Cursor == Cursors.Cross) cursorID = NativeMethods.IDC_CROSS;
-            else if (this.Cursor == Cursors.UpArrow) cursorID = NativeMethods.IDC_UPARROW;
-            else if (this.Cursor == Cursors.SizeNWSE) cursorID = NativeMethods.IDC_SIZENWSE;
-            else if (this.Cursor == Cursors.SizeNESW) cursorID = NativeMethods.IDC_SIZENESW;
-            else if (this.Cursor == Cursors.SizeWE) cursorID = NativeMethods.IDC_SIZEWE;
-            else if (this.Cursor == Cursors.SizeNS) cursorID = NativeMethods.IDC_SIZENS;
-            else if (this.Cursor == Cursors.SizeAll) cursorID = NativeMethods.IDC_SIZEALL;
-            else if (this.Cursor == Cursors.No) cursorID = NativeMethods.IDC_NO;
-            else if (this.Cursor == Cursors.Hand) cursorID = NativeMethods.IDC_HAND;
-            else if (this.Cursor == Cursors.AppStarting) cursorID = NativeMethods.IDC_APPSTARTING;
-            else if (this.Cursor == Cursors.Help) cursorID = NativeMethods.IDC_HELP;
+            if (Cursor == Cursors.Arrow) cursorID = NativeMethods.IDC_ARROW;
+            else if (Cursor == Cursors.IBeam) cursorID = NativeMethods.IDC_IBEAM;
+            else if (Cursor == Cursors.Wait) cursorID = NativeMethods.IDC_WAIT;
+            else if (Cursor == Cursors.Cross) cursorID = NativeMethods.IDC_CROSS;
+            else if (Cursor == Cursors.UpArrow) cursorID = NativeMethods.IDC_UPARROW;
+            else if (Cursor == Cursors.SizeNWSE) cursorID = NativeMethods.IDC_SIZENWSE;
+            else if (Cursor == Cursors.SizeNESW) cursorID = NativeMethods.IDC_SIZENESW;
+            else if (Cursor == Cursors.SizeWE) cursorID = NativeMethods.IDC_SIZEWE;
+            else if (Cursor == Cursors.SizeNS) cursorID = NativeMethods.IDC_SIZENS;
+            else if (Cursor == Cursors.SizeAll) cursorID = NativeMethods.IDC_SIZEALL;
+            else if (Cursor == Cursors.No) cursorID = NativeMethods.IDC_NO;
+            else if (Cursor == Cursors.Hand) cursorID = NativeMethods.IDC_HAND;
+            else if (Cursor == Cursors.AppStarting) cursorID = NativeMethods.IDC_APPSTARTING;
+            else if (Cursor == Cursors.Help) cursorID = NativeMethods.IDC_HELP;
             else
             {
                 cursorID = NativeMethods.IDC_ARROW;
@@ -483,14 +483,19 @@ namespace TEdit.UI.Xaml.XnaContentHost
                     case NativeMethods.WM_MOUSEWHEEL:
                         if (mouseInWindow)
                         {
-                            try
-                            {
-                                int delta = wParam.ToInt32();
-                                if (HwndMouseWheel != null)
-                                    HwndMouseWheel(this, new HwndMouseEventArgs(mouseState, delta, 0));
-                            }
+                            int delta = 0;
+                            
+                            try { delta = wParam.ToInt32(); }
                             catch (Exception) { /*supress error*/ }
 
+                            if (delta == 0)
+                            {
+                                try { delta = (int) wParam.ToInt64(); }
+                                catch (Exception) { /*supress error*/ }
+                            }
+
+                            if (HwndMouseWheel != null)
+                                HwndMouseWheel(this, new HwndMouseEventArgs(mouseState, delta, 0));
                         }
                         break;
                     case NativeMethods.WM_LBUTTONDOWN:
@@ -637,6 +642,7 @@ namespace TEdit.UI.Xaml.XnaContentHost
             catch (Exception ex)
             {
                 // log this
+                ErrorLogging.LogException(ex);
             }
 
             return base.WndProc(hwnd, msg, wParam, lParam, ref handled);

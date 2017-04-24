@@ -1,5 +1,4 @@
 ﻿using System;
-using TEdit.Geometry.Primitives;
 using GalaSoft.MvvmLight;
 using TEditXNA.Terraria;
 

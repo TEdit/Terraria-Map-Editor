@@ -1,6 +1,4 @@
-using System;
 using GalaSoft.MvvmLight;
-using TEditXna.Editor.Undo;
 using TEditXna.ViewModel;
 
 namespace TEditXna.Editor.Plugins

@@ -57,10 +57,7 @@ namespace TEditXna
             lock (LogFilePath)
             {
                 File.AppendAllText(LogFilePath,
-                                   string.Format("{0}: {1} {2}",
-                                                 DateTime.Now.ToString("MM-dd-yyyy HH:mm:ss"),
-                                                 message,
-                                                 Environment.NewLine));
+                    $"{DateTime.Now.ToString("MM-dd-yyyy HH:mm:ss")}: {message} {Environment.NewLine}");
             }
         }
 
@@ -78,7 +75,7 @@ namespace TEditXna
                 if (e.InnerException != null)
                     LogException(e.InnerException);
 
-                Log(String.Format("{0} - {1}\r\n{2}", ErrorLevel.Error, e.Message, e.StackTrace));
+                Log($"{ErrorLevel.Error} - {e.Message}\r\n{e.StackTrace}");
             }
         }
 

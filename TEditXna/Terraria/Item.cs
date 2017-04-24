@@ -1,6 +1,4 @@
 using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows;
 using GalaSoft.MvvmLight;
@@ -117,7 +115,7 @@ namespace TEditXNA.Terraria
         public override string ToString()
         {
             if (StackSize > 0)
-                return string.Format("{0}: {1}", _currentItemProperty.Name, StackSize);
+                return $"{_currentItemProperty.Name}: {StackSize}";
 
             return _currentItemProperty.Name;
         }

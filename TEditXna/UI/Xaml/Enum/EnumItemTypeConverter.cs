@@ -3,9 +3,6 @@
 // License URL: http://www.codeproject.com/info/cpol10.aspx
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
@@ -26,7 +23,7 @@ namespace TEdit.UI.Xaml.Enum
             return true;
         }
 
-        public override object ConvertFrom(ITypeDescriptorContext context, System.Globalization.CultureInfo culture, object value)
+        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
         {
             // Support conversion from any type for use in DefaultItem.
             return value is EnumItem ? value : new EnumItem() { DisplayValue = value };

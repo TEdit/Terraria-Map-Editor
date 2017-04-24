@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
 using System.Linq;
@@ -7,8 +6,6 @@ using System.Windows;
 using TEdit.Geometry.Primitives;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Threading;
-using TEdit.Utility;
-using TEditXna.Helper;
 using TEditXNA.Terraria.Objects;
 
 namespace TEditXNA.Terraria
@@ -60,10 +57,9 @@ namespace TEditXNA.Terraria
             }
             catch (ArgumentOutOfRangeException err)
             {
-                string msg = string.Format("There is a problem in your world.\r\n" +
-                                           "{0}\r\nThis world will not open in Terraria\r\n" +
-                                           "Would you like to save anyways??\r\n"
-                                           , err.ParamName);
+                string msg = "There is a problem in your world.\r\n" +
+                             $"{err.ParamName}\r\nThis world will not open in Terraria\r\n" +
+                             "Would you like to save anyways??\r\n";
                 if (MessageBox.Show(msg, "World Error", MessageBoxButton.YesNo, MessageBoxImage.Error) !=
                     MessageBoxResult.Yes)
                     return;
@@ -136,13 +132,12 @@ namespace TEditXNA.Terraria
             {
 
                 string msg =
-                    string.Format("There was an error reading the world file. This is usually caused by a corrupt save file or a world version newer than supported.\r\n\r\n" +
-                                  "TEdit v{0}\r\n" +
-                                  "TEdit Max World: {1}    Current World: {2}\r\n\r\n" +
-                                  "Do you wish to force it to load anyway?\r\n\r\n" +
-                                  "WARNING: This may have unexpected results including corrupt world files and program crashes.\r\n\r\n" +
-                                   "The error is :\r\n{3}\r\n\r\n{4}\r\n"
-                    , TEditXna.App.Version.FileVersion, World.CompatibleVersion, curVersion, err.Message, err);
+                    "There was an error reading the world file. This is usually caused by a corrupt save file or a world version newer than supported.\r\n\r\n" +
+                    $"TEdit v{TEditXna.App.Version.FileVersion}\r\n" +
+                    $"TEdit Max World: {CompatibleVersion}    Current World: {curVersion}\r\n\r\n" +
+                    "Do you wish to force it to load anyway?\r\n\r\n" +
+                    "WARNING: This may have unexpected results including corrupt world files and program crashes.\r\n\r\n" +
+                    $"The error is :\r\n{err.Message}\r\n\r\n{err}\r\n";
                 if (MessageBox.Show(msg, "World File Error", MessageBoxButton.YesNo, MessageBoxImage.Error) !=
                     MessageBoxResult.Yes)
                     return null;
@@ -298,9 +293,9 @@ namespace TEditXNA.Terraria
             OnProgressChanged(this,
                     new ProgressChangedEventArgs(0, "Validating Complete..."));
             if (Chests.Count > 1000)
-                throw new ArgumentOutOfRangeException(string.Format("Chest Count is {0} which is greater than 1000",Chests.Count));
+                throw new ArgumentOutOfRangeException($"Chest Count is {Chests.Count} which is greater than 1000");
             if (Signs.Count > 1000)
-                throw new ArgumentOutOfRangeException(string.Format("Sign Count is {0} which is greater than 1000",Signs.Count));
+                throw new ArgumentOutOfRangeException($"Sign Count is {Signs.Count} which is greater than 1000");
         }
         public void ValSpecial(int x, int y)
         {

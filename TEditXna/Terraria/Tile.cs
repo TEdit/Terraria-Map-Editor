@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Windows.Documents;
-using TEdit.Geometry.Primitives;
 
 namespace TEditXNA.Terraria
 {
@@ -182,7 +179,7 @@ namespace TEditXNA.Terraria
         {
             if (ReferenceEquals(null, obj)) return false;
             if (ReferenceEquals(this, obj)) return true;
-            if (obj.GetType() != this.GetType()) return false;
+            if (obj.GetType() != GetType()) return false;
             return Equals((Tile)obj);
         }
 

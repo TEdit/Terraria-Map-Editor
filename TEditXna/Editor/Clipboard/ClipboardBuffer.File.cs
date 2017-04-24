@@ -1,9 +1,5 @@
 ﻿using System;
 using System.IO;
-using System.Linq;
-using System.Windows;
-using System.Windows.Forms;
-using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using TEdit.Geometry.Primitives;
 using TEditXna.Helper;
@@ -74,7 +70,7 @@ namespace TEditXna.Editor.Clipboard
             bw.Write(Size.X);
             bw.Write(Size.Y);
 
-            World.SaveTiles(Tiles, this.Size.X, this.Size.Y, bw);
+            World.SaveTiles(Tiles, Size.X, Size.Y, bw);
             World.SaveChests(Chests, bw);
             World.SaveSigns(Signs, bw);
 
@@ -710,8 +706,6 @@ namespace TEditXna.Editor.Clipboard
 
                 }
             }
-
-            return null;
         }
 
         public static ClipboardBuffer LoadOld(string filename)

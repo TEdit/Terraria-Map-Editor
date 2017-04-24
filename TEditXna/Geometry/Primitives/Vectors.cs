@@ -29,7 +29,7 @@ namespace TEdit.Geometry.Primitives
 
         public override string ToString()
         {
-            return string.Format("({0},{1})", X, Y);
+            return $"({X},{Y})";
         }
 
         #region Equality
@@ -83,7 +83,7 @@ namespace TEdit.Geometry.Primitives
 
         public override string ToString()
         {
-            return string.Format("({0},{1},{2})", X, Y, Z);
+            return $"({X},{Y},{Z})";
         }
 
         #region Equality
@@ -141,7 +141,7 @@ namespace TEdit.Geometry.Primitives
 
         public override string ToString()
         {
-            return string.Format("({0},{1},{2},{3})", X, Y, Z, W);
+            return $"({X},{Y},{Z},{W})";
         }
 
         #region Equality
@@ -202,7 +202,7 @@ namespace TEdit.Geometry.Primitives
 
         public override string ToString()
         {
-            return string.Format("({0:0},{1:0})", X, Y);
+            return $"({X:0},{Y:0})";
         }
 
         public static bool Parse(string text, out Vector2Int32 vector)
@@ -271,7 +271,7 @@ namespace TEdit.Geometry.Primitives
 
         public override string ToString()
         {
-            return string.Format("({0:0},{1:0},{2:0})", X, Y, Z);
+            return $"({X:0},{Y:0},{Z:0})";
         }
 
         public static bool Parse(string text, out Vector3Int32 vector)
@@ -348,7 +348,7 @@ namespace TEdit.Geometry.Primitives
 
         public override string ToString()
         {
-            return string.Format("({0:0},{1:0},{2:0},{3:0})", X, Y, Z, W);
+            return $"({X:0},{Y:0},{Z:0},{W:0})";
         }
 
         public static bool Parse(string text, out Vector4Int32 vector)
@@ -426,7 +426,7 @@ namespace TEdit.Geometry.Primitives
 
         public override string ToString()
         {
-            return string.Format("({0:0.000},{1:0.000})", X, Y);
+            return $"({X:0.000},{Y:0.000})";
         }
 
         public static bool Parse(string text, out Vector2 vector)
@@ -498,7 +498,7 @@ namespace TEdit.Geometry.Primitives
 
         public override string ToString()
         {
-            return string.Format("({0:0.000},{1:0.000},{2:0.000})", X, Y, Z);
+            return $"({X:0.000},{Y:0.000},{Z:0.000})";
         }
 
         public static bool Parse(string text, out Vector3 vector)
@@ -576,7 +576,7 @@ namespace TEdit.Geometry.Primitives
 
         public override string ToString()
         {
-            return string.Format("({0:0.000},{1:0.000},{2:0.000},{3:0.000})", X, Y, Z, W);
+            return $"({X:0.000},{Y:0.000},{Z:0.000},{W:0.000})";
         }
 
         public static bool Parse(string text, out Vector4 vector)
@@ -654,7 +654,7 @@ namespace TEdit.Geometry.Primitives
 
         public override string ToString()
         {
-            return string.Format("({0:0},{1:0})", X, Y);
+            return $"({X:0},{Y:0})";
         }
 
         public static bool Parse(string text, out Vector2Short vector)
@@ -724,7 +724,7 @@ namespace TEdit.Geometry.Primitives
 
         public override string ToString()
         {
-            return string.Format("({0:0},{1:0},{2:0})", X, Y, Z);
+            return $"({X:0},{Y:0},{Z:0})";
         }
 
         public static bool Parse(string text, out Vector3Short vector)
@@ -801,7 +801,7 @@ namespace TEdit.Geometry.Primitives
 
         public override string ToString()
         {
-            return string.Format("({0:0},{1:0},{2:0},{3:0})", X, Y, Z, W);
+            return $"({X:0},{Y:0},{Z:0},{W:0})";
         }
 
         public static bool Parse(string text, out Vector4Short vector)
@@ -878,7 +878,7 @@ namespace TEdit.Geometry.Primitives
 
         public override string ToString()
         {
-            return string.Format("({0:0},{1:0})", X, Y);
+            return $"({X:0},{Y:0})";
         }
 
         #region Equality
@@ -932,7 +932,7 @@ namespace TEdit.Geometry.Primitives
 
         public override string ToString()
         {
-            return string.Format("({0:0},{1:0},{2:0})", X, Y, Z);
+            return $"({X:0},{Y:0},{Z:0})";
         }
 
         #region Equality
@@ -992,7 +992,7 @@ namespace TEdit.Geometry.Primitives
 
         public override string ToString()
         {
-            return string.Format("({0:0},{1:0},{2:0},{3:0})", X, Y, Z, W);
+            return $"({X:0},{Y:0},{Z:0},{W:0})";
         }
 
         #region Equality

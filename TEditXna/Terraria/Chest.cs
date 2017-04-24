@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Windows;
 using GalaSoft.MvvmLight;
 using TEditXNA.Terraria.Objects;
 using TEditXna.ViewModel;
-using TEdit.Geometry.Primitives;
 
 namespace TEditXNA.Terraria
 {
@@ -123,7 +119,7 @@ namespace TEditXNA.Terraria
             var chest = new Chest(_x, _y);
             chest.Name = Name;
             //chest.Items.Clear();
-            for (int i = 0; i < Chest.MaxItems; i++)
+            for (int i = 0; i < MaxItems; i++)
             {
                 if (Items.Count > i)
                     chest.Items[i] = Items[i].Copy();
@@ -138,7 +134,7 @@ namespace TEditXNA.Terraria
 
         public override string ToString()
         {
-            return String.Format("[Chest: ({0},{1})]", X, Y);
+            return $"[Chest: ({X},{Y})]";
         }
     }
 }

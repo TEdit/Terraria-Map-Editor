@@ -26,7 +26,7 @@ namespace TEdit.UI.Xaml.Utility
             if (type != null)
             {
                 FieldInfo fieldInfo = type.GetField(propertyName + "Property",
-                System.Reflection.BindingFlags.Static | System.Reflection.BindingFlags.Public);
+                BindingFlags.Static | BindingFlags.Public);
 
                 if (fieldInfo != null)
                 {

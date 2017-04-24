@@ -4,7 +4,6 @@ using System.Windows.Media.Imaging;
 using TEdit.Geometry;
 using TEdit.Geometry.Primitives;
 using TEditXna.ViewModel;
-using TEditXNA.Terraria;
 using TEditXna.Terraria.Objects;
 
 namespace TEditXna.Editor.Tools
