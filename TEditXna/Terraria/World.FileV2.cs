@@ -55,7 +55,7 @@ namespace TEditXNA.Terraria
             OnProgressChanged(null, new ProgressChangedEventArgs(100, "Save Weighted Pressure Plates..."));
             sectionPointers[7] = SavePressurePlate(world.PressurePlates, bw);
             OnProgressChanged(null, new ProgressChangedEventArgs(100, "Save Town Manager..."));
-            sectionPointers[8] = SaveTownManager(world.NPCs, bw);
+            sectionPointers[8] = SaveTownManager(world.PlayerRooms, bw);
             OnProgressChanged(null, new ProgressChangedEventArgs(100, "Save Footers..."));
             SaveFooter(world, bw);
             UpdateSectionPointers(sectionPointers, bw);
@@ -323,16 +323,14 @@ namespace TEditXNA.Terraria
             return (int)bw.BaseStream.Position;
         }
 
-        public static int SaveTownManager(IEnumerable<NPC> npcs, BinaryWriter bw)
+        public static int SaveTownManager(IList<TownManager> rooms, BinaryWriter bw)
         {
-            foreach (NPC npc in npcs)
+            bw.Write(rooms.Count);
+            foreach (TownManager room in rooms)
             {
-                if (!npc.IsHomeless)
-                {
-                    bw.Write(npc.SpriteId);
-                    bw.Write(npc.Home.X);
-                    bw.Write(npc.Home.Y);
-                }
+                bw.Write(room.NpcId);
+                bw.Write(room.Home.X);
+                bw.Write(room.Home.Y);
             }
             return (int)bw.BaseStream.Position;
         }
@@ -1018,8 +1016,10 @@ namespace TEditXNA.Terraria
             int totalRooms = r.ReadInt32();
             for (int i = 0; i < totalRooms; i++)
             {
-                int NPC = r.ReadInt32();
-                Vector2Int32 Location = new Vector2Int32(r.ReadInt32(), r.ReadInt32());
+                TownManager room = new TownManager();
+                room.NpcId = r.ReadInt32();
+                room.Home = new Vector2Int32(r.ReadInt32(), r.ReadInt32());
+                w.PlayerRooms.Add(room);
             }
         }
 
