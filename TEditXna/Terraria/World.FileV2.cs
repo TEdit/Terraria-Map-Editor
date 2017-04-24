@@ -55,7 +55,7 @@ namespace TEditXNA.Terraria
             OnProgressChanged(null, new ProgressChangedEventArgs(100, "Save Weighted Pressure Plates..."));
             sectionPointers[7] = SavePressurePlate(world.PressurePlates, bw);
             OnProgressChanged(null, new ProgressChangedEventArgs(100, "Save Town Manager..."));
-            sectionPointers[8] = SavePressurePlate(world.PressurePlates, bw);
+            sectionPointers[8] = SaveTownManager(world.NPCs, bw);
             OnProgressChanged(null, new ProgressChangedEventArgs(100, "Save Footers..."));
             SaveFooter(world, bw);
             UpdateSectionPointers(sectionPointers, bw);
@@ -969,6 +969,8 @@ namespace TEditXNA.Terraria
                 if (w.Version >= 190)
                 {
                     npc.SpriteId = r.ReadInt32();
+                    if (NpcNames.ContainsKey(npc.SpriteId))
+                        npc.Name = NpcNames[npc.SpriteId];
                 }
                 else
                 {

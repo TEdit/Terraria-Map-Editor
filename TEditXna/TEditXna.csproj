@@ -506,6 +506,19 @@
     <EmbeddedResource Include="Images\Overlays\npc_wizard.png" />
     <EmbeddedResource Include="Images\Overlays\npc_goblin.png" />
     <EmbeddedResource Include="Images\Overlays\npc_santa_claus.png" />
+    <EmbeddedResource Include="Images\Toolbar\report_magnify.png" />
+    <EmbeddedResource Include="Images\Overlays\npc_angler.png" />
+    <EmbeddedResource Include="Images\Overlays\npc_cyborg.png" />
+    <EmbeddedResource Include="Images\Overlays\npc_dyetrader.png" />
+    <EmbeddedResource Include="Images\Overlays\npc_painter.png" />
+    <EmbeddedResource Include="Images\Overlays\npc_partygirl.png" />
+    <EmbeddedResource Include="Images\Overlays\npc_pirate.png" />
+    <EmbeddedResource Include="Images\Overlays\npc_steampunker.png" />
+    <EmbeddedResource Include="Images\Overlays\npc_stylist.png" />
+    <EmbeddedResource Include="Images\Overlays\npc_tavernkeep.png" />
+    <EmbeddedResource Include="Images\Overlays\npc_tax_collector.png" />
+    <EmbeddedResource Include="Images\Overlays\npc_truffle.png" />
+    <EmbeddedResource Include="Images\Overlays\npc_witch_doctor.png" />
     <Resource Include="Images\Tools\eyedropper.png" />
     <Resource Include="Images\Toolbar\arrow_redo.png" />
     <Resource Include="Images\Toolbar\arrow_undo.png" />
@@ -513,7 +526,6 @@
     <EmbeddedResource Include="Images\Overlays\grid.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\Toolbar\report_magnify.png" />
     <Content Include="settings.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <SubType>Designer</SubType>
@@ -544,7 +556,7 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties BuildVersion_AssemblyInfoFilename="Properties\AssemblyInfo.cs" BuildVersion_UseGlobalSettings="True" />
+      <UserProperties BuildVersion_UseGlobalSettings="True" BuildVersion_AssemblyInfoFilename="Properties\AssemblyInfo.cs" />
     </VisualStudio>
   </ProjectExtensions>
   <PropertyGroup>
