@@ -29,6 +29,7 @@ namespace TEditXNA.Terraria
         private readonly ObservableCollection<TileEntity> _tileEntities = new ObservableCollection<TileEntity>();
         private readonly ObservableCollection<int> _partyingNPCs = new ObservableCollection<int>();
         private readonly ObservableCollection<PressurePlate> _pressurePlates = new ObservableCollection<PressurePlate>();
+        private readonly ObservableCollection<TownManager> _playerRooms = new ObservableCollection<TownManager>();
 
         // [SBLogic] These variables are used internally for composing background layers, not currently needed here:
         // public int[] CorruptBG = new int[3];
@@ -443,6 +444,11 @@ namespace TEditXNA.Terraria
         public ObservableCollection<PressurePlate> PressurePlates
         {
             get { return _pressurePlates; }
+        }
+
+        public ObservableCollection<TownManager> PlayerRooms
+        {
+            get { return _playerRooms; }
         }
 
         public byte MoonType
