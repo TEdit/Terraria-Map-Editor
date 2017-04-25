@@ -46,7 +46,7 @@ namespace TEditXNA.Terraria
         {
             if (ViewModelBase.IsInDesignModeStatic) return;
 
-            var settingspath = Path.Combine(Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().GetName().CodeBase), "settings.xml");
+            var settingspath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "settings.xml");
             LoadObjectDbXml(settingspath);
             Sprites.Add(new Sprite());
 
