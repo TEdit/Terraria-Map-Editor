@@ -326,9 +326,11 @@ namespace TEdit.UI.Xaml.XnaContentHost
 
             // If lost control of graphics device, skip rendering
             if (graphicsService.GraphicsDevice.GraphicsDeviceStatus == GraphicsDeviceStatus.Lost)
+            {
+                graphicsService.ResetDevice(width, height);
                 return;
+            }
 
-            // Reset the device if needed
             if (graphicsService.GraphicsDevice.GraphicsDeviceStatus == GraphicsDeviceStatus.NotReset)
             {
                 graphicsService.ResetDevice(width, height);

@@ -274,6 +274,7 @@ namespace TEditXna.View
                 catch (Exception ex)
                 {
                     ErrorLogging.LogException(ex);
+                    ErrorLogging.Log(e.GraphicsDevice.GraphicsDeviceStatus.ToString());
                 }
             }
 
