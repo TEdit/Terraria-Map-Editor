@@ -84,6 +84,15 @@ namespace TEditXna.Editor.Tools
                 }
                 _wvm.SelectedRack = RackLocation;
             }
+            else if (curTile.Type == 171)
+            {
+                Vector2Int32 XmasLocation = _wvm.CurrentWorld.GetXmas(e.Location.X, e.Location.Y);
+                _wvm.SelectedXmasStar = _wvm.CurrentWorld.Tiles[XmasLocation.X, XmasLocation.Y].V & 7;
+                _wvm.SelectedXmasGarland = (_wvm.CurrentWorld.Tiles[XmasLocation.X, XmasLocation.Y].V >> 3) & 7;
+                _wvm.SelectedXmasBulb = (_wvm.CurrentWorld.Tiles[XmasLocation.X, XmasLocation.Y].V >> 6) & 0xf;
+                _wvm.SelectedXmasLight = (_wvm.CurrentWorld.Tiles[XmasLocation.X, XmasLocation.Y].V >> 10) & 0xf;
+                _wvm.SelectedXmas = XmasLocation;
+            }
         }
     }
 }

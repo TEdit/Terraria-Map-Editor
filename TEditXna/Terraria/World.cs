@@ -206,6 +206,17 @@ namespace TEditXNA.Terraria
             return new Vector2Int32(x, y);
         }
 
+        public Vector2Int32 GetXmas(int x, int y)
+        {
+            Tile tile = Tiles[x, y];
+            if (tile.U < 10)
+            {
+                x -= tile.U;
+                y -= tile.V;
+            }
+            return new Vector2Int32(x, y);
+        }
+
         // find upper left corner of sprites
         public Vector2Int32 GetAnchor(int x, int y)
         {

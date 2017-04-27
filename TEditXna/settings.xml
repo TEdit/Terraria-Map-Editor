@@ -3647,7 +3647,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Tile Id="168" Color="#FF849D7F" Name="Tungsten Ore" Solid="true" Blends="true" MergeWith="0" />
     <Tile Id="169" Color="#FF98ABC6" Name="Platinum Ore" Solid="true" Blends="true" MergeWith="0" />
     <Tile Id="170" Color="#FFE4DBA2" Name="Pine Tree Block" Solid="true" />
-    <Tile Id="171" Color="#FF218755" Name="Christmas Tree" Framed="true" Light="true" />
+    <Tile Id="171" Color="#FF218755" Name="Christmas Tree" Framed="true" Light="true" Size="4,8" />
     <Tile Id="172" Color="#FFB5C2D9" Name="Sink" Framed="true" Size="2,2" Placement="floor" >
       <Frames>
         <Frame UV="0,0" Name="Wooden Sink" />

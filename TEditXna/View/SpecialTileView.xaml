@@ -1,9 +1,11 @@
 ﻿<UserControl x:Class="TEditXna.View.SpecialTileView"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      mc:Ignorable="d" 
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:enum="clr-namespace:TEdit.UI.Xaml.Enum"
+      xmlns:System="clr-namespace:System;assembly=mscorlib"
+      mc:Ignorable="d"
       d:DesignHeight="300" d:DesignWidth="300">
 
     <UserControl.Resources>
@@ -95,10 +97,62 @@
                 </DataTrigger>
             </Style.Triggers>
         </Style>
+        <Style TargetType="{x:Type GroupBox}" x:Key="XmasVisiblity" BasedOn="{StaticResource {x:Type GroupBox}}">
+            <Setter Property="Visibility" Value="Collapsed" />
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding SelectedSpecialTile}" Value="6">
+                    <Setter Property="Visibility" Value="Visible" />
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+        <enum:EnumItemList x:Key="XmasStarCollection" EnumType="{x:Type System:Int32}" SortBy="Value" >
+            <enum:EnumItem Value="0">None</enum:EnumItem>
+            <enum:EnumItem Value="1">Star Topper 1</enum:EnumItem>
+            <enum:EnumItem Value="2">Star Topper 2</enum:EnumItem>
+            <enum:EnumItem Value="3">Star Topper 3</enum:EnumItem>
+            <enum:EnumItem Value="4">Bow Topper</enum:EnumItem>
+        </enum:EnumItemList>
+        <enum:EnumItemList x:Key="XmasGarlandCollection" EnumType="{x:Type System:Int32}" SortBy="Value" >
+            <enum:EnumItem Value="0">None</enum:EnumItem>
+            <enum:EnumItem Value="1">White</enum:EnumItem>
+            <enum:EnumItem Value="2">White and Red</enum:EnumItem>
+            <enum:EnumItem Value="3">Red</enum:EnumItem>
+            <enum:EnumItem Value="4">Red and Green</enum:EnumItem>
+            <enum:EnumItem Value="5">Green</enum:EnumItem>
+            <enum:EnumItem Value="6">Green and White</enum:EnumItem>
+        </enum:EnumItemList>
+        <enum:EnumItemList x:Key="XmasBulbCollection" EnumType="{x:Type System:Int32}" SortBy="Value" >
+            <enum:EnumItem Value="0">None</enum:EnumItem>
+            <enum:EnumItem Value="1">Multicolored</enum:EnumItem>
+            <enum:EnumItem Value="2">Red</enum:EnumItem>
+            <enum:EnumItem Value="3">Yellow</enum:EnumItem>
+            <enum:EnumItem Value="4">Green</enum:EnumItem>
+            <enum:EnumItem Value="5">Red and Green</enum:EnumItem>
+            <enum:EnumItem Value="6">Yellow and Green</enum:EnumItem>
+            <enum:EnumItem Value="7">Red and Yellow</enum:EnumItem>
+            <enum:EnumItem Value="8">White</enum:EnumItem>
+            <enum:EnumItem Value="9">White and Red</enum:EnumItem>
+            <enum:EnumItem Value="10">White and Yellow</enum:EnumItem>
+            <enum:EnumItem Value="11">White and Green</enum:EnumItem>
+        </enum:EnumItemList>
+        <enum:EnumItemList x:Key="XmasLightCollection" EnumType="{x:Type System:Int32}" SortBy="Value" >
+            <enum:EnumItem Value="0">None</enum:EnumItem>
+            <enum:EnumItem Value="1">Multicolored</enum:EnumItem>
+            <enum:EnumItem Value="2">Red</enum:EnumItem>
+            <enum:EnumItem Value="3">Green</enum:EnumItem>
+            <enum:EnumItem Value="4">Blue</enum:EnumItem>
+            <enum:EnumItem Value="5">Yellow</enum:EnumItem>
+            <enum:EnumItem Value="6">Red and Yellow</enum:EnumItem>
+            <enum:EnumItem Value="7">Red and Green</enum:EnumItem>
+            <enum:EnumItem Value="8">Yellow and Green</enum:EnumItem>
+            <enum:EnumItem Value="9">Blue and Green</enum:EnumItem>
+            <enum:EnumItem Value="10">Red and Blue</enum:EnumItem>
+            <enum:EnumItem Value="11">Blue and Yellow</enum:EnumItem>
+        </enum:EnumItemList>
     </UserControl.Resources>
-    <Grid Background="{DynamicResource WindowBackgroundBrush}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" > 
+    <Grid Background="{DynamicResource WindowBackgroundBrush}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" >
         <GroupBox BorderThickness="0" Style="{StaticResource InstructionsVisiblity}">
-            <TextBlock Text="With the Arrow Tool right click on a sign, chest, mannequin, weapon rack or item frame" TextWrapping="Wrap" HorizontalAlignment="Stretch" Margin="3" FontWeight="Bold" Foreground="{DynamicResource TextBrush}"/>
+            <TextBlock Text="With the Arrow Tool right click on a sign, chest, mannequin, weapon rack,item frame or christmas tree" TextWrapping="Wrap" HorizontalAlignment="Stretch" Margin="3" FontWeight="Bold" Foreground="{DynamicResource TextBrush}"/>
         </GroupBox>
         <GroupBox BorderThickness="0" Style="{StaticResource SignVisiblity}">
             <Grid Background="{DynamicResource WindowBackgroundBrush}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" >
@@ -129,7 +183,7 @@
                             </TextBlock.Text>
                         </TextBlock>
                 </StackPanel>
-                <TextBox Grid.Row="2" Text="{Binding SelectedSign.Text, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" MinHeight="150" 
+                <TextBox Grid.Row="2" Text="{Binding SelectedSign.Text, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" MinHeight="150"
                   HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Visible" AcceptsReturn="True" TextWrapping="Wrap"
                   Margin="2" FontWeight="Bold" MaxLines="10" PreviewKeyDown="ValidateLines" />
                 <UniformGrid Columns="2" Grid.Row="4">
@@ -151,7 +205,7 @@
                 <StackPanel Orientation="Horizontal" Grid.Row="0">
                     <TextBlock Text="Chest Name: " Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" VerticalAlignment="Center" />
                     <TextBox Margin="2" Width="100px" Height="20px" MaxLength="20" MaxLines="1" Text="{Binding SelectedChest.Name}" />
-                </StackPanel> 
+                </StackPanel>
                 <StackPanel Orientation="Horizontal" Grid.Row="1">
                     <TextBlock Text="Chest Type: " Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" VerticalAlignment="Center" />
                     <ComboBox Width="150px"
@@ -238,7 +292,7 @@
                     <TextBlock Text="Mannequin Clothing " Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" />
                     <TextBlock Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" DockPanel.Dock="Top">
                         <TextBlock.Text>
-                            <MultiBinding StringFormat="({0:0}, {1:0})">
+                            <MultiBinding StringFormat="({0}, {1})">
                                 <Binding Path="SelectedMannequin.X" />
                                 <Binding Path="SelectedMannequin.Y" />
                             </MultiBinding>
@@ -322,6 +376,71 @@
                     <Button Margin="2" Content="Cancel" Command="{Binding SaveRackCommand}"
                         CommandParameter="{StaticResource False}" />
                     <Button Margin="2" Content="Save" Command="{Binding SaveRackCommand}"
+                        CommandParameter="{StaticResource True}" />
+                </UniformGrid>
+            </Grid>
+        </GroupBox>
+        <GroupBox BorderThickness="0" Style="{StaticResource XmasVisiblity}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+            <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <StackPanel Orientation="Horizontal"  Grid.Row="0">
+                    <TextBlock Text="Christmas Tree Decorations " Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" />
+                    <TextBlock Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" DockPanel.Dock="Top">
+                        <TextBlock.Text>
+                            <MultiBinding StringFormat="({0:D}, {1:D})">
+                                <Binding Path="SelectedXmas.X" />
+                                <Binding Path="SelectedXmas.Y" />
+                            </MultiBinding>
+                        </TextBlock.Text>
+                    </TextBlock>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Grid.Row="1">
+                    <TextBlock Text="Star: " Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" VerticalAlignment="Center" Width="90px"/>
+                    <ComboBox Width="150px"
+                      ItemsSource="{StaticResource XmasStarCollection}"
+                      SelectedValue="{Binding SelectedXmasStar, Mode=TwoWay}"
+                      SelectedValuePath="Value"
+                      IsSynchronizedWithCurrentItem="True"
+                      HorizontalAlignment="Stretch" Margin="1,0" ItemsPanel="{StaticResource Template_ComboPanel}" />
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Grid.Row="2">
+                    <TextBlock Text="Garlands: " Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" VerticalAlignment="Center" Width="90px"/>
+                    <ComboBox Width="150px"
+                      ItemsSource="{StaticResource XmasGarlandCollection}"
+                      SelectedValue="{Binding SelectedXmasGarland, Mode=TwoWay}"
+                      SelectedValuePath="Value"
+                      IsSynchronizedWithCurrentItem="True"
+                      HorizontalAlignment="Stretch" Margin="1,0" ItemsPanel="{StaticResource Template_ComboPanel}" />
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Grid.Row="3">
+                    <TextBlock Text="Bulbs: " Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" VerticalAlignment="Center" Width="90px"/>
+                    <ComboBox Width="150px"
+                      ItemsSource="{StaticResource XmasBulbCollection}"
+                      SelectedValue="{Binding SelectedXmasBulb, Mode=TwoWay}"
+                      SelectedValuePath="Value"
+                      IsSynchronizedWithCurrentItem="True"
+                      HorizontalAlignment="Stretch" Margin="1,0" ItemsPanel="{StaticResource Template_ComboPanel}" />
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Grid.Row="4">
+                    <TextBlock Text="Lights: " Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" VerticalAlignment="Center" Width="90px"/>
+                    <ComboBox Width="150px"
+                      ItemsSource="{StaticResource XmasLightCollection}"
+                      SelectedValue="{Binding SelectedXmasLight, Mode=TwoWay}"
+                      SelectedValuePath="Value"
+                      IsSynchronizedWithCurrentItem="True"
+                      HorizontalAlignment="Stretch" Margin="1,0" ItemsPanel="{StaticResource Template_ComboPanel}" />
+                </StackPanel>
+                <UniformGrid Columns="2" Grid.Row="5">
+                    <Button Margin="2" Content="Cancel" Command="{Binding SaveXmasCommand}"
+                        CommandParameter="{StaticResource False}" />
+                    <Button Margin="2" Content="Save" Command="{Binding SaveXmasCommand}"
                         CommandParameter="{StaticResource True}" />
                 </UniformGrid>
             </Grid>
