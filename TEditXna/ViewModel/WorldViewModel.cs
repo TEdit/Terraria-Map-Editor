@@ -68,6 +68,11 @@ namespace TEditXna.ViewModel
         private TileEntity _selectedItemFrame;
         private Vector2Int32 _selectedMannequin;
         private Vector2Int32 _selectedRack;
+        private Vector2Int32 _selectedXmas;
+        private int _selectedXmasStar;
+        private int _selectedXmasGarland;
+        private int _selectedXmasBulb;
+        private int _selectedXmasLight;
         private byte _selectedRackPrefix;
         private int _selectedRackNetId;
         private int _selectedMannHead;
@@ -267,6 +272,41 @@ namespace TEditXna.ViewModel
         {
             get { return _selectedRackNetId; }
             set { Set("SelectedRackNetId", ref _selectedRackNetId, value); }
+        }
+
+        public Vector2Int32 SelectedXmas
+        {
+            get { return _selectedXmas; }
+            set
+            {
+                Set("SelectedXmas", ref _selectedXmas, value);
+                SelectedTabIndex = 1;
+                SelectedSpecialTile = 6;
+            }
+        }
+
+        public int SelectedXmasStar
+        {
+            get { return _selectedXmasStar; }
+            set { Set("SelectedXmasStar", ref _selectedXmasStar, value); }
+        }
+
+        public int SelectedXmasGarland
+        {
+            get { return _selectedXmasGarland; }
+            set { Set("SelectedXmasGarland", ref _selectedXmasGarland, value); }
+        }
+
+        public int SelectedXmasBulb
+        {
+            get { return _selectedXmasBulb; }
+            set { Set("SelectedXmasBulb", ref _selectedXmasBulb, value); }
+        }
+
+        public int SelectedXmasLight
+        {
+            get { return _selectedXmasLight; }
+            set { Set("SelectedXmasLight", ref _selectedXmasLight, value); }
         }
 
         public Sign SelectedSign
@@ -609,7 +649,7 @@ namespace TEditXna.ViewModel
                     var versions = Regex.Match(githubReleases, versionRegex);
 
                     isoutofdate = versions.Success && IsVersionNewerThanApplicationVersion(versions?.Groups?[1].Value);
-                    
+
                     // ignore revision, build should be enough
                     // if ((revis != -1) && (revis > App.Version.ProductPrivatePart)) return true;
                 }

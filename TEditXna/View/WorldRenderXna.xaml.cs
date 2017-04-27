@@ -255,6 +255,8 @@ namespace TEditXna.View
                         for (int y = 0; y < sprite.Size.Y; y++)
                         {
                             var source = new Rectangle(x * (tile.TextureGrid.X + 2) + sprite.Origin.X, y * (tile.TextureGrid.Y + 2) + sprite.Origin.Y, tile.TextureGrid.X, tile.TextureGrid.Y);
+                            if (sprite.Tile == 171)
+                                source = new Rectangle(x * (tile.TextureGrid.X) + sprite.Origin.X, y * (tile.TextureGrid.Y) + sprite.Origin.Y, tile.TextureGrid.X, tile.TextureGrid.Y);
                             if (source.Bottom > tileTex.Height)
                                 source.Height -= (source.Bottom - tileTex.Height);
                             if (source.Right > tileTex.Width)

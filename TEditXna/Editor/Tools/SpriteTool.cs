@@ -38,7 +38,28 @@ namespace TEditXna.Editor.Tools
         {
             if (_wvm.SelectedSprite == null)
                 return;
-            if (_wvm.SelectedSprite.Size.X > 1 || _wvm.SelectedSprite.Size.Y > 1)
+            if (_wvm.SelectedSprite.Tile == 171)
+            {
+                for (int x = 0; x < _wvm.SelectedSprite.Size.X; x++)
+                {
+                    int tilex = x + e.Location.X;
+                    for (int y = 0; y < _wvm.SelectedSprite.Size.Y; y++)
+                    {
+                        int tiley = y + e.Location.Y;
+                        _wvm.UndoManager.SaveTile(tilex, tiley);
+                        Tile curtile = _wvm.CurrentWorld.Tiles[tilex, tiley];
+                        curtile.IsActive = true;
+                        curtile.Type = _wvm.SelectedSprite.Tile;
+                        if (x == 0 && y == 0)
+                          curtile.U = 10;
+                        else
+                          curtile.U = (short)x;
+                        curtile.V = (short)y;
+                        _wvm.UpdateRenderPixel(tilex, tiley);
+                      }
+                }
+            }
+            else if (_wvm.SelectedSprite.Size.X > 1 || _wvm.SelectedSprite.Size.Y > 1)
             {
                 Vector2Short[,] tiles = _wvm.SelectedSprite.GetTiles();
                 for (int x = 0; x < _wvm.SelectedSprite.Size.X; x++)

@@ -32,6 +32,7 @@ namespace TEditXna.ViewModel
         private ICommand _saveChestCommand;
         private ICommand _saveSignCommand;
         private ICommand _saveMannCommand;
+        private ICommand _saveXmasCommand;
         private ICommand _saveTileEntityCommand;
         private ICommand _saveRackCommand;
         private ICommand _npcRemoveCommand;
@@ -127,6 +128,11 @@ namespace TEditXna.ViewModel
             get { return _saveMannCommand ?? (_saveMannCommand = new RelayCommand<bool>(SaveMannequin)); }
         }
 
+        public ICommand SaveXmasCommand
+        {
+            get { return _saveXmasCommand ?? (_saveXmasCommand = new RelayCommand<bool>(SaveXmasTree)); }
+        }
+
         public ICommand SaveTileEntityCommand
         {
             get { return _saveTileEntityCommand ?? (_saveTileEntityCommand = new RelayCommand<bool>(SaveTileEntity)); }
@@ -162,6 +168,25 @@ namespace TEditXna.ViewModel
                     CurrentWorld.Tiles[SelectedMannequin.X, SelectedMannequin.Y].U = (short)((CurrentWorld.Tiles[SelectedMannequin.X, SelectedMannequin.Y].U % 100) + (100 * SelectedMannHead));
                     CurrentWorld.Tiles[SelectedMannequin.X, SelectedMannequin.Y + 1].U = (short)((CurrentWorld.Tiles[SelectedMannequin.X, SelectedMannequin.Y + 1].U % 100) + (100 * SelectedMannBody));
                     CurrentWorld.Tiles[SelectedMannequin.X, SelectedMannequin.Y + 2].U = (short)((CurrentWorld.Tiles[SelectedMannequin.X, SelectedMannequin.Y + 2].U % 100) + (100 * SelectedMannLegs));
+                }
+            }
+            else
+            {
+                SelectedSpecialTile = 0;
+            }
+        }
+
+        private void SaveXmasTree(bool save)
+        {
+            if (save)
+            {
+                if (SelectedXmas != null)
+                {
+                    int tree = SelectedXmasStar;
+                    tree += (SelectedXmasGarland << 3);
+                    tree += (SelectedXmasBulb << 6);
+                    tree += (SelectedXmasLight << 10);
+                    CurrentWorld.Tiles[SelectedXmas.X, SelectedXmas.Y].V = (short)tree;
                 }
             }
             else
