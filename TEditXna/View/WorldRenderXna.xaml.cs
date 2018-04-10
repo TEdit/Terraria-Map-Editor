@@ -786,7 +786,7 @@ namespace TEditXna.View
                                                     dest.Width = (int)(_zoom * source.Width / 16f);
                                                     dest.Height = (int)(_zoom * source.Height / 16f);
                                                     dest.Y += (int)(((16 - source.Height - 4) / 2F) * _zoom / 16);
-                                                    dest.X -= (int)((2 * _zoom / 16));
+                                                    dest.X -= (int)(2 * _zoom / 16);
                                                     break;
                                                 case 1:
                                                     if (curtile.Type == 128)
@@ -797,15 +797,15 @@ namespace TEditXna.View
                                                     dest.Width = (int)(_zoom * source.Width / 16f);
                                                     dest.Height = (int)(_zoom * source.Height / 16f);
                                                     dest.Y += (int)(((16 - source.Height - 18) / 2F) * _zoom / 16);
-                                                    dest.X -= (int)((2 * _zoom / 16));
+                                                    dest.X -= (int)(2 * _zoom / 16);
                                                     break;
                                                 case 2:
                                                     tileTex = (Texture2D)_textureDictionary.GetArmorLegs(armor);
                                                     source = new Rectangle (2, 42, 36, 12);
                                                     dest.Width = (int)(_zoom * source.Width / 16f);
                                                     dest.Height = (int)(_zoom * source.Height / 16f);
-                                                    dest.Y -= (int)((2 * _zoom / 16));
-                                                    dest.X -= (int)((2 * _zoom / 16));
+                                                    dest.Y -= (int)(2 * _zoom / 16);
+                                                    dest.X -= (int)(2 * _zoom / 16);
                                                     break;
                                             }
                                             if (curtile.U % 100 < 36)
