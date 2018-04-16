@@ -593,7 +593,7 @@ namespace TEdit.Geometry.Primitives
                 int.TryParse(split[3], out w))
                 return false;
 
-            vector = new Vector4(x, y, z, w);
+            vector = new Vector4(x, y, y, z);
             return true;
         }
 

@@ -49,13 +49,13 @@ namespace TEditXNA.Terraria
             OnProgressChanged(null, new ProgressChangedEventArgs(100, "Save NPCs..."));
             sectionPointers[5] = SaveNPCs(world.NPCs, bw);
             OnProgressChanged(null, new ProgressChangedEventArgs(100, "Save Mobs..."));
-            sectionPointers[6] = SaveMobs(world.Mobs, bw);
+            sectionPointers[5] = SaveMobs(world.Mobs, bw);
             OnProgressChanged(null, new ProgressChangedEventArgs(100, "Save Tile Entities Section..."));
-            sectionPointers[7] = SaveTileEntities(world, bw);
+            sectionPointers[6] = SaveTileEntities(world, bw);
             OnProgressChanged(null, new ProgressChangedEventArgs(100, "Save Weighted Pressure Plates..."));
-            sectionPointers[8] = SavePressurePlate(world.PressurePlates, bw);
+            sectionPointers[7] = SavePressurePlate(world.PressurePlates, bw);
             OnProgressChanged(null, new ProgressChangedEventArgs(100, "Save Town Manager..."));
-            sectionPointers[9] = SaveTownManager(world.PlayerRooms, bw);
+            sectionPointers[8] = SaveTownManager(world.PlayerRooms, bw);
             OnProgressChanged(null, new ProgressChangedEventArgs(100, "Save Footers..."));
             SaveFooter(world, bw);
             UpdateSectionPointers(sectionPointers, bw);
