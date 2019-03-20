@@ -758,6 +758,12 @@ namespace TEditXNA.Terraria
             set { Set("WorldId", ref _worldId, value); }
         }
 
+        public System.Guid WorldGUID
+        {
+            get { return Guid; }
+            set { Set("WorldGUID", ref Guid, value); }
+        }
+
         public bool DownedFrost
         {
             get { return _downedFrost; }
