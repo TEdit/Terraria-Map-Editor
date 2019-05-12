@@ -186,7 +186,9 @@
             <TextBlock Text="World Name" HorizontalAlignment="Right" />
             <TextBox Text="{Binding CurrentWorld.Title, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
             <TextBlock Text="World Id" HorizontalAlignment="Right" />
-            <TextBlock Text="{Binding CurrentWorld.WorldId}" HorizontalAlignment="Left" />
+            <TextBox Text="{Binding CurrentWorld.WorldId, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  />
+            <TextBlock Text="World GUID" HorizontalAlignment="Right" />
+            <TextBox Text="{Binding CurrentWorld.WorldGUID, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  />
             <TextBlock Text="Revision" HorizontalAlignment="Right" />
             <TextBlock Text="{Binding CurrentWorld.FileRevision}" HorizontalAlignment="Left" />
             <TextBlock Text="Seed" HorizontalAlignment="Right" />
