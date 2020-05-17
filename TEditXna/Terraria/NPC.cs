@@ -14,7 +14,7 @@ namespace TEditXNA.Terraria
         private int _spriteId;
 
         private string _displayName;
-         
+        private int _townNpcVariationIndex;
 
         public string DisplayName
         {
@@ -44,6 +44,12 @@ namespace TEditXNA.Terraria
         {
             get { return _isHomeless; }
             set { Set("IsHomeless", ref _isHomeless, value); }
+        }
+
+        public int TownNpcVariationIndex
+        {
+            get { return _townNpcVariationIndex; }
+            set { Set("TownNpcVariationIndex", ref _townNpcVariationIndex, value); }
         }
 
         public Vector2Int32 Home

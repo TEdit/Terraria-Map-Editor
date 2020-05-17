@@ -488,6 +488,15 @@ namespace TEditXNA.Terraria
             get { return _tileProperties; }
         }
 
+        public static TileProperty GetTileProperties(int type)
+        {
+            if (_tileProperties.Count > type)
+            {
+                return _tileProperties[type];
+            }
+            return _tileProperties[0];
+        }
+
 
         public static ObservableCollection<TileProperty> TileBricks
         {

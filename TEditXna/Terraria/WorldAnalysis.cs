@@ -17,7 +17,8 @@ namespace TEditXNA.Terraria
 
         public static string AnalyzeWorld(World world)
         {
-            if (world == null) return string.Empty;
+            if (world == null)
+                return string.Empty;
 
             using (var ms = new MemoryStream())
             using (var writer = new StreamWriter(ms))
@@ -34,7 +35,8 @@ namespace TEditXNA.Terraria
 
         public static void AnalyzeWorld(World world, string file)
         {
-            if (world == null) return;
+            if (world == null)
+                return;
 
             using (var writer = new StreamWriter(file, false))
             {
@@ -48,7 +50,8 @@ namespace TEditXNA.Terraria
             WriteHeader(sb, world);
             WriteFlags(sb, world);
 
-            if (!fullAnalysis) return;
+            if (!fullAnalysis)
+                return;
 
             sb.WriteLine("===SECTION: Tiles===");
 
@@ -59,7 +62,7 @@ namespace TEditXNA.Terraria
             {
                 for (int y = 0; y < world.TilesHigh; y++)
                 {
-                    
+
                     var tile = world.Tiles[x, y];
 
                     if (tile.IsActive)
@@ -138,7 +141,7 @@ namespace TEditXNA.Terraria
             {
                 sb.Write("ID: {0}, Name: {1}, Position: [{2:0.00}, {3:0.00}], {4}: [{5}, {6}]\r\n", npc.Name, npc.DisplayName, npc.Position.X, npc.Position.Y, npc.IsHomeless ? "Homeless" : "Home", npc.Home.X, npc.Home.Y);
             }
-            
+
             sb.WriteLine("===SECTION: Tile Entities===");
             sb.WriteProperty("Tile Entities Count", world.TileEntities.Count);
             foreach (var entity in world.TileEntities)
@@ -189,7 +192,8 @@ namespace TEditXNA.Terraria
             sb.WriteProperty("world.TilesHigh", world.TilesHigh);
             sb.WriteProperty("world.TilesWide", world.TilesWide);
 
-            sb.WriteProperty("world.ExpertMode", world.ExpertMode);
+            sb.WriteProperty("world.GameMode", world.GameMode);
+            sb.WriteProperty("world.DrunkWorld", world.DrunkWorld);
             sb.WriteProperty("world.CreationTime", world.CreationTime);
 
             sb.WriteProperty("world.MoonType", world.MoonType);
@@ -257,9 +261,9 @@ namespace TEditXNA.Terraria
             sb.WriteProperty("world.TempRaining", world.TempRaining);
             sb.WriteProperty("world.TempRainTime", world.TempRainTime);
             sb.WriteProperty("world.TempMaxRain", world.TempMaxRain);
-            sb.WriteProperty("world.OreTier1", world.OreTier1);
-            sb.WriteProperty("world.OreTier2", world.OreTier2);
-            sb.WriteProperty("world.OreTier3", world.OreTier3);
+            sb.WriteProperty("world.OreTierCobalt", world.SavedOreTiersCobalt);
+            sb.WriteProperty("world.SavedOreTiersMythril", world.SavedOreTiersMythril);
+            sb.WriteProperty("world.SavedOreTiersAdamantite", world.SavedOreTiersAdamantite);
             sb.WriteProperty("world.BgTree", world.BgTree);
             sb.WriteProperty("world.BgCorruption", world.BgCorruption);
             sb.WriteProperty("world.BgJungle", world.BgJungle);
@@ -281,8 +285,35 @@ namespace TEditXNA.Terraria
             sb.WriteProperty("world.SavedAngler", world.SavedAngler);
             sb.WriteProperty("world.AnglerQuest", world.AnglerQuest);
 
+            sb.WriteProperty("world.MushroomBg", world.MushroomBg);
+            sb.WriteProperty("world.UnderworldBg", world.UnderworldBg);
+            sb.WriteProperty("world.BgTree2", world.BgTree2);
+            sb.WriteProperty("world.BgTree3", world.BgTree3);
+            sb.WriteProperty("world.BgTree4", world.BgTree4);
+            sb.WriteProperty("world.CombatBookUsed", world.CombatBookUsed);
+
+            // tree tops
+            for (int i = 0; i < world.TreeTopVariations.Count; i++)
+            {
+                sb.WriteProperty("TreeTopVariations " + i, world.TreeTopVariations[i]);
+            }
+
+            sb.WriteProperty("world.ForceHalloweenForToday", world.ForceHalloweenForToday);
+            sb.WriteProperty("world.ForceXMasForToday", world.ForceXMasForToday);
+            sb.WriteProperty("world.SavedOreTiersCopper", world.SavedOreTiersCopper);
+            sb.WriteProperty("world.SavedOreTiersIron", world.SavedOreTiersIron);
+            sb.WriteProperty("world.SavedOreTiersSilver", world.SavedOreTiersSilver);
+            sb.WriteProperty("world.SavedOreTiersGold", world.SavedOreTiersGold);
+
+            sb.WriteProperty("world.BoughtCat", world.BoughtCat);
+            sb.WriteProperty("world.BoughtDog", world.BoughtDog);
+            sb.WriteProperty("world.BoughtBunny", world.BoughtBunny);
+
+            sb.WriteProperty("world.DownedEmpressOfLight", world.DownedEmpressOfLight);
+            sb.WriteProperty("world.DownedQueenSlime", world.DownedQueenSlime);
+
             if (world.UnknownData != null && world.UnknownData.Length > 0)
-                sb.WriteProperty("world.UnknownData", BitConverter.ToString(world.UnknownData));            
+                sb.WriteProperty("world.UnknownData", BitConverter.ToString(world.UnknownData));
         }
     }
 }

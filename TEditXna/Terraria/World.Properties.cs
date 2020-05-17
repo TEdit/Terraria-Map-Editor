@@ -31,6 +31,8 @@ namespace TEditXNA.Terraria
         private readonly ObservableCollection<PressurePlate> _pressurePlates = new ObservableCollection<PressurePlate>();
         private readonly ObservableCollection<TownManager> _playerRooms = new ObservableCollection<TownManager>();
 
+        private readonly ObservableCollection<int> _treeTopVariations = new ObservableCollection<int>(new int[13]);
+
         // [SBLogic] These variables are used internally for composing background layers, not currently needed here:
         // public int[] CorruptBG = new int[3];
         // public int[] CrimsonBG = new int[3];
@@ -127,9 +129,6 @@ namespace TEditXNA.Terraria
         private int _moonPhase;
         private byte _moonType;
         private short _numClouds;
-        private int _oreTier1;
-        private int _oreTier2;
-        private int _oreTier3;
         private float _rightWorld;
         private double _rockLevel;
         private bool _savedAngler;
@@ -188,7 +187,33 @@ namespace TEditXNA.Terraria
         private string _seed;
         private UInt64 _worldGenVersion;
         public Guid Guid;
-
+        private int _gameMode;
+        private bool _drunkWorld;
+        private bool _savedGolfer;
+        private byte _bgTree2;
+        private byte _bgTree3;
+        private byte _bgTree4;
+        private byte _underworldBg;
+        private byte _mushroomBg;
+        private bool _combatBookUsed;
+        private int _tempLanternNightCooldown;
+        private bool _tempLanternNightGenuine;
+        private bool _tempLanternNightManual;
+        private bool _tempLanternNightNextNightIsGenuine;
+        private bool _forceHalloweenForToday;
+        private bool _forceXMasForToday;
+        private int _savedOreTiersCopper;
+        private int _savedOreTiersIron;
+        private int _savedOreTiersSilver;
+        private int _savedOreTiersGold;
+        private bool _boughtCat;
+        private bool _boughtDog;
+        private bool _boughtBunny;
+        private bool _downedEmpressOfLight;
+        private bool _downedQueenSlime;
+        private int _savedOreTiersCobalt;
+        private int _savedOreTiersMythril;
+        private int _savedOreTiersAdamantite;
 
         public UInt64 WorldGenVersion
         {
@@ -316,12 +341,6 @@ namespace TEditXNA.Terraria
             set { Set("CreationTime", ref _creationTime, value); }
         }
 
-        public bool ExpertMode
-        {
-            get { return _expertMode; }
-            set { Set("ExpertMode", ref _expertMode, value); }
-        }
-
 
         public int AnglerQuest
         {
@@ -345,6 +364,97 @@ namespace TEditXNA.Terraria
         {
             get { return _savedTaxCollector; }
             set { Set("SavedTaxCollector", ref _savedTaxCollector, value); }
+        }
+
+        public bool SavedGolfer
+        {
+            get { return _savedGolfer; }
+            set { Set("SavedGolfer", ref _savedGolfer, value); }
+        }
+
+        public bool ForceHalloweenForToday
+        {
+            get { return _forceHalloweenForToday; }
+            set { Set("ForceHalloweenForToday", ref _forceHalloweenForToday, value); }
+        }
+
+        public bool ForceXMasForToday
+        {
+            get { return _forceXMasForToday; }
+            set { Set("ForceXMasForToday", ref _forceXMasForToday, value); }
+        }
+        public int SavedOreTiersCobalt
+        {
+            get { return _savedOreTiersCobalt; }
+            set { Set("SavedOreTiersCobalt", ref _savedOreTiersCobalt, value); }
+        }
+
+        public int SavedOreTiersMythril
+        {
+            get { return _savedOreTiersMythril; }
+            set { Set("SavedOreTiersMythril", ref _savedOreTiersMythril, value); }
+        }
+
+        public int SavedOreTiersAdamantite
+        {
+            get { return _savedOreTiersAdamantite; }
+            set { Set("SavedOreTiersAdamantite", ref _savedOreTiersAdamantite, value); }
+        }
+
+
+        public int SavedOreTiersCopper
+        {
+            get { return _savedOreTiersCopper; }
+            set { Set("SavedOreTiersCopper", ref _savedOreTiersCopper, value); }
+        }
+
+        public int SavedOreTiersIron
+        {
+            get { return _savedOreTiersIron; }
+            set { Set("SavedOreTiersIron", ref _savedOreTiersIron, value); }
+        }
+
+        public int SavedOreTiersSilver
+        {
+            get { return _savedOreTiersSilver; }
+            set { Set("SavedOreTiersSilver", ref _savedOreTiersSilver, value); }
+        }
+
+
+        public int SavedOreTiersGold
+        {
+            get { return _savedOreTiersGold; }
+            set { Set("SavedOreTiersGold", ref _savedOreTiersGold, value); }
+        }
+
+        public bool BoughtCat
+        {
+            get { return _boughtCat; }
+            set { Set("BoughtCat", ref _boughtCat, value); }
+        }
+
+        public bool BoughtDog
+        {
+            get { return _boughtDog; }
+            set { Set("BoughtDog", ref _boughtDog, value); }
+        }
+
+        public bool BoughtBunny
+        {
+            get { return _boughtBunny; }
+            set { Set("BoughtBunny", ref _boughtBunny, value); }
+        }
+
+        public bool DownedEmpressOfLight
+        {
+            get { return _downedEmpressOfLight; }
+            set { Set("DownedEmpressOfLight", ref _downedEmpressOfLight, value); }
+        }
+
+        public bool DownedQueenSlime
+        {
+            get { return _downedQueenSlime; }
+            set { Set("DownedQueenSlime", ref _downedQueenSlime, value); }
         }
 
         public int IceBackStyle
@@ -451,6 +561,12 @@ namespace TEditXNA.Terraria
             get { return _playerRooms; }
         }
 
+        public ObservableCollection<int> TreeTopVariations
+        {
+            get { return _treeTopVariations; }
+        }
+
+
         public byte MoonType
         {
             get { return _moonType; }
@@ -506,22 +622,66 @@ namespace TEditXNA.Terraria
             set { Set("BgTree", ref _bgTree, value); }
         }
 
-        public int OreTier3
+        public byte BgTree2
         {
-            get { return _oreTier3; }
-            set { Set("OreTier3", ref _oreTier3, value); }
+            get { return _bgTree2; }
+            set { Set("BgTree2", ref _bgTree2, value); }
         }
 
-        public int OreTier2
+        public byte BgTree3
         {
-            get { return _oreTier2; }
-            set { Set("OreTier2", ref _oreTier2, value); }
+            get { return _bgTree3; }
+            set { Set("BgTree3", ref _bgTree3, value); }
         }
 
-        public int OreTier1
+        public byte BgTree4
         {
-            get { return _oreTier1; }
-            set { Set("OreTier1", ref _oreTier1, value); }
+            get { return _bgTree4; }
+            set { Set("BgTree4", ref _bgTree4, value); }
+        }
+
+        public byte UnderworldBg
+        {
+            get { return _underworldBg; }
+            set { Set("UnderworldBg", ref _underworldBg, value); }
+        }
+
+        public byte MushroomBg
+        {
+            get { return _mushroomBg; }
+            set { Set("MushroomBg", ref _mushroomBg, value); }
+        }
+
+
+
+        public bool CombatBookUsed
+        {
+            get { return _combatBookUsed; }
+            set { Set("CombatBookUsed", ref _combatBookUsed, value); }
+        }
+
+        public int TempLanternNightCooldown
+        {
+            get { return _tempLanternNightCooldown; }
+            set { Set("TempLanternNightCooldown", ref _tempLanternNightCooldown, value); }
+        }
+
+        public bool TempLanternNightGenuine
+        {
+            get { return _tempLanternNightGenuine; }
+            set { Set("TempLanternNightGenuine", ref _tempLanternNightGenuine, value); }
+        }
+
+        public bool TempLanternNightManual
+        {
+            get { return _tempLanternNightManual; }
+            set { Set("TempLanternNightManual", ref _tempLanternNightManual, value); }
+        }
+
+        public bool TempLanternNightNextNightIsGenuine
+        {
+            get { return _tempLanternNightNextNightIsGenuine; }
+            set { Set("TempLanternNightNextNightIsGenuine", ref _tempLanternNightNextNightIsGenuine, value); }
         }
 
         public float TempMaxRain
@@ -714,6 +874,18 @@ namespace TEditXNA.Terraria
         {
             get { return _celestialStardustActive; }
             set { Set("CelestialStardustActive", ref _celestialStardustActive, value); }
+        }
+
+        public int GameMode
+        {
+            get { return _gameMode; }
+            set { Set("GameMode", ref _gameMode, value); }
+        }
+
+        public bool DrunkWorld
+        {
+            get { return _drunkWorld; }
+            set { Set("DrunkWorld", ref _drunkWorld, value); }
         }
 
         public int TilesWide

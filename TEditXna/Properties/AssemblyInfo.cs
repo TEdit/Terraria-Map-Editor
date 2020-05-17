@@ -43,7 +43,7 @@ using System.Windows.Markup;
 //
 
 [assembly: AssemblyVersion("3.10.0.0")]
-[assembly: AssemblyFileVersion("3.10.18099.2330")]
+[assembly: AssemblyFileVersion("3.10.20138.1318")]
 
 
 [assembly: XmlnsDefinition("http://tedit/wpf", "TEdit.UI.Xaml")]

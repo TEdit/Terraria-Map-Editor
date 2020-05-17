@@ -23,20 +23,47 @@
             <enum:EnumItem Value="1">Orange</enum:EnumItem>
             <enum:EnumItem Value="2">Ringed</enum:EnumItem>
         </enum:EnumItemList>
-        <enum:EnumItemList x:Key="oreTier1List" EnumType="{x:Type System:Int32}" SortBy="Value" >
+        <enum:EnumItemList x:Key="gameModeList" EnumType="{x:Type System:Int32}" SortBy="Value" >
+            <enum:EnumItem Value="3">Journey</enum:EnumItem>
+            <enum:EnumItem Value="0">Classic</enum:EnumItem>
+            <enum:EnumItem Value="1">Expert</enum:EnumItem>
+            <enum:EnumItem Value="1">Master</enum:EnumItem>
+        </enum:EnumItemList>
+        <enum:EnumItemList x:Key="oreTierCobaltList" EnumType="{x:Type System:Int32}" SortBy="Value" >
             <enum:EnumItem Value="-1">Not Determined</enum:EnumItem>
             <enum:EnumItem Value="107">Cobalt</enum:EnumItem>
             <enum:EnumItem Value="221">Palladium</enum:EnumItem>
         </enum:EnumItemList>
-        <enum:EnumItemList x:Key="oreTier2List" EnumType="{x:Type System:Int32}" SortBy="Value" >
+        <enum:EnumItemList x:Key="oreTierMythrilList" EnumType="{x:Type System:Int32}" SortBy="Value" >
             <enum:EnumItem Value="-1">Not Determined</enum:EnumItem>
             <enum:EnumItem Value="108">Mythril</enum:EnumItem>
             <enum:EnumItem Value="222">Orichalcum</enum:EnumItem>
         </enum:EnumItemList>
-        <enum:EnumItemList x:Key="oreTier3List" EnumType="{x:Type System:Int32}" SortBy="Value" >
+
+        <enum:EnumItemList x:Key="oreTierAdamantiteList" EnumType="{x:Type System:Int32}" SortBy="Value" >
             <enum:EnumItem Value="-1">Not Determined</enum:EnumItem>
             <enum:EnumItem Value="111">Adamantite</enum:EnumItem>
             <enum:EnumItem Value="223">Titanium</enum:EnumItem>
+        </enum:EnumItemList>
+        <enum:EnumItemList x:Key="oreTierCopperList" EnumType="{x:Type System:Int32}" SortBy="Value" >
+            <enum:EnumItem Value="-1">Not Determined</enum:EnumItem>
+            <enum:EnumItem Value="7">Copper</enum:EnumItem>
+            <enum:EnumItem Value="166">Tin</enum:EnumItem>
+        </enum:EnumItemList>
+        <enum:EnumItemList x:Key="oreTierIronList" EnumType="{x:Type System:Int32}" SortBy="Value" >
+            <enum:EnumItem Value="-1">Not Determined</enum:EnumItem>
+            <enum:EnumItem Value="6">Iron</enum:EnumItem>
+            <enum:EnumItem Value="167">Lead</enum:EnumItem>
+        </enum:EnumItemList>
+        <enum:EnumItemList x:Key="oreTierSilverList" EnumType="{x:Type System:Int32}" SortBy="Value" >
+            <enum:EnumItem Value="-1">Not Determined</enum:EnumItem>
+            <enum:EnumItem Value="9">Silver</enum:EnumItem>
+            <enum:EnumItem Value="168">Tungsten</enum:EnumItem>
+        </enum:EnumItemList>
+        <enum:EnumItemList x:Key="oreTierGoldList" EnumType="{x:Type System:Int32}" SortBy="Value" >
+            <enum:EnumItem Value="-1">Not Determined</enum:EnumItem>
+            <enum:EnumItem Value="8">Gold</enum:EnumItem>
+            <enum:EnumItem Value="169">Platinum</enum:EnumItem>
         </enum:EnumItemList>
         <enum:EnumItemList x:Key="TreeStyleList" EnumType="{x:Type System:Int32}" SortBy="Value" >
             <enum:EnumItem Value="0">0</enum:EnumItem>
@@ -85,6 +112,37 @@
             <enum:EnumItem Value="0">0</enum:EnumItem>
             <enum:EnumItem Value="1">1</enum:EnumItem>
             <enum:EnumItem Value="2">2</enum:EnumItem>
+        </enum:EnumItemList>
+
+        <enum:EnumItemList x:Key="MushroomBGStyleList" EnumType="{x:Type System:Int32}" SortBy="Value">
+            <enum:EnumItem Value="46">46</enum:EnumItem>
+            <enum:EnumItem Value="47">47</enum:EnumItem>
+            <enum:EnumItem Value="48">48</enum:EnumItem>
+            <enum:EnumItem Value="231">231</enum:EnumItem>
+            <enum:EnumItem Value="232">232</enum:EnumItem>
+            <enum:EnumItem Value="233">233</enum:EnumItem>
+            <enum:EnumItem Value="234">234</enum:EnumItem>
+            <enum:EnumItem Value="235">235</enum:EnumItem>
+            <enum:EnumItem Value="236">236</enum:EnumItem>
+            <enum:EnumItem Value="287">287</enum:EnumItem>
+            <enum:EnumItem Value="288">288</enum:EnumItem>
+            <enum:EnumItem Value="289">289</enum:EnumItem>
+        </enum:EnumItemList>
+        <enum:EnumItemList x:Key="UnderworldBGStyleList" EnumType="{x:Type System:Int32}" SortBy="Value">
+            <enum:EnumItem Value="0">0</enum:EnumItem>
+            <enum:EnumItem Value="1">1</enum:EnumItem>
+            <enum:EnumItem Value="2">2</enum:EnumItem>
+            <enum:EnumItem Value="3">3</enum:EnumItem>
+            <enum:EnumItem Value="4">4</enum:EnumItem>
+            <enum:EnumItem Value="5">5</enum:EnumItem>
+            <enum:EnumItem Value="6">6</enum:EnumItem>
+            <enum:EnumItem Value="7">7</enum:EnumItem>
+            <enum:EnumItem Value="8">8</enum:EnumItem>
+            <enum:EnumItem Value="9">9</enum:EnumItem>
+            <enum:EnumItem Value="10">10</enum:EnumItem>
+            <enum:EnumItem Value="11">11</enum:EnumItem>
+            <enum:EnumItem Value="12">12</enum:EnumItem>
+            <enum:EnumItem Value="13">13</enum:EnumItem>
         </enum:EnumItemList>
         <enum:EnumItemList x:Key="SnowBGStyleList" EnumType="{x:Type System:Byte}" SortBy="Value">
             <enum:EnumItem Value="0">0</enum:EnumItem>
@@ -173,30 +231,30 @@
             <Setter Property="Content" Value="Eater of Worlds" />
             <Style.Triggers>
                 <DataTrigger Binding="{Binding CurrentWorld.IsCrimson}" Value="True">
-                        <Setter Property="Content" Value="Brain of Cthulhu" />
+                    <Setter Property="Content" Value="Brain of Cthulhu" />
                 </DataTrigger>
             </Style.Triggers>
         </Style>
     </UserControl.Resources>
-        <tedit:AutoGrid HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="2">
-            <tedit:AutoGrid.ColumnDefinitions>
-                <ColumnDefinition Width="1*" />
-                <ColumnDefinition Width="1.6*" />
-            </tedit:AutoGrid.ColumnDefinitions>
-            <TextBlock Text="World Name" HorizontalAlignment="Right" />
-            <TextBox Text="{Binding CurrentWorld.Title, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
-            <TextBlock Text="World Id" HorizontalAlignment="Right" />
-            <TextBox Text="{Binding CurrentWorld.WorldId, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  />
-            <TextBlock Text="World GUID" HorizontalAlignment="Right" />
-            <TextBox Text="{Binding CurrentWorld.WorldGUID, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  />
-            <TextBlock Text="Revision" HorizontalAlignment="Right" />
-            <TextBlock Text="{Binding CurrentWorld.FileRevision}" HorizontalAlignment="Left" />
-            <TextBlock Text="Seed" HorizontalAlignment="Right" />
-            <TextBlock Text="{Binding CurrentWorld.Seed}" HorizontalAlignment="Left" />
-            <Separator Grid.ColumnSpan="2" />
-            <TextBlock Text="Moon Phase" HorizontalAlignment="Right" />
-            <DockPanel>
-                <!--<TextBox Width="30" DockPanel.Dock="Right" Height="16">
+    <tedit:AutoGrid HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="2">
+        <tedit:AutoGrid.ColumnDefinitions>
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="1.6*" />
+        </tedit:AutoGrid.ColumnDefinitions>
+        <TextBlock Text="World Name" HorizontalAlignment="Right" />
+        <TextBox Text="{Binding CurrentWorld.Title, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+        <TextBlock Text="World Id" HorizontalAlignment="Right" />
+        <TextBox Text="{Binding CurrentWorld.WorldId, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  />
+        <TextBlock Text="World GUID" HorizontalAlignment="Right" />
+        <TextBox Text="{Binding CurrentWorld.WorldGUID, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  />
+        <TextBlock Text="Revision" HorizontalAlignment="Right" />
+        <TextBlock Text="{Binding CurrentWorld.FileRevision}" HorizontalAlignment="Left" />
+        <TextBlock Text="Seed" HorizontalAlignment="Right" />
+        <TextBlock Text="{Binding CurrentWorld.Seed}" HorizontalAlignment="Left" />
+        <Separator Grid.ColumnSpan="2" />
+        <TextBlock Text="Moon Phase" HorizontalAlignment="Right" />
+        <DockPanel>
+            <!--<TextBox Width="30" DockPanel.Dock="Right" Height="16">
                     <TextBox.Text>
                         <Binding Path="CurrentWorld.MoonPhase" Mode="TwoWay" UpdateSourceTrigger="PropertyChanged">
                             <Binding.ValidationRules>
@@ -205,8 +263,8 @@
                         </Binding>
                     </TextBox.Text>
                 </TextBox>-->
-                <Slider Value="{Binding CurrentWorld.MoonPhase, Mode=TwoWay}" VerticalAlignment="Center" Minimum="0" Maximum="7" Width="128" />
-                <TextBox Text="{Binding CurrentWorld.MoonPhase, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="16" DockPanel.Dock="Right" />
+            <Slider Value="{Binding CurrentWorld.MoonPhase, Mode=TwoWay}" VerticalAlignment="Center" Minimum="0" Maximum="7" Width="128" />
+            <TextBox Text="{Binding CurrentWorld.MoonPhase, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="16" DockPanel.Dock="Right" />
         </DockPanel>
         <TextBlock Text="Moon Style" HorizontalAlignment="Right" />
         <ComboBox Height="20" ItemsSource="{StaticResource moonTypeList}" SelectedValue="{Binding CurrentWorld.MoonType, Mode=TwoWay}" SelectedValuePath="Value" />
@@ -215,199 +273,231 @@
         <TextBlock />
         <CheckBox IsChecked="{Binding CurrentWorld.IsEclipse}" Content="Is Eclipse" VerticalAlignment="Center" VerticalContentAlignment="Center" />
         <Separator Grid.ColumnSpan="2" />
-            <TextBlock Text="Time" HorizontalAlignment="Right" />
-            <Grid Height="20">
-                <Rectangle Style="{DynamicResource TimeBackgroundStyle}" VerticalAlignment="Stretch" Margin="0,1"/>
-                <Slider Value="{Binding CurrentWorld.Time, Mode=TwoWay}"  VerticalAlignment="Center"  HorizontalAlignment="Stretch" Minimum="0" Maximum="54000" />
-            </Grid>
-            <TextBlock />
-            <CheckBox x:Name="dayCheckBox" Content="Is Day Time" VerticalAlignment="Center" Grid.Row="12" Grid.Column="1" IsChecked="{Binding Path=CurrentWorld.DayTime, Mode=TwoWay}"/>
-            <TextBlock />
-            <CheckBox IsChecked="{Binding CurrentWorld.FastForwardTime}" Content="Use Sundial" VerticalAlignment="Center" VerticalContentAlignment="Center" />
-            <TextBlock Text="Sundial Cooldown" HorizontalAlignment="Right" />
-            <DockPanel>
-                <TextBlock Text="{Binding CurrentWorld.SundialCooldown, StringFormat={}{0:0}}" Width="30" DockPanel.Dock="Right" />
-                <Slider Value="{Binding CurrentWorld.SundialCooldown, Mode=TwoWay}" VerticalAlignment="Center" Minimum="0" Maximum="127" SmallChange="1" />
-            </DockPanel>
-            <Separator Grid.ColumnSpan="2" />
-            <TextBlock Text="Rain" HorizontalAlignment="Right" />
-            <CheckBox IsChecked="{Binding Path=CurrentWorld.TempRaining, Mode=TwoWay}" Content="Is Raining" VerticalAlignment="Center" Grid.Row="12" Grid.Column="1" />
-            <TextBlock Text="Rain Time" HorizontalAlignment="Right" />
-            <DockPanel>
-                <TextBlock Text="{Binding CurrentWorld.TempRainTime, StringFormat={}{0:0}}" Width="30" DockPanel.Dock="Right" />
-                <Slider Value="{Binding CurrentWorld.TempRainTime, Mode=TwoWay}" VerticalAlignment="Center" Minimum="0" Maximum="999999" SmallChange="1" />
-            </DockPanel>
-            <TextBlock Text="Max Rain" HorizontalAlignment="Right" />
-            <DockPanel>
-                <TextBlock Text="{Binding CurrentWorld.TempMaxRain, StringFormat={}{0:0}}" Width="30" DockPanel.Dock="Right" />
-                <Slider Value="{Binding CurrentWorld.TempMaxRain, Mode=TwoWay}" VerticalAlignment="Center" Minimum="0" Maximum="65534" SmallChange="1" />
-            </DockPanel>
-            <TextBlock Text="Slime Rain Time" HorizontalAlignment="Right" />
-            <DockPanel>
-                <TextBlock Text="{Binding CurrentWorld.SlimeRainTime, StringFormat={}{0:0}}" Width="30" DockPanel.Dock="Right" />
-                <Slider Value="{Binding CurrentWorld.SlimeRainTime, Mode=TwoWay}" VerticalAlignment="Center" Minimum="0" Maximum="65534" SmallChange="1" />
-            </DockPanel>
-            <Separator Grid.ColumnSpan="2" />
-            <TextBlock Text="Sandstorm" HorizontalAlignment="Right" />
-            <CheckBox IsChecked="{Binding Path=CurrentWorld.SandStormHappening, Mode=TwoWay}" Content="Is Storming" VerticalAlignment="Center" Grid.Row="12" Grid.Column="1" />
-            <TextBlock Text="Time Left" HorizontalAlignment="Right" />
-            <DockPanel>
-                <TextBlock Text="{Binding CurrentWorld.SandStormTimeLeft, StringFormat={}{0:0}}" Width="30" DockPanel.Dock="Right" />
-                <Slider Value="{Binding CurrentWorld.SandStormTimeLeft, Mode=TwoWay}" VerticalAlignment="Center" Minimum="0" Maximum="86400" SmallChange="1" />
-            </DockPanel>
-            <TextBlock Text="Severity" HorizontalAlignment="Right" />
-            <DockPanel>
-                <TextBlock Text="{Binding CurrentWorld.SandStormSeverity, StringFormat={}{0:0}}" Width="30" DockPanel.Dock="Right" />
-                <Slider Value="{Binding CurrentWorld.SandStormSeverity, Mode=TwoWay}" VerticalAlignment="Center" Minimum="0" Maximum="1" SmallChange="0.1" />
-            </DockPanel>
-            <TextBlock Text="Intended Severity" HorizontalAlignment="Right" />
-            <DockPanel>
-                <TextBlock Text="{Binding CurrentWorld.SandStormIntendedSeverity, StringFormat={}{0:0}}" Width="30" DockPanel.Dock="Right" />
-                <Slider Value="{Binding CurrentWorld.SandStormIntendedSeverity, Mode=TwoWay}" VerticalAlignment="Center" Minimum="0" Maximum="1" SmallChange="0.1" />
-            </DockPanel>
-            <Separator Grid.ColumnSpan="2" />
-            <TextBlock Text="Number Clouds" HorizontalAlignment="Right" />
-            <DockPanel>
-                <TextBlock Text="{Binding CurrentWorld.NumClouds, StringFormat={}{0:0}}" Width="30" DockPanel.Dock="Right" />
-                <Slider Value="{Binding CurrentWorld.NumClouds, Mode=TwoWay}" VerticalAlignment="Center" Minimum="0" Maximum="128" />
-            </DockPanel>
-            <TextBlock Text="Wind Speed" HorizontalAlignment="Right" />
-            <DockPanel>
-                <TextBlock Text="{Binding CurrentWorld.WindSpeedSet, StringFormat={}{0:0}}" Width="30" DockPanel.Dock="Right" />
-                <Slider Value="{Binding CurrentWorld.WindSpeedSet, Mode=TwoWay}" VerticalAlignment="Center" Minimum="-16000" Maximum="16000" />
-            </DockPanel>
-            <Separator Grid.ColumnSpan="2" />
-            <TextBlock Text="Surface Level" HorizontalAlignment="Right" />
-            <DockPanel>
-                <Slider Value="{Binding CurrentWorld.GroundLevel, Mode=TwoWay}" VerticalAlignment="Center"  Minimum="0" Maximum="{Binding Path=CurrentWorld.TilesHigh}" SmallChange="1" Width="120" />
-                <TextBox Text="{Binding CurrentWorld.GroundLevel, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="32" DockPanel.Dock="Right" />
-            </DockPanel>
-            <TextBlock Text="Cavern Level" HorizontalAlignment="Right" />
-            <DockPanel>
-                <Slider Value="{Binding CurrentWorld.RockLevel, Mode=TwoWay}" VerticalAlignment="Center" Minimum="0" Maximum="{Binding Path=CurrentWorld.TilesHigh}" SmallChange="1" Width="120" />
-                <TextBox Text="{Binding CurrentWorld.RockLevel, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="32" DockPanel.Dock="Right" />
-            </DockPanel>
-            <Separator Grid.ColumnSpan="2" />
-            <TextBlock Text="Meteor" HorizontalAlignment="Right" />
-            <CheckBox IsChecked="{Binding CurrentWorld.SpawnMeteor}" Content="Spawn Meteor" VerticalAlignment="Center" VerticalContentAlignment="Center" />
-            <TextBlock Text="Difficulty" HorizontalAlignment="Right" />
-            <CheckBox IsChecked="{Binding CurrentWorld.HardMode}" Content="Hardmode" VerticalAlignment="Center" VerticalContentAlignment="Center" />
-            <TextBlock />
-            <CheckBox IsChecked="{Binding CurrentWorld.ExpertMode}" Content="Expert Mode" VerticalAlignment="Center" VerticalContentAlignment="Center" />
-            <TextBlock />
-            <CheckBox IsChecked="{Binding CurrentWorld.IsCrimson}" Content="Is Crimson" VerticalAlignment="Center" VerticalContentAlignment="Center" />
-            <TextBlock Text="Altars Smashed" HorizontalAlignment="Right" />
-            <DockPanel>
-                <TextBlock Text="{Binding CurrentWorld.AltarCount, StringFormat={}{0:0}}" Width="30" DockPanel.Dock="Right" />
-                <Slider Value="{Binding CurrentWorld.AltarCount, Mode=TwoWay}" VerticalAlignment="Center" Minimum="0" Maximum="3" />
-            </DockPanel>
-            <TextBlock Text="Orbs Smashed" HorizontalAlignment="Right" />
-            <DockPanel>
-                <TextBlock Text="{Binding CurrentWorld.ShadowOrbCount, StringFormat={}{0:0}}" Width="30" DockPanel.Dock="Right" />
-                <Slider Value="{Binding CurrentWorld.ShadowOrbCount, Mode=TwoWay}" VerticalAlignment="Center" Minimum="0" Maximum="3" />
-            </DockPanel>
-        <TextBlock Text="Hardmode Ore 1" HorizontalAlignment="Right" />
-        <ComboBox Height="20" ItemsSource="{StaticResource oreTier1List}" SelectedValue="{Binding CurrentWorld.OreTier1, Mode=TwoWay}" SelectedValuePath="Value" />
-        <TextBlock Text="Hardmode Ore 2" HorizontalAlignment="Right" />
-        <ComboBox Height="20" ItemsSource="{StaticResource oreTier2List}" SelectedValue="{Binding CurrentWorld.OreTier2, Mode=TwoWay}" SelectedValuePath="Value" />
-        <TextBlock Text="Hardmode Ore 3" HorizontalAlignment="Right" />
-        <ComboBox Height="20" ItemsSource="{StaticResource oreTier3List}" SelectedValue="{Binding CurrentWorld.OreTier3, Mode=TwoWay}" SelectedValuePath="Value" />
-            <Separator Grid.ColumnSpan="2" />
-            <TextBlock Text="Pre-Hardmode" HorizontalAlignment="Right" />
-            <CheckBox IsChecked="{Binding CurrentWorld.DownedSlimeKingBoss}" Content="King Slime" VerticalAlignment="Center" VerticalContentAlignment="Center" />
-            <TextBlock Text="Bosses Downed" HorizontalAlignment="Right" />
-            <CheckBox IsChecked="{Binding CurrentWorld.DownedBoss1}" Content="Eye of Cthulhu" VerticalAlignment="Center" VerticalContentAlignment="Center" />
-            <TextBlock />
-            <CheckBox IsChecked="{Binding CurrentWorld.DownedBoss2}" Style="{StaticResource Boss2}" VerticalAlignment="Center" VerticalContentAlignment="Center" />
-            <TextBlock />
-            <CheckBox IsChecked="{Binding CurrentWorld.DownedQueenBee}" Content="Queen Bee" VerticalAlignment="Center" VerticalContentAlignment="Center" />
-            <TextBlock />
-            <CheckBox IsChecked="{Binding CurrentWorld.DownedBoss3}" Content="Skeletron" VerticalAlignment="Center" VerticalContentAlignment="Center" />
-            <TextBlock />
-            <CheckBox IsChecked="{Binding CurrentWorld.HardMode}" Content="Wall of Flesh" VerticalAlignment="Center" VerticalContentAlignment="Center" />
-            <Separator Grid.ColumnSpan="2" />
-            <TextBlock Text="Hardmode" HorizontalAlignment="Right" />
-            <CheckBox IsChecked="{Binding CurrentWorld.DownedMechBoss2}" Content="The Twins" VerticalAlignment="Center" VerticalContentAlignment="Center" />
-            <TextBlock Text="Bosses Downed" HorizontalAlignment="Right" />
-            <CheckBox IsChecked="{Binding CurrentWorld.DownedMechBoss1}" Content="The Destroyer" VerticalAlignment="Center" VerticalContentAlignment="Center" />
-            <TextBlock />
-            <CheckBox IsChecked="{Binding CurrentWorld.DownedMechBoss3}" Content="Skeletron Prime" VerticalAlignment="Center" VerticalContentAlignment="Center" />
-            <TextBlock />
-            <CheckBox IsChecked="{Binding CurrentWorld.DownedPlantBoss}" Content="Plantera" VerticalAlignment="Center" VerticalContentAlignment="Center" />
-            <TextBlock />
-            <CheckBox IsChecked="{Binding CurrentWorld.DownedGolemBoss}" Content="Golem" VerticalAlignment="Center" VerticalContentAlignment="Center" />
-            <TextBlock />
-            <CheckBox IsChecked="{Binding CurrentWorld.DownedFishron}" Content="Duke Fishron" VerticalAlignment="Center" VerticalContentAlignment="Center" />
-            <TextBlock />
-            <CheckBox IsChecked="{Binding CurrentWorld.DownedLunaticCultist}" Content="Lunatic Cultist" VerticalAlignment="Center" VerticalContentAlignment="Center" />
-            <TextBlock />
-            <CheckBox IsChecked="{Binding CurrentWorld.DownedMoonlord}" Content="Moon Lord" VerticalAlignment="Center" VerticalContentAlignment="Center" />
-            <Separator Grid.ColumnSpan="2" />
-            <TextBlock Text="Event" HorizontalAlignment="Right" />
-            <CheckBox IsChecked="{Binding CurrentWorld.DownedHalloweenTree}" Content="Mourning Wood" VerticalAlignment="Center" VerticalContentAlignment="Center" />
-            <TextBlock Text="Bosses Downed" HorizontalAlignment="Right" />
-            <CheckBox IsChecked="{Binding CurrentWorld.DownedHalloweenKing}" Content="Pumpking" VerticalAlignment="Center" VerticalContentAlignment="Center" />
-            <TextBlock />
-            <CheckBox IsChecked="{Binding CurrentWorld.DownedChristmasTree}" Content="Everscream" VerticalAlignment="Center" VerticalContentAlignment="Center" />
-            <TextBlock />
-            <CheckBox IsChecked="{Binding CurrentWorld.DownedSanta}" Content="Santa-NK1" VerticalAlignment="Center" VerticalContentAlignment="Center" />
-            <TextBlock />
-            <CheckBox IsChecked="{Binding CurrentWorld.DownedChristmasQueen}" Content="Ice Queen" VerticalAlignment="Center" VerticalContentAlignment="Center" />
-            <TextBlock />
-            <CheckBox IsChecked="{Binding CurrentWorld.DownedFishron}" Content="Flying Dutchman" VerticalAlignment="Center" VerticalContentAlignment="Center" />
-            <TextBlock />
-            <CheckBox IsChecked="{Binding CurrentWorld.DownedCelestialSolar}" Content="Solar Pillar" VerticalAlignment="Center" VerticalContentAlignment="Center" />
-            <TextBlock />
-            <CheckBox IsChecked="{Binding CurrentWorld.DownedCelestialNebula}" Content="Nebula Pillar" VerticalAlignment="Center" VerticalContentAlignment="Center" />
-            <TextBlock />
-            <CheckBox IsChecked="{Binding CurrentWorld.DownedCelestialVortex}" Content="Vortex Pillar" VerticalAlignment="Center" VerticalContentAlignment="Center" />
-            <TextBlock />
-            <CheckBox IsChecked="{Binding CurrentWorld.DownedCelestialStardust}" Content="Stardust Pillar" VerticalAlignment="Center" VerticalContentAlignment="Center" />
-            <Separator Grid.ColumnSpan="2" />
-            <TextBlock Text="Old One's Army" HorizontalAlignment="Right" />
-            <CheckBox IsChecked="{Binding CurrentWorld.DownedDD2InvasionT1}" Content="Tier 1" VerticalAlignment="Center" VerticalContentAlignment="Center" />
-            <TextBlock Text="Completed" HorizontalAlignment="Right" />
-            <CheckBox IsChecked="{Binding CurrentWorld.DownedDD2InvasionT2}" Content="Tier 2" VerticalAlignment="Center" VerticalContentAlignment="Center" />
-            <TextBlock />
-            <CheckBox IsChecked="{Binding CurrentWorld.DownedDD2InvasionT3}" Content="Tier 3" VerticalAlignment="Center" VerticalContentAlignment="Center" />
-            <Separator Grid.ColumnSpan="2" />
-            <TextBlock Text="NPC's Saved" HorizontalAlignment="Right" />
-            <CheckBox IsChecked="{Binding CurrentWorld.SavedGoblin}" Content="Saved Goblin Tinkerer" VerticalAlignment="Center" VerticalContentAlignment="Center" />
-            <TextBlock />
-            <CheckBox IsChecked="{Binding CurrentWorld.SavedMech}" Content="Saved Mechanic" VerticalAlignment="Center" VerticalContentAlignment="Center" />
-            <TextBlock />
-            <CheckBox IsChecked="{Binding CurrentWorld.SavedWizard}" Content="Saved Wizard" VerticalAlignment="Center" VerticalContentAlignment="Center" />
-            <TextBlock />
-            <CheckBox IsChecked="{Binding CurrentWorld.SavedStylist}" Content="Saved Stylist" VerticalAlignment="Center" VerticalContentAlignment="Center" />
-            <TextBlock />
-            <CheckBox IsChecked="{Binding CurrentWorld.SavedTaxCollector}" Content="Saved Tax Collector" VerticalAlignment="Center" VerticalContentAlignment="Center" />
-            <TextBlock />
-            <CheckBox IsChecked="{Binding CurrentWorld.SavedBartender}" Content="Saved Tavernkeep" VerticalAlignment="Center" VerticalContentAlignment="Center" />
-            <TextBlock />
-            <CheckBox IsChecked="{Binding CurrentWorld.SavedAngler}" Content="Saved Angler" VerticalAlignment="Center" VerticalContentAlignment="Center" />
-            <TextBlock Text="Angler Mission" HorizontalAlignment="Right" />
-            <ComboBox Height="20" ItemsSource="{StaticResource anglerQuestList}" SelectedValue="{Binding CurrentWorld.AnglerQuest, Mode=TwoWay}" SelectedValuePath="Value" />
+        <TextBlock Text="Time" HorizontalAlignment="Right" />
+        <Grid Height="20">
+            <Rectangle Style="{DynamicResource TimeBackgroundStyle}" VerticalAlignment="Stretch" Margin="0,1"/>
+            <Slider Value="{Binding CurrentWorld.Time, Mode=TwoWay}"  VerticalAlignment="Center"  HorizontalAlignment="Stretch" Minimum="0" Maximum="54000" />
+        </Grid>
+        <TextBlock />
+        <CheckBox x:Name="dayCheckBox" Content="Is Day Time" VerticalAlignment="Center" Grid.Row="12" Grid.Column="1" IsChecked="{Binding Path=CurrentWorld.DayTime, Mode=TwoWay}"/>
+        <TextBlock />
+        <CheckBox IsChecked="{Binding CurrentWorld.FastForwardTime}" Content="Use Sundial" VerticalAlignment="Center" VerticalContentAlignment="Center" />
+        <TextBlock Text="Sundial Cooldown" HorizontalAlignment="Right" />
+        <DockPanel>
+            <TextBlock Text="{Binding CurrentWorld.SundialCooldown, StringFormat={}{0:0}}" Width="30" DockPanel.Dock="Right" />
+            <Slider Value="{Binding CurrentWorld.SundialCooldown, Mode=TwoWay}" VerticalAlignment="Center" Minimum="0" Maximum="127" SmallChange="1" />
+        </DockPanel>
         <Separator Grid.ColumnSpan="2" />
-            <TextBlock Text="Invasions Downed" HorizontalAlignment="Right" />
-            <CheckBox IsChecked="{Binding CurrentWorld.DownedGoblins}" Content="Goblin Army" VerticalAlignment="Center" VerticalContentAlignment="Center" />
-            <TextBlock />
-            <CheckBox IsChecked="{Binding CurrentWorld.DownedFrost}" Content="Frost Legion" VerticalAlignment="Center" VerticalContentAlignment="Center" />
-            <TextBlock />
-            <CheckBox IsChecked="{Binding CurrentWorld.DownedPirates}" Content="Pirate Invasion" VerticalAlignment="Center" VerticalContentAlignment="Center" />
-            <TextBlock />
-            <CheckBox IsChecked="{Binding CurrentWorld.DownedMartians}" Content="Martian Madness" VerticalAlignment="Center" VerticalContentAlignment="Center" />
-            <TextBlock Text="Invasion Type" HorizontalAlignment="Right" />
-            <ComboBox Height="20" ItemsSource="{StaticResource invasionTypeList}" SelectedValue="{Binding CurrentWorld.InvasionType, Mode=TwoWay}" SelectedValuePath="Value" />
+        <TextBlock Text="Rain" HorizontalAlignment="Right" />
+        <CheckBox IsChecked="{Binding Path=CurrentWorld.TempRaining, Mode=TwoWay}" Content="Is Raining" VerticalAlignment="Center" Grid.Row="12" Grid.Column="1" />
+        <TextBlock Text="Rain Time" HorizontalAlignment="Right" />
+        <DockPanel>
+            <TextBlock Text="{Binding CurrentWorld.TempRainTime, StringFormat={}{0:0}}" Width="30" DockPanel.Dock="Right" />
+            <Slider Value="{Binding CurrentWorld.TempRainTime, Mode=TwoWay}" VerticalAlignment="Center" Minimum="0" Maximum="999999" SmallChange="1" />
+        </DockPanel>
+        <TextBlock Text="Max Rain" HorizontalAlignment="Right" />
+        <DockPanel>
+            <TextBlock Text="{Binding CurrentWorld.TempMaxRain, StringFormat={}{0:0}}" Width="30" DockPanel.Dock="Right" />
+            <Slider Value="{Binding CurrentWorld.TempMaxRain, Mode=TwoWay}" VerticalAlignment="Center" Minimum="0" Maximum="65534" SmallChange="1" />
+        </DockPanel>
+        <TextBlock Text="Slime Rain Time" HorizontalAlignment="Right" />
+        <DockPanel>
+            <TextBlock Text="{Binding CurrentWorld.SlimeRainTime, StringFormat={}{0:0}}" Width="30" DockPanel.Dock="Right" />
+            <Slider Value="{Binding CurrentWorld.SlimeRainTime, Mode=TwoWay}" VerticalAlignment="Center" Minimum="0" Maximum="65534" SmallChange="1" />
+        </DockPanel>
+        <Separator Grid.ColumnSpan="2" />
+        <TextBlock Text="Force Holiday" HorizontalAlignment="Right" />
+        <CheckBox IsChecked="{Binding Path=CurrentWorld.ForceHalloweenForToday, Mode=TwoWay}" Content="Halloween" VerticalAlignment="Center" Grid.Row="12" Grid.Column="1" />
+        <TextBlock  />
+        <CheckBox IsChecked="{Binding Path=CurrentWorld.ForceXMasForToday, Mode=TwoWay}" Content="XMas" VerticalAlignment="Center" Grid.Row="12" Grid.Column="1" />
+
+        <Separator Grid.ColumnSpan="2" />
+        <TextBlock Text="Sandstorm" HorizontalAlignment="Right" />
+        <CheckBox IsChecked="{Binding Path=CurrentWorld.SandStormHappening, Mode=TwoWay}" Content="Is Storming" VerticalAlignment="Center" Grid.Row="12" Grid.Column="1" />
+        <TextBlock Text="Time Left" HorizontalAlignment="Right" />
+        <DockPanel>
+            <TextBlock Text="{Binding CurrentWorld.SandStormTimeLeft, StringFormat={}{0:0}}" Width="30" DockPanel.Dock="Right" />
+            <Slider Value="{Binding CurrentWorld.SandStormTimeLeft, Mode=TwoWay}" VerticalAlignment="Center" Minimum="0" Maximum="86400" SmallChange="1" />
+        </DockPanel>
+        <TextBlock Text="Severity" HorizontalAlignment="Right" />
+        <DockPanel>
+            <TextBlock Text="{Binding CurrentWorld.SandStormSeverity, StringFormat={}{0:0}}" Width="30" DockPanel.Dock="Right" />
+            <Slider Value="{Binding CurrentWorld.SandStormSeverity, Mode=TwoWay}" VerticalAlignment="Center" Minimum="0" Maximum="1" SmallChange="0.1" />
+        </DockPanel>
+        <TextBlock Text="Intended Severity" HorizontalAlignment="Right" />
+        <DockPanel>
+            <TextBlock Text="{Binding CurrentWorld.SandStormIntendedSeverity, StringFormat={}{0:0}}" Width="30" DockPanel.Dock="Right" />
+            <Slider Value="{Binding CurrentWorld.SandStormIntendedSeverity, Mode=TwoWay}" VerticalAlignment="Center" Minimum="0" Maximum="1" SmallChange="0.1" />
+        </DockPanel>
+        <Separator Grid.ColumnSpan="2" />
+        <TextBlock Text="Number Clouds" HorizontalAlignment="Right" />
+        <DockPanel>
+            <TextBlock Text="{Binding CurrentWorld.NumClouds, StringFormat={}{0:0}}" Width="30" DockPanel.Dock="Right" />
+            <Slider Value="{Binding CurrentWorld.NumClouds, Mode=TwoWay}" VerticalAlignment="Center" Minimum="0" Maximum="128" />
+        </DockPanel>
+        <TextBlock Text="Wind Speed" HorizontalAlignment="Right" />
+        <DockPanel>
+            <TextBlock Text="{Binding CurrentWorld.WindSpeedSet, StringFormat={}{0:0}}" Width="30" DockPanel.Dock="Right" />
+            <Slider Value="{Binding CurrentWorld.WindSpeedSet, Mode=TwoWay}" VerticalAlignment="Center" Minimum="-16000" Maximum="16000" />
+        </DockPanel>
+        <Separator Grid.ColumnSpan="2" />
+        <TextBlock Text="Surface Level" HorizontalAlignment="Right" />
+        <DockPanel>
+            <Slider Value="{Binding CurrentWorld.GroundLevel, Mode=TwoWay}" VerticalAlignment="Center"  Minimum="0" Maximum="{Binding Path=CurrentWorld.TilesHigh}" SmallChange="1" Width="120" />
+            <TextBox Text="{Binding CurrentWorld.GroundLevel, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="32" DockPanel.Dock="Right" />
+        </DockPanel>
+        <TextBlock Text="Cavern Level" HorizontalAlignment="Right" />
+        <DockPanel>
+            <Slider Value="{Binding CurrentWorld.RockLevel, Mode=TwoWay}" VerticalAlignment="Center" Minimum="0" Maximum="{Binding Path=CurrentWorld.TilesHigh}" SmallChange="1" Width="120" />
+            <TextBox Text="{Binding CurrentWorld.RockLevel, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="32" DockPanel.Dock="Right" />
+        </DockPanel>
+        <Separator Grid.ColumnSpan="2" />
+        <TextBlock Text="Meteor" HorizontalAlignment="Right" />
+        <CheckBox IsChecked="{Binding CurrentWorld.SpawnMeteor}" Content="Spawn Meteor" VerticalAlignment="Center" VerticalContentAlignment="Center" />
+        <TextBlock Text="Difficulty" HorizontalAlignment="Right" />
+        <CheckBox IsChecked="{Binding CurrentWorld.HardMode}" Content="Hardmode" VerticalAlignment="Center" VerticalContentAlignment="Center" />
+        <TextBlock Text="Game Mode" HorizontalAlignment="Right" />
+        <ComboBox Height="20" ItemsSource="{StaticResource gameModeList}" SelectedValue="{Binding CurrentWorld.GameMode, Mode=TwoWay}" SelectedValuePath="Value" />
+
+        <TextBlock />
+        <CheckBox IsChecked="{Binding CurrentWorld.DrunkWorld}" Content="Drunk World" VerticalAlignment="Center" VerticalContentAlignment="Center" />
+        <TextBlock />
+        <CheckBox IsChecked="{Binding CurrentWorld.IsCrimson}" Content="Is Crimson" VerticalAlignment="Center" VerticalContentAlignment="Center" />
+        <TextBlock Text="Altars Smashed" HorizontalAlignment="Right" />
+        <DockPanel>
+            <TextBlock Text="{Binding CurrentWorld.AltarCount, StringFormat={}{0:0}}" Width="30" DockPanel.Dock="Right" />
+            <Slider Value="{Binding CurrentWorld.AltarCount, Mode=TwoWay}" VerticalAlignment="Center" Minimum="0" Maximum="3" />
+        </DockPanel>
+        <TextBlock Text="Orbs Smashed" HorizontalAlignment="Right" />
+        <DockPanel>
+            <TextBlock Text="{Binding CurrentWorld.ShadowOrbCount, StringFormat={}{0:0}}" Width="30" DockPanel.Dock="Right" />
+            <Slider Value="{Binding CurrentWorld.ShadowOrbCount, Mode=TwoWay}" VerticalAlignment="Center" Minimum="0" Maximum="3" />
+        </DockPanel>
+        <TextBlock Text="Copper Tier" HorizontalAlignment="Right" />
+        <ComboBox Height="20" ItemsSource="{StaticResource oreTierCopperList}" SelectedValue="{Binding CurrentWorld.SavedOreTiersCopper, Mode=TwoWay}" SelectedValuePath="Value" />
+        <TextBlock Text="Iron Tier" HorizontalAlignment="Right" />
+        <ComboBox Height="20" ItemsSource="{StaticResource oreTierIronList}" SelectedValue="{Binding CurrentWorld.SavedOreTiersIron, Mode=TwoWay}" SelectedValuePath="Value" />
+        <TextBlock Text="Silver Tier" HorizontalAlignment="Right" />
+        <ComboBox Height="20" ItemsSource="{StaticResource oreTierSilverList}" SelectedValue="{Binding CurrentWorld.SavedOreTiersSilver, Mode=TwoWay}" SelectedValuePath="Value" />
+        <TextBlock Text="Gold Tier" HorizontalAlignment="Right" />
+        <ComboBox Height="20" ItemsSource="{StaticResource oreTierGoldList}" SelectedValue="{Binding CurrentWorld.SavedOreTiersGold, Mode=TwoWay}" SelectedValuePath="Value" />
+
+        <TextBlock Text="Cobalt Tier" HorizontalAlignment="Right" />
+        <ComboBox Height="20" ItemsSource="{StaticResource oreTierCobaltList}" SelectedValue="{Binding CurrentWorld.SavedOreTiersCobalt, Mode=TwoWay}" SelectedValuePath="Value" />
+        <TextBlock Text="Mythril Tier" HorizontalAlignment="Right" />
+        <ComboBox Height="20" ItemsSource="{StaticResource oreTierMythrilList}" SelectedValue="{Binding CurrentWorld.SavedOreTiersMythril, Mode=TwoWay}" SelectedValuePath="Value" />
+        <TextBlock Text="Adamantite Tier" HorizontalAlignment="Right" />
+        <ComboBox Height="20" ItemsSource="{StaticResource oreTierAdamantiteList}" SelectedValue="{Binding CurrentWorld.SavedOreTiersAdamantite, Mode=TwoWay}" SelectedValuePath="Value" />
+        <Separator Grid.ColumnSpan="2" />
+        <TextBlock Text="Pre-Hardmode" HorizontalAlignment="Right" />
+        <CheckBox IsChecked="{Binding CurrentWorld.DownedSlimeKingBoss}" Content="King Slime" VerticalAlignment="Center" VerticalContentAlignment="Center" />
+        <TextBlock Text="Bosses Downed" HorizontalAlignment="Right" />
+        <CheckBox IsChecked="{Binding CurrentWorld.DownedBoss1}" Content="Eye of Cthulhu" VerticalAlignment="Center" VerticalContentAlignment="Center" />
+        <TextBlock />
+        <CheckBox IsChecked="{Binding CurrentWorld.DownedBoss2}" Style="{StaticResource Boss2}" VerticalAlignment="Center" VerticalContentAlignment="Center" />
+        <TextBlock />
+        <CheckBox IsChecked="{Binding CurrentWorld.DownedQueenBee}" Content="Queen Bee" VerticalAlignment="Center" VerticalContentAlignment="Center" />
+        <TextBlock />
+        <CheckBox IsChecked="{Binding CurrentWorld.DownedBoss3}" Content="Skeletron" VerticalAlignment="Center" VerticalContentAlignment="Center" />
+        <TextBlock />
+        <CheckBox IsChecked="{Binding CurrentWorld.HardMode}" Content="Wall of Flesh" VerticalAlignment="Center" VerticalContentAlignment="Center" />
+        <Separator Grid.ColumnSpan="2" />
+        <TextBlock Text="Hardmode" HorizontalAlignment="Right" />
+        <CheckBox IsChecked="{Binding CurrentWorld.DownedMechBoss2}" Content="The Twins" VerticalAlignment="Center" VerticalContentAlignment="Center" />
+        <TextBlock Text="Bosses Downed" HorizontalAlignment="Right" />
+        <CheckBox IsChecked="{Binding CurrentWorld.DownedMechBoss1}" Content="The Destroyer" VerticalAlignment="Center" VerticalContentAlignment="Center" />
+        <TextBlock />
+        <CheckBox IsChecked="{Binding CurrentWorld.DownedMechBoss3}" Content="Skeletron Prime" VerticalAlignment="Center" VerticalContentAlignment="Center" />
+        <TextBlock />
+        <CheckBox IsChecked="{Binding CurrentWorld.DownedPlantBoss}" Content="Plantera" VerticalAlignment="Center" VerticalContentAlignment="Center" />
+        <TextBlock />
+        <CheckBox IsChecked="{Binding CurrentWorld.DownedGolemBoss}" Content="Golem" VerticalAlignment="Center" VerticalContentAlignment="Center" />
+        <TextBlock />
+        <CheckBox IsChecked="{Binding CurrentWorld.DownedFishron}" Content="Duke Fishron" VerticalAlignment="Center" VerticalContentAlignment="Center" />
+        <TextBlock />
+        <CheckBox IsChecked="{Binding CurrentWorld.DownedLunaticCultist}" Content="Lunatic Cultist" VerticalAlignment="Center" VerticalContentAlignment="Center" />
+        <TextBlock />
+        <CheckBox IsChecked="{Binding CurrentWorld.DownedMoonlord}" Content="Moon Lord" VerticalAlignment="Center" VerticalContentAlignment="Center" />
+        <Separator Grid.ColumnSpan="2" />
+        <TextBlock Text="Event" HorizontalAlignment="Right" />
+        <CheckBox IsChecked="{Binding CurrentWorld.DownedHalloweenTree}" Content="Mourning Wood" VerticalAlignment="Center" VerticalContentAlignment="Center" />
+        <TextBlock Text="Bosses Downed" HorizontalAlignment="Right" />
+        <CheckBox IsChecked="{Binding CurrentWorld.DownedHalloweenKing}" Content="Pumpking" VerticalAlignment="Center" VerticalContentAlignment="Center" />
+        <TextBlock />
+        <CheckBox IsChecked="{Binding CurrentWorld.DownedChristmasTree}" Content="Everscream" VerticalAlignment="Center" VerticalContentAlignment="Center" />
+        <TextBlock />
+        <CheckBox IsChecked="{Binding CurrentWorld.DownedSanta}" Content="Santa-NK1" VerticalAlignment="Center" VerticalContentAlignment="Center" />
+        <TextBlock />
+        <CheckBox IsChecked="{Binding CurrentWorld.DownedChristmasQueen}" Content="Ice Queen" VerticalAlignment="Center" VerticalContentAlignment="Center" />
+        <TextBlock />
+        <CheckBox IsChecked="{Binding CurrentWorld.DownedFishron}" Content="Flying Dutchman" VerticalAlignment="Center" VerticalContentAlignment="Center" />
+        <TextBlock />
+        <CheckBox IsChecked="{Binding CurrentWorld.DownedCelestialSolar}" Content="Solar Pillar" VerticalAlignment="Center" VerticalContentAlignment="Center" />
+        <TextBlock />
+        <CheckBox IsChecked="{Binding CurrentWorld.DownedCelestialNebula}" Content="Nebula Pillar" VerticalAlignment="Center" VerticalContentAlignment="Center" />
+        <TextBlock />
+        <CheckBox IsChecked="{Binding CurrentWorld.DownedCelestialVortex}" Content="Vortex Pillar" VerticalAlignment="Center" VerticalContentAlignment="Center" />
+        <TextBlock />
+        <CheckBox IsChecked="{Binding CurrentWorld.DownedCelestialStardust}" Content="Stardust Pillar" VerticalAlignment="Center" VerticalContentAlignment="Center" />
+        <Separator Grid.ColumnSpan="2" />
+        <TextBlock Text="Journey's End"/>
+        <CheckBox IsChecked="{Binding CurrentWorld.DownedEmpressOfLight}" Content="Empress of Light" VerticalAlignment="Center" VerticalContentAlignment="Center" />
+        <TextBlock />
+        <CheckBox IsChecked="{Binding CurrentWorld.DownedQueenSlime}" Content="Queen Slime" VerticalAlignment="Center" VerticalContentAlignment="Center" />
+        <Separator Grid.ColumnSpan="2" />
+        <TextBlock Text="Old One's Army" HorizontalAlignment="Right" />
+        <CheckBox IsChecked="{Binding CurrentWorld.DownedDD2InvasionT1}" Content="Tier 1" VerticalAlignment="Center" VerticalContentAlignment="Center" />
+        <TextBlock Text="Completed" HorizontalAlignment="Right" />
+        <CheckBox IsChecked="{Binding CurrentWorld.DownedDD2InvasionT2}" Content="Tier 2" VerticalAlignment="Center" VerticalContentAlignment="Center" />
+        <TextBlock />
+        <CheckBox IsChecked="{Binding CurrentWorld.DownedDD2InvasionT3}" Content="Tier 3" VerticalAlignment="Center" VerticalContentAlignment="Center" />
+        <Separator Grid.ColumnSpan="2" />
+        <TextBlock Text="NPC's Bought" HorizontalAlignment="Right" />
+        <CheckBox IsChecked="{Binding CurrentWorld.BoughtCat}" Content="Cat" VerticalAlignment="Center" VerticalContentAlignment="Center" />
+        <TextBlock  />
+        <CheckBox IsChecked="{Binding CurrentWorld.BoughtDog}" Content="Dog" VerticalAlignment="Center" VerticalContentAlignment="Center" />
+        <TextBlock  />
+        <CheckBox IsChecked="{Binding CurrentWorld.BoughtBunny}" Content="Bunny" VerticalAlignment="Center" VerticalContentAlignment="Center" />
+        <Separator Grid.ColumnSpan="2" />
+        <TextBlock Text="NPC's Saved" HorizontalAlignment="Right" />
+        <CheckBox IsChecked="{Binding CurrentWorld.SavedGoblin}" Content="Saved Goblin Tinkerer" VerticalAlignment="Center" VerticalContentAlignment="Center" />
+        <TextBlock />
+        <CheckBox IsChecked="{Binding CurrentWorld.SavedMech}" Content="Saved Mechanic" VerticalAlignment="Center" VerticalContentAlignment="Center" />
+        <TextBlock />
+        <CheckBox IsChecked="{Binding CurrentWorld.SavedWizard}" Content="Saved Wizard" VerticalAlignment="Center" VerticalContentAlignment="Center" />
+        <TextBlock />
+        <CheckBox IsChecked="{Binding CurrentWorld.SavedStylist}" Content="Saved Stylist" VerticalAlignment="Center" VerticalContentAlignment="Center" />
+        <TextBlock />
+        <CheckBox IsChecked="{Binding CurrentWorld.SavedTaxCollector}" Content="Saved Tax Collector" VerticalAlignment="Center" VerticalContentAlignment="Center" />
+        <TextBlock />
+        <CheckBox IsChecked="{Binding CurrentWorld.SavedBartender}" Content="Saved Tavernkeep" VerticalAlignment="Center" VerticalContentAlignment="Center" />
+        <TextBlock />
+        <CheckBox IsChecked="{Binding CurrentWorld.SavedAngler}" Content="Saved Angler" VerticalAlignment="Center" VerticalContentAlignment="Center" />
+        <TextBlock Text="Angler Mission" HorizontalAlignment="Right" />
+        <ComboBox Height="20" ItemsSource="{StaticResource anglerQuestList}" SelectedValue="{Binding CurrentWorld.AnglerQuest, Mode=TwoWay}" SelectedValuePath="Value" />
+
+
+        <Separator Grid.ColumnSpan="2" />
+        <TextBlock Text="Invasions Downed" HorizontalAlignment="Right" />
+        <CheckBox IsChecked="{Binding CurrentWorld.DownedGoblins}" Content="Goblin Army" VerticalAlignment="Center" VerticalContentAlignment="Center" />
+        <TextBlock />
+        <CheckBox IsChecked="{Binding CurrentWorld.DownedFrost}" Content="Frost Legion" VerticalAlignment="Center" VerticalContentAlignment="Center" />
+        <TextBlock />
+        <CheckBox IsChecked="{Binding CurrentWorld.DownedPirates}" Content="Pirate Invasion" VerticalAlignment="Center" VerticalContentAlignment="Center" />
+        <TextBlock />
+        <CheckBox IsChecked="{Binding CurrentWorld.DownedMartians}" Content="Martian Madness" VerticalAlignment="Center" VerticalContentAlignment="Center" />
+        <TextBlock Text="Invasion Type" HorizontalAlignment="Right" />
+        <ComboBox Height="20" ItemsSource="{StaticResource invasionTypeList}" SelectedValue="{Binding CurrentWorld.InvasionType, Mode=TwoWay}" SelectedValuePath="Value" />
         <TextBlock Text="Invasion Size" HorizontalAlignment="Right" />
-            <DockPanel>
-                <TextBlock Text="{Binding CurrentWorld.InvasionSize, StringFormat={}{0:0}}" Width="30" DockPanel.Dock="Right" />
-                <Slider Value="{Binding CurrentWorld.InvasionSize, Mode=TwoWay}" VerticalAlignment="Center"  Minimum="0" Maximum="1000" />
-            </DockPanel>
-            <TextBlock Text="Invasion X Target" HorizontalAlignment="Right" />
-            <DockPanel>
-                <TextBlock Text="{Binding CurrentWorld.InvasionX, StringFormat={}{0:0}}" Width="30" DockPanel.Dock="Right" />
-                <Slider Value="{Binding CurrentWorld.InvasionX, Mode=TwoWay}" VerticalAlignment="Center" Minimum="0" Maximum="{Binding Path=CurrentWorld.TilesWide}" />
-            </DockPanel>
+        <DockPanel>
+            <TextBlock Text="{Binding CurrentWorld.InvasionSize, StringFormat={}{0:0}}" Width="30" DockPanel.Dock="Right" />
+            <Slider Value="{Binding CurrentWorld.InvasionSize, Mode=TwoWay}" VerticalAlignment="Center"  Minimum="0" Maximum="1000" />
+        </DockPanel>
+        <TextBlock Text="Invasion X Target" HorizontalAlignment="Right" />
+        <DockPanel>
+            <TextBlock Text="{Binding CurrentWorld.InvasionX, StringFormat={}{0:0}}" Width="30" DockPanel.Dock="Right" />
+            <Slider Value="{Binding CurrentWorld.InvasionX, Mode=TwoWay}" VerticalAlignment="Center" Minimum="0" Maximum="{Binding Path=CurrentWorld.TilesWide}" />
+        </DockPanel>
         <Separator Grid.ColumnSpan="2" />
         <DockPanel>
             <TextBlock Text="Tree X 0" HorizontalAlignment="Right" />
@@ -471,72 +561,51 @@
             <ComboBox Height="20" Width="40" ItemsSource="{StaticResource CaveStyleList}" SelectedValue="{Binding CurrentWorld.CaveBackStyle3, Mode=TwoWay}" SelectedValuePath="Value" />
         </DockPanel>
         <Separator Grid.ColumnSpan="2" />
-        <DockPanel>
-            <TextBlock Text="Deep Ice BG" HorizontalAlignment="Right" />
-            </DockPanel>
-        <DockPanel>
-            <ComboBox Height="20" Width="40" HorizontalAlignment="Left" ItemsSource="{StaticResource IceBackStyleList}" SelectedValue="{Binding CurrentWorld.IceBackStyle, Mode=TwoWay}" SelectedValuePath="Value" />
-        </DockPanel>
-        <DockPanel>
-            <TextBlock Text="Deep Jungle BG" HorizontalAlignment="Right" />
-        </DockPanel>
-        <DockPanel>
-            <ComboBox Height="20" Width="40" HorizontalAlignment="Left" ItemsSource="{StaticResource JungleBackStyleList}" SelectedValue="{Binding CurrentWorld.JungleBackStyle, Mode=TwoWay}" SelectedValuePath="Value" />
-        </DockPanel>
-        <DockPanel>
-            <TextBlock Text="Hell BG" HorizontalAlignment="Right" />
-        </DockPanel>
-        <DockPanel>
-            <ComboBox Height="20" Width="40" HorizontalAlignment="Left" ItemsSource="{StaticResource HellBackStyleList}" SelectedValue="{Binding CurrentWorld.HellBackStyle, Mode=TwoWay}" SelectedValuePath="Value" />
-        </DockPanel>
-        <DockPanel>
-            <TextBlock Text="Forest BG" HorizontalAlignment="Right" />
-        </DockPanel>
-        <DockPanel>
-            <ComboBox Height="20" Width="40" HorizontalAlignment="Left" ItemsSource="{StaticResource TreeBGStyleList}" SelectedValue="{Binding CurrentWorld.BgTree, Mode=TwoWay}" SelectedValuePath="Value" />
-        </DockPanel>
-        <DockPanel>
-            <TextBlock Text="Corrupt BG" HorizontalAlignment="Right" />
-        </DockPanel>
-        <DockPanel>
-            <ComboBox Height="20" Width="40" HorizontalAlignment="Left" ItemsSource="{StaticResource CommonBGStyleList}" SelectedValue="{Binding CurrentWorld.BgCorruption, Mode=TwoWay}" SelectedValuePath="Value" />
-        </DockPanel>
-        <DockPanel>
-            <TextBlock Text="Jungle BG" HorizontalAlignment="Right" />
-        </DockPanel>
-        <DockPanel>
-            <ComboBox Height="20" Width="40" HorizontalAlignment="Left" ItemsSource="{StaticResource CommonBGStyleList}" SelectedValue="{Binding CurrentWorld.BgJungle, Mode=TwoWay}" SelectedValuePath="Value" />
-        </DockPanel>
-        <DockPanel>
-            <TextBlock Text="Snow BG" HorizontalAlignment="Right" />
-        </DockPanel>
-        <DockPanel>
-            <ComboBox Height="20" Width="40" HorizontalAlignment="Left" ItemsSource="{StaticResource SnowBGStyleList}" SelectedValue="{Binding CurrentWorld.BgSnow, Mode=TwoWay}" SelectedValuePath="Value" />
-        </DockPanel>
-        <DockPanel>
-            <TextBlock Text="Hallow BG" HorizontalAlignment="Right" />
-        </DockPanel>
-        <DockPanel>
-            <ComboBox Height="20" Width="40" HorizontalAlignment="Left" ItemsSource="{StaticResource CommonBGStyleList}" SelectedValue="{Binding CurrentWorld.BgHallow, Mode=TwoWay}" SelectedValuePath="Value" />
-        </DockPanel>
-        <DockPanel>
-            <TextBlock Text="Crimson BG" HorizontalAlignment="Right" />
-        </DockPanel>
-        <DockPanel>
-            <ComboBox Height="20" Width="40" HorizontalAlignment="Left" ItemsSource="{StaticResource CrimsonBGStyleList}" SelectedValue="{Binding CurrentWorld.BgCrimson, Mode=TwoWay}" SelectedValuePath="Value" />
-        </DockPanel>
-        <DockPanel>
-            <TextBlock Text="Desert BG" HorizontalAlignment="Right" />
-        </DockPanel>
-        <DockPanel>
-            <ComboBox Height="20" Width="40" HorizontalAlignment="Left" ItemsSource="{StaticResource CommonBGStyleList}" SelectedValue="{Binding CurrentWorld.BgDesert, Mode=TwoWay}" SelectedValuePath="Value" />
-        </DockPanel>
-        <DockPanel>
-            <TextBlock Text="Ocean BG" HorizontalAlignment="Right" />
-        </DockPanel>
-        <DockPanel>
-            <ComboBox Height="20" Width="40" HorizontalAlignment="Left" ItemsSource="{StaticResource OceanBGStyleList}" SelectedValue="{Binding CurrentWorld.BgOcean, Mode=TwoWay}" SelectedValuePath="Value" />
-        </DockPanel>
+        <TextBlock Text="Deep Ice BG" HorizontalAlignment="Right" />
+        <ComboBox Height="20" Width="40" HorizontalAlignment="Left" ItemsSource="{StaticResource IceBackStyleList}" SelectedValue="{Binding CurrentWorld.IceBackStyle, Mode=TwoWay}" SelectedValuePath="Value" />
+        <TextBlock Text="Deep Jungle BG" HorizontalAlignment="Right" />
+        <ComboBox Height="20" Width="40" HorizontalAlignment="Left" ItemsSource="{StaticResource JungleBackStyleList}" SelectedValue="{Binding CurrentWorld.JungleBackStyle, Mode=TwoWay}" SelectedValuePath="Value" />
+        <TextBlock Text="Hell BG" HorizontalAlignment="Right" />
+        <ComboBox Height="20" Width="40" HorizontalAlignment="Left" ItemsSource="{StaticResource HellBackStyleList}" SelectedValue="{Binding CurrentWorld.HellBackStyle, Mode=TwoWay}" SelectedValuePath="Value" />
+        <TextBlock Text="Forest BG" HorizontalAlignment="Right" />
+        <ComboBox Height="20" Width="40" HorizontalAlignment="Left" ItemsSource="{StaticResource TreeBGStyleList}" SelectedValue="{Binding CurrentWorld.BgTree, Mode=TwoWay}" SelectedValuePath="Value" />
+        <TextBlock Text="Corrupt BG" HorizontalAlignment="Right" />
+        <ComboBox Height="20" Width="40" HorizontalAlignment="Left" ItemsSource="{StaticResource CommonBGStyleList}" SelectedValue="{Binding CurrentWorld.BgCorruption, Mode=TwoWay}" SelectedValuePath="Value" />
+        <TextBlock Text="Jungle BG" HorizontalAlignment="Right" />
+        <ComboBox Height="20" Width="40" HorizontalAlignment="Left" ItemsSource="{StaticResource CommonBGStyleList}" SelectedValue="{Binding CurrentWorld.BgJungle, Mode=TwoWay}" SelectedValuePath="Value" />
+        <TextBlock Text="Snow BG" HorizontalAlignment="Right" />
+        <ComboBox Height="20" Width="40" HorizontalAlignment="Left" ItemsSource="{StaticResource SnowBGStyleList}" SelectedValue="{Binding CurrentWorld.BgSnow, Mode=TwoWay}" SelectedValuePath="Value" />
+        <TextBlock Text="Hallow BG" HorizontalAlignment="Right" />
+        <ComboBox Height="20" Width="40" HorizontalAlignment="Left" ItemsSource="{StaticResource CommonBGStyleList}" SelectedValue="{Binding CurrentWorld.BgHallow, Mode=TwoWay}" SelectedValuePath="Value" />
+        <TextBlock Text="Crimson BG" HorizontalAlignment="Right" />
+        <ComboBox Height="20" Width="40" HorizontalAlignment="Left" ItemsSource="{StaticResource CrimsonBGStyleList}" SelectedValue="{Binding CurrentWorld.BgCrimson, Mode=TwoWay}" SelectedValuePath="Value" />
+        <TextBlock Text="Desert BG" HorizontalAlignment="Right" />
+        <ComboBox Height="20" Width="40" HorizontalAlignment="Left" ItemsSource="{StaticResource CommonBGStyleList}" SelectedValue="{Binding CurrentWorld.BgDesert, Mode=TwoWay}" SelectedValuePath="Value" />
+        <TextBlock Text="Ocean BG" HorizontalAlignment="Right" />
+        <ComboBox Height="20" Width="40" HorizontalAlignment="Left" ItemsSource="{StaticResource OceanBGStyleList}" SelectedValue="{Binding CurrentWorld.BgOcean, Mode=TwoWay}" SelectedValuePath="Value" />
+        <Separator Grid.ColumnSpan="2" />
+        <TextBlock Text="Mushroom BG" HorizontalAlignment="Right" />
+        <ComboBox Height="20" Width="40" HorizontalAlignment="Left" ItemsSource="{StaticResource MushroomBGStyleList}" SelectedValue="{Binding CurrentWorld.MushroomBg, Mode=TwoWay}" SelectedValuePath="Value" />
+        <TextBlock Text="Underworld BG" HorizontalAlignment="Right" />
+        <ComboBox Height="20" Width="40" HorizontalAlignment="Left" ItemsSource="{StaticResource UnderworldBGStyleList}" SelectedValue="{Binding CurrentWorld.UnderworldBg, Mode=TwoWay}" SelectedValuePath="Value" />
+        <TextBlock Text="Tree BG 2" HorizontalAlignment="Right" />
+        <ComboBox Height="20" Width="40" HorizontalAlignment="Left" ItemsSource="{StaticResource TreeBGStyleList}" SelectedValue="{Binding CurrentWorld.BgTree2, Mode=TwoWay}" SelectedValuePath="Value" />
+        <TextBlock Text="Tree BG 3" HorizontalAlignment="Right" />
+        <ComboBox Height="20" Width="40" HorizontalAlignment="Left" ItemsSource="{StaticResource TreeBGStyleList}" SelectedValue="{Binding CurrentWorld.BgTree3, Mode=TwoWay}" SelectedValuePath="Value" />
+        <TextBlock Text="Tree BG 4" HorizontalAlignment="Right" />
+        <ComboBox Height="20" Width="40" HorizontalAlignment="Left" ItemsSource="{StaticResource TreeBGStyleList}" SelectedValue="{Binding CurrentWorld.BgTree4, Mode=TwoWay}" SelectedValuePath="Value" />
+        <Separator Grid.ColumnSpan="2" />
+        <TextBlock Text="Tree 1 Tops" HorizontalAlignment="Right" />
+        <ComboBox Height="20" Width="40" HorizontalAlignment="Left" ItemsSource="{StaticResource TreeBGStyleList}" SelectedValue="{Binding Path=CurrentWorld.TreeTopVariations[0], Mode=TwoWay}" SelectedValuePath="Value" />
+        <TextBlock Text="Tree 2 Tops" HorizontalAlignment="Right" />
+        <ComboBox Height="20" Width="40" HorizontalAlignment="Left" ItemsSource="{StaticResource TreeBGStyleList}" SelectedValue="{Binding Path=CurrentWorld.TreeTopVariations[1], Mode=TwoWay}" SelectedValuePath="Value" />
+
+        <TextBlock Text="Tree 3 Tops" HorizontalAlignment="Right" />
+        <ComboBox Height="20" Width="40" HorizontalAlignment="Left" ItemsSource="{StaticResource TreeBGStyleList}" SelectedValue="{Binding Path=CurrentWorld.TreeTopVariations[2], Mode=TwoWay}" SelectedValuePath="Value" />
+
+        <TextBlock Text="Tree 4 Tops" HorizontalAlignment="Right" />
+        <ComboBox Height="20" Width="40" HorizontalAlignment="Left" ItemsSource="{StaticResource TreeBGStyleList}" SelectedValue="{Binding Path=CurrentWorld.TreeTopVariations[3], Mode=TwoWay}" SelectedValuePath="Value" />
+
 
     </tedit:AutoGrid>
 </UserControl>

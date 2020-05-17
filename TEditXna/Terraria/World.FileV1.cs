@@ -91,9 +91,9 @@ namespace TEditXNA.Terraria
             bw.Write(world.TempRaining);
             bw.Write(world.TempRainTime);
             bw.Write(world.TempMaxRain);
-            bw.Write(world.OreTier1);
-            bw.Write(world.OreTier2);
-            bw.Write(world.OreTier3);
+            bw.Write(world.SavedOreTiersCobalt);
+            bw.Write(world.SavedOreTiersMythril);
+            bw.Write(world.SavedOreTiersAdamantite);
             bw.Write(world.BgTree);
             bw.Write(world.BgCorruption);
             bw.Write(world.BgJungle);
@@ -438,21 +438,21 @@ namespace TEditXNA.Terraria
             }
             if (version >= 54)
             {
-                w.OreTier1 = reader.ReadInt32();
-                w.OreTier2 = reader.ReadInt32();
-                w.OreTier3 = reader.ReadInt32();
+                w.SavedOreTiersCobalt = reader.ReadInt32();
+                w.SavedOreTiersMythril = reader.ReadInt32();
+                w.SavedOreTiersAdamantite = reader.ReadInt32();
             }
             else if (version < 23 || w.AltarCount != 0)
             {
-                w.OreTier1 = 107;
-                w.OreTier2 = 108;
-                w.OreTier3 = 111;
+                w.SavedOreTiersCobalt = 107;
+                w.SavedOreTiersMythril = 108;
+                w.SavedOreTiersAdamantite = 111;
             }
             else
             {
-                w.OreTier1 = -1;
-                w.OreTier2 = -1;
-                w.OreTier3 = -1;
+                w.SavedOreTiersCobalt = -1;
+                w.SavedOreTiersMythril = -1;
+                w.SavedOreTiersAdamantite = -1;
             }
 
             if (version >= 55)

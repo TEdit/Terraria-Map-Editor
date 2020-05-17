@@ -187,6 +187,7 @@
     <Compile Include="Render\PixelMapManager.cs" />
     <Compile Include="Render\RenderMiniMap.cs" />
     <Compile Include="Render\TextureData.cs" />
+    <Compile Include="Terraria\BitsByte.cs" />
     <Compile Include="Terraria\Chest.cs" />
     <Compile Include="Terraria\KillTally.cs" />
     <Compile Include="Terraria\TileEntity.cs" />
@@ -560,7 +561,7 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties BuildVersion_AssemblyInfoFilename="Properties\AssemblyInfo.cs" BuildVersion_UseGlobalSettings="True" />
+      <UserProperties BuildVersion_UseGlobalSettings="True" BuildVersion_AssemblyInfoFilename="Properties\AssemblyInfo.cs" />
     </VisualStudio>
   </ProjectExtensions>
   <PropertyGroup>
