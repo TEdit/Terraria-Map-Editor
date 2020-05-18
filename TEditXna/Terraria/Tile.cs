@@ -62,7 +62,7 @@ namespace TEditXNA.Terraria
         public bool WireYellow;
         public byte TileColor;
         public ushort Type;
-        public byte Wall;
+        public ushort Wall;
         public byte WallColor;
         public LiquidType LiquidType;
         public byte LiquidAmount;

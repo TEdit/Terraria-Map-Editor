@@ -15,7 +15,7 @@ namespace TEditXNA.Terraria
         public static uint CompatibleVersion = 226;
         public static short TileCount = 623;
         public static short WallCount = 316;
-        public static short SectionCount = 10;
+        public static short SectionCount = 11;
 
         public static bool[] TileFrameImportant;
 
@@ -59,6 +59,10 @@ namespace TEditXNA.Terraria
             sectionPointers[7] = SavePressurePlate(world.PressurePlates, bw);
             OnProgressChanged(null, new ProgressChangedEventArgs(100, "Save Town Manager..."));
             sectionPointers[8] = SaveTownManager(world.PlayerRooms, bw);
+            OnProgressChanged(null, new ProgressChangedEventArgs(100, "Save Bestiary..."));
+            sectionPointers[9] = SaveBestiary(world.Bestiary, bw);
+            OnProgressChanged(null, new ProgressChangedEventArgs(100, "Save Creative Powers..."));
+            sectionPointers[10] = SaveCreativePowers(world.CreativePowers, bw);
             OnProgressChanged(null, new ProgressChangedEventArgs(100, "Save Footers..."));
             SaveFooter(world, bw);
             UpdateSectionPointers(sectionPointers, bw);
@@ -183,7 +187,7 @@ namespace TEditXNA.Terraria
             {
                 // set header1 bit[2] for wall active
                 header1 = (byte)(header1 | 4);
-                tileData[dataIndex++] = tile.Wall;
+                tileData[dataIndex++] = (byte)tile.Wall;
 
                 // save tile wall color
                 if (tile.WallColor != 0)
@@ -239,6 +243,12 @@ namespace TEditXNA.Terraria
             {
                 header3 = (byte)(header3 | 32);
             }
+            if (tile.Wall > 255)
+            {
+                tileData[dataIndex++] = (byte)(tile.Wall >> 8);
+                header3 = (byte)(header3 | 64);
+            }
+
 
             headerIndex = 2;
             if (header3 != 0)
@@ -371,6 +381,18 @@ namespace TEditXNA.Terraria
                 bw.Write(plate.PosY);
             }
 
+            return (int)bw.BaseStream.Position;
+        }
+
+        public static int SaveBestiary(Bestiary bestiary, BinaryWriter bw)
+        {
+            bestiary.Save(bw);
+            return (int)bw.BaseStream.Position;
+        }
+
+        public static int SaveCreativePowers(CreativePowers powers, BinaryWriter bw)
+        {
+            powers.Save(bw);
             return (int)bw.BaseStream.Position;
         }
 
@@ -717,6 +739,18 @@ namespace TEditXNA.Terraria
                 if (b.BaseStream.Position != sectionPointers[8])
                     throw new FileFormatException("Unexpected Position: Invalid Town Manager Section");
             }
+            if (w.Version >= 210)
+            {
+                LoadBestiary(b, w);
+                if (b.BaseStream.Position != sectionPointers[9])
+                    throw new FileFormatException("Unexpected Position: Invalid Bestiary Section");
+            }
+            if (w.Version >= 220)
+            {
+                LoadCreativePowers(b, w);
+                if (b.BaseStream.Position != sectionPointers[10])
+                    throw new FileFormatException("Unexpected Position: Invalid Creative Powers Section");
+            }
 
             OnProgressChanged(null, new ProgressChangedEventArgs(100, "Verifying File..."));
             LoadFooter(b, w);
@@ -898,6 +932,11 @@ namespace TEditXNA.Terraria
                 {
                     tile.WireYellow = true;
                 }
+
+                if ((header3 & 64) == 64) 
+                {
+                    tile.Wall = (ushort)(r.ReadByte() << 8 | tile.Wall);
+                }
             }
 
             // get bit[6,7] shift to 0,1 for RLE encoding type
@@ -1069,6 +1108,19 @@ namespace TEditXNA.Terraria
                 w.PlayerRooms.Add(room);
             }
         }
+
+        public static void LoadBestiary(BinaryReader r, World w)
+        {
+            w.Bestiary = new Bestiary();
+            w.Bestiary.Load(r, w.Version);
+        }
+
+        public static void LoadCreativePowers(BinaryReader r, World w)
+        {
+            w.CreativePowers = new CreativePowers();
+            w.CreativePowers.Load(r, w.Version);
+        }
+
 
         public static void LoadFooter(BinaryReader r, World w)
         {

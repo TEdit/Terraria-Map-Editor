@@ -214,6 +214,20 @@ namespace TEditXNA.Terraria
         private int _savedOreTiersCobalt;
         private int _savedOreTiersMythril;
         private int _savedOreTiersAdamantite;
+        private Bestiary _bestiary;
+        private CreativePowers _creativePowers;
+
+        public Bestiary Bestiary
+        {
+            get { return _bestiary; }
+            set { Set(nameof(Bestiary), ref _bestiary, value); }
+        }
+
+        public CreativePowers CreativePowers
+        {
+            get { return _creativePowers; }
+            set { Set(nameof(CreativePowers), ref _creativePowers, value); }
+        }
 
         public UInt64 WorldGenVersion
         {
