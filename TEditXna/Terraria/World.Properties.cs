@@ -31,7 +31,7 @@ namespace TEditXNA.Terraria
         private readonly ObservableCollection<PressurePlate> _pressurePlates = new ObservableCollection<PressurePlate>();
         private readonly ObservableCollection<TownManager> _playerRooms = new ObservableCollection<TownManager>();
 
-        private readonly ObservableCollection<int> _treeTopVariations = new ObservableCollection<int>(new int[13]);
+        private  ObservableCollection<int> _treeTopVariations = new ObservableCollection<int>(new int[13]);
 
         // [SBLogic] These variables are used internally for composing background layers, not currently needed here:
         // public int[] CorruptBG = new int[3];
@@ -578,6 +578,8 @@ namespace TEditXNA.Terraria
         public ObservableCollection<int> TreeTopVariations
         {
             get { return _treeTopVariations; }
+            set { Set("TreeTopVariations", ref _treeTopVariations, value); }
+
         }
 
 
@@ -631,6 +633,12 @@ namespace TEditXNA.Terraria
         }
 
         public byte BgTree
+        {
+            get { return _bgTree; }
+            set { Set("BgTree", ref _bgTree, value); }
+        }
+
+        public byte Bg8
         {
             get { return _bgTree; }
             set { Set("BgTree", ref _bgTree, value); }

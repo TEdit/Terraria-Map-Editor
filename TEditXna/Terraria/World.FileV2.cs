@@ -136,7 +136,7 @@ namespace TEditXNA.Terraria
         public static byte[] SerializeTileData(Tile tile, out int dataIndex, out int headerIndex)
         {
 
-            byte[] tileData = new byte[13];
+            byte[] tileData = new byte[15];
             dataIndex = 3;
 
             byte header3 = (byte)0;
@@ -542,11 +542,19 @@ namespace TEditXNA.Terraria
             bw.Write(world.SavedGolfer);
             bw.Write(world.InvasionSizeStart);
             bw.Write(world.CultistDelay);
-            bw.Write((Int16)world.NumberOfMobs);
-            foreach (int count in world.KilledMobs)
+            bw.Write((short)663);
+            for (int i = 0; i < 663; i++)
             {
-                bw.Write(count);
+                if (world.KilledMobs.Count > i)
+                {
+                    bw.Write(world.KilledMobs[i]);
+                }
+                else
+                {
+                    bw.Write(0);
+                }
             }
+
             bw.Write(world.FastForwardTime);
             bw.Write(world.DownedFishron);
             bw.Write(world.DownedMartians);
@@ -585,14 +593,19 @@ namespace TEditXNA.Terraria
             bw.Write(world.DownedDD2InvasionT3);
 
             // 1.4 Journey's End
-            bw.Write(world.MushroomBg);
-            bw.Write(world.UnderworldBg);
-            bw.Write(world.BgTree2);
-            bw.Write(world.BgTree3);
-            bw.Write(world.BgTree4);
+            bw.Write((byte)world.MushroomBg);
+            bw.Write((byte)world.UnderworldBg);
+            bw.Write((byte)world.BgTree2);
+            bw.Write((byte)world.BgTree3);
+            bw.Write((byte)world.BgTree4);
             bw.Write(world.CombatBookUsed);
+            bw.Write(world.TempLanternNightCooldown);
+            bw.Write(world.TempLanternNightGenuine);
+            bw.Write(world.TempLanternNightManual);
+            bw.Write(world.TempLanternNightNextNightIsGenuine);
             // tree tops
-            for (int i = 0; i < 13; i++)
+            bw.Write(world.TreeTopVariations.Count);
+            for (int i = 0; i < world.TreeTopVariations.Count; i++)
             {
                 bw.Write(world.TreeTopVariations[i]);
             }
@@ -625,25 +638,7 @@ namespace TEditXNA.Terraria
 
             foreach (TileEntity tentity in w.TileEntities)
             {
-                bw.Write(tentity.Type);
-                bw.Write(tentity.Id);
-                bw.Write(tentity.PosX);
-                bw.Write(tentity.PosY);
-                switch (tentity.Type)
-                {
-                    case 0: //it is a dummy
-                        bw.Write(tentity.Npc);
-                        break;
-                    case 1: //it is a item frame
-                        bw.Write((Int16)tentity.NetId);
-                        bw.Write(tentity.Prefix);
-                        bw.Write(tentity.StackSize);
-                        break;
-                    case 2: //it is a logic sensor
-                        bw.Write(tentity.LogicCheck);
-                        bw.Write(tentity.On);
-                        break;
-                }
+                tentity.Save(bw);
             }
 
             return (int)bw.BaseStream.Position;
@@ -771,6 +766,7 @@ namespace TEditXNA.Terraria
                 for (int y = 0; y < maxY; y++)
                 {
                     Tile tile = DeserializeTileData(r, out rle);
+
 
                     tiles[x, y] = tile;
                     while (rle > 0)
@@ -933,7 +929,7 @@ namespace TEditXNA.Terraria
                     tile.WireYellow = true;
                 }
 
-                if ((header3 & 64) == 64) 
+                if ((header3 & 64) == 64)
                 {
                     tile.Wall = (ushort)(r.ReadByte() << 8 | tile.Wall);
                 }
@@ -945,20 +941,19 @@ namespace TEditXNA.Terraria
             // 2 = int16 RLE counter
             // 3 = ERROR
             byte rleStorageType = (byte)((header1 & 192) >> 6);
+            switch (rleStorageType)
+            {
+                case 0:
+                    rle = 0;
+                    break;
+                case 1:
+                    rle = r.ReadByte();
+                    break;
+                default:
+                    rle = r.ReadInt16();
+                    break;
+            }
 
-            // read RLE distance
-            if (rleStorageType == 0)
-            {
-                rle = 0;
-            }
-            else if (rleStorageType != 1)
-            {
-                rle = r.ReadInt16();
-            }
-            else
-            {
-                rle = r.ReadByte();
-            }
 
             return tile;
         }
@@ -1141,25 +1136,7 @@ namespace TEditXNA.Terraria
             for (int counter = 0; counter < w.TileEntitiesNumber; counter++)
             {
                 TileEntity entity = new TileEntity();
-                entity.Type = r.ReadByte();
-                entity.Id = r.ReadInt32();
-                entity.PosX = r.ReadInt16();
-                entity.PosY = r.ReadInt16();
-                switch (entity.Type)
-                {
-                    case 0: //it is a dummy
-                        entity.Npc = r.ReadInt16();
-                        break;
-                    case 1: //it is a item frame
-                        entity.NetId = (int)r.ReadInt16();
-                        entity.Prefix = r.ReadByte();
-                        entity.StackSize = r.ReadInt16();
-                        break;
-                    case 2: //it is a logic sensor
-                        entity.LogicCheck = r.ReadByte();
-                        entity.On = r.ReadBoolean();
-                        break;
-                }
+                entity.Load(r, w.Version);
                 w.TileEntities.Add(entity);
             }
         }
@@ -1212,9 +1189,13 @@ namespace TEditXNA.Terraria
                     w.DrunkWorld = r.ReadBoolean();
                 }
             }
-            else if (w.Version >= 112)
+            else
             {
-                w.GameMode = r.ReadBoolean() ? 1 : 0; // 0 = normal, 1 = expert mode
+                w.GameMode = (w.Version < 112) ? 0 : r.ReadBoolean() ? 1 : 0; // 0 = normal, 1 = expert mode
+                if (w.Version == 208 && r.ReadBoolean())
+                {
+                    w.GameMode = 2;
+                }
             }
 
             w.CreationTime = w.Version < 141 ? DateTime.Now.ToBinary() : w.CreationTime = r.ReadInt64();
@@ -1320,57 +1301,67 @@ namespace TEditXNA.Terraria
                 }
             }
 
-            if (w.Version >= 99)
-            {
-                w.SavedAngler = r.ReadBoolean();
-            }
+            if (w.Version < 99)
+                return;
 
-            if (w.Version >= 101)
-            {
-                w.AnglerQuest = r.ReadInt32();
-            }
+            w.SavedAngler = r.ReadBoolean();
 
-            if (w.Version >= 104)
-            {
-                w.SavedStylist = r.ReadBoolean();
-            }
 
-            if (w.Version >= 140)
+            if (w.Version < 101)
+                return;
+            w.AnglerQuest = r.ReadInt32();
+
+
+            if (w.Version < 104)
+                return;
+
+
+            w.SavedStylist = r.ReadBoolean();
+
+            if (w.Version >= 129)
             {
                 w.SavedTaxCollector = r.ReadBoolean();
-                if (w.Version >= 201)
-                {
-                    w.SavedGolfer = r.ReadBoolean();
-                }
-
-                w.InvasionSizeStart = r.ReadInt32();
-                w.CultistDelay = r.ReadInt32();
-                int numberOfMobs = r.ReadInt16();
-                w.NumberOfMobs = numberOfMobs;
-                for (int counter = 0; counter < numberOfMobs; counter++)
-                {
-                    w.KilledMobs.Add(r.ReadInt32());
-                }
-                w.FastForwardTime = r.ReadBoolean();
-                w.DownedFishron = r.ReadBoolean();
-                w.DownedMartians = r.ReadBoolean();
-                w.DownedLunaticCultist = r.ReadBoolean();
-                w.DownedMoonlord = r.ReadBoolean();
-                w.DownedHalloweenKing = r.ReadBoolean();
-                w.DownedHalloweenTree = r.ReadBoolean();
-                w.DownedChristmasQueen = r.ReadBoolean();
-                w.DownedSanta = r.ReadBoolean();
-                w.DownedChristmasTree = r.ReadBoolean();
-                w.DownedCelestialSolar = r.ReadBoolean();
-                w.DownedCelestialVortex = r.ReadBoolean();
-                w.DownedCelestialNebula = r.ReadBoolean();
-                w.DownedCelestialStardust = r.ReadBoolean();
-                w.CelestialSolarActive = r.ReadBoolean();
-                w.CelestialVortexActive = r.ReadBoolean();
-                w.CelestialNebulaActive = r.ReadBoolean();
-                w.CelestialStardustActive = r.ReadBoolean();
-                w.Apocalypse = r.ReadBoolean();
             }
+
+            if (w.Version >= 201)
+            {
+                w.SavedGolfer = r.ReadBoolean();
+            }
+
+            if (w.Version >= 107)
+            {
+                w.InvasionSizeStart = r.ReadInt32();
+            }
+            w.CultistDelay = w.Version >= 108 ? r.ReadInt32() : 86400;
+            int numberOfMobs = r.ReadInt16();
+            w.NumberOfMobs = numberOfMobs;
+            for (int counter = 0; counter < numberOfMobs; counter++)
+            {
+                if (counter < 663)
+                    w.KilledMobs.Add(r.ReadInt32());
+                else
+                    r.ReadInt32();
+            }
+            w.FastForwardTime = r.ReadBoolean();
+            w.DownedFishron = r.ReadBoolean();
+            w.DownedMartians = r.ReadBoolean();
+            w.DownedLunaticCultist = r.ReadBoolean();
+            w.DownedMoonlord = r.ReadBoolean();
+            w.DownedHalloweenKing = r.ReadBoolean();
+            w.DownedHalloweenTree = r.ReadBoolean();
+            w.DownedChristmasQueen = r.ReadBoolean();
+            w.DownedSanta = r.ReadBoolean();
+            w.DownedChristmasTree = r.ReadBoolean();
+            w.DownedCelestialSolar = r.ReadBoolean();
+            w.DownedCelestialVortex = r.ReadBoolean();
+            w.DownedCelestialNebula = r.ReadBoolean();
+            w.DownedCelestialStardust = r.ReadBoolean();
+            w.CelestialSolarActive = r.ReadBoolean();
+            w.CelestialVortexActive = r.ReadBoolean();
+            w.CelestialNebulaActive = r.ReadBoolean();
+            w.CelestialStardustActive = r.ReadBoolean();
+            w.Apocalypse = r.ReadBoolean();
+
             if (w.Version >= 170)
             {
                 w.PartyManual = r.ReadBoolean();
@@ -1398,8 +1389,16 @@ namespace TEditXNA.Terraria
             }
 
             // 1.4 Journey's End
-            w.MushroomBg = w.Version >= 194 ? r.ReadByte() : (byte)0;
-            w.UnderworldBg = w.Version >= 215 ? r.ReadByte() : (byte)0;
+            if (w.Version > 194)
+            {
+                w.MushroomBg = r.ReadByte();
+            }
+
+            if (w.Version >= 215)
+            {
+                w.UnderworldBg = r.ReadByte();
+            }
+
 
             if (w.Version >= 195)
             {
@@ -1417,10 +1416,19 @@ namespace TEditXNA.Terraria
             {
                 w.CombatBookUsed = r.ReadBoolean();
             }
+            if (w.Version >= 207)
+            {
+                w.TempLanternNightCooldown = r.ReadInt32();
+                w.TempLanternNightGenuine = r.ReadBoolean();
+                w.TempLanternNightManual = r.ReadBoolean();
+                w.TempLanternNightNextNightIsGenuine = r.ReadBoolean();
+            }
             // tree tops
             if (w.Version >= 211)
             {
-                for (int i = 0; i < 13; i++)
+                int numTrees = r.ReadInt32();
+                w.TreeTopVariations = new System.Collections.ObjectModel.ObservableCollection<int>(new int[numTrees]);
+                for (int i = 0; i < numTrees; i++)
                 {
                     w.TreeTopVariations[i] = r.ReadInt32();
                 }
@@ -1449,17 +1457,17 @@ namespace TEditXNA.Terraria
 
             if (w.Version >= 216)
             {
-                w.SavedOreTiersCopper = -1;
-                w.SavedOreTiersIron = -1;
-                w.SavedOreTiersSilver = -1;
-                w.SavedOreTiersGold = -1;
-            }
-            else
-            {
                 w.SavedOreTiersCopper = r.ReadInt32();
                 w.SavedOreTiersIron = r.ReadInt32();
                 w.SavedOreTiersSilver = r.ReadInt32();
                 w.SavedOreTiersGold = r.ReadInt32();
+            }
+            else
+            {
+                w.SavedOreTiersCopper = -1;
+                w.SavedOreTiersIron = -1;
+                w.SavedOreTiersSilver = -1;
+                w.SavedOreTiersGold = -1;
             }
 
             if (w.Version >= 217)
