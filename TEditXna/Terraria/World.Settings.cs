@@ -15,7 +15,7 @@ namespace TEditXNA.Terraria
 {
     public partial class World
     {
-        
+
         private static readonly Dictionary<string, XNA.Color> _globalColors = new Dictionary<string, XNA.Color>();
         private static readonly Dictionary<string, int> _npcIds = new Dictionary<string, int>();
         private static readonly Dictionary<int, int> _npcFrames = new Dictionary<int, int>();
@@ -41,10 +41,11 @@ namespace TEditXNA.Terraria
         private static Vector2 _appSize;
         internal static string AltC;
         internal static int? SteamUserId;
- 
+
         static World()
         {
-            if (ViewModelBase.IsInDesignModeStatic) return;
+            if (ViewModelBase.IsInDesignModeStatic)
+                return;
 
             var settingspath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "settings.xml");
             LoadObjectDbXml(settingspath);
@@ -191,15 +192,15 @@ namespace TEditXNA.Terraria
                             spriteName += " - " + curFrame.Variety;
                     }
                     Sprites.Add(new Sprite
-                                    {
-                                        Anchor = curFrame.Anchor,
-                                        IsPreviewTexture = false,
-                                        Name = spriteName,
-                                        Origin = curFrame.UV,
-                                        Size = frameSize,
-                                        Tile = (ushort)curTile.Id, /* SBlogic */
-                                        TileName = curTile.Name
-                                    });
+                    {
+                        Anchor = curFrame.Anchor,
+                        IsPreviewTexture = false,
+                        Name = spriteName,
+                        Origin = curFrame.UV,
+                        Size = frameSize,
+                        Tile = (ushort)curTile.Id, /* SBlogic */
+                        TileName = curTile.Name
+                    });
                     if (curTile.HasFrameName)
                     {
                         string frameName = curFrame.Name;
@@ -233,15 +234,15 @@ namespace TEditXNA.Terraria
 
                     curTile.Frames.Add(curFrame);
                     Sprites.Add(new Sprite
-                                    {
-                                        Anchor = curFrame.Anchor,
-                                        IsPreviewTexture = false,
-                                        Name = null,
-                                        Origin = curFrame.UV,
-                                        Size = curTile.FrameSize,
-                                        Tile = (ushort)curTile.Id,
-                                        TileName = curTile.Name
-                                    });
+                    {
+                        Anchor = curFrame.Anchor,
+                        IsPreviewTexture = false,
+                        Name = null,
+                        Origin = curFrame.UV,
+                        Size = curTile.FrameSize,
+                        Tile = (ushort)curTile.Id,
+                        TileName = curTile.Name
+                    });
                 }
                 TileProperties.Add(curTile);
                 if (!curTile.IsFramed)
@@ -330,7 +331,7 @@ namespace TEditXNA.Terraria
             foreach (var tileElement in xmlSettings.Elements("Tiles").Elements("Tile"))
             {
                 string tileName = (string)tileElement.Attribute("Name");
-                if (tileName == "Sign" || tileName == "Grave Marker" ||  tileName == "Announcement Box")
+                if (tileName == "Sign" || tileName == "Grave Marker" || tileName == "Announcement Box")
                 {
                     ushort type = (ushort)((int?)tileElement.Attribute("Id") ?? 55);
                     foreach (var xElement in tileElement.Elements("Frames").Elements("Frame"))
@@ -360,10 +361,10 @@ namespace TEditXNA.Terraria
             {
                 int id = (int?)xElement.Attribute("Id") ?? -1;
                 string name = (string)xElement.Attribute("Name");
-                NpcIds.Add(name, id);
-                NpcNames.Add(id, name);
+                NpcIds[name] = id;
+                NpcNames[id] = name;
                 int frames = (int?)xElement.Attribute("Frames") ?? 16;
-                NpcFrames.Add(id, frames);
+                NpcFrames[id] = frames;
             }
 
             foreach (var xElement in xmlSettings.Elements("ItemPrefix").Elements("Prefix"))
@@ -472,7 +473,7 @@ namespace TEditXNA.Terraria
         {
             get { return _npcFrames; }
         }
-        
+
         public static Dictionary<byte, string> ItemPrefix
         {
             get { return _prefix; }
@@ -543,7 +544,7 @@ namespace TEditXNA.Terraria
 
         public static Dictionary<int, string> TallyNames
         {
-            get { return _tallynames;  }
+            get { return _tallynames; }
         }
 
         public static Dictionary<string, string> FrameNames
