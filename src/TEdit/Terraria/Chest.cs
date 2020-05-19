@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using GalaSoft.MvvmLight;
-using TEditXNA.Terraria.Objects;
-using TEditXna.ViewModel;
+using TEdit.Terraria.Objects;
+using TEdit.ViewModel;
 
-namespace TEditXNA.Terraria
+namespace TEdit.Terraria
 {
     [Serializable]
     public class Chest : ObservableObject

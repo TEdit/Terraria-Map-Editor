@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 
-namespace TEditXna.Helper
+namespace TEdit.Helper
 {
     public static class Extensions
     {

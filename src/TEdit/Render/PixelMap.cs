@@ -1,7 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
-using TEditXNA.Terraria;
+using TEdit.Terraria;
 
-namespace TEditXna.Render
+namespace TEdit.Render
 {
     public static class PixelMap
     {

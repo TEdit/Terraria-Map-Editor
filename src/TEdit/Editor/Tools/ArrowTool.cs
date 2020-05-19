@@ -1,11 +1,11 @@
 using System;
 using System.Windows.Input;
 using System.Windows.Media.Imaging;
-using TEditXNA.Terraria;
+using TEdit.Terraria;
 using TEdit.Geometry.Primitives;
-using TEditXna.ViewModel;
+using TEdit.ViewModel;
 
-namespace TEditXna.Editor.Tools
+namespace TEdit.Editor.Tools
 {
     public sealed class ArrowTool : BaseTool
     {
@@ -14,7 +14,7 @@ namespace TEditXna.Editor.Tools
 
         public ArrowTool(WorldViewModel worldViewModel) : base(worldViewModel)
         {
-            Icon = new BitmapImage(new Uri(@"pack://application:,,,/TEditXna;component/Images/Tools/cursor.png"));
+            Icon = new BitmapImage(new Uri(@"pack://application:,,,/TEdit;component/Images/Tools/cursor.png"));
             ToolType = ToolType.Pixel;
             Name = "Arrow";
         }

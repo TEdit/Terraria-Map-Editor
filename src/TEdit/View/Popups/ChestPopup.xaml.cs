@@ -1,9 +1,9 @@
 ﻿using System.Windows;
 using System.Windows.Controls.Primitives;
 using System.Windows.Input;
-using TEditXNA.Terraria;
+using TEdit.Terraria;
 
-namespace TEditXna.View.Popups
+namespace TEdit.View.Popups
 {
     /// <summary>
     /// Interaction logic for ChestsContentsPopup.xaml

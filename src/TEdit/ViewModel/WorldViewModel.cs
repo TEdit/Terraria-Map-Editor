@@ -17,16 +17,16 @@ using GalaSoft.MvvmLight.Command;
 using TEdit.MvvmLight.Threading;
 using TEdit.Geometry.Primitives;
 using TEdit.Utility;
-using TEditXna.Editor;
-using TEditXna.Editor.Clipboard;
-using TEditXna.Editor.Plugins;
-using TEditXna.Editor.Tools;
-using TEditXna.Editor.Undo;
-using TEditXna.Properties;
-using TEditXna.Render;
-using TEditXNA.Terraria;
-using TEditXNA.Terraria.Objects;
-using TEditXna.View.Popups;
+using TEdit.Editor;
+using TEdit.Editor.Clipboard;
+using TEdit.Editor.Plugins;
+using TEdit.Editor.Tools;
+using TEdit.Editor.Undo;
+using TEdit.Properties;
+using TEdit.Render;
+using TEdit.Terraria;
+using TEdit.Terraria.Objects;
+using TEdit.View.Popups;
 using Application = System.Windows.Application;
 using DispatcherHelper = GalaSoft.MvvmLight.Threading.DispatcherHelper;
 using MessageBox = System.Windows.MessageBox;
@@ -34,7 +34,7 @@ using OpenFileDialog = Microsoft.Win32.OpenFileDialog;
 using SaveFileDialog = Microsoft.Win32.SaveFileDialog;
 using Timer = System.Timers.Timer;
 
-namespace TEditXna.ViewModel
+namespace TEdit.ViewModel
 {
     public partial class WorldViewModel : ViewModelBase
     {
@@ -728,7 +728,7 @@ namespace TEditXna.ViewModel
             sfd.OverwritePrompt = true;
             if (sfd.ShowDialog() == true)
             {
-                TEditXNA.Terraria.WorldAnalysis.AnalyzeWorld(CurrentWorld, sfd.FileName);
+                TEdit.Terraria.WorldAnalysis.AnalyzeWorld(CurrentWorld, sfd.FileName);
 
             }
         }
@@ -764,7 +764,7 @@ namespace TEditXna.ViewModel
 
         private void AnalyzeWorld()
         {
-            WorldAnalysis = TEditXNA.Terraria.WorldAnalysis.AnalyzeWorld(CurrentWorld);
+            WorldAnalysis = TEdit.Terraria.WorldAnalysis.AnalyzeWorld(CurrentWorld);
         }
 
         private string _worldAnalysis;

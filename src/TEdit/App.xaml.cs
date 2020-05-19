@@ -6,7 +6,7 @@ using System.Windows;
 using TEdit.MvvmLight.Threading;
 using DispatcherHelper = GalaSoft.MvvmLight.Threading.DispatcherHelper;
 
-namespace TEditXna
+namespace TEdit
 {
     /// <summary>
     /// Interaction logic for App.xaml

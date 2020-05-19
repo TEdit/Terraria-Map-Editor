@@ -1,6 +1,6 @@
 using System.ComponentModel;
 
-namespace TEditXna.Editor
+namespace TEdit.Editor
 {
     public enum MaskMode
     {

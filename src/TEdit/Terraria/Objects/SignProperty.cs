@@ -3,7 +3,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using TEdit.Geometry.Primitives;
 
-namespace TEditXNA.Terraria.Objects
+namespace TEdit.Terraria.Objects
 {
     public class SignProperty : ObservableObject, ITile
     {

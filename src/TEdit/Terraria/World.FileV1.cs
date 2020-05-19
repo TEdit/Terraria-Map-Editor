@@ -1,15 +1,15 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel;
 using TEdit.Utility;
-using TEditXna.Helper;
-using TEditXNA.Terraria.Objects;
+using TEdit.Helper;
+using TEdit.Terraria.Objects;
 using TEdit.Geometry.Primitives;
 using Vector2 = TEdit.Geometry.Primitives.Vector2;
 using System;
 using System.Collections.ObjectModel;
 using System.IO;
 
-namespace TEditXNA.Terraria
+namespace TEdit.Terraria
 {
     public partial class World
     {

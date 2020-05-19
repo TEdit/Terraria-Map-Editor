@@ -3,8 +3,11 @@ using System.IO;
 using System.Windows.Forms;
 using Microsoft.Win32;
 using System.Diagnostics;
+using System.Windows.Input;
+using System.Windows.Documents;
+using System.Collections.Generic;
 
-namespace TEditXna
+namespace TEdit
 {
     public static class DependencyChecker
     {
@@ -18,13 +21,13 @@ namespace TEditXna
             Properties.Settings.Default.Reload();
 
             string path = Properties.Settings.Default.TerrariaPath;
-            int? steamUserId = TEditXNA.Terraria.World.SteamUserId;
+            int? steamUserId = TEdit.Terraria.World.SteamUserId;
 
             // if hard coded in settings.xml try that location first
-            if (!string.IsNullOrWhiteSpace(TEditXNA.Terraria.World.AltC))
+            if (!string.IsNullOrWhiteSpace(TEdit.Terraria.World.AltC))
             {
-                if (Directory.Exists(TEditXNA.Terraria.World.AltC))
-                    path = TEditXNA.Terraria.World.AltC;
+                if (Directory.Exists(TEdit.Terraria.World.AltC))
+                    path = TEdit.Terraria.World.AltC;
             }
 
             // if the folder is missing, reset.
@@ -36,7 +39,7 @@ namespace TEditXna
             }
 
             // SBLogic - attempt to find GOG version
-            if (string.IsNullOrWhiteSpace(path))
+            if (string.IsNullOrWhiteSpace(path) || !Directory.Exists(path))
             {
                 using (RegistryKey key = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\GOG.com\Games\1207665503\"))
                 {
@@ -46,7 +49,7 @@ namespace TEditXna
             }
 
             // find steam
-            if (string.IsNullOrWhiteSpace(path))
+            if (string.IsNullOrWhiteSpace(path) || !Directory.Exists(path))
             {
                 // try with dionadar's fix
                 using (RegistryKey key = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\Steam App 105600"))
@@ -57,7 +60,7 @@ namespace TEditXna
             }
 
             // if that fails, try steam path
-            if (string.IsNullOrWhiteSpace(path))
+            if (string.IsNullOrWhiteSpace(path) || !Directory.Exists(path))
             {
                 using (RegistryKey key = Registry.CurrentUser.OpenSubKey(@"Software\\Valve\\Steam"))
                 {
@@ -73,6 +76,66 @@ namespace TEditXna
                 }
 
                 path = Path.Combine(path, "steamapps", "common", "terraria", "Content");
+            }
+
+            // if that fails, try steam path - the long way
+            if (string.IsNullOrWhiteSpace(path) || !Directory.Exists(path))
+            {
+                using (RegistryKey key = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\\Valve\\Steam"))
+                {
+                    if (key != null) { 
+                        path = key.GetValue("InstallPath") as string;
+                    }
+                    else
+                    {
+                        using (RegistryKey key2 = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\\WOW6432Node\\Valve\\Steam"))
+                        {
+                            if (key2 != null)
+                                path = key2.GetValue("InstallPath") as string;
+                        }
+                    }
+
+
+                    //no steam key, let's try steam in program files
+                    if (!string.IsNullOrWhiteSpace(path) && Directory.Exists(path))
+                    {
+                        var vdfFile = Path.Combine(path, "steamapps", "libraryfolders.vdf");
+
+                        using (var file = File.Open(vdfFile, FileMode.Open, FileAccess.Read, FileShare.Read))
+                        using (TextReader tr = new StreamReader(file))
+                        {
+                            var libraryPaths = new List<string>();
+                            string line = null;
+                            bool foundPath = false;
+                            while ((line = tr.ReadLine()) != null && !foundPath)
+                            {
+                                if (!string.IsNullOrWhiteSpace(line))
+                                {
+                                    var split = line.Split(new char[] { '\t' }, StringSplitOptions.RemoveEmptyEntries);
+                                    foreach (var item in split)
+                                    {
+                                        var trimmed = item.Trim('\"').Replace("\\\\", "\\");
+                                        if (Directory.Exists(trimmed))
+                                        {
+                                            
+                                            var testpath = Path.Combine(trimmed, "steamapps", "common", "terraria", "Content");
+                                            if (Directory.Exists(testpath))
+                                            {
+                                                path = testpath;
+                                                foundPath = true;
+                                                break;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+
+
+
+
             }
 
             // ug...we still don't have a path. Prompt the user.

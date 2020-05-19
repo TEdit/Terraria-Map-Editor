@@ -3,7 +3,7 @@ using System.Windows.Media.Imaging;
 using TEdit.Geometry.Primitives;
 using GalaSoft.MvvmLight;
 
-namespace TEditXNA.Terraria.Objects
+namespace TEdit.Terraria.Objects
 {
     public class ItemProperty : ObservableObject, ITile
     {

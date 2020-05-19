@@ -4,9 +4,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using TEdit.Geometry.Primitives;
 using GalaSoft.MvvmLight;
-using TEditXna.ViewModel;
+using TEdit.ViewModel;
 
-namespace TEditXna.Editor.Tools
+namespace TEdit.Editor.Tools
 {
     public class SelectionTool : ObservableObject, ITool
     {
@@ -24,7 +24,7 @@ namespace TEditXna.Editor.Tools
             _preview.Clear();
             _preview.SetPixel(0, 0, 127, 0, 90, 255);
 
-            Icon = new BitmapImage(new Uri(@"pack://application:,,,/TEditXna;component/Images/Tools/shape_square.png"));
+            Icon = new BitmapImage(new Uri(@"pack://application:,,,/TEdit;component/Images/Tools/shape_square.png"));
             Name = "Selection";
             IsActive = false;
         }

@@ -3,7 +3,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Reflection;
 
-namespace TEditXna
+namespace TEdit
 {
     public static class ErrorLogging
     {

@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using TEdit.Geometry.Primitives;
-using TEditXNA.Terraria;
+using TEdit.Terraria;
 
-namespace TEditXna.Editor.Undo
+namespace TEdit.Editor.Undo
 {
     public class UndoBuffer
     {

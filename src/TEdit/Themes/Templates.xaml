@@ -1,8 +1,8 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:Editor="clr-namespace:TEditXna.Editor"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:Editor="clr-namespace:TEdit.Editor"
                     xmlns:System="clr-namespace:System;assembly=mscorlib"
                     xmlns:ComponentModel="clr-namespace:System.ComponentModel;assembly=WindowsBase"
-                    xmlns:Terraria="clr-namespace:TEditXNA.Terraria"
+                    xmlns:Terraria="clr-namespace:TEdit.Terraria"
                     xmlns:enum="clr-namespace:TEdit.UI.Xaml.Enum">
     <enum:EnumItemList x:Key="PaintModeEnum" EnumType="{x:Type Editor:PaintMode}" SortBy="Value"  />
     <enum:EnumItemList x:Key="TrackModeEnum" EnumType="{x:Type Editor:TrackMode}" SortBy="Value"  />

@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.Xna.Framework;
 
-namespace TEditXna.Editor
+namespace TEdit.Editor
 {
     public static class RectangleExt
     {

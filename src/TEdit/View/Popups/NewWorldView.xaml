@@ -1,7 +1,7 @@
-﻿<Window x:Class="TEditXna.View.Popups.NewWorldView"
+﻿<Window x:Class="TEdit.View.Popups.NewWorldView"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:tedit="clr-namespace:TEdit.UI.Xaml" Title="New World"  WindowStartupLocation="CenterOwner" WindowStyle="ToolWindow"
-         Background="{StaticResource WindowBackgroundBrush}" Foreground="{DynamicResource TextBrush}" Icon="/TEditXna;component/Images/tedit.ico" Height="215" Width="300" >
+         Background="{StaticResource WindowBackgroundBrush}" Foreground="{DynamicResource TextBrush}" Icon="/TEdit;component/Images/tedit.ico" Height="215" Width="300" >
     <Window.Resources>
         <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource {x:Type TextBlock}}">
             <Setter Property="Margin" Value="2" />

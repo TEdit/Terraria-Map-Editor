@@ -3,17 +3,17 @@ using System.Linq;
 using System.Windows.Input;
 using System.Windows.Media.Imaging;
 using TEdit.Geometry.Primitives;
-using TEditXNA.Terraria;
-using TEditXna.ViewModel;
+using TEdit.Terraria;
+using TEdit.ViewModel;
 
-namespace TEditXna.Editor.Tools
+namespace TEdit.Editor.Tools
 {
     public sealed class PointTool : BaseTool
     {
         public PointTool(WorldViewModel worldViewModel)
             : base(worldViewModel)
         {
-            Icon = new BitmapImage(new Uri(@"pack://application:,,,/TEditXna;component/Images/Tools/point.png"));
+            Icon = new BitmapImage(new Uri(@"pack://application:,,,/TEdit;component/Images/Tools/point.png"));
             Name = "Point";
             IsActive = false;
             ToolType = ToolType.Npc;

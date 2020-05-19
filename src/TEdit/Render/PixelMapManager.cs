@@ -2,7 +2,7 @@
 using GalaSoft.MvvmLight;
 using Microsoft.Xna.Framework;
 
-namespace TEditXna.Render
+namespace TEdit.Render
 {
     public class PixelMapManager : ObservableObject
     {

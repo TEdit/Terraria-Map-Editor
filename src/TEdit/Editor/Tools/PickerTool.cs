@@ -2,17 +2,17 @@ using System;
 using System.Windows.Input;
 using System.Linq;
 using System.Windows.Media.Imaging;
-using TEditXNA.Terraria;
-using TEditXna.ViewModel;
+using TEdit.Terraria;
+using TEdit.ViewModel;
 
-namespace TEditXna.Editor.Tools
+namespace TEdit.Editor.Tools
 {
     public sealed class PickerTool : BaseTool
     {
         public PickerTool(WorldViewModel worldViewModel)
             : base(worldViewModel)
         {
-            Icon = new BitmapImage(new Uri(@"pack://application:,,,/TEditXna;component/Images/Tools/eyedropper.png"));
+            Icon = new BitmapImage(new Uri(@"pack://application:,,,/TEdit;component/Images/Tools/eyedropper.png"));
             ToolType = ToolType.Pixel;
             Name = "Picker";
         }

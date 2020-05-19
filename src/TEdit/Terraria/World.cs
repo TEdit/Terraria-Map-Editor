@@ -6,9 +6,9 @@ using System.Windows;
 using TEdit.Geometry.Primitives;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Threading;
-using TEditXNA.Terraria.Objects;
+using TEdit.Terraria.Objects;
 
-namespace TEditXNA.Terraria
+namespace TEdit.Terraria
 {
     public partial class World : ObservableObject
     {
@@ -133,7 +133,7 @@ namespace TEditXNA.Terraria
 
                 string msg =
                     "There was an error reading the world file. This is usually caused by a corrupt save file or a world version newer than supported.\r\n\r\n" +
-                    $"TEdit v{TEditXna.App.Version.FileVersion}\r\n" +
+                    $"TEdit v{TEdit.App.Version.FileVersion}\r\n" +
                     $"TEdit Max World: {CompatibleVersion}    Current World: {curVersion}\r\n\r\n" +
                     "Do you wish to force it to load anyway?\r\n\r\n" +
                     "WARNING: This may have unexpected results including corrupt world files and program crashes.\r\n\r\n" +

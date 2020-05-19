@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace TEditXNA.Terraria.Objects
+namespace TEdit.Terraria.Objects
 {
 
     public enum FrameAnchor

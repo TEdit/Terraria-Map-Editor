@@ -1,4 +1,4 @@
-﻿namespace TEditXna.Editor.Tools
+﻿namespace TEdit.Editor.Tools
 {
     public enum ToolType
     {

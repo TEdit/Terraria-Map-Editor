@@ -5,7 +5,7 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using Microsoft.Xna.Framework;
 
-namespace TEditXna.Editor.Plugins
+namespace TEdit.Editor.Plugins
 {
     /// <summary>
     /// Interaction logic for ReplaceAllPlugin.xaml

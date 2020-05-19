@@ -3,10 +3,10 @@ using System.Windows.Input;
 using System.Windows.Media.Imaging;
 using TEdit.Geometry;
 using TEdit.Geometry.Primitives;
-using TEditXNA.Terraria;
-using TEditXna.ViewModel;
-using TEditXna.Terraria.Objects;
-namespace TEditXna.Editor.Tools
+using TEdit.Terraria;
+using TEdit.ViewModel;
+using TEdit.Terraria.Objects;
+namespace TEdit.Editor.Tools
 {
     public sealed class SpriteTool : BaseTool
     {
@@ -20,7 +20,7 @@ namespace TEditXna.Editor.Tools
         public SpriteTool(WorldViewModel worldViewModel)
             : base(worldViewModel)
         {
-            Icon = new BitmapImage(new Uri(@"pack://application:,,,/TEditXna;component/Images/Tools/sprite.png"));
+            Icon = new BitmapImage(new Uri(@"pack://application:,,,/TEdit;component/Images/Tools/sprite.png"));
             Name = "Sprite";
             IsActive = false;
             ToolType = ToolType.Pixel;

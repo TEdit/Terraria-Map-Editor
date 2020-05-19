@@ -2,7 +2,7 @@
 using System.Windows.Media.Imaging;
 using GalaSoft.MvvmLight;
 
-namespace TEditXNA.Terraria.Objects
+namespace TEdit.Terraria.Objects
 {
     public class WallProperty : ObservableObject, ITile
     {

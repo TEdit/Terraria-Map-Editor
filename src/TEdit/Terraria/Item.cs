@@ -2,9 +2,9 @@ using System;
 using System.Linq;
 using System.Windows;
 using GalaSoft.MvvmLight;
-using TEditXNA.Terraria.Objects;
+using TEdit.Terraria.Objects;
 
-namespace TEditXNA.Terraria
+namespace TEdit.Terraria
 {
     [Serializable]
     public class Item : ObservableObject

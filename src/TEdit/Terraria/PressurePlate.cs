@@ -1,7 +1,7 @@
 using System;
 using GalaSoft.MvvmLight;
 
-namespace TEditXNA.Terraria
+namespace TEdit.Terraria
 {
     [Serializable]
     public class PressurePlate : ObservableObject

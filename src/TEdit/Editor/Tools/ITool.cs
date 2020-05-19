@@ -1,6 +1,6 @@
 ﻿using System.Windows.Media.Imaging;
 
-namespace TEditXna.Editor.Tools
+namespace TEdit.Editor.Tools
 {
     public interface ITool
     {

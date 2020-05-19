@@ -6,9 +6,9 @@ using System.Windows.Media.Imaging;
 using TEdit.Geometry.Primitives;
 using GalaSoft.MvvmLight;
 using Microsoft.Xna.Framework;
-using TEditXNA.Terraria;
+using TEdit.Terraria;
 
-namespace TEditXna.Editor.Clipboard
+namespace TEdit.Editor.Clipboard
 {
     public partial class ClipboardBuffer : ObservableObject
     {

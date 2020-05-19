@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace TEditXna.Editor
+namespace TEdit.Editor
 {
     /// <summary>A queue of FloodFillRanges.</summary>
     public class FloodFillRangeQueue

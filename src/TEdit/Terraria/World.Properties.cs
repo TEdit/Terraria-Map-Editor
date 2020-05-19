@@ -2,9 +2,9 @@
 using System.Collections.ObjectModel;
 using System.Linq;
 using GalaSoft.MvvmLight;
-using TEditXNA.Terraria.Objects;
+using TEdit.Terraria.Objects;
 
-namespace TEditXNA.Terraria
+namespace TEdit.Terraria
 {
     public partial class World : ObservableObject
     {

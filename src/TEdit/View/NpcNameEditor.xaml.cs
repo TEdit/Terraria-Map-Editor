@@ -1,6 +1,6 @@
 ﻿using System.Windows.Controls;
 
-namespace TEditXna.View
+namespace TEdit.View
 {
     /// <summary>
     /// Interaction logic for NpcNameEditor.xaml

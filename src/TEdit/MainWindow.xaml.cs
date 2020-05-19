@@ -3,11 +3,11 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Input;
 using TEdit.Geometry.Primitives;
-using TEditXNA.Terraria;
-using TEditXna.Editor;
-using TEditXna.ViewModel;
+using TEdit.Terraria;
+using TEdit.Editor;
+using TEdit.ViewModel;
 
-namespace TEditXna
+namespace TEdit
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml

@@ -3,12 +3,12 @@ using System.Collections.ObjectModel;
 using System.Windows;
 using TEdit.Geometry.Primitives;
 using GalaSoft.MvvmLight;
-using TEditXna.ViewModel;
+using TEdit.ViewModel;
 using XNA = Microsoft.Xna.Framework;
-using TEditXNA.Terraria;
-using TEditXna.Terraria.Objects;
+using TEdit.Terraria;
+using TEdit.Terraria.Objects;
 
-namespace TEditXna.Editor.Clipboard
+namespace TEdit.Editor.Clipboard
 {
     public class ClipboardManager : ObservableObject
     {

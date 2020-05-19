@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using TEdit.Geometry.Primitives;
-using TEditXna.Editor;
-using TEditXna.ViewModel;
-using TEditXNA.Terraria;
+using TEdit.Editor;
+using TEdit.ViewModel;
+using TEdit.Terraria;
 
 /* Heathtech */
-namespace TEditXna.Terraria.Objects
+namespace TEdit.Terraria.Objects
 {
     class BlendRules
     {

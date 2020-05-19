@@ -1,8 +1,8 @@
 ﻿using System.Windows;
-using TEditXNA.Terraria;
-using TEditXNA.Terraria.Objects;
+using TEdit.Terraria;
+using TEdit.Terraria.Objects;
 
-namespace TEditXna.View.Popups
+namespace TEdit.View.Popups
 {
     /// <summary>
     /// Interaction logic for NewWorldView.xaml

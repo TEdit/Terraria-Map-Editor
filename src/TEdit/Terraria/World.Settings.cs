@@ -7,11 +7,11 @@ using System.Windows.Media;
 using System.Xml.Linq;
 using TEdit.Geometry.Primitives;
 using GalaSoft.MvvmLight;
-using TEditXna.Editor.Clipboard;
+using TEdit.Editor.Clipboard;
 using XNA = Microsoft.Xna.Framework;
-using TEditXNA.Terraria.Objects;
+using TEdit.Terraria.Objects;
 
-namespace TEditXNA.Terraria
+namespace TEdit.Terraria
 {
     public partial class World
     {

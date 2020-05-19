@@ -1,6 +1,6 @@
 ﻿using System.Windows;
 
-namespace TEditXna.Editor.Plugins
+namespace TEdit.Editor.Plugins
 {
     /// <summary>
     /// Interaction logic for ReplaceAllPlugin.xaml

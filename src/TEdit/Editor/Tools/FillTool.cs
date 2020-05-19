@@ -2,11 +2,11 @@ using System;
 using System.Windows.Input;
 using System.Windows.Media.Imaging;
 using TEdit.Geometry.Primitives;
-using TEditXNA.Terraria;
-using TEditXna.ViewModel;
-using TEditXna.Terraria.Objects;
+using TEdit.Terraria;
+using TEdit.ViewModel;
+using TEdit.Terraria.Objects;
 
-namespace TEditXna.Editor.Tools
+namespace TEdit.Editor.Tools
 {
     public sealed class FillTool : BaseTool
     {
@@ -19,7 +19,7 @@ namespace TEditXna.Editor.Tools
         public FillTool(WorldViewModel worldViewModel)
             : base(worldViewModel)
         {
-            Icon = new BitmapImage(new Uri(@"pack://application:,,,/TEditXna;component/Images/Tools/paintcan.png"));
+            Icon = new BitmapImage(new Uri(@"pack://application:,,,/TEdit;component/Images/Tools/paintcan.png"));
             Name = "Fill";
             ToolType = ToolType.Pixel;
         }

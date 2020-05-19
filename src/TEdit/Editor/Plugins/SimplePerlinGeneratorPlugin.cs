@@ -1,9 +1,9 @@
 using System;
 using Microsoft.Xna.Framework;
-using TEditXna.ViewModel;
-using TEditXNA.Terraria;
+using TEdit.ViewModel;
+using TEdit.Terraria;
 
-namespace TEditXna.Editor.Plugins
+namespace TEdit.Editor.Plugins
 {
     public sealed class SimplePerlinGeneratorPlugin : BasePlugin
     {

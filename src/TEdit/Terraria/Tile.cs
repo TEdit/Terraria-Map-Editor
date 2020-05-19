@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 
-namespace TEditXNA.Terraria
+namespace TEdit.Terraria
 {
 
     public enum BrickStyle : byte

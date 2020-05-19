@@ -1,10 +1,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Xna.Framework;
-using TEditXNA.Terraria;
-using TEditXna.ViewModel;
+using TEdit.Terraria;
+using TEdit.ViewModel;
 
-namespace TEditXna.Editor.Plugins
+namespace TEdit.Editor.Plugins
 {
     public class FindChestWithPlugin : BasePlugin
     {

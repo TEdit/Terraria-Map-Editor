@@ -5,11 +5,11 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using TEdit.Geometry;
 using TEdit.Geometry.Primitives;
-using TEditXna.ViewModel;
+using TEdit.ViewModel;
 using System.Linq;
-using TEditXna.Terraria.Objects;
+using TEdit.Terraria.Objects;
 
-namespace TEditXna.Editor.Tools
+namespace TEdit.Editor.Tools
 {
     public sealed class MorphTool : BaseTool
     {
@@ -37,7 +37,7 @@ namespace TEditXna.Editor.Tools
         public MorphTool(WorldViewModel worldViewModel)
             : base(worldViewModel)
         {
-            Icon = new BitmapImage(new Uri(@"pack://application:,,,/TEditXna;component/Images/Tools/paintbrush.png"));
+            Icon = new BitmapImage(new Uri(@"pack://application:,,,/TEdit;component/Images/Tools/paintbrush.png"));
             Name = "Morph";
             ToolType = ToolType.Brush;
         }

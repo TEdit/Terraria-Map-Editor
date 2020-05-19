@@ -2,7 +2,7 @@
 using System.IO;
 using System.Text.RegularExpressions;
 
-namespace TEditXNA.Terraria
+namespace TEdit.Terraria
 {
 
     /* SBLogic

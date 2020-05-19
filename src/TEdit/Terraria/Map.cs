@@ -1,7 +1,7 @@
 ﻿using System.IO;
 using GalaSoft.MvvmLight;
 
-namespace TEditXNA.Terraria
+namespace TEdit.Terraria
 {
     public class MapTile : ObservableObject
     {

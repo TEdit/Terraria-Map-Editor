@@ -1,8 +1,8 @@
 ﻿using System.Threading;
-using TEditXna.Editor.Plugins;
-using TEditXna.Editor.Tools;
+using TEdit.Editor.Plugins;
+using TEdit.Editor.Tools;
 
-namespace TEditXna.ViewModel
+namespace TEdit.ViewModel
 {
     public static class ViewModelLocator
     {

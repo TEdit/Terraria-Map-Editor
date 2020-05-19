@@ -5,11 +5,11 @@ using System.Threading.Tasks;
 using TEdit.Geometry.Primitives;
 using TEdit.Utility;
 using Microsoft.Xna.Framework;
-using TEditXNA.Terraria;
-using TEditXna.Editor;
-using TEditXna.Render;
+using TEdit.Terraria;
+using TEdit.Editor;
+using TEdit.Render;
 
-namespace TEditXna.ViewModel
+namespace TEdit.ViewModel
 {
     public partial class WorldViewModel
     {

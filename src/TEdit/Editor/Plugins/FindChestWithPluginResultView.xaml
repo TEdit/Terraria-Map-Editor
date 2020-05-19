@@ -1,12 +1,12 @@
-﻿<Window x:Class="TEditXna.Editor.Plugins.FindChestWithPluginResultView"
+﻿<Window x:Class="TEdit.Editor.Plugins.FindChestWithPluginResultView"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:view="clr-namespace:TEditXna.View" 
+        xmlns:view="clr-namespace:TEdit.View" 
         SizeToContent="WidthAndHeight"
         Title="FindChestWithPlugin"
         ResizeMode="CanResizeWithGrip" 
         WindowStartupLocation="CenterOwner"
-        Icon="/TEditXna;component/Images/tedit.ico" 
+        Icon="/TEdit;component/Images/tedit.ico" 
         Topmost="True" 
         Background="{StaticResource ControlBackgroundBrush}">
     <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">

@@ -1,8 +1,8 @@
-﻿<Window x:Class="TEditXna.MainWindow"
+﻿<Window x:Class="TEdit.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:View="clr-namespace:TEditXna.View" x:Name="Shell"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:View="clr-namespace:TEdit.View" x:Name="Shell"
         Title="{Binding WindowTitle}" Height="600" Width="800" TextOptions.TextFormattingMode="Display" TextOptions.TextRenderingMode="Aliased"
-        UseLayoutRounding="True" Background="{StaticResource WindowBackgroundBrush}" Foreground="{DynamicResource TextBrush}" Icon="/TEditXna;component/Images/tedit.ico"
+        UseLayoutRounding="True" Background="{StaticResource WindowBackgroundBrush}" Foreground="{DynamicResource TextBrush}" Icon="/TEdit;component/Images/tedit.ico"
    >
     <Window.Resources>
         <Image x:Key="TB_LogIcon" x:Shared="false" Source="/Images/Toolbar/report_magnify.png" Height="16" Width="16" SnapsToDevicePixels="True" RenderOptions.BitmapScalingMode="NearestNeighbor"/>

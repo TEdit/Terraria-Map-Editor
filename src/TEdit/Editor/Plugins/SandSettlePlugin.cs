@@ -1,8 +1,8 @@
-using TEditXna.ViewModel;
+using TEdit.ViewModel;
 using System.Linq;
-using TEditXna.Terraria.Objects;
+using TEdit.Terraria.Objects;
 
-namespace TEditXna.Editor.Plugins
+namespace TEdit.Editor.Plugins
 {
     public sealed class SandSettlePlugin : BasePlugin
     {

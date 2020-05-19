@@ -1,9 +1,9 @@
 ﻿using System.Windows;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using TEditXNA.Terraria;
+using TEdit.Terraria;
 
-namespace TEditXna.Render
+namespace TEdit.Render
 {
     public class RenderMiniMap
     {

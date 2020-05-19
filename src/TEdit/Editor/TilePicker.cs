@@ -1,9 +1,9 @@
 ﻿using System.ComponentModel;
 using GalaSoft.MvvmLight;
-using TEditXNA.Terraria;
+using TEdit.Terraria;
 using System.Windows.Input;
 
-namespace TEditXna.Editor
+namespace TEdit.Editor
 {
     public enum HalfBlockMode
     {

@@ -1,7 +1,7 @@
 ﻿using System.Windows.Media;
 using GalaSoft.MvvmLight;
 
-namespace TEditXNA.Terraria.Objects
+namespace TEdit.Terraria.Objects
 {
     public class PaintProperty : ObservableObject
     {

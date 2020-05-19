@@ -1,4 +1,4 @@
-namespace TEditXNA.Terraria
+namespace TEdit.Terraria
 {
     public static class Minecart
     {

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 
-namespace TEditXNA.Terraria
+namespace TEdit.Terraria
 {
     public class Bestiary : ObservableObject
     {

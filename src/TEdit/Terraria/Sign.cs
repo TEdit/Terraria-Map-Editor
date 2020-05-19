@@ -1,9 +1,9 @@
 using System;
 using GalaSoft.MvvmLight;
-using TEditXna.ViewModel;
-using TEditXNA.Terraria.Objects;
+using TEdit.ViewModel;
+using TEdit.Terraria.Objects;
 
-namespace TEditXNA.Terraria
+namespace TEdit.Terraria
 {
     [Serializable]
     public class Sign : ObservableObject

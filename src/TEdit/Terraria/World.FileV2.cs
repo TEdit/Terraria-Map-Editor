@@ -5,9 +5,9 @@ using TEdit.Geometry.Primitives;
 using Vector2 = TEdit.Geometry.Primitives.Vector2;
 using System;
 using System.IO;
-using TEditXna.Terraria;
+using TEdit.Terraria;
 
-namespace TEditXNA.Terraria
+namespace TEdit.Terraria
 {
 
     public partial class World

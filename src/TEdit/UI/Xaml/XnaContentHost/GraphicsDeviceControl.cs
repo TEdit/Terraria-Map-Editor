@@ -14,7 +14,7 @@ using System.Windows.Input;
 using System.Windows.Interop;
 using System.Windows.Media;
 using Microsoft.Xna.Framework.Graphics;
-using TEditXna;
+using TEdit;
 
 namespace TEdit.UI.Xaml.XnaContentHost
 {

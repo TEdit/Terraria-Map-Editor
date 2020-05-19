@@ -1,7 +1,7 @@
 ﻿using System.Linq;
 using GalaSoft.MvvmLight;
 
-namespace TEditXNA.Terraria.Objects
+namespace TEdit.Terraria.Objects
 {
     public class NpcName : ObservableObject
     {

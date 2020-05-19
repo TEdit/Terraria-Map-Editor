@@ -1,7 +1,7 @@
 using GalaSoft.MvvmLight;
-using TEditXna.ViewModel;
+using TEdit.ViewModel;
 
-namespace TEditXna.Editor.Plugins
+namespace TEdit.Editor.Plugins
 {
     public abstract class BasePlugin : ObservableObject, IPlugin
     {

@@ -2,7 +2,7 @@
 using System.Windows.Data;
 using System.Windows.Input;
 
-namespace TEditXna.View
+namespace TEdit.View
 {
     /// <summary>
     /// Interaction logic for SpriteView.xaml

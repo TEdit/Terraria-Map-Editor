@@ -2,7 +2,7 @@
 using TEdit.Geometry.Primitives;
 using TEdit.UI.Xaml.XnaContentHost;
 
-namespace TEditXna.Editor
+namespace TEdit.Editor
 {
     public class TileMouseState
     {

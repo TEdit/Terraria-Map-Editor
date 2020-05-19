@@ -1,10 +1,10 @@
 using System.Linq;
 using System.Windows;
 using TEdit.Geometry.Primitives;
-using TEditXNA.Terraria;
-using TEditXna.ViewModel;
+using TEdit.Terraria;
+using TEdit.ViewModel;
 
-namespace TEditXna.Editor.Plugins
+namespace TEdit.Editor.Plugins
 {
     public class RemoveAllChestsPlugin : BasePlugin
     {

@@ -1,4 +1,4 @@
-﻿namespace TEditXna.Editor.Plugins
+﻿namespace TEdit.Editor.Plugins
 {
     public interface IPlugin
     {

@@ -3,7 +3,7 @@ using TEdit.Geometry.Primitives;
 using GalaSoft.MvvmLight;
 using Microsoft.Xna.Framework;
 
-namespace TEditXna.Editor
+namespace TEdit.Editor
 {
     public class Selection : ObservableObject
     {

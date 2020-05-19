@@ -2,11 +2,11 @@
 using System.IO;
 using System.Windows.Media.Imaging;
 using TEdit.Geometry.Primitives;
-using TEditXna.Helper;
-using TEditXNA.Terraria;
-using TEditXNA.Terraria.Objects;
+using TEdit.Helper;
+using TEdit.Terraria;
+using TEdit.Terraria.Objects;
 
-namespace TEditXna.Editor.Clipboard
+namespace TEdit.Editor.Clipboard
 {
     public partial class ClipboardBuffer
     {

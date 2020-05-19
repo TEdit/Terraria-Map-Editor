@@ -1,8 +1,8 @@
 using TEdit.Geometry.Primitives;
 using GalaSoft.MvvmLight;
-using TEditXNA.Terraria;
+using TEdit.Terraria;
 
-namespace TEditXna.Editor
+namespace TEdit.Editor
 {
     public class MouseTile : ObservableObject
     {
@@ -59,7 +59,7 @@ namespace TEditXna.Editor
 
                 if (World.TileProperties.Count > _tile.Type)
                 {
-                    TEditXNA.Terraria.Objects.TileProperty tileProperty = World.TileProperties[_tile.Type];
+                    TEdit.Terraria.Objects.TileProperty tileProperty = World.TileProperties[_tile.Type];
                     if (!tileProperty.HasFrameName)
                     {
                         TileName = tileProperty.Name;

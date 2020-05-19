@@ -1,5 +1,5 @@
-﻿<Popup x:Class="TEditXna.View.Popups.ChestPopup" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:Terraria="clr-namespace:TEditXNA.Terraria"
+﻿<Popup x:Class="TEdit.View.Popups.ChestPopup" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:Terraria="clr-namespace:TEdit.Terraria"
        Placement="Mouse" MouseDown="Popup_MouseDown"
        MouseLeave="Popup_MouseLeave">
     <DockPanel Background="{DynamicResource WindowBackgroundBrush}" LastChildFill="True">

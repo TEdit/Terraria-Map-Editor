@@ -1,7 +1,7 @@
 ﻿using System.Windows.Media;
 using System.Windows.Media.Imaging;
 
-namespace TEditXNA.Terraria.Objects
+namespace TEdit.Terraria.Objects
 {
     public interface ITile
     {

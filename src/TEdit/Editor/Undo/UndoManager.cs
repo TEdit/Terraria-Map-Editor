@@ -4,11 +4,11 @@ using System.Linq;
 using System.Threading;
 using TEdit.Geometry.Primitives;
 using GalaSoft.MvvmLight;
-using TEditXNA.Terraria;
-using TEditXna.ViewModel;
-using TEditXna.Terraria.Objects;
+using TEdit.Terraria;
+using TEdit.ViewModel;
+using TEdit.Terraria.Objects;
 
-namespace TEditXna.Editor.Undo
+namespace TEdit.Editor.Undo
 {
     public class UndoManager : ObservableObject, IDisposable
     {

@@ -1,9 +1,9 @@
 ﻿using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using GalaSoft.MvvmLight;
-using TEditXna.ViewModel;
+using TEdit.ViewModel;
 
-namespace TEditXna.Editor.Tools
+namespace TEdit.Editor.Tools
 {
     public abstract class BaseTool : ObservableObject, ITool
     {

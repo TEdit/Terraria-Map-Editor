@@ -1,10 +1,10 @@
 ﻿using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
-using TEditXna.ViewModel;
-using TEditXNA.Terraria;
+using TEdit.ViewModel;
+using TEdit.Terraria;
 
-namespace TEditXna.Editor.Plugins
+namespace TEdit.Editor.Plugins
 {
     class FindPlanteraBulbPlugin : BasePlugin
     {

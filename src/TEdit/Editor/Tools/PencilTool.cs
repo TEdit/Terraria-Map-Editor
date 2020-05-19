@@ -3,10 +3,10 @@ using System.Windows.Input;
 using System.Windows.Media.Imaging;
 using TEdit.Geometry;
 using TEdit.Geometry.Primitives;
-using TEditXna.ViewModel;
-using TEditXna.Terraria.Objects;
+using TEdit.ViewModel;
+using TEdit.Terraria.Objects;
 
-namespace TEditXna.Editor.Tools
+namespace TEdit.Editor.Tools
 {
     public sealed class PencilTool : BaseTool
     {
@@ -18,7 +18,7 @@ namespace TEditXna.Editor.Tools
         public PencilTool(WorldViewModel worldViewModel)
             : base(worldViewModel)
         {
-            Icon = new BitmapImage(new Uri(@"pack://application:,,,/TEditXna;component/Images/Tools/pencil.png"));
+            Icon = new BitmapImage(new Uri(@"pack://application:,,,/TEdit;component/Images/Tools/pencil.png"));
             Name = "Pencil";
             IsActive = false;
             ToolType = ToolType.Pixel;

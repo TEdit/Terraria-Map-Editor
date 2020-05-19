@@ -9,16 +9,16 @@ using GalaSoft.MvvmLight;
 using TEdit.UI.Xaml.XnaContentHost;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using TEditXNA.Terraria;
-using TEditXNA.Terraria.Objects;
-using TEditXna.Editor;
-using TEditXna.Editor.Tools;
-using TEditXna.ViewModel;
+using TEdit.Terraria;
+using TEdit.Terraria.Objects;
+using TEdit.Editor;
+using TEdit.Editor.Tools;
+using TEdit.ViewModel;
 using System.Windows.Media.Imaging;
 using Point = System.Windows.Point;
 using Vector2 = Microsoft.Xna.Framework.Vector2;
 
-namespace TEditXna.View
+namespace TEdit.View
 {
     /// <summary>
     /// Interaction logic for WorldRenderXna.xaml
@@ -196,33 +196,33 @@ namespace TEditXna.View
 
         private void LoadResourceTextures(GraphicsDeviceEventArgs e)
         {
-            _textures.Add("Spawn", WriteableBitmapEx.ResourceToTexture2D("TEditXna.Images.Overlays.spawn_marker.png", e.GraphicsDevice));
-            _textures.Add("Dungeon", WriteableBitmapEx.ResourceToTexture2D("TEditXna.Images.Overlays.dungeon_marker.png", e.GraphicsDevice));
-            _textures.Add("Old Man", WriteableBitmapEx.ResourceToTexture2D("TEditXna.Images.Overlays.npc_old_man.png", e.GraphicsDevice));
-            _textures.Add("Arms Dealer", WriteableBitmapEx.ResourceToTexture2D("TEditXna.Images.Overlays.npc_arms_dealer.png", e.GraphicsDevice));
-            _textures.Add("Clothier", WriteableBitmapEx.ResourceToTexture2D("TEditXna.Images.Overlays.npc_clothier.png", e.GraphicsDevice));
-            _textures.Add("Demolitionist", WriteableBitmapEx.ResourceToTexture2D("TEditXna.Images.Overlays.npc_demolitionist.png", e.GraphicsDevice));
-            _textures.Add("Dryad", WriteableBitmapEx.ResourceToTexture2D("TEditXna.Images.Overlays.npc_dryad.png", e.GraphicsDevice));
-            _textures.Add("Guide", WriteableBitmapEx.ResourceToTexture2D("TEditXna.Images.Overlays.npc_guide.png", e.GraphicsDevice));
-            _textures.Add("Merchant", WriteableBitmapEx.ResourceToTexture2D("TEditXna.Images.Overlays.npc_merchant.png", e.GraphicsDevice));
-            _textures.Add("Nurse", WriteableBitmapEx.ResourceToTexture2D("TEditXna.Images.Overlays.npc_nurse.png", e.GraphicsDevice));
-            _textures.Add("Goblin Tinkerer", WriteableBitmapEx.ResourceToTexture2D("TEditXna.Images.Overlays.npc_goblin.png", e.GraphicsDevice));
-            _textures.Add("Wizard", WriteableBitmapEx.ResourceToTexture2D("TEditXna.Images.Overlays.npc_wizard.png", e.GraphicsDevice));
-            _textures.Add("Mechanic", WriteableBitmapEx.ResourceToTexture2D("TEditXna.Images.Overlays.npc_mechanic.png", e.GraphicsDevice));
-            _textures.Add("Santa Claus", WriteableBitmapEx.ResourceToTexture2D("TEditXna.Images.Overlays.npc_santa_claus.png", e.GraphicsDevice));
-            _textures.Add("Truffle", WriteableBitmapEx.ResourceToTexture2D("TEditXna.Images.Overlays.npc_truffle.png", e.GraphicsDevice));
-            _textures.Add("Steampunker", WriteableBitmapEx.ResourceToTexture2D("TEditXna.Images.Overlays.npc_steampunker.png", e.GraphicsDevice));
-            _textures.Add("Dye Trader", WriteableBitmapEx.ResourceToTexture2D("TEditXna.Images.Overlays.npc_dyetrader.png", e.GraphicsDevice));
-            _textures.Add("Party Girl", WriteableBitmapEx.ResourceToTexture2D("TEditXna.Images.Overlays.npc_partygirl.png", e.GraphicsDevice));
-            _textures.Add("Cyborg", WriteableBitmapEx.ResourceToTexture2D("TEditXna.Images.Overlays.npc_cyborg.png", e.GraphicsDevice));
-            _textures.Add("Painter", WriteableBitmapEx.ResourceToTexture2D("TEditXna.Images.Overlays.npc_painter.png", e.GraphicsDevice));
-            _textures.Add("Witch Doctor", WriteableBitmapEx.ResourceToTexture2D("TEditXna.Images.Overlays.npc_witch_doctor.png", e.GraphicsDevice));
-            _textures.Add("Pirate", WriteableBitmapEx.ResourceToTexture2D("TEditXna.Images.Overlays.npc_pirate.png", e.GraphicsDevice));
-            _textures.Add("Stylist", WriteableBitmapEx.ResourceToTexture2D("TEditXna.Images.Overlays.npc_stylist.png", e.GraphicsDevice));
-            _textures.Add("Angler", WriteableBitmapEx.ResourceToTexture2D("TEditXna.Images.Overlays.npc_angler.png", e.GraphicsDevice));
-            _textures.Add("Tax Collector", WriteableBitmapEx.ResourceToTexture2D("TEditXna.Images.Overlays.npc_tax_collector.png", e.GraphicsDevice));
-            _textures.Add("Tavernkeep", WriteableBitmapEx.ResourceToTexture2D("TEditXna.Images.Overlays.npc_tavernkeep.png", e.GraphicsDevice));
-            _textures.Add("Grid", WriteableBitmapEx.ResourceToTexture2D("TEditXna.Images.Overlays.grid.png", e.GraphicsDevice));
+            _textures.Add("Spawn", WriteableBitmapEx.ResourceToTexture2D("TEdit.Images.Overlays.spawn_marker.png", e.GraphicsDevice));
+            _textures.Add("Dungeon", WriteableBitmapEx.ResourceToTexture2D("TEdit.Images.Overlays.dungeon_marker.png", e.GraphicsDevice));
+            _textures.Add("Old Man", WriteableBitmapEx.ResourceToTexture2D("TEdit.Images.Overlays.npc_old_man.png", e.GraphicsDevice));
+            _textures.Add("Arms Dealer", WriteableBitmapEx.ResourceToTexture2D("TEdit.Images.Overlays.npc_arms_dealer.png", e.GraphicsDevice));
+            _textures.Add("Clothier", WriteableBitmapEx.ResourceToTexture2D("TEdit.Images.Overlays.npc_clothier.png", e.GraphicsDevice));
+            _textures.Add("Demolitionist", WriteableBitmapEx.ResourceToTexture2D("TEdit.Images.Overlays.npc_demolitionist.png", e.GraphicsDevice));
+            _textures.Add("Dryad", WriteableBitmapEx.ResourceToTexture2D("TEdit.Images.Overlays.npc_dryad.png", e.GraphicsDevice));
+            _textures.Add("Guide", WriteableBitmapEx.ResourceToTexture2D("TEdit.Images.Overlays.npc_guide.png", e.GraphicsDevice));
+            _textures.Add("Merchant", WriteableBitmapEx.ResourceToTexture2D("TEdit.Images.Overlays.npc_merchant.png", e.GraphicsDevice));
+            _textures.Add("Nurse", WriteableBitmapEx.ResourceToTexture2D("TEdit.Images.Overlays.npc_nurse.png", e.GraphicsDevice));
+            _textures.Add("Goblin Tinkerer", WriteableBitmapEx.ResourceToTexture2D("TEdit.Images.Overlays.npc_goblin.png", e.GraphicsDevice));
+            _textures.Add("Wizard", WriteableBitmapEx.ResourceToTexture2D("TEdit.Images.Overlays.npc_wizard.png", e.GraphicsDevice));
+            _textures.Add("Mechanic", WriteableBitmapEx.ResourceToTexture2D("TEdit.Images.Overlays.npc_mechanic.png", e.GraphicsDevice));
+            _textures.Add("Santa Claus", WriteableBitmapEx.ResourceToTexture2D("TEdit.Images.Overlays.npc_santa_claus.png", e.GraphicsDevice));
+            _textures.Add("Truffle", WriteableBitmapEx.ResourceToTexture2D("TEdit.Images.Overlays.npc_truffle.png", e.GraphicsDevice));
+            _textures.Add("Steampunker", WriteableBitmapEx.ResourceToTexture2D("TEdit.Images.Overlays.npc_steampunker.png", e.GraphicsDevice));
+            _textures.Add("Dye Trader", WriteableBitmapEx.ResourceToTexture2D("TEdit.Images.Overlays.npc_dyetrader.png", e.GraphicsDevice));
+            _textures.Add("Party Girl", WriteableBitmapEx.ResourceToTexture2D("TEdit.Images.Overlays.npc_partygirl.png", e.GraphicsDevice));
+            _textures.Add("Cyborg", WriteableBitmapEx.ResourceToTexture2D("TEdit.Images.Overlays.npc_cyborg.png", e.GraphicsDevice));
+            _textures.Add("Painter", WriteableBitmapEx.ResourceToTexture2D("TEdit.Images.Overlays.npc_painter.png", e.GraphicsDevice));
+            _textures.Add("Witch Doctor", WriteableBitmapEx.ResourceToTexture2D("TEdit.Images.Overlays.npc_witch_doctor.png", e.GraphicsDevice));
+            _textures.Add("Pirate", WriteableBitmapEx.ResourceToTexture2D("TEdit.Images.Overlays.npc_pirate.png", e.GraphicsDevice));
+            _textures.Add("Stylist", WriteableBitmapEx.ResourceToTexture2D("TEdit.Images.Overlays.npc_stylist.png", e.GraphicsDevice));
+            _textures.Add("Angler", WriteableBitmapEx.ResourceToTexture2D("TEdit.Images.Overlays.npc_angler.png", e.GraphicsDevice));
+            _textures.Add("Tax Collector", WriteableBitmapEx.ResourceToTexture2D("TEdit.Images.Overlays.npc_tax_collector.png", e.GraphicsDevice));
+            _textures.Add("Tavernkeep", WriteableBitmapEx.ResourceToTexture2D("TEdit.Images.Overlays.npc_tavernkeep.png", e.GraphicsDevice));
+            _textures.Add("Grid", WriteableBitmapEx.ResourceToTexture2D("TEdit.Images.Overlays.grid.png", e.GraphicsDevice));
         }
 
         private void LoadTerrariaTextures(GraphicsDeviceEventArgs e)

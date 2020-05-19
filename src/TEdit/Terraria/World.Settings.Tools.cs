@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Xml.Linq;
-using TEditXna.Editor;
+using TEdit.Editor;
 
-namespace TEditXNA.Terraria
+namespace TEdit.Terraria
 {
     public partial class ToolDefaultData
     {

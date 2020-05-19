@@ -1,7 +1,7 @@
 ﻿using System.Windows.Controls;
 using System.Windows.Input;
 
-namespace TEditXna.View
+namespace TEdit.View
 {
     /// <summary>
     /// Interaction logic for KillTallyView.xaml

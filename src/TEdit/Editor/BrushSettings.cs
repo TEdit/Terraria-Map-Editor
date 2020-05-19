@@ -1,8 +1,8 @@
 ﻿using System;
 using GalaSoft.MvvmLight;
-using TEditXNA.Terraria;
+using TEdit.Terraria;
 
-namespace TEditXna.Editor
+namespace TEdit.Editor
 {
     public class BrushSettings : ObservableObject
     {

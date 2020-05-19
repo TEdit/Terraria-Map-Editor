@@ -7,13 +7,13 @@ using TEdit.Framework.Events;
 using TEdit.Geometry.Primitives;
 using GalaSoft.MvvmLight.Command;
 using Microsoft.Win32;
-using TEditXNA.Terraria;
-using TEditXna.Editor;
-using TEditXna.Editor.Clipboard;
-using TEditXna.Editor.Plugins;
-using TEditXna.Editor.Tools;
+using TEdit.Terraria;
+using TEdit.Editor;
+using TEdit.Editor.Clipboard;
+using TEdit.Editor.Plugins;
+using TEdit.Editor.Tools;
 
-namespace TEditXna.ViewModel
+namespace TEdit.ViewModel
 {
     public partial class WorldViewModel
     {

@@ -2,9 +2,9 @@ using System;
 using System.Collections.ObjectModel;
 using System.IO;
 using GalaSoft.MvvmLight;
-using TEditXna.Terraria;
+using TEdit.Terraria;
 
-namespace TEditXNA.Terraria
+namespace TEdit.Terraria
 {
     public class TileEntityItem : ObservableObject
     {

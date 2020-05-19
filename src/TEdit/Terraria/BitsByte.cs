@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TEditXna.Terraria
+namespace TEdit.Terraria
 {
     /// <summary>
     /// BitFlag Byte Structure

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace TEditXna.Render
+namespace TEdit.Render
 {
     public class TextureData
     {

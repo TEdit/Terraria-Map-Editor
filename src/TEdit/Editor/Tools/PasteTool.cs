@@ -4,17 +4,17 @@ using System.Windows.Input;
 using System.Windows.Media.Imaging;
 using TEdit.Geometry.Primitives;
 using Microsoft.Xna.Framework;
-using TEditXna.ViewModel;
-using TEditXna.Terraria.Objects;
+using TEdit.ViewModel;
+using TEdit.Terraria.Objects;
 
-namespace TEditXna.Editor.Tools
+namespace TEdit.Editor.Tools
 {
     public sealed class PasteTool : BaseTool
     {
         public PasteTool(WorldViewModel worldViewModel)
             : base(worldViewModel)
         {
-            Icon = new BitmapImage(new Uri(@"pack://application:,,,/TEditXna;component/Images/Tools/paste.png"));
+            Icon = new BitmapImage(new Uri(@"pack://application:,,,/TEdit;component/Images/Tools/paste.png"));
             Name = "Paste";
             IsActive = false;
             ToolType = ToolType.Pixel;

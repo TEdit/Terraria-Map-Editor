@@ -2,7 +2,7 @@ using System;
 using TEdit.Geometry.Primitives;
 using GalaSoft.MvvmLight;
 
-namespace TEditXNA.Terraria
+namespace TEdit.Terraria
 {
     [Serializable]
     public class TownManager : ObservableObject

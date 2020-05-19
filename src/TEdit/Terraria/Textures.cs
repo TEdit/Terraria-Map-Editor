@@ -4,9 +4,9 @@ using System.IO;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
-using TEditXna;
+using TEdit;
 
-namespace TEditXNA.Terraria
+namespace TEdit.Terraria
 {
     public class Textures
     {
