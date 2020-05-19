@@ -214,8 +214,8 @@ namespace TEdit.Terraria
         private int _savedOreTiersCobalt;
         private int _savedOreTiersMythril;
         private int _savedOreTiersAdamantite;
-        private Bestiary _bestiary;
-        private CreativePowers _creativePowers;
+        private Bestiary _bestiary = new Bestiary();
+        private CreativePowers _creativePowers = new CreativePowers();
 
         public Bestiary Bestiary
         {
