@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net48</TargetFramework>
+    <Platforms>AnyCPU;x86;x64</Platforms>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Reference Include="TerrariaServer">
+      <HintPath>D:\Steam\steamapps\common\Terraria\TerrariaServer.exe</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>

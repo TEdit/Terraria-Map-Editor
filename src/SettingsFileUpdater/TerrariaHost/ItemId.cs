@@ -1,29 +1,17 @@
 ﻿using System.Linq;
 using System;
 using System.Collections.Generic;
-using Microsoft.Xna.Framework.Content;
-using Terraria;
-using System.Reflection;
-using Terraria.GameContent;
-using Terraria.GameContent.Drawing;
-using Terraria.GameContent.Creative;
-using Terraria.GameContent.UI;
-using Terraria.Initializers;
-using Terraria.ObjectData;
-using Terraria.DataStructures;
-using Terraria.ID;
-using Terraria.GameContent.Bestiary;
-using Terraria.GameContent.ItemDropRules;
-using Terraria.Utilities;
 using System.Threading;
-using Terraria.Social;
 using System.Threading.Tasks;
+
+using Terraria;
 using Terraria.Localization;
+using Terraria.Initializers;
+using Terraria.Social;
+using System.Text;
 
-namespace TEditCodeImporter
+namespace SettingsFileUpdater.TerrariaHost
 {
-
-
     public class ItemId
     {
         public ItemId(int id, string name, string type)
@@ -35,9 +23,11 @@ namespace TEditCodeImporter
         public int Id { get; set; }
         public string Type { get; set; }
     }
+
     public class TerrariaWrapper : Terraria.Main
+
     {
-        public static TerrariaWrapper LaunchGame()
+        public static TerrariaWrapper Initialize()
         {
             Thread.CurrentThread.Name = "Main Thread";
 
@@ -64,39 +54,14 @@ namespace TEditCodeImporter
             return null;
         }
 
+        public static string Localize(string value) =>
+            Language.GetTextValue(value);
+
         public TerrariaWrapper() : base()
         {
 
         }
 
-
-        private List<ItemId> HardCodedItems = new List<ItemId>();
-        //new[]
-        //    {
-        //        new ItemId(1, "Gold Pickaxe"),
-        //        new ItemId(4, "Gold Broadsword"),
-        //        new ItemId(6, "Gold Shortsword"),
-        //        new ItemId(10, "Gold Axe"),
-        //        new ItemId(7, "Gold Hammer"),
-        //        new ItemId(99, "Gold Bow"),
-        //        new ItemId(1, "Silver Pickaxe"),
-        //        new ItemId(4, "Silver Broadsword"),
-        //        new ItemId(6, "Silver Shortsword"),
-        //        new ItemId(10, "Silver Axe"),
-        //        new ItemId(7, "Silver Hammer"),
-        //        new ItemId(99, "Silver Bow"),
-        //        new ItemId(1, "Copper Pickaxe"),
-        //        new ItemId(4, "Copper Broadsword"),
-        //        new ItemId(6, "Copper Shortsword"),
-        //        new ItemId(10, "Copper Axe"),
-        //        new ItemId(7, "Copper Hammer"),
-        //        new ItemId(198, "Blue Phasesaber"),
-        //        new ItemId(199, "Red Phasesaber"),
-        //        new ItemId(200, "Green Phasesaber"),
-        //        new ItemId(201, "Purple Phasesaber"),
-        //        new ItemId(202, "White Phasesaber"),
-        //        new ItemId(203, "Yellow Phasesaber"),
-        //    };
 
         public Terraria.Item GetItem(int id)
         {
@@ -129,7 +94,7 @@ namespace TEditCodeImporter
 
         }
 
-        public string GetWalls()
+        public string GetWallsXml()
         {
             List<Terraria.Item> curItems = new List<Item>();
             for (int i = -255; i < maxItemTypes; i++)
@@ -145,23 +110,25 @@ namespace TEditCodeImporter
 
                 }
             }
-            string output = "<Walls>\r\n";
+            var output = new StringBuilder("  <Walls>\r\n");
             for (int i = 0; i < maxWallTypes; i++)
             {
 
                 var creatingWall = curItems.FirstOrDefault(x => x.createWall == i);
 
-                output += string.Format("<Wall Id=\"{0}\" Name=\"{2}\" Color=\"#FFFF00FF\" IsHouse=\"{1}\"/>\r\n",
+                output.AppendFormat("    <Wall Id=\"{0}\" Name=\"{2}\" Color=\"#FFFF00FF\" IsHouse=\"{1}\"/>\r\n",
                     i,
                     wallHouse[i],
                     creatingWall != null ? creatingWall.Name : string.Empty);
 
             }
 
-            return output + "</Walls>";
+            output.Append("  </Walls>");
+
+            return output.ToString();
         }
 
-        public string GetTiles()
+        public string GetTilesXml()
         {
             List<Terraria.Item> curItems = new List<Item>();
             for (int i = 0; i < maxItemTypes; i++)
@@ -178,12 +145,12 @@ namespace TEditCodeImporter
                 }
             }
 
-            string output = "<Tiles>\r\n";
+            StringBuilder output = new StringBuilder("  <Tiles>\r\n");
             for (int i = 0; i < maxTileSets; i++)
             {
                 var creatingItem = curItems.FirstOrDefault(x => x.createTile == i);
 
-                output += string.Format("<Tile Id=\"{0}\" Name=\"{22}\" {5}{16}{17}{8} {21}\r\n",
+                output.AppendFormat("    <Tile Id=\"{0}\" Name=\"{22}\" {5}{16}{17}{8} {21}\r\n",
                     i,
                 tileAlch[i],
                 tileAxe[i],
@@ -206,13 +173,65 @@ namespace TEditCodeImporter
                 tileStone[i],
                 tileTable[i],
                 tileWaterDeath[i],
-                (tileFrameImportant[i]) ? ">\r\n  <Frames>\r\n    <Frame UV=\"0, 0\" Name=\"\" Variety=\"\" />\r\n      </ Frames>\r\n</Tile>" : " />",
+                (tileFrameImportant[i]) ? ">\r\n      <Frames>\r\n        <Frame UV=\"0, 0\" Name=\"\" Variety=\"\" />\r\n      </ Frames>\r\n    </Tile>" : " />",
                 creatingItem != null ? creatingItem.Name : string.Empty);
             }
 
 
-            return output + "</Tiles>";
+            output.Append("  </Tiles>");
+
+            return output.ToString();
         }
+
+        public string GetNpcsXml()
+        {
+            var npcs = GetNpcs();
+
+            var output = new StringBuilder("  <Npcs>\r\n");
+            foreach (var npc in npcs)
+            {
+                try
+                {
+                    output.AppendFormat("<Npc Id=\"{1}\" Name=\"{0}\" Frames=\"{2}\" />\r\n", Localize(npc.FullName), npc.netID, npc.width);
+                }
+                catch
+                {
+
+                }
+            }
+            output.Append("  </Npcs>");
+
+            return output.ToString();
+        }
+
+        public string GetItemsXml()
+        {
+            var items = GetItems().ToList().OrderBy(x => x.Id).ToList();
+
+            var output = new StringBuilder("  <Items>\r\n");
+            foreach (var item in items)
+            { 
+                output.AppendFormat("    <Item Id=\"{0}\" Name=\"{1}\"/>\r\n", item.Id, Localize(item.Name), item.Type);
+            }
+            output.Append("  </Items>");
+
+            return output.ToString();
+        }
+
+        public string GetPrefixesXml()
+        {
+            var p = Prefixes();
+
+            var output = new StringBuilder("  <ItemPrefix>\r\n");
+            for (int i = 0; i < p.Count; i++)
+            {
+                output.AppendFormat("    <Prefix Id=\"{0}\" Name=\"{1}\" />\r\n", i, p[i]);
+            }
+            output.Append("  </ItemPrefix>");
+
+            return output.ToString();
+        }
+
 
         //public Terraria.Item GetN
 
@@ -273,7 +292,7 @@ namespace TEditCodeImporter
             {
                 var curItem = new Item();
                 var head = curItem.headSlot;
- 
+
                 curItem.netDefaults(i);
                 if (string.IsNullOrWhiteSpace(curItem.Name))
                     break;

@@ -6173,7 +6173,6 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Wall Id="315" Name="Bamboo Fence" Color="#FFFF00FF" IsHouse="True"/>
 
   </Walls>
-
   <Items>
     <Item Id="-48" Name="Platinum Bow Old" />
     <Item Id="-47" Name="Platinum Hammer Old" />
