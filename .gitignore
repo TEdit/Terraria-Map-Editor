@@ -43,4 +43,5 @@ build/
 
 #Includes
 !.nuget/nuget.exe
-/.vs/*
+.vs/*
+

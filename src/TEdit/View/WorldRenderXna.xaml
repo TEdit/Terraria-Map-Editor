@@ -1,0 +1,35 @@
+﻿<UserControl x:Class="TEditXna.View.WorldRenderXna"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:xnaContentHost="clr-namespace:TEdit.UI.Xaml.XnaContentHost"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="Auto" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <ScrollBar x:Name="ScrollBarV" Orientation="Vertical" Grid.Column="2" Scroll="ScrollBar_Scroll" />
+        <ScrollBar x:Name="ScrollBarH" Orientation="Horizontal" Grid.Row="2"  Scroll="ScrollBar_Scroll" />
+      <xnaContentHost:GraphicsDeviceControl x:Name="xnaViewport" 
+                                    LoadContent="xnaViewport_LoadContent" 
+                                    RenderXna="xnaViewport_RenderXna" 
+                                    HwndMouseMove="xnaViewport_HwndMouseMove" 
+                                    HwndLButtonDown="xnaViewport_HwndLButtonDown" 
+                                    HwndLButtonUp="xnaViewport_HwndLButtonUp" 
+                                    HwndRButtonDown="xnaViewport_HwndRButtonDown" 
+                                    HwndRButtonUp="xnaViewport_HwndRButtonUp" 
+                                    SizeChanged="xnaViewport_SizeChanged" 
+                                    HwndMButtonDown="xnaViewport_HwndMButtonDown"
+                                    HwndMButtonUp="xnaViewport_HwndMButtonUp" 
+                                    HwndMouseEnter="xnaViewport_HwndMouseEnter" 
+                                    HwndMouseLeave="xnaViewport_HwndMouseLeave" 
+                                    HwndMouseWheel="xnaViewport_HwndMouseWheel" />
+    </Grid>
+</UserControl>

@@ -1,0 +1,224 @@
+﻿<UserControl x:Class="TEditXna.View.PaintModeView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:tedit="clr-namespace:TEdit.UI.Xaml"
+             xmlns:editor="clr-namespace:TEditXna.Editor" xmlns:Terraria="clr-namespace:TEditXNA.Terraria"
+             mc:Ignorable="d" 
+             Background="{StaticResource WindowBackgroundBrush}" Foreground="{StaticResource TextBrush}" Height="90">
+    <UserControl.Resources>
+        <Style TargetType="{x:Type ComboBox}" BasedOn="{StaticResource {x:Type ComboBox}}">
+            <Setter Property="Padding" Value="1" />
+            <Setter Property="Margin" Value="1" />
+        </Style>
+        <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource {x:Type TextBlock}}">
+            <Setter Property="Margin" Value="5,2" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="HorizontalAlignment" Value="Right" />
+        </Style>
+        <DataTemplate x:Key="ColorPickerSimpleTemplate">
+            <Border BorderBrush="Black" BorderThickness="1" Margin="2,1" DockPanel.Dock="Left">
+                <Rectangle Height="22" Width="22">
+                    <Rectangle.Fill>
+                        <SolidColorBrush Color="{Binding Path=Color}" />
+                    </Rectangle.Fill>
+                </Rectangle>
+            </Border>
+        </DataTemplate>
+        <Style TargetType="{x:Type GroupBox}" x:Key="TileVisibleStyle" BasedOn="{StaticResource {x:Type GroupBox}}">
+            <Setter Property="Visibility" Value="Collapsed" />
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding TilePicker.PaintMode}" Value="TileAndWall">
+                    <Setter Property="Visibility" Value="Visible" />
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+        <Style TargetType="{x:Type GroupBox}" x:Key="WallVisibleStyle" BasedOn="{StaticResource {x:Type GroupBox}}">
+            <Setter Property="Visibility" Value="Collapsed" />
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding TilePicker.PaintMode}" Value="TileAndWall">
+                    <Setter Property="Visibility" Value="Visible" />
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+        <Style TargetType="{x:Type GroupBox}" x:Key="LiquidVisibleStyle" BasedOn="{StaticResource {x:Type GroupBox}}">
+            <Setter Property="Visibility" Value="Collapsed" />
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding TilePicker.PaintMode}" Value="Liquid">
+                    <Setter Property="Visibility" Value="Visible" />
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+        <Style TargetType="{x:Type GroupBox}" x:Key="BrickStyleVisiblity" BasedOn="{StaticResource {x:Type GroupBox}}">
+            <Setter Property="Visibility" Value="Collapsed" />
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding TilePicker.PaintMode}" Value="TileAndWall">
+                    <Setter Property="Visibility" Value="Visible" />
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+        <Style TargetType="{x:Type GroupBox}" x:Key="PaintVisibleStyle" BasedOn="{StaticResource {x:Type GroupBox}}">
+            <Setter Property="Visibility" Value="Collapsed" />
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding TilePicker.PaintMode}" Value="TileAndWall">
+                    <Setter Property="Visibility" Value="Visible" />
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+        <Style TargetType="{x:Type GroupBox}" x:Key="WireStyle" BasedOn="{StaticResource {x:Type GroupBox}}">
+            <Setter Property="Visibility" Value="Collapsed" />
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding TilePicker.PaintMode}" Value="Wire">
+                    <Setter Property="Visibility" Value="Visible" />
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+        <Style TargetType="{x:Type GroupBox}" x:Key="TrackStyle" BasedOn="{StaticResource {x:Type GroupBox}}">
+            <Setter Property="Visibility" Value="Collapsed" />
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding TilePicker.PaintMode}" Value="Track">
+                    <Setter Property="Visibility" Value="Visible" />
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+        <Style TargetType="{x:Type TextBlock}" x:Key="TrackStyleText" BasedOn="{StaticResource {x:Type TextBlock}}">
+            <Setter Property="Text" Value="" />
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding TilePicker.TrackMode}" Value="Booster">
+                        <Setter Property="Text" Value="Add Booster to existing track, use with Eraser to remove booster only" />
+                </DataTrigger>
+                <DataTrigger Binding="{Binding TilePicker.TrackMode}" Value="Pressure">
+                        <Setter Property="Text" Value="Add Pressure Plate to existing track, use with Eraser to remove plate only" />
+                </DataTrigger>
+                <DataTrigger Binding="{Binding TilePicker.TrackMode}" Value="Hammer">
+                        <Setter Property="Text" Value="Use Hammer to modify track ends, intersections and booster direction" />
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+    </UserControl.Resources>
+    <Grid>
+        <StackPanel Orientation="Horizontal">
+            <StackPanel Orientation="Vertical" >
+                <ToggleButton ToolTip="Eraser" IsChecked="{Binding Path=TilePicker.IsEraser, Mode=TwoWay}" VerticalAlignment="Top" Margin="2 0" BorderThickness="2" HorizontalAlignment="Left">
+                    <Image Source="../Images/Tools/eraser.png" Height="32" Width="32" RenderOptions.BitmapScalingMode="NearestNeighbor" Stretch="UniformToFill" />
+                </ToggleButton>
+                <TextBlock Text="Paint Mode" HorizontalAlignment="Center"  Width="65" VerticalAlignment="Center" />
+                <ComboBox ItemsSource="{StaticResource PaintModeEnum}" 
+                      SelectedValue="{Binding TilePicker.PaintMode}" 
+                      SelectedValuePath="Value" Width="100"
+                      ItemTemplate="{StaticResource EnumTemplate}" />
+            </StackPanel>
+            <GroupBox BorderThickness="1" Style="{StaticResource TileVisibleStyle}">
+                <GroupBox.Header>
+                    <CheckBox IsChecked="{Binding TilePicker.TileStyleActive}" Content="Tile" />
+                </GroupBox.Header>
+                <tedit:AutoGrid Width="220" VerticalAlignment="Top" >
+                    <tedit:AutoGrid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*" />
+                        <ColumnDefinition Width="2*" />
+                    </tedit:AutoGrid.ColumnDefinitions>
+                    <ComboBox Grid.ColumnSpan="2" ItemsSource="{Binding Source={x:Static Terraria:World.TileBricks}, Mode=OneTime}" Visibility="{Binding ElementName=TileText, Path=Visibility}"
+                      ItemTemplate="{StaticResource ColorPickerTemplate}" 
+                      SelectedValue="{Binding Path=TilePicker.Tile, Mode=TwoWay}"
+                      SelectedValuePath="Id" 
+                      IsTextSearchEnabled="True" TextSearch.TextPath="Name" />
+                    <TextBlock Text="Mask Mode" />
+                    <ComboBox ItemsSource="{StaticResource MaskModeEnum}" SelectedValue="{Binding TilePicker.TileMaskMode}" SelectedValuePath="Value" ItemTemplate="{StaticResource EnumTemplate}"  />
+                    <TextBlock Text="Mask" />
+                    <ComboBox ItemsSource="{Binding Source={x:Static Terraria:World.TileBricks}, Mode=OneTime}"
+                      ItemTemplate="{StaticResource ColorPickerTemplate}" 
+                      SelectedValue="{Binding Path=TilePicker.TileMask, Mode=TwoWay}"
+                      SelectedValuePath="Id"
+                      IsTextSearchEnabled="True" TextSearch.TextPath="Name" />
+                </tedit:AutoGrid>
+            </GroupBox>
+            <GroupBox BorderThickness="1"  Style="{StaticResource WallVisibleStyle}">
+                <GroupBox.Header>
+                    <CheckBox IsChecked="{Binding TilePicker.WallStyleActive}" Content="Wall" />
+                </GroupBox.Header>
+                <tedit:AutoGrid Width="220" VerticalAlignment="Top" >
+                    <tedit:AutoGrid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*" />
+                        <ColumnDefinition Width="2*" />
+                    </tedit:AutoGrid.ColumnDefinitions>
+                    <ComboBox ItemsSource="{Binding Source={x:Static Terraria:World.WallProperties}, Mode=OneTime}" Visibility="{Binding ElementName=WallText, Path=Visibility}"
+                      ItemTemplate="{StaticResource ColorPickerTemplate}" 
+                      SelectedValue="{Binding Path=TilePicker.Wall, Mode=TwoWay}"
+                      SelectedValuePath="Id" Grid.ColumnSpan="2"
+                      IsTextSearchEnabled="True" TextSearch.TextPath="Name" />
+                    <TextBlock Text="Mask Mode" />
+                    <ComboBox ItemsSource="{StaticResource MaskModeEnum}" SelectedValue="{Binding TilePicker.WallMaskMode}" SelectedValuePath="Value" ItemTemplate="{StaticResource EnumTemplate}" />
+                    <TextBlock Text="Mask" />
+                    <ComboBox ItemsSource="{Binding Source={x:Static Terraria:World.WallProperties}, Mode=OneTime}" 
+                      ItemTemplate="{StaticResource ColorPickerTemplate}" 
+                      SelectedValue="{Binding Path=TilePicker.WallMask, Mode=TwoWay}"
+                      SelectedValuePath="Id"
+                      IsTextSearchEnabled="True" TextSearch.TextPath="Name" />
+                </tedit:AutoGrid>
+            </GroupBox>
+            <GroupBox Header="Liquid" Style="{StaticResource LiquidVisibleStyle}">
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Top">
+                    <ComboBox ItemsSource="{StaticResource LiquidType}" 
+                          SelectedValue="{Binding TilePicker.LiquidType}" 
+                          SelectedValuePath="Value" Width="100"
+                          ItemTemplate="{StaticResource EnumTemplate}" />
+                </StackPanel>
+            </GroupBox>
+            <GroupBox Style="{StaticResource BrickStyleVisiblity}">
+                <GroupBox.Header>
+                    <CheckBox IsChecked="{Binding TilePicker.ExtrasActive}" Content="Extras" />
+                </GroupBox.Header>
+                <StackPanel Orientation="Vertical">
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Top">
+                        <CheckBox IsChecked="{Binding TilePicker.BrickStyleActive}" Content="BrickStyle" Width="75" VerticalAlignment="Center" />
+                        <ComboBox ItemsSource="{StaticResource BrickStyle}" 
+                          SelectedValue="{Binding TilePicker.BrickStyle}" 
+                          SelectedValuePath="Value" Width="120"
+                          ItemTemplate="{StaticResource EnumTemplate}" />
+                    </StackPanel>
+                    <CheckBox IsChecked="{Binding TilePicker.Actuator}" Content="Is Actuator" VerticalAlignment="Center" Height="22"/>
+                    <CheckBox IsChecked="{Binding TilePicker.ActuatorInActive}" Content="Actuator/Tile InActive" VerticalAlignment="Center" Height="22"/>
+                </StackPanel>
+            </GroupBox>
+            <GroupBox Header="Paint" Style="{StaticResource PaintVisibleStyle}">
+                <StackPanel Orientation="Vertical">
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Top">
+                        <CheckBox IsChecked="{Binding TilePicker.TilePaintActive}" Content="Tile" Width="50" VerticalAlignment="Center" />
+                        <ComboBox ItemsSource="{Binding Source={x:Static Terraria:World.PaintProperties}, Mode=OneTime}" 
+                          ItemTemplate="{StaticResource ColorPickerTemplate}" 
+                          SelectedValue="{Binding Path=TilePicker.TileColor, Mode=TwoWay}"
+                          SelectedValuePath="Id" Width="140" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Top">
+                        <CheckBox IsChecked="{Binding TilePicker.WallPaintActive}" Content="Wall" Width="50" VerticalAlignment="Center" />
+                        <ComboBox ItemsSource="{Binding Source={x:Static Terraria:World.PaintProperties}, Mode=OneTime}" 
+                          ItemTemplate="{StaticResource ColorPickerTemplate}" 
+                          SelectedValue="{Binding Path=TilePicker.WallColor, Mode=TwoWay}"
+                          SelectedValuePath="Id" Width="140" />
+                    </StackPanel>
+                </StackPanel>
+            </GroupBox>
+            <GroupBox Header="Wire" Style="{StaticResource WireStyle}">
+                <StackPanel Orientation="Horizontal">
+                    <StackPanel Orientation="Vertical">
+                        <CheckBox IsChecked="{Binding TilePicker.RedWireActive}" Content="Red" Width="75" VerticalAlignment="Center" Height="22"/>
+                        <CheckBox IsChecked="{Binding TilePicker.BlueWireActive}" Content="Blue" Width="75" VerticalAlignment="Center" Height="22"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Vertical">
+                        <CheckBox IsChecked="{Binding TilePicker.GreenWireActive}" Content="Green" Width="75" VerticalAlignment="Center" Height="22"/>
+                        <CheckBox IsChecked="{Binding TilePicker.YellowWireActive}" Content="Yellow" Width="75" VerticalAlignment="Center" Height="22"/>
+                    </StackPanel>
+                </StackPanel>
+            </GroupBox>
+            <GroupBox Header="Minecart Track" Style="{StaticResource TrackStyle}">
+                <StackPanel Orientation="Vertical" >
+                    <ComboBox ItemsSource="{StaticResource TrackModeEnum}" 
+                          SelectedValue="{Binding TilePicker.TrackMode}" 
+                          SelectedValuePath="Value" Width="100"
+                          ItemTemplate="{StaticResource EnumTemplate}" />
+                    <TextBlock Style="{StaticResource TrackStyleText}" Width="150" HorizontalAlignment="Center" VerticalAlignment="Center" TextWrapping="Wrap"/>
+                </StackPanel>
+            </GroupBox>
+        </StackPanel>
+    </Grid>
+</UserControl>

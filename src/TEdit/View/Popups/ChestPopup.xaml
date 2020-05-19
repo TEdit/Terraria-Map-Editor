@@ -1,0 +1,30 @@
+﻿<Popup x:Class="TEditXna.View.Popups.ChestPopup" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:Terraria="clr-namespace:TEditXNA.Terraria"
+       Placement="Mouse" MouseDown="Popup_MouseDown"
+       MouseLeave="Popup_MouseLeave">
+    <DockPanel Background="{DynamicResource WindowBackgroundBrush}" LastChildFill="True">
+        <TextBlock Text="Chest Contents:" Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" DockPanel.Dock="Top" />
+        <Button DockPanel.Dock="Bottom" Click="ClosePopup" Margin="2" Content="OK" />
+        <ScrollViewer Height="200">
+            <ItemsControl Name="ChestList" Padding="5" Foreground="White" ItemsSource="{Binding}">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal" Margin="1">
+                            <TextBox Text="{Binding StackSize, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="30" />
+                            <ComboBox ItemsSource="{Binding Source={x:Static Terraria:World.ItemPrefix}, Mode=OneTime}" 
+                                      SelectedValue="{Binding Prefix, Mode=TwoWay}"
+                                      SelectedValuePath="Key" 
+                                      DisplayMemberPath="Value" 
+                                      Width="75" Margin="1,0" />
+                            <ComboBox ItemsSource="{Binding Source={x:Static Terraria:World.ItemProperties}, Mode=OneTime}" 
+                                      SelectedValue="{Binding ItemName, Mode=TwoWay}"
+                                      SelectedValuePath="Name" 
+                                      DisplayMemberPath="Name"
+                                      Width="200" Margin="1,0" />
+                        </StackPanel>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </ScrollViewer>
+    </DockPanel>
+</Popup>

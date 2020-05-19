@@ -1,0 +1,230 @@
+﻿<Window x:Class="TEditXna.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:View="clr-namespace:TEditXna.View" x:Name="Shell"
+        Title="{Binding WindowTitle}" Height="600" Width="800" TextOptions.TextFormattingMode="Display" TextOptions.TextRenderingMode="Aliased"
+        UseLayoutRounding="True" Background="{StaticResource WindowBackgroundBrush}" Foreground="{DynamicResource TextBrush}" Icon="/TEditXna;component/Images/tedit.ico"
+   >
+    <Window.Resources>
+        <Image x:Key="TB_LogIcon" x:Shared="false" Source="/Images/Toolbar/report_magnify.png" Height="16" Width="16" SnapsToDevicePixels="True" RenderOptions.BitmapScalingMode="NearestNeighbor"/>
+        <Image x:Key="TB_NewIcon" x:Shared="false" Source="/Images/Toolbar/new.png" Height="16" Width="16" SnapsToDevicePixels="True" RenderOptions.BitmapScalingMode="NearestNeighbor"/>
+        <Image x:Key="TB_SaveIcon" x:Shared="false" Source="/Images/Toolbar/save.png" Height="16" Width="16" SnapsToDevicePixels="True" RenderOptions.BitmapScalingMode="NearestNeighbor"/>
+        <Image x:Key="TB_SaveAsIcon" x:Shared="false" Source="/Images/Toolbar/saveas.png" Height="16" Width="16" SnapsToDevicePixels="True" RenderOptions.BitmapScalingMode="NearestNeighbor"/>
+        <Image x:Key="TB_OpenIcon" x:Shared="false" Source="/Images/Toolbar/open.png" Height="16" Width="16" SnapsToDevicePixels="True" RenderOptions.BitmapScalingMode="NearestNeighbor"/>
+        <Image x:Key="TB_HelpIcon" x:Shared="false" Source="/Images/Toolbar/help.png" Height="16" Width="16" SnapsToDevicePixels="True" RenderOptions.BitmapScalingMode="NearestNeighbor"/>
+        <Image x:Key="TB_UpdateIcon" x:Shared="false" Source="/Images/Toolbar/update.png" Height="16" Width="16" SnapsToDevicePixels="True" RenderOptions.BitmapScalingMode="NearestNeighbor"/>
+        <Image x:Key="TB_UpdateXmlIcon" x:Shared="false" Source="/Images/Toolbar/update_xml.png" Height="16" Width="16" SnapsToDevicePixels="True" RenderOptions.BitmapScalingMode="NearestNeighbor"/>
+        <Image x:Key="TB_CopyIcon" x:Shared="false" Source="/Images/Toolbar/copy.png" Height="16" Width="16" SnapsToDevicePixels="True" RenderOptions.BitmapScalingMode="NearestNeighbor"/>
+        <Image x:Key="TB_PasteIcon" x:Shared="false" Source="/Images/Toolbar/paste.png" Height="16" Width="16" SnapsToDevicePixels="True" RenderOptions.BitmapScalingMode="NearestNeighbor"/>
+        <Image x:Key="TB_UndoIcon" x:Shared="false" Source="/Images/Toolbar/arrow_undo.png" Height="16" Width="16" SnapsToDevicePixels="True" RenderOptions.BitmapScalingMode="NearestNeighbor"/>
+        <Image x:Key="TB_RedoIcon" x:Shared="false" Source="/Images/Toolbar/arrow_redo.png" Height="16" Width="16" SnapsToDevicePixels="True" RenderOptions.BitmapScalingMode="NearestNeighbor"/>
+        <Image x:Key="TB_DeleteIcon" x:Shared="false" Source="/Images/Toolbar/delete.png" Height="16" Width="16" SnapsToDevicePixels="True" RenderOptions.BitmapScalingMode="NearestNeighbor"/>
+        <Image x:Key="TB_ZoomInIcon" x:Shared="false" Source="/Images/Tools/zoom_in.png" Height="16" Width="16" SnapsToDevicePixels="True" RenderOptions.BitmapScalingMode="NearestNeighbor"/>
+        <Image x:Key="TB_ZoomOutIcon" x:Shared="false" Source="/Images/Tools/zoom_out.png" Height="16" Width="16" SnapsToDevicePixels="True" RenderOptions.BitmapScalingMode="NearestNeighbor"/>
+        <DataTemplate x:Key="MenuItemTemplate">
+            <MenuItem Command="" CommandParameter="{Binding}">
+                <MenuItem.HeaderTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Name}" />
+                    </DataTemplate>
+                </MenuItem.HeaderTemplate>
+            </MenuItem>
+        </DataTemplate>
+        <Style x:Key="SubmenuItemStyle" TargetType="{x:Type MenuItem}" BasedOn="{StaticResource {x:Type MenuItem}}">
+            <Setter Property="Header" Value="{Binding Name}" />
+            <Setter Property="Command" Value="{Binding ElementName=Shell, Path=DataContext.RunPluginCommand}"/>
+            <Setter Property="CommandParameter" Value="{Binding}"/>
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <DockPanel LastChildFill="True">
+            <Menu DockPanel.Dock="Top">
+                <MenuItem Header="File">
+                    <MenuItem Header="New" Icon="{StaticResource TB_NewIcon}" Command="{Binding NewWorldCommand}" />
+                    <MenuItem Header="Open" Icon="{StaticResource TB_OpenIcon}" Command="{Binding OpenCommand}" />
+                    <Separator Margin="1"/>
+                    <MenuItem Header="Save" Icon="{StaticResource TB_SaveIcon}" Command="{Binding SaveCommand}"/>
+                    <MenuItem Header="Save As" Icon="{StaticResource TB_SaveAsIcon}" Command="{Binding SaveAsCommand}" />
+                    <Separator Margin="1"/>
+                    <MenuItem Header="Enable Autosave" IsCheckable="True" IsChecked="{Binding IsAutoSaveEnabled}" />
+                    <MenuItem Header="On Startup Check Updates" IsCheckable="True" IsChecked="{Binding CheckUpdates}" />
+                    <MenuItem Header="Check For Updates" Command="{Binding CheckUpdatesCommand}" CommandParameter="{StaticResource False}" />
+                    <Separator Margin="1"/>
+                    <MenuItem Header="Exit" Command="{Binding CloseApplicationCommand}"/>
+                </MenuItem>
+                <MenuItem Header="Edit">
+                    <MenuItem Header="Undo" Command="{Binding UndoCommand}" Icon="{StaticResource TB_UndoIcon}" />
+                    <MenuItem Header="Redo" Command="{Binding RedoCommand}" Icon="{StaticResource TB_RedoIcon}" />
+                    <Separator Margin="1" />
+                    <MenuItem Header="Copy" Command="{Binding CopyCommand}" Icon="{StaticResource TB_CopyIcon}" />
+                    <MenuItem Header="Paste" Command="{Binding PasteCommand}" Icon="{StaticResource TB_PasteIcon}" />
+                    <Separator Margin="1" />
+                    <MenuItem Header="Delete" Command="{Binding DeleteCommand}" Icon="{StaticResource TB_DeleteIcon}" />
+                </MenuItem>
+                <MenuItem Header="Display">
+                    <MenuItem Header="Show Textures" IsCheckable="True" IsChecked="{Binding ShowTextures}" />
+                    <MenuItem Header="Show Grid" IsCheckable="True" IsChecked="{Binding ShowGrid}" />
+                    <Separator Margin="1" />
+                    <MenuItem Header="Show Walls" IsCheckable="True" IsChecked="{Binding ShowWalls}" />
+                    <MenuItem Header="Show Tiles" IsCheckable="True" IsChecked="{Binding ShowTiles}" />
+                    <MenuItem Header="Show Liquid" IsCheckable="True" IsChecked="{Binding ShowLiquid}" />
+                    <Separator Margin="1" />
+                    <MenuItem Header="Show Actuators" IsCheckable="True" IsChecked="{Binding ShowActuators}" />
+                    <MenuItem Header="Show Red Wires" IsCheckable="True" IsChecked="{Binding ShowRedWires}" />
+                    <MenuItem Header="Show Blue Wires" IsCheckable="True" IsChecked="{Binding ShowBlueWires}" />
+                    <MenuItem Header="Show Green Wires" IsCheckable="True" IsChecked="{Binding ShowGreenWires}" />
+                    <MenuItem Header="Show Yellow Wires" IsCheckable="True" IsChecked="{Binding ShowYellowWires}" />
+                    <Separator Margin="1" />
+                    <MenuItem Header="Show Points" IsCheckable="True" IsChecked="{Binding ShowPoints}" />
+                </MenuItem>
+                <MenuItem Header="Plugins" ItemsSource="{Binding Plugins}" ItemContainerStyle="{StaticResource SubmenuItemStyle}">
+
+                </MenuItem>
+                <MenuItem Header="Help">
+                    <MenuItem Header="View Log" Command="{Binding ViewLogCommand}" Icon="{StaticResource TB_LogIcon}"/>
+                    <MenuItem Header="Wiki" Icon="{StaticResource TB_HelpIcon}" Command="{Binding LaunchWikiCommand}"/>
+                    <Separator Margin="1" />
+                    <MenuItem Header="Update" Icon="{StaticResource TB_UpdateIcon}" Command="{Binding UpdateCommand}" />
+                    <MenuItem Header="Download New XML Data" Icon="{StaticResource TB_UpdateXmlIcon}"  Command="{Binding UpdateCommand}" />
+                    <Separator Margin="1"/>
+                    <MenuItem Header="About" />
+                </MenuItem>
+            </Menu>
+            <StatusBar DockPanel.Dock="Bottom" Height="30" Background="{x:Null}" Padding="2" Foreground="{StaticResource TextBrush}">
+                <StatusBarItem HorizontalAlignment="Left">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Position" VerticalAlignment="Center" Margin="5,0"/>
+                        <TextBox Text="{Binding MouseOverTile.MouseState.Location, StringFormat={}{0}, Mode=OneWay}" Width="75" IsReadOnly="True" />
+                        <TextBlock Text="Tile" VerticalAlignment="Center" Margin="5,0"  />
+                        <TextBox Text="{Binding MouseOverTile.TileName, Mode=OneWay}" Width="150" IsReadOnly="True" />
+                        <TextBlock Text="Wall" VerticalAlignment="Center" Margin="5,0"/>
+                        <TextBox Text="{Binding MouseOverTile.WallName, Mode=OneWay}" Width="150" IsReadOnly="True" />
+                        <TextBlock Text="Extra Info" VerticalAlignment="Center" Margin="5,0"/>
+                        <TextBox Text="{Binding MouseOverTile.TileExtras, Mode=OneWay}" Width="100" IsReadOnly="True" />
+                        <TextBlock Text="Frame" VerticalAlignment="Center" Margin="5,0"/>
+                        <TextBox Text="{Binding MouseOverTile.UV, StringFormat={}{0}, Mode=OneWay}" Width="50" IsReadOnly="True" />
+                        <TextBlock Text="Paint" VerticalAlignment="Center" Margin="5,0"/>
+                        <TextBox Text="{Binding MouseOverTile.Paint, Mode=OneWay}" Width="180" IsReadOnly="True" />
+                    </StackPanel>
+                </StatusBarItem>
+                <StatusBarItem HorizontalAlignment="Right">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="{Binding Path=Progress.UserState, Mode=OneWay}" VerticalAlignment="Center" Margin="2,0" />
+                        <ProgressBar Height="20" Width="100" Value="{Binding Path=Progress.ProgressPercentage, Mode=OneWay}" />
+                    </StackPanel>
+                </StatusBarItem>
+            </StatusBar>
+            <StackPanel DockPanel.Dock="Left" Orientation="Vertical" Margin="1">
+                <Button Content="{StaticResource TB_NewIcon}" ToolTip="New" Padding="3" Command="{Binding NewWorldCommand}" Margin="1" Height="24" Width="24"/>
+                <Button Content="{StaticResource TB_OpenIcon}" ToolTip="Open" Padding="3" Command="{Binding OpenCommand}" Margin="1" Height="24" Width="24" />
+                <Button Content="{StaticResource TB_SaveIcon}" ToolTip="Save" Padding="3" Command="{Binding SaveCommand}" Margin="1" Height="24" Width="24" />
+                <Button Content="{StaticResource TB_ZoomInIcon}" ToolTip="Zoom In" Padding="3" Command="{Binding RequestZoomCommand}" CommandParameter="{StaticResource True}" Margin="1" Height="24" Width="24" />
+                <Button Content="{StaticResource TB_ZoomOutIcon}" ToolTip="Zoom Out" Padding="3" Command="{Binding RequestZoomCommand}" CommandParameter="{StaticResource False}" Margin="1" Height="24" Width="24" />
+                <Button Content="{StaticResource TB_UndoIcon}" ToolTip="Undo" Padding="3" Command="{Binding UndoCommand}" Margin="1" Height="24" Width="24" />
+                <Button Content="{StaticResource TB_RedoIcon}" ToolTip="Redo" Padding="3" Command="{Binding RedoCommand}" Margin="1" Height="24" Width="24" />
+                <Button Content="{StaticResource TB_DeleteIcon}" ToolTip="Delete" Padding="3" Command="{Binding DeleteCommand}" Margin="1" Height="24" Width="24" />
+                <Button Content="{StaticResource TB_CopyIcon}" ToolTip="Copy" Padding="3" Command="{Binding CopyCommand}" Margin="1" Height="24" Width="24" />
+                <View:ToolSelectorView />
+            </StackPanel>
+            <DockPanel DockPanel.Dock="Top" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                <Border DockPanel.Dock="Right" BorderThickness="1" BorderBrush="{StaticResource SolidBorderBrush}" Background="{StaticResource ControlBackgroundBrush}">
+                    <Grid  Width="200" Height="75">
+                        <Image Source="{Binding MinimapImage}" Stretch="UniformToFill" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" RenderOptions.BitmapScalingMode="Linear" />
+
+                    </Grid>
+                </Border>
+                <ScrollViewer HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Hidden" Height="110">
+                    <StackPanel Orientation="Horizontal">
+                        <View:NpcSelectorView>
+                            <View:NpcSelectorView.Style>
+                                <Style TargetType="{x:Type View:NpcSelectorView}">
+                                    <Setter Property="Visibility" Value="Collapsed" />
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding ActiveTool.Name}" Value="Point">
+                                            <Setter Property="Visibility" Value="Visible" />
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </View:NpcSelectorView.Style>
+                        </View:NpcSelectorView>
+                        <View:BrushSettingsView>
+                            <View:BrushSettingsView.Style>
+                                <Style TargetType="{x:Type View:BrushSettingsView}">
+                                    <Setter Property="Visibility" Value="Collapsed" />
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding ActiveTool.ToolType}" Value="Brush">
+                                            <Setter Property="Visibility" Value="Visible" />
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding ActiveTool.Name}" Value="Morph">
+                                            <Setter Property="Visibility" Value="Visible" />
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </View:BrushSettingsView.Style>
+                        </View:BrushSettingsView>
+                        <View:PaintModeView HorizontalAlignment="Left">
+                            <View:PaintModeView.Style>
+                                <Style TargetType="{x:Type View:PaintModeView}">
+                                    <Setter Property="Visibility" Value="Collapsed" />
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding ActiveTool.Name}" Value="Brush">
+                                            <Setter Property="Visibility" Value="Visible" />
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding ActiveTool.Name}" Value="Pencil">
+                                            <Setter Property="Visibility" Value="Visible" />
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding ActiveTool.Name}" Value="Picker">
+                                            <Setter Property="Visibility" Value="Visible" />
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding ActiveTool.Name}" Value="Fill">
+                                            <Setter Property="Visibility" Value="Visible" />
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </View:PaintModeView.Style>
+                        </View:PaintModeView>
+                        <View:MorphBiomeView>
+                            <View:MorphBiomeView.Style>
+                                <Style TargetType="{x:Type View:MorphBiomeView}">
+                                    <Setter Property="Visibility" Value="Collapsed" />
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding ActiveTool.Name}" Value="Morph">
+                                            <Setter Property="Visibility" Value="Visible" />
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </View:MorphBiomeView.Style>
+                        </View:MorphBiomeView>
+                    </StackPanel>
+                </ScrollViewer>
+            </DockPanel>
+            <Expander Header="Utilities" ExpandDirection="Left" IsExpanded="True" DockPanel.Dock="Right">
+                <TabControl TabStripPlacement="Top" Width="300" Foreground="{DynamicResource TextBrush}" SelectedIndex="{Binding SelectedTabIndex, Mode=TwoWay}">
+                    <TabItem Header="World Properties" >
+                        <ScrollViewer VerticalScrollBarVisibility="Auto">
+                            <View:WorldPropertiesView HorizontalAlignment="Stretch" VerticalAlignment="Top"/>
+                        </ScrollViewer>
+                    </TabItem>
+                    <TabItem Header="Special Tiles">
+                        <View:SpecialTileView HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
+                    </TabItem>
+                    <TabItem Header="Sprites">
+                        <View:SpriteView VerticalAlignment="Stretch" HorizontalAlignment="Stretch" />
+                    </TabItem>
+                    <TabItem Header="Clipboard">
+                        <View:ClipboardView VerticalAlignment="Stretch" HorizontalAlignment="Stretch" />
+                    </TabItem>
+                    <TabItem Header="Npc Names" >
+                        <View:NpcNameEditor HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+                    </TabItem>
+                    <TabItem Header="Analysis">
+                        <View:WorldAnalysis HorizontalAlignment="Stretch"  VerticalAlignment="Stretch"/>
+                    </TabItem>
+                    <TabItem Header="Tally">
+                        <View:KillTallyView HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
+                    </TabItem>
+                </TabControl>
+            </Expander>
+            <View:WorldRenderXna x:Name="MapView" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
+        </DockPanel>
+    </Grid>
+</Window>
