@@ -41,18 +41,24 @@ namespace TEditXNA.Terraria
             NPCKills.Clear();
             NPCNear.Clear();
             NPCChat.Clear();
+            int killCount;
+            int nearCount;
+            int chatCount;
 
-            for (int i = 0; i < r.ReadInt32(); i++)
+            killCount = r.ReadInt32();
+            for (int i = 0; i < killCount; i++)
             {
                 NPCKills[r.ReadString()] = r.ReadInt32();
             }
 
-            for (int i = 0; i < r.ReadInt32(); i++)
+            nearCount = r.ReadInt32();
+            for (int i = 0; i < nearCount; i++)
             {
                 NPCNear.Add(r.ReadString());
             }
 
-            for (int i = 0; i < r.ReadInt32(); i++)
+            chatCount = r.ReadInt32();
+            for (int i = 0; i < chatCount; i++)
             {
                 NPCChat.Add(r.ReadString());
             }
