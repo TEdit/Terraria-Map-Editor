@@ -11309,7 +11309,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Npc Id="548" Name="Eternia Crystal" Frames="40" />
     <Npc Id="550" Name="Tavernkeep" Frames="18" />
     <Npc Id="579" Name="Unconscious Man" Frames="34" />
-    <Npc Id="589" Name="Golfer" Frames="18" />
+    <Npc Id="588" Name="Golfer" Frames="18" />
     <Npc Id="606" Name="Maggot" Frames="10" />
     <Npc Id="633" Name="Zoologist" Frames="18" />
     <Npc Id="637" Name="Cat" Frames="18" />
