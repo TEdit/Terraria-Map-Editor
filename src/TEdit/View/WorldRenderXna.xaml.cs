@@ -828,7 +828,7 @@ namespace TEdit.View
 
                                         if (tileTex != null)
                                         {
-                                            if ((curtile.Type == 128 || curtile.Type == 269) && curtile.U >= 100)
+                                            if ((curtile.Type == (int)TileType.Mannequin || curtile.Type == (int)TileType.Womannequin || curtile.Type == (int)TileType.DisplayDoll) && curtile.U >= 100)
                                             {
                                                 int armor = curtile.U / 100;
                                                 dest = new Rectangle(1 + (int)((_scrollPosition.X + x) * _zoom), 1 + (int)((_scrollPosition.Y + y) * _zoom), (int)_zoom, (int)_zoom);
@@ -843,7 +843,7 @@ namespace TEdit.View
                                                         dest.X -= (int)((2 * _zoom / 16));
                                                         break;
                                                     case 1:
-                                                        if (curtile.Type == 128)
+                                                        if (curtile.Type == (int)TileType.Mannequin)
                                                             tileTex = (Texture2D)_textureDictionary.GetArmorBody(armor);
                                                         else
                                                             tileTex = (Texture2D)_textureDictionary.GetArmorFemale(armor);
@@ -870,7 +870,7 @@ namespace TEdit.View
                                                 source = new Rectangle((curtile.U % 100), curtile.V, tileprop.TextureGrid.X, tileprop.TextureGrid.Y);
                                                 dest = new Rectangle(1 + (int)((_scrollPosition.X + x) * _zoom), 1 + (int)((_scrollPosition.Y + y) * _zoom), (int)_zoom, (int)_zoom);
                                             }
-                                            else if (curtile.Type == 334 && curtile.U >= 5000)
+                                            else if ((curtile.Type == (int)TileType.WeaponRack2 || curtile.Type == (int)TileType.WeaponRack2) && curtile.U >= 5000)
                                             {
                                                 if (_wvm.CurrentWorld.Tiles[x + 1, y].U >= 5000)
                                                 {
@@ -898,7 +898,7 @@ namespace TEdit.View
                                                 tileTex = _textureDictionary.GetTile(curtile.Type);
                                                 dest = new Rectangle(1 + (int)((_scrollPosition.X + x) * _zoom), 1 + (int)((_scrollPosition.Y + y) * _zoom), (int)_zoom, (int)_zoom);
                                             }
-                                            else if (curtile.Type == 395 && curtile.V == 0 && curtile.U % 36 == 0)
+                                            else if (curtile.Type == (int)TileType.ItemFrame && curtile.V == 0 && curtile.U % 36 == 0)
                                             {
                                                 TileEntity entity = _wvm.CurrentWorld.GetTileEntityAtTile(x, y);
                                                 if (entity != null)
@@ -924,7 +924,7 @@ namespace TEdit.View
                                                 tileTex = _textureDictionary.GetTile(curtile.Type);
                                                 dest = new Rectangle(1 + (int)((_scrollPosition.X + x) * _zoom), 1 + (int)((_scrollPosition.Y + y) * _zoom), (int)_zoom, (int)_zoom);
                                             }
-                                            else if (curtile.Type == 171) // Christmas Tree
+                                            else if (curtile.Type == (int)TileType.ChristmasTree) // Christmas Tree
                                             {
                                                 if (curtile.U >= 10)
                                                 {
@@ -962,7 +962,7 @@ namespace TEdit.View
                                                     tileTex = (Texture2D)_textureDictionary.GetMisc("Xmas_0");
                                                 }
                                             }
-                                            else if (curtile.Type == 314)
+                                            else if (curtile.Type == (int)TileType.MinecartTrack)
                                             {
                                                 source = new Rectangle(0, 0, 16, 16);
                                                 dest = new Rectangle(1 + (int)((_scrollPosition.X + x) * _zoom), 1 + (int)((_scrollPosition.Y + y) * _zoom), (int)_zoom, (int)_zoom);

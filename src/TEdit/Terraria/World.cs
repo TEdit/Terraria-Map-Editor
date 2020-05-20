@@ -32,6 +32,8 @@ namespace TEdit.Terraria
             CharacterNames.Clear();
         }
 
+
+
         public World(int height, int width, string title, int seed = -1)
             : this()
         {
@@ -124,6 +126,7 @@ namespace TEdit.Terraria
                             LoadV2(b, filename, w);
                         else
                             LoadV1(b, filename, w);
+                        w.FixTileEntityUV();
                     }
                     w.LastSave = File.GetLastWriteTimeUtc(filename);
                 }
@@ -167,19 +170,19 @@ namespace TEdit.Terraria
 
         public Chest GetChestAtTile(int x, int y)
         {
-            Vector2Int32 anchor = GetAnchor(x,y);
+            Vector2Int32 anchor = GetAnchor(x, y);
             return Chests.FirstOrDefault(c => (c.X == anchor.X) && (c.Y == anchor.Y));
         }
 
         public Sign GetSignAtTile(int x, int y)
         {
-            Vector2Int32 anchor = GetAnchor(x,y);
+            Vector2Int32 anchor = GetAnchor(x, y);
             return Signs.FirstOrDefault(c => (c.X == anchor.X) && (c.Y == anchor.Y));
         }
 
         public TileEntity GetTileEntityAtTile(int x, int y)
         {
-            Vector2Int32 anchor = GetAnchor(x,y);
+            Vector2Int32 anchor = GetAnchor(x, y);
             return TileEntities.FirstOrDefault(c => (c.PosX == anchor.X) && (c.PosY == anchor.Y));
         }
 
@@ -332,32 +335,49 @@ namespace TEdit.Terraria
             {
                 if (GetTileEntityAtTile(x, y) == null)
                 {
-                    TileEntity TE = new TileEntity();
-                    TE.PosX = (short)x;
-                    TE.PosY = (short)y;
-                    TE.Id = TileEntities.Count;
-                    if (curTile.Type == (int)TileType.Dummy)
-                    {
-                        TE.Type = 0;
-                        TE.Npc = -1;
-                    }
-                    else if (curTile.Type == (int)TileType.ItemFrame)
-                    {
-                        TE.Type = 1;
-                        TE.NetId = 0;
-                        TE.Prefix = 0;
-                        TE.StackSize = 0;
-                    }
-                    else
-                    {
-                        TE.Type = 2;
-                        TE.On = false;
-                        TE.LogicCheck = (byte)(curTile.V / 18 + 1);
-                    }
+                    var TE = TileEntity.CreateForTile(curTile, x, y, TileEntities.Count);
                     TileEntities.Add(TE);
                 }
             }
         }
+
+        public void FixTileEntityUV()
+        {
+            foreach (var te in TileEntities)
+            {
+                switch (te.EntityType)
+                {
+                    case TileEntityType.TrainingDummy:
+                        break;
+                    case TileEntityType.ItemFrame:
+                        break;
+                    case TileEntityType.LogicSensor:
+                        break;
+                    case TileEntityType.DisplayDoll:
+
+
+                        //Tiles[te.PosX, te.PosY].U = (short)((Tiles[te.PosX, te.PosY].U % 100) + (100 * SelectedMannHead));
+                        //Tiles[te.PosX, te.PosY + 1].U = (short)((Tiles[te.PosX, te.PosY + 1].U % 100) + (100 * SelectedMannBody));
+                        //Tiles[te.PosX, te.PosY + 2].U = (short)((Tiles[te.PosX, te.PosY + 2].U % 100) + (100 * SelectedMannLegs));
+                        break;
+                    case TileEntityType.WeaponRack:
+                        if (Tiles[te.PosX, te.PosY + 1].U < 5000 && te.NetId > 0)
+                        {
+                            Tiles[te.PosX, te.PosY + 1].U = (short)((((Tiles[te.PosX, te.PosY].U / 18) + 1) * 5000) + 100 + te.NetId);
+                            Tiles[te.PosX + 1, te.PosY + 1].U = (short)((((Tiles[te.PosX + 1, te.PosY].U / 18) + 1) * 5000) + (int)te.Prefix);
+                        }
+                        break;
+                    case TileEntityType.HatRack:
+                        break;
+                    case TileEntityType.FoodPlatter:
+                        break;
+                    case TileEntityType.TeleportationPylon:
+                        break;
+                }
+            }
+
+        }
+
         private void FixChand()
         {
             for (int x = 5; x < TilesWide - 5; x++)

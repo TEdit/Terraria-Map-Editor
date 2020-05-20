@@ -149,7 +149,7 @@ namespace SettingsFileUpdater.TerrariaHost
             for (int i = 0; i < maxTileSets; i++)
             {
                 var creatingItem = curItems.FirstOrDefault(x => x.createTile == i);
-
+                
                 output.AppendFormat("    <Tile Id=\"{0}\" Name=\"{22}\" {5}{16}{17}{8} {21}\r\n",
                     i,
                 tileAlch[i],

@@ -52,7 +52,7 @@ namespace TEdit.Editor.Tools
                     return;
                 }
             }
-            else if (curTile.Type == 395)
+            else if (curTile.Type == (int)TileType.ItemFrame)
             {
                 TileEntity frame = _wvm.CurrentWorld.GetTileEntityAtTile(e.Location.X, e.Location.Y);
                 if (frame != null)
@@ -61,7 +61,7 @@ namespace TEdit.Editor.Tools
                     return;
                 }
             }
-            else if (curTile.Type == 128 || curTile.Type == 269)
+            else if (curTile.Type == (int)TileType.Mannequin || curTile.Type == (int)TileType.Womannequin || curTile.Type == (int)TileType.DisplayDoll)
             {
                 Vector2Int32 MannLocation = _wvm.CurrentWorld.GetMannequin(e.Location.X, e.Location.Y);
                 _wvm.SelectedMannHead = _wvm.CurrentWorld.Tiles[MannLocation.X, MannLocation.Y].U / 100;
@@ -69,7 +69,7 @@ namespace TEdit.Editor.Tools
                 _wvm.SelectedMannLegs = _wvm.CurrentWorld.Tiles[MannLocation.X, MannLocation.Y + 2].U / 100;
                 _wvm.SelectedMannequin = MannLocation;
             }
-            else if (curTile.Type == 334)
+            else if (curTile.Type == (int)TileType.WeaponRack || curTile.Type == (int)TileType.WeaponRack2)
             {
                 Vector2Int32 RackLocation = _wvm.CurrentWorld.GetRack(e.Location.X, e.Location.Y);
                 if (_wvm.CurrentWorld.Tiles[RackLocation.X, RackLocation.Y + 1].U >= 5000)
@@ -84,7 +84,7 @@ namespace TEdit.Editor.Tools
                 }
                 _wvm.SelectedRack = RackLocation;
             }
-            else if (curTile.Type == 171)
+            else if (curTile.Type == (int)TileType.ChristmasTree)
             {
                 Vector2Int32 XmasLocation = _wvm.CurrentWorld.GetXmas(e.Location.X, e.Location.Y);
                 _wvm.SelectedXmasStar = _wvm.CurrentWorld.Tiles[XmasLocation.X, XmasLocation.Y].V & 7;

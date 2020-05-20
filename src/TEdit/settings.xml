@@ -4287,7 +4287,11 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
       </Frames>
     </Tile>
     <Tile Id="234" Color="#FF352C29" Name="Crimsand Block" Solid="true" Blends="true" MergeWith="0" />
-    <Tile Id="235" Color="#FFD6B82E" Name="Teleporter" Solid="true" Framed="true" Size="3,1" />
+    <Tile Id="235" Color="#FFD6B82E" Name="Teleporter" Solid="true" Framed="true" Size="3,1">
+      <Frames>
+        <Frame UV="0,0" Name="Default" Variety="Default" />
+      </Frames>
+    </Tile>
     <Tile Id="236" Color="#FF95E857" Name="Life Fruit Plant" Framed="true" Size="2,2" >
       <Frames>
         <Frame UV="0,0" Name="Default" Variety="Default" />
@@ -5272,14 +5276,16 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="0,0" Name="Table" Variety="Crystal Table" Anchor="Left" />
       </Frames>
     </Tile>
-    <Tile Id="470" Name="Mannequin"  Framed="true" >
+    <Tile Id="470" Name="DisplayDoll"  Framed="true" Size="2,3" >
       <Frames>
-        <Frame UV="0, 0" Name="" Variety="" />
+        <Frame UV="0,0" Anchor="Left" />
+        <Frame UV="36,0" Anchor="Right" />
       </Frames>
     </Tile>
-    <Tile Id="471" Name="Weapon Rack"  Framed="true" >
+    <Tile Id="471" Name="Weapon Rack 2"  Framed="true"  Size="3,3" >
       <Frames>
-        <Frame UV="0, 0" Name="" Variety="" />
+        <Frame UV="0,0" />
+        <Frame UV="54,0" Variety="Flipped" />
       </Frames>
     </Tile>
     <Tile Id="472" Name="Iron Brick"  Solid="true"  />
@@ -5295,7 +5301,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="0, 0" Name="" Variety="" />
       </Frames>
     </Tile>
-    <Tile Id="477" Name=""  Solid="true"  />
+    <Tile Id="477" Name="Golf Grass" Solid="true"  />
     <Tile Id="478" Name="Crimstone Brick"  Solid="true"  />
     <Tile Id="479" Name="Smooth Sandstone"  Solid="true"  />
     <Tile Id="480" Name="Blood Moon Monolith"  Framed="true" >
@@ -5311,7 +5317,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="0, 0" Name="" Variety="" />
       </Frames>
     </Tile>
-    <Tile Id="485" Name=""  Framed="true" >
+    <Tile Id="485" Name="Antlion Larva"  Framed="true" >
       <Frames>
         <Frame UV="0, 0" Name="" Variety="" />
       </Frames>
@@ -5326,7 +5332,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="0, 0" Name="" Variety="" />
       </Frames>
     </Tile>
-    <Tile Id="488" Name=""  Framed="true" >
+    <Tile Id="488" Name="Fallen Log"  Framed="true" >
       <Frames>
         <Frame UV="0, 0" Name="" Variety="" />
       </Frames>
@@ -5346,7 +5352,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="0, 0" Name="" Variety="" />
       </Frames>
     </Tile>
-    <Tile Id="492" Name=""  Solid="true"  />
+    <Tile Id="492" Name="Golf Grass Hallowed"  Solid="true"  />
     <Tile Id="493" Name="White Pin Flag"  Framed="true" >
       <Frames>
         <Frame UV="0, 0" Name="" Variety="" />
@@ -5374,7 +5380,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Tile Id="501" Name="Vortex Brick"  Solid="true" Light="true"  />
     <Tile Id="502" Name="Nebula Brick"  Solid="true" Light="true"  />
     <Tile Id="503" Name="Stardust Brick"  Solid="true" Light="true"  />
-    <Tile Id="504" Name=""   />
+    <Tile Id="504" Name="Mystic Snake Rope"   />
     <Tile Id="505" Name="Gold Fish Bowl"  Framed="true" >
       <Frames>
         <Frame UV="0, 0" Name="" Variety="" />
@@ -5402,18 +5408,18 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="0, 0" Name="" Variety="" />
       </Frames>
     </Tile>
-    <Tile Id="512" Name=""  Solid="true"  />
-    <Tile Id="513" Name=""  Solid="true"  />
-    <Tile Id="514" Name=""  Solid="true"  />
-    <Tile Id="515" Name=""  Solid="true"  />
-    <Tile Id="516" Name=""  Solid="true"  />
-    <Tile Id="517" Name=""  Solid="true" Light="true"  />
-    <Tile Id="518" Name=""  Framed="true" >
+    <Tile Id="512" Name="Green Moss Brick"  Solid="true"  />
+    <Tile Id="513" Name="Brown Moss Brick"  Solid="true"  />
+    <Tile Id="514" Name="Red Moss Brick"  Solid="true"  />
+    <Tile Id="515" Name="Blue Moss Brick"  Solid="true"  />
+    <Tile Id="516" Name="Purple Moss Brick"  Solid="true"  />
+    <Tile Id="517" Name="Lava Moss Brick"  Solid="true" Light="true"  />
+    <Tile Id="518" Name="Lily Pad"  Framed="true" >
       <Frames>
         <Frame UV="0, 0" Name="" Variety="" />
       </Frames>
     </Tile>
-    <Tile Id="519" Name=""  Framed="true" Light="true" >
+    <Tile Id="519" Name="Cattail"  Framed="true" Light="true" >
       <Frames>
         <Frame UV="0, 0" Name="" Variety="" />
       </Frames>
@@ -5458,13 +5464,13 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="0, 0" Name="" Variety="" />
       </Frames>
     </Tile>
-    <Tile Id="528" Name=""  Light="true"  />
-    <Tile Id="529" Name=""  Framed="true" >
+    <Tile Id="528" Name="Mushroom Vines"  Light="true"  />
+    <Tile Id="529" Name="Sea Oats"  Framed="true" >
       <Frames>
         <Frame UV="0, 0" Name="" Variety="" />
       </Frames>
     </Tile>
-    <Tile Id="530" Name=""  Framed="true" >
+    <Tile Id="530" Name="Oasis Plants"  Framed="true" >
       <Frames>
         <Frame UV="0, 0" Name="" Variety="" />
       </Frames>
@@ -5485,16 +5491,16 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
       </Frames>
     </Tile>
     <Tile Id="534" Name="Krypton Moss"  Solid="true" Light="true"  />
-    <Tile Id="535" Name=""  Solid="true" Light="true"  />
+    <Tile Id="535" Name="Krypton Moss Brick"  Solid="true" Light="true"  />
     <Tile Id="536" Name="Xenon Moss"  Solid="true" Light="true"  />
-    <Tile Id="537" Name=""  Solid="true" Light="true"  />
+    <Tile Id="537" Name="Xenon Moss Brick"  Solid="true" Light="true"  />
     <Tile Id="538" Name="Ladybug Cage"  Framed="true" >
       <Frames>
         <Frame UV="0, 0" Name="" Variety="" />
       </Frames>
     </Tile>
     <Tile Id="539" Name="Argon Moss"  Solid="true" Light="true"  />
-    <Tile Id="540" Name=""  Solid="true" Light="true"  />
+    <Tile Id="540" Name="Argon Moss Brick"  Solid="true" Light="true"  />
     <Tile Id="541" Name="Echo Block"  Solid="true"  />
     <Tile Id="542" Name="Owl Cage"  Framed="true" >
       <Frames>
@@ -5527,7 +5533,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="0, 0" Name="" Variety="" />
       </Frames>
     </Tile>
-    <Tile Id="549" Name=""  Framed="true" >
+    <Tile Id="549" Name="Seaweed"  Framed="true" >
       <Frames>
         <Frame UV="0, 0" Name="" Variety="" />
       </Frames>
@@ -5567,7 +5573,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="0, 0" Name="" Variety="" />
       </Frames>
     </Tile>
-    <Tile Id="557" Name=""  Solid="true"  />
+    <Tile Id="557" Name="Grate Closed"  Solid="true"  />
     <Tile Id="558" Name="Seahorse Cage"  Framed="true" >
       <Frames>
         <Frame UV="0, 0" Name="" Variety="" />
@@ -5617,7 +5623,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="0, 0" Name="" Variety="" />
       </Frames>
     </Tile>
-    <Tile Id="571" Name=""  Framed="true" >
+    <Tile Id="571" Name="Bamboo"  Framed="true" >
       <Frames>
         <Frame UV="0, 0" Name="" Variety="" />
       </Frames>
@@ -5657,37 +5663,37 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="0, 0" Name="" Variety="" />
       </Frames>
     </Tile>
-    <Tile Id="583" Name=""  Framed="true" >
+    <Tile Id="583" Name="Tree Topaz"  Framed="true" >
       <Frames>
         <Frame UV="0, 0" Name="" Variety="" />
       </Frames>
     </Tile>
-    <Tile Id="584" Name=""  Framed="true" >
+    <Tile Id="584" Name="Tree Amethyst"  Framed="true" >
       <Frames>
         <Frame UV="0, 0" Name="" Variety="" />
       </Frames>
     </Tile>
-    <Tile Id="585" Name=""  Framed="true" >
+    <Tile Id="585" Name="Tree Sapphire"  Framed="true" >
       <Frames>
         <Frame UV="0, 0" Name="" Variety="" />
       </Frames>
     </Tile>
-    <Tile Id="586" Name=""  Framed="true" >
+    <Tile Id="586" Name="Tree Emerald"  Framed="true" >
       <Frames>
         <Frame UV="0, 0" Name="" Variety="" />
       </Frames>
     </Tile>
-    <Tile Id="587" Name=""  Framed="true" >
+    <Tile Id="587" Name="Tree Ruby"  Framed="true" >
       <Frames>
         <Frame UV="0, 0" Name="" Variety="" />
       </Frames>
     </Tile>
-    <Tile Id="588" Name=""  Framed="true" >
+    <Tile Id="588" Name="Tree Diamond"  Framed="true" >
       <Frames>
         <Frame UV="0, 0" Name="" Variety="" />
       </Frames>
     </Tile>
-    <Tile Id="589" Name=""  Framed="true" >
+    <Tile Id="589" Name="Tree Amber"  Framed="true" >
       <Frames>
         <Frame UV="0, 0" Name="" Variety="" />
       </Frames>
@@ -5722,7 +5728,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="0, 0" Name="" Variety="" />
       </Frames>
     </Tile>
-    <Tile Id="596" Name=""  Framed="true" >
+    <Tile Id="596" Name="Vanity Tree Sakura"  Framed="true" >
       <Frames>
         <Frame UV="0, 0" Name="" Variety="" />
       </Frames>
@@ -5822,7 +5828,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="0, 0" Name="" Variety="" />
       </Frames>
     </Tile>
-    <Tile Id="616" Name=""  Framed="true" >
+    <Tile Id="616" Name="Vanity Tree Yellow Willow"  Framed="true" >
       <Frames>
         <Frame UV="0, 0" Name="" Variety="" />
       </Frames>

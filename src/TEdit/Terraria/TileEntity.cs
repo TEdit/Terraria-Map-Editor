@@ -40,9 +40,79 @@ namespace TEdit.Terraria
         };
     }
 
+    public enum TileEntityType : byte
+    {
+        TrainingDummy = 0,
+        ItemFrame = 1,
+        LogicSensor = 2,
+        DisplayDoll = 3,
+        WeaponRack = 4,
+        HatRack = 5,
+        FoodPlatter = 6,
+        TeleportationPylon = 7
+    }
+
     [Serializable]
     public class TileEntity : ObservableObject
     {
+        public static TileEntity CreateForTile(Tile curTile, int x, int y, int id)
+        {
+            TileEntity TE = new TileEntity();
+            TE.PosX = (short)x;
+            TE.PosY = (short)y;
+            TE.Id = id;
+            if (curTile.Type == (int)TileType.TrainingDummy)
+            {
+                TE.Type = 0;
+                TE.Npc = -1;
+            }
+            else if (curTile.Type == (int)TileType.ItemFrame)
+            {
+                TE.Type = 1;
+                TE.NetId = 0;
+                TE.Prefix = 0;
+                TE.StackSize = 0;
+            }
+            else if (curTile.Type == (int)TileType.LogicSensor)
+            {
+                TE.Type = 2;
+                TE.On = false;
+                TE.LogicCheck = (byte)(curTile.V / 18 + 1);
+            }
+            else if (curTile.Type == (int)TileType.Mannequin || curTile.Type == (int)TileType.Womannequin || curTile.Type == (int)TileType.DisplayDoll)
+            {
+                TE.Type = 3;
+                TE.Items = new System.Collections.ObjectModel.ObservableCollection<TileEntityItem>(new TileEntityItem[8]);
+                TE.Dyes = new System.Collections.ObjectModel.ObservableCollection<TileEntityItem>(new TileEntityItem[8]);
+            }
+            else if (curTile.Type == (int)TileType.WeaponRack || curTile.Type == (int)TileType.WeaponRack2)
+            {
+                TE.Type = 4;
+                TE.NetId = 0;
+                TE.Prefix = 0;
+                TE.StackSize = 0;
+            }
+            else if (curTile.Type == (int)TileType.HatRack)
+            {
+                TE.Type = 5;
+                TE.Items = new System.Collections.ObjectModel.ObservableCollection<TileEntityItem>(new TileEntityItem[2]);
+                TE.Dyes = new System.Collections.ObjectModel.ObservableCollection<TileEntityItem>(new TileEntityItem[2]);
+
+            }
+            else if (curTile.Type == (int)TileType.FoodPlatter)
+            {
+                TE.Type = 6;
+                TE.NetId = 0;
+                TE.Prefix = 0;
+                TE.StackSize = 0;
+            }
+            else if (curTile.Type == (int)TileType.TeleportationPylon)
+            {
+                TE.Type = 7;
+            }
+            return TE;
+        }
+
         private byte _type;
         private int _id;
         private Int16 _x;
@@ -66,13 +136,27 @@ namespace TEdit.Terraria
         public byte Type
         {
             get { return _type; }
-            set { Set("Type", ref _type, value); }
+            set
+            {
+                Set("Type", ref _type, value);
+                RaisePropertyChanged(nameof(EntityType));
+            }
         }
 
         public int Id
         {
             get { return _id; }
             set { Set("Id", ref _id, value); }
+        }
+
+        public TileEntityType EntityType
+        {
+            get { return (TileEntityType)_type; }
+            set
+            {
+                Set("Type", ref _type, (byte)value);
+                RaisePropertyChanged(nameof(EntityType));
+            }
         }
 
         public Int16 PosX
@@ -130,37 +214,31 @@ namespace TEdit.Terraria
             bw.Write(Id);
             bw.Write(PosX);
             bw.Write(PosY);
-            switch (Type)
+            switch ((TileEntityType)Type)
             {
-                case 0: //it is a dummy
+                case TileEntityType.TrainingDummy: //it is a dummy
                     bw.Write(Npc);
                     break;
-                case 1: //it is a item frame
-                    bw.Write((Int16)NetId);
-                    bw.Write(Prefix);
-                    bw.Write(StackSize);
+                case TileEntityType.ItemFrame: //it is a item frame
+                    SaveStack(bw);
                     break;
-                case 2: //it is a logic sensor
+                case TileEntityType.LogicSensor: //it is a logic sensor
                     bw.Write(LogicCheck);
                     bw.Write(On);
                     break;
-                case 3: // display doll
+                case TileEntityType.DisplayDoll: // display doll
                     SaveSlots(bw, 8);
                     break;
-                case 4: // weapons rack 
-                    bw.Write((Int16)NetId);
-                    bw.Write(Prefix);
-                    bw.Write(StackSize);
+                case TileEntityType.WeaponRack: // weapons rack 
+                    SaveStack(bw);
                     break;
-                case 5: // hat rack 
+                case TileEntityType.HatRack: // hat rack 
                     SaveSlots(bw, 2);
                     break;
-                case 6: // food platter
-                    bw.Write((Int16)NetId);
-                    bw.Write(Prefix);
-                    bw.Write(StackSize);
+                case TileEntityType.FoodPlatter: // food platter
+                    SaveStack(bw);
                     break;
-                case 7: // teleportation pylon
+                case TileEntityType.TeleportationPylon: // teleportation pylon
 
                     break;
             }
@@ -172,40 +250,50 @@ namespace TEdit.Terraria
             Id = r.ReadInt32();
             PosX = r.ReadInt16();
             PosY = r.ReadInt16();
-            switch (Type)
+            switch ((TileEntityType)Type)
             {
-                case 0: //it is a dummy
+                case TileEntityType.TrainingDummy: //it is a dummy
+
                     Npc = r.ReadInt16();
                     break;
-                case 1: //it is a item frame
-                    NetId = (int)r.ReadInt16();
-                    Prefix = r.ReadByte();
-                    StackSize = r.ReadInt16();
+                case TileEntityType.ItemFrame: //it is a item frame
+                    LoadStack(r);
                     break;
-                case 2: //it is a logic sensor
+                case TileEntityType.LogicSensor: //it is a logic sensor
                     LogicCheck = r.ReadByte();
                     On = r.ReadBoolean();
                     break;
-                case 3: // display doll
+                case TileEntityType.DisplayDoll: // display doll
                     LoadSlots(r, 8);
                     break;
-                case 4: // weapons rack 
-                    NetId = (int)r.ReadInt16();
-                    Prefix = r.ReadByte();
-                    StackSize = r.ReadInt16();
+                case TileEntityType.WeaponRack: // weapons rack 
+                    LoadStack(r);
                     break;
-                case 5: // hat rack 
+                case TileEntityType.HatRack: // hat rack 
                     LoadSlots(r, 2);
                     break;
-                case 6: // food platter
-                    NetId = (int)r.ReadInt16();
-                    Prefix = r.ReadByte();
-                    StackSize = r.ReadInt16();
+                case TileEntityType.FoodPlatter: // food platter
+                    LoadStack(r);
+
                     break;
-                case 7: // teleportation pylon
+                case TileEntityType.TeleportationPylon: // teleportation pylon
 
                     break;
             }
+        }
+
+        private void SaveStack(BinaryWriter w)
+        {
+            w.Write((Int16)NetId);
+            w.Write(Prefix);
+            w.Write(StackSize);
+        }
+
+        private void LoadStack(BinaryReader r)
+        {
+            NetId = (int)r.ReadInt16();
+            Prefix = r.ReadByte();
+            StackSize = r.ReadInt16();
         }
 
         private void LoadSlots(BinaryReader r, byte slots)
@@ -297,7 +385,7 @@ namespace TEdit.Terraria
                 frame.Items = new ObservableCollection<TileEntityItem>(new TileEntityItem[Items.Count]);
                 for (int i = 0; i < Items.Count; i++)
                 {
-                    frame.Items[i] = Items[i].Copy();
+                    frame.Items[i] = Items[i]?.Copy();
                 }
             }
 
@@ -306,7 +394,7 @@ namespace TEdit.Terraria
                 frame.Dyes = new ObservableCollection<TileEntityItem>(new TileEntityItem[Dyes.Count]);
                 for (int i = 0; i < Dyes.Count; i++)
                 {
-                    frame.Dyes[i] = Dyes[i].Copy();
+                    frame.Dyes[i] = Dyes[i]?.Copy();
                 }
             }
 

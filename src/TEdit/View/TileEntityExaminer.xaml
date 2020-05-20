@@ -1,0 +1,47 @@
+﻿<UserControl x:Class="TEdit.View.TileEntityExaminer"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:viewModel="clr-namespace:TEdit.ViewModel"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300" d:DataContext="{d:DesignInstance Type=viewModel:WorldViewModel}">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <ListBox Grid.Row="1" MinHeight="100" ItemsSource="{Binding CurrentWorld.TileEntities}" HorizontalContentAlignment="Stretch">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel HorizontalAlignment="Stretch" Orientation="Horizontal">
+                        <Label Content="X" />
+                        <TextBox Text="{Binding PosX}" Margin="2,0" />
+                        <Label Content="Y" />
+                        <TextBox Text="{Binding PosY}" Margin="2,0" />
+                        <Label Content="ID" />
+
+                        <TextBox Text="{Binding Id}" Margin="2,0" />
+                        <Label Content="NetID" />
+                        <TextBox Text="{Binding NetId}" Margin="2,0" />
+                        <Label Content="Stack" />
+                        <TextBox Text="{Binding StackSize}" Margin="2,0" />
+                        <Label Content="Prefix" />
+                        <TextBox Text="{Binding Prefix}" Margin="2,0" />
+                        <Label Content="Npc" />
+                        <TextBox Text="{Binding Npc}" Margin="2,0" />
+                        <Label Content="Logic" />
+                        <TextBox Text="{Binding LogicCheck}" Margin="2,0" />
+                        <Label Content="On" />
+                        <TextBox Text="{Binding On}" Margin="2,0" />
+                        <Label Content="Items" />
+                        <TextBox Text="{Binding Items.Count, Mode=OneWay}" Margin="2,0" />
+
+                    </StackPanel>
+
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+    </Grid>
+</UserControl>

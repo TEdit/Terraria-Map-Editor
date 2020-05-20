@@ -23,6 +23,7 @@ namespace TEdit.Editor.Undo
         private readonly List<UndoTile> _undoTiles = new List<UndoTile>();
         private readonly List<Sign> _signs = new List<Sign>();
         private readonly List<Chest> _chests = new List<Chest>();
+        private readonly List<TileEntity> _tileEntities = new List<TileEntity>();
 
         public IList<Chest> Chests
         {
@@ -32,6 +33,11 @@ namespace TEdit.Editor.Undo
         public IList<Sign> Signs
         {
             get { return _signs; }
+        }
+
+        public IList<TileEntity> TileEntities
+        {
+            get { return _tileEntities; }
         }
 
         public List<UndoTile> UndoTiles
@@ -100,7 +106,7 @@ namespace TEdit.Editor.Undo
 
             World.SaveChests(Chests, _writer);
             World.SaveSigns(Signs, _writer);
-
+            World.SaveTileEntities(TileEntities, _writer);
             _writer.BaseStream.Position = (long)0;
             _writer.Write(Count);
             _writer.Close();

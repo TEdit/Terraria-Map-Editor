@@ -188,6 +188,15 @@ namespace TEdit.Editor.Undo
                     Buffer.Signs.Add(sign);
                 }
             }
+            else if (Tile.IsTileEntity(curTile.Type) && !Buffer.TileEntities.Any(c => c.PosX == x && c.PosY == y))
+            {
+                var curTe = _wvm.CurrentWorld.GetTileEntityAtTile(x, y);
+                if (curTe != null)
+                {
+                    var te = curTe.Copy();
+                    Buffer.TileEntities.Add(te);
+                }
+            }
             Buffer.Add(new Vector2Int32(x, y), curTile);
         }
 
@@ -223,6 +232,17 @@ namespace TEdit.Editor.Undo
                     }
                 }
             }
+            else if (Tile.IsTileEntity(lastTile.Tile.Type))
+            {
+                if (!Tile.IsTileEntity(existingLastTile.Type) || !existingLastTile.IsActive)
+                {
+                    var curTe = _wvm.CurrentWorld.GetTileEntityAtTile(lastTile.Location.X, lastTile.Location.Y);
+                    if (curTe != null)
+                    {
+                        _wvm.CurrentWorld.TileEntities.Remove(curTe);
+                    }
+                }
+            }
 
             // Add new chests and signs if required
             if (Tile.IsChest(existingLastTile.Type))
@@ -240,6 +260,14 @@ namespace TEdit.Editor.Undo
                 if (cursign == null)
                 {
                     _wvm.CurrentWorld.Signs.Add(new Sign(lastTile.Location.X, lastTile.Location.Y, string.Empty));
+                }
+            }
+            else if (Tile.IsTileEntity(existingLastTile.Type))
+            {
+                var curTe = _wvm.CurrentWorld.GetTileEntityAtTile(lastTile.Location.X, lastTile.Location.Y);
+                if (curTe == null)
+                {
+                    _wvm.CurrentWorld.TileEntities.Add(TileEntity.CreateForTile(existingLastTile, lastTile.Location.X, lastTile.Location.Y, _wvm.CurrentWorld.TileEntities.Count));
                 }
             }
         }
@@ -282,6 +310,16 @@ namespace TEdit.Editor.Undo
                             redo.Signs.Add(sign);
                         }
                     }
+                    if (Tile.IsTileEntity(curTile.Type))
+                    {
+                        var curTe = _wvm.CurrentWorld.GetTileEntityAtTile(undoTile.Location.X, undoTile.Location.Y);
+                        if (curTe != null)
+                        {
+                            _wvm.CurrentWorld.TileEntities.Remove(curTe);
+                            var te = curTe.Copy();
+                            redo.TileEntities.Add(te);
+                        }
+                    }
                     _wvm.CurrentWorld.Tiles[undoTile.Location.X, undoTile.Location.Y] = (Tile)undoTile.Tile;
                     _wvm.UpdateRenderPixel(undoTile.Location);
 
@@ -302,7 +340,7 @@ namespace TEdit.Editor.Undo
                     _wvm.CurrentWorld.Signs.Add(sign);
                 }
             }
-
+            _wvm.CurrentWorld.FixTileEntityUV();
             OnUndid(this, EventArgs.Empty);
         }
 
@@ -329,6 +367,12 @@ namespace TEdit.Editor.Undo
                         if (cursign != null)
                             _wvm.CurrentWorld.Signs.Remove(cursign);
                     }
+                    if (Tile.IsTileEntity(curTile.Type))
+                    {
+                        var curTe = _wvm.CurrentWorld.GetTileEntityAtTile(undoTile.Location.X, undoTile.Location.Y);
+                        if (curTe != null)
+                            _wvm.CurrentWorld.TileEntities.Remove(curTe);
+                    }
 
                     _wvm.CurrentWorld.Tiles[undoTile.Location.X, undoTile.Location.Y] = (Tile)undoTile.Tile;
                     _wvm.UpdateRenderPixel(undoTile.Location);
@@ -346,6 +390,7 @@ namespace TEdit.Editor.Undo
                 }
             }
             _currentIndex++;
+            _wvm.CurrentWorld.FixTileEntityUV();
             OnRedid(this, EventArgs.Empty);
         }
 

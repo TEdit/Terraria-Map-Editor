@@ -6,6 +6,7 @@ using Vector2 = TEdit.Geometry.Primitives.Vector2;
 using System;
 using System.IO;
 using TEdit.Terraria;
+using TEdit.Helper;
 
 namespace TEdit.Terraria
 {
@@ -54,7 +55,7 @@ namespace TEdit.Terraria
             OnProgressChanged(null, new ProgressChangedEventArgs(100, "Save Mobs..."));
             sectionPointers[5] = SaveMobs(world.Mobs, bw);
             OnProgressChanged(null, new ProgressChangedEventArgs(100, "Save Tile Entities Section..."));
-            sectionPointers[6] = SaveTileEntities(world, bw);
+            sectionPointers[6] = SaveTileEntities(world.TileEntities, bw);
             OnProgressChanged(null, new ProgressChangedEventArgs(100, "Save Weighted Pressure Plates..."));
             sectionPointers[7] = SavePressurePlate(world.PressurePlates, bw);
             OnProgressChanged(null, new ProgressChangedEventArgs(100, "Save Town Manager..."));
@@ -632,11 +633,11 @@ namespace TEdit.Terraria
             return (int)bw.BaseStream.Position;
         }
 
-        public static int SaveTileEntities(World w, BinaryWriter bw)
+        public static int SaveTileEntities(IList<TileEntity> tileEntities, BinaryWriter bw)
         {
-            bw.Write(w.TileEntities.Count);
+            bw.Write(tileEntities.Count);
 
-            foreach (TileEntity tentity in w.TileEntities)
+            foreach (TileEntity tentity in tileEntities)
             {
                 tentity.Save(bw);
             }
@@ -1129,16 +1130,25 @@ namespace TEdit.Terraria
                 throw new FileFormatException("Invalid Footer");
         }
 
-        public static void LoadTileEntities(BinaryReader r, World w)
+        public static List<TileEntity> LoadTileEntityData(BinaryReader r, uint version)
         {
-            w.TileEntitiesNumber = r.ReadInt32();
-
-            for (int counter = 0; counter < w.TileEntitiesNumber; counter++)
+            int numEntities = r.ReadInt32();
+            var entities = new List<TileEntity>();
+            for (int i = 0; i < numEntities; i++)
             {
                 TileEntity entity = new TileEntity();
-                entity.Load(r, w.Version);
-                w.TileEntities.Add(entity);
+                entity.Load(r, version);
+                entities.Add(entity);
             }
+            return entities;
+        }
+
+        public static void LoadTileEntities(BinaryReader r, World w)
+        {
+            var entities = LoadTileEntityData(r, w.Version);
+            w.TileEntitiesNumber = entities.Count;
+
+            w.TileEntities.AddRange(entities);
         }
         public static void LoadPressurePlate(BinaryReader r, World w)
         {

@@ -205,7 +205,7 @@ namespace TEdit.Editor.Clipboard
                             curTile.WireBlue = buffer.Tiles[x, y].WireBlue;
                             curTile.WireYellow = buffer.Tiles[x, y].WireYellow;
                             curTile.Actuator = buffer.Tiles[x, y].Actuator;
-                            curTile.InActive = buffer.Tiles[x, y].InActive;
+                            curTile.InActive = buffer.Tiles[x, y].InActive;                            
                         }
 
                         if (!PasteEmpty && (curTile.LiquidAmount == 0 && !curTile.IsActive && curTile.Wall == 0 && !curTile.WireRed && !curTile.WireBlue && !curTile.WireGreen && !curTile.WireYellow))
@@ -331,7 +331,7 @@ namespace TEdit.Editor.Clipboard
                 }
             }
             _wvm.UndoManager.SaveUndo();
-
+            _wvm.CurrentWorld.FixTileEntityUV();
             /* Heathtech */
             BlendRules.ResetUVCache(_wvm, anchor.X, anchor.Y, buffer.Size.X, buffer.Size.Y);
         }
@@ -340,7 +340,7 @@ namespace TEdit.Editor.Clipboard
         public void Flip(ClipboardBuffer buffer, bool flipX)
         {
             ClipboardBuffer flippedBuffer = new ClipboardBuffer(buffer.Size);
-
+            
             for (int x = 0, maxX = buffer.Size.X - 1; x <= maxX; x++)
             {
                 for (int y = 0, maxY = buffer.Size.Y - 1; y <= maxY; y++)
@@ -383,7 +383,7 @@ namespace TEdit.Editor.Clipboard
                             case BrickStyle.SlopeBottomLeft:
                                 tile.BrickStyle = BrickStyle.SlopeBottomRight;
                                 break;
-                        }
+                        }                        
                     }
 
                     else

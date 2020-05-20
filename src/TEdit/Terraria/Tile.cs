@@ -42,13 +42,25 @@ namespace TEdit.Terraria
         CrimsandBlock = 234,
         PlanteraBulb = 238,
         IceByRod = 127,
-        Timer = 144,
+        Chest2 = 467,
         AnnouncementBox = 425,
-        Dummy = 378,
+        ChristmasTree = 171,
+        MinecartTrack = 314,
+        // Tile Entities
+        Mannequin = 128,
+        Womannequin = 269,
+        DisplayDoll = 470, // aka Mannequin
+        FoodPlatter = 520, // aka plate
+        Timer = 144,
+        TrainingDummy = 378,
         ItemFrame = 395,
         LogicSensor = 423,
-        Chest2 = 467
+        WeaponRack2 = 471,
+        WeaponRack = 334,
+        HatRack = 475,
+        TeleportationPylon = 597
     }
+    
 
     [Serializable]
     public class Tile
@@ -230,7 +242,18 @@ namespace TEdit.Terraria
 
         public static bool IsTileEntity(int tileType)
         {
-            return tileType == (int)TileType.Dummy || tileType == (int)TileType.ItemFrame || tileType == (int)TileType.LogicSensor;
+            return tileType == (int)TileType.DisplayDoll
+                || tileType == (int)TileType.Mannequin
+                || tileType == (int)TileType.Womannequin
+                || tileType == (int)TileType.FoodPlatter
+                || tileType == (int)TileType.Timer
+                || tileType == (int)TileType.TrainingDummy
+                || tileType == (int)TileType.ItemFrame
+                || tileType == (int)TileType.LogicSensor
+                || tileType == (int)TileType.WeaponRack
+                || tileType == (int)TileType.WeaponRack2
+                || tileType == (int)TileType.HatRack
+                || tileType == (int)TileType.TeleportationPylon;
         }
 
     }
