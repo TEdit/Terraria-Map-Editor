@@ -7,6 +7,7 @@ using TEdit.Geometry.Primitives;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Threading;
 using TEdit.Terraria.Objects;
+using TEdit.MvvmLight.Threading;
 
 namespace TEdit.Terraria
 {
@@ -237,22 +238,24 @@ namespace TEdit.Terraria
 
         public void Validate()
         {
-            for (int x = 0; x < TilesWide; x++)
+            var t = TaskFactoryHelper.UiTaskFactory.StartNew(() =>
             {
-                OnProgressChanged(this,
-                    new ProgressChangedEventArgs((int)(x / (float)TilesWide * 100.0), "Validating World..."));
-
-                for (int y = 0; y < TilesHigh; y++)
+                for (int x = 0; x < TilesWide; x++)
                 {
-                    Tile curTile = Tiles[x, y];
+                    OnProgressChanged(this,
+                        new ProgressChangedEventArgs((int)(x / (float)TilesWide * 100.0), "Validating World..."));
 
-                    if (curTile.Type == (int)TileType.IceByRod)
-                        curTile.IsActive = false;
+                    for (int y = 0; y < TilesHigh; y++)
+                    {
+                        Tile curTile = Tiles[x, y];
 
-                    ValSpecial(x, y);
+                        if (curTile.Type == (int)TileType.IceByRod)
+                            curTile.IsActive = false;
 
+                        ValSpecial(x, y);
+                    }
                 }
-            }
+            });
 
             foreach (Chest chest in Chests.ToArray())
             {
@@ -343,6 +346,7 @@ namespace TEdit.Terraria
 
         public void FixTileEntityUV()
         {
+            return;
             foreach (var te in TileEntities)
             {
                 switch (te.EntityType)
@@ -361,11 +365,7 @@ namespace TEdit.Terraria
                         //Tiles[te.PosX, te.PosY + 2].U = (short)((Tiles[te.PosX, te.PosY + 2].U % 100) + (100 * SelectedMannLegs));
                         break;
                     case TileEntityType.WeaponRack:
-                        if (Tiles[te.PosX, te.PosY + 1].U < 5000 && te.NetId > 0)
-                        {
-                            Tiles[te.PosX, te.PosY + 1].U = (short)((((Tiles[te.PosX, te.PosY].U / 18) + 1) * 5000) + 100 + te.NetId);
-                            Tiles[te.PosX + 1, te.PosY + 1].U = (short)((((Tiles[te.PosX + 1, te.PosY].U / 18) + 1) * 5000) + (int)te.Prefix);
-                        }
+
                         break;
                     case TileEntityType.HatRack:
                         break;
@@ -459,7 +459,7 @@ namespace TEdit.Terraria
 
         public void FixNpcs()
         {
-            DispatcherHelper.CheckBeginInvokeOnUI(
+            TEdit.MvvmLight.Threading.DispatcherHelper.CheckBeginInvokeOnUI(
                 () =>
                 {
                     int[] npcids = { 17, 18, 19, 20, 22, 54, 38, 107, 108, 124, 160, 178, 207, 208, 209, 227, 228, 229, 353, 369, 441 };

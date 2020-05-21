@@ -55,8 +55,8 @@ namespace TEdit.Terraria
         TrainingDummy = 378,
         ItemFrame = 395,
         LogicSensor = 423,
-        WeaponRack2 = 471,
-        WeaponRack = 334,
+        WeaponRack = 471,
+        WeaponRackLegacy = 334,
         HatRack = 475,
         TeleportationPylon = 597
     }
@@ -250,8 +250,8 @@ namespace TEdit.Terraria
                 || tileType == (int)TileType.TrainingDummy
                 || tileType == (int)TileType.ItemFrame
                 || tileType == (int)TileType.LogicSensor
+                || tileType == (int)TileType.WeaponRackLegacy
                 || tileType == (int)TileType.WeaponRack
-                || tileType == (int)TileType.WeaponRack2
                 || tileType == (int)TileType.HatRack
                 || tileType == (int)TileType.TeleportationPylon;
         }

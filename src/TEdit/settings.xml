@@ -4632,7 +4632,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Tile Id="331" Color="#FFA1ACAD" Name="Silver Coin Pile" Blends="true" />
     <Tile Id="332" Color="#FFCCB548" Name="Gold Coin Pile" Blends="true" />
     <Tile Id="333" Color="#FFBEBEB2" Name="Platinum Coin Pile" Blends="true" />
-    <Tile Id="334" Color="#FFBF8E6F" Name="Weapon Rack" Framed="true" Size="3,3" >
+    <Tile Id="334" Color="#FFBF8E6F" Name="Weapon Rack (Legacy - DO NOT USE)" Framed="true" Size="3,3" >
       <Frames>
         <Frame UV="0,0" />
         <Frame UV="54,0" Variety="Flipped" />
@@ -5282,7 +5282,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="36,0" Anchor="Right" />
       </Frames>
     </Tile>
-    <Tile Id="471" Name="Weapon Rack 2"  Framed="true"  Size="3,3" >
+    <Tile Id="471" Name="Weapon Rack"  Framed="true"  Size="3,3" >
       <Frames>
         <Frame UV="0,0" />
         <Frame UV="54,0" Variety="Flipped" />

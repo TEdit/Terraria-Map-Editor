@@ -377,7 +377,17 @@ namespace TEdit.View
 
             // Draw sprite overlays
             if (_wvm.ShowTextures && _textureDictionary.Valid)
+            {
                 DrawSprites();
+                // Draw Tile Entities
+
+                if (_zoom > 5)
+                {
+                    DrawTileEntities();
+                }
+
+
+            }
 
             if (_wvm.ShowGrid)
                 DrawGrid();
@@ -392,6 +402,77 @@ namespace TEdit.View
 
             // End SpriteBatch
             _spriteBatch.End();
+        }
+
+        private void DrawTileEntities()
+        {
+            Texture2D tileTex;
+            Tile curtile;
+            int x = 0;
+            int y = 0;
+            Rectangle source;
+            foreach (var te in _wvm.CurrentWorld.TileEntities)
+            {
+                curtile = _wvm.CurrentWorld.Tiles[te.PosX, te.PosY];
+                x = te.PosX;
+                y = te.PosY;
+                switch (te.EntityType)
+                {
+                    case TileEntityType.TrainingDummy:
+                        break;
+                    case TileEntityType.ItemFrame:
+                        {
+                            int weapon = te.NetId;
+                            tileTex = (Texture2D)_textureDictionary.GetItem(weapon);
+                            SpriteEffects effect = curtile.U == 0 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
+                            float scale = World.ItemProperties[weapon].Scale;
+                            source = new Rectangle(0, 0, tileTex.Width, tileTex.Height);
+                            _spriteBatch.Draw(
+                                tileTex, 
+                                new Vector2(1 + (int)((_scrollPosition.X + x + 1.5) * _zoom), 1 + (int)((_scrollPosition.Y + y + .5) * _zoom)), 
+                                source, 
+                                Color.White, 
+                                0f, 
+                                new Vector2((float)(tileTex.Width / 2), (float)(tileTex.Height / 2)), 
+                                scale * _zoom / 16f, effect, LayerTileTrack);
+                        }
+                        break;
+                    case TileEntityType.LogicSensor:
+                        break;
+                    case TileEntityType.DisplayDoll:
+                        break;
+                    case TileEntityType.WeaponRack:
+                        {
+                            int weapon = te.NetId;
+                            tileTex = (Texture2D)_textureDictionary.GetItem(weapon);
+                            int flip = curtile.U / 54;
+                            float scale = 1f;
+                            y++;
+                            if (tileTex.Width > 40 || tileTex.Height > 40)
+                            {
+                                if (tileTex.Width > tileTex.Height)
+                                    scale = 40f / (float)tileTex.Width;
+                                else
+                                    scale = 40f / (float)tileTex.Height;
+                            }
+                            scale *= World.ItemProperties[weapon].Scale;
+                            source = new Rectangle(0, 0, tileTex.Width, tileTex.Height);
+                            SpriteEffects effect = SpriteEffects.None;
+                            if (flip >= 3)
+                            {
+                                effect = SpriteEffects.FlipHorizontally;
+                            }
+                            _spriteBatch.Draw(tileTex, new Vector2(1 + (int)((_scrollPosition.X + x + 1.5) * _zoom), 1 + (int)((_scrollPosition.Y + y + .5) * _zoom)), source, Color.White, 0f, new Vector2((float)(tileTex.Width / 2), (float)(tileTex.Height / 2)), scale * _zoom / 16f, effect, LayerTileTrack);
+                        }
+                        break;
+                    case TileEntityType.HatRack:
+                        break;
+                    case TileEntityType.FoodPlatter:
+                        break;
+                    case TileEntityType.TeleportationPylon:
+                        break;
+                }
+            }
         }
 
         private void GenPixelTiles(GraphicsDeviceEventArgs e)
@@ -870,7 +951,7 @@ namespace TEdit.View
                                                 source = new Rectangle((curtile.U % 100), curtile.V, tileprop.TextureGrid.X, tileprop.TextureGrid.Y);
                                                 dest = new Rectangle(1 + (int)((_scrollPosition.X + x) * _zoom), 1 + (int)((_scrollPosition.Y + y) * _zoom), (int)_zoom, (int)_zoom);
                                             }
-                                            else if ((curtile.Type == (int)TileType.WeaponRack2 || curtile.Type == (int)TileType.WeaponRack2) && curtile.U >= 5000)
+                                            else if ((curtile.Type == (int)TileType.WeaponRackLegacy) && curtile.U >= 5000)
                                             {
                                                 if (_wvm.CurrentWorld.Tiles[x + 1, y].U >= 5000)
                                                 {

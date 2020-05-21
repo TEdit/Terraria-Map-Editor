@@ -203,10 +203,7 @@
                         <ScrollViewer VerticalScrollBarVisibility="Auto">
                             <View:WorldPropertiesView HorizontalAlignment="Stretch" VerticalAlignment="Top"/>
                         </ScrollViewer>
-                    </TabItem>
-                    <TabItem Header="Tile Entities">
-                        <View:TileEntityExaminer HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
-                    </TabItem>
+                    </TabItem>                   
                     <TabItem Header="Special Tiles">
                         <View:SpecialTileView HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
                     </TabItem>
@@ -224,6 +221,9 @@
                     </TabItem>
                     <TabItem Header="Tally">
                         <View:KillTallyView HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
+                    </TabItem>
+                    <TabItem Header="Tile Entities">
+                        <View:TileEntityExaminer HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
                     </TabItem>
                 </TabControl>
             </Expander>

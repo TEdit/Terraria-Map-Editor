@@ -69,7 +69,7 @@ namespace TEdit.Editor.Tools
                 _wvm.SelectedMannLegs = _wvm.CurrentWorld.Tiles[MannLocation.X, MannLocation.Y + 2].U / 100;
                 _wvm.SelectedMannequin = MannLocation;
             }
-            else if (curTile.Type == (int)TileType.WeaponRack || curTile.Type == (int)TileType.WeaponRack2)
+            else if (curTile.Type == (int)TileType.WeaponRackLegacy || curTile.Type == (int)TileType.WeaponRack)
             {
                 Vector2Int32 RackLocation = _wvm.CurrentWorld.GetRack(e.Location.X, e.Location.Y);
                 if (_wvm.CurrentWorld.Tiles[RackLocation.X, RackLocation.Y + 1].U >= 5000)

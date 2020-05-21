@@ -85,7 +85,7 @@ namespace TEdit.Terraria
                 TE.Items = new System.Collections.ObjectModel.ObservableCollection<TileEntityItem>(new TileEntityItem[8]);
                 TE.Dyes = new System.Collections.ObjectModel.ObservableCollection<TileEntityItem>(new TileEntityItem[8]);
             }
-            else if (curTile.Type == (int)TileType.WeaponRack || curTile.Type == (int)TileType.WeaponRack2)
+            else if (curTile.Type == (int)TileType.WeaponRackLegacy || curTile.Type == (int)TileType.WeaponRack)
             {
                 TE.Type = 4;
                 TE.NetId = 0;
@@ -97,7 +97,6 @@ namespace TEdit.Terraria
                 TE.Type = 5;
                 TE.Items = new System.Collections.ObjectModel.ObservableCollection<TileEntityItem>(new TileEntityItem[2]);
                 TE.Dyes = new System.Collections.ObjectModel.ObservableCollection<TileEntityItem>(new TileEntityItem[2]);
-
             }
             else if (curTile.Type == (int)TileType.FoodPlatter)
             {
