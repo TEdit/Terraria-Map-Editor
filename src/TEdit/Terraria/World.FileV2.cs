@@ -13,7 +13,7 @@ namespace TEdit.Terraria
 
     public partial class World
     {
-        public static uint CompatibleVersion = 226;
+        public static uint CompatibleVersion = 227;
         public static short TileCount = 623;
         public static short WallCount = 316;
         public static short SectionCount = 11;
@@ -454,6 +454,7 @@ namespace TEdit.Terraria
             bw.Write(world.TilesWide);
             bw.Write(world.GameMode);
             bw.Write(world.DrunkWorld);
+            bw.Write(world.GooWorld);
             bw.Write(world.CreationTime);
             bw.Write((byte)world.MoonType);
             bw.Write(world.TreeX0);
@@ -1197,6 +1198,10 @@ namespace TEdit.Terraria
                 if (w.Version >= 222)
                 {
                     w.DrunkWorld = r.ReadBoolean();
+                }
+                if (w.Version >= 227)
+                {
+                    w.GooWorld = r.ReadBoolean();
                 }
             }
             else
