@@ -216,6 +216,7 @@ namespace TEdit.Terraria
         private int _savedOreTiersAdamantite;
         private Bestiary _bestiary = new Bestiary();
         private CreativePowers _creativePowers = new CreativePowers();
+        private bool _gooWorld;
 
         public Bestiary Bestiary
         {
@@ -582,6 +583,11 @@ namespace TEdit.Terraria
 
         }
 
+        public bool GooWorld
+        {
+            get { return _gooWorld; }
+            set { Set("GooWorld", ref _gooWorld, value); }
+        }
 
         public byte MoonType
         {
