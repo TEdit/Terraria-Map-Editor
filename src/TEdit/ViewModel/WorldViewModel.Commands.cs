@@ -76,7 +76,7 @@ namespace TEdit.ViewModel
                 if (CurrentWorld.NPCs.All(n => n.SpriteId != npcId))
                 {
                     var spawn = new Vector2Int32(CurrentWorld.SpawnX, CurrentWorld.SpawnY);
-                    CurrentWorld.NPCs.Add(new NPC{Home = spawn, IsHomeless = true, DisplayName = name, Name = name, Position= new Vector2(spawn.X * 16, spawn.Y * 16), SpriteId = npcId});
+                    CurrentWorld.NPCs.Add(new NPC { Home = spawn, IsHomeless = true, DisplayName = name, Name = name, Position = new Vector2(spawn.X * 16, spawn.Y * 16), SpriteId = npcId });
                     Points.Add(name);
                     MessageBox.Show($"{name} added to spawn.", "NPC Added");
                 }
@@ -123,11 +123,6 @@ namespace TEdit.ViewModel
             get { return _saveSignCommand ?? (_saveSignCommand = new RelayCommand<bool>(SaveSign)); }
         }
 
-        public ICommand SaveMannCommand
-        {
-            get { return _saveMannCommand ?? (_saveMannCommand = new RelayCommand<bool>(SaveMannequin)); }
-        }
-
         public ICommand SaveXmasCommand
         {
             get { return _saveXmasCommand ?? (_saveXmasCommand = new RelayCommand<bool>(SaveXmasTree)); }
@@ -137,61 +132,19 @@ namespace TEdit.ViewModel
         {
             get { return _saveTileEntityCommand ?? (_saveTileEntityCommand = new RelayCommand<bool>(SaveTileEntity)); }
         }
-        public ICommand SaveRackCommand
-        {
-            get { return _saveRackCommand ?? (_saveRackCommand = new RelayCommand<bool>(SaveRack)); }
-        }
 
-        private void SaveRack(bool save)
-        {
-            if (save)
-            {
-                if (SelectedRack != null)
-                {
-                    CurrentWorld.Tiles[SelectedRack.X, SelectedRack.Y + 1].U = (short)((((CurrentWorld.Tiles[SelectedRack.X, SelectedRack.Y].U / 18) + 1) * 5000) + 100 + SelectedRackNetId);
-                    CurrentWorld.Tiles[SelectedRack.X + 1, SelectedRack.Y + 1].U = (short)((((CurrentWorld.Tiles[SelectedRack.X + 1, SelectedRack.Y].U / 18) + 1) * 5000) + (int)SelectedRackPrefix);
-                }
-            }
-            else
-            {
-                SelectedSpecialTile = 0;
-            }
-        }
         private void SaveTileEntity(bool save)
         {
             if (save)
             {
-                if (SelectedItemFrame != null)
+                if (SelectedTileEntity != null)
                 {
-                    var worldFrame = CurrentWorld.GetTileEntityAtTile(SelectedItemFrame.PosX, SelectedItemFrame.PosY);
-                    if (worldFrame != null)
-                    {
-                        int index = CurrentWorld.TileEntities.IndexOf(worldFrame);
-                        CurrentWorld.TileEntities[index] = SelectedItemFrame.Copy();
-                    }
+                    TileEntity.PlaceEntity(SelectedTileEntity, this);
                 }
             }
             else
             {
-                SelectedItemFrame = null;
-                SelectedSpecialTile = 0;
-            }
-        }
-
-        private void SaveMannequin(bool save)
-        {
-            if (save)
-            {
-                if (SelectedMannequin != null)
-                {
-                    CurrentWorld.Tiles[SelectedMannequin.X, SelectedMannequin.Y].U = (short)((CurrentWorld.Tiles[SelectedMannequin.X, SelectedMannequin.Y].U % 100) + (100 * SelectedMannHead));
-                    CurrentWorld.Tiles[SelectedMannequin.X, SelectedMannequin.Y + 1].U = (short)((CurrentWorld.Tiles[SelectedMannequin.X, SelectedMannequin.Y + 1].U % 100) + (100 * SelectedMannBody));
-                    CurrentWorld.Tiles[SelectedMannequin.X, SelectedMannequin.Y + 2].U = (short)((CurrentWorld.Tiles[SelectedMannequin.X, SelectedMannequin.Y + 2].U % 100) + (100 * SelectedMannLegs));
-                }
-            }
-            else
-            {
-                SelectedSpecialTile = 0;
+                SelectedSpecialTile = -1;
             }
         }
 
@@ -210,7 +163,7 @@ namespace TEdit.ViewModel
             }
             else
             {
-                SelectedSpecialTile = 0;
+                SelectedSpecialTile = -1;
             }
         }
 
@@ -230,7 +183,7 @@ namespace TEdit.ViewModel
             else
             {
                 SelectedSign = null;
-                SelectedSpecialTile = 0;
+                SelectedSpecialTile = -1;
             }
         }
 
@@ -252,12 +205,9 @@ namespace TEdit.ViewModel
             else
             {
                 SelectedChest = null;
-                SelectedSpecialTile = 0;
+                SelectedSpecialTile = -1;
             }
         }
-
-
-
 
         private ICommand _updateCommand;
         public ICommand UpdateCommand

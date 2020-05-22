@@ -22,6 +22,14 @@ namespace SettingsFileUpdater.TerrariaHost
         public string Name { get; set; }
         public int Id { get; set; }
         public string Type { get; set; }
+
+        public bool IsFood { get; set; }
+
+        public int Head { get; set; }
+        public int Body { get; set; }
+        public int Legs { get; set; }
+        public bool Accessory { get; set; }
+        public bool Rack { get; set; }
     }
 
     public class TerrariaWrapper : Terraria.Main
@@ -149,7 +157,7 @@ namespace SettingsFileUpdater.TerrariaHost
             for (int i = 0; i < maxTileSets; i++)
             {
                 var creatingItem = curItems.FirstOrDefault(x => x.createTile == i);
-                
+
                 output.AppendFormat("    <Tile Id=\"{0}\" Name=\"{22}\" {5}{16}{17}{8} {21}\r\n",
                     i,
                 tileAlch[i],
@@ -210,8 +218,17 @@ namespace SettingsFileUpdater.TerrariaHost
 
             var output = new StringBuilder("  <Items>\r\n");
             foreach (var item in items)
-            { 
-                output.AppendFormat("    <Item Id=\"{0}\" Name=\"{1}\"/>\r\n", item.Id, Localize(item.Name), item.Type);
+            {
+                string attribs = string.Join(" ", new string[]
+                {
+                    (item.IsFood ? " IsFood=\"True\"" : ""),
+                    (item.Head > 0? $" Head=\"{item.Head}\"" : ""),
+                    (item.Body > 0? $" Body=\"{item.Body}\"" : ""),
+                    (item.Legs > 0? $" Legs=\"{item.Legs}\"" : ""),
+                    (item.Accessory ? " Accessory=\"True\"" : ""),
+                    (item.Rack ? " Rack=\"True\"" : ""),
+                });
+                output.AppendFormat("    <Item Id=\"{0}\" Name=\"{1}\"{3}/>\r\n", item.Id, Localize(item.Name), item.Type, attribs);
             }
             output.Append("  </Items>");
 
@@ -288,25 +305,27 @@ namespace SettingsFileUpdater.TerrariaHost
         {
             //maxTileSets
             var sitems = new List<ItemId>();
-            for (int i = -1; i > -255; i--)
-            {
-                var curItem = new Item();
-                var head = curItem.headSlot;
 
-                curItem.netDefaults(i);
-                if (string.IsNullOrWhiteSpace(curItem.Name))
-                    break;
-
-                sitems.Add(new ItemId(i, curItem.Name, GetItemType(curItem)));
-            }
-            for (int i = 0; i < maxItemTypes; i++)
+            for (int i = -255; i < maxItemTypes; i++)
             {
                 try
                 {
                     var curitem = new Terraria.Item();
                     curitem.netDefaults(i);
+
+                    if (string.IsNullOrWhiteSpace(curitem.Name)) continue;
+                    var isFood = Terraria.ID.ItemID.Sets.IsFood[i];
+
                     //curitem.SetDefaults(i);
-                    sitems.Add(new ItemId(i, curitem.Name, GetItemType(curitem)));
+                    sitems.Add(new ItemId(i, curitem.Name, GetItemType(curitem))
+                    {
+                        IsFood = isFood,
+                        Head = curitem.headSlot,
+                        Body = curitem.bodySlot,
+                        Legs = curitem.legSlot,
+                        Accessory = curitem.accessory,
+                        Rack = curitem.damage > 0
+                    });
                 }
                 catch
                 {

@@ -52,7 +52,7 @@
         <Style TargetType="{x:Type GroupBox}" x:Key="InstructionsVisiblity" BasedOn="{StaticResource {x:Type GroupBox}}">
             <Setter Property="Visibility" Value="Collapsed" />
             <Style.Triggers>
-                <DataTrigger Binding="{Binding SelectedSpecialTile}" Value="0">
+                <DataTrigger Binding="{Binding SelectedSpecialTile}" Value="-1">
                     <Setter Property="Visibility" Value="Visible" />
                 </DataTrigger>
             </Style.Triggers>
@@ -60,7 +60,7 @@
         <Style TargetType="{x:Type GroupBox}" x:Key="SignVisiblity" BasedOn="{StaticResource {x:Type GroupBox}}">
             <Setter Property="Visibility" Value="Collapsed" />
             <Style.Triggers>
-                <DataTrigger Binding="{Binding SelectedSpecialTile}" Value="1">
+                <DataTrigger Binding="{Binding SelectedSpecialTile}" Value="11">
                     <Setter Property="Visibility" Value="Visible" />
                 </DataTrigger>
             </Style.Triggers>
@@ -68,7 +68,7 @@
         <Style TargetType="{x:Type GroupBox}" x:Key="ChestVisiblity" BasedOn="{StaticResource {x:Type GroupBox}}">
             <Setter Property="Visibility" Value="Collapsed" />
             <Style.Triggers>
-                <DataTrigger Binding="{Binding SelectedSpecialTile}" Value="2">
+                <DataTrigger Binding="{Binding SelectedSpecialTile}" Value="12">
                     <Setter Property="Visibility" Value="Visible" />
                 </DataTrigger>
             </Style.Triggers>
@@ -76,7 +76,7 @@
         <Style TargetType="{x:Type GroupBox}" x:Key="TileFrameVisiblity" BasedOn="{StaticResource {x:Type GroupBox}}">
             <Setter Property="Visibility" Value="Collapsed" />
             <Style.Triggers>
-                <DataTrigger Binding="{Binding SelectedSpecialTile}" Value="3">
+                <DataTrigger Binding="{Binding SelectedSpecialTile}" Value="1">
                     <Setter Property="Visibility" Value="Visible" />
                 </DataTrigger>
             </Style.Triggers>
@@ -84,7 +84,7 @@
         <Style TargetType="{x:Type GroupBox}" x:Key="MannequinVisiblity" BasedOn="{StaticResource {x:Type GroupBox}}">
             <Setter Property="Visibility" Value="Collapsed" />
             <Style.Triggers>
-                <DataTrigger Binding="{Binding SelectedSpecialTile}" Value="4">
+                <DataTrigger Binding="{Binding SelectedSpecialTile}" Value="3">
                     <Setter Property="Visibility" Value="Visible" />
                 </DataTrigger>
             </Style.Triggers>
@@ -92,7 +92,7 @@
         <Style TargetType="{x:Type GroupBox}" x:Key="WeaponRackVisiblity" BasedOn="{StaticResource {x:Type GroupBox}}">
             <Setter Property="Visibility" Value="Collapsed" />
             <Style.Triggers>
-                <DataTrigger Binding="{Binding SelectedSpecialTile}" Value="5">
+                <DataTrigger Binding="{Binding SelectedSpecialTile}" Value="4">
                     <Setter Property="Visibility" Value="Visible" />
                 </DataTrigger>
             </Style.Triggers>
@@ -100,7 +100,7 @@
         <Style TargetType="{x:Type GroupBox}" x:Key="XmasVisiblity" BasedOn="{StaticResource {x:Type GroupBox}}">
             <Setter Property="Visibility" Value="Collapsed" />
             <Style.Triggers>
-                <DataTrigger Binding="{Binding SelectedSpecialTile}" Value="6">
+                <DataTrigger Binding="{Binding SelectedSpecialTile}" Value="10">
                     <Setter Property="Visibility" Value="Visible" />
                 </DataTrigger>
             </Style.Triggers>
@@ -301,19 +301,33 @@
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Grid.Row="1">
                     <TextBlock Text="Head: " Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" VerticalAlignment="Center" />
+                    <ComboBox ItemsSource="{Binding Source={StaticResource PrefixCollection}}"
+                          SelectedValue="{Binding SelectedTileEntity.Items[0].Id, Mode=TwoWay}"
+                          SelectedValuePath="Key"
+                          DisplayMemberPath="Value"
+                          HorizontalAlignment="Stretch"
+                          IsSynchronizedWithCurrentItem="True"
+                          Margin="1,0" ItemsPanel="{StaticResource Template_ComboPanel}" />
                     <ComboBox Width="150px"
-                      ItemsSource="{Binding Source={StaticResource MannHeadCollection}}"
-                      SelectedValue="{Binding SelectedMannHead, Mode=TwoWay}"
-                      SelectedValuePath="Key"
-                      DisplayMemberPath="Value"
-                      IsSynchronizedWithCurrentItem="True"
-                      HorizontalAlignment="Stretch" Margin="1,0" ItemsPanel="{StaticResource Template_ComboPanel}" />
+                          ItemsSource="{Binding Source={StaticResource MannHeadCollection}}"
+                          SelectedValue="{Binding SelectedTileEntity.Items[0].Id, Mode=TwoWay}"
+                          SelectedValuePath="Key"
+                          DisplayMemberPath="Value"
+                          IsSynchronizedWithCurrentItem="True"
+                          HorizontalAlignment="Stretch" Margin="1,0" ItemsPanel="{StaticResource Template_ComboPanel}" />
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Grid.Row="2">
                     <TextBlock Text="Body: " Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" VerticalAlignment="Center" />
+                    <ComboBox ItemsSource="{Binding Source={StaticResource PrefixCollection}}"
+                          SelectedValue="{Binding SelectedTileEntity.Items[1].Id, Mode=TwoWay}"
+                          SelectedValuePath="Key"
+                          DisplayMemberPath="Value"
+                          HorizontalAlignment="Stretch"
+                          IsSynchronizedWithCurrentItem="True"
+                          Margin="1,0" ItemsPanel="{StaticResource Template_ComboPanel}" />
                     <ComboBox Width="150px"
                       ItemsSource="{Binding Source={StaticResource MannBodyCollection}}"
-                      SelectedValue="{Binding SelectedMannBody, Mode=TwoWay}"
+                      SelectedValue="{Binding SelectedTileEntity.Items[1].Id, Mode=TwoWay}"
                       SelectedValuePath="Key"
                       DisplayMemberPath="Value"
                       IsSynchronizedWithCurrentItem="True"
@@ -321,18 +335,25 @@
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Grid.Row="3">
                     <TextBlock Text="Legs: " Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" VerticalAlignment="Center" />
+                    <ComboBox ItemsSource="{Binding Source={StaticResource PrefixCollection}}"
+                          SelectedValue="{Binding SelectedTileEntity.Items[2].Id, Mode=TwoWay}"
+                          SelectedValuePath="Key"
+                          DisplayMemberPath="Value"
+                          HorizontalAlignment="Stretch"
+                          IsSynchronizedWithCurrentItem="True"
+                          Margin="1,0" ItemsPanel="{StaticResource Template_ComboPanel}" />
                     <ComboBox Width="150px"
                       ItemsSource="{Binding Source={StaticResource MannLegsCollection}}"
-                      SelectedValue="{Binding SelectedMannLegs, Mode=TwoWay}"
+                      SelectedValue="{Binding SelectedTileEntity.Items[2].Id, Mode=TwoWay}"
                       SelectedValuePath="Key"
                       DisplayMemberPath="Value"
                       IsSynchronizedWithCurrentItem="True"
                       HorizontalAlignment="Stretch" Margin="1,0" ItemsPanel="{StaticResource Template_ComboPanel}" />
                 </StackPanel>
                 <UniformGrid Columns="2" Grid.Row="4">
-                    <Button Margin="2" Content="Cancel" Command="{Binding SaveMannCommand}"
+                    <Button Margin="2" Content="Cancel" Command="{Binding SaveTileEntityCommand}"
                         CommandParameter="{StaticResource False}" />
-                    <Button Margin="2" Content="Save" Command="{Binding SaveMannCommand}"
+                    <Button Margin="2" Content="Save" Command="{Binding SaveTileEntityCommand}"
                         CommandParameter="{StaticResource True}" />
                 </UniformGrid>
             </Grid>
@@ -359,23 +380,23 @@
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Grid.Row="1">
                     <ComboBox ItemsSource="{Binding Source={StaticResource PrefixCollection}}"
-                          SelectedValue="{Binding SelectedRackPrefix, Mode=TwoWay}"
+                          SelectedValue="{Binding SelectedTileEntity.Prefix, Mode=TwoWay}"
                           SelectedValuePath="Key"
                           DisplayMemberPath="Value"
                           HorizontalAlignment="Stretch"
                           IsSynchronizedWithCurrentItem="True"
                           Margin="1,0" ItemsPanel="{StaticResource Template_ComboPanel}" />
                     <ComboBox ItemsSource="{Binding Source={StaticResource RackCollection}}"
-                          SelectedValue="{Binding SelectedRackNetId, Mode=TwoWay}"
+                          SelectedValue="{Binding SelectedTileEntity.NetId, Mode=TwoWay}"
                           SelectedValuePath="Key"
                           DisplayMemberPath="Value"
                           IsSynchronizedWithCurrentItem="True"
                           HorizontalAlignment="Stretch" Margin="1,0" ItemsPanel="{StaticResource Template_ComboPanel}" />
                 </StackPanel>
                 <UniformGrid Columns="2" Grid.Row="2">
-                    <Button Margin="2" Content="Cancel" Command="{Binding SaveRackCommand}"
+                    <Button Margin="2" Content="Cancel" Command="{Binding SaveTileEntityCommand}"
                         CommandParameter="{StaticResource False}" />
-                    <Button Margin="2" Content="Save" Command="{Binding SaveRackCommand}"
+                    <Button Margin="2" Content="Save" Command="{Binding SaveTileEntityCommand}"
                         CommandParameter="{StaticResource True}" />
                 </UniformGrid>
             </Grid>

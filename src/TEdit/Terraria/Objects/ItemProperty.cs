@@ -44,7 +44,18 @@ namespace TEdit.Terraria.Objects
             set { Set("Scale", ref _scale, value); }
         }
 
+
+        public bool IsFood
+        {
+            get { return _isFood; }
+            set { Set("IsFood", ref _isFood, value); }
+        }
+
+
+
         private WriteableBitmap _image;
+        private bool _isFood;
+
         public WriteableBitmap Image
         {
             get { return _image; }

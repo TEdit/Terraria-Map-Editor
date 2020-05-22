@@ -10,11 +10,31 @@ EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE IMPLIED
 WARRANTIES OF MERCHANTABILITY AND/OR FITNESS FOR A PARTICULAR PURPOSE.
  */
 
+using Microsoft.Xna.Framework.Graphics;
 using System;
 using TEdit.Utility;
 
 namespace TEdit.Geometry.Primitives
 {
+    public static class GeometryUtils
+    {
+        public static Microsoft.Xna.Framework.Rectangle Frame(
+             this Texture2D tex,
+             int horizontalFrames = 1,
+             int verticalFrames = 1,
+             int frameX = 0,
+             int frameY = 0,
+             int sizeOffsetX = 0,
+             int sizeOffsetY = 0)
+        {
+            int num1 = tex.Width / horizontalFrames;
+            int num2 = tex.Height / verticalFrames;
+            return new Microsoft.Xna.Framework.Rectangle(num1 * frameX, num2 * frameY, num1 + sizeOffsetX, num2 + sizeOffsetY);
+        }
+
+    }
+
+
     [Serializable]
     public class Rectangle<T> where T : struct
     {

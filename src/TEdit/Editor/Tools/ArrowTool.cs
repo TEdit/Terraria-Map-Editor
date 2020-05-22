@@ -52,38 +52,14 @@ namespace TEdit.Editor.Tools
                     return;
                 }
             }
-            else if (curTile.Type == (int)TileType.ItemFrame)
+            else if (curTile.IsTileEntity())
             {
-                TileEntity frame = _wvm.CurrentWorld.GetTileEntityAtTile(e.Location.X, e.Location.Y);
-                if (frame != null)
+                TileEntity te = _wvm.CurrentWorld.GetTileEntityAtTile(e.Location.X, e.Location.Y);
+                if (te != null)
                 {
-                    _wvm.SelectedItemFrame = frame.Copy();
-                    return;
+                    _wvm.SelectedTileEntity = te.Copy();
                 }
-            }
-            else if (curTile.Type == (int)TileType.Mannequin || curTile.Type == (int)TileType.Womannequin || curTile.Type == (int)TileType.DisplayDoll)
-            {
-                Vector2Int32 MannLocation = _wvm.CurrentWorld.GetMannequin(e.Location.X, e.Location.Y);
-                _wvm.SelectedMannHead = _wvm.CurrentWorld.Tiles[MannLocation.X, MannLocation.Y].U / 100;
-                _wvm.SelectedMannBody = _wvm.CurrentWorld.Tiles[MannLocation.X, MannLocation.Y + 1].U / 100;
-                _wvm.SelectedMannLegs = _wvm.CurrentWorld.Tiles[MannLocation.X, MannLocation.Y + 2].U / 100;
-                _wvm.SelectedMannequin = MannLocation;
-            }
-            else if (curTile.Type == (int)TileType.WeaponRackLegacy || curTile.Type == (int)TileType.WeaponRack)
-            {
-                Vector2Int32 RackLocation = _wvm.CurrentWorld.GetRack(e.Location.X, e.Location.Y);
-                if (_wvm.CurrentWorld.Tiles[RackLocation.X, RackLocation.Y + 1].U >= 5000)
-                {
-                    _wvm.SelectedRackPrefix = (byte)(_wvm.CurrentWorld.Tiles[RackLocation.X + 1, RackLocation.Y + 1].U % 5000);
-                    _wvm.SelectedRackNetId = (_wvm.CurrentWorld.Tiles[RackLocation.X, RackLocation.Y + 1].U % 5000) - 100;
-                }
-                else
-                {
-                    _wvm.SelectedRackPrefix = 0;
-                    _wvm.SelectedRackNetId = 0;
-                }
-                _wvm.SelectedRack = RackLocation;
-            }
+            }           
             else if (curTile.Type == (int)TileType.ChristmasTree)
             {
                 Vector2Int32 XmasLocation = _wvm.CurrentWorld.GetXmas(e.Location.X, e.Location.Y);

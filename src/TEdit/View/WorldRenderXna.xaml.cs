@@ -428,12 +428,12 @@ namespace TEdit.View
                             float scale = World.ItemProperties[weapon].Scale;
                             source = new Rectangle(0, 0, tileTex.Width, tileTex.Height);
                             _spriteBatch.Draw(
-                                tileTex, 
-                                new Vector2(1 + (int)((_scrollPosition.X + x + 1.5) * _zoom), 1 + (int)((_scrollPosition.Y + y + .5) * _zoom)), 
-                                source, 
-                                Color.White, 
-                                0f, 
-                                new Vector2((float)(tileTex.Width / 2), (float)(tileTex.Height / 2)), 
+                                tileTex,
+                                new Vector2(1 + (int)((_scrollPosition.X + x + 1.5) * _zoom), 1 + (int)((_scrollPosition.Y + y + .5) * _zoom)),
+                                source,
+                                Color.White,
+                                0f,
+                                new Vector2((float)(tileTex.Width / 2), (float)(tileTex.Height / 2)),
                                 scale * _zoom / 16f, effect, LayerTileTrack);
                         }
                         break;
@@ -909,7 +909,7 @@ namespace TEdit.View
 
                                         if (tileTex != null)
                                         {
-                                            if ((curtile.Type == (int)TileType.Mannequin || curtile.Type == (int)TileType.Womannequin || curtile.Type == (int)TileType.DisplayDoll) && curtile.U >= 100)
+                                            if ((curtile.Type == (int)TileType.MannequinLegacy || curtile.Type == (int)TileType.WomannequinLegacy) && curtile.U >= 100)
                                             {
                                                 int armor = curtile.U / 100;
                                                 dest = new Rectangle(1 + (int)((_scrollPosition.X + x) * _zoom), 1 + (int)((_scrollPosition.Y + y) * _zoom), (int)_zoom, (int)_zoom);
@@ -924,7 +924,7 @@ namespace TEdit.View
                                                         dest.X -= (int)((2 * _zoom / 16));
                                                         break;
                                                     case 1:
-                                                        if (curtile.Type == (int)TileType.Mannequin)
+                                                        if (curtile.Type == (int)TileType.MannequinLegacy)
                                                             tileTex = (Texture2D)_textureDictionary.GetArmorBody(armor);
                                                         else
                                                             tileTex = (Texture2D)_textureDictionary.GetArmorFemale(armor);
@@ -998,12 +998,59 @@ namespace TEdit.View
                                                         }
                                                         scale *= World.ItemProperties[item].Scale;
                                                         source = new Rectangle(0, 0, tileTex.Width, tileTex.Height);
-                                                        _spriteBatch.Draw(tileTex, new Vector2(1 + (int)((_scrollPosition.X + x + 1) * _zoom), 1 + (int)((_scrollPosition.Y + y + 1) * _zoom)), source, Color.White, 0f, new Vector2((float)(tileTex.Width / 2), (float)(tileTex.Height / 2)), scale * _zoom / 16f, SpriteEffects.FlipHorizontally, LayerTileTrack);
+                                                        _spriteBatch.Draw(
+                                                            tileTex,
+                                                            new Vector2(
+                                                                1 + (int)((_scrollPosition.X + x + 1) * _zoom),
+                                                                1 + (int)((_scrollPosition.Y + y + 1) * _zoom)),
+                                                            source,
+                                                            Color.White,
+                                                            0f,
+                                                            new Vector2((float)(tileTex.Width / 2),
+                                                            (float)(tileTex.Height / 2)),
+                                                            scale * _zoom / 16f,
+                                                            SpriteEffects.None,
+                                                            LayerTileTrack);
                                                     }
                                                 }
                                                 source = new Rectangle(curtile.U, curtile.V, tileprop.TextureGrid.X, tileprop.TextureGrid.Y);
                                                 tileTex = _textureDictionary.GetTile(curtile.Type);
                                                 dest = new Rectangle(1 + (int)((_scrollPosition.X + x) * _zoom), 1 + (int)((_scrollPosition.Y + y) * _zoom), (int)_zoom, (int)_zoom);
+                                            }
+                                            else if (curtile.Type == (int)TileType.FoodPlatter)
+                                            {
+                                                TileEntity entity = _wvm.CurrentWorld.GetTileEntityAtTile(x, y);
+                                                if (entity != null)
+                                                {
+                                                    int item = entity.NetId;
+                                                    if (item > 0)
+                                                    {
+                                                        tileTex = (Texture2D)_textureDictionary.GetItem(item);
+                                                        bool isFood = World.ItemProperties[item].IsFood;
+                                                        source = !isFood ? tileTex.Frame(1, 1, 0, 0, 0, 0) : tileTex.Frame(1, 3, 0, 2, 0, 0);
+                                                        SpriteEffects effect = SpriteEffects.None;
+                                                        if (curtile.U == 0)
+                                                        {
+                                                            effect = SpriteEffects.FlipHorizontally;
+                                                        }
+
+                                                        float scale = 1f;
+
+                                                        _spriteBatch.Draw(tileTex,
+                                                            new Vector2(
+                                                                1 + (int)((_scrollPosition.X + x + 1) * _zoom),
+                                                                1 + (int)((_scrollPosition.Y + y + 1) * _zoom)),
+                                                            source,
+                                                            Color.White,
+                                                            0f,
+                                                            new Vector2((float)(tileTex.Width / 2),
+                                                            (float)(tileTex.Height / 2)),
+                                                            scale * _zoom / 16f,
+                                                            effect,
+                                                            LayerTileTrack);
+
+                                                    }
+                                                }
                                             }
                                             else if (curtile.Type == (int)TileType.ChristmasTree) // Christmas Tree
                                             {

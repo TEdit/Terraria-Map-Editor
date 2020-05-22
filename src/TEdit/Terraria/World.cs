@@ -127,7 +127,7 @@ namespace TEdit.Terraria
                             LoadV2(b, filename, w);
                         else
                             LoadV1(b, filename, w);
-                        w.FixTileEntityUV();
+                        w.UpgradeLegacyTileEntities();
                     }
                     w.LastSave = File.GetLastWriteTimeUtc(filename);
                 }
@@ -344,38 +344,44 @@ namespace TEdit.Terraria
             }
         }
 
-        public void FixTileEntityUV()
+        public void UpgradeLegacyTileEntities()
         {
-            return;
-            foreach (var te in TileEntities)
+            Tile curTile = null;
+            for (int x = 0; x < TilesWide; x++)
             {
-                switch (te.EntityType)
+                for (int y = 0; y < TilesHigh; y++)
                 {
-                    case TileEntityType.TrainingDummy:
-                        break;
-                    case TileEntityType.ItemFrame:
-                        break;
-                    case TileEntityType.LogicSensor:
-                        break;
-                    case TileEntityType.DisplayDoll:
+                    curTile = Tiles[x, y];
 
+                    if (curTile.Type == (ushort)TileType.MannequinLegacy || curTile.Type == (ushort)TileType.WomannequinLegacy)
+                    {
+                        var anchor = GetAnchor(x,y);
+                        int headId = (Tiles[anchor.X, anchor.Y].U - (Tiles[anchor.X, anchor.Y].U % 100)) / 100;
+                        int torsoId = (Tiles[anchor.X, anchor.Y + 1].U - (Tiles[anchor.X, anchor.Y].U % 100)) / 100;
+                        int feetId = (Tiles[anchor.X, anchor.Y + 2].U - (Tiles[anchor.X, anchor.Y].U % 100)) / 100;
 
-                        //Tiles[te.PosX, te.PosY].U = (short)((Tiles[te.PosX, te.PosY].U % 100) + (100 * SelectedMannHead));
-                        //Tiles[te.PosX, te.PosY + 1].U = (short)((Tiles[te.PosX, te.PosY + 1].U % 100) + (100 * SelectedMannBody));
-                        //Tiles[te.PosX, te.PosY + 2].U = (short)((Tiles[te.PosX, te.PosY + 2].U % 100) + (100 * SelectedMannLegs));
-                        break;
-                    case TileEntityType.WeaponRack:
+                        var entity = TileEntity.CreateForTile(curTile, anchor.X, y, TileEntities.Count);
+                        entity.Items[0].Id = (short)headId;
+                        entity.Items[1].Id = (short)torsoId;
+                        entity.Items[2].Id = (short)feetId;
 
-                        break;
-                    case TileEntityType.HatRack:
-                        break;
-                    case TileEntityType.FoodPlatter:
-                        break;
-                    case TileEntityType.TeleportationPylon:
-                        break;
+                        TileEntity.PlaceEntity(entity, this);
+                    }
+                    if (curTile.Type == (ushort)TileType.WeaponRackLegacy)
+                    {
+                        var anchor = GetAnchor(x, y);
+                        int itemId = (Tiles[anchor.X, anchor.Y + 1].U % 5000) - 100;
+                        int prefix = (Tiles[anchor.X, anchor.Y + 1].U % 5000);
+
+                        var entity = TileEntity.CreateForTile(curTile, anchor.X, anchor.Y, TileEntities.Count);
+                        entity.NetId = (short)itemId;
+                        entity.Prefix = (byte)prefix;
+                        entity.StackSize = 1;
+
+                        TileEntity.PlaceEntity(entity, this);
+                    }
                 }
             }
-
         }
 
         private void FixChand()

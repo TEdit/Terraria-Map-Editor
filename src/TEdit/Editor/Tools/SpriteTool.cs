@@ -38,46 +38,14 @@ namespace TEdit.Editor.Tools
         {
             if (_wvm.SelectedSprite == null)
                 return;
-            if (_wvm.SelectedSprite.Tile == 171)
+
+            Sprite.PlaceSprite(e.Location.X, e.Location.Y, _wvm.SelectedSprite, _wvm);
+            if (Tile.IsTileEntity(_wvm.SelectedSprite.Tile))
             {
-                for (int x = 0; x < _wvm.SelectedSprite.Size.X; x++)
-                {
-                    int tilex = x + e.Location.X;
-                    for (int y = 0; y < _wvm.SelectedSprite.Size.Y; y++)
-                    {
-                        int tiley = y + e.Location.Y;
-                        _wvm.UndoManager.SaveTile(tilex, tiley);
-                        Tile curtile = _wvm.CurrentWorld.Tiles[tilex, tiley];
-                        curtile.IsActive = true;
-                        curtile.Type = _wvm.SelectedSprite.Tile;
-                        if (x == 0 && y == 0)
-                          curtile.U = 10;
-                        else
-                          curtile.U = (short)x;
-                        curtile.V = (short)y;
-                        _wvm.UpdateRenderPixel(tilex, tiley);
-                      }
-                }
+                var te = TileEntity.CreateForTile(_wvm.CurrentWorld.Tiles[e.Location.X, e.Location.Y], e.Location.X, e.Location.Y, 0);
+                TileEntity.PlaceEntity(te, _wvm);
             }
-            else if (_wvm.SelectedSprite.Size.X > 1 || _wvm.SelectedSprite.Size.Y > 1)
-            {
-                Vector2Short[,] tiles = _wvm.SelectedSprite.GetTiles();
-                for (int x = 0; x < _wvm.SelectedSprite.Size.X; x++)
-                {
-                    int tilex = x + e.Location.X;
-                    for (int y = 0; y < _wvm.SelectedSprite.Size.Y; y++)
-                    {
-                        int tiley = y + e.Location.Y;
-                        _wvm.UndoManager.SaveTile(tilex, tiley);
-                        Tile curtile = _wvm.CurrentWorld.Tiles[tilex, tiley];
-                        curtile.IsActive = true;
-                        curtile.Type = _wvm.SelectedSprite.Tile;
-                        curtile.U = tiles[x, y].X;
-                        curtile.V = tiles[x, y].Y;
-                        _wvm.UpdateRenderPixel(tilex, tiley);
-                    }
-                }
-            }
+
             if (!_isRightDown && !_isLeftDown)
             {
                 _startPoint = e.Location;
@@ -152,23 +120,12 @@ namespace TEdit.Editor.Tools
                     {
                         if (_wvm.SelectedSprite == null)
                             return;
-                        tiles = _wvm.SelectedSprite.GetTiles();
-                        for (int x = 0; x < _wvm.SelectedSprite.Size.X; x++)
+
+                        Sprite.PlaceSprite(pixel.X, pixel.Y, _wvm.SelectedSprite, _wvm);
+                        if (Tile.IsTileEntity(_wvm.SelectedSprite.Tile))
                         {
-                            tilex = x + pixel.X;
-                            for (int y = 0; y < _wvm.SelectedSprite.Size.Y; y++)
-                            {
-                                tiley = y + pixel.Y;
-                                _wvm.UndoManager.SaveTile(tilex, tiley);
-                                Tile curtile = _wvm.CurrentWorld.Tiles[tilex, tiley];
-                                curtile.IsActive = true;
-                                curtile.Type = _wvm.SelectedSprite.Tile;
-                                curtile.U = tiles[x, y].X;
-                                curtile.V = tiles[x, y].Y;
-                                _wvm.UpdateRenderPixel(tilex, tiley);
-                                // Heathtech
-                                BlendRules.ResetUVCache(_wvm, pixel.X, pixel.Y, _wvm.SelectedSprite.Size.X, _wvm.SelectedSprite.Size.Y);
-                            }
+                            var te = TileEntity.CreateForTile(_wvm.CurrentWorld.Tiles[pixel.X, pixel.Y], pixel.X, pixel.Y, 0);
+                            TileEntity.PlaceEntity(te, _wvm);
                         }
                     }
                 }
@@ -187,28 +144,19 @@ namespace TEdit.Editor.Tools
                     {
                         if (_wvm.SelectedSprite == null)
                             return;
-                        tiles = _wvm.SelectedSprite.GetTiles();
-                        for (int x = 0; x < _wvm.SelectedSprite.Size.X; x++)
+
+                        Sprite.PlaceSprite(pixel.X, pixel.Y, _wvm.SelectedSprite, _wvm);
+                        if (Tile.IsTileEntity(_wvm.SelectedSprite.Tile))
                         {
-                            tilex = x + pixel.X;
-                            for (int y = 0; y < _wvm.SelectedSprite.Size.Y; y++)
-                            {
-                                tiley = y + pixel.Y;
-                                _wvm.UndoManager.SaveTile(tilex, tiley);
-                                Tile curtile = _wvm.CurrentWorld.Tiles[tilex, tiley];
-                                curtile.IsActive = true;
-                                curtile.Type = _wvm.SelectedSprite.Tile;
-                                curtile.U = tiles[x, y].X;
-                                curtile.V = tiles[x, y].Y;
-                                _wvm.UpdateRenderPixel(tilex, tiley);
-                            }
+                            var te = TileEntity.CreateForTile(_wvm.CurrentWorld.Tiles[pixel.X, pixel.Y], pixel.X, pixel.Y, 0);
+                            TileEntity.PlaceEntity(te, _wvm);
                         }
-                        // Heathtech
-                        BlendRules.ResetUVCache(_wvm, pixel.X, pixel.Y, _wvm.SelectedSprite.Size.X, _wvm.SelectedSprite.Size.Y);
+
                     }
                 }
             }
         }
+
         public override WriteableBitmap PreviewTool()
         {
             if (_wvm.SelectedSprite != null)

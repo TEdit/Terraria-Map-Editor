@@ -25,6 +25,8 @@ namespace TEdit.Terraria
         private static readonly Dictionary<int, string> _tallynames = new Dictionary<int, string>();
         private static readonly Dictionary<string, string> _frameNames = new Dictionary<string, string>();
         private static readonly Dictionary<int, string> _armorHeadNames = new Dictionary<int, string>();
+        private static readonly Dictionary<int, string> _accessoryNames = new Dictionary<int, string>();
+        private static readonly Dictionary<int, string> _dyeNames = new Dictionary<int, string>();
         private static readonly Dictionary<int, string> _armorBodyNames = new Dictionary<int, string>();
         private static readonly Dictionary<int, string> _armorLegsNames = new Dictionary<int, string>();
         private static readonly Dictionary<int, string> _rackable = new Dictionary<int, string>();
@@ -285,6 +287,15 @@ namespace TEdit.Terraria
                 bool rack = (bool?)xElement.Attribute("Rack") ?? false;
                 if (rack)
                     _rackable.Add(curItem.Id, curItem.Name);
+
+                bool acc = (bool?)xElement.Attribute("Accessory") ?? false;
+                if (acc)
+                    _accessoryNames.Add(curItem.Id, curItem.Name);
+
+                if (curItem.Name.Contains("Dye"))
+                {
+                    _dyeNames.Add(curItem.Id, curItem.Name);
+                }
             }
 
             foreach (var xElement in xmlSettings.Elements("Paints").Elements("Paint"))
@@ -456,6 +467,12 @@ namespace TEdit.Terraria
         {
             get { return _armorHeadNames; }
         }
+
+        public static Dictionary<int, string> AccessoryNames
+        {
+            get { return _accessoryNames; }
+        }
+
         public static Dictionary<int, string> ArmorBodyNames
         {
             get { return _armorBodyNames; }
@@ -463,6 +480,11 @@ namespace TEdit.Terraria
         public static Dictionary<int, string> ArmorLegsNames
         {
             get { return _armorLegsNames; }
+        }
+
+        public static Dictionary<int, string> DyeNames
+        {
+            get { return _dyeNames; }
         }
         public static Dictionary<int, string> Rackable
         {

@@ -340,7 +340,7 @@ namespace TEdit.Editor.Undo
                     _wvm.CurrentWorld.Signs.Add(sign);
                 }
             }
-            _wvm.CurrentWorld.FixTileEntityUV();
+            _wvm.CurrentWorld.UpgradeLegacyTileEntities();
             OnUndid(this, EventArgs.Empty);
         }
 
@@ -390,7 +390,7 @@ namespace TEdit.Editor.Undo
                 }
             }
             _currentIndex++;
-            _wvm.CurrentWorld.FixTileEntityUV();
+            _wvm.CurrentWorld.UpgradeLegacyTileEntities();
             OnRedid(this, EventArgs.Empty);
         }
 

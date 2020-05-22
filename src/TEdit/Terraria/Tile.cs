@@ -47,8 +47,8 @@ namespace TEdit.Terraria
         ChristmasTree = 171,
         MinecartTrack = 314,
         // Tile Entities
-        Mannequin = 128,
-        Womannequin = 269,
+        MannequinLegacy = 128,
+        WomannequinLegacy = 269,
         DisplayDoll = 470, // aka Mannequin
         FoodPlatter = 520, // aka plate
         Timer = 144,
@@ -240,11 +240,16 @@ namespace TEdit.Terraria
             return tileType == (int)TileType.Sign || tileType == (int)TileType.GraveMarker || tileType == (int)TileType.AnnouncementBox;
         }
 
+        public bool IsTileEntity()
+        {
+            return Tile.IsTileEntity(this.Type);
+        }
+
         public static bool IsTileEntity(int tileType)
         {
             return tileType == (int)TileType.DisplayDoll
-                || tileType == (int)TileType.Mannequin
-                || tileType == (int)TileType.Womannequin
+                || tileType == (int)TileType.MannequinLegacy
+                || tileType == (int)TileType.WomannequinLegacy
                 || tileType == (int)TileType.FoodPlatter
                 || tileType == (int)TileType.Timer
                 || tileType == (int)TileType.TrainingDummy

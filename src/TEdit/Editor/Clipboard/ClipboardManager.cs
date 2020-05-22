@@ -331,7 +331,7 @@ namespace TEdit.Editor.Clipboard
                 }
             }
             _wvm.UndoManager.SaveUndo();
-            _wvm.CurrentWorld.FixTileEntityUV();
+            _wvm.CurrentWorld.UpgradeLegacyTileEntities();
             /* Heathtech */
             BlendRules.ResetUVCache(_wvm, anchor.X, anchor.Y, buffer.Size.X, buffer.Size.Y);
         }

@@ -13,11 +13,11 @@ namespace SettingsFileUpdater
 
             var wrapper = TerrariaHost.TerrariaWrapper.Initialize();
 
-            Console.WriteLine(wrapper.GetTilesXml());
-            Console.WriteLine(wrapper.GetWallsXml());
+            //Console.WriteLine(wrapper.GetTilesXml());
+            //Console.WriteLine(wrapper.GetWallsXml());
             Console.WriteLine(wrapper.GetItemsXml());
-            Console.WriteLine(wrapper.GetNpcs());
-            Console.WriteLine(wrapper.GetPrefixesXml());
+            //Console.WriteLine(wrapper.GetNpcs());
+            //Console.WriteLine(wrapper.GetPrefixesXml());
 
             Console.ReadLine();
         }

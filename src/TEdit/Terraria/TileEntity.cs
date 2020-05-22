@@ -1,8 +1,11 @@
 using System;
 using System.Collections.ObjectModel;
 using System.IO;
+using System.Linq;
 using GalaSoft.MvvmLight;
 using TEdit.Terraria;
+using TEdit.Terraria.Objects;
+using TEdit.ViewModel;
 
 namespace TEdit.Terraria
 {
@@ -79,7 +82,7 @@ namespace TEdit.Terraria
                 TE.On = false;
                 TE.LogicCheck = (byte)(curTile.V / 18 + 1);
             }
-            else if (curTile.Type == (int)TileType.Mannequin || curTile.Type == (int)TileType.Womannequin || curTile.Type == (int)TileType.DisplayDoll)
+            else if (curTile.Type == (int)TileType.MannequinLegacy || curTile.Type == (int)TileType.WomannequinLegacy || curTile.Type == (int)TileType.DisplayDoll)
             {
                 TE.Type = 3;
                 TE.Items = new System.Collections.ObjectModel.ObservableCollection<TileEntityItem>(new TileEntityItem[8]);
@@ -207,13 +210,117 @@ namespace TEdit.Terraria
             set { Set("On", ref _on, value); }
         }
 
+        public TileType TileType
+        {
+            get
+            {
+                switch (EntityType)
+                {
+                    case TileEntityType.TrainingDummy:
+                        return TileType.TrainingDummy;
+                    case TileEntityType.ItemFrame:
+                        return TileType.ItemFrame;
+                    case TileEntityType.LogicSensor:
+                        return TileType.LogicSensor;
+                    case TileEntityType.DisplayDoll:
+                        return TileType.DisplayDoll;
+                    case TileEntityType.WeaponRack:
+                        return TileType.WeaponRack;
+                    case TileEntityType.HatRack:
+                        return TileType.HatRack;
+                    case TileEntityType.FoodPlatter:
+                        return TileType.FoodPlatter;
+                    case TileEntityType.TeleportationPylon:
+                        return TileType.TeleportationPylon;
+                    default:
+                        return 0;
+                }
+            }
+        }
+
+        private static void AddEntityToWorld(TileEntity te, World world)
+        {
+            var existingEntity = world.TileEntities.FirstOrDefault(existing => existing.PosX == te.PosX && existing.PosY == te.PosY);
+            if (existingEntity != null)
+            {
+                world.TileEntities.Remove(existingEntity);
+                te.Id = existingEntity.Id;
+            }
+            else if (world.TileEntities.Count > 0)
+            {
+                te.Id = world.TileEntities.Max(entity => entity.Id) + 1;
+            }
+            else
+            {
+                te.Id = 0;
+            }
+
+            world.TileEntities.Add(te);
+        }
+
+
+        private static void PostAddEntityToWorld(TileEntity te, World world)
+        {
+            // custom logic per type
+            switch (te.EntityType)
+            {
+                case TileEntityType.TrainingDummy:
+                    break;
+                case TileEntityType.ItemFrame:
+                    break;
+                case TileEntityType.LogicSensor:
+                    break;
+                case TileEntityType.DisplayDoll:
+                    break;
+                case TileEntityType.WeaponRack:
+                    break;
+                case TileEntityType.HatRack:
+                    break;
+                case TileEntityType.FoodPlatter:
+                    break;
+                case TileEntityType.TeleportationPylon:
+                    break;
+            }
+        }
+
+        public static void PlaceEntity(TileEntity te, WorldViewModel wvm)
+        {
+            if (te == null) return;
+            if (wvm == null) return;
+            if (wvm.CurrentWorld == null) return;
+
+            var sprite = World.Sprites.FirstOrDefault(s => s.Tile == (ushort)te.TileType);
+            if (sprite == null) return;
+
+            AddEntityToWorld(te, wvm.CurrentWorld);
+
+            Sprite.PlaceSprite(te.PosX, te.PosY, sprite, wvm);
+
+            PostAddEntityToWorld(te, wvm.CurrentWorld);
+        }
+
+        public static void PlaceEntity(TileEntity te, World world)
+        {
+            if (te == null) return;
+            if (world == null) return;
+
+            var sprite = World.Sprites.FirstOrDefault(s => s.Tile == (ushort)te.TileType);
+            if (sprite == null) return;
+
+            AddEntityToWorld(te, world);
+
+            Sprite.PlaceSprite(te.PosX, te.PosY, sprite, world);
+            PostAddEntityToWorld(te, world);
+        }
+
+
         public void Save(BinaryWriter bw)
         {
             bw.Write(Type);
             bw.Write(Id);
             bw.Write(PosX);
             bw.Write(PosY);
-            switch ((TileEntityType)Type)
+            switch (EntityType)
             {
                 case TileEntityType.TrainingDummy: //it is a dummy
                     bw.Write(Npc);
@@ -249,7 +356,7 @@ namespace TEdit.Terraria
             Id = r.ReadInt32();
             PosX = r.ReadInt16();
             PosY = r.ReadInt16();
-            switch ((TileEntityType)Type)
+            switch (EntityType)
             {
                 case TileEntityType.TrainingDummy: //it is a dummy
 

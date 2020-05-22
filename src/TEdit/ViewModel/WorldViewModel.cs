@@ -66,8 +66,6 @@ namespace TEdit.ViewModel
         private Sign _selectedSign;
         private Sprite _selectedSprite;
         private TileEntity _selectedItemFrame;
-        private Vector2Int32 _selectedMannequin;
-        private Vector2Int32 _selectedRack;
         private Vector2Int32 _selectedXmas;
         private int _selectedXmasStar;
         private int _selectedXmasGarland;
@@ -75,11 +73,9 @@ namespace TEdit.ViewModel
         private int _selectedXmasLight;
         private byte _selectedRackPrefix;
         private int _selectedRackNetId;
-        private int _selectedMannHead;
-        private int _selectedMannBody;
-        private int _selectedMannLegs;
+  
         private int _selectedTabIndex;
-        private int _selectedSpecialTile = 0;
+        private int _selectedSpecialTile = -1;
         private bool _showGrid = true;
         private bool _showLiquid = true;
         private bool _showPoints = true;
@@ -244,36 +240,6 @@ namespace TEdit.ViewModel
             set { Set("SelectedSpecialTile", ref _selectedSpecialTile, value); }
         }
 
-        public int SelectedMannHead
-        {
-            get { return _selectedMannHead; }
-            set { Set("SelectedMannHead", ref _selectedMannHead, value); }
-        }
-
-        public int SelectedMannBody
-        {
-            get { return _selectedMannBody; }
-            set { Set("SelectedMannBody", ref _selectedMannBody, value); }
-        }
-
-        public int SelectedMannLegs
-        {
-            get { return _selectedMannLegs; }
-            set { Set("SelectedMannLegs", ref _selectedMannLegs, value); }
-        }
-
-        public byte SelectedRackPrefix
-        {
-            get { return _selectedRackPrefix; }
-            set { Set("SelectedRackPrefix", ref _selectedRackPrefix, value); }
-        }
-
-        public int SelectedRackNetId
-        {
-            get { return _selectedRackNetId; }
-            set { Set("SelectedRackNetId", ref _selectedRackNetId, value); }
-        }
-
         public Vector2Int32 SelectedXmas
         {
             get { return _selectedXmas; }
@@ -281,7 +247,7 @@ namespace TEdit.ViewModel
             {
                 Set("SelectedXmas", ref _selectedXmas, value);
                 SelectedTabIndex = 1;
-                SelectedSpecialTile = 6;
+                SelectedSpecialTile = 10;
             }
         }
 
@@ -316,7 +282,7 @@ namespace TEdit.ViewModel
             {
                 Set("SelectedSign", ref _selectedSign, value);
                 SelectedTabIndex = 1;
-                SelectedSpecialTile = 1;
+                SelectedSpecialTile = 11;
             }
         }
 
@@ -327,40 +293,18 @@ namespace TEdit.ViewModel
             {
                 Set("SelectedChest", ref _selectedChest, value);
                 SelectedTabIndex = 1;
-                SelectedSpecialTile = 2;
+                SelectedSpecialTile = 12;
             }
         }
 
-        public TileEntity SelectedItemFrame
+        public TileEntity SelectedTileEntity
         {
-            get { return _selectedItemFrame; }
+            get { return _selectedTileEntity; }
             set
             {
-                Set("SelectedItemFrame", ref _selectedItemFrame, value);
+                Set("SelectedTileEntity", ref _selectedTileEntity, value);
                 SelectedTabIndex = 1;
-                SelectedSpecialTile = 3;
-            }
-        }
-
-        public Vector2Int32 SelectedMannequin
-        {
-            get { return _selectedMannequin; }
-            set
-            {
-                Set("SelectedMannequin", ref _selectedMannequin, value);
-                SelectedTabIndex = 1;
-                SelectedSpecialTile = 4;
-            }
-        }
-
-        public Vector2Int32 SelectedRack
-        {
-            get { return _selectedRack; }
-            set
-            {
-                Set("SelectedRack", ref _selectedRack, value);
-                SelectedTabIndex = 1;
-                SelectedSpecialTile = 5;
+                SelectedSpecialTile = (int)value?.EntityType;
             }
         }
 
@@ -789,6 +733,7 @@ namespace TEdit.ViewModel
         }
 
         private string _tallyCount;
+        private TileEntity _selectedTileEntity;
 
         public string TallyCount
         {
