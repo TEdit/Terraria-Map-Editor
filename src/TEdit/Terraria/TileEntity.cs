@@ -179,7 +179,6 @@ namespace TEdit.Terraria
             set { Set("Npc", ref _npc, value); }
         }
 
-
         public int NetId
         {
             get { return _netId; }
