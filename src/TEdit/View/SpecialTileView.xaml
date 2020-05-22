@@ -25,6 +25,30 @@
                 <TextBlock Grid.Column="2" Foreground="White" Text="{Binding Name}" Margin="2" />
             </Grid>
         </DataTemplate>
+        <DataTemplate x:Key="FoodItemTemplate">
+            <Grid HorizontalAlignment="Stretch" d:DesignWidth="200">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="30" />
+                    <ColumnDefinition Width="75" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <TextBox Grid.Column="0" Text="{Binding StackSize, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                         HorizontalAlignment="Stretch" />
+                <ComboBox Grid.Column="1" ItemsSource="{Binding Source={StaticResource PrefixCollection}}"
+                          SelectedValue="{Binding Prefix, Mode=TwoWay}"
+                          SelectedValuePath="Key"
+                          DisplayMemberPath="Value"
+                          HorizontalAlignment="Stretch"
+                          IsSynchronizedWithCurrentItem="False"
+                          Margin="1,0" ItemsPanel="{StaticResource Template_ComboPanel}" />
+                <ComboBox Grid.Column="2" ItemsSource="{Binding Source={StaticResource FoodCollection}}"
+                          SelectedValue="{Binding NetId, Mode=TwoWay}"
+                          SelectedValuePath="Key"
+                          DisplayMemberPath="Value"
+                          IsSynchronizedWithCurrentItem="False"
+                          HorizontalAlignment="Stretch" Margin="1,0" ItemsPanel="{StaticResource Template_ComboPanel}" />
+            </Grid>
+        </DataTemplate>
         <DataTemplate x:Key="ChestItemTemplate">
             <Grid HorizontalAlignment="Stretch" d:DesignWidth="200">
                 <Grid.ColumnDefinitions>
@@ -85,6 +109,14 @@
             <Setter Property="Visibility" Value="Collapsed" />
             <Style.Triggers>
                 <DataTrigger Binding="{Binding SelectedSpecialTile}" Value="3">
+                    <Setter Property="Visibility" Value="Visible" />
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+        <Style TargetType="{x:Type GroupBox}" x:Key="PlateVisiblity" BasedOn="{StaticResource {x:Type GroupBox}}">
+            <Setter Property="Visibility" Value="Collapsed" />
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding SelectedSpecialTile}" Value="6">
                     <Setter Property="Visibility" Value="Visible" />
                 </DataTrigger>
             </Style.Triggers>
@@ -270,7 +302,35 @@
                     </TextBlock>
                 </StackPanel>
                 <ContentControl Grid.Row="1" ContentTemplate="{StaticResource ChestItemTemplate}"
-                    Content="{Binding Path=SelectedItemFrame}" />
+                    Content="{Binding Path=SelectedTileEntity}" />
+                <UniformGrid Columns="2" Grid.Row="2">
+                    <Button Margin="2" Content="Cancel" Command="{Binding SaveTileEntityCommand}"
+                        CommandParameter="{StaticResource False}" />
+                    <Button Margin="2" Content="Save" Command="{Binding SaveTileEntityCommand}"
+                        CommandParameter="{StaticResource True}" />
+                </UniformGrid>
+            </Grid>
+        </GroupBox>
+        <GroupBox BorderThickness="0" Style="{StaticResource PlateVisiblity}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+            <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <StackPanel Orientation="Horizontal"  Grid.Row="0">
+                    <TextBlock Text="Item Frame Contents " Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" />
+                    <TextBlock Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" DockPanel.Dock="Top">
+                        <TextBlock.Text>
+                            <MultiBinding StringFormat="({0}, {1})">
+                                <Binding Path="SelectedItemFrame.PosX" />
+                                <Binding Path="SelectedItemFrame.PosY" />
+                            </MultiBinding>
+                        </TextBlock.Text>
+                    </TextBlock>
+                </StackPanel>
+                <ContentControl Grid.Row="1" ContentTemplate="{StaticResource FoodItemTemplate}" 
+                    Content="{Binding Path=SelectedTileEntity}" />
                 <UniformGrid Columns="2" Grid.Row="2">
                     <Button Margin="2" Content="Cancel" Command="{Binding SaveTileEntityCommand}"
                         CommandParameter="{StaticResource False}" />

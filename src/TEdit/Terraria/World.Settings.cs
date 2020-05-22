@@ -25,6 +25,7 @@ namespace TEdit.Terraria
         private static readonly Dictionary<int, string> _tallynames = new Dictionary<int, string>();
         private static readonly Dictionary<string, string> _frameNames = new Dictionary<string, string>();
         private static readonly Dictionary<int, string> _armorHeadNames = new Dictionary<int, string>();
+        private static readonly Dictionary<int, string> _foodNames = new Dictionary<int, string>();
         private static readonly Dictionary<int, string> _accessoryNames = new Dictionary<int, string>();
         private static readonly Dictionary<int, string> _dyeNames = new Dictionary<int, string>();
         private static readonly Dictionary<int, string> _armorBodyNames = new Dictionary<int, string>();
@@ -270,6 +271,7 @@ namespace TEdit.Terraria
                 curItem.Id = (int?)xElement.Attribute("Id") ?? -1;
                 curItem.Name = (string)xElement.Attribute("Name");
                 curItem.Scale = (float?)xElement.Attribute("Scale") ?? 1f;
+                
                 ItemProperties.Add(curItem);
                 _itemLookup.Add(curItem.Id, curItem);
                 int tally = (int?)xElement.Attribute("Tally") ?? 0;
@@ -287,6 +289,13 @@ namespace TEdit.Terraria
                 bool rack = (bool?)xElement.Attribute("Rack") ?? false;
                 if (rack)
                     _rackable.Add(curItem.Id, curItem.Name);
+
+                bool food = (bool?)xElement.Attribute("IsFood") ?? false;
+                if (food)
+                {
+                    _foodNames.Add(curItem.Id, curItem.Name);
+                    curItem.IsFood = true;
+                }
 
                 bool acc = (bool?)xElement.Attribute("Accessory") ?? false;
                 if (acc)
@@ -471,6 +480,11 @@ namespace TEdit.Terraria
         public static Dictionary<int, string> AccessoryNames
         {
             get { return _accessoryNames; }
+        }
+
+        public static Dictionary<int, string> FoodNames
+        {
+            get { return _foodNames; }
         }
 
         public static Dictionary<int, string> ArmorBodyNames

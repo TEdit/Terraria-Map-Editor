@@ -64,6 +64,13 @@
             <ComponentModel:SortDescription PropertyName="Value" Direction="Ascending" />
         </CollectionViewSource.SortDescriptions>
     </CollectionViewSource>
+
+    <CollectionViewSource Source="{Binding Source={x:Static Terraria:World.FoodNames}, Mode=OneTime}" x:Key="FoodCollection">
+        <CollectionViewSource.SortDescriptions>
+            <ComponentModel:SortDescription PropertyName="Value" Direction="Ascending" />
+        </CollectionViewSource.SortDescriptions>
+    </CollectionViewSource>
+    
     <CollectionViewSource Source="{Binding Source={x:Static Terraria:World.DyeNames}, Mode=OneTime}" x:Key="DyeCollection">
         <CollectionViewSource.SortDescriptions>
             <ComponentModel:SortDescription PropertyName="Value" Direction="Ascending" />

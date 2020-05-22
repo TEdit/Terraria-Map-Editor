@@ -139,6 +139,21 @@ namespace TEdit.ViewModel
             {
                 if (SelectedTileEntity != null)
                 {
+                    if (SelectedTileEntity.NetId != 0 && SelectedTileEntity.StackSize == 0) { SelectedTileEntity.StackSize = 1; }
+                    foreach (var item in SelectedTileEntity.Items)
+                    {
+                        if (item.Id != 0 && item.StackSize == 0)
+                        {
+                            item.StackSize = 1;
+                        }
+                    }
+                    foreach (var item in SelectedTileEntity.Dyes)
+                    {
+                        if (item.Id != 0 && item.StackSize == 0)
+                        {
+                            item.StackSize = 1;
+                        }
+                    }
                     TileEntity.PlaceEntity(SelectedTileEntity, this);
                 }
             }

@@ -299,12 +299,16 @@ namespace TEdit.Terraria
                 }
             }
 
+
             foreach (TileEntity tileEntity in TileEntities.ToArray())
             {
                 int x = tileEntity.PosX;
                 int y = tileEntity.PosY;
-                if (!Tiles[x, y].IsActive || !Tile.IsTileEntity(Tiles[x, y].Type))
-                    TileEntities.Remove(tileEntity);
+                var anchor = GetAnchor(x, y);
+                if (!Tiles[anchor.X, anchor.Y].IsActive || !Tile.IsTileEntity(Tiles[anchor.X, anchor.Y].Type))
+                {
+                    TaskFactoryHelper.ExecuteUiTask(() => TileEntities.Remove(tileEntity));
+                }
             }
 
             OnProgressChanged(this,
@@ -355,7 +359,7 @@ namespace TEdit.Terraria
 
                     if (curTile.Type == (ushort)TileType.MannequinLegacy || curTile.Type == (ushort)TileType.WomannequinLegacy)
                     {
-                        var anchor = GetAnchor(x,y);
+                        var anchor = GetAnchor(x, y);
                         int headId = (Tiles[anchor.X, anchor.Y].U - (Tiles[anchor.X, anchor.Y].U % 100)) / 100;
                         int torsoId = (Tiles[anchor.X, anchor.Y + 1].U - (Tiles[anchor.X, anchor.Y].U % 100)) / 100;
                         int feetId = (Tiles[anchor.X, anchor.Y + 2].U - (Tiles[anchor.X, anchor.Y].U % 100)) / 100;

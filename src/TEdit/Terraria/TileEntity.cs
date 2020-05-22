@@ -85,8 +85,8 @@ namespace TEdit.Terraria
             else if (curTile.Type == (int)TileType.MannequinLegacy || curTile.Type == (int)TileType.WomannequinLegacy || curTile.Type == (int)TileType.DisplayDoll)
             {
                 TE.Type = 3;
-                TE.Items = new System.Collections.ObjectModel.ObservableCollection<TileEntityItem>(new TileEntityItem[8]);
-                TE.Dyes = new System.Collections.ObjectModel.ObservableCollection<TileEntityItem>(new TileEntityItem[8]);
+                TE.Items = new System.Collections.ObjectModel.ObservableCollection<TileEntityItem>(Enumerable.Repeat(new TileEntityItem(), 8));
+                TE.Dyes = new System.Collections.ObjectModel.ObservableCollection<TileEntityItem>(Enumerable.Repeat(new TileEntityItem(), 8));
             }
             else if (curTile.Type == (int)TileType.WeaponRackLegacy || curTile.Type == (int)TileType.WeaponRack)
             {
@@ -98,8 +98,8 @@ namespace TEdit.Terraria
             else if (curTile.Type == (int)TileType.HatRack)
             {
                 TE.Type = 5;
-                TE.Items = new System.Collections.ObjectModel.ObservableCollection<TileEntityItem>(new TileEntityItem[2]);
-                TE.Dyes = new System.Collections.ObjectModel.ObservableCollection<TileEntityItem>(new TileEntityItem[2]);
+                TE.Items = new System.Collections.ObjectModel.ObservableCollection<TileEntityItem>(Enumerable.Repeat(new TileEntityItem(), 2));
+                TE.Dyes = new System.Collections.ObjectModel.ObservableCollection<TileEntityItem>(Enumerable.Repeat(new TileEntityItem(), 2));
             }
             else if (curTile.Type == (int)TileType.FoodPlatter)
             {
@@ -406,8 +406,8 @@ namespace TEdit.Terraria
         {
             var itemSlots = (BitsByte)r.ReadByte();
             var dyeSlots = (BitsByte)r.ReadByte();
-            Items = new System.Collections.ObjectModel.ObservableCollection<TileEntityItem>(new TileEntityItem[slots]);
-            Dyes = new System.Collections.ObjectModel.ObservableCollection<TileEntityItem>(new TileEntityItem[slots]);
+            Items = new System.Collections.ObjectModel.ObservableCollection<TileEntityItem>(Enumerable.Repeat(new TileEntityItem(), slots));
+            Dyes = new System.Collections.ObjectModel.ObservableCollection<TileEntityItem>(Enumerable.Repeat(new TileEntityItem(), slots));
             for (int i = 0; i < slots; i++)
             {
                 if (itemSlots[i])

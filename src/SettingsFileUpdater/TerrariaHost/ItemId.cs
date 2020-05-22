@@ -219,6 +219,7 @@ namespace SettingsFileUpdater.TerrariaHost
             var output = new StringBuilder("  <Items>\r\n");
             foreach (var item in items)
             {
+                // this could probably be inverted to slot="head" etc.
                 string attribs = string.Join(" ", new string[]
                 {
                     (item.IsFood ? " IsFood=\"True\"" : ""),
@@ -315,16 +316,20 @@ namespace SettingsFileUpdater.TerrariaHost
 
                     if (string.IsNullOrWhiteSpace(curitem.Name)) continue;
                     var isFood = Terraria.ID.ItemID.Sets.IsFood[i];
+                    var isRackable = Terraria.ID.ItemID.Sets.CanBePlacedOnWeaponRacks[i];
+                    var isDeprecated = Terraria.ID.ItemID.Sets.CanBePlacedOnWeaponRacks[i];
 
+                    string name = curitem.Name;
+                    if (isDeprecated) { name += " (Legacy - DO NOT USE)";}
                     //curitem.SetDefaults(i);
-                    sitems.Add(new ItemId(i, curitem.Name, GetItemType(curitem))
+                    sitems.Add(new ItemId(i, name, GetItemType(curitem))
                     {
                         IsFood = isFood,
                         Head = curitem.headSlot,
                         Body = curitem.bodySlot,
                         Legs = curitem.legSlot,
                         Accessory = curitem.accessory,
-                        Rack = curitem.damage > 0
+                        Rack = isRackable
                     });
                 }
                 catch
