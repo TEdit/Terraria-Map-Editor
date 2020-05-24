@@ -65,14 +65,11 @@ namespace TEdit.ViewModel
         private string _selectedPoint;
         private Sign _selectedSign;
         private Sprite _selectedSprite;
-        private TileEntity _selectedItemFrame;
         private Vector2Int32 _selectedXmas;
         private int _selectedXmasStar;
         private int _selectedXmasGarland;
         private int _selectedXmasBulb;
         private int _selectedXmasLight;
-        private byte _selectedRackPrefix;
-        private int _selectedRackNetId;
   
         private int _selectedTabIndex;
         private int _selectedSpecialTile = -1;

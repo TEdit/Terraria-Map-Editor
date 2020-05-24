@@ -105,6 +105,14 @@
                 </DataTrigger>
             </Style.Triggers>
         </Style>
+        <Style TargetType="{x:Type GroupBox}" x:Key="HatRackVisibility" BasedOn="{StaticResource {x:Type GroupBox}}">
+            <Setter Property="Visibility" Value="Collapsed" />
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding SelectedSpecialTile}" Value="5">
+                    <Setter Property="Visibility" Value="Visible" />
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
         <Style TargetType="{x:Type GroupBox}" x:Key="MannequinVisiblity" BasedOn="{StaticResource {x:Type GroupBox}}">
             <Setter Property="Visibility" Value="Collapsed" />
             <Style.Triggers>
@@ -201,7 +209,7 @@
                       SelectedValue="{Binding SelectedSign.SignId, Mode=TwoWay}"
                       SelectedValuePath="SignId"
                       DisplayMemberPath="Name"
-                      IsSynchronizedWithCurrentItem="True"
+                      IsSynchronizedWithCurrentItem="False"
                       HorizontalAlignment="Stretch" Margin="1,0" ItemsPanel="{StaticResource Template_ComboPanel}" />
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Grid.Row="1">
@@ -245,7 +253,7 @@
                       SelectedValue="{Binding SelectedChest.ChestId, Mode=TwoWay}"
                       SelectedValuePath="ChestId"
                       DisplayMemberPath="Name"
-                      IsSynchronizedWithCurrentItem="True"
+                      IsSynchronizedWithCurrentItem="False"
                       HorizontalAlignment="Stretch" Margin="1,0" ItemsPanel="{StaticResource Template_ComboPanel}" />
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Grid.Row="2">
@@ -295,8 +303,8 @@
                     <TextBlock Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" DockPanel.Dock="Top">
                         <TextBlock.Text>
                             <MultiBinding StringFormat="({0}, {1})">
-                                <Binding Path="SelectedItemFrame.PosX" />
-                                <Binding Path="SelectedItemFrame.PosY" />
+                                <Binding Path="SelectedTileEntity.PosX" />
+                                <Binding Path="SelectedTileEntity.PosY" />
                             </MultiBinding>
                         </TextBlock.Text>
                     </TextBlock>
@@ -319,18 +327,17 @@
                     <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
                 <StackPanel Orientation="Horizontal"  Grid.Row="0">
-                    <TextBlock Text="Item Frame Contents " Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" />
+                    <TextBlock Text="Plate Contents " Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" />
                     <TextBlock Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" DockPanel.Dock="Top">
                         <TextBlock.Text>
                             <MultiBinding StringFormat="({0}, {1})">
-                                <Binding Path="SelectedItemFrame.PosX" />
-                                <Binding Path="SelectedItemFrame.PosY" />
+                                <Binding Path="SelectedTileEntity.PosX" />
+                                <Binding Path="SelectedTileEntity.PosY" />
                             </MultiBinding>
                         </TextBlock.Text>
                     </TextBlock>
                 </StackPanel>
-                <ContentControl Grid.Row="1" ContentTemplate="{StaticResource FoodItemTemplate}" 
-                    Content="{Binding Path=SelectedTileEntity}" />
+                <ContentControl Grid.Row="1" ContentTemplate="{StaticResource FoodItemTemplate}"  Content="{Binding Path=SelectedTileEntity}" />
                 <UniformGrid Columns="2" Grid.Row="2">
                     <Button Margin="2" Content="Cancel" Command="{Binding SaveTileEntityCommand}"
                         CommandParameter="{StaticResource False}" />
@@ -347,70 +354,293 @@
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <StackPanel Orientation="Horizontal"  Grid.Row="0">
+                    <TextBlock Text="Mannequin " Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" />
+                    <TextBlock Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" DockPanel.Dock="Top">
+                        <TextBlock.Text>
+                            <MultiBinding StringFormat="({0}, {1})">
+                                <Binding Path="SelectedTileEntity.PosX" />
+                                <Binding Path="SelectedTileEntity.PosY" />
+                            </MultiBinding>
+                        </TextBlock.Text>
+                    </TextBlock>
+                </StackPanel>
+                <ContentControl Grid.Row="1" ContentTemplate="{StaticResource FoodItemTemplate}"  Content="{Binding Path=SelectedTileEntity}" />
+                <StackPanel Orientation="Horizontal" Grid.Row="1">
+                    <TextBlock Text="Head: " Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" VerticalAlignment="Center" />
+                    <ComboBox ItemsSource="{Binding Source={StaticResource DyeCollection}}"
+                          SelectedValue="{Binding SelectedTileEntity.Dye0.Id, Mode=TwoWay}"
+                          SelectedValuePath="Key"
+                          DisplayMemberPath="Value"
+                          HorizontalAlignment="Stretch"
+                          IsSynchronizedWithCurrentItem="False"
+                          Margin="1,0" ItemsPanel="{StaticResource Template_ComboPanel}" />
+                    <ComboBox ItemsSource="{Binding Source={StaticResource PrefixCollection}}"
+                          SelectedValue="{Binding SelectedTileEntity.Item0.Prefix, Mode=TwoWay}"
+                          SelectedValuePath="Key"
+                          DisplayMemberPath="Value"
+                          HorizontalAlignment="Stretch"
+                          IsSynchronizedWithCurrentItem="False"
+                          Margin="1,0" ItemsPanel="{StaticResource Template_ComboPanel}" />
+                    <ComboBox Width="150px"
+                          ItemsSource="{Binding Source={StaticResource MannHeadCollection}}"
+                          SelectedValue="{Binding SelectedTileEntity.Item0.Id, Mode=TwoWay}"
+                          SelectedValuePath="Key"
+                          DisplayMemberPath="Value"
+                          IsSynchronizedWithCurrentItem="False"
+                          HorizontalAlignment="Stretch" Margin="1,0" ItemsPanel="{StaticResource Template_ComboPanel}" />
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Grid.Row="2">
+                    <TextBlock Text="Body: " Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" VerticalAlignment="Center" />
+                    <ComboBox ItemsSource="{Binding Source={StaticResource DyeCollection}}"
+                          SelectedValue="{Binding SelectedTileEntity.Dye1.Id, Mode=TwoWay}"
+                          SelectedValuePath="Key"
+                          DisplayMemberPath="Value"
+                          HorizontalAlignment="Stretch"
+                          IsSynchronizedWithCurrentItem="False"
+                          Margin="1,0" ItemsPanel="{StaticResource Template_ComboPanel}" />
+                    <ComboBox ItemsSource="{Binding Source={StaticResource PrefixCollection}}"
+                          SelectedValue="{Binding SelectedTileEntity.Item1.Prefix, Mode=TwoWay}"
+                          SelectedValuePath="Key"
+                          DisplayMemberPath="Value"
+                          HorizontalAlignment="Stretch"
+                          IsSynchronizedWithCurrentItem="False"
+                          Margin="1,0" ItemsPanel="{StaticResource Template_ComboPanel}" />
+                    <ComboBox Width="150px"
+                          ItemsSource="{Binding Source={StaticResource MannBodyCollection}}"
+                          SelectedValue="{Binding SelectedTileEntity.Item1.Id, Mode=TwoWay}"
+                          SelectedValuePath="Key"
+                          DisplayMemberPath="Value"
+                          IsSynchronizedWithCurrentItem="False"
+                          HorizontalAlignment="Stretch" Margin="1,0" ItemsPanel="{StaticResource Template_ComboPanel}" />
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Grid.Row="3">
+                    <TextBlock Text="Legs: " Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" VerticalAlignment="Center" />
+                    <ComboBox ItemsSource="{Binding Source={StaticResource DyeCollection}}"
+                          SelectedValue="{Binding SelectedTileEntity.Dye2.Id, Mode=TwoWay}"
+                          SelectedValuePath="Key"
+                          DisplayMemberPath="Value"
+                          HorizontalAlignment="Stretch"
+                          IsSynchronizedWithCurrentItem="False"
+                          Margin="1,0" ItemsPanel="{StaticResource Template_ComboPanel}" />
+                    <ComboBox ItemsSource="{Binding Source={StaticResource PrefixCollection}}"
+                          SelectedValue="{Binding SelectedTileEntity.Item2.Prefix, Mode=TwoWay}"
+                          SelectedValuePath="Key"
+                          DisplayMemberPath="Value"
+                          HorizontalAlignment="Stretch"
+                          IsSynchronizedWithCurrentItem="False"
+                          Margin="1,0" ItemsPanel="{StaticResource Template_ComboPanel}" />
+                    <ComboBox Width="150px"
+                          ItemsSource="{Binding Source={StaticResource MannLegsCollection}}"
+                          SelectedValue="{Binding SelectedTileEntity.Item2.Id, Mode=TwoWay}"
+                          SelectedValuePath="Key"
+                          DisplayMemberPath="Value"
+                          IsSynchronizedWithCurrentItem="False"
+                          HorizontalAlignment="Stretch" Margin="1,0" ItemsPanel="{StaticResource Template_ComboPanel}" />
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Grid.Row="4">
+                    <TextBlock Text="Acc1: " Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" VerticalAlignment="Center" />
+                    <ComboBox ItemsSource="{Binding Source={StaticResource DyeCollection}}"
+                          SelectedValue="{Binding SelectedTileEntity.Dye3.Id, Mode=TwoWay}"
+                          SelectedValuePath="Key"
+                          DisplayMemberPath="Value"
+                          HorizontalAlignment="Stretch"
+                          IsSynchronizedWithCurrentItem="False"
+                          Margin="1,0" ItemsPanel="{StaticResource Template_ComboPanel}" />
+                    <ComboBox ItemsSource="{Binding Source={StaticResource PrefixCollection}}"
+                          SelectedValue="{Binding SelectedTileEntity.Item3.Prefix, Mode=TwoWay}"
+                          SelectedValuePath="Key"
+                          DisplayMemberPath="Value"
+                          HorizontalAlignment="Stretch"
+                          IsSynchronizedWithCurrentItem="False"
+                          Margin="1,0" ItemsPanel="{StaticResource Template_ComboPanel}" />
+                    <ComboBox Width="150px"
+                          ItemsSource="{Binding Source={StaticResource MannAccessoryCollection}}"
+                          SelectedValue="{Binding SelectedTileEntity.Item3.Id, Mode=TwoWay}"
+                          SelectedValuePath="Key"
+                          DisplayMemberPath="Value"
+                          IsSynchronizedWithCurrentItem="False"
+                          HorizontalAlignment="Stretch" Margin="1,0" ItemsPanel="{StaticResource Template_ComboPanel}" />
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Grid.Row="5">
+                    <TextBlock Text="Acc2: " Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" VerticalAlignment="Center" />
+                    <ComboBox ItemsSource="{Binding Source={StaticResource DyeCollection}}"
+                          SelectedValue="{Binding SelectedTileEntity.Dye4.Id, Mode=TwoWay}"
+                          SelectedValuePath="Key"
+                          DisplayMemberPath="Value"
+                          HorizontalAlignment="Stretch"
+                          IsSynchronizedWithCurrentItem="False"
+                          Margin="1,0" ItemsPanel="{StaticResource Template_ComboPanel}" />
+                    <ComboBox ItemsSource="{Binding Source={StaticResource PrefixCollection}}"
+                          SelectedValue="{Binding SelectedTileEntity.Item4.Prefix, Mode=TwoWay}"
+                          SelectedValuePath="Key"
+                          DisplayMemberPath="Value"
+                          HorizontalAlignment="Stretch"
+                          IsSynchronizedWithCurrentItem="False"
+                          Margin="1,0" ItemsPanel="{StaticResource Template_ComboPanel}" />
+                    <ComboBox Width="150px"
+                          ItemsSource="{Binding Source={StaticResource MannAccessoryCollection}}"
+                          SelectedValue="{Binding SelectedTileEntity.Item4.Id, Mode=TwoWay}"
+                          SelectedValuePath="Key"
+                          DisplayMemberPath="Value"
+                          IsSynchronizedWithCurrentItem="False"
+                          HorizontalAlignment="Stretch" Margin="1,0" ItemsPanel="{StaticResource Template_ComboPanel}" />
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Grid.Row="6">
+                    <TextBlock Text="Acc3: " Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" VerticalAlignment="Center" />
+                    <ComboBox ItemsSource="{Binding Source={StaticResource DyeCollection}}"
+                          SelectedValue="{Binding SelectedTileEntity.Dye5.Id, Mode=TwoWay}"
+                          SelectedValuePath="Key"
+                          DisplayMemberPath="Value"
+                          HorizontalAlignment="Stretch"
+                          IsSynchronizedWithCurrentItem="False"
+                          Margin="1,0" ItemsPanel="{StaticResource Template_ComboPanel}" />
+                    <ComboBox ItemsSource="{Binding Source={StaticResource PrefixCollection}}"
+                          SelectedValue="{Binding SelectedTileEntity.Item5.Prefix, Mode=TwoWay}"
+                          SelectedValuePath="Key"
+                          DisplayMemberPath="Value"
+                          HorizontalAlignment="Stretch"
+                          IsSynchronizedWithCurrentItem="False"
+                          Margin="1,0" ItemsPanel="{StaticResource Template_ComboPanel}" />
+                    <ComboBox Width="150px"
+                          ItemsSource="{Binding Source={StaticResource MannAccessoryCollection}}"
+                          SelectedValue="{Binding SelectedTileEntity.Item5.Id, Mode=TwoWay}"
+                          SelectedValuePath="Key"
+                          DisplayMemberPath="Value"
+                          IsSynchronizedWithCurrentItem="False"
+                          HorizontalAlignment="Stretch" Margin="1,0" ItemsPanel="{StaticResource Template_ComboPanel}" />
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Grid.Row="7">
+                    <TextBlock Text="Acc4: " Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" VerticalAlignment="Center" />
+                    <ComboBox ItemsSource="{Binding Source={StaticResource DyeCollection}}"
+                          SelectedValue="{Binding SelectedTileEntity.Dye6.Id, Mode=TwoWay}"
+                          SelectedValuePath="Key"
+                          DisplayMemberPath="Value"
+                          HorizontalAlignment="Stretch"
+                          IsSynchronizedWithCurrentItem="False"
+                          Margin="1,0" ItemsPanel="{StaticResource Template_ComboPanel}" />
+                    <ComboBox ItemsSource="{Binding Source={StaticResource PrefixCollection}}"
+                          SelectedValue="{Binding SelectedTileEntity.Item6.Prefix, Mode=TwoWay}"
+                          SelectedValuePath="Key"
+                          DisplayMemberPath="Value"
+                          HorizontalAlignment="Stretch"
+                          IsSynchronizedWithCurrentItem="False"
+                          Margin="1,0" ItemsPanel="{StaticResource Template_ComboPanel}" />
+                    <ComboBox Width="150px"
+                          ItemsSource="{Binding Source={StaticResource MannAccessoryCollection}}"
+                          SelectedValue="{Binding SelectedTileEntity.Item6.Id, Mode=TwoWay}"
+                          SelectedValuePath="Key"
+                          DisplayMemberPath="Value"
+                          IsSynchronizedWithCurrentItem="False"
+                          HorizontalAlignment="Stretch" Margin="1,0" ItemsPanel="{StaticResource Template_ComboPanel}" />
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Grid.Row="8">
+                    <TextBlock Text="Acc5: " Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" VerticalAlignment="Center" />
+                    <ComboBox ItemsSource="{Binding Source={StaticResource DyeCollection}}"
+                          SelectedValue="{Binding SelectedTileEntity.Dye7.Id, Mode=TwoWay}"
+                          SelectedValuePath="Key"
+                          DisplayMemberPath="Value"
+                          HorizontalAlignment="Stretch"
+                          IsSynchronizedWithCurrentItem="False"
+                          Margin="1,0" ItemsPanel="{StaticResource Template_ComboPanel}" />
+                    <ComboBox ItemsSource="{Binding Source={StaticResource PrefixCollection}}"
+                          SelectedValue="{Binding SelectedTileEntity.Item7.Prefix, Mode=TwoWay}"
+                          SelectedValuePath="Key"
+                          DisplayMemberPath="Value"
+                          HorizontalAlignment="Stretch"
+                          IsSynchronizedWithCurrentItem="False"
+                          Margin="1,0" ItemsPanel="{StaticResource Template_ComboPanel}" />
+                    <ComboBox Width="150px"
+                          ItemsSource="{Binding Source={StaticResource MannAccessoryCollection}}"
+                          SelectedValue="{Binding SelectedTileEntity.Item7.Id, Mode=TwoWay}"
+                          SelectedValuePath="Key"
+                          DisplayMemberPath="Value"
+                          IsSynchronizedWithCurrentItem="False"
+                          HorizontalAlignment="Stretch" Margin="1,0" ItemsPanel="{StaticResource Template_ComboPanel}" />
+                </StackPanel>
+
+                <UniformGrid Columns="2" Grid.Row="9">
+                    <Button Margin="2" Content="Cancel" Command="{Binding SaveTileEntityCommand}"
+                        CommandParameter="{StaticResource False}" />
+                    <Button Margin="2" Content="Save" Command="{Binding SaveTileEntityCommand}"
+                        CommandParameter="{StaticResource True}" />
+                </UniformGrid>
+            </Grid>
+        </GroupBox>
+        <GroupBox BorderThickness="0" Style="{StaticResource HatRackVisibility}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+            <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
                 <StackPanel Orientation="Horizontal"  Grid.Row="0">
                     <TextBlock Text="Mannequin Clothing " Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" />
                     <TextBlock Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" DockPanel.Dock="Top">
                         <TextBlock.Text>
                             <MultiBinding StringFormat="({0}, {1})">
-                                <Binding Path="SelectedMannequin.X" />
-                                <Binding Path="SelectedMannequin.Y" />
+                                <Binding Path="SelectedTileEntity.PosX" />
+                                <Binding Path="SelectedTileEntity.PosY" />
                             </MultiBinding>
                         </TextBlock.Text>
                     </TextBlock>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Grid.Row="1">
                     <TextBlock Text="Head: " Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" VerticalAlignment="Center" />
-                    <ComboBox ItemsSource="{Binding Source={StaticResource PrefixCollection}}"
-                          SelectedValue="{Binding SelectedTileEntity.Items[0].Id, Mode=TwoWay}"
+                    <ComboBox ItemsSource="{Binding Source={StaticResource DyeCollection}}"
+                          SelectedValue="{Binding SelectedTileEntity.Dye0.Id, Mode=TwoWay}"
                           SelectedValuePath="Key"
                           DisplayMemberPath="Value"
                           HorizontalAlignment="Stretch"
-                          IsSynchronizedWithCurrentItem="True"
+                          IsSynchronizedWithCurrentItem="False"
+                          Margin="1,0" ItemsPanel="{StaticResource Template_ComboPanel}" />
+                    <ComboBox ItemsSource="{Binding Source={StaticResource PrefixCollection}}"
+                          SelectedValue="{Binding SelectedTileEntity.Item0.Prefix, Mode=TwoWay}"
+                          SelectedValuePath="Key"
+                          DisplayMemberPath="Value"
+                          HorizontalAlignment="Stretch"
+                          IsSynchronizedWithCurrentItem="False"
                           Margin="1,0" ItemsPanel="{StaticResource Template_ComboPanel}" />
                     <ComboBox Width="150px"
                           ItemsSource="{Binding Source={StaticResource MannHeadCollection}}"
-                          SelectedValue="{Binding SelectedTileEntity.Items[0].Id, Mode=TwoWay}"
+                          SelectedValue="{Binding SelectedTileEntity.Item0.Id, Mode=TwoWay}"
                           SelectedValuePath="Key"
                           DisplayMemberPath="Value"
-                          IsSynchronizedWithCurrentItem="True"
+                          IsSynchronizedWithCurrentItem="False"
                           HorizontalAlignment="Stretch" Margin="1,0" ItemsPanel="{StaticResource Template_ComboPanel}" />
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Grid.Row="2">
-                    <TextBlock Text="Body: " Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" VerticalAlignment="Center" />
-                    <ComboBox ItemsSource="{Binding Source={StaticResource PrefixCollection}}"
-                          SelectedValue="{Binding SelectedTileEntity.Items[1].Id, Mode=TwoWay}"
+                    <TextBlock Text="Head: " Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" VerticalAlignment="Center" />
+                    <ComboBox ItemsSource="{Binding Source={StaticResource DyeCollection}}"
+                          SelectedValue="{Binding SelectedTileEntity.Dye1.Id, Mode=TwoWay}"
                           SelectedValuePath="Key"
                           DisplayMemberPath="Value"
                           HorizontalAlignment="Stretch"
-                          IsSynchronizedWithCurrentItem="True"
+                          IsSynchronizedWithCurrentItem="False"
                           Margin="1,0" ItemsPanel="{StaticResource Template_ComboPanel}" />
-                    <ComboBox Width="150px"
-                      ItemsSource="{Binding Source={StaticResource MannBodyCollection}}"
-                      SelectedValue="{Binding SelectedTileEntity.Items[1].Id, Mode=TwoWay}"
-                      SelectedValuePath="Key"
-                      DisplayMemberPath="Value"
-                      IsSynchronizedWithCurrentItem="True"
-                      HorizontalAlignment="Stretch" Margin="1,0" ItemsPanel="{StaticResource Template_ComboPanel}" />
-                </StackPanel>
-                <StackPanel Orientation="Horizontal" Grid.Row="3">
-                    <TextBlock Text="Legs: " Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" VerticalAlignment="Center" />
                     <ComboBox ItemsSource="{Binding Source={StaticResource PrefixCollection}}"
-                          SelectedValue="{Binding SelectedTileEntity.Items[2].Id, Mode=TwoWay}"
+                          SelectedValue="{Binding SelectedTileEntity.Item1.Prefix, Mode=TwoWay}"
                           SelectedValuePath="Key"
                           DisplayMemberPath="Value"
                           HorizontalAlignment="Stretch"
-                          IsSynchronizedWithCurrentItem="True"
+                          IsSynchronizedWithCurrentItem="False"
                           Margin="1,0" ItemsPanel="{StaticResource Template_ComboPanel}" />
                     <ComboBox Width="150px"
-                      ItemsSource="{Binding Source={StaticResource MannLegsCollection}}"
-                      SelectedValue="{Binding SelectedTileEntity.Items[2].Id, Mode=TwoWay}"
-                      SelectedValuePath="Key"
-                      DisplayMemberPath="Value"
-                      IsSynchronizedWithCurrentItem="True"
-                      HorizontalAlignment="Stretch" Margin="1,0" ItemsPanel="{StaticResource Template_ComboPanel}" />
+                          ItemsSource="{Binding Source={StaticResource MannHeadCollection}}"
+                          SelectedValue="{Binding SelectedTileEntity.Item1.Id, Mode=TwoWay}"
+                          SelectedValuePath="Key"
+                          DisplayMemberPath="Value"
+                          IsSynchronizedWithCurrentItem="False"
+                          HorizontalAlignment="Stretch" Margin="1,0" ItemsPanel="{StaticResource Template_ComboPanel}" />
                 </StackPanel>
-                <UniformGrid Columns="2" Grid.Row="4">
+                <UniformGrid Columns="2" Grid.Row="3">
                     <Button Margin="2" Content="Cancel" Command="{Binding SaveTileEntityCommand}"
                         CommandParameter="{StaticResource False}" />
                     <Button Margin="2" Content="Save" Command="{Binding SaveTileEntityCommand}"
@@ -438,19 +668,19 @@
                         </TextBlock.Text>
                     </TextBlock>
                 </StackPanel>
-                <StackPanel Orientation="Horizontal" Grid.Row="1">
+                <StackPanel Orientation="Horizontal" Grid.Row="1" DataContext="{Binding SelectedTileEntity}">
                     <ComboBox ItemsSource="{Binding Source={StaticResource PrefixCollection}}"
-                          SelectedValue="{Binding SelectedTileEntity.Prefix, Mode=TwoWay}"
+                          SelectedValue="{Binding Prefix, Mode=TwoWay}"
                           SelectedValuePath="Key"
                           DisplayMemberPath="Value"
                           HorizontalAlignment="Stretch"
-                          IsSynchronizedWithCurrentItem="True"
+                          IsSynchronizedWithCurrentItem="False"
                           Margin="1,0" ItemsPanel="{StaticResource Template_ComboPanel}" />
                     <ComboBox ItemsSource="{Binding Source={StaticResource RackCollection}}"
-                          SelectedValue="{Binding SelectedTileEntity.NetId, Mode=TwoWay}"
+                          SelectedValue="{Binding NetId, Mode=TwoWay}"
                           SelectedValuePath="Key"
                           DisplayMemberPath="Value"
-                          IsSynchronizedWithCurrentItem="True"
+                          IsSynchronizedWithCurrentItem="False"
                           HorizontalAlignment="Stretch" Margin="1,0" ItemsPanel="{StaticResource Template_ComboPanel}" />
                 </StackPanel>
                 <UniformGrid Columns="2" Grid.Row="2">
@@ -488,7 +718,7 @@
                       ItemsSource="{StaticResource XmasStarCollection}"
                       SelectedValue="{Binding SelectedXmasStar, Mode=TwoWay}"
                       SelectedValuePath="Value"
-                      IsSynchronizedWithCurrentItem="True"
+                      IsSynchronizedWithCurrentItem="False"
                       HorizontalAlignment="Stretch" Margin="1,0" ItemsPanel="{StaticResource Template_ComboPanel}" />
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Grid.Row="2">
@@ -497,7 +727,7 @@
                       ItemsSource="{StaticResource XmasGarlandCollection}"
                       SelectedValue="{Binding SelectedXmasGarland, Mode=TwoWay}"
                       SelectedValuePath="Value"
-                      IsSynchronizedWithCurrentItem="True"
+                      IsSynchronizedWithCurrentItem="False"
                       HorizontalAlignment="Stretch" Margin="1,0" ItemsPanel="{StaticResource Template_ComboPanel}" />
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Grid.Row="3">
@@ -506,7 +736,7 @@
                       ItemsSource="{StaticResource XmasBulbCollection}"
                       SelectedValue="{Binding SelectedXmasBulb, Mode=TwoWay}"
                       SelectedValuePath="Value"
-                      IsSynchronizedWithCurrentItem="True"
+                      IsSynchronizedWithCurrentItem="False"
                       HorizontalAlignment="Stretch" Margin="1,0" ItemsPanel="{StaticResource Template_ComboPanel}" />
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Grid.Row="4">
@@ -515,7 +745,7 @@
                       ItemsSource="{StaticResource XmasLightCollection}"
                       SelectedValue="{Binding SelectedXmasLight, Mode=TwoWay}"
                       SelectedValuePath="Value"
-                      IsSynchronizedWithCurrentItem="True"
+                      IsSynchronizedWithCurrentItem="False"
                       HorizontalAlignment="Stretch" Margin="1,0" ItemsPanel="{StaticResource Template_ComboPanel}" />
                 </StackPanel>
                 <UniformGrid Columns="2" Grid.Row="5">
