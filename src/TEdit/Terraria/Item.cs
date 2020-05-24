@@ -115,9 +115,9 @@ namespace TEdit.Terraria
         public override string ToString()
         {
             if (StackSize > 0)
-                return $"{_currentItemProperty.Name}: {StackSize}";
+                return $"{_currentItemProperty?.Name}: {StackSize}";
 
-            return _currentItemProperty.Name;
+            return _currentItemProperty?.Name;
         }
     }
 }
