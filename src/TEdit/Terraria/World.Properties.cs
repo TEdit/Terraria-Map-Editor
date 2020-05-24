@@ -31,7 +31,7 @@ namespace TEdit.Terraria
         private readonly ObservableCollection<PressurePlate> _pressurePlates = new ObservableCollection<PressurePlate>();
         private readonly ObservableCollection<TownManager> _playerRooms = new ObservableCollection<TownManager>();
 
-        private  ObservableCollection<int> _treeTopVariations = new ObservableCollection<int>(new int[13]);
+        private ObservableCollection<int> _treeTopVariations = new ObservableCollection<int>(new int[13]);
 
         // [SBLogic] These variables are used internally for composing background layers, not currently needed here:
         // public int[] CorruptBG = new int[3];
@@ -580,7 +580,46 @@ namespace TEdit.Terraria
         {
             get { return _treeTopVariations; }
             set { Set("TreeTopVariations", ref _treeTopVariations, value); }
+        }
 
+        public int TreeTop1
+        {
+            get { return _treeTopVariations[0]; }
+            set
+            {
+                _treeTopVariations[0] = (int)value;
+                RaisePropertyChanged(nameof(TreeTop1));
+            }
+        }
+
+        public int TreeTop2
+        {
+            get { return _treeTopVariations[1]; }
+            set
+            {
+                _treeTopVariations[1] = (int)value;
+                RaisePropertyChanged(nameof(TreeTop2));
+            }
+        }
+
+        public int TreeTop3
+        {
+            get { return _treeTopVariations[2]; }
+            set
+            {
+                _treeTopVariations[2] = (int)value;
+                RaisePropertyChanged(nameof(TreeTop3));
+            }
+        }
+
+        public int TreeTop4
+        {
+            get { return _treeTopVariations[3]; }
+            set
+            {
+                _treeTopVariations[3] = (int)value;
+                RaisePropertyChanged(nameof(TreeTop4));
+            }
         }
 
         public bool GooWorld
@@ -763,7 +802,8 @@ namespace TEdit.Terraria
         public bool DownedMechBoss3
         {
             get { return _downedMechBoss3; }
-            set {
+            set
+            {
                 _downedMechBoss3 = value;
                 if (value)
                     DownedMechBossAny = true;
@@ -775,7 +815,8 @@ namespace TEdit.Terraria
         public bool DownedMechBoss2
         {
             get { return _downedMechBoss2; }
-            set {
+            set
+            {
                 _downedMechBoss2 = value;
                 if (value)
                     DownedMechBossAny = true;
@@ -787,7 +828,8 @@ namespace TEdit.Terraria
         public bool DownedMechBoss1
         {
             get { return _downedMechBoss1; }
-            set {
+            set
+            {
                 _downedMechBoss1 = value;
                 if (value)
                     DownedMechBossAny = true;

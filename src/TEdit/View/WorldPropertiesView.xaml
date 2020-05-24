@@ -3,7 +3,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:tedit="clr-namespace:TEdit.UI.Xaml" xmlns:Terraria="clr-namespace:TEdit.Terraria"
+             xmlns:tedit="clr-namespace:TEdit.UI.Xaml" 
+             xmlns:converters="clr-namespace:TEdit.Converters"
+             xmlns:Terraria="clr-namespace:TEdit.Terraria"
              xmlns:System="clr-namespace:System;assembly=mscorlib"
              xmlns:viewModel="clr-namespace:TEdit.ViewModel"
              xmlns:enum="clr-namespace:TEdit.UI.Xaml.Enum"
@@ -11,6 +13,7 @@
              d:DesignWidth="260" Background="{StaticResource WindowBackgroundBrush}" Foreground="{StaticResource TextBrush}"
              d:DataContext="{d:DesignInstance Type=viewModel:WorldViewModel}">
     <UserControl.Resources>
+        <converters:ByteIntConverter x:Key="ByteIntConverter" />
         <enum:EnumItemList x:Key="invasionTypeList" EnumType="{x:Type System:Int32}" SortBy="Value" >
             <enum:EnumItem Value="0">None</enum:EnumItem>
             <enum:EnumItem Value="1">Goblin Invasion</enum:EnumItem>
@@ -65,7 +68,7 @@
             <enum:EnumItem Value="8">Gold</enum:EnumItem>
             <enum:EnumItem Value="169">Platinum</enum:EnumItem>
         </enum:EnumItemList>
-        <enum:EnumItemList x:Key="TreeStyleList" EnumType="{x:Type System:Int32}" SortBy="Value" >
+        <enum:EnumItemList x:Key="TreeStyleList" EnumType="{x:Type System:Byte}" SortBy="Value" >
             <enum:EnumItem Value="0">0</enum:EnumItem>
             <enum:EnumItem Value="1">1</enum:EnumItem>
             <enum:EnumItem Value="2">2</enum:EnumItem>
@@ -73,7 +76,7 @@
             <enum:EnumItem Value="4">4</enum:EnumItem>
             <enum:EnumItem Value="5">5</enum:EnumItem>
         </enum:EnumItemList>
-        <enum:EnumItemList x:Key="CaveStyleList" EnumType="{x:Type System:Int32}" SortBy="Value">
+        <enum:EnumItemList x:Key="CaveStyleList" EnumType="{x:Type System:Byte}" SortBy="Value">
             <enum:EnumItem Value="0">0</enum:EnumItem>
             <enum:EnumItem Value="1">1</enum:EnumItem>
             <enum:EnumItem Value="2">2</enum:EnumItem>
@@ -84,65 +87,78 @@
             <enum:EnumItem Value="7">7</enum:EnumItem>
         </enum:EnumItemList>
 
-        <enum:EnumItemList x:Key="IceBackStyleList" EnumType="{x:Type System:Int32}" SortBy="Value">
+        <enum:EnumItemList x:Key="IceBackStyleList" EnumType="{x:Type System:Byte}" SortBy="Value">
             <enum:EnumItem Value="0">0</enum:EnumItem>
             <enum:EnumItem Value="1">1</enum:EnumItem>
             <enum:EnumItem Value="2">2</enum:EnumItem>
             <enum:EnumItem Value="3">3</enum:EnumItem>
         </enum:EnumItemList>
-        <enum:EnumItemList x:Key="JungleBackStyleList" EnumType="{x:Type System:Int32}" SortBy="Value">
+        <enum:EnumItemList x:Key="JungleBackStyleList" EnumType="{x:Type System:Byte}" SortBy="Value">
             <enum:EnumItem Value="0">0</enum:EnumItem>
             <enum:EnumItem Value="1">1</enum:EnumItem>
+            <enum:EnumItem Value="2">2</enum:EnumItem>
+            <enum:EnumItem Value="3">3</enum:EnumItem>
+            <enum:EnumItem Value="4">4</enum:EnumItem>
+            <enum:EnumItem Value="5">5</enum:EnumItem>
         </enum:EnumItemList>
-        <enum:EnumItemList x:Key="HellBackStyleList" EnumType="{x:Type System:Int32}" SortBy="Value">
+        <enum:EnumItemList x:Key="HellBackStyleList" EnumType="{x:Type System:Byte}" SortBy="Value">
             <enum:EnumItem Value="0">0</enum:EnumItem>
             <enum:EnumItem Value="1">1</enum:EnumItem>
             <enum:EnumItem Value="2">2</enum:EnumItem>
         </enum:EnumItemList>
-        <enum:EnumItemList x:Key="CrimsonBGStyleList" EnumType="{x:Type System:Int32}" SortBy="Value">
+        <enum:EnumItemList x:Key="CrimsonBGStyleList" EnumType="{x:Type System:Byte}" SortBy="Value">
             <enum:EnumItem Value="0">0</enum:EnumItem>
             <enum:EnumItem Value="1">1</enum:EnumItem>
             <enum:EnumItem Value="2">2</enum:EnumItem>
+            <enum:EnumItem Value="3">3</enum:EnumItem>
+            <enum:EnumItem Value="4">4</enum:EnumItem>
+            <enum:EnumItem Value="5">5</enum:EnumItem>
+        </enum:EnumItemList>
+        <enum:EnumItemList x:Key="DesertBGStyleList" EnumType="{x:Type System:Byte}" SortBy="Value">
+            <enum:EnumItem Value="0">0</enum:EnumItem>
+            <enum:EnumItem Value="1">1</enum:EnumItem>
+            <enum:EnumItem Value="2">2</enum:EnumItem>
+            <enum:EnumItem Value="3">3</enum:EnumItem>
+            <enum:EnumItem Value="4">4</enum:EnumItem>
+        </enum:EnumItemList>
+
+        <enum:EnumItemList x:Key="CorruptBGStyleList" EnumType="{x:Type System:Byte}" SortBy="Value">
+            <enum:EnumItem Value="0">0</enum:EnumItem>
+            <enum:EnumItem Value="1">1</enum:EnumItem>
+            <enum:EnumItem Value="2">2</enum:EnumItem>
+            <enum:EnumItem Value="3">3</enum:EnumItem>
+            <enum:EnumItem Value="4">4</enum:EnumItem>
         </enum:EnumItemList>
         <enum:EnumItemList x:Key="CommonBGStyleList" EnumType="{x:Type System:Byte}" SortBy="Value">
             <enum:EnumItem Value="0">0</enum:EnumItem>
             <enum:EnumItem Value="1">1</enum:EnumItem>
         </enum:EnumItemList>
-        <enum:EnumItemList x:Key="OceanBGStyleList" EnumType="{x:Type System:Byte}" SortBy="Value">
+        <enum:EnumItemList x:Key="HallowBGStyleList" EnumType="{x:Type System:Byte}" SortBy="Value">
             <enum:EnumItem Value="0">0</enum:EnumItem>
             <enum:EnumItem Value="1">1</enum:EnumItem>
             <enum:EnumItem Value="2">2</enum:EnumItem>
+            <enum:EnumItem Value="3">3</enum:EnumItem>
+            <enum:EnumItem Value="4">4</enum:EnumItem>
         </enum:EnumItemList>
-
-        <enum:EnumItemList x:Key="MushroomBGStyleList" EnumType="{x:Type System:Int32}" SortBy="Value">
-            <enum:EnumItem Value="46">46</enum:EnumItem>
-            <enum:EnumItem Value="47">47</enum:EnumItem>
-            <enum:EnumItem Value="48">48</enum:EnumItem>
-            <enum:EnumItem Value="231">231</enum:EnumItem>
-            <enum:EnumItem Value="232">232</enum:EnumItem>
-            <enum:EnumItem Value="233">233</enum:EnumItem>
-            <enum:EnumItem Value="234">234</enum:EnumItem>
-            <enum:EnumItem Value="235">235</enum:EnumItem>
-            <enum:EnumItem Value="236">236</enum:EnumItem>
-            <enum:EnumItem Value="287">287</enum:EnumItem>
-            <enum:EnumItem Value="288">288</enum:EnumItem>
-            <enum:EnumItem Value="289">289</enum:EnumItem>
-        </enum:EnumItemList>
-        <enum:EnumItemList x:Key="UnderworldBGStyleList" EnumType="{x:Type System:Int32}" SortBy="Value">
+        <enum:EnumItemList x:Key="OceanBGStyleList" EnumType="{x:Type System:Byte}" SortBy="Value">
             <enum:EnumItem Value="0">0</enum:EnumItem>
             <enum:EnumItem Value="1">1</enum:EnumItem>
             <enum:EnumItem Value="2">2</enum:EnumItem>
             <enum:EnumItem Value="3">3</enum:EnumItem>
             <enum:EnumItem Value="4">4</enum:EnumItem>
             <enum:EnumItem Value="5">5</enum:EnumItem>
-            <enum:EnumItem Value="6">6</enum:EnumItem>
-            <enum:EnumItem Value="7">7</enum:EnumItem>
-            <enum:EnumItem Value="8">8</enum:EnumItem>
-            <enum:EnumItem Value="9">9</enum:EnumItem>
-            <enum:EnumItem Value="10">10</enum:EnumItem>
-            <enum:EnumItem Value="11">11</enum:EnumItem>
-            <enum:EnumItem Value="12">12</enum:EnumItem>
-            <enum:EnumItem Value="13">13</enum:EnumItem>
+        </enum:EnumItemList>
+
+        <enum:EnumItemList x:Key="MushroomBGStyleList" EnumType="{x:Type System:Byte}" SortBy="Value">
+            <enum:EnumItem Value="0">0</enum:EnumItem>
+            <enum:EnumItem Value="1">1</enum:EnumItem>
+            <enum:EnumItem Value="2">2</enum:EnumItem>
+            <enum:EnumItem Value="3">3</enum:EnumItem>
+        </enum:EnumItemList>
+        <enum:EnumItemList x:Key="UnderworldBGStyleList" EnumType="{x:Type System:Byte}" SortBy="Value">
+            <enum:EnumItem Value="0">0</enum:EnumItem>
+            <enum:EnumItem Value="1">1</enum:EnumItem>
+            <enum:EnumItem Value="2">2</enum:EnumItem>
         </enum:EnumItemList>
         <enum:EnumItemList x:Key="SnowBGStyleList" EnumType="{x:Type System:Byte}" SortBy="Value">
             <enum:EnumItem Value="0">0</enum:EnumItem>
@@ -150,6 +166,9 @@
             <enum:EnumItem Value="2">2</enum:EnumItem>
             <enum:EnumItem Value="3">3</enum:EnumItem>
             <enum:EnumItem Value="4">4</enum:EnumItem>
+            <enum:EnumItem Value="5">5</enum:EnumItem>
+            <enum:EnumItem Value="6">6</enum:EnumItem>
+            <enum:EnumItem Value="7">7</enum:EnumItem>
             <enum:EnumItem Value="21">21</enum:EnumItem>
             <enum:EnumItem Value="22">22</enum:EnumItem>
             <enum:EnumItem Value="31">31</enum:EnumItem>
@@ -167,6 +186,8 @@
             <enum:EnumItem Value="6">6</enum:EnumItem>
             <enum:EnumItem Value="7">7</enum:EnumItem>
             <enum:EnumItem Value="8">8</enum:EnumItem>
+            <enum:EnumItem Value="9">9</enum:EnumItem>
+            <enum:EnumItem Value="10">10</enum:EnumItem>
             <enum:EnumItem Value="31">31</enum:EnumItem>
             <enum:EnumItem Value="51">51</enum:EnumItem>
             <enum:EnumItem Value="71">71</enum:EnumItem>
@@ -570,17 +591,17 @@
         <TextBlock Text="Forest BG" HorizontalAlignment="Right" />
         <ComboBox Height="20" Width="40" HorizontalAlignment="Left" ItemsSource="{StaticResource TreeBGStyleList}" SelectedValue="{Binding CurrentWorld.BgTree, Mode=TwoWay}" SelectedValuePath="Value" />
         <TextBlock Text="Corrupt BG" HorizontalAlignment="Right" />
-        <ComboBox Height="20" Width="40" HorizontalAlignment="Left" ItemsSource="{StaticResource CommonBGStyleList}" SelectedValue="{Binding CurrentWorld.BgCorruption, Mode=TwoWay}" SelectedValuePath="Value" />
+        <ComboBox Height="20" Width="40" HorizontalAlignment="Left" ItemsSource="{StaticResource CorruptBGStyleList}" SelectedValue="{Binding CurrentWorld.BgCorruption, Mode=TwoWay}" SelectedValuePath="Value" />
         <TextBlock Text="Jungle BG" HorizontalAlignment="Right" />
-        <ComboBox Height="20" Width="40" HorizontalAlignment="Left" ItemsSource="{StaticResource CommonBGStyleList}" SelectedValue="{Binding CurrentWorld.BgJungle, Mode=TwoWay}" SelectedValuePath="Value" />
+        <ComboBox Height="20" Width="40" HorizontalAlignment="Left" ItemsSource="{StaticResource JungleBackStyleList}" SelectedValue="{Binding CurrentWorld.BgJungle, Mode=TwoWay}" SelectedValuePath="Value" />
         <TextBlock Text="Snow BG" HorizontalAlignment="Right" />
         <ComboBox Height="20" Width="40" HorizontalAlignment="Left" ItemsSource="{StaticResource SnowBGStyleList}" SelectedValue="{Binding CurrentWorld.BgSnow, Mode=TwoWay}" SelectedValuePath="Value" />
         <TextBlock Text="Hallow BG" HorizontalAlignment="Right" />
-        <ComboBox Height="20" Width="40" HorizontalAlignment="Left" ItemsSource="{StaticResource CommonBGStyleList}" SelectedValue="{Binding CurrentWorld.BgHallow, Mode=TwoWay}" SelectedValuePath="Value" />
+        <ComboBox Height="20" Width="40" HorizontalAlignment="Left" ItemsSource="{StaticResource HallowBGStyleList}" SelectedValue="{Binding CurrentWorld.BgHallow, Mode=TwoWay}" SelectedValuePath="Value" />
         <TextBlock Text="Crimson BG" HorizontalAlignment="Right" />
         <ComboBox Height="20" Width="40" HorizontalAlignment="Left" ItemsSource="{StaticResource CrimsonBGStyleList}" SelectedValue="{Binding CurrentWorld.BgCrimson, Mode=TwoWay}" SelectedValuePath="Value" />
         <TextBlock Text="Desert BG" HorizontalAlignment="Right" />
-        <ComboBox Height="20" Width="40" HorizontalAlignment="Left" ItemsSource="{StaticResource CommonBGStyleList}" SelectedValue="{Binding CurrentWorld.BgDesert, Mode=TwoWay}" SelectedValuePath="Value" />
+        <ComboBox Height="20" Width="40" HorizontalAlignment="Left" ItemsSource="{StaticResource DesertBGStyleList}" SelectedValue="{Binding CurrentWorld.BgDesert, Mode=TwoWay}" SelectedValuePath="Value" />
         <TextBlock Text="Ocean BG" HorizontalAlignment="Right" />
         <ComboBox Height="20" Width="40" HorizontalAlignment="Left" ItemsSource="{StaticResource OceanBGStyleList}" SelectedValue="{Binding CurrentWorld.BgOcean, Mode=TwoWay}" SelectedValuePath="Value" />
         <Separator Grid.ColumnSpan="2" />
@@ -596,15 +617,13 @@
         <ComboBox Height="20" Width="40" HorizontalAlignment="Left" ItemsSource="{StaticResource TreeBGStyleList}" SelectedValue="{Binding CurrentWorld.BgTree4, Mode=TwoWay}" SelectedValuePath="Value" />
         <Separator Grid.ColumnSpan="2" />
         <TextBlock Text="Tree 1 Tops" HorizontalAlignment="Right" />
-        <ComboBox Height="20" Width="40" HorizontalAlignment="Left" ItemsSource="{StaticResource TreeBGStyleList}" SelectedValue="{Binding Path=CurrentWorld.TreeTopVariations[0], Mode=TwoWay}" SelectedValuePath="Value" />
+        <ComboBox Height="20" Width="40" HorizontalAlignment="Left" ItemsSource="{StaticResource TreeBGStyleList}" SelectedValue="{Binding CurrentWorld.TreeTop1, Mode=TwoWay, Converter={StaticResource ByteIntConverter}}" SelectedValuePath="Value" />
         <TextBlock Text="Tree 2 Tops" HorizontalAlignment="Right" />
-        <ComboBox Height="20" Width="40" HorizontalAlignment="Left" ItemsSource="{StaticResource TreeBGStyleList}" SelectedValue="{Binding Path=CurrentWorld.TreeTopVariations[1], Mode=TwoWay}" SelectedValuePath="Value" />
-
+        <ComboBox Height="20" Width="40" HorizontalAlignment="Left" ItemsSource="{StaticResource TreeBGStyleList}" SelectedValue="{Binding CurrentWorld.TreeTop2, Mode=TwoWay, Converter={StaticResource ByteIntConverter}}" SelectedValuePath="Value" />
         <TextBlock Text="Tree 3 Tops" HorizontalAlignment="Right" />
-        <ComboBox Height="20" Width="40" HorizontalAlignment="Left" ItemsSource="{StaticResource TreeBGStyleList}" SelectedValue="{Binding Path=CurrentWorld.TreeTopVariations[2], Mode=TwoWay}" SelectedValuePath="Value" />
-
+        <ComboBox Height="20" Width="40" HorizontalAlignment="Left" ItemsSource="{StaticResource TreeBGStyleList}" SelectedValue="{Binding CurrentWorld.TreeTop3, Mode=TwoWay, Converter={StaticResource ByteIntConverter}}" SelectedValuePath="Value" />
         <TextBlock Text="Tree 4 Tops" HorizontalAlignment="Right" />
-        <ComboBox Height="20" Width="40" HorizontalAlignment="Left" ItemsSource="{StaticResource TreeBGStyleList}" SelectedValue="{Binding Path=CurrentWorld.TreeTopVariations[3], Mode=TwoWay}" SelectedValuePath="Value" />
+        <ComboBox Height="20" Width="40" HorizontalAlignment="Left" ItemsSource="{StaticResource TreeBGStyleList}" SelectedValue="{Binding CurrentWorld.TreeTop4, Mode=TwoWay, Converter={StaticResource ByteIntConverter}}" SelectedValuePath="Value" />
 
 
     </tedit:AutoGrid>
