@@ -43,7 +43,7 @@ namespace TEdit.Terraria
             OnProgressChanged(null, new ProgressChangedEventArgs(0, "Save headers..."));
             sectionPointers[0] = SaveSectionHeader(world, bw);
             sectionPointers[1] = SaveHeaderFlags(world, bw);
-            OnProgressChanged(null, new ProgressChangedEventArgs(0, "Save UndoTiles..."));
+            OnProgressChanged(null, new ProgressChangedEventArgs(0, "Save Tiles..."));
             sectionPointers[2] = SaveTiles(world.Tiles, world.TilesWide, world.TilesHigh, bw);
 
             OnProgressChanged(null, new ProgressChangedEventArgs(100, "Save Chests..."));
@@ -333,7 +333,7 @@ namespace TEdit.Terraria
                 bw.Write(npc.Home.Y);
 
                 BitsByte bitsByte = 0;
-                bitsByte[0] = npc.TownNpcVariationIndex > 0;
+                bitsByte[0] = true;
                 bw.Write(bitsByte);
                 if (bitsByte[0])
                 {

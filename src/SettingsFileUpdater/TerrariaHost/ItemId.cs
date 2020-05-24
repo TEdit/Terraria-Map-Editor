@@ -316,11 +316,11 @@ namespace SettingsFileUpdater.TerrariaHost
 
                     if (string.IsNullOrWhiteSpace(curitem.Name)) continue;
                     var isFood = Terraria.ID.ItemID.Sets.IsFood[i];
-                    var isRackable = Terraria.ID.ItemID.Sets.CanBePlacedOnWeaponRacks[i];
-                    var isDeprecated = Terraria.ID.ItemID.Sets.CanBePlacedOnWeaponRacks[i];
+                    var isRackable = Terraria.ID.ItemID.Sets.CanBePlacedOnWeaponRacks[i] || curitem.fishingPole > 0 || (curitem.damage > 0 && curitem.useStyle != 0);
+                    var isDeprecated = Terraria.ID.ItemID.Sets.Deprecated[i];
 
                     string name = curitem.Name;
-                    if (isDeprecated) { name += " (Legacy - DO NOT USE)";}
+                    if (isDeprecated) { name += " (Deprecated)"; }
                     //curitem.SetDefaults(i);
                     sitems.Add(new ItemId(i, name, GetItemType(curitem))
                     {

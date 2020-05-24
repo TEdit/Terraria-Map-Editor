@@ -18,7 +18,11 @@ namespace TEdit.Terraria
         public short Id
         {
             get { return _id; }
-            set { Set("Id", ref _id, value); }
+            set
+            {
+                Set("Id", ref _id, value);
+                if (value != 0 && StackSize == 0) { StackSize = 1; }
+            }
         }
 
         public byte Prefix
@@ -30,7 +34,15 @@ namespace TEdit.Terraria
         public short StackSize
         {
             get { return _stackSize; }
-            set { Set("StackSize", ref _stackSize, value); }
+            set
+            {
+                Set("StackSize", ref _stackSize, value);
+                if (value == 0 && Id != 0)
+                {
+                    Id = 0;
+                    Prefix = 0;
+                }
+            }
         }
 
         public bool IsValid => StackSize > 0 && Id > 0;
@@ -389,9 +401,9 @@ namespace TEdit.Terraria
 
         private void SaveStack(BinaryWriter w)
         {
-            w.Write((Int16)NetId);
-            w.Write(Prefix);
-            w.Write(StackSize);
+            w.Write((short)NetId);
+            w.Write((byte)Prefix);
+            w.Write((short)StackSize);
         }
 
         private void LoadStack(BinaryReader r)
@@ -439,32 +451,32 @@ namespace TEdit.Terraria
             var dyes = new BitsByte();
             for (int i = 0; i < slots; i++)
             {
-                items[i] = Items[0]?.IsValid ?? false;
+                items[i] = Items[i]?.IsValid ?? false;
             }
             for (int i = 0; i < slots; i++)
             {
-                items[i] = Dyes[0]?.IsValid ?? false;
+                dyes[i] = Dyes[i]?.IsValid ?? false;
             }
 
             w.Write((byte)items);
             w.Write((byte)dyes);
 
-            for (int i = 0; i < 8; i++)
+            for (int i = 0; i < slots; i++)
             {
-                if (Items[0]?.IsValid ?? false)
+                if (items[i])
                 {
-                    w.Write(Items[0].Id);
-                    w.Write(Items[0].Prefix);
-                    w.Write(Items[0].StackSize);
+                    w.Write(Items[i].Id);
+                    w.Write(Items[i].Prefix);
+                    w.Write(Items[i].StackSize);
                 }
             }
-            for (int i = 0; i < 8; i++)
+            for (int i = 0; i < slots; i++)
             {
-                if (Dyes[0]?.IsValid ?? false)
+                if (dyes[i])
                 {
-                    w.Write(Dyes[0].Id);
-                    w.Write(Dyes[0].Prefix);
-                    w.Write(Dyes[0].StackSize);
+                    w.Write(Dyes[i].Id);
+                    w.Write(Dyes[i].Prefix);
+                    w.Write(Dyes[i].StackSize);
                 }
             }
         }
@@ -485,9 +497,11 @@ namespace TEdit.Terraria
             frame.LogicCheck = LogicCheck;
             frame.On = On;
 
+            int slots = frame.EntityType == TileEntityType.DisplayDoll ? 8 : frame.EntityType == TileEntityType.HatRack ? 2 : 0;
+
             if (this.Items.Count > 0)
             {
-                frame.Items = new ObservableCollection<TileEntityItem>(new TileEntityItem[Items.Count]);
+                frame.Items = new ObservableCollection<TileEntityItem>(Enumerable.Repeat(new TileEntityItem(), slots));
                 for (int i = 0; i < Items.Count; i++)
                 {
                     frame.Items[i] = Items[i]?.Copy();
@@ -496,7 +510,7 @@ namespace TEdit.Terraria
 
             if (this.Dyes.Count > 0)
             {
-                frame.Dyes = new ObservableCollection<TileEntityItem>(new TileEntityItem[Dyes.Count]);
+                frame.Dyes = new ObservableCollection<TileEntityItem>(Enumerable.Repeat(new TileEntityItem(), slots));
                 for (int i = 0; i < Dyes.Count; i++)
                 {
                     frame.Dyes[i] = Dyes[i]?.Copy();
@@ -506,6 +520,23 @@ namespace TEdit.Terraria
             return frame;
         }
 
+        // WPF binding properties. Only needed since each slog can be something different.
+        public TileEntityItem Item0 { get { return (Items.Count > 0) ? Items[0] : null; } set { if (Items.Count > 0) { Items[0] = value; RaisePropertyChanged(nameof(Item0)); } } }
+        public TileEntityItem Item1 { get { return (Items.Count > 1) ? Items[1] : null; } set { if (Items.Count > 1) { Items[1] = value; RaisePropertyChanged(nameof(Item1)); } } }
+        public TileEntityItem Item2 { get { return (Items.Count > 2) ? Items[2] : null; } set { if (Items.Count > 2) { Items[2] = value; RaisePropertyChanged(nameof(Item2)); } } }
+        public TileEntityItem Item3 { get { return (Items.Count > 3) ? Items[3] : null; } set { if (Items.Count > 3) { Items[3] = value; RaisePropertyChanged(nameof(Item3)); } } }
+        public TileEntityItem Item4 { get { return (Items.Count > 4) ? Items[4] : null; } set { if (Items.Count > 4) { Items[4] = value; RaisePropertyChanged(nameof(Item4)); } } }
+        public TileEntityItem Item5 { get { return (Items.Count > 5) ? Items[5] : null; } set { if (Items.Count > 5) { Items[5] = value; RaisePropertyChanged(nameof(Item5)); } } }
+        public TileEntityItem Item6 { get { return (Items.Count > 6) ? Items[6] : null; } set { if (Items.Count > 6) { Items[6] = value; RaisePropertyChanged(nameof(Item6)); } } }
+        public TileEntityItem Item7 { get { return (Items.Count > 7) ? Items[7] : null; } set { if (Items.Count > 7) { Items[7] = value; RaisePropertyChanged(nameof(Item7)); } } }
 
+        public TileEntityItem Dye0 { get { return (Dyes.Count > 0) ? Dyes[0] : null; } set { if (Dyes.Count > 0) { Dyes[0] = value; RaisePropertyChanged(nameof(Dye0)); } } }
+        public TileEntityItem Dye1 { get { return (Dyes.Count > 1) ? Dyes[1] : null; } set { if (Dyes.Count > 1) { Dyes[1] = value; RaisePropertyChanged(nameof(Dye1)); } } }
+        public TileEntityItem Dye2 { get { return (Dyes.Count > 2) ? Dyes[2] : null; } set { if (Dyes.Count > 2) { Dyes[2] = value; RaisePropertyChanged(nameof(Dye2)); } } }
+        public TileEntityItem Dye3 { get { return (Dyes.Count > 3) ? Dyes[3] : null; } set { if (Dyes.Count > 3) { Dyes[3] = value; RaisePropertyChanged(nameof(Dye3)); } } }
+        public TileEntityItem Dye4 { get { return (Dyes.Count > 4) ? Dyes[4] : null; } set { if (Dyes.Count > 4) { Dyes[4] = value; RaisePropertyChanged(nameof(Dye4)); } } }
+        public TileEntityItem Dye5 { get { return (Dyes.Count > 5) ? Dyes[5] : null; } set { if (Dyes.Count > 5) { Dyes[5] = value; RaisePropertyChanged(nameof(Dye5)); } } }
+        public TileEntityItem Dye6 { get { return (Dyes.Count > 6) ? Dyes[6] : null; } set { if (Dyes.Count > 6) { Dyes[6] = value; RaisePropertyChanged(nameof(Dye6)); } } }
+        public TileEntityItem Dye7 { get { return (Dyes.Count > 7) ? Dyes[7] : null; } set { if (Dyes.Count > 7) { Dyes[7] = value; RaisePropertyChanged(nameof(Dye7)); } } }
     }
 }
