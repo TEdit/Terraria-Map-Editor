@@ -4,6 +4,34 @@ using System.Windows.Data;
 
 namespace TEdit.Converters
 {
+    public class ByteIntConverter : IValueConverter
+    {
+
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            return (byte)(int)value;
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            return (int)(byte)value;
+        }
+    }
+
+    public class IntByteConverter : IValueConverter
+    {
+
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            return (int)(byte)value;
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            return (byte)(int)value;
+        }
+    }
+
     public class DoublePercentageConverter : IValueConverter
     {
         #region IValueConverter Members
