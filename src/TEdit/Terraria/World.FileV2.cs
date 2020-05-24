@@ -13,7 +13,7 @@ namespace TEdit.Terraria
 
     public partial class World
     {
-        public static uint CompatibleVersion = 227;
+        public static uint CompatibleVersion = 228;
         public static short TileCount = 623;
         public static short WallCount = 316;
         public static short SectionCount = 11;
@@ -672,7 +672,7 @@ namespace TEdit.Terraria
             if (b.BaseStream.Position != sectionPointers[1])
                 throw new FileFormatException("Unexpected Position: Invalid Header Flags");
 
-            OnProgressChanged(null, new ProgressChangedEventArgs(0, "Loading UndoTiles..."));
+            OnProgressChanged(null, new ProgressChangedEventArgs(0, "Loading Tiles..."));
             w.Tiles = LoadTileData(b, w.TilesWide, w.TilesHigh);
             if (b.BaseStream.Position != sectionPointers[2])
                 throw new FileFormatException("Unexpected Position: Invalid Tile Data");
