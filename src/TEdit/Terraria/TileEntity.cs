@@ -344,13 +344,13 @@ namespace TEdit.Terraria
                     bw.Write(On);
                     break;
                 case TileEntityType.DisplayDoll: // display doll
-                    SaveSlots(bw, 8);
+                    SaveDisplayDoll(bw);
                     break;
                 case TileEntityType.WeaponRack: // weapons rack 
                     SaveStack(bw);
                     break;
                 case TileEntityType.HatRack: // hat rack 
-                    SaveSlots(bw, 2);
+                    SaveHatRack(bw);
                     break;
                 case TileEntityType.FoodPlatter: // food platter
                     SaveStack(bw);
@@ -381,13 +381,13 @@ namespace TEdit.Terraria
                     On = r.ReadBoolean();
                     break;
                 case TileEntityType.DisplayDoll: // display doll
-                    LoadSlots(r, 8);
+                    LoadDisplayDoll(r);
                     break;
                 case TileEntityType.WeaponRack: // weapons rack 
                     LoadStack(r);
                     break;
                 case TileEntityType.HatRack: // hat rack 
-                    LoadSlots(r, 2);
+                    LoadHatRack(r);
                     break;
                 case TileEntityType.FoodPlatter: // food platter
                     LoadStack(r);
@@ -413,13 +413,81 @@ namespace TEdit.Terraria
             StackSize = r.ReadInt16();
         }
 
-        private void LoadSlots(BinaryReader r, byte slots)
+        private void LoadHatRack(BinaryReader r)
         {
+            byte numSlots = 2;
+            var slots = (BitsByte)r.ReadByte();
+            Items = new System.Collections.ObjectModel.ObservableCollection<TileEntityItem>(Enumerable.Repeat(new TileEntityItem(), numSlots));
+            Dyes = new System.Collections.ObjectModel.ObservableCollection<TileEntityItem>(Enumerable.Repeat(new TileEntityItem(), numSlots));
+            for (int i = 0; i < numSlots; i++)
+            {
+                if (slots[i])
+                {
+                    Items[i] = new TileEntityItem
+                    {
+                        Id = r.ReadInt16(),
+                        Prefix = r.ReadByte(),
+                        StackSize = r.ReadInt16(),
+                    };
+                }
+            }
+            for (int i = 0; i < numSlots; i++)
+            {
+                if (slots[i + 2])
+                {
+                    Dyes[i] = new TileEntityItem
+                    {
+                        Id = r.ReadInt16(),
+                        Prefix = r.ReadByte(),
+                        StackSize = r.ReadInt16(),
+                    };
+                }
+            }
+        }
+
+        private void SaveHatRack(BinaryWriter w)
+        {
+            byte numSlots = 2;
+            var slots = new BitsByte();
+            for (int i = 0; i < numSlots; i++)
+            {
+                slots[i] = Items[i]?.IsValid ?? false;
+            }
+            for (int i = 0; i < numSlots; i++)
+            {
+                slots[i + 2] = Dyes[i]?.IsValid ?? false;
+            }
+
+            w.Write((byte)slots);
+
+            for (int i = 0; i < numSlots; i++)
+            {
+                if (slots[i])
+                {
+                    w.Write(Items[i].Id);
+                    w.Write(Items[i].Prefix);
+                    w.Write(Items[i].StackSize);
+                }
+            }
+            for (int i = 0; i < numSlots; i++)
+            {
+                if (slots[i + 2])
+                {
+                    w.Write(Dyes[i].Id);
+                    w.Write(Dyes[i].Prefix);
+                    w.Write(Dyes[i].StackSize);
+                }
+            }
+        }
+
+        private void LoadDisplayDoll(BinaryReader r)
+        {
+            byte numSlots = 8;
             var itemSlots = (BitsByte)r.ReadByte();
             var dyeSlots = (BitsByte)r.ReadByte();
-            Items = new System.Collections.ObjectModel.ObservableCollection<TileEntityItem>(Enumerable.Repeat(new TileEntityItem(), slots));
-            Dyes = new System.Collections.ObjectModel.ObservableCollection<TileEntityItem>(Enumerable.Repeat(new TileEntityItem(), slots));
-            for (int i = 0; i < slots; i++)
+            Items = new System.Collections.ObjectModel.ObservableCollection<TileEntityItem>(Enumerable.Repeat(new TileEntityItem(), numSlots));
+            Dyes = new System.Collections.ObjectModel.ObservableCollection<TileEntityItem>(Enumerable.Repeat(new TileEntityItem(), numSlots));
+            for (int i = 0; i < numSlots; i++)
             {
                 if (itemSlots[i])
                 {
@@ -431,7 +499,7 @@ namespace TEdit.Terraria
                     };
                 }
             }
-            for (int i = 0; i < slots; i++)
+            for (int i = 0; i < numSlots; i++)
             {
                 if (dyeSlots[i])
                 {
@@ -445,15 +513,16 @@ namespace TEdit.Terraria
             }
         }
 
-        private void SaveSlots(BinaryWriter w, byte slots)
+        private void SaveDisplayDoll(BinaryWriter w)
         {
+            byte numSlots = 8;
             var items = new BitsByte();
             var dyes = new BitsByte();
-            for (int i = 0; i < slots; i++)
+            for (int i = 0; i < numSlots; i++)
             {
                 items[i] = Items[i]?.IsValid ?? false;
             }
-            for (int i = 0; i < slots; i++)
+            for (int i = 0; i < numSlots; i++)
             {
                 dyes[i] = Dyes[i]?.IsValid ?? false;
             }
@@ -461,7 +530,7 @@ namespace TEdit.Terraria
             w.Write((byte)items);
             w.Write((byte)dyes);
 
-            for (int i = 0; i < slots; i++)
+            for (int i = 0; i < numSlots; i++)
             {
                 if (items[i])
                 {
@@ -470,7 +539,7 @@ namespace TEdit.Terraria
                     w.Write(Items[i].StackSize);
                 }
             }
-            for (int i = 0; i < slots; i++)
+            for (int i = 0; i < numSlots; i++)
             {
                 if (dyes[i])
                 {
