@@ -5291,694 +5291,572 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Tile Id="472" Name="Iron Brick"  Solid="true"  />
     <Tile Id="473" Name="Lead Brick"  Solid="true"  />
     <Tile Id="474" Name="Lesion Block"  Solid="true"  />
-    <Tile Id="475" Name="Hat Rack" Framed="true" Size="3,4">
+    <Tile Id="475" Name="Hat Rack"  Framed="true" >
       <Frames>
-        <Frame Name="Hat Rack" UV="0, 0" Anchor="Bottom" />
+        <Frame UV="0, 0" Name="" Variety="" />
       </Frames>
     </Tile>
-    <Tile Id="476" Name="Golf Cup" Solid="true" Framed="true" TextureGrid="20,18" Size="1,1">
+    <Tile Id="476" Name="Golf Cup"  Framed="true" Solid="true" >
       <Frames>
-        <Frame Name="Golf Cup" UV="0, 0" Anchor="Bottom" />
+        <Frame UV="0, 0" Name="" Variety="" />
       </Frames>
     </Tile>
-    <Tile Id="477" Name="Golf Grass" Solid="true" />
-    <Tile Id="478" Name="Crimstone Brick" Solid="true" />
-    <Tile Id="479" Name="Smooth Sandstone" Solid="true" />
-    <Tile Id="480" Name="Blood Moon Monolith" Framed="true" Size="2,3">
+    <Tile Id="477" Name="Golf Grass" Solid="true"  />
+    <Tile Id="478" Name="Crimstone Brick"  Solid="true"  />
+    <Tile Id="479" Name="Smooth Sandstone"  Solid="true"  />
+    <Tile Id="480" Name="Blood Moon Monolith"  Framed="true" >
       <Frames>
-        <Frame Name="Blood Moon Monolith" UV="0, 0" Anchor="Bottom" />
+        <Frame UV="0, 0" Name="" Variety="" />
       </Frames>
     </Tile>
-    <Tile Id="481" Name="Cracked Blue Brick" Solid="true" />
-    <Tile Id="482" Name="Cracked Green Brick" Solid="true" />
-    <Tile Id="483" Name="Cracked Pink Brick" Solid="true" />
-    <Tile Id="484" Name="Rolling Cactus" Solid="true" Framed="true" Size="2,2">
+    <Tile Id="481" Name="Cracked Blue Brick"  Solid="true"  />
+    <Tile Id="482" Name="Cracked Green Brick"  Solid="true"  />
+    <Tile Id="483" Name="Cracked Pink Brick"  Solid="true"  />
+    <Tile Id="484" Name="Rolling Cactus"  Framed="true" Solid="true" >
       <Frames>
-        <Frame Name="Rolling Cactus" UV="0, 0" Anchor="Bottom" />
+        <Frame UV="0, 0" Name="" Variety="" />
       </Frames>
     </Tile>
-    <Tile Id="485" Name="Antlion Larva" Framed="true" Size="2,2">
+    <Tile Id="485" Name="Antlion Larva"  Framed="true" >
       <Frames>
-        <Frame Name="Antlion Larva" UV="0, 0" />
+        <Frame UV="0, 0" Name="" Variety="" />
       </Frames>
     </Tile>
-    <Tile Id="486" Name="Drum Set" Framed="true" Size="3,2">
+    <Tile Id="486" Name="Drum Set"  Framed="true" >
       <Frames>
-        <Frame Name="Drum Set" UV="0, 0" Anchor="Bottom" />
+        <Frame UV="0, 0" Name="" Variety="" />
       </Frames>
     </Tile>
-    <Tile Id="487" Name="Picnic Table" Framed="true" Size="4,2">
+    <Tile Id="487" Name="Picnic Table"  Framed="true" >
       <Frames>
-        <Frame Name="Picnic Table" UV="0, 0" Anchor="Bottom" />
-        <Frame Name="Fancy Picnic Table" UV="0, 38" Anchor="Bottom" />
+        <Frame UV="0, 0" Name="" Variety="" />
       </Frames>
     </Tile>
-    <Tile Id="488" Name="Fallen Log" Framed="true" Size="3,2">
+    <Tile Id="488" Name="Fallen Log" Size="3,2"  Framed="true" >
       <Frames>
-        <Frame Name="Fallen Log" UV="0, 0" />
+        <Frame UV="0, 0" Name="" Variety="" />
       </Frames>
     </Tile>
-    <Tile Id="489" Name="Pin Wheel" Framed="true" Size="2,3">
+    <Tile Id="489" Name="Pin Wheel"  Framed="true" >
       <Frames>
-        <Frame Name="Pin Wheel" UV="0, 0" Anchor="Bottom" />
+        <Frame UV="0, 0" Name="" Variety="" />
       </Frames>
     </Tile>
-    <Tile Id="490" Name="Weather Vane" Framed="true" Size="2,2">
+    <Tile Id="490" Name="Weather Vane"  Framed="true" >
       <Frames>
-        <Frame Name="Weather Vane" UV="0, 0" Anchor="Bottom" />
+        <Frame UV="0, 0" Name="" Variety="" />
       </Frames>
     </Tile>
-    <Tile Id="491" Name="Void Vault" Light="true" Framed="true" Size="3,3">
+    <Tile Id="491" Name="Void Vault"  Framed="true" Light="true" >
       <Frames>
-        <Frame Name="Void Vault" UV="0, 0" Anchor="Bottom" />
+        <Frame UV="0, 0" Name="" Variety="" />
       </Frames>
     </Tile>
-    <Tile Id="492" Name="Golf Grass Hallowed" Solid="true" />
-    <Tile Id="493" Name="White Pin Flag" Framed="true" Size="1,2">
+    <Tile Id="492" Name="Golf Grass Hallowed"  Solid="true"  />
+    <Tile Id="493" Name="White Pin Flag"  Framed="true" >
       <Frames>
-        <Frame Name="White Pin Flag" UV="0, 0" Anchor="Bottom" />
-        <Frame Name="Red Pin Flag" UV="0, 36" Anchor="Bottom" />
-        <Frame Name="Green Pin Flag" UV="0, 72" Anchor="Bottom" />
-        <Frame Name="Blue Pin Flag" UV="0, 108" Anchor="Bottom" />
-        <Frame Name="Yellow Pin Flag" UV="0, 144" Anchor="Bottom" />
-        <Frame Name="Purple Pin Flag" UV="0, 180" Anchor="Bottom" />
+        <Frame UV="0, 0" Name="" Variety="" />
       </Frames>
     </Tile>
-    <Tile Id="494" Name="Golf Tee" Framed="true" Size="1,1">
+    <Tile Id="494" Name="Golf Tee"  Framed="true" >
       <Frames>
-        <Frame Name="Golf Tee" UV="0, 0" Anchor="Bottom" />
+        <Frame UV="0, 0" Name="" Variety="" />
       </Frames>
     </Tile>
-    <Tile Id="495" Name="Shell Pile" Solid="true" />
-    <Tile Id="496" Name="Anti-Portal Block" Solid="true" />
-    <Tile Id="497" Name="Ebonwood Toilet" Framed="true" Size="1,2">
+    <Tile Id="495" Name="Shell Pile"  Solid="true"  />
+    <Tile Id="496" Name="Anti-Portal Block"  Solid="true"  />
+    <Tile Id="497" Name="Ebonwood Toilet"  Framed="true" >
       <Frames>
-        <Frame Name="Ebonwood Toilet" UV="0, 0" Anchor="Bottom" />
-        <Frame Name="Rich Mahogany Toilet" UV="0, 40" Anchor="Bottom" />
-        <Frame Name="Pearlwood Toilet" UV="0, 80" Anchor="Bottom" />
-        <Frame Name="Living Wood Toilet" UV="0, 120" Anchor="Bottom" />
-        <Frame Name="Cactus Toilet" UV="0, 160" Anchor="Bottom" />
-        <Frame Name="Bone Toilet" UV="0, 200" Anchor="Bottom" />
-        <Frame Name="Flesh Toilet" UV="0, 240" Anchor="Bottom" />
-        <Frame Name="Mushroom Toilet" UV="0, 280" Anchor="Bottom" />
-        <Frame Name="Skyware Toilet" UV="0, 320" Anchor="Bottom" />
-        <Frame Name="Shadewood Toilet" UV="0, 360" Anchor="Bottom" />
-        <Frame Name="Lihzahrd Toilet" UV="0, 400" Anchor="Bottom" />
-        <Frame Name="Blue Dungeon Toilet" UV="0, 440" Anchor="Bottom" />
-        <Frame Name="Green Dungeon Toilet" UV="0, 480" Anchor="Bottom" />
-        <Frame Name="Pink Dungeon Toilet" UV="0, 520" Anchor="Bottom" />
-        <Frame Name="Obsidian Toilet" UV="0, 560" Anchor="Bottom" />
-        <Frame Name="Frozen Toilet" UV="0, 600" Anchor="Bottom" />
-        <Frame Name="Glass Toilet" UV="0, 640" Anchor="Bottom" />
-        <Frame Name="Honey Toilet" UV="0, 680" Anchor="Bottom" />
-        <Frame Name="Steampunk Toilet" UV="0, 720" Anchor="Bottom" />
-        <Frame Name="Pumpkin Toilet" UV="0, 760" Anchor="Bottom" />
-        <Frame Name="Spooky Toilet" UV="0, 800" Anchor="Bottom" />
-        <Frame Name="Dynasty Toilet" UV="0, 840" Anchor="Bottom" />
-        <Frame Name="Palm Wood Toilet" UV="0, 880" Anchor="Bottom" />
-        <Frame Name="Boreal Wood Toilet" UV="0, 920" Anchor="Bottom" />
-        <Frame Name="Slime Toilet" UV="0, 960" Anchor="Bottom" />
-        <Frame Name="Martian Toilet" UV="0, 1000" Anchor="Bottom" />
-        <Frame Name="Granite Toilet" UV="0, 1040" Anchor="Bottom" />
-        <Frame Name="Marble Toilet" UV="0, 1080" Anchor="Bottom" />
-        <Frame Name="Crystal Toilet" UV="0, 1120" Anchor="Bottom" />
-        <Frame Name="Spider Toilet" UV="0, 1160" Anchor="Bottom" />
-        <Frame Name="Lesion Toilet" UV="0, 1200" Anchor="Bottom" />
-        <Frame Name="Diamond Toilet" UV="0, 1240" Anchor="Bottom" />
-        <Frame Name="Meteor Toilet" UV="0, 1280" Anchor="Bottom" />
-        <Frame Name="Solar Toilet" UV="0, 1320" Anchor="Bottom" />
-        <Frame Name="Vortex Toilet" UV="0, 1360" Anchor="Bottom" />
-        <Frame Name="Nebula Toilet" UV="0, 1400" Anchor="Bottom" />
-        <Frame Name="Stardust Toilet" UV="0, 1440" Anchor="Bottom" />
-        <Frame Name="Sandstone Toilet" UV="0, 1480" Anchor="Bottom" />
-        <Frame Name="Bamboo Toilet" UV="0, 1520" Anchor="Bottom" />
-        <Frame Name="Terra Toilet" UV="0, 1560" Anchor="Bottom" />
+        <Frame UV="0, 0" Name="" Variety="" />
       </Frames>
     </Tile>
-    <Tile Id="498" Name="Spider Nest Block" Solid="true" />
-    <Tile Id="499" Name="Decay Chamber" Framed="true" Size="3,3">
+    <Tile Id="498" Name="Spider Nest Block"  Solid="true"  />
+    <Tile Id="499" Name="Decay Chamber"  Framed="true" >
       <Frames>
-        <Frame Name="Decay Chamber" UV="0, 0" Anchor="Bottom" />
+        <Frame UV="0, 0" Name="" Variety="" />
       </Frames>
     </Tile>
-    <Tile Id="500" Name="Solar Brick" Light="true" Solid="true" />
-    <Tile Id="501" Name="Vortex Brick" Light="true" Solid="true" />
-    <Tile Id="502" Name="Nebula Brick" Light="true" Solid="true" />
-    <Tile Id="503" Name="Stardust Brick" Light="true" Solid="true" />
-    <Tile Id="504" Name="Mystic Snake Rope" />
-    <Tile Id="505" Name="Gold Fish Bowl" Framed="true" Size="2,2">
+    <Tile Id="500" Name="Solar Brick"  Solid="true" Light="true"  />
+    <Tile Id="501" Name="Vortex Brick"  Solid="true" Light="true"  />
+    <Tile Id="502" Name="Nebula Brick"  Solid="true" Light="true"  />
+    <Tile Id="503" Name="Stardust Brick"  Solid="true" Light="true"  />
+    <Tile Id="504" Name="Mystic Snake Rope"   />
+    <Tile Id="505" Name="Gold Fish Bowl"  Framed="true" >
       <Frames>
-        <Frame Name="Gold Fish Bowl" UV="0, 0" Anchor="Bottom" />
+        <Frame UV="0, 0" Name="" Variety="" />
       </Frames>
     </Tile>
-    <Tile Id="506" Name="Bast Statue" Framed="true" Size="2,3">
+    <Tile Id="506" Name="Bast Statue"  Framed="true" >
       <Frames>
-        <Frame Name="Bast Statue" UV="0, 0" Anchor="Bottom" />
+        <Frame UV="0, 0" Name="" Variety="" />
       </Frames>
     </Tile>
-    <Tile Id="507" Name="Gold Starry Block" Solid="true" />
-    <Tile Id="508" Name="Blue Starry Block" Solid="true" />
-    <Tile Id="509" Name="Void Monolith" Framed="true" Size="2,3">
+    <Tile Id="507" Name="Gold Starry Block"  Solid="true"  />
+    <Tile Id="508" Name="Blue Starry Block"  Solid="true"  />
+    <Tile Id="509" Name="Void Monolith"  Framed="true" >
       <Frames>
-        <Frame Name="Void Monolith" UV="0, 0" Anchor="Bottom" />
+        <Frame UV="0, 0" Name="" Variety="" />
       </Frames>
     </Tile>
-    <Tile Id="510" Name="Arrow Sign" Framed="true" Size="2,2">
+    <Tile Id="510" Name="Arrow Sign"  Framed="true" >
       <Frames>
-        <Frame Name="Arrow Sign" UV="0, 0" Anchor="Bottom" />
-        <Frame Name="Arrow Sign" UV="36, 0" Anchor="Top" />
-        <Frame Name="Arrow Sign" UV="72, 0" Anchor="Left" />
-        <Frame Name="Arrow Sign" UV="108, 0" Anchor="Right" />
+        <Frame UV="0, 0" Name="" Variety="" />
       </Frames>
     </Tile>
-    <Tile Id="511" Name="Painted Arrow Sign" Framed="true" Size="2,2">
+    <Tile Id="511" Name="Painted Arrow Sign"  Framed="true" >
       <Frames>
-        <Frame Name="Painted Arrow Sign" UV="0, 0" Anchor="Bottom" />
-        <Frame Name="Painted Arrow Sign" UV="36, 0" Anchor="Top" />
-        <Frame Name="Painted Arrow Sign" UV="72, 0" Anchor="Left" />
-        <Frame Name="Painted Arrow Sign" UV="108, 0" Anchor="Right" />
+        <Frame UV="0, 0" Name="" Variety="" />
       </Frames>
     </Tile>
-    <Tile Id="512" Name="Green Moss Brick" Solid="true" />
-    <Tile Id="513" Name="Brown Moss Brick" Solid="true" />
-    <Tile Id="514" Name="Red Moss Brick" Solid="true" />
-    <Tile Id="515" Name="Blue Moss Brick" Solid="true" />
-    <Tile Id="516" Name="Purple Moss Brick" Solid="true" />
-    <Tile Id="517" Name="Lava Moss Brick" Light="true" Solid="true" />
-    <Tile Id="518" Name="Lily Pad" Framed="true">
+    <Tile Id="512" Name="Green Moss Brick"  Solid="true"  />
+    <Tile Id="513" Name="Brown Moss Brick"  Solid="true"  />
+    <Tile Id="514" Name="Red Moss Brick"  Solid="true"  />
+    <Tile Id="515" Name="Blue Moss Brick"  Solid="true"  />
+    <Tile Id="516" Name="Purple Moss Brick"  Solid="true"  />
+    <Tile Id="517" Name="Lava Moss Brick"  Solid="true" Light="true"  />
+    <Tile Id="518" Name="Lily Pad"  Framed="true" >
       <Frames>
-        <Frame Name="Lily Pad" UV="0, 0" />
+        <Frame UV="0, 0" Name="" Variety="" />
       </Frames>
     </Tile>
-    <Tile Id="519" Name="Cattail" Light="true" Framed="true">
+    <Tile Id="519" Name="Cattail"  Framed="true" Light="true" >
       <Frames>
-        <Frame Name="Cattail" UV="0, 0" />
+        <Frame UV="0, 0" Name="" Variety="" />
       </Frames>
     </Tile>
-    <Tile Id="520" Name="Plate" Framed="true" Size="1,1">
+    <Tile Id="520" Name="Plate"  Framed="true" >
       <Frames>
-        <Frame Name="Plate" UV="0, 0" Anchor="Bottom" />
+        <Frame UV="0, 0" Name="" Variety="" />
       </Frames>
     </Tile>
-    <Tile Id="521" Name="Black Dragonfly Jar" Framed="true" Size="2,2">
+    <Tile Id="521" Name="Black Dragonfly Jar"  Framed="true" >
       <Frames>
-        <Frame Name="Black Dragonfly Jar" UV="0, 0" Anchor="Bottom" />
+        <Frame UV="0, 0" Name="" Variety="" />
       </Frames>
     </Tile>
-    <Tile Id="522" Name="Blue Dragonfly Jar" Framed="true" Size="2,2">
+    <Tile Id="522" Name="Blue Dragonfly Jar"  Framed="true" >
       <Frames>
-        <Frame Name="Blue Dragonfly Jar" UV="0, 0" Anchor="Bottom" />
+        <Frame UV="0, 0" Name="" Variety="" />
       </Frames>
     </Tile>
-    <Tile Id="523" Name="Green Dragonfly Jar" Framed="true" Size="2,2">
+    <Tile Id="523" Name="Green Dragonfly Jar"  Framed="true" >
       <Frames>
-        <Frame Name="Green Dragonfly Jar" UV="0, 0" Anchor="Bottom" />
+        <Frame UV="0, 0" Name="" Variety="" />
       </Frames>
     </Tile>
-    <Tile Id="524" Name="Orange Dragonfly Jar" Framed="true" Size="2,2">
+    <Tile Id="524" Name="Orange Dragonfly Jar"  Framed="true" >
       <Frames>
-        <Frame Name="Orange Dragonfly Jar" UV="0, 0" Anchor="Bottom" />
+        <Frame UV="0, 0" Name="" Variety="" />
       </Frames>
     </Tile>
-    <Tile Id="525" Name="Red Dragonfly Jar" Framed="true" Size="2,2">
+    <Tile Id="525" Name="Red Dragonfly Jar"  Framed="true" >
       <Frames>
-        <Frame Name="Red Dragonfly Jar" UV="0, 0" Anchor="Bottom" />
+        <Frame UV="0, 0" Name="" Variety="" />
       </Frames>
     </Tile>
-    <Tile Id="526" Name="Yellow Dragonfly Jar" Framed="true" Size="2,2">
+    <Tile Id="526" Name="Yellow Dragonfly Jar"  Framed="true" >
       <Frames>
-        <Frame Name="Yellow Dragonfly Jar" UV="0, 0" Anchor="Bottom" />
+        <Frame UV="0, 0" Name="" Variety="" />
       </Frames>
     </Tile>
-    <Tile Id="527" Name="Gold Dragonfly Jar" Framed="true" Size="2,2">
+    <Tile Id="527" Name="Gold Dragonfly Jar"  Framed="true" >
       <Frames>
-        <Frame Name="Gold Dragonfly Jar" UV="0, 0" Anchor="Bottom" />
+        <Frame UV="0, 0" Name="" Variety="" />
       </Frames>
     </Tile>
-    <Tile Id="528" Name="Mushroom Vines" Light="true" />
-    <Tile Id="529" Name="Sea Oats" Framed="true">
+    <Tile Id="528" Name="Mushroom Vines"  Light="true"  />
+    <Tile Id="529" Name="Sea Oats"  Framed="true" >
       <Frames>
-        <Frame Name="Sea Oats" UV="0, 0" />
+        <Frame UV="0, 0" Name="" Variety="" />
       </Frames>
     </Tile>
-    <Tile Id="530" Name="Oasis Plants" Framed="true">
+    <Tile Id="530" Name="Oasis Plants"  Framed="true" >
       <Frames>
-        <Frame Name="Oasis Plants" UV="0, 0" />
+        <Frame UV="0, 0" Name="" Variety="" />
       </Frames>
     </Tile>
-    <Tile Id="531" Name="Boulder Statue" Framed="true" Size="2,3">
+    <Tile Id="531" Name="Boulder Statue"  Framed="true" >
       <Frames>
-        <Frame Name="Boulder Statue" UV="0, 0" Anchor="Top" />
+        <Frame UV="0, 0" Name="" Variety="" />
       </Frames>
     </Tile>
-    <Tile Id="532" Name="Maggot Cage" Framed="true" Size="3,2">
+    <Tile Id="532" Name="Maggot Cage"  Framed="true" >
       <Frames>
-        <Frame Name="Maggot Cage" UV="0, 0" Anchor="Bottom" />
+        <Frame UV="0, 0" Name="" Variety="" />
       </Frames>
     </Tile>
-    <Tile Id="533" Name="Rat Cage" Framed="true" Size="3,2">
+    <Tile Id="533" Name="Rat Cage"  Framed="true" >
       <Frames>
-        <Frame Name="Rat Cage" UV="0, 0" Anchor="Bottom" />
+        <Frame UV="0, 0" Name="" Variety="" />
       </Frames>
     </Tile>
-    <Tile Id="534" Name="Krypton Moss" Light="true" Solid="true" />
-    <Tile Id="535" Name="Krypton Moss Brick" Light="true" Solid="true" />
-    <Tile Id="536" Name="Xenon Moss" Light="true" Solid="true" />
-    <Tile Id="537" Name="Xenon Moss Brick" Light="true" Solid="true" />
-    <Tile Id="538" Name="Ladybug Cage" Framed="true" Size="3,2">
+    <Tile Id="534" Name="Krypton Moss"  Solid="true" Light="true"  />
+    <Tile Id="535" Name="Krypton Moss Brick"  Solid="true" Light="true"  />
+    <Tile Id="536" Name="Xenon Moss"  Solid="true" Light="true"  />
+    <Tile Id="537" Name="Xenon Moss Brick"  Solid="true" Light="true"  />
+    <Tile Id="538" Name="Ladybug Cage"  Framed="true" >
       <Frames>
-        <Frame Name="Ladybug Cage" UV="0, 0" Anchor="Bottom" />
+        <Frame UV="0, 0" Name="" Variety="" />
       </Frames>
     </Tile>
-    <Tile Id="539" Name="Argon Moss" Light="true" Solid="true" />
-    <Tile Id="540" Name="Argon Moss Brick" Light="true" Solid="true" />
-    <Tile Id="541" Name="Echo Block" Solid="true" />
-    <Tile Id="542" Name="Owl Cage" Framed="true" Size="6,3">
+    <Tile Id="539" Name="Argon Moss"  Solid="true" Light="true"  />
+    <Tile Id="540" Name="Argon Moss Brick"  Solid="true" Light="true"  />
+    <Tile Id="541" Name="Echo Block"  Solid="true"  />
+    <Tile Id="542" Name="Owl Cage"  Framed="true" >
       <Frames>
-        <Frame Name="Owl Cage" UV="0, 0" Anchor="Bottom" />
+        <Frame UV="0, 0" Name="" Variety="" />
       </Frames>
     </Tile>
-    <Tile Id="543" Name="Pupfish Bowl" Framed="true" Size="2,2">
+    <Tile Id="543" Name="Pupfish Bowl"  Framed="true" >
       <Frames>
-        <Frame Name="Pupfish Bowl" UV="0, 0" Anchor="Bottom" />
+        <Frame UV="0, 0" Name="" Variety="" />
       </Frames>
     </Tile>
-    <Tile Id="544" Name="Gold Ladybug Cage" Framed="true" Size="3,2">
+    <Tile Id="544" Name="Gold Ladybug Cage"  Framed="true" >
       <Frames>
-        <Frame Name="Gold Ladybug Cage" UV="0, 0" Anchor="Bottom" />
+        <Frame UV="0, 0" Name="" Variety="" />
       </Frames>
     </Tile>
-    <Tile Id="545" Name="Lawn Flamingo" Framed="true" Size="2,3">
+    <Tile Id="545" Name="Lawn Flamingo"  Framed="true" >
       <Frames>
-        <Frame Name="Lawn Flamingo" UV="0, 0" Anchor="Bottom" />
+        <Frame UV="0, 0" Name="" Variety="" />
       </Frames>
     </Tile>
-    <Tile Id="546" Name="Grate" Solid="true" />
-    <Tile Id="547" Name="Potted Forest Cedar" Framed="true" Size="2,5">
+    <Tile Id="546" Name="Grate"  Solid="true"  />
+    <Tile Id="547" Name="Potted Forest Cedar"  Framed="true" >
       <Frames>
-        <Frame Name="Potted Forest Cedar" UV="0, 0" Anchor="Bottom" />
-        <Frame Name="Potted Jungle Cedar" UV="0, 90" Anchor="Bottom" />
-        <Frame Name="Potted Hallow Cedar" UV="0, 180" Anchor="Bottom" />
-        <Frame Name="Potted Forest Tree" UV="0, 270" Anchor="Bottom" />
-        <Frame Name="Potted Jungle Tree" UV="0, 360" Anchor="Bottom" />
+        <Frame UV="0, 0" Name="" Variety="" />
       </Frames>
     </Tile>
-    <Tile Id="548" Name="Potted Hallow Tree" Light="true" Framed="true" Size="3,6">
+    <Tile Id="548" Name="Potted Hallow Tree"  Framed="true" Light="true" >
       <Frames>
-        <Frame Name="Potted Hallow Tree" UV="0, 0" Anchor="Bottom" />
-        <Frame Name="Potted Forest Palm" UV="0, 108" Anchor="Bottom" />
-        <Frame Name="Potted Jungle Palm" UV="0, 216" Anchor="Bottom" />
-        <Frame Name="Potted Hallow Palm" UV="0, 324" Anchor="Bottom" />
-        <Frame Name="Potted Forest Bamboo" UV="0, 432" Anchor="Bottom" />
-        <Frame Name="Potted Jungle Bamboo" UV="0, 540" Anchor="Bottom" />
-        <Frame Name="Potted Hallow Bamboo" UV="0, 648" Anchor="Bottom" />
-        <Frame Name="Potted Magma Palm" UV="0, 756" Anchor="Bottom" />
-        <Frame Name="Potted Brimstone Bush" UV="0, 864" Anchor="Bottom" />
+        <Frame UV="0, 0" Name="" Variety="" />
       </Frames>
     </Tile>
-    <Tile Id="549" Name="Seaweed" Framed="true">
+    <Tile Id="549" Name="Seaweed"  Framed="true" >
       <Frames>
-        <Frame Name="Seaweed" UV="0, 0" />
+        <Frame UV="0, 0" Name="" Variety="" />
       </Frames>
     </Tile>
-    <Tile Id="550" Name="Turtle Cage" Framed="true" Size="6,3">
+    <Tile Id="550" Name="Turtle Cage"  Framed="true" >
       <Frames>
-        <Frame Name="Turtle Cage" UV="0, 0" Anchor="Bottom" />
+        <Frame UV="0, 0" Name="" Variety="" />
       </Frames>
     </Tile>
-    <Tile Id="551" Name="Jungle Turtle Cage" Framed="true" Size="6,3">
+    <Tile Id="551" Name="Jungle Turtle Cage"  Framed="true" >
       <Frames>
-        <Frame Name="Jungle Turtle Cage" UV="0, 0" Anchor="Bottom" />
+        <Frame UV="0, 0" Name="" Variety="" />
       </Frames>
     </Tile>
-    <Tile Id="552" Name="Sandcastle Bucket" Framed="true" Size="3,2">
+    <Tile Id="552" Name="Sandcastle Bucket"  Framed="true" >
       <Frames>
-        <Frame Name="Sandcastle Bucket" UV="0, 0" Anchor="Bottom" />
+        <Frame UV="0, 0" Name="" Variety="" />
       </Frames>
     </Tile>
-    <Tile Id="553" Name="Grebe Cage" Framed="true" Size="6,3">
+    <Tile Id="553" Name="Grebe Cage"  Framed="true" >
       <Frames>
-        <Frame Name="Grebe Cage" UV="0, 0" Anchor="Bottom" />
+        <Frame UV="0, 0" Name="" Variety="" />
       </Frames>
     </Tile>
-    <Tile Id="554" Name="Seagull Cage" Framed="true" Size="6,3">
+    <Tile Id="554" Name="Seagull Cage"  Framed="true" >
       <Frames>
-        <Frame Name="Seagull Cage" UV="0, 0" Anchor="Bottom" />
+        <Frame UV="0, 0" Name="" Variety="" />
       </Frames>
     </Tile>
-    <Tile Id="555" Name="Water Strider Cage" Framed="true" Size="3,2">
+    <Tile Id="555" Name="Water Strider Cage"  Framed="true" >
       <Frames>
-        <Frame Name="Water Strider Cage" UV="0, 0" Anchor="Bottom" />
+        <Frame UV="0, 0" Name="" Variety="" />
       </Frames>
     </Tile>
-    <Tile Id="556" Name="Gold Water Strider Cage" Framed="true" Size="3,2">
+    <Tile Id="556" Name="Gold Water Strider Cage"  Framed="true" >
       <Frames>
-        <Frame Name="Gold Water Strider Cage" UV="0, 0" Anchor="Bottom" />
+        <Frame UV="0, 0" Name="" Variety="" />
       </Frames>
     </Tile>
-    <Tile Id="557" Name="Grate Closed" Solid="true" />
-    <Tile Id="558" Name="Seahorse Cage" Framed="true" Size="6,3">
+    <Tile Id="557" Name="Grate Closed"  Solid="true"  />
+    <Tile Id="558" Name="Seahorse Cage"  Framed="true" >
       <Frames>
-        <Frame Name="Seahorse Cage" UV="0, 0" Anchor="Bottom" />
+        <Frame UV="0, 0" Name="" Variety="" />
       </Frames>
     </Tile>
-    <Tile Id="559" Name="Gold Seahorse Cage" Framed="true" Size="6,3">
+    <Tile Id="559" Name="Gold Seahorse Cage"  Framed="true" >
       <Frames>
-        <Frame Name="Gold Seahorse Cage" UV="0, 0" Anchor="Bottom" />
+        <Frame UV="0, 0" Name="" Variety="" />
       </Frames>
     </Tile>
-    <Tile Id="560" Name="Bronze Golf Trophy" Framed="true" Size="2,3">
+    <Tile Id="560" Name="Bronze Golf Trophy"  Framed="true" >
       <Frames>
-        <Frame Name="Bronze Golf Trophy" UV="0, 0" Anchor="Bottom" />
-        <Frame Name="Silver Golf Trophy" UV="0, 54" Anchor="Bottom" />
-        <Frame Name="Gold Golf Trophy" UV="0, 108" Anchor="Bottom" />
+        <Frame UV="0, 0" Name="" Variety="" />
       </Frames>
     </Tile>
-    <Tile Id="561" Name="Marble Column" />
-    <Tile Id="562" Name="Bamboo" Solid="true" />
-    <Tile Id="563" Name="Large Bamboo" Solid="true" />
-    <Tile Id="564" Name="Plasma Lamp" Light="true" Framed="true" Size="2,2">
+    <Tile Id="561" Name="Marble Column"   />
+    <Tile Id="562" Name="Bamboo"  Solid="true"  />
+    <Tile Id="563" Name="Large Bamboo"  Solid="true"  />
+    <Tile Id="564" Name="Plasma Lamp"  Framed="true" Light="true" >
       <Frames>
-        <Frame Name="Plasma Lamp" UV="0, 0" Anchor="Bottom" />
+        <Frame UV="0, 0" Name="" Variety="" />
       </Frames>
     </Tile>
-    <Tile Id="565" Name="Fog Machine" Framed="true" Size="2,2">
+    <Tile Id="565" Name="Fog Machine"  Framed="true" >
       <Frames>
-        <Frame Name="Fog Machine" UV="0, 0" Anchor="Bottom" />
+        <Frame UV="0, 0" Name="" Variety="" />
       </Frames>
     </Tile>
-    <Tile Id="566" Name="Amber Stone Block" Solid="true" />
-    <Tile Id="567" Name="Garden Gnome" Framed="true" TextureGrid="26,18" Size="1,2">
+    <Tile Id="566" Name="Amber Stone Block"  Solid="true"  />
+    <Tile Id="567" Name="Garden Gnome"  Framed="true" >
       <Frames>
-        <Frame Name="Garden Gnome" UV="0, 0" Anchor="Bottom" />
+        <Frame UV="0, 0" Name="" Variety="" />
       </Frames>
     </Tile>
-    <Tile Id="568" Name="Pink Fairy Jar" Light="true" Framed="true" Size="2,2">
+    <Tile Id="568" Name="Pink Fairy Jar"  Framed="true" Light="true" >
       <Frames>
-        <Frame Name="Pink Fairy Jar" UV="0, 0" Anchor="Bottom" />
+        <Frame UV="0, 0" Name="" Variety="" />
       </Frames>
     </Tile>
-    <Tile Id="569" Name="Green Fairy Jar" Light="true" Framed="true" Size="2,2">
+    <Tile Id="569" Name="Green Fairy Jar"  Framed="true" Light="true" >
       <Frames>
-        <Frame Name="Green Fairy Jar" UV="0, 0" Anchor="Bottom" />
+        <Frame UV="0, 0" Name="" Variety="" />
       </Frames>
     </Tile>
-    <Tile Id="570" Name="Blue Fairy Jar" Light="true" Framed="true" Size="2,2">
+    <Tile Id="570" Name="Blue Fairy Jar"  Framed="true" Light="true" >
       <Frames>
-        <Frame Name="Blue Fairy Jar" UV="0, 0" Anchor="Bottom" />
+        <Frame UV="0, 0" Name="" Variety="" />
       </Frames>
     </Tile>
-    <Tile Id="571" Name="Bamboo" Framed="true">
+    <Tile Id="571" Name="Bamboo"  Framed="true" >
       <Frames>
-        <Frame Name="Bamboo" UV="0, 0" />
+        <Frame UV="0, 0" Name="" Variety="" />
       </Frames>
     </Tile>
-    <Tile Id="572" Name="Soul of Light in a Bottle" Light="true" Framed="true" Size="1,2">
+    <Tile Id="572" Name="Soul of Light in a Bottle"  Framed="true" Light="true" >
       <Frames>
-        <Frame Name="Soul of Light in a Bottle" UV="0, 0" Anchor="Top" />
-        <Frame Name="Soul of Night in a Bottle" UV="0, 36" Anchor="Top" />
-        <Frame Name="Soul of Flight in a Bottle" UV="0, 72" Anchor="Top" />
-        <Frame Name="Soul of Sight in a Bottle" UV="0, 108" Anchor="Top" />
-        <Frame Name="Soul of Might in a Bottle" UV="0, 144" Anchor="Top" />
-        <Frame Name="Soul of Fright in a Bottle" UV="0, 180" Anchor="Top" />
+        <Frame UV="0, 0" Name="" Variety="" />
       </Frames>
     </Tile>
-    <Tile Id="573" Name="Tattered Wood Sign" Framed="true" Size="2,2">
+    <Tile Id="573" Name="Tattered Wood Sign"  Framed="true" >
       <Frames>
-        <Frame Name="Tattered Wood Sign" UV="0, 0" Anchor="Bottom" />
-        <Frame Name="Tattered Wood Sign" UV="36, 0" Anchor="Top" />
-        <Frame Name="Tattered Wood Sign" UV="72, 0" Anchor="Left" />
-        <Frame Name="Tattered Wood Sign" UV="108, 0" Anchor="Right" />
+        <Frame UV="0, 0" Name="" Variety="" />
       </Frames>
     </Tile>
-    <Tile Id="574" Name="Boreal Beam" />
-    <Tile Id="575" Name="Rich Mahogany Beam" />
-    <Tile Id="576" Name="Granite Column" />
-    <Tile Id="577" Name="Sandstone Column" />
-    <Tile Id="578" Name="Mushroom Beam" Light="true" />
-    <Tile Id="579" Name="Rock Golem Head" Framed="true" TextureGrid="20,20" Size="1,1">
+    <Tile Id="574" Name="Boreal Beam"   />
+    <Tile Id="575" Name="Rich Mahogany Beam"   />
+    <Tile Id="576" Name="Granite Column"   />
+    <Tile Id="577" Name="Sandstone Column"   />
+    <Tile Id="578" Name="Mushroom Beam"  Light="true"  />
+    <Tile Id="579" Name="Rock Golem Head"  Framed="true" >
       <Frames>
-        <Frame Name="Rock Golem Head" UV="0, 0" Anchor="Bottom" />
+        <Frame UV="0, 0" Name="" Variety="" />
       </Frames>
     </Tile>
-    <Tile Id="580" Name="Hell Butterfly Jar" Light="true" Framed="true" Size="2,2">
+    <Tile Id="580" Name="Hell Butterfly Jar"  Framed="true" Light="true" >
       <Frames>
-        <Frame Name="Hell Butterfly Jar" UV="0, 0" Anchor="Bottom" />
+        <Frame UV="0, 0" Name="" Variety="" />
       </Frames>
     </Tile>
-    <Tile Id="581" Name="Lavafly in a Bottle" Light="true" Framed="true" Size="1,2">
+    <Tile Id="581" Name="Lavafly in a Bottle"  Framed="true" Light="true" >
       <Frames>
-        <Frame Name="Lavafly in a Bottle" UV="0, 0" Anchor="Top" />
+        <Frame UV="0, 0" Name="" Variety="" />
       </Frames>
     </Tile>
-    <Tile Id="582" Name="Magma Snail Cage" Light="true" Framed="true" Size="3,2">
+    <Tile Id="582" Name="Magma Snail Cage"  Framed="true" Light="true" >
       <Frames>
-        <Frame Name="Magma Snail Cage" UV="0, 0" Anchor="Bottom" />
+        <Frame UV="0, 0" Name="" Variety="" />
       </Frames>
     </Tile>
-    <Tile Id="583" Name="Tree Topaz" Framed="true">
+    <Tile Id="583" Name="Tree Topaz"  Framed="true" >
       <Frames>
-        <Frame Name="Tree Topaz" UV="0, 0" />
+        <Frame UV="0, 0" Name="" Variety="" />
       </Frames>
     </Tile>
-    <Tile Id="584" Name="Tree Amethyst" Framed="true">
+    <Tile Id="584" Name="Tree Amethyst"  Framed="true" >
       <Frames>
-        <Frame Name="Tree Amethyst" UV="0, 0" />
+        <Frame UV="0, 0" Name="" Variety="" />
       </Frames>
     </Tile>
-    <Tile Id="585" Name="Tree Sapphire" Framed="true">
+    <Tile Id="585" Name="Tree Sapphire"  Framed="true" >
       <Frames>
-        <Frame Name="Tree Sapphire" UV="0, 0" />
+        <Frame UV="0, 0" Name="" Variety="" />
       </Frames>
     </Tile>
-    <Tile Id="586" Name="Tree Emerald" Framed="true">
+    <Tile Id="586" Name="Tree Emerald"  Framed="true" >
       <Frames>
-        <Frame Name="Tree Emerald" UV="0, 0" />
+        <Frame UV="0, 0" Name="" Variety="" />
       </Frames>
     </Tile>
-    <Tile Id="587" Name="Tree Ruby" Framed="true">
+    <Tile Id="587" Name="Tree Ruby"  Framed="true" >
       <Frames>
-        <Frame Name="Tree Ruby" UV="0, 0" />
+        <Frame UV="0, 0" Name="" Variety="" />
       </Frames>
     </Tile>
-    <Tile Id="588" Name="Tree Diamond" Framed="true">
+    <Tile Id="588" Name="Tree Diamond"  Framed="true" >
       <Frames>
-        <Frame Name="Tree Diamond" UV="0, 0" />
+        <Frame UV="0, 0" Name="" Variety="" />
       </Frames>
     </Tile>
-    <Tile Id="589" Name="Tree Amber" Framed="true">
+    <Tile Id="589" Name="Tree Amber"  Framed="true" >
       <Frames>
-        <Frame Name="Tree Amber" UV="0, 0" />
+        <Frame UV="0, 0" Name="" Variety="" />
       </Frames>
     </Tile>
-    <Tile Id="590" Name="Topaz Gemcorn" Framed="true" Size="1,2">
+    <Tile Id="590" Name="Topaz Gemcorn"  Framed="true" >
       <Frames>
-        <Frame Name="Topaz Gemcorn" UV="0, 0" Anchor="Bottom" />
-        <Frame Name="Amethyst Gemcorn" UV="0, 38" Anchor="Bottom" />
-        <Frame Name="Sapphire Gemcorn" UV="0, 76" Anchor="Bottom" />
-        <Frame Name="Emerald Gemcorn" UV="0, 114" Anchor="Bottom" />
-        <Frame Name="Ruby Gemcorn" UV="0, 152" Anchor="Bottom" />
-        <Frame Name="Diamond Gemcorn" UV="0, 190" Anchor="Bottom" />
-        <Frame Name="Amber Gemcorn" UV="0, 228" Anchor="Bottom" />
+        <Frame UV="0, 0" Name="" Variety="" />
       </Frames>
     </Tile>
-    <Tile Id="591" Name="Hanging Pot" Framed="true" Size="2,3">
+    <Tile Id="591" Name="Hanging Pot"  Framed="true" >
       <Frames>
-        <Frame Name="Hanging Pot" UV="0, 0" Anchor="Top" />
-        <Frame Name="Hanging Daybloom" UV="0, 54" Anchor="Top" />
-        <Frame Name="Hanging Moonglow" UV="0, 108" Anchor="Top" />
-        <Frame Name="Hanging Waterleaf" UV="0, 162" Anchor="Top" />
-        <Frame Name="Hanging Shiverthorn" UV="0, 216" Anchor="Top" />
-        <Frame Name="Hanging Blinkroot" UV="0, 270" Anchor="Top" />
-        <Frame Name="Hanging Corrupt Deathweed" UV="0, 324" Anchor="Top" />
-        <Frame Name="Hanging Crimson Deathweed" UV="0, 378" Anchor="Top" />
-        <Frame Name="Hanging Fireblossom" UV="0, 432" Anchor="Top" />
+        <Frame UV="0, 0" Name="" Variety="" />
       </Frames>
     </Tile>
-    <Tile Id="592" Name="Hanging Brazier" Light="true" Framed="true" Size="2,3">
+    <Tile Id="592" Name="Hanging Brazier"  Framed="true" Light="true" >
       <Frames>
-        <Frame Name="Hanging Brazier" UV="0, 0" Anchor="Top" />
+        <Frame UV="0, 0" Name="" Variety="" />
       </Frames>
     </Tile>
-    <Tile Id="593" Name="Mini Volcano" Light="true" Framed="true" Size="1,1">
+    <Tile Id="593" Name="Mini Volcano"  Framed="true" Light="true" >
       <Frames>
-        <Frame Name="Mini Volcano" UV="0, 0" Anchor="Bottom" />
+        <Frame UV="0, 0" Name="" Variety="" />
       </Frames>
     </Tile>
-    <Tile Id="594" Name="Large Volcano" Light="true" Framed="true" Size="2,2">
+    <Tile Id="594" Name="Large Volcano"  Framed="true" Light="true" >
       <Frames>
-        <Frame Name="Large Volcano" UV="0, 0" Anchor="Bottom" />
+        <Frame UV="0, 0" Name="" Variety="" />
       </Frames>
     </Tile>
-    <Tile Id="595" Name="Sakura Sapling" Framed="true" Size="1,2">
+    <Tile Id="595" Name="Sakura Sapling"  Framed="true" >
       <Frames>
-        <Frame Name="Sakura Sapling" UV="0, 0" Anchor="Bottom" />
+        <Frame UV="0, 0" Name="" Variety="" />
       </Frames>
     </Tile>
-    <Tile Id="596" Name="Vanity Tree Sakura" Framed="true">
+    <Tile Id="596" Name="Vanity Tree Sakura"  Framed="true" >
       <Frames>
-        <Frame Name="Vanity Tree Sakura" UV="0, 0" />
+        <Frame UV="0, 0" Name="" Variety="" />
       </Frames>
     </Tile>
-    <Tile Id="597" Name="Jungle Pylon" Light="true" Framed="true" Size="3,4">
+    <Tile Id="597" Name="Jungle Pylon"  Framed="true" Light="true" >
       <Frames>
-        <Frame Name="Forest Pylon" UV="0, 0" Anchor="Bottom" />
-        <Frame Name="Jungle Pylon" UV="0, 72" Anchor="Bottom" />
-        <Frame Name="Hallow Pylon" UV="0, 144" Anchor="Bottom" />
-        <Frame Name="Cavern Pylon" UV="0, 216" Anchor="Bottom" />
-        <Frame Name="Ocean Pylon" UV="0, 288" Anchor="Bottom" />
-        <Frame Name="Desert Pylon" UV="0, 360" Anchor="Bottom" />
-        <Frame Name="Snow Pylon" UV="0, 432" Anchor="Bottom" />
-        <Frame Name="Mushroom Pylon" UV="0, 504" Anchor="Bottom" />
-        <Frame Name="Universal Pylon" UV="0, 576" Anchor="Bottom" />
+        <Frame UV="0, 0" Name="" Variety="" />
       </Frames>
     </Tile>
-    <Tile Id="598" Name="Lava Serpent Bowl" Light="true" Framed="true" Size="2,2">
+    <Tile Id="598" Name="Lava Serpent Bowl"  Framed="true" Light="true" >
       <Frames>
-        <Frame Name="Lava Serpent Bowl" UV="0, 0" Anchor="Bottom" />
+        <Frame UV="0, 0" Name="" Variety="" />
       </Frames>
     </Tile>
-    <Tile Id="599" Name="Amethyst Bunny Cage" Framed="true" Size="6,3">
+    <Tile Id="599" Name="Amethyst Bunny Cage"  Framed="true" >
       <Frames>
-        <Frame Name="Amethyst Bunny Cage" UV="0, 0" Anchor="Bottom" />
+        <Frame UV="0, 0" Name="" Variety="" />
       </Frames>
     </Tile>
-    <Tile Id="600" Name="Topaz Bunny Cage" Framed="true" Size="6,3">
+    <Tile Id="600" Name="Topaz Bunny Cage"  Framed="true" >
       <Frames>
-        <Frame Name="Topaz Bunny Cage" UV="0, 0" Anchor="Bottom" />
+        <Frame UV="0, 0" Name="" Variety="" />
       </Frames>
     </Tile>
-    <Tile Id="601" Name="Sapphire Bunny Cage" Framed="true" Size="6,3">
+    <Tile Id="601" Name="Sapphire Bunny Cage"  Framed="true" >
       <Frames>
-        <Frame Name="Sapphire Bunny Cage" UV="0, 0" Anchor="Bottom" />
+        <Frame UV="0, 0" Name="" Variety="" />
       </Frames>
     </Tile>
-    <Tile Id="602" Name="Emerald Bunny Cage" Framed="true" Size="6,3">
+    <Tile Id="602" Name="Emerald Bunny Cage"  Framed="true" >
       <Frames>
-        <Frame Name="Emerald Bunny Cage" UV="0, 0" Anchor="Bottom" />
+        <Frame UV="0, 0" Name="" Variety="" />
       </Frames>
     </Tile>
-    <Tile Id="603" Name="Ruby Bunny Cage" Framed="true" Size="6,3">
+    <Tile Id="603" Name="Ruby Bunny Cage"  Framed="true" >
       <Frames>
-        <Frame Name="Ruby Bunny Cage" UV="0, 0" Anchor="Bottom" />
+        <Frame UV="0, 0" Name="" Variety="" />
       </Frames>
     </Tile>
-    <Tile Id="604" Name="Diamond Bunny Cage" Framed="true" Size="6,3">
+    <Tile Id="604" Name="Diamond Bunny Cage"  Framed="true" >
       <Frames>
-        <Frame Name="Diamond Bunny Cage" UV="0, 0" Anchor="Bottom" />
+        <Frame UV="0, 0" Name="" Variety="" />
       </Frames>
     </Tile>
-    <Tile Id="605" Name="Amber Bunny Cage" Framed="true" Size="6,3">
+    <Tile Id="605" Name="Amber Bunny Cage"  Framed="true" >
       <Frames>
-        <Frame Name="Amber Bunny Cage" UV="0, 0" Anchor="Bottom" />
+        <Frame UV="0, 0" Name="" Variety="" />
       </Frames>
     </Tile>
-    <Tile Id="606" Name="Amethyst Squirrel Cage" Framed="true" Size="6,3">
+    <Tile Id="606" Name="Amethyst Squirrel Cage"  Framed="true" >
       <Frames>
-        <Frame Name="Amethyst Squirrel Cage" UV="0, 0" Anchor="Bottom" />
+        <Frame UV="0, 0" Name="" Variety="" />
       </Frames>
     </Tile>
-    <Tile Id="607" Name="Topaz Squirrel Cage" Framed="true" Size="6,3">
+    <Tile Id="607" Name="Topaz Squirrel Cage"  Framed="true" >
       <Frames>
-        <Frame Name="Topaz Squirrel Cage" UV="0, 0" Anchor="Bottom" />
+        <Frame UV="0, 0" Name="" Variety="" />
       </Frames>
     </Tile>
-    <Tile Id="608" Name="Sapphire Squirrel Cage" Framed="true" Size="6,3">
+    <Tile Id="608" Name="Sapphire Squirrel Cage"  Framed="true" >
       <Frames>
-        <Frame Name="Sapphire Squirrel Cage" UV="0, 0" Anchor="Bottom" />
+        <Frame UV="0, 0" Name="" Variety="" />
       </Frames>
     </Tile>
-    <Tile Id="609" Name="Emerald Squirrel Cage" Framed="true" Size="6,3">
+    <Tile Id="609" Name="Emerald Squirrel Cage"  Framed="true" >
       <Frames>
-        <Frame Name="Emerald Squirrel Cage" UV="0, 0" Anchor="Bottom" />
+        <Frame UV="0, 0" Name="" Variety="" />
       </Frames>
     </Tile>
-    <Tile Id="610" Name="Ruby Squirrel Cage" Framed="true" Size="6,3">
+    <Tile Id="610" Name="Ruby Squirrel Cage"  Framed="true" >
       <Frames>
-        <Frame Name="Ruby Squirrel Cage" UV="0, 0" Anchor="Bottom" />
+        <Frame UV="0, 0" Name="" Variety="" />
       </Frames>
     </Tile>
-    <Tile Id="611" Name="Diamond Squirrel Cage" Framed="true" Size="6,3">
+    <Tile Id="611" Name="Diamond Squirrel Cage"  Framed="true" >
       <Frames>
-        <Frame Name="Diamond Squirrel Cage" UV="0, 0" Anchor="Bottom" />
+        <Frame UV="0, 0" Name="" Variety="" />
       </Frames>
     </Tile>
-    <Tile Id="612" Name="Amber Squirrel Cage" Framed="true" Size="6,3">
+    <Tile Id="612" Name="Amber Squirrel Cage"  Framed="true" >
       <Frames>
-        <Frame Name="Amber Squirrel Cage" UV="0, 0" Anchor="Bottom" />
+        <Frame UV="0, 0" Name="" Variety="" />
       </Frames>
     </Tile>
-    <Tile Id="613" Name="Potted Fire Brambles" Light="true" Framed="true" Size="3,5">
+    <Tile Id="613" Name="Potted Fire Brambles"  Framed="true" Light="true" >
       <Frames>
-        <Frame Name="Potted Fire Brambles" UV="0, 0" Anchor="Bottom" />
-        <Frame Name="Potted Lava Bulb" UV="0, 90" Anchor="Bottom" />
+        <Frame UV="0, 0" Name="" Variety="" />
       </Frames>
     </Tile>
-    <Tile Id="614" Name="Potted Ember Tendrils" Light="true" Framed="true" Size="3,6">
+    <Tile Id="614" Name="Potted Ember Tendrils"  Framed="true" Light="true" >
       <Frames>
-        <Frame Name="Potted Ember Tendrils" UV="0, 0" Anchor="Bottom" />
+        <Frame UV="0, 0" Name="" Variety="" />
       </Frames>
     </Tile>
-    <Tile Id="615" Name="Yellow Willow Sapling" Framed="true" Size="1,2">
+    <Tile Id="615" Name="Yellow Willow Sapling"  Framed="true" >
       <Frames>
-        <Frame Name="Yellow Willow Sapling" UV="0, 0" Anchor="Bottom" />
+        <Frame UV="0, 0" Name="" Variety="" />
       </Frames>
     </Tile>
-    <Tile Id="616" Name="Vanity Tree Yellow Willow" Framed="true">
+    <Tile Id="616" Name="Vanity Tree Yellow Willow"  Framed="true" >
       <Frames>
-        <Frame Name="Vanity Tree Yellow Willow" UV="0, 0" />
+        <Frame UV="0, 0" Name="" Variety="" />
       </Frames>
     </Tile>
-    <Tile Id="617" Name="Eye of Cthulhu Relic" Framed="true" Size="3,4">
+    <Tile Id="617" Name="Eye of Cthulhu Relic"  Framed="true" >
       <Frames>
-        <Frame Name="Eye of Cthulhu Relic" UV="0, 0" Anchor="Bottom" />
-        <Frame Name="Eater of Worlds Relic" UV="0, 72" Anchor="Bottom" />
-        <Frame Name="Brain of Cthulhu Relic" UV="0, 144" Anchor="Bottom" />
-        <Frame Name="Skeletron Relic" UV="0, 216" Anchor="Bottom" />
-        <Frame Name="Queen Bee Relic" UV="0, 288" Anchor="Bottom" />
-        <Frame Name="King Slime Relic" UV="0, 360" Anchor="Bottom" />
-        <Frame Name="Wall of Flesh Relic" UV="0, 432" Anchor="Bottom" />
-        <Frame Name="Twins Relic" UV="0, 504" Anchor="Bottom" />
-        <Frame Name="Destroyer Relic" UV="0, 576" Anchor="Bottom" />
-        <Frame Name="Skeletron Prime Relic" UV="0, 648" Anchor="Bottom" />
-        <Frame Name="Plantera Relic" UV="0, 720" Anchor="Bottom" />
-        <Frame Name="Golem Relic" UV="0, 792" Anchor="Bottom" />
-        <Frame Name="Duke Fishron Relic" UV="0, 864" Anchor="Bottom" />
-        <Frame Name="Lunatic Cultist Relic" UV="0, 936" Anchor="Bottom" />
-        <Frame Name="Moon Lord Relic" UV="0, 1008" Anchor="Bottom" />
-        <Frame Name="Martian Saucer Relic" UV="0, 1080" Anchor="Bottom" />
-        <Frame Name="Flying Dutchman Relic" UV="0, 1152" Anchor="Bottom" />
-        <Frame Name="Mourning Wood Relic" UV="0, 1224" Anchor="Bottom" />
-        <Frame Name="Pumpking Relic" UV="0, 1296" Anchor="Bottom" />
-        <Frame Name="Ice Queen Relic" UV="0, 1368" Anchor="Bottom" />
-        <Frame Name="Everscream Relic" UV="0, 1440" Anchor="Bottom" />
-        <Frame Name="Santa-NK1 Relic" UV="0, 1512" Anchor="Bottom" />
-        <Frame Name="Dark Mage Relic" UV="0, 1584" Anchor="Bottom" />
-        <Frame Name="Ogre Relic" UV="0, 1656" Anchor="Bottom" />
-        <Frame Name="Betsy Relic" UV="0, 1728" Anchor="Bottom" />
-        <Frame Name="Empress of Light Relic" UV="0, 1800" Anchor="Bottom" />
-        <Frame Name="Queen Slime Relic" UV="0, 1872" Anchor="Bottom" />
+        <Frame UV="0, 0" Name="" Variety="" />
       </Frames>
     </Tile>
-    <Tile Id="618" Name="Stone Accent Slab" Solid="true" />
-    <Tile Id="619" Name="Truffle Worm Cage" Light="true" Framed="true" Size="3,2">
+    <Tile Id="618" Name="Stone Accent Slab"  Solid="true"  />
+    <Tile Id="619" Name="Truffle Worm Cage"  Framed="true" Light="true" >
       <Frames>
-        <Frame Name="Truffle Worm Cage" UV="0, 0" Anchor="Bottom" />
+        <Frame UV="0, 0" Name="" Variety="" />
       </Frames>
     </Tile>
-    <Tile Id="620" Name="Prismatic Lacewing Jar" Light="true" Framed="true" Size="2,2">
+    <Tile Id="620" Name="Prismatic Lacewing Jar"  Framed="true" Light="true" >
       <Frames>
-        <Frame Name="Prismatic Lacewing Jar" UV="0, 0" Anchor="Bottom" />
+        <Frame UV="0, 0" Name="" Variety="" />
       </Frames>
     </Tile>
-    <Tile Id="621" Name="Slice of Cake" Framed="true" Size="2,2">
+    <Tile Id="621" Name="Slice of Cake"  Framed="true" >
       <Frames>
-        <Frame Name="Slice of Cake" UV="0, 0" Anchor="Bottom" />
+        <Frame UV="0, 0" Name="" Variety="" />
       </Frames>
     </Tile>
-    <Tile Id="622" Name="Teapot" Framed="true" Size="2,2">
+    <Tile Id="622" Name="Teapot"  Framed="true" >
       <Frames>
-        <Frame Name="Teapot" UV="0, 0" Anchor="Bottom" />
+        <Frame UV="0, 0" Name="" Variety="" />
       </Frames>
     </Tile>
   </Tiles>

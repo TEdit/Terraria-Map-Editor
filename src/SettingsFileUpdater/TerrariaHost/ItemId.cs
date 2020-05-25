@@ -9,6 +9,13 @@ using Terraria.Localization;
 using Terraria.Initializers;
 using Terraria.Social;
 using System.Text;
+using Terraria.ObjectData;
+using System.Reflection;
+using System;
+using System.IO;
+using System.Xml;
+using System.Xml.Linq;
+using System.Diagnostics;
 
 namespace SettingsFileUpdater.TerrariaHost
 {
@@ -39,6 +46,9 @@ namespace SettingsFileUpdater.TerrariaHost
         {
             Thread.CurrentThread.Name = "Main Thread";
 
+            var terrariaAsm = typeof(Terraria.Program).Assembly;
+            var init = typeof(Terraria.Program).GetMethod("ForceLoadAssembly", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Static, null, new Type[] { typeof(Assembly), typeof(bool) }, null);
+            init.Invoke((object)null, new object[] { terrariaAsm, true });
             // Program.LaunchParameters = Utils.ParseArguements(args);
             //ThreadPool.SetMinThreads(8, 8);
             LanguageManager.Instance.SetLanguage(GameCulture.DefaultCulture);
@@ -51,7 +61,9 @@ namespace SettingsFileUpdater.TerrariaHost
                 Lang.InitializeLegacyLocalization();
                 SocialAPI.Initialize(null);
                 LaunchInitializer.LoadParameters(main);
-                Task.Factory.StartNew(() => main.DedServ());
+                main.InitBase();
+                //Task.Factory.StartNew(() => main.DedServ());
+                //Thread.Sleep(10000);
                 //main.Run();
                 return main;
 
@@ -68,6 +80,11 @@ namespace SettingsFileUpdater.TerrariaHost
         public TerrariaWrapper() : base()
         {
 
+        }
+
+        public void InitBase()
+        {
+            base.Initialize();
         }
 
 
@@ -138,6 +155,17 @@ namespace SettingsFileUpdater.TerrariaHost
 
         public string GetTilesXml()
         {
+            XDocument original = null;
+            using (TextReader tr = new StreamReader("settings.xml"))
+            {
+                original = XDocument.Load(tr);
+            }
+
+            var origTiles = original.Element("Settings").Element("Tiles");
+
+            XElement root = new XElement("Tiles");
+            XDocument tiles = new XDocument(root);
+
             List<Terraria.Item> curItems = new List<Item>();
             for (int i = 0; i < maxItemTypes; i++)
             {
@@ -153,54 +181,122 @@ namespace SettingsFileUpdater.TerrariaHost
                 }
             }
 
-            StringBuilder output = new StringBuilder("  <Tiles>\r\n");
             for (int i = 0; i < maxTileSets; i++)
             {
-                var creatingItem = curItems.FirstOrDefault(x => x.createTile == i);
+                string origName = origTiles.Elements().FirstOrDefault(e => e.Attribute("Id").Value == i.ToString()).Attribute("Name").Value;
 
-                output.AppendFormat("    <Tile Id=\"{0}\" Name=\"{22}\" {5}{16}{17}{8} {21}\r\n",
-                    i,
-                tileAlch[i],
-                tileAxe[i],
-                tileBlockLight[i],
-                tileDungeon[i],
-                tileFrameImportant[i] ? " Framed=\"true\"" : string.Empty,
-                tileHammer[i],
-                tileLavaDeath[i],
-                tileLighted[i] ? " Light=\"true\"" : string.Empty,
-                tileMergeDirt[i],
-                //tileName[i],
-                tileNoAttach[i],
-                tileNoFail[i],
-                tileNoSunLight[i],
-                "",
-                tileShine[i],
-                tileShine2[i],
-                tileSolid[i] ? " Solid=\"true\"" : string.Empty,
-                tileSolidTop[i] ? " SolidTop=\"true\"" : string.Empty,
-                tileStone[i],
-                tileTable[i],
-                tileWaterDeath[i],
-                (tileFrameImportant[i]) ? ">\r\n      <Frames>\r\n        <Frame UV=\"0, 0\" Name=\"\" Variety=\"\" />\r\n      </ Frames>\r\n    </Tile>" : " />",
-                creatingItem != null ? creatingItem.Name : string.Empty);
+                var creatingItem = curItems.FirstOrDefault(x => x.createTile == i);
+                //var creatingItems = curItems.Where(x => x.createTile == i).ToList();
+
+                string itemName = creatingItem != null ? creatingItem.Name : string.Empty;
+                if (string.IsNullOrWhiteSpace(itemName))
+                {
+                    itemName = origName;
+                }
+
+                var tile = new XElement(
+                    "Tile",
+                    new XAttribute("Id", i.ToString()),
+                    new XAttribute("Name", itemName));
+                root.Add(tile);
+
+                if (tileLighted[i]) { tile.Add(new XAttribute("Light", "true")); }
+                if (tileSolid[i]) { tile.Add(new XAttribute("Solid", "true")); }
+                if (tileSolidTop[i]) { tile.Add(new XAttribute("SolidTop", "true")); }
+
+                if (tileFrameImportant[i])
+                {
+                    tile.Add(new XAttribute("Framed", "true"));
+                    var frames = new XElement("Frames");
+                    tile.Add(frames);
+
+                    TileObjectData data = TileObjectData.GetTileData(i, 0);
+
+                    if (data == null)
+                    {
+                        string value = itemName;
+                        frames.Add(new XElement("Frame",
+                            new XAttribute("Name", value),
+                            new XAttribute("UV", $"0, 0"))
+                        );
+                    }
+                    else
+                    {
+                        var tileWidth = data.Width;
+                        var tileHeight = data.Height;
+                        var textureWidth = data.CoordinateWidth;
+                        var textureHeight = data.CoordinateHeights.First(); ;
+                        var shiftWidth = data.CoordinateFullWidth;
+                        var shiftHeight = data.CoordinateFullHeight;
+                        var anchor = string.Empty;
+
+                        var styleMultiplier = data.StyleMultiplier;
+                        var styleWrapLimit = data.StyleWrapLimit;
+
+                        if (textureWidth != 16 || textureHeight != 16)
+                        {
+                            tile.Add(new XAttribute("TextureGrid", $"{textureWidth},{textureHeight}"));
+                        }
+                        tile.Add(new XAttribute("Size", $"{tileWidth},{tileHeight}"));
+
+
+                        int style = 0;
+                        while ((data = TileObjectData.GetTileData(i, style, 0)) != null)
+                        {
+                            var creatingSubItem = curItems.FirstOrDefault(x => x.createTile == i && x.placeStyle == style);
+                            if (creatingSubItem == null)
+                            {
+                                if (style == 0)
+                                {
+                                    frames.Add(new XElement("Frame",
+                                        new XAttribute("Name", itemName),
+                                        new XAttribute("UV", $"0, 0"))
+                                    );
+                                }
+                                break;
+                            }
+
+                            string subTypeName = creatingSubItem != null ? creatingSubItem.Name : string.Empty;
+                            int altCount = data.AlternatesCount;
+                            for (int alt = 0; alt < altCount || alt == 0; alt++)
+                            {
+                                data = TileObjectData.GetTileData(i, style, alt);
+                                if (data == null) continue;
+
+                                var frame = new XElement("Frame", new XAttribute("Name", subTypeName));
+                                frames.Add(frame);
+                                frame.Add(new XAttribute("UV", $"{shiftWidth * alt}, {shiftHeight * style}"));
+
+                                //if (alt > 0 && data.AlternatesCount > 0) System.Diagnostics.Debugger.Break();
+
+                                if (data.AnchorBottom.tileCount > 0) { anchor = "Bottom"; }
+                                if (data.AnchorLeft.tileCount > 0) { anchor = "Left"; }
+                                if (data.AnchorRight.tileCount > 0) { anchor = "Right"; }
+                                if (data.AnchorTop.tileCount > 0) { anchor = "Top"; }
+
+                                frame.Add(new XAttribute("Anchor", anchor));
+                            }
+
+                            style++;
+
+                        }
+                    }
+                }
             }
 
-
-            output.Append("  </Tiles>");
-
-            return output.ToString();
+            return tiles.ToString();
         }
 
         public string GetNpcsXml()
         {
             var npcs = GetNpcs();
-
+            
             var output = new StringBuilder("  <Npcs>\r\n");
             foreach (var npc in npcs)
             {
                 try
                 {
-                    output.AppendFormat("<Npc Id=\"{1}\" Name=\"{0}\" Frames=\"{2}\" />\r\n", Localize(npc.FullName), npc.netID, npc.width);
+                    output.AppendFormat("<Npc Id=\"{1}\" Name=\"{0}\" Size=\"{2},{3}\" />\r\n", Localize(npc.FullName), npc.netID, npc.width, npc.height);
                 }
                 catch
                 {

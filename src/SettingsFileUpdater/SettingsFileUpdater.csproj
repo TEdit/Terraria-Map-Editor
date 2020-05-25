@@ -7,6 +7,16 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="settings.xml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="settings.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
     <Reference Include="TerrariaServer">
       <HintPath>D:\Steam\steamapps\common\Terraria\TerrariaServer.exe</HintPath>
     </Reference>

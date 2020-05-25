@@ -2194,9 +2194,10 @@ namespace TEdit.View
             if (_textureDictionary.Npcs.ContainsKey(npcId))
             {
                 Texture2D npcTexture = (Texture2D)_textureDictionary.GetNPC(npcId);
-                int frames = World.NpcFrames[npcId];
+                var size = World.NpcFrames[npcId];
+                var frames = npcTexture.Height / size.Y;
                 int width = npcTexture.Width;
-                int height = npcTexture.Height / frames;
+                int height = 55;
                 float scale = 1.0f * _zoom / 16;
                 if (scale < _minNpcScale)
                     scale = _minNpcScale;

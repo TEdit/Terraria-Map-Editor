@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Reflection;
+using System.Threading;
 
 namespace SettingsFileUpdater
 {
@@ -15,8 +16,8 @@ namespace SettingsFileUpdater
 
             //Console.WriteLine(wrapper.GetTilesXml());
             //Console.WriteLine(wrapper.GetWallsXml());
-            Console.WriteLine(wrapper.GetItemsXml());
-            //Console.WriteLine(wrapper.GetNpcs());
+            //Console.WriteLine(wrapper.GetItemsXml());
+            Console.WriteLine(wrapper.GetNpcsXml());
             //Console.WriteLine(wrapper.GetPrefixesXml());
 
             Console.ReadLine();

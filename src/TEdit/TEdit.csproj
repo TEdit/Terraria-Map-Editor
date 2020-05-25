@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>net48</TargetFramework>
+    <TargetFramework>net462</TargetFramework>
     <UseWPF>true</UseWPF>
     <ApplicationIcon>tedit.ico</ApplicationIcon>
     <AssemblyName>TEdit</AssemblyName>
@@ -10,7 +10,7 @@
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <LangVersion>latest</LangVersion>
     <VersionPrefix>4.0.0</VersionPrefix>
-    <VersionSuffix>beta7</VersionSuffix>
+    <VersionSuffix>beta8</VersionSuffix>
     <Platforms>AnyCPU</Platforms>
   </PropertyGroup>
 

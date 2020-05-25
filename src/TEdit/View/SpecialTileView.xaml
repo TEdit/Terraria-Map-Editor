@@ -4,11 +4,13 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:enum="clr-namespace:TEdit.UI.Xaml.Enum"
-      xmlns:System="clr-namespace:System;assembly=mscorlib"
-      mc:Ignorable="d"
+      xmlns:System="clr-namespace:System;assembly=mscorlib" 
+             xmlns:converters="clr-namespace:TEdit.Converters"
+             mc:Ignorable="d"
       d:DesignHeight="300" d:DesignWidth="300">
 
     <UserControl.Resources>
+        <converters:ShortIntConverter x:Key="ShortIntConverter" />
         <ItemsPanelTemplate x:Key="Template_ComboPanel">
             <VirtualizingStackPanel VirtualizingStackPanel.IsVirtualizing="True"
                                     VirtualizingStackPanel.VirtualizationMode="Recycling" />
@@ -108,7 +110,7 @@
         <Style TargetType="{x:Type GroupBox}" x:Key="HatRackVisibility" BasedOn="{StaticResource {x:Type GroupBox}}">
             <Setter Property="Visibility" Value="Collapsed" />
             <Style.Triggers>
-                <DataTrigger Binding="{Binding SelectedSpecialTile}" Value="5">
+                <DataTrigger Binding="{Binding SelectedTileEntity.Type}" Value="5">
                     <Setter Property="Visibility" Value="Visible" />
                 </DataTrigger>
             </Style.Triggers>
@@ -124,7 +126,7 @@
         <Style TargetType="{x:Type GroupBox}" x:Key="PlateVisiblity" BasedOn="{StaticResource {x:Type GroupBox}}">
             <Setter Property="Visibility" Value="Collapsed" />
             <Style.Triggers>
-                <DataTrigger Binding="{Binding SelectedSpecialTile}" Value="6">
+                <DataTrigger Binding="{Binding SelectedTileEntity.Type}" Value="6">
                     <Setter Property="Visibility" Value="Visible" />
                 </DataTrigger>
             </Style.Triggers>
@@ -214,14 +216,14 @@
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Grid.Row="1">
                     <TextBlock Text="Sign Text " Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" />
-                        <TextBlock Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" >
-                            <TextBlock.Text>
-                                <MultiBinding StringFormat="({0}, {1})">
-                                    <Binding Path="SelectedSign.X" />
-                                    <Binding Path="SelectedSign.Y" />
-                                </MultiBinding>
-                            </TextBlock.Text>
-                        </TextBlock>
+                    <TextBlock Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" >
+                        <TextBlock.Text>
+                            <MultiBinding StringFormat="({0}, {1})">
+                                <Binding Path="SelectedSign.X" />
+                                <Binding Path="SelectedSign.Y" />
+                            </MultiBinding>
+                        </TextBlock.Text>
+                    </TextBlock>
                 </StackPanel>
                 <TextBox Grid.Row="2" Text="{Binding SelectedSign.Text, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" MinHeight="150"
                   HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Visible" AcceptsReturn="True" TextWrapping="Wrap"
@@ -375,7 +377,7 @@
                 <StackPanel Orientation="Horizontal" Grid.Row="1">
                     <TextBlock Text="Head: " Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" VerticalAlignment="Center" />
                     <ComboBox ItemsSource="{Binding Source={StaticResource DyeCollection}}"
-                          SelectedValue="{Binding SelectedTileEntity.Dye0.Id, Mode=TwoWay}"
+                          SelectedValue="{Binding SelectedTileEntity.Dye0.Id, Mode=TwoWay, Converter={StaticResource ShortIntConverter}}"
                           SelectedValuePath="Key"
                           DisplayMemberPath="Value"
                           HorizontalAlignment="Stretch"
@@ -390,7 +392,7 @@
                           Margin="1,0" ItemsPanel="{StaticResource Template_ComboPanel}" />
                     <ComboBox Width="150px"
                           ItemsSource="{Binding Source={StaticResource MannHeadCollection}}"
-                          SelectedValue="{Binding SelectedTileEntity.Item0.Id, Mode=TwoWay}"
+                          SelectedValue="{Binding SelectedTileEntity.Item0.Id, Mode=TwoWay, Converter={StaticResource ShortIntConverter}}"
                           SelectedValuePath="Key"
                           DisplayMemberPath="Value"
                           IsSynchronizedWithCurrentItem="False"
@@ -399,7 +401,7 @@
                 <StackPanel Orientation="Horizontal" Grid.Row="2">
                     <TextBlock Text="Body: " Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" VerticalAlignment="Center" />
                     <ComboBox ItemsSource="{Binding Source={StaticResource DyeCollection}}"
-                          SelectedValue="{Binding SelectedTileEntity.Dye1.Id, Mode=TwoWay}"
+                          SelectedValue="{Binding SelectedTileEntity.Dye1.Id, Mode=TwoWay, Converter={StaticResource ShortIntConverter}}"
                           SelectedValuePath="Key"
                           DisplayMemberPath="Value"
                           HorizontalAlignment="Stretch"
@@ -414,7 +416,7 @@
                           Margin="1,0" ItemsPanel="{StaticResource Template_ComboPanel}" />
                     <ComboBox Width="150px"
                           ItemsSource="{Binding Source={StaticResource MannBodyCollection}}"
-                          SelectedValue="{Binding SelectedTileEntity.Item1.Id, Mode=TwoWay}"
+                          SelectedValue="{Binding SelectedTileEntity.Item1.Id, Mode=TwoWay, Converter={StaticResource ShortIntConverter}}"
                           SelectedValuePath="Key"
                           DisplayMemberPath="Value"
                           IsSynchronizedWithCurrentItem="False"
@@ -423,7 +425,7 @@
                 <StackPanel Orientation="Horizontal" Grid.Row="3">
                     <TextBlock Text="Legs: " Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" VerticalAlignment="Center" />
                     <ComboBox ItemsSource="{Binding Source={StaticResource DyeCollection}}"
-                          SelectedValue="{Binding SelectedTileEntity.Dye2.Id, Mode=TwoWay}"
+                          SelectedValue="{Binding SelectedTileEntity.Dye2.Id, Mode=TwoWay, Converter={StaticResource ShortIntConverter}}"
                           SelectedValuePath="Key"
                           DisplayMemberPath="Value"
                           HorizontalAlignment="Stretch"
@@ -438,7 +440,7 @@
                           Margin="1,0" ItemsPanel="{StaticResource Template_ComboPanel}" />
                     <ComboBox Width="150px"
                           ItemsSource="{Binding Source={StaticResource MannLegsCollection}}"
-                          SelectedValue="{Binding SelectedTileEntity.Item2.Id, Mode=TwoWay}"
+                          SelectedValue="{Binding SelectedTileEntity.Item2.Id, Mode=TwoWay, Converter={StaticResource ShortIntConverter}}"
                           SelectedValuePath="Key"
                           DisplayMemberPath="Value"
                           IsSynchronizedWithCurrentItem="False"
@@ -447,7 +449,7 @@
                 <StackPanel Orientation="Horizontal" Grid.Row="4">
                     <TextBlock Text="Acc1: " Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" VerticalAlignment="Center" />
                     <ComboBox ItemsSource="{Binding Source={StaticResource DyeCollection}}"
-                          SelectedValue="{Binding SelectedTileEntity.Dye3.Id, Mode=TwoWay}"
+                          SelectedValue="{Binding SelectedTileEntity.Dye3.Id, Mode=TwoWay, Converter={StaticResource ShortIntConverter}}"
                           SelectedValuePath="Key"
                           DisplayMemberPath="Value"
                           HorizontalAlignment="Stretch"
@@ -462,7 +464,7 @@
                           Margin="1,0" ItemsPanel="{StaticResource Template_ComboPanel}" />
                     <ComboBox Width="150px"
                           ItemsSource="{Binding Source={StaticResource MannAccessoryCollection}}"
-                          SelectedValue="{Binding SelectedTileEntity.Item3.Id, Mode=TwoWay}"
+                          SelectedValue="{Binding SelectedTileEntity.Item3.Id, Mode=TwoWay, Converter={StaticResource ShortIntConverter}}"
                           SelectedValuePath="Key"
                           DisplayMemberPath="Value"
                           IsSynchronizedWithCurrentItem="False"
@@ -471,7 +473,7 @@
                 <StackPanel Orientation="Horizontal" Grid.Row="5">
                     <TextBlock Text="Acc2: " Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" VerticalAlignment="Center" />
                     <ComboBox ItemsSource="{Binding Source={StaticResource DyeCollection}}"
-                          SelectedValue="{Binding SelectedTileEntity.Dye4.Id, Mode=TwoWay}"
+                          SelectedValue="{Binding SelectedTileEntity.Dye4.Id, Mode=TwoWay, Converter={StaticResource ShortIntConverter}}"
                           SelectedValuePath="Key"
                           DisplayMemberPath="Value"
                           HorizontalAlignment="Stretch"
@@ -486,7 +488,7 @@
                           Margin="1,0" ItemsPanel="{StaticResource Template_ComboPanel}" />
                     <ComboBox Width="150px"
                           ItemsSource="{Binding Source={StaticResource MannAccessoryCollection}}"
-                          SelectedValue="{Binding SelectedTileEntity.Item4.Id, Mode=TwoWay}"
+                          SelectedValue="{Binding SelectedTileEntity.Item4.Id, Mode=TwoWay, Converter={StaticResource ShortIntConverter}}"
                           SelectedValuePath="Key"
                           DisplayMemberPath="Value"
                           IsSynchronizedWithCurrentItem="False"
@@ -495,7 +497,7 @@
                 <StackPanel Orientation="Horizontal" Grid.Row="6">
                     <TextBlock Text="Acc3: " Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" VerticalAlignment="Center" />
                     <ComboBox ItemsSource="{Binding Source={StaticResource DyeCollection}}"
-                          SelectedValue="{Binding SelectedTileEntity.Dye5.Id, Mode=TwoWay}"
+                          SelectedValue="{Binding SelectedTileEntity.Dye5.Id, Mode=TwoWay, Converter={StaticResource ShortIntConverter}}"
                           SelectedValuePath="Key"
                           DisplayMemberPath="Value"
                           HorizontalAlignment="Stretch"
@@ -510,7 +512,7 @@
                           Margin="1,0" ItemsPanel="{StaticResource Template_ComboPanel}" />
                     <ComboBox Width="150px"
                           ItemsSource="{Binding Source={StaticResource MannAccessoryCollection}}"
-                          SelectedValue="{Binding SelectedTileEntity.Item5.Id, Mode=TwoWay}"
+                          SelectedValue="{Binding SelectedTileEntity.Item5.Id, Mode=TwoWay, Converter={StaticResource ShortIntConverter}}"
                           SelectedValuePath="Key"
                           DisplayMemberPath="Value"
                           IsSynchronizedWithCurrentItem="False"
@@ -519,7 +521,7 @@
                 <StackPanel Orientation="Horizontal" Grid.Row="7">
                     <TextBlock Text="Acc4: " Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" VerticalAlignment="Center" />
                     <ComboBox ItemsSource="{Binding Source={StaticResource DyeCollection}}"
-                          SelectedValue="{Binding SelectedTileEntity.Dye6.Id, Mode=TwoWay}"
+                          SelectedValue="{Binding SelectedTileEntity.Dye6.Id, Mode=TwoWay, Converter={StaticResource ShortIntConverter}}"
                           SelectedValuePath="Key"
                           DisplayMemberPath="Value"
                           HorizontalAlignment="Stretch"
@@ -534,7 +536,7 @@
                           Margin="1,0" ItemsPanel="{StaticResource Template_ComboPanel}" />
                     <ComboBox Width="150px"
                           ItemsSource="{Binding Source={StaticResource MannAccessoryCollection}}"
-                          SelectedValue="{Binding SelectedTileEntity.Item6.Id, Mode=TwoWay}"
+                          SelectedValue="{Binding SelectedTileEntity.Item6.Id, Mode=TwoWay, Converter={StaticResource ShortIntConverter}}"
                           SelectedValuePath="Key"
                           DisplayMemberPath="Value"
                           IsSynchronizedWithCurrentItem="False"
@@ -543,7 +545,7 @@
                 <StackPanel Orientation="Horizontal" Grid.Row="8">
                     <TextBlock Text="Acc5: " Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" VerticalAlignment="Center" />
                     <ComboBox ItemsSource="{Binding Source={StaticResource DyeCollection}}"
-                          SelectedValue="{Binding SelectedTileEntity.Dye7.Id, Mode=TwoWay}"
+                          SelectedValue="{Binding SelectedTileEntity.Dye7.Id, Mode=TwoWay, Converter={StaticResource ShortIntConverter}}"
                           SelectedValuePath="Key"
                           DisplayMemberPath="Value"
                           HorizontalAlignment="Stretch"
@@ -558,7 +560,7 @@
                           Margin="1,0" ItemsPanel="{StaticResource Template_ComboPanel}" />
                     <ComboBox Width="150px"
                           ItemsSource="{Binding Source={StaticResource MannAccessoryCollection}}"
-                          SelectedValue="{Binding SelectedTileEntity.Item7.Id, Mode=TwoWay}"
+                          SelectedValue="{Binding SelectedTileEntity.Item7.Id, Mode=TwoWay, Converter={StaticResource ShortIntConverter}}"
                           SelectedValuePath="Key"
                           DisplayMemberPath="Value"
                           IsSynchronizedWithCurrentItem="False"
@@ -595,7 +597,7 @@
                 <StackPanel Orientation="Horizontal" Grid.Row="1">
                     <TextBlock Text="Head: " Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" VerticalAlignment="Center" />
                     <ComboBox ItemsSource="{Binding Source={StaticResource DyeCollection}}"
-                          SelectedValue="{Binding SelectedTileEntity.Dye0.Id, Mode=TwoWay}"
+                          SelectedValue="{Binding SelectedTileEntity.Dye0.Id, Mode=TwoWay, Converter={StaticResource ShortIntConverter}}"
                           SelectedValuePath="Key"
                           DisplayMemberPath="Value"
                           HorizontalAlignment="Stretch"
@@ -610,7 +612,7 @@
                           Margin="1,0" ItemsPanel="{StaticResource Template_ComboPanel}" />
                     <ComboBox Width="150px"
                           ItemsSource="{Binding Source={StaticResource MannHeadCollection}}"
-                          SelectedValue="{Binding SelectedTileEntity.Item0.Id, Mode=TwoWay}"
+                          SelectedValue="{Binding SelectedTileEntity.Item0.Id, Mode=TwoWay, Converter={StaticResource ShortIntConverter}}"
                           SelectedValuePath="Key"
                           DisplayMemberPath="Value"
                           IsSynchronizedWithCurrentItem="False"
@@ -619,7 +621,7 @@
                 <StackPanel Orientation="Horizontal" Grid.Row="2">
                     <TextBlock Text="Head: " Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" VerticalAlignment="Center" />
                     <ComboBox ItemsSource="{Binding Source={StaticResource DyeCollection}}"
-                          SelectedValue="{Binding SelectedTileEntity.Dye1.Id, Mode=TwoWay}"
+                          SelectedValue="{Binding SelectedTileEntity.Dye1.Id, Mode=TwoWay, Converter={StaticResource ShortIntConverter}}"
                           SelectedValuePath="Key"
                           DisplayMemberPath="Value"
                           HorizontalAlignment="Stretch"
@@ -634,7 +636,7 @@
                           Margin="1,0" ItemsPanel="{StaticResource Template_ComboPanel}" />
                     <ComboBox Width="150px"
                           ItemsSource="{Binding Source={StaticResource MannHeadCollection}}"
-                          SelectedValue="{Binding SelectedTileEntity.Item1.Id, Mode=TwoWay}"
+                          SelectedValue="{Binding SelectedTileEntity.Item1.Id, Mode=TwoWay, Converter={StaticResource ShortIntConverter}}"
                           SelectedValuePath="Key"
                           DisplayMemberPath="Value"
                           IsSynchronizedWithCurrentItem="False"

@@ -18,7 +18,7 @@ namespace TEdit.Terraria
 
         private static readonly Dictionary<string, XNA.Color> _globalColors = new Dictionary<string, XNA.Color>();
         private static readonly Dictionary<string, int> _npcIds = new Dictionary<string, int>();
-        private static readonly Dictionary<int, int> _npcFrames = new Dictionary<int, int>();
+        private static readonly Dictionary<int, Vector2Short> _npcFrames = new Dictionary<int, Vector2Short>();
         private static readonly Dictionary<byte, string> _prefix = new Dictionary<byte, string>();
         private static readonly Dictionary<Key, string> _shortcuts = new Dictionary<Key, string>();
         private static readonly Dictionary<int, ItemProperty> _itemLookup = new Dictionary<int, ItemProperty>();
@@ -383,7 +383,7 @@ namespace TEdit.Terraria
                 string name = (string)xElement.Attribute("Name");
                 NpcIds[name] = id;
                 NpcNames[id] = name;
-                int frames = (int?)xElement.Attribute("Frames") ?? 16;
+                var frames = StringToVector2Short((string)xElement.Attribute("Size"), 16, 40);
                 NpcFrames[id] = frames;
             }
 
@@ -505,7 +505,7 @@ namespace TEdit.Terraria
             get { return _rackable; }
         }
 
-        public static Dictionary<int, int> NpcFrames
+        public static Dictionary<int, Vector2Short> NpcFrames
         {
             get { return _npcFrames; }
         }

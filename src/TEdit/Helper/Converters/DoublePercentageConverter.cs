@@ -18,6 +18,20 @@ namespace TEdit.Converters
         }
     }
 
+    public class ShortIntConverter : IValueConverter
+    {
+
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            return (int)(short)value;
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            return (short)(int)value;
+        }
+    }
+
     public class IntByteConverter : IValueConverter
     {
 
