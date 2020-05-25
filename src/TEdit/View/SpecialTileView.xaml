@@ -194,7 +194,7 @@
     </UserControl.Resources>
     <Grid Background="{DynamicResource WindowBackgroundBrush}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" >
         <GroupBox BorderThickness="0" Style="{StaticResource InstructionsVisiblity}">
-            <TextBlock Text="With the Arrow Tool right click on a sign, chest, mannequin, weapon rack,item frame or christmas tree" TextWrapping="Wrap" HorizontalAlignment="Stretch" Margin="3" FontWeight="Bold" Foreground="{DynamicResource TextBrush}"/>
+            <TextBlock Text="With the Arrow Tool right click on a sign, chest, mannequin, weapon rack, item frame or christmas tree" TextWrapping="Wrap" HorizontalAlignment="Stretch" Margin="3" FontWeight="Bold" Foreground="{DynamicResource TextBrush}"/>
         </GroupBox>
         <GroupBox BorderThickness="0" Style="{StaticResource SignVisiblity}">
             <Grid Background="{DynamicResource WindowBackgroundBrush}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" >
