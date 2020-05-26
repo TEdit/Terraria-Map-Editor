@@ -33,6 +33,7 @@ namespace SettingsFileUpdater.TerrariaHost
         public bool IsFood { get; set; }
 
         public int Head { get; set; }
+        public int Banner { get; set; }
         public int Body { get; set; }
         public int Legs { get; set; }
         public bool Accessory { get; set; }
@@ -324,6 +325,7 @@ namespace SettingsFileUpdater.TerrariaHost
                     (item.Legs > 0? $" Legs=\"{item.Legs}\"" : ""),
                     (item.Accessory ? " Accessory=\"True\"" : ""),
                     (item.Rack ? " Rack=\"True\"" : ""),
+                    (item.Banner > 0 ? $" Tally=\"{item.Banner}\"": "")
                 });
                 output.AppendFormat("    <Item Id=\"{0}\" Name=\"{1}\"{3}/>\r\n", item.Id, Localize(item.Name), item.Type, attribs);
             }
@@ -400,6 +402,14 @@ namespace SettingsFileUpdater.TerrariaHost
 
         public List<ItemId> GetItems()
         {
+            var banners = new Dictionary<int,int>();
+            for (int bannerId = 0; bannerId < Terraria.Main.MaxBannerTypes; bannerId++)
+            {
+                int itemId = Terraria.Item.BannerToItem(bannerId);
+                banners[itemId] = bannerId;
+            }
+
+            const int maxBanner = 289;
             //maxTileSets
             var sitems = new List<ItemId>();
 
@@ -411,16 +421,20 @@ namespace SettingsFileUpdater.TerrariaHost
                     curitem.netDefaults(i);
 
                     if (string.IsNullOrWhiteSpace(curitem.Name)) continue;
-                    var isFood = Terraria.ID.ItemID.Sets.IsFood[i];
-                    var isRackable = Terraria.ID.ItemID.Sets.CanBePlacedOnWeaponRacks[i] || curitem.fishingPole > 0 || (curitem.damage > 0 && curitem.useStyle != 0);
-                    var isDeprecated = Terraria.ID.ItemID.Sets.Deprecated[i];
-
+                    var isFood = i >= 0 ? Terraria.ID.ItemID.Sets.IsFood[i] : false;
+                    var isRackable = (i >= 0 ? Terraria.ID.ItemID.Sets.CanBePlacedOnWeaponRacks[i] : false) || curitem.fishingPole > 0 || (curitem.damage > 0 && curitem.useStyle != 0);
+                    var isDeprecated = i >= 0 ? Terraria.ID.ItemID.Sets.Deprecated[i] : false;
                     string name = curitem.Name;
+
+                    int banner = 0;
+                    banners.TryGetValue(i, out banner);
+                    
                     if (isDeprecated) { name += " (Deprecated)"; }
                     //curitem.SetDefaults(i);
                     sitems.Add(new ItemId(i, name, GetItemType(curitem))
                     {
                         IsFood = isFood,
+                        Banner = banner,
                         Head = curitem.headSlot,
                         Body = curitem.bodySlot,
                         Legs = curitem.legSlot,
