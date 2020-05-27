@@ -12,5 +12,5 @@ TEdit 4 now supports Terraria Journey's End.
 * [Wiki](https://github.com/TEdit/Terraria-Map-Editor/wiki/Getting-Started)
 * [Homepage](http://binaryconstruct.com/games/tedit)
 * [Source](http://github.com/TEdit/Terraria-Map-Editor)
-* **[Download](http://www.binaryconstruct.com/downloads/) or [GitHub Releases](http://github.com/TEdit/Terraria-Map-Editor/downloads)**
+* **[Download](http://www.binaryconstruct.com/downloads/) or [GitHub Releases](https://github.com/TEdit/Terraria-Map-Editor/releases)**
 * [Change Log](http://github.com/TEdit/Terraria-Map-Editor/commits/master)
