@@ -196,7 +196,7 @@ namespace TEdit.ViewModel
         }
 
         /* SBLogic - catch exception if browser can't be launched */
-        private void LaunchUrl(string url)
+        public static void LaunchUrl(string url)
         {
             System.Windows.Forms.DialogResult result = System.Windows.Forms.DialogResult.None;
             try
@@ -569,18 +569,17 @@ namespace TEdit.ViewModel
 
         private void UpdateTitle()
         {
-            Assembly asm = Assembly.GetExecutingAssembly();
-            FileVersionInfo fvi = FileVersionInfo.GetVersionInfo(asm.Location);
+           
 
             WindowTitle =
-                $"TEdit v{fvi.ProductMajorPart}.{fvi.ProductMinorPart}.{fvi.FileBuildPart}.{fvi.FilePrivatePart} {Path.GetFileName(_currentFile)}";
+                $"TEdit v{App.Version} {Path.GetFileName(_currentFile)}";
         }
 
         public async void CheckVersion(bool auto = true)
         {
             bool isoutofdate = false;
 
-            const string versionRegex = @"""tag_name"":\s?""(?<version>[0-9\.]*)""";
+            const string versionRegex = @"""tag_name"":\s?""(?<version>[^\""]*)""";
             try
             {
                 using (var client = new HttpClient())
@@ -589,7 +588,7 @@ namespace TEdit.ViewModel
                     string githubReleases = await client.GetStringAsync("https://api.github.com/repos/TEdit/Terraria-map-Editor/releases");
                     var versions = Regex.Match(githubReleases, versionRegex);
 
-                    isoutofdate = versions.Success && IsVersionNewerThanApplicationVersion(versions?.Groups?[1].Value);
+                    isoutofdate = versions.Success && (App.Version != versions?.Groups?[1].Value);
 
                     // ignore revision, build should be enough
                     // if ((revis != -1) && (revis > App.Version.ProductPrivatePart)) return true;
@@ -617,38 +616,10 @@ namespace TEdit.ViewModel
 
         }
 
-        private bool IsVersionNewerThanApplicationVersion(string version)
-        {
-            version = version.TrimStart('v');
-
-            string[] split = version.Split('.');
-
-            if (split.Length < 3) return false; // SBLogic -- accept revision part if present
-
-            int major;
-            int minor;
-            int build;
-            int revis = -1;
-
-            if (!int.TryParse(split[0], out major)) return false;
-            if (!int.TryParse(split[1], out minor)) return false;
-            if (!int.TryParse(split[2], out build)) return false;
-
-            if ((split.Length == 4) && (split[3].Length > 0) && (!int.TryParse(split[3], out revis))) return false;
-
-            if (major > App.Version.ProductMajorPart) return true;
-            if (minor > App.Version.ProductMinorPart) return true;
-            if (build > App.Version.ProductBuildPart) return true;
-            if (revis > App.Version.ProductPrivatePart) return true;
-
-            return false;
-        }
-
         private ICommand _analyzeWorldCommand;
         private ICommand _analyzeWorldSaveCommand;
         private ICommand _tallyCountCommand;
         private ICommand _tallyCountSaveCommand;
-
 
         /// <summary>
         /// Relay command to execute AnalyzeWorldSave.

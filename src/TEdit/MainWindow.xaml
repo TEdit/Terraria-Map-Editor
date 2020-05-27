@@ -126,12 +126,14 @@
                 <View:ToolSelectorView />
             </StackPanel>
             <DockPanel DockPanel.Dock="Top" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                <Border DockPanel.Dock="Right" BorderThickness="1" BorderBrush="{StaticResource SolidBorderBrush}" Background="{StaticResource ControlBackgroundBrush}">
-                    <Grid  Width="200" Height="75">
-                        <Image Source="{Binding MinimapImage}" Stretch="UniformToFill" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" RenderOptions.BitmapScalingMode="Linear" />
-
-                    </Grid>
-                </Border>
+                <StackPanel Orientation="Horizontal" DockPanel.Dock="Right">
+                    <Border  BorderThickness="1" BorderBrush="{StaticResource SolidBorderBrush}" Background="{StaticResource ControlBackgroundBrush}">
+                        <Grid  Width="200" Height="75">
+                            <Image Source="{Binding MinimapImage}" Stretch="UniformToFill" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" RenderOptions.BitmapScalingMode="Linear" />
+                        </Grid>
+                    </Border>
+                    <View:Sponsor Width="125" VerticalAlignment="Center" Margin="2 0 2 0"></View:Sponsor>
+                </StackPanel>
                 <ScrollViewer HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Hidden" Height="110">
                     <StackPanel Orientation="Horizontal">
                         <View:NpcSelectorView>
@@ -203,7 +205,7 @@
                         <ScrollViewer VerticalScrollBarVisibility="Auto">
                             <View:WorldPropertiesView HorizontalAlignment="Stretch" VerticalAlignment="Top"/>
                         </ScrollViewer>
-                    </TabItem>                   
+                    </TabItem>
                     <TabItem Header="Special Tiles">
                         <View:SpecialTileView HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
                     </TabItem>

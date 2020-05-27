@@ -1,0 +1,27 @@
+﻿<UserControl x:Class="TEdit.View.Sponsor"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:TEdit.View"
+             mc:Ignorable="d" 
+             d:DesignHeight="100" d:DesignWidth="125">
+    <StackPanel>
+        <TextBlock HorizontalAlignment="Center" Margin="4">Enjoy TEdit? Follow!</TextBlock>
+        <Button HorizontalAlignment="Center" Width="125" Click="PatreonButtonClick">
+            <Image Source="/TEdit;component/Images/Toolbar/becomepatron.png" Width="125"></Image>
+        </Button>
+        <Button HorizontalAlignment="Center" Width="125" Margin="2" Click="TwitterButtonClick" Padding="2">
+            <StackPanel Orientation="Horizontal" >
+                <Image Source="/TEdit;component/Images/Toolbar/twitter.png" Width="16" Margin="0 0 5 0" />
+                <TextBlock>@BinaryConstruct</TextBlock>
+            </StackPanel>
+        </Button>
+        <Button HorizontalAlignment="Center" Width="125" Margin="2" Click="TwitterButtonClick" Padding="2">
+            <StackPanel Orientation="Horizontal">
+                <Image Source="/TEdit;component/Images/Toolbar/github.png" Width="16" Margin="0 0 5 0" />
+                <TextBlock>TEdit GitHub</TextBlock>
+            </StackPanel>
+        </Button>
+    </StackPanel>
+</UserControl>

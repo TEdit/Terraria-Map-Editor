@@ -4,13 +4,13 @@
     <OutputType>WinExe</OutputType>
     <TargetFramework>net462</TargetFramework>
     <UseWPF>true</UseWPF>
-    <ApplicationIcon>tedit.ico</ApplicationIcon>
+    <ApplicationIcon>Images\tedit.ico</ApplicationIcon>
     <AssemblyName>TEdit</AssemblyName>
     <DefaultNamespace>TEdit</DefaultNamespace>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <LangVersion>latest</LangVersion>
     <VersionPrefix>4.0.0</VersionPrefix>
-    <VersionSuffix>beta9</VersionSuffix>
+    <VersionSuffix>beta10</VersionSuffix>
     <Platforms>AnyCPU</Platforms>
   </PropertyGroup>
 

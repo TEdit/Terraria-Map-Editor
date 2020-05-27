@@ -18,7 +18,7 @@ namespace TEdit
             DispatcherHelper.Initialize();
         }
 
-        public static FileVersionInfo Version { get; set; }
+        public static string Version { get; set; }
 
         protected override void OnStartup(StartupEventArgs e)
         {
@@ -27,7 +27,8 @@ namespace TEdit
             ErrorLogging.Log($"OS: {Environment.OSVersion}");
 
             Assembly asm = Assembly.GetExecutingAssembly();
-            Version = FileVersionInfo.GetVersionInfo(asm.Location);
+
+            Version = FileVersionInfo.GetVersionInfo(asm.Location).ProductVersion;
 
             try
             {

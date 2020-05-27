@@ -138,7 +138,7 @@ namespace TEdit.Terraria
 
                 string msg =
                     "There was an error reading the world file. This is usually caused by a corrupt save file or a world version newer than supported.\r\n\r\n" +
-                    $"TEdit v{TEdit.App.Version.FileVersion}\r\n" +
+                    $"TEdit v{TEdit.App.Version}\r\n" +
                     $"TEdit Max World: {CompatibleVersion}    Current World: {curVersion}\r\n\r\n" +
                     "Do you wish to force it to load anyway?\r\n\r\n" +
                     "WARNING: This may have unexpected results including corrupt world files and program crashes.\r\n\r\n" +
