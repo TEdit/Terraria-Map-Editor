@@ -7,6 +7,8 @@ using TEdit.ViewModel;
 using XNA = Microsoft.Xna.Framework;
 using TEdit.Terraria;
 using TEdit.Terraria.Objects;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace TEdit.Editor.Clipboard
 {
@@ -108,7 +110,7 @@ namespace TEdit.Editor.Clipboard
 
                     if (Tile.IsChest(curTile.Type))
                     {
-                        if (buffer.GetChestAtTile(x, y, curTile.Type) == null)
+                        if (buffer.GetChestAtTile(x, y) == null)
                         {
                             var anchor = world.GetAnchor(x + area.X, y + area.Y);
                             if (anchor.X == x + area.X && anchor.Y == y + area.Y)
@@ -205,7 +207,7 @@ namespace TEdit.Editor.Clipboard
                             curTile.WireBlue = buffer.Tiles[x, y].WireBlue;
                             curTile.WireYellow = buffer.Tiles[x, y].WireYellow;
                             curTile.Actuator = buffer.Tiles[x, y].Actuator;
-                            curTile.InActive = buffer.Tiles[x, y].InActive;                            
+                            curTile.InActive = buffer.Tiles[x, y].InActive;
                         }
 
                         if (!PasteEmpty && (curTile.LiquidAmount == 0 && !curTile.IsActive && curTile.Wall == 0 && !curTile.WireRed && !curTile.WireBlue && !curTile.WireGreen && !curTile.WireYellow))
@@ -279,7 +281,7 @@ namespace TEdit.Editor.Clipboard
                             {
                                 if (world.GetChestAtTile(x + anchor.X, y + anchor.Y) == null)
                                 {
-                                    var data = buffer.GetChestAtTile(x, y, curTile.Type);
+                                    var data = buffer.GetChestAtTile(x, y);
                                     if (data != null) // allow? chest copying may not work...
                                     {
                                         // Copied chest
@@ -340,7 +342,8 @@ namespace TEdit.Editor.Clipboard
         public void Flip(ClipboardBuffer buffer, bool flipX)
         {
             ClipboardBuffer flippedBuffer = new ClipboardBuffer(buffer.Size);
-            
+            var sprites = new Dictionary<Vector2Int32, Sprite>();
+
             for (int x = 0, maxX = buffer.Size.X - 1; x <= maxX; x++)
             {
                 for (int y = 0, maxY = buffer.Size.Y - 1; y <= maxY; y++)
@@ -360,8 +363,20 @@ namespace TEdit.Editor.Clipboard
                     }
 
                     Tile tile = (Tile)buffer.Tiles[x, y].Clone();
+                    var tileProperties = World.TileProperties[tile.Type];
+                    Vector2Short tileSize = tileProperties.FrameSize;
 
-                    Vector2Short tileSize = World.TileProperties[tile.Type].FrameSize;
+                    // locate all the sprites and make a list
+                    if (tileProperties.IsFramed)
+                    {
+                        var loc = new Vector2Int32(x, y);
+                        var uv = tile.GetUV();
+                        if (tileProperties.IsOrigin(uv, out var frame))
+                        {
+                            var sprite = World.Sprites.FirstOrDefault(s => s.Tile == tile.Type && s.Origin == uv);
+                            sprites[loc] = sprite;
+                        }
+                    }
 
                     if (flipX)
                     {
@@ -383,7 +398,7 @@ namespace TEdit.Editor.Clipboard
                             case BrickStyle.SlopeBottomLeft:
                                 tile.BrickStyle = BrickStyle.SlopeBottomRight;
                                 break;
-                        }                        
+                        }
                     }
 
                     else
@@ -413,6 +428,39 @@ namespace TEdit.Editor.Clipboard
                 }
             }
 
+            foreach (var sprite in sprites)
+            {
+                var flipOrigin = FlipSprite(buffer.Size, sprite.Key, sprite.Value.Size, flipX);
+                Sprite.PlaceSprite(flipOrigin.X, flipOrigin.Y, sprite.Value, flippedBuffer);
+            }
+
+            foreach (var chest in buffer.Chests)
+            {
+                var flipOrigin = FlipSprite(buffer.Size, new Vector2Int32(chest.X,chest.Y), new Vector2Short(2,2), flipX);
+                chest.X = flipOrigin.X;
+                chest.Y = flipOrigin.Y;
+                flippedBuffer.Chests.Add(chest);
+            }
+
+            foreach (var sign in buffer.Signs)
+            {
+                var flipOrigin = FlipSprite(buffer.Size, new Vector2Int32(sign.X, sign.Y), new Vector2Short(2, 2), flipX);
+                sign.X = flipOrigin.X;
+                sign.Y = flipOrigin.Y;
+                flippedBuffer.Signs.Add(sign);
+            }
+
+            foreach (var te in buffer.TileEntities)
+            {
+                var tileProperties = World.TileProperties[(int)te.TileType];
+                Vector2Short tileSize = tileProperties.FrameSize;
+
+                var flipOrigin = FlipSprite(buffer.Size, new Vector2Int32(te.PosX, te.PosY), tileSize, flipX);
+                te.PosX = (short)flipOrigin.X;
+                te.PosY = (short)flipOrigin.Y;
+                flippedBuffer.TileEntities.Add(te);
+            }
+
             // Replace the existing buffer with the new one
             int bufferIndex = LoadedBuffers.IndexOf(buffer);
             if (bufferIndex > -1)
@@ -428,6 +476,32 @@ namespace TEdit.Editor.Clipboard
                 Buffer = flippedBuffer;
                 _wvm.PreviewChange();
             }
+        }
+
+        private Vector2Int32 FlipSprite(Vector2Int32 totalSize, Vector2Int32 vector, Vector2Short size, bool flipX)
+        {
+            var maxX = totalSize.X - 1;
+            var maxY = totalSize.Y - 1;
+
+            int bufferX;
+            int bufferY;
+
+            if (flipX)
+            {
+                bufferX = maxX - vector.X;
+                bufferY = vector.Y;
+
+                bufferX -= size.X - 1;
+            }
+            else
+            {
+                bufferX = vector.X;
+                bufferY = maxY - vector.Y;
+
+                bufferY -= size.Y - 1;
+            }
+
+            return new Vector2Int32(bufferX, bufferY);
         }
 
         protected void ClearTile(Tile tile)

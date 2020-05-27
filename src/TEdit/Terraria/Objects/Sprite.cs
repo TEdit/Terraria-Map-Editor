@@ -3,6 +3,7 @@ using System.Windows.Media.Imaging;
 using TEdit.Geometry.Primitives;
 using GalaSoft.MvvmLight;
 using TEdit.ViewModel;
+using TEdit.Editor;
 
 namespace TEdit.Terraria.Objects
 {
@@ -139,7 +140,7 @@ namespace TEdit.Terraria.Objects
             }
         }
 
-        public static void PlaceSprite(int destinationX, int destinationY, Sprite sprite, World world)
+        public static void PlaceSprite(int destinationX, int destinationY, Sprite sprite, ITileData world)
         {
             if (sprite.Tile == (ushort)TileType.ChristmasTree)
             {

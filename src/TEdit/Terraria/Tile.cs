@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
+using TEdit.Geometry.Primitives;
 
 namespace TEdit.Terraria
 {
@@ -143,6 +144,8 @@ namespace TEdit.Terraria
         //    }
         //}
         #endregion
+
+        public Vector2Short GetUV() => new Vector2Short(U, V);
 
         public object Clone()
         {

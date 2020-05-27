@@ -10,7 +10,7 @@ using TEdit.Terraria;
 
 namespace TEdit.Editor.Clipboard
 {
-    public partial class ClipboardBuffer : ObservableObject
+    public partial class ClipboardBuffer : ObservableObject, ITileData
     {
         public static int ClipboardRenderSize = 512;
 
@@ -79,7 +79,7 @@ namespace TEdit.Editor.Clipboard
             get { return _tileEntities; }
         }
         // since we are using these functions to add chests into the world we don't need to check all spots, only the anchor spot
-        public Chest GetChestAtTile(int x, int y, int tileType)
+        public Chest GetChestAtTile(int x, int y)
         {
             return Chests.FirstOrDefault(c => (c.X == x) && (c.Y == y));
         }

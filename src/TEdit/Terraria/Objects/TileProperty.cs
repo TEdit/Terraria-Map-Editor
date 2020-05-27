@@ -3,6 +3,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using TEdit.Geometry.Primitives;
 using GalaSoft.MvvmLight;
+using System.Linq;
 
 namespace TEdit.Terraria.Objects
 {
@@ -59,6 +60,13 @@ namespace TEdit.Terraria.Objects
         {
             get { return _isLight; }
             set { Set("IsLight", ref _isLight, value); }
+        }
+
+        public bool IsOrigin(Vector2Short uv, out FrameProperty frame)
+        {
+            frame = Frames.FirstOrDefault(f => f.UV == uv);
+            
+            return frame != null;
         }
 
         public bool IsSolidTop

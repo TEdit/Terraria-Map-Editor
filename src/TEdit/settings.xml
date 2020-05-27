@@ -4392,6 +4392,15 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="1295,54" Name="Boss Trophy" Variety="Betsy Trophy" />
         <Frame UV="1350,54" Name="Boss Trophy" Variety="Dark Mage Trophy" />
         <Frame UV="1404,54" Name="Boss Trophy" Variety="Ogre Trophy" />
+        <Frame UV="1458,54" Name="Painting" Variety="Unknown" />
+        <Frame UV="1512,54" Name="Painting" Variety="Unknown" />
+        <Frame UV="1566,54" Name="Painting" Variety="Unknown" />
+        <Frame UV="1620,54" Name="Painting" Variety="Unknown" />
+        <Frame UV="1674,54" Name="Painting" Variety="Unknown" />
+        <Frame UV="1728,54" Name="Painting" Variety="Unknown" />
+        <Frame UV="1782,54" Name="Painting" Variety="Unknown" />
+        <Frame UV="1836,54" Name="Painting" Variety="Unknown" />
+        <Frame UV="1890,54" Name="Painting" Variety="Unknown" />
       </Frames>
     </Tile>
     <Tile Id="241" Color="#FF4D4A48" Name="Catacomb" Framed="true" Size="4,3" >
@@ -4446,6 +4455,23 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="108,504" Name="Painting" Variety="Snowfellas" />
         <Frame UV="108,576" Name="Painting" Variety="The Season" />
         <Frame UV="108,648" Name="Painting" Variety="Not a Kid, nor a Squid" />
+        <Frame UV="108,720"  Name="Painting" Variety="Painting" />
+        <Frame UV="108,792"  Name="Painting" Variety="Painting" />
+        <Frame UV="108,864"  Name="Painting" Variety="Painting" />
+        <Frame UV="108,936"  Name="Painting" Variety="Painting" />
+        <Frame UV="108,1008" Name="Painting" Variety="Painting" />
+        <Frame UV="108,1080" Name="Painting" Variety="Painting" />
+        <Frame UV="108,1152" Name="Painting" Variety="Painting" />
+        <Frame UV="108,1224" Name="Painting" Variety="Painting" />
+        <Frame UV="108,1296" Name="Painting" Variety="Painting" />
+        <Frame UV="108,1368" Name="Painting" Variety="Painting" />
+        <Frame UV="108,1440" Name="Painting" Variety="Painting" />
+        <Frame UV="108,1512" Name="Painting" Variety="Painting" />
+        <Frame UV="108,1584" Name="Hanging"  Variety="Painting" />
+        <Frame UV="108,1656" Name="Hanging"  Variety="Painting" />
+        <Frame UV="108,1728" Name="Hanging"  Variety="Painting" />
+        <Frame UV="108,1800" Name="Hanging"  Variety="Painting" />
+        <Frame UV="108,1872" Name="Painting" Variety="Painting" />
       </Frames>
     </Tile>
     <Tile Id="243" Color="#FF8CB3FE" Name="Imbuing Station" Framed="true" Size="3,3" />

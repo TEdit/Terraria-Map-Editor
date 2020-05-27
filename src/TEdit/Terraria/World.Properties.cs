@@ -2,12 +2,18 @@
 using System.Collections.ObjectModel;
 using System.Linq;
 using GalaSoft.MvvmLight;
+using TEdit.Editor;
+using TEdit.Geometry.Primitives;
 using TEdit.Terraria.Objects;
 
 namespace TEdit.Terraria
 {
-    public partial class World : ObservableObject
+    public partial class World : ObservableObject, ITileData
     {
+        public Vector2Int32 Size => new Vector2Int32(TilesWide, TilesHigh);
+
+        Tile[,] ITileData.Tiles => this.Tiles;
+
         // backgrounds
         // 0 = tree 1 2 3 31 4 5 51 6 7 71 72 73 8
         // 1 = corruption 1

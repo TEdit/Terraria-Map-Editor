@@ -8,10 +8,11 @@ using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Threading;
 using TEdit.Terraria.Objects;
 using TEdit.MvvmLight.Threading;
+using TEdit.Editor;
 
 namespace TEdit.Terraria
 {
-    public partial class World : ObservableObject
+    public partial class World : ObservableObject, ITileData
     {
         private static readonly object _fileLock = new object();
         /// <summary>
@@ -162,12 +163,10 @@ namespace TEdit.Terraria
             return ValidTileLocation(v.X, v.Y);
         }
 
-
         public bool ValidTileLocation(int x, int y)
         {
             return (x >= 0 && y >= 0 && y < _tilesHigh && x < _tilesWide);
         }
-
 
         public Chest GetChestAtTile(int x, int y)
         {
