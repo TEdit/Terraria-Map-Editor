@@ -545,10 +545,10 @@
             <TextBlock Text="Tree Styles" HorizontalAlignment="Right" />
         </DockPanel>
         <DockPanel>
-            <ComboBox Height="20" Width="40" ItemsSource="{StaticResource TreeStyleList}" SelectedValue="{Binding CurrentWorld.TreeStyle0, Mode=TwoWay}" SelectedValuePath="Value" />
-            <ComboBox Height="20" Width="40" ItemsSource="{StaticResource TreeStyleList}" SelectedValue="{Binding CurrentWorld.TreeStyle1, Mode=TwoWay}" SelectedValuePath="Value" />
-            <ComboBox Height="20" Width="40" ItemsSource="{StaticResource TreeStyleList}" SelectedValue="{Binding CurrentWorld.TreeStyle2, Mode=TwoWay}" SelectedValuePath="Value" />
-            <ComboBox Height="20" Width="40" ItemsSource="{StaticResource TreeStyleList}" SelectedValue="{Binding CurrentWorld.TreeStyle3, Mode=TwoWay}" SelectedValuePath="Value" />
+            <ComboBox Height="20" Width="40" ItemsSource="{StaticResource TreeStyleList}" SelectedValue="{Binding CurrentWorld.TreeStyle0, Mode=TwoWay, Converter={StaticResource ByteIntConverter}}" SelectedValuePath="Value" />
+            <ComboBox Height="20" Width="40" ItemsSource="{StaticResource TreeStyleList}" SelectedValue="{Binding CurrentWorld.TreeStyle1, Mode=TwoWay, Converter={StaticResource ByteIntConverter}}" SelectedValuePath="Value" />
+            <ComboBox Height="20" Width="40" ItemsSource="{StaticResource TreeStyleList}" SelectedValue="{Binding CurrentWorld.TreeStyle2, Mode=TwoWay, Converter={StaticResource ByteIntConverter}}" SelectedValuePath="Value" />
+            <ComboBox Height="20" Width="40" ItemsSource="{StaticResource TreeStyleList}" SelectedValue="{Binding CurrentWorld.TreeStyle3, Mode=TwoWay, Converter={StaticResource ByteIntConverter}}" SelectedValuePath="Value" />
         </DockPanel>
         <Separator Grid.ColumnSpan="2" />
         <DockPanel>
@@ -576,18 +576,18 @@
             <TextBlock Text="Cave Styles" HorizontalAlignment="Right" />
         </DockPanel>
         <DockPanel>
-            <ComboBox Height="20" Width="40" ItemsSource="{StaticResource CaveStyleList}" SelectedValue="{Binding CurrentWorld.CaveBackStyle0, Mode=TwoWay}" SelectedValuePath="Value" />
-            <ComboBox Height="20" Width="40" ItemsSource="{StaticResource CaveStyleList}" SelectedValue="{Binding CurrentWorld.CaveBackStyle1, Mode=TwoWay}" SelectedValuePath="Value" />
-            <ComboBox Height="20" Width="40" ItemsSource="{StaticResource CaveStyleList}" SelectedValue="{Binding CurrentWorld.CaveBackStyle2, Mode=TwoWay}" SelectedValuePath="Value" />
-            <ComboBox Height="20" Width="40" ItemsSource="{StaticResource CaveStyleList}" SelectedValue="{Binding CurrentWorld.CaveBackStyle3, Mode=TwoWay}" SelectedValuePath="Value" />
+            <ComboBox Height="20" Width="40" ItemsSource="{StaticResource CaveStyleList}" SelectedValue="{Binding CurrentWorld.CaveBackStyle0, Mode=TwoWay, Converter={StaticResource ByteIntConverter}}" SelectedValuePath="Value" />
+            <ComboBox Height="20" Width="40" ItemsSource="{StaticResource CaveStyleList}" SelectedValue="{Binding CurrentWorld.CaveBackStyle1, Mode=TwoWay, Converter={StaticResource ByteIntConverter}}" SelectedValuePath="Value" />
+            <ComboBox Height="20" Width="40" ItemsSource="{StaticResource CaveStyleList}" SelectedValue="{Binding CurrentWorld.CaveBackStyle2, Mode=TwoWay, Converter={StaticResource ByteIntConverter}}" SelectedValuePath="Value" />
+            <ComboBox Height="20" Width="40" ItemsSource="{StaticResource CaveStyleList}" SelectedValue="{Binding CurrentWorld.CaveBackStyle3, Mode=TwoWay, Converter={StaticResource ByteIntConverter}}" SelectedValuePath="Value" />
         </DockPanel>
         <Separator Grid.ColumnSpan="2" />
         <TextBlock Text="Deep Ice BG" HorizontalAlignment="Right" />
-        <ComboBox Height="20" Width="40" HorizontalAlignment="Left" ItemsSource="{StaticResource IceBackStyleList}" SelectedValue="{Binding CurrentWorld.IceBackStyle, Mode=TwoWay}" SelectedValuePath="Value" />
+        <ComboBox Height="20" Width="40" HorizontalAlignment="Left" ItemsSource="{StaticResource IceBackStyleList}" SelectedValue="{Binding CurrentWorld.IceBackStyle, Mode=TwoWay, Converter={StaticResource ByteIntConverter}}" SelectedValuePath="Value" />
         <TextBlock Text="Deep Jungle BG" HorizontalAlignment="Right" />
-        <ComboBox Height="20" Width="40" HorizontalAlignment="Left" ItemsSource="{StaticResource JungleBackStyleList}" SelectedValue="{Binding CurrentWorld.JungleBackStyle, Mode=TwoWay}" SelectedValuePath="Value" />
+        <ComboBox Height="20" Width="40" HorizontalAlignment="Left" ItemsSource="{StaticResource JungleBackStyleList}" SelectedValue="{Binding CurrentWorld.JungleBackStyle, Mode=TwoWay, Converter={StaticResource ByteIntConverter}}" SelectedValuePath="Value" />
         <TextBlock Text="Hell BG" HorizontalAlignment="Right" />
-        <ComboBox Height="20" Width="40" HorizontalAlignment="Left" ItemsSource="{StaticResource HellBackStyleList}" SelectedValue="{Binding CurrentWorld.HellBackStyle, Mode=TwoWay}" SelectedValuePath="Value" />
+        <ComboBox Height="20" Width="40" HorizontalAlignment="Left" ItemsSource="{StaticResource HellBackStyleList}" SelectedValue="{Binding CurrentWorld.HellBackStyle, Mode=TwoWay, Converter={StaticResource ByteIntConverter}}" SelectedValuePath="Value" />
         <TextBlock Text="Forest BG" HorizontalAlignment="Right" />
         <ComboBox Height="20" Width="40" HorizontalAlignment="Left" ItemsSource="{StaticResource TreeBGStyleList}" SelectedValue="{Binding CurrentWorld.BgTree, Mode=TwoWay}" SelectedValuePath="Value" />
         <TextBlock Text="Corrupt BG" HorizontalAlignment="Right" />
