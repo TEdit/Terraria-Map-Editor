@@ -155,9 +155,11 @@ namespace TEdit.Terraria
                 curTile.IsSolid = (bool?)xElement.Attribute("Solid") ?? false;
                 curTile.IsSolidTop = (bool?)xElement.Attribute("SolidTop") ?? false;
                 curTile.IsLight = (bool?)xElement.Attribute("Light") ?? false;
+                curTile.IsAnimated = (bool?)xElement.Attribute("IsAnimated") ?? false;
                 curTile.FrameSize = StringToVector2Short((string)xElement.Attribute("Size"), 1, 1);
                 curTile.Placement = InLineEnumTryParse<FramePlacement>((string)xElement.Attribute("Placement"));
                 curTile.TextureGrid = StringToVector2Short((string)xElement.Attribute("TextureGrid"), 16, 16);
+                curTile.FrameGap = StringToVector2Short((string)xElement.Attribute("FrameGap"), 0, 0);
                 curTile.IsGrass = "Grass".Equals((string)xElement.Attribute("Special")); /* Heathtech */
                 curTile.IsPlatform = "Platform".Equals((string)xElement.Attribute("Special")); /* Heathtech */
                 curTile.IsCactus = "Cactus".Equals((string)xElement.Attribute("Special")); /* Heathtech */
@@ -572,6 +574,9 @@ namespace TEdit.Terraria
         {
             get { return _itemLookup; }
         }
+
+        public static ObservableCollection<SpriteFull> Sprites2 { get; } = new ObservableCollection<SpriteFull>();
+
 
         public static ObservableCollection<Sprite> Sprites
         {

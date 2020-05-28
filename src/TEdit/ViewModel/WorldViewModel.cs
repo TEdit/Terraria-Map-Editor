@@ -33,6 +33,7 @@ using MessageBox = System.Windows.MessageBox;
 using OpenFileDialog = Microsoft.Win32.OpenFileDialog;
 using SaveFileDialog = Microsoft.Win32.SaveFileDialog;
 using Timer = System.Timers.Timer;
+using System.Collections.Generic;
 
 namespace TEdit.ViewModel
 {
@@ -65,6 +66,8 @@ namespace TEdit.ViewModel
         private string _selectedPoint;
         private Sign _selectedSign;
         private Sprite _selectedSprite;
+        private KeyValuePair<int, SpriteSub> _selectedSprite2;
+        private SpriteFull _selectedSpriteTile2;
         private Vector2Int32 _selectedXmas;
         private int _selectedXmasStar;
         private int _selectedXmasGarland;
@@ -86,6 +89,7 @@ namespace TEdit.ViewModel
         private bool _showYellowWires = true;
         private string _spriteFilter;
         private ListCollectionView _spritesView;
+        private ListCollectionView _spritesView2;
         private ICommand _viewLogCommand;
         private string _windowTitle;
         private ICommand _checkUpdatesCommand;
@@ -107,7 +111,9 @@ namespace TEdit.ViewModel
         public WorldViewModel()
         {
             if (IsInDesignModeStatic)
+            {
                 return;
+            }
 
             CheckUpdates = Settings.Default.CheckUpdates;
 
@@ -148,6 +154,26 @@ namespace TEdit.ViewModel
                 return false;
             };
 
+            _spritesView2 = (ListCollectionView)CollectionViewSource.GetDefaultView(World.Sprites2);
+            _spritesView2.Filter = o =>
+            {
+                if (string.IsNullOrWhiteSpace(_spriteFilter)) return true;
+
+                var sprite = (SpriteFull)o;
+
+                string[] _spriteFilterSplit = _spriteFilter.Split('/');
+                foreach (string _spriteWord in _spriteFilterSplit)
+                {
+                    if (sprite.Name == _spriteWord) return true;
+                    if (sprite.Name != null && sprite.Name.IndexOf(_spriteWord, StringComparison.OrdinalIgnoreCase) >= 0) return true;
+                }
+
+                if (sprite.Name == _spriteFilter) return true;
+                if (sprite.Name != null && sprite.Name.IndexOf(_spriteFilter, StringComparison.OrdinalIgnoreCase) >= 0) return true;
+
+                return false;
+            };
+
             _saveTimer.AutoReset = true;
             _saveTimer.Elapsed += SaveTimerTick;
             // 3 minute save timer
@@ -178,6 +204,12 @@ namespace TEdit.ViewModel
             set { Set("SpritesView", ref _spritesView, value); }
         }
 
+        public ListCollectionView SpritesView2
+        {
+            get { return _spritesView2; }
+            set { Set("SpritesView", ref _spritesView2, value); }
+        }
+
         public string SpriteFilter
         {
             get { return _spriteFilter; }
@@ -186,6 +218,7 @@ namespace TEdit.ViewModel
                 Set("SpriteFilter", ref _spriteFilter, value);
 
                 SpritesView.Refresh();
+                SpritesView2.Refresh();
             }
         }
 
@@ -339,6 +372,25 @@ namespace TEdit.ViewModel
             set { Set("ShowTextures", ref _showTextures, value); }
         }
 
+        public KeyValuePair<int,SpriteSub> SelectedSprite2
+        {
+            get { return _selectedSprite2; }
+            set
+            {
+                Set("SelectedSprite2", ref _selectedSprite2, value);
+                PreviewChange();
+            }
+        }
+
+        public SpriteFull SelectedSpriteTile2
+        {
+            get { return _selectedSpriteTile2; }
+            set
+            {
+                Set("SelectedSpriteTile2", ref _selectedSpriteTile2, value);
+                PreviewChange();
+            }
+        }
 
         public Sprite SelectedSprite
         {

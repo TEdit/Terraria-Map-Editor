@@ -673,6 +673,17 @@ namespace TEdit.Geometry.Primitives
             return true;
         }
 
+        public readonly static Vector2Short Zero = new Vector2Short(0,0);
+        public short Height => Y;
+        public short Width => X;
+
+        public static Vector2Short operator +(Vector2Short a, Vector2Short b) => new Vector2Short((short)(a.X + b.X), (short)(a.Y + b.Y));
+        public static Vector2Short operator -(Vector2Short a, Vector2Short b) => new Vector2Short((short)(a.X - b.X), (short)(a.Y - b.Y));
+        public static Vector2Short operator *(Vector2Short a, Vector2Short b) => new Vector2Short((short)(a.X * b.X), (short)(a.Y * b.Y));
+        public static Vector2Short operator /(Vector2Short a, Vector2Short b) => new Vector2Short((short)(a.X / b.X), (short)(a.Y / b.Y));
+        public static Vector2Short operator *(Vector2Short a, short b) => new Vector2Short((short)(a.X * b), (short)(a.Y * b));
+        public static Vector2Short operator /(Vector2Short a, short b) => new Vector2Short((short)(a.X / b), (short)(a.Y / b));
+
         #region Equality
         public bool Equals(Vector2Short other)
         {

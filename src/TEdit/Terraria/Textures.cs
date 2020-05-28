@@ -11,46 +11,28 @@ namespace TEdit.Terraria
     public class Textures
     {
         private readonly GraphicsDevice _gdDevice;
-        private readonly Dictionary<int, Texture2D> _tiles = new Dictionary<int, Texture2D>();
-        private readonly Dictionary<int, Texture2D> _backgrounds = new Dictionary<int, Texture2D>();
-        private readonly Dictionary<int, Texture2D> _underworld = new Dictionary<int, Texture2D>();
-        private readonly Dictionary<int, Texture2D> _walls = new Dictionary<int, Texture2D>();
-        private readonly Dictionary<int, Texture2D> _trees = new Dictionary<int, Texture2D>();
-        private readonly Dictionary<int, Texture2D> _treeTops = new Dictionary<int, Texture2D>();
-        private readonly Dictionary<int, Texture2D> _treeBranches = new Dictionary<int, Texture2D>();
-        private readonly Dictionary<int, Texture2D> _shrooms = new Dictionary<int, Texture2D>();
-        private readonly Dictionary<int, Texture2D> _npcs = new Dictionary<int, Texture2D>();
-        private readonly Dictionary<int, Texture2D> _liquids = new Dictionary<int, Texture2D>(); /* Heathtech */
-        private readonly Dictionary<string, Texture2D> _misc = new Dictionary<string, Texture2D>(); /* Heathtech */
-        private readonly Dictionary<int, Texture2D> _armorHead = new Dictionary<int, Texture2D>();
-        private readonly Dictionary<int, Texture2D> _armorBody = new Dictionary<int, Texture2D>();
-        private readonly Dictionary<int, Texture2D> _armorFemale = new Dictionary<int, Texture2D>();
-        private readonly Dictionary<int, Texture2D> _armorLegs = new Dictionary<int, Texture2D>();
-        private readonly Dictionary<int, Texture2D> _item = new Dictionary<int, Texture2D>();
 
-        public Dictionary<int, Texture2D> Tiles { get { return _tiles; } }
-        public Dictionary<int, Texture2D> Underworld { get { return _underworld; } }
-        public Dictionary<int, Texture2D> Backgrounds { get { return _backgrounds; } }
-        public Dictionary<int, Texture2D> Walls { get { return _walls; } }
-        public Dictionary<int, Texture2D> Trees { get { return _trees; } }
-        public Dictionary<int, Texture2D> TreeTops { get { return _treeTops; } }
-        public Dictionary<int, Texture2D> TreeBranches { get { return _treeBranches; } }
-        public Dictionary<int, Texture2D> Shrooms { get { return _shrooms; } }
-        public Dictionary<int, Texture2D> Npcs { get { return _npcs; } }
-        public Dictionary<int, Texture2D> Liquids { get { return _liquids; } } /* Heathtech */
-        public Dictionary<string, Texture2D> Misc { get { return _misc; } } /* Heathtech */
-        public Dictionary<int, Texture2D> ArmorHead { get { return _armorHead; } }
-        public Dictionary<int, Texture2D> ArmorBody { get { return _armorBody; } }
-        public Dictionary<int, Texture2D> ArmorFemale { get { return _armorFemale; } }
-        public Dictionary<int, Texture2D> ArmorLegs { get { return _armorLegs; } }
-        public Dictionary<int, Texture2D> Item { get { return _item; } }
+        public Dictionary<int, Texture2D> Moon { get; } = new Dictionary<int, Texture2D>();
+        public Dictionary<int, Texture2D> Tiles { get; } = new Dictionary<int, Texture2D>();
+        public Dictionary<int, Texture2D> Underworld { get; } = new Dictionary<int, Texture2D>();
+        public Dictionary<int, Texture2D> Backgrounds { get; } = new Dictionary<int, Texture2D>();
+        public Dictionary<int, Texture2D> Walls { get; } = new Dictionary<int, Texture2D>();
+        public Dictionary<int, Texture2D> Trees { get; } = new Dictionary<int, Texture2D>();
+        public Dictionary<int, Texture2D> TreeTops { get; } = new Dictionary<int, Texture2D>();
+        public Dictionary<int, Texture2D> TreeBranches { get; } = new Dictionary<int, Texture2D>();
+        public Dictionary<int, Texture2D> Shrooms { get; } = new Dictionary<int, Texture2D>();
+        public Dictionary<int, Texture2D> Npcs { get; } = new Dictionary<int, Texture2D>();
+        public Dictionary<int, Texture2D> Liquids { get; } = new Dictionary<int, Texture2D>(); 
+        public Dictionary<string, Texture2D> Misc { get; } = new Dictionary<string, Texture2D>();
+        public Dictionary<int, Texture2D> ArmorHead { get; } = new Dictionary<int, Texture2D>();
+        public Dictionary<int, Texture2D> ArmorBody { get; } = new Dictionary<int, Texture2D>();
+        public Dictionary<int, Texture2D> ArmorFemale { get; } = new Dictionary<int, Texture2D>();
+        public Dictionary<int, Texture2D> ArmorLegs { get; } = new Dictionary<int, Texture2D>();
+        public Dictionary<int, Texture2D> Item { get; } = new Dictionary<int, Texture2D>();
         public Texture2D Actuator { get { return _actuator ?? (_actuator = (Texture2D)GetMisc("Actuator")); } }
 
-        readonly ContentManager _cm;
-        public ContentManager ContentManager
-        {
-            get { return _cm; }
-        }
+        public ContentManager ContentManager { get; }
+
         public Textures(IServiceProvider serviceProvider, GraphicsDevice gdDevice)
         {
             _gdDevice = gdDevice;
@@ -61,57 +43,20 @@ namespace TEdit.Terraria
 
             if (Directory.Exists(path))
             {
-                _cm = new ContentManager(serviceProvider, path);
+                ContentManager = new ContentManager(serviceProvider, path);
             }
         }
-        public bool Valid
-        {
-            get { return _cm != null; }
-        }
-        public Texture2D GetTile(int num)
-        {
-            if (!Tiles.ContainsKey(num))
-            {
-                try
-                {
-                    string name = $"Images\\Tiles_{num}";
-                    Tiles[num] = LoadTexture(name);
-                }
-                catch
-                {
-                    string name = $"CustomGFX\\Tiles_{num + 50}";
-                    Tiles[num] = LoadTexture(name);
-                }
-            }
-            return Tiles[num];
-        }
-        public Texture2D GetUnderworld(int num)
-        {
-            if (!Underworld.ContainsKey(num))
-            {
-                string name = $"Images\\Backgrounds\\Underworld {num}";
-                Underworld[num] = LoadTexture(name);
-            }
-            return Underworld[num];
-        }
-        public Texture2D GetBackground(int num)
-        {
-            if (!Backgrounds.ContainsKey(num))
-            {
-                string name = $"Images\\Background_{num}";
-                Backgrounds[num] = LoadTexture(name);
-            }
-            return Backgrounds[num];
-        }
-        public Texture2D GetWall(int num)
-        {
-            if (!Walls.ContainsKey(num))
-            {
-                string name = $"Images\\Wall_{num}";
-                Walls[num] = LoadTexture(name);
-            }
-            return Walls[num];
-        }
+
+        public bool Valid => ContentManager != null;
+
+        public Texture2D GetTile(int num) => GetTextureById(Tiles, num, "Images\\Tiles_{0}");
+
+        public Texture2D GetUnderworld(int num) => GetTextureById(Underworld, num, "Images\\Backgrounds\\Underworld {0}");
+
+        public Texture2D GetBackground(int num) => GetTextureById(Backgrounds, num, "Images\\Background_{0}");
+
+        public Texture2D GetWall(int num) => GetTextureById(Walls, num, "Images\\Wall_{0}");
+
         public Texture2D GetTree(int num)
         {
             if (!Trees.ContainsKey(num))
@@ -129,106 +74,39 @@ namespace TEdit.Terraria
             }
             return Trees[num];
         }
-        public Texture GetTreeTops(int num)
+        public Texture GetTreeTops(int num) => GetTextureById(TreeTops, num, "Images\\Tree_Tops_{0}");
+
+        public Texture GetTreeBranches(int num) => GetTextureById(TreeBranches, num, "Images\\Tree_Branches_{0}");
+
+        public Texture GetShroomTop(int num) => GetTextureById(Shrooms, num, "Images\\Shroom_Tops");
+
+        public Texture GetNPC(int num) => GetTextureById(Npcs, num, "Images\\NPC_{0}");
+
+        public Texture GetLiquid(int num) => GetTextureById(Liquids, num, "Images\\Liquid_{0}");
+
+        public Texture GetMisc(string name) => GetTextureById(Misc, name, "Images\\{0}");
+
+        public Texture GetArmorHead(int num) => GetTextureById(ArmorHead, num, "Images\\Armor_Head_{0}");
+
+        public Texture GetArmorBody(int num) => GetTextureById(ArmorBody, num, "Images\\Armor_Body_{0}");
+
+        public Texture GetArmorFemale(int num) => GetTextureById(ArmorFemale, num, "Images\\Female_Body_{0}");
+
+        public Texture GetArmorLegs(int num) => GetTextureById(ArmorLegs, num, "Images\\Armor_Legs_{0}");
+
+        public Texture2D GetItem(int num) => GetTextureById(Item, num, "Images\\Item_{0}");
+
+        public Texture2D GetMoon(int num) => GetTextureById(Moon, num, "Images\\Moon_{0}");
+
+        private Texture2D GetTextureById<T>(Dictionary<T, Texture2D> collection, T id, string path)
         {
-            if (!TreeTops.ContainsKey(num))
+            if (!collection.ContainsKey(id))
             {
-                string name = $"Images\\Tree_Tops_{num}";
-                TreeTops[num] = LoadTexture(name);
+                string name = string.Format(path, id);
+                collection[id] = LoadTexture(name);                
             }
-            return TreeTops[num];
-        }
-        public Texture GetTreeBranches(int num)
-        {
-            if (!TreeBranches.ContainsKey(num))
-            {
-                string name = $"Images\\Tree_Branches_{num}";
-                TreeBranches[num] = LoadTexture(name);
-            }
-            return TreeBranches[num];
-        }
-        public Texture GetShroomTop(int num)
-        {
-            if (!Shrooms.ContainsKey(num))
-            {
-                string name = String.Format("Images\\Shroom_Tops");
-                Shrooms[num] = LoadTexture(name);
-            }
-            return Shrooms[num];
-        }
-        public Texture GetNPC(int num)
-        {
-            if (!Npcs.ContainsKey(num))
-            {
-                string name = $"Images\\NPC_{num}";
-                Npcs[num] = LoadTexture(name);
-            }
-            return Npcs[num];
-        }
-        /* Heathtech */
-        public Texture GetLiquid(int num)
-        {
-            if (!Liquids.ContainsKey(num))
-            {
-                string name = $"Images\\Liquid_{num}";
-                Liquids[num] = LoadTexture(name);
-            }
-            return Liquids[num];
-        }
-        /* Heathtech */
-        public Texture GetMisc(string name)
-        {
-            if (!Misc.ContainsKey(name))
-            {
-                string texName = $"Images\\{name}";
-                Misc[name] = LoadTexture(texName);
-            }
-            return Misc[name];
-        }
-        public Texture GetArmorHead(int num)
-        {
-            if (!ArmorHead.ContainsKey(num))
-            {
-                string name = $"Images\\Armor_Head_{num}";
-                ArmorHead[num] = LoadTexture(name);
-            }
-            return ArmorHead[num];
-        }
-        public Texture GetArmorBody(int num)
-        {
-            if (!ArmorBody.ContainsKey(num))
-            {
-                string name = $"Images\\Armor_Body_{num}";
-                ArmorBody[num] = LoadTexture(name);
-            }
-            return ArmorBody[num];
-        }
-        public Texture GetArmorFemale(int num)
-        {
-            if (!ArmorFemale.ContainsKey(num))
-            {
-                string name = $"Images\\Female_Body_{num}";
-                ArmorFemale[num] = LoadTexture(name);
-            }
-            return ArmorFemale[num];
-        }
-        public Texture GetArmorLegs(int num)
-        {
-            if (!ArmorLegs.ContainsKey(num))
-            {
-                string name = $"Images\\Armor_Legs_{num}";
-                ArmorLegs[num] = LoadTexture(name);
-            }
-            return ArmorLegs[num];
-        }
-        public Texture2D GetItem(int num)
-        {
-            if (!Item.ContainsKey(num))
-            {
-                string name = $"Images\\Item_{num}";
-                Item[num] = LoadTexture(name);
-            }
-            return Item[num];
+
+            return collection[id];
         }
 
         private static Color ColorKey = Color.FromNonPremultiplied(247, 119, 249, 255);
@@ -241,7 +119,7 @@ namespace TEdit.Terraria
         {
             try
             {
-                var loadTexture = _cm.Load<Texture2D>(path);
+                var loadTexture = ContentManager.Load<Texture2D>(path);
                 var pixels = new Color[loadTexture.Height * loadTexture.Width];
                 loadTexture.GetData(pixels);
                 for (int i = 0; i < pixels.Length; i++)

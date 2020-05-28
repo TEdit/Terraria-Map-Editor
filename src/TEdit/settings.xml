@@ -1679,7 +1679,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="36,0" Anchor="Right" />
       </Frames>
     </Tile>
-    <Tile Id="21" Color="#FFE9CF5E" Name="Chest" Framed="true" Size="2,2" Placement="floor" UseFrameName="true" >
+    <Tile Id="21" Color="#FFE9CF5E" Name="Chest" TextureGrid="16,16" Framed="true" Size="2,2" Placement="floor" UseFrameName="true" FrameGap="0,2" IsAnimated="true">
       <Frames>
         <Frame UV="0,0" Name="Chest" />
         <Frame UV="36,0" Name="Gold Chest" />
@@ -4853,7 +4853,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Tile Id="402" Color="#FFAEA8BA" Name="Hallow Hardened Sand" Solid="true" Blends="true" />
     <Tile Id="403" Color="#FFCD98BA" Name="Hallow Sandstone" Solid="true" Blends="true" />
     <Tile Id="404" Color="#FF8C543C" Name="Desert Fossil" Solid="true" Blends="true" />
-    <Tile Id="405" Color="#FF8C8C8C" Name="Fireplace" Framed="true" Size="3,2" SolidTop="true" >
+    <Tile Id="405" Color="#FF8C8C8C" Name="Fireplace" Framed="true" Size="3,2" SolidTop="true" IsAnimated="true" >
       <Frames>
         <Frame UV="0,0" Variety="Lit" />
         <Frame UV="54,0" Variety="Unlit" />
@@ -5180,7 +5180,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="324,54" Name="Amber Gem Lock" Variety="Filled"/>
       </Frames>
     </Tile>
-    <Tile Id="441" Color="#FFFFFFFF" Name="Trapped Chests" Framed="true" Size="2,2" UseFrameName="true">
+    <Tile Id="441" Color="#FFFFFFFF" Name="Trapped Chests" Framed="true" Size="2,2" UseFrameName="true" IsAnimated="true">
       <Frames>
         <Frame UV="0,0" Name="Trapped Chest" />
         <Frame UV="36,0" Name="Trapped Gold Chest" />

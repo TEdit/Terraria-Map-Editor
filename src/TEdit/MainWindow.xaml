@@ -209,8 +209,11 @@
                     <TabItem Header="Special Tiles">
                         <View:SpecialTileView HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
                     </TabItem>
-                    <TabItem Header="Sprites">
+                    <!--<TabItem Header="Sprites">
                         <View:SpriteView VerticalAlignment="Stretch" HorizontalAlignment="Stretch" />
+                    </TabItem>-->
+                    <TabItem Header="Sprites">
+                        <View:SpriteView2 VerticalAlignment="Stretch" HorizontalAlignment="Stretch" />
                     </TabItem>
                     <TabItem Header="Clipboard">
                         <View:ClipboardView VerticalAlignment="Stretch" HorizontalAlignment="Stretch" />

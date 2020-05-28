@@ -4,9 +4,164 @@ using TEdit.Geometry.Primitives;
 using GalaSoft.MvvmLight;
 using TEdit.ViewModel;
 using TEdit.Editor;
+using System.Collections.Generic;
 
 namespace TEdit.Terraria.Objects
 {
+    public class SpriteSub : ObservableObject
+    {
+        public ushort Tile { get; set; }
+        public int Style { get; set; }
+        public Vector2Short UV { get; set; }
+        public WriteableBitmap Preview { get; set; }
+        public Vector2Short SizeTexture { get; set; }
+        public string Name { get; set; }
+        public bool IsPreviewTexture { get; set; }
+        public void GeneratePreview()
+        {
+            var bmp = new WriteableBitmap(SizeTexture.X, SizeTexture.Y, 96, 96, PixelFormats.Bgra32, null);
+            var c = World.TileProperties[Tile].Color;
+            bmp.Clear(Color.FromArgb(c.A, c.R, c.G, c.B));
+            Preview = bmp;
+            IsPreviewTexture = false;
+        }
+    }
+
+    public class SpriteFull : ObservableObject
+    {
+        public ushort Tile { get; set; }
+        public WriteableBitmap Preview { get; set; }
+        public string Name { get; set; }
+        public Vector2Short SizeTiles { get; set; }
+        public Vector2Short SizePixelsRender { get; set; }
+        public Vector2Short SizePixelsInterval { get; set; }
+        public Vector2Short SizeTexture { get; set; }
+        public bool IsPreviewTexture { get; set; }
+        public bool IsAnimated { get; set; }
+
+        public Dictionary<int, SpriteSub> Styles { get; } = new Dictionary<int, SpriteSub>();
+
+        public void GeneratePreview()
+        {
+            var bmp = new WriteableBitmap(SizeTexture.X, SizeTexture.Y, 96, 96, PixelFormats.Bgra32, null);
+            var c = World.TileProperties[Tile].Color;
+            bmp.Clear(Color.FromArgb(c.A, c.R, c.G, c.B));
+            Preview = bmp;
+            IsPreviewTexture = false;
+        }
+
+        private Vector2Short[,] GetTiles(int styleId)
+        {
+            Vector2Short Origin = Vector2Short.Zero;
+            if (Styles.TryGetValue(styleId, out var style))
+            {
+                Origin = style.UV;
+            }
+
+            var tiles = new Vector2Short[SizeTiles.X, SizeTiles.Y];
+            for (int x = 0; x < SizeTiles.X; x++)
+            {
+                for (int y = 0; y < SizeTiles.Y; y++)
+                {
+                    tiles[x, y] = new Vector2Short((short)((SizePixelsInterval.X) * x + Origin.X), (short)((SizePixelsInterval.Y) * y + Origin.Y));
+                }
+            }
+
+            return tiles;
+        }
+
+        public static void PlaceSprite(int destinationX, int destinationY, SpriteFull sprite, int style, WorldViewModel wvm)
+        {
+            if (sprite.Tile == (ushort)TileType.ChristmasTree)
+            {
+                for (int x = 0; x < sprite.SizeTiles.X; x++)
+                {
+                    int tilex = x + destinationX;
+                    for (int y = 0; y < sprite.SizeTiles.Y; y++)
+                    {
+                        int tiley = y + destinationY;
+                        wvm.UndoManager.SaveTile(tilex, tiley);
+                        Tile curtile = wvm.CurrentWorld.Tiles[tilex, tiley];
+                        curtile.IsActive = true;
+                        curtile.Type = sprite.Tile;
+                        if (x == 0 && y == 0)
+                            curtile.U = 10;
+                        else
+                            curtile.U = (short)x;
+                        curtile.V = (short)y;
+
+                        wvm.UpdateRenderPixel(tilex, tiley);
+                        BlendRules.ResetUVCache(wvm, tilex, tiley, sprite.SizeTiles.X, sprite.SizeTiles.Y);
+
+                    }
+                }
+            }
+            else
+            {
+                for (int x = 0; x < sprite.SizeTiles.X; x++)
+                {
+                    Vector2Short[,] tiles = sprite.GetTiles(style);
+                    int tilex = x + destinationX;
+                    for (int y = 0; y < sprite.SizeTiles.Y; y++)
+                    {
+                        int tiley = y + destinationY;
+                        wvm.UndoManager.SaveTile(tilex, tiley);
+                        Tile curtile = wvm.CurrentWorld.Tiles[tilex, tiley];
+                        curtile.IsActive = true;
+                        curtile.Type = sprite.Tile;
+                        curtile.U = tiles[x, y].X;
+                        curtile.V = tiles[x, y].Y;
+
+                        wvm.UpdateRenderPixel(tilex, tiley);
+                        BlendRules.ResetUVCache(wvm, tilex, tiley, sprite.SizeTiles.X, sprite.SizeTiles.Y);
+
+                    }
+                }
+            }
+        }
+
+        public static void PlaceSprite(int destinationX, int destinationY, SpriteFull sprite, int style, ITileData world)
+        {
+            if (sprite.Tile == (ushort)TileType.ChristmasTree)
+            {
+                for (int x = 0; x < sprite.SizeTiles.X; x++)
+                {
+                    int tilex = x + destinationX;
+                    for (int y = 0; y < sprite.SizeTiles.Y; y++)
+                    {
+                        int tiley = y + destinationY;
+                        Tile curtile = world.Tiles[tilex, tiley];
+                        curtile.IsActive = true;
+                        curtile.Type = sprite.Tile;
+                        if (x == 0 && y == 0)
+                            curtile.U = 10;
+                        else
+                            curtile.U = (short)x;
+                        curtile.V = (short)y;
+
+                    }
+                }
+            }
+            else
+            {
+                for (int x = 0; x < sprite.SizeTiles.X; x++)
+                {
+                    Vector2Short[,] tiles = sprite.GetTiles(style);
+                    int tilex = x + destinationX;
+                    for (int y = 0; y < sprite.SizeTiles.Y; y++)
+                    {
+                        int tiley = y + destinationY;
+                        Tile curtile = world.Tiles[tilex, tiley];
+                        curtile.IsActive = true;
+                        curtile.Type = sprite.Tile;
+                        curtile.U = tiles[x, y].X;
+                        curtile.V = tiles[x, y].Y;
+                    }
+                }
+            }
+        }
+    }
+
     public class Sprite : ObservableObject
     {
         private WriteableBitmap _preview;
@@ -75,7 +230,7 @@ namespace TEdit.Terraria.Objects
             IsPreviewTexture = false;
         }
 
-        public Vector2Short[,] GetTiles()
+        private Vector2Short[,] GetTiles()
         {
             var tiles = new Vector2Short[Size.X, Size.Y];
             var tileprop = World.TileProperties[Tile];

@@ -239,6 +239,126 @@ namespace TEdit.View
             //    var tileTexture = _textureDictionary.GetTile(tile.Id);
             //}
 
+            foreach (var tile in World.TileProperties)
+            {
+                if (!tile.IsFramed) { continue; }
+
+                try
+                {
+                    var sprite = new SpriteFull();
+                    var tileTex = _textureDictionary.GetTile(tile.Id);
+                    sprite.Tile = (ushort)tile.Id;
+                    // this is only for debugging, no need to load in release versions
+                    // sprite.Preview = tileTex.Texture2DToWriteableBitmap();
+                    // sprite.IsPreviewTexture = true;
+                    sprite.Name = tile.Name;
+                    sprite.SizeTiles = tile.FrameSize;
+                    sprite.SizeTexture = new Vector2Short((short)tileTex.Width, (short)tileTex.Height);
+                    sprite.SizePixelsRender = tile.TextureGrid;
+                    sprite.SizePixelsInterval = tile.TextureGrid;
+
+                    sprite.IsAnimated = tile.IsAnimated;
+
+                    if (tile.Id != 171) { sprite.SizePixelsInterval += new Vector2Short(2, 2); }
+                    World.Sprites2.Add(sprite);
+
+                    int numX = (sprite.SizeTexture.X + 2) / sprite.SizePixelsInterval.X;
+                    int numY = (sprite.SizeTexture.Y + 2) / sprite.SizePixelsInterval.Y;
+
+                    // test for animation
+                    // if this is 1 object wide, but many tall, assume animated. 
+                    // or explicitly set to animated in settings file
+                    if (numX / sprite.SizeTiles.X == 1)
+                    {
+                        sprite.IsAnimated = true;
+                    }
+
+                    if (sprite.IsAnimated)
+                    {
+                        numY = 1;
+                    }
+
+                    var texture = new Texture2D(e.GraphicsDevice, sprite.SizeTiles.X * sprite.SizePixelsRender.X, sprite.SizeTiles.Y * sprite.SizePixelsRender.Y);
+                    for (int subY = 0; subY < numY; subY += sprite.SizeTiles.Y)
+                    {
+                        for (int subX = 0; subX < numX; subX += sprite.SizeTiles.X)
+                        {
+                            int posX = (subX / sprite.SizeTiles.X);
+                            int posY = (subY / sprite.SizeTiles.Y);
+
+                            int subId = posX + (posY * (numX / sprite.SizeTiles.X));
+
+                            int originX = subX * sprite.SizePixelsInterval.X + posX * tile.FrameGap.X;
+                            int originY = subY * sprite.SizePixelsInterval.Y + posY * tile.FrameGap.Y;
+
+                            bool hasColorData = false;
+                            // render subtile (grab each "tile" and make composite texture"
+                            for (int x = 0; x < sprite.SizeTiles.X; x++)
+                            {
+                                for (int y = 0; y < sprite.SizeTiles.Y; y++)
+                                {
+                                    var source = new Rectangle(
+                                        (x * sprite.SizePixelsInterval.X) + originX,
+                                        (y * sprite.SizePixelsInterval.Y) + originY,
+                                        sprite.SizePixelsRender.X,
+                                        sprite.SizePixelsRender.Y);
+
+                                    // out of bounds checks
+                                    if (source.Bottom > tileTex.Height)
+                                        source.Height -= (source.Bottom - tileTex.Height);
+                                    if (source.Right > tileTex.Width)
+                                        source.Width -= (source.Right - tileTex.Width);
+                                    if (source.Height <= 0 || source.Width <= 0)
+                                        continue;
+
+                                    var color = new Color[source.Height * source.Width];
+                                    var dest = new Rectangle(
+                                        x * sprite.SizePixelsRender.X,
+                                        y * sprite.SizePixelsRender.Y,
+                                        source.Width,
+                                        source.Height);
+
+                                    tileTex.GetData(0, source, color, 0, color.Length);
+                                    texture.SetData(0, dest, color, 0, color.Length);
+
+
+                                    if (!hasColorData)
+                                    {
+                                        for (int i = 0; i < color.Length; i++)
+                                        {
+                                            if (color[i].PackedValue > 0)
+                                            {
+                                                hasColorData = true;
+                                                break;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+
+                            if (hasColorData)
+                            {
+                                sprite.Styles[subId] = new SpriteSub
+                                {
+                                    Tile = sprite.Tile,
+                                    SizeTexture = sprite.SizeTexture,
+                                    Name = $"{tile.Name}_{subId}",
+                                    Preview = texture.Texture2DToWriteableBitmap(),
+                                    IsPreviewTexture = true,
+                                    Style = subId,
+                                    UV = sprite.SizePixelsInterval * new Vector2Short((short)subX, (short)subY)
+                                };
+                            }
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    ErrorLogging.LogException(ex);
+                    ErrorLogging.Log(e.GraphicsDevice.GraphicsDeviceStatus.ToString());
+                }
+            }
+
             foreach (var sprite in World.Sprites)
             {
                 if (sprite.Size.X == 0 || sprite.Size.Y == 0)
@@ -250,6 +370,7 @@ namespace TEdit.View
                         continue;
                     var texture = new Texture2D(e.GraphicsDevice, sprite.Size.X * tile.TextureGrid.X, sprite.Size.Y * tile.TextureGrid.Y);
                     var tileTex = _textureDictionary.GetTile(sprite.Tile);
+
                     for (int x = 0; x < sprite.Size.X; x++)
                     {
                         for (int y = 0; y < sprite.Size.Y; y++)
@@ -1027,7 +1148,7 @@ namespace TEdit.View
                                                 {
                                                     effect = SpriteEffects.FlipHorizontally;
                                                 }
-                                                
+
 
                                                 TileEntity entity = _wvm.CurrentWorld.GetTileEntityAtTile(x, y);
                                                 if (entity != null)
@@ -1070,7 +1191,7 @@ namespace TEdit.View
                                                              1f * _zoom / 16f,
                                                              effect,
                                                              LayerTileTextures);
-                                                    }                                                 
+                                                    }
                                                 }
                                             }
                                             else if (curtile.Type == (int)TileType.ChristmasTree) // Christmas Tree

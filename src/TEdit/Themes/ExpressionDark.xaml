@@ -778,6 +778,50 @@
         </Setter>
     </Style>
 
+    <Style x:Key="ListBoxWrapPanel" TargetType="{x:Type ListBox}">
+        <Setter Property="SnapsToDevicePixels" Value="true" />
+        <Setter Property="Background" Value="{StaticResource ControlBackgroundBrush}" />
+        <Setter Property="BorderBrush">
+            <Setter.Value>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FFA3AEB9" Offset="0" />
+                    <GradientStop Color="#FF8399A9" Offset="0.375" />
+                    <GradientStop Color="#FF718597" Offset="0.375" />
+                    <GradientStop Color="#FF617584" Offset="1" />
+                </LinearGradientBrush>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Disabled" />
+        <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto" />
+        <Setter Property="ScrollViewer.CanContentScroll" Value="True" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ListBox}">
+                    <Grid>
+                        <Border x:Name="Border" BorderBrush="{TemplateBinding BorderBrush}"
+                    BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="2"
+                    Background="{DynamicResource ControlBackgroundBrush}" />
+                        <ScrollViewer Margin="1" Style="{DynamicResource NuclearScrollViewer}" Focusable="false"
+                          Background="{x:Null}">
+                            <WrapPanel Orientation="Horizontal" Margin="1,1,1,1" IsItemsHost="true" />
+                        </ScrollViewer>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsEnabled" Value="false">
+                            <Setter Property="Background" Value="{DynamicResource DisabledBackgroundBrush}"
+                      TargetName="Border" />
+                            <Setter Property="BorderBrush" Value="{DynamicResource DisabledBorderBrush}"
+                      TargetName="Border" />
+                        </Trigger>
+                        <Trigger Property="IsGrouping" Value="true">
+                            <Setter Property="ScrollViewer.CanContentScroll" Value="false" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
     <Style TargetType="{x:Type ListBox}">
         <Setter Property="SnapsToDevicePixels" Value="true" />
         <Setter Property="Background" Value="{StaticResource ControlBackgroundBrush}" />
@@ -1538,6 +1582,57 @@
         <Setter Property="SnapsToDevicePixels" Value="true" />
         <Setter Property="Template" Value="{DynamicResource ComboBoxTemplate}" />
     </Style>
+
+    <ControlTemplate x:Key="ComboBoxTemplateWrapPanel" TargetType="{x:Type ComboBox}">
+        <Grid x:Name="grid">
+            <ToggleButton Grid.Column="2" Template="{DynamicResource ComboBoxToggleButton}" x:Name="ToggleButton"
+                    Focusable="false"
+                    IsChecked="{Binding Path=IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
+                    ClickMode="Press" />
+            <ContentPresenter HorizontalAlignment="Left" Margin="3,3,23,3" x:Name="ContentSite"
+                        VerticalAlignment="Center" Content="{TemplateBinding SelectionBoxItem}"
+                        ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}"
+                        ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}" IsHitTestVisible="False" />
+            <TextBox Visibility="Hidden" Template="{DynamicResource ComboBoxTextBox}" HorizontalAlignment="Left"
+               Margin="3,3,23,3" x:Name="PART_EditableTextBox" Style="{x:Null}" VerticalAlignment="Center" Focusable="True"
+               Background="{TemplateBinding Background}" IsReadOnly="{TemplateBinding IsReadOnly}"
+               BorderBrush="{DynamicResource NormalBorderBrush}" Foreground="{DynamicResource TextBrush}" />
+            <Popup IsOpen="{TemplateBinding IsDropDownOpen}" Placement="Bottom" x:Name="Popup" Focusable="False"
+             AllowsTransparency="True" PopupAnimation="Slide">
+                <Grid MaxHeight="{TemplateBinding MaxDropDownHeight}" MinWidth="{TemplateBinding ActualWidth}"
+              x:Name="DropDown" SnapsToDevicePixels="True">
+                    <Border x:Name="DropDownBorder" Background="{TemplateBinding Background}" BorderBrush="{DynamicResource DefaultedBorderBrush}" BorderThickness="1"
+                  CornerRadius="3,3,3,3" />
+                    <ScrollViewer Margin="4,6,4,6" Style="{DynamicResource NuclearScrollViewer}"
+                        SnapsToDevicePixels="True" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto"
+                        CanContentScroll="True" Foreground="{DynamicResource {x:Static SystemColors.ActiveCaptionTextBrushKey}}">
+                        <WrapPanel IsItemsHost="True" KeyboardNavigation.DirectionalNavigation="Contained" Orientation="Horizontal" MaxWidth="{TemplateBinding MaxWidth}" />
+                    </ScrollViewer>
+                </Grid>
+            </Popup>
+        </Grid>
+        <ControlTemplate.Triggers>
+            <Trigger Property="HasItems" Value="false">
+                <Setter Property="MinHeight" Value="95" TargetName="DropDownBorder" />
+            </Trigger>
+            <Trigger Property="IsEnabled" Value="false">
+                <Setter Property="Foreground" Value="{DynamicResource DisabledForegroundBrush}" />
+                <Setter Property="Opacity" TargetName="grid" Value="0.5" />
+            </Trigger>
+            <Trigger Property="IsGrouping" Value="true">
+                <Setter Property="ScrollViewer.CanContentScroll" Value="false" />
+            </Trigger>
+            <Trigger Property="AllowsTransparency" SourceName="Popup" Value="true">
+                <Setter Property="Margin" Value="0,2,0,0" TargetName="DropDownBorder" />
+            </Trigger>
+            <Trigger Property="IsEditable" Value="true">
+                <Setter Property="IsTabStop" Value="false" />
+                <Setter Property="Visibility" Value="Visible" TargetName="PART_EditableTextBox" />
+                <Setter Property="Visibility" Value="Hidden" TargetName="ContentSite" />
+            </Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+
 
     <ControlTemplate x:Key="ComboBoxTemplate" TargetType="{x:Type ComboBox}">
         <Grid x:Name="grid">

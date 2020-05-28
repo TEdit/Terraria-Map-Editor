@@ -33,11 +33,6 @@
                     <Setter Property="HorizontalContentAlignment" Value="Stretch" />
                 </Style>
             </ListBox.ItemContainerStyle>
-            <!--<ListBox.Resources>
-                <Style TargetType="ListBoxItem">
-                    <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
-                </Style>
-            </ListBox.Resources>-->
         </ListBox>
     </DockPanel>
 </UserControl>

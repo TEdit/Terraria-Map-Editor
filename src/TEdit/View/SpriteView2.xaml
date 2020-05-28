@@ -1,0 +1,73 @@
+﻿<UserControl x:Class="TEdit.View.SpriteView2"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:Terraria="clr-namespace:TEdit.Terraria" xmlns:tedit="clr-namespace:TEdit.UI.Xaml" mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300" Background="{StaticResource WindowBackgroundBrush}" Foreground="{DynamicResource TextBrush}">
+    <UserControl.Resources>
+        <DataTemplate x:Key="ItemDataTemplate">
+            <Image 
+                        Source="{Binding Path=Preview}" 
+                        Height="{Binding Path=Value.Preview.PixelHeight}" 
+                        Width="{Binding Path=Value.Preview.PixelWidth}"
+                        RenderOptions.BitmapScalingMode="NearestNeighbor" 
+                        ToolTip="{Binding Path=Value.Name}" />
+        </DataTemplate>
+    </UserControl.Resources>
+    <DockPanel>
+
+        <StackPanel Orientation="Horizontal" DockPanel.Dock="Top" Margin="2">
+            <TextBlock Margin="3,2" HorizontalAlignment="Center" Text="Filter:" />
+            <TextBox Text="{Binding SpriteFilter, Mode=TwoWay, UpdateSourceTrigger=LostFocus }" HorizontalAlignment="Stretch" MinWidth="200" KeyUp="TextBox_KeyUp" />
+            <Button Content="Filter" Margin="1" Padding="10,2" />
+        </StackPanel>
+        <StackPanel Orientation="Vertical" DockPanel.Dock="Top" >
+            <ComboBox ItemsSource="{Binding SpritesView2}" SelectedItem="{Binding SelectedSpriteTile2}" SelectedIndex="0">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Vertical">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="{Binding Path=Name}" />
+                                <TextBlock>:</TextBlock>
+                                <TextBlock Text="{Binding Path=Tile}" />
+                            </StackPanel>
+                            <Image 
+                                    Source="{Binding Path=Styles[0].Preview}" 
+                                    Height="{Binding Path=Styles[0].Preview.PixelHeight}" 
+                                    Width="{Binding Path=Styles[0].Preview.PixelWidth}"
+                                    RenderOptions.BitmapScalingMode="NearestNeighbor" 
+                                    ToolTip="{Binding Path=Name}" />
+                        </StackPanel>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+            <TextBlock>Style:</TextBlock>
+        </StackPanel>
+        <ListBox 
+            Style="{DynamicResource ListBoxWrapPanel}"
+            HorizontalAlignment="Stretch"  
+            ItemsSource="{Binding SelectedSpriteTile2.Styles}" 
+            SelectedItem="{Binding SelectedSprite2, Mode=TwoWay}"
+            ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Image 
+                            Source="{Binding Path=Value.Preview}" 
+                            Height="{Binding Path=Value.Preview.PixelHeight}" 
+                            Width="{Binding Path=Value.Preview.PixelWidth}"
+                            RenderOptions.BitmapScalingMode="NearestNeighbor" 
+                            ToolTip="{Binding Path=Value.Name}" />
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <!--<Image 
+            Source="{Binding Path=SelectedSpriteTile2.Preview}" 
+            Height="{Binding Path=SelectedSpriteTile2.Preview.PixelHeight}" 
+            Width="{Binding Path=SelectedSpriteTile2.Preview.PixelWidth}"
+            RenderOptions.BitmapScalingMode="NearestNeighbor" 
+            ToolTip="{Binding Path=SelectedSpriteTile2Name}" />-->
+
+    </DockPanel>
+</UserControl>

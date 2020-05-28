@@ -9,11 +9,12 @@ namespace TEdit.Terraria.Objects
 {
     public class TileProperty : ObservableObject, ITile
     {
-        private Color _color;
-        private int _id;
-        private string _name;
+        private Color _color = Colors.Magenta;
+        private int _id = -1;
+        private string _name = "UNKNOWN";
         private bool _isFramed;
-        private Vector2Short _frameSize;
+        private Vector2Short _frameSize = new Vector2Short(1, 1);
+        private Vector2Short _frameGap = new Vector2Short(0, 0);
         private readonly ObservableCollection<FrameProperty> _frames = new ObservableCollection<FrameProperty>();
         private bool _isSolid;
         private bool _isSolidTop;
@@ -21,28 +22,18 @@ namespace TEdit.Terraria.Objects
         private FramePlacement _placement;
         private Vector2Short _textureGrid;
 
-        private bool _isGrass; /* Heathtech */
-        private bool _isPlatform; /* Heathtech */
-        private bool _isCactus; /* Heathtech */
+        private bool _isAnimated;
+        private bool _isGrass;
+        private bool _isPlatform;
+        private bool _isCactus;
         private bool _hasFrameName;
-        private bool _isStone; /* Heathtech */
-        private bool _canBlend; /* Heathtech */
-        private int? _mergeWith; /* Heathtech */
+        private bool _isStone;
+        private bool _canBlend;
+        private int? _mergeWith;
+
 
         public TileProperty()
         {
-            _frameSize = new Vector2Short(1, 1);
-            _color = Colors.Magenta;
-            _id = -1;
-            _name = "UNKNOWN";
-            _isFramed = false;
-            _isGrass = false; /* Heathtech */
-            _isPlatform = false; /* Heathtech */
-            _isCactus = false; /* Heathtech */
-            _hasFrameName = false;
-            _isStone = false; /* Heathtech */
-            _canBlend = false; /* Heathtech */
-            _mergeWith = null; /* Heathtech */
         }
 
         public Vector2Short TextureGrid
@@ -50,10 +41,22 @@ namespace TEdit.Terraria.Objects
             get { return _textureGrid; }
             set { Set("TextureGrid", ref _textureGrid, value); }
         }
+
+        public Vector2Short FrameGap
+        {
+            get { return _frameGap; }
+            set { Set("FrameGap", ref _frameGap, value); }
+        }
         public FramePlacement Placement
         {
             get { return _placement; }
             set { Set("Placement", ref _placement, value); }
+        }
+
+        public bool IsAnimated
+        {
+            get { return _isAnimated; }
+            set { Set("IsAnimated", ref _isAnimated, value); }
         }
 
         public bool IsLight
@@ -65,7 +68,7 @@ namespace TEdit.Terraria.Objects
         public bool IsOrigin(Vector2Short uv, out FrameProperty frame)
         {
             frame = Frames.FirstOrDefault(f => f.UV == uv);
-            
+
             return frame != null;
         }
 
@@ -130,21 +133,21 @@ namespace TEdit.Terraria.Objects
             set { Set("Image", ref _image, value); }
         }
 
-        /* Heathtech */
+
         public bool IsGrass
         {
             get { return _isGrass; }
             set { Set("IsGrass", ref _isGrass, value); }
         }
 
-        /* Heathtech */
+
         public bool IsPlatform
         {
             get { return _isPlatform; }
             set { Set("IsPlatform", ref _isPlatform, value); }
         }
 
-        /* Heathtech */
+
         public bool IsCactus
         {
             get { return _isCactus; }
@@ -154,24 +157,24 @@ namespace TEdit.Terraria.Objects
         public bool HasFrameName
         {
             get { return _hasFrameName; }
-            set { Set("HasFrameName", ref _hasFrameName, value);  }
+            set { Set("HasFrameName", ref _hasFrameName, value); }
         }
 
-        /* Heathtech */
+
         public bool IsStone
         {
             get { return _isStone; }
             set { Set("IsStone", ref _isStone, value); }
         }
 
-        /* Heathtech */
+
         public bool CanBlend
         {
             get { return _canBlend; }
             set { Set("CanBlend", ref _canBlend, value); }
         }
 
-        /* Heathtech */
+
         public int? MergeWith
         {
             get { return _mergeWith; }

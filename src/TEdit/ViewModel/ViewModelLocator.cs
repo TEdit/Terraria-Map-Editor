@@ -36,7 +36,8 @@ namespace TEdit.ViewModel
             wvm.Tools.Add(new BrushTool(wvm));
             wvm.Tools.Add(new FillTool(wvm));
             wvm.Tools.Add(new PointTool(wvm));
-            wvm.Tools.Add(new SpriteTool(wvm));
+            //wvm.Tools.Add(new SpriteTool(wvm));
+            wvm.Tools.Add(new SpriteTool2(wvm));
             wvm.Tools.Add(new MorphTool(wvm));
             wvm.ActiveTool = defaultTool;
 
