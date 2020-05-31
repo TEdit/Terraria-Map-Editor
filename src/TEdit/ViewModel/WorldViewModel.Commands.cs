@@ -399,6 +399,7 @@ namespace TEdit.ViewModel
                 try
                 {
                     World.ImportKillsAndBestiary(world, ofd.FileName);
+                    TallyCount = KillTally.LoadTally(CurrentWorld);
                 }
                 catch (Exception ex)
                 {

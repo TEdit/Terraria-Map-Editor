@@ -32,17 +32,33 @@ namespace TEdit.Terraria
                 bool[] tileFrameImportant;
                 int[] sectionPointers;
 
+                w.Version = b.ReadUInt32();
+                var curVersion = w.Version;
+
+
+                if (w.Version < 87)
+                    throw new FileFormatException("World file too old, please update it by loading in game.");
+                if (w.Version > world.Version)
+                    throw new FileFormatException("Source world version is greater than target world. Please reload both in game and resave");
+
+                // reset the stream
+                b.BaseStream.Position = (long)0;
+
+                OnProgressChanged(null, new ProgressChangedEventArgs(0, "Loading File Header..."));
+                // read section pointers and tile frame data
                 if (!LoadSectionHeader(b, out tileFrameImportant, out sectionPointers, w))
                     throw new FileFormatException("Invalid File Format Section");
+
+                TileFrameImportant = tileFrameImportant;
+
+                // we should be at the end of the first section
+                if (b.BaseStream.Position != sectionPointers[0])
+                    throw new FileFormatException("Unexpected Position: Invalid File Format Section");
 
                 // Load the flags
                 LoadHeaderFlags(b, w, sectionPointers[1]);
                 if (b.BaseStream.Position != sectionPointers[1])
                     throw new FileFormatException("Unexpected Position: Invalid Header Flags");
-
-                if (w.Version > world.Version) 
-                    throw new FileFormatException("Source world version is greater than target world. Please reload both in game and resave");
-
                 
                 if (w.Version >= 210 && sectionPointers.Length > 9)
                 {
