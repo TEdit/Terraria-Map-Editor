@@ -10,7 +10,7 @@
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <LangVersion>latest</LangVersion>
     <VersionPrefix>4.0.0</VersionPrefix>
-    <VersionSuffix>beta10</VersionSuffix>
+    <VersionSuffix>beta11</VersionSuffix>
     <Platforms>AnyCPU</Platforms>
   </PropertyGroup>
 
