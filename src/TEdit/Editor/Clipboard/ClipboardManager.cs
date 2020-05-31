@@ -430,13 +430,20 @@ namespace TEdit.Editor.Clipboard
 
             foreach (var sprite in sprites)
             {
-                var flipOrigin = FlipSprite(buffer.Size, sprite.Key, sprite.Value.Size, flipX);
-                Sprite.PlaceSprite(flipOrigin.X, flipOrigin.Y, sprite.Value, flippedBuffer);
+                try
+                {
+                    var flipOrigin = FlipSprite(buffer.Size, sprite.Key, sprite.Value.Size, flipX);
+                    Sprite.PlaceSprite(flipOrigin.X, flipOrigin.Y, sprite.Value, flippedBuffer);
+                }
+                catch (Exception ex)
+                {
+                    // error flipping this one
+                }
             }
 
             foreach (var chest in buffer.Chests)
             {
-                var flipOrigin = FlipSprite(buffer.Size, new Vector2Int32(chest.X,chest.Y), new Vector2Short(2,2), flipX);
+                var flipOrigin = FlipSprite(buffer.Size, new Vector2Int32(chest.X, chest.Y), new Vector2Short(2, 2), flipX);
                 chest.X = flipOrigin.X;
                 chest.Y = flipOrigin.Y;
                 flippedBuffer.Chests.Add(chest);
@@ -491,7 +498,14 @@ namespace TEdit.Editor.Clipboard
                 bufferX = maxX - vector.X;
                 bufferY = vector.Y;
 
-                bufferX -= size.X - 1;
+                if (vector.X > totalSize.X / 2)
+                {
+                    bufferX += (size.X - 1);
+                }
+                else
+                {
+                    bufferX -= (size.X - 1);
+                }
             }
             else
             {
@@ -499,6 +513,15 @@ namespace TEdit.Editor.Clipboard
                 bufferY = maxY - vector.Y;
 
                 bufferY -= size.Y - 1;
+
+                if (vector.Y > totalSize.Y / 2)
+                {
+                    bufferY += (size.Y - 1);
+                }
+                else
+                {
+                    bufferY -= (size.Y - 1);
+                }
             }
 
             return new Vector2Int32(bufferX, bufferY);
