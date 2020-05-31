@@ -15,11 +15,50 @@ namespace TEdit.Terraria
     {
         public static uint CompatibleVersion = 228;
         public static short TileCount = 623;
+
+        public static short KillTallyMax = 663;
         public static short WallCount = 316;
         public static short SectionCount = 11;
 
         public static bool[] TileFrameImportant;
 
+        public static void ImportKillsAndBestiary(World world, string worldFileName)
+        {
+            World w = new World();
+
+            // load npc and bestiary data to temp world
+            using (var b = new BinaryReader(File.OpenRead(worldFileName)))
+            {
+                bool[] tileFrameImportant;
+                int[] sectionPointers;
+
+                if (!LoadSectionHeader(b, out tileFrameImportant, out sectionPointers, w))
+                    throw new FileFormatException("Invalid File Format Section");
+
+                // Load the flags
+                LoadHeaderFlags(b, w, sectionPointers[1]);
+                if (b.BaseStream.Position != sectionPointers[1])
+                    throw new FileFormatException("Unexpected Position: Invalid Header Flags");
+
+                if (w.Version > world.Version) 
+                    throw new FileFormatException("Source world version is greater than target world. Please reload both in game and resave");
+
+                
+                if (w.Version >= 210 && sectionPointers.Length > 9)
+                {
+                    // skip to bestiary data
+                    b.BaseStream.Position = sectionPointers[8];
+                    LoadBestiary(b, w);
+                    if (b.BaseStream.Position != sectionPointers[9])
+                        throw new FileFormatException("Unexpected Position: Invalid Bestiary Section");
+                }
+            }
+
+            // copy kill tally and bestiary to target world
+            world.Bestiary = w.Bestiary;
+            world.KilledMobs.Clear();
+            world.KilledMobs.AddRange(w.KilledMobs);
+        }
 
         private static void SaveV2(World world, BinaryWriter bw)
         {
@@ -544,8 +583,8 @@ namespace TEdit.Terraria
             bw.Write(world.SavedGolfer);
             bw.Write(world.InvasionSizeStart);
             bw.Write(world.CultistDelay);
-            bw.Write((short)663);
-            for (int i = 0; i < 663; i++)
+            bw.Write((short)KillTallyMax);
+            for (int i = 0; i < KillTallyMax; i++)
             {
                 if (world.KilledMobs.Count > i)
                 {

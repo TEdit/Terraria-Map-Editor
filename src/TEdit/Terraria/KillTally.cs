@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Text;
 using System.Text.RegularExpressions;
 
 namespace TEdit.Terraria
@@ -12,56 +13,12 @@ namespace TEdit.Terraria
 
     public static class KillTally
     {
-
-        private const string tallyFormat = "{0}: {1}";
-
         public static string LoadTally(World world)
         {
             if (world == null) return string.Empty;
 
-            using (var ms = new MemoryStream())
-            using (var writer = new StreamWriter(ms))
-            using (var reader = new StreamReader(ms))
-            {
-                WriteTallyCount(writer, world, true);
-                writer.Flush();
-                ms.Position = 0;
 
-                var text = reader.ReadToEnd();
-                return text;
-            }
-        }
-
-        public static void SaveTally(World world, string file)
-        {
-            if (world == null) return;
-
-            using (var writer = new StreamWriter(file, false))
-            {
-                WriteTallyCount(writer, world, true);
-            }
-        }
-
-        private static void WriteProperty(this StreamWriter sb, string prop, object value)
-        {
-            sb.WriteLine(tallyFormat, prop, value);
-        }
-
-        private static void WriteTallyCount(StreamWriter sb, World world, bool fullAnalysis = false)
-        {
-            WriteHeader(sb, world);
-            WriteTally(sb, world);
-        }
-
-        private static void WriteHeader(StreamWriter sb, World world)
-        {
-            sb.WriteProperty("Compatible Version", world.Version);
-            sb.Write(Environment.NewLine);
-        }
-
-        private static void WriteTally(StreamWriter sb, World world)
-        {
-
+            var sb = new StringBuilder();
             int index = 0;
             int killcount = 0;
             int bannercount = 0;
@@ -83,7 +40,7 @@ namespace TEdit.Terraria
                         World.TallyNames[index] = Regex.Replace(World.TallyNames[index], @" Banner", "");
                         bufferNoKill += $"[{index}] {World.TallyNames[index]}\n";
                     }
-                        
+
                 }
                 else if (count < 50)
                 {
@@ -114,22 +71,40 @@ namespace TEdit.Terraria
             }
 
             // Print lines ...
-            sb.WriteLine("=== Kills ===");
-            sb.WriteLine(bufferBanner);
-            sb.Write(Environment.NewLine);
+            sb.AppendLine("=== Kills ===");
+            sb.AppendLine(bufferBanner);
+            sb.Append(Environment.NewLine);
+               
+            sb.AppendLine("=== Less than 50 kills ===");
+            sb.AppendLine(bufferNoBanner);
+            sb.Append(Environment.NewLine);
+               
+            sb.AppendLine("=== No kills ===");
+            sb.AppendLine(bufferNoKill);
+            sb.Append(Environment.NewLine);
+               
+            sb.AppendLine($"Total kills counted: {killcount}");
+            sb.AppendLine($"Total banners awarded: {bannercount}");
+            sb.AppendLine($"Total unique banners: {uniquecount}");
 
-            sb.WriteLine("=== Less than 50 kills ===");
-            sb.WriteLine(bufferNoBanner);
-            sb.Write(Environment.NewLine);
+            sb.AppendLine("=== BESTIARY ===");
+            sb.AppendLine("=== NPCs Near Player ===");
+            foreach (var item in world.Bestiary.NPCNear)
+            {
+                sb.AppendLine(item);
+            }
+            sb.AppendLine("=== NPCs Talked To ===");
+            foreach (var item in world.Bestiary.NPCChat)
+            {
+                sb.AppendLine(item);
+            }
+            sb.AppendLine("=== NPCs Killed ===");
+            foreach (var item in world.Bestiary.NPCKills)
+            {
+                sb.AppendLine($"{item.Key}: {item.Value}");
+            }
 
-            sb.WriteLine("=== No kills ===");
-            sb.WriteLine(bufferNoKill);
-            sb.Write(Environment.NewLine);
-
-            sb.WriteLine("Total kills counted: {0}", killcount);
-            sb.WriteLine("Total banners awarded: {0}", bannercount);
-            sb.WriteLine("Total unique banners: {0}", uniquecount);
+            return sb.ToString();
         }
-
     }
 }

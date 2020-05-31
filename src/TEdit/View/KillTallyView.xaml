@@ -12,11 +12,11 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <UniformGrid Grid.Row="0" Columns="3" HorizontalAlignment="Stretch">
-            <TextBlock Grid.Column="0" Text="Kill Tally" Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" />
-            <Button Grid.Column="1" Margin="2" Content="Read"  Command="{Binding LoadTallyCommand}" />
-            <Button Grid.Column="2" Margin="2" Content="Save"  Command="{Binding TallyCountSaveCommand}" />
-        </UniformGrid>
+        <StackPanel Orientation="Horizontal">
+            <TextBlock Grid.Column="0" Text="Kill Tally &amp; Bestiary" Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" />
+                <Button Grid.Column="1" Margin="2" Width="75" Content="Scan"  Command="{Binding LoadTallyCommand}" />
+                <Button Grid.Column="2" Margin="2" Width="75" Content="Import"  Command="{Binding ImportBestiaryCommand}" />
+        </StackPanel>
 
         <TextBox Grid.Row="1" Text="{Binding TallyCount}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" MinHeight="150"
                HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Visible" AcceptsReturn="True" TextWrapping="Wrap"

@@ -619,7 +619,6 @@ namespace TEdit.ViewModel
         private ICommand _analyzeWorldCommand;
         private ICommand _analyzeWorldSaveCommand;
         private ICommand _tallyCountCommand;
-        private ICommand _tallyCountSaveCommand;
 
         /// <summary>
         /// Relay command to execute AnalyzeWorldSave.
@@ -641,27 +640,6 @@ namespace TEdit.ViewModel
             if (sfd.ShowDialog() == true)
             {
                 TEdit.Terraria.WorldAnalysis.AnalyzeWorld(CurrentWorld, sfd.FileName);
-
-            }
-        }
-
-        public ICommand TallyCountSaveCommand
-        {
-            get { return _tallyCountSaveCommand ?? (_tallyCountSaveCommand = new RelayCommand(TallyCountSave)); }
-        }
-
-        private void TallyCountSave()
-        {
-            if (CurrentWorld == null) return;
-            var sfd = new SaveFileDialog();
-            sfd.DefaultExt = "Text File|*.txt";
-            sfd.Filter = "Text Files|*.txt";
-            sfd.FileName = CurrentWorld.Title + " Tally.txt";
-            sfd.Title = "Save world analysis.";
-            sfd.OverwritePrompt = true;
-            if (sfd.ShowDialog() == true)
-            {
-                KillTally.SaveTally(CurrentWorld, sfd.FileName);
 
             }
         }

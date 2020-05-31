@@ -1,6 +1,7 @@
 ﻿using GalaSoft.MvvmLight;
 using System.Collections.Generic;
 using System.IO;
+using System.Text;
 
 namespace TEdit.Terraria
 {
@@ -10,6 +11,25 @@ namespace TEdit.Terraria
         public Dictionary<string,int> NPCKills = new Dictionary<string, int>();
         public HashSet<string> NPCNear = new HashSet<string>();
         public HashSet<string> NPCChat = new HashSet<string>();
+
+        public Bestiary Copy(uint worldVersion)
+        {
+            var copy = new Bestiary();
+            using (MemoryStream ms = new MemoryStream())
+            {
+                var encoding = new UTF8Encoding(encoderShouldEmitUTF8Identifier: false, throwOnInvalidBytes: true);
+                using (BinaryWriter w = new BinaryWriter(ms, encoding, true))
+                {
+                    this.Save(w);
+                }
+                ms.Position = 0;
+                using (BinaryReader r = new BinaryReader(ms, encoding, true))
+                {
+                    copy.Load(r, worldVersion);
+                }
+            }
+            return copy;
+        }
 
         public void Save(BinaryWriter w)
         {

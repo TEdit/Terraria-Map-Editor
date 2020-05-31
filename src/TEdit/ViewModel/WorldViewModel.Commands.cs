@@ -12,6 +12,7 @@ using TEdit.Editor;
 using TEdit.Editor.Clipboard;
 using TEdit.Editor.Plugins;
 using TEdit.Editor.Tools;
+using TEdit.Helper;
 
 namespace TEdit.ViewModel
 {
@@ -36,6 +37,7 @@ namespace TEdit.ViewModel
         private ICommand _saveTileEntityCommand;
         private ICommand _saveRackCommand;
         private ICommand _npcRemoveCommand;
+        private ICommand _importBestiaryCommand;
 
         private ICommand _requestZoomCommand;
 
@@ -131,6 +133,11 @@ namespace TEdit.ViewModel
         public ICommand SaveTileEntityCommand
         {
             get { return _saveTileEntityCommand ?? (_saveTileEntityCommand = new RelayCommand<bool>(SaveTileEntity)); }
+        }
+
+        public ICommand ImportBestiaryCommand
+        {
+            get { return _importBestiaryCommand ?? (_importBestiaryCommand = new RelayCommand(ImportKillsAndBestiary)); }
         }
 
         private void SaveTileEntity(bool save)
@@ -362,6 +369,45 @@ namespace TEdit.ViewModel
         {
             _clipboard.Buffer = item;
             EditPaste();
+        }
+
+        private void ImportKillsAndBestiary()
+        {
+            if (MessageBox.Show(
+                "This will completely replace your currently loaded world Bestiary and Kill Tally with selected file's bestiary. Continue?", 
+                "Load Bestiary?",
+                MessageBoxButton.YesNo,
+                MessageBoxImage.Question,
+                MessageBoxResult.Yes) != MessageBoxResult.Yes)
+                return;
+
+            var ofd = new OpenFileDialog();
+            ofd.Filter = "Terraria World File|*.wld";
+            ofd.DefaultExt = "Terraria World File| *.wld";
+            ofd.Title = "Import Bestiary and Kills from World File";
+            ofd.InitialDirectory = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), @"My Games\Terraria\Schematics");
+            if (!Directory.Exists(ofd.InitialDirectory))
+                Directory.CreateDirectory(ofd.InitialDirectory);
+            ofd.Multiselect = false;
+            if ((bool)ofd.ShowDialog())
+            {
+                var world = CurrentWorld;
+
+                // make a backup
+                var bestiary = world.Bestiary.Copy(CurrentWorld.Version);
+                var killTally = world.KilledMobs.ToArray();
+                try
+                {
+                    World.ImportKillsAndBestiary(world, ofd.FileName);
+                }
+                catch (Exception ex)
+                {
+                    world.Bestiary = bestiary;
+                    world.KilledMobs.Clear();
+                    world.KilledMobs.AddRange(killTally);
+                    MessageBox.Show($"Error importing Bestiary data from {ofd.FileName}. Your current bestiary has been restored.\r\n{ex.Message}");
+                }
+            }
         }
 
         private void ImportSchematic(bool isFalseColor)
