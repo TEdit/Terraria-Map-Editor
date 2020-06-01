@@ -312,9 +312,9 @@ namespace TEdit.Terraria
 
             OnProgressChanged(this,
                     new ProgressChangedEventArgs(0, "Validating Complete..."));
-            if (Chests.Count > 1000)
+            if (Chests.Count > World.MaxChests)
                 throw new ArgumentOutOfRangeException($"Chest Count is {Chests.Count} which is greater than 1000");
-            if (Signs.Count > 1000)
+            if (Signs.Count > World.MaxSigns)
                 throw new ArgumentOutOfRangeException($"Sign Count is {Signs.Count} which is greater than 1000");
         }
         public void ValSpecial(int x, int y)

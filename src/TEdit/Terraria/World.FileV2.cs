@@ -13,12 +13,16 @@ namespace TEdit.Terraria
 
     public partial class World
     {
-        public static uint CompatibleVersion = 228;
-        public static short TileCount = 623;
+        public const uint CompatibleVersion = 228;
+        public const short SectionCount = 11;
+        public const short TileCount = 623;
+        public const short WallCount = 316;
 
-        public static short KillTallyMax = 663;
-        public static short WallCount = 316;
-        public static short SectionCount = 11;
+        public const short KillTallyMax = 663;
+
+        public const int MaxChests = 8000;
+        public const int MaxSigns = 1000;
+        public const int MaxTileEntities = 1000;
 
         public static bool[] TileFrameImportant;
 
