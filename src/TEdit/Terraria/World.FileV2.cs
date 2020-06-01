@@ -21,8 +21,7 @@ namespace TEdit.Terraria
         public const short KillTallyMax = 663;
 
         public const int MaxChests = 8000;
-        public const int MaxSigns = 1000;
-        public const int MaxTileEntities = 1000;
+        public const int MaxSigns = 1000;        
 
         public static bool[] TileFrameImportant;
 
