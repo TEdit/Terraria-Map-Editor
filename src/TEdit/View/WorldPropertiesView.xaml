@@ -23,8 +23,13 @@
         </enum:EnumItemList>
         <enum:EnumItemList x:Key="moonTypeList" EnumType="{x:Type System:Byte}" SortBy="Value" >
             <enum:EnumItem Value="0">Grey</enum:EnumItem>
-            <enum:EnumItem Value="1">Orange</enum:EnumItem>
+            <enum:EnumItem Value="1">Brown</enum:EnumItem>
             <enum:EnumItem Value="2">Ringed</enum:EnumItem>
+            <enum:EnumItem Value="3">Blue Marble</enum:EnumItem>
+            <enum:EnumItem Value="4">White Ice</enum:EnumItem>
+            <enum:EnumItem Value="5">Green Gas</enum:EnumItem>
+            <enum:EnumItem Value="6">Orange Venus</enum:EnumItem>
+            <enum:EnumItem Value="7">Triple Purple</enum:EnumItem>
         </enum:EnumItemList>
         <enum:EnumItemList x:Key="gameModeList" EnumType="{x:Type System:Int32}" SortBy="Value" >
             <enum:EnumItem Value="3">Journey</enum:EnumItem>
