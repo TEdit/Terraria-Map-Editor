@@ -522,7 +522,7 @@ namespace TEdit.ViewModel
             }
 
             if (wall != null)
-                curTile.Wall = (byte)wall;
+                curTile.Wall = (ushort)wall;
 
             if (liquid != null)
             {
