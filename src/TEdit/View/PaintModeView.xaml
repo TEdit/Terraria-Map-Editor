@@ -110,7 +110,7 @@
             </StackPanel>
             <GroupBox BorderThickness="1" Style="{StaticResource TileVisibleStyle}">
                 <GroupBox.Header>
-                    <CheckBox IsChecked="{Binding TilePicker.TileStyleActive}" Content="Tile" />
+                    <CheckBox IsChecked="{Binding TilePicker.TileStyleActive, Mode=TwoWay}" Content="Tile" />
                 </GroupBox.Header>
                 <tedit:AutoGrid Width="220" VerticalAlignment="Top" >
                     <tedit:AutoGrid.ColumnDefinitions>
@@ -134,7 +134,7 @@
             </GroupBox>
             <GroupBox BorderThickness="1"  Style="{StaticResource WallVisibleStyle}">
                 <GroupBox.Header>
-                    <CheckBox IsChecked="{Binding TilePicker.WallStyleActive}" Content="Wall" />
+                    <CheckBox IsChecked="{Binding TilePicker.WallStyleActive, Mode=TwoWay}" Content="Wall" />
                 </GroupBox.Header>
                 <tedit:AutoGrid Width="220" VerticalAlignment="Top" >
                     <tedit:AutoGrid.ColumnDefinitions>

@@ -45,6 +45,7 @@ namespace TEdit
                 if (!(e.Source is View.WorldRenderXna))
                     return;
 
+
                 if (e.Key == Key.C && Keyboard.Modifiers.HasFlag(ModifierKeys.Control))
                 {
                     if (_vm.CopyCommand.CanExecute(null))
@@ -141,17 +142,23 @@ namespace TEdit
                 else if (World.ShortcutKeys.ContainsKey(e.Key))
                 {
                     string command = World.ShortcutKeys[e.Key];
-                    if (string.Equals("Eraser", command, StringComparison.InvariantCultureIgnoreCase))
+                    switch (command.ToLowerInvariant())
                     {
-                        _vm.TilePicker.IsEraser = !_vm.TilePicker.IsEraser;
-                    }
-                    else if (string.Equals("Swap", command, StringComparison.InvariantCultureIgnoreCase))
-                    {
-                        _vm.TilePicker.Swap(Keyboard.Modifiers);
-                    }
-                    else
-                    {
-                        SetActiveTool(command);
+                        case "eraser":
+                            _vm.TilePicker.IsEraser = !_vm.TilePicker.IsEraser;
+                            break;
+                        case "swap":
+                            _vm.TilePicker.Swap(Keyboard.Modifiers);
+                            break;
+                        case "toggletile":
+                            _vm.TilePicker.TileStyleActive = !_vm.TilePicker.TileStyleActive;
+                            break;
+                        case "togglewall":
+                            _vm.TilePicker.WallStyleActive = !_vm.TilePicker.WallStyleActive;
+                            break;
+                        default:
+                            SetActiveTool(command);
+                            break;
                     }
                 }
             }
@@ -163,7 +170,7 @@ namespace TEdit
 
         private void SetActiveTool(string toolName)
         {
-            var tool = _vm.Tools.FirstOrDefault(t => t.Name == toolName);
+            var tool = _vm.Tools.FirstOrDefault(t => string.Equals(t.Name, toolName, StringComparison.OrdinalIgnoreCase));
             if (tool != null)
                 _vm.SetTool.Execute(tool);
         }

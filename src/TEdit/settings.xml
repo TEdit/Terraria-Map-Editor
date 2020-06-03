@@ -73,6 +73,8 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Shortcut Key="T"   Tool="Sprite"       />
     <Shortcut Key="Z"   Tool="Eraser"       />
     <Shortcut Key="X"   Tool="Swap"         />
+    <Shortcut Key="Q"   Tool="ToggleTile"       />
+    <Shortcut Key="W"   Tool="ToggleWall"         />
   </ShortCutKeys>
   <Tools>
     <!-- Valid Paint Modes are TileAndWall, Wire and Liquid. -->
