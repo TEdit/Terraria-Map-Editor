@@ -28,8 +28,9 @@
             <enum:EnumItem Value="3">Blue Marble</enum:EnumItem>
             <enum:EnumItem Value="4">White Ice</enum:EnumItem>
             <enum:EnumItem Value="5">Green Gas</enum:EnumItem>
-            <enum:EnumItem Value="6">Orange Venus</enum:EnumItem>
-            <enum:EnumItem Value="7">Triple Purple</enum:EnumItem>
+            <enum:EnumItem Value="6">Pink</enum:EnumItem>
+            <enum:EnumItem Value="7">Orange Venus</enum:EnumItem>
+            <enum:EnumItem Value="8">Triple Purple</enum:EnumItem>
         </enum:EnumItemList>
         <enum:EnumItemList x:Key="gameModeList" EnumType="{x:Type System:Int32}" SortBy="Value" >
             <enum:EnumItem Value="3">Journey</enum:EnumItem>
