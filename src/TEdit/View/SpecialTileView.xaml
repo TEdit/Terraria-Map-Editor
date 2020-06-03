@@ -39,6 +39,7 @@
                 <ComboBox Grid.Column="1" ItemsSource="{Binding Source={StaticResource PrefixCollection}}"
                           SelectedValue="{Binding Prefix, Mode=TwoWay}"
                           SelectedValuePath="Key"
+                          IsEditable="true"
                           DisplayMemberPath="Value"
                           HorizontalAlignment="Stretch"
                           IsSynchronizedWithCurrentItem="False"
@@ -47,6 +48,7 @@
                           SelectedValue="{Binding NetId, Mode=TwoWay}"
                           SelectedValuePath="Key"
                           DisplayMemberPath="Value"
+                          IsEditable="true"
                           IsSynchronizedWithCurrentItem="False"
                           HorizontalAlignment="Stretch" Margin="1,0" ItemsPanel="{StaticResource Template_ComboPanel}" />
             </Grid>
@@ -64,6 +66,7 @@
                           SelectedValue="{Binding Prefix, Mode=TwoWay}"
                           SelectedValuePath="Key"
                           DisplayMemberPath="Value"
+                          IsEditable="true"
                           HorizontalAlignment="Stretch"
                           IsSynchronizedWithCurrentItem="False"
                           Margin="1,0" ItemsPanel="{StaticResource Template_ComboPanel}" />
@@ -71,6 +74,7 @@
                           SelectedValue="{Binding NetId, Mode=TwoWay}"
                           SelectedValuePath="Id"
                           DisplayMemberPath="Name"
+                          IsEditable="true"
                           IsSynchronizedWithCurrentItem="False"
                           HorizontalAlignment="Stretch" Margin="1,0" ItemsPanel="{StaticResource Template_ComboPanel}" />
             </Grid>
@@ -378,6 +382,7 @@
                     <TextBlock Text="Head: " Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" VerticalAlignment="Center" />
                     <ComboBox ItemsSource="{Binding Source={StaticResource DyeCollection}}"
                           SelectedValue="{Binding SelectedTileEntity.Dye0.Id, Mode=TwoWay, Converter={StaticResource ShortIntConverter}}"
+                          IsEditable="true"
                           SelectedValuePath="Key"
                           DisplayMemberPath="Value"
                           HorizontalAlignment="Stretch"
@@ -385,6 +390,7 @@
                           Margin="1,0" ItemsPanel="{StaticResource Template_ComboPanel}" />
                     <ComboBox ItemsSource="{Binding Source={StaticResource PrefixCollection}}"
                           SelectedValue="{Binding SelectedTileEntity.Item0.Prefix, Mode=TwoWay}"
+                          IsEditable="true"
                           SelectedValuePath="Key"
                           DisplayMemberPath="Value"
                           HorizontalAlignment="Stretch"
@@ -393,6 +399,7 @@
                     <ComboBox Width="150px"
                           ItemsSource="{Binding Source={StaticResource MannHeadCollection}}"
                           SelectedValue="{Binding SelectedTileEntity.Item0.Id, Mode=TwoWay, Converter={StaticResource ShortIntConverter}}"
+                          IsEditable="true"
                           SelectedValuePath="Key"
                           DisplayMemberPath="Value"
                           IsSynchronizedWithCurrentItem="False"
@@ -402,6 +409,7 @@
                     <TextBlock Text="Body: " Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" VerticalAlignment="Center" />
                     <ComboBox ItemsSource="{Binding Source={StaticResource DyeCollection}}"
                           SelectedValue="{Binding SelectedTileEntity.Dye1.Id, Mode=TwoWay, Converter={StaticResource ShortIntConverter}}"
+                          IsEditable="true"
                           SelectedValuePath="Key"
                           DisplayMemberPath="Value"
                           HorizontalAlignment="Stretch"
@@ -409,6 +417,7 @@
                           Margin="1,0" ItemsPanel="{StaticResource Template_ComboPanel}" />
                     <ComboBox ItemsSource="{Binding Source={StaticResource PrefixCollection}}"
                           SelectedValue="{Binding SelectedTileEntity.Item1.Prefix, Mode=TwoWay}"
+                          IsEditable="true"
                           SelectedValuePath="Key"
                           DisplayMemberPath="Value"
                           HorizontalAlignment="Stretch"
@@ -417,6 +426,7 @@
                     <ComboBox Width="150px"
                           ItemsSource="{Binding Source={StaticResource MannBodyCollection}}"
                           SelectedValue="{Binding SelectedTileEntity.Item1.Id, Mode=TwoWay, Converter={StaticResource ShortIntConverter}}"
+                          IsEditable="true"
                           SelectedValuePath="Key"
                           DisplayMemberPath="Value"
                           IsSynchronizedWithCurrentItem="False"
@@ -426,6 +436,7 @@
                     <TextBlock Text="Legs: " Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" VerticalAlignment="Center" />
                     <ComboBox ItemsSource="{Binding Source={StaticResource DyeCollection}}"
                           SelectedValue="{Binding SelectedTileEntity.Dye2.Id, Mode=TwoWay, Converter={StaticResource ShortIntConverter}}"
+                          IsEditable="true"
                           SelectedValuePath="Key"
                           DisplayMemberPath="Value"
                           HorizontalAlignment="Stretch"
@@ -433,6 +444,7 @@
                           Margin="1,0" ItemsPanel="{StaticResource Template_ComboPanel}" />
                     <ComboBox ItemsSource="{Binding Source={StaticResource PrefixCollection}}"
                           SelectedValue="{Binding SelectedTileEntity.Item2.Prefix, Mode=TwoWay}"
+                          IsEditable="true"
                           SelectedValuePath="Key"
                           DisplayMemberPath="Value"
                           HorizontalAlignment="Stretch"
@@ -441,6 +453,7 @@
                     <ComboBox Width="150px"
                           ItemsSource="{Binding Source={StaticResource MannLegsCollection}}"
                           SelectedValue="{Binding SelectedTileEntity.Item2.Id, Mode=TwoWay, Converter={StaticResource ShortIntConverter}}"
+                          IsEditable="true"
                           SelectedValuePath="Key"
                           DisplayMemberPath="Value"
                           IsSynchronizedWithCurrentItem="False"
@@ -450,6 +463,7 @@
                     <TextBlock Text="Acc1: " Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" VerticalAlignment="Center" />
                     <ComboBox ItemsSource="{Binding Source={StaticResource DyeCollection}}"
                           SelectedValue="{Binding SelectedTileEntity.Dye3.Id, Mode=TwoWay, Converter={StaticResource ShortIntConverter}}"
+                          IsEditable="true"
                           SelectedValuePath="Key"
                           DisplayMemberPath="Value"
                           HorizontalAlignment="Stretch"
@@ -457,6 +471,7 @@
                           Margin="1,0" ItemsPanel="{StaticResource Template_ComboPanel}" />
                     <ComboBox ItemsSource="{Binding Source={StaticResource PrefixCollection}}"
                           SelectedValue="{Binding SelectedTileEntity.Item3.Prefix, Mode=TwoWay}"
+                          IsEditable="true"
                           SelectedValuePath="Key"
                           DisplayMemberPath="Value"
                           HorizontalAlignment="Stretch"
@@ -465,6 +480,7 @@
                     <ComboBox Width="150px"
                           ItemsSource="{Binding Source={StaticResource MannAccessoryCollection}}"
                           SelectedValue="{Binding SelectedTileEntity.Item3.Id, Mode=TwoWay, Converter={StaticResource ShortIntConverter}}"
+                          IsEditable="true"
                           SelectedValuePath="Key"
                           DisplayMemberPath="Value"
                           IsSynchronizedWithCurrentItem="False"
@@ -474,6 +490,7 @@
                     <TextBlock Text="Acc2: " Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" VerticalAlignment="Center" />
                     <ComboBox ItemsSource="{Binding Source={StaticResource DyeCollection}}"
                           SelectedValue="{Binding SelectedTileEntity.Dye4.Id, Mode=TwoWay, Converter={StaticResource ShortIntConverter}}"
+                          IsEditable="true"
                           SelectedValuePath="Key"
                           DisplayMemberPath="Value"
                           HorizontalAlignment="Stretch"
@@ -481,6 +498,7 @@
                           Margin="1,0" ItemsPanel="{StaticResource Template_ComboPanel}" />
                     <ComboBox ItemsSource="{Binding Source={StaticResource PrefixCollection}}"
                           SelectedValue="{Binding SelectedTileEntity.Item4.Prefix, Mode=TwoWay}"
+                          IsEditable="true"
                           SelectedValuePath="Key"
                           DisplayMemberPath="Value"
                           HorizontalAlignment="Stretch"
@@ -489,6 +507,7 @@
                     <ComboBox Width="150px"
                           ItemsSource="{Binding Source={StaticResource MannAccessoryCollection}}"
                           SelectedValue="{Binding SelectedTileEntity.Item4.Id, Mode=TwoWay, Converter={StaticResource ShortIntConverter}}"
+                          IsEditable="true"
                           SelectedValuePath="Key"
                           DisplayMemberPath="Value"
                           IsSynchronizedWithCurrentItem="False"
@@ -498,6 +517,7 @@
                     <TextBlock Text="Acc3: " Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" VerticalAlignment="Center" />
                     <ComboBox ItemsSource="{Binding Source={StaticResource DyeCollection}}"
                           SelectedValue="{Binding SelectedTileEntity.Dye5.Id, Mode=TwoWay, Converter={StaticResource ShortIntConverter}}"
+                          IsEditable="true"
                           SelectedValuePath="Key"
                           DisplayMemberPath="Value"
                           HorizontalAlignment="Stretch"
@@ -505,6 +525,7 @@
                           Margin="1,0" ItemsPanel="{StaticResource Template_ComboPanel}" />
                     <ComboBox ItemsSource="{Binding Source={StaticResource PrefixCollection}}"
                           SelectedValue="{Binding SelectedTileEntity.Item5.Prefix, Mode=TwoWay}"
+                          IsEditable="true"
                           SelectedValuePath="Key"
                           DisplayMemberPath="Value"
                           HorizontalAlignment="Stretch"
@@ -513,6 +534,7 @@
                     <ComboBox Width="150px"
                           ItemsSource="{Binding Source={StaticResource MannAccessoryCollection}}"
                           SelectedValue="{Binding SelectedTileEntity.Item5.Id, Mode=TwoWay, Converter={StaticResource ShortIntConverter}}"
+                          IsEditable="true"
                           SelectedValuePath="Key"
                           DisplayMemberPath="Value"
                           IsSynchronizedWithCurrentItem="False"
@@ -522,6 +544,7 @@
                     <TextBlock Text="Acc4: " Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" VerticalAlignment="Center" />
                     <ComboBox ItemsSource="{Binding Source={StaticResource DyeCollection}}"
                           SelectedValue="{Binding SelectedTileEntity.Dye6.Id, Mode=TwoWay, Converter={StaticResource ShortIntConverter}}"
+                          IsEditable="true"
                           SelectedValuePath="Key"
                           DisplayMemberPath="Value"
                           HorizontalAlignment="Stretch"
@@ -529,6 +552,7 @@
                           Margin="1,0" ItemsPanel="{StaticResource Template_ComboPanel}" />
                     <ComboBox ItemsSource="{Binding Source={StaticResource PrefixCollection}}"
                           SelectedValue="{Binding SelectedTileEntity.Item6.Prefix, Mode=TwoWay}"
+                          IsEditable="true"
                           SelectedValuePath="Key"
                           DisplayMemberPath="Value"
                           HorizontalAlignment="Stretch"
@@ -537,6 +561,7 @@
                     <ComboBox Width="150px"
                           ItemsSource="{Binding Source={StaticResource MannAccessoryCollection}}"
                           SelectedValue="{Binding SelectedTileEntity.Item6.Id, Mode=TwoWay, Converter={StaticResource ShortIntConverter}}"
+                          IsEditable="true"
                           SelectedValuePath="Key"
                           DisplayMemberPath="Value"
                           IsSynchronizedWithCurrentItem="False"
@@ -546,6 +571,7 @@
                     <TextBlock Text="Acc5: " Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" VerticalAlignment="Center" />
                     <ComboBox ItemsSource="{Binding Source={StaticResource DyeCollection}}"
                           SelectedValue="{Binding SelectedTileEntity.Dye7.Id, Mode=TwoWay, Converter={StaticResource ShortIntConverter}}"
+                          IsEditable="true"
                           SelectedValuePath="Key"
                           DisplayMemberPath="Value"
                           HorizontalAlignment="Stretch"
@@ -553,6 +579,7 @@
                           Margin="1,0" ItemsPanel="{StaticResource Template_ComboPanel}" />
                     <ComboBox ItemsSource="{Binding Source={StaticResource PrefixCollection}}"
                           SelectedValue="{Binding SelectedTileEntity.Item7.Prefix, Mode=TwoWay}"
+                          IsEditable="true"
                           SelectedValuePath="Key"
                           DisplayMemberPath="Value"
                           HorizontalAlignment="Stretch"
@@ -561,6 +588,7 @@
                     <ComboBox Width="150px"
                           ItemsSource="{Binding Source={StaticResource MannAccessoryCollection}}"
                           SelectedValue="{Binding SelectedTileEntity.Item7.Id, Mode=TwoWay, Converter={StaticResource ShortIntConverter}}"
+                          IsEditable="true"
                           SelectedValuePath="Key"
                           DisplayMemberPath="Value"
                           IsSynchronizedWithCurrentItem="False"
@@ -598,6 +626,7 @@
                     <TextBlock Text="Head: " Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" VerticalAlignment="Center" />
                     <ComboBox ItemsSource="{Binding Source={StaticResource DyeCollection}}"
                           SelectedValue="{Binding SelectedTileEntity.Dye0.Id, Mode=TwoWay, Converter={StaticResource ShortIntConverter}}"
+                          IsEditable="true"
                           SelectedValuePath="Key"
                           DisplayMemberPath="Value"
                           HorizontalAlignment="Stretch"
@@ -605,6 +634,7 @@
                           Margin="1,0" ItemsPanel="{StaticResource Template_ComboPanel}" />
                     <ComboBox ItemsSource="{Binding Source={StaticResource PrefixCollection}}"
                           SelectedValue="{Binding SelectedTileEntity.Item0.Prefix, Mode=TwoWay}"
+                          IsEditable="true"
                           SelectedValuePath="Key"
                           DisplayMemberPath="Value"
                           HorizontalAlignment="Stretch"
@@ -613,6 +643,7 @@
                     <ComboBox Width="150px"
                           ItemsSource="{Binding Source={StaticResource MannHeadCollection}}"
                           SelectedValue="{Binding SelectedTileEntity.Item0.Id, Mode=TwoWay, Converter={StaticResource ShortIntConverter}}"
+                          IsEditable="true"
                           SelectedValuePath="Key"
                           DisplayMemberPath="Value"
                           IsSynchronizedWithCurrentItem="False"
@@ -622,6 +653,7 @@
                     <TextBlock Text="Head: " Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" VerticalAlignment="Center" />
                     <ComboBox ItemsSource="{Binding Source={StaticResource DyeCollection}}"
                           SelectedValue="{Binding SelectedTileEntity.Dye1.Id, Mode=TwoWay, Converter={StaticResource ShortIntConverter}}"
+                          IsEditable="true"
                           SelectedValuePath="Key"
                           DisplayMemberPath="Value"
                           HorizontalAlignment="Stretch"
@@ -629,6 +661,7 @@
                           Margin="1,0" ItemsPanel="{StaticResource Template_ComboPanel}" />
                     <ComboBox ItemsSource="{Binding Source={StaticResource PrefixCollection}}"
                           SelectedValue="{Binding SelectedTileEntity.Item1.Prefix, Mode=TwoWay}"
+                          IsEditable="true"
                           SelectedValuePath="Key"
                           DisplayMemberPath="Value"
                           HorizontalAlignment="Stretch"
@@ -637,6 +670,7 @@
                     <ComboBox Width="150px"
                           ItemsSource="{Binding Source={StaticResource MannHeadCollection}}"
                           SelectedValue="{Binding SelectedTileEntity.Item1.Id, Mode=TwoWay, Converter={StaticResource ShortIntConverter}}"
+                          IsEditable="true"
                           SelectedValuePath="Key"
                           DisplayMemberPath="Value"
                           IsSynchronizedWithCurrentItem="False"
@@ -673,6 +707,7 @@
                 <StackPanel Orientation="Horizontal" Grid.Row="1" DataContext="{Binding SelectedTileEntity}">
                     <ComboBox ItemsSource="{Binding Source={StaticResource PrefixCollection}}"
                           SelectedValue="{Binding Prefix, Mode=TwoWay}"
+                          IsEditable="true"
                           SelectedValuePath="Key"
                           DisplayMemberPath="Value"
                           HorizontalAlignment="Stretch"
@@ -680,6 +715,7 @@
                           Margin="1,0" ItemsPanel="{StaticResource Template_ComboPanel}" />
                     <ComboBox ItemsSource="{Binding Source={StaticResource RackCollection}}"
                           SelectedValue="{Binding NetId, Mode=TwoWay}"
+                          IsEditable="true"
                           SelectedValuePath="Key"
                           DisplayMemberPath="Value"
                           IsSynchronizedWithCurrentItem="False"
