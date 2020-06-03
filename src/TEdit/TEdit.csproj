@@ -10,7 +10,7 @@
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <LangVersion>latest</LangVersion>
     <VersionPrefix>4.0.0</VersionPrefix>
-    <VersionSuffix>beta13</VersionSuffix>
+    <VersionSuffix>beta14</VersionSuffix>
     <Platforms>AnyCPU</Platforms>
   </PropertyGroup>
 
@@ -66,4 +66,7 @@
     </None>
   </ItemGroup>
 
+  <Target Name="Sign" AfterTargets="Build" BeforeTargets="Pack" Condition=" $(signcert) != '' ">
+    <Exec Command="signtool.exe sign /v /fd sha256 /n &quot;$(signcert)&quot; /t http://timestamp.verisign.com/scripts/timstamp.dll &quot;$(TargetPath)&quot; " Condition="$(TargetPath) != ''"  ContinueOnError="WarnAndContinue" />
+  </Target>
 </Project>
