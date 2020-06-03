@@ -98,14 +98,14 @@ namespace TEdit.Editor.Clipboard
             bw.Write(Size.Y);
         }
 
-        private static ClipboardBuffer LoadV3(BinaryReader b, string name, uint tVersion, int version)
+        private static ClipboardBuffer LoadV3(BinaryReader b, string name, int version)
         {
             int sizeX = b.ReadInt32();
             int sizeY = b.ReadInt32();
             var buffer = new ClipboardBuffer(new Vector2Int32(sizeX, sizeY));
             buffer.Name = name;
 
-            buffer.Tiles = World.LoadTileData(b, sizeX, sizeY);
+            buffer.Tiles = World.LoadTileData(b, sizeX, sizeY, version);
             buffer.Chests.AddRange(World.LoadChestData(b));
             buffer.Signs.AddRange(World.LoadSignData(b));
             buffer.TileEntities.AddRange(World.LoadTileEntityData(b, (uint)version));
@@ -134,7 +134,7 @@ namespace TEdit.Editor.Clipboard
             var buffer = new ClipboardBuffer(new Vector2Int32(sizeX, sizeY));
             buffer.Name = name;
 
-            buffer.Tiles = World.LoadTileData(b, sizeX, sizeY);
+            buffer.Tiles = World.LoadTileData(b, sizeX, sizeY, version);
             buffer.Chests.AddRange(World.LoadChestData(b));
             buffer.Signs.AddRange(World.LoadSignData(b));
 
@@ -171,7 +171,7 @@ namespace TEdit.Editor.Clipboard
                     uint tVersion = (uint)version;
 
                     // check all the old versions
-                    if (version < 200)
+                    if (version < 222)
                     {
                         return LoadV2(b, name, tVersion, version);
                     }
@@ -206,7 +206,7 @@ namespace TEdit.Editor.Clipboard
                     else
                     {
                     // not and old version, use new version
-                       return LoadV3(b, name, tVersion, version);
+                       return LoadV3(b, name, version);
                     }
                 }
             }

@@ -70,7 +70,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Shortcut Key="R"   Tool="Picker"       />
     <Shortcut Key="P"   Tool="Point"        />
     <Shortcut Key="S"   Tool="Selection"    />
-    <Shortcut Key="T"   Tool="Sprite"       />
+    <Shortcut Key="T"   Tool="Sprite2"       />
     <Shortcut Key="Z"   Tool="Eraser"       />
     <Shortcut Key="X"   Tool="Swap"         />
     <Shortcut Key="Q"   Tool="ToggleTile"       />

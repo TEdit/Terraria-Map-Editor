@@ -21,7 +21,7 @@ namespace TEdit.Terraria
         public const short KillTallyMax = 663;
 
         public const int MaxChests = 8000;
-        public const int MaxSigns = 1000;        
+        public const int MaxSigns = 1000;
 
         public static bool[] TileFrameImportant;
 
@@ -62,7 +62,7 @@ namespace TEdit.Terraria
                 LoadHeaderFlags(b, w, sectionPointers[1]);
                 if (b.BaseStream.Position != sectionPointers[1])
                     throw new FileFormatException("Unexpected Position: Invalid Header Flags");
-                
+
                 if (w.Version >= 210 && sectionPointers.Length > 9)
                 {
                     // skip to bestiary data
@@ -731,7 +731,7 @@ namespace TEdit.Terraria
                 throw new FileFormatException("Unexpected Position: Invalid Header Flags");
 
             OnProgressChanged(null, new ProgressChangedEventArgs(0, "Loading Tiles..."));
-            w.Tiles = LoadTileData(b, w.TilesWide, w.TilesHigh);
+            w.Tiles = LoadTileData(b, w.TilesWide, w.TilesHigh, (int)w.Version);
             if (b.BaseStream.Position != sectionPointers[2])
                 throw new FileFormatException("Unexpected Position: Invalid Tile Data");
 
@@ -813,7 +813,7 @@ namespace TEdit.Terraria
             OnProgressChanged(null, new ProgressChangedEventArgs(100, "Load Complete."));
         }
 
-        public static Tile[,] LoadTileData(BinaryReader r, int maxX, int maxY)
+        public static Tile[,] LoadTileData(BinaryReader r, int maxX, int maxY, int version)
         {
             var tiles = new Tile[maxX, maxY];
 
@@ -825,7 +825,7 @@ namespace TEdit.Terraria
 
                 for (int y = 0; y < maxY; y++)
                 {
-                    Tile tile = DeserializeTileData(r, out rle);
+                    Tile tile = DeserializeTileData(r, version, out rle);
 
 
                     tiles[x, y] = tile;
@@ -833,10 +833,11 @@ namespace TEdit.Terraria
                     {
                         y++;
 
-                        if (y > maxY)
+                        if (y >= maxY) { 
+                            break;
                             throw new FileFormatException(
                                 $"Invalid Tile Data: RLE Compression outside of bounds [{x},{y}]");
-
+                        }
                         tiles[x, y] = (Tile)tile.Clone();
                         rle--;
                     }
@@ -846,7 +847,7 @@ namespace TEdit.Terraria
             return tiles;
         }
 
-        public static Tile DeserializeTileData(BinaryReader r, out int rle)
+        public static Tile DeserializeTileData(BinaryReader r, int version, out int rle)
         {
             Tile tile = new Tile();
 
@@ -989,9 +990,12 @@ namespace TEdit.Terraria
                     tile.WireYellow = true;
                 }
 
-                if ((header3 & 64) == 64)
+                if (version >= 222)
                 {
-                    tile.Wall = (ushort)(r.ReadByte() << 8 | tile.Wall);
+                    if ((header3 & 64) == 64)
+                    {
+                        tile.Wall = (ushort)(r.ReadByte() << 8 | tile.Wall);
+                    }
                 }
             }
 

@@ -121,7 +121,7 @@ namespace TEdit.Editor.Undo
                 int rle;
                 int x = br.ReadInt32();
                 int y = br.ReadInt32();
-                var curTile = World.DeserializeTileData(br, out rle);
+                var curTile = World.DeserializeTileData(br, (int)World.CompatibleVersion, out rle);
 
                 yield return new UndoTile(new Vector2Int32(x, y), curTile);
             }
