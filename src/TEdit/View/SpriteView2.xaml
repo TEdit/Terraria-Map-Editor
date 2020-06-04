@@ -26,19 +26,22 @@
             <ComboBox ItemsSource="{Binding SpritesView2}" SelectedItem="{Binding SelectedSpriteTile2}" SelectedIndex="0">
                 <ComboBox.ItemTemplate>
                     <DataTemplate>
-                        <StackPanel Orientation="Vertical">
-                            <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="{Binding Path=Name}" />
-                                <TextBlock>:</TextBlock>
-                                <TextBlock Text="{Binding Path=Tile}" />
-                            </StackPanel>
-                            <Image 
+                        <Border HorizontalAlignment="Stretch" IsHitTestVisible="true" Background="{StaticResource ControlBackgroundBrush}">
+                            <StackPanel Orientation="Vertical" HorizontalAlignment="Left">
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="{Binding Path=Name}" />
+                                    <TextBlock>:</TextBlock>
+                                    <TextBlock Text="{Binding Path=Tile}" />
+                                </StackPanel>
+                                <Image 
+                                    HorizontalAlignment="Left"
                                     Source="{Binding Path=Styles[0].Preview}" 
                                     Height="{Binding Path=Styles[0].Preview.PixelHeight}" 
                                     Width="{Binding Path=Styles[0].Preview.PixelWidth}"
                                     RenderOptions.BitmapScalingMode="NearestNeighbor" 
                                     ToolTip="{Binding Path=Name}" />
-                        </StackPanel>
+                            </StackPanel>
+                        </Border>
                     </DataTemplate>
                 </ComboBox.ItemTemplate>
             </ComboBox>

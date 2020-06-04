@@ -41,12 +41,10 @@ namespace TEdit.Editor.Tools
             if (_wvm.SelectedSprite2.Value == null)
                 return;
 
-            SpriteFull.PlaceSprite(e.Location.X, e.Location.Y, _wvm.SelectedSpriteTile2, _wvm.SelectedSprite2.Key, _wvm);
-            if (Tile.IsTileEntity(_wvm.SelectedSprite2.Value.Tile))
-            {
-                var te = TileEntity.CreateForTile(_wvm.CurrentWorld.Tiles[e.Location.X, e.Location.Y], e.Location.X, e.Location.Y, 0);
-                TileEntity.PlaceEntity(te, _wvm);
-            }
+            var x = e.Location.X;
+            var y = e.Location.Y;
+
+            PlaceSelectedSprite(x, y);
 
             if (!_isRightDown && !_isLeftDown)
             {
@@ -60,6 +58,41 @@ namespace TEdit.Editor.Tools
             if (_wvm.SelectedSpriteTile2.SizeTiles.X == 1 && _wvm.SelectedSpriteTile2.SizeTiles.Y == 1)
                 CheckDirectionandDraw(e.Location);
         }
+
+        private void PlaceSelectedSprite(int x, int y)
+        {
+            ushort tileId = _wvm.SelectedSprite2.Value.Tile;
+
+            SpriteFull.PlaceSprite(x, y, _wvm.SelectedSpriteTile2, _wvm.SelectedSprite2.Key, _wvm);
+
+            if (Tile.IsTileEntity(tileId))
+            {
+                // if the tile entity is not the same as it was, create a new TE.
+                var existingTe = _wvm.CurrentWorld.GetTileEntityAtTile(x, y);
+                if ((ushort)existingTe.TileType != _wvm.SelectedSpriteTile2.Tile)
+                {
+                    var te = TileEntity.CreateForTile(_wvm.CurrentWorld.Tiles[x, y], x, y, 0);
+                    TileEntity.PlaceEntity(te, _wvm);
+                }
+            }
+            else if (Tile.IsChest(tileId))
+            {
+                var existingChest = _wvm.CurrentWorld.GetChestAtTile(x, y);
+                if (existingChest == null)
+                {
+                    _wvm.CurrentWorld.Chests.Add(new Chest(x,y));
+                }
+            }
+            else if (Tile.IsSign(tileId))
+            {
+                var existingSign = _wvm.CurrentWorld.GetSignAtTile(x, y);
+                if (existingSign == null)
+                {
+                    _wvm.CurrentWorld.Signs.Add(new Sign(x, y, string.Empty));
+                }
+            }
+        }
+
         public override void MouseMove(TileMouseState e)
         {
             _isLeftDown = (e.LeftButton == MouseButtonState.Pressed);
@@ -123,12 +156,7 @@ namespace TEdit.Editor.Tools
                         if (_wvm.SelectedSpriteTile2 == null)
                             return;
 
-                        SpriteFull.PlaceSprite(pixel.X, pixel.Y, _wvm.SelectedSpriteTile2, _wvm.SelectedSprite2.Key, _wvm);
-                        if (Tile.IsTileEntity(_wvm.SelectedSpriteTile2.Tile))
-                        {
-                            var te = TileEntity.CreateForTile(_wvm.CurrentWorld.Tiles[pixel.X, pixel.Y], pixel.X, pixel.Y, 0);
-                            TileEntity.PlaceEntity(te, _wvm);
-                        }
+                        PlaceSelectedSprite(pixel.X, pixel.Y);
                     }
                 }
             }
@@ -147,14 +175,8 @@ namespace TEdit.Editor.Tools
                         if (_wvm.SelectedSpriteTile2 == null)
                             return;
 
-                        
-                        SpriteFull.PlaceSprite(pixel.X, pixel.Y, _wvm.SelectedSpriteTile2, _wvm.SelectedSprite2.Key, _wvm);
-                        if (Tile.IsTileEntity(_wvm.SelectedSpriteTile2.Tile))
-                        {
-                            var te = TileEntity.CreateForTile(_wvm.CurrentWorld.Tiles[pixel.X, pixel.Y], pixel.X, pixel.Y, 0);
-                            TileEntity.PlaceEntity(te, _wvm);
-                        }
 
+                        PlaceSelectedSprite(pixel.X, pixel.Y);
                     }
                 }
             }
