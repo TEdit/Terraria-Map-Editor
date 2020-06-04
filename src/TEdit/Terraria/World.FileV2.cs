@@ -732,8 +732,10 @@ namespace TEdit.Terraria
 
             OnProgressChanged(null, new ProgressChangedEventArgs(0, "Loading Tiles..."));
             w.Tiles = LoadTileData(b, w.TilesWide, w.TilesHigh, (int)w.Version);
+
             if (b.BaseStream.Position != sectionPointers[2])
-                throw new FileFormatException("Unexpected Position: Invalid Tile Data");
+                b.BaseStream.Position = sectionPointers[2];
+                //throw new FileFormatException("Unexpected Position: Invalid Tile Data");
 
             OnProgressChanged(null, new ProgressChangedEventArgs(100, "Loading Chests..."));
 
@@ -821,25 +823,42 @@ namespace TEdit.Terraria
             for (int x = 0; x < maxX; x++)
             {
                 OnProgressChanged(null,
-                    new ProgressChangedEventArgs(x.ProgressPercentage(maxX), "Loading UndoTiles..."));
+                    new ProgressChangedEventArgs(x.ProgressPercentage(maxX), "Loading Tiles..."));
 
                 for (int y = 0; y < maxY; y++)
                 {
-                    Tile tile = DeserializeTileData(r, version, out rle);
-
-
-                    tiles[x, y] = tile;
-                    while (rle > 0)
+                    try
                     {
-                        y++;
+                        Tile tile = DeserializeTileData(r, version, out rle);
 
-                        if (y >= maxY) { 
-                            break;
-                            throw new FileFormatException(
-                                $"Invalid Tile Data: RLE Compression outside of bounds [{x},{y}]");
+
+                        tiles[x, y] = tile;
+                        while (rle > 0)
+                        {
+                            y++;
+
+                            if (y >= maxY)
+                            {
+                                break;
+                                throw new FileFormatException(
+                                    $"Invalid Tile Data: RLE Compression outside of bounds [{x},{y}]");
+                            }
+                            tiles[x, y] = (Tile)tile.Clone();
+                            rle--;
                         }
-                        tiles[x, y] = (Tile)tile.Clone();
-                        rle--;
+                    }
+                    catch (Exception ex)
+                    {
+                        // forcing some recovery here
+
+                        for (int x2 = 0; x2 < maxX; x2++)
+                        {
+                            for (int y2 = 0; y2 < maxY; y2++)
+                            {
+                                if (tiles[x2,y2] == null) tiles[x2,y2] = new Tile();
+                            }
+                        }
+                        return tiles;
                     }
                 }
             }
