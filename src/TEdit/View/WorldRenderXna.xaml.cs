@@ -161,6 +161,16 @@ namespace TEdit.View
             _dpiScale = new Vector2((float)m.M11, (float)m.M22);
         }
 
+        public void LockOnTile(int tileX, int tileY, double mouseX, double mouseY)
+        {
+            _scrollPosition = new Vector2(
+                -tileX + (float)(mouseX / _zoom),
+                -tileY + (float)(mouseY / _zoom));
+            ClampScroll();
+            ScrollBarH.Value = -_scrollPosition.X;
+            ScrollBarV.Value = -_scrollPosition.Y;
+        }
+
         public void CenterOnTile(int x, int y)
         {
             _scrollPosition = new Vector2(
@@ -2543,10 +2553,10 @@ namespace TEdit.View
 
         private void xnaViewport_HwndMouseWheel(object sender, HwndMouseEventArgs e)
         {
-            Zoom(e.WheelDelta);
+            Zoom(e.WheelDelta, e.Position.X, e.Position.Y);
         }
 
-        public void Zoom(int direction)
+        public void Zoom(int direction, double x = -1, double y = -1)
         {
             float tempZoom = _zoom;
             if (direction > 0)
@@ -2555,7 +2565,11 @@ namespace TEdit.View
                 tempZoom = _zoom / 2F;
             Vector2Int32 curTile = _wvm.MouseOverTile.MouseState.Location;
             _zoom = MathHelper.Clamp(tempZoom, 0.125F, 64F);
-            CenterOnTile(curTile.X, curTile.Y);
+
+            if (x < 0 || y < 0)
+                CenterOnTile(curTile.X, curTile.Y);
+            else 
+                LockOnTile(curTile.X, curTile.Y, x, y);
 
             if (_wvm.CurrentWorld != null)
             {
