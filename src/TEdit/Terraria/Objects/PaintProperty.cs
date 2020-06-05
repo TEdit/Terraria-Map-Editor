@@ -1,11 +1,13 @@
 ﻿using System.Windows.Media;
 using GalaSoft.MvvmLight;
+using XnaColor = Microsoft.Xna.Framework.Color;
 
 namespace TEdit.Terraria.Objects
 {
     public class PaintProperty : ObservableObject
     {
         private Color _color;
+        private XnaColor _paintColor;
         private int _id;
         private string _name;
 
@@ -27,8 +29,15 @@ namespace TEdit.Terraria.Objects
         public Color Color
         {
             get { return _color; }
-            set { Set("Color", ref _color, value); }
+            set
+            {
+                Set("Color", ref _color, value);
+                _paintColor = new XnaColor(value.R, value.G, value.B, value.A);
+                RaisePropertyChanged("PaintColor");
+            }
         }
+
+        public XnaColor PaintColor => _paintColor;
 
         public int Id
         {

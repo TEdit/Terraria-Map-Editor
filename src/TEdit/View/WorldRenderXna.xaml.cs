@@ -791,6 +791,7 @@ namespace TEdit.View
 
                             if (_wvm.ShowWalls)
                             {
+                                var wallPaintColor = curtile.WallColor == 0 ? Color.White : World.PaintProperties[curtile.WallColor].PaintColor;
                                 if (curtile.Wall > 0)
                                 {
                                     var wallTex = _textureDictionary.GetWall(curtile.Wall);
@@ -812,8 +813,8 @@ namespace TEdit.View
                                         var texsize = new Vector2Int32(32, 32);
                                         var source = new Rectangle((curtile.uvWallCache & 0x00FF) * (texsize.X + 4), (curtile.uvWallCache >> 8) * (texsize.Y + 4), texsize.X, texsize.Y);
                                         var dest = new Rectangle(1 + (int)((_scrollPosition.X + x - 0.5) * _zoom), 1 + (int)((_scrollPosition.Y + y - 0.5) * _zoom), (int)_zoom * 2, (int)_zoom * 2);
-
-                                        _spriteBatch.Draw(wallTex, dest, source, Color.White, 0f, default(Vector2), SpriteEffects.None, LayerTileWallTextures);
+                                        
+                                        _spriteBatch.Draw(wallTex, dest, source, wallPaintColor, 0f, default(Vector2), SpriteEffects.None, LayerTileWallTextures);
                                     }
                                 }
                             }
@@ -821,6 +822,9 @@ namespace TEdit.View
                             {
                                 if (curtile.IsActive)
                                 {
+
+                                    var tilePaintColor = curtile.TileColor == 0 ? Color.White : World.PaintProperties[curtile.TileColor].PaintColor;
+
                                     if (tileprop.IsFramed)
                                     {
                                         Rectangle source = new Rectangle(), dest = new Rectangle();
@@ -1078,9 +1082,9 @@ namespace TEdit.View
                                                         break;
                                                 }
                                                 if (curtile.U % 100 < 36)
-                                                    _spriteBatch.Draw(tileTex, dest, source, Color.White, 0f, default(Vector2), SpriteEffects.FlipHorizontally, LayerTileTrack);
+                                                    _spriteBatch.Draw(tileTex, dest, source, tilePaintColor, 0f, default(Vector2), SpriteEffects.FlipHorizontally, LayerTileTrack);
                                                 else
-                                                    _spriteBatch.Draw(tileTex, dest, source, Color.White, 0f, default(Vector2), SpriteEffects.None, LayerTileTrack);
+                                                    _spriteBatch.Draw(tileTex, dest, source, tilePaintColor, 0f, default(Vector2), SpriteEffects.None, LayerTileTrack);
                                                 tileTex = _textureDictionary.GetTile(curtile.Type);
                                                 source = new Rectangle((curtile.U % 100), curtile.V, tileprop.TextureGrid.X, tileprop.TextureGrid.Y);
                                                 dest = new Rectangle(1 + (int)((_scrollPosition.X + x) * _zoom), 1 + (int)((_scrollPosition.Y + y) * _zoom), (int)_zoom, (int)_zoom);
@@ -1107,7 +1111,7 @@ namespace TEdit.View
                                                     {
                                                         effect = SpriteEffects.FlipHorizontally;
                                                     }
-                                                    _spriteBatch.Draw(tileTex, new Vector2(1 + (int)((_scrollPosition.X + x + 1.5) * _zoom), 1 + (int)((_scrollPosition.Y + y + .5) * _zoom)), source, Color.White, 0f, new Vector2((float)(tileTex.Width / 2), (float)(tileTex.Height / 2)), scale * _zoom / 16f, effect, LayerTileTrack);
+                                                    _spriteBatch.Draw(tileTex, new Vector2(1 + (int)((_scrollPosition.X + x + 1.5) * _zoom), 1 + (int)((_scrollPosition.Y + y + .5) * _zoom)), source, tilePaintColor, 0f, new Vector2((float)(tileTex.Width / 2), (float)(tileTex.Height / 2)), scale * _zoom / 16f, effect, LayerTileTrack);
                                                 }
                                                 source = new Rectangle(((curtile.U / 5000) - 1) * 18, curtile.V, tileprop.TextureGrid.X, tileprop.TextureGrid.Y);
                                                 tileTex = _textureDictionary.GetTile(curtile.Type);
@@ -1177,7 +1181,7 @@ namespace TEdit.View
                                                                 1 + (int)((_scrollPosition.X + x + 0.5) * _zoom),
                                                                 1 + (int)((_scrollPosition.Y + y + 1) * _zoom)),
                                                             source,
-                                                            Color.White,
+                                                            tilePaintColor,
                                                             0f,
                                                             new Vector2((float)(source.Width / 2),
                                                             (float)(source.Height)),
@@ -1194,7 +1198,7 @@ namespace TEdit.View
                                                                  1 + (int)((_scrollPosition.X + x + 1) * _zoom),
                                                                  1 + (int)((_scrollPosition.Y + y + 0.5) * _zoom)),
                                                              source,
-                                                             Color.White,
+                                                             tilePaintColor,
                                                              0f,
                                                              new Vector2((float)(tileTex.Width / 2),
                                                              (float)(tileTex.Height / 2)),
@@ -1218,25 +1222,25 @@ namespace TEdit.View
                                                     {
                                                         tileTex = (Texture2D)_textureDictionary.GetMisc("Xmas_3");
                                                         source.X = 66 * (star - 1);
-                                                        _spriteBatch.Draw(tileTex, dest, source, Color.White, 0f, default(Vector2), SpriteEffects.None, LayerTileTrack);
+                                                        _spriteBatch.Draw(tileTex, dest, source, tilePaintColor, 0f, default(Vector2), SpriteEffects.None, LayerTileTrack);
                                                     }
                                                     if (garland > 0)
                                                     {
                                                         tileTex = (Texture2D)_textureDictionary.GetMisc("Xmas_1");
                                                         source.X = 66 * (garland - 1);
-                                                        _spriteBatch.Draw(tileTex, dest, source, Color.White, 0f, default(Vector2), SpriteEffects.None, LayerTileTrack);
+                                                        _spriteBatch.Draw(tileTex, dest, source, tilePaintColor, 0f, default(Vector2), SpriteEffects.None, LayerTileTrack);
                                                     }
                                                     if (bulb > 0)
                                                     {
                                                         tileTex = (Texture2D)_textureDictionary.GetMisc("Xmas_2");
                                                         source.X = 66 * (bulb - 1);
-                                                        _spriteBatch.Draw(tileTex, dest, source, Color.White, 0f, default(Vector2), SpriteEffects.None, LayerTileTrack);
+                                                        _spriteBatch.Draw(tileTex, dest, source, tilePaintColor, 0f, default(Vector2), SpriteEffects.None, LayerTileTrack);
                                                     }
                                                     if (light > 0)
                                                     {
                                                         tileTex = (Texture2D)_textureDictionary.GetMisc("Xmas_4");
                                                         source.X = 66 * (light - 1);
-                                                        _spriteBatch.Draw(tileTex, dest, source, Color.White, 0f, default(Vector2), SpriteEffects.None, LayerTileTrack);
+                                                        _spriteBatch.Draw(tileTex, dest, source, tilePaintColor, 0f, default(Vector2), SpriteEffects.None, LayerTileTrack);
                                                     }
                                                     source.X = 0;
                                                     tileTex = (Texture2D)_textureDictionary.GetMisc("Xmas_0");
@@ -1251,21 +1255,21 @@ namespace TEdit.View
                                                     Vector2Int32 uvback = TrackUV(curtile.V);
                                                     source.X = uvback.X * (source.Width + 2);
                                                     source.Y = uvback.Y * (source.Height + 2);
-                                                    _spriteBatch.Draw(tileTex, dest, source, Color.White, 0f, default(Vector2), SpriteEffects.None, LayerTileTrackBack);
+                                                    _spriteBatch.Draw(tileTex, dest, source, tilePaintColor, 0f, default(Vector2), SpriteEffects.None, LayerTileTrackBack);
                                                 }
                                                 if ((curtile.U >= 2 && curtile.U <= 3) || (curtile.U >= 10 && curtile.U <= 13))
                                                 { // Adding regular endcap
                                                     dest.Y = 1 + (int)((_scrollPosition.Y + y - 1) * _zoom);
                                                     source.X = 0;
                                                     source.Y = 126;
-                                                    _spriteBatch.Draw(tileTex, dest, source, Color.White, 0f, default(Vector2), SpriteEffects.None, LayerTileTrack);
+                                                    _spriteBatch.Draw(tileTex, dest, source, tilePaintColor, 0f, default(Vector2), SpriteEffects.None, LayerTileTrack);
                                                 }
                                                 if (curtile.U >= 24 && curtile.U <= 29)
                                                 { // Adding bumper endcap
                                                     dest.Y = 1 + (int)((_scrollPosition.Y + y - 1) * _zoom);
                                                     source.X = 18;
                                                     source.Y = 126;
-                                                    _spriteBatch.Draw(tileTex, dest, source, Color.White, 0f, default(Vector2), SpriteEffects.None, LayerTileTrack);
+                                                    _spriteBatch.Draw(tileTex, dest, source, tilePaintColor, 0f, default(Vector2), SpriteEffects.None, LayerTileTrack);
                                                 }
                                                 if (curtile.U == 4 || curtile.U == 9 || curtile.U == 10 || curtile.U == 16 || curtile.U == 26 || curtile.U == 33 || curtile.U == 35 || curtile.V == 4)
                                                 { // Adding angle track bottom right
@@ -1277,7 +1281,7 @@ namespace TEdit.View
                                                         Rectangle? sourceSlice = new Rectangle(source.X + slice * 2, source.Y, 2, 12 - slice * 2);
                                                         Vector2 destSlice = new Vector2((int)(dest.X + slice * _zoom / 8.0f), dest.Y);
 
-                                                        _spriteBatch.Draw(tileTex, destSlice, sourceSlice, Color.White, 0f, default(Vector2), _zoom / 16, SpriteEffects.None, LayerTileTrack);
+                                                        _spriteBatch.Draw(tileTex, destSlice, sourceSlice, tilePaintColor, 0f, default(Vector2), _zoom / 16, SpriteEffects.None, LayerTileTrack);
                                                     }
                                                 }
                                                 if (curtile.U == 5 || curtile.U == 8 || curtile.U == 11 || curtile.U == 17 || curtile.U == 27 || curtile.U == 32 || curtile.U == 34 || curtile.V == 5)
@@ -1290,7 +1294,7 @@ namespace TEdit.View
                                                         Rectangle? sourceSlice = new Rectangle(source.X + slice * 2, source.Y, 2, slice * 2 - 2);
                                                         Vector2 destSlice = new Vector2((int)(dest.X + slice * _zoom / 8.0f), dest.Y);
 
-                                                        _spriteBatch.Draw(tileTex, destSlice, sourceSlice, Color.White, 0f, default(Vector2), _zoom / 16, SpriteEffects.None, LayerTileTrack);
+                                                        _spriteBatch.Draw(tileTex, destSlice, sourceSlice, tilePaintColor, 0f, default(Vector2), _zoom / 16, SpriteEffects.None, LayerTileTrack);
                                                     }
                                                 }
                                                 dest.Y = 1 + (int)((_scrollPosition.Y + y) * _zoom);
@@ -1458,7 +1462,7 @@ namespace TEdit.View
                                                 }
                                             }
 
-                                            _spriteBatch.Draw(tileTex, dest, source, curtile.InActive ? Color.Gray : Color.White, 0f, default(Vector2), SpriteEffects.None, LayerTileTextures);
+                                            _spriteBatch.Draw(tileTex, dest, source, curtile.InActive ? Color.Gray : tilePaintColor, 0f, default(Vector2), SpriteEffects.None, LayerTileTextures);
                                             // Actuator Overlay
                                             if (curtile.Actuator && _wvm.ShowActuators)
                                                 _spriteBatch.Draw(_textureDictionary.Actuator, dest, _textureDictionary.ZeroSixteenRectangle, Color.White, 0f, default(Vector2), SpriteEffects.None, LayerTileActuator);
@@ -1520,7 +1524,7 @@ namespace TEdit.View
                                             var source = new Rectangle((curtile.uvTileCache & 0x00FF) * (texsize.X + 2), (curtile.uvTileCache >> 8) * (texsize.Y + 2), texsize.X, texsize.Y);
                                             var dest = new Rectangle(1 + (int)((_scrollPosition.X + x) * _zoom), 1 + (int)((_scrollPosition.Y + y) * _zoom), (int)_zoom, (int)_zoom);
 
-                                            _spriteBatch.Draw(tileTex, dest, source, curtile.InActive ? Color.Gray : Color.White, 0f, default(Vector2), SpriteEffects.None, LayerTileTextures);
+                                            _spriteBatch.Draw(tileTex, dest, source, curtile.InActive ? Color.Gray : tilePaintColor, 0f, default(Vector2), SpriteEffects.None, LayerTileTextures);
                                             // Actuator Overlay
                                             if (curtile.Actuator && _wvm.ShowActuators)
                                                 _spriteBatch.Draw(_textureDictionary.Actuator, dest, _textureDictionary.ZeroSixteenRectangle, Color.White, 0f, default(Vector2), SpriteEffects.None, LayerTileActuator);
@@ -1766,7 +1770,7 @@ namespace TEdit.View
                                             var source = new Rectangle(((curtile.uvTileCache & 0x00FF) % 8) * (texsize.X + 2), (curtile.uvTileCache >> 8) * (texsize.Y + 2), texsize.X, texsize.Y);
                                             var dest = new Rectangle(1 + (int)((_scrollPosition.X + x) * _zoom), 1 + (int)((_scrollPosition.Y + y) * _zoom), (int)_zoom, (int)_zoom);
 
-                                            _spriteBatch.Draw(tileTex, dest, source, Color.White, 0f, default(Vector2), SpriteEffects.None, LayerTileTextures);
+                                            _spriteBatch.Draw(tileTex, dest, source, tilePaintColor, 0f, default(Vector2), SpriteEffects.None, LayerTileTextures);
                                         }
                                     }
                                     else if (tileprop.CanBlend)
@@ -1874,7 +1878,7 @@ namespace TEdit.View
                                                     source.Height /= 2;
                                                     dest.Y += (int)(_zoom * 0.5);
                                                     dest.Height = (int)(_zoom / 2.0f);
-                                                    _spriteBatch.Draw(tileTex, dest, source, curtile.InActive ? Color.Gray : Color.White, 0f, default(Vector2), SpriteEffects.None, LayerTileTextures);
+                                                    _spriteBatch.Draw(tileTex, dest, source, curtile.InActive ? Color.Gray : tilePaintColor, 0f, default(Vector2), SpriteEffects.None, LayerTileTextures);
                                                     break;
                                                 case BrickStyle.SlopeTopRight:
 
@@ -1883,7 +1887,7 @@ namespace TEdit.View
                                                         Rectangle? sourceSlice = new Rectangle(source.X + slice * 2, source.Y, 2, 16 - slice * 2);
                                                         Vector2 destSlice = new Vector2((int)(dest.X + slice * _zoom / 8.0f), (int)(dest.Y + slice * _zoom / 8.0f));
 
-                                                        _spriteBatch.Draw(tileTex, destSlice, sourceSlice, curtile.InActive ? Color.Gray : Color.White, 0f, default(Vector2), _zoom / 16, SpriteEffects.None, LayerTileTextures);
+                                                        _spriteBatch.Draw(tileTex, destSlice, sourceSlice, curtile.InActive ? Color.Gray : tilePaintColor, 0f, default(Vector2), _zoom / 16, SpriteEffects.None, LayerTileTextures);
                                                     }
 
                                                     break;
@@ -1893,7 +1897,7 @@ namespace TEdit.View
                                                         Rectangle? sourceSlice = new Rectangle(source.X + slice * 2, source.Y, 2, slice * 2 + 2);
                                                         Vector2 destSlice = new Vector2((int)(dest.X + slice * _zoom / 8.0f), (int)(dest.Y + (7 - slice) * _zoom / 8.0f));
 
-                                                        _spriteBatch.Draw(tileTex, destSlice, sourceSlice, curtile.InActive ? Color.Gray : Color.White, 0f, default(Vector2), _zoom / 16, SpriteEffects.None, LayerTileTextures);
+                                                        _spriteBatch.Draw(tileTex, destSlice, sourceSlice, curtile.InActive ? Color.Gray : tilePaintColor, 0f, default(Vector2), _zoom / 16, SpriteEffects.None, LayerTileTextures);
                                                     }
 
                                                     break;
@@ -1903,7 +1907,7 @@ namespace TEdit.View
                                                         Rectangle? sourceSlice = new Rectangle(source.X + slice * 2, source.Y + slice * 2, 2, 16 - slice * 2);
                                                         Vector2 destSlice = new Vector2((int)(dest.X + slice * _zoom / 8.0f), dest.Y);
 
-                                                        _spriteBatch.Draw(tileTex, destSlice, sourceSlice, curtile.InActive ? Color.Gray : Color.White, 0f, default(Vector2), _zoom / 16, SpriteEffects.None, LayerTileTextures);
+                                                        _spriteBatch.Draw(tileTex, destSlice, sourceSlice, curtile.InActive ? Color.Gray : tilePaintColor, 0f, default(Vector2), _zoom / 16, SpriteEffects.None, LayerTileTextures);
                                                     }
 
                                                     break;
@@ -1913,13 +1917,13 @@ namespace TEdit.View
                                                         Rectangle? sourceSlice = new Rectangle(source.X + slice * 2, source.Y, 2, slice * 2 + 2);
                                                         Vector2 destSlice = new Vector2((int)(dest.X + slice * _zoom / 8.0f), dest.Y);
 
-                                                        _spriteBatch.Draw(tileTex, destSlice, sourceSlice, curtile.InActive ? Color.Gray : Color.White, 0f, default(Vector2), _zoom / 16, SpriteEffects.None, LayerTileTextures);
+                                                        _spriteBatch.Draw(tileTex, destSlice, sourceSlice, curtile.InActive ? Color.Gray : tilePaintColor, 0f, default(Vector2), _zoom / 16, SpriteEffects.None, LayerTileTextures);
                                                     }
 
                                                     break;
                                                 case BrickStyle.Full:
                                                 default:
-                                                    _spriteBatch.Draw(tileTex, dest, source, curtile.InActive ? Color.Gray : Color.White, 0f, default(Vector2), SpriteEffects.None, LayerTileTextures);
+                                                    _spriteBatch.Draw(tileTex, dest, source, curtile.InActive ? Color.Gray : tilePaintColor, 0f, default(Vector2), SpriteEffects.None, LayerTileTextures);
                                                     break;
                                             }
 

@@ -11563,7 +11563,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Paint Id="28" Name="Brown" Color="#FFFFB27D"/>
     <Paint Id="29" Name="Shadow" Color="#FF191919"/>
     <Paint Id="30" Name="Negative" Color="#96C8C8C8"/>
-    <Paint Id="31" Name="Illuminant Paint" Color="#CCCCCCFF"/>
+    <Paint Id="31" Name="Illuminant Paint" Color="#FFFFFFFF"/>
   </Paints>
 </Settings>
 

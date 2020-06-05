@@ -1,7 +1,7 @@
 ﻿<Window x:Class="TEdit.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:View="clr-namespace:TEdit.View" x:Name="Shell"
-        Title="{Binding WindowTitle}" Height="1024" Width="1600" TextOptions.TextFormattingMode="Display" TextOptions.TextRenderingMode="Aliased"
+        Title="{Binding WindowTitle}" Height="600" Width="1600" TextOptions.TextFormattingMode="Display" TextOptions.TextRenderingMode="Aliased"
         UseLayoutRounding="True" Background="{StaticResource WindowBackgroundBrush}" Foreground="{DynamicResource TextBrush}" Icon="/TEdit;component/Images/tedit.ico"
    >
     <Window.Resources>
@@ -133,11 +133,13 @@
                 <Button Content="{StaticResource TB_NewIcon}" ToolTip="New" Padding="3" Command="{Binding NewWorldCommand}" Margin="1" Height="24" Width="24"/>
                 <Button Content="{StaticResource TB_OpenIcon}" ToolTip="Open" Padding="3" Command="{Binding OpenCommand}" Margin="1" Height="24" Width="24" />
                 <Button Content="{StaticResource TB_SaveIcon}" ToolTip="Save" Padding="3" Command="{Binding SaveCommand}" Margin="1" Height="24" Width="24" />
+                <Separator Height="2" />
                 <Button Content="{StaticResource TB_ZoomInIcon}" ToolTip="Zoom In" Padding="3" Command="{Binding RequestZoomCommand}" CommandParameter="{StaticResource True}" Margin="1" Height="24" Width="24" />
                 <Button Content="{StaticResource TB_ZoomOutIcon}" ToolTip="Zoom Out" Padding="3" Command="{Binding RequestZoomCommand}" CommandParameter="{StaticResource False}" Margin="1" Height="24" Width="24" />
                 <Button Content="{StaticResource TB_UndoIcon}" ToolTip="Undo" Padding="3" Command="{Binding UndoCommand}" Margin="1" Height="24" Width="24" />
                 <Button Content="{StaticResource TB_RedoIcon}" ToolTip="Redo" Padding="3" Command="{Binding RedoCommand}" Margin="1" Height="24" Width="24" />
                 <Button Content="{StaticResource TB_DeleteIcon}" ToolTip="Delete" Padding="3" Command="{Binding DeleteCommand}" Margin="1" Height="24" Width="24" />
+                <Separator Height="2" />
                 <Button Content="{StaticResource TB_CopyIcon}" ToolTip="Copy" Padding="3" Command="{Binding CopyCommand}" Margin="1" Height="24" Width="24" />
                 <View:ToolSelectorView />
             </StackPanel>
