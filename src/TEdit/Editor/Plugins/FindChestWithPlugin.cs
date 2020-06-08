@@ -37,6 +37,9 @@ namespace TEdit.Editor.Plugins
                     {
                         // Convert the tile to its respective chest
                         Chest chest = _wvm.CurrentWorld.GetChestAtTile(x, y);
+
+                        if (chest == null) continue;
+
                         // Only use the chest once (chest = 2x2 so it would add 4 entries)
                         if (x == chest.X && y == chest.Y)
                         {
