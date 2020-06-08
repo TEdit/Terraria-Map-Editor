@@ -21,7 +21,7 @@ namespace TEdit.Editor.Tools
             : base(worldViewModel)
         {
             Icon = new BitmapImage(new Uri(@"pack://application:,,,/TEdit;component/Images/Tools/sprite.png"));
-            Name = "Sprite";
+            Name = "Sprite2";
             IsActive = false;
             ToolType = ToolType.Pixel;
         }

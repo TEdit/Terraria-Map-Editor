@@ -45,7 +45,10 @@ namespace TEdit
                 if (!(e.Source is View.WorldRenderXna))
                     return;
 
-
+                if (e.Key == Key.D && Keyboard.Modifiers.HasFlag(ModifierKeys.Control))
+                {
+                    _vm.Selection.IsActive = false;
+                }
                 if (e.Key == Key.C && Keyboard.Modifiers.HasFlag(ModifierKeys.Control))
                 {
                     if (_vm.CopyCommand.CanExecute(null))
