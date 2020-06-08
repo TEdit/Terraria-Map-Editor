@@ -76,14 +76,15 @@ namespace TEdit.View
             _wvm.PropertyChanged += _wvm_PropertyChanged;
             _wvm.RequestZoom += _wvm_RequestZoom;
             _wvm.RequestScroll += _wvm_RequestScroll;
-
         }
 
         void _wvm_RequestScroll(object sender, TEdit.Framework.Events.EventArgs<ScrollDirection> e)
         {
+            int zoomSpeed = (Keyboard.Modifiers.HasFlag(ModifierKeys.Shift)) ? 50 : 10;
+
             float x = _scrollPosition.X;
             float y = _scrollPosition.Y;
-            float inc = 1 / _zoom * 10;
+            float inc = 1 / _zoom * zoomSpeed;
             switch (e.Value1)
             {
                 case ScrollDirection.Up:
@@ -275,13 +276,6 @@ namespace TEdit.View
                     int numX = (sprite.SizeTexture.X + 2) / sprite.SizePixelsInterval.X;
                     int numY = (sprite.SizeTexture.Y + 2) / sprite.SizePixelsInterval.Y;
 
-                    // test for animation
-                    // if this is 1 object wide, but many tall, assume animated. 
-                    // or explicitly set to animated in settings file
-                    if (numX / sprite.SizeTiles.X == 1)
-                    {
-                        sprite.IsAnimated = true;
-                    }
 
                     if (sprite.IsAnimated)
                     {
