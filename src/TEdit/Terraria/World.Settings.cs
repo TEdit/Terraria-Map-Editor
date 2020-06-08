@@ -86,6 +86,34 @@ namespace TEdit.Terraria
             return result;
         }
 
+        private static Vector2Short[] StringToVector2ShortArray(string v, short defaultX = 0, short defaultY = 0)
+        {
+
+            if (!string.IsNullOrWhiteSpace(v))
+            {
+                if (!v.StartsWith("["))
+                {
+                    return new Vector2Short [] { StringToVector2Short(v, defaultX, defaultY) };
+                }
+
+                v = v.Trim(new [] { '[', ']'});
+                var items = v.Split(new [] { ' '}, StringSplitOptions.RemoveEmptyEntries);
+                
+                var result = new Vector2Short[items.Length];
+                for (int i = 0; i < items.Length; i++)
+                {
+                    result[i] = StringToVector2Short(items[i], defaultX, defaultY);
+                }
+
+                if (result.Length > 0)
+                {
+                    return result;
+                }
+            }
+
+            return new Vector2Short[] { new Vector2Short(defaultX, defaultY) };
+        }
+
         private static Vector2Short StringToVector2Short(string v, short defaultX = 0, short defaultY = 0)
         {
             if (!string.IsNullOrWhiteSpace(v))
@@ -273,7 +301,7 @@ namespace TEdit.Terraria
                 curItem.Id = (int?)xElement.Attribute("Id") ?? -1;
                 curItem.Name = (string)xElement.Attribute("Name");
                 curItem.Scale = (float?)xElement.Attribute("Scale") ?? 1f;
-                
+
                 ItemProperties.Add(curItem);
                 _itemLookup.Add(curItem.Id, curItem);
                 int tally = (int?)xElement.Attribute("Tally") ?? 0;
