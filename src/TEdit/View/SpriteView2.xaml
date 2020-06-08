@@ -19,14 +19,20 @@
 
         <StackPanel Orientation="Horizontal" DockPanel.Dock="Top" Margin="2">
             <TextBlock Margin="3,2" HorizontalAlignment="Center" Text="Filter:" />
-            <TextBox Text="{Binding SpriteFilter, Mode=TwoWay, UpdateSourceTrigger=LostFocus }" HorizontalAlignment="Stretch" MinWidth="200" KeyUp="TextBox_KeyUp" />
+            <TextBox Text="{Binding SpriteFilter, Mode=TwoWay, UpdateSourceTrigger=LostFocus}" HorizontalAlignment="Stretch" MinWidth="200" KeyUp="TextBox_KeyUp" />
             <Button Content="Filter" Margin="1" Padding="10,2" />
         </StackPanel>
         <StackPanel Orientation="Vertical" DockPanel.Dock="Top" >
-            <ComboBox ItemsSource="{Binding SpritesView2}" SelectedItem="{Binding SelectedSpriteTile2}" SelectedIndex="0">
-                <ComboBox.ItemTemplate>
+            <TextBlock>Tile Type:</TextBlock>
+            <ListBox 
+                Style="{DynamicResource ListBoxWrapPanel}"
+                ItemsSource="{Binding SpritesView2}" 
+                SelectedItem="{Binding SelectedSpriteTile2}" 
+                SelectedIndex="0" 
+                Height="200">
+                <ListBox.ItemTemplate>
                     <DataTemplate>
-                        <Border HorizontalAlignment="Stretch" IsHitTestVisible="true" Background="{StaticResource ControlBackgroundBrush}">
+                        <Border IsHitTestVisible="true" Background="{StaticResource ControlBackgroundBrush}">
                             <StackPanel Orientation="Vertical" HorizontalAlignment="Left">
                                 <StackPanel Orientation="Horizontal">
                                     <TextBlock Text="{Binding Path=Name}" />
@@ -43,17 +49,19 @@
                             </StackPanel>
                         </Border>
                     </DataTemplate>
-                </ComboBox.ItemTemplate>
-            </ComboBox>
-            <TextBlock>Style:</TextBlock>
+                </ListBox.ItemTemplate>
+            </ListBox>
+            <TextBlock>
+              <Run Text="{Binding SelectedSpriteTile2.Name, Mode=OneWay}"/>
+              <Run Text="Style: "/>
+            </TextBlock>
         </StackPanel>
-        <ListBox 
+        <ListBox x:Name="s"
             Style="{DynamicResource ListBoxWrapPanel}"
             HorizontalAlignment="Stretch"  
             ItemsSource="{Binding SelectedSpriteTile2.Styles}" 
             SelectedItem="{Binding SelectedSprite2, Mode=TwoWay}"
             ScrollViewer.HorizontalScrollBarVisibility="Disabled">
-
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <Image 
@@ -65,12 +73,14 @@
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
-        <!--<Image 
+        <!--<ScrollViewer DockPanel.Dock="Bottom" Height="300" HorizontalAlignment="Stretch">
+        <Image 
             Source="{Binding Path=SelectedSpriteTile2.Preview}" 
             Height="{Binding Path=SelectedSpriteTile2.Preview.PixelHeight}" 
             Width="{Binding Path=SelectedSpriteTile2.Preview.PixelWidth}"
             RenderOptions.BitmapScalingMode="NearestNeighbor" 
-            ToolTip="{Binding Path=SelectedSpriteTile2Name}" />-->
+            ToolTip="{Binding Path=SelectedSpriteTile2Name}" />
+        </ScrollViewer>-->
 
     </DockPanel>
 </UserControl>
