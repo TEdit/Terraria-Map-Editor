@@ -23,12 +23,32 @@ namespace TEdit
         protected override void OnStartup(StartupEventArgs e)
         {
             ErrorLogging.Initialize();
+            AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
             ErrorLogging.Log($"Starting TEdit {ErrorLogging.Version}");
             ErrorLogging.Log($"OS: {Environment.OSVersion}");
 
+            try
+            {
+                ErrorLogging.Log($"OS Name: {DependencyChecker.GetOsVersion()}");
+            }
+            catch (Exception ex)
+            {
+                ErrorLogging.Log("Failed to verify OS Version. TEdit may not run properly.");
+                ErrorLogging.LogException(ex);
+            }
             Assembly asm = Assembly.GetExecutingAssembly();
 
             Version = FileVersionInfo.GetVersionInfo(asm.Location).ProductVersion;
+
+            try
+            {
+                ErrorLogging.Log(DependencyChecker.GetDotNetVersion());
+            }
+            catch (Exception ex)
+            {
+                ErrorLogging.Log("Failed to verify .Net Framework Version. TEdit may not run properly.");
+                ErrorLogging.LogException(ex);
+            }
 
             try
             {
@@ -105,7 +125,6 @@ namespace TEdit
 
             DispatcherHelper.Initialize();
             TaskFactoryHelper.Initialize();
-            AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
             base.OnStartup(e);
         }
 

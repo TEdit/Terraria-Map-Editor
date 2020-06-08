@@ -83,7 +83,8 @@ namespace TEdit
             {
                 using (RegistryKey key = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\\Valve\\Steam"))
                 {
-                    if (key != null) { 
+                    if (key != null)
+                    {
                         path = key.GetValue("InstallPath") as string;
                     }
                     else
@@ -117,7 +118,7 @@ namespace TEdit
                                         var trimmed = item.Trim('\"').Replace("\\\\", "\\");
                                         if (Directory.Exists(trimmed))
                                         {
-                                            
+
                                             var testpath = Path.Combine(trimmed, "steamapps", "common", "terraria", "Content");
                                             if (Directory.Exists(testpath))
                                             {
@@ -230,6 +231,74 @@ namespace TEdit
             }
 
             return null;
+        }
+
+        public static string HKLM_GetString(string path, string key)
+        {
+            try
+            {
+                RegistryKey rk = Registry.LocalMachine.OpenSubKey(path);
+                if (rk == null) return "";
+                return (string)rk.GetValue(key);
+            }
+            catch { return ""; }
+        }
+
+        public static string GetOsVersion()
+        {
+            string ProductName = HKLM_GetString(@"SOFTWARE\Microsoft\Windows NT\CurrentVersion", "ProductName");
+            string CSDVersion = HKLM_GetString(@"SOFTWARE\Microsoft\Windows NT\CurrentVersion", "CSDVersion");
+            if (ProductName != "")
+            {
+                return (ProductName.StartsWith("Microsoft") ? "" : "Microsoft ") + ProductName +
+                            (CSDVersion != "" ? " " + CSDVersion : "");
+            }
+            return "";
+        }
+
+        internal static string GetDotNetVersion()
+        {
+            const string subkey = @"SOFTWARE\Microsoft\NET Framework Setup\NDP\v4\Full\";
+
+            using (var ndpKey = RegistryKey.OpenBaseKey(RegistryHive.LocalMachine, RegistryView.Registry32).OpenSubKey(subkey))
+            {
+                if (ndpKey != null && ndpKey.GetValue("Release") != null)
+                {
+                    return $".NET Framework Version: {CheckFor45PlusVersion((int)ndpKey.GetValue("Release"))}";
+                }
+                else
+                {
+                    return ".NET Framework Version 4.5 or later is not detected.";
+                }
+            }
+
+            // Checking the version using >= enables forward compatibility.
+            string CheckFor45PlusVersion(int releaseKey)
+            {
+                if (releaseKey >= 528040)
+                    return "4.8 or later";
+                if (releaseKey >= 461808)
+                    return "4.7.2";
+                if (releaseKey >= 461308)
+                    return "4.7.1";
+                if (releaseKey >= 460798)
+                    return "4.7";
+                if (releaseKey >= 394802)
+                    return "4.6.2";
+                if (releaseKey >= 394254)
+                    return "4.6.1";
+                if (releaseKey >= 393295)
+                    return "4.6";
+                if (releaseKey >= 379893)
+                    return "4.5.2";
+                if (releaseKey >= 378675)
+                    return "4.5.1";
+                if (releaseKey >= 378389)
+                    return "4.5";
+                // This code should never execute. A non-null release key should mean
+                // that 4.5 or later is installed.
+                return "No 4.5 or later version detected";
+            }
         }
 
         public static int GetDirectxMajorVersion()
