@@ -34,6 +34,7 @@ using OpenFileDialog = Microsoft.Win32.OpenFileDialog;
 using SaveFileDialog = Microsoft.Win32.SaveFileDialog;
 using Timer = System.Timers.Timer;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace TEdit.ViewModel
 {
@@ -388,6 +389,10 @@ namespace TEdit.ViewModel
             set
             {
                 Set("SelectedSpriteTile2", ref _selectedSpriteTile2, value);
+                if (value?.Styles != null && value.Styles.Count > 0)
+                {
+                    SelectedSprite2 = value.Styles.First();
+                }
                 PreviewChange();
             }
         }
