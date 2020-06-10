@@ -33,7 +33,7 @@ namespace TEdit.UI.Xaml.Enum
     /// Represents a list of enumeration values and corresponding values to be shown or used in the user interface.
     /// </summary>
     [Serializable()]
-    [Localizability(LocalizationCategory.None,Modifiability=Modifiability.Unmodifiable)]
+    //[Localizability(LocalizationCategory.None, Modifiability=Modifiability.Unmodifiable)]
     public class EnumItemList : ObservableCollection<EnumItem>, IValueConverter
     {
 

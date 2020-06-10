@@ -187,6 +187,17 @@ namespace TEdit.UI.Xaml.XnaContentHost
             return HighWord(lParam);
         }
 
+
+        public static int GetWheelDeltaWParam(int wParam)
+        {
+            return HighWord(wParam);
+        }
+
+        public static int GetWheelDeltaWParam(long wParam)
+        {
+            return HighWord(wParam);
+        }
+
         public static int LowWord(int input)
         {
             return (int)(input & 0xffff);
@@ -195,6 +206,16 @@ namespace TEdit.UI.Xaml.XnaContentHost
         public static int HighWord(int input)
         {
             return (int)(input >> 16);
+        }
+
+        public static int LowWord(long input)
+        {
+            return (int)(input & 0xffff);
+        }
+
+        public static int HighWord(long input)
+        {
+            return (int)((input >> 16) & 0xffff);
         }
 
         #endregion

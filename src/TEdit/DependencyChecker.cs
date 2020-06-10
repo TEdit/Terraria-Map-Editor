@@ -148,8 +148,8 @@ namespace TEdit
                 while (!DirectoryHasContentFolder(tempPath) && retry)
                 {
                     if (MessageBox.Show(
-                            $"Directory does not appear to contain Content.\r\nPress retry to pick a new folder or cancel to use \r\n{path}\r\n as your terraria path.",
-                        "Terraria Content not Found",
+                        string.Format(Properties.Language.dialog_error_terriaria_folder_message, path),
+                        Properties.Language.dialog_error_terriaria_folder_title,
                         MessageBoxButtons.RetryCancel, MessageBoxIcon.Error) == DialogResult.Retry)
                     {
                         tempPath = BrowseForTerraria();

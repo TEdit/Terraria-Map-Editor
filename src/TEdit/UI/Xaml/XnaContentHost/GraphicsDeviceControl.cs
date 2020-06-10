@@ -451,7 +451,7 @@ namespace TEdit.UI.Xaml.XnaContentHost
             // Create the window
             return NativeMethods.CreateWindowEx(0, windowClass, "",
                NativeMethods.WS_CHILD | NativeMethods.WS_VISIBLE,
-               0, 0, (int)Width, (int)Height, hWndParent, IntPtr.Zero, IntPtr.Zero, 0);
+               0, 0, (int)Width, (int)Height, hWndParent, IntPtr.Zero, IntPtr.Zero, IntPtr.Zero);
         }
 
         /// <summary>
@@ -473,31 +473,30 @@ namespace TEdit.UI.Xaml.XnaContentHost
 
         #region WndProc Implementation
 
+        [StructLayout(LayoutKind.Sequential)]
+        private struct MSLLHOOKSTRUCT
+        {
+            public Point pt;
+            public int mouseData;
+            public int flags;
+            public int time;
+            public long dwExtraInfo;
+        }
+
         protected override IntPtr WndProc(IntPtr hwnd, int msg, IntPtr wParam, IntPtr lParam, ref bool handled)
         {
             try
             {
-
-
 
                 switch (msg)
                 {
                     case NativeMethods.WM_MOUSEWHEEL:
                         if (mouseInWindow)
                         {
-                            int delta = 0;
-                            
-                            try { delta = wParam.ToInt32(); }
-                            catch (Exception) { /*supress error*/ }
-
-                            if (delta == 0)
-                            {
-                                try { delta = (int) wParam.ToInt64(); }
-                                catch (Exception) { /*supress error*/ }
-                            }
+                            int delta = NativeMethods.GetWheelDeltaWParam((int)wParam.ToInt64());
 
                             if (HwndMouseWheel != null)
-                                HwndMouseWheel(this, new HwndMouseEventArgs(mouseState, delta, 0));
+                                HwndMouseWheel(this, new HwndMouseEventArgs(mouseState, (int)delta, 0));
                         }
                         break;
                     case NativeMethods.WM_LBUTTONDOWN:

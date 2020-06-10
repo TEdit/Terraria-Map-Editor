@@ -3,11 +3,12 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:Editor="clr-namespace:TEdit.Editor"
              xmlns:tedit="clr-namespace:TEdit.UI.Xaml"
+             xmlns:p="clr-namespace:TEdit.Properties"
              xmlns:enum="clr-namespace:TEdit.UI.Xaml.Enum"
              mc:Ignorable="d"
              Background="{StaticResource WindowBackgroundBrush}" Foreground="{StaticResource TextBrush}">
     <UserControl.Resources>
-        <enum:EnumItemList x:Key="BrushShapeEnum" EnumType="{x:Type Editor:BrushShape}" x:Shared="false" SortBy="Value" />
+        <enum:EnumItemList x:Key="BrushShapeEnum" EnumType="{x:Type Editor:BrushShape}" ResourceType="{x:Type p:Language}" x:Shared="false" SortBy="Value" />
     </UserControl.Resources>
     <Grid>
         <Grid>
@@ -23,29 +24,29 @@
                 <RowDefinition Height="1*" />
             </Grid.RowDefinitions>
             <ToggleButton Grid.Row="0" Grid.RowSpan="2" Grid.Column="2" Margin="1,2" BorderThickness="2" VerticalAlignment="Top" 
-                    IsChecked="{Binding Path=Brush.IsLocked}" ToolTip="Square Width and Height">
+                    IsChecked="{Binding Path=Brush.IsLocked}" ToolTip="{x:Static p:Language.tool_brush_lock_ratio_tooltip}">
                 <Image Source="../Images/Tools/constrain.png" RenderOptions.BitmapScalingMode="NearestNeighbor" Height="32" Width="32" Stretch="None" />
             </ToggleButton>
-            <ToggleButton Grid.Row="2" Grid.Column="3" BorderThickness="2" Margin="1" ToolTip="Enable Draw Outline (room)" IsChecked="{Binding Path=Brush.IsOutline, Mode=TwoWay}">
+            <ToggleButton Grid.Row="2" Grid.Column="3" BorderThickness="2" Margin="1" ToolTip="{x:Static p:Language.tool_brush_outline_tooltip}" IsChecked="{Binding Path=Brush.IsOutline, Mode=TwoWay}">
                 <Image Source="../Images/Tools/outline.png" RenderOptions.BitmapScalingMode="NearestNeighbor" Height="16" Stretch="None" />
             </ToggleButton>
-            <TextBlock Grid.Row="0" Grid.Column="0" Text="Width" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="2" />
+            <TextBlock Grid.Row="0" Grid.Column="0" Text="{x:Static p:Language.tool_brush_width_label}" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="2" />
             <TextBox Grid.Row="0" Grid.Column="1" Width="30" HorizontalAlignment="Left" Text="{Binding Path=Brush.Width, Mode=TwoWay}" Margin="0,1,0,0" VerticalAlignment="Center" />
             <Slider Grid.Row="0" Grid.Column="1" Width="100" HorizontalAlignment="Right" 
                     Value="{Binding Path=Brush.Width, Mode=TwoWay}" Minimum="{Binding Path=Brush.MinWidth}" Maximum="{Binding Path=Brush.MaxWidth}" 
                     LargeChange="10" SmallChange="1" VerticalAlignment="Center" />
-            <TextBlock Grid.Row="1" Grid.Column="0" Text="Height" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="2" />
+            <TextBlock Grid.Row="1" Grid.Column="0" Text="{x:Static p:Language.tool_brush_height_label}" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="2" />
             <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding Path=Brush.Height, Mode=TwoWay}" Margin="0,1,0,0" VerticalAlignment="Center" HorizontalAlignment="Left" Width="30" />
             <Slider Grid.Row="1" Grid.Column="1" Width="100" HorizontalAlignment="Right"
               Value="{Binding Path=Brush.Height, Mode=TwoWay}" Minimum="{Binding Path=Brush.MinHeight}"  Maximum="{Binding Path=Brush.MaxHeight}" 
                     LargeChange="10" SmallChange="1" VerticalAlignment="Center" />
-            <TextBlock Grid.Row="2" Grid.Column="0" Text="Outline" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="2" />
+            <TextBlock Grid.Row="2" Grid.Column="0" Text="{x:Static p:Language.tool_brush_outline_thickness_label}" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="2" />
             <TextBox Grid.Row="2" Grid.Column="1" Width="30" HorizontalAlignment="Left"
                Text="{Binding Path=Brush.Outline, Mode=TwoWay}" Margin="0,1,0,0" VerticalAlignment="Center" />
             <Slider Grid.Row="2" Grid.Column="1" Width="100" HorizontalAlignment="Right"
               Value="{Binding Path=Brush.Outline, Mode=TwoWay}" Minimum="1"
               Maximum="{Binding Path=Brush.MaxOutline}" LargeChange="10" SmallChange="1" VerticalAlignment="Center" />
-            <TextBlock Text="Shape" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="2" Grid.Row="3" Grid.Column="0" />
+            <TextBlock Text="{x:Static p:Language.tool_brush_shape_label}" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="2" Grid.Row="3" Grid.Column="0" />
             <ComboBox ItemsSource="{StaticResource BrushShapeEnum}" SelectedValue="{Binding Path=Brush.Shape}" SelectedValuePath="Value" Height="22"
                       Grid.Row="3" Grid.Column="1" HorizontalAlignment="Stretch" Margin="0,1,0,0" />
         </Grid>

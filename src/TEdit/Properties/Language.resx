@@ -1,0 +1,350 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="BrushShape_Left" xml:space="preserve">
+    <value>Diagonal Left</value>
+    <comment>enum:BrushShape.Left</comment>
+  </data>
+  <data name="BrushShape_Right" xml:space="preserve">
+    <value>Diagonal Right</value>
+    <comment>enum:BrushShape.Right</comment>
+  </data>
+  <data name="BrushShape_Round" xml:space="preserve">
+    <value>Ellipse</value>
+    <comment>enum:BrushShape.Round</comment>
+  </data>
+  <data name="BrushShape_Square" xml:space="preserve">
+    <value>Rectangle</value>
+    <comment>enum:BrushShape.Square</comment>
+  </data>
+  <data name="dialog_error_terriaria_folder_message" xml:space="preserve">
+    <value>Directory does not appear to contain Terraria Content.
+Press retry to pick a new folder or cancel to use {0} as your terraria path.</value>
+  </data>
+  <data name="dialog_error_terriaria_folder_title" xml:space="preserve">
+    <value>Terraria Content not Found</value>
+  </data>
+  <data name="editor_tabs_analysis" xml:space="preserve">
+    <value>Analysis</value>
+  </data>
+  <data name="editor_tabs_clipboard" xml:space="preserve">
+    <value>Clipboard</value>
+  </data>
+  <data name="editor_tabs_npc" xml:space="preserve">
+    <value>NPC Data</value>
+  </data>
+  <data name="editor_tabs_special" xml:space="preserve">
+    <value>Special Tiles</value>
+  </data>
+  <data name="editor_tabs_sprites" xml:space="preserve">
+    <value>Sprites</value>
+  </data>
+  <data name="editor_tabs_tally" xml:space="preserve">
+    <value>Tally</value>
+  </data>
+  <data name="editor_tabs_tileentities" xml:space="preserve">
+    <value>Tile Entities</value>
+  </data>
+  <data name="editor_tabs_worldproperties" xml:space="preserve">
+    <value>World Properties</value>
+  </data>
+  <data name="editor_utilities_label" xml:space="preserve">
+    <value>Utilities</value>
+  </data>
+  <data name="global_enjoytedit" xml:space="preserve">
+    <value>Enjoy TEdit? Support Us!</value>
+  </data>
+  <data name="menu_edit" xml:space="preserve">
+    <value>Edit</value>
+  </data>
+  <data name="menu_edit_copy" xml:space="preserve">
+    <value>Copy</value>
+  </data>
+  <data name="menu_edit_delete" xml:space="preserve">
+    <value>Delete Selection</value>
+  </data>
+  <data name="menu_edit_paste" xml:space="preserve">
+    <value>Paste</value>
+  </data>
+  <data name="menu_edit_redo" xml:space="preserve">
+    <value>Redo</value>
+  </data>
+  <data name="menu_edit_undo" xml:space="preserve">
+    <value>Undo</value>
+  </data>
+  <data name="menu_file" xml:space="preserve">
+    <value>File</value>
+  </data>
+  <data name="menu_file_autosave" xml:space="preserve">
+    <value>Enable Autosave</value>
+  </data>
+  <data name="menu_file_autoupdate" xml:space="preserve">
+    <value>Check for Updates on Startup</value>
+  </data>
+  <data name="menu_file_exit" xml:space="preserve">
+    <value>Exit</value>
+  </data>
+  <data name="menu_file_new" xml:space="preserve">
+    <value>New</value>
+  </data>
+  <data name="menu_file_open" xml:space="preserve">
+    <value>Open</value>
+  </data>
+  <data name="menu_file_save" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="menu_file_saveas" xml:space="preserve">
+    <value>Save As</value>
+  </data>
+  <data name="menu_file_update" xml:space="preserve">
+    <value>Check for Updates Now</value>
+  </data>
+  <data name="menu_help" xml:space="preserve">
+    <value>Help</value>
+  </data>
+  <data name="menu_help_about" xml:space="preserve">
+    <value>About</value>
+  </data>
+  <data name="menu_help_log" xml:space="preserve">
+    <value>Open Log File</value>
+  </data>
+  <data name="menu_help_settings" xml:space="preserve">
+    <value>Update Settings.xml</value>
+  </data>
+  <data name="menu_help_update" xml:space="preserve">
+    <value>Update</value>
+  </data>
+  <data name="menu_help_wiki" xml:space="preserve">
+    <value>Wiki</value>
+  </data>
+  <data name="menu_layers" xml:space="preserve">
+    <value>Layers</value>
+  </data>
+  <data name="menu_layers_actuators" xml:space="preserve">
+    <value>Actuators</value>
+  </data>
+  <data name="menu_layers_grid" xml:space="preserve">
+    <value>Layout Grid</value>
+  </data>
+  <data name="menu_layers_liquid" xml:space="preserve">
+    <value>Liquids</value>
+  </data>
+  <data name="menu_layers_points" xml:space="preserve">
+    <value>Points of Interest</value>
+  </data>
+  <data name="menu_layers_textures" xml:space="preserve">
+    <value>Textures</value>
+  </data>
+  <data name="menu_layers_tiles" xml:space="preserve">
+    <value>Tiles</value>
+  </data>
+  <data name="menu_layers_walls" xml:space="preserve">
+    <value>Walls</value>
+  </data>
+  <data name="menu_layers_wire_blue" xml:space="preserve">
+    <value>Blue Wire</value>
+  </data>
+  <data name="menu_layers_wire_green" xml:space="preserve">
+    <value>Green Wire</value>
+  </data>
+  <data name="menu_layers_wire_red" xml:space="preserve">
+    <value>Red Wire</value>
+  </data>
+  <data name="menu_layers_wire_yellow" xml:space="preserve">
+    <value>Yellow Wire</value>
+  </data>
+  <data name="menu_plugins" xml:space="preserve">
+    <value>Plugins</value>
+  </data>
+  <data name="menu_toolbar_zoom_in" xml:space="preserve">
+    <value>Zoom In</value>
+  </data>
+  <data name="menu_toolbar_zoom_out" xml:space="preserve">
+    <value>Zoom Out</value>
+  </data>
+  <data name="statusbar_extra_label" xml:space="preserve">
+    <value>Extra</value>
+  </data>
+  <data name="statusbar_frame_label" xml:space="preserve">
+    <value>Frame</value>
+  </data>
+  <data name="statusbar_paint_label" xml:space="preserve">
+    <value>Paint</value>
+  </data>
+  <data name="statusbar_position_label" xml:space="preserve">
+    <value>Position</value>
+  </data>
+  <data name="statusbar_selection_label" xml:space="preserve">
+    <value>Selection</value>
+  </data>
+  <data name="statusbar_tile_label" xml:space="preserve">
+    <value>Tile</value>
+  </data>
+  <data name="statusbar_wall_label" xml:space="preserve">
+    <value>Wall</value>
+  </data>
+  <data name="tool_arrow_title" xml:space="preserve">
+    <value>Arrow</value>
+  </data>
+  <data name="tool_brush_height_label" xml:space="preserve">
+    <value>Height</value>
+  </data>
+  <data name="tool_brush_lock_ratio_tooltip" xml:space="preserve">
+    <value>Square Width and Height</value>
+  </data>
+  <data name="tool_brush_outline_thickness_label" xml:space="preserve">
+    <value>Outline</value>
+  </data>
+  <data name="tool_brush_outline_tooltip" xml:space="preserve">
+    <value>Toggle Draw Outline (room)</value>
+  </data>
+  <data name="tool_brush_shape_label" xml:space="preserve">
+    <value>Shape</value>
+  </data>
+  <data name="tool_brush_title" xml:space="preserve">
+    <value>Brush</value>
+  </data>
+  <data name="tool_brush_width_label" xml:space="preserve">
+    <value>Width</value>
+  </data>
+  <data name="tool_fill_title" xml:space="preserve">
+    <value>Fill</value>
+  </data>
+  <data name="tool_morph_title" xml:space="preserve">
+    <value>Biome Morph</value>
+  </data>
+  <data name="tool_paste_title" xml:space="preserve">
+    <value>Paste</value>
+  </data>
+  <data name="tool_pencil_title" xml:space="preserve">
+    <value>Pencil</value>
+  </data>
+  <data name="tool_picker_title" xml:space="preserve">
+    <value>Picker - select tile color</value>
+  </data>
+  <data name="tool_point_title" xml:space="preserve">
+    <value>Special Interest Points</value>
+  </data>
+  <data name="tool_sprite2_title" xml:space="preserve">
+    <value>Sprite Placer</value>
+  </data>
+  <data name="tool_sprite_title" xml:space="preserve">
+    <value>Sprite Placer (OLD)</value>
+  </data>
+</root>

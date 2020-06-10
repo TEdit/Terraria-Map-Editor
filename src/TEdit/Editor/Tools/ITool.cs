@@ -8,6 +8,7 @@ namespace TEdit.Editor.Tools
         BitmapImage Icon { get; }
         bool IsActive { get; set; }
         string Name { get; }
+        string Title { get; }
         bool PreviewIsTexture { get; }
         void MouseDown(TileMouseState e);
         void MouseMove(TileMouseState e);

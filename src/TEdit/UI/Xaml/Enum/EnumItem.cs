@@ -8,6 +8,7 @@ using System.Windows;
 
 namespace TEdit.UI.Xaml.Enum
 {
+
     [ContentProperty("DisplayValue")]
     [TypeConverter(typeof(EnumItemTypeConverter))]
     [Serializable()]

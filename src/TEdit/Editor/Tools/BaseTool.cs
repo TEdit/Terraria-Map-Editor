@@ -24,6 +24,8 @@ namespace TEdit.Editor.Tools
 
         public string Name { get; protected set; }
 
+        public string Title => Properties.Language.ResourceManager.GetString($"tool_{Name.ToLower()}_title") ?? Name;
+
         public virtual ToolType ToolType { get; protected set; }
 
         public virtual BitmapImage Icon { get; protected set; }

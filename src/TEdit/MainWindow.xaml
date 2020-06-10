@@ -3,6 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:View="clr-namespace:TEdit.View" x:Name="Shell"
         Title="{Binding WindowTitle}" Height="600" Width="1600" TextOptions.TextFormattingMode="Display" TextOptions.TextRenderingMode="Aliased"
         UseLayoutRounding="True" Background="{StaticResource WindowBackgroundBrush}" Foreground="{DynamicResource TextBrush}" Icon="/TEdit;component/Images/tedit.ico"
+        xmlns:p="clr-namespace:TEdit.Properties"
    >
     <Window.Resources>
         <Image x:Key="TB_LogIcon" x:Shared="false" Source="/Images/Toolbar/report_magnify.png" Height="16" Width="16" SnapsToDevicePixels="True" RenderOptions.BitmapScalingMode="NearestNeighbor"/>
@@ -52,73 +53,73 @@
     <Grid>
         <DockPanel LastChildFill="True">
             <Menu DockPanel.Dock="Top">
-                <MenuItem Header="File">
-                    <MenuItem Header="New" Icon="{StaticResource TB_NewIcon}" Command="{Binding NewWorldCommand}" />
-                    <MenuItem Header="Open" Icon="{StaticResource TB_OpenIcon}" Command="{Binding OpenCommand}" />
+                <MenuItem Header="{x:Static p:Language.menu_file}">
+                    <MenuItem Header="{x:Static p:Language.menu_file_new}" Icon="{StaticResource TB_NewIcon}" Command="{Binding NewWorldCommand}" />
+                    <MenuItem Header="{x:Static p:Language.menu_file_open}" Icon="{StaticResource TB_OpenIcon}" Command="{Binding OpenCommand}" />
                     <Separator Margin="1"/>
-                    <MenuItem Header="Save" Icon="{StaticResource TB_SaveIcon}" Command="{Binding SaveCommand}"/>
-                    <MenuItem Header="Save As" Icon="{StaticResource TB_SaveAsIcon}" Command="{Binding SaveAsCommand}" />
+                    <MenuItem Header="{x:Static p:Language.menu_file_save}" Icon="{StaticResource TB_SaveIcon}" Command="{Binding SaveCommand}"/>
+                    <MenuItem Header="{x:Static p:Language.menu_file_saveas}" Icon="{StaticResource TB_SaveAsIcon}" Command="{Binding SaveAsCommand}" />
                     <Separator Margin="1"/>
-                    <MenuItem Header="Enable Autosave" IsCheckable="True" IsChecked="{Binding IsAutoSaveEnabled}" />
-                    <MenuItem Header="On Startup Check Updates" IsCheckable="True" IsChecked="{Binding CheckUpdates}" />
-                    <MenuItem Header="Check For Updates" Command="{Binding CheckUpdatesCommand}" CommandParameter="{StaticResource False}" />
+                    <MenuItem Header="{x:Static p:Language.menu_file_autosave}" IsCheckable="True" IsChecked="{Binding IsAutoSaveEnabled}" />
+                    <MenuItem Header="{x:Static p:Language.menu_file_autoupdate}" IsCheckable="True" IsChecked="{Binding CheckUpdates}" />
+                    <MenuItem Header="{x:Static p:Language.menu_file_update}" Command="{Binding CheckUpdatesCommand}" CommandParameter="{StaticResource False}" />
                     <Separator Margin="1"/>
-                    <MenuItem Header="Exit" Command="{Binding CloseApplicationCommand}"/>
+                    <MenuItem Header="{x:Static p:Language.menu_file_exit}" Command="{Binding CloseApplicationCommand}"/>
                 </MenuItem>
-                <MenuItem Header="Edit">
-                    <MenuItem Header="Undo" Command="{Binding UndoCommand}" Icon="{StaticResource TB_UndoIcon}" />
-                    <MenuItem Header="Redo" Command="{Binding RedoCommand}" Icon="{StaticResource TB_RedoIcon}" />
+                <MenuItem Header="{x:Static p:Language.menu_edit}">
+                    <MenuItem Header="{x:Static p:Language.menu_edit_undo}" Command="{Binding UndoCommand}" Icon="{StaticResource TB_UndoIcon}" />
+                    <MenuItem Header="{x:Static p:Language.menu_edit_redo}" Command="{Binding RedoCommand}" Icon="{StaticResource TB_RedoIcon}" />
                     <Separator Margin="1" />
-                    <MenuItem Header="Copy" Command="{Binding CopyCommand}" Icon="{StaticResource TB_CopyIcon}" />
-                    <MenuItem Header="Paste" Command="{Binding PasteCommand}" Icon="{StaticResource TB_PasteIcon}" />
+                    <MenuItem Header="{x:Static p:Language.menu_edit_copy}" Command="{Binding CopyCommand}" Icon="{StaticResource TB_CopyIcon}" />
+                    <MenuItem Header="{x:Static p:Language.menu_edit_paste}" Command="{Binding PasteCommand}" Icon="{StaticResource TB_PasteIcon}" />
                     <Separator Margin="1" />
-                    <MenuItem Header="Delete" Command="{Binding DeleteCommand}" Icon="{StaticResource TB_DeleteIcon}" />
+                    <MenuItem Header="{x:Static p:Language.menu_edit_delete}" Command="{Binding DeleteCommand}" Icon="{StaticResource TB_DeleteIcon}" />
                 </MenuItem>
-                <MenuItem Header="Display">
-                    <MenuItem Header="Show Textures" IsCheckable="True" IsChecked="{Binding ShowTextures}" />
-                    <MenuItem Header="Show Grid" IsCheckable="True" IsChecked="{Binding ShowGrid}" />
+                <MenuItem Header="{x:Static p:Language.menu_layers}">
+                    <MenuItem Header="{x:Static p:Language.menu_layers_textures}" IsCheckable="True" IsChecked="{Binding ShowTextures}" />
+                    <MenuItem Header="{x:Static p:Language.menu_layers_grid}" IsCheckable="True" IsChecked="{Binding ShowGrid}" />
                     <Separator Margin="1" />
-                    <MenuItem Header="Show Walls" IsCheckable="True" IsChecked="{Binding ShowWalls}" />
-                    <MenuItem Header="Show Tiles" IsCheckable="True" IsChecked="{Binding ShowTiles}" />
-                    <MenuItem Header="Show Liquid" IsCheckable="True" IsChecked="{Binding ShowLiquid}" />
+                    <MenuItem Header="{x:Static p:Language.menu_layers_walls}" IsCheckable="True" IsChecked="{Binding ShowWalls}" />
+                    <MenuItem Header="{x:Static p:Language.menu_layers_tiles}" IsCheckable="True" IsChecked="{Binding ShowTiles}" />
+                    <MenuItem Header="{x:Static p:Language.menu_layers_liquid}" IsCheckable="True" IsChecked="{Binding ShowLiquid}" />
                     <Separator Margin="1" />
-                    <MenuItem Header="Show Actuators" IsCheckable="True" IsChecked="{Binding ShowActuators}" />
-                    <MenuItem Header="Show Red Wires" IsCheckable="True" IsChecked="{Binding ShowRedWires}" />
-                    <MenuItem Header="Show Blue Wires" IsCheckable="True" IsChecked="{Binding ShowBlueWires}" />
-                    <MenuItem Header="Show Green Wires" IsCheckable="True" IsChecked="{Binding ShowGreenWires}" />
-                    <MenuItem Header="Show Yellow Wires" IsCheckable="True" IsChecked="{Binding ShowYellowWires}" />
+                    <MenuItem Header="{x:Static p:Language.menu_layers_actuators}" IsCheckable="True" IsChecked="{Binding ShowActuators}" />
+                    <MenuItem Header="{x:Static p:Language.menu_layers_wire_red}" IsCheckable="True" IsChecked="{Binding ShowRedWires}" />
+                    <MenuItem Header="{x:Static p:Language.menu_layers_wire_blue}" IsCheckable="True" IsChecked="{Binding ShowBlueWires}" />
+                    <MenuItem Header="{x:Static p:Language.menu_layers_wire_green}" IsCheckable="True" IsChecked="{Binding ShowGreenWires}" />
+                    <MenuItem Header="{x:Static p:Language.menu_layers_wire_yellow}" IsCheckable="True" IsChecked="{Binding ShowYellowWires}" />
                     <Separator Margin="1" />
-                    <MenuItem Header="Show Points" IsCheckable="True" IsChecked="{Binding ShowPoints}" />
+                    <MenuItem Header="{x:Static p:Language.menu_layers_points}" IsCheckable="True" IsChecked="{Binding ShowPoints}" />
                 </MenuItem>
-                <MenuItem Header="Plugins" ItemsSource="{Binding Plugins}" ItemContainerStyle="{StaticResource SubmenuItemStyle}">
+                <MenuItem Header="{x:Static p:Language.menu_plugins}" ItemsSource="{Binding Plugins}" ItemContainerStyle="{StaticResource SubmenuItemStyle}">
 
                 </MenuItem>
-                <MenuItem Header="Help">
-                    <MenuItem Header="View Log" Command="{Binding ViewLogCommand}" Icon="{StaticResource TB_LogIcon}"/>
-                    <MenuItem Header="Wiki" Icon="{StaticResource TB_HelpIcon}" Command="{Binding LaunchWikiCommand}"/>
+                <MenuItem Header="{x:Static p:Language.menu_help}">
+                    <MenuItem Header="{x:Static p:Language.menu_help_log}" Command="{Binding ViewLogCommand}" Icon="{StaticResource TB_LogIcon}"/>
+                    <MenuItem Header="{x:Static p:Language.menu_help_wiki}" Icon="{StaticResource TB_HelpIcon}" Command="{Binding LaunchWikiCommand}"/>
                     <Separator Margin="1" />
-                    <MenuItem Header="Update" Icon="{StaticResource TB_UpdateIcon}" Command="{Binding UpdateCommand}" />
-                    <MenuItem Header="Download New XML Data" Icon="{StaticResource TB_UpdateXmlIcon}"  Command="{Binding UpdateCommand}" />
+                    <MenuItem Header="{x:Static p:Language.menu_help_update}" Icon="{StaticResource TB_UpdateIcon}" Command="{Binding UpdateCommand}" />
+                    <MenuItem Header="{x:Static p:Language.menu_help_settings}" Icon="{StaticResource TB_UpdateXmlIcon}"  Command="{Binding UpdateCommand}" />
                     <Separator Margin="1"/>
-                    <MenuItem Header="About" />
+                    <MenuItem Header="{x:Static p:Language.menu_help_about}" />
                 </MenuItem>
             </Menu>
             <StatusBar DockPanel.Dock="Bottom" Height="30" Background="{x:Null}" Padding="2" Foreground="{StaticResource TextBrush}">
                 <StatusBarItem HorizontalAlignment="Left">
                     <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="Position" VerticalAlignment="Center" Margin="5,0"/>
+                        <TextBlock Text="{x:Static p:Language.statusbar_position_label}" VerticalAlignment="Center" Margin="5,0"/>
                         <TextBox Text="{Binding MouseOverTile.MouseState.Location, StringFormat={}{0}, Mode=OneWay}" Width="75" IsReadOnly="True" />
-                        <TextBlock Text="Tile" VerticalAlignment="Center" Margin="5,0"  />
+                        <TextBlock Text="{x:Static p:Language.statusbar_tile_label}" VerticalAlignment="Center" Margin="5,0"  />
                         <TextBox Text="{Binding MouseOverTile.TileName, Mode=OneWay}" Width="150" IsReadOnly="True" />
-                        <TextBlock Text="Wall" VerticalAlignment="Center" Margin="5,0"/>
+                        <TextBlock Text="{x:Static p:Language.statusbar_wall_label}" VerticalAlignment="Center" Margin="5,0"/>
                         <TextBox Text="{Binding MouseOverTile.WallName, Mode=OneWay}" Width="150" IsReadOnly="True" />
-                        <TextBlock Text="Extra Info" VerticalAlignment="Center" Margin="5,0"/>
+                        <TextBlock Text="{x:Static p:Language.statusbar_extra_label}" VerticalAlignment="Center" Margin="5,0"/>
                         <TextBox Text="{Binding MouseOverTile.TileExtras, Mode=OneWay}" Width="100" IsReadOnly="True" />
-                        <TextBlock Text="Frame" VerticalAlignment="Center" Margin="5,0"/>
+                        <TextBlock Text="{x:Static p:Language.statusbar_frame_label}" VerticalAlignment="Center" Margin="5,0"/>
                         <TextBox Text="{Binding MouseOverTile.UV, StringFormat={}{0}, Mode=OneWay}" Width="50" IsReadOnly="True" />
-                        <TextBlock Text="Paint" VerticalAlignment="Center" Margin="5,0"/>
+                        <TextBlock Text="{x:Static p:Language.statusbar_paint_label}" VerticalAlignment="Center" Margin="5,0"/>
                         <TextBox Text="{Binding MouseOverTile.Paint, Mode=OneWay}" Width="180" IsReadOnly="True" />
-                        <TextBlock Text="Selection" VerticalAlignment="Center" Margin="5,0"/>
+                        <TextBlock Text="{x:Static p:Language.statusbar_selection_label}" VerticalAlignment="Center" Margin="5,0"/>
                         <TextBox Text="{Binding Selection.SelectionArea.Size, Mode=OneWay}" Width="180" IsReadOnly="True" Style="{DynamicResource TextBoxStyle1}" />
                     </StackPanel>
                 </StatusBarItem>
@@ -130,27 +131,27 @@
                 </StatusBarItem>
             </StatusBar>
             <StackPanel DockPanel.Dock="Left" Orientation="Vertical" Margin="1">
-                <Button Content="{StaticResource TB_NewIcon}" ToolTip="New" Padding="3" Command="{Binding NewWorldCommand}" Margin="1" Height="24" Width="24"/>
-                <Button Content="{StaticResource TB_OpenIcon}" ToolTip="Open" Padding="3" Command="{Binding OpenCommand}" Margin="1" Height="24" Width="24" />
-                <Button Content="{StaticResource TB_SaveIcon}" ToolTip="Save" Padding="3" Command="{Binding SaveCommand}" Margin="1" Height="24" Width="24" />
+                <Button Content="{StaticResource TB_NewIcon}" ToolTip="{x:Static p:Language.menu_file_new}" Padding="3" Command="{Binding NewWorldCommand}" Margin="1" Height="24" Width="24"/>
+                <Button Content="{StaticResource TB_OpenIcon}" ToolTip="{x:Static p:Language.menu_file_open}" Padding="3" Command="{Binding OpenCommand}" Margin="1" Height="24" Width="24" />
+                <Button Content="{StaticResource TB_SaveIcon}" ToolTip="{x:Static p:Language.menu_file_save}" Padding="3" Command="{Binding SaveCommand}" Margin="1" Height="24" Width="24" />
                 <Separator Height="2" />
-                <Button Content="{StaticResource TB_ZoomInIcon}" ToolTip="Zoom In" Padding="3" Command="{Binding RequestZoomCommand}" CommandParameter="{StaticResource True}" Margin="1" Height="24" Width="24" />
-                <Button Content="{StaticResource TB_ZoomOutIcon}" ToolTip="Zoom Out" Padding="3" Command="{Binding RequestZoomCommand}" CommandParameter="{StaticResource False}" Margin="1" Height="24" Width="24" />
-                <Button Content="{StaticResource TB_UndoIcon}" ToolTip="Undo" Padding="3" Command="{Binding UndoCommand}" Margin="1" Height="24" Width="24" />
-                <Button Content="{StaticResource TB_RedoIcon}" ToolTip="Redo" Padding="3" Command="{Binding RedoCommand}" Margin="1" Height="24" Width="24" />
-                <Button Content="{StaticResource TB_DeleteIcon}" ToolTip="Delete" Padding="3" Command="{Binding DeleteCommand}" Margin="1" Height="24" Width="24" />
+                <Button Content="{StaticResource TB_ZoomInIcon}" ToolTip="{x:Static p:Language.menu_toolbar_zoom_in}" Padding="3" Command="{Binding RequestZoomCommand}" CommandParameter="{StaticResource True}" Margin="1" Height="24" Width="24" />
+                <Button Content="{StaticResource TB_ZoomOutIcon}" ToolTip="{x:Static p:Language.menu_toolbar_zoom_out}" Padding="3" Command="{Binding RequestZoomCommand}" CommandParameter="{StaticResource False}" Margin="1" Height="24" Width="24" />
+                <Button Content="{StaticResource TB_UndoIcon}" ToolTip="{x:Static p:Language.menu_edit_undo}" Padding="3" Command="{Binding UndoCommand}" Margin="1" Height="24" Width="24" />
+                <Button Content="{StaticResource TB_RedoIcon}" ToolTip="{x:Static p:Language.menu_edit_redo}" Padding="3" Command="{Binding RedoCommand}" Margin="1" Height="24" Width="24" />
+                <Button Content="{StaticResource TB_DeleteIcon}" ToolTip="{x:Static p:Language.menu_edit_delete}" Padding="3" Command="{Binding DeleteCommand}" Margin="1" Height="24" Width="24" />
                 <Separator Height="2" />
-                <Button Content="{StaticResource TB_CopyIcon}" ToolTip="Copy" Padding="3" Command="{Binding CopyCommand}" Margin="1" Height="24" Width="24" />
+                <Button Content="{StaticResource TB_CopyIcon}" ToolTip="{x:Static p:Language.menu_edit_copy}" Padding="3" Command="{Binding CopyCommand}" Margin="1" Height="24" Width="24" />
                 <View:ToolSelectorView />
             </StackPanel>
             <DockPanel DockPanel.Dock="Top" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                 <StackPanel Orientation="Horizontal" DockPanel.Dock="Right">
                     <Border  BorderThickness="1" BorderBrush="{StaticResource SolidBorderBrush}" Background="{StaticResource ControlBackgroundBrush}">
-                        <Grid  Width="200" Height="75">
+                        <Grid  Width="250" Height="100">
                             <Image Source="{Binding MinimapImage}" Stretch="UniformToFill" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" RenderOptions.BitmapScalingMode="Linear" />
                         </Grid>
                     </Border>
-                    <View:Sponsor Width="125" VerticalAlignment="Center" Margin="2 0 2 0"></View:Sponsor>
+                    <View:Sponsor Width="140" VerticalAlignment="Center" Margin="2 0 2 0"></View:Sponsor>
                 </StackPanel>
                 <ScrollViewer HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Hidden" Height="110">
                     <StackPanel Orientation="Horizontal">
@@ -217,35 +218,32 @@
                     </StackPanel>
                 </ScrollViewer>
             </DockPanel>
-            <Expander Header="Utilities" ExpandDirection="Left" IsExpanded="True" DockPanel.Dock="Right">
+            <Expander Header="{x:Static p:Language.editor_utilities_label}" ExpandDirection="Left" IsExpanded="True" DockPanel.Dock="Right">
                 <TabControl TabStripPlacement="Top" Width="300" Foreground="{DynamicResource TextBrush}" SelectedIndex="{Binding SelectedTabIndex, Mode=TwoWay}">
-                    <TabItem Header="World Properties" >
+                    <TabItem Header="{x:Static p:Language.editor_tabs_worldproperties}" >
                         <ScrollViewer VerticalScrollBarVisibility="Auto">
                             <View:WorldPropertiesView HorizontalAlignment="Stretch" VerticalAlignment="Top"/>
                         </ScrollViewer>
                     </TabItem>
-                    <TabItem Header="Special Tiles">
+                    <TabItem Header="{x:Static p:Language.editor_tabs_special}">
                         <View:SpecialTileView HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
                     </TabItem>
-                    <!--<TabItem Header="Sprites">
-                        <View:SpriteView VerticalAlignment="Stretch" HorizontalAlignment="Stretch" />
-                    </TabItem>-->
-                    <TabItem Header="Sprites">
+                    <TabItem Header="{x:Static p:Language.editor_tabs_sprites}">
                         <View:SpriteView2 VerticalAlignment="Stretch" HorizontalAlignment="Stretch" />
                     </TabItem>
-                    <TabItem Header="Clipboard">
+                    <TabItem Header="{x:Static p:Language.editor_tabs_clipboard}">
                         <View:ClipboardView VerticalAlignment="Stretch" HorizontalAlignment="Stretch" />
                     </TabItem>
-                    <TabItem Header="Npc Names" >
+                    <TabItem Header="{x:Static p:Language.editor_tabs_npc}" >
                         <View:NpcNameEditor HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
                     </TabItem>
-                    <TabItem Header="Analysis">
+                    <TabItem Header="{x:Static p:Language.editor_tabs_analysis}">
                         <View:WorldAnalysis HorizontalAlignment="Stretch"  VerticalAlignment="Stretch"/>
                     </TabItem>
-                    <TabItem Header="Tally">
+                    <TabItem Header="{x:Static p:Language.editor_tabs_tally}">
                         <View:KillTallyView HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
                     </TabItem>
-                    <TabItem Header="Tile Entities">
+                    <TabItem Header="{x:Static p:Language.editor_tabs_tileentities}">
                         <View:TileEntityExaminer HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
                     </TabItem>
                 </TabControl>
