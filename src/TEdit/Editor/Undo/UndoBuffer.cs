@@ -10,13 +10,14 @@ namespace TEdit.Editor.Undo
     public class UndoBuffer
     {
         private const int FlushSize = 10000;
-
+        private string file;
         private static readonly object UndoSaveLock = new object();
 
         public UndoBuffer(string fileName)
         {
-            var stream = new FileStream(fileName, FileMode.Create);
-            _writer = new BinaryWriter(stream);
+            file = Path.GetFileNameWithoutExtension(fileName);
+            Debug.WriteLine($"Creating UNDO file {fileName}");
+            _writer = new BinaryWriter(new FileStream(fileName, FileMode.Create), System.Text.Encoding.UTF8, false);
             _writer.Write((Int32)0);
         }
 
@@ -63,13 +64,13 @@ namespace TEdit.Editor.Undo
             }
             if (UndoTiles.Count > FlushSize)
             {
-                Flush();
+                SaveTileData();
             }
         }
 
         public int Count { get; private set; }
 
-        public void Flush()
+        public void SaveTileData()
         {
             lock (UndoSaveLock)
             {
@@ -102,8 +103,9 @@ namespace TEdit.Editor.Undo
 
         public void Close()
         {
-            Flush();
+            Debug.WriteLine($"Saving {file}");
 
+            SaveTileData();
             World.SaveChests(Chests, _writer);
             World.SaveSigns(Signs, _writer);
             World.SaveTileEntities(TileEntities, _writer);
@@ -111,6 +113,7 @@ namespace TEdit.Editor.Undo
             _writer.Write(Count);
             _writer.Close();
             _writer.Dispose();
+            _writer = null;
         }
 
         public static IEnumerable<UndoTile> ReadUndoTilesFromStream(BinaryReader br)
@@ -129,7 +132,7 @@ namespace TEdit.Editor.Undo
 
         #region Destructor to cleanup files
         private bool disposed = false;
-        private readonly BinaryWriter _writer;
+        private BinaryWriter _writer;
         //Implement IDisposable.
         public void Dispose()
         {
@@ -143,14 +146,10 @@ namespace TEdit.Editor.Undo
             {
                 if (disposing)
                 {
+                    Debug.WriteLine($"Disposing {file}");
                     // free managed
-                    if (_writer != null)
-                    {
-                        _writer.Dispose();
-                    }
+                    _writer?.Dispose();
                 }
-                // Free your own state (unmanaged objects).
-                // Set large fields to null.
 
                 disposed = true;
             }
