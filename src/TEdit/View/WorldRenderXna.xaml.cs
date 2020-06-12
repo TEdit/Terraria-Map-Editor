@@ -1421,7 +1421,23 @@ namespace TEdit.View
                                             }
                                             else
                                             {
-                                                source = new Rectangle(curtile.U, curtile.V, tileprop.TextureGrid.X, tileprop.TextureGrid.Y);
+                                                int renderU = curtile.U;
+                                                int renderV = curtile.V;
+
+                                                if (curtile.Type == 185 && curtile.V == 18)
+                                                {
+                                                    var u = curtile.U / 1908;
+                                                    renderU -= 1908 * u;
+                                                    renderV += 18 * u;
+                                                }
+                                                else if (curtile.Type == 187)
+                                                {
+                                                    var u = curtile.U / 1890;
+                                                    renderU -= 1890 * u;
+                                                    renderV += 36 * u;
+                                                }
+
+                                                source = new Rectangle(renderU, renderV, tileprop.TextureGrid.X, tileprop.TextureGrid.Y);
                                                 if (source.Width <= 0)
                                                     source.Width = 16;
                                                 if (source.Height <= 0)
