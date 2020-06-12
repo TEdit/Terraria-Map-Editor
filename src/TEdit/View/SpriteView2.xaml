@@ -41,9 +41,9 @@
                                 </StackPanel>
                                 <Image 
                                     HorizontalAlignment="Left"
-                                    Source="{Binding Path=Styles[0].Preview}" 
-                                    Height="{Binding Path=Styles[0].Preview.PixelHeight}" 
-                                    Width="{Binding Path=Styles[0].Preview.PixelWidth}"
+                                    Source="{Binding Path=Default.Preview}" 
+                                    Height="{Binding Path=Default.Preview.PixelHeight}" 
+                                    Width="{Binding Path=Default.Preview.PixelWidth}"
                                     RenderOptions.BitmapScalingMode="NearestNeighbor" 
                                     ToolTip="{Binding Path=Name}" />
                             </StackPanel>

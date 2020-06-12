@@ -147,6 +147,8 @@ namespace TEdit.Terraria.Objects
         public bool IsPreviewTexture { get; set; }
         public bool IsAnimated { get; set; }
 
+        public SpriteSub Default => Styles.Values.FirstOrDefault();
+
         public Dictionary<int, SpriteSub> Styles { get; } = new Dictionary<int, SpriteSub>();
 
         public void GeneratePreview()

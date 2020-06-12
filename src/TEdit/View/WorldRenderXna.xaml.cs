@@ -270,7 +270,9 @@ namespace TEdit.View
 
                     sprite.IsAnimated = tile.IsAnimated;
 
-                    if (tile.Id != 171) { sprite.SizePixelsInterval += new Vector2Short(2, 2); }
+                    if (tile.Id == 172) { sprite.SizePixelsInterval += new Vector2Short(3,3); }
+                    else if (tile.Id != 171) { sprite.SizePixelsInterval += new Vector2Short(2, 2); }
+                    
                     World.Sprites2.Add(sprite);
 
                     int numX = (sprite.SizeTexture.X + 2) / sprite.SizePixelsInterval.X;
@@ -351,15 +353,17 @@ namespace TEdit.View
 
                             if (hasColorData)
                             {
+                                var uv = sprite.SizePixelsInterval * new Vector2Short((short)subX, (short)subY);
+                                var frameName = tile.Frames.FirstOrDefault(f => f.UV == uv);
                                 sprite.Styles[subId] = new SpriteSub
                                 {
                                     Tile = sprite.Tile,
                                     SizeTexture = sprite.SizeTexture,
-                                    Name = $"{tile.Name}_{subId}",
+                                    Name = frameName?.Name ?? $"{tile.Name}_{subId}",
                                     Preview = texture.Texture2DToWriteableBitmap(),
                                     IsPreviewTexture = true,
                                     Style = subId,
-                                    UV = sprite.SizePixelsInterval * new Vector2Short((short)subX, (short)subY)
+                                    UV = uv
                                 };
                             }
                         }
