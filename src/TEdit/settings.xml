@@ -3541,7 +3541,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Tile Id="162" Color="#FFB8DBF0" Name="Thin Ice" Solid="true" Blends="true" />
     <Tile Id="163" Color="#FFAE91D6" Name="Purple Ice Block" Solid="true" Blends="true" />
     <Tile Id="164" Color="#FFDAB6CC" Name="Pink Ice Block" Solid="true" Blends="true" />
-    <Tile Id="165" Color="#FF646464" Name="Cave Deco" Framed="true" Size="1,2" >
+    <Tile Id="165" Color="#FF646464" Name="Cave Deco" Framed="true" Size="[1,2 1,2 1,1 1,1]" >
       <Frames>
         <Frame UV="0,0" Name="Icicle 1x2" Variety="A" />
         <Frame UV="18,0" Name="Icicle 1x2" Variety="B" />
@@ -3871,7 +3871,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="110,198" Name="Fire Moss" Variety="Right C" />
       </Frames>
     </Tile>
-    <Tile Id="185" Color="#FF959573" Name="Small Decos" Framed="true" Size="1,1" >
+    <Tile Id="185" Color="#FF959573" Name="Small Decos" Framed="true" Size="[1,1 2,1 2,1]" >
       <Frames>
         <Frame UV="0,0" Variety="Small Stone 1" />
         <Frame UV="18,0" Variety="Small Stone 2" />
@@ -4263,7 +4263,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Tile Id="230" Color="#FF834F0D" Name="Crispy Honey Block" Solid="true" Blends="true" MergeWith="0" />
     <Tile Id="231" Color="#FFE0C265" Name="Larva" Framed="true" Size="3,3" />
     <Tile Id="232" Color="#FF915155" Name="Wooden Spike" Solid="true" Blends="true" />
-    <Tile Id="233" Color="#FFFF00FF" Name="Jungle Vegetation" Framed="true" Size="3,2" >
+    <Tile Id="233" Color="#FFFF00FF" Name="Jungle Vegetation" Framed="true" Size="[3,2 2,2]" >
       <Frames>
         <Frame UV="0,0" Variety="Plant A" />
         <Frame UV="54,0" Variety="Plant B" />

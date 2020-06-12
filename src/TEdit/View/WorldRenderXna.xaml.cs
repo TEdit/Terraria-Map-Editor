@@ -282,24 +282,33 @@ namespace TEdit.View
                         numY = 1;
                     }
 
-                    var texture = new Texture2D(e.GraphicsDevice, sprite.SizeTiles.X * sprite.SizePixelsRender.X, sprite.SizeTiles.Y * sprite.SizePixelsRender.Y);
-                    for (int subY = 0; subY < numY; subY += sprite.SizeTiles.Y)
-                    {
-                        for (int subX = 0; subX < numX; subX += sprite.SizeTiles.X)
-                        {
-                            int posX = (subX / sprite.SizeTiles.X);
-                            int posY = (subY / sprite.SizeTiles.Y);
+                    Vector2Short rowSize = tile.FrameSize[0];
 
-                            int subId = posX + (posY * (numX / sprite.SizeTiles.X));
+                    for (int subY = 0; subY < numY; subY += rowSize.Y)
+                    {
+                        int posY = (subY / rowSize.Y);
+
+                        if (tile.FrameSize.Length > 1 && tile.FrameSize.Length > posY)
+                        {
+                            rowSize = tile.FrameSize[posY];
+                        }
+
+                        var texture = new Texture2D(e.GraphicsDevice, rowSize.X * sprite.SizePixelsRender.X, rowSize.Y * sprite.SizePixelsRender.Y);
+
+                        for (int subX = 0; subX < numX; subX += rowSize.X)
+                        {
+                            int posX = (subX / rowSize.X);
+
+                            int subId = posX + (posY * (numX / rowSize.X));
 
                             int originX = subX * sprite.SizePixelsInterval.X + posX * tile.FrameGap.X;
                             int originY = subY * sprite.SizePixelsInterval.Y + posY * tile.FrameGap.Y;
 
                             bool hasColorData = false;
                             // render subtile (grab each "tile" and make composite texture"
-                            for (int x = 0; x < sprite.SizeTiles.X; x++)
+                            for (int x = 0; x < rowSize.X; x++)
                             {
-                                for (int y = 0; y < sprite.SizeTiles.Y; y++)
+                                for (int y = 0; y < rowSize.Y; y++)
                                 {
                                     var source = new Rectangle(
                                         (x * sprite.SizePixelsInterval.X) + originX,
@@ -807,7 +816,7 @@ namespace TEdit.View
                                         var texsize = new Vector2Int32(32, 32);
                                         var source = new Rectangle((curtile.uvWallCache & 0x00FF) * (texsize.X + 4), (curtile.uvWallCache >> 8) * (texsize.Y + 4), texsize.X, texsize.Y);
                                         var dest = new Rectangle(1 + (int)((_scrollPosition.X + x - 0.5) * _zoom), 1 + (int)((_scrollPosition.Y + y - 0.5) * _zoom), (int)_zoom * 2, (int)_zoom * 2);
-                                        
+
                                         _spriteBatch.Draw(wallTex, dest, source, wallPaintColor, 0f, default(Vector2), SpriteEffects.None, LayerTileWallTextures);
                                     }
                                 }
@@ -2566,7 +2575,7 @@ namespace TEdit.View
 
             if (x < 0 || y < 0)
                 CenterOnTile(curTile.X, curTile.Y);
-            else 
+            else
                 LockOnTile(curTile.X, curTile.Y, x, y);
 
             if (_wvm.CurrentWorld != null)

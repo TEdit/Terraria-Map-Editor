@@ -60,15 +60,9 @@ namespace TEdit.Editor
                 if (World.TileProperties.Count > _tile.Type)
                 {
                     TEdit.Terraria.Objects.TileProperty tileProperty = World.TileProperties[_tile.Type];
-                    if (!tileProperty.HasFrameName)
-                    {
-                        TileName = tileProperty.Name;
-                    }
-                    else
-                    {
-                        string frameNameKey = World.GetFrameNameKey(_tile.Type, _tile.U, _tile.V);
-                        TileName = World.FrameNames.ContainsKey(frameNameKey) ? World.FrameNames[frameNameKey] : tileProperty.Name + "*";
-                    }
+                    TileName = tileProperty.Name;
+
+                    // TODO: add sprite names here
                     TileName = _tile.IsActive ? $"{TileName} ({_tile.Type})" : "[empty]";
                 }
                 else

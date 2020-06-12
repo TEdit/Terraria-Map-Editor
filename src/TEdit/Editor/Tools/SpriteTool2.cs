@@ -17,6 +17,7 @@ namespace TEdit.Editor.Tools
         Vector2Short[,] tiles;
         int tilex;
         int tiley;
+
         public SpriteTool2(WorldViewModel worldViewModel)
             : base(worldViewModel)
         {
@@ -55,7 +56,7 @@ namespace TEdit.Editor.Tools
             _isLeftDown = (e.LeftButton == MouseButtonState.Pressed);
             _isRightDown = (e.RightButton == MouseButtonState.Pressed);
 
-            if (_wvm.SelectedSpriteTile2.SizeTiles.X == 1 && _wvm.SelectedSpriteTile2.SizeTiles.Y == 1)
+            if (_wvm.SelectedSprite2.Value.SizeTiles.X == 1 && _wvm.SelectedSprite2.Value.SizeTiles.Y == 1)
                 CheckDirectionandDraw(e.Location);
         }
 
@@ -63,7 +64,7 @@ namespace TEdit.Editor.Tools
         {
             ushort tileId = _wvm.SelectedSprite2.Value.Tile;
 
-            SpriteFull.PlaceSprite(x, y, _wvm.SelectedSpriteTile2, _wvm.SelectedSprite2.Key, _wvm);
+            _wvm.SelectedSprite2.Value.Place(x, y, _wvm);
 
             if (Tile.IsTileEntity(tileId))
             {
@@ -80,7 +81,7 @@ namespace TEdit.Editor.Tools
                 var existingChest = _wvm.CurrentWorld.GetChestAtTile(x, y);
                 if (existingChest == null)
                 {
-                    _wvm.CurrentWorld.Chests.Add(new Chest(x,y));
+                    _wvm.CurrentWorld.Chests.Add(new Chest(x, y));
                 }
             }
             else if (Tile.IsSign(tileId))
@@ -98,17 +99,20 @@ namespace TEdit.Editor.Tools
             _isLeftDown = (e.LeftButton == MouseButtonState.Pressed);
             _isRightDown = (e.RightButton == MouseButtonState.Pressed);
 
-            if (_wvm.SelectedSpriteTile2 == null)
-                return;
-            if (_wvm.SelectedSpriteTile2.SizeTiles.X == 1 && _wvm.SelectedSpriteTile2.SizeTiles.Y == 1)
+            if (_wvm.SelectedSprite2.Value == null) { return; }
+            if (_wvm.SelectedSprite2.Value.SizeTiles.X == 1 && _wvm.SelectedSprite2.Value.SizeTiles.Y == 1)
+            {
                 CheckDirectionandDraw(e.Location);
+            }
         }
+
         public override void MouseUp(TileMouseState e)
         {
-            if (_wvm.SelectedSpriteTile2 == null)
-                return;
-            if (_wvm.SelectedSpriteTile2.SizeTiles.X == 1 && _wvm.SelectedSpriteTile2.SizeTiles.Y == 1)
+            if (_wvm.SelectedSprite2.Value == null) { return; }
+            if (_wvm.SelectedSprite2.Value.SizeTiles.X == 1 && _wvm.SelectedSprite2.Value.SizeTiles.Y == 1)
+            {
                 CheckDirectionandDraw(e.Location);
+            }
 
             _isLeftDown = (e.LeftButton == MouseButtonState.Pressed);
             _isRightDown = (e.RightButton == MouseButtonState.Pressed);

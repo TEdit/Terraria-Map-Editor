@@ -225,10 +225,14 @@ namespace TEdit.Terraria
         {
             Tile tile = Tiles[x, y];
             TileProperty tileprop = TileProperties[tile.Type];
-            if (tileprop.IsFramed && (tileprop.FrameSize.X > 1 || tileprop.FrameSize.Y > 1))
+            var size = tileprop.FrameSize[0];
+            if (tileprop.IsFramed && (size.X > 1 || size.Y > 1 || tileprop.FrameSize.Length > 1))
             {
-                int xShift = tile.U % ((tileprop.TextureGrid.X + 2) * tileprop.FrameSize.X) / (tileprop.TextureGrid.X + 2);
-                int yShift = tile.V % ((tileprop.TextureGrid.Y + 2) * tileprop.FrameSize.Y) / (tileprop.TextureGrid.Y + 2);
+                var sprite = World.Sprites2.FirstOrDefault(s => s.Tile == tile.Type);
+                var style = sprite.GetStyleFromUV(tile.GetUV());
+
+                int xShift = tile.U % ((tileprop.TextureGrid.X + 2) * style.Value.SizeTiles.X) / (tileprop.TextureGrid.X + 2);
+                int yShift = tile.V % ((tileprop.TextureGrid.Y + 2) * style.Value.SizeTiles.Y) / (tileprop.TextureGrid.Y + 2);
                 return new Vector2Int32(x - xShift, y - yShift);
             }
             else

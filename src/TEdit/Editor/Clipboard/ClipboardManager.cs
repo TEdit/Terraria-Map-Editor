@@ -364,11 +364,20 @@ namespace TEdit.Editor.Clipboard
 
                     Tile tile = (Tile)buffer.Tiles[x, y].Clone();
                     var tileProperties = World.TileProperties[tile.Type];
-                    Vector2Short tileSize = tileProperties.FrameSize;
+
+                    Vector2Short tileSize = tileProperties.FrameSize[0];
+
+                    if (tileProperties.FrameSize.Length > 1)
+                    {
+                        var sprite = World.Sprites2.First(s => s.Tile == tile.Type);
+                        var style = sprite.GetStyleFromUV(tile.GetUV());
+                        tileSize = style.Value.SizeTiles;
+                    }
 
                     // locate all the sprites and make a list
                     if (tileProperties.IsFramed)
                     {
+
                         var loc = new Vector2Int32(x, y);
                         var uv = tile.GetUV();
                         if (tileProperties.IsOrigin(uv, out var frame))
@@ -460,7 +469,7 @@ namespace TEdit.Editor.Clipboard
             foreach (var te in buffer.TileEntities)
             {
                 var tileProperties = World.TileProperties[(int)te.TileType];
-                Vector2Short tileSize = tileProperties.FrameSize;
+                Vector2Short tileSize = tileProperties.FrameSize[0];
 
                 var flipOrigin = FlipSprite(buffer.Size, new Vector2Int32(te.PosX, te.PosY), tileSize, flipX);
                 te.PosX = (short)flipOrigin.X;

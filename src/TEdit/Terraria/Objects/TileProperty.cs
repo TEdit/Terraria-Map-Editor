@@ -13,7 +13,7 @@ namespace TEdit.Terraria.Objects
         private int _id = -1;
         private string _name = "UNKNOWN";
         private bool _isFramed;
-        private Vector2Short _frameSize = new Vector2Short(1, 1);
+        private Vector2Short[] _frameSize = new Vector2Short[] { new Vector2Short(1, 1) };
         private Vector2Short _frameGap = new Vector2Short(0, 0);
         private readonly ObservableCollection<FrameProperty> _frames = new ObservableCollection<FrameProperty>();
         private bool _isSolid;
@@ -26,7 +26,6 @@ namespace TEdit.Terraria.Objects
         private bool _isGrass;
         private bool _isPlatform;
         private bool _isCactus;
-        private bool _hasFrameName;
         private bool _isStone;
         private bool _canBlend;
         private int? _mergeWith;
@@ -115,11 +114,12 @@ namespace TEdit.Terraria.Objects
             set { Set("Name", ref _name, value); }
         }
 
-        public Vector2Short FrameSize
+        public Vector2Short[] FrameSize
         {
             get { return _frameSize; }
             set { Set("FrameSize", ref _frameSize, value); }
         }
+
         public bool IsFramed
         {
             get { return _isFramed; }
@@ -153,13 +153,6 @@ namespace TEdit.Terraria.Objects
             get { return _isCactus; }
             set { Set("IsCactus", ref _isCactus, value); }
         }
-
-        public bool HasFrameName
-        {
-            get { return _hasFrameName; }
-            set { Set("HasFrameName", ref _hasFrameName, value); }
-        }
-
 
         public bool IsStone
         {

@@ -184,7 +184,8 @@ namespace TEdit.Terraria
                 curTile.IsSolidTop = (bool?)xElement.Attribute("SolidTop") ?? false;
                 curTile.IsLight = (bool?)xElement.Attribute("Light") ?? false;
                 curTile.IsAnimated = (bool?)xElement.Attribute("IsAnimated") ?? false;
-                curTile.FrameSize = StringToVector2Short((string)xElement.Attribute("Size"), 1, 1);
+                curTile.FrameSize = StringToVector2ShortArray((string)xElement.Attribute("Size"), 1, 1);
+                // curTile.FrameSize = StringToVector2Short((string)xElement.Attribute("Size"), 1, 1);
                 curTile.Placement = InLineEnumTryParse<FramePlacement>((string)xElement.Attribute("Placement"));
                 curTile.TextureGrid = StringToVector2Short((string)xElement.Attribute("TextureGrid"), 16, 16);
                 curTile.FrameGap = StringToVector2Short((string)xElement.Attribute("FrameGap"), 0, 0);
@@ -194,7 +195,6 @@ namespace TEdit.Terraria
                 curTile.IsStone = (bool?)xElement.Attribute("Stone") ?? false; /* Heathtech */
                 curTile.CanBlend = (bool?)xElement.Attribute("Blends") ?? false; /* Heathtech */
                 curTile.MergeWith = (int?)xElement.Attribute("MergeWith") ?? null; /* Heathtech */
-                curTile.HasFrameName = curTile.IsFramed && ((bool?)xElement.Attribute("UseFrameName") ?? false);
                 string frameNamePostfix = (string)xElement.Attribute("FrameNamePostfix") ?? null;
 
                 foreach (var elementFrame in xElement.Elements("Frames").Elements("Frame"))
@@ -205,7 +205,7 @@ namespace TEdit.Terraria
                     curFrame.Variety = (string)elementFrame.Attribute("Variety");
                     curFrame.UV = StringToVector2Short((string)elementFrame.Attribute("UV"), 0, 0);
                     curFrame.Anchor = InLineEnumTryParse<FrameAnchor>((string)elementFrame.Attribute("Anchor"));
-                    var frameSize = StringToVector2Short((string)elementFrame.Attribute("FrameSize"), curTile.FrameSize.X, curTile.FrameSize.Y);
+                    var frameSize = StringToVector2Short((string)elementFrame.Attribute("FrameSize"), curTile.FrameSize[0].X, curTile.FrameSize[0].Y);
 
                     // Assign a default name if none existed
                     if (string.IsNullOrWhiteSpace(curFrame.Name))
@@ -234,27 +234,7 @@ namespace TEdit.Terraria
                         Tile = (ushort)curTile.Id, /* SBlogic */
                         TileName = curTile.Name
                     });
-                    if (curTile.HasFrameName)
-                    {
-                        string frameName = curFrame.Name;
-                        if (frameNamePostfix != null)
-                            frameName += " (" + frameNamePostfix + ")";
-                        if (curFrame.Variety != null)
-                            frameName += ", " + curFrame.Variety;
-
-                        //  TODO:  There must be a more efficient way than to store each frame...
-                        for (int x = 0, mx = curTile.FrameSize.X; x < mx; x++)
-                        {
-                            for (int y = 0, my = curTile.FrameSize.Y; y < my; y++)
-                            {
-                                string frameNameKey = GetFrameNameKey(curTile.Id, (short)(curFrame.UV.X + (x * 18)), (short)(curFrame.UV.Y + (y * 18)));
-                                if (!FrameNames.ContainsKey(frameNameKey))
-                                    FrameNames.Add(frameNameKey, frameName);
-                                else
-                                    System.Diagnostics.Debug.WriteLine(curFrame.Name + " collided with " + frameNameKey);
-                            }
-                        }
-                    }
+                    
                 }
                 if (curTile.Frames.Count == 0 && curTile.IsFramed)
                 {
@@ -272,7 +252,7 @@ namespace TEdit.Terraria
                         IsPreviewTexture = false,
                         Name = null,
                         Origin = curFrame.UV,
-                        Size = curTile.FrameSize,
+                        Size = curTile.FrameSize[0],
                         Tile = (ushort)curTile.Id,
                         TileName = curTile.Name
                     });

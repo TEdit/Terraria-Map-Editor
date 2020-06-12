@@ -674,6 +674,7 @@ namespace TEdit.Geometry.Primitives
         }
 
         public readonly static Vector2Short Zero = new Vector2Short(0,0);
+        public readonly static Vector2Short One = new Vector2Short(1,1);
         public short Height => Y;
         public short Width => X;
 
