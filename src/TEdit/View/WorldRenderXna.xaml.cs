@@ -171,8 +171,8 @@ namespace TEdit.View
         public void LockOnTile(int tileX, int tileY, double mouseX, double mouseY)
         {
             _scrollPosition = new Vector2(
-                -tileX + (float)(mouseX / _zoom),
-                -tileY + (float)(mouseY / _zoom));
+                -tileX + (float)((mouseX) / _zoom) -0.5f,
+                -tileY + (float)((mouseY) / _zoom) -0.5f);
             ClampScroll();
             ScrollBarH.Value = -_scrollPosition.X;
             ScrollBarV.Value = -_scrollPosition.Y;
