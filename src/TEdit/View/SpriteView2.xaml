@@ -59,7 +59,7 @@
         <ListBox x:Name="s"
             Style="{DynamicResource ListBoxWrapPanel}"
             HorizontalAlignment="Stretch"  
-            ItemsSource="{Binding SelectedSpriteTile2.Styles}" 
+            ItemsSource="{Binding SpriteStylesView}" 
             SelectedItem="{Binding SelectedSprite2, Mode=TwoWay}"
             ScrollViewer.HorizontalScrollBarVisibility="Disabled">
             <ListBox.ItemTemplate>

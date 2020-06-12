@@ -72,5 +72,10 @@ namespace TEdit.Terraria.Objects
             get { return _image; }
             set { Set("Image", ref _image, value); }
         }
+
+        public override string ToString()
+        {
+            return $"{Name} {Variety} {Anchor.ToString()}".Trim();
+        }
     }
 }

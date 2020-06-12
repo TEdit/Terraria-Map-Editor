@@ -271,6 +271,7 @@ namespace TEdit.View
                     sprite.IsAnimated = tile.IsAnimated;
 
                     if (tile.Id == 172) { sprite.SizePixelsInterval += new Vector2Short(3,3); }
+                    else if (tile.Id == 216) { sprite.SizePixelsInterval += new Vector2Short(2,4); }
                     else if (tile.Id != 171) { sprite.SizePixelsInterval += new Vector2Short(2, 2); }
                     
                     World.Sprites2.Add(sprite);
@@ -359,7 +360,7 @@ namespace TEdit.View
                                 {
                                     Tile = sprite.Tile,
                                     SizeTexture = sprite.SizeTexture,
-                                    Name = frameName?.Name ?? $"{tile.Name}_{subId}",
+                                    Name = frameName?.ToString() ?? $"{tile.Name}_{subId}",
                                     Preview = texture.Texture2DToWriteableBitmap(),
                                     IsPreviewTexture = true,
                                     Style = subId,
