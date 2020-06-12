@@ -174,6 +174,7 @@ namespace TEdit.Editor.Clipboard
         {
             if (Buffer == null)
                 return;
+            _wvm.Selection.IsActive = false; // clear selection when pasting to prevent "unable to use pencil" issue
             World world = _wvm.CurrentWorld;
             ClipboardBuffer buffer = _wvm.Clipboard.Buffer;
             for (int x = 0; x < buffer.Size.X; x++)
