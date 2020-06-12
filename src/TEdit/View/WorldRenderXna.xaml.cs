@@ -17,6 +17,7 @@ using TEdit.ViewModel;
 using System.Windows.Media.Imaging;
 using Point = System.Windows.Point;
 using Vector2 = Microsoft.Xna.Framework.Vector2;
+using TEdit.Framework.Events;
 
 namespace TEdit.View
 {
@@ -48,6 +49,7 @@ namespace TEdit.View
         private readonly GameTimer _gameTimer;
         private readonly WorldViewModel _wvm;
         private bool _isMiddleMouseDown;
+        private bool _keyboardPan;
         private Vector2 _middleClickPoint;
         private Vector2 _mousePosition;
         private Vector2 _dpiScale;
@@ -75,17 +77,21 @@ namespace TEdit.View
             _wvm.PreviewChanged += PreviewChanged;
             _wvm.PropertyChanged += _wvm_PropertyChanged;
             _wvm.RequestZoom += _wvm_RequestZoom;
+            _wvm.RequestPan += _wvm_RequestPan;
             _wvm.RequestScroll += _wvm_RequestScroll;
         }
 
-        void _wvm_RequestScroll(object sender, TEdit.Framework.Events.EventArgs<ScrollDirection> e)
+        private void _wvm_RequestPan(object sender, EventArgs<bool> e) => SetPanMode(e.Value1);
+
+
+        void _wvm_RequestScroll(object sender, ScrollEventArgs e)
         {
-            int zoomSpeed = (Keyboard.Modifiers.HasFlag(ModifierKeys.Shift)) ? 50 : 10;
+            int zoomSpeed = e.Amount;
 
             float x = _scrollPosition.X;
             float y = _scrollPosition.Y;
             float inc = 1 / _zoom * zoomSpeed;
-            switch (e.Value1)
+            switch (e.Direction)
             {
                 case ScrollDirection.Up:
                     y += inc;
@@ -270,10 +276,10 @@ namespace TEdit.View
 
                     sprite.IsAnimated = tile.IsAnimated;
 
-                    if (tile.Id == 172) { sprite.SizePixelsInterval += new Vector2Short(3,3); }
-                    else if (tile.Id == 216) { sprite.SizePixelsInterval += new Vector2Short(2,4); }
+                    if (tile.Id == 172) { sprite.SizePixelsInterval += new Vector2Short(3, 3); }
+                    else if (tile.Id == 216) { sprite.SizePixelsInterval += new Vector2Short(2, 4); }
                     else if (tile.Id != 171) { sprite.SizePixelsInterval += new Vector2Short(2, 2); }
-                    
+
                     World.Sprites2.Add(sprite);
 
                     int numX = (sprite.SizeTexture.X + 2) / sprite.SizePixelsInterval.X;
@@ -360,7 +366,7 @@ namespace TEdit.View
                                 {
                                     Tile = sprite.Tile,
                                     SizeTiles = rowSize,
-                                    SizePixelsInterval = sprite.SizePixelsInterval,                                    
+                                    SizePixelsInterval = sprite.SizePixelsInterval,
                                     SizeTexture = sprite.SizeTexture,
                                     Name = frameName?.ToString() ?? $"{tile.Name}_{subId}",
                                     Preview = texture.Texture2DToWriteableBitmap(),
@@ -459,7 +465,7 @@ namespace TEdit.View
 
         private void ScrollWorld()
         {
-            if (_isMiddleMouseDown)
+            if (_isMiddleMouseDown || _keyboardPan)
             {
                 Vector2 stretchDistance = (_mousePosition - _middleClickPoint);
                 Vector2 clampedScroll = _scrollPosition + stretchDistance / _zoom;
@@ -2615,16 +2621,33 @@ namespace TEdit.View
         private void xnaViewport_HwndMButtonDown(object sender, HwndMouseEventArgs e)
         {
             _middleClickPoint = PointToVector2(e.Position);
-            xnaViewport.SetCursor(Cursors.SizeAll);
             _isMiddleMouseDown = true;
         }
 
         private void xnaViewport_HwndMButtonUp(object sender, HwndMouseEventArgs e)
         {
             _isMiddleMouseDown = false;
-            xnaViewport.SetCursor(Cursors.Arrow);
         }
 
+
+        private void UpdateCursor()
+        {
+            if (_isMiddleMouseDown || _keyboardPan)
+            {
+                xnaViewport.SetCursor(Cursors.SizeAll);
+            }
+            else
+            {
+                xnaViewport.SetCursor(Cursors.Arrow);
+            }
+        }
+
+        public void SetPanMode(bool value)
+        {
+            _middleClickPoint = _mousePosition;
+            _keyboardPan = value;
+            UpdateCursor();
+        }
 
         private void xnaViewport_HwndMouseEnter(object sender, HwndMouseEventArgs e)
         {

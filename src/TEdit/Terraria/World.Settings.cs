@@ -20,7 +20,7 @@ namespace TEdit.Terraria
         private static readonly Dictionary<string, int> _npcIds = new Dictionary<string, int>();
         private static readonly Dictionary<int, Vector2Short> _npcFrames = new Dictionary<int, Vector2Short>();
         private static readonly Dictionary<byte, string> _prefix = new Dictionary<byte, string>();
-        private static readonly Dictionary<Key, string> _shortcuts = new Dictionary<Key, string>();
+        private static readonly KeyboardShortcuts _shortcuts = new KeyboardShortcuts();
         private static readonly Dictionary<int, ItemProperty> _itemLookup = new Dictionary<int, ItemProperty>();
         private static readonly Dictionary<int, string> _tallynames = new Dictionary<int, string>();
         private static readonly Dictionary<string, string> _frameNames = new Dictionary<string, string>();
@@ -82,6 +82,7 @@ namespace TEdit.Terraria
         private static T InLineEnumTryParse<T>(string str) where T : struct
         {
             T result;
+
             Enum.TryParse(str, true, out result);
             return result;
         }
@@ -399,8 +400,9 @@ namespace TEdit.Terraria
             foreach (var xElement in xmlSettings.Elements("ShortCutKeys").Elements("Shortcut"))
             {
                 var key = InLineEnumTryParse<Key>((string)xElement.Attribute("Key"));
-                var tool = (string)xElement.Attribute("Tool");
-                ShortcutKeys.Add(key, tool);
+                var modifier = InLineEnumTryParse<ModifierKeys>((string)xElement.Attribute("Modifier"));
+                var tool = (string)xElement.Attribute("Action");
+                ShortcutKeys.Add(tool, key, modifier);
             }
 
             XElement appSettings = xmlSettings.Element("App");
@@ -517,7 +519,7 @@ namespace TEdit.Terraria
             get { return _prefix; }
         }
 
-        public static Dictionary<Key, string> ShortcutKeys
+        public static KeyboardShortcuts ShortcutKeys
         {
             get { return _shortcuts; }
         }

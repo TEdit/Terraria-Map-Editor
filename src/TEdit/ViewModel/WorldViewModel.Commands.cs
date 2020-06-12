@@ -38,32 +38,44 @@ namespace TEdit.ViewModel
         private ICommand _saveRackCommand;
         private ICommand _npcRemoveCommand;
         private ICommand _importBestiaryCommand;
-
+        private ICommand _npcAddCommand;
         private ICommand _requestZoomCommand;
+        private ICommand _requestScrollCommand;
+        private ICommand _requestPanCommand;
 
         public event EventHandler<EventArgs<bool>> RequestZoom;
+        public event EventHandler<EventArgs<bool>> RequestPan;
+        public event EventHandler<ScrollEventArgs> RequestScroll;
 
         protected virtual void OnRequestZoom(object sender, EventArgs<bool> e)
         {
             if (RequestZoom != null) RequestZoom(sender, e);
         }
+
+        protected virtual void OnRequestPan(object sender, EventArgs<bool> e)
+        {
+            if (RequestPan != null) RequestPan(sender, e);
+        }
+
+        protected virtual void OnRequestScroll(object sender, ScrollEventArgs e)
+        {
+            if (RequestScroll != null) RequestScroll(sender, e);
+        }
+
+        public ICommand RequestPanCommand
+        {
+            get { return _requestPanCommand ?? (_requestPanCommand = new RelayCommand<bool>(o => OnRequestPan(this, new EventArgs<bool>(o)))); }
+        }
+
         public ICommand RequestZoomCommand
         {
             get { return _requestZoomCommand ?? (_requestZoomCommand = new RelayCommand<bool>(o => OnRequestZoom(this, new EventArgs<bool>(o)))); }
         }
 
-        public event EventHandler<EventArgs<ScrollDirection>> RequestScroll;
-
-
-        protected virtual void OnRequestScroll(object sender, EventArgs<ScrollDirection> e)
+        public ICommand RequestScrollCommand
         {
-            if (RequestScroll != null) RequestScroll(sender, e);
+            get { return _requestScrollCommand ?? (_requestScrollCommand = new RelayCommand<ScrollEventArgs>(o => OnRequestScroll(this, new ScrollEventArgs(o.Direction, o.Amount)))); }
         }
-
-        private ICommand _requestScrollCommand;
-
-        private ICommand _npcAddCommand;
-
 
         public ICommand NpcAddCommand
         {
@@ -113,11 +125,6 @@ namespace TEdit.ViewModel
                     MessageBox.Show(string.Format("{1} ({0}) was not on the map.", npc.Name, npc.DisplayName), "NPC Doesn't Exist");
                 }
             }
-        }
-
-        public ICommand RequestScrollCommand
-        {
-            get { return _requestScrollCommand ?? (_requestScrollCommand = new RelayCommand<ScrollDirection>(o => OnRequestScroll(this, new EventArgs<ScrollDirection>(o)))); }
         }
 
         public ICommand SaveSignCommand

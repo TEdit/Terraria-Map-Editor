@@ -9,11 +9,13 @@ using TEdit.ViewModel;
 
 namespace TEdit
 {
+
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
     public partial class MainWindow : Window
     {
+
         private WorldViewModel _vm;
         public MainWindow()
         {
@@ -23,147 +25,170 @@ namespace TEdit
             DataContext = ViewModelLocator.WorldViewModel;
             _vm = (WorldViewModel)DataContext;
             AddHandler(Keyboard.KeyDownEvent, (KeyEventHandler)HandleKeyDownEvent);
+            AddHandler(Keyboard.KeyUpEvent, (KeyEventHandler)HandleKeyUpEvent);
         }
 
         void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
+        }
 
+        private void HandleKeyUpEvent(object sender, KeyEventArgs e)
+        {
+            var command = World.ShortcutKeys.Get(e);
+            if (command == null) return;
 
-
-            //string fname = Application.Current.Properties["OpenFile"].ToString();
-            //if (!string.IsNullOrWhiteSpace(fname))
-            //{
-            //    _vm.LoadWorld(fname);
-            //}
-            //e.Handled = false;
+            switch (command)
+            {
+                case "pan":
+                    if (_vm.RequestPanCommand.CanExecute(false))
+                        _vm.RequestPanCommand.Execute(false);
+                    break;
+            }
         }
 
         private void HandleKeyDownEvent(object sender, KeyEventArgs e)
         {
+            if (!(e.Source is View.WorldRenderXna)) return;
+
             try
             {
-                if (!(e.Source is View.WorldRenderXna))
-                    return;
+                ScrollEventArgs scrollValue = null;
 
-                if (e.Key == Key.D && Keyboard.Modifiers.HasFlag(ModifierKeys.Control))
+                var command = World.ShortcutKeys.Get(e.Key, e.KeyboardDevice.Modifiers);
+                if (command == null) return;
+
+                switch (command)
                 {
-                    _vm.Selection.IsActive = false;
-                }
-                if (e.Key == Key.C && Keyboard.Modifiers.HasFlag(ModifierKeys.Control))
-                {
-                    if (_vm.CopyCommand.CanExecute(null))
-                        _vm.CopyCommand.Execute(null);
-                }
-                else if (e.Key == Key.V && Keyboard.Modifiers.HasFlag(ModifierKeys.Control))
-                {
-                    if (_vm.PasteCommand.CanExecute(null))
-                        _vm.PasteCommand.Execute(null);
-                }
-                else if (e.Key == Key.Z && Keyboard.Modifiers.HasFlag(ModifierKeys.Control))
-                {
-                    _vm.UndoCommand.Execute(null);
-                }
-                else if (e.Key == Key.OemPlus && Keyboard.Modifiers.HasFlag(ModifierKeys.Control))
-                {
-                    if (_vm.RequestZoomCommand.CanExecute(true))
-                        _vm.RequestZoomCommand.Execute(true);
-                }
-                else if (e.Key == Key.OemMinus && Keyboard.Modifiers.HasFlag(ModifierKeys.Control))
-                {
-                    if (_vm.RequestZoomCommand.CanExecute(false))
-                        _vm.RequestZoomCommand.Execute(false);
-                }
-                else if (e.Key == Key.Y && Keyboard.Modifiers.HasFlag(ModifierKeys.Control))
-                {
-                    _vm.RedoCommand.Execute(null);
-                }
-                else if (e.Key == Key.A && Keyboard.Modifiers.HasFlag(ModifierKeys.Control))
-                {
-                    if (_vm.CurrentWorld != null)
-                    {
-                        _vm.Selection.IsActive = true;
-                        _vm.Selection.SetRectangle(new Vector2Int32(0, 0),
-                            new Vector2Int32(_vm.CurrentWorld.TilesWide - 1, _vm.CurrentWorld.TilesHigh - 1));
-                    }
-                }
-                else if (e.Key == Key.D && Keyboard.Modifiers.HasFlag(ModifierKeys.Control))
-                {
-                    if (_vm.CurrentWorld != null)
-                    {
-                        _vm.Selection.IsActive = false;
-                    }
-                }
-                else if (e.Key == Key.S && Keyboard.Modifiers.HasFlag(ModifierKeys.Control))
-                {
-                    if (_vm.SaveCommand.CanExecute(null))
-                        _vm.SaveCommand.Execute(null);
-                }
-                else if (e.Key == Key.O && Keyboard.Modifiers.HasFlag(ModifierKeys.Control))
-                {
-                    if (_vm.OpenCommand.CanExecute(null))
-                        _vm.OpenCommand.Execute(null);
-                }
-                else if (e.Key == Key.Delete)
-                {
-                    if (_vm.DeleteCommand.CanExecute(null))
-                        _vm.DeleteCommand.Execute(null);
-                }
-                else if (e.Key == Key.Escape)
-                {
-                    if (_vm.ActiveTool != null)
-                    {
-                        if (_vm.ActiveTool.Name == "Paste")
-                            SetActiveTool("Arrow");
-                        else
+                    case "copy":
+                        if (_vm.CopyCommand.CanExecute(null))
+                            _vm.CopyCommand.Execute(null);
+                        break;
+                    case "paste":
+                        if (_vm.PasteCommand.CanExecute(null))
+                            _vm.PasteCommand.Execute(null);
+                        break;
+                    case "undo":
+                        _vm.UndoCommand.Execute(null);
+                        break;
+                    case "redo":
+                        _vm.RedoCommand.Execute(null);
+                        break;
+                    case "selectall":
+                        if (_vm.CurrentWorld != null)
+                        {
+                            _vm.Selection.IsActive = true;
+                            _vm.Selection.SetRectangle(new Vector2Int32(0, 0),
+                                new Vector2Int32(_vm.CurrentWorld.TilesWide - 1, _vm.CurrentWorld.TilesHigh - 1));
+                        }
+                        break;
+                    case "selectnone":
+                        if (_vm.CurrentWorld != null)
+                        {
                             _vm.Selection.IsActive = false;
-                    }
+                        }
+                        break;
+                    case "open":
+                        if (_vm.OpenCommand.CanExecute(null))
+                            _vm.OpenCommand.Execute(null);
+                        break;
+                    case "save":
+                        if (_vm.SaveCommand.CanExecute(null))
+                            _vm.SaveCommand.Execute(null);
+                        break;
+                    case "saveas":
+                        if (_vm.SaveAsCommand.CanExecute(null))
+                            _vm.SaveAsCommand.Execute(null);
+                        break;
+                    case "deleteselection":
+                        if (_vm.DeleteCommand.CanExecute(null))
+                            _vm.DeleteCommand.Execute(null);
+                        break;
+                    case "resettool":
+                        if (_vm.ActiveTool != null)
+                        {
+                            if (_vm.ActiveTool.Name == "Paste")
+                                SetActiveTool("Arrow");
+                            else
+                                _vm.Selection.IsActive = false;
+                        }
+                        break;
+                    case "scrollup":
+                        scrollValue = new ScrollEventArgs(ScrollDirection.Up, 10);
+                        if (_vm.RequestScrollCommand.CanExecute(scrollValue))
+                            _vm.RequestScrollCommand.Execute(scrollValue);
+                        e.Handled = true;
+                        break;
+                    case "scrollupfast":
+                        scrollValue = new ScrollEventArgs(ScrollDirection.Up, 50);
+                        if (_vm.RequestScrollCommand.CanExecute(scrollValue))
+                            _vm.RequestScrollCommand.Execute(scrollValue);
+                        e.Handled = true;
+                        break;
+                    case "scrollright":
+                        scrollValue = new ScrollEventArgs(ScrollDirection.Right, 10);
+                        if (_vm.RequestScrollCommand.CanExecute(scrollValue))
+                            _vm.RequestScrollCommand.Execute(scrollValue);
+                        e.Handled = true;
+                        break;
+                    case "scrollrightfast":
+                        scrollValue = new ScrollEventArgs(ScrollDirection.Right, 50);
+                        if (_vm.RequestScrollCommand.CanExecute(scrollValue))
+                            _vm.RequestScrollCommand.Execute(scrollValue);
+                        e.Handled = true;
+                        break;
+                    case "scrolldown":
+                        scrollValue = new ScrollEventArgs(ScrollDirection.Down, 10);
+                        if (_vm.RequestScrollCommand.CanExecute(scrollValue))
+                            _vm.RequestScrollCommand.Execute(scrollValue);
+                        e.Handled = true;
+                        break;
+                    case "scrolldownfast":
+                        scrollValue = new ScrollEventArgs(ScrollDirection.Down, 50);
+                        if (_vm.RequestScrollCommand.CanExecute(scrollValue))
+                            _vm.RequestScrollCommand.Execute(scrollValue);
+                        e.Handled = true;
+                        break;
+                    case "scrollleft":
+                        scrollValue = new ScrollEventArgs(ScrollDirection.Left, 10);
+                        if (_vm.RequestScrollCommand.CanExecute(scrollValue))
+                            _vm.RequestScrollCommand.Execute(scrollValue);
+                        e.Handled = true;
+                        break;
+                    case "scrollleftfast":
+                        scrollValue = new ScrollEventArgs(ScrollDirection.Left, 50);
+                        if (_vm.RequestScrollCommand.CanExecute(scrollValue))
+                            _vm.RequestScrollCommand.Execute(scrollValue);
+                        e.Handled = true;
+                        break;
+                    case "pan":
+                        if (_vm.RequestPanCommand.CanExecute(true))
+                            _vm.RequestPanCommand.Execute(true);
+                        break;
+                    case "zoomin":
+                        if (_vm.RequestZoomCommand.CanExecute(true))
+                            _vm.RequestZoomCommand.Execute(true);
+                        break;
+                    case "zoomout":
+                        if (_vm.RequestZoomCommand.CanExecute(false))
+                            _vm.RequestZoomCommand.Execute(false);
+                        break;
+                    case "eraser":
+                        _vm.TilePicker.IsEraser = !_vm.TilePicker.IsEraser;
+                        break;
+                    case "swap":
+                        _vm.TilePicker.Swap(Keyboard.Modifiers);
+                        break;
+                    case "toggletile":
+                        _vm.TilePicker.TileStyleActive = !_vm.TilePicker.TileStyleActive;
+                        break;
+                    case "togglewall":
+                        _vm.TilePicker.WallStyleActive = !_vm.TilePicker.WallStyleActive;
+                        break;
+                    default:
+                        SetActiveTool(command);
+                        break;
                 }
-                else if (e.Key == Key.Up)
-                {
-                    if (_vm.RequestScrollCommand.CanExecute(ScrollDirection.Up))
-                        _vm.RequestScrollCommand.Execute(ScrollDirection.Up);
-                    e.Handled = true;
-                }
-                else if (e.Key == Key.Down)
-                {
-                    if (_vm.RequestScrollCommand.CanExecute(ScrollDirection.Down))
-                        _vm.RequestScrollCommand.Execute(ScrollDirection.Down);
-                    e.Handled = true;
-                }
-                else if (e.Key == Key.Left)
-                {
-                    if (_vm.RequestScrollCommand.CanExecute(ScrollDirection.Left))
-                        _vm.RequestScrollCommand.Execute(ScrollDirection.Left);
-                    e.Handled = true;
-                }
-                else if (e.Key == Key.Right)
-                {
-                    if (_vm.RequestScrollCommand.CanExecute(ScrollDirection.Right))
-                        _vm.RequestScrollCommand.Execute(ScrollDirection.Right);
-                    e.Handled = true;
-                }
-                else if (World.ShortcutKeys.ContainsKey(e.Key))
-                {
-                    string command = World.ShortcutKeys[e.Key];
-                    switch (command.ToLowerInvariant())
-                    {
-                        case "eraser":
-                            _vm.TilePicker.IsEraser = !_vm.TilePicker.IsEraser;
-                            break;
-                        case "swap":
-                            _vm.TilePicker.Swap(Keyboard.Modifiers);
-                            break;
-                        case "toggletile":
-                            _vm.TilePicker.TileStyleActive = !_vm.TilePicker.TileStyleActive;
-                            break;
-                        case "togglewall":
-                            _vm.TilePicker.WallStyleActive = !_vm.TilePicker.WallStyleActive;
-                            break;
-                        default:
-                            SetActiveTool(command);
-                            break;
-                    }
-                }
+
             }
             catch (Exception ex)
             {
