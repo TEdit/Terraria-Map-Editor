@@ -5544,7 +5544,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
       </Frames>
     </Tile>
     <Tile Id="528" Name="Mushroom Vines" Light="true" />
-    <Tile Id="529" Name="Sea Oats" Framed="true">
+    <Tile Id="529" Name="Sea Oats" Framed="true" Size="1,2" TextureGrid="16,15">
       <Frames>
         <Frame Name="Sea Oats" UV="0, 0" />
       </Frames>
@@ -5733,10 +5733,11 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     </Tile>
     <Tile Id="573" Name="Tattered Wood Sign" Framed="true" Size="2,2">
       <Frames>
-        <Frame Name="Tattered Wood Sign" UV="0, 0" Anchor="Bottom" />
-        <Frame Name="Tattered Wood Sign" UV="36, 0" Anchor="Top" />
-        <Frame Name="Tattered Wood Sign" UV="72, 0" Anchor="Left" />
-        <Frame Name="Tattered Wood Sign" UV="108, 0" Anchor="Right" />
+        <Frame UV="0,0" Variety="Ground" Anchor="Top" />
+        <Frame UV="36,0" Variety="Hanging" Anchor="Bottom" />
+        <Frame UV="72,0" Variety="Left Side" Anchor="Left" />
+        <Frame UV="108,0" Variety="Right Side" Anchor="Right" />
+        <Frame UV="144,0" Variety="Wall" />
       </Frames>
     </Tile>
     <Tile Id="574" Name="Boreal Beam" />
@@ -5764,37 +5765,37 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame Name="Magma Snail Cage" UV="0, 0" Anchor="Bottom" />
       </Frames>
     </Tile>
-    <Tile Id="583" Name="Tree Topaz" Framed="true">
+    <Tile Id="583" Name="Tree Topaz" Framed="true" TextureGrid="20,20">
       <Frames>
         <Frame Name="Tree Topaz" UV="0, 0" />
       </Frames>
     </Tile>
-    <Tile Id="584" Name="Tree Amethyst" Framed="true">
+    <Tile Id="584" Name="Tree Amethyst" Framed="true" TextureGrid="20,20">
       <Frames>
         <Frame Name="Tree Amethyst" UV="0, 0" />
       </Frames>
     </Tile>
-    <Tile Id="585" Name="Tree Sapphire" Framed="true">
+    <Tile Id="585" Name="Tree Sapphire" Framed="true" TextureGrid="20,20">
       <Frames>
         <Frame Name="Tree Sapphire" UV="0, 0" />
       </Frames>
     </Tile>
-    <Tile Id="586" Name="Tree Emerald" Framed="true">
+    <Tile Id="586" Name="Tree Emerald" Framed="true" TextureGrid="20,20">
       <Frames>
         <Frame Name="Tree Emerald" UV="0, 0" />
       </Frames>
     </Tile>
-    <Tile Id="587" Name="Tree Ruby" Framed="true">
+    <Tile Id="587" Name="Tree Ruby" Framed="true" TextureGrid="20,20">
       <Frames>
         <Frame Name="Tree Ruby" UV="0, 0" />
       </Frames>
     </Tile>
-    <Tile Id="588" Name="Tree Diamond" Framed="true">
+    <Tile Id="588" Name="Tree Diamond" Framed="true" TextureGrid="20,20">
       <Frames>
         <Frame Name="Tree Diamond" UV="0, 0" />
       </Frames>
     </Tile>
-    <Tile Id="589" Name="Tree Amber" Framed="true">
+    <Tile Id="589" Name="Tree Amber" Framed="true" TextureGrid="20,20" >
       <Frames>
         <Frame Name="Tree Amber" UV="0, 0" />
       </Frames>
@@ -5843,7 +5844,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame Name="Sakura Sapling" UV="0, 0" Anchor="Bottom" />
       </Frames>
     </Tile>
-    <Tile Id="596" Name="Vanity Tree Sakura" Framed="true">
+    <Tile Id="596" Name="Vanity Tree Sakura" Framed="true" TextureGrid="20,20" >
       <Frames>
         <Frame Name="Vanity Tree Sakura" UV="0, 0" />
       </Frames>
@@ -5952,7 +5953,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame Name="Yellow Willow Sapling" UV="0, 0" Anchor="Bottom" />
       </Frames>
     </Tile>
-    <Tile Id="616" Name="Vanity Tree Yellow Willow" Framed="true">
+    <Tile Id="616" Name="Vanity Tree Yellow Willow" Framed="true" TextureGrid="20,20" >
       <Frames>
         <Frame Name="Vanity Tree Yellow Willow" UV="0, 0" />
       </Frames>

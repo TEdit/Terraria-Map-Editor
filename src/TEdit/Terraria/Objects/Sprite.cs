@@ -166,12 +166,22 @@ namespace TEdit.Terraria.Objects
         /// <param name="uv"></param>
         /// <returns></returns>
         public KeyValuePair<int, SpriteSub> GetStyleFromUV(Vector2Short uv)
-            => Styles.AsQueryable().FirstOrDefault(kvp =>
-                kvp.Value.UV.X >= uv.X &&
-                kvp.Value.UV.Y >= uv.Y &&
-                kvp.Value.UV.X + (kvp.Value.SizePixelsInterval.X * kvp.Value.SizeTiles.X) < uv.X &&
-                kvp.Value.UV.Y + (kvp.Value.SizePixelsInterval.Y * kvp.Value.SizeTiles.Y) < uv.Y
-            );
+        {
+            foreach (var kvp in Styles)
+            {
+                if (kvp.Value.UV == uv) return kvp;
+
+                if (uv.X >= kvp.Value.UV.X &&
+                    uv.Y >= kvp.Value.UV.Y &&
+                    uv.X < kvp.Value.UV.X + (kvp.Value.SizePixelsInterval.X * kvp.Value.SizeTiles.X) &&
+                    uv.Y < kvp.Value.UV.Y + (kvp.Value.SizePixelsInterval.Y * kvp.Value.SizeTiles.Y))
+                {
+                    return kvp;
+                }
+            }
+            return default;
+        }
+
     }
 
     public class Sprite : ObservableObject

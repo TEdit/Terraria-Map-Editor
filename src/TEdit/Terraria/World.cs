@@ -228,6 +228,11 @@ namespace TEdit.Terraria
             var size = tileprop.FrameSize[0];
             if (tileprop.IsFramed && (size.X > 1 || size.Y > 1 || tileprop.FrameSize.Length > 1))
             {
+                if (tile.U == 0 && tile.V == 0) 
+                {
+                    new Vector2Int32(x, y);
+                }
+
                 var sprite = World.Sprites2.FirstOrDefault(s => s.Tile == tile.Type);
                 var style = sprite.GetStyleFromUV(tile.GetUV());
 

@@ -250,7 +250,7 @@ namespace TEdit.ViewModel
                 Set("SpriteFilter", ref _spriteFilter, value);
 
                 SpritesView2.Refresh();
-                SpriteStylesView.Refresh();
+                SpriteStylesView?.Refresh();
             }
         }
 

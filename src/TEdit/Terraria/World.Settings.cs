@@ -360,25 +360,17 @@ namespace TEdit.Terraria
             int signId = 0;
             foreach (var tileElement in xmlSettings.Elements("Tiles").Elements("Tile"))
             {
+                var tileId = (int?)tileElement.Attribute("Id") ?? 0;
                 string tileName = (string)tileElement.Attribute("Name");
-                if (tileName == "Sign" || tileName == "Grave Marker" || tileName == "Announcement Box")
+                if (Tile.IsSign(tileId))
                 {
                     ushort type = (ushort)((int?)tileElement.Attribute("Id") ?? 55);
                     foreach (var xElement in tileElement.Elements("Frames").Elements("Frame"))
                     {
                         var curItem = new SignProperty();
                         string variety = (string)xElement.Attribute("Variety");
-                        if (variety != null)
-                        {
-                            if (tileName == "Sign")
-                            {
-                                curItem.Name = "Sign " + variety;
-                            }
-                            else
-                            {
-                                curItem.Name = variety;
-                            }
-                        }
+                        string anchor = (string)xElement.Attribute("Anchor");
+                        curItem.Name = $"{tileName} {variety} {anchor}";
                         curItem.SignId = signId++;
                         curItem.UV = StringToVector2Short((string)xElement.Attribute("UV"), 0, 0);
                         curItem.TileType = type;

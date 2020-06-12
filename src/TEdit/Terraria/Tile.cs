@@ -45,6 +45,7 @@ namespace TEdit.Terraria
         IceByRod = 127,
         Chest2 = 467,
         AnnouncementBox = 425,
+        TatteredSign = 573,
         ChristmasTree = 171,
         MinecartTrack = 314,
         // Tile Entities
@@ -240,7 +241,7 @@ namespace TEdit.Terraria
 
         public static bool IsSign(int tileType)
         {
-            return tileType == (int)TileType.Sign || tileType == (int)TileType.GraveMarker || tileType == (int)TileType.AnnouncementBox;
+            return tileType == (int)TileType.Sign || tileType == (int)TileType.GraveMarker || tileType == (int)TileType.AnnouncementBox || tileType == (int)TileType.TatteredSign;
         }
 
         public bool IsTileEntity()

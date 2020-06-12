@@ -359,6 +359,8 @@ namespace TEdit.View
                                 sprite.Styles[subId] = new SpriteSub
                                 {
                                     Tile = sprite.Tile,
+                                    SizeTiles = rowSize,
+                                    SizePixelsInterval = sprite.SizePixelsInterval,                                    
                                     SizeTexture = sprite.SizeTexture,
                                     Name = frameName?.ToString() ?? $"{tile.Name}_{subId}",
                                     Preview = texture.Texture2DToWriteableBitmap(),
