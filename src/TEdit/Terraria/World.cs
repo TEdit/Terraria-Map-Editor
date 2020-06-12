@@ -123,6 +123,18 @@ namespace TEdit.Terraria
                     using (var b = new BinaryReader(File.OpenRead(filename)))
                     {
                         w.Version = b.ReadUInt32();
+
+                        if (w.Version < World.CompatibleVersion)
+                        {
+                            string message = $"The world you are attempting to load is {w.Version}. Loading this file in TEdit will force-update it to {World.CompatibleVersion}.\r\n" +
+                                "Please make a backup if you intend to use this world with older versions of Terraria.\r\n" +
+                                "Do you wish to continue?";
+                            if (MessageBox.Show(message, "Convert File?", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.No)
+                            {
+                                return null;
+                            }
+                        }
+
                         curVersion = w.Version;
                         if (w.Version > 87)
                             LoadV2(b, filename, w);
