@@ -5549,7 +5549,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame Name="Sea Oats" UV="0, 0" />
       </Frames>
     </Tile>
-    <Tile Id="530" Name="Oasis Plants" Framed="true">
+    <Tile Id="530" Name="Oasis Plants" Framed="true" Size="[3,2]">
       <Frames>
         <Frame Name="Oasis Plants" UV="0, 0" />
       </Frames>
