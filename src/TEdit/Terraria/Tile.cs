@@ -43,7 +43,9 @@ namespace TEdit.Terraria
         CrimsandBlock = 234,
         PlanteraBulb = 238,
         IceByRod = 127,
+        TrappedChest = 441,
         Chest2 = 467,
+        TrappedChest2 = 468,
         AnnouncementBox = 425,
         TatteredSign = 573,
         ChristmasTree = 171,
@@ -236,7 +238,7 @@ namespace TEdit.Terraria
 
         public static bool IsChest(int tileType)
         {
-            return tileType == (int)TileType.Chest || tileType == (int)TileType.Dresser || tileType == (int)TileType.Chest2;
+            return tileType == (int)TileType.Chest || tileType == (int)TileType.Dresser || tileType == (int)TileType.Chest2 || tileType == (int)TileType.TrappedChest2 || tileType == (int)TileType.TrappedChest;
         }
 
         public static bool IsSign(int tileType)

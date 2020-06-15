@@ -331,9 +331,9 @@ namespace TEdit.Terraria
             foreach (var tileElement in xmlSettings.Elements("Tiles").Elements("Tile"))
             {
                 string tileName = (string)tileElement.Attribute("Name");
-                if (tileName == "Chest" || tileName == "Dresser")
+                int type = (int)tileElement.Attribute("Id");
+                if (Tile.IsChest(type))
                 {
-                    ushort type = (ushort)((int?)tileElement.Attribute("Id") ?? 21);
                     foreach (var xElement in tileElement.Elements("Frames").Elements("Frame"))
                     {
                         var curItem = new ChestProperty();
@@ -352,7 +352,7 @@ namespace TEdit.Terraria
                         }
                         curItem.ChestId = chestId++;
                         curItem.UV = StringToVector2Short((string)xElement.Attribute("UV"), 0, 0);
-                        curItem.TileType = type;
+                        curItem.TileType = (ushort)type;
                         ChestProperties.Add(curItem);
                     }
                 }

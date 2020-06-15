@@ -5314,17 +5314,39 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Tile Id="464" Color="#FFE9B780" Name="War Table" Framed="true" Size="5,4" />
     <Tile Id="465" Color="#FF3354C3" Name="War Table Banner" Framed="true" Size="2,3" />
     <Tile Id="466" Color="#FFCD9949" Name="Elder Cystal Stand" Framed="true" Size="5,4" />
-    <Tile Id="467" Color="#FFE9CF5E" Name="Chest (Group 2)" Framed="true" Size="2,2" Placement="floor" UseFrameName="true" >
+    <Tile Id="467" Color="#FFE9CF5E" Name="Chest (Group 2)" Framed="true" Size="2,2" Placement="floor" UseFrameName="true" IsAnimated="true" >
       <Frames>
-        <Frame UV="0,0" Name=" Crystal Chest" />
-        <Frame UV="36,0" Name="Golden Chest" />
+        <Frame UV="0,0" Name="Crystal" />
+        <Frame UV="36,0" Name="Golden" />
+        <Frame UV="72,0" Name="Spider" />
+        <Frame UV="108,0" Name="Lesion" />
+        <Frame UV="144,0" Name="Dead Man's" />
+        <Frame UV="180,0" Name="Solar" />
+        <Frame UV="216,0" Name="Vortex" />
+        <Frame UV="252,0" Name="Nebula" />
+        <Frame UV="288,0" Name="Stardust" />
+        <Frame UV="324,0" Name="Golf" />
+        <Frame UV="360,0" Name="Sandstone" />
+        <Frame UV="396,0" Name="Bamboo" />
+        <Frame UV="432,0" Name="Desert" />
+        <Frame UV="468,0" Name="Desert" Variety="Locked" />
       </Frames>
     </Tile>
-    <Tile Id="468" Color="#FFFFFFFF" Name="Trapped Chests (Group 2)" Framed="true" Size="2,2" UseFrameName="true">
-      <Frames>
-        <Frame UV="0,0" Name="Trapped Crystal Chest" />
-        <Frame UV="36,0" Name="Trapped Golden Chest" />
-      </Frames>
+    <Tile Id="468" Color="#FFFFFFFF" Name="Trapped Chests (Group 2)" Framed="true" Size="2,2" UseFrameName="true"  IsAnimated="true" >
+      <Frame UV="0,0" Name="Crystal" />
+      <Frame UV="36,0" Name="Golden" />
+      <Frame UV="72,0" Name="Spider" />
+      <Frame UV="108,0" Name="Lesion" />
+      <Frame UV="144,0" Name="Dead Man's" />
+      <Frame UV="180,0" Name="Solar" />
+      <Frame UV="216,0" Name="Vortex" />
+      <Frame UV="252,0" Name="Nebula" />
+      <Frame UV="288,0" Name="Stardust" />
+      <Frame UV="324,0" Name="Golf" />
+      <Frame UV="360,0" Name="Sandstone" />
+      <Frame UV="396,0" Name="Bamboo" />
+      <Frame UV="432,0" Name="Desert" />
+      <Frame UV="468,0" Name="Desert" Variety="Locked" />
     </Tile>
     <Tile Id="469" Color="#FFBF8E6F" Name="Table (Group 2)" Framed="true" Size="3,2" TextureGrid="16,16" Placement="floor" SolidTop="true" >
       <Frames>
