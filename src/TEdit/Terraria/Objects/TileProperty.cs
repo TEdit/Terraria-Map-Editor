@@ -4,6 +4,7 @@ using System.Windows.Media.Imaging;
 using TEdit.Geometry.Primitives;
 using GalaSoft.MvvmLight;
 using System.Linq;
+using TEdit.View;
 
 namespace TEdit.Terraria.Objects
 {
@@ -64,7 +65,17 @@ namespace TEdit.Terraria.Objects
             set { Set("IsLight", ref _isLight, value); }
         }
 
-        public bool IsOrigin(Vector2Short uv) => uv.X % TextureGrid.X == 0 && uv.Y % TextureGrid.Y == 0;
+        public bool IsOrigin(Vector2Short uv)
+        {
+            if (uv == Vector2Short.Zero) return true;
+
+            var renderUV = WorldRenderXna.GetRenderUV((ushort)Id, uv.X, uv.Y);
+            var frameSize = GetFrameSize((short)renderUV.Y);
+
+            return (renderUV.X % ((TextureGrid.X + 2) * frameSize.X) == 0 && 
+                    renderUV.Y % ((TextureGrid.Y + 2) * frameSize.Y) == 0);
+        }
+        
 
         public bool IsOrigin(Vector2Short uv, out FrameProperty frame)
         {
