@@ -64,6 +64,8 @@ namespace TEdit.Terraria.Objects
             set { Set("IsLight", ref _isLight, value); }
         }
 
+        public bool IsOrigin(Vector2Short uv) => uv.X % TextureGrid.X == 0 && uv.Y % TextureGrid.Y == 0;
+
         public bool IsOrigin(Vector2Short uv, out FrameProperty frame)
         {
             frame = Frames.FirstOrDefault(f => f.UV == uv);
@@ -118,6 +120,17 @@ namespace TEdit.Terraria.Objects
         {
             get { return _frameSize; }
             set { Set("FrameSize", ref _frameSize, value); }
+        }
+
+        public Vector2Short GetFrameSize(short v)
+        {
+            if (FrameSize.Length > 1)
+            {
+                int row = v / TextureGrid.Y;
+                return FrameSize[row];
+            }
+
+            return FrameSize[0];
         }
 
         public bool IsFramed

@@ -6,6 +6,7 @@ using TEdit.ViewModel;
 using TEdit.Editor;
 using System.Collections.Generic;
 using System.Linq;
+using TEdit.View;
 
 namespace TEdit.Terraria.Objects
 {
@@ -141,11 +142,25 @@ namespace TEdit.Terraria.Objects
         public WriteableBitmap Preview { get; set; }
         public string Name { get; set; }
         public Vector2Short[] SizeTiles { get; set; }
+
+        public Vector2Short GetSizeTiles(short v)
+        {
+            if (SizeTiles.Length > 1)
+            {
+                int row = v / SizePixelsInterval.Y;
+                return SizeTiles[row];
+            }
+
+            return SizeTiles[0];
+        }
+
         public Vector2Short SizePixelsRender { get; set; }
         public Vector2Short SizePixelsInterval { get; set; }
         public Vector2Short SizeTexture { get; set; }
         public bool IsPreviewTexture { get; set; }
         public bool IsAnimated { get; set; }
+
+
 
         public SpriteSub Default => Styles.Values.FirstOrDefault();
 
@@ -167,14 +182,16 @@ namespace TEdit.Terraria.Objects
         /// <returns></returns>
         public KeyValuePair<int, SpriteSub> GetStyleFromUV(Vector2Short uv)
         {
+            var renderUV = WorldRenderXna.GetRenderUV(Tile, uv.X, uv.Y);
+
             foreach (var kvp in Styles)
             {
                 if (kvp.Value.UV == uv) return kvp;
 
-                if (uv.X >= kvp.Value.UV.X &&
-                    uv.Y >= kvp.Value.UV.Y &&
-                    uv.X < kvp.Value.UV.X + (kvp.Value.SizePixelsInterval.X * kvp.Value.SizeTiles.X) &&
-                    uv.Y < kvp.Value.UV.Y + (kvp.Value.SizePixelsInterval.Y * kvp.Value.SizeTiles.Y))
+                if (renderUV.X >= kvp.Value.UV.X &&
+                    renderUV.Y >= kvp.Value.UV.Y &&
+                    renderUV.X < kvp.Value.UV.X + (kvp.Value.SizePixelsInterval.X * kvp.Value.SizeTiles.X) &&
+                    renderUV.Y < kvp.Value.UV.Y + (kvp.Value.SizePixelsInterval.Y * kvp.Value.SizeTiles.Y))
                 {
                     return kvp;
                 }

@@ -18,6 +18,8 @@ using System.Windows.Media.Imaging;
 using Point = System.Windows.Point;
 using Vector2 = Microsoft.Xna.Framework.Vector2;
 using TEdit.Framework.Events;
+using System.IO;
+using Newtonsoft.Json;
 
 namespace TEdit.View
 {
@@ -171,8 +173,8 @@ namespace TEdit.View
         public void LockOnTile(int tileX, int tileY, double mouseX, double mouseY)
         {
             _scrollPosition = new Vector2(
-                -tileX + (float)((mouseX) / _zoom) -0.5f,
-                -tileY + (float)((mouseY) / _zoom) -0.5f);
+                -tileX + (float)((mouseX) / _zoom) - 0.5f,
+                -tileY + (float)((mouseY) / _zoom) - 0.5f);
             ClampScroll();
             ScrollBarH.Value = -_scrollPosition.X;
             ScrollBarV.Value = -_scrollPosition.Y;
@@ -1421,23 +1423,10 @@ namespace TEdit.View
                                             }
                                             else
                                             {
-                                                int renderU = curtile.U;
-                                                int renderV = curtile.V;
+                                                var type = curtile.Type;
+                                                Vector2Int32 renderUV = GetRenderUV(curtile.Type, curtile.U, curtile.V);
 
-                                                if (curtile.Type == 185 && curtile.V == 18)
-                                                {
-                                                    var u = curtile.U / 1908;
-                                                    renderU -= 1908 * u;
-                                                    renderV += 18 * u;
-                                                }
-                                                else if (curtile.Type == 187)
-                                                {
-                                                    var u = curtile.U / 1890;
-                                                    renderU -= 1890 * u;
-                                                    renderV += 36 * u;
-                                                }
-
-                                                source = new Rectangle(renderU, renderV, tileprop.TextureGrid.X, tileprop.TextureGrid.Y);
+                                                source = new Rectangle(renderUV.X, renderUV.Y, tileprop.TextureGrid.X, tileprop.TextureGrid.Y);
                                                 if (source.Width <= 0)
                                                     source.Width = 16;
                                                 if (source.Height <= 0)
@@ -2098,6 +2087,56 @@ namespace TEdit.View
 
                 }
             }
+        }
+
+        public static Vector2Int32 GetRenderUV(ushort type, short U, short V)
+        {
+            int renderU = U;
+            int renderV = V;
+
+            switch (type)
+            {
+                case 87:
+                case 88:
+                case 89:
+                    {
+                        int u = U / 1998;
+                        renderU -= 1998 * u;
+                        renderV += 36 * u;
+                    }
+                    break;
+                case 93:
+                    {
+                        int v =V / 1998;
+                        renderU += 36 * v;
+                        renderV -= 1998 * v;
+                    }
+                    break;
+                case 101:
+                    {
+                        int u = U / 1998;
+                        renderU -= 1998 * u;
+                        renderV += 72 * u;
+                    }
+                    break;
+                case 185:
+                    if (V == 18)
+                    {
+                        int u = U / 1908;
+                        renderU -= 1908 * u;
+                        renderV += 18 * u;
+                    }
+                    break;
+                case 187:
+                    {
+                        int u = U / 1890;
+                        renderU -= 1890 * u;
+                        renderV += 36 * u;
+                    }
+                    break;
+            }
+
+            return new Vector2Int32(renderU, renderV);
         }
 
         private Vector2Int32 TrackUV(int num)
