@@ -4,6 +4,7 @@ using System.Linq;
 using System.Reflection;
 using System.Windows;
 using TEdit.MvvmLight.Threading;
+using TEdit.Terraria;
 using DispatcherHelper = GalaSoft.MvvmLight.Threading.DispatcherHelper;
 
 namespace TEdit
@@ -125,6 +126,7 @@ namespace TEdit
 
             DispatcherHelper.Initialize();
             TaskFactoryHelper.Initialize();
+
             base.OnStartup(e);
         }
 

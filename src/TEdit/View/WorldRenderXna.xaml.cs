@@ -213,6 +213,59 @@ namespace TEdit.View
             _gameTimer.Start();
         }
 
+        public static System.Windows.Media.Color GetTextureTileColor(Texture2D texture, Rectangle source, bool useAverage = true)
+        {
+            Dictionary<Color, int> colorHistogram = new Dictionary<Color, int>();
+
+            var color = new Color[source.Height * source.Width];
+
+            texture.GetData(0, source, color, 0, color.Length);
+
+            for (int i = 0; i < color.Length; i++)
+            {
+                if (color[i].PackedValue > 0)
+                {
+                    if (colorHistogram.TryGetValue(color[i], out int count))
+                    {
+                        colorHistogram[color[i]] = count + 1;
+                    }
+                    else
+                    {
+                        colorHistogram[color[i]] = 1;
+                    }
+                }
+            }
+
+            if (colorHistogram.Count == 0) return System.Windows.Media.Color.FromArgb(0, 0, 0, 0);
+
+            if (useAverage)
+            {
+                var r = colorHistogram.Sum(kvp => kvp.Key.R) / colorHistogram.Count;
+                var g = colorHistogram.Sum(kvp => kvp.Key.G) / colorHistogram.Count;
+                var b = colorHistogram.Sum(kvp => kvp.Key.B) / colorHistogram.Count;
+                return System.Windows.Media.Color.FromArgb(255, (byte)r, (byte)g, (byte)b);
+            }
+            else
+            {
+
+                var colorModes = colorHistogram.Where(kvp => kvp.Value == colorHistogram.Max(kvp => kvp.Value)).Select(kvp => kvp.Key).ToList();
+                var r2 = colorModes.Sum(c => c.R) / colorModes.Count;
+                var g2 = colorModes.Sum(c => c.G) / colorModes.Count;
+                var b2 = colorModes.Sum(c => c.B) / colorModes.Count;
+                var colorMode = new Color(r2, g2, b2);
+
+                return System.Windows.Media.Color.FromArgb(
+                    255,
+                    colorMode.R,
+                    colorMode.G,
+                    colorMode.B);
+            }
+
+
+
+
+        }
+
         private void LoadResourceTextures(GraphicsDeviceEventArgs e)
         {
             _textures.Add("Spawn", WriteableBitmapEx.ResourceToTexture2D("TEdit.Images.Overlays.spawn_marker.png", e.GraphicsDevice));
@@ -244,6 +297,16 @@ namespace TEdit.View
             _textures.Add("Grid", WriteableBitmapEx.ResourceToTexture2D("TEdit.Images.Overlays.grid.png", e.GraphicsDevice));
         }
 
+        private static void TextureToPng(Texture2D texture, string name)
+        {
+#if DEBUG
+            if (!File.Exists(name))
+            {
+                texture.Texture2DToWriteableBitmap().SavePng(name);
+            }
+#endif
+        }
+
         private void LoadTerrariaTextures(GraphicsDeviceEventArgs e)
         {
             // If the texture dictionary is valid (Found terraria and loaded content) load texture data
@@ -257,15 +320,43 @@ namespace TEdit.View
             //{
             //    var tileTexture = _textureDictionary.GetTile(tile.Id);
             //}
+            //var a1 = new Rectangle(36, 72, 32, 32);
+            var b2 = new Rectangle(18, 18, 16, 16);
+            var b2Wall = new Rectangle(44, 44, 16, 16);
+
+            foreach (var wall in World.WallProperties)
+            {
+                if (wall.Id == 0) continue;
+                var wallTex = _textureDictionary.GetWall(wall.Id);
+
+                TextureToPng(wallTex, $"textures/Wall_{wall.Id}.png");
+
+                var wallColor = GetTextureTileColor(wallTex, b2Wall);
+                if (wallColor.A > 0)
+                {
+                    wall.Color = wallColor;
+                }
+            }
 
             foreach (var tile in World.TileProperties)
             {
-                if (!tile.IsFramed) { continue; }
+                var tileTex = _textureDictionary.GetTile(tile.Id);
+                TextureToPng(tileTex, $"textures/Tile_{tile.Id}.png");
+
+                if (!tile.IsFramed)
+                {
+                    var tileColor = GetTextureTileColor(tileTex, b2);
+                    if (tileColor.A > 0)
+                    {
+                        tile.Color = tileColor;
+                    }
+                    continue;
+                }
 
                 try
                 {
                     var sprite = new SpriteFull();
-                    var tileTex = _textureDictionary.GetTile(tile.Id);
+
                     sprite.Tile = (ushort)tile.Id;
                     // this is only for debugging, no need to load in release versions
                     // sprite.Preview = tileTex.Texture2DToWriteableBitmap();
@@ -345,7 +436,6 @@ namespace TEdit.View
                                     tileTex.GetData(0, source, color, 0, color.Length);
                                     texture.SetData(0, dest, color, 0, color.Length);
 
-
                                     if (!hasColorData)
                                     {
                                         for (int i = 0; i < color.Length; i++)
@@ -360,8 +450,13 @@ namespace TEdit.View
                                 }
                             }
 
+
                             if (hasColorData)
                             {
+
+
+                                tile.Color = GetTextureTileColor(texture, texture.Bounds);
+
                                 var uv = sprite.SizePixelsInterval * new Vector2Short((short)subX, (short)subY);
                                 var frameName = tile.Frames.FirstOrDefault(f => f.UV == uv);
                                 sprite.Styles[subId] = new SpriteSub
@@ -2107,7 +2202,7 @@ namespace TEdit.View
                     break;
                 case 93:
                     {
-                        int v =V / 1998;
+                        int v = V / 1998;
                         renderU += 36 * v;
                         renderV -= 1998 * v;
                     }
