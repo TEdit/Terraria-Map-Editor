@@ -20,6 +20,7 @@ using Vector2 = Microsoft.Xna.Framework.Vector2;
 using TEdit.Framework.Events;
 using System.IO;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace TEdit.View
 {
@@ -366,12 +367,16 @@ namespace TEdit.View
                     sprite.SizeTexture = new Vector2Short((short)tileTex.Width, (short)tileTex.Height);
                     sprite.SizePixelsRender = tile.TextureGrid;
                     sprite.SizePixelsInterval = tile.TextureGrid;
+                    var interval = tile.FrameGap;
+                    if (interval.X == 0) interval.X = 2;
+                    if (interval.Y == 0) interval.Y = 2;
+
 
                     sprite.IsAnimated = tile.IsAnimated;
 
                     if (tile.Id == 172) { sprite.SizePixelsInterval += new Vector2Short(3, 3); }
                     else if (tile.Id == 216) { sprite.SizePixelsInterval += new Vector2Short(2, 4); }
-                    else if (tile.Id != 171) { sprite.SizePixelsInterval += new Vector2Short(2, 2); }
+                    else if (tile.Id != 171) { sprite.SizePixelsInterval += interval; }
 
                     World.Sprites2.Add(sprite);
 
@@ -403,8 +408,8 @@ namespace TEdit.View
 
                             int subId = posX + (posY * (numX / rowSize.X));
 
-                            int originX = subX * sprite.SizePixelsInterval.X + posX * tile.FrameGap.X;
-                            int originY = subY * sprite.SizePixelsInterval.Y + posY * tile.FrameGap.Y;
+                            int originX = subX * sprite.SizePixelsInterval.X;
+                            int originY = subY * sprite.SizePixelsInterval.Y;
 
                             bool hasColorData = false;
                             // render subtile (grab each "tile" and make composite texture"
@@ -412,11 +417,59 @@ namespace TEdit.View
                             {
                                 for (int y = 0; y < rowSize.Y; y++)
                                 {
+                                    if(sprite.Tile == 388 || sprite.Tile == 389)
+                                    {
+                                        if (originY > 0) 
+                                            originY = 94;
+                                    }
+                                    int tileY = (y * sprite.SizePixelsInterval.Y);
+                                    int destY = y * sprite.SizePixelsRender.Y;
+                                    int renderY = sprite.SizePixelsRender.Y;
+
+                                    // fix tall gates
+                                    if (sprite.Tile == 388 || sprite.Tile == 389)
+                                    {
+
+                                        switch (y)
+                                        {
+                                            case 0:
+                                                tileY = 0;
+                                                destY = 0;
+                                                renderY = 18;
+                                                break;
+                                            case 1:
+                                                tileY = 20;
+                                                destY = 18;
+                                                renderY = 16;
+                                                break;
+                                            case 2:
+                                                tileY = 20 + 18;
+                                                destY = 18 + 16;
+                                                renderY = 16;
+                                                break;
+                                            case 3:
+                                                tileY = 20 + 18 + 18;
+                                                destY = 18 + 16 + 16;
+                                                renderY = 16;
+                                                break;
+                                            case 4:
+                                                tileY = 20 + 18 + 18 + 18;
+                                                destY = 18 + 16 + 16 + 16;
+                                                renderY = 18;
+                                                break;
+                                        }
+
+                                    }
+
+                                    int sourceY = tileY + originY;
+
+                                    // end tall gates
+
                                     var source = new Rectangle(
                                         (x * sprite.SizePixelsInterval.X) + originX,
-                                        (y * sprite.SizePixelsInterval.Y) + originY,
+                                        sourceY,
                                         sprite.SizePixelsRender.X,
-                                        sprite.SizePixelsRender.Y);
+                                        renderY);
 
                                     // out of bounds checks
                                     if (source.Bottom > tileTex.Height)
@@ -429,7 +482,7 @@ namespace TEdit.View
                                     var color = new Color[source.Height * source.Width];
                                     var dest = new Rectangle(
                                         x * sprite.SizePixelsRender.X,
-                                        y * sprite.SizePixelsRender.Y,
+                                        destY,
                                         source.Width,
                                         source.Height);
 
@@ -455,13 +508,15 @@ namespace TEdit.View
                             {
 
 
-                                tile.Color = GetTextureTileColor(texture, texture.Bounds);
+                                var styleColor = GetTextureTileColor(texture, texture.Bounds);
+                                tile.Color = styleColor;
 
                                 var uv = sprite.SizePixelsInterval * new Vector2Short((short)subX, (short)subY);
                                 var frameName = tile.Frames.FirstOrDefault(f => f.UV == uv);
                                 sprite.Styles[subId] = new SpriteSub
                                 {
                                     Tile = sprite.Tile,
+                                    StyleColor = styleColor,
                                     SizeTiles = rowSize,
                                     SizePixelsInterval = sprite.SizePixelsInterval,
                                     SizeTexture = sprite.SizeTexture,
@@ -482,6 +537,41 @@ namespace TEdit.View
                 }
             }
 
+            using (StreamWriter w = new StreamWriter(File.Open("settings.json", FileMode.OpenOrCreate)))
+            {
+                w.WriteLine("{\r\n  tiles: {");
+                for (int t = 0; t < World.TileCount; t++)
+                {
+                    var tileProps = World.TileProperties.FirstOrDefault(item => item.Id == t);
+                    var sprite = (!tileProps.IsFramed) ? null : World.Sprites2.FirstOrDefault(s => s.Tile == t);
+
+                    var json = new JObject();
+
+                    json.Add("TextureGrid", tileProps.TextureGrid.Vector2String());
+                    json.Add("FrameGap", tileProps.FrameGap.Vector2String());
+                    json.Add("FrameSize", new JArray(tileProps.FrameSize.Select(v => v.Vector2String())));
+                    json.Add("Name", tileProps.Name);
+                    json.Add("Color", tileProps.Color.ColorToString());
+                    json.Add("IsAnimated", tileProps.IsAnimated);
+                    json.Add("IsCactus", tileProps.IsCactus);
+                    json.Add("IsFramed", tileProps.IsFramed);
+                    json.Add("IsGrass", tileProps.IsGrass);
+                    json.Add("IsLight", tileProps.IsLight);
+                    json.Add("IsPlatform", tileProps.IsPlatform);
+                    json.Add("IsSolid", tileProps.IsSolid);
+                    json.Add("IsSolidTop", tileProps.IsSolidTop);
+                    json.Add("IsStone", tileProps.IsStone);
+                    json.Add("MergeWith", tileProps.MergeWith);
+                    json.Add("Placement", tileProps.Placement.ToString());
+
+                    w.Write($"\"{t}\": ");
+                    w.Write(json.ToString(Formatting.Indented));
+                    w.Write(",\r\n");
+                }
+                w.WriteLine("  }");
+                w.WriteLine("}");
+            }
+
             foreach (var sprite in World.Sprites)
             {
                 if (sprite.Size.X == 0 || sprite.Size.Y == 0)
@@ -498,7 +588,7 @@ namespace TEdit.View
                     {
                         for (int y = 0; y < sprite.Size.Y; y++)
                         {
-                            var source = new Rectangle(x * (tile.TextureGrid.X + 2) + sprite.Origin.X, y * (tile.TextureGrid.Y + 2) + sprite.Origin.Y, tile.TextureGrid.X, tile.TextureGrid.Y);
+                            var source = new Rectangle(x * (tile.TextureGrid.X + tile.FrameGap.X) + sprite.Origin.X, y * (tile.TextureGrid.Y + tile.FrameGap.Y) + sprite.Origin.Y, tile.TextureGrid.X, tile.TextureGrid.Y);
                             if (sprite.Tile == 171)
                                 source = new Rectangle(x * (tile.TextureGrid.X) + sprite.Origin.X, y * (tile.TextureGrid.Y) + sprite.Origin.Y, tile.TextureGrid.X, tile.TextureGrid.Y);
                             if (source.Bottom > tileTex.Height)

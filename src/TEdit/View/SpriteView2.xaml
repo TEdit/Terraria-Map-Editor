@@ -22,14 +22,36 @@
             <TextBox Text="{Binding SpriteFilter, Mode=TwoWay, UpdateSourceTrigger=LostFocus}" HorizontalAlignment="Stretch" MinWidth="200" KeyUp="TextBox_KeyUp" />
             <Button Content="Filter" Margin="1" Padding="10,2" />
         </StackPanel>
-        <StackPanel Orientation="Vertical" DockPanel.Dock="Top" >
-            <TextBlock>Tile Type:</TextBlock>
-            <ListBox 
+        <StackPanel Orientation="Vertical" DockPanel.Dock="Bottom">
+            <TextBlock>
+              <Run Text="{Binding SelectedSpriteTile2.Name, Mode=OneWay}"/>
+              <Run Text="Style: "/>
+            </TextBlock>
+            <ListBox x:Name="s" DockPanel.Dock="Bottom" Height="300"
+            Style="{DynamicResource ListBoxWrapPanel}"
+            HorizontalAlignment="Stretch"  
+            ItemsSource="{Binding SpriteStylesView}" 
+            SelectedItem="{Binding SelectedSprite2, Mode=TwoWay}"
+            ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Image 
+                            Source="{Binding Path=Value.Preview}" 
+                            Height="{Binding Path=Value.Preview.PixelHeight}" 
+                            Width="{Binding Path=Value.Preview.PixelWidth}"
+                            RenderOptions.BitmapScalingMode="NearestNeighbor" 
+                            ToolTip="{Binding Path=Value.Name}" />
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </StackPanel>
+       
+        <TextBlock DockPanel.Dock="Top">Tile Type:</TextBlock>
+        <ListBox 
                 Style="{DynamicResource ListBoxWrapPanel}"
                 ItemsSource="{Binding SpritesView2}" 
                 SelectedItem="{Binding SelectedSpriteTile2}" 
-                SelectedIndex="0" 
-                Height="200">
+                SelectedIndex="0">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <Border IsHitTestVisible="true" Background="{StaticResource ControlBackgroundBrush}">
@@ -51,28 +73,7 @@
                     </DataTemplate>
                 </ListBox.ItemTemplate>
             </ListBox>
-            <TextBlock>
-              <Run Text="{Binding SelectedSpriteTile2.Name, Mode=OneWay}"/>
-              <Run Text="Style: "/>
-            </TextBlock>
-        </StackPanel>
-        <ListBox x:Name="s"
-            Style="{DynamicResource ListBoxWrapPanel}"
-            HorizontalAlignment="Stretch"  
-            ItemsSource="{Binding SpriteStylesView}" 
-            SelectedItem="{Binding SelectedSprite2, Mode=TwoWay}"
-            ScrollViewer.HorizontalScrollBarVisibility="Disabled">
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <Image 
-                            Source="{Binding Path=Value.Preview}" 
-                            Height="{Binding Path=Value.Preview.PixelHeight}" 
-                            Width="{Binding Path=Value.Preview.PixelWidth}"
-                            RenderOptions.BitmapScalingMode="NearestNeighbor" 
-                            ToolTip="{Binding Path=Value.Name}" />
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
+
         <!--<ScrollViewer DockPanel.Dock="Bottom" Height="300" HorizontalAlignment="Stretch">
         <Image 
             Source="{Binding Path=SelectedSpriteTile2.Preview}" 

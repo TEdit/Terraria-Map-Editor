@@ -14,6 +14,7 @@ namespace TEdit.Terraria.Objects
     {
         public ushort Tile { get; set; }
         public int Style { get; set; }
+        public Color StyleColor { get; set; }
         public Vector2Short UV { get; set; }
         public Vector2Short SizeTiles { get; set; }
         public WriteableBitmap Preview { get; set; }
@@ -37,7 +38,33 @@ namespace TEdit.Terraria.Objects
             {
                 for (int y = 0; y < SizeTiles.Y; y++)
                 {
-                    tiles[x, y] = new Vector2Short((short)((SizePixelsInterval.X) * x + UV.X), (short)((SizePixelsInterval.Y) * y + UV.Y));
+                    var curSize = SizePixelsInterval;
+                    var tileX = ((curSize.X) * x + UV.X);
+                    var tileY = ((curSize.Y) * y + UV.Y);
+
+                    if (Tile == 388 || Tile == 389)
+                    {
+                        switch (y)
+                        {
+                            case 0:
+                                tileY = UV.Y;
+                                break;
+                            case 1:
+                                tileY = 20 + UV.Y;
+                                break;
+                            case 2:
+                                tileY = 20 + 18 + UV.Y;
+                                break;
+                            case 3:
+                                tileY = 20 + 18 + 18 + UV.Y;
+                                break;
+                            case 4:
+                                tileY = 20 + 18 + 18 + 18 + UV.Y;
+                                break;
+                        }
+                    }
+
+                    tiles[x, y] = new Vector2Short((short)tileX, (short)tileY);
                 }
             }
 

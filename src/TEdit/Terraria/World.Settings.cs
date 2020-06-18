@@ -13,6 +13,12 @@ using TEdit.Terraria.Objects;
 
 namespace TEdit.Terraria
 {
+    public static class ColorExtensions
+    {
+        public static string ColorToString(this Color c) => string.Format("#{0:X2}{1:X2}{2:X2}{3:X2}", c.A, c.R, c.G, c.B);
+        public static string Vector2String(this Vector2Short v) => string.Format("{{x: {0}, y: {1}}}", v.X, v.Y);
+
+    }
     public partial class World
     {
 
@@ -94,12 +100,12 @@ namespace TEdit.Terraria
             {
                 if (!v.StartsWith("["))
                 {
-                    return new Vector2Short [] { StringToVector2Short(v, defaultX, defaultY) };
+                    return new Vector2Short[] { StringToVector2Short(v, defaultX, defaultY) };
                 }
 
-                v = v.Trim(new [] { '[', ']'});
-                var items = v.Split(new [] { ' '}, StringSplitOptions.RemoveEmptyEntries);
-                
+                v = v.Trim(new[] { '[', ']' });
+                var items = v.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+
                 var result = new Vector2Short[items.Length];
                 for (int i = 0; i < items.Length; i++)
                 {
@@ -132,6 +138,7 @@ namespace TEdit.Terraria
 
             return new Vector2Short(defaultX, defaultY);
         }
+
 
         private static Color ColorFromString(string colorstring)
         {
@@ -235,7 +242,7 @@ namespace TEdit.Terraria
                         Tile = (ushort)curTile.Id, /* SBlogic */
                         TileName = curTile.Name
                     });
-                    
+
                 }
                 if (curTile.Frames.Count == 0 && curTile.IsFramed)
                 {

@@ -72,8 +72,8 @@ namespace TEdit.Terraria.Objects
             var renderUV = WorldRenderXna.GetRenderUV((ushort)Id, uv.X, uv.Y);
             var frameSize = GetFrameSize((short)renderUV.Y);
 
-            return (renderUV.X % ((TextureGrid.X + 2) * frameSize.X) == 0 && 
-                    renderUV.Y % ((TextureGrid.Y + 2) * frameSize.Y) == 0);
+            return (renderUV.X % ((TextureGrid.X + FrameGap.X) * frameSize.X) == 0 && 
+                    renderUV.Y % ((TextureGrid.Y + FrameGap.Y) * frameSize.Y) == 0);
         }
         
 
