@@ -5774,17 +5774,17 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame Name="Vanity Tree Sakura" UV="0, 0" />
       </Frames>
     </Tile>
-    <Tile Id="597" Name="Jungle Pylon" Light="true" Framed="true" Size="3,4">
+    <Tile Id="597" Name="Pylon" Light="true" Framed="true" Size="3,4">
       <Frames>
         <Frame Name="Forest Pylon" UV="0, 0" Anchor="Bottom" />
-        <Frame Name="Jungle Pylon" UV="0, 72" Anchor="Bottom" />
-        <Frame Name="Hallow Pylon" UV="0, 144" Anchor="Bottom" />
-        <Frame Name="Cavern Pylon" UV="0, 216" Anchor="Bottom" />
-        <Frame Name="Ocean Pylon" UV="0, 288" Anchor="Bottom" />
-        <Frame Name="Desert Pylon" UV="0, 360" Anchor="Bottom" />
-        <Frame Name="Snow Pylon" UV="0, 432" Anchor="Bottom" />
-        <Frame Name="Mushroom Pylon" UV="0, 504" Anchor="Bottom" />
-        <Frame Name="Universal Pylon" UV="0, 576" Anchor="Bottom" />
+        <Frame Name="Jungle Pylon" UV="54,0" Anchor="Bottom" />
+        <Frame Name="Hallow Pylon" UV="108,0" Anchor="Bottom" />
+        <Frame Name="Cavern Pylon" UV="162,0" Anchor="Bottom" />
+        <Frame Name="Ocean Pylon" UV="216,0" Anchor="Bottom" />
+        <Frame Name="Desert Pylon" UV="270,0" Anchor="Bottom" />
+        <Frame Name="Snow Pylon" UV="324,0" Anchor="Bottom" />
+        <Frame Name="Mushroom Pylon" UV="378,0" Anchor="Bottom" />
+        <Frame Name="Universal Pylon" UV="432,0" Anchor="Bottom" />
       </Frames>
     </Tile>
     <Tile Id="598" Name="Lava Serpent Bowl" Light="true" Framed="true" Size="2,2" IsAnimated="true" />
