@@ -21,6 +21,7 @@ using TEdit.Framework.Events;
 using System.IO;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using System.Xml.Linq;
 
 namespace TEdit.View
 {
@@ -417,9 +418,9 @@ namespace TEdit.View
                             {
                                 for (int y = 0; y < rowSize.Y; y++)
                                 {
-                                    if(sprite.Tile == 388 || sprite.Tile == 389)
+                                    if (sprite.Tile == 388 || sprite.Tile == 389)
                                     {
-                                        if (originY > 0) 
+                                        if (originY > 0)
                                             originY = 94;
                                     }
                                     int tileY = (y * sprite.SizePixelsInterval.Y);
@@ -537,40 +538,27 @@ namespace TEdit.View
                 }
             }
 
-            using (StreamWriter w = new StreamWriter(File.Open("settings.json", FileMode.OpenOrCreate)))
+#if DEBUG
+            XDocument xdoc = XDocument.Load("settings.xml");
+            var xTiles = xdoc.Root.Element("Tiles");
+            for (int t = 0; t < World.TileCount; t++)
             {
-                w.WriteLine("{\r\n  tiles: {");
-                for (int t = 0; t < World.TileCount; t++)
-                {
-                    var tileProps = World.TileProperties.FirstOrDefault(item => item.Id == t);
-                    var sprite = (!tileProps.IsFramed) ? null : World.Sprites2.FirstOrDefault(s => s.Tile == t);
+                var xTile = xTiles.Elements().FirstOrDefault(e => int.Parse(e.Attribute("Id").Value) == t);
+                var tileProps = World.TileProperties.FirstOrDefault(item => item.Id == t);
+                var sprite = (!tileProps.IsFramed) ? null : World.Sprites2.FirstOrDefault(s => s.Tile == t);
+                xTile.SetAttributeValue("Color", tileProps.Color.ColorToString());
 
-                    var json = new JObject();
-
-                    json.Add("TextureGrid", tileProps.TextureGrid.Vector2String());
-                    json.Add("FrameGap", tileProps.FrameGap.Vector2String());
-                    json.Add("FrameSize", new JArray(tileProps.FrameSize.Select(v => v.Vector2String())));
-                    json.Add("Name", tileProps.Name);
-                    json.Add("Color", tileProps.Color.ColorToString());
-                    json.Add("IsAnimated", tileProps.IsAnimated);
-                    json.Add("IsCactus", tileProps.IsCactus);
-                    json.Add("IsFramed", tileProps.IsFramed);
-                    json.Add("IsGrass", tileProps.IsGrass);
-                    json.Add("IsLight", tileProps.IsLight);
-                    json.Add("IsPlatform", tileProps.IsPlatform);
-                    json.Add("IsSolid", tileProps.IsSolid);
-                    json.Add("IsSolidTop", tileProps.IsSolidTop);
-                    json.Add("IsStone", tileProps.IsStone);
-                    json.Add("MergeWith", tileProps.MergeWith);
-                    json.Add("Placement", tileProps.Placement.ToString());
-
-                    w.Write($"\"{t}\": ");
-                    w.Write(json.ToString(Formatting.Indented));
-                    w.Write(",\r\n");
-                }
-                w.WriteLine("  }");
-                w.WriteLine("}");
+                // update frame colors
             }
+            var xWalls = xdoc.Root.Element("Walls");
+            for (int t = 0; t < World.WallCount; t++)
+            {
+                var xWall = xWalls.Elements().FirstOrDefault(e => int.Parse(e.Attribute("Id").Value) == t);
+                var wallProps = World.WallProperties.FirstOrDefault(item => item.Id == t);
+                xWall.SetAttributeValue("Color", wallProps.Color.ColorToString());
+            }
+            xdoc.Save("settings2.xml");
+#endif
 
             foreach (var sprite in World.Sprites)
             {
