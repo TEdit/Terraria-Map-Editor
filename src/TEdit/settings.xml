@@ -6305,7 +6305,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Wall Id="241" Name="Orange Stained Glass" Color="#FFFF00FF" IsHouse="True"/>
     <Wall Id="242" Name="Gold Starry Wall" Color="#FFFF00FF" IsHouse="True"/>
     <Wall Id="243" Name="Blue Starry Wall" Color="#FFFF00FF" IsHouse="True"/>
-    <Wall Id="244" Name="" Color="#FFFF00FF" IsHouse="False"/>
+    <Wall Id="244" Name="Unsafe Living Wood Walls" Color="#FFFF00FF" IsHouse="False"/>
     <Wall Id="245" Name="Wrought Iron Fence" Color="#FFFF00FF" IsHouse="True"/>
     <Wall Id="246" Name="Ebonstone Wall" Color="#FFFF00FF" IsHouse="True"/>
     <Wall Id="247" Name="Mud Wall" Color="#FFFF00FF" IsHouse="True"/>
@@ -6333,8 +6333,8 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Wall Id="269" Name="Crimstone Wall" Color="#FFFF00FF" IsHouse="True"/>
     <Wall Id="270" Name="Cave Dirt Wall" Color="#FFFF00FF" IsHouse="True"/>
     <Wall Id="271" Name="Rough Dirt Wall" Color="#FFFF00FF" IsHouse="True"/>
-    <Wall Id="272" Name="" Color="#FFFF00FF" IsHouse="True"/>
-    <Wall Id="273" Name="" Color="#FFFF00FF" IsHouse="True"/>
+    <Wall Id="272" Name="Marble Wall" Color="#FFFF00FF" IsHouse="True"/>
+    <Wall Id="273" Name="Granite Wall" Color="#FFFF00FF" IsHouse="True"/>
     <Wall Id="274" Name="Craggy Stone Wall" Color="#FFFF00FF" IsHouse="True"/>
     <Wall Id="275" Name="Sandstone Wall" Color="#FFFF00FF" IsHouse="True"/>
     <Wall Id="276" Name="Corrupt Growth Wall" Color="#FFFF00FF" IsHouse="True"/>
