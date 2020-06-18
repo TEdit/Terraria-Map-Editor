@@ -543,8 +543,7 @@ namespace TEdit.Terraria
                 return _tileProperties[type];
             }
             return _tileProperties[0];
-        }
-
+        }       
 
         public static ObservableCollection<TileProperty> TileBricks
         {

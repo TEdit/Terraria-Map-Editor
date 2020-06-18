@@ -1967,7 +1967,7 @@ namespace TEdit.View
                                             _spriteBatch.Draw(tileTex, dest, source, tilePaintColor, 0f, default(Vector2), SpriteEffects.None, LayerTileTextures);
                                         }
                                     }
-                                    else if (tileprop.CanBlend)
+                                    else if (tileprop.CanBlend || !(tileprop.IsFramed || tileprop.IsAnimated))
                                     {
                                         var tileTex = _textureDictionary.GetTile(curtile.Type);
 
@@ -1999,14 +1999,14 @@ namespace TEdit.View
                                                 else //Everything else
                                                 {
                                                     //Join to nearby tiles if their merge type is this tile's type
-                                                    sameStyle |= (neighborTile[e] != null && neighborTile[e].IsActive && World.GetTileProperties(neighborTile[e].Type).MergeWith.HasValue && World.GetTileProperties(neighborTile[e].Type).MergeWith.Value == curtile.Type) ? 0x0001 : 0x0000;
-                                                    sameStyle |= (neighborTile[n] != null && neighborTile[n].IsActive && World.GetTileProperties(neighborTile[n].Type).MergeWith.HasValue && World.GetTileProperties(neighborTile[n].Type).MergeWith.Value == curtile.Type) ? 0x0010 : 0x0000;
-                                                    sameStyle |= (neighborTile[w] != null && neighborTile[w].IsActive && World.GetTileProperties(neighborTile[w].Type).MergeWith.HasValue && World.GetTileProperties(neighborTile[w].Type).MergeWith.Value == curtile.Type) ? 0x0100 : 0x0000;
-                                                    sameStyle |= (neighborTile[s] != null && neighborTile[s].IsActive && World.GetTileProperties(neighborTile[s].Type).MergeWith.HasValue && World.GetTileProperties(neighborTile[s].Type).MergeWith.Value == curtile.Type) ? 0x1000 : 0x0000;
-                                                    sameStyle |= (neighborTile[ne] != null && neighborTile[ne].IsActive && World.GetTileProperties(neighborTile[ne].Type).MergeWith.HasValue && World.GetTileProperties(neighborTile[ne].Type).MergeWith.Value == curtile.Type) ? 0x00010000 : 0x00000000;
-                                                    sameStyle |= (neighborTile[nw] != null && neighborTile[nw].IsActive && World.GetTileProperties(neighborTile[nw].Type).MergeWith.HasValue && World.GetTileProperties(neighborTile[nw].Type).MergeWith.Value == curtile.Type) ? 0x00100000 : 0x00000000;
-                                                    sameStyle |= (neighborTile[sw] != null && neighborTile[sw].IsActive && World.GetTileProperties(neighborTile[sw].Type).MergeWith.HasValue && World.GetTileProperties(neighborTile[sw].Type).MergeWith.Value == curtile.Type) ? 0x01000000 : 0x00000000;
-                                                    sameStyle |= (neighborTile[se] != null && neighborTile[se].IsActive && World.GetTileProperties(neighborTile[se].Type).MergeWith.HasValue && World.GetTileProperties(neighborTile[se].Type).MergeWith.Value == curtile.Type) ? 0x10000000 : 0x00000000;
+                                                    sameStyle |= (neighborTile[e] != null && neighborTile[e].IsActive && tileprop.Merges(World.GetTileProperties(neighborTile[e].Type))) ? 0x0001 : 0x0000;
+                                                    sameStyle |= (neighborTile[n] != null && neighborTile[n].IsActive && tileprop.Merges(World.GetTileProperties(neighborTile[n].Type))) ? 0x0010 : 0x0000;
+                                                    sameStyle |= (neighborTile[w] != null && neighborTile[w].IsActive && tileprop.Merges(World.GetTileProperties(neighborTile[w].Type))) ? 0x0100 : 0x0000;
+                                                    sameStyle |= (neighborTile[s] != null && neighborTile[s].IsActive && tileprop.Merges(World.GetTileProperties(neighborTile[s].Type))) ? 0x1000 : 0x0000;
+                                                    sameStyle |= (neighborTile[ne] != null && neighborTile[ne].IsActive && tileprop.Merges(World.GetTileProperties(neighborTile[ne].Type))) ? 0x00010000 : 0x00000000;
+                                                    sameStyle |= (neighborTile[nw] != null && neighborTile[nw].IsActive && tileprop.Merges(World.GetTileProperties(neighborTile[nw].Type))) ? 0x00100000 : 0x00000000;
+                                                    sameStyle |= (neighborTile[sw] != null && neighborTile[sw].IsActive && tileprop.Merges(World.GetTileProperties(neighborTile[sw].Type))) ? 0x01000000 : 0x00000000;
+                                                    sameStyle |= (neighborTile[se] != null && neighborTile[se].IsActive && tileprop.Merges(World.GetTileProperties(neighborTile[se].Type))) ? 0x10000000 : 0x00000000;
                                                     //Join if nearby tiles have the same type as this tile's type
                                                     sameStyle |= (neighborTile[e] != null && neighborTile[e].IsActive && curtile.Type == neighborTile[e].Type) ? 0x0001 : 0x0000;
                                                     sameStyle |= (neighborTile[n] != null && neighborTile[n].IsActive && curtile.Type == neighborTile[n].Type) ? 0x0010 : 0x0000;
@@ -2020,25 +2020,25 @@ namespace TEdit.View
                                                 if (curtile.hasLazyChecked == false)
                                                 {
                                                     bool lazyCheckReady = true;
-                                                    lazyCheckReady &= (neighborTile[e] == null || neighborTile[e].IsActive == false || World.GetTileProperties(neighborTile[e].Type).MergeWith.HasValue == false || World.GetTileProperties(neighborTile[e].Type).MergeWith.Value != curtile.Type) ? true : (neighborTile[e].lazyMergeId != 0xFF);
-                                                    lazyCheckReady &= (neighborTile[n] == null || neighborTile[n].IsActive == false || World.GetTileProperties(neighborTile[n].Type).MergeWith.HasValue == false || World.GetTileProperties(neighborTile[n].Type).MergeWith.Value != curtile.Type) ? true : (neighborTile[n].lazyMergeId != 0xFF);
-                                                    lazyCheckReady &= (neighborTile[w] == null || neighborTile[w].IsActive == false || World.GetTileProperties(neighborTile[w].Type).MergeWith.HasValue == false || World.GetTileProperties(neighborTile[w].Type).MergeWith.Value != curtile.Type) ? true : (neighborTile[w].lazyMergeId != 0xFF);
-                                                    lazyCheckReady &= (neighborTile[s] == null || neighborTile[s].IsActive == false || World.GetTileProperties(neighborTile[s].Type).MergeWith.HasValue == false || World.GetTileProperties(neighborTile[s].Type).MergeWith.Value != curtile.Type) ? true : (neighborTile[s].lazyMergeId != 0xFF);
+                                                    lazyCheckReady &= (neighborTile[e] == null || neighborTile[e].IsActive == false || !tileprop.Merges(World.GetTileProperties(neighborTile[e].Type))) ? true : (neighborTile[e].lazyMergeId != 0xFF);
+                                                    lazyCheckReady &= (neighborTile[n] == null || neighborTile[n].IsActive == false || !tileprop.Merges(World.GetTileProperties(neighborTile[n].Type))) ? true : (neighborTile[n].lazyMergeId != 0xFF);
+                                                    lazyCheckReady &= (neighborTile[w] == null || neighborTile[w].IsActive == false || !tileprop.Merges(World.GetTileProperties(neighborTile[w].Type))) ? true : (neighborTile[w].lazyMergeId != 0xFF);
+                                                    lazyCheckReady &= (neighborTile[s] == null || neighborTile[s].IsActive == false || !tileprop.Merges(World.GetTileProperties(neighborTile[s].Type))) ? true : (neighborTile[s].lazyMergeId != 0xFF);
                                                     if (lazyCheckReady)
                                                     {
-                                                        sameStyle &= 0x11111110 | ((neighborTile[e] == null || neighborTile[e].IsActive == false || World.GetTileProperties(neighborTile[e].Type).MergeWith.HasValue == false || World.GetTileProperties(neighborTile[e].Type).MergeWith.Value != curtile.Type) ? 0x00000001 : ((neighborTile[e].lazyMergeId & 0x04) >> 2));
-                                                        sameStyle &= 0x11111101 | ((neighborTile[n] == null || neighborTile[n].IsActive == false || World.GetTileProperties(neighborTile[n].Type).MergeWith.HasValue == false || World.GetTileProperties(neighborTile[n].Type).MergeWith.Value != curtile.Type) ? 0x00000010 : ((neighborTile[n].lazyMergeId & 0x08) << 1));
-                                                        sameStyle &= 0x11111011 | ((neighborTile[w] == null || neighborTile[w].IsActive == false || World.GetTileProperties(neighborTile[w].Type).MergeWith.HasValue == false || World.GetTileProperties(neighborTile[w].Type).MergeWith.Value != curtile.Type) ? 0x00000100 : ((neighborTile[w].lazyMergeId & 0x01) << 8));
-                                                        sameStyle &= 0x11110111 | ((neighborTile[s] == null || neighborTile[s].IsActive == false || World.GetTileProperties(neighborTile[s].Type).MergeWith.HasValue == false || World.GetTileProperties(neighborTile[s].Type).MergeWith.Value != curtile.Type) ? 0x00001000 : ((neighborTile[s].lazyMergeId & 0x02) << 11));
+                                                        sameStyle &= 0x11111110 | ((neighborTile[e] == null || neighborTile[e].IsActive == false || !tileprop.Merges(World.GetTileProperties(neighborTile[e].Type))) ? 0x00000001 : ((neighborTile[e].lazyMergeId & 0x04) >> 2));
+                                                        sameStyle &= 0x11111101 | ((neighborTile[n] == null || neighborTile[n].IsActive == false || !tileprop.Merges(World.GetTileProperties(neighborTile[n].Type))) ? 0x00000010 : ((neighborTile[n].lazyMergeId & 0x08) << 1));
+                                                        sameStyle &= 0x11111011 | ((neighborTile[w] == null || neighborTile[w].IsActive == false || !tileprop.Merges(World.GetTileProperties(neighborTile[w].Type))) ? 0x00000100 : ((neighborTile[w].lazyMergeId & 0x01) << 8));
+                                                        sameStyle &= 0x11110111 | ((neighborTile[s] == null || neighborTile[s].IsActive == false || !tileprop.Merges(World.GetTileProperties(neighborTile[s].Type))) ? 0x00001000 : ((neighborTile[s].lazyMergeId & 0x02) << 11));
                                                         curtile.hasLazyChecked = true;
                                                     }
                                                 }
                                                 if (tileprop.MergeWith.HasValue && tileprop.MergeWith.Value > -1) //Merges with a specific type
                                                 {
-                                                    mergeMask |= (neighborTile[e] != null && neighborTile[e].IsActive && neighborTile[e].Type == tileprop.MergeWith.Value) ? 0x0001 : 0x0000;
-                                                    mergeMask |= (neighborTile[n] != null && neighborTile[n].IsActive && neighborTile[n].Type == tileprop.MergeWith.Value) ? 0x0010 : 0x0000;
-                                                    mergeMask |= (neighborTile[w] != null && neighborTile[w].IsActive && neighborTile[w].Type == tileprop.MergeWith.Value) ? 0x0100 : 0x0000;
-                                                    mergeMask |= (neighborTile[s] != null && neighborTile[s].IsActive && neighborTile[s].Type == tileprop.MergeWith.Value) ? 0x1000 : 0x0000;
+                                                    mergeMask |= (neighborTile[e] != null && neighborTile[e].IsActive   && neighborTile[e].Type == tileprop.MergeWith.Value) ? 0x0001 : 0x0000;
+                                                    mergeMask |= (neighborTile[n] != null && neighborTile[n].IsActive   && neighborTile[n].Type == tileprop.MergeWith.Value) ? 0x0010 : 0x0000;
+                                                    mergeMask |= (neighborTile[w] != null && neighborTile[w].IsActive   && neighborTile[w].Type == tileprop.MergeWith.Value) ? 0x0100 : 0x0000;
+                                                    mergeMask |= (neighborTile[s] != null && neighborTile[s].IsActive   && neighborTile[s].Type == tileprop.MergeWith.Value) ? 0x1000 : 0x0000;
                                                     mergeMask |= (neighborTile[ne] != null && neighborTile[ne].IsActive && neighborTile[ne].Type == tileprop.MergeWith.Value) ? 0x00010000 : 0x00000000;
                                                     mergeMask |= (neighborTile[nw] != null && neighborTile[nw].IsActive && neighborTile[nw].Type == tileprop.MergeWith.Value) ? 0x00100000 : 0x00000000;
                                                     mergeMask |= (neighborTile[sw] != null && neighborTile[sw].IsActive && neighborTile[sw].Type == tileprop.MergeWith.Value) ? 0x01000000 : 0x00000000;

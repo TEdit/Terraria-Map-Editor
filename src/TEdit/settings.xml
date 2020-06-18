@@ -3812,11 +3812,11 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="108,198" Name="Amber" Variety="C" Anchor="Right" />
       </Frames>
     </Tile>
-    <Tile Id="179" Color="#FF687A75" Name="Green Moss" Solid="true" Blends="true" Special="Grass" Stone="true" />
-    <Tile Id="180" Color="#FF787A68" Name="Yellow Moss" Solid="true" Blends="true" Special="Grass" Stone="true" />
-    <Tile Id="181" Color="#FF7A6A68" Name="Red Moss" Solid="true" Blends="true" Special="Grass" Stone="true" />
-    <Tile Id="182" Color="#FF67707B" Name="Blue Moss" Solid="true" Blends="true" Special="Grass" Stone="true" />
-    <Tile Id="183" Color="#FF76687A" Name="Purple Moss" Solid="true" Blends="true" Special="Grass" Stone="true" />
+    <Tile Id="179" Color="#FF687A75" Name="Green Moss" Solid="true" Blends="true" Special="Grass" MergeWith="0"/>
+    <Tile Id="180" Color="#FF787A68" Name="Yellow Moss" Solid="true" Blends="true" Special="Grass" MergeWith="0"/>
+    <Tile Id="181" Color="#FF7A6A68" Name="Red Moss" Solid="true" Blends="true" Special="Grass" MergeWith="0"/>
+    <Tile Id="182" Color="#FF67707B" Name="Blue Moss" Solid="true" Blends="true" Special="Grass" MergeWith="0"/>
+    <Tile Id="183" Color="#FF76687A" Name="Purple Moss" Solid="true" Blends="true" Special="Grass" MergeWith="0"/>
     <Tile Id="184" Color="#FFAD1784" Name="Moss Plants" Framed="true" TextureGrid="20,16">
       <Frames>
         <Frame UV="0,0" Name="Green Moss" Variety="Bottom A" />
@@ -4830,7 +4830,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="54,126" Name="Fireblossom Planter" Variety="Single" />
       </Frames>
     </Tile>
-    <Tile Id="381" Color="#FF9F7159" Name="Lava Moss" Solid="true" Blends="true" />
+    <Tile Id="381" Color="#FF9F7159" Name="Lava Moss" Solid="true" Blends="true" Special="Grass" Stone="True"/>
     <Tile Id="382" Color="#FF636675" Name="Vine Flowers" Solid="true" Blends="true" />
     <Tile Id="383" Color="#FF8A5257" Name="Living Mahogany" Solid="true" Blends="true" />
     <Tile Id="384" Color="#FF5C9107" Name="Living Mahogany Leaves" Solid="true" Blends="true" />
@@ -5363,17 +5363,9 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Tile Id="472" Name="Iron Brick" Solid="true" Color="#FF8D796F" />
     <Tile Id="473" Name="Lead Brick" Solid="true" Color="#FF42505E" />
     <Tile Id="474" Name="Lesion Block" Solid="true" Color="#FF755E60" />
-    <Tile Id="475" Name="Hat Rack" Framed="true" Size="3,4" Color="#FF6B4F3B">
-      <Frames>
-        <Frame Name="Hat Rack" UV="0, 0" Anchor="Bottom" />
-      </Frames>
-    </Tile>
-    <Tile Id="476" Name="Golf Cup" Solid="true" Framed="true" TextureGrid="20,18" Size="1,1" Color="#FF85909A">
-      <Frames>
-        <Frame Name="Golf Cup" UV="0, 0" Anchor="Bottom" />
-      </Frames>
-    </Tile>
-    <Tile Id="477" Name="Golf Grass" Solid="true" Color="#FF607044" />
+    <Tile Id="475" Name="Hat Rack" Framed="true" Size="3,4" Color="#FF6B4F3B" />
+    <Tile Id="476" Name="Golf Cup" Solid="true" Framed="true" TextureGrid="20,18" Size="1,1" Color="#FF85909A" />
+    <Tile Id="477" Name="Golf Grass" Solid="true" Color="#FF607044" MergeWith="0" />
     <Tile Id="478" Name="Crimstone Brick" Solid="true" Color="#FFA55557" />
     <Tile Id="479" Name="Smooth Sandstone" Solid="true" Color="#FFBC7347" />
     <Tile Id="480" Name="Blood Moon Monolith" Framed="true" Size="2,3" IsAnimated="true" Color="#FF827C7F">
@@ -5384,48 +5376,20 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Tile Id="481" Name="Cracked Blue Brick" Solid="true" Color="#FF383E50" />
     <Tile Id="482" Name="Cracked Green Brick" Solid="true" Color="#FF3E4D47" />
     <Tile Id="483" Name="Cracked Pink Brick" Solid="true" Color="#FF7A405F" />
-    <Tile Id="484" Name="Rolling Cactus" Solid="true" Framed="true" Size="2,2" Color="#FF737E3D">
-      <Frames>
-        <Frame Name="Rolling Cactus" UV="0, 0" Anchor="Bottom" />
-      </Frames>
-    </Tile>
-    <Tile Id="485" Name="Antlion Larva" Framed="true" Size="2,2" IsAnimated="true" Color="#FFA17956">
-      <Frames>
-        <Frame Name="Antlion Larva" UV="0, 0" />
-      </Frames>
-    </Tile>
-    <Tile Id="486" Name="Drum Set" Framed="true" Size="3,2" Color="#FF7A775C">
-      <Frames>
-        <Frame Name="Drum Set" UV="0, 0" Anchor="Bottom" />
-      </Frames>
-    </Tile>
+    <Tile Id="484" Name="Rolling Cactus" Solid="true" Framed="true" Size="2,2" Color="#FF737E3D" />
+    <Tile Id="485" Name="Antlion Larva" Framed="true" Size="2,2" IsAnimated="true" Color="#FFA17956" />
+    <Tile Id="486" Name="Drum Set" Framed="true" Size="3,2" Color="#FF7A775C" />
     <Tile Id="487" Name="Picnic Table" Framed="true" Size="4,2" Color="#FF8D5A57">
       <Frames>
         <Frame Name="Picnic Table" UV="0, 0" Anchor="Bottom" />
         <Frame Name="Fancy Picnic Table" UV="0, 38" Anchor="Bottom" />
       </Frames>
     </Tile>
-    <Tile Id="488" Name="Fallen Log" Framed="true" Size="3,2" Color="#FF72654F">
-      <Frames>
-        <Frame Name="Fallen Log" UV="0, 0" />
-      </Frames>
-    </Tile>
-    <Tile Id="489" Name="Pin Wheel" Framed="true" Size="2,3" IsAnimated="true" Color="#FF545A83">
-      <Frames>
-        <Frame Name="Pin Wheel" UV="0, 0" Anchor="Bottom" />
-      </Frames>
-    </Tile>
-    <Tile Id="490" Name="Weather Vane" Framed="true" Size="2,2" IsAnimated="true" Color="#FF808789">
-      <Frames>
-        <Frame Name="Weather Vane" UV="0, 0" Anchor="Bottom" />
-      </Frames>
-    </Tile>
-    <Tile Id="491" Name="Void Vault" Light="true" Framed="true" Size="3,3" Color="#FF8149B1">
-      <Frames>
-        <Frame Name="Void Vault" UV="0, 0" Anchor="Bottom" />
-      </Frames>
-    </Tile>
-    <Tile Id="492" Name="Golf Grass Hallowed" Solid="true" Color="#FF686C63" />
+    <Tile Id="488" Name="Fallen Log" Framed="true" Size="3,2" Color="#FF72654F" />
+    <Tile Id="489" Name="Pin Wheel" Framed="true" Size="2,3" IsAnimated="true" Color="#FF545A83" />
+    <Tile Id="490" Name="Weather Vane" Framed="true" Size="2,2" IsAnimated="true" Color="#FF808789" />
+    <Tile Id="491" Name="Void Vault" Light="true" Framed="true" Size="3,3" Color="#FF8149B1" />
+    <Tile Id="492" Name="Golf Grass Hallowed" Solid="true" Color="#FF686C63" Special="Grass"/>
     <Tile Id="493" Name="White Pin Flag" Framed="true" Size="1,2" IsAnimated="true" Color="#FF8855A1">
       <Frames>
         <Frame Name="White Pin Flag" UV="0, 0" Anchor="Bottom" />
@@ -5436,11 +5400,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame Name="Purple Pin Flag" UV="0, 180" Anchor="Bottom" />
       </Frames>
     </Tile>
-    <Tile Id="494" Name="Golf Tee" Framed="true" Size="1,1" Color="#FFA5A4B6">
-      <Frames>
-        <Frame Name="Golf Tee" UV="0, 0" Anchor="Bottom" />
-      </Frames>
-    </Tile>
+    <Tile Id="494" Name="Golf Tee" Framed="true" Size="1,1" Color="#FFA5A4B6" />
     <Tile Id="495" Name="Shell Pile" Solid="true" Color="#FFAF976E" />
     <Tile Id="496" Name="Anti-Portal Block" Solid="true" Color="#FF655A54" />
     <Tile Id="497" Name="Ebonwood Toilet" Framed="true" Size="1,2" FrameGap="2,4" Color="#FF356D40">
@@ -5488,33 +5448,17 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
       </Frames>
     </Tile>
     <Tile Id="498" Name="Spider Nest Block" Solid="true" Color="#FF8E614D" />
-    <Tile Id="499" Name="Decay Chamber" Framed="true" Size="3,3" IsAnimated="true" Color="#FF8F9475">
-      <Frames>
-        <Frame Name="Decay Chamber" UV="0, 0" Anchor="Bottom" />
-      </Frames>
-    </Tile>
+    <Tile Id="499" Name="Decay Chamber" Framed="true" Size="3,3" IsAnimated="true" Color="#FF8F9475" />
     <Tile Id="500" Name="Solar Brick" Light="true" Solid="true" Color="#FF7B463E" />
     <Tile Id="501" Name="Vortex Brick" Light="true" Solid="true" Color="#FF6B6772" />
     <Tile Id="502" Name="Nebula Brick" Light="true" Solid="true" Color="#FF7995AB" />
     <Tile Id="503" Name="Stardust Brick" Light="true" Solid="true" Color="#FFBC8C53" />
     <Tile Id="504" Name="Mystic Snake Rope" Color="#FF5C4B76" />
-    <Tile Id="505" Name="Gold Fish Bowl" Framed="true" Size="2,2" IsAnimated="true" Color="#FF73898C">
-      <Frames>
-        <Frame Name="Gold Fish Bowl" UV="0, 0" Anchor="Bottom" />
-      </Frames>
-    </Tile>
-    <Tile Id="506" Name="Bast Statue" Framed="true" Size="2,3" Color="#FF291C13">
-      <Frames>
-        <Frame Name="Bast Statue" UV="0, 0" Anchor="Bottom" />
-      </Frames>
-    </Tile>
+    <Tile Id="505" Name="Gold Fish Bowl" Framed="true" Size="2,2" IsAnimated="true" Color="#FF73898C" />
+    <Tile Id="506" Name="Bast Statue" Framed="true" Size="2,3" Color="#FF291C13" />
     <Tile Id="507" Name="Gold Starry Block" Solid="true" Color="#FF66503D" />
     <Tile Id="508" Name="Blue Starry Block" Solid="true" Color="#FF1F3862" />
-    <Tile Id="509" Name="Void Monolith" Framed="true" Size="2,3" IsAnimated="true" Color="#FF36363A">
-      <Frames>
-        <Frame Name="Void Monolith" UV="0, 0" Anchor="Bottom" />
-      </Frames>
-    </Tile>
+    <Tile Id="509" Name="Void Monolith" Framed="true" Size="2,3" IsAnimated="true" Color="#FF36363A" />
     <Tile Id="510" Name="Arrow Sign" Framed="true" Size="2,2" Color="#FF73533C">
       <Frames>
         <Frame Name="Arrow Sign" UV="0, 0" Anchor="Bottom" />
@@ -5531,27 +5475,15 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame Name="Painted Arrow Sign" UV="108, 0" Anchor="Right" />
       </Frames>
     </Tile>
-    <Tile Id="512" Name="Green Moss Brick" Solid="true" Color="#FF537069" />
-    <Tile Id="513" Name="Brown Moss Brick" Solid="true" Color="#FF6C6E57" />
-    <Tile Id="514" Name="Red Moss Brick" Solid="true" Color="#FF7E7063" />
-    <Tile Id="515" Name="Blue Moss Brick" Solid="true" Color="#FF4C6470" />
-    <Tile Id="516" Name="Purple Moss Brick" Solid="true" Color="#FF6A5278" />
-    <Tile Id="517" Name="Lava Moss Brick" Light="true" Solid="true" Color="#FFA1704F" />
-    <Tile Id="518" Name="Lily Pad" Framed="true" Color="#FF6C5F84">
-      <Frames>
-        <Frame Name="Lily Pad" UV="0, 0" />
-      </Frames>
-    </Tile>
-    <Tile Id="519" Name="Cattail" Light="true" Framed="true" Color="#FF7F7F99">
-      <Frames>
-        <Frame Name="Cattail" UV="0, 0" />
-      </Frames>
-    </Tile>
-    <Tile Id="520" Name="Plate" Framed="true" Size="1,1" Color="#FF87929C">
-      <Frames>
-        <Frame Name="Plate" UV="0, 0" Anchor="Bottom" />
-      </Frames>
-    </Tile>
+    <Tile Id="512" Name="Green Moss Brick" Solid="true" Color="#FF537069" Special="Grass" MergeWith="0" />
+    <Tile Id="513" Name="Brown Moss Brick" Solid="true" Color="#FF6C6E57" Special="Grass" MergeWith="0" />
+    <Tile Id="514" Name="Red Moss Brick" Solid="true" Color="#FF7E7063" Special="Grass" MergeWith="0" />
+    <Tile Id="515" Name="Blue Moss Brick" Solid="true" Color="#FF4C6470" Special="Grass" MergeWith="0" />
+    <Tile Id="516" Name="Purple Moss Brick" Solid="true" Color="#FF6A5278" Special="Grass" MergeWith="0" />
+    <Tile Id="517" Name="Lava Moss Brick" Light="true" Solid="true" Color="#FFA1704F" Special="Grass" MergeWith="0" />
+    <Tile Id="518" Name="Lily Pad" Framed="true" Color="#FF6C5F84" />
+    <Tile Id="519" Name="Cattail" Light="true" Framed="true" Color="#FF7F7F99" />
+    <Tile Id="520" Name="Plate" Framed="true" Size="1,1" Color="#FF87929C" />
     <Tile Id="521" Name="Black Dragonfly Jar" Framed="true" Size="2,2" IsAnimated="true" Color="#FF496A6E" />
     <Tile Id="522" Name="Blue Dragonfly Jar" Framed="true" Size="2,2" IsAnimated="true" Color="#FF49727D" />
     <Tile Id="523" Name="Green Dragonfly Jar" Framed="true" Size="2,2" IsAnimated="true" Color="#FF477874" />
@@ -5577,13 +5509,13 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     </Tile>
     <Tile Id="532" Name="Maggot Cage" Framed="true" Size="3,2" IsAnimated="true" Color="#FF59756E" />
     <Tile Id="533" Name="Rat Cage" Framed="true" Size="3,2" IsAnimated="true" Color="#FF697476" />
-    <Tile Id="534" Name="Krypton Moss" Light="true" Solid="true" Color="#FF81A05F" />
-    <Tile Id="535" Name="Krypton Moss Brick" Light="true" Solid="true" Color="#FF68904E" />
-    <Tile Id="536" Name="Xenon Moss" Light="true" Solid="true" Color="#FF589498" />
-    <Tile Id="537" Name="Xenon Moss Brick" Light="true" Solid="true" Color="#FF41838D" />
+    <Tile Id="534" Name="Krypton Moss" Light="true" Solid="true" Color="#FF81A05F" Special="Grass" MergeWith="0" />
+    <Tile Id="535" Name="Krypton Moss Brick" Light="true" Solid="true" Color="#FF68904E" Special="Grass"  MergeWith="0"  />
+    <Tile Id="536" Name="Xenon Moss" Light="true" Solid="true" Color="#FF589498" Special="Grass" MergeWith="0"  />
+    <Tile Id="537" Name="Xenon Moss Brick" Light="true" Solid="true" Color="#FF41838D" Special="Grass" MergeWith="0" />
     <Tile Id="538" Name="Ladybug Cage" Framed="true" Size="3,2" IsAnimated="true" Color="#FF555F60" />
-    <Tile Id="539" Name="Argon Moss" Light="true" Solid="true" Color="#FF9A6387" />
-    <Tile Id="540" Name="Argon Moss Brick" Light="true" Solid="true" Color="#FF8E4B7C" />
+    <Tile Id="539" Name="Argon Moss" Light="true" Solid="true" Color="#FF9A6387" Special="Grass"  MergeWith="0" />
+    <Tile Id="540" Name="Argon Moss Brick" Light="true" Solid="true" Color="#FF8E4B7C" Special="Grass"  MergeWith="0" />
     <Tile Id="541" Name="Echo Block" Solid="true" Color="#FFFF00FF" />
     <Tile Id="542" Name="Owl Cage" Framed="true" Size="6,3" IsAnimated="true" Color="#FF6A7867" />
     <Tile Id="543" Name="Pupfish Bowl" Framed="true" Size="2,2" IsAnimated="true" Color="#FF509DB7" />

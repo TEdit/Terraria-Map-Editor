@@ -197,5 +197,21 @@ namespace TEdit.Terraria.Objects
             get { return _mergeWith; }
             set { Set("MergeWith", ref _mergeWith, value); }
         }
+
+        public bool Merges(int other)
+        {
+            if (!MergeWith.HasValue) return false;
+
+            return MergeWith.Value == other;
+        }
+
+        public bool Merges(TileProperty other)
+        {
+            if (other.MergeWith.HasValue && other.MergeWith.Value == Id) return true;
+            if (MergeWith.HasValue && MergeWith.Value == other.Id) return true;
+            if (MergeWith.HasValue && other.MergeWith.HasValue && MergeWith.Value == other.MergeWith.Value) return true;
+
+            return false;
+        }
     }
 }
