@@ -277,7 +277,7 @@
         <TextBlock Text="Revision" HorizontalAlignment="Right" />
         <TextBlock Text="{Binding CurrentWorld.FileRevision}" HorizontalAlignment="Left" />
         <TextBlock Text="Seed" HorizontalAlignment="Right" />
-        <TextBlock Text="{Binding CurrentWorld.Seed}" HorizontalAlignment="Left" />
+        <TextBox Text="{Binding CurrentWorld.Seed}" HorizontalAlignment="Left" IsReadOnly="true"/>
         <Separator Grid.ColumnSpan="2" />
         <TextBlock Text="Moon Phase" HorizontalAlignment="Right" />
         <DockPanel>
