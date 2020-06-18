@@ -120,6 +120,7 @@
                     <ComboBox Grid.ColumnSpan="2" ItemsSource="{Binding Source={x:Static Terraria:World.TileBricks}, Mode=OneTime}" Visibility="{Binding ElementName=TileText, Path=Visibility}"
                       ItemTemplate="{StaticResource ColorPickerTemplate}" 
                       SelectedValue="{Binding Path=TilePicker.Tile, Mode=TwoWay}"
+                      IsEditable="true"
                       SelectedValuePath="Id" 
                       IsTextSearchEnabled="True" TextSearch.TextPath="Name" />
                     <TextBlock Text="Mask Mode" />
@@ -128,6 +129,7 @@
                     <ComboBox ItemsSource="{Binding Source={x:Static Terraria:World.TileBricks}, Mode=OneTime}"
                       ItemTemplate="{StaticResource ColorPickerTemplate}" 
                       SelectedValue="{Binding Path=TilePicker.TileMask, Mode=TwoWay}"
+                      IsEditable="true"
                       SelectedValuePath="Id"
                       IsTextSearchEnabled="True" TextSearch.TextPath="Name" />
                 </tedit:AutoGrid>
@@ -144,6 +146,7 @@
                     <ComboBox ItemsSource="{Binding Source={x:Static Terraria:World.WallProperties}, Mode=OneTime}" Visibility="{Binding ElementName=WallText, Path=Visibility}"
                       ItemTemplate="{StaticResource ColorPickerTemplate}" 
                       SelectedValue="{Binding Path=TilePicker.Wall, Mode=TwoWay}"
+                      IsEditable="true"
                       SelectedValuePath="Id" Grid.ColumnSpan="2"
                       IsTextSearchEnabled="True" TextSearch.TextPath="Name" />
                     <TextBlock Text="Mask Mode" />
@@ -152,6 +155,7 @@
                     <ComboBox ItemsSource="{Binding Source={x:Static Terraria:World.WallProperties}, Mode=OneTime}" 
                       ItemTemplate="{StaticResource ColorPickerTemplate}" 
                       SelectedValue="{Binding Path=TilePicker.WallMask, Mode=TwoWay}"
+                      IsEditable="true"
                       SelectedValuePath="Id"
                       IsTextSearchEnabled="True" TextSearch.TextPath="Name" />
                 </tedit:AutoGrid>
