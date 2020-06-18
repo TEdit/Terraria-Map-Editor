@@ -16,9 +16,15 @@ using System.IO;
 using System.Xml;
 using System.Xml.Linq;
 using System.Diagnostics;
+using Terraria.Map;
+using Microsoft.Xna.Framework;
 
 namespace SettingsFileUpdater.TerrariaHost
 {
+    public static class ColorExt
+    {
+        public static string ColorToHex(this Color color) => string.Format("#{0:X2}{1:X2}{2:X2}{3:X2}", color.A, color.R, color.G, color.B);
+    }
     public class ItemId
     {
         public ItemId(int id, string name, string type)
@@ -118,6 +124,59 @@ namespace SettingsFileUpdater.TerrariaHost
                 }
             }
 
+        }
+
+        MapTile _tile = new MapTile { Type = 0, Light = byte.MaxValue };
+
+        public (Dictionary<int, string>, Dictionary<int,string>) GetMapTileColors()
+        {
+            var colors = new Dictionary<int, string>();
+            var wallColors = new Dictionary<int, string>();
+            
+            int colorLookup = 1;
+            MapHelper.Initialize();
+            for (int i = 0; i < maxTileSets; i++)
+            {
+                colors[i] = GetTileColor(colorLookup);
+                colorLookup++;
+            }
+            for (int i = 0; i < maxWallTypes; i++)
+            {
+                wallColors[i] = GetTileColor(colorLookup);
+                colorLookup++;
+            }
+            for (int i = 0; i < 3; i++)
+            {
+                // water, lava, honey
+                colorLookup++;
+            }
+            for (int i = 0; i < 256; i++)
+            {
+                //sky
+                colorLookup++;
+            }
+            for (int i = 0; i < 256; i++)
+            {
+                //dirt
+                colorLookup++;
+            }
+            for (int i = 0; i < 256; i++)
+            {
+                //rock
+                colorLookup++;
+            }
+
+            // hell is 1
+            colorLookup++;
+
+            return (colors,wallColors);
+        }
+
+        private string GetTileColor(int colorLookup)
+        {
+            _tile.Type = (ushort)colorLookup;
+            var color = MapHelper.GetMapTileXnaColor(ref _tile);
+            return color.ColorToHex();
         }
 
         public string GetWallsXml()

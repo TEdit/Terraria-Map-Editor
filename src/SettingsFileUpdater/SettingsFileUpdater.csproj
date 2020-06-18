@@ -17,6 +17,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Reference Include="Microsoft.Xna.Framework">
+      <HintPath>..\..\..\Decompiled\DotPeek\Terraria1405\TerrariaReferences\Microsoft.Xna.Framework.dll</HintPath>
+    </Reference>
     <Reference Include="TerrariaServer">
       <HintPath>D:\Steam\steamapps\common\Terraria\TerrariaServer.exe</HintPath>
     </Reference>

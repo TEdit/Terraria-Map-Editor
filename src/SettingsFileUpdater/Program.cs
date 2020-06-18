@@ -1,7 +1,9 @@
 ﻿using System;
 using System.IO;
+using System.Linq;
 using System.Reflection;
 using System.Threading;
+using System.Xml.Linq;
 
 namespace SettingsFileUpdater
 {
@@ -13,6 +15,26 @@ namespace SettingsFileUpdater
 
 
             var wrapper = TerrariaHost.TerrariaWrapper.Initialize();
+
+            (var tilecolors, var wallcolors) = wrapper.GetMapTileColors();
+
+            XDocument xdoc = XDocument.Load("settings.xml");
+
+            var tiles = xdoc.Root.Element("Tiles");
+            foreach (var item in tilecolors)
+            {
+                var tile = tiles.Elements().FirstOrDefault(t => int.Parse(t.Attribute("Id").Value) == item.Key);
+                tile.SetAttributeValue("Color", item.Value);
+            }
+
+            var walls = xdoc.Root.Element("Walls");
+            foreach (var item in wallcolors)
+            {
+                var wall = tiles.Elements().FirstOrDefault(t => int.Parse(t.Attribute("Id").Value) == item.Key);
+                wall.SetAttributeValue("Color", item.Value);
+            }
+
+            xdoc.Save("settings2.xml");
 
             //Console.WriteLine(wrapper.GetTilesXml());
             //Console.WriteLine(wrapper.GetWallsXml());
