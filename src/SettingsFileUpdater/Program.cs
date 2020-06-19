@@ -18,39 +18,30 @@ namespace SettingsFileUpdater
             (var tilecolors, var wallcolors) = wrapper.GetMapTileColors();
 
             XDocument xdoc = XDocument.Load("settings.xml");
-            XDocument xdoc2 = XDocument.Load("settings2.xml");
 
             var tiles = xdoc.Root.Element("Tiles");
 
             foreach (var item in tilecolors)
             {
+                if (item.Key < 470) continue;
                 var tile = tiles.Elements().FirstOrDefault(t => int.Parse(t.Attribute("Id").Value) == item.Key);
                 tile.SetAttributeValue("Color", item.Value);
             }
             
-            var walls = xdoc.Root.Element("Walls");
-            foreach (var item in wallcolors)
-            {
-                var wall = tiles.Elements().FirstOrDefault(t => int.Parse(t.Attribute("Id").Value) == item.Key);
-                wall.SetAttributeValue("Color", item.Value);
-            }
+          // var walls = xdoc.Root.Element("Walls");
+          // foreach (var item in wallcolors)
+          // {
+          //     var wall = tiles.Elements().FirstOrDefault(t => int.Parse(t.Attribute("Id").Value) == item.Key);
+          //     wall.SetAttributeValue("Color", item.Value);
+          // }
 
-
-            var tiles2 = xdoc2.Root.Element("Tiles");
-            for (int i = 0; i < 473; i++)
-            {
-                var tile = tiles.Elements().FirstOrDefault(t => int.Parse(t.Attribute("Id").Value) == i);
-                var tile2 = tiles2.Elements().FirstOrDefault(t => int.Parse(t.Attribute("Id").Value) == i);
-                tile.SetAttributeValue("Color", tile2.Attribute("Color").Value);
-
-            }
 
 
             xdoc.Save("settings3.xml");
 
             //Console.WriteLine(wrapper.GetTilesXml());
             //Console.WriteLine(wrapper.GetWallsXml());
-            Console.WriteLine(wrapper.GetItemsXml());
+             Console.WriteLine(wrapper.GetItemsXml());
             //Console.WriteLine(wrapper.GetNpcsXml());
             //Console.WriteLine(wrapper.GetPrefixesXml());
 
