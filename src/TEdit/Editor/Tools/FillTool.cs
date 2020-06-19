@@ -83,22 +83,24 @@ namespace TEdit.Editor.Tools
             switch (_wvm.TilePicker.PaintMode)
             {
                 case PaintMode.TileAndWall:
-                    if ((originTile.Type != nextTile.Type || originTile.IsActive != nextTile.IsActive) && _wvm.TilePicker.TileStyleActive)
+                    if (_wvm.TilePicker.TileStyleActive && (originTile.Type != nextTile.Type || originTile.IsActive != nextTile.IsActive))
                         return false;
-                    if (originTile.Wall != nextTile.Wall && _wvm.TilePicker.WallStyleActive)
+                    if (_wvm.TilePicker.WallStyleActive && (originTile.Wall != nextTile.Wall))
                         return false;
-                    if (originTile.BrickStyle != nextTile.BrickStyle && _wvm.TilePicker.BrickStyleActive)
+                    if (_wvm.TilePicker.BrickStyleActive && (originTile.BrickStyle != nextTile.BrickStyle))
                         return false;
                     if (_wvm.TilePicker.TilePaintActive && (originTile.Type != nextTile.Type || originTile.IsActive != nextTile.IsActive))
                         return false;
                     if (_wvm.TilePicker.WallPaintActive && (originTile.Wall != nextTile.Wall || (originTile.IsActive && World.TileProperties[originTile.Type].IsSolid) ||
                         (nextTile.IsActive && World.TileProperties[nextTile.Type].IsSolid)))
                         return false;
-                    if (_wvm.TilePicker.ExtrasActive)
+                    if (_wvm.TilePicker.ExtrasActive && (originTile.Actuator != nextTile.Actuator || originTile.InActive != nextTile.InActive || originTile.IsActive != nextTile.IsActive))
                         return false;
                     break;
                 case PaintMode.Wire:
-                    return false;
+                    if ((originTile.Type != nextTile.Type || originTile.IsActive != nextTile.IsActive))
+                        return false;
+                    break;
                 case PaintMode.Liquid:
                     if ((originTile.LiquidAmount > 0 != nextTile.LiquidAmount > 0) ||
                         originTile.LiquidType != nextTile.LiquidType ||
