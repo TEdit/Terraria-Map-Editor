@@ -68,7 +68,6 @@ namespace TEdit.View
         private float _zoom = 1;
         private float _minNpcScale = 0.75f;
 
-
         public WorldRenderXna()
         {
             _wvm = ViewModelLocator.WorldViewModel;
@@ -326,19 +325,19 @@ namespace TEdit.View
             var b2 = new Rectangle(18, 18, 16, 16);
             var b2Wall = new Rectangle(44, 44, 16, 16);
 
-            foreach (var wall in World.WallProperties)
-            {
-                if (wall.Id == 0) continue;
-                var wallTex = _textureDictionary.GetWall(wall.Id);
+            //foreach (var wall in World.WallProperties)
+            //{
+            //    if (wall.Id == 0) continue;
+            //    var wallTex = _textureDictionary.GetWall(wall.Id);
 
-                TextureToPng(wallTex, $"textures/Wall_{wall.Id}.png");
+            //    TextureToPng(wallTex, $"textures/Wall_{wall.Id}.png");
 
-                var wallColor = GetTextureTileColor(wallTex, b2Wall);
-                if (wallColor.A > 0)
-                {
-                    wall.Color = wallColor;
-                }
-            }
+            //    var wallColor = GetTextureTileColor(wallTex, b2Wall);
+            //    if (wallColor.A > 0)
+            //    {
+            //        wall.Color = wallColor;
+            //    }
+            //}
 
             foreach (var tile in World.TileProperties)
             {
@@ -347,11 +346,11 @@ namespace TEdit.View
 
                 if (!tile.IsFramed)
                 {
-                    var tileColor = GetTextureTileColor(tileTex, b2);
-                    if (tileColor.A > 0)
-                    {
-                        tile.Color = tileColor;
-                    }
+                    //var tileColor = GetTextureTileColor(tileTex, b2);
+                    //if (tileColor.A > 0)
+                    //{
+                    //    tile.Color = tileColor;
+                    //}
                     continue;
                 }
 
@@ -507,8 +506,6 @@ namespace TEdit.View
 
                             if (hasColorData)
                             {
-
-
                                 var styleColor = GetTextureTileColor(texture, texture.Bounds);
                                 tile.Color = styleColor;
 
@@ -538,27 +535,27 @@ namespace TEdit.View
                 }
             }
 
-#if DEBUG
-            XDocument xdoc = XDocument.Load("settings.xml");
-            var xTiles = xdoc.Root.Element("Tiles");
-            for (int t = 0; t < World.TileCount; t++)
-            {
-                var xTile = xTiles.Elements().FirstOrDefault(e => int.Parse(e.Attribute("Id").Value) == t);
-                var tileProps = World.TileProperties.FirstOrDefault(item => item.Id == t);
-                var sprite = (!tileProps.IsFramed) ? null : World.Sprites2.FirstOrDefault(s => s.Tile == t);
-                xTile.SetAttributeValue("Color", tileProps.Color.ColorToString());
+            //#if DEBUG
+            //            XDocument xdoc = XDocument.Load("settings.xml");
+            //            var xTiles = xdoc.Root.Element("Tiles");
+            //            for (int t = 0; t < World.TileCount; t++)
+            //            {
+            //                var xTile = xTiles.Elements().FirstOrDefault(e => int.Parse(e.Attribute("Id").Value) == t);
+            //                var tileProps = World.TileProperties.FirstOrDefault(item => item.Id == t);
+            //                var sprite = (!tileProps.IsFramed) ? null : World.Sprites2.FirstOrDefault(s => s.Tile == t);
+            //                xTile.SetAttributeValue("Color", tileProps.Color.ColorToString());
 
-                // update frame colors
-            }
-            var xWalls = xdoc.Root.Element("Walls");
-            for (int t = 0; t < World.WallCount; t++)
-            {
-                var xWall = xWalls.Elements().FirstOrDefault(e => int.Parse(e.Attribute("Id").Value) == t);
-                var wallProps = World.WallProperties.FirstOrDefault(item => item.Id == t);
-                xWall.SetAttributeValue("Color", wallProps.Color.ColorToString());
-            }
-            xdoc.Save("settings2.xml");
-#endif
+            //                // update frame colors
+            //            }
+            //            var xWalls = xdoc.Root.Element("Walls");
+            //            for (int t = 0; t < World.WallCount; t++)
+            //            {
+            //                var xWall = xWalls.Elements().FirstOrDefault(e => int.Parse(e.Attribute("Id").Value) == t);
+            //                var wallProps = World.WallProperties.FirstOrDefault(item => item.Id == t);
+            //                xWall.SetAttributeValue("Color", wallProps.Color.ColorToString());
+            //            }
+            //            xdoc.Save("settings2.xml");
+            //#endif
 
             foreach (var sprite in World.Sprites)
             {
@@ -680,6 +677,14 @@ namespace TEdit.View
 
         #region Render
 
+        BlendState _negativePaint = new BlendState
+        {
+            ColorSourceBlend = Blend.Zero,
+            //AlphaSourceBlend = Blend.SourceAlpha,
+            ColorDestinationBlend = Blend.InverseSourceColor,
+            //AlphaDestinationBlend = Blend.InverseSourceAlpha
+        };
+
         private void Render(GraphicsDeviceEventArgs e)
         {
             // Clear the graphics device and texture buffer
@@ -689,27 +694,45 @@ namespace TEdit.View
             GenPixelTiles(e);
 
             // Start SpriteBatch
-            _spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.Default, RasterizerState.CullNone);
+            _spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.Default, RasterizerState.CullNone);
 
             DrawPixelTiles();
             _spriteBatch.End();
-
-            _spriteBatch.Begin(SpriteSortMode.BackToFront, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.Default, RasterizerState.CullNone);
+            _spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.Default, RasterizerState.CullNone);
 
 
             // Draw sprite overlays
             if (_wvm.ShowTextures && _textureDictionary.Valid)
             {
-                DrawSprites();
+                DrawTileBackgrounds();
+                DrawTileWalls();
+                _spriteBatch.End();
+
+                _spriteBatch.Begin(SpriteSortMode.Immediate, _negativePaint, SamplerState.PointClamp, DepthStencilState.Default, RasterizerState.CullNone);
+                DrawTileWalls(true);
+                _spriteBatch.End();
+
+                _spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.Default, RasterizerState.CullNone);
+                DrawTileTextures();
+                _spriteBatch.End();
+
+                _spriteBatch.Begin(SpriteSortMode.Immediate, _negativePaint, SamplerState.PointClamp, DepthStencilState.Default, RasterizerState.CullNone);
+                DrawTileTextures(true);
+                _spriteBatch.End();
+
+                _spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.Default, RasterizerState.CullNone);
+                DrawTileWires();
+                DrawTileLiquid();
                 // Draw Tile Entities
 
                 if (_zoom > 5)
                 {
                     DrawTileEntities();
                 }
-
-
             }
+
+            _spriteBatch.End();
+            _spriteBatch.Begin(SpriteSortMode.BackToFront, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.Default, RasterizerState.CullNone);
 
             if (_wvm.ShowGrid)
                 DrawGrid();
@@ -725,6 +748,8 @@ namespace TEdit.View
             // End SpriteBatch
             _spriteBatch.End();
         }
+
+
 
         private void DrawTileEntities()
         {
@@ -856,9 +881,9 @@ namespace TEdit.View
 
         }
 
-        /* Heathtech */
-        //Pretty much overwrote this whole function.  The original part is still intact, but much more hidden
-        private void DrawSprites()
+        private bool _blendStateInverted = false;
+
+        private void DrawTileBackgrounds()
         {
             Rectangle visibleBounds = GetViewingArea();
             Terraria.Objects.BlendRules blendRules = Terraria.Objects.BlendRules.Instance;
@@ -882,24 +907,6 @@ namespace TEdit.View
                             {
                                 continue;
                             }
-
-                            var curtile = _wvm.CurrentWorld.Tiles[x, y];
-
-                            if (curtile.Type >= World.TileProperties.Count) { continue; }
-
-                            var tileprop = World.GetTileProperties(curtile.Type);
-
-                            //Neighbor tiles are often used when dynamically determining which UV position to render
-                            int e = 0, n = 1, w = 2, s = 3, ne = 4, nw = 5, sw = 6, se = 7;
-                            Tile[] neighborTile = new Tile[8];
-                            neighborTile[e] = (x + 1) < width ? _wvm.CurrentWorld.Tiles[x + 1, y] : null;
-                            neighborTile[n] = (y - 1) > 0 ? _wvm.CurrentWorld.Tiles[x, y - 1] : null;
-                            neighborTile[w] = (x - 1) > 0 ? _wvm.CurrentWorld.Tiles[x - 1, y] : null;
-                            neighborTile[s] = (y + 1) < height ? _wvm.CurrentWorld.Tiles[x, y + 1] : null;
-                            neighborTile[ne] = (x + 1) < width && (y - 1) > 0 ? _wvm.CurrentWorld.Tiles[x + 1, y - 1] : null;
-                            neighborTile[nw] = (x - 1) > 0 && (y - 1) > 0 ? _wvm.CurrentWorld.Tiles[x - 1, y - 1] : null;
-                            neighborTile[sw] = (x - 1) > 0 && (y + 1) < height ? _wvm.CurrentWorld.Tiles[x - 1, y + 1] : null;
-                            neighborTile[se] = (x + 1) < width && (y + 1) < height ? _wvm.CurrentWorld.Tiles[x + 1, y + 1] : null;
 
                             //draw background textures
                             if (y >= 80)
@@ -979,6 +986,56 @@ namespace TEdit.View
                                 var dest = new Rectangle(1 + (int)((_scrollPosition.X + x) * _zoom), 1 + (int)((_scrollPosition.Y + y) * _zoom), (int)_zoom, (int)_zoom);
                                 _spriteBatch.Draw(backTex, dest, source, Color.White, 0f, default(Vector2), SpriteEffects.None, LayerTileBackgroundTextures);
                             }
+                        }
+                        catch (Exception ex)
+                        {
+                            // failed to render tile? log?
+                        }
+                    }
+                }
+            }
+        }
+
+        private void DrawTileWalls(bool drawInverted = false)
+        {
+            Rectangle visibleBounds = GetViewingArea();
+            Terraria.Objects.BlendRules blendRules = Terraria.Objects.BlendRules.Instance;
+            var width = _wvm.CurrentWorld.TilesWide;
+            var height = _wvm.CurrentWorld.TilesHigh;
+
+
+            if (visibleBounds.Height * visibleBounds.Width < 25000)
+            {
+                //Extended the viewing space to give tiles time to cache their UV's
+                for (int y = visibleBounds.Top - 1; y < visibleBounds.Bottom + 2; y++)
+                {
+                    for (int x = visibleBounds.Left - 1; x < visibleBounds.Right + 2; x++)
+                    {
+                        try
+                        {
+                            if (x < 0 ||
+                                y < 0 ||
+                                x >= _wvm.CurrentWorld.TilesWide ||
+                                y >= _wvm.CurrentWorld.TilesHigh)
+                            {
+                                continue;
+                            }
+
+                            var curtile = _wvm.CurrentWorld.Tiles[x, y];
+                            if ((curtile.WallColor == 30) != drawInverted) continue;
+
+                            //Neighbor tiles are often used when dynamically determining which UV position to render
+                            int e = 0, n = 1, w = 2, s = 3, ne = 4, nw = 5, sw = 6, se = 7;
+                            Tile[] neighborTile = new Tile[8];
+                            neighborTile[e] = (x + 1) < width ? _wvm.CurrentWorld.Tiles[x + 1, y] : null;
+                            neighborTile[n] = (y - 1) > 0 ? _wvm.CurrentWorld.Tiles[x, y - 1] : null;
+                            neighborTile[w] = (x - 1) > 0 ? _wvm.CurrentWorld.Tiles[x - 1, y] : null;
+                            neighborTile[s] = (y + 1) < height ? _wvm.CurrentWorld.Tiles[x, y + 1] : null;
+
+                            //neighborTile[ne] = (x + 1) < width && (y - 1) > 0 ? _wvm.CurrentWorld.Tiles[x + 1, y - 1] : null;
+                            //neighborTile[nw] = (x - 1) > 0 && (y - 1) > 0 ? _wvm.CurrentWorld.Tiles[x - 1, y - 1] : null;
+                            //neighborTile[sw] = (x - 1) > 0 && (y + 1) < height ? _wvm.CurrentWorld.Tiles[x - 1, y + 1] : null;
+                            //neighborTile[se] = (x + 1) < width && (y + 1) < height ? _wvm.CurrentWorld.Tiles[x + 1, y + 1] : null;
 
                             if (_wvm.ShowWalls)
                             {
@@ -1004,16 +1061,80 @@ namespace TEdit.View
                                         var texsize = new Vector2Int32(32, 32);
                                         var source = new Rectangle((curtile.uvWallCache & 0x00FF) * (texsize.X + 4), (curtile.uvWallCache >> 8) * (texsize.Y + 4), texsize.X, texsize.Y);
                                         var dest = new Rectangle(1 + (int)((_scrollPosition.X + x - 0.5) * _zoom), 1 + (int)((_scrollPosition.Y + y - 0.5) * _zoom), (int)_zoom * 2, (int)_zoom * 2);
+                                        new BlendState();
 
-                                        _spriteBatch.Draw(wallTex, dest, source, wallPaintColor, 0f, default(Vector2), SpriteEffects.None, LayerTileWallTextures);
+                                        if (curtile.WallColor == 30)
+                                        {
+                                            _spriteBatch.Draw(wallTex, dest, source, Color.White, 0f, default(Vector2), SpriteEffects.None, LayerTileWallTextures);
+                                        }
+                                        else
+                                        {
+                                            _spriteBatch.Draw(wallTex, dest, source, wallPaintColor, 0f, default(Vector2), SpriteEffects.None, LayerTileWallTextures);
+                                        }
                                     }
                                 }
                             }
+                        }
+                        catch (Exception ex)
+                        {
+                            // failed to render tile? log?
+                        }
+                    }
+                }
+            }
+        }
+
+        private void DrawTileTextures(bool drawInverted = false)
+        {
+            Rectangle visibleBounds = GetViewingArea();
+            Terraria.Objects.BlendRules blendRules = Terraria.Objects.BlendRules.Instance;
+            var width = _wvm.CurrentWorld.TilesWide;
+            var height = _wvm.CurrentWorld.TilesHigh;
+
+
+            if (visibleBounds.Height * visibleBounds.Width < 25000)
+            {
+                //Extended the viewing space to give tiles time to cache their UV's
+                for (int y = visibleBounds.Top - 1; y < visibleBounds.Bottom + 2; y++)
+                {
+                    for (int x = visibleBounds.Left - 1; x < visibleBounds.Right + 2; x++)
+                    {
+                        try
+                        {
+                            if (x < 0 ||
+                                y < 0 ||
+                                x >= _wvm.CurrentWorld.TilesWide ||
+                                y >= _wvm.CurrentWorld.TilesHigh)
+                            {
+                                continue;
+                            }
+
+
+                            var curtile = _wvm.CurrentWorld.Tiles[x, y];
+
+                            if ((curtile.TileColor == 30) != drawInverted) continue;
+
+                            if (curtile.Type >= World.TileProperties.Count) { continue; }
+                            var tileprop = World.GetTileProperties(curtile.Type);
+
+                            //Neighbor tiles are often used when dynamically determining which UV position to render
+                            int e = 0, n = 1, w = 2, s = 3, ne = 4, nw = 5, sw = 6, se = 7;
+                            Tile[] neighborTile = new Tile[8];
+                            neighborTile[e] = (x + 1) < width ? _wvm.CurrentWorld.Tiles[x + 1, y] : null;
+                            neighborTile[n] = (y - 1) > 0 ? _wvm.CurrentWorld.Tiles[x, y - 1] : null;
+                            neighborTile[w] = (x - 1) > 0 ? _wvm.CurrentWorld.Tiles[x - 1, y] : null;
+                            neighborTile[s] = (y + 1) < height ? _wvm.CurrentWorld.Tiles[x, y + 1] : null;
+                            neighborTile[ne] = (x + 1) < width && (y - 1) > 0 ? _wvm.CurrentWorld.Tiles[x + 1, y - 1] : null;
+                            neighborTile[nw] = (x - 1) > 0 && (y - 1) > 0 ? _wvm.CurrentWorld.Tiles[x - 1, y - 1] : null;
+                            neighborTile[sw] = (x - 1) > 0 && (y + 1) < height ? _wvm.CurrentWorld.Tiles[x - 1, y + 1] : null;
+                            neighborTile[se] = (x + 1) < width && (y + 1) < height ? _wvm.CurrentWorld.Tiles[x + 1, y + 1] : null;
+
+
+
                             if (_wvm.ShowTiles)
                             {
                                 if (curtile.IsActive)
                                 {
-
                                     var tilePaintColor = curtile.TileColor == 0 ? Color.White : World.PaintProperties[curtile.TileColor].PaintColor;
 
                                     if (tileprop.IsFramed)
@@ -2035,10 +2156,10 @@ namespace TEdit.View
                                                 }
                                                 if (tileprop.MergeWith.HasValue && tileprop.MergeWith.Value > -1) //Merges with a specific type
                                                 {
-                                                    mergeMask |= (neighborTile[e] != null && neighborTile[e].IsActive   && neighborTile[e].Type == tileprop.MergeWith.Value) ? 0x0001 : 0x0000;
-                                                    mergeMask |= (neighborTile[n] != null && neighborTile[n].IsActive   && neighborTile[n].Type == tileprop.MergeWith.Value) ? 0x0010 : 0x0000;
-                                                    mergeMask |= (neighborTile[w] != null && neighborTile[w].IsActive   && neighborTile[w].Type == tileprop.MergeWith.Value) ? 0x0100 : 0x0000;
-                                                    mergeMask |= (neighborTile[s] != null && neighborTile[s].IsActive   && neighborTile[s].Type == tileprop.MergeWith.Value) ? 0x1000 : 0x0000;
+                                                    mergeMask |= (neighborTile[e] != null && neighborTile[e].IsActive && neighborTile[e].Type == tileprop.MergeWith.Value) ? 0x0001 : 0x0000;
+                                                    mergeMask |= (neighborTile[n] != null && neighborTile[n].IsActive && neighborTile[n].Type == tileprop.MergeWith.Value) ? 0x0010 : 0x0000;
+                                                    mergeMask |= (neighborTile[w] != null && neighborTile[w].IsActive && neighborTile[w].Type == tileprop.MergeWith.Value) ? 0x0100 : 0x0000;
+                                                    mergeMask |= (neighborTile[s] != null && neighborTile[s].IsActive && neighborTile[s].Type == tileprop.MergeWith.Value) ? 0x1000 : 0x0000;
                                                     mergeMask |= (neighborTile[ne] != null && neighborTile[ne].IsActive && neighborTile[ne].Type == tileprop.MergeWith.Value) ? 0x00010000 : 0x00000000;
                                                     mergeMask |= (neighborTile[nw] != null && neighborTile[nw].IsActive && neighborTile[nw].Type == tileprop.MergeWith.Value) ? 0x00100000 : 0x00000000;
                                                     mergeMask |= (neighborTile[sw] != null && neighborTile[sw].IsActive && neighborTile[sw].Type == tileprop.MergeWith.Value) ? 0x01000000 : 0x00000000;
@@ -2130,6 +2251,54 @@ namespace TEdit.View
                                     }
                                 }
                             }
+                        }
+                        catch (Exception ex)
+                        {
+                            // failed to render tile? log?
+                        }
+                    }
+                }
+            }
+        }
+
+        private void DrawTileWires()
+        {
+            Rectangle visibleBounds = GetViewingArea();
+            Terraria.Objects.BlendRules blendRules = Terraria.Objects.BlendRules.Instance;
+            var width = _wvm.CurrentWorld.TilesWide;
+            var height = _wvm.CurrentWorld.TilesHigh;
+
+
+            if (visibleBounds.Height * visibleBounds.Width < 25000)
+            {
+                //Extended the viewing space to give tiles time to cache their UV's
+                for (int y = visibleBounds.Top - 1; y < visibleBounds.Bottom + 2; y++)
+                {
+                    for (int x = visibleBounds.Left - 1; x < visibleBounds.Right + 2; x++)
+                    {
+                        try
+                        {
+                            if (x < 0 ||
+                                y < 0 ||
+                                x >= _wvm.CurrentWorld.TilesWide ||
+                                y >= _wvm.CurrentWorld.TilesHigh)
+                            {
+                                continue;
+                            }
+
+                            var curtile = _wvm.CurrentWorld.Tiles[x, y];
+                            if (curtile.Type >= World.TileProperties.Count) { continue; }
+
+                            //Neighbor tiles are often used when dynamically determining which UV position to render
+                            int e = 0, n = 1, w = 2, s = 3, ne = 4, nw = 5, sw = 6, se = 7;
+                            Tile[] neighborTile = new Tile[8];
+                            neighborTile[e] = (x + 1) < width ? _wvm.CurrentWorld.Tiles[x + 1, y] : null;
+                            neighborTile[n] = (y - 1) > 0 ? _wvm.CurrentWorld.Tiles[x, y - 1] : null;
+                            neighborTile[w] = (x - 1) > 0 ? _wvm.CurrentWorld.Tiles[x - 1, y] : null;
+                            neighborTile[s] = (y + 1) < height ? _wvm.CurrentWorld.Tiles[x, y + 1] : null;
+
+
+
                             if (_wvm.ShowRedWires || _wvm.ShowBlueWires || _wvm.ShowGreenWires || _wvm.ShowYellowWires)
                             {
                                 var tileTex = (Texture2D)_textureDictionary.GetMisc("WiresNew");
@@ -2202,6 +2371,50 @@ namespace TEdit.View
                                     }
                                 }
                             }
+                        }
+                        catch (Exception ex)
+                        {
+                            // failed to render tile? log?
+                        }
+                    }
+                }
+            }
+        }
+
+        private void DrawTileLiquid()
+        {
+            Rectangle visibleBounds = GetViewingArea();
+            Terraria.Objects.BlendRules blendRules = Terraria.Objects.BlendRules.Instance;
+            var width = _wvm.CurrentWorld.TilesWide;
+            var height = _wvm.CurrentWorld.TilesHigh;
+
+
+            if (visibleBounds.Height * visibleBounds.Width < 25000)
+            {
+                //Extended the viewing space to give tiles time to cache their UV's
+                for (int y = visibleBounds.Top - 1; y < visibleBounds.Bottom + 2; y++)
+                {
+                    for (int x = visibleBounds.Left - 1; x < visibleBounds.Right + 2; x++)
+                    {
+                        try
+                        {
+                            if (x < 0 ||
+                                y < 0 ||
+                                x >= _wvm.CurrentWorld.TilesWide ||
+                                y >= _wvm.CurrentWorld.TilesHigh)
+                            {
+                                continue;
+                            }
+
+                            var curtile = _wvm.CurrentWorld.Tiles[x, y];
+                            if (curtile.Type >= World.TileProperties.Count) { continue; }
+
+                            //Neighbor tiles are often used when dynamically determining which UV position to render
+                            int e = 0, n = 1, w = 2, s = 3, ne = 4, nw = 5, sw = 6, se = 7;
+                            Tile[] neighborTile = new Tile[8];
+
+                            neighborTile[n] = (y - 1) > 0 ? _wvm.CurrentWorld.Tiles[x, y - 1] : null;
+
                             if (_wvm.ShowLiquid)
                             {
                                 if (curtile.LiquidAmount > 0)
@@ -2257,10 +2470,10 @@ namespace TEdit.View
                             // failed to render tile? log?
                         }
                     }
-
                 }
             }
         }
+
 
         public static Vector2Int32 GetRenderUV(ushort type, short U, short V)
         {

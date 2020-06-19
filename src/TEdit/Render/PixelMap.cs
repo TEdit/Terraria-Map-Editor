@@ -146,7 +146,7 @@ namespace TEdit.Render
         public static byte LinearColorBurn(int v1, int v2) => (byte)(((v1 + v2) < 255) ? 0 : (v1 + v2 - 255));
         public static byte Darken(int v1, int v2) => (byte)Math.Min(v1, v2);
         public static byte Lighten(int v1, int v2) => (byte)Math.Max(v1, v2);
-        public static byte Difference(int v1, int v2) => (byte)Math.Abs(v1-v2);
+        public static byte Difference(int v1, int v2) => (byte)Math.Abs(v1 - v2);
         public static byte Exclusion(int v1, int v2) => (byte)(v1 + v2 - v1 * v2 / 127.5);
         public static byte Reflex(int v1, int v2) => (byte)((v1 == 255) ? v1 : Math.Min(255, (v2 * v2 / (255 - v1))));
         public static byte LinearLight(byte v1, byte v2) => (v1 < 128) ? LinearColorBurn(v2, (2 * v1)) : LinearColorDodge(v2, (2 * (v1 - 128)));
@@ -162,7 +162,7 @@ namespace TEdit.Render
 
             if (tile.Wall > 0 && showWall)
             {
-                
+
                 if (World.WallProperties.Count > tile.Wall)
                 {
                     if (World.WallProperties[tile.Wall].Color.A != 0)
@@ -177,8 +177,25 @@ namespace TEdit.Render
                 if (tile.WallColor > 0 && (!showTile || tile.TileColor == 0))
                 {
                     var paint = World.PaintProperties[tile.WallColor].Color;
-                    paint.A = (byte)32;
-                    c = c.AlphaBlend(paint);
+                    switch (tile.WallColor)
+                    {
+                        case 29:
+                            float light = c.B * 0.3f;
+                            c.R = (byte)(c.R * light);
+                            c.G = (byte)(c.G * light);
+                            c.B = (byte)(c.B * light);
+                            break;
+                        case 30:
+                            c.R = (byte)((byte.MaxValue - c.R) * 0.5);
+                            c.G = (byte)((byte.MaxValue - c.G) * 0.5);
+                            c.B = (byte)((byte.MaxValue - c.B) * 0.5);
+                            break;
+                        default:
+                            paint.A = (byte)32;
+                            c = c.AlphaBlend(paint);
+                            break;
+                    }
+
                 }
             }
             else
@@ -195,8 +212,25 @@ namespace TEdit.Render
                 if (tile.TileColor > 0)
                 {
                     var paint = World.PaintProperties[tile.TileColor].Color;
-                    paint.A = (byte)64;
-                    c = c.AlphaBlend(paint);
+
+                    switch (tile.TileColor)
+                    {
+                        case 29:
+                            float light = c.B * 0.3f;
+                            c.R = (byte)(c.R * light);
+                            c.G = (byte)(c.G * light);
+                            c.B = (byte)(c.B * light);
+                            break;
+                        case 30:
+                            c.R = (byte)(byte.MaxValue - c.R);
+                            c.G = (byte)(byte.MaxValue - c.G);
+                            c.B = (byte)(byte.MaxValue - c.B);
+                            break;
+                        default:
+                            paint.A = (byte)32;
+                            c = c.AlphaBlend(paint);
+                            break;
+                    }
                 }
 
             }
