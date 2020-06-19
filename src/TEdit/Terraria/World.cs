@@ -246,9 +246,9 @@ namespace TEdit.Terraria
                 }
 
                 var sprite = World.Sprites2.FirstOrDefault(s => s.Tile == tile.Type);
-                var style = sprite.GetStyleFromUV(tile.GetUV());
+                var style = sprite?.GetStyleFromUV(tile.GetUV());
 
-                var sizeTiles = style.Value?.SizeTiles ?? sprite.SizeTiles.FirstOrDefault();
+                var sizeTiles = style?.Value?.SizeTiles ?? sprite?.SizeTiles?.FirstOrDefault() ?? tileprop.FrameSize.FirstOrDefault();
                               
 
                 int xShift = tile.U % ((tileprop.TextureGrid.X + 2) * sizeTiles.X) / (tileprop.TextureGrid.X + 2);

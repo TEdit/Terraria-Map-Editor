@@ -28,6 +28,20 @@ namespace TEdit.ViewModel
                         PixelMap.SetPixelColor(x, y, Render.PixelMap.GetTileColor(CurrentWorld.Tiles[x, y], curBgColor, _showWalls, _showTiles, _showLiquid, _showRedWires, _showBlueWires, _showGreenWires, _showYellowWires));
                     }
                 }
+
+                foreach (var te in CurrentWorld.TileEntities.Where(te => Selection.SelectionArea.Contains(te.PosX, te.PosY)).ToList())
+                {
+                    CurrentWorld.TileEntities.Remove(te);
+                }
+                foreach (var chest in CurrentWorld.Chests.Where(item => Selection.SelectionArea.Contains(item.X, item.Y)).ToList())
+                {
+                    CurrentWorld.Chests.Remove(chest);
+                }
+                foreach (var sign in CurrentWorld.Signs.Where(item => Selection.SelectionArea.Contains(item.X, item.Y)).ToList())
+                {
+                    CurrentWorld.Signs.Remove(sign);
+                }
+
                 UndoManager.SaveUndo();
             }
         }
@@ -183,7 +197,7 @@ namespace TEdit.ViewModel
                     SetPixelAutomatic(curTile, tile: TilePicker.Tile);
             }
         }
-        
+
         private void SetTrack(int x, int y, Tile curTile, bool erase, bool hammer, bool check)
         {
             if (TilePicker.TrackMode == TrackMode.Pressure)
@@ -234,7 +248,7 @@ namespace TEdit.ViewModel
             }
             else
             {
-                if(erase)
+                if (erase)
                 {
                     int num1 = curTile.U;
                     int num2 = curTile.V;
@@ -609,9 +623,8 @@ namespace TEdit.ViewModel
                 return World.GlobalColors["Rock"];
             else if (y > CurrentWorld.GroundLevel)
                 return World.GlobalColors["Earth"];
-            else 
+            else
                 return World.GlobalColors["Sky"];
         }
     }
 }
- 
