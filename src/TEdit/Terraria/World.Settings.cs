@@ -297,13 +297,13 @@ namespace TEdit.Terraria
                     _tallynames.Add(tally, curItem.Name);
                 int head = (int?)xElement.Attribute("Head") ?? -1;
                 if (head >= 0)
-                    _armorHeadNames.Add(head, curItem.Name);
+                    _armorHeadNames.Add(curItem.Id, curItem.Name);
                 int body = (int?)xElement.Attribute("Body") ?? -1;
                 if (body >= 0)
-                    _armorBodyNames.Add(body, curItem.Name);
+                    _armorBodyNames.Add(curItem.Id, curItem.Name);
                 int legs = (int?)xElement.Attribute("Legs") ?? -1;
                 if (legs >= 0)
-                    _armorLegsNames.Add(legs, curItem.Name);
+                    _armorLegsNames.Add(curItem.Id, curItem.Name);
                 bool rack = (bool?)xElement.Attribute("Rack") ?? false;
                 if (rack)
                     _rackable.Add(curItem.Id, curItem.Name);
