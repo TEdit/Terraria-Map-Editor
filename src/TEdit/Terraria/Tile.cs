@@ -62,7 +62,13 @@ namespace TEdit.Terraria
         WeaponRack = 471,
         WeaponRackLegacy = 334,
         HatRack = 475,
-        TeleportationPylon = 597
+        TeleportationPylon = 597,
+        DoorClosed = 10,
+        DoorOpen = 11,
+        TrapDoor = 386,
+        TrapDoorOpen = 387,
+        TallGate = 388,
+        TallGateClosed = 389
     }
     
 
@@ -95,6 +101,17 @@ namespace TEdit.Terraria
         public byte lazyMergeId = 0xFF; //The ID here refers to a number that helps blocks know whether they are actually merged with a nearby tile
         [NonSerialized] /* Heathtech */
         public bool hasLazyChecked = false; //Whether the above check has taken place
+
+        public static bool StopsWalls(ushort type)
+        {
+            return type == (ushort)TileType.DoorClosed ||
+                   type == (ushort)TileType.DoorOpen ||
+                   type == (ushort)TileType.TrapDoor ||
+                   type == (ushort)TileType.TrapDoorOpen ||
+                   type == (ushort)TileType.TallGate ||
+                   type == (ushort)TileType.DoorClosed ||
+                   type == (ushort)TileType.TallGateClosed;
+        }
 
         #region BitFlags
         //private const int IsActivePosition = 0;
