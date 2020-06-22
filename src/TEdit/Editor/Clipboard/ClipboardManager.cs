@@ -367,7 +367,7 @@ namespace TEdit.Editor.Clipboard
 
                     Tile tile = (Tile)buffer.Tiles[x, y].Clone();
                     var tileProperties = World.TileProperties[tile.Type];
-
+                    flippedBuffer.Tiles[bufferX, bufferY] = (Tile)tile;
 
                     // locate all the sprites and make a list
                     if (tileProperties.IsFramed)
@@ -425,7 +425,7 @@ namespace TEdit.Editor.Clipboard
                             }
                         }
 
-                        flippedBuffer.Tiles[bufferX, bufferY] = (Tile)tile;
+                        
                     }
                 }
             }
