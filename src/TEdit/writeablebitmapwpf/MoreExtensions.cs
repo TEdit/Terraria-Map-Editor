@@ -9,7 +9,7 @@ namespace System.Windows.Media.Imaging
             var fileInfo = new FileInfo(filename);
             if (fileInfo.Directory != null && !fileInfo.Directory.Exists)
             {
-                fileInfo.Create();
+                fileInfo.Directory.Create();
             }
             using (var filestream = new FileStream(filename, FileMode.Create))
             {
