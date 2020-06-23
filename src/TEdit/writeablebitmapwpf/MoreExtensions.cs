@@ -6,6 +6,11 @@ namespace System.Windows.Media.Imaging
     {
         public static void SavePng(this WriteableBitmap wbmp, string filename)
         {
+            var fileInfo = new FileInfo(filename);
+            if (fileInfo.Directory != null && !fileInfo.Directory.Exists)
+            {
+                fileInfo.Create();
+            }
             using (var filestream = new FileStream(filename, FileMode.Create))
             {
                 BitmapEncoder encoder = new PngBitmapEncoder();
