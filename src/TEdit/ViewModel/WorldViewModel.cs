@@ -202,7 +202,8 @@ namespace TEdit.ViewModel
         private void UpdateSpriteStyleView()
         {
             if (SelectedSpriteTile2 == null) { return; }
-            SpriteStylesView = (ListCollectionView)CollectionViewSource.GetDefaultView(new ObservableCollection<KeyValuePair<int,SpriteSub>>(SelectedSpriteTile2.Styles.ToList()));
+            SpriteStylesView = (ListCollectionView)CollectionViewSource.GetDefaultView(new ObservableCollection<KeyValuePair<int, SpriteSub>>(SelectedSpriteTile2.Styles.ToList()));
+            SpriteStylesView.SortDescriptions.Add(new SortDescription("Key", ListSortDirection.Ascending));
             SpriteStylesView.Filter = (o) =>
             {
                 if (string.IsNullOrWhiteSpace(_spriteFilter)) return true;
@@ -424,7 +425,7 @@ namespace TEdit.ViewModel
                 if (value?.Styles != null && value.Styles.Count > 0)
                 {
                     SelectedSprite2 = value.Styles.First();
-                }                
+                }
                 PreviewChange();
             }
         }
