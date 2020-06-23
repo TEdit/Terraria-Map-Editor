@@ -697,43 +697,72 @@ namespace TEdit.View
             _spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.Default, RasterizerState.CullNone);
 
             DrawPixelTiles();
+
+            if (_wvm.ShowTextures && _textureDictionary.Valid)
+            {
+                DrawTileBackgrounds();
+            }
+
             _spriteBatch.End();
-            _spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.Default, RasterizerState.CullNone);
 
 
             // Draw sprite overlays
             if (_wvm.ShowTextures && _textureDictionary.Valid)
             {
-                DrawTileBackgrounds();
-                DrawTileWalls();
-                _spriteBatch.End();
 
-                _spriteBatch.Begin(SpriteSortMode.Immediate, _negativePaint, SamplerState.PointClamp, DepthStencilState.Default, RasterizerState.CullNone);
-                DrawTileWalls(true);
-                _spriteBatch.End();
 
-                _spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.Default, RasterizerState.CullNone);
-                DrawTileTextures();
-                _spriteBatch.End();
 
-                _spriteBatch.Begin(SpriteSortMode.Immediate, _negativePaint, SamplerState.PointClamp, DepthStencilState.Default, RasterizerState.CullNone);
-                DrawTileTextures(true);
-                _spriteBatch.End();
-
-                _spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.Default, RasterizerState.CullNone);
-                DrawTileWires();
-                DrawTileLiquid();
-                // Draw Tile Entities
-
-                if (_zoom > 5)
+                if (_wvm.ShowWalls)
                 {
-                    DrawTileEntities();
+                    _spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.Default, RasterizerState.CullNone);
+                    DrawTileWalls();
+                    _spriteBatch.End();
+
+                    _spriteBatch.Begin(SpriteSortMode.Immediate, _negativePaint, SamplerState.PointClamp, DepthStencilState.Default, RasterizerState.CullNone);
+                    DrawTileWalls(true);
+                    _spriteBatch.End();
+                }
+
+                if (_wvm.ShowTiles)
+                {
+                    _spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.Default, RasterizerState.CullNone);
+                    DrawTileTextures();
+                    _spriteBatch.End();
+
+                    _spriteBatch.Begin(SpriteSortMode.Immediate, _negativePaint, SamplerState.PointClamp, DepthStencilState.Default, RasterizerState.CullNone);
+                    DrawTileTextures(true);
+                    _spriteBatch.End();
+
+                }
+
+                if ((_wvm.ShowTiles) ||
+                    (_wvm.ShowBlueWires || _wvm.ShowRedWires || _wvm.ShowGreenWires || _wvm.ShowYellowWires) ||
+                    (_wvm.ShowLiquid))
+                {
+
+                    _spriteBatch.Begin(SpriteSortMode.BackToFront, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.Default, RasterizerState.CullNone);
+
+                    if (_wvm.ShowBlueWires || _wvm.ShowRedWires || _wvm.ShowGreenWires || _wvm.ShowYellowWires)
+                    {
+                        DrawTileWires();
+                    }
+
+                    if (_wvm.ShowLiquid)
+                    {
+                        DrawTileLiquid();
+                    }
+                    // Draw Tile Entities
+
+                    if (_wvm.ShowTiles)
+                    {
+                        DrawTileEntities();
+                    }
+
+                    _spriteBatch.End();
                 }
             }
 
-            _spriteBatch.End();
             _spriteBatch.Begin(SpriteSortMode.BackToFront, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.Default, RasterizerState.CullNone);
-
             if (_wvm.ShowGrid)
                 DrawGrid();
 
@@ -758,8 +787,14 @@ namespace TEdit.View
             int x = 0;
             int y = 0;
             Rectangle source;
+            Rectangle visibleBounds = GetViewingArea();
+            if (visibleBounds.Height * visibleBounds.Width > 25000) return;
+
+
             foreach (var te in _wvm.CurrentWorld.TileEntities)
             {
+                if (!visibleBounds.Contains(te.PosX, te.PosY)) continue;
+
                 curtile = _wvm.CurrentWorld.Tiles[te.PosX, te.PosY];
                 x = te.PosX;
                 y = te.PosY;
@@ -996,6 +1031,9 @@ namespace TEdit.View
             }
         }
 
+        private Tile[] neighborTile = new Tile[8];
+        const int e = 0, n = 1, w = 2, s = 3, ne = 4, nw = 5, sw = 6, se = 7;
+
         private void DrawTileWalls(bool drawInverted = false)
         {
             Rectangle visibleBounds = GetViewingArea();
@@ -1025,17 +1063,14 @@ namespace TEdit.View
                             if ((curtile.WallColor == 30) != drawInverted) continue;
 
                             //Neighbor tiles are often used when dynamically determining which UV position to render
-                            int e = 0, n = 1, w = 2, s = 3, ne = 4, nw = 5, sw = 6, se = 7;
-                            Tile[] neighborTile = new Tile[8];
                             neighborTile[e] = (x + 1) < width ? _wvm.CurrentWorld.Tiles[x + 1, y] : null;
                             neighborTile[n] = (y - 1) > 0 ? _wvm.CurrentWorld.Tiles[x, y - 1] : null;
                             neighborTile[w] = (x - 1) > 0 ? _wvm.CurrentWorld.Tiles[x - 1, y] : null;
                             neighborTile[s] = (y + 1) < height ? _wvm.CurrentWorld.Tiles[x, y + 1] : null;
-
-                            //neighborTile[ne] = (x + 1) < width && (y - 1) > 0 ? _wvm.CurrentWorld.Tiles[x + 1, y - 1] : null;
-                            //neighborTile[nw] = (x - 1) > 0 && (y - 1) > 0 ? _wvm.CurrentWorld.Tiles[x - 1, y - 1] : null;
-                            //neighborTile[sw] = (x - 1) > 0 && (y + 1) < height ? _wvm.CurrentWorld.Tiles[x - 1, y + 1] : null;
-                            //neighborTile[se] = (x + 1) < width && (y + 1) < height ? _wvm.CurrentWorld.Tiles[x + 1, y + 1] : null;
+                            neighborTile[ne] = (x + 1) < width && (y - 1) > 0 ? _wvm.CurrentWorld.Tiles[x + 1, y - 1] : null;
+                            neighborTile[nw] = (x - 1) > 0 && (y - 1) > 0 ? _wvm.CurrentWorld.Tiles[x - 1, y - 1] : null;
+                            neighborTile[sw] = (x - 1) > 0 && (y + 1) < height ? _wvm.CurrentWorld.Tiles[x - 1, y + 1] : null;
+                            neighborTile[se] = (x + 1) < width && (y + 1) < height ? _wvm.CurrentWorld.Tiles[x + 1, y + 1] : null;
 
                             if (_wvm.ShowWalls)
                             {
@@ -1061,7 +1096,6 @@ namespace TEdit.View
                                         var texsize = new Vector2Int32(32, 32);
                                         var source = new Rectangle((curtile.uvWallCache & 0x00FF) * (texsize.X + 4), (curtile.uvWallCache >> 8) * (texsize.Y + 4), texsize.X, texsize.Y);
                                         var dest = new Rectangle(1 + (int)((_scrollPosition.X + x - 0.5) * _zoom), 1 + (int)((_scrollPosition.Y + y - 0.5) * _zoom), (int)_zoom * 2, (int)_zoom * 2);
-                                        new BlendState();
 
                                         if (curtile.WallColor == 30)
                                         {
@@ -1118,8 +1152,7 @@ namespace TEdit.View
                             var tileprop = World.GetTileProperties(curtile.Type);
 
                             //Neighbor tiles are often used when dynamically determining which UV position to render
-                            int e = 0, n = 1, w = 2, s = 3, ne = 4, nw = 5, sw = 6, se = 7;
-                            Tile[] neighborTile = new Tile[8];
+                            //Tile[] neighborTile = new Tile[8];
                             neighborTile[e] = (x + 1) < width ? _wvm.CurrentWorld.Tiles[x + 1, y] : null;
                             neighborTile[n] = (y - 1) > 0 ? _wvm.CurrentWorld.Tiles[x, y - 1] : null;
                             neighborTile[w] = (x - 1) > 0 ? _wvm.CurrentWorld.Tiles[x - 1, y] : null;
