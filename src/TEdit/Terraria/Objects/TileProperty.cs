@@ -18,6 +18,7 @@ namespace TEdit.Terraria.Objects
         private Vector2Short _frameGap = new Vector2Short(0, 0);
         private readonly ObservableCollection<FrameProperty> _frames = new ObservableCollection<FrameProperty>();
         private bool _isSolid;
+        private bool _saveSlope;
         private bool _isSolidTop;
         private bool _isLight;
         private FramePlacement _placement;
@@ -95,6 +96,14 @@ namespace TEdit.Terraria.Objects
             get { return _isSolid; }
             set { Set("IsSolid", ref _isSolid, value); }
         }
+
+        public bool SaveSlope
+        {
+            get { return _saveSlope; }
+            set { Set("SaveSlope", ref _saveSlope, value); }
+        }
+
+        public bool HasSlopes => IsSolid || SaveSlope;
 
         public ObservableCollection<FrameProperty> Frames
         {

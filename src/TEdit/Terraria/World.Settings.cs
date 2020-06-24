@@ -189,6 +189,7 @@ namespace TEdit.Terraria
                 curTile.Id = (int?)xElement.Attribute("Id") ?? 0;
                 curTile.IsFramed = (bool?)xElement.Attribute("Framed") ?? false;
                 curTile.IsSolid = (bool?)xElement.Attribute("Solid") ?? false;
+                curTile.SaveSlope = (bool?)xElement.Attribute("SaveSlope") ?? false;
                 curTile.IsSolidTop = (bool?)xElement.Attribute("SolidTop") ?? false;
                 curTile.IsLight = (bool?)xElement.Attribute("Light") ?? false;
                 curTile.IsAnimated = (bool?)xElement.Attribute("IsAnimated") ?? false;

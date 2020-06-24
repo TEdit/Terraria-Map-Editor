@@ -1829,9 +1829,9 @@ namespace TEdit.View
                                                 uv = new Vector2Int32(0, 0);
                                                 byte state = 0x00;
                                                 state |= (byte)((neighborTile[w] != null && neighborTile[w].IsActive && neighborTile[w].Type == curtile.Type) ? 0x01 : 0x00);
-                                                state |= (byte)((neighborTile[w] != null && neighborTile[w].IsActive && World.GetTileProperties(neighborTile[w].Type).IsSolid && neighborTile[w].Type != curtile.Type) ? 0x02 : 0x00);
+                                                state |= (byte)((neighborTile[w] != null && neighborTile[w].IsActive && World.GetTileProperties(neighborTile[w].Type).HasSlopes && neighborTile[w].Type != curtile.Type) ? 0x02 : 0x00);
                                                 state |= (byte)((neighborTile[e] != null && neighborTile[e].IsActive && neighborTile[e].Type == curtile.Type) ? 0x04 : 0x00);
-                                                state |= (byte)((neighborTile[e] != null && neighborTile[e].IsActive && World.GetTileProperties(neighborTile[e].Type).IsSolid && neighborTile[e].Type != curtile.Type) ? 0x08 : 0x00);
+                                                state |= (byte)((neighborTile[e] != null && neighborTile[e].IsActive && World.GetTileProperties(neighborTile[e].Type).HasSlopes && neighborTile[e].Type != curtile.Type) ? 0x08 : 0x00);
                                                 switch (state)
                                                 {
                                                     case 0x00:

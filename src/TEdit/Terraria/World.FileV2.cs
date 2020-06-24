@@ -983,7 +983,7 @@ namespace TEdit.Terraria
 
                 // grab bits[4, 5, 6] and shift 4 places to 0,1,2. This byte is our brick style
                 byte brickStyle = (byte)((header2 & 112) >> 4);
-                if (brickStyle != 0 && TileProperties.Count > tile.Type && TileProperties[tile.Type].IsSolid)
+                if (brickStyle != 0 && TileProperties.Count > tile.Type && TileProperties[tile.Type].HasSlopes)
                 {
                     tile.BrickStyle = (BrickStyle)brickStyle;
                 }

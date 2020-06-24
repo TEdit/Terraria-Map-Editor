@@ -793,14 +793,14 @@ namespace TEdit.Terraria
             {
                 bool isHalfBrick = b.ReadBoolean();
 
-                if (tileProperty == null || !tileProperty.IsSolid)
+                if (tileProperty == null || !tileProperty.HasSlopes)
                     isHalfBrick = false;
 
                 if (version >= 49)
                 {
                     tile.BrickStyle = (BrickStyle)b.ReadByte();
 
-                    if (tileProperty == null || !tileProperty.IsSolid)
+                    if (tileProperty == null || !tileProperty.HasSlopes)
                         tile.BrickStyle = 0;
                 }
             }
