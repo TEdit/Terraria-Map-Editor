@@ -3,9 +3,11 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:p="clr-namespace:TEdit.Properties"
+             
              mc:Ignorable="d" >
     <StackPanel Orientation="Vertical">
-        <TextBlock Text="Point" Margin="2" />
+        <TextBlock Text="{x:Static p:Language.tool_point_title}" Margin="2" />
         <ComboBox Width="200" ItemsSource="{Binding Points}" SelectedItem="{Binding SelectedPoint, Mode=OneWayToSource}" />
     </StackPanel>
 </UserControl>

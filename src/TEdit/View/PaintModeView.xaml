@@ -5,6 +5,8 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:tedit="clr-namespace:TEdit.UI.Xaml"
              xmlns:editor="clr-namespace:TEdit.Editor" xmlns:Terraria="clr-namespace:TEdit.Terraria"
              mc:Ignorable="d" 
+             xmlns:p="clr-namespace:TEdit.Properties"
+             
              Background="{StaticResource WindowBackgroundBrush}" Foreground="{StaticResource TextBrush}" Height="90">
     <UserControl.Resources>
         <Style TargetType="{x:Type ComboBox}" BasedOn="{StaticResource {x:Type ComboBox}}">

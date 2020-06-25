@@ -117,6 +117,24 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="BrickStyle_Full" xml:space="preserve">
+    <value>Full Brick</value>
+  </data>
+  <data name="BrickStyle_HalfBrick" xml:space="preserve">
+    <value>Half Brick</value>
+  </data>
+  <data name="BrickStyle_SlopeBottomLeft" xml:space="preserve">
+    <value>Slope Bottom Left</value>
+  </data>
+  <data name="BrickStyle_SlopeBottomRight" xml:space="preserve">
+    <value>Slope Bottom Right</value>
+  </data>
+  <data name="BrickStyle_SlopeTopLeft" xml:space="preserve">
+    <value>Slope Top Left</value>
+  </data>
+  <data name="BrickStyle_SlopeTopRight" xml:space="preserve">
+    <value>Slope Top Right</value>
+  </data>
   <data name="BrushShape_Left" xml:space="preserve">
     <value>Diagonal Left</value>
     <comment>enum:BrushShape.Left</comment>
@@ -169,6 +187,45 @@ Press retry to pick a new folder or cancel to use {0} as your terraria path.</va
   </data>
   <data name="global_enjoytedit" xml:space="preserve">
     <value>Enjoy TEdit? Support Us!</value>
+  </data>
+  <data name="HalfBlockMode_HalfBLock" xml:space="preserve">
+    <value>Half Block</value>
+  </data>
+  <data name="HalfBlockMode_NoAction" xml:space="preserve">
+    <value>No Change</value>
+  </data>
+  <data name="HalfBlockMode_RampLeft" xml:space="preserve">
+    <value>Ramp Left</value>
+  </data>
+  <data name="HalfBlockMode_RampRight" xml:space="preserve">
+    <value>Ramp Right</value>
+  </data>
+  <data name="HalfBlockMode_Solid" xml:space="preserve">
+    <value>Set Solid</value>
+  </data>
+  <data name="LiquidType_Honey" xml:space="preserve">
+    <value>Honey</value>
+  </data>
+  <data name="LiquidType_Lava" xml:space="preserve">
+    <value>Lava</value>
+  </data>
+  <data name="LiquidType_None" xml:space="preserve">
+    <value>No Liquid</value>
+  </data>
+  <data name="LiquidType_Water" xml:space="preserve">
+    <value>Water</value>
+  </data>
+  <data name="MaskMode_Empty" xml:space="preserve">
+    <value>Edit Empty</value>
+  </data>
+  <data name="MaskMode_Match" xml:space="preserve">
+    <value>Edit Matching</value>
+  </data>
+  <data name="MaskMode_NotMatching" xml:space="preserve">
+    <value>Edit not Matching</value>
+  </data>
+  <data name="MaskMode_Off" xml:space="preserve">
+    <value>Disable Mask</value>
   </data>
   <data name="menu_edit" xml:space="preserve">
     <value>Edit</value>
@@ -278,6 +335,46 @@ Press retry to pick a new folder or cancel to use {0} as your terraria path.</va
   <data name="menu_toolbar_zoom_out" xml:space="preserve">
     <value>Zoom Out</value>
   </data>
+  <data name="MorphBiome_Corruption" xml:space="preserve">
+    <value>Corruption</value>
+    <comment>enum:MorphBiome.Corruption</comment>
+  </data>
+  <data name="MorphBiome_Crimson" xml:space="preserve">
+    <value>Crimson</value>
+    <comment>enum:MorphBiome.Crimson</comment>
+  </data>
+  <data name="MorphBiome_Custom" xml:space="preserve">
+    <value>Custom</value>
+    <comment>enum:MorphBiome.Custom</comment>
+  </data>
+  <data name="MorphBiome_Desert" xml:space="preserve">
+    <value>Desert</value>
+    <comment>enum:MorphBiome.Desert</comment>
+  </data>
+  <data name="MorphBiome_Hallow" xml:space="preserve">
+    <value>Hallow</value>
+    <comment>enum:MorphBiome.Hallow</comment>
+  </data>
+  <data name="MorphBiome_Jungle" xml:space="preserve">
+    <value>Jungle</value>
+    <comment>enum:MorphBiome.Jungle</comment>
+  </data>
+  <data name="MorphBiome_Purify" xml:space="preserve">
+    <value>Purify</value>
+    <comment>enum:MorphBiome.Purify</comment>
+  </data>
+  <data name="PaintMode_Liquid" xml:space="preserve">
+    <value>Liquid</value>
+  </data>
+  <data name="PaintMode_TileAndWall" xml:space="preserve">
+    <value>Tile/Wall</value>
+  </data>
+  <data name="PaintMode_Track" xml:space="preserve">
+    <value>Track</value>
+  </data>
+  <data name="PaintMode_Wire" xml:space="preserve">
+    <value>Wire</value>
+  </data>
   <data name="statusbar_extra_label" xml:space="preserve">
     <value>Extra</value>
   </data>
@@ -302,6 +399,18 @@ Press retry to pick a new folder or cancel to use {0} as your terraria path.</va
   <data name="tool_arrow_title" xml:space="preserve">
     <value>Arrow</value>
   </data>
+  <data name="tool_bestiary_import" xml:space="preserve">
+    <value>Import</value>
+  </data>
+  <data name="tool_bestiary_save" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="tool_bestiary_scan" xml:space="preserve">
+    <value>Scan</value>
+  </data>
+  <data name="tool_bestiary_title" xml:space="preserve">
+    <value>Bestiary</value>
+  </data>
   <data name="tool_brush_height_label" xml:space="preserve">
     <value>Height</value>
   </data>
@@ -323,11 +432,80 @@ Press retry to pick a new folder or cancel to use {0} as your terraria path.</va
   <data name="tool_brush_width_label" xml:space="preserve">
     <value>Width</value>
   </data>
+  <data name="tool_clipboard_empty" xml:space="preserve">
+    <value>Empty Clipboard</value>
+  </data>
+  <data name="tool_clipboard_importfalsecolor" xml:space="preserve">
+    <value>Import False Color Image</value>
+  </data>
+  <data name="tool_clipboard_importschematic" xml:space="preserve">
+    <value>Import Schematic or Image</value>
+  </data>
+  <data name="tool_clipboard_ispasteempty" xml:space="preserve">
+    <value>Paste Empty Tiles</value>
+  </data>
+  <data name="tool_clipboard_ispasteliquid" xml:space="preserve">
+    <value>Paste Liquids</value>
+  </data>
+  <data name="tool_clipboard_ispastetiles" xml:space="preserve">
+    <value>Paste Tiles</value>
+  </data>
+  <data name="tool_clipboard_ispastewalls" xml:space="preserve">
+    <value>Paste Walls</value>
+  </data>
+  <data name="tool_clipboard_ispastewire" xml:space="preserve">
+    <value>Paste Wires</value>
+  </data>
   <data name="tool_fill_title" xml:space="preserve">
     <value>Fill</value>
   </data>
   <data name="tool_morph_title" xml:space="preserve">
     <value>Biome Morph</value>
+  </data>
+  <data name="tool_npc_add" xml:space="preserve">
+    <value>Add NPC</value>
+  </data>
+  <data name="tool_npc_name" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="tool_paint_actuator" xml:space="preserve">
+    <value>Is Actuator</value>
+  </data>
+  <data name="tool_paint_brickstyle" xml:space="preserve">
+    <value>Brick Style</value>
+  </data>
+  <data name="tool_paint_extras" xml:space="preserve">
+    <value>Extras</value>
+  </data>
+  <data name="tool_paint_inactive" xml:space="preserve">
+    <value>Actuator/Tile InActive</value>
+  </data>
+  <data name="tool_paint_mask" xml:space="preserve">
+    <value>Mask</value>
+  </data>
+  <data name="tool_paint_maskmode" xml:space="preserve">
+    <value>Mask Mode</value>
+  </data>
+  <data name="tool_paint_mode" xml:space="preserve">
+    <value>Paint Mode</value>
+  </data>
+  <data name="tool_paint_tile_title" xml:space="preserve">
+    <value>Tile</value>
+  </data>
+  <data name="tool_paint_wall_title" xml:space="preserve">
+    <value>Wall</value>
+  </data>
+  <data name="tool_paint_wire_blue" xml:space="preserve">
+    <value>Blue</value>
+  </data>
+  <data name="tool_paint_wire_green" xml:space="preserve">
+    <value>Green</value>
+  </data>
+  <data name="tool_paint_wire_red" xml:space="preserve">
+    <value>Red</value>
+  </data>
+  <data name="tool_paint_wire_yellow" xml:space="preserve">
+    <value>Yellow</value>
   </data>
   <data name="tool_paste_title" xml:space="preserve">
     <value>Paste</value>
@@ -346,5 +524,17 @@ Press retry to pick a new folder or cancel to use {0} as your terraria path.</va
   </data>
   <data name="tool_sprite_title" xml:space="preserve">
     <value>Sprite Placer (OLD)</value>
+  </data>
+  <data name="TrackMode_Booster" xml:space="preserve">
+    <value>Booster</value>
+  </data>
+  <data name="TrackMode_Hammer" xml:space="preserve">
+    <value>Hammer</value>
+  </data>
+  <data name="TrackMode_Pressure" xml:space="preserve">
+    <value>Pressure</value>
+  </data>
+  <data name="TrackMode_Track" xml:space="preserve">
+    <value>Track</value>
   </data>
 </root>

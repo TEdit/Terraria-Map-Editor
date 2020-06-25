@@ -61,6 +61,60 @@ namespace TEdit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Full Brick.
+        /// </summary>
+        public static string BrickStyle_Full {
+            get {
+                return ResourceManager.GetString("BrickStyle_Full", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Half Brick.
+        /// </summary>
+        public static string BrickStyle_HalfBrick {
+            get {
+                return ResourceManager.GetString("BrickStyle_HalfBrick", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Slope Bottom Left.
+        /// </summary>
+        public static string BrickStyle_SlopeBottomLeft {
+            get {
+                return ResourceManager.GetString("BrickStyle_SlopeBottomLeft", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Slope Bottom Right.
+        /// </summary>
+        public static string BrickStyle_SlopeBottomRight {
+            get {
+                return ResourceManager.GetString("BrickStyle_SlopeBottomRight", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Slope Top Left.
+        /// </summary>
+        public static string BrickStyle_SlopeTopLeft {
+            get {
+                return ResourceManager.GetString("BrickStyle_SlopeTopLeft", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Slope Top Right.
+        /// </summary>
+        public static string BrickStyle_SlopeTopRight {
+            get {
+                return ResourceManager.GetString("BrickStyle_SlopeTopRight", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Diagonal Left.
         /// </summary>
         public static string BrushShape_Left {
@@ -202,6 +256,123 @@ namespace TEdit.Properties {
         public static string global_enjoytedit {
             get {
                 return ResourceManager.GetString("global_enjoytedit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Half Block.
+        /// </summary>
+        public static string HalfBlockMode_HalfBLock {
+            get {
+                return ResourceManager.GetString("HalfBlockMode_HalfBLock", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No Change.
+        /// </summary>
+        public static string HalfBlockMode_NoAction {
+            get {
+                return ResourceManager.GetString("HalfBlockMode_NoAction", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ramp Left.
+        /// </summary>
+        public static string HalfBlockMode_RampLeft {
+            get {
+                return ResourceManager.GetString("HalfBlockMode_RampLeft", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ramp Right.
+        /// </summary>
+        public static string HalfBlockMode_RampRight {
+            get {
+                return ResourceManager.GetString("HalfBlockMode_RampRight", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Set Solid.
+        /// </summary>
+        public static string HalfBlockMode_Solid {
+            get {
+                return ResourceManager.GetString("HalfBlockMode_Solid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Honey.
+        /// </summary>
+        public static string LiquidType_Honey {
+            get {
+                return ResourceManager.GetString("LiquidType_Honey", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Lava.
+        /// </summary>
+        public static string LiquidType_Lava {
+            get {
+                return ResourceManager.GetString("LiquidType_Lava", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No Liquid.
+        /// </summary>
+        public static string LiquidType_None {
+            get {
+                return ResourceManager.GetString("LiquidType_None", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Water.
+        /// </summary>
+        public static string LiquidType_Water {
+            get {
+                return ResourceManager.GetString("LiquidType_Water", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Edit Empty.
+        /// </summary>
+        public static string MaskMode_Empty {
+            get {
+                return ResourceManager.GetString("MaskMode_Empty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Edit Matching.
+        /// </summary>
+        public static string MaskMode_Match {
+            get {
+                return ResourceManager.GetString("MaskMode_Match", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Edit not Matching.
+        /// </summary>
+        public static string MaskMode_NotMatching {
+            get {
+                return ResourceManager.GetString("MaskMode_NotMatching", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Disable Mask.
+        /// </summary>
+        public static string MaskMode_Off {
+            get {
+                return ResourceManager.GetString("MaskMode_Off", resourceCulture);
             }
         }
         
@@ -530,6 +701,105 @@ namespace TEdit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Corruption.
+        /// </summary>
+        public static string MorphBiome_Corruption {
+            get {
+                return ResourceManager.GetString("MorphBiome_Corruption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Crimson.
+        /// </summary>
+        public static string MorphBiome_Crimson {
+            get {
+                return ResourceManager.GetString("MorphBiome_Crimson", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Custom.
+        /// </summary>
+        public static string MorphBiome_Custom {
+            get {
+                return ResourceManager.GetString("MorphBiome_Custom", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Desert.
+        /// </summary>
+        public static string MorphBiome_Desert {
+            get {
+                return ResourceManager.GetString("MorphBiome_Desert", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hallow.
+        /// </summary>
+        public static string MorphBiome_Hallow {
+            get {
+                return ResourceManager.GetString("MorphBiome_Hallow", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Jungle.
+        /// </summary>
+        public static string MorphBiome_Jungle {
+            get {
+                return ResourceManager.GetString("MorphBiome_Jungle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Purify.
+        /// </summary>
+        public static string MorphBiome_Purify {
+            get {
+                return ResourceManager.GetString("MorphBiome_Purify", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Liquid.
+        /// </summary>
+        public static string PaintMode_Liquid {
+            get {
+                return ResourceManager.GetString("PaintMode_Liquid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tile/Wall.
+        /// </summary>
+        public static string PaintMode_TileAndWall {
+            get {
+                return ResourceManager.GetString("PaintMode_TileAndWall", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Track.
+        /// </summary>
+        public static string PaintMode_Track {
+            get {
+                return ResourceManager.GetString("PaintMode_Track", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wire.
+        /// </summary>
+        public static string PaintMode_Wire {
+            get {
+                return ResourceManager.GetString("PaintMode_Wire", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Extra.
         /// </summary>
         public static string statusbar_extra_label {
@@ -602,6 +872,42 @@ namespace TEdit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Import.
+        /// </summary>
+        public static string tool_bestiary_import {
+            get {
+                return ResourceManager.GetString("tool_bestiary_import", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save.
+        /// </summary>
+        public static string tool_bestiary_save {
+            get {
+                return ResourceManager.GetString("tool_bestiary_save", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Scan.
+        /// </summary>
+        public static string tool_bestiary_scan {
+            get {
+                return ResourceManager.GetString("tool_bestiary_scan", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bestiary.
+        /// </summary>
+        public static string tool_bestiary_title {
+            get {
+                return ResourceManager.GetString("tool_bestiary_title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Height.
         /// </summary>
         public static string tool_brush_height_label {
@@ -665,6 +971,78 @@ namespace TEdit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Empty Clipboard.
+        /// </summary>
+        public static string tool_clipboard_empty {
+            get {
+                return ResourceManager.GetString("tool_clipboard_empty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Import False Color Image.
+        /// </summary>
+        public static string tool_clipboard_importfalsecolor {
+            get {
+                return ResourceManager.GetString("tool_clipboard_importfalsecolor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Import Schematic or Image.
+        /// </summary>
+        public static string tool_clipboard_importschematic {
+            get {
+                return ResourceManager.GetString("tool_clipboard_importschematic", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Paste Empty Tiles.
+        /// </summary>
+        public static string tool_clipboard_ispasteempty {
+            get {
+                return ResourceManager.GetString("tool_clipboard_ispasteempty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Paste Liquids.
+        /// </summary>
+        public static string tool_clipboard_ispasteliquid {
+            get {
+                return ResourceManager.GetString("tool_clipboard_ispasteliquid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Paste Tiles.
+        /// </summary>
+        public static string tool_clipboard_ispastetiles {
+            get {
+                return ResourceManager.GetString("tool_clipboard_ispastetiles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Paste Walls.
+        /// </summary>
+        public static string tool_clipboard_ispastewalls {
+            get {
+                return ResourceManager.GetString("tool_clipboard_ispastewalls", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Paste Wires.
+        /// </summary>
+        public static string tool_clipboard_ispastewire {
+            get {
+                return ResourceManager.GetString("tool_clipboard_ispastewire", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Fill.
         /// </summary>
         public static string tool_fill_title {
@@ -679,6 +1057,141 @@ namespace TEdit.Properties {
         public static string tool_morph_title {
             get {
                 return ResourceManager.GetString("tool_morph_title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add NPC.
+        /// </summary>
+        public static string tool_npc_add {
+            get {
+                return ResourceManager.GetString("tool_npc_add", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name.
+        /// </summary>
+        public static string tool_npc_name {
+            get {
+                return ResourceManager.GetString("tool_npc_name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Is Actuator.
+        /// </summary>
+        public static string tool_paint_actuator {
+            get {
+                return ResourceManager.GetString("tool_paint_actuator", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Brick Style.
+        /// </summary>
+        public static string tool_paint_brickstyle {
+            get {
+                return ResourceManager.GetString("tool_paint_brickstyle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Extras.
+        /// </summary>
+        public static string tool_paint_extras {
+            get {
+                return ResourceManager.GetString("tool_paint_extras", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Actuator/Tile InActive.
+        /// </summary>
+        public static string tool_paint_inactive {
+            get {
+                return ResourceManager.GetString("tool_paint_inactive", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mask.
+        /// </summary>
+        public static string tool_paint_mask {
+            get {
+                return ResourceManager.GetString("tool_paint_mask", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mask Mode.
+        /// </summary>
+        public static string tool_paint_maskmode {
+            get {
+                return ResourceManager.GetString("tool_paint_maskmode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Paint Mode.
+        /// </summary>
+        public static string tool_paint_mode {
+            get {
+                return ResourceManager.GetString("tool_paint_mode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tile.
+        /// </summary>
+        public static string tool_paint_tile_title {
+            get {
+                return ResourceManager.GetString("tool_paint_tile_title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wall.
+        /// </summary>
+        public static string tool_paint_wall_title {
+            get {
+                return ResourceManager.GetString("tool_paint_wall_title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Blue.
+        /// </summary>
+        public static string tool_paint_wire_blue {
+            get {
+                return ResourceManager.GetString("tool_paint_wire_blue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Green.
+        /// </summary>
+        public static string tool_paint_wire_green {
+            get {
+                return ResourceManager.GetString("tool_paint_wire_green", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Red.
+        /// </summary>
+        public static string tool_paint_wire_red {
+            get {
+                return ResourceManager.GetString("tool_paint_wire_red", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Yellow.
+        /// </summary>
+        public static string tool_paint_wire_yellow {
+            get {
+                return ResourceManager.GetString("tool_paint_wire_yellow", resourceCulture);
             }
         }
         
@@ -733,6 +1246,42 @@ namespace TEdit.Properties {
         public static string tool_sprite2_title {
             get {
                 return ResourceManager.GetString("tool_sprite2_title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Booster.
+        /// </summary>
+        public static string TrackMode_Booster {
+            get {
+                return ResourceManager.GetString("TrackMode_Booster", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hammer.
+        /// </summary>
+        public static string TrackMode_Hammer {
+            get {
+                return ResourceManager.GetString("TrackMode_Hammer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pressure.
+        /// </summary>
+        public static string TrackMode_Pressure {
+            get {
+                return ResourceManager.GetString("TrackMode_Pressure", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Track.
+        /// </summary>
+        public static string TrackMode_Track {
+            get {
+                return ResourceManager.GetString("TrackMode_Track", resourceCulture);
             }
         }
     }
