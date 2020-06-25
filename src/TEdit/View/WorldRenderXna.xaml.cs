@@ -808,7 +808,8 @@ namespace TEdit.View
                             if (weapon == 0) continue;
                             tileTex = (Texture2D)_textureDictionary.GetItem(weapon);
                             SpriteEffects effect = curtile.U == 0 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
-                            float scale = World.ItemLookupTable[weapon].Scale;
+                            World.ItemLookupTable.TryGetValue(weapon, out var itemProps);
+                            float scale = itemProps?.Scale ?? 1.0f;
                             source = new Rectangle(0, 0, tileTex.Width, tileTex.Height);
                             _spriteBatch.Draw(
                                 tileTex,
@@ -840,7 +841,10 @@ namespace TEdit.View
                                 else
                                     scale = 40f / (float)tileTex.Height;
                             }
-                            scale *= World.ItemLookupTable[weapon].Scale;
+                            if (World.ItemLookupTable.TryGetValue(weapon, out var itemProps))
+                            {
+                                scale *= itemProps?.Scale ?? 1.0f;
+                            }
                             source = new Rectangle(0, 0, tileTex.Width, tileTex.Height);
                             SpriteEffects effect = SpriteEffects.None;
                             if (flip >= 3)
@@ -1449,7 +1453,10 @@ namespace TEdit.View
                                                         else
                                                             scale = 40f / (float)tileTex.Height;
                                                     }
-                                                    scale *= World.ItemLookupTable[weapon].Scale;
+                                                    if (World.ItemLookupTable.TryGetValue(weapon, out var itemProps))
+                                                    {
+                                                        scale *= itemProps?.Scale ?? 1.0f;
+                                                    }
                                                     source = new Rectangle(0, 0, tileTex.Width, tileTex.Height);
                                                     SpriteEffects effect = SpriteEffects.None;
                                                     if (flip >= 3)
@@ -1479,7 +1486,10 @@ namespace TEdit.View
                                                             else
                                                                 scale = 20f / (float)tileTex.Height;
                                                         }
-                                                        scale *= World.ItemLookupTable[item].Scale;
+                                                        if (World.ItemLookupTable.TryGetValue(item, out var itemProps))
+                                                        {
+                                                            scale *= itemProps?.Scale ?? 1.0f;
+                                                        }
                                                         source = new Rectangle(0, 0, tileTex.Width, tileTex.Height);
                                                         _spriteBatch.Draw(
                                                             tileTex,
@@ -1516,7 +1526,12 @@ namespace TEdit.View
                                                     if (item > 0)
                                                     {
                                                         tileTex = (Texture2D)_textureDictionary.GetItem(item);
-                                                        bool isFood = World.ItemLookupTable[item].IsFood;
+                                                        bool isFood = false;
+                                                        if (World.ItemLookupTable.TryGetValue(item, out var itemData))
+                                                        {
+                                                            isFood = itemData?.IsFood ?? false;
+
+                                                        }
                                                         source = !isFood ? tileTex.Frame(1, 1, 0, 0, 0, 0) : tileTex.Frame(1, 3, 0, 2, 0, 0);
 
                                                         float scale = 1f;

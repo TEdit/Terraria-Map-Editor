@@ -411,7 +411,7 @@ namespace TEdit.Editor.Clipboard
 
                            
                             var brickByte = b.ReadByte();
-                            if (tileProperty == null || !tileProperty.IsSolid)
+                            if (tileProperty == null || !tileProperty.HasSlopes)
                                 tile.BrickStyle = 0;
                             else
                                 tile.BrickStyle = (BrickStyle)brickByte;
