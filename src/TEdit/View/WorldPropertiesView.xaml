@@ -500,6 +500,8 @@
         <CheckBox IsChecked="{Binding CurrentWorld.SavedBartender}" Content="Saved Tavernkeep" VerticalAlignment="Center" VerticalContentAlignment="Center" />
         <TextBlock />
         <CheckBox IsChecked="{Binding CurrentWorld.SavedAngler}" Content="Saved Angler" VerticalAlignment="Center" VerticalContentAlignment="Center" />
+        <TextBlock />
+        <CheckBox IsChecked="{Binding CurrentWorld.SavedGolfer}" Content="Saved Golfer" VerticalAlignment="Center" VerticalContentAlignment="Center" />
         <TextBlock Text="Angler Mission" HorizontalAlignment="Right" />
         <ComboBox Height="20" ItemsSource="{StaticResource anglerQuestList}" SelectedValue="{Binding CurrentWorld.AnglerQuest, Mode=TwoWay}" SelectedValuePath="Value" />
 
