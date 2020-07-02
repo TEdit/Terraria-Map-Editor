@@ -63,6 +63,21 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Language.resx</DependentUpon>
     </Compile>
+    <Compile Update="Properties\Language.en.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Language.en.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Properties\Language.ru-RU.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Language.ru-RU.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Properties\Language.ar-BH.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Language.ar-BH.resx</DependentUpon>
+    </Compile>
     <Compile Update="Properties\Settings.Designer.cs">
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <AutoGen>True</AutoGen>
