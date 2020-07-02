@@ -87,13 +87,13 @@
             <Setter Property="Text" Value="" />
             <Style.Triggers>
                 <DataTrigger Binding="{Binding TilePicker.TrackMode}" Value="Booster">
-                        <Setter Property="Text" Value="Add Booster to existing track, use with Eraser to remove booster only" />
+                    <Setter Property="Text" Value="{x:Static p:Language.tool_paint_track_booster_tooltip}" />
                 </DataTrigger>
                 <DataTrigger Binding="{Binding TilePicker.TrackMode}" Value="Pressure">
-                        <Setter Property="Text" Value="Add Pressure Plate to existing track, use with Eraser to remove plate only" />
+                    <Setter Property="Text" Value="{x:Static p:Language.tool_paint_track_pressure_tooltip}" />
                 </DataTrigger>
                 <DataTrigger Binding="{Binding TilePicker.TrackMode}" Value="Hammer">
-                        <Setter Property="Text" Value="Use Hammer to modify track ends, intersections and booster direction" />
+                    <Setter Property="Text" Value="{x:Static p:Language.tool_paint_track_hammer_tooltip}" />
                 </DataTrigger>
             </Style.Triggers>
         </Style>
@@ -104,7 +104,7 @@
                 <ToggleButton ToolTip="Eraser" IsChecked="{Binding Path=TilePicker.IsEraser, Mode=TwoWay}" VerticalAlignment="Top" Margin="2 0" BorderThickness="2" HorizontalAlignment="Left">
                     <Image Source="../Images/Tools/eraser.png" Height="32" Width="32" RenderOptions.BitmapScalingMode="NearestNeighbor" Stretch="UniformToFill" />
                 </ToggleButton>
-                <TextBlock Text="Paint Mode" HorizontalAlignment="Center"  Width="65" VerticalAlignment="Center" />
+                <TextBlock Text="{x:Static p:Language.tool_paint_mode}" HorizontalAlignment="Center"  Width="65" VerticalAlignment="Center" />
                 <ComboBox ItemsSource="{StaticResource PaintModeEnum}" 
                       SelectedValue="{Binding TilePicker.PaintMode}" 
                       SelectedValuePath="Value" Width="100"
@@ -112,7 +112,7 @@
             </StackPanel>
             <GroupBox BorderThickness="1" Style="{StaticResource TileVisibleStyle}">
                 <GroupBox.Header>
-                    <CheckBox IsChecked="{Binding TilePicker.TileStyleActive, Mode=TwoWay}" Content="Tile" />
+                    <CheckBox IsChecked="{Binding TilePicker.TileStyleActive, Mode=TwoWay}" Content="{x:Static p:Language.tool_paint_tile_title}" />
                 </GroupBox.Header>
                 <tedit:AutoGrid Width="220" VerticalAlignment="Top" >
                     <tedit:AutoGrid.ColumnDefinitions>
@@ -125,9 +125,9 @@
                       IsEditable="true"
                       SelectedValuePath="Id" 
                       IsTextSearchEnabled="True" TextSearch.TextPath="Name" />
-                    <TextBlock Text="Mask Mode" />
+                    <TextBlock Text="{x:Static p:Language.tool_paint_maskmode}" />
                     <ComboBox ItemsSource="{StaticResource MaskModeEnum}" SelectedValue="{Binding TilePicker.TileMaskMode}" SelectedValuePath="Value" ItemTemplate="{StaticResource EnumTemplate}"  />
-                    <TextBlock Text="Mask" />
+                    <TextBlock Text="{x:Static p:Language.tool_paint_mask}" />
                     <ComboBox ItemsSource="{Binding Source={x:Static Terraria:World.TileBricks}, Mode=OneTime}"
                       ItemTemplate="{StaticResource ColorPickerTemplate}" 
                       SelectedValue="{Binding Path=TilePicker.TileMask, Mode=TwoWay}"
@@ -138,7 +138,7 @@
             </GroupBox>
             <GroupBox BorderThickness="1"  Style="{StaticResource WallVisibleStyle}">
                 <GroupBox.Header>
-                    <CheckBox IsChecked="{Binding TilePicker.WallStyleActive, Mode=TwoWay}" Content="Wall" />
+                    <CheckBox IsChecked="{Binding TilePicker.WallStyleActive, Mode=TwoWay}" Content="{x:Static p:Language.tool_paint_wall_title}" />
                 </GroupBox.Header>
                 <tedit:AutoGrid Width="220" VerticalAlignment="Top" >
                     <tedit:AutoGrid.ColumnDefinitions>
@@ -151,9 +151,9 @@
                       IsEditable="true"
                       SelectedValuePath="Id" Grid.ColumnSpan="2"
                       IsTextSearchEnabled="True" TextSearch.TextPath="Name" />
-                    <TextBlock Text="Mask Mode" />
+                    <TextBlock Text="{x:Static p:Language.tool_paint_maskmode}" />
                     <ComboBox ItemsSource="{StaticResource MaskModeEnum}" SelectedValue="{Binding TilePicker.WallMaskMode}" SelectedValuePath="Value" ItemTemplate="{StaticResource EnumTemplate}" />
-                    <TextBlock Text="Mask" />
+                    <TextBlock Text="{x:Static p:Language.tool_paint_mask}" />
                     <ComboBox ItemsSource="{Binding Source={x:Static Terraria:World.WallProperties}, Mode=OneTime}" 
                       ItemTemplate="{StaticResource ColorPickerTemplate}" 
                       SelectedValue="{Binding Path=TilePicker.WallMask, Mode=TwoWay}"
@@ -172,31 +172,31 @@
             </GroupBox>
             <GroupBox Style="{StaticResource BrickStyleVisiblity}">
                 <GroupBox.Header>
-                    <CheckBox IsChecked="{Binding TilePicker.ExtrasActive}" Content="Extras" />
+                    <CheckBox IsChecked="{Binding TilePicker.ExtrasActive}" Content="{x:Static p:Language.tool_paint_extras}" />
                 </GroupBox.Header>
                 <StackPanel Orientation="Vertical">
                     <StackPanel Orientation="Horizontal" VerticalAlignment="Top">
-                        <CheckBox IsChecked="{Binding TilePicker.BrickStyleActive}" Content="BrickStyle" Width="75" VerticalAlignment="Center" />
+                        <CheckBox IsChecked="{Binding TilePicker.BrickStyleActive}" Content="{x:Static p:Language.tool_paint_brickstyle}" Width="75" VerticalAlignment="Center" />
                         <ComboBox ItemsSource="{StaticResource BrickStyle}" 
                           SelectedValue="{Binding TilePicker.BrickStyle}" 
                           SelectedValuePath="Value" Width="120"
                           ItemTemplate="{StaticResource EnumTemplate}" />
                     </StackPanel>
-                    <CheckBox IsChecked="{Binding TilePicker.Actuator}" Content="Is Actuator" VerticalAlignment="Center" Height="22"/>
-                    <CheckBox IsChecked="{Binding TilePicker.ActuatorInActive}" Content="Actuator/Tile InActive" VerticalAlignment="Center" Height="22"/>
+                    <CheckBox IsChecked="{Binding TilePicker.Actuator}" Content="{x:Static p:Language.tool_paint_actuator}" VerticalAlignment="Center" Height="22"/>
+                    <CheckBox IsChecked="{Binding TilePicker.ActuatorInActive}" Content="{x:Static p:Language.tool_paint_inactive}" VerticalAlignment="Center" Height="22"/>
                 </StackPanel>
             </GroupBox>
             <GroupBox Header="Paint" Style="{StaticResource PaintVisibleStyle}">
                 <StackPanel Orientation="Vertical">
                     <StackPanel Orientation="Horizontal" VerticalAlignment="Top">
-                        <CheckBox IsChecked="{Binding TilePicker.TilePaintActive}" Content="Tile" Width="50" VerticalAlignment="Center" />
+                        <CheckBox IsChecked="{Binding TilePicker.TilePaintActive}" Content="{x:Static p:Language.tool_paint_tile_title}" Width="50" VerticalAlignment="Center" />
                         <ComboBox ItemsSource="{Binding Source={x:Static Terraria:World.PaintProperties}, Mode=OneTime}" 
                           ItemTemplate="{StaticResource ColorPickerTemplate}" 
                           SelectedValue="{Binding Path=TilePicker.TileColor, Mode=TwoWay}"
                           SelectedValuePath="Id" Width="140" />
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" VerticalAlignment="Top">
-                        <CheckBox IsChecked="{Binding TilePicker.WallPaintActive}" Content="Wall" Width="50" VerticalAlignment="Center" />
+                        <CheckBox IsChecked="{Binding TilePicker.WallPaintActive}" Content="{x:Static p:Language.tool_paint_wall_title}" Width="50" VerticalAlignment="Center" />
                         <ComboBox ItemsSource="{Binding Source={x:Static Terraria:World.PaintProperties}, Mode=OneTime}" 
                           ItemTemplate="{StaticResource ColorPickerTemplate}" 
                           SelectedValue="{Binding Path=TilePicker.WallColor, Mode=TwoWay}"
@@ -207,12 +207,12 @@
             <GroupBox Header="Wire" Style="{StaticResource WireStyle}">
                 <StackPanel Orientation="Horizontal">
                     <StackPanel Orientation="Vertical">
-                        <CheckBox IsChecked="{Binding TilePicker.RedWireActive}" Content="Red" Width="75" VerticalAlignment="Center" Height="22"/>
-                        <CheckBox IsChecked="{Binding TilePicker.BlueWireActive}" Content="Blue" Width="75" VerticalAlignment="Center" Height="22"/>
+                        <CheckBox IsChecked="{Binding TilePicker.RedWireActive}" Content="{x:Static p:Language.tool_paint_wire_red}" Width="75" VerticalAlignment="Center" Height="22"/>
+                        <CheckBox IsChecked="{Binding TilePicker.BlueWireActive}" Content="{x:Static p:Language.tool_paint_wire_blue}" Width="75" VerticalAlignment="Center" Height="22"/>
                     </StackPanel>
                     <StackPanel Orientation="Vertical">
-                        <CheckBox IsChecked="{Binding TilePicker.GreenWireActive}" Content="Green" Width="75" VerticalAlignment="Center" Height="22"/>
-                        <CheckBox IsChecked="{Binding TilePicker.YellowWireActive}" Content="Yellow" Width="75" VerticalAlignment="Center" Height="22"/>
+                        <CheckBox IsChecked="{Binding TilePicker.GreenWireActive}" Content="{x:Static p:Language.tool_paint_wire_green}" Width="75" VerticalAlignment="Center" Height="22"/>
+                        <CheckBox IsChecked="{Binding TilePicker.YellowWireActive}" Content="{x:Static p:Language.tool_paint_wire_yellow}" Width="75" VerticalAlignment="Center" Height="22"/>
                     </StackPanel>
                 </StackPanel>
             </GroupBox>

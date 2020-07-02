@@ -5,6 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:enum="clr-namespace:TEdit.UI.Xaml.Enum"
       xmlns:System="clr-namespace:System;assembly=mscorlib" 
+             xmlns:p="clr-namespace:TEdit.Properties"
              xmlns:converters="clr-namespace:TEdit.Converters"
              mc:Ignorable="d"
       d:DesignHeight="300" d:DesignWidth="300">
@@ -198,7 +199,7 @@
     </UserControl.Resources>
     <Grid Background="{DynamicResource WindowBackgroundBrush}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" >
         <GroupBox BorderThickness="0" Style="{StaticResource InstructionsVisiblity}">
-            <TextBlock Text="With the Arrow Tool right click on a sign, chest, mannequin, weapon rack, item frame or christmas tree" TextWrapping="Wrap" HorizontalAlignment="Stretch" Margin="3" FontWeight="Bold" Foreground="{DynamicResource TextBrush}"/>
+            <TextBlock Text="{x:Static p:Language.specialtile_tooltip}" TextWrapping="Wrap" HorizontalAlignment="Stretch" Margin="3" FontWeight="Bold" Foreground="{DynamicResource TextBrush}"/>
         </GroupBox>
         <GroupBox BorderThickness="0" Style="{StaticResource SignVisiblity}">
             <Grid Background="{DynamicResource WindowBackgroundBrush}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" >
@@ -209,7 +210,7 @@
                     <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
                 <StackPanel Orientation="Horizontal" Grid.Row="0">
-                    <TextBlock Text="Sign Type: " Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" VerticalAlignment="Center" />
+                    <TextBlock Text="{x:Static p:Language.specialtile_label_signtype}" Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" VerticalAlignment="Center" />
                     <ComboBox Width="150px"
                       ItemsSource="{Binding Source={StaticResource SignsCollection}}"
                       SelectedValue="{Binding SelectedSign.SignId, Mode=TwoWay}"
@@ -219,7 +220,7 @@
                       HorizontalAlignment="Stretch" Margin="1,0" ItemsPanel="{StaticResource Template_ComboPanel}" />
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Grid.Row="1">
-                    <TextBlock Text="Sign Text " Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" />
+                    <TextBlock Text="{x:Static p:Language.specialtile_label_signtext}" Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" />
                     <TextBlock Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" >
                         <TextBlock.Text>
                             <MultiBinding StringFormat="({0}, {1})">
@@ -233,8 +234,8 @@
                   HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Visible" AcceptsReturn="True" TextWrapping="Wrap"
                   Margin="2" FontWeight="Bold" MaxLines="10" PreviewKeyDown="ValidateLines" />
                 <UniformGrid Columns="2" Grid.Row="4">
-                    <Button Margin="2" Content="Cancel"  Command="{Binding SaveSignCommand}" CommandParameter="{StaticResource False}" />
-                    <Button Margin="2" Content="Save" Command="{Binding SaveSignCommand}" CommandParameter="{StaticResource True}" />
+                    <Button Margin="2" Content="{x:Static p:Language.specialtile_button_cancel}"  Command="{Binding SaveSignCommand}" CommandParameter="{StaticResource False}" />
+                    <Button Margin="2" Content="{x:Static p:Language.specialtile_button_save}" Command="{Binding SaveSignCommand}" CommandParameter="{StaticResource True}" />
                 </UniformGrid>
             </Grid>
         </GroupBox>
@@ -249,11 +250,11 @@
                     <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
                 <StackPanel Orientation="Horizontal" Grid.Row="0">
-                    <TextBlock Text="Chest Name: " Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" VerticalAlignment="Center" />
+                    <TextBlock Text="{x:Static p:Language.specialtile_label_chestname}" Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" VerticalAlignment="Center" />
                     <TextBox Margin="2" Width="100px" Height="20px" MaxLength="20" MaxLines="1" Text="{Binding SelectedChest.Name}" />
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Grid.Row="1">
-                    <TextBlock Text="Chest Type: " Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" VerticalAlignment="Center" />
+                    <TextBlock Text="{x:Static p:Language.specialtile_label_chesttype}" Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" VerticalAlignment="Center" />
                     <ComboBox Width="150px"
                       ItemsSource="{Binding Source={StaticResource ChestsCollection}}"
                       SelectedValue="{Binding SelectedChest.ChestId, Mode=TwoWay}"
@@ -263,7 +264,7 @@
                       HorizontalAlignment="Stretch" Margin="1,0" ItemsPanel="{StaticResource Template_ComboPanel}" />
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Grid.Row="2">
-                    <TextBlock Text="Chest Contents " Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" />
+                    <TextBlock Text="{x:Static p:Language.specialtile_label_chestcontents}" Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" />
                     <TextBlock Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" DockPanel.Dock="Top">
                         <TextBlock.Text>
                             <MultiBinding StringFormat="({0}, {1})">
@@ -285,14 +286,14 @@
                     </ListBox.ItemContainerStyle>
                 </ListBox>
                 <StackPanel Grid.Row="4">
-                    <TextBlock Text="Edit Selected Item" Margin="2" Foreground="{DynamicResource TextBrush}" />
+                    <TextBlock Text="{x:Static p:Language.specialtile_label_editselecteditem}" Margin="2" Foreground="{DynamicResource TextBrush}" />
                     <ContentControl ContentTemplate="{StaticResource ChestItemTemplate}"
                             Content="{Binding ElementName=ChestList, Path=SelectedItem}" />
                 </StackPanel>
                 <UniformGrid Columns="2" Grid.Row="5">
-                    <Button Margin="2" Content="Cancel" Command="{Binding SaveChestCommand}"
+                    <Button Margin="2" Content="{x:Static p:Language.specialtile_button_cancel}" Command="{Binding SaveChestCommand}"
                         CommandParameter="{StaticResource False}" />
-                    <Button Margin="2" Content="Save" Command="{Binding SaveChestCommand}"
+                    <Button Margin="2" Content="{x:Static p:Language.specialtile_button_save}" Command="{Binding SaveChestCommand}"
                         CommandParameter="{StaticResource True}" />
                 </UniformGrid>
             </Grid>
@@ -305,7 +306,7 @@
                     <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
                 <StackPanel Orientation="Horizontal"  Grid.Row="0">
-                    <TextBlock Text="Item Frame Contents " Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" />
+                    <TextBlock Text="{x:Static p:Language.specialtile_label_itemframecontents}" Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" />
                     <TextBlock Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" DockPanel.Dock="Top">
                         <TextBlock.Text>
                             <MultiBinding StringFormat="({0}, {1})">
@@ -318,9 +319,9 @@
                 <ContentControl Grid.Row="1" ContentTemplate="{StaticResource ChestItemTemplate}"
                     Content="{Binding Path=SelectedTileEntity}" />
                 <UniformGrid Columns="2" Grid.Row="2">
-                    <Button Margin="2" Content="Cancel" Command="{Binding SaveTileEntityCommand}"
+                    <Button Margin="2" Content="{x:Static p:Language.specialtile_button_cancel}" Command="{Binding SaveTileEntityCommand}"
                         CommandParameter="{StaticResource False}" />
-                    <Button Margin="2" Content="Save" Command="{Binding SaveTileEntityCommand}"
+                    <Button Margin="2" Content="{x:Static p:Language.specialtile_button_save}" Command="{Binding SaveTileEntityCommand}"
                         CommandParameter="{StaticResource True}" />
                 </UniformGrid>
             </Grid>
@@ -333,7 +334,7 @@
                     <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
                 <StackPanel Orientation="Horizontal"  Grid.Row="0">
-                    <TextBlock Text="Plate Contents " Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" />
+                    <TextBlock Text="{x:Static p:Language.specialtile_label_platecontents}" Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" />
                     <TextBlock Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" DockPanel.Dock="Top">
                         <TextBlock.Text>
                             <MultiBinding StringFormat="({0}, {1})">
@@ -345,9 +346,9 @@
                 </StackPanel>
                 <ContentControl Grid.Row="1" ContentTemplate="{StaticResource FoodItemTemplate}"  Content="{Binding Path=SelectedTileEntity}" />
                 <UniformGrid Columns="2" Grid.Row="2">
-                    <Button Margin="2" Content="Cancel" Command="{Binding SaveTileEntityCommand}"
+                    <Button Margin="2" Content="{x:Static p:Language.specialtile_button_cancel}" Command="{Binding SaveTileEntityCommand}"
                         CommandParameter="{StaticResource False}" />
-                    <Button Margin="2" Content="Save" Command="{Binding SaveTileEntityCommand}"
+                    <Button Margin="2" Content="{x:Static p:Language.specialtile_button_save}" Command="{Binding SaveTileEntityCommand}"
                         CommandParameter="{StaticResource True}" />
                 </UniformGrid>
             </Grid>
@@ -367,7 +368,7 @@
                     <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
                 <StackPanel Orientation="Horizontal"  Grid.Row="0">
-                    <TextBlock Text="Mannequin " Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" />
+                    <TextBlock Text="{x:Static p:Language.specialtile_label_mannequin}" Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" />
                     <TextBlock Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" DockPanel.Dock="Top">
                         <TextBlock.Text>
                             <MultiBinding StringFormat="({0}, {1})">
@@ -379,7 +380,7 @@
                 </StackPanel>
                 <ContentControl Grid.Row="1" ContentTemplate="{StaticResource FoodItemTemplate}"  Content="{Binding Path=SelectedTileEntity}" />
                 <StackPanel Orientation="Horizontal" Grid.Row="1">
-                    <TextBlock Text="Head: " Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" VerticalAlignment="Center" />
+                    <TextBlock Text="{x:Static p:Language.specialtile_label_head}" Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" VerticalAlignment="Center" />
                     <ComboBox ItemsSource="{Binding Source={StaticResource DyeCollection}}"
                           SelectedValue="{Binding SelectedTileEntity.Dye0.Id, Mode=TwoWay, Converter={StaticResource ShortIntConverter}}"
                           IsEditable="true"
@@ -406,7 +407,7 @@
                           HorizontalAlignment="Stretch" Margin="1,0" ItemsPanel="{StaticResource Template_ComboPanel}" />
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Grid.Row="2">
-                    <TextBlock Text="Body: " Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" VerticalAlignment="Center" />
+                    <TextBlock Text="{x:Static p:Language.specialtile_label_body}" Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" VerticalAlignment="Center" />
                     <ComboBox ItemsSource="{Binding Source={StaticResource DyeCollection}}"
                           SelectedValue="{Binding SelectedTileEntity.Dye1.Id, Mode=TwoWay, Converter={StaticResource ShortIntConverter}}"
                           IsEditable="true"
@@ -433,7 +434,7 @@
                           HorizontalAlignment="Stretch" Margin="1,0" ItemsPanel="{StaticResource Template_ComboPanel}" />
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Grid.Row="3">
-                    <TextBlock Text="Legs: " Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" VerticalAlignment="Center" />
+                    <TextBlock Text="{x:Static p:Language.specialtile_label_legs}" Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" VerticalAlignment="Center" />
                     <ComboBox ItemsSource="{Binding Source={StaticResource DyeCollection}}"
                           SelectedValue="{Binding SelectedTileEntity.Dye2.Id, Mode=TwoWay, Converter={StaticResource ShortIntConverter}}"
                           IsEditable="true"
@@ -460,7 +461,7 @@
                           HorizontalAlignment="Stretch" Margin="1,0" ItemsPanel="{StaticResource Template_ComboPanel}" />
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Grid.Row="4">
-                    <TextBlock Text="Acc1: " Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" VerticalAlignment="Center" />
+                    <TextBlock Text="{x:Static p:Language.specialtile_label_acc1}" Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" VerticalAlignment="Center" />
                     <ComboBox ItemsSource="{Binding Source={StaticResource DyeCollection}}"
                           SelectedValue="{Binding SelectedTileEntity.Dye3.Id, Mode=TwoWay, Converter={StaticResource ShortIntConverter}}"
                           IsEditable="true"
@@ -487,7 +488,7 @@
                           HorizontalAlignment="Stretch" Margin="1,0" ItemsPanel="{StaticResource Template_ComboPanel}" />
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Grid.Row="5">
-                    <TextBlock Text="Acc2: " Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" VerticalAlignment="Center" />
+                    <TextBlock Text="{x:Static p:Language.specialtile_label_acc2}" Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" VerticalAlignment="Center" />
                     <ComboBox ItemsSource="{Binding Source={StaticResource DyeCollection}}"
                           SelectedValue="{Binding SelectedTileEntity.Dye4.Id, Mode=TwoWay, Converter={StaticResource ShortIntConverter}}"
                           IsEditable="true"
@@ -514,7 +515,7 @@
                           HorizontalAlignment="Stretch" Margin="1,0" ItemsPanel="{StaticResource Template_ComboPanel}" />
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Grid.Row="6">
-                    <TextBlock Text="Acc3: " Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" VerticalAlignment="Center" />
+                    <TextBlock Text="{x:Static p:Language.specialtile_label_acc3}" Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" VerticalAlignment="Center" />
                     <ComboBox ItemsSource="{Binding Source={StaticResource DyeCollection}}"
                           SelectedValue="{Binding SelectedTileEntity.Dye5.Id, Mode=TwoWay, Converter={StaticResource ShortIntConverter}}"
                           IsEditable="true"
@@ -541,7 +542,7 @@
                           HorizontalAlignment="Stretch" Margin="1,0" ItemsPanel="{StaticResource Template_ComboPanel}" />
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Grid.Row="7">
-                    <TextBlock Text="Acc4: " Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" VerticalAlignment="Center" />
+                    <TextBlock Text="{x:Static p:Language.specialtile_label_acc4}" Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" VerticalAlignment="Center" />
                     <ComboBox ItemsSource="{Binding Source={StaticResource DyeCollection}}"
                           SelectedValue="{Binding SelectedTileEntity.Dye6.Id, Mode=TwoWay, Converter={StaticResource ShortIntConverter}}"
                           IsEditable="true"
@@ -568,7 +569,7 @@
                           HorizontalAlignment="Stretch" Margin="1,0" ItemsPanel="{StaticResource Template_ComboPanel}" />
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Grid.Row="8">
-                    <TextBlock Text="Acc5: " Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" VerticalAlignment="Center" />
+                    <TextBlock Text="{x:Static p:Language.specialtile_label_acc5}" Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" VerticalAlignment="Center" />
                     <ComboBox ItemsSource="{Binding Source={StaticResource DyeCollection}}"
                           SelectedValue="{Binding SelectedTileEntity.Dye7.Id, Mode=TwoWay, Converter={StaticResource ShortIntConverter}}"
                           IsEditable="true"
@@ -596,9 +597,9 @@
                 </StackPanel>
 
                 <UniformGrid Columns="2" Grid.Row="9">
-                    <Button Margin="2" Content="Cancel" Command="{Binding SaveTileEntityCommand}"
+                    <Button Margin="2" Content="{x:Static p:Language.specialtile_button_cancel}" Command="{Binding SaveTileEntityCommand}"
                         CommandParameter="{StaticResource False}" />
-                    <Button Margin="2" Content="Save" Command="{Binding SaveTileEntityCommand}"
+                    <Button Margin="2" Content="{x:Static p:Language.specialtile_button_save}" Command="{Binding SaveTileEntityCommand}"
                         CommandParameter="{StaticResource True}" />
                 </UniformGrid>
             </Grid>
@@ -612,7 +613,7 @@
                     <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
                 <StackPanel Orientation="Horizontal"  Grid.Row="0">
-                    <TextBlock Text="Mannequin Clothing " Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" />
+                    <TextBlock Text="{x:Static p:Language.specialtile_label_mannequinclothing}" Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" />
                     <TextBlock Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" DockPanel.Dock="Top">
                         <TextBlock.Text>
                             <MultiBinding StringFormat="({0}, {1})">
@@ -623,7 +624,7 @@
                     </TextBlock>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Grid.Row="1">
-                    <TextBlock Text="Head: " Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" VerticalAlignment="Center" />
+                    <TextBlock Text="{x:Static p:Language.specialtile_label_head}" Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" VerticalAlignment="Center" />
                     <ComboBox ItemsSource="{Binding Source={StaticResource DyeCollection}}"
                           SelectedValue="{Binding SelectedTileEntity.Dye0.Id, Mode=TwoWay, Converter={StaticResource ShortIntConverter}}"
                           IsEditable="true"
@@ -650,7 +651,7 @@
                           HorizontalAlignment="Stretch" Margin="1,0" ItemsPanel="{StaticResource Template_ComboPanel}" />
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Grid.Row="2">
-                    <TextBlock Text="Head: " Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" VerticalAlignment="Center" />
+                    <TextBlock Text="{x:Static p:Language.specialtile_label_head}" Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" VerticalAlignment="Center" />
                     <ComboBox ItemsSource="{Binding Source={StaticResource DyeCollection}}"
                           SelectedValue="{Binding SelectedTileEntity.Dye1.Id, Mode=TwoWay, Converter={StaticResource ShortIntConverter}}"
                           IsEditable="true"
@@ -677,9 +678,9 @@
                           HorizontalAlignment="Stretch" Margin="1,0" ItemsPanel="{StaticResource Template_ComboPanel}" />
                 </StackPanel>
                 <UniformGrid Columns="2" Grid.Row="3">
-                    <Button Margin="2" Content="Cancel" Command="{Binding SaveTileEntityCommand}"
+                    <Button Margin="2" Content="{x:Static p:Language.specialtile_button_cancel}" Command="{Binding SaveTileEntityCommand}"
                         CommandParameter="{StaticResource False}" />
-                    <Button Margin="2" Content="Save" Command="{Binding SaveTileEntityCommand}"
+                    <Button Margin="2" Content="{x:Static p:Language.specialtile_button_save}" Command="{Binding SaveTileEntityCommand}"
                         CommandParameter="{StaticResource True}" />
                 </UniformGrid>
             </Grid>
@@ -694,7 +695,7 @@
                     <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
                 <StackPanel Orientation="Horizontal"  Grid.Row="0">
-                    <TextBlock Text="Weapons Rack Item " Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" />
+                    <TextBlock Text="{x:Static p:Language.specialtile_label_weaponrack}" Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" />
                     <TextBlock Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" DockPanel.Dock="Top">
                         <TextBlock.Text>
                             <MultiBinding StringFormat="({0:N}, {1:N})">
@@ -722,9 +723,9 @@
                           HorizontalAlignment="Stretch" Margin="1,0" ItemsPanel="{StaticResource Template_ComboPanel}" />
                 </StackPanel>
                 <UniformGrid Columns="2" Grid.Row="2">
-                    <Button Margin="2" Content="Cancel" Command="{Binding SaveTileEntityCommand}"
+                    <Button Margin="2" Content="{x:Static p:Language.specialtile_button_cancel}" Command="{Binding SaveTileEntityCommand}"
                         CommandParameter="{StaticResource False}" />
-                    <Button Margin="2" Content="Save" Command="{Binding SaveTileEntityCommand}"
+                    <Button Margin="2" Content="{x:Static p:Language.specialtile_button_save}" Command="{Binding SaveTileEntityCommand}"
                         CommandParameter="{StaticResource True}" />
                 </UniformGrid>
             </Grid>
@@ -740,7 +741,7 @@
                     <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
                 <StackPanel Orientation="Horizontal"  Grid.Row="0">
-                    <TextBlock Text="Christmas Tree Decorations " Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" />
+                    <TextBlock Text="{x:Static p:Language.specialtile_label_xmas_deco}" Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" />
                     <TextBlock Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" DockPanel.Dock="Top">
                         <TextBlock.Text>
                             <MultiBinding StringFormat="({0:D}, {1:D})">
@@ -751,7 +752,7 @@
                     </TextBlock>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Grid.Row="1">
-                    <TextBlock Text="Star: " Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" VerticalAlignment="Center" Width="90px"/>
+                    <TextBlock Text="{x:Static p:Language.specialtile_label_xmas_star}" Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" VerticalAlignment="Center" Width="90px"/>
                     <ComboBox Width="150px"
                       ItemsSource="{StaticResource XmasStarCollection}"
                       SelectedValue="{Binding SelectedXmasStar, Mode=TwoWay}"
@@ -760,7 +761,7 @@
                       HorizontalAlignment="Stretch" Margin="1,0" ItemsPanel="{StaticResource Template_ComboPanel}" />
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Grid.Row="2">
-                    <TextBlock Text="Garlands: " Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" VerticalAlignment="Center" Width="90px"/>
+                    <TextBlock Text="{x:Static p:Language.specialtile_label_xmas_garland}" Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" VerticalAlignment="Center" Width="90px"/>
                     <ComboBox Width="150px"
                       ItemsSource="{StaticResource XmasGarlandCollection}"
                       SelectedValue="{Binding SelectedXmasGarland, Mode=TwoWay}"
@@ -769,7 +770,7 @@
                       HorizontalAlignment="Stretch" Margin="1,0" ItemsPanel="{StaticResource Template_ComboPanel}" />
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Grid.Row="3">
-                    <TextBlock Text="Bulbs: " Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" VerticalAlignment="Center" Width="90px"/>
+                    <TextBlock Text="{x:Static p:Language.specialtile_label_xmas_bulbs}" Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" VerticalAlignment="Center" Width="90px"/>
                     <ComboBox Width="150px"
                       ItemsSource="{StaticResource XmasBulbCollection}"
                       SelectedValue="{Binding SelectedXmasBulb, Mode=TwoWay}"
@@ -778,7 +779,7 @@
                       HorizontalAlignment="Stretch" Margin="1,0" ItemsPanel="{StaticResource Template_ComboPanel}" />
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Grid.Row="4">
-                    <TextBlock Text="Lights: " Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" VerticalAlignment="Center" Width="90px"/>
+                    <TextBlock Text="{x:Static p:Language.specialtile_label_xmas_lights}" Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" VerticalAlignment="Center" Width="90px"/>
                     <ComboBox Width="150px"
                       ItemsSource="{StaticResource XmasLightCollection}"
                       SelectedValue="{Binding SelectedXmasLight, Mode=TwoWay}"
@@ -787,9 +788,9 @@
                       HorizontalAlignment="Stretch" Margin="1,0" ItemsPanel="{StaticResource Template_ComboPanel}" />
                 </StackPanel>
                 <UniformGrid Columns="2" Grid.Row="5">
-                    <Button Margin="2" Content="Cancel" Command="{Binding SaveXmasCommand}"
+                    <Button Margin="2" Content="{x:Static p:Language.specialtile_button_cancel}" Command="{Binding SaveXmasCommand}"
                         CommandParameter="{StaticResource False}" />
-                    <Button Margin="2" Content="Save" Command="{Binding SaveXmasCommand}"
+                    <Button Margin="2" Content="{x:Static p:Language.specialtile_button_save}" Command="{Binding SaveXmasCommand}"
                         CommandParameter="{StaticResource True}" />
                 </UniformGrid>
             </Grid>

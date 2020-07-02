@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:p="clr-namespace:TEdit.Properties"
              xmlns:Terraria="clr-namespace:TEdit.Terraria" xmlns:tedit="clr-namespace:TEdit.UI.Xaml" mc:Ignorable="d" 
              d:DesignHeight="600" d:DesignWidth="300" Background="{StaticResource WindowBackgroundBrush}" Foreground="{DynamicResource TextBrush}">
     <UserControl.Resources>
@@ -18,14 +19,14 @@
     <DockPanel>
 
         <StackPanel Orientation="Horizontal" DockPanel.Dock="Top" Margin="2">
-            <TextBlock Margin="3,2" HorizontalAlignment="Center" Text="Filter:" />
+            <TextBlock Margin="3,2" HorizontalAlignment="Center" Text="{x:Static p:Language.sprite_filter_label}" />
             <TextBox Text="{Binding SpriteFilter, Mode=TwoWay, UpdateSourceTrigger=LostFocus}" HorizontalAlignment="Stretch" MinWidth="200" KeyUp="TextBox_KeyUp" />
-            <Button Content="Filter" Margin="1" Padding="10,2" />
+            <Button Content="{x:Static p:Language.sprite_filter_button}" Margin="1" Padding="10,2" />
         </StackPanel>
         <StackPanel Orientation="Vertical" DockPanel.Dock="Bottom">
             <TextBlock>
               <Run Text="{Binding SelectedSpriteTile2.Name, Mode=OneWay}"/>
-              <Run Text="Style: "/>
+              <Run Text="{x:Static p:Language.sprite_styletype}"/>
             </TextBlock>
             <ListBox x:Name="s" DockPanel.Dock="Bottom" Height="300"
             Style="{DynamicResource ListBoxWrapPanel}"
@@ -45,8 +46,8 @@
                 </ListBox.ItemTemplate>
             </ListBox>
         </StackPanel>
-       
-        <TextBlock DockPanel.Dock="Top">Tile Type:</TextBlock>
+
+        <TextBlock DockPanel.Dock="Top" Text="{x:Static p:Language.sprite_tiletype}"/>
         <ListBox 
                 Style="{DynamicResource ListBoxWrapPanel}"
                 ItemsSource="{Binding SpritesView2}" 

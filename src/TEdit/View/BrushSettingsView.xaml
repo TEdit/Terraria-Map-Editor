@@ -8,7 +8,7 @@
              mc:Ignorable="d"
              Background="{StaticResource WindowBackgroundBrush}" Foreground="{StaticResource TextBrush}">
     <UserControl.Resources>
-        <enum:EnumItemList x:Key="BrushShapeEnum" EnumType="{x:Type Editor:BrushShape}" ResourceType="{x:Type p:Language}" x:Shared="false" SortBy="Value" />
+        <enum:EnumItemList x:Key="BrushShapeEnum" ResourceType="{x:Type p:Language}" EnumType="{x:Type Editor:BrushShape}" x:Shared="false" SortBy="Value" />
     </UserControl.Resources>
     <Grid>
         <Grid>

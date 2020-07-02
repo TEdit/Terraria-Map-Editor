@@ -375,6 +375,102 @@ Press retry to pick a new folder or cancel to use {0} as your terraria path.</va
   <data name="PaintMode_Wire" xml:space="preserve">
     <value>Wire</value>
   </data>
+  <data name="specialtile_button_cancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="specialtile_button_save" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="specialtile_label_acc1" xml:space="preserve">
+    <value>Acc1</value>
+  </data>
+  <data name="specialtile_label_acc2" xml:space="preserve">
+    <value>Acc2</value>
+  </data>
+  <data name="specialtile_label_acc3" xml:space="preserve">
+    <value>Acc3</value>
+  </data>
+  <data name="specialtile_label_acc4" xml:space="preserve">
+    <value>Acc4</value>
+  </data>
+  <data name="specialtile_label_acc5" xml:space="preserve">
+    <value>Acc5</value>
+  </data>
+  <data name="specialtile_label_acc6" xml:space="preserve">
+    <value>Acc6</value>
+  </data>
+  <data name="specialtile_label_body" xml:space="preserve">
+    <value>Body</value>
+  </data>
+  <data name="specialtile_label_chestcontents" xml:space="preserve">
+    <value>Chest Contents</value>
+  </data>
+  <data name="specialtile_label_chestname" xml:space="preserve">
+    <value>Chest Name</value>
+  </data>
+  <data name="specialtile_label_chesttype" xml:space="preserve">
+    <value>Chest Type</value>
+  </data>
+  <data name="specialtile_label_editselecteditem" xml:space="preserve">
+    <value>Edit Selected Item</value>
+  </data>
+  <data name="specialtile_label_head" xml:space="preserve">
+    <value>Head</value>
+  </data>
+  <data name="specialtile_label_itemframecontents" xml:space="preserve">
+    <value>Item Frame Contents</value>
+  </data>
+  <data name="specialtile_label_legs" xml:space="preserve">
+    <value>Legs</value>
+  </data>
+  <data name="specialtile_label_mannequin" xml:space="preserve">
+    <value>Mannequin</value>
+  </data>
+  <data name="specialtile_label_mannequinclothing" xml:space="preserve">
+    <value>Mannequin Clothing</value>
+  </data>
+  <data name="specialtile_label_platecontents" xml:space="preserve">
+    <value>Plate Contents</value>
+  </data>
+  <data name="specialtile_label_signtext" xml:space="preserve">
+    <value>Sign Text</value>
+  </data>
+  <data name="specialtile_label_signtype" xml:space="preserve">
+    <value>Sign Type</value>
+  </data>
+  <data name="specialtile_label_weaponrack" xml:space="preserve">
+    <value>Weapon Rack Item</value>
+  </data>
+  <data name="specialtile_label_xmas_bulbs" xml:space="preserve">
+    <value>Bulbs</value>
+  </data>
+  <data name="specialtile_label_xmas_deco" xml:space="preserve">
+    <value>Christmas Tree Decorations</value>
+  </data>
+  <data name="specialtile_label_xmas_garland" xml:space="preserve">
+    <value>Garlands</value>
+  </data>
+  <data name="specialtile_label_xmas_lights" xml:space="preserve">
+    <value>Lights</value>
+  </data>
+  <data name="specialtile_label_xmas_star" xml:space="preserve">
+    <value>Star</value>
+  </data>
+  <data name="specialtile_tooltip" xml:space="preserve">
+    <value>With the Arrow Tool right click on a sign, chest, mannequin, weapon rack, item frame or christmas tree.</value>
+  </data>
+  <data name="sprite_filter_button" xml:space="preserve">
+    <value>Filter</value>
+  </data>
+  <data name="sprite_filter_label" xml:space="preserve">
+    <value>Filter: </value>
+  </data>
+  <data name="sprite_styletype" xml:space="preserve">
+    <value>Style</value>
+  </data>
+  <data name="sprite_tiletype" xml:space="preserve">
+    <value>Tile Type</value>
+  </data>
   <data name="statusbar_extra_label" xml:space="preserve">
     <value>Extra</value>
   </data>
@@ -396,6 +492,18 @@ Press retry to pick a new folder or cancel to use {0} as your terraria path.</va
   <data name="statusbar_wall_label" xml:space="preserve">
     <value>Wall</value>
   </data>
+  <data name="tool_analyze_analyze_button" xml:space="preserve">
+    <value>Analyze</value>
+  </data>
+  <data name="tool_analyze_save" xml:space="preserve">
+    <value>Save Analysis</value>
+  </data>
+  <data name="tool_analyze_save_button" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="tool_analyze_title" xml:space="preserve">
+    <value>World Analysis</value>
+  </data>
   <data name="tool_arrow_title" xml:space="preserve">
     <value>Arrow</value>
   </data>
@@ -403,7 +511,7 @@ Press retry to pick a new folder or cancel to use {0} as your terraria path.</va
     <value>Import</value>
   </data>
   <data name="tool_bestiary_save" xml:space="preserve">
-    <value>Save</value>
+    <value>Save Bestiary</value>
   </data>
   <data name="tool_bestiary_scan" xml:space="preserve">
     <value>Scan</value>
@@ -459,6 +567,9 @@ Press retry to pick a new folder or cancel to use {0} as your terraria path.</va
   <data name="tool_fill_title" xml:space="preserve">
     <value>Fill</value>
   </data>
+  <data name="tool_morph_label" xml:space="preserve">
+    <value>Morph to Biome</value>
+  </data>
   <data name="tool_morph_title" xml:space="preserve">
     <value>Biome Morph</value>
   </data>
@@ -492,6 +603,15 @@ Press retry to pick a new folder or cancel to use {0} as your terraria path.</va
   <data name="tool_paint_tile_title" xml:space="preserve">
     <value>Tile</value>
   </data>
+  <data name="tool_paint_track_booster_tooltip" xml:space="preserve">
+    <value>Add Booster to existing track, use with Eraser to remove booster only.</value>
+  </data>
+  <data name="tool_paint_track_hammer_tooltip" xml:space="preserve">
+    <value>Use Hammer to modify track ends, intersections and booster direction.</value>
+  </data>
+  <data name="tool_paint_track_pressure_tooltip" xml:space="preserve">
+    <value>Add Pressure Plate to existing track, use with Eraser to remove plate only.</value>
+  </data>
   <data name="tool_paint_wall_title" xml:space="preserve">
     <value>Wall</value>
   </data>
@@ -522,8 +642,413 @@ Press retry to pick a new folder or cancel to use {0} as your terraria path.</va
   <data name="tool_sprite2_title" xml:space="preserve">
     <value>Sprite Placer</value>
   </data>
+  <data name="tool_sprite_filter_button" xml:space="preserve">
+    <value>Filter</value>
+  </data>
+  <data name="tool_sprite_filter_label" xml:space="preserve">
+    <value>Filter:</value>
+  </data>
+  <data name="tool_sprite_style_label" xml:space="preserve">
+    <value>Style:</value>
+  </data>
+  <data name="tool_sprite_tiletype_label" xml:space="preserve">
+    <value>Tile Type:</value>
+  </data>
   <data name="tool_sprite_title" xml:space="preserve">
     <value>Sprite Placer (OLD)</value>
+  </data>
+  <data name="tool_wp_adamantite" xml:space="preserve">
+    <value>Adamantite Tier</value>
+  </data>
+  <data name="tool_wp_altars" xml:space="preserve">
+    <value>Altars Smashed</value>
+  </data>
+  <data name="tool_wp_bg_corrupt" xml:space="preserve">
+    <value>Corrupt BG</value>
+  </data>
+  <data name="tool_wp_bg_crimson" xml:space="preserve">
+    <value>Crimson BG</value>
+  </data>
+  <data name="tool_wp_bg_deepice" xml:space="preserve">
+    <value>Deep Ice BG</value>
+  </data>
+  <data name="tool_wp_bg_deepjungle" xml:space="preserve">
+    <value>Deep Jungle BG</value>
+  </data>
+  <data name="tool_wp_bg_desert" xml:space="preserve">
+    <value>Desert BG</value>
+  </data>
+  <data name="tool_wp_bg_forest" xml:space="preserve">
+    <value>Forest BG</value>
+  </data>
+  <data name="tool_wp_bg_hallow" xml:space="preserve">
+    <value>Hallow BG</value>
+  </data>
+  <data name="tool_wp_bg_hell" xml:space="preserve">
+    <value>Hell BG</value>
+  </data>
+  <data name="tool_wp_bg_jungle" xml:space="preserve">
+    <value>Jungle BG</value>
+  </data>
+  <data name="tool_wp_bg_mushroom" xml:space="preserve">
+    <value>Mushroom BG</value>
+  </data>
+  <data name="tool_wp_bg_ocean" xml:space="preserve">
+    <value>Ocean BG</value>
+  </data>
+  <data name="tool_wp_bg_snow" xml:space="preserve">
+    <value>Snow BG</value>
+  </data>
+  <data name="tool_wp_bg_tree2" xml:space="preserve">
+    <value>Tree 2 BG</value>
+  </data>
+  <data name="tool_wp_bg_tree3" xml:space="preserve">
+    <value>Tree 3 BG</value>
+  </data>
+  <data name="tool_wp_bg_tree4" xml:space="preserve">
+    <value>Tree 4 BG</value>
+  </data>
+  <data name="tool_wp_bg_underworld" xml:space="preserve">
+    <value>Underworld BG</value>
+  </data>
+  <data name="tool_wp_boss_destroyer" xml:space="preserve">
+    <value>The Destroyer</value>
+  </data>
+  <data name="tool_wp_boss_downed" xml:space="preserve">
+    <value>Bosses Downed</value>
+  </data>
+  <data name="tool_wp_boss_dukefishron" xml:space="preserve">
+    <value>Duke Fishron</value>
+  </data>
+  <data name="tool_wp_boss_eaterofworlds" xml:space="preserve">
+    <value>Eater of Worlds</value>
+  </data>
+  <data name="tool_wp_boss_empressoflight" xml:space="preserve">
+    <value>Empress of Light</value>
+  </data>
+  <data name="tool_wp_boss_everscream" xml:space="preserve">
+    <value>Everscream</value>
+  </data>
+  <data name="tool_wp_boss_eyeofcthulhu" xml:space="preserve">
+    <value>Eye of Cthulhu</value>
+  </data>
+  <data name="tool_wp_boss_flyingdutchman" xml:space="preserve">
+    <value>Flying Dutchman</value>
+  </data>
+  <data name="tool_wp_boss_golem" xml:space="preserve">
+    <value>Golem</value>
+  </data>
+  <data name="tool_wp_boss_icequeen" xml:space="preserve">
+    <value>Ice Queen</value>
+  </data>
+  <data name="tool_wp_boss_kingslime" xml:space="preserve">
+    <value>King Slime</value>
+  </data>
+  <data name="tool_wp_boss_lunaticcultist" xml:space="preserve">
+    <value>Lunatic Cultist</value>
+  </data>
+  <data name="tool_wp_boss_moonlord" xml:space="preserve">
+    <value>Moon Lord</value>
+  </data>
+  <data name="tool_wp_boss_mourningwood" xml:space="preserve">
+    <value>Mourning Wood</value>
+  </data>
+  <data name="tool_wp_boss_nebulapillar" xml:space="preserve">
+    <value>Nebula Pillar</value>
+  </data>
+  <data name="tool_wp_boss_plantera" xml:space="preserve">
+    <value>Plantera</value>
+  </data>
+  <data name="tool_wp_boss_pumpking" xml:space="preserve">
+    <value>Pumpking</value>
+  </data>
+  <data name="tool_wp_boss_queenbee" xml:space="preserve">
+    <value>Queen Bee</value>
+  </data>
+  <data name="tool_wp_boss_queenslime" xml:space="preserve">
+    <value>Queen Slime</value>
+  </data>
+  <data name="tool_wp_boss_santank1" xml:space="preserve">
+    <value>Santa NK1</value>
+  </data>
+  <data name="tool_wp_boss_skeletron" xml:space="preserve">
+    <value>Skeletron</value>
+  </data>
+  <data name="tool_wp_boss_skeletronprime" xml:space="preserve">
+    <value>Skeletron Prime</value>
+  </data>
+  <data name="tool_wp_boss_solarpillar" xml:space="preserve">
+    <value>Solar Pillar</value>
+  </data>
+  <data name="tool_wp_boss_stardustpillar" xml:space="preserve">
+    <value>Stardust Pillar</value>
+  </data>
+  <data name="tool_wp_boss_twins" xml:space="preserve">
+    <value>The Twins</value>
+  </data>
+  <data name="tool_wp_boss_vortexpillar" xml:space="preserve">
+    <value>Vortex Pillar</value>
+  </data>
+  <data name="tool_wp_boss_walloffflesh" xml:space="preserve">
+    <value>Wall of Flesh</value>
+  </data>
+  <data name="tool_wp_cavern_level" xml:space="preserve">
+    <value>Cavern Level</value>
+  </data>
+  <data name="tool_wp_cobalt" xml:space="preserve">
+    <value>Cobalt Tier</value>
+  </data>
+  <data name="tool_wp_copper" xml:space="preserve">
+    <value>Copper Tier</value>
+  </data>
+  <data name="tool_wp_crimson" xml:space="preserve">
+    <value>Crimson</value>
+  </data>
+  <data name="tool_wp_difficulty" xml:space="preserve">
+    <value>Difficulty</value>
+  </data>
+  <data name="tool_wp_difficulty_hardmode" xml:space="preserve">
+    <value>Hardmode</value>
+  </data>
+  <data name="tool_wp_drunk" xml:space="preserve">
+    <value>Drunk World</value>
+  </data>
+  <data name="tool_wp_event" xml:space="preserve">
+    <value>Event</value>
+  </data>
+  <data name="tool_wp_gamemode" xml:space="preserve">
+    <value>Game Mode</value>
+  </data>
+  <data name="tool_wp_gold" xml:space="preserve">
+    <value>Gold Tier</value>
+  </data>
+  <data name="tool_wp_guid" xml:space="preserve">
+    <value>World GUID</value>
+  </data>
+  <data name="tool_wp_hardmode" xml:space="preserve">
+    <value>Hardmode</value>
+  </data>
+  <data name="tool_wp_holiday" xml:space="preserve">
+    <value>Force Holidays</value>
+  </data>
+  <data name="tool_wp_holiday_halloween" xml:space="preserve">
+    <value>Halloween</value>
+  </data>
+  <data name="tool_wp_holiday_xmas" xml:space="preserve">
+    <value>XMas</value>
+  </data>
+  <data name="tool_wp_id" xml:space="preserve">
+    <value>World ID</value>
+  </data>
+  <data name="tool_wp_invasion" xml:space="preserve">
+    <value>Invasions</value>
+  </data>
+  <data name="tool_wp_invasion_frostlegion" xml:space="preserve">
+    <value>Frost Legion</value>
+  </data>
+  <data name="tool_wp_invasion_goblinarmy" xml:space="preserve">
+    <value>Goblin Army</value>
+  </data>
+  <data name="tool_wp_invasion_martianmadness" xml:space="preserve">
+    <value>Martian Madness</value>
+  </data>
+  <data name="tool_wp_invasion_pirateinvasion" xml:space="preserve">
+    <value>Pirate Invasion</value>
+  </data>
+  <data name="tool_wp_invasion_size" xml:space="preserve">
+    <value>Invasion Size</value>
+  </data>
+  <data name="tool_wp_invasion_type" xml:space="preserve">
+    <value>Invasion Type</value>
+  </data>
+  <data name="tool_wp_invasion_x" xml:space="preserve">
+    <value>Invasion X Target</value>
+  </data>
+  <data name="tool_wp_iron" xml:space="preserve">
+    <value>Iron Tier</value>
+  </data>
+  <data name="tool_wp_journeysend" xml:space="preserve">
+    <value>Journey's End</value>
+  </data>
+  <data name="tool_wp_meteor" xml:space="preserve">
+    <value>Meteor</value>
+  </data>
+  <data name="tool_wp_meteor_spawn" xml:space="preserve">
+    <value>Spawn Meteor</value>
+  </data>
+  <data name="tool_wp_moon_blood" xml:space="preserve">
+    <value>Blood Moon</value>
+  </data>
+  <data name="tool_wp_moon_eclipse" xml:space="preserve">
+    <value>Is Eclipse</value>
+  </data>
+  <data name="tool_wp_moon_phase" xml:space="preserve">
+    <value>Moon Phase</value>
+  </data>
+  <data name="tool_wp_moon_style" xml:space="preserve">
+    <value>Moon Style</value>
+  </data>
+  <data name="tool_wp_mythril" xml:space="preserve">
+    <value>Mythril Tier</value>
+  </data>
+  <data name="tool_wp_name" xml:space="preserve">
+    <value>World Name</value>
+  </data>
+  <data name="tool_wp_npc_angler" xml:space="preserve">
+    <value>Angler</value>
+  </data>
+  <data name="tool_wp_npc_angler_mission" xml:space="preserve">
+    <value>Angler Mission</value>
+  </data>
+  <data name="tool_wp_npc_bought" xml:space="preserve">
+    <value>NPCs Bought</value>
+  </data>
+  <data name="tool_wp_npc_bunny" xml:space="preserve">
+    <value>Bunny</value>
+  </data>
+  <data name="tool_wp_npc_cat" xml:space="preserve">
+    <value>Cat</value>
+  </data>
+  <data name="tool_wp_npc_dog" xml:space="preserve">
+    <value>Dog</value>
+  </data>
+  <data name="tool_wp_npc_goblintinkerer" xml:space="preserve">
+    <value>Goblin Tinkerer</value>
+  </data>
+  <data name="tool_wp_npc_golfer" xml:space="preserve">
+    <value>Golfer</value>
+  </data>
+  <data name="tool_wp_npc_mechanic" xml:space="preserve">
+    <value>Mechanic</value>
+  </data>
+  <data name="tool_wp_npc_saved" xml:space="preserve">
+    <value>NPCs Saved</value>
+  </data>
+  <data name="tool_wp_npc_stylist" xml:space="preserve">
+    <value>Stylist</value>
+  </data>
+  <data name="tool_wp_npc_tavernkeep" xml:space="preserve">
+    <value>Tavernkeep</value>
+  </data>
+  <data name="tool_wp_npc_taxcollector" xml:space="preserve">
+    <value>Tax Collector</value>
+  </data>
+  <data name="tool_wp_npc_wizard" xml:space="preserve">
+    <value>Wizard</value>
+  </data>
+  <data name="tool_wp_oldonesarmy" xml:space="preserve">
+    <value>Old One's Army</value>
+  </data>
+  <data name="tool_wp_oldonesarmy_t1" xml:space="preserve">
+    <value>Tier 1</value>
+  </data>
+  <data name="tool_wp_oldonesarmy_t2" xml:space="preserve">
+    <value>Tier 2</value>
+  </data>
+  <data name="tool_wp_oldonesarmy_t3" xml:space="preserve">
+    <value>Tier 3</value>
+  </data>
+  <data name="tool_wp_orbs" xml:space="preserve">
+    <value>Orbs Smashed</value>
+  </data>
+  <data name="tool_wp_prehardmode" xml:space="preserve">
+    <value>Pre-Hardmode</value>
+  </data>
+  <data name="tool_wp_rain" xml:space="preserve">
+    <value>Rain</value>
+  </data>
+  <data name="tool_wp_rain_active" xml:space="preserve">
+    <value>Is Raining</value>
+  </data>
+  <data name="tool_wp_rain_max" xml:space="preserve">
+    <value>Max Rain</value>
+  </data>
+  <data name="tool_wp_rain_slime" xml:space="preserve">
+    <value>Slime Rain Time</value>
+  </data>
+  <data name="tool_wp_rain_time" xml:space="preserve">
+    <value>Rain Time</value>
+  </data>
+  <data name="tool_wp_revision" xml:space="preserve">
+    <value>Revision</value>
+  </data>
+  <data name="tool_wp_sandstorm" xml:space="preserve">
+    <value>Sandstorm</value>
+  </data>
+  <data name="tool_wp_sandstorm_active" xml:space="preserve">
+    <value>Is Storming</value>
+  </data>
+  <data name="tool_wp_sandstorm_severity" xml:space="preserve">
+    <value>Severity</value>
+  </data>
+  <data name="tool_wp_sandstorm_severity_target" xml:space="preserve">
+    <value>Indended Severity</value>
+  </data>
+  <data name="tool_wp_sandstorm_time" xml:space="preserve">
+    <value>Time Left</value>
+  </data>
+  <data name="tool_wp_seed" xml:space="preserve">
+    <value>Seed</value>
+  </data>
+  <data name="tool_wp_silver" xml:space="preserve">
+    <value>Silver Tier</value>
+  </data>
+  <data name="tool_wp_style_cavestyles" xml:space="preserve">
+    <value>Cave Styles</value>
+  </data>
+  <data name="tool_wp_style_cavex0" xml:space="preserve">
+    <value>Cave X 0</value>
+  </data>
+  <data name="tool_wp_style_cavex1" xml:space="preserve">
+    <value>Cave X 1</value>
+  </data>
+  <data name="tool_wp_style_cavex2" xml:space="preserve">
+    <value>Cave X 2</value>
+  </data>
+  <data name="tool_wp_style_treestyles" xml:space="preserve">
+    <value>Tree Styles</value>
+  </data>
+  <data name="tool_wp_style_treetop_1" xml:space="preserve">
+    <value>Tree 1 Tops</value>
+  </data>
+  <data name="tool_wp_style_treetop_2" xml:space="preserve">
+    <value>Tree 2 Tops</value>
+  </data>
+  <data name="tool_wp_style_treetop_3" xml:space="preserve">
+    <value>Tree 3 Tops</value>
+  </data>
+  <data name="tool_wp_style_treetop_4" xml:space="preserve">
+    <value>Tree 4 Tops</value>
+  </data>
+  <data name="tool_wp_style_treex0" xml:space="preserve">
+    <value>Tree X 0</value>
+  </data>
+  <data name="tool_wp_style_treex1" xml:space="preserve">
+    <value>Tree X 1</value>
+  </data>
+  <data name="tool_wp_style_treex2" xml:space="preserve">
+    <value>Tree X 2</value>
+  </data>
+  <data name="tool_wp_surface_level" xml:space="preserve">
+    <value>Surface Level</value>
+  </data>
+  <data name="tool_wp_time_day" xml:space="preserve">
+    <value>Is Day Time</value>
+  </data>
+  <data name="tool_wp_time_label" xml:space="preserve">
+    <value>Time</value>
+  </data>
+  <data name="tool_wp_time_sundial" xml:space="preserve">
+    <value>Use Sundial</value>
+  </data>
+  <data name="tool_wp_time_sundial_cooldown" xml:space="preserve">
+    <value>Sundial Cooldown</value>
+  </data>
+  <data name="tool_wp_weather_clouds" xml:space="preserve">
+    <value>Number Clouds</value>
+  </data>
+  <data name="tool_wp_weather_windspeed" xml:space="preserve">
+    <value>Wind Speed</value>
   </data>
   <data name="TrackMode_Booster" xml:space="preserve">
     <value>Booster</value>

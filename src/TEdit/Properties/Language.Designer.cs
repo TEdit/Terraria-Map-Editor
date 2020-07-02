@@ -800,6 +800,294 @@ namespace TEdit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cancel.
+        /// </summary>
+        public static string specialtile_button_cancel {
+            get {
+                return ResourceManager.GetString("specialtile_button_cancel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save.
+        /// </summary>
+        public static string specialtile_button_save {
+            get {
+                return ResourceManager.GetString("specialtile_button_save", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Acc1.
+        /// </summary>
+        public static string specialtile_label_acc1 {
+            get {
+                return ResourceManager.GetString("specialtile_label_acc1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Acc2.
+        /// </summary>
+        public static string specialtile_label_acc2 {
+            get {
+                return ResourceManager.GetString("specialtile_label_acc2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Acc3.
+        /// </summary>
+        public static string specialtile_label_acc3 {
+            get {
+                return ResourceManager.GetString("specialtile_label_acc3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Acc4.
+        /// </summary>
+        public static string specialtile_label_acc4 {
+            get {
+                return ResourceManager.GetString("specialtile_label_acc4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Acc5.
+        /// </summary>
+        public static string specialtile_label_acc5 {
+            get {
+                return ResourceManager.GetString("specialtile_label_acc5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Acc6.
+        /// </summary>
+        public static string specialtile_label_acc6 {
+            get {
+                return ResourceManager.GetString("specialtile_label_acc6", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Body.
+        /// </summary>
+        public static string specialtile_label_body {
+            get {
+                return ResourceManager.GetString("specialtile_label_body", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Chest Contents.
+        /// </summary>
+        public static string specialtile_label_chestcontents {
+            get {
+                return ResourceManager.GetString("specialtile_label_chestcontents", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Chest Name.
+        /// </summary>
+        public static string specialtile_label_chestname {
+            get {
+                return ResourceManager.GetString("specialtile_label_chestname", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Chest Type.
+        /// </summary>
+        public static string specialtile_label_chesttype {
+            get {
+                return ResourceManager.GetString("specialtile_label_chesttype", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Edit Selected Item.
+        /// </summary>
+        public static string specialtile_label_editselecteditem {
+            get {
+                return ResourceManager.GetString("specialtile_label_editselecteditem", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Head.
+        /// </summary>
+        public static string specialtile_label_head {
+            get {
+                return ResourceManager.GetString("specialtile_label_head", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Item Frame Contents.
+        /// </summary>
+        public static string specialtile_label_itemframecontents {
+            get {
+                return ResourceManager.GetString("specialtile_label_itemframecontents", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Legs.
+        /// </summary>
+        public static string specialtile_label_legs {
+            get {
+                return ResourceManager.GetString("specialtile_label_legs", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mannequin.
+        /// </summary>
+        public static string specialtile_label_mannequin {
+            get {
+                return ResourceManager.GetString("specialtile_label_mannequin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mannequin Clothing.
+        /// </summary>
+        public static string specialtile_label_mannequinclothing {
+            get {
+                return ResourceManager.GetString("specialtile_label_mannequinclothing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Plate Contents.
+        /// </summary>
+        public static string specialtile_label_platecontents {
+            get {
+                return ResourceManager.GetString("specialtile_label_platecontents", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sign Text.
+        /// </summary>
+        public static string specialtile_label_signtext {
+            get {
+                return ResourceManager.GetString("specialtile_label_signtext", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sign Type.
+        /// </summary>
+        public static string specialtile_label_signtype {
+            get {
+                return ResourceManager.GetString("specialtile_label_signtype", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Weapon Rack Item.
+        /// </summary>
+        public static string specialtile_label_weaponrack {
+            get {
+                return ResourceManager.GetString("specialtile_label_weaponrack", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bulbs.
+        /// </summary>
+        public static string specialtile_label_xmas_bulbs {
+            get {
+                return ResourceManager.GetString("specialtile_label_xmas_bulbs", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Christmas Tree Decorations.
+        /// </summary>
+        public static string specialtile_label_xmas_deco {
+            get {
+                return ResourceManager.GetString("specialtile_label_xmas_deco", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Garlands.
+        /// </summary>
+        public static string specialtile_label_xmas_garland {
+            get {
+                return ResourceManager.GetString("specialtile_label_xmas_garland", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Lights.
+        /// </summary>
+        public static string specialtile_label_xmas_lights {
+            get {
+                return ResourceManager.GetString("specialtile_label_xmas_lights", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Star.
+        /// </summary>
+        public static string specialtile_label_xmas_star {
+            get {
+                return ResourceManager.GetString("specialtile_label_xmas_star", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to With the Arrow Tool right click on a sign, chest, mannequin, weapon rack, item frame or christmas tree..
+        /// </summary>
+        public static string specialtile_tooltip {
+            get {
+                return ResourceManager.GetString("specialtile_tooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Filter.
+        /// </summary>
+        public static string sprite_filter_button {
+            get {
+                return ResourceManager.GetString("sprite_filter_button", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Filter: .
+        /// </summary>
+        public static string sprite_filter_label {
+            get {
+                return ResourceManager.GetString("sprite_filter_label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Style.
+        /// </summary>
+        public static string sprite_styletype {
+            get {
+                return ResourceManager.GetString("sprite_styletype", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tile Type.
+        /// </summary>
+        public static string sprite_tiletype {
+            get {
+                return ResourceManager.GetString("sprite_tiletype", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Extra.
         /// </summary>
         public static string statusbar_extra_label {
@@ -863,6 +1151,42 @@ namespace TEdit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Analyze.
+        /// </summary>
+        public static string tool_analyze_analyze_button {
+            get {
+                return ResourceManager.GetString("tool_analyze_analyze_button", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save Analysis.
+        /// </summary>
+        public static string tool_analyze_save {
+            get {
+                return ResourceManager.GetString("tool_analyze_save", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save.
+        /// </summary>
+        public static string tool_analyze_save_button {
+            get {
+                return ResourceManager.GetString("tool_analyze_save_button", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to World Analysis.
+        /// </summary>
+        public static string tool_analyze_title {
+            get {
+                return ResourceManager.GetString("tool_analyze_title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Arrow.
         /// </summary>
         public static string tool_arrow_title {
@@ -881,7 +1205,7 @@ namespace TEdit.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Save.
+        ///   Looks up a localized string similar to Save Bestiary.
         /// </summary>
         public static string tool_bestiary_save {
             get {
@@ -1052,6 +1376,15 @@ namespace TEdit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Morph to Biome.
+        /// </summary>
+        public static string tool_morph_label {
+            get {
+                return ResourceManager.GetString("tool_morph_label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Biome Morph.
         /// </summary>
         public static string tool_morph_title {
@@ -1151,6 +1484,33 @@ namespace TEdit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Add Booster to existing track, use with Eraser to remove booster only..
+        /// </summary>
+        public static string tool_paint_track_booster_tooltip {
+            get {
+                return ResourceManager.GetString("tool_paint_track_booster_tooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Use Hammer to modify track ends, intersections and booster direction..
+        /// </summary>
+        public static string tool_paint_track_hammer_tooltip {
+            get {
+                return ResourceManager.GetString("tool_paint_track_hammer_tooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add Pressure Plate to existing track, use with Eraser to remove plate only..
+        /// </summary>
+        public static string tool_paint_track_pressure_tooltip {
+            get {
+                return ResourceManager.GetString("tool_paint_track_pressure_tooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Wall.
         /// </summary>
         public static string tool_paint_wall_title {
@@ -1232,6 +1592,42 @@ namespace TEdit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Filter.
+        /// </summary>
+        public static string tool_sprite_filter_button {
+            get {
+                return ResourceManager.GetString("tool_sprite_filter_button", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Filter:.
+        /// </summary>
+        public static string tool_sprite_filter_label {
+            get {
+                return ResourceManager.GetString("tool_sprite_filter_label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Style:.
+        /// </summary>
+        public static string tool_sprite_style_label {
+            get {
+                return ResourceManager.GetString("tool_sprite_style_label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tile Type:.
+        /// </summary>
+        public static string tool_sprite_tiletype_label {
+            get {
+                return ResourceManager.GetString("tool_sprite_tiletype_label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Sprite Placer (OLD).
         /// </summary>
         public static string tool_sprite_title {
@@ -1246,6 +1642,1185 @@ namespace TEdit.Properties {
         public static string tool_sprite2_title {
             get {
                 return ResourceManager.GetString("tool_sprite2_title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Adamantite Tier.
+        /// </summary>
+        public static string tool_wp_adamantite {
+            get {
+                return ResourceManager.GetString("tool_wp_adamantite", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Altars Smashed.
+        /// </summary>
+        public static string tool_wp_altars {
+            get {
+                return ResourceManager.GetString("tool_wp_altars", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Corrupt BG.
+        /// </summary>
+        public static string tool_wp_bg_corrupt {
+            get {
+                return ResourceManager.GetString("tool_wp_bg_corrupt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Crimson BG.
+        /// </summary>
+        public static string tool_wp_bg_crimson {
+            get {
+                return ResourceManager.GetString("tool_wp_bg_crimson", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Deep Ice BG.
+        /// </summary>
+        public static string tool_wp_bg_deepice {
+            get {
+                return ResourceManager.GetString("tool_wp_bg_deepice", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Deep Jungle BG.
+        /// </summary>
+        public static string tool_wp_bg_deepjungle {
+            get {
+                return ResourceManager.GetString("tool_wp_bg_deepjungle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Desert BG.
+        /// </summary>
+        public static string tool_wp_bg_desert {
+            get {
+                return ResourceManager.GetString("tool_wp_bg_desert", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Forest BG.
+        /// </summary>
+        public static string tool_wp_bg_forest {
+            get {
+                return ResourceManager.GetString("tool_wp_bg_forest", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hallow BG.
+        /// </summary>
+        public static string tool_wp_bg_hallow {
+            get {
+                return ResourceManager.GetString("tool_wp_bg_hallow", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hell BG.
+        /// </summary>
+        public static string tool_wp_bg_hell {
+            get {
+                return ResourceManager.GetString("tool_wp_bg_hell", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Jungle BG.
+        /// </summary>
+        public static string tool_wp_bg_jungle {
+            get {
+                return ResourceManager.GetString("tool_wp_bg_jungle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mushroom BG.
+        /// </summary>
+        public static string tool_wp_bg_mushroom {
+            get {
+                return ResourceManager.GetString("tool_wp_bg_mushroom", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ocean BG.
+        /// </summary>
+        public static string tool_wp_bg_ocean {
+            get {
+                return ResourceManager.GetString("tool_wp_bg_ocean", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Snow BG.
+        /// </summary>
+        public static string tool_wp_bg_snow {
+            get {
+                return ResourceManager.GetString("tool_wp_bg_snow", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tree 2 BG.
+        /// </summary>
+        public static string tool_wp_bg_tree2 {
+            get {
+                return ResourceManager.GetString("tool_wp_bg_tree2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tree 3 BG.
+        /// </summary>
+        public static string tool_wp_bg_tree3 {
+            get {
+                return ResourceManager.GetString("tool_wp_bg_tree3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tree 4 BG.
+        /// </summary>
+        public static string tool_wp_bg_tree4 {
+            get {
+                return ResourceManager.GetString("tool_wp_bg_tree4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Underworld BG.
+        /// </summary>
+        public static string tool_wp_bg_underworld {
+            get {
+                return ResourceManager.GetString("tool_wp_bg_underworld", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The Destroyer.
+        /// </summary>
+        public static string tool_wp_boss_destroyer {
+            get {
+                return ResourceManager.GetString("tool_wp_boss_destroyer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bosses Downed.
+        /// </summary>
+        public static string tool_wp_boss_downed {
+            get {
+                return ResourceManager.GetString("tool_wp_boss_downed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Duke Fishron.
+        /// </summary>
+        public static string tool_wp_boss_dukefishron {
+            get {
+                return ResourceManager.GetString("tool_wp_boss_dukefishron", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Eater of Worlds.
+        /// </summary>
+        public static string tool_wp_boss_eaterofworlds {
+            get {
+                return ResourceManager.GetString("tool_wp_boss_eaterofworlds", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Empress of Light.
+        /// </summary>
+        public static string tool_wp_boss_empressoflight {
+            get {
+                return ResourceManager.GetString("tool_wp_boss_empressoflight", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Everscream.
+        /// </summary>
+        public static string tool_wp_boss_everscream {
+            get {
+                return ResourceManager.GetString("tool_wp_boss_everscream", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Eye of Cthulhu.
+        /// </summary>
+        public static string tool_wp_boss_eyeofcthulhu {
+            get {
+                return ResourceManager.GetString("tool_wp_boss_eyeofcthulhu", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Flying Dutchman.
+        /// </summary>
+        public static string tool_wp_boss_flyingdutchman {
+            get {
+                return ResourceManager.GetString("tool_wp_boss_flyingdutchman", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Golem.
+        /// </summary>
+        public static string tool_wp_boss_golem {
+            get {
+                return ResourceManager.GetString("tool_wp_boss_golem", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ice Queen.
+        /// </summary>
+        public static string tool_wp_boss_icequeen {
+            get {
+                return ResourceManager.GetString("tool_wp_boss_icequeen", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to King Slime.
+        /// </summary>
+        public static string tool_wp_boss_kingslime {
+            get {
+                return ResourceManager.GetString("tool_wp_boss_kingslime", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Lunatic Cultist.
+        /// </summary>
+        public static string tool_wp_boss_lunaticcultist {
+            get {
+                return ResourceManager.GetString("tool_wp_boss_lunaticcultist", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Moon Lord.
+        /// </summary>
+        public static string tool_wp_boss_moonlord {
+            get {
+                return ResourceManager.GetString("tool_wp_boss_moonlord", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mourning Wood.
+        /// </summary>
+        public static string tool_wp_boss_mourningwood {
+            get {
+                return ResourceManager.GetString("tool_wp_boss_mourningwood", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nebula Pillar.
+        /// </summary>
+        public static string tool_wp_boss_nebulapillar {
+            get {
+                return ResourceManager.GetString("tool_wp_boss_nebulapillar", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Plantera.
+        /// </summary>
+        public static string tool_wp_boss_plantera {
+            get {
+                return ResourceManager.GetString("tool_wp_boss_plantera", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pumpking.
+        /// </summary>
+        public static string tool_wp_boss_pumpking {
+            get {
+                return ResourceManager.GetString("tool_wp_boss_pumpking", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Queen Bee.
+        /// </summary>
+        public static string tool_wp_boss_queenbee {
+            get {
+                return ResourceManager.GetString("tool_wp_boss_queenbee", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Queen Slime.
+        /// </summary>
+        public static string tool_wp_boss_queenslime {
+            get {
+                return ResourceManager.GetString("tool_wp_boss_queenslime", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Santa NK1.
+        /// </summary>
+        public static string tool_wp_boss_santank1 {
+            get {
+                return ResourceManager.GetString("tool_wp_boss_santank1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Skeletron.
+        /// </summary>
+        public static string tool_wp_boss_skeletron {
+            get {
+                return ResourceManager.GetString("tool_wp_boss_skeletron", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Skeletron Prime.
+        /// </summary>
+        public static string tool_wp_boss_skeletronprime {
+            get {
+                return ResourceManager.GetString("tool_wp_boss_skeletronprime", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Solar Pillar.
+        /// </summary>
+        public static string tool_wp_boss_solarpillar {
+            get {
+                return ResourceManager.GetString("tool_wp_boss_solarpillar", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Stardust Pillar.
+        /// </summary>
+        public static string tool_wp_boss_stardustpillar {
+            get {
+                return ResourceManager.GetString("tool_wp_boss_stardustpillar", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The Twins.
+        /// </summary>
+        public static string tool_wp_boss_twins {
+            get {
+                return ResourceManager.GetString("tool_wp_boss_twins", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Vortex Pillar.
+        /// </summary>
+        public static string tool_wp_boss_vortexpillar {
+            get {
+                return ResourceManager.GetString("tool_wp_boss_vortexpillar", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wall of Flesh.
+        /// </summary>
+        public static string tool_wp_boss_walloffflesh {
+            get {
+                return ResourceManager.GetString("tool_wp_boss_walloffflesh", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cavern Level.
+        /// </summary>
+        public static string tool_wp_cavern_level {
+            get {
+                return ResourceManager.GetString("tool_wp_cavern_level", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cobalt Tier.
+        /// </summary>
+        public static string tool_wp_cobalt {
+            get {
+                return ResourceManager.GetString("tool_wp_cobalt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Copper Tier.
+        /// </summary>
+        public static string tool_wp_copper {
+            get {
+                return ResourceManager.GetString("tool_wp_copper", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Crimson.
+        /// </summary>
+        public static string tool_wp_crimson {
+            get {
+                return ResourceManager.GetString("tool_wp_crimson", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Difficulty.
+        /// </summary>
+        public static string tool_wp_difficulty {
+            get {
+                return ResourceManager.GetString("tool_wp_difficulty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hardmode.
+        /// </summary>
+        public static string tool_wp_difficulty_hardmode {
+            get {
+                return ResourceManager.GetString("tool_wp_difficulty_hardmode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Drunk World.
+        /// </summary>
+        public static string tool_wp_drunk {
+            get {
+                return ResourceManager.GetString("tool_wp_drunk", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Event.
+        /// </summary>
+        public static string tool_wp_event {
+            get {
+                return ResourceManager.GetString("tool_wp_event", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Game Mode.
+        /// </summary>
+        public static string tool_wp_gamemode {
+            get {
+                return ResourceManager.GetString("tool_wp_gamemode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Gold Tier.
+        /// </summary>
+        public static string tool_wp_gold {
+            get {
+                return ResourceManager.GetString("tool_wp_gold", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to World GUID.
+        /// </summary>
+        public static string tool_wp_guid {
+            get {
+                return ResourceManager.GetString("tool_wp_guid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hardmode.
+        /// </summary>
+        public static string tool_wp_hardmode {
+            get {
+                return ResourceManager.GetString("tool_wp_hardmode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Force Holidays.
+        /// </summary>
+        public static string tool_wp_holiday {
+            get {
+                return ResourceManager.GetString("tool_wp_holiday", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Halloween.
+        /// </summary>
+        public static string tool_wp_holiday_halloween {
+            get {
+                return ResourceManager.GetString("tool_wp_holiday_halloween", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to XMas.
+        /// </summary>
+        public static string tool_wp_holiday_xmas {
+            get {
+                return ResourceManager.GetString("tool_wp_holiday_xmas", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to World ID.
+        /// </summary>
+        public static string tool_wp_id {
+            get {
+                return ResourceManager.GetString("tool_wp_id", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invasions.
+        /// </summary>
+        public static string tool_wp_invasion {
+            get {
+                return ResourceManager.GetString("tool_wp_invasion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Frost Legion.
+        /// </summary>
+        public static string tool_wp_invasion_frostlegion {
+            get {
+                return ResourceManager.GetString("tool_wp_invasion_frostlegion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Goblin Army.
+        /// </summary>
+        public static string tool_wp_invasion_goblinarmy {
+            get {
+                return ResourceManager.GetString("tool_wp_invasion_goblinarmy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Martian Madness.
+        /// </summary>
+        public static string tool_wp_invasion_martianmadness {
+            get {
+                return ResourceManager.GetString("tool_wp_invasion_martianmadness", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pirate Invasion.
+        /// </summary>
+        public static string tool_wp_invasion_pirateinvasion {
+            get {
+                return ResourceManager.GetString("tool_wp_invasion_pirateinvasion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invasion Size.
+        /// </summary>
+        public static string tool_wp_invasion_size {
+            get {
+                return ResourceManager.GetString("tool_wp_invasion_size", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invasion Type.
+        /// </summary>
+        public static string tool_wp_invasion_type {
+            get {
+                return ResourceManager.GetString("tool_wp_invasion_type", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invasion X Target.
+        /// </summary>
+        public static string tool_wp_invasion_x {
+            get {
+                return ResourceManager.GetString("tool_wp_invasion_x", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Iron Tier.
+        /// </summary>
+        public static string tool_wp_iron {
+            get {
+                return ResourceManager.GetString("tool_wp_iron", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Journey&apos;s End.
+        /// </summary>
+        public static string tool_wp_journeysend {
+            get {
+                return ResourceManager.GetString("tool_wp_journeysend", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Meteor.
+        /// </summary>
+        public static string tool_wp_meteor {
+            get {
+                return ResourceManager.GetString("tool_wp_meteor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Spawn Meteor.
+        /// </summary>
+        public static string tool_wp_meteor_spawn {
+            get {
+                return ResourceManager.GetString("tool_wp_meteor_spawn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Blood Moon.
+        /// </summary>
+        public static string tool_wp_moon_blood {
+            get {
+                return ResourceManager.GetString("tool_wp_moon_blood", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Is Eclipse.
+        /// </summary>
+        public static string tool_wp_moon_eclipse {
+            get {
+                return ResourceManager.GetString("tool_wp_moon_eclipse", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Moon Phase.
+        /// </summary>
+        public static string tool_wp_moon_phase {
+            get {
+                return ResourceManager.GetString("tool_wp_moon_phase", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Moon Style.
+        /// </summary>
+        public static string tool_wp_moon_style {
+            get {
+                return ResourceManager.GetString("tool_wp_moon_style", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mythril Tier.
+        /// </summary>
+        public static string tool_wp_mythril {
+            get {
+                return ResourceManager.GetString("tool_wp_mythril", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to World Name.
+        /// </summary>
+        public static string tool_wp_name {
+            get {
+                return ResourceManager.GetString("tool_wp_name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Angler.
+        /// </summary>
+        public static string tool_wp_npc_angler {
+            get {
+                return ResourceManager.GetString("tool_wp_npc_angler", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Angler Mission.
+        /// </summary>
+        public static string tool_wp_npc_angler_mission {
+            get {
+                return ResourceManager.GetString("tool_wp_npc_angler_mission", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to NPCs Bought.
+        /// </summary>
+        public static string tool_wp_npc_bought {
+            get {
+                return ResourceManager.GetString("tool_wp_npc_bought", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bunny.
+        /// </summary>
+        public static string tool_wp_npc_bunny {
+            get {
+                return ResourceManager.GetString("tool_wp_npc_bunny", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cat.
+        /// </summary>
+        public static string tool_wp_npc_cat {
+            get {
+                return ResourceManager.GetString("tool_wp_npc_cat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dog.
+        /// </summary>
+        public static string tool_wp_npc_dog {
+            get {
+                return ResourceManager.GetString("tool_wp_npc_dog", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Goblin Tinkerer.
+        /// </summary>
+        public static string tool_wp_npc_goblintinkerer {
+            get {
+                return ResourceManager.GetString("tool_wp_npc_goblintinkerer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Golfer.
+        /// </summary>
+        public static string tool_wp_npc_golfer {
+            get {
+                return ResourceManager.GetString("tool_wp_npc_golfer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mechanic.
+        /// </summary>
+        public static string tool_wp_npc_mechanic {
+            get {
+                return ResourceManager.GetString("tool_wp_npc_mechanic", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to NPCs Saved.
+        /// </summary>
+        public static string tool_wp_npc_saved {
+            get {
+                return ResourceManager.GetString("tool_wp_npc_saved", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Stylist.
+        /// </summary>
+        public static string tool_wp_npc_stylist {
+            get {
+                return ResourceManager.GetString("tool_wp_npc_stylist", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tavernkeep.
+        /// </summary>
+        public static string tool_wp_npc_tavernkeep {
+            get {
+                return ResourceManager.GetString("tool_wp_npc_tavernkeep", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tax Collector.
+        /// </summary>
+        public static string tool_wp_npc_taxcollector {
+            get {
+                return ResourceManager.GetString("tool_wp_npc_taxcollector", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wizard.
+        /// </summary>
+        public static string tool_wp_npc_wizard {
+            get {
+                return ResourceManager.GetString("tool_wp_npc_wizard", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Old One&apos;s Army.
+        /// </summary>
+        public static string tool_wp_oldonesarmy {
+            get {
+                return ResourceManager.GetString("tool_wp_oldonesarmy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tier 1.
+        /// </summary>
+        public static string tool_wp_oldonesarmy_t1 {
+            get {
+                return ResourceManager.GetString("tool_wp_oldonesarmy_t1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tier 2.
+        /// </summary>
+        public static string tool_wp_oldonesarmy_t2 {
+            get {
+                return ResourceManager.GetString("tool_wp_oldonesarmy_t2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tier 3.
+        /// </summary>
+        public static string tool_wp_oldonesarmy_t3 {
+            get {
+                return ResourceManager.GetString("tool_wp_oldonesarmy_t3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Orbs Smashed.
+        /// </summary>
+        public static string tool_wp_orbs {
+            get {
+                return ResourceManager.GetString("tool_wp_orbs", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pre-Hardmode.
+        /// </summary>
+        public static string tool_wp_prehardmode {
+            get {
+                return ResourceManager.GetString("tool_wp_prehardmode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rain.
+        /// </summary>
+        public static string tool_wp_rain {
+            get {
+                return ResourceManager.GetString("tool_wp_rain", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Is Raining.
+        /// </summary>
+        public static string tool_wp_rain_active {
+            get {
+                return ResourceManager.GetString("tool_wp_rain_active", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Max Rain.
+        /// </summary>
+        public static string tool_wp_rain_max {
+            get {
+                return ResourceManager.GetString("tool_wp_rain_max", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Slime Rain Time.
+        /// </summary>
+        public static string tool_wp_rain_slime {
+            get {
+                return ResourceManager.GetString("tool_wp_rain_slime", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rain Time.
+        /// </summary>
+        public static string tool_wp_rain_time {
+            get {
+                return ResourceManager.GetString("tool_wp_rain_time", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Revision.
+        /// </summary>
+        public static string tool_wp_revision {
+            get {
+                return ResourceManager.GetString("tool_wp_revision", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sandstorm.
+        /// </summary>
+        public static string tool_wp_sandstorm {
+            get {
+                return ResourceManager.GetString("tool_wp_sandstorm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Is Storming.
+        /// </summary>
+        public static string tool_wp_sandstorm_active {
+            get {
+                return ResourceManager.GetString("tool_wp_sandstorm_active", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Severity.
+        /// </summary>
+        public static string tool_wp_sandstorm_severity {
+            get {
+                return ResourceManager.GetString("tool_wp_sandstorm_severity", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Indended Severity.
+        /// </summary>
+        public static string tool_wp_sandstorm_severity_target {
+            get {
+                return ResourceManager.GetString("tool_wp_sandstorm_severity_target", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Time Left.
+        /// </summary>
+        public static string tool_wp_sandstorm_time {
+            get {
+                return ResourceManager.GetString("tool_wp_sandstorm_time", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Seed.
+        /// </summary>
+        public static string tool_wp_seed {
+            get {
+                return ResourceManager.GetString("tool_wp_seed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Silver Tier.
+        /// </summary>
+        public static string tool_wp_silver {
+            get {
+                return ResourceManager.GetString("tool_wp_silver", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cave Styles.
+        /// </summary>
+        public static string tool_wp_style_cavestyles {
+            get {
+                return ResourceManager.GetString("tool_wp_style_cavestyles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cave X 0.
+        /// </summary>
+        public static string tool_wp_style_cavex0 {
+            get {
+                return ResourceManager.GetString("tool_wp_style_cavex0", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cave X 1.
+        /// </summary>
+        public static string tool_wp_style_cavex1 {
+            get {
+                return ResourceManager.GetString("tool_wp_style_cavex1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cave X 2.
+        /// </summary>
+        public static string tool_wp_style_cavex2 {
+            get {
+                return ResourceManager.GetString("tool_wp_style_cavex2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tree Styles.
+        /// </summary>
+        public static string tool_wp_style_treestyles {
+            get {
+                return ResourceManager.GetString("tool_wp_style_treestyles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tree 1 Tops.
+        /// </summary>
+        public static string tool_wp_style_treetop_1 {
+            get {
+                return ResourceManager.GetString("tool_wp_style_treetop_1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tree 2 Tops.
+        /// </summary>
+        public static string tool_wp_style_treetop_2 {
+            get {
+                return ResourceManager.GetString("tool_wp_style_treetop_2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tree 3 Tops.
+        /// </summary>
+        public static string tool_wp_style_treetop_3 {
+            get {
+                return ResourceManager.GetString("tool_wp_style_treetop_3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tree 4 Tops.
+        /// </summary>
+        public static string tool_wp_style_treetop_4 {
+            get {
+                return ResourceManager.GetString("tool_wp_style_treetop_4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tree X 0.
+        /// </summary>
+        public static string tool_wp_style_treex0 {
+            get {
+                return ResourceManager.GetString("tool_wp_style_treex0", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tree X 1.
+        /// </summary>
+        public static string tool_wp_style_treex1 {
+            get {
+                return ResourceManager.GetString("tool_wp_style_treex1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tree X 2.
+        /// </summary>
+        public static string tool_wp_style_treex2 {
+            get {
+                return ResourceManager.GetString("tool_wp_style_treex2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Surface Level.
+        /// </summary>
+        public static string tool_wp_surface_level {
+            get {
+                return ResourceManager.GetString("tool_wp_surface_level", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Is Day Time.
+        /// </summary>
+        public static string tool_wp_time_day {
+            get {
+                return ResourceManager.GetString("tool_wp_time_day", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Time.
+        /// </summary>
+        public static string tool_wp_time_label {
+            get {
+                return ResourceManager.GetString("tool_wp_time_label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Use Sundial.
+        /// </summary>
+        public static string tool_wp_time_sundial {
+            get {
+                return ResourceManager.GetString("tool_wp_time_sundial", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sundial Cooldown.
+        /// </summary>
+        public static string tool_wp_time_sundial_cooldown {
+            get {
+                return ResourceManager.GetString("tool_wp_time_sundial_cooldown", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Number Clouds.
+        /// </summary>
+        public static string tool_wp_weather_clouds {
+            get {
+                return ResourceManager.GetString("tool_wp_weather_clouds", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wind Speed.
+        /// </summary>
+        public static string tool_wp_weather_windspeed {
+            get {
+                return ResourceManager.GetString("tool_wp_weather_windspeed", resourceCulture);
             }
         }
         

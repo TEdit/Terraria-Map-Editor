@@ -5,12 +5,13 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:tedit="clr-namespace:TEdit.UI.Xaml"
              xmlns:Editor="clr-namespace:TEdit.Editor"
              xmlns:enum="clr-namespace:TEdit.UI.Xaml.Enum"
+             xmlns:p="clr-namespace:TEdit.Properties"
              mc:Ignorable="d" >
     <UserControl.Resources>
-        <enum:EnumItemList x:Key="MorphBiomeEnum" EnumType="{x:Type Editor:MorphBiome}" x:Shared="false" SortBy="Value" />
+        <enum:EnumItemList x:Key="MorphBiomeEnum" ResourceType="{x:Type p:Language}" EnumType="{x:Type Editor:MorphBiome}" x:Shared="false" SortBy="Value" />
     </UserControl.Resources>
     <StackPanel Orientation="Vertical">
-        <TextBlock Text="Morph to Biome" Margin="2" />
+        <TextBlock Text="{x:Static p:Language.tool_morph_label}" Margin="2" />
         <ComboBox Width="200" ItemsSource="{StaticResource MorphBiomeEnum}" SelectedValuePath="Value" SelectedValue="{Binding MorphBiomeTarget}" />
     </StackPanel>
 </UserControl>
