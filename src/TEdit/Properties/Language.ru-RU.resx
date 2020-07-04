@@ -118,105 +118,104 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="BrickStyle_Full" xml:space="preserve">
-    <value>Full Brick</value>
+    <value>Полный блок</value>
   </data>
   <data name="BrickStyle_HalfBrick" xml:space="preserve">
-    <value>Half Brick</value>
+    <value>Полублок</value>
   </data>
   <data name="BrickStyle_SlopeBottomLeft" xml:space="preserve">
-    <value>Slope Bottom Left</value>
+    <value>Скос налево вниз</value>
   </data>
   <data name="BrickStyle_SlopeBottomRight" xml:space="preserve">
-    <value>Slope Bottom Right</value>
+    <value>Скос направо вниз</value>
   </data>
   <data name="BrickStyle_SlopeTopLeft" xml:space="preserve">
-    <value>Slope Top Left</value>
+    <value>Скос налево наверх</value>
   </data>
   <data name="BrickStyle_SlopeTopRight" xml:space="preserve">
-    <value>Slope Top Right</value>
+    <value>Скос направо наверх</value>
   </data>
   <data name="BrushShape_Left" xml:space="preserve">
-    <value>Diagonal Left</value>
+    <value>Налево по диагонали</value>
     <comment>enum:BrushShape.Left</comment>
   </data>
   <data name="BrushShape_Right" xml:space="preserve">
-    <value>Diagonal Right</value>
+    <value>Направо по диагонали</value>
     <comment>enum:BrushShape.Right</comment>
   </data>
   <data name="BrushShape_Round" xml:space="preserve">
-    <value>Ellipse</value>
+    <value>Эллипс</value>
     <comment>enum:BrushShape.Round</comment>
   </data>
   <data name="BrushShape_Square" xml:space="preserve">
-    <value>Rectangle</value>
+    <value>Прямоугольник</value>
     <comment>enum:BrushShape.Square</comment>
   </data>
   <data name="dialog_error_terriaria_folder_message" xml:space="preserve">
-    <value>Directory does not appear to contain Terraria Content.
-Press retry to pick a new folder or cancel to use {0} as your terraria path.</value>
+    <value>Эта папка не содержит контента Terraria.</value>
   </data>
   <data name="dialog_error_terriaria_folder_title" xml:space="preserve">
-    <value>Terraria Content not Found</value>
+    <value>Контент игры не найден</value>
   </data>
   <data name="editor_tabs_analysis" xml:space="preserve">
-    <value>Analysis</value>
+    <value>Анализ</value>
   </data>
   <data name="editor_tabs_clipboard" xml:space="preserve">
-    <value>Clipboard</value>
+    <value>Буфер обмена</value>
   </data>
   <data name="editor_tabs_npc" xml:space="preserve">
-    <value>NPC Data</value>
+    <value>Данные о НИПах</value>
   </data>
   <data name="editor_tabs_special" xml:space="preserve">
-    <value>Special Tiles</value>
+    <value>Специальные блоки</value>
   </data>
   <data name="editor_tabs_sprites" xml:space="preserve">
-    <value>Sprites</value>
+    <value>Спрайты</value>
   </data>
   <data name="editor_tabs_tally" xml:space="preserve">
-    <value>Tally</value>
+    <value>Счётчик</value>
   </data>
   <data name="editor_tabs_tileentities" xml:space="preserve">
-    <value>Tile Entities</value>
+    <value>Сущности</value>
   </data>
   <data name="editor_tabs_worldproperties" xml:space="preserve">
-    <value>World Properties</value>
+    <value>Параметры мира</value>
   </data>
   <data name="editor_utilities_label" xml:space="preserve">
-    <value>Utilities</value>
+    <value>Инструменты</value>
   </data>
   <data name="global_enjoytedit" xml:space="preserve">
-    <value>Enjoy TEdit? Support Us!</value>
+    <value>Нравится TEdit? Поддержите нас!</value>
   </data>
   <data name="HalfBlockMode_HalfBLock" xml:space="preserve">
-    <value>Half Block</value>
+    <value>Полублок</value>
   </data>
   <data name="HalfBlockMode_NoAction" xml:space="preserve">
-    <value>No Change</value>
+    <value>Без изменений</value>
   </data>
   <data name="HalfBlockMode_RampLeft" xml:space="preserve">
-    <value>Ramp Left</value>
+    <value>Скос налево</value>
   </data>
   <data name="HalfBlockMode_RampRight" xml:space="preserve">
-    <value>Ramp Right</value>
+    <value>Скос направо</value>
   </data>
   <data name="HalfBlockMode_Solid" xml:space="preserve">
-    <value>Set Solid</value>
+    <value>Сделать твёрдым</value>
   </data>
   <data name="LiquidType_Honey" xml:space="preserve">
-    <value>Honey</value>
+    <value>Мёд</value>
   </data>
   <data name="LiquidType_Lava" xml:space="preserve">
-    <value>Lava</value>
+    <value>Лава</value>
   </data>
   <data name="LiquidType_None" xml:space="preserve">
-    <value>No Liquid</value>
+    <value>Нет жидкости</value>
   </data>
   <data name="LiquidType_Water" xml:space="preserve">
-    <value>Water</value>
+    <value>Вода</value>
   </data>
   <data name="MaskMode_Empty" xml:space="preserve">
-    <value>Edit Empty</value>
+    <value>Изменить пустое</value>
   </data>
   <data name="MaskMode_Match" xml:space="preserve">
     <value>Edit Matching</value>
@@ -225,841 +224,841 @@ Press retry to pick a new folder or cancel to use {0} as your terraria path.</va
     <value>Edit not Matching</value>
   </data>
   <data name="MaskMode_Off" xml:space="preserve">
-    <value>Disable Mask</value>
+    <value>Выключить маску</value>
   </data>
   <data name="menu_edit" xml:space="preserve">
-    <value>Edit</value>
+    <value>Редактировать</value>
   </data>
   <data name="menu_edit_copy" xml:space="preserve">
-    <value>Copy</value>
+    <value>Копировать</value>
   </data>
   <data name="menu_edit_delete" xml:space="preserve">
-    <value>Delete Selection</value>
+    <value>Удалить выделение</value>
   </data>
   <data name="menu_edit_paste" xml:space="preserve">
-    <value>Paste</value>
+    <value>Вставить</value>
   </data>
   <data name="menu_edit_redo" xml:space="preserve">
-    <value>Redo</value>
+    <value>Восстановить</value>
   </data>
   <data name="menu_edit_undo" xml:space="preserve">
-    <value>Undo</value>
+    <value>Отменить</value>
   </data>
   <data name="menu_file" xml:space="preserve">
-    <value>File</value>
+    <value>Файл</value>
   </data>
   <data name="menu_file_autosave" xml:space="preserve">
-    <value>Enable Autosave</value>
+    <value>Включить автосохранение</value>
   </data>
   <data name="menu_file_autoupdate" xml:space="preserve">
-    <value>Check for Updates on Startup</value>
+    <value>Проверять обновления при запуске</value>
   </data>
   <data name="menu_file_exit" xml:space="preserve">
-    <value>Exit</value>
+    <value>Выйти</value>
   </data>
   <data name="menu_file_new" xml:space="preserve">
-    <value>New</value>
+    <value>Создать</value>
   </data>
   <data name="menu_file_open" xml:space="preserve">
-    <value>Open</value>
+    <value>Открыть</value>
   </data>
   <data name="menu_file_save" xml:space="preserve">
-    <value>Save</value>
+    <value>Сохранить</value>
   </data>
   <data name="menu_file_saveas" xml:space="preserve">
-    <value>Save As</value>
+    <value>Сохранить как</value>
   </data>
   <data name="menu_file_update" xml:space="preserve">
-    <value>Check for Updates Now</value>
+    <value>Проверить обновления</value>
   </data>
   <data name="menu_help" xml:space="preserve">
-    <value>Help</value>
+    <value>Помощь</value>
   </data>
   <data name="menu_help_about" xml:space="preserve">
-    <value>About</value>
+    <value>Подробнее</value>
   </data>
   <data name="menu_help_log" xml:space="preserve">
-    <value>Open Log File</value>
+    <value>Открыть логи</value>
   </data>
   <data name="menu_help_settings" xml:space="preserve">
-    <value>Update Settings.xml</value>
+    <value>Обновить Settings.xml</value>
   </data>
   <data name="menu_help_update" xml:space="preserve">
-    <value>Update</value>
+    <value>Обновить</value>
   </data>
   <data name="menu_help_wiki" xml:space="preserve">
-    <value>Wiki</value>
+    <value>Вики</value>
   </data>
   <data name="menu_layers" xml:space="preserve">
-    <value>Layers</value>
+    <value>Слои</value>
   </data>
   <data name="menu_layers_actuators" xml:space="preserve">
-    <value>Actuators</value>
+    <value>Активаторы</value>
   </data>
   <data name="menu_layers_grid" xml:space="preserve">
-    <value>Layout Grid</value>
+    <value>Сетка</value>
   </data>
   <data name="menu_layers_liquid" xml:space="preserve">
-    <value>Liquids</value>
+    <value>Жидкости</value>
   </data>
   <data name="menu_layers_points" xml:space="preserve">
-    <value>Points of Interest</value>
+    <value>Точки интереса</value>
   </data>
   <data name="menu_layers_textures" xml:space="preserve">
-    <value>Textures</value>
+    <value>Текстуры</value>
   </data>
   <data name="menu_layers_tiles" xml:space="preserve">
-    <value>Tiles</value>
+    <value>Блоки</value>
   </data>
   <data name="menu_layers_walls" xml:space="preserve">
-    <value>Walls</value>
+    <value>Стены</value>
   </data>
   <data name="menu_layers_wire_blue" xml:space="preserve">
-    <value>Blue Wire</value>
+    <value>Синие провода</value>
   </data>
   <data name="menu_layers_wire_green" xml:space="preserve">
-    <value>Green Wire</value>
+    <value>Зелёные провода</value>
   </data>
   <data name="menu_layers_wire_red" xml:space="preserve">
-    <value>Red Wire</value>
+    <value>Красные провода</value>
   </data>
   <data name="menu_layers_wire_yellow" xml:space="preserve">
-    <value>Yellow Wire</value>
+    <value>Жёлтые провода</value>
   </data>
   <data name="menu_plugins" xml:space="preserve">
-    <value>Plugins</value>
+    <value>Плагины</value>
   </data>
   <data name="menu_toolbar_zoom_in" xml:space="preserve">
-    <value>Zoom In</value>
+    <value>Приблизить</value>
   </data>
   <data name="menu_toolbar_zoom_out" xml:space="preserve">
-    <value>Zoom Out</value>
+    <value>Отдалить</value>
   </data>
   <data name="MorphBiome_Corruption" xml:space="preserve">
-    <value>Corruption</value>
+    <value>Искажение</value>
     <comment>enum:MorphBiome.Corruption</comment>
   </data>
   <data name="MorphBiome_Crimson" xml:space="preserve">
-    <value>Crimson</value>
+    <value>Кримзон</value>
     <comment>enum:MorphBiome.Crimson</comment>
   </data>
   <data name="MorphBiome_Custom" xml:space="preserve">
-    <value>Custom</value>
+    <value>Кастомный</value>
     <comment>enum:MorphBiome.Custom</comment>
   </data>
   <data name="MorphBiome_Desert" xml:space="preserve">
-    <value>Desert</value>
+    <value>Пустыня</value>
     <comment>enum:MorphBiome.Desert</comment>
   </data>
   <data name="MorphBiome_Hallow" xml:space="preserve">
-    <value>Hallow</value>
+    <value>Святые земли</value>
     <comment>enum:MorphBiome.Hallow</comment>
   </data>
   <data name="MorphBiome_Jungle" xml:space="preserve">
-    <value>Jungle</value>
+    <value>Джунгли</value>
     <comment>enum:MorphBiome.Jungle</comment>
   </data>
   <data name="MorphBiome_Purify" xml:space="preserve">
-    <value>Purify</value>
+    <value>Очистить</value>
     <comment>enum:MorphBiome.Purify</comment>
   </data>
   <data name="PaintMode_Liquid" xml:space="preserve">
-    <value>Liquid</value>
+    <value>Жидкость</value>
   </data>
   <data name="PaintMode_TileAndWall" xml:space="preserve">
-    <value>Tile/Wall</value>
+    <value>Блоки/стены</value>
   </data>
   <data name="PaintMode_Track" xml:space="preserve">
-    <value>Track</value>
+    <value>Трек</value>
   </data>
   <data name="PaintMode_Wire" xml:space="preserve">
-    <value>Wire</value>
+    <value>Провода</value>
   </data>
   <data name="specialtile_button_cancel" xml:space="preserve">
-    <value>Cancel</value>
+    <value>Отменить</value>
   </data>
   <data name="specialtile_button_save" xml:space="preserve">
-    <value>Save</value>
+    <value>Сохранить</value>
   </data>
   <data name="specialtile_label_acc1" xml:space="preserve">
-    <value>Acc1</value>
+    <value>Аксессуар 1</value>
   </data>
   <data name="specialtile_label_acc2" xml:space="preserve">
-    <value>Acc2</value>
+    <value>Аксессуар 2</value>
   </data>
   <data name="specialtile_label_acc3" xml:space="preserve">
-    <value>Acc3</value>
+    <value>Аксессуар 3</value>
   </data>
   <data name="specialtile_label_acc4" xml:space="preserve">
-    <value>Acc4</value>
+    <value>Аксессуар 4</value>
   </data>
   <data name="specialtile_label_acc5" xml:space="preserve">
-    <value>Acc5</value>
+    <value>Аксессуар 5</value>
   </data>
   <data name="specialtile_label_acc6" xml:space="preserve">
-    <value>Acc6</value>
+    <value>Аксессуар 6</value>
   </data>
   <data name="specialtile_label_body" xml:space="preserve">
-    <value>Body</value>
+    <value>Тело</value>
   </data>
   <data name="specialtile_label_chestcontents" xml:space="preserve">
-    <value>Chest Contents</value>
+    <value>Содержимое сундука</value>
   </data>
   <data name="specialtile_label_chestname" xml:space="preserve">
-    <value>Chest Name</value>
+    <value>Название сундука</value>
   </data>
   <data name="specialtile_label_chesttype" xml:space="preserve">
-    <value>Chest Type</value>
+    <value>Тип сундука</value>
   </data>
   <data name="specialtile_label_editselecteditem" xml:space="preserve">
-    <value>Edit Selected Item</value>
+    <value>Редактировать выбранный предмет</value>
   </data>
   <data name="specialtile_label_head" xml:space="preserve">
-    <value>Head</value>
+    <value>Голова</value>
   </data>
   <data name="specialtile_label_itemframecontents" xml:space="preserve">
-    <value>Item Frame Contents</value>
+    <value>Содержимое рамки</value>
   </data>
   <data name="specialtile_label_legs" xml:space="preserve">
-    <value>Legs</value>
+    <value>Ноги</value>
   </data>
   <data name="specialtile_label_mannequin" xml:space="preserve">
-    <value>Mannequin</value>
+    <value>Манекен</value>
   </data>
   <data name="specialtile_label_mannequinclothing" xml:space="preserve">
-    <value>Mannequin Clothing</value>
+    <value>Одежда на манекене</value>
   </data>
   <data name="specialtile_label_platecontents" xml:space="preserve">
-    <value>Plate Contents</value>
+    <value>Содержимое тарелки</value>
   </data>
   <data name="specialtile_label_signtext" xml:space="preserve">
-    <value>Sign Text</value>
+    <value>Текст таблички</value>
   </data>
   <data name="specialtile_label_signtype" xml:space="preserve">
-    <value>Sign Type</value>
+    <value>Тип таблички</value>
   </data>
   <data name="specialtile_label_weaponrack" xml:space="preserve">
-    <value>Weapon Rack Item</value>
+    <value>Предмет на стойке</value>
   </data>
   <data name="specialtile_label_xmas_bulbs" xml:space="preserve">
-    <value>Bulbs</value>
+    <value>Лампочки</value>
   </data>
   <data name="specialtile_label_xmas_deco" xml:space="preserve">
-    <value>Christmas Tree Decorations</value>
+    <value>Ёлочные украшения</value>
   </data>
   <data name="specialtile_label_xmas_garland" xml:space="preserve">
-    <value>Garlands</value>
+    <value>Гирлянды</value>
   </data>
   <data name="specialtile_label_xmas_lights" xml:space="preserve">
-    <value>Lights</value>
+    <value>Фонари</value>
   </data>
   <data name="specialtile_label_xmas_star" xml:space="preserve">
-    <value>Star</value>
+    <value>Звезда</value>
   </data>
   <data name="specialtile_tooltip" xml:space="preserve">
-    <value>With the Arrow Tool right click on a sign, chest, mannequin, weapon rack, item frame or christmas tree.</value>
+    <value>С помощью Стрелки нажмите правой кнопкой мыши на табличку, сундук, манекен, стойку для оружия, рамку или новогоднюю ёлку.</value>
   </data>
   <data name="sprite_filter_button" xml:space="preserve">
-    <value>Filter</value>
+    <value>Фильтр</value>
   </data>
   <data name="sprite_filter_label" xml:space="preserve">
-    <value>Filter: </value>
+    <value>Фильтр:</value>
   </data>
   <data name="sprite_styletype" xml:space="preserve">
-    <value>Style</value>
+    <value>Стиль</value>
   </data>
   <data name="sprite_tiletype" xml:space="preserve">
-    <value>Tile Type</value>
+    <value>Тип блока</value>
   </data>
   <data name="statusbar_extra_label" xml:space="preserve">
-    <value>Extra</value>
+    <value>Ещё</value>
   </data>
   <data name="statusbar_frame_label" xml:space="preserve">
-    <value>Frame</value>
+    <value>Кадр</value>
   </data>
   <data name="statusbar_paint_label" xml:space="preserve">
-    <value>Paint</value>
+    <value>Краска</value>
   </data>
   <data name="statusbar_position_label" xml:space="preserve">
-    <value>Position</value>
+    <value>Позиция</value>
   </data>
   <data name="statusbar_selection_label" xml:space="preserve">
-    <value>Selection</value>
+    <value>Выделение</value>
   </data>
   <data name="statusbar_tile_label" xml:space="preserve">
-    <value>Плитка</value>
+    <value>Блок</value>
   </data>
   <data name="statusbar_wall_label" xml:space="preserve">
-    <value>Wall</value>
+    <value>Стена</value>
   </data>
   <data name="tool_analyze_analyze_button" xml:space="preserve">
-    <value>Analyze</value>
+    <value>Анализ</value>
   </data>
   <data name="tool_analyze_save" xml:space="preserve">
-    <value>Save Analysis</value>
+    <value>Сохранить анализ</value>
   </data>
   <data name="tool_analyze_save_button" xml:space="preserve">
-    <value>Save</value>
+    <value>Сохранить</value>
   </data>
   <data name="tool_analyze_title" xml:space="preserve">
-    <value>World Analysis</value>
+    <value>Анализ мира</value>
   </data>
   <data name="tool_arrow_title" xml:space="preserve">
-    <value>Arrow</value>
+    <value>Стрелка</value>
   </data>
   <data name="tool_bestiary_import" xml:space="preserve">
-    <value>Import</value>
+    <value>Импортировать</value>
   </data>
   <data name="tool_bestiary_save" xml:space="preserve">
-    <value>Save Bestiary</value>
+    <value>Сохранить бестиарий</value>
   </data>
   <data name="tool_bestiary_scan" xml:space="preserve">
-    <value>Scan</value>
+    <value>Сканировать</value>
   </data>
   <data name="tool_bestiary_title" xml:space="preserve">
-    <value>Bestiary</value>
+    <value>Бестиарий</value>
   </data>
   <data name="tool_brush_height_label" xml:space="preserve">
-    <value>Height</value>
+    <value>Высота</value>
   </data>
   <data name="tool_brush_lock_ratio_tooltip" xml:space="preserve">
-    <value>Square Width and Height</value>
+    <value>Квадратная высота и ширина</value>
   </data>
   <data name="tool_brush_outline_thickness_label" xml:space="preserve">
-    <value>Outline</value>
+    <value>Обводка</value>
   </data>
   <data name="tool_brush_outline_tooltip" xml:space="preserve">
-    <value>Toggle Draw Outline (room)</value>
+    <value>Включить обводку</value>
   </data>
   <data name="tool_brush_shape_label" xml:space="preserve">
-    <value>Shape</value>
+    <value>Форма</value>
   </data>
   <data name="tool_brush_title" xml:space="preserve">
-    <value>Brush</value>
+    <value>Кисть</value>
   </data>
   <data name="tool_brush_width_label" xml:space="preserve">
-    <value>Width</value>
+    <value>Ширина</value>
   </data>
   <data name="tool_clipboard_empty" xml:space="preserve">
-    <value>Empty Clipboard</value>
+    <value>Пустой буфер обмена</value>
   </data>
   <data name="tool_clipboard_importfalsecolor" xml:space="preserve">
-    <value>Import False Color Image</value>
+    <value>Импортировать картинку с ложными цветами</value>
   </data>
   <data name="tool_clipboard_importschematic" xml:space="preserve">
-    <value>Import Schematic or Image</value>
+    <value>Импортировать схематик или картинку</value>
   </data>
   <data name="tool_clipboard_ispasteempty" xml:space="preserve">
-    <value>Paste Empty Tiles</value>
+    <value>Вставить пустые тайлы</value>
   </data>
   <data name="tool_clipboard_ispasteliquid" xml:space="preserve">
-    <value>Paste Liquids</value>
+    <value>Вставить жидкости</value>
   </data>
   <data name="tool_clipboard_ispastetiles" xml:space="preserve">
-    <value>Paste Tiles</value>
+    <value>Вставить блоки</value>
   </data>
   <data name="tool_clipboard_ispastewalls" xml:space="preserve">
-    <value>Paste Walls</value>
+    <value>Вставить стены</value>
   </data>
   <data name="tool_clipboard_ispastewire" xml:space="preserve">
-    <value>Paste Wires</value>
+    <value>Вставить провода</value>
   </data>
   <data name="tool_fill_title" xml:space="preserve">
-    <value>Fill</value>
+    <value>Заливка</value>
   </data>
   <data name="tool_morph_label" xml:space="preserve">
-    <value>Morph to Biome</value>
+    <value>Преобразовать в биом</value>
   </data>
   <data name="tool_morph_title" xml:space="preserve">
-    <value>Biome Morph</value>
+    <value>Преобразование биома</value>
   </data>
   <data name="tool_npc_add" xml:space="preserve">
-    <value>Add NPC</value>
+    <value>Добавить НИПа</value>
   </data>
   <data name="tool_npc_name" xml:space="preserve">
-    <value>Name</value>
+    <value>Имя</value>
   </data>
   <data name="tool_paint_actuator" xml:space="preserve">
-    <value>Is Actuator</value>
+    <value>Является активатором</value>
   </data>
   <data name="tool_paint_brickstyle" xml:space="preserve">
-    <value>Brick Style</value>
+    <value>Стиль блока</value>
   </data>
   <data name="tool_paint_extras" xml:space="preserve">
-    <value>Extras</value>
+    <value>Ещё</value>
   </data>
   <data name="tool_paint_inactive" xml:space="preserve">
-    <value>Actuator/Tile InActive</value>
+    <value>Неактивный блок</value>
   </data>
   <data name="tool_paint_mask" xml:space="preserve">
-    <value>Mask</value>
+    <value>Маска</value>
   </data>
   <data name="tool_paint_maskmode" xml:space="preserve">
-    <value>Mask Mode</value>
+    <value>Режим маски</value>
   </data>
   <data name="tool_paint_mode" xml:space="preserve">
-    <value>Paint Mode</value>
+    <value>Режим покраски</value>
   </data>
   <data name="tool_paint_tile_title" xml:space="preserve">
-    <value>Плитка</value>
+    <value>Тайл</value>
   </data>
   <data name="tool_paint_track_booster_tooltip" xml:space="preserve">
-    <value>Add Booster to existing track, use with Eraser to remove booster only.</value>
+    <value>Добавляет ускоритель на рельсы. Ускоритель убирается с помощью Ластика.</value>
   </data>
   <data name="tool_paint_track_hammer_tooltip" xml:space="preserve">
-    <value>Use Hammer to modify track ends, intersections and booster direction.</value>
+    <value>Изменяет концы, пересечения, ускорители железной дороги.</value>
   </data>
   <data name="tool_paint_track_pressure_tooltip" xml:space="preserve">
-    <value>Add Pressure Plate to existing track, use with Eraser to remove plate only.</value>
+    <value>Добавляет нажимную плиту на рельсы. Нажимная плита убирается с помощью Ластика.</value>
   </data>
   <data name="tool_paint_wall_title" xml:space="preserve">
-    <value>Wall</value>
+    <value>Стена</value>
   </data>
   <data name="tool_paint_wire_blue" xml:space="preserve">
-    <value>Blue</value>
+    <value>Синие</value>
   </data>
   <data name="tool_paint_wire_green" xml:space="preserve">
-    <value>Green</value>
+    <value>Зелёные</value>
   </data>
   <data name="tool_paint_wire_red" xml:space="preserve">
-    <value>Red</value>
+    <value>Красные</value>
   </data>
   <data name="tool_paint_wire_yellow" xml:space="preserve">
-    <value>Yellow</value>
+    <value>Жёлтые</value>
   </data>
   <data name="tool_paste_title" xml:space="preserve">
-    <value>Paste</value>
+    <value>Вставить</value>
   </data>
   <data name="tool_pencil_title" xml:space="preserve">
-    <value>Pencil</value>
+    <value>Карандаш</value>
   </data>
   <data name="tool_picker_title" xml:space="preserve">
-    <value>Picker - select tile color</value>
+    <value>Пипетка - выбор цвета блока</value>
   </data>
   <data name="tool_point_title" xml:space="preserve">
-    <value>Special Interest Points</value>
+    <value>Специальные точки</value>
   </data>
   <data name="tool_sprite2_title" xml:space="preserve">
-    <value>Sprite Placer</value>
+    <value>Установка спрайтов</value>
   </data>
   <data name="tool_sprite_filter_button" xml:space="preserve">
-    <value>Filter</value>
+    <value>Фильтр</value>
   </data>
   <data name="tool_sprite_filter_label" xml:space="preserve">
-    <value>Filter:</value>
+    <value>Фильтр:</value>
   </data>
   <data name="tool_sprite_style_label" xml:space="preserve">
-    <value>Style:</value>
+    <value>Стиль:</value>
   </data>
   <data name="tool_sprite_tiletype_label" xml:space="preserve">
-    <value>Tile Type:</value>
+    <value>Тип тайла:</value>
   </data>
   <data name="tool_sprite_title" xml:space="preserve">
-    <value>Sprite Placer (OLD)</value>
+    <value>Установка спрайтов (СТАРОЕ)</value>
   </data>
   <data name="tool_wp_adamantite" xml:space="preserve">
-    <value>Adamantite Tier</value>
+    <value>Адамантит</value>
   </data>
   <data name="tool_wp_altars" xml:space="preserve">
-    <value>Altars Smashed</value>
+    <value>Алтарей разрушено</value>
   </data>
   <data name="tool_wp_bg_corrupt" xml:space="preserve">
-    <value>Corrupt BG</value>
+    <value>Фон искажения</value>
   </data>
   <data name="tool_wp_bg_crimson" xml:space="preserve">
-    <value>Crimson BG</value>
+    <value>Фон кримзона</value>
   </data>
   <data name="tool_wp_bg_deepice" xml:space="preserve">
-    <value>Deep Ice BG</value>
+    <value>Фон подземного снежного биома</value>
   </data>
   <data name="tool_wp_bg_deepjungle" xml:space="preserve">
-    <value>Deep Jungle BG</value>
+    <value>Фон подземных джунглей</value>
   </data>
   <data name="tool_wp_bg_desert" xml:space="preserve">
-    <value>Desert BG</value>
+    <value>Фон пустыни</value>
   </data>
   <data name="tool_wp_bg_forest" xml:space="preserve">
-    <value>Forest BG</value>
+    <value>Фон леса</value>
   </data>
   <data name="tool_wp_bg_hallow" xml:space="preserve">
-    <value>Hallow BG</value>
+    <value>Фон святых земель</value>
   </data>
   <data name="tool_wp_bg_hell" xml:space="preserve">
-    <value>Hell BG</value>
+    <value>Фон ада</value>
   </data>
   <data name="tool_wp_bg_jungle" xml:space="preserve">
-    <value>Jungle BG</value>
+    <value>Фон джунглей</value>
   </data>
   <data name="tool_wp_bg_mushroom" xml:space="preserve">
-    <value>Mushroom BG</value>
+    <value>Фон грибного биома</value>
   </data>
   <data name="tool_wp_bg_ocean" xml:space="preserve">
-    <value>Ocean BG</value>
+    <value>Фон океана</value>
   </data>
   <data name="tool_wp_bg_snow" xml:space="preserve">
-    <value>Snow BG</value>
+    <value>Фон снежного биома</value>
   </data>
   <data name="tool_wp_bg_tree2" xml:space="preserve">
-    <value>Tree 2 BG</value>
+    <value>Фон деревьев 2</value>
   </data>
   <data name="tool_wp_bg_tree3" xml:space="preserve">
-    <value>Tree 3 BG</value>
+    <value>Фон деревьев 3</value>
   </data>
   <data name="tool_wp_bg_tree4" xml:space="preserve">
-    <value>Tree 4 BG</value>
+    <value>Фон деревьев 4</value>
   </data>
   <data name="tool_wp_bg_underworld" xml:space="preserve">
-    <value>Underworld BG</value>
+    <value>Фон преисподней</value>
   </data>
   <data name="tool_wp_boss_destroyer" xml:space="preserve">
-    <value>The Destroyer</value>
+    <value>Уничтожитель</value>
   </data>
   <data name="tool_wp_boss_downed" xml:space="preserve">
-    <value>Bosses Downed</value>
+    <value>Побеждённые боссы</value>
   </data>
   <data name="tool_wp_boss_dukefishron" xml:space="preserve">
-    <value>Duke Fishron</value>
+    <value>Герцог Рыброн</value>
   </data>
   <data name="tool_wp_boss_eaterofworlds" xml:space="preserve">
-    <value>Eater of Worlds</value>
+    <value>Пожиратель миров</value>
   </data>
   <data name="tool_wp_boss_empressoflight" xml:space="preserve">
-    <value>Empress of Light</value>
+    <value>Императрица света</value>
   </data>
   <data name="tool_wp_boss_everscream" xml:space="preserve">
-    <value>Everscream</value>
+    <value>Злая ель</value>
   </data>
   <data name="tool_wp_boss_eyeofcthulhu" xml:space="preserve">
-    <value>Eye of Cthulhu</value>
+    <value>Глаз Ктулху</value>
   </data>
   <data name="tool_wp_boss_flyingdutchman" xml:space="preserve">
-    <value>Flying Dutchman</value>
+    <value>Летучий голландец</value>
   </data>
   <data name="tool_wp_boss_golem" xml:space="preserve">
-    <value>Golem</value>
+    <value>Голем</value>
   </data>
   <data name="tool_wp_boss_icequeen" xml:space="preserve">
-    <value>Ice Queen</value>
+    <value>Снежная королева</value>
   </data>
   <data name="tool_wp_boss_kingslime" xml:space="preserve">
-    <value>King Slime</value>
+    <value>Король слизней</value>
   </data>
   <data name="tool_wp_boss_lunaticcultist" xml:space="preserve">
-    <value>Lunatic Cultist</value>
+    <value>Культист-лунатик</value>
   </data>
   <data name="tool_wp_boss_moonlord" xml:space="preserve">
-    <value>Moon Lord</value>
+    <value>Лунный лорд</value>
   </data>
   <data name="tool_wp_boss_mourningwood" xml:space="preserve">
-    <value>Mourning Wood</value>
+    <value>Траурное дерево</value>
   </data>
   <data name="tool_wp_boss_nebulapillar" xml:space="preserve">
-    <value>Nebula Pillar</value>
+    <value>Башня туманности</value>
   </data>
   <data name="tool_wp_boss_plantera" xml:space="preserve">
-    <value>Plantera</value>
+    <value>Плантера</value>
   </data>
   <data name="tool_wp_boss_pumpking" xml:space="preserve">
-    <value>Pumpking</value>
+    <value>Тыквенный король</value>
   </data>
   <data name="tool_wp_boss_queenbee" xml:space="preserve">
-    <value>Queen Bee</value>
+    <value>Королева пчёл</value>
   </data>
   <data name="tool_wp_boss_queenslime" xml:space="preserve">
-    <value>Queen Slime</value>
+    <value>Королева слизней</value>
   </data>
   <data name="tool_wp_boss_santank1" xml:space="preserve">
-    <value>Santa NK1</value>
+    <value>Сантанк</value>
   </data>
   <data name="tool_wp_boss_skeletron" xml:space="preserve">
-    <value>Skeletron</value>
+    <value>Скелетрон</value>
   </data>
   <data name="tool_wp_boss_skeletronprime" xml:space="preserve">
-    <value>Skeletron Prime</value>
+    <value>Скелетрон Прайм</value>
   </data>
   <data name="tool_wp_boss_solarpillar" xml:space="preserve">
-    <value>Solar Pillar</value>
+    <value>Башня солнца</value>
   </data>
   <data name="tool_wp_boss_stardustpillar" xml:space="preserve">
-    <value>Stardust Pillar</value>
+    <value>Башня звёздной пыли</value>
   </data>
   <data name="tool_wp_boss_twins" xml:space="preserve">
-    <value>The Twins</value>
+    <value>Близнецы</value>
   </data>
   <data name="tool_wp_boss_vortexpillar" xml:space="preserve">
-    <value>Vortex Pillar</value>
+    <value>Башня вихря</value>
   </data>
   <data name="tool_wp_boss_walloffflesh" xml:space="preserve">
-    <value>Wall of Flesh</value>
+    <value>Стена плоти</value>
   </data>
   <data name="tool_wp_cavern_level" xml:space="preserve">
-    <value>Cavern Level</value>
+    <value>Уровень пещер</value>
   </data>
   <data name="tool_wp_cobalt" xml:space="preserve">
-    <value>Cobalt Tier</value>
+    <value>Кобальт</value>
   </data>
   <data name="tool_wp_copper" xml:space="preserve">
-    <value>Copper Tier</value>
+    <value>Медь</value>
   </data>
   <data name="tool_wp_crimson" xml:space="preserve">
-    <value>Crimson</value>
+    <value>Кримзон</value>
   </data>
   <data name="tool_wp_difficulty" xml:space="preserve">
-    <value>Difficulty</value>
+    <value>Сложность</value>
   </data>
   <data name="tool_wp_difficulty_hardmode" xml:space="preserve">
-    <value>Hardmode</value>
+    <value>Хардмод</value>
   </data>
   <data name="tool_wp_drunk" xml:space="preserve">
-    <value>Drunk World</value>
+    <value>«Пьяный» мир</value>
   </data>
   <data name="tool_wp_event" xml:space="preserve">
-    <value>Event</value>
+    <value>Нашествие</value>
   </data>
   <data name="tool_wp_gamemode" xml:space="preserve">
-    <value>Game Mode</value>
+    <value>Режим игры</value>
   </data>
   <data name="tool_wp_gold" xml:space="preserve">
-    <value>Gold Tier</value>
+    <value>Золото</value>
   </data>
   <data name="tool_wp_guid" xml:space="preserve">
-    <value>World GUID</value>
+    <value>ID мира</value>
   </data>
   <data name="tool_wp_hardmode" xml:space="preserve">
-    <value>Hardmode</value>
+    <value>Хардмод</value>
   </data>
   <data name="tool_wp_holiday" xml:space="preserve">
-    <value>Force Holidays</value>
+    <value>Включить праздники</value>
   </data>
   <data name="tool_wp_holiday_halloween" xml:space="preserve">
-    <value>Halloween</value>
+    <value>Хэллоуин</value>
   </data>
   <data name="tool_wp_holiday_xmas" xml:space="preserve">
-    <value>XMas</value>
+    <value>Рождество</value>
   </data>
   <data name="tool_wp_id" xml:space="preserve">
-    <value>World ID</value>
+    <value>ID мира</value>
   </data>
   <data name="tool_wp_invasion" xml:space="preserve">
-    <value>Invasions</value>
+    <value>Нашествия</value>
   </data>
   <data name="tool_wp_invasion_frostlegion" xml:space="preserve">
-    <value>Frost Legion</value>
+    <value>Снежный легион</value>
   </data>
   <data name="tool_wp_invasion_goblinarmy" xml:space="preserve">
-    <value>Goblin Army</value>
+    <value>Армия гоблинов</value>
   </data>
   <data name="tool_wp_invasion_martianmadness" xml:space="preserve">
-    <value>Martian Madness</value>
+    <value>Марсианское безумие</value>
   </data>
   <data name="tool_wp_invasion_pirateinvasion" xml:space="preserve">
-    <value>Pirate Invasion</value>
+    <value>Вторжение пиратов</value>
   </data>
   <data name="tool_wp_invasion_size" xml:space="preserve">
-    <value>Invasion Size</value>
+    <value>Размер нашествия</value>
   </data>
   <data name="tool_wp_invasion_type" xml:space="preserve">
-    <value>Invasion Type</value>
+    <value>Тип нашествия</value>
   </data>
   <data name="tool_wp_invasion_x" xml:space="preserve">
-    <value>Invasion X Target</value>
+    <value>Цель X нашествия</value>
   </data>
   <data name="tool_wp_iron" xml:space="preserve">
-    <value>Iron Tier</value>
+    <value>Железо</value>
   </data>
   <data name="tool_wp_journeysend" xml:space="preserve">
     <value>Journey's End</value>
   </data>
   <data name="tool_wp_meteor" xml:space="preserve">
-    <value>Meteor</value>
+    <value>Метеорит</value>
   </data>
   <data name="tool_wp_meteor_spawn" xml:space="preserve">
-    <value>Spawn Meteor</value>
+    <value>Заспавнить метеорит</value>
   </data>
   <data name="tool_wp_moon_blood" xml:space="preserve">
-    <value>Blood Moon</value>
+    <value>Кровавая луна</value>
   </data>
   <data name="tool_wp_moon_eclipse" xml:space="preserve">
-    <value>Is Eclipse</value>
+    <value>Солнечное затмение</value>
   </data>
   <data name="tool_wp_moon_phase" xml:space="preserve">
-    <value>Moon Phase</value>
+    <value>Фаза луны</value>
   </data>
   <data name="tool_wp_moon_style" xml:space="preserve">
-    <value>Moon Style</value>
+    <value>Стиль луны</value>
   </data>
   <data name="tool_wp_mythril" xml:space="preserve">
-    <value>Mythril Tier</value>
+    <value>Мифрил</value>
   </data>
   <data name="tool_wp_name" xml:space="preserve">
-    <value>World Name</value>
+    <value>Название мира</value>
   </data>
   <data name="tool_wp_npc_angler" xml:space="preserve">
-    <value>Angler</value>
+    <value>Рыбак</value>
   </data>
   <data name="tool_wp_npc_angler_mission" xml:space="preserve">
-    <value>Angler Mission</value>
+    <value>Квест рыбака</value>
   </data>
   <data name="tool_wp_npc_bought" xml:space="preserve">
-    <value>NPCs Bought</value>
+    <value>Куплено у НИПов</value>
   </data>
   <data name="tool_wp_npc_bunny" xml:space="preserve">
-    <value>Bunny</value>
+    <value>Кролик</value>
   </data>
   <data name="tool_wp_npc_cat" xml:space="preserve">
-    <value>Cat</value>
+    <value>Кошка</value>
   </data>
   <data name="tool_wp_npc_dog" xml:space="preserve">
-    <value>Dog</value>
+    <value>Собака</value>
   </data>
   <data name="tool_wp_npc_goblintinkerer" xml:space="preserve">
-    <value>Goblin Tinkerer</value>
+    <value>Гоблин-инженер</value>
   </data>
   <data name="tool_wp_npc_golfer" xml:space="preserve">
-    <value>Golfer</value>
+    <value>Гольфист</value>
   </data>
   <data name="tool_wp_npc_mechanic" xml:space="preserve">
-    <value>Mechanic</value>
+    <value>Механик</value>
   </data>
   <data name="tool_wp_npc_saved" xml:space="preserve">
-    <value>NPCs Saved</value>
+    <value>НИПы сохранены</value>
   </data>
   <data name="tool_wp_npc_stylist" xml:space="preserve">
-    <value>Stylist</value>
+    <value>Стилист</value>
   </data>
   <data name="tool_wp_npc_tavernkeep" xml:space="preserve">
-    <value>Tavernkeep</value>
+    <value>Трактирщик</value>
   </data>
   <data name="tool_wp_npc_taxcollector" xml:space="preserve">
-    <value>Tax Collector</value>
+    <value>Сборщик налогов</value>
   </data>
   <data name="tool_wp_npc_wizard" xml:space="preserve">
-    <value>Wizard</value>
+    <value>Волшебник</value>
   </data>
   <data name="tool_wp_oldonesarmy" xml:space="preserve">
-    <value>Old One's Army</value>
+    <value>Армия древних</value>
   </data>
   <data name="tool_wp_oldonesarmy_t1" xml:space="preserve">
-    <value>Tier 1</value>
+    <value>Уровень 1</value>
   </data>
   <data name="tool_wp_oldonesarmy_t2" xml:space="preserve">
-    <value>Tier 2</value>
+    <value>Уровень 2</value>
   </data>
   <data name="tool_wp_oldonesarmy_t3" xml:space="preserve">
-    <value>Tier 3</value>
+    <value>Уровень 3</value>
   </data>
   <data name="tool_wp_orbs" xml:space="preserve">
-    <value>Orbs Smashed</value>
+    <value>Сфер разрушено</value>
   </data>
   <data name="tool_wp_prehardmode" xml:space="preserve">
-    <value>Pre-Hardmode</value>
+    <value>Дохардмод</value>
   </data>
   <data name="tool_wp_rain" xml:space="preserve">
-    <value>Rain</value>
+    <value>Дождь</value>
   </data>
   <data name="tool_wp_rain_active" xml:space="preserve">
-    <value>Is Raining</value>
+    <value>Идёт дождь</value>
   </data>
   <data name="tool_wp_rain_max" xml:space="preserve">
-    <value>Max Rain</value>
+    <value>Макс. дождь</value>
   </data>
   <data name="tool_wp_rain_slime" xml:space="preserve">
-    <value>Slime Rain Time</value>
+    <value>Время дождя слизней</value>
   </data>
   <data name="tool_wp_rain_time" xml:space="preserve">
-    <value>Rain Time</value>
+    <value>Время дождя</value>
   </data>
   <data name="tool_wp_revision" xml:space="preserve">
     <value>Revision</value>
   </data>
   <data name="tool_wp_sandstorm" xml:space="preserve">
-    <value>Sandstorm</value>
+    <value>Песчаная буря</value>
   </data>
   <data name="tool_wp_sandstorm_active" xml:space="preserve">
-    <value>Is Storming</value>
+    <value>Идёт буря</value>
   </data>
   <data name="tool_wp_sandstorm_severity" xml:space="preserve">
-    <value>Severity</value>
+    <value>Опасность</value>
   </data>
   <data name="tool_wp_sandstorm_severity_target" xml:space="preserve">
-    <value>Indended Severity</value>
+    <value>Цель</value>
   </data>
   <data name="tool_wp_sandstorm_time" xml:space="preserve">
-    <value>Time Left</value>
+    <value>Времени осталось</value>
   </data>
   <data name="tool_wp_seed" xml:space="preserve">
-    <value>Seed</value>
+    <value>Сид мира</value>
   </data>
   <data name="tool_wp_silver" xml:space="preserve">
-    <value>Silver Tier</value>
+    <value>Серебро</value>
   </data>
   <data name="tool_wp_style_cavestyles" xml:space="preserve">
-    <value>Cave Styles</value>
+    <value>Стиль пещер</value>
   </data>
   <data name="tool_wp_style_cavex0" xml:space="preserve">
-    <value>Cave X 0</value>
+    <value>Пещеры X 0</value>
   </data>
   <data name="tool_wp_style_cavex1" xml:space="preserve">
-    <value>Cave X 1</value>
+    <value>Пещеры X 1</value>
   </data>
   <data name="tool_wp_style_cavex2" xml:space="preserve">
-    <value>Cave X 2</value>
+    <value>Пещеры X 2</value>
   </data>
   <data name="tool_wp_style_treestyles" xml:space="preserve">
-    <value>Tree Styles</value>
+    <value>Стиль деревьев</value>
   </data>
   <data name="tool_wp_style_treetop_1" xml:space="preserve">
-    <value>Tree 1 Tops</value>
+    <value>Кроны 1</value>
   </data>
   <data name="tool_wp_style_treetop_2" xml:space="preserve">
-    <value>Tree 2 Tops</value>
+    <value>Кроны 2</value>
   </data>
   <data name="tool_wp_style_treetop_3" xml:space="preserve">
-    <value>Tree 3 Tops</value>
+    <value>Кроны 3</value>
   </data>
   <data name="tool_wp_style_treetop_4" xml:space="preserve">
-    <value>Tree 4 Tops</value>
+    <value>Кроны 4</value>
   </data>
   <data name="tool_wp_style_treex0" xml:space="preserve">
-    <value>Tree X 0</value>
+    <value>Деревья X 0</value>
   </data>
   <data name="tool_wp_style_treex1" xml:space="preserve">
-    <value>Tree X 1</value>
+    <value>Деревья X 1</value>
   </data>
   <data name="tool_wp_style_treex2" xml:space="preserve">
-    <value>Tree X 2</value>
+    <value>Деревья X 2</value>
   </data>
   <data name="tool_wp_surface_level" xml:space="preserve">
-    <value>Surface Level</value>
+    <value>Уровень поверхности</value>
   </data>
   <data name="tool_wp_time_day" xml:space="preserve">
-    <value>Is Day Time</value>
+    <value>Сейчас день</value>
   </data>
   <data name="tool_wp_time_label" xml:space="preserve">
-    <value>Time</value>
+    <value>Время</value>
   </data>
   <data name="tool_wp_time_sundial" xml:space="preserve">
-    <value>Use Sundial</value>
+    <value>Использовать солнечные часы</value>
   </data>
   <data name="tool_wp_time_sundial_cooldown" xml:space="preserve">
-    <value>Sundial Cooldown</value>
+    <value>Кулдаун солнечных часов</value>
   </data>
   <data name="tool_wp_weather_clouds" xml:space="preserve">
-    <value>Number Clouds</value>
+    <value>Номер облаков</value>
   </data>
   <data name="tool_wp_weather_windspeed" xml:space="preserve">
-    <value>Wind Speed</value>
+    <value>Скорость ветра</value>
   </data>
   <data name="TrackMode_Booster" xml:space="preserve">
-    <value>Booster</value>
+    <value>Ускоритель</value>
   </data>
   <data name="TrackMode_Hammer" xml:space="preserve">
-    <value>Hammer</value>
+    <value>Молот</value>
   </data>
   <data name="TrackMode_Pressure" xml:space="preserve">
-    <value>Pressure</value>
+    <value>Нажатие</value>
   </data>
   <data name="TrackMode_Track" xml:space="preserve">
-    <value>Track</value>
+    <value>Рельсы</value>
   </data>
 </root>
