@@ -152,7 +152,8 @@
     <comment>enum:BrushShape.Square</comment>
   </data>
   <data name="dialog_error_terriaria_folder_message" xml:space="preserve">
-    <value>Эта папка не содержит контента Terraria.</value>
+    <value>Эта папка не содержит контента Terraria.
+	Выберите другую папку, чтобы программа не считала {0} папкой игры.</value>
   </data>
   <data name="dialog_error_terriaria_folder_title" xml:space="preserve">
     <value>Контент игры не найден</value>
