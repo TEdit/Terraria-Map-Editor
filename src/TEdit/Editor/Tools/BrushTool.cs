@@ -125,7 +125,7 @@ namespace TEdit.Editor.Tools
 
         private void DrawLineP2P(Vector2Int32 endPoint)
         {
-            foreach (Vector2Int32 point in Shape.DrawLineTool(_startPoint, _endPoint))
+            foreach (Vector2Int32 point in Shape.DrawLineTool(_startPoint, endPoint))
             {
                 if (_wvm.Brush.Shape == BrushShape.Square || _wvm.Brush.Height <= 1 || _wvm.Brush.Width <= 1)
                 {
@@ -176,11 +176,7 @@ namespace TEdit.Editor.Tools
         {
             foreach (Vector2Int32 pixel in area)
             {
-                bool test1 = _wvm.CurrentWorld.ValidTileLocation(pixel);
-                bool test2 = _wvm.CurrentWorld.ValidTileLocation(pixel.X, pixel.Y);
-                bool test3 = _wvm.CurrentWorld.ValidTileLocation(pixel.X, pixel.Y);
-
-                if (!test1 && !test2 && !test3) continue;
+                if (!_wvm.CurrentWorld.ValidTileLocation(pixel)) continue;
 
                 int index = pixel.X + pixel.Y * _wvm.CurrentWorld.TilesWide;
                 if (!_wvm.CheckTiles[index])
@@ -276,11 +272,7 @@ namespace TEdit.Editor.Tools
             IEnumerable<Vector2Int32> area = Shape.DrawLine(_leftPoint, _rightPoint);
             foreach (Vector2Int32 pixel in area)
             {
-                bool test1 = _wvm.CurrentWorld.ValidTileLocation(pixel);
-                bool test2 = _wvm.CurrentWorld.ValidTileLocation(pixel.X, pixel.Y);
-                bool test3 = _wvm.CurrentWorld.ValidTileLocation(pixel.X, pixel.Y);
-
-                if (!test1 && !test2 && !test3) continue;
+                if (!_wvm.CurrentWorld.ValidTileLocation(pixel)) continue;
 
                 int index = pixel.X + pixel.Y * _wvm.CurrentWorld.TilesWide;
                 if (!_wvm.CheckTiles[index])
