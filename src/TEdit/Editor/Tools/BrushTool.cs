@@ -38,6 +38,12 @@ namespace TEdit.Editor.Tools
 
             _isLeftDown = (e.LeftButton == MouseButtonState.Pressed);
             _isRightDown = (e.RightButton == MouseButtonState.Pressed);
+
+            if (_wvm.Brush.Shape == BrushShape.Square || _wvm.Brush.Height <= 1 || _wvm.Brush.Width <= 1)
+            {
+                FillRectangle(_startPoint);
+            }
+
             CheckDirectionandDraw(e.Location);
         }
 
@@ -106,17 +112,25 @@ namespace TEdit.Editor.Tools
 
         private void DrawLine(Vector2Int32 to)
         {
-            foreach (Vector2Int32 point in Shape.DrawLineTool(_startPoint, to))
+            var line = Shape.DrawLineTool(_startPoint, to).ToList();
+            if (_wvm.Brush.Shape == BrushShape.Square || _wvm.Brush.Height <= 1 || _wvm.Brush.Width <= 1)
             {
-                if (_wvm.Brush.Shape == BrushShape.Square || _wvm.Brush.Height <= 1 || _wvm.Brush.Width <= 1)
+
+                for (int i = 1; i < line.Count; i++)
                 {
-                    FillRectangle(point);
+                    FillRectangleLine(line[i - 1], line[i]);
                 }
-                else if (_wvm.Brush.Shape == BrushShape.Round)
+            }
+            else if (_wvm.Brush.Shape == BrushShape.Round)
+            {
+                foreach (Vector2Int32 point in line)
                 {
                     FillRound(point);
                 }
-                else if (_wvm.Brush.Shape == BrushShape.Right || _wvm.Brush.Shape == BrushShape.Left)
+            }
+            else if (_wvm.Brush.Shape == BrushShape.Right || _wvm.Brush.Shape == BrushShape.Left)
+            {
+                foreach (Vector2Int32 point in line)
                 {
                     FillSlope(point);
                 }
@@ -125,17 +139,36 @@ namespace TEdit.Editor.Tools
 
         private void DrawLineP2P(Vector2Int32 endPoint)
         {
-            foreach (Vector2Int32 point in Shape.DrawLineTool(_startPoint, endPoint))
+            var line = Shape.DrawLineTool(_startPoint, endPoint).ToList();
+
+            if (_wvm.Brush.Shape == BrushShape.Square || _wvm.Brush.Height <= 1 || _wvm.Brush.Width <= 1)
             {
-                if (_wvm.Brush.Shape == BrushShape.Square || _wvm.Brush.Height <= 1 || _wvm.Brush.Width <= 1)
+
+                for (int i = 1; i < line.Count; i++)
                 {
-                    FillRectangle(point);
+                    FillRectangleLine(line[i - 1], line[i]);
                 }
-                else if (_wvm.Brush.Shape == BrushShape.Round)
+            }
+            else if (_wvm.Brush.Shape == BrushShape.Round)
+            {
+                foreach (Vector2Int32 point in line)
                 {
                     FillRound(point);
                 }
             }
+            else if (_wvm.Brush.Shape == BrushShape.Right || _wvm.Brush.Shape == BrushShape.Left)
+            {
+                foreach (Vector2Int32 point in line)
+                {
+                    FillSlope(point);
+                }
+            }
+        }
+
+        private void FillRectangleLine(Vector2Int32 start, Vector2Int32 end)
+        {
+            IEnumerable<Vector2Int32> area = Fill.FillRectangleVectorCenter(start, end, new Vector2Int32(_wvm.Brush.Width, _wvm.Brush.Height)).ToList();
+            FillSolid(area);
         }
 
         private void FillRectangle(Vector2Int32 point)
@@ -237,7 +270,7 @@ namespace TEdit.Editor.Tools
                 if (_wvm.Selection.IsValid(pixel))
                 {
                     _wvm.UndoManager.SaveTile(pixel);
-                    _wvm.SetPixel(pixel.X, pixel.Y, mode:PaintMode.TileAndWall, erase: true);
+                    _wvm.SetPixel(pixel.X, pixel.Y, mode: PaintMode.TileAndWall, erase: true);
 
                     if (_wvm.TilePicker.WallStyleActive)
                     {
@@ -262,12 +295,12 @@ namespace TEdit.Editor.Tools
             if (_wvm.Brush.Shape == BrushShape.Right)
             {
                 _leftPoint = new Vector2Int32(point.X - _wvm.Brush.Width / 2, point.Y + _wvm.Brush.Height / 2);
-                _rightPoint = new Vector2Int32(point.X + _wvm.Brush.Width / 2,point.Y - _wvm.Brush.Height / 2);
+                _rightPoint = new Vector2Int32(point.X + _wvm.Brush.Width / 2, point.Y - _wvm.Brush.Height / 2);
             }
             else
             {
                 _leftPoint = new Vector2Int32(point.X - _wvm.Brush.Width / 2, point.Y - _wvm.Brush.Height / 2);
-                _rightPoint = new Vector2Int32(point.X + _wvm.Brush.Width / 2,point.Y + _wvm.Brush.Height / 2);
+                _rightPoint = new Vector2Int32(point.X + _wvm.Brush.Width / 2, point.Y + _wvm.Brush.Height / 2);
             }
             IEnumerable<Vector2Int32> area = Shape.DrawLine(_leftPoint, _rightPoint);
             foreach (Vector2Int32 pixel in area)

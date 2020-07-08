@@ -11,6 +11,33 @@ namespace TEdit.Geometry
 {
     public static class Fill
     {
+        public static IEnumerable<Vector2Int32> FillRectangleVectorCenter(Vector2Int32 start, Vector2Int32 end, Vector2Int32 size)
+        {
+            var offsetStart = new Vector2Int32(start.X - size.X / 2, start.Y - size.Y / 2);
+            var offsetEnd = new Vector2Int32(end.X - size.X / 2, end.Y - size.Y / 2);
+            return FillRectangleVector(offsetStart, offsetEnd, size);
+        }
+
+        public static IEnumerable<Vector2Int32> FillRectangleVector(Vector2Int32 start, Vector2Int32 end, Vector2Int32 size)
+        {
+            for (int y = end.Y; y < end.Y + size.Y; y++)
+            {
+                for (int x = end.X; x < end.X + size.X; x++)
+                {
+                    // skip coordinates inside start rectangle
+                    if (x > start.X && 
+                        x < (start.X + size.X) &&
+                        y > start.Y && 
+                        y < (start.Y + size.Y))
+                    {
+                        continue;
+                    }
+
+                    yield return new Vector2Int32(x, y);
+                }
+            }
+        }
+
         public static IEnumerable<Vector2Int32> FillRectangleCentered(Vector2Int32 center, Vector2Int32 size)
         {
             var offset = new Vector2Int32(center.X - size.X/2, center.Y - size.Y/2);

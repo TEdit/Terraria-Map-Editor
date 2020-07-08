@@ -30,6 +30,8 @@ namespace TEdit.View
     /// </summary>
     public partial class WorldRenderXna : UserControl
     {
+        private const int MaxTilesToRender = 20000;
+
         private const float LayerTilePixels = 1 - 0;
 
         private const float LayerTileBackgroundTextures = 1 - 0.01f;
@@ -779,7 +781,6 @@ namespace TEdit.View
         }
 
 
-
         private void DrawTileEntities()
         {
             Texture2D tileTex;
@@ -788,7 +789,7 @@ namespace TEdit.View
             int y = 0;
             Rectangle source;
             Rectangle visibleBounds = GetViewingArea();
-            if (visibleBounds.Height * visibleBounds.Width > 25000) return;
+            if (visibleBounds.Height * visibleBounds.Width > MaxTilesToRender) return;
 
 
             foreach (var te in _wvm.CurrentWorld.TileEntities)
@@ -899,7 +900,7 @@ namespace TEdit.View
             Rectangle visibleBounds = GetViewingArea();
             var gridTex = _textures["Grid"];
             Rectangle src = new Rectangle(0, 0, gridTex.Width, gridTex.Height);
-            if (visibleBounds.Height * visibleBounds.Width < 25000)
+            if (visibleBounds.Height * visibleBounds.Width < MaxTilesToRender)
             {
                 for (int x = 0; x < visibleBounds.Right; x += 16)
                 {
@@ -930,7 +931,7 @@ namespace TEdit.View
             var height = _wvm.CurrentWorld.TilesHigh;
 
 
-            if (visibleBounds.Height * visibleBounds.Width < 25000)
+            if (visibleBounds.Height * visibleBounds.Width < MaxTilesToRender)
             {
                 //Extended the viewing space to give tiles time to cache their UV's
                 for (int y = visibleBounds.Top - 1; y < visibleBounds.Bottom + 2; y++)
@@ -1046,7 +1047,7 @@ namespace TEdit.View
             var height = _wvm.CurrentWorld.TilesHigh;
 
 
-            if (visibleBounds.Height * visibleBounds.Width < 25000)
+            if (visibleBounds.Height * visibleBounds.Width < MaxTilesToRender)
             {
                 //Extended the viewing space to give tiles time to cache their UV's
                 for (int y = visibleBounds.Top - 1; y < visibleBounds.Bottom + 2; y++)
@@ -1130,7 +1131,7 @@ namespace TEdit.View
             var height = _wvm.CurrentWorld.TilesHigh;
 
 
-            if (visibleBounds.Height * visibleBounds.Width < 25000)
+            if (visibleBounds.Height * visibleBounds.Width < MaxTilesToRender)
             {
                 //Extended the viewing space to give tiles time to cache their UV's
                 for (int y = visibleBounds.Top - 1; y < visibleBounds.Bottom + 2; y++)
@@ -2317,7 +2318,7 @@ namespace TEdit.View
             var height = _wvm.CurrentWorld.TilesHigh;
 
 
-            if (visibleBounds.Height * visibleBounds.Width < 25000)
+            if (visibleBounds.Height * visibleBounds.Width < MaxTilesToRender)
             {
                 //Extended the viewing space to give tiles time to cache their UV's
                 for (int y = visibleBounds.Top - 1; y < visibleBounds.Bottom + 2; y++)
@@ -2437,7 +2438,7 @@ namespace TEdit.View
             var height = _wvm.CurrentWorld.TilesHigh;
 
 
-            if (visibleBounds.Height * visibleBounds.Width < 25000)
+            if (visibleBounds.Height * visibleBounds.Width < MaxTilesToRender)
             {
                 //Extended the viewing space to give tiles time to cache their UV's
                 for (int y = visibleBounds.Top - 1; y < visibleBounds.Bottom + 2; y++)
