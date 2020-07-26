@@ -71,12 +71,25 @@ namespace TEdit.Terraria.Objects
             if (uv == Vector2Short.Zero) return true;
 
             var renderUV = WorldRenderXna.GetRenderUV((ushort)Id, uv.X, uv.Y);
-            var frameSize = GetFrameSize((short)renderUV.Y);
+            var frameSizeIx = GetFrameSizeIndex((short)renderUV.Y);
+            var frameSize = FrameSize[frameSizeIx];
 
-            return (renderUV.X % ((TextureGrid.X + FrameGap.X) * frameSize.X) == 0 && 
-                    renderUV.Y % ((TextureGrid.Y + FrameGap.Y) * frameSize.Y) == 0);
+            if (frameSizeIx == 0)
+            {
+                return (renderUV.X % ((TextureGrid.X + FrameGap.X) * frameSize.X) == 0 &&
+                        renderUV.Y % ((TextureGrid.Y + FrameGap.Y) * frameSize.Y) == 0);
+            }
+            else
+            {
+                int y = 0;
+                for (int i = 0; i < frameSizeIx; i++)
+                {
+                    y += FrameSize[i].Y * (TextureGrid.Y + FrameGap.Y);
+                }
+                return (renderUV.X % ((TextureGrid.X + FrameGap.X) * frameSize.X) == 0 && renderUV.Y == y);
+            }
         }
-        
+
 
         public bool IsOrigin(Vector2Short uv, out FrameProperty frame)
         {
@@ -142,16 +155,29 @@ namespace TEdit.Terraria.Objects
             set { Set("FrameSize", ref _frameSize, value); }
         }
 
-        public Vector2Short GetFrameSize(short v)
+        public int GetFrameSizeIndex(short v)
         {
             if (FrameSize.Length > 1)
             {
                 int row = v / TextureGrid.Y;
-                return FrameSize[row];
+                int rowTest = 0;
+
+                for (int pos = 0; pos < FrameSize.Length; pos++)
+                {
+                    if (row == rowTest)
+                    {
+                        return pos;
+                    }
+
+                    rowTest += FrameSize[pos].Y;
+                }
+                return FrameSize.Length - 1;
             }
 
-            return FrameSize[0];
+            return 0;
         }
+
+        public Vector2Short GetFrameSize(short v) => FrameSize[GetFrameSizeIndex(v)];
 
         public bool IsFramed
         {

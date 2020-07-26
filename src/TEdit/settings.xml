@@ -1703,7 +1703,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="36,0" Anchor="Right" />
       </Frames>
     </Tile>
-    <Tile Id="21" Color="#FFE9CF5E" Name="Chest" TextureGrid="16,16" Framed="true" Size="2,2" Placement="floor" UseFrameName="true" FrameGap="0,2" IsAnimated="true">
+    <Tile Id="21" Color="#FFE9CF5E" Name="Chest" TextureGrid="16,16" Framed="true" Size="2,2" Placement="floor" UseFrameName="true" FrameGap="2,2" IsAnimated="true">
       <Frames>
         <Frame UV="0,0" Name="Chest" />
         <Frame UV="36,0" Name="Gold Chest" />
