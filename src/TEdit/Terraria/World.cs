@@ -530,5 +530,25 @@ namespace TEdit.Terraria
                 }
             }
         }
+
+        public bool SlopeCheck(Vector2Int32 a, Vector2Int32 b)
+        {
+            if (a.X < 0 || a.X >= Size.X) return false;
+            if (b.X < 0 || b.X >= Size.X) return false;
+            if (a.Y < 0 || a.Y >= Size.Y) return false;
+            if (b.Y < 0 || b.Y >= Size.Y) return false;
+
+            var ta = Tiles[a.X, a.Y];
+            var tb = Tiles[b.X, b.Y];
+
+
+            var tpa = World.GetTileProperties(ta.Type);
+            var tpb = World.GetTileProperties(tb.Type);
+
+            if (ta.IsActive == tb.IsActive && !tpa.IsFramed && !tpb.IsFramed && tpa.Merges(tb.Type)) return true;
+
+
+            return false;
+        }
     }
 }

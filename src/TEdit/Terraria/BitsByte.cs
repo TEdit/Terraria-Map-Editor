@@ -16,6 +16,8 @@ namespace TEdit.Terraria
 
         private byte @value;
 
+        public byte Value => this.@value;
+
         public bool this[int key]
         {
             get

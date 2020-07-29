@@ -8,23 +8,23 @@ using TEdit.Geometry;
 using TEdit.Geometry.Primitives;
 using TEdit.ViewModel;
 using TEdit.Terraria.Objects;
+using TEdit.Terraria;
 
 namespace TEdit.Editor.Tools
 {
-    public sealed class BrushTool : BaseTool
+    public class BrushToolBase : BaseTool
     {
-        private bool _isLeftDown;
-        private bool _isRightDown;
-        private Vector2Int32 _startPoint;
-        private Vector2Int32 _endPoint;
-        private Vector2Int32 _leftPoint;
-        private Vector2Int32 _rightPoint;
+        protected bool _isLeftDown;
+        protected bool _isRightDown;
+        protected Vector2Int32 _startPoint;
+        protected Vector2Int32 _endPoint;
+        protected Vector2Int32 _leftPoint;
+        protected Vector2Int32 _rightPoint;
 
-        public BrushTool(WorldViewModel worldViewModel)
+        public BrushToolBase(WorldViewModel worldViewModel)
             : base(worldViewModel)
         {
             Icon = new BitmapImage(new Uri(@"pack://application:,,,/TEdit;component/Images/Tools/paintbrush.png"));
-            Name = "Brush";
             ToolType = ToolType.Brush;
         }
 
@@ -80,7 +80,7 @@ namespace TEdit.Editor.Tools
             return _preview;
         }
 
-        private void CheckDirectionandDraw(Vector2Int32 tile)
+        protected void CheckDirectionandDraw(Vector2Int32 tile)
         {
             Vector2Int32 p = tile;
             Vector2Int32 p2 = tile;
@@ -110,7 +110,7 @@ namespace TEdit.Editor.Tools
             }
         }
 
-        private void DrawLine(Vector2Int32 to)
+        protected void DrawLine(Vector2Int32 to)
         {
             var line = Shape.DrawLineTool(_startPoint, to).ToList();
             if (_wvm.Brush.Shape == BrushShape.Square || _wvm.Brush.Height <= 1 || _wvm.Brush.Width <= 1)
@@ -137,7 +137,7 @@ namespace TEdit.Editor.Tools
             }
         }
 
-        private void DrawLineP2P(Vector2Int32 endPoint)
+        protected void DrawLineP2P(Vector2Int32 endPoint)
         {
             var line = Shape.DrawLineTool(_startPoint, endPoint).ToList();
 
@@ -165,22 +165,22 @@ namespace TEdit.Editor.Tools
             }
         }
 
-        private void FillRectangleLine(Vector2Int32 start, Vector2Int32 end)
+        protected void FillRectangleLine(Vector2Int32 start, Vector2Int32 end)
         {
-            IEnumerable<Vector2Int32> area = Fill.FillRectangleVectorCenter(start, end, new Vector2Int32(_wvm.Brush.Width, _wvm.Brush.Height)).ToList();
+            var area = Fill.FillRectangleVectorCenter(start, end, new Vector2Int32(_wvm.Brush.Width, _wvm.Brush.Height)).ToList();
             FillSolid(area);
         }
 
-        private void FillRectangle(Vector2Int32 point)
+        protected void FillRectangle(Vector2Int32 point)
         {
-            IEnumerable<Vector2Int32> area = Fill.FillRectangleCentered(point, new Vector2Int32(_wvm.Brush.Width, _wvm.Brush.Height));
+            var area = Fill.FillRectangleCentered(point, new Vector2Int32(_wvm.Brush.Width, _wvm.Brush.Height)).ToList();
             if (_wvm.Brush.IsOutline)
             {
 
-                IEnumerable<Vector2Int32> interrior = Fill.FillRectangleCentered(point,
+                var interrior = Fill.FillRectangleCentered(point,
                                                                                  new Vector2Int32(
                                                                                      _wvm.Brush.Width - _wvm.Brush.Outline * 2,
-                                                                                     _wvm.Brush.Height - _wvm.Brush.Outline * 2));
+                                                                                     _wvm.Brush.Height - _wvm.Brush.Outline * 2)).ToList();
                 FillHollow(area, interrior);
             }
             else
@@ -189,14 +189,14 @@ namespace TEdit.Editor.Tools
             }
         }
 
-        private void FillRound(Vector2Int32 point)
+        protected void FillRound(Vector2Int32 point)
         {
-            IEnumerable<Vector2Int32> area = Fill.FillEllipseCentered(point, new Vector2Int32(_wvm.Brush.Width / 2, _wvm.Brush.Height / 2));
+            var area = Fill.FillEllipseCentered(point, new Vector2Int32(_wvm.Brush.Width / 2, _wvm.Brush.Height / 2)).ToList();
             if (_wvm.Brush.IsOutline)
             {
-                IEnumerable<Vector2Int32> interrior = Fill.FillEllipseCentered(point, new Vector2Int32(
+                var interrior = Fill.FillEllipseCentered(point, new Vector2Int32(
                                                                                    _wvm.Brush.Width / 2 - _wvm.Brush.Outline * 2,
-                                                                                   _wvm.Brush.Height / 2 - _wvm.Brush.Outline * 2));
+                                                                                   _wvm.Brush.Height / 2 - _wvm.Brush.Outline * 2)).ToList();
                 FillHollow(area, interrior);
             }
             else
@@ -205,7 +205,7 @@ namespace TEdit.Editor.Tools
             }
         }
 
-        private void FillSolid(IEnumerable<Vector2Int32> area)
+        protected virtual void FillSolid(IList<Vector2Int32> area)
         {
             foreach (Vector2Int32 pixel in area)
             {
@@ -227,9 +227,9 @@ namespace TEdit.Editor.Tools
             }
         }
 
-        private void FillHollow(IEnumerable<Vector2Int32> area, IEnumerable<Vector2Int32> interrior)
+        protected virtual void FillHollow(IList<Vector2Int32> area, IList<Vector2Int32> interrior)
         {
-            IEnumerable<Vector2Int32> border = area.Except(interrior);
+            IEnumerable<Vector2Int32> border = area.Except(interrior).ToList();
 
             // Draw the border
             if (_wvm.TilePicker.TileStyleActive)
@@ -302,25 +302,103 @@ namespace TEdit.Editor.Tools
                 _leftPoint = new Vector2Int32(point.X - _wvm.Brush.Width / 2, point.Y - _wvm.Brush.Height / 2);
                 _rightPoint = new Vector2Int32(point.X + _wvm.Brush.Width / 2, point.Y + _wvm.Brush.Height / 2);
             }
-            IEnumerable<Vector2Int32> area = Shape.DrawLine(_leftPoint, _rightPoint);
-            foreach (Vector2Int32 pixel in area)
+            var area = Shape.DrawLine(_leftPoint, _rightPoint).ToList();
+            FillSolid(area);
+        }
+    }
+
+    public sealed class BrushTool : BrushToolBase
+    {
+        public BrushTool(WorldViewModel worldViewModel) : base(worldViewModel)
+        {
+            Name = "Brush";
+
+        }
+    }
+
+
+    public sealed class HammerAreaTool : BrushToolBase
+    {
+        public HammerAreaTool(WorldViewModel worldViewModel) : base(worldViewModel)
+        {
+            Name = "Hammer";
+
+        }
+
+        protected override void FillSolid(IList<Vector2Int32> area)
+        {
+            foreach (var pixel in area)
             {
                 if (!_wvm.CurrentWorld.ValidTileLocation(pixel)) continue;
 
-                int index = pixel.X + pixel.Y * _wvm.CurrentWorld.TilesWide;
-                if (!_wvm.CheckTiles[index])
+                if (_wvm.Selection.IsValid(pixel))
                 {
-                    _wvm.CheckTiles[index] = true;
-                    if (_wvm.Selection.IsValid(pixel))
+                    var p = GetBrickStyle(pixel);
+
+                    if (p != null)
                     {
                         _wvm.UndoManager.SaveTile(pixel);
-                        _wvm.SetPixel(pixel.X, pixel.Y);
-
-                        /* Heathtech */
+                        _wvm.CurrentWorld.Tiles[pixel.X, pixel.Y].BrickStyle = p.Value;
                         BlendRules.ResetUVCache(_wvm, pixel.X, pixel.Y, 1, 1);
                     }
                 }
             }
+        }
+
+        private BrickStyle? GetBrickStyle(Vector2Int32 v)
+        {
+            var t = _wvm.CurrentWorld.Tiles[v.X, v.Y];
+            var tp = World.GetTileProperties(t.Type);
+            if (!t.IsActive || t.LiquidType != LiquidType.None || tp.IsFramed) return null;
+
+            bool up = _wvm.CurrentWorld.SlopeCheck(v, new Vector2Int32(v.X, v.Y - 1));
+            bool down = _wvm.CurrentWorld.SlopeCheck(v, new Vector2Int32(v.X, v.Y + 1));
+            bool upLeft = _wvm.CurrentWorld.SlopeCheck(v, new Vector2Int32(v.X - 1, v.Y - 1));
+            bool left = _wvm.CurrentWorld.SlopeCheck(v, new Vector2Int32(v.X - 1, v.Y));
+            bool upRight = _wvm.CurrentWorld.SlopeCheck(v, new Vector2Int32(v.X + 1, v.Y - 1));
+            bool right = _wvm.CurrentWorld.SlopeCheck(v, new Vector2Int32(v.X + 1, v.Y));
+            bool downLeft = _wvm.CurrentWorld.SlopeCheck(v, new Vector2Int32(v.X - 1, v.Y + 1));
+            bool downRight = _wvm.CurrentWorld.SlopeCheck(v, new Vector2Int32(v.X + 1, v.Y + 1));
+
+            var mask = new BitsByte(up, upRight, right, downRight, down, downLeft, left, upLeft);
+            var maskValue = mask.Value;
+
+            if (maskValue == byte.MinValue || maskValue == byte.MaxValue) return null;
+            
+            if (!up && !down) return null;
+
+            if (!up && left && !right && (downRight || !upRight)) return BrickStyle.SlopeTopRight;
+            if (!up && right && !left && (downLeft || !upLeft)) return BrickStyle.SlopeTopLeft;
+            
+            if (!down && left && !right && (!downRight || upRight)) return BrickStyle.SlopeBottomRight;
+            if (!down && right && !left && (!downLeft || upLeft)) return BrickStyle.SlopeBottomLeft;
+
+            return null;
+        }
+
+        protected override void FillHollow(IList<Vector2Int32> area, IList<Vector2Int32> interrior)
+        {
+            //IEnumerable<Vector2Int32> border = area.Except(interrior);
+            FillSolid(area);
+        }
+    }
+
+    public sealed class BiomeTool : BrushToolBase
+    {
+        public BiomeTool(WorldViewModel worldViewModel) : base(worldViewModel)
+        {
+            Name = "Biome";
+
+        }
+
+        protected override void FillSolid(IList<Vector2Int32> area)
+        {
+        }
+
+        protected override void FillHollow(IList<Vector2Int32> area, IList<Vector2Int32> interrior)
+        {
+            IEnumerable<Vector2Int32> border = area.Except(interrior);
+
         }
     }
 }

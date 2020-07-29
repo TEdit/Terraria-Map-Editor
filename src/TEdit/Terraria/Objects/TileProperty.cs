@@ -235,6 +235,8 @@ namespace TEdit.Terraria.Objects
 
         public bool Merges(int other)
         {
+            if (other == this.Id) return true;
+
             if (!MergeWith.HasValue) return false;
 
             return MergeWith.Value == other;
