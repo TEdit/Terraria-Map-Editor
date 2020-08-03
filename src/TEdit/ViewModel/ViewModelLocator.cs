@@ -35,7 +35,7 @@ namespace TEdit.ViewModel
             wvm.Tools.Add(new PencilTool(wvm));
             wvm.Tools.Add(new BrushTool(wvm));
             wvm.Tools.Add(new HammerAreaTool(wvm));
-            wvm.Tools.Add(new BiomeTool(wvm));
+            //wvm.Tools.Add(new BiomeTool(wvm));
             wvm.Tools.Add(new FillTool(wvm));
             wvm.Tools.Add(new PointTool(wvm));
             //wvm.Tools.Add(new SpriteTool(wvm));

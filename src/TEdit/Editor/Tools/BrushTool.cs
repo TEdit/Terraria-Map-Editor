@@ -312,7 +312,6 @@ namespace TEdit.Editor.Tools
         public BrushTool(WorldViewModel worldViewModel) : base(worldViewModel)
         {
             Name = "Brush";
-
         }
     }
 
@@ -321,8 +320,8 @@ namespace TEdit.Editor.Tools
     {
         public HammerAreaTool(WorldViewModel worldViewModel) : base(worldViewModel)
         {
+            Icon = new BitmapImage(new Uri(@"pack://application:,,,/TEdit;component/Images/Tools/hammer.png"));
             Name = "Hammer";
-
         }
 
         protected override void FillSolid(IList<Vector2Int32> area)
@@ -388,7 +387,7 @@ namespace TEdit.Editor.Tools
         public BiomeTool(WorldViewModel worldViewModel) : base(worldViewModel)
         {
             Name = "Biome";
-
+            Icon = new BitmapImage(new Uri(@"pack://application:,,,/TEdit;component/Images/Tools/biome.png"));
         }
 
         protected override void FillSolid(IList<Vector2Int32> area)
