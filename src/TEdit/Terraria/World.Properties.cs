@@ -224,6 +224,8 @@ namespace TEdit.Terraria
         private CreativePowers _creativePowers = new CreativePowers();
         private bool _gooWorld;
 
+        
+
         public Bestiary Bestiary
         {
             get { return _bestiary; }

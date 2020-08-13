@@ -290,6 +290,18 @@ Press retry to pick a new folder or cancel to use {0} as your terraria path.</va
   <data name="menu_help_wiki" xml:space="preserve">
     <value>Wiki</value>
   </data>
+  <data name="menu_language" xml:space="preserve">
+    <value>Language</value>
+  </data>
+  <data name="menu_language_ar" xml:space="preserve">
+    <value>Arabic</value>
+  </data>
+  <data name="menu_language_en" xml:space="preserve">
+    <value>English</value>
+  </data>
+  <data name="menu_language_ru" xml:space="preserve">
+    <value>Russian</value>
+  </data>
   <data name="menu_layers" xml:space="preserve">
     <value>Layers</value>
   </data>

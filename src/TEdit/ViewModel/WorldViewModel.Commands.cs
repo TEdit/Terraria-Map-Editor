@@ -13,6 +13,7 @@ using TEdit.Editor.Clipboard;
 using TEdit.Editor.Plugins;
 using TEdit.Editor.Tools;
 using TEdit.Helper;
+using TEdit.Properties;
 
 namespace TEdit.ViewModel
 {
@@ -42,6 +43,8 @@ namespace TEdit.ViewModel
         private ICommand _requestZoomCommand;
         private ICommand _requestScrollCommand;
         private ICommand _requestPanCommand;
+
+
 
         public event EventHandler<EventArgs<bool>> RequestZoom;
         public event EventHandler<EventArgs<bool>> RequestPan;
@@ -327,6 +330,39 @@ namespace TEdit.ViewModel
             get { return _setTool ?? (_setTool = new RelayCommand<ITool>(SetActiveTool)); }
         }
 
+        public ICommand SetLanguageCommand
+        {
+            get { return _setLanguage ?? (_setLanguage = new RelayCommand<LanguageSelection>(SetLanguage)); }
+        }
+
+        private LanguageSelection _currentLanguage;
+
+        public LanguageSelection CurrentLanguage
+        {
+
+            get { return _currentLanguage; }
+            set
+            {
+                Set(nameof(CurrentLanguage), ref _currentLanguage, value);
+                UpdateRenderWorld();
+            }
+
+        }
+
+        private void SetLanguage(LanguageSelection language)
+        {
+            CurrentLanguage = language;
+
+            Settings.Default.Language = language;
+            Settings.Default.Save();
+
+            if (MessageBox.Show($"Language changed to {language}. Do you wish to restart now?", "Restart to change language", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+            {
+                System.Windows.Forms.Application.Restart();
+                System.Windows.Application.Current.Shutdown();
+            }
+        }
+
         #region Clipboard
 
         private ICommand _emptyClipboardCommand;
@@ -336,7 +372,7 @@ namespace TEdit.ViewModel
         private ICommand _clipboardSetActiveCommand;
         private ICommand _clipboardFlipXCommand;
         private ICommand _clipboardFlipYCommand;
-
+        private ICommand _setLanguage;
 
         public ICommand ClipboardSetActiveCommand
         {
@@ -381,7 +417,7 @@ namespace TEdit.ViewModel
         private void ImportKillsAndBestiary()
         {
             if (MessageBox.Show(
-                "This will completely replace your currently loaded world Bestiary and Kill Tally with selected file's bestiary. Continue?", 
+                "This will completely replace your currently loaded world Bestiary and Kill Tally with selected file's bestiary. Continue?",
                 "Load Bestiary?",
                 MessageBoxButton.YesNo,
                 MessageBoxImage.Question,
@@ -459,5 +495,13 @@ namespace TEdit.ViewModel
         }
 
         #endregion
+    }
+
+    public enum LanguageSelection
+    {
+        Automatic,
+        English,
+        Russian,
+        Arabic
     }
 }

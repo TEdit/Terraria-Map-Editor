@@ -566,6 +566,42 @@ namespace TEdit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Language.
+        /// </summary>
+        public static string menu_language {
+            get {
+                return ResourceManager.GetString("menu_language", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Arabic.
+        /// </summary>
+        public static string menu_language_ar {
+            get {
+                return ResourceManager.GetString("menu_language_ar", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to English.
+        /// </summary>
+        public static string menu_language_en {
+            get {
+                return ResourceManager.GetString("menu_language_en", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Russian.
+        /// </summary>
+        public static string menu_language_ru {
+            get {
+                return ResourceManager.GetString("menu_language_ru", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Layers.
         /// </summary>
         public static string menu_layers {

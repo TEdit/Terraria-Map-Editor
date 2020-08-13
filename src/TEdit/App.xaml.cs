@@ -4,7 +4,9 @@ using System.Linq;
 using System.Reflection;
 using System.Windows;
 using TEdit.MvvmLight.Threading;
+using TEdit.Properties;
 using TEdit.Terraria;
+using TEdit.ViewModel;
 using DispatcherHelper = GalaSoft.MvvmLight.Threading.DispatcherHelper;
 
 namespace TEdit
@@ -17,6 +19,23 @@ namespace TEdit
         static App()
         {
             DispatcherHelper.Initialize();
+            
+
+            switch (Settings.Default.Language)
+            {
+                case LanguageSelection.Automatic:
+                    //System.Threading.Thread.CurrentThread.CurrentUICulture = System.Globalization.CultureInfo.CurrentCulture;
+                    break;
+                case LanguageSelection.English:
+                    System.Threading.Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("en");
+                    break;
+                case LanguageSelection.Russian:
+                    System.Threading.Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("ru-RU");
+                    break;
+                case LanguageSelection.Arabic:
+                    System.Threading.Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("ar-BH");
+                    break;
+            }
 
             // language test code
             // System.Threading.Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("ru-RU");
