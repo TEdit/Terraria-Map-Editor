@@ -545,7 +545,7 @@ namespace TEdit.Terraria
             var tpa = World.GetTileProperties(ta.Type);
             var tpb = World.GetTileProperties(tb.Type);
 
-            if (ta.IsActive == tb.IsActive && !tpa.IsFramed && !tpb.IsFramed && tpa.Merges(tb.Type)) return true;
+            if (ta.IsActive == tb.IsActive && !tpa.IsFramed && !tpb.IsFramed) return true;
 
 
             return false;
