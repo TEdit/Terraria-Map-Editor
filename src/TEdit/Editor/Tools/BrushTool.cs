@@ -330,15 +330,21 @@ namespace TEdit.Editor.Tools
             {
                 if (!_wvm.CurrentWorld.ValidTileLocation(pixel)) continue;
 
-                if (_wvm.Selection.IsValid(pixel))
+                int index = pixel.X + pixel.Y * _wvm.CurrentWorld.TilesWide;
+                if (!_wvm.CheckTiles[index])
                 {
-                    var p = GetBrickStyle(pixel);
+                    _wvm.CheckTiles[index] = true;
 
-                    if (p != null)
+                    if (_wvm.Selection.IsValid(pixel))
                     {
-                        _wvm.UndoManager.SaveTile(pixel);
-                        _wvm.CurrentWorld.Tiles[pixel.X, pixel.Y].BrickStyle = p.Value;
-                        BlendRules.ResetUVCache(_wvm, pixel.X, pixel.Y, 1, 1);
+                        var p = GetBrickStyle(pixel);
+
+                        if (p != null)
+                        {
+                            _wvm.UndoManager.SaveTile(pixel);
+                            _wvm.CurrentWorld.Tiles[pixel.X, pixel.Y].BrickStyle = p.Value;
+                            BlendRules.ResetUVCache(_wvm, pixel.X, pixel.Y, 1, 1);
+                        }
                     }
                 }
             }
@@ -363,12 +369,12 @@ namespace TEdit.Editor.Tools
             var maskValue = mask.Value;
 
             if (maskValue == byte.MinValue || maskValue == byte.MaxValue) return null;
-            
+
             if (!up && !down) return null;
 
             if (!up && left && !right && (downRight || !upRight)) return BrickStyle.SlopeTopRight;
             if (!up && right && !left && (downLeft || !upLeft)) return BrickStyle.SlopeTopLeft;
-            
+
             if (!down && left && !right && (!downRight || upRight)) return BrickStyle.SlopeBottomRight;
             if (!down && right && !left && (!downLeft || upLeft)) return BrickStyle.SlopeBottomLeft;
 
