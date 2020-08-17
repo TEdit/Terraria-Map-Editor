@@ -258,7 +258,7 @@ namespace TEdit.Terraria
             }
 
             // liquid data
-            if (tile.LiquidAmount != 0)
+            if (tile.LiquidAmount != 0 && tile.LiquidType != LiquidType.None)
             {
                 // set bits[3,4] using left shift
                 header1 = (byte)(header1 | (byte)((byte)tile.LiquidType << 3));
