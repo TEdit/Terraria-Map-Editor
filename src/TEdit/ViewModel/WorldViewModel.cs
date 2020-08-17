@@ -870,6 +870,7 @@ namespace TEdit.ViewModel
                 Task.Factory.StartNew(() =>
                 {
                     World w = nwDialog.NewWorld;
+                    w.Seed = (new Random()).Next(0, int.MaxValue).ToString();
                     w.SpawnX = w.TilesWide / 2;
                     w.SpawnY = (int)Math.Max(0, w.GroundLevel - 10);
                     w.GroundLevel = (int)w.GroundLevel;

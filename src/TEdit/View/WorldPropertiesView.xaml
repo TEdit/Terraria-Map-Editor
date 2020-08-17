@@ -278,7 +278,7 @@
         <TextBlock Text="{x:Static p:Language.tool_wp_revision}" HorizontalAlignment="Right" />
         <TextBlock Text="{Binding CurrentWorld.FileRevision}" HorizontalAlignment="Left" />
         <TextBlock Text="{x:Static p:Language.tool_wp_seed}" HorizontalAlignment="Right" />
-        <TextBox Text="{Binding CurrentWorld.Seed}" HorizontalAlignment="Left" IsReadOnly="true"/>
+        <TextBox Text="{Binding CurrentWorld.Seed}" HorizontalAlignment="Stretch" IsReadOnly="true" />
         <Separator Grid.ColumnSpan="2" />
         <TextBlock Text="{x:Static p:Language.tool_wp_moon_phase}" HorizontalAlignment="Right" />
         <DockPanel>
