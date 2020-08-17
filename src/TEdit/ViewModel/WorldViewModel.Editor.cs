@@ -100,7 +100,10 @@ namespace TEdit.ViewModel
                         SetPixelAutomatic(curTile, wire4: !isErase);
                     break;
                 case PaintMode.Liquid:
-                    SetPixelAutomatic(curTile, liquid: isErase ? (byte)0 : (byte)255, liquidType: TilePicker.LiquidType);
+                    SetPixelAutomatic(
+                        curTile,
+                        liquid: (isErase || TilePicker.LiquidType == LiquidType.None) ? (byte)0 : (byte)255,
+                        liquidType: TilePicker.LiquidType);
                     break;
                 case PaintMode.Track:
                     SetTrack(x, y, curTile, isErase, (TilePicker.TrackMode == TrackMode.Hammer), true);
@@ -538,14 +541,14 @@ namespace TEdit.ViewModel
             if (wall != null)
                 curTile.Wall = (ushort)wall;
 
-            if (liquid != null)
+            if (liquid != null && (liquidType != null && liquidType != LiquidType.None))
             {
                 curTile.LiquidAmount = (byte)liquid;
-            }
-
-            if (liquidType != null)
-            {
                 curTile.LiquidType = (LiquidType)liquidType;
+            }
+            else
+            {
+                curTile.LiquidAmount = 0;
             }
 
             if (wire != null)
