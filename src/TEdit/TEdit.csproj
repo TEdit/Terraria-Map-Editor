@@ -36,6 +36,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <SplashScreen Include="Images\te4.png" />
     <Content Include="settings.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -82,6 +83,11 @@
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
       <DependentUpon>Language.zh-CN.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Properties\Language.pl-PL.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Language.pl-PL.resx</DependentUpon>
     </Compile>
     <Compile Update="Properties\Settings.Designer.cs">
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
