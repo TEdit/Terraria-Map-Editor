@@ -35,6 +35,9 @@ namespace TEdit
                 case LanguageSelection.Arabic:
                     System.Threading.Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("ar-BH");
                     break;
+                case LanguageSelection.Polish:
+                    System.Threading.Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("pl-PL");
+                    break;
                 case LanguageSelection.Chinese:
                     System.Threading.Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("zh-CN");
                     break;

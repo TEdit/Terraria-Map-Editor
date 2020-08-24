@@ -503,6 +503,7 @@ namespace TEdit.ViewModel
         English,
         Russian,
         Arabic,
-        Chinese
+        Chinese,
+        Polish
     }
 }

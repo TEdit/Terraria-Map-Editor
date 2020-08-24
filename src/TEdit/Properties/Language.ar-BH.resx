@@ -299,6 +299,9 @@ Press retry to pick a new folder or cancel to use {0} as your terraria path.</va
   <data name="menu_language_en" xml:space="preserve">
     <value>English</value>
   </data>
+  <data name="menu_language_pl" xml:space="preserve">
+    <value>Polski</value>
+  </data>
   <data name="menu_language_ru" xml:space="preserve">
     <value>Russian</value>
   </data>

@@ -593,11 +593,29 @@ namespace TEdit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Polish.
+        /// </summary>
+        public static string menu_language_pl {
+            get {
+                return ResourceManager.GetString("menu_language_pl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Russian.
         /// </summary>
         public static string menu_language_ru {
             get {
                 return ResourceManager.GetString("menu_language_ru", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Chinese.
+        /// </summary>
+        public static string menu_language_zh {
+            get {
+                return ResourceManager.GetString("menu_language_zh", resourceCulture);
             }
         }
         

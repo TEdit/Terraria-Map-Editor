@@ -290,6 +290,9 @@
   <data name="menu_help_wiki" xml:space="preserve">
     <value>Вики</value>
   </data>
+  <data name="menu_language_pl" xml:space="preserve">
+    <value>Польский</value>
+  </data>
   <data name="menu_layers" xml:space="preserve">
     <value>Слои</value>
   </data>

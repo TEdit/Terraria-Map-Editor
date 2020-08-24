@@ -299,6 +299,9 @@
   <data name="menu_language_en" xml:space="preserve">
     <value>英语</value>
   </data>
+  <data name="menu_language_pl" xml:space="preserve">
+    <value>波蘭語</value>
+  </data>
   <data name="menu_language_ru" xml:space="preserve">
     <value>俄语</value>
   </data>
