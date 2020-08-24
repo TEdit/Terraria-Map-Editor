@@ -72,6 +72,7 @@
                         <MenuItem Header="{x:Static p:Language.menu_language_en}" IsCheckable="True" IsChecked="{Binding CurrentLanguage, Converter={StaticResource boolEnumConverter}, ConverterParameter={x:Static vm:LanguageSelection.English}}" Command="{Binding SetLanguageCommand}" CommandParameter="{x:Static vm:LanguageSelection.English}"  />
                         <MenuItem Header="{x:Static p:Language.menu_language_ru}" IsCheckable="True" IsChecked="{Binding CurrentLanguage, Converter={StaticResource boolEnumConverter}, ConverterParameter={x:Static vm:LanguageSelection.Russian}}" Command="{Binding SetLanguageCommand}" CommandParameter="{x:Static vm:LanguageSelection.Russian}"  />
                         <MenuItem Header="{x:Static p:Language.menu_language_ar}" IsCheckable="True" IsChecked="{Binding CurrentLanguage, Converter={StaticResource boolEnumConverter}, ConverterParameter={x:Static vm:LanguageSelection.Arabic}}" Command="{Binding SetLanguageCommand}" CommandParameter="{x:Static vm:LanguageSelection.Arabic}"  />
+                        <MenuItem Header="{x:Static p:Language.menu_language_zh}" IsCheckable="True" IsChecked="{Binding CurrentLanguage, Converter={StaticResource boolEnumConverter}, ConverterParameter={x:Static vm:LanguageSelection.Chinese}}" Command="{Binding SetLanguageCommand}" CommandParameter="{x:Static vm:LanguageSelection.Chinese}"  />
 
                     </MenuItem>
 

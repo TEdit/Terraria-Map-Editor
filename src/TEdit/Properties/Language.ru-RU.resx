@@ -302,6 +302,9 @@
   <data name="menu_language_ru" xml:space="preserve">
     <value>Russian</value>
   </data>
+  <data name="menu_language_zh" xml:space="preserve">
+    <value>китайский язык</value>
+  </data>
   <data name="menu_layers" xml:space="preserve">
     <value>Слои</value>
   </data>
