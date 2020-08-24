@@ -78,6 +78,11 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Language.ar-BH.resx</DependentUpon>
     </Compile>
+    <Compile Update="Properties\Language.zh-CN.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Language.zh-CN.resx</DependentUpon>
+    </Compile>
     <Compile Update="Properties\Settings.Designer.cs">
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <AutoGen>True</AutoGen>
