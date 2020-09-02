@@ -43,7 +43,7 @@ namespace TEdit.UI.Xaml.XnaContentHost
         }
 
         // Track if the application has focus
-        private bool applicationHasFocus = false;
+        private bool applicationHasFocus = true;
 
         // Track if the mouse is in the window
         private bool mouseInWindow = false;

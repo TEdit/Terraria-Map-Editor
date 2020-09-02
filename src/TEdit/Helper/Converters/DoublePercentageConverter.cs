@@ -30,11 +30,15 @@ namespace TEdit.Converters
 
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
+            if (string.IsNullOrEmpty(value?.ToString())) return DependencyProperty.UnsetValue;
+
             return (byte)(int)value;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
+            if (string.IsNullOrEmpty(value?.ToString())) return DependencyProperty.UnsetValue;
+
             return (int)(byte)value;
         }
     }
@@ -44,11 +48,15 @@ namespace TEdit.Converters
 
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
+            if (string.IsNullOrEmpty(value?.ToString())) return DependencyProperty.UnsetValue;
+
             return (int)(short)value;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
+            if (string.IsNullOrEmpty(value?.ToString())) return DependencyProperty.UnsetValue;
+
             return (short)(int)value;
         }
     }
@@ -58,11 +66,15 @@ namespace TEdit.Converters
 
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
+            if (string.IsNullOrEmpty(value?.ToString())) return DependencyProperty.UnsetValue;
+
             return (int)(byte)value;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
+            if (string.IsNullOrEmpty(value?.ToString())) return DependencyProperty.UnsetValue;
+
             return (byte)(int)value;
         }
     }
@@ -74,7 +86,7 @@ namespace TEdit.Converters
         public object Convert(object value, Type targetType, object parameter,
                               CultureInfo culture)
         {
-            if (string.IsNullOrEmpty(value.ToString())) return 0;
+            if (string.IsNullOrEmpty(value?.ToString())) return DependencyProperty.UnsetValue;
 
             if (value.GetType() == typeof (double)) return (double) value;
 
@@ -86,7 +98,7 @@ namespace TEdit.Converters
         public object ConvertBack(object value, Type targetType, object parameter,
                                   CultureInfo culture)
         {
-            if (string.IsNullOrEmpty(value.ToString())) return 0;
+            if (string.IsNullOrEmpty(value?.ToString())) return DependencyProperty.UnsetValue;
 
             string trimmedValue = value.ToString().TrimEnd(new[] {'%'});
 
