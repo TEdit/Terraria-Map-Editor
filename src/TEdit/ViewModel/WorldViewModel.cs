@@ -802,6 +802,11 @@ namespace TEdit.ViewModel
                 ActiveTool = tool;
                 tool.IsActive = true;
 
+                if (tool.Name.StartsWith("Sprite"))
+                {
+                    SelectedTabIndex = 2;
+                }
+
                 PreviewChange();
             }
         }
