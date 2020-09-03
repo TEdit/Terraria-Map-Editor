@@ -200,7 +200,9 @@ namespace TEdit
         {
             var tool = _vm.Tools.FirstOrDefault(t => string.Equals(t.Name, toolName, StringComparison.OrdinalIgnoreCase));
             if (tool != null)
+            {
                 _vm.SetTool.Execute(tool);
+            }
         }
 
         public void ZoomFocus(int x, int y)

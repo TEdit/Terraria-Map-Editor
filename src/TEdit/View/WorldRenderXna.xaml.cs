@@ -2890,7 +2890,12 @@ namespace TEdit.View
                 return;
             Vector2 position;
 
-            if (_wvm.ActiveTool.ToolType == ToolType.Brush)
+            if (_wvm.ActiveTool.Name == "Paste")
+            {
+                position = new Vector2((_scrollPosition.X + _wvm.MouseOverTile.MouseState.Location.X) * _zoom,
+                                       (_scrollPosition.Y + _wvm.MouseOverTile.MouseState.Location.Y) * _zoom);
+            }
+            else if (_wvm.ActiveTool.ToolType == ToolType.Brush)
             {
                 position = new Vector2(1 + (_scrollPosition.X + _wvm.MouseOverTile.MouseState.Location.X - _wvm.Brush.OffsetX) * _zoom,
                                        1 + (_scrollPosition.Y + _wvm.MouseOverTile.MouseState.Location.Y - _wvm.Brush.OffsetY) * _zoom);
@@ -2900,6 +2905,7 @@ namespace TEdit.View
                 position = new Vector2(1 + (_scrollPosition.X + _wvm.MouseOverTile.MouseState.Location.X) * _zoom,
                                        1 + (_scrollPosition.Y + _wvm.MouseOverTile.MouseState.Location.Y) * _zoom);
             }
+
             if (_wvm.ActiveTool.Name == "Sprite" && _wvm.SelectedSprite != null)
             {
                 var texsize = World.GetTileProperties(_wvm.SelectedSprite.Tile).TextureGrid;
