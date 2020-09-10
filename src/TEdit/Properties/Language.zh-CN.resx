@@ -308,6 +308,9 @@
   <data name="menu_language_zh" xml:space="preserve">
     <value>简体中文</value>
   </data>
+  <data name="menu_language_de" xml:space="preserve">
+    <value>Deutsch</value>
+  </data>
   <data name="menu_layers" xml:space="preserve">
     <value>地层</value>
   </data>
