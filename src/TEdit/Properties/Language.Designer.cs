@@ -620,6 +620,15 @@ namespace TEdit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to German.
+        /// </summary>
+        public static string menu_language_de {
+            get {
+                return ResourceManager.GetString("menu_language_de", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Layers.
         /// </summary>
         public static string menu_layers {
