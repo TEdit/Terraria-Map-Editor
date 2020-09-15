@@ -541,14 +541,18 @@ namespace TEdit.ViewModel
             if (wall != null)
                 curTile.Wall = (ushort)wall;
 
-            if (liquid != null && (liquidType != null && liquidType != LiquidType.None))
+            if (liquidType == LiquidType.None)
+            {
+                curTile.LiquidAmount = 0;
+            }
+            else if (liquid != null && liquidType != null)
             {
                 curTile.LiquidAmount = (byte)liquid;
                 curTile.LiquidType = (LiquidType)liquidType;
             }
             else
             {
-                curTile.LiquidAmount = 0;
+                // do nothing with liquid
             }
 
             if (wire != null)
