@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <!--
 
 Terraria Settings.XML Specifications
@@ -1703,7 +1703,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="36,0" Anchor="Right" />
       </Frames>
     </Tile>
-    <Tile Id="21" Color="#FFE9CF5E" Name="Chest" TextureGrid="16,16" Framed="true" Size="2,2" Placement="floor" UseFrameName="true" FrameGap="0,2" IsAnimated="true">
+    <Tile Id="21" Color="#FFE9CF5E" Name="Chest" TextureGrid="16,16" Framed="true" Size="2,2" Placement="floor" UseFrameName="true" FrameGap="2,2" IsAnimated="true">
       <Frames>
         <Frame UV="0,0" Name="Chest" />
         <Frame UV="36,0" Name="Gold Chest" />
@@ -3336,7 +3336,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
       </Frames>
     </Tile>
     <Tile Id="130" Color="#FFA0A0A0" Name="Active Stone Block" Solid="true" Blends="true" Stone="true" />
-    <Tile Id="131" Color="#FF343434" Name="Inactive Stone Block" Blends="true" Stone="true" />
+    <Tile Id="131" Color="#FF343434" Name="Inactive Stone Block" Blends="true" Stone="true" SaveSlope="true" />
     <Tile Id="132" Color="#FF909490" Name="Lever" Framed="true" Size="2,2">
       <Frames>
         <Frame UV="0,0" Variety="Right" Anchor="Left" />
@@ -3412,7 +3412,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="72,72" Name="Spear Trap" Variety="Right" />
       </Frames>
     </Tile>
-    <Tile Id="138" Color="#FF606060" Name="Boulder" Framed="true" Size="2,2" />
+    <Tile Id="138" Color="#FF606060" Name="Boulder" Framed="true" Size="2,2" Solid="true" />
     <Tile Id="139" Color="#FFBF8E6F" Name="Music Box" Framed="true" Size="2,2" IsAnimated="true">
       <Frames>
         <Frame UV="0,0" Name="Music Box (Overworld Day)" Variety="Off" />
@@ -4640,7 +4640,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Tile Id="312" Color="#FFCC5D49" Name="Red Dynasty Shingles" Solid="true" Blends="true" />
     <Tile Id="313" Color="#FF57969A" Name="Blue Dynasty Shingles" Solid="true" Blends="true" />
     <Tile Id="314" Color="#FFB5A47D" Name="Minecart Track" Framed="True" />
-    <Tile Id="315" Color="#FFEB7250" Name="Coralstone Block" Solid="True" Blends="true" MergeWith="0" />
+    <Tile Id="315" Color="#FFEB7250" Name="Coralstone Block" Solid="true" Blends="true" MergeWith="0" />
     <Tile Id="316" Color="#FF7AD9E8" Name="Blue Jellyfish Jar" Framed="true" Size="2,2" IsAnimated="true" />
     <Tile Id="317" Color="#FF7AD9E8" Name="Green Jellyfish Jar" Framed="true" Size="2,2" IsAnimated="true" />
     <Tile Id="318" Color="#FF7AD9E8" Name="Pink Jellyfish Jar" Framed="true" Size="2,2" IsAnimated="true" />
@@ -4673,10 +4673,10 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="44,22" Variety="Starfish C" />
       </Frames>
     </Tile>
-    <Tile Id="325" Color="#FF817D5D" Name="Tin Plating" Solid="True" Blends="true" />
-    <Tile Id="326" Color="#FF093DBF" Name="Waterfall Block" Solid="True" Blends="true" />
-    <Tile Id="327" Color="#FFFD2003" Name="Lavafall Block" Solid="True" Blends="true" />
-    <Tile Id="328" Color="#FFC8F6FE" Name="Confetti Block" Solid="True" Blends="true" />
+    <Tile Id="325" Color="#FF817D5D" Name="Tin Plating" Solid="true" Blends="true" />
+    <Tile Id="326" Color="#FF093DBF" Name="Waterfall Block" Solid="true" Blends="true" />
+    <Tile Id="327" Color="#FFFD2003" Name="Lavafall Block" Solid="true" Blends="true" />
+    <Tile Id="328" Color="#FFC8F6FE" Name="Confetti Block" Solid="true" Blends="true" />
     <Tile Id="329" Color="#FF0F0F0F" Name="Midnight Confetti Block" Solid="true" Blends="true" />
     <Tile Id="330" Color="#FFE2764C" Name="Copper Coin Pile" Blends="true" />
     <Tile Id="331" Color="#FFA1ACAD" Name="Silver Coin Pile" Blends="true" />
@@ -4794,7 +4794,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
       </Frames>
     </Tile>
     <Tile Id="379" Color="#FFFBD1F0" Name="Bubble" Solid="true" Blends="true" />
-    <Tile Id="380" Color="#FFBF8E6F" Name="Planter Box" Framed="true" Size="[1,1]" SolidTop="true">
+    <Tile Id="380" Color="#FFBF8E6F" Name="Planter Box" Framed="true" Size="[1,1]" SolidTop="true" Solid="true">
       <Frames>
         <Frame UV="0,0" Name="Daybloom Planter" Variety="Left" />
         <Frame UV="18,0" Name="Daybloom Planter" Variety="Middle" />
@@ -4841,8 +4841,8 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="36,0" Name="Trapdoor Open" Variety="Down" />
       </Frames>
     </Tile>
-    <Tile Id="387" Color="#FF7F5C45" Name="Trapdoor Closed" Framed="true" Size="2,1" />
-    <Tile Id="388" Color="#FF7F5C45" Name="Tall Gate Closed" TextureGrid="16,18" Framed="true" Size="1,5">
+    <Tile Id="387" Color="#FF7F5C45" Name="Trapdoor Closed" Framed="true" Size="2,1" Solid="true" />
+    <Tile Id="388" Color="#FF7F5C45" Name="Tall Gate Closed" TextureGrid="16,18" Framed="true" Size="1,5" Solid="true">
       <Frames>
         <Frame UV="0,0" Variety="Style 1" />
         <Frame UV="0,94" Variety="Style 2" />
@@ -4967,7 +4967,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
       </Frames>
     </Tile>
     <Tile Id="426" Color="#FF4d0b23" Name="Red Team Block" Solid="true" Blends="true" />
-    <Tile Id="427" Color="#FF771634" Name="Red Team Platform"  Solid="true" Framed="true" TextureGrid="16,16" Special="Platform">
+    <Tile Id="427" Color="#FF771634" Name="Red Team Platform" Solid="true" Framed="true" TextureGrid="16,16" Special="Platform" SolidTop="true">
       <Frames>
         <Frame UV="0,0" Name="Platform" Variety="Flat" />
         <Frame UV="18,0" Name="Platform" Variety="Endcap Right" />
@@ -5031,7 +5031,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Tile Id="432" Color="#FF774417" Name="Yellow Team Block" Solid="true" Blends="true" />
     <Tile Id="433" Color="#FF4a1777" Name="Pink Team Block" Solid="true" Blends="true" />
     <Tile Id="434" Color="#FF4e526d" Name="White Team Block" Solid="true" Blends="true" />
-    <Tile Id="435" Color="#FF27a860" Name="Green Team Platform" Solid="true" Framed="true" TextureGrid="16,16" Special="Platform">
+    <Tile Id="435" Color="#FF27a860" Name="Green Team Platform" Solid="true" Framed="true" TextureGrid="16,16" Special="Platform" SolidTop="true">
       <Frames>
         <Frame UV="0,0" Name="Platform" Variety="Flat" />
         <Frame UV="18,0" Name="Platform" Variety="Endcap Right" />
@@ -5062,7 +5062,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="468,0" Name="Stair" Variety="Inverted Left" />
       </Frames>
     </Tile>
-    <Tile Id="436" Color="#FF275ea8" Name="Blue Team Platform"  Solid="true" Framed="true" TextureGrid="16,16" Special="Platform">
+    <Tile Id="436" Color="#FF275ea8" Name="Blue Team Platform" Solid="true" Framed="true" TextureGrid="16,16" Special="Platform" SolidTop="true">
       <Frames>
         <Frame UV="0,0" Name="Platform" Variety="Flat" />
         <Frame UV="18,0" Name="Platform" Variety="Endcap Right" />
@@ -5093,7 +5093,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="468,0" Name="Stair" Variety="Inverted Left" />
       </Frames>
     </Tile>
-    <Tile Id="437" Color="#FFa87927" Name="Yellow Team Platform"  Solid="true" Framed="true" TextureGrid="16,16" Special="Platform">
+    <Tile Id="437" Color="#FFa87927" Name="Yellow Team Platform" Solid="true" Framed="true" TextureGrid="16,16" Special="Platform" SolidTop="true">
       <Frames>
         <Frame UV="0,0" Name="Platform" Variety="Flat" />
         <Frame UV="18,0" Name="Platform" Variety="Endcap Right" />
@@ -5124,7 +5124,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="468,0" Name="Stair" Variety="Inverted Left" />
       </Frames>
     </Tile>
-    <Tile Id="438" Color="#FF6f27a8" Name="Pink Team Platform"  Solid="true" Framed="true" TextureGrid="16,16" Special="Platform">
+    <Tile Id="438" Color="#FF6f27a8" Name="Pink Team Platform" Solid="true" Framed="true" TextureGrid="16,16" Special="Platform" SolidTop="true">
       <Frames>
         <Frame UV="0,0" Name="Platform" Variety="Flat" />
         <Frame UV="18,0" Name="Platform" Variety="Endcap Right" />
@@ -5155,7 +5155,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="468,0" Name="Stair" Variety="Inverted Left" />
       </Frames>
     </Tile>
-    <Tile Id="439" Color="#FF9694ae" Name="White Team Platform"  Solid="true" Framed="true" TextureGrid="16,16" Special="Platform">
+    <Tile Id="439" Color="#FF9694ae" Name="White Team Platform" Solid="true" Framed="true" TextureGrid="16,16" Special="Platform" SolidTop="true">
       <Frames>
         <Frame UV="0,0" Name="Platform" Variety="Flat" />
         <Frame UV="18,0" Name="Platform" Variety="Endcap Right" />

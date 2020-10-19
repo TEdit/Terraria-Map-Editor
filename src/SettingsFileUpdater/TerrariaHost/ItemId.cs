@@ -53,8 +53,8 @@ namespace SettingsFileUpdater.TerrariaHost
             Thread.CurrentThread.Name = "Main Thread";
 
             var terrariaAsm = typeof(Terraria.Program).Assembly;
-            var init = typeof(Terraria.Program).GetMethod("ForceLoadAssembly", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Static, null, new Type[] { typeof(Assembly), typeof(bool) }, null);
-            init.Invoke((object)null, new object[] { terrariaAsm, true });
+            //var init = typeof(Terraria.Program).GetMethod("ForceLoadAssembly", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Static, null, new Type[] { typeof(Assembly), typeof(bool) }, null);
+            //init.Invoke((object)null, new object[] { terrariaAsm, true });
             // Program.LaunchParameters = Utils.ParseArguements(args);
             //ThreadPool.SetMinThreads(8, 8);
             LanguageManager.Instance.SetLanguage(GameCulture.DefaultCulture);
@@ -131,7 +131,7 @@ namespace SettingsFileUpdater.TerrariaHost
         //{
         //    var colors = new Dictionary<int, string>();
         //    var wallColors = new Dictionary<int, string>();
-            
+
         //    int colorLookup = 1;
         //    MapHelper.Initialize();
         //    for (int i = 0; i < maxTileSets; i++)
@@ -242,7 +242,7 @@ namespace SettingsFileUpdater.TerrariaHost
 
             for (int i = 0; i < maxTileSets; i++)
             {
-                string origName = origTiles.Elements().FirstOrDefault(e => e.Attribute("Id").Value == i.ToString()).Attribute("Name").Value;
+                string origName = origTiles.Elements().FirstOrDefault(e => e.Attribute("Id").Value == i.ToString())?.Attribute("Name").Value;
 
                 var creatingItem = curItems.FirstOrDefault(x => x.createTile == i);
                 //var creatingItems = curItems.Where(x => x.createTile == i).ToList();
@@ -250,7 +250,7 @@ namespace SettingsFileUpdater.TerrariaHost
                 string itemName = creatingItem != null ? creatingItem.Name : string.Empty;
                 if (string.IsNullOrWhiteSpace(itemName))
                 {
-                    itemName = origName;
+                    itemName = origName ?? i.ToString();
                 }
 
                 var tile = new XElement(
@@ -260,6 +260,7 @@ namespace SettingsFileUpdater.TerrariaHost
                 root.Add(tile);
 
                 if (tileLighted[i]) { tile.Add(new XAttribute("Light", "true")); }
+                if (Terraria.ID.TileID.Sets.NonSolidSaveSlopes[i]) { tile.Add(new XAttribute("SaveSlope", "true")); }
                 if (tileSolid[i]) { tile.Add(new XAttribute("Solid", "true")); }
                 if (tileSolidTop[i]) { tile.Add(new XAttribute("SolidTop", "true")); }
 
@@ -349,7 +350,7 @@ namespace SettingsFileUpdater.TerrariaHost
         public string GetNpcsXml()
         {
             var npcs = GetNpcs();
-            
+
             var output = new StringBuilder("  <Npcs>\r\n");
             foreach (var npc in npcs)
             {
@@ -460,7 +461,7 @@ namespace SettingsFileUpdater.TerrariaHost
 
         public List<ItemId> GetItems()
         {
-            var banners = new Dictionary<int,int>();
+            var banners = new Dictionary<int, int>();
             for (int bannerId = 0; bannerId < Terraria.Main.MaxBannerTypes; bannerId++)
             {
                 int itemId = Terraria.Item.BannerToItem(bannerId);
@@ -486,7 +487,7 @@ namespace SettingsFileUpdater.TerrariaHost
 
                     int banner = 0;
                     banners.TryGetValue(i, out banner);
-                    
+
                     if (isDeprecated) { name += " (Deprecated)"; }
                     //curitem.SetDefaults(i);
                     sitems.Add(new ItemId(i, name, GetItemType(curitem))

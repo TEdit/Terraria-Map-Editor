@@ -13,7 +13,7 @@ namespace TEdit.Terraria
 
     public partial class World
     {
-        public const uint CompatibleVersion = 228;
+        public const uint CompatibleVersion = 233;
         public const short SectionCount = 11;
         public const short TileCount = 623;
         public const short WallCount = 316;

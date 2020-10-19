@@ -14,30 +14,30 @@ namespace SettingsFileUpdater
             //LoadTerrariaAsm();
             RegisterAssemblyResolver();
 
-
+            LoadTerrariaAsm();
             var wrapper = TerrariaHost.TerrariaWrapper.Initialize();
            
 
-            XDocument xdoc = XDocument.Load("settings.xml");
-
-            var tiles = xdoc.Root.Element("Tiles");
-            foreach (var tile in tiles.Elements())
-            {
-                int id = int.Parse(tile.Attribute("Id").Value);
-                if (Terraria.ID.TileID.Sets.NonSolidSaveSlopes[id])
-                {
-                    tile.SetAttributeValue("SaveSlope", "true");
-                }
-                if (Terraria.Main.tileSolid[id])
-                {
-                    tile.SetAttributeValue("Solid", "true");
-                }
-                if (Terraria.Main.tileSolidTop[id])
-                {
-                    tile.SetAttributeValue("SolidTop", "true");
-                }
-            }
-            xdoc.Save("settings3.xml");
+            // XDocument xdoc = XDocument.Load("settings.xml");
+            // 
+            // var tiles = xdoc.Root.Element("Tiles");
+            // foreach (var tile in tiles.Elements())
+            // {
+            //     int id = int.Parse(tile.Attribute("Id").Value);
+            //     if (Terraria.ID.TileID.Sets.NonSolidSaveSlopes[id])
+            //     {
+            //         tile.SetAttributeValue("SaveSlope", "true");
+            //     }
+            //     if (Terraria.Main.tileSolid[id])
+            //     {
+            //         tile.SetAttributeValue("Solid", "true");
+            //     }
+            //     if (Terraria.Main.tileSolidTop[id])
+            //     {
+            //         tile.SetAttributeValue("SolidTop", "true");
+            //     }
+            // }
+            // xdoc.Save("settings3.xml");
 
 
             //foreach (var item in tilecolors)
@@ -57,10 +57,10 @@ namespace SettingsFileUpdater
 
 
 
-            //Console.WriteLine(wrapper.GetTilesXml());
-            //Console.WriteLine(wrapper.GetWallsXml());
+            Console.WriteLine(wrapper.GetTilesXml());
+            Console.WriteLine(wrapper.GetWallsXml());
             //Console.WriteLine(wrapper.GetItemsXml());
-            //Console.WriteLine(wrapper.GetNpcsXml());
+           // Console.WriteLine(wrapper.GetNpcsXml());
             //Console.WriteLine(wrapper.GetPrefixesXml());
 
             Console.ReadLine();

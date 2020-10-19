@@ -5790,6 +5790,14 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame Name="Teapot" UV="0, 0" Anchor="Bottom" />
       </Frames>
     </Tile>
+    <Tile Id="623" Name="Potted Crystal Fern" Framed="true" Size="2,5">
+      <Frames>
+        <Frame Name="Potted Crystal Fern" UV="0, 0" Anchor="Bottom" />
+        <Frame Name="Potted Crystal Spiral" UV="0, 90" Anchor="Bottom" />
+        <Frame Name="Potted Crystal Teardrop" UV="0, 180" Anchor="Bottom" />
+        <Frame Name="Potted Crystal Tree" UV="0, 270" Anchor="Bottom" />
+      </Frames>
+    </Tile>
   </Tiles>
   <Walls>
     <Wall Id="0" Name="Sky" Color="#00000000" />
@@ -11174,6 +11182,51 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="5040" Name="Otherworldly Music Box (Hallow)" Accessory="True" />
     <Item Id="5041" Name="Carton of Milk" IsFood="True" />
     <Item Id="5042" Name="Coffee" IsFood="True" />
+    <Item Id="5043" Name="Torch God's Favor"      />
+    <Item Id="5044" Name="Music Box (Journey's End)"     Accessory="True"  />
+    <Item Id="5045" Name="Plaguebringer's Skull"  Head="266"     />
+    <Item Id="5046" Name="Plaguebringer's Cloak"   Body="235"    />
+    <Item Id="5047" Name="Plaguebringer's Treads"    Legs="218"   />
+    <Item Id="5048" Name="Wandering Jingasa"  Head="267"     />
+    <Item Id="5049" Name="Wandering Yukata"   Body="236"    />
+    <Item Id="5050" Name="Wandering Geta"    Legs="219"   />
+    <Item Id="5051" Name="Timeless Traveler's Hood"  Head="268"     />
+    <Item Id="5052" Name="Timeless Traveler's Cloak"   Body="237"    />
+    <Item Id="5053" Name="Timeless Traveler's Footwear"    Legs="222"   />
+    <Item Id="5054" Name="Floret Protector Helmet"  Head="269"     />
+    <Item Id="5055" Name="Floret Protector Shirt"   Body="238"    />
+    <Item Id="5056" Name="Floret Protector Pants"    Legs="224"   />
+    <Item Id="5057" Name="Capricorn Helmet"  Head="270"     />
+    <Item Id="5058" Name="Capricorn Chestplate"   Body="239"    />
+    <Item Id="5059" Name="Capricorn Hooves"    Legs="225"   />
+    <Item Id="5060" Name="Capricorn Tail"    Legs="226"   />
+    <Item Id="5061" Name="Video Visage"  Head="271"     />
+    <Item Id="5062" Name="Lazer Blazer"   Body="240"    />
+    <Item Id="5063" Name="Pinstripe Pants"    Legs="227"   />
+    <Item Id="5064" Name="Lavaproof Tackle Bag"     Accessory="True"  />
+    <Item Id="5065" Name="Resonance Scepter"      Rack="True" />
+    <Item Id="5066" Name="Bee Hive"      />
+    <Item Id="5067" Name="Antlion Eggs"      />
+    <Item Id="5068" Name="Flinx Fur Coat"   Body="241"    />
+    <Item Id="5069" Name="Flinx Staff"      Rack="True" />
+    <Item Id="5070" Name="Flinx Fur"      />
+    <Item Id="5071" Name="Royal Tiara"  Head="272"     />
+    <Item Id="5072" Name="Royal Blouse"   Body="242"    />
+    <Item Id="5073" Name="Royal Dress"    Legs="228"   />
+    <Item Id="5074" Name="Spinal Tap"      Rack="True" />
+    <Item Id="5075" Name="Rainbow Cursor"     Accessory="True"  />
+    <Item Id="5076" Name="Royal Scepter"     Accessory="True"  />
+    <Item Id="5077" Name="Glass Slipper"     Accessory="True"  />
+    <Item Id="5078" Name="Prince Uniform"   Body="243"    />
+    <Item Id="5079" Name="Prince Pants"    Legs="230"   />
+    <Item Id="5080" Name="Prince Cape"     Accessory="True"  />
+    <Item Id="5081" Name="Potted Crystal Fern"      />
+    <Item Id="5082" Name="Potted Crystal Spiral"      />
+    <Item Id="5083" Name="Potted Crystal Teardrop"      />
+    <Item Id="5084" Name="Potted Crystal Tree"      />
+    <Item Id="5085" Name="Princess 64"      />
+    <Item Id="5086" Name="Painting of a Lass"      />
+    <Item Id="5087" Name="Dark Side of the Hallow"      />
   </Items>
   <Npcs>
     <Npc Id="17" Name="Merchant" Frames="18" />
@@ -11223,6 +11276,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Npc Id="637" Name="Cat" Frames="18" />
     <Npc Id="638" Name="Dog" Frames="18" />
     <Npc Id="656" Name="Bunny" Frames="18" />
+    <Npc Id="663" Name="Princess" Frames="18" />
   </Npcs>
   <ItemPrefix>
     <Prefix Id="0" Name="" />
