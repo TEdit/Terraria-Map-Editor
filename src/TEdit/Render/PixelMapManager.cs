@@ -21,36 +21,36 @@ namespace TEdit.Render
         public bool[] BufferUpdated
         {
             get { return _bufferUpdated; }
-            set { Set("BufferUpdated", ref _bufferUpdated, value); }
+            set { Set(nameof(BufferUpdated), ref _bufferUpdated, value); }
         }
         public Color[][] ColorBuffers
         {
             get { return _colorBuffers; }
-            private set { Set("ColorBuffers", ref _colorBuffers, value); }
+            private set { Set(nameof(ColorBuffers), ref _colorBuffers, value); }
         }
 
         public int TilesY
         {
             get { return _tilesY; }
-            private set { Set("TilesY", ref _tilesY, value); }
+            private set { Set(nameof(TilesY), ref _tilesY, value); }
         }
 
         public int TilesX
         {
             get { return _tilesX; }
-            private set { Set("TilesX", ref _tilesX, value); }
+            private set { Set(nameof(TilesX), ref _tilesX, value); }
         }
 
         public int TileHeight
         {
             get { return _tileHeight; }
-            set { Set("TileHeight", ref _tileHeight, value); }
+            set { Set(nameof(TileHeight), ref _tileHeight, value); }
         }
 
         public int TileWidth
         {
             get { return _tileWidth; }
-            set { Set("TileWidth", ref _tileWidth, value); }
+            set { Set(nameof(TileWidth), ref _tileWidth, value); }
         }
 
         public void InitializeBuffers(int worldWidth, int worldHeight)

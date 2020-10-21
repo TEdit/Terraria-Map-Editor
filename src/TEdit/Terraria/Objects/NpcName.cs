@@ -17,13 +17,13 @@ namespace TEdit.Terraria.Objects
         public int Id
         {
             get { return _id; }
-            set { Set("Id", ref _id, value); }
+            set { Set(nameof(Id), ref _id, value); }
         }
 
         public string Name
         {
             get { return _name; }
-            set { Set("Name", ref _name, value); }
+            set { Set(nameof(Name), ref _name, value); }
         }
 
         public string Character

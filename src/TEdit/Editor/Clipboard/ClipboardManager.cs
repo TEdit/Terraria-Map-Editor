@@ -29,32 +29,32 @@ namespace TEdit.Editor.Clipboard
         public bool PasteEmpty
         {
             get { return _pasteEmpty; }
-            set { Set("PasteEmpty", ref _pasteEmpty, value); }
+            set { Set(nameof(PasteEmpty), ref _pasteEmpty, value); }
         }
         public bool PasteTiles
         {
             get { return _pasteTiles; }
-            set { Set("PasteTiles", ref _pasteTiles, value); }
+            set { Set(nameof(PasteTiles), ref _pasteTiles, value); }
         }
         public bool PasteWalls
         {
             get { return _pasteWalls; }
-            set { Set("PasteWalls", ref _pasteWalls, value); }
+            set { Set(nameof(PasteWalls), ref _pasteWalls, value); }
         }
         public bool PasteLiquids
         {
             get { return _pasteLiquids; }
-            set { Set("PasteLiquids", ref _pasteLiquids, value); }
+            set { Set(nameof(PasteLiquids), ref _pasteLiquids, value); }
         }
         public bool PasteWires
         {
             get { return _pasteWires; }
-            set { Set("PasteWires", ref _pasteWires, value); }
+            set { Set(nameof(PasteWires), ref _pasteWires, value); }
         }
         public ClipboardBuffer Buffer
         {
             get { return _buffer; }
-            set { Set("Buffer", ref _buffer, value); }
+            set { Set(nameof(Buffer), ref _buffer, value); }
         }
 
         private readonly ObservableCollection<ClipboardBuffer> _loadedBuffers = new ObservableCollection<ClipboardBuffer>();
@@ -174,6 +174,9 @@ namespace TEdit.Editor.Clipboard
         {
             if (Buffer == null)
                 return;
+
+            ErrorLogging.TelemetryClient.TrackEvent("Paste");
+
             _wvm.Selection.IsActive = false; // clear selection when pasting to prevent "unable to use pencil" issue
             World world = _wvm.CurrentWorld;
             ClipboardBuffer buffer = _wvm.Clipboard.Buffer;
@@ -425,7 +428,7 @@ namespace TEdit.Editor.Clipboard
                             }
                         }
 
-                        
+
                     }
                 }
             }

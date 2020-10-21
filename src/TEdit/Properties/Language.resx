@@ -347,6 +347,9 @@ Press retry to pick a new folder or cancel to use {0} as your terraria path.</va
   <data name="menu_plugins" xml:space="preserve">
     <value>Plugins</value>
   </data>
+  <data name="menu_telemetry" xml:space="preserve">
+    <value>Enable Error Reporting</value>
+  </data>
   <data name="menu_toolbar_zoom_in" xml:space="preserve">
     <value>Zoom In</value>
   </data>

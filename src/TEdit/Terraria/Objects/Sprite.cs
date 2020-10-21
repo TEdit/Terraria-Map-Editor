@@ -73,6 +73,8 @@ namespace TEdit.Terraria.Objects
 
         public void Place(int destinationX, int destinationY, WorldViewModel wvm)
         {
+            ErrorLogging.TelemetryClient.TrackEvent("PlaceSprite", new Dictionary<string, string> { ["Tile"] = Tile.ToString(), ["UV"] = UV.ToString()});
+
             if (Tile == (ushort)TileType.ChristmasTree)
             {
                 for (int x = 0; x < SizeTiles.X; x++)
@@ -123,6 +125,8 @@ namespace TEdit.Terraria.Objects
 
         public void Place(int destinationX, int destinationY, ITileData world)
         {
+            ErrorLogging.TelemetryClient.TrackEvent("PlaceSprite", new Dictionary<string, string> { ["Tile"] = Tile.ToString(), ["UV"] = UV.ToString()});
+
             if (Tile == (ushort)TileType.ChristmasTree)
             {
                 for (int x = 0; x < SizeTiles.X; x++)
@@ -242,49 +246,49 @@ namespace TEdit.Terraria.Objects
         public string TileName
         {
             get { return _tileName; }
-            set { Set("TileName", ref _tileName, value); }
+            set { Set(nameof(TileName), ref _tileName, value); }
         }
 
         public bool IsPreviewTexture
         {
             get { return _isPreviewTexture; }
-            set { Set("IsPreviewTexture", ref _isPreviewTexture, value); }
+            set { Set(nameof(IsPreviewTexture), ref _isPreviewTexture, value); }
         }
 
         public string Name
         {
             get { return _name; }
-            set { Set("Name", ref _name, value); }
+            set { Set(nameof(Name), ref _name, value); }
         }
 
         public FrameAnchor Anchor
         {
             get { return _anchor; }
-            set { Set("Anchor", ref _anchor, value); }
+            set { Set(nameof(Anchor), ref _anchor, value); }
         }
 
         public Vector2Short Origin
         {
             get { return _origin; }
-            set { Set("Origin", ref _origin, value); }
+            set { Set(nameof(Origin), ref _origin, value); }
         }
 
         public Vector2Short Size
         {
             get { return _size; }
-            set { Set("Size", ref _size, value); }
+            set { Set(nameof(Size), ref _size, value); }
         }
 
         public ushort Tile
         {
             get { return _tile; }
-            set { Set("Tile", ref _tile, value); }
+            set { Set(nameof(Tile), ref _tile, value); }
         }
 
         public WriteableBitmap Preview
         {
             get { return _preview; }
-            set { Set("Preview", ref _preview, value); }
+            set { Set(nameof(Preview), ref _preview, value); }
         }
 
         public void GeneratePreview()
@@ -313,6 +317,8 @@ namespace TEdit.Terraria.Objects
 
         public static void PlaceSprite(int destinationX, int destinationY, Sprite sprite, WorldViewModel wvm)
         {
+            ErrorLogging.TelemetryClient.TrackEvent("PlaceSpriteOld", new Dictionary<string, string> { ["Tile"] = sprite.Tile.ToString() });
+
             if (sprite.Tile == (ushort)TileType.ChristmasTree)
             {
                 for (int x = 0; x < sprite.Size.X; x++)

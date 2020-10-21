@@ -23,32 +23,32 @@ namespace TEdit.Terraria.Objects
         public Vector2Short UV
         {
             get { return _uV; }
-            set { Set("UV", ref _uV, value); }
+            set { Set(nameof(UV), ref _uV, value); }
         } 
 
         public Vector2Short Size
         {
             get { return _size; }
-            set { Set("Size", ref _size, value); }
+            set { Set(nameof(Size), ref _size, value); }
         } 
 
         public string Name
         {
             get { return _name; }
-            set { Set("Name", ref _name, value); }
+            set { Set(nameof(Name), ref _name, value); }
         }
 
         public float Scale
         {
             get { return _scale; }
-            set { Set("Scale", ref _scale, value); }
+            set { Set(nameof(Scale), ref _scale, value); }
         }
 
 
         public bool IsFood
         {
             get { return _isFood; }
-            set { Set("IsFood", ref _isFood, value); }
+            set { Set(nameof(IsFood), ref _isFood, value); }
         }
 
 
@@ -59,7 +59,7 @@ namespace TEdit.Terraria.Objects
         public WriteableBitmap Image
         {
             get { return _image; }
-            set { Set("Image", ref _image, value); }
+            set { Set(nameof(Image), ref _image, value); }
         }
 
         public Color Color
@@ -70,13 +70,13 @@ namespace TEdit.Terraria.Objects
         public int Id
         {
             get { return _id; }
-            set { Set("Id", ref _id, value); }
+            set { Set(nameof(Id), ref _id, value); }
         }
 
         public int MaxStackSize
         {
             get { return _maxStackSize; }
-            set { Set("MaxStackSize", ref _maxStackSize, value); }
+            set { Set(nameof(MaxStackSize), ref _maxStackSize, value); }
         } 
     }
 }

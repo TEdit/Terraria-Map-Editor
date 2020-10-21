@@ -35,42 +35,42 @@ namespace TEdit.Terraria.Objects
         public string Variety
         {
             get { return _variety; }
-            set { Set("Variety", ref _variety, value); }
+            set { Set(nameof(Variety), ref _variety, value); }
         }
 
         public FrameAnchor Anchor
         {
             get { return _anchor; }
-            set { Set("Anchor", ref _anchor, value); }
+            set { Set(nameof(Anchor), ref _anchor, value); }
         }
 
         public Color Color
         {
             get { return _color; }
-            set { Set("Color", ref _color, value); }
+            set { Set(nameof(Color), ref _color, value); }
         }
 
         public int Id
         {
             get { return _id; }
-            set { Set("Id", ref _id, value); }
+            set { Set(nameof(Id), ref _id, value); }
         }
         public Vector2Short UV
         {
             get { return _uV; }
-            set { Set("UV", ref _uV, value); }
+            set { Set(nameof(UV), ref _uV, value); }
         }
 
         public string Name
         {
             get { return _name; }
-            set { Set("Name", ref _name, value); }
+            set { Set(nameof(Name), ref _name, value); }
         }
 
         public WriteableBitmap Image
         {
             get { return _image; }
-            set { Set("Image", ref _image, value); }
+            set { Set(nameof(Image), ref _image, value); }
         }
 
         public override string ToString()

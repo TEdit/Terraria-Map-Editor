@@ -23,38 +23,38 @@ namespace TEdit.Terraria.Objects
         public int ChestId
         {
             get { return _chestId; }
-            set { Set("ChestId", ref _chestId, value); }
+            set { Set(nameof(ChestId), ref _chestId, value); }
         }
 
         public Vector2Short UV
         {
             get { return _uV; }
-            set { Set("UV", ref _uV, value); }
+            set { Set(nameof(UV), ref _uV, value); }
         }
 
         public ushort TileType
         {
             get { return _tileType; }
-            set { Set("TileType", ref _tileType, value); }
+            set { Set(nameof(TileType), ref _tileType, value); }
         }
 
         public Vector2Short Size
         {
             get { return _size; }
-            set { Set("Size", ref _size, value); }
+            set { Set(nameof(Size), ref _size, value); }
         } 
 
         public string Name
         {
             get { return _name; }
-            set { Set("Name", ref _name, value); }
+            set { Set(nameof(Name), ref _name, value); }
         }
 
         private WriteableBitmap _image;
         public WriteableBitmap Image
         {
             get { return _image; }
-            set { Set("Image", ref _image, value); }
+            set { Set(nameof(Image), ref _image, value); }
         }
 
         public Color Color
@@ -65,7 +65,7 @@ namespace TEdit.Terraria.Objects
         public int Id
         {
             get { return _id; }
-            set { Set("Id", ref _id, value); }
+            set { Set(nameof(Id), ref _id, value); }
         }
 
     }

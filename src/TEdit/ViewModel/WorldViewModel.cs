@@ -222,25 +222,25 @@ namespace TEdit.ViewModel
         public WriteableBitmap MinimapImage
         {
             get { return _minimapImage; }
-            set { Set("MinimapImage", ref _minimapImage, value); }
+            set { Set(nameof(MinimapImage), ref _minimapImage, value); }
         }
 
         public ListCollectionView SpritesView
         {
             get { return _spritesView; }
-            set { Set("SpritesView", ref _spritesView, value); }
+            set { Set(nameof(SpritesView), ref _spritesView, value); }
         }
 
         public ListCollectionView SpritesView2
         {
             get { return _spritesView2; }
-            set { Set("SpritesView", ref _spritesView2, value); }
+            set { Set(nameof(SpritesView), ref _spritesView2, value); }
         }
 
         public ListCollectionView SpriteStylesView
         {
             get { return _spriteStylesView; }
-            set { Set("SpriteStylesView", ref _spriteStylesView, value); }
+            set { Set(nameof(SpriteStylesView), ref _spriteStylesView, value); }
         }
 
         public string SpriteFilter
@@ -248,7 +248,7 @@ namespace TEdit.ViewModel
             get { return _spriteFilter; }
             set
             {
-                Set("SpriteFilter", ref _spriteFilter, value);
+                Set(nameof(SpriteFilter), ref _spriteFilter, value);
 
                 SpritesView2.Refresh();
                 SpriteStylesView?.Refresh();
@@ -294,13 +294,13 @@ namespace TEdit.ViewModel
         public int SelectedTabIndex
         {
             get { return _selectedTabIndex; }
-            set { Set("SelectedTabIndex", ref _selectedTabIndex, value); }
+            set { Set(nameof(SelectedTabIndex), ref _selectedTabIndex, value); }
         }
 
         public int SelectedSpecialTile
         {
             get { return _selectedSpecialTile; }
-            set { Set("SelectedSpecialTile", ref _selectedSpecialTile, value); }
+            set { Set(nameof(SelectedSpecialTile), ref _selectedSpecialTile, value); }
         }
 
         public Vector2Int32 SelectedXmas
@@ -308,7 +308,7 @@ namespace TEdit.ViewModel
             get { return _selectedXmas; }
             set
             {
-                Set("SelectedXmas", ref _selectedXmas, value);
+                Set(nameof(SelectedXmas), ref _selectedXmas, value);
                 SelectedTabIndex = 1;
                 SelectedSpecialTile = 10;
             }
@@ -317,25 +317,25 @@ namespace TEdit.ViewModel
         public int SelectedXmasStar
         {
             get { return _selectedXmasStar; }
-            set { Set("SelectedXmasStar", ref _selectedXmasStar, value); }
+            set { Set(nameof(SelectedXmasStar), ref _selectedXmasStar, value); }
         }
 
         public int SelectedXmasGarland
         {
             get { return _selectedXmasGarland; }
-            set { Set("SelectedXmasGarland", ref _selectedXmasGarland, value); }
+            set { Set(nameof(SelectedXmasGarland), ref _selectedXmasGarland, value); }
         }
 
         public int SelectedXmasBulb
         {
             get { return _selectedXmasBulb; }
-            set { Set("SelectedXmasBulb", ref _selectedXmasBulb, value); }
+            set { Set(nameof(SelectedXmasBulb), ref _selectedXmasBulb, value); }
         }
 
         public int SelectedXmasLight
         {
             get { return _selectedXmasLight; }
-            set { Set("SelectedXmasLight", ref _selectedXmasLight, value); }
+            set { Set(nameof(SelectedXmasLight), ref _selectedXmasLight, value); }
         }
 
         public Sign SelectedSign
@@ -343,7 +343,7 @@ namespace TEdit.ViewModel
             get { return _selectedSign; }
             set
             {
-                Set("SelectedSign", ref _selectedSign, value);
+                Set(nameof(SelectedSign), ref _selectedSign, value);
                 SelectedTabIndex = 1;
                 SelectedSpecialTile = 11;
             }
@@ -354,7 +354,7 @@ namespace TEdit.ViewModel
             get { return _selectedChest; }
             set
             {
-                Set("SelectedChest", ref _selectedChest, value);
+                Set(nameof(SelectedChest), ref _selectedChest, value);
                 SelectedTabIndex = 1;
                 SelectedSpecialTile = 12;
             }
@@ -365,7 +365,7 @@ namespace TEdit.ViewModel
             get { return _selectedTileEntity; }
             set
             {
-                Set("SelectedTileEntity", ref _selectedTileEntity, value);
+                Set(nameof(SelectedTileEntity), ref _selectedTileEntity, value);
                 SelectedTabIndex = 1;
                 SelectedSpecialTile = (int)value?.EntityType;
             }
@@ -379,7 +379,7 @@ namespace TEdit.ViewModel
         public MorphBiome MorphBiomeTarget
         {
             get { return _morphBiomeTarget; }
-            set { Set("MorphBiomeTarget", ref _morphBiomeTarget, value); }
+            set { Set(nameof(MorphBiomeTarget), ref _morphBiomeTarget, value); }
         }
 
         public bool IsAutoSaveEnabled
@@ -387,7 +387,7 @@ namespace TEdit.ViewModel
             get { return _isAutoSaveEnabled; }
             set
             {
-                Set("IsAutoSaveEnabled", ref _isAutoSaveEnabled, value);
+                Set(nameof(IsAutoSaveEnabled), ref _isAutoSaveEnabled, value);
                 Settings.Default.Autosave = _isAutoSaveEnabled;
                 Settings.Default.Save();
             }
@@ -396,13 +396,13 @@ namespace TEdit.ViewModel
         public bool ShowGrid
         {
             get { return _showGrid; }
-            set { Set("ShowGrid", ref _showGrid, value); }
+            set { Set(nameof(ShowGrid), ref _showGrid, value); }
         }
 
         public bool ShowTextures
         {
             get { return _showTextures; }
-            set { Set("ShowTextures", ref _showTextures, value); }
+            set { Set(nameof(ShowTextures), ref _showTextures, value); }
         }
 
         public KeyValuePair<int, SpriteSub> SelectedSprite2
@@ -435,7 +435,7 @@ namespace TEdit.ViewModel
             get { return _selectedSprite; }
             set
             {
-                Set("SelectedSprite", ref _selectedSprite, value);
+                Set(nameof(SelectedSprite), ref _selectedSprite, value);
                 PreviewChange();
             }
         }
@@ -448,14 +448,14 @@ namespace TEdit.ViewModel
         public string SelectedPoint
         {
             get { return _selectedPoint; }
-            set { Set("SelectedPoint", ref _selectedPoint, value); }
+            set { Set(nameof(SelectedPoint), ref _selectedPoint, value); }
         }
 
 
         public Item SelectedChestItem
         {
             get { return _selectedChestItem; }
-            set { Set("SelectedChestItem", ref _selectedChestItem, value); }
+            set { Set(nameof(SelectedChestItem), ref _selectedChestItem, value); }
         }
 
         public UndoManager UndoManager
@@ -481,25 +481,25 @@ namespace TEdit.ViewModel
         public string CurrentFile
         {
             get { return _currentFile; }
-            set { Set("CurrentFile", ref _currentFile, value); }
+            set { Set(nameof(CurrentFile), ref _currentFile, value); }
         }
 
         public World CurrentWorld
         {
             get { return _currentWorld; }
-            set { Set("CurrentWorld", ref _currentWorld, value); }
+            set { Set(nameof(CurrentWorld), ref _currentWorld, value); }
         }
 
         public ProgressChangedEventArgs Progress
         {
             get { return _progress; }
-            set { Set("Progress", ref _progress, value); }
+            set { Set(nameof(Progress), ref _progress, value); }
         }
 
         public string WindowTitle
         {
             get { return _windowTitle; }
-            set { Set("WindowTitle", ref _windowTitle, value); }
+            set { Set(nameof(WindowTitle), ref _windowTitle, value); }
         }
 
         public BrushSettings Brush
@@ -520,13 +520,13 @@ namespace TEdit.ViewModel
         public ITool ActiveTool
         {
             get { return _activeTool; }
-            set { Set("ActiveTool", ref _activeTool, value); }
+            set { Set(nameof(ActiveTool), ref _activeTool, value); }
         }
 
         public PixelMapManager PixelMap
         {
             get { return _pixelMap; }
-            set { Set("PixelMap", ref _pixelMap, value); }
+            set { Set(nameof(PixelMap), ref _pixelMap, value); }
         }
 
         public bool ShowRedWires
@@ -534,7 +534,7 @@ namespace TEdit.ViewModel
             get { return _showRedWires; }
             set
             {
-                Set("ShowRedWires", ref _showRedWires, value);
+                Set(nameof(ShowRedWires), ref _showRedWires, value);
                 UpdateRenderWorld();
             }
         }
@@ -544,7 +544,7 @@ namespace TEdit.ViewModel
             get { return _showBlueWires; }
             set
             {
-                Set("ShowBlueWires", ref _showBlueWires, value);
+                Set(nameof(ShowBlueWires), ref _showBlueWires, value);
                 UpdateRenderWorld();
             }
         }
@@ -554,7 +554,7 @@ namespace TEdit.ViewModel
             get { return _showGreenWires; }
             set
             {
-                Set("ShowGreenWires", ref _showGreenWires, value);
+                Set(nameof(ShowGreenWires), ref _showGreenWires, value);
                 UpdateRenderWorld();
             }
         }
@@ -564,7 +564,7 @@ namespace TEdit.ViewModel
             get { return _showYellowWires; }
             set
             {
-                Set("ShowYellowWires", ref _showYellowWires, value);
+                Set(nameof(ShowYellowWires), ref _showYellowWires, value);
                 UpdateRenderWorld();
             }
         }
@@ -574,7 +574,7 @@ namespace TEdit.ViewModel
             get { return _showActuators; }
             set
             {
-                Set("ShowActuators", ref _showActuators, value);
+                Set(nameof(ShowActuators), ref _showActuators, value);
                 UpdateRenderWorld();
             }
         }
@@ -582,7 +582,7 @@ namespace TEdit.ViewModel
         public bool ShowPoints
         {
             get { return _showPoints; }
-            set { Set("ShowPoints", ref _showPoints, value); }
+            set { Set(nameof(ShowPoints), ref _showPoints, value); }
         }
 
         public bool ShowLiquid
@@ -590,7 +590,7 @@ namespace TEdit.ViewModel
             get { return _showLiquid; }
             set
             {
-                Set("ShowLiquid", ref _showLiquid, value);
+                Set(nameof(ShowLiquid), ref _showLiquid, value);
                 UpdateRenderWorld();
             }
         }
@@ -600,7 +600,7 @@ namespace TEdit.ViewModel
             get { return _showTiles; }
             set
             {
-                Set("ShowTiles", ref _showTiles, value);
+                Set(nameof(ShowTiles), ref _showTiles, value);
                 UpdateRenderWorld();
             }
         }
@@ -610,7 +610,7 @@ namespace TEdit.ViewModel
             get { return _showWalls; }
             set
             {
-                Set("ShowWalls", ref _showWalls, value);
+                Set(nameof(ShowWalls), ref _showWalls, value);
                 UpdateRenderWorld();
             }
         }
@@ -626,9 +626,24 @@ namespace TEdit.ViewModel
             get { return _checkUpdates; }
             set
             {
-                Set("CheckUpdates", ref _checkUpdates, value);
+                Set(nameof(CheckUpdates), ref _checkUpdates, value);
                 Settings.Default.CheckUpdates = value;
                 Settings.Default.Save();
+            }
+        }
+
+        private bool _enableTelemetry = Settings.Default.Telemetry != 0;
+
+        public bool EnableTelemetry
+        {
+            get { return _enableTelemetry; }
+            set
+            {
+                RaisePropertyChanged();
+                Set(nameof(EnableTelemetry), ref _enableTelemetry, value);
+                Settings.Default.Telemetry = value ? 1 : 0;
+                Settings.Default.Save();
+                ErrorLogging.InitializeTelemetry();
             }
         }
 
@@ -753,7 +768,7 @@ namespace TEdit.ViewModel
         public string WorldAnalysis
         {
             get { return _worldAnalysis; }
-            set { Set("WorldAnalysis", ref _worldAnalysis, value); }
+            set { Set(nameof(WorldAnalysis), ref _worldAnalysis, value); }
         }
 
         /* SBLogic - Relay command to execute KillTally */
@@ -774,7 +789,7 @@ namespace TEdit.ViewModel
         public string TallyCount
         {
             get { return _tallyCount; }
-            set { Set("TallyCount", ref _tallyCount, value); }
+            set { Set(nameof(TallyCount), ref _tallyCount, value); }
         }
 
         public event EventHandler PreviewChanged;
@@ -983,24 +998,38 @@ namespace TEdit.ViewModel
                 .ContinueWith(t => RenderEntireWorld())
                 .ContinueWith(t =>
                 {
-                    if (CurrentWorld != null)
+                    try
                     {
-                        PixelMap = t.Result;
-                        UpdateTitle();
-                        Points.Clear();
-                        Points.Add("Spawn");
-                        Points.Add("Dungeon");
-                        foreach (NPC npc in CurrentWorld.NPCs)
+                        if (CurrentWorld != null)
                         {
-                            Points.Add(npc.Name);
+                            ErrorLogging.TelemetryClient.TrackEvent(nameof(LoadWorld));
+
+                            PixelMap = t.Result;
+                            UpdateTitle();
+                            Points.Clear();
+                            Points.Add("Spawn");
+                            Points.Add("Dungeon");
+                            foreach (NPC npc in CurrentWorld.NPCs)
+                            {
+                                Points.Add(npc.Name);
+                            }
+                            MinimapImage = RenderMiniMap.Render(CurrentWorld);
+                            _loadTimer.Stop();
+                            OnProgressChanged(this, new ProgressChangedEventArgs(0,
+                                $"World loaded in {_loadTimer.Elapsed.TotalSeconds} seconds."));
+                            _saveTimer.Start();
                         }
-                        MinimapImage = RenderMiniMap.Render(CurrentWorld);
-                        _loadTimer.Stop();
-                        OnProgressChanged(this, new ProgressChangedEventArgs(0,
-                            $"World loaded in {_loadTimer.Elapsed.TotalSeconds} seconds."));
-                        _saveTimer.Start();
                     }
-                    _loadTimer.Stop();
+                    catch (Exception ex)
+                    {
+                        ErrorLogging.LogException(ex);
+                    }
+                    finally
+                    {
+
+                        _loadTimer.Stop();
+                    }
+
                 }, TaskFactoryHelper.UiTaskScheduler);
         }
     }

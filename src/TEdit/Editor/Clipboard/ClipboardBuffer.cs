@@ -26,13 +26,13 @@ namespace TEdit.Editor.Clipboard
         public WriteableBitmap Preview
         {
             get { return _preview; }
-            set { Set("Preview", ref _preview, value); }
+            set { Set(nameof(Preview), ref _preview, value); }
         }
 
         public string Name
         {
             get { return _name; }
-            set { Set("Name", ref _name, value); }
+            set { Set(nameof(Name), ref _name, value); }
         }
 
         private Vector2Int32 _size;
@@ -43,7 +43,7 @@ namespace TEdit.Editor.Clipboard
             get { return _size; }
             set
             {
-                Set("Size", ref _size, value);
+                Set(nameof(Size), ref _size, value);
                 Tiles = new Tile[_size.X, _size.Y];
             }
         }
@@ -66,7 +66,7 @@ namespace TEdit.Editor.Clipboard
         public double RenderScale
         {
             get { return _renderScale; }
-            set { Set("RenderScale", ref _renderScale, value); }
+            set { Set(nameof(RenderScale), ref _renderScale, value); }
         }
 
         public ObservableCollection<Sign> Signs

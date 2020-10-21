@@ -31,7 +31,7 @@ namespace TEdit.Terraria.Objects
             get { return _color; }
             set
             {
-                Set("Color", ref _color, value);
+                Set(nameof(Color), ref _color, value);
                 _paintColor = new XnaColor(value.R, value.G, value.B, value.A);
                 RaisePropertyChanged("PaintColor");
             }
@@ -42,13 +42,13 @@ namespace TEdit.Terraria.Objects
         public int Id
         {
             get { return _id; }
-            set { Set("Id", ref _id, value); }
+            set { Set(nameof(Id), ref _id, value); }
         }
 
         public string Name
         {
             get { return _name; }
-            set { Set("Name", ref _name, value); }
+            set { Set(nameof(Name), ref _name, value); }
         }
     }
 }

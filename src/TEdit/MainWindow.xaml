@@ -3,6 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:View="clr-namespace:TEdit.View" x:Name="Shell"
         Title="{Binding WindowTitle}" Height="800" Width="1600" TextOptions.TextFormattingMode="Display" TextOptions.TextRenderingMode="Aliased"
         MaxWidth="4339"
+        Loaded="MainWindow_Loaded"
         UseLayoutRounding="True" Background="{StaticResource WindowBackgroundBrush}" Foreground="{DynamicResource TextBrush}" Icon="/TEdit;component/Images/tedit.ico"
         xmlns:p="clr-namespace:TEdit.Properties"
         xmlns:vm="clr-namespace:TEdit.ViewModel"
@@ -67,6 +68,7 @@
                     <MenuItem Header="{x:Static p:Language.menu_file_autosave}" IsCheckable="True" IsChecked="{Binding IsAutoSaveEnabled}" />
                     <MenuItem Header="{x:Static p:Language.menu_file_autoupdate}" IsCheckable="True" IsChecked="{Binding CheckUpdates}" />
                     <MenuItem Header="{x:Static p:Language.menu_file_update}" Command="{Binding CheckUpdatesCommand}" CommandParameter="{StaticResource False}" />
+                    <MenuItem Header="{x:Static p:Language.menu_telemetry}" IsCheckable="True" IsChecked="{Binding EnableTelemetry}" />
                     <Separator Margin="1"/>
                     <MenuItem Header="{x:Static p:Language.menu_language}">
                         <MenuItem Header="{x:Static p:Language.menu_language_en}" IsCheckable="True" IsChecked="{Binding CurrentLanguage, Converter={StaticResource boolEnumConverter}, ConverterParameter={x:Static vm:LanguageSelection.English}}" Command="{Binding SetLanguageCommand}" CommandParameter="{x:Static vm:LanguageSelection.English}"  />

@@ -138,7 +138,7 @@ namespace TEdit.Editor.Undo
         public UndoBuffer Buffer
         {
             get { return _buffer; }
-            set { Set("Buffer", ref _buffer, value); }
+            set { Set(nameof(Buffer), ref _buffer, value); }
         }
 
         public void SaveUndo(bool updateMax = true)
@@ -291,6 +291,9 @@ namespace TEdit.Editor.Undo
             if (_currentIndex <= 0)
                 return;
 
+            ErrorLogging.TelemetryClient.TrackEvent(nameof(Undo));
+
+
             string undoFileName = string.Format(UndoFile, _currentIndex - 1); // load previous undo file
             string redoFileName = string.Format(RedoFile, _currentIndex);     // create redo file at current index
             UndoBuffer redo = new UndoBuffer(redoFileName);
@@ -341,6 +344,9 @@ namespace TEdit.Editor.Undo
         {
             if (_currentIndex > _maxIndex || _currentIndex < 0)
                 return;
+
+            ErrorLogging.TelemetryClient.TrackEvent(nameof(Redo));
+
 
             // close current undo buffer and get a new one with a new name after redo
             string redoFileName = string.Format(RedoFile, _currentIndex + 1); // load redo file at +1

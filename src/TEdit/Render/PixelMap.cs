@@ -209,7 +209,7 @@ namespace TEdit.Render
                     c = c.AlphaBlend(Color.Magenta); // Add out-of-range colors
 
                 // blend paint
-                if (tile.TileColor > 0)
+                if (tile.TileColor > 0 && tile.TileColor <= World.PaintProperties.Count)
                 {
                     var paint = World.PaintProperties[tile.TileColor].Color;
 

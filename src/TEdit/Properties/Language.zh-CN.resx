@@ -347,6 +347,9 @@
   <data name="menu_plugins" xml:space="preserve">
     <value>插件</value>
   </data>
+  <data name="menu_telemetry" xml:space="preserve">
+    <value>啟用錯誤報告</value>
+  </data>
   <data name="menu_toolbar_zoom_in" xml:space="preserve">
     <value>放大</value>
   </data>

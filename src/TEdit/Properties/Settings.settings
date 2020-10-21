@@ -14,5 +14,8 @@
     <Setting Name="Language" Type="TEdit.ViewModel.LanguageSelection" Scope="User">
       <Value Profile="(Default)">Automatic</Value>
     </Setting>
+    <Setting Name="Telemetry" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">-1</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

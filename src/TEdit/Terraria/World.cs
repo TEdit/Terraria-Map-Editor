@@ -54,6 +54,8 @@ namespace TEdit.Terraria
 
         public static void Save(World world, string filename, bool resetTime = false)
         {
+            ErrorLogging.TelemetryClient.TrackEvent(nameof(Save));
+
             try
             {
                 OnProgressChanged(world, new ProgressChangedEventArgs(0, "Validating World..."));
@@ -147,7 +149,7 @@ namespace TEdit.Terraria
             }
             catch (Exception err)
             {
-
+                ErrorLogging.LogException(err);
                 string msg =
                     "There was an error reading the world file. This is usually caused by a corrupt save file or a world version newer than supported.\r\n\r\n" +
                     $"TEdit v{TEdit.App.Version}\r\n" +

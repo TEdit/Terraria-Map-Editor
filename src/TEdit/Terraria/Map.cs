@@ -19,19 +19,19 @@ namespace TEdit.Terraria
         public byte Misc
         {
             get { return _misc; }
-            set { Set("Misc", ref _misc, value); }
+            set { Set(nameof(Misc), ref _misc, value); }
         }
 
         public byte Light
         {
             get { return _light; }
-            set { Set("Light", ref _light, value); }
+            set { Set(nameof(Light), ref _light, value); }
         }
 
         public byte Type
         {
             get { return _type; }
-            set { Set("Type", ref _type, value); }
+            set { Set(nameof(Type), ref _type, value); }
         }
 
         public object Clone()
@@ -71,31 +71,31 @@ namespace TEdit.Terraria
         public int Version
         {
             get { return _version; }
-            set { Set("Version", ref _version, value); }
+            set { Set(nameof(Version), ref _version, value); }
         }
 
         public int MaxTilesY
         {
             get { return _maxTilesY; }
-            set { Set("MaxTilesY", ref _maxTilesY, value); }
+            set { Set(nameof(MaxTilesY), ref _maxTilesY, value); }
         }
 
         public int MaxTilesX
         {
             get { return _maxTilesX; }
-            set { Set("MaxTilesX", ref _maxTilesX, value); }
+            set { Set(nameof(MaxTilesX), ref _maxTilesX, value); }
         }
 
         public int WorldId
         {
             get { return _worldId; }
-            set { Set("WorldId", ref _worldId, value); }
+            set { Set(nameof(WorldId), ref _worldId, value); }
         }
 
         public string WorldName
         {
             get { return _worldName; }
-            set { Set("WorldName", ref _worldName, value); }
+            set { Set(nameof(WorldName), ref _worldName, value); }
         }
 
         public static Map Load(string filename)

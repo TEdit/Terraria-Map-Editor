@@ -21,4 +21,9 @@ if ($null -ne $VersionSuffix) {
 & dotnet $buildArgs
 
 Remove-Item -Path ".\TEdit*.zip"
-Compress-Archive -Path ".\src\TEdit\bin\Release\net462\publish\*" -DestinationPath ".\TEdit$VersionPrefix-$VersionSuffix.zip"
+
+if ($null -ne $VersionSuffix) {
+  Compress-Archive -Path ".\src\TEdit\bin\Release\net462\publish\*" -DestinationPath ".\TEdit$VersionPrefix-$VersionSuffix.zip"
+} else {
+  Compress-Archive -Path ".\src\TEdit\bin\Release\net462\publish\*" -DestinationPath ".\TEdit$VersionPrefix.zip"
+}

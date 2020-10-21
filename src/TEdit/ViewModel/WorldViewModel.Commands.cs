@@ -14,6 +14,8 @@ using TEdit.Editor.Plugins;
 using TEdit.Editor.Tools;
 using TEdit.Helper;
 using TEdit.Properties;
+using Microsoft.ApplicationInsights.DataContracts;
+using System.Collections.Generic;
 
 namespace TEdit.ViewModel
 {
@@ -119,6 +121,7 @@ namespace TEdit.ViewModel
             {
                 try
                 {
+                    ErrorLogging.TelemetryClient.TrackEvent(nameof(RemoveNpc), properties: new Dictionary<string, string> { ["ID"] = npc.SpriteId.ToString(), ["Name"] = npc.Name });
                     CurrentWorld.NPCs.Remove(npc);
                     Points.Remove(npc.Name);
                     MessageBox.Show(string.Format("{1} ({0}) removed.", npc.Name, npc.DisplayName), "NPC Removed");
@@ -156,6 +159,7 @@ namespace TEdit.ViewModel
             {
                 if (SelectedTileEntity != null)
                 {
+                    ErrorLogging.TelemetryClient.TrackEvent(nameof(SaveTileEntity), properties: new Dictionary<string, string> { ["ID"] = SelectedTileEntity.NetId.ToString(), ["StackSize"] = SelectedTileEntity.StackSize.ToString() });
                     if (SelectedTileEntity.NetId != 0 && SelectedTileEntity.StackSize == 0) { SelectedTileEntity.StackSize = 1; }
                     foreach (var item in SelectedTileEntity.Items)
                     {
@@ -186,6 +190,8 @@ namespace TEdit.ViewModel
             {
                 if (SelectedXmas != null)
                 {
+                    ErrorLogging.TelemetryClient.TrackEvent(nameof(SaveXmasTree));
+
                     int tree = SelectedXmasStar;
                     tree += (SelectedXmasGarland << 3);
                     tree += (SelectedXmasBulb << 6);
@@ -250,8 +256,16 @@ namespace TEdit.ViewModel
         public void Update()
         {
             string url = "http://www.binaryconstruct.com/downloads/";
-            try { System.Diagnostics.Process.Start(url); }
-            catch { }
+            try
+            {
+                ErrorLogging.TelemetryClient.TrackEvent(nameof(Update));
+
+                System.Diagnostics.Process.Start(url);
+            }
+            catch (Exception ex)
+            {
+                ErrorLogging.LogException(ex);
+            }
         }
 
         public ICommand SaveChestCommand
@@ -352,7 +366,7 @@ namespace TEdit.ViewModel
         private void SetLanguage(LanguageSelection language)
         {
             CurrentLanguage = language;
-
+            ErrorLogging.TelemetryClient.TrackEvent(nameof(SetLanguage), properties: new Dictionary<string, string> { ["language"] = language.ToString() });
             Settings.Default.Language = language;
             Settings.Default.Save();
 
@@ -441,6 +455,8 @@ namespace TEdit.ViewModel
                 var killTally = world.KilledMobs.ToArray();
                 try
                 {
+                    ErrorLogging.TelemetryClient.TrackEvent(nameof(ImportKillsAndBestiary));
+
                     World.ImportKillsAndBestiary(world, ofd.FileName);
                     TallyCount = KillTally.LoadTally(CurrentWorld);
                 }
@@ -467,6 +483,7 @@ namespace TEdit.ViewModel
             ofd.Multiselect = false;
             if ((bool)ofd.ShowDialog())
             {
+                ErrorLogging.TelemetryClient.TrackEvent(nameof(ImportSchematic));
                 _clipboard.Import(ofd.FileName);
             }
         }
@@ -484,6 +501,7 @@ namespace TEdit.ViewModel
             {
                 try
                 {
+                    ErrorLogging.TelemetryClient.TrackEvent(nameof(ExportSchematicFile));
                     buffer.Save(sfd.FileName);
                 }
                 catch (Exception ex)

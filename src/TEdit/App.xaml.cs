@@ -84,10 +84,10 @@ namespace TEdit
 
             try
             {
-                int directxMajorVersion = DependencyChecker.GetDirectxMajorVersion();
-                if (directxMajorVersion < 11)
+                int directXMajorVersion = DependencyChecker.GetDirectXMajorVersion();
+                if (directXMajorVersion < 11)
                 {
-                    ErrorLogging.Log($"DirectX {directxMajorVersion} unsupported. DirectX 11 or higher is required.");
+                    ErrorLogging.Log($"DirectX {directXMajorVersion} unsupported. DirectX 11 or higher is required.");
                 }
             }
             catch (Exception ex)
@@ -154,7 +154,6 @@ namespace TEdit
                     ErrorLogging.LogException(ex);
                 }
             }
-
             DispatcherHelper.Initialize();
             TaskFactoryHelper.Initialize();
 
@@ -168,8 +167,8 @@ namespace TEdit
             throw (Exception)e.ExceptionObject;
 #else
             ErrorLogging.LogException(e.ExceptionObject);
-            MessageBox.Show(string.Format("An unhandled exception has occured. Please copy the log from:\r\n{0}\r\n to the GitHub Issues list.\r\nThe program will now exit.", ErrorLogging.LogFilePath), "Unhandled Exception");
-            Current.Shutdown();
+            MessageBox.Show("An unhandled exception has occurred. You may continue using TEdit, but operation may be unstable until the application has been restarted.", "Unhandled Exception");
+            // Current.Shutdown();
 #endif
         }
     }

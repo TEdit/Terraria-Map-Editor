@@ -17,37 +17,37 @@ namespace TEdit.Editor
         public TileMouseState MouseState
         {
             get { return _mouseState; }
-            set { Set("MouseState", ref _mouseState, value); }
+            set { Set(nameof(MouseState), ref _mouseState, value); }
         }
 
         public string WallName
         {
             get { return _wallName; }
-            set { Set("WallName", ref _wallName, value); }
+            set { Set(nameof(WallName), ref _wallName, value); }
         }
 
         public string TileName
         {
             get { return _tileName; }
-            set { Set("TileName", ref _tileName, value); }
+            set { Set(nameof(TileName), ref _tileName, value); }
         }
 
         public string Paint
         {
             get { return _paint; }
-            set { Set("Paint", ref _paint, value); }
+            set { Set(nameof(Paint), ref _paint, value); }
         }
 
         public string TileExtras
         {
             get { return _tileExtras; }
-            set { Set("TileExtras", ref _tileExtras, value); }
+            set { Set(nameof(TileExtras), ref _tileExtras, value); }
         }
 
         public Vector2Short UV
         {
             get { return _uV; }
-            set { Set("UV", ref _uV, value); }
+            set { Set(nameof(UV), ref _uV, value); }
         }
 
         public Tile Tile
@@ -55,7 +55,7 @@ namespace TEdit.Editor
             get { return _tile; }
             set
             {
-                Set("Tile", ref _tile, value);
+                Set(nameof(Tile), ref _tile, value);
 
                 if (World.TileProperties.Count > _tile.Type)
                 {

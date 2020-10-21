@@ -13,7 +13,7 @@ namespace TEdit.Editor
         public bool IsActive
         {
             get { return _isActive; }
-            set { Set("IsActive", ref _isActive, value); }
+            set { Set(nameof(IsActive), ref _isActive, value); }
         }
 
         public bool IsValid(Vector2Int32 p)
@@ -31,7 +31,7 @@ namespace TEdit.Editor
         public Rectangle SelectionArea
         {
             get { return _selectionArea; }
-            set { Set("SelectionArea", ref _selectionArea, value); }
+            set { Set(nameof(SelectionArea), ref _selectionArea, value); }
         }
 
         public void SetRectangle(Vector2Int32 p1, Vector2Int32 p2)

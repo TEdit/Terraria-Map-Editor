@@ -21,7 +21,7 @@ namespace TEdit.Terraria
             get { return _netId; }
             set
             {
-                Set("NetId", ref _netId, value);
+                Set(nameof(NetId), ref _netId, value);
                 _currentItemProperty = World.ItemProperties.FirstOrDefault(x => x.Id == _netId);
                 if (_netId == 0)
                     StackSize = 0;
@@ -63,7 +63,7 @@ namespace TEdit.Terraria
         public byte Prefix
         {
             get { return _prefix; }
-            set { Set("Prefix", ref _prefix, value); RaisePropertyChanged("PrefixName"); }
+            set { Set(nameof(Prefix), ref _prefix, value); RaisePropertyChanged("PrefixName"); }
         }
 
         public Item()
@@ -98,7 +98,7 @@ namespace TEdit.Terraria
                 if (validValue < 0)
                     validValue = 0;
 
-                Set("StackSize", ref _stackSize, validValue);
+                Set(nameof(StackSize), ref _stackSize, validValue);
             }
         }
 

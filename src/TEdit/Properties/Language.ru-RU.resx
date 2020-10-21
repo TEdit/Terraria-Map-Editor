@@ -332,6 +332,9 @@
   <data name="menu_plugins" xml:space="preserve">
     <value>Плагины</value>
   </data>
+  <data name="menu_telemetry" xml:space="preserve">
+    <value>Включить отчеты об ошибках</value>
+  </data>
   <data name="menu_toolbar_zoom_in" xml:space="preserve">
     <value>Приблизить</value>
   </data>

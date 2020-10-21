@@ -33,7 +33,7 @@ namespace TEdit.Editor.Tools
         public virtual bool IsActive
         {
             get { return _isActive; }
-            set { Set("IsActive", ref _isActive, value); }
+            set { Set(nameof(IsActive), ref _isActive, value); }
         }
 
         public virtual void MouseDown(TileMouseState e)

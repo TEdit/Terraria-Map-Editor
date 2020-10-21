@@ -12,13 +12,13 @@ namespace TEdit.Terraria
         public int PosX
         {
             get { return _x; }
-            set { Set("PosX", ref _x, value); }
+            set { Set(nameof(PosX), ref _x, value); }
         }
         
         public int PosY
         {
             get { return _y; }
-            set { Set("PosY", ref _y, value); }
+            set { Set(nameof(PosY), ref _y, value); }
         }        
         
     }

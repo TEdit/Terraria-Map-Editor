@@ -59,7 +59,7 @@ namespace TEdit.Editor
             get { return _shape; }
             set
             {
-                Set("Shape", ref _shape, value);
+                Set(nameof(Shape), ref _shape, value);
                 BrushChange();
             }
         }
@@ -67,31 +67,31 @@ namespace TEdit.Editor
         public int MaxOutline
         {
             get { return _maxOutline; }
-            private set { Set("MaxOutline", ref _maxOutline, value); }
+            private set { Set(nameof(MaxOutline), ref _maxOutline, value); }
         }
 
         public bool IsOutline
         {
             get { return _isOutline; }
-            set { Set("IsOutline", ref _isOutline, value); }
+            set { Set(nameof(IsOutline), ref _isOutline, value); }
         }
 
         public bool IsLocked
         {
             get { return _isLocked; }
-            set { Set("IsLocked", ref _isLocked, value); }
+            set { Set(nameof(IsLocked), ref _isLocked, value); }
         }
 
         public int OffsetY
         {
             get { return _offsetY; }
-            set { Set("OffsetY", ref _offsetY, value); }
+            set { Set(nameof(OffsetY), ref _offsetY, value); }
         }
 
         public int OffsetX
         {
             get { return _offsetX; }
-            set { Set("OffsetX", ref _offsetX, value); }
+            set { Set(nameof(OffsetX), ref _offsetX, value); }
         }
 
         public int Height
@@ -103,7 +103,7 @@ namespace TEdit.Editor
                     value = _minHeight;
                 if (value > _maxHeight)
                     value = _maxHeight;
-                Set("Height", ref _height, value);
+                Set(nameof(Height), ref _height, value);
                 if (IsLocked)
                 {
                     _width = Height;
@@ -125,7 +125,7 @@ namespace TEdit.Editor
                     value = _minWidth;
                 if (value > _maxWidth)
                     value = _maxWidth;
-                Set("Width", ref _width, value);
+                Set(nameof(Width), ref _width, value);
                 if (IsLocked)
                 {
                     _height = Width;
@@ -147,7 +147,7 @@ namespace TEdit.Editor
                     value = _minOutline;
                 if (value > _maxOutline)
                     value = _maxOutline;
-                Set("Outline", ref _outline, value);
+                Set(nameof(Outline), ref _outline, value);
             }
         }
     }

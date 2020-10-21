@@ -737,6 +737,15 @@ namespace TEdit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Enable Error Reporting.
+        /// </summary>
+        public static string menu_telemetry {
+            get {
+                return ResourceManager.GetString("menu_telemetry", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Zoom In.
         /// </summary>
         public static string menu_toolbar_zoom_in {

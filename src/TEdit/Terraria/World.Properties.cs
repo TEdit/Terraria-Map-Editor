@@ -241,43 +241,43 @@ namespace TEdit.Terraria
         public UInt64 WorldGenVersion
         {
             get { return _worldGenVersion; }
-            set { Set("WorldGenVersion", ref _worldGenVersion, value); }
+            set { Set(nameof(WorldGenVersion), ref _worldGenVersion, value); }
         }
 
         public string Seed
         {
             get { return _seed; }
-            set { Set("Seed", ref _seed, value); }
+            set { Set(nameof(Seed), ref _seed, value); }
         }
 
         public bool SandStormHappening
         {
             get { return _sandStormHappening; }
-            set { Set("SandStormHappening", ref _sandStormHappening, value); }
+            set { Set(nameof(SandStormHappening), ref _sandStormHappening, value); }
         }
 
         public int SandStormTimeLeft
         {
             get { return _sandStormTimeLeft; }
-            set { Set("SandStormTimeLeft", ref _sandStormTimeLeft, value); }
+            set { Set(nameof(SandStormTimeLeft), ref _sandStormTimeLeft, value); }
         }
 
         public float SandStormSeverity
         {
             get { return _sandStormSeverity; }
-            set { Set("SandStormSeverity", ref _sandStormSeverity, value); }
+            set { Set(nameof(SandStormSeverity), ref _sandStormSeverity, value); }
         }
 
         public float SandStormIntendedSeverity
         {
             get { return _sandStormIntendedSeverity; }
-            set { Set("SandStormIntendedSeverity", ref _sandStormIntendedSeverity, value); }
+            set { Set(nameof(SandStormIntendedSeverity), ref _sandStormIntendedSeverity, value); }
         }
 
         public bool SavedBartender
         {
             get { return _savedBartender; }
-            set { Set("SavedBartender", ref _savedBartender, value); }
+            set { Set(nameof(SavedBartender), ref _savedBartender, value); }
         }
 
         public bool DownedDD2InvasionT1
@@ -301,231 +301,231 @@ namespace TEdit.Terraria
         public bool PartyManual
         {
             get { return _partyManual; }
-            set { Set("PartyManual", ref _partyManual, value); }
+            set { Set(nameof(PartyManual), ref _partyManual, value); }
         }
 
         public bool PartyGenuine
         {
             get { return _partyGenuine; }
-            set { Set("PartyGenuine", ref _partyGenuine, value); }
+            set { Set(nameof(PartyGenuine), ref _partyGenuine, value); }
         }
 
         public int PartyCooldown
         {
             get { return _partyCooldown; }
-            set { Set("PartyCooldown", ref _partyCooldown, value); }
+            set { Set(nameof(PartyCooldown), ref _partyCooldown, value); }
         }
 
         public int TileEntitiesNumber
         {
             get { return _tileEntitiesNumber; }
-            set { Set("TileEntitiesNumber", ref _tileEntitiesNumber, value); }
+            set { Set(nameof(TileEntitiesNumber), ref _tileEntitiesNumber, value); }
         }
 
         public int NumberOfMobs
         {
             get { return _numberOfMobs; }
-            set { Set("NumberOfMobs", ref _numberOfMobs, value); }
+            set { Set(nameof(NumberOfMobs), ref _numberOfMobs, value); }
         }
 
         public double SlimeRainTime
         {
             get { return _slimeRainTime; }
-            set { Set("SlimeRainTime", ref _slimeRainTime, value); }
+            set { Set(nameof(SlimeRainTime), ref _slimeRainTime, value); }
         }
 
         public byte SundialCooldown
         {
             get { return _sundialCooldown; }
-            set { Set("SundialCooldown", ref _sundialCooldown, value); }
+            set { Set(nameof(SundialCooldown), ref _sundialCooldown, value); }
         }
 
         public uint FileRevision
         {
             get { return _fileRevision; }
-            set { Set("FileRevision", ref _fileRevision, value); }
+            set { Set(nameof(FileRevision), ref _fileRevision, value); }
         }
 
         public bool IsFavorite
         {
             get { return _isFavorite; }
-            set { Set("IsFavorite", ref _isFavorite, value); }
+            set { Set(nameof(IsFavorite), ref _isFavorite, value); }
         }
 
         public byte[] UnknownData
         {
             get { return _unknownData; }
-            set { Set("UnknownData", ref _unknownData, value); }
+            set { Set(nameof(UnknownData), ref _unknownData, value); }
         }
 
         public Int64 CreationTime
         {
             get { return _creationTime; }
-            set { Set("CreationTime", ref _creationTime, value); }
+            set { Set(nameof(CreationTime), ref _creationTime, value); }
         }
 
 
         public int AnglerQuest
         {
             get { return _anglerQuest; }
-            set { Set("AnglerQuest", ref _anglerQuest, value); }
+            set { Set(nameof(AnglerQuest), ref _anglerQuest, value); }
         }
 
         public bool SavedAngler
         {
             get { return _savedAngler; }
-            set { Set("SavedAngler", ref _savedAngler, value); }
+            set { Set(nameof(SavedAngler), ref _savedAngler, value); }
         }
 
         public bool SavedStylist
         {
             get { return _savedStylist; }
-            set { Set("SavedStylist", ref _savedStylist, value); }
+            set { Set(nameof(SavedStylist), ref _savedStylist, value); }
         }
 
         public bool SavedTaxCollector
         {
             get { return _savedTaxCollector; }
-            set { Set("SavedTaxCollector", ref _savedTaxCollector, value); }
+            set { Set(nameof(SavedTaxCollector), ref _savedTaxCollector, value); }
         }
 
         public bool SavedGolfer
         {
             get { return _savedGolfer; }
-            set { Set("SavedGolfer", ref _savedGolfer, value); }
+            set { Set(nameof(SavedGolfer), ref _savedGolfer, value); }
         }
 
         public bool ForceHalloweenForToday
         {
             get { return _forceHalloweenForToday; }
-            set { Set("ForceHalloweenForToday", ref _forceHalloweenForToday, value); }
+            set { Set(nameof(ForceHalloweenForToday), ref _forceHalloweenForToday, value); }
         }
 
         public bool ForceXMasForToday
         {
             get { return _forceXMasForToday; }
-            set { Set("ForceXMasForToday", ref _forceXMasForToday, value); }
+            set { Set(nameof(ForceXMasForToday), ref _forceXMasForToday, value); }
         }
         public int SavedOreTiersCobalt
         {
             get { return _savedOreTiersCobalt; }
-            set { Set("SavedOreTiersCobalt", ref _savedOreTiersCobalt, value); }
+            set { Set(nameof(SavedOreTiersCobalt), ref _savedOreTiersCobalt, value); }
         }
 
         public int SavedOreTiersMythril
         {
             get { return _savedOreTiersMythril; }
-            set { Set("SavedOreTiersMythril", ref _savedOreTiersMythril, value); }
+            set { Set(nameof(SavedOreTiersMythril), ref _savedOreTiersMythril, value); }
         }
 
         public int SavedOreTiersAdamantite
         {
             get { return _savedOreTiersAdamantite; }
-            set { Set("SavedOreTiersAdamantite", ref _savedOreTiersAdamantite, value); }
+            set { Set(nameof(SavedOreTiersAdamantite), ref _savedOreTiersAdamantite, value); }
         }
 
 
         public int SavedOreTiersCopper
         {
             get { return _savedOreTiersCopper; }
-            set { Set("SavedOreTiersCopper", ref _savedOreTiersCopper, value); }
+            set { Set(nameof(SavedOreTiersCopper), ref _savedOreTiersCopper, value); }
         }
 
         public int SavedOreTiersIron
         {
             get { return _savedOreTiersIron; }
-            set { Set("SavedOreTiersIron", ref _savedOreTiersIron, value); }
+            set { Set(nameof(SavedOreTiersIron), ref _savedOreTiersIron, value); }
         }
 
         public int SavedOreTiersSilver
         {
             get { return _savedOreTiersSilver; }
-            set { Set("SavedOreTiersSilver", ref _savedOreTiersSilver, value); }
+            set { Set(nameof(SavedOreTiersSilver), ref _savedOreTiersSilver, value); }
         }
 
 
         public int SavedOreTiersGold
         {
             get { return _savedOreTiersGold; }
-            set { Set("SavedOreTiersGold", ref _savedOreTiersGold, value); }
+            set { Set(nameof(SavedOreTiersGold), ref _savedOreTiersGold, value); }
         }
 
         public bool BoughtCat
         {
             get { return _boughtCat; }
-            set { Set("BoughtCat", ref _boughtCat, value); }
+            set { Set(nameof(BoughtCat), ref _boughtCat, value); }
         }
 
         public bool BoughtDog
         {
             get { return _boughtDog; }
-            set { Set("BoughtDog", ref _boughtDog, value); }
+            set { Set(nameof(BoughtDog), ref _boughtDog, value); }
         }
 
         public bool BoughtBunny
         {
             get { return _boughtBunny; }
-            set { Set("BoughtBunny", ref _boughtBunny, value); }
+            set { Set(nameof(BoughtBunny), ref _boughtBunny, value); }
         }
 
         public bool DownedEmpressOfLight
         {
             get { return _downedEmpressOfLight; }
-            set { Set("DownedEmpressOfLight", ref _downedEmpressOfLight, value); }
+            set { Set(nameof(DownedEmpressOfLight), ref _downedEmpressOfLight, value); }
         }
 
         public bool DownedQueenSlime
         {
             get { return _downedQueenSlime; }
-            set { Set("DownedQueenSlime", ref _downedQueenSlime, value); }
+            set { Set(nameof(DownedQueenSlime), ref _downedQueenSlime, value); }
         }
 
         public int IceBackStyle
         {
             get { return _iceBackStyle; }
-            set { Set("IceBackStyle", ref _iceBackStyle, value); }
+            set { Set(nameof(IceBackStyle), ref _iceBackStyle, value); }
         }
 
         public int JungleBackStyle
         {
             get { return _jungleBackStyle; }
-            set { Set("JungleBackStyle", ref _jungleBackStyle, value); }
+            set { Set(nameof(JungleBackStyle), ref _jungleBackStyle, value); }
         }
 
         public int HellBackStyle
         {
             get { return _hellBackStyle; }
-            set { Set("HellBackStyle", ref _hellBackStyle, value); }
+            set { Set(nameof(HellBackStyle), ref _hellBackStyle, value); }
         }
 
         public bool IsEclipse
         {
             get { return _isEclipse; }
-            set { Set("IsEclipse", ref _isEclipse, value); }
+            set { Set(nameof(IsEclipse), ref _isEclipse, value); }
         }
 
         public bool IsCrimson
         {
             get { return _isCrimson; }
-            set { Set("IsCrimson", ref _isCrimson, value); }
+            set { Set(nameof(IsCrimson), ref _isCrimson, value); }
         }
 
         public float WindSpeedSet
         {
             get { return _windSpeedSet; }
-            set { Set("WindSpeedSet", ref _windSpeedSet, value); }
+            set { Set(nameof(WindSpeedSet), ref _windSpeedSet, value); }
         }
 
         public short NumClouds
         {
             get { return _numClouds; }
-            set { Set("NumClouds", ref _numClouds, value); }
+            set { Set(nameof(NumClouds), ref _numClouds, value); }
         }
 
         public float CloudBgActive
         {
             get { return _cloudBgActive; }
-            set { Set("CloudBgActive", ref _cloudBgActive, value); }
+            set { Set(nameof(CloudBgActive), ref _cloudBgActive, value); }
         }
 
 
@@ -587,7 +587,7 @@ namespace TEdit.Terraria
         public ObservableCollection<int> TreeTopVariations
         {
             get { return _treeTopVariations; }
-            set { Set("TreeTopVariations", ref _treeTopVariations, value); }
+            set { Set(nameof(TreeTopVariations), ref _treeTopVariations, value); }
         }
 
         public int TreeTop1
@@ -633,68 +633,68 @@ namespace TEdit.Terraria
         public bool GooWorld
         {
             get { return _gooWorld; }
-            set { Set("GooWorld", ref _gooWorld, value); }
+            set { Set(nameof(GooWorld), ref _gooWorld, value); }
         }
 
         public byte MoonType
         {
             get { return _moonType; }
-            set { Set("MoonType", ref _moonType, value); }
+            set { Set(nameof(MoonType), ref _moonType, value); }
         }
 
 
         public byte BgOcean
         {
             get { return _bgOcean; }
-            set { Set("BgOcean", ref _bgOcean, value); }
+            set { Set(nameof(BgOcean), ref _bgOcean, value); }
         }
 
         public byte BgDesert
         {
             get { return _bgDesert; }
-            set { Set("BgDesert", ref _bgDesert, value); }
+            set { Set(nameof(BgDesert), ref _bgDesert, value); }
         }
 
         public byte BgCrimson
         {
             get { return _bgCrimson; }
-            set { Set("BgCrimson", ref _bgCrimson, value); }
+            set { Set(nameof(BgCrimson), ref _bgCrimson, value); }
         }
 
         public byte BgHallow
         {
             get { return _bgHallow; }
-            set { Set("BgHallow", ref _bgHallow, value); }
+            set { Set(nameof(BgHallow), ref _bgHallow, value); }
         }
 
         public byte BgSnow
         {
             get { return _bgSnow; }
-            set { Set("BgSnow", ref _bgSnow, value); }
+            set { Set(nameof(BgSnow), ref _bgSnow, value); }
         }
 
         public byte BgJungle
         {
             get { return _bgJungle; }
-            set { Set("BgJungle", ref _bgJungle, value); }
+            set { Set(nameof(BgJungle), ref _bgJungle, value); }
         }
 
         public byte BgCorruption
         {
             get { return _bgCorruption; }
-            set { Set("BgCorruption", ref _bgCorruption, value); }
+            set { Set(nameof(BgCorruption), ref _bgCorruption, value); }
         }
 
         public byte BgTree
         {
             get { return _bgTree; }
-            set { Set("BgTree", ref _bgTree, value); }
+            set { Set(nameof(BgTree), ref _bgTree, value); }
         }
 
         public byte Bg8
         {
             get { return _bgTree; }
-            set { Set("BgTree", ref _bgTree, value); }
+            set { Set(nameof(BgTree), ref _bgTree, value); }
         }
 
         public byte BgTree2
@@ -718,13 +718,13 @@ namespace TEdit.Terraria
         public byte UnderworldBg
         {
             get { return _underworldBg; }
-            set { Set("UnderworldBg", ref _underworldBg, value); }
+            set { Set(nameof(UnderworldBg), ref _underworldBg, value); }
         }
 
         public byte MushroomBg
         {
             get { return _mushroomBg; }
-            set { Set("MushroomBg", ref _mushroomBg, value); }
+            set { Set(nameof(MushroomBg), ref _mushroomBg, value); }
         }
 
 
@@ -732,79 +732,79 @@ namespace TEdit.Terraria
         public bool CombatBookUsed
         {
             get { return _combatBookUsed; }
-            set { Set("CombatBookUsed", ref _combatBookUsed, value); }
+            set { Set(nameof(CombatBookUsed), ref _combatBookUsed, value); }
         }
 
         public int TempLanternNightCooldown
         {
             get { return _tempLanternNightCooldown; }
-            set { Set("TempLanternNightCooldown", ref _tempLanternNightCooldown, value); }
+            set { Set(nameof(TempLanternNightCooldown), ref _tempLanternNightCooldown, value); }
         }
 
         public bool TempLanternNightGenuine
         {
             get { return _tempLanternNightGenuine; }
-            set { Set("TempLanternNightGenuine", ref _tempLanternNightGenuine, value); }
+            set { Set(nameof(TempLanternNightGenuine), ref _tempLanternNightGenuine, value); }
         }
 
         public bool TempLanternNightManual
         {
             get { return _tempLanternNightManual; }
-            set { Set("TempLanternNightManual", ref _tempLanternNightManual, value); }
+            set { Set(nameof(TempLanternNightManual), ref _tempLanternNightManual, value); }
         }
 
         public bool TempLanternNightNextNightIsGenuine
         {
             get { return _tempLanternNightNextNightIsGenuine; }
-            set { Set("TempLanternNightNextNightIsGenuine", ref _tempLanternNightNextNightIsGenuine, value); }
+            set { Set(nameof(TempLanternNightNextNightIsGenuine), ref _tempLanternNightNextNightIsGenuine, value); }
         }
 
         public float TempMaxRain
         {
             get { return _tempMaxRain; }
-            set { Set("TempMaxRain", ref _tempMaxRain, value); }
+            set { Set(nameof(TempMaxRain), ref _tempMaxRain, value); }
         }
 
         public int TempRainTime
         {
             get { return _tempRainTime; }
-            set { Set("TempRainTime", ref _tempRainTime, value); }
+            set { Set(nameof(TempRainTime), ref _tempRainTime, value); }
         }
 
         public bool TempRaining
         {
             get { return _tempRaining; }
-            set { Set("TempRaining", ref _tempRaining, value); }
+            set { Set(nameof(TempRaining), ref _tempRaining, value); }
         }
 
         public bool DownedPirates
         {
             get { return _downedPirates; }
-            set { Set("DownedPirates", ref _downedPirates, value); }
+            set { Set(nameof(DownedPirates), ref _downedPirates, value); }
         }
 
         public bool DownedGolemBoss
         {
             get { return _downedGolemBoss; }
-            set { Set("DownedGolemBoss", ref _downedGolemBoss, value); }
+            set { Set(nameof(DownedGolemBoss), ref _downedGolemBoss, value); }
         }
 
         public bool DownedSlimeKingBoss
         {
             get { return _downedSlimeKingBoss; }
-            set { Set("DownedSlimeKingBoss", ref _downedSlimeKingBoss, value); }
+            set { Set(nameof(DownedSlimeKingBoss), ref _downedSlimeKingBoss, value); }
         }
 
         public bool DownedPlantBoss
         {
             get { return _downedPlantBoss; }
-            set { Set("DownedPlantBoss", ref _downedPlantBoss, value); }
+            set { Set(nameof(DownedPlantBoss), ref _downedPlantBoss, value); }
         }
 
         public bool DownedMechBossAny
         {
             get { return _downedMechBossAny; }
-            set { Set("DownedMechBossAny", ref _downedMechBossAny, value); }
+            set { Set(nameof(DownedMechBossAny), ref _downedMechBossAny, value); }
         }
 
         public bool DownedMechBoss3
@@ -849,193 +849,193 @@ namespace TEdit.Terraria
         public bool DownedQueenBee
         {
             get { return _downedQueenBee; }
-            set { Set("DownedQueenBee", ref _downedQueenBee, value); }
+            set { Set(nameof(DownedQueenBee), ref _downedQueenBee, value); }
         }
 
         public bool DownedFishron
         {
             get { return _downedFishron; }
-            set { Set("DownedFishron", ref _downedFishron, value); }
+            set { Set(nameof(DownedFishron), ref _downedFishron, value); }
         }
 
         public bool DownedMartians
         {
             get { return _downedMartians; }
-            set { Set("DownedMartians", ref _downedMartians, value); }
+            set { Set(nameof(DownedMartians), ref _downedMartians, value); }
         }
 
         public bool DownedLunaticCultist
         {
             get { return _downedLunaticCultist; }
-            set { Set("DownedLunaticCultist", ref _downedLunaticCultist, value); }
+            set { Set(nameof(DownedLunaticCultist), ref _downedLunaticCultist, value); }
         }
 
         public bool DownedMoonlord
         {
             get { return _downedMoonlord; }
-            set { Set("DownedMoonlord", ref _downedMoonlord, value); }
+            set { Set(nameof(DownedMoonlord), ref _downedMoonlord, value); }
         }
 
         public bool DownedHalloweenKing
         {
             get { return _downedHalloweenKing; }
-            set { Set("DownedHalloweenKing", ref _downedHalloweenKing, value); }
+            set { Set(nameof(DownedHalloweenKing), ref _downedHalloweenKing, value); }
         }
 
         public bool DownedHalloweenTree
         {
             get { return _downedHalloweenTree; }
-            set { Set("DownedHalloweenTree", ref _downedHalloweenTree, value); }
+            set { Set(nameof(DownedHalloweenTree), ref _downedHalloweenTree, value); }
         }
 
         public bool DownedChristmasQueen
         {
             get { return _downedChristmasQueen; }
-            set { Set("DownedChristmasQueen", ref _downedChristmasQueen, value); }
+            set { Set(nameof(DownedChristmasQueen), ref _downedChristmasQueen, value); }
         }
 
         public bool DownedSanta
         {
             get { return _downedSanta; }
-            set { Set("DownedSanta", ref _downedSanta, value); }
+            set { Set(nameof(DownedSanta), ref _downedSanta, value); }
         }
 
         public bool DownedChristmasTree
         {
             get { return _downedChristmasTree; }
-            set { Set("DownedChristmasTree", ref _downedChristmasTree, value); }
+            set { Set(nameof(DownedChristmasTree), ref _downedChristmasTree, value); }
         }
 
         public bool DownedCelestialSolar
         {
             get { return _downedCelestialSolar; }
-            set { Set("DownedCelestialSolar", ref _downedCelestialSolar, value); }
+            set { Set(nameof(DownedCelestialSolar), ref _downedCelestialSolar, value); }
         }
 
         public bool DownedCelestialVortex
         {
             get { return _downedCelestialVortex; }
-            set { Set("DownedCelestialVortex", ref _downedCelestialVortex, value); }
+            set { Set(nameof(DownedCelestialVortex), ref _downedCelestialVortex, value); }
         }
 
         public bool DownedCelestialNebula
         {
             get { return _downedCeslestialNebula; }
-            set { Set("DownedCelestialNebula", ref _downedCeslestialNebula, value); }
+            set { Set(nameof(DownedCelestialNebula), ref _downedCeslestialNebula, value); }
         }
 
         public bool DownedCelestialStardust
         {
             get { return _downedCelestialStardust; }
-            set { Set("DownedCelestialStardust", ref _downedCelestialStardust, value); }
+            set { Set(nameof(DownedCelestialStardust), ref _downedCelestialStardust, value); }
         }
 
         public bool CelestialSolarActive
         {
             get { return _celestialSolarActive; }
-            set { Set("CelestialSolarActive", ref _celestialSolarActive, value); }
+            set { Set(nameof(CelestialSolarActive), ref _celestialSolarActive, value); }
         }
 
         public bool CelestialVortexActive
         {
             get { return _celestialVortexActive; }
-            set { Set("CelestialVortexActive", ref _celestialVortexActive, value); }
+            set { Set(nameof(CelestialVortexActive), ref _celestialVortexActive, value); }
         }
 
         public bool CelestialNebulaActive
         {
             get { return _celestialNebulaActive; }
-            set { Set("CelestialNebulaActive", ref _celestialNebulaActive, value); }
+            set { Set(nameof(CelestialNebulaActive), ref _celestialNebulaActive, value); }
         }
 
         public bool CelestialStardustActive
         {
             get { return _celestialStardustActive; }
-            set { Set("CelestialStardustActive", ref _celestialStardustActive, value); }
+            set { Set(nameof(CelestialStardustActive), ref _celestialStardustActive, value); }
         }
 
         public int GameMode
         {
             get { return _gameMode; }
-            set { Set("GameMode", ref _gameMode, value); }
+            set { Set(nameof(GameMode), ref _gameMode, value); }
         }
 
         public bool DrunkWorld
         {
             get { return _drunkWorld; }
-            set { Set("DrunkWorld", ref _drunkWorld, value); }
+            set { Set(nameof(DrunkWorld), ref _drunkWorld, value); }
         }
 
         public int TilesWide
         {
             get { return _tilesWide; }
-            set { Set("TilesWide", ref _tilesWide, value); }
+            set { Set(nameof(TilesWide), ref _tilesWide, value); }
         }
 
         public int TilesHigh
         {
             get { return _tilesHigh; }
-            set { Set("TilesHigh", ref _tilesHigh, value); }
+            set { Set(nameof(TilesHigh), ref _tilesHigh, value); }
         }
 
         public float BottomWorld
         {
             get { return _bottomWorld; }
-            set { Set("BottomWorld", ref _bottomWorld, value); }
+            set { Set(nameof(BottomWorld), ref _bottomWorld, value); }
         }
 
         public float TopWorld
         {
             get { return _topWorld; }
-            set { Set("TopWorld", ref _topWorld, value); }
+            set { Set(nameof(TopWorld), ref _topWorld, value); }
         }
 
         public float RightWorld
         {
             get { return _rightWorld; }
-            set { Set("RightWorld", ref _rightWorld, value); }
+            set { Set(nameof(RightWorld), ref _rightWorld, value); }
         }
 
         public float LeftWorld
         {
             get { return _leftWorld; }
-            set { Set("LeftWorld", ref _leftWorld, value); }
+            set { Set(nameof(LeftWorld), ref _leftWorld, value); }
         }
 
         public int WorldId
         {
             get { return _worldId; }
-            set { Set("WorldId", ref _worldId, value); }
+            set { Set(nameof(WorldId), ref _worldId, value); }
         }
 
         public System.Guid WorldGUID
         {
             get { return Guid; }
-            set { Set("WorldGUID", ref Guid, value); }
+            set { Set(nameof(WorldGUID), ref Guid, value); }
         }
 
         public bool DownedFrost
         {
             get { return _downedFrost; }
-            set { Set("DownedFrost", ref _downedFrost, value); }
+            set { Set(nameof(DownedFrost), ref _downedFrost, value); }
         }
 
         public string Title
         {
             get { return _title; }
-            set { Set("Title", ref _title, value); }
+            set { Set(nameof(Title), ref _title, value); }
         }
 
         public int SpawnX
         {
             get { return _spawnX; }
-            set { Set("SpawnX", ref _spawnX, value); }
+            set { Set(nameof(SpawnX), ref _spawnX, value); }
         }
 
         public int SpawnY
         {
             get { return _spawnY; }
-            set { Set("SpawnY", ref _spawnY, value); }
+            set { Set(nameof(SpawnY), ref _spawnY, value); }
         }
 
         public double GroundLevel
@@ -1043,7 +1043,7 @@ namespace TEdit.Terraria
             get { return _groundLevel; }
             set
             {
-                Set("GroundLevel", ref _groundLevel, value);
+                Set(nameof(GroundLevel), ref _groundLevel, value);
                 if (_groundLevel > _rockLevel)
                     RockLevel = _groundLevel;
             }
@@ -1054,7 +1054,7 @@ namespace TEdit.Terraria
             get { return _rockLevel; }
             set
             {
-                Set("RockLevel", ref _rockLevel, value);
+                Set(nameof(RockLevel), ref _rockLevel, value);
                 if (_groundLevel > _rockLevel)
                     GroundLevel = _rockLevel;
             }
@@ -1063,37 +1063,37 @@ namespace TEdit.Terraria
         public double Time
         {
             get { return _time; }
-            set { Set("Time", ref _time, value); }
+            set { Set(nameof(Time), ref _time, value); }
         }
 
         public bool DayTime
         {
             get { return _dayTime; }
-            set { Set("DayTime", ref _dayTime, value); }
+            set { Set(nameof(DayTime), ref _dayTime, value); }
         }
 
         public int MoonPhase
         {
             get { return _moonPhase; }
-            set { Set("MoonPhase", ref _moonPhase, value); }
+            set { Set(nameof(MoonPhase), ref _moonPhase, value); }
         }
 
         public bool BloodMoon
         {
             get { return _bloodMoon; }
-            set { Set("BloodMoon", ref _bloodMoon, value); }
+            set { Set(nameof(BloodMoon), ref _bloodMoon, value); }
         }
 
         public int DungeonX
         {
             get { return _dungeonX; }
-            set { Set("DungeonX", ref _dungeonX, value); }
+            set { Set(nameof(DungeonX), ref _dungeonX, value); }
         }
 
         public int DungeonY
         {
             get { return _dungeonY; }
-            set { Set("DungeonY", ref _dungeonY, value); }
+            set { Set(nameof(DungeonY), ref _dungeonY, value); }
         }
 
         public bool DownedBoss1
@@ -1117,43 +1117,43 @@ namespace TEdit.Terraria
         public bool SavedGoblin
         {
             get { return _savedGoblin; }
-            set { Set("SavedGoblin", ref _savedGoblin, value); }
+            set { Set(nameof(SavedGoblin), ref _savedGoblin, value); }
         }
 
         public bool SavedWizard
         {
             get { return _savedWizard; }
-            set { Set("SavedWizard", ref _savedWizard, value); }
+            set { Set(nameof(SavedWizard), ref _savedWizard, value); }
         }
 
         public bool DownedGoblins
         {
             get { return _downedGoblins; }
-            set { Set("DownedGoblins", ref _downedGoblins, value); }
+            set { Set(nameof(DownedGoblins), ref _downedGoblins, value); }
         }
 
         public bool SavedMech
         {
             get { return _savedMech; }
-            set { Set("SavedMech", ref _savedMech, value); }
+            set { Set(nameof(SavedMech), ref _savedMech, value); }
         }
 
         public bool DownedClown
         {
             get { return _downedClown; }
-            set { Set("DownedClown", ref _downedClown, value); }
+            set { Set(nameof(DownedClown), ref _downedClown, value); }
         }
 
         public bool ShadowOrbSmashed
         {
             get { return _shadowOrbSmashed; }
-            set { Set("ShadowOrbSmashed", ref _shadowOrbSmashed, value); }
+            set { Set(nameof(ShadowOrbSmashed), ref _shadowOrbSmashed, value); }
         }
 
         public bool SpawnMeteor
         {
             get { return _spawnMeteor; }
-            set { Set("SpawnMeteor", ref _spawnMeteor, value); }
+            set { Set(nameof(SpawnMeteor), ref _spawnMeteor, value); }
         }
 
         public int ShadowOrbCount
@@ -1161,7 +1161,7 @@ namespace TEdit.Terraria
             get { return _shadowOrbCount; }
             set
             {
-                Set("ShadowOrbCount", ref _shadowOrbCount, value);
+                Set(nameof(ShadowOrbCount), ref _shadowOrbCount, value);
                 ShadowOrbSmashed = _shadowOrbCount > 0;
             }
         }
@@ -1169,43 +1169,43 @@ namespace TEdit.Terraria
         public int AltarCount
         {
             get { return _altarCount; }
-            set { Set("AltarCount", ref _altarCount, value); }
+            set { Set(nameof(AltarCount), ref _altarCount, value); }
         }
 
         public bool HardMode
         {
             get { return _hardMode; }
-            set { Set("HardMode", ref _hardMode, value); }
+            set { Set(nameof(HardMode), ref _hardMode, value); }
         }
 
         public double InvasionX
         {
             get { return _invasionX; }
-            set { Set("InvasionX", ref _invasionX, value); }
+            set { Set(nameof(InvasionX), ref _invasionX, value); }
         }
 
         public int InvasionType
         {
             get { return _invasionType; }
-            set { Set("InvasionType", ref _invasionType, value); }
+            set { Set(nameof(InvasionType), ref _invasionType, value); }
         }
 
         public int InvasionSize
         {
             get { return _invasionSize; }
-            set { Set("InvasionSize", ref _invasionSize, value); }
+            set { Set(nameof(InvasionSize), ref _invasionSize, value); }
         }
 
         public int InvasionSizeStart
         {
             get { return _invasionSizeStart; }
-            set { Set("InvasionSizeStart", ref _invasionSizeStart, value); }
+            set { Set(nameof(InvasionSizeStart), ref _invasionSizeStart, value); }
         }
 
         public int InvasionDelay
         {
             get { return _invasionDelay; }
-            set { Set("InvasionDelay", ref _invasionDelay, value); }
+            set { Set(nameof(InvasionDelay), ref _invasionDelay, value); }
         }
 
         public int TreeX0
@@ -1331,19 +1331,19 @@ namespace TEdit.Terraria
         public int CultistDelay
         {
             get { return _cultistDelay; }
-            set { Set("CultistDelay", ref _cultistDelay, value); }
+            set { Set(nameof(CultistDelay), ref _cultistDelay, value); }
         }
 
         public bool FastForwardTime
         {
             get { return _fastForwardTime; }
-            set { Set("FastForwardTime", ref _fastForwardTime, value); }
+            set { Set(nameof(FastForwardTime), ref _fastForwardTime, value); }
         }
 
         public bool Apocalypse
         {
             get { return _apocalypse; }
-            set { Set("Apocalypse", ref _apocalypse, value); }
+            set { Set(nameof(Apocalypse), ref _apocalypse, value); }
         }
 
 
@@ -1351,7 +1351,7 @@ namespace TEdit.Terraria
         public DateTime LastSave
         {
             get { return _lastSave; }
-            set { Set("LastSave", ref _lastSave, value); }
+            set { Set(nameof(LastSave), ref _lastSave, value); }
         }
 
         public NpcName GetNpc(int id)

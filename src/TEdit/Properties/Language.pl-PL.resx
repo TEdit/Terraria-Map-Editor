@@ -347,6 +347,9 @@ Naciśnij spróbuj ponownie aby wybrać nowy folder lub anuluj aby użyć {0} ja
   <data name="menu_plugins" xml:space="preserve">
     <value>Pluginy</value>
   </data>
+  <data name="menu_telemetry" xml:space="preserve">
+    <value>Włącz Raportowanie Błędów</value>
+  </data>
   <data name="menu_toolbar_zoom_in" xml:space="preserve">
     <value>Przybliż</value>
   </data>

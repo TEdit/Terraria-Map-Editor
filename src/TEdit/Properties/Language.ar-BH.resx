@@ -347,6 +347,9 @@ Press retry to pick a new folder or cancel to use {0} as your terraria path.</va
   <data name="menu_plugins" xml:space="preserve">
     <value>Plugins</value>
   </data>
+  <data name="menu_telemetry" xml:space="preserve">
+    <value>تمكين الإعلام عن الأخطاء</value>
+  </data>
   <data name="menu_toolbar_zoom_in" xml:space="preserve">
     <value>Zoom In</value>
   </data>
@@ -509,6 +512,9 @@ Press retry to pick a new folder or cancel to use {0} as your terraria path.</va
   </data>
   <data name="statusbar_wall_label" xml:space="preserve">
     <value>Wall</value>
+  </data>
+  <data name="String1" xml:space="preserve">
+    <value />
   </data>
   <data name="tool_analyze_analyze_button" xml:space="preserve">
     <value>Analyze</value>

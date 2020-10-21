@@ -40,30 +40,30 @@ namespace TEdit.Terraria.Objects
         public Vector2Short TextureGrid
         {
             get { return _textureGrid; }
-            set { Set("TextureGrid", ref _textureGrid, value); }
+            set { Set(nameof(TextureGrid), ref _textureGrid, value); }
         }
 
         public Vector2Short FrameGap
         {
             get { return _frameGap; }
-            set { Set("FrameGap", ref _frameGap, value); }
+            set { Set(nameof(FrameGap), ref _frameGap, value); }
         }
         public FramePlacement Placement
         {
             get { return _placement; }
-            set { Set("Placement", ref _placement, value); }
+            set { Set(nameof(Placement), ref _placement, value); }
         }
 
         public bool IsAnimated
         {
             get { return _isAnimated; }
-            set { Set("IsAnimated", ref _isAnimated, value); }
+            set { Set(nameof(IsAnimated), ref _isAnimated, value); }
         }
 
         public bool IsLight
         {
             get { return _isLight; }
-            set { Set("IsLight", ref _isLight, value); }
+            set { Set(nameof(IsLight), ref _isLight, value); }
         }
 
         public bool IsOrigin(Vector2Short uv)
@@ -101,19 +101,19 @@ namespace TEdit.Terraria.Objects
         public bool IsSolidTop
         {
             get { return _isSolidTop; }
-            set { Set("IsSolidTop", ref _isSolidTop, value); }
+            set { Set(nameof(IsSolidTop), ref _isSolidTop, value); }
         }
 
         public bool IsSolid
         {
             get { return _isSolid; }
-            set { Set("IsSolid", ref _isSolid, value); }
+            set { Set(nameof(IsSolid), ref _isSolid, value); }
         }
 
         public bool SaveSlope
         {
             get { return _saveSlope; }
-            set { Set("SaveSlope", ref _saveSlope, value); }
+            set { Set(nameof(SaveSlope), ref _saveSlope, value); }
         }
 
         public bool HasSlopes => IsSolid || SaveSlope;
@@ -134,25 +134,25 @@ namespace TEdit.Terraria.Objects
         public Color Color
         {
             get { return _color; }
-            set { Set("Color", ref _color, value); }
+            set { Set(nameof(Color), ref _color, value); }
         }
 
         public int Id
         {
             get { return _id; }
-            set { Set("Id", ref _id, value); }
+            set { Set(nameof(Id), ref _id, value); }
         }
 
         public string Name
         {
             get { return _name; }
-            set { Set("Name", ref _name, value); }
+            set { Set(nameof(Name), ref _name, value); }
         }
 
         public Vector2Short[] FrameSize
         {
             get { return _frameSize; }
-            set { Set("FrameSize", ref _frameSize, value); }
+            set { Set(nameof(FrameSize), ref _frameSize, value); }
         }
 
         public int GetFrameSizeIndex(short v)
@@ -182,55 +182,55 @@ namespace TEdit.Terraria.Objects
         public bool IsFramed
         {
             get { return _isFramed; }
-            set { Set("IsFramed", ref _isFramed, value); }
+            set { Set(nameof(IsFramed), ref _isFramed, value); }
         }
 
         private WriteableBitmap _image;
         public WriteableBitmap Image
         {
             get { return _image; }
-            set { Set("Image", ref _image, value); }
+            set { Set(nameof(Image), ref _image, value); }
         }
 
 
         public bool IsGrass
         {
             get { return _isGrass; }
-            set { Set("IsGrass", ref _isGrass, value); }
+            set { Set(nameof(IsGrass), ref _isGrass, value); }
         }
 
 
         public bool IsPlatform
         {
             get { return _isPlatform; }
-            set { Set("IsPlatform", ref _isPlatform, value); }
+            set { Set(nameof(IsPlatform), ref _isPlatform, value); }
         }
 
 
         public bool IsCactus
         {
             get { return _isCactus; }
-            set { Set("IsCactus", ref _isCactus, value); }
+            set { Set(nameof(IsCactus), ref _isCactus, value); }
         }
 
         public bool IsStone
         {
             get { return _isStone; }
-            set { Set("IsStone", ref _isStone, value); }
+            set { Set(nameof(IsStone), ref _isStone, value); }
         }
 
 
         public bool CanBlend
         {
             get { return _canBlend; }
-            set { Set("CanBlend", ref _canBlend, value); }
+            set { Set(nameof(CanBlend), ref _canBlend, value); }
         }
 
 
         public int? MergeWith
         {
             get { return _mergeWith; }
-            set { Set("MergeWith", ref _mergeWith, value); }
+            set { Set(nameof(MergeWith), ref _mergeWith, value); }
         }
 
         public bool Merges(int other)

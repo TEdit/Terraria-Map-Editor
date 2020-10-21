@@ -6,6 +6,7 @@ using TEdit.Geometry.Primitives;
 using TEdit.Terraria;
 using TEdit.Editor;
 using TEdit.ViewModel;
+using TEdit.Properties;
 
 namespace TEdit
 {
@@ -30,6 +31,16 @@ namespace TEdit
 
         void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
+            if (Settings.Default.Telemetry == -1)
+            {
+                var enableTelemetry = MessageBox.Show(
+                    "Do you wish to enable crash and error reporting?\r\nThis will send anonymized information for crash logs and feature usage\r\nto the developers and will help to track down and squash bugs.\r\nThis setting can be changed at any time from the file menu.\r\nThanks!",
+                    "Error Reporting",
+                    MessageBoxButton.YesNo,
+                    MessageBoxImage.Question);
+
+                _vm.EnableTelemetry = enableTelemetry == MessageBoxResult.Yes;
+            }
         }
 
         private void HandleKeyUpEvent(object sender, KeyEventArgs e)

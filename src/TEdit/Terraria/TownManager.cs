@@ -13,13 +13,13 @@ namespace TEdit.Terraria
         public int NpcId
         {
             get { return _npcId; }
-            set { Set("NpcId", ref _npcId, value); }
+            set { Set(nameof(NpcId), ref _npcId, value); }
         }
 
         public Vector2Int32 Home
         {
             get { return _home; }
-            set { Set("Home", ref _home, value); }
+            set { Set(nameof(Home), ref _home, value); }
         }
     }
 }

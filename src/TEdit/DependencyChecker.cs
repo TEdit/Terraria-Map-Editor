@@ -301,7 +301,7 @@ namespace TEdit
             }
         }
 
-        public static int GetDirectxMajorVersion()
+        public static int GetDirectXMajorVersion()
         {
             int directxMajorVersion = 0;
 

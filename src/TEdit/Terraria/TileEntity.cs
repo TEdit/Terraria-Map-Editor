@@ -20,7 +20,7 @@ namespace TEdit.Terraria
             get { return _id; }
             set
             {
-                Set("Id", ref _id, value);
+                Set(nameof(Id), ref _id, value);
                 if (value != 0 && StackSize == 0) { StackSize = 1; }
             }
         }
@@ -28,7 +28,7 @@ namespace TEdit.Terraria
         public byte Prefix
         {
             get { return _prefix; }
-            set { Set("Prefix", ref _prefix, value); }
+            set { Set(nameof(Prefix), ref _prefix, value); }
         }
 
         public short StackSize
@@ -36,7 +36,7 @@ namespace TEdit.Terraria
             get { return _stackSize; }
             set
             {
-                Set("StackSize", ref _stackSize, value);
+                Set(nameof(StackSize), ref _stackSize, value);
                 if (value == 0 && Id != 0)
                 {
                     Id = 0;
@@ -152,7 +152,7 @@ namespace TEdit.Terraria
             get { return _type; }
             set
             {
-                Set("Type", ref _type, value);
+                Set(nameof(Type), ref _type, value);
                 RaisePropertyChanged(nameof(EntityType));
             }
         }
@@ -160,7 +160,7 @@ namespace TEdit.Terraria
         public int Id
         {
             get { return _id; }
-            set { Set("Id", ref _id, value); }
+            set { Set(nameof(Id), ref _id, value); }
         }
 
         public TileEntityType EntityType
@@ -168,7 +168,7 @@ namespace TEdit.Terraria
             get { return (TileEntityType)_type; }
             set
             {
-                Set("Type", ref _type, (byte)value);
+                Set(nameof(Type), ref _type, (byte)value);
                 RaisePropertyChanged(nameof(EntityType));
             }
         }
@@ -176,49 +176,49 @@ namespace TEdit.Terraria
         public Int16 PosX
         {
             get { return _x; }
-            set { Set("PosX", ref _x, value); }
+            set { Set(nameof(PosX), ref _x, value); }
         }
 
         public Int16 PosY
         {
             get { return _y; }
-            set { Set("PosY", ref _y, value); }
+            set { Set(nameof(PosY), ref _y, value); }
         }
 
         public Int16 Npc
         {
             get { return _npc; }
-            set { Set("Npc", ref _npc, value); }
+            set { Set(nameof(Npc), ref _npc, value); }
         }
 
         public int NetId
         {
             get { return _netId; }
-            set { Set("NetId", ref _netId, value); }
+            set { Set(nameof(NetId), ref _netId, value); }
         }
 
         public byte Prefix
         {
             get { return _prefix; }
-            set { Set("Prefix", ref _prefix, value); }
+            set { Set(nameof(Prefix), ref _prefix, value); }
         }
 
         public Int16 StackSize
         {
             get { return _stackSize; }
-            set { Set("StackSize", ref _stackSize, value); }
+            set { Set(nameof(StackSize), ref _stackSize, value); }
         }
 
         public byte LogicCheck
         {
             get { return _logicCheck; }
-            set { Set("LogicCheck", ref _logicCheck, value); }
+            set { Set(nameof(LogicCheck), ref _logicCheck, value); }
         }
 
         public bool On
         {
             get { return _on; }
-            set { Set("On", ref _on, value); }
+            set { Set(nameof(On), ref _on, value); }
         }
 
         public TileType TileType

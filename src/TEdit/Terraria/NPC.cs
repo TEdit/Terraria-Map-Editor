@@ -19,43 +19,43 @@ namespace TEdit.Terraria
         public string DisplayName
         {
             get { return _displayName; }
-            set { Set("DisplayName", ref _displayName, value); }
+            set { Set(nameof(DisplayName), ref _displayName, value); }
         }
 
         public int SpriteId
         {
             get { return _spriteId; }
-            set { Set("SpriteId", ref _spriteId, value); }
+            set { Set(nameof(SpriteId), ref _spriteId, value); }
         }
 
         public Vector2 Position
         {
             get { return _position; }
-            set { Set("Position", ref _position, value); }
+            set { Set(nameof(Position), ref _position, value); }
         }
 
         public string Name
         {
             get { return _name; }
-            set { Set("Name", ref _name, value); }
+            set { Set(nameof(Name), ref _name, value); }
         }
 
         public bool IsHomeless
         {
             get { return _isHomeless; }
-            set { Set("IsHomeless", ref _isHomeless, value); }
+            set { Set(nameof(IsHomeless), ref _isHomeless, value); }
         }
 
         public int TownNpcVariationIndex
         {
             get { return _townNpcVariationIndex; }
-            set { Set("TownNpcVariationIndex", ref _townNpcVariationIndex, value); }
+            set { Set(nameof(TownNpcVariationIndex), ref _townNpcVariationIndex, value); }
         }
 
         public Vector2Int32 Home
         {
             get { return _home; }
-            set { Set("Home", ref _home, value); }
+            set { Set(nameof(Home), ref _home, value); }
         }
 
         public override string ToString()

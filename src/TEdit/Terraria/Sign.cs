@@ -62,7 +62,7 @@ namespace TEdit.Terraria
                                 world.Tiles[X + i, Y + j].Type = prop.TileType;
                             }
                         }
-                        Set("SignId", ref _signId, value);
+                        Set(nameof(SignId), ref _signId, value);
                         break;
                     }
                 }
@@ -72,14 +72,14 @@ namespace TEdit.Terraria
         public string Name
         {
             get { return _name; }
-            set { Set("Name", ref _name, value); }
+            set { Set(nameof(Name), ref _name, value); }
         }
 
         private string _text;
         public string Text
         {
             get { return _text; }
-            set { Set("Text", ref _text, value); }
+            set { Set(nameof(Text), ref _text, value); }
         }
 
         private int _x;
@@ -89,13 +89,13 @@ namespace TEdit.Terraria
         public int Y
         {
             get { return _y; }
-            set { Set("Y", ref _y, value); }
+            set { Set(nameof(Y), ref _y, value); }
         } 
 
         public int X
         {
             get { return _x; }
-            set { Set("X", ref _x, value); }
+            set { Set(nameof(X), ref _x, value); }
         }
 
 
