@@ -166,7 +166,7 @@ namespace TEdit
 #if DEBUG
             throw (Exception)e.ExceptionObject;
 #else
-            ErrorLogging.LogException(e.ExceptionObject);
+            ErrorLogging.LogException(e.ExceptionObject as Exception);
             MessageBox.Show("An unhandled exception has occurred. You may continue using TEdit, but operation may be unstable until the application has been restarted.", "Unhandled Exception");
             // Current.Shutdown();
 #endif
