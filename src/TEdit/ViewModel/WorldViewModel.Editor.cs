@@ -203,6 +203,12 @@ namespace TEdit.ViewModel
 
         private void SetTrack(int x, int y, Tile curTile, bool erase, bool hammer, bool check)
         {
+            if (x <= 0 || y <= 0 || x >= this.CurrentWorld.TilesWide - 1 || y >= this.CurrentWorld.TilesHigh - 1)
+            {
+                return; // tracks not allowed on border of map.
+            }
+
+
             if (TilePicker.TrackMode == TrackMode.Pressure)
             {
                 if (erase)
