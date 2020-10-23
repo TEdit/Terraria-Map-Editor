@@ -833,27 +833,33 @@ namespace TEdit.ViewModel
 
         public void MouseDownTile(TileMouseState e)
         {
+            if (CurrentWorld == null) return;
+
             if (e.Location != MouseOverTile.MouseState.Location)
                 MouseOverTile.Tile = CurrentWorld.Tiles[e.Location.X, e.Location.Y];
 
             MouseOverTile.MouseState = e;
-            ActiveTool.MouseDown(e);
+            ActiveTool?.MouseDown(e);
 
             CommandManager.InvalidateRequerySuggested();
         }
 
         public void MouseUpTile(TileMouseState e)
         {
+            if (CurrentWorld == null) return;
+
             if (e.Location != MouseOverTile.MouseState.Location)
                 MouseOverTile.Tile = CurrentWorld.Tiles[e.Location.X, e.Location.Y];
 
             MouseOverTile.MouseState = e;
-            ActiveTool.MouseUp(e);
+            ActiveTool?.MouseUp(e);
             CommandManager.InvalidateRequerySuggested();
         }
 
         public void MouseMoveTile(TileMouseState e)
         {
+            if (CurrentWorld == null) return;
+
             if (e.Location.X >= 0 && e.Location.Y >= 0 && e.Location.X < CurrentWorld.TilesWide && e.Location.Y < CurrentWorld.TilesHigh)
             {
                 if (e.Location != MouseOverTile.MouseState.Location)
@@ -861,7 +867,7 @@ namespace TEdit.ViewModel
 
                 MouseOverTile.MouseState = e;
 
-                ActiveTool.MouseMove(e);
+                ActiveTool?.MouseMove(e);
             }
         }
 
@@ -945,8 +951,7 @@ namespace TEdit.ViewModel
 
         private void SaveWorld()
         {
-            if (CurrentWorld == null)
-                return;
+            if (CurrentWorld == null) return;
 
             if (string.IsNullOrWhiteSpace(CurrentFile))
                 SaveWorldAs();
@@ -956,6 +961,8 @@ namespace TEdit.ViewModel
 
         private void SaveWorldAs()
         {
+            if (CurrentWorld == null) return;
+
             var sfd = new SaveFileDialog();
             sfd.Filter = "Terraria World File|*.wld|TEdit Backup File|*.TEdit";
             sfd.Title = "Save World As";
@@ -969,6 +976,8 @@ namespace TEdit.ViewModel
 
         private void SaveWorldFile()
         {
+            if (CurrentWorld == null) return;
+
             if (CurrentWorld.LastSave < File.GetLastWriteTimeUtc(CurrentFile))
             {
                 MessageBoxResult overwrite = MessageBox.Show(_currentWorld.Title + " was externally modified since your last save.\r\nDo you wish to overwrite?", "World Modified", MessageBoxButton.OKCancel, MessageBoxImage.Warning);

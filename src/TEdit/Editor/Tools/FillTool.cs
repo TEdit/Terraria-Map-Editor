@@ -26,7 +26,9 @@ namespace TEdit.Editor.Tools
 
         public override void MouseDown(TileMouseState e)
         {
-            if (e.LeftButton == MouseButtonState.Pressed)
+            if (e.LeftButton == MouseButtonState.Pressed && 
+                (_wvm.TilePicker.PaintMode == PaintMode.TileAndWall || 
+                 _wvm.TilePicker.PaintMode == PaintMode.Liquid))
             {
                 Flood(e.Location);
                 //_wvm.UpdateRenderRegion(new Rectangle(_minX, _minY, _maxX - _minX + 1, _maxY - _minY + 1));
