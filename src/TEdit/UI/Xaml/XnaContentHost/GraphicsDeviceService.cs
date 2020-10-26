@@ -71,7 +71,7 @@ namespace TEdit.UI.Xaml.XnaContentHost
 
                 graphicsDevice = new GraphicsDevice(
                     GraphicsAdapter.DefaultAdapter,
-                    GraphicsProfile.Reach,
+                    GraphicsProfile.HiDef,
                     parameters);
 
                 if (DeviceCreated != null)
