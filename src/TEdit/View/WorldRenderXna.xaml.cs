@@ -3090,8 +3090,8 @@ namespace TEdit.View
             if (_wvm.CurrentWorld != null)
             {
                 var r = GetViewingArea();
-                ScrollBarH.ViewportSize = r.Width;
-                ScrollBarV.ViewportSize = r.Height;
+                ScrollBarH.ViewportSize = MathHelper.Clamp(r.Width, 1, float.MaxValue);
+                ScrollBarV.ViewportSize = MathHelper.Clamp(r.Height, 1, float.MaxValue); 
                 ScrollBarH.Maximum = _wvm.CurrentWorld.TilesWide - ScrollBarH.ViewportSize;
                 ScrollBarV.Maximum = _wvm.CurrentWorld.TilesHigh - ScrollBarV.ViewportSize;
             }
