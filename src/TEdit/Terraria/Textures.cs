@@ -43,7 +43,23 @@ namespace TEdit.Terraria
 
             if (Directory.Exists(path))
             {
-                ContentManager = new ContentManager(serviceProvider, path);
+                try
+                {
+                    // try and load a single file, this checks for read access
+                    using (StreamReader sr = new StreamReader(Path.Combine(path, "Images\\NPC_0.xnb")))
+                    {
+                        sr.BaseStream.ReadByte();
+                    }
+
+                    ContentManager = new ContentManager(serviceProvider, path);
+
+                }
+                catch (Exception ex)
+                {
+                    ErrorLogging.LogException(ex);
+                    System.Windows.Forms.MessageBox.Show($"Error loading textures from {path}.\r\nPlease check that this folder exists and TEdit has read access.\r\n\r\n{ex.Message}", "Error Loading Textures", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Error); 
+                }
+
             }
         }
 
