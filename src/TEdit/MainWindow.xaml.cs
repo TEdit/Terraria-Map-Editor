@@ -33,13 +33,13 @@ namespace TEdit
         {
             if (Settings.Default.Telemetry == -1)
             {
-                var enableTelemetry = MessageBox.Show(
-                    "Do you wish to enable crash and error reporting?\r\nThis will send anonymized information for crash logs and feature usage\r\nto the developers and will help to track down and squash bugs.\r\nThis setting can be changed at any time from the file menu.\r\nThanks!",
+                MessageBox.Show(
+                    "Error reporting is enabled. This will send anonymized information for crash logs and feature usage to the developers and will help to track down and squash bugs.\r\n\r\nThis setting can be changed at any time from the file menu, Thanks!",
                     "Error Reporting",
-                    MessageBoxButton.YesNo,
-                    MessageBoxImage.Question);
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Information);
 
-                _vm.EnableTelemetry = enableTelemetry == MessageBoxResult.Yes;
+                _vm.EnableTelemetry = true;
             }
         }
 

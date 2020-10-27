@@ -1,6 +1,6 @@
 param(
-    [string] $VersionPrefix = "4.0.0",
-    [string] $VersionSuffix
+    [string] $VersionPrefix = "4.2.1",
+    [string] $VersionSuffix = $null
 )
 
 $buildArgs = @(
@@ -22,8 +22,5 @@ if ($null -ne $VersionSuffix) {
 
 Remove-Item -Path ".\TEdit*.zip"
 
-if ($null -ne $VersionSuffix) {
-  Compress-Archive -Path ".\src\TEdit\bin\Release\net462\publish\*" -DestinationPath ".\TEdit$VersionPrefix-$VersionSuffix.zip"
-} else {
-  Compress-Archive -Path ".\src\TEdit\bin\Release\net462\publish\*" -DestinationPath ".\TEdit$VersionPrefix.zip"
-}
+Compress-Archive -Path ".\src\TEdit\bin\Release\net462\publish\*" -DestinationPath ".\TEdit$VersionPrefix.zip"
+#Compress-Archive -Path ".\src\TEdit\bin\Release\net462\publish\*" -DestinationPath ".\TEdit$VersionPrefix-$VersionSuffix.zip"
