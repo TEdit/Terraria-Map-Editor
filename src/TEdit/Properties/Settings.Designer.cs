@@ -82,5 +82,17 @@ namespace TEdit.Properties {
                 this["Telemetry"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("6")]
+        public float TextureVisibilityZoomLevel {
+            get {
+                return ((float)(this["TextureVisibilityZoomLevel"]));
+            }
+            set {
+                this["TextureVisibilityZoomLevel"] = value;
+            }
+        }
     }
 }

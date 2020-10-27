@@ -105,6 +105,18 @@
                     <MenuItem Header="{x:Static p:Language.menu_layers_wire_yellow}" IsCheckable="True" IsChecked="{Binding ShowYellowWires}" />
                     <Separator Margin="1" />
                     <MenuItem Header="{x:Static p:Language.menu_layers_points}" IsCheckable="True" IsChecked="{Binding ShowPoints}" />
+                    <Separator Margin="1" />
+                    <MenuItem>
+                        <MenuItem.Template>
+                            <ControlTemplate TargetType="{x:Type MenuItem}">
+                                <DockPanel Margin="22 1 1 1">
+                                    <Label Content="Textures Visible " DockPanel.Dock="Left" />
+                                    <Slider Value="{Binding TextureVisibilityZoomLevel, Mode=TwoWay}" VerticalAlignment="Center"  Minimum="3" Maximum="10" SmallChange="1" Width="80" />
+                                    <Label Content="{Binding TextureVisibilityZoomLevel, Mode=OneWay}" Width="24" Margin="5 0 2 0" DockPanel.Dock="Right" />
+                                </DockPanel>
+                            </ControlTemplate>
+                        </MenuItem.Template>
+                    </MenuItem>
                 </MenuItem>
                 <MenuItem Header="{x:Static p:Language.menu_plugins}" ItemsSource="{Binding Plugins}" ItemContainerStyle="{StaticResource SubmenuItemStyle}">
 

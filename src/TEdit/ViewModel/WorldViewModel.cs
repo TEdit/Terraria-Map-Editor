@@ -35,6 +35,7 @@ using SaveFileDialog = Microsoft.Win32.SaveFileDialog;
 using Timer = System.Timers.Timer;
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.Xna.Framework;
 
 namespace TEdit.ViewModel
 {
@@ -389,7 +390,7 @@ namespace TEdit.ViewModel
             {
                 Set(nameof(IsAutoSaveEnabled), ref _isAutoSaveEnabled, value);
                 Settings.Default.Autosave = _isAutoSaveEnabled;
-                try { Settings.Default.Save(); } catch (Exception ex) { ErrorLogging.LogException(ex) ;}
+                try { Settings.Default.Save(); } catch (Exception ex) { ErrorLogging.LogException(ex); }
             }
         }
 
@@ -632,6 +633,22 @@ namespace TEdit.ViewModel
             }
         }
 
+        public float _textureVisibilityZoomLevel = Settings.Default.TextureVisibilityZoomLevel;
+        public float TextureVisibilityZoomLevel
+        {
+            get => _textureVisibilityZoomLevel;
+            set
+            {
+                value = (float)Math.Floor(MathHelper.Clamp(value, 3, 64));
+                if (Set(nameof(TextureVisibilityZoomLevel), ref _textureVisibilityZoomLevel, value))
+                {
+                    Settings.Default.TextureVisibilityZoomLevel = value;
+                    try { Settings.Default.Save(); } catch (Exception ex) { ErrorLogging.LogException(ex); }
+                }
+            }
+        }
+
+
         private bool _enableTelemetry = Settings.Default.Telemetry != 0;
 
         public bool EnableTelemetry
@@ -639,11 +656,12 @@ namespace TEdit.ViewModel
             get { return _enableTelemetry; }
             set
             {
-                RaisePropertyChanged();
-                Set(nameof(EnableTelemetry), ref _enableTelemetry, value);
-                Settings.Default.Telemetry = value ? 1 : 0;
-                try { Settings.Default.Save(); } catch (Exception ex) { ErrorLogging.LogException(ex); }
-                ErrorLogging.InitializeTelemetry();
+                if (Set(nameof(EnableTelemetry), ref _enableTelemetry, value))
+                {
+                    Settings.Default.Telemetry = value ? 1 : 0;
+                    try { Settings.Default.Save(); } catch (Exception ex) { ErrorLogging.LogException(ex); }
+                    ErrorLogging.InitializeTelemetry();
+                }
             }
         }
 
