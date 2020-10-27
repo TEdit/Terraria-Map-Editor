@@ -69,7 +69,12 @@ namespace TEdit.ViewModel
 
         public void SetPixel(int x, int y, PaintMode? mode = null, bool? erase = null)
         {
+            if (CurrentWorld == null) return;
+            if (TilePicker == null) return;
+
             Tile curTile = CurrentWorld.Tiles[x, y];
+            if (curTile == null) return;
+
             PaintMode curMode = mode ?? TilePicker.PaintMode;
             bool isErase = erase ?? TilePicker.IsEraser;
 
