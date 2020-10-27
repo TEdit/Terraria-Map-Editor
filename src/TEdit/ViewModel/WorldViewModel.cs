@@ -389,7 +389,7 @@ namespace TEdit.ViewModel
             {
                 Set(nameof(IsAutoSaveEnabled), ref _isAutoSaveEnabled, value);
                 Settings.Default.Autosave = _isAutoSaveEnabled;
-                Settings.Default.Save();
+                try { Settings.Default.Save(); } catch (Exception ex) { ErrorLogging.LogException(ex) ;}
             }
         }
 
@@ -628,7 +628,7 @@ namespace TEdit.ViewModel
             {
                 Set(nameof(CheckUpdates), ref _checkUpdates, value);
                 Settings.Default.CheckUpdates = value;
-                Settings.Default.Save();
+                try { Settings.Default.Save(); } catch (Exception ex) { ErrorLogging.LogException(ex); }
             }
         }
 
@@ -642,7 +642,7 @@ namespace TEdit.ViewModel
                 RaisePropertyChanged();
                 Set(nameof(EnableTelemetry), ref _enableTelemetry, value);
                 Settings.Default.Telemetry = value ? 1 : 0;
-                Settings.Default.Save();
+                try { Settings.Default.Save(); } catch (Exception ex) { ErrorLogging.LogException(ex); }
                 ErrorLogging.InitializeTelemetry();
             }
         }

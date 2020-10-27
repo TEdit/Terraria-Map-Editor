@@ -34,7 +34,7 @@ namespace TEdit
             if (!Directory.Exists(path))
             {
                 Properties.Settings.Default.TerrariaPath = null;
-                Properties.Settings.Default.Save();
+                try { Properties.Settings.Default.Save(); } catch (Exception ex) { ErrorLogging.LogException(ex); }
                 path = string.Empty;
             }
 
@@ -160,7 +160,7 @@ namespace TEdit
                     }
                 }
                 Properties.Settings.Default.TerrariaPath = Path.Combine(tempPath, "Content");
-                Properties.Settings.Default.Save();
+                try { Properties.Settings.Default.Save(); } catch (Exception ex) { ErrorLogging.LogException(ex); }
             }
 
             if (!string.IsNullOrWhiteSpace(path) && path.IndexOf("Content", StringComparison.OrdinalIgnoreCase) < 0)

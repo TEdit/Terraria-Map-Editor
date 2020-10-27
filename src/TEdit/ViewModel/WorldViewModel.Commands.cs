@@ -368,7 +368,7 @@ namespace TEdit.ViewModel
             CurrentLanguage = language;
             ErrorLogging.TelemetryClient.TrackEvent(nameof(SetLanguage), properties: new Dictionary<string, string> { ["language"] = language.ToString() });
             Settings.Default.Language = language;
-            Settings.Default.Save();
+            try { Settings.Default.Save(); } catch (Exception ex) { ErrorLogging.LogException(ex); }
 
             if (MessageBox.Show($"Language changed to {language}. Do you wish to restart now?", "Restart to change language", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
             {
