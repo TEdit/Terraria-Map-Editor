@@ -82,7 +82,7 @@ namespace TEdit.Terraria
         private static void SaveV2(World world, BinaryWriter bw)
         {
             world.Validate();
-
+            world.FileRevision++;
             // initialize tileframeimportance array if empty
             if (TileFrameImportant == null || TileFrameImportant.Length < TileCount)
             {

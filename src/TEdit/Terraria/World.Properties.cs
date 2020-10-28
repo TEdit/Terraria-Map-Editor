@@ -244,6 +244,8 @@ namespace TEdit.Terraria
             set { Set(nameof(WorldGenVersion), ref _worldGenVersion, value); }
         }
 
+        public uint WorldVersion => Version;
+
         public string Seed
         {
             get { return _seed; }

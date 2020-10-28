@@ -276,7 +276,11 @@
         <TextBlock Text="{x:Static p:Language.tool_wp_guid}" HorizontalAlignment="Right" />
         <TextBox Text="{Binding CurrentWorld.WorldGUID, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  />
         <TextBlock Text="{x:Static p:Language.tool_wp_revision}" HorizontalAlignment="Right" />
-        <TextBlock Text="{Binding CurrentWorld.FileRevision}" HorizontalAlignment="Left" />
+        <StackPanel Orientation="Horizontal">
+            <TextBlock Text="{Binding CurrentWorld.FileRevision}" HorizontalAlignment="Left" />
+            <TextBlock Text="v" HorizontalAlignment="Left" Margin="10 0 0 0" />
+            <TextBlock Text="{Binding CurrentWorld.WorldVersion}" HorizontalAlignment="Left" />
+        </StackPanel>
         <TextBlock Text="{x:Static p:Language.tool_wp_seed}" HorizontalAlignment="Right" />
         <TextBox Text="{Binding CurrentWorld.Seed}" HorizontalAlignment="Stretch" IsReadOnly="true" />
         <Separator Grid.ColumnSpan="2" />
@@ -326,7 +330,7 @@
         <TextBlock Text="{x:Static p:Language.tool_wp_rain_max}" HorizontalAlignment="Right" />
         <DockPanel>
             <TextBlock Text="{Binding CurrentWorld.TempMaxRain, StringFormat={}{0:0}}" Width="30" DockPanel.Dock="Right" />
-            <Slider Value="{Binding CurrentWorld.TempMaxRain, Mode=TwoWay}" VerticalAlignment="Center" Minimum="0" Maximum="65534" SmallChange="1" />
+            <Slider Value="{Binding CurrentWorld.TempMaxRain, Mode=TwoWay}" VerticalAlignment="Center" Minimum="0" Maximum="1" SmallChange="1" />
         </DockPanel>
         <TextBlock Text="{x:Static p:Language.tool_wp_rain_slime}" HorizontalAlignment="Right" />
         <DockPanel>
