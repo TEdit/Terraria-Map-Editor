@@ -73,7 +73,7 @@ namespace TEdit.Terraria.Objects
 
         public void Place(int destinationX, int destinationY, WorldViewModel wvm)
         {
-            ErrorLogging.TelemetryClient.TrackEvent("PlaceSprite", new Dictionary<string, string> { ["Tile"] = Tile.ToString(), ["UV"] = UV.ToString()});
+            ErrorLogging.TelemetryClient?.TrackEvent("PlaceSprite", new Dictionary<string, string> { ["Tile"] = Tile.ToString(), ["UV"] = UV.ToString()});
 
             if (Tile == (ushort)TileType.ChristmasTree)
             {
@@ -125,7 +125,7 @@ namespace TEdit.Terraria.Objects
 
         public void Place(int destinationX, int destinationY, ITileData world)
         {
-            ErrorLogging.TelemetryClient.TrackEvent("PlaceSprite", new Dictionary<string, string> { ["Tile"] = Tile.ToString(), ["UV"] = UV.ToString()});
+            ErrorLogging.TelemetryClient?.TrackEvent("PlaceSprite", new Dictionary<string, string> { ["Tile"] = Tile.ToString(), ["UV"] = UV.ToString()});
 
             if (Tile == (ushort)TileType.ChristmasTree)
             {
@@ -317,7 +317,7 @@ namespace TEdit.Terraria.Objects
 
         public static void PlaceSprite(int destinationX, int destinationY, Sprite sprite, WorldViewModel wvm)
         {
-            ErrorLogging.TelemetryClient.TrackEvent("PlaceSpriteOld", new Dictionary<string, string> { ["Tile"] = sprite.Tile.ToString() });
+            ErrorLogging.TelemetryClient?.TrackEvent("PlaceSpriteOld", new Dictionary<string, string> { ["Tile"] = sprite.Tile.ToString() });
 
             if (sprite.Tile == (ushort)TileType.ChristmasTree)
             {

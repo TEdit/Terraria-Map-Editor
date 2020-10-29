@@ -1029,7 +1029,7 @@ namespace TEdit.ViewModel
                     {
                         if (CurrentWorld != null)
                         {
-                            ErrorLogging.TelemetryClient.TrackEvent(nameof(LoadWorld));
+                            ErrorLogging.TelemetryClient?.TrackEvent(nameof(LoadWorld));
 
                             PixelMap = t.Result;
                             UpdateTitle();

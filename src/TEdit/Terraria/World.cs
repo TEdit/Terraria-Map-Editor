@@ -54,7 +54,7 @@ namespace TEdit.Terraria
 
         public static void Save(World world, string filename, bool resetTime = false)
         {
-            ErrorLogging.TelemetryClient.TrackEvent(nameof(Save));
+            ErrorLogging.TelemetryClient?.TrackEvent(nameof(Save));
 
             try
             {

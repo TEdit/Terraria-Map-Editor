@@ -175,7 +175,7 @@ namespace TEdit.Editor.Clipboard
             if (Buffer == null)
                 return;
 
-            ErrorLogging.TelemetryClient.TrackEvent("Paste");
+            ErrorLogging.TelemetryClient?.TrackEvent("Paste");
 
             _wvm.Selection.IsActive = false; // clear selection when pasting to prevent "unable to use pencil" issue
             World world = _wvm.CurrentWorld;

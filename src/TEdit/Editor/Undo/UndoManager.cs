@@ -291,7 +291,7 @@ namespace TEdit.Editor.Undo
             if (_currentIndex <= 0)
                 return;
 
-            ErrorLogging.TelemetryClient.TrackEvent(nameof(Undo));
+            ErrorLogging.TelemetryClient?.TrackEvent(nameof(Undo));
 
 
             string undoFileName = string.Format(UndoFile, _currentIndex - 1); // load previous undo file
@@ -345,7 +345,7 @@ namespace TEdit.Editor.Undo
             if (_currentIndex > _maxIndex || _currentIndex < 0)
                 return;
 
-            ErrorLogging.TelemetryClient.TrackEvent(nameof(Redo));
+            ErrorLogging.TelemetryClient?.TrackEvent(nameof(Redo));
 
 
             // close current undo buffer and get a new one with a new name after redo
