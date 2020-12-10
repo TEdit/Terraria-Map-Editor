@@ -491,7 +491,7 @@
         <TextBlock  />
         <CheckBox IsChecked="{Binding CurrentWorld.BoughtBunny}" Content="{x:Static p:Language.tool_wp_npc_bunny}" VerticalAlignment="Center" VerticalContentAlignment="Center" />
         <Separator Grid.ColumnSpan="2" />
-        <TextBlock Text="NPC's Saved" HorizontalAlignment="Right" />
+        <TextBlock Text="NPCs Saved" HorizontalAlignment="Right" />
         <CheckBox IsChecked="{Binding CurrentWorld.SavedGoblin}" Content="{x:Static p:Language.tool_wp_npc_goblintinkerer}" VerticalAlignment="Center" VerticalContentAlignment="Center" />
         <TextBlock />
         <CheckBox IsChecked="{Binding CurrentWorld.SavedMech}" Content="{x:Static p:Language.tool_wp_npc_mechanic}" VerticalAlignment="Center" VerticalContentAlignment="Center" />
