@@ -132,16 +132,19 @@ namespace TEdit.UI.Xaml.XnaContentHost
         /// </summary>
         public void ResetDevice(int width, int height)
         {
-            if (DeviceResetting != null)
-                DeviceResetting(this, EventArgs.Empty);
+            if (DeviceResetting != null) { DeviceResetting(this, EventArgs.Empty); }
 
             parameters.BackBufferWidth = Math.Max(parameters.BackBufferWidth, width);
             parameters.BackBufferHeight = Math.Max(parameters.BackBufferHeight, height);
 
+            // prevent backbuffer zero size
+            if (parameters.BackBufferWidth <= 0) { parameters.BackBufferWidth = 640; }
+            if (parameters.BackBufferHeight <= 0) { parameters.BackBufferHeight = 480; }
+
             graphicsDevice.Reset(parameters);
 
-            if (DeviceReset != null)
-                DeviceReset(this, EventArgs.Empty);
+            if (DeviceReset != null) { DeviceReset(this, EventArgs.Empty); }
         }
     }
 }
+
