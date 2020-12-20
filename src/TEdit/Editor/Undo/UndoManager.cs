@@ -14,15 +14,15 @@ namespace TEdit.Editor.Undo
     public class UndoManager : ObservableObject, IDisposable
     {
         private static Random r = new Random();
-        private static int uniqueVal;
+        private static string uniqueVal;
         private static Timer undoAliveTimer;
         private static string UndoAliveFile;
 
         static UndoManager()
         {
             r = new Random();
-            uniqueVal = r.Next(999999999);
-            Dir = Path.Combine(WorldViewModel.TempPath, "undo_" + uniqueVal);
+            uniqueVal = DateTime.Now.ToString("yyyyMMddHHmmss");
+            Dir = Path.Combine(WorldViewModel.TempPath, "undo", "undo_" + uniqueVal);
             UndoFile = Path.Combine(Dir, "undo_temp_{0}");
             RedoFile = Path.Combine(Dir, "redo_temp_{0}");
             UndoAliveFile = Path.Combine(Dir, "alive.txt");
@@ -33,6 +33,16 @@ namespace TEdit.Editor.Undo
 
                 Directory.CreateDirectory(Dir);
                 File.Create(UndoAliveFile).Close();
+            }
+
+            // cleanup old undo folders
+            foreach (var dir in Directory.GetDirectories(WorldViewModel.TempPath, "undo*", SearchOption.AllDirectories))
+            {
+                var fi = new FileInfo(Path.Combine(dir, "alive.txt"));
+                if (fi.Exists && fi.LastWriteTime < DateTime.Now.AddDays(-7))
+                {
+                    Directory.Delete(dir, true);
+                }
             }
 
             undoAliveTimer = new Timer(UndoAlive, null, TimeSpan.FromSeconds(10), TimeSpan.FromMinutes(5));
@@ -334,7 +344,7 @@ namespace TEdit.Editor.Undo
 
             _currentIndex--; // move index back one, create a new buffer
             CreateBuffer();
-            _wvm.CurrentWorld.UpgradeLegacyTileEntities();
+            //_wvm.CurrentWorld.UpgradeLegacyTileEntities();
             OnUndid(this, EventArgs.Empty);
         }
 

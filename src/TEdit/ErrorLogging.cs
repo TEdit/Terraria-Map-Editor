@@ -30,18 +30,24 @@ namespace TEdit
                     Directory.CreateDirectory(dir);
                 }
 
-                if (File.Exists(LogFilePath))
+                // cleanup old 
+                foreach (string file in Directory.GetFiles(dir))
                 {
-                    string destFileName = LogFilePath + ".old";
-                    if (File.Exists(destFileName))
-                        File.Delete(destFileName);
-                    File.Move(LogFilePath, destFileName);
+                    try
+                    {
+                        var fi = new FileInfo(file);
+                        if (fi.LastWriteTime < DateTime.Now.AddDays(-7))
+                        {
+                            fi.Delete();
+                        }
+                    }
+                    catch (Exception err)
+                    {
+                        // skip deleting this file
+                    }
                 }
-                else
-                {
-                    File.Create(LogFilePath).Dispose();
 
-                }
+                File.Create(LogFilePath).Dispose();
             }
 
             InitializeTelemetry();
@@ -89,7 +95,7 @@ namespace TEdit
             return client;
         }
 
-        public static string LogFilePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "My Games", "Terraria", "TEditLog.txt");
+        public static string LogFilePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "My Games", "Terraria", "TEdit", "Logs", $"TEditLog_{DateTime.Now:yyyyMMddHHmmss}.txt");
 
         #region ErrorLevel enum
 
@@ -129,7 +135,7 @@ namespace TEdit
                     LogException(ex.InnerException);
 
                 Log($"{ErrorLevel.Error} - {ex.Message}\r\n{ex.StackTrace}");
-                
+
                 if (Settings.Default.Telemetry == 1)
                 {
                     var telex = new Microsoft.ApplicationInsights.DataContracts.ExceptionTelemetry(ex);

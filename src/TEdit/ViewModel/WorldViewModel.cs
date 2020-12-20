@@ -692,8 +692,6 @@ namespace TEdit.ViewModel
 
         private void UpdateTitle()
         {
-
-
             WindowTitle =
                 $"TEdit v{App.Version} {Path.GetFileName(_currentFile)}";
         }
