@@ -274,7 +274,6 @@ namespace TEdit.Terraria
                 || tileType == (int)TileType.MannequinLegacy
                 || tileType == (int)TileType.WomannequinLegacy
                 || tileType == (int)TileType.FoodPlatter
-                || tileType == (int)TileType.Timer
                 || tileType == (int)TileType.TrainingDummy
                 || tileType == (int)TileType.ItemFrame
                 || tileType == (int)TileType.LogicSensor

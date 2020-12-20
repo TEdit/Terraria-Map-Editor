@@ -70,10 +70,10 @@ namespace TEdit.Editor.Tools
             {
                 // if the tile entity is not the same as it was, create a new TE.
                 var existingTe = _wvm.CurrentWorld.GetTileEntityAtTile(x, y);
-                if ((ushort)existingTe.TileType != _wvm.SelectedSpriteTile2.Tile)
+                if (existingTe == null || (ushort)existingTe.TileType != _wvm.SelectedSpriteTile2.Tile)
                 {
                     var te = TileEntity.CreateForTile(_wvm.CurrentWorld.Tiles[x, y], x, y, 0);
-                    TileEntity.PlaceEntity(te, _wvm);
+                    TileEntity.PlaceEntity(te, _wvm); // this will also remove the existing if there is one
                 }
             }
             else if (Tile.IsChest(tileId))
