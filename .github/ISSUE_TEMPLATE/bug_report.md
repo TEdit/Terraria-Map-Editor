@@ -8,9 +8,9 @@ assignees: ''
 ---
 
 # READ THIS FIRST
-Sprite Issues? See https://github.com/TEdit/Terraria-Map-Editor/wiki/Install-Requirements#for-sprite-viewing
-Won't Start? See https://github.com/TEdit/Terraria-Map-Editor/wiki/Troubleshooting#application-launch-or-map-loading-issue
-Map not loading? See https://github.com/TEdit/Terraria-Map-Editor/wiki/Troubleshooting#application-launch-or-map-loading-issue
+- **Sprite Issues?** See https://github.com/TEdit/Terraria-Map-Editor/wiki/Install-Requirements#for-sprite-viewing
+- **Won't Start?** See https://github.com/TEdit/Terraria-Map-Editor/wiki/Troubleshooting#application-launch-or-map-loading-issue
+- **Map not loading?** See https://github.com/TEdit/Terraria-Map-Editor/wiki/Troubleshooting#application-launch-or-map-loading-issue
 
 # If the Wiki did not help, fill out this form completely! If you are missing steps to reproduce your issue will be closed. Thank you.
 
