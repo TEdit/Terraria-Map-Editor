@@ -1,6 +1,6 @@
 ---
 name: Bug report
-about: Create a report to help us improve
+about: Create a report to help us improve. See [Troubleshooting Tips](https://github.com/TEdit/Terraria-Map-Editor/wiki/Troubleshooting#application-launch-or-map-loading-issue) and [Sprite Viewing](https://github.com/TEdit/Terraria-Map-Editor/wiki/Install-Requirements#for-sprite-viewing) before submitting a bug.
 title: ''
 labels: ''
 assignees: ''
