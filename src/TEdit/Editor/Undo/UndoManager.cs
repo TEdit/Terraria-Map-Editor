@@ -27,21 +27,39 @@ namespace TEdit.Editor.Undo
             RedoFile = Path.Combine(Dir, "redo_temp_{0}");
             UndoAliveFile = Path.Combine(Dir, "alive.txt");
 
-            if (!Directory.Exists(Dir))
+            try
             {
-                ErrorLogging.Log($"Creating Undo cache: {Dir}");
+                if (!Directory.Exists(Dir))
+                {
+                    ErrorLogging.Log($"Creating Undo cache: {Dir}");
 
-                Directory.CreateDirectory(Dir);
-                File.Create(UndoAliveFile).Close();
+                    Directory.CreateDirectory(Dir);
+                    File.Create(UndoAliveFile).Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                ErrorLogging.Log("Unable to create undo temp folder.");
+                ErrorLogging.LogException(ex);
+                System.Windows.Forms.MessageBox.Show($"Unable to create undo temp folder. Application will exit.\r\n{Dir}\r\n{ex.Message}",
+                    "Unable to create undo folder.", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Error);
+                App.Current.Shutdown();
             }
 
             // cleanup old undo folders
             foreach (var dir in Directory.GetDirectories(WorldViewModel.TempPath, "undo*", SearchOption.AllDirectories))
             {
-                var fi = new FileInfo(Path.Combine(dir, "alive.txt"));
-                if (fi.Exists && fi.LastWriteTime < DateTime.Now.AddDays(-7))
+                try
                 {
-                    Directory.Delete(dir, true);
+                    var fi = new FileInfo(Path.Combine(dir, "alive.txt"));
+                    if (fi.Exists && fi.LastWriteTime < DateTime.Now.AddDays(-7))
+                    {
+                        Directory.Delete(dir, true);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    ErrorLogging.LogException(ex);
                 }
             }
 
@@ -181,7 +199,7 @@ namespace TEdit.Editor.Undo
         }
         public void SaveTile(int x, int y)
         {
-            if (_buffer == null) {  CreateBuffer(); }
+            if (_buffer == null) { CreateBuffer(); }
 
             ValidateAndRemoveChests();
             SaveTileToBuffer(Buffer, x, y, false);

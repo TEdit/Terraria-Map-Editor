@@ -25,9 +25,18 @@ namespace TEdit
             lock (LogFilePath)
             {
                 string dir = Path.GetDirectoryName(LogFilePath);
-                if (!Directory.Exists(dir))
+                try
                 {
-                    Directory.CreateDirectory(dir);
+                    if (!Directory.Exists(dir))
+                    {
+                        Directory.CreateDirectory(dir);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    System.Windows.Forms.MessageBox.Show($"Unable to create log folder. Application will exit.\r\n{dir}\r\n{ex.Message}",
+                    "Unable to create undo folder.", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Error);
+                    App.Current.Shutdown();
                 }
 
                 // cleanup old 
@@ -47,7 +56,17 @@ namespace TEdit
                     }
                 }
 
-                File.Create(LogFilePath).Dispose();
+                try
+                {
+                    File.Create(LogFilePath).Dispose();
+
+                }
+                catch (Exception ex)
+                {
+                    System.Windows.Forms.MessageBox.Show($"Unable to create log file. Application will exit.\r\n{dir}\r\n{ex.Message}",
+                    "Unable to create undo folder.", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Error);
+                    App.Current.Shutdown();
+                }
             }
 
             InitializeTelemetry();
