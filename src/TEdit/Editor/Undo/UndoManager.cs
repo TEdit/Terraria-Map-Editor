@@ -91,17 +91,18 @@ namespace TEdit.Editor.Undo
 
         private static void CleanupOldUndoFiles(bool forceCleanup = false)
         {
+            var undoPath = Path.Combine(WorldViewModel.TempPath, "Undo");
             try
             {
-                foreach (var file in Directory.GetFiles(WorldViewModel.TempPath).ToList())
+                foreach (var file in Directory.GetFiles(undoPath).ToList())
                 {
                     ErrorLogging.Log($"Removing old undo file: {file}");
                     File.Delete(file);
                 }
 
-                foreach (var dir in Directory.GetDirectories(WorldViewModel.TempPath).ToList())
+                foreach (var dir in Directory.GetDirectories(undoPath).ToList())
                 {
-                    if (!Equals(dir, Dir) && !IsUndoDirAlive(dir))
+                    if (!Equals(dir, undoPath) && !IsUndoDirAlive(dir))
                     {
                         ErrorLogging.Log($"Removing old undo cache: {dir}");
                         Directory.Delete(dir, true);
@@ -110,8 +111,8 @@ namespace TEdit.Editor.Undo
 
                 if (forceCleanup)
                 {
-                    ErrorLogging.Log($"Removing undo cache: {Dir}");
-                    Directory.Delete(Dir, true);
+                    ErrorLogging.Log($"Removing undo cache: {undoPath}");
+                    Directory.Delete(undoPath, true);
                 }
             }
             catch (Exception err)
@@ -460,7 +461,7 @@ namespace TEdit.Editor.Undo
 
 
 
-                CleanupOldUndoFiles(true);
+                CleanupOldUndoFiles(false);
                 disposed = true;
             }
         }

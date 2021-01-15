@@ -6,6 +6,7 @@ using System.IO;
 using System.Reflection;
 using System.Text.RegularExpressions;
 using TEdit.Properties;
+using TEdit.ViewModel;
 
 namespace TEdit
 {
@@ -114,7 +115,7 @@ namespace TEdit
             return client;
         }
 
-        public static string LogFilePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "My Games", "Terraria", "TEdit", "Logs", $"TEditLog_{DateTime.Now:yyyyMMddHHmmss}.txt");
+        public static string LogFilePath = Path.Combine(WorldViewModel.TempPath, "Logs", $"TEditLog_{DateTime.Now:yyyyMMddHHmmss}.txt");
 
         #region ErrorLevel enum
 
