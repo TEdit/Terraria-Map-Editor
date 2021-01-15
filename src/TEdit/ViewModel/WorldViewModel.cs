@@ -707,7 +707,10 @@ namespace TEdit.ViewModel
 
         private void ShowNewsDialog()
         {
-            new NotificationsWindow().ShowDialog();
+            var w = new NotificationsWindow();
+            w.Owner = Application.Current.MainWindow;
+            w.WindowStartupLocation = WindowStartupLocation.CenterOwner;
+            w.ShowDialog();
         }
 
         private void ViewLog()
