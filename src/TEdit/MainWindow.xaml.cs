@@ -7,6 +7,7 @@ using TEdit.Terraria;
 using TEdit.Editor;
 using TEdit.ViewModel;
 using TEdit.Properties;
+using TEdit.UI.Xaml;
 
 namespace TEdit
 {
@@ -33,13 +34,12 @@ namespace TEdit
         {
             if (Settings.Default.Telemetry == -1)
             {
-                MessageBox.Show(
-                    "Error reporting is enabled. This will send anonymized information for crash logs and feature usage to the developers and will help to track down and squash bugs.\r\n\r\nThis setting can be changed at any time from the file menu, Thanks!",
-                    "Error Reporting",
-                    MessageBoxButton.OK,
-                    MessageBoxImage.Information);
-
                 _vm.EnableTelemetry = true;
+            }
+
+            if (Settings.Default.ShowNews)
+            {
+                new NotificationsWindow().ShowDialog();
             }
         }
 

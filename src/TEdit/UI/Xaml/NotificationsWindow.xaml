@@ -1,0 +1,93 @@
+﻿<Window x:Class="TEdit.UI.Xaml.NotificationsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TEdit.UI.Xaml"
+        WindowStartupLocation="CenterOwner"
+        mc:Ignorable="d"
+        Background="{StaticResource ControlBackgroundBrush}" Foreground="{DynamicResource TextBrush}"
+        Title="Latest News" Height="600" Width="600">
+    <Border>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="24" />
+            </Grid.RowDefinitions>
+            <FlowDocumentReader xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Grid.Row="0" ViewingMode="Scroll">
+                <FlowDocument FontFamily="Segeo UI">
+                    <Paragraph>
+                        <Bold>Patreon</Bold>
+                    </Paragraph>
+                    <Paragraph>Are you enjoying TEdit? Support development on
+                        <Hyperlink NavigateUri="https://www.patreon.com/join/BinaryConstruct">Patreon!</Hyperlink> Donations from TEditors like yourself have helped keep this project going for over 10 years! Thanks!
+                    </Paragraph>
+                    <Paragraph>
+                        <Bold>Discord</Bold>
+                    </Paragraph>
+                    <Paragraph>
+                        Join the TEdit development discussion on Discord!
+                        <Hyperlink NavigateUri="https://discord.gg/xHcHd7mfpn">https://discord.gg/xHcHd7mfpn</Hyperlink>
+                    </Paragraph>
+
+                    <Paragraph>
+                        <Bold>Release Notes</Bold>
+                    </Paragraph>
+
+                    <Paragraph>Version 4.2.6</Paragraph>
+                    <List>
+                        <ListItem>
+                            <Paragraph>Added news window.</Paragraph>
+                        </ListItem>
+                        <ListItem>
+                            <Paragraph>Make development discord public: https://discord.gg/xHcHd7mfpn</Paragraph>
+                        </ListItem>
+                    </List>
+
+                    <Paragraph>Version 4.2.5</Paragraph>
+                    <List>
+                        <ListItem>
+                            <Paragraph>Fix for log files not being created due to OneDrive changing permissions.</Paragraph>
+                        </ListItem>
+                    </List>
+
+                    <Paragraph>Version 4.2.4</Paragraph>
+                    <List>
+                        <ListItem>
+                            <Paragraph>Add error message when unable to create undo files.</Paragraph>
+                        </ListItem>
+                        <ListItem>
+                            <Paragraph>Add error message when unable to create log file.</Paragraph>
+                        </ListItem>
+                    </List>
+
+                    <Paragraph>Version 4.2.3</Paragraph>
+                    <List>
+                        <ListItem>
+                            <Paragraph>Prevent zero width back buffer initialization. Related to
+                                <Hyperlink NavigateUri="https://github.com/TEdit/Terraria-Map-Editor/issues/751">#751</Hyperlink>
+                            </Paragraph>
+                        </ListItem>
+                        <ListItem>
+                            <Paragraph>Fix issue with timers being placed as target dummy. Related to
+                                <Hyperlink NavigateUri="https://github.com/TEdit/Terraria-Map-Editor/issues/1343">#1343</Hyperlink>
+                            </Paragraph>
+                        </ListItem>
+                        <ListItem>
+                            <Paragraph>Add cleanup to temp undo and log files.</Paragraph>
+                        </ListItem>
+                    </List>
+                    <Paragraph>
+                        <Bold>Error Reporting</Bold>
+                    </Paragraph>
+                    <Paragraph>Error reporting will send anonymized information for crash logs and feature usage to the developers and will help to track down and squash bugs. This setting can be changed at any time from the file menu.</Paragraph>
+                    <Paragraph></Paragraph>
+                </FlowDocument>
+            </FlowDocumentReader>
+            <StackPanel Orientation="Horizontal" Grid.Row="1" HorizontalAlignment="Right">
+                <CheckBox Content="Always show news" Margin="4" IsChecked="{Binding ShowNews}"></CheckBox>
+                <Button Width="100" Click="Button_Click">Close</Button>
+            </StackPanel>
+        </Grid>
+    </Border>
+</Window>

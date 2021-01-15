@@ -36,6 +36,7 @@ using Timer = System.Timers.Timer;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Xna.Framework;
+using TEdit.UI.Xaml;
 
 namespace TEdit.ViewModel
 {
@@ -94,6 +95,7 @@ namespace TEdit.ViewModel
         private ListCollectionView _spritesView2;
         private ListCollectionView _spriteStylesView;
         private ICommand _viewLogCommand;
+        private ICommand _showNewsCommand;
         private string _windowTitle;
         private ICommand _checkUpdatesCommand;
 
@@ -615,7 +617,10 @@ namespace TEdit.ViewModel
                 UpdateRenderWorld();
             }
         }
-
+        public ICommand ShowNewsCommand
+        {
+            get { return _showNewsCommand ?? (_showNewsCommand = new RelayCommand(ShowNewsDialog)); }
+        }
 
         public ICommand ViewLogCommand
         {
@@ -644,6 +649,21 @@ namespace TEdit.ViewModel
                 {
                     Settings.Default.TextureVisibilityZoomLevel = value;
                     try { Settings.Default.Save(); } catch (Exception ex) { ErrorLogging.LogException(ex); }
+                }
+            }
+        }
+
+        private bool _showNews = Settings.Default.ShowNews;
+
+        public bool ShowNews
+        {
+            get { return _showNews; }
+            set
+            {
+                if (Set(nameof(EnableTelemetry), ref _showNews, value))
+                {
+                    Settings.Default.ShowNews = value;
+                    try { Settings.Default.Save(); } catch (Exception ex) { ErrorLogging.LogException(ex); }                    
                 }
             }
         }
@@ -683,6 +703,11 @@ namespace TEdit.ViewModel
                 else
                     SaveWorldThreaded(Path.Combine(TempPath, "newworld.autosave"));
             }
+        }
+
+        private void ShowNewsDialog()
+        {
+            new NotificationsWindow().ShowDialog();
         }
 
         private void ViewLog()
