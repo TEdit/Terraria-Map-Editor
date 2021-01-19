@@ -40,7 +40,7 @@ namespace TEdit
             if (Settings.Default.ShowNews)
             {
                 var w = new NotificationsWindow();
-                w.Owner = this;
+                w.Owner = Application.Current.MainWindow;
                 w.WindowStartupLocation = WindowStartupLocation.CenterOwner;
                 w.ShowDialog();
             }

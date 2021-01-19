@@ -2204,6 +2204,15 @@ namespace TEdit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Goo World.
+        /// </summary>
+        public static string tool_wp_gooworld {
+            get {
+                return ResourceManager.GetString("tool_wp_gooworld", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to World GUID.
         /// </summary>
         public static string tool_wp_guid {

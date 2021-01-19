@@ -843,6 +843,9 @@ Naciśnij spróbuj ponownie aby wybrać nowy folder lub anuluj aby użyć {0} ja
   <data name="tool_wp_gold" xml:space="preserve">
     <value>Poziom Złota</value>
   </data>
+  <data name="tool_wp_gooworld" xml:space="preserve">
+    <value>Goo World</value>
+  </data>
   <data name="tool_wp_guid" xml:space="preserve">
     <value>Świat GUID</value>
   </data>

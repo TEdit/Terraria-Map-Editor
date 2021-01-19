@@ -843,6 +843,9 @@
   <data name="tool_wp_gold" xml:space="preserve">
     <value>金矿</value>
   </data>
+  <data name="tool_wp_gooworld" xml:space="preserve">
+    <value>Goo World</value>
+  </data>
   <data name="tool_wp_guid" xml:space="preserve">
     <value>世界GUID</value>
   </data>
