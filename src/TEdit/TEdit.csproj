@@ -92,6 +92,11 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Language.pl-PL.resx</DependentUpon>
     </Compile>
+    <Compile Update="Properties\Language.de-DE.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Language.de-DE.resx</DependentUpon>
+    </Compile>
     <Compile Update="Properties\Settings.Designer.cs">
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <AutoGen>True</AutoGen>

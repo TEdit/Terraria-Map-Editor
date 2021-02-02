@@ -308,6 +308,9 @@ Naciśnij spróbuj ponownie aby wybrać nowy folder lub anuluj aby użyć {0} ja
   <data name="menu_language_zh" xml:space="preserve">
     <value>Chiński</value>
   </data>
+  <data name="menu_language_de" xml:space="preserve">
+    <value>Deutsch</value>
+  </data>
   <data name="menu_layers" xml:space="preserve">
     <value>Warstwa</value>
   </data>

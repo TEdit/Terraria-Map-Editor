@@ -41,6 +41,9 @@ namespace TEdit
                 case LanguageSelection.Chinese:
                     System.Threading.Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("zh-CN");
                     break;
+                case LanguageSelection.German:
+                    System.Threading.Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("de-DE");
+                    break;
             }
 
             // language test code
