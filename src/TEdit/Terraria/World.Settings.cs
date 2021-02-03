@@ -290,6 +290,7 @@ namespace TEdit.Terraria
                 curItem.Id = (int?)xElement.Attribute("Id") ?? -1;
                 curItem.Name = (string)xElement.Attribute("Name");
                 curItem.Scale = (float?)xElement.Attribute("Scale") ?? 1f;
+                curItem.MaxStackSize = (int?)xElement.Attribute("MaxStackSize") ?? 0;
 
                 ItemProperties.Add(curItem);
                 _itemLookup.Add(curItem.Id, curItem);

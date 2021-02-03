@@ -9,7 +9,7 @@ namespace TEdit.Terraria
     [Serializable]
     public class Item : ObservableObject
     {
-        private const int MaxStackSize = 999;
+        private const int MaxStackSize = Int16.MaxValue;
 
         private int _stackSize;
         private byte _prefix;

@@ -377,6 +377,39 @@ namespace TEdit.ViewModel
             }
         }
 
+        // Chest Commands
+        private ICommand _copyChestItemCommand;
+        private ICommand _pasteChestItemCommand;
+
+        public ICommand CopyChestItemCommand
+        {
+            get { return _copyChestItemCommand ?? (_copyChestItemCommand = new RelayCommand<Item>(CopyChestItem)); }
+        }
+        public ICommand PasteChestItemCommand
+        {
+            get { return _pasteChestItemCommand ?? (_pasteChestItemCommand = new RelayCommand<Item>(PasteChestItem)); }
+        }
+
+        private Item _chestItemClipboard;
+
+        private void CopyChestItem(Item item)
+        {
+            _chestItemClipboard = item?.Copy();
+        }
+
+        private void PasteChestItem(Item item)
+        {
+            if (_chestItemClipboard != null)
+            {
+                item.NetId = _chestItemClipboard.NetId;
+                item.Prefix = _chestItemClipboard.Prefix;
+                item.StackSize = _chestItemClipboard.StackSize;
+            } else
+            {
+                item.NetId = 0;
+            }
+        }
+
         #region Clipboard
 
         private ICommand _emptyClipboardCommand;
@@ -522,6 +555,7 @@ namespace TEdit.ViewModel
         Russian,
         Arabic,
         Chinese,
-        Polish
+        Polish,
+        German
     }
 }
