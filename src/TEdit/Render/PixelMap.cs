@@ -191,7 +191,7 @@ namespace TEdit.Render
                             c.B = (byte)((byte.MaxValue - c.B) * 0.5);
                             break;
                         default:
-                            paint.A = (byte)32;
+                            paint.A = (byte)200;
                             c = c.AlphaBlend(paint);
                             break;
                     }
@@ -227,7 +227,7 @@ namespace TEdit.Render
                             c.B = (byte)(byte.MaxValue - c.B);
                             break;
                         default:
-                            paint.A = (byte)32;
+                            paint.A = (byte)200;
                             c = c.AlphaBlend(paint);
                             break;
                     }
