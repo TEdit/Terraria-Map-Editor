@@ -37,7 +37,7 @@ namespace TEdit.Editor.Plugins
             }
 
             // show the result view with the list of locations
-            FindChestWithPluginResultView resultView = new FindChestWithPluginResultView(locations);
+            FindLocationResultView resultView = new FindLocationResultView(locations);
             resultView.Show();
         }
 

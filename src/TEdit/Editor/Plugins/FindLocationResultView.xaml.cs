@@ -10,10 +10,10 @@ namespace TEdit.Editor.Plugins
     /// <summary>
     /// Interaction logic for ReplaceAllPlugin.xaml
     /// </summary>
-    public partial class FindChestWithPluginResultView : Window
+    public partial class FindLocationResultView : Window
     {
         private char[] splitters = new char[] { ',' };
-        public FindChestWithPluginResultView(IEnumerable<Vector2> locations)
+        public FindLocationResultView(IEnumerable<Vector2> locations)
         {
             InitializeComponent();
             foreach (Vector2 location in locations)
