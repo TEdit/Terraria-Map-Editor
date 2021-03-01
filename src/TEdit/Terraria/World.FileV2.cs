@@ -104,23 +104,23 @@ namespace TEdit.Terraria
             OnProgressChanged(null, new ProgressChangedEventArgs(0, "Save Tiles..."));
             sectionPointers[2] = SaveTiles(world.Tiles, world.TilesWide, world.TilesHigh, bw);
 
-            OnProgressChanged(null, new ProgressChangedEventArgs(100, "Save Chests..."));
+            OnProgressChanged(null, new ProgressChangedEventArgs(91, "Save Chests..."));
             sectionPointers[3] = SaveChests(world.Chests, bw);
-            OnProgressChanged(null, new ProgressChangedEventArgs(100, "Save Signs..."));
+            OnProgressChanged(null, new ProgressChangedEventArgs(92, "Save Signs..."));
             sectionPointers[4] = SaveSigns(world.Signs, bw);
-            OnProgressChanged(null, new ProgressChangedEventArgs(100, "Save NPCs..."));
+            OnProgressChanged(null, new ProgressChangedEventArgs(93, "Save NPCs..."));
             sectionPointers[5] = SaveNPCs(world.NPCs, bw);
-            OnProgressChanged(null, new ProgressChangedEventArgs(100, "Save Mobs..."));
+            OnProgressChanged(null, new ProgressChangedEventArgs(94, "Save Mobs..."));
             sectionPointers[5] = SaveMobs(world.Mobs, bw);
-            OnProgressChanged(null, new ProgressChangedEventArgs(100, "Save Tile Entities Section..."));
+            OnProgressChanged(null, new ProgressChangedEventArgs(95, "Save Tile Entities Section..."));
             sectionPointers[6] = SaveTileEntities(world.TileEntities, bw);
-            OnProgressChanged(null, new ProgressChangedEventArgs(100, "Save Weighted Pressure Plates..."));
+            OnProgressChanged(null, new ProgressChangedEventArgs(96, "Save Weighted Pressure Plates..."));
             sectionPointers[7] = SavePressurePlate(world.PressurePlates, bw);
-            OnProgressChanged(null, new ProgressChangedEventArgs(100, "Save Town Manager..."));
+            OnProgressChanged(null, new ProgressChangedEventArgs(97, "Save Town Manager..."));
             sectionPointers[8] = SaveTownManager(world.PlayerRooms, bw);
-            OnProgressChanged(null, new ProgressChangedEventArgs(100, "Save Bestiary..."));
+            OnProgressChanged(null, new ProgressChangedEventArgs(98, "Save Bestiary..."));
             sectionPointers[9] = SaveBestiary(world.Bestiary, bw);
-            OnProgressChanged(null, new ProgressChangedEventArgs(100, "Save Creative Powers..."));
+            OnProgressChanged(null, new ProgressChangedEventArgs(99, "Save Creative Powers..."));
             sectionPointers[10] = SaveCreativePowers(world.CreativePowers, bw);
             OnProgressChanged(null, new ProgressChangedEventArgs(100, "Save Footers..."));
             SaveFooter(world, bw);
@@ -132,7 +132,7 @@ namespace TEdit.Terraria
         {
             for (int x = 0; x < maxX; x++)
             {
-                OnProgressChanged(null, new ProgressChangedEventArgs(x.ProgressPercentage(maxX), "Saving Tiles..."));
+                OnProgressChanged(null, new ProgressChangedEventArgs((int)(x.ProgressPercentage(maxX)*0.9), "Saving Tiles..."));
 
 
                 for (int y = 0; y < maxY; y++)
