@@ -118,6 +118,12 @@
     </None>
   </ItemGroup>
 
+  <ItemGroup>
+    <Page Update="Editor\Plugins\HouseGenPluginView.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+    </Page>
+  </ItemGroup>
+
   <Target Name="Sign" AfterTargets="Publish" Condition=" $(signcert) != '' ">
     <Exec Command="signtool.exe sign /v /fd sha256 /n &quot;$(signcert)&quot; /t http://timestamp.digicert.com &quot;$(PublishDir)$(TargetFileName)&quot; " Condition="$(TargetFileName) != ''" ContinueOnError="WarnAndContinue" />
   </Target>
