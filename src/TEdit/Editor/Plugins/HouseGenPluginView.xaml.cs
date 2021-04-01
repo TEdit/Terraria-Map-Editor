@@ -292,8 +292,6 @@ namespace TEdit.Editor.Plugins
                     }
                 }
             }
-
-            UpdatePreview();
             return true;
         }
 
@@ -316,8 +314,11 @@ namespace TEdit.Editor.Plugins
 
         private void GenButtonClick(object sender, RoutedEventArgs e)
         {
-            GenHouse();
-            UpdatePreview();
+            if (GenHouse())
+            {
+                UpdatePreview();
+                Copy.IsEnabled = true;
+            }
         }
 
         private void CopyButtonClick(object sender, RoutedEventArgs e)
