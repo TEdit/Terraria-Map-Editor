@@ -51,6 +51,7 @@ namespace TEdit.ViewModel
             wvm.Plugins.Add(new UnlockAllChestsPlugin(wvm));
             wvm.Plugins.Add(new FindChestWithPlugin(wvm));
             wvm.Plugins.Add(new FindPlanteraBulbPlugin(wvm));
+            wvm.Plugins.Add(new HouseGenPlugin(wvm));
             return wvm;
         }
     }

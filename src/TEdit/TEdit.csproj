@@ -24,7 +24,9 @@
     <PackageReference Include="Microsoft.ApplicationInsights.WindowsServer" Version="2.15.0" />
     <PackageReference Include="MonoGame.Framework.WindowsDX" Version="3.8.0.1641" />
     <PackageReference Include="MvvmLightLibs" Version="5.4.1.1" />
-    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1">
+      <GeneratePathProperty>true</GeneratePathProperty>
+    </PackageReference>
     <PackageReference Include="System.Collections" Version="4.3.0" />
   </ItemGroup>
 
@@ -116,6 +118,12 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="Editor\Plugins\HouseGenPluginView.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+    </Page>
   </ItemGroup>
 
   <Target Name="Sign" AfterTargets="Publish" Condition=" $(signcert) != '' ">
