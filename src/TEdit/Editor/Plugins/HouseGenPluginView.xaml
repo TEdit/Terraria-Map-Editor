@@ -6,8 +6,7 @@
         Closing="Window_Closing"
         Title="House Generator" ResizeMode="NoResize" WindowStartupLocation="CenterOwner" Icon="/TEdit;component/Images/tedit.ico">
     <StackPanel Background="{StaticResource ControlBackgroundBrush}">
-        <xnaContentHost:GraphicsDeviceControl x:Name="xnaPreview" LoadContent="xnaPreview_LoadContent" RenderXna="xnaPreview_RenderXna" MinWidth="300" MinHeight="300"/>
-        <Image Name="PreviewImage" Margin="10" HorizontalAlignment="Stretch" Stretch="Uniform" RenderOptions.BitmapScalingMode="NearestNeighbor" MaxHeight="100" />
+        <Image Name="PreviewImage" Margin="10" HorizontalAlignment="Stretch" Stretch="Uniform" RenderOptions.BitmapScalingMode="NearestNeighbor" Width="400" Height="400" />
         <ComboBox Name="SelectedTemplate" Margin="5" Padding="25,3" HorizontalAlignment="Center" Width="200" IsEditable="True" Focusable="True" IsReadOnly="True" />
         <Button Name="Import" Content="Import Template Schematic" Margin="5" Padding="25, 3" HorizontalAlignment="Center" VerticalAlignment="Center" Click="ImportButtonClick" />
         <Grid>
