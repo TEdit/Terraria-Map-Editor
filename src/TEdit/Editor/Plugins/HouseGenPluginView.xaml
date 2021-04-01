@@ -5,7 +5,10 @@
         xmlns:view="clr-namespace:TEdit.View" SizeToContent="WidthAndHeight"
         Title="House Generator" ResizeMode="NoResize" WindowStartupLocation="CenterOwner" Icon="/TEdit;component/Images/tedit.ico">
     <StackPanel Background="{StaticResource ControlBackgroundBrush}">
-
+        <xnaContentHost:GraphicsDeviceControl x:Name="xnaPreview" 
+                                    LoadContent="xnaPreview_LoadContent" 
+                                    RenderXna="xnaPreview_RenderXna" Height="24"
+                                     />
         <Image Name="PreviewImage" Margin="10" HorizontalAlignment="Stretch" Stretch="Uniform" RenderOptions.BitmapScalingMode="NearestNeighbor" MaxHeight="100" />
 
         <TextBlock Text="Press 'Generate' for a new house." Margin="10 2" TextWrapping="Wrap" HorizontalAlignment="Center" VerticalAlignment="Stretch" Foreground="{StaticResource TextBrush}"/> 
@@ -14,10 +17,7 @@
             <Button Name="Cancel" Margin="5" Content="Cancel" HorizontalAlignment="Left" Padding="15, 3" VerticalAlignment="Center" Click="CancelButtonClick" />
             <Button Name="Copy" Margin="5" Content="Copy" HorizontalAlignment="Right" Padding="15, 3" VerticalAlignment="Center" Click="CopyButtonClick" IsEnabled="False"/>
         </Grid>
+
         
-        <!-- <xnaContentHost:GraphicsDeviceControl x:Name="houseGenPreview" 
-                                    LoadContent="HouseGenPreview_LoadContent" 
-                                    RenderXna="HouseGenPreview_RenderXna"
-                                     /> -->
     </StackPanel>
 </Window>
