@@ -1,0 +1,42 @@
+{
+	"Count": 3,
+	"Rooms": [
+		{
+			"Name": "room1", 
+			"X" : 2, 
+			"Y" : 5,
+			"Width": 25, 
+			"Height": 7
+		},
+		{
+			"Name" : "room2",
+			"X" : 2, 
+			"Y" : 12,
+			"Width": 24, 
+			"Height": 10
+		},
+		{
+			"Name" : "room3",
+			"X" : 26, 
+			"Y" : 12,
+			"Width": 15, 
+			"Height": 10  
+		}
+	],
+	"Roofs": [
+		{
+			"Name" : "roof1",
+			"X" : 0, 
+			"Y" : 0,
+			"Width": 29, 
+			"Height": 5 
+		},
+		{
+			"Name" :  "roof2",
+			"X" : 27, 
+			"Y" : 7,
+			"Width": 16, 
+			"Height": 5 
+		}
+	]
+}
