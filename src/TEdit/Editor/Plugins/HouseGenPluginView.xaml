@@ -10,10 +10,10 @@
         <Image Name="PreviewImage" Margin="10" HorizontalAlignment="Stretch" Stretch="Uniform" RenderOptions.BitmapScalingMode="NearestNeighbor" MaxHeight="100" />
         <ComboBox Name="SelectedTemplate" Margin="5" Padding="25,3" HorizontalAlignment="Center" Width="200" IsEditable="True" Focusable="True" IsReadOnly="True" />
         <Button Name="Import" Content="Import Template Schematic" Margin="5" Padding="25, 3" HorizontalAlignment="Center" VerticalAlignment="Center" Click="ImportButtonClick" />
-            <Grid>
-                <Button Name="Cancel" Content="Cancel" Margin="5" Padding="15, 3" HorizontalAlignment="Left" VerticalAlignment="Center" Click="CancelButtonClick" />
-                <Button Name="Copy" Content="Copy" Margin="5" Padding="15, 3" HorizontalAlignment="Right" VerticalAlignment="Center" Click="CopyButtonClick" IsEnabled="False"/>
-            </Grid>
+        <Grid>
+            <Button Name="Cancel" Content="Cancel" Margin="5" Padding="15, 3" HorizontalAlignment="Left" VerticalAlignment="Center" Click="CancelButtonClick" />
+            <Button Name="Copy" Content="Copy" Margin="5" Padding="15, 3" HorizontalAlignment="Right" VerticalAlignment="Center" Click="CopyButtonClick" IsEnabled="False"/>
+        </Grid>
         <Button Name="Generate" Content="Generate" Margin="5" Padding="42, 3" HorizontalAlignment="Center" VerticalAlignment="Center" Click="GenButtonClick" IsEnabled="False"/>
     </StackPanel>
 </Window>

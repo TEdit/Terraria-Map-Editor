@@ -174,7 +174,7 @@ namespace TEdit.Editor.Plugins
         private float _zoom = 1;
 
         private Color _backgroundColor = Color.FromNonPremultiplied(32, 32, 32, 255);
-
+        
         private WriteableBitmap _previewImage;
         
         ClipboardBuffer _generatedSchematic;
@@ -275,13 +275,13 @@ namespace TEdit.Editor.Plugins
                     {
                         try
                         {
-                            _generatedSchematic.Tiles[x + templateData.Rooms[i].X, y + templateData.Rooms[i].Y] = (Tile)templateSchematic.Tiles[x + templateData.Rooms[i].X, y + templateData.Rooms[i].Y + (_bufferSize.Y * type)].Clone();
-                        }
+                        _generatedSchematic.Tiles[x + templateData.Rooms[i].X, y + templateData.Rooms[i].Y] = (Tile)templateSchematic.Tiles[x + templateData.Rooms[i].X, y + templateData.Rooms[i].Y + (_bufferSize.Y * type)].Clone();
+                    }
                         catch (IndexOutOfRangeException e)
                         {
                             MessageBox.Show(e.Message + " Check JSON Data for " + templateData.Rooms[i].Name, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                        }
-                    }
+                }
+            }
                 }
             }
 
@@ -296,13 +296,13 @@ namespace TEdit.Editor.Plugins
                     {
                         try
                         {
-                            _generatedSchematic.Tiles[x + templateData.Roofs[i].X, y + templateData.Roofs[i].Y] = (Tile)templateSchematic.Tiles[x + templateData.Roofs[i].X, y + templateData.Roofs[i].Y + (_bufferSize.Y * type)].Clone();
-                        }
+                        _generatedSchematic.Tiles[x + templateData.Roofs[i].X, y + templateData.Roofs[i].Y] = (Tile)templateSchematic.Tiles[x + templateData.Roofs[i].X, y + templateData.Roofs[i].Y + (_bufferSize.Y * type)].Clone();
+                    }
                         catch (IndexOutOfRangeException e)
                         {
                             MessageBox.Show(e.Message + " Check JSON Data for " + templateData.Roofs[i].Name, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                        }
-                    }
+                }
+            }
                 }
             }
 
@@ -315,12 +315,12 @@ namespace TEdit.Editor.Plugins
                 {
                     try
                     {
-                        if (_generatedSchematic.Tiles[x2, y2] == null) _generatedSchematic.Tiles[x2, y2] = new Tile();
-                    }
+                    if (_generatedSchematic.Tiles[x2, y2] == null) _generatedSchematic.Tiles[x2, y2] = new Tile();
+                }
                     catch (IndexOutOfRangeException e)
                     {
                         MessageBox.Show(e.Message + " Check JSON Data count value to make sure it matched schematic dimentions.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                    }
+            }
                 }
             }
 
@@ -343,7 +343,7 @@ namespace TEdit.Editor.Plugins
 
         private void CancelButtonClick(object sender, RoutedEventArgs e)
         {
-            Copy.IsEnabled = false;
+            Copy.IsEnabled = false;            
             Hide();
         }
 
@@ -2045,7 +2045,7 @@ namespace TEdit.Editor.Plugins
                 }
             }
             */
-        }
+            }
 
         private void xnaPreview_RenderXna(object sender, GraphicsDeviceEventArgs e)
         {
