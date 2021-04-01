@@ -275,13 +275,13 @@ namespace TEdit.Editor.Plugins
                     {
                         try
                         {
-                        _generatedSchematic.Tiles[x + templateData.Rooms[i].X, y + templateData.Rooms[i].Y] = (Tile)templateSchematic.Tiles[x + templateData.Rooms[i].X, y + templateData.Rooms[i].Y + (_bufferSize.Y * type)].Clone();
-                    }
+                            _generatedSchematic.Tiles[x + templateData.Rooms[i].X, y + templateData.Rooms[i].Y] = (Tile)templateSchematic.Tiles[x + templateData.Rooms[i].X, y + templateData.Rooms[i].Y + (_bufferSize.Y * type)].Clone();
+                        }
                         catch (IndexOutOfRangeException e)
                         {
                             MessageBox.Show(e.Message + " Check JSON Data for " + templateData.Rooms[i].Name, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                }
-            }
+                        }
+                    }
                 }
             }
 
@@ -296,31 +296,31 @@ namespace TEdit.Editor.Plugins
                     {
                         try
                         {
-                        _generatedSchematic.Tiles[x + templateData.Roofs[i].X, y + templateData.Roofs[i].Y] = (Tile)templateSchematic.Tiles[x + templateData.Roofs[i].X, y + templateData.Roofs[i].Y + (_bufferSize.Y * type)].Clone();
-                    }
+                            _generatedSchematic.Tiles[x + templateData.Roofs[i].X, y + templateData.Roofs[i].Y] = (Tile)templateSchematic.Tiles[x + templateData.Roofs[i].X, y + templateData.Roofs[i].Y + (_bufferSize.Y * type)].Clone();
+                        }
                         catch (IndexOutOfRangeException e)
                         {
                             MessageBox.Show(e.Message + " Check JSON Data for " + templateData.Roofs[i].Name, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                }
-            }
+                        }
+                    }
                 }
             }
 
             byte roofColor = (byte)rand.Next(31);
 
-            //Fill in any empty space of schematic outside of room definintions (empty space within bounds of roof or room should alredy be filled)
+            //Fill in any empty space of schematic outside of room definintions (empty space within bounds of roof or room should already be filled)
             for (int x2 = 0; x2 < _bufferSize.X; x2++)
             {
                 for (int y2 = 0; y2 < _bufferSize.Y; y2++)
                 {
                     try
                     {
-                    if (_generatedSchematic.Tiles[x2, y2] == null) _generatedSchematic.Tiles[x2, y2] = new Tile();
-                }
+                        if (_generatedSchematic.Tiles[x2, y2] == null) _generatedSchematic.Tiles[x2, y2] = new Tile();
+                    }
                     catch (IndexOutOfRangeException e)
                     {
-                        MessageBox.Show(e.Message + " Check JSON Data count value to make sure it matched schematic dimentions.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
+                        MessageBox.Show(e.Message + " Check JSON Data for value 'Count' to make sure it matches with associated schematic.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
                 }
             }
 
