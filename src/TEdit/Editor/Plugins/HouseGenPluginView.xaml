@@ -3,21 +3,17 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:xnaContentHost="clr-namespace:TEdit.UI.Xaml.XnaContentHost"
         xmlns:view="clr-namespace:TEdit.View" SizeToContent="WidthAndHeight"
+        Closing="Window_Closing"
         Title="House Generator" ResizeMode="NoResize" WindowStartupLocation="CenterOwner" Icon="/TEdit;component/Images/tedit.ico">
     <StackPanel Background="{StaticResource ControlBackgroundBrush}">
-        <xnaContentHost:GraphicsDeviceControl x:Name="xnaPreview" 
-                                    LoadContent="xnaPreview_LoadContent" 
-                                    RenderXna="xnaPreview_RenderXna" Height="24"
-                                     />
+        <xnaContentHost:GraphicsDeviceControl x:Name="xnaPreview" LoadContent="xnaPreview_LoadContent" RenderXna="xnaPreview_RenderXna" />
         <Image Name="PreviewImage" Margin="10" HorizontalAlignment="Stretch" Stretch="Uniform" RenderOptions.BitmapScalingMode="NearestNeighbor" MaxHeight="100" />
-
-        <TextBlock Text="Press 'Generate' for a new house." Margin="10 2" TextWrapping="Wrap" HorizontalAlignment="Center" VerticalAlignment="Stretch" Foreground="{StaticResource TextBrush}"/> 
-        <Button Name="Generate" Margin="5" Content="Generate" HorizontalAlignment="Center" Padding="25, 3" VerticalAlignment="Center" Click="GenButtonClick" />
-        <Grid>
-            <Button Name="Cancel" Margin="5" Content="Cancel" HorizontalAlignment="Left" Padding="15, 3" VerticalAlignment="Center" Click="CancelButtonClick" />
-            <Button Name="Copy" Margin="5" Content="Copy" HorizontalAlignment="Right" Padding="15, 3" VerticalAlignment="Center" Click="CopyButtonClick" IsEnabled="False"/>
-        </Grid>
-
-        
+        <ComboBox Name="SelectedTemplate" Margin="5" Padding="25,3" HorizontalAlignment="Center" Width="200" IsEditable="True" Focusable="True" IsReadOnly="True" />
+        <Button Name="Import" Content="Import Template Schematic" Margin="5" Padding="25, 3" HorizontalAlignment="Center" VerticalAlignment="Center" Click="ImportButtonClick" />
+            <Grid>
+                <Button Name="Cancel" Content="Cancel" Margin="5" Padding="15, 3" HorizontalAlignment="Left" VerticalAlignment="Center" Click="CancelButtonClick" />
+                <Button Name="Copy" Content="Copy" Margin="5" Padding="15, 3" HorizontalAlignment="Right" VerticalAlignment="Center" Click="CopyButtonClick" IsEnabled="False"/>
+            </Grid>
+        <Button Name="Generate" Content="Generate" Margin="5" Padding="42, 3" HorizontalAlignment="Center" VerticalAlignment="Center" Click="GenButtonClick" IsEnabled="False"/>
     </StackPanel>
 </Window>

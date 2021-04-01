@@ -17,8 +17,6 @@ using Microsoft.Xna.Framework.Graphics;
 using Vector2 = Microsoft.Xna.Framework.Vector2;
 using Newtonsoft.Json;
 
-#pragma warning disable CS0168 
-
 namespace TEdit.Editor.Plugins
 {
     public class HouseGenTemplate
@@ -134,6 +132,8 @@ namespace TEdit.Editor.Plugins
     /// </summary>
     public partial class HouseGenPluginView : Window
     {
+        //private Texture2D _previewTexture;
+
         private WorldViewModel _wvm;
         public WorldViewModel WorldViewModel
         {
@@ -187,60 +187,62 @@ namespace TEdit.Editor.Plugins
             _bufferSize = new(0,0);
             HouseGenTemplates = new List<HouseGenTemplate>();
             HouseGenSchematics = new List<ClipboardBuffer>();
-            LoadSchematicsAndTemplates();
         }
 
-        private void LoadSchematicsAndTemplates()
+        private bool ImportTemplateSchematic()
         {
-            //if (HouseGenSchematics.Count == 0)
-            //{
-                try
+            try
+            {
+                var ofd = new OpenFileDialog();
+                ofd.Filter = "TEdit House Gen Schematic File|*.TEditHGSch";
+                ofd.DefaultExt = "TEdit House Gen Schematic File|*.TEditHGSch";
+                ofd.Title = "Import TEdit House Gen Schematic File";
+                ofd.InitialDirectory = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), @"My Games\Terraria\Schematics");
+                if (!Directory.Exists(ofd.InitialDirectory))
+                    Directory.CreateDirectory(ofd.InitialDirectory);
+                ofd.Multiselect = false;
+                if ((bool)ofd.ShowDialog())
                 {
-                    var ofd = new OpenFileDialog();
-                    ofd.Filter = "TEdit Schematic File|*.TEditSch|Png Image (Real TileColor)|*.png|Bitmap Image (Real TileColor)|*.bmp";
-                    ofd.DefaultExt = "TEdit Schematic File|*.TEditSch";
-                    ofd.Title = "Import TEdit Schematic File";
-                    ofd.InitialDirectory = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), @"My Games\Terraria\Schematics");
-                    if (!Directory.Exists(ofd.InitialDirectory))
-                        Directory.CreateDirectory(ofd.InitialDirectory);
-                    ofd.Multiselect = false;
-                    if ((bool)ofd.ShowDialog())
+                    int schematic_id = HouseGenSchematics.Count;
+                    string filename = Path.GetFileNameWithoutExtension(ofd.FileName);
+
+                    //Schematic Loading
+                    ErrorLogging.TelemetryClient?.TrackEvent(nameof(ImportTemplateSchematic));
+                    HouseGenSchematics.Add(ClipboardBuffer.Load(ofd.FileName));
+
+                    //Template Loading
+                    string jsonValue = "";
+                    using (var sr = new StreamReader(new FileStream(Path.GetDirectoryName(ofd.FileName) + "\\" + filename + ".json", FileMode.Open, FileAccess.Read, FileShare.Read)))
                     {
-                        
-                        int schematic_id = HouseGenSchematics.Count;
-                        string filename = Path.GetFileNameWithoutExtension(ofd.FileName);
-
-                        //Schematic Loading
-                        ErrorLogging.TelemetryClient?.TrackEvent(nameof(LoadSchematicsAndTemplates));
-                        HouseGenSchematics.Add(ClipboardBuffer.Load(ofd.FileName));
-
-                        //Template Loading
-
-                    
-                        
-                        string jsonValue = "";
-                        using (var sr = new StreamReader(new FileStream(Path.GetDirectoryName(ofd.FileName)+ "\\" + filename + ".json", FileMode.Open, FileAccess.Read, FileShare.Read)))
-                        {
-                            jsonValue = sr.ReadToEnd();
-                        }
-
-                        HouseGenTemplateData data = JsonConvert.DeserializeObject<HouseGenTemplateData>(jsonValue);
-                        HouseGenTemplates.Add(new HouseGenTemplate(schematic_id, filename, data));
+                        jsonValue = sr.ReadToEnd();
                     }
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                }
 
-                if (HouseGenTemplates == null)
-                {
-                    Close();
-                    return;
-                }
+                    HouseGenTemplateData data = JsonConvert.DeserializeObject<HouseGenTemplateData>(jsonValue);
+                    HouseGenTemplates.Add(new HouseGenTemplate(schematic_id, filename, data));
 
-                GenHouse();
-           // }
+
+                    System.Windows.Controls.ComboBoxItem cbi = new();
+                    cbi.Content = HouseGenTemplates[schematic_id].Name;
+                    SelectedTemplate.Items.Add(cbi);
+                    SelectedTemplate.SelectedItem = cbi;
+
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
+
+            if (HouseGenTemplates == null)
+            {
+                return false;
+            }
+            return true;
         }
 
         private void GenHouse()
@@ -271,7 +273,14 @@ namespace TEdit.Editor.Plugins
                 {
                     for (int y = 0; y < templateData.Rooms[i].Height; y++)
                     {
-                        _generatedSchematic.Tiles[x + templateData.Rooms[i].X, y + templateData.Rooms[i].Y] = (Tile)templateSchematic.Tiles[x + templateData.Rooms[i].X, y + templateData.Rooms[i].Y + (_bufferSize.Y * type)].Clone();
+                        try
+                        {
+                            _generatedSchematic.Tiles[x + templateData.Rooms[i].X, y + templateData.Rooms[i].Y] = (Tile)templateSchematic.Tiles[x + templateData.Rooms[i].X, y + templateData.Rooms[i].Y + (_bufferSize.Y * type)].Clone();
+                        }
+                        catch (IndexOutOfRangeException e)
+                        {
+                            MessageBox.Show(e.Message + " Check JSON Data for " + templateData.Rooms[i].Name, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                        }
                     }
                 }
             }
@@ -285,7 +294,14 @@ namespace TEdit.Editor.Plugins
                 {
                     for (int y = 0; y < templateData.Roofs[i].Height; y++)
                     {
-                        _generatedSchematic.Tiles[x + templateData.Roofs[i].X, y + templateData.Roofs[i].Y] = (Tile)templateSchematic.Tiles[x + templateData.Roofs[i].X, y + templateData.Roofs[i].Y + (_bufferSize.Y * type)].Clone();
+                        try
+                        {
+                            _generatedSchematic.Tiles[x + templateData.Roofs[i].X, y + templateData.Roofs[i].Y] = (Tile)templateSchematic.Tiles[x + templateData.Roofs[i].X, y + templateData.Roofs[i].Y + (_bufferSize.Y * type)].Clone();
+                        }
+                        catch (IndexOutOfRangeException e)
+                        {
+                            MessageBox.Show(e.Message + " Check JSON Data for " + templateData.Roofs[i].Name, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                        }
                     }
                 }
             }
@@ -297,7 +313,14 @@ namespace TEdit.Editor.Plugins
             {
                 for (int y2 = 0; y2 < _bufferSize.Y; y2++)
                 {
-                    if (_generatedSchematic.Tiles[x2, y2] == null) _generatedSchematic.Tiles[x2, y2] = new Tile();
+                    try
+                    {
+                        if (_generatedSchematic.Tiles[x2, y2] == null) _generatedSchematic.Tiles[x2, y2] = new Tile();
+                    }
+                    catch (IndexOutOfRangeException e)
+                    {
+                        MessageBox.Show(e.Message + " Check JSON Data count value to make sure it matched schematic dimentions.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
                 }
             }
 
@@ -310,6 +333,12 @@ namespace TEdit.Editor.Plugins
             _generatedSchematic.RenderBuffer();
             PreviewImage.Source = _generatedSchematic.Preview;
             Copy.IsEnabled = true;
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            e.Cancel = true; //Prevent window from being closed, hide it instead.
+            Hide();
         }
 
         private void CancelButtonClick(object sender, RoutedEventArgs e)
@@ -328,6 +357,14 @@ namespace TEdit.Editor.Plugins
         {
             _wvm.Clipboard.LoadedBuffers.Add(_generatedSchematic);
             Copy.IsEnabled = false;
+        }
+
+        private void ImportButtonClick(object sender, RoutedEventArgs e)
+        {
+            if (ImportTemplateSchematic())
+            {
+                Generate.IsEnabled = true;
+            }
         }
 
         private bool Check2DFrustrum(int tileIndex)
@@ -2024,5 +2061,3 @@ namespace TEdit.Editor.Plugins
         }
     }
 }
-
-#pragma warning restore CS0168
