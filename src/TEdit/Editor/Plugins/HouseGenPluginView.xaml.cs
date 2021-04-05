@@ -1,12 +1,24 @@
-﻿using System;
+﻿/* 
+Copyright (c) 2021 ReconditeDeity
+ 
+This source is subject to the Microsoft Public License.
+See http://www.microsoft.com/opensource/licenses.mspx#Ms-PL.
+All other rights reserved.
+
+THIS CODE AND INFORMATION IS PROVIDED "AS IS" WITHOUT WARRANTY OF ANY KIND, 
+EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE IMPLIED 
+WARRANTIES OF MERCHANTABILITY AND/OR FITNESS FOR A PARTICULAR PURPOSE.
+ */
+
+using System;
 using System.Windows;
 using System.IO;
 using System.Collections.Generic;
 using Microsoft.Win32;
 using TEdit.Terraria;
 using TEdit.Editor.Clipboard;
+using TEdit.Geometry.Primitives;
 using TEdit.ViewModel;
-using Microsoft.Xna.Framework;
 using Newtonsoft.Json;
 
 namespace TEdit.Editor.Plugins
@@ -125,6 +137,7 @@ namespace TEdit.Editor.Plugins
     public partial class HouseGenPluginView : Window
     {
         private WorldViewModel _wvm;
+
         public WorldViewModel WorldViewModel
         {
             get { return _wvm; }
@@ -134,22 +147,22 @@ namespace TEdit.Editor.Plugins
         private readonly IList <HouseGenTemplate> HouseGenTemplates;
         private readonly IList <ClipboardBuffer> HouseGenSchematics;
 
-        private Color _backgroundColor = Color.FromNonPremultiplied(32, 32, 32, 255);
-        
         ClipboardBuffer _generatedSchematic;
-        Geometry.Primitives.Vector2Int32 _bufferSize;
+        Vector2Int32 _generatedSchematicSize;
 
         public HouseGenPluginView()
         {
             InitializeComponent();
             _wvm = null;
-            _bufferSize = new(0,0);
+            _generatedSchematicSize = new(0, 0);
             HouseGenTemplates = new List<HouseGenTemplate>();
             HouseGenSchematics = new List<ClipboardBuffer>();
         }
 
         private bool ImportTemplateSchematic()
         {
+            int schematic_id = HouseGenSchematics.Count;
+
             try
             {
                 var ofd = new OpenFileDialog();
@@ -162,7 +175,6 @@ namespace TEdit.Editor.Plugins
                 ofd.Multiselect = false;
                 if ((bool)ofd.ShowDialog())
                 {
-                    int schematic_id = HouseGenSchematics.Count;
                     string filename = Path.GetFileNameWithoutExtension(ofd.FileName);
 
                     //Schematic Loading
@@ -178,7 +190,6 @@ namespace TEdit.Editor.Plugins
 
                     HouseGenTemplateData data = JsonConvert.DeserializeObject<HouseGenTemplateData>(jsonValue);
                     HouseGenTemplates.Add(new HouseGenTemplate(schematic_id, filename, data));
-
 
                     System.Windows.Controls.ComboBoxItem cbi = new();
                     cbi.Content = HouseGenTemplates[schematic_id].Name;
@@ -197,29 +208,25 @@ namespace TEdit.Editor.Plugins
                 return false;
             }
 
-            if (HouseGenTemplates == null)
-            {
-                return false;
-            }
-            return true;
+            return GenHouse();
         }
 
-        private void GenHouse()
+        private bool GenHouse()
         {
             
             Random rand = new();
 
             //Select house type
-            int houseType = rand.Next(HouseGenTemplates.Count);
+            int houseType = SelectedTemplate.SelectedIndex;
 
             ClipboardBuffer templateSchematic = HouseGenSchematics[HouseGenTemplates[houseType].SchematicID];
             HouseGenTemplateData templateData = HouseGenTemplates[houseType].Template;
 
             //Retrive buffer size.
-            _bufferSize.X = templateSchematic.Size.X;
-            _bufferSize.Y = templateSchematic.Size.Y / templateData.Count;
+            _generatedSchematicSize.X = templateSchematic.Size.X;
+            _generatedSchematicSize.Y = templateSchematic.Size.Y / templateData.Count;
 
-            _generatedSchematic = new(_bufferSize);
+            _generatedSchematic = new(_generatedSchematicSize);
 
             int type;
 
@@ -232,7 +239,15 @@ namespace TEdit.Editor.Plugins
                 {
                     for (int y = 0; y < templateData.Rooms[i].Height; y++)
                     {
-                        _generatedSchematic.Tiles[x + templateData.Rooms[i].X, y + templateData.Rooms[i].Y] = (Tile)templateSchematic.Tiles[x + templateData.Rooms[i].X, y + templateData.Rooms[i].Y + (_bufferSize.Y * type)].Clone();
+                        try
+                        {
+                            _generatedSchematic.Tiles[x + templateData.Rooms[i].X, y + templateData.Rooms[i].Y] = (Tile)templateSchematic.Tiles[x + templateData.Rooms[i].X, y + templateData.Rooms[i].Y + (_generatedSchematicSize.Y * type)].Clone();
+                        }
+                        catch (IndexOutOfRangeException e)
+                        {
+                            MessageBox.Show(e.Message + " Check JSON Data for " + templateData.Rooms[i].Name, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                            return false;
+                        }
                     }
                 }
             }
@@ -246,43 +261,64 @@ namespace TEdit.Editor.Plugins
                 {
                     for (int y = 0; y < templateData.Roofs[i].Height; y++)
                     {
-                        _generatedSchematic.Tiles[x + templateData.Roofs[i].X, y + templateData.Roofs[i].Y] = (Tile)templateSchematic.Tiles[x + templateData.Roofs[i].X, y + templateData.Roofs[i].Y + (_bufferSize.Y * type)].Clone();
+                        try
+                        {
+                            _generatedSchematic.Tiles[x + templateData.Roofs[i].X, y + templateData.Roofs[i].Y] = (Tile)templateSchematic.Tiles[x + templateData.Roofs[i].X, y + templateData.Roofs[i].Y + (_generatedSchematicSize.Y * type)].Clone();
+                        }
+                        catch (IndexOutOfRangeException e)
+                        {
+                            MessageBox.Show(e.Message + " Check JSON Data for " + templateData.Roofs[i].Name, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                            return false;
+                        }
                     }
                 }
             }
 
             byte roofColor = (byte)rand.Next(31);
 
-            //Fill in any empty space of schematic outside of room definintions (empty space within bounds of roof or room should alredy be filled)
-            for (int x2 = 0; x2 < _bufferSize.X; x2++)
+            //Fill in any empty space of schematic outside of room definintions (empty space within bounds of roof or room should already be filled)
+            for (int x2 = 0; x2 < _generatedSchematicSize.X; x2++)
             {
-                for (int y2 = 0; y2 < _bufferSize.Y; y2++)
+                for (int y2 = 0; y2 < _generatedSchematicSize.Y; y2++)
                 {
-                    if (_generatedSchematic.Tiles[x2, y2] == null) _generatedSchematic.Tiles[x2, y2] = new Tile();
+                    try
+                    {
+                        if (_generatedSchematic.Tiles[x2, y2] == null) _generatedSchematic.Tiles[x2, y2] = new Tile();
+                    }
+                    catch (IndexOutOfRangeException e)
+                    {
+                        MessageBox.Show(e.Message + " Check JSON Data for value 'Count' to make sure it matches with associated schematic.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                        return false;
+                    }
                 }
             }
-
-            UpdatePreview();
-            
+            return true;
         }
 
         private void UpdatePreview()
         {
             _generatedSchematic.RenderBuffer();
             PreviewImage.Source = _generatedSchematic.Preview;
-            Copy.IsEnabled = true;
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            e.Cancel = true; //Prevent window from being closed, hide it instead.
+            Hide();
         }
 
         private void CancelButtonClick(object sender, RoutedEventArgs e)
-        {
-            Copy.IsEnabled = false;            
+        {         
             Hide();
         }
 
         private void GenButtonClick(object sender, RoutedEventArgs e)
         {
-            GenHouse();
-            UpdatePreview();
+            if (GenHouse())
+            {
+                UpdatePreview();
+                Copy.IsEnabled = true;
+            }
         }
 
         private void CopyButtonClick(object sender, RoutedEventArgs e)
@@ -295,8 +331,8 @@ namespace TEdit.Editor.Plugins
             if (ImportTemplateSchematic())
             {
                 Generate.IsEnabled = true;
-                GenHouse();
             }
         }
+
     }
 }

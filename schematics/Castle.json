@@ -1,0 +1,127 @@
+{
+	"Count": 5,
+	"Rooms": [
+		{
+			"Name": "room1",
+			"X": 13,
+			"Y": 19,
+			"Width": 35,
+			"Height": 14
+		},
+		{
+			"Name": "room2",
+			"X": 19,
+			"Y": 33,
+			"Width": 23,
+			"Height": 10
+		},
+		{
+			"Name": "room3",
+			"X": 18,
+			"Y": 43,
+			"Width": 25,
+			"Height": 11
+		},
+		{
+			"Name": "room4",
+			"X": 18,
+			"Y": 54,
+			"Width": 25,
+			"Height": 11
+		},
+		{
+			"Name": "room5",
+			"X": 43,
+			"Y": 49,
+			"Width": 22,
+			"Height": 16
+		},
+		{
+			"Name": "room6",
+			"X": 65,
+			"Y": 56,
+			"Width": 16,
+			"Height": 9
+		},
+		{
+			"Name": "room7",
+			"X": 86,
+			"Y": 56,
+			"Width": 16,
+			"Height": 9
+		},
+		{
+			"Name": "room8",
+			"X": 65,
+			"Y": 48,
+			"Width": 16,
+			"Height": 8
+		},
+		{
+			"Name": "room9",
+			"X": 86,
+			"Y": 48,
+			"Width": 16,
+			"Height": 8
+		},
+		{
+			"Name": "room10",
+			"X": 65,
+			"Y": 40,
+			"Width": 16,
+			"Height": 8
+		},
+		{
+			"Name": "room11",
+			"X": 86,
+			"Y": 40,
+			"Width": 16,
+			"Height": 8
+		},
+		{
+			"Name": "room12",
+			"X": 81,
+			"Y": 40,
+			"Width": 5,
+			"Height": 25
+		},
+
+		{
+			"Name": "room13",
+			"X": 0,
+			"Y": 53,
+			"Width": 18,
+			"Height": 12
+		}
+	],
+	"Roofs": [
+		{
+			"Name": "roof1",
+			"X": 17,
+			"Y": 0,
+			"Width": 27,
+			"Height": 19
+		},
+		{
+			"Name": "roof2",
+			"X": 65,
+			"Y": 10,
+			"Width": 38,
+			"Height": 30
+		},
+		{
+			"Name": "roof3",
+			"X": 58,
+			"Y": 36,
+			"Width": 7,
+			"Height": 7
+		},
+		{
+			"Name": "roof4",
+			"X": 102,
+			"Y": 36,
+			"Width": 7,
+			"Height": 7
+		}
+	]
+}

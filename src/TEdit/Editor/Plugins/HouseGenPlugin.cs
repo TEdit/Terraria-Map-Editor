@@ -1,4 +1,3 @@
-using System;
 using System.Windows;
 using TEdit.ViewModel;
 
