@@ -20,115 +20,15 @@ using TEdit.Editor.Clipboard;
 using TEdit.Geometry.Primitives;
 using TEdit.ViewModel;
 using Newtonsoft.Json;
+using static TEdit.Editor.Plugins.HouseGenPlugin;
 
 namespace TEdit.Editor.Plugins
 {
-    public class HouseGenTemplate
+
+    public class HouseGenViewModel
     {
-        private readonly string _name;
-        private readonly int _schematicId;
-        private readonly HouseGenTemplateData _data;
 
-        public string Name
-        {
-            get { return _name; }
-        }
 
-        public int SchematicID
-        {
-            get { return _schematicId; }
-        }
-
-        public HouseGenTemplateData Template
-        {
-            get { return _data; }
-        }
-
-        public HouseGenTemplate(int id, string name, HouseGenTemplateData template)
-        {
-            _schematicId = id;
-            _name = name;
-            _data = template;
-        }
-    }
-
-    public class HouseGenTemplateData
-    {
-        public int Count
-        {
-            get;
-            set;
-        }
-
-        public IList <Room> Rooms
-        {
-            get;
-            set;
-        }
-
-        public IList <Roof> Roofs
-        {
-            get;
-            set;
-        }
-    }
-
-    public class Room
-    {
-        public string Name
-        {
-            get;
-            set;
-        }
-        public int X
-        {
-            get;
-            set;
-        }
-        public int Y
-        {
-            get;
-            set;
-        }
-        public int Width
-        {
-            get;
-            set;
-        }
-        public int Height
-        {
-            get;
-            set;
-        }
-    }
-
-    public class Roof
-    {
-        public string Name
-        {
-            get;
-            set;
-        }
-        public int X
-        {
-            get;
-            set;
-        }
-        public int Y
-        {
-            get;
-            set;
-        }
-        public int Width
-        {
-            get;
-            set;
-        }
-        public int Height
-        {
-            get;
-            set;
-        }
     }
 
     /// <summary>
@@ -144,8 +44,7 @@ namespace TEdit.Editor.Plugins
             set { _wvm = value; }
         }
 
-        private readonly IList <HouseGenTemplate> HouseGenTemplates;
-        private readonly IList <ClipboardBuffer> HouseGenSchematics;
+        private readonly IList<HouseGenTemplate> HouseGenTemplates;
 
         ClipboardBuffer _generatedSchematic;
         Vector2Int32 _generatedSchematicSize;
@@ -156,22 +55,18 @@ namespace TEdit.Editor.Plugins
             _wvm = null;
             _generatedSchematicSize = new(0, 0);
             HouseGenTemplates = new List<HouseGenTemplate>();
-            HouseGenSchematics = new List<ClipboardBuffer>();
         }
 
         private bool ImportTemplateSchematic()
         {
-            int schematic_id = HouseGenSchematics.Count;
-
             try
             {
                 var ofd = new OpenFileDialog();
                 ofd.Filter = "TEdit House Gen Schematic File|*.TEditHGSch";
                 ofd.DefaultExt = "TEdit House Gen Schematic File|*.TEditHGSch";
                 ofd.Title = "Import TEdit House Gen Schematic File";
-                ofd.InitialDirectory = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), @"My Games\Terraria\Schematics");
-                if (!Directory.Exists(ofd.InitialDirectory))
-                    Directory.CreateDirectory(ofd.InitialDirectory);
+                ofd.InitialDirectory = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), @"My Games\Terraria\Schematics\Generator");
+                if (!Directory.Exists(ofd.InitialDirectory)) { Directory.CreateDirectory(ofd.InitialDirectory); }
                 ofd.Multiselect = false;
                 if ((bool)ofd.ShowDialog())
                 {
@@ -179,23 +74,14 @@ namespace TEdit.Editor.Plugins
 
                     //Schematic Loading
                     ErrorLogging.TelemetryClient?.TrackEvent(nameof(ImportTemplateSchematic));
-                    HouseGenSchematics.Add(ClipboardBuffer.Load(ofd.FileName));
 
-                    //Template Loading
-                    string jsonValue = "";
-                    using (var sr = new StreamReader(new FileStream(Path.GetDirectoryName(ofd.FileName) + "\\" + filename + ".json", FileMode.Open, FileAccess.Read, FileShare.Read)))
-                    {
-                        jsonValue = sr.ReadToEnd();
-                    }
-
-                    HouseGenTemplateData data = JsonConvert.DeserializeObject<HouseGenTemplateData>(jsonValue);
-                    HouseGenTemplates.Add(new HouseGenTemplate(schematic_id, filename, data));
+                    var template = HouseGenPlugin.LoadTemplate(ofd.FileName);
+                    HouseGenTemplates.Add(template);
 
                     System.Windows.Controls.ComboBoxItem cbi = new();
-                    cbi.Content = HouseGenTemplates[schematic_id].Name;
+                    cbi.Content = template.Name;
                     SelectedTemplate.Items.Add(cbi);
                     SelectedTemplate.SelectedItem = cbi;
-
                 }
                 else
                 {
@@ -213,14 +99,15 @@ namespace TEdit.Editor.Plugins
 
         private bool GenHouse()
         {
-            
+
             Random rand = new();
 
             //Select house type
             int houseType = SelectedTemplate.SelectedIndex;
+            var selectedItem = HouseGenTemplates[houseType];
 
-            ClipboardBuffer templateSchematic = HouseGenSchematics[HouseGenTemplates[houseType].SchematicID];
-            HouseGenTemplateData templateData = HouseGenTemplates[houseType].Template;
+            var templateData = selectedItem.Template;
+            var templateSchematic = selectedItem.Schematic;
 
             //Retrive buffer size.
             _generatedSchematicSize.X = templateSchematic.Size.X;
@@ -230,44 +117,51 @@ namespace TEdit.Editor.Plugins
 
             int type;
 
-            //Process Rooms
+            // Process Rooms
             for (int i = 0; i < templateData.Rooms.Count; i++)
             {
                 type = rand.Next(templateData.Count);
 
-                for (int x = 0; x < templateData.Rooms[i].Width; x++)
+                Room room = templateData.Rooms[i];
+
+                for (int x = 0; x < room.Width; x++)
                 {
-                    for (int y = 0; y < templateData.Rooms[i].Height; y++)
+                    for (int y = 0; y < room.Height; y++)
                     {
                         try
                         {
-                            _generatedSchematic.Tiles[x + templateData.Rooms[i].X, y + templateData.Rooms[i].Y] = (Tile)templateSchematic.Tiles[x + templateData.Rooms[i].X, y + templateData.Rooms[i].Y + (_generatedSchematicSize.Y * type)].Clone();
+                            _generatedSchematic.Tiles[x + room.X, y + room.Y] =
+                                (Tile)templateSchematic.Tiles[x + room.X, y + room.Y + (_generatedSchematicSize.Y * type)].Clone();
                         }
                         catch (IndexOutOfRangeException e)
                         {
-                            MessageBox.Show(e.Message + " Check JSON Data for " + templateData.Rooms[i].Name, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                            MessageBox.Show(e.Message + " Check JSON Data for " + room.Name, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                             return false;
                         }
                     }
                 }
             }
 
-            //Process Roofs
-            type = rand.Next(templateData.Count); 
+            // Process Roofs
+            // Generate the random roof value once for the whole "building"
+            type = rand.Next(templateData.Count);
 
             for (int i = 0; i < templateData.Roofs.Count; i++)
             {
-                for (int x = 0; x < templateData.Roofs[i].Width; x++)
+                Roof roof = templateData.Roofs[i];
+
+                for (int x = 0; x < roof.Width; x++)
                 {
-                    for (int y = 0; y < templateData.Roofs[i].Height; y++)
+                    for (int y = 0; y < roof.Height; y++)
                     {
                         try
                         {
-                            _generatedSchematic.Tiles[x + templateData.Roofs[i].X, y + templateData.Roofs[i].Y] = (Tile)templateSchematic.Tiles[x + templateData.Roofs[i].X, y + templateData.Roofs[i].Y + (_generatedSchematicSize.Y * type)].Clone();
+                            _generatedSchematic.Tiles[x + roof.X, y + roof.Y] =
+                                (Tile)templateSchematic.Tiles[x + roof.X, y + roof.Y + (_generatedSchematicSize.Y * type)].Clone();
                         }
                         catch (IndexOutOfRangeException e)
                         {
-                            MessageBox.Show(e.Message + " Check JSON Data for " + templateData.Roofs[i].Name, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                            MessageBox.Show(e.Message + " Check JSON Data for " + roof.Name, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                             return false;
                         }
                     }
@@ -283,7 +177,7 @@ namespace TEdit.Editor.Plugins
                 {
                     try
                     {
-                        if (_generatedSchematic.Tiles[x2, y2] == null) _generatedSchematic.Tiles[x2, y2] = new Tile();
+                        if (_generatedSchematic.Tiles[x2, y2] == null) { _generatedSchematic.Tiles[x2, y2] = new Tile(); }
                     }
                     catch (IndexOutOfRangeException e)
                     {
@@ -308,7 +202,7 @@ namespace TEdit.Editor.Plugins
         }
 
         private void CancelButtonClick(object sender, RoutedEventArgs e)
-        {         
+        {
             Hide();
         }
 
