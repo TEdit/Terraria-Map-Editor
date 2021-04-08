@@ -1,18 +1,46 @@
 ﻿<Window x:Class="TEdit.Editor.Plugins.HouseGenPluginView"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:xnaContentHost="clr-namespace:TEdit.UI.Xaml.XnaContentHost"
-        xmlns:view="clr-namespace:TEdit.View" SizeToContent="WidthAndHeight"
-        Closing="Window_Closing"
-        Title="House Generator" ResizeMode="NoResize" WindowStartupLocation="CenterOwner" Icon="/TEdit;component/Images/tedit.ico">
-    <StackPanel Background="{StaticResource ControlBackgroundBrush}">
-        <Image Name="PreviewImage" Margin="10" HorizontalAlignment="Stretch" Stretch="Uniform" RenderOptions.BitmapScalingMode="NearestNeighbor" Width="400" Height="400" />
-        <ComboBox Name="SelectedTemplate" Margin="5" Padding="25,3" HorizontalAlignment="Center" Width="200" IsEditable="True" Focusable="True" IsReadOnly="True" />
-        <Button Name="Generate" Content="Generate" Margin="5" Padding="42, 3" HorizontalAlignment="Center" VerticalAlignment="Center" Click="GenButtonClick" IsEnabled="False"/>
-        <Grid>
-            <Button Name="Cancel" Content="Cancel" Margin="5" Padding="15, 3" HorizontalAlignment="Left" VerticalAlignment="Center" Click="CancelButtonClick" />
-            <Button Name="Import" Content="Import Template Schematic" Margin="5" Padding="25, 3" HorizontalAlignment="Center" VerticalAlignment="Center" Click="ImportButtonClick" />
-            <Button Name="Copy" Content="Copy" Margin="5" Padding="15, 3" HorizontalAlignment="Right" VerticalAlignment="Center" Click="CopyButtonClick" IsEnabled="False"/>
-        </Grid>
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+        SizeToContent="WidthAndHeight"
+        Closing="WindowClosing"
+        Title="House Generator" 
+        ResizeMode="NoResize" 
+        WindowStartupLocation="CenterOwner" 
+        Icon="/TEdit;component/Images/tedit.ico"
+        Background="{StaticResource WindowBackgroundBrush}" 
+        Foreground="{StaticResource TextBrush}" 
+        >
+    <StackPanel>
+        <Image Source="{Binding Path=Preview}" Margin="10" HorizontalAlignment="Stretch" Stretch="Uniform" RenderOptions.BitmapScalingMode="NearestNeighbor" Width="400" Height="400" />
+        <StackPanel Background="{StaticResource ControlBackgroundBrush}" Orientation="Horizontal">
+            <ComboBox ItemsSource="{Binding Path=HouseGenTemplates}" 
+                      SelectedValue="{Binding Path=SelectedTemplate, Mode=TwoWay}"
+                      DisplayMemberPath="Name"
+                      Text="Click [...] to Import Template Schematic"
+                      Margin="5" Padding="25,3" 
+                      HorizontalAlignment="Stretch"
+                      MinWidth="400"
+                      Focusable="False" 
+                      IsReadOnly="True"
+                      IsEditable="True">
+            </ComboBox>
+            <Button Content="..." Command="{Binding Path=ImportCommand}" Margin="5" Padding="10, 3" HorizontalAlignment="Right" VerticalAlignment="Center" />
+        </StackPanel>
+        <StackPanel Background="{StaticResource ControlBackgroundBrush}">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Button Content="Cancel" Click="CancelButtonClick" Grid.Row="1" Grid.Column="0" Margin="5" Padding="15, 3" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                <Button Content="Generate" Command="{Binding Path=GenerateCommand}" Grid.Row="0" Grid.Column="1"  Grid.RowSpan="2" Margin="5" Padding="15, 3"  HorizontalAlignment="Center"  VerticalAlignment="Stretch" Height="30" Width="120" />
+                <Button Content="Copy" Command="{Binding Path=CopyCommand}" Grid.Column="2" Grid.Row="1" Margin="5" Padding="15, 3" HorizontalAlignment="Right" VerticalAlignment="Center" />
+            </Grid>
+        </StackPanel>
     </StackPanel>
 </Window>
