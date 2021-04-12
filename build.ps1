@@ -20,7 +20,13 @@ if ($null -ne $VersionSuffix) {
 
 & dotnet $buildArgs
 
+Remove-Item -Path ".\release" -Recurse -Force
 Remove-Item -Path ".\TEdit*.zip"
 
-Compress-Archive -Path ".\src\TEdit\bin\Release\net462\publish\*" -DestinationPath ".\TEdit$VersionPrefix.zip"
+mkdir -Path ".\release"
+
+Copy-Item -Path ".\src\TEdit\bin\Release\net462\publish" -Destination ".\release\TEdit-$VersionPrefix\" -Recurse -Force
+Copy-Item -Path ".\schematics" -Destination ".\release" -Recurse
+
+Compress-Archive -Path ".\release\*" -DestinationPath ".\TEdit$VersionPrefix.zip"
 #Compress-Archive -Path ".\src\TEdit\bin\Release\net462\publish\*" -DestinationPath ".\TEdit$VersionPrefix-$VersionSuffix.zip"

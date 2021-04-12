@@ -34,6 +34,32 @@
                         <Bold>Release Notes</Bold>
                     </Paragraph>
 
+                    <Paragraph>Version 4.2.8</Paragraph>
+                    <List>
+                        <ListItem>
+                            <Paragraph>Version bump for Terraria 1.4.1.2</Paragraph>
+                        </ListItem>
+                        <ListItem>
+                            <Paragraph>Procedural House Generator Plugin</Paragraph>
+                        </ListItem>
+                    </List>
+
+                    <Paragraph>Version 4.2.7</Paragraph>
+                    <List>
+                        <ListItem>
+                            <Paragraph>Increase max item stack size in chests from 999 to 32767.</Paragraph>
+                        </ListItem>
+                        <ListItem>
+                            <Paragraph>Add copy/paste to chest items to quickly duplicate stacks.</Paragraph>
+                        </ListItem>
+                        <ListItem>
+                            <Paragraph>Make pixel tiles paint color stand out more.</Paragraph>
+                        </ListItem>
+                        <ListItem>
+                            <Paragraph>Add German localization.</Paragraph>
+                        </ListItem>
+                    </List>
+
                     <Paragraph>Version 4.2.6</Paragraph>
                     <List>
                         <ListItem>
