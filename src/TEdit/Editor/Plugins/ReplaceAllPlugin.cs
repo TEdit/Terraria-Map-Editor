@@ -71,7 +71,7 @@ namespace TEdit.Editor.Plugins
                     {
                         if ((_wvm.Selection.IsValid(x, y)) && (curTile.Wall == wallMask && _wvm.TilePicker.WallMaskMode == MaskMode.Match)
                             || (curTile.Wall == 0 && _wvm.TilePicker.WallMaskMode == MaskMode.Empty)
-                            || (curTile.Wall != wallMask && _wvm.TilePicker.TileMaskMode == MaskMode.NotMatching))
+                            || (curTile.Wall != wallMask && _wvm.TilePicker.WallMaskMode == MaskMode.NotMatching))
                         {
                             doReplaceWall = true;
                         }
@@ -82,10 +82,36 @@ namespace TEdit.Editor.Plugins
                         _wvm.UndoManager.SaveTile(x, y);
 
                         if (doReplaceTile)
+                        {
                             curTile.Type = (ushort)tileTarget;
+                            if (_wvm.TilePicker.TilePaintActive)
+                            {
+                                if (curTile.IsActive)
+                                {
+                                    curTile.TileColor = (byte)_wvm.TilePicker.TileColor;
+                                }
+                                else
+                                {
+                                    curTile.TileColor = (byte)0;
+                                }
+                            }
+                        }
 
                         if (doReplaceWall)
+                        {
                             curTile.Wall = (byte)wallTarget;
+                            if (_wvm.TilePicker.WallPaintActive)
+                            {
+                                if (curTile.Wall != 0)
+                                {
+                                    curTile.WallColor = (byte)_wvm.TilePicker.WallColor;
+                                }
+                                else
+                                {
+                                    curTile.WallColor = (byte)0;
+                                }
+                            }
+                        }
 
                         _wvm.UpdateRenderPixel(x, y);
                     }
