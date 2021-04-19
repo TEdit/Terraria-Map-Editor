@@ -1,5 +1,6 @@
 using System.Windows;
 using TEdit.Terraria;
+using TEdit.Terraria.Objects;
 using TEdit.ViewModel;
 
 namespace TEdit.Editor.Plugins
@@ -47,9 +48,9 @@ namespace TEdit.Editor.Plugins
             int tileTarget = _wvm.TilePicker.Tile;
             int wallTarget = _wvm.TilePicker.Wall;
 
-            for (int x = 0; x < _wvm.CurrentWorld.TilesWide; x++)
+            for (int x = (_wvm.Selection.IsActive) ? _wvm.Selection.SelectionArea.X : 0; x < ((_wvm.Selection.IsActive) ? _wvm.Selection.SelectionArea.X + _wvm.Selection.SelectionArea.Width : _wvm.CurrentWorld.TilesWide); x++)
             {
-                for (int y = 0; y < _wvm.CurrentWorld.TilesHigh; y++)
+                for (int y = (_wvm.Selection.IsActive) ? _wvm.Selection.SelectionArea.Y : 0; y < ((_wvm.Selection.IsActive) ? _wvm.Selection.SelectionArea.Y + _wvm.Selection.SelectionArea.Height : _wvm.CurrentWorld.TilesHigh); y++)
                 {
                     bool doReplaceTile = false;
                     bool doReplaceWall = false;
@@ -71,7 +72,7 @@ namespace TEdit.Editor.Plugins
                     {
                         if ((_wvm.Selection.IsValid(x, y)) && (curTile.Wall == wallMask && _wvm.TilePicker.WallMaskMode == MaskMode.Match)
                             || (curTile.Wall == 0 && _wvm.TilePicker.WallMaskMode == MaskMode.Empty)
-                            || (curTile.Wall != wallMask && _wvm.TilePicker.TileMaskMode == MaskMode.NotMatching))
+                            || (curTile.Wall != wallMask && _wvm.TilePicker.WallMaskMode == MaskMode.NotMatching))
                         {
                             doReplaceWall = true;
                         }
@@ -82,10 +83,39 @@ namespace TEdit.Editor.Plugins
                         _wvm.UndoManager.SaveTile(x, y);
 
                         if (doReplaceTile)
+                        {
                             curTile.Type = (ushort)tileTarget;
+                            curTile.IsActive = true;
+                            
+                            if (World.TileProperties[curTile.Type].IsSolid)
+                            {
+                                curTile.U = -1;
+                                curTile.V = -1;
+                                BlendRules.ResetUVCache(_wvm, x, y, 1, 1);
+                            }
+
+                            if (_wvm.TilePicker.TilePaintActive)
+                            {
+                                curTile.TileColor = (byte)_wvm.TilePicker.TileColor;
+                            }
+                        }
 
                         if (doReplaceWall)
+                        {
                             curTile.Wall = (byte)wallTarget;
+                            
+                            if (_wvm.TilePicker.WallPaintActive)
+                            {
+                                if (curTile.Wall != 0)
+                                {
+                                    curTile.WallColor = (byte)_wvm.TilePicker.WallColor;
+                                }
+                                else
+                                {
+                                    curTile.WallColor = (byte)0;
+                                }
+                            }
+                        }
 
                         _wvm.UpdateRenderPixel(x, y);
                     }
