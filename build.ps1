@@ -28,5 +28,9 @@ mkdir -Path ".\release"
 Copy-Item -Path ".\src\TEdit\bin\Release\net462\publish" -Destination ".\release\TEdit-$VersionPrefix\" -Recurse -Force
 Copy-Item -Path ".\schematics" -Destination ".\release" -Recurse
 
+# Create ZIP Release
 Compress-Archive -Path ".\release\*" -DestinationPath ".\TEdit$VersionPrefix.zip"
+
+# Create Installer
+
 #Compress-Archive -Path ".\src\TEdit\bin\Release\net462\publish\*" -DestinationPath ".\TEdit$VersionPrefix-$VersionSuffix.zip"

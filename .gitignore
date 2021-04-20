@@ -46,3 +46,6 @@ build/
 .vs/*
 
 .vs/
+*.wxs
+*.wix
+*.msi
