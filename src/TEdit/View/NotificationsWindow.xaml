@@ -34,6 +34,16 @@
                         <Bold>Release Notes</Bold>
                     </Paragraph>
 
+                    <Paragraph>Version 4.3.0</Paragraph>
+                    <List>
+                        <ListItem>
+                            <Paragraph>Package as MSI installer.</Paragraph>
+                        </ListItem>
+                        <ListItem>
+                            <Paragraph>Fix for Replace All Tiles/Wall Plugin.</Paragraph>
+                        </ListItem>
+                    </List>
+
                     <Paragraph>Version 4.2.8</Paragraph>
                     <List>
                         <ListItem>

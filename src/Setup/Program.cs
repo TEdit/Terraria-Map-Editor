@@ -5,7 +5,19 @@ class Script
 {
     static public void Main(string[] args)
     {
-        var version = "4.2.8";
+        var version = "4.0.0";
+
+        try
+        {
+            var envronmentVarVersion = Environment.GetEnvironmentVariable("VERSION_PREFIX");
+            if (!string.IsNullOrWhiteSpace(envronmentVarVersion))
+            {
+                version = envronmentVarVersion;
+            }
+        }
+        catch { /* ignore error and use previous variable */ }
+
+
         var binPath = $@"..\..\release\TEdit-{version}";
         var schematicPath = $@"..\..\release\schematics";
 
@@ -50,7 +62,6 @@ class Script
         project.ControlPanelInfo.ProductIcon = "tedit.ico";
         project.ControlPanelInfo.InstallLocation = "[INSTALLDIR]";
         project.ControlPanelInfo.NoModify = true;
-
 
         Compiler.BuildMsi(project, $"TEdit-{version}.msi");
     }
