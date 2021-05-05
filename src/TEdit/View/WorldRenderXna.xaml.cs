@@ -3051,10 +3051,12 @@ namespace TEdit.View
 
         private void xnaViewport_HwndMouseWheel(object sender, HwndMouseEventArgs e)
         {
-            Zoom(e.WheelDelta, e.Position.X, e.Position.Y);
+            bool useAlternateZoomFunctionality = Keyboard.IsKeyDown(Key.LeftShift) || Keyboard.IsKeyDown(Key.RightShift);
+            //TODO: if (settings option to use old zoom functionality by default is checked) useAlternateZoomFunctionality = !useAlternateZoomFunctionality; 
+            Zoom(e.WheelDelta, e.Position.X, e.Position.Y, useAlternateZoomFunctionality);
         }
 
-        public void Zoom(int direction, double x = -1, double y = -1)
+        public void Zoom(int direction, double x = -1, double y = -1, bool useAlternateZoomFunctionality = false)
         {
             float tempZoom = _zoom;
             if (direction > 0)
@@ -3064,7 +3066,7 @@ namespace TEdit.View
             Vector2Int32 curTile = _wvm.MouseOverTile.MouseState.Location;
             _zoom = MathHelper.Clamp(tempZoom, 0.125F, 64F);
 
-            if (x < 0 || y < 0)
+            if (x < 0 || y < 0 || useAlternateZoomFunctionality)
                 CenterOnTile(curTile.X, curTile.Y);
             else
                 LockOnTile(curTile.X, curTile.Y, x, y);
