@@ -1089,4 +1089,7 @@ Naciśnij spróbuj ponownie aby wybrać nowy folder lub anuluj aby użyć {0} ja
   <data name="TrackMode_Track" xml:space="preserve">
     <value>Tor</value>
   </data>
+  <data name="tool_wp_tenthanniversary" xml:space="preserve">
+    <value>Tenth Anniversary</value>
+  </data>
 </root>

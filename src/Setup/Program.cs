@@ -5,7 +5,7 @@ class Script
 {
     static public void Main(string[] args)
     {
-        var version = "4.0.0";
+        var version = "4.3.1";
 
         try
         {
@@ -27,6 +27,7 @@ class Script
                               new Dir($"TEdit-{version}",
                                   new Files($@"{binPath}\*.*", (p)=> !p.Contains("TEdit.exe")),
                                   new File($@"{binPath}\TEdit.exe",
+                                    new FileAssociation(".wld", "application/tedit", "open", "\"%1\"") { Advertise = true },
                                     new FileShortcut("TEdit", @"%ProgramMenu%\TEdit") { IconFile = @"tedit.ico" })),
                               // Schematics
                               new Dir(@"schematics",

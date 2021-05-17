@@ -296,6 +296,9 @@ Press retry to pick a new folder or cancel to use {0} as your terraria path.</va
   <data name="menu_language_ar" xml:space="preserve">
     <value>Arabic</value>
   </data>
+  <data name="menu_language_de" xml:space="preserve">
+    <value>Deutsch</value>
+  </data>
   <data name="menu_language_en" xml:space="preserve">
     <value>English</value>
   </data>
@@ -844,7 +847,7 @@ Press retry to pick a new folder or cancel to use {0} as your terraria path.</va
     <value>Gold Tier</value>
   </data>
   <data name="tool_wp_gooworld" xml:space="preserve">
-    <value>Goo World</value>
+    <value>Good World</value>
   </data>
   <data name="tool_wp_guid" xml:space="preserve">
     <value>World GUID</value>
@@ -1055,6 +1058,9 @@ Press retry to pick a new folder or cancel to use {0} as your terraria path.</va
   </data>
   <data name="tool_wp_surface_level" xml:space="preserve">
     <value>Surface Level</value>
+  </data>
+  <data name="tool_wp_tenthanniversary" xml:space="preserve">
+    <value>Tenth Anniversary</value>
   </data>
   <data name="tool_wp_time_day" xml:space="preserve">
     <value>Is Day Time</value>

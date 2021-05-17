@@ -584,6 +584,15 @@ namespace TEdit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Deutsch.
+        /// </summary>
+        public static string menu_language_de {
+            get {
+                return ResourceManager.GetString("menu_language_de", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to English.
         /// </summary>
         public static string menu_language_en {
@@ -616,15 +625,6 @@ namespace TEdit.Properties {
         public static string menu_language_zh {
             get {
                 return ResourceManager.GetString("menu_language_zh", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to German.
-        /// </summary>
-        public static string menu_language_de {
-            get {
-                return ResourceManager.GetString("menu_language_de", resourceCulture);
             }
         }
         
@@ -2213,7 +2213,7 @@ namespace TEdit.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Goo World.
+        ///   Looks up a localized string similar to Good World.
         /// </summary>
         public static string tool_wp_gooworld {
             get {
@@ -2848,6 +2848,15 @@ namespace TEdit.Properties {
         public static string tool_wp_surface_level {
             get {
                 return ResourceManager.GetString("tool_wp_surface_level", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tenth Anniversary.
+        /// </summary>
+        public static string tool_wp_tenthanniversary {
+            get {
+                return ResourceManager.GetString("tool_wp_tenthanniversary", resourceCulture);
             }
         }
         

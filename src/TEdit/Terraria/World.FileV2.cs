@@ -13,7 +13,7 @@ namespace TEdit.Terraria
 
     public partial class World
     {
-        public const uint CompatibleVersion = 234;
+        public const uint CompatibleVersion = 238;
         public const short SectionCount = 11;
         public const short TileCount = 623;
         public const short WallCount = 316;
@@ -132,7 +132,7 @@ namespace TEdit.Terraria
         {
             for (int x = 0; x < maxX; x++)
             {
-                OnProgressChanged(null, new ProgressChangedEventArgs((int)(x.ProgressPercentage(maxX)*0.9), "Saving Tiles..."));
+                OnProgressChanged(null, new ProgressChangedEventArgs((int)(x.ProgressPercentage(maxX) * 0.9), "Saving Tiles..."));
 
 
                 for (int y = 0; y < maxY; y++)
@@ -512,7 +512,7 @@ namespace TEdit.Terraria
             bw.Write(world.TilesWide);
             bw.Write(world.GameMode);
             bw.Write(world.DrunkWorld);
-            bw.Write(world.GooWorld);
+            bw.Write(world.GoodWorld);
             bw.Write(world.CreationTime);
             bw.Write((byte)world.MoonType);
             bw.Write(world.TreeX0);
@@ -735,7 +735,7 @@ namespace TEdit.Terraria
 
             if (b.BaseStream.Position != sectionPointers[2])
                 b.BaseStream.Position = sectionPointers[2];
-                //throw new FileFormatException("Unexpected Position: Invalid Tile Data");
+            //throw new FileFormatException("Unexpected Position: Invalid Tile Data");
 
             OnProgressChanged(null, new ProgressChangedEventArgs(100, "Loading Chests..."));
 
@@ -855,7 +855,7 @@ namespace TEdit.Terraria
                         {
                             for (int y2 = 0; y2 < maxY; y2++)
                             {
-                                if (tiles[x2,y2] == null) tiles[x2,y2] = new Tile();
+                                if (tiles[x2, y2] == null) tiles[x2, y2] = new Tile();
                             }
                         }
                         return tiles;
@@ -1263,7 +1263,9 @@ namespace TEdit.Terraria
                 w.Guid = new Guid(r.ReadBytes(16));
             }
             else
+            {
                 w.Guid = Guid.NewGuid();
+            }
             w.WorldId = r.ReadInt32();
             w.LeftWorld = (float)r.ReadInt32();
             w.RightWorld = (float)r.ReadInt32();
@@ -1282,7 +1284,11 @@ namespace TEdit.Terraria
                 }
                 if (w.Version >= 227)
                 {
-                    w.GooWorld = r.ReadBoolean();
+                    w.GoodWorld = r.ReadBoolean();
+                }
+                if (w.Version >= 238)
+                {
+                    w.TenthAnniversaryWorld = r.ReadBoolean();
                 }
             }
             else

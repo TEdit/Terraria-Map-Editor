@@ -1089,4 +1089,7 @@
   <data name="TrackMode_Track" xml:space="preserve">
     <value>普通轨道</value>
   </data>
+  <data name="tool_wp_tenthanniversary" xml:space="preserve">
+    <value>Tenth Anniversary</value>
+  </data>
 </root>

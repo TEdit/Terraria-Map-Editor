@@ -223,8 +223,9 @@ namespace TEdit.Terraria
         private Bestiary _bestiary = new Bestiary();
         private CreativePowers _creativePowers = new CreativePowers();
         private bool _gooWorld;
+        private bool _tenthAnniversaryWorld;
 
-        
+
 
         public Bestiary Bestiary
         {
@@ -632,11 +633,18 @@ namespace TEdit.Terraria
             }
         }
 
-        public bool GooWorld
+        public bool GoodWorld
         {
             get { return _gooWorld; }
-            set { Set(nameof(GooWorld), ref _gooWorld, value); }
+            set { Set(nameof(GoodWorld), ref _gooWorld, value); }
         }
+
+        public bool TenthAnniversaryWorld
+        {
+            get { return _tenthAnniversaryWorld; }
+            set { Set(nameof(TenthAnniversaryWorld), ref _tenthAnniversaryWorld, value); }
+        }
+
 
         public byte MoonType
         {

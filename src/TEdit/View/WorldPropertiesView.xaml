@@ -394,7 +394,9 @@
         <TextBlock />
         <CheckBox IsChecked="{Binding CurrentWorld.DrunkWorld}" Content="{x:Static p:Language.tool_wp_drunk}" VerticalAlignment="Center" VerticalContentAlignment="Center" />
         <TextBlock />
-        <CheckBox IsChecked="{Binding CurrentWorld.GooWorld}" Content="{x:Static p:Language.tool_wp_gooworld}" VerticalAlignment="Center" VerticalContentAlignment="Center" />
+        <CheckBox IsChecked="{Binding CurrentWorld.GoodWorld}" Content="{x:Static p:Language.tool_wp_gooworld}" VerticalAlignment="Center" VerticalContentAlignment="Center" />
+        <TextBlock />
+        <CheckBox IsChecked="{Binding CurrentWorld.TenthAnniversaryWorld}" Content="{x:Static p:Language.tool_wp_tenthanniversary}" VerticalAlignment="Center" VerticalContentAlignment="Center" />
         <TextBlock />
         <CheckBox IsChecked="{Binding CurrentWorld.IsCrimson}" Content="{x:Static p:Language.tool_wp_crimson}" VerticalAlignment="Center" VerticalContentAlignment="Center" />
         <TextBlock Text="{x:Static p:Language.tool_wp_altars}" HorizontalAlignment="Right" />
