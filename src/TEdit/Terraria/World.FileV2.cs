@@ -513,6 +513,7 @@ namespace TEdit.Terraria
             bw.Write(world.GameMode);
             bw.Write(world.DrunkWorld);
             bw.Write(world.GoodWorld);
+            bw.Write(world.TenthAnniversaryWorld);
             bw.Write(world.CreationTime);
             bw.Write((byte)world.MoonType);
             bw.Write(world.TreeX0);

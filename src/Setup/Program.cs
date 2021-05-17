@@ -5,7 +5,7 @@ class Script
 {
     static public void Main(string[] args)
     {
-        var version = "4.4.0";
+        var version = "4.4.1";
 
         try
         {
