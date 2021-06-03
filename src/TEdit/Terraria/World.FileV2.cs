@@ -500,9 +500,26 @@ namespace TEdit.Terraria
         public static int SaveHeaderFlags(World world, BinaryWriter bw)
         {
             bw.Write(world.Title);
-            bw.Write(world.Seed);
-            bw.Write(world.WorldGenVersion);
-            bw.Write(world.Guid.ToByteArray());
+            if (world.Version >= 179)
+            {
+                if (world.Version == 179)
+                {
+                    int.TryParse(world.Seed, out var seed);
+                    bw.Write(seed);
+                }
+                else
+                {
+                    bw.Write(world.Seed);
+                }
+
+                bw.Write(world.WorldGenVersion);
+            }
+
+            if (world.Version >= 181)
+            {
+                bw.Write(world.Guid.ToByteArray());
+            }
+
             bw.Write(world.WorldId);
             bw.Write((int)world.LeftWorld);
             bw.Write((int)world.RightWorld);
@@ -510,11 +527,27 @@ namespace TEdit.Terraria
             bw.Write((int)world.BottomWorld);
             bw.Write(world.TilesHigh);
             bw.Write(world.TilesWide);
-            bw.Write(world.GameMode);
-            bw.Write(world.DrunkWorld);
-            bw.Write(world.GoodWorld);
-            bw.Write(world.TenthAnniversaryWorld);
-            bw.Write(world.CreationTime);
+
+            if (world.Version >= 209)
+            {
+
+                bw.Write(world.GameMode);
+
+                if (world.Version >= 222) { bw.Write(world.DrunkWorld); }
+                if (world.Version >= 227) { bw.Write(world.GoodWorld); }
+                if (world.Version >= 238) { bw.Write(world.TenthAnniversaryWorld); }
+            }
+            else if (world.Version == 208)
+            {
+                bw.Write((bool)(world.GameMode == 2)); // true = Master: 2, else false
+            }
+            else if (world.Version >= 112)
+            {
+                bw.Write((bool)(world.GameMode == 1)); // true = expert: 1, else false
+            }
+
+            if (world.Version >= 141) { bw.Write(world.CreationTime); }
+
             bw.Write((byte)world.MoonType);
             bw.Write(world.TreeX0);
             bw.Write(world.TreeX1);
@@ -555,7 +588,9 @@ namespace TEdit.Terraria
             bw.Write(world.DownedMechBossAny);
             bw.Write(world.DownedPlantBoss);
             bw.Write(world.DownedGolemBoss);
-            bw.Write(world.DownedSlimeKingBoss);
+
+            if (world.Version >= 147) { bw.Write(world.DownedSlimeKingBoss); }
+
             bw.Write(world.SavedGoblin);
             bw.Write(world.SavedWizard);
             bw.Write(world.SavedMech);
@@ -572,8 +607,13 @@ namespace TEdit.Terraria
             bw.Write(world.InvasionSize);
             bw.Write(world.InvasionType);
             bw.Write(world.InvasionX);
-            bw.Write(world.SlimeRainTime);
-            bw.Write((byte)world.SundialCooldown);
+
+            if (world.Version >= 147)
+            {
+                bw.Write(world.SlimeRainTime);
+                bw.Write((byte)world.SundialCooldown);
+            }
+
             bw.Write(world.TempRaining);
             bw.Write(world.TempRainTime);
             bw.Write(world.TempMaxRain);
@@ -591,18 +631,32 @@ namespace TEdit.Terraria
             bw.Write((int)world.CloudBgActive);
             bw.Write(world.NumClouds);
             bw.Write(world.WindSpeedSet);
-            bw.Write(world.Anglers.Count);
-            foreach (string angler in world.Anglers)
+
+            if (world.Version >= 95)
             {
-                bw.Write(angler);
+                bw.Write(world.Anglers.Count);
+                foreach (string angler in world.Anglers)
+                {
+                    bw.Write(angler);
+                }
             }
+
+            if (world.Version < 99) { return (int)bw.BaseStream.Position; }
+
             bw.Write(world.SavedAngler);
+
+            if (world.Version < 101) { return (int)bw.BaseStream.Position; }
+
             bw.Write(world.AnglerQuest);
+
+            if (world.Version < 104) { return (int)bw.BaseStream.Position; }
+
             bw.Write(world.SavedStylist);
-            bw.Write(world.SavedTaxCollector);
-            bw.Write(world.SavedGolfer);
-            bw.Write(world.InvasionSizeStart);
-            bw.Write(world.CultistDelay);
+            if (world.Version >= 129) { bw.Write(world.SavedTaxCollector); }
+            if (world.Version >= 201) { bw.Write(world.SavedGolfer); }
+            if (world.Version >= 107) { bw.Write(world.InvasionSizeStart); }
+
+            if (world.Version >= 108) { bw.Write(world.CultistDelay); }
             bw.Write((short)KillTallyMax);
             for (int i = 0; i < KillTallyMax; i++)
             {
@@ -635,56 +689,94 @@ namespace TEdit.Terraria
             bw.Write(world.CelestialNebulaActive);
             bw.Write(world.CelestialStardustActive);
             bw.Write(world.Apocalypse);
-            bw.Write(world.PartyManual);
-            bw.Write(world.PartyGenuine);
-            bw.Write(world.PartyCooldown);
-            bw.Write(world.PartyingNPCs.Count);
-            foreach (int partier in world.PartyingNPCs)
-            {
-                bw.Write(partier);
-            }
 
-            bw.Write(world.SandStormHappening);
-            bw.Write(world.SandStormTimeLeft);
-            bw.Write(world.SandStormSeverity);
-            bw.Write(world.SandStormIntendedSeverity);
-            bw.Write(world.SavedBartender);
-            bw.Write(world.DownedDD2InvasionT1);
-            bw.Write(world.DownedDD2InvasionT2);
-            bw.Write(world.DownedDD2InvasionT3);
+            if (world.Version >= 170)
+            {
+                bw.Write(world.PartyManual);
+                bw.Write(world.PartyGenuine);
+                bw.Write(world.PartyCooldown);
+                bw.Write(world.PartyingNPCs.Count);
+                foreach (int partier in world.PartyingNPCs)
+                {
+                    bw.Write(partier);
+                }
+            }
+            if (world.Version >= 174)
+            {
+                bw.Write(world.SandStormHappening);
+                bw.Write(world.SandStormTimeLeft);
+                bw.Write(world.SandStormSeverity);
+                bw.Write(world.SandStormIntendedSeverity);
+            }
+            if (world.Version >= 178)
+            {
+                bw.Write(world.SavedBartender);
+                bw.Write(world.DownedDD2InvasionT1);
+                bw.Write(world.DownedDD2InvasionT2);
+                bw.Write(world.DownedDD2InvasionT3);
+            }
 
             // 1.4 Journey's End
-            bw.Write((byte)world.MushroomBg);
-            bw.Write((byte)world.UnderworldBg);
-            bw.Write((byte)world.BgTree2);
-            bw.Write((byte)world.BgTree3);
-            bw.Write((byte)world.BgTree4);
-            bw.Write(world.CombatBookUsed);
-            bw.Write(world.TempLanternNightCooldown);
-            bw.Write(world.TempLanternNightGenuine);
-            bw.Write(world.TempLanternNightManual);
-            bw.Write(world.TempLanternNightNextNightIsGenuine);
-            // tree tops
-            bw.Write(world.TreeTopVariations.Count);
-            for (int i = 0; i < world.TreeTopVariations.Count; i++)
+            if (world.Version >= 194)
             {
-                bw.Write(world.TreeTopVariations[i]);
+                bw.Write((byte)world.MushroomBg);
             }
-            bw.Write(world.ForceHalloweenForToday);
-            bw.Write(world.ForceXMasForToday);
+            if (world.Version >= 215)
+            {
+                bw.Write((byte)world.UnderworldBg);
+            }
+            if (world.Version >= 195)
+            {
+                bw.Write((byte)world.BgTree2);
+                bw.Write((byte)world.BgTree3);
+                bw.Write((byte)world.BgTree4);
+            }
+            if (world.Version >= 204)
+            {
+                bw.Write(world.CombatBookUsed);
+            }
+            if (world.Version >= 207)
+            {
+                bw.Write(world.TempLanternNightCooldown);
+                bw.Write(world.TempLanternNightGenuine);
+                bw.Write(world.TempLanternNightManual);
+                bw.Write(world.TempLanternNightNextNightIsGenuine);
+            }
+            if (world.Version >= 211)
+            {
+                // tree tops
+                bw.Write(world.TreeTopVariations.Count);
+                for (int i = 0; i < world.TreeTopVariations.Count; i++)
+                {
+                    bw.Write(world.TreeTopVariations[i]);
+                }
+            }
+            if (world.Version >= 212)
+            {
+                bw.Write(world.ForceHalloweenForToday);
+                bw.Write(world.ForceXMasForToday);
+            }
 
-            bw.Write(world.SavedOreTiersCopper);
-            bw.Write(world.SavedOreTiersIron);
-            bw.Write(world.SavedOreTiersSilver);
-            bw.Write(world.SavedOreTiersGold);
+            if (world.Version >= 216)
+            {
+                bw.Write(world.SavedOreTiersCopper);
+                bw.Write(world.SavedOreTiersIron);
+                bw.Write(world.SavedOreTiersSilver);
+                bw.Write(world.SavedOreTiersGold);
+            }
 
-            bw.Write(world.BoughtCat);
-            bw.Write(world.BoughtDog);
-            bw.Write(world.BoughtBunny);
+            if (world.Version >= 217)
+            {
+                bw.Write(world.BoughtCat);
+                bw.Write(world.BoughtDog);
+                bw.Write(world.BoughtBunny);
+            }
 
-            bw.Write(world.DownedEmpressOfLight);
-            bw.Write(world.DownedQueenSlime);
-
+            if (world.Version >= 223)
+            {
+                bw.Write(world.DownedEmpressOfLight);
+                bw.Write(world.DownedQueenSlime);
+            }
 
             // unknown flags from data file
             if (world.UnknownData != null && world.UnknownData.Length > 0)
@@ -1279,29 +1371,24 @@ namespace TEdit.Terraria
             {
                 w.GameMode = r.ReadInt32();
 
-                if (w.Version >= 222)
-                {
-                    w.DrunkWorld = r.ReadBoolean();
-                }
-                if (w.Version >= 227)
-                {
-                    w.GoodWorld = r.ReadBoolean();
-                }
-                if (w.Version >= 238)
-                {
-                    w.TenthAnniversaryWorld = r.ReadBoolean();
-                }
+                if (w.Version >= 222) { w.DrunkWorld = r.ReadBoolean(); }
+                if (w.Version >= 227) { w.GoodWorld = r.ReadBoolean(); }
+                if (w.Version >= 238) { w.TenthAnniversaryWorld = r.ReadBoolean(); }
+            }
+            else if (w.Version == 208)
+            {
+                w.GameMode = r.ReadBoolean() ? 2 : 0;
+            }
+            else if (w.Version >= 112)
+            {
+                w.GameMode = r.ReadBoolean() ? 1 : 0;
             }
             else
             {
-                w.GameMode = (w.Version < 112) ? 0 : r.ReadBoolean() ? 1 : 0; // 0 = normal, 1 = expert mode
-                if (w.Version == 208 && r.ReadBoolean())
-                {
-                    w.GameMode = 2;
-                }
+                w.GameMode = 0;
             }
 
-            w.CreationTime = w.Version < 141 ? DateTime.Now.ToBinary() : w.CreationTime = r.ReadInt64();
+            w.CreationTime = w.Version >= 141 ? r.ReadInt64() : DateTime.Now.ToBinary();
 
             w.MoonType = r.ReadByte();
             w.TreeX[0] = r.ReadInt32();
@@ -1352,8 +1439,9 @@ namespace TEdit.Terraria
             w.DownedMechBossAny = r.ReadBoolean();
             w.DownedPlantBoss = r.ReadBoolean();
             w.DownedGolemBoss = r.ReadBoolean();
-            if (w.Version >= 147)
-                w.DownedSlimeKingBoss = r.ReadBoolean();
+
+            if (w.Version >= 147) { w.DownedSlimeKingBoss = r.ReadBoolean(); }
+
             w.SavedGoblin = r.ReadBoolean();
             w.SavedWizard = r.ReadBoolean();
             w.SavedMech = r.ReadBoolean();
@@ -1404,19 +1492,16 @@ namespace TEdit.Terraria
                 }
             }
 
-            if (w.Version < 99)
-                return;
+            if (w.Version < 99) { return; }
 
             w.SavedAngler = r.ReadBoolean();
 
 
-            if (w.Version < 101)
-                return;
+            if (w.Version < 101) { return; }
             w.AnglerQuest = r.ReadInt32();
 
 
-            if (w.Version < 104)
-                return;
+            if (w.Version < 104) { return; }
 
 
             w.SavedStylist = r.ReadBoolean();
