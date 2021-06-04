@@ -10,6 +10,7 @@ namespace TEdit.Terraria
     public class Chest : ObservableObject
     {
         public static int MaxItems = 40; 
+        public static int LegacyLimit = 1000;
 
         public Chest()
         {

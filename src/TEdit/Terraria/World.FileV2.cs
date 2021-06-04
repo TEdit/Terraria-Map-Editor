@@ -13,8 +13,8 @@ namespace TEdit.Terraria
 
     public partial class World
     {
-        public const uint CompatibleVersion = 238;
-        public const short SectionCount = 11;
+        public const uint CompatibleVersion  = 238;
+        public const short GlobalSectionCount = 11;
         public const short TileCount = 623;
         public const short WallCount = 316;
 
@@ -23,7 +23,11 @@ namespace TEdit.Terraria
         public const int MaxChests = 8000;
         public const int MaxSigns = 1000;
 
-        public static bool[] TileFrameImportant;
+        public bool[] TileFrameImportant { get; set; }
+
+        public short SectionCount { get; set; }
+
+        public static bool[] SettingsTileFrameImportant { get; set; }
 
         public static void ImportKillsAndBestiary(World world, string worldFileName)
         {
@@ -52,7 +56,7 @@ namespace TEdit.Terraria
                 if (!LoadSectionHeader(b, out tileFrameImportant, out sectionPointers, w))
                     throw new FileFormatException("Invalid File Format Section");
 
-                TileFrameImportant = tileFrameImportant;
+                w.TileFrameImportant = tileFrameImportant;
 
                 // we should be at the end of the first section
                 if (b.BaseStream.Position != sectionPointers[0])
@@ -83,52 +87,61 @@ namespace TEdit.Terraria
         {
             world.Validate();
             world.FileRevision++;
-            // initialize tileframeimportance array if empty
-            if (TileFrameImportant == null || TileFrameImportant.Length < TileCount)
-            {
-                TileFrameImportant = new bool[TileCount];
-                for (int i = 0; i < TileCount; i++)
-                {
-                    if (TileProperties.Count > i)
-                    {
-                        TileFrameImportant[i] = TileProperties[i].IsFramed;
-                    }
-                }
-            }
-
-            int[] sectionPointers = new int[SectionCount];
+            int[] sectionPointers = new int[world.SectionCount];
 
             OnProgressChanged(null, new ProgressChangedEventArgs(0, "Save headers..."));
             sectionPointers[0] = SaveSectionHeader(world, bw);
             sectionPointers[1] = SaveHeaderFlags(world, bw);
             OnProgressChanged(null, new ProgressChangedEventArgs(0, "Save Tiles..."));
-            sectionPointers[2] = SaveTiles(world.Tiles, world.TilesWide, world.TilesHigh, bw);
+            sectionPointers[2] = SaveTiles(world.Tiles, (int)world.Version, world.TilesWide, world.TilesHigh, bw, world.TileFrameImportant);
 
             OnProgressChanged(null, new ProgressChangedEventArgs(91, "Save Chests..."));
             sectionPointers[3] = SaveChests(world.Chests, bw);
             OnProgressChanged(null, new ProgressChangedEventArgs(92, "Save Signs..."));
             sectionPointers[4] = SaveSigns(world.Signs, bw);
             OnProgressChanged(null, new ProgressChangedEventArgs(93, "Save NPCs..."));
-            sectionPointers[5] = SaveNPCs(world.NPCs, bw);
-            OnProgressChanged(null, new ProgressChangedEventArgs(94, "Save Mobs..."));
-            sectionPointers[5] = SaveMobs(world.Mobs, bw);
-            OnProgressChanged(null, new ProgressChangedEventArgs(95, "Save Tile Entities Section..."));
-            sectionPointers[6] = SaveTileEntities(world.TileEntities, bw);
-            OnProgressChanged(null, new ProgressChangedEventArgs(96, "Save Weighted Pressure Plates..."));
-            sectionPointers[7] = SavePressurePlate(world.PressurePlates, bw);
-            OnProgressChanged(null, new ProgressChangedEventArgs(97, "Save Town Manager..."));
-            sectionPointers[8] = SaveTownManager(world.PlayerRooms, bw);
-            OnProgressChanged(null, new ProgressChangedEventArgs(98, "Save Bestiary..."));
-            sectionPointers[9] = SaveBestiary(world.Bestiary, bw);
-            OnProgressChanged(null, new ProgressChangedEventArgs(99, "Save Creative Powers..."));
-            sectionPointers[10] = SaveCreativePowers(world.CreativePowers, bw);
+            sectionPointers[5] = SaveNPCs(world.NPCs, bw, (int)world.Version);
+
+            if (world.Version >= 140)
+            {
+                OnProgressChanged(null, new ProgressChangedEventArgs(94, "Save Mobs..."));
+                sectionPointers[5] = SaveMobs(world.Mobs, bw, (int)world.Version);
+
+                OnProgressChanged(null, new ProgressChangedEventArgs(95, "Save Tile Entities Section..."));
+                sectionPointers[6] = SaveTileEntities(world.TileEntities, bw);
+            }
+
+            if (world.Version >= 170)
+            {
+                OnProgressChanged(null, new ProgressChangedEventArgs(96, "Save Weighted Pressure Plates..."));
+                sectionPointers[7] = SavePressurePlate(world.PressurePlates, bw);
+            }
+
+            if (world.Version >= 189)
+            {
+                OnProgressChanged(null, new ProgressChangedEventArgs(97, "Save Town Manager..."));
+                sectionPointers[8] = SaveTownManager(world.PlayerRooms, bw);
+            }
+
+            if (world.Version >= 210)
+            {
+                OnProgressChanged(null, new ProgressChangedEventArgs(98, "Save Bestiary..."));
+                sectionPointers[9] = SaveBestiary(world.Bestiary, bw);
+            }
+
+            if (world.Version >= 220)
+            {
+                OnProgressChanged(null, new ProgressChangedEventArgs(99, "Save Creative Powers..."));
+                sectionPointers[10] = SaveCreativePowers(world.CreativePowers, bw);
+            }
+
             OnProgressChanged(null, new ProgressChangedEventArgs(100, "Save Footers..."));
             SaveFooter(world, bw);
             UpdateSectionPointers(sectionPointers, bw);
             OnProgressChanged(null, new ProgressChangedEventArgs(100, "Save Complete."));
         }
 
-        public static int SaveTiles(Tile[,] tiles, int maxX, int maxY, BinaryWriter bw)
+        public static int SaveTiles(Tile[,] tiles, int version, int maxX, int maxY, BinaryWriter bw, bool[] tileFrameImportant)
         {
             for (int x = 0; x < maxX; x++)
             {
@@ -142,7 +155,7 @@ namespace TEdit.Terraria
                     int dataIndex;
                     int headerIndex;
 
-                    byte[] tileData = SerializeTileData(tile, out dataIndex, out headerIndex);
+                    byte[] tileData = SerializeTileData(tile, version, tileFrameImportant, out dataIndex, out headerIndex);
 
                     // rle compression
                     byte header1 = tileData[headerIndex];
@@ -192,7 +205,7 @@ namespace TEdit.Terraria
         /// <summary>
         /// BitPack tile data and headers
         /// </summary>
-        public static byte[] SerializeTileData(Tile tile, out int dataIndex, out int headerIndex)
+        public static byte[] SerializeTileData(Tile tile, int version, bool[] tileFrameImportant, out int dataIndex, out int headerIndex)
         {
 
             byte[] tileData = new byte[15];
@@ -224,7 +237,7 @@ namespace TEdit.Terraria
                     header1 = (byte)(header1 | 32);
                 }
 
-                if (TileFrameImportant[tile.Type])
+                if (tileFrameImportant[tile.Type])
                 {
                     // pack UV coords
                     tileData[dataIndex++] = (byte)(tile.U & 255);
@@ -302,7 +315,7 @@ namespace TEdit.Terraria
             {
                 header3 = (byte)(header3 | 32);
             }
-            if (tile.Wall > 255)
+            if (tile.Wall > 255 && version >= 222)
             {
                 tileData[dataIndex++] = (byte)(tile.Wall >> 8);
                 header3 = (byte)(header3 | 64);
@@ -327,11 +340,13 @@ namespace TEdit.Terraria
             return tileData;
         }
 
-        public static int SaveChests(IList<Chest> chests, BinaryWriter bw)
+        public static int SaveChests(IList<Chest> chests, BinaryWriter bw, bool useLegacyLimit = false)
         {
-            bw.Write((Int16)chests.Count);
+            Int16 count = useLegacyLimit ? (Int16)Math.Min(chests.Count, Chest.LegacyLimit) : (Int16)chests.Count;
+            bw.Write(count);
             bw.Write((Int16)Chest.MaxItems);
 
+            int written = 0;
             foreach (Chest chest in chests)
             {
                 bw.Write(chest.X);
@@ -355,15 +370,19 @@ namespace TEdit.Terraria
                         bw.Write((short)0);
                     }
                 }
+                written++;
+                if (useLegacyLimit && written >= Chest.LegacyLimit) { break; }
             }
 
             return (int)bw.BaseStream.Position;
         }
 
-        public static int SaveSigns(IList<Sign> signs, BinaryWriter bw)
+        public static int SaveSigns(IList<Sign> signs, BinaryWriter bw, bool useLegacyLimit = false)
         {
-            bw.Write((Int16)signs.Count);
+            Int16 count = useLegacyLimit ? (Int16)Math.Min(signs.Count, Sign.LegacyLimit) : (Int16)signs.Count;
+            bw.Write(count);
 
+            int written = 0;
             foreach (Sign sign in signs)
             {
                 if (sign.Text != null)
@@ -372,17 +391,28 @@ namespace TEdit.Terraria
                     bw.Write(sign.X);
                     bw.Write(sign.Y);
                 }
+                written++;
+                if (useLegacyLimit && written >= Sign.LegacyLimit) { break; }
             }
 
             return (int)bw.BaseStream.Position;
         }
 
-        public static int SaveNPCs(IEnumerable<NPC> npcs, BinaryWriter bw)
+        public static int SaveNPCs(IEnumerable<NPC> npcs, BinaryWriter bw, int version)
         {
             foreach (NPC npc in npcs)
             {
                 bw.Write(true);
-                bw.Write(npc.SpriteId);
+
+                if (version >= 190)
+                {
+                    bw.Write(npc.SpriteId);
+                }
+                else
+                {
+                    bw.Write(NpcNames[npc.SpriteId]);
+                }
+
                 bw.Write(npc.DisplayName);
                 bw.Write(npc.Position.X);
                 bw.Write(npc.Position.Y);
@@ -390,12 +420,15 @@ namespace TEdit.Terraria
                 bw.Write(npc.Home.X);
                 bw.Write(npc.Home.Y);
 
-                BitsByte bitsByte = 0;
-                bitsByte[0] = true;
-                bw.Write(bitsByte);
-                if (bitsByte[0])
+                if (version >= 213)
                 {
-                    bw.Write(npc.TownNpcVariationIndex);
+                    BitsByte bitsByte = 0;
+                    bitsByte[0] = true;
+                    bw.Write(bitsByte);
+                    if (bitsByte[0])
+                    {
+                        bw.Write(npc.TownNpcVariationIndex);
+                    }
                 }
 
             }
@@ -416,12 +449,19 @@ namespace TEdit.Terraria
             return (int)bw.BaseStream.Position;
         }
 
-        public static int SaveMobs(IEnumerable<NPC> mobs, BinaryWriter bw)
+        public static int SaveMobs(IEnumerable<NPC> mobs, BinaryWriter bw, int version)
         {
             foreach (NPC mob in mobs)
             {
                 bw.Write(true);
-                bw.Write(mob.SpriteId);
+                if (version >= 190)
+                {
+                    bw.Write(mob.SpriteId);
+                }
+                else
+                {
+                    bw.Write(NpcNames[mob.SpriteId]);
+                }
                 bw.Write(mob.Position.X);
                 bw.Write(mob.Position.Y);
             }
@@ -479,20 +519,20 @@ namespace TEdit.Terraria
 
         public static int SaveSectionHeader(World world, BinaryWriter bw)
         {
-            bw.Write(Math.Max(CompatibleVersion, world.Version));
+            bw.Write(world.Version);
             bw.Write((UInt64)0x026369676f6c6572ul);
             bw.Write((int)world.FileRevision + 1);
             bw.Write(Convert.ToUInt64(world.IsFavorite));
-            bw.Write(SectionCount);
+            bw.Write(world.SectionCount);
 
             // write section pointer placeholders
-            for (int i = 0; i < SectionCount; i++)
+            for (int i = 0; i < world.SectionCount; i++)
             {
                 bw.Write(0);
             }
 
             // write bitpacked tile frame importance
-            WriteBitArray(bw, TileFrameImportant);
+            WriteBitArray(bw, world.TileFrameImportant);
 
             return (int)bw.BaseStream.Position;
         }
@@ -812,7 +852,7 @@ namespace TEdit.Terraria
             if (!LoadSectionHeader(b, out tileFrameImportant, out sectionPointers, w))
                 throw new FileFormatException("Invalid File Format Section");
 
-            TileFrameImportant = tileFrameImportant;
+            w.TileFrameImportant = tileFrameImportant;
 
             // we should be at the end of the first section
             if (b.BaseStream.Position != sectionPointers[0])
@@ -824,7 +864,7 @@ namespace TEdit.Terraria
                 throw new FileFormatException("Unexpected Position: Invalid Header Flags");
 
             OnProgressChanged(null, new ProgressChangedEventArgs(0, "Loading Tiles..."));
-            w.Tiles = LoadTileData(b, w.TilesWide, w.TilesHigh, (int)w.Version);
+            w.Tiles = LoadTileData(b, w.TilesWide, w.TilesHigh, (int)w.Version, w.TileFrameImportant);
 
             if (b.BaseStream.Position != sectionPointers[2])
                 b.BaseStream.Position = sectionPointers[2];
@@ -908,7 +948,7 @@ namespace TEdit.Terraria
             OnProgressChanged(null, new ProgressChangedEventArgs(100, "Load Complete."));
         }
 
-        public static Tile[,] LoadTileData(BinaryReader r, int maxX, int maxY, int version)
+        public static Tile[,] LoadTileData(BinaryReader r, int maxX, int maxY, int version, bool[] tileFrameImportant)
         {
             var tiles = new Tile[maxX, maxY];
 
@@ -922,7 +962,7 @@ namespace TEdit.Terraria
                 {
                     try
                     {
-                        Tile tile = DeserializeTileData(r, version, out rle);
+                        Tile tile = DeserializeTileData(r, tileFrameImportant, version, out rle);
 
 
                         tiles[x, y] = tile;
@@ -959,7 +999,7 @@ namespace TEdit.Terraria
             return tiles;
         }
 
-        public static Tile DeserializeTileData(BinaryReader r, int version, out int rle)
+        public static Tile DeserializeTileData(BinaryReader r, bool[] tileFrameImportant, int version, out int rle)
         {
             Tile tile = new Tile();
 
@@ -1010,7 +1050,7 @@ namespace TEdit.Terraria
                 tile.Type = (ushort)tileType; // convert type to ushort after bit operations
 
                 // read frame UV coords
-                if (!TileFrameImportant[tileType])
+                if (!tileFrameImportant[tileType])
                 {
                     tile.U = -1;
                     tile.V = -1;
@@ -1696,9 +1736,9 @@ namespace TEdit.Terraria
             }
 
             // read file section stream positions
-            short fileSectionCount = r.ReadInt16();
-            sectionPointers = new int[fileSectionCount];
-            for (int i = 0; i < fileSectionCount; i++)
+            w.SectionCount = r.ReadInt16();
+            sectionPointers = new int[w.SectionCount];
+            for (int i = 0; i < w.SectionCount; i++)
             {
                 sectionPointers[i] = r.ReadInt32();
             }

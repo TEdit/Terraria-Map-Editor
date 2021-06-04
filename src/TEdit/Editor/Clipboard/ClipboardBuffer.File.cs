@@ -5,6 +5,7 @@ using TEdit.Geometry.Primitives;
 using TEdit.Helper;
 using TEdit.Terraria;
 using TEdit.Terraria.Objects;
+using TEdit.ViewModel;
 
 namespace TEdit.Editor.Clipboard
 {
@@ -24,7 +25,7 @@ namespace TEdit.Editor.Clipboard
             {
                 using (var bw = new BinaryWriter(stream))
                 {
-                    SaveV3(bw);
+                    SaveV4(bw);
                     bw.Close();
                 }
             }
@@ -65,12 +66,14 @@ namespace TEdit.Editor.Clipboard
 
         private void SaveV2(BinaryWriter bw)
         {
+            var world = ViewModelLocator.WorldViewModel.CurrentWorld;
+            var version = world?.Version ?? World.CompatibleVersion;
             bw.Write(Name);
-            bw.Write(World.CompatibleVersion);
+            bw.Write(world.Version);
             bw.Write(Size.X);
             bw.Write(Size.Y);
 
-            World.SaveTiles(Tiles, Size.X, Size.Y, bw);
+            World.SaveTiles(Tiles, (int)version, Size.X, Size.Y, bw, world.TileFrameImportant);
             World.SaveChests(Chests, bw);
             World.SaveSigns(Signs, bw);
 
@@ -82,12 +85,14 @@ namespace TEdit.Editor.Clipboard
 
         private void SaveV3(BinaryWriter bw)
         {
+            var world = ViewModelLocator.WorldViewModel.CurrentWorld;
+            var version = world?.Version ?? World.CompatibleVersion;
             bw.Write(Name);
-            bw.Write(World.CompatibleVersion);
+            bw.Write(world.Version);
             bw.Write(Size.X);
             bw.Write(Size.Y);
 
-            World.SaveTiles(Tiles, Size.X, Size.Y, bw);
+            World.SaveTiles(Tiles, (int)version, Size.X, Size.Y, bw, world.TileFrameImportant);
             World.SaveChests(Chests, bw);
             World.SaveSigns(Signs, bw);
             World.SaveTileEntities(TileEntities, bw);
@@ -98,6 +103,60 @@ namespace TEdit.Editor.Clipboard
             bw.Write(Size.Y);
         }
 
+        private void SaveV4(BinaryWriter bw)
+        {
+            var world = ViewModelLocator.WorldViewModel?.CurrentWorld;
+
+            var version = world?.Version ?? World.CompatibleVersion;
+            var tileFrameImportant = world?.TileFrameImportant ?? World.SettingsTileFrameImportant;
+
+            bw.Write(Name);
+            bw.Write(version + 10000);
+            World.WriteBitArray(bw, tileFrameImportant);
+            bw.Write(Size.X);
+            bw.Write(Size.Y);
+
+            World.SaveTiles(Tiles, (int)version, Size.X, Size.Y, bw, tileFrameImportant);
+            World.SaveChests(Chests, bw);
+            World.SaveSigns(Signs, bw);
+            World.SaveTileEntities(TileEntities, bw);
+
+            bw.Write(Name);
+            bw.Write(World.CompatibleVersion);
+            bw.Write(Size.X);
+            bw.Write(Size.Y);
+        }
+
+        private static ClipboardBuffer LoadV4(BinaryReader b, string name, int version)
+        {
+            var tileFrameImportant = World.ReadBitArray(b);
+            int sizeX = b.ReadInt32();
+            int sizeY = b.ReadInt32();
+            var buffer = new ClipboardBuffer(new Vector2Int32(sizeX, sizeY));
+            buffer.Name = name;
+
+            buffer.Tiles = World.LoadTileData(b, sizeX, sizeY, version, tileFrameImportant);
+            buffer.Chests.AddRange(World.LoadChestData(b));
+            buffer.Signs.AddRange(World.LoadSignData(b));
+            buffer.TileEntities.AddRange(World.LoadTileEntityData(b, (uint)version));
+
+            string verifyName = b.ReadString();
+            int verifyVersion = b.ReadInt32();
+            int verifyX = b.ReadInt32();
+            int verifyY = b.ReadInt32();
+            if (buffer.Name == verifyName &&
+                version == verifyVersion &&
+                buffer.Size.X == verifyX &&
+                buffer.Size.Y == verifyY)
+            {
+                // valid;
+                return buffer;
+            }
+            b.Close();
+
+            return null;
+        }
+
         private static ClipboardBuffer LoadV3(BinaryReader b, string name, int version)
         {
             int sizeX = b.ReadInt32();
@@ -105,7 +164,7 @@ namespace TEdit.Editor.Clipboard
             var buffer = new ClipboardBuffer(new Vector2Int32(sizeX, sizeY));
             buffer.Name = name;
 
-            buffer.Tiles = World.LoadTileData(b, sizeX, sizeY, version);
+            buffer.Tiles = World.LoadTileData(b, sizeX, sizeY, version, World.SettingsTileFrameImportant);
             buffer.Chests.AddRange(World.LoadChestData(b));
             buffer.Signs.AddRange(World.LoadSignData(b));
             buffer.TileEntities.AddRange(World.LoadTileEntityData(b, (uint)version));
@@ -134,7 +193,7 @@ namespace TEdit.Editor.Clipboard
             var buffer = new ClipboardBuffer(new Vector2Int32(sizeX, sizeY));
             buffer.Name = name;
 
-            buffer.Tiles = World.LoadTileData(b, sizeX, sizeY, version);
+            buffer.Tiles = World.LoadTileData(b, sizeX, sizeY, version, World.SettingsTileFrameImportant);
             buffer.Chests.AddRange(World.LoadChestData(b));
             buffer.Signs.AddRange(World.LoadSignData(b));
 
@@ -171,6 +230,11 @@ namespace TEdit.Editor.Clipboard
                     uint tVersion = (uint)version;
 
                     // check all the old versions
+                    if (version > 10000)
+                    {
+                        tVersion = (uint)(version - 10000);
+                        return LoadV4(b, name, (int)tVersion);
+                    }
                     if (version < 222)
                     {
                         return LoadV2(b, name, tVersion, version);
@@ -202,7 +266,7 @@ namespace TEdit.Editor.Clipboard
                         b.Close();
                         stream.Close();
                         return LoadOld(filename);
-                    }
+                    }                    
                     else
                     {
                     // not and old version, use new version

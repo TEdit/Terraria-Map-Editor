@@ -189,7 +189,7 @@ namespace TEdit.Terraria
             using (var fs = new FileStream(tempfileName, FileMode.Create))
             using (var bw = new BinaryWriter(fs))
             {
-                bw.Write(World.CompatibleVersion);
+                bw.Write(Version);
                 bw.Write(WorldName);
                 bw.Write(WorldId);
                 bw.Write(MaxTilesY);

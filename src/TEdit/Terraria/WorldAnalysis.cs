@@ -167,9 +167,9 @@ namespace TEdit.Terraria
         {
             sb.WriteLine("===SECTION: Header===");
             sb.WriteProperty("Compatible Version", world.Version);
-            sb.WriteProperty("Section Count", World.SectionCount);
+            sb.WriteProperty("Section Count", world.SectionCount);
             sb.Write("Frames: ");
-            foreach (bool t in World.TileFrameImportant)
+            foreach (bool t in world.TileFrameImportant)
             {
                 sb.Write(t ? 1 : 0);
             }

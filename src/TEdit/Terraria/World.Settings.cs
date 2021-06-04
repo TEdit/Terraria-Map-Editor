@@ -60,14 +60,14 @@ namespace TEdit.Terraria
             LoadObjectDbXml(settingspath);
             Sprites.Add(new Sprite());
 
-            if (TileFrameImportant == null || TileFrameImportant.Length <= 0)
+            if (SettingsTileFrameImportant == null || SettingsTileFrameImportant.Length <= 0)
             {
-                TileFrameImportant = new bool[TileCount];
+                SettingsTileFrameImportant = new bool[TileCount];
                 for (int i = 0; i < TileCount; i++)
                 {
                     if (TileProperties.Count > i)
                     {
-                        TileFrameImportant[i] = TileProperties[i].IsFramed;
+                        SettingsTileFrameImportant[i] = TileProperties[i].IsFramed;
                     }
                 }
             }

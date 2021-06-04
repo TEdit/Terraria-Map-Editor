@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.IO;
 using TEdit.Geometry.Primitives;
 using TEdit.Terraria;
+using TEdit.ViewModel;
 
 namespace TEdit.Editor.Undo
 {
@@ -72,6 +73,9 @@ namespace TEdit.Editor.Undo
 
         public void SaveTileData()
         {
+            var world = ViewModelLocator.WorldViewModel?.CurrentWorld;
+            var version = world?.Version ?? World.CompatibleVersion;
+            var tileFrameImportant = ViewModelLocator.WorldViewModel?.CurrentWorld?.TileFrameImportant ?? World.SettingsTileFrameImportant;
             lock (UndoSaveLock)
             {
                 int count = _undoTiles.Count;
@@ -92,7 +96,7 @@ namespace TEdit.Editor.Undo
                     int dataIndex;
                     int headerIndex;
 
-                    byte[] tileData = World.SerializeTileData(tile.Tile, out dataIndex, out headerIndex);
+                    byte[] tileData = World.SerializeTileData(tile.Tile, (int)version, tileFrameImportant, out dataIndex, out headerIndex);
 
                     _writer.Write(tileData, headerIndex, dataIndex - headerIndex);
                 }
@@ -118,13 +122,15 @@ namespace TEdit.Editor.Undo
 
         public static IEnumerable<UndoTile> ReadUndoTilesFromStream(BinaryReader br)
         {
+            var tileFrameImportant = ViewModelLocator.WorldViewModel?.CurrentWorld?.TileFrameImportant ?? World.SettingsTileFrameImportant;
+
             var tilecount = br.ReadInt32();
             for (int i = 0; i < tilecount; i++)
             {
                 int rle;
                 int x = br.ReadInt32();
                 int y = br.ReadInt32();
-                var curTile = World.DeserializeTileData(br, (int)World.CompatibleVersion, out rle);
+                var curTile = World.DeserializeTileData(br, tileFrameImportant, (int)World.CompatibleVersion, out rle);
 
                 yield return new UndoTile(new Vector2Int32(x, y), curTile);
             }

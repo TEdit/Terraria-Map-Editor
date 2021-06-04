@@ -8,6 +8,8 @@ namespace TEdit.Terraria
     [Serializable]
     public class Sign : ObservableObject
     {
+        public const int LegacyLimit = 1000;
+
         public Sign()
         {
             _text = string.Empty;

@@ -1,6 +1,6 @@
 param(
-    [string] $VersionPrefix = "4.4.1",
-    [string] $VersionSuffix = $null
+    [string] $VersionPrefix = "4.5.0",
+    [string] $VersionSuffix = "beta1"
 )
 
 $buildArgs = @(
@@ -26,14 +26,15 @@ Remove-Item -Path ".\TEdit*.msi"
 
 mkdir -Path ".\release"
 
-Copy-Item -Path ".\src\TEdit\bin\Release\net462\publish" -Destination ".\release\TEdit-$VersionPrefix\" -Recurse -Force
+Copy-Item -Path ".\src\TEdit\bin\Release\net462\publish" -Destination ".\release\TEdit-$VersionPrefix-$VersionSuffix\" -Recurse -Force
 Copy-Item -Path ".\schematics" -Destination ".\release" -Recurse
 
 # Create Installer
 $env:VERSION_PREFIX = $VersionPrefix
+$env:VERSION_SUFFIX = $VersionSuffix
 & dotnet build -c Release ".\src\Setup\Setup.csproj" 
-signtool.exe sign /v /fd sha256 /n "BC Code Signing" /t http://timestamp.digicert.com ".\src\Setup\TEdit-$VersionPrefix.msi"
-Move-Item ".\src\Setup\TEdit-$VersionPrefix.msi" ".\"
+signtool.exe sign /v /fd sha256 /n "BC Code Signing" /t http://timestamp.digicert.com ".\src\Setup\TEdit-$VersionPrefix-$VersionSuffix.msi"
+Move-Item ".\src\Setup\TEdit-$VersionPrefix-$VersionSuffix.msi" ".\"
 
 # Create ZIP Release
-Compress-Archive -Path ".\release\*" -DestinationPath ".\TEdit-$VersionPrefix.zip"
+Compress-Archive -Path ".\release\*" -DestinationPath ".\TEdit-$VersionPrefix-$VersionSuffix.zip"
