@@ -32,6 +32,7 @@ namespace TEdit.Terraria
             Signs.Clear();
             Chests.Clear();
             CharacterNames.Clear();
+            TileFrameImportant = SettingsTileFrameImportant.ToArray(); // clone for "new" world. Loaded worlds will replace this with file data
         }
 
 
@@ -182,21 +183,21 @@ namespace TEdit.Terraria
             return (x >= 0 && y >= 0 && y < _tilesHigh && x < _tilesWide);
         }
 
-        public Chest GetChestAtTile(int x, int y)
+        public Chest GetChestAtTile(int x, int y, bool findOrigin = false)
         {
-            Vector2Int32 anchor = GetAnchor(x, y);
+            Vector2Int32 anchor = findOrigin ? GetAnchor(x, y) : new Vector2Int32(x, y);
             return Chests.FirstOrDefault(c => (c.X == anchor.X) && (c.Y == anchor.Y));
         }
 
-        public Sign GetSignAtTile(int x, int y)
+        public Sign GetSignAtTile(int x, int y, bool findOrigin = false)
         {
-            Vector2Int32 anchor = GetAnchor(x, y);
+            Vector2Int32 anchor = findOrigin ? GetAnchor(x, y) : new Vector2Int32(x, y);
             return Signs.FirstOrDefault(c => (c.X == anchor.X) && (c.Y == anchor.Y));
         }
 
-        public TileEntity GetTileEntityAtTile(int x, int y)
+        public TileEntity GetTileEntityAtTile(int x, int y, bool findOrigin = false)
         {
-            Vector2Int32 anchor = GetAnchor(x, y);
+            Vector2Int32 anchor = findOrigin ? GetAnchor(x, y) : new Vector2Int32(x, y);
             return TileEntities.FirstOrDefault(c => (c.PosX == anchor.X) && (c.PosY == anchor.Y));
         }
 
@@ -242,7 +243,7 @@ namespace TEdit.Terraria
             var size = tileprop.FrameSize[0];
             if (tileprop.IsFramed && (size.X > 1 || size.Y > 1 || tileprop.FrameSize.Length > 1))
             {
-                if (tile.U == 0 && tile.V == 0) 
+                if (tile.U == 0 && tile.V == 0)
                 {
                     new Vector2Int32(x, y);
                 }
@@ -251,7 +252,7 @@ namespace TEdit.Terraria
                 var style = sprite?.GetStyleFromUV(tile.GetUV());
 
                 var sizeTiles = style?.Value?.SizeTiles ?? sprite?.SizeTiles?.FirstOrDefault() ?? tileprop.FrameSize.FirstOrDefault();
-                              
+
 
                 int xShift = tile.U % ((tileprop.TextureGrid.X + 2) * sizeTiles.X) / (tileprop.TextureGrid.X + 2);
                 int yShift = tile.V % ((tileprop.TextureGrid.Y + 2) * sizeTiles.Y) / (tileprop.TextureGrid.Y + 2);

@@ -77,6 +77,10 @@ namespace TEdit.Terraria
     {
         public static readonly Tile Empty = new Tile();
 
+        public bool IsEmpty { get => !IsActive && Wall == 0 && HasLiquid && !HasWire; }
+        public bool HasWire { get => WireBlue || WireRed || WireGreen || WireYellow; }
+        public bool HasLiquid { get => LiquidAmount > 0 && LiquidType != LiquidType.None; }
+
         public bool IsActive;
         public bool WireRed;
         public bool WireGreen;

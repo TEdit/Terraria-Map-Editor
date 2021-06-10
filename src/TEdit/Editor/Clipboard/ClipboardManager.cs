@@ -172,8 +172,8 @@ namespace TEdit.Editor.Clipboard
 
         public void PasteBufferIntoWorld(Vector2Int32 anchor)
         {
-            if (Buffer == null)
-                return;
+            if (Buffer == null) return;
+            if (!PasteTiles && !PasteLiquids && !PasteWalls && !PasteWires) return;
 
             ErrorLogging.TelemetryClient?.TrackEvent("Paste");
 
@@ -187,153 +187,113 @@ namespace TEdit.Editor.Clipboard
                     int worldX = x + anchor.X;
                     int worldY = y + anchor.Y;
 
-                    if (world.ValidTileLocation(new Vector2Int32(x + anchor.X, y + anchor.Y)))
+                    if (!world.ValidTileLocation(new Vector2Int32(worldX, worldY))) { continue; }
+
+                    //HistMan.AddTileToBuffer(worldX, worldY, ref world.UndoTiles[worldX, worldY]);
+                    Tile worldTile = world.Tiles[worldX, worldY];
+                    Tile curTile = (Tile)buffer.Tiles[x, y].Clone();
+
+                    if (!PasteTiles)
                     {
-                        //HistMan.AddTileToBuffer(x + anchor.X, y + anchor.Y, ref world.UndoTiles[x + anchor.X, y + anchor.Y]);
-
-                        Tile curTile;
-
-                        if (PasteTiles)
-                        {
-                            curTile = (Tile)buffer.Tiles[x, y].Clone();
-                            curTile.TileColor = buffer.Tiles[x, y].TileColor;
-                        }
-                        else
-                        {
-                            // if pasting tiles is disabled, use the existing tile with buffer's wall & extras
-                            curTile = (Tile)world.Tiles[worldX, worldY].Clone();
-                            curTile.Wall = buffer.Tiles[x, y].Wall;
-                            curTile.WallColor = buffer.Tiles[x, y].WallColor;
-                            curTile.LiquidAmount = buffer.Tiles[x, y].LiquidAmount;
-                            curTile.LiquidType = buffer.Tiles[x, y].LiquidType;
-                            curTile.WireRed = buffer.Tiles[x, y].WireRed;
-                            curTile.WireGreen = buffer.Tiles[x, y].WireGreen;
-                            curTile.WireBlue = buffer.Tiles[x, y].WireBlue;
-                            curTile.WireYellow = buffer.Tiles[x, y].WireYellow;
-                            curTile.Actuator = buffer.Tiles[x, y].Actuator;
-                            curTile.InActive = buffer.Tiles[x, y].InActive;
-                        }
-
-                        if (!PasteEmpty && (curTile.LiquidAmount == 0 && !curTile.IsActive && curTile.Wall == 0 && !curTile.WireRed && !curTile.WireBlue && !curTile.WireGreen && !curTile.WireYellow))
-                        {
-                            // skip tiles that are empty if paste empty is not true
-                            continue;
-                        }
-                        if (!PasteWalls)
-                        {
-                            // if pasting walls is disabled, use the existing wall
-                            curTile.Wall = world.Tiles[worldX, worldY].Wall;
-                            curTile.WallColor = world.Tiles[worldX, worldY].WallColor;
-                        }
-                        if (!PasteLiquids)
-                        {
-                            // if pasting liquids is disabled, use any existing liquid
-                            curTile.LiquidAmount = world.Tiles[worldX, worldY].LiquidAmount;
-                            curTile.LiquidType = world.Tiles[worldX, worldY].LiquidType;
-                        }
-                        if (!PasteWires)
-                        {
-                            // if pasting wires is disabled, use any existing wire
-                            Tile worldTile = world.Tiles[worldX, worldY];
-                            curTile.WireRed = worldTile.WireRed;
-                            curTile.WireGreen = worldTile.WireGreen;
-                            curTile.WireBlue = worldTile.WireBlue;
-                            curTile.WireYellow = worldTile.WireYellow;
-                            curTile.Actuator = worldTile.Actuator;
-                            curTile.InActive = worldTile.InActive;
-                        }
-                        //  Update chest/sign data only if we've pasted tiles
-                        if (PasteTiles)
-                        {
-                            // Remove overwritten chests data
-                            if (Tile.IsChest(world.Tiles[x + anchor.X, y + anchor.Y].Type))
-                            {
-                                var data = world.GetChestAtTile(x + anchor.X, y + anchor.Y);
-                                if (data != null)
-                                {
-                                    _wvm.UndoManager.Buffer.Chests.Add(data);
-                                    world.Chests.Remove(data);
-                                }
-                            }
-
-                            // Remove overwritten sign data
-                            if (Tile.IsSign(world.Tiles[x + anchor.X, y + anchor.Y].Type))
-                            {
-                                var data = world.GetSignAtTile(x + anchor.X, y + anchor.Y);
-                                if (data != null)
-                                {
-                                    _wvm.UndoManager.Buffer.Signs.Add(data);
-                                    world.Signs.Remove(data);
-                                }
-                            }
-
-                            // Remove overwritten tile entity data
-                            if (Tile.IsTileEntity(world.Tiles[x + anchor.X, y + anchor.Y].Type))
-                            {
-                                var data = world.GetTileEntityAtTile(x + anchor.X, y + anchor.Y);
-                                if (data != null)
-                                {
-                                    //    add this function to UndoManager
-                                    //    _wvm.UndoManager.Buffer.TileEntities.Add(data);
-                                    world.TileEntities.Remove(data);
-                                }
-                            }
-
-
-                            // Add new chest data
-                            if (Tile.IsChest(curTile.Type))
-                            {
-                                if (world.GetChestAtTile(x + anchor.X, y + anchor.Y) == null)
-                                {
-                                    var data = buffer.GetChestAtTile(x, y);
-                                    if (data != null) // allow? chest copying may not work...
-                                    {
-                                        // Copied chest
-                                        var newChest = data.Copy();
-                                        newChest.X = x + anchor.X;
-                                        newChest.Y = y + anchor.Y;
-                                        world.Chests.Add(newChest);
-                                    }
-                                }
-                            }
-
-                            // Add new sign data
-                            if (Tile.IsSign(curTile.Type))
-                            {
-                                if (world.GetSignAtTile(x + anchor.X, y + anchor.Y) == null)
-                                {
-                                    var data = buffer.GetSignAtTile(x, y);
-                                    if (data != null)
-                                    {
-                                        // Copied sign
-                                        var newSign = data.Copy();
-                                        newSign.X = x + anchor.X;
-                                        newSign.Y = y + anchor.Y;
-                                        world.Signs.Add(newSign);
-                                    }
-                                }
-                            }
-
-                            // Add new tile entity data
-                            if (Tile.IsTileEntity(curTile.Type))
-                            {
-                                if (world.GetTileEntityAtTile(x + anchor.X, y + anchor.Y) == null)
-                                {
-                                    var data = buffer.GetTileEntityAtTile(x, y);
-                                    if (data != null)
-                                    {
-                                        // Copied sign
-                                        var newEntity = data.Copy();
-                                        newEntity.PosX = (short)(x + anchor.X);
-                                        newEntity.PosY = (short)(y + anchor.Y);
-                                        world.TileEntities.Add(newEntity);
-                                    }
-                                }
-                            }
-                        }
-                        _wvm.UndoManager.SaveTile(x + anchor.X, y + anchor.Y);
-                        world.Tiles[x + anchor.X, y + anchor.Y] = curTile;
+                        curTile.IsActive = worldTile.IsActive;
+                        curTile.Type = worldTile.Type;
+                        curTile.TileColor = worldTile.TileColor;
+                        curTile.U = worldTile.U;
+                        curTile.V = worldTile.V;
+                        curTile.BrickStyle = worldTile.BrickStyle;
                     }
+
+                    if (!PasteEmpty && curTile.IsEmpty)
+                    {
+                        // skip tiles that are empty if paste empty is not true
+                        continue;
+                    }
+
+                    if (!PasteWalls)
+                    {
+                        // if pasting walls is disabled, use the existing wall
+                        curTile.Wall = worldTile.Wall;
+                        curTile.WallColor = worldTile.WallColor;
+                    }
+
+                    if (!PasteLiquids)
+                    {
+                        // if pasting liquids is disabled, use any existing liquid
+                        curTile.LiquidAmount = worldTile.LiquidAmount;
+                        curTile.LiquidType = worldTile.LiquidType;
+                    }
+
+                    if (!PasteWires)
+                    {
+                        // if pasting wires is disabled, use any existing wire
+                        curTile.WireRed = worldTile.WireRed;
+                        curTile.WireGreen = worldTile.WireGreen;
+                        curTile.WireBlue = worldTile.WireBlue;
+                        curTile.WireYellow = worldTile.WireYellow;
+                        curTile.Actuator = worldTile.Actuator;
+                        curTile.InActive = worldTile.InActive;
+                    }
+
+                    // save undo
+                    _wvm.UndoManager.SaveTile(worldX, worldY);
+                    // update world tile
+                    world.Tiles[worldX, worldY] = curTile;
+
+                    //  Update chest/sign data only if we've pasted tiles
+                    if (PasteTiles)
+                    {
+                        // Add new chest data
+                        if (Tile.IsChest(curTile.Type))
+                        {
+                            var existingChest = world.GetChestAtTile(worldX, worldY);
+                            if (existingChest != null) { world.Chests.Remove(existingChest); }
+
+                            var data = buffer.GetChestAtTile(x, y);
+                            if (data != null) // allow? chest copying may not work...
+                            {
+                                // Copied chest
+                                var newChest = data.Copy();
+                                newChest.X = worldX;
+                                newChest.Y = worldY;
+                                world.Chests.Add(newChest);
+                            }
+                        }
+
+                        // Add new sign data
+                        if (Tile.IsSign(curTile.Type))
+                        {
+                            if (world.GetSignAtTile(worldX, worldY) == null)
+                            {
+                                var data = buffer.GetSignAtTile(x, y);
+                                if (data != null)
+                                {
+                                    // Copied sign
+                                    var newSign = data.Copy();
+                                    newSign.X = worldX;
+                                    newSign.Y = worldY;
+                                    world.Signs.Add(newSign);
+                                }
+                            }
+                        }
+
+                        // Add new tile entity data
+                        if (Tile.IsTileEntity(curTile.Type))
+                        {
+                            if (world.GetTileEntityAtTile(worldX, worldY) == null)
+                            {
+                                var data = buffer.GetTileEntityAtTile(x, y);
+                                if (data != null)
+                                {
+                                    // Copied sign
+                                    var newEntity = data.Copy();
+                                    newEntity.PosX = (short)(worldX);
+                                    newEntity.PosY = (short)(worldY);
+                                    world.TileEntities.Add(newEntity);
+                                }
+                            }
+                        }
+                    }
+
                 }
             }
             _wvm.UndoManager.SaveUndo();

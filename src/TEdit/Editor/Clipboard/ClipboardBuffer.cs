@@ -79,17 +79,17 @@ namespace TEdit.Editor.Clipboard
             get { return _tileEntities; }
         }
         // since we are using these functions to add chests into the world we don't need to check all spots, only the anchor spot
-        public Chest GetChestAtTile(int x, int y)
+        public Chest GetChestAtTile(int x, int y, bool findOrigin = false)
         {
             return Chests.FirstOrDefault(c => (c.X == x) && (c.Y == y));
         }
 
-        public Sign GetSignAtTile(int x, int y)
+        public Sign GetSignAtTile(int x, int y, bool findOrigin = false)
         {
             return Signs.FirstOrDefault(c => (c.X == x) && (c.Y == y));
         }
 
-        public TileEntity GetTileEntityAtTile(int x, int y)
+        public TileEntity GetTileEntityAtTile(int x, int y, bool findOrigin = false)
         {
         	return TileEntities.FirstOrDefault(c => (c.PosX == x) && (c.PosY == y));
         }

@@ -198,12 +198,12 @@ namespace TEdit.Editor.Undo
         {
             SaveTile(p.X, p.Y);
         }
-        public void SaveTile(int x, int y)
+        public void SaveTile(int x, int y, bool removeEntities = false)
         {
             if (_buffer == null) { CreateBuffer(); }
 
             ValidateAndRemoveChests();
-            SaveTileToBuffer(Buffer, x, y, false);
+            SaveTileToBuffer(Buffer, x, y, removeEntities);
         }
 
         private void SaveTileToBuffer(UndoBuffer buffer, int x, int y, bool removeEntities = false)
@@ -295,7 +295,6 @@ namespace TEdit.Editor.Undo
                 {
                     _wvm.CurrentWorld.Chests.Add(new Chest(lastTile.Location.X, lastTile.Location.Y));
                 }
-
             }
             else if (Tile.IsSign(existingLastTile.Type))
             {

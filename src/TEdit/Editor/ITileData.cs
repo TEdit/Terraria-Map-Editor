@@ -16,8 +16,8 @@ namespace TEdit.Editor
         ObservableCollection<Sign> Signs { get; }
         ObservableCollection<Chest> Chests { get; }
         ObservableCollection<TileEntity> TileEntities { get; }
-        Chest GetChestAtTile(int x, int y);
-        Sign GetSignAtTile(int x, int y);
-        TileEntity GetTileEntityAtTile(int x, int y);
+        Chest GetChestAtTile(int x, int y, bool findOrigin = false);
+        Sign GetSignAtTile(int x, int y, bool findOrigin = false);
+        TileEntity GetTileEntityAtTile(int x, int y, bool findOrigin = false);
     }
 }

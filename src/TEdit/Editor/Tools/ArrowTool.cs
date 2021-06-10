@@ -36,7 +36,7 @@ namespace TEdit.Editor.Tools
             Tile curTile = _wvm.CurrentWorld.Tiles[e.Location.X, e.Location.Y];
             if (Tile.IsChest(curTile.Type))
             {
-                Chest chest = _wvm.CurrentWorld.GetChestAtTile(e.Location.X, e.Location.Y);
+                Chest chest = _wvm.CurrentWorld.GetChestAtTile(e.Location.X, e.Location.Y, true);
                 if (chest != null)
                 {
                     _wvm.SelectedChest = chest.Copy();
@@ -45,7 +45,7 @@ namespace TEdit.Editor.Tools
             }
             else if (Tile.IsSign(curTile.Type))
             {
-                Sign sign = _wvm.CurrentWorld.GetSignAtTile(e.Location.X, e.Location.Y);
+                Sign sign = _wvm.CurrentWorld.GetSignAtTile(e.Location.X, e.Location.Y, true);
                 if (sign != null)
                 {
                     _wvm.SelectedSign = sign.Copy();
@@ -54,7 +54,7 @@ namespace TEdit.Editor.Tools
             }
             else if (curTile.IsTileEntity())
             {
-                TileEntity te = _wvm.CurrentWorld.GetTileEntityAtTile(e.Location.X, e.Location.Y);
+                TileEntity te = _wvm.CurrentWorld.GetTileEntityAtTile(e.Location.X, e.Location.Y, true);
                 if (te != null)
                 {
                     _wvm.SelectedTileEntity = te.Copy();
