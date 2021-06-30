@@ -10,8 +10,6 @@ namespace TEdit.UI.Xaml
     {
         public FilteredComboBox()
         {
-            //this.Style = new Style(GetType(), this.FindResource(typeof(ComboBox)) as Style);
-
             SetResourceReference(StyleProperty, typeof(ComboBox));
         }
 

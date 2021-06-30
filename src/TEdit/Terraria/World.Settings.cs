@@ -43,7 +43,9 @@ namespace TEdit.Terraria
         private static readonly ObservableCollection<SignProperty> _signProperties = new ObservableCollection<SignProperty>();
         private static readonly ObservableCollection<TileProperty> _tileProperties = new ObservableCollection<TileProperty>();
         private static readonly ObservableCollection<TileProperty> _tileBricks = new ObservableCollection<TileProperty>();
+        private static readonly ObservableCollection<TileProperty> _tileBricksMask = new ObservableCollection<TileProperty>();
         private static readonly ObservableCollection<WallProperty> _wallProperties = new ObservableCollection<WallProperty>();
+        private static readonly ObservableCollection<WallProperty> _wallPropertiesMask = new ObservableCollection<WallProperty>();
         private static readonly ObservableCollection<PaintProperty> _paintProperties = new ObservableCollection<PaintProperty>();
         private static readonly ObservableCollection<Sprite> _sprites = new ObservableCollection<Sprite>();
 
@@ -268,7 +270,10 @@ namespace TEdit.Terraria
                 }
                 TileProperties.Add(curTile);
                 if (!curTile.IsFramed)
+                {
                     TileBricks.Add(curTile);
+                    TileBricksMask.Add(curTile);
+                }
             }
             for (int i = TileProperties.Count; i < 255; i++)
             {
@@ -282,7 +287,10 @@ namespace TEdit.Terraria
                 curWall.Name = (string)xElement.Attribute("Name");
                 curWall.Id = (int?)xElement.Attribute("Id") ?? -1;
                 WallProperties.Add(curWall);
+                WallPropertiesMask.Add(curWall);
             }
+
+
 
             foreach (var xElement in xmlSettings.Elements("Items").Elements("Item"))
             {
@@ -545,19 +553,26 @@ namespace TEdit.Terraria
                 return _tileProperties[type];
             }
             return _tileProperties[0];
-        }       
+        }
 
         public static ObservableCollection<TileProperty> TileBricks
         {
-            get
-            {
-                return _tileBricks;
-            }
+            get { return _tileBricks; }
         }
 
         public static ObservableCollection<WallProperty> WallProperties
         {
             get { return _wallProperties; }
+        }
+
+        public static ObservableCollection<TileProperty> TileBricksMask
+        {
+            get { return _tileBricksMask; }
+        }
+
+        public static ObservableCollection<WallProperty> WallPropertiesMask
+        {
+            get { return _wallPropertiesMask; }
         }
 
         public static ObservableCollection<PaintProperty> PaintProperties

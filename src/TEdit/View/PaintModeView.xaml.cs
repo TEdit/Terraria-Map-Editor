@@ -1,4 +1,6 @@
-﻿using System.Windows.Controls;
+﻿using System.Linq;
+using System.Windows.Controls;
+using TEdit.Terraria;
 
 namespace TEdit.View
 {

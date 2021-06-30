@@ -122,6 +122,7 @@
                     <tedit:FilteredComboBox Grid.ColumnSpan="2" ItemsSource="{Binding Source={x:Static Terraria:World.TileBricks}, Mode=OneTime}" Visibility="{Binding ElementName=TileText, Path=Visibility}"
                       ItemTemplate="{StaticResource ColorPickerTemplate}" 
                       SelectedValue="{Binding Path=TilePicker.Tile, Mode=TwoWay}"
+                      IsSynchronizedWithCurrentItem="False"
                       IsEditable="true"
                       SelectedValuePath="Id" 
                       IsTextSearchEnabled="False"
@@ -129,9 +130,10 @@
                     <TextBlock Text="{x:Static p:Language.tool_paint_maskmode}" />
                     <ComboBox ItemsSource="{StaticResource MaskModeEnum}" SelectedValue="{Binding TilePicker.TileMaskMode}" SelectedValuePath="Value" ItemTemplate="{StaticResource EnumTemplate}"  />
                     <TextBlock Text="{x:Static p:Language.tool_paint_mask}" />
-                    <tedit:FilteredComboBox ItemsSource="{Binding Source={x:Static Terraria:World.TileBricks}, Mode=OneTime}"
+                    <tedit:FilteredComboBox ItemsSource="{Binding Source={x:Static Terraria:World.TileBricksMask}, Mode=OneTime}"
                       ItemTemplate="{StaticResource ColorPickerTemplate}" 
                       SelectedValue="{Binding Path=TilePicker.TileMask, Mode=TwoWay}"
+                      IsSynchronizedWithCurrentItem="False"
                       IsEditable="true"
                       SelectedValuePath="Id"
                       IsTextSearchEnabled="False" 
@@ -150,6 +152,7 @@
                     <tedit:FilteredComboBox ItemsSource="{Binding Source={x:Static Terraria:World.WallProperties}, Mode=OneTime}" Visibility="{Binding ElementName=WallText, Path=Visibility}"
                       ItemTemplate="{StaticResource ColorPickerTemplate}" 
                       SelectedValue="{Binding Path=TilePicker.Wall, Mode=TwoWay}"
+                      IsSynchronizedWithCurrentItem="False"
                       IsEditable="true"
                       SelectedValuePath="Id" 
                       Grid.ColumnSpan="2"
@@ -158,9 +161,10 @@
                     <TextBlock Text="{x:Static p:Language.tool_paint_maskmode}" />
                     <ComboBox ItemsSource="{StaticResource MaskModeEnum}" SelectedValue="{Binding TilePicker.WallMaskMode}" SelectedValuePath="Value" ItemTemplate="{StaticResource EnumTemplate}" />
                     <TextBlock Text="{x:Static p:Language.tool_paint_mask}" />
-                    <tedit:FilteredComboBox ItemsSource="{Binding Source={x:Static Terraria:World.WallProperties}, Mode=OneTime}" 
+                    <tedit:FilteredComboBox ItemsSource="{Binding Source={x:Static Terraria:World.WallPropertiesMask}, Mode=OneTime}" 
                       ItemTemplate="{StaticResource ColorPickerTemplate}" 
                       SelectedValue="{Binding Path=TilePicker.WallMask, Mode=TwoWay}"
+                      IsSynchronizedWithCurrentItem="False"
                       IsEditable="true"
                       SelectedValuePath="Id"
                       IsTextSearchEnabled="False"

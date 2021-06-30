@@ -16,6 +16,7 @@ namespace TEdit.UI.Xaml
 
     public class FilterableComboBox : ComboBox
     {
+
         /// <summary>
         /// If true, on lost focus or enter key pressed, checks the text in the combobox. If the text is not present
         /// in the list, it leaves it blank.
@@ -51,6 +52,7 @@ namespace TEdit.UI.Xaml
 
         public FilterableComboBox()
         {
+            SetResourceReference(StyleProperty, typeof(ComboBox));
             IsDropDownOpenUC = new UserChange<bool>(v => IsDropDownOpen = v);
             DropDownOpened += FilteredComboBox_DropDownOpened;
 
