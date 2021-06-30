@@ -48,13 +48,36 @@ namespace TEdit.Editor.Plugins
                         var curTile = _wvm.CurrentWorld.Tiles[x, y];
 
                         // Only replace if the tile is dirt or stone and if the wall is empty, stone or dirt.
-                        if (curTile.IsActive && (curTile.Type == (int)TileType.DirtBlock || curTile.Type == (int)TileType.StoneBlock) && (curTile.Wall == 0 || curTile.Wall == 1 || curTile.Wall == 2))
+
+                        if (curTile.IsActive && _wvm.TilePicker.TileMaskMode == MaskMode.Match && curTile.Type != _wvm.TilePicker.TileMask)
                         {
-                            _wvm.UndoManager.SaveTile(x, y);
-                            _wvm.CurrentWorld.Tiles[x, y].IsActive = true;
-                            _wvm.CurrentWorld.Tiles[x, y].Type = tile;
-                            _wvm.UpdateRenderPixel(x, y);
+                            // test mask
+                            continue;
                         }
+
+                        if (curTile.IsActive && _wvm.TilePicker.TileMaskMode == MaskMode.NotMatching && curTile.Type == _wvm.TilePicker.TileMask)
+                        {
+                            // test inverted mask
+                            continue;
+                        }
+
+                        if (!curTile.IsActive && _wvm.TilePicker.TileMaskMode == MaskMode.Empty)
+                        {
+                            // if mask is empty and tile is active, skip
+                            continue;
+                        }
+
+                        if (_wvm.TilePicker.TileMaskMode == MaskMode.Off && !(curTile.Type >= 0 && curTile.Type <= 1 && (curTile.Wall >= 0 && curTile.Wall <= 2)))
+                        {
+                            // if no mask, only match dirt or stone
+                            continue;
+                        }
+
+                        _wvm.UndoManager.SaveTile(x, y);
+                        _wvm.CurrentWorld.Tiles[x, y].IsActive = true;
+                        _wvm.CurrentWorld.Tiles[x, y].Type = tile;
+                        _wvm.UpdateRenderPixel(x, y);
+
                     }
                 }
             }
