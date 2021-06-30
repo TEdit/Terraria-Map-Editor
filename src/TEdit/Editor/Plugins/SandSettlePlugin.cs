@@ -16,7 +16,14 @@ namespace TEdit.Editor.Plugins
         {
             if (_wvm.CurrentWorld == null)
                 return;
-            int[] _tileSand = {53, 112, 234, 116};
+            int[] _tileSand = {
+                53,  // Sand Block
+                112, // Ebonsand Block
+                116, // Pearlsand
+                123, // silt
+                224, // slush block
+                234, // Crimsand block
+            };
 
             for (int y = _wvm.CurrentWorld.TilesHigh - 1; y > 0; y--)
             {
