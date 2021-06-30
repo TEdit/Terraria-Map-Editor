@@ -3,6 +3,7 @@
                     xmlns:System="clr-namespace:System;assembly=mscorlib"
                     xmlns:ComponentModel="clr-namespace:System.ComponentModel;assembly=WindowsBase"
                     xmlns:Terraria="clr-namespace:TEdit.Terraria"
+                    xmlns:tedit="clr-namespace:TEdit.UI.Xaml"
                     xmlns:p="clr-namespace:TEdit.Properties"
                     xmlns:enum="clr-namespace:TEdit.UI.Xaml.Enum">
     <enum:EnumItemList x:Key="PaintModeEnum" ResourceType="{x:Type p:Language}" EnumType="{x:Type Editor:PaintMode}" SortBy="Value"  />
@@ -11,6 +12,8 @@
     <enum:EnumItemList x:Key="HalfBlockMode" ResourceType="{x:Type p:Language}" EnumType="{x:Type Editor:HalfBlockMode}" x:Shared="false" SortBy="Value" />
     <enum:EnumItemList x:Key="BrickStyle" ResourceType="{x:Type p:Language}" EnumType="{x:Type Terraria:BrickStyle}" x:Shared="false" SortBy="Value" />
     <enum:EnumItemList x:Key="LiquidType" ResourceType="{x:Type p:Language}" EnumType="{x:Type Terraria:LiquidType}" x:Shared="false" SortBy="Value" />
+    
+
     <DataTemplate x:Key="ColorPickerTemplate" >
         <DockPanel LastChildFill="True">
             <Border BorderBrush="Black" BorderThickness="1" Margin="2,1" DockPanel.Dock="Left" >

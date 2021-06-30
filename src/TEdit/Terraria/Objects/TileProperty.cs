@@ -37,6 +37,8 @@ namespace TEdit.Terraria.Objects
         {
         }
 
+        public override string ToString() => Name;
+
         public Vector2Short TextureGrid
         {
             get { return _textureGrid; }

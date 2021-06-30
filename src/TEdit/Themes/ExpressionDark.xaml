@@ -1577,11 +1577,14 @@
         <ControlTemplate.Triggers></ControlTemplate.Triggers>
     </ControlTemplate>
 
+
     <Style TargetType="{x:Type ComboBox}">
         <Setter Property="Foreground" Value="{DynamicResource TextBrush}" />
         <Setter Property="SnapsToDevicePixels" Value="true" />
         <Setter Property="Template" Value="{DynamicResource ComboBoxTemplate}" />
     </Style>
+
+
 
     <ControlTemplate x:Key="ComboBoxTemplateWrapPanel" TargetType="{x:Type ComboBox}">
         <Grid x:Name="grid">

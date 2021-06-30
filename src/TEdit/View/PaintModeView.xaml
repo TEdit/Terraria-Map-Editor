@@ -119,21 +119,23 @@
                         <ColumnDefinition Width="1*" />
                         <ColumnDefinition Width="2*" />
                     </tedit:AutoGrid.ColumnDefinitions>
-                    <ComboBox Grid.ColumnSpan="2" ItemsSource="{Binding Source={x:Static Terraria:World.TileBricks}, Mode=OneTime}" Visibility="{Binding ElementName=TileText, Path=Visibility}"
+                    <tedit:FilteredComboBox Grid.ColumnSpan="2" ItemsSource="{Binding Source={x:Static Terraria:World.TileBricks}, Mode=OneTime}" Visibility="{Binding ElementName=TileText, Path=Visibility}"
                       ItemTemplate="{StaticResource ColorPickerTemplate}" 
                       SelectedValue="{Binding Path=TilePicker.Tile, Mode=TwoWay}"
                       IsEditable="true"
                       SelectedValuePath="Id" 
-                      IsTextSearchEnabled="True" TextSearch.TextPath="Name" />
+                      IsTextSearchEnabled="False"
+                      TextSearch.TextPath="Name" />
                     <TextBlock Text="{x:Static p:Language.tool_paint_maskmode}" />
                     <ComboBox ItemsSource="{StaticResource MaskModeEnum}" SelectedValue="{Binding TilePicker.TileMaskMode}" SelectedValuePath="Value" ItemTemplate="{StaticResource EnumTemplate}"  />
                     <TextBlock Text="{x:Static p:Language.tool_paint_mask}" />
-                    <ComboBox ItemsSource="{Binding Source={x:Static Terraria:World.TileBricks}, Mode=OneTime}"
+                    <tedit:FilteredComboBox ItemsSource="{Binding Source={x:Static Terraria:World.TileBricks}, Mode=OneTime}"
                       ItemTemplate="{StaticResource ColorPickerTemplate}" 
                       SelectedValue="{Binding Path=TilePicker.TileMask, Mode=TwoWay}"
                       IsEditable="true"
                       SelectedValuePath="Id"
-                      IsTextSearchEnabled="True" TextSearch.TextPath="Name" />
+                      IsTextSearchEnabled="False" 
+                      TextSearch.TextPath="Name" />
                 </tedit:AutoGrid>
             </GroupBox>
             <GroupBox BorderThickness="1"  Style="{StaticResource WallVisibleStyle}">
@@ -145,21 +147,24 @@
                         <ColumnDefinition Width="1*" />
                         <ColumnDefinition Width="2*" />
                     </tedit:AutoGrid.ColumnDefinitions>
-                    <ComboBox ItemsSource="{Binding Source={x:Static Terraria:World.WallProperties}, Mode=OneTime}" Visibility="{Binding ElementName=WallText, Path=Visibility}"
+                    <tedit:FilteredComboBox ItemsSource="{Binding Source={x:Static Terraria:World.WallProperties}, Mode=OneTime}" Visibility="{Binding ElementName=WallText, Path=Visibility}"
                       ItemTemplate="{StaticResource ColorPickerTemplate}" 
                       SelectedValue="{Binding Path=TilePicker.Wall, Mode=TwoWay}"
                       IsEditable="true"
-                      SelectedValuePath="Id" Grid.ColumnSpan="2"
-                      IsTextSearchEnabled="True" TextSearch.TextPath="Name" />
+                      SelectedValuePath="Id" 
+                      Grid.ColumnSpan="2"
+                      IsTextSearchEnabled="False"
+                      TextSearch.TextPath="Name" />
                     <TextBlock Text="{x:Static p:Language.tool_paint_maskmode}" />
                     <ComboBox ItemsSource="{StaticResource MaskModeEnum}" SelectedValue="{Binding TilePicker.WallMaskMode}" SelectedValuePath="Value" ItemTemplate="{StaticResource EnumTemplate}" />
                     <TextBlock Text="{x:Static p:Language.tool_paint_mask}" />
-                    <ComboBox ItemsSource="{Binding Source={x:Static Terraria:World.WallProperties}, Mode=OneTime}" 
+                    <tedit:FilteredComboBox ItemsSource="{Binding Source={x:Static Terraria:World.WallProperties}, Mode=OneTime}" 
                       ItemTemplate="{StaticResource ColorPickerTemplate}" 
                       SelectedValue="{Binding Path=TilePicker.WallMask, Mode=TwoWay}"
                       IsEditable="true"
                       SelectedValuePath="Id"
-                      IsTextSearchEnabled="True" TextSearch.TextPath="Name" />
+                      IsTextSearchEnabled="False"
+                      TextSearch.TextPath="Name" />
                 </tedit:AutoGrid>
             </GroupBox>
             <GroupBox Header="Liquid" Style="{StaticResource LiquidVisibleStyle}">

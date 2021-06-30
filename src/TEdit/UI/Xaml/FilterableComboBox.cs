@@ -12,6 +12,8 @@ using System.Windows.Input;
 
 namespace TEdit.UI.Xaml
 {
+
+
     public class FilterableComboBox : ComboBox
     {
         /// <summary>
