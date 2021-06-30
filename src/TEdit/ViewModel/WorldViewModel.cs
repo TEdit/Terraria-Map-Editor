@@ -937,11 +937,12 @@ namespace TEdit.ViewModel
                 _loadTimer.Reset();
                 _loadTimer.Start();
                 _saveTimer.Stop();
+
                 Task.Factory.StartNew(() =>
                 {
                     World w = nwDialog.NewWorld;
                     w.Seed = (new Random()).Next(0, int.MaxValue).ToString();
-                    w.SpawnX = w.TilesWide / 2;
+                    w.SpawnX = (int)(w.TilesWide / 2);
                     w.SpawnY = (int)Math.Max(0, w.GroundLevel - 10);
                     w.GroundLevel = (int)w.GroundLevel;
                     w.RockLevel = (int)w.RockLevel;

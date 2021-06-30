@@ -18,6 +18,7 @@ namespace TEdit.View.Popups
             _newWorld.GroundLevel = 350;
             _newWorld.RockLevel = 480;
             _newWorld.ResetTime();
+            _newWorld.CreationTime = System.DateTime.Now.ToBinary();
             AddCharNames();
             DataContext = NewWorld;
         }
