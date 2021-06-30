@@ -80,6 +80,10 @@ namespace TEdit.ViewModel
 
             switch (curMode)
             {
+                case PaintMode.Sprites:
+                    if (CurrentWorld.TileFrameImportant[curTile.Type])
+                        SetTile(curTile, isErase);
+                    break;
                 case PaintMode.TileAndWall:
                     if (TilePicker.TileStyleActive)
                         SetTile(curTile, isErase);

@@ -48,21 +48,25 @@ namespace TEdit.Editor
             get { return _trackMode; }
             set { Set(nameof(TrackMode), ref _trackMode, value); }
         }
-        
+
         //private bool _isLava;
         private bool _isEraser;
 
         public bool IsEraser
         {
             get { return _isEraser; }
-            set { Set(nameof(IsEraser), ref _isEraser, value); }
+            set
+            {
+                if (!value && PaintMode == PaintMode.Sprites) { return; } // the only allowed mode for sprite painting is erase
+                Set(nameof(IsEraser), ref _isEraser, value);
+            }
         }
 
         private LiquidType _liquidType;
         public LiquidType LiquidType
         {
             get { return _liquidType; }
-            set { Set(nameof(LiquidType), ref _liquidType, value);}
+            set { Set(nameof(LiquidType), ref _liquidType, value); }
         }
 
         private bool _actuator;
@@ -142,7 +146,7 @@ namespace TEdit.Editor
         {
             get { return _actuatorInActive; }
             set { Set(nameof(ActuatorInActive), ref _actuatorInActive, value); }
-        }   
+        }
 
         public int TileMask
         {
@@ -197,19 +201,26 @@ namespace TEdit.Editor
         public PaintMode PaintMode
         {
             get { return _paintMode; }
-            set { Set(nameof(PaintMode), ref _paintMode, value); }
+            set
+            {
+                Set(nameof(PaintMode), ref _paintMode, value);
+                if (value == PaintMode.Sprites)
+                {
+                    IsEraser = true;
+                }
+            }
         }
 
         public void Swap(ModifierKeys modifier)
         {
             switch (PaintMode)
             {
-//                case PaintMode.Tile:
-//                    SwapTile();
-//                    break;
-//                case PaintMode.Wall:
-//                    SwapWall();
-//                    break;
+                //                case PaintMode.Tile:
+                //                    SwapTile();
+                //                    break;
+                //                case PaintMode.Wall:
+                //                    SwapWall();
+                //                    break;
                 case PaintMode.TileAndWall:
                     if (modifier.HasFlag(ModifierKeys.Shift))
                         SwapWall();

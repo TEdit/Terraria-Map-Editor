@@ -12,6 +12,8 @@ namespace TEdit.Editor
         Liquid,
         [Description("Track")]
         Track,
+        [Description("Sprites")]
+        Sprites
     }
     public enum TrackMode
     {

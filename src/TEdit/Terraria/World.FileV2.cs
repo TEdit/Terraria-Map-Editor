@@ -25,7 +25,7 @@ namespace TEdit.Terraria
 
         public bool[] TileFrameImportant { get; set; }
 
-        public short SectionCount { get; set; }
+        public short SectionCount { get; set; } = GlobalSectionCount;
 
         public static bool[] SettingsTileFrameImportant { get; set; }
 
