@@ -17,8 +17,18 @@ namespace TEdit.UI.Xaml
 
         private string currentFilter = string.Empty;
 
+        private object SelectedItemWhenDropDownOpened = null;
+        private object SelectedValueWhenDropDownOpened = null;
+
         protected TextBox EditableTextBox => GetTemplateChild("PART_EditableTextBox") as TextBox;
 
+        protected override void OnDropDownOpened(System.EventArgs e)
+        {
+            SelectedItemWhenDropDownOpened = SelectedItem;
+            SelectedValueWhenDropDownOpened = SelectedValue;
+            ClearFilter();
+            base.OnDropDownOpened(e);
+        }
 
         protected override void OnItemsSourceChanged(IEnumerable oldValue, IEnumerable newValue)
         {
@@ -42,13 +52,14 @@ namespace TEdit.UI.Xaml
             switch (e.Key)
             {
                 case Key.Tab:
+                    if (Items.Count == 0) { RevertToPrevious(); }
+                    else { SelectedIndex = 0; } // pick the first
+                    break;
                 case Key.Enter:
                     IsDropDownOpen = false;
                     break;
                 case Key.Escape:
-                    IsDropDownOpen = false;
-                    SelectedIndex = -1;
-                    Text = currentFilter;
+                    RevertToPrevious();
                     break;
                 default:
                     if (e.Key == Key.Down) IsDropDownOpen = true;
@@ -61,6 +72,13 @@ namespace TEdit.UI.Xaml
             oldFilter = Text;
         }
 
+        private void RevertToPrevious()
+        {
+            IsDropDownOpen = false;
+            SelectedValue = SelectedValueWhenDropDownOpened;
+            Text = this.SelectedItemWhenDropDownOpened.ToString();
+        }
+
         protected override void OnKeyUp(KeyEventArgs e)
         {
             switch (e.Key)
@@ -70,8 +88,8 @@ namespace TEdit.UI.Xaml
                     break;
                 case Key.Tab:
                 case Key.Enter:
-
-                    ClearFilter();
+                    if (Items.Count == 0) { RevertToPrevious(); }
+                    else { SelectedIndex = 0; } // pick the first
                     break;
                 default:
                     if (Text != oldFilter)
@@ -107,11 +125,13 @@ namespace TEdit.UI.Xaml
 
         protected override void OnPreviewLostKeyboardFocus(KeyboardFocusChangedEventArgs e)
         {
+            if (Items.Count == 0) { RevertToPrevious(); }
             ClearFilter();
-            var temp = SelectedIndex;
-            SelectedIndex = -1;
-            Text = string.Empty;
-            SelectedIndex = temp;
+
+            //var temp = SelectedIndex;
+            //SelectedIndex = -1;
+            //Text = string.Empty;
+            //SelectedIndex = temp;
             base.OnPreviewLostKeyboardFocus(e);
         }
 
@@ -125,6 +145,7 @@ namespace TEdit.UI.Xaml
 
         private void ClearFilter()
         {
+            Text = string.Empty;
             currentFilter = string.Empty;
             RefreshFilter();
         }

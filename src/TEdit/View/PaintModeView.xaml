@@ -125,8 +125,7 @@
                       IsSynchronizedWithCurrentItem="False"
                       IsEditable="true"
                       SelectedValuePath="Id" 
-                      IsTextSearchEnabled="False"
-                      TextSearch.TextPath="Name" />
+                      IsTextSearchEnabled="False" />
                     <TextBlock Text="{x:Static p:Language.tool_paint_maskmode}" />
                     <ComboBox ItemsSource="{StaticResource MaskModeEnum}" SelectedValue="{Binding TilePicker.TileMaskMode}" SelectedValuePath="Value" ItemTemplate="{StaticResource EnumTemplate}"  />
                     <TextBlock Text="{x:Static p:Language.tool_paint_mask}" />
@@ -136,8 +135,7 @@
                       IsSynchronizedWithCurrentItem="False"
                       IsEditable="true"
                       SelectedValuePath="Id"
-                      IsTextSearchEnabled="False" 
-                      TextSearch.TextPath="Name" />
+                      IsTextSearchEnabled="False" />
                 </tedit:AutoGrid>
             </GroupBox>
             <GroupBox BorderThickness="1"  Style="{StaticResource WallVisibleStyle}">
