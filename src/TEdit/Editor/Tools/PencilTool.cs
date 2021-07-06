@@ -29,6 +29,8 @@ namespace TEdit.Editor.Tools
             if (!_isRightDown && !_isLeftDown)
             {
                 _startPoint = e.Location;
+                System.Diagnostics.Debug.WriteLine($"Update _startpoint {_startPoint} MouseDown");
+
                 _wvm.CheckTiles = new bool[_wvm.CurrentWorld.TilesWide * _wvm.CurrentWorld.TilesHigh];
             }
 
@@ -51,6 +53,7 @@ namespace TEdit.Editor.Tools
             _isRightDown = (e.RightButton == MouseButtonState.Pressed);
             _wvm.UndoManager.SaveUndo();
         }
+
         private void CheckDirectionandDraw(Vector2Int32 tile)
         {
             Vector2Int32 p = tile;
@@ -64,16 +67,18 @@ namespace TEdit.Editor.Tools
 
                 DrawLine(p);
                 _startPoint = p;
+                System.Diagnostics.Debug.WriteLine($"Update _startpoint {_startPoint} CheckDirectionandDraw _isRightDown");
             }
             else if (_isLeftDown)
             {
-                if ((Keyboard.IsKeyUp(Key.LeftShift)) && (Keyboard.IsKeyUp(Key.RightShift)))
+                if (Keyboard.IsKeyUp(Key.LeftShift) && Keyboard.IsKeyUp(Key.RightShift))
                 {
                     DrawLine(p);
                     _startPoint = p;
+                    System.Diagnostics.Debug.WriteLine($"Update _startpoint {_startPoint} CheckDirectionandDraw _isLeftDown");
                     _endPoint = p;
                 }
-                else if ((Keyboard.IsKeyDown(Key.LeftShift)) || (Keyboard.IsKeyDown(Key.RightShift)))
+                else if (Keyboard.IsKeyDown(Key.LeftShift) || Keyboard.IsKeyDown(Key.RightShift))
                 {
                     DrawLineP2P(p2);
                     _endPoint = p2;

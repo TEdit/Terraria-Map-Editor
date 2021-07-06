@@ -33,6 +33,8 @@ namespace TEdit.Editor.Tools
             if (!_isRightDown && !_isLeftDown)
             {
                 _startPoint = e.Location;
+                System.Diagnostics.Debug.WriteLine($"Update _startpoint {_startPoint} MouseDown");
+
                 _wvm.CheckTiles = new bool[_wvm.CurrentWorld.TilesWide * _wvm.CurrentWorld.TilesHigh];
             }
 
@@ -93,16 +95,18 @@ namespace TEdit.Editor.Tools
 
                 DrawLine(p);
                 _startPoint = p;
+                System.Diagnostics.Debug.WriteLine($"Update _startpoint {_startPoint} CheckDirectionandDraw _isRightDown");
             }
             else if (_isLeftDown)
             {
-                if ((Keyboard.IsKeyUp(Key.LeftShift)) && (Keyboard.IsKeyUp(Key.RightShift)))
+                if (Keyboard.IsKeyUp(Key.LeftShift) && Keyboard.IsKeyUp(Key.RightShift))
                 {
                     DrawLine(p);
                     _startPoint = p;
+                    System.Diagnostics.Debug.WriteLine($"Update _startpoint {_startPoint} CheckDirectionandDraw _isLeftDown");
                     _endPoint = p;
                 }
-                else if ((Keyboard.IsKeyDown(Key.LeftShift)) || (Keyboard.IsKeyDown(Key.RightShift)))
+                else if (Keyboard.IsKeyDown(Key.LeftShift) || Keyboard.IsKeyDown(Key.RightShift))
                 {
                     DrawLineP2P(p2);
                     _endPoint = p2;
@@ -115,7 +119,6 @@ namespace TEdit.Editor.Tools
             var line = Shape.DrawLineTool(_startPoint, to).ToList();
             if (_wvm.Brush.Shape == BrushShape.Square || _wvm.Brush.Height <= 1 || _wvm.Brush.Width <= 1)
             {
-
                 for (int i = 1; i < line.Count; i++)
                 {
                     FillRectangleLine(line[i - 1], line[i]);
@@ -139,11 +142,10 @@ namespace TEdit.Editor.Tools
 
         protected void DrawLineP2P(Vector2Int32 endPoint)
         {
-            var line = Shape.DrawLineTool(_startPoint, endPoint).ToList();
+            var line = Shape.DrawLineTool(_startPoint, _endPoint).ToList();
 
             if (_wvm.Brush.Shape == BrushShape.Square || _wvm.Brush.Height <= 1 || _wvm.Brush.Width <= 1)
             {
-
                 for (int i = 1; i < line.Count; i++)
                 {
                     FillRectangleLine(line[i - 1], line[i]);
@@ -177,10 +179,11 @@ namespace TEdit.Editor.Tools
             if (_wvm.Brush.IsOutline)
             {
 
-                var interrior = Fill.FillRectangleCentered(point,
-                                                                                 new Vector2Int32(
-                                                                                     _wvm.Brush.Width - _wvm.Brush.Outline * 2,
-                                                                                     _wvm.Brush.Height - _wvm.Brush.Outline * 2)).ToList();
+                var interrior = Fill.FillRectangleCentered(
+                    point,
+                    new Vector2Int32(
+                        _wvm.Brush.Width - _wvm.Brush.Outline * 2,
+                        _wvm.Brush.Height - _wvm.Brush.Outline * 2)).ToList();
                 FillHollow(area, interrior);
             }
             else
@@ -195,8 +198,8 @@ namespace TEdit.Editor.Tools
             if (_wvm.Brush.IsOutline)
             {
                 var interrior = Fill.FillEllipseCentered(point, new Vector2Int32(
-                                                                                   _wvm.Brush.Width / 2 - _wvm.Brush.Outline * 2,
-                                                                                   _wvm.Brush.Height / 2 - _wvm.Brush.Outline * 2)).ToList();
+                    _wvm.Brush.Width / 2 - _wvm.Brush.Outline * 2,
+                    _wvm.Brush.Height / 2 - _wvm.Brush.Outline * 2)).ToList();
                 FillHollow(area, interrior);
             }
             else
