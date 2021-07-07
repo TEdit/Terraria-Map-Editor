@@ -107,6 +107,7 @@ namespace TEdit.Editor.Tools
                 }
             }
         }
+
         private void DrawLineP2P(Vector2Int32 endPoint)
         {
             foreach (Vector2Int32 pixel in Shape.DrawLineTool(_startPoint, _endPoint))

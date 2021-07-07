@@ -236,6 +236,7 @@ namespace TEdit.Editor.Clipboard
 
                     // save undo
                     _wvm.UndoManager.SaveTile(worldX, worldY);
+
                     // update world tile
                     world.Tiles[worldX, worldY] = curTile;
 
@@ -296,8 +297,10 @@ namespace TEdit.Editor.Clipboard
 
                 }
             }
+
             _wvm.UndoManager.SaveUndo();
             _wvm.CurrentWorld.UpgradeLegacyTileEntities();
+
             /* Heathtech */
             BlendRules.ResetUVCache(_wvm, anchor.X, anchor.Y, buffer.Size.X, buffer.Size.Y);
         }
