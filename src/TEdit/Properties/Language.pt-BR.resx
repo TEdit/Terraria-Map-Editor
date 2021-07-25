@@ -302,7 +302,7 @@ Clique em tentar novamente para escolher uma nova pasta ou cancelar para usar {0
   <data name="menu_language_pl" xml:space="preserve">
     <value>Polonês</value>
   </data>
-    <data name="menu_language_pt" xml:space="preserve">
+  <data name="menu_language_pt" xml:space="preserve">
     <value>Português</value>
   </data>
   <data name="menu_language_ru" xml:space="preserve">
