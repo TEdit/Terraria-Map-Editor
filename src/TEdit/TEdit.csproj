@@ -9,8 +9,8 @@
     <DefaultNamespace>TEdit</DefaultNamespace>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <LangVersion>latest</LangVersion>
-    <VersionPrefix>4.5.0</VersionPrefix>
-    <VersionSuffix>beta4</VersionSuffix>
+    <VersionPrefix>4.5.1</VersionPrefix>
+    <VersionSuffix></VersionSuffix>
     <Platforms>AnyCPU</Platforms>
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
