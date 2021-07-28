@@ -33,11 +33,11 @@ Copy-Item -Path ".\src\TEdit\bin\Release\net462\publish" -Destination ".\release
 Copy-Item -Path ".\schematics" -Destination ".\release" -Recurse
 
 # Create Installer
-$env:VERSION_PREFIX = $VersionPrefix
-$env:VERSION_SUFFIX = $VersionSuffix
-& dotnet build -c Release ".\src\Setup\Setup.csproj" 
-signtool.exe sign /v /fd sha256 /n "BC Code Signing" /t http://timestamp.digicert.com ".\src\Setup\$filename.msi"
-Move-Item ".\src\Setup\$filename.msi" ".\"
+# $env:VERSION_PREFIX = $VersionPrefix
+# $env:VERSION_SUFFIX = $VersionSuffix
+# & dotnet build -c Release ".\src\Setup\Setup.csproj" 
+# signtool.exe sign /v /fd sha256 /n "BC Code Signing" /t http://timestamp.digicert.com ".\src\Setup\$filename.msi"
+# Move-Item ".\src\Setup\$filename.msi" ".\"
 
 # Create ZIP Release
 Compress-Archive -Path ".\release\*" -DestinationPath ".\$filename.zip"
