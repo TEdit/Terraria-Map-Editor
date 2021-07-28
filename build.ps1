@@ -10,13 +10,15 @@ $buildArgs = @(
     ".\src\TEdit.sln", 
     '/p:signcert="BC Code Signing"')
 
+
 $filename = "TEdit-$VersionPrefix"
 
-if ($null -ne $VersionPrefix) {
+
+if (![String]::IsNullOrWhitespace($VersionPrefix)) {
     $buildArgs += "/p:VersionPrefix=""$VersionPrefix"""
 }
 
-if ($null -ne $VersionSuffix) {
+if (![String]::IsNullOrWhitespace($VersionSuffix)) {
     $buildArgs += "/p:VersionSuffix=""$VersionSuffix"""
     $filename = "TEdit-$VersionPrefix-$VersionSuffix"
 }
