@@ -269,6 +269,9 @@ Naciśnij spróbuj ponownie aby wybrać nowy folder lub anuluj aby użyć {0} ja
   <data name="menu_file_saveas" xml:space="preserve">
     <value>Zapisz jako</value>
   </data>
+  <data name="menu_file_saveasversion" xml:space="preserve">
+    <value>Zapisz jako wersję</value>
+  </data>
   <data name="menu_file_update" xml:space="preserve">
     <value>Sprawdź nowe aktualizacje</value>
   </data>
