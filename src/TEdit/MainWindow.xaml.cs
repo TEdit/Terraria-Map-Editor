@@ -113,6 +113,10 @@ namespace TEdit
                         if (_vm.SaveAsCommand.CanExecute(null))
                             _vm.SaveAsCommand.Execute(null);
                         break;
+                    case "saveasversion":
+                        if (_vm.SaveAsVersionCommand.CanExecute(null))
+                            _vm.SaveAsVersionCommand.Execute(null);
+                        break;
                     case "deleteselection":
                         if (_vm.DeleteCommand.CanExecute(null))
                             _vm.DeleteCommand.Execute(null);

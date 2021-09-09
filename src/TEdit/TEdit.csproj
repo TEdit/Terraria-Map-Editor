@@ -122,6 +122,9 @@
     <Page Update="Editor\Plugins\HouseGenPluginView.xaml">
       <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
     </Page>
+    <Page Update="View\SaveAsVersion.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+    </Page>
   </ItemGroup>
 
   <Target Name="Sign" AfterTargets="Publish" Condition=" $(signcert) != '' ">
