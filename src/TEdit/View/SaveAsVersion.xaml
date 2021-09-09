@@ -1,0 +1,18 @@
+﻿<Window x:Class="TEdit.UI.Xaml.SaveAsVersionGUI"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TEdit.UI.Xaml"
+        WindowStartupLocation="CenterOwner"
+        mc:Ignorable="d"
+        Background="{StaticResource ControlBackgroundBrush}" Foreground="{DynamicResource TextBrush}"
+        Title="World Version Selector" Height="74" Width="305">
+    <Border Margin="0,0,249,478">
+
+        <DockPanel Margin="0,0,-264,-31">
+            <Button Content="Save For Terraria 1.3" Height="20" VerticalAlignment="Top" Width="121" Margin="10,8,0,0" Click="Button_Click"/>
+            <Button Content="Save For Terraria 1.4" Height="20" VerticalAlignment="Top" Width="121" Margin="10,8,0,0" Click="Button_Click_1"/>
+        </DockPanel>
+    </Border>
+</Window>
