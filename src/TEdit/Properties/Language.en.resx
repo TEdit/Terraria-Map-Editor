@@ -269,6 +269,9 @@ Press retry to pick a new folder or cancel to use {0} as your terraria path.</va
   <data name="menu_file_saveas" xml:space="preserve">
     <value>Save As</value>
   </data>
+  <data name="menu_file_saveasversion" xml:space="preserve">
+    <value>Save As Version</value>
+  </data>
   <data name="menu_file_update" xml:space="preserve">
     <value>Check for Updates Now</value>
   </data>

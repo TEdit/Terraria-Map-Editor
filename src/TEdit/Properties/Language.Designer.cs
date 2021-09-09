@@ -503,6 +503,15 @@ namespace TEdit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Save As Version.
+        /// </summary>
+        public static string menu_file_saveasversion {
+            get {
+                return ResourceManager.GetString("menu_file_saveasversion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Check for Updates Now.
         /// </summary>
         public static string menu_file_update {

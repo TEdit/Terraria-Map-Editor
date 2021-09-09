@@ -14,6 +14,7 @@
         <Image x:Key="TB_NewIcon" x:Shared="false" Source="/Images/Toolbar/new.png" Height="16" Width="16" SnapsToDevicePixels="True" RenderOptions.BitmapScalingMode="NearestNeighbor"/>
         <Image x:Key="TB_SaveIcon" x:Shared="false" Source="/Images/Toolbar/save.png" Height="16" Width="16" SnapsToDevicePixels="True" RenderOptions.BitmapScalingMode="NearestNeighbor"/>
         <Image x:Key="TB_SaveAsIcon" x:Shared="false" Source="/Images/Toolbar/saveas.png" Height="16" Width="16" SnapsToDevicePixels="True" RenderOptions.BitmapScalingMode="NearestNeighbor"/>
+        <Image x:Key="TB_SaveAsVersionIcon" x:Shared="false" Source="/Images/Toolbar/saveasversion.png" Height="16" Width="16" SnapsToDevicePixels="True" RenderOptions.BitmapScalingMode="NearestNeighbor"/>
         <Image x:Key="TB_OpenIcon" x:Shared="false" Source="/Images/Toolbar/open.png" Height="16" Width="16" SnapsToDevicePixels="True" RenderOptions.BitmapScalingMode="NearestNeighbor"/>
         <Image x:Key="TB_HelpIcon" x:Shared="false" Source="/Images/Toolbar/help.png" Height="16" Width="16" SnapsToDevicePixels="True" RenderOptions.BitmapScalingMode="NearestNeighbor"/>
         <Image x:Key="TB_UpdateIcon" x:Shared="false" Source="/Images/Toolbar/update.png" Height="16" Width="16" SnapsToDevicePixels="True" RenderOptions.BitmapScalingMode="NearestNeighbor"/>
@@ -54,6 +55,7 @@
                 </DataTrigger>
             </Style.Triggers>
         </Style>
+        <Image x:Key="TB_SaveIcon2" x:Shared="false" Source="Images/Toolbar/save.png" Height="16" Width="16" SnapsToDevicePixels="True" RenderOptions.BitmapScalingMode="NearestNeighbor"/>
     </Window.Resources>
     <Grid>
         <DockPanel LastChildFill="True">
@@ -64,6 +66,7 @@
                     <Separator Margin="1"/>
                     <MenuItem Header="{x:Static p:Language.menu_file_save}" Icon="{StaticResource TB_SaveIcon}" Command="{Binding SaveCommand}"/>
                     <MenuItem Header="{x:Static p:Language.menu_file_saveas}" Icon="{StaticResource TB_SaveAsIcon}" Command="{Binding SaveAsCommand}" />
+                    <MenuItem Header="{x:Static p:Language.menu_file_saveasversion}" Icon="{StaticResource TB_SaveAsVersionIcon}" Command="{Binding SaveAsVersionCommand}"/>
                     <Separator Margin="1"/>
                     <MenuItem Header="{x:Static p:Language.menu_file_autosave}" IsCheckable="True" IsChecked="{Binding IsAutoSaveEnabled}" />
                     <MenuItem Header="{x:Static p:Language.menu_file_autoupdate}" IsCheckable="True" IsChecked="{Binding CheckUpdates}" />
@@ -258,7 +261,7 @@
                         <View:SpecialTileView HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
                     </TabItem>
                     <TabItem Header="{x:Static p:Language.editor_tabs_sprites}">
-                        <View:SpriteView2 VerticalAlignment="Stretch" HorizontalAlignment="Stretch" />
+                        <View:SpriteView VerticalAlignment="Stretch" HorizontalAlignment="Stretch" />
                     </TabItem>
                     <TabItem Header="{x:Static p:Language.editor_tabs_clipboard}">
                         <View:ClipboardView VerticalAlignment="Stretch" HorizontalAlignment="Stretch" />

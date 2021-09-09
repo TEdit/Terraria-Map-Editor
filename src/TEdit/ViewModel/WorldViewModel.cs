@@ -57,7 +57,7 @@ namespace TEdit.ViewModel
         private ITool _activeTool;
         private bool _checkUpdates;
         private string _currentFile;
-        private World _currentWorld;
+        public static World _currentWorld;
         private bool _isAutoSaveEnabled = true;
         private ICommand _launchWikiCommand;
         private WriteableBitmap _minimapImage;
@@ -519,7 +519,7 @@ namespace TEdit.ViewModel
         {
             get { return _tools; }
         }
-
+        
         public ITool ActiveTool
         {
             get { return _activeTool; }
@@ -1004,6 +1004,16 @@ namespace TEdit.ViewModel
                 SaveWorldFile();
         }
 
+        private void SaveWorldAsVersion()
+        {
+            if (CurrentWorld == null) return;
+
+            var w = new SaveAsVersionGUI();
+            w.Owner = Application.Current.MainWindow;
+            w.WindowStartupLocation = WindowStartupLocation.CenterOwner;
+            w.ShowDialog();
+        }
+
         private void SaveWorldAs()
         {
             if (CurrentWorld == null) return;
@@ -1021,14 +1031,15 @@ namespace TEdit.ViewModel
 
         private void SaveWorldFile()
         {
-            if (CurrentWorld == null) return;
-
+            if (CurrentWorld == null)
+                return;
             if (CurrentWorld.LastSave < File.GetLastWriteTimeUtc(CurrentFile))
             {
                 MessageBoxResult overwrite = MessageBox.Show(_currentWorld.Title + " was externally modified since your last save.\r\nDo you wish to overwrite?", "World Modified", MessageBoxButton.OKCancel, MessageBoxImage.Warning);
                 if (overwrite.Equals(MessageBoxResult.Cancel))
                     return;
             }
+
             SaveWorldThreaded(CurrentFile);
         }
 
