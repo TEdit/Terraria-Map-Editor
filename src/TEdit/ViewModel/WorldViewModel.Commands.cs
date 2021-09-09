@@ -21,6 +21,7 @@ namespace TEdit.ViewModel
 {
     public partial class WorldViewModel
     {
+        private ICommand _saveAsVersionCommand;
         private ICommand _saveAsCommand;
         private ICommand _saveCommand;
         private ICommand _setTool;
@@ -327,6 +328,11 @@ namespace TEdit.ViewModel
         public ICommand OpenCommand
         {
             get { return _commandOpenWorld ?? (_commandOpenWorld = new RelayCommand(OpenWorld)); }
+        }
+
+        public ICommand SaveAsVersionCommand
+        {
+            get { return _saveAsVersionCommand ?? (_saveAsVersionCommand = new RelayCommand(SaveWorldAsVersion)); }
         }
 
         public ICommand SaveAsCommand
