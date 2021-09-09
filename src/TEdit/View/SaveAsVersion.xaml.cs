@@ -32,7 +32,7 @@ namespace TEdit.UI.Xaml
             InitializeComponent();
         }
 
-        // Export To 1.3
+        // Export To 1.3.5.3
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             var sfd = new SaveFileDialog();
@@ -47,7 +47,7 @@ namespace TEdit.UI.Xaml
             this.Close();
         }
 
-        // Export To Current Version
+        // Export To Current Version (1.4.2.3)
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             var sfd = new SaveFileDialog();
@@ -56,7 +56,7 @@ namespace TEdit.UI.Xaml
             sfd.InitialDirectory = DependencyChecker.PathToWorlds;
             if ((bool)sfd.ShowDialog())
             {
-                Task.Factory.StartNew(() => World.SaveVersion(WorldViewModel._currentWorld.Version, WorldViewModel._currentWorld, sfd.FileName))
+                Task.Factory.StartNew(() => World.SaveVersion(238, WorldViewModel._currentWorld, sfd.FileName))
                 .ContinueWith(t => CommandManager.InvalidateRequerySuggested(), TaskFactoryHelper.UiTaskScheduler);
             }
             this.Close();
