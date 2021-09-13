@@ -13,21 +13,21 @@ namespace TEdit.Terraria
 {
     public partial class World
     {
-        
+
 
         private static void SaveV1(World world, BinaryWriter bw)
         {
             bw.Write(CompatibleVersion);
             bw.Write(world.Title);
             bw.Write(world.WorldId);
-            bw.Write((int) world.LeftWorld);
-            bw.Write((int) world.RightWorld);
-            bw.Write((int) world.TopWorld);
-            bw.Write((int) world.BottomWorld);
+            bw.Write((int)world.LeftWorld);
+            bw.Write((int)world.RightWorld);
+            bw.Write((int)world.TopWorld);
+            bw.Write((int)world.BottomWorld);
             bw.Write(world.TilesHigh);
             bw.Write(world.TilesWide);
 
-            bw.Write((byte) world.MoonType);
+            bw.Write((byte)world.MoonType);
             bw.Write(world.TreeX0);
             bw.Write(world.TreeX1);
             bw.Write(world.TreeX2);
@@ -80,7 +80,7 @@ namespace TEdit.Terraria
 
             bw.Write(world.ShadowOrbSmashed);
             bw.Write(world.SpawnMeteor);
-            bw.Write((byte) world.ShadowOrbCount);
+            bw.Write((byte)world.ShadowOrbCount);
             bw.Write(world.AltarCount);
             bw.Write(world.HardMode);
             bw.Write(world.InvasionDelay);
@@ -102,7 +102,7 @@ namespace TEdit.Terraria
             bw.Write(world.BgCrimson);
             bw.Write(world.BgDesert);
             bw.Write(world.BgOcean);
-            bw.Write((int) world.CloudBgActive);
+            bw.Write((int)world.CloudBgActive);
             bw.Write(world.NumClouds);
             bw.Write(world.WindSpeedSet);
 
@@ -122,7 +122,7 @@ namespace TEdit.Terraria
                     while (y + rleTemp < world.TilesHigh && curTile.Equals(world.Tiles[x, (y + rleTemp)]))
                         ++rleTemp;
                     rle = rleTemp - 1;
-                    bw.Write((short) rle);
+                    bw.Write((short)rle);
                 }
             }
             OnProgressChanged(null, new ProgressChangedEventArgs(100, "Saving Chests..."));
@@ -142,10 +142,15 @@ namespace TEdit.Terraria
             }
             bw.Write(false);
 
-
             OnProgressChanged(null, new ProgressChangedEventArgs(100, "Saving NPC Names..."));
 
-            world.FixNpcs();
+            try
+            {
+                world.FixNpcs();
+            }
+            catch (Exception)
+            {
+            }
 
             bw.Write(world.GetNpc(17).Name);
             bw.Write(world.GetNpc(18).Name);

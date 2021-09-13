@@ -1,4 +1,4 @@
-﻿<Window x:Class="TEdit.UI.Xaml.SaveAsVersionGUI"
+<Window x:Class="TEdit.UI.Xaml.SaveAsVersionGUI"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -7,11 +7,36 @@
         WindowStartupLocation="CenterOwner"
         mc:Ignorable="d"
         Background="{StaticResource ControlBackgroundBrush}" Foreground="{DynamicResource TextBrush}"
-        Title="Select World Version" Height="72.333" Width="339">
-    <Border Margin="0,0,249,478">
-        <DockPanel Margin="0,0,-264,-31">
-            <Button Content="Save For Terraria 1.3.5.3" Height="20" VerticalAlignment="Top" Width="148" Margin="10,8,0,0" Click="Button_Click"/>
-            <Button Content="Save For Current Version" Height="20" VerticalAlignment="Top" Width="144" Margin="-10,8,0,0" Click="Button_Click_1"/>
-        </DockPanel>
-    </Border>
+        Title="Select World Version" Height="115.364" Width="418.333">
+    <ScrollViewer>
+        <StackPanel>
+
+            <Border Margin="0,0,249,5">
+            </Border>
+            
+            <Border Margin="0,0,249,35">
+                <DockPanel Margin="0,0,-264,-35">
+                    <Button Content="1.4.2.3" Height="20" VerticalAlignment="Top" Width="50" Margin="50,8,0,0" Click="Button_Click_11"/>
+                    <Button Content="1.4.2.1" Height="20" VerticalAlignment="Top" Width="50" Margin="10,8,0,0" Click="Button_Click_10"/>
+                    <Button Content="1.4.1.1" Height="20" VerticalAlignment="Top" Width="50" Margin="10,8,0,0" Click="Button_Click_9"/>
+                    <Button Content="1.4.0.5" Height="20" VerticalAlignment="Top" Width="50" Margin="10,8,0,0" Click="Button_Click_8"/>
+                    <Button Content="1.3.5" Height="20" VerticalAlignment="Top" Width="50" Margin="10,8,0,0" Click="Button_Click_7"/>
+                    <Button Content="" Height="0" VerticalAlignment="Top" Width="0" Margin="10,8,0,0"/>
+                </DockPanel>
+            </Border>
+
+            <Border Margin="0,0,249,37">
+                <DockPanel Margin="0,0,-264,-37">
+                    <Button Content="1.3.4" Height="20" VerticalAlignment="Top" Width="50" Margin="20,8,0,0" Click="Button_Click_6"/>
+                    <Button Content="1.3.3" Height="20" VerticalAlignment="Top" Width="50" Margin="10,8,0,0" Click="Button_Click_5"/>
+                    <Button Content="1.3.2" Height="20" VerticalAlignment="Top" Width="50" Margin="10,8,0,0" Click="Button_Click_4"/>
+                    <Button Content="1.3.0" Height="20" VerticalAlignment="Top" Width="50" Margin="10,8,0,0" Click="Button_Click_3"/>
+                    <Button Content="1.2.1" Height="20" VerticalAlignment="Top" Width="50" Margin="10,8,0,0" Click="Button_Click_2"/>
+                    <Button Content="1.2.0" Height="20" VerticalAlignment="Top" Width="50" Margin="10,8,0,0" Click="Button_Click_1"/>
+                    <Button Content="" Height="0" VerticalAlignment="Top" Width="0" Margin="10,8,0,0"/>
+                </DockPanel>
+            </Border>
+
+        </StackPanel>
+    </ScrollViewer>
 </Window>
