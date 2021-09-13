@@ -519,7 +519,7 @@ namespace TEdit.ViewModel
         {
             get { return _tools; }
         }
-        
+
         public ITool ActiveTool
         {
             get { return _activeTool; }
@@ -663,7 +663,7 @@ namespace TEdit.ViewModel
                 if (Set(nameof(EnableTelemetry), ref _showNews, value))
                 {
                     Settings.Default.ShowNews = value;
-                    try { Settings.Default.Save(); } catch (Exception ex) { ErrorLogging.LogException(ex); }                    
+                    try { Settings.Default.Save(); } catch (Exception ex) { ErrorLogging.LogException(ex); }
                 }
             }
         }
@@ -1011,7 +1011,20 @@ namespace TEdit.ViewModel
             var w = new SaveAsVersionGUI();
             w.Owner = Application.Current.MainWindow;
             w.WindowStartupLocation = WindowStartupLocation.CenterOwner;
-            w.ShowDialog();
+
+            var sfd = new SaveFileDialog();
+            sfd.Filter = "Terraria World File|*.wld";
+            sfd.Title = "Save World As";
+            sfd.InitialDirectory = DependencyChecker.PathToWorlds;
+
+            bool pickVersion = (bool)w.ShowDialog();
+            uint version = w.WorldVersion;
+
+            if (pickVersion && (bool)sfd.ShowDialog())
+            {
+                CurrentFile = sfd.FileName;
+                SaveWorldFile(version);
+            }
         }
 
         private void SaveWorldAs()
@@ -1019,17 +1032,47 @@ namespace TEdit.ViewModel
             if (CurrentWorld == null) return;
 
             var sfd = new SaveFileDialog();
-            sfd.Filter = "Terraria World File|*.wld|TEdit Backup File|*.TEdit";
+            sfd.Filter =
+                "Terraria World File|*.wld" +
+                "|Terraria 1.2.0|*.wld" +
+                "|Terraria 1.2.1|*.wld" +
+                "|Terraria 1.3.0|*.wld" +
+                "|Terraria 1.3.2|*.wld" +
+                "|Terraria 1.3.3|*.wld" +
+                "|Terraria 1.3.4|*.wld" +
+                "|Terraria 1.3.5|*.wld" +
+                "|Terraria 1.4.0.5|*.wld" +
+                "|Terraria 1.4.1.1|*.wld" +
+                "|Terraria 1.4.2.1|*.wld" +
+                "|Terraria 1.4.2.3|*.wld";
             sfd.Title = "Save World As";
             sfd.InitialDirectory = DependencyChecker.PathToWorlds;
             if ((bool)sfd.ShowDialog())
             {
                 CurrentFile = sfd.FileName;
-                SaveWorldFile();
+
+                if (sfd.FilterIndex > 0)
+                {
+                    try
+                    {
+                        var name = sfd.Filter.Split('|')?[sfd.FilterIndex]?.Split(' ').LastOrDefault();
+                        if (World.VersionToWorldVersion.TryGetValue(name, out uint versionOverride))
+                        {
+                            SaveWorldFile(versionOverride);
+                            return;
+                        }
+                    }
+                    catch (Exception _)
+                    {
+                        // fall back to default save
+                    }
+
+                    SaveWorldFile();
+                }
             }
         }
 
-        private void SaveWorldFile()
+        private void SaveWorldFile(uint version = 0)
         {
             if (CurrentWorld == null)
                 return;
@@ -1040,12 +1083,12 @@ namespace TEdit.ViewModel
                     return;
             }
 
-            SaveWorldThreaded(CurrentFile);
+            SaveWorldThreaded(CurrentFile, version);
         }
 
-        private void SaveWorldThreaded(string filename)
+        private void SaveWorldThreaded(string filename, uint version = 0)
         {
-            Task.Factory.StartNew(() => World.Save(CurrentWorld, filename))
+            Task.Factory.StartNew(() => World.Save(CurrentWorld, filename, versionOverride: version))
                 .ContinueWith(t => CommandManager.InvalidateRequerySuggested(), TaskFactoryHelper.UiTaskScheduler);
         }
 

@@ -53,73 +53,7 @@ namespace TEdit.Terraria
             _charNames.Clear();
         }
 
-        public static void SaveVersion(uint version, World world, string filename, bool resetTime = false)
-        {
-
-            // Save The Custom World Version
-            world.Version = version;
-
-            ErrorLogging.TelemetryClient?.TrackEvent(nameof(Save));
-
-            try
-            {
-                OnProgressChanged(world, new ProgressChangedEventArgs(0, "Validating World..."));
-                world.Validate();
-            }
-            catch (ArgumentOutOfRangeException err)
-            {
-                string msg = "There is a problem in your world.\r\n" +
-                             $"{err.ParamName}\r\nThis world will not open in Terraria\r\n" +
-                             "Would you like to save anyways??\r\n";
-                if (MessageBox.Show(msg, "World Error", MessageBoxButton.YesNo, MessageBoxImage.Error) !=
-                    MessageBoxResult.Yes)
-                    return;
-            }
-            lock (_fileLock)
-            {
-
-
-                if (resetTime)
-                {
-                    OnProgressChanged(world, new ProgressChangedEventArgs(0, "Resetting Time..."));
-                    world.ResetTime();
-                }
-
-                if (filename == null)
-                    return;
-
-                string temp = filename + ".tmp";
-                using (var fs = new FileStream(temp, FileMode.Create))
-                {
-                    using (var bw = new BinaryWriter(fs))
-                    {
-                        if (world.Version > 87)
-                            SaveV2(world, bw);
-                        else
-                            SaveV1(world, bw);
-
-                        bw.Close();
-                        fs.Close();
-
-                        // make a backup of current file if it exists
-                        if (File.Exists(filename))
-                        {
-                            string backup = filename + "." + DateTime.Now.ToString("yyyyMMddHHmmss") + ".TEdit";
-                            File.Copy(filename, backup, true);
-                        }
-                        // replace actual file with temp save file
-                        File.Copy(temp, filename, true);
-                        // delete temp save file
-                        File.Delete(temp);
-                        OnProgressChanged(null, new ProgressChangedEventArgs(0, "World Save Complete."));
-                    }
-                }
-
-                world._lastSave = File.GetLastWriteTimeUtc(filename);
-            }
-        }
-
-        public static void Save(World world, string filename, bool resetTime = false)
+        public static void Save(World world, string filename, bool resetTime = false, uint versionOverride = 0)
         {
             ErrorLogging.TelemetryClient?.TrackEvent(nameof(Save));
 
@@ -139,46 +73,57 @@ namespace TEdit.Terraria
             }
             lock (_fileLock)
             {
-
-
-                if (resetTime)
+                uint currentWorldVersion = world.Version;
+                try
                 {
-                    OnProgressChanged(world, new ProgressChangedEventArgs(0, "Resetting Time..."));
-                    world.ResetTime();
-                }
+                    // set the world version for this save
+                    if (versionOverride > 0) { world.Version = versionOverride; }
 
-                if (filename == null)
-                    return;
-
-                string temp = filename + ".tmp";
-                using (var fs = new FileStream(temp, FileMode.Create))
-                {
-                    using (var bw = new BinaryWriter(fs))
+                    if (resetTime)
                     {
-                        if (world.Version > 87)
-                            SaveV2(world, bw);
-                        else
-                            SaveV1(world, bw);
-
-                        bw.Close();
-                        fs.Close();
-
-                        // make a backup of current file if it exists
-                        if (File.Exists(filename))
-                        {
-                            string backup = filename + "." + DateTime.Now.ToString("yyyyMMddHHmmss") + ".TEdit";
-                            File.Copy(filename, backup, true);
-                        }
-                        // replace actual file with temp save file
-                        File.Copy(temp, filename, true);
-                        // delete temp save file
-                        File.Delete(temp);
-                        OnProgressChanged(null, new ProgressChangedEventArgs(0, "World Save Complete."));
+                        OnProgressChanged(world, new ProgressChangedEventArgs(0, "Resetting Time..."));
+                        world.ResetTime();
                     }
-                }
 
-                world._lastSave = File.GetLastWriteTimeUtc(filename);
+                    if (filename == null)
+                        return;
+
+                    string temp = filename + ".tmp";
+                    using (var fs = new FileStream(temp, FileMode.Create))
+                    {
+                        using (var bw = new BinaryWriter(fs))
+                        {
+                            if (world.Version > 87)
+                                SaveV2(world, bw);
+                            else
+                                SaveV1(world, bw);
+
+                            bw.Close();
+                            fs.Close();
+
+                            // make a backup of current file if it exists
+                            if (File.Exists(filename))
+                            {
+                                string backup = filename + "." + DateTime.Now.ToString("yyyyMMddHHmmss") + ".TEdit";
+                                File.Copy(filename, backup, true);
+                            }
+                            // replace actual file with temp save file
+                            File.Copy(temp, filename, true);
+                            // delete temp save file
+                            File.Delete(temp);
+                            OnProgressChanged(null, new ProgressChangedEventArgs(0, "World Save Complete."));
+                        }
+                    }
+
+                    world._lastSave = File.GetLastWriteTimeUtc(filename);
+                }
+                finally
+                {
+                    // restore the version
+                    if (versionOverride > 0) { world.Version = currentWorldVersion; }
+                }
             }
+
         }
 
         public static World LoadWorld(string filename)

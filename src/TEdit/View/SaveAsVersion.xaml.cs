@@ -19,6 +19,7 @@ using TEdit.ViewModel;
 using Microsoft.Win32;
 using TEdit.Terraria;
 using TEdit.MvvmLight.Threading;
+using GalaSoft.MvvmLight.Command;
 
 namespace TEdit.UI.Xaml
 {
@@ -27,174 +28,44 @@ namespace TEdit.UI.Xaml
     /// </summary>
     public partial class SaveAsVersionGUI : Window
     {
+        // Using a DependencyProperty as the backing store for WorldVersion.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty WorldVersionProperty =
+            DependencyProperty.Register("WorldVersion", typeof(uint), typeof(SaveAsVersionGUI), new PropertyMetadata((uint)0));
+
+        private ICommand _saveAsCommand;
+
+
         public SaveAsVersionGUI()
         {
             InitializeComponent();
+            DataContext = this;
         }
 
-        // 1.2.0
-        private void Button_Click_1(object sender, RoutedEventArgs e)
+        public uint WorldVersion
         {
-            var sfd = new SaveFileDialog();
-            sfd.Filter = "Terraria World File|*.wld|TEdit Backup File|*.TEdit";
-            sfd.Title = "Save World As";
-            sfd.InitialDirectory = DependencyChecker.PathToWorlds;
-            if ((bool)sfd.ShowDialog())
-            {
-                Task.Factory.StartNew(() => World.SaveVersion(71, WorldViewModel._currentWorld, sfd.FileName))
-                .ContinueWith(t => CommandManager.InvalidateRequerySuggested(), TaskFactoryHelper.UiTaskScheduler);
-            }
-            this.Close();
+            get { return (uint)GetValue(WorldVersionProperty); }
+            set { SetValue(WorldVersionProperty, value); }
         }
 
-        // 1.2.1
-        private void Button_Click_2(object sender, RoutedEventArgs e)
+        public ICommand SaveAsVersionCommand
         {
-            var sfd = new SaveFileDialog();
-            sfd.Filter = "Terraria World File|*.wld|TEdit Backup File|*.TEdit";
-            sfd.Title = "Save World As";
-            sfd.InitialDirectory = DependencyChecker.PathToWorlds;
-            if ((bool)sfd.ShowDialog())
-            {
-                Task.Factory.StartNew(() => World.SaveVersion(72, WorldViewModel._currentWorld, sfd.FileName))
-                .ContinueWith(t => CommandManager.InvalidateRequerySuggested(), TaskFactoryHelper.UiTaskScheduler);
-            }
-            this.Close();
+            get { return _saveAsCommand ?? (_saveAsCommand = new RelayCommand<string>(SaveAsVersionCommandAction)); }
         }
 
-        // 1.3.0
-        private void Button_Click_3(object sender, RoutedEventArgs e)
+        private void SaveAsVersionCommandAction(string gameVersion)
         {
-            var sfd = new SaveFileDialog();
-            sfd.Filter = "Terraria World File|*.wld|TEdit Backup File|*.TEdit";
-            sfd.Title = "Save World As";
-            sfd.InitialDirectory = DependencyChecker.PathToWorlds;
-            if ((bool)sfd.ShowDialog())
+            if (World.VersionToWorldVersion.TryGetValue(gameVersion, out uint worldVersion))
             {
-                Task.Factory.StartNew(() => World.SaveVersion(156, WorldViewModel._currentWorld, sfd.FileName))
-                .ContinueWith(t => CommandManager.InvalidateRequerySuggested(), TaskFactoryHelper.UiTaskScheduler);
+                WorldVersion = worldVersion;
+                this.DialogResult = true;
+                this.Close();
             }
-            this.Close();
-        }
-
-        // 1.3.2
-        private void Button_Click_4(object sender, RoutedEventArgs e)
-        {
-            var sfd = new SaveFileDialog();
-            sfd.Filter = "Terraria World File|*.wld|TEdit Backup File|*.TEdit";
-            sfd.Title = "Save World As";
-            sfd.InitialDirectory = DependencyChecker.PathToWorlds;
-            if ((bool)sfd.ShowDialog())
+            else
             {
-                Task.Factory.StartNew(() => World.SaveVersion(177, WorldViewModel._currentWorld, sfd.FileName))
-                .ContinueWith(t => CommandManager.InvalidateRequerySuggested(), TaskFactoryHelper.UiTaskScheduler);
+                WorldVersion = World.CompatibleVersion;
+                this.DialogResult = false;
+                this.Close();
             }
-            this.Close();
-        }
-
-        // 1.3.3
-        private void Button_Click_5(object sender, RoutedEventArgs e)
-        {
-            var sfd = new SaveFileDialog();
-            sfd.Filter = "Terraria World File|*.wld|TEdit Backup File|*.TEdit";
-            sfd.Title = "Save World As";
-            sfd.InitialDirectory = DependencyChecker.PathToWorlds;
-            if ((bool)sfd.ShowDialog())
-            {
-                Task.Factory.StartNew(() => World.SaveVersion(187, WorldViewModel._currentWorld, sfd.FileName))
-                .ContinueWith(t => CommandManager.InvalidateRequerySuggested(), TaskFactoryHelper.UiTaskScheduler);
-            }
-            this.Close();
-        }
-
-        // 1.3.4
-        private void Button_Click_6(object sender, RoutedEventArgs e)
-        {
-            var sfd = new SaveFileDialog();
-            sfd.Filter = "Terraria World File|*.wld|TEdit Backup File|*.TEdit";
-            sfd.Title = "Save World As";
-            sfd.InitialDirectory = DependencyChecker.PathToWorlds;
-            if ((bool)sfd.ShowDialog())
-            {
-                Task.Factory.StartNew(() => World.SaveVersion(187, WorldViewModel._currentWorld, sfd.FileName))
-                .ContinueWith(t => CommandManager.InvalidateRequerySuggested(), TaskFactoryHelper.UiTaskScheduler);
-            }
-            this.Close();
-        }
-
-        // 1.3.5
-        private void Button_Click_7(object sender, RoutedEventArgs e)
-        {
-            var sfd = new SaveFileDialog();
-            sfd.Filter = "Terraria World File|*.wld|TEdit Backup File|*.TEdit";
-            sfd.Title = "Save World As";
-            sfd.InitialDirectory = DependencyChecker.PathToWorlds;
-            if ((bool)sfd.ShowDialog())
-            {
-                Task.Factory.StartNew(() => World.SaveVersion(192, WorldViewModel._currentWorld, sfd.FileName))
-                .ContinueWith(t => CommandManager.InvalidateRequerySuggested(), TaskFactoryHelper.UiTaskScheduler);
-            }
-            this.Close();
-        }
-
-        // 1.4.0.5
-        private void Button_Click_8(object sender, RoutedEventArgs e)
-        {
-            var sfd = new SaveFileDialog();
-            sfd.Filter = "Terraria World File|*.wld|TEdit Backup File|*.TEdit";
-            sfd.Title = "Save World As";
-            sfd.InitialDirectory = DependencyChecker.PathToWorlds;
-            if ((bool)sfd.ShowDialog())
-            {
-                Task.Factory.StartNew(() => World.SaveVersion(228, WorldViewModel._currentWorld, sfd.FileName))
-                .ContinueWith(t => CommandManager.InvalidateRequerySuggested(), TaskFactoryHelper.UiTaskScheduler);
-            }
-            this.Close();
-        }
-
-        // 1.4.1.1
-        private void Button_Click_9(object sender, RoutedEventArgs e)
-        {
-            var sfd = new SaveFileDialog();
-            sfd.Filter = "Terraria World File|*.wld|TEdit Backup File|*.TEdit";
-            sfd.Title = "Save World As";
-            sfd.InitialDirectory = DependencyChecker.PathToWorlds;
-            if ((bool)sfd.ShowDialog())
-            {
-                Task.Factory.StartNew(() => World.SaveVersion(233, WorldViewModel._currentWorld, sfd.FileName))
-                .ContinueWith(t => CommandManager.InvalidateRequerySuggested(), TaskFactoryHelper.UiTaskScheduler);
-            }
-            this.Close();
-        }
-
-        // 1.4.2.1
-        private void Button_Click_10(object sender, RoutedEventArgs e)
-        {
-            var sfd = new SaveFileDialog();
-            sfd.Filter = "Terraria World File|*.wld|TEdit Backup File|*.TEdit";
-            sfd.Title = "Save World As";
-            sfd.InitialDirectory = DependencyChecker.PathToWorlds;
-            if ((bool)sfd.ShowDialog())
-            {
-                Task.Factory.StartNew(() => World.SaveVersion(234, WorldViewModel._currentWorld, sfd.FileName))
-                .ContinueWith(t => CommandManager.InvalidateRequerySuggested(), TaskFactoryHelper.UiTaskScheduler);
-            }
-            this.Close();
-        }
-
-        // 1.4.2.3
-        private void Button_Click_11(object sender, RoutedEventArgs e)
-        {
-            var sfd = new SaveFileDialog();
-            sfd.Filter = "Terraria World File|*.wld|TEdit Backup File|*.TEdit";
-            sfd.Title = "Save World As";
-            sfd.InitialDirectory = DependencyChecker.PathToWorlds;
-            if ((bool)sfd.ShowDialog())
-            {
-                Task.Factory.StartNew(() => World.SaveVersion(238, WorldViewModel._currentWorld, sfd.FileName))
-                .ContinueWith(t => CommandManager.InvalidateRequerySuggested(), TaskFactoryHelper.UiTaskScheduler);
-            }
-            this.Close();
         }
     }
 }

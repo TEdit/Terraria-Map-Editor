@@ -13,6 +13,22 @@ namespace TEdit.Terraria
 
     public partial class World
     {
+        // TODO: update this with each update
+        public static Dictionary<string, uint> VersionToWorldVersion = new Dictionary<string, uint>
+        {
+            ["1.2.0"] = 71,
+            ["1.2.1"] = 72,
+            ["1.3.0"] = 156,
+            ["1.3.2"] = 177,
+            ["1.3.3"] = 187,
+            ["1.3.4"] = 187,
+            ["1.3.5"] = 192,
+            ["1.4.0.5"] = 228,
+            ["1.4.1.1"] = 233,
+            ["1.4.2.1"] = 234,
+            ["1.4.2.3"] = 238
+        };
+
         public const uint CompatibleVersion  = 238;
         public const short GlobalSectionCount = 11;
         public const short TileCount = 623;
