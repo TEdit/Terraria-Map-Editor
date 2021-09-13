@@ -681,9 +681,9 @@ namespace TEdit.View
         BlendState _negativePaint = new BlendState
         {
             ColorSourceBlend = Blend.Zero,
-            //AlphaSourceBlend = Blend.SourceAlpha,
+            //AlphaSourceBlend = Blend.Zero,
             ColorDestinationBlend = Blend.InverseSourceColor,
-            //AlphaDestinationBlend = Blend.InverseSourceAlpha
+            //AlphaDestinationBlend = Blend.One
         };
 
         private void Render(GraphicsDeviceEventArgs e)
@@ -1071,7 +1071,8 @@ namespace TEdit.View
 
                         if (_wvm.ShowWalls)
                         {
-                            var wallPaintColor = curtile.WallColor == 0 ? Color.White : World.PaintProperties[curtile.WallColor].PaintColor;
+                            // no paint or negative paint = white
+                            var wallPaintColor = curtile.WallColor == 0 || curtile.WallColor == 30 ? Color.White : World.PaintProperties[curtile.WallColor].PaintColor;
                             if (curtile.Wall > 0)
                             {
                                 var wallTex = _textureDictionary.GetWall(curtile.Wall);
@@ -1094,14 +1095,7 @@ namespace TEdit.View
                                     var source = new Rectangle((curtile.uvWallCache & 0x00FF) * (texsize.X + 4), (curtile.uvWallCache >> 8) * (texsize.Y + 4), texsize.X, texsize.Y);
                                     var dest = new Rectangle(1 + (int)((_scrollPosition.X + x - 0.5) * _zoom), 1 + (int)((_scrollPosition.Y + y - 0.5) * _zoom), (int)_zoom * 2, (int)_zoom * 2);
 
-                                    if (curtile.WallColor == 30)
-                                    {
-                                        _spriteBatch.Draw(wallTex, dest, source, Color.White, 0f, default(Vector2), SpriteEffects.None, LayerTileWallTextures);
-                                    }
-                                    else
-                                    {
-                                        _spriteBatch.Draw(wallTex, dest, source, wallPaintColor, 0f, default(Vector2), SpriteEffects.None, LayerTileWallTextures);
-                                    }
+                                    _spriteBatch.Draw(wallTex, dest, source, wallPaintColor, 0f, default(Vector2), SpriteEffects.None, LayerTileWallTextures);
                                 }
                             }
                         }
@@ -1163,7 +1157,8 @@ namespace TEdit.View
                         {
                             if (curtile.IsActive)
                             {
-                                var tilePaintColor = curtile.TileColor == 0 ? Color.White : World.PaintProperties[curtile.TileColor].PaintColor;
+                                // white for inverted
+                                var tilePaintColor = curtile.TileColor == 0 || curtile.TileColor == 30 ? Color.White : World.PaintProperties[curtile.TileColor].PaintColor;
 
                                 if (tileprop.IsFramed)
                                 {
