@@ -267,7 +267,7 @@ Klicke auf „Wiederholen“, um einen neuen Ordner auszuwählen, oder auf „Ab
     <value>Speichern</value>
   </data>
   <data name="menu_file_saveas" xml:space="preserve">
-    <value>Speichern als</value>
+    <value>Speichern unter</value>
   </data>
   <data name="menu_file_saveasversion" xml:space="preserve">
     <value>Als Version speichern</value>
@@ -299,14 +299,17 @@ Klicke auf „Wiederholen“, um einen neuen Ordner auszuwählen, oder auf „Ab
   <data name="menu_language_ar" xml:space="preserve">
     <value>عربى</value>
   </data>
+  <data name="menu_language_de" xml:space="preserve">
+    <value>Deutsch</value>
+  </data>
   <data name="menu_language_en" xml:space="preserve">
     <value>English</value>
   </data>
-  <data name="menu_language_ru" xml:space="preserve">
-    <value>русский</value>
-  </data>
   <data name="menu_language_pl" xml:space="preserve">
     <value>Polskie</value>
+  </data>
+  <data name="menu_language_ru" xml:space="preserve">
+    <value>русский</value>
   </data>
   <data name="menu_language_zh" xml:space="preserve">
     <value>中文</value>
@@ -349,6 +352,9 @@ Klicke auf „Wiederholen“, um einen neuen Ordner auszuwählen, oder auf „Ab
   </data>
   <data name="menu_plugins" xml:space="preserve">
     <value>Plugins</value>
+  </data>
+  <data name="menu_telemetry" xml:space="preserve">
+    <value>Fehlermeldungen aktivieren</value>
   </data>
   <data name="menu_toolbar_zoom_in" xml:space="preserve">
     <value>Hereinzoomen</value>
@@ -448,7 +454,7 @@ Klicke auf „Wiederholen“, um einen neuen Ordner auszuwählen, oder auf „Ab
     <value>Schaufensterpuppe</value>
   </data>
   <data name="specialtile_label_mannequinclothing" xml:space="preserve">
-    <value>Schaufensterpuppenkeidung</value>
+    <value>Schaufensterpuppenkleidung</value>
   </data>
   <data name="specialtile_label_platecontents" xml:space="preserve">
     <value>Tellerinhalte</value>
@@ -532,13 +538,13 @@ Klicke auf „Wiederholen“, um einen neuen Ordner auszuwählen, oder auf „Ab
     <value>Importieren</value>
   </data>
   <data name="tool_bestiary_save" xml:space="preserve">
-    <value>Bestiary speichern</value>
+    <value>Bestiarium speichern</value>
   </data>
   <data name="tool_bestiary_scan" xml:space="preserve">
     <value>Scannen</value>
   </data>
   <data name="tool_bestiary_title" xml:space="preserve">
-    <value>Bestiary</value>
+    <value>Bestiarium</value>
   </data>
   <data name="tool_brush_height_label" xml:space="preserve">
     <value>Höhe</value>
@@ -547,7 +553,7 @@ Klicke auf „Wiederholen“, um einen neuen Ordner auszuwählen, oder auf „Ab
     <value>Quadrat</value>
   </data>
   <data name="tool_brush_outline_thickness_label" xml:space="preserve">
-    <value>Outline</value>
+    <value>Rahmenbreite</value>
   </data>
   <data name="tool_brush_outline_tooltip" xml:space="preserve">
     <value>Nur den äußeren Rahmen zeichnen</value>
@@ -745,7 +751,7 @@ Klicke auf „Wiederholen“, um einen neuen Ordner auszuwählen, oder auf „Ab
     <value>Weltenfresser</value>
   </data>
   <data name="tool_wp_boss_empressoflight" xml:space="preserve">
-    <value>Empress of Light</value>
+    <value>Kaiserin des Lichts</value>
   </data>
   <data name="tool_wp_boss_everscream" xml:space="preserve">
     <value>Immerschrei</value>
@@ -787,7 +793,7 @@ Klicke auf „Wiederholen“, um einen neuen Ordner auszuwählen, oder auf „Ab
     <value>Bienenkönigin</value>
   </data>
   <data name="tool_wp_boss_queenslime" xml:space="preserve">
-    <value>Queen Slime</value>
+    <value>Schleimkönigin</value>
   </data>
   <data name="tool_wp_boss_santank1" xml:space="preserve">
     <value>Weihnachtsmann NK1</value>
@@ -832,7 +838,7 @@ Klicke auf „Wiederholen“, um einen neuen Ordner auszuwählen, oder auf „Ab
     <value>Hardmode</value>
   </data>
   <data name="tool_wp_drunk" xml:space="preserve">
-    <value>Drunk World</value>
+    <value>„Drunk world“</value>
   </data>
   <data name="tool_wp_event" xml:space="preserve">
     <value>Event</value>
@@ -842,6 +848,9 @@ Klicke auf „Wiederholen“, um einen neuen Ordner auszuwählen, oder auf „Ab
   </data>
   <data name="tool_wp_gold" xml:space="preserve">
     <value>Golderz</value>
+  </data>
+  <data name="tool_wp_gooworld" xml:space="preserve">
+    <value>„For the worthy“</value>
   </data>
   <data name="tool_wp_guid" xml:space="preserve">
     <value>Welt-GUID</value>
@@ -1083,10 +1092,7 @@ Klicke auf „Wiederholen“, um einen neuen Ordner auszuwählen, oder auf „Ab
   <data name="TrackMode_Track" xml:space="preserve">
     <value>Gleis</value>
   </data>
-  <data name="tool_wp_gooworld" xml:space="preserve">
-    <value>Schmiere Welt</value>
-  </data>
   <data name="tool_wp_tenthanniversary" xml:space="preserve">
-    <value>Tenth Anniversary</value>
+    <value>„Celebrationmk10“</value>
   </data>
 </root>
