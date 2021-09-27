@@ -292,7 +292,7 @@ namespace TEdit
                 if (releaseKey >= 379893)
                     return "4.5.2";
                 if (releaseKey >= 378675)
-                    return "4.5.1";
+                    return "4.5.2";
                 if (releaseKey >= 378389)
                     return "4.5";
                 // This code should never execute. A non-null release key should mean
