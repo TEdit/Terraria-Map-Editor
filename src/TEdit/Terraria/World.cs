@@ -65,12 +65,25 @@ namespace TEdit.Terraria
             catch (ArgumentOutOfRangeException err)
             {
                 string msg = "There is a problem in your world.\r\n" +
-                             $"{err.ParamName}\r\nThis world will not open in Terraria\r\n" +
+                             $"{err.ParamName}\r\n" +
+                             $"This world may not open in Terraria\r\n" +
                              "Would you like to save anyways??\r\n";
                 if (MessageBox.Show(msg, "World Error", MessageBoxButton.YesNo, MessageBoxImage.Error) !=
                     MessageBoxResult.Yes)
                     return;
             }
+            catch (Exception ex)
+            {
+                string msg = "There is a problem in your world.\r\n" +
+                             $"{ex.Message}\r\n" + 
+                             "This world may not open in Terraria\r\n" +
+                             "Would you like to save anyways??\r\n";
+
+                if (MessageBox.Show(msg, "World Error", MessageBoxButton.YesNo, MessageBoxImage.Error) !=
+                    MessageBoxResult.Yes)
+                    return;
+            }
+
             lock (_fileLock)
             {
                 uint currentWorldVersion = world.Version;
@@ -140,7 +153,8 @@ namespace TEdit.Terraria
 
                         if (w.Version < World.CompatibleVersion)
                         {
-                            string message = $"You are loading a legacy world version: {w.Version}. Editing legacy files is a BETA feature.\r\n" +
+                            string message = $"You are loading a legacy world version: {w.Version}.\r\n" +
+                                $"Editing legacy files is a BETA feature.\r\n" +
                                 "Please make a backup as you may experience world file corrpution.\r\n" +
                                 "Do you wish to continue?";
                             if (MessageBox.Show(message, "Convert File?", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.No)
@@ -163,9 +177,11 @@ namespace TEdit.Terraria
             {
                 ErrorLogging.LogException(err);
                 string msg =
-                    "There was an error reading the world file. This is usually caused by a corrupt save file or a world version newer than supported.\r\n\r\n" +
+                    "There was an error reading the world file.\r\n" +
+                    "This is usually caused by a corrupt save file or a world version newer than supported.\r\n\r\n" +
                     $"TEdit v{TEdit.App.Version}\r\n" +
-                    $"TEdit Max World: {CompatibleVersion}    Current World: {curVersion}\r\n\r\n" +
+                    $"TEdit Max World: {CompatibleVersion}\r\n" +
+                    $"Current World: {curVersion}\r\n\r\n" +
                     "Do you wish to force it to load anyway?\r\n\r\n" +
                     "WARNING: This may have unexpected results including corrupt world files and program crashes.\r\n\r\n" +
                     $"The error is :\r\n{err.Message}\r\n\r\n{err}\r\n";
@@ -289,7 +305,7 @@ namespace TEdit.Terraria
                         if (curTile.Type == (int)TileType.IceByRod)
                             curTile.IsActive = false;
 
-                        ValSpecial(x, y);
+                        // ValSpecial(x, y);
                     }
                 }
             });
@@ -350,12 +366,14 @@ namespace TEdit.Terraria
 
             OnProgressChanged(this,
                     new ProgressChangedEventArgs(0, "Validating Complete..."));
+
             if (Chests.Count > World.MaxChests)
-                throw new ArgumentOutOfRangeException($"Chest Count is {Chests.Count} which is greater than 1000");
+                throw new ArgumentOutOfRangeException($"Chest Count is {Chests.Count} which is greater than {World.MaxChests}.");
             if (Signs.Count > World.MaxSigns)
-                throw new ArgumentOutOfRangeException($"Sign Count is {Signs.Count} which is greater than 1000");
+                throw new ArgumentOutOfRangeException($"Sign Count is {Signs.Count} which is greater than {World.MaxChests}.");
         }
-        public void ValSpecial(int x, int y)
+
+        private void ValSpecial(int x, int y)
         {
             Tile curTile = Tiles[x, y];
             //validate chest entry exists

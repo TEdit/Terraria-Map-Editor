@@ -46,7 +46,15 @@ namespace TEdit.Terraria
 
         private static void WriteAnalyzeWorld(StreamWriter sb, World world, bool fullAnalysis = false)
         {
-            world.Validate();
+            try
+            {
+                world.Validate();
+            }
+            catch (Exception ex)
+            {
+                sb.WriteLine(ex.Message);
+            }
+
             WriteHeader(sb, world);
             WriteFlags(sb, world);
 
