@@ -562,6 +562,7 @@ namespace TEdit.ViewModel
         Arabic,
         Chinese,
         Polish,
-        German
+        German,
+        Portuguese
     }
 }

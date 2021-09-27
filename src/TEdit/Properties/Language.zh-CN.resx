@@ -296,23 +296,17 @@
   <data name="menu_language" xml:space="preserve">
     <value>语言</value>
   </data>
-  <data name="menu_language_ar" xml:space="preserve">
-    <value>阿拉伯语</value>
-  </data>
   <data name="menu_language_en" xml:space="preserve">
-    <value>英语</value>
+    <value>English</value>
   </data>
   <data name="menu_language_pl" xml:space="preserve">
-    <value>波兰语</value>
+    <value>Polski</value>
   </data>
   <data name="menu_language_ru" xml:space="preserve">
-    <value>俄语</value>
+    <value>Русский</value>
   </data>
   <data name="menu_language_zh" xml:space="preserve">
-    <value>简体中文</value>
-  </data>
-  <data name="menu_language_de" xml:space="preserve">
-    <value>Deutsch</value>
+    <value>中文</value>
   </data>
   <data name="menu_layers" xml:space="preserve">
     <value>地层</value>
@@ -1092,7 +1086,16 @@
   <data name="TrackMode_Track" xml:space="preserve">
     <value>普通轨道</value>
   </data>
+  <data name="menu_language_de" xml:space="preserve">
+    <value>Deutsch</value>
+  </data>
+  <data name="menu_language_pt" xml:space="preserve">
+    <value>Português</value>
+  </data>
+  <data name="menu_language_ar" xml:space="preserve">
+    <value>العربية</value>
+  </data>
   <data name="tool_wp_tenthanniversary" xml:space="preserve">
-    <value>Tenth Anniversary</value>
+    <value>十周年</value>
   </data>
 </root>

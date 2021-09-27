@@ -293,26 +293,20 @@ Clique em tentar novamente para escolher uma nova pasta ou cancelar para usar {0
   <data name="menu_language" xml:space="preserve">
     <value>Língua</value>
   </data>
-  <data name="menu_language_ar" xml:space="preserve">
-    <value>Árabe</value>
-  </data>
   <data name="menu_language_en" xml:space="preserve">
-    <value>Inglês</value>
+    <value>English</value>
   </data>
   <data name="menu_language_pl" xml:space="preserve">
-    <value>Polonês</value>
+    <value>Polski</value>
   </data>
   <data name="menu_language_pt" xml:space="preserve">
     <value>Português</value>
   </data>
   <data name="menu_language_ru" xml:space="preserve">
-    <value>Russo</value>
+    <value>Русский</value>
   </data>
   <data name="menu_language_zh" xml:space="preserve">
-    <value>Chinês</value>
-  </data>
-  <data name="menu_language_de" xml:space="preserve">
-    <value>Alemão</value>
+    <value>中文</value>
   </data>
   <data name="menu_layers" xml:space="preserve">
     <value>Camadas</value>
@@ -634,7 +628,7 @@ Clique em tentar novamente para escolher uma nova pasta ou cancelar para usar {0
     <value>Adicionar motriz à um trilho já existente, use com a borracha para remover apenas motrizes.</value>
   </data>
   <data name="tool_paint_track_hammer_tooltip" xml:space="preserve">
-    <value>Use o martelo para modificar as extremidades dos trilhos, interseções e direção da motriz</value>
+    <value>Use o martelo para modificar as extremidades dos trilhos, interseções e direção da motriz.</value>
   </data>
   <data name="tool_paint_track_pressure_tooltip" xml:space="preserve">
     <value>Adicionar placa de pressão à um trilho já existente, use com a borracha para remover apenas placas.</value>
@@ -1094,5 +1088,14 @@ Clique em tentar novamente para escolher uma nova pasta ou cancelar para usar {0
   </data>
   <data name="tool_wp_tenthanniversary" xml:space="preserve">
     <value>Décimo aniversário</value>
+  </data>
+  <data name="menu_file_saveasversion" xml:space="preserve">
+    <value>Salvar como versão</value>
+  </data>
+  <data name="menu_language_de" xml:space="preserve">
+    <value>Deutsch</value>
+  </data>
+  <data name="menu_language_ar" xml:space="preserve">
+    <value>العربية</value>
   </data>
 </root>

@@ -156,7 +156,7 @@
 Naciśnij spróbuj ponownie aby wybrać nowy folder lub anuluj aby użyć {0} jako ścieżki do Terrari.</value>
   </data>
   <data name="dialog_error_terriaria_folder_title" xml:space="preserve">
-    <value>Zawartość Terrari nie została znaleziona.</value>
+    <value>Zawartość Terrari nie została znaleziona</value>
   </data>
   <data name="editor_tabs_analysis" xml:space="preserve">
     <value>Analiza</value>
@@ -296,23 +296,17 @@ Naciśnij spróbuj ponownie aby wybrać nowy folder lub anuluj aby użyć {0} ja
   <data name="menu_language" xml:space="preserve">
     <value>Język</value>
   </data>
-  <data name="menu_language_ar" xml:space="preserve">
-    <value>Arabski</value>
-  </data>
   <data name="menu_language_en" xml:space="preserve">
-    <value>Angielski</value>
+    <value>English</value>
   </data>
   <data name="menu_language_pl" xml:space="preserve">
     <value>Polski</value>
   </data>
   <data name="menu_language_ru" xml:space="preserve">
-    <value>Rosyjski</value>
+    <value>Русский</value>
   </data>
   <data name="menu_language_zh" xml:space="preserve">
-    <value>Chiński</value>
-  </data>
-  <data name="menu_language_de" xml:space="preserve">
-    <value>Deutsch</value>
+    <value>中文</value>
   </data>
   <data name="menu_layers" xml:space="preserve">
     <value>Warstwa</value>
@@ -490,7 +484,7 @@ Naciśnij spróbuj ponownie aby wybrać nowy folder lub anuluj aby użyć {0} ja
     <value>Filtruj</value>
   </data>
   <data name="sprite_filter_label" xml:space="preserve">
-    <value>Filtruj:</value>
+    <value>Filtruj: </value>
   </data>
   <data name="sprite_styletype" xml:space="preserve">
     <value>Styl</value>
@@ -1092,7 +1086,16 @@ Naciśnij spróbuj ponownie aby wybrać nowy folder lub anuluj aby użyć {0} ja
   <data name="TrackMode_Track" xml:space="preserve">
     <value>Tor</value>
   </data>
+  <data name="menu_language_de" xml:space="preserve">
+    <value>Deutsch</value>
+  </data>
+  <data name="menu_language_pt" xml:space="preserve">
+    <value>Português</value>
+  </data>
+  <data name="menu_language_ar" xml:space="preserve">
+    <value>العربية</value>
+  </data>
   <data name="tool_wp_tenthanniversary" xml:space="preserve">
-    <value>Tenth Anniversary</value>
+    <value>Dziesiąta rocznica</value>
   </data>
 </root>

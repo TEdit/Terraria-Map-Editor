@@ -297,7 +297,7 @@ Press retry to pick a new folder or cancel to use {0} as your terraria path.</va
     <value>Language</value>
   </data>
   <data name="menu_language_ar" xml:space="preserve">
-    <value>Arabic</value>
+    <value>العربية</value>
   </data>
   <data name="menu_language_de" xml:space="preserve">
     <value>Deutsch</value>
@@ -306,13 +306,13 @@ Press retry to pick a new folder or cancel to use {0} as your terraria path.</va
     <value>English</value>
   </data>
   <data name="menu_language_pl" xml:space="preserve">
-    <value>Polish</value>
+    <value>Polski</value>
   </data>
   <data name="menu_language_ru" xml:space="preserve">
-    <value>Russian</value>
+    <value>Русский</value>
   </data>
   <data name="menu_language_zh" xml:space="preserve">
-    <value>Chinese</value>
+    <value>中文</value>
   </data>
   <data name="menu_layers" xml:space="preserve">
     <value>Layers</value>
@@ -1095,4 +1095,7 @@ Press retry to pick a new folder or cancel to use {0} as your terraria path.</va
   <data name="TrackMode_Track" xml:space="preserve">
     <value>Track</value>
   </data>
+  <data name="menu_language_pt" xml:space="preserve">
+		<value>Português</value>
+	</data>
 </root>

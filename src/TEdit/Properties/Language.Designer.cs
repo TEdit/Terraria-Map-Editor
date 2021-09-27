@@ -584,7 +584,7 @@ namespace TEdit.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Arabic.
+        ///   Looks up a localized string similar to العربية.
         /// </summary>
         public static string menu_language_ar {
             get {
@@ -611,7 +611,7 @@ namespace TEdit.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Polish.
+        ///   Looks up a localized string similar to Polski.
         /// </summary>
         public static string menu_language_pl {
             get {
@@ -620,7 +620,16 @@ namespace TEdit.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Russian.
+        ///   Looks up a localized string similar to Português.
+        /// </summary>
+        public static string menu_language_pt {
+            get {
+                return ResourceManager.GetString("menu_language_pt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Русский.
         /// </summary>
         public static string menu_language_ru {
             get {
@@ -629,7 +638,7 @@ namespace TEdit.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Chinese.
+        ///   Looks up a localized string similar to 中文.
         /// </summary>
         public static string menu_language_zh {
             get {

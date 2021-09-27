@@ -294,10 +294,7 @@
     <value>Вики</value>
   </data>
   <data name="menu_language_pl" xml:space="preserve">
-    <value>Польский</value>
-  </data>
-  <data name="menu_language_de" xml:space="preserve">
-    <value>Deutsch</value>
+    <value>Polski</value>
   </data>
   <data name="menu_layers" xml:space="preserve">
     <value>Слои</value>
@@ -475,7 +472,7 @@
     <value>Фильтр</value>
   </data>
   <data name="sprite_filter_label" xml:space="preserve">
-    <value>Фильтр:</value>
+    <value>Фильтр: </value>
   </data>
   <data name="sprite_styletype" xml:space="preserve">
     <value>Стиль</value>
@@ -1077,7 +1074,28 @@
   <data name="TrackMode_Track" xml:space="preserve">
     <value>Рельсы</value>
   </data>
+  <data name="menu_language" xml:space="preserve">
+    <value>Язык</value>
+  </data>
+  <data name="menu_language_en" xml:space="preserve">
+    <value>English</value>
+  </data>
+  <data name="menu_language_zh" xml:space="preserve">
+    <value>中文</value>
+  </data>
+  <data name="menu_language_ru" xml:space="preserve">
+    <value>Русский</value>
+  </data>
+  <data name="menu_language_de" xml:space="preserve">
+    <value>Deutsch</value>
+  </data>
+  <data name="menu_language_pt" xml:space="preserve">
+    <value>Português</value>
+  </data>
+  <data name="menu_language_ar" xml:space="preserve">
+    <value>العربية</value>
+  </data>
   <data name="tool_wp_tenthanniversary" xml:space="preserve">
-    <value>Tenth Anniversary</value>
+    <value>Десятилетие</value>
   </data>
 </root>
