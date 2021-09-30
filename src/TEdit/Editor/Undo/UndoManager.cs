@@ -210,34 +210,37 @@ namespace TEdit.Editor.Undo
         {
             var curTile = (Tile)_wvm.CurrentWorld.Tiles[x, y].Clone();
 
-            if (Tile.IsChest(curTile.Type))
+            if (_wvm.CurrentWorld.IsAnchor(x, y))
             {
-                var curchest = _wvm.CurrentWorld.GetChestAtTile(x, y);
-                if (curchest != null)
+                if (Tile.IsChest(curTile.Type))
                 {
-                    if (removeEntities) { _wvm.CurrentWorld.Chests.Remove(curchest); }
-                    var chest = curchest.Copy();
-                    buffer.Chests.Add(chest);
+                    var curchest = _wvm.CurrentWorld.GetChestAtTile(x, y);
+                    if (curchest != null)
+                    {
+                        if (removeEntities) { _wvm.CurrentWorld.Chests.Remove(curchest); }
+                        var chest = curchest.Copy();
+                        buffer.Chests.Add(chest);
+                    }
                 }
-            }
-            if (Tile.IsSign(curTile.Type))
-            {
-                var cursign = _wvm.CurrentWorld.GetSignAtTile(x, y);
-                if (cursign != null)
+                if (Tile.IsSign(curTile.Type))
                 {
-                    if (removeEntities) { _wvm.CurrentWorld.Signs.Remove(cursign); }
-                    var sign = cursign.Copy();
-                    buffer.Signs.Add(sign);
+                    var cursign = _wvm.CurrentWorld.GetSignAtTile(x, y);
+                    if (cursign != null)
+                    {
+                        if (removeEntities) { _wvm.CurrentWorld.Signs.Remove(cursign); }
+                        var sign = cursign.Copy();
+                        buffer.Signs.Add(sign);
+                    }
                 }
-            }
-            if (Tile.IsTileEntity(curTile.Type))
-            {
-                var curTe = _wvm.CurrentWorld.GetTileEntityAtTile(x, y);
-                if (curTe != null)
+                if (Tile.IsTileEntity(curTile.Type))
                 {
-                    if (removeEntities) { _wvm.CurrentWorld.TileEntities.Remove(curTe); }
-                    var te = curTe.Copy();
-                    buffer.TileEntities.Add(te);
+                    var curTe = _wvm.CurrentWorld.GetTileEntityAtTile(x, y);
+                    if (curTe != null)
+                    {
+                        if (removeEntities) { _wvm.CurrentWorld.TileEntities.Remove(curTe); }
+                        var te = curTe.Copy();
+                        buffer.TileEntities.Add(te);
+                    }
                 }
             }
             buffer.Add(new Vector2Int32(x, y), curTile);
@@ -288,28 +291,31 @@ namespace TEdit.Editor.Undo
             }
 
             // Add new chests and signs if required
-            if (Tile.IsChest(existingLastTile.Type))
+            if (_wvm.CurrentWorld.IsAnchor(lastTile.Location.X, lastTile.Location.Y))
             {
-                var curchest = _wvm.CurrentWorld.GetChestAtTile(lastTile.Location.X, lastTile.Location.Y);
-                if (curchest == null)
+                if (Tile.IsChest(existingLastTile.Type))
                 {
-                    _wvm.CurrentWorld.Chests.Add(new Chest(lastTile.Location.X, lastTile.Location.Y));
+                    var curchest = _wvm.CurrentWorld.GetChestAtTile(lastTile.Location.X, lastTile.Location.Y);
+                    if (curchest == null)
+                    {
+                        _wvm.CurrentWorld.Chests.Add(new Chest(lastTile.Location.X, lastTile.Location.Y));
+                    }
                 }
-            }
-            else if (Tile.IsSign(existingLastTile.Type))
-            {
-                var cursign = _wvm.CurrentWorld.GetSignAtTile(lastTile.Location.X, lastTile.Location.Y);
-                if (cursign == null)
+                else if (Tile.IsSign(existingLastTile.Type))
                 {
-                    _wvm.CurrentWorld.Signs.Add(new Sign(lastTile.Location.X, lastTile.Location.Y, string.Empty));
+                    var cursign = _wvm.CurrentWorld.GetSignAtTile(lastTile.Location.X, lastTile.Location.Y);
+                    if (cursign == null)
+                    {
+                        _wvm.CurrentWorld.Signs.Add(new Sign(lastTile.Location.X, lastTile.Location.Y, string.Empty));
+                    }
                 }
-            }
-            else if (Tile.IsTileEntity(existingLastTile.Type))
-            {
-                var curTe = _wvm.CurrentWorld.GetTileEntityAtTile(lastTile.Location.X, lastTile.Location.Y);
-                if (curTe == null)
+                else if (Tile.IsTileEntity(existingLastTile.Type))
                 {
-                    _wvm.CurrentWorld.TileEntities.Add(TileEntity.CreateForTile(existingLastTile, lastTile.Location.X, lastTile.Location.Y, _wvm.CurrentWorld.TileEntities.Count));
+                    var curTe = _wvm.CurrentWorld.GetTileEntityAtTile(lastTile.Location.X, lastTile.Location.Y);
+                    if (curTe == null)
+                    {
+                        _wvm.CurrentWorld.TileEntities.Add(TileEntity.CreateForTile(existingLastTile, lastTile.Location.X, lastTile.Location.Y, _wvm.CurrentWorld.TileEntities.Count));
+                    }
                 }
             }
         }

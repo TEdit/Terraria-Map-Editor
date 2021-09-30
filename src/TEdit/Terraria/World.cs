@@ -75,7 +75,7 @@ namespace TEdit.Terraria
             catch (Exception ex)
             {
                 string msg = "There is a problem in your world.\r\n" +
-                             $"{ex.Message}\r\n" + 
+                             $"{ex.Message}\r\n" +
                              "This world may not open in Terraria\r\n" +
                              "Would you like to save anyways??\r\n";
 
@@ -262,6 +262,12 @@ namespace TEdit.Terraria
             return new Vector2Int32(x, y);
         }
 
+        public bool IsAnchor(int x, int y)
+        {
+            var anchor = GetAnchor(x, y);
+            return anchor.X == x && anchor.Y == y;
+        }
+
         // find upper left corner of sprites
         public Vector2Int32 GetAnchor(int x, int y)
         {
@@ -305,7 +311,7 @@ namespace TEdit.Terraria
                         if (curTile.Type == (int)TileType.IceByRod)
                             curTile.IsActive = false;
 
-                        // ValSpecial(x, y);
+                        ValSpecial(x, y);
                     }
                 }
             });
@@ -379,7 +385,7 @@ namespace TEdit.Terraria
             //validate chest entry exists
             if (Tile.IsChest(curTile.Type))
             {
-                if (GetChestAtTile(x, y) == null)
+                if (IsAnchor(x, y) && GetChestAtTile(x, y, true) == null)
                 {
                     Chests.Add(new Chest(x, y));
                 }
@@ -387,7 +393,7 @@ namespace TEdit.Terraria
             //validate sign entry exists
             else if (Tile.IsSign(curTile.Type))
             {
-                if (GetSignAtTile(x, y) == null)
+                if (IsAnchor(x, y) && GetSignAtTile(x, y, true) == null)
                 {
                     Signs.Add(new Sign(x, y, string.Empty));
                 }
@@ -395,7 +401,7 @@ namespace TEdit.Terraria
             //validate TileEntity
             else if (Tile.IsTileEntity(curTile.Type))
             {
-                if (GetTileEntityAtTile(x, y) == null)
+                if (IsAnchor(x, y) && GetTileEntityAtTile(x, y, true) == null)
                 {
                     var TE = TileEntity.CreateForTile(curTile, x, y, TileEntities.Count);
                     TileEntities.Add(TE);
