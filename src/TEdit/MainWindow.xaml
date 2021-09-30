@@ -262,7 +262,7 @@
                         <View:SpecialTileView HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
                     </TabItem>
                     <TabItem Header="{x:Static p:Language.editor_tabs_sprites}">
-                        <View:SpriteView VerticalAlignment="Stretch" HorizontalAlignment="Stretch" />
+                        <View:SpriteView2 VerticalAlignment="Stretch" HorizontalAlignment="Stretch" />
                     </TabItem>
                     <TabItem Header="{x:Static p:Language.editor_tabs_clipboard}">
                         <View:ClipboardView VerticalAlignment="Stretch" HorizontalAlignment="Stretch" />
