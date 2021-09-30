@@ -122,7 +122,7 @@ namespace TEdit.Editor.Clipboard
             World.SaveTileEntities(TileEntities, bw);
 
             bw.Write(Name);
-            bw.Write(World.CompatibleVersion);
+            bw.Write(version);
             bw.Write(Size.X);
             bw.Write(Size.Y);
         }
@@ -144,15 +144,17 @@ namespace TEdit.Editor.Clipboard
             int verifyVersion = b.ReadInt32();
             int verifyX = b.ReadInt32();
             int verifyY = b.ReadInt32();
+            
+            b.Close();
+
             if (buffer.Name == verifyName &&
-                version == verifyVersion &&
+                version <= verifyVersion &&
                 buffer.Size.X == verifyX &&
                 buffer.Size.Y == verifyY)
             {
                 // valid;
                 return buffer;
             }
-            b.Close();
 
             return null;
         }
