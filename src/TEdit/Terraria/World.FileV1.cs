@@ -17,7 +17,7 @@ namespace TEdit.Terraria
 
         private static void SaveV1(World world, BinaryWriter bw)
         {
-            bw.Write(CompatibleVersion);
+            bw.Write(world.Version);
             bw.Write(world.Title);
             bw.Write(world.WorldId);
             bw.Write((int)world.LeftWorld);
@@ -116,7 +116,10 @@ namespace TEdit.Terraria
                 for (int y = 0; y < world.TilesHigh; y = y + rle + 1)
                 {
                     Tile curTile = world.Tiles[x, y];
-                    WriteTileDataToStreamV1(curTile, bw);
+
+                    var frames = World.SaveConfiguration.SaveVersions[(int)world.Version].GetFrames();
+
+                    WriteTileDataToStreamV1(curTile, bw, frames);
 
                     int rleTemp = 1;
                     while (y + rleTemp < world.TilesHigh && curTile.Equals(world.Tiles[x, (y + rleTemp)]))
@@ -231,7 +234,7 @@ namespace TEdit.Terraria
             }
         }
 
-        public static void WriteTileDataToStreamV1(Tile curTile, BinaryWriter bw)
+        public static void WriteTileDataToStreamV1(Tile curTile, BinaryWriter bw, bool[] frameIds)
         {
             if (curTile.Type == (int)TileType.IceByRod)
                 curTile.IsActive = false;
@@ -240,7 +243,7 @@ namespace TEdit.Terraria
             if (curTile.IsActive)
             {
                 bw.Write(curTile.Type);
-                if (TileProperties[curTile.Type].IsFramed)
+                if (frameIds[curTile.Type])
                 {
                     bw.Write(curTile.U);
                     bw.Write(curTile.V);

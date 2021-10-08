@@ -10,6 +10,8 @@ using GalaSoft.MvvmLight;
 using TEdit.Editor.Clipboard;
 using XNA = Microsoft.Xna.Framework;
 using TEdit.Terraria.Objects;
+using Newtonsoft.Json;
+using TEdit.Configuration;
 
 namespace TEdit.Terraria
 {
@@ -21,7 +23,7 @@ namespace TEdit.Terraria
     }
     public partial class World
     {
-
+        public static SaveConfiguration SaveConfiguration { get; set; }
         private static readonly Dictionary<string, XNA.Color> _globalColors = new Dictionary<string, XNA.Color>();
         private static readonly Dictionary<string, int> _npcIds = new Dictionary<string, int>();
         private static readonly Dictionary<int, Vector2Short> _npcFrames = new Dictionary<int, Vector2Short>();
@@ -60,6 +62,8 @@ namespace TEdit.Terraria
 
             var settingspath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "settings.xml");
             LoadObjectDbXml(settingspath);
+
+
             Sprites.Add(new Sprite());
 
             if (SettingsTileFrameImportant == null || SettingsTileFrameImportant.Length <= 0)
@@ -73,6 +77,9 @@ namespace TEdit.Terraria
                     }
                 }
             }
+
+            var saveVersionPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "TerrariaVersionTileData.json");
+            LoadSaveVersions(saveVersionPath);
         }
 
         private static IEnumerable<TOut> StringToList<TOut>(string xmlcsv)
@@ -166,6 +173,16 @@ namespace TEdit.Terraria
                 }
             }
             return XNA.Color.Magenta;
+        }
+
+        private static void LoadSaveVersions(string fileName)
+        {
+            using (StreamReader file = File.OpenText(fileName))
+            using (JsonTextReader reader = new JsonTextReader(file))
+            {
+                JsonSerializer serializer = new JsonSerializer();
+                SaveConfiguration = serializer.Deserialize<SaveConfiguration>(reader);
+            }
         }
 
         private static void LoadObjectDbXml(string file)

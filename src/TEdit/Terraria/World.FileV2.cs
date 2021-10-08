@@ -109,7 +109,9 @@ namespace TEdit.Terraria
             sectionPointers[0] = SaveSectionHeader(world, bw);
             sectionPointers[1] = SaveHeaderFlags(world, bw);
             OnProgressChanged(null, new ProgressChangedEventArgs(0, "Save Tiles..."));
-            sectionPointers[2] = SaveTiles(world.Tiles, (int)world.Version, world.TilesWide, world.TilesHigh, bw, world.TileFrameImportant);
+
+            var frames = SaveConfiguration.SaveVersions[(int)world.Version].GetFrames();
+            sectionPointers[2] = SaveTiles(world.Tiles, (int)world.Version, world.TilesWide, world.TilesHigh, bw, frames);
 
             OnProgressChanged(null, new ProgressChangedEventArgs(91, "Save Chests..."));
             sectionPointers[3] = SaveChests(world.Chests, bw, world.Version < 226);

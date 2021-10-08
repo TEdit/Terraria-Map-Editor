@@ -30,6 +30,8 @@ namespace TEdit
             AddHandler(Keyboard.KeyUpEvent, (KeyEventHandler)HandleKeyUpEvent);
         }
 
+        
+
         void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
             if (Settings.Default.Telemetry == -1)
