@@ -550,7 +550,7 @@ namespace TEdit.Terraria
             }
 
             // write bitpacked tile frame importance
-            WriteBitArray(bw, world.TileFrameImportant);
+            WriteBitArray(bw, SaveConfiguration.SaveVersions[(int)world.Version].GetFrames());
 
             return (int)bw.BaseStream.Position;
         }

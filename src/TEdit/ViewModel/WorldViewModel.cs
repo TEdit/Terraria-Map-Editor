@@ -1033,18 +1033,9 @@ namespace TEdit.ViewModel
 
             var sfd = new SaveFileDialog();
             sfd.Filter =
-                "Terraria World File|*.wld" +
-                "|Terraria 1.2.0|*.wld" +
-                "|Terraria 1.2.1|*.wld" +
-                "|Terraria 1.3.0|*.wld" +
-                "|Terraria 1.3.2|*.wld" +
-                "|Terraria 1.3.3|*.wld" +
-                "|Terraria 1.3.4|*.wld" +
-                "|Terraria 1.3.5|*.wld" +
-                "|Terraria 1.4.0.5|*.wld" +
-                "|Terraria 1.4.1.1|*.wld" +
-                "|Terraria 1.4.2.1|*.wld" +
-                "|Terraria 1.4.2.3|*.wld";
+                "Terraria World File|*.wld|" +
+                string.Join("|", World.SaveConfiguration.SaveVersions.Values.Reverse().Select(vers => $"Terraria {vers.GameVersion}|*.wld"));
+
             sfd.Title = "Save World As";
             sfd.InitialDirectory = DependencyChecker.PathToWorlds;
             if ((bool)sfd.ShowDialog())
