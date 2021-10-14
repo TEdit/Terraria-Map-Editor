@@ -477,8 +477,8 @@ namespace TEdit.ViewModel
         public void CompleteBestiary()
         {
             if (MessageBox.Show(
-                "This will completely replace your currently loaded world Bestiary and Kill Tally with selected file's bestiary. Continue?",
-                "Load Bestiary?",
+                "This will completely replace your currently loaded world Bestiary and Kill Tally with a completed bestiary. Continue?",
+                "Complete Bestiary?",
                 MessageBoxButton.YesNo,
                 MessageBoxImage.Question,
                 MessageBoxResult.Yes) != MessageBoxResult.Yes)
