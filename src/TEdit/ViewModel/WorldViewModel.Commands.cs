@@ -42,6 +42,8 @@ namespace TEdit.ViewModel
         private ICommand _saveRackCommand;
         private ICommand _npcRemoveCommand;
         private ICommand _importBestiaryCommand;
+        private ICommand _completeBestiaryCommand;
+
         private ICommand _npcAddCommand;
         private ICommand _requestZoomCommand;
         private ICommand _requestScrollCommand;
@@ -152,6 +154,11 @@ namespace TEdit.ViewModel
         public ICommand ImportBestiaryCommand
         {
             get { return _importBestiaryCommand ?? (_importBestiaryCommand = new RelayCommand(ImportKillsAndBestiary)); }
+        }
+
+        public ICommand CompleteBestiaryCommand
+        {
+            get { return _completeBestiaryCommand ?? (_completeBestiaryCommand = new RelayCommand(CompleteBestiary)); }
         }
 
         private void SaveTileEntity(bool save)
@@ -465,6 +472,38 @@ namespace TEdit.ViewModel
         {
             _clipboard.Buffer = item;
             EditPaste();
+        }
+
+        public void CompleteBestiary()
+        {
+            if (MessageBox.Show(
+                "This will completely replace your currently loaded world Bestiary and Kill Tally with a completed bestiary. Continue?",
+                "Complete Bestiary?",
+                MessageBoxButton.YesNo,
+                MessageBoxImage.Question,
+                MessageBoxResult.Yes) != MessageBoxResult.Yes)
+                return;
+
+            var world = CurrentWorld;
+
+            // make a backup
+            var bestiary = world.Bestiary.Copy(CurrentWorld.Version);
+            var killTally = world.KilledMobs.ToArray();
+            try
+            {
+                ErrorLogging.TelemetryClient?.TrackEvent(nameof(CompleteBestiary));
+
+                World.CompleteBestiary(world);
+                TallyCount = KillTally.LoadTally(CurrentWorld);
+            }
+            catch (Exception ex)
+            {
+                world.Bestiary = bestiary;
+                world.KilledMobs.Clear();
+                world.KilledMobs.AddRange(killTally);
+                MessageBox.Show($"Error completing Bestiary data. Your current bestiary has been restored.\r\n{ex.Message}");
+
+            }
         }
 
         private void ImportKillsAndBestiary()

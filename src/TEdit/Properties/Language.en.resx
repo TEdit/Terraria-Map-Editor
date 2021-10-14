@@ -1098,4 +1098,7 @@ Press retry to pick a new folder or cancel to use {0} as your terraria path.</va
   <data name="tool_wp_tenthanniversary" xml:space="preserve">
     <value>Tenth Anniversary</value>
   </data>
+  <data name="tool_bestiary_complete" xml:space="preserve">
+    <value>Complete</value>
+  </data>
 </root>
