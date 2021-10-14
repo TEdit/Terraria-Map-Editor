@@ -1098,4 +1098,7 @@
   <data name="tool_wp_tenthanniversary" xml:space="preserve">
     <value>十周年</value>
   </data>
+  <data name="tool_bestiary_complete" xml:space="preserve">
+    <value>完全的</value>
+  </data>
 </root>

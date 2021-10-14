@@ -1286,6 +1286,15 @@ namespace TEdit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Complete.
+        /// </summary>
+        public static string tool_bestiary_complete {
+            get {
+                return ResourceManager.GetString("tool_bestiary_complete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Import.
         /// </summary>
         public static string tool_bestiary_import {
