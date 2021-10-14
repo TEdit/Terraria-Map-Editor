@@ -1098,4 +1098,7 @@
   <data name="menu_language_pt" xml:space="preserve">
     <value>Português</value>
   </data>
+  <data name="tool_bestiary_complete" xml:space="preserve">
+    <value>مكتمل</value>
+  </data>
 </root>

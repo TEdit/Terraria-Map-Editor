@@ -1096,6 +1096,9 @@ Press retry to pick a new folder or cancel to use {0} as your terraria path.</va
     <value>Track</value>
   </data>
   <data name="menu_language_pt" xml:space="preserve">
-		<value>Português</value>
-	</data>
+    <value>Português</value>
+  </data>
+  <data name="tool_bestiary_complete" xml:space="preserve">
+    <value>Complete</value>
+  </data>
 </root>

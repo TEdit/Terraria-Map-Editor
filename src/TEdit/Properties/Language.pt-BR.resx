@@ -1098,4 +1098,7 @@ Clique em tentar novamente para escolher uma nova pasta ou cancelar para usar {0
   <data name="menu_language_ar" xml:space="preserve">
     <value>العربية</value>
   </data>
+  <data name="tool_bestiary_complete" xml:space="preserve">
+    <value>completo</value>
+  </data>
 </root>

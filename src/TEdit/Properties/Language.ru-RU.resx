@@ -1098,4 +1098,7 @@
   <data name="tool_wp_tenthanniversary" xml:space="preserve">
     <value>Десятилетие</value>
   </data>
+  <data name="tool_bestiary_Complete" xml:space="preserve">
+    <value>полный</value>
+  </data>
 </root>
