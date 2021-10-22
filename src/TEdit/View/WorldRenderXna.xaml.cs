@@ -2816,6 +2816,14 @@ namespace TEdit.View
                 var frames = npcTexture.Height / size.Y;
                 int width = npcTexture.Width;
                 int height = 55;
+				if (npc.SpriteId == 638) // Fix Texture Dog
+                {
+	                height = 37;
+                }
+                if (npc.SpriteId == 637 || npc.SpriteId == 656) // Fix Texture For Cat And Bunny
+                {
+	                height = 39;
+                }
                 float scale = 1.0f * _zoom / 16;
                 if (scale < _minNpcScale)
                     scale = _minNpcScale;
