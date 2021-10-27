@@ -75,8 +75,16 @@ namespace TEdit.UI.Xaml
         private void RevertToPrevious()
         {
             IsDropDownOpen = false;
-            SelectedValue = SelectedValueWhenDropDownOpened;
-            Text = this.SelectedItemWhenDropDownOpened.ToString();
+            if (SelectedItemWhenDropDownOpened == null) // Invalid Selection Crash Fix
+            {
+                Text = "";
+                SelectedValue = 0;
+            }
+            else
+            {
+                Text = this.SelectedItemWhenDropDownOpened.ToString();
+                SelectedValue = SelectedValueWhenDropDownOpened;
+            }
         }
 
         protected override void OnKeyUp(KeyEventArgs e)
