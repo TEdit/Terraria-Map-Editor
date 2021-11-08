@@ -56,7 +56,7 @@ jobs:
                              # https://help.github.com/en/actions/reference/workflow-syntax-for-github-actions#jobsjob_idruns-on
 
     env:
-      Solution_Name: .src\\TEdit.sln                       # Replace with your solution name, i.e. MyWpfApp.sln.
+      Solution_Name: .\\src\\TEdit.sln                       # Replace with your solution name, i.e. MyWpfApp.sln.
 
     steps:
     - name: Checkout
