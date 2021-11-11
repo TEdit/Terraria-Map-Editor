@@ -375,12 +375,12 @@
         <Separator Grid.ColumnSpan="2" />
         <TextBlock Text="{x:Static p:Language.tool_wp_surface_level}" HorizontalAlignment="Right" />
         <DockPanel>
-            <Slider Value="{Binding CurrentWorld.GroundLevel, Mode=TwoWay}" VerticalAlignment="Center"  Minimum="0" Maximum="{Binding Path=CurrentWorld.TilesHigh}" SmallChange="1" Width="120" />
+            <Slider Value="{Binding CurrentWorld.GroundLevel, Mode=TwoWay}" VerticalAlignment="Center"  Minimum="0" Maximum="{Binding Path=CurrentWorld.MaxGroundLevel}" SmallChange="1" Width="120" />
             <TextBox Text="{Binding CurrentWorld.GroundLevel, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="32" DockPanel.Dock="Right" />
         </DockPanel>
         <TextBlock Text="{x:Static p:Language.tool_wp_cavern_level}" HorizontalAlignment="Right" />
         <DockPanel>
-            <Slider Value="{Binding CurrentWorld.RockLevel, Mode=TwoWay}" VerticalAlignment="Center" Minimum="0" Maximum="{Binding Path=CurrentWorld.TilesHigh}" SmallChange="1" Width="120" />
+            <Slider Value="{Binding CurrentWorld.RockLevel, Mode=TwoWay}" VerticalAlignment="Center" Minimum="0" Maximum="{Binding Path=CurrentWorld.MaxCavernLevel}" SmallChange="1" Width="120" />
             <TextBox Text="{Binding CurrentWorld.RockLevel, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="32" DockPanel.Dock="Right" />
         </DockPanel>
         <Separator Grid.ColumnSpan="2" />

@@ -119,7 +119,7 @@
                         <ColumnDefinition Width="1*" />
                         <ColumnDefinition Width="2*" />
                     </tedit:AutoGrid.ColumnDefinitions>
-                    <tedit:FilteredComboBox Grid.ColumnSpan="2" ItemsSource="{Binding Source={x:Static Terraria:World.TileBricks}, Mode=OneTime}" Visibility="{Binding ElementName=TileText, Path=Visibility}"
+                    <tedit:FilteredComboBox Grid.ColumnSpan="2" ItemsSource="{Binding Source={x:Static Terraria:World.TileBricks}, Mode=OneTime}"
                       ItemTemplate="{StaticResource ColorPickerTemplate}" 
                       SelectedValue="{Binding Path=TilePicker.Tile, Mode=TwoWay}"
                       IsSynchronizedWithCurrentItem="False"
@@ -147,7 +147,7 @@
                         <ColumnDefinition Width="1*" />
                         <ColumnDefinition Width="2*" />
                     </tedit:AutoGrid.ColumnDefinitions>
-                    <tedit:FilteredComboBox ItemsSource="{Binding Source={x:Static Terraria:World.WallProperties}, Mode=OneTime}" Visibility="{Binding ElementName=WallText, Path=Visibility}"
+                    <tedit:FilteredComboBox ItemsSource="{Binding Source={x:Static Terraria:World.WallProperties}, Mode=OneTime}"
                       ItemTemplate="{StaticResource ColorPickerTemplate}" 
                       SelectedValue="{Binding Path=TilePicker.Wall, Mode=TwoWay}"
                       IsSynchronizedWithCurrentItem="False"

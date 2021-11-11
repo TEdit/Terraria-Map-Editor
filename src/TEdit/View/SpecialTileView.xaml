@@ -706,8 +706,8 @@
                     <TextBlock Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" DockPanel.Dock="Top">
                         <TextBlock.Text>
                             <MultiBinding StringFormat="({0:N}, {1:N})">
-                                <Binding Path="SelectedRack.X" />
-                                <Binding Path="SelectedRack.Y" />
+                                <Binding Path="SelectedTileEntity.PosX" />
+                                <Binding Path="SelectedTileEntity.PosY" />
                             </MultiBinding>
                         </TextBlock.Text>
                     </TextBlock>
@@ -752,8 +752,8 @@
                     <TextBlock Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" DockPanel.Dock="Top">
                         <TextBlock.Text>
                             <MultiBinding StringFormat="({0:D}, {1:D})">
-                                <Binding Path="SelectedXmas.X" />
-                                <Binding Path="SelectedXmas.Y" />
+                                <Binding Path="SelectedXmas.PosX" />
+                                <Binding Path="SelectedXmas.PosY" />
                             </MultiBinding>
                         </TextBlock.Text>
                     </TextBlock>

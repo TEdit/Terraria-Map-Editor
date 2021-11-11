@@ -982,10 +982,25 @@ namespace TEdit.Terraria
             set { Set(nameof(TilesWide), ref _tilesWide, value); }
         }
 
+        public int MaxCavernLevel
+        {
+            get => Math.Min(_tilesHigh, 1239);
+        }
+
+        public int MaxGroundLevel
+        {
+            get => Math.Min(Math.Min(_tilesHigh, 1239), (int)_rockLevel);
+        }
+
         public int TilesHigh
         {
             get { return _tilesHigh; }
-            set { Set(nameof(TilesHigh), ref _tilesHigh, value); }
+            set
+            {
+                Set(nameof(TilesHigh), ref _tilesHigh, value);
+                RaisePropertyChanged(nameof(MaxCavernLevel));
+                RaisePropertyChanged(nameof(MaxGroundLevel));
+            }
         }
 
         public float BottomWorld
@@ -1053,6 +1068,8 @@ namespace TEdit.Terraria
             get { return _groundLevel; }
             set
             {
+                if (value > MaxGroundLevel) value = MaxGroundLevel;
+
                 Set(nameof(GroundLevel), ref _groundLevel, value);
                 if (_groundLevel > _rockLevel)
                     RockLevel = _groundLevel;
@@ -1064,9 +1081,14 @@ namespace TEdit.Terraria
             get { return _rockLevel; }
             set
             {
+                if (value > MaxCavernLevel) value = MaxCavernLevel;
+
                 Set(nameof(RockLevel), ref _rockLevel, value);
+
                 if (_groundLevel > _rockLevel)
                     GroundLevel = _rockLevel;
+
+                RaisePropertyChanged(nameof(MaxGroundLevel));
             }
         }
 

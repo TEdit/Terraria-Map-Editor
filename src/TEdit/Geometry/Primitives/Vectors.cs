@@ -193,6 +193,9 @@ namespace TEdit.Geometry.Primitives
         public Int32 X;
         public Int32 Y;
 
+        public Int32 PosX { get => X; set => X = value; }
+        public Int32 PosY { get => Y; set => Y = value; }
+
         public Vector2Int32(int x, int y)
             : this()
         {
