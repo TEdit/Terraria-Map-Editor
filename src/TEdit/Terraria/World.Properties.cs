@@ -989,7 +989,7 @@ namespace TEdit.Terraria
 
         public int MaxGroundLevel
         {
-            get => Math.Min(Math.Min(_tilesHigh, 1239), (int)_rockLevel);
+            get => Math.Min(_tilesHigh, 1239);
         }
 
         public int TilesHigh
