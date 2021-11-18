@@ -2824,6 +2824,22 @@ namespace TEdit.View
                 {
 	                height = 39;
                 }
+				if (npc.SpriteId == 485 || npc.SpriteId == 486 || npc.SpriteId == 487) // Fix Texture For Buggy, Grubby, And Sluggy
+                {
+	                height = 17;
+                }
+				if (npc.SpriteId == 357 || npc.SpriteId == 448 || npc.SpriteId == 606) // Fix Texture For Worm, Gold Worm, And Maggot
+				{
+					height = 7;
+				}
+				if (npc.SpriteId == 446 || npc.SpriteId == 377) // Fix Texture For Grasshopper, And Gold Grasshopper
+				{
+					height = 11;
+				}
+				if (npc.SpriteId == 484) // Fix Texture For Enchanted Nightcrawler
+				{
+					height = 9;
+				}
                 float scale = 1.0f * _zoom / 16;
                 if (scale < _minNpcScale)
                     scale = _minNpcScale;
