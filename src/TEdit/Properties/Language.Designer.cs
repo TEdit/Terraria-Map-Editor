@@ -19,7 +19,7 @@ namespace TEdit.Properties {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     public class Language {
@@ -1907,6 +1907,15 @@ namespace TEdit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Deerclops.
+        /// </summary>
+        public static string tool_wp_boss_deerclops {
+            get {
+                return ResourceManager.GetString("tool_wp_boss_deerclops", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The Destroyer.
         /// </summary>
         public static string tool_wp_boss_destroyer {
@@ -2204,6 +2213,15 @@ namespace TEdit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Don&apos;t Starve World.
+        /// </summary>
+        public static string tool_wp_dontstarve {
+            get {
+                return ResourceManager.GetString("tool_wp_dontstarve", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Drunk World.
         /// </summary>
         public static string tool_wp_drunk {
@@ -2461,6 +2479,15 @@ namespace TEdit.Properties {
         public static string tool_wp_name {
             get {
                 return ResourceManager.GetString("tool_wp_name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Not The Bees World.
+        /// </summary>
+        public static string tool_wp_notthebees {
+            get {
+                return ResourceManager.GetString("tool_wp_notthebees", resourceCulture);
             }
         }
         

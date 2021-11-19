@@ -16,6 +16,7 @@
         <ScrollViewer Grid.ColumnSpan="2">
             <StackPanel>
                 <UniformGrid Rows="1" HorizontalAlignment="Stretch" Margin="5">
+                    <Button Content="1.4.3.0" Height="20" VerticalAlignment="Top" Width="50" Command="{Binding SaveAsVersionCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Mode=Self}, Path=Content}" />
                     <Button Content="1.4.2.3" Height="20" VerticalAlignment="Top" Width="50" Command="{Binding SaveAsVersionCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Mode=Self}, Path=Content}" />
                 </UniformGrid>
                 <UniformGrid Rows="1" HorizontalAlignment="Stretch" Margin="5">

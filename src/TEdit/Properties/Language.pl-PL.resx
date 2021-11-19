@@ -1101,4 +1101,13 @@ Naciśnij spróbuj ponownie aby wybrać nowy folder lub anuluj aby użyć {0} ja
   <data name="tool_bestiary_complete" xml:space="preserve">
     <value>kompletny</value>
   </data>
+  <data name="tool_wp_boss_deerclops" xml:space="preserve">
+    <value>Jelenioko</value>
+  </data>
+  <data name="tool_wp_dontstarve" xml:space="preserve">
+    <value>Nie głoduj świata</value>
+  </data>
+  <data name="tool_wp_notthebees" xml:space="preserve">
+    <value>Nie świat pszczół</value>
+  </data>
 </root>

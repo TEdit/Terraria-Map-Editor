@@ -217,6 +217,7 @@ namespace TEdit.Terraria
         private bool _boughtBunny;
         private bool _downedEmpressOfLight;
         private bool _downedQueenSlime;
+        private bool _downedDeerclops;
         private int _savedOreTiersCobalt;
         private int _savedOreTiersMythril;
         private int _savedOreTiersAdamantite;
@@ -224,7 +225,9 @@ namespace TEdit.Terraria
         private CreativePowers _creativePowers = new CreativePowers();
         private bool _gooWorld;
         private bool _tenthAnniversaryWorld;
-
+        private bool _dontStarveWorld;
+        private bool _notTheBeesWorld;
+        
 
 
         public Bestiary Bestiary
@@ -483,6 +486,13 @@ namespace TEdit.Terraria
             set { Set(nameof(DownedQueenSlime), ref _downedQueenSlime, value); }
         }
 
+        public bool DownedDeerclops
+        {
+            get { return _downedDeerclops; }
+            set { Set(nameof(DownedDeerclops), ref _downedDeerclops, value); }
+        }
+
+
         public int IceBackStyle
         {
             get { return _iceBackStyle; }
@@ -645,6 +655,16 @@ namespace TEdit.Terraria
             set { Set(nameof(TenthAnniversaryWorld), ref _tenthAnniversaryWorld, value); }
         }
 
+        public bool DontStarveWorld
+        {
+            get { return _dontStarveWorld; }
+            set { Set(nameof(DontStarveWorld), ref _dontStarveWorld, value); }
+        }
+        public bool NotTheBeesWorld
+        {
+            get { return _notTheBeesWorld; }
+            set { Set(nameof(NotTheBeesWorld), ref _notTheBeesWorld, value); }
+        }
 
         public byte MoonType
         {

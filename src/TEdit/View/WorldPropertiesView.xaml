@@ -398,6 +398,10 @@
         <TextBlock />
         <CheckBox IsChecked="{Binding CurrentWorld.TenthAnniversaryWorld}" Content="{x:Static p:Language.tool_wp_tenthanniversary}" VerticalAlignment="Center" VerticalContentAlignment="Center" />
         <TextBlock />
+        <CheckBox IsChecked="{Binding CurrentWorld.DontStarveWorld}" Content="{x:Static p:Language.tool_wp_dontstarve}" VerticalAlignment="Center" VerticalContentAlignment="Center" />
+        <TextBlock />
+        <CheckBox IsChecked="{Binding CurrentWorld.NotTheBeesWorld}" Content="{x:Static p:Language.tool_wp_notthebees}" VerticalAlignment="Center" VerticalContentAlignment="Center" />
+        <TextBlock />
         <CheckBox IsChecked="{Binding CurrentWorld.IsCrimson}" Content="{x:Static p:Language.tool_wp_crimson}" VerticalAlignment="Center" VerticalContentAlignment="Center" />
         <TextBlock Text="{x:Static p:Language.tool_wp_altars}" HorizontalAlignment="Right" />
         <DockPanel>
@@ -480,6 +484,9 @@
         <CheckBox IsChecked="{Binding CurrentWorld.DownedEmpressOfLight}" Content="{x:Static p:Language.tool_wp_boss_empressoflight}" VerticalAlignment="Center" VerticalContentAlignment="Center" />
         <TextBlock />
         <CheckBox IsChecked="{Binding CurrentWorld.DownedQueenSlime}" Content="{x:Static p:Language.tool_wp_boss_queenslime}" VerticalAlignment="Center" VerticalContentAlignment="Center" />
+        <TextBlock />
+        <CheckBox IsChecked="{Binding CurrentWorld.DownedDeerclops}" Content="{x:Static p:Language.tool_wp_boss_deerclops}" VerticalAlignment="Center" VerticalContentAlignment="Center" />
+
         <Separator Grid.ColumnSpan="2" />
         <TextBlock Text="{x:Static p:Language.tool_wp_oldonesarmy}" HorizontalAlignment="Right" />
         <CheckBox IsChecked="{Binding CurrentWorld.DownedDD2InvasionT1}" Content="{x:Static p:Language.tool_wp_oldonesarmy_t1}" VerticalAlignment="Center" VerticalContentAlignment="Center" />

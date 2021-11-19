@@ -1101,4 +1101,13 @@ Klicke auf „Wiederholen“, um einen neuen Ordner auszuwählen, oder auf „Ab
   <data name="tool_bestiary_complete" xml:space="preserve">
     <value>Komplett</value>
   </data>
+  <data name="tool_wp_boss_deerclops" xml:space="preserve">
+    <value>Rehklop</value>
+  </data>
+  <data name="tool_wp_dontstarve" xml:space="preserve">
+    <value>Verhungere die Welt nicht</value>
+  </data>
+  <data name="tool_wp_notthebees" xml:space="preserve">
+    <value>Nicht die Bienenwelt</value>
+  </data>
 </root>
