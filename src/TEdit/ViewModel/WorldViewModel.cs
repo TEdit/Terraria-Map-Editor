@@ -1046,7 +1046,7 @@ namespace TEdit.ViewModel
                 {
                     try
                     {
-                        var name = sfd.Filter.Split('|')?[sfd.FilterIndex]?.Split(' ').LastOrDefault();
+                        var name = sfd.Filter.Split('|')?[sfd.FilterIndex]?.Split(' ').LastOrDefault()?.Trim(' ', 'v', '.');
                         if (World.VersionToWorldVersion.TryGetValue(name, out uint versionOverride))
                         {
                             SaveWorldFile(versionOverride);

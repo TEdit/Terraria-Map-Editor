@@ -34,6 +34,34 @@
                         <Bold>Release Notes</Bold>
                     </Paragraph>
 
+
+                    <Paragraph>Version 4.6.0</Paragraph>
+                    <List>
+                        <ListItem>
+                            <Paragraph>Add support for Terraria 1.4.3.0.</Paragraph>
+                            <Paragraph>Fix sprites for NPCs.</Paragraph>
+                        </ListItem>
+                    </List>
+
+                    <Paragraph>Version 4.5.0</Paragraph>
+                    <List>
+                        <ListItem>
+                            <Paragraph>Add support legacy file formats.</Paragraph>
+                            <Paragraph>More languages!</Paragraph>
+                            <Paragraph>Filter tile dropdowns.</Paragraph>
+                            <Paragraph>Fix sprites for NPCs.</Paragraph>
+                            <Paragraph>Numerous bug fixes.</Paragraph>
+                        </ListItem>
+                    </List>
+
+                    <Paragraph>Version 4.4.0</Paragraph>
+                    <List>
+                        <ListItem>
+                            <Paragraph>Add support Terraria 1.4.2.3.</Paragraph>
+                        </ListItem>
+                    </List>
+
+
                     <Paragraph>Version 4.3.0</Paragraph>
                     <List>
                         <ListItem>
