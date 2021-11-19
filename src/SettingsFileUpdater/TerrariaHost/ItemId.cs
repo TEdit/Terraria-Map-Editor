@@ -109,12 +109,31 @@ namespace SettingsFileUpdater.TerrariaHost
 
         }
 
+        public IEnumerable<Terraria.NPC> GetMobs()
+        {
+            for (int id = 0; id < maxNPCTypes; id++)
+            {
+                var npc = new NPC();
+                npc.SetDefaults(id);
+
+                if (string.IsNullOrWhiteSpace(npc.FullName)) continue;
+
+                if (!npc.friendly)
+                {
+
+                    yield return npc;
+                }
+            }
+
+        }
         public IEnumerable<Terraria.NPC> GetNpcs()
         {
             for (int id = 0; id < maxNPCTypes; id++)
             {
                 var npc = new NPC();
                 npc.SetDefaults(id);
+
+                if (string.IsNullOrWhiteSpace(npc.FullName)) continue;
 
                 if (npc.friendly)
                 {
@@ -347,6 +366,29 @@ namespace SettingsFileUpdater.TerrariaHost
             return tiles.ToString();
         }
 
+        public string GetMobsText()
+        {
+            var npcs = GetMobs();
+
+            var output = new StringBuilder("MOBS: ");
+            foreach (var npc in npcs)
+            {
+                try
+                {
+                    output.Append(npc.netID);
+                    output.Append(',');
+                    //output.AppendFormat("<Npc Id=\"{1}\" Name=\"{0}\" Size=\"{2},{3}\" />\r\n", Localize(npc.FullName), npc.netID, npc.width, npc.height);
+                }
+                catch
+                {
+
+                }
+            }
+            output.Append("  </Npcs>");
+
+            return output.ToString();
+        }
+
         public string GetNpcsXml()
         {
             var npcs = GetNpcs();
@@ -472,7 +514,7 @@ namespace SettingsFileUpdater.TerrariaHost
             //maxTileSets
             var sitems = new List<ItemId>();
 
-            for (int i = -255; i < maxItemTypes; i++)
+            for (int i = -255; i < maxItemTypes+1000; i++)
             {
                 try
                 {

@@ -2,7 +2,7 @@
   "profiles": {
     "SettingsFileUpdater": {
       "commandName": "Project",
-      "commandLineArgs": " > settings_out.xml"
+      "commandLineArgs": ""
     }
   }
 }

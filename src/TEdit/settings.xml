@@ -11228,6 +11228,43 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     <Item Id="5085" Name="Princess 64"      />
     <Item Id="5086" Name="Painting of a Lass"      />
     <Item Id="5087" Name="Dark Side of the Hallow"      />
+    <Item Id="5088" Name="Bernie's Button"      />
+    <Item Id="5089" Name="Glommer's Flower"      />
+    <Item Id="5090" Name="Deerclops Eyeball"      />
+    <Item Id="5091" Name="Monster Meat"      />
+    <Item Id="5092" Name="Monster Lasagna" IsFood="True"      />
+    <Item Id="5093" Name="Froggle Bunwich" IsFood="True"      />
+    <Item Id="5094" Name="Tentacle Spike"      Rack="True" />
+    <Item Id="5095" Name="Lucy the Axe"      Rack="True" />
+    <Item Id="5096" Name="Ham Bat"      Rack="True" />
+    <Item Id="5097" Name="Bat Bat"      Rack="True" />
+    <Item Id="5098" Name="Eye Bone"      />
+    <Item Id="5099" Name="Garland"  Head="273"     />
+    <Item Id="5100" Name="Bone Helm"     Accessory="True"  />
+    <Item Id="5101" Name="Eyebrella"  Head="275"     />
+    <Item Id="5102" Name="Gentleman's Vest"   Body="244"    />
+    <Item Id="5103" Name="Gentleman's Trousers"    Legs="231"   />
+    <Item Id="5104" Name="Gentleman's Beard"     Accessory="True"  />
+    <Item Id="5105" Name="Gentleman's Long Beard"     Accessory="True"  />
+    <Item Id="5106" Name="Gentleman's Magnificent Beard"     Accessory="True"  />
+    <Item Id="5107" Name="Magiluminescence"     Accessory="True"  />
+    <Item Id="5108" Name="Deerclops Trophy"      />
+    <Item Id="5109" Name="Deerclops Mask"  Head="276"     />
+    <Item Id="5110" Name="Deerclops Relic"      />
+    <Item Id="5111" Name="Treasure Bag (Deerclops)"      />
+    <Item Id="5112" Name="Music Box (Deerclops)"     Accessory="True"  />
+    <Item Id="5113" Name="Radio Thing"     Accessory="True"  />
+    <Item Id="5114" Name="Abigail's Flower"      Rack="True" />
+    <Item Id="5115" Name="Firestarter's Sweater"   Body="245"    />
+    <Item Id="5116" Name="Firestarter's Skirt"    Legs="232"   />
+    <Item Id="5117" Name="Pew-matic Horn"      Rack="True" />
+    <Item Id="5118" Name="Weather Pain"      Rack="True" />
+    <Item Id="5119" Name="Houndius Shootius"      Rack="True" />
+    <Item Id="5120" Name="Deer Thing"      />
+    <Item Id="5121" Name="The Gentleman Scientist"      />
+    <Item Id="5122" Name="The Firestarter"      />
+    <Item Id="5123" Name="The Bereaved"      />
+    <Item Id="5124" Name="The Strongman"      />
   </Items>
   <Npcs>
     <Npc Id="17" Name="Merchant" Frames="18" />

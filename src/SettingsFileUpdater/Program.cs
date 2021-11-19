@@ -57,11 +57,13 @@ namespace SettingsFileUpdater
 
 
 
-            Console.WriteLine(wrapper.GetTilesXml());
-            Console.WriteLine(wrapper.GetWallsXml());
-            Console.WriteLine(wrapper.GetItemsXml());
-            Console.WriteLine(wrapper.GetNpcsXml());
-            Console.WriteLine(wrapper.GetPrefixesXml());
+           // Console.WriteLine(wrapper.GetTilesXml());
+           // Console.WriteLine(wrapper.GetWallsXml());
+           //Console.WriteLine(wrapper.GetItemsXml());
+            Console.WriteLine(wrapper.GetMobsText());
+           // Console.WriteLine(wrapper.GetNpcsXml());
+            
+           // Console.WriteLine(wrapper.GetPrefixesXml());
 
             Console.ReadLine();
         }
