@@ -5799,6 +5799,11 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame Name="Potted Crystal Tree" UV="0, 270" Anchor="Bottom" />
       </Frames>
     </Tile>
+      <Tile Id="624" Name="Abigail's Flower" Framed="true" Size="1,1">
+          <Frames>
+              <Frame Name="Abigail's Flower" UV="0, 0" Anchor="Bottom" />
+          </Frames>
+      </Tile>
   </Tiles>
   <Walls>
     <Wall Id="0" Name="Sky" Color="#00000000" />
