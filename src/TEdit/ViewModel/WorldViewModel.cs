@@ -1046,7 +1046,7 @@ namespace TEdit.ViewModel
                 {
                     try
                     {
-                        var name = sfd.Filter.Split('|')?[sfd.FilterIndex]?.Split(' ').LastOrDefault()?.Trim(' ', 'v', '.');
+                        var name = sfd.Filter.ToString().Replace("Terraria World File|", "").Replace("*.wld|Terraria v", "").Replace("*.wld", "").Split('|')[sfd.FilterIndex-2];
                         if (World.VersionToWorldVersion.TryGetValue(name, out uint versionOverride))
                         {
                             SaveWorldFile(versionOverride);
