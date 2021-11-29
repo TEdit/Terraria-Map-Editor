@@ -376,7 +376,7 @@ namespace TEdit.Terraria
             if (Chests.Count > World.MaxChests)
                 throw new ArgumentOutOfRangeException($"Chest Count is {Chests.Count} which is greater than {World.MaxChests}.");
             if (Signs.Count > World.MaxSigns)
-                throw new ArgumentOutOfRangeException($"Sign Count is {Signs.Count} which is greater than {World.MaxChests}.");
+                throw new ArgumentOutOfRangeException($"Sign Count is {Signs.Count} which is greater than {World.MaxSigns}.");
         }
 
         private void ValSpecial(int x, int y)
