@@ -60,8 +60,8 @@ namespace TEdit.Editor.Tools
             _wvm.TilePicker.LiquidType = curTile.LiquidType;
             _wvm.TilePicker.BrickStyle = curTile.BrickStyle;
             _wvm.TilePicker.RedWireActive = curTile.WireRed;
-            _wvm.TilePicker.BlueWireActive = curTile.WireGreen;
-            _wvm.TilePicker.GreenWireActive = curTile.WireBlue;
+            _wvm.TilePicker.BlueWireActive = curTile.WireBlue;
+            _wvm.TilePicker.GreenWireActive = curTile.WireGreen;
             _wvm.TilePicker.YellowWireActive = curTile.WireYellow;
             _wvm.TilePicker.Actuator = curTile.Actuator;
             _wvm.TilePicker.ActuatorInActive = curTile.InActive;
