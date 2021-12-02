@@ -68,7 +68,8 @@ namespace TEdit.Terraria
         TrapDoor = 386,
         TrapDoorOpen = 387,
         TallGate = 388,
-        TallGateClosed = 389
+        TallGateClosed = 389,
+        JunctionBox = 424
     }
     
 

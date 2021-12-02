@@ -413,6 +413,13 @@ namespace TEdit.Editor.Clipboard
                             int targetX = x + flipOrigin.X;
 
                             Tile tile = (Tile)buffer.Tiles[sourceX, sourceY].Clone();
+
+                            if (tile.Type == (uint)TileType.JunctionBox)
+                            {
+                                if (tile.U == 18) { tile.U = 36; }
+                                else if (tile.U == 36) { tile.U = 18; }
+                            }
+
                             flippedBuffer.Tiles[targetX, targetY] = (Tile)tile;
                         }
                         catch (Exception)
@@ -479,7 +486,7 @@ namespace TEdit.Editor.Clipboard
             {
                 // flip
                 bufferX = maxX - origin.X - (spriteSize.X - 1);
-                bufferY = origin.Y;
+                bufferY = origin.Y;                
             }
             else
             {

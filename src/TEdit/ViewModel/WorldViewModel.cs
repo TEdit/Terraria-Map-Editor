@@ -429,6 +429,12 @@ namespace TEdit.ViewModel
                 {
                     SelectedSprite2 = value.Styles.First();
                 }
+
+                if (ActiveTool is not SpriteTool2)
+                {
+                    SetActiveTool(Tools.FirstOrDefault(t => t is SpriteTool2));
+                }
+
                 PreviewChange();
             }
         }
