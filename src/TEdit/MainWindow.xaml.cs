@@ -30,7 +30,7 @@ namespace TEdit
             AddHandler(Keyboard.KeyUpEvent, (KeyEventHandler)HandleKeyUpEvent);
         }
 
-        
+
 
         void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
@@ -77,11 +77,17 @@ namespace TEdit
                 {
                     case "copy":
                         if (_vm.CopyCommand.CanExecute(null))
+                        {
                             _vm.CopyCommand.Execute(null);
+                            _vm.SelectedTabIndex = 3;
+                        }
                         break;
                     case "paste":
                         if (_vm.PasteCommand.CanExecute(null))
+                        {
                             _vm.PasteCommand.Execute(null);
+                            _vm.SelectedTabIndex = 3;
+                        }
                         break;
                     case "undo":
                         _vm.UndoCommand.Execute(null);
