@@ -8,6 +8,7 @@
                     xmlns:enum="clr-namespace:TEdit.UI.Xaml.Enum">
     <enum:EnumItemList x:Key="PaintModeEnum" ResourceType="{x:Type p:Language}" EnumType="{x:Type Editor:PaintMode}" SortBy="Value"  />
     <enum:EnumItemList x:Key="TrackModeEnum" ResourceType="{x:Type p:Language}" EnumType="{x:Type Editor:TrackMode}" SortBy="Value"  />
+    <enum:EnumItemList x:Key="JunctionBoxEnum" ResourceType="{x:Type p:Language}" EnumType="{x:Type Editor:JunctionBoxMode}" SortBy="Value"  />
     <enum:EnumItemList x:Key="MaskModeEnum" ResourceType="{x:Type p:Language}" EnumType="{x:Type Editor:MaskMode}" x:Shared="false" SortBy="Value" />
     <enum:EnumItemList x:Key="HalfBlockMode" ResourceType="{x:Type p:Language}" EnumType="{x:Type Editor:HalfBlockMode}" x:Shared="false" SortBy="Value" />
     <enum:EnumItemList x:Key="BrickStyle" ResourceType="{x:Type p:Language}" EnumType="{x:Type Terraria:BrickStyle}" x:Shared="false" SortBy="Value" />
