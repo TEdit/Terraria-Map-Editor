@@ -2,8 +2,6 @@
 name: .NET Core Desktop
 
 on:
-  push:
-    branches: [ main ]
   pull_request:
     branches: [ main ]
 
@@ -16,8 +14,8 @@ jobs:
     runs-on: windows-latest
 
     env:
-      Solution_Name: .\\src\\TEdit.sln                       # Replace with your solution name, i.e. MyWpfApp.sln.
-      Publish_Path: .\src\TEdit\bin\Release\net462\publish
+      Solution_Name: .\\src\\TEdit.sln
+      Publish_Path: .\\src\\TEdit\\bin\\Release\\net462\\publish
 
     steps:
     - name: Checkout
@@ -38,5 +36,10 @@ jobs:
     # Restore the application to populate the obj folder with RuntimeIdentifiers
     - name: Restore the application
       run: msbuild $env:Solution_Name /t:Restore /p:Configuration=$env:Configuration
+      env:
+        Configuration: ${{ matrix.configuration }}
+
+    - name: Create the app package
+      run: dotnet build -c $env:Configuration $env:Solution_Name
       env:
         Configuration: ${{ matrix.configuration }}
