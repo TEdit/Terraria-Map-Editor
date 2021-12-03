@@ -71,7 +71,7 @@ namespace TEdit.Terraria
         TallGateClosed = 389,
         JunctionBox = 424
     }
-    
+
 
     [Serializable]
     public class Tile
@@ -81,6 +81,18 @@ namespace TEdit.Terraria
         public bool IsEmpty { get => !IsActive && Wall == 0 && !HasLiquid && !HasWire; }
         public bool HasWire { get => WireBlue || WireRed || WireGreen || WireYellow; }
         public bool HasLiquid { get => LiquidAmount > 0 && LiquidType != LiquidType.None; }
+
+        public bool HasMultipleWires
+        {
+            get
+            {
+                if (WireRed && (WireGreen || WireBlue || WireYellow)) return true;
+                if (WireGreen && (WireBlue || WireYellow)) return true;
+                if (WireBlue && WireYellow) return true;
+
+                return false;
+            }
+        }
 
         public bool IsActive;
         public bool WireRed;

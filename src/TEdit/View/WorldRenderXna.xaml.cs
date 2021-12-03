@@ -28,6 +28,7 @@ namespace TEdit.View
     public partial class WorldRenderXna : UserControl
     {
 
+        private static Color Translucent = new Color(255, 255, 255, 92);
 
         public bool AreTexturesVisible() => _zoom > _wvm.TextureVisibilityZoomLevel;
 
@@ -2369,7 +2370,8 @@ namespace TEdit.View
                                     source.X = state * 18;
                                     source.Y = 18 + voffset;
 
-                                    _spriteBatch.Draw(tileTex, dest, source, Color.White, 0f, default(Vector2), SpriteEffects.None, LayerBlueWires);
+                                    var color = curtile.WireRed ? Translucent : Color.White;
+                                    _spriteBatch.Draw(tileTex, dest, source, color, 0f, default(Vector2), SpriteEffects.None, LayerBlueWires);
                                 }
                                 if (curtile.WireGreen && _wvm.ShowGreenWires)
                                 {
@@ -2384,7 +2386,8 @@ namespace TEdit.View
                                     source.X = state * 18;
                                     source.Y = 36 + voffset;
 
-                                    _spriteBatch.Draw(tileTex, dest, source, Color.White, 0f, default(Vector2), SpriteEffects.None, LayerGreenWires);
+                                    var color = (curtile.WireRed || curtile.WireBlue) ? Translucent : Color.White;
+                                    _spriteBatch.Draw(tileTex, dest, source, color, 0f, default(Vector2), SpriteEffects.None, LayerGreenWires);
                                 }
                                 if (curtile.WireYellow && _wvm.ShowYellowWires)
                                 {
@@ -2399,7 +2402,8 @@ namespace TEdit.View
                                     source.X = state * 18;
                                     source.Y = 54 + voffset;
 
-                                    _spriteBatch.Draw(tileTex, dest, source, Color.White, 0f, default(Vector2), SpriteEffects.None, LayerYellowWires);
+                                    var color = (curtile.WireRed || curtile.WireBlue || curtile.WireGreen) ? Translucent : Color.White;
+                                    _spriteBatch.Draw(tileTex, dest, source, color, 0f, default(Vector2), SpriteEffects.None, LayerYellowWires);
                                 }
                             }
                         }
@@ -2816,30 +2820,30 @@ namespace TEdit.View
                 var frames = npcTexture.Height / size.Y;
                 int width = npcTexture.Width;
                 int height = 55;
-				if (npc.SpriteId == 638) // Fix Texture Dog
+                if (npc.SpriteId == 638) // Fix Texture Dog
                 {
-	                height = 37;
+                    height = 37;
                 }
                 if (npc.SpriteId == 637 || npc.SpriteId == 656) // Fix Texture For Cat And Bunny
                 {
-	                height = 39;
+                    height = 39;
                 }
-				if (npc.SpriteId == 485 || npc.SpriteId == 486 || npc.SpriteId == 487) // Fix Texture For Buggy, Grubby, And Sluggy
+                if (npc.SpriteId == 485 || npc.SpriteId == 486 || npc.SpriteId == 487) // Fix Texture For Buggy, Grubby, And Sluggy
                 {
-	                height = 17;
+                    height = 17;
                 }
-				if (npc.SpriteId == 357 || npc.SpriteId == 448 || npc.SpriteId == 606) // Fix Texture For Worm, Gold Worm, And Maggot
-				{
-					height = 7;
-				}
-				if (npc.SpriteId == 446 || npc.SpriteId == 377) // Fix Texture For Grasshopper, And Gold Grasshopper
-				{
-					height = 11;
-				}
-				if (npc.SpriteId == 484) // Fix Texture For Enchanted Nightcrawler
-				{
-					height = 9;
-				}
+                if (npc.SpriteId == 357 || npc.SpriteId == 448 || npc.SpriteId == 606) // Fix Texture For Worm, Gold Worm, And Maggot
+                {
+                    height = 7;
+                }
+                if (npc.SpriteId == 446 || npc.SpriteId == 377) // Fix Texture For Grasshopper, And Gold Grasshopper
+                {
+                    height = 11;
+                }
+                if (npc.SpriteId == 484) // Fix Texture For Enchanted Nightcrawler
+                {
+                    height = 9;
+                }
                 float scale = 1.0f * _zoom / 16;
                 if (scale < _minNpcScale)
                     scale = _minNpcScale;
