@@ -1110,4 +1110,28 @@ Klicke auf „Wiederholen“, um einen neuen Ordner auszuwählen, oder auf „Ab
   <data name="tool_wp_notthebees" xml:space="preserve">
     <value>Nicht die Bienenwelt</value>
   </data>
+  <data name="JunctionBoxMode_Left_Facing" xml:space="preserve">
+    <value>Nach links gerichtet</value>
+  </data>
+  <data name="JunctionBoxMode_None" xml:space="preserve">
+    <value>Keiner</value>
+  </data>
+  <data name="JunctionBoxMode_Normal" xml:space="preserve">
+    <value>Normal</value>
+  </data>
+  <data name="JunctionBoxMode_Right_Facing" xml:space="preserve">
+    <value>Nach rechts gerichtet</value>
+  </data>
+  <data name="tool_paint_junctionbox_left_tooltip" xml:space="preserve">
+    <value>Fügen Sie eine nach links gerichtete Kreuzungsdose hinzu.</value>
+  </data>
+  <data name="tool_paint_junctionbox_normal_tooltip" xml:space="preserve">
+    <value>Standardanschlussdose hinzufügen.</value>
+  </data>
+  <data name="tool_paint_junctionbox_right_tooltip" xml:space="preserve">
+    <value>Fügen Sie eine nach rechts gerichtete Kreuzungsdose hinzu.</value>
+  </data>
+  <data name="JunctionBox_Use" xml:space="preserve">
+    <value>Anschlussdose:</value>
+  </data>
 </root>

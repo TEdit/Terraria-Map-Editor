@@ -1110,4 +1110,28 @@
   <data name="tool_wp_notthebees" xml:space="preserve">
     <value>怎么会是蜜蜂</value>
   </data>
+  <data name="JunctionBoxMode_Left_Facing" xml:space="preserve">
+    <value>朝左</value>
+  </data>
+  <data name="JunctionBoxMode_None" xml:space="preserve">
+    <value>没有任何</value>
+  </data>
+  <data name="JunctionBoxMode_Normal" xml:space="preserve">
+    <value>普通的</value>
+  </data>
+  <data name="JunctionBoxMode_Right_Facing" xml:space="preserve">
+    <value>右脸</value>
+  </data>
+  <data name="tool_paint_junctionbox_left_tooltip" xml:space="preserve">
+    <value>添加朝左的交叉路口接线盒。</value>
+  </data>
+  <data name="tool_paint_junctionbox_normal_tooltip" xml:space="preserve">
+    <value>添加默认接线盒。</value>
+  </data>
+  <data name="tool_paint_junctionbox_right_tooltip" xml:space="preserve">
+    <value>添加朝右的交叉路口接线盒。</value>
+  </data>
+  <data name="JunctionBox_Use" xml:space="preserve">
+    <value>接线盒：</value>
+  </data>
 </root>
