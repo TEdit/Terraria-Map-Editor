@@ -284,9 +284,9 @@ namespace TEdit
                 if (releaseKey >= 460798)
                     return "4.7";
                 if (releaseKey >= 394802)
-                    return "4.6.2";
+                    return "4.7.0";
                 if (releaseKey >= 394254)
-                    return "4.6.2";
+                    return "4.7.0";
                 if (releaseKey >= 393295)
                     return "4.6";
                 if (releaseKey >= 379893)

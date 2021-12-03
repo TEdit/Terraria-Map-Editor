@@ -34,11 +34,34 @@
                         <Bold>Release Notes</Bold>
                     </Paragraph>
 
+                    <Paragraph>Version 4.7.0 - Wiring Update</Paragraph>
+                    <List>
+                        <ListItem>
+                            <Paragraph>Add junction boxes to the wire pencil/brush.</Paragraph>
+                        </ListItem>
+                        <ListItem>
+                            <Paragraph>View multiple wire colors simultaneously with color blending!</Paragraph>
+                        </ListItem>
+                        <ListItem>
+                            <Paragraph>Clipboard flip also flips junction boxes.</Paragraph>
+                        </ListItem>
+                        <ListItem>
+                            <Paragraph>Bugfix: Picker tool updates and fixes.</Paragraph>
+                        </ListItem>
+                        <ListItem>
+                            <Paragraph>Bugfix: Save as version fixes and improvements.</Paragraph>
+                        </ListItem>
+                        <ListItem>
+                            <Paragraph>Bugfix: Sign limit error</Paragraph>
+                        </ListItem>
+                    </List>
 
                     <Paragraph>Version 4.6.0</Paragraph>
                     <List>
                         <ListItem>
                             <Paragraph>Add support for Terraria 1.4.3.0.</Paragraph>
+                        </ListItem>
+                        <ListItem>
                             <Paragraph>Fix sprites for NPCs.</Paragraph>
                         </ListItem>
                     </List>
@@ -47,9 +70,17 @@
                     <List>
                         <ListItem>
                             <Paragraph>Add support legacy file formats.</Paragraph>
+                        </ListItem>
+                        <ListItem>
                             <Paragraph>More languages!</Paragraph>
+                        </ListItem>
+                        <ListItem>
                             <Paragraph>Filter tile dropdowns.</Paragraph>
+                        </ListItem>
+                        <ListItem>
                             <Paragraph>Fix sprites for NPCs.</Paragraph>
+                        </ListItem>
+                        <ListItem>
                             <Paragraph>Numerous bug fixes.</Paragraph>
                         </ListItem>
                     </List>
