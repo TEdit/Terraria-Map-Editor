@@ -1110,4 +1110,28 @@ Press retry to pick a new folder or cancel to use {0} as your terraria path.</va
   <data name="tool_wp_notthebees" xml:space="preserve">
     <value>Not The Bees World</value>
   </data>
+  <data name="JunctionBoxMode_Left_Facing" xml:space="preserve">
+    <value>Left Facing</value>
+  </data>
+  <data name="JunctionBoxMode_None" xml:space="preserve">
+    <value>None</value>
+  </data>
+  <data name="JunctionBoxMode_Normal" xml:space="preserve">
+    <value>Normal</value>
+  </data>
+  <data name="JunctionBoxMode_Right_Facing" xml:space="preserve">
+    <value>Right Facing</value>
+  </data>
+  <data name="tool_paint_junctionbox_left_tooltip" xml:space="preserve">
+    <value>Add left facing intersection junction box.</value>
+  </data>
+  <data name="tool_paint_junctionbox_normal_tooltip" xml:space="preserve">
+    <value>Add defualt junction box.</value>
+  </data>
+  <data name="tool_paint_junctionbox_right_tooltip" xml:space="preserve">
+    <value>Add right facing intersection junction box.</value>
+  </data>
+  <data name="JunctionBox_Use" xml:space="preserve">
+    <value>Junction Box:</value>
+  </data>
 </root>

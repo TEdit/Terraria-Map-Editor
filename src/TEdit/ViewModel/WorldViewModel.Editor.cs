@@ -81,32 +81,88 @@ namespace TEdit.ViewModel
             switch (curMode)
             {
                 case PaintMode.Sprites:
-                    if (CurrentWorld.TileFrameImportant[curTile.Type])
-                        SetTile(curTile, isErase);
+                    if (curTile.Type != 424)
+                    {
+                        if (CurrentWorld.TileFrameImportant[curTile.Type])
+                            SetTile(curTile, isErase);
+                    }
                     break;
                 case PaintMode.TileAndWall:
-                    if (TilePicker.TileStyleActive)
-                        SetTile(curTile, isErase);
-                    if (TilePicker.WallStyleActive)
-                        SetWall(curTile, isErase);
-                    if (TilePicker.BrickStyleActive && TilePicker.ExtrasActive)
-                        SetPixelAutomatic(curTile, brickStyle: TilePicker.BrickStyle);
-                    if (TilePicker.TilePaintActive)
-                        SetPixelAutomatic(curTile, tileColor: isErase ? 0 : TilePicker.TileColor);
-                    if (TilePicker.WallPaintActive)
-                        SetPixelAutomatic(curTile, wallColor: isErase ? 0 : TilePicker.WallColor);
-                    if (TilePicker.ExtrasActive)
-                        SetPixelAutomatic(curTile, actuator: isErase ? false : TilePicker.Actuator, actuatorInActive: isErase ? false : TilePicker.ActuatorInActive);
+                    if (curTile.Type != 424)
+                    {
+                        if (TilePicker.TileStyleActive)
+                            SetTile(curTile, isErase);
+                        if (TilePicker.WallStyleActive)
+                            SetWall(curTile, isErase);
+                        if (TilePicker.BrickStyleActive && TilePicker.ExtrasActive)
+                            SetPixelAutomatic(curTile, brickStyle: TilePicker.BrickStyle);
+                        if (TilePicker.TilePaintActive)
+                            SetPixelAutomatic(curTile, tileColor: isErase ? 0 : TilePicker.TileColor);
+                        if (TilePicker.WallPaintActive)
+                            SetPixelAutomatic(curTile, wallColor: isErase ? 0 : TilePicker.WallColor);
+                        if (TilePicker.ExtrasActive)
+                            SetPixelAutomatic(curTile, actuator: isErase ? false : TilePicker.Actuator, actuatorInActive: isErase ? false : TilePicker.ActuatorInActive);
+                    }
                     break;
                 case PaintMode.Wire:
                     if (TilePicker.RedWireActive)
+                    {
                         SetPixelAutomatic(curTile, wire: !isErase);
+                    }
                     if (TilePicker.BlueWireActive)
+                    {
                         SetPixelAutomatic(curTile, wire2: !isErase);
+                    }
                     if (TilePicker.GreenWireActive)
+                    {
                         SetPixelAutomatic(curTile, wire3: !isErase);
+                    }
                     if (TilePicker.YellowWireActive)
+                    {
                         SetPixelAutomatic(curTile, wire4: !isErase);
+                    }
+                    if (TilePicker.JunctionBoxMode == JunctionBoxMode.LeftFacingBox)
+                    {
+                        if (isErase)
+                        {
+                            if (curTile.Type == 424 && curTile.U == 18)
+                            {
+                                SetTile(curTile, true);
+                            }
+                        }
+                        else
+                        {
+                            SetPixelAutomatic(curTile, tile: 424, u: 18);
+                        }
+                    }
+                    if (TilePicker.JunctionBoxMode == JunctionBoxMode.NormalFacingBox)
+                    {
+                        if (isErase)
+                        {
+                            if (curTile.Type == 424 && curTile.U == 0)
+                            {
+                                SetTile(curTile, true);
+                            }
+                        }
+                        else
+                        {
+                            SetPixelAutomatic(curTile, tile: 424, u: 0);
+                        }
+                    }
+                    if (TilePicker.JunctionBoxMode == JunctionBoxMode.RightFacingBox)
+                    {
+                        if (isErase)
+                        {
+                            if (curTile.Type == 424 && curTile.U == 36)
+                            {
+                                SetTile(curTile, true);
+                            }
+                        }
+                        else
+                        {
+                            SetPixelAutomatic(curTile, tile: 424, u: 36);
+                        }
+                    }
                     break;
                 case PaintMode.Liquid:
                     SetPixelAutomatic(
@@ -115,7 +171,10 @@ namespace TEdit.ViewModel
                         liquidType: TilePicker.LiquidType);
                     break;
                 case PaintMode.Track:
-                    SetTrack(x, y, curTile, isErase, (TilePicker.TrackMode == TrackMode.Hammer), true);
+                    if (curTile.Type != 424)
+                    {
+                        SetTrack(x, y, curTile, isErase, (TilePicker.TrackMode == TrackMode.Hammer), true);
+                    }
                     break;
             }
 

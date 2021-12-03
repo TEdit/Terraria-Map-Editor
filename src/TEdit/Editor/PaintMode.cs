@@ -24,6 +24,17 @@ namespace TEdit.Editor
         [Description("PressurePlate")]
         Pressure,
         [Description("Hammer")]
-        Hammer,
+        Hammer
+    }
+    public enum JunctionBoxMode
+    {
+        [Description("None")]
+        None,
+        [Description("Left Facing")]
+        LeftFacingBox,
+        [Description("Normal")]
+        NormalFacingBox,
+        [Description("Right Facing")]
+        RightFacingBox
     }
 }

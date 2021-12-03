@@ -1110,4 +1110,28 @@
   <data name="tool_wp_notthebees" xml:space="preserve">
     <value>ليس عالم النحل</value>
   </data>
+  <data name="JunctionBoxMode_Left_Facing" xml:space="preserve">
+    <value>مواجهة اليسار</value>
+  </data>
+  <data name="JunctionBoxMode_None" xml:space="preserve">
+    <value>لا أحد</value>
+  </data>
+  <data name="JunctionBoxMode_Normal" xml:space="preserve">
+    <value>طبيعي</value>
+  </data>
+  <data name="JunctionBoxMode_Right_Facing" xml:space="preserve">
+    <value>المواجهة اليمنى</value>
+  </data>
+  <data name="tool_paint_junctionbox_left_tooltip" xml:space="preserve">
+    <value>إضافة مربع تقاطع تواجه اليسار.</value>
+  </data>
+  <data name="tool_paint_junctionbox_normal_tooltip" xml:space="preserve">
+    <value>إضافة مربع تقاطع افتراضي.</value>
+  </data>
+  <data name="tool_paint_junctionbox_right_tooltip" xml:space="preserve">
+    <value>أضف مربع تقاطع المواجهة اليمنى.</value>
+  </data>
+  <data name="JunctionBox_Use" xml:space="preserve">
+    <value>مربع تقاطع:</value>
+  </data>
 </root>

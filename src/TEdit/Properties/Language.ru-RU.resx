@@ -1110,4 +1110,28 @@
   <data name="tool_wp_notthebees" xml:space="preserve">
     <value>Не мир пчел</value>
   </data>
+  <data name="JunctionBoxMode_Left_Facing" xml:space="preserve">
+    <value>Лицом влево</value>
+  </data>
+  <data name="JunctionBoxMode_None" xml:space="preserve">
+    <value>Никто</value>
+  </data>
+  <data name="JunctionBoxMode_Normal" xml:space="preserve">
+    <value>Обычный</value>
+  </data>
+  <data name="JunctionBoxMode_Right_Facing" xml:space="preserve">
+    <value>Право лицом</value>
+  </data>
+  <data name="tool_paint_junctionbox_left_tooltip" xml:space="preserve">
+    <value>Добавьте соединительную коробку на перекрестке, обращенную влево.</value>
+  </data>
+  <data name="tool_paint_junctionbox_normal_tooltip" xml:space="preserve">
+    <value>Добавить распределительную коробку по умолчанию.</value>
+  </data>
+  <data name="tool_paint_junctionbox_right_tooltip" xml:space="preserve">
+    <value>Добавьте соединительную коробку на перекрестке, обращенную вправо.</value>
+  </data>
+  <data name="JunctionBox_Use" xml:space="preserve">
+    <value>Распределительная коробка:</value>
+  </data>
 </root>

@@ -216,10 +216,15 @@
                     <StackPanel Orientation="Vertical">
                         <CheckBox IsChecked="{Binding TilePicker.RedWireActive}" Content="{x:Static p:Language.tool_paint_wire_red}" Width="75" VerticalAlignment="Center" Height="22"/>
                         <CheckBox IsChecked="{Binding TilePicker.BlueWireActive}" Content="{x:Static p:Language.tool_paint_wire_blue}" Width="75" VerticalAlignment="Center" Height="22"/>
+                        <TextBlock Text="{x:Static p:Language.JunctionBox_Use}" />
                     </StackPanel>
                     <StackPanel Orientation="Vertical">
                         <CheckBox IsChecked="{Binding TilePicker.GreenWireActive}" Content="{x:Static p:Language.tool_paint_wire_green}" Width="75" VerticalAlignment="Center" Height="22"/>
                         <CheckBox IsChecked="{Binding TilePicker.YellowWireActive}" Content="{x:Static p:Language.tool_paint_wire_yellow}" Width="75" VerticalAlignment="Center" Height="22"/>
+                        <ComboBox ItemsSource="{StaticResource JunctionBoxEnum}" 
+                          SelectedValue="{Binding TilePicker.JunctionBoxMode}" 
+                          SelectedValuePath="Value" Width="100"
+                          ItemTemplate="{StaticResource EnumTemplate}" />
                     </StackPanel>
                 </StackPanel>
             </GroupBox>

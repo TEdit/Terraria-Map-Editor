@@ -65,6 +65,24 @@ namespace TEdit.Editor.Tools
             _wvm.TilePicker.YellowWireActive = curTile.WireYellow;
             _wvm.TilePicker.Actuator = curTile.Actuator;
             _wvm.TilePicker.ActuatorInActive = curTile.InActive;
+
+            // Get Picker For JunctionBoxes
+            if (curTile.Type != 424)
+            {
+                _wvm.TilePicker.JunctionBoxMode = JunctionBoxMode.None;
+            }
+            if (curTile.Type == 424 && curTile.U == 18)
+            {
+                _wvm.TilePicker.JunctionBoxMode = JunctionBoxMode.LeftFacingBox;
+            }
+            if (curTile.Type == 424 && curTile.U == 0)
+            {
+                _wvm.TilePicker.JunctionBoxMode = JunctionBoxMode.NormalFacingBox;
+            }
+            if (curTile.Type == 424 && curTile.U == 36)
+            {
+                _wvm.TilePicker.JunctionBoxMode = JunctionBoxMode.RightFacingBox;
+            }
         }
 
         private void PickmaskTile(int x, int y)

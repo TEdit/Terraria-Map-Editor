@@ -1110,4 +1110,28 @@ Clique em tentar novamente para escolher uma nova pasta ou cancelar para usar {0
   <data name="tool_wp_notthebees" xml:space="preserve">
     <value>Não o Mundo das Abelhas</value>
   </data>
+  <data name="JunctionBoxMode_Left_Facing" xml:space="preserve">
+    <value>Voltado para a esquerda</value>
+  </data>
+  <data name="JunctionBoxMode_None" xml:space="preserve">
+    <value>Nenhum</value>
+  </data>
+  <data name="JunctionBoxMode_Normal" xml:space="preserve">
+    <value>Normal</value>
+  </data>
+  <data name="JunctionBoxMode_Right_Facing" xml:space="preserve">
+    <value>Voltado para a direita</value>
+  </data>
+  <data name="tool_paint_junctionbox_left_tooltip" xml:space="preserve">
+    <value>Adicione uma caixa de junção de interseção voltada para a esquerda.</value>
+  </data>
+  <data name="tool_paint_junctionbox_normal_tooltip" xml:space="preserve">
+    <value>Adicionar caixa de junção padrão.</value>
+  </data>
+  <data name="tool_paint_junctionbox_right_tooltip" xml:space="preserve">
+    <value>Adicione uma caixa de junção de interseção voltada para a direita.</value>
+  </data>
+  <data name="JunctionBox_Use" xml:space="preserve">
+    <value>Caixa de junção:</value>
+  </data>
 </root>
