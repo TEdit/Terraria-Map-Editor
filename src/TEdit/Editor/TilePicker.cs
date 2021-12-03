@@ -35,6 +35,7 @@ namespace TEdit.Editor
         private bool _tileStyleActive = ToolDefaultData.PaintTileActive;
         private bool _wallStyleActive = ToolDefaultData.PaintWallActive;
         private TrackMode _trackMode = TrackMode.Track;
+        private JunctionBoxMode _junctionboxMode = JunctionBoxMode.None;
 
         private BrickStyle _brickStyle = BrickStyle.Full;
         public BrickStyle BrickStyle
@@ -47,6 +48,12 @@ namespace TEdit.Editor
         {
             get { return _trackMode; }
             set { Set(nameof(TrackMode), ref _trackMode, value); }
+        }
+
+        public JunctionBoxMode JunctionBoxMode
+        {
+            get { return _junctionboxMode; }
+            set { Set(nameof(JunctionBoxMode), ref _junctionboxMode, value); }
         }
 
         //private bool _isLava;
