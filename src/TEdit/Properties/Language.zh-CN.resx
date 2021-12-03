@@ -1110,7 +1110,7 @@
   <data name="tool_wp_notthebees" xml:space="preserve">
     <value>怎么会是蜜蜂</value>
   </data>
-  <data name="JunctionBoxMode_Left_Facing" xml:space="preserve">
+  <data name="JunctionBoxMode_Left" xml:space="preserve">
     <value>朝左</value>
   </data>
   <data name="JunctionBoxMode_None" xml:space="preserve">
@@ -1119,7 +1119,7 @@
   <data name="JunctionBoxMode_Normal" xml:space="preserve">
     <value>普通的</value>
   </data>
-  <data name="JunctionBoxMode_Right_Facing" xml:space="preserve">
+  <data name="JunctionBoxMode_Right" xml:space="preserve">
     <value>右脸</value>
   </data>
   <data name="tool_paint_junctionbox_left_tooltip" xml:space="preserve">

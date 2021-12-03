@@ -26,15 +26,16 @@ namespace TEdit.Editor
         [Description("Hammer")]
         Hammer
     }
-    public enum JunctionBoxMode
+
+    public enum JunctionBoxMode : short
     {
         [Description("None")]
-        None,
+        None = -1,
         [Description("Left Facing")]
-        LeftFacingBox,
+        Left = 18,
         [Description("Normal")]
-        NormalFacingBox,
+        Normal = 0,
         [Description("Right Facing")]
-        RightFacingBox
+        Right = 36
     }
 }

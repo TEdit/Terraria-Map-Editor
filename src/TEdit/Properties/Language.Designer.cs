@@ -19,7 +19,7 @@ namespace TEdit.Properties {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     public class Language {
@@ -316,9 +316,9 @@ namespace TEdit.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Left Facing.
         /// </summary>
-        public static string JunctionBoxMode_Left_Facing {
+        public static string JunctionBoxMode_Left {
             get {
-                return ResourceManager.GetString("JunctionBoxMode_Left_Facing", resourceCulture);
+                return ResourceManager.GetString("JunctionBoxMode_Left", resourceCulture);
             }
         }
         
@@ -343,9 +343,9 @@ namespace TEdit.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Right Facing.
         /// </summary>
-        public static string JunctionBoxMode_Right_Facing {
+        public static string JunctionBoxMode_Right {
             get {
-                return ResourceManager.GetString("JunctionBoxMode_Right_Facing", resourceCulture);
+                return ResourceManager.GetString("JunctionBoxMode_Right", resourceCulture);
             }
         }
         

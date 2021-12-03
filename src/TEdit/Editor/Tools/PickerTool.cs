@@ -73,15 +73,15 @@ namespace TEdit.Editor.Tools
             }
             if (curTile.Type == 424 && curTile.U == 18)
             {
-                _wvm.TilePicker.JunctionBoxMode = JunctionBoxMode.LeftFacingBox;
+                _wvm.TilePicker.JunctionBoxMode = JunctionBoxMode.Left;
             }
             if (curTile.Type == 424 && curTile.U == 0)
             {
-                _wvm.TilePicker.JunctionBoxMode = JunctionBoxMode.NormalFacingBox;
+                _wvm.TilePicker.JunctionBoxMode = JunctionBoxMode.Normal;
             }
             if (curTile.Type == 424 && curTile.U == 36)
             {
-                _wvm.TilePicker.JunctionBoxMode = JunctionBoxMode.RightFacingBox;
+                _wvm.TilePicker.JunctionBoxMode = JunctionBoxMode.Right;
             }
         }
 

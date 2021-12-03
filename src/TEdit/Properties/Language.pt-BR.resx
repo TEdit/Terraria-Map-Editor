@@ -1110,7 +1110,7 @@ Clique em tentar novamente para escolher uma nova pasta ou cancelar para usar {0
   <data name="tool_wp_notthebees" xml:space="preserve">
     <value>Não o Mundo das Abelhas</value>
   </data>
-  <data name="JunctionBoxMode_Left_Facing" xml:space="preserve">
+  <data name="JunctionBoxMode_Left" xml:space="preserve">
     <value>Voltado para a esquerda</value>
   </data>
   <data name="JunctionBoxMode_None" xml:space="preserve">
@@ -1119,7 +1119,7 @@ Clique em tentar novamente para escolher uma nova pasta ou cancelar para usar {0
   <data name="JunctionBoxMode_Normal" xml:space="preserve">
     <value>Normal</value>
   </data>
-  <data name="JunctionBoxMode_Right_Facing" xml:space="preserve">
+  <data name="JunctionBoxMode_Right" xml:space="preserve">
     <value>Voltado para a direita</value>
   </data>
   <data name="tool_paint_junctionbox_left_tooltip" xml:space="preserve">

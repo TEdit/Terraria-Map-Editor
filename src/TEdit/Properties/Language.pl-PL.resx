@@ -1110,7 +1110,7 @@ Naciśnij spróbuj ponownie aby wybrać nowy folder lub anuluj aby użyć {0} ja
   <data name="tool_wp_notthebees" xml:space="preserve">
     <value>Nie świat pszczół</value>
   </data>
-  <data name="JunctionBoxMode_Left_Facing" xml:space="preserve">
+  <data name="JunctionBoxMode_Left" xml:space="preserve">
     <value>Lewa strona</value>
   </data>
   <data name="JunctionBoxMode_None" xml:space="preserve">
@@ -1119,7 +1119,7 @@ Naciśnij spróbuj ponownie aby wybrać nowy folder lub anuluj aby użyć {0} ja
   <data name="JunctionBoxMode_Normal" xml:space="preserve">
     <value>Normalna</value>
   </data>
-  <data name="JunctionBoxMode_Right_Facing" xml:space="preserve">
+  <data name="JunctionBoxMode_Right" xml:space="preserve">
     <value>Prawo skierowane</value>
   </data>
   <data name="tool_paint_junctionbox_left_tooltip" xml:space="preserve">
