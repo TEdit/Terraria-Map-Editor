@@ -2355,6 +2355,8 @@ namespace TEdit.View
                                     source.X = state * 18;
                                     source.Y = voffset;
 
+                                    var color = curtile.Type == (int)TileType.JunctionBox ? Translucent : Color.White;
+
                                     _spriteBatch.Draw(tileTex, dest, source, Color.White, 0f, default(Vector2), SpriteEffects.None, LayerRedWires);
                                 }
                                 if (curtile.WireBlue && _wvm.ShowBlueWires)
@@ -2370,7 +2372,7 @@ namespace TEdit.View
                                     source.X = state * 18;
                                     source.Y = 18 + voffset;
 
-                                    var color = curtile.WireRed ? Translucent : Color.White;
+                                    var color = curtile.Type == (int)TileType.JunctionBox || curtile.WireRed ? Translucent : Color.White;
                                     _spriteBatch.Draw(tileTex, dest, source, color, 0f, default(Vector2), SpriteEffects.None, LayerBlueWires);
                                 }
                                 if (curtile.WireGreen && _wvm.ShowGreenWires)
@@ -2386,7 +2388,7 @@ namespace TEdit.View
                                     source.X = state * 18;
                                     source.Y = 36 + voffset;
 
-                                    var color = (curtile.WireRed || curtile.WireBlue) ? Translucent : Color.White;
+                                    var color = (curtile.Type == (int)TileType.JunctionBox || curtile.WireRed || curtile.WireBlue) ? Translucent : Color.White;
                                     _spriteBatch.Draw(tileTex, dest, source, color, 0f, default(Vector2), SpriteEffects.None, LayerGreenWires);
                                 }
                                 if (curtile.WireYellow && _wvm.ShowYellowWires)
@@ -2402,7 +2404,7 @@ namespace TEdit.View
                                     source.X = state * 18;
                                     source.Y = 54 + voffset;
 
-                                    var color = (curtile.WireRed || curtile.WireBlue || curtile.WireGreen) ? Translucent : Color.White;
+                                    var color = (curtile.Type == (int)TileType.JunctionBox || curtile.WireRed || curtile.WireBlue || curtile.WireGreen) ? Translucent : Color.White;
                                     _spriteBatch.Draw(tileTex, dest, source, color, 0f, default(Vector2), SpriteEffects.None, LayerYellowWires);
                                 }
                             }
