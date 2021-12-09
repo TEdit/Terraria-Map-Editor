@@ -1,13 +1,15 @@
 param(
-    [string] $VersionPrefix = "4.7.1",
+    [string] $VersionPrefix = "4.7.2",
     [string] $VersionSuffix = ""
 )
 
 $buildArgs = @(
-    "publish", 
+    "publish"
     "-c"
     "Release"
-    ".\src\TEdit.sln", 
+    "-f"
+    "net462"
+    ".\src\TEdit.sln"
     '/p:signcert="BC Code Signing"')
 
 
@@ -31,6 +33,7 @@ Remove-Item -Path ".\TEdit*.msi"
 
 mkdir -Path ".\release"
 
+Copy-Item -Path ".\src\TEdit\bin\Release\net462\zh-CN" -Destination ".\src\TEdit\bin\Release\net462\publish\zh-CN\" -Recurse -Force
 Copy-Item -Path ".\src\TEdit\bin\Release\net462\publish" -Destination ".\release\$filename\" -Recurse -Force
 Copy-Item -Path ".\schematics" -Destination ".\release" -Recurse
 
