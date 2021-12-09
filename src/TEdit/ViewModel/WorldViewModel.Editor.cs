@@ -77,10 +77,7 @@ namespace TEdit.ViewModel
 
             PaintMode curMode = mode ?? TilePicker.PaintMode;
             bool isErase = erase ?? TilePicker.IsEraser;
-
-            // only allow modifying junction box in wire or sprite mode
-            if (curTile.Type == (int)TileType.JunctionBox && (curMode != PaintMode.Wire && curMode != PaintMode.Sprites)) { return; }
-
+            
             switch (curMode)
             {
                 case PaintMode.Sprites:
