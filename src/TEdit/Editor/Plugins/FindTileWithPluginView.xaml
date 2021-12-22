@@ -2,13 +2,19 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:view="clr-namespace:TEdit.View" SizeToContent="WidthAndHeight"
-        Title="FindTileWithPlugin" ResizeMode="NoResize" WindowStartupLocation="CenterOwner" Icon="/TEdit;component/Images/tedit.ico">
+        Title="FindTileWithPlugin" ResizeMode="NoResize" WindowStartupLocation="CenterOwner" Icon="/TEdit;component/Images/tedit.ico" Height="185.333">
     <StackPanel Background="{StaticResource ControlBackgroundBrush}" >
-        <TextBlock Text="Enter the name of the tile you are looking for." Margin="10 2" TextWrapping="Wrap" HorizontalAlignment="Left" VerticalAlignment="Stretch" Foreground="{StaticResource TextBrush}"/>
-        <TextBox x:Name="TileLookup"></TextBox>
+        <TextBlock Text="Enter the name of the block you are looking for." Margin="10 2" TextWrapping="Wrap" HorizontalAlignment="Left" VerticalAlignment="Stretch" Foreground="{StaticResource TextBrush}"/>
+        <TextBox x:Name="BlockLookup"></TextBox>
+        <TextBlock Text="Enter the name of the wall you are looking for." Margin="10 2" TextWrapping="Wrap" HorizontalAlignment="Left" VerticalAlignment="Stretch" Foreground="{StaticResource TextBrush}"/>
+        <TextBox x:Name="WallLookup"></TextBox>
         <Grid>
-            <Button Margin="5" Content="Cancel" HorizontalAlignment="Left" Padding="20, 3" VerticalAlignment="Center" Click="CancelButtonClick" />
-            <Button Margin="5" Content="Search" HorizontalAlignment="Right" Padding="20, 3" VerticalAlignment="Center" Click="SearchButtonClick" />
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="74*"/>
+                <ColumnDefinition Width="187*"/>
+            </Grid.ColumnDefinitions>
+            <Button Margin="5,5,0,5" Content="Cancel" HorizontalAlignment="Left" Padding="20, 3" VerticalAlignment="Center" Click="CancelButtonClick" Grid.ColumnSpan="2" />
+            <Button Margin="0,5,5,5" Content="Search" HorizontalAlignment="Right" Padding="20, 3" VerticalAlignment="Center" Click="SearchButtonClick" Grid.Column="1" />
         </Grid>
     </StackPanel>
 </Window>

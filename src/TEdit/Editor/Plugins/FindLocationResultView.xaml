@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:view="clr-namespace:TEdit.View" 
         SizeToContent="WidthAndHeight"
-        Title="FindWithPlugin"
+        Title="FindChestWithPlugin"
         ResizeMode="CanResizeWithGrip" 
         WindowStartupLocation="CenterOwner"
         Icon="/TEdit;component/Images/tedit.ico" 

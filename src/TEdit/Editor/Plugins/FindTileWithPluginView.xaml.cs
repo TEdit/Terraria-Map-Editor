@@ -7,7 +7,9 @@ namespace TEdit.Editor.Plugins
     /// </summary>
     public partial class FindTileWithPluginView : Window
     {
-        public string TileToFind { get; private set; }
+        public string BlockToFind { get; private set; }
+        public string WallToFind { get; private set; }
+        public string SpriteToFind { get; private set; }
         public FindTileWithPluginView()
         {
             InitializeComponent();
@@ -22,7 +24,8 @@ namespace TEdit.Editor.Plugins
         private void SearchButtonClick(object sender, RoutedEventArgs e)
         {
             DialogResult = true;
-            TileToFind = TileLookup.Text;
+            BlockToFind = BlockLookup.Text;
+            WallToFind = WallLookup.Text;
             Close();
         }
     }
