@@ -32,7 +32,7 @@ namespace TEdit.Editor.Plugins
             {
                 for (int y = (_wvm.Selection.IsActive) ? _wvm.Selection.SelectionArea.Y : 0; y < ((_wvm.Selection.IsActive) ? _wvm.Selection.SelectionArea.Y + _wvm.Selection.SelectionArea.Height : _wvm.CurrentWorld.TilesHigh); y++)
                 {
-                    if (locations.Count > 10000)
+                    if (locations.Count > view.MaxVolumeLimit - 1)
                     {
                         locations.Add(new Tuple<string, Vector2>("HALTING! Too Many Entrees!: ", new Vector2(0, 0)));
                         FindTileLocationResultView resultView0 = new FindTileLocationResultView(locations);
