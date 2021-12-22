@@ -8,7 +8,7 @@
         <TextBox x:Name="BlockLookup"></TextBox>
         <TextBlock Text="Enter the name of the wall you are looking for." Margin="10 2" TextWrapping="Wrap" HorizontalAlignment="Left" VerticalAlignment="Stretch" Foreground="{StaticResource TextBrush}"/>
         <TextBox x:Name="WallLookup"></TextBox>
-        <TextBlock Text="Enter the max overflow for the search. Use at own risk." Margin="10 2" TextWrapping="Wrap" HorizontalAlignment="Left" VerticalAlignment="Stretch" Foreground="{StaticResource TextBrush}"/>
+        <TextBlock Text="Enter the max results for the search." Margin="10 2" TextWrapping="Wrap" HorizontalAlignment="Left" VerticalAlignment="Stretch" Foreground="{StaticResource TextBrush}"/>
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
