@@ -17,6 +17,9 @@ namespace TEdit.Terraria.Objects
             _name = "UNKNOWN";
         }
 
+        public override string ToString() => Name;
+
+
         public WallProperty(int id, string name, Color color)
         {
             _color = color;
