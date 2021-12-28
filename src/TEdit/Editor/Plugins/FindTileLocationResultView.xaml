@@ -8,7 +8,7 @@
         WindowStartupLocation="CenterOwner"
         Icon="/TEdit;component/Images/tedit.ico" 
         Topmost="True" 
-        Background="{StaticResource ControlBackgroundBrush}">
+        Background="{StaticResource ControlBackgroundBrush}" MaxHeight="500">
     <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="25*"/>

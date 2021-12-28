@@ -25,7 +25,7 @@ if (![String]::IsNullOrWhitespace($VersionSuffix)) {
     $filename = "TEdit-$VersionPrefix-$VersionSuffix"
 }
 
-#& dotnet $buildArgs
+& dotnet $buildArgs
 
 Remove-Item -Path ".\release" -Recurse -Force
 Remove-Item -Path ".\TEdit*.zip"

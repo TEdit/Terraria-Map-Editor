@@ -26,6 +26,35 @@ namespace TEdit.Editor.Plugins
 
             string blockName = view.BlockToFind.ToLower();
             string wallName = view.WallToFind.ToLower();
+
+
+            Dictionary<int, string> tileIds = new Dictionary<int, string>();
+            if (!string.IsNullOrWhiteSpace(blockName))
+            {
+                foreach (var prop in World.TileProperties)
+                {
+                    if (prop.Name.ToLower().Contains(blockName))
+                    {
+                        tileIds.Add(prop.Id, prop.Name);
+                    }
+
+                }
+            }
+
+            Dictionary<int, string> wallIds = new Dictionary<int, string>();
+            if (!string.IsNullOrWhiteSpace(wallName))
+            {
+                foreach (var prop in World.WallProperties)
+                {
+                    if (prop.Name.ToLower().Contains(wallName))
+                    {
+                        wallIds.Add(prop.Id, prop.Name);
+                    }
+
+                }
+            }
+
+
             List<Tuple<string, Vector2>> locations = new List<Tuple<string, Vector2>>();
 
             for (int x = (_wvm.Selection.IsActive) ? _wvm.Selection.SelectionArea.X : 0; x < ((_wvm.Selection.IsActive) ? _wvm.Selection.SelectionArea.X + _wvm.Selection.SelectionArea.Width : _wvm.CurrentWorld.TilesWide); x++)
@@ -41,16 +70,14 @@ namespace TEdit.Editor.Plugins
                     }
 
                     Tile curTile = _wvm.CurrentWorld.Tiles[x, y];
-                    TEdit.Terraria.Objects.TileProperty blockProperty = World.TileProperties[curTile.Type];
-                    TEdit.Terraria.Objects.WallProperty wallProperty = World.WallProperties[curTile.Wall];
 
-                    if (blockName != "" && blockProperty.Name.ToLower().Contains(blockName))
+                    if (tileIds.TryGetValue(curTile.Type, out var foundTileName))
                     {
-                        locations.Add(new Tuple<string, Vector2>(blockProperty.Name.ToLower() + ": ", new Vector2(x, y)));
+                        locations.Add(new Tuple<string, Vector2>(foundTileName + ": ", new Vector2(x, y)));
                     }
-                    if (wallName != "" && wallProperty.Name.ToLower().Contains(wallName))
+                    if (wallIds.TryGetValue(curTile.Wall, out var foundWallName))
                     {
-                        locations.Add(new Tuple<string, Vector2>(wallProperty.Name.ToLower() + ": ", new Vector2(x, y)));
+                        locations.Add(new Tuple<string, Vector2>(foundWallName + ": ", new Vector2(x, y)));
                     }
                 }
             }
