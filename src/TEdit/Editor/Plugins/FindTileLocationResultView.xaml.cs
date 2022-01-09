@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-using Microsoft.Xna.Framework;
+using TEdit.Geometry.Primitives;
 
 namespace TEdit.Editor.Plugins
 {

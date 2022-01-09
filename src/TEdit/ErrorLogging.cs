@@ -14,7 +14,7 @@ namespace TEdit
     {
         private static TelemetryClient _telemetry;
         private const string UserPathRegex = @"C:\\Users\\([^\\]*)\\";
-        private const string TelemetryKey = "8c8ff827-554e-4838-a6b6-e3d837519e51";
+        private const string AppInsightsConnection = "InstrumentationKey=e0fdf2bd-1e0f-408c-9551-7e7f9592e7e7;IngestionEndpoint=https://westus2-2.in.applicationinsights.azure.com/";
 
         public static void ViewLog()
         {
@@ -97,7 +97,7 @@ namespace TEdit
         private static TelemetryClient GetAppInsightsClient()
         {
             var config = new TelemetryConfiguration();
-            config.InstrumentationKey = TelemetryKey;
+            config.ConnectionString = AppInsightsConnection;
             config.TelemetryChannel = new Microsoft.ApplicationInsights.WindowsServer.TelemetryChannel.ServerTelemetryChannel();
             //config.TelemetryChannel = new Microsoft.ApplicationInsights.Channel.InMemoryChannel(); // Default channel
             config.TelemetryChannel.DeveloperMode = Debugger.IsAttached;

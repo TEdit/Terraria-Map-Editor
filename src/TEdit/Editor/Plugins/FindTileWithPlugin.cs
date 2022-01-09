@@ -1,8 +1,8 @@
 using System.Collections.Generic;
-using Microsoft.Xna.Framework;
 using TEdit.Terraria;
 using TEdit.ViewModel;
 using System;
+using TEdit.Geometry.Primitives;
 
 namespace TEdit.Editor.Plugins
 {
@@ -25,30 +25,55 @@ namespace TEdit.Editor.Plugins
             }
 
             string blockName = view.BlockToFind.ToLower();
+
             string wallName = view.WallToFind.ToLower();
 
 
-            Dictionary<int, string> tileIds = new Dictionary<int, string>();
+            Dictionary<ushort, string> tileIds = new Dictionary<ushort, string>();
+            Dictionary<ushort, Dictionary<Vector2Short, string>> spriteIds = new Dictionary<ushort, Dictionary<Vector2Short, string>>();
             if (!string.IsNullOrWhiteSpace(blockName))
             {
                 foreach (var prop in World.TileProperties)
                 {
-                    if (prop.Name.ToLower().Contains(blockName))
+                    if (prop.IsFramed)
                     {
-                        tileIds.Add(prop.Id, prop.Name);
+                        // create a dictionary of dictionaries for fast searching
+                        foreach (var frame in prop.Frames)
+                        {
+                            if (frame.Name.ToLower().Contains(blockName) ||  // match the frame
+                                 prop.Name.ToLower().Contains(blockName))    // or match block name. This catches cases where the frame name is positional
+                            {
+                                // Add this frame to a list 
+                                Dictionary<Vector2Short, string> frameList;
+                                if (!spriteIds.TryGetValue((ushort)prop.Id, out frameList))
+                                {
+                                    frameList = new Dictionary<Vector2Short, string>();
+                                    spriteIds.Add((ushort)prop.Id, frameList);
+                                }
+
+                                frameList.Add(frame.UV, $"{prop.Name} ({frame.Name})");
+                            }
+                        }
+                    }
+                    else
+                    {
+                        if (prop.Name.ToLower().Contains(blockName))
+                        {
+                            tileIds.Add((ushort)prop.Id, prop.Name);
+                        }
                     }
 
                 }
             }
 
-            Dictionary<int, string> wallIds = new Dictionary<int, string>();
+            Dictionary<ushort, string> wallIds = new Dictionary<ushort, string>();
             if (!string.IsNullOrWhiteSpace(wallName))
             {
                 foreach (var prop in World.WallProperties)
                 {
                     if (prop.Name.ToLower().Contains(wallName))
                     {
-                        wallIds.Add(prop.Id, prop.Name);
+                        wallIds.Add((ushort)prop.Id, prop.Name);
                     }
 
                 }
@@ -70,11 +95,25 @@ namespace TEdit.Editor.Plugins
                     }
 
                     Tile curTile = _wvm.CurrentWorld.Tiles[x, y];
+                    var uv = curTile.GetUV();
 
+                    // Search for tile match
                     if (tileIds.TryGetValue(curTile.Type, out var foundTileName))
                     {
                         locations.Add(new Tuple<string, Vector2>(foundTileName + ": ", new Vector2(x, y)));
                     }
+
+                    // Search for sprite tile
+                    if (spriteIds.TryGetValue(curTile.Type, out var frameList))
+                    {
+                        // followed by search frames
+                        if (frameList.TryGetValue(uv, out string spriteName))
+                        {
+                            locations.Add(new Tuple<string, Vector2>(spriteName + ": ", new Vector2(x, y)));
+                        }
+                    }
+
+                    // Search for wall match
                     if (wallIds.TryGetValue(curTile.Wall, out var foundWallName))
                     {
                         locations.Add(new Tuple<string, Vector2>(foundWallName + ": ", new Vector2(x, y)));
