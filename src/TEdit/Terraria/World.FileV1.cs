@@ -17,6 +17,8 @@ namespace TEdit.Terraria
 
         private static void SaveV1(World world, BinaryWriter bw)
         {
+            var version = world.Version;
+
             bw.Write(world.Version);
             bw.Write(world.Title);
             bw.Write(world.WorldId);
@@ -27,24 +29,37 @@ namespace TEdit.Terraria
             bw.Write(world.TilesHigh);
             bw.Write(world.TilesWide);
 
-            bw.Write((byte)world.MoonType);
-            bw.Write(world.TreeX0);
-            bw.Write(world.TreeX1);
-            bw.Write(world.TreeX2);
-            bw.Write(world.TreeStyle0);
-            bw.Write(world.TreeStyle1);
-            bw.Write(world.TreeStyle2);
-            bw.Write(world.TreeStyle3);
-            bw.Write(world.CaveBackX0);
-            bw.Write(world.CaveBackX1);
-            bw.Write(world.CaveBackX2);
-            bw.Write(world.CaveBackStyle0);
-            bw.Write(world.CaveBackStyle1);
-            bw.Write(world.CaveBackStyle2);
-            bw.Write(world.CaveBackStyle3);
-            bw.Write(world.IceBackStyle);
-            bw.Write(world.JungleBackStyle);
-            bw.Write(world.HellBackStyle);
+            if (version >= 63)
+                bw.Write((byte)world.MoonType);
+
+            if (version >= 44)
+            {
+                bw.Write(world.TreeX0);
+                bw.Write(world.TreeX1);
+                bw.Write(world.TreeX2);
+                bw.Write(world.TreeStyle0);
+                bw.Write(world.TreeStyle1);
+                bw.Write(world.TreeStyle2);
+                bw.Write(world.TreeStyle3);
+            }
+
+            if (version >= 60)
+            {
+                bw.Write(world.CaveBackX0);
+                bw.Write(world.CaveBackX1);
+                bw.Write(world.CaveBackX2);
+                bw.Write(world.CaveBackStyle0);
+                bw.Write(world.CaveBackStyle1);
+                bw.Write(world.CaveBackStyle2);
+                bw.Write(world.CaveBackStyle3);
+                bw.Write(world.IceBackStyle);
+
+                if (version >= 61)
+                {
+                    bw.Write(world.JungleBackStyle);
+                    bw.Write(world.HellBackStyle);
+                }
+            }
 
             bw.Write(world.SpawnX);
             bw.Write(world.SpawnY);
@@ -54,57 +69,123 @@ namespace TEdit.Terraria
             bw.Write(world.DayTime);
             bw.Write(world.MoonPhase);
             bw.Write(world.BloodMoon);
-            bw.Write(world.IsEclipse);
+
+            if (version >= 70)
+            {
+                bw.Write(world.IsEclipse);
+            }
+
             bw.Write(world.DungeonX);
             bw.Write(world.DungeonY);
 
-            bw.Write(world.IsCrimson);
+            if (version >= 56)
+            {
+                bw.Write(world.IsCrimson);
+            }
 
             bw.Write(world.DownedBoss1);
             bw.Write(world.DownedBoss2);
             bw.Write(world.DownedBoss3);
-            bw.Write(world.DownedQueenBee);
-            bw.Write(world.DownedMechBoss1);
-            bw.Write(world.DownedMechBoss2);
-            bw.Write(world.DownedMechBoss3);
-            bw.Write(world.DownedMechBossAny);
-            bw.Write(world.DownedPlantBoss);
-            bw.Write(world.DownedGolemBoss);
-            bw.Write(world.SavedGoblin);
-            bw.Write(world.SavedWizard);
-            bw.Write(world.SavedMech);
-            bw.Write(world.DownedGoblins);
-            bw.Write(world.DownedClown);
-            bw.Write(world.DownedFrost);
-            bw.Write(world.DownedPirates);
+
+            if (version >= 66)
+            {
+                bw.Write(world.DownedQueenBee);
+            }
+
+            if (version >= 44)
+            {
+                bw.Write(world.DownedMechBoss1);
+                bw.Write(world.DownedMechBoss2);
+                bw.Write(world.DownedMechBoss3);
+                bw.Write(world.DownedMechBossAny);
+            }
+
+            if (version >= 64)
+            {
+                bw.Write(world.DownedPlantBoss);
+                bw.Write(world.DownedGolemBoss);
+            }
+
+            if (version >= 29)
+            {
+                bw.Write(world.SavedGoblin);
+                bw.Write(world.SavedWizard);
+                if (version >= 34)
+                {
+                    bw.Write(world.SavedMech);
+                }
+                bw.Write(world.DownedGoblins);
+            }
+
+            if (version >= 32)
+            {
+                bw.Write(world.DownedClown);
+            }
+
+            if (version >= 37)
+            {
+                bw.Write(world.DownedFrost);
+            }
+
+            if (version >= 56)
+            {
+                bw.Write(world.DownedPirates);
+            }
 
             bw.Write(world.ShadowOrbSmashed);
             bw.Write(world.SpawnMeteor);
             bw.Write((byte)world.ShadowOrbCount);
-            bw.Write(world.AltarCount);
-            bw.Write(world.HardMode);
+
+            if (version >= 23)
+            {
+                bw.Write(world.AltarCount);
+                bw.Write(world.HardMode);
+            }
+
             bw.Write(world.InvasionDelay);
             bw.Write(world.InvasionSize);
             bw.Write(world.InvasionType);
             bw.Write(world.InvasionX);
 
-            bw.Write(world.TempRaining);
-            bw.Write(world.TempRainTime);
-            bw.Write(world.TempMaxRain);
-            bw.Write(world.SavedOreTiersCobalt);
-            bw.Write(world.SavedOreTiersMythril);
-            bw.Write(world.SavedOreTiersAdamantite);
-            bw.Write(world.BgTree);
-            bw.Write(world.BgCorruption);
-            bw.Write(world.BgJungle);
-            bw.Write(world.BgSnow);
-            bw.Write(world.BgHallow);
-            bw.Write(world.BgCrimson);
-            bw.Write(world.BgDesert);
-            bw.Write(world.BgOcean);
-            bw.Write((int)world.CloudBgActive);
-            bw.Write(world.NumClouds);
-            bw.Write(world.WindSpeedSet);
+            if (version >= 53)
+            {
+                bw.Write(world.TempRaining);
+                bw.Write(world.TempRainTime);
+                bw.Write(world.TempMaxRain);
+            }
+
+            if (version >= 54)
+            {
+                bw.Write(world.SavedOreTiersCobalt);
+                bw.Write(world.SavedOreTiersMythril);
+                bw.Write(world.SavedOreTiersAdamantite);
+            }
+
+            if (version >= 55)
+            {
+                bw.Write(world.BgTree);
+                bw.Write(world.BgCorruption);
+                bw.Write(world.BgJungle);
+            }
+            if (version >= 60)
+            {
+                bw.Write(world.BgSnow);
+                bw.Write(world.BgHallow);
+                bw.Write(world.BgCrimson);
+                bw.Write(world.BgDesert);
+                bw.Write(world.BgOcean);
+            }
+
+            if (version >= 60)
+            {
+                bw.Write((int)world.CloudBgActive);
+            }
+
+            if (version >= 62)
+            {
+                bw.Write(world.NumClouds);
+                bw.Write(world.WindSpeedSet);
+            }
 
 
             for (int x = 0; x < world.TilesWide; ++x)
@@ -121,13 +202,17 @@ namespace TEdit.Terraria
 
                     WriteTileDataToStreamV1(curTile, bw, frames);
 
-                    int rleTemp = 1;
-                    while (y + rleTemp < world.TilesHigh && curTile.Equals(world.Tiles[x, (y + rleTemp)]))
-                        ++rleTemp;
-                    rle = rleTemp - 1;
-                    bw.Write((short)rle);
+                    if (version >= 25)
+                    {
+                        int rleTemp = 1;
+                        while (y + rleTemp < world.TilesHigh && curTile.Equals(world.Tiles[x, (y + rleTemp)]))
+                            ++rleTemp;
+                        rle = rleTemp - 1;
+                        bw.Write((short)rle);
+                    }
                 }
             }
+
             OnProgressChanged(null, new ProgressChangedEventArgs(100, "Saving Chests..."));
             WriteChestDataToStreamV1(world.Chests, bw);
             OnProgressChanged(null, new ProgressChangedEventArgs(100, "Saving Signs..."));
@@ -201,7 +286,7 @@ namespace TEdit.Terraria
 
         public static void WriteChestDataToStreamV1(IList<Chest> chests, BinaryWriter bw)
         {
-            for (int i = 0; i < 1000; ++i)
+            for (int i = 0; i < Chest.LegacyLimit; ++i)
             {
                 if (i >= chests.Count)
                 {
@@ -345,7 +430,7 @@ namespace TEdit.Terraria
             }
             else
             {
-                w.CaveBackX[0] = w.TilesWide/2;
+                w.CaveBackX[0] = w.TilesWide / 2;
                 w.CaveBackX[1] = w.TilesWide;
                 w.CaveBackX[2] = w.TilesWide;
                 w.CaveBackStyle0 = 0;
@@ -359,8 +444,8 @@ namespace TEdit.Terraria
 
             w.SpawnX = reader.ReadInt32();
             w.SpawnY = reader.ReadInt32();
-            w.GroundLevel = (int) reader.ReadDouble();
-            w.RockLevel = (int) reader.ReadDouble();
+            w.GroundLevel = (int)reader.ReadDouble();
+            w.RockLevel = (int)reader.ReadDouble();
 
             // read world flags
             w.Time = reader.ReadDouble();
@@ -416,11 +501,17 @@ namespace TEdit.Terraria
                 w.DownedGoblins = reader.ReadBoolean();
             }
             if (version >= 32)
+            {
                 w.DownedClown = reader.ReadBoolean();
+            }
             if (version >= 37)
+            {
                 w.DownedFrost = reader.ReadBoolean();
+            }
             if (version >= 56)
+            {
                 w.DownedPirates = reader.ReadBoolean();
+            }
 
 
             w.ShadowOrbSmashed = reader.ReadBoolean();
@@ -526,7 +617,7 @@ namespace TEdit.Terraria
                         {
                             for (int k = y + 1; k < y + rle + 1; k++)
                             {
-                                var tcopy = (Tile) tile.Clone();
+                                var tcopy = (Tile)tile.Clone();
                                 w.Tiles[x, k] = tcopy;
                             }
                             y = y + rle;
@@ -535,10 +626,10 @@ namespace TEdit.Terraria
                 }
             }
 
-            if (version < 67)
-                w.FixSunflowers();
-            if (version < 72)
-                w.FixChand();
+            // if (version < 67)
+            //     w.FixSunflowers();
+            // if (version < 72)
+            //     w.FixChand();
 
             OnProgressChanged(null, new ProgressChangedEventArgs(100, "Loading Chests..."));
             w.Chests.Clear();
