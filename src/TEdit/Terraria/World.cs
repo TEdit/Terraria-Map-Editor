@@ -411,6 +411,9 @@ namespace TEdit.Terraria
 
         public void UpgradeLegacyTileEntities()
         {
+            // don't upgrade legacy worlds
+            if (this.Version < World.CompatibleVersion) return;
+
             Tile curTile = null;
             for (int x = 0; x < TilesWide; x++)
             {
@@ -451,6 +454,9 @@ namespace TEdit.Terraria
 
         private void FixChand()
         {
+            // don't upgrade legacy worlds
+            if (this.Version < World.CompatibleVersion) return;
+
             for (int x = 5; x < TilesWide - 5; x++)
             {
                 for (int y = 5; y < TilesHigh - 5; y++)
@@ -470,6 +476,9 @@ namespace TEdit.Terraria
 
         public void FixChand(int x, int y)
         {
+            // don't upgrade legacy worlds
+            if (this.Version < World.CompatibleVersion) return;
+
             int newPosition = 0;
             int type = Tiles[x, y].Type;
             if (Tiles[x, y].IsActive)
