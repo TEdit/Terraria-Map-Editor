@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using TEdit.Terraria;
 using TEdit.ViewModel;
 
 
@@ -25,12 +26,25 @@ namespace TEdit.Editor.Plugins
 
             RandomizerSettings settings = new()
             {
-                Seed = 12345678
+                Seed = view.Seed
             };
 
             var mapping = GetRandomBlockMapping(settings);
 
+            for (int x = 0; x < _wvm.CurrentWorld.Size.X; x++)
+            {
+                for (int y = 0; y < _wvm.CurrentWorld.Size.Y; y++)
+                {
+                    Tile t = _wvm.CurrentWorld.Tiles[x, y];
+                    
+                    if (mapping.ContainsKey(t.Type))
+                    {
+                        t.Type = (ushort)mapping[t.Type];
+                    }
+                }
+            }
             
+            _wvm.UpdateRenderRegion(new(0, 0, _wvm.CurrentWorld.Size.X, _wvm.CurrentWorld.Size.Y)); // Re-render map
         }
 
         private Dictionary<int, int> GetRandomBlockMapping(RandomizerSettings settings)

@@ -20,6 +20,7 @@ namespace TEdit.Editor.Plugins
     /// </summary>
     public partial class RandomizerPluginView : Window
     {
+        public int Seed { get; private set; }
         public RandomizerPluginView()
         {
             InitializeComponent();
@@ -27,8 +28,17 @@ namespace TEdit.Editor.Plugins
 
         private void OkButtonClick(object sender, RoutedEventArgs e)
         {
-            this.DialogResult = true;
-            this.Close();
+            try
+            {
+                Seed = int.Parse(SeedTextBox.Text);
+                this.DialogResult = true;
+                this.Close();
+            }
+            catch (System.Exception)
+            {
+                this.DialogResult = false;
+                this.Close();
+            }
         }
 
         private void CancelButtonClick(object sender, RoutedEventArgs e)
