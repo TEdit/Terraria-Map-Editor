@@ -21,9 +21,15 @@ namespace TEdit.Editor.Plugins
     public partial class RandomizerPluginView : Window
     {
         public int Seed { get; private set; }
-        public RandomizerPluginView()
+        public bool OnlySelection { get; private set; }
+
+        public RandomizerPluginView(bool activeSelection)
         {
             InitializeComponent();
+            if (!activeSelection)
+            {
+                OnlySelectionCheckBox.IsEnabled = false;
+            }
         }
 
         private void OkButtonClick(object sender, RoutedEventArgs e)
@@ -31,6 +37,8 @@ namespace TEdit.Editor.Plugins
             try
             {
                 Seed = int.Parse(SeedTextBox.Text);
+                OnlySelection = OnlySelectionCheckBox.IsChecked ?? false;
+                
                 this.DialogResult = true;
                 this.Close();
             }

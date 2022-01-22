@@ -6,6 +6,7 @@
     <StackPanel Background="{StaticResource ControlBackgroundBrush}" >
         <Label Content="Seed:"></Label>
         <TextBox x:Name="SeedTextBox"></TextBox>
+        <CheckBox x:Name="OnlySelectionCheckBox" Content="Only randomize selection" HorizontalAlignment="Center" />
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="150" />

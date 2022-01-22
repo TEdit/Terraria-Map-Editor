@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.Xna.Framework;
 using TEdit.Terraria;
 using TEdit.ViewModel;
 
@@ -20,7 +21,9 @@ namespace TEdit.Editor.Plugins
             if (_wvm.CurrentWorld == null)
                 return;
 
-            RandomizerPluginView view = new();
+            bool activeSelection = _wvm.Selection.IsActive;
+
+            RandomizerPluginView view = new(activeSelection);
             if (view.ShowDialog() == false)
                 return;
 
@@ -31,9 +34,22 @@ namespace TEdit.Editor.Plugins
 
             var mapping = GetRandomBlockMapping(settings);
 
-            for (int x = 0; x < _wvm.CurrentWorld.Size.X; x++)
+            Rectangle randomizationArea;
+
+            if (view.OnlySelection)
             {
-                for (int y = 0; y < _wvm.CurrentWorld.Size.Y; y++)
+                // Set the randomizationArea to the selected area
+                randomizationArea = _wvm.Selection.SelectionArea;
+            }
+            else
+            {
+                // Set the randomizationArea to the whole world
+                randomizationArea = new(0, 0, _wvm.CurrentWorld.Size.X, _wvm.CurrentWorld.Size.Y);
+            }
+
+            for (int x = randomizationArea.Left; x < randomizationArea.Right; x++)
+            {
+                for (int y = randomizationArea.Top; y < randomizationArea.Bottom; y++)
                 {
                     Tile t = _wvm.CurrentWorld.Tiles[x, y];
                     
@@ -44,7 +60,7 @@ namespace TEdit.Editor.Plugins
                 }
             }
             
-            _wvm.UpdateRenderRegion(new(0, 0, _wvm.CurrentWorld.Size.X, _wvm.CurrentWorld.Size.Y)); // Re-render map
+            _wvm.UpdateRenderRegion(randomizationArea); // Re-render map
         }
 
         private Dictionary<int, int> GetRandomBlockMapping(RandomizerSettings settings)
