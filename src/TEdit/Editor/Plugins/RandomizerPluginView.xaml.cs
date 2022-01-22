@@ -36,9 +36,9 @@ namespace TEdit.Editor.Plugins
         {
             try
             {
-                Seed = int.Parse(SeedTextBox.Text);
+                Seed = SeedTextBox.Text.GetHashCode();
                 OnlySelection = OnlySelectionCheckBox.IsChecked ?? false;
-                
+
                 this.DialogResult = true;
                 this.Close();
             }
