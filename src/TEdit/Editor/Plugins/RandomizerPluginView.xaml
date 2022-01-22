@@ -4,7 +4,7 @@
         xmlns:view="clr-namespace:TEdit.View" SizeToContent="WidthAndHeight"
         Title="Randomize World" ResizeMode="NoResize" WindowStartupLocation="CenterOwner" Icon="/TEdit;component/Images/tedit.ico" Height="200" Width="300">
     <StackPanel Background="{StaticResource ControlBackgroundBrush}" >
-        <Label Content="Seed:"></Label>
+        <Label Content="Seed: (Leave blank for random)"></Label>
         <TextBox x:Name="SeedTextBox"></TextBox>
         <CheckBox x:Name="OnlySelectionCheckBox" Content="Only randomize selection" HorizontalAlignment="Center" />
         <Grid>

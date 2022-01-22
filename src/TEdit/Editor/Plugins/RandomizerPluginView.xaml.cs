@@ -36,7 +36,14 @@ namespace TEdit.Editor.Plugins
         {
             try
             {
-                Seed = SeedTextBox.Text.GetHashCode();
+                if (SeedTextBox.Text == "")
+                {
+                    Seed = (int)DateTime.Now.Ticks;
+                }
+                else
+                {
+                    Seed = SeedTextBox.Text.GetHashCode();
+                }
                 OnlySelection = OnlySelectionCheckBox.IsChecked ?? false;
 
                 this.DialogResult = true;
