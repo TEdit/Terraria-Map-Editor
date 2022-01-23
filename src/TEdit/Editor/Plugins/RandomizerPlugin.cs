@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using TEdit.Terraria;
 using TEdit.ViewModel;
@@ -47,19 +48,29 @@ namespace TEdit.Editor.Plugins
                 randomizationArea = new(0, 0, _wvm.CurrentWorld.Size.X, _wvm.CurrentWorld.Size.Y);
             }
 
+            // Change every tile in the randomizationArea according to the tilemapping
             for (int x = randomizationArea.Left; x < randomizationArea.Right; x++)
             {
                 for (int y = randomizationArea.Top; y < randomizationArea.Bottom; y++)
                 {
                     Tile t = _wvm.CurrentWorld.Tiles[x, y];
-                    
+
                     if (mapping.ContainsKey(t.Type))
                     {
+                        if (view.EnableUndo)
+                        {
+                            _wvm.UndoManager.SaveTile(x, y); // Store tile for undo
+                        }
+
                         t.Type = (ushort)mapping[t.Type];
                     }
                 }
             }
-            
+
+            if (view.EnableUndo)
+            {
+                _wvm.UndoManager.SaveUndo();
+            }
             _wvm.UpdateRenderRegion(randomizationArea); // Re-render map
         }
 
@@ -79,7 +90,7 @@ namespace TEdit.Editor.Plugins
                 shuffledTiles[n] = shuffledTiles[k];
                 shuffledTiles[k] = temp;
             }
-            
+
             for (int i = 0; i < tiles.Count; i++)
             {
                 mapping.Add(tiles[i], shuffledTiles[i]);

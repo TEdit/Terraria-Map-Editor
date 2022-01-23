@@ -22,6 +22,7 @@ namespace TEdit.Editor.Plugins
     {
         public int Seed { get; private set; }
         public bool OnlySelection { get; private set; }
+        public bool EnableUndo { get; private set; }
 
         public RandomizerPluginView(bool activeSelection)
         {
@@ -45,6 +46,7 @@ namespace TEdit.Editor.Plugins
                     Seed = SeedTextBox.Text.GetHashCode();
                 }
                 OnlySelection = OnlySelectionCheckBox.IsChecked ?? false;
+                EnableUndo = UndoCheckBox.IsChecked ?? false;
 
                 this.DialogResult = true;
                 this.Close();
