@@ -71,7 +71,9 @@ namespace TEdit.Editor.Plugins
             {
                 _wvm.UndoManager.SaveUndo();
             }
+
             _wvm.UpdateRenderRegion(randomizationArea); // Re-render map
+            _wvm.MinimapImage = Render.RenderMiniMap.Render(_wvm.CurrentWorld); // Update Minimap
         }
 
         private Dictionary<int, int> GetRandomBlockMapping(RandomizerSettings settings)
