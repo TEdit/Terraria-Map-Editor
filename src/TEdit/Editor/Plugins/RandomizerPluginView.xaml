@@ -8,6 +8,7 @@
         <TextBox x:Name="SeedTextBox"></TextBox>
         <CheckBox x:Name="OnlySelectionCheckBox" Content="Only randomize selection" HorizontalAlignment="Center" />
         <CheckBox x:Name="UndoCheckBox" Content="Enable undo (very slow)" HorizontalAlignment="Center" />
+        <CheckBox x:Name="RandomizeWallsCheckBox" Content="Randomize background walls" HorizontalAlignment="Center" />
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="150" />

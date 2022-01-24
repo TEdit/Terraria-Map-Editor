@@ -23,6 +23,7 @@ namespace TEdit.Editor.Plugins
         public int Seed { get; private set; }
         public bool OnlySelection { get; private set; }
         public bool EnableUndo { get; private set; }
+        public bool EnableWallRandomize { get; private set; }
 
         public RandomizerPluginView(bool activeSelection)
         {
@@ -47,6 +48,7 @@ namespace TEdit.Editor.Plugins
                 }
                 OnlySelection = OnlySelectionCheckBox.IsChecked ?? false;
                 EnableUndo = UndoCheckBox.IsChecked ?? false;
+                EnableWallRandomize = RandomizeWallsCheckBox.IsChecked ?? false;
 
                 this.DialogResult = true;
                 this.Close();

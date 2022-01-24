@@ -28,12 +28,18 @@ namespace TEdit.Editor.Plugins
             if (view.ShowDialog() == false)
                 return;
 
-            RandomizerSettings settings = new()
+            BlockRandomizerSettings blockSettings = new()
             {
-                Seed = view.Seed
+                Seed = view.Seed,
             };
 
-            var mapping = GetRandomBlockMapping(settings);
+            WallRandomizerSetting wallSettings = new()
+            {
+                Seed = view.Seed,
+            };
+
+            var blockMapping = GetRandomBlockMapping(blockSettings);
+            var wallMapping = GetRandomWallMapping(wallSettings);
 
             Rectangle randomizationArea;
 
@@ -53,36 +59,33 @@ namespace TEdit.Editor.Plugins
             {
                 for (int y = randomizationArea.Top; y < randomizationArea.Bottom; y++)
                 {
+                    if (view.EnableUndo)
+                        _wvm.UndoManager.SaveTile(x, y); // Store tile for undo
+
                     Tile t = _wvm.CurrentWorld.Tiles[x, y];
 
-                    if (mapping.ContainsKey(t.Type))
-                    {
-                        if (view.EnableUndo)
-                        {
-                            _wvm.UndoManager.SaveTile(x, y); // Store tile for undo
-                        }
+                    if (blockMapping.ContainsKey(t.Type))
+                        t.Type = (ushort)blockMapping[t.Type];
 
-                        t.Type = (ushort)mapping[t.Type];
-                    }
+                    if (wallMapping.ContainsKey(t.Wall))
+                        t.Wall = (ushort)wallMapping[t.Wall];
                 }
             }
 
             if (view.EnableUndo)
-            {
                 _wvm.UndoManager.SaveUndo();
-            }
 
             _wvm.UpdateRenderRegion(randomizationArea); // Re-render map
             _wvm.MinimapImage = Render.RenderMiniMap.Render(_wvm.CurrentWorld); // Update Minimap
         }
 
-        private Dictionary<int, int> GetRandomBlockMapping(RandomizerSettings settings)
+        private Dictionary<int, int> GetRandomBlockMapping(BlockRandomizerSettings settings)
         {
             Dictionary<int, int> mapping = new();
-            Random rng = new Random(settings.Seed);
+            Random rng = new(settings.Seed);
 
-            List<int> tiles = new List<int>(Terraria.World.TileBricks.Select((x) => x.Id));
-            List<int> shuffledTiles = new List<int>(tiles);
+            List<int> tiles = new(Terraria.World.TileBricks.Select(x => x.Id));
+            List<int> shuffledTiles = new(tiles);
 
             int n = shuffledTiles.Count;
             while (n > 1)
@@ -101,7 +104,38 @@ namespace TEdit.Editor.Plugins
             return mapping;
         }
 
-        private class RandomizerSettings
+        private Dictionary<int, int> GetRandomWallMapping(WallRandomizerSetting settings)
+        {
+            Dictionary<int, int> mapping = new();
+            Random rng = new(settings.Seed);
+
+            List<int> walls = new(Terraria.World.WallProperties.Select(x => x.Id));
+            walls.Remove(0); // Remove Sky from the walls to be shuffled
+            List<int> shuffledWalls = new(walls);
+
+            int n = shuffledWalls.Count;
+            while (n > 1)
+            {
+                int k = rng.Next(n--);
+                int temp = shuffledWalls[n];
+                shuffledWalls[n] = shuffledWalls[k];
+                shuffledWalls[k] = temp;
+            }
+
+            for (int i = 0; i < walls.Count; i++)
+            {
+                mapping.Add(walls[i], shuffledWalls[i]);
+            }
+
+            return mapping;
+        }
+
+        private class BlockRandomizerSettings
+        {
+            public int Seed { get; set; }
+        }
+
+        private class WallRandomizerSetting
         {
             public int Seed { get; set; }
         }
