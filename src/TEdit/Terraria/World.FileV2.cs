@@ -83,7 +83,7 @@ namespace TEdit.Terraria
             ["1.4.3.2"] = 244
         };
 
-        public const uint CompatibleVersion  = 242;
+        public const uint CompatibleVersion = 242;
         public const short GlobalSectionCount = 11;
         public const short TileCount = 623;
         public const short WallCount = 316;
@@ -96,6 +96,15 @@ namespace TEdit.Terraria
         public bool[] TileFrameImportant { get; set; }
 
         public short SectionCount { get; set; } = GlobalSectionCount;
+        public static short GetSectionCount(uint version)
+        {
+            if (version >= 220) { return 11; }
+            if (version >= 210) { return 10; }
+            if (version >= 189) { return 9; }
+            if (version >= 170) { return 8; }
+            if (version >= 140) { return 7; }
+            return 6;
+        }
 
         public static bool[] SettingsTileFrameImportant { get; set; }
 
@@ -215,7 +224,7 @@ namespace TEdit.Terraria
         {
             world.Validate();
             world.FileRevision++;
-            int[] sectionPointers = new int[world.SectionCount];
+            int[] sectionPointers = new int[World.GetSectionCount(world.Version)];
 
             OnProgressChanged(null, new ProgressChangedEventArgs(0, "Save headers..."));
             sectionPointers[0] = SaveSectionHeader(world, bw);
@@ -952,7 +961,7 @@ namespace TEdit.Terraria
             {
                 bw.Write(world.DownedDeerclops);
             }
-                
+
 
             // unknown flags from data file
             if (world.UnknownData != null && world.UnknownData.Length > 0)
