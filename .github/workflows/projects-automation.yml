@@ -20,7 +20,7 @@ env:
   project_id: 2
   gh_organization: TEdit
   gh_app_secret_key: ${{ secrets.GH_APP_SECRET_KEY }}
-  gh_app_installation_ID: 7844879
+  gh_app_installation_ID: 23302499
   gh_app_ID: 172738
   custom_field_values: '[{\"name\": \"Priority\",\"type\":\"single_select\",\"value\": \"Normal\"}]'
   #custom_field_values: '[{\"name\": \"Priority\",\"type\": \"text\",\"value\": \"uuid1\"},{\"name\": \"Number\",\"type\": \"number\",\"value\": \"100\"},{\"name\": \"Date\",\"type\": \"date\",\"value\": \"2022-01-28T20:02:27.306+01:00\"},{\"name\": \"Single Select\",\"type\": \"single_select\",\"value\": \"Option 1\"},{\"name\": \"Iteration\",\"type\": \"iteration\",\"value\": \"Iteration 1\"}]'
