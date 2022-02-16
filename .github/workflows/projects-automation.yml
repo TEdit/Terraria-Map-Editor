@@ -14,9 +14,9 @@ on:
 
 # map fields with customized labels
 env:
-  status_todo: Todo ✏️
-  status_done: Done ✅
-  status_in_progress: In Progress 🚧
+  status_todo: Todo
+  status_done: Done
+  status_in_progress: In Progress
   project_id: 2
   gh_organization: TEdit
   gh_app_secret_key: ${{ secrets.GH_APP_SECRET_KEY }}
