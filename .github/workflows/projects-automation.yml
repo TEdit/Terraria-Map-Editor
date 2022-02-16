@@ -19,10 +19,10 @@ env:
   status_in_progress: In Progress 🚧
   project_id: 2
   gh_organization: TEdit
-  gh_project_token: ${{ secrets.GH_APP_SECRET_KEY }}
+  gh_app_secret_key: ${{ secrets.GH_APP_SECRET_KEY }}
   gh_app_installation_ID: 7844879
   gh_app_ID: 172738
-
+  custom_field_values: '[{\"name\": \"Priority\",\"type\":\"single_select\",\"value\": \"Normal\"}]'
   #custom_field_values: '[{\"name\": \"Priority\",\"type\": \"text\",\"value\": \"uuid1\"},{\"name\": \"Number\",\"type\": \"number\",\"value\": \"100\"},{\"name\": \"Date\",\"type\": \"date\",\"value\": \"2022-01-28T20:02:27.306+01:00\"},{\"name\": \"Single Select\",\"type\": \"single_select\",\"value\": \"Option 1\"},{\"name\": \"Iteration\",\"type\": \"iteration\",\"value\": \"Iteration 1\"}]'
 
 
@@ -37,7 +37,7 @@ jobs:
         env:
           DEBUG_LOG: "true"
         with:
-          gh_app_secret_key: ${{ env.gh_project_token }}
+          gh_app_secret_key: ${{ env.gh_app_secret_key }}
           gh_app_ID: ${{ env.gh_app_ID }}
           gh_app_installation_ID: ${{ env.gh_app_installation_ID }}
           organization: ${{ env.gh_organization }}
@@ -55,7 +55,9 @@ jobs:
         env:
           DEBUG_LOG: "true"
         with:
-          gh_token: ${{ env.gh_project_token }}
+          gh_app_secret_key: ${{ env.gh_app_secret_key }}
+          gh_app_ID: ${{ env.gh_app_ID }}
+          gh_app_installation_ID: ${{ env.gh_app_installation_ID }}
           organization: ${{ env.gh_organization }}
           project_id: ${{ env.project_id }}
           resource_node_id: ${{ github.event.issue.node_id }}
@@ -71,7 +73,9 @@ jobs:
         env:
           DEBUG_LOG: "true"
         with:
-          gh_token: ${{ env.gh_project_token }}
+          gh_app_secret_key: ${{ env.gh_app_secret_key }}
+          gh_app_ID: ${{ env.gh_app_ID }}
+          gh_app_installation_ID: ${{ env.gh_app_installation_ID }}
           organization: ${{ env.gh_organization }}
           project_id: ${{ env.project_id }}
           resource_node_id: ${{ github.event.issue.node_id }}
@@ -87,7 +91,9 @@ jobs:
         env:
           DEBUG_LOG: "true"
         with:
-          gh_token: ${{ env.gh_project_token }}
+          gh_app_secret_key: ${{ env.gh_app_secret_key }}
+          gh_app_ID: ${{ env.gh_app_ID }}
+          gh_app_installation_ID: ${{ env.gh_app_installation_ID }}
           organization: ${{ env.gh_organization }}
           project_id: ${{ env.project_id }}
           resource_node_id: ${{ github.event.issue.node_id }}
