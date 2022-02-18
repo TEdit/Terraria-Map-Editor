@@ -155,7 +155,7 @@ namespace TEdit.Terraria
                         {
                             string message = $"You are loading a legacy world version: {w.Version}.\r\n" +
                                 $"Editing legacy files is a BETA feature.\r\n" +
-                                "Please make a backup as you may experience world file corrpution.\r\n" +
+                                "Please make a backup as you may experience world file corruption.\r\n" +
                                 "Do you wish to continue?";
                             if (MessageBox.Show(message, "Convert File?", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.No)
                             {
