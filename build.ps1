@@ -1,5 +1,5 @@
 param(
-    [string] $VersionPrefix = "4.7.4",
+    [string] $VersionPrefix = "4.7.5",
     [string] $VersionSuffix = ""
 )
 
