@@ -54,6 +54,7 @@ namespace TEdit.ViewModel
             wvm.Plugins.Add(new HouseGenPlugin(wvm));
             wvm.Plugins.Add(new FindTileWithPlugin(wvm));
             wvm.Plugins.Add(new RandomizerPlugin(wvm));
+            wvm.Plugins.Add(new TextStatuePlugin(wvm));
             return wvm;
         }
     }

@@ -14,10 +14,21 @@ namespace TEdit.Editor.Clipboard
     {
         public static int ClipboardRenderSize = 512;
 
-        public ClipboardBuffer(Vector2Int32 size)
+        public ClipboardBuffer(Vector2Int32 size, bool initTiles = false)
         {
             Size = size;
             Tiles = new Tile[size.X, size.Y];
+
+            if (initTiles)
+            {
+                for (int x = 0; x < size.X; x++)
+                {
+                    for (int y = 0; y < size.Y; y++)
+                    {
+                        Tiles[x, y] = new Tile();
+                    }
+                }
+            }
         }
 
         private string _name;

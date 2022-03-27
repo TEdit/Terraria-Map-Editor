@@ -128,6 +128,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Page Update="Editor\Plugins\TextStatuePluginView.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+    </Page>
     <Page Update="Editor\Plugins\HouseGenPluginView.xaml">
       <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
     </Page>
