@@ -122,7 +122,24 @@ namespace TEdit.Editor.Clipboard
             bw.Write(Size.X);
             bw.Write(Size.Y);
 
-            var frames = World.SaveConfiguration.SaveVersions[(int)world.Version].GetFrames();
+            // Issues that need addressed. If the current game version does not exist
+            // within the TerrariaVersionTileData.json, then the frames feature breaks all
+            // together. I suggest using the max tileframe version per TEdit release and using
+            // that or not allowing saves above the max release not be allowed to be saved.
+
+            // Check if the version attemting to save exists.
+            var frames = new bool[0];
+            if ((int)world.Version <= World.CompatibleVersion) 
+            {
+                // World version is not a future release
+                frames = World.SaveConfiguration.SaveVersions[(int)world.Version].GetFrames();
+            }
+            else
+            {
+                // World version is a future release. Lets downgrade it some.
+                frames = World.SaveConfiguration.SaveVersions[(int)World.CompatibleVersion].GetFrames();
+            }
+            
             World.SaveTiles(Tiles, (int)version, Size.X, Size.Y, bw, frames);
             World.SaveChests(Chests, bw);
             World.SaveSigns(Signs, bw);

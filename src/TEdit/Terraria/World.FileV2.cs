@@ -80,10 +80,14 @@ namespace TEdit.Terraria
             ["1.4.2.3"] = 238,
             ["1.4.3"] = 242,
             ["1.4.3.1"] = 243,
-            ["1.4.3.2"] = 244
+            ["1.4.3.2"] = 244,
+            ["1.4.3.3"] = 245,
+            ["1.4.3.4"] = 246,
+            ["1.4.3.5"] = 247,
+            ["1.4.3.6"] = 248
         };
 
-        public const uint CompatibleVersion = 242;
+        public const uint CompatibleVersion = 248; // Must be updated to the latest VersionToWorldVersion.Values
         public const short GlobalSectionCount = 11;
         public const short TileCount = 623;
         public const short WallCount = 316;
