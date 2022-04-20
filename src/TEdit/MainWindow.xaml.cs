@@ -28,6 +28,8 @@ namespace TEdit
             _vm = (WorldViewModel)DataContext;
             AddHandler(Keyboard.KeyDownEvent, (KeyEventHandler)HandleKeyDownEvent);
             AddHandler(Keyboard.KeyUpEvent, (KeyEventHandler)HandleKeyUpEvent);
+
+            
         }
 
 
@@ -239,5 +241,17 @@ namespace TEdit
             }
         }
 
+        private void Image_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            var image = sender as System.Windows.Controls.Image;
+
+            if (image == null) return;
+
+            var clickLocation = e.GetPosition(image);
+            var mapPointX = (int)(clickLocation.X * (TEdit.Render.RenderMiniMap.Resolution));
+            var mapPointY = (int)(clickLocation.Y * (TEdit.Render.RenderMiniMap.Resolution));
+
+            this.MapView.ZoomFocus(mapPointX, mapPointY);
+        }
     }
 }
