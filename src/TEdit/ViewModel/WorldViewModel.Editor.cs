@@ -625,7 +625,9 @@ namespace TEdit.ViewModel
 
             if (curTile.IsActive)
                 if (World.TileProperties[curTile.Type].IsSolid && !curTile.InActive && !World.TileProperties[curTile.Type].IsPlatform)
-                    curTile.LiquidAmount = 0;
+                    // Exclude Vines, Jungle Vines, Hallowed Vines, Crimson Vines, Vine Rope, Vine Flowers, Silk Rope, Web Rope
+                    if (curTile.Type != 52 && curTile.Type != 62 && curTile.Type != 115 && curTile.Type != 205 && curTile.Type != 353 && curTile.Type != 382 && curTile.Type != 365 && curTile.Type != 366)
+                        curTile.LiquidAmount = 0;
         }
 
         private PixelMapManager RenderEntireWorld()
