@@ -14,81 +14,7 @@ namespace TEdit.Terraria
 
     public partial class World
     {
-        // TODO: update this with each update
-        public static Dictionary<string, uint> VersionToWorldVersion = new Dictionary<string, uint>
-        {
-            ["1.0"] = 1,
-            ["1.0.1"] = 2,
-            ["1.0.2"] = 3,
-            ["1.0.3"] = 4,
-            ["1.0.4"] = 9,
-            ["1.0.5"] = 12,
-            ["1.0.6"] = 20,
-            ["1.0.6.1"] = 22,
-            ["1.1"] = 36,
-            ["1.1.1"] = 37,
-            ["1.1.2"] = 39,
-            ["1.2"] = 67,
-            ["1.2.0.1"] = 68,
-            ["1.2.0.2"] = 69,
-            ["1.2.0.3"] = 70,
-            ["1.2.0.3.1"] = 71,
-            ["1.2.1"] = 72,
-            ["1.2.1.1"] = 73,
-            ["1.2.1.2"] = 73,
-            ["1.2.2"] = 77,
-            ["1.2.3"] = 93,
-            ["1.2.3.1"] = 94,
-            ["1.2.4"] = 101,
-            ["1.2.4.1"] = 102,
-            ["1.3.0.1"] = 146,
-            ["1.3.0.2"] = 147,
-            ["1.3.0.3"] = 149,
-            ["1.3.0.4"] = 151,
-            ["1.3.0.5"] = 153,
-            ["1.3.0.6"] = 154,
-            ["1.3.0.7"] = 155,
-            ["1.3.0.8"] = 156,
-            ["1.3.1"] = 168,
-            ["1.3.1.1"] = 169,
-            ["1.3.2"] = 172,
-            ["1.3.2.1"] = 173,
-            ["1.3.3"] = 175,
-            ["1.3.3.1"] = 176,
-            ["1.3.3.2"] = 176,
-            ["1.3.3.3"] = 177,
-            ["1.3.4"] = 184,
-            ["1.3.4.1"] = 185,
-            ["1.3.4.2"] = 186,
-            ["1.3.4.3"] = 187,
-            ["1.3.4.4"] = 188,
-            ["1.3.5"] = 191,
-            ["1.3.5.1"] = 192,
-            ["1.3.5.2"] = 193,
-            ["1.3.5.3"] = 194,
-            ["1.4.0.1"] = 225,
-            ["1.4.0.2"] = 226,
-            ["1.4.0.3"] = 227,
-            ["1.4.0.4"] = 228,
-            ["1.4.0.5"] = 230,
-            ["1.4.1"] = 232,
-            ["1.4.1.1"] = 233,
-            ["1.4.1.2"] = 234,
-            ["1.4.2"] = 235,
-            ["1.4.2.1"] = 236,
-            ["1.4.2.2"] = 237,
-            ["1.4.2.3"] = 238,
-            ["1.4.3"] = 242,
-            ["1.4.3.1"] = 243,
-            ["1.4.3.2"] = 244,
-            ["1.4.3.3"] = 245,
-            ["1.4.3.4"] = 246,
-            ["1.4.3.5"] = 247,
-            ["1.4.3.6"] = 248
-        };
-
         public const uint CompatibleVersion = 248; // Must be updated to the latest VersionToWorldVersion.Values
-        public const short GlobalSectionCount = 11;
         public const short TileCount = 623;
         public const short WallCount = 316;
 
@@ -97,18 +23,23 @@ namespace TEdit.Terraria
         public const int MaxChests = 8000;
         public const int MaxSigns = 1000;
 
-        public bool[] TileFrameImportant { get; set; }
+        public bool IsTModLoader { get; set; }
 
-        public short SectionCount { get; set; } = GlobalSectionCount;
-        public static short GetSectionCount(uint version)
+        public short GetSectionCount()
         {
-            if (version >= 220) { return 11; }
-            if (version >= 210) { return 10; }
-            if (version >= 189) { return 9; }
-            if (version >= 170) { return 8; }
-            if (version >= 140) { return 7; }
-            return 6;
+            short numSections = 11;
+
+            if (Version >= 220) { numSections = 11; }
+            if (Version >= 210) { numSections = 10; }
+            if (Version >= 189) { numSections = 10; }
+            if (Version >= 170) { numSections = 9; }
+            if (Version >= 140) { numSections = 8; }
+            if (Version > 140) { numSections = 7; }
+
+            return numSections;
         }
+
+        public bool[] TileFrameImportant { get; set; }
 
         public static bool[] SettingsTileFrameImportant { get; set; }
 
@@ -228,7 +159,8 @@ namespace TEdit.Terraria
         {
             world.Validate();
             world.FileRevision++;
-            int[] sectionPointers = new int[World.GetSectionCount(world.Version)];
+
+            int[] sectionPointers = new int[world.GetSectionCount()];            
 
             OnProgressChanged(null, new ProgressChangedEventArgs(0, "Save headers..."));
             sectionPointers[0] = SaveSectionHeader(world, bw);
@@ -664,10 +596,12 @@ namespace TEdit.Terraria
             bw.Write((UInt64)0x026369676f6c6572ul);
             bw.Write((int)world.FileRevision + 1);
             bw.Write(Convert.ToUInt64(world.IsFavorite));
-            bw.Write(world.SectionCount);
+
+            short sections = world.GetSectionCount();
+            bw.Write(sections);
 
             // write section pointer placeholders
-            for (int i = 0; i < world.SectionCount; i++)
+            for (int i = 0; i < sections; i++)
             {
                 bw.Write(0);
             }
@@ -1892,9 +1826,9 @@ namespace TEdit.Terraria
             }
 
             // read file section stream positions
-            w.SectionCount = r.ReadInt16();
-            sectionPointers = new int[w.SectionCount];
-            for (int i = 0; i < w.SectionCount; i++)
+            int sectionCount = r.ReadInt16();
+            sectionPointers = new int[sectionCount];
+            for (int i = 0; i < sectionCount; i++)
             {
                 sectionPointers[i] = r.ReadInt32();
             }

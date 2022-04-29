@@ -8,6 +8,7 @@ namespace TEdit.Configuration
 {
     public class SaveConfiguration
     {
+        public Dictionary<string, uint> GameVersionToSaveVersion { get; set; }
         public Dictionary<int, SaveVersionData> SaveVersions { get; set; }
     }
 
