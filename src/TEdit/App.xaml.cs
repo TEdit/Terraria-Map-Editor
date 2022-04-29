@@ -47,7 +47,9 @@ namespace TEdit
                 case LanguageSelection.Portuguese:
                     System.Threading.Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("pt-BR");
                     break;
-
+                case LanguageSelection.Spanish:
+                    System.Threading.Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("es-ES");
+                    break;
             }
         }
 

@@ -91,6 +91,11 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Language.ar-BH.resx</DependentUpon>
     </Compile>
+	  <Compile Update="Properties\Language.es-ES.Designer.cs">
+		  <DesignTime>True</DesignTime>
+		  <AutoGen>True</AutoGen>
+		  <DependentUpon>Language.es-ES.resx</DependentUpon>
+	  </Compile>
     <Compile Update="Properties\Language.zh-CN.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
@@ -114,6 +119,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Update="Properties\Language.es-ES.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="Properties\Language.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Language.Designer.cs</LastGenOutput>

@@ -1134,4 +1134,7 @@ Klicke auf „Wiederholen“, um einen neuen Ordner auszuwählen, oder auf „Ab
   <data name="JunctionBox_Use" xml:space="preserve">
     <value>Anschlussdose:</value>
   </data>
+  <data name="menu_language_es" xml:space="preserve">
+    <value>Spanish</value>
+  </data>
 </root>

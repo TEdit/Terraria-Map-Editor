@@ -1134,4 +1134,7 @@ Clique em tentar novamente para escolher uma nova pasta ou cancelar para usar {0
   <data name="JunctionBox_Use" xml:space="preserve">
     <value>Caixa de junção:</value>
   </data>
+  <data name="menu_language_es" xml:space="preserve">
+    <value>Spanish</value>
+  </data>
 </root>

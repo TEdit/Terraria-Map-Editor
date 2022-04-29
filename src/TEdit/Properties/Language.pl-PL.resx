@@ -1134,4 +1134,7 @@ Naciśnij spróbuj ponownie aby wybrać nowy folder lub anuluj aby użyć {0} ja
   <data name="JunctionBox_Use" xml:space="preserve">
     <value>Skrzynka przyłączeniowa:</value>
   </data>
+  <data name="menu_language_es" xml:space="preserve">
+    <value>Spanish</value>
+  </data>
 </root>

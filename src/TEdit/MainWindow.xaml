@@ -81,6 +81,7 @@
                         <MenuItem Header="{x:Static p:Language.menu_language_pl}" IsCheckable="True" IsChecked="{Binding CurrentLanguage, Converter={StaticResource boolEnumConverter}, ConverterParameter={x:Static vm:LanguageSelection.Polish}}" Command="{Binding SetLanguageCommand}" CommandParameter="{x:Static vm:LanguageSelection.Polish}"  />
                         <MenuItem Header="{x:Static p:Language.menu_language_de}" IsCheckable="True" IsChecked="{Binding CurrentLanguage, Converter={StaticResource boolEnumConverter}, ConverterParameter={x:Static vm:LanguageSelection.German}}" Command="{Binding SetLanguageCommand}" CommandParameter="{x:Static vm:LanguageSelection.German}"  />
                         <MenuItem Header="{x:Static p:Language.menu_language_pt}" IsCheckable="True" IsChecked="{Binding CurrentLanguage, Converter={StaticResource boolEnumConverter}, ConverterParameter={x:Static vm:LanguageSelection.Portuguese}}" Command="{Binding SetLanguageCommand}" CommandParameter="{x:Static vm:LanguageSelection.Portuguese}"  />
+                        <MenuItem Header="{x:Static p:Language.menu_language_es}" IsCheckable="True" IsChecked="{Binding CurrentLanguage, Converter={StaticResource boolEnumConverter}, ConverterParameter={x:Static vm:LanguageSelection.Spanish}}" Command="{Binding SetLanguageCommand}" CommandParameter="{x:Static vm:LanguageSelection.Spanish}"  />
                     </MenuItem>
 
                     <Separator Margin="1"/>

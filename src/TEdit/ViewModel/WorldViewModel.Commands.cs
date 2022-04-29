@@ -602,6 +602,7 @@ namespace TEdit.ViewModel
         Chinese,
         Polish,
         German,
-        Portuguese
+        Portuguese,
+        Spanish
     }
 }
