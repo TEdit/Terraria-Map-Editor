@@ -30,11 +30,11 @@ namespace TEdit.Terraria
             short numSections = 11;
 
             if (Version >= 220) { numSections = 11; }
-            if (Version >= 210) { numSections = 10; }
-            if (Version >= 189) { numSections = 10; }
-            if (Version >= 170) { numSections = 9; }
-            if (Version >= 140) { numSections = 8; }
-            if (Version > 140) { numSections = 7; }
+            else if (Version >= 210) { numSections = 10; }
+            else if (Version >= 189) { numSections = 10; }
+            else if (Version >= 170) { numSections = 9; }
+            else if (Version >= 140) { numSections = 8; }
+            else if (Version > 140) { numSections = 7; }
 
             return numSections;
         }
