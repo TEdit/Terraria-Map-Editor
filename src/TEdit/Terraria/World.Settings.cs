@@ -79,6 +79,15 @@ namespace TEdit.Terraria
             }
 
             var saveVersionPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "TerrariaVersionTileData.json");
+			
+            // Used to dynamically update static CompatibleVersion
+            using (StreamReader file = File.OpenText(saveVersionPath))
+            using (JsonTextReader reader = new JsonTextReader(file))
+            {
+                JsonSerializer serializer = new JsonSerializer();
+                CompatibleVersion = uint.Parse(serializer.Deserialize<SaveConfiguration>(reader).SaveVersions.Keys.Last().ToString());
+            }
+			
             LoadSaveVersions(saveVersionPath);
         }
 
