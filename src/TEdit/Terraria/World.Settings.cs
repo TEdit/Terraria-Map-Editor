@@ -12,6 +12,7 @@ using XNA = Microsoft.Xna.Framework;
 using TEdit.Terraria.Objects;
 using Newtonsoft.Json;
 using TEdit.Configuration;
+using System.Linq;
 
 namespace TEdit.Terraria
 {
@@ -80,6 +81,9 @@ namespace TEdit.Terraria
 
             var saveVersionPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "TerrariaVersionTileData.json");
             LoadSaveVersions(saveVersionPath);
+
+            // Used to dynamically update static CompatibleVersion
+            CompatibleVersion = (uint)SaveConfiguration.SaveVersions.Keys.Max();
         }
 
         private static IEnumerable<TOut> StringToList<TOut>(string xmlcsv)
