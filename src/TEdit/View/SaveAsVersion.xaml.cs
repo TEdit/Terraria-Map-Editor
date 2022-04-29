@@ -54,7 +54,7 @@ namespace TEdit.UI.Xaml
 
         private void SaveAsVersionCommandAction(string gameVersion)
         {
-            if (World.VersionToWorldVersion.TryGetValue(gameVersion, out uint worldVersion))
+            if (World.SaveConfiguration.GameVersionToSaveVersion.TryGetValue(gameVersion, out uint worldVersion))
             {
                 WorldVersion = worldVersion;
                 this.DialogResult = true;
