@@ -25,6 +25,14 @@ namespace TEdit.Editor.Tools
         private int[] _wallStone = {1, 3, 83, 28};
         private int[] _wallHardenedSand = {216, 217, 218, 219};
         private int[] _wallSandstone = {187, 220, 221, 222};
+        private int[] _wallRocks1Natural = {212, 188, 192, 200};
+        private int[] _wallRocks2Natural = {213, 189, 193, 201};
+        private int[] _wallRocks3Natural = {214, 190, 194, 202};
+        private int[] _wallRocks4Natural = {215, 191, 195, 203};
+        private int[] _wallRocks1 = { 212, 188, 280, 288 };
+        private int[] _wallRocks2 = { 213, 189, 281, 289 };
+        private int[] _wallRocks3 = { 213, 189, 282, 290 };
+        private int[] _wallRocks4 = { 213, 189, 283, 291 };
         private int[] _tileStone = {1, 25, 203, 117};
         private int[] _tileGrass = {2, 23, 199, 109};
         private int[] _tileIce = {161, 163, 200, 164};
@@ -211,6 +219,22 @@ namespace TEdit.Editor.Tools
                 curtile.Wall = (byte)_wallHardenedSand[_morphtype];
             if (_wallSandstone.Contains(curtile.Wall))
                 curtile.Wall = (byte)_wallSandstone[_morphtype];
+            if (_wallRocks1Natural.Contains(curtile.Wall))
+                curtile.Wall = (byte)_wallRocks1Natural[_morphtype];
+            if (_wallRocks2Natural.Contains(curtile.Wall))
+                curtile.Wall = (byte)_wallRocks2Natural[_morphtype];
+            if (_wallRocks3Natural.Contains(curtile.Wall))
+                curtile.Wall = (byte)_wallRocks3Natural[_morphtype];
+            if (_wallRocks4Natural.Contains(curtile.Wall))
+                curtile.Wall = (byte)_wallRocks4Natural[_morphtype];
+            if (_wallRocks1.Contains(curtile.Wall))
+                curtile.Wall = (byte)_wallRocks1[_morphtype];
+            if (_wallRocks2.Contains(curtile.Wall))
+                curtile.Wall = (byte)_wallRocks2[_morphtype];
+            if (_wallRocks3.Contains(curtile.Wall))
+                curtile.Wall = (byte)_wallRocks3[_morphtype];
+            if (_wallRocks4.Contains(curtile.Wall))
+                curtile.Wall = (byte)_wallRocks4[_morphtype];
             if (curtile.IsActive)
             {
                 if (_tileStone.Contains(curtile.Type) || _tileMoss.Contains(curtile.Type))
