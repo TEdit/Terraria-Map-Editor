@@ -8,6 +8,8 @@ using Microsoft.Xna.Framework;
 using TEdit.Terraria;
 using TEdit.Editor;
 using TEdit.Render;
+using System.Windows;
+using TEdit.MvvmLight.Threading;
 
 namespace TEdit.ViewModel
 {
@@ -52,6 +54,109 @@ namespace TEdit.ViewModel
                 return;
             _clipboard.Buffer = _clipboard.GetSelectionBuffer();
             _clipboard.LoadedBuffers.Add(_clipboard.Buffer);
+        }
+
+        public void CropWorld()
+        {
+            if (CurrentWorld == null) return;
+            if (!CanCopy())
+                return;
+
+            bool addBounderies = false;
+
+            if (MessageBox.Show(
+                "This will generate a new world with a selected region. Any progress done to this world will be lost, Continue?",
+                "Crop World?",
+                MessageBoxButton.YesNo,
+                MessageBoxImage.Question,
+                MessageBoxResult.Yes) != MessageBoxResult.Yes)
+                return;
+
+            if (MessageBox.Show(
+                "Add \"edge of world\" bounderies?",
+                "Crop World:",
+                MessageBoxButton.YesNo,
+                MessageBoxImage.Question,
+                MessageBoxResult.Yes) == MessageBoxResult.Yes)
+            { addBounderies = true; };
+
+            // Create clipboard
+            _clipboard.Buffer = _clipboard.GetSelectionBuffer();
+            _clipboard.LoadedBuffers.Add(_clipboard.Buffer);
+
+            // Generate New Worlds
+            _loadTimer.Reset();
+            _loadTimer.Start();
+            _saveTimer.Stop();
+
+            World w = new World();
+            Task.Factory.StartNew(() =>
+            {
+                // 41 block buffer left and top for "off-screen" on all sides.
+                // 42 block buffer right and bottom for "off-screen" on all sides. 
+                if (addBounderies)
+                { w = new World(_clipboard.Buffer.Size.Y + 83, _clipboard.Buffer.Size.X + 83, "TEdit World"); }
+                else
+                { w = new World(_clipboard.Buffer.Size.Y, _clipboard.Buffer.Size.X, "TEdit World"); }
+                
+                w.Version = World.CompatibleVersion;
+                w.GroundLevel = 350;
+                w.RockLevel = 480;
+                w.ResetTime();
+                w.CreationTime = System.DateTime.Now.ToBinary();
+
+                w.Seed = (new Random()).Next(0, int.MaxValue).ToString();
+                w.SpawnX = (int)(w.TilesWide / 2);
+                w.SpawnY = (int)Math.Max(0, w.GroundLevel / 2);
+                w.GroundLevel = (int)w.GroundLevel;
+                w.RockLevel = (int)w.RockLevel;
+                w.BottomWorld = w.TilesHigh * 16;
+                w.RightWorld = w.TilesWide * 16;
+                w.Tiles = new Tile[w.TilesWide, w.TilesHigh];
+                var cloneTile = new Tile();
+                for (int y = 0; y < w.TilesHigh; y++)
+                {
+                    OnProgressChanged(w, new ProgressChangedEventArgs(Calc.ProgressPercentage(y, w.TilesHigh), "Generating World..."));
+                    // Generate No Extra Tiles
+                    for (int x = 0; x < w.TilesWide; x++)
+                    {
+                        w.Tiles[x, y] = (Tile)cloneTile.Clone();
+                    }
+                }
+                return w;
+            })
+                .ContinueWith(t => CurrentWorld = t.Result, TaskFactoryHelper.UiTaskScheduler)
+                .ContinueWith(t => RenderEntireWorld())
+                .ContinueWith(t =>
+                {
+                    CurrentFile = null;
+                    PixelMap = t.Result;
+                    UpdateTitle();
+                    Points.Clear();
+                    Points.Add("Spawn");
+                    Points.Add("Dungeon");
+                    foreach (NPC npc in CurrentWorld.NPCs)
+                    {
+                        Points.Add(npc.Name);
+                    }
+                    MinimapImage = RenderMiniMap.Render(CurrentWorld);
+
+                    if (addBounderies)
+                    { Clipboard.PasteBufferIntoWorld(new Vector2Int32(41, 41));
+                      UpdateRenderRegion(new Rectangle(41, 41, _clipboard.Buffer.Size.X + 42, _clipboard.Buffer.Size.Y + 42)); // Update Map
+                    } // Paste Clipboard Buffer Offset
+                    else
+                    { Clipboard.PasteBufferIntoWorld(new Vector2Int32(0, 0));
+                        UpdateRenderRegion(new Rectangle(0, 0, _clipboard.Buffer.Size.X, _clipboard.Buffer.Size.Y)); // Update Map
+                    } // Paste Clipboard Without Offset
+                    Clipboard.Remove(_clipboard.LoadedBuffers.Last()); // Remove Buffer
+
+                    _loadTimer.Stop();
+                    OnProgressChanged(this, new ProgressChangedEventArgs(0,
+                        $"World loaded in {_loadTimer.Elapsed.TotalSeconds} seconds."));
+                    _saveTimer.Start();
+                    
+                }, TaskFactoryHelper.UiTaskScheduler);
         }
 
         public void EditPaste()

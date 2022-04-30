@@ -30,6 +30,7 @@ namespace TEdit.ViewModel
         private ICommand _deleteCommand;
         private ICommand _pasteCommand;
         private ICommand _copyCommand;
+        private ICommand _cropCommand;
         private ICommand _undoCommand;
         private ICommand _redoCommand;
         private ICommand _newWorldCommand;
@@ -309,6 +310,13 @@ namespace TEdit.ViewModel
         {
             get { return _copyCommand ?? (_copyCommand = new RelayCommand(EditCopy)); }
         }
+
+        public ICommand CropCommand
+        {
+            get { return _cropCommand ?? (_cropCommand = new RelayCommand(CropWorld)); }
+        }
+
+        
         private bool CanCopy()
         {
             return _selection.IsActive;
