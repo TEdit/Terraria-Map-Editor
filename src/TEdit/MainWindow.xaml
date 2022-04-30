@@ -60,7 +60,7 @@
     <Grid>
         <DockPanel LastChildFill="True">
             <Menu DockPanel.Dock="Top">
-                <MenuItem Header="{x:Static p:Language.menu_file}" Click="MenuItem_Click">
+                <MenuItem Header="{x:Static p:Language.menu_file}">
                     <MenuItem Header="{x:Static p:Language.menu_file_new}" Icon="{StaticResource TB_NewIcon}" Command="{Binding NewWorldCommand}" />
                     <MenuItem Header="{x:Static p:Language.menu_file_open}" Icon="{StaticResource TB_OpenIcon}" Command="{Binding OpenCommand}" />
                     <Separator Margin="1"/>
