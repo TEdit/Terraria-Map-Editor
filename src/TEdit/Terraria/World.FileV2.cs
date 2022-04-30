@@ -155,7 +155,7 @@ namespace TEdit.Terraria
             world.KilledMobs.AddRange(w.KilledMobs);
         }
 
-        private static void SaveV2(World world, BinaryWriter bw)
+        internal static void SaveV2(World world, BinaryWriter bw)
         {
             world.Validate();
             world.FileRevision++;
@@ -920,7 +920,7 @@ namespace TEdit.Terraria
             return (int)bw.BaseStream.Position;
         }
 
-        public static void LoadV2(BinaryReader b, string filename, World w)
+        public static void LoadV2(BinaryReader b, World w)
         {
             //throw new NotImplementedException("World Version > 87");
 

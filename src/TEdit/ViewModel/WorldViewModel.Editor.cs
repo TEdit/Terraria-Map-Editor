@@ -10,6 +10,7 @@ using TEdit.Editor;
 using TEdit.Render;
 using System.Windows;
 using TEdit.MvvmLight.Threading;
+using System.IO;
 
 namespace TEdit.ViewModel
 {
@@ -81,8 +82,8 @@ namespace TEdit.ViewModel
             { addBounderies = true; };
 
             // Create clipboard
-            _clipboard.Buffer = _clipboard.GetSelectionBuffer();
-            _clipboard.LoadedBuffers.Add(_clipboard.Buffer);
+            //_clipboard.Buffer = _clipboard.GetSelectionBuffer();
+            //_clipboard.LoadedBuffers.Add(_clipboard.Buffer);
 
             // Generate New Worlds
             _loadTimer.Reset();
@@ -92,37 +93,167 @@ namespace TEdit.ViewModel
             World w = new World();
             Task.Factory.StartNew(() =>
             {
+                var selectionArea = Selection.SelectionArea;
+                Selection.IsActive = false;
+                // TODO: header data needs to be copied
+                using (var memStream = new MemoryStream())
+                {
+                    var writer = new BinaryWriter(memStream);
+                    World.SaveV2(CurrentWorld, writer);
+                    memStream.Flush();
+                    var reader = new BinaryReader(memStream);
+                    w.Version = CurrentWorld.Version;
+                    World.LoadV2(reader, w);
+                }
+
+                int newWorldWidth = selectionArea.Width;
+                int newWorldHeight = selectionArea.Height;
+
+                var worldArea = new Rectangle(0, 0, selectionArea.Width, selectionArea.Height);
+
                 // 41 block buffer left and top for "off-screen" on all sides.
                 // 42 block buffer right and bottom for "off-screen" on all sides. 
                 if (addBounderies)
-                { w = new World(_clipboard.Buffer.Size.Y + 83, _clipboard.Buffer.Size.X + 83, "TEdit World"); }
-                else
-                { w = new World(_clipboard.Buffer.Size.Y, _clipboard.Buffer.Size.X, "TEdit World"); }
-                
-                w.Version = World.CompatibleVersion;
-                w.GroundLevel = 350;
-                w.RockLevel = 480;
+                {
+                    newWorldWidth += 83;
+                    newWorldHeight += 83;
+                    worldArea.X += 41;
+                    worldArea.Y += 41;
+                }
+
                 w.ResetTime();
                 w.CreationTime = System.DateTime.Now.ToBinary();
+                w.TilesHigh = selectionArea.Height;
+                w.TilesWide = selectionArea.Width;
 
-                w.Seed = (new Random()).Next(0, int.MaxValue).ToString();
-                w.SpawnX = (int)(w.TilesWide / 2);
-                w.SpawnY = (int)Math.Max(0, w.GroundLevel / 2);
-                w.GroundLevel = (int)w.GroundLevel;
-                w.RockLevel = (int)w.RockLevel;
+                // calc new ground heights
+
+                int topOffset = selectionArea.Top + (addBounderies ? 41 : 0);
+                int leftOffset = selectionArea.Left + (addBounderies ? 41 : 0);
+
+                double groundLevel = w.GroundLevel - topOffset;
+                double rockLevel = w.RockLevel - topOffset;
+
+                w.GroundLevel = groundLevel < w.TilesHigh && groundLevel >= 100 ? groundLevel : 350;
+                w.RockLevel = rockLevel < w.TilesHigh && groundLevel >= 300 ? groundLevel : 480;
+
+
+                // shift spawn point
+                int spawnX = w.SpawnX - leftOffset;
+                int spawnY = w.SpawnY - topOffset;
+
+                w.SpawnX = spawnX < w.TilesWide && spawnX > 0 ? spawnX : (int)(w.TilesWide / 2);
+                w.SpawnY = spawnY < w.TilesHigh && spawnY > 0 ? spawnY : (int)Math.Max(0, w.GroundLevel / 2); ;
+
+                // shift dungeon point
+                int dungeonX = w.DungeonX - leftOffset;
+                int dungeonY = w.DungeonY - topOffset;
+
+                w.DungeonX = dungeonX < w.TilesWide && dungeonX > 0 ? dungeonX : (int)(w.TilesWide / 4);
+                w.DungeonY = dungeonY < w.TilesHigh && dungeonY > 0 ? dungeonY : (int)Math.Max(0, w.GroundLevel / 2); ;
+
+                // calc size
                 w.BottomWorld = w.TilesHigh * 16;
                 w.RightWorld = w.TilesWide * 16;
-                w.Tiles = new Tile[w.TilesWide, w.TilesHigh];
-                var cloneTile = new Tile();
+
+                // generate empty tiles
+                var tiles = new Tile[w.TilesWide, w.TilesHigh];
+
                 for (int y = 0; y < w.TilesHigh; y++)
                 {
-                    OnProgressChanged(w, new ProgressChangedEventArgs(Calc.ProgressPercentage(y, w.TilesHigh), "Generating World..."));
+                    OnProgressChanged(w, new ProgressChangedEventArgs(Calc.ProgressPercentage(y, w.TilesHigh), "Cloning World..."));
                     // Generate No Extra Tiles
                     for (int x = 0; x < w.TilesWide; x++)
                     {
-                        w.Tiles[x, y] = (Tile)cloneTile.Clone();
+                        tiles[x, y] = w.Tiles[x + selectionArea.Left, y + selectionArea.Top];
                     }
                 }
+
+                w.Tiles = tiles;
+
+                // move NPCs
+                foreach (var npc in w.NPCs.ToList()) // to list since we are removing out of bounds NPCs below
+                {
+                    npc.Home -= new Vector2Int32(leftOffset, topOffset);
+                    if (!worldArea.Contains(npc.Home.X, npc.Home.Y))
+                    {
+                        if (npc.Name == "Old Man")
+                        {
+                            npc.Home = new Vector2Int32(w.DungeonX, w.DungeonY); // move homeless old man to dungeon
+                        }
+                        else
+                        {
+                            npc.Home = new Vector2Int32(w.SpawnX, w.SpawnY); // move homeless npc to spawn
+                            npc.IsHomeless = true;
+                        }
+                    }
+                }
+
+                // move mobs
+                foreach (var mob in w.Mobs.ToList()) // to list since we are removing out of bounds NPCs below
+                {
+                    mob.Home -= new Vector2Int32(leftOffset, topOffset);
+                    if (!worldArea.Contains(mob.Home.X, mob.Home.Y))
+                    {
+                        w.Mobs.Remove(mob); // remove out of bounds NPCs
+                    }
+                }
+
+                // move chests
+                foreach (var chest in w.Chests.ToList())
+                {
+                    chest.X -= leftOffset;
+                    chest.Y -= topOffset;
+                    if (!worldArea.Contains(chest.X, chest.Y))
+                    {
+                        w.Chests.Remove(chest); // remove out of bounds NPCs
+                    }
+                }
+
+                // move signs
+                foreach (var sign in w.Signs.ToList())
+                {
+                    sign.X -= leftOffset;
+                    sign.Y -= topOffset;
+                    if (!worldArea.Contains(sign.X, sign.Y))
+                    {
+                        w.Signs.Remove(sign); // remove out of bounds NPCs
+                    }
+                }
+
+                // move tile entities
+                foreach (var te in w.TileEntities.ToList())
+                {
+                    te.PosX -= (short)leftOffset;
+                    te.PosY -= (short)topOffset;
+                    if (!worldArea.Contains(te.PosX, te.PosY))
+                    {
+                        w.TileEntities.Remove(te); // remove out of bounds NPCs
+                    }
+                }
+
+                // move pressure plates
+                foreach (var item in w.PressurePlates.ToList()) // to list since we are removing out of bounds NPCs below
+                {
+                    item.PosX -= leftOffset;
+                    item.PosY -= topOffset;
+                    if (!worldArea.Contains(item.PosX, item.PosY))
+                    {
+                        w.PressurePlates.Remove(item); // remove out of bounds NPCs
+                    }
+                }
+
+
+                // Move Town manager items 
+                foreach (var room in w.PlayerRooms.ToList())
+                {
+                    room.Home -= new Vector2Int32(leftOffset, topOffset);
+                    if (!worldArea.Contains(room.Home.X, room.Home.Y))
+                    {
+                        w.PlayerRooms.Remove(room); // remove out of bounds NPCs
+                    }
+                }
+
                 return w;
             })
                 .ContinueWith(t => CurrentWorld = t.Result, TaskFactoryHelper.UiTaskScheduler)
@@ -132,6 +263,7 @@ namespace TEdit.ViewModel
                     CurrentFile = null;
                     PixelMap = t.Result;
                     UpdateTitle();
+
                     Points.Clear();
                     Points.Add("Spawn");
                     Points.Add("Dungeon");
@@ -139,23 +271,26 @@ namespace TEdit.ViewModel
                     {
                         Points.Add(npc.Name);
                     }
+
                     MinimapImage = RenderMiniMap.Render(CurrentWorld);
 
-                    if (addBounderies)
-                    { Clipboard.PasteBufferIntoWorld(new Vector2Int32(41, 41));
-                      UpdateRenderRegion(new Rectangle(41, 41, _clipboard.Buffer.Size.X + 42, _clipboard.Buffer.Size.Y + 42)); // Update Map
-                    } // Paste Clipboard Buffer Offset
-                    else
-                    { Clipboard.PasteBufferIntoWorld(new Vector2Int32(0, 0));
-                        UpdateRenderRegion(new Rectangle(0, 0, _clipboard.Buffer.Size.X, _clipboard.Buffer.Size.Y)); // Update Map
-                    } // Paste Clipboard Without Offset
-                    Clipboard.Remove(_clipboard.LoadedBuffers.Last()); // Remove Buffer
-
+                    // if (addBounderies)
+                    // {
+                    //     Clipboard.PasteBufferIntoWorld(new Vector2Int32(41, 41));
+                    //     UpdateRenderRegion(new Rectangle(41, 41, _clipboard.Buffer.Size.X + 42, _clipboard.Buffer.Size.Y + 42)); // Update Map
+                    // } // Paste Clipboard Buffer Offset
+                    // else
+                    // {
+                    //     Clipboard.PasteBufferIntoWorld(new Vector2Int32(0, 0));
+                    //     UpdateRenderRegion(new Rectangle(0, 0, _clipboard.Buffer.Size.X, _clipboard.Buffer.Size.Y)); // Update Map
+                    // } // Paste Clipboard Without Offset
+                    // Clipboard.Remove(_clipboard.LoadedBuffers.Last()); // Remove Buffer
+                    // 
                     _loadTimer.Stop();
                     OnProgressChanged(this, new ProgressChangedEventArgs(0,
-                        $"World loaded in {_loadTimer.Elapsed.TotalSeconds} seconds."));
+                         $"World loaded in {_loadTimer.Elapsed.TotalSeconds} seconds."));
                     _saveTimer.Start();
-                    
+
                 }, TaskFactoryHelper.UiTaskScheduler);
         }
 
@@ -182,7 +317,7 @@ namespace TEdit.ViewModel
 
             PaintMode curMode = mode ?? TilePicker.PaintMode;
             bool isErase = erase ?? TilePicker.IsEraser;
-            
+
             switch (curMode)
             {
                 case PaintMode.Sprites:
@@ -206,7 +341,7 @@ namespace TEdit.ViewModel
                 case PaintMode.Wire:
 
                     // paint all wires in one call
-                    SetPixelAutomatic(curTile, 
+                    SetPixelAutomatic(curTile,
                         wire: TilePicker.RedWireActive ? !isErase : null,
                         wire2: TilePicker.BlueWireActive ? !isErase : null,
                         wire3: TilePicker.GreenWireActive ? !isErase : null,
@@ -216,9 +351,9 @@ namespace TEdit.ViewModel
                     // stack on junction boxes
                     if (TilePicker.JunctionBoxMode != JunctionBoxMode.None)
                     {
-                        if (isErase && 
+                        if (isErase &&
                             curTile.Type == (int)TileType.JunctionBox &&
-                            curTile.U == (short) TilePicker.JunctionBoxMode)
+                            curTile.U == (short)TilePicker.JunctionBoxMode)
                         {
                             // erase junction box matching selection only. Set tile also checks masks
                             SetTile(curTile, true);
@@ -729,10 +864,10 @@ namespace TEdit.ViewModel
             }
 
             // clear liquids for solid tiles
-            if (curTile.IsActive) 
+            if (curTile.IsActive)
             {
-                if (World.TileProperties[curTile.Type].IsSolid && 
-                    !curTile.InActive && 
+                if (World.TileProperties[curTile.Type].IsSolid &&
+                    !curTile.InActive &&
                     !World.TileProperties[curTile.Type].IsPlatform &&
                     curTile.Type != 52 && // Exclude Vines
                     curTile.Type != 62 && // Exclude Jungle Vines
