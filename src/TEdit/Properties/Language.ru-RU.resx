@@ -1134,4 +1134,7 @@
   <data name="JunctionBox_Use" xml:space="preserve">
     <value>Распределительная коробка:</value>
   </data>
+  <data name="menu_edit_crop" xml:space="preserve">
+    <value>Мир урожая</value>
+  </data>
 </root>
