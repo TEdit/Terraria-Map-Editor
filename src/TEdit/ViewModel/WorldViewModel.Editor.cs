@@ -73,7 +73,7 @@ namespace TEdit.ViewModel
                 return;
 
             if (MessageBox.Show(
-                "Add \"edge of world\" bounderies?",
+                "Add \"edge of world\" boundaries?",
                 "Crop World:",
                 MessageBoxButton.YesNo,
                 MessageBoxImage.Question,
