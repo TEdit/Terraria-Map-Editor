@@ -63,7 +63,7 @@ namespace TEdit.ViewModel
             if (!CanCopy())
                 return;
 
-            bool addBounderies = false;
+            bool addBorders = false;
 
             if (MessageBox.Show(
                 "This will generate a new world with a selected region. Any progress done to this world will be lost, Continue?",
@@ -79,11 +79,15 @@ namespace TEdit.ViewModel
                 MessageBoxButton.YesNo,
                 MessageBoxImage.Question,
                 MessageBoxResult.Yes) == MessageBoxResult.Yes)
-            { addBounderies = true; };
+            { addBorders = true; };
 
             // Create clipboard
             //_clipboard.Buffer = _clipboard.GetSelectionBuffer();
             //_clipboard.LoadedBuffers.Add(_clipboard.Buffer);
+
+            // addborders
+            // 41 block buffer left and top for "off-screen" on all sides.
+            // 42 block buffer right and bottom for "off-screen" on all sides. 
 
             // Generate New Worlds
             _loadTimer.Reset();
@@ -106,36 +110,27 @@ namespace TEdit.ViewModel
                     World.LoadV2(reader, w);
                 }
 
-                int newWorldWidth = selectionArea.Width;
-                int newWorldHeight = selectionArea.Height;
 
                 var worldArea = new Rectangle(0, 0, selectionArea.Width, selectionArea.Height);
+                int width = selectionArea.Width;
+                int height = selectionArea.Height;
 
-                // 41 block buffer left and top for "off-screen" on all sides.
-                // 42 block buffer right and bottom for "off-screen" on all sides. 
-                if (addBounderies)
-                {
-                    newWorldWidth += 83;
-                    newWorldHeight += 83;
-                    worldArea.X += 41;
-                    worldArea.Y += 41;
-                }
 
                 w.ResetTime();
                 w.CreationTime = System.DateTime.Now.ToBinary();
-                w.TilesHigh = selectionArea.Height;
-                w.TilesWide = selectionArea.Width;
+                w.TilesHigh = height;
+                w.TilesWide = width;
 
                 // calc new ground heights
 
-                int topOffset = selectionArea.Top + (addBounderies ? 41 : 0);
-                int leftOffset = selectionArea.Left + (addBounderies ? 41 : 0);
+                int topOffset = selectionArea.Top;
+                int leftOffset = selectionArea.Left;
 
                 double groundLevel = w.GroundLevel - topOffset;
                 double rockLevel = w.RockLevel - topOffset;
 
-                w.GroundLevel = groundLevel < w.TilesHigh && groundLevel >= 100 ? groundLevel : 350;
-                w.RockLevel = rockLevel < w.TilesHigh && groundLevel >= 300 ? groundLevel : 480;
+                w.GroundLevel = groundLevel < w.TilesHigh && groundLevel >= 0 ? groundLevel : 350;
+                w.RockLevel = rockLevel < w.TilesHigh && groundLevel >= 0 ? groundLevel : 480;
 
 
                 // shift spawn point
@@ -158,14 +153,25 @@ namespace TEdit.ViewModel
 
                 // generate empty tiles
                 var tiles = new Tile[w.TilesWide, w.TilesHigh];
-
+                var tile = new Tile(); // empty tile
                 for (int y = 0; y < w.TilesHigh; y++)
                 {
                     OnProgressChanged(w, new ProgressChangedEventArgs(Calc.ProgressPercentage(y, w.TilesHigh), "Cloning World..."));
                     // Generate No Extra Tiles
                     for (int x = 0; x < w.TilesWide; x++)
                     {
-                        tiles[x, y] = w.Tiles[x + selectionArea.Left, y + selectionArea.Top];
+                        if (!addBorders || 
+                            (y > 41 && 
+                             y < w.TilesHigh - 41 && 
+                             x > 41 && 
+                             x < w.TilesWide - 41))
+                        {
+                            tiles[x, y] = w.Tiles[x + selectionArea.Left, y + selectionArea.Top];
+                        }
+                        else
+                        {
+                            tiles[x, y] = (Tile)tile.Clone();
+                        }
                     }
                 }
 
