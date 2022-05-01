@@ -16,6 +16,8 @@ using TEdit.Helper;
 using TEdit.Properties;
 using Microsoft.ApplicationInsights.DataContracts;
 using System.Collections.Generic;
+using TEdit.UI.Xaml;
+using TEdit.View;
 
 namespace TEdit.ViewModel
 {
@@ -43,7 +45,7 @@ namespace TEdit.ViewModel
         private ICommand _saveRackCommand;
         private ICommand _npcRemoveCommand;
         private ICommand _importBestiaryCommand;
-        private ICommand _completeBestiaryCommand;
+        private ICommand _editBestiaryCommand;
 
         private ICommand _npcAddCommand;
         private ICommand _requestZoomCommand;
@@ -157,9 +159,9 @@ namespace TEdit.ViewModel
             get { return _importBestiaryCommand ?? (_importBestiaryCommand = new RelayCommand(ImportKillsAndBestiary)); }
         }
 
-        public ICommand CompleteBestiaryCommand
+        public ICommand EditBestiaryCommand
         {
-            get { return _completeBestiaryCommand ?? (_completeBestiaryCommand = new RelayCommand(CompleteBestiary)); }
+            get { return _editBestiaryCommand ?? (_editBestiaryCommand = new RelayCommand(EditBestiary)); }
         }
 
         private void SaveTileEntity(bool save)
@@ -482,40 +484,19 @@ namespace TEdit.ViewModel
             EditPaste();
         }
 
-        public void CompleteBestiary()
+        public void EditBestiary()
         {
-            if (MessageBox.Show(
-                "This will completely replace your currently loaded world Bestiary and Kill Tally with a completed bestiary. Continue?",
-                "Complete Bestiary?",
-                MessageBoxButton.YesNo,
-                MessageBoxImage.Question,
-                MessageBoxResult.Yes) != MessageBoxResult.Yes)
-                return;
+            if (CurrentWorld == null) return; // Ensure world is loaded first
 
-            var world = CurrentWorld;
-
-            // make a backup
-            var bestiary = world.Bestiary.Copy(CurrentWorld.Version);
-            var killTally = world.KilledMobs.ToArray();
-            try
-            {
-                ErrorLogging.TelemetryClient?.TrackEvent(nameof(CompleteBestiary));
-
-                World.CompleteBestiary(world);
-                TallyCount = KillTally.LoadTally(CurrentWorld);
-            }
-            catch (Exception ex)
-            {
-                world.Bestiary = bestiary;
-                world.KilledMobs.Clear();
-                world.KilledMobs.AddRange(killTally);
-                MessageBox.Show($"Error completing Bestiary data. Your current bestiary has been restored.\r\n{ex.Message}");
-
-            }
+            // show the result view with the list of locations
+            BestiaryEditor bestiaryEditor = new BestiaryEditor(CurrentWorld);
+            bestiaryEditor.Show();
         }
 
         private void ImportKillsAndBestiary()
         {
+            if (CurrentWorld == null) return; // Ensure world is loaded first
+
             if (MessageBox.Show(
                 "This will completely replace your currently loaded world Bestiary and Kill Tally with selected file's bestiary. Continue?",
                 "Load Bestiary?",
