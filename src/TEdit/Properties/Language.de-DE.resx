@@ -1098,8 +1098,8 @@ Klicke auf „Wiederholen“, um einen neuen Ordner auszuwählen, oder auf „Ab
   <data name="menu_language_zh" xml:space="preserve">
     <value>中文</value>
   </data>
-  <data name="tool_bestiary_complete" xml:space="preserve">
-    <value>Komplett</value>
+  <data name="tool_bestiary_edit" xml:space="preserve">
+    <value>Bearbeiten</value>
   </data>
   <data name="tool_wp_boss_deerclops" xml:space="preserve">
     <value>Rehklop</value>

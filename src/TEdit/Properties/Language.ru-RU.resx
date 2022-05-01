@@ -1101,8 +1101,8 @@
   <data name="tool_wp_boss_deerclops" xml:space="preserve">
     <value>Циклолень</value>
   </data>
-  <data name="tool_bestiary_complete" xml:space="preserve">
-    <value>полный</value>
+  <data name="tool_bestiary_edit" xml:space="preserve">
+    <value>Редактировать</value>
   </data>
   <data name="tool_wp_dontstarve" xml:space="preserve">
     <value>Не голодайте мир</value>

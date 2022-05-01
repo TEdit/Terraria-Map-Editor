@@ -1098,8 +1098,8 @@
   <data name="tool_wp_tenthanniversary" xml:space="preserve">
     <value>十周年</value>
   </data>
-  <data name="tool_bestiary_complete" xml:space="preserve">
-    <value>完全的</value>
+  <data name="tool_bestiary_edit" xml:space="preserve">
+    <value>编辑</value>
   </data>
   <data name="tool_wp_boss_deerclops" xml:space="preserve">
     <value>鹿角怪</value>

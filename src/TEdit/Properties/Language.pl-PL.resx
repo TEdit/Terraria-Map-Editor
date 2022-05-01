@@ -1098,8 +1098,8 @@ Naciśnij spróbuj ponownie aby wybrać nowy folder lub anuluj aby użyć {0} ja
   <data name="tool_wp_tenthanniversary" xml:space="preserve">
     <value>Dziesiąta rocznica</value>
   </data>
-  <data name="tool_bestiary_complete" xml:space="preserve">
-    <value>kompletny</value>
+  <data name="tool_bestiary_edit" xml:space="preserve">
+    <value>Edytuj</value>
   </data>
   <data name="tool_wp_boss_deerclops" xml:space="preserve">
     <value>Jelenioko</value>
