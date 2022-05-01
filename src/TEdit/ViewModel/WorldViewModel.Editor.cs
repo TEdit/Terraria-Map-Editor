@@ -111,41 +111,57 @@ namespace TEdit.ViewModel
                 }
 
 
-                var worldArea = new Rectangle(0, 0, selectionArea.Width, selectionArea.Height);
-                int width = selectionArea.Width;
-                int height = selectionArea.Height;
+                int borderTop    = addBorders ? 41 : 0;
+                int borderLeft   = addBorders ? 41 : 0;
+                int borderRight  = addBorders ? 42 : 0;
+                int borderBottom = addBorders ? 42 : 0;
+
+                var tileArea = new Rectangle(borderLeft, borderTop, selectionArea.Width, selectionArea.Height);
+
+                int worldWidth = selectionArea.Width + borderLeft + borderRight;
+                int worldHeight = selectionArea.Height + borderTop + borderBottom;
 
 
                 w.ResetTime();
                 w.CreationTime = System.DateTime.Now.ToBinary();
-                w.TilesHigh = height;
-                w.TilesWide = width;
+                w.TilesHigh = worldHeight;
+                w.TilesWide = worldWidth;
 
                 // calc new ground heights
-
-                int topOffset = selectionArea.Top;
-                int leftOffset = selectionArea.Left;
+                int topOffset = selectionArea.Top - borderTop;
+                int leftOffset = selectionArea.Left - borderLeft;
 
                 double groundLevel = w.GroundLevel - topOffset;
-                double rockLevel = w.RockLevel - topOffset;
+                double rockLevel =   w.RockLevel - topOffset;
 
-                w.GroundLevel = groundLevel < w.TilesHigh && groundLevel >= 0 ? groundLevel : 350;
-                w.RockLevel = rockLevel < w.TilesHigh && groundLevel >= 0 ? groundLevel : 480;
+                if (groundLevel < 0 || groundLevel >= worldHeight) { groundLevel = Math.Min(350, worldHeight); }
+                if (rockLevel < 0 || rockLevel >= worldHeight) { rockLevel = Math.Min(480, worldHeight); }
+
+                w.GroundLevel = groundLevel;
+                w.RockLevel = rockLevel;
 
 
                 // shift spawn point
                 int spawnX = w.SpawnX - leftOffset;
                 int spawnY = w.SpawnY - topOffset;
 
-                w.SpawnX = spawnX < w.TilesWide && spawnX > 0 ? spawnX : (int)(w.TilesWide / 2);
-                w.SpawnY = spawnY < w.TilesHigh && spawnY > 0 ? spawnY : (int)Math.Max(0, w.GroundLevel / 2); ;
+                // check out of bounds, and move
+                if (spawnX < tileArea.Left || spawnX > tileArea.Right) { spawnX = worldWidth / 2; };
+                if (spawnY < tileArea.Top || spawnY > tileArea.Bottom) { spawnY = (int)groundLevel / 2; };
+
+                w.SpawnX = spawnX;
+                w.SpawnY = spawnY;
 
                 // shift dungeon point
                 int dungeonX = w.DungeonX - leftOffset;
                 int dungeonY = w.DungeonY - topOffset;
 
-                w.DungeonX = dungeonX < w.TilesWide && dungeonX > 0 ? dungeonX : (int)(w.TilesWide / 4);
-                w.DungeonY = dungeonY < w.TilesHigh && dungeonY > 0 ? dungeonY : (int)Math.Max(0, w.GroundLevel / 2); ;
+                // check out of bounds, and move
+                if (dungeonX < tileArea.Left || dungeonX > tileArea.Right) { dungeonX = worldWidth / 2; };
+                if (dungeonY < tileArea.Top || dungeonY > tileArea.Bottom) { dungeonY = (int)groundLevel / 4; };
+
+                w.DungeonX = dungeonX;
+                w.DungeonY = dungeonY;
 
                 // calc size
                 w.BottomWorld = w.TilesHigh * 16;
@@ -160,13 +176,9 @@ namespace TEdit.ViewModel
                     // Generate No Extra Tiles
                     for (int x = 0; x < w.TilesWide; x++)
                     {
-                        if (!addBorders || 
-                            (y > 41 && 
-                             y < w.TilesHigh - 41 && 
-                             x > 41 && 
-                             x < w.TilesWide - 41))
+                        if (tileArea.Contains(x,y))
                         {
-                            tiles[x, y] = w.Tiles[x + selectionArea.Left, y + selectionArea.Top];
+                            tiles[x, y] = w.Tiles[x + leftOffset, y + topOffset];
                         }
                         else
                         {
@@ -181,7 +193,7 @@ namespace TEdit.ViewModel
                 foreach (var npc in w.NPCs.ToList()) // to list since we are removing out of bounds NPCs below
                 {
                     npc.Home -= new Vector2Int32(leftOffset, topOffset);
-                    if (!worldArea.Contains(npc.Home.X, npc.Home.Y))
+                    if (!tileArea.Contains(npc.Home.X, npc.Home.Y))
                     {
                         if (npc.Name == "Old Man")
                         {
@@ -199,9 +211,9 @@ namespace TEdit.ViewModel
                 foreach (var mob in w.Mobs.ToList()) // to list since we are removing out of bounds NPCs below
                 {
                     mob.Home -= new Vector2Int32(leftOffset, topOffset);
-                    if (!worldArea.Contains(mob.Home.X, mob.Home.Y))
+                    if (!tileArea.Contains(mob.Home.X, mob.Home.Y))
                     {
-                        w.Mobs.Remove(mob); // remove out of bounds NPCs
+                        w.Mobs.Remove(mob); // remove out of bounds
                     }
                 }
 
@@ -210,9 +222,9 @@ namespace TEdit.ViewModel
                 {
                     chest.X -= leftOffset;
                     chest.Y -= topOffset;
-                    if (!worldArea.Contains(chest.X, chest.Y))
+                    if (!tileArea.Contains(chest.X, chest.Y))
                     {
-                        w.Chests.Remove(chest); // remove out of bounds NPCs
+                        w.Chests.Remove(chest); // remove out of bounds
                     }
                 }
 
@@ -221,9 +233,9 @@ namespace TEdit.ViewModel
                 {
                     sign.X -= leftOffset;
                     sign.Y -= topOffset;
-                    if (!worldArea.Contains(sign.X, sign.Y))
+                    if (!tileArea.Contains(sign.X, sign.Y))
                     {
-                        w.Signs.Remove(sign); // remove out of bounds NPCs
+                        w.Signs.Remove(sign); // remove out of bounds
                     }
                 }
 
@@ -232,9 +244,9 @@ namespace TEdit.ViewModel
                 {
                     te.PosX -= (short)leftOffset;
                     te.PosY -= (short)topOffset;
-                    if (!worldArea.Contains(te.PosX, te.PosY))
+                    if (!tileArea.Contains(te.PosX, te.PosY))
                     {
-                        w.TileEntities.Remove(te); // remove out of bounds NPCs
+                        w.TileEntities.Remove(te); // remove out of bounds
                     }
                 }
 
@@ -243,9 +255,9 @@ namespace TEdit.ViewModel
                 {
                     item.PosX -= leftOffset;
                     item.PosY -= topOffset;
-                    if (!worldArea.Contains(item.PosX, item.PosY))
+                    if (!tileArea.Contains(item.PosX, item.PosY))
                     {
-                        w.PressurePlates.Remove(item); // remove out of bounds NPCs
+                        w.PressurePlates.Remove(item); // remove out of bounds
                     }
                 }
 
@@ -254,9 +266,9 @@ namespace TEdit.ViewModel
                 foreach (var room in w.PlayerRooms.ToList())
                 {
                     room.Home -= new Vector2Int32(leftOffset, topOffset);
-                    if (!worldArea.Contains(room.Home.X, room.Home.Y))
+                    if (!tileArea.Contains(room.Home.X, room.Home.Y))
                     {
-                        w.PlayerRooms.Remove(room); // remove out of bounds NPCs
+                        w.PlayerRooms.Remove(room); // remove out of bounds
                     }
                 }
 
