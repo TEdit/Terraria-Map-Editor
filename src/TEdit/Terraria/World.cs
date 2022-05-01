@@ -196,7 +196,7 @@ namespace TEdit.Terraria
                         curVersion = w.Version;
                         if (w.Version > 87)
                         {
-                            LoadV2(b, filename, w);
+                            LoadV2(b, w);
                         }
                         else
                             LoadV1(b, filename, w);

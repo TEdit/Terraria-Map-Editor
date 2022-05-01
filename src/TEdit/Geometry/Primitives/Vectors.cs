@@ -154,8 +154,8 @@ namespace TEdit.Geometry.Primitives
         public override bool Equals(object obj)
         {
             if (ReferenceEquals(null, obj)) return false;
-            if (obj.GetType() != typeof (Vector4<T>)) return false;
-            return Equals((Vector4<T>) obj);
+            if (obj.GetType() != typeof(Vector4<T>)) return false;
+            return Equals((Vector4<T>)obj);
         }
 
         public override int GetHashCode()
@@ -163,9 +163,9 @@ namespace TEdit.Geometry.Primitives
             unchecked
             {
                 int result = X.GetHashCode();
-                result = (result*397) ^ Y.GetHashCode();
-                result = (result*397) ^ Z.GetHashCode();
-                result = (result*397) ^ W.GetHashCode();
+                result = (result * 397) ^ Y.GetHashCode();
+                result = (result * 397) ^ Z.GetHashCode();
+                result = (result * 397) ^ W.GetHashCode();
                 return result;
             }
         }
@@ -223,6 +223,13 @@ namespace TEdit.Geometry.Primitives
             vector = new Vector2Int32(x, y);
             return true;
         }
+
+        public static Vector2Int32 operator +(Vector2Int32 a, Vector2Int32 b) => new Vector2Int32((short)(a.X + b.X), (short)(a.Y + b.Y));
+        public static Vector2Int32 operator -(Vector2Int32 a, Vector2Int32 b) => new Vector2Int32((short)(a.X - b.X), (short)(a.Y - b.Y));
+        public static Vector2Int32 operator *(Vector2Int32 a, Vector2Int32 b) => new Vector2Int32((short)(a.X * b.X), (short)(a.Y * b.Y));
+        public static Vector2Int32 operator /(Vector2Int32 a, Vector2Int32 b) => new Vector2Int32((short)(a.X / b.X), (short)(a.Y / b.Y));
+        public static Vector2Int32 operator *(Vector2Int32 a, short b) => new Vector2Int32((short)(a.X * b), (short)(a.Y * b));
+        public static Vector2Int32 operator /(Vector2Int32 a, short b) => new Vector2Int32((short)(a.X / b), (short)(a.Y / b));
 
         #region Equality
         public bool Equals(Vector2Int32 other)
@@ -448,6 +455,27 @@ namespace TEdit.Geometry.Primitives
             return true;
         }
 
+        public static Vector2 operator -(Vector2 a, Vector2 b)
+        {
+            return new Vector2(a.X - b.X, a.Y - b.Y);
+        }
+
+        public static Vector2 operator +(Vector2 a, Vector2 b)
+        {
+            return new Vector2(a.X + b.X, a.Y + b.Y);
+        }
+
+        public static Vector2 operator *(Vector2 a, float scale)
+        {
+            return new Vector2(a.X + scale, a.Y + scale);
+        }
+
+        public static Vector2 operator /(Vector2 a, float scale)
+        {
+            if (scale == 0) { throw new DivideByZeroException(); }
+            return new Vector2(a.X / scale, a.Y / scale);
+        }
+
         #region Equality
 
         public bool Equals(Vector2 other)
@@ -519,6 +547,27 @@ namespace TEdit.Geometry.Primitives
 
             vector = new Vector3(x, y, z);
             return true;
+        }
+
+        public static Vector3 operator -(Vector3 a, Vector3 b)
+        {
+            return new Vector3(a.X - b.X, a.Y - b.Y, a.Z - b.Z);
+        }
+
+        public static Vector3 operator +(Vector3 a, Vector3 b)
+        {
+            return new Vector3(a.X + b.X, a.Y + b.Y, a.Z + b.Z);
+        }
+
+        public static Vector3 operator *(Vector3 a, float scale)
+        {
+            return new Vector3(a.X * scale, a.Y * scale, a.Z * scale);
+        }
+
+        public static Vector3 operator /(Vector3 a, float scale)
+        {
+            if (scale == 0) { throw new DivideByZeroException(); }
+            return new Vector3(a.X / scale, a.Y / scale, a.Z / scale);
         }
 
         #region Equality
@@ -600,6 +649,27 @@ namespace TEdit.Geometry.Primitives
             return true;
         }
 
+        public static Vector4 operator -(Vector4 a, Vector4 b)
+        {
+            return new Vector4(a.X - b.X, a.Y - b.Y, a.Z - b.Z, a.W - b.W);
+        }
+
+        public static Vector4 operator +(Vector4 a, Vector4 b)
+        {
+            return new Vector4(a.X + b.X, a.Y + b.Y, a.Z + b.Z, a.W + b.W);
+        }
+
+        public static Vector4 operator *(Vector4 a, float scale)
+        {
+            return new Vector4(a.X * scale, a.Y * scale, a.Z * scale, a.W * scale);
+        }
+
+        public static Vector4 operator /(Vector4 a, float scale)
+        {
+            if (scale == 0) { throw new DivideByZeroException(); }
+            return new Vector4(a.X / scale, a.Y / scale, a.Z / scale, a.W / scale);
+        }
+
         #region Equality
 
         public bool Equals(Vector4 other)
@@ -676,8 +746,8 @@ namespace TEdit.Geometry.Primitives
             return true;
         }
 
-        public readonly static Vector2Short Zero = new Vector2Short(0,0);
-        public readonly static Vector2Short One = new Vector2Short(1,1);
+        public readonly static Vector2Short Zero = new Vector2Short(0, 0);
+        public readonly static Vector2Short One = new Vector2Short(1, 1);
         public short Height => Y;
         public short Width => X;
 

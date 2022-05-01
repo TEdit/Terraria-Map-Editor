@@ -1134,4 +1134,7 @@ Press retry to pick a new folder or cancel to use {0} as your terraria path.</va
   <data name="JunctionBox_Use" xml:space="preserve">
     <value>Junction Box:</value>
   </data>
+  <data name="menu_edit_crop" xml:space="preserve">
+    <value>Crop World</value>
+  </data>
 </root>

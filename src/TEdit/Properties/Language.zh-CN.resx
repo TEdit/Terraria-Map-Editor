@@ -1134,4 +1134,7 @@
   <data name="JunctionBox_Use" xml:space="preserve">
     <value>接线盒：</value>
   </data>
+  <data name="menu_edit_crop" xml:space="preserve">
+    <value>作物世界</value>
+  </data>
 </root>
