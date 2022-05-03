@@ -1098,8 +1098,8 @@ Clique em tentar novamente para escolher uma nova pasta ou cancelar para usar {0
   <data name="menu_language_ar" xml:space="preserve">
     <value>العربية</value>
   </data>
-  <data name="tool_bestiary_complete" xml:space="preserve">
-    <value>completo</value>
+  <data name="tool_bestiary_edit" xml:space="preserve">
+    <value>Editar</value>
   </data>
   <data name="tool_wp_boss_deerclops" xml:space="preserve">
     <value>Cervoclope</value>
@@ -1136,5 +1136,35 @@ Clique em tentar novamente para escolher uma nova pasta ou cancelar para usar {0
   </data>
   <data name="menu_edit_crop" xml:space="preserve">
     <value>Mundo da colheita</value>
+  </data>
+  <data name="tab_bestiary" xml:space="preserve">
+    <value>Bestiário</value>
+  </data>
+  <data name="bestiary_name" xml:space="preserve">
+    <value>Nome</value>
+  </data>
+  <data name="bestiary_save" xml:space="preserve">
+    <value>Salvar</value>
+  </data>
+  <data name="bestiary_defeated" xml:space="preserve">
+    <value>Derrotado</value>
+  </data>
+  <data name="bestiary_near" xml:space="preserve">
+    <value>Perto</value>
+  </data>
+  <data name="bestiary_talked" xml:space="preserve">
+    <value>Falar</value>
+  </data>
+  <data name="bestiary_clear" xml:space="preserve">
+    <value>Claro</value>
+  </data>
+  <data name="bestiary_chat" xml:space="preserve">
+    <value>Bater papo</value>
+  </data>
+  <data name="bestiary_complete" xml:space="preserve">
+    <value>Completar</value>
+  </data>
+  <data name="bestiary_load" xml:space="preserve">
+    <value>Carga</value>
   </data>
 </root>

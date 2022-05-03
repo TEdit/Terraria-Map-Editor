@@ -1098,8 +1098,8 @@ Press retry to pick a new folder or cancel to use {0} as your terraria path.</va
   <data name="menu_language_pt" xml:space="preserve">
     <value>Português</value>
   </data>
-  <data name="tool_bestiary_complete" xml:space="preserve">
-    <value>Complete</value>
+  <data name="tool_bestiary_edit" xml:space="preserve">
+    <value>Edit</value>
   </data>
   <data name="tool_wp_boss_deerclops" xml:space="preserve">
     <value>Deerclops</value>
@@ -1136,5 +1136,35 @@ Press retry to pick a new folder or cancel to use {0} as your terraria path.</va
   </data>
   <data name="menu_edit_crop" xml:space="preserve">
     <value>Crop World</value>
+  </data>
+  <data name="tab_bestiary" xml:space="preserve">
+    <value>Bestiary</value>
+  </data>
+  <data name="bestiary_name" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="bestiary_defeated" xml:space="preserve">
+    <value>Defeated</value>
+  </data>
+  <data name="bestiary_near" xml:space="preserve">
+    <value>Near</value>
+  </data>
+  <data name="bestiary_talked" xml:space="preserve">
+    <value>Talk</value>
+  </data>
+  <data name="bestiary_clear" xml:space="preserve">
+    <value>Clear</value>
+  </data>
+  <data name="bestiary_chat" xml:space="preserve">
+    <value>Chat</value>
+  </data>
+  <data name="bestiary_complete" xml:space="preserve">
+    <value>Complete</value>
+  </data>
+  <data name="bestiary_load" xml:space="preserve">
+    <value>Load</value>
+  </data>
+  <data name="bestiary_save" xml:space="preserve">
+    <value>Save</value>
   </data>
 </root>

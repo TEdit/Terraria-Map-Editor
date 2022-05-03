@@ -19,7 +19,7 @@ namespace TEdit.Properties {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     public class Language {
@@ -57,6 +57,87 @@ namespace TEdit.Properties {
             }
             set {
                 resourceCulture = value;
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Chat.
+        /// </summary>
+        public static string bestiary_chat {
+            get {
+                return ResourceManager.GetString("bestiary_chat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Clear.
+        /// </summary>
+        public static string bestiary_clear {
+            get {
+                return ResourceManager.GetString("bestiary_clear", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Complete.
+        /// </summary>
+        public static string bestiary_complete {
+            get {
+                return ResourceManager.GetString("bestiary_complete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Defeated.
+        /// </summary>
+        public static string bestiary_defeated {
+            get {
+                return ResourceManager.GetString("bestiary_defeated", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Load.
+        /// </summary>
+        public static string bestiary_load {
+            get {
+                return ResourceManager.GetString("bestiary_load", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name.
+        /// </summary>
+        public static string bestiary_name {
+            get {
+                return ResourceManager.GetString("bestiary_name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Near.
+        /// </summary>
+        public static string bestiary_near {
+            get {
+                return ResourceManager.GetString("bestiary_near", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save.
+        /// </summary>
+        public static string bestiary_save {
+            get {
+                return ResourceManager.GetString("bestiary_save", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Talk.
+        /// </summary>
+        public static string bestiary_talked {
+            get {
+                return ResourceManager.GetString("bestiary_talked", resourceCulture);
             }
         }
         
@@ -1295,6 +1376,15 @@ namespace TEdit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Bestiary.
+        /// </summary>
+        public static string tab_bestiary {
+            get {
+                return ResourceManager.GetString("tab_bestiary", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Analyze.
         /// </summary>
         public static string tool_analyze_analyze_button {
@@ -1340,11 +1430,11 @@ namespace TEdit.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Complete.
+        ///   Looks up a localized string similar to Edit.
         /// </summary>
-        public static string tool_bestiary_complete {
+        public static string tool_bestiary_edit {
             get {
-                return ResourceManager.GetString("tool_bestiary_complete", resourceCulture);
+                return ResourceManager.GetString("tool_bestiary_edit", resourceCulture);
             }
         }
         

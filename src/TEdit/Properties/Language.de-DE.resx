@@ -1098,8 +1098,8 @@ Klicke auf „Wiederholen“, um einen neuen Ordner auszuwählen, oder auf „Ab
   <data name="menu_language_zh" xml:space="preserve">
     <value>中文</value>
   </data>
-  <data name="tool_bestiary_complete" xml:space="preserve">
-    <value>Komplett</value>
+  <data name="tool_bestiary_edit" xml:space="preserve">
+    <value>Bearbeiten</value>
   </data>
   <data name="tool_wp_boss_deerclops" xml:space="preserve">
     <value>Rehklop</value>
@@ -1136,5 +1136,35 @@ Klicke auf „Wiederholen“, um einen neuen Ordner auszuwählen, oder auf „Ab
   </data>
   <data name="menu_edit_crop" xml:space="preserve">
     <value>Getreidewelt</value>
+  </data>
+  <data name="tab_bestiary" xml:space="preserve">
+    <value>Bestiarium</value>
+  </data>
+  <data name="bestiary_name" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="bestiary_save" xml:space="preserve">
+    <value>Speichern</value>
+  </data>
+  <data name="bestiary_defeated" xml:space="preserve">
+    <value>Besiegt</value>
+  </data>
+  <data name="bestiary_near" xml:space="preserve">
+    <value>Nahe</value>
+  </data>
+  <data name="bestiary_talked" xml:space="preserve">
+    <value>Sich unterhalten</value>
+  </data>
+  <data name="bestiary_clear" xml:space="preserve">
+    <value>Klar</value>
+  </data>
+  <data name="bestiary_chat" xml:space="preserve">
+    <value>Plaudern</value>
+  </data>
+  <data name="bestiary_complete" xml:space="preserve">
+    <value>Vollständig</value>
+  </data>
+  <data name="bestiary_load" xml:space="preserve">
+    <value>Last</value>
   </data>
 </root>

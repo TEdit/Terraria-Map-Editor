@@ -17,7 +17,7 @@
             <TextBlock Grid.Column="0" Text="{x:Static p:Language.tool_bestiary_title}" Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" />
             <Button Grid.Column="1" Margin="2" Width="75" Content="{x:Static p:Language.tool_bestiary_scan}"  Command="{Binding LoadTallyCommand}" />
             <Button Grid.Column="2" Margin="2" Width="75" Content="{x:Static p:Language.tool_bestiary_import}"  Command="{Binding ImportBestiaryCommand}" />
-            <Button Grid.Column="3" Margin="2" Width="75" Content="{x:Static p:Language.tool_bestiary_complete}"  Command="{Binding CompleteBestiaryCommand}" />
+            <Button Grid.Column="3" Margin="2" Width="75" Content="{x:Static p:Language.tool_bestiary_edit}"  Command="{Binding EditBestiaryCommand}" />
         </StackPanel>
 
         <TextBox Grid.Row="1" Text="{Binding TallyCount}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" MinHeight="150"

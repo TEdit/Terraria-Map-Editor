@@ -1101,8 +1101,8 @@
   <data name="tool_wp_boss_deerclops" xml:space="preserve">
     <value>Циклолень</value>
   </data>
-  <data name="tool_bestiary_complete" xml:space="preserve">
-    <value>полный</value>
+  <data name="tool_bestiary_edit" xml:space="preserve">
+    <value>Редактировать</value>
   </data>
   <data name="tool_wp_dontstarve" xml:space="preserve">
     <value>Не голодайте мир</value>
@@ -1136,5 +1136,35 @@
   </data>
   <data name="menu_edit_crop" xml:space="preserve">
     <value>Мир урожая</value>
+  </data>
+  <data name="tab_bestiary" xml:space="preserve">
+    <value>Бестиарий</value>
+  </data>
+  <data name="bestiary_name" xml:space="preserve">
+    <value>Имя</value>
+  </data>
+  <data name="bestiary_save" xml:space="preserve">
+    <value>Сохранить</value>
+  </data>
+  <data name="bestiary_defeated" xml:space="preserve">
+    <value>Побежденный</value>
+  </data>
+  <data name="bestiary_near" xml:space="preserve">
+    <value>Близкий</value>
+  </data>
+  <data name="bestiary_talked" xml:space="preserve">
+    <value>Разговаривать</value>
+  </data>
+  <data name="bestiary_clear" xml:space="preserve">
+    <value>Ясный</value>
+  </data>
+  <data name="bestiary_chat" xml:space="preserve">
+    <value>Чат</value>
+  </data>
+  <data name="bestiary_complete" xml:space="preserve">
+    <value>Полный</value>
+  </data>
+  <data name="bestiary_load" xml:space="preserve">
+    <value>Груз</value>
   </data>
 </root>
