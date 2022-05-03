@@ -585,6 +585,9 @@ Naciśnij spróbuj ponownie aby wybrać nowy folder lub anuluj aby użyć {0} ja
   <data name="tool_clipboard_ispastewire" xml:space="preserve">
     <value>Wklej Kable</value>
   </data>
+  <data name="tool_clipboard_ispastesprite" xml:space="preserve">
+    <value>Colar Sprites</value>
+  </data>
   <data name="tool_fill_title" xml:space="preserve">
     <value>Wypełnij</value>
   </data>

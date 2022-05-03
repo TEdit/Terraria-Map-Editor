@@ -594,6 +594,9 @@
   <data name="tool_clipboard_ispastewire" xml:space="preserve">
     <value>لصق الأسلاك</value>
   </data>
+  <data name="tool_clipboard_ispastesprite" xml:space="preserve">
+    <value>لصق العفاريت</value>
+  </data>
   <data name="tool_fill_title" xml:space="preserve">
     <value>ملء</value>
   </data>

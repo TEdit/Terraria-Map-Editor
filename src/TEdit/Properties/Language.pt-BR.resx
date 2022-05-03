@@ -585,6 +585,9 @@ Clique em tentar novamente para escolher uma nova pasta ou cancelar para usar {0
   <data name="tool_clipboard_ispastewire" xml:space="preserve">
     <value>Colar fios</value>
   </data>
+  <data name="tool_clipboard_ispastesprite" xml:space="preserve">
+    <value>Colar Sprites</value>
+  </data>
   <data name="tool_fill_title" xml:space="preserve">
     <value>Preencher</value>
   </data>

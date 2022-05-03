@@ -1608,6 +1608,17 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("tool_clipboard_ispastewire", resourceCulture);
             }
         }
+		
+        /// <summary>
+        ///   Looks up a localized string similar to Paste Sprites.
+        /// </summary>
+        public static string tool_clipboard_ispastesprite
+        {
+            get
+            {
+                return ResourceManager.GetString("tool_clipboard_ispastesprite", resourceCulture);
+            }
+        }
         
         /// <summary>
         ///   Looks up a localized string similar to Fill.

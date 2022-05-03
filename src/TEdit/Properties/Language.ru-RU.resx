@@ -573,6 +573,9 @@
   <data name="tool_clipboard_ispastewire" xml:space="preserve">
     <value>Вставить провода</value>
   </data>
+  <data name="tool_clipboard_ispastesprite" xml:space="preserve">
+    <value>Вставить спрайты</value>
+  </data>
   <data name="tool_fill_title" xml:space="preserve">
     <value>Заливка</value>
   </data>
