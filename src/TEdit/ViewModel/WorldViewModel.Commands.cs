@@ -436,6 +436,7 @@ namespace TEdit.ViewModel
         private ICommand _clipboardSetActiveCommand;
         private ICommand _clipboardFlipXCommand;
         private ICommand _clipboardFlipYCommand;
+        private ICommand _clipboardRotateCommand;
         private ICommand _setLanguage;
 
         public ICommand ClipboardSetActiveCommand
@@ -470,6 +471,10 @@ namespace TEdit.ViewModel
         public ICommand ClipboardFlipYCommand
         {
             get { return _clipboardFlipYCommand ?? (_clipboardFlipYCommand = new RelayCommand<ClipboardBuffer>(_clipboard.FlipY)); }
+        }
+        public ICommand ClipboardRotateCommand
+        {
+            get { return _clipboardRotateCommand ?? (_clipboardRotateCommand = new RelayCommand<ClipboardBuffer>(_clipboard.Rotate)); }
         }
 
         private void ActivateBuffer(ClipboardBuffer item)
