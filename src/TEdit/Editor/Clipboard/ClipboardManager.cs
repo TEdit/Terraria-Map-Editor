@@ -20,6 +20,7 @@ namespace TEdit.Editor.Clipboard
         private bool _pasteWalls = true;
         private bool _pasteLiquids = true;
         private bool _pasteWires = true;
+        private bool _pasteSprites = true;
         private readonly WorldViewModel _wvm;
         public ClipboardManager(WorldViewModel worldView)
         {
@@ -50,6 +51,11 @@ namespace TEdit.Editor.Clipboard
         {
             get { return _pasteWires; }
             set { Set(nameof(PasteWires), ref _pasteWires, value); }
+        }
+        public bool PasteSprites
+        {
+            get { return _pasteSprites; }
+            set { Set(nameof(PasteSprites), ref _pasteSprites, value); }
         }
         public ClipboardBuffer Buffer
         {
@@ -234,6 +240,18 @@ namespace TEdit.Editor.Clipboard
                         curTile.InActive = worldTile.InActive;
                     }
 
+                    if (!PasteSprites)
+                    {
+                        // if pasting sprites is disabled, discard them.
+                        // check if sprite has more then one tile state.
+                        if (World.TileProperties[curTile.Type].Frames.Count() > 0)
+                        {
+                            // Change Sprite To Air
+                            curTile.U = 0;
+                            curTile.IsActive = false;
+                        }
+                    }
+
                     // save undo
                     _wvm.UndoManager.SaveTile(worldX, worldY);
 
@@ -306,7 +324,7 @@ namespace TEdit.Editor.Clipboard
         }
 
         // Reverse the buffer along the x- or y- axis
-        public void Flip(ClipboardBuffer buffer, bool flipX)
+        public void Flip(ClipboardBuffer buffer, bool flipX, bool rotate)
         {
             ClipboardBuffer flippedBuffer = new ClipboardBuffer(buffer.Size);
             //var sprites = new Dictionary<Vector2Int32, Sprite>();
@@ -458,18 +476,58 @@ namespace TEdit.Editor.Clipboard
             }
 
             // Replace the existing buffer with the new one
+            ClipboardBuffer rotatedBuffer = new ClipboardBuffer(new Vector2Int32(flippedBuffer.Size.Y, flippedBuffer.Size.X));
             int bufferIndex = LoadedBuffers.IndexOf(buffer);
             if (bufferIndex > -1)
             {
-                LoadedBuffers.Insert(bufferIndex, flippedBuffer);
-                LoadedBuffers.RemoveAt(bufferIndex + 1);
+                if (rotate)
+                {
+                    // Attempt to make a new buffer
+                    int FlipmaxX = flippedBuffer.Size.X - 1;
+                    int FlipmaxY = flippedBuffer.Size.Y - 1;
+
+                    // Get buffer horizontal
+                    for (int x = 0; x <= FlipmaxX; x++)
+                    {
+                        // Get buffer vertical
+                        for (int y = 0; y <= FlipmaxY; y++)
+                        {
+                            // Offet tiles 90
+                            Tile tile = (Tile)flippedBuffer.Tiles[x, y].Clone();
+                            rotatedBuffer.Tiles[y, x] = (Tile)tile; // Flipping x & y causes a rotation of 90 to the right
+                        }
+                    }
+
+                    // Replace Buffers
+                    LoadedBuffers.Insert(bufferIndex, rotatedBuffer);
+                    LoadedBuffers.RemoveAt(bufferIndex + 1);
+                }
+                else
+                {
+                    LoadedBuffers.Insert(bufferIndex, flippedBuffer);
+                    LoadedBuffers.RemoveAt(bufferIndex + 1);
+                }
             }
 
-            flippedBuffer.RenderBuffer();
+            if (rotate)
+            {
+                rotatedBuffer.RenderBuffer();
+            }
+            else
+            {
+                flippedBuffer.RenderBuffer();
+            }
 
             if (Buffer == buffer)
             {
-                Buffer = flippedBuffer;
+                if (rotate)
+                {
+                    Buffer = rotatedBuffer;
+                }
+                else
+                { 
+                    Buffer = flippedBuffer;
+                }
                 _wvm.PreviewChange();
             }
         }
@@ -500,11 +558,15 @@ namespace TEdit.Editor.Clipboard
 
         public void FlipX(ClipboardBuffer buffer)
         {
-            Flip(buffer, true);
+            Flip(buffer, true, false);
         }
         public void FlipY(ClipboardBuffer buffer)
         {
-            Flip(buffer, false);
+            Flip(buffer, false, false);
+        }
+        public void Rotate(ClipboardBuffer buffer)
+        {
+            Flip(buffer, false, true);
         }
     }
 }
