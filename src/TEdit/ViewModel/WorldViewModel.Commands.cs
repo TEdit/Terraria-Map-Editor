@@ -45,7 +45,6 @@ namespace TEdit.ViewModel
         private ICommand _saveRackCommand;
         private ICommand _npcRemoveCommand;
         private ICommand _importBestiaryCommand;
-        private ICommand _editBestiaryCommand;
 
         private ICommand _npcAddCommand;
         private ICommand _requestZoomCommand;
@@ -157,11 +156,6 @@ namespace TEdit.ViewModel
         public ICommand ImportBestiaryCommand
         {
             get { return _importBestiaryCommand ?? (_importBestiaryCommand = new RelayCommand(ImportKillsAndBestiary)); }
-        }
-
-        public ICommand EditBestiaryCommand
-        {
-            get { return _editBestiaryCommand ?? (_editBestiaryCommand = new RelayCommand(EditBestiary)); }
         }
 
         private void SaveTileEntity(bool save)
@@ -482,15 +476,6 @@ namespace TEdit.ViewModel
         {
             _clipboard.Buffer = item;
             EditPaste();
-        }
-
-        public void EditBestiary()
-        {
-            if (CurrentWorld == null) return; // Ensure world is loaded first
-
-            // show the result view with the list of locations
-            BestiaryEditor bestiaryEditor = new BestiaryEditor(CurrentWorld);
-            bestiaryEditor.Show();
         }
 
         private void ImportKillsAndBestiary()

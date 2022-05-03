@@ -23,6 +23,8 @@ namespace TEdit.ViewModel
                 return _worldViewModel;
             }
         }
+        
+        public static BestiaryViewModel GetBestiaryViewModel() => new BestiaryViewModel();
 
         private static WorldViewModel CreateWorldViewModel()
         {

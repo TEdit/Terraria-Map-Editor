@@ -6,6 +6,13 @@ using System.Threading.Tasks;
 
 namespace TEdit.Configuration
 {
+    public class BestiaryData
+    {
+        public List<string> BestiaryTalkedIDs { get; set; } = new List<string>();
+        public List<string> BestiaryNearIDs { get; set; } = new List<string>();
+        public List<string> BestiaryKilledIDs { get; set; } = new List<string>();
+    }
+
     public class SaveConfiguration
     {
         public Dictionary<string, uint> GameVersionToSaveVersion { get; set; }

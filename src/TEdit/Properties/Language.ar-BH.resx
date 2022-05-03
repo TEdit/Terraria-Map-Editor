@@ -1137,4 +1137,34 @@
   <data name="menu_edit_crop" xml:space="preserve">
     <value>عالم المحاصيل</value>
   </data>
+  <data name="tab_bestiary" xml:space="preserve">
+    <value>بيستاري</value>
+  </data>
+  <data name="bestiary_name" xml:space="preserve">
+    <value>اسم</value>
+  </data>
+  <data name="bestiary_save" xml:space="preserve">
+    <value>أنقذ</value>
+  </data>
+  <data name="bestiary_defeated" xml:space="preserve">
+    <value>مغلوب</value>
+  </data>
+  <data name="bestiary_near" xml:space="preserve">
+    <value>قرب</value>
+  </data>
+  <data name="bestiary_talked" xml:space="preserve">
+    <value>تكلم</value>
+  </data>
+  <data name="bestiary_clear" xml:space="preserve">
+    <value>واضح</value>
+  </data>
+  <data name="bestiary_chat" xml:space="preserve">
+    <value>ثَرْثَرَ</value>
+  </data>
+  <data name="bestiary_complete" xml:space="preserve">
+    <value>كامل</value>
+  </data>
+  <data name="bestiary_load" xml:space="preserve">
+    <value>حمل</value>
+  </data>
 </root>

@@ -1137,4 +1137,34 @@ Naciśnij spróbuj ponownie aby wybrać nowy folder lub anuluj aby użyć {0} ja
   <data name="menu_edit_crop" xml:space="preserve">
     <value>Świat upraw</value>
   </data>
+  <data name="tab_bestiary" xml:space="preserve">
+    <value>Bestiariusz</value>
+  </data>
+  <data name="bestiary_name" xml:space="preserve">
+    <value>Imie</value>
+  </data>
+  <data name="bestiary_save" xml:space="preserve">
+    <value>Zapisz</value>
+  </data>
+  <data name="bestiary_defeated" xml:space="preserve">
+    <value>Pokonany</value>
+  </data>
+  <data name="bestiary_near" xml:space="preserve">
+    <value>Blisko</value>
+  </data>
+  <data name="bestiary_talked" xml:space="preserve">
+    <value>Mówić</value>
+  </data>
+  <data name="bestiary_clear" xml:space="preserve">
+    <value>Jasny</value>
+  </data>
+  <data name="bestiary_chat" xml:space="preserve">
+    <value>Czat</value>
+  </data>
+  <data name="bestiary_complete" xml:space="preserve">
+    <value>Ukończyć</value>
+  </data>
+  <data name="bestiary_load" xml:space="preserve">
+    <value>Ładunek</value>
+  </data>
 </root>

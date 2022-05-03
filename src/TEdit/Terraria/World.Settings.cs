@@ -25,6 +25,8 @@ namespace TEdit.Terraria
     public partial class World
     {
         public static SaveConfiguration SaveConfiguration { get; set; }
+        public static BestiaryData BestiaryData { get; set; }
+
         private static readonly Dictionary<string, XNA.Color> _globalColors = new Dictionary<string, XNA.Color>();
         private static readonly Dictionary<string, int> _npcIds = new Dictionary<string, int>();
         private static readonly Dictionary<int, Vector2Short> _npcFrames = new Dictionary<int, Vector2Short>();
@@ -81,6 +83,9 @@ namespace TEdit.Terraria
 
             var saveVersionPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "TerrariaVersionTileData.json");
             LoadSaveVersions(saveVersionPath);
+
+            var bestiaryDataPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "bestiarydata.json");
+            LoadBestiaryData(bestiaryDataPath);
 
             // Used to dynamically update static CompatibleVersion
             CompatibleVersion = (uint)SaveConfiguration.SaveVersions.Keys.Max();
@@ -186,6 +191,16 @@ namespace TEdit.Terraria
             {
                 JsonSerializer serializer = new JsonSerializer();
                 SaveConfiguration = serializer.Deserialize<SaveConfiguration>(reader);
+            }
+        }
+
+        private static void LoadBestiaryData(string fileName)
+        {
+            using (StreamReader file = File.OpenText(fileName))
+            using (JsonTextReader reader = new JsonTextReader(file))
+            {
+                JsonSerializer serializer = new JsonSerializer();
+                BestiaryData = serializer.Deserialize<BestiaryData>(reader);
             }
         }
 

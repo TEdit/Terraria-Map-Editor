@@ -1137,4 +1137,34 @@
   <data name="menu_edit_crop" xml:space="preserve">
     <value>作物世界</value>
   </data>
+  <data name="tab_bestiary" xml:space="preserve">
+    <value>怪物图鉴</value>
+  </data>
+  <data name="bestiary_name" xml:space="preserve">
+    <value>名字</value>
+  </data>
+  <data name="bestiary_save" xml:space="preserve">
+    <value>保存</value>
+  </data>
+  <data name="bestiary_defeated" xml:space="preserve">
+    <value>打败</value>
+  </data>
+  <data name="bestiary_near" xml:space="preserve">
+    <value>近</value>
+  </data>
+  <data name="bestiary_talked" xml:space="preserve">
+    <value>说话</value>
+  </data>
+  <data name="bestiary_clear" xml:space="preserve">
+    <value>清楚</value>
+  </data>
+  <data name="bestiary_chat" xml:space="preserve">
+    <value>聊天</value>
+  </data>
+  <data name="bestiary_complete" xml:space="preserve">
+    <value>完成</value>
+  </data>
+  <data name="bestiary_load" xml:space="preserve">
+    <value>负荷</value>
+  </data>
 </root>

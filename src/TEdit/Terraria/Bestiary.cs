@@ -1,4 +1,5 @@
 ﻿using GalaSoft.MvvmLight;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
@@ -8,9 +9,9 @@ namespace TEdit.Terraria
     public class Bestiary : ObservableObject
     {
         const int KillMax = 9999;
-        public Dictionary<string,int> NPCKills = new Dictionary<string, int>();
-        public HashSet<string> NPCNear = new HashSet<string>();
-        public HashSet<string> NPCChat = new HashSet<string>();
+        public Dictionary<string,int> NPCKills = new Dictionary<string, int>(StringComparer.OrdinalIgnoreCase);
+        public HashSet<string> NPCNear = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+        public HashSet<string> NPCChat = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
 
         public Bestiary Copy(uint worldVersion)
         {
