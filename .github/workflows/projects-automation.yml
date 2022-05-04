@@ -78,7 +78,7 @@ jobs:
           gh_app_installation_ID: ${{ env.gh_app_installation_ID }}
           organization: ${{ env.gh_organization }}
           project_id: ${{ env.project_id }}
-          resource_node_id: ${{ github.event.issue.node_id }}
+          resource_node_id: ${{ github.event.pull_request.node_id }}
           status_value: ${{ env.status_todo }}
 
   pr_closed:
@@ -96,5 +96,5 @@ jobs:
           gh_app_installation_ID: ${{ env.gh_app_installation_ID }}
           organization: ${{ env.gh_organization }}
           project_id: ${{ env.project_id }}
-          resource_node_id: ${{ github.event.issue.node_id }}
+          resource_node_id: ${{ github.event.pull_request.node_id }}
           status_value: ${{ env.status_todo }}
