@@ -494,6 +494,13 @@ namespace TEdit.Editor.Clipboard
                         {
                             // Offet tiles 90
                             Tile tile = (Tile)flippedBuffer.Tiles[x, y].Clone();
+                            var tileProperties = World.TileProperties[tile.Type];
+
+                            // kill sprites
+                            if (tileProperties.IsFramed)
+                            {
+                                tile.IsActive = false;
+                            }
                             rotatedBuffer.Tiles[y, x] = (Tile)tile; // Flipping x & y causes a rotation of 90 to the right
                         }
                     }
@@ -525,7 +532,7 @@ namespace TEdit.Editor.Clipboard
                     Buffer = rotatedBuffer;
                 }
                 else
-                { 
+                {
                     Buffer = flippedBuffer;
                 }
                 _wvm.PreviewChange();
@@ -544,7 +551,7 @@ namespace TEdit.Editor.Clipboard
             {
                 // flip
                 bufferX = maxX - origin.X - (spriteSize.X - 1);
-                bufferY = origin.Y;                
+                bufferY = origin.Y;
             }
             else
             {
