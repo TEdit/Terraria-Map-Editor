@@ -87,7 +87,7 @@ namespace TEdit.Editor.Plugins
             private WriteableBitmap _preview;
             public WriteableBitmap Preview
             {
-                get { return _preview ?? (_preview=_generatedSchematic?.Preview); }
+                get { return _preview??=_generatedSchematic?.Preview; }
                 set { _preview = value; OnPropertyChanged(); }
             }
 
@@ -112,17 +112,17 @@ namespace TEdit.Editor.Plugins
 
             public ICommand ImportCommand
             {
-                get { return _importCommand ?? (_importCommand = new RelayCommand(ImportTemplateSchematic)); }
+                get { return _importCommand ??= new RelayCommand(ImportTemplateSchematic); }
             }
             
             public ICommand GenerateCommand
             {
-                get { return _generateCommand ?? (_generateCommand = new RelayCommand(() => Generate(SelectedTemplate),GenerateCanExecute)); }
+                get { return _generateCommand ??= new RelayCommand(() => Generate(SelectedTemplate),GenerateCanExecute); }
             }
             
             public ICommand CopyCommand
             {
-                get { return _copyCommand ?? (_copyCommand = new RelayCommand(Copy,CopyCanExecute)); }
+                get { return _copyCommand ??= new RelayCommand(Copy,CopyCanExecute); }
             }
             
             /*

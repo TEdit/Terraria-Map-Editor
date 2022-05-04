@@ -31,7 +31,7 @@ namespace TEdit.UI.Xaml
 
         public ICommand SaveAsVersionCommand
         {
-            get { return _saveAsCommand ?? (_saveAsCommand = new RelayCommand<string>(SaveAsVersionCommandAction)); }
+            get { return _saveAsCommand ??= new RelayCommand<string>(SaveAsVersionCommandAction); }
         }
 
         private void SaveAsVersionCommandAction(string gameVersion)

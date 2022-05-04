@@ -69,22 +69,22 @@ namespace TEdit.ViewModel
 
         public ICommand RequestPanCommand
         {
-            get { return _requestPanCommand ?? (_requestPanCommand = new RelayCommand<bool>(o => OnRequestPan(this, new EventArgs<bool>(o)))); }
+            get { return _requestPanCommand ??= new RelayCommand<bool>(o => OnRequestPan(this, new EventArgs<bool>(o))); }
         }
 
         public ICommand RequestZoomCommand
         {
-            get { return _requestZoomCommand ?? (_requestZoomCommand = new RelayCommand<bool>(o => OnRequestZoom(this, new EventArgs<bool>(o)))); }
+            get { return _requestZoomCommand ??= new RelayCommand<bool>(o => OnRequestZoom(this, new EventArgs<bool>(o))); }
         }
 
         public ICommand RequestScrollCommand
         {
-            get { return _requestScrollCommand ?? (_requestScrollCommand = new RelayCommand<ScrollEventArgs>(o => OnRequestScroll(this, new ScrollEventArgs(o.Direction, o.Amount)))); }
+            get { return _requestScrollCommand ??= new RelayCommand<ScrollEventArgs>(o => OnRequestScroll(this, new ScrollEventArgs(o.Direction, o.Amount))); }
         }
 
         public ICommand NpcAddCommand
         {
-            get { return _npcAddCommand ?? (_npcAddCommand = new RelayCommand<int>(AddNpc)); }
+            get { return _npcAddCommand ??= new RelayCommand<int>(AddNpc); }
         }
 
         private void AddNpc(int npcId)
@@ -112,7 +112,7 @@ namespace TEdit.ViewModel
 
         public ICommand NpcRemoveCommand
         {
-            get { return _npcRemoveCommand ?? (_npcRemoveCommand = new RelayCommand<NPC>(RemoveNpc)); }
+            get { return _npcRemoveCommand ??= new RelayCommand<NPC>(RemoveNpc); }
         }
 
         private void RemoveNpc(NPC npc)
@@ -135,22 +135,22 @@ namespace TEdit.ViewModel
 
         public ICommand SaveSignCommand
         {
-            get { return _saveSignCommand ?? (_saveSignCommand = new RelayCommand<bool>(SaveSign)); }
+            get { return _saveSignCommand ??= new RelayCommand<bool>(SaveSign); }
         }
 
         public ICommand SaveXmasCommand
         {
-            get { return _saveXmasCommand ?? (_saveXmasCommand = new RelayCommand<bool>(SaveXmasTree)); }
+            get { return _saveXmasCommand ??= new RelayCommand<bool>(SaveXmasTree); }
         }
 
         public ICommand SaveTileEntityCommand
         {
-            get { return _saveTileEntityCommand ?? (_saveTileEntityCommand = new RelayCommand<bool>(SaveTileEntity)); }
+            get { return _saveTileEntityCommand ??= new RelayCommand<bool>(SaveTileEntity); }
         }
 
         public ICommand ImportBestiaryCommand
         {
-            get { return _importBestiaryCommand ?? (_importBestiaryCommand = new RelayCommand(ImportKillsAndBestiary)); }
+            get { return _importBestiaryCommand ??= new RelayCommand(ImportKillsAndBestiary); }
         }
 
         private void SaveTileEntity(bool save)
@@ -250,7 +250,7 @@ namespace TEdit.ViewModel
         private ICommand _updateCommand;
         public ICommand UpdateCommand
         {
-            get { return _updateCommand ?? (_updateCommand = new RelayCommand(Update)); }
+            get { return _updateCommand ??= new RelayCommand(Update); }
         }
 
         public void Update()
@@ -270,12 +270,12 @@ namespace TEdit.ViewModel
 
         public ICommand SaveChestCommand
         {
-            get { return _saveChestCommand ?? (_saveChestCommand = new RelayCommand<bool>(SaveChest)); }
+            get { return _saveChestCommand ??= new RelayCommand<bool>(SaveChest); }
         }
 
         public ICommand RunPluginCommand
         {
-            get { return _runPluginCommand ?? (_runPluginCommand = new RelayCommand<IPlugin>(RunPlugin)); }
+            get { return _runPluginCommand ??= new RelayCommand<IPlugin>(RunPlugin); }
         }
 
         private void RunPlugin(IPlugin plugin)
@@ -285,26 +285,26 @@ namespace TEdit.ViewModel
 
         public ICommand NewWorldCommand
         {
-            get { return _newWorldCommand ?? (_newWorldCommand = new RelayCommand(NewWorld)); }
+            get { return _newWorldCommand ??= new RelayCommand(NewWorld); }
         }
         public ICommand RedoCommand
         {
-            get { return _redoCommand ?? (_redoCommand = new RelayCommand(UndoManager.Redo)); }
+            get { return _redoCommand ??= new RelayCommand(UndoManager.Redo); }
         }
 
         public ICommand UndoCommand
         {
-            get { return _undoCommand ?? (_undoCommand = new RelayCommand(UndoManager.Undo)); }
+            get { return _undoCommand ??= new RelayCommand(UndoManager.Undo); }
         }
 
         public ICommand CopyCommand
         {
-            get { return _copyCommand ?? (_copyCommand = new RelayCommand(EditCopy)); }
+            get { return _copyCommand ??= new RelayCommand(EditCopy); }
         }
 
         public ICommand CropCommand
         {
-            get { return _cropCommand ?? (_cropCommand = new RelayCommand(CropWorld)); }
+            get { return _cropCommand ??= new RelayCommand(CropWorld); }
         }
 
         
@@ -315,7 +315,7 @@ namespace TEdit.ViewModel
 
         public ICommand PasteCommand
         {
-            get { return _pasteCommand ?? (_pasteCommand = new RelayCommand(EditPaste)); }
+            get { return _pasteCommand ??= new RelayCommand(EditPaste); }
         }
         private bool CanPaste()
         {
@@ -323,42 +323,42 @@ namespace TEdit.ViewModel
         }
         public ICommand DeleteCommand
         {
-            get { return _deleteCommand ?? (_deleteCommand = new RelayCommand(EditDelete)); }
+            get { return _deleteCommand ??= new RelayCommand(EditDelete); }
         }
 
         public ICommand CloseApplicationCommand
         {
-            get { return _closeApplication ?? (_closeApplication = new RelayCommand(Application.Current.Shutdown)); }
+            get { return _closeApplication ??= new RelayCommand(Application.Current.Shutdown); }
         }
 
         public ICommand OpenCommand
         {
-            get { return _commandOpenWorld ?? (_commandOpenWorld = new RelayCommand(OpenWorld)); }
+            get { return _commandOpenWorld ??= new RelayCommand(OpenWorld); }
         }
 
         public ICommand SaveAsVersionCommand
         {
-            get { return _saveAsVersionCommand ?? (_saveAsVersionCommand = new RelayCommand(SaveWorldAsVersion)); }
+            get { return _saveAsVersionCommand ??= new RelayCommand(SaveWorldAsVersion); }
         }
 
         public ICommand SaveAsCommand
         {
-            get { return _saveAsCommand ?? (_saveAsCommand = new RelayCommand(SaveWorldAs)); }
+            get { return _saveAsCommand ??= new RelayCommand(SaveWorldAs); }
         }
 
         public ICommand SaveCommand
         {
-            get { return _saveCommand ?? (_saveCommand = new RelayCommand(SaveWorld)); }
+            get { return _saveCommand ??= new RelayCommand(SaveWorld); }
         }
 
         public ICommand SetTool
         {
-            get { return _setTool ?? (_setTool = new RelayCommand<ITool>(SetActiveTool)); }
+            get { return _setTool ??= new RelayCommand<ITool>(SetActiveTool); }
         }
 
         public ICommand SetLanguageCommand
         {
-            get { return _setLanguage ?? (_setLanguage = new RelayCommand<LanguageSelection>(SetLanguage)); }
+            get { return _setLanguage ??= new RelayCommand<LanguageSelection>(SetLanguage); }
         }
 
         private LanguageSelection _currentLanguage;
@@ -395,11 +395,11 @@ namespace TEdit.ViewModel
 
         public ICommand CopyChestItemCommand
         {
-            get { return _copyChestItemCommand ?? (_copyChestItemCommand = new RelayCommand<Item>(CopyChestItem)); }
+            get { return _copyChestItemCommand ??= new RelayCommand<Item>(CopyChestItem); }
         }
         public ICommand PasteChestItemCommand
         {
-            get { return _pasteChestItemCommand ?? (_pasteChestItemCommand = new RelayCommand<Item>(PasteChestItem)); }
+            get { return _pasteChestItemCommand ??= new RelayCommand<Item>(PasteChestItem); }
         }
 
         private Item _chestItemClipboard;
@@ -436,40 +436,40 @@ namespace TEdit.ViewModel
 
         public ICommand ClipboardSetActiveCommand
         {
-            get { return _clipboardSetActiveCommand ?? (_clipboardSetActiveCommand = new RelayCommand<ClipboardBuffer>(ActivateBuffer)); }
+            get { return _clipboardSetActiveCommand ??= new RelayCommand<ClipboardBuffer>(ActivateBuffer); }
         }
 
         public ICommand RemoveSchematicCommand
         {
-            get { return _removeSchematicCommand ?? (_removeSchematicCommand = new RelayCommand<ClipboardBuffer>(_clipboard.Remove)); }
+            get { return _removeSchematicCommand ??= new RelayCommand<ClipboardBuffer>(_clipboard.Remove); }
         }
 
         public ICommand ExportSchematicCommand
         {
-            get { return _exportSchematicCommand ?? (_exportSchematicCommand = new RelayCommand<ClipboardBuffer>(ExportSchematicFile)); }
+            get { return _exportSchematicCommand ??= new RelayCommand<ClipboardBuffer>(ExportSchematicFile); }
         }
 
         public ICommand ImportSchematicCommand
         {
-            get { return _importSchematicCommand ?? (_importSchematicCommand = new RelayCommand<bool>(ImportSchematic)); }
+            get { return _importSchematicCommand ??= new RelayCommand<bool>(ImportSchematic); }
         }
 
         public ICommand EmptyClipboardCommand
         {
-            get { return _emptyClipboardCommand ?? (_emptyClipboardCommand = new RelayCommand(_clipboard.ClearBuffers)); }
+            get { return _emptyClipboardCommand ??= new RelayCommand(_clipboard.ClearBuffers); }
         }
 
         public ICommand ClipboardFlipXCommand
         {
-            get { return _clipboardFlipXCommand ?? (_clipboardFlipXCommand = new RelayCommand<ClipboardBuffer>(_clipboard.FlipX)); }
+            get { return _clipboardFlipXCommand ??= new RelayCommand<ClipboardBuffer>(_clipboard.FlipX); }
         }
         public ICommand ClipboardFlipYCommand
         {
-            get { return _clipboardFlipYCommand ?? (_clipboardFlipYCommand = new RelayCommand<ClipboardBuffer>(_clipboard.FlipY)); }
+            get { return _clipboardFlipYCommand ??= new RelayCommand<ClipboardBuffer>(_clipboard.FlipY); }
         }
         public ICommand ClipboardRotateCommand
         {
-            get { return _clipboardRotateCommand ?? (_clipboardRotateCommand = new RelayCommand<ClipboardBuffer>(_clipboard.Rotate)); }
+            get { return _clipboardRotateCommand ??= new RelayCommand<ClipboardBuffer>(_clipboard.Rotate); }
         }
 
         private void ActivateBuffer(ClipboardBuffer item)
