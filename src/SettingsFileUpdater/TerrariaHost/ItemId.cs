@@ -2,7 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Threading;
-using System.Threading.Tasks;
 
 using Terraria;
 using Terraria.Localization;
@@ -10,12 +9,8 @@ using Terraria.Initializers;
 using Terraria.Social;
 using System.Text;
 using Terraria.ObjectData;
-using System.Reflection;
-using System;
 using System.IO;
-using System.Xml;
 using System.Xml.Linq;
-using System.Diagnostics;
 using Terraria.Map;
 
 namespace SettingsFileUpdater.TerrariaHost

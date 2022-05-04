@@ -3,8 +3,6 @@ using System.IO;
 using System.Windows.Forms;
 using Microsoft.Win32;
 using System.Diagnostics;
-using System.Windows.Input;
-using System.Windows.Documents;
 using System.Collections.Generic;
 
 namespace TEdit

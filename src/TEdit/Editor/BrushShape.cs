@@ -1,5 +1,4 @@
 ﻿using System.ComponentModel;
-using TEdit.UI.Xaml.Enum;
 
 namespace TEdit.Editor
 {

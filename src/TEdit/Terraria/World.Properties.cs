@@ -153,7 +153,7 @@ namespace TEdit.Terraria
         private bool _tempRaining;
         private int _tilesHigh;
         private int _tilesWide;
-        private bool _expertMode;
+        // private bool _expertMode; // legacy
         private Int64 _creationTime;
         private double _time;
         private string _title;

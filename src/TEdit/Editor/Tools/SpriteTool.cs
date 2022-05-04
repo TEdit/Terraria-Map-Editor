@@ -14,9 +14,7 @@ namespace TEdit.Editor.Tools
         private bool _isRightDown;
         private Vector2Int32 _startPoint;
         private Vector2Int32 _endPoint;
-        Vector2Short[,] tiles;
-        int tilex;
-        int tiley;
+
         public SpriteTool(WorldViewModel worldViewModel)
             : base(worldViewModel)
         {

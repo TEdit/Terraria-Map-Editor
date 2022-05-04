@@ -5,9 +5,7 @@ using TEdit.Geometry.Primitives;
 using Vector2 = TEdit.Geometry.Primitives.Vector2;
 using System;
 using System.IO;
-using TEdit.Terraria;
 using TEdit.Helper;
-using System.Linq;
 
 namespace TEdit.Terraria
 {
@@ -1005,7 +1003,7 @@ namespace TEdit.Terraria
                             rle--;
                         }
                     }
-                    catch (Exception ex)
+                    catch (Exception)
                     {
                         // forcing some recovery here
 

@@ -14,10 +14,7 @@ using TEdit.Editor.Plugins;
 using TEdit.Editor.Tools;
 using TEdit.Helper;
 using TEdit.Properties;
-using Microsoft.ApplicationInsights.DataContracts;
 using System.Collections.Generic;
-using TEdit.UI.Xaml;
-using TEdit.View;
 
 namespace TEdit.ViewModel
 {
@@ -39,10 +36,8 @@ namespace TEdit.ViewModel
         private ICommand _runPluginCommand;
         private ICommand _saveChestCommand;
         private ICommand _saveSignCommand;
-        private ICommand _saveMannCommand;
         private ICommand _saveXmasCommand;
         private ICommand _saveTileEntityCommand;
-        private ICommand _saveRackCommand;
         private ICommand _npcRemoveCommand;
         private ICommand _importBestiaryCommand;
 

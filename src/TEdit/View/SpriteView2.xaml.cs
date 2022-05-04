@@ -1,13 +1,7 @@
-﻿using System.Windows;
-using System.Windows.Controls;
+﻿using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Input;
-using System.Linq;
-using TEdit.Terraria;
 using TEdit.ViewModel;
-using TEdit.Terraria.Objects;
-using System.Collections.Generic;
-using System;
 
 namespace TEdit.View
 {

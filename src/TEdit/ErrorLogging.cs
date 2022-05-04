@@ -51,7 +51,7 @@ namespace TEdit
                             fi.Delete();
                         }
                     }
-                    catch (Exception err)
+                    catch (Exception)
                     {
                         // skip deleting this file
                     }

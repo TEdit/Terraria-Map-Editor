@@ -3,7 +3,6 @@ using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using GalaSoft.MvvmLight;
-using TEdit.Terraria;
 using TEdit.Terraria.Objects;
 using TEdit.ViewModel;
 

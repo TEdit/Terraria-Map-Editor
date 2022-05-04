@@ -60,7 +60,7 @@ namespace TEdit.Geometry.Primitives
 
         public bool Contains(T x, T y)
         {
-            T zero = default(T);
+            T zero = default;
             T xabs = GenericOperator.Operator.Subtract(x, Left);
             T yabs = GenericOperator.Operator.Subtract(y, Top);
             if (GenericOperator.Operator.LessThan(xabs, zero))

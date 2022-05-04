@@ -4,7 +4,6 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
 using System.Net.Http;
-using System.Reflection;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Timers;
@@ -1060,7 +1059,7 @@ namespace TEdit.ViewModel
                             return;
                         }
                     }
-                    catch (Exception _)
+                    catch (Exception)
                     {
                         // fall back to default save
                     }
