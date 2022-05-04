@@ -23,9 +23,9 @@
         </Grid.RowDefinitions>
         <TextBox Name="tbStatue" AcceptsReturn="True" VerticalScrollBarVisibility="Visible" MinWidth="400" MaxWidth="400" MinLines="10" TextWrapping="Wrap" Text="{Binding TextValue, Mode=TwoWay}"/>
         <StackPanel Grid.Row ="1" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,5">
-            <Button Content="Left" Width="60" Click="Left"/>
-            <Button Content="Center" Width="60" Click="Center"/>
-            <Button Content="Right" Width="60" Click="Right"/>
+            <Button Content="Left" Width="60" Click="SetLeft"/>
+            <Button Content="Center" Width="60" Click="SetCenter"/>
+            <Button Content="Right" Width="60" Click="SetRight"/>
         </StackPanel>
         <UniformGrid Rows="3" Columns="2" Grid.Row="2">
             <TextBlock Text="Line Spacing" Foreground="White"/>

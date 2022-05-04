@@ -5,7 +5,6 @@ using System.Linq;
 using System.Windows;
 using TEdit.Geometry.Primitives;
 using GalaSoft.MvvmLight;
-using GalaSoft.MvvmLight.Threading;
 using TEdit.Terraria.Objects;
 using TEdit.MvvmLight.Threading;
 using TEdit.Editor;

@@ -4,7 +4,6 @@ using System.Linq;
 using TEdit.Geometry.Primitives;
 using TEdit.Editor;
 using TEdit.ViewModel;
-using TEdit.Terraria;
 
 /* Heathtech */
 namespace TEdit.Terraria.Objects

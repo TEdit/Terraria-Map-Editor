@@ -5,7 +5,6 @@ using System.Reflection;
 using System.Windows;
 using TEdit.MvvmLight.Threading;
 using TEdit.Properties;
-using TEdit.Terraria;
 using TEdit.ViewModel;
 using DispatcherHelper = GalaSoft.MvvmLight.Threading.DispatcherHelper;
 

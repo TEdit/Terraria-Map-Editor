@@ -35,7 +35,7 @@ namespace TEdit.Editor.Plugins
         private WriteableBitmap _preview;
         public WriteableBitmap Preview
         {
-            get { return _preview ?? (_preview = _generatedSchematic?.Preview); }
+            get { return _preview ??= _generatedSchematic?.Preview; }
             set { _preview = value; OnPropertyChanged(); }
         }
 

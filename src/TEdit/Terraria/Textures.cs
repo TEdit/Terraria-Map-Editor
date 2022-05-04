@@ -4,7 +4,6 @@ using System.IO;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
-using TEdit;
 
 namespace TEdit.Terraria
 {
@@ -29,7 +28,7 @@ namespace TEdit.Terraria
         public Dictionary<int, Texture2D> ArmorFemale { get; } = new Dictionary<int, Texture2D>();
         public Dictionary<int, Texture2D> ArmorLegs { get; } = new Dictionary<int, Texture2D>();
         public Dictionary<int, Texture2D> Item { get; } = new Dictionary<int, Texture2D>();
-        public Texture2D Actuator { get { return _actuator ?? (_actuator = (Texture2D)GetMisc("Actuator")); } }
+        public Texture2D Actuator { get { return _actuator ??= (Texture2D)GetMisc("Actuator"); } }
 
         public ContentManager ContentManager { get; }
 

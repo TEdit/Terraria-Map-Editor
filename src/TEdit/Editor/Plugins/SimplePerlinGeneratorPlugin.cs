@@ -1,7 +1,6 @@
 using System;
 using Microsoft.Xna.Framework;
 using TEdit.ViewModel;
-using TEdit.Terraria;
 
 namespace TEdit.Editor.Plugins
 {

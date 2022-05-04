@@ -4,7 +4,6 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
 using System.Net.Http;
-using System.Reflection;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Timers;
@@ -102,7 +101,7 @@ namespace TEdit.ViewModel
 
         public ICommand CheckUpdatesCommand
         {
-            get { return _checkUpdatesCommand ?? (_checkUpdatesCommand = new RelayCommand<bool>(CheckVersion)); }
+            get { return _checkUpdatesCommand ??= new RelayCommand<bool>(CheckVersion); }
         }
 
         static WorldViewModel()
@@ -261,7 +260,7 @@ namespace TEdit.ViewModel
 
         public ICommand LaunchWikiCommand
         {
-            get { return _launchWikiCommand ?? (_launchWikiCommand = new RelayCommand(() => LaunchUrl("http://github.com/BinaryConstruct/Terraria-Map-Editor/wiki"))); }
+            get { return _launchWikiCommand ??= new RelayCommand(() => LaunchUrl("http://github.com/BinaryConstruct/Terraria-Map-Editor/wiki")); }
         }
 
         /* SBLogic - catch exception if browser can't be launched */
@@ -625,12 +624,12 @@ namespace TEdit.ViewModel
         }
         public ICommand ShowNewsCommand
         {
-            get { return _showNewsCommand ?? (_showNewsCommand = new RelayCommand(ShowNewsDialog)); }
+            get { return _showNewsCommand ??= new RelayCommand(ShowNewsDialog); }
         }
 
         public ICommand ViewLogCommand
         {
-            get { return _viewLogCommand ?? (_viewLogCommand = new RelayCommand(ViewLog)); }
+            get { return _viewLogCommand ??= new RelayCommand(ViewLog); }
         }
 
         public bool CheckUpdates
@@ -780,7 +779,7 @@ namespace TEdit.ViewModel
         /// </summary>
         public ICommand AnalyzeWorldSaveCommand
         {
-            get { return _analyzeWorldSaveCommand ?? (_analyzeWorldSaveCommand = new RelayCommand(AnalyzeWorldSave)); }
+            get { return _analyzeWorldSaveCommand ??= new RelayCommand(AnalyzeWorldSave); }
         }
 
         private void AnalyzeWorldSave()
@@ -804,7 +803,7 @@ namespace TEdit.ViewModel
         /// </summary>
         public ICommand AnalyzeWorldCommand
         {
-            get { return _analyzeWorldCommand ?? (_analyzeWorldCommand = new RelayCommand(AnalyzeWorld)); }
+            get { return _analyzeWorldCommand ??= new RelayCommand(AnalyzeWorld); }
         }
 
         private void AnalyzeWorld()
@@ -825,7 +824,7 @@ namespace TEdit.ViewModel
 
         public ICommand LoadTallyCommand
         {
-            get { return _tallyCountCommand ?? (_tallyCountCommand = new RelayCommand(GetTallyCount)); }
+            get { return _tallyCountCommand ??= new RelayCommand(GetTallyCount); }
         }
 
         private void GetTallyCount()
@@ -1060,7 +1059,7 @@ namespace TEdit.ViewModel
                             return;
                         }
                     }
-                    catch (Exception _)
+                    catch (Exception)
                     {
                         // fall back to default save
                     }

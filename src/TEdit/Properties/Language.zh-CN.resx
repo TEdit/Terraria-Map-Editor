@@ -585,6 +585,9 @@
   <data name="tool_clipboard_ispastewire" xml:space="preserve">
     <value>粘贴电线</value>
   </data>
+  <data name="tool_clipboard_ispastesprite" xml:space="preserve">
+    <value>粘贴精灵</value>
+  </data>
   <data name="tool_fill_title" xml:space="preserve">
     <value>填充</value>
   </data>

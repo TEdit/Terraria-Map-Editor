@@ -27,19 +27,19 @@ namespace TEdit.Editor.Plugins
             Close();
         }
 
-        private void Left(object sender, RoutedEventArgs e)
+        private void SetLeft(object sender, RoutedEventArgs e)
         {
             tbStatue.TextAlignment = TextAlignment.Left;
             ViewModel.Justification = tbStatue.TextAlignment;
         }
 
-        private void Center(object sender, RoutedEventArgs e)
+        private void SetCenter(object sender, RoutedEventArgs e)
         {
             tbStatue.TextAlignment = TextAlignment.Center;
             ViewModel.Justification = tbStatue.TextAlignment;
         }
 
-        private void Right(object sender, RoutedEventArgs e)
+        private void SetRight(object sender, RoutedEventArgs e)
         {
             tbStatue.TextAlignment = TextAlignment.Right;
             ViewModel.Justification = tbStatue.TextAlignment;

@@ -1167,4 +1167,7 @@ Press retry to pick a new folder or cancel to use {0} as your terraria path.</va
   <data name="bestiary_save" xml:space="preserve">
     <value>Save</value>
   </data>
+  <data name="tool_clipboard_ispastesprite" xml:space="preserve">
+    <value>Paste Sprites</value>
+  </data>
 </root>

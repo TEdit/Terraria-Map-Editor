@@ -5,7 +5,6 @@ using TEdit.Geometry;
 using TEdit.Geometry.Primitives;
 using TEdit.Terraria;
 using TEdit.ViewModel;
-using TEdit.Terraria.Objects;
 namespace TEdit.Editor.Tools
 {
     public sealed class SpriteTool2 : BaseTool
@@ -14,10 +13,6 @@ namespace TEdit.Editor.Tools
         private bool _isRightDown;
         private Vector2Int32 _startPoint;
         private Vector2Int32 _endPoint;
-        Vector2Short[,] tiles;
-        int tilex;
-        int tiley;
-
         public SpriteTool2(WorldViewModel worldViewModel)
             : base(worldViewModel)
         {

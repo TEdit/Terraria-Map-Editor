@@ -172,7 +172,7 @@ namespace TEdit.Utility
 
         public static T Clone<T>(this T obj)
         {
-            T copy = default(T);
+            T copy = default;
             using (var stream = new MemoryStream())
             {
                 var ser = new DataContractSerializer(typeof(T));

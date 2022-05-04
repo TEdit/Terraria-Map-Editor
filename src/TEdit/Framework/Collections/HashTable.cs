@@ -92,7 +92,7 @@ namespace TEdit.Framework.Collections
         private OneManyLock writeLock;
         //SpinLock writeLock;
 
-        static readonly Node DeletedNode = new Node() { Key = default(TKey), Data = default(TData), Token = Token.Deleted };
+        static readonly Node DeletedNode = new Node() { Key = default, Data = default, Token = Token.Deleted };
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Hashtable&lt;Key, Data&gt;"/> class.
@@ -251,7 +251,7 @@ namespace TEdit.Framework.Collections
             }
             else
             {
-                data = default(TData);
+                data = default;
                 return false;
             }
         }
