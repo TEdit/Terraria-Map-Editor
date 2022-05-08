@@ -26,6 +26,7 @@ namespace TEdit.Terraria
     {
         public static SaveConfiguration SaveConfiguration { get; set; }
         public static BestiaryData BestiaryData { get; set; }
+        public static MaxTileData MaxTileData { get; set; }
 
         private static readonly Dictionary<string, XNA.Color> _globalColors = new Dictionary<string, XNA.Color>();
         private static readonly Dictionary<string, int> _npcIds = new Dictionary<string, int>();
@@ -84,8 +85,11 @@ namespace TEdit.Terraria
             var saveVersionPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "TerrariaVersionTileData.json");
             LoadSaveVersions(saveVersionPath);
 
-            var bestiaryDataPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "bestiarydata.json");
+            var bestiaryDataPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "BestiaryData.json");
             LoadBestiaryData(bestiaryDataPath);
+
+            var maxTileDataPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "MaxTileIDs.json");
+            LoadMaxTileData(maxTileDataPath);
 
             // Used to dynamically update static CompatibleVersion
             CompatibleVersion = (uint)SaveConfiguration.SaveVersions.Keys.Max();
@@ -182,6 +186,16 @@ namespace TEdit.Terraria
                 }
             }
             return XNA.Color.Magenta;
+        }
+
+        private static void LoadMaxTileData(string fileName)
+        {
+            using (StreamReader file = File.OpenText(fileName))
+            using (JsonTextReader reader = new JsonTextReader(file))
+            {
+                JsonSerializer serializer = new JsonSerializer();
+                MaxTileData = serializer.Deserialize<MaxTileData>(reader);
+            }
         }
 
         private static void LoadSaveVersions(string fileName)
