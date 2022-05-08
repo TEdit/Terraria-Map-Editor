@@ -84,7 +84,7 @@ namespace TEdit.Terraria
             var saveVersionPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "TerrariaVersionTileData.json");
             LoadSaveVersions(saveVersionPath);
 
-            var bestiaryDataPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "bestiarydata.json");
+            var bestiaryDataPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "BestiaryData.json");
             LoadBestiaryData(bestiaryDataPath);
 
             // Used to dynamically update static CompatibleVersion

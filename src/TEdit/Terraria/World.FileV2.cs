@@ -207,7 +207,11 @@ namespace TEdit.Terraria
                     tileData[headerIndex] = header1;
                     // end rle compression
 
-                    bw.Write(tileData, headerIndex, dataIndex - headerIndex);
+                    // check if target version allows tile/wall.
+                    if (tile.Type <= MaxTileID | tile.Wall <= MaxWallID)
+                    {
+                        bw.Write(tileData, headerIndex, dataIndex - headerIndex);
+                    }
                 }
             }
 
@@ -369,7 +373,9 @@ namespace TEdit.Terraria
                 for (int slot = 0; slot < Chest.MaxItems; slot++)
                 {
                     Item item = chest.Items[slot];
-                    if (item != null)
+
+                    // check if target version allows item.
+                    if (item != null && item.NetId <= MaxItemID)
                     {
                         bw.Write((short)item.StackSize);
                         if (item.StackSize > 0)
