@@ -5,12 +5,12 @@
       "MaxWall": 12,
       "MaxItem": 193
     },
-	"2": {
+    "2": {
       "MaxTile": 80,
       "MaxWall": 13,
       "MaxItem": 234
     },
-	"3": {
+    "3": {
       "MaxTile": 80,
       "MaxWall": 13,
       "MaxItem": 235
@@ -100,7 +100,7 @@
       "MaxWall": 144,
       "MaxItem": 2288
     },
-	"94": {
+    "94": {
       "MaxTile": 314,
       "MaxWall": 144,
       "MaxItem": 2288
@@ -205,7 +205,7 @@
       "MaxWall": 230,
       "MaxItem": 3883
     },
-	"187": {
+    "187": {
       "MaxTile": 467,
       "MaxWall": 230,
       "MaxItem": 3883
@@ -215,7 +215,7 @@
       "MaxWall": 230,
       "MaxItem": 3883
     },
-	"191": {
+    "191": {
       "MaxTile": 470,
       "MaxWall": 230,
       "MaxItem": 3929
@@ -225,7 +225,7 @@
       "MaxWall": 230,
       "MaxItem": 3929
     },
-	"193": {
+    "193": {
       "MaxTile": 470,
       "MaxWall": 230,
       "MaxItem": 3929
@@ -285,47 +285,47 @@
       "MaxWall": 315,
       "MaxItem": 5087
     },
-	"237": {
+    "237": {
       "MaxTile": 624,
       "MaxWall": 315,
       "MaxItem": 5087
     },
-	"238": {
+    "238": {
       "MaxTile": 624,
       "MaxWall": 315,
       "MaxItem": 5087
     },
-	"242": {
+    "242": {
       "MaxTile": 625,
       "MaxWall": 315,
       "MaxItem": 5124
     },
-	"243": {
+    "243": {
       "MaxTile": 625,
       "MaxWall": 315,
       "MaxItem": 5124
     },
-	"244": {
+    "244": {
       "MaxTile": 625,
       "MaxWall": 315,
       "MaxItem": 5124
     },
-	"245": {
+    "245": {
       "MaxTile": 625,
       "MaxWall": 315,
       "MaxItem": 5124
     },
-	"246": {
+    "246": {
       "MaxTile": 625,
       "MaxWall": 315,
       "MaxItem": 5124
     },
-	"247": {
+    "247": {
       "MaxTile": 625,
       "MaxWall": 315,
       "MaxItem": 5124
     },
-	"248": {
+    "248": {
       "MaxTile": 625,
       "MaxWall": 315,
       "MaxItem": 5124
