@@ -143,11 +143,11 @@ namespace TEdit.ViewModel
                 }
                 foreach (string line in World.BestiaryData.BestiaryTalkedIDs)
                 {
-                    bestiary.NPCChat.Add(line);
+                    bestiaryEdits.NPCChat.Add(line);
                 }
                 foreach (string line in World.BestiaryData.BestiaryNearIDs)
                 {
-                    bestiary.NPCNear.Add(line);
+                    bestiaryEdits.NPCNear.Add(line);
                 }
 
                 _wvm.CurrentWorld.Bestiary = bestiaryEdits;
