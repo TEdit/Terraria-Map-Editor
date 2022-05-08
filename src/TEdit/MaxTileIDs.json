@@ -1,0 +1,334 @@
+{
+  "saveVersions": {
+    "1": {
+      "MaxTile": 76,
+      "MaxWall": 12,
+      "MaxItem": 193
+    },
+    "2": {
+      "MaxTile": 80,
+      "MaxWall": 13,
+      "MaxItem": 234
+    },
+    "3": {
+      "MaxTile": 80,
+      "MaxWall": 13,
+      "MaxItem": 235
+    },
+    "4": {
+      "MaxTile": 80,
+      "MaxWall": 13,
+      "MaxItem": 238
+    },
+    "9": {
+      "MaxTile": 80,
+      "MaxWall": 13,
+      "MaxItem": 264
+    },
+    "12": {
+      "MaxTile": 86,
+      "MaxWall": 13,
+      "MaxItem": 326
+    },
+    "20": {
+      "MaxTile": 106,
+      "MaxWall": 20,
+      "MaxItem": 362
+    },
+    "22": {
+      "MaxTile": 107,
+      "MaxWall": 20,
+      "MaxItem": 363
+    },
+    "36": {
+      "MaxTile": 145,
+      "MaxWall": 28,
+      "MaxItem": 585
+    },
+    "37": {
+      "MaxTile": 150,
+      "MaxWall": 31,
+      "MaxItem": 602
+    },
+    "39": {
+      "MaxTile": 150,
+      "MaxWall": 31,
+      "MaxItem": 603
+    },
+    "67": {
+      "MaxTile": 251,
+      "MaxWall": 111,
+      "MaxItem": 1613
+    },
+    "68": {
+      "MaxTile": 251,
+      "MaxWall": 111,
+      "MaxItem": 1613
+    },
+    "69": {
+      "MaxTile": 251,
+      "MaxWall": 111,
+      "MaxItem": 1614
+    },
+    "70": {
+      "MaxTile": 251,
+      "MaxWall": 112,
+      "MaxItem": 1724
+    },
+    "71": {
+      "MaxTile": 251,
+      "MaxWall": 112,
+      "MaxItem": 1724
+    },
+    "72": {
+      "MaxTile": 255,
+      "MaxWall": 115,
+      "MaxItem": 1857
+    },
+    "73": {
+      "MaxTile": 255,
+      "MaxWall": 115,
+      "MaxItem": 1866
+    },
+    "77": {
+      "MaxTile": 255,
+      "MaxWall": 125,
+      "MaxItem": 1965
+    },
+    "93": {
+      "MaxTile": 314,
+      "MaxWall": 144,
+      "MaxItem": 2288
+    },
+    "94": {
+      "MaxTile": 314,
+      "MaxWall": 144,
+      "MaxItem": 2288
+    },
+    "101": {
+      "MaxTile": 340,
+      "MaxWall": 171,
+      "MaxItem": 2742
+    },
+    "102": {
+      "MaxTile": 340,
+      "MaxWall": 171,
+      "MaxItem": 2748
+    },
+    "146": {
+      "MaxTile": 419,
+      "MaxWall": 224,
+      "MaxItem": 3600
+    },
+    "147": {
+      "MaxTile": 419,
+      "MaxWall": 224,
+      "MaxItem": 3600
+    },
+    "149": {
+      "MaxTile": 419,
+      "MaxWall": 224,
+      "MaxItem": 3600
+    },
+    "151": {
+      "MaxTile": 419,
+      "MaxWall": 224,
+      "MaxItem": 3600
+    },
+    "153": {
+      "MaxTile": 419,
+      "MaxWall": 224,
+      "MaxItem": 3601
+    },
+    "154": {
+      "MaxTile": 419,
+      "MaxWall": 224,
+      "MaxItem": 3601
+    },
+    "155": {
+      "MaxTile": 419,
+      "MaxWall": 224,
+      "MaxItem": 3601
+    },
+    "156": {
+      "MaxTile": 419,
+      "MaxWall": 224,
+      "MaxItem": 3601
+    },
+    "168": {
+      "MaxTile": 446,
+      "MaxWall": 224,
+      "MaxItem": 3729
+    },
+    "169": {
+      "MaxTile": 446,
+      "MaxWall": 224,
+      "MaxItem": 3729
+    },
+    "172": {
+      "MaxTile": 461,
+      "MaxWall": 230,
+      "MaxItem": 3769
+    },
+    "173": {
+      "MaxTile": 461,
+      "MaxWall": 230,
+      "MaxItem": 3769
+    },
+    "175": {
+      "MaxTile": 463,
+      "MaxWall": 230,
+      "MaxItem": 3796
+    },
+    "176": {
+      "MaxTile": 463,
+      "MaxWall": 230,
+      "MaxItem": 3796
+    },
+    "177": {
+      "MaxTile": 463,
+      "MaxWall": 230,
+      "MaxItem": 3796
+    },
+    "184": {
+      "MaxTile": 467,
+      "MaxWall": 230,
+      "MaxItem": 3883
+    },
+    "185": {
+      "MaxTile": 467,
+      "MaxWall": 230,
+      "MaxItem": 3883
+    },
+    "186": {
+      "MaxTile": 467,
+      "MaxWall": 230,
+      "MaxItem": 3883
+    },
+    "187": {
+      "MaxTile": 467,
+      "MaxWall": 230,
+      "MaxItem": 3883
+    },
+    "188": {
+      "MaxTile": 467,
+      "MaxWall": 230,
+      "MaxItem": 3883
+    },
+    "191": {
+      "MaxTile": 470,
+      "MaxWall": 230,
+      "MaxItem": 3929
+    },
+    "192": {
+      "MaxTile": 470,
+      "MaxWall": 230,
+      "MaxItem": 3929
+    },
+    "193": {
+      "MaxTile": 470,
+      "MaxWall": 230,
+      "MaxItem": 3929
+    },
+    "194": {
+      "MaxTile": 470,
+      "MaxWall": 230,
+      "MaxItem": 3929
+    },
+    "225": {
+      "MaxTile": 623,
+      "MaxWall": 315,
+      "MaxItem": 5042
+    },
+    "226": {
+      "MaxTile": 623,
+      "MaxWall": 315,
+      "MaxItem": 5042
+    },
+    "227": {
+      "MaxTile": 623,
+      "MaxWall": 315,
+      "MaxItem": 5042
+    },
+    "228": {
+      "MaxTile": 623,
+      "MaxWall": 315,
+      "MaxItem": 5042
+    },
+    "230": {
+      "MaxTile": 623,
+      "MaxWall": 315,
+      "MaxItem": 5044
+    },
+    "232": {
+      "MaxTile": 624,
+      "MaxWall": 315,
+      "MaxItem": 5087
+    },
+    "233": {
+      "MaxTile": 624,
+      "MaxWall": 315,
+      "MaxItem": 5087
+    },
+    "234": {
+      "MaxTile": 624,
+      "MaxWall": 315,
+      "MaxItem": 5087
+    },
+    "235": {
+      "MaxTile": 624,
+      "MaxWall": 315,
+      "MaxItem": 5087
+    },
+    "236": {
+      "MaxTile": 624,
+      "MaxWall": 315,
+      "MaxItem": 5087
+    },
+    "237": {
+      "MaxTile": 624,
+      "MaxWall": 315,
+      "MaxItem": 5087
+    },
+    "238": {
+      "MaxTile": 624,
+      "MaxWall": 315,
+      "MaxItem": 5087
+    },
+    "242": {
+      "MaxTile": 625,
+      "MaxWall": 315,
+      "MaxItem": 5124
+    },
+    "243": {
+      "MaxTile": 625,
+      "MaxWall": 315,
+      "MaxItem": 5124
+    },
+    "244": {
+      "MaxTile": 625,
+      "MaxWall": 315,
+      "MaxItem": 5124
+    },
+    "245": {
+      "MaxTile": 625,
+      "MaxWall": 315,
+      "MaxItem": 5124
+    },
+    "246": {
+      "MaxTile": 625,
+      "MaxWall": 315,
+      "MaxItem": 5124
+    },
+    "247": {
+      "MaxTile": 625,
+      "MaxWall": 315,
+      "MaxItem": 5124
+    },
+    "248": {
+      "MaxTile": 625,
+      "MaxWall": 315,
+      "MaxItem": 5124
+    }
+  }
+}

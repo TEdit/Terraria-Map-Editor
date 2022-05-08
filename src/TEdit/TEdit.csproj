@@ -35,7 +35,8 @@
 
   <ItemGroup>
     <None Remove="Images/**/*" />
-    <None Remove="bestiarydata.json" />
+    <None Remove="BestiaryData.json" />
+    <None Remove="MaxTileIDs.json" />
     <None Remove="settings.xml" />
     <None Remove="TerrariaVersionTileData.json" />
   </ItemGroup>
@@ -45,7 +46,10 @@
     <Content Include="settings.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="bestiarydata.json">
+    <Content Include="BestiaryData.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="MaxTileIDs.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="TerrariaVersionTileData.json">
