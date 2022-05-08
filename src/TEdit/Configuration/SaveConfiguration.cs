@@ -3,6 +3,14 @@ using System.Linq;
 
 namespace TEdit.Configuration
 {
+    public class MaxTileData
+    {
+        public int MaxTileVersion { get; set; }
+        public int MaxTileID { get; set; }
+        public int MaxWallID { get; set; }
+        public int MaxItemID { get; set; }
+    }
+
     public class BestiaryData
     {
         public List<string> BestiaryTalkedIDs { get; set; } = new List<string>();
@@ -23,7 +31,6 @@ namespace TEdit.Configuration
         public HashSet<int> FramedTileIds { get; set; }
         public bool[] GetFrames()
         {
-
             var max = FramedTileIds.Max();
             var frames = new bool[max + 1];
 
