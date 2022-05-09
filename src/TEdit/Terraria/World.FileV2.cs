@@ -109,7 +109,7 @@ namespace TEdit.Terraria
             sectionPointers[2] = SaveTiles(world.Tiles, (int)world.Version, world.TilesWide, world.TilesHigh, bw, world.TileFrameImportant);
 
             OnProgressChanged(null, new ProgressChangedEventArgs(91, "Save Chests..."));
-            sectionPointers[3] = SaveChests(world.Chests, bw, world.Version < 226);
+            sectionPointers[3] = SaveChests(world.Chests, bw, (int)world.Version, world.Version < 226);
             OnProgressChanged(null, new ProgressChangedEventArgs(92, "Save Signs..."));
             sectionPointers[4] = SaveSigns(world.Signs, bw, world.Version < 226);
             OnProgressChanged(null, new ProgressChangedEventArgs(93, "Save NPCs..."));
@@ -208,7 +208,7 @@ namespace TEdit.Terraria
                     // end rle compression
 
                     // check if target version allows tile/wall.
-                    if (tile.Type <= MaxTileId | tile.Wall <= MaxWallId)
+                    if (tile.Type <= SaveConfiguration.SaveVersions[version].MaxTileId && tile.Wall <= SaveConfiguration.SaveVersions[version].MaxWallId)
                     {
                         bw.Write(tileData, headerIndex, dataIndex - headerIndex);
                     }
@@ -357,7 +357,7 @@ namespace TEdit.Terraria
             return tileData;
         }
 
-        public static int SaveChests(IList<Chest> chests, BinaryWriter bw, bool useLegacyLimit = false)
+        public static int SaveChests(IList<Chest> chests, BinaryWriter bw, int version, bool useLegacyLimit = false)
         {
             Int16 count = useLegacyLimit ? (Int16)Math.Min(chests.Count, Chest.LegacyLimit) : (Int16)chests.Count;
             bw.Write(count);
@@ -375,7 +375,7 @@ namespace TEdit.Terraria
                     Item item = chest.Items[slot];
 
                     // check if target version allows item.
-                    if (item != null && item.NetId <= MaxItemId)
+                    if (item != null && item.NetId <= SaveConfiguration.SaveVersions[version].MaxItemId)
                     {
                         bw.Write((short)item.StackSize);
                         if (item.StackSize > 0)
