@@ -165,6 +165,18 @@ namespace TEdit.Terraria
                 {
                     Tile tile = tiles[x, y];
 
+                    // check if target version allows tile/wall.
+                    if (tile.Type >= SaveConfiguration.SaveVersions[version].MaxTileId)
+                    {
+                        tile.U = 0;
+                        tile.IsActive = false;
+                    }
+                    if (tile.Wall >= SaveConfiguration.SaveVersions[version].MaxWallId)
+                    {
+                        tile.Wall = 0;
+                        tile.IsActive = false;
+                    }
+
                     int dataIndex;
                     int headerIndex;
 
@@ -207,11 +219,7 @@ namespace TEdit.Terraria
                     tileData[headerIndex] = header1;
                     // end rle compression
 
-                    // check if target version allows tile/wall.
-                    if (tile.Type <= SaveConfiguration.SaveVersions[version].MaxTileId && tile.Wall <= SaveConfiguration.SaveVersions[version].MaxWallId)
-                    {
-                        bw.Write(tileData, headerIndex, dataIndex - headerIndex);
-                    }
+                    bw.Write(tileData, headerIndex, dataIndex - headerIndex);
                 }
             }
 
