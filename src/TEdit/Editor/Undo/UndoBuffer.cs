@@ -107,10 +107,12 @@ namespace TEdit.Editor.Undo
 
         public void Close()
         {
-            Debug.WriteLine($"Saving {file}");
+            var world = ViewModelLocator.WorldViewModel.CurrentWorld;
+            var version = world?.Version ?? World.CompatibleVersion;
 
+            Debug.WriteLine($"Saving {file}");
             SaveTileData();
-            World.SaveChests(Chests, _writer);
+            World.SaveChests(Chests, _writer, (int)version);
             World.SaveSigns(Signs, _writer);
             World.SaveTileEntities(TileEntities, _writer);
             _writer.BaseStream.Position = (long)0;
