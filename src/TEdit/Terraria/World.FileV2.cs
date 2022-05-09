@@ -174,7 +174,6 @@ namespace TEdit.Terraria
                     if (tile.Wall >= SaveConfiguration.SaveVersions[version].MaxWallId)
                     {
                         tile.Wall = 0;
-                        tile.IsActive = false;
                     }
 
                     int dataIndex;
