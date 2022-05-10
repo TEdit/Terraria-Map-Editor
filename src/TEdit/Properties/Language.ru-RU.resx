@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="BrickStyle_Full" xml:space="preserve">
-    <value>Полный блок</value>
+    <value>Заполнить блок</value>
   </data>
   <data name="BrickStyle_HalfBrick" xml:space="preserve">
     <value>Полублок</value>
@@ -349,7 +349,7 @@
     <comment>enum:MorphBiome.Corruption</comment>
   </data>
   <data name="MorphBiome_Crimson" xml:space="preserve">
-    <value>Кримзон</value>
+    <value>Багрянец</value>
     <comment>enum:MorphBiome.Crimson</comment>
   </data>
   <data name="MorphBiome_Custom" xml:space="preserve">
@@ -369,7 +369,7 @@
     <comment>enum:MorphBiome.Jungle</comment>
   </data>
   <data name="MorphBiome_Purify" xml:space="preserve">
-    <value>Очистить</value>
+    <value>Ясно</value>
     <comment>enum:MorphBiome.Purify</comment>
   </data>
   <data name="PaintMode_Liquid" xml:space="preserve">
@@ -814,7 +814,7 @@
     <value>Медь</value>
   </data>
   <data name="tool_wp_crimson" xml:space="preserve">
-    <value>Кримзон</value>
+    <value>Багрянец</value>
   </data>
   <data name="tool_wp_difficulty" xml:space="preserve">
     <value>Сложность</value>
@@ -823,7 +823,7 @@
     <value>Хардмод</value>
   </data>
   <data name="tool_wp_drunk" xml:space="preserve">
-    <value>«Пьяный» мир</value>
+    <value>Пьяный мир</value>
   </data>
   <data name="tool_wp_event" xml:space="preserve">
     <value>Нашествие</value>
@@ -835,7 +835,7 @@
     <value>Золото</value>
   </data>
   <data name="tool_wp_gooworld" xml:space="preserve">
-    <value>Goo World</value>
+    <value>Хороший мир</value>
   </data>
   <data name="tool_wp_guid" xml:space="preserve">
     <value>ID мира</value>
@@ -1099,7 +1099,7 @@
     <value>العربية</value>
   </data>
   <data name="tool_wp_tenthanniversary" xml:space="preserve">
-    <value>Десятилетие</value>
+    <value>Десятая годовщина</value>
   </data>
   <data name="tool_wp_boss_deerclops" xml:space="preserve">
     <value>Циклолень</value>
@@ -1108,10 +1108,10 @@
     <value>Редактировать</value>
   </data>
   <data name="tool_wp_dontstarve" xml:space="preserve">
-    <value>Не голодайте мир</value>
+    <value>Мир Don't Starve</value>
   </data>
   <data name="tool_wp_notthebees" xml:space="preserve">
-    <value>Не мир пчел</value>
+    <value>Мир "Только не пчёлы!"</value>
   </data>
   <data name="JunctionBoxMode_Left" xml:space="preserve">
     <value>Лицом влево</value>
@@ -1138,7 +1138,7 @@
     <value>Распределительная коробка:</value>
   </data>
   <data name="menu_edit_crop" xml:space="preserve">
-    <value>Мир урожая</value>
+    <value>Обрезать мир</value>
   </data>
   <data name="tab_bestiary" xml:space="preserve">
     <value>Бестиарий</value>
@@ -1150,7 +1150,7 @@
     <value>Сохранить</value>
   </data>
   <data name="bestiary_defeated" xml:space="preserve">
-    <value>Побежденный</value>
+    <value>Побеждено</value>
   </data>
   <data name="bestiary_near" xml:space="preserve">
     <value>Близкий</value>
@@ -1165,9 +1165,9 @@
     <value>Чат</value>
   </data>
   <data name="bestiary_complete" xml:space="preserve">
-    <value>Полный</value>
+    <value>Заполнить</value>
   </data>
   <data name="bestiary_load" xml:space="preserve">
-    <value>Груз</value>
+    <value>Загрузить</value>
   </data>
 </root>
