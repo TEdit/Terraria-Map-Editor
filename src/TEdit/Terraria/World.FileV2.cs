@@ -621,13 +621,11 @@ namespace TEdit.Terraria
             // check if target moonType is over max
             if (world.MoonType > SaveConfiguration.SaveVersions[version].MaxMoonId)
             {
-                System.Windows.MessageBox.Show("Reset");
                 // target is out of range, reset to zero
                 bw.Write((byte)0);
             }
             else
             {
-                System.Windows.MessageBox.Show("saved");
                 bw.Write((byte)world.MoonType);
             }
             bw.Write(world.TreeX0);
