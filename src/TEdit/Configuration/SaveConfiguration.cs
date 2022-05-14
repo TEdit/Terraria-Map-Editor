@@ -18,11 +18,12 @@ namespace TEdit.Configuration
 
     public class SaveVersionData
     {
+        public int SaveVersion { get; set; }
         public string GameVersion { get; set; }
         public int MaxTileId { get; set; }
         public int MaxWallId { get; set; }
         public int MaxItemId { get; set; }
-        public int SaveVersion { get; set; }
+        public int MaxMoonId { get; set; }
         public HashSet<int> FramedTileIds { get; set; }
         public bool[] GetFrames()
         {

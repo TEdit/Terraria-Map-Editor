@@ -104,7 +104,7 @@ namespace TEdit.Terraria
 
             OnProgressChanged(null, new ProgressChangedEventArgs(0, "Save headers..."));
             sectionPointers[0] = SaveSectionHeader(world, bw);
-            sectionPointers[1] = SaveHeaderFlags(world, bw);
+            sectionPointers[1] = SaveHeaderFlags(world, bw, (int)world.Version);
             OnProgressChanged(null, new ProgressChangedEventArgs(0, "Save Tiles..."));
             sectionPointers[2] = SaveTiles(world.Tiles, (int)world.Version, world.TilesWide, world.TilesHigh, bw, world.TileFrameImportant);
 
@@ -565,7 +565,7 @@ namespace TEdit.Terraria
             return (int)bw.BaseStream.Position;
         }
 
-        public static int SaveHeaderFlags(World world, BinaryWriter bw)
+        public static int SaveHeaderFlags(World world, BinaryWriter bw, int version)
         {
             bw.Write(world.Title);
             if (world.Version >= 179)
@@ -618,7 +618,16 @@ namespace TEdit.Terraria
 
             if (world.Version >= 141) { bw.Write(world.CreationTime); }
 
-            bw.Write((byte)world.MoonType);
+            // check if target moonType is over max
+            if (world.MoonType > SaveConfiguration.SaveVersions[version].MaxMoonId)
+            {
+                // target is out of range, reset to zero
+                bw.Write((byte)0);
+            }
+            else
+            {
+                bw.Write((byte)world.MoonType);
+            }
             bw.Write(world.TreeX0);
             bw.Write(world.TreeX1);
             bw.Write(world.TreeX2);
