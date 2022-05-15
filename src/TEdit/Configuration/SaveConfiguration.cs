@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace TEdit.Configuration
@@ -14,6 +15,22 @@ namespace TEdit.Configuration
     {
         public Dictionary<string, uint> GameVersionToSaveVersion { get; set; }
         public Dictionary<int, SaveVersionData> SaveVersions { get; set; }
+
+        /// <summary>
+        /// Get a <see cref="bool"/> array of framed tiles (sprites) for saving to world header.
+        /// </summary>
+        /// <exception cref="ArgumentOutOfRangeException">Throws when configuration data is not found.</exception>
+        public bool[] GetTileFramesForVersion(int version)
+        {
+            if (SaveVersions.TryGetValue(version, out var data))
+            {
+                return data.GetFrames();
+            }
+            else
+            {
+                throw new ArgumentOutOfRangeException(nameof(version), version, $"Error saving world version {version}: save configuration not found.");
+            }
+        }
     }
 
     public class SaveVersionData
@@ -25,17 +42,19 @@ namespace TEdit.Configuration
         public int MaxItemId { get; set; }
         public int MaxMoonId { get; set; }
         public HashSet<int> FramedTileIds { get; set; }
+
         public bool[] GetFrames()
         {
-            var max = FramedTileIds.Max();
-            var frames = new bool[max + 1];
+            var frames = FramedTileIds;
+            var tileCount = MaxTileId;
+            bool[] result = new bool[tileCount];
 
-            for (int i = 0; i <= max; i++)
+            for (int i = 0; i < tileCount; i++)
             {
-                frames[i] = FramedTileIds.Contains(i);
+                if (frames.Contains(i)) { result[i] = true; }
             }
 
-            return frames;
+            return result;
         }
     }
 }
