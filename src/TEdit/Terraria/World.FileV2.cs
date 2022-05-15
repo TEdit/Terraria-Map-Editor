@@ -6,6 +6,7 @@ using Vector2 = TEdit.Geometry.Primitives.Vector2;
 using System;
 using System.IO;
 using TEdit.Helper;
+using System.Linq;
 
 namespace TEdit.Terraria
 {
@@ -100,13 +101,14 @@ namespace TEdit.Terraria
             world.Validate();
             world.FileRevision++;
 
-            int[] sectionPointers = new int[world.GetSectionCount()];            
+            int[] sectionPointers = new int[world.GetSectionCount()];
+            bool[] tileFrameImportant = SaveConfiguration.GetTileFramesForVersion((int)world.Version);
 
             OnProgressChanged(null, new ProgressChangedEventArgs(0, "Save headers..."));
-            sectionPointers[0] = SaveSectionHeader(world, bw);
+            sectionPointers[0] = SaveSectionHeader(world, bw, tileFrameImportant);
             sectionPointers[1] = SaveHeaderFlags(world, bw, (int)world.Version);
             OnProgressChanged(null, new ProgressChangedEventArgs(0, "Save Tiles..."));
-            sectionPointers[2] = SaveTiles(world.Tiles, (int)world.Version, world.TilesWide, world.TilesHigh, bw, world.TileFrameImportant);
+            sectionPointers[2] = SaveTiles(world.Tiles, (int)world.Version, world.TilesWide, world.TilesHigh, bw, tileFrameImportant);
 
             OnProgressChanged(null, new ProgressChangedEventArgs(91, "Save Chests..."));
             sectionPointers[3] = SaveChests(world.Chests, bw, (int)world.Version, world.Version < 226);
@@ -231,8 +233,8 @@ namespace TEdit.Terraria
         /// </summary>
         public static byte[] SerializeTileData(Tile tile, int version, bool[] tileFrameImportant, out int dataIndex, out int headerIndex)
         {
-
-            byte[] tileData = new byte[15];
+            var size = (version > 222) ? 15 : 13; // packed size
+            byte[] tileData = new byte[size];
             dataIndex = 3;
 
             byte header3 = (byte)0;
@@ -243,7 +245,7 @@ namespace TEdit.Terraria
             if (tile.IsActive)
             {
                 // activate bit[1]
-                header1 = (byte)(header1 | 2);
+                header1 = (byte)(header1 | 2); // b0000100
 
                 if (tile.Type == (int)TileType.IceByRod && tile.IsActive)
                 {
@@ -543,7 +545,7 @@ namespace TEdit.Terraria
             return (int)bw.BaseStream.Position;
         }
 
-        public static int SaveSectionHeader(World world, BinaryWriter bw)
+        public static int SaveSectionHeader(World world, BinaryWriter bw, bool[] tileFrameImportant)
         {
             bw.Write(world.Version);
             bw.Write((UInt64)0x026369676f6c6572ul);
@@ -559,8 +561,8 @@ namespace TEdit.Terraria
                 bw.Write(0);
             }
 
-            // write bitpacked tile frame importance
-            WriteBitArray(bw, world.TileFrameImportant);
+            // write bitpacked tile frame importance           
+            WriteBitArray(bw, tileFrameImportant);
 
             return (int)bw.BaseStream.Position;
         }
@@ -1097,8 +1099,8 @@ namespace TEdit.Terraria
                 // read frame UV coords
                 if (!tileFrameImportant[tileType])
                 {
-                    tile.U = -1;
-                    tile.V = -1;
+                    tile.U = 0;//-1;
+                    tile.V = 0;//-1;
                 }
                 else
                 {
