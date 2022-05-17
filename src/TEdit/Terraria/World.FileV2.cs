@@ -798,7 +798,7 @@ namespace TEdit.Terraria
             }
 
             // 1.4 Journey's End
-            if (world.Version >= 194)
+            if (world.Version > 194)
             {
                 bw.Write((byte)world.MushroomBg);
             }
