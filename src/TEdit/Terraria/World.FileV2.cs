@@ -1208,7 +1208,7 @@ namespace TEdit.Terraria
             return (int)bw.BaseStream.Position;
         }
 
-        public static void LoadV2(BinaryReader b, World w)
+        public static void LoadV2(BinaryReader b, World w, TextWriter debugger = null)
         {
             //throw new NotImplementedException("World Version > 87");
 
@@ -1230,12 +1230,12 @@ namespace TEdit.Terraria
                 throw new FileFormatException("Unexpected Position: Invalid File Format Section");
 
             // Load the flags
-            LoadHeaderFlags(b, w, sectionPointers[1]);
+            LoadHeaderFlags(b, w, sectionPointers[1], debugger);
             if (b.BaseStream.Position != sectionPointers[1])
                 throw new FileFormatException("Unexpected Position: Invalid Header Flags");
 
             OnProgressChanged(null, new ProgressChangedEventArgs(0, "Loading Tiles..."));
-            w.Tiles = LoadTileData(b, w.TilesWide, w.TilesHigh, (int)w.Version, w.TileFrameImportant);
+            w.Tiles = LoadTileData(b, w.TilesWide, w.TilesHigh, (int)w.Version, w.TileFrameImportant, debugger);
 
             if (b.BaseStream.Position != sectionPointers[2])
                 b.BaseStream.Position = sectionPointers[2];
@@ -1319,7 +1319,7 @@ namespace TEdit.Terraria
             OnProgressChanged(null, new ProgressChangedEventArgs(100, "Load Complete."));
         }
 
-        public static Tile[,] LoadTileData(BinaryReader r, int maxX, int maxY, int version, bool[] tileFrameImportant)
+        public static Tile[,] LoadTileData(BinaryReader r, int maxX, int maxY, int version, bool[] tileFrameImportant, TextWriter debugger = null)
         {
             var tiles = new Tile[maxX, maxY];
 
@@ -1333,7 +1333,7 @@ namespace TEdit.Terraria
                 {
                     try
                     {
-                        Tile tile = DeserializeTileData(r, tileFrameImportant, version, out rle);
+                        Tile tile = DeserializeTileData(r, tileFrameImportant, version, out rle, debugger);
 
 
                         tiles[x, y] = tile;
@@ -1370,7 +1370,7 @@ namespace TEdit.Terraria
             return tiles;
         }
 
-        public static Tile DeserializeTileData(BinaryReader r, bool[] tileFrameImportant, int version, out int rle)
+        public static Tile DeserializeTileData(BinaryReader r, bool[] tileFrameImportant, int version, out int rle, TextWriter debugger = null)
         {
             Tile tile = new Tile();
 
@@ -1749,7 +1749,7 @@ namespace TEdit.Terraria
             }
         }
 
-        public static void LoadHeaderFlags(BinaryReader r, World w, int expectedPosition)
+        public static void LoadHeaderFlags(BinaryReader r, World w, int expectedPosition, TextWriter debugger = null)
         {
             w.Title = r.ReadString();
             if (w.Version >= 179)
