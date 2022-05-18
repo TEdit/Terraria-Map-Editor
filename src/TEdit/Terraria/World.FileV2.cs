@@ -181,7 +181,7 @@ namespace TEdit.Terraria
                     int dataIndex;
                     int headerIndex;
 
-                    debugger?.WriteLine("{");
+                    debugger?.Write("{");
 
                     byte[] tileData = SerializeTileData(tile, version, maxTileId, maxWallId, tileFrameImportant, out dataIndex, out headerIndex, debugger);
 
