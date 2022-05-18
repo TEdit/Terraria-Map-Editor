@@ -94,21 +94,22 @@ namespace TEdit.Terraria
             }
         }
 
+        public bool Actuator;
+        public BrickStyle BrickStyle;
+        public bool InActive;
         public bool IsActive;
-        public bool WireRed;
-        public bool WireGreen;
-        public bool WireBlue;
-        public bool WireYellow;
+        public byte LiquidAmount;
+        public LiquidType LiquidType;
         public byte TileColor;
         public ushort Type;
+        public Int16 U;
+        public Int16 V;
         public ushort Wall;
         public byte WallColor;
-        public LiquidType LiquidType;
-        public byte LiquidAmount;
-        public BrickStyle BrickStyle;
-        public bool Actuator;
-        public bool InActive;
-        public Int16 U, V;
+        public bool WireBlue;
+        public bool WireGreen;
+        public bool WireRed;
+        public bool WireYellow;
 
         [NonSerialized] /* Heathtech */
         public ushort uvTileCache = 0xFFFF; //Caches the UV position of a tile, since it is costly to generate each frame
@@ -191,40 +192,43 @@ namespace TEdit.Terraria
 
         public void Reset()
         {
+            Actuator = false;
+            BrickStyle = 0;
+            InActive = false;
             IsActive = false;
-            WireRed = false;
-            WireGreen = false;
-            WireBlue = false;
-            WireYellow = false;
+            LiquidAmount = 0;
+            LiquidType = 0;
             TileColor = 0;
             Type = 0;
+            U = 0;
+            V = 0;
             Wall = 0;
-            LiquidType = 0;
             WallColor = 0;
-            LiquidAmount = 0;
-            BrickStyle = 0;
-            Actuator = false;
-            InActive = false;
+            WireBlue = false;
+            WireGreen = false;
+            WireRed = false;
+            WireYellow = false;
         }
 
         protected bool Equals(Tile other)
         {
-            return IsActive.Equals(other.IsActive) &&
-                Type == other.Type &&
+            return 
+                Actuator == other.Actuator &&
+                BrickStyle == other.BrickStyle &&
+                InActive == other.InActive &&
+                IsActive==other.IsActive &&
+                LiquidAmount == other.LiquidAmount  &&
+                LiquidType == other.LiquidType &&
                 TileColor == other.TileColor &&
-                U == other.U && V == other.V &&
-                LiquidType.Equals(other.LiquidType) &&
-                LiquidAmount == other.LiquidAmount &&
+                Type == other.Type &&
+                U == other.U &&
+                V == other.V &&                
                 Wall == other.Wall &&
                 WallColor == other.WallColor &&
-                WireRed.Equals(other.WireRed) &&
-                WireGreen.Equals(other.WireGreen) &&
-                WireBlue.Equals(other.WireBlue) &&
-                WireYellow.Equals(other.WireYellow) &&
-                BrickStyle.Equals(other.BrickStyle) &&
-                BrickStyle == other.BrickStyle &&
-                Actuator.Equals(other.Actuator) &&
-                InActive.Equals(other.InActive);
+                WireBlue == other.WireBlue &&
+                WireGreen == other.WireGreen &&
+                WireRed == other.WireRed && 
+                WireYellow == other.WireYellow;
         }
 
         public override bool Equals(object obj)
@@ -240,22 +244,22 @@ namespace TEdit.Terraria
             unchecked
             {
                 int hashCode = IsActive.GetHashCode();
-                hashCode = (hashCode * 397) ^ WireRed.GetHashCode();
-                hashCode = (hashCode * 397) ^ WireGreen.GetHashCode();
-                hashCode = (hashCode * 397) ^ WireBlue.GetHashCode();
-                hashCode = (hashCode * 397) ^ WireYellow.GetHashCode();
-                hashCode = (hashCode * 397) ^ LiquidType.GetHashCode();
-                hashCode = (hashCode * 397) ^ TileColor.GetHashCode();
-                hashCode = (hashCode * 397) ^ Wall.GetHashCode();
-                hashCode = (hashCode * 397) ^ Type.GetHashCode();
-                hashCode = (hashCode * 397) ^ WallColor.GetHashCode();
-                hashCode = (hashCode * 397) ^ LiquidAmount.GetHashCode();
-                hashCode = (hashCode * 397) ^ BrickStyle.GetHashCode();
                 hashCode = (hashCode * 397) ^ Actuator.GetHashCode();
                 hashCode = (hashCode * 397) ^ BrickStyle.GetHashCode();
                 hashCode = (hashCode * 397) ^ InActive.GetHashCode();
+                hashCode = (hashCode * 397) ^ IsActive.GetHashCode();
+                hashCode = (hashCode * 397) ^ LiquidAmount.GetHashCode();
+                hashCode = (hashCode * 397) ^ LiquidType.GetHashCode();
+                hashCode = (hashCode * 397) ^ TileColor.GetHashCode();
+                hashCode = (hashCode * 397) ^ Type.GetHashCode();
                 hashCode = (hashCode * 397) ^ U.GetHashCode();
                 hashCode = (hashCode * 397) ^ V.GetHashCode();
+                hashCode = (hashCode * 397) ^ Wall.GetHashCode();
+                hashCode = (hashCode * 397) ^ WallColor.GetHashCode();
+                hashCode = (hashCode * 397) ^ WireBlue.GetHashCode();
+                hashCode = (hashCode * 397) ^ WireGreen.GetHashCode();
+                hashCode = (hashCode * 397) ^ WireRed.GetHashCode();
+                hashCode = (hashCode * 397) ^ WireYellow.GetHashCode();
                 return hashCode;
             }
         }
