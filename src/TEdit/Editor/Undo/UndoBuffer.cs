@@ -76,6 +76,9 @@ namespace TEdit.Editor.Undo
             var world = ViewModelLocator.WorldViewModel?.CurrentWorld;
             var version = world?.Version ?? World.CompatibleVersion;
             var tileFrameImportant = ViewModelLocator.WorldViewModel?.CurrentWorld?.TileFrameImportant ?? World.SettingsTileFrameImportant;
+
+            int maxTileId = World.SaveConfiguration.SaveVersions[(int)version].MaxTileId;
+            int maxWallId = World.SaveConfiguration.SaveVersions[(int)version].MaxWallId;
             lock (UndoSaveLock)
             {
                 int count = _undoTiles.Count;
@@ -96,7 +99,7 @@ namespace TEdit.Editor.Undo
                     int dataIndex;
                     int headerIndex;
 
-                    byte[] tileData = World.SerializeTileData(tile.Tile, (int)version, tileFrameImportant, out dataIndex, out headerIndex);
+                    byte[] tileData = World.SerializeTileData(tile.Tile, (int)version, maxTileId, maxWallId, tileFrameImportant, out dataIndex, out headerIndex);
 
                     _writer.Write(tileData, headerIndex, dataIndex - headerIndex);
                 }

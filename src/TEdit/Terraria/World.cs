@@ -103,10 +103,18 @@ namespace TEdit.Terraria
                     string temp = filename + ".tmp";
                     using (var fs = new FileStream(temp, FileMode.Create))
                     {
+#if DEBUG
+                        using TextWriter debugger = new StreamWriter(new FileStream(filename + ".txt", FileMode.Create));
+
+#else
+                        TextWriter debugger = null;
+
+#endif
+
                         using (var bw = new BinaryWriter(fs))
                         {
                             if (world.Version > 87)
-                                SaveV2(world, bw);
+                                SaveV2(world, bw, debugger);
                             else
                                 SaveV1(world, bw);
 
