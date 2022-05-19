@@ -813,8 +813,18 @@ namespace TEdit.Terraria
             debugger?.WriteLine("\"DungeonX\": {0},", world.DungeonX);
             bw.Write(world.DungeonY);
             debugger?.WriteLine("\"DungeonY\": {0},", world.DungeonY);
-            bw.Write(world.IsCrimson);
-            debugger?.WriteLine("\"IsCrimson\": {0},", world.IsCrimson);
+
+            if (world.Version >= 67) // v1.2 Introduced Crimson
+            {
+                bw.Write(world.IsCrimson);
+                debugger?.WriteLine("\"IsCrimson\": {0},", world.IsCrimson);
+            }
+            else
+            {
+                bw.Write(false);
+                debugger?.WriteLine("\"IsCrimson\": {0},", "False");
+            }
+
             bw.Write(world.DownedBoss1);
             debugger?.WriteLine("\"DownedBoss1\": {0},", world.DownedBoss1);
             bw.Write(world.DownedBoss2);
@@ -836,7 +846,7 @@ namespace TEdit.Terraria
             bw.Write(world.DownedGolemBoss);
             debugger?.WriteLine("\"DownedGolemBoss\": {0},", world.DownedGolemBoss);
 
-            if (world.Version >= 147)
+            if (world.Version >= 146) // v1.3.0.1
             {
                 bw.Write(world.DownedSlimeKingBoss);
                 debugger?.WriteLine("\"DownedSlimeKingBoss\": {0},", world.DownedSlimeKingBoss);
@@ -876,7 +886,7 @@ namespace TEdit.Terraria
             bw.Write(world.InvasionX);
             debugger?.WriteLine("\"InvasionX\": {0},", world.InvasionX);
 
-            if (world.Version >= 147)
+            if (world.Version >= 146) // v1.3.0.1
             {
                 bw.Write(world.SlimeRainTime);
                 debugger?.WriteLine("\"SlimeRainTime\": {0},", world.SlimeRainTime);
