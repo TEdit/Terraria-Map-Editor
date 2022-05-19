@@ -836,7 +836,7 @@ namespace TEdit.Terraria
             bw.Write(world.DownedGolemBoss);
             debugger?.WriteLine("\"DownedGolemBoss\": {0},", world.DownedGolemBoss);
 
-            if (world.Version >= 147)
+            if (world.Version >= 118)
             {
                 bw.Write(world.DownedSlimeKingBoss);
                 debugger?.WriteLine("\"DownedSlimeKingBoss\": {0},", world.DownedSlimeKingBoss);
@@ -876,13 +876,17 @@ namespace TEdit.Terraria
             bw.Write(world.InvasionX);
             debugger?.WriteLine("\"InvasionX\": {0},", world.InvasionX);
 
-            if (world.Version >= 147)
+            if (world.Version >= 118)
             {
                 bw.Write(world.SlimeRainTime);
                 debugger?.WriteLine("\"SlimeRainTime\": {0},", world.SlimeRainTime);
+
+            }
+
+            if (world.Version >= 113)
+            {
                 bw.Write((byte)world.SundialCooldown);
                 debugger?.WriteLine("\"SundialCooldown\": {0},", world.SundialCooldown);
-
             }
 
             bw.Write(world.TempRaining);
@@ -921,21 +925,24 @@ namespace TEdit.Terraria
             bw.Write(world.WindSpeedSet);
             debugger?.WriteLine("\"WindSpeedSet\": {0},", world.WindSpeedSet);
 
-            if (world.Version >= 95)
+            if (world.Version < 95)
             {
-                bw.Write(world.Anglers.Count);
-                debugger?.WriteLine("\"Anglers\": [", world.Anglers.Count);
-
-
-                foreach (string angler in world.Anglers)
-                {
-                    bw.Write(angler);
-                    debugger?.Write("{0},", angler);
-
-                }
-
-                debugger?.WriteLine("],");
+                debugger?.WriteLine("\"SECTION_1\": {0}", bw.BaseStream.Position);
+                return (int)bw.BaseStream.Position;
             }
+
+            bw.Write(world.Anglers.Count);
+            debugger?.WriteLine("\"Anglers\": [", world.Anglers.Count);
+
+
+            foreach (string angler in world.Anglers)
+            {
+                bw.Write(angler);
+                debugger?.Write("{0},", angler);
+            }
+
+            debugger?.WriteLine("],");
+            
 
             if (world.Version < 99)
             {
@@ -985,6 +992,12 @@ namespace TEdit.Terraria
                 debugger?.WriteLine("\"CultistDelay\": {0},", world.CultistDelay);
             }
 
+            if (world.Version < 109)
+            {
+                debugger?.WriteLine("\"SECTION_1\": {0}", bw.BaseStream.Position);
+                return (int)bw.BaseStream.Position;
+            }
+
             bw.Write((short)KillTallyMax);
             debugger?.WriteLine("\"KillTallyMax\": {0},", KillTallyMax);
 
@@ -1005,8 +1018,21 @@ namespace TEdit.Terraria
             }
             debugger?.WriteLine("],");
 
+            if (world.Version < 128)
+            {
+                debugger?.WriteLine("\"SECTION_1\": {0}", bw.BaseStream.Position);
+                return (int)bw.BaseStream.Position;
+            }
+
             bw.Write(world.FastForwardTime);
             debugger?.WriteLine("\"FastForwardTime\": {0},", world.FastForwardTime);
+
+            if (world.Version < 131)
+            {
+                debugger?.WriteLine("\"SECTION_1\": {0}", bw.BaseStream.Position);
+                return (int)bw.BaseStream.Position;
+            }
+
             bw.Write(world.DownedFishron);
             debugger?.WriteLine("\"DownedFishron\": {0},", world.DownedFishron);
             bw.Write(world.DownedMartians);
@@ -1021,6 +1047,13 @@ namespace TEdit.Terraria
             debugger?.WriteLine("\"DownedHalloweenTree\": {0},", world.DownedHalloweenTree);
             bw.Write(world.DownedChristmasQueen);
             debugger?.WriteLine("\"DownedChristmasQueen\": {0},", world.DownedChristmasQueen);
+
+            if (world.Version < 140)
+            {
+                debugger?.WriteLine("\"SECTION_1\": {0}", bw.BaseStream.Position);
+                return (int)bw.BaseStream.Position;
+            }
+
             bw.Write(world.DownedSanta);
             debugger?.WriteLine("\"DownedSanta\": {0},", world.DownedSanta);
             bw.Write(world.DownedChristmasTree);
@@ -1065,6 +1098,7 @@ namespace TEdit.Terraria
 
                 debugger?.WriteLine("],");
             }
+
             if (world.Version >= 174)
             {
                 bw.Write(world.SandStormHappening);
@@ -1076,6 +1110,7 @@ namespace TEdit.Terraria
                 bw.Write(world.SandStormIntendedSeverity);
                 debugger?.WriteLine("\"SandStormIntendedSeverity\": {0},", world.SandStormIntendedSeverity);
             }
+
             if (world.Version >= 178)
             {
                 bw.Write(world.SavedBartender);
@@ -1095,12 +1130,14 @@ namespace TEdit.Terraria
                 debugger?.WriteLine("\"MushroomBg\": {0},", world.MushroomBg);
 
             }
+
             if (world.Version >= 215)
             {
                 bw.Write((byte)world.UnderworldBg);
                 debugger?.WriteLine("\"UnderworldBg\": {0},", world.UnderworldBg);
 
             }
+
             if (world.Version >= 195)
             {
                 bw.Write((byte)world.BgTree2);
@@ -1113,11 +1150,13 @@ namespace TEdit.Terraria
                 debugger?.WriteLine("\"BgTree4\": {0},", world.BgTree4);
 
             }
+
             if (world.Version >= 204)
             {
                 bw.Write(world.CombatBookUsed);
                 debugger?.WriteLine("\"CombatBookUsed\": {0},", world.CombatBookUsed);
             }
+
             if (world.Version >= 207)
             {
                 bw.Write(world.TempLanternNightCooldown);
@@ -1129,6 +1168,7 @@ namespace TEdit.Terraria
                 bw.Write(world.TempLanternNightNextNightIsGenuine);
                 debugger?.WriteLine("\"TempLanternNightNextNightIsGenuine\": {0},", world.TempLanternNightNextNightIsGenuine);
             }
+
             if (world.Version >= 211)
             {
                 // tree tops
@@ -1142,6 +1182,7 @@ namespace TEdit.Terraria
                 }
                 debugger?.WriteLine("],");
             }
+
             if (world.Version >= 212)
             {
                 bw.Write(world.ForceHalloweenForToday);
@@ -1885,7 +1926,7 @@ namespace TEdit.Terraria
             w.DownedPlantBoss = r.ReadBoolean();
             w.DownedGolemBoss = r.ReadBoolean();
 
-            if (w.Version >= 147) { w.DownedSlimeKingBoss = r.ReadBoolean(); }
+            if (w.Version >= 118) { w.DownedSlimeKingBoss = r.ReadBoolean(); }
 
             w.SavedGoblin = r.ReadBoolean();
             w.SavedWizard = r.ReadBoolean();
@@ -1905,9 +1946,13 @@ namespace TEdit.Terraria
             w.InvasionType = r.ReadInt32();
             w.InvasionX = r.ReadDouble();
 
-            if (w.Version >= 147)
+            if (w.Version >= 118)
             {
                 w.SlimeRainTime = r.ReadDouble();
+            }
+
+            if (w.Version >= 113)
+            {
                 w.SundialCooldown = r.ReadByte();
             }
 
@@ -1929,12 +1974,11 @@ namespace TEdit.Terraria
             w.NumClouds = r.ReadInt16();
             w.WindSpeedSet = r.ReadSingle();
 
-            if (w.Version >= 95)
+            if (w.Version < 95) { return; }
+
+            for (int i = r.ReadInt32(); i > 0; i--)
             {
-                for (int i = r.ReadInt32(); i > 0; i--)
-                {
-                    w.Anglers.Add(r.ReadString());
-                }
+                w.Anglers.Add(r.ReadString());
             }
 
             if (w.Version < 99) { return; }
@@ -1966,6 +2010,9 @@ namespace TEdit.Terraria
                 w.InvasionSizeStart = r.ReadInt32();
             }
             w.CultistDelay = w.Version >= 108 ? r.ReadInt32() : 86400;
+
+            if (w.Version < 109) { return; }
+
             int numberOfMobs = r.ReadInt16();
             w.NumberOfMobs = numberOfMobs;
             for (int counter = 0; counter < numberOfMobs; counter++)
@@ -1975,7 +2022,15 @@ namespace TEdit.Terraria
                 else
                     r.ReadInt32();
             }
+
+            if (w.Version < 128) { return; }
+
+
             w.FastForwardTime = r.ReadBoolean();
+
+            if (w.Version < 131) { return; }
+
+
             w.DownedFishron = r.ReadBoolean();
             w.DownedMartians = r.ReadBoolean();
             w.DownedLunaticCultist = r.ReadBoolean();
@@ -1983,6 +2038,10 @@ namespace TEdit.Terraria
             w.DownedHalloweenKing = r.ReadBoolean();
             w.DownedHalloweenTree = r.ReadBoolean();
             w.DownedChristmasQueen = r.ReadBoolean();
+
+            if (w.Version < 140) { return; }
+
+
             w.DownedSanta = r.ReadBoolean();
             w.DownedChristmasTree = r.ReadBoolean();
             w.DownedCelestialSolar = r.ReadBoolean();
@@ -2006,6 +2065,7 @@ namespace TEdit.Terraria
                     w.PartyingNPCs.Add(r.ReadInt32());
                 }
             }
+
             if (w.Version >= 174)
             {
                 w.SandStormHappening = r.ReadBoolean();
@@ -2013,6 +2073,7 @@ namespace TEdit.Terraria
                 w.SandStormSeverity = r.ReadSingle();
                 w.SandStormIntendedSeverity = r.ReadSingle();
             }
+
             if (w.Version >= 178)
             {
                 w.SavedBartender = r.ReadBoolean();
@@ -2045,10 +2106,12 @@ namespace TEdit.Terraria
                 w.BgTree3 = w.BgTree;
                 w.BgTree4 = w.BgTree;
             }
+
             if (w.Version >= 204)
             {
                 w.CombatBookUsed = r.ReadBoolean();
             }
+
             if (w.Version >= 207)
             {
                 w.TempLanternNightCooldown = r.ReadInt32();
@@ -2056,6 +2119,7 @@ namespace TEdit.Terraria
                 w.TempLanternNightManual = r.ReadBoolean();
                 w.TempLanternNightNextNightIsGenuine = r.ReadBoolean();
             }
+
             // tree tops
             if (w.Version >= 211)
             {
@@ -2082,6 +2146,7 @@ namespace TEdit.Terraria
                 w.TreeTopVariations[11] = w.MushroomBg;
                 w.TreeTopVariations[12] = w.UnderworldBg;
             }
+
             if (w.Version >= 212)
             {
                 w.ForceHalloweenForToday = r.ReadBoolean();
