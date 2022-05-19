@@ -156,6 +156,15 @@ namespace TEdit.Terraria
                 {
                     using (var b = new BinaryReader(File.OpenRead(filename)))
                     {
+
+#if DEBUG
+                        using TextWriter debugger = new StreamWriter(new FileStream(filename + ".json", FileMode.Create));
+
+#else
+                        TextWriter debugger = null;
+
+#endif
+
                         string twldPath = Path.Combine(
                             Path.GetDirectoryName(filename),
                             Path.GetFileNameWithoutExtension(filename) +
@@ -203,10 +212,11 @@ namespace TEdit.Terraria
                         curVersion = w.Version;
                         if (w.Version > 87)
                         {
-                            LoadV2(b, w);
+                            LoadV2(b, w, debugger);
                         }
                         else
                             LoadV1(b, filename, w);
+
                         w.UpgradeLegacyTileEntities();
                     }
                     w.LastSave = File.GetLastWriteTimeUtc(filename);

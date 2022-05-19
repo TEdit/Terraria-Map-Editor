@@ -241,13 +241,13 @@ namespace TEdit.Terraria
         /// BitPack tile data and headers
         /// </summary>
         public static byte[] SerializeTileData(
-            Tile tile, 
+            Tile tile,
             int version,
             int maxTileId,
             int maxWallId,
-            bool[] tileFrameImportant, 
-            out int dataIndex, 
-            out int headerIndex, 
+            bool[] tileFrameImportant,
+            out int dataIndex,
+            out int headerIndex,
             TextWriter debugger = null)
         {
             var size = (version > 222) ? 15 : 13; // packed size
@@ -295,7 +295,7 @@ namespace TEdit.Terraria
                 if (tile.TileColor != 0)
                 {
                     // set header3 bit[3] for tile color active
-                    header3 |= 0b_0000_0100;
+                    header3 |= 0b_0000_1000;
                     tileData[dataIndex++] = tile.TileColor;
                     debugger?.Write("\"TileColor\": {0},", tile.TileColor);
                 }
@@ -367,15 +367,18 @@ namespace TEdit.Terraria
             {
                 // set bit[1] of header3
                 header3 |= 0b_0000_0010;
+                debugger?.Write("\"Actuator\": {0},", tile.Actuator);
             }
             if (tile.InActive)
             {
                 // set bit[2] of header3
                 header3 |= 0b_0000_0100;
+                debugger?.Write("\"InActive\": {0},", tile.InActive);
             }
             if (tile.WireYellow)
             {
                 header3 |= 0b_0010_0000;
+                debugger?.Write("\"WireYellow\": {0},", tile.WireYellow);
             }
 
             // wall high byte
@@ -1322,7 +1325,7 @@ namespace TEdit.Terraria
         public static Tile[,] LoadTileData(BinaryReader r, int maxX, int maxY, int version, bool[] tileFrameImportant, TextWriter debugger = null)
         {
             var tiles = new Tile[maxX, maxY];
-
+            debugger?.WriteLine("\"Tiles\": [");
             int rle;
             for (int x = 0; x < maxX; x++)
             {
@@ -1333,10 +1336,14 @@ namespace TEdit.Terraria
                 {
                     try
                     {
+                        debugger?.Write("{{ \"x\": {0},\"y\": {1},", x, y);
+
                         Tile tile = DeserializeTileData(r, tileFrameImportant, version, out rle, debugger);
 
 
                         tiles[x, y] = tile;
+
+                        debugger?.WriteLine("\"RLE\": {0} }},", rle);
                         while (rle > 0)
                         {
                             y++;
@@ -1366,6 +1373,7 @@ namespace TEdit.Terraria
                     }
                 }
             }
+            debugger?.WriteLine("]");
 
             return tiles;
         }
@@ -1382,12 +1390,12 @@ namespace TEdit.Terraria
             byte header1 = r.ReadByte();
 
             // check bit[0] to see if header2 has data
-            if ((header1 & 1) == 1)
+            if ((header1 & 0b_0000_0001) == 0b_0000_0001)
             {
                 header2 = r.ReadByte();
 
                 // check bit[0] to see if header3 has data
-                if ((header2 & 1) == 1)
+                if ((header2 & 0b_0000_0001) == 0b_0000_0001)
                 {
                     header3 = r.ReadByte();
 
@@ -1400,13 +1408,15 @@ namespace TEdit.Terraria
             }
 
             // check bit[1] for active tile
-            if ((header1 & 2) == 2)
-            {
-                tile.IsActive = true;
+            bool isActive = (header1 & 0b_0000_0010) == 0b_0000_0010;
+            debugger?.Write("\"IsActive\": {0},", isActive);
 
+            if (isActive)
+            {
+                tile.IsActive = isActive;
                 // read tile type
 
-                if ((header1 & 32) != 32) // check bit[5] to see if tile is byte or little endian int16
+                if ((header1 & 0b_0010_0000) != 0b_0010_0000) // check bit[5] to see if tile is byte or little endian int16
                 {
                     // tile is byte
                     tileType = r.ReadByte();
@@ -1419,6 +1429,7 @@ namespace TEdit.Terraria
                     tileType = tileType << 8 | lowerByte;
                 }
                 tile.Type = (ushort)tileType; // convert type to ushort after bit operations
+                debugger?.Write("\"Type\": {0},", tileType);
 
                 // read frame UV coords
                 if (!tileFrameImportant[tileType])
@@ -1437,59 +1448,75 @@ namespace TEdit.Terraria
                     {
                         tile.V = 0;
                     }
+
+                    debugger?.Write("\"U\": {0},", tile.U);
+                    debugger?.Write("\"V\": {0},", tile.V);
                 }
 
                 // check header3 bit[3] for tile color
-                if ((header3 & 8) == 8)
+                if ((header3 & 0b_0000_1000) == 0b_0000_1000)
                 {
                     tile.TileColor = r.ReadByte();
+                    debugger?.Write("\"TileColor\": {0},", tile.TileColor);
                 }
             }
 
+
+
             // Read Walls
-            if ((header1 & 4) == 4) // check bit[3] bit for active wall
+            if ((header1 & 0b_0000_0100) == 0b_0000_0100) // check bit[3] bit for active wall
             {
                 tile.Wall = r.ReadByte();
+                debugger?.Write("\"Wall\": {0},", tile.Wall);
+
 
                 // check bit[4] of header3 to see if there is a wall color
-                if ((header3 & 16) == 16)
+                if ((header3 & 0b_0001_0000) == 0b_0001_0000)
                 {
                     tile.WallColor = r.ReadByte();
+                    debugger?.Write("\"WallColor\": {0},", tile.WallColor);
                 }
             }
 
             // check for liquids, grab the bit[3] and bit[4], shift them to the 0 and 1 bits
-            byte liquidType = (byte)((header1 & 24) >> 3);
+            byte liquidType = (byte)((header1 & 0b_0001_1000) >> 3);
             if (liquidType != 0)
             {
                 tile.LiquidAmount = r.ReadByte();
                 tile.LiquidType = (LiquidType)liquidType;
+
+                debugger?.Write("\"LiquidType\": \"{0}\",", tile.LiquidType.ToString());
+                debugger?.Write("\"LiquidAmount\": {0},", tile.LiquidAmount);
             }
 
             // check if we have data in header2 other than just telling us we have header3
             if (header2 > 1)
             {
                 // check bit[1] for red wire
-                if ((header2 & 2) == 2)
+                if ((header2 & 0b_0000_0010) == 0b_0000_0010)
                 {
                     tile.WireRed = true;
+                    debugger?.Write("\"WireRed\": {0},", tile.WireRed);
                 }
                 // check bit[2] for blue wire
-                if ((header2 & 4) == 4)
+                if ((header2 & 0b_0000_0100) == 0b_0000_0100)
                 {
                     tile.WireBlue = true;
+                    debugger?.Write("\"WireBlue\": {0},", tile.WireBlue);
                 }
                 // check bit[3] for green wire
-                if ((header2 & 8) == 8)
+                if ((header2 & 0b_0000_1000) == 0b_0000_1000)
                 {
                     tile.WireGreen = true;
+                    debugger?.Write("\"WireGreen\": {0},", tile.WireGreen);
                 }
 
                 // grab bits[4, 5, 6] and shift 4 places to 0,1,2. This byte is our brick style
-                byte brickStyle = (byte)((header2 & 112) >> 4);
+                byte brickStyle = (byte)((header2 & 0b_0111_0000) >> 4);
                 if (brickStyle != 0 && TileProperties.Count > tile.Type && TileProperties[tile.Type].HasSlopes)
                 {
                     tile.BrickStyle = (BrickStyle)brickStyle;
+                    debugger?.Write("\"BrickStyle\": {0},", tile.BrickStyle);
                 }
             }
 
@@ -1497,27 +1524,32 @@ namespace TEdit.Terraria
             if (header3 > 0)
             {
                 // check bit[1] for actuator
-                if ((header3 & 2) == 2)
+                if ((header3 & 0b_0000_0010) == 0b_0000_0010)
                 {
                     tile.Actuator = true;
+                    debugger?.Write("\"Actuator\": {0},", tile.Actuator);
                 }
 
                 // check bit[2] for inactive due to actuator
-                if ((header3 & 4) == 4)
+                if ((header3 & 0b_0000_0100) == 0b_0000_0100)
                 {
                     tile.InActive = true;
+                    debugger?.Write("\"InActive\": {0},", tile.InActive);
                 }
 
-                if ((header3 & 32) == 32)
+                if ((header3 & 0b_0010_0000) == 0b_0010_0000)
                 {
                     tile.WireYellow = true;
+                    debugger?.Write("\"WireYellow\": {0},", tile.WireYellow);
                 }
 
                 if (version >= 222)
                 {
-                    if ((header3 & 64) == 64)
+                    if ((header3 & 0b_0100_0000) == 0b_0100_0000)
                     {
                         tile.Wall = (ushort)(r.ReadByte() << 8 | tile.Wall);
+                        debugger?.Write("\"WallExtra\": {0},", tile.Wall);
+
                     }
                 }
             }
