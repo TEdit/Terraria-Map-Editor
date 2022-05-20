@@ -43,6 +43,8 @@ namespace TEdit.Terraria
         CrimsandBlock = 234,
         PlanteraBulb = 238,
         IceByRod = 127,
+        WaterCandle = 49,
+        MysticSnakeRope = 504,
         TrappedChest = 441,
         Chest2 = 467,
         TrappedChest2 = 468,

@@ -50,7 +50,7 @@ namespace TEdit.Editor.Clipboard
                     var curTile = Tiles[x, y];
 
                     var frames = World.SaveConfiguration.SaveVersions[(int)version].GetFrames();
-                    World.WriteTileDataToStreamV1(curTile, bw, frames);
+                    World.WriteTileDataToStreamV1(curTile, bw, version, frames);
 
                     int rleTemp = 1;
                     while (y + rleTemp < Size.Y && curTile.Equals(Tiles[x, (y + rleTemp)]))
@@ -59,8 +59,8 @@ namespace TEdit.Editor.Clipboard
                     bw.Write((short)rle);
                 }
             }
-            World.WriteChestDataToStreamV1(Chests, bw);
-            World.WriteSignDataToStreamV1(Signs, bw);
+            World.WriteChestDataToStreamV1(Chests, bw, version);
+            World.WriteSignDataToStreamV1(Signs, bw, version);
 
             bw.Write(Name);
             bw.Write(World.CompatibleVersion);
@@ -403,7 +403,7 @@ namespace TEdit.Editor.Clipboard
             buffer.Chests.AddRange(World.ReadChestDataFromStreamV1(b, tVersion));
 
             buffer.Signs.Clear();
-            foreach (Sign sign in World.ReadSignDataFromStreamV1(b))
+            foreach (Sign sign in World.ReadSignDataFromStreamV1(b, tVersion))
             {
                 if (buffer.Tiles[sign.X, sign.Y].IsActive && Tile.IsSign(buffer.Tiles[sign.X, sign.Y].Type))
                     buffer.Signs.Add(sign);
