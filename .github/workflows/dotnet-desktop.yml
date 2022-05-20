@@ -58,5 +58,5 @@ jobs:
       if: github.ref == 'refs/heads/main' || startsWith(github.ref, 'refs/tags/')
       with:
         name: TEdit-win64
-        path: .\${$env:File_Name}.zip
+        path: .\TEdit*.zip
         if-no-files-found: error
