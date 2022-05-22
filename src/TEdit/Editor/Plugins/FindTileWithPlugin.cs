@@ -25,9 +25,7 @@ namespace TEdit.Editor.Plugins
             }
 
             string blockName = view.BlockToFind.ToLower();
-
             string wallName = view.WallToFind.ToLower();
-
 
             Dictionary<ushort, string> tileIds = new Dictionary<ushort, string>();
             Dictionary<ushort, Dictionary<Vector2Short, string>> spriteIds = new Dictionary<ushort, Dictionary<Vector2Short, string>>();
@@ -79,8 +77,8 @@ namespace TEdit.Editor.Plugins
                 }
             }
 
-
             List<Tuple<string, Vector2>> locations = new List<Tuple<string, Vector2>>();
+            int ItemsFound = 0;
 
             for (int x = (_wvm.Selection.IsActive) ? _wvm.Selection.SelectionArea.X : 0; x < ((_wvm.Selection.IsActive) ? _wvm.Selection.SelectionArea.X + _wvm.Selection.SelectionArea.Width : _wvm.CurrentWorld.TilesWide); x++)
             {
@@ -89,7 +87,7 @@ namespace TEdit.Editor.Plugins
                     if (locations.Count > view.MaxVolumeLimit - 1)
                     {
                         locations.Add(new Tuple<string, Vector2>("HALTING! Too Many Entrees!: ", new Vector2(0, 0)));
-                        FindTileLocationResultView resultView0 = new FindTileLocationResultView(locations);
+                        FindTileLocationResultView resultView0 = new FindTileLocationResultView(locations, ItemsFound + "+");
                         resultView0.Show();
                         return;
                     }
@@ -101,6 +99,7 @@ namespace TEdit.Editor.Plugins
                     if (tileIds.TryGetValue(curTile.Type, out var foundTileName))
                     {
                         locations.Add(new Tuple<string, Vector2>(foundTileName + ": ", new Vector2(x, y)));
+                        ItemsFound++;
                     }
 
                     // Search for sprite tile
@@ -110,6 +109,7 @@ namespace TEdit.Editor.Plugins
                         if (frameList.TryGetValue(uv, out string spriteName))
                         {
                             locations.Add(new Tuple<string, Vector2>(spriteName + ": ", new Vector2(x, y)));
+                            ItemsFound++;
                         }
                     }
 
@@ -117,12 +117,13 @@ namespace TEdit.Editor.Plugins
                     if (wallIds.TryGetValue(curTile.Wall, out var foundWallName))
                     {
                         locations.Add(new Tuple<string, Vector2>(foundWallName + ": ", new Vector2(x, y)));
+                        ItemsFound++;
                     }
                 }
             }
 
             // show the result view with the list of locations
-            FindTileLocationResultView resultView1 = new FindTileLocationResultView(locations);
+            FindTileLocationResultView resultView1 = new FindTileLocationResultView(locations, ItemsFound.ToString());
             resultView1.Show();
         }
     }
