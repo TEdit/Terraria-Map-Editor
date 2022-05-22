@@ -116,7 +116,7 @@ namespace TEdit.Editor.Undo
             Debug.WriteLine($"Saving {file}");
             SaveTileData();
             World.SaveChests(Chests, _writer, (int)version);
-            World.SaveSigns(Signs, _writer);
+            World.SaveSigns(Signs, _writer, (int)version);
             World.SaveTileEntities(TileEntities, _writer);
             _writer.BaseStream.Position = (long)0;
             _writer.Write(Count);

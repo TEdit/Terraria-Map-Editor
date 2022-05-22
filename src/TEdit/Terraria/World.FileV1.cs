@@ -345,67 +345,75 @@ namespace TEdit.Terraria
                 if (i >= chests.Count)
                 {
                     bw.Write(false);
+                    continue;
                 }
-                else
+
+                Chest chest = chests[i];
+                bw.Write(true);
+                bw.Write(chest.X);
+                bw.Write(chest.Y);
+                if (version >= 85)
                 {
-                    Chest chest = chests[i];
-                    bw.Write(true);
-                    bw.Write(chest.X);
-                    bw.Write(chest.Y);
-                    if (version >= 85)
+                    var chestName = chest.Name;
+                    if (chestName.Length > 20)
                     {
-                        var chestName = chest.Name;
-                        if (chestName.Length > 20)
-                        {
-                            chestName = chestName.Substring(0, 20);
-                        }
-                        bw.Write(chestName);
+                        chestName = chestName.Substring(0, 20);
                     }
+                    bw.Write(chestName);
+                }
 
 
-                    for (int j = 0; j < chestSize; ++j)
+                for (int j = 0; j < chestSize; ++j)
+                {
+                    if (chest.Items.Count > j)
                     {
-                        if (chest.Items.Count > j)
-                        {
-                            if (chest.Items[j].NetId == 0)
-                                chest.Items[j].StackSize = 0;
+                        if (chest.Items[j].NetId == 0)
+                            chest.Items[j].StackSize = 0;
 
-                            if (version < 59)
+                        if (version < 59)
+                        {
+                            if (chest.Items[j].StackSize > byte.MaxValue)
                             {
-                                if (chest.Items[j].StackSize > byte.MaxValue)
-                                {
-                                    bw.Write(byte.MaxValue);
-                                }
-                                else
-                                {
-                                    bw.Write((byte)chest.Items[j].StackSize);
-                                }
+                                bw.Write(byte.MaxValue);
                             }
                             else
                             {
-                                bw.Write((short)chest.Items[j].StackSize);
-                            }
-
-
-                            if (chest.Items[j].StackSize > 0)
-                            {
-                                if (version >= 38)
-                                {
-                                    bw.Write(chest.Items[j].NetId);
-                                }
-                                else
-                                {
-                                    bw.Write(ToLegacyName((short)chest.Items[j].NetId, version));
-                                }
-
-                                if (version >= 36)
-                                {
-                                    bw.Write(chest.Items[j].Prefix);
-                                }
+                                bw.Write((byte)chest.Items[j].StackSize);
                             }
                         }
                         else
+                        {
+                            bw.Write((short)chest.Items[j].StackSize);
+                        }
+
+
+                        if (chest.Items[j].StackSize > 0)
+                        {
+                            if (version >= 38)
+                            {
+                                bw.Write(chest.Items[j].NetId);
+                            }
+                            else
+                            {
+                                bw.Write(ToLegacyName((short)chest.Items[j].NetId, version));
+                            }
+
+                            if (version >= 36)
+                            {
+                                bw.Write(chest.Items[j].Prefix);
+                            }
+                        }
+                    }
+                    else
+                    {
+                        if (version < 59)
+                        {
                             bw.Write((byte)0);
+                        }
+                        else
+                        {
+                            bw.Write((short)0);
+                        }
                     }
                 }
             }

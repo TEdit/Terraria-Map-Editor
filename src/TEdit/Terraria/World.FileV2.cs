@@ -114,9 +114,9 @@ namespace TEdit.Terraria
             sectionPointers[2] = SaveTiles(world.Tiles, (int)world.Version, world.TilesWide, world.TilesHigh, bw, tileFrameImportant, debugger);
 
             OnProgressChanged(null, new ProgressChangedEventArgs(91, "Save Chests..."));
-            sectionPointers[3] = SaveChests(world.Chests, bw, (int)world.Version, world.Version < 226);
+            sectionPointers[3] = SaveChests(world.Chests, bw, (int)world.Version);
             OnProgressChanged(null, new ProgressChangedEventArgs(92, "Save Signs..."));
-            sectionPointers[4] = SaveSigns(world.Signs, bw, world.Version < 226);
+            sectionPointers[4] = SaveSigns(world.Signs, bw, (int)world.Version);
             OnProgressChanged(null, new ProgressChangedEventArgs(93, "Save NPCs..."));
             sectionPointers[5] = SaveNPCs(world.NPCs, bw, (int)world.Version);
 
@@ -407,8 +407,9 @@ namespace TEdit.Terraria
             return tileData;
         }
 
-        public static int SaveChests(IList<Chest> chests, BinaryWriter bw, int version, bool useLegacyLimit = false)
+        public static int SaveChests(IList<Chest> chests, BinaryWriter bw, int version)
         {
+            bool useLegacyLimit = version < 216;
             Int16 count = useLegacyLimit ? (Int16)Math.Min(chests.Count, Chest.LegacyLimit) : (Int16)chests.Count;
             bw.Write(count);
             bw.Write((Int16)Chest.MaxItems);
@@ -446,8 +447,9 @@ namespace TEdit.Terraria
             return (int)bw.BaseStream.Position;
         }
 
-        public static int SaveSigns(IList<Sign> signs, BinaryWriter bw, bool useLegacyLimit = false)
+        public static int SaveSigns(IList<Sign> signs, BinaryWriter bw, int version)
         {
+            bool useLegacyLimit = version < 216;
             Int16 count = useLegacyLimit ? (Int16)Math.Min(signs.Count, Sign.LegacyLimit) : (Int16)signs.Count;
             bw.Write(count);
 

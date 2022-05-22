@@ -80,7 +80,7 @@ namespace TEdit.Editor.Clipboard
             var frames = World.SaveConfiguration.SaveVersions[(int)world.Version].GetFrames();
             World.SaveTiles(Tiles, (int)version, Size.X, Size.Y, bw, frames);
             World.SaveChests(Chests, bw, (int)version);
-            World.SaveSigns(Signs, bw);
+            World.SaveSigns(Signs, bw, (int)version);
 
             bw.Write(Name);
             bw.Write(World.CompatibleVersion);
@@ -100,7 +100,7 @@ namespace TEdit.Editor.Clipboard
             var frames = World.SaveConfiguration.SaveVersions[(int)world.Version].GetFrames();
             World.SaveTiles(Tiles, (int)version, Size.X, Size.Y, bw, frames);
             World.SaveChests(Chests, bw, (int)version);
-            World.SaveSigns(Signs, bw);
+            World.SaveSigns(Signs, bw, (int)version);
             World.SaveTileEntities(TileEntities, bw);
 
             bw.Write(Name);
@@ -142,7 +142,7 @@ namespace TEdit.Editor.Clipboard
             
             World.SaveTiles(Tiles, (int)version, Size.X, Size.Y, bw, frames);
             World.SaveChests(Chests, bw, (int)version);
-            World.SaveSigns(Signs, bw);
+            World.SaveSigns(Signs, bw, (int)version);
             World.SaveTileEntities(TileEntities, bw);
 
             bw.Write(Name);
