@@ -13,9 +13,10 @@ namespace TEdit.Editor.Plugins
     public partial class FindTileLocationResultView : Window
     {
         private char[] splitters = new char[] { ',' };
-        public FindTileLocationResultView(List<Tuple<string, Vector2>> locations)
+        public FindTileLocationResultView(List<Tuple<string, Vector2>> locations, string count)
         {
             InitializeComponent();
+            LocationText.Text = count + " locations could be found.";
             foreach (var location in locations)
             {
                 LocationList.Items.Add($"{location.Item1}{location.Item2.X}, {location.Item2.Y}");
