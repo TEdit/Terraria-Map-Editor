@@ -577,7 +577,7 @@ Presione reintentar para elegir una nueva carpeta o cancelar para usar {0} como 
     <value>Importar Schematic o una imagen</value>
   </data>
   <data name="tool_clipboard_ispasteempty" xml:space="preserve">
-    <value>Pegar bloques vacíos</value>
+    <value>Pegar vacíos</value>
   </data>
   <data name="tool_clipboard_ispasteliquid" xml:space="preserve">
     <value>Pegar Líquidos</value>
@@ -622,7 +622,7 @@ Presione reintentar para elegir una nueva carpeta o cancelar para usar {0} como 
     <value>Máscara</value>
   </data>
   <data name="tool_paint_maskmode" xml:space="preserve">
-    <value>Mod máscara</value>
+    <value> 1Mod máscara</value>
   </data>
   <data name="tool_paint_mode" xml:space="preserve">
     <value>Mod pintura</value>
@@ -994,7 +994,7 @@ Presione reintentar para elegir una nueva carpeta o cancelar para usar {0} como 
     <value>Max LLuvia</value>
   </data>
   <data name="tool_wp_rain_slime" xml:space="preserve">
-    <value>Tiempo de lluvia Slime</value>
+    <value>Tiempo lluviaSlime</value>
   </data>
   <data name="tool_wp_rain_time" xml:space="preserve">
     <value>Tiempo de lluvia</value>
@@ -1075,13 +1075,13 @@ Presione reintentar para elegir una nueva carpeta o cancelar para usar {0} como 
     <value>Usar el reloj de sol</value>
   </data>
   <data name="tool_wp_time_sundial_cooldown" xml:space="preserve">
-    <value>Enfriamiento del reloj solar</value>
+    <value>Reutilizar reloj solar</value>
   </data>
   <data name="tool_wp_weather_clouds" xml:space="preserve">
     <value>Número de nubes</value>
   </data>
   <data name="tool_wp_weather_windspeed" xml:space="preserve">
-    <value>Velocidad del viento</value>
+    <value>Velocidad viento</value>
   </data>
   <data name="TrackMode_Booster" xml:space="preserve">
     <value>Potenciador</value>
