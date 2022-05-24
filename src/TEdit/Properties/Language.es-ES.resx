@@ -982,7 +982,7 @@ Presione reintentar para elegir una nueva carpeta o cancelar para usar {0} como 
     <value>Orbes rotos</value>
   </data>
   <data name="tool_wp_prehardmode" xml:space="preserve">
-    <value>Pre-Hardmode</value>
+    <value>Pre-Moddificil</value>
   </data>
   <data name="tool_wp_rain" xml:space="preserve">
     <value>Lluvia</value>
