@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using System.Windows.Forms;
 
 namespace TEdit.Editor.Plugins
 {
@@ -8,6 +9,7 @@ namespace TEdit.Editor.Plugins
     public partial class FindChestWithPluginView : Window
     {
         public string ItemToFind { get; private set; }
+        public bool CalculateDistance { get; private set; }
         public FindChestWithPluginView()
         {
             InitializeComponent();
@@ -24,6 +26,16 @@ namespace TEdit.Editor.Plugins
             DialogResult = true;
             ItemToFind = ItemLookup.Text;
             Close();
+        }
+
+        private void NUDCheckBox_Checked(object sender, RoutedEventArgs e)
+        {
+            CalculateDistance = true;
+        }
+
+        private void NUDCheckBox_Unchecked(object sender, RoutedEventArgs e)
+        {
+            CalculateDistance = false;
         }
     }
 }
