@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -12,13 +13,13 @@ namespace TEdit.Editor.Plugins
     public partial class FindLocationResultView : Window
     {
         private char[] splitters = new char[] { ',' };
-        public FindLocationResultView(IEnumerable<Vector2> locations)
+        public FindLocationResultView(List<Tuple<Vector2, string>> locations)
         {
             InitializeComponent();
-            foreach (Vector2 location in locations)
+
+            foreach (var location in locations)
             {
-                // Was to lazy to do it with Bindings (sorry)
-                LocationList.Items.Add($"{location.X}, {location.Y}");
+                LocationList.Items.Add($"{location.Item1.X}, {location.Item1.Y}{location.Item2.ToString()}");
             }
         }
 
@@ -29,24 +30,21 @@ namespace TEdit.Editor.Plugins
 
         private void ListBoxMouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            if ( e.OriginalSource is TextBlock )
+            if (e.OriginalSource is TextBlock)
             {
                 TextBlock item = e.OriginalSource as TextBlock;
-                if ( !string.IsNullOrEmpty(item.Text) )
+                if (!string.IsNullOrEmpty(item.Text))
                 {
                     string[] positions = item.Text.Split(splitters);
-                    if ( positions.Length == 2 )
-                    {
-                        int x = 0;
-                        int y = 0;
+                    int x = 0;
+                    int y = 0;
 
-                        if ( int.TryParse(positions[0].Trim(), out x) && int.TryParse(positions[1].Trim(), out y) )
+                    if (int.TryParse(positions[0].Trim(), out x) && int.TryParse(positions[1].Trim(), out y))
+                    {
+                        MainWindow mainwin = Application.Current.MainWindow as MainWindow;
+                        if (mainwin != null)
                         {
-                            MainWindow mainwin = Application.Current.MainWindow as MainWindow;
-                            if (mainwin != null)
-                            {
-                                mainwin.ZoomFocus(x, y);
-                            }
+                            mainwin.ZoomFocus(x, y);
                         }
                     }
                 }

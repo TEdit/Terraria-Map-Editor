@@ -18,7 +18,7 @@ namespace TEdit.Editor.Plugins
         {
             if (_wvm.CurrentWorld == null) return;
 
-            List<Vector2> locations = new List<Vector2>();
+            List<Tuple<Vector2, string>> locations = new List<Tuple<Vector2, string>>();
 
             // Search the whole World
             for (int x = 0; x < _wvm.CurrentWorld.TilesWide; x++)
@@ -30,7 +30,7 @@ namespace TEdit.Editor.Plugins
                     {
                         if (!findConnectedTitle(locations, x, y))
                         {
-                            locations.Add(new Vector2(x, y));
+                            locations.Add(new Tuple<Vector2, string>(new Vector2(x, y), ""));
                         }
                     }
                 }
@@ -41,12 +41,12 @@ namespace TEdit.Editor.Plugins
             resultView.Show();
         }
 
-        protected bool findConnectedTitle(List<Vector2> locations, int x, int y)
+        protected bool findConnectedTitle(List<Tuple<Vector2, string>> locations, int x, int y)
         {
             Vector2 position;
             for ( int i = 0; i < locations.Count; i++ )
             {
-                position = locations[i];
+                position = locations[i].Item1;
                 if ( Math.Abs((int)position.X - x) <= 1 && Math.Abs((int)position.Y - y) <= 1 )
                 {
                     return true;
