@@ -44,6 +44,20 @@ namespace TEdit.Editor.Plugins
                 }
             }
 
+            // Check If CalcDistance Is Enabled
+            if (view.CalculateDistance)
+            {
+                // Sort Values Based On Distance, Rebuilt Array
+                List<Tuple<Vector2, string>> locationsSorted = new List<Tuple<Vector2, string>>();
+                foreach (var value in locations.OrderBy(c => int.Parse(c.Item2.Replace(", Distance: ", ""))))
+                {
+                    locationsSorted.Add(value);
+                }
+
+                // Update Array
+                locations = locationsSorted;
+            }
+
             // show the result view with the list of locations
             FindLocationResultView resultView = new FindLocationResultView(locations);
             resultView.Show();
