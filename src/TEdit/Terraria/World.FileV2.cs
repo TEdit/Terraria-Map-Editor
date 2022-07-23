@@ -10,7 +10,6 @@ using System.Linq;
 
 namespace TEdit.Terraria
 {
-
     public partial class World
     {
         public static readonly uint CompatibleVersion;
@@ -593,18 +592,17 @@ namespace TEdit.Terraria
             bw.Write(world.Version);
             debugger?.WriteLine("\"Version\": {0},", world.Version);
 
-            bw.Write((UInt64)0x026369676f6c6572ul);
-            debugger?.WriteLine("\"Magic Word\": {0},", (UInt64)0x026369676f6c6572ul);
-
+            bw.Write("relogic".ToCharArray());
+            bw.Write((byte)FileType.World);
 
             bw.Write((int)world.FileRevision + 1);
             debugger?.WriteLine("\"FileRevision\": {0},", world.FileRevision);
 
+            UInt64 worldHeaderFlags = 0;
+            if (world.IsFavorite) { worldHeaderFlags |= 0x1; }
 
-            bw.Write(Convert.ToUInt64(world.IsFavorite));
+            bw.Write(worldHeaderFlags);
             debugger?.WriteLine("\"IsFavorite\": {0},", world.IsFavorite);
-
-
 
             short sections = world.GetSectionCount();
             bw.Write(sections);
@@ -2203,13 +2201,14 @@ namespace TEdit.Terraria
             int versionNumber = r.ReadInt32();
             if (versionNumber > 140)
             {
-                UInt64 versionTypecheck = r.ReadUInt64();
-                if (versionTypecheck != 0x026369676f6c6572ul)
+                string headerFormat = new string(r.ReadChars(7));
+                FileType fileType = (FileType)r.ReadByte();
+                if (headerFormat != "relogic" || fileType != FileType.World)
                     throw new FileFormatException("Invalid Header");
 
                 w.FileRevision = r.ReadUInt32();
-                UInt64 temp = r.ReadUInt64();//I have no idea what this is for...
-                w.IsFavorite = ((temp & 1uL) == 1uL);
+                UInt64 flags = r.ReadUInt64();//I have no idea what this is for...
+                w.IsFavorite = ((flags & 1uL) == 1uL);
             }
 
             // read file section stream positions
