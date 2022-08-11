@@ -2386,7 +2386,7 @@ namespace TEdit.View
                                     source.X = state * 18;
                                     source.Y = 36 + voffset;
 
-                                    var color = (!_wvm.ShowWireTransparency) ? Color.White : (curtile.WireRed || curtile.WireBlue && (_wvm.ShowRedWires || _wvm.ShowBlueWires || _wvm.ShowYellowWires)) ? Translucent : Color.White;
+                                    var color = (!_wvm.ShowWireTransparency) ? Color.White : ((curtile.WireRed || curtile.WireBlue) && (_wvm.ShowRedWires || _wvm.ShowBlueWires || _wvm.ShowYellowWires)) ? Translucent : Color.White;
                                     _spriteBatch.Draw(tileTex, dest, source, color, 0f, default, SpriteEffects.None, LayerGreenWires);
                                 }
                                 if (curtile.WireYellow && _wvm.ShowYellowWires)
@@ -2402,7 +2402,7 @@ namespace TEdit.View
                                     source.X = state * 18;
                                     source.Y = 54 + voffset;
 
-                                    var color = (!_wvm.ShowWireTransparency) ? Color.White : (curtile.WireRed || curtile.WireBlue || curtile.WireGreen && (_wvm.ShowRedWires || _wvm.ShowBlueWires || _wvm.ShowGreenWires)) ? Translucent : Color.White;
+                                    var color = (!_wvm.ShowWireTransparency) ? Color.White : ((curtile.WireRed || curtile.WireBlue || curtile.WireGreen) && (_wvm.ShowRedWires || _wvm.ShowBlueWires || _wvm.ShowGreenWires)) ? Translucent : Color.White;
                                     _spriteBatch.Draw(tileTex, dest, source, color, 0f, default, SpriteEffects.None, LayerYellowWires);
                                 }
                             }
