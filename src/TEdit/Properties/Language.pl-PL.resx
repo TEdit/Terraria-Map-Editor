@@ -1170,4 +1170,7 @@ Naciśnij spróbuj ponownie aby wybrać nowy folder lub anuluj aby użyć {0} ja
   <data name="bestiary_load" xml:space="preserve">
     <value>Ładunek</value>
   </data>
+  <data name="menu_layers_wire_transparency" xml:space="preserve">
+    <value>Przezroczystość przewodu</value>
+  </data>
 </root>

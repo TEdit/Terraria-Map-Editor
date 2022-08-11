@@ -89,6 +89,7 @@ namespace TEdit.ViewModel
         private bool _showBlueWires = true;
         private bool _showGreenWires = true;
         private bool _showYellowWires = true;
+        private bool _showWireTransparency = true;
         private string _spriteFilter;
         private ListCollectionView _spritesView;
         private ListCollectionView _spritesView2;
@@ -573,6 +574,16 @@ namespace TEdit.ViewModel
             set
             {
                 Set(nameof(ShowYellowWires), ref _showYellowWires, value);
+                UpdateRenderWorld();
+            }
+        }
+
+        public bool ShowWireTransparency
+        {
+            get { return _showWireTransparency; }
+            set
+            {
+                Set(nameof(ShowWireTransparency), ref _showWireTransparency, value);
                 UpdateRenderWorld();
             }
         }

@@ -1170,4 +1170,7 @@ Press retry to pick a new folder or cancel to use {0} as your terraria path.</va
   <data name="tool_clipboard_ispastesprite" xml:space="preserve">
     <value>Paste Sprites</value>
   </data>
+  <data name="menu_layers_wire_transparency" xml:space="preserve">
+    <value>Wire Transparency</value>
+  </data>
 </root>

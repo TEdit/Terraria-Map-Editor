@@ -1170,4 +1170,7 @@ Klicke auf „Wiederholen“, um einen neuen Ordner auszuwählen, oder auf „Ab
   <data name="bestiary_load" xml:space="preserve">
     <value>Last</value>
   </data>
+  <data name="menu_layers_wire_transparency" xml:space="preserve">
+    <value>Drahttransparenz</value>
+  </data>
 </root>

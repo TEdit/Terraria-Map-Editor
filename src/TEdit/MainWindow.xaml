@@ -110,6 +110,7 @@
                     <MenuItem Header="{x:Static p:Language.menu_layers_wire_blue}" IsCheckable="True" IsChecked="{Binding ShowBlueWires}" />
                     <MenuItem Header="{x:Static p:Language.menu_layers_wire_green}" IsCheckable="True" IsChecked="{Binding ShowGreenWires}" />
                     <MenuItem Header="{x:Static p:Language.menu_layers_wire_yellow}" IsCheckable="True" IsChecked="{Binding ShowYellowWires}" />
+                    <MenuItem Header="{x:Static p:Language.menu_layers_wire_transparency}" IsCheckable="True" IsChecked="{Binding ShowWireTransparency}" />
                     <Separator Margin="1" />
                     <MenuItem Header="{x:Static p:Language.menu_layers_points}" IsCheckable="True" IsChecked="{Binding ShowPoints}" />
                     <Separator Margin="1" />
