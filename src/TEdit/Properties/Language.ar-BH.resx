@@ -1170,4 +1170,7 @@
   <data name="bestiary_load" xml:space="preserve">
     <value>حمل</value>
   </data>
+  <data name="menu_layers_wire_transparency" xml:space="preserve">
+    <value>شفافية الأسلاك</value>
+  </data>
 </root>
