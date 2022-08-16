@@ -228,6 +228,38 @@
                     </StackPanel>
                 </StackPanel>
             </GroupBox>
+            <GroupBox Header="Wire Replacement" Style="{StaticResource WireStyle}">
+            <StackPanel Orientation="Horizontal">
+                <StackPanel Orientation="Vertical">
+                    <TextBlock Text="{x:Static p:Language.menu_layers_wire_red}" />
+                    <TextBlock Text="{x:Static p:Language.menu_layers_wire_blue}" />
+                </StackPanel>
+                <StackPanel Orientation="Vertical">
+                    <ComboBox ItemsSource="{StaticResource WireReplaceModeOneEnum}" 
+                          SelectedValue="{Binding TilePicker.WireReplaceModeOne}" 
+                          SelectedValuePath="Value" Width="100"
+                          ItemTemplate="{StaticResource EnumTemplate}" />
+                    <ComboBox ItemsSource="{StaticResource WireReplaceModeTwoEnum}" 
+                          SelectedValue="{Binding TilePicker.WireReplaceModeTwo}" 
+                          SelectedValuePath="Value" Width="100"
+                          ItemTemplate="{StaticResource EnumTemplate}" />
+                </StackPanel>
+                <StackPanel Orientation="Vertical">
+                    <TextBlock Text="{x:Static p:Language.menu_layers_wire_green}" />
+                    <TextBlock Text="{x:Static p:Language.menu_layers_wire_yellow}" />
+                </StackPanel>
+                <StackPanel Orientation="Vertical">
+                    <ComboBox ItemsSource="{StaticResource WireReplaceModeThreeEnum}" 
+                          SelectedValue="{Binding TilePicker.WireReplaceModeThree}" 
+                          SelectedValuePath="Value" Width="100"
+                          ItemTemplate="{StaticResource EnumTemplate}" />
+                    <ComboBox ItemsSource="{StaticResource WireReplaceModeFourEnum}" 
+                          SelectedValue="{Binding TilePicker.WireReplaceModeFour}" 
+                          SelectedValuePath="Value" Width="100"
+                          ItemTemplate="{StaticResource EnumTemplate}" />
+                </StackPanel>
+            </StackPanel>
+            </GroupBox>
             <GroupBox Header="Minecart Track" Style="{StaticResource TrackStyle}">
                 <StackPanel Orientation="Vertical" >
                     <ComboBox ItemsSource="{StaticResource TrackModeEnum}" 
