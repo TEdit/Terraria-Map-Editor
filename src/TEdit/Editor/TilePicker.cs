@@ -36,6 +36,10 @@ namespace TEdit.Editor
         private bool _wallStyleActive = ToolDefaultData.PaintWallActive;
         private TrackMode _trackMode = TrackMode.Track;
         private JunctionBoxMode _junctionboxMode = JunctionBoxMode.None;
+        private WireReplaceModeOne _wireReplaceModeOne = WireReplaceModeOne.Red;
+        private WireReplaceModeTwo _wireReplaceModeTwo = WireReplaceModeTwo.Blue;
+        private WireReplaceModeThree _wireReplaceModeThree = WireReplaceModeThree.Green;
+        private WireReplaceModeFour _wireReplaceModeFour = WireReplaceModeFour.Yellow;
 
         private BrickStyle _brickStyle = BrickStyle.Full;
         public BrickStyle BrickStyle
@@ -54,6 +58,26 @@ namespace TEdit.Editor
         {
             get { return _junctionboxMode; }
             set { Set(nameof(JunctionBoxMode), ref _junctionboxMode, value); }
+        }
+        public WireReplaceModeOne WireReplaceModeOne
+        {
+            get { return _wireReplaceModeOne; }
+            set { Set(nameof(WireReplaceModeOne), ref _wireReplaceModeOne, value); }
+        }
+        public WireReplaceModeTwo WireReplaceModeTwo
+        {
+            get { return _wireReplaceModeTwo; }
+            set { Set(nameof(WireReplaceModeTwo), ref _wireReplaceModeTwo, value); }
+        }
+        public WireReplaceModeThree WireReplaceModeThree
+        {
+            get { return _wireReplaceModeThree; }
+            set { Set(nameof(WireReplaceModeThree), ref _wireReplaceModeThree, value); }
+        }
+        public WireReplaceModeFour WireReplaceModeFour
+        {
+            get { return _wireReplaceModeFour; }
+            set { Set(nameof(WireReplaceModeFour), ref _wireReplaceModeFour, value); }
         }
 
         //private bool _isLava;
@@ -96,7 +120,6 @@ namespace TEdit.Editor
             get { return _wallpaintActive; }
             set { Set(nameof(WallPaintActive), ref _wallpaintActive, value); }
         }
-
 
         private bool _brickStyleActive;
         public bool BrickStyleActive

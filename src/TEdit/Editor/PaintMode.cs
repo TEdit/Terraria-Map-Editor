@@ -38,4 +38,48 @@ namespace TEdit.Editor
         [Description("Right Facing")]
         Right = 36
     }
+    public enum WireReplaceModeOne
+    {
+        [Description("Red")]
+        Red,
+        [Description("Blue")]
+        Blue,
+        [Description("Green")]
+        Green,
+        [Description("Yellow")]
+        Yellow
+    }
+    public enum WireReplaceModeTwo
+    {
+        [Description("Red")]
+        Red,
+        [Description("Blue")]
+        Blue,
+        [Description("Green")]
+        Green,
+        [Description("Yellow")]
+        Yellow
+    }
+    public enum WireReplaceModeThree
+    {
+        [Description("Red")]
+        Red,
+        [Description("Blue")]
+        Blue,
+        [Description("Green")]
+        Green,
+        [Description("Yellow")]
+        Yellow
+    }
+    public enum WireReplaceModeFour
+    {
+        [Description("Red")]
+        Red,
+        [Description("Blue")]
+        Blue,
+        [Description("Green")]
+        Green,
+        [Description("Yellow")]
+        Yellow
+    }
 }
