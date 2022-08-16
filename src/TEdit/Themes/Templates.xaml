@@ -13,7 +13,10 @@
     <enum:EnumItemList x:Key="HalfBlockMode" ResourceType="{x:Type p:Language}" EnumType="{x:Type Editor:HalfBlockMode}" x:Shared="false" SortBy="Value" />
     <enum:EnumItemList x:Key="BrickStyle" ResourceType="{x:Type p:Language}" EnumType="{x:Type Terraria:BrickStyle}" x:Shared="false" SortBy="Value" />
     <enum:EnumItemList x:Key="LiquidType" ResourceType="{x:Type p:Language}" EnumType="{x:Type Terraria:LiquidType}" x:Shared="false" SortBy="Value" />
-    
+    <enum:EnumItemList x:Key="WireReplaceModeOneEnum" ResourceType="{x:Type p:Language}" EnumType="{x:Type Editor:WireReplaceModeOne}" SortBy="Value"  />
+    <enum:EnumItemList x:Key="WireReplaceModeTwoEnum" ResourceType="{x:Type p:Language}" EnumType="{x:Type Editor:WireReplaceModeTwo}" SortBy="Value"  />
+    <enum:EnumItemList x:Key="WireReplaceModeThreeEnum" ResourceType="{x:Type p:Language}" EnumType="{x:Type Editor:WireReplaceModeThree}" SortBy="Value"  />
+    <enum:EnumItemList x:Key="WireReplaceModeFourEnum" ResourceType="{x:Type p:Language}" EnumType="{x:Type Editor:WireReplaceModeFour}" SortBy="Value"  />
 
     <DataTemplate x:Key="ColorPickerTemplate" >
         <DockPanel LastChildFill="True">
