@@ -358,13 +358,161 @@ namespace TEdit.ViewModel
                     break;
                 case PaintMode.Wire:
 
-                    // paint all wires in one call
-                    SetPixelAutomatic(curTile,
-                        wire: TilePicker.RedWireActive ? !isErase : null,
-                        wire2: TilePicker.BlueWireActive ? !isErase : null,
-                        wire3: TilePicker.GreenWireActive ? !isErase : null,
-                        wire4: TilePicker.YellowWireActive ? !isErase : null
-                        );
+                    // Is Replace Mode Active?
+                    bool WireReplaceMode = ((TilePicker.WireReplaceModeOne != WireReplaceModeOne.Red) ? true : false) || ((TilePicker.WireReplaceModeTwo != WireReplaceModeTwo.Blue) ? true : false) || ((TilePicker.WireReplaceModeThree != WireReplaceModeThree.Green) ? true : false) || ((TilePicker.WireReplaceModeFour != WireReplaceModeFour.Yellow) ? true : false);
+                    bool ReplacedRed = false;
+                    bool ReplacedBlue = false;
+                    bool ReplacedGreen = false;
+                    bool ReplacedYellow = false;
+
+                HasMultiColor:
+                    if (!WireReplaceMode)
+                    {
+                        // paint all wires in one call
+                        SetPixelAutomatic(curTile,
+                            wire: TilePicker.RedWireActive ? !isErase : null,
+                            wire2: TilePicker.BlueWireActive ? !isErase : null,
+                            wire3: TilePicker.GreenWireActive ? !isErase : null,
+                            wire4: TilePicker.YellowWireActive ? !isErase : null
+                            );
+                    }
+                    else
+                    {
+                        if (curTile.WireRed && TilePicker.WireReplaceModeOne != WireReplaceModeOne.Red && !ReplacedRed)
+                        {
+                            // Does it have overlay?
+                            bool HasMiltiColor = (curTile.WireBlue || curTile.WireGreen || curTile.WireYellow);
+
+                            // Erase Red
+                            if (!HasMiltiColor)
+                                SetPixelAutomatic(curTile, wire: false);
+
+                            if (TilePicker.WireReplaceModeOne == WireReplaceModeOne.Blue && !ReplacedBlue)
+                            {
+                                if (!curTile.WireBlue) { SetPixelAutomatic(curTile, wire: false); } // Erase Old Wires
+                                SetPixelAutomatic(curTile, wire2: true);
+                            }
+                            if (TilePicker.WireReplaceModeOne == WireReplaceModeOne.Green && !ReplacedGreen)
+                            {
+                                if (!curTile.WireGreen) { SetPixelAutomatic(curTile, wire: false); } // Erase Old Wires
+                                SetPixelAutomatic(curTile, wire3: true);
+                            }
+                            if (TilePicker.WireReplaceModeOne == WireReplaceModeOne.Yellow && !ReplacedYellow)
+                            {
+                                if (!curTile.WireYellow) { SetPixelAutomatic(curTile, wire: false); } // Erase Old Wires
+                                SetPixelAutomatic(curTile, wire4: true);
+                            }
+
+                            // Loop To Fix MultiColors
+                            if (HasMiltiColor)
+                            {
+                                ReplacedRed = true;
+                                goto HasMultiColor;
+                            }
+                        }
+                        else if (curTile.WireBlue && TilePicker.WireReplaceModeTwo != WireReplaceModeTwo.Blue && !ReplacedBlue)
+                        {
+                            // Does it have overlay?
+                            bool HasMiltiColor = (curTile.WireRed || curTile.WireGreen || curTile.WireYellow);
+
+                            // Erase Blue
+                            if (!HasMiltiColor)
+                                SetPixelAutomatic(curTile, wire2: false);
+
+                            if (TilePicker.WireReplaceModeTwo == WireReplaceModeTwo.Red && !ReplacedRed)
+                            {
+                                if (!curTile.WireRed) { SetPixelAutomatic(curTile, wire2: false); } // Erase Old Wires
+                                SetPixelAutomatic(curTile, wire: true);
+                            }
+                            if (TilePicker.WireReplaceModeTwo == WireReplaceModeTwo.Green && !ReplacedGreen)
+                            {
+                                if (!curTile.WireGreen) { SetPixelAutomatic(curTile, wire2: false); } // Erase Old Wires
+                                SetPixelAutomatic(curTile, wire3: true);
+                            }
+                            if (TilePicker.WireReplaceModeTwo == WireReplaceModeTwo.Yellow && !ReplacedYellow)
+                            {
+                                if (!curTile.WireYellow) { SetPixelAutomatic(curTile, wire2: false); } // Erase Old Wires
+                                SetPixelAutomatic(curTile, wire4: true);
+                            }
+
+                            // Loop To Fix MultiColors
+                            if (HasMiltiColor)
+                            {
+                                ReplacedBlue = true;
+                                goto HasMultiColor;
+                            }
+                        }
+                        else if (curTile.WireGreen && TilePicker.WireReplaceModeThree != WireReplaceModeThree.Green && !ReplacedGreen)
+                        {
+                            // Does it have overlay?
+                            bool HasMiltiColor = (curTile.WireRed || curTile.WireBlue || curTile.WireYellow);
+
+                            // Erase Green
+                            if (!HasMiltiColor)
+                                SetPixelAutomatic(curTile, wire3: false);
+
+                            if (TilePicker.WireReplaceModeThree == WireReplaceModeThree.Red && !ReplacedRed)
+                            {
+                                if (!curTile.WireRed) { SetPixelAutomatic(curTile, wire3: false); } // Erase Old Wires
+                                SetPixelAutomatic(curTile, wire: true);
+                            }
+                            if (TilePicker.WireReplaceModeThree == WireReplaceModeThree.Blue && !ReplacedBlue)
+                            {
+                                if (!curTile.WireBlue) { SetPixelAutomatic(curTile, wire3: false); } // Erase Old Wires
+                                SetPixelAutomatic(curTile, wire2: true);
+                            }
+                            if (TilePicker.WireReplaceModeThree == WireReplaceModeThree.Yellow && !ReplacedYellow)
+                            {
+                                if (!curTile.WireYellow) { SetPixelAutomatic(curTile, wire3: false); } // Erase Old Wires
+                                SetPixelAutomatic(curTile, wire4: true);
+                            }
+
+                            // Loop To Fix MultiColors
+                            if (HasMiltiColor)
+                            {
+
+
+                                ReplacedGreen = true;
+                                goto HasMultiColor;
+                            }
+                        }
+                        else if (curTile.WireYellow && TilePicker.WireReplaceModeFour != WireReplaceModeFour.Yellow && !ReplacedYellow)
+                        {
+                            // Does it have overlay?
+                            bool HasMiltiColor = (curTile.WireRed || curTile.WireBlue || curTile.WireGreen);
+
+                            // Erase Yellow
+                            if (!HasMiltiColor)
+                                SetPixelAutomatic(curTile, wire4: false);
+
+                            if (TilePicker.WireReplaceModeFour == WireReplaceModeFour.Red && !ReplacedRed)
+                            {
+                                if (!curTile.WireRed) { SetPixelAutomatic(curTile, wire4: false); } // Erase Old Wires
+                                SetPixelAutomatic(curTile, wire: true);
+                            }
+                            if (TilePicker.WireReplaceModeFour == WireReplaceModeFour.Blue && !ReplacedBlue)
+                            {
+                                if (!curTile.WireBlue) { SetPixelAutomatic(curTile, wire4: false); } // Erase Old Wires
+                                SetPixelAutomatic(curTile, wire2: true);
+                            }
+                            if (TilePicker.WireReplaceModeFour == WireReplaceModeFour.Green && !ReplacedGreen)
+                            {
+                                if (!curTile.WireGreen) { SetPixelAutomatic(curTile, wire4: false); } // Erase Old Wires
+                                SetPixelAutomatic(curTile, wire3: true);
+                            }
+
+                            // Loop To Fix MultiColors
+                            if (HasMiltiColor)
+                            {
+                                ReplacedYellow = true;
+                                goto HasMultiColor;
+                            }
+                        }
+
+                        // Remove 
+
+
+                    }
 
                     // stack on junction boxes
                     if (TilePicker.JunctionBoxMode != JunctionBoxMode.None)
