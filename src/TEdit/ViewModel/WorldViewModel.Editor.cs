@@ -378,29 +378,37 @@ namespace TEdit.ViewModel
                         if (curTile.WireGreen) { curWireBits |= Editor.WireReplaceMode.Green; }
                         if (curTile.WireYellow) { curWireBits |= Editor.WireReplaceMode.Yellow; }
 
+
+                        WireReplaceMode turnOnWires = Editor.WireReplaceMode.Off;
+                        WireReplaceMode turnOffWires = Editor.WireReplaceMode.Off;
+
                         if (TilePicker.WireReplaceRed && curTile.WireRed)
                         {
-                            curWireBits &= ~Editor.WireReplaceMode.Red;   // remove red
-                            curWireBits |= TilePicker.WireReplaceModeRed; // add back red's replacement
+                            turnOffWires |= Editor.WireReplaceMode.Red;   // remove red
+                            turnOnWires |= TilePicker.WireReplaceModeRed; // add back red's replacement
                         }
 
                         if (TilePicker.WireReplaceBlue && curTile.WireBlue)
                         {
-                            curWireBits &= ~Editor.WireReplaceMode.Blue;   // remove blue
-                            curWireBits |= TilePicker.WireReplaceModeBlue; // add back blue's replacement
+                            turnOffWires |= Editor.WireReplaceMode.Blue;   // remove blue
+                            turnOnWires |= TilePicker.WireReplaceModeBlue; // add back blue's replacement
                         }
 
                         if (TilePicker.WireReplaceGreen && curTile.WireGreen)
                         {
-                            curWireBits &= ~Editor.WireReplaceMode.Green;   // remove Green
-                            curWireBits |= TilePicker.WireReplaceModeGreen; // add back Green's replacement
+                            turnOffWires |= Editor.WireReplaceMode.Green;   // remove Green
+                            turnOnWires |= TilePicker.WireReplaceModeGreen; // add back Green's replacement
                         }
 
                         if (TilePicker.WireReplaceYellow && curTile.WireYellow)
                         {
-                            curWireBits &= ~Editor.WireReplaceMode.Yellow;   // remove Yellow
-                            curWireBits |= TilePicker.WireReplaceModeYellow; // add back Yellow's replacement
+                            turnOffWires |= Editor.WireReplaceMode.Yellow;   // remove Yellow
+                            turnOnWires |= TilePicker.WireReplaceModeYellow; // add back Yellow's replacement
                         }
+
+                        // apply off, then on
+                        curWireBits = curWireBits & ~turnOffWires;
+                        curWireBits |= turnOnWires;
 
                         SetPixelAutomatic(curTile, 
                             wireRed: curWireBits.HasFlag(Editor.WireReplaceMode.Red),
