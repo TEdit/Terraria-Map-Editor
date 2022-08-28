@@ -228,6 +228,38 @@
                     </StackPanel>
                 </StackPanel>
             </GroupBox>
+            <GroupBox Header="Wire Replacement" Style="{StaticResource WireStyle}">
+            <StackPanel Orientation="Horizontal">
+                <StackPanel Orientation="Vertical">
+                        <CheckBox IsChecked="{Binding TilePicker.WireReplaceRed}" Content="{x:Static p:Language.menu_layers_wire_red}" Width="75" VerticalAlignment="Center" Height="22" />
+                        <CheckBox IsChecked="{Binding TilePicker.WireReplaceBlue}" Content="{x:Static p:Language.menu_layers_wire_blue}"  Width="75" VerticalAlignment="Center" Height="22"/>
+                </StackPanel>
+                <StackPanel Orientation="Vertical">
+                    <ComboBox ItemsSource="{Binding Source={StaticResource WireReplaceModeEnum}, Mode=OneTime}" 
+                          SelectedValue="{Binding TilePicker.WireReplaceModeRed}" 
+                          SelectedValuePath="Value" Width="100"
+                          ItemTemplate="{StaticResource EnumTemplate}" />
+                        <ComboBox ItemsSource="{Binding Source={StaticResource WireReplaceModeEnum}, Mode=OneTime}" 
+                          SelectedValue="{Binding TilePicker.WireReplaceModeBlue}" 
+                          SelectedValuePath="Value" Width="100"
+                          ItemTemplate="{StaticResource EnumTemplate}" />
+                </StackPanel>
+                <StackPanel Orientation="Vertical">
+                        <CheckBox IsChecked="{Binding TilePicker.WireReplaceGreen}" Content="{x:Static p:Language.menu_layers_wire_green}"  Width="75" VerticalAlignment="Center" Height="22"/>
+                        <CheckBox IsChecked="{Binding TilePicker.WireReplaceYellow}" Content="{x:Static p:Language.menu_layers_wire_yellow}" Width="75" VerticalAlignment="Center" Height="22" />
+                </StackPanel>
+                <StackPanel Orientation="Vertical">
+                        <ComboBox ItemsSource="{Binding Source={StaticResource WireReplaceModeEnum}, Mode=OneTime}" 
+                          SelectedValue="{Binding TilePicker.WireReplaceModeGreen}" 
+                          SelectedValuePath="Value" Width="100"
+                          ItemTemplate="{StaticResource EnumTemplate}" />
+                        <ComboBox ItemsSource="{Binding Source={StaticResource WireReplaceModeEnum}, Mode=OneTime}" 
+                          SelectedValue="{Binding TilePicker.WireReplaceModeYellow}" 
+                          SelectedValuePath="Value" Width="100"
+                          ItemTemplate="{StaticResource EnumTemplate}" />
+                </StackPanel>
+            </StackPanel>
+            </GroupBox>
             <GroupBox Header="Minecart Track" Style="{StaticResource TrackStyle}">
                 <StackPanel Orientation="Vertical" >
                     <ComboBox ItemsSource="{StaticResource TrackModeEnum}" 
