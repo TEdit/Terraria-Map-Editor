@@ -6,6 +6,9 @@
     <StackPanel Background="{StaticResource ControlBackgroundBrush}" >
         <TextBlock Text="Enter the name of the item you are looking for." Margin="10 2" TextWrapping="Wrap" HorizontalAlignment="Left" VerticalAlignment="Stretch" Foreground="{StaticResource TextBrush}"/>
         <TextBox x:Name="ItemLookup"></TextBox>
+        <UniformGrid Rows="1" HorizontalAlignment="Stretch" Margin="5">
+            <CheckBox Content="Show distance from spawn." x:Name="GetDistance" Grid.Column="0" Grid.Row="0" Grid.RowSpan="2" Checked="NUDCheckBox_Checked" Unchecked="NUDCheckBox_Unchecked" />
+        </UniformGrid>
         <Grid>
             <Button Margin="5" Content="Cancel" HorizontalAlignment="Left" Padding="20, 3" VerticalAlignment="Center" Click="CancelButtonClick" />
             <Button Margin="5" Content="Search" HorizontalAlignment="Right" Padding="20, 3" VerticalAlignment="Center" Click="SearchButtonClick" />

@@ -32,7 +32,7 @@ namespace TEdit.Terraria
             else if (Version >= 189) { numSections = 10; }
             else if (Version >= 170) { numSections = 9; }
             else if (Version >= 140) { numSections = 8; }
-            else if (Version > 140) { numSections = 7; }
+            else if (Version < 140) { numSections = 7; } // debug
 
             return numSections;
         }
@@ -592,22 +592,25 @@ namespace TEdit.Terraria
             bw.Write(world.Version);
             debugger?.WriteLine("\"Version\": {0},", world.Version);
 
-            bw.Write("relogic".ToCharArray());
-            bw.Write((byte)FileType.World);
+            // World features added in 1.3.0.1
+            if (world.Version >= 140)
+            {
+                bw.Write("relogic".ToCharArray());
+                bw.Write((byte)FileType.World);
 
-            bw.Write((int)world.FileRevision + 1);
-            debugger?.WriteLine("\"FileRevision\": {0},", world.FileRevision);
+                bw.Write((int)world.FileRevision + 1);
+                debugger?.WriteLine("\"FileRevision\": {0},", world.FileRevision);
 
-            UInt64 worldHeaderFlags = 0;
-            if (world.IsFavorite) { worldHeaderFlags |= 0x1; }
+                UInt64 worldHeaderFlags = 0;
+                if (world.IsFavorite) { worldHeaderFlags |= 0x1; }
 
-            bw.Write(worldHeaderFlags);
-            debugger?.WriteLine("\"IsFavorite\": {0},", world.IsFavorite);
+                bw.Write(worldHeaderFlags);
+                debugger?.WriteLine("\"IsFavorite\": {0},", world.IsFavorite);
+            }
 
             short sections = world.GetSectionCount();
             bw.Write(sections);
             debugger?.WriteLine("\"Sections\": {0},", sections);
-
 
             // write section pointer placeholders
             for (int i = 0; i < sections; i++)
@@ -2199,7 +2202,8 @@ namespace TEdit.Terraria
             tileFrameImportant = null;
             sectionPointers = null;
             int versionNumber = r.ReadInt32();
-            if (versionNumber > 140)
+
+            if (versionNumber >= 140)
             {
                 string headerFormat = new string(r.ReadChars(7));
                 FileType fileType = (FileType)r.ReadByte();
@@ -2207,8 +2211,10 @@ namespace TEdit.Terraria
                     throw new FileFormatException("Invalid Header");
 
                 w.FileRevision = r.ReadUInt32();
-                UInt64 flags = r.ReadUInt64();//I have no idea what this is for...
+
+                UInt64 flags = r.ReadUInt64(); // load bitflags (currently only bit 1 isFavorite is used)
                 w.IsFavorite = ((flags & 1uL) == 1uL);
+
             }
 
             // read file section stream positions

@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Xna.Framework;
@@ -24,14 +25,37 @@ namespace TEdit.Editor.Plugins
             }
 
             string itemName = view.ItemToFind.ToLower();
-            List<Vector2> locations = new List<Vector2>();
+            List<Tuple<Vector2, string>> locations = new List<Tuple<Vector2, string>>();
+            Vector2 spawn = new Vector2(_wvm.CurrentWorld.SpawnX, _wvm.CurrentWorld.SpawnY);
 
             foreach (var chest in _wvm.CurrentWorld.Chests)
             {
                 if (chest.Items.Count(c => c.GetName().ToLower().Contains(itemName)) > 0)
                 {
-                    locations.Add(new Vector2(chest.X, chest.Y));
+                    if (view.CalculateDistance)
+                    {
+                        // Record Distance
+                        locations.Add(new Tuple<Vector2, string>(new Vector2(chest.X, chest.Y), ", Distance: " + Math.Round(Vector2.Distance(spawn, new Vector2(chest.X, chest.Y)))));
+                    }
+                    else
+                    {
+                        locations.Add(new Tuple<Vector2, string>(new Vector2(chest.X, chest.Y), ""));
+                    }
                 }
+            }
+
+            // Check If CalcDistance Is Enabled
+            if (view.CalculateDistance)
+            {
+                // Sort Values Based On Distance, Rebuilt Array
+                List<Tuple<Vector2, string>> locationsSorted = new List<Tuple<Vector2, string>>();
+                foreach (var value in locations.OrderBy(c => int.Parse(c.Item2.Replace(", Distance: ", ""))))
+                {
+                    locationsSorted.Add(value);
+                }
+
+                // Update Array
+                locations = locationsSorted;
             }
 
             // show the result view with the list of locations

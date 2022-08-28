@@ -8,6 +8,7 @@ using TEdit.Editor;
 using TEdit.ViewModel;
 using TEdit.Properties;
 using TEdit.UI.Xaml;
+using System.IO;
 
 namespace TEdit
 {
@@ -252,6 +253,18 @@ namespace TEdit
             var mapPointY = (int)(clickLocation.Y * (TEdit.Render.RenderMiniMap.Resolution));
 
             this.MapView.ZoomFocus(mapPointX, mapPointY);
+        }
+
+        private void WorldFileDrop(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(DataFormats.FileDrop))
+            {
+                string[] files = (string[])e.Data.GetData(DataFormats.FileDrop);
+
+                string filelocation = Path.GetFullPath(files[0]);
+
+                _vm.LoadWorld(filelocation);
+            }
         }
     }
 }

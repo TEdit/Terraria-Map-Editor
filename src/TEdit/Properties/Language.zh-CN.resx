@@ -1170,4 +1170,7 @@
   <data name="bestiary_load" xml:space="preserve">
     <value>负荷</value>
   </data>
+  <data name="menu_layers_wire_transparency" xml:space="preserve">
+    <value>电线透明度</value>
+  </data>
 </root>

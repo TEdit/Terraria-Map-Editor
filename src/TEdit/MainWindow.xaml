@@ -8,6 +8,8 @@
         xmlns:p="clr-namespace:TEdit.Properties"
         xmlns:vm="clr-namespace:TEdit.ViewModel"
         xmlns:cv="clr-namespace:TEdit.Converters"
+        AllowDrop="True"
+        Drop="WorldFileDrop"
    >
     <Window.Resources>
         <Image x:Key="TB_LogIcon" x:Shared="false" Source="/Images/Toolbar/report_magnify.png" Height="16" Width="16" SnapsToDevicePixels="True" RenderOptions.BitmapScalingMode="NearestNeighbor"/>
@@ -108,6 +110,7 @@
                     <MenuItem Header="{x:Static p:Language.menu_layers_wire_blue}" IsCheckable="True" IsChecked="{Binding ShowBlueWires}" />
                     <MenuItem Header="{x:Static p:Language.menu_layers_wire_green}" IsCheckable="True" IsChecked="{Binding ShowGreenWires}" />
                     <MenuItem Header="{x:Static p:Language.menu_layers_wire_yellow}" IsCheckable="True" IsChecked="{Binding ShowYellowWires}" />
+                    <MenuItem Header="{x:Static p:Language.menu_layers_wire_transparency}" IsCheckable="True" IsChecked="{Binding ShowWireTransparency}" />
                     <Separator Margin="1" />
                     <MenuItem Header="{x:Static p:Language.menu_layers_points}" IsCheckable="True" IsChecked="{Binding ShowPoints}" />
                     <Separator Margin="1" />

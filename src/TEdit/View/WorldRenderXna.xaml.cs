@@ -2330,8 +2330,6 @@ namespace TEdit.View
                         neighborTile[w] = (x - 1) > 0 ? _wvm.CurrentWorld.Tiles[x - 1, y] : null;
                         neighborTile[s] = (y + 1) < height ? _wvm.CurrentWorld.Tiles[x, y + 1] : null;
 
-
-
                         if (_wvm.ShowRedWires || _wvm.ShowBlueWires || _wvm.ShowGreenWires || _wvm.ShowYellowWires)
                         {
                             var tileTex = (Texture2D)_textureDictionary.GetMisc("WiresNew");
@@ -2355,7 +2353,7 @@ namespace TEdit.View
                                     source.X = state * 18;
                                     source.Y = voffset;
 
-                                    var color = curtile.Type == (int)TileType.JunctionBox ? Translucent : Color.White;
+                                    var color = (!_wvm.ShowWireTransparency) ? Color.White : (curtile.WireRed && (_wvm.ShowBlueWires || _wvm.ShowGreenWires || _wvm.ShowYellowWires)) ? Translucent : Color.White;
 
                                     _spriteBatch.Draw(tileTex, dest, source, Color.White, 0f, default, SpriteEffects.None, LayerRedWires);
                                 }
@@ -2372,7 +2370,7 @@ namespace TEdit.View
                                     source.X = state * 18;
                                     source.Y = 18 + voffset;
 
-                                    var color = curtile.Type == (int)TileType.JunctionBox || curtile.WireRed ? Translucent : Color.White;
+                                    var color = (!_wvm.ShowWireTransparency) ? Color.White : (curtile.WireRed && (_wvm.ShowRedWires || _wvm.ShowGreenWires || _wvm.ShowYellowWires)) ? Translucent : Color.White;
                                     _spriteBatch.Draw(tileTex, dest, source, color, 0f, default, SpriteEffects.None, LayerBlueWires);
                                 }
                                 if (curtile.WireGreen && _wvm.ShowGreenWires)
@@ -2388,7 +2386,7 @@ namespace TEdit.View
                                     source.X = state * 18;
                                     source.Y = 36 + voffset;
 
-                                    var color = (curtile.Type == (int)TileType.JunctionBox || curtile.WireRed || curtile.WireBlue) ? Translucent : Color.White;
+                                    var color = (!_wvm.ShowWireTransparency) ? Color.White : ((curtile.WireRed || curtile.WireBlue) && (_wvm.ShowRedWires || _wvm.ShowBlueWires || _wvm.ShowYellowWires)) ? Translucent : Color.White;
                                     _spriteBatch.Draw(tileTex, dest, source, color, 0f, default, SpriteEffects.None, LayerGreenWires);
                                 }
                                 if (curtile.WireYellow && _wvm.ShowYellowWires)
@@ -2404,7 +2402,7 @@ namespace TEdit.View
                                     source.X = state * 18;
                                     source.Y = 54 + voffset;
 
-                                    var color = (curtile.Type == (int)TileType.JunctionBox || curtile.WireRed || curtile.WireBlue || curtile.WireGreen) ? Translucent : Color.White;
+                                    var color = (!_wvm.ShowWireTransparency) ? Color.White : ((curtile.WireRed || curtile.WireBlue || curtile.WireGreen) && (_wvm.ShowRedWires || _wvm.ShowBlueWires || _wvm.ShowGreenWires)) ? Translucent : Color.White;
                                     _spriteBatch.Draw(tileTex, dest, source, color, 0f, default, SpriteEffects.None, LayerYellowWires);
                                 }
                             }
