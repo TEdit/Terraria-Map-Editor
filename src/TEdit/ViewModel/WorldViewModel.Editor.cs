@@ -357,14 +357,57 @@ namespace TEdit.ViewModel
                         SetPixelAutomatic(curTile, actuator: isErase ? false : TilePicker.Actuator, actuatorInActive: isErase ? false : TilePicker.ActuatorInActive);
                     break;
                 case PaintMode.Wire:
+                    // Is Replace Mode Active?
+                    bool WireReplaceMode = TilePicker.WireReplaceActive;
 
-                    // paint all wires in one call
-                    SetPixelAutomatic(curTile,
-                        wire: TilePicker.RedWireActive ? !isErase : null,
-                        wire2: TilePicker.BlueWireActive ? !isErase : null,
-                        wire3: TilePicker.GreenWireActive ? !isErase : null,
-                        wire4: TilePicker.YellowWireActive ? !isErase : null
-                        );
+                    if (!WireReplaceMode)
+                    {
+                        // paint all wires in one call
+                        SetPixelAutomatic(curTile,
+                            wireRed: TilePicker.RedWireActive ? !isErase : null,
+                            wireBlue: TilePicker.BlueWireActive ? !isErase : null,
+                            wireGreen: TilePicker.GreenWireActive ? !isErase : null,
+                            wireYellow: TilePicker.YellowWireActive ? !isErase : null
+                            );
+                    }
+                    else
+                    {
+                        WireReplaceMode curWireBits = Editor.WireReplaceMode.Off;
+                        if (curTile.WireRed) { curWireBits |= Editor.WireReplaceMode.Red; }
+                        if (curTile.WireBlue) { curWireBits |= Editor.WireReplaceMode.Blue; }
+                        if (curTile.WireGreen) { curWireBits |= Editor.WireReplaceMode.Green; }
+                        if (curTile.WireYellow) { curWireBits |= Editor.WireReplaceMode.Yellow; }
+
+                        if (TilePicker.WireReplaceRed && curTile.WireRed)
+                        {
+                            curWireBits &= ~Editor.WireReplaceMode.Red;   // remove red
+                            curWireBits |= TilePicker.WireReplaceModeRed; // add back red's replacement
+                        }
+
+                        if (TilePicker.WireReplaceBlue && curTile.WireBlue)
+                        {
+                            curWireBits &= ~Editor.WireReplaceMode.Blue;   // remove blue
+                            curWireBits |= TilePicker.WireReplaceModeBlue; // add back blue's replacement
+                        }
+
+                        if (TilePicker.WireReplaceGreen && curTile.WireGreen)
+                        {
+                            curWireBits &= ~Editor.WireReplaceMode.Green;   // remove Green
+                            curWireBits |= TilePicker.WireReplaceModeGreen; // add back Green's replacement
+                        }
+
+                        if (TilePicker.WireReplaceYellow && curTile.WireYellow)
+                        {
+                            curWireBits &= ~Editor.WireReplaceMode.Yellow;   // remove Yellow
+                            curWireBits |= TilePicker.WireReplaceModeYellow; // add back Yellow's replacement
+                        }
+
+                        SetPixelAutomatic(curTile, 
+                            wireRed: curWireBits.HasFlag(Editor.WireReplaceMode.Red),
+                            wireBlue: curWireBits.HasFlag(Editor.WireReplaceMode.Blue),
+                            wireGreen: curWireBits.HasFlag(Editor.WireReplaceMode.Green),
+                            wireYellow: curWireBits.HasFlag(Editor.WireReplaceMode.Yellow));
+                    }
 
                     // stack on junction boxes
                     if (TilePicker.JunctionBoxMode != JunctionBoxMode.None)
@@ -772,12 +815,12 @@ namespace TEdit.ViewModel
                                        int? wall = null,
                                        byte? liquid = null,
                                        LiquidType? liquidType = null,
-                                       bool? wire = null,
+                                       bool? wireRed = null,
                                        short? u = null,
                                        short? v = null,
-                                       bool? wire2 = null,
-                                       bool? wire3 = null,
-                                       bool? wire4 = null,
+                                       bool? wireBlue = null,
+                                       bool? wireGreen = null,
+                                       bool? wireYellow = null,
                                        BrickStyle? brickStyle = null,
                                        bool? actuator = null, bool? actuatorInActive = null,
                                        int? tileColor = null,
@@ -845,17 +888,17 @@ namespace TEdit.ViewModel
                 // do nothing with liquid
             }
 
-            if (wire != null)
-                curTile.WireRed = (bool)wire;
+            if (wireRed != null)
+                curTile.WireRed = (bool)wireRed;
 
-            if (wire2 != null)
-                curTile.WireBlue = (bool)wire2;
+            if (wireBlue != null)
+                curTile.WireBlue = (bool)wireBlue;
 
-            if (wire3 != null)
-                curTile.WireGreen = (bool)wire3;
+            if (wireGreen != null)
+                curTile.WireGreen = (bool)wireGreen;
 
-            if (wire4 != null)
-                curTile.WireYellow = (bool)wire4;
+            if (wireYellow != null)
+                curTile.WireYellow = (bool)wireYellow;
 
             if (tileColor != null)
             {

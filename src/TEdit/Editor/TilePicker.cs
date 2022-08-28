@@ -37,6 +37,16 @@ namespace TEdit.Editor
         private TrackMode _trackMode = TrackMode.Track;
         private JunctionBoxMode _junctionboxMode = JunctionBoxMode.None;
 
+        private WireReplaceMode _wireReplaceModeRed = WireReplaceMode.Red;
+        private WireReplaceMode _wireReplaceModeBlue = WireReplaceMode.Blue;
+        private WireReplaceMode _wireReplaceModeGreen = WireReplaceMode.Green;
+        private WireReplaceMode _wireReplaceModeYellow = WireReplaceMode.Yellow;
+
+        private bool _wireReplaceRed = false;
+        private bool _wireReplaceBlue = false;
+        private bool _wireReplaceGreen = false;
+        private bool _wireReplaceYellow = false;
+
         private BrickStyle _brickStyle = BrickStyle.Full;
         public BrickStyle BrickStyle
         {
@@ -55,6 +65,56 @@ namespace TEdit.Editor
             get { return _junctionboxMode; }
             set { Set(nameof(JunctionBoxMode), ref _junctionboxMode, value); }
         }
+
+        public WireReplaceMode WireReplaceModeRed
+        {
+            get { return _wireReplaceModeRed; }
+            set { Set(nameof(WireReplaceModeRed), ref _wireReplaceModeRed, value); }
+        }
+
+        public WireReplaceMode WireReplaceModeBlue
+        {
+            get { return _wireReplaceModeBlue; }
+            set { Set(nameof(WireReplaceModeBlue), ref _wireReplaceModeBlue, value); }
+        }
+
+        public WireReplaceMode WireReplaceModeGreen
+        {
+            get { return _wireReplaceModeGreen; }
+            set { Set(nameof(WireReplaceModeGreen), ref _wireReplaceModeGreen, value); }
+        }
+
+        public WireReplaceMode WireReplaceModeYellow
+        {
+            get { return _wireReplaceModeYellow; }
+            set { Set(nameof(WireReplaceModeYellow), ref _wireReplaceModeYellow, value); }
+        }
+
+        public bool WireReplaceRed
+        {
+            get { return _wireReplaceRed; }
+            set { Set(nameof(WireReplaceRed), ref _wireReplaceRed, value); }
+        }
+
+        public bool WireReplaceGreen
+        {
+            get { return _wireReplaceGreen; }
+            set { Set(nameof(WireReplaceGreen), ref _wireReplaceGreen, value); }
+        }
+
+        public bool WireReplaceBlue
+        {
+            get { return _wireReplaceBlue; }
+            set { Set(nameof(WireReplaceBlue), ref _wireReplaceBlue, value); }
+        }
+
+        public bool WireReplaceYellow
+        {
+            get { return _wireReplaceYellow; }
+            set { Set(nameof(WireReplaceYellow), ref _wireReplaceYellow, value); }
+        }
+
+        public bool WireReplaceActive => WireReplaceRed || WireReplaceBlue || WireReplaceGreen || WireReplaceYellow;
 
         //private bool _isLava;
         private bool _isEraser;
@@ -96,7 +156,6 @@ namespace TEdit.Editor
             get { return _wallpaintActive; }
             set { Set(nameof(WallPaintActive), ref _wallpaintActive, value); }
         }
-
 
         private bool _brickStyleActive;
         public bool BrickStyleActive
