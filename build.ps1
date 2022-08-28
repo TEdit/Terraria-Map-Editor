@@ -27,9 +27,9 @@ if (![String]::IsNullOrWhitespace($VersionSuffix)) {
 
 & dotnet $buildArgs
 
-Remove-Item -Path ".\release" -Recurse -Force
-Remove-Item -Path ".\TEdit*.zip"
-Remove-Item -Path ".\TEdit*.msi"
+if (Test-Path -Path ".\release") { Remove-Item -Path ".\release" -Recurse -Force }
+if (Test-Path -Path ".\TEdit*.zip") { Remove-Item -Path ".\TEdit*.zip" }
+if (Test-Path -Path ".\TEdit*.msi") { Remove-Item -Path ".\TEdit*.msi" }
 
 mkdir -Path ".\release"
 
