@@ -2035,11 +2035,10 @@ namespace TEdit.Terraria
 
             if (w.Version < 128) { return; }
 
-
-            w.FastForwardTime = r.ReadBoolean();
+            if (w.Version >= 140) // Sundial? Added v140
+                w.FastForwardTime = r.ReadBoolean();
 
             if (w.Version < 131) { return; }
-
 
             w.DownedFishron = r.ReadBoolean();
             w.DownedMartians = r.ReadBoolean();
@@ -2048,9 +2047,10 @@ namespace TEdit.Terraria
             w.DownedHalloweenKing = r.ReadBoolean();
             w.DownedHalloweenTree = r.ReadBoolean();
             w.DownedChristmasQueen = r.ReadBoolean();
+            w.DownedSanta = r.ReadBoolean();
+            w.DownedChristmasTree = r.ReadBoolean();
 
             if (w.Version < 140) { return; }
-
 
             w.DownedSanta = r.ReadBoolean();
             w.DownedChristmasTree = r.ReadBoolean();
