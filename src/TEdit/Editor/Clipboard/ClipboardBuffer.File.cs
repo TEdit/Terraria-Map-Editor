@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Windows.Media.Imaging;
+using TEdit.Configuration;
 using TEdit.Geometry.Primitives;
 using TEdit.Helper;
 using TEdit.Terraria;
@@ -375,12 +376,13 @@ namespace TEdit.Editor.Clipboard
             int sizeY = b.ReadInt32();
             var buffer = new ClipboardBuffer(new Vector2Int32(sizeX, sizeY));
             buffer.Name = name;
+            bool[] tileFrameImportant = World.SaveConfiguration.GetTileFramesForVersion((int)version);
 
             for (int x = 0; x < sizeX; ++x)
             {
                 for (int y = 0; y < sizeY; y++)
                 {
-                    var tile = World.ReadTileDataFromStreamV1(b, tVersion);
+                    var tile = World.ReadTileDataFromStreamV1(b, tVersion, tileFrameImportant);
                     // read complete, start compression
                     buffer.Tiles[x, y] = tile;
 

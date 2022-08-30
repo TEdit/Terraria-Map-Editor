@@ -324,7 +324,7 @@ namespace TEdit.Terraria
         {
             for (int i = 0; i < 1000; ++i)
             {
-                if (i >= signs.Count)
+                if (i >= signs.Count || string.IsNullOrWhiteSpace(signs[i].Text))
                 {
                     bw.Write(false);
                 }
@@ -1264,7 +1264,7 @@ namespace TEdit.Terraria
             else
                 bw.Write(false);
 
-            if (tile.LiquidAmount > 0 && tile.LiquidType != LiquidType.None)
+            if (tile.LiquidAmount > 0)
             {
                 bw.Write(true);
                 bw.Write(tile.LiquidAmount);
@@ -1891,6 +1891,7 @@ namespace TEdit.Terraria
                 }
             }
 
+            bool[] tileFrameImportant = SaveConfiguration.GetTileFramesForVersion((int)version);
 
             for (int x = 0; x < w.TilesWide; ++x)
             {
@@ -1899,7 +1900,7 @@ namespace TEdit.Terraria
 
                 for (int y = 0; y < w.TilesHigh; y++)
                 {
-                    Tile tile = ReadTileDataFromStreamV1(reader, version);
+                    Tile tile = ReadTileDataFromStreamV1(reader, version, tileFrameImportant);
 
                     // read complete, start compression
                     w.Tiles[x, y] = tile;
@@ -2134,18 +2135,16 @@ namespace TEdit.Terraria
             }
         }
 
-        public static Tile ReadTileDataFromStreamV1(BinaryReader b, uint version)
+        public static Tile ReadTileDataFromStreamV1(BinaryReader b, uint version, bool[] frames)
         {
             var tile = new Tile();
 
             tile.IsActive = b.ReadBoolean();
 
-            TileProperty tileProperty = null;
 
             if (tile.IsActive)
             {
                 tile.Type = b.ReadByte();
-                tileProperty = TileProperties[tile.Type];
 
 
                 if (tile.Type == (int)TileType.IceByRod || tile.Type == (int)TileType.MysticSnakeRope)
@@ -2157,7 +2156,7 @@ namespace TEdit.Terraria
                     tile.U = b.ReadInt16();
                     tile.V = b.ReadInt16();
                 }
-                else if (!tileProperty.IsFramed)
+                else if (!frames[tile.Type])
                 {
                     tile.U = -1;
                     tile.V = -1;
@@ -2232,6 +2231,8 @@ namespace TEdit.Terraria
             if (version >= 41)
             {
                 bool isHalfBrick = b.ReadBoolean();
+
+                var tileProperty = TileProperties[tile.Type];
 
                 if (tileProperty == null || !tileProperty.HasSlopes)
                     isHalfBrick = false;
