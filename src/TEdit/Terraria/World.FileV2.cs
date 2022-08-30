@@ -1033,10 +1033,13 @@ namespace TEdit.Terraria
                 debugger?.WriteLine("\"SECTION_1\": {0}", bw.BaseStream.Position);
                 return (int)bw.BaseStream.Position;
             }
-
-            bw.Write(world.FastForwardTime);
-            debugger?.WriteLine("\"FastForwardTime\": {0},", world.FastForwardTime);
-
+			
+			if (world.Version >= 140)
+            {
+                bw.Write(world.FastForwardTime);
+                debugger?.WriteLine("\"FastForwardTime\": {0},", world.FastForwardTime);
+			}
+			
             if (world.Version < 131)
             {
                 debugger?.WriteLine("\"SECTION_1\": {0}", bw.BaseStream.Position);
@@ -1045,12 +1048,17 @@ namespace TEdit.Terraria
 
             bw.Write(world.DownedFishron);
             debugger?.WriteLine("\"DownedFishron\": {0},", world.DownedFishron);
-            bw.Write(world.DownedMartians);
-            debugger?.WriteLine("\"DownedMartians\": {0},", world.DownedMartians);
-            bw.Write(world.DownedLunaticCultist);
-            debugger?.WriteLine("\"DownedLunaticCultist\": {0},", world.DownedLunaticCultist);
-            bw.Write(world.DownedMoonlord);
-            debugger?.WriteLine("\"DownedMoonlord\": {0},", world.DownedMoonlord);
+			
+			if (world.Version >= 140)
+            {
+                bw.Write(world.DownedMartians);
+                debugger?.WriteLine("\"DownedMartians\": {0},", world.DownedMartians);
+                bw.Write(world.DownedLunaticCultist);
+                debugger?.WriteLine("\"DownedLunaticCultist\": {0},", world.DownedLunaticCultist);
+                bw.Write(world.DownedMoonlord);
+                debugger?.WriteLine("\"DownedMoonlord\": {0},", world.DownedMoonlord);
+			}
+			
             bw.Write(world.DownedHalloweenKing);
             debugger?.WriteLine("\"DownedHalloweenKing\": {0},", world.DownedHalloweenKing);
             bw.Write(world.DownedHalloweenTree);
@@ -1068,24 +1076,28 @@ namespace TEdit.Terraria
             debugger?.WriteLine("\"DownedSanta\": {0},", world.DownedSanta);
             bw.Write(world.DownedChristmasTree);
             debugger?.WriteLine("\"DownedChristmasTree\": {0},", world.DownedChristmasTree);
-            bw.Write(world.DownedCelestialSolar);
-            debugger?.WriteLine("\"DownedCelestialSolar\": {0},", world.DownedCelestialSolar);
-            bw.Write(world.DownedCelestialVortex);
-            debugger?.WriteLine("\"DownedCelestialVortex\": {0},", world.DownedCelestialVortex);
-            bw.Write(world.DownedCelestialNebula);
-            debugger?.WriteLine("\"DownedCelestialNebula\": {0},", world.DownedCelestialNebula);
-            bw.Write(world.DownedCelestialStardust);
-            debugger?.WriteLine("\"DownedCelestialStardust\": {0},", world.DownedCelestialStardust);
-            bw.Write(world.CelestialSolarActive);
-            debugger?.WriteLine("\"CelestialSolarActive\": {0},", world.CelestialSolarActive);
-            bw.Write(world.CelestialVortexActive);
-            debugger?.WriteLine("\"CelestialVortexActive\": {0},", world.CelestialVortexActive);
-            bw.Write(world.CelestialNebulaActive);
-            debugger?.WriteLine("\"CelestialNebulaActive\": {0},", world.CelestialNebulaActive);
-            bw.Write(world.CelestialStardustActive);
-            debugger?.WriteLine("\"CelestialStardustActive\": {0},", world.CelestialStardustActive);
-            bw.Write(world.Apocalypse);
-            debugger?.WriteLine("\"Apocalypse\": {0},", world.Apocalypse);
+			
+			if (world.Version >= 140)
+            {
+                bw.Write(world.DownedCelestialSolar);
+                debugger?.WriteLine("\"DownedCelestialSolar\": {0},", world.DownedCelestialSolar);
+                bw.Write(world.DownedCelestialVortex);
+                debugger?.WriteLine("\"DownedCelestialVortex\": {0},", world.DownedCelestialVortex);
+                bw.Write(world.DownedCelestialNebula);
+                debugger?.WriteLine("\"DownedCelestialNebula\": {0},", world.DownedCelestialNebula);
+                bw.Write(world.DownedCelestialStardust);
+                debugger?.WriteLine("\"DownedCelestialStardust\": {0},", world.DownedCelestialStardust);
+                bw.Write(world.CelestialSolarActive);
+                debugger?.WriteLine("\"CelestialSolarActive\": {0},", world.CelestialSolarActive);
+                bw.Write(world.CelestialVortexActive);
+                debugger?.WriteLine("\"CelestialVortexActive\": {0},", world.CelestialVortexActive);
+                bw.Write(world.CelestialNebulaActive);
+                debugger?.WriteLine("\"CelestialNebulaActive\": {0},", world.CelestialNebulaActive);
+                bw.Write(world.CelestialStardustActive);
+                debugger?.WriteLine("\"CelestialStardustActive\": {0},", world.CelestialStardustActive);
+                bw.Write(world.Apocalypse);
+                debugger?.WriteLine("\"Apocalypse\": {0},", world.Apocalypse);
+			}
 
             if (world.Version >= 170)
             {
@@ -2035,25 +2047,29 @@ namespace TEdit.Terraria
 
             if (w.Version < 128) { return; }
 
-            if (w.Version >= 140) // Sundial? Added v140
+            if (w.Version >= 140) // Sundial - Added v140
                 w.FastForwardTime = r.ReadBoolean();
 
             if (w.Version < 131) { return; }
 
             w.DownedFishron = r.ReadBoolean();
-            w.DownedMartians = r.ReadBoolean();
-            w.DownedLunaticCultist = r.ReadBoolean();
-            w.DownedMoonlord = r.ReadBoolean();
+			
+			if (w.Version >= 140)
+            {
+                w.DownedMartians = r.ReadBoolean();
+                w.DownedLunaticCultist = r.ReadBoolean();
+                w.DownedMoonlord = r.ReadBoolean();
+			}
             w.DownedHalloweenKing = r.ReadBoolean();
             w.DownedHalloweenTree = r.ReadBoolean();
             w.DownedChristmasQueen = r.ReadBoolean();
             w.DownedSanta = r.ReadBoolean();
             w.DownedChristmasTree = r.ReadBoolean();
-
-            if (w.Version < 140) { return; }
-
-            w.DownedSanta = r.ReadBoolean();
+			w.DownedSanta = r.ReadBoolean();
             w.DownedChristmasTree = r.ReadBoolean();
+			
+            if (w.Version < 140) { return; }
+			
             w.DownedCelestialSolar = r.ReadBoolean();
             w.DownedCelestialVortex = r.ReadBoolean();
             w.DownedCelestialNebula = r.ReadBoolean();
