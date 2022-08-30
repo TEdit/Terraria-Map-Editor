@@ -52,35 +52,44 @@ namespace TEdit.Terraria
             _charNames.Clear();
         }
 
-        public static void Save(World world, string filename, bool resetTime = false, uint versionOverride = 0)
+        public static void Save(
+            World world,
+            string filename,
+            bool resetTime = false,
+            uint versionOverride = 0,
+            bool incrementRevision = true,
+            bool showWarnings = true)
         {
             ErrorLogging.TelemetryClient?.TrackEvent(nameof(Save));
 
-            try
+            if (showWarnings)
             {
-                OnProgressChanged(world, new ProgressChangedEventArgs(0, "Validating World..."));
-                world.Validate();
-            }
-            catch (ArgumentOutOfRangeException err)
-            {
-                string msg = "There is a problem in your world.\r\n" +
-                             $"{err.ParamName}\r\n" +
-                             $"This world may not open in Terraria\r\n" +
-                             "Would you like to save anyways??\r\n";
-                if (MessageBox.Show(msg, "World Error", MessageBoxButton.YesNo, MessageBoxImage.Error) !=
-                    MessageBoxResult.Yes)
-                    return;
-            }
-            catch (Exception ex)
-            {
-                string msg = "There is a problem in your world.\r\n" +
-                             $"{ex.Message}\r\n" +
-                             "This world may not open in Terraria\r\n" +
-                             "Would you like to save anyways??\r\n";
+                try
+                {
+                    OnProgressChanged(world, new ProgressChangedEventArgs(0, "Validating World..."));
+                    world.Validate();
+                }
+                catch (ArgumentOutOfRangeException err)
+                {
+                    string msg = "There is a problem in your world.\r\n" +
+                                 $"{err.ParamName}\r\n" +
+                                 $"This world may not open in Terraria\r\n" +
+                                 "Would you like to save anyways??\r\n";
+                    if (MessageBox.Show(msg, "World Error", MessageBoxButton.YesNo, MessageBoxImage.Error) !=
+                        MessageBoxResult.Yes)
+                        return;
+                }
+                catch (Exception ex)
+                {
+                    string msg = "There is a problem in your world.\r\n" +
+                                 $"{ex.Message}\r\n" +
+                                 "This world may not open in Terraria\r\n" +
+                                 "Would you like to save anyways??\r\n";
 
-                if (MessageBox.Show(msg, "World Error", MessageBoxButton.YesNo, MessageBoxImage.Error) !=
-                    MessageBoxResult.Yes)
-                    return;
+                    if (MessageBox.Show(msg, "World Error", MessageBoxButton.YesNo, MessageBoxImage.Error) !=
+                        MessageBoxResult.Yes)
+                        return;
+                }
             }
 
             lock (_fileLock)
@@ -94,7 +103,7 @@ namespace TEdit.Terraria
                     if (resetTime)
                     {
                         OnProgressChanged(world, new ProgressChangedEventArgs(0, "Resetting Time..."));
-                        world.ResetTime();
+                        //world.ResetTime();
                     }
 
                     if (filename == null)
@@ -114,7 +123,7 @@ namespace TEdit.Terraria
                         using (var bw = new BinaryWriter(fs))
                         {
                             if (world.Version > 87)
-                                SaveV2(world, bw, debugger);
+                                SaveV2(world, bw, debugger, incrementRevision);
                             else
                                 SaveV1(world, bw);
 
@@ -146,7 +155,7 @@ namespace TEdit.Terraria
 
         }
 
-        public static World LoadWorld(string filename)
+        public static World LoadWorld(string filename, bool showWarnings = true)
         {
             var w = new World();
             uint curVersion = 0;
@@ -174,38 +183,41 @@ namespace TEdit.Terraria
 
                         w.Version = b.ReadUInt32();
 
-                        if (w.Version < World.CompatibleVersion && w.IsTModLoader)
+                        if (showWarnings)
                         {
-                            string message = $"You are loading a legacy TModLoader world version: {w.Version}.\r\n" +
-                                $"1. Editing legacy files is a BETA feature.\r\n" +
-                                $"2. Editing modded worlds is unsupported.\r\n" +
-                                "Please make a backup as you may experience world file corruption.\r\n" +
-                                "Do you wish to continue?";
-                            if (MessageBox.Show(message, "Convert File?", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.No)
+                            if (w.Version < World.CompatibleVersion && w.IsTModLoader)
                             {
-                                return null;
+                                string message = $"You are loading a legacy TModLoader world version: {w.Version}.\r\n" +
+                                    $"1. Editing legacy files is a BETA feature.\r\n" +
+                                    $"2. Editing modded worlds is unsupported.\r\n" +
+                                    "Please make a backup as you may experience world file corruption.\r\n" +
+                                    "Do you wish to continue?";
+                                if (MessageBox.Show(message, "Convert File?", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.No)
+                                {
+                                    return null;
+                                }
                             }
-                        }
-                        else if (w.Version < World.CompatibleVersion)
-                        {
-                            string message = $"You are loading a legacy world version: {w.Version}.\r\n" +
-                                $"Editing legacy files is a BETA feature.\r\n" +
-                                "Please make a backup as you may experience world file corruption.\r\n" +
-                                "Do you wish to continue?";
-                            if (MessageBox.Show(message, "Convert File?", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.No)
+                            else if (w.Version < World.CompatibleVersion)
                             {
-                                return null;
+                                string message = $"You are loading a legacy world version: {w.Version}.\r\n" +
+                                    $"Editing legacy files is a BETA feature.\r\n" +
+                                    "Please make a backup as you may experience world file corruption.\r\n" +
+                                    "Do you wish to continue?";
+                                if (MessageBox.Show(message, "Convert File?", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.No)
+                                {
+                                    return null;
+                                }
                             }
-                        }
-                        else if (w.IsTModLoader)
-                        {
-                            string message = $"You are loading a TModLoader world." +
-                                $"Editing modded worlds is unsupported.\r\n" +
-                                "Please make a backup as you may experience world file corruption.\r\n" +
-                                "Do you wish to continue?";
-                            if (MessageBox.Show(message, "Load Mod World?", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.No)
+                            else if (w.IsTModLoader)
                             {
-                                return null;
+                                string message = $"You are loading a TModLoader world." +
+                                    $"Editing modded worlds is unsupported.\r\n" +
+                                    "Please make a backup as you may experience world file corruption.\r\n" +
+                                    "Do you wish to continue?";
+                                if (MessageBox.Show(message, "Load Mod World?", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.No)
+                                {
+                                    return null;
+                                }
                             }
                         }
 
@@ -217,7 +229,7 @@ namespace TEdit.Terraria
                         else
                             LoadV1(b, filename, w);
 
-                        w.UpgradeLegacyTileEntities();
+                        //w.UpgradeLegacyTileEntities();
                     }
                     w.LastSave = File.GetLastWriteTimeUtc(filename);
                 }
@@ -234,9 +246,17 @@ namespace TEdit.Terraria
                     "Do you wish to force it to load anyway?\r\n\r\n" +
                     "WARNING: This may have unexpected results including corrupt world files and program crashes.\r\n\r\n" +
                     $"The error is :\r\n{err.Message}\r\n\r\n{err}\r\n";
-                if (MessageBox.Show(msg, "World File Error", MessageBoxButton.YesNo, MessageBoxImage.Error) !=
-                    MessageBoxResult.Yes)
-                    return null;
+
+                if (showWarnings)
+                {
+                    if (MessageBox.Show(msg, "World File Error", MessageBoxButton.YesNo, MessageBoxImage.Error) !=
+                        MessageBoxResult.Yes)
+                        return null;
+                }
+                else
+                {
+                    throw;
+                }
             }
             return w;
         }
@@ -460,6 +480,8 @@ namespace TEdit.Terraria
 
         public void UpgradeLegacyTileEntities()
         {
+            return; // disable this
+
             // don't upgrade legacy worlds
             if (this.Version < World.CompatibleVersion) return;
 

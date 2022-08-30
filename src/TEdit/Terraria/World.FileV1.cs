@@ -16,7 +16,7 @@ namespace TEdit.Terraria
     {
         public static Dictionary<string, short> _legacyItemLookup { get; private set; }
 
-        private static void SaveV1(World world, BinaryWriter bw)
+        public static void SaveV1(World world, BinaryWriter bw)
         {
             var version = world.Version;
 
@@ -228,10 +228,8 @@ namespace TEdit.Terraria
             foreach (NPC curNpc in world.NPCs)
             {
                 bw.Write(true);
-                if (version >= 83)
-                {
-                    bw.Write(curNpc.Name);
-                }
+
+                bw.Write(curNpc.Name);
                 bw.Write(curNpc.Position.X);
                 bw.Write(curNpc.Position.Y);
                 bw.Write(curNpc.IsHomeless);
@@ -1291,7 +1289,7 @@ namespace TEdit.Terraria
             }
         }
 
-        private static void LoadV1(BinaryReader reader, string filename, World w)
+        public static void LoadV1(BinaryReader reader, string filename, World w)
         {
             uint version = w.Version;
             w.Title = reader.ReadString();
@@ -1571,15 +1569,13 @@ namespace TEdit.Terraria
             {
                 var npc = new NPC();
 
-                if (version >= 83)
-                {
-                    npc.Name = reader.ReadString();
-                }
+                npc.Name = reader.ReadString();
                 npc.Position = new Vector2(reader.ReadSingle(), reader.ReadSingle());
                 npc.IsHomeless = reader.ReadBoolean();
                 npc.Home = new Vector2Int32(reader.ReadInt32(), reader.ReadInt32());
                 npc.SpriteId = 0;
-                if (NpcIds.ContainsKey(npc.Name))
+
+                if (!string.IsNullOrWhiteSpace(npc.Name) && NpcIds.ContainsKey(npc.Name))
                     npc.SpriteId = NpcIds[npc.Name];
 
                 w.NPCs.Add(npc);
@@ -1724,7 +1720,8 @@ namespace TEdit.Terraria
                         {
                             chestName = chestName.Substring(0, 20);
                         }
-                        b.WriteBinary(chestName);
+                        chest.Name = chestName;
+                        //b.WriteBinary(chestName);
                     }
 
                     for (int slot = 0; slot < chestSize; slot++)

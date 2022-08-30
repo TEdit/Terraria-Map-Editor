@@ -122,7 +122,7 @@ namespace TEdit.ViewModel
                 int worldHeight = selectionArea.Height + borderTop + borderBottom;
 
 
-                w.ResetTime();
+                //w.ResetTime();
                 w.CreationTime = System.DateTime.Now.ToBinary();
                 w.TilesHigh = worldHeight;
                 w.TilesWide = worldWidth;

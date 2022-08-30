@@ -7,6 +7,7 @@ using System;
 using System.IO;
 using TEdit.Helper;
 using System.Linq;
+using System.Windows.Documents;
 
 namespace TEdit.Terraria
 {
@@ -28,11 +29,13 @@ namespace TEdit.Terraria
             short numSections = 11;
 
             if (Version >= 220) { numSections = 11; }
-            else if (Version >= 210) { numSections = 10; }
-            else if (Version >= 189) { numSections = 10; }
-            else if (Version >= 170) { numSections = 9; }
-            else if (Version >= 140) { numSections = 8; }
-            else if (Version < 140) { numSections = 7; } // debug
+            else { numSections = 10; }
+
+            //else if (Version >= 210) { numSections = 10; }
+            //else if (Version >= 189) { numSections = 10; }
+            //else if (Version >= 170) { numSections = 9; }
+            //else if (Version >= 140) { numSections = 8; }
+            //else if (Version < 140) { numSections = 7; } // debug
 
             return numSections;
         }
@@ -95,10 +98,14 @@ namespace TEdit.Terraria
             world.KilledMobs.AddRange(w.KilledMobs);
         }
 
-        internal static void SaveV2(World world, BinaryWriter bw, TextWriter debugger = null)
+        public static void SaveV2(World world, BinaryWriter bw, TextWriter debugger = null, bool incrementRevision = true)
         {
             world.Validate();
-            world.FileRevision++;
+
+            if (incrementRevision)
+            {
+                world.FileRevision++;
+            }
 
             int[] sectionPointers = new int[world.GetSectionCount()];
             bool[] tileFrameImportant = SaveConfiguration.GetTileFramesForVersion((int)world.Version);
@@ -154,7 +161,7 @@ namespace TEdit.Terraria
 
             OnProgressChanged(null, new ProgressChangedEventArgs(100, "Save Footers..."));
             SaveFooter(world, bw);
-            UpdateSectionPointers(sectionPointers, bw);
+            UpdateSectionPointers(world.Version, sectionPointers, bw);
             OnProgressChanged(null, new ProgressChangedEventArgs(100, "Save Complete."));
 
             debugger?.WriteLine("}");
@@ -574,9 +581,9 @@ namespace TEdit.Terraria
             return (int)bw.BaseStream.Position;
         }
 
-        public static int UpdateSectionPointers(int[] sectionPointers, BinaryWriter bw)
+        public static int UpdateSectionPointers(uint worldVersion, int[] sectionPointers, BinaryWriter bw)
         {
-            bw.BaseStream.Position = 0x18L;
+            bw.BaseStream.Position = (worldVersion >= 140) ? 0x18L : 0x04;
             bw.Write((short)sectionPointers.Length);
 
             for (int i = 0; i < sectionPointers.Length; i++)
@@ -598,7 +605,7 @@ namespace TEdit.Terraria
                 bw.Write("relogic".ToCharArray());
                 bw.Write((byte)FileType.World);
 
-                bw.Write((int)world.FileRevision + 1);
+                bw.Write((int)world.FileRevision);
                 debugger?.WriteLine("\"FileRevision\": {0},", world.FileRevision);
 
                 UInt64 worldHeaderFlags = 0;
@@ -615,7 +622,7 @@ namespace TEdit.Terraria
             // write section pointer placeholders
             for (int i = 0; i < sections; i++)
             {
-                bw.Write(0);
+                bw.Write((Int32)0);
             }
 
             // write bitpacked tile frame importance           
@@ -945,7 +952,7 @@ namespace TEdit.Terraria
             }
 
             debugger?.WriteLine("],");
-            
+
 
             if (world.Version < 99)
             {
