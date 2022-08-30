@@ -9,6 +9,11 @@ using System;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
+using MonoGame.Framework.Utilities;
+using System.Windows.Documents;
+using static Microsoft.ApplicationInsights.MetricDimensionNames.TelemetryContext;
+using System.Data;
+using SharpDX.Direct2D1.Effects;
 
 namespace TEdit.Terraria
 {
@@ -192,18 +197,18 @@ namespace TEdit.Terraria
                 bw.Write(world.WindSpeedSet);
             }
 
+            var frames = World.SaveConfiguration.SaveVersions[(int)world.Version].GetFrames();
 
             for (int x = 0; x < world.TilesWide; ++x)
             {
                 OnProgressChanged(world,
-                    new ProgressChangedEventArgs(x.ProgressPercentage(world.TilesWide), "Saving UndoTiles..."));
+                    new ProgressChangedEventArgs(x.ProgressPercentage(world.TilesWide), "Saving Tiles..."));
 
                 int rle = 0;
                 for (int y = 0; y < world.TilesHigh; y = y + rle + 1)
                 {
                     Tile curTile = world.Tiles[x, y];
 
-                    var frames = World.SaveConfiguration.SaveVersions[(int)world.Version].GetFrames();
 
                     WriteTileDataToStreamV1(curTile, bw, world.Version, frames);
 
@@ -319,7 +324,7 @@ namespace TEdit.Terraria
         {
             for (int i = 0; i < 1000; ++i)
             {
-                if (i >= signs.Count || string.IsNullOrWhiteSpace(signs[i].Text))
+                if (i >= signs.Count)
                 {
                     bw.Write(false);
                 }
@@ -539,6 +544,16 @@ namespace TEdit.Terraria
                 return value;
 
             return 0;
+        }
+
+        private static bool[] GetFramesV0()
+        {
+            var frames = new bool[76];
+            foreach (var frame in new[] { 3, 5, 10, 11, 12, 13, 14, 15, 16, 17, 18, 20, 21, 24, 26, 27, 28, 29, 31, 33, 34, 35, 36, 42, 50, 55, 61, 71, 72, 73, 74 })
+            {
+                frames[frame] = true;
+            }
+            return frames;
         }
 
         private static Dictionary<string, short> GenerateLegacyItemDictionary()
@@ -1249,7 +1264,7 @@ namespace TEdit.Terraria
             else
                 bw.Write(false);
 
-            if (tile.LiquidAmount > 0)
+            if (tile.LiquidAmount > 0 && tile.LiquidType != LiquidType.None)
             {
                 bw.Write(true);
                 bw.Write(tile.LiquidAmount);
@@ -1289,13 +1304,380 @@ namespace TEdit.Terraria
             }
         }
 
+        public static void LoadV0(BinaryReader reader, string filename, World w)
+        {
+            uint version = w.Version;
+            w.Title = reader.ReadString();
+            w.IsV0 = true;
+
+            w.LeftWorld = reader.ReadInt32();
+            w.RightWorld = reader.ReadInt32();
+            w.TopWorld = reader.ReadInt32();
+            w.BottomWorld = reader.ReadInt32();
+            w.TilesHigh = reader.ReadInt32();
+            w.TilesWide = reader.ReadInt32();
+
+
+            w.SpawnX = reader.ReadInt32();
+            w.SpawnY = reader.ReadInt32();
+            w.GroundLevel = (int)reader.ReadDouble();
+            w.RockLevel = (int)reader.ReadDouble();
+
+            w.Time = reader.ReadDouble();
+            w.DayTime = reader.ReadBoolean();
+            w.MoonPhase = reader.ReadInt32();
+            w.BloodMoon = reader.ReadBoolean();
+            if (version >= 28)
+            {
+                w.DungeonX = reader.ReadInt32();
+                w.DungeonY = reader.ReadInt32();
+            }
+            if (version >= 24)
+            {
+                w.DownedBoss1 = reader.ReadBoolean();
+                w.DownedBoss2 = reader.ReadBoolean();
+            }
+
+            if (version >= 28)
+            {
+                w.DownedBoss3 = reader.ReadBoolean();
+            }
+            else
+            {
+                w.DownedBoss3 = true;
+            }
+
+            if (version >= 26)
+            {
+                w.ShadowOrbSmashed = reader.ReadBoolean();
+                w.SpawnMeteor = reader.ReadBoolean();
+            }
+
+            if (version >= 27)
+            {
+                w.InvasionDelay = reader.ReadInt32();
+                w.InvasionSize = reader.ReadInt32();
+                w.InvasionType = reader.ReadInt32();
+                w.InvasionX = reader.ReadDouble();
+            }
+
+            w.Tiles = new Tile[w.TilesWide, w.TilesHigh];
+            for (int i = 0; i < w.TilesWide; i++)
+            {
+                for (int j = 0; j < w.TilesHigh; j++)
+                {
+                    w.Tiles[i, j] = new Tile();
+                }
+            }
+
+            var frames = GetFramesV0();
+            for (int x = 0; x < w.TilesWide; ++x)
+            {
+                OnProgressChanged(null,
+                    new ProgressChangedEventArgs(x.ProgressPercentage(w.TilesWide), "Loading Tiles..."));
+
+                for (int y = 0; y < w.TilesHigh; y++)
+                {
+                    Tile tile = w.Tiles[x, y];
+
+                    tile.IsActive = reader.ReadBoolean();
+                    if (tile.IsActive)
+                    {
+                        tile.Type = reader.ReadByte();
+
+                        if (frames[tile.Type])
+                        {
+                            tile.U = reader.ReadInt16();
+                            tile.V = reader.ReadInt16();
+                        }
+                    }
+                    tile.v0_Lit = reader.ReadBoolean();
+                    if (reader.ReadBoolean())
+                    {
+                        tile.Wall = reader.ReadByte();
+                    }
+
+                    if (version >= 34)
+                    {
+                        if (reader.ReadBoolean())
+                        {
+                            tile.LiquidAmount = reader.ReadByte();
+                            tile.LiquidType = LiquidType.Water;
+
+                            if (version >= 35)
+                            {
+                                if (reader.ReadBoolean())
+                                {
+                                    tile.LiquidType = LiquidType.Lava;
+                                }
+                            }
+                        }
+                    }
+
+                    w.Tiles[x, y] = tile;
+                }
+            }
+
+            OnProgressChanged(null, new ProgressChangedEventArgs(100, "Loading Chests..."));
+            for (int i = 0; i < 1000; i++)
+            {
+                const int v0_chestSize = 20;
+
+                if (reader.ReadBoolean())
+                {
+                    var chest = new Chest(reader.ReadInt32(), reader.ReadInt32());
+
+                    for (int slot = 0; slot < v0_chestSize; slot++)
+                    {
+                        int stackSize = reader.ReadByte();
+                        chest.Items[slot].StackSize = stackSize;
+
+                        if (stackSize > 0)
+                        {
+                            string itemName = reader.ReadString();
+                            chest.Items[slot].NetId = FromLegacyName(itemName, (int)version);
+                        }
+
+                    }
+
+                    w.Chests.Add(chest);
+                }
+            }
+
+            if (version >= 33)
+            {
+                OnProgressChanged(null, new ProgressChangedEventArgs(100, "Loading Signs..."));
+                for (int i = 0; i < 1000; i++)
+                {
+                    if (reader.ReadBoolean())
+                    {
+                        string text = reader.ReadString();
+
+                        int X = reader.ReadInt32();
+                        int Y = reader.ReadInt32();
+
+                        if (w.Tiles[X, Y].IsActive && w.Tiles[X, Y].Type == 55)
+                        {
+                            var sign = new Sign(X, Y, text);
+
+                            w.Signs.Add(sign);
+                        }
+                    }
+                }
+            }
+
+            if (version >= 20)
+            {
+                w.NPCs.Clear();
+                OnProgressChanged(null, new ProgressChangedEventArgs(100, "Loading NPC Data..."));
+                while (reader.ReadBoolean())
+                {
+                    var npc = new NPC();
+
+                    npc.Name = reader.ReadString();
+                    npc.Position = new Vector2(reader.ReadSingle(), reader.ReadSingle());
+                    npc.IsHomeless = reader.ReadBoolean();
+                    npc.Home = new Vector2Int32(reader.ReadInt32(), reader.ReadInt32());
+                    npc.SpriteId = 0;
+
+                    if (!string.IsNullOrWhiteSpace(npc.Name) && NpcIds.ContainsKey(npc.Name))
+                        npc.SpriteId = NpcIds[npc.Name];
+
+                    w.NPCs.Add(npc);
+                }
+            }
+        }
+
+        public static void SaveV0(World world, BinaryWriter bw)
+        {
+            var version = world.Version;
+            bw.Write(world.Version);
+            bw.Write(world.Title);
+            bw.Write((int)world.LeftWorld);
+            bw.Write((int)world.RightWorld);
+            bw.Write((int)world.TopWorld);
+            bw.Write((int)world.BottomWorld);
+            bw.Write(world.TilesHigh);
+            bw.Write(world.TilesWide);
+
+
+            bw.Write(world.SpawnX);
+            bw.Write(world.SpawnY);
+            bw.Write(world.GroundLevel);
+            bw.Write(world.RockLevel);
+
+            bw.Write(world.Time);
+            bw.Write(world.DayTime);
+            bw.Write(world.MoonPhase);
+            bw.Write(world.BloodMoon);
+            if (version >= 28)
+            {
+                bw.Write(world.DungeonX);
+                bw.Write(world.DungeonY);
+            }
+            if (version >= 24)
+            {
+                bw.Write(world.DownedBoss1);
+                bw.Write(world.DownedBoss2);
+            }
+
+            if (version >= 28)
+            {
+                bw.Write(world.DownedBoss3);
+            }
+
+            if (version >= 26)
+            {
+                bw.Write(world.ShadowOrbSmashed);
+                bw.Write(world.SpawnMeteor);
+            }
+
+            if (version >= 27)
+            {
+                bw.Write(world.InvasionDelay);
+                bw.Write(world.InvasionSize);
+                bw.Write(world.InvasionType);
+                bw.Write(world.InvasionX);
+            }
+
+
+
+            var frames = GetFramesV0();
+            for (int x = 0; x < world.TilesWide; x++)
+            {
+                OnProgressChanged(world,
+                    new ProgressChangedEventArgs(x.ProgressPercentage(world.TilesWide), "Saving Tiles..."));
+
+                for (int y = 0; y < world.TilesHigh; y++)
+                {
+                    Tile tile = world.Tiles[x, y];
+
+                    bw.Write(tile.IsActive);
+                    if (tile.IsActive)
+                    {
+                        bw.Write((byte)tile.Type);
+
+                        if (frames[tile.Type])
+                        {
+                            bw.Write(tile.U);
+                            bw.Write(tile.V);
+                        }
+                    }
+                    bw.Write(tile.v0_Lit || tile.Type == 4);
+
+                    if (tile.Wall > 0)
+                    {
+                        bw.Write(true);
+                        bw.Write((byte)tile.Wall);
+                    }
+                    else
+                    {
+                        bw.Write(false);
+                    }
+
+
+                    if (version >= 34 && tile.LiquidAmount > 0 && tile.LiquidType != LiquidType.None)
+                    {
+                        bw.Write(true);
+                        bw.Write(tile.LiquidAmount);
+
+                        if (version >= 35)
+                        {
+                            bw.Write(tile.LiquidType == LiquidType.Lava);
+                        }
+                    }
+                    else
+                    {
+                        bw.Write(false);
+                    }
+                }
+            }
+
+            OnProgressChanged(null, new ProgressChangedEventArgs(100, "Saving Chests..."));
+
+            for (int i = 0; i < 1000; i++)
+            {
+                const int v0_chestSize = 20;
+
+                if (i >= world.Chests.Count)
+                {
+                    bw.Write(false);
+                    continue;
+                }
+
+                Chest chest = world.Chests[i];
+                bw.Write(true);
+                bw.Write(chest.X);
+                bw.Write(chest.Y);
+
+
+                for (int slot = 0; slot < v0_chestSize; slot++)
+                {
+                    if (chest.Items[slot].StackSize > byte.MaxValue)
+                    {
+                        bw.Write(byte.MaxValue);
+                    }
+                    else
+                    {
+                        bw.Write((byte)chest.Items[slot].StackSize);
+                    }
+
+                    if (chest.Items[slot].StackSize > 0)
+                    {
+                        bw.Write(ToLegacyName((short)chest.Items[slot].NetId, version));
+                    }
+                }
+
+            }
+
+            if (version >= 33)
+            {
+                OnProgressChanged(null, new ProgressChangedEventArgs(100, "Saving Signs..."));
+
+                for (int i = 0; i < 1000; i++)
+                {
+                    if (i >= world.Signs.Count)
+                    {
+                        bw.Write(false);
+                    }
+                    else
+                    {
+                        Sign curSign = world.Signs[i];
+                        bw.Write(true);
+                        bw.Write(curSign.Text);
+                        bw.Write(curSign.X);
+                        bw.Write(curSign.Y);
+                    }
+                }
+            }
+
+            if (version >= 20)
+            {
+                OnProgressChanged(null, new ProgressChangedEventArgs(100, "Saving NPC Data..."));
+                foreach (NPC curNpc in world.NPCs)
+                {
+                    bw.Write(true);
+
+                    bw.Write(curNpc.Name);
+                    bw.Write(curNpc.Position.X);
+                    bw.Write(curNpc.Position.Y);
+                    bw.Write(curNpc.IsHomeless);
+                    bw.Write(curNpc.Home.X);
+                    bw.Write(curNpc.Home.Y);
+                }
+                bw.Write(false);
+            }
+
+        }
+
         public static void LoadV1(BinaryReader reader, string filename, World w)
         {
             uint version = w.Version;
             w.Title = reader.ReadString();
-            w.WorldId = reader.ReadInt32();
 
+            w.WorldId = reader.ReadInt32();
             w.Rand = new Random(w.WorldId);
+
 
             w.LeftWorld = reader.ReadInt32();
             w.RightWorld = reader.ReadInt32();
@@ -1513,7 +1895,7 @@ namespace TEdit.Terraria
             for (int x = 0; x < w.TilesWide; ++x)
             {
                 OnProgressChanged(null,
-                    new ProgressChangedEventArgs(x.ProgressPercentage(w.TilesWide), "Loading UndoTiles..."));
+                    new ProgressChangedEventArgs(x.ProgressPercentage(w.TilesWide), "Loading Tiles..."));
 
                 for (int y = 0; y < w.TilesHigh; y++)
                 {

@@ -100,6 +100,9 @@ namespace TEdit.Terraria
         public BrickStyle BrickStyle;
         public bool InActive;
         public bool IsActive;
+        
+        public bool v0_Lit;
+
         public byte LiquidAmount;
         public LiquidType LiquidType;
         public byte TileColor;

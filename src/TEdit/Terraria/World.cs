@@ -56,7 +56,7 @@ namespace TEdit.Terraria
             World world,
             string filename,
             bool resetTime = false,
-            uint versionOverride = 0,
+            int versionOverride = 0,
             bool incrementRevision = true,
             bool showWarnings = true)
         {
@@ -98,7 +98,7 @@ namespace TEdit.Terraria
                 try
                 {
                     // set the world version for this save
-                    if (versionOverride > 0) { world.Version = versionOverride; }
+                    if (versionOverride > 0) { world.Version = (uint)(versionOverride); }
 
                     if (resetTime)
                     {
@@ -122,7 +122,12 @@ namespace TEdit.Terraria
 
                         using (var bw = new BinaryWriter(fs))
                         {
-                            if (world.Version > 87)
+                            if (versionOverride < 0 || world.IsV0)
+                            {
+                                world.Version = (uint)Math.Abs(versionOverride);
+                                SaveV0(world, bw);
+                            }
+                            else if (world.Version > 87)
                                 SaveV2(world, bw, debugger, incrementRevision);
                             else
                                 SaveV1(world, bw);
@@ -182,6 +187,14 @@ namespace TEdit.Terraria
                         w.IsTModLoader = File.Exists(twldPath);
 
                         w.Version = b.ReadUInt32();
+                        var readerPos = b.BaseStream.Position;
+
+                        w.Title = b.ReadString();
+
+                        // if seed = 0, use load V0
+                        int seed = b.ReadInt32();
+                        b.BaseStream.Position = readerPos;
+
 
                         if (showWarnings)
                         {
@@ -226,8 +239,16 @@ namespace TEdit.Terraria
                         {
                             LoadV2(b, w, debugger);
                         }
+                        else if (w.Version <= 38 && seed == 0)
+                        {
+                            LoadV0(b, filename, w);
+                        }
                         else
+                        {
                             LoadV1(b, filename, w);
+                        }
+
+
 
                         //w.UpgradeLegacyTileEntities();
                     }

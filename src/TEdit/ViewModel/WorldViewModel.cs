@@ -1096,7 +1096,7 @@ namespace TEdit.ViewModel
 
         private void SaveWorldThreaded(string filename, uint version = 0)
         {
-            Task.Factory.StartNew(() => World.Save(CurrentWorld, filename, versionOverride: version))
+            Task.Factory.StartNew(() => World.Save(CurrentWorld, filename, versionOverride: (int)version))
                 .ContinueWith(t => CommandManager.InvalidateRequerySuggested(), TaskFactoryHelper.UiTaskScheduler);
         }
 

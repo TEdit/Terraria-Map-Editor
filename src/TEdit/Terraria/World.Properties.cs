@@ -1065,6 +1065,13 @@ namespace TEdit.Terraria
             set { Set(nameof(DownedFrost), ref _downedFrost, value); }
         }
 
+        private bool _isV0;
+        public bool IsV0
+        {
+            get { return _isV0; }
+            set { Set(nameof(IsV0), ref _isV0, value); }
+        }
+
         public string Title
         {
             get { return _title; }

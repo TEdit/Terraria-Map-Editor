@@ -24,7 +24,6 @@ namespace TEdit.Terraria
         {
             _x = x;
             _y = y;
-
         }
 
         public Chest(int x, int y, string name)
