@@ -1173,4 +1173,7 @@
   <data name="menu_layers_wire_transparency" xml:space="preserve">
     <value>شفافية الأسلاك</value>
   </data>
+  <data name="tool_wp_unsafe_level" xml:space="preserve">
+    <value>السماح بالقيم غير الآمنة</value>
+  </data>
 </root>
