@@ -2017,7 +2017,7 @@ namespace TEdit.Terraria
 
             w.SavedStylist = r.ReadBoolean();
 
-            if (w.Version >= 129)
+            if (w.Version >= 140)
             {
                 w.SavedTaxCollector = r.ReadBoolean();
             }
@@ -2047,29 +2047,30 @@ namespace TEdit.Terraria
 
             if (w.Version < 128) { return; }
 
-            if (w.Version >= 140) // Sundial - Added v140
+            if (w.Version >= 140)
+            {
                 w.FastForwardTime = r.ReadBoolean();
+            }
 
             if (w.Version < 131) { return; }
 
             w.DownedFishron = r.ReadBoolean();
-            
+
             if (w.Version >= 140)
             {
                 w.DownedMartians = r.ReadBoolean();
                 w.DownedLunaticCultist = r.ReadBoolean();
                 w.DownedMoonlord = r.ReadBoolean();
             }
+
             w.DownedHalloweenKing = r.ReadBoolean();
             w.DownedHalloweenTree = r.ReadBoolean();
             w.DownedChristmasQueen = r.ReadBoolean();
             w.DownedSanta = r.ReadBoolean();
             w.DownedChristmasTree = r.ReadBoolean();
-            w.DownedSanta = r.ReadBoolean();
-            w.DownedChristmasTree = r.ReadBoolean();
-            
+
             if (w.Version < 140) { return; }
-            
+
             w.DownedCelestialSolar = r.ReadBoolean();
             w.DownedCelestialVortex = r.ReadBoolean();
             w.DownedCelestialNebula = r.ReadBoolean();
