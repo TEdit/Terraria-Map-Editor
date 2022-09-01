@@ -1099,7 +1099,7 @@ namespace TEdit.Terraria
         public bool IsAndroid
         {
             get { return _isAndroid; }
-            set { Set(nameof(_isAndroid), ref _isV0, value); }
+            set { Set(nameof(_isAndroid), ref _isAndroid, value); }
         }
 
 
