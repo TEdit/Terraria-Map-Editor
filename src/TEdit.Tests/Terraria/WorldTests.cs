@@ -137,9 +137,33 @@ namespace TEdit.Terraria.Tests
         [InlineData(".\\WorldFiles\\v1.2.0.3.1.wld")]
         [InlineData(".\\WorldFiles\\v1.2.0.2.wld")]
         [InlineData(".\\WorldFiles\\v1.2.0.1.wld")]
+
+        public void SaveWorldV1_Terraria1200_Test(string fileName)
+        {
+            var w = World.LoadWorld(fileName, showWarnings: false);
+
+            var saveTest = fileName + ".test";
+            World.Save(w, saveTest, incrementRevision: false, showWarnings: false);
+
+            // essentially, just a save and load test
+            var w2 = World.LoadWorld(saveTest, showWarnings: false);
+        }
+
+        [Theory]
         [InlineData(".\\WorldFiles\\v1.1.wld")]
         [InlineData(".\\WorldFiles\\v1.1.2.wld")]
         [InlineData(".\\WorldFiles\\v1.1.1.wld")]
+        public void SaveWorldV1_Terraria11_Test(string fileName)
+        {
+            var w = World.LoadWorld(fileName, showWarnings: false);
+
+            var saveTest = fileName + ".test";
+            World.Save(w, saveTest, incrementRevision: false, showWarnings: false);
+
+            // essentially, just a save and load test
+            var w2 = World.LoadWorld(saveTest, showWarnings: false);
+        }
+
         [InlineData(".\\WorldFiles\\v1.0.6.wld")]
         [InlineData(".\\WorldFiles\\v1.0.6.1.wld")]
         [InlineData(".\\WorldFiles\\v1.0.5.wld")]
@@ -147,7 +171,7 @@ namespace TEdit.Terraria.Tests
         [InlineData(".\\WorldFiles\\v1.0.3.wld")]
         [InlineData(".\\WorldFiles\\v1.0.2.wld")]
         [InlineData(".\\WorldFiles\\v1.0.1.wld")]
-        public void SaveWorldV1_Test(string fileName)
+        public void SaveWorldV1_Terraria10_Test(string fileName)
         {
             var w = World.LoadWorld(fileName, showWarnings: false);
 
