@@ -71,6 +71,7 @@ namespace TEdit.Terraria
             bw.Write(world.SpawnY);
             bw.Write(world.GroundLevel);
             bw.Write(world.RockLevel);
+
             bw.Write(world.Time);
             bw.Write(world.DayTime);
             bw.Write(world.MoonPhase);
@@ -116,13 +117,10 @@ namespace TEdit.Terraria
             {
                 bw.Write(world.SavedGoblin);
                 bw.Write(world.SavedWizard);
+
                 if (version >= 34)
                 {
                     bw.Write(world.SavedMech);
-                    if (version >= 80)
-                    {
-                        bw.Write(world.SavedStylist);
-                    }
                 }
                 bw.Write(world.DownedGoblins);
             }
@@ -197,7 +195,7 @@ namespace TEdit.Terraria
                 bw.Write(world.WindSpeedSet);
             }
 
-            var frames = World.SaveConfiguration.SaveVersions[(int)world.Version].GetFrames();
+            var frames = SaveConfiguration.GetTileFramesForVersion((int)version);
 
             for (int x = 0; x < world.TilesWide; ++x)
             {
@@ -1706,6 +1704,7 @@ namespace TEdit.Terraria
                 w.TreeStyle2 = reader.ReadInt32();
                 w.TreeStyle3 = reader.ReadInt32();
             }
+
             if (version >= 60)
             {
                 w.CaveBackX0 = reader.ReadInt32();
@@ -1716,6 +1715,7 @@ namespace TEdit.Terraria
                 w.CaveBackStyle2 = reader.ReadInt32();
                 w.CaveBackStyle3 = reader.ReadInt32();
                 w.IceBackStyle = reader.ReadInt32();
+
                 if (version >= 61)
                 {
                     w.JungleBackStyle = reader.ReadInt32();
@@ -1772,6 +1772,7 @@ namespace TEdit.Terraria
             {
                 w.DownedQueenBee = reader.ReadBoolean();
             }
+
             if (version >= 44)
             {
                 w.DownedMechBoss1 = reader.ReadBoolean();
@@ -1779,22 +1780,21 @@ namespace TEdit.Terraria
                 w.DownedMechBoss3 = reader.ReadBoolean();
                 w.DownedMechBossAny = reader.ReadBoolean();
             }
+
             if (version >= 64)
             {
                 w.DownedPlantBoss = reader.ReadBoolean();
                 w.DownedGolemBoss = reader.ReadBoolean();
             }
+
             if (version >= 29)
             {
                 w.SavedGoblin = reader.ReadBoolean();
                 w.SavedWizard = reader.ReadBoolean();
+
                 if (version >= 34)
                 {
                     w.SavedMech = reader.ReadBoolean();
-                    if (version >= 80)
-                    {
-                        w.SavedStylist = reader.ReadBoolean();
-                    }
                 }
                 w.DownedGoblins = reader.ReadBoolean();
             }

@@ -1095,6 +1095,14 @@ namespace TEdit.Terraria
             set { Set(nameof(IsV0), ref _isV0, value); }
         }
 
+        private bool _isAndroid;
+        public bool IsAndroid
+        {
+            get { return _isAndroid; }
+            set { Set(nameof(_isAndroid), ref _isV0, value); }
+        }
+
+
         public string Title
         {
             get { return _title; }

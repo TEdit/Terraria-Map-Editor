@@ -22,23 +22,12 @@ namespace TEdit.Terraria
         public const int MaxChests = 8000;
         public const int MaxSigns = 1000;
 
+        public const string DesktopHeader = "relogic";
+        public const string AndroidHeader = "xindong";
+
         public bool IsTModLoader { get; set; }
 
-        public short GetSectionCount()
-        {
-            short numSections = 11;
-
-            if (Version >= 220) { numSections = 11; }
-            else { numSections = 10; }
-
-            //else if (Version >= 210) { numSections = 10; }
-            //else if (Version >= 189) { numSections = 10; }
-            //else if (Version >= 170) { numSections = 9; }
-            //else if (Version >= 140) { numSections = 8; }
-            //else if (Version < 140) { numSections = 7; } // debug
-
-            return numSections;
-        }
+        public short GetSectionCount() => ((int)Version >= 220) ? (short)11 : (short)10;
 
         public bool[] TileFrameImportant { get; set; }
 
@@ -602,7 +591,14 @@ namespace TEdit.Terraria
             // World features added in 1.3.0.1
             if (world.Version >= 140)
             {
-                bw.Write("relogic".ToCharArray());
+                if (world.IsAndroid)
+                {
+                    bw.Write(AndroidHeader.ToCharArray());
+                }
+                else
+                {
+                    bw.Write(DesktopHeader.ToCharArray());
+                }
                 bw.Write((byte)FileType.World);
 
                 bw.Write((int)world.FileRevision);
@@ -978,8 +974,12 @@ namespace TEdit.Terraria
                 return (int)bw.BaseStream.Position;
             }
 
-            bw.Write(world.SavedStylist);
-            debugger?.WriteLine("\"SavedStylist\": {0},", world.SavedStylist);
+            if (world.Version > 104)
+            {
+                bw.Write(world.SavedStylist);
+                debugger?.WriteLine("\"SavedStylist\": {0},", world.SavedStylist);
+            }
+            
             if (world.Version >= 129)
             {
                 bw.Write(world.SavedTaxCollector);
@@ -1033,13 +1033,13 @@ namespace TEdit.Terraria
                 debugger?.WriteLine("\"SECTION_1\": {0}", bw.BaseStream.Position);
                 return (int)bw.BaseStream.Position;
             }
-            
+
             if (world.Version >= 140)
             {
                 bw.Write(world.FastForwardTime);
                 debugger?.WriteLine("\"FastForwardTime\": {0},", world.FastForwardTime);
             }
-            
+
             if (world.Version < 131)
             {
                 debugger?.WriteLine("\"SECTION_1\": {0}", bw.BaseStream.Position);
@@ -1048,7 +1048,7 @@ namespace TEdit.Terraria
 
             bw.Write(world.DownedFishron);
             debugger?.WriteLine("\"DownedFishron\": {0},", world.DownedFishron);
-            
+
             if (world.Version >= 140)
             {
                 bw.Write(world.DownedMartians);
@@ -1058,7 +1058,7 @@ namespace TEdit.Terraria
                 bw.Write(world.DownedMoonlord);
                 debugger?.WriteLine("\"DownedMoonlord\": {0},", world.DownedMoonlord);
             }
-            
+
             bw.Write(world.DownedHalloweenKing);
             debugger?.WriteLine("\"DownedHalloweenKing\": {0},", world.DownedHalloweenKing);
             bw.Write(world.DownedHalloweenTree);
@@ -1076,7 +1076,7 @@ namespace TEdit.Terraria
             debugger?.WriteLine("\"DownedSanta\": {0},", world.DownedSanta);
             bw.Write(world.DownedChristmasTree);
             debugger?.WriteLine("\"DownedChristmasTree\": {0},", world.DownedChristmasTree);
-            
+
             if (world.Version >= 140)
             {
                 bw.Write(world.DownedCelestialSolar);
@@ -2229,10 +2229,27 @@ namespace TEdit.Terraria
 
             if (versionNumber >= 140)
             {
+                // check for android
+
+                w.IsAndroid = (char)r.PeekChar() == 'x';
+
                 string headerFormat = new string(r.ReadChars(7));
                 FileType fileType = (FileType)r.ReadByte();
-                if (headerFormat != "relogic" || fileType != FileType.World)
-                    throw new FileFormatException("Invalid Header");
+
+                if (fileType != FileType.World)
+                {
+                    throw new FileFormatException($"Is not a supported file type: {fileType.ToString()}");
+                }
+
+                if (!w.IsAndroid && headerFormat != DesktopHeader)
+                {
+                    throw new FileFormatException("Invalid desktop world header.");
+                }
+
+                if (w.IsAndroid && headerFormat != AndroidHeader)
+                {
+                    throw new FileFormatException("Invalid android world header.");
+                }
 
                 w.FileRevision = r.ReadUInt32();
 

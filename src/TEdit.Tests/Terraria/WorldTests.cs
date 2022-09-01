@@ -22,8 +22,14 @@ namespace TEdit.Terraria.Tests
 
         [Theory]
         [InlineData(".\\WorldFiles\\v1.0.wld")]
-
         public void LoadWorldV0_Test(string fileName)
+        {
+            var w = World.LoadWorld(fileName, showWarnings: false);
+        }
+
+        [Theory]
+        [InlineData(".\\WorldFiles\\android.wld")]
+        public void LoadWorldAndroid_Test(string fileName)
         {
             var w = World.LoadWorld(fileName, showWarnings: false);
         }
