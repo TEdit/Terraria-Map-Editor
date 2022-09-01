@@ -187,13 +187,12 @@ namespace TEdit.Terraria
                         w.IsTModLoader = File.Exists(twldPath);
 
                         w.Version = b.ReadUInt32();
-                        var readerPos = b.BaseStream.Position;
 
-                        w.Title = b.ReadString();
-
+                        //var readerPos = b.BaseStream.Position;
+                        //w.Title = b.ReadString();
                         // if seed = 0, use load V0
-                        int seed = b.ReadInt32();
-                        b.BaseStream.Position = readerPos;
+                        //int seed = b.ReadInt32();
+                        //b.BaseStream.Position = readerPos;
 
 
                         if (showWarnings)
@@ -239,7 +238,7 @@ namespace TEdit.Terraria
                         {
                             LoadV2(b, w, debugger);
                         }
-                        else if (w.Version <= 38 && seed == 0)
+                        else if (w.Version <= 38) // && seed == 0)
                         {
                             LoadV0(b, filename, w);
                         }

@@ -1173,4 +1173,7 @@ Press retry to pick a new folder or cancel to use {0} as your terraria path.</va
   <data name="menu_layers_wire_transparency" xml:space="preserve">
     <value>Wire Transparency</value>
   </data>
+  <data name="tool_wp_unsafe_level" xml:space="preserve">
+    <value>Allow Unsafe Values</value>
+  </data>
 </root>

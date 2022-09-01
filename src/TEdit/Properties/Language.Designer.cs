@@ -881,6 +881,15 @@ namespace TEdit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Wire Transparency.
+        /// </summary>
+        public static string menu_layers_wire_transparency {
+            get {
+                return ResourceManager.GetString("menu_layers_wire_transparency", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Yellow Wire.
         /// </summary>
         public static string menu_layers_wire_yellow {
@@ -888,18 +897,7 @@ namespace TEdit.Properties {
                 return ResourceManager.GetString("menu_layers_wire_yellow", resourceCulture);
             }
         }
-
-        /// <summary>
-        ///   Looks up a localized string similar to Wire Transparency.
-        /// </summary>
-        public static string menu_layers_wire_transparency
-        {
-            get
-            {
-                return ResourceManager.GetString("menu_layers_wire_transparency", resourceCulture);
-            }
-        }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Plugins.
         /// </summary>
@@ -3138,6 +3136,15 @@ namespace TEdit.Properties {
         public static string tool_wp_time_sundial_cooldown {
             get {
                 return ResourceManager.GetString("tool_wp_time_sundial_cooldown", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Allow Unsafe Values.
+        /// </summary>
+        public static string tool_wp_unsafe_level {
+            get {
+                return ResourceManager.GetString("tool_wp_unsafe_level", resourceCulture);
             }
         }
         

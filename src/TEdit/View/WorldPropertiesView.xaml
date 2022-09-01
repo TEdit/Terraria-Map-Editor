@@ -383,6 +383,10 @@
             <Slider Value="{Binding CurrentWorld.RockLevel, Mode=TwoWay}" VerticalAlignment="Center" Minimum="0" Maximum="{Binding Path=CurrentWorld.MaxCavernLevel}" SmallChange="1" Width="120" />
             <TextBox Text="{Binding CurrentWorld.RockLevel, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="32" DockPanel.Dock="Right" />
         </DockPanel>
+        <TextBlock  />
+        <DockPanel>
+            <CheckBox IsChecked="{Binding CurrentWorld.UnsafeGroundLayers}" Content="{x:Static p:Language.tool_wp_unsafe_level}" VerticalAlignment="Center" />
+        </DockPanel>
         <Separator Grid.ColumnSpan="2" />
         <TextBlock Text="{x:Static p:Language.tool_wp_meteor}" HorizontalAlignment="Right" />
         <CheckBox IsChecked="{Binding CurrentWorld.SpawnMeteor}" Content="{x:Static p:Language.tool_wp_meteor_spawn}" VerticalAlignment="Center" VerticalContentAlignment="Center" />
