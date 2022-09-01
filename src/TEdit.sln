@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SettingsFileUpdater", "Sett
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Setup", "Setup\Setup.csproj", "{CA287E0D-9BC9-4E3C-8AC0-55A87613CEC1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TEditTests1", "TEditTests1\TEditTests1.csproj", "{DB15668D-151F-40C7-9F1A-682AD503F8D2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TEdit.Tests", "TEdit.Tests\TEdit.Tests.csproj", "{DB15668D-151F-40C7-9F1A-682AD503F8D2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
