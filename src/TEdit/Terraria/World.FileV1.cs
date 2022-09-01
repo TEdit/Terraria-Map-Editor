@@ -208,7 +208,6 @@ namespace TEdit.Terraria
                 {
                     Tile curTile = world.Tiles[x, y];
 
-
                     WriteTileDataToStreamV1(curTile, bw, world.Version, frames);
 
                     if (version >= 25)
@@ -1194,7 +1193,13 @@ namespace TEdit.Terraria
             if (tile.IsActive)
             {
                 bw.Write((byte)tile.Type);
-                if (version < 72 &&
+                if (version < 28 && tile.Type == (int)(TileType.Torch) ||
+                   (version < 40 && tile.Type == (int)TileType.Platform) ||
+                   (version < 195 && tile.Type == (int)TileType.WaterCandle))
+                {
+                    // skip
+                }
+                else if (version < 72 &&
                     (tile.Type == 35 || tile.Type == 36 || tile.Type == 170 || tile.Type == 171 || tile.Type == 172))
                 {
                     bw.Write((Int16)tile.U);
@@ -1223,18 +1228,21 @@ namespace TEdit.Terraria
                 bw.Write(tile.v0_Lit); // legacy hasLight
             }
 
-            if (tile.Wall > 0 && tile.Wall < byte.MaxValue)
+            if (tile.Wall > 0 && tile.Wall <= byte.MaxValue)
             {
                 bw.Write(true);
                 bw.Write((byte)tile.Wall);
 
-                if (tile.WallColor > 0)
+                if (version >= 48)
                 {
-                    bw.Write(true);
-                    bw.Write((byte)tile.WallColor);
+                    if (tile.WallColor > 0)
+                    {
+                        bw.Write(true);
+                        bw.Write((byte)tile.WallColor);
+                    }
+                    else
+                        bw.Write(false);
                 }
-                else
-                    bw.Write(false);
             }
             else
                 bw.Write(false);
@@ -1554,7 +1562,7 @@ namespace TEdit.Terraria
                             if (tile.TileColor > 0)
                             {
                                 bw.Write(true);
-                                bw.Write(tile.TileColor);
+                                bw.Write((byte)tile.TileColor);
                             }
                             else
                             {
@@ -1566,7 +1574,7 @@ namespace TEdit.Terraria
                     if (version <= 25)
                     {
                         // legacy lights
-                        bw.Write(tile.v0_Lit || tile.Type == 4);
+                        bw.Write(tile.v0_Lit);
                     }
 
                     if (tile.Wall > 0)
@@ -2185,7 +2193,8 @@ namespace TEdit.Terraria
         {
             var tile = new Tile();
 
-            if (b.BaseStream.Position == 0x11038) Debugger.Break();
+            //if (b.BaseStream.Position == 0x97e50) Debugger.Break();
+            //if (b.BaseStream.Position == 0x98010) Debugger.Break();
 
             tile.IsActive = b.ReadBoolean();
 
