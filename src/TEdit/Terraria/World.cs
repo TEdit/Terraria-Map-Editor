@@ -188,11 +188,21 @@ namespace TEdit.Terraria
 
                         w.Version = b.ReadUInt32();
 
-                        //var readerPos = b.BaseStream.Position;
-                        //w.Title = b.ReadString();
-                        // if seed = 0, use load V0
-                        //int seed = b.ReadInt32();
-                        //b.BaseStream.Position = readerPos;
+                        // only perform this check for v38 and under
+                        if (w.Version <= 38)
+                        {
+                            // save the stream position
+                            var readerPos = b.BaseStream.Position;
+
+                            // read title and seed
+                            w.Title = b.ReadString();
+                            int seed = b.ReadInt32();
+                            // if seed = 0, use load V0
+                            w.IsV0 = seed == 0 && w.Version <= 38;
+
+                            // reset the stream
+                            b.BaseStream.Position = readerPos;
+                        }
 
 
                         if (showWarnings)
@@ -238,7 +248,7 @@ namespace TEdit.Terraria
                         {
                             LoadV2(b, w, debugger);
                         }
-                        else if (w.Version <= 38) // && seed == 0)
+                        else if (w.Version <= 38 && w.IsV0)
                         {
                             LoadV0(b, filename, w);
                         }
