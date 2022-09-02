@@ -586,7 +586,7 @@ Klicke auf „Wiederholen“, um einen neuen Ordner auszuwählen, oder auf „Ab
     <value>Kabel einfügen</value>
   </data>
   <data name="tool_clipboard_ispastesprite" xml:space="preserve">
-    <value>Sprites einfügen</value>
+    <value>Grafiken einfügen</value>
   </data>
   <data name="tool_fill_title" xml:space="preserve">
     <value>Füllen – Auswahl ausfüllen</value>
@@ -709,7 +709,7 @@ Klicke auf „Wiederholen“, um einen neuen Ordner auszuwählen, oder auf „Ab
     <value>HG Heiligtum</value>
   </data>
   <data name="tool_wp_bg_hell" xml:space="preserve">
-    <value>HG Hölle</value>
+    <value>HG Unterwelt</value>
   </data>
   <data name="tool_wp_bg_jungle" xml:space="preserve">
     <value>HG Dschungel</value>
@@ -1009,7 +1009,7 @@ Klicke auf „Wiederholen“, um einen neuen Ordner auszuwählen, oder auf „Ab
     <value>Schweregrad</value>
   </data>
   <data name="tool_wp_sandstorm_severity_target" xml:space="preserve">
-    <value>Angepeilter Schweregrad</value>
+    <value>Angepeilter Schw.gr.</value>
   </data>
   <data name="tool_wp_sandstorm_time" xml:space="preserve">
     <value>Verbleibende Zeit</value>
@@ -1075,7 +1075,7 @@ Klicke auf „Wiederholen“, um einen neuen Ordner auszuwählen, oder auf „Ab
     <value>Wolkenanzahl</value>
   </data>
   <data name="tool_wp_weather_windspeed" xml:space="preserve">
-    <value>Windgeschwindigkeit</value>
+    <value>Windgeschwindigk.</value>
   </data>
   <data name="TrackMode_Booster" xml:space="preserve">
     <value>Booster</value>
@@ -1090,7 +1090,7 @@ Klicke auf „Wiederholen“, um einen neuen Ordner auszuwählen, oder auf „Ab
     <value>Gleis</value>
   </data>
   <data name="tool_wp_tenthanniversary" xml:space="preserve">
-    <value>Celebrationmk10</value>
+    <value>„Celebrationmk10“</value>
   </data>
   <data name="menu_language_pt" xml:space="preserve">
     <value>Português</value>
@@ -1108,16 +1108,16 @@ Klicke auf „Wiederholen“, um einen neuen Ordner auszuwählen, oder auf „Ab
     <value>Rehklop</value>
   </data>
   <data name="tool_wp_dontstarve" xml:space="preserve">
-    <value>Verhungere die Welt nicht</value>
+    <value>„The Constant“</value>
   </data>
   <data name="tool_wp_notthebees" xml:space="preserve">
-    <value>Nicht die Bienenwelt</value>
+    <value>„Not the bees“</value>
   </data>
   <data name="JunctionBoxMode_Left" xml:space="preserve">
     <value>Nach links gerichtet</value>
   </data>
   <data name="JunctionBoxMode_None" xml:space="preserve">
-    <value>Keiner</value>
+    <value>Keine</value>
   </data>
   <data name="JunctionBoxMode_Normal" xml:space="preserve">
     <value>Normal</value>
@@ -1126,19 +1126,19 @@ Klicke auf „Wiederholen“, um einen neuen Ordner auszuwählen, oder auf „Ab
     <value>Nach rechts gerichtet</value>
   </data>
   <data name="tool_paint_junctionbox_left_tooltip" xml:space="preserve">
-    <value>Fügen Sie eine nach links gerichtete Kreuzungsdose hinzu.</value>
+    <value>Nach links gerichtete Kabelkreuzung hinzufügen.</value>
   </data>
   <data name="tool_paint_junctionbox_normal_tooltip" xml:space="preserve">
-    <value>Standardanschlussdose hinzufügen.</value>
+    <value>Normale Kabelkreuzung hinzufügen.</value>
   </data>
   <data name="tool_paint_junctionbox_right_tooltip" xml:space="preserve">
-    <value>Fügen Sie eine nach rechts gerichtete Kreuzungsdose hinzu.</value>
+    <value>Nach rechts gerichtete Kabelkreuzung hinzufügen.</value>
   </data>
   <data name="JunctionBox_Use" xml:space="preserve">
-    <value>Anschlussdose:</value>
+    <value>Kabelkreuzung:</value>
   </data>
   <data name="menu_edit_crop" xml:space="preserve">
-    <value>Getreidewelt</value>
+    <value>Welt zuschneiden</value>
   </data>
   <data name="tab_bestiary" xml:space="preserve">
     <value>Bestiarium</value>
@@ -1156,22 +1156,22 @@ Klicke auf „Wiederholen“, um einen neuen Ordner auszuwählen, oder auf „Ab
     <value>Nahe</value>
   </data>
   <data name="bestiary_talked" xml:space="preserve">
-    <value>Sich unterhalten</value>
+    <value>Ansprechen</value>
   </data>
   <data name="bestiary_clear" xml:space="preserve">
-    <value>Klar</value>
+    <value>Leeren</value>
   </data>
   <data name="bestiary_chat" xml:space="preserve">
     <value>Plaudern</value>
   </data>
   <data name="bestiary_complete" xml:space="preserve">
-    <value>Vollständig</value>
+    <value>Vervollständ.</value>
   </data>
   <data name="bestiary_load" xml:space="preserve">
-    <value>Last</value>
+    <value>Laden</value>
   </data>
   <data name="menu_layers_wire_transparency" xml:space="preserve">
-    <value>Drahttransparenz</value>
+    <value>Kabelsichtbarkeit</value>
   </data>
   <data name="tool_wp_unsafe_level" xml:space="preserve">
     <value>Unsichere Werte zulassen</value>
