@@ -687,6 +687,7 @@ namespace TEdit.Terraria
                 { "Aqua Scepter", 157 },
                 { "Lucky Horseshoe", 158 },
                 { "Shiny Red Balloon", 159 },
+                { "Shiney Red Balloon", 159 }, // v0 spelling issue patch
                 { "Harpoon", 160 },
                 { "Spiky Ball", 161 },
                 { "Ball O' Hurt", 162 },
