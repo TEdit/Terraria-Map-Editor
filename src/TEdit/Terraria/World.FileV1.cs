@@ -436,6 +436,11 @@ namespace TEdit.Terraria
                 }
             }
 
+            if (release <= 38 && name == "Shiny Red Balloon")
+            {
+                name = "Shiney Red Ballon";
+            }
+
             if (release <= 41 && name == "Chain")
                 name = "Iron Chain";
 
@@ -458,6 +463,7 @@ namespace TEdit.Terraria
         {
             if (_legacyItemLookup == null)
                 _legacyItemLookup = GenerateLegacyItemDictionary();
+
 
             if (release <= 4)
             {
@@ -492,6 +498,11 @@ namespace TEdit.Terraria
                         name = "Ball O' Hurt";
                         break;
                 }
+            }
+
+            if (release <= 38 && name == "Shiney Red Ballon")
+            {
+                name = "Shiny Red Balloon";
             }
 
             if (release <= 41 && name == "Iron Chain")
@@ -687,7 +698,6 @@ namespace TEdit.Terraria
                 { "Aqua Scepter", 157 },
                 { "Lucky Horseshoe", 158 },
                 { "Shiny Red Balloon", 159 },
-                { "Shiney Red Balloon", 159 }, // v0 spelling issue patch
                 { "Harpoon", 160 },
                 { "Spiky Ball", 161 },
                 { "Ball O' Hurt", 162 },
