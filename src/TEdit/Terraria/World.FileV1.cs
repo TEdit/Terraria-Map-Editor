@@ -436,6 +436,11 @@ namespace TEdit.Terraria
                 }
             }
 
+            if (release <= 38 && name == "Shiny Red Balloon")
+            {
+                name = "Shiney Red Ballon";
+            }
+
             if (release <= 41 && name == "Chain")
                 name = "Iron Chain";
 
@@ -458,6 +463,7 @@ namespace TEdit.Terraria
         {
             if (_legacyItemLookup == null)
                 _legacyItemLookup = GenerateLegacyItemDictionary();
+
 
             if (release <= 4)
             {
@@ -492,6 +498,11 @@ namespace TEdit.Terraria
                         name = "Ball O' Hurt";
                         break;
                 }
+            }
+
+            if (release <= 38 && name == "Shiney Red Ballon")
+            {
+                name = "Shiny Red Balloon";
             }
 
             if (release <= 41 && name == "Iron Chain")
@@ -1535,112 +1546,54 @@ namespace TEdit.Terraria
                 {
                     Tile tile = world.Tiles[x, y];
 
-                    if (bw.BaseStream.Position >= 0x11037) Debugger.Break();
+                    if (tile.Type == (int)TileType.IceByRod ||
+                        tile.Type == (int)TileType.MysticSnakeRope ||
+                        tile.Type > byte.MaxValue)
+                        tile.IsActive = false;
+
+                    //if (bw.BaseStream.Position >= 0x11037) Debugger.Break();
 
                     bw.Write(tile.IsActive);
                     if (tile.IsActive)
                     {
                         bw.Write((byte)tile.Type);
 
-                        if (version < 28 && tile.Type == 4)
-                        {
-                            // skip old torch
-                        }
-                        else if (version < 40 && tile.Type == 19)
-                        {
-                            // skip old 
-                        }
-                        else if (frames[tile.Type] ||
-                            (version < 72 && (tile.Type == 35 || tile.Type == 36 || tile.Type == 170 || tile.Type == 171 || tile.Type == 172)))
+                        if (frames[tile.Type])
                         {
                             bw.Write(tile.U);
                             bw.Write(tile.V);
                         }
-
-                        if (version >= 48)
-                        {
-                            if (tile.TileColor > 0)
-                            {
-                                bw.Write(true);
-                                bw.Write((byte)tile.TileColor);
-                            }
-                            else
-                            {
-                                bw.Write(false);
-                            }
-                        }
                     }
 
-                    if (version <= 25)
-                    {
-                        // legacy lights
-                        bw.Write(tile.v0_Lit);
-                    }
+                    bw.Write((bool)tile.v0_Lit);
+
 
                     if (tile.Wall > 0)
                     {
                         bw.Write(true);
                         bw.Write((byte)tile.Wall);
-
-                        if (version >= 48)
-                        {
-                            if (tile.WallColor > 0)
-                            {
-                                bw.Write(true);
-                                bw.Write(tile.WallColor);
-                            }
-                            else
-                            {
-                                bw.Write(false);
-                            }
-                        }
                     }
                     else
                     {
                         bw.Write(false);
                     }
 
-                    if (version >= 34 && tile.LiquidAmount > 0 && tile.LiquidType != LiquidType.None)
+                    if (version >= 34)
                     {
-                        bw.Write(true);
-                        bw.Write(tile.LiquidAmount);
-                        bw.Write(tile.LiquidType == LiquidType.Lava);
-
-                        if (version >= 51)
+                        if (tile.LiquidAmount > 0 && tile.LiquidType != LiquidType.None)
                         {
-                            bw.Write(tile.LiquidType == LiquidType.Honey);
+                            bw.Write(true);
+                            bw.Write(tile.LiquidAmount);
+
+                            if (version >= 35)
+                            {
+                                bw.Write(tile.LiquidType == LiquidType.Lava);
+                            }
                         }
-                    }
-                    else
-                    {
-                        bw.Write(false);
-                    }
-
-                    if (version >= 33)
-                    {
-                        bw.Write(tile.WireRed);
-                    }
-
-                    if (version >= 43)
-                    {
-                        bw.Write(tile.WireGreen);
-                        bw.Write(tile.WireBlue);
-                    }
-
-                    if (version >= 41)
-                    {
-                        bw.Write(tile.BrickStyle != BrickStyle.Full);
-
-                        if (version >= 49)
+                        else
                         {
-                            bw.Write((byte)tile.BrickStyle);
+                            bw.Write(false);
                         }
-                    }
-
-                    if (version >= 42)
-                    {
-                        bw.Write(tile.Actuator);
-                        bw.Write(tile.InActive);
                     }
                 }
             }
