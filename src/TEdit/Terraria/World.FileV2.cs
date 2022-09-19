@@ -297,7 +297,7 @@ namespace TEdit.Terraria
             }
 
             // wall data
-            if (tile.Wall != 0 && tile.Wall < maxWallId)
+            if (tile.Wall != 0 && tile.Wall <= maxWallId)
             {
                 // set header1 bit[2] for wall active
                 header1 |= 0b_0000_0100;
