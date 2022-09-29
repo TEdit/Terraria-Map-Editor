@@ -29,7 +29,8 @@ namespace TEdit.Terraria
         private readonly ObservableCollection<NpcName> _charNames = new ObservableCollection<NpcName>();
         private readonly ObservableCollection<Chest> _chests = new ObservableCollection<Chest>();
         private readonly ObservableCollection<NPC> _npcs = new ObservableCollection<NPC>();
-        private readonly ObservableCollection<int> _killedMobs = new ObservableCollection<int>();
+        private readonly ObservableCollection<int> _shimmeredTownNPCs = new ObservableCollection<int>(Enumerable.Repeat(0, NPCMaxID));
+        private readonly ObservableCollection<int> _killedMobs = new ObservableCollection<int>(Enumerable.Repeat(0, NPCMaxID));
         private readonly ObservableCollection<NPC> _mobs = new ObservableCollection<NPC>();
         private readonly ObservableCollection<Sign> _signs = new ObservableCollection<Sign>();
         private readonly ObservableCollection<TileEntity> _tileEntities = new ObservableCollection<TileEntity>();
@@ -230,6 +231,14 @@ namespace TEdit.Terraria
         private bool _notTheBeesWorld;
         private int _maxCavernLevel;
         private int _maxGroundLevel;
+
+
+        private bool _isV0;
+        private bool _isAndroid;
+        private bool _zenithWorld;
+        private bool _noTrapsWorld;
+        private bool _remixWorld;
+
 
         public Bestiary Bestiary
         {
@@ -548,6 +557,11 @@ namespace TEdit.Terraria
             get { return _anglers; }
         }
 
+        public ObservableCollection<int> ShimmeredTownNPCs
+        {
+            get { return _shimmeredTownNPCs; }
+        }
+
         public ObservableCollection<NPC> NPCs
         {
             get { return _npcs; }
@@ -666,6 +680,27 @@ namespace TEdit.Terraria
             get { return _notTheBeesWorld; }
             set { Set(nameof(NotTheBeesWorld), ref _notTheBeesWorld, value); }
         }
+
+        public bool RemixWorld
+        {
+            get { return _remixWorld; }
+            set { Set(nameof(RemixWorld), ref _remixWorld, value); }
+        }
+
+
+        public bool NoTrapsWorld
+        {
+            get { return _noTrapsWorld; }
+            set { Set(nameof(NoTrapsWorld), ref _noTrapsWorld, value); }
+        }
+
+
+        public bool ZenithWorld
+        {
+            get { return _zenithWorld; }
+            set { Set(nameof(ZenithWorld), ref _zenithWorld, value); }
+        }
+
 
         public byte MoonType
         {
@@ -1088,14 +1123,12 @@ namespace TEdit.Terraria
             set { Set(nameof(DownedFrost), ref _downedFrost, value); }
         }
 
-        private bool _isV0;
         public bool IsV0
         {
             get { return _isV0; }
             set { Set(nameof(IsV0), ref _isV0, value); }
         }
 
-        private bool _isAndroid;
         public bool IsAndroid
         {
             get { return _isAndroid; }
@@ -1520,5 +1553,149 @@ namespace TEdit.Terraria
 
             return new NpcName(id, "Unknown");
         }
+
+
+        private bool _UnlockedSlimeBlueSpawn = false;
+
+        private bool _UnlockedMerchantSpawn = false;
+
+        private bool _UnlockedDemolitionistSpawn = false;
+
+        private bool _UnlockedPartyGirlSpawn = false;
+
+        private bool _UnlockedDyeTraderSpawn = false;
+
+        private bool _UnlockedTruffleSpawn = false;
+
+        private bool _UnlockedArmsDealerSpawn = false;
+
+        private bool _UnlockedNurseSpawn = false;
+
+        private bool _UnlockedPrincessSpawn = false;
+
+        private bool _CombatBookVolumeTwoWasUsed = false;
+
+        private bool _PeddlersSatchelWasUsed = false;
+
+        private bool _UnlockedSlimeGreenSpawn = false;
+
+        private bool _UnlockedSlimeOldSpawn = false;
+
+        private bool _UnlockedSlimePurpleSpawn = false;
+
+        private bool _UnlockedSlimeRainbowSpawn = false;
+
+        private bool _UnlockedSlimeRedSpawn = false;
+
+        private bool _UnlockedSlimeYellowSpawn = false;
+
+        private bool _UnlockedSlimeCopperSpawn = false;
+
+        private bool _FastForwardTimeToDusk = false;
+
+        private byte _MoondialCooldown = 0;
+
+        public byte MoondialCooldown
+        {
+            get { return _MoondialCooldown; }
+            set { Set(nameof(MoondialCooldown), ref _MoondialCooldown, value); }
+        }
+        public bool FastForwardTimeToDusk
+        {
+            get { return _FastForwardTimeToDusk; }
+            set { Set(nameof(FastForwardTimeToDusk), ref _FastForwardTimeToDusk, value); }
+        }
+        public bool UnlockedSlimeCopperSpawn
+        {
+            get { return _UnlockedSlimeCopperSpawn; }
+            set { Set(nameof(UnlockedSlimeCopperSpawn), ref _UnlockedSlimeCopperSpawn, value); }
+        }
+        public bool UnlockedSlimeYellowSpawn
+        {
+            get { return _UnlockedSlimeYellowSpawn; }
+            set { Set(nameof(UnlockedSlimeYellowSpawn), ref _UnlockedSlimeYellowSpawn, value); }
+        }
+        public bool UnlockedSlimeRedSpawn
+        {
+            get { return _UnlockedSlimeRedSpawn; }
+            set { Set(nameof(UnlockedSlimeRedSpawn), ref _UnlockedSlimeRedSpawn, value); }
+        }
+        public bool UnlockedSlimeRainbowSpawn
+        {
+            get { return _UnlockedSlimeRainbowSpawn; }
+            set { Set(nameof(UnlockedSlimeRainbowSpawn), ref _UnlockedSlimeRainbowSpawn, value); }
+        }
+        public bool UnlockedSlimePurpleSpawn
+        {
+            get { return _UnlockedSlimePurpleSpawn; }
+            set { Set(nameof(UnlockedSlimePurpleSpawn), ref _UnlockedSlimePurpleSpawn, value); }
+        }
+        public bool UnlockedSlimeOldSpawn
+        {
+            get { return _UnlockedSlimeOldSpawn; }
+            set { Set(nameof(UnlockedSlimeOldSpawn), ref _UnlockedSlimeOldSpawn, value); }
+        }
+        public bool UnlockedSlimeGreenSpawn
+        {
+            get { return _UnlockedSlimeGreenSpawn; }
+            set { Set(nameof(UnlockedSlimeGreenSpawn), ref _UnlockedSlimeGreenSpawn, value); }
+        }
+        public bool PeddlersSatchelWasUsed
+        {
+            get { return _PeddlersSatchelWasUsed; }
+            set { Set(nameof(PeddlersSatchelWasUsed), ref _PeddlersSatchelWasUsed, value); }
+        }
+        public bool CombatBookVolumeTwoWasUsed
+        {
+            get { return _CombatBookVolumeTwoWasUsed; }
+            set { Set(nameof(CombatBookVolumeTwoWasUsed), ref _CombatBookVolumeTwoWasUsed, value); }
+        }
+        public bool UnlockedPrincessSpawn
+        {
+            get { return _UnlockedPrincessSpawn; }
+            set { Set(nameof(UnlockedPrincessSpawn), ref _UnlockedPrincessSpawn, value); }
+        }
+        public bool UnlockedNurseSpawn
+        {
+            get { return _UnlockedNurseSpawn; }
+            set { Set(nameof(UnlockedNurseSpawn), ref _UnlockedNurseSpawn, value); }
+        }
+        public bool UnlockedArmsDealerSpawn
+        {
+            get { return _UnlockedArmsDealerSpawn; }
+            set { Set(nameof(UnlockedArmsDealerSpawn), ref _UnlockedArmsDealerSpawn, value); }
+        }
+        public bool UnlockedTruffleSpawn
+        {
+            get { return _UnlockedTruffleSpawn; }
+            set { Set(nameof(UnlockedTruffleSpawn), ref _UnlockedTruffleSpawn, value); }
+        }
+        public bool UnlockedDyeTraderSpawn
+        {
+            get { return _UnlockedDyeTraderSpawn; }
+            set { Set(nameof(UnlockedDyeTraderSpawn), ref _UnlockedDyeTraderSpawn, value); }
+        }
+        public bool UnlockedPartyGirlSpawn
+        {
+            get { return _UnlockedPartyGirlSpawn; }
+            set { Set(nameof(UnlockedPartyGirlSpawn), ref _UnlockedPartyGirlSpawn, value); }
+        }
+        public bool UnlockedDemolitionistSpawn
+        {
+            get { return _UnlockedDemolitionistSpawn; }
+            set { Set(nameof(UnlockedDemolitionistSpawn), ref _UnlockedDemolitionistSpawn, value); }
+        }
+        public bool UnlockedMerchantSpawn
+        {
+            get { return _UnlockedMerchantSpawn; }
+            set { Set(nameof(UnlockedMerchantSpawn), ref _UnlockedMerchantSpawn, value); }
+        }
+        public bool UnlockedSlimeBlueSpawn
+        {
+            get { return _UnlockedSlimeBlueSpawn; }
+            set { Set(nameof(UnlockedSlimeBlueSpawn), ref _UnlockedSlimeBlueSpawn, value); }
+        }
+       
+
     }
 }
