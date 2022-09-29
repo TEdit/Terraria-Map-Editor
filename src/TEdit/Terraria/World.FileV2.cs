@@ -17,7 +17,7 @@ namespace TEdit.Terraria
         public const short TileCount = 623;
         public const short WallCount = 316;
 
-        public const short KillTallyMax = 663;
+        public const short NPCMaxID = 668; // TODO: 633 was previous this needs to be in world version JSON 
 
         public const int MaxChests = 8000;
         public const int MaxSigns = 1000;
@@ -113,7 +113,8 @@ namespace TEdit.Terraria
             OnProgressChanged(null, new ProgressChangedEventArgs(92, "Save Signs..."));
             sectionPointers[4] = SaveSigns(world.Signs, bw, (int)world.Version);
             OnProgressChanged(null, new ProgressChangedEventArgs(93, "Save NPCs..."));
-            sectionPointers[5] = SaveNPCs(world.NPCs, bw, (int)world.Version);
+
+            sectionPointers[5] = SaveNPCs(world, bw, (int)world.Version);
 
             if (world.Version >= 140)
             {
@@ -464,9 +465,18 @@ namespace TEdit.Terraria
             return (int)bw.BaseStream.Position;
         }
 
-        public static int SaveNPCs(IEnumerable<NPC> npcs, BinaryWriter bw, int version)
+        public static int SaveNPCs(World world, BinaryWriter bw, int version)
         {
-            foreach (NPC npc in npcs)
+            if (world.Version >= 268)
+            {
+                bw.Write((int)world.ShimmeredTownNPCs.Count);
+                foreach (int npcID in world.ShimmeredTownNPCs)
+                {
+                    bw.Write(npcID);
+                }
+            }
+
+            foreach (NPC npc in world.NPCs)
             {
                 bw.Write(true);
 
@@ -728,6 +738,21 @@ namespace TEdit.Terraria
                 {
                     bw.Write(world.NotTheBeesWorld);
                     debugger?.WriteLine("\"NotTheBeesWorld\": {0},", world.NotTheBeesWorld);
+                }
+                if (world.Version >= 249)
+                {
+                    bw.Write(world.RemixWorld);
+                    debugger?.WriteLine("\"RemixWorld\": {0},", world.RemixWorld);
+                }
+                if (world.Version >= 266)
+                {
+                    bw.Write(world.NoTrapsWorld);
+                    debugger?.WriteLine("\"NoTrapsWorld\": {0},", world.NoTrapsWorld);
+                }
+                if (world.Version >= 266)
+                {
+                    bw.Write(world.ZenithWorld);
+                    debugger?.WriteLine("\"ZenithWorld\": {0},", world.ZenithWorld);
                 }
             }
             else if (world.Version == 208)
@@ -1008,12 +1033,12 @@ namespace TEdit.Terraria
                 return (int)bw.BaseStream.Position;
             }
 
-            bw.Write((short)KillTallyMax);
-            debugger?.WriteLine("\"KillTallyMax\": {0},", KillTallyMax);
+            bw.Write((short)NPCMaxID);
+            debugger?.WriteLine("\"KillTallyMax\": {0},", NPCMaxID);
 
             debugger?.Write("\"KillTally\": [");
 
-            for (int i = 0; i < KillTallyMax; i++)
+            for (int i = 0; i < NPCMaxID; i++)
             {
                 if (world.KilledMobs.Count > i)
                 {
@@ -1247,6 +1272,50 @@ namespace TEdit.Terraria
             {
                 bw.Write(world.DownedDeerclops);
                 debugger?.WriteLine("\"DownedDeerclops\": {0},", world.DownedDeerclops);
+            }
+
+            if (world.Version >= 250)
+            {
+                bw.Write(world.UnlockedSlimeBlueSpawn);
+            }
+
+            if (world.Version >= 251)
+            {
+                bw.Write(world.UnlockedMerchantSpawn);
+                bw.Write(world.UnlockedDemolitionistSpawn);
+                bw.Write(world.UnlockedPartyGirlSpawn);
+                bw.Write(world.UnlockedDyeTraderSpawn);
+                bw.Write(world.UnlockedTruffleSpawn);
+                bw.Write(world.UnlockedArmsDealerSpawn);
+                bw.Write(world.UnlockedNurseSpawn);
+                bw.Write(world.UnlockedPrincessSpawn);
+            }
+
+            if (world.Version >= 259)
+            {
+                bw.Write(world.CombatBookVolumeTwoWasUsed);
+            }
+
+            if (world.Version >= 260)
+            {
+                bw.Write(world.PeddlersSatchelWasUsed);
+            }
+
+            if (world.Version >= 261)
+            {
+                bw.Write(world.UnlockedSlimeGreenSpawn);
+                bw.Write(world.UnlockedSlimeOldSpawn);
+                bw.Write(world.UnlockedSlimePurpleSpawn);
+                bw.Write(world.UnlockedSlimeRainbowSpawn);
+                bw.Write(world.UnlockedSlimeRedSpawn);
+                bw.Write(world.UnlockedSlimeYellowSpawn);
+                bw.Write(world.UnlockedSlimeCopperSpawn);
+            }
+
+            if (world.Version >= 264)
+            {
+                bw.Write(world.FastForwardTimeToDusk);
+                bw.Write((byte)world.MoondialCooldown);
             }
 
 
@@ -1719,6 +1788,19 @@ namespace TEdit.Terraria
 
         public static void LoadNPCsData(BinaryReader r, World w)
         {
+            // load shimmerd town
+            if (w.Version >= 268)
+            {
+                int numNpcs = r.ReadInt32();
+                w.ShimmeredTownNPCs.Clear();
+
+                for (int i = 0; i < numNpcs; i++)
+                {
+                    w.ShimmeredTownNPCs.Add(r.ReadInt32());
+                }
+            }
+
+            // load npc
             int totalNpcs = 0;
             for (bool i = r.ReadBoolean(); i; i = r.ReadBoolean())
             {
@@ -1882,6 +1964,11 @@ namespace TEdit.Terraria
                 if (w.Version >= 238) { w.TenthAnniversaryWorld = r.ReadBoolean(); }
                 if (w.Version >= 239) { w.DontStarveWorld = r.ReadBoolean(); }
                 if (w.Version >= 241) { w.NotTheBeesWorld = r.ReadBoolean(); }
+                if (w.Version >= 249) { w.RemixWorld = r.ReadBoolean(); }
+                if (w.Version >= 266) { w.NoTrapsWorld = r.ReadBoolean(); }
+                
+                if (w.Version >= 267) { w.ZenithWorld = r.ReadBoolean(); }
+                else { w.ZenithWorld = (!w.DrunkWorld ? false : w.RemixWorld); }
             }
             else if (w.Version == 208)
             {
@@ -2213,6 +2300,49 @@ namespace TEdit.Terraria
                 w.DownedDeerclops = r.ReadBoolean();
             }
 
+            if (w.Version >= 250)
+            {
+                w.UnlockedSlimeBlueSpawn = r.ReadBoolean();
+            }
+
+            if (w.Version >= 251)
+            {
+                w.UnlockedMerchantSpawn = r.ReadBoolean();
+                w.UnlockedDemolitionistSpawn = r.ReadBoolean();
+                w.UnlockedPartyGirlSpawn = r.ReadBoolean();
+                w.UnlockedDyeTraderSpawn = r.ReadBoolean();
+                w.UnlockedTruffleSpawn = r.ReadBoolean();
+                w.UnlockedArmsDealerSpawn = r.ReadBoolean();
+                w.UnlockedNurseSpawn = r.ReadBoolean();
+                w.UnlockedPrincessSpawn = r.ReadBoolean();
+            }
+
+            if (w.Version >= 259)
+            {
+                w.CombatBookVolumeTwoWasUsed = r.ReadBoolean();
+            }
+
+            if (w.Version >= 260)
+            {
+                w.PeddlersSatchelWasUsed = r.ReadBoolean();
+            }
+
+            if (w.Version >= 261)
+            {
+                w.UnlockedSlimeGreenSpawn = r.ReadBoolean();
+                w.UnlockedSlimeOldSpawn = r.ReadBoolean();
+                w.UnlockedSlimePurpleSpawn = r.ReadBoolean();
+                w.UnlockedSlimeRainbowSpawn = r.ReadBoolean();
+                w.UnlockedSlimeRedSpawn = r.ReadBoolean();
+                w.UnlockedSlimeYellowSpawn = r.ReadBoolean();
+                w.UnlockedSlimeCopperSpawn = r.ReadBoolean();
+            }
+
+            if (w.Version >= 264)
+            {
+                w.FastForwardTimeToDusk = r.ReadBoolean();
+                w.MoondialCooldown = r.ReadByte();
+            }
 
             // a little future proofing, read any "unknown" flags from the end of the list and save them. We will write these back after we write our "known" flags.
             if (r.BaseStream.Position < expectedPosition)
