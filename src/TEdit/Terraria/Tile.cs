@@ -141,58 +141,6 @@ namespace TEdit.Terraria
                    type == (ushort)TileType.TallGateClosed;
         }
 
-        #region BitFlags
-        //private const int IsActivePosition = 0;
-        //private const int IsLavaPosition = 1;
-        //private const int HasWirePosition = 2;
-
-        // Condense all bools to one byte, slow saves ~100mb memory in large world,
-        //private byte _flags;
-        //public bool IsActive
-        //{
-        //    set
-        //    {
-        //        if (value)
-        //            _flags = (byte)(_flags | (1 << (IsActivePosition%8)));
-        //        else
-        //            _flags = (byte)(_flags & ~(1 << (IsActivePosition % 8)));
-        //    }
-        //    get
-        //    {
-        //        return (_flags & (1 << (IsActivePosition % 8))) != 0;
-        //    }
-        //}
-
-        //public bool WireRed
-        //{
-        //    set
-        //    {
-        //        if (value)
-        //            _flags = (byte)(_flags | (1 << (HasWirePosition % 8)));
-        //        else
-        //            _flags = (byte)(_flags & ~(1 << (HasWirePosition % 8)));
-        //    }
-        //    get
-        //    {
-        //        return (_flags & (1 << (HasWirePosition % 8))) != 0;
-        //    }
-        //}
-        //public bool IsLava
-        //{
-        //    set
-        //    {
-        //        if (value)
-        //            _flags = (byte)(_flags | (1 << (IsLavaPosition % 8)));
-        //        else
-        //            _flags = (byte)(_flags & ~(1 << (IsLavaPosition % 8)));
-        //    }
-        //    get
-        //    {
-        //        return (_flags & (1 << (IsLavaPosition % 8))) != 0;
-        //    }
-        //}
-        #endregion
-
         public Vector2Short GetUV() => new Vector2Short(U, V);
 
         public object Clone()
@@ -218,8 +166,8 @@ namespace TEdit.Terraria
             WireGreen = false;
             WireRed = false;
             WireYellow = false;
-            FullBrightBlock = true;
-            FullBrightWall = true;
+            FullBrightBlock = false;
+            FullBrightWall = false;
             InvisibleBlock = false;
             InvisibleWall = false;
         }
