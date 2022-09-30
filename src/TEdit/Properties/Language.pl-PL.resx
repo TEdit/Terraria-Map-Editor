@@ -1176,4 +1176,79 @@ Naciśnij spróbuj ponownie aby wybrać nowy folder lub anuluj aby użyć {0} ja
   <data name="tool_wp_unsafe_level" xml:space="preserve">
     <value>Zezwalaj na niebezpieczne wartości</value>
   </data>
+  <data name="tool_wp_npc_spawn_unlocked" xml:space="preserve">
+    <value>NPC Spawn Odblokowany</value>
+  </data>
+  <data name="tool_wp_npc_slime_blue" xml:space="preserve">
+    <value>Niebieski szlam</value>
+  </data>
+  <data name="tool_wp_npc_slime_green" xml:space="preserve">
+    <value>Zielony szlam</value>
+  </data>
+  <data name="tool_wp_npc_slime_old" xml:space="preserve">
+    <value>Stary Slime</value>
+  </data>
+  <data name="tool_wp_npc_slime_purple" xml:space="preserve">
+    <value>Fioletowy śluz</value>
+  </data>
+  <data name="tool_wp_npc_slime_rainbow" xml:space="preserve">
+    <value>Tęczowy szlam</value>
+  </data>
+  <data name="tool_wp_npc_slime_red" xml:space="preserve">
+    <value>Czerwony śluz</value>
+  </data>
+  <data name="tool_wp_npc_slime_yellow" xml:space="preserve">
+    <value>Żółty śluz</value>
+  </data>
+  <data name="tool_wp_npc_slime_copper" xml:space="preserve">
+    <value>Szlam miedziany</value>
+  </data>
+  <data name="tool_wp_combatbooktwo" xml:space="preserve">
+    <value>Książka walki Tom drugi</value>
+  </data>
+  <data name="tool_wp_moondial_cooldown" xml:space="preserve">
+    <value>Zegar odnowienia tarczy księżycowej</value>
+  </data>
+  <data name="tool_wp_npc_princess" xml:space="preserve">
+    <value>Księżniczka</value>
+  </data>
+  <data name="tool_wp_npc_nurse" xml:space="preserve">
+    <value>Pielęgniarka</value>
+  </data>
+  <data name="tool_wp_npc_partygirl" xml:space="preserve">
+    <value>Imprezowa dziewczyna</value>
+  </data>
+  <data name="tool_wp_npc_merchant" xml:space="preserve">
+    <value>Kupiec</value>
+  </data>
+  <data name="tool_wp_npc_demolitionist" xml:space="preserve">
+    <value>Rozbiórka</value>
+  </data>
+  <data name="tool_wp_npc_dye_trader" xml:space="preserve">
+    <value>Handlarz barwnikami</value>
+  </data>
+  <data name="tool_wp_npc_truffle" xml:space="preserve">
+    <value>Trufla</value>
+  </data>
+  <data name="tool_wp_npc_arms_dealer" xml:space="preserve">
+    <value>Handlarz bronią</value>
+  </data>
+  <data name="tool_wp_peddlerssatchel" xml:space="preserve">
+    <value>Torba na wioślarza</value>
+  </data>
+  <data name="tool_wp_usemoondial" xml:space="preserve">
+    <value>Użyj pokrętła księżycowego</value>
+  </data>
+  <data name="tool_wp_combatbook" xml:space="preserve">
+    <value>Książka walki</value>
+  </data>
+  <data name="tool_wp_seed_zenith" xml:space="preserve">
+    <value>Zenit</value>
+  </data>
+  <data name="tool_wp_seed_remix" xml:space="preserve">
+    <value>Remiks</value>
+  </data>
+  <data name="tool_wp_seed_notraps" xml:space="preserve">
+    <value>Bez pułapek</value>
+  </data>
 </root>

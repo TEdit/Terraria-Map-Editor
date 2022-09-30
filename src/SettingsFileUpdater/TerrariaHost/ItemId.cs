@@ -46,6 +46,8 @@ namespace SettingsFileUpdater.TerrariaHost
         public static TerrariaWrapper Initialize()
         {
             Thread.CurrentThread.Name = "Main Thread";
+            TerrariaWrapper.dedServ = true;
+            TerrariaWrapper.worldName = "world";
 
             var terrariaAsm = typeof(Terraria.Program).Assembly;
             //var init = typeof(Terraria.Program).GetMethod("ForceLoadAssembly", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Static, null, new Type[] { typeof(Assembly), typeof(bool) }, null);
@@ -56,7 +58,8 @@ namespace SettingsFileUpdater.TerrariaHost
             //Program.InitializeConsoleOutput();
             //Program.SetupLogging();
             //Platform.Get<IWindowService>().SetQuickEditEnabled(false);
-            var main = new TerrariaWrapper();
+
+            var main = new TerrariaWrapper() ;
             try
             {
                 Lang.InitializeLegacyLocalization();
@@ -80,7 +83,7 @@ namespace SettingsFileUpdater.TerrariaHost
 
         public TerrariaWrapper() : base()
         {
-
+           
         }
 
         public void InitBase()
@@ -445,6 +448,7 @@ namespace SettingsFileUpdater.TerrariaHost
         }
 
 
+
         //public Terraria.Item GetN
 
         public List<string> Prefixes()
@@ -472,6 +476,8 @@ namespace SettingsFileUpdater.TerrariaHost
 
             return result;
         }
+
+
 
         public Terraria.Recipe[] Recipes
         {

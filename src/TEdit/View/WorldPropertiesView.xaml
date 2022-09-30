@@ -319,6 +319,13 @@
             <TextBlock Text="{Binding CurrentWorld.SundialCooldown, StringFormat={}{0:0}}" Width="30" DockPanel.Dock="Right" />
             <Slider Value="{Binding CurrentWorld.SundialCooldown, Mode=TwoWay}" VerticalAlignment="Center" Minimum="0" Maximum="127" SmallChange="1" />
         </DockPanel>
+        <TextBlock />
+        <CheckBox IsChecked="{Binding CurrentWorld.FastForwardTimeToDusk}" Content="{x:Static p:Language.tool_wp_usemoondial}" VerticalAlignment="Center" VerticalContentAlignment="Center" />
+        <TextBlock Text="{x:Static p:Language.tool_wp_moondial_cooldown}" HorizontalAlignment="Right" />
+        <DockPanel>
+            <TextBlock Text="{Binding CurrentWorld.MoondialCooldown, StringFormat={}{0:0}}" Width="30" DockPanel.Dock="Right" />
+            <Slider Value="{Binding CurrentWorld.MoondialCooldown, Mode=TwoWay}" VerticalAlignment="Center" Minimum="0" Maximum="127" SmallChange="1" />
+        </DockPanel>
         <Separator Grid.ColumnSpan="2" />
         <TextBlock Text="{x:Static p:Language.tool_wp_rain}" HorizontalAlignment="Right" />
         <CheckBox IsChecked="{Binding Path=CurrentWorld.TempRaining, Mode=TwoWay}" Content="{x:Static p:Language.tool_wp_rain_active}" VerticalAlignment="Center" Grid.Row="12" Grid.Column="1" />
@@ -394,8 +401,14 @@
         <CheckBox IsChecked="{Binding CurrentWorld.HardMode}" Content="{x:Static p:Language.tool_wp_difficulty_hardmode}" VerticalAlignment="Center" VerticalContentAlignment="Center" />
         <TextBlock Text="{x:Static p:Language.tool_wp_gamemode}" HorizontalAlignment="Right" />
         <ComboBox Height="20" ItemsSource="{StaticResource gameModeList}" SelectedValue="{Binding CurrentWorld.GameMode, Mode=TwoWay}" SelectedValuePath="Value" />
-
         <TextBlock />
+        <CheckBox IsChecked="{Binding CurrentWorld.CombatBookUsed}" Content="{x:Static p:Language.tool_wp_combatbook}" VerticalAlignment="Center" VerticalContentAlignment="Center" />
+        <TextBlock />
+        <CheckBox IsChecked="{Binding CurrentWorld.CombatBookVolumeTwoWasUsed}" Content="{x:Static p:Language.tool_wp_combatbooktwo}" VerticalAlignment="Center" VerticalContentAlignment="Center" />
+        <TextBlock />
+        <CheckBox IsChecked="{Binding CurrentWorld.PeddlersSatchelWasUsed}" Content="{x:Static p:Language.tool_wp_peddlerssatchel}" VerticalAlignment="Center" VerticalContentAlignment="Center" />
+        <Separator Grid.ColumnSpan="2" />
+        <TextBlock Text="{x:Static p:Language.tool_wp_seed}" HorizontalAlignment="Right" />
         <CheckBox IsChecked="{Binding CurrentWorld.DrunkWorld}" Content="{x:Static p:Language.tool_wp_drunk}" VerticalAlignment="Center" VerticalContentAlignment="Center" />
         <TextBlock />
         <CheckBox IsChecked="{Binding CurrentWorld.GoodWorld}" Content="{x:Static p:Language.tool_wp_gooworld}" VerticalAlignment="Center" VerticalContentAlignment="Center" />
@@ -406,6 +419,13 @@
         <TextBlock />
         <CheckBox IsChecked="{Binding CurrentWorld.NotTheBeesWorld}" Content="{x:Static p:Language.tool_wp_notthebees}" VerticalAlignment="Center" VerticalContentAlignment="Center" />
         <TextBlock />
+        <CheckBox IsChecked="{Binding CurrentWorld.RemixWorld}" Content="{x:Static p:Language.tool_wp_seed_remix}" VerticalAlignment="Center" VerticalContentAlignment="Center" />
+        <TextBlock />
+        <CheckBox IsChecked="{Binding CurrentWorld.NoTrapsWorld}" Content="{x:Static p:Language.tool_wp_seed_notraps}" VerticalAlignment="Center" VerticalContentAlignment="Center" />
+        <TextBlock />
+        <CheckBox IsChecked="{Binding CurrentWorld.ZenithWorld}" Content="{x:Static p:Language.tool_wp_seed_zenith}" VerticalAlignment="Center" VerticalContentAlignment="Center" />
+        <Separator Grid.ColumnSpan="2" />
+        <TextBlock Text="{x:Static p:Language.tool_wp_crimson}" HorizontalAlignment="Right" />
         <CheckBox IsChecked="{Binding CurrentWorld.IsCrimson}" Content="{x:Static p:Language.tool_wp_crimson}" VerticalAlignment="Center" VerticalContentAlignment="Center" />
         <TextBlock Text="{x:Static p:Language.tool_wp_altars}" HorizontalAlignment="Right" />
         <DockPanel>
@@ -524,6 +544,41 @@
         <CheckBox IsChecked="{Binding CurrentWorld.SavedGolfer}" Content="{x:Static p:Language.tool_wp_npc_golfer}" VerticalAlignment="Center" VerticalContentAlignment="Center" />
         <TextBlock Text="{x:Static p:Language.tool_wp_npc_angler_mission}" HorizontalAlignment="Right" />
         <ComboBox Height="20" ItemsSource="{StaticResource anglerQuestList}" SelectedValue="{Binding CurrentWorld.AnglerQuest, Mode=TwoWay}" SelectedValuePath="Value" />
+
+        <Separator Grid.ColumnSpan="2" />
+        <TextBlock Text="{x:Static p:Language.tool_wp_npc_spawn_unlocked}" HorizontalAlignment="Right" TextWrapping="Wrap"/>
+        <CheckBox IsChecked="{Binding CurrentWorld.UnlockedMerchantSpawn}" Content="{x:Static p:Language.tool_wp_npc_merchant}" VerticalAlignment="Center" VerticalContentAlignment="Center" />
+        <TextBlock  />
+        <CheckBox IsChecked="{Binding CurrentWorld.UnlockedDemolitionistSpawn}" Content="{x:Static p:Language.tool_wp_npc_demolitionist}" VerticalAlignment="Center" VerticalContentAlignment="Center" />
+        <TextBlock  />
+        <CheckBox IsChecked="{Binding CurrentWorld.UnlockedPartyGirlSpawn}" Content="{x:Static p:Language.tool_wp_npc_partygirl}" VerticalAlignment="Center" VerticalContentAlignment="Center" />
+        <TextBlock  />
+        <CheckBox IsChecked="{Binding CurrentWorld.UnlockedDyeTraderSpawn}" Content="{x:Static p:Language.tool_wp_npc_partygirl}" VerticalAlignment="Center" VerticalContentAlignment="Center" />
+        <TextBlock  />
+        <CheckBox IsChecked="{Binding CurrentWorld.UnlockedTruffleSpawn}" Content="{x:Static p:Language.tool_wp_npc_truffle}" VerticalAlignment="Center" VerticalContentAlignment="Center" />
+        <TextBlock  />
+        <CheckBox IsChecked="{Binding CurrentWorld.UnlockedArmsDealerSpawn}" Content="{x:Static p:Language.tool_wp_npc_arms_dealer}" VerticalAlignment="Center" VerticalContentAlignment="Center" />
+        <TextBlock  />
+        <CheckBox IsChecked="{Binding CurrentWorld.UnlockedNurseSpawn}" Content="{x:Static p:Language.tool_wp_npc_nurse}" VerticalAlignment="Center" VerticalContentAlignment="Center" />
+        <TextBlock  />
+        <CheckBox IsChecked="{Binding CurrentWorld.UnlockedPrincessSpawn}" Content="{x:Static p:Language.tool_wp_npc_princess}" VerticalAlignment="Center" VerticalContentAlignment="Center" />
+        <Separator Grid.ColumnSpan="2" />
+        <TextBlock  />
+        <CheckBox IsChecked="{Binding CurrentWorld.UnlockedSlimeBlueSpawn}" Content="{x:Static p:Language.tool_wp_npc_slime_blue}" VerticalAlignment="Center" VerticalContentAlignment="Center" />
+        <TextBlock  />
+        <CheckBox IsChecked="{Binding CurrentWorld.UnlockedSlimeGreenSpawn}" Content="{x:Static p:Language.tool_wp_npc_slime_green}" VerticalAlignment="Center" VerticalContentAlignment="Center" />
+        <TextBlock  />
+        <CheckBox IsChecked="{Binding CurrentWorld.UnlockedSlimeOldSpawn}" Content="{x:Static p:Language.tool_wp_npc_slime_old}" VerticalAlignment="Center" VerticalContentAlignment="Center" />
+        <TextBlock  />
+        <CheckBox IsChecked="{Binding CurrentWorld.UnlockedSlimePurpleSpawn}" Content="{x:Static p:Language.tool_wp_npc_slime_purple}" VerticalAlignment="Center" VerticalContentAlignment="Center" />
+        <TextBlock  />
+        <CheckBox IsChecked="{Binding CurrentWorld.UnlockedSlimeRainbowSpawn}" Content="{x:Static p:Language.tool_wp_npc_slime_rainbow}" VerticalAlignment="Center" VerticalContentAlignment="Center" />
+        <TextBlock  />
+        <CheckBox IsChecked="{Binding CurrentWorld.UnlockedSlimeRedSpawn}" Content="{x:Static p:Language.tool_wp_npc_slime_red}" VerticalAlignment="Center" VerticalContentAlignment="Center" />
+        <TextBlock  />
+        <CheckBox IsChecked="{Binding CurrentWorld.UnlockedSlimeYellowSpawn}" Content="{x:Static p:Language.tool_wp_npc_slime_yellow}" VerticalAlignment="Center" VerticalContentAlignment="Center" />
+        <TextBlock  />
+        <CheckBox IsChecked="{Binding CurrentWorld.UnlockedSlimeCopperSpawn}" Content="{x:Static p:Language.tool_wp_npc_slime_copper}" VerticalAlignment="Center" VerticalContentAlignment="Center" />
 
 
         <Separator Grid.ColumnSpan="2" />

@@ -1176,4 +1176,79 @@ Press retry to pick a new folder or cancel to use {0} as your terraria path.</va
   <data name="tool_wp_unsafe_level" xml:space="preserve">
     <value>Allow Unsafe Values</value>
   </data>
+  <data name="tool_wp_npc_spawn_unlocked" xml:space="preserve">
+    <value>NPC Spawn Unlocked</value>
+  </data>
+  <data name="tool_wp_npc_slime_blue" xml:space="preserve">
+    <value>Blue Slime</value>
+  </data>
+  <data name="tool_wp_npc_slime_copper" xml:space="preserve">
+    <value>Copper Slime</value>
+  </data>
+  <data name="tool_wp_npc_slime_green" xml:space="preserve">
+    <value>Green Slime</value>
+  </data>
+  <data name="tool_wp_npc_slime_old" xml:space="preserve">
+    <value>Old Slime</value>
+  </data>
+  <data name="tool_wp_npc_slime_purple" xml:space="preserve">
+    <value>Purple Slime</value>
+  </data>
+  <data name="tool_wp_npc_slime_rainbow" xml:space="preserve">
+    <value>Rainbow Slime</value>
+  </data>
+  <data name="tool_wp_npc_slime_red" xml:space="preserve">
+    <value>Red Slime</value>
+  </data>
+  <data name="tool_wp_npc_slime_yellow" xml:space="preserve">
+    <value>Yellow Slime</value>
+  </data>
+  <data name="tool_wp_combatbooktwo" xml:space="preserve">
+    <value>Combat Book Volume Two</value>
+  </data>
+  <data name="tool_wp_usemoondial" xml:space="preserve">
+    <value>Use Moondial</value>
+  </data>
+  <data name="tool_wp_moondial_cooldown" xml:space="preserve">
+    <value>Moondial Cooldown</value>
+  </data>
+  <data name="tool_wp_npc_princess" xml:space="preserve">
+    <value>Princess</value>
+  </data>
+  <data name="tool_wp_npc_nurse" xml:space="preserve">
+    <value>Nurse</value>
+  </data>
+  <data name="tool_wp_npc_partygirl" xml:space="preserve">
+    <value>Party Girl</value>
+  </data>
+  <data name="tool_wp_npc_merchant" xml:space="preserve">
+    <value>Merchant</value>
+  </data>
+  <data name="tool_wp_npc_demolitionist" xml:space="preserve">
+    <value>Demolitionist</value>
+  </data>
+  <data name="tool_wp_npc_dye_trader" xml:space="preserve">
+    <value>Dye Trader</value>
+  </data>
+  <data name="tool_wp_npc_truffle" xml:space="preserve">
+    <value>Truffle</value>
+  </data>
+  <data name="tool_wp_npc_arms_dealer" xml:space="preserve">
+    <value>Arms Dealer</value>
+  </data>
+  <data name="tool_wp_peddlerssatchel" xml:space="preserve">
+    <value>Peddler's Satchel</value>
+  </data>
+  <data name="tool_wp_combatbook" xml:space="preserve">
+    <value>Combat Book</value>
+  </data>
+  <data name="tool_wp_seed_zenith" xml:space="preserve">
+    <value>Zenith</value>
+  </data>
+  <data name="tool_wp_seed_remix" xml:space="preserve">
+    <value>Remix</value>
+  </data>
+  <data name="tool_wp_seed_notraps" xml:space="preserve">
+    <value>No Traps</value>
+  </data>
 </root>

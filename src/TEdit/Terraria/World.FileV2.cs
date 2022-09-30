@@ -246,10 +246,11 @@ namespace TEdit.Terraria
             out int headerIndex,
             TextWriter debugger = null)
         {
-            var size = (version > 222) ? 15 : 13; // packed size
+            var size = (version >= 269) ? 16 : (version > 222) ? 15 : 13; // packed size
             byte[] tileData = new byte[size];
             dataIndex = 3;
 
+            byte header4 = (byte)0;
             byte header3 = (byte)0;
             byte header2 = (byte)0;
             byte header1 = (byte)0;
@@ -321,7 +322,17 @@ namespace TEdit.Terraria
             if (tile.LiquidAmount != 0 && tile.LiquidType != LiquidType.None)
             {
                 // set bits[3,4] using left shift
-                header1 = (byte)(header1 | (byte)((byte)tile.LiquidType << 3));
+
+                if (tile.LiquidType == LiquidType.Shimmer)
+                {
+                    header3 = (byte)(header1 | (byte)0b_1000_0000);
+                    header1 = (byte)(header1 | (byte)0b_0000_0100);
+                }
+                else
+                {
+                    header1 = (byte)(header1 | (byte)((byte)tile.LiquidType << 3));
+                }
+
                 tileData[dataIndex++] = tile.LiquidAmount;
 
                 debugger?.Write("\"LiquidType\": \"{0}\",", tile.LiquidType.ToString());
@@ -384,8 +395,30 @@ namespace TEdit.Terraria
                 tileData[dataIndex++] = (byte)(tile.Wall >> 8);
             }
 
+            if (tile.InvisibleBlock)
+            {
+                header4 |= 0b_0000_0010;
+            }
+            if (tile.InvisibleWall)
+            {
+                header4 |= 0b_0000_0100;
+            }
+            if (tile.FullBrightBlock)
+            {
+                header4 |= 0b_0000_1000;
+            }
+            if (tile.FullBrightWall)
+            {
+                header4 |= 0b_0001_0000;
+            }
 
-            headerIndex = 2;
+            headerIndex = 3;
+            if (header4 != 0)
+            {
+                // set header4 active flag bit[0] of header3
+                header3 |= 0b_0000_0001;
+                tileData[headerIndex--] = header4;
+            }
             if (header3 != 0)
             {
                 // set header3 active flag bit[0] of header2
@@ -582,6 +615,10 @@ namespace TEdit.Terraria
 
         public static int UpdateSectionPointers(uint worldVersion, int[] sectionPointers, BinaryWriter bw)
         {
+            bw.BaseStream.Position = 0;
+            bw.Write((int)worldVersion);
+
+
             bw.BaseStream.Position = (worldVersion >= 140) ? 0x18L : 0x04;
             bw.Write((short)sectionPointers.Length);
 
@@ -1004,7 +1041,7 @@ namespace TEdit.Terraria
                 bw.Write(world.SavedStylist);
                 debugger?.WriteLine("\"SavedStylist\": {0},", world.SavedStylist);
             }
-            
+
             if (world.Version >= 129)
             {
                 bw.Write(world.SavedTaxCollector);
@@ -1516,27 +1553,34 @@ namespace TEdit.Terraria
 
             rle = 0;
             int tileType = -1;
-            // byte header4 = 0; // unused, future proofing
+            byte header4 = 0;
             byte header3 = 0;
             byte header2 = 0;
             byte header1 = r.ReadByte();
 
+            bool hasHeader2 = false;
+            bool hasHeader3 = false;
+            bool hasHeader4 = false;
+
             // check bit[0] to see if header2 has data
             if ((header1 & 0b_0000_0001) == 0b_0000_0001)
             {
+                hasHeader2 = true;
                 header2 = r.ReadByte();
+            }
 
-                // check bit[0] to see if header3 has data
-                if ((header2 & 0b_0000_0001) == 0b_0000_0001)
-                {
-                    header3 = r.ReadByte();
+            // check bit[0] to see if header3 has data
+            if ((header2 & 0b_0000_0001) == 0b_0000_0001)
+            {
+                hasHeader3 = true;
+                header3 = r.ReadByte();
+            }
 
-                    // this doesn't exist yet
-                    // if ((header3 & 1) == 1)
-                    // {
-                    //     header4 = r.ReadByte();
-                    // }
-                }
+            // check bit[0] to see if header4 has data
+            if ((header3 & 0b_0000_0001) == 0b_0000_0001)
+            {
+                hasHeader4 = true;
+                header4 = r.ReadByte();
             }
 
             // check bit[1] for active tile
@@ -1593,8 +1637,6 @@ namespace TEdit.Terraria
                 }
             }
 
-
-
             // Read Walls
             if ((header1 & 0b_0000_0100) == 0b_0000_0100) // check bit[3] bit for active wall
             {
@@ -1616,6 +1658,11 @@ namespace TEdit.Terraria
             {
                 tile.LiquidAmount = r.ReadByte();
                 tile.LiquidType = (LiquidType)liquidType;
+
+                if ((header3 & 0b_1000_0000) == 0b_1000_0000)
+                {
+                    tile.LiquidType = LiquidType.Shimmer;
+                }
 
                 debugger?.Write("\"LiquidType\": \"{0}\",", tile.LiquidType.ToString());
                 debugger?.Write("\"LiquidAmount\": {0},", tile.LiquidAmount);
@@ -1683,6 +1730,26 @@ namespace TEdit.Terraria
                         debugger?.Write("\"WallExtra\": {0},", tile.Wall);
 
                     }
+                }
+            }
+
+            if (header4 > (byte)1)
+            {
+                if ((header4 & 0b_0000_0010) == 0b_0000_0010)
+                {
+                    tile.InvisibleBlock = true;
+                }
+                if ((header4 & 0b_0000_0100) == 0b_0000_0100)
+                {
+                    tile.InvisibleWall = true;
+                }
+                if ((header4 & 0b_0000_1000) == 0b_0000_1000)
+                {
+                    tile.FullBrightBlock = true;
+                }
+                if ((header4 & 0b_0001_0000) == 0b_0001_0000)
+                {
+                    tile.FullBrightWall = true;
                 }
             }
 
@@ -1966,7 +2033,7 @@ namespace TEdit.Terraria
                 if (w.Version >= 241) { w.NotTheBeesWorld = r.ReadBoolean(); }
                 if (w.Version >= 249) { w.RemixWorld = r.ReadBoolean(); }
                 if (w.Version >= 266) { w.NoTrapsWorld = r.ReadBoolean(); }
-                
+
                 if (w.Version >= 267) { w.ZenithWorld = r.ReadBoolean(); }
                 else { w.ZenithWorld = (!w.DrunkWorld ? false : w.RemixWorld); }
             }
@@ -2238,7 +2305,7 @@ namespace TEdit.Terraria
             if (w.Version >= 211)
             {
                 int numTrees = r.ReadInt32();
-                w.TreeTopVariations = new System.Collections.ObjectModel.ObservableCollection<int>(new int[numTrees]);
+                w.TreeTopVariations = new System.Collections.ObjectModel.ObservableCollection<int>(new int[Math.Max(13, numTrees)]);
                 for (int i = 0; i < numTrees; i++)
                 {
                     w.TreeTopVariations[i] = r.ReadInt32();

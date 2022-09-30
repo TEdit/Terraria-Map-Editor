@@ -1176,4 +1176,79 @@
   <data name="tool_wp_unsafe_level" xml:space="preserve">
     <value>允许不安全的值</value>
   </data>
+  <data name="tool_wp_npc_spawn_unlocked" xml:space="preserve">
+    <value>鼻咽生成解锁</value>
+  </data>
+  <data name="tool_wp_npc_slime_blue" xml:space="preserve">
+    <value>蓝色史莱姆</value>
+  </data>
+  <data name="tool_wp_npc_slime_green" xml:space="preserve">
+    <value>绿色史莱姆</value>
+  </data>
+  <data name="tool_wp_npc_slime_old" xml:space="preserve">
+    <value>老史莱姆</value>
+  </data>
+  <data name="tool_wp_npc_slime_purple" xml:space="preserve">
+    <value>紫色史莱姆</value>
+  </data>
+  <data name="tool_wp_npc_slime_rainbow" xml:space="preserve">
+    <value>彩虹史莱姆</value>
+  </data>
+  <data name="tool_wp_npc_slime_red" xml:space="preserve">
+    <value>红色史莱姆</value>
+  </data>
+  <data name="tool_wp_npc_slime_yellow" xml:space="preserve">
+    <value>黄色史莱姆</value>
+  </data>
+  <data name="tool_wp_npc_slime_copper" xml:space="preserve">
+    <value>铜粘液</value>
+  </data>
+  <data name="tool_wp_combatbooktwo" xml:space="preserve">
+    <value>战斗书第二卷</value>
+  </data>
+  <data name="tool_wp_moondial_cooldown" xml:space="preserve">
+    <value>月亮表盘冷却时间</value>
+  </data>
+  <data name="tool_wp_npc_princess" xml:space="preserve">
+    <value>公主</value>
+  </data>
+  <data name="tool_wp_npc_nurse" xml:space="preserve">
+    <value>护士</value>
+  </data>
+  <data name="tool_wp_npc_partygirl" xml:space="preserve">
+    <value>派对女孩</value>
+  </data>
+  <data name="tool_wp_npc_merchant" xml:space="preserve">
+    <value>商人</value>
+  </data>
+  <data name="tool_wp_npc_demolitionist" xml:space="preserve">
+    <value>拆迁者</value>
+  </data>
+  <data name="tool_wp_npc_dye_trader" xml:space="preserve">
+    <value>染料交易员</value>
+  </data>
+  <data name="tool_wp_npc_truffle" xml:space="preserve">
+    <value>松 露</value>
+  </data>
+  <data name="tool_wp_npc_arms_dealer" xml:space="preserve">
+    <value>军火商</value>
+  </data>
+  <data name="tool_wp_peddlerssatchel" xml:space="preserve">
+    <value>小贩的挎包</value>
+  </data>
+  <data name="tool_wp_usemoondial" xml:space="preserve">
+    <value>使用月亮表盘</value>
+  </data>
+  <data name="tool_wp_combatbook" xml:space="preserve">
+    <value>战斗书</value>
+  </data>
+  <data name="tool_wp_seed_zenith" xml:space="preserve">
+    <value>天顶</value>
+  </data>
+  <data name="tool_wp_seed_remix" xml:space="preserve">
+    <value>混 音</value>
+  </data>
+  <data name="tool_wp_seed_notraps" xml:space="preserve">
+    <value>无陷阱</value>
+  </data>
 </root>
