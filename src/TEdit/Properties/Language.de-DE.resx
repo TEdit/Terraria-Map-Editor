@@ -1251,4 +1251,22 @@ Klicke auf „Wiederholen“, um einen neuen Ordner auszuwählen, oder auf „Ab
   <data name="tool_wp_seed_notraps" xml:space="preserve">
     <value>Keine Fallen</value>
   </data>
+  <data name="tool_wp_afterpartyofdoom" xml:space="preserve">
+    <value>Nach Party of Doom</value>
+  </data>
+  <data name="tool_wp_lanternnight_cooldown" xml:space="preserve">
+    <value>Laternennacht Cooldown</value>
+  </data>
+  <data name="tool_wp_lanternnight" xml:space="preserve">
+    <value>Laternennacht</value>
+  </data>
+  <data name="tool_wp_lanternnight_genuine" xml:space="preserve">
+    <value>Laternennacht echt</value>
+  </data>
+  <data name="tool_wp_lanternnight_manual" xml:space="preserve">
+    <value>Lantern Night Handbuch</value>
+  </data>
+  <data name="tool_wp_lanternnight_nextgenuine" xml:space="preserve">
+    <value>Lantern Night Next ist echt</value>
+  </data>
 </root>

@@ -204,10 +204,10 @@ namespace TEdit.Terraria
         private byte _underworldBg;
         private byte _mushroomBg;
         private bool _combatBookUsed;
-        private int _tempLanternNightCooldown;
-        private bool _tempLanternNightGenuine;
-        private bool _tempLanternNightManual;
-        private bool _tempLanternNightNextNightIsGenuine;
+        private int _LanternNightCooldown;
+        private bool _LanternNightGenuine;
+        private bool _LanternNightManual;
+        private bool _LanternNightNextNightIsGenuine;
         private bool _forceHalloweenForToday;
         private bool _forceXMasForToday;
         private int _savedOreTiersCopper;
@@ -801,28 +801,28 @@ namespace TEdit.Terraria
             set { Set(nameof(CombatBookUsed), ref _combatBookUsed, value); }
         }
 
-        public int TempLanternNightCooldown
+        public int LanternNightCooldown
         {
-            get { return _tempLanternNightCooldown; }
-            set { Set(nameof(TempLanternNightCooldown), ref _tempLanternNightCooldown, value); }
+            get { return _LanternNightCooldown; }
+            set { Set(nameof(LanternNightCooldown), ref _LanternNightCooldown, value); }
         }
 
-        public bool TempLanternNightGenuine
+        public bool LanternNightGenuine
         {
-            get { return _tempLanternNightGenuine; }
-            set { Set(nameof(TempLanternNightGenuine), ref _tempLanternNightGenuine, value); }
+            get { return _LanternNightGenuine; }
+            set { Set(nameof(LanternNightGenuine), ref _LanternNightGenuine, value); }
         }
 
-        public bool TempLanternNightManual
+        public bool LanternNightManual
         {
-            get { return _tempLanternNightManual; }
-            set { Set(nameof(TempLanternNightManual), ref _tempLanternNightManual, value); }
+            get { return _LanternNightManual; }
+            set { Set(nameof(LanternNightManual), ref _LanternNightManual, value); }
         }
 
-        public bool TempLanternNightNextNightIsGenuine
+        public bool LanternNightNextNightIsGenuine
         {
-            get { return _tempLanternNightNextNightIsGenuine; }
-            set { Set(nameof(TempLanternNightNextNightIsGenuine), ref _tempLanternNightNextNightIsGenuine, value); }
+            get { return _LanternNightNextNightIsGenuine; }
+            set { Set(nameof(LanternNightNextNightIsGenuine), ref _LanternNightNextNightIsGenuine, value); }
         }
 
         public float TempMaxRain
@@ -1595,6 +1595,13 @@ namespace TEdit.Terraria
 
         private byte _MoondialCooldown = 0;
 
+        private bool _AfterPartyOfDoom = false;
+            
+        public bool AfterPartyOfDoom
+        {
+            get { return _AfterPartyOfDoom; }
+            set { Set(nameof(AfterPartyOfDoom), ref _AfterPartyOfDoom, value); }
+        }
         public byte MoondialCooldown
         {
             get { return _MoondialCooldown; }

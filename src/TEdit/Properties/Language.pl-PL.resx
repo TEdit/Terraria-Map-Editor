@@ -1251,4 +1251,22 @@ Naciśnij spróbuj ponownie aby wybrać nowy folder lub anuluj aby użyć {0} ja
   <data name="tool_wp_seed_notraps" xml:space="preserve">
     <value>Bez pułapek</value>
   </data>
+  <data name="tool_wp_afterpartyofdoom" xml:space="preserve">
+    <value>After Party of Doom</value>
+  </data>
+  <data name="tool_wp_lanternnight_cooldown" xml:space="preserve">
+    <value>Nocny czas odnowienia latarni</value>
+  </data>
+  <data name="tool_wp_lanternnight" xml:space="preserve">
+    <value>Noc Latarni</value>
+  </data>
+  <data name="tool_wp_lanternnight_genuine" xml:space="preserve">
+    <value>Latarnia Noc Autentyczna</value>
+  </data>
+  <data name="tool_wp_lanternnight_manual" xml:space="preserve">
+    <value>Podręcznik Lantern Night</value>
+  </data>
+  <data name="tool_wp_lanternnight_nextgenuine" xml:space="preserve">
+    <value>Noc Latarni Next jest autentyczna</value>
+  </data>
 </root>

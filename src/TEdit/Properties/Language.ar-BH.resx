@@ -1251,4 +1251,22 @@
   <data name="tool_wp_seed_notraps" xml:space="preserve">
     <value>لا الفخاخ</value>
   </data>
+  <data name="tool_wp_afterpartyofdoom" xml:space="preserve">
+    <value>بعد حفلة الموت</value>
+  </data>
+  <data name="tool_wp_lanternnight_cooldown" xml:space="preserve">
+    <value>فانوس ليلة التبريد</value>
+  </data>
+  <data name="tool_wp_lanternnight" xml:space="preserve">
+    <value>ليلة الفانوس</value>
+  </data>
+  <data name="tool_wp_lanternnight_genuine" xml:space="preserve">
+    <value>ليلة فانوس حقيقية</value>
+  </data>
+  <data name="tool_wp_lanternnight_manual" xml:space="preserve">
+    <value>دليل ليلة الفانوس</value>
+  </data>
+  <data name="tool_wp_lanternnight_nextgenuine" xml:space="preserve">
+    <value>ليلة الفانوس التالية حقيقية</value>
+  </data>
 </root>

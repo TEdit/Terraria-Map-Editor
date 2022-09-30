@@ -960,6 +960,13 @@ namespace TEdit.Terraria
             debugger?.WriteLine("\"AltarCount\": {0},", world.AltarCount);
             bw.Write(world.HardMode);
             debugger?.WriteLine("\"HardMode\": {0},", world.HardMode);
+
+            if (world.Version >= 257)
+            {
+                bw.Write(world.AfterPartyOfDoom);
+                debugger?.WriteLine("\"AfterPartyOfDoom\": {0},", world.AfterPartyOfDoom);
+            }
+
             bw.Write(world.InvasionDelay);
             debugger?.WriteLine("\"InvasionDelay\": {0},", world.InvasionDelay);
             bw.Write(world.InvasionSize);
@@ -1268,14 +1275,14 @@ namespace TEdit.Terraria
 
             if (world.Version >= 207)
             {
-                bw.Write(world.TempLanternNightCooldown);
-                debugger?.WriteLine("\"TempLanternNightCooldown\": {0},", world.TempLanternNightCooldown);
-                bw.Write(world.TempLanternNightGenuine);
-                debugger?.WriteLine("\"TempLanternNightGenuine\": {0},", world.TempLanternNightGenuine);
-                bw.Write(world.TempLanternNightManual);
-                debugger?.WriteLine("\"TempLanternNightManual\": {0},", world.TempLanternNightManual);
-                bw.Write(world.TempLanternNightNextNightIsGenuine);
-                debugger?.WriteLine("\"TempLanternNightNextNightIsGenuine\": {0},", world.TempLanternNightNextNightIsGenuine);
+                bw.Write(world.LanternNightCooldown);
+                debugger?.WriteLine("\"TempLanternNightCooldown\": {0},", world.LanternNightCooldown);
+                bw.Write(world.LanternNightGenuine);
+                debugger?.WriteLine("\"TempLanternNightGenuine\": {0},", world.LanternNightGenuine);
+                bw.Write(world.LanternNightManual);
+                debugger?.WriteLine("\"TempLanternNightManual\": {0},", world.LanternNightManual);
+                bw.Write(world.LanternNightNextNightIsGenuine);
+                debugger?.WriteLine("\"TempLanternNightNextNightIsGenuine\": {0},", world.LanternNightNextNightIsGenuine);
             }
 
             if (world.Version >= 211)
@@ -1686,7 +1693,7 @@ namespace TEdit.Terraria
                 tile.LiquidAmount = r.ReadByte();
                 tile.LiquidType = (LiquidType)liquidType;
 
-                
+
                 if (version >= 269 && (header3 & 0b_1000_0000) == 0b_1000_0000)
                 {
                     tile.LiquidType = LiquidType.Shimmer;
@@ -2137,6 +2144,7 @@ namespace TEdit.Terraria
             w.ShadowOrbCount = (int)r.ReadByte();
             w.AltarCount = r.ReadInt32();
             w.HardMode = r.ReadBoolean();
+            if (w.Version >= 257) { w.AfterPartyOfDoom = r.ReadBoolean(); }
             w.InvasionDelay = r.ReadInt32();
             w.InvasionSize = r.ReadInt32();
             w.InvasionType = r.ReadInt32();
@@ -2309,10 +2317,10 @@ namespace TEdit.Terraria
 
             if (w.Version >= 207)
             {
-                w.TempLanternNightCooldown = r.ReadInt32();
-                w.TempLanternNightGenuine = r.ReadBoolean();
-                w.TempLanternNightManual = r.ReadBoolean();
-                w.TempLanternNightNextNightIsGenuine = r.ReadBoolean();
+                w.LanternNightCooldown = r.ReadInt32();
+                w.LanternNightGenuine = r.ReadBoolean();
+                w.LanternNightManual = r.ReadBoolean();
+                w.LanternNightNextNightIsGenuine = r.ReadBoolean();
             }
 
             // tree tops
@@ -2438,7 +2446,7 @@ namespace TEdit.Terraria
             sectionPointers = null;
             int versionNumber = r.ReadInt32();
 
-            if (versionNumber >= 140)
+            if (versionNumber >= 140) // 135
             {
                 // check for android
 
