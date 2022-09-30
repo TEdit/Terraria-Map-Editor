@@ -14,8 +14,8 @@ namespace TEdit.Terraria
     public partial class World
     {
         public static readonly uint CompatibleVersion = 271;
-        public static short TileCount = 623; // updated by json
-        public static short WallCount = 316; // updated by json
+        public static short TileCount = 693; // updated by json
+        public static short WallCount = 346; // updated by json
 
         public static short NPCMaxID = 668; // updated by json
 
@@ -246,7 +246,13 @@ namespace TEdit.Terraria
             out int headerIndex,
             TextWriter debugger = null)
         {
-            var size = (version >= 269) ? 16 : (version > 222) ? 15 : 13; // packed size
+            int size = version switch
+            {
+                int v when v >= 269 => 16, // 1.4.4+
+                int v when v > 222 => 15, // 1.4.0+
+                _ => 13 // default
+            };
+
             byte[] tileData = new byte[size];
             dataIndex = 4;
 
@@ -306,7 +312,6 @@ namespace TEdit.Terraria
                 tileData[dataIndex++] = (byte)tile.Wall;
                 debugger?.Write("\"Wall\": {0},", tile.Wall);
 
-
                 // save tile wall color
                 if (tile.WallColor != 0)
                 {
@@ -321,22 +326,25 @@ namespace TEdit.Terraria
             // liquid data
             if (tile.LiquidAmount != 0 && tile.LiquidType != LiquidType.None)
             {
-                // set bits[3,4] using left shift
-
-                if (tile.LiquidType == LiquidType.Shimmer)
+                if (version >= 269 && tile.LiquidType == LiquidType.Shimmer)
                 {
+                    // shimmer (v 1.4.4 +)
                     header3 = (byte)(header1 | (byte)0b_1000_0000);
                     header1 = (byte)(header1 | (byte)0b_0000_1000);
                 }
                 else if (tile.LiquidType == LiquidType.Lava)
                 {
+                    // lava
                     header1 = (byte)(header1 | (byte)0b_0001_0000);
                 }
                 else if (tile.LiquidType == LiquidType.Honey)
                 {
+                    // honey
                     header1 = (byte)(header1 | (byte)0b_0001_1000);
-                } else
+                }
+                else
                 {
+                    // water
                     header1 = (byte)(header1 | (byte)0b_0000_1000);
                 }
 
@@ -402,30 +410,40 @@ namespace TEdit.Terraria
                 tileData[dataIndex++] = (byte)(tile.Wall >> 8);
             }
 
-            if (tile.InvisibleBlock)
+            if (version >= 269)
             {
-                header4 |= 0b_0000_0010;
+                // custom block lighting (v1.4.4+)
+                if (tile.InvisibleBlock)
+                {
+                    header4 |= 0b_0000_0010;
+                }
+                if (tile.InvisibleWall)
+                {
+                    header4 |= 0b_0000_0100;
+                }
+                if (tile.FullBrightBlock)
+                {
+                    header4 |= 0b_0000_1000;
+                }
+                if (tile.FullBrightWall)
+                {
+                    header4 |= 0b_0001_0000;
+                }
+
+                // header 4 only used in 1.4.4+
+                headerIndex = 3;
+                if (header4 != 0)
+                {
+                    // set header4 active flag bit[0] of header3
+                    header3 |= 0b_0000_0001;
+                    tileData[headerIndex--] = header4;
+                }
             }
-            if (tile.InvisibleWall)
+            else
             {
-                header4 |= 0b_0000_0100;
-            }
-            if (tile.FullBrightBlock)
-            {
-                header4 |= 0b_0000_1000;
-            }
-            if (tile.FullBrightWall)
-            {
-                header4 |= 0b_0001_0000;
+                headerIndex = 2;
             }
 
-            headerIndex = 3;
-            if (header4 != 0)
-            {
-                // set header4 active flag bit[0] of header3
-                header3 |= 0b_0000_0001;
-                tileData[headerIndex--] = header4;
-            }
             if (header3 != 0)
             {
                 // set header3 active flag bit[0] of header2
@@ -1558,7 +1576,6 @@ namespace TEdit.Terraria
         {
             Tile tile = new Tile();
 
-            rle = 0;
             int tileType = -1;
             byte header4 = 0;
             byte header3 = 0;
@@ -1583,11 +1600,14 @@ namespace TEdit.Terraria
                 header3 = r.ReadByte();
             }
 
-            // check bit[0] to see if header4 has data
-            if (hasHeader3 && (header3 & 0b_0000_0001) == 0b_0000_0001)
+            if (version >= 269) // 1.4.4+ 
             {
-                hasHeader4 = true;
-                header4 = r.ReadByte();
+                // check bit[0] to see if header4 has data
+                if (hasHeader3 && (header3 & 0b_0000_0001) == 0b_0000_0001)
+                {
+                    hasHeader4 = true;
+                    header4 = r.ReadByte();
+                }
             }
 
             // check bit[1] for active tile
@@ -1666,7 +1686,8 @@ namespace TEdit.Terraria
                 tile.LiquidAmount = r.ReadByte();
                 tile.LiquidType = (LiquidType)liquidType;
 
-                if ((header3 & 0b_1000_0000) == 0b_1000_0000)
+                
+                if (version >= 269 && (header3 & 0b_1000_0000) == 0b_1000_0000)
                 {
                     tile.LiquidType = LiquidType.Shimmer;
                 }
@@ -1740,7 +1761,7 @@ namespace TEdit.Terraria
                 }
             }
 
-            if (header4 > (byte)1)
+            if (version >= 269 && header4 > (byte)1)
             {
                 if ((header4 & 0b_0000_0010) == 0b_0000_0010)
                 {
@@ -1764,21 +1785,15 @@ namespace TEdit.Terraria
             // 0 = no RLE compression
             // 1 = byte RLE counter
             // 2 = int16 RLE counter
-            // 3 = ERROR
+            // 3 = not implemented, assume int16
             byte rleStorageType = (byte)((header1 & 192) >> 6);
-            switch (rleStorageType)
-            {
-                case 0:
-                    rle = 0;
-                    break;
-                case 1:
-                    rle = r.ReadByte();
-                    break;
-                default:
-                    rle = r.ReadInt16();
-                    break;
-            }
 
+            rle = rleStorageType switch
+            {
+                0 => (int)0,
+                1 => (int)r.ReadByte(),
+                _ => (int)r.ReadInt16()
+            };
 
             return tile;
         }
@@ -2040,9 +2055,7 @@ namespace TEdit.Terraria
                 if (w.Version >= 241) { w.NotTheBeesWorld = r.ReadBoolean(); }
                 if (w.Version >= 249) { w.RemixWorld = r.ReadBoolean(); }
                 if (w.Version >= 266) { w.NoTrapsWorld = r.ReadBoolean(); }
-
-                if (w.Version >= 267) { w.ZenithWorld = r.ReadBoolean(); }
-                else { w.ZenithWorld = (!w.DrunkWorld ? false : w.RemixWorld); }
+                w.ZenithWorld = (w.Version < 267) ? w.RemixWorld && w.DrunkWorld : r.ReadBoolean();
             }
             else if (w.Version == 208)
             {
@@ -2129,15 +2142,9 @@ namespace TEdit.Terraria
             w.InvasionType = r.ReadInt32();
             w.InvasionX = r.ReadDouble();
 
-            if (w.Version >= 118)
-            {
-                w.SlimeRainTime = r.ReadDouble();
-            }
+            if (w.Version >= 118) { w.SlimeRainTime = r.ReadDouble(); }
 
-            if (w.Version >= 113)
-            {
-                w.SundialCooldown = r.ReadByte();
-            }
+            if (w.Version >= 113) { w.SundialCooldown = r.ReadByte(); }
 
             w.TempRaining = r.ReadBoolean();
             w.TempRainTime = r.ReadInt32();
