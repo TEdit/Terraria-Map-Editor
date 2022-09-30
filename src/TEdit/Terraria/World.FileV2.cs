@@ -326,11 +326,18 @@ namespace TEdit.Terraria
                 if (tile.LiquidType == LiquidType.Shimmer)
                 {
                     header3 = (byte)(header1 | (byte)0b_1000_0000);
-                    header1 = (byte)(header1 | (byte)0b_0000_0100);
+                    header1 = (byte)(header1 | (byte)0b_0000_1000);
                 }
-                else
+                else if (tile.LiquidType == LiquidType.Lava)
                 {
-                    header1 = (byte)(header1 | (byte)((byte)tile.LiquidType << 3));
+                    header1 = (byte)(header1 | (byte)0b_0001_0000);
+                }
+                else if (tile.LiquidType == LiquidType.Honey)
+                {
+                    header1 = (byte)(header1 | (byte)0b_0001_1000);
+                } else
+                {
+                    header1 = (byte)(header1 | (byte)0b_0000_1000);
                 }
 
                 tileData[dataIndex++] = tile.LiquidAmount;
