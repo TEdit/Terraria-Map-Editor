@@ -248,7 +248,7 @@ namespace TEdit.Terraria
         {
             var size = (version >= 269) ? 16 : (version > 222) ? 15 : 13; // packed size
             byte[] tileData = new byte[size];
-            dataIndex = 3;
+            dataIndex = 4;
 
             byte header4 = (byte)0;
             byte header3 = (byte)0;
@@ -1570,14 +1570,14 @@ namespace TEdit.Terraria
             }
 
             // check bit[0] to see if header3 has data
-            if ((header2 & 0b_0000_0001) == 0b_0000_0001)
+            if (hasHeader2 && (header2 & 0b_0000_0001) == 0b_0000_0001)
             {
                 hasHeader3 = true;
                 header3 = r.ReadByte();
             }
 
             // check bit[0] to see if header4 has data
-            if ((header3 & 0b_0000_0001) == 0b_0000_0001)
+            if (hasHeader3 && (header3 & 0b_0000_0001) == 0b_0000_0001)
             {
                 hasHeader4 = true;
                 header4 = r.ReadByte();
