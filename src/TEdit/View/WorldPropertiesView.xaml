@@ -553,7 +553,7 @@
         <TextBlock  />
         <CheckBox IsChecked="{Binding CurrentWorld.UnlockedPartyGirlSpawn}" Content="{x:Static p:Language.tool_wp_npc_partygirl}" VerticalAlignment="Center" VerticalContentAlignment="Center" />
         <TextBlock  />
-        <CheckBox IsChecked="{Binding CurrentWorld.UnlockedDyeTraderSpawn}" Content="{x:Static p:Language.tool_wp_npc_partygirl}" VerticalAlignment="Center" VerticalContentAlignment="Center" />
+        <CheckBox IsChecked="{Binding CurrentWorld.UnlockedDyeTraderSpawn}" Content="{x:Static p:Language.tool_wp_npc_dye_trader}" VerticalAlignment="Center" VerticalContentAlignment="Center" />
         <TextBlock  />
         <CheckBox IsChecked="{Binding CurrentWorld.UnlockedTruffleSpawn}" Content="{x:Static p:Language.tool_wp_npc_truffle}" VerticalAlignment="Center" VerticalContentAlignment="Center" />
         <TextBlock  />
