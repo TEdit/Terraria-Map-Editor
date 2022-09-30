@@ -19,6 +19,8 @@ using Point = System.Windows.Point;
 using Vector2 = Microsoft.Xna.Framework.Vector2;
 using TEdit.Framework.Events;
 using System.IO;
+using System.Diagnostics;
+using System.Xml.Linq;
 
 namespace TEdit.View
 {
@@ -319,27 +321,27 @@ namespace TEdit.View
                 _textureDictionary.GetNPC(id.Value);
             }
 
-            //foreach (var tile in World.TileProperties.Where(t => t.IsFramed))
-            //{
-            //    var tileTexture = _textureDictionary.GetTile(tile.Id);
-            //}
-            //var a1 = new Rectangle(36, 72, 32, 32);
+            foreach (var tile in World.TileProperties.Where(t => t.IsFramed))
+            {
+                var tileTexture = _textureDictionary.GetTile(tile.Id);
+            }
+            var a1 = new Rectangle(36, 72, 32, 32);
             var b2 = new Rectangle(18, 18, 16, 16);
             var b2Wall = new Rectangle(44, 44, 16, 16);
 
-            //foreach (var wall in World.WallProperties)
-            //{
-            //    if (wall.Id == 0) continue;
-            //    var wallTex = _textureDictionary.GetWall(wall.Id);
+            foreach (var wall in World.WallProperties)
+            {
+                if (wall.Id == 0) continue;
+                var wallTex = _textureDictionary.GetWall(wall.Id);
 
-            //    TextureToPng(wallTex, $"textures/Wall_{wall.Id}.png");
+                TextureToPng(wallTex, $"textures/Wall_{wall.Id}.png");
 
-            //    var wallColor = GetTextureTileColor(wallTex, b2Wall);
-            //    if (wallColor.A > 0)
-            //    {
-            //        wall.Color = wallColor;
-            //    }
-            //}
+                var wallColor = GetTextureTileColor(wallTex, b2Wall);
+                if (wallColor.A > 0)
+                {
+                    wall.Color = wallColor;
+                }
+            }
 
             foreach (var tile in World.TileProperties)
             {
@@ -348,11 +350,11 @@ namespace TEdit.View
 
                 if (!tile.IsFramed)
                 {
-                    //var tileColor = GetTextureTileColor(tileTex, b2);
-                    //if (tileColor.A > 0)
-                    //{
-                    //    tile.Color = tileColor;
-                    //}
+                    var tileColor = GetTextureTileColor(tileTex, b2);
+                    if (tileColor.A > 0)
+                    {
+                        tile.Color = tileColor;
+                    }
                     continue;
                 }
 
@@ -362,8 +364,8 @@ namespace TEdit.View
 
                     sprite.Tile = (ushort)tile.Id;
                     // this is only for debugging, no need to load in release versions
-                    // sprite.Preview = tileTex.Texture2DToWriteableBitmap();
-                    // sprite.IsPreviewTexture = true;
+                    sprite.Preview = tileTex.Texture2DToWriteableBitmap();
+                    sprite.IsPreviewTexture = true;
                     sprite.Name = tile.Name;
                     sprite.SizeTiles = tile.FrameSize;
                     sprite.SizeTexture = new Vector2Short((short)tileTex.Width, (short)tileTex.Height);
@@ -372,7 +374,6 @@ namespace TEdit.View
                     var interval = tile.FrameGap;
                     if (interval.X == 0) interval.X = 2;
                     if (interval.Y == 0) interval.Y = 2;
-
 
                     sprite.IsAnimated = tile.IsAnimated;
 
@@ -508,11 +509,17 @@ namespace TEdit.View
 
                             if (hasColorData)
                             {
+
                                 var styleColor = GetTextureTileColor(texture, texture.Bounds);
-                                tile.Color = styleColor;
+
+                                if (subId == 0)
+                                {
+                                    tile.Color = styleColor;
+                                }
 
                                 var uv = sprite.SizePixelsInterval * new Vector2Short((short)subX, (short)subY);
                                 var frameName = tile.Frames.FirstOrDefault(f => f.UV == uv);
+
                                 sprite.Styles[subId] = new SpriteSub
                                 {
                                     Tile = sprite.Tile,
@@ -537,27 +544,27 @@ namespace TEdit.View
                 }
             }
 
-            //#if DEBUG
-            //            XDocument xdoc = XDocument.Load("settings.xml");
-            //            var xTiles = xdoc.Root.Element("Tiles");
-            //            for (int t = 0; t < World.TileCount; t++)
-            //            {
-            //                var xTile = xTiles.Elements().FirstOrDefault(e => int.Parse(e.Attribute("Id").Value) == t);
-            //                var tileProps = World.TileProperties.FirstOrDefault(item => item.Id == t);
-            //                var sprite = (!tileProps.IsFramed) ? null : World.Sprites2.FirstOrDefault(s => s.Tile == t);
-            //                xTile.SetAttributeValue("Color", tileProps.Color.ColorToString());
+#if DEBUG
+            XDocument xdoc = XDocument.Load("settings.xml");
+            var xTiles = xdoc.Root.Element("Tiles");
+            for (int t = 623; t < World.TileCount; t++)
+            {
+                var xTile = xTiles.Elements().FirstOrDefault(e => int.Parse(e.Attribute("Id").Value) == t);
+                var tileProps = World.TileProperties.FirstOrDefault(item => item.Id == t);
+                //var sprite = (!tileProps.IsFramed) ? null : World.Sprites2.FirstOrDefault(s => s.Tile == t);
+                xTile.SetAttributeValue("Color", tileProps.Color.ToString());
 
-            //                // update frame colors
-            //            }
-            //            var xWalls = xdoc.Root.Element("Walls");
-            //            for (int t = 0; t < World.WallCount; t++)
-            //            {
-            //                var xWall = xWalls.Elements().FirstOrDefault(e => int.Parse(e.Attribute("Id").Value) == t);
-            //                var wallProps = World.WallProperties.FirstOrDefault(item => item.Id == t);
-            //                xWall.SetAttributeValue("Color", wallProps.Color.ColorToString());
-            //            }
-            //            xdoc.Save("settings2.xml");
-            //#endif
+                // update frame colors
+            }
+            var xWalls = xdoc.Root.Element("Walls");
+            for (int t = 0; t < World.WallCount; t++)
+            {
+                var xWall = xWalls.Elements().FirstOrDefault(e => int.Parse(e.Attribute("Id").Value) == t);
+                var wallProps = World.WallProperties.FirstOrDefault(item => item.Id == t);
+                xWall.SetAttributeValue("Color", wallProps.Color.ColorToString());
+            }
+            xdoc.Save("settings2.xml");
+#endif
 
             foreach (var sprite in World.Sprites)
             {

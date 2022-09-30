@@ -1176,4 +1176,79 @@
   <data name="tool_wp_unsafe_level" xml:space="preserve">
     <value>Разрешить небезопасные значения</value>
   </data>
+  <data name="tool_wp_npc_spawn_unlocked" xml:space="preserve">
+    <value>NPC Спаун разблокирован</value>
+  </data>
+  <data name="tool_wp_npc_slime_blue" xml:space="preserve">
+    <value>Голубая слизь</value>
+  </data>
+  <data name="tool_wp_npc_slime_green" xml:space="preserve">
+    <value>Зеленая слизь</value>
+  </data>
+  <data name="tool_wp_npc_slime_old" xml:space="preserve">
+    <value>Старая слизь</value>
+  </data>
+  <data name="tool_wp_npc_slime_purple" xml:space="preserve">
+    <value>Фиолетовая слизь</value>
+  </data>
+  <data name="tool_wp_npc_slime_rainbow" xml:space="preserve">
+    <value>Радужная слизь</value>
+  </data>
+  <data name="tool_wp_npc_slime_red" xml:space="preserve">
+    <value>Красная слизь</value>
+  </data>
+  <data name="tool_wp_npc_slime_yellow" xml:space="preserve">
+    <value>Желтая слизь</value>
+  </data>
+  <data name="tool_wp_npc_slime_copper" xml:space="preserve">
+    <value>Медная слизь</value>
+  </data>
+  <data name="tool_wp_combatbooktwo" xml:space="preserve">
+    <value>Боевая книга Том второй</value>
+  </data>
+  <data name="tool_wp_moondial_cooldown" xml:space="preserve">
+    <value>Лунный циферблат Охлаждение</value>
+  </data>
+  <data name="tool_wp_npc_princess" xml:space="preserve">
+    <value>Принцесса</value>
+  </data>
+  <data name="tool_wp_npc_nurse" xml:space="preserve">
+    <value>Няня</value>
+  </data>
+  <data name="tool_wp_npc_partygirl" xml:space="preserve">
+    <value>Тусовщица</value>
+  </data>
+  <data name="tool_wp_npc_merchant" xml:space="preserve">
+    <value>Торговец</value>
+  </data>
+  <data name="tool_wp_npc_demolitionist" xml:space="preserve">
+    <value>Подрывник</value>
+  </data>
+  <data name="tool_wp_npc_dye_trader" xml:space="preserve">
+    <value>Краситель Трейдер</value>
+  </data>
+  <data name="tool_wp_npc_truffle" xml:space="preserve">
+    <value>Трюфель</value>
+  </data>
+  <data name="tool_wp_npc_arms_dealer" xml:space="preserve">
+    <value>Торговец оружием</value>
+  </data>
+  <data name="tool_wp_peddlerssatchel" xml:space="preserve">
+    <value>Ранец разносчика</value>
+  </data>
+  <data name="tool_wp_usemoondial" xml:space="preserve">
+    <value>Используйте лунный циферблат</value>
+  </data>
+  <data name="tool_wp_combatbook" xml:space="preserve">
+    <value>Боевая книга</value>
+  </data>
+  <data name="tool_wp_seed_zenith" xml:space="preserve">
+    <value>Зенит</value>
+  </data>
+  <data name="tool_wp_seed_remix" xml:space="preserve">
+    <value>Ремикс</value>
+  </data>
+  <data name="tool_wp_seed_notraps" xml:space="preserve">
+    <value>Без ловушек</value>
+  </data>
 </root>

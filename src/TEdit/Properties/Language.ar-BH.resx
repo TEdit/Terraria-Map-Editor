@@ -1176,4 +1176,79 @@
   <data name="tool_wp_unsafe_level" xml:space="preserve">
     <value>السماح بالقيم غير الآمنة</value>
   </data>
+  <data name="tool_wp_npc_spawn_unlocked" xml:space="preserve">
+    <value>NPC تفرخ مقفلة</value>
+  </data>
+  <data name="tool_wp_npc_slime_blue" xml:space="preserve">
+    <value>الوحل الأزرق</value>
+  </data>
+  <data name="tool_wp_npc_slime_green" xml:space="preserve">
+    <value>الوحل الأخضر</value>
+  </data>
+  <data name="tool_wp_npc_slime_old" xml:space="preserve">
+    <value>الوحل القديم</value>
+  </data>
+  <data name="tool_wp_npc_slime_purple" xml:space="preserve">
+    <value>الوحل الأرجواني</value>
+  </data>
+  <data name="tool_wp_npc_slime_rainbow" xml:space="preserve">
+    <value>قوس قزح الوحل</value>
+  </data>
+  <data name="tool_wp_npc_slime_red" xml:space="preserve">
+    <value>الوحل الأحمر</value>
+  </data>
+  <data name="tool_wp_npc_slime_yellow" xml:space="preserve">
+    <value>الوحل الأصفر</value>
+  </data>
+  <data name="tool_wp_npc_slime_copper" xml:space="preserve">
+    <value>الوحل النحاسي</value>
+  </data>
+  <data name="tool_wp_combatbooktwo" xml:space="preserve">
+    <value>كتاب القتال المجلد الثاني</value>
+  </data>
+  <data name="tool_wp_moondial_cooldown" xml:space="preserve">
+    <value>القمر الاتصال الهاتفي التبريد</value>
+  </data>
+  <data name="tool_wp_npc_princess" xml:space="preserve">
+    <value>الاميره</value>
+  </data>
+  <data name="tool_wp_npc_nurse" xml:space="preserve">
+    <value>ممرض</value>
+  </data>
+  <data name="tool_wp_npc_partygirl" xml:space="preserve">
+    <value>فتاة الحفلات</value>
+  </data>
+  <data name="tool_wp_npc_merchant" xml:space="preserve">
+    <value>تاجر</value>
+  </data>
+  <data name="tool_wp_npc_demolitionist" xml:space="preserve">
+    <value>الهدم</value>
+  </data>
+  <data name="tool_wp_npc_dye_trader" xml:space="preserve">
+    <value>صبغ التاجر</value>
+  </data>
+  <data name="tool_wp_npc_truffle" xml:space="preserve">
+    <value>الكماه</value>
+  </data>
+  <data name="tool_wp_npc_arms_dealer" xml:space="preserve">
+    <value>تاجر أسلحة</value>
+  </data>
+  <data name="tool_wp_peddlerssatchel" xml:space="preserve">
+    <value>حقيبة البائع المتجول</value>
+  </data>
+  <data name="tool_wp_usemoondial" xml:space="preserve">
+    <value>استخدام قرص القمر</value>
+  </data>
+  <data name="tool_wp_combatbook" xml:space="preserve">
+    <value>كتاب القتال</value>
+  </data>
+  <data name="tool_wp_seed_zenith" xml:space="preserve">
+    <value>سَمْت</value>
+  </data>
+  <data name="tool_wp_seed_remix" xml:space="preserve">
+    <value>ريميكس</value>
+  </data>
+  <data name="tool_wp_seed_notraps" xml:space="preserve">
+    <value>لا الفخاخ</value>
+  </data>
 </root>

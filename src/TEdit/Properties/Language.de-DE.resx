@@ -1009,7 +1009,7 @@ Klicke auf „Wiederholen“, um einen neuen Ordner auszuwählen, oder auf „Ab
     <value>Schweregrad</value>
   </data>
   <data name="tool_wp_sandstorm_severity_target" xml:space="preserve">
-    <value>Angepeilter Schw.gr.</value>
+    <value>Angepeilter Schw</value>
   </data>
   <data name="tool_wp_sandstorm_time" xml:space="preserve">
     <value>Verbleibende Zeit</value>
@@ -1075,7 +1075,7 @@ Klicke auf „Wiederholen“, um einen neuen Ordner auszuwählen, oder auf „Ab
     <value>Wolkenanzahl</value>
   </data>
   <data name="tool_wp_weather_windspeed" xml:space="preserve">
-    <value>Windgeschwindigk.</value>
+    <value>Windgeschwindigk</value>
   </data>
   <data name="TrackMode_Booster" xml:space="preserve">
     <value>Booster</value>
@@ -1165,7 +1165,7 @@ Klicke auf „Wiederholen“, um einen neuen Ordner auszuwählen, oder auf „Ab
     <value>Plaudern</value>
   </data>
   <data name="bestiary_complete" xml:space="preserve">
-    <value>Vervollständ.</value>
+    <value>Vervollständ</value>
   </data>
   <data name="bestiary_load" xml:space="preserve">
     <value>Laden</value>
@@ -1175,5 +1175,80 @@ Klicke auf „Wiederholen“, um einen neuen Ordner auszuwählen, oder auf „Ab
   </data>
   <data name="tool_wp_unsafe_level" xml:space="preserve">
     <value>Unsichere Werte zulassen</value>
+  </data>
+  <data name="tool_wp_npc_spawn_unlocked" xml:space="preserve">
+    <value>NPC-Spawn freigeschaltet</value>
+  </data>
+  <data name="tool_wp_npc_slime_blue" xml:space="preserve">
+    <value>Blauer Schleim</value>
+  </data>
+  <data name="tool_wp_npc_slime_green" xml:space="preserve">
+    <value>Grüner Schleim</value>
+  </data>
+  <data name="tool_wp_npc_slime_old" xml:space="preserve">
+    <value>Alter Schleim</value>
+  </data>
+  <data name="tool_wp_npc_slime_purple" xml:space="preserve">
+    <value>Lila Schleim</value>
+  </data>
+  <data name="tool_wp_npc_slime_rainbow" xml:space="preserve">
+    <value>Regenbogenschleim</value>
+  </data>
+  <data name="tool_wp_npc_slime_red" xml:space="preserve">
+    <value>Roter Schleim</value>
+  </data>
+  <data name="tool_wp_npc_slime_yellow" xml:space="preserve">
+    <value>Gelber Schleim</value>
+  </data>
+  <data name="tool_wp_npc_slime_copper" xml:space="preserve">
+    <value>Kupferschleim</value>
+  </data>
+  <data name="tool_wp_combatbooktwo" xml:space="preserve">
+    <value>Combat Book Band Zwei</value>
+  </data>
+  <data name="tool_wp_moondial_cooldown" xml:space="preserve">
+    <value>Moon Dial Abklingzeit</value>
+  </data>
+  <data name="tool_wp_npc_princess" xml:space="preserve">
+    <value>Prinzessin</value>
+  </data>
+  <data name="tool_wp_npc_nurse" xml:space="preserve">
+    <value>Krankenschwester</value>
+  </data>
+  <data name="tool_wp_npc_partygirl" xml:space="preserve">
+    <value>Partygirl</value>
+  </data>
+  <data name="tool_wp_npc_merchant" xml:space="preserve">
+    <value>Kaufmann</value>
+  </data>
+  <data name="tool_wp_npc_demolitionist" xml:space="preserve">
+    <value>Demolitionist</value>
+  </data>
+  <data name="tool_wp_npc_dye_trader" xml:space="preserve">
+    <value>Farbstoffhändler</value>
+  </data>
+  <data name="tool_wp_npc_truffle" xml:space="preserve">
+    <value>Trüffel</value>
+  </data>
+  <data name="tool_wp_npc_arms_dealer" xml:space="preserve">
+    <value>Waffenhändler</value>
+  </data>
+  <data name="tool_wp_peddlerssatchel" xml:space="preserve">
+    <value>Hausierer-Schulranzen</value>
+  </data>
+  <data name="tool_wp_usemoondial" xml:space="preserve">
+    <value>Verwenden Sie das Moon-Zifferblatt</value>
+  </data>
+  <data name="tool_wp_combatbook" xml:space="preserve">
+    <value>Kampfbuch</value>
+  </data>
+  <data name="tool_wp_seed_zenith" xml:space="preserve">
+    <value>Zenit</value>
+  </data>
+  <data name="tool_wp_seed_remix" xml:space="preserve">
+    <value>Remix</value>
+  </data>
+  <data name="tool_wp_seed_notraps" xml:space="preserve">
+    <value>Keine Fallen</value>
   </data>
 </root>

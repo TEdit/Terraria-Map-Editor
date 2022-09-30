@@ -21,7 +21,8 @@ namespace TEdit.Terraria
         None = 0x0,
         Water = 0x01,
         Lava = 0x02,
-        Honey = 0x03
+        Honey = 0x03,
+        Shimmer = 0x04,
     }
 
     public enum TileType : int
@@ -115,6 +116,10 @@ namespace TEdit.Terraria
         public bool WireGreen;
         public bool WireRed;
         public bool WireYellow;
+        public bool InvisibleBlock;
+        public bool InvisibleWall;
+        public bool FullBrightBlock;
+        public bool FullBrightWall;
 
         [NonSerialized] /* Heathtech */
         public ushort uvTileCache = 0xFFFF; //Caches the UV position of a tile, since it is costly to generate each frame
@@ -213,6 +218,10 @@ namespace TEdit.Terraria
             WireGreen = false;
             WireRed = false;
             WireYellow = false;
+            FullBrightBlock = true;
+            FullBrightWall = true;
+            InvisibleBlock = false;
+            InvisibleWall = false;
         }
 
         protected bool Equals(Tile other)
@@ -233,7 +242,11 @@ namespace TEdit.Terraria
                 WireBlue == other.WireBlue &&
                 WireGreen == other.WireGreen &&
                 WireRed == other.WireRed && 
-                WireYellow == other.WireYellow;
+                WireYellow == other.WireYellow &&
+                InvisibleWall == other.InvisibleWall &&
+                InvisibleBlock == other.InvisibleBlock &&
+                FullBrightBlock == other.FullBrightBlock &&
+                FullBrightWall == other.FullBrightWall;
         }
 
         public override bool Equals(object obj)
@@ -265,6 +278,10 @@ namespace TEdit.Terraria
                 hashCode = (hashCode * 397) ^ WireGreen.GetHashCode();
                 hashCode = (hashCode * 397) ^ WireRed.GetHashCode();
                 hashCode = (hashCode * 397) ^ WireYellow.GetHashCode();
+                hashCode = (hashCode * 397) ^ InvisibleWall.GetHashCode();
+                hashCode = (hashCode * 397) ^ InvisibleBlock.GetHashCode();
+                hashCode = (hashCode * 397) ^ FullBrightBlock.GetHashCode();
+                hashCode = (hashCode * 397) ^ FullBrightWall.GetHashCode();
                 return hashCode;
             }
         }

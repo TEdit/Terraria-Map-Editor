@@ -14,7 +14,7 @@ namespace SettingsFileUpdater
 
             LoadTerrariaAsm();
             var wrapper = TerrariaHost.TerrariaWrapper.Initialize();
-           
+
 
             // XDocument xdoc = XDocument.Load("settings.xml");
             // 
@@ -55,15 +55,12 @@ namespace SettingsFileUpdater
 
 
 
-           // Console.WriteLine(wrapper.GetTilesXml());
-           // Console.WriteLine(wrapper.GetWallsXml());
-           //Console.WriteLine(wrapper.GetItemsXml());
+            Console.WriteLine(wrapper.GetTilesXml());
+            Console.WriteLine(wrapper.GetWallsXml());
+            Console.WriteLine(wrapper.GetItemsXml());
             Console.WriteLine(wrapper.GetMobsText());
-           // Console.WriteLine(wrapper.GetNpcsXml());
-            
-           // Console.WriteLine(wrapper.GetPrefixesXml());
-
-            Console.ReadLine();
+            Console.WriteLine(wrapper.GetNpcsXml());
+            Console.WriteLine(wrapper.GetPrefixesXml());
         }
 
         private static void LoadTerrariaAsm()

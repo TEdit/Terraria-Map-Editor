@@ -114,6 +114,13 @@ namespace TEdit.Terraria.Tests
         }
 
         [Theory]
+        [InlineData(".\\WorldFiles\\v1.4.4.1.wld")]
+        public void LoadWorldV2_1441_Test(string fileName)
+        {
+            var w = World.LoadWorld(fileName, showWarnings: false);
+        }
+
+        [Theory]
         [InlineData(".\\WorldFiles\\v1.0.wld")]
 
         public void SaveWorldV0_Test(string fileName)
@@ -247,6 +254,19 @@ namespace TEdit.Terraria.Tests
         [InlineData(".\\WorldFiles\\v1.2.3.wld")]
         [InlineData(".\\WorldFiles\\v1.2.3.1.wld")]
         public void SaveWorldV2_Test(string fileName)
+        {
+            var w = World.LoadWorld(fileName, showWarnings: false);
+
+            var saveTest = fileName + ".test";
+            World.Save(w, saveTest, incrementRevision: false, showWarnings: false);
+
+            // essentially, just a save and load test
+            var w2 = World.LoadWorld(saveTest, showWarnings: false);
+        }
+
+        [Theory]
+        [InlineData(".\\WorldFiles\\v1.4.4.1.wld")]
+        public void SaveWorldV2_1441_Test(string fileName)
         {
             var w = World.LoadWorld(fileName, showWarnings: false);
 

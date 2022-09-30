@@ -19,7 +19,7 @@ namespace TEdit.Properties {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     public class Language {
@@ -2366,6 +2366,24 @@ namespace TEdit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Combat Book.
+        /// </summary>
+        public static string tool_wp_combatbook {
+            get {
+                return ResourceManager.GetString("tool_wp_combatbook", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Combat Book Volume Two.
+        /// </summary>
+        public static string tool_wp_combatbooktwo {
+            get {
+                return ResourceManager.GetString("tool_wp_combatbooktwo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Copper Tier.
         /// </summary>
         public static string tool_wp_copper {
@@ -2654,6 +2672,15 @@ namespace TEdit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Moondial Cooldown.
+        /// </summary>
+        public static string tool_wp_moondial_cooldown {
+            get {
+                return ResourceManager.GetString("tool_wp_moondial_cooldown", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Mythril Tier.
         /// </summary>
         public static string tool_wp_mythril {
@@ -2699,6 +2726,15 @@ namespace TEdit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Arms Dealer.
+        /// </summary>
+        public static string tool_wp_npc_arms_dealer {
+            get {
+                return ResourceManager.GetString("tool_wp_npc_arms_dealer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to NPCs Bought.
         /// </summary>
         public static string tool_wp_npc_bought {
@@ -2726,11 +2762,29 @@ namespace TEdit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Demolitionist.
+        /// </summary>
+        public static string tool_wp_npc_demolitionist {
+            get {
+                return ResourceManager.GetString("tool_wp_npc_demolitionist", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Dog.
         /// </summary>
         public static string tool_wp_npc_dog {
             get {
                 return ResourceManager.GetString("tool_wp_npc_dog", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dye Trader.
+        /// </summary>
+        public static string tool_wp_npc_dye_trader {
+            get {
+                return ResourceManager.GetString("tool_wp_npc_dye_trader", resourceCulture);
             }
         }
         
@@ -2762,11 +2816,128 @@ namespace TEdit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Merchant.
+        /// </summary>
+        public static string tool_wp_npc_merchant {
+            get {
+                return ResourceManager.GetString("tool_wp_npc_merchant", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nurse.
+        /// </summary>
+        public static string tool_wp_npc_nurse {
+            get {
+                return ResourceManager.GetString("tool_wp_npc_nurse", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Party Girl.
+        /// </summary>
+        public static string tool_wp_npc_partygirl {
+            get {
+                return ResourceManager.GetString("tool_wp_npc_partygirl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Princess.
+        /// </summary>
+        public static string tool_wp_npc_princess {
+            get {
+                return ResourceManager.GetString("tool_wp_npc_princess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to NPCs Saved.
         /// </summary>
         public static string tool_wp_npc_saved {
             get {
                 return ResourceManager.GetString("tool_wp_npc_saved", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Blue Slime.
+        /// </summary>
+        public static string tool_wp_npc_slime_blue {
+            get {
+                return ResourceManager.GetString("tool_wp_npc_slime_blue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Copper Slime.
+        /// </summary>
+        public static string tool_wp_npc_slime_copper {
+            get {
+                return ResourceManager.GetString("tool_wp_npc_slime_copper", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Green Slime.
+        /// </summary>
+        public static string tool_wp_npc_slime_green {
+            get {
+                return ResourceManager.GetString("tool_wp_npc_slime_green", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Old Slime.
+        /// </summary>
+        public static string tool_wp_npc_slime_old {
+            get {
+                return ResourceManager.GetString("tool_wp_npc_slime_old", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Purple Slime.
+        /// </summary>
+        public static string tool_wp_npc_slime_purple {
+            get {
+                return ResourceManager.GetString("tool_wp_npc_slime_purple", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rainbow Slime.
+        /// </summary>
+        public static string tool_wp_npc_slime_rainbow {
+            get {
+                return ResourceManager.GetString("tool_wp_npc_slime_rainbow", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Red Slime.
+        /// </summary>
+        public static string tool_wp_npc_slime_red {
+            get {
+                return ResourceManager.GetString("tool_wp_npc_slime_red", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Yellow Slime.
+        /// </summary>
+        public static string tool_wp_npc_slime_yellow {
+            get {
+                return ResourceManager.GetString("tool_wp_npc_slime_yellow", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to NPC Spawn Unlocked.
+        /// </summary>
+        public static string tool_wp_npc_spawn_unlocked {
+            get {
+                return ResourceManager.GetString("tool_wp_npc_spawn_unlocked", resourceCulture);
             }
         }
         
@@ -2794,6 +2965,15 @@ namespace TEdit.Properties {
         public static string tool_wp_npc_taxcollector {
             get {
                 return ResourceManager.GetString("tool_wp_npc_taxcollector", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Truffle.
+        /// </summary>
+        public static string tool_wp_npc_truffle {
+            get {
+                return ResourceManager.GetString("tool_wp_npc_truffle", resourceCulture);
             }
         }
         
@@ -2848,6 +3028,15 @@ namespace TEdit.Properties {
         public static string tool_wp_orbs {
             get {
                 return ResourceManager.GetString("tool_wp_orbs", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Peddler&apos;s Satchel.
+        /// </summary>
+        public static string tool_wp_peddlerssatchel {
+            get {
+                return ResourceManager.GetString("tool_wp_peddlerssatchel", resourceCulture);
             }
         }
         
@@ -2965,6 +3154,33 @@ namespace TEdit.Properties {
         public static string tool_wp_seed {
             get {
                 return ResourceManager.GetString("tool_wp_seed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No Traps.
+        /// </summary>
+        public static string tool_wp_seed_notraps {
+            get {
+                return ResourceManager.GetString("tool_wp_seed_notraps", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Remix.
+        /// </summary>
+        public static string tool_wp_seed_remix {
+            get {
+                return ResourceManager.GetString("tool_wp_seed_remix", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Zenith.
+        /// </summary>
+        public static string tool_wp_seed_zenith {
+            get {
+                return ResourceManager.GetString("tool_wp_seed_zenith", resourceCulture);
             }
         }
         
@@ -3145,6 +3361,15 @@ namespace TEdit.Properties {
         public static string tool_wp_unsafe_level {
             get {
                 return ResourceManager.GetString("tool_wp_unsafe_level", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Use Moondial.
+        /// </summary>
+        public static string tool_wp_usemoondial {
+            get {
+                return ResourceManager.GetString("tool_wp_usemoondial", resourceCulture);
             }
         }
         
