@@ -1251,4 +1251,22 @@
   <data name="tool_wp_seed_notraps" xml:space="preserve">
     <value>无陷阱</value>
   </data>
+  <data name="tool_wp_afterpartyofdoom" xml:space="preserve">
+    <value>末日派对之后</value>
+  </data>
+  <data name="tool_wp_lanternnight_cooldown" xml:space="preserve">
+    <value>灯笼之夜冷却时间</value>
+  </data>
+  <data name="tool_wp_lanternnight" xml:space="preserve">
+    <value>灯笼之夜</value>
+  </data>
+  <data name="tool_wp_lanternnight_genuine" xml:space="preserve">
+    <value>灯笼之夜正版</value>
+  </data>
+  <data name="tool_wp_lanternnight_manual" xml:space="preserve">
+    <value>灯笼之夜手册</value>
+  </data>
+  <data name="tool_wp_lanternnight_nextgenuine" xml:space="preserve">
+    <value>灯笼之夜接下来是真的</value>
+  </data>
 </root>

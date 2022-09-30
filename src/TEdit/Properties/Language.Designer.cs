@@ -1943,6 +1943,15 @@ namespace TEdit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to After Party of Doom.
+        /// </summary>
+        public static string tool_wp_afterpartyofdoom {
+            get {
+                return ResourceManager.GetString("tool_wp_afterpartyofdoom", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Altars Smashed.
         /// </summary>
         public static string tool_wp_altars {
@@ -2614,6 +2623,51 @@ namespace TEdit.Properties {
         public static string tool_wp_journeysend {
             get {
                 return ResourceManager.GetString("tool_wp_journeysend", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Lantern Night.
+        /// </summary>
+        public static string tool_wp_lanternnight {
+            get {
+                return ResourceManager.GetString("tool_wp_lanternnight", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Lantern Night Cooldown.
+        /// </summary>
+        public static string tool_wp_lanternnight_cooldown {
+            get {
+                return ResourceManager.GetString("tool_wp_lanternnight_cooldown", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Lantern Night Genuine.
+        /// </summary>
+        public static string tool_wp_lanternnight_genuine {
+            get {
+                return ResourceManager.GetString("tool_wp_lanternnight_genuine", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Lantern Night Manual.
+        /// </summary>
+        public static string tool_wp_lanternnight_manual {
+            get {
+                return ResourceManager.GetString("tool_wp_lanternnight_manual", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Lantern Night Next Is Genuine.
+        /// </summary>
+        public static string tool_wp_lanternnight_nextgenuine {
+            get {
+                return ResourceManager.GetString("tool_wp_lanternnight_nextgenuine", resourceCulture);
             }
         }
         
