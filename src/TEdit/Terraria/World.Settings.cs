@@ -63,9 +63,19 @@ namespace TEdit.Terraria
             if (ViewModelBase.IsInDesignModeStatic)
                 return;
 
+            var saveVersionPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "TerrariaVersionTileData.json");
+            LoadSaveVersions(saveVersionPath);
+
             var settingspath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "settings.xml");
             LoadObjectDbXml(settingspath);
 
+            var bestiaryDataPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "BestiaryData.json");
+            LoadBestiaryData(bestiaryDataPath);
+
+            CompatibleVersion = (uint)SaveConfiguration.SaveVersions.Keys.Max();
+            TileCount = (short)SaveConfiguration.SaveVersions[(int)CompatibleVersion].MaxTileId;
+            WallCount = (short)SaveConfiguration.SaveVersions[(int)CompatibleVersion].MaxWallId;
+            NPCMaxID = (short)SaveConfiguration.SaveVersions[(int)CompatibleVersion].MaxNpcId;
 
             Sprites.Add(new Sprite());
 
@@ -81,14 +91,7 @@ namespace TEdit.Terraria
                 }
             }
 
-            var saveVersionPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "TerrariaVersionTileData.json");
-            LoadSaveVersions(saveVersionPath);
-
-            var bestiaryDataPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "BestiaryData.json");
-            LoadBestiaryData(bestiaryDataPath);
-
             // Used to dynamically update static CompatibleVersion
-            CompatibleVersion = (uint)SaveConfiguration.SaveVersions.Keys.Max();
         }
 
         private static IEnumerable<TOut> StringToList<TOut>(string xmlcsv)
