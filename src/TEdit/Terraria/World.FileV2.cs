@@ -14,10 +14,10 @@ namespace TEdit.Terraria
     public partial class World
     {
         public static readonly uint CompatibleVersion;
-        public const short TileCount = 623;
-        public const short WallCount = 316;
+        public static short TileCount = (short)SaveConfiguration.SaveVersions[(int)CompatibleVersion].MaxTileId;
+        public static short WallCount = (short)SaveConfiguration.SaveVersions[(int)CompatibleVersion].MaxWallId;
 
-        public const short NPCMaxID = 668; // TODO: 633 was previous this needs to be in world version JSON 
+        public static short NPCMaxID = (short)SaveConfiguration.SaveVersions[(int)CompatibleVersion].MaxNpcId;
 
         public const int MaxChests = 8000;
         public const int MaxSigns = 1000;
