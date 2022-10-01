@@ -164,7 +164,9 @@
     "TownSlimeRed",
     "TownSlimeYellow",
     "TownSlimeCopper",
-    "BoundTownSlimeOld"
+    "BoundTownSlimeOld",
+    "BoundTownSlimePurple",
+    "BoundTownSlimeYellow"
   ],
   "BestiaryKilledIDs": [
     "DeerclopsLeg",
