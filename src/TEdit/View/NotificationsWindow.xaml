@@ -34,6 +34,45 @@
                         <Bold>Release Notes</Bold>
                     </Paragraph>
 
+                    <Paragraph>Version 4.11.0-beta</Paragraph>
+                    <List>
+                        <ListItem>
+                            <Paragraph>File compatibility for worlds up to 1.4.4.2</Paragraph>
+                    	</ListItem>
+                    	<ListItem>
+                            <Paragraph>Updated configurations for new items, tiles, walls and NPCs</Paragraph>
+                    	</ListItem>
+                    	<ListItem>
+                            <Paragraph>New world property items for 1.4.4.x features</Paragraph>
+                    	</ListItem>
+                    </List>
+                    
+                    <Paragraph>Version 4.10.0</Paragraph>
+                    <List>
+                        <ListItem>
+                            <Paragraph>All desktop version support added</Paragraph>
+                    	</ListItem>
+                    	<ListItem>
+                            <Paragraph>Android support added</Paragraph>
+                    	</ListItem>
+                    </List>
+                    
+                    <Paragraph>Version 4.9.0</Paragraph>
+                    <List>
+                        <ListItem>
+                            <Paragraph>Drag + drop worlds into TEdit.</Paragraph>
+                    	</ListItem>
+                    	<ListItem>
+                            <Paragraph>Updated "Find Chest With" plugin introducing a "Distance" from spawn checkbox.</Paragraph>
+                    	</ListItem>
+                    	<ListItem>
+                            <Paragraph>Updated "Find Tile" plugin introducing a total count of items found.</Paragraph>
+                    	</ListItem>
+                    	<ListItem>
+                            <Paragraph>Updates to legacy versions.</Paragraph>
+                    	</ListItem>
+                    </List>
+                    
                     <Paragraph>Version 4.7.1 - Wiring Update</Paragraph>
                     <List>
                         <ListItem>
