@@ -6038,8 +6038,8 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
 				<Frame Name="Faeling in a Bottle" UV="0, 0" Anchor="Top" />
 			</Frames>
 		</Tile>
-		<Tile Id="661" Name="Corrupt Jungle Grass" Solid="true" Color="#FF5D4F67" MergeWith="0" Special="Grass" />
-		<Tile Id="662" Name="Crimson Jungle Grass" Solid="true" Color="#FF80546B" MergeWith="0" Special="Grass" />
+		<Tile Id="661" Name="Corrupt Jungle Grass" Solid="true" Color="#FF5D4F67" Blends="true" MergeWith="0" Stone="true" />
+		<Tile Id="662" Name="Crimson Jungle Grass" Solid="true" Color="#FF80546B" Blends="true" MergeWith="0" Stone="true" />
 		<Tile Id="663" Name="Enchanted Moondial" Light="true" Framed="true" Size="2,3" Color="#FF546086">
 			<Frames>
 				<Frame Name="Enchanted Moondial" UV="0, 0" Anchor="Bottom" />
@@ -6057,7 +6057,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
 		</Tile>
 		<Tile Id="666" Name="Poo" Solid="true" Color="#FF76412B" />
 		<Tile Id="667" Name="Aetherium Brick" Light="true" Solid="true" Color="#FFC4D0DA" IsAnimated="true"/>
-		<Tile Id="668" Name="The Dirtiest Block" Solid="true" Color="#FF91674D" Blends="true" MergeWith="0" />
+		<Tile Id="668" Name="The Dirtiest Block" Solid="true" Color="#FF91674D" Blends="true" MergeWith="0" Stone="true" />
 		<Tile Id="669" Name="Lunar Rust Brick" Solid="true" Color="#FF8D8696" />
 		<Tile Id="670" Name="Dark Celestial Brick" Solid="true" Color="#FF728494" />
 		<Tile Id="671" Name="Astra Brick" Solid="true" Color="#FF4F88B0" />
@@ -6076,12 +6076,12 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
 		<Tile Id="684" Name="Ancient Hellstone Brick" Light="true" Solid="true" Color="#FF914B43" />
 		<Tile Id="685" Name="Ancient Cobalt Brick" Solid="true" Color="#FF235E7F" />
 		<Tile Id="686" Name="Ancient Mythril Brick" Solid="true" Color="#FF718962" />
-		<Tile Id="687" Name="Lava Moss Brick" Light="true" Solid="true" Color="#FF902505" />
-		<Tile Id="688" Name="Argon Moss Brick" Light="true" Solid="true" Color="#FF810E5D" />
-		<Tile Id="689" Name="Krypton Moss Brick" Light="true" Solid="true" Color="#FF1C7C3E" />
-		<Tile Id="690" Name="Xenon Moss Brick" Light="true" Solid="true" Color="#FF0B5F83" />
-		<Tile Id="691" Name="Neon Moss Brick" Light="true" Solid="true" Color="#FF50116B" />
-		<Tile Id="692" Name="Helium Moss Brick" Light="true" Solid="true" Color="#FF434343" />
+		<Tile Id="687" Name="Lava Moss Brick" Light="true" Solid="true" Color="#FF902505" Blends="true" MergeWith="0" Stone="true"/>
+		<Tile Id="688" Name="Argon Moss Brick" Light="true" Solid="true" Color="#FF810E5D" Blends="true" MergeWith="0" Grass="true"/>
+		<Tile Id="689" Name="Krypton Moss Brick" Light="true" Solid="true" Color="#FF1C7C3E" Blends="true" MergeWith="0" Grass="true" />
+		<Tile Id="690" Name="Xenon Moss Brick" Light="true" Solid="true" Color="#FF0B5F83" Blends="true" MergeWith="0" Grass="true"/>
+		<Tile Id="691" Name="Neon Moss Brick" Light="true" Solid="true" Color="#FF50116B" Blends="true" MergeWith="0" Grass="true"/>
+		<Tile Id="692" Name="Helium Moss Brick" Light="true" Solid="true" Color="#FF434343" Blends="true" MergeWith="0" Grass="true"/>
 	</Tiles>
 	<Walls>
 		<Wall Id="0" Name="Sky" Color="#00000000" />

@@ -329,7 +329,7 @@ namespace TEdit.View
             var b2 = new Rectangle(18, 18, 16, 16);
             var b2Wall = new Rectangle(44, 44, 16, 16);
 
-            for (int i = 0; i < 14; i++)
+            for (int i = 0; i <= 14; i++)
             {
                 var liquidTex = (Texture2D)_textureDictionary.GetLiquid(i);
                 TextureToPng(liquidTex, $"textures/Liquid_{i}.png");
@@ -2468,6 +2468,7 @@ namespace TEdit.View
                         {
                             if (curtile.LiquidAmount > 0)
                             {
+                                var liquidColor = Color.White;
                                 Texture2D tileTex = null;
                                 if (curtile.LiquidType == LiquidType.Lava)
                                 {
@@ -2476,6 +2477,11 @@ namespace TEdit.View
                                 else if (curtile.LiquidType == LiquidType.Honey)
                                 {
                                     tileTex = (Texture2D)_textureDictionary.GetLiquid(11); // Not sure if yellow Desert water, or Honey, but looks fine.
+                                }
+                                else if (curtile.LiquidType == LiquidType.Shimmer)
+                                {
+                                    tileTex = (Texture2D)_textureDictionary.GetLiquid(14);
+                                    liquidColor = World.GlobalColors["Shimmer"];
                                 }
                                 else
                                 {
@@ -2509,7 +2515,7 @@ namespace TEdit.View
                                         dest.Y = 1 + (int)((_scrollPosition.Y + y) * _zoom + ((16 - source.Height) * _zoom / 16f));
                                     }
 
-                                    _spriteBatch.Draw(tileTex, dest, source, Color.White * alpha, 0f, default, SpriteEffects.None, LayerLiquid);
+                                    _spriteBatch.Draw(tileTex, dest, source, liquidColor * alpha, 0f, default, SpriteEffects.None, LayerLiquid);
                                 }
                             }
                         }
