@@ -329,6 +329,15 @@ namespace TEdit.View
             var b2 = new Rectangle(18, 18, 16, 16);
             var b2Wall = new Rectangle(44, 44, 16, 16);
 
+            for (int i = 0; i < 14; i++)
+            {
+                var liquidTex = (Texture2D)_textureDictionary.GetLiquid(i);
+                TextureToPng(liquidTex, $"textures/Liquid_{i}.png");
+
+                var liquidColor = GetTextureTileColor(liquidTex, liquidTex.Bounds);
+                
+            }
+
             foreach (var wall in World.WallProperties)
             {
                 if (wall.Id == 0) continue;
