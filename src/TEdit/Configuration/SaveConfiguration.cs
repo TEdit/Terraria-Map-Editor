@@ -1,6 +1,8 @@
-﻿using System;
+﻿using Microsoft.Xna.Framework;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using TEdit.UI.Xaml;
 
 namespace TEdit.Configuration
 {
@@ -14,7 +16,25 @@ namespace TEdit.Configuration
     public class SaveConfiguration
     {
         public Dictionary<string, uint> GameVersionToSaveVersion { get; set; }
+
         public Dictionary<int, SaveVersionData> SaveVersions { get; set; }
+
+        public int GetMaxVersion() => SaveVersions.Keys.Max();
+
+        public SaveVersionData GetData(uint version) => GetData((int)version);
+
+        public SaveVersionData GetData(int version)
+        {
+            int useVersion =  (version > GetMaxVersion()) ? GetMaxVersion() : version;
+            if (SaveVersions.TryGetValue(useVersion, out var data))
+            {
+                return data;
+            }
+            else
+            {
+                throw new ArgumentOutOfRangeException(nameof(version), $"Missing settings for world file version: {version}");
+            }
+        }
 
         /// <summary>
         /// Get a <see cref="bool"/> array of framed tiles (sprites) for saving to world header.

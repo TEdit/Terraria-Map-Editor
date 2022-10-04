@@ -46,8 +46,9 @@ namespace SettingsFileUpdater.TerrariaHost
         public static TerrariaWrapper Initialize()
         {
             Thread.CurrentThread.Name = "Main Thread";
-            TerrariaWrapper.dedServ = true;
+            
             TerrariaWrapper.worldName = "world";
+            TerrariaWrapper.dedServ = true;
 
             var terrariaAsm = typeof(Terraria.Program).Assembly;
             //var init = typeof(Terraria.Program).GetMethod("ForceLoadAssembly", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Static, null, new Type[] { typeof(Assembly), typeof(bool) }, null);

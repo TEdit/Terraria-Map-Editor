@@ -50,7 +50,7 @@ namespace TEdit.Editor.Clipboard
                 {
                     var curTile = Tiles[x, y];
 
-                    var frames = World.SaveConfiguration.SaveVersions[(int)version].GetFrames();
+                    var frames = World.SaveConfiguration.GetData((int)version).GetFrames();
                     World.WriteTileDataToStreamV1(curTile, bw, version, frames);
 
                     int rleTemp = 1;
@@ -78,7 +78,7 @@ namespace TEdit.Editor.Clipboard
             bw.Write(Size.X);
             bw.Write(Size.Y);
 
-            var frames = World.SaveConfiguration.SaveVersions[(int)world.Version].GetFrames();
+            var frames = World.SaveConfiguration.GetData((int)version).GetFrames();
             World.SaveTiles(Tiles, (int)version, Size.X, Size.Y, bw, frames);
             World.SaveChests(Chests, bw, (int)version);
             World.SaveSigns(Signs, bw, (int)version);
@@ -98,7 +98,7 @@ namespace TEdit.Editor.Clipboard
             bw.Write(Size.X);
             bw.Write(Size.Y);
 
-            var frames = World.SaveConfiguration.SaveVersions[(int)world.Version].GetFrames();
+            var frames = World.SaveConfiguration.GetData((int)version).GetFrames();
             World.SaveTiles(Tiles, (int)version, Size.X, Size.Y, bw, frames);
             World.SaveChests(Chests, bw, (int)version);
             World.SaveSigns(Signs, bw, (int)version);
@@ -133,12 +133,12 @@ namespace TEdit.Editor.Clipboard
             if ((int)world.Version <= World.CompatibleVersion) 
             {
                 // World version is not a future release
-                frames = World.SaveConfiguration.SaveVersions[(int)world.Version].GetFrames();
+                frames = World.SaveConfiguration.GetData((int)version).GetFrames();
             }
             else
             {
                 // World version is a future release. Lets downgrade it some.
-                frames = World.SaveConfiguration.SaveVersions[(int)World.CompatibleVersion].GetFrames();
+                frames = World.SaveConfiguration.GetData((int)World.CompatibleVersion).GetFrames();
             }
             
             World.SaveTiles(Tiles, (int)version, Size.X, Size.Y, bw, frames);
@@ -191,7 +191,7 @@ namespace TEdit.Editor.Clipboard
             var buffer = new ClipboardBuffer(new Vector2Int32(sizeX, sizeY));
             buffer.Name = name;
 
-            var frames = World.SaveConfiguration.SaveVersions[version].GetFrames();
+            var frames = World.SaveConfiguration.GetData(version).GetFrames();
             buffer.Tiles = World.LoadTileData(b, sizeX, sizeY, version, World.SettingsTileFrameImportant);
             buffer.Chests.AddRange(World.LoadChestData(b));
             buffer.Signs.AddRange(World.LoadSignData(b));
@@ -221,7 +221,7 @@ namespace TEdit.Editor.Clipboard
             var buffer = new ClipboardBuffer(new Vector2Int32(sizeX, sizeY));
             buffer.Name = name;
 
-            var frames = World.SaveConfiguration.SaveVersions[version].GetFrames();
+            var frames = World.SaveConfiguration.GetData(version).GetFrames();
             buffer.Tiles = World.LoadTileData(b, sizeX, sizeY, version, World.SettingsTileFrameImportant);
             buffer.Chests.AddRange(World.LoadChestData(b));
             buffer.Signs.AddRange(World.LoadSignData(b));
