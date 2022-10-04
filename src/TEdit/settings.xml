@@ -5965,7 +5965,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
 		</Tile>
 		<Tile Id="666" Name="Poo" Solid="true" Color="#FF76412B" />
 		<Tile Id="667" Name="Aetherium Brick" Light="true" Solid="true" Color="#FFC4D0DA" />
-		<Tile Id="668" Name="668" Solid="true" Color="#FF91674D" />
+		<Tile Id="668" Name="The Dirtiest Block" Solid="true" Color="#FF91674D" Blends="true" MergeWith="0" />
 		<Tile Id="669" Name="Lunar Rust Brick" Solid="true" Color="#FF8D8696" />
 		<Tile Id="670" Name="Dark Celestial Brick" Solid="true" Color="#FF728494" />
 		<Tile Id="671" Name="Astra Brick" Solid="true" Color="#FF4F88B0" />

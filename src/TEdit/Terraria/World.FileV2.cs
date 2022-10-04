@@ -13,7 +13,7 @@ namespace TEdit.Terraria
 {
     public partial class World
     {
-        public static readonly uint CompatibleVersion = 271;
+        public static readonly uint CompatibleVersion = 272;
         public static short TileCount = 693; // updated by json
         public static short WallCount = 346; // updated by json
 
@@ -161,8 +161,8 @@ namespace TEdit.Terraria
         {
             debugger?.WriteLine("\"Tiles\": [");
 
-            int maxTileId = SaveConfiguration.SaveVersions[version].MaxTileId;
-            int maxWallId = SaveConfiguration.SaveVersions[version].MaxWallId;
+            int maxTileId = World.SaveConfiguration.GetData(version).MaxTileId;
+            int maxWallId = World.SaveConfiguration.GetData(version).MaxWallId;
 
             for (int x = 0; x < maxX; x++)
             {
@@ -480,7 +480,7 @@ namespace TEdit.Terraria
                     Item item = chest.Items[slot];
 
                     // check if target version allows item.
-                    if (item != null && item.NetId <= SaveConfiguration.SaveVersions[version].MaxItemId)
+                    if (item != null && item.NetId <= World.SaveConfiguration.GetData(version).MaxItemId)
                     {
                         bw.Write((short)item.StackSize);
                         if (item.StackSize > 0)
@@ -837,7 +837,7 @@ namespace TEdit.Terraria
             }
 
             // check if target moonType is over max
-            if (world.MoonType > SaveConfiguration.SaveVersions[version].MaxMoonId)
+            if (world.MoonType > World.SaveConfiguration.GetData(version).MaxMoonId)
             {
                 // target is out of range, reset to zero
                 bw.Write((byte)0);
