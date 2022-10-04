@@ -5806,9 +5806,9 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
 			</Frames>
 		</Tile>
 		<Tile Id="625" Name="Neon Moss" Light="true" Solid="true" Color="#FF906094" />
-		<Tile Id="626" Name="626" Light="true" Solid="true" Color="#FF86598D" />
+		<Tile Id="626" Name="Violet Moss Brick" Light="true" Solid="true" Color="#FF86598D" />
 		<Tile Id="627" Name="Helium Moss" Light="true" Solid="true" Color="#FF969696" />
-		<Tile Id="628" Name="628" Light="true" Solid="true" Color="#FF858585" />
+		<Tile Id="628" Name="Rainbow Moss Brick" Light="true" Solid="true" Color="#FF858585" />
 		<Tile Id="629" Name="Stinkbug Cage" SolidTop="true" Framed="true" Size="3,2" Color="#FF4C6C60">
 			<Frames>
 				<Frame Name="Stinkbug Cage" UV="0, 0" Anchor="Bottom" />
