@@ -33,17 +33,20 @@
                     <Paragraph>
                         <Bold>Release Notes</Bold>
                     </Paragraph>
-
+					
                     <Paragraph>Version 4.11.0-beta</Paragraph>
                     <List>
                         <ListItem>
-                            <Paragraph>File compatibility for worlds up to 1.4.4.2</Paragraph>
+                            <Paragraph>File compatibility for worlds up to 1.4.4 - 1.4.4.3</Paragraph>
                     	</ListItem>
                     	<ListItem>
                             <Paragraph>Updated configurations for new items, tiles, walls and NPCs</Paragraph>
                     	</ListItem>
                     	<ListItem>
                             <Paragraph>New world property items for 1.4.4.x features</Paragraph>
+                    	</ListItem>
+                        <ListItem>
+                            <Paragraph>Updated bestiary to include missing 1.4.4 content</Paragraph>
                     	</ListItem>
                     </List>
                     
