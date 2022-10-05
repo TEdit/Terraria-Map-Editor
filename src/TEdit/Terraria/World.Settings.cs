@@ -72,6 +72,7 @@ namespace TEdit.Terraria
             var bestiaryDataPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "BestiaryData.json");
             LoadBestiaryData(bestiaryDataPath);
 
+            // Used to dynamically update static CompatibleVersion
             CompatibleVersion = (uint)SaveConfiguration.SaveVersions.Keys.Max();
             TileCount = (short)SaveConfiguration.SaveVersions[(int)CompatibleVersion].MaxTileId;
             WallCount = (short)SaveConfiguration.SaveVersions[(int)CompatibleVersion].MaxWallId;
@@ -91,7 +92,6 @@ namespace TEdit.Terraria
                 }
             }
 
-            // Used to dynamically update static CompatibleVersion
         }
 
         private static IEnumerable<TOut> StringToList<TOut>(string xmlcsv)
