@@ -34,7 +34,7 @@
                         <Bold>Release Notes</Bold>
                     </Paragraph>
 					
-                    <Paragraph>Version 4.11.0-beta</Paragraph>
+                    <Paragraph>Version 4.11</Paragraph>
                     <List>
                         <ListItem>
                             <Paragraph>File compatibility for worlds up to 1.4.4 - 1.4.4.4</Paragraph>
@@ -50,7 +50,7 @@
                     	</ListItem>
                     </List>
                     
-                    <Paragraph>Version 4.10.0</Paragraph>
+                    <Paragraph>Version 4.10</Paragraph>
                     <List>
                         <ListItem>
                             <Paragraph>All desktop version support added</Paragraph>
@@ -60,7 +60,7 @@
                     	</ListItem>
                     </List>
                     
-                    <Paragraph>Version 4.9.0</Paragraph>
+                    <Paragraph>Version 4.9</Paragraph>
                     <List>
                         <ListItem>
                             <Paragraph>Drag + drop worlds into TEdit.</Paragraph>
@@ -76,7 +76,7 @@
                     	</ListItem>
                     </List>
                     
-                    <Paragraph>Version 4.7.1 - Wiring Update</Paragraph>
+                    <Paragraph>Version 4.7 - Wiring Update</Paragraph>
                     <List>
                         <ListItem>
                             <Paragraph>Add junction boxes to the wire pencil/brush.</Paragraph>
@@ -98,7 +98,7 @@
                         </ListItem>
                     </List>
 
-                    <Paragraph>Version 4.6.0</Paragraph>
+                    <Paragraph>Version 4.6</Paragraph>
                     <List>
                         <ListItem>
                             <Paragraph>Add support for Terraria 1.4.3.0.</Paragraph>
@@ -108,7 +108,7 @@
                         </ListItem>
                     </List>
 
-                    <Paragraph>Version 4.5.0</Paragraph>
+                    <Paragraph>Version 4.5</Paragraph>
                     <List>
                         <ListItem>
                             <Paragraph>Add support legacy file formats.</Paragraph>
@@ -127,7 +127,7 @@
                         </ListItem>
                     </List>
 
-                    <Paragraph>Version 4.4.0</Paragraph>
+                    <Paragraph>Version 4.4</Paragraph>
                     <List>
                         <ListItem>
                             <Paragraph>Add support Terraria 1.4.2.3.</Paragraph>
@@ -135,7 +135,7 @@
                     </List>
 
 
-                    <Paragraph>Version 4.3.0</Paragraph>
+                    <Paragraph>Version 4.3</Paragraph>
                     <List>
                         <ListItem>
                             <Paragraph>Package as MSI installer.</Paragraph>
