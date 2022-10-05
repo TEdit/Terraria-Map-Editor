@@ -329,7 +329,7 @@ namespace TEdit.Terraria
                 if (version >= 269 && tile.LiquidType == LiquidType.Shimmer)
                 {
                     // shimmer (v 1.4.4 +)
-                    header3 = (byte)(header1 | (byte)0b_1000_0000);
+                    header3 = (byte)(header3 | (byte)0b_1000_0000);
                     header1 = (byte)(header1 | (byte)0b_0000_1000);
                 }
                 else if (tile.LiquidType == LiquidType.Lava)
@@ -1735,7 +1735,7 @@ namespace TEdit.Terraria
             }
 
             // check if we have data in header3 to process
-            if (header3 > 0)
+            if (header3 > 1)
             {
                 // check bit[1] for actuator
                 if ((header3 & 0b_0000_0010) == 0b_0000_0010)

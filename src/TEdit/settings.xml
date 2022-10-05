@@ -5391,7 +5391,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
 		<Tile Id="489" Name="Pin Wheel" Framed="true" Size="2,3" IsAnimated="true" Color="#FF545A83" />
 		<Tile Id="490" Name="Weather Vane" Framed="true" Size="2,2" IsAnimated="true" Color="#FF808789" />
 		<Tile Id="491" Name="Void Vault" Light="true" Framed="true" Size="3,3" Color="#FF8149B1" />
-		<Tile Id="492" Name="Golf Grass Hallowed" Solid="true" Color="#FF686C63" Special="Grass" />
+		<Tile Id="492" Name="Golf Grass Hallowed" Solid="true" Color="#FF686C63" Special="Grass" MergeWith="0"/>
 		<Tile Id="493" Name="White Pin Flag" Framed="true" Size="1,2" IsAnimated="true" Color="#FF8855A1">
 			<Frames>
 				<Frame Name="White Pin Flag" UV="0, 0" Anchor="Bottom" />
