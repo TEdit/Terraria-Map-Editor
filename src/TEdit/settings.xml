@@ -6021,7 +6021,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
 		<Wall Id="26" Name="Mythril Brick Wall" Color="#FF224036" />
 		<Wall Id="27" Name="Planked Wall" Color="#FF3A302A" />
 		<Wall Id="28" Name="Pearlstone Wall (natural)" Color="#FF4D4651" />
-		<Wall Id="29" Name="Candy Cane Wall" Color="#FF703A44" />
+		<Wall Id="29" Name="Red Candy Cane Wall" Color="#FF703A44" />
 		<Wall Id="30" Name="Green Candy Cane Wall" Color="#FF387350" />
 		<Wall Id="31" Name="Snow Brick Wall" Color="#FF5E656C" />
 		<Wall Id="32" Name="Adamantite Beam Wall" Color="#FF661430" />
