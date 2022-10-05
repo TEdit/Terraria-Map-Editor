@@ -6179,7 +6179,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
 		<Wall Id="184" Name="Granite Wall" Color="#FF0F102D" />
 		<Wall Id="185" Name="Craggy Stone Wall (natural)" Color="#FF3D3D3D" />
 		<Wall Id="186" Name="Crystal Block Wall" Color="#FF371764" />
-		<Wall Id="187" Name="Sandstone Wall" Color="#FF7E442B" />
+		<Wall Id="187" Name="Sandstone Wall (natural)" Color="#FF7E442B" />
 		<Wall Id="188" Name="Corrupt Growth Wall (natural)" Color="#FF3F2F3F" />
 		<Wall Id="189" Name="Corrupt Mass Wall (natural)" Color="#FF41334D" />
 		<Wall Id="190" Name="Corrupt Pustule Wall (natural)" Color="#FF43483B" />
