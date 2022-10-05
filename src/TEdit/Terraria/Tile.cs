@@ -22,7 +22,7 @@ namespace TEdit.Terraria
         Water = 0x01,
         Lava = 0x02,
         Honey = 0x03,
-        Shimmer = 0x04,
+        Shimmer = 0x08,
     }
 
     public enum TileType : int

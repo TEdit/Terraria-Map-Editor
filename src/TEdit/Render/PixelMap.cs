@@ -239,6 +239,7 @@ namespace TEdit.Render
             {
                 if (tile.LiquidType == LiquidType.Lava) c = c.AlphaBlend(World.GlobalColors["Lava"]);
                 else if (tile.LiquidType == LiquidType.Honey) c = c.AlphaBlend(World.GlobalColors["Honey"]);
+                else if (tile.LiquidType == LiquidType.Shimmer) c = c.AlphaBlend(World.GlobalColors["Shimmer"]);
                 else c = c.AlphaBlend(World.GlobalColors["Water"]);
             }
 

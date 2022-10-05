@@ -1691,9 +1691,9 @@ namespace TEdit.Terraria
             if (liquidType != 0)
             {
                 tile.LiquidAmount = r.ReadByte();
-                tile.LiquidType = (LiquidType)liquidType;
+                tile.LiquidType = (LiquidType)liquidType; // water, lava, honey
 
-
+                // shimmer (v 1.4.4 +)
                 if (version >= 269 && (header3 & 0b_1000_0000) == 0b_1000_0000)
                 {
                     tile.LiquidType = LiquidType.Shimmer;

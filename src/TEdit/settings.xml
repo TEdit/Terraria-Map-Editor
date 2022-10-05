@@ -121,6 +121,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
 		<GlobalColor Name="Rock" Color="#FF484039" />
 		<GlobalColor Name="Hell" Color="#FF330000" />
 		<GlobalColor Name="Lava" Color="#F0FF1E00" />
+		<GlobalColor Name="Shimmer" Color="#F09B70E9" />
 		<GlobalColor Name="Honey" Color="#F0FFAC00" />
 		<GlobalColor Name="Water" Color="#80000CFF" />
 		<GlobalColor Name="Wire" Color="#70FF0000" />
@@ -5805,9 +5806,9 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
 			</Frames>
 		</Tile>
 		<Tile Id="625" Name="Neon Moss" Light="true" Solid="true" Color="#FF906094" />
-		<Tile Id="626" Name="626" Light="true" Solid="true" Color="#FF86598D" />
+		<Tile Id="626" Name="Violet Moss Brick" Light="true" Solid="true" Color="#FF86598D" />
 		<Tile Id="627" Name="Helium Moss" Light="true" Solid="true" Color="#FF969696" />
-		<Tile Id="628" Name="628" Light="true" Solid="true" Color="#FF858585" />
+		<Tile Id="628" Name="Rainbow Moss Brick" Light="true" Solid="true" Color="#FF858585" />
 		<Tile Id="629" Name="Stinkbug Cage" SolidTop="true" Framed="true" Size="3,2" Color="#FF4C6C60">
 			<Frames>
 				<Frame Name="Stinkbug Cage" UV="0, 0" Anchor="Bottom" />
@@ -5835,22 +5836,112 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
 			</Frames>
 		</Tile>
 		<Tile Id="633" Name="Ash Grass Seeds" Light="true" Solid="true" Color="#FF66474A" />
-		<Tile Id="634" Name="634" Light="true" Framed="true" Color="#FF7D5453">
+		<Tile Id="634" Name="Ash Tree" Light="true" Framed="true" Color="#FF7D5453">
 			<Frames>
-				<Frame Name="634" UV="0, 0" />
+				<Frame UV="22,198"  Name="Ash Tree Top Leafy" Variety="A" />
+				<Frame UV="22,220"  Name="Ash Tree Top Leafy" Variety="B" />
+				<Frame UV="22,242"  Name="Ash Tree Top Leafy" Variety="C" />
+				<Frame UV="0,0"     Name="Ash Tree Trunk" Variety="Plain A" />
+				<Frame UV="22,0"    Name="Ash Tree Trunk" Variety="Right Indent A" />
+				<Frame UV="44,0"    Name="Ash Tree Trunk" Variety="Right Slight Bulge A" />
+				<Frame UV="66,0"    Name="Ash Tree Branch" Variety="Plain A" />
+				<Frame UV="88,0"    Name="Ash Tree Trunk" Variety="Left Slight Bulge A" />
+				<Frame UV="110,0"   Name="Ash Tree Top" Variety="Medium A" />
+				<Frame UV="132,0"   Name="Ash Tree Top" Variety="Small A" />
+				<Frame UV="154,0"   Name="Ash Tree Top" Variety="Large A" />
+				<Frame UV="0,22"    Name="Ash Tree Trunk" Variety="Plain B" />
+				<Frame UV="22,22"   Name="Ash Tree Trunk" Variety="Right Indent B" />
+				<Frame UV="44,22"   Name="Ash Tree Trunk" Variety="Right Slight Bulge B" />
+				<Frame UV="66,22"   Name="Ash Tree Branch" Variety="Plain B" />
+				<Frame UV="88,22"   Name="Ash Tree Trunk" Variety="Left Slight Bulge B" />
+				<Frame UV="110,22"  Name="Ash Tree Top" Variety="Medium B" />
+				<Frame UV="132,22"  Name="Ash Tree Top" Variety="Small B" />
+				<Frame UV="154,22"  Name="Ash Tree Top" Variety="Large B" />
+				<Frame UV="0,44"    Name="Ash Tree Trunk" Variety="Plain C" />
+				<Frame UV="22,44"   Name="Ash Tree Trunk" Variety="Right Indent C" />
+				<Frame UV="44,44"   Name="Ash Tree Trunk" Variety="Right Slight Bulge C" />
+				<Frame UV="66,44"   Name="Ash Tree Branch" Variety="Plain C" />
+				<Frame UV="88,44"   Name="Ash Tree Trunk" Variety="Left Slight Bulge C" />
+				<Frame UV="110,44"  Name="Ash Tree Top" Variety="Medium C" />
+				<Frame UV="132,44"  Name="Ash Tree Top" Variety="Small C" />
+				<Frame UV="154,44"  Name="Ash Tree Top" Variety="Large C" />
+				<Frame UV="0,66"    Name="Ash Tree Trunk" Variety="Left Indent A" />
+				<Frame UV="22,66"   Name="Ash Tree Trunk" Variety="Right Bulge A" />
+				<Frame UV="44,66"   Name="Ash Tree Trunk" Variety="Left Bulge A" />
+				<Frame UV="66,66"   Name="Ash Tree Trunk" Variety="Right Slight Bulge D" />
+				<Frame UV="88,66"   Name="Ash Tree Branch" Variety="Plain A" />
+				<Frame UV="110,66"  Name="Ash Tree Trunk" Variety="Double Slight Bulge A" />
+				<Frame UV="132,66"  Name="Ash Tree Top" Variety="Small Right Slight Bulge A" />
+				<Frame UV="154,66"  Name="Ash Tree Top" Variety="Large A" />
+				<Frame UV="0,88"    Name="Ash Tree Trunk" Variety="Left Indent B" />
+				<Frame UV="22,88"   Name="Ash Tree Trunk" Variety="Right Bulge B" />
+				<Frame UV="44,88"   Name="Ash Tree Trunk" Variety="Left Bulge B" />
+				<Frame UV="66,88"   Name="Ash Tree Trunk" Variety="Right Slight Bulge E" />
+				<Frame UV="88,88"   Name="Ash Tree Branch" Variety="Plain B" />
+				<Frame UV="110,88"  Name="Ash Tree Trunk" Variety="Double Slight Bulge B" />
+				<Frame UV="132,88"  Name="Ash Tree Top" Variety="Small Right Slight Bulge B" />
+				<Frame UV="154,88"  Name="Ash Tree Top" Variety="Large B" />
+				<Frame UV="0,110"   Name="Ash Tree Trunk" Variety="Left Indent C" />
+				<Frame UV="22,110"  Name="Ash Tree Trunk" Variety="Right Bulge C" />
+				<Frame UV="44,110"  Name="Ash Tree Trunk" Variety="Left Bulge C" />
+				<Frame UV="66,110"  Name="Ash Tree Trunk" Variety="Right Slight Bulge F" />
+				<Frame UV="88,110"  Name="Ash Tree Branch" Variety="Plain C" />
+				<Frame UV="110,110" Name="Ash Tree Trunk" Variety="Double Slight Bulge C" />
+				<Frame UV="132,110" Name="Ash Tree Top" Variety="Small Right Slight Bulge C" />
+				<Frame UV="154,110" Name="Ash Tree Top" Variety="Large C" />
+				<Frame UV="0,132"   Name="Ash Tree Trunk" Variety="Large A" />
+				<Frame UV="22,132"  Name="Ash Tree Base" Variety="Plain A" />
+				<Frame UV="44,132"  Name="Ash Tree Base" Variety="Plain A" />
+				<Frame UV="66,132"  Name="Ash Tree Trunk" Variety="Large A" />
+				<Frame UV="88,132"  Name="Ash Tree Trunk" Variety="Large A" />
+				<Frame UV="132,132" Name="Ash Tree Top" Variety="Small Double Slight Bulge A" />
+				<Frame UV="154,132" Name="Ash Tree Top" Variety="Huge" />
+				<Frame UV="0,154"   Name="Ash Tree Trunk" Variety="Large B" />
+				<Frame UV="22,154"  Name="Ash Tree Base" Variety="Plain B" />
+				<Frame UV="44,154"  Name="Ash Tree Base" Variety="Plain B" />
+				<Frame UV="66,154"  Name="Ash Tree Trunk" Variety="Large B" />
+				<Frame UV="88,154"  Name="Ash Tree Trunk" Variety="Large B" />
+				<Frame UV="132,154" Name="Ash Tree Top" Variety="Small Double Slight Bulge B" />
+				<Frame UV="154,154" Name="Ash Tree Top" Variety="Huge" />
+				<Frame UV="0,176"   Name="Ash Tree Trunk" Variety="Large C" />
+				<Frame UV="22,176"  Name="Ash Tree Base" Variety="Plain C" />
+				<Frame UV="44,176"  Name="Ash Tree Base" Variety="Plain C" />
+				<Frame UV="66,176"  Name="Ash Tree Trunk" Variety="Large C" />
+				<Frame UV="88,176"  Name="Ash Tree Trunk" Variety="Large C" />
+				<Frame UV="132,176" Name="Ash Tree Top" Variety="Small Double Slight Bulge C" />
+				<Frame UV="154,176" Name="Ash Tree Top" Variety="Huge" />
+				<Frame UV="0,198"   Name="Ash Tree Top" Variety="Jagged" />
+				<Frame UV="0,220"   Name="Ash Tree Trunk" Variety="Jagged" />
+				<Frame UV="0,242"   Name="Ash Tree Trunk" Variety="Jagged" />
+				<Frame UV="22,198"  Name="Ash Tree Top" Variety="Leafy A - No Sprite" />
+				<Frame UV="22,220"  Name="Ash Tree Top" Variety="Leafy B - No Sprite" />
+				<Frame UV="22,242"  Name="Ash Tree Top" Variety="Leafy C - No Sprite" />
+				<Frame UV="44,198"  Name="Ash Tree Branch" Variety="Left Leafy A - No Sprite" />
+				<Frame UV="44,220"  Name="Ash Tree Branch" Variety="Left Leafy B - No Sprite" />
+				<Frame UV="44,242"  Name="Ash Tree Branch" Variety="Left Leafy C - No Sprite" />
+				<Frame UV="66,198"  Name="Ash Tree Branch" Variety="Right Leafy A - No Sprite" />
+				<Frame UV="66,220"  Name="Ash Tree Branch" Variety="Right Leafy B - No Sprite" />
+				<Frame UV="66,242"  Name="Ash Tree Branch" Variety="Right Leafy C - No Sprite" />
 			</Frames>
 		</Tile>
 		<Tile Id="635" Name="Ash Wood" Solid="true" Color="#FF5F525C" />
-		<Tile Id="636" Name="636" Color="#FF746CA3" />
-		<Tile Id="637" Name="637" Light="true" Framed="true" Color="#FF884338">
+		<Tile Id="636" Name="Corrupt Vines" Color="#FF746CA3" />
+		<Tile Id="637" Name="Ash Plants" Light="true" Framed="true" Color="#FF884338">
 			<Frames>
-				<Frame Name="637" UV="0, 0" />
+				<Frame UV="0,0"   Name="Ash Plants" Variety="G" Anchor="Bottom" />
+				<Frame UV="18,0"  Name="Ash Plants" Variety="C" Anchor="Bottom" />
+				<Frame UV="36,0"  Name="Ash Plants" Variety="?" Anchor="Bottom" />
+				<Frame UV="54,0"  Name="Ash Plants" Variety="u" Anchor="Bottom" />
+				<Frame UV="72,0"  Name="Ash Plants" Variety="w" Anchor="Bottom" />
+				<Frame UV="90,0"  Name="Ash Plants" Variety="W" Anchor="Bottom" />
+				<Frame UV="108,0" Name="Ash Plants" Variety="A" Anchor="Bottom" />
+				<Frame UV="126,0" Name="Ash Plants" Variety="B" Anchor="Bottom" />
 			</Frames>
 		</Tile>
-		<Tile Id="638" Name="638" Light="true" Color="#FF844A3C" />
-		<Tile Id="639" Name="Repaired Mana Crystal" Framed="true" Size="2,2" Color="#FF5357A1">
+		<Tile Id="638" Name="Ash Vines" Light="true" Color="#FF844A3C" />
+		<Tile Id="639" Name="Mana Crystal" Framed="true" Size="2,2" Color="#FF5357A1">
 			<Frames>
-				<Frame Name="Repaired Mana Crystal" UV="0, 0" Anchor="Bottom" />
+				<Frame Name="Mana Crystal" UV="0, 0" Anchor="Bottom" />
 			</Frames>
 		</Tile>
 		<Tile Id="640" Name="Blue Macaw Cage" SolidTop="true" Framed="true" Size="6,3" Color="#FF678478">
@@ -5859,29 +5950,30 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
 			</Frames>
 		</Tile>
 		<Tile Id="641" Name="Reef Block" Solid="true" Color="#FFCD7987" />
-		<Tile Id="642" Name="Chlorophyte Extractinator" Framed="true" Size="3,3" Color="#FF6E8B81">
+		<Tile Id="642" Name="Chlorophyte Extractinator" Framed="true" Size="3,3" Color="#FF6E8B81" IsAnimated="true">
 			<Frames>
 				<Frame Name="Chlorophyte Extractinator" UV="0, 0" Anchor="Bottom" />
 			</Frames>
 		</Tile>
-		<Tile Id="643" Name="Toucan Cage" SolidTop="true" Framed="true" Size="6,3" Color="#FF767A6E">
+		<Tile Id="643" Name="Toucan Cage" SolidTop="true" Framed="true" Size="6,3" Color="#FF767A6E" IsAnimated="true">
 			<Frames>
 				<Frame Name="Toucan Cage" UV="0, 0" Anchor="Bottom" />
 			</Frames>
 		</Tile>
-		<Tile Id="644" Name="Yellow Cockatiel Cage" SolidTop="true" Framed="true" Size="6,3" Color="#FF757D67">
+		<Tile Id="644" Name="Yellow Cockatiel Cage" SolidTop="true" Framed="true" Size="6,3" Color="#FF757D67" IsAnimated="true">
 			<Frames>
 				<Frame Name="Yellow Cockatiel Cage" UV="0, 0" Anchor="Bottom" />
 			</Frames>
 		</Tile>
-		<Tile Id="645" Name="Gray Cockatiel Cage" SolidTop="true" Framed="true" Size="6,3" Color="#FF6A7D6E">
+		<Tile Id="645" Name="Gray Cockatiel Cage" SolidTop="true" Framed="true" Size="6,3" Color="#FF6A7D6E" IsAnimated="true">
 			<Frames>
 				<Frame Name="Gray Cockatiel Cage" UV="0, 0" Anchor="Bottom" />
 			</Frames>
 		</Tile>
-		<Tile Id="646" Name="Shadow Candle" Light="true" Framed="true" TextureGrid="16,20" Size="1,1" Color="#FF54544D">
+		<Tile Id="646" Name="Shadow Candle" Light="true" Framed="true" TextureGrid="16,20" Size="1,1" Color="#FF54544D" IsAnimated="true">
 			<Frames>
-				<Frame Name="Shadow Candle" UV="0, 0" Anchor="Bottom" />
+				<Frame UV="0,0" Variety="On" />
+				<Frame UV="18,0" Variety="Off" />
 			</Frames>
 		</Tile>
 		<Tile Id="647" Name="Rubblemaker (Small)" Framed="true" Size="3,2" Color="#FF828268">
@@ -5889,32 +5981,32 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
 				<Frame Name="Rubblemaker (Small)" UV="0, 0" Anchor="Bottom" />
 			</Frames>
 		</Tile>
-		<Tile Id="648" Name="648" Framed="true" Size="3,2" Color="#FF5F7A40">
+		<Tile Id="648" Name="Rubble (3x2)" Framed="true" Size="3,2" Color="#FF5F7A40">
 			<Frames>
 				<Frame Name="648" UV="0, 0" />
 			</Frames>
 		</Tile>
-		<Tile Id="649" Name="649" Framed="true" Size="2,1" Color="#FF5C5C5C">
+		<Tile Id="649" Name="Small Rubble (2x1)" Framed="true" Size="2,1" Color="#FF5C5C5C">
 			<Frames>
 				<Frame Name="649" UV="0, 0" />
 			</Frames>
 		</Tile>
-		<Tile Id="650" Name="650" Framed="true" Size="1,1" Color="#FF646464">
+		<Tile Id="650" Name="Small Ruble (1x1)" Framed="true" Size="1,1" Color="#FF646464">
 			<Frames>
 				<Frame Name="650" UV="0, 0" />
 			</Frames>
 		</Tile>
-		<Tile Id="651" Name="651" Framed="true" Size="3,2" Color="#FF578807">
+		<Tile Id="651" Name="Plant Detritus (3x2)" Framed="true" Size="3,2" Color="#FF578807">
 			<Frames>
 				<Frame Name="651" UV="0, 0" />
 			</Frames>
 		</Tile>
-		<Tile Id="652" Name="652" Framed="true" Size="2,2" Color="#FF4A810A">
+		<Tile Id="652" Name="Plant Detritus (2x2)" Framed="true" Size="2,2" Color="#FF4A810A">
 			<Frames>
 				<Frame Name="652" UV="0, 0" />
 			</Frames>
 		</Tile>
-		<Tile Id="653" Name="653" Framed="true" Size="2,2" Color="#FF533830">
+		<Tile Id="653" Name="Pots" Framed="true" Size="2,2" Color="#FF533830">
 			<Frames>
 				<Frame Name="653" UV="0, 0" />
 			</Frames>
@@ -5924,18 +6016,18 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
 				<Frame Name="TNT Barrel" UV="0, 0" Anchor="Bottom" />
 			</Frames>
 		</Tile>
-		<Tile Id="655" Name="655" Color="#FFA85386" />
-		<Tile Id="656" Name="656" Light="true" Framed="true" Size="1,1" Color="#FF3995B3">
+		<Tile Id="655" Name="Plantera Thorns" Color="#FFA85386" />
+		<Tile Id="656" Name="Glow Tulip" Light="true" Framed="true" Size="1,1" Color="#FF3995B3">
 			<Frames>
 				<Frame Name="656" UV="0, 0" />
 			</Frames>
 		</Tile>
-		<Tile Id="657" Name="Echo Chamber" Framed="true" Size="2,3" Color="#FF3D3F4B">
+		<Tile Id="657" Name="Echo Chamber" Framed="true" Size="2,3" Color="#FF3D3F4B" IsAnimated="true">
 			<Frames>
 				<Frame Name="Echo Chamber" UV="0, 0" Anchor="Bottom" />
 			</Frames>
 		</Tile>
-		<Tile Id="658" Name="Aether Monolith" Light="true" Framed="true" Size="2,3" Color="#FFAB8DCE">
+		<Tile Id="658" Name="Aether Monolith" Light="true" Framed="true" Size="2,3" Color="#FFAB8DCE" IsAnimated="true">
 			<Frames>
 				<Frame Name="Aether Monolith" UV="0, 0" Anchor="Bottom" />
 			</Frames>
@@ -5946,8 +6038,8 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
 				<Frame Name="Faeling in a Bottle" UV="0, 0" Anchor="Top" />
 			</Frames>
 		</Tile>
-		<Tile Id="661" Name="661" Solid="true" Color="#FF5D4F67" />
-		<Tile Id="662" Name="662" Solid="true" Color="#FF80546B" />
+		<Tile Id="661" Name="Corrupt Jungle Grass" Solid="true" Color="#FF5D4F67" Blends="true" MergeWith="0" Stone="true" />
+		<Tile Id="662" Name="Crimson Jungle Grass" Solid="true" Color="#FF80546B" Blends="true" MergeWith="0" Stone="true" />
 		<Tile Id="663" Name="Enchanted Moondial" Light="true" Framed="true" Size="2,3" Color="#FF546086">
 			<Frames>
 				<Frame Name="Enchanted Moondial" UV="0, 0" Anchor="Bottom" />
@@ -5964,8 +6056,8 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
 			</Frames>
 		</Tile>
 		<Tile Id="666" Name="Poo" Solid="true" Color="#FF76412B" />
-		<Tile Id="667" Name="Aetherium Brick" Light="true" Solid="true" Color="#FFC4D0DA" />
-		<Tile Id="668" Name="The Dirtiest Block" Solid="true" Color="#FF91674D" Blends="true" MergeWith="0" />
+		<Tile Id="667" Name="Aetherium Brick" Light="true" Solid="true" Color="#FFC4D0DA" IsAnimated="true"/>
+		<Tile Id="668" Name="The Dirtiest Block" Solid="true" Color="#FF91674D" Blends="true" MergeWith="0" Stone="true" />
 		<Tile Id="669" Name="Lunar Rust Brick" Solid="true" Color="#FF8D8696" />
 		<Tile Id="670" Name="Dark Celestial Brick" Solid="true" Color="#FF728494" />
 		<Tile Id="671" Name="Astra Brick" Solid="true" Color="#FF4F88B0" />
@@ -5984,12 +6076,12 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
 		<Tile Id="684" Name="Ancient Hellstone Brick" Light="true" Solid="true" Color="#FF914B43" />
 		<Tile Id="685" Name="Ancient Cobalt Brick" Solid="true" Color="#FF235E7F" />
 		<Tile Id="686" Name="Ancient Mythril Brick" Solid="true" Color="#FF718962" />
-		<Tile Id="687" Name="Lava Moss Brick" Light="true" Solid="true" Color="#FF902505" />
-		<Tile Id="688" Name="Argon Moss Brick" Light="true" Solid="true" Color="#FF810E5D" />
-		<Tile Id="689" Name="Krypton Moss Brick" Light="true" Solid="true" Color="#FF1C7C3E" />
-		<Tile Id="690" Name="Xenon Moss Brick" Light="true" Solid="true" Color="#FF0B5F83" />
-		<Tile Id="691" Name="Neon Moss Brick" Light="true" Solid="true" Color="#FF50116B" />
-		<Tile Id="692" Name="Helium Moss Brick" Light="true" Solid="true" Color="#FF434343" />
+		<Tile Id="687" Name="Lava Moss Brick" Light="true" Solid="true" Color="#FF902505" Blends="true" MergeWith="0" Stone="true"/>
+		<Tile Id="688" Name="Argon Moss Brick" Light="true" Solid="true" Color="#FF810E5D" Blends="true" MergeWith="0" Grass="true"/>
+		<Tile Id="689" Name="Krypton Moss Brick" Light="true" Solid="true" Color="#FF1C7C3E" Blends="true" MergeWith="0" Grass="true" />
+		<Tile Id="690" Name="Xenon Moss Brick" Light="true" Solid="true" Color="#FF0B5F83" Blends="true" MergeWith="0" Grass="true"/>
+		<Tile Id="691" Name="Neon Moss Brick" Light="true" Solid="true" Color="#FF50116B" Blends="true" MergeWith="0" Grass="true"/>
+		<Tile Id="692" Name="Helium Moss Brick" Light="true" Solid="true" Color="#FF434343" Blends="true" MergeWith="0" Grass="true"/>
 	</Tiles>
 	<Walls>
 		<Wall Id="0" Name="Sky" Color="#00000000" />
