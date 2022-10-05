@@ -6054,7 +6054,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
 		<Wall Id="59" Name="Rocky Dirt Wall (natural)" Color="#FF503F37" />
 		<Wall Id="60" Name="Living Leaf Wall (natural)" Color="#FF003111" />
 		<Wall Id="61" Name="Old Stone Wall (natural)" Color="#FF37281C" />
-		<Wall Id="62" Name="Spider Wall (natural)" Color="#FF201C16" />
+		<Wall Id="62" Name="Infested Spider Wall" Color="#FF201C16" />
 		<Wall Id="63" Name="Grass Wall (natural)" Color="#FF194326" />
 		<Wall Id="64" Name="Jungle Wall (natural)" Color="#FF2F4319" />
 		<Wall Id="65" Name="Flower Wall (natural)" Color="#FF194326" />
@@ -6179,7 +6179,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
 		<Wall Id="184" Name="Granite Wall" Color="#FF0F102D" />
 		<Wall Id="185" Name="Craggy Stone Wall (natural)" Color="#FF3D3D3D" />
 		<Wall Id="186" Name="Crystal Block Wall" Color="#FF371764" />
-		<Wall Id="187" Name="Sandstone Wall (natural)" Color="#FF7E442B" />
+		<Wall Id="187" Name="Treacherous Sandstone Wall" Color="#FF7E442B" />
 		<Wall Id="188" Name="Corrupt Growth Wall (natural)" Color="#FF3F2F3F" />
 		<Wall Id="189" Name="Corrupt Mass Wall (natural)" Color="#FF41334D" />
 		<Wall Id="190" Name="Corrupt Pustule Wall (natural)" Color="#FF43483B" />
@@ -6208,13 +6208,13 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
 		<Wall Id="213" Name="Stalactite Stone Wall (natural)" Color="#FF393C39" />
 		<Wall Id="214" Name="Mottled Stone Wall (natural)" Color="#FF45393B" />
 		<Wall Id="215" Name="Fractured Stone Wall (natural)" Color="#FF473C42" />
-		<Wall Id="216" Name="Hardened Sand Wall (natural)" Color="#FF945D34" />
-		<Wall Id="217" Name="Hardened Ebonsand Wall (natural)" Color="#FF332641" />
-		<Wall Id="218" Name="Hardened Crimsand Wall (natural)" Color="#FF2B1816" />
-		<Wall Id="219" Name="Hardened Pearlsand Wall (natural)" Color="#FF4E4972" />
-		<Wall Id="220" Name="Ebonsandstone Wall (natural)" Color="#FF362444" />
-		<Wall Id="221" Name="Crimsandstone Wall (natural)" Color="#FF49120C" />
-		<Wall Id="222" Name="Pearlsandstone Wall (natural)" Color="#FF3A2F51" />
+		<Wall Id="216" Name="Treacherous Hardened Sand Wall" Color="#FF945D34" />
+		<Wall Id="217" Name="Treacherous Hardened Ebonsand Wall" Color="#FF332641" />
+		<Wall Id="218" Name="Treacherous Hardened Crimsand Wall" Color="#FF2B1816" />
+		<Wall Id="219" Name="Treacherous Hardened Pearlsand Wall" Color="#FF4E4972" />
+		<Wall Id="220" Name="Treacherous Ebonsandstone Wall" Color="#FF362444" />
+		<Wall Id="221" Name="Treacherous Crimsandstone Wall" Color="#FF49120C" />
+		<Wall Id="222" Name="Treacherous Pearlsandstone Wall" Color="#FF3A2F51" />
 		<Wall Id="223" Name="Desert Fossil Wall (natural)" Color="#FF734122" />
 		<Wall Id="224" Name="Luminite Brick Wall" Color="#FF677068" />
 		<Wall Id="225" Name="Cog Wall" Color="#FF4C4738" />
