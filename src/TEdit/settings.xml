@@ -6085,7 +6085,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
 		<Wall Id="90" Name="Blue Stained Glass" Color="#FF3E567B" />
 		<Wall Id="91" Name="Green Stained Glass" Color="#FF5A795E" />
 		<Wall Id="92" Name="Red Stained Glass" Color="#FF873E3D" />
-		<Wall Id="93" Name="Multi" Colored Stained Glass" Color="#FF646067" />
+		<Wall Id="93" Name="Multicolored Stained Glass" Color="#FF646067" />
 		<Wall Id="94" Name="Cursed Blue Slab Wall" Color="#FF243039" />
 		<Wall Id="95" Name="Cursed Blue Tiled Wall" Color="#FF302E3A" />
 		<Wall Id="96" Name="Cursed Pink Slab Wall" Color="#FF472E49" />
