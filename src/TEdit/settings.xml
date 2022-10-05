@@ -5994,34 +5994,34 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
 	<Walls>
 		<Wall Id="0" Name="Sky" Color="#00000000" />
 		<Wall Id="1" Name="Stone Wall" Color="#FF353535" />
-		<Wall Id="2" Name="Dirt Wall" Color="#FF573C30" />
-		<Wall Id="3" Name="Ebonstone Wall" Color="#FF2F2935" />
+		<Wall Id="2" Name="Dirt Wall (natural)" Color="#FF573C30" />
+		<Wall Id="3" Name="Ebonstone Wall (natural)" Color="#FF2F2935" />
 		<Wall Id="4" Name="Wood Wall" Color="#FF453225" />
 		<Wall Id="5" Name="Gray Brick Wall" Color="#FF3B3B3B" />
 		<Wall Id="6" Name="Red Brick Wall" Color="#FF4C2C29" />
-		<Wall Id="7" Name="Dungeon Blue Brick Wall" Color="#FF2E3243" />
-		<Wall Id="8" Name="Dungeon Green Brick Wall" Color="#FF313D3D" />
-		<Wall Id="9" Name="Dungeon Pink Brick Wall" Color="#FF4B2E46" />
+		<Wall Id="7" Name="Cursed Blue Brick Wall" Color="#FF2E3243" />
+		<Wall Id="8" Name="Cursed Green Brick Wall" Color="#FF313D3D" />
+		<Wall Id="9" Name="Cursed Pink Brick Wall" Color="#FF4B2E46" />
 		<Wall Id="10" Name="Gold Brick Wall" Color="#FF6B5B22" />
 		<Wall Id="11" Name="Silver Brick Wall" Color="#FF4F5556" />
 		<Wall Id="12" Name="Copper Brick Wall" Color="#FF653919" />
-		<Wall Id="13" Name="Hellstone Wall" Color="#FF4D302B" />
-		<Wall Id="14" Name="Obsidian Wall" Color="#FF0C0C0C" />
-		<Wall Id="15" Name="Mud Wall" Color="#FF312B2C" />
-		<Wall Id="16" Name="Player Dirt Wall" Color="#FF513F36" />
-		<Wall Id="17" Name="Player Blue Brick Wall" Color="#FF2E3243" />
-		<Wall Id="18" Name="Player Green Brick Wall" Color="#FF313D3D" />
-		<Wall Id="19" Name="Player Pink Brick Wall" Color="#FF4B2E46" />
-		<Wall Id="20" Name="Player Obsidian Wall" Color="#FF0C0C0C" />
+		<Wall Id="13" Name="Hellstone Brick Wall (natural)" Color="#FF4D302B" />
+		<Wall Id="14" Name="Obsidian Brick Wall (natural)" Color="#FF0C0C0C" />
+		<Wall Id="15" Name="Mud Wall (natural)" Color="#FF312B2C" />
+		<Wall Id="16" Name="Dirt Wall" Color="#FF513F36" />
+		<Wall Id="17" Name="Blue Brick Wall" Color="#FF2E3243" />
+		<Wall Id="18" Name="Green Brick Wall" Color="#FF313D3D" />
+		<Wall Id="19" Name="Pink Brick Wall" Color="#FF4B2E46" />
+		<Wall Id="20" Name="Obsidian Brick Wall" Color="#FF0C0C0C" />
 		<Wall Id="21" Name="Glass Wall" Color="#FF365962" />
-		<Wall Id="22" Name="Pearlstone Brick" Color="#FF615C5E" />
-		<Wall Id="23" Name="Iridescent Wall" Color="#FF382C3A" />
-		<Wall Id="24" Name="Mudstone Wall" Color="#FF31282A" />
+		<Wall Id="22" Name="Pearlstone Brick Wall" Color="#FF615C5E" />
+		<Wall Id="23" Name="Iridescent Brick Wall" Color="#FF382C3A" />
+		<Wall Id="24" Name="Mudstone Brick Wall" Color="#FF31282A" />
 		<Wall Id="25" Name="Cobalt Brick Wall" Color="#FF124262" />
 		<Wall Id="26" Name="Mythril Brick Wall" Color="#FF224036" />
 		<Wall Id="27" Name="Planked Wall" Color="#FF3A302A" />
-		<Wall Id="28" Name="Pearlstone Wall" Color="#FF4D4651" />
-		<Wall Id="29" Name="Red Candy Cane Wall" Color="#FF703A44" />
+		<Wall Id="28" Name="Pearlstone Wall (natural)" Color="#FF4D4651" />
+		<Wall Id="29" Name="Candy Cane Wall" Color="#FF703A44" />
 		<Wall Id="30" Name="Green Candy Cane Wall" Color="#FF387350" />
 		<Wall Id="31" Name="Snow Brick Wall" Color="#FF5E656C" />
 		<Wall Id="32" Name="Adamantite Beam Wall" Color="#FF661430" />
@@ -6032,7 +6032,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
 		<Wall Id="37" Name="Yellow Stucco Wall" Color="#FF595437" />
 		<Wall Id="38" Name="Green Stucco Wall" Color="#FF3C5A46" />
 		<Wall Id="39" Name="Gray Stucco Wall" Color="#FF595954" />
-		<Wall Id="40" Name="Snow Wall" Color="#FF647681" />
+		<Wall Id="40" Name="Snow Wall (natural)" Color="#FF647681" />
 		<Wall Id="41" Name="Ebonwood Wall" Color="#FF393740" />
 		<Wall Id="42" Name="Rich Mahogany Wall" Color="#FF3E191B" />
 		<Wall Id="43" Name="Pearlwood Wall" Color="#FF3C372C" />
@@ -6040,71 +6040,71 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
 		<Wall Id="45" Name="Tin Brick Wall" Color="#FF413F39" />
 		<Wall Id="46" Name="Tungsten Brick Wall" Color="#FF445345" />
 		<Wall Id="47" Name="Platinum Brick Wall" Color="#FF424652" />
-		<Wall Id="48" Name="Amethyst Gemstone Wall" Color="#FF4E4553" />
-		<Wall Id="49" Name="Topaz Gemstone Wall" Color="#FF514A3F" />
-		<Wall Id="50" Name="Sapphire Gemstone Wall" Color="#FF384251" />
-		<Wall Id="51" Name="Emerald Gemstone Wall" Color="#FF32493B" />
-		<Wall Id="52" Name="Ruby Gemstone Wall" Color="#FF523B40" />
-		<Wall Id="53" Name="Diamond Gemstone Wall" Color="#FF464F51" />
-		<Wall Id="54" Name="Green Moss Cave Wall" Color="#FF2E3A36" />
-		<Wall Id="55" Name="Yellow Moss Cave Wall" Color="#FF38382E" />
-		<Wall Id="56" Name="Red Moss Cave Wall" Color="#FF393131" />
-		<Wall Id="57" Name="Blue Moss Cave Wall" Color="#FF2D3338" />
-		<Wall Id="58" Name="Purple Moss Cave Wall" Color="#FF38303B" />
-		<Wall Id="59" Name="Cave Wall" Color="#FF503F37" />
-		<Wall Id="60" Name="Moss Wall" Color="#FF003111" />
-		<Wall Id="61" Name="Iron Cave Wall" Color="#FF37281C" />
-		<Wall Id="62" Name="Spider Wall" Color="#FF201C16" />
-		<Wall Id="63" Name="Grass Wall" Color="#FF194326" />
-		<Wall Id="64" Name="Jungle Wall" Color="#FF2F4319" />
-		<Wall Id="65" Name="Flower Wall" Color="#FF194326" />
-		<Wall Id="66" Name="Player Grass Wall" Color="#FF194326" />
-		<Wall Id="67" Name="Player Jungle Wall" Color="#FF2F4319" />
-		<Wall Id="68" Name="Player Flower Wall" Color="#FF194326" />
-		<Wall Id="69" Name="Corruption Jungle Wall" Color="#FF242539" />
-		<Wall Id="70" Name="Hallowed Jungle Wall" Color="#FF193D43" />
-		<Wall Id="71" Name="Ice Wall" Color="#FF526C86" />
+		<Wall Id="48" Name="Amethyst Wall (natural)" Color="#FF4E4553" />
+		<Wall Id="49" Name="Topaz Wall (natural)" Color="#FF514A3F" />
+		<Wall Id="50" Name="Sapphire Wall (natural)" Color="#FF384251" />
+		<Wall Id="51" Name="Emerald Wall (natural)" Color="#FF32493B" />
+		<Wall Id="52" Name="Ruby Wall (natural)" Color="#FF523B40" />
+		<Wall Id="53" Name="Diamond Wall (natural)" Color="#FF464F51" />
+		<Wall Id="54" Name="Green Mossy Wall (natural)" Color="#FF2E3A36" />
+		<Wall Id="55" Name="Brown Mossy Wall (natural)" Color="#FF38382E" />
+		<Wall Id="56" Name="Red Mossy Wall (natural)" Color="#FF393131" />
+		<Wall Id="57" Name="Blue Mossy Wall (natural)" Color="#FF2D3338" />
+		<Wall Id="58" Name="Purple Mossy Wall (natural)" Color="#FF38303B" />
+		<Wall Id="59" Name="Rocky Dirt Wall (natural)" Color="#FF503F37" />
+		<Wall Id="60" Name="Living Leaf Wall (natural)" Color="#FF003111" />
+		<Wall Id="61" Name="Old Stone Wall (natural)" Color="#FF37281C" />
+		<Wall Id="62" Name="Spider Wall (natural)" Color="#FF201C16" />
+		<Wall Id="63" Name="Grass Wall (natural)" Color="#FF194326" />
+		<Wall Id="64" Name="Jungle Wall (natural)" Color="#FF2F4319" />
+		<Wall Id="65" Name="Flower Wall (natural)" Color="#FF194326" />
+		<Wall Id="66" Name="Grass Wall" Color="#FF194326" />
+		<Wall Id="67" Name="Jungle Wall" Color="#FF2F4319" />
+		<Wall Id="68" Name="Flower Wall" Color="#FF194326" />
+		<Wall Id="69" Name="Corrupt Grass Wall (natural)" Color="#FF242539" />
+		<Wall Id="70" Name="Hallowed Grass Wall (natural)" Color="#FF193D43" />
+		<Wall Id="71" Name="Ice Wall (natural)" Color="#FF526C86" />
 		<Wall Id="72" Name="Cactus Wall" Color="#FF2D5418" />
 		<Wall Id="73" Name="Cloud Wall" Color="#FFD3D9DB" />
 		<Wall Id="74" Name="Mushroom Wall" Color="#FF363C71" />
 		<Wall Id="75" Name="Bone Block Wall" Color="#FF3D3D2C" />
 		<Wall Id="76" Name="Slime Block Wall" Color="#FF1A336F" />
 		<Wall Id="77" Name="Flesh Block Wall" Color="#FF4B1216" />
-		<Wall Id="78" Name="Livingwood Wall" Color="#FF3A2318" />
-		<Wall Id="79" Name="Obsidian Cave Wall" Color="#FF242141" />
-		<Wall Id="80" Name="Mushroom Cave Wall" Color="#FF363C71" />
-		<Wall Id="81" Name="Crimson Jungle Wall" Color="#FF653434" />
+		<Wall Id="78" Name="Living Wood Wall" Color="#FF3A2318" />
+		<Wall Id="79" Name="Obsidian Back Wall (natural)" Color="#FF242141" />
+		<Wall Id="80" Name="Mushroom Wall (natural)" Color="#FF363C71" />
+		<Wall Id="81" Name="Crimson Grass Wall (natural)" Color="#FF653434" />
 		<Wall Id="82" Name="Disc Wall" Color="#FF381300" />
-		<Wall Id="83" Name="Crimstone Wall" Color="#FF3E2C2D" />
+		<Wall Id="83" Name="Crimstone Wall (natural)" Color="#FF3E2C2D" />
 		<Wall Id="84" Name="Ice Brick Wall" Color="#FF4E6983" />
 		<Wall Id="85" Name="Shadewood Wall" Color="#FF20272D" />
-		<Wall Id="86" Name="Hive Wall" Color="#FF795024" />
-		<Wall Id="87" Name="Lihzahrd Brick Wall" Color="#FF1C080A" />
+		<Wall Id="86" Name="Hive Wall (natural)" Color="#FF795024" />
+		<Wall Id="87" Name="Forbidden Lihzahrd Brick Wall" Color="#FF1C080A" />
 		<Wall Id="88" Name="Purple Stained Glass" Color="#FF73447C" />
 		<Wall Id="89" Name="Yellow Stained Glass" Color="#FF81724A" />
 		<Wall Id="90" Name="Blue Stained Glass" Color="#FF3E567B" />
 		<Wall Id="91" Name="Green Stained Glass" Color="#FF5A795E" />
 		<Wall Id="92" Name="Red Stained Glass" Color="#FF873E3D" />
-		<Wall Id="93" Name="Multicolored Stained Glass" Color="#FF646067" />
-		<Wall Id="94" Name="Dungeon Blue Slab Wall" Color="#FF243039" />
-		<Wall Id="95" Name="Dungeon Blue Tiled Wall" Color="#FF302E3A" />
-		<Wall Id="96" Name="Dungeon Pink Slab Wall" Color="#FF472E49" />
-		<Wall Id="97" Name="Dungeon Pink Tiled Wall" Color="#FF4C2E40" />
-		<Wall Id="98" Name="Dungeon Green Slab Wall" Color="#FF333F39" />
-		<Wall Id="99" Name="Dungeon Green Tiled Wall" Color="#FF313A40" />
-		<Wall Id="100" Name="Player Blue Slab Wall" Color="#FF243039" />
-		<Wall Id="101" Name="Player Blue Tiled Wall" Color="#FF302E3A" />
-		<Wall Id="102" Name="Player Pink Slab Wall" Color="#FF472E49" />
-		<Wall Id="103" Name="Player Pink Tiled Wall" Color="#FF4C2E40" />
-		<Wall Id="104" Name="Player Green Slab Wall" Color="#FF333F39" />
-		<Wall Id="105" Name="Player Green Tiled Wall" Color="#FF313A40" />
+		<Wall Id="93" Name="Multi" Colored Stained Glass" Color="#FF646067" />
+		<Wall Id="94" Name="Cursed Blue Slab Wall" Color="#FF243039" />
+		<Wall Id="95" Name="Cursed Blue Tiled Wall" Color="#FF302E3A" />
+		<Wall Id="96" Name="Cursed Pink Slab Wall" Color="#FF472E49" />
+		<Wall Id="97" Name="Cursed Pink Tiled Wall" Color="#FF4C2E40" />
+		<Wall Id="98" Name="Cursed Green Slab Wall" Color="#FF333F39" />
+		<Wall Id="99" Name="Cursed Green Tiled Wall" Color="#FF313A40" />
+		<Wall Id="100" Name="Blue Slab Wall" Color="#FF243039" />
+		<Wall Id="101" Name="Blue Tiled Wall" Color="#FF302E3A" />
+		<Wall Id="102" Name="Pink Slab Wall" Color="#FF472E49" />
+		<Wall Id="103" Name="Pink Tiled Wall" Color="#FF4C2E40" />
+		<Wall Id="104" Name="Green Slab Wall" Color="#FF333F39" />
+		<Wall Id="105" Name="Green Tiled Wall" Color="#FF313A40" />
 		<Wall Id="106" Name="Wooden Fence" Color="#FF614833" />
 		<Wall Id="107" Name="Lead Fence" Color="#FF353535" />
 		<Wall Id="108" Name="Hive Wall" Color="#FF795024" />
 		<Wall Id="109" Name="Palladium Column Wall" Color="#FF6E2513" />
 		<Wall Id="110" Name="Bubblegum Block Wall" Color="#FF873989" />
 		<Wall Id="111" Name="Titanstone Block Wall" Color="#FF211915" />
-		<Wall Id="112" Name="Player Lihzahrd Brick Wall" Color="#FF1C080A" />
+		<Wall Id="112" Name="Lihzahrd Brick Wall" Color="#FF1C080A" />
 		<Wall Id="113" Name="Pumpkin Wall" Color="#FFA04B07" />
 		<Wall Id="114" Name="Hay Wall" Color="#FF362A13" />
 		<Wall Id="115" Name="Spooky Wood Wall" Color="#FF2A1E35" />
@@ -6118,7 +6118,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
 		<Wall Id="123" Name="Krampus Horn Wallpaper" Color="#FF8A806E" />
 		<Wall Id="124" Name="Bluegreen Wallpaper" Color="#FF07301E" />
 		<Wall Id="125" Name="Grinch Finger Wallpaper" Color="#FF4E6746" />
-		<Wall Id="126" Name="Fancy Grey Wallpaper" Color="#FF6D6F7B" />
+		<Wall Id="126" Name="Fancy Gray Wallpaper" Color="#FF6D6F7B" />
 		<Wall Id="127" Name="Ice Floe Wallpaper" Color="#FF70A6E2" />
 		<Wall Id="128" Name="Music Wallpaper" Color="#FF45388C" />
 		<Wall Id="129" Name="Purple Rain Wallpaper" Color="#FF482C91" />
@@ -6136,9 +6136,9 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
 		<Wall Id="141" Name="Shadewood Fence" Color="#FF42463C" />
 		<Wall Id="142" Name="White Dynasty Wall" Color="#FFD6CEBB" />
 		<Wall Id="143" Name="Blue Dynasty Wall" Color="#FF536A63" />
-		<Wall Id="144" Name="Mystic Rune Wallpaper" Color="#FF594344" />
+		<Wall Id="144" Name="Arcane Rune Wall" Color="#FF594344" />
 		<Wall Id="145" Name="Iron Fence" Color="#FF787878" />
-		<Wall Id="146" Name="Copper Plating" Color="#FF673718" />
+		<Wall Id="146" Name="Copper Plating Wall" Color="#FF673718" />
 		<Wall Id="147" Name="Stone Slab Wall" Color="#FF4D4D4D" />
 		<Wall Id="148" Name="Sail" Color="#FFE5DAA1" />
 		<Wall Id="149" Name="Boreal Wood Wall" Color="#FF524641" />
@@ -6162,61 +6162,61 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
 		<Wall Id="167" Name="Tin Plating Wall" Color="#FF4E4D3A" />
 		<Wall Id="168" Name="Confetti Wall" Color="#FF546154" />
 		<Wall Id="169" Name="Midnight Confetti Wall" Color="#FF5C695A" />
-		<Wall Id="170" Name="Unique Cave Wall 7 (natural)" Color="#FF5D442F" />
-		<Wall Id="171" Name="Unique Cave Wall 8 (natural)" Color="#FF543C27" />
+		<Wall Id="170" Name="Cave Dirt Wall (natural)" Color="#FF5D442F" />
+		<Wall Id="171" Name="Rough Dirt Wall (natural)" Color="#FF543C27" />
 		<Wall Id="172" Name="Honeyfall Wall" Color="#FFA87D00" />
 		<Wall Id="173" Name="Chlorophyte Brick Wall" Color="#FF316919" />
 		<Wall Id="174" Name="Crimtane Brick Wall" Color="#FF453036" />
 		<Wall Id="175" Name="Shroomite Plating Wall" Color="#FF2132BC" />
 		<Wall Id="176" Name="Martian Conduit Wall" Color="#FF4B8094" />
 		<Wall Id="177" Name="Hellstone Brick Wall" Color="#FF48322E" />
-		<Wall Id="178" Name="Marble (natural)" Color="#FF787F8F" />
+		<Wall Id="178" Name="Marble Wall (natural)" Color="#FF787F8F" />
 		<Wall Id="179" Name="Smooth Marble Wall" Color="#FF7C8394" />
-		<Wall Id="180" Name="Granite (natural)" Color="#FF0F102D" />
+		<Wall Id="180" Name="Granite Wall (natural)" Color="#FF0F102D" />
 		<Wall Id="181" Name="Smooth Granite Wall" Color="#FF1F1F4A" />
 		<Wall Id="182" Name="Meteorite Brick Wall" Color="#FF393763" />
 		<Wall Id="183" Name="Marble Wall" Color="#FF787F8F" />
 		<Wall Id="184" Name="Granite Wall" Color="#FF0F102D" />
-		<Wall Id="185" Name="Cave 8 (natural)" Color="#FF3D3D3D" />
+		<Wall Id="185" Name="Craggy Stone Wall (natural)" Color="#FF3D3D3D" />
 		<Wall Id="186" Name="Crystal Block Wall" Color="#FF371764" />
 		<Wall Id="187" Name="Sandstone Wall" Color="#FF7E442B" />
-		<Wall Id="188" Name="Corruption 1 (natural)" Color="#FF3F2F3F" />
-		<Wall Id="189" Name="Corruption 2 (natural)" Color="#FF41334D" />
-		<Wall Id="190" Name="Corruption 3 (natural)" Color="#FF43483B" />
-		<Wall Id="191" Name="Corruption 4 (natural)" Color="#FF3C2643" />
-		<Wall Id="192" Name="Crimson 1 (natural)" Color="#FF7B382F" />
-		<Wall Id="193" Name="Crimson 2 (natural)" Color="#FF57181A" />
-		<Wall Id="194" Name="Crimson 3 (natural)" Color="#FF664035" />
-		<Wall Id="195" Name="Crimson 4 (natural)" Color="#FF7A2E36" />
-		<Wall Id="196" Name="Dirt 1 (natural)" Color="#FF634637" />
-		<Wall Id="197" Name="Dirt 2 (natural)" Color="#FF664939" />
-		<Wall Id="198" Name="Dirt 3 (natural)" Color="#FF5C4131" />
-		<Wall Id="199" Name="Dirt 4 (natural)" Color="#FF6A4B3A" />
-		<Wall Id="200" Name="Hallow 1 (natural)" Color="#FF512153" />
-		<Wall Id="201" Name="Hallow 2 (natural)" Color="#FF604F63" />
-		<Wall Id="202" Name="Hallow 3 (natural)" Color="#FF7C2A68" />
-		<Wall Id="203" Name="Hallow 4 (natural)" Color="#FF6F3670" />
-		<Wall Id="204" Name="Jungle 1 (natural)" Color="#FF4B4437" />
-		<Wall Id="205" Name="Jungle 2 (natural)" Color="#FF53533B" />
-		<Wall Id="206" Name="Jungle 3 (natural)" Color="#FF27432C" />
-		<Wall Id="207" Name="Jungle 4 (natural)" Color="#FF4D4D37" />
-		<Wall Id="208" Name="Lava 1 (natural)" Color="#FF5C241C" />
-		<Wall Id="209" Name="Lava 2 (natural)" Color="#FF603027" />
-		<Wall Id="210" Name="Lava 3 (natural)" Color="#FF6C2C1A" />
-		<Wall Id="211" Name="Lava 4 (natural)" Color="#FF6A2A26" />
-		<Wall Id="212" Name="Rocks 1 (natural)" Color="#FF46453D" />
-		<Wall Id="213" Name="Rocks 2 (natural)" Color="#FF393C39" />
-		<Wall Id="214" Name="Rocks 3 (natural)" Color="#FF45393B" />
-		<Wall Id="215" Name="Rocks 4 (natural)" Color="#FF473C42" />
-		<Wall Id="216" Name="Hardened Sand Wall" Color="#FF945D34" />
-		<Wall Id="217" Name="Hardened Ebonsand Wall" Color="#FF332641" />
-		<Wall Id="218" Name="Hardened Crimsand Wall" Color="#FF2B1816" />
-		<Wall Id="219" Name="Hardened Pearlsand Wall" Color="#FF4E4972" />
-		<Wall Id="220" Name="Ebonsandstone Wall" Color="#FF362444" />
-		<Wall Id="221" Name="Crimsandstone Wall" Color="#FF49120C" />
-		<Wall Id="222" Name="Pearlsandstone Wall" Color="#FF3A2F51" />
-		<Wall Id="223" Name="Desert Fossil Wall" Color="#FF734122" />
-		<Wall Id="224" Name="Lunar Brick Wall" Color="#FF677068" />
+		<Wall Id="188" Name="Corrupt Growth Wall (natural)" Color="#FF3F2F3F" />
+		<Wall Id="189" Name="Corrupt Mass Wall (natural)" Color="#FF41334D" />
+		<Wall Id="190" Name="Corrupt Pustule Wall (natural)" Color="#FF43483B" />
+		<Wall Id="191" Name="Corrupt Tendril Wall (natural)" Color="#FF3C2643" />
+		<Wall Id="192" Name="Crimson Crust Wall (natural)" Color="#FF7B382F" />
+		<Wall Id="193" Name="Crimson Scab Wall (natural)" Color="#FF57181A" />
+		<Wall Id="194" Name="Crimson Teeth Wall (natural)" Color="#FF664035" />
+		<Wall Id="195" Name="Crimson Blister Wall (natural)" Color="#FF7A2E36" />
+		<Wall Id="196" Name="Layered Dirt Wall (natural)" Color="#FF634637" />
+		<Wall Id="197" Name="Crumbling Dirt Wall (natural)" Color="#FF664939" />
+		<Wall Id="198" Name="Cracked Dirt Wall (natural)" Color="#FF5C4131" />
+		<Wall Id="199" Name="Wavy Dirt Wall (natural)" Color="#FF6A4B3A" />
+		<Wall Id="200" Name="Hallowed Prism Wall (natural)" Color="#FF512153" />
+		<Wall Id="201" Name="Hallowed Cavern Wall (natural)" Color="#FF604F63" />
+		<Wall Id="202" Name="Hallowed Shard Wall (natural)" Color="#FF7C2A68" />
+		<Wall Id="203" Name="Hallowed Crystalline Wall (natural)" Color="#FF6F3670" />
+		<Wall Id="204" Name="Lichen Stone Wall (natural)" Color="#FF4B4437" />
+		<Wall Id="205" Name="Leafy Jungle Wall (natural)" Color="#FF53533B" />
+		<Wall Id="206" Name="Ivy Stone Wall (natural)" Color="#FF27432C" />
+		<Wall Id="207" Name="Jungle Vine Wall (natural)" Color="#FF4D4D37" />
+		<Wall Id="208" Name="Ember Wall (natural)" Color="#FF5C241C" />
+		<Wall Id="209" Name="Cinder Wall (natural)" Color="#FF603027" />
+		<Wall Id="210" Name="Magma Wall (natural)" Color="#FF6C2C1A" />
+		<Wall Id="211" Name="Smouldering Stone Wall (natural)" Color="#FF6A2A26" />
+		<Wall Id="212" Name="Worn Stone Wall (natural)" Color="#FF46453D" />
+		<Wall Id="213" Name="Stalactite Stone Wall (natural)" Color="#FF393C39" />
+		<Wall Id="214" Name="Mottled Stone Wall (natural)" Color="#FF45393B" />
+		<Wall Id="215" Name="Fractured Stone Wall (natural)" Color="#FF473C42" />
+		<Wall Id="216" Name="Hardened Sand Wall (natural)" Color="#FF945D34" />
+		<Wall Id="217" Name="Hardened Ebonsand Wall (natural)" Color="#FF332641" />
+		<Wall Id="218" Name="Hardened Crimsand Wall (natural)" Color="#FF2B1816" />
+		<Wall Id="219" Name="Hardened Pearlsand Wall (natural)" Color="#FF4E4972" />
+		<Wall Id="220" Name="Ebonsandstone Wall (natural)" Color="#FF362444" />
+		<Wall Id="221" Name="Crimsandstone Wall (natural)" Color="#FF49120C" />
+		<Wall Id="222" Name="Pearlsandstone Wall (natural)" Color="#FF3A2F51" />
+		<Wall Id="223" Name="Desert Fossil Wall (natural)" Color="#FF734122" />
+		<Wall Id="224" Name="Luminite Brick Wall" Color="#FF677068" />
 		<Wall Id="225" Name="Cog Wall" Color="#FF4C4738" />
 		<Wall Id="226" Name="Sandfall Wall" Color="#FF857C42" />
 		<Wall Id="227" Name="Snowfall Wall" Color="#FF536570" />
@@ -6236,7 +6236,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
 		<Wall Id="241" Name="Orange Stained Glass" Color="#FF925F35" IsHouse="True" />
 		<Wall Id="242" Name="Gold Starry Wall" Color="#FF4E4537" IsHouse="True" />
 		<Wall Id="243" Name="Blue Starry Wall" Color="#FF173456" IsHouse="True" />
-		<Wall Id="244" Name="Unsafe Living Wood Walls" Color="#FF3A2318" IsHouse="False" />
+		<Wall Id="244" Name="Living Wood Wall (natural)" Color="#FF3A2318" IsHouse="False" />
 		<Wall Id="245" Name="Wrought Iron Fence" Color="#FF4A4A4A" IsHouse="True" />
 		<Wall Id="246" Name="Ebonstone Wall" Color="#FF2F2935" IsHouse="True" />
 		<Wall Id="247" Name="Mud Wall" Color="#FF312B2C" IsHouse="True" />
@@ -6264,8 +6264,8 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
 		<Wall Id="269" Name="Crimstone Wall" Color="#FF3E2C2D" IsHouse="True" />
 		<Wall Id="270" Name="Cave Dirt Wall" Color="#FF5D442F" IsHouse="True" />
 		<Wall Id="271" Name="Rough Dirt Wall" Color="#FF543C27" IsHouse="True" />
-		<Wall Id="272" Name="Marble Wall" Color="#FF787F8F" IsHouse="True" />
-		<Wall Id="273" Name="Granite Wall" Color="#FF0F102D" IsHouse="True" />
+		<Wall Id="272" Name="Marble Wall (unused)" Color="#FF787F8F" IsHouse="True" />
+		<Wall Id="273" Name="Granite Wall (unused)" Color="#FF0F102D" IsHouse="True" />
 		<Wall Id="274" Name="Craggy Stone Wall" Color="#FF3D3D3D" IsHouse="True" />
 		<Wall Id="275" Name="Sandstone Wall" Color="#FF7E442B" IsHouse="True" />
 		<Wall Id="276" Name="Corrupt Growth Wall" Color="#FF3F2F3F" IsHouse="True" />
