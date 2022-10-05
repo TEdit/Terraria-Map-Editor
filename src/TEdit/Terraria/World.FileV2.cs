@@ -13,14 +13,14 @@ namespace TEdit.Terraria
 {
     public partial class World
     {
-        public static readonly uint CompatibleVersion = 272;
-        public static short TileCount = 693; // updated by json
-        public static short WallCount = 346; // updated by json
+        public static uint CompatibleVersion { get; private set; } = 273;
+        public static short TileCount { get; private set; } = 693; // updated by json
+        public static short WallCount { get; private set; } = 346; // updated by json
 
-        public static short NPCMaxID = 668; // updated by json
+        public static short NPCMaxID { get; private set; } = 668; // updated by json
 
-        public const int MaxChests = 8000;
-        public const int MaxSigns = 1000;
+        public static int MaxChests { get; private set; } = 8000;
+        public static int MaxSigns { get; private set; } = 1000;
 
         public const string DesktopHeader = "relogic";
         public const string AndroidHeader = "xindong";
