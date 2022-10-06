@@ -643,6 +643,18 @@ namespace TEdit.ViewModel
             get { return _viewLogCommand ??= new RelayCommand(ViewLog); }
         }
 
+        public bool RealisticColors
+        {
+            get { return Settings.Default.RealisticColors;}
+            set
+            {
+                RaisePropertyChanged(nameof(RealisticColors), Settings.Default.RealisticColors, value, true);
+                Settings.Default.RealisticColors = value;
+                try { Settings.Default.Save(); } catch (Exception ex) { ErrorLogging.LogException(ex); }
+                MessageBox.Show(Properties.Language.messagebox_restartrequired, Properties.Language.messagebox_restartrequired, MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+        }
+
         public bool CheckUpdates
         {
             get { return _checkUpdates; }

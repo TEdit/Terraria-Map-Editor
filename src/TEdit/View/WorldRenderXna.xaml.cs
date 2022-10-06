@@ -21,6 +21,7 @@ using TEdit.Framework.Events;
 using System.IO;
 using System.Diagnostics;
 using System.Xml.Linq;
+using TEdit.Properties;
 
 namespace TEdit.View
 {
@@ -329,14 +330,14 @@ namespace TEdit.View
             var b2 = new Rectangle(18, 18, 16, 16);
             var b2Wall = new Rectangle(44, 44, 16, 16);
 
-            for (int i = 0; i <= 14; i++)
-            {
-                var liquidTex = (Texture2D)_textureDictionary.GetLiquid(i);
-                TextureToPng(liquidTex, $"textures/Liquid_{i}.png");
+            //for (int i = 0; i <= 14; i++)
+            //{
+            //    var liquidTex = (Texture2D)_textureDictionary.GetLiquid(i);
+            //    TextureToPng(liquidTex, $"textures/Liquid_{i}.png");
 
-                var liquidColor = GetTextureTileColor(liquidTex, liquidTex.Bounds);
-                
-            }
+            //    var liquidColor = GetTextureTileColor(liquidTex, liquidTex.Bounds);
+
+            //}
 
             foreach (var wall in World.WallProperties)
             {
@@ -346,7 +347,7 @@ namespace TEdit.View
                 TextureToPng(wallTex, $"textures/Wall_{wall.Id}.png");
 
                 var wallColor = GetTextureTileColor(wallTex, b2Wall);
-                if (wallColor.A > 0)
+                if (wallColor.A > 0 && Settings.Default.RealisticColors)
                 {
                     wall.Color = wallColor;
                 }
@@ -360,7 +361,7 @@ namespace TEdit.View
                 if (!tile.IsFramed)
                 {
                     var tileColor = GetTextureTileColor(tileTex, b2);
-                    if (tileColor.A > 0)
+                    if (tileColor.A > 0 && Settings.Default.RealisticColors)
                     {
                         tile.Color = tileColor;
                     }
@@ -518,12 +519,16 @@ namespace TEdit.View
 
                             if (hasColorData)
                             {
+                                var styleColor = tile.Color;
 
-                                var styleColor = GetTextureTileColor(texture, texture.Bounds);
-
-                                if (subId == 0)
+                                if (Settings.Default.RealisticColors)
                                 {
-                                    tile.Color = styleColor;
+                                    styleColor = GetTextureTileColor(texture, texture.Bounds);
+
+                                    if (subId == 0)
+                                    {
+                                        tile.Color = styleColor;
+                                    }
                                 }
 
                                 var uv = sprite.SizePixelsInterval * new Vector2Short((short)subX, (short)subY);
