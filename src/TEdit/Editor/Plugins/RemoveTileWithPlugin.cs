@@ -132,7 +132,7 @@ namespace TEdit.Editor.Plugins
             MessageBox.Show(
             ItemsFound + " tiles have been found and removed.",
             "RemoveTileWithPlugin",
-            MessageBoxButton.YesNo,
+            MessageBoxButton.OK,
             MessageBoxImage.Information,
             MessageBoxResult.Yes);
         }
