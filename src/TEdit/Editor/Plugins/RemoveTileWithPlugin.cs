@@ -97,6 +97,7 @@ namespace TEdit.Editor.Plugins
                     // Search for tile match
                     if (tileIds.TryGetValue(curTile.Type, out var foundTileName))
                     {
+                        _wvm.UndoManager.SaveTile(x, y); // Add tile to the undo buffer.
                         _wvm.CurrentWorld.Tiles[x, y].IsActive = false; // Remove tile.
                         _wvm.CurrentWorld.Tiles[x, y].TileColor = 0; // Remove paint.
                         _wvm.UpdateRenderPixel(new Vector2Int32(x, y)); // Update pixel.
@@ -106,6 +107,7 @@ namespace TEdit.Editor.Plugins
                     // Search for sprite tile
                     if (spriteIds.TryGetValue(curTile.Type, out var frameList))
                     {
+                        _wvm.UndoManager.SaveTile(x, y); // Add tile to the undo buffer.
                         _wvm.CurrentWorld.Tiles[x, y].IsActive = false; // Remove tile.
                         _wvm.CurrentWorld.Tiles[x, y].TileColor = 0; // Remove paint.
                         _wvm.UpdateRenderPixel(new Vector2Int32(x, y)); // Update pixel.
@@ -120,6 +122,7 @@ namespace TEdit.Editor.Plugins
                     // Search for wall match
                     if (wallIds.TryGetValue(curTile.Wall, out var foundWallName))
                     {
+                        _wvm.UndoManager.SaveTile(x, y); // Add tile to the undo buffer.
                         _wvm.CurrentWorld.Tiles[x, y].Wall = 0; // Remove wall.
                         _wvm.CurrentWorld.Tiles[x, y].TileColor = 0; // Remove paint.
                         _wvm.UpdateRenderPixel(new Vector2Int32(x, y)); // Update pixel.
@@ -127,6 +130,7 @@ namespace TEdit.Editor.Plugins
                     }
                 }
             }
+            _wvm.UndoManager.SaveUndo(); // Add to the undo buffer.
 
             // Display the total tiles removed.
             MessageBox.Show(
