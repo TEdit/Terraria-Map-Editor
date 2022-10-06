@@ -4,9 +4,9 @@
         xmlns:view="clr-namespace:TEdit.View" SizeToContent="WidthAndHeight"
         Title="FindTileWithPlugin" ResizeMode="NoResize" WindowStartupLocation="CenterOwner" Icon="/TEdit;component/Images/tedit.ico" Height="185">
     <StackPanel Background="{StaticResource ControlBackgroundBrush}" >
-        <TextBlock Text="Enter the name of the block you are looking for." Margin="10 2" TextWrapping="Wrap" HorizontalAlignment="Left" VerticalAlignment="Stretch" Foreground="{StaticResource TextBrush}"/>
+        <TextBlock Text="Enter the name of the block or sprite you're looking for." Margin="10 2" TextWrapping="Wrap" HorizontalAlignment="Left" VerticalAlignment="Stretch" Foreground="{StaticResource TextBrush}"/>
         <TextBox x:Name="BlockLookup"></TextBox>
-        <TextBlock Text="Enter the name of the wall you are looking for." Margin="10 2" TextWrapping="Wrap" HorizontalAlignment="Left" VerticalAlignment="Stretch" Foreground="{StaticResource TextBrush}"/>
+        <TextBlock Text="Enter the name of the wall you're looking for." Margin="10 2" TextWrapping="Wrap" HorizontalAlignment="Left" VerticalAlignment="Stretch" Foreground="{StaticResource TextBrush}"/>
         <TextBox x:Name="WallLookup"></TextBox>
         <TextBlock Text="Enter the max results for the search." Margin="10 2" TextWrapping="Wrap" HorizontalAlignment="Left" VerticalAlignment="Stretch" Foreground="{StaticResource TextBrush}"/>
         <Grid>

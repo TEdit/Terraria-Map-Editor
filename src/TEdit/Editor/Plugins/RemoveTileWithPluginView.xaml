@@ -1,0 +1,20 @@
+﻿<Window x:Class="TEdit.Editor.Plugins.RemoveTileWithPluginView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:view="clr-namespace:TEdit.View" SizeToContent="WidthAndHeight"
+        Title="RemoveTileWithPlugin" ResizeMode="NoResize" WindowStartupLocation="CenterOwner" Icon="/TEdit;component/Images/tedit.ico" Height="142.905">
+    <StackPanel Background="{StaticResource ControlBackgroundBrush}" >
+        <TextBlock Text="Enter the name of the block or sprite you wish to remove." Margin="10 2" TextWrapping="Wrap" HorizontalAlignment="Left" VerticalAlignment="Stretch" Foreground="{StaticResource TextBrush}"/>
+        <TextBox x:Name="BlockRemove"></TextBox>
+        <TextBlock Text="Enter the name of the wall you wish to remove." Margin="10 2" TextWrapping="Wrap" HorizontalAlignment="Left" VerticalAlignment="Stretch" Foreground="{StaticResource TextBrush}"/>
+        <TextBox x:Name="WallRemove"></TextBox>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="74*"/>
+                <ColumnDefinition Width="187*"/>
+            </Grid.ColumnDefinitions>
+            <Button Margin="5,5,0,5" Content="Cancel" HorizontalAlignment="Left" Padding="20, 3" VerticalAlignment="Center" Click="CancelButtonClick" Grid.ColumnSpan="2" />
+            <Button Margin="0,5,5,5" Content="Remove" HorizontalAlignment="Right" Padding="20, 3" VerticalAlignment="Center" Click="RemoveButtonClick" Grid.Column="1" />
+        </Grid>
+    </StackPanel>
+</Window>
