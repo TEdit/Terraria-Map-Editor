@@ -36,12 +36,16 @@
   <ItemGroup>
     <None Remove="Images/**/*" />
     <None Remove="BestiaryData.json" />
+    <None Remove="morphSettings.json" />
     <None Remove="settings.xml" />
     <None Remove="TerrariaVersionTileData.json" />
   </ItemGroup>
 
   <ItemGroup>
     <SplashScreen Include="Images\te4.png" />
+    <Content Include="morphSettings.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="settings.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
