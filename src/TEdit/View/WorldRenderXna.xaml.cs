@@ -224,7 +224,8 @@ namespace TEdit.View
 
             var color = new Color[source.Height * source.Width];
 
-            texture.GetData(0, source, color, 0, color.Length);
+            if (texture.Name != null) // Catch any possible texture errors. 
+                texture.GetData(0, source, color, 0, color.Length);
 
             for (int i = 0; i < color.Length; i++)
             {
