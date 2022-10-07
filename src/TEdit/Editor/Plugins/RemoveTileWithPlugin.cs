@@ -3,29 +3,38 @@ using TEdit.Terraria;
 using TEdit.ViewModel;
 using System;
 using TEdit.Geometry.Primitives;
+using System.Windows;
 
 namespace TEdit.Editor.Plugins
 {
-    public class FindTileWithPlugin : BasePlugin
+    public class RemoveTileWithPlugin : BasePlugin
     {
-        public FindTileWithPlugin(WorldViewModel worldViewModel)
+        public RemoveTileWithPlugin(WorldViewModel worldViewModel)
             : base(worldViewModel)
         {
-            Name = "Find Sprite, Block, or Wall";
+            Name = "Remove Sprite, Block, or Wall";
         }
 
         public override void Execute()
         {
             if (_wvm.CurrentWorld == null) return;
 
-            FindTileWithPluginView view = new FindTileWithPluginView();
+            RemoveTileWithPluginView view = new RemoveTileWithPluginView();
             if (view.ShowDialog() == false)
             {
                 return;
             }
 
-            string blockName = view.BlockToFind.ToLower();
-            string wallName = view.WallToFind.ToLower();
+            if (MessageBox.Show(
+            "This will completely remove any found tiles from your world. Continue?",
+            "RemoveTileWithPlugin",
+            MessageBoxButton.YesNo,
+            MessageBoxImage.Question,
+            MessageBoxResult.Yes) != MessageBoxResult.Yes)
+                return;
+
+            string blockName = view.BlockToRemove.ToLower();
+            string wallName = view.WallToRemove.ToLower();
 
             Dictionary<ushort, string> tileIds = new Dictionary<ushort, string>();
             Dictionary<ushort, Dictionary<Vector2Short, string>> spriteIds = new Dictionary<ushort, Dictionary<Vector2Short, string>>();
@@ -77,38 +86,35 @@ namespace TEdit.Editor.Plugins
                 }
             }
 
-            List<Tuple<string, Vector2>> locations = new List<Tuple<string, Vector2>>();
             int ItemsFound = 0;
-
             for (int x = (_wvm.Selection.IsActive) ? _wvm.Selection.SelectionArea.X : 0; x < ((_wvm.Selection.IsActive) ? _wvm.Selection.SelectionArea.X + _wvm.Selection.SelectionArea.Width : _wvm.CurrentWorld.TilesWide); x++)
             {
                 for (int y = (_wvm.Selection.IsActive) ? _wvm.Selection.SelectionArea.Y : 0; y < ((_wvm.Selection.IsActive) ? _wvm.Selection.SelectionArea.Y + _wvm.Selection.SelectionArea.Height : _wvm.CurrentWorld.TilesHigh); y++)
                 {
-                    if (locations.Count > view.MaxVolumeLimit - 1)
-                    {
-                        locations.Add(new Tuple<string, Vector2>("HALTING! Too Many Entrees!: ", new Vector2(0, 0)));
-                        FindTileLocationResultView resultView0 = new FindTileLocationResultView(locations, ItemsFound + "+");
-                        resultView0.Show();
-                        return;
-                    }
-
                     Tile curTile = _wvm.CurrentWorld.Tiles[x, y];
                     var uv = curTile.GetUV();
 
                     // Search for tile match
                     if (tileIds.TryGetValue(curTile.Type, out var foundTileName))
                     {
-                        locations.Add(new Tuple<string, Vector2>(foundTileName + ": ", new Vector2(x, y)));
+                        _wvm.UndoManager.SaveTile(x, y); // Add tile to the undo buffer.
+                        _wvm.CurrentWorld.Tiles[x, y].IsActive = false; // Remove tile.
+                        _wvm.CurrentWorld.Tiles[x, y].TileColor = 0; // Remove paint.
+                        _wvm.UpdateRenderPixel(new Vector2Int32(x, y)); // Update pixel.
                         ItemsFound++;
                     }
 
                     // Search for sprite tile
                     if (spriteIds.TryGetValue(curTile.Type, out var frameList))
                     {
+                        _wvm.UndoManager.SaveTile(x, y); // Add tile to the undo buffer.
+                        _wvm.CurrentWorld.Tiles[x, y].IsActive = false; // Remove tile.
+                        _wvm.CurrentWorld.Tiles[x, y].TileColor = 0; // Remove paint.
+                        _wvm.UpdateRenderPixel(new Vector2Int32(x, y)); // Update pixel.
+
                         // followed by search frames
                         if (frameList.TryGetValue(uv, out string spriteName))
                         {
-                            locations.Add(new Tuple<string, Vector2>(spriteName + ": ", new Vector2(x, y)));
                             ItemsFound++;
                         }
                     }
@@ -116,15 +122,23 @@ namespace TEdit.Editor.Plugins
                     // Search for wall match
                     if (wallIds.TryGetValue(curTile.Wall, out var foundWallName))
                     {
-                        locations.Add(new Tuple<string, Vector2>(foundWallName + ": ", new Vector2(x, y)));
+                        _wvm.UndoManager.SaveTile(x, y); // Add tile to the undo buffer.
+                        _wvm.CurrentWorld.Tiles[x, y].Wall = 0; // Remove wall.
+                        _wvm.CurrentWorld.Tiles[x, y].TileColor = 0; // Remove paint.
+                        _wvm.UpdateRenderPixel(new Vector2Int32(x, y)); // Update pixel.
                         ItemsFound++;
                     }
                 }
             }
+            _wvm.UndoManager.SaveUndo(); // Add to the undo buffer.
 
-            // show the result view with the list of locations
-            FindTileLocationResultView resultView1 = new FindTileLocationResultView(locations, ItemsFound.ToString());
-            resultView1.Show();
+            // Display the total tiles removed.
+            MessageBox.Show(
+            ItemsFound + " tiles have been found and removed.",
+            "RemoveTileWithPlugin",
+            MessageBoxButton.OK,
+            MessageBoxImage.Information,
+            MessageBoxResult.Yes);
         }
     }
 }
