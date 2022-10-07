@@ -1269,4 +1269,10 @@ Clique em tentar novamente para escolher uma nova pasta ou cancelar para usar {0
   <data name="tool_wp_lanternnight_nextgenuine" xml:space="preserve">
     <value>Noite de Lanterna Em seguida é genuína</value>
   </data>
+  <data name="menu_layers_usetexturecolor" xml:space="preserve">
+    <value>Use cores realistas</value>
+  </data>
+  <data name="messagebox_restartrequired" xml:space="preserve">
+    <value>Reinício necessário</value>
+  </data>
 </root>

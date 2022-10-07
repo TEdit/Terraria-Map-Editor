@@ -1269,4 +1269,10 @@
   <data name="tool_wp_lanternnight_nextgenuine" xml:space="preserve">
     <value>灯笼之夜接下来是真的</value>
   </data>
+  <data name="menu_layers_usetexturecolor" xml:space="preserve">
+    <value>使用逼真的颜色</value>
+  </data>
+  <data name="messagebox_restartrequired" xml:space="preserve">
+    <value>需要重新启动</value>
+  </data>
 </root>

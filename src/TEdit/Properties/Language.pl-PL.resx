@@ -1269,4 +1269,10 @@ Naciśnij spróbuj ponownie aby wybrać nowy folder lub anuluj aby użyć {0} ja
   <data name="tool_wp_lanternnight_nextgenuine" xml:space="preserve">
     <value>Noc Latarni Next jest autentyczna</value>
   </data>
+  <data name="menu_layers_usetexturecolor" xml:space="preserve">
+    <value>Użyj realistycznych kolorów</value>
+  </data>
+  <data name="messagebox_restartrequired" xml:space="preserve">
+    <value>Wymagane ponowne uruchomienie</value>
+  </data>
 </root>

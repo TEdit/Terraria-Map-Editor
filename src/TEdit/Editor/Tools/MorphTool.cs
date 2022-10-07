@@ -8,6 +8,8 @@ using TEdit.Geometry.Primitives;
 using TEdit.ViewModel;
 using System.Linq;
 using TEdit.Terraria.Objects;
+using TEdit.Configuration;
+using TEdit.Terraria;
 
 namespace TEdit.Editor.Tools
 {
@@ -18,29 +20,35 @@ namespace TEdit.Editor.Tools
         private bool _isRightDown;
         private Vector2Int32 _startPoint;
         private Vector2Int32 _endPoint;
+
+        private MorphBiomeData _targetBiome;
+
         private int _dirtLayer;
         private int _rockLayer;
         private int _morphtype;
-        private int[] _wallGrass = {63, 64, 65, 66, 67, 68, 69, 70, 81};
-        private int[] _wallStone = {1, 3, 83, 28};
-        private int[] _wallHardenedSand = {216, 217, 218, 219};
-        private int[] _wallSandstone = {187, 220, 221, 222};
-        private int[] _wallRocks1Natural = {212, 188, 192, 200};
-        private int[] _wallRocks2Natural = {213, 189, 193, 201};
-        private int[] _wallRocks3Natural = {214, 190, 194, 202};
-        private int[] _wallRocks4Natural = {215, 191, 195, 203};
+
+        private int[] _wallGrass = { 63, 64, 65, 66, 67, 68, 69, 70, 81 };
+        private int[] _wallStone = { 1, 3, 83, 28 };
+        private int[] _wallHardenedSand = { 216, 217, 218, 219 };
+        private int[] _wallSandstone = { 187, 220, 221, 222 };
+        private int[] _wallRocks1Natural = { 212, 188, 192, 200 };
+        private int[] _wallRocks2Natural = { 213, 189, 193, 201 };
+        private int[] _wallRocks3Natural = { 214, 190, 194, 202 };
+        private int[] _wallRocks4Natural = { 215, 191, 195, 203 };
         private int[] _wallRocks1 = { 212, 188, 280, 288 };
         private int[] _wallRocks2 = { 213, 189, 281, 289 };
         private int[] _wallRocks3 = { 213, 189, 282, 290 };
         private int[] _wallRocks4 = { 213, 189, 283, 291 };
-        private int[] _tileStone = {1, 25, 203, 117};
-        private int[] _tileGrass = {2, 23, 199, 109};
-        private int[] _tileIce = {161, 163, 200, 164};
-        private int[] _tileSand = {53, 112, 234, 116};
-        private int[] _tileHardenedSand = {397, 398, 399, 402};
-        private int[] _tileSandstone = {396, 400, 401, 403};
-        private int[] _tileMoss = {182, 180, 179, 381, 183, 181};
-        private int[] _tileGrassSprite = {3, 23, 201, 110};
+
+        private int[] _tileStone = { 1, 25, 203, 117 };
+        private int[] _tileGrass = { 2, 23, 199, 109 };
+        private int[] _tileIce = { 161, 163, 200, 164 };
+        private int[] _tileSand = { 53, 112, 234, 116 };
+        private int[] _tileHardenedSand = { 397, 398, 399, 402 };
+        private int[] _tileSandstone = { 396, 400, 401, 403 };
+        private int[] _tileMoss = { 182, 180, 179, 381, 183, 181 };
+
+        private int[] _tileGrassSprite = { 3, 23, 201, 110 };
 
         public MorphTool(WorldViewModel worldViewModel)
             : base(worldViewModel)
@@ -52,9 +60,12 @@ namespace TEdit.Editor.Tools
 
         public override void MouseDown(TileMouseState e)
         {
+            _targetBiome = null;
             if (!_isRightDown && !_isLeftDown)
             {
                 _morphtype = (int)_wvm.MorphBiomeTarget;
+
+                World.MorphSettings.Biomes.TryGetValue(_wvm.MorphBiomeTarget.ToString(), out _targetBiome);
                 _startPoint = e.Location;
                 _dirtLayer = (int)_wvm.CurrentWorld.GroundLevel;
                 _rockLayer = (int)_wvm.CurrentWorld.RockLevel;
@@ -97,32 +108,32 @@ namespace TEdit.Editor.Tools
 
         private void CheckDirectionandDraw(Vector2Int32 tile)
         {
-                Vector2Int32 p = tile;
-                Vector2Int32 p2 = tile;
-                if (_isRightDown)
-                {
-                    if (_isLeftDown)
-                        p.X = _startPoint.X;
-                    else
-                        p.Y = _startPoint.Y;
+            Vector2Int32 p = tile;
+            Vector2Int32 p2 = tile;
+            if (_isRightDown)
+            {
+                if (_isLeftDown)
+                    p.X = _startPoint.X;
+                else
+                    p.Y = _startPoint.Y;
 
+                DrawLine(p);
+                _startPoint = p;
+            }
+            else if (_isLeftDown)
+            {
+                if ((Keyboard.IsKeyUp(Key.LeftShift)) && (Keyboard.IsKeyUp(Key.RightShift)))
+                {
                     DrawLine(p);
                     _startPoint = p;
+                    _endPoint = p;
                 }
-                else if (_isLeftDown)
+                else if ((Keyboard.IsKeyDown(Key.LeftShift)) || (Keyboard.IsKeyDown(Key.RightShift)))
                 {
-                    if ((Keyboard.IsKeyUp(Key.LeftShift)) && (Keyboard.IsKeyUp(Key.RightShift)))
-                    {
-                        DrawLine(p);
-                        _startPoint = p;
-                        _endPoint = p;
-                    }
-                    else if ((Keyboard.IsKeyDown(Key.LeftShift)) || (Keyboard.IsKeyDown(Key.RightShift)))
-                    {
-                        DrawLineP2P(p2);
-                        _endPoint = p2;
-                    }
+                    DrawLineP2P(p2);
+                    _endPoint = p2;
                 }
+            }
         }
 
         private void DrawLine(Vector2Int32 to)
@@ -186,13 +197,25 @@ namespace TEdit.Editor.Tools
 
         private void MorphTile(Vector2Int32 p)
         {
+            if (_targetBiome == null) { return; }
             var curtile = _wvm.CurrentWorld.Tiles[p.X, p.Y];
-            
+
+            MorphLevel level = MorphLevel.Sky;
+            if (p.Y > _rockLayer) { level = MorphLevel.Rock; }
+            else if (p.Y > _dirtLayer) { level = MorphLevel.Dirt; }
+
+            _targetBiome.ApplyMorph(curtile, level);
+        }
+
+        private void MorphTileLegacy(Vector2Int32 p)
+        {
+            var curtile = _wvm.CurrentWorld.Tiles[p.X, p.Y];
+
             if (_wallGrass.Contains(curtile.Wall))
             {
                 if (_morphtype != 0)
                 {
-                    switch(_morphtype)
+                    switch (_morphtype)
                     {
                         case 1:
                             curtile.Wall = 69;
@@ -256,7 +279,7 @@ namespace TEdit.Editor.Tools
                     curtile.Type = (ushort)_tileSandstone[_morphtype];
                 else if (curtile.Type == 32 || curtile.Type == 352)
                 {
-                    switch(_morphtype)
+                    switch (_morphtype)
                     {
                         case 0:
                         case 3:
@@ -273,7 +296,7 @@ namespace TEdit.Editor.Tools
                 }
                 else if (curtile.Type == 52 || curtile.Type == 115 || curtile.Type == 205)
                 {
-                    switch(_morphtype)
+                    switch (_morphtype)
                     {
                         case 0:
                             curtile.Type = 52;
@@ -300,7 +323,7 @@ namespace TEdit.Editor.Tools
                 else if (curtile.Type == 165)
                 {
                     if (54 <= curtile.U && curtile.U <= 90)
-                        switch(_morphtype)
+                        switch (_morphtype)
                         {
                             case 1:
                                 curtile.U += 216;
@@ -313,7 +336,7 @@ namespace TEdit.Editor.Tools
                                 break;
                         }
                     else if (216 <= curtile.U && curtile.U <= 252)
-                        switch(_morphtype)
+                        switch (_morphtype)
                         {
                             case 0:
                                 curtile.U -= 162;
@@ -326,7 +349,7 @@ namespace TEdit.Editor.Tools
                                 break;
                         }
                     else if (270 <= curtile.U && curtile.U <= 306)
-                        switch(_morphtype)
+                        switch (_morphtype)
                         {
                             case 0:
                                 curtile.U -= 216;
@@ -339,7 +362,7 @@ namespace TEdit.Editor.Tools
                                 break;
                         }
                     else if (324 <= curtile.U && curtile.U <= 362)
-                        switch(_morphtype)
+                        switch (_morphtype)
                         {
                             case 0:
                                 curtile.U -= 270;

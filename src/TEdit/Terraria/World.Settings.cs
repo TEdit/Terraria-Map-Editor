@@ -13,6 +13,7 @@ using TEdit.Terraria.Objects;
 using Newtonsoft.Json;
 using TEdit.Configuration;
 using System.Linq;
+using Microsoft.Xna.Framework.Input;
 
 namespace TEdit.Terraria
 {
@@ -26,6 +27,7 @@ namespace TEdit.Terraria
     {
         public static SaveConfiguration SaveConfiguration { get; set; }
         public static BestiaryData BestiaryData { get; set; }
+        public static MorphConfiguration MorphSettings { get; set; }
 
         private static readonly Dictionary<string, XNA.Color> _globalColors = new Dictionary<string, XNA.Color>();
         private static readonly Dictionary<string, int> _npcIds = new Dictionary<string, int>();
@@ -64,13 +66,23 @@ namespace TEdit.Terraria
                 return;
 
             var saveVersionPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "TerrariaVersionTileData.json");
-            LoadSaveVersions(saveVersionPath);
+            SaveConfiguration = SaveConfiguration.LoadJson(saveVersionPath);
 
             var settingspath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "settings.xml");
             LoadObjectDbXml(settingspath);
 
             var bestiaryDataPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "BestiaryData.json");
-            LoadBestiaryData(bestiaryDataPath);
+            BestiaryData = BestiaryData.LoadJson(bestiaryDataPath);
+
+            try
+            {
+                MorphSettings = MorphConfiguration.LoadJson("morphSettings.json");
+
+            }
+            catch (Exception ex)
+            {
+                throw new ApplicationException("Invalid morphSettings.json", ex);
+            }
 
             // Used to dynamically update static CompatibleVersion
             CompatibleVersion = (uint)SaveConfiguration.SaveVersions.Keys.Max();
@@ -185,26 +197,6 @@ namespace TEdit.Terraria
                 }
             }
             return XNA.Color.Magenta;
-        }
-
-        private static void LoadSaveVersions(string fileName)
-        {
-            using (StreamReader file = File.OpenText(fileName))
-            using (JsonTextReader reader = new JsonTextReader(file))
-            {
-                JsonSerializer serializer = new JsonSerializer();
-                SaveConfiguration = serializer.Deserialize<SaveConfiguration>(reader);
-            }
-        }
-
-        private static void LoadBestiaryData(string fileName)
-        {
-            using (StreamReader file = File.OpenText(fileName))
-            using (JsonTextReader reader = new JsonTextReader(file))
-            {
-                JsonSerializer serializer = new JsonSerializer();
-                BestiaryData = serializer.Deserialize<BestiaryData>(reader);
-            }
         }
 
         private static void LoadObjectDbXml(string file)

@@ -1269,4 +1269,10 @@ Press retry to pick a new folder or cancel to use {0} as your terraria path.</va
   <data name="tool_wp_lanternnight_nextgenuine" xml:space="preserve">
     <value>Lantern Night Next Is Genuine</value>
   </data>
+  <data name="menu_layers_usetexturecolor" xml:space="preserve">
+    <value>Use Realistic Colors</value>
+  </data>
+  <data name="messagebox_restartrequired" xml:space="preserve">
+    <value>Restart Required</value>
+  </data>
 </root>

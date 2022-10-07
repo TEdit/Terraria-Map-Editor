@@ -845,6 +845,15 @@ namespace TEdit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Use Realistic Colors.
+        /// </summary>
+        public static string menu_layers_usetexturecolor {
+            get {
+                return ResourceManager.GetString("menu_layers_usetexturecolor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Walls.
         /// </summary>
         public static string menu_layers_walls {
@@ -931,6 +940,15 @@ namespace TEdit.Properties {
         public static string menu_toolbar_zoom_out {
             get {
                 return ResourceManager.GetString("menu_toolbar_zoom_out", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Restart Required.
+        /// </summary>
+        public static string messagebox_restartrequired {
+            get {
+                return ResourceManager.GetString("messagebox_restartrequired", resourceCulture);
             }
         }
         

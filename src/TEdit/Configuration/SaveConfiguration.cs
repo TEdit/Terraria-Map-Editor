@@ -1,18 +1,13 @@
 ﻿using Microsoft.Xna.Framework;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using TEdit.UI.Xaml;
 
 namespace TEdit.Configuration
 {
-    public class BestiaryData
-    {
-        public List<string> BestiaryTalkedIDs { get; set; } = new List<string>();
-        public List<string> BestiaryNearIDs { get; set; } = new List<string>();
-        public List<string> BestiaryKilledIDs { get; set; } = new List<string>();
-    }
-
     public class SaveConfiguration
     {
         public Dictionary<string, uint> GameVersionToSaveVersion { get; set; }
@@ -25,7 +20,7 @@ namespace TEdit.Configuration
 
         public SaveVersionData GetData(int version)
         {
-            int useVersion =  (version > GetMaxVersion()) ? GetMaxVersion() : version;
+            int useVersion = (version > GetMaxVersion()) ? GetMaxVersion() : version;
             if (SaveVersions.TryGetValue(useVersion, out var data))
             {
                 return data;
@@ -51,31 +46,16 @@ namespace TEdit.Configuration
                 throw new ArgumentOutOfRangeException(nameof(version), version, $"Error saving world version {version}: save configuration not found.");
             }
         }
-    }
 
-    public class SaveVersionData
-    {
-        public int SaveVersion { get; set; }
-        public string GameVersion { get; set; }
-        public int MaxTileId { get; set; }
-        public int MaxWallId { get; set; }
-        public int MaxItemId { get; set; }
-        public int MaxNpcId { get; set; }
-        public int MaxMoonId { get; set; }
-        public HashSet<int> FramedTileIds { get; set; }
 
-        public bool[] GetFrames()
+        public static SaveConfiguration LoadJson(string fileName)
         {
-            var frames = FramedTileIds;
-            var tileCount = MaxTileId;
-            bool[] result = new bool[tileCount];
-
-            for (int i = 0; i < tileCount; i++)
+            using (StreamReader file = File.OpenText(fileName))
+            using (JsonTextReader reader = new JsonTextReader(file))
             {
-                if (frames.Contains(i)) { result[i] = true; }
+                JsonSerializer serializer = new JsonSerializer();
+                return serializer.Deserialize<SaveConfiguration>(reader);
             }
-
-            return result;
         }
     }
 }

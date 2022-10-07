@@ -1269,4 +1269,10 @@
   <data name="tool_wp_lanternnight_nextgenuine" xml:space="preserve">
     <value>ليلة الفانوس التالية حقيقية</value>
   </data>
+  <data name="menu_layers_usetexturecolor" xml:space="preserve">
+    <value>استخدام ألوان واقعية</value>
+  </data>
+  <data name="messagebox_restartrequired" xml:space="preserve">
+    <value>إعادة التشغيل مطلوبة</value>
+  </data>
 </root>
