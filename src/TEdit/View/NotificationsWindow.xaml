@@ -37,16 +37,16 @@
                     <Paragraph>Version 4.11</Paragraph>
                     <List>
                         <ListItem>
-                            <Paragraph>File compatibility for worlds up to 1.4.4 - 1.4.4.4</Paragraph>
+                            <Paragraph>File compatibility for worlds up to 1.4.4 - 1.4.4.5</Paragraph>
                     	</ListItem>
                     	<ListItem>
                             <Paragraph>Updated configurations for new items, tiles, walls and NPCs</Paragraph>
                     	</ListItem>
                     	<ListItem>
-                            <Paragraph>New world property items for 1.4.4.x features</Paragraph>
+                            <Paragraph>New world property items for 1.4.5.x features</Paragraph>
                     	</ListItem>
                         <ListItem>
-                            <Paragraph>Updated bestiary to include missing 1.4.4 content</Paragraph>
+                            <Paragraph>Updated bestiary to include missing 1.4.5 content</Paragraph>
                     	</ListItem>
                     </List>
                     
