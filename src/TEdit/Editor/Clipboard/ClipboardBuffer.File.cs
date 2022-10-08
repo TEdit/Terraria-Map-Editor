@@ -34,9 +34,9 @@ namespace TEdit.Editor.Clipboard
 
         private void SaveV1(BinaryWriter bw)
         {
-            var world = ViewModelLocator.WorldViewModel.CurrentWorld;
+            var world = ViewModelLocator.WorldViewModel.CurrentWorld;            
             var version = world?.Version ?? World.CompatibleVersion;
-
+            var saveData = World.SaveConfiguration.GetData(version);
             bw.Write(Name);
             bw.Write(version);
             bw.Write(Size.X);
@@ -51,7 +51,7 @@ namespace TEdit.Editor.Clipboard
                     var curTile = Tiles[x, y];
 
                     var frames = World.SaveConfiguration.GetData((int)version).GetFrames();
-                    World.WriteTileDataToStreamV1(curTile, bw, version, frames);
+                    World.WriteTileDataToStreamV1(curTile, bw, version, frames, saveData.MaxTileId, saveData.MaxWallId);
 
                     int rleTemp = 1;
                     while (y + rleTemp < Size.Y && curTile.Equals(Tiles[x, (y + rleTemp)]))
