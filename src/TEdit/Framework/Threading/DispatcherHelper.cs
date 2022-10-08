@@ -59,7 +59,7 @@ namespace TEdit.MvvmLight.Threading
         /// thread.</param>
         public static void CheckBeginInvokeOnUI(Action action)
         {
-            if (UIDispatcher.CheckAccess())
+            if (UIDispatcher == null || UIDispatcher.CheckAccess() == true)
             {
                 action();
             }
