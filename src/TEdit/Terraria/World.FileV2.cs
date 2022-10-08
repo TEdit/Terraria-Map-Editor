@@ -8,6 +8,7 @@ using System.IO;
 using TEdit.Helper;
 using System.Linq;
 using System.Windows.Documents;
+using static Microsoft.ApplicationInsights.MetricDimensionNames.TelemetryContext;
 
 namespace TEdit.Terraria
 {
@@ -17,7 +18,7 @@ namespace TEdit.Terraria
         public static short TileCount { get; private set; } = 693; // updated by json
         public static short WallCount { get; private set; } = 346; // updated by json
 
-        public static short NPCMaxID { get; private set; } = 668; // updated by json
+        public static short MaxNpcID { get; private set; } = 687; // updated by json
 
         public static int MaxChests { get; private set; } = 8000;
         public static int MaxSigns { get; private set; } = 1000;
@@ -134,7 +135,7 @@ namespace TEdit.Terraria
             if (world.Version >= 189)
             {
                 OnProgressChanged(null, new ProgressChangedEventArgs(97, "Save Town Manager..."));
-                sectionPointers[8] = SaveTownManager(world.PlayerRooms, bw);
+                sectionPointers[8] = SaveTownManager(world.PlayerRooms, bw, (int)world.Version);
             }
 
             if (world.Version >= 210)
@@ -264,7 +265,7 @@ namespace TEdit.Terraria
             // tile data
             debugger?.Write("\"IsActive\": {0},", tile.IsActive);
 
-            if (tile.IsActive && tile.Type < maxTileId && tile.Type != (int)TileType.IceByRod)
+            if (tile.IsActive && tile.Type <= maxTileId && tile.Type != (int)TileType.IceByRod)
             {
                 // activate bit[1]
                 header1 |= 0b_0000_0010;
@@ -525,6 +526,8 @@ namespace TEdit.Terraria
 
         public static int SaveNPCs(World world, BinaryWriter bw, int version)
         {
+            var maxNPC = World.SaveConfiguration.GetData(version).MaxNpcId;
+
             if (world.Version >= 268)
             {
                 bw.Write((int)world.ShimmeredTownNPCs.Count);
@@ -536,6 +539,7 @@ namespace TEdit.Terraria
 
             foreach (NPC npc in world.NPCs)
             {
+                if (npc.SpriteId > maxNPC) { break; }
                 bw.Write(true);
 
                 if (version >= 190)
@@ -571,10 +575,14 @@ namespace TEdit.Terraria
             return (int)bw.BaseStream.Position;
         }
 
-        public static int SaveTownManager(IList<TownManager> rooms, BinaryWriter bw)
+        public static int SaveTownManager(IList<TownManager> rooms, BinaryWriter bw, int version)
         {
-            bw.Write(rooms.Count);
-            foreach (TownManager room in rooms)
+            var maxNPC = World.SaveConfiguration.GetData(version).MaxNpcId;
+
+            var validRoomsForVersion = rooms.Where(r => r.NpcId <= maxNPC).ToList();
+
+            bw.Write(validRoomsForVersion.Count);
+            foreach (TownManager room in validRoomsForVersion)
             {
                 bw.Write(room.NpcId);
                 bw.Write(room.Home.X);
@@ -585,8 +593,12 @@ namespace TEdit.Terraria
 
         public static int SaveMobs(IEnumerable<NPC> mobs, BinaryWriter bw, int version)
         {
+            var maxNPC = World.SaveConfiguration.GetData(version).MaxNpcId;
+
             foreach (NPC mob in mobs)
             {
+                if (mob.SpriteId > maxNPC) { break; }
+
                 bw.Write(true);
                 if (version >= 190)
                 {
@@ -1102,12 +1114,14 @@ namespace TEdit.Terraria
                 return (int)bw.BaseStream.Position;
             }
 
-            bw.Write((short)NPCMaxID);
-            debugger?.WriteLine("\"KillTallyMax\": {0},", NPCMaxID);
+            var maxNPCId = World.SaveConfiguration.GetData(version).MaxNpcId;
+
+            bw.Write((short)(maxNPCId + 1));
+            debugger?.WriteLine("\"KillTallyMax\": {0},", MaxNpcID);
 
             debugger?.Write("\"KillTally\": [");
 
-            for (int i = 0; i < NPCMaxID; i++)
+            for (int i = 0; i <= maxNPCId; i++)
             {
                 if (world.KilledMobs.Count > i)
                 {

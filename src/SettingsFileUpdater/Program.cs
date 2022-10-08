@@ -2,6 +2,7 @@
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Threading;
 
 namespace SettingsFileUpdater
 {
@@ -12,7 +13,10 @@ namespace SettingsFileUpdater
             //LoadTerrariaAsm();
             RegisterAssemblyResolver();
 
+
             LoadTerrariaAsm();
+            Thread.CurrentThread.Name = "Main Thread";
+            Terraria.Program.SavePath = Assembly.GetExecutingAssembly().Location;
             var wrapper = TerrariaHost.TerrariaWrapper.Initialize();
 
 
@@ -53,7 +57,7 @@ namespace SettingsFileUpdater
             // }
 
 
-
+            Console.WriteLine(wrapper.GetMaxCounts());
 
             Console.WriteLine(wrapper.GetTilesXml());
             Console.WriteLine(wrapper.GetWallsXml());

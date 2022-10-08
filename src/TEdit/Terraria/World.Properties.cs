@@ -29,8 +29,8 @@ namespace TEdit.Terraria
         private readonly ObservableCollection<NpcName> _charNames = new ObservableCollection<NpcName>();
         private readonly ObservableCollection<Chest> _chests = new ObservableCollection<Chest>();
         private readonly ObservableCollection<NPC> _npcs = new ObservableCollection<NPC>();
-        private readonly ObservableCollection<int> _shimmeredTownNPCs = new ObservableCollection<int>(Enumerable.Repeat(0, NPCMaxID));
-        private readonly ObservableCollection<int> _killedMobs = new ObservableCollection<int>(Enumerable.Repeat(0, NPCMaxID));
+        private readonly ObservableCollection<int> _shimmeredTownNPCs = new ObservableCollection<int>(Enumerable.Repeat(0, MaxNpcID));
+        private readonly ObservableCollection<int> _killedMobs = new ObservableCollection<int>(Enumerable.Repeat(0, MaxNpcID));
         private readonly ObservableCollection<NPC> _mobs = new ObservableCollection<NPC>();
         private readonly ObservableCollection<Sign> _signs = new ObservableCollection<Sign>();
         private readonly ObservableCollection<TileEntity> _tileEntities = new ObservableCollection<TileEntity>();
