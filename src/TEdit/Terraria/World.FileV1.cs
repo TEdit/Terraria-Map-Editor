@@ -34,10 +34,12 @@ namespace TEdit.Terraria
             bw.Write((int)world.TopWorld);
             bw.Write((int)world.BottomWorld);
             bw.Write(world.TilesHigh);
+            bw.Write(world.TilesWide);
 
             if (version >= 63)
-            bw.Write(world.TilesWide);
+            {
                 bw.Write((byte)world.MoonType);
+            }
 
             if (version >= 44)
             {
@@ -1204,7 +1206,9 @@ namespace TEdit.Terraria
                 tile.Type == (int)TileType.MysticSnakeRope ||
                 tile.Type > byte.MaxValue ||
                 tile.Type > maxTileId)
+            {
                 tile.IsActive = false;
+            }
 
 
             bw.Write(tile.IsActive);
@@ -1703,9 +1707,13 @@ namespace TEdit.Terraria
 
 
             if (version >= 63)
+            {
                 w.MoonType = reader.ReadByte();
+            }
             else
+            {
                 w.MoonType = (byte)w.Rand.Next(MaxMoons);
+            }
 
 
             if (version >= 44)
