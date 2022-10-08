@@ -12,6 +12,7 @@ using Terraria.ObjectData;
 using System.IO;
 using System.Xml.Linq;
 using Terraria.Map;
+using System.Reflection;
 
 namespace SettingsFileUpdater.TerrariaHost
 {
@@ -45,8 +46,7 @@ namespace SettingsFileUpdater.TerrariaHost
     {
         public static TerrariaWrapper Initialize()
         {
-            Thread.CurrentThread.Name = "Main Thread";
-            
+
             TerrariaWrapper.worldName = "world";
             TerrariaWrapper.dedServ = true;
 
@@ -432,6 +432,33 @@ namespace SettingsFileUpdater.TerrariaHost
             output.Append("  </Items>");
 
             return output.ToString();
+        }
+
+        public string GetMaxCounts()
+        {
+            string TileFrameData = "";
+            for (int a = 0; a < Main.tileFrameImportant.Length; a++)
+            {
+                if ((bool)Main.tileFrameImportant[a])
+                {
+                    TileFrameData = TileFrameData + a + ", ";
+                }
+            }
+
+            return string.Join("", new string[]
+            {
+                Environment.NewLine,
+                "    \"" + Main.curRelease + "\": {" + Environment.NewLine,
+                "      \"saveVersion\": " + Main.curRelease + "," + Environment.NewLine,
+                "      \"gameVersion\": \"" + Main.versionNumber + "\"," + Environment.NewLine,
+                "      \"MaxTileId\": " + (Main.maxTileSets) + "," + Environment.NewLine,
+                "      \"MaxWallId\": " + (Main.maxWallTypes - 1) + "," + Environment.NewLine,
+                "      \"MaxItemId\": " + (Main.maxItemTypes - 1) + "," + Environment.NewLine,
+                "      \"MaxNpcId\": " + Main.maxNPCTypes + "," + Environment.NewLine,
+                "      \"maxMoonId\": " + Main.maxMoons + "," + Environment.NewLine,
+                "      \"framedTileIds\": [ " + TileFrameData.Substring(0, TileFrameData.Length - 2) + " ]" + Environment.NewLine,
+                "    },"
+            });
         }
 
         public string GetPrefixesXml()

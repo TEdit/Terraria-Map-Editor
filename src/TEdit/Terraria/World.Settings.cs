@@ -88,7 +88,7 @@ namespace TEdit.Terraria
             CompatibleVersion = (uint)SaveConfiguration.SaveVersions.Keys.Max();
             TileCount = (short)SaveConfiguration.SaveVersions[(int)CompatibleVersion].MaxTileId;
             WallCount = (short)SaveConfiguration.SaveVersions[(int)CompatibleVersion].MaxWallId;
-            NPCMaxID = (short)SaveConfiguration.SaveVersions[(int)CompatibleVersion].MaxNpcId;
+            MaxNpcID = (short)SaveConfiguration.SaveVersions[(int)CompatibleVersion].MaxNpcId;
 
             Sprites.Add(new Sprite());
 

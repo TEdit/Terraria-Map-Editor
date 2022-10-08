@@ -34,9 +34,9 @@ namespace TEdit.Terraria
             bw.Write((int)world.TopWorld);
             bw.Write((int)world.BottomWorld);
             bw.Write(world.TilesHigh);
-            bw.Write(world.TilesWide);
 
             if (version >= 63)
+            bw.Write(world.TilesWide);
                 bw.Write((byte)world.MoonType);
 
             if (version >= 44)
@@ -196,6 +196,7 @@ namespace TEdit.Terraria
                 bw.Write(world.WindSpeedSet);
             }
 
+            var saveData = World.SaveConfiguration.GetData((int)version);
             var frames = SaveConfiguration.GetTileFramesForVersion((int)version);
 
             for (int x = 0; x < world.TilesWide; ++x)
@@ -208,7 +209,7 @@ namespace TEdit.Terraria
                 {
                     Tile curTile = world.Tiles[x, y];
 
-                    WriteTileDataToStreamV1(curTile, bw, world.Version, frames);
+                    WriteTileDataToStreamV1(curTile, bw, world.Version, frames, saveData.MaxTileId, saveData.MaxWallId);
 
                     if (version >= 25)
                     {
@@ -228,7 +229,9 @@ namespace TEdit.Terraria
             OnProgressChanged(null, new ProgressChangedEventArgs(100, "Saving Signs..."));
             WriteSignDataToStreamV1(world.Signs, bw, world.Version);
             OnProgressChanged(null, new ProgressChangedEventArgs(100, "Saving NPC Data..."));
-            foreach (NPC curNpc in world.NPCs)
+
+
+            foreach (NPC curNpc in world.NPCs.Where(n => n.SpriteId <= saveData.MaxNpcId))
             {
                 bw.Write(true);
 
@@ -318,6 +321,8 @@ namespace TEdit.Terraria
         {
             int chestSize = (version < 58) ? 20 : 40;
 
+            var maxItemId = SaveConfiguration.SaveVersions[(int)version].MaxItemId;
+
             for (int i = 0; i < 1000; ++i)
             {
                 if (i >= chests.Count)
@@ -348,7 +353,7 @@ namespace TEdit.Terraria
                     if (item.NetId == 0)
                         item.StackSize = 0;
 
-                    if (item != null && item.NetId <= SaveConfiguration.SaveVersions[(int)version].MaxItemId)
+                    if (item != null && item.NetId <= maxItemId)
                     {
                         if (version < 59)
                         {
@@ -1193,12 +1198,14 @@ namespace TEdit.Terraria
         }
 
 
-        public static void WriteTileDataToStreamV1(Tile tile, BinaryWriter bw, uint version, bool[] frameIds)
+        public static void WriteTileDataToStreamV1(Tile tile, BinaryWriter bw, uint version, bool[] frameIds, int maxTileId, int maxWallId)
         {
             if (tile.Type == (int)TileType.IceByRod ||
                 tile.Type == (int)TileType.MysticSnakeRope ||
-                tile.Type > byte.MaxValue)
+                tile.Type > byte.MaxValue ||
+                tile.Type > maxTileId)
                 tile.IsActive = false;
+
 
             bw.Write(tile.IsActive);
             if (tile.IsActive)
@@ -1239,7 +1246,7 @@ namespace TEdit.Terraria
                 bw.Write(tile.v0_Lit); // legacy hasLight
             }
 
-            if (tile.Wall > 0 && tile.Wall <= byte.MaxValue)
+            if (tile.Wall > 0 && tile.Wall <= byte.MaxValue && tile.Wall <= maxWallId)
             {
                 bw.Write(true);
                 bw.Write((byte)tile.Wall);
