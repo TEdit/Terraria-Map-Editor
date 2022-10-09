@@ -1,6 +1,6 @@
 param(
     [string] $VersionPrefix = "4.11.3",
-    [string] $VersionSuffix = "beta0"
+    [string] $VersionSuffix = "beta2"
 )
 
 $buildArgs = @(
