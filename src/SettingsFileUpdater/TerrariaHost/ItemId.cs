@@ -451,10 +451,10 @@ namespace SettingsFileUpdater.TerrariaHost
                 "    \"" + Main.curRelease + "\": {" + Environment.NewLine,
                 "      \"saveVersion\": " + Main.curRelease + "," + Environment.NewLine,
                 "      \"gameVersion\": \"" + Main.versionNumber + "\"," + Environment.NewLine,
-                "      \"MaxTileId\": " + (Main.maxTileSets) + "," + Environment.NewLine,
+                "      \"MaxTileId\": " + (Main.maxTileSets - 1) + "," + Environment.NewLine,
                 "      \"MaxWallId\": " + (Main.maxWallTypes - 1) + "," + Environment.NewLine,
                 "      \"MaxItemId\": " + (Main.maxItemTypes - 1) + "," + Environment.NewLine,
-                "      \"MaxNpcId\": " + Main.maxNPCTypes + "," + Environment.NewLine,
+                "      \"MaxNpcId\": " + (Main.maxNPCTypes - 1) + "," + Environment.NewLine,
                 "      \"maxMoonId\": " + Main.maxMoons + "," + Environment.NewLine,
                 "      \"framedTileIds\": [ " + TileFrameData.Substring(0, TileFrameData.Length - 2) + " ]" + Environment.NewLine,
                 "    },"
