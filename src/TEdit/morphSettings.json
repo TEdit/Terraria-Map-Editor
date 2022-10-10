@@ -1,3 +1,37 @@
+tileToDo
+	  3
+	 20
+	 24
+	 61
+	 71
+	 73
+	 74
+	 82
+	 83
+	 84
+	110
+	113
+	129
+	185
+	186
+	187
+	201
+	227
+	233
+	236
+	488
+	518
+	519
+	528
+	529
+	530
+	647
+	648
+	649
+	651
+	652
+
+
 {
   "biomes": {
 	"Purify": {
@@ -19,7 +53,7 @@
 		},
 		{
 		  "name": "tileJungleGrass",
-		  "sourceIds": [ 60, 70, 71, 661, 662 ],
+		  "sourceIds": [ 60, 70, 661, 662 ],
 		  "skyLevelTargetId": 60,
 		  "dirtLevelTargetId": 60,
 		  "rockLevelTargetId": 60
@@ -28,7 +62,28 @@
 		  "name": "tileGrassSprites",
 		  "sourceIds": [ 24, 201, 110, 113 ],
 		  "delete": true
+	#	  "random": true, exclude 8, 8, 15
 		},
+	#	{
+	#	  "name": "tileMushroom",
+	#	  "sourceIds": [ 3, 24, 201 ],
+	#	  "skyLevelTargetId": 3,
+	#	  "dirtLevelTargetId": 3,
+	#	  "rockLevelTargetId": 3,
+	#	  "spriteOffsets": [
+	#		{
+	#		  "name": "VileMushroom"
+	#		  "minU": 8,
+	#		  "maxU": 8,
+	#		  "offsetU": 0
+	#		},
+	#		{
+	#		  "name": "ViciousMushroom"
+	#		  "minU": 15,
+	#		  "maxU": 15,
+	#		  "offsetU": 0
+	#		}
+	#	},
 		{
 		  "name": "tileStone",
 		  "sourceIds": [ 1, 25, 203, 117 ],
@@ -64,50 +119,86 @@
 		  "dirtLevelTargetId": 396,
 		  "rockLevelTargetId": 396
 		},
-		{
-		  "name": "caveDeco",
-		  "sourceIds": [ 165 ],
-		  "skyLevelTargetId": 165,
-		  "dirtLevelTargetId": 165,
-		  "rockLevelTargetId": 165,
-		  "spriteOffsets": [
-			{
-			  "minU": 54,
-			  "maxU": 90,
-			  "offsetU": 0
-			},
-			{
-			  "minU": 216,
-			  "maxU": 252,
-			  "offsetU": -162
-			},
-			{
-			  "minU": 270,
-			  "maxU": 306,
-			  "offsetU": -216
-			},
-			{
-			  "minU": 324,
-			  "maxU": 362,
-			  "offsetU": -270
-			}
-		  ]
-		},
+	#	{
+	#	"name": "caveDecoSpikes",
+	#	  "sourceIds": [ 165 ],
+	#	  "skyLevelTargetId": 165,
+	#	  "dirtLevelTargetId": 165,
+	#	  "rockLevelTargetId": 165,
+	#	  "spriteOffsets": [
+	#		{
+	#		  "name": "Ice"
+	#		  "minU": 0,
+	#		  "maxU": 2,
+	#		  "offsetU": 0
+	#		},
+	#		{
+	#		  "name": "Stone"
+	#		  "minU": 3,
+	#		  "maxU": 5,
+	#		  "offsetU": 0
+	#		},
+	#		{
+	#		  "name": "StoneHallow"
+	#		  "minU": 9,
+	#		  "maxU": 11,
+	#		  "offsetU": -6
+	#		},
+	#		{
+	#		  "name": "StoneCorruption"
+	#		  "minU": 12,
+	#		  "maxU": 14,
+	#		  "offsetU": -9
+	#		},
+	#		{
+	#		  "name": "StoneCrimson"
+	#		  "minU": 15,
+	#		  "maxU": 17,
+	#		  "offsetU": -12
+	#		},
+	#		{
+	#		  "name": "StoneDesert"
+	#		  "minU": 18,
+	#		  "maxU": 20,
+	#		  "offsetU": 0
+	#		},
+	#		{
+	#		  "name": "IceHallow"
+	#		  "minU": 27,
+	#		  "maxU": 29,
+	#		  "offsetU": -27
+	#		},
+	#		{
+	#		  "name": "IceCorruption"
+	#		  "minU": 30,
+	#		  "maxU": 32,
+	#		  "offsetU": -30
+	#		},
+	#		{
+	#		  "name": "IceCrimson"
+	#		  "minU": 33,
+	#		  "maxU": 35,
+	#		  "offsetU": -33
+	#		}
+	#	  ]
+	#	},
 		{
 		  "name": "vines",
-		  "sourceIds": [ 52, 115, 205, 528, 636 ],
+		  "sourceIds": [ 52, 115, 205, 636 ],
 		  "skyLevelTargetId": 52,
 		  "dirtLevelTargetId": 52,
 		  "rockLevelTargetId": 52
 		},
 		{
-		  "name": "removeCorruptThorns",
-		  "sourceIds": [ 32 ],
-		  "delete": true
+		  "name": "vines",
+		  "sourceIds": [ 528 ],
+		  "skyLevelTargetId": 62,
+		  "dirtLevelTargetId": 62,
+		  "rockLevelTargetId": 62
 		},
 		{
-		  "name": "removeCrimsonThorns",
-		  "sourceIds": [ 352 ],
+		  "name": "Thorns",
+		  "sourceIds": [ 32, 352 ],
 		  "delete": true
 		}
 	  ],
@@ -262,6 +353,26 @@
 		  "sourceIds": [ 3, 73, 61, 74, 201, 110, 113 ],
 		  "delete": true
 		},
+	#	{
+	#	  "name": "tileMushroom",
+	#	  "sourceIds": [ 3, 24, 201 ],
+	#	  "skyLevelTargetId": 24,
+	#	  "dirtLevelTargetId": 24,
+	#	  "rockLevelTargetId": 24,
+	#	  "spriteOffsets": [
+	#		{
+	#		  "name": "Mushroom"
+	#		  "minU": 8,
+	#		  "maxU": 8,
+	#		  "offsetU": 0
+	#		},
+	#		{
+	#		  "name": "ViciousMushroom"
+	#		  "minU": 15,
+	#		  "maxU": 15,
+	#		  "offsetU": 0
+	#		}
+	#	},
 		{
 		  "name": "tileStone",
 		  "sourceIds": [ 1, 25, 203, 117, 179, 180, 181, 182, 183, 381, 534, 536, 539, 625, 627 ],
@@ -302,45 +413,30 @@
 		  "dirtLevelTargetId": 400,
 		  "rockLevelTargetId": 400
 		},
-		{
-		  "name": "caveDeco",
-		  "sourceIds": [ 165 ],
-		  "skyLevelTargetId": 165,
-		  "dirtLevelTargetId": 165,
-		  "rockLevelTargetId": 165,
-		  "spriteOffsets": [
-			{
-			  "minU": 54,
-			  "maxU": 90,
-			  "offsetU": 216
-			},
-			{
-			  "minU": 216,
-			  "maxU": 252,
-			  "offsetU": 54
-			},
-			{
-			  "minU": 270,
-			  "maxU": 306,
-			  "offsetU": 0
-			},
-			{
-			  "minU": 324,
-			  "maxU": 362,
-			  "offsetU": -270
-			}
-		  ]
-		},
+	#	{
+	#	  "name": "caveDeco",
+	#	  "sourceIds": [ 165 ],
+	#	  "skyLevelTargetId": 165,
+	#	  "dirtLevelTargetId": 165,
+	#	  "rockLevelTargetId": 165,
+	#	  "spriteOffsets": [
+	#		{
+	#		  "minU": 
+	#		  "maxU": 
+	#		  "offsetU": 
+	#		}
+	#	  ]
+	#	},
 		{
 		  "name": "vines",
-		  "sourceIds": [ 52, 115, 205, 528, 636 ],
+		  "sourceIds": [ 52, 62, 115, 205, 636 ],
 		  "skyLevelTargetId": 636,
 		  "dirtLevelTargetId": 636,
 		  "rockLevelTargetId": 636
 		},
 		{
-		  "name": "removeCrimsonThorns",
-		  "sourceIds": [ 352 ],
+		  "name": "Thorns",
+		  "sourceIds": [ 69, 352 ],
 		  "skyLevelTargetId": 32,
 		  "dirtLevelTargetId": 32,
 		  "rockLevelTargetId": 32
@@ -484,6 +580,26 @@
 		  "sourceIds": [ 3, 73, 61, 74, 24, 110, 113 ],
 		  "delete": true
 		},
+	#	{
+	#	  "name": "tileMushroom",
+	#	  "sourceIds": [ 3, 24, 201 ],
+	#	  "skyLevelTargetId": 3,
+	#	  "dirtLevelTargetId": 3,
+	#	  "rockLevelTargetId": 3,
+	#	  "spriteOffsets": [
+	#		{
+	#		  "name": "Mushroom"
+	#		  "minU": 8,
+	#		  "maxU": 8,
+	#		  "offsetU": 0
+	#		},
+	#		{
+	#		  "name": "VileMushroom"
+	#		  "minU": 8,
+	#		  "maxU": 8,
+	#		  "offsetU": 0
+	#		}
+	#	},
 		{
 		  "name": "tileStone",
 		  "sourceIds": [ 1, 25, 203, 117, 179, 180, 181, 182, 183, 381, 534, 536, 539, 625, 627 ],
@@ -524,45 +640,30 @@
 		  "dirtLevelTargetId": 401,
 		  "rockLevelTargetId": 401
 		},
-		{
-		  "name": "caveDeco",
-		  "sourceIds": [ 165 ],
-		  "skyLevelTargetId": 165,
-		  "dirtLevelTargetId": 165,
-		  "rockLevelTargetId": 165,
-		  "spriteOffsets": [
-			{
-			  "minU": 54,
-			  "maxU": 90,
-			  "offsetU": 270
-			},
-			{
-			  "minU": 216,
-			  "maxU": 252,
-			  "offsetU": 108
-			},
-			{
-			  "minU": 270,
-			  "maxU": 306,
-			  "offsetU": 54
-			},
-			{
-			  "minU": 324,
-			  "maxU": 362,
-			  "offsetU": 0
-			}
-		  ]
-		},
+	#	{
+	#	  "name": "caveDeco",
+	#	  "sourceIds": [ 165 ],
+	#	  "skyLevelTargetId": 165,
+	#	  "dirtLevelTargetId": 165,
+	#	  "rockLevelTargetId": 165,
+	#	  "spriteOffsets": [
+	#		{
+	#		  "minU": 
+	#		  "maxU": 
+	#		  "offsetU": 
+	#		}
+	#	  ]
+	#	},
 		{
 		  "name": "vines",
-		  "sourceIds": [ 52, 115, 205, 528, 636 ],
+		  "sourceIds": [ 52, 62, 115, 205, 636 ],
 		  "skyLevelTargetId": 205,
 		  "dirtLevelTargetId": 205,
 		  "rockLevelTargetId": 205
 		},
 		{
-		  "name": "removeCorruptThorns",
-		  "sourceIds": [ 32 ],
+		  "name": "Thorns",
+		  "sourceIds": [ 69, 32 ],
 		  "skyLevelTargetId": 352,
 		  "dirtLevelTargetId": 352,
 		  "rockLevelTargetId": 352
@@ -698,6 +799,26 @@
 		  "sourceIds": [ 3, 73, 24, 201 ],
 		  "delete": true
 		},
+	#	{
+	#	  "name": "tileMushroom",
+	#	  "sourceIds": [ 3, 24, 201 ],
+	#	  "skyLevelTargetId": 3,
+	#	  "dirtLevelTargetId": 3,
+	#	  "rockLevelTargetId": 3,
+	#	  "spriteOffsets": [
+	#		{
+	#		  "name": "VileMushroom"
+	#		  "minU": 8,
+	#		  "maxU": 8,
+	#		  "offsetU": 0
+	#		},
+	#		{
+	#		  "name": "ViciousMushroom"
+	#		  "minU": 15,
+	#		  "maxU": 15,
+	#		  "offsetU": 0
+	#		}
+	#	},
 		{
 		  "name": "tileStone",
 		  "sourceIds": [ 1, 25, 203, 117, 179, 180, 181, 182, 183, 381, 534, 536, 539, 625, 627 ],
@@ -738,50 +859,30 @@
 		  "dirtLevelTargetId": 403,
 		  "rockLevelTargetId": 403
 		},
-		{
-		  "name": "caveDeco",
-		  "sourceIds": [ 165 ],
-		  "skyLevelTargetId": 165,
-		  "dirtLevelTargetId": 165,
-		  "rockLevelTargetId": 165,
-		  "spriteOffsets": [
-			{
-			  "minU": 54,
-			  "maxU": 90,
-			  "offsetU": 162
-			},
-			{
-			  "minU": 216,
-			  "maxU": 252,
-			  "offsetU": 0
-			},
-			{
-			  "minU": 270,
-			  "maxU": 306,
-			  "offsetU": -54
-			},
-			{
-			  "minU": 324,
-			  "maxU": 362,
-			  "offsetU": -108
-			}
-		  ]
-		},
+	#	{
+	#	  "name": "caveDeco",
+	#	  "sourceIds": [ 165 ],
+	#	  "skyLevelTargetId": 165,
+	#	  "dirtLevelTargetId": 165,
+	#	  "rockLevelTargetId": 165,
+	#	  "spriteOffsets": [
+	#		{
+	#		  "minU": 
+	#		  "maxU": 
+	#		  "offsetU": 
+	#		}
+	#	  ]
+	#	},
 		{
 		  "name": "vines",
-		  "sourceIds": [ 52, 115, 205, 528, 636 ],
+		  "sourceIds": [ 52, 62, 115, 205, 636 ],
 		  "skyLevelTargetId": 115,
 		  "dirtLevelTargetId": 115,
 		  "rockLevelTargetId": 115
 		},
 		{
-		  "name": "removeCorruptThorns",
-		  "sourceIds": [ 32 ],
-		  "delete": true
-		},
-		{
-		  "name": "removeCrimsonThorns",
-		  "sourceIds": [ 352 ],
+		  "name": "Thorns",
+		  "sourceIds": [ 32, 352 ],
 		  "delete": true
 		}
 	  ],
