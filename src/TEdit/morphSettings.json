@@ -19,7 +19,7 @@
 		},
 		{
 		  "name": "tileJungleGrass",
-		  "sourceIds": [ 60, 70, 71, 661, 662 ],
+		  "sourceIds": [ 60, 70, 661, 662 ],
 		  "skyLevelTargetId": 60,
 		  "dirtLevelTargetId": 60,
 		  "rockLevelTargetId": 60
