@@ -16,7 +16,7 @@ namespace TEdit.Configuration
         public bool[] GetFrames()
         {
             var frames = FramedTileIds;
-            var tileCount = MaxTileId;
+            var tileCount = MaxTileId + 1;
             bool[] result = new bool[tileCount];
 
             for (int i = 0; i < tileCount; i++)

@@ -94,8 +94,8 @@ namespace TEdit.Terraria
 
             if (SettingsTileFrameImportant == null || SettingsTileFrameImportant.Length <= 0)
             {
-                SettingsTileFrameImportant = new bool[TileCount];
-                for (int i = 0; i < TileCount; i++)
+                SettingsTileFrameImportant = new bool[TileCount + 1];
+                for (int i = 0; i <= TileCount; i++)
                 {
                     if (TileProperties.Count > i)
                     {
