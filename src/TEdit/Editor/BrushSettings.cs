@@ -7,8 +7,8 @@ namespace TEdit.Editor
     public class BrushSettings : ObservableObject
     {
         private int _maxOutline = 10;
-        private int _maxHeight = 200;
-        private int _maxWidth = 200;
+        private int _maxHeight = 400;
+        private int _maxWidth = 400;
         private int _minOutline = 1;
         private int _minHeight = 1;
         private int _minWidth = 1;
