@@ -7,7 +7,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         mc:Ignorable="d" 
         xmlns:p="clr-namespace:TEdit.Properties"
-        d:Width="300"
+        d:Width="350"
         Background="{StaticResource ControlBackgroundBrush}"
         d:DataContext="{d:DesignInstance Type=viewModel:BestiaryViewModel}">
 
@@ -31,17 +31,17 @@
             <ListView.View>
                 <GridView>
 
-                    <GridViewColumn Width="140" Header="{x:Static p:Language.bestiary_name}" DisplayMemberBinding="{Binding Name}"  />
+                    <GridViewColumn Width="170" Header="{x:Static p:Language.bestiary_name}" DisplayMemberBinding="{Binding Name}"  />
 
                     <GridViewColumn Header="{x:Static p:Language.bestiary_defeated}">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <TextBox Width="40" Text="{Binding Defeated}" Visibility="{Binding Path=CanKill, Converter={StaticResource BoolToVis}}"/>
+                                <TextBox Width="60" Text="{Binding Defeated}" Visibility="{Binding Path=CanKill, Converter={StaticResource BoolToVis}}"/>
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
 
-                    <GridViewColumn Header="{x:Static p:Language.bestiary_near}" Width="40">
+                    <GridViewColumn Header="{x:Static p:Language.bestiary_near}" Width="60">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <CheckBox IsChecked="{Binding Near}" Visibility="{Binding Path=CanNear, Converter={StaticResource BoolToVis}}"/>
@@ -49,7 +49,7 @@
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
 
-                    <GridViewColumn Header="{x:Static p:Language.bestiary_chat}" Width="40">
+                    <GridViewColumn Header="{x:Static p:Language.bestiary_chat}" Width="60">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <CheckBox IsChecked="{Binding Talked}" Visibility="{Binding Path=CanTalk, Converter={StaticResource BoolToVis}}"/>
