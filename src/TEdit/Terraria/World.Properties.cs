@@ -66,7 +66,6 @@ namespace TEdit.Terraria
         public int[] CaveBackX = new int[4];
         public uint Version;
         private int _tileEntitiesNumber;
-        private int _numberOfMobs;
         private int _altarCount;
         private int _anglerQuest;
         private int _iceBackStyle;
@@ -336,12 +335,6 @@ namespace TEdit.Terraria
         {
             get { return _tileEntitiesNumber; }
             set { Set(nameof(TileEntitiesNumber), ref _tileEntitiesNumber, value); }
-        }
-
-        public int NumberOfMobs
-        {
-            get { return _numberOfMobs; }
-            set { Set(nameof(NumberOfMobs), ref _numberOfMobs, value); }
         }
 
         public double SlimeRainTime

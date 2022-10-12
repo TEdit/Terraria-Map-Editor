@@ -1115,12 +1115,9 @@ namespace TEdit.Terraria
             }
 
             var maxNPCId = World.SaveConfiguration.GetData(version).MaxNpcId;
-
-            bw.Write((short)(maxNPCId + 1));
             debugger?.WriteLine("\"KillTallyMax\": {0},", MaxNpcID);
-
+            bw.Write((short)(maxNPCId + 1));
             debugger?.Write("\"KillTally\": [");
-
             for (int i = 0; i <= maxNPCId; i++)
             {
                 if (world.KilledMobs.Count > i)
@@ -2225,15 +2222,22 @@ namespace TEdit.Terraria
 
             if (w.Version < 109) { return; }
 
+            var versionMaxNPCId = World.SaveConfiguration.GetData(w.Version).MaxNpcId;
+            var maxNpcId = World.SaveConfiguration.GetData(World.SaveConfiguration.GetMaxVersion()).MaxNpcId;
             int numberOfMobs = r.ReadInt16();
-            w.NumberOfMobs = numberOfMobs;
-            for (int counter = 0; counter < numberOfMobs; counter++)
+            w.KilledMobs.Clear();
+            for (int counter = 0; counter <= maxNpcId; counter++)
             {
-                if (counter < 663)
-                    w.KilledMobs.Add(r.ReadInt32());
+                if (counter < numberOfMobs)
+                {
+                    w.KilledMobs.Add(r.ReadInt32()); // read all of them
+                }
                 else
-                    r.ReadInt32();
+                {
+                    w.KilledMobs.Add(0); // fill with 0s to max version npc id
+                }
             }
+
 
             if (w.Version < 128) { return; }
 
