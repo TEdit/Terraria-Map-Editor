@@ -139,7 +139,9 @@ namespace TEdit.ViewModel
 
                 foreach (string line in World.BestiaryData.BestiaryKilledIDs)
                 {
-                    bestiaryEdits.NPCKills[line] = 50;
+                    // Prevent writing to values already 50 or over.
+                    _wvm.CurrentWorld.Bestiary.NPCKills.TryGetValue(line, out var kills);
+                    bestiaryEdits.NPCKills[line] = (kills < 50) ? 50 : kills;
                 }
                 foreach (string line in World.BestiaryData.BestiaryTalkedIDs)
                 {
