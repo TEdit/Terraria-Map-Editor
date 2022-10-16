@@ -113,6 +113,11 @@
 		  "name": "spriteThorns",
 		  "sourceIds": [ 32, 352 ],
 		  "delete": true
+		},
+		{
+		  "name": "spriteLilyPad",
+		  "sourceIds": [ 518 ],
+		  "delete": true
 		}
 	  ],
 	  "morphWalls": [
@@ -299,8 +304,13 @@
 	  ],
 	  "morphSprites": [
 		{
+		  "name": "spriteSunflower",
+		  "sourceIds": [ 27 ],
+		  "delete": true
+		},
+		{
 		  "name": "spriteGrass",
-		  "sourceIds": [ 3, 73, 61, 74, 201, 110, 113 ],
+		  "sourceIds": [ 3, 73, 61, 74, 233, 201, 110, 113 ],
 		  "delete": true
 		},
 		{
@@ -350,6 +360,36 @@
 		  "skyLevelTargetId": 32,
 		  "dirtLevelTargetId": 32,
 		  "rockLevelTargetId": 32
+		},
+		{
+		  "name": "spritePumpkin",
+		  "sourceIds": [ 251 ],
+		  "delete": true
+		},
+		{
+		  "name": "spriteLifeFruit",
+		  "sourceIds": [ 236 ],
+		  "delete": true
+		},
+		{
+		  "name": "spritePlanteraBulb",
+		  "sourceIds": [ 238 ],
+		  "delete": true
+		},
+		{
+		  "name": "spriteFallenLog",
+		  "sourceIds": [ 488 ],
+		  "delete": true
+		},
+		{
+		  "name": "spriteLilyPad",
+		  "sourceIds": [ 518 ],
+		  "delete": true
+		},
+		{
+		  "name": "spriteBamboo",
+		  "sourceIds": [ 571 ],
+		  "delete": true
 		}
 	  ],
 	  "morphWalls": [
@@ -522,8 +562,13 @@
 	],
 	  "morphSprites": [
 		{
+		  "name": "spriteSunflower",
+		  "sourceIds": [ 27 ],
+		  "delete": true
+		},
+		{
 		  "name": "spriteGrass",
-		  "sourceIds": [ 3, 73, 61, 74, 24, 110, 113 ],
+		  "sourceIds": [ 3, 73, 61, 74, 233, 24, 110, 113 ],
 		  "delete": true
 		},
 		{
@@ -573,6 +618,36 @@
 		  "skyLevelTargetId": 352,
 		  "dirtLevelTargetId": 352,
 		  "rockLevelTargetId": 352
+		},
+		{
+		  "name": "spriteLifeFruit",
+		  "sourceIds": [ 236 ],
+		  "delete": true
+		},
+		{
+		  "name": "spritePlanteraBulb",
+		  "sourceIds": [ 238 ],
+		  "delete": true
+		},
+		{
+		  "name": "spritePumpkin",
+		  "sourceIds": [ 251 ],
+		  "delete": true
+		},
+		{
+		  "name": "spriteFallenLog",
+		  "sourceIds": [ 488 ],
+		  "delete": true
+		},
+		{
+		  "name": "spriteLilyPad",
+		  "sourceIds": [ 518 ],
+		  "delete": true
+		},
+		{
+		  "name": "spriteBamboo",
+		  "sourceIds": [ 571 ],
+		  "delete": true
 		}
 	  ],
 	  "morphWalls": [
@@ -787,6 +862,11 @@
 		"name": "spriteThorns",
 		"sourceIds": [ 32, 352 ],
 		"delete": true
+		},
+		{
+		  "name": "spriteLilyPad",
+		  "sourceIds": [ 518 ],
+		  "delete": true
 		}
 	  ],
 	  "morphWalls": [
@@ -931,6 +1011,26 @@
 		{
 		  "name": "spriteThorns",
 		  "sourceIds": [ 69, 655 ],
+		  "delete": true
+		},
+		{
+		  "name": "spriteLifeFruit",
+		  "sourceIds": [ 236 ],
+		  "delete": true
+		},
+		{
+		  "name": "spritePlanteraBulb",
+		  "sourceIds": [ 238 ],
+		  "delete": true
+		},
+		{
+		  "name": "spriteLilyPad",
+		  "sourceIds": [ 518 ],
+		  "delete": true
+		},
+		{
+		  "name": "spriteBamboo",
+		  "sourceIds": [ 571 ],
 		  "delete": true
 		}
 	  ],
