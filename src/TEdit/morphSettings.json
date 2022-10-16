@@ -25,11 +25,6 @@
 		  "rockLevelTargetId": 60
 		},
 		{
-		  "name": "tileGrassSprites",
-		  "sourceIds": [ 24, 201, 110, 113 ],
-		  "delete": true
-		},
-		{
 		  "name": "tileStone",
 		  "sourceIds": [ 1, 25, 203, 117 ],
 		  "skyLevelTargetId": 1,
@@ -63,6 +58,13 @@
 		  "skyLevelTargetId": 396,
 		  "dirtLevelTargetId": 396,
 		  "rockLevelTargetId": 396
+		}
+	  ],
+	  "morphSprites": [
+	    {
+		  "name": "spriteGrass",
+		  "sourceIds": [ 71, 24, 201, 110, 113 ],
+		  "delete": true
 		},
 		{
 		  "name": "caveDeco",
@@ -94,20 +96,22 @@
 		  ]
 		},
 		{
-		  "name": "vines",
-		  "sourceIds": [ 52, 115, 205, 528, 636 ],
+		  "name": "spriteVines",
+		  "sourceIds": [ 52, 636, 205, 115 ],
 		  "skyLevelTargetId": 52,
 		  "dirtLevelTargetId": 52,
 		  "rockLevelTargetId": 52
 		},
 		{
-		  "name": "removeCorruptThorns",
-		  "sourceIds": [ 32 ],
-		  "delete": true
+		  "name": "spriteJungleVines",
+		  "sourceIds": [ 62, 528 ],
+		  "skyLevelTargetId": 62,
+		  "dirtLevelTargetId": 62,
+		  "rockLevelTargetId": 62
 		},
 		{
-		  "name": "removeCrimsonThorns",
-		  "sourceIds": [ 352 ],
+		  "name": "spriteThorns",
+		  "sourceIds": [ 32, 352 ],
 		  "delete": true
 		}
 	  ],
@@ -127,14 +131,14 @@
 		  "rockLevelTargetId": 66
 		},
 		{
-		  "name": "wallMushroomNatural",
+		  "name": "wallMudNatural",
 		  "sourceIds": [ 15, 80 ],
 		  "skyLevelTargetId": 15,
 		  "dirtLevelTargetId": 15,
 		  "rockLevelTargetId": 15
 		},
 		{
-		  "name": "wallMushroom",
+		  "name": "wallMud",
 		  "sourceIds": [ 247, 74 ],
 		  "skyLevelTargetId": 247,
 		  "dirtLevelTargetId": 247,
@@ -258,21 +262,11 @@
 		  "rockLevelTargetId": 661
 		},
 		{
-		  "name": "tileGrassSprites",
-		  "sourceIds": [ 3, 73, 61, 74, 201, 110, 113 ],
-		  "delete": true
-		},
-		{
 		  "name": "tileStone",
 		  "sourceIds": [ 1, 25, 203, 117, 179, 180, 181, 182, 183, 381, 534, 536, 539, 625, 627 ],
 		  "skyLevelTargetId": 25,
 		  "dirtLevelTargetId": 25,
 		  "rockLevelTargetId": 25
-		},
-		{
-		  "name": "tileMossSprites",
-		  "sourceIds": [ 184 ],
-		  "delete": true
 		},
 		{
 		  "name": "tileIce",
@@ -301,6 +295,18 @@
 		  "skyLevelTargetId": 400,
 		  "dirtLevelTargetId": 400,
 		  "rockLevelTargetId": 400
+		}
+	  ],
+	  "morphSprites": [
+		{
+		  "name": "spriteGrass",
+		  "sourceIds": [ 3, 73, 61, 74, 201, 110, 113 ],
+		  "delete": true
+		},
+		{
+		  "name": "spriteMoss",
+		  "sourceIds": [ 184 ],
+		  "delete": true
 		},
 		{
 		  "name": "caveDeco",
@@ -332,19 +338,18 @@
 		  ]
 		},
 		{
-		  "name": "vines",
-		  "sourceIds": [ 52, 115, 205, 528, 636 ],
+		  "name": "spriteVines",
+		  "sourceIds": [ 52, 382, 62, 636, 205, 115 ],
 		  "skyLevelTargetId": 636,
 		  "dirtLevelTargetId": 636,
 		  "rockLevelTargetId": 636
 		},
 		{
-		  "name": "removeCrimsonThorns",
-		  "sourceIds": [ 352 ],
+		  "name": "spriteThorns",
+		  "sourceIds": [ 69, 352 ],
 		  "skyLevelTargetId": 32,
 		  "dirtLevelTargetId": 32,
 		  "rockLevelTargetId": 32
-
 		}
 	  ],
 	  "morphWalls": [
@@ -480,21 +485,11 @@
 		  "rockLevelTargetId": 662
 		},
 		{
-		  "name": "tileGrassSprites",
-		  "sourceIds": [ 3, 73, 61, 74, 24, 110, 113 ],
-		  "delete": true
-		},
-		{
 		  "name": "tileStone",
 		  "sourceIds": [ 1, 25, 203, 117, 179, 180, 181, 182, 183, 381, 534, 536, 539, 625, 627 ],
 		  "skyLevelTargetId": 203,
 		  "dirtLevelTargetId": 203,
 		  "rockLevelTargetId": 203
-		},
-		{
-		  "name": "tileMossSprites",
-		  "sourceIds": [ 184 ],
-		  "delete": true
 		},
 		{
 		  "name": "tileIce",
@@ -523,6 +518,18 @@
 		  "skyLevelTargetId": 401,
 		  "dirtLevelTargetId": 401,
 		  "rockLevelTargetId": 401
+		}
+	],
+	  "morphSprites": [
+		{
+		  "name": "spriteGrass",
+		  "sourceIds": [ 3, 73, 61, 74, 24, 110, 113 ],
+		  "delete": true
+		},
+		{
+		  "name": "tileMossSprites",
+		  "sourceIds": [ 184 ],
+		  "delete": true
 		},
 		{
 		  "name": "caveDeco",
@@ -554,15 +561,15 @@
 		  ]
 		},
 		{
-		  "name": "vines",
-		  "sourceIds": [ 52, 115, 205, 528, 636 ],
+		  "name": "spriteVines",
+		  "sourceIds": [ 52, 382, 62, 636, 205, 115 ],
 		  "skyLevelTargetId": 205,
 		  "dirtLevelTargetId": 205,
 		  "rockLevelTargetId": 205
 		},
 		{
-		  "name": "removeCorruptThorns",
-		  "sourceIds": [ 32 ],
+		  "name": "spriteThorns",
+		  "sourceIds": [ 69, 32 ],
 		  "skyLevelTargetId": 352,
 		  "dirtLevelTargetId": 352,
 		  "rockLevelTargetId": 352
@@ -694,21 +701,11 @@
 		  "rockLevelTargetId": 492
 		},
 		{
-		  "name": "tileGrassSprites",
-		  "sourceIds": [ 3, 73, 24, 201 ],
-		  "delete": true
-		},
-		{
 		  "name": "tileStone",
 		  "sourceIds": [ 1, 25, 203, 117, 179, 180, 181, 182, 183, 381, 534, 536, 539, 625, 627 ],
 		  "skyLevelTargetId": 117,
 		  "dirtLevelTargetId": 117,
 		  "rockLevelTargetId": 117
-		},
-		{
-		  "name": "tileMossSprites",
-		  "sourceIds": [ 184 ],
-		  "delete": true
 		},
 		{
 		  "name": "tileIce",
@@ -737,6 +734,18 @@
 		  "skyLevelTargetId": 403,
 		  "dirtLevelTargetId": 403,
 		  "rockLevelTargetId": 403
+		}
+	  ],
+	  "morphSprites": [
+		{
+		  "name": "spriteGrass",
+		  "sourceIds": [ 3, 73, 24, 201 ],
+		  "delete": true
+		},
+		{
+		  "name": "tileMossSprites",
+		  "sourceIds": [ 184 ],
+		  "delete": true
 		},
 		{
 		  "name": "caveDeco",
@@ -768,21 +777,16 @@
 		  ]
 		},
 		{
-		  "name": "vines",
-		  "sourceIds": [ 52, 115, 205, 528, 636 ],
+		  "name": "spriteVines",
+		  "sourceIds": [ 52, 382, 205, 636, 115 ],
 		  "skyLevelTargetId": 115,
 		  "dirtLevelTargetId": 115,
 		  "rockLevelTargetId": 115
 		},
 		{
-		  "name": "removeCorruptThorns",
-		  "sourceIds": [ 32 ],
-		  "delete": true
-		},
-		{
-		  "name": "removeCrimsonThorns",
-		  "sourceIds": [ 352 ],
-		  "delete": true
+		"name": "spriteThorns",
+		"sourceIds": [ 32, 352 ],
+		"delete": true
 		}
 	  ],
 	  "morphWalls": [
@@ -897,6 +901,53 @@
 		  "skyLevelTargetId": 291,
 		  "dirtLevelTargetId": 291,
 		  "rockLevelTargetId": 291
+		}
+	  ]
+	},
+	"Glowing Mushroom": {
+	  "biomeName": "Glowing Mushroom",
+	  "morphTiles": [
+		{
+		  "name": "tileMushroomGrass",
+		  "sourceIds": [ 60, 70 ],
+		  "skyLevelTargetId": 70,
+		  "dirtLevelTargetId": 70,
+		  "rockLevelTargetId": 70
+		}
+	  ],
+	  "morphSprites": [
+		{
+		  "name": "spriteGrass",
+		  "sourceIds": [ 61, 74, 233 ],
+		  "delete": true
+		},
+		{
+		  "name": "spriteVines",
+		  "sourceIds": [ 62, 528 ],
+		  "skyLevelTargetId": 528,
+		  "dirtLevelTargetId": 528,
+		  "rockLevelTargetId": 528
+		},
+		{
+		  "name": "spriteThorns",
+		  "sourceIds": [ 69 ],
+		  "delete": true
+		}
+	  ],
+	  "morphWalls": [
+		{
+		  "name": "wallMushroomNatural",
+		  "sourceIds": [ 15, 80 ],
+		  "skyLevelTargetId": 80,
+		  "dirtLevelTargetId": 80,
+		  "rockLevelTargetId": 80
+		},
+		{
+		  "name": "wallMushroom",
+		  "sourceIds": [ 247, 74 ],
+ 		  "skyLevelTargetId": 74,
+		  "dirtLevelTargetId": 74,
+		  "rockLevelTargetId": 74
 		}
 	  ]
 	}
