@@ -346,7 +346,7 @@
 		},
 		{
 		  "name": "spriteThorns",
-		  "sourceIds": [ 69, 352 ],
+		  "sourceIds": [ 69, 655, 32, 352 ],
 		  "skyLevelTargetId": 32,
 		  "dirtLevelTargetId": 32,
 		  "rockLevelTargetId": 32
@@ -569,7 +569,7 @@
 		},
 		{
 		  "name": "spriteThorns",
-		  "sourceIds": [ 69, 32 ],
+		  "sourceIds": [ 69, 655, 32, 352 ],
 		  "skyLevelTargetId": 352,
 		  "dirtLevelTargetId": 352,
 		  "rockLevelTargetId": 352
@@ -930,7 +930,7 @@
 		},
 		{
 		  "name": "spriteThorns",
-		  "sourceIds": [ 69 ],
+		  "sourceIds": [ 69, 655 ],
 		  "delete": true
 		}
 	  ],
