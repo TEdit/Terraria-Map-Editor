@@ -8916,92 +8916,80 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
 		</Tile>
 		<Tile Id="632" Name="Scarlet Macaw Cage" SolidTop="true" Framed="true" Size="6,3" IsAnimated="true" Color="#FF6D7B71" />
 		<Tile Id="633" Name="Ash Grass Seeds" Light="true" Solid="true" Color="#FF66474A" />
-		<Tile Id="634" Name="Ash Tree" Light="true" Framed="true" Color="#FF7D5453">
+		<Tile Id="634" Name="Ash Tree" Light="true" Framed="true" Color="#FF7D5453" TextureGrid="20,20">
 			<Frames>
-				<Frame UV="22,198"  Name="Ash Tree Top Leafy" Variety="A" />
-				<Frame UV="22,220"  Name="Ash Tree Top Leafy" Variety="B" />
-				<Frame UV="22,242"  Name="Ash Tree Top Leafy" Variety="C" />
-				<Frame UV="0,0"     Name="Ash Tree Trunk" Variety="Plain A" />
-				<Frame UV="22,0"    Name="Ash Tree Trunk" Variety="Right Indent A" />
-				<Frame UV="44,0"    Name="Ash Tree Trunk" Variety="Right Slight Bulge A" />
-				<Frame UV="66,0"    Name="Ash Tree Branch" Variety="Plain A" />
-				<Frame UV="88,0"    Name="Ash Tree Trunk" Variety="Left Slight Bulge A" />
-				<Frame UV="110,0"   Name="Ash Tree Top" Variety="Medium A" />
-				<Frame UV="132,0"   Name="Ash Tree Top" Variety="Small A" />
-				<Frame UV="154,0"   Name="Ash Tree Top" Variety="Large A" />
-				<Frame UV="0,22"    Name="Ash Tree Trunk" Variety="Plain B" />
-				<Frame UV="22,22"   Name="Ash Tree Trunk" Variety="Right Indent B" />
-				<Frame UV="44,22"   Name="Ash Tree Trunk" Variety="Right Slight Bulge B" />
-				<Frame UV="66,22"   Name="Ash Tree Branch" Variety="Plain B" />
-				<Frame UV="88,22"   Name="Ash Tree Trunk" Variety="Left Slight Bulge B" />
-				<Frame UV="110,22"  Name="Ash Tree Top" Variety="Medium B" />
-				<Frame UV="132,22"  Name="Ash Tree Top" Variety="Small B" />
-				<Frame UV="154,22"  Name="Ash Tree Top" Variety="Large B" />
-				<Frame UV="0,44"    Name="Ash Tree Trunk" Variety="Plain C" />
-				<Frame UV="22,44"   Name="Ash Tree Trunk" Variety="Right Indent C" />
-				<Frame UV="44,44"   Name="Ash Tree Trunk" Variety="Right Slight Bulge C" />
-				<Frame UV="66,44"   Name="Ash Tree Branch" Variety="Plain C" />
-				<Frame UV="88,44"   Name="Ash Tree Trunk" Variety="Left Slight Bulge C" />
-				<Frame UV="110,44"  Name="Ash Tree Top" Variety="Medium C" />
-				<Frame UV="132,44"  Name="Ash Tree Top" Variety="Small C" />
-				<Frame UV="154,44"  Name="Ash Tree Top" Variety="Large C" />
-				<Frame UV="0,66"    Name="Ash Tree Trunk" Variety="Left Indent A" />
-				<Frame UV="22,66"   Name="Ash Tree Trunk" Variety="Right Bulge A" />
-				<Frame UV="44,66"   Name="Ash Tree Trunk" Variety="Left Bulge A" />
-				<Frame UV="66,66"   Name="Ash Tree Trunk" Variety="Right Slight Bulge D" />
-				<Frame UV="88,66"   Name="Ash Tree Branch" Variety="Plain A" />
-				<Frame UV="110,66"  Name="Ash Tree Trunk" Variety="Double Slight Bulge A" />
-				<Frame UV="132,66"  Name="Ash Tree Top" Variety="Small Right Slight Bulge A" />
-				<Frame UV="154,66"  Name="Ash Tree Top" Variety="Large A" />
-				<Frame UV="0,88"    Name="Ash Tree Trunk" Variety="Left Indent B" />
-				<Frame UV="22,88"   Name="Ash Tree Trunk" Variety="Right Bulge B" />
-				<Frame UV="44,88"   Name="Ash Tree Trunk" Variety="Left Bulge B" />
-				<Frame UV="66,88"   Name="Ash Tree Trunk" Variety="Right Slight Bulge E" />
-				<Frame UV="88,88"   Name="Ash Tree Branch" Variety="Plain B" />
-				<Frame UV="110,88"  Name="Ash Tree Trunk" Variety="Double Slight Bulge B" />
-				<Frame UV="132,88"  Name="Ash Tree Top" Variety="Small Right Slight Bulge B" />
-				<Frame UV="154,88"  Name="Ash Tree Top" Variety="Large B" />
-				<Frame UV="0,110"   Name="Ash Tree Trunk" Variety="Left Indent C" />
-				<Frame UV="22,110"  Name="Ash Tree Trunk" Variety="Right Bulge C" />
-				<Frame UV="44,110"  Name="Ash Tree Trunk" Variety="Left Bulge C" />
-				<Frame UV="66,110"  Name="Ash Tree Trunk" Variety="Right Slight Bulge F" />
-				<Frame UV="88,110"  Name="Ash Tree Branch" Variety="Plain C" />
-				<Frame UV="110,110" Name="Ash Tree Trunk" Variety="Double Slight Bulge C" />
-				<Frame UV="132,110" Name="Ash Tree Top" Variety="Small Right Slight Bulge C" />
-				<Frame UV="154,110" Name="Ash Tree Top" Variety="Large C" />
-				<Frame UV="0,132"   Name="Ash Tree Trunk" Variety="Large A" />
-				<Frame UV="22,132"  Name="Ash Tree Base" Variety="Plain A" />
-				<Frame UV="44,132"  Name="Ash Tree Base" Variety="Plain A" />
-				<Frame UV="66,132"  Name="Ash Tree Trunk" Variety="Large A" />
-				<Frame UV="88,132"  Name="Ash Tree Trunk" Variety="Large A" />
-				<Frame UV="132,132" Name="Ash Tree Top" Variety="Small Double Slight Bulge A" />
-				<Frame UV="154,132" Name="Ash Tree Top" Variety="Huge" />
-				<Frame UV="0,154"   Name="Ash Tree Trunk" Variety="Large B" />
-				<Frame UV="22,154"  Name="Ash Tree Base" Variety="Plain B" />
-				<Frame UV="44,154"  Name="Ash Tree Base" Variety="Plain B" />
-				<Frame UV="66,154"  Name="Ash Tree Trunk" Variety="Large B" />
-				<Frame UV="88,154"  Name="Ash Tree Trunk" Variety="Large B" />
-				<Frame UV="132,154" Name="Ash Tree Top" Variety="Small Double Slight Bulge B" />
-				<Frame UV="154,154" Name="Ash Tree Top" Variety="Huge" />
-				<Frame UV="0,176"   Name="Ash Tree Trunk" Variety="Large C" />
-				<Frame UV="22,176"  Name="Ash Tree Base" Variety="Plain C" />
-				<Frame UV="44,176"  Name="Ash Tree Base" Variety="Plain C" />
-				<Frame UV="66,176"  Name="Ash Tree Trunk" Variety="Large C" />
-				<Frame UV="88,176"  Name="Ash Tree Trunk" Variety="Large C" />
-				<Frame UV="132,176" Name="Ash Tree Top" Variety="Small Double Slight Bulge C" />
-				<Frame UV="154,176" Name="Ash Tree Top" Variety="Huge" />
-				<Frame UV="0,198"   Name="Ash Tree Top" Variety="Jagged" />
-				<Frame UV="0,220"   Name="Ash Tree Trunk" Variety="Jagged" />
-				<Frame UV="0,242"   Name="Ash Tree Trunk" Variety="Jagged" />
-				<Frame UV="22,198"  Name="Ash Tree Top" Variety="Leafy A - No Sprite" />
-				<Frame UV="22,220"  Name="Ash Tree Top" Variety="Leafy B - No Sprite" />
-				<Frame UV="22,242"  Name="Ash Tree Top" Variety="Leafy C - No Sprite" />
-				<Frame UV="44,198"  Name="Ash Tree Branch" Variety="Left Leafy A - No Sprite" />
-				<Frame UV="44,220"  Name="Ash Tree Branch" Variety="Left Leafy B - No Sprite" />
-				<Frame UV="44,242"  Name="Ash Tree Branch" Variety="Left Leafy C - No Sprite" />
-				<Frame UV="66,198"  Name="Ash Tree Branch" Variety="Right Leafy A - No Sprite" />
-				<Frame UV="66,220"  Name="Ash Tree Branch" Variety="Right Leafy B - No Sprite" />
-				<Frame UV="66,242"  Name="Ash Tree Branch" Variety="Right Leafy C - No Sprite" />
+				<Frame UV="0,0" Variety="Trunk Plain A" />
+				<Frame UV="22,0" Variety="Trunk Ore Right Indent A" />
+				<Frame UV="44,0" Variety="Trunk Right Slight Bulge A" />
+				<Frame UV="66,0" Variety="Branch Plain A" Anchor="Right" />
+				<Frame UV="88,0" Variety="Trunk Left Slight Bulge A" />
+				<Frame UV="110,0" Variety="Top Medium A" />
+				<Frame UV="132,0" Variety="Top Small A" />
+				<Frame UV="154,0" Variety="Top Large A" />
+				<Frame UV="0,22" Variety="Trunk Plain B" />
+				<Frame UV="22,22" Variety="Trunk Ore Right Indent B" />
+				<Frame UV="44,22" Variety="Trunk Right Slight Bulge B" />
+				<Frame UV="66,22" Variety="Branch Plain B" />
+				<Frame UV="88,22" Variety="Trunk Left Slight Bulge B" />
+				<Frame UV="110,22" Variety="Top Medium B" />
+				<Frame UV="132,22" Variety="Top Small B" />
+				<Frame UV="154,22" Variety="Top Large B" />
+				<Frame UV="0,44" Variety="Trunk Plain C" />
+				<Frame UV="22,44" Variety="Trunk Ore Right Indent C" />
+				<Frame UV="44,44" Variety="Trunk Right Slight Bulge C" />
+				<Frame UV="66,44" Variety="Branch Plain C" />
+				<Frame UV="88,44" Variety="Trunk Left Slight Bulge C" />
+				<Frame UV="110,44" Variety="Top Medium C" />
+				<Frame UV="132,44" Variety="Top Small C" />
+				<Frame UV="154,44" Variety="Top Large C" />
+				<Frame UV="0,66" Variety="Trunk Ore Left Indent A" />
+				<Frame UV="22,66" Variety="Trunk Right Bulge A" />
+				<Frame UV="44,66" Variety="Trunk Left Bulge A" />
+				<Frame UV="66,66" Variety="Trunk Right Slight Bulge D" />
+				<Frame UV="88,66" Variety="Branch Plain A" Anchor="Left" />
+				<Frame UV="110,66" Variety="Trunk Double Slight Bulge A" />
+				<Frame UV="132,66" Variety="Top Small Right Slight Bulge A" />
+				<Frame UV="154,66" Variety="Top Large D" />
+				<Frame UV="0,88" Variety="Trunk Ore Left Indent B" />
+				<Frame UV="22,88" Variety="Trunk Right Bulge B" />
+				<Frame UV="44,88" Variety="Trunk Left Bulge B" />
+				<Frame UV="66,88" Variety="Trunk Right Slight Bulge E" />
+				<Frame UV="88,88" Variety="Branch Plain B" Anchor="Left" />
+				<Frame UV="110,88" Variety="Trunk Double Slight Bulge B" />
+				<Frame UV="132,88" Variety="Top Small Right Slight Bulge B" />
+				<Frame UV="154,88" Variety="Top Large E" />
+				<Frame UV="0,110" Variety="Trunk Ore Left Indent C" />
+				<Frame UV="22,110" Variety="Trunk Right Bulge C" />
+				<Frame UV="44,110" Variety="Trunk Left Bulge C" />
+				<Frame UV="66,110" Variety="Trunk Right Slight Bulge F" />
+				<Frame UV="88,110" Variety="Branch Plain C" Anchor="Left" />
+				<Frame UV="110,110" Variety="Trunk Double Slight Bulge C" />
+				<Frame UV="132,110" Variety="Top Small Right Slight Bulge C" />
+				<Frame UV="154,110" Variety="Top Large F" />
+				<Frame UV="0,132" Variety="Trunk Large A" />
+				<Frame UV="22,132" Variety="Base Plain A" Anchor="Left" />
+				<Frame UV="44,132" Variety="Base Plain A" Anchor="Right" />
+				<Frame UV="66,132" Variety="Trunk Large B" />
+				<Frame UV="88,132" Variety="Trunk Large C" />
+				<Frame UV="132,132" Variety="Top Small Double Slight Bulge A" />
+				<Frame UV="154,132" Variety="Top Huge A" />
+				<Frame UV="0,154" Variety="Trunk Large D" />
+				<Frame UV="22,154" Variety="Base Plain B" Anchor="Left" />
+				<Frame UV="44,154" Variety="Base Plain B" Anchor="Right" />
+				<Frame UV="66,154" Variety="Trunk Large E" />
+				<Frame UV="88,154" Variety="Trunk Large F" />
+				<Frame UV="132,154" Variety="Top Small Double Slight Bulge B" />
+				<Frame UV="154,154" Variety="Top Huge B" />
+				<Frame UV="0,176" Variety="Trunk Large G" />
+				<Frame UV="22,176" Variety="Base Plain C" Anchor="Left" />
+				<Frame UV="44,176" Variety="Base Plain C" Anchor="Right" />
+				<Frame UV="66,176" Variety="Trunk Large H" />
+				<Frame UV="88,176" Variety="Trunk Large I" />
+				<Frame UV="132,176" Variety="Top Small Double Slight Bulge C" />
+				<Frame UV="154,176" Variety="Top Huge C" />
+				<Frame UV="0,198" Variety="Top Jagged A" />
+				<Frame UV="0,220" Variety="Top Jagged B" />
+				<Frame UV="0,242" Variety="Top Jagged C" />
 			</Frames>
 		</Tile>
 		<Tile Id="635" Name="Ash Wood" Solid="true" Color="#FF5F525C" />
