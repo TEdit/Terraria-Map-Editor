@@ -11,6 +11,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Setup", "Setup\Setup.csproj
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TEdit.Tests", "TEdit.Tests\TEdit.Tests.csproj", "{DB15668D-151F-40C7-9F1A-682AD503F8D2}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{BF790973-1C76-498F-A677-4C8A71BCFCA9}"
+	ProjectSection(SolutionItems) = preProject
+		..\.editorconfig = ..\.editorconfig
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -22,6 +27,7 @@ Global
 		{5B1378EE-D41E-40C4-9C2B-C5877039C85C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5B1378EE-D41E-40C4-9C2B-C5877039C85C}.Release|Any CPU.Build.0 = Release|Any CPU
 		{7F36653F-68C7-4D5C-A88A-6279DBE8A0C8}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{7F36653F-68C7-4D5C-A88A-6279DBE8A0C8}.Debug|Any CPU.Build.0 = Debug|x86
 		{7F36653F-68C7-4D5C-A88A-6279DBE8A0C8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CA287E0D-9BC9-4E3C-8AC0-55A87613CEC1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{CA287E0D-9BC9-4E3C-8AC0-55A87613CEC1}.Release|Any CPU.ActiveCfg = Release|Any CPU
