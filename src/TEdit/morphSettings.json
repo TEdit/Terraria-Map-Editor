@@ -470,6 +470,16 @@
           "name": "spriteBamboo",
           "sourceIds": [571],
           "delete": true
+        },
+        {
+          "name": "spriteSakuraTree",
+          "sourceIds": [595, 596],
+          "delete": true
+        },
+        {
+          "name": "spriteWillowTree",
+          "sourceIds": [615, 616],
+          "delete": true
         }
       ],
       "morphWalls": [
@@ -786,6 +796,16 @@
         {
           "name": "spriteBamboo",
           "sourceIds": [571],
+          "delete": true
+        },
+        {
+          "name": "spriteSakuraTree",
+          "sourceIds": [595, 596],
+          "delete": true
+        },
+        {
+          "name": "spriteWillowTree",
+          "sourceIds": [615, 616],
           "delete": true
         }
       ],
