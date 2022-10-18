@@ -1171,6 +1171,17 @@
       "biomeName": "GlowingMushroom",
       "morphTiles": [
         {
+          "name": "spriteTree",
+          "sourceIds": [5],
+          "delete": true,
+          "spriteOffsets": [
+            {
+              "minU": 1232,
+              "maxU": 1386
+            }
+          ]
+        },
+		{
           "name": "tileMushroomGrass",
           "sourceIds": [60, 70],
           "skyLevelTargetId": 70,
