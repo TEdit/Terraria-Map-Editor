@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using Newtonsoft.Json;
@@ -127,7 +128,14 @@ namespace TEdit.Configuration
             {
                 foreach (var id in item.SourceIds)
                 {
-                    _tileCache.Add(id, item);
+                    try
+                    {
+                        _tileCache.Add(id, item);
+                    }
+                    catch (Exception ex)
+                    {
+                        throw new IndexOutOfRangeException($"morphSetting tile entry is invalid or duplicate: {item.Name} [{id}]", ex);
+                    }
                 }
             }
 
@@ -136,7 +144,14 @@ namespace TEdit.Configuration
             {
                 foreach (var id in item.SourceIds)
                 {
-                    _wallCache.Add(id, item);
+                    try
+                    {
+                        _wallCache.Add(id, item);
+                    }
+                    catch (Exception ex)
+                    {
+                        throw new IndexOutOfRangeException($"morphSetting wall entry is invalid or duplicate: {item.Name} [{id}]", ex);
+                    }                    
                 }
             }
         }
