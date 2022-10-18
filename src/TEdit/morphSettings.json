@@ -146,29 +146,29 @@
           "name": "wallGrassNatural",
           "sourceIds": [63, 69, 81, 70],
           "skyLevelTargetId": 63,
-          "dirtLevelTargetId": 63,
-          "rockLevelTargetId": 63
+          "dirtLevelTargetId": 64,
+          "rockLevelTargetId": 64
         },
         {
           "name": "wallGrass",
           "sourceIds": [66, 264, 268, 265],
           "skyLevelTargetId": 66,
-          "dirtLevelTargetId": 66,
-          "rockLevelTargetId": 66
+          "dirtLevelTargetId": 67,
+          "rockLevelTargetId": 67
         },
         {
           "name": "wallMudNatural",
           "sourceIds": [15, 80],
           "skyLevelTargetId": 15,
-          "dirtLevelTargetId": 15,
-          "rockLevelTargetId": 15
+          "dirtLevelTargetId": 64,
+          "rockLevelTargetId": 64
         },
         {
           "name": "wallMud",
           "sourceIds": [247, 74],
           "skyLevelTargetId": 247,
-          "dirtLevelTargetId": 247,
-          "rockLevelTargetId": 247
+          "dirtLevelTargetId": 67,
+          "rockLevelTargetId": 67
         },
         {
           "name": "wallStoneNatural",
@@ -1241,14 +1241,14 @@
       "morphWalls": [
         {
           "name": "wallMushroomNatural",
-          "sourceIds": [15, 80],
+          "sourceIds": [15, 64, 80],
           "skyLevelTargetId": 80,
           "dirtLevelTargetId": 80,
           "rockLevelTargetId": 80
         },
         {
           "name": "wallMushroom",
-          "sourceIds": [247, 74],
+          "sourceIds": [247, 67, 74],
           "skyLevelTargetId": 74,
           "dirtLevelTargetId": 74,
           "rockLevelTargetId": 74
