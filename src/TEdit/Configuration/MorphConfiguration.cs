@@ -88,7 +88,7 @@ namespace TEdit.Configuration
         {
             if (!source.IsActive) { return; }
             ushort sourceId = source.Type;
-            
+
             if (!_tileCache.TryGetValue(sourceId, out var morphId)) { return; }
 
             if (morphId.SourceIds.Contains(sourceId))
@@ -102,22 +102,20 @@ namespace TEdit.Configuration
 
                 source.Type = level switch
                 {
-                    MorphLevel.Sky =>  morphId.SkyLevelTargetId,
+                    MorphLevel.Sky => morphId.SkyLevelTargetId,
                     MorphLevel.Dirt => morphId.DirtLevelTargetId,
                     MorphLevel.Rock => morphId.RockLevelTargetId,
                     _ => source.Type,
                 };
 
-
-                // hopefully this works...kinda hacky and probably slooow
+                // filter sprites
                 if (World.TileProperties[sourceId].IsFramed &&
                     morphId.SpriteOffsets.Count > 0)
                 {
-                    var offset = morphId.SpriteOffsets.FirstOrDefault(uv => uv.MinU <= source.U && source.U <= uv.MaxU);
-                    if (offset != null)
-                    {
-                        source.U += offset.OffsetU;
-                    }
+                    // filter and apply morph (offset or delete)
+                    morphId.SpriteOffsets
+                        .FirstOrDefault(uv => uv.FilterMatches(source))
+                        ?.ApplyOffset(ref source);
                 }
             }
         }
@@ -143,8 +141,8 @@ namespace TEdit.Configuration
             }
         }
 
-        private Dictionary<int, MorphId> _wallCache   = new Dictionary<int, MorphId>();
-        private Dictionary<int, MorphId> _tileCache   = new Dictionary<int, MorphId>();
+        private Dictionary<int, MorphId> _wallCache = new Dictionary<int, MorphId>();
+        private Dictionary<int, MorphId> _tileCache = new Dictionary<int, MorphId>();
     }
 
     public class MorphId
@@ -170,5 +168,47 @@ namespace TEdit.Configuration
         public short MinU { get; set; }
         public short MaxU { get; set; }
         public short OffsetU { get; set; }
+        public short MinV { get; set; }
+        public short MaxV { get; set; }
+        public short OffsetV { get; set; }
+        public bool UseFilterV { get; set; }
+        public bool Delete { get; set; }
+
+        /// <summary>
+        /// Check if a tile matches the filter
+        /// </summary>
+        public bool FilterMatches(Tile tile)
+        {
+            if (tile.U < MinU) return false;
+            if (tile.U > MaxU) return false;
+
+            if (UseFilterV)
+            {
+                if (tile.V < MinV) return false;
+                if (tile.V > MaxV) return false;
+            }
+
+            return true;
+        }
+
+        /// <summary>
+        /// This modifies the tile UV coordinates
+        /// </summary>
+        public void ApplyOffset(ref Tile tile)
+        {
+            if (Delete)
+            {
+                tile.Type = 0;
+                tile.IsActive = false;
+                return;
+            }
+
+            tile.U += OffsetU;
+
+            if (UseFilterV)
+            {
+                tile.V += OffsetV;
+            }
+        }
     }
 }
