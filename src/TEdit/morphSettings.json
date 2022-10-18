@@ -65,7 +65,7 @@
           "delete": true
         },
         {
-          "name": "caveDeco",
+          "name": "spriteCaveSpikes",
           "sourceIds": [165],
           "skyLevelTargetId": 165,
           "dirtLevelTargetId": 165,
@@ -94,6 +94,18 @@
           ]
         },
         {
+          "name": "spriteMushroomGrassyStone",
+          "sourceIds": [186],
+          "delete": true,
+          "spriteOffsets": [
+            {
+              "minU": 1728,
+              "maxU": 1872,
+              "offsetU": 0
+            }
+          ]
+        },
+        {
           "name": "spriteVines",
           "sourceIds": [52, 636, 205, 115],
           "skyLevelTargetId": 52,
@@ -111,6 +123,17 @@
           "name": "spriteThorns",
           "sourceIds": [32, 352],
           "delete": true
+        },
+        {
+          "name": "spriteHerbs",
+          "sourceIds": [82, 83, 84],
+          "delete": true,
+          "spriteOffsets": [
+            {
+              "minU": 54,
+              "maxU": 54
+            }
+          ]
         },
         {
           "name": "spriteLilyPad",
@@ -318,7 +341,7 @@
           "delete": true
         },
         {
-          "name": "caveDeco",
+          "name": "spriteCaveSpikes",
           "sourceIds": [165],
           "skyLevelTargetId": 165,
           "dirtLevelTargetId": 165,
@@ -347,6 +370,45 @@
           ]
         },
         {
+          "name": "spriteSmallGrassyStone",
+          "sourceIds": [185],
+          "skyLevelTargetId": 185,
+          "dirtLevelTargetId": 185,
+          "rockLevelTargetId": 185,
+          "spriteOffsets": [
+            {
+              "minU": 1368,
+              "maxU": 1458,
+              "offsetU": -1368,
+              "useFilterV": true,
+              "minV": 18,
+              "maxV": 18
+            }
+          ]
+        },
+        {
+          "name": "spriteGrassyStone",
+          "sourceIds": [187],
+          "skyLevelTargetId": 186,
+          "dirtLevelTargetId": 186,
+          "rockLevelTargetId": 186,
+          "spriteOffsets": [
+            {
+              "minU": 756,
+              "maxU": 918,
+              "offsetU": -378
+            },
+            {
+              "minU": 0,
+              "maxU": 306,
+              "useFilterV": true,
+              "minV": 0,
+              "maxV": 18,
+              "delete": true
+            }
+          ]
+        },
+        {
           "name": "spriteVines",
           "sourceIds": [52, 382, 62, 636, 205, 115],
           "skyLevelTargetId": 636,
@@ -361,8 +423,27 @@
           "rockLevelTargetId": 32
         },
         {
+          "name": "spriteHerbs",
+          "sourceIds": [82, 83, 84],
+          "delete": true,
+          "spriteOffsets": [
+            {
+              "minU": 0,
+              "maxU": 0
+            },
+            {
+              "minU": 18,
+              "maxU": 18
+            },
+            {
+              "minU": 72,
+              "maxU": 72
+            }
+          ]
+        },
+        {
           "name": "spritePumpkin",
-          "sourceIds": [251],
+          "sourceIds": [254],
           "delete": true
         },
         {
@@ -572,12 +653,12 @@
           "delete": true
         },
         {
-          "name": "tileMossSprites",
+          "name": "spriteMoss",
           "sourceIds": [184],
           "delete": true
         },
         {
-          "name": "caveDeco",
+          "name": "spriteCaveSpikes",
           "sourceIds": [165],
           "skyLevelTargetId": 165,
           "dirtLevelTargetId": 165,
@@ -606,6 +687,45 @@
           ]
         },
         {
+          "name": "spriteSmallGrassyStone",
+          "sourceIds": [185],
+          "skyLevelTargetId": 185,
+          "dirtLevelTargetId": 185,
+          "rockLevelTargetId": 185,
+          "spriteOffsets": [
+            {
+              "minU": 1368,
+              "maxU": 1458,
+              "offsetU": -1368,
+              "useFilterV": true,
+              "minV": 18,
+              "maxV": 18
+            }
+          ]
+        },
+        {
+          "name": "spriteGrassyStone",
+          "sourceIds": [187],
+          "skyLevelTargetId": 186,
+          "dirtLevelTargetId": 186,
+          "rockLevelTargetId": 186,
+          "spriteOffsets": [
+            {
+              "minU": 756,
+              "maxU": 918,
+              "offsetU": -378
+            },
+            {
+              "minU": 0,
+              "maxU": 306,
+              "useFilterV": true,
+              "minV": 0,
+              "maxV": 18,
+              "delete": true
+            }
+          ]
+        },
+        {
           "name": "spriteVines",
           "sourceIds": [52, 382, 62, 636, 205, 115],
           "skyLevelTargetId": 205,
@@ -620,6 +740,25 @@
           "rockLevelTargetId": 352
         },
         {
+          "name": "spriteHerbs",
+          "sourceIds": [82, 83, 84],
+          "delete": true,
+          "spriteOffsets": [
+            {
+              "minU": 0,
+              "maxU": 0
+            },
+            {
+              "minU": 18,
+              "maxU": 18
+            },
+            {
+              "minU": 72,
+              "maxU": 72
+            }
+          ]
+        },
+        {
           "name": "spriteLifeFruit",
           "sourceIds": [236],
           "delete": true
@@ -631,7 +770,7 @@
         },
         {
           "name": "spritePumpkin",
-          "sourceIds": [251],
+          "sourceIds": [254],
           "delete": true
         },
         {
@@ -819,12 +958,12 @@
           "delete": true
         },
         {
-          "name": "tileMossSprites",
+          "name": "spriteMoss",
           "sourceIds": [184],
           "delete": true
         },
         {
-          "name": "caveDeco",
+          "name": "spriteCaveSpikes",
           "sourceIds": [165],
           "skyLevelTargetId": 165,
           "dirtLevelTargetId": 165,
@@ -853,6 +992,18 @@
           ]
         },
         {
+          "name": "spriteGrassyStone",
+          "sourceIds": [187],
+          "delete": true,
+          "spriteOffsets": [
+            {
+              "minU": 0,
+              "maxU": 306,
+              "offsetU": 0
+            }
+          ]
+        },
+        {
           "name": "spriteVines",
           "sourceIds": [52, 382, 205, 636, 115],
           "skyLevelTargetId": 115,
@@ -863,6 +1014,17 @@
           "name": "spriteThorns",
           "sourceIds": [32, 352],
           "delete": true
+        },
+        {
+          "name": "spriteHerbs",
+          "sourceIds": [82, 83, 84],
+          "delete": true,
+          "spriteOffsets": [
+            {
+              "minU": 54,
+              "maxU": 54
+            }
+          ]
         },
         {
           "name": "spriteLilyPad",
@@ -985,8 +1147,8 @@
         }
       ]
     },
-    "Glowing Mushroom": {
-      "biomeName": "Glowing Mushroom",
+    "GlowingMushroom": {
+      "biomeName": "GlowingMushroom",
       "morphTiles": [
         {
           "name": "tileMushroomGrass",
@@ -1001,6 +1163,18 @@
           "delete": true
         },
         {
+          "name": "spriteGrassyStone",
+          "sourceIds": [187],
+          "delete": true,
+          "spriteOffsets": [
+            {
+              "minU": 0,
+              "maxU": 306,
+              "offsetU": 0
+            }
+          ]
+        },
+        {
           "name": "spriteVines",
           "sourceIds": [62, 528],
           "skyLevelTargetId": 528,
@@ -1011,6 +1185,17 @@
           "name": "spriteThorns",
           "sourceIds": [69, 655],
           "delete": true
+        },
+        {
+          "name": "spriteHerbs",
+          "sourceIds": [82, 83, 84],
+          "delete": true,
+          "spriteOffsets": [
+            {
+              "minU": 18,
+              "maxU": 18
+            }
+          ]
         },
         {
           "name": "spriteLifeFruit",
@@ -1047,6 +1232,90 @@
           "skyLevelTargetId": 74,
           "dirtLevelTargetId": 74,
           "rockLevelTargetId": 74
+        }
+      ]
+    },
+    "Forest": {
+      "biomeName": "Forest",
+      "morphTiles": [
+        {
+          "name": "tileEntree",
+          "sourceIds": [2],
+          "skyLevelTargetId": 0,
+          "dirtLevelTargetId": 0,
+          "rockLevelTargetId": 0
+        },
+        {
+          "name": "spriteEntree",
+          "sourceIds": [1],
+          "skyLevelTargetId": 0,
+          "dirtLevelTargetId": 0,
+          "rockLevelTargetId": 0
+        }
+      ],
+      "morphWalls": [
+        {
+          "name": "wallEntree",
+          "sourceIds": [1],
+          "skyLevelTargetId": 0,
+          "dirtLevelTargetId": 0,
+          "rockLevelTargetId": 0
+        }
+      ]
+    },
+    "Snow": {
+      "biomeName": "Snow",
+      "morphTiles": [
+        {
+          "name": "tileEntree",
+          "sourceIds": [2],
+          "skyLevelTargetId": 0,
+          "dirtLevelTargetId": 0,
+          "rockLevelTargetId": 0
+        },
+        {
+          "name": "spriteEntree",
+          "sourceIds": [1],
+          "skyLevelTargetId": 0,
+          "dirtLevelTargetId": 0,
+          "rockLevelTargetId": 0
+        }
+      ],
+      "morphWalls": [
+        {
+          "name": "wallEntree",
+          "sourceIds": [1],
+          "skyLevelTargetId": 0,
+          "dirtLevelTargetId": 0,
+          "rockLevelTargetId": 0
+        }
+      ]
+    },
+    "Desert": {
+      "biomeName": "Desert",
+      "morphTiles": [
+        {
+          "name": "tileEntree",
+          "sourceIds": [2],
+          "skyLevelTargetId": 0,
+          "dirtLevelTargetId": 0,
+          "rockLevelTargetId": 0
+        },
+        {
+          "name": "spriteEntree",
+          "sourceIds": [1],
+          "skyLevelTargetId": 0,
+          "dirtLevelTargetId": 0,
+          "rockLevelTargetId": 0
+        }
+      ],
+      "morphWalls": [
+        {
+          "name": "wallEntree",
+          "sourceIds": [1],
+          "skyLevelTargetId": 0,
+          "dirtLevelTargetId": 0,
+          "rockLevelTargetId": 0
         }
       ]
     }
