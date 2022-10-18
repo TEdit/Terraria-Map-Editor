@@ -5,68 +5,68 @@
       "morphTiles": [
         {
           "name": "tileGrass",
-          "sourceIds": [ 2, 23, 199, 109 ],
+          "sourceIds": [2, 23, 199, 109],
           "skyLevelTargetId": 2,
           "dirtLevelTargetId": 2,
           "rockLevelTargetId": 2
         },
         {
           "name": "tileMowed",
-          "sourceIds": [ 477, 492 ],
+          "sourceIds": [477, 492],
           "skyLevelTargetId": 477,
           "dirtLevelTargetId": 477,
           "rockLevelTargetId": 477
         },
         {
           "name": "tileJungleGrass",
-          "sourceIds": [ 60, 70, 661, 662 ],
+          "sourceIds": [60, 70, 661, 662],
           "skyLevelTargetId": 60,
           "dirtLevelTargetId": 60,
           "rockLevelTargetId": 60
         },
         {
           "name": "tileStone",
-          "sourceIds": [ 1, 25, 203, 117 ],
+          "sourceIds": [1, 25, 203, 117],
           "skyLevelTargetId": 1,
           "dirtLevelTargetId": 1,
           "rockLevelTargetId": 1
         },
         {
           "name": "tileIce",
-          "sourceIds": [ 161, 163, 200, 164 ],
+          "sourceIds": [161, 163, 200, 164],
           "skyLevelTargetId": 161,
           "dirtLevelTargetId": 161,
           "rockLevelTargetId": 161
         },
         {
           "name": "tileSand",
-          "sourceIds": [ 53, 112, 234, 116 ],
+          "sourceIds": [53, 112, 234, 116],
           "skyLevelTargetId": 53,
           "dirtLevelTargetId": 53,
           "rockLevelTargetId": 53
         },
         {
           "name": "tileHardenedSand",
-          "sourceIds": [ 397, 398, 399, 402 ],
+          "sourceIds": [397, 398, 399, 402],
           "skyLevelTargetId": 397,
           "dirtLevelTargetId": 397,
           "rockLevelTargetId": 397
         },
         {
           "name": "tileSandstone",
-          "sourceIds": [ 396, 400, 401, 403 ],
+          "sourceIds": [396, 400, 401, 403],
           "skyLevelTargetId": 396,
           "dirtLevelTargetId": 396,
           "rockLevelTargetId": 396
         },
         {
           "name": "spriteGrass",
-          "sourceIds": [ 71, 24, 201, 110, 113 ],
+          "sourceIds": [71, 24, 201, 110, 113],
           "delete": true
         },
         {
           "name": "caveDeco",
-          "sourceIds": [ 165 ],
+          "sourceIds": [165],
           "skyLevelTargetId": 165,
           "dirtLevelTargetId": 165,
           "rockLevelTargetId": 165,
@@ -95,152 +95,152 @@
         },
         {
           "name": "spriteVines",
-          "sourceIds": [ 52, 636, 205, 115 ],
+          "sourceIds": [52, 636, 205, 115],
           "skyLevelTargetId": 52,
           "dirtLevelTargetId": 52,
           "rockLevelTargetId": 52
         },
         {
           "name": "spriteJungleVines",
-          "sourceIds": [ 62, 528 ],
+          "sourceIds": [62, 528],
           "skyLevelTargetId": 62,
           "dirtLevelTargetId": 62,
           "rockLevelTargetId": 62
         },
         {
           "name": "spriteThorns",
-          "sourceIds": [ 32, 352 ],
+          "sourceIds": [32, 352],
           "delete": true
         },
         {
           "name": "spriteLilyPad",
-          "sourceIds": [ 518 ],
+          "sourceIds": [518],
           "delete": true
         }
       ],
       "morphWalls": [
         {
           "name": "wallGrassNatural",
-          "sourceIds": [ 63, 69, 81, 70 ],
+          "sourceIds": [63, 69, 81, 70],
           "skyLevelTargetId": 63,
           "dirtLevelTargetId": 63,
           "rockLevelTargetId": 63
         },
         {
           "name": "wallGrass",
-          "sourceIds": [ 66, 264, 268, 265 ],
+          "sourceIds": [66, 264, 268, 265],
           "skyLevelTargetId": 66,
           "dirtLevelTargetId": 66,
           "rockLevelTargetId": 66
         },
         {
           "name": "wallMudNatural",
-          "sourceIds": [ 15, 80 ],
+          "sourceIds": [15, 80],
           "skyLevelTargetId": 15,
           "dirtLevelTargetId": 15,
           "rockLevelTargetId": 15
         },
         {
           "name": "wallMud",
-          "sourceIds": [ 247, 74 ],
+          "sourceIds": [247, 74],
           "skyLevelTargetId": 247,
           "dirtLevelTargetId": 247,
           "rockLevelTargetId": 247
         },
         {
           "name": "wallStoneNatural",
-          "sourceIds": [ 61, 185, 3, 83, 28 ],
+          "sourceIds": [61, 185, 3, 83, 28],
           "skyLevelTargetId": 61,
           "dirtLevelTargetId": 61,
           "rockLevelTargetId": 185
         },
         {
           "name": "wallStone",
-          "sourceIds": [ 1, 262, 274, 246, 269, 248 ],
+          "sourceIds": [1, 262, 274, 246, 269, 248],
           "skyLevelTargetId": 1,
           "dirtLevelTargetId": 262,
           "rockLevelTargetId": 274
         },
         {
           "name": "wallTreacherousHardenedSand",
-          "sourceIds": [ 216, 217, 218, 219 ],
+          "sourceIds": [216, 217, 218, 219],
           "skyLevelTargetId": 216,
           "dirtLevelTargetId": 216,
           "rockLevelTargetId": 216
         },
         {
           "name": "wallHardenedSand",
-          "sourceIds": [ 304, 305, 306, 307 ],
+          "sourceIds": [304, 305, 306, 307],
           "skyLevelTargetId": 304,
           "dirtLevelTargetId": 304,
           "rockLevelTargetId": 304
         },
         {
           "name": "wallTreacherousSandstone",
-          "sourceIds": [ 187, 220, 221, 222 ],
+          "sourceIds": [187, 220, 221, 222],
           "skyLevelTargetId": 187,
           "dirtLevelTargetId": 187,
           "rockLevelTargetId": 187
         },
         {
           "name": "wallSandstone",
-          "sourceIds": [ 275, 308, 309, 310 ],
+          "sourceIds": [275, 308, 309, 310],
           "skyLevelTargetId": 275,
           "dirtLevelTargetId": 275,
           "rockLevelTargetId": 275
         },
         {
           "name": "wallRocks1Natural",
-          "sourceIds": [ 212, 188, 192, 200 ],
+          "sourceIds": [212, 188, 192, 200],
           "skyLevelTargetId": 212,
           "dirtLevelTargetId": 212,
           "rockLevelTargetId": 212
         },
         {
           "name": "wallRocks2Natural",
-          "sourceIds": [ 213, 189, 193, 201 ],
+          "sourceIds": [213, 189, 193, 201],
           "skyLevelTargetId": 213,
           "dirtLevelTargetId": 213,
           "rockLevelTargetId": 213
         },
         {
           "name": "wallRocks3Natural",
-          "sourceIds": [ 214, 190, 194, 202 ],
+          "sourceIds": [214, 190, 194, 202],
           "skyLevelTargetId": 214,
           "dirtLevelTargetId": 214,
           "rockLevelTargetId": 214
         },
         {
           "name": "wallRocks4Natural",
-          "sourceIds": [ 215, 191, 195, 203 ],
+          "sourceIds": [215, 191, 195, 203],
           "skyLevelTargetId": 215,
           "dirtLevelTargetId": 215,
           "rockLevelTargetId": 215
         },
         {
           "name": "wallRocks1",
-          "sourceIds": [ 300, 276, 280, 288 ],
+          "sourceIds": [300, 276, 280, 288],
           "skyLevelTargetId": 300,
           "dirtLevelTargetId": 300,
           "rockLevelTargetId": 300
         },
         {
           "name": "wallRocks2",
-          "sourceIds": [ 301, 277, 281, 289 ],
+          "sourceIds": [301, 277, 281, 289],
           "skyLevelTargetId": 301,
           "dirtLevelTargetId": 301,
           "rockLevelTargetId": 301
         },
         {
           "name": "wallRocks3",
-          "sourceIds": [ 302, 278, 282, 290 ],
+          "sourceIds": [302, 278, 282, 290],
           "skyLevelTargetId": 302,
           "dirtLevelTargetId": 302,
           "rockLevelTargetId": 302
         },
         {
           "name": "wallRocks4",
-          "sourceIds": [ 303, 279, 283, 291 ],
+          "sourceIds": [303, 279, 283, 291],
           "skyLevelTargetId": 303,
           "dirtLevelTargetId": 303,
           "rockLevelTargetId": 303
@@ -252,14 +252,14 @@
       "morphTiles": [
         {
           "name": "tileGrass",
-          "sourceIds": [ 2, 477, 23, 199, 109, 492 ],
+          "sourceIds": [2, 477, 23, 199, 109, 492],
           "skyLevelTargetId": 23,
           "dirtLevelTargetId": 23,
           "rockLevelTargetId": 23
         },
         {
           "name": "tileJungleGrass",
-          "sourceIds": [ 60, 661, 662 ],
+          "sourceIds": [60, 661, 662],
           "skyLevelTargetId": 661,
           "dirtLevelTargetId": 661,
           "rockLevelTargetId": 661
@@ -267,20 +267,7 @@
         {
           "name": "tileStone",
           "sourceIds": [
-            1,
-            25,
-            203,
-            117,
-            179,
-            180,
-            181,
-            182,
-            183,
-            381,
-            534,
-            536,
-            539,
-            625,
+            1, 25, 203, 117, 179, 180, 181, 182, 183, 381, 534, 536, 539, 625,
             627
           ],
           "skyLevelTargetId": 25,
@@ -289,50 +276,50 @@
         },
         {
           "name": "tileIce",
-          "sourceIds": [ 161, 163, 200, 164 ],
+          "sourceIds": [161, 163, 200, 164],
           "skyLevelTargetId": 163,
           "dirtLevelTargetId": 163,
           "rockLevelTargetId": 163
         },
         {
           "name": "tileSand",
-          "sourceIds": [ 53, 112, 234, 116 ],
+          "sourceIds": [53, 112, 234, 116],
           "skyLevelTargetId": 112,
           "dirtLevelTargetId": 112,
           "rockLevelTargetId": 112
         },
         {
           "name": "tileHardenedSand",
-          "sourceIds": [ 397, 398, 399, 402 ],
+          "sourceIds": [397, 398, 399, 402],
           "skyLevelTargetId": 398,
           "dirtLevelTargetId": 398,
           "rockLevelTargetId": 398
         },
         {
           "name": "tileSandstone",
-          "sourceIds": [ 396, 400, 401, 403 ],
+          "sourceIds": [396, 400, 401, 403],
           "skyLevelTargetId": 400,
           "dirtLevelTargetId": 400,
           "rockLevelTargetId": 400
         },
         {
           "name": "spriteSunflower",
-          "sourceIds": [ 27 ],
+          "sourceIds": [27],
           "delete": true
         },
         {
           "name": "spriteGrass",
-          "sourceIds": [ 3, 73, 61, 74, 233, 201, 110, 113 ],
+          "sourceIds": [3, 73, 61, 74, 233, 201, 110, 113],
           "delete": true
         },
         {
           "name": "spriteMoss",
-          "sourceIds": [ 184 ],
+          "sourceIds": [184],
           "delete": true
         },
         {
           "name": "caveDeco",
-          "sourceIds": [ 165 ],
+          "sourceIds": [165],
           "skyLevelTargetId": 165,
           "dirtLevelTargetId": 165,
           "rockLevelTargetId": 165,
@@ -361,158 +348,158 @@
         },
         {
           "name": "spriteVines",
-          "sourceIds": [ 52, 382, 62, 636, 205, 115 ],
+          "sourceIds": [52, 382, 62, 636, 205, 115],
           "skyLevelTargetId": 636,
           "dirtLevelTargetId": 636,
           "rockLevelTargetId": 636
         },
         {
           "name": "spriteThorns",
-          "sourceIds": [ 69, 655, 32, 352 ],
+          "sourceIds": [69, 655, 32, 352],
           "skyLevelTargetId": 32,
           "dirtLevelTargetId": 32,
           "rockLevelTargetId": 32
         },
         {
           "name": "spritePumpkin",
-          "sourceIds": [ 251 ],
+          "sourceIds": [251],
           "delete": true
         },
         {
           "name": "spriteLifeFruit",
-          "sourceIds": [ 236 ],
+          "sourceIds": [236],
           "delete": true
         },
         {
           "name": "spritePlanteraBulb",
-          "sourceIds": [ 238 ],
+          "sourceIds": [238],
           "delete": true
         },
         {
           "name": "spriteFallenLog",
-          "sourceIds": [ 488 ],
+          "sourceIds": [488],
           "delete": true
         },
         {
           "name": "spriteLilyPad",
-          "sourceIds": [ 518 ],
+          "sourceIds": [518],
           "delete": true
         },
         {
           "name": "spriteBamboo",
-          "sourceIds": [ 571 ],
+          "sourceIds": [571],
           "delete": true
         }
       ],
       "morphWalls": [
         {
           "name": "wallGrassNatural",
-          "sourceIds": [ 63, 64, 65, 69, 81, 70 ],
+          "sourceIds": [63, 64, 65, 69, 81, 70],
           "skyLevelTargetId": 69,
           "dirtLevelTargetId": 69,
           "rockLevelTargetId": 69
         },
         {
           "name": "wallGrass",
-          "sourceIds": [ 66, 67, 68, 264, 268, 265 ],
+          "sourceIds": [66, 67, 68, 264, 268, 265],
           "skyLevelTargetId": 264,
           "dirtLevelTargetId": 264,
           "rockLevelTargetId": 264
         },
         {
           "name": "wallStoneNatural",
-          "sourceIds": [ 61, 185, 3, 83, 28 ],
+          "sourceIds": [61, 185, 3, 83, 28],
           "skyLevelTargetId": 3,
           "dirtLevelTargetId": 3,
           "rockLevelTargetId": 3
         },
         {
           "name": "wallStone",
-          "sourceIds": [ 1, 262, 274, 246, 269, 248 ],
+          "sourceIds": [1, 262, 274, 246, 269, 248],
           "skyLevelTargetId": 246,
           "dirtLevelTargetId": 246,
           "rockLevelTargetId": 246
         },
         {
           "name": "wallTreacherousHardenedSand",
-          "sourceIds": [ 216, 217, 218, 219 ],
+          "sourceIds": [216, 217, 218, 219],
           "skyLevelTargetId": 217,
           "dirtLevelTargetId": 217,
           "rockLevelTargetId": 217
         },
         {
           "name": "wallHardenedSand",
-          "sourceIds": [ 304, 305, 306, 307 ],
+          "sourceIds": [304, 305, 306, 307],
           "skyLevelTargetId": 305,
           "dirtLevelTargetId": 305,
           "rockLevelTargetId": 305
         },
         {
           "name": "wallTreacherousSandstone",
-          "sourceIds": [ 187, 220, 221, 222 ],
+          "sourceIds": [187, 220, 221, 222],
           "skyLevelTargetId": 220,
           "dirtLevelTargetId": 220,
           "rockLevelTargetId": 220
         },
         {
           "name": "wallSandstone",
-          "sourceIds": [ 275, 308, 309, 310 ],
+          "sourceIds": [275, 308, 309, 310],
           "skyLevelTargetId": 308,
           "dirtLevelTargetId": 308,
           "rockLevelTargetId": 308
         },
         {
           "name": "wallRocks1Natural",
-          "sourceIds": [ 212, 188, 204, 192, 200 ],
+          "sourceIds": [212, 188, 204, 192, 200],
           "skyLevelTargetId": 188,
           "dirtLevelTargetId": 188,
           "rockLevelTargetId": 188
         },
         {
           "name": "wallRocks2Natural",
-          "sourceIds": [ 213, 189, 205, 193, 201 ],
+          "sourceIds": [213, 189, 205, 193, 201],
           "skyLevelTargetId": 189,
           "dirtLevelTargetId": 189,
           "rockLevelTargetId": 189
         },
         {
           "name": "wallRocks3Natural",
-          "sourceIds": [ 214, 190, 206, 194, 202 ],
+          "sourceIds": [214, 190, 206, 194, 202],
           "skyLevelTargetId": 190,
           "dirtLevelTargetId": 190,
           "rockLevelTargetId": 190
         },
         {
           "name": "wallRocks4Natural",
-          "sourceIds": [ 215, 191, 207, 195, 203 ],
+          "sourceIds": [215, 191, 207, 195, 203],
           "skyLevelTargetId": 191,
           "dirtLevelTargetId": 191,
           "rockLevelTargetId": 191
         },
         {
           "name": "wallRocks1",
-          "sourceIds": [ 300, 276, 292, 280, 288 ],
+          "sourceIds": [300, 276, 292, 280, 288],
           "skyLevelTargetId": 276,
           "dirtLevelTargetId": 276,
           "rockLevelTargetId": 276
         },
         {
           "name": "wallRocks2",
-          "sourceIds": [ 301, 277, 293, 289 ],
+          "sourceIds": [301, 277, 293, 289],
           "skyLevelTargetId": 277,
           "dirtLevelTargetId": 277,
           "rockLevelTargetId": 277
         },
         {
           "name": "wallRocks3",
-          "sourceIds": [ 302, 278, 294, 290 ],
+          "sourceIds": [302, 278, 294, 290],
           "skyLevelTargetId": 278,
           "dirtLevelTargetId": 278,
           "rockLevelTargetId": 278
         },
         {
           "name": "wallRocks4",
-          "sourceIds": [ 303, 279, 295, 291 ],
+          "sourceIds": [303, 279, 295, 291],
           "skyLevelTargetId": 279,
           "dirtLevelTargetId": 279,
           "rockLevelTargetId": 279
@@ -524,14 +511,14 @@
       "morphTiles": [
         {
           "name": "tileGrass",
-          "sourceIds": [ 2, 477, 23, 199, 109, 492 ],
+          "sourceIds": [2, 477, 23, 199, 109, 492],
           "skyLevelTargetId": 199,
           "dirtLevelTargetId": 199,
           "rockLevelTargetId": 199
         },
         {
           "name": "tileJungleGrass",
-          "sourceIds": [ 60, 661, 662 ],
+          "sourceIds": [60, 661, 662],
           "skyLevelTargetId": 662,
           "dirtLevelTargetId": 662,
           "rockLevelTargetId": 662
@@ -539,20 +526,7 @@
         {
           "name": "tileStone",
           "sourceIds": [
-            1,
-            25,
-            203,
-            117,
-            179,
-            180,
-            181,
-            182,
-            183,
-            381,
-            534,
-            536,
-            539,
-            625,
+            1, 25, 203, 117, 179, 180, 181, 182, 183, 381, 534, 536, 539, 625,
             627
           ],
           "skyLevelTargetId": 203,
@@ -561,50 +535,50 @@
         },
         {
           "name": "tileIce",
-          "sourceIds": [ 161, 163, 200, 164 ],
+          "sourceIds": [161, 163, 200, 164],
           "skyLevelTargetId": 200,
           "dirtLevelTargetId": 200,
           "rockLevelTargetId": 200
         },
         {
           "name": "tileSand",
-          "sourceIds": [ 53, 112, 234, 116 ],
+          "sourceIds": [53, 112, 234, 116],
           "skyLevelTargetId": 234,
           "dirtLevelTargetId": 234,
           "rockLevelTargetId": 234
         },
         {
           "name": "tileHardenedSand",
-          "sourceIds": [ 397, 398, 399, 402 ],
+          "sourceIds": [397, 398, 399, 402],
           "skyLevelTargetId": 399,
           "dirtLevelTargetId": 399,
           "rockLevelTargetId": 399
         },
         {
           "name": "tileSandstone",
-          "sourceIds": [ 396, 400, 401, 403 ],
+          "sourceIds": [396, 400, 401, 403],
           "skyLevelTargetId": 401,
           "dirtLevelTargetId": 401,
           "rockLevelTargetId": 401
         },
         {
           "name": "spriteSunflower",
-          "sourceIds": [ 27 ],
+          "sourceIds": [27],
           "delete": true
         },
         {
           "name": "spriteGrass",
-          "sourceIds": [ 3, 73, 61, 74, 233, 24, 110, 113 ],
+          "sourceIds": [3, 73, 61, 74, 233, 24, 110, 113],
           "delete": true
         },
         {
           "name": "tileMossSprites",
-          "sourceIds": [ 184 ],
+          "sourceIds": [184],
           "delete": true
         },
         {
           "name": "caveDeco",
-          "sourceIds": [ 165 ],
+          "sourceIds": [165],
           "skyLevelTargetId": 165,
           "dirtLevelTargetId": 165,
           "rockLevelTargetId": 165,
@@ -633,151 +607,151 @@
         },
         {
           "name": "spriteVines",
-          "sourceIds": [ 52, 382, 62, 636, 205, 115 ],
+          "sourceIds": [52, 382, 62, 636, 205, 115],
           "skyLevelTargetId": 205,
           "dirtLevelTargetId": 205,
           "rockLevelTargetId": 205
         },
         {
           "name": "spriteThorns",
-          "sourceIds": [ 69, 655, 32, 352 ],
+          "sourceIds": [69, 655, 32, 352],
           "skyLevelTargetId": 352,
           "dirtLevelTargetId": 352,
           "rockLevelTargetId": 352
         },
         {
           "name": "spriteLifeFruit",
-          "sourceIds": [ 236 ],
+          "sourceIds": [236],
           "delete": true
         },
         {
           "name": "spritePlanteraBulb",
-          "sourceIds": [ 238 ],
+          "sourceIds": [238],
           "delete": true
         },
         {
           "name": "spritePumpkin",
-          "sourceIds": [ 251 ],
+          "sourceIds": [251],
           "delete": true
         },
         {
           "name": "spriteFallenLog",
-          "sourceIds": [ 488 ],
+          "sourceIds": [488],
           "delete": true
         },
         {
           "name": "spriteLilyPad",
-          "sourceIds": [ 518 ],
+          "sourceIds": [518],
           "delete": true
         },
         {
           "name": "spriteBamboo",
-          "sourceIds": [ 571 ],
+          "sourceIds": [571],
           "delete": true
         }
       ],
       "morphWalls": [
         {
           "name": "wallGrassNatural",
-          "sourceIds": [ 63, 64, 65, 69, 81, 70 ],
+          "sourceIds": [63, 64, 65, 69, 81, 70],
           "skyLevelTargetId": 81,
           "dirtLevelTargetId": 81,
           "rockLevelTargetId": 81
         },
         {
           "name": "wallGrass",
-          "sourceIds": [ 66, 67, 68, 264, 268, 265 ],
+          "sourceIds": [66, 67, 68, 264, 268, 265],
           "skyLevelTargetId": 268,
           "dirtLevelTargetId": 268,
           "rockLevelTargetId": 268
         },
         {
           "name": "wallStoneNatural",
-          "sourceIds": [ 61, 185, 3, 83, 28 ],
+          "sourceIds": [61, 185, 3, 83, 28],
           "skyLevelTargetId": 83,
           "dirtLevelTargetId": 83,
           "rockLevelTargetId": 83
         },
         {
           "name": "wallStone",
-          "sourceIds": [ 1, 262, 274, 246, 269, 248 ],
+          "sourceIds": [1, 262, 274, 246, 269, 248],
           "skyLevelTargetId": 269,
           "dirtLevelTargetId": 269,
           "rockLevelTargetId": 269
         },
         {
           "name": "wallHardenedSand",
-          "sourceIds": [ 304, 305, 306, 307 ],
+          "sourceIds": [304, 305, 306, 307],
           "skyLevelTargetId": 306,
           "dirtLevelTargetId": 306,
           "rockLevelTargetId": 306
         },
         {
           "name": "wallTreacherousSandstone",
-          "sourceIds": [ 187, 220, 221, 222 ],
+          "sourceIds": [187, 220, 221, 222],
           "skyLevelTargetId": 221,
           "dirtLevelTargetId": 221,
           "rockLevelTargetId": 221
         },
         {
           "name": "wallSandstone",
-          "sourceIds": [ 275, 308, 309, 310 ],
+          "sourceIds": [275, 308, 309, 310],
           "skyLevelTargetId": 309,
           "dirtLevelTargetId": 309,
           "rockLevelTargetId": 309
         },
         {
           "name": "wallRocks1Natural",
-          "sourceIds": [ 212, 204, 188, 192, 200 ],
+          "sourceIds": [212, 204, 188, 192, 200],
           "skyLevelTargetId": 192,
           "dirtLevelTargetId": 192,
           "rockLevelTargetId": 192
         },
         {
           "name": "wallRocks2Natural",
-          "sourceIds": [ 213, 205, 189, 193, 201 ],
+          "sourceIds": [213, 205, 189, 193, 201],
           "skyLevelTargetId": 193,
           "dirtLevelTargetId": 193,
           "rockLevelTargetId": 193
         },
         {
           "name": "wallRocks3Natural",
-          "sourceIds": [ 214, 206, 190, 194, 202 ],
+          "sourceIds": [214, 206, 190, 194, 202],
           "skyLevelTargetId": 194,
           "dirtLevelTargetId": 194,
           "rockLevelTargetId": 194
         },
         {
           "name": "wallRocks4Natural",
-          "sourceIds": [ 215, 207, 191, 195, 203 ],
+          "sourceIds": [215, 207, 191, 195, 203],
           "skyLevelTargetId": 195,
           "dirtLevelTargetId": 195,
           "rockLevelTargetId": 195
         },
         {
           "name": "wallRocks1",
-          "sourceIds": [ 300, 292, 276, 280, 288 ],
+          "sourceIds": [300, 292, 276, 280, 288],
           "skyLevelTargetId": 280,
           "dirtLevelTargetId": 280,
           "rockLevelTargetId": 280
         },
         {
           "name": "wallRocks2",
-          "sourceIds": [ 301, 293, 277, 281, 289 ],
+          "sourceIds": [301, 293, 277, 281, 289],
           "skyLevelTargetId": 281,
           "dirtLevelTargetId": 281,
           "rockLevelTargetId": 281
         },
         {
           "name": "wallRocks3",
-          "sourceIds": [ 302, 294, 278, 282, 290 ],
+          "sourceIds": [302, 294, 278, 282, 290],
           "skyLevelTargetId": 282,
           "dirtLevelTargetId": 282,
           "rockLevelTargetId": 282
         },
         {
           "name": "wallRocks4",
-          "sourceIds": [ 303, 295, 279, 283, 291 ],
+          "sourceIds": [303, 295, 279, 283, 291],
           "skyLevelTargetId": 283,
           "dirtLevelTargetId": 283,
           "rockLevelTargetId": 283
@@ -789,14 +763,14 @@
       "morphTiles": [
         {
           "name": "tileGrass",
-          "sourceIds": [ 2, 23, 199, 109 ],
+          "sourceIds": [2, 23, 199, 109],
           "skyLevelTargetId": 109,
           "dirtLevelTargetId": 109,
           "rockLevelTargetId": 109
         },
         {
           "name": "tileMowed",
-          "sourceIds": [ 477, 492 ],
+          "sourceIds": [477, 492],
           "skyLevelTargetId": 492,
           "dirtLevelTargetId": 492,
           "rockLevelTargetId": 492
@@ -804,20 +778,7 @@
         {
           "name": "tileStone",
           "sourceIds": [
-            1,
-            25,
-            203,
-            117,
-            179,
-            180,
-            181,
-            182,
-            183,
-            381,
-            534,
-            536,
-            539,
-            625,
+            1, 25, 203, 117, 179, 180, 181, 182, 183, 381, 534, 536, 539, 625,
             627
           ],
           "skyLevelTargetId": 117,
@@ -826,45 +787,45 @@
         },
         {
           "name": "tileIce",
-          "sourceIds": [ 161, 163, 200, 164 ],
+          "sourceIds": [161, 163, 200, 164],
           "skyLevelTargetId": 164,
           "dirtLevelTargetId": 164,
           "rockLevelTargetId": 164
         },
         {
           "name": "tileSand",
-          "sourceIds": [ 53, 112, 234, 116 ],
+          "sourceIds": [53, 112, 234, 116],
           "skyLevelTargetId": 116,
           "dirtLevelTargetId": 116,
           "rockLevelTargetId": 116
         },
         {
           "name": "tileHardenedSand",
-          "sourceIds": [ 397, 398, 399, 402 ],
+          "sourceIds": [397, 398, 399, 402],
           "skyLevelTargetId": 402,
           "dirtLevelTargetId": 402,
           "rockLevelTargetId": 402
         },
         {
           "name": "tileSandstone",
-          "sourceIds": [ 396, 400, 401, 403 ],
+          "sourceIds": [396, 400, 401, 403],
           "skyLevelTargetId": 403,
           "dirtLevelTargetId": 403,
           "rockLevelTargetId": 403
         },
         {
           "name": "spriteGrass",
-          "sourceIds": [ 3, 73, 24, 201 ],
+          "sourceIds": [3, 73, 24, 201],
           "delete": true
         },
         {
           "name": "tileMossSprites",
-          "sourceIds": [ 184 ],
+          "sourceIds": [184],
           "delete": true
         },
         {
           "name": "caveDeco",
-          "sourceIds": [ 165 ],
+          "sourceIds": [165],
           "skyLevelTargetId": 165,
           "dirtLevelTargetId": 165,
           "rockLevelTargetId": 165,
@@ -893,131 +854,131 @@
         },
         {
           "name": "spriteVines",
-          "sourceIds": [ 52, 382, 205, 636, 115 ],
+          "sourceIds": [52, 382, 205, 636, 115],
           "skyLevelTargetId": 115,
           "dirtLevelTargetId": 115,
           "rockLevelTargetId": 115
         },
         {
           "name": "spriteThorns",
-          "sourceIds": [ 32, 352 ],
+          "sourceIds": [32, 352],
           "delete": true
         },
         {
           "name": "spriteLilyPad",
-          "sourceIds": [ 518 ],
+          "sourceIds": [518],
           "delete": true
         }
       ],
       "morphWalls": [
         {
           "name": "wallGrassNatural",
-          "sourceIds": [ 63, 64, 65, 69, 81, 70 ],
+          "sourceIds": [63, 64, 65, 69, 81, 70],
           "skyLevelTargetId": 70,
           "dirtLevelTargetId": 70,
           "rockLevelTargetId": 70
         },
         {
           "name": "wallGrass",
-          "sourceIds": [ 66, 67, 68, 264, 268, 265 ],
+          "sourceIds": [66, 67, 68, 264, 268, 265],
           "skyLevelTargetId": 265,
           "dirtLevelTargetId": 265,
           "rockLevelTargetId": 265
         },
         {
           "name": "wallStoneNatural",
-          "sourceIds": [ 61, 185, 3, 83, 28 ],
+          "sourceIds": [61, 185, 3, 83, 28],
           "skyLevelTargetId": 28,
           "dirtLevelTargetId": 28,
           "rockLevelTargetId": 28
         },
         {
           "name": "wallStone",
-          "sourceIds": [ 1, 262, 274, 246, 269, 248 ],
+          "sourceIds": [1, 262, 274, 246, 269, 248],
           "skyLevelTargetId": 248,
           "dirtLevelTargetId": 248,
           "rockLevelTargetId": 248
         },
         {
           "name": "wallTreacherousHardenedSand",
-          "sourceIds": [ 216, 217, 218, 219 ],
+          "sourceIds": [216, 217, 218, 219],
           "skyLevelTargetId": 219,
           "dirtLevelTargetId": 219,
           "rockLevelTargetId": 219
         },
         {
           "name": "wallHardenedSand",
-          "sourceIds": [ 304, 305, 306, 307 ],
+          "sourceIds": [304, 305, 306, 307],
           "skyLevelTargetId": 307,
           "dirtLevelTargetId": 307,
           "rockLevelTargetId": 307
         },
         {
           "name": "wallTreacherousSandstone",
-          "sourceIds": [ 187, 220, 221, 222 ],
+          "sourceIds": [187, 220, 221, 222],
           "skyLevelTargetId": 222,
           "dirtLevelTargetId": 222,
           "rockLevelTargetId": 222
         },
         {
           "name": "wallSandstone",
-          "sourceIds": [ 275, 308, 309, 310 ],
+          "sourceIds": [275, 308, 309, 310],
           "skyLevelTargetId": 310,
           "dirtLevelTargetId": 310,
           "rockLevelTargetId": 310
         },
         {
           "name": "wallRocks1Natural",
-          "sourceIds": [ 212, 188, 192, 200 ],
+          "sourceIds": [212, 188, 192, 200],
           "skyLevelTargetId": 200,
           "dirtLevelTargetId": 200,
           "rockLevelTargetId": 200
         },
         {
           "name": "wallRocks2Natural",
-          "sourceIds": [ 213, 189, 193, 201 ],
+          "sourceIds": [213, 189, 193, 201],
           "skyLevelTargetId": 201,
           "dirtLevelTargetId": 201,
           "rockLevelTargetId": 201
         },
         {
           "name": "wallRocks3Natural",
-          "sourceIds": [ 214, 190, 194, 202 ],
+          "sourceIds": [214, 190, 194, 202],
           "skyLevelTargetId": 202,
           "dirtLevelTargetId": 202,
           "rockLevelTargetId": 202
         },
         {
           "name": "wallRocks4Natural",
-          "sourceIds": [ 215, 191, 195, 203 ],
+          "sourceIds": [215, 191, 195, 203],
           "skyLevelTargetId": 203,
           "dirtLevelTargetId": 203,
           "rockLevelTargetId": 203
         },
         {
           "name": "wallRocks1",
-          "sourceIds": [ 300, 276, 280, 288 ],
+          "sourceIds": [300, 276, 280, 288],
           "skyLevelTargetId": 288,
           "dirtLevelTargetId": 288,
           "rockLevelTargetId": 288
         },
         {
           "name": "wallRocks2",
-          "sourceIds": [ 301, 277, 281, 289 ],
+          "sourceIds": [301, 277, 281, 289],
           "skyLevelTargetId": 289,
           "dirtLevelTargetId": 289,
           "rockLevelTargetId": 289
         },
         {
           "name": "wallRocks3",
-          "sourceIds": [ 302, 278, 282, 290 ],
+          "sourceIds": [302, 278, 282, 290],
           "skyLevelTargetId": 290,
           "dirtLevelTargetId": 290,
           "rockLevelTargetId": 290
         },
         {
           "name": "wallRocks4",
-          "sourceIds": [ 303, 279, 283, 291 ],
+          "sourceIds": [303, 279, 283, 291],
           "skyLevelTargetId": 291,
           "dirtLevelTargetId": 291,
           "rockLevelTargetId": 291
@@ -1029,60 +990,60 @@
       "morphTiles": [
         {
           "name": "tileMushroomGrass",
-          "sourceIds": [ 60, 70 ],
+          "sourceIds": [60, 70],
           "skyLevelTargetId": 70,
           "dirtLevelTargetId": 70,
           "rockLevelTargetId": 70
         },
         {
           "name": "spriteGrass",
-          "sourceIds": [ 61, 74, 233 ],
+          "sourceIds": [61, 74, 233],
           "delete": true
         },
         {
           "name": "spriteVines",
-          "sourceIds": [ 62, 528 ],
+          "sourceIds": [62, 528],
           "skyLevelTargetId": 528,
           "dirtLevelTargetId": 528,
           "rockLevelTargetId": 528
         },
         {
           "name": "spriteThorns",
-          "sourceIds": [ 69, 655 ],
+          "sourceIds": [69, 655],
           "delete": true
         },
         {
           "name": "spriteLifeFruit",
-          "sourceIds": [ 236 ],
+          "sourceIds": [236],
           "delete": true
         },
         {
           "name": "spritePlanteraBulb",
-          "sourceIds": [ 238 ],
+          "sourceIds": [238],
           "delete": true
         },
         {
           "name": "spriteLilyPad",
-          "sourceIds": [ 518 ],
+          "sourceIds": [518],
           "delete": true
         },
         {
           "name": "spriteBamboo",
-          "sourceIds": [ 571 ],
+          "sourceIds": [571],
           "delete": true
         }
       ],
       "morphWalls": [
         {
           "name": "wallMushroomNatural",
-          "sourceIds": [ 15, 80 ],
+          "sourceIds": [15, 80],
           "skyLevelTargetId": 80,
           "dirtLevelTargetId": 80,
           "rockLevelTargetId": 80
         },
         {
           "name": "wallMushroom",
-          "sourceIds": [ 247, 74 ],
+          "sourceIds": [247, 74],
           "skyLevelTargetId": 74,
           "dirtLevelTargetId": 74,
           "rockLevelTargetId": 74
