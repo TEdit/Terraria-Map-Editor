@@ -5977,11 +5977,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
 			</Frames>
 		</Tile>
 		<Tile Id="234" Color="#FF352C29" Name="Crimsand Block" Solid="true" Blends="true" MergeWith="0" />
-		<Tile Id="235" Color="#FFD6B82E" Name="Teleporter" Solid="true" Framed="true" Size="3,1">
-			<Frames>
-				<Frame UV="0,0" Name="Default" Variety="Default" />
-			</Frames>
-		</Tile>
+		<Tile Id="235" Color="#FFD6B82E" Name="Teleporter" Solid="true" Framed="true" Size="3,1" IsAnimated="true" />
 		<Tile Id="236" Color="#FF95E857" Name="Life Fruit Plant" Framed="true" Size="2,2">
 			<Frames>
 				<Frame UV="0,0" Variety="A" />
@@ -8778,16 +8774,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
 				<Frame UV="54,0" Name="Potted Lava Bulb" />
 			</Frames>
 		</Tile>
-		<Tile Id="614" Name="Potted Ember Tendrils" Light="true" Framed="true" Size="3,6" IsAnimated="true" Color="#FF724D31">
-			<Frames>
-				<Frame UV="0,0" Variety="A" />
-				<Frame UV="54,0" Variety="B" />
-				<Frame UV="108,0" Variety="C" />
-				<Frame UV="162,0" Variety="D" />
-				<Frame UV="216,0" Variety="E" />
-				<Frame UV="270,0" Variety="F" />
-			</Frames>
-		</Tile>
+		<Tile Id="614" Name="Potted Ember Tendrils" Light="true" Framed="true" Size="3,6" IsAnimated="true" Color="#FF724D31" />
 		<Tile Id="615" Name="Yellow Willow Sapling" Framed="true" Size="1,2" Color="#FF966C4A">
 			<Frames>
 				<Frame UV="0,0" Variety="A" />
