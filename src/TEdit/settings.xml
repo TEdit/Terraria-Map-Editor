@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <!--
 
 Terraria Settings.XML Specifications
@@ -1219,15 +1219,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
 				<Frame UV="1188,0" Name="Spooky Table" />
 				<Frame UV="1242,0" Name="Pine Table" />
 				<Frame UV="1296,0" Name="Frozen Table" />
-			</Frames>
-		</Tile>
-		<Tile Id="14" Color="#FFBF8E6F" Name="Table" Framed="true" Size="3,1" TextureGrid="16,16" Placement="floor" SolidTop="true">
-			<Frames>
 				<Frame UV="1350,0" Name="Dynasty Table" />
-			</Frames>
-		</Tile>
-		<Tile Id="14" Color="#FFBF8E6F" Name="Table" Framed="true" Size="3,2" TextureGrid="16,16" Placement="floor" SolidTop="true">
-			<Frames>
 				<Frame UV="1404,0" Name="Palm Wood Table" />
 				<Frame UV="1458,0" Name="Mushroom Table" />
 				<Frame UV="1512,0" Name="Boreal Wood Table" />
