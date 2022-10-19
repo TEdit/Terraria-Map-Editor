@@ -541,7 +541,7 @@ namespace TEdit.View
                                     StyleColor = styleColor,
                                     SizeTiles = rowSize,
                                     SizePixelsInterval = sprite.SizePixelsInterval,
-                                    Anchor = frameName.Anchor,
+                                    Anchor = frameName?.Anchor ?? FrameAnchor.None,
                                     SizeTexture = sprite.SizeTexture,
                                     Name = frameName?.ToString() ?? $"{tile.Name}_{subId}",
                                     Preview = texture.Texture2DToWriteableBitmap(),
@@ -2944,7 +2944,7 @@ namespace TEdit.View
 
             if (_wvm.ActiveTool.Name == "Sprite2" && _wvm.SelectedSprite2.Value != null)
             {
-                var texsize = _wvm.SelectedSpriteTile2.SizeTexture;
+                var texsize = _wvm.SelectedSpriteTile2.SizePixelsRender;
                 if (texsize.X != 16 || texsize.Y != 16)
                 {
                     switch (_wvm.SelectedSprite2.Value?.Anchor)
