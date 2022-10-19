@@ -58,6 +58,7 @@ namespace TEdit.ViewModel
             wvm.Plugins.Add(new RemoveTileWithPlugin(wvm));
             wvm.Plugins.Add(new RandomizerPlugin(wvm));
             wvm.Plugins.Add(new TextStatuePlugin(wvm));
+            wvm.Plugins.Add(new SpriteDebuggerPlugin(wvm));
             return wvm;
         }
     }
