@@ -541,6 +541,7 @@ namespace TEdit.View
                                     StyleColor = styleColor,
                                     SizeTiles = rowSize,
                                     SizePixelsInterval = sprite.SizePixelsInterval,
+                                    Anchor = frameName.Anchor,
                                     SizeTexture = sprite.SizeTexture,
                                     Name = frameName?.ToString() ?? $"{tile.Name}_{subId}",
                                     Preview = texture.Texture2DToWriteableBitmap(),
@@ -2941,12 +2942,12 @@ namespace TEdit.View
                                        1 + (_scrollPosition.Y + _wvm.MouseOverTile.MouseState.Location.Y) * _zoom);
             }
 
-            if (_wvm.ActiveTool.Name == "Sprite" && _wvm.SelectedSprite != null)
+            if (_wvm.ActiveTool.Name == "Sprite2" && _wvm.SelectedSprite2.Value != null)
             {
-                var texsize = World.GetTileProperties(_wvm.SelectedSprite.Tile).TextureGrid;
+                var texsize = _wvm.SelectedSpriteTile2.SizeTexture;
                 if (texsize.X != 16 || texsize.Y != 16)
                 {
-                    switch (_wvm.SelectedSprite.Anchor)
+                    switch (_wvm.SelectedSprite2.Value?.Anchor)
                     {
                         case FrameAnchor.None:
                             position.X += ((16 - texsize.X) / 2F) * _zoom / 16;

@@ -20,6 +20,7 @@ namespace TEdit.Terraria.Objects
         public WriteableBitmap Preview { get; set; }
         public Vector2Short SizeTexture { get; set; }
         public Vector2Short SizePixelsInterval { get; set; }
+        public FrameAnchor Anchor { get; set; }
         public string Name { get; set; }
         public bool IsPreviewTexture { get; set; }
         public void GeneratePreview()
