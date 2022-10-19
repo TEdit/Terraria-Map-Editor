@@ -1219,7 +1219,15 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
 				<Frame UV="1188,0" Name="Spooky Table" />
 				<Frame UV="1242,0" Name="Pine Table" />
 				<Frame UV="1296,0" Name="Frozen Table" />
+			</Frames>
+		</Tile>
+		<Tile Id="14" Color="#FFBF8E6F" Name="Table" Framed="true" Size="3,1" TextureGrid="16,16" Placement="floor" SolidTop="true">
+			<Frames>
 				<Frame UV="1350,0" Name="Dynasty Table" />
+			</Frames>
+		</Tile>
+		<Tile Id="14" Color="#FFBF8E6F" Name="Table" Framed="true" Size="3,2" TextureGrid="16,16" Placement="floor" SolidTop="true">
+			<Frames>
 				<Frame UV="1404,0" Name="Palm Wood Table" />
 				<Frame UV="1458,0" Name="Mushroom Table" />
 				<Frame UV="1512,0" Name="Boreal Wood Table" />
@@ -1229,7 +1237,6 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
 				<Frame UV="1728,0" Name="Meteorite Table" />
 				<Frame UV="1782,0" Name="Granite Table" />
 				<Frame UV="1836,0" Name="Marble Table" />
-				<Frame UV="0,36" Name="Crystal Table" />
 			</Frames>
 		</Tile>
 		<Tile Id="15" Color="#FFBF8E6F" Name="Chair" Framed="true" Size="1,2" Placement="floor" TextureGrid="16,16" FrameGap="0,4">
@@ -2805,8 +2812,6 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
 				<Frame UV="1764,0" Name="Meteorite Chest" />
 				<Frame UV="1800,0" Name="Granite Chest" />
 				<Frame UV="1836,0" Name="Marble Chest" />
-				<Frame UV="1872,0" Name="Crystal Chest" />
-				<Frame UV="1908,0" Name="Golden Chest" />
 			</Frames>
 		</Tile>
 		<Tile Id="22" Color="#FF625FA7" Name="Demonite Ore" Solid="true" Blends="true" MergeWith="0" Light="true" />
@@ -7163,11 +7168,11 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
 			<Frames>
 				<Frame UV="0,0" Name="Trapped Chest" />
 				<Frame UV="36,0" Name="Trapped Gold Chest" />
-				<Frame UV="72,0" Name="Trapped Gold Chest" Variety="Locked" />
+				<!-- <Frame UV="72,0" Name="Trapped Gold Chest" Variety="Locked" /> -->
 				<Frame UV="108,0" Name="Trapped Shadow Chest" />
-				<Frame UV="144,0" Name="Trapped Shadow Chest" Variety="Locked" />
+				<!-- <Frame UV="144,0" Name="Trapped Shadow Chest" Variety="Locked" />
 				<Frame UV="180,0" Name="Trapped Barrel" />
-				<Frame UV="216,0" Name="Trapped Trash Can" />
+				<Frame UV="216,0" Name="Trapped Trash Can" /> -->
 				<Frame UV="252,0" Name="Trapped Ebonwood Chest" />
 				<Frame UV="288,0" Name="Trapped Rich Mahogany Chest" />
 				<Frame UV="324,0" Name="Trapped Pearlwood Chest" />
@@ -7184,11 +7189,11 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
 				<Frame UV="720,0" Name="Trapped Crimson Chest" />
 				<Frame UV="756,0" Name="Trapped Hallowed Chest" />
 				<Frame UV="792,0" Name="Trapped Frozen Chest" />
-				<Frame UV="828,0" Name="Trapped Jungle Chest" Variety="Locked" />
+				<!-- <Frame UV="828,0" Name="Trapped Jungle Chest" Variety="Locked" />
 				<Frame UV="864,0" Name="Trapped Corruption Chest" Variety="Locked" />
 				<Frame UV="900,0" Name="Trapped Crimson Chest" Variety="Locked" />
 				<Frame UV="936,0" Name="Trapped Hallowed Chest" Variety="Locked" />
-				<Frame UV="972,0" Name="Trapped Frozen Chest" Variety="Locked" />
+				<Frame UV="972,0" Name="Trapped Frozen Chest" Variety="Locked" /> -->
 				<Frame UV="1008,0" Name="Trapped Dynasty Chest" />
 				<Frame UV="1044,0" Name="Trapped Honey Chest" />
 				<Frame UV="1080,0" Name="Trapped Steampunk Chest" />
@@ -7197,11 +7202,11 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
 				<Frame UV="1188,0" Name="Trapped Boreal Wood Chest" />
 				<Frame UV="1224,0" Name="Trapped Slime Chest" />
 				<Frame UV="1260,0" Name="Trapped Green Dungeon Chest" />
-				<Frame UV="1296,0" Name="Trapped Green Dungeon Chest" Variety="Locked" />
+				<!-- <Frame UV="1296,0" Name="Trapped Green Dungeon Chest" Variety="Locked" /> -->
 				<Frame UV="1332,0" Name="Trapped Pink Dungeon Chest" />
-				<Frame UV="1368,0" Name="Trapped Pink Dungeon Chest" Variety="Locked" />
+				<!-- <Frame UV="1368,0" Name="Trapped Pink Dungeon Chest" Variety="Locked" /> -->
 				<Frame UV="1404,0" Name="Trapped Blue Dungeon Chest" />
-				<Frame UV="1440,0" Name="Trapped Blue Dungeon Chest" Variety="Locked" />
+				<!-- <Frame UV="1440,0" Name="Trapped Blue Dungeon Chest" Variety="Locked" /> -->
 				<Frame UV="1476,0" Name="Trapped Bone Chest" />
 				<Frame UV="1512,0" Name="Trapped Cactus Chest" />
 				<Frame UV="1548,0" Name="Trapped Flesh Chest" />
@@ -7306,7 +7311,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
 				<Frame UV="36,0" Name="Trapped Golden Chest" />
 				<Frame UV="72,0" Name="Trapped Spider Chest" />
 				<Frame UV="108,0" Name="Trapped Lesion Chest" />
-				<Frame UV="144,0" Name="Trapped Dead Man's Chest" />
+				<!-- <Frame UV="144,0" Name="Trapped Dead Man's Chest" /> -->
 				<Frame UV="180,0" Name="Trapped Solar Chest" />
 				<Frame UV="216,0" Name="Trapped Vortex Chest" />
 				<Frame UV="252,0" Name="Trapped Nebula Chest" />
@@ -7315,7 +7320,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
 				<Frame UV="360,0" Name="Trapped Sandstone Chest" />
 				<Frame UV="396,0" Name="Trapped Bamboo Chest" />
 				<Frame UV="432,0" Name="Trapped Desert Chest" />
-				<Frame UV="468,0" Name="Trapped Desert Chest" Variety="Locked" />
+				<!-- <Frame UV="468,0" Name="Trapped Desert Chest" Variety="Locked" /> -->
 				<Frame UV="504,0" Name="Trapped Reef Chest" />
 				<Frame UV="540,0" Name="Trapped Balloon Chest" />
 				<Frame UV="576,0" Name="Trapped Ash Wood Chest" />
