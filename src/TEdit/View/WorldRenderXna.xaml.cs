@@ -2942,7 +2942,9 @@ namespace TEdit.View
                                        1 + (_scrollPosition.Y + _wvm.MouseOverTile.MouseState.Location.Y) * _zoom);
             }
 
-            if (_wvm.ActiveTool.Name == "Sprite2" && _wvm.SelectedSprite2.Value != null)
+            if (_wvm.ActiveTool.Name == "Sprite2" &&
+                _wvm.SelectedSprite2.Value != null &&
+                _wvm.SelectedSpriteTile2 != null)
             {
                 var texsize = _wvm.SelectedSpriteTile2.SizePixelsRender;
                 if (texsize.X != 16 || texsize.Y != 16)
