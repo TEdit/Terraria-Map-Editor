@@ -14,7 +14,7 @@ namespace TEdit.Terraria
 {
     public partial class World
     {
-        public static uint CompatibleVersion { get; private set; } = 273;
+        public static uint CompatibleVersion { get; private set; } = 275;
         public static short TileCount { get; private set; } = 693; // updated by json
         public static short WallCount { get; private set; } = 346; // updated by json
 
