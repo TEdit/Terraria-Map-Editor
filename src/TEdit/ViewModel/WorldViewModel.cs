@@ -1066,6 +1066,7 @@ namespace TEdit.ViewModel
 
             sfd.Title = "Save World As";
             sfd.InitialDirectory = DependencyChecker.PathToWorlds;
+            sfd.FileName = Path.GetFileName(CurrentFile) ?? string.Join("-", CurrentWorld.Title.Split(Path.GetInvalidFileNameChars()));
             if ((bool)sfd.ShowDialog())
             {
                 CurrentFile = sfd.FileName;
