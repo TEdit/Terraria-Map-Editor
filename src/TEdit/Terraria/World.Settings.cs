@@ -76,7 +76,7 @@ namespace TEdit.Terraria
 
             try
             {
-                MorphSettings = MorphConfiguration.LoadJson("morphSettings.json");
+                MorphSettings = MorphConfiguration.LoadJson(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "morphSettings.json"));
 
             }
             catch (Exception ex)
