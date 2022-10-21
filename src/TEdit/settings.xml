@@ -95,6 +95,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
 		<Shortcut Key="T" Action="Sprite2" />
 		<Shortcut Key="Z" Action="Eraser" />
 		<Shortcut Key="X" Action="Swap" />
+		<Shortcut Key="X" Modifier="Shift" Action="Swap" />
 		<Shortcut Key="H" Action="Hammer" />
 		<Shortcut Key="Q" Action="ToggleTile" />
 		<Shortcut Key="W" Action="ToggleWall" />
