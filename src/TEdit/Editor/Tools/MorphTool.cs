@@ -53,7 +53,7 @@ namespace TEdit.Editor.Tools
         public MorphTool(WorldViewModel worldViewModel)
             : base(worldViewModel)
         {
-            Icon = new BitmapImage(new Uri(@"pack://application:,,,/TEdit;component/Images/Tools/paintbrush.png"));
+            Icon = new BitmapImage(new Uri(@"pack://application:,,,/TEdit;component/Images/Tools/biome_new.png"));
             Name = "Morph";
             ToolType = ToolType.Brush;
         }
