@@ -1975,7 +1975,7 @@
       "morphTiles": [
         {
           "name": "tileDirt_Sand",
-          "sourceIds": [2, 23, 199, 109, 147],
+          "sourceIds": [0, 2, 23, 199, 109, 147],
           "skyLevelTargetId": 53,
           "dirtLevelTargetId": 53,
           "rockLevelTargetId": 53,
