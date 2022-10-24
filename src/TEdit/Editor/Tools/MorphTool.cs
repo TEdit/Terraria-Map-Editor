@@ -204,7 +204,7 @@ namespace TEdit.Editor.Tools
             if (p.Y > _rockLayer) { level = MorphLevel.Rock; }
             else if (p.Y > _dirtLayer) { level = MorphLevel.Dirt; }
 
-            _targetBiome.ApplyMorph(curtile, level);
+            _targetBiome.ApplyMorph(curtile, level, p);
         }
 
         private void MorphTileLegacy(Vector2Int32 p)
