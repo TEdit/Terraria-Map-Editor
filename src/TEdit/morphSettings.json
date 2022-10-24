@@ -121,12 +121,14 @@
         {
           "name": "spriteMushroomGrassyStone",
           "sourceIds": [186],
-          "delete": true,
+          "skyLevelTargetId": 186,
+          "dirtLevelTargetId": 186,
+          "rockLevelTargetId": 186,
           "spriteOffsets": [
             {
               "minU": 1728,
               "maxU": 1872,
-              "offsetU": 0
+              "delete": true
             }
           ]
         },
@@ -150,13 +152,44 @@
           "delete": true
         },
         {
-          "name": "spriteHerbs",
-          "sourceIds": [82, 83, 84],
-          "delete": true,
+          "name": "spriteHerbsSeed",
+          "sourceIds": [82],
+          "skyLevelTargetId": 82,
+          "dirtLevelTargetId": 82,
+          "rockLevelTargetId": 82,
           "spriteOffsets": [
             {
               "minU": 54,
-              "maxU": 54
+              "maxU": 54,
+              "delete": true
+            }
+          ]
+        },
+        {
+          "name": "spriteHerbsMature",
+          "sourceIds": [83],
+          "skyLevelTargetId": 83,
+          "dirtLevelTargetId": 83,
+          "rockLevelTargetId": 83,
+          "spriteOffsets": [
+            {
+              "minU": 54,
+              "maxU": 54,
+              "delete": true
+            }
+          ]
+        },
+        {
+          "name": "spriteHerbsBloom",
+          "sourceIds": [84],
+          "skyLevelTargetId": 84,
+          "dirtLevelTargetId": 84,
+          "rockLevelTargetId": 84,
+          "spriteOffsets": [
+            {
+              "minU": 54,
+              "maxU": 54,
+              "delete": true
             }
           ]
         },
@@ -477,21 +510,74 @@
           "rockLevelTargetId": 32
         },
         {
-          "name": "spriteHerbs",
-          "sourceIds": [82, 83, 84],
-          "delete": true,
+          "name": "spriteHerbsSeed",
+          "sourceIds": [82],
+          "skyLevelTargetId": 82,
+          "dirtLevelTargetId": 82,
+          "rockLevelTargetId": 82,
           "spriteOffsets": [
             {
               "minU": 0,
-              "maxU": 0
+              "maxU": 0,
+              "delete": true
             },
             {
               "minU": 18,
-              "maxU": 18
+              "maxU": 18,
+              "delete": true
             },
             {
               "minU": 72,
-              "maxU": 72
+              "maxU": 72,
+              "delete": true
+            }
+          ]
+        },
+        {
+          "name": "spriteHerbsMature",
+          "sourceIds": [83],
+          "skyLevelTargetId": 83,
+          "dirtLevelTargetId": 83,
+          "rockLevelTargetId": 83,
+          "spriteOffsets": [
+            {
+              "minU": 0,
+              "maxU": 0,
+              "delete": true
+            },
+            {
+              "minU": 18,
+              "maxU": 18,
+              "delete": true
+            },
+            {
+              "minU": 72,
+              "maxU": 72,
+              "delete": true
+            }
+          ]
+        },
+        {
+          "name": "spriteHerbsBloom",
+          "sourceIds": [84],
+          "skyLevelTargetId": 84,
+          "dirtLevelTargetId": 84,
+          "rockLevelTargetId": 84,
+          "spriteOffsets": [
+            {
+              "minU": 0,
+              "maxU": 0,
+              "delete": true
+            },
+            {
+              "minU": 18,
+              "maxU": 18,
+              "delete": true
+            },
+            {
+              "minU": 72,
+              "maxU": 72,
+              "delete": true
             }
           ]
         },
@@ -833,21 +919,74 @@
           "rockLevelTargetId": 352
         },
         {
-          "name": "spriteHerbs",
-          "sourceIds": [82, 83, 84],
-          "delete": true,
+          "name": "spriteHerbsSeed",
+          "sourceIds": [82],
+          "skyLevelTargetId": 82,
+          "dirtLevelTargetId": 82,
+          "rockLevelTargetId": 82,
           "spriteOffsets": [
             {
               "minU": 0,
-              "maxU": 0
+              "maxU": 0,
+              "delete": true
             },
             {
               "minU": 18,
-              "maxU": 18
+              "maxU": 18,
+              "delete": true
             },
             {
               "minU": 72,
-              "maxU": 72
+              "maxU": 72,
+              "delete": true
+            }
+          ]
+        },
+        {
+          "name": "spriteHerbsMature",
+          "sourceIds": [83],
+          "skyLevelTargetId": 83,
+          "dirtLevelTargetId": 83,
+          "rockLevelTargetId": 83,
+          "spriteOffsets": [
+            {
+              "minU": 0,
+              "maxU": 0,
+              "delete": true
+            },
+            {
+              "minU": 18,
+              "maxU": 18,
+              "delete": true
+            },
+            {
+              "minU": 72,
+              "maxU": 72,
+              "delete": true
+            }
+          ]
+        },
+        {
+          "name": "spriteHerbsBloom",
+          "sourceIds": [84],
+          "skyLevelTargetId": 84,
+          "dirtLevelTargetId": 84,
+          "rockLevelTargetId": 84,
+          "spriteOffsets": [
+            {
+              "minU": 0,
+              "maxU": 0,
+              "delete": true
+            },
+            {
+              "minU": 18,
+              "maxU": 18,
+              "delete": true
+            },
+            {
+              "minU": 72,
+              "maxU": 72,
+              "delete": true
             }
           ]
         },
@@ -1136,13 +1275,44 @@
           "delete": true
         },
         {
-          "name": "spriteHerbs",
-          "sourceIds": [82, 83, 84],
-          "delete": true,
+          "name": "spriteHerbsSeed",
+          "sourceIds": [82],
+          "skyLevelTargetId": 82,
+          "dirtLevelTargetId": 82,
+          "rockLevelTargetId": 82,
           "spriteOffsets": [
             {
               "minU": 54,
-              "maxU": 54
+              "maxU": 54,
+              "delete": true
+            }
+          ]
+        },
+        {
+          "name": "spriteHerbsMature",
+          "sourceIds": [83],
+          "skyLevelTargetId": 83,
+          "dirtLevelTargetId": 83,
+          "rockLevelTargetId": 83,
+          "spriteOffsets": [
+            {
+              "minU": 54,
+              "maxU": 54,
+              "delete": true
+            }
+          ]
+        },
+        {
+          "name": "spriteHerbsBloom",
+          "sourceIds": [84],
+          "skyLevelTargetId": 84,
+          "dirtLevelTargetId": 84,
+          "rockLevelTargetId": 84,
+          "spriteOffsets": [
+            {
+              "minU": 54,
+              "maxU": 54,
+              "delete": true
             }
           ]
         },
@@ -1271,17 +1441,6 @@
       "biomeName": "GlowingMushroom",
       "morphTiles": [
         {
-          "name": "spriteTree",
-          "sourceIds": [5],
-          "delete": true,
-          "spriteOffsets": [
-            {
-              "minU": 1232,
-              "maxU": 1386
-            }
-          ]
-        },
-        {
           "name": "tileMushroomGrass",
           "sourceIds": [60, 70],
           "skyLevelTargetId": 70,
@@ -1318,13 +1477,44 @@
           "delete": true
         },
         {
-          "name": "spriteHerbs",
-          "sourceIds": [82, 83, 84],
-          "delete": true,
+          "name": "spriteHerbsSeed",
+          "sourceIds": [82],
+          "skyLevelTargetId": 82,
+          "dirtLevelTargetId": 82,
+          "rockLevelTargetId": 82,
           "spriteOffsets": [
             {
               "minU": 18,
-              "maxU": 18
+              "maxU": 18,
+              "delete": true
+            }
+          ]
+        },
+        {
+          "name": "spriteHerbsMature",
+          "sourceIds": [83],
+          "skyLevelTargetId": 83,
+          "dirtLevelTargetId": 83,
+          "rockLevelTargetId": 83,
+          "spriteOffsets": [
+            {
+              "minU": 18,
+              "maxU": 18,
+              "delete": true
+            }
+          ]
+        },
+        {
+          "name": "spriteHerbsBloom",
+          "sourceIds": [84],
+          "skyLevelTargetId": 84,
+          "dirtLevelTargetId": 84,
+          "rockLevelTargetId": 84,
+          "spriteOffsets": [
+            {
+              "minU": 18,
+              "maxU": 18,
+              "delete": true
             }
           ]
         },
@@ -1419,6 +1609,16 @@
           "rockLevelTargetId": 1
         },
         {
+          "name": "spriteCactus",
+          "sourceIds": [80],
+          "delete": true
+        },
+        {
+          "name": "spritePalm",
+          "sourceIds": [323],
+          "delete": true
+        },
+        {
           "name": "spriteGrass",
           "sourceIds": [71, 24, 201, 110, 113],
           "delete": true
@@ -1490,21 +1690,74 @@
           "delete": true
         },
         {
-          "name": "spriteHerbs",
-          "sourceIds": [82, 83, 84],
-          "delete": true,
+          "name": "spriteHerbsSeed",
+          "sourceIds": [82],
+          "skyLevelTargetId": 82,
+          "dirtLevelTargetId": 82,
+          "rockLevelTargetId": 82,
           "spriteOffsets": [
             {
               "minU": 54,
-              "maxU": 54
+              "maxU": 54,
+              "delete": true
             },
             {
               "minU": 72,
-              "maxU": 72
+              "maxU": 72,
+              "delete": true
             },
             {
               "minU": 108,
-              "maxU": 108
+              "maxU": 108,
+              "delete": true
+            }
+          ]
+        },
+        {
+          "name": "spriteHerbsMature",
+          "sourceIds": [83],
+          "skyLevelTargetId": 83,
+          "dirtLevelTargetId": 83,
+          "rockLevelTargetId": 83,
+          "spriteOffsets": [
+            {
+              "minU": 54,
+              "maxU": 54,
+              "delete": true
+            },
+            {
+              "minU": 72,
+              "maxU": 72,
+              "delete": true
+            },
+            {
+              "minU": 108,
+              "maxU": 108,
+              "delete": true
+            }
+          ]
+        },
+        {
+          "name": "spriteHerbsBloom",
+          "sourceIds": [84],
+          "skyLevelTargetId": 84,
+          "dirtLevelTargetId": 84,
+          "rockLevelTargetId": 84,
+          "spriteOffsets": [
+            {
+              "minU": 54,
+              "maxU": 54,
+              "delete": true
+            },
+            {
+              "minU": 72,
+              "maxU": 72,
+              "delete": true
+            },
+            {
+              "minU": 108,
+              "maxU": 108,
+              "delete": true
             }
           ]
         },
@@ -1689,6 +1942,16 @@
           "rockLevelTargetId": 161
         },
         {
+          "name": "spriteCactus",
+          "sourceIds": [80],
+          "delete": true
+        },
+        {
+          "name": "spritePalm",
+          "sourceIds": [323],
+          "delete": true
+        },
+        {
           "name": "spriteSunflower",
           "sourceIds": [27],
           "delete": true
@@ -1807,25 +2070,89 @@
           "delete": true
         },
         {
-          "name": "spriteHerbs",
-          "sourceIds": [82, 83, 84],
-          "delete": true,
+          "name": "spriteHerbsSeed",
+          "sourceIds": [82],
+          "skyLevelTargetId": 82,
+          "dirtLevelTargetId": 82,
+          "rockLevelTargetId": 82,
           "spriteOffsets": [
             {
               "minU": 0,
-              "maxU": 0
+              "maxU": 0,
+              "delete": true
             },
             {
               "minU": 36,
-              "maxU": 36
+              "maxU": 36,
+              "delete": true
             },
             {
               "minU": 54,
-              "maxU": 54
+              "maxU": 54,
+              "delete": true
             },
             {
               "minU": 72,
-              "maxU": 72
+              "maxU": 72,
+              "delete": true
+            }
+          ]
+        },
+        {
+          "name": "spriteHerbsMature",
+          "sourceIds": [83],
+          "skyLevelTargetId": 83,
+          "dirtLevelTargetId": 83,
+          "rockLevelTargetId": 83,
+          "spriteOffsets": [
+            {
+              "minU": 0,
+              "maxU": 0,
+              "delete": true
+            },
+            {
+              "minU": 36,
+              "maxU": 36,
+              "delete": true
+            },
+            {
+              "minU": 54,
+              "maxU": 54,
+              "delete": true
+            },
+            {
+              "minU": 72,
+              "maxU": 72,
+              "delete": true
+            }
+          ]
+        },
+        {
+          "name": "spriteHerbsBloom",
+          "sourceIds": [84],
+          "skyLevelTargetId": 84,
+          "dirtLevelTargetId": 84,
+          "rockLevelTargetId": 84,
+          "spriteOffsets": [
+            {
+              "minU": 0,
+              "maxU": 0,
+              "delete": true
+            },
+            {
+              "minU": 36,
+              "maxU": 36,
+              "delete": true
+            },
+            {
+              "minU": 54,
+              "maxU": 54,
+              "delete": true
+            },
+            {
+              "minU": 72,
+              "maxU": 72,
+              "delete": true
             }
           ]
         },
@@ -2150,25 +2477,89 @@
           "delete": true
         },
         {
-          "name": "spriteHerbs",
-          "sourceIds": [82, 83, 84],
-          "delete": true,
+          "name": "spriteHerbsSeed",
+          "sourceIds": [82],
+          "skyLevelTargetId": 82,
+          "dirtLevelTargetId": 82,
+          "rockLevelTargetId": 82,
           "spriteOffsets": [
             {
               "minU": 0,
-              "maxU": 0
+              "maxU": 0,
+              "delete": true
             },
             {
               "minU": 36,
-              "maxU": 36
+              "maxU": 36,
+              "delete": true
             },
             {
               "minU": 54,
-              "maxU": 54
+              "maxU": 54,
+              "delete": true
             },
             {
               "minU": 108,
-              "maxU": 108
+              "maxU": 108,
+              "delete": true
+            }
+          ]
+        },
+        {
+          "name": "spriteHerbsMature",
+          "sourceIds": [83],
+          "skyLevelTargetId": 83,
+          "dirtLevelTargetId": 83,
+          "rockLevelTargetId": 83,
+          "spriteOffsets": [
+            {
+              "minU": 0,
+              "maxU": 0,
+              "delete": true
+            },
+            {
+              "minU": 36,
+              "maxU": 36,
+              "delete": true
+            },
+            {
+              "minU": 54,
+              "maxU": 54,
+              "delete": true
+            },
+            {
+              "minU": 108,
+              "maxU": 108,
+              "delete": true
+            }
+          ]
+        },
+        {
+          "name": "spriteHerbsBloom",
+          "sourceIds": [84],
+          "skyLevelTargetId": 84,
+          "dirtLevelTargetId": 84,
+          "rockLevelTargetId": 84,
+          "spriteOffsets": [
+            {
+              "minU": 0,
+              "maxU": 0,
+              "delete": true
+            },
+            {
+              "minU": 36,
+              "maxU": 36,
+              "delete": true
+            },
+            {
+              "minU": 54,
+              "maxU": 54,
+              "delete": true
+            },
+            {
+              "minU": 108,
+              "maxU": 108,
+              "delete": true
             }
           ]
         },
