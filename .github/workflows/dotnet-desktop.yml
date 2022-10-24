@@ -54,10 +54,11 @@ jobs:
         Copy-Item -Path $env:Publish_Path -Destination ".\release\${$env:File_Name}\" -Recurse -Force -Verbose
         Copy-Item -Path ".\schematics" -Destination ".\release" -Recurse -Verbose
         Compress-Archive -Path ".\release\*" -DestinationPath ".\${$env:File_Name}.zip" -Verbose
+        ls .
 
     - uses: actions/upload-artifact@v2
       if: github.ref == 'refs/heads/main' || startsWith(github.ref, 'refs/tags/')
       with:
         name: TEdit-zip
-        path: .\TEdit_*.zip
+        path: TEdit_*.zip
         if-no-files-found: error
