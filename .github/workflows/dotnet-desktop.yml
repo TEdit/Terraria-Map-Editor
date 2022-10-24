@@ -52,13 +52,11 @@ jobs:
       shell: pwsh
       run: |
         Copy-Item -Path $env:Publish_Path -Destination ".\release\TEdit_main\" -Recurse -Force -Verbose
-        Copy-Item -Path ".\schematics" -Destination ".\release" -Recurse -Verbose
-        Compress-Archive -Path ".\release\*" -DestinationPath ".\TEdit_main.zip" -Verbose
-        
+        Copy-Item -Path ".\schematics" -Destination ".\release" -Recurse -Verbose        
 
     - uses: actions/upload-artifact@v2
       if: github.ref == 'refs/heads/main' || startsWith(github.ref, 'refs/tags/')
       with:
         name: TEdit-zip
-        path: TEdit_*.zip
+        path: .\release
         if-no-files-found: error
