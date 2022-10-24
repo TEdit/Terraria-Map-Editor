@@ -50,9 +50,9 @@ jobs:
     - name: Create the app package
       shell: pwsh
       run: |
-        Copy-Item -Path $env:Publish_Path -Destination ".\release\${$env:File_Name}\" -Recurse -Force
-        Copy-Item -Path ".\schematics" -Destination ".\release" -Recurse
-        Compress-Archive -Path ".\release\*" -DestinationPath ".\${$env:File_Name}.zip"
+        Copy-Item -Path $env:Publish_Path -Destination ".\release\${$env:File_Name}\" -Recurse -Force -Verbose
+        Copy-Item -Path ".\schematics" -Destination ".\release" -Recurse -Verbose
+        Compress-Archive -Path ".\release\*" -DestinationPath ".\${$env:File_Name}.zip" -Verbose
 
     - name: Create Release
       uses: ncipollo/release-action@v1
