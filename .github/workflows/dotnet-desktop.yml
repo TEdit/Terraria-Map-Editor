@@ -48,11 +48,11 @@ jobs:
         Configuration: ${{ matrix.configuration }}
 
     - name: Create the app package
-      run: >
-        dotnet publish -c Release $env:Solution_Name;
-        Copy-Item -Path $env:Publish_Path -Destination ".\release\${$env:File_Name}\" -Recurse -Force;
-        Copy-Item -Path ".\schematics" -Destination ".\release" -Recurse;
-        Compress-Archive -Path ".\release\*" -DestinationPath ".\${$env:File_Name}.zip";
+      run: |
+        dotnet publish -c Release $env:Solution_Name
+        Copy-Item -Path $env:Publish_Path -Destination ".\release\${$env:File_Name}\" -Recurse -Force
+        Copy-Item -Path ".\schematics" -Destination ".\release" -Recurse
+        Compress-Archive -Path ".\release\*" -DestinationPath ".\${$env:File_Name}.zip"
 
     - uses: actions/upload-artifact@v2
       if: github.ref == 'refs/heads/main' || startsWith(github.ref, 'refs/tags/')
