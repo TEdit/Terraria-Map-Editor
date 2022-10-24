@@ -42,15 +42,15 @@ jobs:
       env:
         Configuration: ${{ matrix.configuration }}
 
-    - name: Create the app package
-      run: dotnet build -c $env:Configuration $env:Solution_Name
-      env:
-        Configuration: ${{ matrix.configuration }}
-
-    - name: Create the app package
+    - name: Publish binary files
       shell: pwsh
       run: |
         dotnet publish -c Release $env:Solution_Name
+
+    # Create the app package by building and packaging the Windows Application Packaging project
+    - name: Create the app package
+      shell: pwsh
+      run: |
         Copy-Item -Path $env:Publish_Path -Destination ".\release\${$env:File_Name}\" -Recurse -Force
         Copy-Item -Path ".\schematics" -Destination ".\release" -Recurse
         Compress-Archive -Path ".\release\*" -DestinationPath ".\${$env:File_Name}.zip"
