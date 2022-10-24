@@ -72,6 +72,11 @@
           "rockLevelTargetId": 165,
           "spriteOffsets": [
             {
+              "minU": 0,
+              "maxU": 36,
+              "offsetU": 0
+            },
+            {
               "minU": 54,
               "maxU": 90,
               "offsetU": 0
@@ -89,6 +94,26 @@
             {
               "minU": 324,
               "maxU": 362,
+              "offsetU": -270
+            },
+            {
+              "minU": 378,
+              "maxU": 414,
+              "offsetU": 0
+            },
+            {
+              "minU": 540,
+              "maxU": 576,
+              "offsetU": -540
+            },
+            {
+              "minU": 594,
+              "maxU": 630,
+              "offsetU": -594
+            },
+            {
+              "minU": 648,
+              "maxU": 684,
               "offsetU": -270
             }
           ]
@@ -352,6 +377,11 @@
           "rockLevelTargetId": 165,
           "spriteOffsets": [
             {
+              "minU": 0,
+              "maxU": 36,
+              "offsetU": 594
+            },
+            {
               "minU": 54,
               "maxU": 90,
               "offsetU": 216
@@ -369,7 +399,27 @@
             {
               "minU": 324,
               "maxU": 362,
-              "offsetU": -270
+              "offsetU": -54
+            },
+            {
+              "minU": 378,
+              "maxU": 414,
+              "offsetU": -108
+            },
+            {
+              "minU": 540,
+              "maxU": 576,
+              "offsetU": 54
+            },
+            {
+              "minU": 594,
+              "maxU": 630,
+              "offsetU": 0
+            },
+            {
+              "minU": 648,
+              "maxU": 684,
+              "offsetU": -54
             }
           ]
         },
@@ -683,6 +733,11 @@
           "rockLevelTargetId": 165,
           "spriteOffsets": [
             {
+              "minU": 0,
+              "maxU": 36,
+              "offsetU": 648
+            },
+            {
               "minU": 54,
               "maxU": 90,
               "offsetU": 270
@@ -700,6 +755,26 @@
             {
               "minU": 324,
               "maxU": 362,
+              "offsetU": 0
+            },
+            {
+              "minU": 378,
+              "maxU": 414,
+              "offsetU": -54
+            },
+            {
+              "minU": 540,
+              "maxU": 576,
+              "offsetU": 108
+            },
+            {
+              "minU": 594,
+              "maxU": 630,
+              "offsetU": 54
+            },
+            {
+              "minU": 648,
+              "maxU": 684,
               "offsetU": 0
             }
           ]
@@ -1002,6 +1077,11 @@
           "rockLevelTargetId": 165,
           "spriteOffsets": [
             {
+              "minU": 0,
+              "maxU": 36,
+              "offsetU": 540
+            },
+            {
               "minU": 54,
               "maxU": 90,
               "offsetU": 162
@@ -1020,18 +1100,26 @@
               "minU": 324,
               "maxU": 362,
               "offsetU": -108
-            }
-          ]
-        },
-        {
-          "name": "spriteGrassyStone",
-          "sourceIds": [187],
-          "delete": true,
-          "spriteOffsets": [
+            },
             {
-              "minU": 0,
-              "maxU": 306,
+              "minU": 378,
+              "maxU": 414,
+              "offsetU": -162
+            },
+            {
+              "minU": 540,
+              "maxU": 576,
               "offsetU": 0
+            },
+            {
+              "minU": 594,
+              "maxU": 630,
+              "offsetU": -54
+            },
+            {
+              "minU": 648,
+              "maxU": 684,
+              "offsetU": -108
             }
           ]
         },
@@ -1283,7 +1371,7 @@
       "morphTiles": [
         {
           "name": "tileDirt",
-          "sourceIds": [2, 23, 199, 109, 147],
+          "sourceIds": [23, 199, 109, 147],
           "skyLevelTargetId": 0,
           "dirtLevelTargetId": 0,
           "rockLevelTargetId": 0
@@ -1331,11 +1419,99 @@
           "rockLevelTargetId": 1
         },
         {
-          "name": "spriteEntree",
-          "sourceIds": [],
-          "skyLevelTargetId": 0,
-          "dirtLevelTargetId": 0,
-          "rockLevelTargetId": 0
+          "name": "spriteGrass",
+          "sourceIds": [71, 24, 201, 110, 113],
+          "delete": true
+        },
+        {
+          "name": "spriteCaveSpikes",
+          "sourceIds": [165],
+          "skyLevelTargetId": 165,
+          "dirtLevelTargetId": 165,
+          "rockLevelTargetId": 165,
+          "spriteOffsets": [
+            {
+              "minU": 0,
+              "maxU": 36,
+              "offsetU": 0
+            },
+            {
+              "minU": 54,
+              "maxU": 90,
+              "offsetU": 0
+            },
+            {
+              "minU": 216,
+              "maxU": 252,
+              "offsetU": -162
+            },
+            {
+              "minU": 270,
+              "maxU": 306,
+              "offsetU": -216
+            },
+            {
+              "minU": 324,
+              "maxU": 362,
+              "offsetU": -270
+            },
+            {
+              "minU": 378,
+              "maxU": 414,
+              "offsetU": 0
+            },
+            {
+              "minU": 540,
+              "maxU": 576,
+              "offsetU": -540
+            },
+            {
+              "minU": 594,
+              "maxU": 630,
+              "offsetU": -594
+            },
+            {
+              "minU": 648,
+              "maxU": 684,
+              "offsetU": -270
+            }
+          ]
+        },
+        {
+          "name": "spriteVines",
+          "sourceIds": [52, 636, 205, 115],
+          "skyLevelTargetId": 52,
+          "dirtLevelTargetId": 52,
+          "rockLevelTargetId": 52
+        },
+        {
+          "name": "spriteThorns",
+          "sourceIds": [32, 352],
+          "delete": true
+        },
+        {
+          "name": "spriteHerbs",
+          "sourceIds": [82, 83, 84],
+          "delete": true,
+          "spriteOffsets": [
+            {
+              "minU": 54,
+              "maxU": 54
+            },
+            {
+              "minU": 72,
+              "maxU": 72
+            },
+            {
+              "minU": 108,
+              "maxU": 108
+            }
+          ]
+        },
+        {
+          "name": "spriteLilyPad",
+          "sourceIds": [518],
+          "delete": true
         }
       ],
       "morphWalls": [
@@ -1513,11 +1689,170 @@
           "rockLevelTargetId": 161
         },
         {
-          "name": "spriteEntree",
-          "sourceIds": [],
-          "skyLevelTargetId": 0,
-          "dirtLevelTargetId": 0,
-          "rockLevelTargetId": 0
+          "name": "spriteSunflower",
+          "sourceIds": [27],
+          "delete": true
+        },
+        {
+          "name": "spriteGrass",
+          "sourceIds": [3, 73, 24, 201, 110, 113],
+          "delete": true
+        },
+        {
+          "name": "spriteMoss",
+          "sourceIds": [184],
+          "delete": true
+        },
+        {
+          "name": "spriteCaveSpikes",
+          "sourceIds": [165],
+          "skyLevelTargetId": 165,
+          "dirtLevelTargetId": 165,
+          "rockLevelTargetId": 165,
+          "spriteOffsets": [
+            {
+              "minU": 0,
+              "maxU": 36,
+              "offsetU": 0
+            },
+            {
+              "minU": 54,
+              "maxU": 90,
+              "offsetU": -54
+            },
+            {
+              "minU": 216,
+              "maxU": 252,
+              "offsetU": -216
+            },
+            {
+              "minU": 270,
+              "maxU": 306,
+              "offsetU": -270
+            },
+            {
+              "minU": 324,
+              "maxU": 362,
+              "offsetU": -324
+            },
+            {
+              "minU": 378,
+              "maxU": 414,
+              "offsetU": -378
+            },
+            {
+              "minU": 540,
+              "maxU": 576,
+              "offsetU": -540
+            },
+            {
+              "minU": 594,
+              "maxU": 630,
+              "offsetU": -594
+            },
+            {
+              "minU": 648,
+              "maxU": 684,
+              "offsetU": -270
+            }
+          ]
+        },
+        {
+          "name": "spriteSmallGrassyStone",
+          "sourceIds": [185],
+          "skyLevelTargetId": 185,
+          "dirtLevelTargetId": 185,
+          "rockLevelTargetId": 185,
+          "spriteOffsets": [
+            {
+              "minU": 1368,
+              "maxU": 1458,
+              "offsetU": -1368,
+              "useFilterV": true,
+              "minV": 18,
+              "maxV": 18
+            }
+          ]
+        },
+        {
+          "name": "spriteGrassyStone",
+          "sourceIds": [187],
+          "skyLevelTargetId": 186,
+          "dirtLevelTargetId": 186,
+          "rockLevelTargetId": 186,
+          "spriteOffsets": [
+            {
+              "minU": 756,
+              "maxU": 918,
+              "offsetU": -378
+            },
+            {
+              "minU": 0,
+              "maxU": 306,
+              "useFilterV": true,
+              "minV": 0,
+              "maxV": 18,
+              "delete": true
+            }
+          ]
+        },
+        {
+          "name": "spriteVines",
+          "sourceIds": [52, 382, 636, 205, 115],
+          "delete": true
+        },
+        {
+          "name": "spriteThorns",
+          "sourceIds": [32, 352],
+          "delete": true
+        },
+        {
+          "name": "spriteHerbs",
+          "sourceIds": [82, 83, 84],
+          "delete": true,
+          "spriteOffsets": [
+            {
+              "minU": 0,
+              "maxU": 0
+            },
+            {
+              "minU": 36,
+              "maxU": 36
+            },
+            {
+              "minU": 54,
+              "maxU": 54
+            },
+            {
+              "minU": 72,
+              "maxU": 72
+            }
+          ]
+        },
+        {
+          "name": "spritePumpkin",
+          "sourceIds": [254],
+          "delete": true
+        },
+        {
+          "name": "spriteFallenLog",
+          "sourceIds": [488],
+          "delete": true
+        },
+        {
+          "name": "spriteLilyPad",
+          "sourceIds": [518],
+          "delete": true
+        },
+        {
+          "name": "spriteSakuraTree",
+          "sourceIds": [595, 596],
+          "delete": true
+        },
+        {
+          "name": "spriteWillowTree",
+          "sourceIds": [615, 616],
+          "delete": true
         }
       ],
       "morphWalls": [
@@ -1640,7 +1975,7 @@
       "morphTiles": [
         {
           "name": "tileDirt_Sand",
-          "sourceIds": [2, 23, 199, 109, 147],
+          "sourceIds": [0, 2, 23, 199, 109, 147],
           "skyLevelTargetId": 53,
           "dirtLevelTargetId": 53,
           "rockLevelTargetId": 53,
@@ -1697,11 +2032,170 @@
           "rockLevelTargetId": 396
         },
         {
-          "name": "spriteEntree",
-          "sourceIds": [],
-          "skyLevelTargetId": 0,
-          "dirtLevelTargetId": 0,
-          "rockLevelTargetId": 0
+          "name": "spriteSunflower",
+          "sourceIds": [27],
+          "delete": true
+        },
+        {
+          "name": "spriteGrass",
+          "sourceIds": [3, 73, 24, 201, 110, 113],
+          "delete": true
+        },
+        {
+          "name": "spriteMoss",
+          "sourceIds": [184],
+          "delete": true
+        },
+        {
+          "name": "spriteCaveSpikes",
+          "sourceIds": [165],
+          "skyLevelTargetId": 165,
+          "dirtLevelTargetId": 165,
+          "rockLevelTargetId": 165,
+          "spriteOffsets": [
+            {
+              "minU": 0,
+              "maxU": 36,
+              "offsetU": 378
+            },
+            {
+              "minU": 54,
+              "maxU": 90,
+              "offsetU": 324
+            },
+            {
+              "minU": 216,
+              "maxU": 252,
+              "offsetU": 162
+            },
+            {
+              "minU": 270,
+              "maxU": 306,
+              "offsetU": 108
+            },
+            {
+              "minU": 324,
+              "maxU": 362,
+              "offsetU": 54
+            },
+            {
+              "minU": 378,
+              "maxU": 414,
+              "offsetU": 0
+            },
+            {
+              "minU": 540,
+              "maxU": 576,
+              "offsetU": -162
+            },
+            {
+              "minU": 594,
+              "maxU": 630,
+              "offsetU": -216
+            },
+            {
+              "minU": 648,
+              "maxU": 684,
+              "offsetU": -270
+            }
+          ]
+        },
+        {
+          "name": "spriteSmallGrassyStone",
+          "sourceIds": [185],
+          "skyLevelTargetId": 185,
+          "dirtLevelTargetId": 185,
+          "rockLevelTargetId": 185,
+          "spriteOffsets": [
+            {
+              "minU": 1368,
+              "maxU": 1458,
+              "offsetU": -1368,
+              "useFilterV": true,
+              "minV": 18,
+              "maxV": 18
+            }
+          ]
+        },
+        {
+          "name": "spriteGrassyStone",
+          "sourceIds": [187],
+          "skyLevelTargetId": 186,
+          "dirtLevelTargetId": 186,
+          "rockLevelTargetId": 186,
+          "spriteOffsets": [
+            {
+              "minU": 756,
+              "maxU": 918,
+              "offsetU": -378
+            },
+            {
+              "minU": 0,
+              "maxU": 306,
+              "useFilterV": true,
+              "minV": 0,
+              "maxV": 18,
+              "delete": true
+            }
+          ]
+        },
+        {
+          "name": "spriteVines",
+          "sourceIds": [52, 382, 636, 205, 115],
+          "delete": true
+        },
+        {
+          "name": "spriteThorns",
+          "sourceIds": [32, 352],
+          "delete": true
+        },
+        {
+          "name": "spriteHerbs",
+          "sourceIds": [82, 83, 84],
+          "delete": true,
+          "spriteOffsets": [
+            {
+              "minU": 0,
+              "maxU": 0
+            },
+            {
+              "minU": 36,
+              "maxU": 36
+            },
+            {
+              "minU": 54,
+              "maxU": 54
+            },
+            {
+              "minU": 108,
+              "maxU": 108
+            }
+          ]
+        },
+        {
+          "name": "spritePumpkin",
+          "sourceIds": [254],
+          "delete": true
+        },
+        {
+          "name": "spriteFallenLog",
+          "sourceIds": [488],
+          "delete": true
+        },
+        {
+          "name": "spriteLilyPad",
+          "sourceIds": [518],
+          "delete": true
+        },
+        {
+          "name": "spriteSakuraTree",
+          "sourceIds": [595, 596],
+          "delete": true
+        },
+        {
+          "name": "spriteWillowTree",
+          "sourceIds": [615, 616],
+          "delete": true
         }
       ],
       "morphWalls": [
