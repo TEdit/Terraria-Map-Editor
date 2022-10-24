@@ -7,16 +7,13 @@
         WindowStartupLocation="CenterOwner"
         mc:Ignorable="d"
         Background="{StaticResource ControlBackgroundBrush}" Foreground="{DynamicResource TextBrush}"
-        Title="Select World Version" Height="375.237" Width="420">
+        Title="Select World Version" Height="420" Width="420">
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="141*"/>
-            <ColumnDefinition Width="65*"/>
-        </Grid.ColumnDefinitions>
-        <ScrollViewer Grid.ColumnSpan="2">
+        <ScrollViewer>
             <StackPanel>
                 <UniformGrid Rows="1" HorizontalAlignment="Stretch" Margin="5">
-					<Button Content="1.4.4.6" Height="20" VerticalAlignment="Top" Width="50" Command="{Binding SaveAsVersionCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Mode=Self}, Path=Content}" />
+                    <Button Content="1.4.4.7" Height="20" VerticalAlignment="Top" Width="50" Command="{Binding SaveAsVersionCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Mode=Self}, Path=Content}" />
+                    <Button Content="1.4.4.6" Height="20" VerticalAlignment="Top" Width="50" Command="{Binding SaveAsVersionCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Mode=Self}, Path=Content}" />
                     <Button Content="1.4.4.5" Height="20" VerticalAlignment="Top" Width="50" Command="{Binding SaveAsVersionCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Mode=Self}, Path=Content}" />
                     <Button Content="1.4.4.4" Height="20" VerticalAlignment="Top" Width="50" Command="{Binding SaveAsVersionCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Mode=Self}, Path=Content}" />
                 </UniformGrid>
