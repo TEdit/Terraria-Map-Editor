@@ -57,4 +57,4 @@ jobs:
     - name: Create Release
       uses: ncipollo/release-action@v1
       with: 
-        artifacts: "./release/*.zip"
+        artifacts: "./TEdit_*.zip"
