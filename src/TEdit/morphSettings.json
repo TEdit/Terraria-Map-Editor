@@ -1638,58 +1638,66 @@
     "Desert": {
       "biomeName": "Desert",
       "morphTiles": [
-//        {
-//          "name": "tileDirt_Sand",
-//          "sourceIds": [2, 23, 199, 109, 147],
-//          "skyLevelTargetId": 53,
-//          "dirtLevelTargetId": 53,
-//          "rockLevelTargetId": 53
-//        },
-//        {
-//          "name": "tileMowed_Sand",
-//          "sourceIds": [477, 492],
-//          "skyLevelTargetId": 53,
-//          "dirtLevelTargetId": 53,
-//          "rockLevelTargetId": 53
-//        },
+        //        {
+        //          "name": "tileDirt_Sand",
+        //          "sourceIds": [2, 23, 199, 109, 147],
+        //          "skyLevelTargetId": 53,
+        //          "dirtLevelTargetId": 53,
+        //          "rockLevelTargetId": 53
+        //        },
+        //        {
+        //          "name": "tileMowed_Sand",
+        //          "sourceIds": [477, 492],
+        //          "skyLevelTargetId": 53,
+        //          "dirtLevelTargetId": 53,
+        //          "rockLevelTargetId": 53
+        //        },
+        {
+          "name": "dirt_test",
+          "sourceIds": [ 0 ],
+          "skyLevelTargetId": 53,
+          "dirtLevelTargetId": 53,
+          "rockLevelTargetId": 53,
+          "hasGravity":  true
+        },
         {
           "name": "tileStone_Sandstone",
-          "sourceIds": [1, 25, 203, 117],
+          "sourceIds": [ 1, 25, 203, 117 ],
           "skyLevelTargetId": 396,
           "dirtLevelTargetId": 396,
           "rockLevelTargetId": 396
         },
         {
           "name": "tileMoss_Sandstone",
-          "sourceIds": [179, 180, 181, 182, 183, 381, 534, 536, 539, 625, 627],
+          "sourceIds": [ 179, 180, 181, 182, 183, 381, 534, 536, 539, 625, 627 ],
           "skyLevelTargetId": 396,
           "dirtLevelTargetId": 396,
           "rockLevelTargetId": 396
         },
         {
           "name": "tileIce_Sandstone",
-          "sourceIds": [161, 163, 200, 164],
+          "sourceIds": [ 161, 163, 200, 164 ],
           "skyLevelTargetId": 396,
           "dirtLevelTargetId": 396,
           "rockLevelTargetId": 396
         },
         {
           "name": "tileSand",
-          "sourceIds": [53, 112, 234, 116],
+          "sourceIds": [ 53, 112, 234, 116 ],
           "skyLevelTargetId": 53,
           "dirtLevelTargetId": 53,
           "rockLevelTargetId": 53
         },
         {
           "name": "tileHardenedSand",
-          "sourceIds": [397, 398, 399, 402],
+          "sourceIds": [ 397, 398, 399, 402 ],
           "skyLevelTargetId": 397,
           "dirtLevelTargetId": 397,
           "rockLevelTargetId": 397
         },
         {
           "name": "tileSandstone",
-          "sourceIds": [396, 400, 401, 403],
+          "sourceIds": [ 396, 400, 401, 403 ],
           "skyLevelTargetId": 396,
           "dirtLevelTargetId": 396,
           "rockLevelTargetId": 396
