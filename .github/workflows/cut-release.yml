@@ -50,11 +50,11 @@ jobs:
     - name: Create the app package
       shell: pwsh
       run: |
-        Copy-Item -Path $env:Publish_Path -Destination ".\release\${$env:File_Name}\" -Recurse -Force -Verbose
+        Copy-Item -Path $env:Publish_Path -Destination ".\release\TEdit_main\" -Recurse -Force -Verbose
         Copy-Item -Path ".\schematics" -Destination ".\release" -Recurse -Verbose
-        Compress-Archive -Path ".\release\*" -DestinationPath ".\${$env:File_Name}.zip" -Verbose
-
+        Compress-Archive -Path ".\release\*" -DestinationPath ".\TEdit_main.zip" -Verbose
+        
     - name: Create Release
       uses: ncipollo/release-action@v1
       with: 
-        artifacts: "./TEdit_*.zip"
+        artifacts: "TEdit_*.zip"
