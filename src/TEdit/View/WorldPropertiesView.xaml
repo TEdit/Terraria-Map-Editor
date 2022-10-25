@@ -11,7 +11,9 @@
              xmlns:enum="clr-namespace:TEdit.UI.Xaml.Enum"
              xmlns:p="clr-namespace:TEdit.Properties"
              mc:Ignorable="d"
-             d:DesignWidth="260" Background="{StaticResource WindowBackgroundBrush}" Foreground="{StaticResource TextBrush}"
+             d:DesignWidth="260"
+             Background="{StaticResource WindowBackgroundBrush}"
+             Foreground="{StaticResource TextBrush}"
              d:DataContext="{d:DesignInstance Type=viewModel:WorldViewModel}">
     <UserControl.Resources>
         <converters:ByteIntConverter x:Key="ByteIntConverter" />

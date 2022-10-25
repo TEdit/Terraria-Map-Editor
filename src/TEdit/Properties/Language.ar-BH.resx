@@ -1275,4 +1275,49 @@
   <data name="messagebox_restartrequired" xml:space="preserve">
     <value>إعادة التشغيل مطلوبة</value>
   </data>
+  <data name="tool_creative_enable_time_speed" xml:space="preserve">
+    <value>تمكين سرعة الوقت</value>
+  </data>
+  <data name="tool_creative_enable_difficulty" xml:space="preserve">
+    <value>تمكين صعوبة العدو</value>
+  </data>
+  <data name="tool_creative_enable_spawn_rate" xml:space="preserve">
+    <value>تمكين معدل التفريخ</value>
+  </data>
+  <data name="tool_creative_difficulty" xml:space="preserve">
+    <value>صعوبة العدو</value>
+  </data>
+  <data name="tool_creative_spawn_rate" xml:space="preserve">
+    <value>معدل التفريخ</value>
+  </data>
+  <data name="tool_creative_time_speed" xml:space="preserve">
+    <value>سرعة الوقت</value>
+  </data>
+  <data name="tool_creative_timefrozen" xml:space="preserve">
+    <value>وقت التجميد</value>
+  </data>
+  <data name="tool_creative_windfrozen" xml:space="preserve">
+    <value>تجميد الرياح</value>
+  </data>
+  <data name="tool_creative_godmode" xml:space="preserve">
+    <value>وضع الله</value>
+  </data>
+  <data name="tool_creative_increaseplacementrange" xml:space="preserve">
+    <value>زيادة النطاق</value>
+  </data>
+  <data name="tool_creative_power" xml:space="preserve">
+    <value>قوة</value>
+  </data>
+  <data name="tool_creative_value" xml:space="preserve">
+    <value>قيمة</value>
+  </data>
+  <data name="tool_creative_rainfrozen" xml:space="preserve">
+    <value>تجميد المطر</value>
+  </data>
+  <data name="tool_creative_biomespread" xml:space="preserve">
+    <value>تجميد انتشار بيوم</value>
+  </data>
+  <data name="editor_tabs_creative" xml:space="preserve">
+    <value>القوى الإبداعية</value>
+  </data>
 </root>

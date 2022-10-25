@@ -1275,4 +1275,49 @@ Klicke auf „Wiederholen“, um einen neuen Ordner auszuwählen, oder auf „Ab
   <data name="messagebox_restartrequired" xml:space="preserve">
     <value>Neustart erforderlich</value>
   </data>
+  <data name="tool_creative_enable_time_speed" xml:space="preserve">
+    <value>Zeitgeschwindigkeit aktivieren</value>
+  </data>
+  <data name="tool_creative_enable_difficulty" xml:space="preserve">
+    <value>Gegnerische Schwierigkeit aktivieren</value>
+  </data>
+  <data name="tool_creative_enable_spawn_rate" xml:space="preserve">
+    <value>Spawn-Rate aktivieren</value>
+  </data>
+  <data name="tool_creative_difficulty" xml:space="preserve">
+    <value>Schwierigkeitsgrad des Feindes</value>
+  </data>
+  <data name="tool_creative_spawn_rate" xml:space="preserve">
+    <value>Spawn-Rate</value>
+  </data>
+  <data name="tool_creative_time_speed" xml:space="preserve">
+    <value>Zeitgeschwindigkeit</value>
+  </data>
+  <data name="tool_creative_timefrozen" xml:space="preserve">
+    <value>Freeze-Zeit</value>
+  </data>
+  <data name="tool_creative_windfrozen" xml:space="preserve">
+    <value>Frostiger Wind</value>
+  </data>
+  <data name="tool_creative_godmode" xml:space="preserve">
+    <value>Gott-Modus</value>
+  </data>
+  <data name="tool_creative_increaseplacementrange" xml:space="preserve">
+    <value>Reichweite erhöhen</value>
+  </data>
+  <data name="tool_creative_power" xml:space="preserve">
+    <value>Macht</value>
+  </data>
+  <data name="tool_creative_value" xml:space="preserve">
+    <value>Wert</value>
+  </data>
+  <data name="tool_creative_rainfrozen" xml:space="preserve">
+    <value>Gefrierregen</value>
+  </data>
+  <data name="tool_creative_biomespread" xml:space="preserve">
+    <value>Biom-Ausbreitung einfrieren</value>
+  </data>
+  <data name="editor_tabs_creative" xml:space="preserve">
+    <value>Kreative Kräfte</value>
+  </data>
 </root>

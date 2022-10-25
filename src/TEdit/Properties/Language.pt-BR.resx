@@ -1275,4 +1275,49 @@ Clique em tentar novamente para escolher uma nova pasta ou cancelar para usar {0
   <data name="messagebox_restartrequired" xml:space="preserve">
     <value>Reinício necessário</value>
   </data>
+  <data name="tool_creative_enable_time_speed" xml:space="preserve">
+    <value>Habilitar velocidade de tempo</value>
+  </data>
+  <data name="tool_creative_enable_difficulty" xml:space="preserve">
+    <value>Habilitar a dificuldade do inimigo</value>
+  </data>
+  <data name="tool_creative_enable_spawn_rate" xml:space="preserve">
+    <value>Habilitar a taxa de desova</value>
+  </data>
+  <data name="tool_creative_difficulty" xml:space="preserve">
+    <value>Dificuldade inimiga</value>
+  </data>
+  <data name="tool_creative_spawn_rate" xml:space="preserve">
+    <value>Taxa de desova</value>
+  </data>
+  <data name="tool_creative_time_speed" xml:space="preserve">
+    <value>Velocidade do tempo</value>
+  </data>
+  <data name="tool_creative_timefrozen" xml:space="preserve">
+    <value>Tempo de congelamento</value>
+  </data>
+  <data name="tool_creative_windfrozen" xml:space="preserve">
+    <value>Vento congelante</value>
+  </data>
+  <data name="tool_creative_godmode" xml:space="preserve">
+    <value>Modo Deus</value>
+  </data>
+  <data name="tool_creative_increaseplacementrange" xml:space="preserve">
+    <value>Aumento do alcance</value>
+  </data>
+  <data name="tool_creative_power" xml:space="preserve">
+    <value>Poder</value>
+  </data>
+  <data name="tool_creative_value" xml:space="preserve">
+    <value>Valor</value>
+  </data>
+  <data name="tool_creative_rainfrozen" xml:space="preserve">
+    <value>Chuva congelante</value>
+  </data>
+  <data name="tool_creative_biomespread" xml:space="preserve">
+    <value>Congelamento do bioma Spread</value>
+  </data>
+  <data name="editor_tabs_creative" xml:space="preserve">
+    <value>Poderes Criativos</value>
+  </data>
 </root>

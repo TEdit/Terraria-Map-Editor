@@ -269,6 +269,15 @@ namespace TEdit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Creative Powers.
+        /// </summary>
+        public static string editor_tabs_creative {
+            get {
+                return ResourceManager.GetString("editor_tabs_creative", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to NPC Data.
         /// </summary>
         public static string editor_tabs_npc {
@@ -1642,6 +1651,132 @@ namespace TEdit.Properties {
         public static string tool_clipboard_ispastewire {
             get {
                 return ResourceManager.GetString("tool_clipboard_ispastewire", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Freeze Biome Spread.
+        /// </summary>
+        public static string tool_creative_biomespread {
+            get {
+                return ResourceManager.GetString("tool_creative_biomespread", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enemy Difficulty.
+        /// </summary>
+        public static string tool_creative_difficulty {
+            get {
+                return ResourceManager.GetString("tool_creative_difficulty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enable Enemy Difficulty.
+        /// </summary>
+        public static string tool_creative_enable_difficulty {
+            get {
+                return ResourceManager.GetString("tool_creative_enable_difficulty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enable Spawn Rate.
+        /// </summary>
+        public static string tool_creative_enable_spawn_rate {
+            get {
+                return ResourceManager.GetString("tool_creative_enable_spawn_rate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enable Time Speed.
+        /// </summary>
+        public static string tool_creative_enable_time_speed {
+            get {
+                return ResourceManager.GetString("tool_creative_enable_time_speed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to God Mode.
+        /// </summary>
+        public static string tool_creative_godmode {
+            get {
+                return ResourceManager.GetString("tool_creative_godmode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Increase Range.
+        /// </summary>
+        public static string tool_creative_increaseplacementrange {
+            get {
+                return ResourceManager.GetString("tool_creative_increaseplacementrange", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Power.
+        /// </summary>
+        public static string tool_creative_power {
+            get {
+                return ResourceManager.GetString("tool_creative_power", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Freeze Rain.
+        /// </summary>
+        public static string tool_creative_rainfrozen {
+            get {
+                return ResourceManager.GetString("tool_creative_rainfrozen", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Spawn Rate.
+        /// </summary>
+        public static string tool_creative_spawn_rate {
+            get {
+                return ResourceManager.GetString("tool_creative_spawn_rate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Time Speed.
+        /// </summary>
+        public static string tool_creative_time_speed {
+            get {
+                return ResourceManager.GetString("tool_creative_time_speed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Freeze Time.
+        /// </summary>
+        public static string tool_creative_timefrozen {
+            get {
+                return ResourceManager.GetString("tool_creative_timefrozen", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Value.
+        /// </summary>
+        public static string tool_creative_value {
+            get {
+                return ResourceManager.GetString("tool_creative_value", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Freeze Wind.
+        /// </summary>
+        public static string tool_creative_windfrozen {
+            get {
+                return ResourceManager.GetString("tool_creative_windfrozen", resourceCulture);
             }
         }
         
