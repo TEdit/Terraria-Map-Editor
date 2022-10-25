@@ -1275,4 +1275,49 @@ Naciśnij spróbuj ponownie aby wybrać nowy folder lub anuluj aby użyć {0} ja
   <data name="messagebox_restartrequired" xml:space="preserve">
     <value>Wymagane ponowne uruchomienie</value>
   </data>
+  <data name="tool_creative_enable_time_speed" xml:space="preserve">
+    <value>Włącz szybkość czasu</value>
+  </data>
+  <data name="tool_creative_enable_difficulty" xml:space="preserve">
+    <value>Włącz poziom trudności wroga</value>
+  </data>
+  <data name="tool_creative_enable_spawn_rate" xml:space="preserve">
+    <value>Włącz współczynnik odradzania</value>
+  </data>
+  <data name="tool_creative_difficulty" xml:space="preserve">
+    <value>Poziom trudności wroga</value>
+  </data>
+  <data name="tool_creative_spawn_rate" xml:space="preserve">
+    <value>Wskaźnik odradzania się</value>
+  </data>
+  <data name="tool_creative_time_speed" xml:space="preserve">
+    <value>Prędkość czasu</value>
+  </data>
+  <data name="tool_creative_timefrozen" xml:space="preserve">
+    <value>Czas zamrożenia</value>
+  </data>
+  <data name="tool_creative_windfrozen" xml:space="preserve">
+    <value>Mroźny wiatr</value>
+  </data>
+  <data name="tool_creative_godmode" xml:space="preserve">
+    <value>Tryb Boga</value>
+  </data>
+  <data name="tool_creative_increaseplacementrange" xml:space="preserve">
+    <value>Zwiększ zasięg</value>
+  </data>
+  <data name="tool_creative_power" xml:space="preserve">
+    <value>Moc</value>
+  </data>
+  <data name="tool_creative_value" xml:space="preserve">
+    <value>Wartość</value>
+  </data>
+  <data name="tool_creative_rainfrozen" xml:space="preserve">
+    <value>Mroźny deszcz</value>
+  </data>
+  <data name="tool_creative_biomespread" xml:space="preserve">
+    <value>Zamrażanie biomu Spread</value>
+  </data>
+  <data name="editor_tabs_creative" xml:space="preserve">
+    <value>Kreatywne moce</value>
+  </data>
 </root>

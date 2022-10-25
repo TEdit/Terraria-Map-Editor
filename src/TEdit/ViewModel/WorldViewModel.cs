@@ -36,9 +36,34 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Xna.Framework;
 using TEdit.UI.Xaml;
+using static TEdit.Terraria.CreativePowers;
 
 namespace TEdit.ViewModel
 {
+    public class CreativePowerArgs
+    {
+        public CreativePowerArgs()
+        {
+
+        }
+
+        public CreativePowerArgs(CreativePowerId id, bool isActive)
+        {
+            Id = id;
+            IsActive = isActive;
+        }
+
+        public CreativePowerArgs(CreativePowerId id, float value)
+        {
+            Id = id;
+            Value = value;
+        }
+
+        public CreativePowerId Id { get; set; }
+        public float Value { get; set; }
+        public bool IsActive { get; set; }
+    }
+
     public partial class WorldViewModel : ViewModelBase
     {
         private readonly BrushSettings _brush = new BrushSettings();
@@ -98,12 +123,6 @@ namespace TEdit.ViewModel
         private ICommand _showNewsCommand;
         private string _windowTitle;
         private ICommand _checkUpdatesCommand;
-
-
-        public ICommand CheckUpdatesCommand
-        {
-            get { return _checkUpdatesCommand ??= new RelayCommand<bool>(CheckVersion); }
-        }
 
         static WorldViewModel()
         {
@@ -645,7 +664,7 @@ namespace TEdit.ViewModel
 
         public bool RealisticColors
         {
-            get { return Settings.Default.RealisticColors;}
+            get { return Settings.Default.RealisticColors; }
             set
             {
                 RaisePropertyChanged(nameof(RealisticColors), Settings.Default.RealisticColors, value, true);
@@ -1079,8 +1098,8 @@ namespace TEdit.ViewModel
                             .Replace("Terraria World File|", "")
                             .Replace("*.wld|Terraria v", "")
                             .Replace("*.wld", "")
-                            .Split('|')[sfd.FilterIndex-1];
-                        
+                            .Split('|')[sfd.FilterIndex - 1];
+
                         if (World.SaveConfiguration.GameVersionToSaveVersion.TryGetValue(name, out uint versionOverride))
                         {
                             SaveWorldFile(versionOverride);

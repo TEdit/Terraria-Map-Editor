@@ -25,6 +25,7 @@ namespace TEdit.ViewModel
         }
         
         public static BestiaryViewModel GetBestiaryViewModel() => new BestiaryViewModel();
+        public static CreativePowersViewModel GetCreativePowersViewModel() => new CreativePowersViewModel();
 
         private static WorldViewModel CreateWorldViewModel()
         {

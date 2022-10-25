@@ -1275,4 +1275,49 @@
   <data name="messagebox_restartrequired" xml:space="preserve">
     <value>需要重新启动</value>
   </data>
+  <data name="tool_creative_enable_time_speed" xml:space="preserve">
+    <value>启用时间速度</value>
+  </data>
+  <data name="tool_creative_enable_difficulty" xml:space="preserve">
+    <value>启用敌人难度</value>
+  </data>
+  <data name="tool_creative_enable_spawn_rate" xml:space="preserve">
+    <value>启用生成速率</value>
+  </data>
+  <data name="tool_creative_difficulty" xml:space="preserve">
+    <value>敌人难度</value>
+  </data>
+  <data name="tool_creative_spawn_rate" xml:space="preserve">
+    <value>生成速率</value>
+  </data>
+  <data name="tool_creative_time_speed" xml:space="preserve">
+    <value>时间速度</value>
+  </data>
+  <data name="tool_creative_timefrozen" xml:space="preserve">
+    <value>冻结时间</value>
+  </data>
+  <data name="tool_creative_windfrozen" xml:space="preserve">
+    <value>冻风</value>
+  </data>
+  <data name="tool_creative_godmode" xml:space="preserve">
+    <value>上帝模式</value>
+  </data>
+  <data name="tool_creative_increaseplacementrange" xml:space="preserve">
+    <value>增加射程</value>
+  </data>
+  <data name="tool_creative_power" xml:space="preserve">
+    <value>权力</value>
+  </data>
+  <data name="tool_creative_value" xml:space="preserve">
+    <value>价值</value>
+  </data>
+  <data name="tool_creative_rainfrozen" xml:space="preserve">
+    <value>冻雨</value>
+  </data>
+  <data name="tool_creative_biomespread" xml:space="preserve">
+    <value>冷冻生物群系传播</value>
+  </data>
+  <data name="editor_tabs_creative" xml:space="preserve">
+    <value>创造力量</value>
+  </data>
 </root>

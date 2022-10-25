@@ -1,6 +1,8 @@
 ﻿using System.IO;
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
+using SharpDX.Direct3D11;
+using TEdit.ViewModel;
 
 namespace TEdit.Terraria
 {
@@ -27,6 +29,98 @@ namespace TEdit.Terraria
 
         Dictionary<CreativePowerId, object> _powers = new Dictionary<CreativePowerId, object>();
 
+        public void SetPowerState(CreativePowerArgs args)
+        {
+            switch (args.Id)
+            {
+                case CreativePowerId.time_setspeed:
+                case CreativePowerId.setdifficulty:
+                case CreativePowerId.setspawnrate:
+                    _powers[args.Id] = MathHelper.Clamp((float)args.Value, 0, 1f);
+                    return;
+                default:
+                    _powers[args.Id] = args.IsActive;
+                    break;
+            }
+        }
+
+        public void SetPowerStateSafe(CreativePowerId id, float? value = null, bool? isEnabled = null)
+        {
+            switch (id)
+            {
+                case CreativePowerId.time_setspeed:
+                case CreativePowerId.setdifficulty:
+                case CreativePowerId.setspawnrate:
+                    if (_powers.ContainsKey(id) && value != null)
+                    {
+                        _powers[id] = MathHelper.Clamp((float)id, 0, 1f);
+                    }
+                    return;
+                default:
+                    if (_powers.ContainsKey(id) && isEnabled != null)
+                    {
+                        _powers[id] = isEnabled.Value;
+                    }
+                    break;
+            }
+        }
+
+        public void SetPowerStateSafe(CreativePowerArgs args)
+        {
+            switch (args.Id)
+            {
+                case CreativePowerId.time_setspeed:
+                case CreativePowerId.setdifficulty:
+                case CreativePowerId.setspawnrate:
+                    if (_powers.ContainsKey(args.Id))
+                    {
+                        _powers[args.Id] = MathHelper.Clamp((float)args.Value, 0, 1f);
+                    }
+                    return;
+                default:
+                    if (_powers.ContainsKey(args.Id))
+                    {
+                        _powers[args.Id] = args.IsActive;
+                    }
+                    break;
+            }
+        }
+
+        public bool? GetPowerBool(CreativePowerId id)
+        {
+            switch (id)
+            {
+                case CreativePowerId.time_setspeed:
+                case CreativePowerId.setdifficulty:
+                case CreativePowerId.setspawnrate:
+                    throw new System.ArgumentOutOfRangeException(nameof(id), $"Power {id.ToString()} is not type of boolean.");
+                default:
+                    if (_powers.TryGetValue(id, out object v))
+                    {
+                        return (bool)v;
+                    }
+                    return null;
+            }
+        }
+
+        public float? GetPowerFloat(CreativePowerId id)
+        {
+            switch (id)
+            {
+                case CreativePowerId.time_setspeed:
+                case CreativePowerId.setdifficulty:
+                case CreativePowerId.setspawnrate:
+                    if (_powers.TryGetValue(id, out object v))
+                    {
+                        return (float)v;
+                    }
+                    return null;
+                default:
+                    throw new System.ArgumentOutOfRangeException(nameof(id), $"Power {id.ToString()} is not type of float.");
+            }
+        }
+
+        // public bool DisablePower(CreativePowerId id) => _powers.Remove(id);
 
         public void Save(BinaryWriter w)
         {
@@ -38,7 +132,7 @@ namespace TEdit.Terraria
                 switch (item.Key)
                 {
                     case CreativePowerId.time_setfrozen:
-                         w.Write((bool)item.Value);
+                        w.Write((bool)item.Value);
                         break;
                     case CreativePowerId.godmode:
                         w.Write((bool)item.Value);
@@ -82,7 +176,7 @@ namespace TEdit.Terraria
                         break;
                     case CreativePowerId.godmode:
                         _powers[powerId] = r.ReadBoolean();
-                        break;;
+                        break; ;
                     case CreativePowerId.time_setspeed:
                         _powers[powerId] = r.ReadSingle();
                         break;

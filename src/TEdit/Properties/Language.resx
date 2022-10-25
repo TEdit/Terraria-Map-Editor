@@ -1275,4 +1275,49 @@ Press retry to pick a new folder or cancel to use {0} as your terraria path.</va
   <data name="messagebox_restartrequired" xml:space="preserve">
     <value>Restart Required</value>
   </data>
+  <data name="tool_creative_enable_time_speed" xml:space="preserve">
+    <value>Enable Time Speed</value>
+  </data>
+  <data name="tool_creative_enable_difficulty" xml:space="preserve">
+    <value>Enable Enemy Difficulty</value>
+  </data>
+  <data name="tool_creative_enable_spawn_rate" xml:space="preserve">
+    <value>Enable Spawn Rate</value>
+  </data>
+  <data name="tool_creative_difficulty" xml:space="preserve">
+    <value>Enemy Difficulty</value>
+  </data>
+  <data name="tool_creative_spawn_rate" xml:space="preserve">
+    <value>Spawn Rate</value>
+  </data>
+  <data name="tool_creative_time_speed" xml:space="preserve">
+    <value>Time Speed</value>
+  </data>
+  <data name="tool_creative_timefrozen" xml:space="preserve">
+    <value>Freeze Time</value>
+  </data>
+  <data name="tool_creative_windfrozen" xml:space="preserve">
+    <value>Freeze Wind</value>
+  </data>
+  <data name="tool_creative_godmode" xml:space="preserve">
+    <value>God Mode</value>
+  </data>
+  <data name="tool_creative_increaseplacementrange" xml:space="preserve">
+    <value>Increase Range</value>
+  </data>
+  <data name="tool_creative_biomespread" xml:space="preserve">
+    <value>Freeze Biome Spread</value>
+  </data>
+  <data name="tool_creative_rainfrozen" xml:space="preserve">
+    <value>Freeze Rain</value>
+  </data>
+  <data name="tool_creative_power" xml:space="preserve">
+    <value>Power</value>
+  </data>
+  <data name="tool_creative_value" xml:space="preserve">
+    <value>Value</value>
+  </data>
+  <data name="editor_tabs_creative" xml:space="preserve">
+    <value>Creative Powers</value>
+  </data>
 </root>

@@ -1275,4 +1275,49 @@
   <data name="messagebox_restartrequired" xml:space="preserve">
     <value>Требуется перезагрузка</value>
   </data>
+  <data name="tool_creative_enable_time_speed" xml:space="preserve">
+    <value>Включение скорости времени</value>
+  </data>
+  <data name="tool_creative_enable_difficulty" xml:space="preserve">
+    <value>Включение сложности врага</value>
+  </data>
+  <data name="tool_creative_enable_spawn_rate" xml:space="preserve">
+    <value>Включить скорость спауна</value>
+  </data>
+  <data name="tool_creative_difficulty" xml:space="preserve">
+    <value>Сложность врага</value>
+  </data>
+  <data name="tool_creative_spawn_rate" xml:space="preserve">
+    <value>Скорость появления</value>
+  </data>
+  <data name="tool_creative_time_speed" xml:space="preserve">
+    <value>Скорость времени</value>
+  </data>
+  <data name="tool_creative_timefrozen" xml:space="preserve">
+    <value>Время замораживания</value>
+  </data>
+  <data name="tool_creative_windfrozen" xml:space="preserve">
+    <value>Морозный ветер</value>
+  </data>
+  <data name="tool_creative_godmode" xml:space="preserve">
+    <value>Режим Бога</value>
+  </data>
+  <data name="tool_creative_increaseplacementrange" xml:space="preserve">
+    <value>Увеличение дальности действия</value>
+  </data>
+  <data name="tool_creative_power" xml:space="preserve">
+    <value>Сила</value>
+  </data>
+  <data name="tool_creative_value" xml:space="preserve">
+    <value>Ценность</value>
+  </data>
+  <data name="tool_creative_rainfrozen" xml:space="preserve">
+    <value>Ледяной дождь</value>
+  </data>
+  <data name="tool_creative_biomespread" xml:space="preserve">
+    <value>Заморозить распространение биома</value>
+  </data>
+  <data name="editor_tabs_creative" xml:space="preserve">
+    <value>Творческие способности</value>
+  </data>
 </root>

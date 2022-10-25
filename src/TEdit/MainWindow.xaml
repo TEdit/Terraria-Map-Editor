@@ -285,6 +285,9 @@
                     <TabItem Header="{x:Static p:Language.editor_tabs_tileentities}">
                         <View:TileEntityExaminer HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
                     </TabItem>
+                    <TabItem Header="{x:Static p:Language.editor_tabs_creative}">
+                        <View:CreativePowers HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
+                    </TabItem>
                 </TabControl>
             </Expander>
             <View:WorldRenderXna x:Name="MapView" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
