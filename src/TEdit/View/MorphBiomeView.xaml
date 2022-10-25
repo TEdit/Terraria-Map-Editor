@@ -12,6 +12,10 @@
     </UserControl.Resources>
     <StackPanel Orientation="Vertical">
         <TextBlock Text="{x:Static p:Language.tool_morph_label}" Margin="2" />
-        <ComboBox Width="200" ItemsSource="{StaticResource MorphBiomeEnum}" SelectedValuePath="Value" SelectedValue="{Binding MorphBiomeTarget}" />
+        <ComboBox Width="200" 
+                  ItemsSource="{Binding Path=MorphSettings.Biomes, Mode=OneTime}" 
+                  SelectedValuePath="Key"
+                  DisplayMemberPath="Value"
+                  SelectedValue="{Binding MorphBiomeTarget}" />
     </StackPanel>
 </UserControl>

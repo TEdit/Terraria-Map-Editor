@@ -63,9 +63,7 @@ namespace TEdit.Editor.Tools
             _targetBiome = null;
             if (!_isRightDown && !_isLeftDown)
             {
-                _morphtype = (int)_wvm.MorphBiomeTarget;
-
-                World.MorphSettings.Biomes.TryGetValue(_wvm.MorphBiomeTarget.ToString(), out _targetBiome);
+                World.MorphSettings.Biomes.TryGetValue(_wvm.MorphBiomeTarget, out _targetBiome);
                 _startPoint = e.Location;
                 _dirtLayer = (int)_wvm.CurrentWorld.GroundLevel;
                 _rockLayer = (int)_wvm.CurrentWorld.RockLevel;

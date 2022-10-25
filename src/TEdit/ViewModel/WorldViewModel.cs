@@ -85,7 +85,7 @@ namespace TEdit.ViewModel
         private bool _isAutoSaveEnabled = true;
         private ICommand _launchWikiCommand;
         private WriteableBitmap _minimapImage;
-        private MorphBiome _morphBiomeTarget;
+        private string _morphBiomeTarget;
         private PixelMapManager _pixelMap;
         private ProgressChangedEventArgs _progress;
         private Chest _selectedChest;
@@ -398,7 +398,7 @@ namespace TEdit.ViewModel
             get { return _plugins; }
         }
 
-        public MorphBiome MorphBiomeTarget
+        public string MorphBiomeTarget
         {
             get { return _morphBiomeTarget; }
             set { Set(nameof(MorphBiomeTarget), ref _morphBiomeTarget, value); }
