@@ -6,16 +6,16 @@
              xmlns:Editor="clr-namespace:TEdit.Editor"
              xmlns:enum="clr-namespace:TEdit.UI.Xaml.Enum"
              xmlns:p="clr-namespace:TEdit.Properties"
+             xmlns:Terraria="clr-namespace:TEdit.Terraria"
+             
+             xmlns:viewModel="clr-namespace:TEdit.ViewModel"             
+             d:DataContext="{d:DesignInstance Type=viewModel:WorldViewModel}" 
              mc:Ignorable="d" >
-    <UserControl.Resources>
-        <enum:EnumItemList x:Key="MorphBiomeEnum" ResourceType="{x:Type p:Language}" EnumType="{x:Type Editor:MorphBiome}" x:Shared="false" SortBy="Value" />
-    </UserControl.Resources>
+
     <StackPanel Orientation="Vertical">
         <TextBlock Text="{x:Static p:Language.tool_morph_label}" Margin="2" />
-        <ComboBox Width="200" 
-                  ItemsSource="{Binding Path=MorphSettings.Biomes, Mode=OneTime}" 
-                  SelectedValuePath="Key"
-                  DisplayMemberPath="Value"
+        <ComboBox Width="200"
+                  ItemsSource="{Binding Source={x:Static Terraria:World.Biomes}, Mode=OneTime}" 
                   SelectedValue="{Binding MorphBiomeTarget}" />
     </StackPanel>
 </UserControl>
