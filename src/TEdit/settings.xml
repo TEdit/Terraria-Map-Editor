@@ -3573,12 +3573,12 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
 		<Tile Id="80" Color="#FF497811" Name="Cactus plant" Special="Cactus" />
 		<Tile Id="81" Color="#FFF585BF" Name="Coral" Framed="true" TextureGrid="24,26">
 			<Frames>
-				<Frame UV="0,0" Variety="Red" />
-				<Frame UV="26,0" Variety="Pink" />
-				<Frame UV="52,0" Variety="Yellow" />
-				<Frame UV="78,0" Variety="Green" />
-				<Frame UV="104,0" Variety="Blue" />
-				<Frame UV="130,0" Variety="Sponge" />
+				<Frame UV="0,0" Variety="Red" Anchor="Bottom" />
+				<Frame UV="26,0" Variety="Pink" Anchor="Bottom" />
+				<Frame UV="52,0" Variety="Yellow" Anchor="Bottom" />
+				<Frame UV="78,0" Variety="Green" Anchor="Bottom" />
+				<Frame UV="104,0" Variety="Blue" Anchor="Bottom" />
+				<Frame UV="130,0" Variety="Sponge" Anchor="Bottom" />
 			</Frames>
 		</Tile>
 		<Tile Id="82" Color="#FFFF7800" Name="Herbs (Sprout)" Framed="true" UseFrameName="true" FrameNamePostfix="seed">
