@@ -65,7 +65,7 @@ namespace TEdit.Editor.Tools
             _targetBiome = null;
             if (!_isRightDown && !_isLeftDown)
             {
-                World.MorphSettings.Biomes.TryGetValue(_wvm.MorphBiomeTarget, out _targetBiome);
+                World.MorphSettings.Biomes.TryGetValue(_wvm.MorphToolOptions.TargetBiome, out _targetBiome);
                 _startPoint = e.Location;
                 _dirtLayer = (int)_wvm.CurrentWorld.GroundLevel;
                 _rockLayer = (int)_wvm.CurrentWorld.RockLevel;
@@ -208,7 +208,7 @@ namespace TEdit.Editor.Tools
             else if (p.Y > _rockLayer) { level = MorphLevel.Rock; }
             else if (p.Y > _dirtLayer) { level = MorphLevel.Dirt; }
 
-            _targetBiome.ApplyMorph(curtile, level, p);
+            _targetBiome.ApplyMorph(_wvm.MorphToolOptions, curtile, level, p);
         }
 
         private void MorphTileLegacy(Vector2Int32 p)

@@ -7,15 +7,32 @@
              xmlns:enum="clr-namespace:TEdit.UI.Xaml.Enum"
              xmlns:p="clr-namespace:TEdit.Properties"
              xmlns:Terraria="clr-namespace:TEdit.Terraria"
-             
+             d:DesignWidth="400"
+             d:DesignHeight="100"
+             Background="{StaticResource WindowBackgroundBrush}"
+             Foreground="{StaticResource TextBrush}"
              xmlns:viewModel="clr-namespace:TEdit.ViewModel"             
              d:DataContext="{d:DesignInstance Type=viewModel:WorldViewModel}" 
              mc:Ignorable="d" >
-
-    <StackPanel Orientation="Vertical">
-        <TextBlock Text="{x:Static p:Language.tool_morph_label}" Margin="2" />
-        <ComboBox Width="200"
+    <StackPanel Orientation="Horizontal">
+        <StackPanel Orientation="Vertical" Margin="2">
+            <TextBlock Text="{x:Static p:Language.tool_morph_label}" Margin="2" />
+            <ComboBox Width="200"
                   ItemsSource="{Binding Source={x:Static Terraria:World.Biomes}, Mode=OneTime}" 
-                  SelectedValue="{Binding MorphBiomeTarget}" />
+                  SelectedValue="{Binding MorphToolOptions.TargetBiome}" />
+            <TextBlock Text="Moss Type" Margin="2" />
+            <ComboBox Width="200"
+                  ItemsSource="{Binding Source={x:Static Terraria:World.MossTypes}, Mode=OneTime}" 
+                      SelectedValuePath="Value" 
+                      DisplayMemberPath="Key"
+                  SelectedValue="{Binding MorphToolOptions.MossType}" />
+        </StackPanel>
+        <StackPanel Orientation="Vertical" Margin="2">
+            <TextBlock Text="Options" />
+            <CheckBox Content="Base Tiles" IsChecked="True"/>
+            <CheckBox Content="Moss" IsChecked="True"/>
+            <CheckBox Content="Evil" IsChecked="True"/>
+            <CheckBox Content="Decorations" IsChecked="True"/>
+        </StackPanel>
     </StackPanel>
 </UserControl>

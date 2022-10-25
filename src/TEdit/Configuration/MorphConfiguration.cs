@@ -7,12 +7,14 @@ using TEdit.Terraria;
 using TEdit.Geometry.Primitives;
 using TEdit.ViewModel;
 using static Microsoft.ApplicationInsights.MetricDimensionNames.TelemetryContext;
+using TEdit.Editor;
 
 namespace TEdit.Configuration
 {
     public class MorphConfiguration
     {
         public Dictionary<string, MorphBiomeData> Biomes { get; set; } = new();
+        public Dictionary<string, int> MossTypes { get; set; } = new();
 
         public void Save(string fileName)
         {
@@ -60,13 +62,13 @@ namespace TEdit.Configuration
         public bool ContainsWall(int id) => _wallCache.ContainsKey(id);
         public bool ContainsTile(int id) => _tileCache.ContainsKey(id);
 
-        public void ApplyMorph(Tile source, MorphLevel level, Vector2Int32 location)
+        public void ApplyMorph(MorphToolOptions options, Tile source, MorphLevel level, Vector2Int32 location)
         {
-            ApplyTileMorph(source, level, location);
-            ApplyWallMorph(source, level, location);
+            ApplyTileMorph(options, source, level, location);
+            ApplyWallMorph(options, source, level, location);
         }
 
-        private void ApplyWallMorph(Tile source, MorphLevel level, Vector2Int32 location)
+        private void ApplyWallMorph(MorphToolOptions options, Tile source, MorphLevel level, Vector2Int32 location)
         {
             if (source.Wall == 0) { return; }
 
@@ -105,12 +107,18 @@ namespace TEdit.Configuration
             }
         }
 
-        private void ApplyTileMorph(Tile source, MorphLevel level, Vector2Int32 location)
+        private void ApplyTileMorph(MorphToolOptions options, Tile source, MorphLevel level, Vector2Int32 location)
         {
             if (!source.IsActive) { return; }
             ushort sourceId = source.Type;
 
             if (!_tileCache.TryGetValue(sourceId, out var morphId)) { return; }
+
+            // check skip base tiles
+            if (!morphId.IsEvil && !options.EnableBaseTiles) { return;}
+            
+            // check skip evil tiles
+            if (morphId.IsEvil && !options.EnableEvilTiles) { return;}
 
             if (morphId.SourceIds.Contains(sourceId))
             {
@@ -141,10 +149,17 @@ namespace TEdit.Configuration
                     {
                         source.Type = id.Value;
                     }
+
+                    // apply moss to stone blocks
+                    if (source.Type == 1 && morphId.UseMoss && TouchingAir(location.X, location.Y))
+                    {
+                        source.Type = (ushort)options.MossType;
+                    }
                 }
 
                 // filter sprites
-                if (World.TileProperties[sourceId].IsFramed &&
+                if (options.EnableSprites &&
+                    World.TileProperties[sourceId].IsFramed &&
                     morphId.SpriteOffsets.Count > 0)
                 {
                     // filter and apply morph (offset or delete)
@@ -282,6 +297,9 @@ namespace TEdit.Configuration
     {
         public string Name { get; set; }
         public bool Delete { get; set; }
+
+        public bool IsEvil { get; set; }
+        public bool UseMoss { get; set; }
 
         public MorphIdLevels Default { get; set; } = new MorphIdLevels();
         public MorphIdLevels TouchingAir { get; set; }

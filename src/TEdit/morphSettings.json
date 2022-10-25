@@ -1,4 +1,17 @@
 {
+  "mossTypes": {
+    "Green": 179,
+    "Yellow": 180,
+    "Red": 181,
+    "Blue": 182,
+    "Purple": 183,
+    "Lava": 381,
+    "Krypton": 534,
+    "Xenon": 536,
+    "Argon": 539,
+    "Neon": 625,
+    "Helium": 627
+  },
   "biomes": {
     "Purify": {
       "biomeName": "Purify",
@@ -21,7 +34,8 @@
         {
           "name": "tileStone",
           "sourceIds": [1, 25, 203, 117],
-          "default": { "skyId": 1 }
+          "default": { "skyId": 1 },
+          "useMoss": true
         },
         {
           "name": "tileIce",
