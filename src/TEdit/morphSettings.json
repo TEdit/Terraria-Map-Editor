@@ -38,6 +38,11 @@
           "useMoss": true
         },
         {
+          "name": "tileMoss",
+          "sourceIds": [179, 180, 181, 182, 183, 381, 534, 536, 539, 625, 627],
+          "useMoss": true
+        },
+        {
           "name": "tileIce",
           "sourceIds": [161, 163, 200, 164],
           "default": { "skyId": 161 }
@@ -1344,6 +1349,11 @@
           "name": "tileStone",
           "sourceIds": [1, 25, 203, 117],
           "default": { "skyId": 1 },
+          "useMoss": true
+        },
+        {
+          "name": "tileMoss",
+          "sourceIds": [179, 180, 181, 182, 183, 381, 534, 536, 539, 625, 627],
           "useMoss": true
         },
         {
