@@ -1343,12 +1343,14 @@
         {
           "name": "tileStone",
           "sourceIds": [1, 25, 203, 117],
-          "default": { "skyId": 1 }
+          "default": { "skyId": 1 },
+          "useMoss": true
         },
         {
           "name": "tileIce_Stone",
           "sourceIds": [161, 163, 200, 164],
-          "default": { "skyId": 1 }
+          "default": { "skyId": 1 },
+          "useMoss": true
         },
         {
           "name": "tileSand_Dirt",
@@ -1365,7 +1367,8 @@
         {
           "name": "tileSandstone_Stone",
           "sourceIds": [396, 400, 401, 403],
-          "default": { "skyId": 1 }
+          "default": { "skyId": 1 },
+          "useMoss": true
         },
         {
           "name": "spriteCactus",
