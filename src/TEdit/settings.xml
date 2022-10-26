@@ -14927,9 +14927,9 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
 		<Item Id="5040" Name="Otherworldly Music Box (Hallow)" Accessory="True" />
 		<Item Id="5041" Name="Carton of Milk" IsFood="True" />
 		<Item Id="5042" Name="Coffee" IsFood="True" />
-		<Item Id="5043" Name="Torch God's Favor"      />
-		<Item Id="5044" Name="Music Box (Journey's End)"     Accessory="True"  />
-		<Item Id="5045" Name="Plaguebringer's Skull"  Head="266"     />
+		<Item Id="5043" Name="Torch God's Favor" />
+		<Item Id="5044" Name="Music Box (Journey's End)" Accessory="True" />
+		<Item Id="5045" Name="Plaguebringer's Skull" Head="266" />
 		<Item Id="5046" Name="Plaguebringer's Cloak"   Body="235"    />
 		<Item Id="5047" Name="Plaguebringer's Treads"    Legs="218"   />
 		<Item Id="5048" Name="Wandering Jingasa"  Head="267"     />
