@@ -134,7 +134,8 @@ namespace TEdit.ViewModel
             {
                 var bestiaryId = item.Name;
                 if (World.BestiaryData.NpcData.TryGetValue(bestiaryId, out var npcData) &&
-                    _wvm.CurrentWorld.KilledMobs.Count > npcData.Id)
+                    _wvm.CurrentWorld.KilledMobs.Count > npcData.Id &&
+                    npcData.Id >= 0)
                 {
                     _wvm.CurrentWorld.KilledMobs[npcData.Id] = item.Defeated;
 
