@@ -134,53 +134,53 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Tile Id="0" Color="#FF976B4B" Name="Dirt Block" Solid="true" Blends="true" />
         <Tile Id="1" Color="#FF808080" Name="Stone Block" Solid="true" Blends="true" MergeWith="0" Stone="true" />
         <Tile Id="2" Color="#FF1CD85E" Name="Grass Block" Solid="true" Blends="true" MergeWith="0" Special="Grass" />
-        <Tile Id="3" Color="#FF1BC56D" Name="Grass Flowers" Framed="true" TextureGrid="16,20">
+        <Tile Id="3" Color="#FF1BC56D" Name="Forest Short Plants" Framed="true" TextureGrid="16,20">
             <Frames>
-                <Frame UV="0,0" Name="Tall Grass" Variety="Single Blade" />
-                <Frame UV="18,0" Name="Tall Grass" Variety="Double Blade" />
-                <Frame UV="36,0" Name="Tall Grass" Variety="Small Y" />
-                <Frame UV="54,0" Name="Tall Grass" Variety="Three Small" />
-                <Frame UV="72,0" Name="Tall Grass" Variety="Single Blade" />
-                <Frame UV="90,0" Name="Tall Grass" Variety="Three Large" />
+                <Frame UV="0,0" Variety="Grass Single Blade" />
+                <Frame UV="18,0" Variety="Grass Double Blade" />
+                <Frame UV="36,0" Variety="Grass Small Y" />
+                <Frame UV="54,0" Variety="Grass Three Small" />
+                <Frame UV="72,0" Variety="Grass Single Blade" />
+                <Frame UV="90,0" Variety="Grass Three Large" />
                 <Frame UV="144,0" Name="Mushroom" />
-                <Frame UV="108,0" Name="Magenta Flower" Variety="A" />
-                <Frame UV="540,0" Name="Magenta Flower" Variety="B" />
-                <Frame UV="558,0" Name="Magenta Flower" Variety="C" />
-                <Frame UV="576,0" Name="Magenta Flower" Variety="D" />
-                <Frame UV="126,0" Name="Pink Flower" Variety="A" />
-                <Frame UV="306,0" Name="Pink Flower" Variety="B" />
-                <Frame UV="594,0" Name="Pink Flower" Variety="C" />
-                <Frame UV="612,0" Name="Pink Flower" Variety="D" />
-                <Frame UV="630,0" Name="Pink Flower" Variety="E" />
-                <Frame UV="162,0" Name="Blue Flower" Variety="A" />
-                <Frame UV="288,0" Name="Blue Flower" Variety="B" />
-                <Frame UV="360,0" Name="Blue Flower" Variety="C" />
-                <Frame UV="180,0" Name="Yellow Flower" Variety="A" />
-                <Frame UV="198,0" Name="Yellow Flower" Variety="B" />
-                <Frame UV="234,0" Name="Yellow Flower" Variety="C" />
-                <Frame UV="324,0" Name="Yellow Flower" Variety="D" />
-                <Frame UV="432,0" Name="Yellow Flower" Variety="E" />
-                <Frame UV="450,0" Name="Yellow Flower" Variety="F" />
-                <Frame UV="468,0" Name="Yellow Flower" Variety="G" />
-                <Frame UV="216,0" Name="Violet Flower" Variety="A" />
-                <Frame UV="756,0" Name="Violet Flower" Variety="B" />
-                <Frame UV="774,0" Name="Violet Flower" Variety="C" />
-                <Frame UV="792,0" Name="Violet Flower" Variety="D" />
-                <Frame UV="252,0" Name="White Flower" Variety="A" />
-                <Frame UV="270,0" Name="White Flower" Variety="B" />
-                <Frame UV="486,0" Name="White Flower" Variety="C" />
-                <Frame UV="504,0" Name="White Flower" Variety="D" />
-                <Frame UV="522,0" Name="White Flower" Variety="E" />
-                <Frame UV="648,0" Name="White Flower" Variety="F" />
-                <Frame UV="666,0" Name="White Flower" Variety="G" />
-                <Frame UV="684,0" Name="White Flower" Variety="H" />
-                <Frame UV="342,0" Name="Red Flower" Variety="A" />
-                <Frame UV="378,0" Name="Red Flower" Variety="B" />
-                <Frame UV="396,0" Name="Red Flower" Variety="C" />
-                <Frame UV="414,0" Name="Red Flower" Variety="D" />
-                <Frame UV="702,0" Name="Red Flower" Variety="E" />
-                <Frame UV="720,0" Name="Red Flower" Variety="F" />
-                <Frame UV="738,0" Name="Red Flower" Variety="G" />
+                <Frame UV="108,0" Variety="Magenta Flower A" />
+                <Frame UV="540,0" Variety="Magenta Flower B" />
+                <Frame UV="558,0" Variety="Magenta Flower C" />
+                <Frame UV="576,0" Variety="Magenta Flower D" />
+                <Frame UV="126,0" Variety="Pink Flower A" />
+                <Frame UV="306,0" Variety="Pink Flower B" />
+                <Frame UV="594,0" Variety="Pink Flower C" />
+                <Frame UV="612,0" Variety="Pink Flower D" />
+                <Frame UV="630,0" Variety="Pink Flower E" />
+                <Frame UV="162,0" Variety="Blue Flower A" />
+                <Frame UV="288,0" Variety="Blue Flower B" />
+                <Frame UV="360,0" Variety="Blue Flower C" />
+                <Frame UV="180,0" Variety="Yellow Flower A" />
+                <Frame UV="198,0" Variety="Yellow Flower B" />
+                <Frame UV="234,0" Variety="Yellow Flower C" />
+                <Frame UV="324,0" Variety="Yellow Flower D" />
+                <Frame UV="432,0" Variety="Yellow Flower E" />
+                <Frame UV="450,0" Variety="Yellow Flower F" />
+                <Frame UV="468,0" Variety="Yellow Flower G" />
+                <Frame UV="216,0" Variety="Violet Flower A" />
+                <Frame UV="756,0" Variety="Violet Flower B" />
+                <Frame UV="774,0" Variety="Violet Flower C" />
+                <Frame UV="792,0" Variety="Violet Flower D" />
+                <Frame UV="252,0" Variety="White Flower A" />
+                <Frame UV="270,0" Variety="White Flower B" />
+                <Frame UV="486,0" Variety="White Flower C" />
+                <Frame UV="504,0" Variety="White Flower D" />
+                <Frame UV="522,0" Variety="White Flower E" />
+                <Frame UV="648,0" Variety="White Flower F" />
+                <Frame UV="666,0" Variety="White Flower G" />
+                <Frame UV="684,0" Variety="White Flower H" />
+                <Frame UV="342,0" Variety="Red Flower A" />
+                <Frame UV="378,0" Variety="Red Flower B" />
+                <Frame UV="396,0" Variety="Red Flower C" />
+                <Frame UV="414,0" Variety="Red Flower D" />
+                <Frame UV="702,0" Variety="Red Flower E" />
+                <Frame UV="720,0" Variety="Red Flower F" />
+                <Frame UV="738,0" Variety="Red Flower G" />
             </Frames>
         </Tile>
         <Tile Id="4" Color="#FFFDDD03" Name="Torch" Framed="true" Size="1,1" TextureGrid="20,20" Placement="wallFloor" Light="true">
@@ -2812,31 +2812,31 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         </Tile>
         <Tile Id="22" Color="#FF625FA7" Name="Demonite Ore" Solid="true" Blends="true" MergeWith="0" Light="true" />
         <Tile Id="23" Color="#FF8D89DF" Name="Corrupt Grass Block" Solid="true" Blends="true" MergeWith="0" Special="Grass" />
-        <Tile Id="24" Color="#FF7A74DA" Name="Corruption Plants" Framed="true" TextureGrid="16,20">
+        <Tile Id="24" Color="#FF7A74DA" Name="Corruption Short Plants" Framed="true" TextureGrid="16,20">
             <Frames>
-                <Frame UV="0,0" Name="Vile Grass" Variety="Single Blade" />
-                <Frame UV="18,0" Name="Vile Grass" Variety="Double Blade" />
-                <Frame UV="36,0" Name="Vile Grass" Variety="Small Y" />
-                <Frame UV="54,0" Name="Vile Grass" Variety="Three Small" />
-                <Frame UV="72,0" Name="Vile Grass" Variety="Single Blade" />
-                <Frame UV="90,0" Name="Vile Grass" Variety="Three Large" />
+                <Frame UV="0,0" Variety="Grass Single Blade" />
+                <Frame UV="18,0" Variety="Grass Double Blade" />
+                <Frame UV="36,0" Variety="Grass Small Y" />
+                <Frame UV="54,0" Variety="Grass Three Small" />
+                <Frame UV="72,0" Variety="Grass Single Blade" />
+                <Frame UV="90,0" Variety="Grass Three Large" />
                 <Frame UV="144,0" Name="Vile Mushroom" />
-                <Frame UV="108,0" Name="Vile Flowers" Variety="A" />
-                <Frame UV="126,0" Name="Vile Flowers" Variety="B" />
-                <Frame UV="162,0" Name="Vile Flowers" Variety="C" />
-                <Frame UV="180,0" Name="Vile Flowers" Variety="D" />
-                <Frame UV="198,0" Name="Vile Flowers" Variety="E" />
-                <Frame UV="216,0" Name="Vile Flowers" Variety="F" />
-                <Frame UV="234,0" Name="Vile Flowers" Variety="G" />
-                <Frame UV="252,0" Name="Vile Flowers" Variety="H" />
-                <Frame UV="270,0" Name="Vile Flowers" Variety="I" />
-                <Frame UV="288,0" Name="Vile Flowers" Variety="J" />
-                <Frame UV="306,0" Name="Vile Flowers" Variety="K" />
-                <Frame UV="324,0" Name="Vile Flowers" Variety="L" />
-                <Frame UV="342,0" Name="Vile Flowers" Variety="M" />
-                <Frame UV="360,0" Name="Vile Flowers" Variety="N" />
-                <Frame UV="378,0" Name="Vile Flowers" Variety="O" />
-                <Frame UV="396,0" Name="Vile Flowers" Variety="P" />
+                <Frame UV="108,0" Variety="Flower A" />
+                <Frame UV="126,0" Variety="Flower B" />
+                <Frame UV="162,0" Variety="Flower C" />
+                <Frame UV="180,0" Variety="Flower D" />
+                <Frame UV="198,0" Variety="Flower E" />
+                <Frame UV="216,0" Variety="Flower F" />
+                <Frame UV="234,0" Variety="Flower G" />
+                <Frame UV="252,0" Variety="Flower H" />
+                <Frame UV="270,0" Variety="Flower I" />
+                <Frame UV="288,0" Variety="Flower J" />
+                <Frame UV="306,0" Variety="Flower K" />
+                <Frame UV="324,0" Variety="Flower L" />
+                <Frame UV="342,0" Variety="Flower M" />
+                <Frame UV="360,0" Variety="Flower N" />
+                <Frame UV="378,0" Variety="Flower O" />
+                <Frame UV="396,0" Variety="Flower P" />
             </Frames>
         </Tile>
         <Tile Id="25" Color="#FF6D5A80" Name="Ebonstone Block" Solid="true" Blends="true" MergeWith="0" />
@@ -3353,31 +3353,31 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Tile Id="58" Color="#FF8E4242" Name="Hellstone Ore" Solid="true" Blends="true" MergeWith="57" Light="true" />
         <Tile Id="59" Color="#FF5C4449" Name="Mud Block" Solid="true" Blends="true" MergeWith="0" />
         <Tile Id="60" Color="#FF8FD71D" Name="Jungle Grass Block" Solid="true" Blends="true" MergeWith="59" Special="Grass" />
-        <Tile Id="61" Color="#FF87C41A" Name="Jungle Plants" Framed="true" TextureGrid="16,20" Light="true">
+        <Tile Id="61" Color="#FF87C41A" Name="Jungle Short Plants" Framed="true" TextureGrid="16,20" Light="true">
             <Frames>
-                <Frame UV="0,0" Name="Jungle Grass" Variety="Single Blade" />
-                <Frame UV="18,0" Name="Jungle Grass" Variety="Double Blade" />
-                <Frame UV="36,0" Name="Jungle Grass" Variety="Small Y" />
-                <Frame UV="54,0" Name="Jungle Grass" Variety="Three Small" />
-                <Frame UV="72,0" Name="Jungle Grass" Variety="Single Blade" />
-                <Frame UV="90,0" Name="Jungle Grass" Variety="Three Large" />
-                <Frame UV="108,0" Name="Jungle Flowers" Variety="A" />
-                <Frame UV="126,0" Name="Jungle Flowers" Variety="B" />
-                <Frame UV="144,0" Name="Jungle Spores" />
+                <Frame UV="0,0" Variety="Grass Single Blade" />
+                <Frame UV="18,0" Variety="Grass Double Blade" />
+                <Frame UV="36,0" Variety="Grass Small Y" />
+                <Frame UV="54,0" Variety="Grass Three Small" />
+                <Frame UV="72,0" Variety="Grass Single Blade" />
+                <Frame UV="90,0" Variety="Grass Three Large" />
+                <Frame UV="108,0" Variety="Flower A" />
+                <Frame UV="126,0" Variety="Flower B" />
+                <Frame UV="144,0" Name="Jungle Spore" />
                 <Frame UV="162,0" Name="Nature's Gift" />
-                <Frame UV="180,0" Name="Jungle Flowers" Variety="C" />
-                <Frame UV="198,0" Name="Jungle Flowers" Variety="D" />
-                <Frame UV="216,0" Name="Jungle Flowers" Variety="E" />
-                <Frame UV="234,0" Name="Jungle Flowers" Variety="F" />
-                <Frame UV="252,0" Name="Jungle Flowers" Variety="G" />
-                <Frame UV="270,0" Name="Jungle Flowers" Variety="H" />
-                <Frame UV="288,0" Name="Jungle Flowers" Variety="I" />
-                <Frame UV="306,0" Name="Jungle Flowers" Variety="J" />
-                <Frame UV="324,0" Name="Jungle Flowers" Variety="K" />
-                <Frame UV="342,0" Name="Jungle Flowers" Variety="L" />
-                <Frame UV="360,0" Name="Jungle Flowers" Variety="M" />
-                <Frame UV="378,0" Name="Jungle Flowers" Variety="N" />
-                <Frame UV="396,0" Name="Jungle Flowers" Variety="O" />
+                <Frame UV="180,0" Variety="Flower C" />
+                <Frame UV="198,0" Variety="Flower D" />
+                <Frame UV="216,0" Variety="Flower E" />
+                <Frame UV="234,0" Variety="Flower F" />
+                <Frame UV="252,0" Variety="Flower G" />
+                <Frame UV="270,0" Variety="Flower H" />
+                <Frame UV="288,0" Variety="Flower I" />
+                <Frame UV="306,0" Variety="Flower J" />
+                <Frame UV="324,0" Variety="Flower K" />
+                <Frame UV="342,0" Variety="Flower L" />
+                <Frame UV="360,0" Variety="Flower M" />
+                <Frame UV="378,0" Variety="Flower N" />
+                <Frame UV="396,0" Variety="Flower O" />
             </Frames>
         </Tile>
         <Tile Id="62" Color="#FF79B018" Name="Jungle Vines" Solid="true" Blends="true" />
@@ -3408,72 +3408,72 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
                 <Frame UV="18,36" Variety="Top Right Indent" />
             </Frames>
         </Tile>
-        <Tile Id="73" Color="#FF1BC56D" Name="Tall Grass" Framed="true" Size="1,1" TextureGrid="16,32">
+        <Tile Id="73" Color="#FF1BC56D" Name="Forest Tall Plants" Framed="true" Size="1,1" TextureGrid="16,32">
             <Frames>
-                <Frame UV="0,0" Variety="A" />
-                <Frame UV="18,0" Variety="B" />
-                <Frame UV="36,0" Variety="C" />
-                <Frame UV="54,0" Variety="D" />
-                <Frame UV="72,0" Variety="E" />
-                <Frame UV="90,0" Variety="F" />
-                <Frame UV="108,0" Variety="Magenta Flower A" />
-                <Frame UV="540,0" Variety="Magenta Flower B" />
-                <Frame UV="558,0" Variety="Magenta Flower C" />
-                <Frame UV="576,0" Variety="Magenta Flower D" />
-                <Frame UV="126,0" Variety="Pink Flower A" />
-                <Frame UV="306,0" Variety="Pink Flower B" />
-                <Frame UV="594,0" Variety="Pink Flower C" />
-                <Frame UV="612,0" Variety="Pink Flower D" />
-                <Frame UV="630,0" Variety="Pink Flower E" />
-                <Frame UV="162,0" Variety="Blue Flower A" />
-                <Frame UV="288,0" Variety="Blue Flower B" />
-                <Frame UV="360,0" Variety="Blue Flower C" />
-                <Frame UV="180,0" Variety="Yellow Flower A" />
-                <Frame UV="198,0" Variety="Yellow Flower B" />
-                <Frame UV="234,0" Variety="Yellow Flower C" />
-                <Frame UV="324,0" Variety="Yellow Flower D" />
-                <Frame UV="432,0" Variety="Yellow Flower E" />
-                <Frame UV="450,0" Variety="Yellow Flower F" />
-                <Frame UV="468,0" Variety="Yellow Flower G" />
-                <Frame UV="216,0" Variety="Violet Flower A" />
-                <Frame UV="756,0" Variety="Violet Flower B" />
-                <Frame UV="774,0" Variety="Violet Flower C" />
-                <Frame UV="792,0" Variety="Violet Flower D" />
-                <Frame UV="252,0" Variety="White Flower A" />
-                <Frame UV="270,0" Variety="White Flower B" />
-                <Frame UV="486,0" Variety="White Flower C" />
-                <Frame UV="504,0" Variety="White Flower D" />
-                <Frame UV="522,0" Variety="White Flower E" />
-                <Frame UV="648,0" Variety="White Flower F" />
-                <Frame UV="666,0" Variety="White Flower G" />
-                <Frame UV="684,0" Variety="White Flower H" />
-                <Frame UV="342,0" Variety="Red Flower A" />
-                <Frame UV="378,0" Variety="Red Flower B" />
-                <Frame UV="396,0" Variety="Red Flower C" />
-                <Frame UV="414,0" Variety="Red Flower D" />
-                <Frame UV="702,0" Variety="Red Flower E" />
-                <Frame UV="720,0" Variety="Red Flower F" />
-                <Frame UV="738,0" Variety="Red Flower G" />
+                <Frame UV="0,0" Variety="Grass A" Anchor="Bottom" />
+                <Frame UV="18,0" Variety="Grass B" Anchor="Bottom" />
+                <Frame UV="36,0" Variety="Grass C" Anchor="Bottom" />
+                <Frame UV="54,0" Variety="Grass D" Anchor="Bottom" />
+                <Frame UV="72,0" Variety="Grass E" Anchor="Bottom" />
+                <Frame UV="90,0" Variety="Grass F" Anchor="Bottom" />
+                <Frame UV="108,0" Variety="Magenta Flower A" Anchor="Bottom" />
+                <Frame UV="540,0" Variety="Magenta Flower B" Anchor="Bottom" />
+                <Frame UV="558,0" Variety="Magenta Flower C" Anchor="Bottom" />
+                <Frame UV="576,0" Variety="Magenta Flower D" Anchor="Bottom" />
+                <Frame UV="126,0" Variety="Pink Flower A" Anchor="Bottom" />
+                <Frame UV="306,0" Variety="Pink Flower B" Anchor="Bottom" />
+                <Frame UV="594,0" Variety="Pink Flower C" Anchor="Bottom" />
+                <Frame UV="612,0" Variety="Pink Flower D" Anchor="Bottom" />
+                <Frame UV="630,0" Variety="Pink Flower E" Anchor="Bottom" />
+                <Frame UV="162,0" Variety="Blue Flower A" Anchor="Bottom" />
+                <Frame UV="288,0" Variety="Blue Flower B" Anchor="Bottom" />
+                <Frame UV="360,0" Variety="Blue Flower C" Anchor="Bottom" />
+                <Frame UV="180,0" Variety="Yellow Flower A" Anchor="Bottom" />
+                <Frame UV="198,0" Variety="Yellow Flower B" Anchor="Bottom" />
+                <Frame UV="234,0" Variety="Yellow Flower C" Anchor="Bottom" />
+                <Frame UV="324,0" Variety="Yellow Flower D" Anchor="Bottom" />
+                <Frame UV="432,0" Variety="Yellow Flower E" Anchor="Bottom" />
+                <Frame UV="450,0" Variety="Yellow Flower F" Anchor="Bottom" />
+                <Frame UV="468,0" Variety="Yellow Flower G" Anchor="Bottom" />
+                <Frame UV="216,0" Variety="Violet Flower A" Anchor="Bottom" />
+                <Frame UV="756,0" Variety="Violet Flower B" Anchor="Bottom" />
+                <Frame UV="774,0" Variety="Violet Flower C" Anchor="Bottom" />
+                <Frame UV="792,0" Variety="Violet Flower D" Anchor="Bottom" />
+                <Frame UV="252,0" Variety="White Flower A" Anchor="Bottom" />
+                <Frame UV="270,0" Variety="White Flower B" Anchor="Bottom" />
+                <Frame UV="486,0" Variety="White Flower C" Anchor="Bottom" />
+                <Frame UV="504,0" Variety="White Flower D" Anchor="Bottom" />
+                <Frame UV="522,0" Variety="White Flower E" Anchor="Bottom" />
+                <Frame UV="648,0" Variety="White Flower F" Anchor="Bottom" />
+                <Frame UV="666,0" Variety="White Flower G" Anchor="Bottom" />
+                <Frame UV="684,0" Variety="White Flower H" Anchor="Bottom" />
+                <Frame UV="342,0" Variety="Red Flower A" Anchor="Bottom" />
+                <Frame UV="378,0" Variety="Red Flower B" Anchor="Bottom" />
+                <Frame UV="396,0" Variety="Red Flower C" Anchor="Bottom" />
+                <Frame UV="414,0" Variety="Red Flower D" Anchor="Bottom" />
+                <Frame UV="702,0" Variety="Red Flower E" Anchor="Bottom" />
+                <Frame UV="720,0" Variety="Red Flower F" Anchor="Bottom" />
+                <Frame UV="738,0" Variety="Red Flower G" Anchor="Bottom" />
             </Frames>
         </Tile>
-        <Tile Id="74" Color="#FF60C51B" Name="Tall Jungle Grass" Framed="true" Size="1,1" TextureGrid="16,32">
+        <Tile Id="74" Color="#FF60C51B" Name="Jungle Tall Plants" Framed="true" Size="1,1" TextureGrid="16,32">
             <Frames>
-                <Frame UV="0,0" Variety="A" />
-                <Frame UV="18,0" Variety="B" />
-                <Frame UV="36,0" Variety="C" />
-                <Frame UV="54,0" Variety="D" />
-                <Frame UV="72,0" Variety="E" />
-                <Frame UV="90,0" Variety="F" />
-                <Frame UV="108,0" Variety="Flower A" />
-                <Frame UV="126,0" Variety="Flower B" />
-                <Frame UV="162,0" Variety="Flower C" />
-                <Frame UV="180,0" Variety="Flower D" />
-                <Frame UV="198,0" Variety="Flower E" />
-                <Frame UV="216,0" Variety="Flower F" />
-                <Frame UV="234,0" Variety="Flower G" />
-                <Frame UV="252,0" Variety="Flower H" />
-                <Frame UV="270,0" Variety="Flower I" />
-                <Frame UV="288,0" Variety="Flower J" />
+                <Frame UV="0,0" Variety="A" Anchor="Bottom" />
+                <Frame UV="18,0" Variety="B" Anchor="Bottom" />
+                <Frame UV="36,0" Variety="C" Anchor="Bottom" />
+                <Frame UV="54,0" Variety="D" Anchor="Bottom" />
+                <Frame UV="72,0" Variety="E" Anchor="Bottom" />
+                <Frame UV="90,0" Variety="F" Anchor="Bottom" />
+                <Frame UV="108,0" Variety="Flower A" Anchor="Bottom" />
+                <Frame UV="126,0" Variety="Flower B" Anchor="Bottom" />
+                <Frame UV="162,0" Variety="Flower C" Anchor="Bottom" />
+                <Frame UV="180,0" Variety="Flower D" Anchor="Bottom" />
+                <Frame UV="198,0" Variety="Flower E" Anchor="Bottom" />
+                <Frame UV="216,0" Variety="Flower F" Anchor="Bottom" />
+                <Frame UV="234,0" Variety="Flower G" Anchor="Bottom" />
+                <Frame UV="252,0" Variety="Flower H" Anchor="Bottom" />
+                <Frame UV="270,0" Variety="Flower I" Anchor="Bottom" />
+                <Frame UV="288,0" Variety="Flower J" Anchor="Bottom" />
             </Frames>
         </Tile>
         <Tile Id="75" Color="#FF242424" Name="Obsidian Brick" Solid="true" Blends="true" />
@@ -3581,7 +3581,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
                 <Frame UV="130,0" Variety="Sponge" />
             </Frames>
         </Tile>
-        <Tile Id="82" Color="#FFFF7800" Name="Herb Seeds" Framed="true" UseFrameName="true" FrameNamePostfix="seed">
+        <Tile Id="82" Color="#FFFF7800" Name="Herbs (Sprout)" Framed="true" UseFrameName="true" FrameNamePostfix="seed">
             <Frames>
                 <Frame UV="0,0" Name="Daybloom" growsOn="2,78" />
                 <Frame UV="18,0" Name="Moonglow" growsOn="60,78" />
@@ -3592,7 +3592,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
                 <Frame UV="108,0" Name="Shiverthorn" growsOn="147,161" />
             </Frames>
         </Tile>
-        <Tile Id="83" Color="#FFFF7800" Name="Herb Mature" Framed="true" Light="true" UseFrameName="true">
+        <Tile Id="83" Color="#FFFF7800" Name="Herbs (Mature)" Framed="true" Light="true" UseFrameName="true">
             <Frames>
                 <Frame UV="0,0" Name="Daybloom" growsOn="2,78" />
                 <Frame UV="18,0" Name="Moonglow" growsOn="60,78" />
@@ -3603,7 +3603,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
                 <Frame UV="108,0" Name="Shiverthorn" growsOn="147,161" />
             </Frames>
         </Tile>
-        <Tile Id="84" Color="#FFFF7800" Name="Herb Bloom" Framed="true" Light="true" UseFrameName="true" FrameNamePostfix="bloom">
+        <Tile Id="84" Color="#FFFF7800" Name="Herbs (Bloom)" Framed="true" Light="true" UseFrameName="true" FrameNamePostfix="bloom">
             <Frames>
                 <Frame UV="0,0" Name="Daybloom" growsOn="2,78" />
                 <Frame UV="18,0" Name="Moonglow" growsOn="60,78" />
@@ -4666,45 +4666,45 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Tile Id="107" Color="#FF0B508F" Name="Cobalt Ore" Solid="true" Blends="true" MergeWith="0" />
         <Tile Id="108" Color="#FF5BA9A9" Name="Mythril Ore" Solid="true" Blends="true" MergeWith="0" />
         <Tile Id="109" Color="#FF4EC1E3" Name="Hallowed Grass Block" Solid="true" Blends="true" MergeWith="0" Special="Grass" Light="true" />
-        <Tile Id="110" Color="#FF30BA87" Name="Hallowed Plants" Framed="true" TextureGrid="16,20">
+        <Tile Id="110" Color="#FF30BA87" Name="Hallow Short Plants" Framed="true" TextureGrid="16,20">
             <Frames>
-                <Frame UV="0,0" Name="Hallowed Grass" Variety="Single Blade A" />
-                <Frame UV="18,0" Name="Hallowed Grass" Variety="Double Blade" />
-                <Frame UV="36,0" Name="Hallowed Grass" Variety="Single Blade B" />
-                <Frame UV="54,0" Name="Hallowed Grass" Variety="Three Small" />
-                <Frame UV="72,0" Name="Hallowed Flowers" Variety="A" />
-                <Frame UV="90,0" Name="Hallowed Grass" Variety="Three Large" />
+                <Frame UV="0,0" Variety="Grass Single Blade A" />
+                <Frame UV="18,0" Variety="Grass Double Blade" />
+                <Frame UV="36,0" Variety="Grass Single Blade B" />
+                <Frame UV="54,0" Variety="Grass Three Small" />
+                <Frame UV="90,0" Variety="Grass Three Large" />
+                <Frame UV="162,0" Variety="Grass Small Y" />
                 <Frame UV="144,0" Name="Mushroom (growing)" />
-                <Frame UV="108,0" Name="Hallowed Flowers" Variety="B" />
-                <Frame UV="126,0" Name="Hallowed Flowers" Variety="C" />
-                <Frame UV="162,0" Name="Hallowed Grass" Variety="Small Y" />
-                <Frame UV="180,0" Name="Hallowed Flowers" Variety="D" />
-                <Frame UV="198,0" Name="Hallowed Flowers" Variety="E" />
-                <Frame UV="216,0" Name="Hallowed Flowers" Variety="F" />
-                <Frame UV="234,0" Name="Hallowed Flowers" Variety="G" />
-                <Frame UV="252,0" Name="Hallowed Flowers" Variety="H" />
-                <Frame UV="270,0" Name="Hallowed Flowers" Variety="I" />
-                <Frame UV="288,0" Name="Hallowed Flowers" Variety="J" />
-                <Frame UV="306,0" Name="Hallowed Flowers" Variety="K" />
-                <Frame UV="324,0" Name="Hallowed Flowers" Variety="L" />
-                <Frame UV="342,0" Name="Hallowed Flowers" Variety="M" />
-                <Frame UV="360,0" Name="Hallowed Flowers" Variety="N" />
-                <Frame UV="378,0" Name="Hallowed Flowers" Variety="O" />
-                <Frame UV="396,0" Name="Hallowed Flowers" Variety="P" />
+                <Frame UV="72,0" Variety="Flower A" />
+                <Frame UV="108,0" Variety="Flower B" />
+                <Frame UV="126,0" Variety="Flower C" />
+                <Frame UV="180,0" Variety="Flower D" />
+                <Frame UV="198,0" Variety="Flower E" />
+                <Frame UV="216,0" Variety="Flower F" />
+                <Frame UV="234,0" Variety="Flower G" />
+                <Frame UV="252,0" Variety="Flower H" />
+                <Frame UV="270,0" Variety="Flower I" />
+                <Frame UV="288,0" Variety="Flower J" />
+                <Frame UV="306,0" Variety="Flower K" />
+                <Frame UV="324,0" Variety="Flower L" />
+                <Frame UV="342,0" Variety="Flower M" />
+                <Frame UV="360,0" Variety="Flower N" />
+                <Frame UV="378,0" Variety="Flower O" />
+                <Frame UV="396,0" Variety="Flower P" />
             </Frames>
         </Tile>
         <Tile Id="111" Color="#FF801A34" Name="Adamantite Ore" Solid="true" Blends="true" MergeWith="0" />
         <Tile Id="112" Color="#FF67627A" Name="Ebonsand Block" Solid="true" Blends="true" MergeWith="0" />
-        <Tile Id="113" Color="#FF30D0EA" Name="Tall Hallowed Plants" Framed="true" TextureGrid="16,32">
+        <Tile Id="113" Color="#FF30D0EA" Name="Hallow Tall Plants" Framed="true" TextureGrid="16,32">
             <Frames>
-                <Frame UV="0,0" Name="Hallowed Grass" Variety="A" />
-                <Frame UV="18,0" Name="Hallowed Grass" Variety="B" />
-                <Frame UV="36,0" Name="Hallowed Grass" Variety="C" />
-                <Frame UV="54,0" Name="Hallowed Grass" Variety="D" />
-                <Frame UV="72,0" Name="Hallowed Grass" Variety="E" />
-                <Frame UV="90,0" Name="Hallowed Grass" Variety="F" />
-                <Frame UV="108,0" Name="Hallowed Flowers" Variety="A" />
-                <Frame UV="126,0" Name="Hallowed Flowers" Variety="B" />
+                <Frame UV="0,0" Variety="Grass A" Anchor="Bottom" />
+                <Frame UV="18,0" Variety="Grass B" Anchor="Bottom" />
+                <Frame UV="90,0" Variety="Grass C" Anchor="Bottom" />
+                <Frame UV="36,0" Variety="Flower A" Anchor="Bottom" />
+                <Frame UV="54,0" Variety="Flower B" Anchor="Bottom" />
+                <Frame UV="72,0" Variety="Flower C" Anchor="Bottom" />
+                <Frame UV="108,0" Variety="Flower D" Anchor="Bottom" />
+                <Frame UV="126,0" Variety="Flower E" Anchor="Bottom" />
             </Frames>
         </Tile>
         <Tile Id="114" Color="#FFBF8E6F" Name="Tinkerer's Workshop" Framed="true" Size="3,2" TextureGrid="16,16" SolidTop="true" />
@@ -5768,23 +5768,23 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Tile Id="198" Color="#FF3E3D34" Name="Asphalt Block" Solid="true" Blends="true" MergeWith="0" />
         <Tile Id="199" Color="#FFD05050" Name="Crimson Grass Block" Solid="true" Blends="true" MergeWith="0" Special="Grass" />
         <Tile Id="200" Color="#FFD89890" Name="Red Ice Block" Solid="true" Blends="true" />
-        <Tile Id="201" Color="#FFCB3D40" Name="Crimson Plants" Framed="true">
+        <Tile Id="201" Color="#FFCB3D40" Name="Crimson Short Plants" Framed="true">
             <Frames>
-                <Frame UV="0,0" Variety="Three Blades" />
-                <Frame UV="18,0" Variety="Two Blades" />
-                <Frame UV="36,0" Variety="Hooked" />
-                <Frame UV="54,0" Variety="Short" />
-                <Frame UV="72,0" Variety="Thick A" />
-                <Frame UV="90,0" Variety="Fleshy A" />
-                <Frame UV="108,0" Variety="Sparse" />
-                <Frame UV="126,0" Variety="Fleshy B" />
-                <Frame UV="144,0" Variety="Thick B" />
-                <Frame UV="162,0" Variety="Thick C" />
-                <Frame UV="180,0" Variety="Fleshy C" />
-                <Frame UV="198,0" Variety="Thick D" />
-                <Frame UV="216,0" Variety="Thick E" />
-                <Frame UV="234,0" Variety="Thick F" />
-                <Frame UV="252,0" Variety="Thick G" />
+                <Frame UV="0,0" Variety="Grass Three Blades" />
+                <Frame UV="18,0" Variety="Grass Two Blades" />
+                <Frame UV="36,0" Variety="Grass Hooked" />
+                <Frame UV="54,0" Variety="Grass Short" />
+                <Frame UV="72,0" Variety="Grass Thick A" />
+                <Frame UV="90,0" Variety="Grass Fleshy A" />
+                <Frame UV="108,0" Variety="Grass Sparse" />
+                <Frame UV="126,0" Variety="Grass Fleshy B" />
+                <Frame UV="144,0" Variety="Grass Thick B" />
+                <Frame UV="162,0" Variety="Grass Thick C" />
+                <Frame UV="180,0" Variety="Grass Fleshy C" />
+                <Frame UV="198,0" Variety="Grass Thick D" />
+                <Frame UV="216,0" Variety="Grass Thick E" />
+                <Frame UV="234,0" Variety="Grass Thick F" />
+                <Frame UV="252,0" Variety="Grass Thick G" />
                 <Frame UV="270,0" Name="Vile Mushroom" />
                 <Frame UV="288,0" Variety="Flower A" />
                 <Frame UV="306,0" Variety="Flower B" />
@@ -5928,23 +5928,23 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Tile Id="224" Color="#FF6B848B" Name="Slush Block" Solid="true" Blends="true" />
         <Tile Id="225" Color="#FFE37D16" Name="Hive Block" Solid="true" Blends="true" />
         <Tile Id="226" Color="#FF8D3800" Name="Lihzahrd Brick" Solid="true" Blends="true" />
-        <Tile Id="227" Color="#FFFFFFFF" Name="Dye Plant" Framed="true" TextureGrid="32,36">
+        <Tile Id="227" Color="#FFFFFFFF" Name="Dye Plants" Framed="true" TextureGrid="32,38">
             <Frames>
-                <Frame UV="0,0" Name="Teal Mushroom" />
-                <Frame UV="34,0" Name="Green Mushroom" />
-                <Frame UV="68,0" Name="Sky Blue Flower" />
-                <Frame UV="102,0" Name="Yellow Marigold" />
-                <Frame UV="136,0" Name="Blue Berries" />
-                <Frame UV="170,0" Name="Lime Kelp" />
-                <Frame UV="204,0" Name="Pink Prickly Pear" />
-                <Frame UV="238,0" Name="Orange Bloodroot" />
-                <Frame UV="272,0" Name="Strange Plant" Variety="A" />
-                <Frame UV="306,0" Name="Strange Plant" Variety="B" />
-                <Frame UV="340,0" Name="Strange Plant" Variety="C" />
-                <Frame UV="374,0" Name="Strange Plant" Variety="D" />
-                <Frame UV="408,0" Variety="A (unused)" />
-                <Frame UV="442,0" Variety="B (unused)" />
-                <Frame UV="476,0" Variety="C (unused)" />
+                <Frame UV="0,0" Name="Teal Mushroom" Anchor="Bottom" />
+                <Frame UV="34,0" Name="Green Mushroom" Anchor="Bottom" />
+                <Frame UV="68,0" Name="Sky Blue Flower" Anchor="Bottom" />
+                <Frame UV="102,0" Name="Yellow Marigold" Anchor="Bottom" />
+                <Frame UV="136,0" Name="Blue Berries" Anchor="Bottom" />
+                <Frame UV="170,0" Name="Lime Kelp" Anchor="Bottom" />
+                <Frame UV="204,0" Name="Pink Prickly Pear" Anchor="Bottom" />
+                <Frame UV="238,0" Name="Orange Bloodroot" Anchor="Top" />
+                <Frame UV="272,0" Name="Strange Plant" Variety="A" Anchor="Bottom" />
+                <Frame UV="306,0" Name="Strange Plant" Variety="B" Anchor="Bottom" />
+                <Frame UV="340,0" Name="Strange Plant" Variety="C" Anchor="Bottom" />
+                <Frame UV="374,0" Name="Strange Plant" Variety="D" Anchor="Bottom" />
+                <Frame UV="408,0" Name="Corrupt Pink Prickly Pear (USE PURE PEAR - DO NOT USE)" Anchor="Bottom" />
+                <Frame UV="442,0" Name="Crimson Pink Prickly Pear (USE PURE PEAR - DO NOT USE)" Anchor="Bottom" />
+                <Frame UV="476,0" Name="Hallow Pink Prickly Pear (USE PURE PEAR - DO NOT USE)" Anchor="Bottom" />
             </Frames>
         </Tile>
         <Tile Id="228" Color="#FF909490" Name="Dye Vat" Framed="true" Size="3,3" IsAnimated="true" />
@@ -5952,29 +5952,29 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Tile Id="230" Color="#FF834F0D" Name="Crispy Honey Block" Solid="true" Blends="true" MergeWith="0" />
         <Tile Id="231" Color="#FFE0C265" Name="Larva" Framed="true" Size="3,3" IsAnimated="true" />
         <Tile Id="232" Color="#FF915155" Name="Wooden Spike" Solid="true" Blends="true" />
-        <Tile Id="233" Color="#FFFF00FF" Name="Jungle Vegetation" Framed="true" Size="[3,2 2,2]">
+        <Tile Id="233" Color="#FFFF00FF" Name="Jungle Large Plants" Framed="true" Size="[3,2 2,2]">
             <Frames>
-                <Frame UV="0,0" Variety="Plant A" />
-                <Frame UV="54,0" Variety="Plant B" />
-                <Frame UV="108,0" Variety="Plant C" />
-                <Frame UV="162,0" Variety="Plant D" />
-                <Frame UV="216,0" Variety="Plant E" />
-                <Frame UV="270,0" Variety="Plant F" />
-                <Frame UV="324,0" Variety="Plant G" />
-                <Frame UV="378,0" Variety="Plant H" />
-                <Frame UV="432,0" Variety="Plant I" />
-                <Frame UV="0,36" Variety="Plant A" FrameSize="2,2" />
-                <Frame UV="36,36" Variety="Plant B" FrameSize="2,2" />
-                <Frame UV="72,36" Variety="Plant C" FrameSize="2,2" />
-                <Frame UV="108,36" Variety="Plant D" FrameSize="2,2" />
-                <Frame UV="144,36" Variety="Plant E" FrameSize="2,2" />
-                <Frame UV="180,36" Variety="Plant F" FrameSize="2,2" />
-                <Frame UV="216,36" Variety="Plant G" FrameSize="2,2" />
-                <Frame UV="252,36" Variety="Plant H" FrameSize="2,2" />
-                <Frame UV="288,36" Variety="Plant I" FrameSize="2,2" />
-                <Frame UV="324,36" Variety="Plant J" FrameSize="2,2" />
-                <Frame UV="360,36" Variety="Plant K" FrameSize="2,2" />
-                <Frame UV="396,36" Variety="Plant L" FrameSize="2,2" />
+                <Frame UV="0,0" Variety="3x2 A" />
+                <Frame UV="54,0" Variety="3x2 B" />
+                <Frame UV="108,0" Variety="3x2 C" />
+                <Frame UV="162,0" Variety="3x2 D" />
+                <Frame UV="216,0" Variety="3x2 E" />
+                <Frame UV="270,0" Variety="3x2 F" />
+                <Frame UV="324,0" Variety="3x2 G" />
+                <Frame UV="378,0" Variety="3x2 H" />
+                <Frame UV="432,0" Variety="3x2 I" />
+                <Frame UV="0,36" Variety="2x2 A" FrameSize="2,2" />
+                <Frame UV="36,36" Variety="2x2 B" FrameSize="2,2" />
+                <Frame UV="72,36" Variety="2x2 C" FrameSize="2,2" />
+                <Frame UV="108,36" Variety="2x2 D" FrameSize="2,2" />
+                <Frame UV="144,36" Variety="2x2 E" FrameSize="2,2" />
+                <Frame UV="180,36" Variety="2x2 F" FrameSize="2,2" />
+                <Frame UV="216,36" Variety="2x2 G" FrameSize="2,2" />
+                <Frame UV="252,36" Variety="2x2 H" FrameSize="2,2" />
+                <Frame UV="288,36" Variety="2x2 I" FrameSize="2,2" />
+                <Frame UV="324,36" Variety="2x2 J" FrameSize="2,2" />
+                <Frame UV="360,36" Variety="2x2 K" FrameSize="2,2" />
+                <Frame UV="396,36" Variety="2x2 L" FrameSize="2,2" />
             </Frames>
         </Tile>
         <Tile Id="234" Color="#FF352C29" Name="Crimsand Block" Solid="true" Blends="true" MergeWith="0" />
@@ -8982,19 +8982,19 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         </Tile>
         <Tile Id="635" Name="Ash Wood" Solid="true" Color="#FF5F525C" />
         <Tile Id="636" Name="Corrupt Vines" Color="#FF746CA3" />
-        <Tile Id="637" Name="Ash Plants" Light="true" Framed="true" Color="#FF884338">
+        <Tile Id="637" Name="Ash Short Plants" Light="true" Framed="true" Color="#FF884338">
             <Frames>
-                <Frame UV="0,0" Variety="A" />
-                <Frame UV="18,0" Variety="B" />
-                <Frame UV="36,0" Variety="C" />
-                <Frame UV="54,0" Variety="D" />
-                <Frame UV="72,0" Variety="E" />
-                <Frame UV="90,0" Variety="F" />
-                <Frame UV="108,0" Variety="G" />
-                <Frame UV="126,0" Variety="H" />
-                <Frame UV="144,0" Variety="I" />
-                <Frame UV="162,0" Variety="J" />
-                <Frame UV="180,0" Variety="K" />
+                <Frame UV="0,0" Variety="Grass A" />
+                <Frame UV="18,0" Variety="Grass B" />
+                <Frame UV="36,0" Variety="Grass C" />
+                <Frame UV="54,0" Variety="Grass D" />
+                <Frame UV="72,0" Variety="Grass E" />
+                <Frame UV="90,0" Variety="Grass F" />
+                <Frame UV="108,0" Variety="Flower A" />
+                <Frame UV="126,0" Variety="Flower B" />
+                <Frame UV="144,0" Variety="Flower C" />
+                <Frame UV="162,0" Variety="Flower D" />
+                <Frame UV="180,0" Variety="Flower E" />
             </Frames>
         </Tile>
         <Tile Id="638" Name="Ash Vines" Light="true" Color="#FF844A3C" />
