@@ -6,12 +6,19 @@ using Newtonsoft.Json;
 using TEdit.Terraria;
 using TEdit.Geometry.Primitives;
 using TEdit.ViewModel;
+using static Microsoft.ApplicationInsights.MetricDimensionNames.TelemetryContext;
+using TEdit.Editor;
 
 namespace TEdit.Configuration
 {
     public class MorphConfiguration
     {
         public Dictionary<string, MorphBiomeData> Biomes { get; set; } = new();
+        public Dictionary<string, int> MossTypes { get; set; } = new();
+
+        private readonly HashSet<int> _mossTypes = new HashSet<int>();
+
+        public bool IsMoss(ushort type) => _mossTypes.Contains(type);
 
         public void Save(string fileName)
         {
@@ -44,6 +51,12 @@ namespace TEdit.Configuration
             {
                 biome.Value.InitCache();
             }
+
+            _mossTypes.Clear();
+            foreach (var id in MossTypes.Values)
+            {
+                _mossTypes.Add(id);
+            }
         }
     }
 
@@ -59,13 +72,13 @@ namespace TEdit.Configuration
         public bool ContainsWall(int id) => _wallCache.ContainsKey(id);
         public bool ContainsTile(int id) => _tileCache.ContainsKey(id);
 
-        public void ApplyMorph(Tile source, MorphLevel level, Vector2Int32 location)
+        public void ApplyMorph(MorphToolOptions options, Tile source, MorphLevel level, Vector2Int32 location)
         {
-            ApplyTileMorph(source, level, location);
-            ApplyWallMorph(source, level);
+            ApplyTileMorph(options, source, level, location);
+            ApplyWallMorph(options, source, level, location);
         }
 
-        private void ApplyWallMorph(Tile source, MorphLevel level)
+        private void ApplyWallMorph(MorphToolOptions options, Tile source, MorphLevel level, Vector2Int32 location)
         {
             if (source.Wall == 0) { return; }
 
@@ -80,22 +93,42 @@ namespace TEdit.Configuration
                     return;
                 }
 
-                source.Wall = level switch
+                // Check if tiles need gravity checks.
+                if (morphId.Gravity != null && AirBelow(location.X, location.Y))
                 {
-                    MorphLevel.Sky => morphId.SkyLevelTargetId,
-                    MorphLevel.Dirt => morphId.DirtLevelTargetId,
-                    MorphLevel.Rock => morphId.RockLevelTargetId,
-                    _ => source.Wall,
-                };
+                    source.Wall = morphId.Gravity.GetId(level) ?? 397;
+                }
+                else if (morphId.TouchingAir != null && TouchingAir(location.X, location.Y))
+                {
+                    var id = morphId.TouchingAir.GetId(level);
+                    if (id != null)
+                    {
+                        source.Wall = id.Value;
+                    }
+                }
+                else
+                {
+                    var id = morphId.Default.GetId(level);
+                    if (id != null)
+                    {
+                        source.Wall = id.Value;
+                    }
+                }
             }
         }
 
-        private void ApplyTileMorph(Tile source, MorphLevel level, Vector2Int32 location)
+        private void ApplyTileMorph(MorphToolOptions options, Tile source, MorphLevel level, Vector2Int32 location)
         {
             if (!source.IsActive) { return; }
             ushort sourceId = source.Type;
 
             if (!_tileCache.TryGetValue(sourceId, out var morphId)) { return; }
+
+            // check skip base tiles
+            if (!morphId.IsEvil && !options.EnableBaseTiles) { return; }
+
+            // check skip evil tiles
+            if (morphId.IsEvil && !options.EnableEvilTiles) { return; }
 
             if (morphId.SourceIds.Contains(sourceId))
             {
@@ -107,27 +140,39 @@ namespace TEdit.Configuration
                 }
 
                 // Check if tiles need gravity checks.
-                if (morphId.HasGravity && BlockBelowMakesSandConvertIntoHardenedSand(location.X, location.Y))
+                if (morphId.Gravity != null && AirBelow(location.X, location.Y))
                 {
-                    source.Type = 397;
+                    source.Type = morphId.Gravity.GetId(level) ?? 397;
                 }
-                else if (morphId.TouchAirTargetId != null && TouchingAir(location.X, location.Y))
+                else if (morphId.TouchingAir != null && TouchingAir(location.X, location.Y))
                 {
-                    source.Type = morphId.TouchAirTargetId.Value;
+                    var id = morphId.TouchingAir.GetId(level);
+                    if (id != null)
+                    {
+                        source.Type = id.Value;
+                    }
                 }
                 else
-                { 
-                    source.Type = level switch
+                {
+                    var id = morphId.Default.GetId(level) ?? source.Type;
+
+                    // apply moss to stone blocks
+                    if (morphId.UseMoss &&
+                        options.EnableMoss &&
+                        (World.MorphSettings.IsMoss(source.Type) ||
+                         TouchingAir(location.X, location.Y)))
                     {
-                        MorphLevel.Sky => morphId.SkyLevelTargetId,
-                        MorphLevel.Dirt => morphId.DirtLevelTargetId,
-                        MorphLevel.Rock => morphId.RockLevelTargetId,
-                        _ => source.Type,
-                    };
+                        source.Type = (ushort)options.MossType;
+                    }
+                    else
+                    {
+                        source.Type = id;
+                    }                    
                 }
 
                 // filter sprites
-                if (World.TileProperties[sourceId].IsFramed &&
+                if (options.EnableSprites &&
+                    World.TileProperties[sourceId].IsFramed &&
                     morphId.SpriteOffsets.Count > 0)
                 {
                     // filter and apply morph (offset or delete)
@@ -138,7 +183,7 @@ namespace TEdit.Configuration
             }
         }
 
-        public static bool BlockBelowMakesSandConvertIntoHardenedSand(int x, int y)
+        public static bool AirBelow(int x, int y)
         {
             var world = ViewModelLocator.WorldViewModel.CurrentWorld;
             if (world == null) return false;
@@ -217,7 +262,7 @@ namespace TEdit.Configuration
                     catch (Exception ex)
                     {
                         throw new IndexOutOfRangeException($"morphSetting wall entry is invalid or duplicate: {item.Name} [{id}]", ex);
-                    }                    
+                    }
                 }
             }
         }
@@ -226,15 +271,53 @@ namespace TEdit.Configuration
         private Dictionary<int, MorphId> _tileCache = new Dictionary<int, MorphId>();
     }
 
+    public class MorphIdLevels
+    {
+        public ushort? SkyId { get; set; }
+        public ushort? DirtId { get; set; }
+        public ushort? RockId { get; set; }
+        public ushort? DeepRockId { get; set; }
+        public ushort? HellId { get; set; }
+
+        public ushort? GetId(MorphLevel level)
+        {
+            if (level == MorphLevel.Dirt)
+            {
+                return DirtId ?? SkyId;
+            }
+
+            if (level == MorphLevel.Rock)
+            {
+                return RockId ?? DirtId ?? SkyId;
+            }
+
+            if (level == MorphLevel.DeepRock)
+            {
+                return DeepRockId ?? RockId ?? DirtId ?? SkyId;
+            }
+
+            if (level == MorphLevel.Hell)
+            {
+                return HellId ?? DeepRockId ?? RockId ?? DirtId ?? SkyId;
+            }
+
+            // default to sky
+            return SkyId;
+        }
+    }
+
     public class MorphId
     {
         public string Name { get; set; }
         public bool Delete { get; set; }
-        public bool HasGravity { get; set; }
-        public ushort? TouchAirTargetId { get; set; }
-        public ushort SkyLevelTargetId { get; set; }
-        public ushort DirtLevelTargetId { get; set; }
-        public ushort RockLevelTargetId { get; set; }
+
+        public bool IsEvil { get; set; }
+        public bool UseMoss { get; set; }
+
+        public MorphIdLevels Default { get; set; } = new MorphIdLevels();
+        public MorphIdLevels TouchingAir { get; set; }
+        public MorphIdLevels Gravity { get; set; }
+
         public HashSet<ushort> SourceIds { get; set; } = new();
         public List<MorphSpriteUVOffset> SpriteOffsets { get; set; } = new();
     }
@@ -243,7 +326,9 @@ namespace TEdit.Configuration
     {
         Sky,
         Dirt,
-        Rock
+        Rock,
+        DeepRock,
+        Hell
     }
 
     public class MorphSpriteUVOffset

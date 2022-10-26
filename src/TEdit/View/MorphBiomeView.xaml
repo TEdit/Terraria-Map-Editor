@@ -6,12 +6,33 @@
              xmlns:Editor="clr-namespace:TEdit.Editor"
              xmlns:enum="clr-namespace:TEdit.UI.Xaml.Enum"
              xmlns:p="clr-namespace:TEdit.Properties"
+             xmlns:Terraria="clr-namespace:TEdit.Terraria"
+             d:DesignWidth="400"
+             d:DesignHeight="100"
+             Background="{StaticResource WindowBackgroundBrush}"
+             Foreground="{StaticResource TextBrush}"
+             xmlns:viewModel="clr-namespace:TEdit.ViewModel"             
+             d:DataContext="{d:DesignInstance Type=viewModel:WorldViewModel}" 
              mc:Ignorable="d" >
-    <UserControl.Resources>
-        <enum:EnumItemList x:Key="MorphBiomeEnum" ResourceType="{x:Type p:Language}" EnumType="{x:Type Editor:MorphBiome}" x:Shared="false" SortBy="Value" />
-    </UserControl.Resources>
-    <StackPanel Orientation="Vertical">
-        <TextBlock Text="{x:Static p:Language.tool_morph_label}" Margin="2" />
-        <ComboBox Width="200" ItemsSource="{StaticResource MorphBiomeEnum}" SelectedValuePath="Value" SelectedValue="{Binding MorphBiomeTarget}" />
+    <StackPanel Orientation="Horizontal">
+        <StackPanel Orientation="Vertical" Margin="2">
+            <TextBlock Text="{x:Static p:Language.tool_morph_label}" Margin="2" />
+            <ComboBox Width="200"
+                  ItemsSource="{Binding Source={x:Static Terraria:World.Biomes}, Mode=OneTime}" 
+                  SelectedValue="{Binding MorphToolOptions.TargetBiome}" />
+            <TextBlock Text="Moss Type" Margin="2" />
+            <ComboBox Width="200"
+                  ItemsSource="{Binding Source={x:Static Terraria:World.MossTypes}, Mode=OneTime}" 
+                      SelectedValuePath="Value" 
+                      DisplayMemberPath="Key"
+                  SelectedValue="{Binding MorphToolOptions.MossType}" />
+        </StackPanel>
+        <StackPanel Orientation="Vertical" Margin="2">
+            <TextBlock Text="Options" />
+            <CheckBox Content="Base Tiles" IsChecked="{Binding MorphToolOptions.EnableBaseTiles}"/>
+            <CheckBox Content="Moss" IsChecked="{Binding MorphToolOptions.EnableMoss}"/>
+            <CheckBox Content="Evil" IsChecked="{Binding MorphToolOptions.EnableEvilTiles}"/>
+            <CheckBox Content="Decorations" IsChecked="{Binding MorphToolOptions.EnableSprites}"/>
+        </StackPanel>
     </StackPanel>
 </UserControl>
