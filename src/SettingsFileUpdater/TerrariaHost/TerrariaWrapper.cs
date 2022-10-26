@@ -338,9 +338,14 @@ namespace SettingsFileUpdater.TerrariaHost
         {
             foreach (var npc in GetNpcs(true))
             {
+                int killId = Item.NPCtoBanner(npc.BannerID());
+                if (killId <= 0 || npc.ExcludedFromDeathTally())
+                    killId = -1;
+
                 yield return new NpcData
                 {
                     Id = npc.netID,
+                    BannerId = killId,
                     FullName = npc.FullName,
                     Name = Localize(npc.FullName),
                     BestiaryId = npc.GetBestiaryCreditId(),
@@ -436,9 +441,14 @@ namespace SettingsFileUpdater.TerrariaHost
                     npc.SetDefaults(info.NetId);
                 }
                
+                int killId = Item.NPCtoBanner(npc.BannerID());
+                if (killId <= 0 || npc.ExcludedFromDeathTally())
+                    killId = -1;
+
                 var data = new NpcData
                 {
                     Id = npc.netID,
+                    BannerId = killId,
                     BestiaryDisplayIndex = info.BestiaryDisplayIndex,
                     FullName = npc.FullName,
                     Name = Localize(npc.FullName),

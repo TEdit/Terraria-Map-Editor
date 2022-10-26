@@ -1,6 +1,7 @@
 [
   {
     "Id": -10,
+    "BannerId": 131,
     "FullName": "Jungle Slime",
     "Name": "Jungle Slime",
     "BestiaryId": "JungleSlime",
@@ -11,6 +12,7 @@
   },
   {
     "Id": -9,
+    "BannerId": 183,
     "FullName": "Yellow Slime",
     "Name": "Yellow Slime",
     "BestiaryId": "YellowSlime",
@@ -21,6 +23,7 @@
   },
   {
     "Id": -8,
+    "BannerId": 159,
     "FullName": "Red Slime",
     "Name": "Red Slime",
     "BestiaryId": "RedSlime",
@@ -31,6 +34,7 @@
   },
   {
     "Id": -7,
+    "BannerId": 155,
     "FullName": "Purple Slime",
     "Name": "Purple Slime",
     "BestiaryId": "PurpleSlime",
@@ -41,6 +45,7 @@
   },
   {
     "Id": -6,
+    "BannerId": 90,
     "FullName": "Black Slime",
     "Name": "Black Slime",
     "BestiaryId": "BlackSlime",
@@ -51,6 +56,7 @@
   },
   {
     "Id": -5,
+    "BannerId": -1,
     "FullName": "Baby Slime",
     "Name": "Baby Slime",
     "BestiaryId": "BabySlime",
@@ -61,6 +67,7 @@
   },
   {
     "Id": -4,
+    "BannerId": 151,
     "FullName": "Pinky",
     "Name": "Pinky",
     "BestiaryId": "Pinky",
@@ -71,6 +78,7 @@
   },
   {
     "Id": -3,
+    "BannerId": 119,
     "FullName": "Green Slime",
     "Name": "Green Slime",
     "BestiaryId": "GreenSlime",
@@ -81,6 +89,7 @@
   },
   {
     "Id": -1,
+    "BannerId": -1,
     "FullName": "Slimeling",
     "Name": "Slimeling",
     "BestiaryId": "Slimeling",
@@ -91,6 +100,7 @@
   },
   {
     "Id": 1,
+    "BannerId": 69,
     "FullName": "Blue Slime",
     "Name": "Blue Slime",
     "BestiaryId": "BlueSlime",
@@ -101,6 +111,7 @@
   },
   {
     "Id": 2,
+    "BannerId": 25,
     "FullName": "Demon Eye",
     "Name": "Demon Eye",
     "BestiaryId": "DemonEye",
@@ -111,6 +122,7 @@
   },
   {
     "Id": 3,
+    "BannerId": 87,
     "FullName": "Zombie",
     "Name": "Zombie",
     "BestiaryId": "Zombie",
@@ -121,6 +133,7 @@
   },
   {
     "Id": 4,
+    "BannerId": -1,
     "FullName": "Eye of Cthulhu",
     "Name": "Eye of Cthulhu",
     "BestiaryId": "EyeofCthulhu",
@@ -131,6 +144,7 @@
   },
   {
     "Id": 5,
+    "BannerId": -1,
     "FullName": "Servant of Cthulhu",
     "Name": "Servant of Cthulhu",
     "BestiaryId": "ServantofCthulhu",
@@ -141,6 +155,7 @@
   },
   {
     "Id": 6,
+    "BannerId": 27,
     "FullName": "Eater of Souls",
     "Name": "Eater of Souls",
     "BestiaryId": "EaterofSouls",
@@ -151,6 +166,7 @@
   },
   {
     "Id": 7,
+    "BannerId": 104,
     "FullName": "Devourer",
     "Name": "Devourer",
     "BestiaryId": "DevourerHead",
@@ -161,6 +177,7 @@
   },
   {
     "Id": 10,
+    "BannerId": 84,
     "FullName": "Giant Worm",
     "Name": "Giant Worm",
     "BestiaryId": "GiantWormHead",
@@ -171,6 +188,7 @@
   },
   {
     "Id": 13,
+    "BannerId": -1,
     "FullName": "Eater of Worlds",
     "Name": "Eater of Worlds",
     "BestiaryId": "EaterofWorldsHead",
@@ -181,6 +199,7 @@
   },
   {
     "Id": 16,
+    "BannerId": 146,
     "FullName": "Mother Slime",
     "Name": "Mother Slime",
     "BestiaryId": "MotherSlime",
@@ -191,6 +210,7 @@
   },
   {
     "Id": 21,
+    "BannerId": 67,
     "FullName": "Skeleton",
     "Name": "Skeleton",
     "BestiaryId": "Skeleton",
@@ -201,6 +221,7 @@
   },
   {
     "Id": 23,
+    "BannerId": 55,
     "FullName": "Meteor Head",
     "Name": "Meteor Head",
     "BestiaryId": "MeteorHead",
@@ -211,6 +232,7 @@
   },
   {
     "Id": 24,
+    "BannerId": 50,
     "FullName": "Fire Imp",
     "Name": "Fire Imp",
     "BestiaryId": "FireImp",
@@ -221,6 +243,7 @@
   },
   {
     "Id": 26,
+    "BannerId": 40,
     "FullName": "Goblin Peon",
     "Name": "Goblin Peon",
     "BestiaryId": "GoblinPeon",
@@ -231,6 +254,7 @@
   },
   {
     "Id": 27,
+    "BannerId": 38,
     "FullName": "Goblin Thief",
     "Name": "Goblin Thief",
     "BestiaryId": "GoblinThief",
@@ -241,6 +265,7 @@
   },
   {
     "Id": 28,
+    "BannerId": 42,
     "FullName": "Goblin Warrior",
     "Name": "Goblin Warrior",
     "BestiaryId": "GoblinWarrior",
@@ -251,6 +276,7 @@
   },
   {
     "Id": 29,
+    "BannerId": 39,
     "FullName": "Goblin Sorcerer",
     "Name": "Goblin Sorcerer",
     "BestiaryId": "GoblinSorcerer",
@@ -261,6 +287,7 @@
   },
   {
     "Id": 31,
+    "BannerId": 247,
     "FullName": "Angry Bones",
     "Name": "Angry Bones",
     "BestiaryId": "AngryBones",
@@ -271,6 +298,7 @@
   },
   {
     "Id": 32,
+    "BannerId": 68,
     "FullName": "Dark Caster",
     "Name": "Dark Caster",
     "BestiaryId": "DarkCaster",
@@ -281,6 +309,7 @@
   },
   {
     "Id": 34,
+    "BannerId": 102,
     "FullName": "Cursed Skull",
     "Name": "Cursed Skull",
     "BestiaryId": "CursedSkull",
@@ -291,6 +320,7 @@
   },
   {
     "Id": 35,
+    "BannerId": -1,
     "FullName": "Skeletron",
     "Name": "Skeletron",
     "BestiaryId": "SkeletronHead",
@@ -301,6 +331,7 @@
   },
   {
     "Id": 39,
+    "BannerId": 13,
     "FullName": "Bone Serpent",
     "Name": "Bone Serpent",
     "BestiaryId": "BoneSerpentHead",
@@ -311,6 +342,7 @@
   },
   {
     "Id": 42,
+    "BannerId": 47,
     "FullName": "Hornet",
     "Name": "Hornet",
     "BestiaryId": "Hornet",
@@ -321,6 +353,7 @@
   },
   {
     "Id": 43,
+    "BannerId": 54,
     "FullName": "Man Eater",
     "Name": "Man Eater",
     "BestiaryId": "ManEater",
@@ -331,6 +364,7 @@
   },
   {
     "Id": 44,
+    "BannerId": 178,
     "FullName": "Undead Miner",
     "Name": "Undead Miner",
     "BestiaryId": "UndeadMiner",
@@ -341,6 +375,7 @@
   },
   {
     "Id": 45,
+    "BannerId": 177,
     "FullName": "Tim",
     "Name": "Tim",
     "BestiaryId": "Tim",
@@ -351,6 +386,7 @@
   },
   {
     "Id": 46,
+    "BannerId": 14,
     "FullName": "Bunny",
     "Name": "Bunny",
     "BestiaryId": "Bunny",
@@ -361,6 +397,7 @@
   },
   {
     "Id": 47,
+    "BannerId": 18,
     "FullName": "Corrupt Bunny",
     "Name": "Corrupt Bunny",
     "BestiaryId": "CorruptBunny",
@@ -371,6 +408,7 @@
   },
   {
     "Id": 48,
+    "BannerId": 44,
     "FullName": "Harpy",
     "Name": "Harpy",
     "BestiaryId": "Harpy",
@@ -381,6 +419,7 @@
   },
   {
     "Id": 49,
+    "BannerId": 7,
     "FullName": "Cave Bat",
     "Name": "Cave Bat",
     "BestiaryId": "CaveBat",
@@ -391,6 +430,7 @@
   },
   {
     "Id": 50,
+    "BannerId": -1,
     "FullName": "King Slime",
     "Name": "King Slime",
     "BestiaryId": "KingSlime",
@@ -401,6 +441,7 @@
   },
   {
     "Id": 51,
+    "BannerId": 130,
     "FullName": "Jungle Bat",
     "Name": "Jungle Bat",
     "BestiaryId": "JungleBat",
@@ -411,6 +452,7 @@
   },
   {
     "Id": 52,
+    "BannerId": 106,
     "FullName": "Doctor Bones",
     "Name": "Doctor Bones",
     "BestiaryId": "DoctorBones",
@@ -421,6 +463,7 @@
   },
   {
     "Id": 53,
+    "BannerId": 176,
     "FullName": "The Groom",
     "Name": "The Groom",
     "BestiaryId": "TheGroom",
@@ -431,6 +474,7 @@
   },
   {
     "Id": 55,
+    "BannerId": 43,
     "FullName": "Goldfish",
     "Name": "Goldfish",
     "BestiaryId": "Goldfish",
@@ -441,6 +485,7 @@
   },
   {
     "Id": 56,
+    "BannerId": 168,
     "FullName": "Snatcher",
     "Name": "Snatcher",
     "BestiaryId": "Snatcher",
@@ -451,6 +496,7 @@
   },
   {
     "Id": 57,
+    "BannerId": 19,
     "FullName": "Corrupt Goldfish",
     "Name": "Corrupt Goldfish",
     "BestiaryId": "CorruptGoldfish",
@@ -461,6 +507,7 @@
   },
   {
     "Id": 58,
+    "BannerId": 61,
     "FullName": "Piranha",
     "Name": "Piranha",
     "BestiaryId": "Piranha",
@@ -471,6 +518,7 @@
   },
   {
     "Id": 59,
+    "BannerId": 135,
     "FullName": "Lava Slime",
     "Name": "Lava Slime",
     "BestiaryId": "LavaSlime",
@@ -481,6 +529,7 @@
   },
   {
     "Id": 60,
+    "BannerId": 45,
     "FullName": "Hellbat",
     "Name": "Hellbat",
     "BestiaryId": "Hellbat",
@@ -491,6 +540,7 @@
   },
   {
     "Id": 61,
+    "BannerId": 79,
     "FullName": "Vulture",
     "Name": "Vulture",
     "BestiaryId": "Vulture",
@@ -501,6 +551,7 @@
   },
   {
     "Id": 62,
+    "BannerId": 24,
     "FullName": "Demon",
     "Name": "Demon",
     "BestiaryId": "Demon",
@@ -511,6 +562,7 @@
   },
   {
     "Id": 63,
+    "BannerId": 51,
     "FullName": "Blue Jellyfish",
     "Name": "Blue Jellyfish",
     "BestiaryId": "BlueJellyfish",
@@ -521,6 +573,7 @@
   },
   {
     "Id": 64,
+    "BannerId": 243,
     "FullName": "Pink Jellyfish",
     "Name": "Pink Jellyfish",
     "BestiaryId": "PinkJellyfish",
@@ -531,6 +584,7 @@
   },
   {
     "Id": 65,
+    "BannerId": 66,
     "FullName": "Shark",
     "Name": "Shark",
     "BestiaryId": "Shark",
@@ -541,6 +595,7 @@
   },
   {
     "Id": 66,
+    "BannerId": 24,
     "FullName": "Voodoo Demon",
     "Name": "Voodoo Demon",
     "BestiaryId": "VoodooDemon",
@@ -551,6 +606,7 @@
   },
   {
     "Id": 67,
+    "BannerId": 20,
     "FullName": "Crab",
     "Name": "Crab",
     "BestiaryId": "Crab",
@@ -561,6 +617,7 @@
   },
   {
     "Id": 68,
+    "BannerId": -1,
     "FullName": "Dungeon Guardian",
     "Name": "Dungeon Guardian",
     "BestiaryId": "DungeonGuardian",
@@ -571,6 +628,7 @@
   },
   {
     "Id": 69,
+    "BannerId": 4,
     "FullName": "Antlion",
     "Name": "Antlion",
     "BestiaryId": "Antlion",
@@ -581,6 +639,7 @@
   },
   {
     "Id": 71,
+    "BannerId": 107,
     "FullName": "Dungeon Slime",
     "Name": "Dungeon Slime",
     "BestiaryId": "DungeonSlime",
@@ -591,6 +650,7 @@
   },
   {
     "Id": 73,
+    "BannerId": 41,
     "FullName": "Goblin Scout",
     "Name": "Goblin Scout",
     "BestiaryId": "GoblinScout",
@@ -601,6 +661,7 @@
   },
   {
     "Id": 74,
+    "BannerId": 8,
     "FullName": "Bird",
     "Name": "Bird",
     "BestiaryId": "Bird",
@@ -611,6 +672,7 @@
   },
   {
     "Id": 75,
+    "BannerId": 63,
     "FullName": "Pixie",
     "Name": "Pixie",
     "BestiaryId": "Pixie",
@@ -621,6 +683,7 @@
   },
   {
     "Id": 77,
+    "BannerId": 6,
     "FullName": "Armored Skeleton",
     "Name": "Armored Skeleton",
     "BestiaryId": "ArmoredSkeleton",
@@ -631,6 +694,7 @@
   },
   {
     "Id": 78,
+    "BannerId": 57,
     "FullName": "Mummy",
     "Name": "Mummy",
     "BestiaryId": "Mummy",
@@ -641,6 +705,7 @@
   },
   {
     "Id": 79,
+    "BannerId": 245,
     "FullName": "Dark Mummy",
     "Name": "Dark Mummy",
     "BestiaryId": "DarkMummy",
@@ -651,6 +716,7 @@
   },
   {
     "Id": 80,
+    "BannerId": 246,
     "FullName": "Light Mummy",
     "Name": "Light Mummy",
     "BestiaryId": "LightMummy",
@@ -661,6 +727,7 @@
   },
   {
     "Id": 81,
+    "BannerId": 99,
     "FullName": "Corrupt Slime",
     "Name": "Corrupt Slime",
     "BestiaryId": "CorruptSlime",
@@ -671,6 +738,7 @@
   },
   {
     "Id": 82,
+    "BannerId": 85,
     "FullName": "Wraith",
     "Name": "Wraith",
     "BestiaryId": "Wraith",
@@ -681,6 +749,7 @@
   },
   {
     "Id": 83,
+    "BannerId": 23,
     "FullName": "Cursed Hammer",
     "Name": "Cursed Hammer",
     "BestiaryId": "CursedHammer",
@@ -691,6 +760,7 @@
   },
   {
     "Id": 84,
+    "BannerId": 28,
     "FullName": "Enchanted Sword",
     "Name": "Enchanted Sword",
     "BestiaryId": "EnchantedSword",
@@ -701,6 +771,7 @@
   },
   {
     "Id": 85,
+    "BannerId": 16,
     "FullName": "Mimic",
     "Name": "Mimic",
     "BestiaryId": "Mimic",
@@ -711,6 +782,7 @@
   },
   {
     "Id": 86,
+    "BannerId": 77,
     "FullName": "Unicorn",
     "Name": "Unicorn",
     "BestiaryId": "Unicorn",
@@ -721,6 +793,7 @@
   },
   {
     "Id": 87,
+    "BannerId": 86,
     "FullName": "Wyvern",
     "Name": "Wyvern",
     "BestiaryId": "WyvernHead",
@@ -731,6 +804,7 @@
   },
   {
     "Id": 93,
+    "BannerId": 114,
     "FullName": "Giant Bat",
     "Name": "Giant Bat",
     "BestiaryId": "GiantBat",
@@ -741,6 +815,7 @@
   },
   {
     "Id": 94,
+    "BannerId": 100,
     "FullName": "Corruptor",
     "Name": "Corruptor",
     "BestiaryId": "Corruptor",
@@ -751,6 +826,7 @@
   },
   {
     "Id": 95,
+    "BannerId": 84,
     "FullName": "Digger",
     "Name": "Digger",
     "BestiaryId": "DiggerHead",
@@ -761,6 +837,7 @@
   },
   {
     "Id": 98,
+    "BannerId": 83,
     "FullName": "World Feeder",
     "Name": "World Feeder",
     "BestiaryId": "SeekerHead",
@@ -771,6 +848,7 @@
   },
   {
     "Id": 101,
+    "BannerId": 96,
     "FullName": "Clinger",
     "Name": "Clinger",
     "BestiaryId": "Clinger",
@@ -781,6 +859,7 @@
   },
   {
     "Id": 102,
+    "BannerId": 1,
     "FullName": "Angler Fish",
     "Name": "Angler Fish",
     "BestiaryId": "AnglerFish",
@@ -791,6 +870,7 @@
   },
   {
     "Id": 103,
+    "BannerId": 244,
     "FullName": "Green Jellyfish",
     "Name": "Green Jellyfish",
     "BestiaryId": "GreenJellyfish",
@@ -801,6 +881,7 @@
   },
   {
     "Id": 104,
+    "BannerId": 81,
     "FullName": "Werewolf",
     "Name": "Werewolf",
     "BestiaryId": "Werewolf",
@@ -811,6 +892,7 @@
   },
   {
     "Id": 109,
+    "BannerId": 17,
     "FullName": "Clown",
     "Name": "Clown",
     "BestiaryId": "Clown",
@@ -821,6 +903,7 @@
   },
   {
     "Id": 110,
+    "BannerId": 164,
     "FullName": "Skeleton Archer",
     "Name": "Skeleton Archer",
     "BestiaryId": "SkeletonArcher",
@@ -831,6 +914,7 @@
   },
   {
     "Id": 111,
+    "BannerId": 118,
     "FullName": "Goblin Archer",
     "Name": "Goblin Archer",
     "BestiaryId": "GoblinArcher",
@@ -841,6 +925,7 @@
   },
   {
     "Id": 113,
+    "BannerId": -1,
     "FullName": "Wall of Flesh",
     "Name": "Wall of Flesh",
     "BestiaryId": "WallofFlesh",
@@ -851,6 +936,7 @@
   },
   {
     "Id": 115,
+    "BannerId": -1,
     "FullName": "The Hungry",
     "Name": "The Hungry",
     "BestiaryId": "TheHungry",
@@ -861,6 +947,7 @@
   },
   {
     "Id": 116,
+    "BannerId": -1,
     "FullName": "The Hungry",
     "Name": "The Hungry",
     "BestiaryId": "TheHungryII",
@@ -871,6 +958,7 @@
   },
   {
     "Id": 117,
+    "BannerId": -1,
     "FullName": "Leech",
     "Name": "Leech",
     "BestiaryId": "LeechHead",
@@ -881,6 +969,7 @@
   },
   {
     "Id": 120,
+    "BannerId": 15,
     "FullName": "Chaos Elemental",
     "Name": "Chaos Elemental",
     "BestiaryId": "ChaosElemental",
@@ -891,6 +980,7 @@
   },
   {
     "Id": 121,
+    "BannerId": -1,
     "FullName": "Slimer",
     "Name": "Slimer",
     "BestiaryId": "Slimer",
@@ -901,6 +991,7 @@
   },
   {
     "Id": 122,
+    "BannerId": 37,
     "FullName": "Gastropod",
     "Name": "Gastropod",
     "BestiaryId": "Gastropod",
@@ -911,6 +1002,7 @@
   },
   {
     "Id": 125,
+    "BannerId": -1,
     "FullName": "Retinazer",
     "Name": "Retinazer",
     "BestiaryId": "Retinazer",
@@ -921,6 +1013,7 @@
   },
   {
     "Id": 126,
+    "BannerId": -1,
     "FullName": "Spazmatism",
     "Name": "Spazmatism",
     "BestiaryId": "Spazmatism",
@@ -931,6 +1024,7 @@
   },
   {
     "Id": 127,
+    "BannerId": -1,
     "FullName": "Skeletron Prime",
     "Name": "Skeletron Prime",
     "BestiaryId": "SkeletronPrime",
@@ -941,6 +1035,7 @@
   },
   {
     "Id": 132,
+    "BannerId": 87,
     "FullName": "Zombie",
     "Name": "Zombie",
     "BestiaryId": "BaldZombie",
@@ -951,6 +1046,7 @@
   },
   {
     "Id": 133,
+    "BannerId": 288,
     "FullName": "Wandering Eye",
     "Name": "Wandering Eye",
     "BestiaryId": "WanderingEye",
@@ -961,6 +1057,7 @@
   },
   {
     "Id": 134,
+    "BannerId": -1,
     "FullName": "The Destroyer",
     "Name": "The Destroyer",
     "BestiaryId": "TheDestroyer",
@@ -971,6 +1068,7 @@
   },
   {
     "Id": 137,
+    "BannerId": 128,
     "FullName": "Illuminant Bat",
     "Name": "Illuminant Bat",
     "BestiaryId": "IlluminantBat",
@@ -981,6 +1079,7 @@
   },
   {
     "Id": 138,
+    "BannerId": 129,
     "FullName": "Illuminant Slime",
     "Name": "Illuminant Slime",
     "BestiaryId": "IlluminantSlime",
@@ -991,6 +1090,7 @@
   },
   {
     "Id": 139,
+    "BannerId": -1,
     "FullName": "Probe",
     "Name": "Probe",
     "BestiaryId": "Probe",
@@ -1001,6 +1101,7 @@
   },
   {
     "Id": 140,
+    "BannerId": 153,
     "FullName": "Possessed Armor",
     "Name": "Possessed Armor",
     "BestiaryId": "PossessedArmor",
@@ -1011,6 +1112,7 @@
   },
   {
     "Id": 141,
+    "BannerId": 75,
     "FullName": "Toxic Sludge",
     "Name": "Toxic Sludge",
     "BestiaryId": "ToxicSludge",
@@ -1021,6 +1123,7 @@
   },
   {
     "Id": 143,
+    "BannerId": 170,
     "FullName": "Snowman Gangsta",
     "Name": "Snowman Gangsta",
     "BestiaryId": "SnowmanGangsta",
@@ -1031,6 +1134,7 @@
   },
   {
     "Id": 144,
+    "BannerId": 145,
     "FullName": "Mister Stabby",
     "Name": "Mister Stabby",
     "BestiaryId": "MisterStabby",
@@ -1041,6 +1145,7 @@
   },
   {
     "Id": 145,
+    "BannerId": 169,
     "FullName": "Snow Balla",
     "Name": "Snow Balla",
     "BestiaryId": "SnowBalla",
@@ -1051,6 +1156,7 @@
   },
   {
     "Id": 147,
+    "BannerId": 126,
     "FullName": "Ice Slime",
     "Name": "Ice Slime",
     "BestiaryId": "IceSlime",
@@ -1061,6 +1167,7 @@
   },
   {
     "Id": 148,
+    "BannerId": 150,
     "FullName": "Penguin",
     "Name": "Penguin",
     "BestiaryId": "Penguin",
@@ -1071,6 +1178,7 @@
   },
   {
     "Id": 149,
+    "BannerId": 150,
     "FullName": "Penguin",
     "Name": "Penguin",
     "BestiaryId": "PenguinBlack",
@@ -1081,6 +1189,7 @@
   },
   {
     "Id": 150,
+    "BannerId": 124,
     "FullName": "Ice Bat",
     "Name": "Ice Bat",
     "BestiaryId": "IceBat",
@@ -1091,6 +1200,7 @@
   },
   {
     "Id": 151,
+    "BannerId": 134,
     "FullName": "Lava Bat",
     "Name": "Lava Bat",
     "BestiaryId": "Lavabat",
@@ -1101,6 +1211,7 @@
   },
   {
     "Id": 152,
+    "BannerId": 116,
     "FullName": "Giant Flying Fox",
     "Name": "Giant Flying Fox",
     "BestiaryId": "GiantFlyingFox",
@@ -1111,6 +1222,7 @@
   },
   {
     "Id": 153,
+    "BannerId": 74,
     "FullName": "Giant Tortoise",
     "Name": "Giant Tortoise",
     "BestiaryId": "GiantTortoise",
@@ -1121,6 +1233,7 @@
   },
   {
     "Id": 154,
+    "BannerId": 248,
     "FullName": "Ice Tortoise",
     "Name": "Ice Tortoise",
     "BestiaryId": "IceTortoise",
@@ -1131,6 +1244,7 @@
   },
   {
     "Id": 155,
+    "BannerId": 82,
     "FullName": "Wolf",
     "Name": "Wolf",
     "BestiaryId": "Wolf",
@@ -1141,6 +1255,7 @@
   },
   {
     "Id": 156,
+    "BannerId": 242,
     "FullName": "Red Devil",
     "Name": "Red Devil",
     "BestiaryId": "RedDevil",
@@ -1151,6 +1266,7 @@
   },
   {
     "Id": 157,
+    "BannerId": 5,
     "FullName": "Arapaima",
     "Name": "Arapaima",
     "BestiaryId": "Arapaima",
@@ -1161,6 +1277,7 @@
   },
   {
     "Id": 159,
+    "BannerId": 78,
     "FullName": "Vampire",
     "Name": "Vampire",
     "BestiaryId": "Vampire",
@@ -1171,6 +1288,7 @@
   },
   {
     "Id": 161,
+    "BannerId": 29,
     "FullName": "Frozen Zombie",
     "Name": "Frozen Zombie",
     "BestiaryId": "ZombieEskimo",
@@ -1181,6 +1299,7 @@
   },
   {
     "Id": 162,
+    "BannerId": 34,
     "FullName": "Frankenstein",
     "Name": "Frankenstein",
     "BestiaryId": "Frankenstein",
@@ -1191,6 +1310,7 @@
   },
   {
     "Id": 165,
+    "BannerId": 71,
     "FullName": "Wall Creeper",
     "Name": "Wall Creeper",
     "BestiaryId": "WallCreeperWall",
@@ -1201,6 +1321,7 @@
   },
   {
     "Id": 166,
+    "BannerId": 73,
     "FullName": "Swamp Thing",
     "Name": "Swamp Thing",
     "BestiaryId": "SwampThing",
@@ -1211,6 +1332,7 @@
   },
   {
     "Id": 167,
+    "BannerId": 179,
     "FullName": "Undead Viking",
     "Name": "Undead Viking",
     "BestiaryId": "UndeadViking",
@@ -1221,6 +1343,7 @@
   },
   {
     "Id": 168,
+    "BannerId": 98,
     "FullName": "Corrupt Penguin",
     "Name": "Corrupt Penguin",
     "BestiaryId": "CorruptPenguin",
@@ -1231,6 +1354,7 @@
   },
   {
     "Id": 169,
+    "BannerId": 48,
     "FullName": "Ice Elemental",
     "Name": "Ice Elemental",
     "BestiaryId": "IceElemental",
@@ -1241,6 +1365,7 @@
   },
   {
     "Id": 170,
+    "BannerId": 60,
     "FullName": "Pigron",
     "Name": "Pigron",
     "BestiaryId": "PigronCorruption",
@@ -1251,6 +1376,7 @@
   },
   {
     "Id": 171,
+    "BannerId": 60,
     "FullName": "Pigron",
     "Name": "Pigron",
     "BestiaryId": "PigronHallow",
@@ -1261,6 +1387,7 @@
   },
   {
     "Id": 172,
+    "BannerId": 160,
     "FullName": "Rune Wizard",
     "Name": "Rune Wizard",
     "BestiaryId": "RuneWizard",
@@ -1271,6 +1398,7 @@
   },
   {
     "Id": 173,
+    "BannerId": 21,
     "FullName": "Crimera",
     "Name": "Crimera",
     "BestiaryId": "Crimera",
@@ -1281,6 +1409,7 @@
   },
   {
     "Id": 174,
+    "BannerId": 46,
     "FullName": "Herpling",
     "Name": "Herpling",
     "BestiaryId": "Herpling",
@@ -1291,6 +1420,7 @@
   },
   {
     "Id": 175,
+    "BannerId": 88,
     "FullName": "Angry Trapper",
     "Name": "Angry Trapper",
     "BestiaryId": "AngryTrapper",
@@ -1301,6 +1431,7 @@
   },
   {
     "Id": 176,
+    "BannerId": 287,
     "FullName": "Moss Hornet",
     "Name": "Moss Hornet",
     "BestiaryId": "MossHornet",
@@ -1311,6 +1442,7 @@
   },
   {
     "Id": 177,
+    "BannerId": 26,
     "FullName": "Derpling",
     "Name": "Derpling",
     "BestiaryId": "Derpling",
@@ -1321,6 +1453,7 @@
   },
   {
     "Id": 179,
+    "BannerId": 22,
     "FullName": "Crimson Axe",
     "Name": "Crimson Axe",
     "BestiaryId": "CrimsonAxe",
@@ -1331,6 +1464,7 @@
   },
   {
     "Id": 180,
+    "BannerId": 60,
     "FullName": "Pigron",
     "Name": "Pigron",
     "BestiaryId": "PigronCrimson",
@@ -1341,6 +1475,7 @@
   },
   {
     "Id": 181,
+    "BannerId": 30,
     "FullName": "Face Monster",
     "Name": "Face Monster",
     "BestiaryId": "FaceMonster",
@@ -1351,6 +1486,7 @@
   },
   {
     "Id": 182,
+    "BannerId": 31,
     "FullName": "Floaty Gross",
     "Name": "Floaty Gross",
     "BestiaryId": "FloatyGross",
@@ -1361,6 +1497,7 @@
   },
   {
     "Id": 183,
+    "BannerId": 101,
     "FullName": "Crimslime",
     "Name": "Crimslime",
     "BestiaryId": "Crimslime",
@@ -1371,6 +1508,7 @@
   },
   {
     "Id": 184,
+    "BannerId": 171,
     "FullName": "Spiked Ice Slime",
     "Name": "Spiked Ice Slime",
     "BestiaryId": "SpikedIceSlime",
@@ -1381,6 +1519,7 @@
   },
   {
     "Id": 185,
+    "BannerId": 70,
     "FullName": "Snow Flinx",
     "Name": "Snow Flinx",
     "BestiaryId": "SnowFlinx",
@@ -1391,6 +1530,7 @@
   },
   {
     "Id": 186,
+    "BannerId": 87,
     "FullName": "Zombie",
     "Name": "Zombie",
     "BestiaryId": "PincushionZombie",
@@ -1401,6 +1541,7 @@
   },
   {
     "Id": 187,
+    "BannerId": 87,
     "FullName": "Zombie",
     "Name": "Zombie",
     "BestiaryId": "SlimedZombie",
@@ -1411,6 +1552,7 @@
   },
   {
     "Id": 188,
+    "BannerId": 87,
     "FullName": "Zombie",
     "Name": "Zombie",
     "BestiaryId": "SwampZombie",
@@ -1421,6 +1563,7 @@
   },
   {
     "Id": 189,
+    "BannerId": 87,
     "FullName": "Zombie",
     "Name": "Zombie",
     "BestiaryId": "TwiggyZombie",
@@ -1431,6 +1574,7 @@
   },
   {
     "Id": 190,
+    "BannerId": 25,
     "FullName": "Demon Eye",
     "Name": "Demon Eye",
     "BestiaryId": "CataractEye",
@@ -1441,6 +1585,7 @@
   },
   {
     "Id": 191,
+    "BannerId": 25,
     "FullName": "Demon Eye",
     "Name": "Demon Eye",
     "BestiaryId": "SleepyEye",
@@ -1451,6 +1596,7 @@
   },
   {
     "Id": 192,
+    "BannerId": 25,
     "FullName": "Demon Eye",
     "Name": "Demon Eye",
     "BestiaryId": "DialatedEye",
@@ -1461,6 +1607,7 @@
   },
   {
     "Id": 193,
+    "BannerId": 25,
     "FullName": "Demon Eye",
     "Name": "Demon Eye",
     "BestiaryId": "GreenEye",
@@ -1471,6 +1618,7 @@
   },
   {
     "Id": 194,
+    "BannerId": 25,
     "FullName": "Demon Eye",
     "Name": "Demon Eye",
     "BestiaryId": "PurpleEye",
@@ -1481,6 +1629,7 @@
   },
   {
     "Id": 195,
+    "BannerId": 80,
     "FullName": "Lost Girl",
     "Name": "Lost Girl",
     "BestiaryId": "Nymph",
@@ -1491,6 +1640,7 @@
   },
   {
     "Id": 196,
+    "BannerId": 80,
     "FullName": "Nymph",
     "Name": "Nymph",
     "BestiaryId": "Nymph",
@@ -1501,6 +1651,7 @@
   },
   {
     "Id": 197,
+    "BannerId": 89,
     "FullName": "Armored Viking",
     "Name": "Armored Viking",
     "BestiaryId": "ArmoredViking",
@@ -1511,6 +1662,7 @@
   },
   {
     "Id": 198,
+    "BannerId": 53,
     "FullName": "Lihzahrd",
     "Name": "Lihzahrd",
     "BestiaryId": "LihzahrdCrawler",
@@ -1521,6 +1673,7 @@
   },
   {
     "Id": 200,
+    "BannerId": 87,
     "FullName": "Zombie",
     "Name": "Zombie",
     "BestiaryId": "FemaleZombie",
@@ -1531,6 +1684,7 @@
   },
   {
     "Id": 201,
+    "BannerId": 67,
     "FullName": "Skeleton",
     "Name": "Skeleton",
     "BestiaryId": "HeadacheSkeleton",
@@ -1541,6 +1695,7 @@
   },
   {
     "Id": 202,
+    "BannerId": 67,
     "FullName": "Skeleton",
     "Name": "Skeleton",
     "BestiaryId": "MisassembledSkeleton",
@@ -1551,6 +1706,7 @@
   },
   {
     "Id": 203,
+    "BannerId": 67,
     "FullName": "Skeleton",
     "Name": "Skeleton",
     "BestiaryId": "PantlessSkeleton",
@@ -1561,6 +1717,7 @@
   },
   {
     "Id": 204,
+    "BannerId": 172,
     "FullName": "Spiked Jungle Slime",
     "Name": "Spiked Jungle Slime",
     "BestiaryId": "SpikedJungleSlime",
@@ -1571,6 +1728,7 @@
   },
   {
     "Id": 205,
+    "BannerId": 56,
     "FullName": "Moth",
     "Name": "Moth",
     "BestiaryId": "Moth",
@@ -1581,6 +1739,7 @@
   },
   {
     "Id": 206,
+    "BannerId": 49,
     "FullName": "Icy Merman",
     "Name": "Icy Merman",
     "BestiaryId": "IcyMerman",
@@ -1591,6 +1750,7 @@
   },
   {
     "Id": 210,
+    "BannerId": -1,
     "FullName": "Bee",
     "Name": "Bee",
     "BestiaryId": "Bee",
@@ -1601,6 +1761,7 @@
   },
   {
     "Id": 211,
+    "BannerId": -1,
     "FullName": "Bee",
     "Name": "Bee",
     "BestiaryId": "BeeSmall",
@@ -1611,6 +1772,7 @@
   },
   {
     "Id": 212,
+    "BannerId": 62,
     "FullName": "Pirate Deckhand",
     "Name": "Pirate Deckhand",
     "BestiaryId": "PirateDeckhand",
@@ -1621,6 +1783,7 @@
   },
   {
     "Id": 213,
+    "BannerId": 239,
     "FullName": "Pirate Corsair",
     "Name": "Pirate Corsair",
     "BestiaryId": "PirateCorsair",
@@ -1631,6 +1794,7 @@
   },
   {
     "Id": 214,
+    "BannerId": 238,
     "FullName": "Pirate Deadeye",
     "Name": "Pirate Deadeye",
     "BestiaryId": "PirateDeadeye",
@@ -1641,6 +1805,7 @@
   },
   {
     "Id": 215,
+    "BannerId": 240,
     "FullName": "Pirate Crossbower",
     "Name": "Pirate Crossbower",
     "BestiaryId": "PirateCrossbower",
@@ -1651,6 +1816,7 @@
   },
   {
     "Id": 216,
+    "BannerId": 237,
     "FullName": "Pirate Captain",
     "Name": "Pirate Captain",
     "BestiaryId": "PirateCaptain",
@@ -1661,6 +1827,7 @@
   },
   {
     "Id": 217,
+    "BannerId": 97,
     "FullName": "Cochineal Beetle",
     "Name": "Cochineal Beetle",
     "BestiaryId": "CochinealBeetle",
@@ -1671,6 +1838,7 @@
   },
   {
     "Id": 218,
+    "BannerId": 103,
     "FullName": "Cyan Beetle",
     "Name": "Cyan Beetle",
     "BestiaryId": "CyanBeetle",
@@ -1681,6 +1849,7 @@
   },
   {
     "Id": 219,
+    "BannerId": 133,
     "FullName": "Lac Beetle",
     "Name": "Lac Beetle",
     "BestiaryId": "LacBeetle",
@@ -1691,6 +1860,7 @@
   },
   {
     "Id": 220,
+    "BannerId": 250,
     "FullName": "Sea Snail",
     "Name": "Sea Snail",
     "BestiaryId": "SeaSnail",
@@ -1701,6 +1871,7 @@
   },
   {
     "Id": 221,
+    "BannerId": 174,
     "FullName": "Squid",
     "Name": "Squid",
     "BestiaryId": "Squid",
@@ -1711,6 +1882,7 @@
   },
   {
     "Id": 222,
+    "BannerId": -1,
     "FullName": "Queen Bee",
     "Name": "Queen Bee",
     "BestiaryId": "QueenBee",
@@ -1721,6 +1893,7 @@
   },
   {
     "Id": 223,
+    "BannerId": 64,
     "FullName": "Raincoat Zombie",
     "Name": "Raincoat Zombie",
     "BestiaryId": "ZombieRaincoat",
@@ -1731,6 +1904,7 @@
   },
   {
     "Id": 224,
+    "BannerId": 32,
     "FullName": "Flying Fish",
     "Name": "Flying Fish",
     "BestiaryId": "FlyingFish",
@@ -1741,6 +1915,7 @@
   },
   {
     "Id": 225,
+    "BannerId": 76,
     "FullName": "Umbrella Slime",
     "Name": "Umbrella Slime",
     "BestiaryId": "UmbrellaSlime",
@@ -1751,6 +1926,7 @@
   },
   {
     "Id": 226,
+    "BannerId": 33,
     "FullName": "Flying Snake",
     "Name": "Flying Snake",
     "BestiaryId": "FlyingSnake",
@@ -1761,6 +1937,7 @@
   },
   {
     "Id": 231,
+    "BannerId": 47,
     "FullName": "Hornet",
     "Name": "Hornet",
     "BestiaryId": "HornetFatty",
@@ -1771,6 +1948,7 @@
   },
   {
     "Id": 232,
+    "BannerId": 47,
     "FullName": "Hornet",
     "Name": "Hornet",
     "BestiaryId": "HornetHoney",
@@ -1781,6 +1959,7 @@
   },
   {
     "Id": 233,
+    "BannerId": 47,
     "FullName": "Hornet",
     "Name": "Hornet",
     "BestiaryId": "HornetLeafy",
@@ -1791,6 +1970,7 @@
   },
   {
     "Id": 234,
+    "BannerId": 47,
     "FullName": "Hornet",
     "Name": "Hornet",
     "BestiaryId": "HornetSpikey",
@@ -1801,6 +1981,7 @@
   },
   {
     "Id": 235,
+    "BannerId": 47,
     "FullName": "Hornet",
     "Name": "Hornet",
     "BestiaryId": "HornetStingy",
@@ -1811,6 +1992,7 @@
   },
   {
     "Id": 237,
+    "BannerId": 52,
     "FullName": "Jungle Creeper",
     "Name": "Jungle Creeper",
     "BestiaryId": "JungleCreeperWall",
@@ -1821,6 +2003,7 @@
   },
   {
     "Id": 238,
+    "BannerId": 9,
     "FullName": "Black Recluse",
     "Name": "Black Recluse",
     "BestiaryId": "BlackRecluseWall",
@@ -1831,6 +2014,7 @@
   },
   {
     "Id": 240,
+    "BannerId": 12,
     "FullName": "Blood Crawler",
     "Name": "Blood Crawler",
     "BestiaryId": "BloodCrawlerWall",
@@ -1841,6 +2025,7 @@
   },
   {
     "Id": 241,
+    "BannerId": 10,
     "FullName": "Blood Feeder",
     "Name": "Blood Feeder",
     "BestiaryId": "BloodFeeder",
@@ -1851,6 +2036,7 @@
   },
   {
     "Id": 242,
+    "BannerId": 11,
     "FullName": "Blood Jelly",
     "Name": "Blood Jelly",
     "BestiaryId": "BloodJelly",
@@ -1861,6 +2047,7 @@
   },
   {
     "Id": 243,
+    "BannerId": 125,
     "FullName": "Ice Golem",
     "Name": "Ice Golem",
     "BestiaryId": "IceGolem",
@@ -1871,6 +2058,7 @@
   },
   {
     "Id": 244,
+    "BannerId": 157,
     "FullName": "Rainbow Slime",
     "Name": "Rainbow Slime",
     "BestiaryId": "RainbowSlime",
@@ -1881,6 +2069,7 @@
   },
   {
     "Id": 245,
+    "BannerId": -1,
     "FullName": "Golem",
     "Name": "Golem",
     "BestiaryId": "Golem",
@@ -1891,6 +2080,7 @@
   },
   {
     "Id": 250,
+    "BannerId": 2,
     "FullName": "Angry Nimbus",
     "Name": "Angry Nimbus",
     "BestiaryId": "AngryNimbus",
@@ -1901,6 +2091,7 @@
   },
   {
     "Id": 251,
+    "BannerId": 111,
     "FullName": "Eyezor",
     "Name": "Eyezor",
     "BestiaryId": "Eyezor",
@@ -1911,6 +2102,7 @@
   },
   {
     "Id": 252,
+    "BannerId": 59,
     "FullName": "Parrot",
     "Name": "Parrot",
     "BestiaryId": "Parrot",
@@ -1921,6 +2113,7 @@
   },
   {
     "Id": 253,
+    "BannerId": 65,
     "FullName": "Reaper",
     "Name": "Reaper",
     "BestiaryId": "Reaper",
@@ -1931,6 +2124,7 @@
   },
   {
     "Id": 254,
+    "BannerId": 72,
     "FullName": "Spore Zombie",
     "Name": "Spore Zombie",
     "BestiaryId": "ZombieMushroom",
@@ -1941,6 +2135,7 @@
   },
   {
     "Id": 255,
+    "BannerId": 72,
     "FullName": "Spore Zombie",
     "Name": "Spore Zombie",
     "BestiaryId": "ZombieMushroomHat",
@@ -1951,6 +2146,7 @@
   },
   {
     "Id": 256,
+    "BannerId": 36,
     "FullName": "Fungo Fish",
     "Name": "Fungo Fish",
     "BestiaryId": "FungoFish",
@@ -1961,6 +2157,7 @@
   },
   {
     "Id": 257,
+    "BannerId": 3,
     "FullName": "Anomura Fungus",
     "Name": "Anomura Fungus",
     "BestiaryId": "AnomuraFungus",
@@ -1971,6 +2168,7 @@
   },
   {
     "Id": 258,
+    "BannerId": 58,
     "FullName": "Mushi Ladybug",
     "Name": "Mushi Ladybug",
     "BestiaryId": "MushiLadybug",
@@ -1981,6 +2179,7 @@
   },
   {
     "Id": 259,
+    "BannerId": 35,
     "FullName": "Fungi Bulb",
     "Name": "Fungi Bulb",
     "BestiaryId": "FungiBulb",
@@ -1991,6 +2190,7 @@
   },
   {
     "Id": 260,
+    "BannerId": 35,
     "FullName": "Giant Fungi Bulb",
     "Name": "Giant Fungi Bulb",
     "BestiaryId": "GiantFungiBulb",
@@ -2001,6 +2201,7 @@
   },
   {
     "Id": 262,
+    "BannerId": -1,
     "FullName": "Plantera",
     "Name": "Plantera",
     "BestiaryId": "Plantera",
@@ -2011,6 +2212,7 @@
   },
   {
     "Id": 266,
+    "BannerId": -1,
     "FullName": "Brain of Cthulhu",
     "Name": "Brain of Cthulhu",
     "BestiaryId": "BrainofCthulhu",
@@ -2021,6 +2223,7 @@
   },
   {
     "Id": 267,
+    "BannerId": -1,
     "FullName": "Creeper",
     "Name": "Creeper",
     "BestiaryId": "Creeper",
@@ -2031,6 +2234,7 @@
   },
   {
     "Id": 268,
+    "BannerId": 127,
     "FullName": "Ichor Sticker",
     "Name": "Ichor Sticker",
     "BestiaryId": "IchorSticker",
@@ -2041,6 +2245,7 @@
   },
   {
     "Id": 269,
+    "BannerId": 161,
     "FullName": "Rusty Armored Bones",
     "Name": "Rusty Armored Bones",
     "BestiaryId": "RustyArmoredBonesAxe",
@@ -2051,6 +2256,7 @@
   },
   {
     "Id": 270,
+    "BannerId": 161,
     "FullName": "Rusty Armored Bones",
     "Name": "Rusty Armored Bones",
     "BestiaryId": "RustyArmoredBonesFlail",
@@ -2061,6 +2267,7 @@
   },
   {
     "Id": 271,
+    "BannerId": 161,
     "FullName": "Rusty Armored Bones",
     "Name": "Rusty Armored Bones",
     "BestiaryId": "RustyArmoredBonesSword",
@@ -2071,6 +2278,7 @@
   },
   {
     "Id": 272,
+    "BannerId": 161,
     "FullName": "Rusty Armored Bones",
     "Name": "Rusty Armored Bones",
     "BestiaryId": "RustyArmoredBonesSwordNoArmor",
@@ -2081,6 +2289,7 @@
   },
   {
     "Id": 273,
+    "BannerId": 91,
     "FullName": "Blue Armored Bones",
     "Name": "Blue Armored Bones",
     "BestiaryId": "BlueArmoredBones",
@@ -2091,6 +2300,7 @@
   },
   {
     "Id": 274,
+    "BannerId": 91,
     "FullName": "Blue Armored Bones",
     "Name": "Blue Armored Bones",
     "BestiaryId": "BlueArmoredBonesMace",
@@ -2101,6 +2311,7 @@
   },
   {
     "Id": 275,
+    "BannerId": 91,
     "FullName": "Blue Armored Bones",
     "Name": "Blue Armored Bones",
     "BestiaryId": "BlueArmoredBonesNoPants",
@@ -2111,6 +2322,7 @@
   },
   {
     "Id": 276,
+    "BannerId": 91,
     "FullName": "Blue Armored Bones",
     "Name": "Blue Armored Bones",
     "BestiaryId": "BlueArmoredBonesSword",
@@ -2121,6 +2333,7 @@
   },
   {
     "Id": 277,
+    "BannerId": 121,
     "FullName": "Hell Armored Bones",
     "Name": "Hell Armored Bones",
     "BestiaryId": "HellArmoredBones",
@@ -2131,6 +2344,7 @@
   },
   {
     "Id": 278,
+    "BannerId": 121,
     "FullName": "Hell Armored Bones",
     "Name": "Hell Armored Bones",
     "BestiaryId": "HellArmoredBonesSpikeShield",
@@ -2141,6 +2355,7 @@
   },
   {
     "Id": 279,
+    "BannerId": 121,
     "FullName": "Hell Armored Bones",
     "Name": "Hell Armored Bones",
     "BestiaryId": "HellArmoredBonesMace",
@@ -2151,6 +2366,7 @@
   },
   {
     "Id": 280,
+    "BannerId": 121,
     "FullName": "Hell Armored Bones",
     "Name": "Hell Armored Bones",
     "BestiaryId": "HellArmoredBonesSword",
@@ -2161,6 +2377,7 @@
   },
   {
     "Id": 281,
+    "BannerId": 156,
     "FullName": "Ragged Caster",
     "Name": "Ragged Caster",
     "BestiaryId": "RaggedCaster",
@@ -2171,6 +2388,7 @@
   },
   {
     "Id": 282,
+    "BannerId": 156,
     "FullName": "Ragged Caster",
     "Name": "Ragged Caster",
     "BestiaryId": "RaggedCasterOpenCoat",
@@ -2181,6 +2399,7 @@
   },
   {
     "Id": 283,
+    "BannerId": 147,
     "FullName": "Necromancer",
     "Name": "Necromancer",
     "BestiaryId": "Necromancer",
@@ -2191,6 +2410,7 @@
   },
   {
     "Id": 284,
+    "BannerId": 147,
     "FullName": "Necromancer",
     "Name": "Necromancer",
     "BestiaryId": "NecromancerArmored",
@@ -2201,6 +2421,7 @@
   },
   {
     "Id": 285,
+    "BannerId": 105,
     "FullName": "Diabolist",
     "Name": "Diabolist",
     "BestiaryId": "DiabolistRed",
@@ -2211,6 +2432,7 @@
   },
   {
     "Id": 286,
+    "BannerId": 105,
     "FullName": "Diabolist",
     "Name": "Diabolist",
     "BestiaryId": "DiabolistWhite",
@@ -2221,6 +2443,7 @@
   },
   {
     "Id": 287,
+    "BannerId": 95,
     "FullName": "Bone Lee",
     "Name": "Bone Lee",
     "BestiaryId": "BoneLee",
@@ -2231,6 +2454,7 @@
   },
   {
     "Id": 288,
+    "BannerId": 108,
     "FullName": "Dungeon Spirit",
     "Name": "Dungeon Spirit",
     "BestiaryId": "DungeonSpirit",
@@ -2241,6 +2465,7 @@
   },
   {
     "Id": 289,
+    "BannerId": 115,
     "FullName": "Giant Cursed Skull",
     "Name": "Giant Cursed Skull",
     "BestiaryId": "GiantCursedSkull",
@@ -2251,6 +2476,7 @@
   },
   {
     "Id": 290,
+    "BannerId": 149,
     "FullName": "Paladin",
     "Name": "Paladin",
     "BestiaryId": "Paladin",
@@ -2261,6 +2487,7 @@
   },
   {
     "Id": 291,
+    "BannerId": 166,
     "FullName": "Skeleton Sniper",
     "Name": "Skeleton Sniper",
     "BestiaryId": "SkeletonSniper",
@@ -2271,6 +2498,7 @@
   },
   {
     "Id": 292,
+    "BannerId": 175,
     "FullName": "Tactical Skeleton",
     "Name": "Tactical Skeleton",
     "BestiaryId": "TacticalSkeleton",
@@ -2281,6 +2509,7 @@
   },
   {
     "Id": 293,
+    "BannerId": 165,
     "FullName": "Skeleton Commando",
     "Name": "Skeleton Commando",
     "BestiaryId": "SkeletonCommando",
@@ -2291,6 +2520,7 @@
   },
   {
     "Id": 294,
+    "BannerId": 247,
     "FullName": "Angry Bones",
     "Name": "Angry Bones",
     "BestiaryId": "AngryBonesBig",
@@ -2301,6 +2531,7 @@
   },
   {
     "Id": 295,
+    "BannerId": 247,
     "FullName": "Angry Bones",
     "Name": "Angry Bones",
     "BestiaryId": "AngryBonesBigMuscle",
@@ -2311,6 +2542,7 @@
   },
   {
     "Id": 296,
+    "BannerId": 247,
     "FullName": "Angry Bones",
     "Name": "Angry Bones",
     "BestiaryId": "AngryBonesBigHelmet",
@@ -2321,6 +2553,7 @@
   },
   {
     "Id": 297,
+    "BannerId": -1,
     "FullName": "Blue Jay",
     "Name": "Blue Jay",
     "BestiaryId": "BirdBlue",
@@ -2331,6 +2564,7 @@
   },
   {
     "Id": 298,
+    "BannerId": -1,
     "FullName": "Cardinal",
     "Name": "Cardinal",
     "BestiaryId": "BirdRed",
@@ -2341,6 +2575,7 @@
   },
   {
     "Id": 299,
+    "BannerId": -1,
     "FullName": "Squirrel",
     "Name": "Squirrel",
     "BestiaryId": "Squirrel",
@@ -2351,6 +2586,7 @@
   },
   {
     "Id": 300,
+    "BannerId": -1,
     "FullName": "Mouse",
     "Name": "Mouse",
     "BestiaryId": "Mouse",
@@ -2361,6 +2597,7 @@
   },
   {
     "Id": 301,
+    "BannerId": 158,
     "FullName": "Raven",
     "Name": "Raven",
     "BestiaryId": "Raven",
@@ -2371,6 +2608,7 @@
   },
   {
     "Id": 302,
+    "BannerId": 69,
     "FullName": "Slime",
     "Name": "Slime",
     "BestiaryId": "SlimeMasked",
@@ -2381,6 +2619,7 @@
   },
   {
     "Id": 303,
+    "BannerId": 14,
     "FullName": "Bunny",
     "Name": "Bunny",
     "BestiaryId": "BunnySlimed",
@@ -2391,6 +2630,7 @@
   },
   {
     "Id": 304,
+    "BannerId": 123,
     "FullName": "Hoppin\u0027 Jack",
     "Name": "Hoppin\u0027 Jack",
     "BestiaryId": "HoppinJack",
@@ -2401,6 +2641,7 @@
   },
   {
     "Id": 305,
+    "BannerId": 162,
     "FullName": "Scarecrow",
     "Name": "Scarecrow",
     "BestiaryId": "Scarecrow1",
@@ -2411,6 +2652,7 @@
   },
   {
     "Id": 306,
+    "BannerId": 162,
     "FullName": "Scarecrow",
     "Name": "Scarecrow",
     "BestiaryId": "Scarecrow2",
@@ -2421,6 +2663,7 @@
   },
   {
     "Id": 307,
+    "BannerId": 162,
     "FullName": "Scarecrow",
     "Name": "Scarecrow",
     "BestiaryId": "Scarecrow3",
@@ -2431,6 +2674,7 @@
   },
   {
     "Id": 308,
+    "BannerId": 162,
     "FullName": "Scarecrow",
     "Name": "Scarecrow",
     "BestiaryId": "Scarecrow4",
@@ -2441,6 +2685,7 @@
   },
   {
     "Id": 309,
+    "BannerId": 162,
     "FullName": "Scarecrow",
     "Name": "Scarecrow",
     "BestiaryId": "Scarecrow5",
@@ -2451,6 +2696,7 @@
   },
   {
     "Id": 310,
+    "BannerId": 162,
     "FullName": "Scarecrow",
     "Name": "Scarecrow",
     "BestiaryId": "Scarecrow6",
@@ -2461,6 +2707,7 @@
   },
   {
     "Id": 311,
+    "BannerId": 162,
     "FullName": "Scarecrow",
     "Name": "Scarecrow",
     "BestiaryId": "Scarecrow7",
@@ -2471,6 +2718,7 @@
   },
   {
     "Id": 312,
+    "BannerId": 162,
     "FullName": "Scarecrow",
     "Name": "Scarecrow",
     "BestiaryId": "Scarecrow8",
@@ -2481,6 +2729,7 @@
   },
   {
     "Id": 313,
+    "BannerId": 162,
     "FullName": "Scarecrow",
     "Name": "Scarecrow",
     "BestiaryId": "Scarecrow9",
@@ -2491,6 +2740,7 @@
   },
   {
     "Id": 314,
+    "BannerId": 162,
     "FullName": "Scarecrow",
     "Name": "Scarecrow",
     "BestiaryId": "Scarecrow10",
@@ -2501,6 +2751,7 @@
   },
   {
     "Id": 315,
+    "BannerId": 120,
     "FullName": "Headless Horseman",
     "Name": "Headless Horseman",
     "BestiaryId": "HeadlessHorseman",
@@ -2511,6 +2762,7 @@
   },
   {
     "Id": 316,
+    "BannerId": 113,
     "FullName": "Ghost",
     "Name": "Ghost",
     "BestiaryId": "Ghost",
@@ -2521,6 +2773,7 @@
   },
   {
     "Id": 317,
+    "BannerId": 25,
     "FullName": "Demon Eye",
     "Name": "Demon Eye",
     "BestiaryId": "DemonEyeOwl",
@@ -2531,6 +2784,7 @@
   },
   {
     "Id": 318,
+    "BannerId": 25,
     "FullName": "Demon Eye",
     "Name": "Demon Eye",
     "BestiaryId": "DemonEyeSpaceship",
@@ -2541,6 +2795,7 @@
   },
   {
     "Id": 319,
+    "BannerId": 87,
     "FullName": "Zombie",
     "Name": "Zombie",
     "BestiaryId": "ZombieDoctor",
@@ -2551,6 +2806,7 @@
   },
   {
     "Id": 320,
+    "BannerId": 87,
     "FullName": "Zombie",
     "Name": "Zombie",
     "BestiaryId": "ZombieSuperman",
@@ -2561,6 +2817,7 @@
   },
   {
     "Id": 321,
+    "BannerId": 87,
     "FullName": "Zombie",
     "Name": "Zombie",
     "BestiaryId": "ZombiePixie",
@@ -2571,6 +2828,7 @@
   },
   {
     "Id": 322,
+    "BannerId": -1,
     "FullName": "Skeleton",
     "Name": "Skeleton",
     "BestiaryId": "SkeletonTopHat",
@@ -2581,6 +2839,7 @@
   },
   {
     "Id": 323,
+    "BannerId": -1,
     "FullName": "Skeleton",
     "Name": "Skeleton",
     "BestiaryId": "SkeletonAstonaut",
@@ -2591,6 +2850,7 @@
   },
   {
     "Id": 324,
+    "BannerId": -1,
     "FullName": "Skeleton",
     "Name": "Skeleton",
     "BestiaryId": "SkeletonAlien",
@@ -2601,6 +2861,7 @@
   },
   {
     "Id": 325,
+    "BannerId": -1,
     "FullName": "Mourning Wood",
     "Name": "Mourning Wood",
     "BestiaryId": "MourningWood",
@@ -2611,6 +2872,7 @@
   },
   {
     "Id": 326,
+    "BannerId": 173,
     "FullName": "Splinterling",
     "Name": "Splinterling",
     "BestiaryId": "Splinterling",
@@ -2621,6 +2883,7 @@
   },
   {
     "Id": 327,
+    "BannerId": -1,
     "FullName": "Pumpking",
     "Name": "Pumpking",
     "BestiaryId": "Pumpking",
@@ -2631,6 +2894,7 @@
   },
   {
     "Id": 329,
+    "BannerId": 122,
     "FullName": "Hellhound",
     "Name": "Hellhound",
     "BestiaryId": "Hellhound",
@@ -2641,6 +2905,7 @@
   },
   {
     "Id": 330,
+    "BannerId": 152,
     "FullName": "Poltergeist",
     "Name": "Poltergeist",
     "BestiaryId": "Poltergeist",
@@ -2651,6 +2916,7 @@
   },
   {
     "Id": 331,
+    "BannerId": 87,
     "FullName": "Zombie",
     "Name": "Zombie",
     "BestiaryId": "ZombieXmas",
@@ -2661,6 +2927,7 @@
   },
   {
     "Id": 332,
+    "BannerId": 87,
     "FullName": "Zombie",
     "Name": "Zombie",
     "BestiaryId": "ZombieSweater",
@@ -2671,6 +2938,7 @@
   },
   {
     "Id": 333,
+    "BannerId": 69,
     "FullName": "Slime",
     "Name": "Slime",
     "BestiaryId": "SlimeRibbonWhite",
@@ -2681,6 +2949,7 @@
   },
   {
     "Id": 334,
+    "BannerId": 69,
     "FullName": "Slime",
     "Name": "Slime",
     "BestiaryId": "SlimeRibbonYellow",
@@ -2691,6 +2960,7 @@
   },
   {
     "Id": 335,
+    "BannerId": 69,
     "FullName": "Slime",
     "Name": "Slime",
     "BestiaryId": "SlimeRibbonGreen",
@@ -2701,6 +2971,7 @@
   },
   {
     "Id": 336,
+    "BannerId": 69,
     "FullName": "Slime",
     "Name": "Slime",
     "BestiaryId": "SlimeRibbonRed",
@@ -2711,6 +2982,7 @@
   },
   {
     "Id": 337,
+    "BannerId": 14,
     "FullName": "Bunny",
     "Name": "Bunny",
     "BestiaryId": "BunnyXmas",
@@ -2721,6 +2993,7 @@
   },
   {
     "Id": 338,
+    "BannerId": 185,
     "FullName": "Zombie Elf",
     "Name": "Zombie Elf",
     "BestiaryId": "ZombieElf",
@@ -2731,6 +3004,7 @@
   },
   {
     "Id": 339,
+    "BannerId": 185,
     "FullName": "Zombie Elf",
     "Name": "Zombie Elf",
     "BestiaryId": "ZombieElfBeard",
@@ -2741,6 +3015,7 @@
   },
   {
     "Id": 340,
+    "BannerId": 185,
     "FullName": "Zombie Elf",
     "Name": "Zombie Elf",
     "BestiaryId": "ZombieElfGirl",
@@ -2751,6 +3026,7 @@
   },
   {
     "Id": 341,
+    "BannerId": 154,
     "FullName": "Present Mimic",
     "Name": "Present Mimic",
     "BestiaryId": "PresentMimic",
@@ -2761,6 +3037,7 @@
   },
   {
     "Id": 342,
+    "BannerId": 117,
     "FullName": "Gingerbread Man",
     "Name": "Gingerbread Man",
     "BestiaryId": "GingerbreadMan",
@@ -2771,6 +3048,7 @@
   },
   {
     "Id": 343,
+    "BannerId": 184,
     "FullName": "Yeti",
     "Name": "Yeti",
     "BestiaryId": "Yeti",
@@ -2781,6 +3059,7 @@
   },
   {
     "Id": 344,
+    "BannerId": -1,
     "FullName": "Everscream",
     "Name": "Everscream",
     "BestiaryId": "Everscream",
@@ -2791,6 +3070,7 @@
   },
   {
     "Id": 345,
+    "BannerId": -1,
     "FullName": "Ice Queen",
     "Name": "Ice Queen",
     "BestiaryId": "IceQueen",
@@ -2801,6 +3081,7 @@
   },
   {
     "Id": 346,
+    "BannerId": -1,
     "FullName": "Santa-NK1",
     "Name": "Santa-NK1",
     "BestiaryId": "SantaNK1",
@@ -2811,6 +3092,7 @@
   },
   {
     "Id": 347,
+    "BannerId": 110,
     "FullName": "Elf Copter",
     "Name": "Elf Copter",
     "BestiaryId": "ElfCopter",
@@ -2821,6 +3103,7 @@
   },
   {
     "Id": 349,
+    "BannerId": 148,
     "FullName": "Nutcracker",
     "Name": "Nutcracker",
     "BestiaryId": "NutcrackerSpinning",
@@ -2831,6 +3114,7 @@
   },
   {
     "Id": 350,
+    "BannerId": 109,
     "FullName": "Elf Archer",
     "Name": "Elf Archer",
     "BestiaryId": "ElfArcher",
@@ -2841,6 +3125,7 @@
   },
   {
     "Id": 351,
+    "BannerId": 132,
     "FullName": "Krampus",
     "Name": "Krampus",
     "BestiaryId": "Krampus",
@@ -2851,6 +3136,7 @@
   },
   {
     "Id": 352,
+    "BannerId": 112,
     "FullName": "Flocko",
     "Name": "Flocko",
     "BestiaryId": "Flocko",
@@ -2861,6 +3147,7 @@
   },
   {
     "Id": 355,
+    "BannerId": -1,
     "FullName": "Firefly",
     "Name": "Firefly",
     "BestiaryId": "Firefly",
@@ -2871,6 +3158,7 @@
   },
   {
     "Id": 356,
+    "BannerId": -1,
     "FullName": "Butterfly",
     "Name": "Butterfly",
     "BestiaryId": "Butterfly",
@@ -2881,6 +3169,7 @@
   },
   {
     "Id": 357,
+    "BannerId": -1,
     "FullName": "Worm",
     "Name": "Worm",
     "BestiaryId": "Worm",
@@ -2891,6 +3180,7 @@
   },
   {
     "Id": 358,
+    "BannerId": -1,
     "FullName": "Lightning Bug",
     "Name": "Lightning Bug",
     "BestiaryId": "LightningBug",
@@ -2901,6 +3191,7 @@
   },
   {
     "Id": 359,
+    "BannerId": -1,
     "FullName": "Snail",
     "Name": "Snail",
     "BestiaryId": "Snail",
@@ -2911,6 +3202,7 @@
   },
   {
     "Id": 360,
+    "BannerId": -1,
     "FullName": "Glowing Snail",
     "Name": "Glowing Snail",
     "BestiaryId": "GlowingSnail",
@@ -2921,6 +3213,7 @@
   },
   {
     "Id": 361,
+    "BannerId": -1,
     "FullName": "Frog",
     "Name": "Frog",
     "BestiaryId": "Frog",
@@ -2931,6 +3224,7 @@
   },
   {
     "Id": 362,
+    "BannerId": -1,
     "FullName": "Duck",
     "Name": "Duck",
     "BestiaryId": "Duck",
@@ -2941,6 +3235,7 @@
   },
   {
     "Id": 364,
+    "BannerId": -1,
     "FullName": "Duck",
     "Name": "Duck",
     "BestiaryId": "DuckWhite",
@@ -2951,6 +3246,7 @@
   },
   {
     "Id": 366,
+    "BannerId": -1,
     "FullName": "Scorpion",
     "Name": "Scorpion",
     "BestiaryId": "ScorpionBlack",
@@ -2961,6 +3257,7 @@
   },
   {
     "Id": 367,
+    "BannerId": -1,
     "FullName": "Scorpion",
     "Name": "Scorpion",
     "BestiaryId": "Scorpion",
@@ -2971,6 +3268,7 @@
   },
   {
     "Id": 370,
+    "BannerId": -1,
     "FullName": "Duke Fishron",
     "Name": "Duke Fishron",
     "BestiaryId": "DukeFishron",
@@ -2981,6 +3279,7 @@
   },
   {
     "Id": 372,
+    "BannerId": -1,
     "FullName": "Sharkron",
     "Name": "Sharkron",
     "BestiaryId": "Sharkron",
@@ -2991,6 +3290,7 @@
   },
   {
     "Id": 374,
+    "BannerId": -1,
     "FullName": "Truffle Worm",
     "Name": "Truffle Worm",
     "BestiaryId": "TruffleWorm",
@@ -3001,6 +3301,7 @@
   },
   {
     "Id": 377,
+    "BannerId": -1,
     "FullName": "Grasshopper",
     "Name": "Grasshopper",
     "BestiaryId": "Grasshopper",
@@ -3011,6 +3312,7 @@
   },
   {
     "Id": 378,
+    "BannerId": -1,
     "FullName": "Chattering Teeth Bomb",
     "Name": "Chattering Teeth Bomb",
     "BestiaryId": "ChatteringTeethBomb",
@@ -3021,6 +3323,7 @@
   },
   {
     "Id": 379,
+    "BannerId": 92,
     "FullName": "Cultist Archer",
     "Name": "Cultist Archer",
     "BestiaryId": "CultistArcherBlue",
@@ -3031,6 +3334,7 @@
   },
   {
     "Id": 381,
+    "BannerId": 136,
     "FullName": "Brain Scrambler",
     "Name": "Brain Scrambler",
     "BestiaryId": "BrainScrambler",
@@ -3041,6 +3345,7 @@
   },
   {
     "Id": 382,
+    "BannerId": 142,
     "FullName": "Ray Gunner",
     "Name": "Ray Gunner",
     "BestiaryId": "RayGunner",
@@ -3051,6 +3356,7 @@
   },
   {
     "Id": 383,
+    "BannerId": 141,
     "FullName": "Martian Officer",
     "Name": "Martian Officer",
     "BestiaryId": "MartianOfficer",
@@ -3061,6 +3367,7 @@
   },
   {
     "Id": 385,
+    "BannerId": 140,
     "FullName": "Gray Grunt",
     "Name": "Gray Grunt",
     "BestiaryId": "GrayGrunt",
@@ -3071,6 +3378,7 @@
   },
   {
     "Id": 386,
+    "BannerId": 138,
     "FullName": "Martian Engineer",
     "Name": "Martian Engineer",
     "BestiaryId": "MartianEngineer",
@@ -3081,6 +3389,7 @@
   },
   {
     "Id": 387,
+    "BannerId": 144,
     "FullName": "Tesla Turret",
     "Name": "Tesla Turret",
     "BestiaryId": "MartianTurret",
@@ -3091,6 +3400,7 @@
   },
   {
     "Id": 388,
+    "BannerId": 137,
     "FullName": "Martian Drone",
     "Name": "Martian Drone",
     "BestiaryId": "MartianDrone",
@@ -3101,6 +3411,7 @@
   },
   {
     "Id": 389,
+    "BannerId": 139,
     "FullName": "Gigazapper",
     "Name": "Gigazapper",
     "BestiaryId": "GigaZapper",
@@ -3111,6 +3422,7 @@
   },
   {
     "Id": 390,
+    "BannerId": 143,
     "FullName": "Scutlix Gunner",
     "Name": "Scutlix Gunner",
     "BestiaryId": "ScutlixRider",
@@ -3121,6 +3433,7 @@
   },
   {
     "Id": 391,
+    "BannerId": 163,
     "FullName": "Scutlix",
     "Name": "Scutlix",
     "BestiaryId": "Scutlix",
@@ -3131,6 +3444,7 @@
   },
   {
     "Id": 395,
+    "BannerId": -1,
     "FullName": "Martian Saucer",
     "Name": "Martian Saucer",
     "BestiaryId": "MartianSaucerCore",
@@ -3141,6 +3455,7 @@
   },
   {
     "Id": 398,
+    "BannerId": -1,
     "FullName": "Moon Lord\u0027s Core",
     "Name": "Moon Lord\u0027s Core",
     "BestiaryId": "MoonLordCore",
@@ -3151,6 +3466,7 @@
   },
   {
     "Id": 399,
+    "BannerId": -1,
     "FullName": "Martian Probe",
     "Name": "Martian Probe",
     "BestiaryId": "MartianProbe",
@@ -3161,6 +3477,7 @@
   },
   {
     "Id": 402,
+    "BannerId": 217,
     "FullName": "Milkyway Weaver",
     "Name": "Milkyway Weaver",
     "BestiaryId": "StardustWormHead",
@@ -3171,6 +3488,7 @@
   },
   {
     "Id": 405,
+    "BannerId": 221,
     "FullName": "Star Cell",
     "Name": "Star Cell",
     "BestiaryId": "StardustCellBig",
@@ -3181,6 +3499,7 @@
   },
   {
     "Id": 406,
+    "BannerId": 220,
     "FullName": "Mini Star Cell",
     "Name": "Mini Star Cell",
     "BestiaryId": "StardustCellSmall",
@@ -3191,6 +3510,7 @@
   },
   {
     "Id": 407,
+    "BannerId": 218,
     "FullName": "Flow Invader",
     "Name": "Flow Invader",
     "BestiaryId": "StardustJellyfishBig",
@@ -3201,6 +3521,7 @@
   },
   {
     "Id": 409,
+    "BannerId": 219,
     "FullName": "Twinkle Popper",
     "Name": "Twinkle Popper",
     "BestiaryId": "StardustSpiderBig",
@@ -3211,6 +3532,7 @@
   },
   {
     "Id": 411,
+    "BannerId": 216,
     "FullName": "Stargazer",
     "Name": "Stargazer",
     "BestiaryId": "StardustSoldier",
@@ -3221,6 +3543,7 @@
   },
   {
     "Id": 412,
+    "BannerId": 224,
     "FullName": "Crawltipede",
     "Name": "Crawltipede",
     "BestiaryId": "SolarCrawltipedeHead",
@@ -3231,6 +3554,7 @@
   },
   {
     "Id": 415,
+    "BannerId": 226,
     "FullName": "Drakomire",
     "Name": "Drakomire",
     "BestiaryId": "SolarDrakomire",
@@ -3241,6 +3565,7 @@
   },
   {
     "Id": 416,
+    "BannerId": 225,
     "FullName": "Drakomire Rider",
     "Name": "Drakomire Rider",
     "BestiaryId": "SolarDrakomireRider",
@@ -3251,6 +3576,7 @@
   },
   {
     "Id": 417,
+    "BannerId": 223,
     "FullName": "Sroller",
     "Name": "Sroller",
     "BestiaryId": "SolarSroller",
@@ -3261,6 +3587,7 @@
   },
   {
     "Id": 418,
+    "BannerId": 222,
     "FullName": "Corite",
     "Name": "Corite",
     "BestiaryId": "SolarCorite",
@@ -3271,6 +3598,7 @@
   },
   {
     "Id": 419,
+    "BannerId": 227,
     "FullName": "Selenian",
     "Name": "Selenian",
     "BestiaryId": "SolarSolenian",
@@ -3281,6 +3609,7 @@
   },
   {
     "Id": 420,
+    "BannerId": 230,
     "FullName": "Nebula Floater",
     "Name": "Nebula Floater",
     "BestiaryId": "NebulaBrain",
@@ -3291,6 +3620,7 @@
   },
   {
     "Id": 421,
+    "BannerId": 229,
     "FullName": "Brain Suckler",
     "Name": "Brain Suckler",
     "BestiaryId": "NebulaHeadcrab",
@@ -3301,6 +3631,7 @@
   },
   {
     "Id": 422,
+    "BannerId": -1,
     "FullName": "Vortex Pillar",
     "Name": "Vortex Pillar",
     "BestiaryId": "LunarTowerVortex",
@@ -3311,6 +3642,7 @@
   },
   {
     "Id": 423,
+    "BannerId": 231,
     "FullName": "Evolution Beast",
     "Name": "Evolution Beast",
     "BestiaryId": "NebulaBeast",
@@ -3321,6 +3653,7 @@
   },
   {
     "Id": 424,
+    "BannerId": 228,
     "FullName": "Predictor",
     "Name": "Predictor",
     "BestiaryId": "NebulaSoldier",
@@ -3331,6 +3664,7 @@
   },
   {
     "Id": 425,
+    "BannerId": 236,
     "FullName": "Storm Diver",
     "Name": "Storm Diver",
     "BestiaryId": "VortexRifleman",
@@ -3341,6 +3675,7 @@
   },
   {
     "Id": 426,
+    "BannerId": 233,
     "FullName": "Alien Queen",
     "Name": "Alien Queen",
     "BestiaryId": "VortexHornetQueen",
@@ -3351,6 +3686,7 @@
   },
   {
     "Id": 427,
+    "BannerId": 234,
     "FullName": "Alien Hornet",
     "Name": "Alien Hornet",
     "BestiaryId": "VortexHornet",
@@ -3361,6 +3697,7 @@
   },
   {
     "Id": 428,
+    "BannerId": 232,
     "FullName": "Alien Larva",
     "Name": "Alien Larva",
     "BestiaryId": "VortexLarva",
@@ -3371,6 +3708,7 @@
   },
   {
     "Id": 429,
+    "BannerId": 235,
     "FullName": "Vortexian",
     "Name": "Vortexian",
     "BestiaryId": "VortexSoldier",
@@ -3381,6 +3719,7 @@
   },
   {
     "Id": 438,
+    "BannerId": 93,
     "FullName": "Lunatic Devotee",
     "Name": "Lunatic Devotee",
     "BestiaryId": "CultistDevote",
@@ -3391,6 +3730,7 @@
   },
   {
     "Id": 439,
+    "BannerId": -1,
     "FullName": "Lunatic Cultist",
     "Name": "Lunatic Cultist",
     "BestiaryId": "CultistBoss",
@@ -3401,6 +3741,7 @@
   },
   {
     "Id": 442,
+    "BannerId": -1,
     "FullName": "Gold Bird",
     "Name": "Gold Bird",
     "BestiaryId": "GoldBird",
@@ -3411,6 +3752,7 @@
   },
   {
     "Id": 443,
+    "BannerId": -1,
     "FullName": "Gold Bunny",
     "Name": "Gold Bunny",
     "BestiaryId": "GoldBunny",
@@ -3421,6 +3763,7 @@
   },
   {
     "Id": 444,
+    "BannerId": -1,
     "FullName": "Gold Butterfly",
     "Name": "Gold Butterfly",
     "BestiaryId": "GoldButterfly",
@@ -3431,6 +3774,7 @@
   },
   {
     "Id": 445,
+    "BannerId": -1,
     "FullName": "Gold Frog",
     "Name": "Gold Frog",
     "BestiaryId": "GoldFrog",
@@ -3441,6 +3785,7 @@
   },
   {
     "Id": 446,
+    "BannerId": -1,
     "FullName": "Gold Grasshopper",
     "Name": "Gold Grasshopper",
     "BestiaryId": "GoldGrasshopper",
@@ -3451,6 +3796,7 @@
   },
   {
     "Id": 447,
+    "BannerId": -1,
     "FullName": "Gold Mouse",
     "Name": "Gold Mouse",
     "BestiaryId": "GoldMouse",
@@ -3461,6 +3807,7 @@
   },
   {
     "Id": 448,
+    "BannerId": -1,
     "FullName": "Gold Worm",
     "Name": "Gold Worm",
     "BestiaryId": "GoldWorm",
@@ -3471,6 +3818,7 @@
   },
   {
     "Id": 454,
+    "BannerId": -1,
     "FullName": "Phantasm Dragon",
     "Name": "Phantasm Dragon",
     "BestiaryId": "CultistDragonHead",
@@ -3481,6 +3829,7 @@
   },
   {
     "Id": 460,
+    "BannerId": 196,
     "FullName": "Butcher",
     "Name": "Butcher",
     "BestiaryId": "Butcher",
@@ -3491,6 +3840,7 @@
   },
   {
     "Id": 461,
+    "BannerId": 191,
     "FullName": "Creature from the Deep",
     "Name": "Creature from the Deep",
     "BestiaryId": "CreatureFromTheDeep",
@@ -3501,6 +3851,7 @@
   },
   {
     "Id": 462,
+    "BannerId": 190,
     "FullName": "Fritz",
     "Name": "Fritz",
     "BestiaryId": "Fritz",
@@ -3511,6 +3862,7 @@
   },
   {
     "Id": 463,
+    "BannerId": 199,
     "FullName": "Nailhead",
     "Name": "Nailhead",
     "BestiaryId": "Nailhead",
@@ -3521,6 +3873,7 @@
   },
   {
     "Id": 464,
+    "BannerId": 281,
     "FullName": "Vicious Bunny",
     "Name": "Vicious Bunny",
     "BestiaryId": "CrimsonBunny",
@@ -3531,6 +3884,7 @@
   },
   {
     "Id": 465,
+    "BannerId": 282,
     "FullName": "Vicious Goldfish",
     "Name": "Vicious Goldfish",
     "BestiaryId": "CrimsonGoldfish",
@@ -3541,6 +3895,7 @@
   },
   {
     "Id": 466,
+    "BannerId": 197,
     "FullName": "Psycho",
     "Name": "Psycho",
     "BestiaryId": "Psycho",
@@ -3551,6 +3906,7 @@
   },
   {
     "Id": 467,
+    "BannerId": 198,
     "FullName": "Deadly Sphere",
     "Name": "Deadly Sphere",
     "BestiaryId": "DeadlySphere",
@@ -3561,6 +3917,7 @@
   },
   {
     "Id": 468,
+    "BannerId": 192,
     "FullName": "Dr. Man Fly",
     "Name": "Dr. Man Fly",
     "BestiaryId": "DrManFly",
@@ -3571,6 +3928,7 @@
   },
   {
     "Id": 469,
+    "BannerId": 195,
     "FullName": "The Possessed",
     "Name": "The Possessed",
     "BestiaryId": "ThePossessed",
@@ -3581,6 +3939,7 @@
   },
   {
     "Id": 470,
+    "BannerId": 283,
     "FullName": "Vicious Penguin",
     "Name": "Vicious Penguin",
     "BestiaryId": "CrimsonPenguin",
@@ -3591,6 +3950,7 @@
   },
   {
     "Id": 471,
+    "BannerId": 186,
     "FullName": "Goblin Warlock",
     "Name": "Goblin Warlock",
     "BestiaryId": "GoblinSummoner",
@@ -3601,6 +3961,7 @@
   },
   {
     "Id": 472,
+    "BannerId": -1,
     "FullName": "Shadowflame Apparition",
     "Name": "Shadowflame Apparition",
     "BestiaryId": "ShadowFlameApparition",
@@ -3611,6 +3972,7 @@
   },
   {
     "Id": 473,
+    "BannerId": 284,
     "FullName": "Corrupt Mimic",
     "Name": "Corrupt Mimic",
     "BestiaryId": "BigMimicCorruption",
@@ -3621,6 +3983,7 @@
   },
   {
     "Id": 474,
+    "BannerId": 285,
     "FullName": "Crimson Mimic",
     "Name": "Crimson Mimic",
     "BestiaryId": "BigMimicCrimson",
@@ -3631,6 +3994,7 @@
   },
   {
     "Id": 475,
+    "BannerId": 286,
     "FullName": "Hallowed Mimic",
     "Name": "Hallowed Mimic",
     "BestiaryId": "BigMimicHallow",
@@ -3641,6 +4005,7 @@
   },
   {
     "Id": 477,
+    "BannerId": 193,
     "FullName": "Mothron",
     "Name": "Mothron",
     "BestiaryId": "Mothron",
@@ -3651,6 +4016,7 @@
   },
   {
     "Id": 479,
+    "BannerId": -1,
     "FullName": "Baby Mothron",
     "Name": "Baby Mothron",
     "BestiaryId": "MothronSpawn",
@@ -3661,6 +4027,7 @@
   },
   {
     "Id": 480,
+    "BannerId": 201,
     "FullName": "Medusa",
     "Name": "Medusa",
     "BestiaryId": "Medusa",
@@ -3671,6 +4038,7 @@
   },
   {
     "Id": 481,
+    "BannerId": 202,
     "FullName": "Hoplite",
     "Name": "Hoplite",
     "BestiaryId": "GreekSkeleton",
@@ -3681,6 +4049,7 @@
   },
   {
     "Id": 482,
+    "BannerId": 204,
     "FullName": "Granite Golem",
     "Name": "Granite Golem",
     "BestiaryId": "GraniteGolem",
@@ -3691,6 +4060,7 @@
   },
   {
     "Id": 483,
+    "BannerId": 203,
     "FullName": "Granite Elemental",
     "Name": "Granite Elemental",
     "BestiaryId": "GraniteFlyer",
@@ -3701,6 +4071,7 @@
   },
   {
     "Id": 484,
+    "BannerId": -1,
     "FullName": "Enchanted Nightcrawler",
     "Name": "Enchanted Nightcrawler",
     "BestiaryId": "EnchantedNightcrawler",
@@ -3711,6 +4082,7 @@
   },
   {
     "Id": 485,
+    "BannerId": -1,
     "FullName": "Grubby",
     "Name": "Grubby",
     "BestiaryId": "Grubby",
@@ -3721,6 +4093,7 @@
   },
   {
     "Id": 486,
+    "BannerId": -1,
     "FullName": "Sluggy",
     "Name": "Sluggy",
     "BestiaryId": "Sluggy",
@@ -3731,6 +4104,7 @@
   },
   {
     "Id": 487,
+    "BannerId": -1,
     "FullName": "Buggy",
     "Name": "Buggy",
     "BestiaryId": "Buggy",
@@ -3741,6 +4115,7 @@
   },
   {
     "Id": 489,
+    "BannerId": 205,
     "FullName": "Blood Zombie",
     "Name": "Blood Zombie",
     "BestiaryId": "BloodZombie",
@@ -3751,6 +4126,7 @@
   },
   {
     "Id": 490,
+    "BannerId": 206,
     "FullName": "Drippler",
     "Name": "Drippler",
     "BestiaryId": "Drippler",
@@ -3761,6 +4137,7 @@
   },
   {
     "Id": 491,
+    "BannerId": -1,
     "FullName": "Flying Dutchman",
     "Name": "Flying Dutchman",
     "BestiaryId": "PirateShip",
@@ -3771,6 +4148,7 @@
   },
   {
     "Id": 493,
+    "BannerId": -1,
     "FullName": "Stardust Pillar",
     "Name": "Stardust Pillar",
     "BestiaryId": "LunarTowerStardust",
@@ -3781,6 +4159,7 @@
   },
   {
     "Id": 494,
+    "BannerId": 189,
     "FullName": "Crawdad",
     "Name": "Crawdad",
     "BestiaryId": "Crawdad",
@@ -3791,6 +4170,7 @@
   },
   {
     "Id": 496,
+    "BannerId": 188,
     "FullName": "Giant Shelly",
     "Name": "Giant Shelly",
     "BestiaryId": "GiantShelly",
@@ -3801,6 +4181,7 @@
   },
   {
     "Id": 499,
+    "BannerId": 187,
     "FullName": "Salamander",
     "Name": "Salamander",
     "BestiaryId": "Salamander2",
@@ -3811,6 +4192,7 @@
   },
   {
     "Id": 507,
+    "BannerId": -1,
     "FullName": "Nebula Pillar",
     "Name": "Nebula Pillar",
     "BestiaryId": "LunarTowerNebula",
@@ -3821,6 +4203,7 @@
   },
   {
     "Id": 508,
+    "BannerId": 210,
     "FullName": "Giant Antlion Charger",
     "Name": "Giant Antlion Charger",
     "BestiaryId": "GiantWalkingAntlion",
@@ -3831,6 +4214,7 @@
   },
   {
     "Id": 509,
+    "BannerId": 209,
     "FullName": "Giant Antlion Swarmer",
     "Name": "Giant Antlion Swarmer",
     "BestiaryId": "GiantFlyingAntlion",
@@ -3841,6 +4225,7 @@
   },
   {
     "Id": 510,
+    "BannerId": 208,
     "FullName": "Dune Splicer",
     "Name": "Dune Splicer",
     "BestiaryId": "DuneSplicerHead",
@@ -3851,6 +4236,7 @@
   },
   {
     "Id": 513,
+    "BannerId": 207,
     "FullName": "Tomb Crawler",
     "Name": "Tomb Crawler",
     "BestiaryId": "TombCrawlerHead",
@@ -3861,6 +4247,7 @@
   },
   {
     "Id": 517,
+    "BannerId": -1,
     "FullName": "Solar Pillar",
     "Name": "Solar Pillar",
     "BestiaryId": "LunarTowerSolar",
@@ -3871,6 +4258,7 @@
   },
   {
     "Id": 518,
+    "BannerId": 225,
     "FullName": "Drakanian",
     "Name": "Drakanian",
     "BestiaryId": "SolarSpearman",
@@ -3881,6 +4269,7 @@
   },
   {
     "Id": 520,
+    "BannerId": 241,
     "FullName": "Martian Walker",
     "Name": "Martian Walker",
     "BestiaryId": "MartianWalker",
@@ -3891,6 +4280,7 @@
   },
   {
     "Id": 521,
+    "BannerId": -1,
     "FullName": "Ancient Vision",
     "Name": "Ancient Vision",
     "BestiaryId": "AncientCultistSquidhead",
@@ -3901,6 +4291,7 @@
   },
   {
     "Id": 524,
+    "BannerId": 211,
     "FullName": "Ghoul",
     "Name": "Ghoul",
     "BestiaryId": "DesertGhoul",
@@ -3911,6 +4302,7 @@
   },
   {
     "Id": 525,
+    "BannerId": 211,
     "FullName": "Vile Ghoul",
     "Name": "Vile Ghoul",
     "BestiaryId": "DesertGhoulCorruption",
@@ -3921,6 +4313,7 @@
   },
   {
     "Id": 526,
+    "BannerId": 211,
     "FullName": "Tainted Ghoul",
     "Name": "Tainted Ghoul",
     "BestiaryId": "DesertGhoulCrimson",
@@ -3931,6 +4324,7 @@
   },
   {
     "Id": 527,
+    "BannerId": 211,
     "FullName": "Dreamer Ghoul",
     "Name": "Dreamer Ghoul",
     "BestiaryId": "DesertGhoulHallow",
@@ -3941,6 +4335,7 @@
   },
   {
     "Id": 528,
+    "BannerId": 212,
     "FullName": "Lamia",
     "Name": "Lamia",
     "BestiaryId": "DesertLamiaLight",
@@ -3951,6 +4346,7 @@
   },
   {
     "Id": 529,
+    "BannerId": 212,
     "FullName": "Lamia",
     "Name": "Lamia",
     "BestiaryId": "DesertLamiaDark",
@@ -3961,6 +4357,7 @@
   },
   {
     "Id": 531,
+    "BannerId": 215,
     "FullName": "Sand Poacher",
     "Name": "Sand Poacher",
     "BestiaryId": "DesertScorpionWall",
@@ -3971,6 +4368,7 @@
   },
   {
     "Id": 532,
+    "BannerId": 214,
     "FullName": "Basilisk",
     "Name": "Basilisk",
     "BestiaryId": "DesertBeast",
@@ -3981,6 +4379,7 @@
   },
   {
     "Id": 533,
+    "BannerId": 213,
     "FullName": "Desert Spirit",
     "Name": "Desert Spirit",
     "BestiaryId": "DesertDjinn",
@@ -3991,6 +4390,7 @@
   },
   {
     "Id": 534,
+    "BannerId": -1,
     "FullName": "Tortured Soul",
     "Name": "Tortured Soul",
     "BestiaryId": "DemonTaxCollector",
@@ -4001,6 +4401,7 @@
   },
   {
     "Id": 536,
+    "BannerId": 267,
     "FullName": "The Bride",
     "Name": "The Bride",
     "BestiaryId": "TheBride",
@@ -4011,6 +4412,7 @@
   },
   {
     "Id": 537,
+    "BannerId": 249,
     "FullName": "Sand Slime",
     "Name": "Sand Slime",
     "BestiaryId": "SandSlime",
@@ -4021,6 +4423,7 @@
   },
   {
     "Id": 538,
+    "BannerId": -1,
     "FullName": "Red Squirrel",
     "Name": "Red Squirrel",
     "BestiaryId": "SquirrelRed",
@@ -4031,6 +4434,7 @@
   },
   {
     "Id": 539,
+    "BannerId": -1,
     "FullName": "Gold Squirrel",
     "Name": "Gold Squirrel",
     "BestiaryId": "SquirrelGold",
@@ -4041,6 +4445,7 @@
   },
   {
     "Id": 540,
+    "BannerId": 14,
     "FullName": "Bunny",
     "Name": "Bunny",
     "BestiaryId": "PartyBunny",
@@ -4051,6 +4456,7 @@
   },
   {
     "Id": 541,
+    "BannerId": 251,
     "FullName": "Sand Elemental",
     "Name": "Sand Elemental",
     "BestiaryId": "SandElemental",
@@ -4061,6 +4467,7 @@
   },
   {
     "Id": 542,
+    "BannerId": 252,
     "FullName": "Sand Shark",
     "Name": "Sand Shark",
     "BestiaryId": "SandShark",
@@ -4071,6 +4478,7 @@
   },
   {
     "Id": 543,
+    "BannerId": 253,
     "FullName": "Bone Biter",
     "Name": "Bone Biter",
     "BestiaryId": "SandsharkCorrupt",
@@ -4081,6 +4489,7 @@
   },
   {
     "Id": 544,
+    "BannerId": 254,
     "FullName": "Flesh Reaver",
     "Name": "Flesh Reaver",
     "BestiaryId": "SandsharkCrimson",
@@ -4091,6 +4500,7 @@
   },
   {
     "Id": 545,
+    "BannerId": 255,
     "FullName": "Crystal Thresher",
     "Name": "Crystal Thresher",
     "BestiaryId": "SandsharkHallow",
@@ -4101,6 +4511,7 @@
   },
   {
     "Id": 546,
+    "BannerId": 256,
     "FullName": "Angry Tumbler",
     "Name": "Angry Tumbler",
     "BestiaryId": "Tumbleweed",
@@ -4111,6 +4522,7 @@
   },
   {
     "Id": 551,
+    "BannerId": -1,
     "FullName": "Betsy",
     "Name": "Betsy",
     "BestiaryId": "DD2Betsy",
@@ -4121,6 +4533,7 @@
   },
   {
     "Id": 554,
+    "BannerId": 258,
     "FullName": "Etherian Goblin",
     "Name": "Etherian Goblin",
     "BestiaryId": "DD2GoblinT3",
@@ -4131,6 +4544,7 @@
   },
   {
     "Id": 557,
+    "BannerId": 257,
     "FullName": "Etherian Goblin Bomber",
     "Name": "Etherian Goblin Bomber",
     "BestiaryId": "DD2GoblinBomberT3",
@@ -4141,6 +4555,7 @@
   },
   {
     "Id": 560,
+    "BannerId": 264,
     "FullName": "Etherian Wyvern",
     "Name": "Etherian Wyvern",
     "BestiaryId": "DD2WyvernT3",
@@ -4151,6 +4566,7 @@
   },
   {
     "Id": 563,
+    "BannerId": 265,
     "FullName": "Etherian Javelin Thrower",
     "Name": "Etherian Javelin Thrower",
     "BestiaryId": "DD2JavelinstT3",
@@ -4161,6 +4577,7 @@
   },
   {
     "Id": 565,
+    "BannerId": -1,
     "FullName": "Dark Mage",
     "Name": "Dark Mage",
     "BestiaryId": "DD2DarkMageT3",
@@ -4171,6 +4588,7 @@
   },
   {
     "Id": 567,
+    "BannerId": 259,
     "FullName": "Old One\u0027s Skeleton",
     "Name": "Old One\u0027s Skeleton",
     "BestiaryId": "DD2SkeletonT3",
@@ -4181,6 +4599,7 @@
   },
   {
     "Id": 569,
+    "BannerId": 263,
     "FullName": "Wither Beast",
     "Name": "Wither Beast",
     "BestiaryId": "DD2WitherBeastT3",
@@ -4191,6 +4610,7 @@
   },
   {
     "Id": 571,
+    "BannerId": 260,
     "FullName": "Drakin",
     "Name": "Drakin",
     "BestiaryId": "DD2DrakinT3",
@@ -4201,6 +4621,7 @@
   },
   {
     "Id": 573,
+    "BannerId": 262,
     "FullName": "Kobold",
     "Name": "Kobold",
     "BestiaryId": "DD2KoboldWalkerT3",
@@ -4211,6 +4632,7 @@
   },
   {
     "Id": 575,
+    "BannerId": 261,
     "FullName": "Kobold Glider",
     "Name": "Kobold Glider",
     "BestiaryId": "DD2KoboldFlyerT3",
@@ -4221,6 +4643,7 @@
   },
   {
     "Id": 577,
+    "BannerId": -1,
     "FullName": "Ogre",
     "Name": "Ogre",
     "BestiaryId": "DD2OgreT3",
@@ -4231,6 +4654,7 @@
   },
   {
     "Id": 578,
+    "BannerId": 266,
     "FullName": "Etherian Lightning Bug",
     "Name": "Etherian Lightning Bug",
     "BestiaryId": "DD2LightningBugT3",
@@ -4241,6 +4665,7 @@
   },
   {
     "Id": 580,
+    "BannerId": 210,
     "FullName": "Antlion Charger",
     "Name": "Antlion Charger",
     "BestiaryId": "WalkingAntlion",
@@ -4251,6 +4676,7 @@
   },
   {
     "Id": 581,
+    "BannerId": 209,
     "FullName": "Antlion Swarmer",
     "Name": "Antlion Swarmer",
     "BestiaryId": "FlyingAntlion",
@@ -4261,6 +4687,7 @@
   },
   {
     "Id": 582,
+    "BannerId": 280,
     "FullName": "Antlion Larva",
     "Name": "Antlion Larva",
     "BestiaryId": "LarvaeAntlion",
@@ -4271,6 +4698,7 @@
   },
   {
     "Id": 583,
+    "BannerId": -1,
     "FullName": "Pink Fairy",
     "Name": "Pink Fairy",
     "BestiaryId": "FairyCritterPink",
@@ -4281,6 +4709,7 @@
   },
   {
     "Id": 584,
+    "BannerId": -1,
     "FullName": "Green Fairy",
     "Name": "Green Fairy",
     "BestiaryId": "FairyCritterGreen",
@@ -4291,6 +4720,7 @@
   },
   {
     "Id": 585,
+    "BannerId": -1,
     "FullName": "Blue Fairy",
     "Name": "Blue Fairy",
     "BestiaryId": "FairyCritterBlue",
@@ -4301,6 +4731,7 @@
   },
   {
     "Id": 586,
+    "BannerId": 268,
     "FullName": "Zombie Merman",
     "Name": "Zombie Merman",
     "BestiaryId": "ZombieMerman",
@@ -4311,6 +4742,7 @@
   },
   {
     "Id": 587,
+    "BannerId": 269,
     "FullName": "Wandering Eye Fish",
     "Name": "Wandering Eye Fish",
     "BestiaryId": "EyeballFlyingFish",
@@ -4321,6 +4753,7 @@
   },
   {
     "Id": 590,
+    "BannerId": 87,
     "FullName": "Zombie",
     "Name": "Zombie",
     "BestiaryId": "TorchZombie",
@@ -4331,6 +4764,7 @@
   },
   {
     "Id": 592,
+    "BannerId": -1,
     "FullName": "Gold Goldfish",
     "Name": "Gold Goldfish",
     "BestiaryId": "GoldGoldfish",
@@ -4341,6 +4775,7 @@
   },
   {
     "Id": 594,
+    "BannerId": -1,
     "FullName": "Windy Balloon",
     "Name": "Windy Balloon",
     "BestiaryId": "WindyBalloon",
@@ -4351,6 +4786,7 @@
   },
   {
     "Id": 599,
+    "BannerId": -1,
     "FullName": "Dragonfly",
     "Name": "Dragonfly",
     "BestiaryId": "RedDragonfly",
@@ -4361,6 +4797,7 @@
   },
   {
     "Id": 601,
+    "BannerId": -1,
     "FullName": "Gold Dragonfly",
     "Name": "Gold Dragonfly",
     "BestiaryId": "GoldDragonfly",
@@ -4371,6 +4808,7 @@
   },
   {
     "Id": 602,
+    "BannerId": -1,
     "FullName": "Seagull",
     "Name": "Seagull",
     "BestiaryId": "Seagull",
@@ -4381,6 +4819,7 @@
   },
   {
     "Id": 604,
+    "BannerId": -1,
     "FullName": "Ladybug",
     "Name": "Ladybug",
     "BestiaryId": "LadyBug",
@@ -4391,6 +4830,7 @@
   },
   {
     "Id": 605,
+    "BannerId": -1,
     "FullName": "Gold Ladybug",
     "Name": "Gold Ladybug",
     "BestiaryId": "GoldLadyBug",
@@ -4401,6 +4841,7 @@
   },
   {
     "Id": 606,
+    "BannerId": -1,
     "FullName": "Maggot",
     "Name": "Maggot",
     "BestiaryId": "Maggot",
@@ -4411,6 +4852,7 @@
   },
   {
     "Id": 607,
+    "BannerId": -1,
     "FullName": "Pupfish",
     "Name": "Pupfish",
     "BestiaryId": "Pupfish",
@@ -4421,6 +4863,7 @@
   },
   {
     "Id": 608,
+    "BannerId": -1,
     "FullName": "Grebe",
     "Name": "Grebe",
     "BestiaryId": "Grebe",
@@ -4431,6 +4874,7 @@
   },
   {
     "Id": 610,
+    "BannerId": -1,
     "FullName": "Rat",
     "Name": "Rat",
     "BestiaryId": "Rat",
@@ -4441,6 +4885,7 @@
   },
   {
     "Id": 611,
+    "BannerId": -1,
     "FullName": "Owl",
     "Name": "Owl",
     "BestiaryId": "Owl",
@@ -4451,6 +4896,7 @@
   },
   {
     "Id": 612,
+    "BannerId": -1,
     "FullName": "Water Strider",
     "Name": "Water Strider",
     "BestiaryId": "WaterStrider",
@@ -4461,6 +4907,7 @@
   },
   {
     "Id": 613,
+    "BannerId": -1,
     "FullName": "Gold Water Strider",
     "Name": "Gold Water Strider",
     "BestiaryId": "GoldWaterStrider",
@@ -4471,6 +4918,7 @@
   },
   {
     "Id": 614,
+    "BannerId": -1,
     "FullName": "Explosive Bunny",
     "Name": "Explosive Bunny",
     "BestiaryId": "ExplosiveBunny",
@@ -4481,6 +4929,7 @@
   },
   {
     "Id": 615,
+    "BannerId": -1,
     "FullName": "Dolphin",
     "Name": "Dolphin",
     "BestiaryId": "Dolphin",
@@ -4491,6 +4940,7 @@
   },
   {
     "Id": 616,
+    "BannerId": -1,
     "FullName": "Turtle",
     "Name": "Turtle",
     "BestiaryId": "Turtle",
@@ -4501,6 +4951,7 @@
   },
   {
     "Id": 617,
+    "BannerId": -1,
     "FullName": "Jungle Turtle",
     "Name": "Jungle Turtle",
     "BestiaryId": "TurtleJungle",
@@ -4511,6 +4962,7 @@
   },
   {
     "Id": 618,
+    "BannerId": 273,
     "FullName": "Dreadnautilus",
     "Name": "Dreadnautilus",
     "BestiaryId": "BloodNautilus",
@@ -4521,6 +4973,7 @@
   },
   {
     "Id": 619,
+    "BannerId": 270,
     "FullName": "Blood Squid",
     "Name": "Blood Squid",
     "BestiaryId": "BloodSquid",
@@ -4531,6 +4984,7 @@
   },
   {
     "Id": 620,
+    "BannerId": 272,
     "FullName": "Hemogoblin Shark",
     "Name": "Hemogoblin Shark",
     "BestiaryId": "GoblinShark",
@@ -4541,6 +4995,7 @@
   },
   {
     "Id": 621,
+    "BannerId": 271,
     "FullName": "Blood Eel",
     "Name": "Blood Eel",
     "BestiaryId": "BloodEelHead",
@@ -4551,6 +5006,7 @@
   },
   {
     "Id": 624,
+    "BannerId": 275,
     "FullName": "Gnome",
     "Name": "Gnome",
     "BestiaryId": "Gnome",
@@ -4561,6 +5017,7 @@
   },
   {
     "Id": 625,
+    "BannerId": -1,
     "FullName": "Sea Turtle",
     "Name": "Sea Turtle",
     "BestiaryId": "SeaTurtle",
@@ -4571,6 +5028,7 @@
   },
   {
     "Id": 626,
+    "BannerId": -1,
     "FullName": "Seahorse",
     "Name": "Seahorse",
     "BestiaryId": "Seahorse",
@@ -4581,6 +5039,7 @@
   },
   {
     "Id": 627,
+    "BannerId": -1,
     "FullName": "Gold Seahorse",
     "Name": "Gold Seahorse",
     "BestiaryId": "GoldSeahorse",
@@ -4591,6 +5050,7 @@
   },
   {
     "Id": 628,
+    "BannerId": 274,
     "FullName": "Angry Dandelion",
     "Name": "Angry Dandelion",
     "BestiaryId": "Dandelion",
@@ -4601,6 +5061,7 @@
   },
   {
     "Id": 629,
+    "BannerId": 16,
     "FullName": "Ice Mimic",
     "Name": "Ice Mimic",
     "BestiaryId": "IceMimic",
@@ -4611,6 +5072,7 @@
   },
   {
     "Id": 630,
+    "BannerId": 277,
     "FullName": "Blood Mummy",
     "Name": "Blood Mummy",
     "BestiaryId": "BloodMummy",
@@ -4621,6 +5083,7 @@
   },
   {
     "Id": 631,
+    "BannerId": 276,
     "FullName": "Rock Golem",
     "Name": "Rock Golem",
     "BestiaryId": "RockGolem",
@@ -4631,6 +5094,7 @@
   },
   {
     "Id": 632,
+    "BannerId": 87,
     "FullName": "Maggot Zombie",
     "Name": "Maggot Zombie",
     "BestiaryId": "MaggotZombie",
@@ -4641,6 +5105,7 @@
   },
   {
     "Id": 634,
+    "BannerId": 279,
     "FullName": "Spore Bat",
     "Name": "Spore Bat",
     "BestiaryId": "SporeBat",
@@ -4651,6 +5116,7 @@
   },
   {
     "Id": 635,
+    "BannerId": 278,
     "FullName": "Spore Skeleton",
     "Name": "Spore Skeleton",
     "BestiaryId": "SporeSkeleton",
@@ -4661,6 +5127,7 @@
   },
   {
     "Id": 636,
+    "BannerId": -1,
     "FullName": "Empress of Light",
     "Name": "Empress of Light",
     "BestiaryId": "HallowBoss",
@@ -4671,6 +5138,7 @@
   },
   {
     "Id": 639,
+    "BannerId": -1,
     "FullName": "Amethyst Squirrel",
     "Name": "Amethyst Squirrel",
     "BestiaryId": "GemSquirrelAmethyst",
@@ -4681,6 +5149,7 @@
   },
   {
     "Id": 640,
+    "BannerId": -1,
     "FullName": "Topaz Squirrel",
     "Name": "Topaz Squirrel",
     "BestiaryId": "GemSquirrelTopaz",
@@ -4691,6 +5160,7 @@
   },
   {
     "Id": 641,
+    "BannerId": -1,
     "FullName": "Sapphire Squirrel",
     "Name": "Sapphire Squirrel",
     "BestiaryId": "GemSquirrelSapphire",
@@ -4701,6 +5171,7 @@
   },
   {
     "Id": 642,
+    "BannerId": -1,
     "FullName": "Emerald Squirrel",
     "Name": "Emerald Squirrel",
     "BestiaryId": "GemSquirrelEmerald",
@@ -4711,6 +5182,7 @@
   },
   {
     "Id": 643,
+    "BannerId": -1,
     "FullName": "Ruby Squirrel",
     "Name": "Ruby Squirrel",
     "BestiaryId": "GemSquirrelRuby",
@@ -4721,6 +5193,7 @@
   },
   {
     "Id": 644,
+    "BannerId": -1,
     "FullName": "Diamond Squirrel",
     "Name": "Diamond Squirrel",
     "BestiaryId": "GemSquirrelDiamond",
@@ -4731,6 +5204,7 @@
   },
   {
     "Id": 645,
+    "BannerId": -1,
     "FullName": "Amber Squirrel",
     "Name": "Amber Squirrel",
     "BestiaryId": "GemSquirrelAmber",
@@ -4741,6 +5215,7 @@
   },
   {
     "Id": 646,
+    "BannerId": -1,
     "FullName": "Amethyst Bunny",
     "Name": "Amethyst Bunny",
     "BestiaryId": "GemBunnyAmethyst",
@@ -4751,6 +5226,7 @@
   },
   {
     "Id": 647,
+    "BannerId": -1,
     "FullName": "Topaz Bunny",
     "Name": "Topaz Bunny",
     "BestiaryId": "GemBunnyTopaz",
@@ -4761,6 +5237,7 @@
   },
   {
     "Id": 648,
+    "BannerId": -1,
     "FullName": "Sapphire Bunny",
     "Name": "Sapphire Bunny",
     "BestiaryId": "GemBunnySapphire",
@@ -4771,6 +5248,7 @@
   },
   {
     "Id": 649,
+    "BannerId": -1,
     "FullName": "Emerald Bunny",
     "Name": "Emerald Bunny",
     "BestiaryId": "GemBunnyEmerald",
@@ -4781,6 +5259,7 @@
   },
   {
     "Id": 650,
+    "BannerId": -1,
     "FullName": "Ruby Bunny",
     "Name": "Ruby Bunny",
     "BestiaryId": "GemBunnyRuby",
@@ -4791,6 +5270,7 @@
   },
   {
     "Id": 651,
+    "BannerId": -1,
     "FullName": "Diamond Bunny",
     "Name": "Diamond Bunny",
     "BestiaryId": "GemBunnyDiamond",
@@ -4801,6 +5281,7 @@
   },
   {
     "Id": 652,
+    "BannerId": -1,
     "FullName": "Amber Bunny",
     "Name": "Amber Bunny",
     "BestiaryId": "GemBunnyAmber",
@@ -4811,6 +5292,7 @@
   },
   {
     "Id": 653,
+    "BannerId": -1,
     "FullName": "Hell Butterfly",
     "Name": "Hell Butterfly",
     "BestiaryId": "HellButterfly",
@@ -4821,6 +5303,7 @@
   },
   {
     "Id": 654,
+    "BannerId": -1,
     "FullName": "Lavafly",
     "Name": "Lavafly",
     "BestiaryId": "Lavafly",
@@ -4831,6 +5314,7 @@
   },
   {
     "Id": 655,
+    "BannerId": -1,
     "FullName": "Magma Snail",
     "Name": "Magma Snail",
     "BestiaryId": "MagmaSnail",
@@ -4841,6 +5325,7 @@
   },
   {
     "Id": 657,
+    "BannerId": -1,
     "FullName": "Queen Slime",
     "Name": "Queen Slime",
     "BestiaryId": "QueenSlimeBoss",
@@ -4851,6 +5336,7 @@
   },
   {
     "Id": 658,
+    "BannerId": -1,
     "FullName": "Crystal Slime",
     "Name": "Crystal Slime",
     "BestiaryId": "QueenSlimeMinionBlue",
@@ -4861,6 +5347,7 @@
   },
   {
     "Id": 659,
+    "BannerId": -1,
     "FullName": "Bouncy Slime",
     "Name": "Bouncy Slime",
     "BestiaryId": "QueenSlimeMinionPink",
@@ -4871,6 +5358,7 @@
   },
   {
     "Id": 660,
+    "BannerId": -1,
     "FullName": "Heavenly Slime",
     "Name": "Heavenly Slime",
     "BestiaryId": "QueenSlimeMinionPurple",
@@ -4881,6 +5369,7 @@
   },
   {
     "Id": 661,
+    "BannerId": -1,
     "FullName": "Prismatic Lacewing",
     "Name": "Prismatic Lacewing",
     "BestiaryId": "EmpressButterfly",
@@ -4891,6 +5380,7 @@
   },
   {
     "Id": 664,
+    "BannerId": -1,
     "FullName": "The Torch God",
     "Name": "The Torch God",
     "BestiaryId": "TorchGod",
@@ -4901,6 +5391,7 @@
   },
   {
     "Id": 668,
+    "BannerId": -1,
     "FullName": "Deerclops",
     "Name": "Deerclops",
     "BestiaryId": "Deerclops",
@@ -4911,6 +5402,7 @@
   },
   {
     "Id": 669,
+    "BannerId": -1,
     "FullName": "Stinkbug",
     "Name": "Stinkbug",
     "BestiaryId": "Stinkbug",
@@ -4921,6 +5413,7 @@
   },
   {
     "Id": 671,
+    "BannerId": -1,
     "FullName": "Scarlet Macaw",
     "Name": "Scarlet Macaw",
     "BestiaryId": "ScarletMacaw",
@@ -4931,6 +5424,7 @@
   },
   {
     "Id": 672,
+    "BannerId": -1,
     "FullName": "Blue Macaw",
     "Name": "Blue Macaw",
     "BestiaryId": "BlueMacaw",
@@ -4941,6 +5435,7 @@
   },
   {
     "Id": 673,
+    "BannerId": -1,
     "FullName": "Toucan",
     "Name": "Toucan",
     "BestiaryId": "Toucan",
@@ -4951,6 +5446,7 @@
   },
   {
     "Id": 674,
+    "BannerId": -1,
     "FullName": "Yellow Cockatiel",
     "Name": "Yellow Cockatiel",
     "BestiaryId": "YellowCockatiel",
@@ -4961,6 +5457,7 @@
   },
   {
     "Id": 675,
+    "BannerId": -1,
     "FullName": "Gray Cockatiel",
     "Name": "Gray Cockatiel",
     "BestiaryId": "GrayCockatiel",
@@ -4971,6 +5468,7 @@
   },
   {
     "Id": 676,
+    "BannerId": 289,
     "FullName": "Shimmer Slime",
     "Name": "Shimmer Slime",
     "BestiaryId": "ShimmerSlime",
@@ -4981,6 +5479,7 @@
   },
   {
     "Id": 677,
+    "BannerId": -1,
     "FullName": "Faeling",
     "Name": "Faeling",
     "BestiaryId": "Shimmerfly",
@@ -4991,6 +5490,7 @@
   },
   {
     "Id": 687,
+    "BannerId": -1,
     "FullName": "Mystic Frog",
     "Name": "Mystic Frog",
     "BestiaryId": "BoundTownSlimeYellow",
@@ -5001,6 +5501,7 @@
   },
   {
     "Id": 22,
+    "BannerId": -1,
     "FullName": "Guide",
     "Name": "Guide",
     "BestiaryId": "Guide",
@@ -5011,6 +5512,7 @@
   },
   {
     "Id": 17,
+    "BannerId": -1,
     "FullName": "Merchant",
     "Name": "Merchant",
     "BestiaryId": "Merchant",
@@ -5021,6 +5523,7 @@
   },
   {
     "Id": 18,
+    "BannerId": -1,
     "FullName": "Nurse",
     "Name": "Nurse",
     "BestiaryId": "Nurse",
@@ -5031,6 +5534,7 @@
   },
   {
     "Id": 19,
+    "BannerId": -1,
     "FullName": "Arms Dealer",
     "Name": "Arms Dealer",
     "BestiaryId": "ArmsDealer",
@@ -5041,6 +5545,7 @@
   },
   {
     "Id": 20,
+    "BannerId": -1,
     "FullName": "Dryad",
     "Name": "Dryad",
     "BestiaryId": "Dryad",
@@ -5051,6 +5556,7 @@
   },
   {
     "Id": 37,
+    "BannerId": -1,
     "FullName": "Old Man",
     "Name": "Old Man",
     "BestiaryId": "OldMan",
@@ -5061,6 +5567,7 @@
   },
   {
     "Id": 54,
+    "BannerId": -1,
     "FullName": "Clothier",
     "Name": "Clothier",
     "BestiaryId": "Clothier",
@@ -5071,6 +5578,7 @@
   },
   {
     "Id": 38,
+    "BannerId": -1,
     "FullName": "Demolitionist",
     "Name": "Demolitionist",
     "BestiaryId": "Demolitionist",
@@ -5081,6 +5589,7 @@
   },
   {
     "Id": 107,
+    "BannerId": -1,
     "FullName": "Goblin Tinkerer",
     "Name": "Goblin Tinkerer",
     "BestiaryId": "GoblinTinkerer",
@@ -5091,6 +5600,7 @@
   },
   {
     "Id": 108,
+    "BannerId": -1,
     "FullName": "Wizard",
     "Name": "Wizard",
     "BestiaryId": "Wizard",
@@ -5101,6 +5611,7 @@
   },
   {
     "Id": 124,
+    "BannerId": -1,
     "FullName": "Mechanic",
     "Name": "Mechanic",
     "BestiaryId": "Mechanic",
@@ -5111,6 +5622,7 @@
   },
   {
     "Id": 142,
+    "BannerId": -1,
     "FullName": "Santa Claus",
     "Name": "Santa Claus",
     "BestiaryId": "SantaClaus",
@@ -5121,6 +5633,7 @@
   },
   {
     "Id": 160,
+    "BannerId": -1,
     "FullName": "Truffle",
     "Name": "Truffle",
     "BestiaryId": "Truffle",
@@ -5131,6 +5644,7 @@
   },
   {
     "Id": 178,
+    "BannerId": -1,
     "FullName": "Steampunker",
     "Name": "Steampunker",
     "BestiaryId": "Steampunker",
@@ -5141,6 +5655,7 @@
   },
   {
     "Id": 207,
+    "BannerId": -1,
     "FullName": "Dye Trader",
     "Name": "Dye Trader",
     "BestiaryId": "DyeTrader",
@@ -5151,6 +5666,7 @@
   },
   {
     "Id": 208,
+    "BannerId": -1,
     "FullName": "Party Girl",
     "Name": "Party Girl",
     "BestiaryId": "PartyGirl",
@@ -5161,6 +5677,7 @@
   },
   {
     "Id": 209,
+    "BannerId": -1,
     "FullName": "Cyborg",
     "Name": "Cyborg",
     "BestiaryId": "Cyborg",
@@ -5171,6 +5688,7 @@
   },
   {
     "Id": 227,
+    "BannerId": -1,
     "FullName": "Painter",
     "Name": "Painter",
     "BestiaryId": "Painter",
@@ -5181,6 +5699,7 @@
   },
   {
     "Id": 228,
+    "BannerId": -1,
     "FullName": "Witch Doctor",
     "Name": "Witch Doctor",
     "BestiaryId": "WitchDoctor",
@@ -5191,6 +5710,7 @@
   },
   {
     "Id": 229,
+    "BannerId": -1,
     "FullName": "Pirate",
     "Name": "Pirate",
     "BestiaryId": "Pirate",
@@ -5201,6 +5721,7 @@
   },
   {
     "Id": 353,
+    "BannerId": -1,
     "FullName": "Stylist",
     "Name": "Stylist",
     "BestiaryId": "Stylist",
@@ -5211,6 +5732,7 @@
   },
   {
     "Id": 369,
+    "BannerId": -1,
     "FullName": "Angler",
     "Name": "Angler",
     "BestiaryId": "Angler",
@@ -5221,6 +5743,7 @@
   },
   {
     "Id": 441,
+    "BannerId": -1,
     "FullName": "Tax Collector",
     "Name": "Tax Collector",
     "BestiaryId": "TaxCollector",
@@ -5231,6 +5754,7 @@
   },
   {
     "Id": 550,
+    "BannerId": -1,
     "FullName": "Tavernkeep",
     "Name": "Tavernkeep",
     "BestiaryId": "DD2Bartender",
@@ -5241,6 +5765,7 @@
   },
   {
     "Id": 588,
+    "BannerId": -1,
     "FullName": "Golfer",
     "Name": "Golfer",
     "BestiaryId": "Golfer",
@@ -5251,6 +5776,7 @@
   },
   {
     "Id": 368,
+    "BannerId": -1,
     "FullName": "Traveling Merchant",
     "Name": "Traveling Merchant",
     "BestiaryId": "TravellingMerchant",
@@ -5261,6 +5787,7 @@
   },
   {
     "Id": 453,
+    "BannerId": -1,
     "FullName": "Skeleton Merchant",
     "Name": "Skeleton Merchant",
     "BestiaryId": "SkeletonMerchant",
@@ -5271,6 +5798,7 @@
   },
   {
     "Id": 633,
+    "BannerId": -1,
     "FullName": "Zoologist",
     "Name": "Zoologist",
     "BestiaryId": "BestiaryGirl",
@@ -5281,6 +5809,7 @@
   },
   {
     "Id": 663,
+    "BannerId": -1,
     "FullName": "Princess",
     "Name": "Princess",
     "BestiaryId": "Princess",
@@ -5291,6 +5820,7 @@
   },
   {
     "Id": 638,
+    "BannerId": -1,
     "FullName": "Dog",
     "Name": "Dog",
     "BestiaryId": "TownDog",
@@ -5301,6 +5831,7 @@
   },
   {
     "Id": 637,
+    "BannerId": -1,
     "FullName": "Cat",
     "Name": "Cat",
     "BestiaryId": "TownCat",
@@ -5311,6 +5842,7 @@
   },
   {
     "Id": 656,
+    "BannerId": -1,
     "FullName": "Bunny",
     "Name": "Bunny",
     "BestiaryId": "TownBunny",
@@ -5321,6 +5853,7 @@
   },
   {
     "Id": 670,
+    "BannerId": -1,
     "FullName": "Nerdy Slime",
     "Name": "Nerdy Slime",
     "BestiaryId": "TownSlimeBlue",
@@ -5331,6 +5864,7 @@
   },
   {
     "Id": 678,
+    "BannerId": -1,
     "FullName": "Cool Slime",
     "Name": "Cool Slime",
     "BestiaryId": "TownSlimeGreen",
@@ -5341,6 +5875,7 @@
   },
   {
     "Id": 679,
+    "BannerId": -1,
     "FullName": "Elder Slime",
     "Name": "Elder Slime",
     "BestiaryId": "TownSlimeOld",
@@ -5351,6 +5886,7 @@
   },
   {
     "Id": 680,
+    "BannerId": -1,
     "FullName": "Clumsy Slime",
     "Name": "Clumsy Slime",
     "BestiaryId": "TownSlimePurple",
@@ -5361,6 +5897,7 @@
   },
   {
     "Id": 681,
+    "BannerId": -1,
     "FullName": "Diva Slime",
     "Name": "Diva Slime",
     "BestiaryId": "TownSlimeRainbow",
@@ -5371,6 +5908,7 @@
   },
   {
     "Id": 682,
+    "BannerId": -1,
     "FullName": "Surly Slime",
     "Name": "Surly Slime",
     "BestiaryId": "TownSlimeRed",
@@ -5381,6 +5919,7 @@
   },
   {
     "Id": 683,
+    "BannerId": -1,
     "FullName": "Mystic Slime",
     "Name": "Mystic Slime",
     "BestiaryId": "TownSlimeYellow",
@@ -5391,6 +5930,7 @@
   },
   {
     "Id": 684,
+    "BannerId": -1,
     "FullName": "Squire Slime",
     "Name": "Squire Slime",
     "BestiaryId": "TownSlimeCopper",
