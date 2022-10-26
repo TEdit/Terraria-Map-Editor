@@ -6648,23 +6648,23 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Tile Id="383" Color="#FFDD8890" Name="Living Mahogany Block" Solid="true" Blends="true" />
         <Tile Id="384" Color="#FF83CE0C" Name="Living Mahogany Leaves Block" Solid="true" Blends="true" />
         <Tile Id="385" Color="#FF571590" Name="Crystal Block" Solid="true" Blends="true" />
-        <Tile Id="386" Color="#FF7F5C45" Name="Trapdoor Open" Framed="true" Size="2,2">
+        <Tile Id="386" Color="#FF7F5C45" Name="Trap Door (Open)" Framed="true" Size="2,2">
             <Frames>
-                <Frame UV="0,0" Name="Trapdoor Open" Variety="Up" />
-                <Frame UV="36,0" Name="Trapdoor Open" Variety="Down" />
+                <Frame UV="0,0" Variety="Up" />
+                <Frame UV="36,0" Variety="Down" />
             </Frames>
         </Tile>
-        <Tile Id="387" Color="#FF7F5C45" Name="Trapdoor Closed" Framed="true" Size="2,1" Solid="true" />
-        <Tile Id="388" Color="#FF7F5C45" Name="Tall Gate Closed" TextureGrid="16,18" Framed="true" Size="1,5" Solid="true">
+        <Tile Id="387" Color="#FF7F5C45" Name="Trap Door (Closed)" Framed="true" Size="2,1" Solid="true" />
+        <Tile Id="388" Color="#FF7F5C45" Name="Tall Gate (Closed)" TextureGrid="16,18" Framed="true" Size="1,5" Solid="true">
             <Frames>
-                <Frame UV="0,0" Variety="A" />
-                <Frame UV="0,100" Variety="B" />
+                <Frame UV="0,0" Variety="Right" />
+                <Frame UV="0,100" Variety="Left" />
             </Frames>
         </Tile>
-        <Tile Id="389" Color="#FF7F5C45" Name="Tall Gate Open" TextureGrid="16,18" Framed="true" Size="1,5">
+        <Tile Id="389" Color="#FF7F5C45" Name="Tall Gate (Open)" TextureGrid="16,18" Framed="true" Size="1,5">
             <Frames>
-                <Frame UV="0,0" Variety="A" />
-                <Frame UV="0,100" Variety="B" />
+                <Frame UV="0,0" Variety="Right" />
+                <Frame UV="0,100" Variety="Left" />
             </Frames>
         </Tile>
         <Tile Id="390" Color="#FFFD2003" Name="Lava Lamp" Framed="true" Size="1,2" IsAnimated="true" />
