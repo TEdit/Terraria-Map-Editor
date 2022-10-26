@@ -74,7 +74,7 @@ namespace TEdit.Terraria
             var settingspath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "settings.xml");
             LoadObjectDbXml(settingspath);
 
-            var bestiaryDataPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "BestiaryData.json");
+            var bestiaryDataPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "npcData.json");
             BestiaryData = BestiaryData.LoadJson(bestiaryDataPath);
 
             try

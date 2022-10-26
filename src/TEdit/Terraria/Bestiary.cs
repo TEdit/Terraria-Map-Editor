@@ -6,6 +6,7 @@ using System.Text;
 
 namespace TEdit.Terraria
 {
+
     public class Bestiary : ObservableObject
     {
         const int KillMax = 9999;

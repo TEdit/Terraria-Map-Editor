@@ -1320,4 +1320,7 @@ Press retry to pick a new folder or cancel to use {0} as your terraria path.</va
   <data name="editor_tabs_creative" xml:space="preserve">
     <value>Creative Powers</value>
   </data>
+  <data name="bestiary_tally" xml:space="preserve">
+    <value>Update Kills</value>
+  </data>
 </root>

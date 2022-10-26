@@ -35,8 +35,8 @@
 
   <ItemGroup>
     <None Remove="Images/**/*" />
-    <None Remove="BestiaryData.json" />
     <None Remove="morphSettings.json" />
+    <None Remove="npcData.json" />
     <None Remove="settings.xml" />
     <None Remove="TerrariaVersionTileData.json" />
   </ItemGroup>
@@ -46,10 +46,10 @@
     <Content Include="morphSettings.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="settings.xml">
+    <Content Include="npcData.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="BestiaryData.json">
+    <Content Include="settings.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="TerrariaVersionTileData.json">

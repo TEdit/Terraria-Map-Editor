@@ -1320,4 +1320,7 @@
   <data name="editor_tabs_creative" xml:space="preserve">
     <value>创造力量</value>
   </data>
+  <data name="bestiary_tally" xml:space="preserve">
+    <value>更新杀戮</value>
+  </data>
 </root>

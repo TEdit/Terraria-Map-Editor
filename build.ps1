@@ -1,6 +1,6 @@
 param(
     [string] $VersionPrefix = "4.11.4",
-    [string] $VersionSuffix = "morph4"
+    [string] $VersionSuffix = "beta7"
 )
 
 $buildArgs = @(
@@ -9,8 +9,7 @@ $buildArgs = @(
     "Release"
     "-f"
     "net462"
-    ".\src\TEdit.sln"
-    '/p:signcert="BC Code Signing"')
+    ".\src\TEdit.sln")
 
 
 $filename = "TEdit-$VersionPrefix"

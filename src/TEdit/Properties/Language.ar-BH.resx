@@ -1320,4 +1320,7 @@
   <data name="editor_tabs_creative" xml:space="preserve">
     <value>القوى الإبداعية</value>
   </data>
+  <data name="bestiary_tally" xml:space="preserve">
+    <value>تحديث يقتل</value>
+  </data>
 </root>

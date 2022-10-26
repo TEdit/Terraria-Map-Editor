@@ -101,6 +101,12 @@ namespace TEdit.ViewModel
         private ICommand _saveBestiaryCommand;
         private ICommand _resetBestiaryCommand;
         private ICommand _loadBestiaryCommand;
+        private ICommand _updateKillTallyCommand;
+        public ICommand UpdateKillTallyCommand
+        {
+            get { return _updateKillTallyCommand ??= new RelayCommand<bool>(o => UpdateKillTally()); }
+        }
+
         public ICommand LoadBestiaryCommand
         {
             get { return _loadBestiaryCommand ??= new RelayCommand<bool>(o => LoadBestiary()); }
@@ -119,6 +125,22 @@ namespace TEdit.ViewModel
         }
 
         public string Name { get => _name; set => Set(nameof(Name), ref _name, value); }
+
+        public void UpdateKillTally()
+        {
+            if (_wvm.CurrentWorld == null) { return; }
+
+            foreach (var item in BestiaryData)
+            {
+                var bestiaryId = item.Name;
+                if (World.BestiaryData.NpcData.TryGetValue(bestiaryId, out var npcData) &&
+                    _wvm.CurrentWorld.KilledMobs.Count > npcData.Id)
+                {
+                    _wvm.CurrentWorld.KilledMobs[npcData.Id] = item.Defeated;
+
+                }
+            }
+        }
 
         public void CompleteBestiary()
         {

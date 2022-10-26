@@ -1320,4 +1320,7 @@ Clique em tentar novamente para escolher uma nova pasta ou cancelar para usar {0
   <data name="editor_tabs_creative" xml:space="preserve">
     <value>Poderes Criativos</value>
   </data>
+  <data name="bestiary_tally" xml:space="preserve">
+    <value>Atualizar mortes</value>
+  </data>
 </root>

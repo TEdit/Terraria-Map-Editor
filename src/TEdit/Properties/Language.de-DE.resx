@@ -1320,4 +1320,7 @@ Klicke auf „Wiederholen“, um einen neuen Ordner auszuwählen, oder auf „Ab
   <data name="editor_tabs_creative" xml:space="preserve">
     <value>Kreative Kräfte</value>
   </data>
+  <data name="bestiary_tally" xml:space="preserve">
+    <value>Update-Kills</value>
+  </data>
 </root>

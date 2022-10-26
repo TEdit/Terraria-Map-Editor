@@ -142,6 +142,15 @@ namespace TEdit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Update Kills.
+        /// </summary>
+        public static string bestiary_tally {
+            get {
+                return ResourceManager.GetString("bestiary_tally", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Full Brick.
         /// </summary>
         public static string BrickStyle_Full {

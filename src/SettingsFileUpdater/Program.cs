@@ -2,6 +2,7 @@
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Text.Json;
 using System.Threading;
 
 namespace SettingsFileUpdater
@@ -58,6 +59,10 @@ namespace SettingsFileUpdater
 
             var bestiaryNpcs = wrapper.GetBestiaryData().ToList();
 
+            using (var stream = new FileStream("bestiaryData.json", FileMode.Create, FileAccess.Write))
+            {
+                JsonSerializer.Serialize(stream, bestiaryNpcs, new JsonSerializerOptions { WriteIndented = true});
+            }
 
 
             Console.WriteLine(wrapper.GetMaxCounts());
