@@ -25,6 +25,8 @@ namespace TEdit.Editor.Tools
 
         private int _dirtLayer;
         private int _rockLayer;
+        private int _deepRockLayer;
+        private int _hellLayer;
         private int _morphtype;
 
         private int[] _wallGrass = { 63, 64, 65, 66, 67, 68, 69, 70, 81 };
@@ -63,12 +65,12 @@ namespace TEdit.Editor.Tools
             _targetBiome = null;
             if (!_isRightDown && !_isLeftDown)
             {
-                _morphtype = (int)_wvm.MorphBiomeTarget;
-
-                World.MorphSettings.Biomes.TryGetValue(_wvm.MorphBiomeTarget.ToString(), out _targetBiome);
+                World.MorphSettings.Biomes.TryGetValue(_wvm.MorphToolOptions.TargetBiome, out _targetBiome);
                 _startPoint = e.Location;
                 _dirtLayer = (int)_wvm.CurrentWorld.GroundLevel;
                 _rockLayer = (int)_wvm.CurrentWorld.RockLevel;
+                _deepRockLayer = (int)(_wvm.CurrentWorld.RockLevel + ((_wvm.CurrentWorld.TilesHigh - _wvm.CurrentWorld.RockLevel) / 2));
+                _hellLayer = (int)(_wvm.CurrentWorld.TilesHigh - 200);
                 _wvm.CheckTiles = new bool[_wvm.CurrentWorld.TilesWide * _wvm.CurrentWorld.TilesHigh];
             }
 
@@ -201,10 +203,12 @@ namespace TEdit.Editor.Tools
             var curtile = _wvm.CurrentWorld.Tiles[p.X, p.Y];
 
             MorphLevel level = MorphLevel.Sky;
-            if (p.Y > _rockLayer) { level = MorphLevel.Rock; }
+            if (p.Y > _hellLayer) { level = MorphLevel.Hell; }
+            else if (p.Y > _deepRockLayer) { level = MorphLevel.DeepRock; }
+            else if (p.Y > _rockLayer) { level = MorphLevel.Rock; }
             else if (p.Y > _dirtLayer) { level = MorphLevel.Dirt; }
 
-            _targetBiome.ApplyMorph(curtile, level, p);
+            _targetBiome.ApplyMorph(_wvm.MorphToolOptions, curtile, level, p);
         }
 
         private void MorphTileLegacy(Vector2Int32 p)

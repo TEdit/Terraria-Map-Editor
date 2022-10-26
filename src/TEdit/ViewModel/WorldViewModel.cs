@@ -75,6 +75,7 @@ namespace TEdit.ViewModel
         private readonly Timer _saveTimer = new Timer();
         private readonly Selection _selection = new Selection();
         private readonly TilePicker _tilePicker = new TilePicker();
+        private readonly MorphToolOptions _MorphToolOptions = new MorphToolOptions();
         private readonly ObservableCollection<ITool> _tools = new ObservableCollection<ITool>();
         private readonly UndoManager _undoManager;
         public bool[] CheckTiles;
@@ -85,7 +86,7 @@ namespace TEdit.ViewModel
         private bool _isAutoSaveEnabled = true;
         private ICommand _launchWikiCommand;
         private WriteableBitmap _minimapImage;
-        private MorphBiome _morphBiomeTarget;
+        private string _morphBiomeTarget;
         private PixelMapManager _pixelMap;
         private ProgressChangedEventArgs _progress;
         private Chest _selectedChest;
@@ -123,6 +124,9 @@ namespace TEdit.ViewModel
         private ICommand _showNewsCommand;
         private string _windowTitle;
         private ICommand _checkUpdatesCommand;
+
+
+
 
         static WorldViewModel()
         {
@@ -398,7 +402,7 @@ namespace TEdit.ViewModel
             get { return _plugins; }
         }
 
-        public MorphBiome MorphBiomeTarget
+        public string MorphBiomeTarget
         {
             get { return _morphBiomeTarget; }
             set { Set(nameof(MorphBiomeTarget), ref _morphBiomeTarget, value); }
@@ -534,6 +538,8 @@ namespace TEdit.ViewModel
         {
             get { return _brush; }
         }
+
+        public MorphToolOptions MorphToolOptions => _MorphToolOptions;
 
         public TilePicker TilePicker
         {

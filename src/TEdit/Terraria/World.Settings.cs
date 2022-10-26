@@ -29,6 +29,9 @@ namespace TEdit.Terraria
         public static BestiaryData BestiaryData { get; set; }
         public static MorphConfiguration MorphSettings { get; set; }
 
+        public static List<string> Biomes => MorphSettings.Biomes.Keys.ToList();
+        public static Dictionary<string,int> MossTypes => MorphSettings.MossTypes;
+
         private static readonly Dictionary<string, XNA.Color> _globalColors = new Dictionary<string, XNA.Color>();
         private static readonly Dictionary<string, int> _npcIds = new Dictionary<string, int>();
         private static readonly Dictionary<int, Vector2Short> _npcFrames = new Dictionary<int, Vector2Short>();

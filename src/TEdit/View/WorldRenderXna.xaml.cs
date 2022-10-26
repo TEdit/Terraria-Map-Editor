@@ -386,7 +386,7 @@ namespace TEdit.View
                     if (interval.X == 0) interval.X = 2;
                     if (interval.Y == 0) interval.Y = 2;
 
-                    sprite.IsAnimated = tile.IsAnimated;
+                    sprite.IsAnimated = tile.IsAnimated && tile.IsFramed;
 
                     if (tile.Id == 172) { sprite.SizePixelsInterval += new Vector2Short(3, 3); }
                     else if (tile.Id == 216) { sprite.SizePixelsInterval += new Vector2Short(2, 4); }

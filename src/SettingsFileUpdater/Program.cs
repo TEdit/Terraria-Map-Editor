@@ -56,11 +56,14 @@ namespace SettingsFileUpdater
             //     wall.SetAttributeValue("Color", item.Value);
             // }
 
+            var bestiaryNpcs = wrapper.GetBestiaryData().ToList();
+
+
 
             Console.WriteLine(wrapper.GetMaxCounts());
 
-            Console.WriteLine(wrapper.GetTilesXml());
-            Console.WriteLine(wrapper.GetWallsXml());
+            //Console.WriteLine(wrapper.GetTilesXml());
+            //Console.WriteLine(wrapper.GetWallsXml());
             Console.WriteLine(wrapper.GetItemsXml());
             Console.WriteLine(wrapper.GetMobsText());
             Console.WriteLine(wrapper.GetNpcsXml());

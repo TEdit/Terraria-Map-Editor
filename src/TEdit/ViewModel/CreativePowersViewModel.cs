@@ -1,7 +1,10 @@
 ﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
+using Microsoft.Xna.Framework;
+using System;
 using System.Windows.Input;
 using TEdit.Terraria;
+using TEdit.Utility;
 
 namespace TEdit.ViewModel
 {
@@ -100,22 +103,60 @@ namespace TEdit.ViewModel
             set { Set(nameof(EnableTimeSpeed), ref _EnableTimeSpeed, value); }
         }
 
+        /// <summary>
+        /// Two part mapping
+        /// 0 - 0.5f maps to 0.1x spawn to 1x spawn rate
+        /// 0.5f to 1f maps to 1x spawn to 10x spawn rate
+        /// </summary>
         public float SpawnRate
         {
             get { return _SpawnRate; }
-            set { Set(nameof(SpawnRate), ref _SpawnRate, value); }
+            set
+            {
+                Set(nameof(SpawnRate), ref _SpawnRate, value);
+                RaisePropertyChanged(nameof(SpawnRateUI));
+            }
         }
+
+        public float SpawnRateUI => (SpawnRate < 0.5f) ? Calc.Remap(SpawnRate, 0.0f, 0.5f, 0.1f, 1f) : Calc.Remap(SpawnRate, 0.5f, 1f, 1f, 10f);
+
+        /// <summary>
+        /// Enemy difficulty
+        /// 0: 3x master difficulty
+        /// 0.3333333f: 2x expert difficulty
+        /// 0.6666666f: 1x normal difficulty
+        /// 1: 0.5x creative difficulty
+        /// </summary>
         public float Difficulty
         {
             get { return _Difficulty; }
-            set { Set(nameof(Difficulty), ref _Difficulty, value); }
+            set
+            {
+                Set(nameof(Difficulty), ref _Difficulty, value);
+                RaisePropertyChanged(nameof(DifficultyUI));
+            }
         }
 
+        public float DifficultyUI => (float)System.Math.Round(
+            ((double)this.Difficulty > 0.330000013113022 ?
+            Calc.Remap(Difficulty, 0.33f, 1f, 1f, 3f) :
+            Calc.Remap(Difficulty, 0.0f, 0.33f, 0.5f, 1f)) * 20) / 20f;
+
+
+        /// <summary>
+        /// 0 to 1.0f maps to 0x to 24x time rate
+        /// </summary>
         public float TimeSpeed
         {
             get { return _TimeSpeed; }
-            set { Set(nameof(TimeSpeed), ref _TimeSpeed, value); }
+            set
+            {
+                Set(nameof(TimeSpeed), ref _TimeSpeed, value);
+                RaisePropertyChanged(nameof(TimeSpeedUI));
+            }
         }
+
+        public float TimeSpeedUI => (int)Math.Round((double)Calc.Remap(TimeSpeed, 0.0f, 1f, 1f, 24f));
 
         public bool IsBiomeSpreadFrozen
         {
