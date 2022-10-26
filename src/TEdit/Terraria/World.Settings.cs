@@ -437,7 +437,7 @@ namespace TEdit.Terraria
                 string name = (string)xElement.Attribute("Name");
                 NpcIds[name] = id;
                 NpcNames[id] = name;
-                var frames = StringToVector2Short((string)xElement.Attribute("Size"), 16, 40);
+                var frames = StringToVector2Short((string)xElement.Attribute("Size"), 0, 0);
                 NpcFrames[id] = frames;
             }
 

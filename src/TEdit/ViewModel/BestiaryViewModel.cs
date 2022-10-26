@@ -138,7 +138,6 @@ namespace TEdit.ViewModel
                     npcData.BannerId >= 0)
                 {
                     _wvm.CurrentWorld.KilledMobs[npcData.BannerId] = item.Defeated;
-
                 }
             }
         }

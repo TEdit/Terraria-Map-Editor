@@ -277,30 +277,30 @@ namespace TEdit.View
         {
             _textures.Add("Spawn", WriteableBitmapEx.ResourceToTexture2D("TEdit.Images.Overlays.spawn_marker.png", e.GraphicsDevice));
             _textures.Add("Dungeon", WriteableBitmapEx.ResourceToTexture2D("TEdit.Images.Overlays.dungeon_marker.png", e.GraphicsDevice));
-            _textures.Add("Old Man", WriteableBitmapEx.ResourceToTexture2D("TEdit.Images.Overlays.npc_old_man.png", e.GraphicsDevice));
-            _textures.Add("Arms Dealer", WriteableBitmapEx.ResourceToTexture2D("TEdit.Images.Overlays.npc_arms_dealer.png", e.GraphicsDevice));
-            _textures.Add("Clothier", WriteableBitmapEx.ResourceToTexture2D("TEdit.Images.Overlays.npc_clothier.png", e.GraphicsDevice));
-            _textures.Add("Demolitionist", WriteableBitmapEx.ResourceToTexture2D("TEdit.Images.Overlays.npc_demolitionist.png", e.GraphicsDevice));
-            _textures.Add("Dryad", WriteableBitmapEx.ResourceToTexture2D("TEdit.Images.Overlays.npc_dryad.png", e.GraphicsDevice));
-            _textures.Add("Guide", WriteableBitmapEx.ResourceToTexture2D("TEdit.Images.Overlays.npc_guide.png", e.GraphicsDevice));
-            _textures.Add("Merchant", WriteableBitmapEx.ResourceToTexture2D("TEdit.Images.Overlays.npc_merchant.png", e.GraphicsDevice));
-            _textures.Add("Nurse", WriteableBitmapEx.ResourceToTexture2D("TEdit.Images.Overlays.npc_nurse.png", e.GraphicsDevice));
-            _textures.Add("Goblin Tinkerer", WriteableBitmapEx.ResourceToTexture2D("TEdit.Images.Overlays.npc_goblin.png", e.GraphicsDevice));
-            _textures.Add("Wizard", WriteableBitmapEx.ResourceToTexture2D("TEdit.Images.Overlays.npc_wizard.png", e.GraphicsDevice));
-            _textures.Add("Mechanic", WriteableBitmapEx.ResourceToTexture2D("TEdit.Images.Overlays.npc_mechanic.png", e.GraphicsDevice));
-            _textures.Add("Santa Claus", WriteableBitmapEx.ResourceToTexture2D("TEdit.Images.Overlays.npc_santa_claus.png", e.GraphicsDevice));
-            _textures.Add("Truffle", WriteableBitmapEx.ResourceToTexture2D("TEdit.Images.Overlays.npc_truffle.png", e.GraphicsDevice));
-            _textures.Add("Steampunker", WriteableBitmapEx.ResourceToTexture2D("TEdit.Images.Overlays.npc_steampunker.png", e.GraphicsDevice));
-            _textures.Add("Dye Trader", WriteableBitmapEx.ResourceToTexture2D("TEdit.Images.Overlays.npc_dyetrader.png", e.GraphicsDevice));
-            _textures.Add("Party Girl", WriteableBitmapEx.ResourceToTexture2D("TEdit.Images.Overlays.npc_partygirl.png", e.GraphicsDevice));
-            _textures.Add("Cyborg", WriteableBitmapEx.ResourceToTexture2D("TEdit.Images.Overlays.npc_cyborg.png", e.GraphicsDevice));
-            _textures.Add("Painter", WriteableBitmapEx.ResourceToTexture2D("TEdit.Images.Overlays.npc_painter.png", e.GraphicsDevice));
-            _textures.Add("Witch Doctor", WriteableBitmapEx.ResourceToTexture2D("TEdit.Images.Overlays.npc_witch_doctor.png", e.GraphicsDevice));
-            _textures.Add("Pirate", WriteableBitmapEx.ResourceToTexture2D("TEdit.Images.Overlays.npc_pirate.png", e.GraphicsDevice));
-            _textures.Add("Stylist", WriteableBitmapEx.ResourceToTexture2D("TEdit.Images.Overlays.npc_stylist.png", e.GraphicsDevice));
-            _textures.Add("Angler", WriteableBitmapEx.ResourceToTexture2D("TEdit.Images.Overlays.npc_angler.png", e.GraphicsDevice));
-            _textures.Add("Tax Collector", WriteableBitmapEx.ResourceToTexture2D("TEdit.Images.Overlays.npc_tax_collector.png", e.GraphicsDevice));
-            _textures.Add("Tavernkeep", WriteableBitmapEx.ResourceToTexture2D("TEdit.Images.Overlays.npc_tavernkeep.png", e.GraphicsDevice));
+            //_textures.Add("Old Man", WriteableBitmapEx.ResourceToTexture2D("TEdit.Images.Overlays.npc_old_man.png", e.GraphicsDevice));
+            //_textures.Add("Arms Dealer", WriteableBitmapEx.ResourceToTexture2D("TEdit.Images.Overlays.npc_arms_dealer.png", e.GraphicsDevice));
+            //_textures.Add("Clothier", WriteableBitmapEx.ResourceToTexture2D("TEdit.Images.Overlays.npc_clothier.png", e.GraphicsDevice));
+            //_textures.Add("Demolitionist", WriteableBitmapEx.ResourceToTexture2D("TEdit.Images.Overlays.npc_demolitionist.png", e.GraphicsDevice));
+            //_textures.Add("Dryad", WriteableBitmapEx.ResourceToTexture2D("TEdit.Images.Overlays.npc_dryad.png", e.GraphicsDevice));
+            //_textures.Add("Guide", WriteableBitmapEx.ResourceToTexture2D("TEdit.Images.Overlays.npc_guide.png", e.GraphicsDevice));
+            //_textures.Add("Merchant", WriteableBitmapEx.ResourceToTexture2D("TEdit.Images.Overlays.npc_merchant.png", e.GraphicsDevice));
+            //_textures.Add("Nurse", WriteableBitmapEx.ResourceToTexture2D("TEdit.Images.Overlays.npc_nurse.png", e.GraphicsDevice));
+            //_textures.Add("Goblin Tinkerer", WriteableBitmapEx.ResourceToTexture2D("TEdit.Images.Overlays.npc_goblin.png", e.GraphicsDevice));
+            //_textures.Add("Wizard", WriteableBitmapEx.ResourceToTexture2D("TEdit.Images.Overlays.npc_wizard.png", e.GraphicsDevice));
+            //_textures.Add("Mechanic", WriteableBitmapEx.ResourceToTexture2D("TEdit.Images.Overlays.npc_mechanic.png", e.GraphicsDevice));
+            //_textures.Add("Santa Claus", WriteableBitmapEx.ResourceToTexture2D("TEdit.Images.Overlays.npc_santa_claus.png", e.GraphicsDevice));
+            //_textures.Add("Truffle", WriteableBitmapEx.ResourceToTexture2D("TEdit.Images.Overlays.npc_truffle.png", e.GraphicsDevice));
+            //_textures.Add("Steampunker", WriteableBitmapEx.ResourceToTexture2D("TEdit.Images.Overlays.npc_steampunker.png", e.GraphicsDevice));
+            //_textures.Add("Dye Trader", WriteableBitmapEx.ResourceToTexture2D("TEdit.Images.Overlays.npc_dyetrader.png", e.GraphicsDevice));
+            //_textures.Add("Party Girl", WriteableBitmapEx.ResourceToTexture2D("TEdit.Images.Overlays.npc_partygirl.png", e.GraphicsDevice));
+            //_textures.Add("Cyborg", WriteableBitmapEx.ResourceToTexture2D("TEdit.Images.Overlays.npc_cyborg.png", e.GraphicsDevice));
+            //_textures.Add("Painter", WriteableBitmapEx.ResourceToTexture2D("TEdit.Images.Overlays.npc_painter.png", e.GraphicsDevice));
+            //_textures.Add("Witch Doctor", WriteableBitmapEx.ResourceToTexture2D("TEdit.Images.Overlays.npc_witch_doctor.png", e.GraphicsDevice));
+            //_textures.Add("Pirate", WriteableBitmapEx.ResourceToTexture2D("TEdit.Images.Overlays.npc_pirate.png", e.GraphicsDevice));
+            //_textures.Add("Stylist", WriteableBitmapEx.ResourceToTexture2D("TEdit.Images.Overlays.npc_stylist.png", e.GraphicsDevice));
+            //_textures.Add("Angler", WriteableBitmapEx.ResourceToTexture2D("TEdit.Images.Overlays.npc_angler.png", e.GraphicsDevice));
+            //_textures.Add("Tax Collector", WriteableBitmapEx.ResourceToTexture2D("TEdit.Images.Overlays.npc_tax_collector.png", e.GraphicsDevice));
+            //_textures.Add("Tavernkeep", WriteableBitmapEx.ResourceToTexture2D("TEdit.Images.Overlays.npc_tavernkeep.png", e.GraphicsDevice));
             _textures.Add("Grid", WriteableBitmapEx.ResourceToTexture2D("TEdit.Images.Overlays.grid.png", e.GraphicsDevice));
         }
 
@@ -2848,9 +2848,12 @@ namespace TEdit.View
             {
                 Texture2D npcTexture = (Texture2D)_textureDictionary.GetNPC(npcId);
                 var size = World.NpcFrames[npcId];
+                short height = size.Y > (short)0 ? size.Y : (short)55; // default 55 for normal height people
+
+                size = new Vector2Short(size.X, height);
                 var frames = npcTexture.Height / size.Y;
                 int width = npcTexture.Width;
-                int height = 55;
+
                 if (npc.SpriteId == 638) // Fix Texture Dog
                 {
                     height = 37;
