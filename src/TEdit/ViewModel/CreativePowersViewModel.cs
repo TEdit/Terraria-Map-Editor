@@ -13,18 +13,18 @@ namespace TEdit.ViewModel
         private readonly WorldViewModel _wvm;
 
         private bool _IsTimeFrozen = false;
-        private bool _IsGodMode = false;
+        //private bool _IsGodMode = false;
         private bool _IsRainFrozen = false;
         private bool _IsWindFrozen = false;
-        private bool _IsIncreasePlacementRange = false;
+        //private bool _IsIncreasePlacementRange = false;
         private bool _IsBiomeSpreadFrozen = false;
 
         private float _TimeSpeed = 0f;
-        private float _Difficulty = 0f;
+        //private float _Difficulty = 0f;
         private float _SpawnRate = 0f;
 
         private bool _EnableTimeSpeed = false;
-        private bool _EnableDifficulty = false;
+        //private bool _EnableDifficulty = false;
         private bool _EnableSpawnRate = false;
 
         private ICommand _SavePowersCommand;
@@ -59,15 +59,15 @@ namespace TEdit.ViewModel
             EnableTimeSpeed = (timeSpeed != null);
             TimeSpeed = timeSpeed ?? 0f;
 
-            var setdifficulty = powers.GetPowerFloat(CreativePowers.CreativePowerId.setdifficulty);
-            EnableDifficulty = (setdifficulty != null);
-            Difficulty = setdifficulty ?? 0f;
+            //var setdifficulty = powers.GetPowerFloat(CreativePowers.CreativePowerId.setdifficulty);
+            //EnableDifficulty = (setdifficulty != null);
+            //Difficulty = setdifficulty ?? 0f;
 
             IsTimeFrozen = powers.GetPowerBool(CreativePowers.CreativePowerId.time_setfrozen) ?? false;
-            IsGodMode = powers.GetPowerBool(CreativePowers.CreativePowerId.godmode) ?? false;
+            //IsGodMode = powers.GetPowerBool(CreativePowers.CreativePowerId.godmode) ?? false;
             IsRainFrozen = powers.GetPowerBool(CreativePowers.CreativePowerId.rain_setfrozen) ?? false;
             IsWindFrozen = powers.GetPowerBool(CreativePowers.CreativePowerId.wind_setfrozen) ?? false;
-            IsIncreasePlacementRange = powers.GetPowerBool(CreativePowers.CreativePowerId.increaseplacementrange) ?? false;
+            //IsIncreasePlacementRange = powers.GetPowerBool(CreativePowers.CreativePowerId.increaseplacementrange) ?? false;
             IsBiomeSpreadFrozen = powers.GetPowerBool(CreativePowers.CreativePowerId.biomespread_setfrozen) ?? false;
         }
 
@@ -78,12 +78,12 @@ namespace TEdit.ViewModel
 
             powers.SetPowerStateSafe(CreativePowers.CreativePowerId.setspawnrate, value: EnableSpawnRate ? SpawnRate : null);
             powers.SetPowerStateSafe(CreativePowers.CreativePowerId.time_setspeed, value: EnableTimeSpeed ? TimeSpeed : null);
-            powers.SetPowerStateSafe(CreativePowers.CreativePowerId.setdifficulty, value: EnableDifficulty ? Difficulty : null);
+            //powers.SetPowerStateSafe(CreativePowers.CreativePowerId.setdifficulty, value: EnableDifficulty ? Difficulty : null);
             powers.SetPowerStateSafe(CreativePowers.CreativePowerId.time_setfrozen, isEnabled: IsTimeFrozen);
-            powers.SetPowerStateSafe(CreativePowers.CreativePowerId.godmode, isEnabled: IsGodMode);
+            //powers.SetPowerStateSafe(CreativePowers.CreativePowerId.godmode, isEnabled: IsGodMode);
             powers.SetPowerStateSafe(CreativePowers.CreativePowerId.rain_setfrozen, isEnabled: IsRainFrozen);
             powers.SetPowerStateSafe(CreativePowers.CreativePowerId.wind_setfrozen, isEnabled: IsWindFrozen);
-            powers.SetPowerStateSafe(CreativePowers.CreativePowerId.increaseplacementrange, isEnabled: IsIncreasePlacementRange);
+            //powers.SetPowerStateSafe(CreativePowers.CreativePowerId.increaseplacementrange, isEnabled: IsIncreasePlacementRange);
             powers.SetPowerStateSafe(CreativePowers.CreativePowerId.biomespread_setfrozen, isEnabled: IsBiomeSpreadFrozen);
         }
 
@@ -92,11 +92,11 @@ namespace TEdit.ViewModel
             get { return _EnableSpawnRate; }
             set { Set(nameof(EnableSpawnRate), ref _EnableSpawnRate, value); }
         }
-        public bool EnableDifficulty
-        {
-            get { return _EnableDifficulty; }
-            set { Set(nameof(EnableDifficulty), ref _EnableDifficulty, value); }
-        }
+        //public bool EnableDifficulty
+        //{
+        //    get { return _EnableDifficulty; }
+        //    set { Set(nameof(EnableDifficulty), ref _EnableDifficulty, value); }
+        //}
         public bool EnableTimeSpeed
         {
             get { return _EnableTimeSpeed; }
@@ -127,20 +127,20 @@ namespace TEdit.ViewModel
         /// 0.6666666f: 1x normal difficulty
         /// 1: 0.5x creative difficulty
         /// </summary>
-        public float Difficulty
-        {
-            get { return _Difficulty; }
-            set
-            {
-                Set(nameof(Difficulty), ref _Difficulty, value);
-                RaisePropertyChanged(nameof(DifficultyUI));
-            }
-        }
+        //public float Difficulty
+        //{
+        //    get { return _Difficulty; }
+        //    set
+        //    {
+        //        Set(nameof(Difficulty), ref _Difficulty, value);
+        //        RaisePropertyChanged(nameof(DifficultyUI));
+        //    }
+        //}
 
-        public float DifficultyUI => (float)System.Math.Round(
-            ((double)this.Difficulty > 0.330000013113022 ?
-            Calc.Remap(Difficulty, 0.33f, 1f, 1f, 3f) :
-            Calc.Remap(Difficulty, 0.0f, 0.33f, 0.5f, 1f)) * 20) / 20f;
+        //public float DifficultyUI => (float)System.Math.Round(
+        //    ((double)this.Difficulty > 0.330000013113022 ?
+        //    Calc.Remap(Difficulty, 0.33f, 1f, 1f, 3f) :
+        //    Calc.Remap(Difficulty, 0.0f, 0.33f, 0.5f, 1f)) * 20) / 20f;
 
 
         /// <summary>
@@ -164,11 +164,11 @@ namespace TEdit.ViewModel
             set { Set(nameof(IsBiomeSpreadFrozen), ref _IsBiomeSpreadFrozen, value); }
         }
 
-        public bool IsIncreasePlacementRange
-        {
-            get { return _IsIncreasePlacementRange; }
-            set { Set(nameof(IsIncreasePlacementRange), ref _IsIncreasePlacementRange, value); }
-        }
+        //public bool IsIncreasePlacementRange
+        //{
+        //    get { return _IsIncreasePlacementRange; }
+        //    set { Set(nameof(IsIncreasePlacementRange), ref _IsIncreasePlacementRange, value); }
+        //}
         public bool IsWindFrozen
         {
             get { return _IsWindFrozen; }
@@ -180,11 +180,12 @@ namespace TEdit.ViewModel
             get { return _IsRainFrozen; }
             set { Set(nameof(IsRainFrozen), ref _IsRainFrozen, value); }
         }
-        public bool IsGodMode
-        {
-            get { return _IsGodMode; }
-            set { Set(nameof(IsGodMode), ref _IsGodMode, value); }
-        }
+
+        //public bool IsGodMode
+        //{
+        //    get { return _IsGodMode; }
+        //    set { Set(nameof(IsGodMode), ref _IsGodMode, value); }
+        //}
         public bool IsTimeFrozen
         {
             get { return _IsTimeFrozen; }

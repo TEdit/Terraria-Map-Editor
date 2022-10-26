@@ -15,14 +15,14 @@ namespace TEdit.Terraria
             // time_setnoon = 2,
             // time_setdusk = 3,
             // time_setmidnight = 4,
-            godmode = 5,
+            //godmode = 5,                  // player only
             // wind_setstrength = 6,
             // rain_setstrength = 7,
             time_setspeed = 8,
             rain_setfrozen = 9,
             wind_setfrozen = 10,
-            increaseplacementrange = 11,
-            setdifficulty = 12,
+            //increaseplacementrange = 11, // player only
+            //setdifficulty = 12,          // player only
             biomespread_setfrozen = 13,
             setspawnrate = 14,
         }
@@ -34,7 +34,7 @@ namespace TEdit.Terraria
             switch (args.Id)
             {
                 case CreativePowerId.time_setspeed:
-                case CreativePowerId.setdifficulty:
+                //case CreativePowerId.setdifficulty:
                 case CreativePowerId.setspawnrate:
                     _powers[args.Id] = MathHelper.Clamp((float)args.Value, 0, 1f);
                     return;
@@ -49,7 +49,7 @@ namespace TEdit.Terraria
             switch (id)
             {
                 case CreativePowerId.time_setspeed:
-                case CreativePowerId.setdifficulty:
+                //case CreativePowerId.setdifficulty:
                 case CreativePowerId.setspawnrate:
                     if (_powers.ContainsKey(id) && value != null)
                     {
@@ -70,7 +70,7 @@ namespace TEdit.Terraria
             switch (args.Id)
             {
                 case CreativePowerId.time_setspeed:
-                case CreativePowerId.setdifficulty:
+                //case CreativePowerId.setdifficulty:
                 case CreativePowerId.setspawnrate:
                     if (_powers.ContainsKey(args.Id))
                     {
@@ -91,7 +91,7 @@ namespace TEdit.Terraria
             switch (id)
             {
                 case CreativePowerId.time_setspeed:
-                case CreativePowerId.setdifficulty:
+                //case CreativePowerId.setdifficulty:
                 case CreativePowerId.setspawnrate:
                     throw new System.ArgumentOutOfRangeException(nameof(id), $"Power {id.ToString()} is not type of boolean.");
                 default:
@@ -108,7 +108,7 @@ namespace TEdit.Terraria
             switch (id)
             {
                 case CreativePowerId.time_setspeed:
-                case CreativePowerId.setdifficulty:
+                //case CreativePowerId.setdifficulty:
                 case CreativePowerId.setspawnrate:
                     if (_powers.TryGetValue(id, out object v))
                     {
@@ -134,9 +134,9 @@ namespace TEdit.Terraria
                     case CreativePowerId.time_setfrozen:
                         w.Write((bool)item.Value);
                         break;
-                    case CreativePowerId.godmode:
-                        w.Write((bool)item.Value);
-                        break;
+                    //case CreativePowerId.godmode:
+                    //    w.Write((bool)item.Value);
+                    //    break;
                     case CreativePowerId.time_setspeed:
                         w.Write(MathHelper.Clamp((float)item.Value, 0, 1f));
                         break;
@@ -146,12 +146,12 @@ namespace TEdit.Terraria
                     case CreativePowerId.wind_setfrozen:
                         w.Write((bool)item.Value);
                         break;
-                    case CreativePowerId.increaseplacementrange:
-                        w.Write((bool)item.Value);
-                        break;
-                    case CreativePowerId.setdifficulty:
-                        w.Write(MathHelper.Clamp((float)item.Value, 0, 1f));
-                        break;
+                    //case CreativePowerId.increaseplacementrange:
+                    //    w.Write((bool)item.Value);
+                    //    break;
+                    //case CreativePowerId.setdifficulty:
+                    //    w.Write(MathHelper.Clamp((float)item.Value, 0, 1f));
+                    //    break;
                     case CreativePowerId.biomespread_setfrozen:
                         w.Write((bool)item.Value);
                         break;
@@ -174,9 +174,9 @@ namespace TEdit.Terraria
                     case CreativePowerId.time_setfrozen:
                         _powers[powerId] = r.ReadBoolean();
                         break;
-                    case CreativePowerId.godmode:
-                        _powers[powerId] = r.ReadBoolean();
-                        break; ;
+                    //case CreativePowerId.godmode:
+                    //    _powers[powerId] = r.ReadBoolean();
+                    //    break; ;
                     case CreativePowerId.time_setspeed:
                         _powers[powerId] = r.ReadSingle();
                         break;
@@ -186,12 +186,12 @@ namespace TEdit.Terraria
                     case CreativePowerId.wind_setfrozen:
                         _powers[powerId] = r.ReadBoolean();
                         break;
-                    case CreativePowerId.increaseplacementrange:
-                        _powers[powerId] = r.ReadBoolean();
-                        break;
-                    case CreativePowerId.setdifficulty:
-                        _powers[powerId] = r.ReadSingle();
-                        break;
+                    //case CreativePowerId.increaseplacementrange:
+                    //    _powers[powerId] = r.ReadBoolean();
+                    //    break;
+                    //case CreativePowerId.setdifficulty:
+                    //    _powers[powerId] = r.ReadSingle();
+                    //    break;
                     case CreativePowerId.biomespread_setfrozen:
                         _powers[powerId] = r.ReadBoolean();
                         break;
