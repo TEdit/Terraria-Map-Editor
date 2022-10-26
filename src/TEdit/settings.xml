@@ -4657,12 +4657,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
                 <Frame UV="972,216" Name="Cockatiel Statue" Variety="Right" />
             </Frames>
         </Tile>
-        <Tile Id="106" Color="#FFBF8E6F" Name="Sawmill" Framed="true" Size="3,3" Placement="floor">
-            <Frames>
-                <Frame UV="0,0" Variety="A" />
-                <Frame UV="0,54" Variety="B" />
-            </Frames>
-        </Tile>
+        <Tile Id="106" Color="#FFBF8E6F" Name="Sawmill" Framed="true" Size="3,3" Placement="floor" IsAnimated="true" />
         <Tile Id="107" Color="#FF0B508F" Name="Cobalt Ore" Solid="true" Blends="true" MergeWith="0" />
         <Tile Id="108" Color="#FF5BA9A9" Name="Mythril Ore" Solid="true" Blends="true" MergeWith="0" />
         <Tile Id="109" Color="#FF4EC1E3" Name="Hallowed Grass Block" Solid="true" Blends="true" MergeWith="0" Special="Grass" Light="true" />
@@ -4806,54 +4801,10 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
                 <Frame UV="306,18" Variety="Large Purple B" Anchor="Top" />
                 <Frame UV="306,36" Variety="Large Purple B" Anchor="Right" />
                 <Frame UV="306,54" Variety="Large Purple B" Anchor="Left" />
-                <Frame UV="324,0" Variety="Gelatin Crystal A1" Anchor="Bottom" />
-                <Frame UV="342,0" Variety="Gelatin Crystal B1" Anchor="Bottom" />
-                <Frame UV="360,0" Variety="Gelatin Crystal C1" Anchor="Bottom" />
-                <Frame UV="378,0" Variety="Gelatin Crystal D1" Anchor="Bottom" />
-                <Frame UV="396,0" Variety="Gelatin Crystal E1" Anchor="Bottom" />
-                <Frame UV="414,0" Variety="Gelatin Crystal F1" Anchor="Bottom" />
-                <Frame UV="324,18" Variety="Gelatin Crystal A1" Anchor="Top" />
-                <Frame UV="342,18" Variety="Gelatin Crystal B1" Anchor="Top" />
-                <Frame UV="360,18" Variety="Gelatin Crystal C1" Anchor="Top" />
-                <Frame UV="378,18" Variety="Gelatin Crystal D1" Anchor="Top" />
-                <Frame UV="396,18" Variety="Gelatin Crystal E1" Anchor="Top" />
-                <Frame UV="414,18" Variety="Gelatin Crystal F1" Anchor="Top" />
-                <Frame UV="324,36" Variety="Gelatin Crystal A1" Anchor="Right" />
-                <Frame UV="342,36" Variety="Gelatin Crystal B1" Anchor="Right" />
-                <Frame UV="360,36" Variety="Gelatin Crystal C1" Anchor="Right" />
-                <Frame UV="378,36" Variety="Gelatin Crystal D1" Anchor="Right" />
-                <Frame UV="396,36" Variety="Gelatin Crystal E1" Anchor="Right" />
-                <Frame UV="414,36" Variety="Gelatin Crystal F1" Anchor="Right" />
-                <Frame UV="324,54" Variety="Gelatin Crystal A1" Anchor="Left" />
-                <Frame UV="342,54" Variety="Gelatin Crystal B1" Anchor="Left" />
-                <Frame UV="360,54" Variety="Gelatin Crystal C1" Anchor="Left" />
-                <Frame UV="378,54" Variety="Gelatin Crystal D1" Anchor="Left" />
-                <Frame UV="396,54" Variety="Gelatin Crystal E1" Anchor="Left" />
-                <Frame UV="414,54" Variety="Gelatin Crystal F1" Anchor="Left" />
-                <Frame UV="324,72" Variety="Gelatin Crystal A2" Anchor="Bottom" />
-                <Frame UV="342,72" Variety="Gelatin Crystal B2" Anchor="Bottom" />
-                <Frame UV="360,72" Variety="Gelatin Crystal C2" Anchor="Bottom" />
-                <Frame UV="378,72" Variety="Gelatin Crystal D2" Anchor="Bottom" />
-                <Frame UV="396,72" Variety="Gelatin Crystal E2" Anchor="Bottom" />
-                <Frame UV="414,72" Variety="Gelatin Crystal F2" Anchor="Bottom" />
-                <Frame UV="324,90" Variety="Gelatin Crystal A2" Anchor="Top" />
-                <Frame UV="342,90" Variety="Gelatin Crystal B2" Anchor="Top" />
-                <Frame UV="360,90" Variety="Gelatin Crystal C2" Anchor="Top" />
-                <Frame UV="378,90" Variety="Gelatin Crystal D2" Anchor="Top" />
-                <Frame UV="396,90" Variety="Gelatin Crystal E2" Anchor="Top" />
-                <Frame UV="414,90" Variety="Gelatin Crystal F2" Anchor="Top" />
-                <Frame UV="324,108" Variety="Gelatin Crystal A2" Anchor="Right" />
-                <Frame UV="342,108" Variety="Gelatin Crystal B2" Anchor="Right" />
-                <Frame UV="360,108" Variety="Gelatin Crystal C2" Anchor="Right" />
-                <Frame UV="378,108" Variety="Gelatin Crystal D2" Anchor="Right" />
-                <Frame UV="396,108" Variety="Gelatin Crystal E2" Anchor="Right" />
-                <Frame UV="414,108" Variety="Gelatin Crystal F2" Anchor="Right" />
-                <Frame UV="324,126" Variety="Gelatin Crystal A2" Anchor="Left" />
-                <Frame UV="342,126" Variety="Gelatin Crystal B2" Anchor="Left" />
-                <Frame UV="360,126" Variety="Gelatin Crystal C2" Anchor="Left" />
-                <Frame UV="378,126" Variety="Gelatin Crystal D2" Anchor="Left" />
-                <Frame UV="396,126" Variety="Gelatin Crystal E2" Anchor="Left" />
-                <Frame UV="414,126" Variety="Gelatin Crystal F2" Anchor="Left" />
+                <Frame UV="324,0" Name="Gelatin Crystal" Anchor="Bottom" />
+                <Frame UV="324,18" Name="Gelatin Crystal" Anchor="Top" />
+                <Frame UV="324,36" Name="Gelatin Crystal" Anchor="Right" />
+                <Frame UV="324,54" Name="Gelatin Crystal" Anchor="Left" />
             </Frames>
         </Tile>
         <Tile Id="130" Color="#FFA0A0A0" Name="Active Stone Block" Solid="true" Blends="true" Stone="true" />
@@ -5802,16 +5753,26 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Tile Id="206" Color="#FF7CAFC9" Name="Ice Brick" Solid="true" Blends="true" MergeWith="0" />
         <Tile Id="207" Color="#FF909490" Name="Water Fountain" Framed="true" Size="2,4" IsAnimated="true">
             <Frames>
-                <Frame UV="0,0" Name="Pure Water Fountain" />
-                <Frame UV="36,0" Name="Desert Water Fountain" />
-                <Frame UV="72,0" Name="Jungle Water Fountain" />
-                <Frame UV="108,0" Name="Icy Water Fountain" />
-                <Frame UV="144,0" Name="Corrupt Water Fountain" />
-                <Frame UV="180,0" Name="Crimson Water Fountain" />
-                <Frame UV="216,0" Name="Hallowed Water Fountain" />
-                <Frame UV="252,0" Name="Blood Water Fountain" />
-                <Frame UV="288,0" Name="Cavern Water Fountain" />
-                <Frame UV="324,0" Name="Oasis Water Fountain" />
+                <Frame UV="0,0" Name="Pure Water Fountain" Variety="Off" />
+                <Frame UV="0,72" Name="Pure Water Fountain" Variety="On" />
+                <Frame UV="36,0" Name="Desert Water Fountain" Variety="Off" />
+                <Frame UV="36,72" Name="Desert Water Fountain" Variety="On" />
+                <Frame UV="72,0" Name="Jungle Water Fountain" Variety="Off" />
+                <Frame UV="72,72" Name="Jungle Water Fountain" Variety="On" />
+                <Frame UV="108,0" Name="Icy Water Fountain" Variety="Off" />
+                <Frame UV="108,72" Name="Icy Water Fountain" Variety="On" />
+                <Frame UV="144,0" Name="Corrupt Water Fountain" Variety="Off" />
+                <Frame UV="144,72" Name="Corrupt Water Fountain" Variety="On" />
+                <Frame UV="180,0" Name="Crimson Water Fountain" Variety="Off" />
+                <Frame UV="180,72" Name="Crimson Water Fountain" Variety="On" />
+                <Frame UV="216,0" Name="Hallowed Water Fountain" Variety="Off" />
+                <Frame UV="216,72" Name="Hallowed Water Fountain" Variety="On" />
+                <Frame UV="252,0" Name="Blood Water Fountain" Variety="Off" />
+                <Frame UV="252,72" Name="Blood Water Fountain" Variety="On" />
+                <Frame UV="288,0" Name="Cavern Water Fountain" Variety="Off" />
+                <Frame UV="288,72" Name="Cavern Water Fountain" Variety="On" />
+                <Frame UV="324,0" Name="Oasis Water Fountain" Variety="Off" />
+                <Frame UV="324,72" Name="Oasis Water Fountain" Variety="On" />
             </Frames>
         </Tile>
         <Tile Id="208" Color="#FF586976" Name="Shadewood" Solid="true" Blends="true" MergeWith="0" />
@@ -6564,7 +6525,14 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Tile Id="346" Color="#FF95D459" Name="Chlorophyte Brick" Solid="true" Blends="true" MergeWith="0" />
         <Tile Id="347" Color="#FFEC4A4F" Name="Crimtane Brick" Solid="true" Blends="true" MergeWith="0" />
         <Tile Id="348" Color="#FF2C1AE9" Name="Shroomite Plating" Solid="true" Blends="true" MergeWith="0" />
-        <Tile Id="349" Color="#FF909490" Name="Mushroom Statue" Framed="true" Size="2,3" IsAnimated="true" />
+        <Tile Id="349" Color="#FF909490" Name="Mushroom Statue" Framed="true" Size="2,3" IsAnimated="true">
+            <Frames>
+                <Frame UV="0,0" Variety="Left Off" />
+                <Frame UV="216,0" Variety="Left On" />
+                <Frame UV="0,54" Variety="Right Off" />
+                <Frame UV="216,54" Variety="Right On" />
+            </Frames>
+        </Tile>
         <Tile Id="350" Color="#FF37619B" Name="Martian Conduit Plating" Solid="true" Blends="true" MergeWith="0" />
         <Tile Id="351" Color="#FF1F1F1F" Name="Smoke Block" Solid="true" Blends="true" />
         <Tile Id="352" Color="#FFEE615E" Name="Crimtane Thorns" Solid="true" Blends="true" />
@@ -6732,12 +6700,16 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Tile Id="407" Color="#FFFFE384" Name="Sturdy Fossil Block" Solid="true" Blends="true" />
         <Tile Id="408" Color="#FF555352" Name="Luminite Ore" Solid="true" Blends="true" MergeWith="0" />
         <Tile Id="409" Color="#FF555352" Name="Luminite Brick" Solid="true" Blends="true" />
-        <Tile Id="410" Color="#FF4B8BA6" Name="Lunar Monolith" Framed="true" Size="2,3" IsAnimated="true">
+        <Tile Id="410" Color="#FF4B8BA6" Name="Lunar Monoliths" Framed="true" Size="2,3" IsAnimated="true">
             <Frames>
-                <Frame UV="0,0" Variety="Vortex" />
-                <Frame UV="36,0" Variety="Nebula" />
-                <Frame UV="72,0" Variety="Stardust" />
-                <Frame UV="108,0" Variety="Solar" />
+                <Frame UV="0,0" Name="Vortex Monolith" Variety="Off" />
+                <Frame UV="0,56" Name="Vortex Monolith" Variety="On" />
+                <Frame UV="36,0" Name="Nebula Monolith" Variety="Off" />
+                <Frame UV="36,56" Name="Nebula Monolith" Variety="On" />
+                <Frame UV="72,0" Name="Stardust Monolith" Variety="Off" />
+                <Frame UV="72,56" Name="Stardust Monolith" Variety="On" />
+                <Frame UV="108,0" Name="Solar Monolith" Variety="Off" />
+                <Frame UV="108,56" Name="Solar Monolith" Variety="On" />
             </Frames>
         </Tile>
         <Tile Id="411" Color="#FFE32E2E" Name="Detonator" Framed="true" Size="2,2">
@@ -7446,19 +7418,17 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Tile Id="477" Name="Mowed Grass Block" Solid="true" Color="#FF607044" MergeWith="0" />
         <Tile Id="478" Name="Crimstone Brick" Solid="true" Color="#FFA55557" />
         <Tile Id="479" Name="Smooth Sandstone Block" Solid="true" Color="#FFBC7347" />
-        <Tile Id="480" Name="Blood Moon Monolith" Framed="true" Size="2,3" IsAnimated="true" Color="#FF827C7F" />
+        <Tile Id="480" Name="Blood Moon Monolith" Framed="true" Size="2,3" IsAnimated="true" Color="#FF827C7F">
+            <Frames>
+                <Frame UV="0,0" Variety="Off" />
+                <Frame UV="0,54" Variety="On" />
+            </Frames>
+        </Tile>
         <Tile Id="481" Name="Cracked Blue Brick" Solid="true" Color="#FF383E50" />
         <Tile Id="482" Name="Cracked Green Brick" Solid="true" Color="#FF3E4D47" />
         <Tile Id="483" Name="Cracked Pink Brick" Solid="true" Color="#FF7A405F" />
         <Tile Id="484" Name="Rolling Cactus" Solid="true" Framed="true" Size="2,2" Color="#FF737E3D" />
-        <Tile Id="485" Name="Antlion Larva" Framed="true" Size="2,2" IsAnimated="true" Color="#FFA17956">
-            <Frames>
-                <Frame UV="0,0" Variety="A" />
-                <Frame UV="36,0" Variety="B" />
-                <Frame UV="72,0" Variety="C" />
-                <Frame UV="108,0" Variety="D" />
-            </Frames>
-        </Tile>
+        <Tile Id="485" Name="Antlion Larva" Framed="true" Size="2,2" IsAnimated="true" Color="#FFA17956" />
         <Tile Id="486" Name="Drum Set" Framed="true" Size="3,2" Color="#FF7A775C" />
         <Tile Id="487" Name="Picnic Table" Framed="true" Size="4,2" Color="#FF8D5A57">
             <Frames>
@@ -7592,7 +7562,12 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         </Tile>
         <Tile Id="507" Name="Gold Starry Block" Solid="true" Color="#FF66503D" />
         <Tile Id="508" Name="Blue Starry Block" Solid="true" Color="#FF1F3862" />
-        <Tile Id="509" Name="Void Monolith" Framed="true" Size="2,3" IsAnimated="true" Color="#FF36363A" />
+        <Tile Id="509" Name="Void Monolith" Framed="true" Size="2,3" IsAnimated="true" Color="#FF36363A">
+            <Frames>
+                <Frame UV="0,0" Variety="Off" />
+                <Frame UV="0,54" Variety="On" />
+            </Frames>
+        </Tile>
         <Tile Id="510" Name="Arrow Sign" Framed="true" Size="2,2" Color="#FF73533C">
             <Frames>
                 <Frame UV="0,0" Variety="Right" Anchor="Bottom" />
@@ -8085,8 +8060,18 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Tile Id="561" Name="Marble Column" Color="#FF6E7482" />
         <Tile Id="562" Name="Bamboo Block" Solid="true" Color="#FF737A2D" />
         <Tile Id="563" Name="Large Bamboo Block" Solid="true" Color="#FF737A2D" />
-        <Tile Id="564" Name="Plasma Lamp" Light="true" Framed="true" Size="2,2" IsAnimated="true" Color="#FF575C70" />
-        <Tile Id="565" Name="Fog Machine" Framed="true" Size="2,2" IsAnimated="true" Color="#FF628195" />
+        <Tile Id="564" Name="Plasma Lamp" Light="true" Framed="true" Size="2,2" Color="#FF575C70">
+            <Frames>
+                <Frame UV="0,0" Variety="On" />
+                <Frame UV="36,0" Variety="Off" />
+            </Frames>
+        </Tile>
+        <Tile Id="565" Name="Fog Machine" Framed="true" Size="2,2" IsAnimated="true" Color="#FF628195">
+            <Frames>
+                <Frame UV="0,0" Variety="On" />
+                <Frame UV="36,0" Variety="Off" />
+            </Frames>
+        </Tile>
         <Tile Id="566" Name="Amber Stone Block" Solid="true" Color="#FFA88A64" />
         <Tile Id="567" Name="Garden Gnome" Framed="true" TextureGrid="26,18" Size="1,2" Color="#FF938381">
             <Frames>
@@ -8127,11 +8112,11 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Tile Id="572" Name="Soul in a Bottle" Light="true" Framed="true" Size="1,2" IsAnimated="true" Color="#FF827995">
             <Frames>
                 <Frame UV="0,0" Name="Soul of Light in a Bottle" />
-                <Frame UV="18,0" Name="Soul of Night in a Bottle" />
-                <Frame UV="36,0" Name="Soul of Flight in a Bottle" />
-                <Frame UV="54,0" Name="Soul of Sight in a Bottle" />
-                <Frame UV="72,0" Name="Soul of Might in a Bottle" />
-                <Frame UV="90,0" Name="Soul of Fright in a Bottle" />
+                <Frame UV="0,36" Name="Soul of Night in a Bottle" />
+                <Frame UV="0,72" Name="Soul of Flight in a Bottle" />
+                <Frame UV="0,108" Name="Soul of Sight in a Bottle" />
+                <Frame UV="0,144" Name="Soul of Might in a Bottle" />
+                <Frame UV="0,180" Name="Soul of Fright in a Bottle" />
             </Frames>
         </Tile>
         <Tile Id="573" Name="Tattered Wood Sign" Framed="true" Size="2,2" Color="#FF5E4736">
@@ -8955,7 +8940,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
                 <Frame UV="108,0" Name="Potted Crystal Tree" />
             </Frames>
         </Tile>
-        <Tile Id="624" Name="Abigail's Flower" Framed="true" Size="2,1" Color="#FFBC5543" />
+        <Tile Id="624" Name="Abigail's Flower" Framed="true" TextureGrid="20,18" Color="#FFBC5543" />
         <Tile Id="625" Name="Neon Moss Block" Light="true" Solid="true" Color="#FF906094" Special="Grass" MergeWith="0" Stone="true"/>
         <Tile Id="626" Name="Neon Moss Brick" Light="true" Solid="true" Color="#FF86598D" Special="Grass" MergeWith="0" Stone="true"/>
         <Tile Id="627" Name="Helium Moss Block" Light="true" Solid="true" Color="#FF969696" Special="Grass" MergeWith="0" Stone="true" />
@@ -9075,7 +9060,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
             </Frames>
         </Tile>
         <Tile Id="638" Name="Ash Vines" Light="true" Color="#FF844A3C" />
-        <Tile Id="639" Name="Mana Crystal" Framed="true" Size="2,2" Color="#FF5357A1" />
+        <Tile Id="639" Name="Mana Crystal" Framed="true" Size="2,2" IsAnimated="true" Color="#FF5357A1" />
         <Tile Id="640" Name="Blue Macaw Cage" SolidTop="true" Framed="true" Size="6,3" IsAnimated="true" Color="#FF678478" />
         <Tile Id="641" Name="Reef Block" Solid="true" Color="#FFCD7987" />
         <Tile Id="642" Name="Chlorophyte Extractinator" Framed="true" Size="3,3" Color="#FF6E8B81" IsAnimated="true" />
@@ -9485,7 +9470,13 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Tile Id="655" Name="Plantera Thorns" Color="#FFA85386" />
         <Tile Id="656" Name="Glow Tulip" Light="true" Framed="true" Size="2,2" Color="#FF3995B3" />
         <Tile Id="657" Name="Echo Chamber" Framed="true" Size="2,3" Color="#FF3D3F4B" IsAnimated="true" />
-        <Tile Id="658" Name="Aether Monolith" Light="true" Framed="true" Size="2,3" Color="#FFAB8DCE" IsAnimated="true"/>
+        <Tile Id="658" Name="Aether Monolith" Light="true" Framed="true" Size="2,3" Color="#FFAB8DCE" IsAnimated="true">
+            <Frames>
+                <Frame UV="0,0" Variety="Off (Flowing)" />
+                <Frame UV="0,540" Variety="On" />
+                <Frame UV="0,1080" Variety="Off" />
+            </Frames>
+        </Tile>
         <Tile Id="659" Name="Aetherium Block" Light="true" Solid="true" Color="#FFC7C9CB" />
         <Tile Id="660" Name="Faeling in a Bottle" Light="true" Framed="true" Size="1,2" IsAnimated="true" Color="#FF5F688E" />
         <Tile Id="661" Name="Corrupt Jungle Grass Block" Solid="true" Color="#FF5D4F67" Blends="true" MergeWith="0" Stone="true" />
