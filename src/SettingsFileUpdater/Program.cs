@@ -59,7 +59,7 @@ namespace SettingsFileUpdater
 
             var bestiaryNpcs = wrapper.GetBestiaryData().ToList();
 
-            using (var stream = new FileStream("bestiaryData.json", FileMode.Create, FileAccess.Write))
+            using (var stream = new FileStream("..\\..\\..\\..\\bestiaryData.json", FileMode.Create, FileAccess.Write))
             {
                 JsonSerializer.Serialize(stream, bestiaryNpcs, new JsonSerializerOptions { WriteIndented = true});
             }

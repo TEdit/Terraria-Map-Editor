@@ -340,6 +340,13 @@ namespace TEdit.View
 
             //}
 
+            foreach (var npc in World.BestiaryData.NpcData)
+            {
+                if (npc.Value.Id < 0) continue;
+                var tex = (Texture2D)_textureDictionary.GetNPC(npc.Value.Id);
+                TextureToPng(tex, $"textures/NPC_{npc.Value.Id}.png");
+            }
+
             foreach (var wall in World.WallProperties)
             {
                 if (wall.Id == 0) continue;
@@ -2843,12 +2850,18 @@ namespace TEdit.View
         private void DrawNpcTexture(NPC npc)
         {
             int npcId = npc.SpriteId;
+            string townNpcName = World.NpcNames[npcId];
+            bool isPartying = _wvm.CurrentWorld.PartyingNPCs.Contains(npcId);
+            int variation = npc.TownNpcVariationIndex;
 
-            if (_textureDictionary.Npcs.ContainsKey(npcId))
+            Texture2D npcTexture = 
+                _textureDictionary.GetTownNPC(townNpcName, isPartying) ??
+                _textureDictionary.GetNPC(npcId);
+
+            if (npcTexture != null)
             {
-                Texture2D npcTexture = (Texture2D)_textureDictionary.GetNPC(npcId);
                 var size = World.NpcFrames[npcId];
-                short height = size.Y > (short)0 ? size.Y : (short)55; // default 55 for normal height people
+                short height = size.Y > 0 ? size.Y : (short)55; // default 55 for normal height people
 
                 size = new Vector2Short(size.X, height);
                 var frames = npcTexture.Height / size.Y;

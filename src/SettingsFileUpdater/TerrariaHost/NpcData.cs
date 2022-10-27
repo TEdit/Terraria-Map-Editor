@@ -10,6 +10,7 @@
         public bool CanTalk { get; set; }
         public bool IsCritter { get; set; }
         public bool IsKillCredit { get; set; }
+        public bool IsTownNpc { get; set; }
         public int BestiaryDisplayIndex { get; set; }
     }
 }

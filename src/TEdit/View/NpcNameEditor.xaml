@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:viewModel="clr-namespace:TEdit.ViewModel"
+             xmlns:Terraria="clr-namespace:TEdit.Terraria"
              xmlns:p="clr-namespace:TEdit.Properties"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300" d:DataContext="{d:DesignInstance Type=viewModel:WorldViewModel}">
@@ -14,7 +15,7 @@
         </Grid.RowDefinitions>
         <Grid Grid.Row="0">
             <StackPanel Orientation="Horizontal">
-                <ComboBox ItemsSource="{Binding CurrentWorld.NpcNames}" DisplayMemberPath="Value" SelectedValuePath="Key" x:Name="addNpcComboBox"></ComboBox>
+                <ComboBox ItemsSource="{Binding Source={x:Static Terraria:World.NpcNames}, Mode=OneTime}" DisplayMemberPath="Value" SelectedValuePath="Key" x:Name="addNpcComboBox"></ComboBox>
                 <Button Command="{Binding NpcAddCommand}" CommandParameter="{Binding  Path=SelectedValue,ElementName=addNpcComboBox}" Content="{x:Static p:Language.tool_npc_add}"></Button>
             </StackPanel>
         </Grid>

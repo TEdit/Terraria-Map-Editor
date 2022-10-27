@@ -7,6 +7,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace TEdit.Terraria
 {
+
     public class Textures
     {
         private readonly GraphicsDevice _gdDevice;
@@ -21,7 +22,8 @@ namespace TEdit.Terraria
         public Dictionary<int, Texture2D> TreeBranches { get; } = new Dictionary<int, Texture2D>();
         public Dictionary<int, Texture2D> Shrooms { get; } = new Dictionary<int, Texture2D>();
         public Dictionary<int, Texture2D> Npcs { get; } = new Dictionary<int, Texture2D>();
-        public Dictionary<int, Texture2D> Liquids { get; } = new Dictionary<int, Texture2D>(); 
+        public Dictionary<TownNpcKey, Texture2D> TownNpcs { get; } = new();
+        public Dictionary<int, Texture2D> Liquids { get; } = new Dictionary<int, Texture2D>();
         public Dictionary<string, Texture2D> Misc { get; } = new Dictionary<string, Texture2D>();
         public Dictionary<int, Texture2D> ArmorHead { get; } = new Dictionary<int, Texture2D>();
         public Dictionary<int, Texture2D> ArmorBody { get; } = new Dictionary<int, Texture2D>();
@@ -56,7 +58,7 @@ namespace TEdit.Terraria
                 catch (Exception ex)
                 {
                     ErrorLogging.LogException(ex);
-                    System.Windows.Forms.MessageBox.Show($"Error loading textures from {path}.\r\nPlease check that this folder exists and TEdit has read access.\r\n\r\n{ex.Message}", "Error Loading Textures", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Error); 
+                    System.Windows.Forms.MessageBox.Show($"Error loading textures from {path}.\r\nPlease check that this folder exists and TEdit has read access.\r\n\r\n{ex.Message}", "Error Loading Textures", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Error);
                 }
 
             }
@@ -95,7 +97,39 @@ namespace TEdit.Terraria
 
         public Texture GetShroomTop(int num) => GetTextureById(Shrooms, num, "Images\\Shroom_Tops");
 
-        public Texture GetNPC(int num) => GetTextureById(Npcs, num, "Images\\NPC_{0}");
+        public Texture2D GetNPC(int num) => GetTextureById(Npcs, num, "Images\\NPC_{0}");
+
+        public Texture2D GetTownNPC(string name, bool partying = false, bool shimmered = false)
+        {
+            var key = new TownNpcKey(name, partying, shimmered);
+            if (name.StartsWith("Town"))
+            {
+                name = name.Substring(4);
+            }
+
+            if (!TownNpcs.ContainsKey(key))
+            {
+                string texturePath = $"Images\\TownNPCs\\{name}_Default";
+
+                if (partying && shimmered)
+                {
+                    texturePath = $"Images\\TownNPCs\\Shimmered\\{name}_Default_Party";
+                }
+                else if (shimmered)
+                {
+                    texturePath = $"Images\\TownNPCs\\Shimmered\\{name}_Default";
+                }
+                else if (partying)
+                {
+                    texturePath = $"Images\\TownNPCs\\{name}_Default_Party";
+                }
+
+                TownNpcs[key] = LoadTexture(texturePath);
+            }
+
+            return TownNpcs[key];
+        }
+
 
         public Texture GetLiquid(int num) => GetTextureById(Liquids, num, "Images\\Liquid_{0}");
 
@@ -118,7 +152,7 @@ namespace TEdit.Terraria
             if (!collection.ContainsKey(id))
             {
                 string name = string.Format(path, id);
-                collection[id] = LoadTexture(name);                
+                collection[id] = LoadTexture(name);
             }
 
             return collection[id];

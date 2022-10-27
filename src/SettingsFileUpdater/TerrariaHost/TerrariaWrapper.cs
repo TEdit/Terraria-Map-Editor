@@ -346,6 +346,7 @@ namespace SettingsFileUpdater.TerrariaHost
                 {
                     Id = npc.netID,
                     BannerId = killId,
+                    IsTownNpc = npc.townNPC,
                     FullName = npc.FullName,
                     Name = Localize(npc.FullName),
                     BestiaryId = npc.GetBestiaryCreditId(),
@@ -449,6 +450,7 @@ namespace SettingsFileUpdater.TerrariaHost
                 {
                     Id = npc.netID,
                     BannerId = killId,
+                    IsTownNpc = npc.townNPC,
                     BestiaryDisplayIndex = info.BestiaryDisplayIndex,
                     FullName = npc.FullName,
                     Name = Localize(npc.FullName),
