@@ -1069,6 +1069,7 @@ namespace TEdit.ViewModel
             sfd.Filter = "Terraria World File|*.wld";
             sfd.Title = "Save World As";
             sfd.InitialDirectory = DependencyChecker.PathToWorlds;
+            sfd.FileName = Path.GetFileName(CurrentFile) ?? string.Join("-", CurrentWorld.Title.Split(Path.GetInvalidFileNameChars()));
 
             bool pickVersion = (bool)w.ShowDialog();
             uint version = w.WorldVersion;
