@@ -211,7 +211,7 @@
     "BestiaryId": "EaterofWorldsHead",
     "CanTalk": false,
     "IsCritter": false,
-    "IsKillCredit": false,
+    "IsKillCredit": true,
     "IsTownNpc": false,
     "BestiaryDisplayIndex": 507
   },
