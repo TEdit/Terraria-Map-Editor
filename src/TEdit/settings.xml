@@ -14922,416 +14922,416 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Item Id="5040" Name="Otherworldly Music Box (Hallow)" Accessory="True" />
         <Item Id="5041" Name="Carton of Milk" IsFood="True" />
         <Item Id="5042" Name="Coffee" IsFood="True" />
-        <Item Id="5043" Name="Torch God's Favor"      />
-        <Item Id="5044" Name="Music Box (Journey's End)"     Accessory="True"  />
-        <Item Id="5045" Name="Plaguebringer's Skull"  Head="266"     />
-        <Item Id="5046" Name="Plaguebringer's Cloak"   Body="235"    />
-        <Item Id="5047" Name="Plaguebringer's Treads"    Legs="218"   />
-        <Item Id="5048" Name="Wandering Jingasa"  Head="267"     />
-        <Item Id="5049" Name="Wandering Yukata"   Body="236"    />
-        <Item Id="5050" Name="Wandering Geta"    Legs="219"   />
-        <Item Id="5051" Name="Timeless Traveler's Hood"  Head="268"     />
-        <Item Id="5052" Name="Timeless Traveler's Cloak"   Body="237"    />
-        <Item Id="5053" Name="Timeless Traveler's Footwear"    Legs="222"   />
-        <Item Id="5054" Name="Floret Protector Helmet"  Head="269"     />
-        <Item Id="5055" Name="Floret Protector Shirt"   Body="238"    />
-        <Item Id="5056" Name="Floret Protector Pants"    Legs="224"   />
-        <Item Id="5057" Name="Capricorn Helmet"  Head="270"     />
-        <Item Id="5058" Name="Capricorn Chestplate"   Body="239"    />
-        <Item Id="5059" Name="Capricorn Hooves"    Legs="225"   />
-        <Item Id="5060" Name="Capricorn Tail"    Legs="226"   />
-        <Item Id="5061" Name="Video Visage"  Head="271"     />
-        <Item Id="5062" Name="Lazer Blazer"   Body="240"    />
-        <Item Id="5063" Name="Pinstripe Pants"    Legs="227"   />
-        <Item Id="5064" Name="Lavaproof Tackle Bag"     Accessory="True"  />
-        <Item Id="5065" Name="Resonance Scepter"      Rack="True" />
-        <Item Id="5066" Name="Bee Hive"      />
-        <Item Id="5067" Name="Antlion Eggs"      />
-        <Item Id="5068" Name="Flinx Fur Coat"   Body="241"    />
-        <Item Id="5069" Name="Flinx Staff"      Rack="True" />
-        <Item Id="5070" Name="Flinx Fur"      />
-        <Item Id="5071" Name="Royal Tiara"  Head="272"     />
-        <Item Id="5072" Name="Royal Blouse"   Body="242"    />
-        <Item Id="5073" Name="Royal Dress"    Legs="228"   />
-        <Item Id="5074" Name="Spinal Tap"      Rack="True" />
-        <Item Id="5075" Name="Rainbow Cursor"     Accessory="True"  />
-        <Item Id="5076" Name="Royal Scepter"     Accessory="True"  />
-        <Item Id="5077" Name="Glass Slipper"     Accessory="True"  />
-        <Item Id="5078" Name="Prince Uniform"   Body="243"    />
-        <Item Id="5079" Name="Prince Pants"    Legs="230"   />
-        <Item Id="5080" Name="Prince Cape"     Accessory="True"  />
-        <Item Id="5081" Name="Potted Crystal Fern"      />
-        <Item Id="5082" Name="Potted Crystal Spiral"      />
-        <Item Id="5083" Name="Potted Crystal Teardrop"      />
-        <Item Id="5084" Name="Potted Crystal Tree"      />
-        <Item Id="5085" Name="Princess 64"      />
-        <Item Id="5086" Name="Painting of a Lass"      />
-        <Item Id="5087" Name="Dark Side of the Hallow"      />
-        <Item Id="5088" Name="Bernie's Button"      />
-        <Item Id="5089" Name="Glommer's Flower"      />
-        <Item Id="5090" Name="Deerclops Eyeball"      />
-        <Item Id="5091" Name="Monster Meat"      />
-        <Item Id="5092" Name="Monster Lasagna" IsFood="True"      />
-        <Item Id="5093" Name="Froggle Bunwich" IsFood="True"      />
-        <Item Id="5094" Name="Tentacle Spike"      Rack="True" />
-        <Item Id="5095" Name="Lucy the Axe"      Rack="True" />
-        <Item Id="5096" Name="Ham Bat"      Rack="True" />
-        <Item Id="5097" Name="Bat Bat"      Rack="True" />
-        <Item Id="5098" Name="Eye Bone"      />
-        <Item Id="5099" Name="Garland"  Head="273"     />
-        <Item Id="5100" Name="Bone Helm"     Accessory="True"  />
-        <Item Id="5101" Name="Eyebrella"  Head="275"     />
-        <Item Id="5102" Name="Gentleman's Vest"   Body="244"    />
-        <Item Id="5103" Name="Gentleman's Trousers"    Legs="231"   />
-        <Item Id="5104" Name="Gentleman's Beard"     Accessory="True"  />
-        <Item Id="5105" Name="Gentleman's Long Beard"     Accessory="True"  />
-        <Item Id="5106" Name="Gentleman's Magnificent Beard"     Accessory="True"  />
-        <Item Id="5107" Name="Magiluminescence"     Accessory="True"  />
-        <Item Id="5108" Name="Deerclops Trophy"      />
-        <Item Id="5109" Name="Deerclops Mask"  Head="276"     />
-        <Item Id="5110" Name="Deerclops Relic"      />
-        <Item Id="5111" Name="Treasure Bag (Deerclops)"      />
-        <Item Id="5112" Name="Music Box (Deerclops)"     Accessory="True"  />
-        <Item Id="5113" Name="Radio Thing"     Accessory="True"  />
-        <Item Id="5114" Name="Abigail's Flower"      Rack="True" />
-        <Item Id="5115" Name="Firestarter's Sweater"   Body="245"    />
-        <Item Id="5116" Name="Firestarter's Skirt"    Legs="232"   />
-        <Item Id="5117" Name="Pew-matic Horn"      Rack="True" />
-        <Item Id="5118" Name="Weather Pain"      Rack="True" />
-        <Item Id="5119" Name="Houndius Shootius"      Rack="True" />
-        <Item Id="5120" Name="Deer Thing"      />
-        <Item Id="5121" Name="The Gentleman Scientist"      />
-        <Item Id="5122" Name="The Firestarter"      />
-        <Item Id="5123" Name="The Bereaved"      />
-        <Item Id="5124" Name="The Strongman"      />
-        <Item Id="5125" Name="Fart Kart"      />
-        <Item Id="5126" Name="Hand Of Creation"     Accessory="True"  />
-        <Item Id="5127" Name="Neon Moss"      />
-        <Item Id="5128" Name="Helium Moss"      />
-        <Item Id="5129" Name="Flymeal"      Rack="True" />
-        <Item Id="5130" Name="Lilith's Necklace"      />
-        <Item Id="5131" Name="Resplendent Dessert"      />
-        <Item Id="5132" Name="Stinkbug"      />
-        <Item Id="5133" Name="Stinkbug Cage"      />
-        <Item Id="5134" Name="Terraformer"      />
-        <Item Id="5135" Name="Venom Dart Trap"      />
-        <Item Id="5136" Name="Vulkelf Ears"  Head="274"     />
-        <Item Id="5137" Name="Stinkbug Blocker"      />
-        <Item Id="5138" Name="Ghostly Stinkbug Blocker"      />
-        <Item Id="5139" Name="Fishing Bobber"     Accessory="True"  />
-        <Item Id="5140" Name="Glowing Fishing Bobber"     Accessory="True"  />
-        <Item Id="5141" Name="Lava Moss Fishing Bobber"     Accessory="True"  />
-        <Item Id="5142" Name="Krypton Moss Fishing Bobber"     Accessory="True"  />
-        <Item Id="5143" Name="Xenon Moss Fishing Bobber"     Accessory="True"  />
-        <Item Id="5144" Name="Argon Moss Fishing Bobber"     Accessory="True"  />
-        <Item Id="5145" Name="Neon Moss Fishing Bobber"     Accessory="True"  />
-        <Item Id="5146" Name="Helium Moss Fishing Bobber"     Accessory="True"  />
-        <Item Id="5147" Name="Wand of Frosting"      Rack="True" />
-        <Item Id="5148" Name="Reef Bathtub"      />
-        <Item Id="5149" Name="Reef Bed"      />
-        <Item Id="5150" Name="Reef Bookcase"      />
-        <Item Id="5151" Name="Reef Dresser"      />
-        <Item Id="5152" Name="Reef Candelabra"      />
-        <Item Id="5153" Name="Reef Candle"      />
-        <Item Id="5154" Name="Reef Chair"      />
-        <Item Id="5155" Name="Reef Chandelier"      />
-        <Item Id="5156" Name="Reef Chest"      />
-        <Item Id="5157" Name="Reef Clock"      />
-        <Item Id="5158" Name="Reef Door"      />
-        <Item Id="5159" Name="Reef Lamp"      />
-        <Item Id="5160" Name="Reef Lantern"      />
-        <Item Id="5161" Name="Reef Piano"      />
-        <Item Id="5162" Name="Reef Platform"      />
-        <Item Id="5163" Name="Reef Sink"      />
-        <Item Id="5164" Name="Reef Sofa"      />
-        <Item Id="5165" Name="Reef Table"      />
-        <Item Id="5166" Name="Reef Work Bench"      />
-        <Item Id="5167" Name="Trapped Reef Chest"      />
-        <Item Id="5168" Name="Reef Toilet"      />
-        <Item Id="5169" Name="Balloon Bathtub"      />
-        <Item Id="5170" Name="Balloon Bed"      />
-        <Item Id="5171" Name="Balloon Bookcase"      />
-        <Item Id="5172" Name="Balloon Dresser"      />
-        <Item Id="5173" Name="Balloon Candelabra"      />
-        <Item Id="5174" Name="Balloon Candle"      />
-        <Item Id="5175" Name="Balloon Chair"      />
-        <Item Id="5176" Name="Balloon Chandelier"      />
-        <Item Id="5177" Name="Balloon Chest"      />
-        <Item Id="5178" Name="Balloon Clock"      />
-        <Item Id="5179" Name="Balloon Door"      />
-        <Item Id="5180" Name="Balloon Lamp"      />
-        <Item Id="5181" Name="Balloon Lantern"      />
-        <Item Id="5182" Name="Balloon Piano"      />
-        <Item Id="5183" Name="Balloon Platform"      />
-        <Item Id="5184" Name="Balloon Sink"      />
-        <Item Id="5185" Name="Balloon Sofa"      />
-        <Item Id="5186" Name="Balloon Table"      />
-        <Item Id="5187" Name="Balloon Work Bench"      />
-        <Item Id="5188" Name="Trapped Balloon Chest"      />
-        <Item Id="5189" Name="Balloon Toilet"      />
-        <Item Id="5190" Name="Ash Wood Bathtub"      />
-        <Item Id="5191" Name="Ash Wood Bed"      />
-        <Item Id="5192" Name="Ash Wood Bookcase"      />
-        <Item Id="5193" Name="Ash Wood Dresser"      />
-        <Item Id="5194" Name="Ash Wood Candelabra"      />
-        <Item Id="5195" Name="Ash Wood Candle"      />
-        <Item Id="5196" Name="Ash Wood Chair"      />
-        <Item Id="5197" Name="Ash Wood Chandelier"      />
-        <Item Id="5198" Name="Ash Wood Chest"      />
-        <Item Id="5199" Name="Ash Wood Clock"      />
-        <Item Id="5200" Name="Ash Wood Door"      />
-        <Item Id="5201" Name="Ash Wood Lamp"      />
-        <Item Id="5202" Name="Ash Wood Lantern"      />
-        <Item Id="5203" Name="Ash Wood Piano"      />
-        <Item Id="5204" Name="Ash Wood Platform"      />
-        <Item Id="5205" Name="Ash Wood Sink"      />
-        <Item Id="5206" Name="Ash Wood Sofa"      />
-        <Item Id="5207" Name="Ash Wood Table"      />
-        <Item Id="5208" Name="Ash Wood Work Bench"      />
-        <Item Id="5209" Name="Trapped Ash Wood Chest"      />
-        <Item Id="5210" Name="Ash Wood Toilet"      />
-        <Item Id="5211" Name="Biome Sight Potion"      />
-        <Item Id="5212" Name="Scarlet Macaw"      />
-        <Item Id="5213" Name="Scarlet Macaw Cage"      />
-        <Item Id="5214" Name="Ash Grass Seeds"      />
-        <Item Id="5215" Name="Ash Wood"      />
-        <Item Id="5216" Name="Ash Wood Wall"      />
-        <Item Id="5217" Name="Ash Wood Fence"      />
-        <Item Id="5218" Name="Outcast"      />
-        <Item Id="5219" Name="Fairy Guides"      />
-        <Item Id="5220" Name="A Horrible Night for Alchemy"      />
-        <Item Id="5221" Name="Morning Hunt"      />
-        <Item Id="5222" Name="Suspiciously Sparkly"      />
-        <Item Id="5223" Name="Requiem"      />
-        <Item Id="5224" Name="Cat Sword"      />
-        <Item Id="5225" Name="Kargoh's Summon"      />
-        <Item Id="5226" Name="High Pitch"      />
-        <Item Id="5227" Name="A Machine for Terrarians"      />
-        <Item Id="5228" Name="Terra Blade Chronicles"      />
-        <Item Id="5229" Name="Benny Warhol"      />
-        <Item Id="5230" Name="Lizard King"      />
-        <Item Id="5231" Name="My Son"      />
-        <Item Id="5232" Name="Duality"      />
-        <Item Id="5233" Name="Parsec Pals"      />
-        <Item Id="5234" Name="Remnants of Devotion"      />
-        <Item Id="5235" Name="Not So Lost In Paradise"      />
-        <Item Id="5236" Name="Ocular Resonance"      />
-        <Item Id="5237" Name="Wings of Evil"      />
-        <Item Id="5238" Name="Constellation"      />
-        <Item Id="5239" Name="Eyezorhead"      />
-        <Item Id="5240" Name="Dread of the Red Sea"      />
-        <Item Id="5241" Name="Do Not Eat the Vile Mushroom!"      />
-        <Item Id="5242" Name="Yuuma, The Blue Tiger"      />
-        <Item Id="5243" Name="Moonman &amp; Company"      />
-        <Item Id="5244" Name="Sunshine of Israpony"      />
-        <Item Id="5245" Name="Purity"      />
-        <Item Id="5246" Name="Sufficiently Advanced"      />
-        <Item Id="5247" Name="Strange Growth"      />
-        <Item Id="5248" Name="Happy Little Tree"      />
-        <Item Id="5249" Name="Strange Dead Fellows"      />
-        <Item Id="5250" Name="Secrets"      />
-        <Item Id="5251" Name="Thunderbolt"      />
-        <Item Id="5252" Name="Crustography"      />
-        <Item Id="5253" Name="The Werewolf"      />
-        <Item Id="5254" Name="Blessing from the Heavens"      />
-        <Item Id="5255" Name="Love is in the Trash Slot"      />
-        <Item Id="5256" Name="Fangs"      />
-        <Item Id="5257" Name="Hail to the King"      />
-        <Item Id="5258" Name="See The World For What It Is"      />
-        <Item Id="5259" Name="What Lurks Below"      />
-        <Item Id="5260" Name="This Is Getting Out Of Hand"      />
-        <Item Id="5261" Name="Buddies"      />
-        <Item Id="5262" Name="Midnight Sun"      />
-        <Item Id="5263" Name="Couch Gag"      />
-        <Item Id="5264" Name="Silent Fish"      />
-        <Item Id="5265" Name="The Duke"      />
-        <Item Id="5266" Name="Royal Romance"      />
-        <Item Id="5267" Name="Bioluminescence"      />
-        <Item Id="5268" Name="Wildflowers"      />
-        <Item Id="5269" Name="Viking Voyage"      />
-        <Item Id="5270" Name="Bifrost"      />
-        <Item Id="5271" Name="Heartlands"      />
-        <Item Id="5272" Name="Forest Troll"      />
-        <Item Id="5273" Name="Aurora Borealis"      />
-        <Item Id="5274" Name="Lady Of The Lake"      />
-        <Item Id="5275" Name="Joja Cola" IsFood="True"      />
-        <Item Id="5276" Name="Stardrop"      />
-        <Item Id="5277" Name="Spicy Pepper" IsFood="True"      />
-        <Item Id="5278" Name="Pomegranate" IsFood="True"      />
-        <Item Id="5279" Name="Ash Wood Helmet"  Head="278"     />
-        <Item Id="5280" Name="Ash Wood Breasplate"   Body="246"    />
-        <Item Id="5281" Name="Ash Wood Greaves"    Legs="234"   />
-        <Item Id="5282" Name="Ash Wood Bow"      Rack="True" />
-        <Item Id="5283" Name="Ash Wood Hammer"      Rack="True" />
-        <Item Id="5284" Name="Ash Wood Sword"      Rack="True" />
-        <Item Id="5285" Name="Moon Globe"      />
-        <Item Id="5286" Name="Repaired Life Crystal"      />
-        <Item Id="5287" Name="Repaired Mana Crystal"      />
-        <Item Id="5288" Name="Terra Fart Kart"      />
-        <Item Id="5289" Name="Minecart Upgrade Kit"      />
-        <Item Id="5290" Name="Jim's Cap"  Head="279"     />
-        <Item Id="5291" Name="Echo Wall"      />
-        <Item Id="5292" Name="Echo Platform"      />
-        <Item Id="5293" Name="Mushroom Torch"      />
-        <Item Id="5294" Name="Hive-Five"      Rack="True" />
-        <Item Id="5295" Name="Axe of Regrowth"      Rack="True" />
-        <Item Id="5296" Name="Chlorophyte Extractinator"      />
-        <Item Id="5297" Name="Blue Chicken Egg"      />
-        <Item Id="5298" Name="Trimarang"      Rack="True" />
-        <Item Id="5299" Name="Mushroom Campfire"      />
-        <Item Id="5300" Name="Blue Macaw"      />
-        <Item Id="5301" Name="Blue Macaw Cage"      />
-        <Item Id="5302" Name="Bottomless Honey Bucket"      />
-        <Item Id="5303" Name="Honey Absorbant Sponge"      />
-        <Item Id="5304" Name="Ultra Absorbant Sponge"      />
-        <Item Id="5305" Name="Goblorc Ears"  Head="277"     />
-        <Item Id="5306" Name="Reef Block"      />
-        <Item Id="5307" Name="Reef Wall"      />
-        <Item Id="5308" Name="r/Terraria"      />
-        <Item Id="5309" Name="Guide to Environmental Preservation"      />
-        <Item Id="5310" Name="Princess Style"      />
-        <Item Id="5311" Name="Toucan"      />
-        <Item Id="5312" Name="Yellow Cockatiel"      />
-        <Item Id="5313" Name="Gray Cockatiel"      />
-        <Item Id="5314" Name="Toucan Cage"      />
-        <Item Id="5315" Name="Yellow Cockatiel Cage"      />
-        <Item Id="5316" Name="Gray Cockatiel Cage"      />
-        <Item Id="5317" Name="Macaw Statue"      />
-        <Item Id="5318" Name="Toucan Statue"      />
-        <Item Id="5319" Name="Cockatiel Statue"      />
-        <Item Id="5320" Name="Decorative Healing Potion"      />
-        <Item Id="5321" Name="Decorative Mana Potion"      />
-        <Item Id="5322" Name="Shadow Candle"      />
-        <Item Id="5323" Name="Guide to Peaceful Coexistence"      />
-        <Item Id="5324" Name="Rubblemaker (Small)"      />
-        <Item Id="5325" Name="Closed Void Bag"      />
-        <Item Id="5326" Name="Artisan Loaf"      />
-        <Item Id="5327" Name="TNT Barrel"      />
-        <Item Id="5328" Name="Chest Lock"      />
-        <Item Id="5329" Name="Rubblemaker (Medium)"      />
-        <Item Id="5330" Name="Rubblemaker (Large)"      />
-        <Item Id="5331" Name="Bundle of Horseshoe Balloons"     Accessory="True"  />
-        <Item Id="5332" Name="Spiffo Plush"      />
-        <Item Id="5333" Name="Glow Tulip"      />
-        <Item Id="5334" Name="Ocram's Razor"      />
-        <Item Id="5335" Name="Rod of Harmony"      Rack="True" />
-        <Item Id="5336" Name="Advanced Combat Techniques: Volume Two"      />
-        <Item Id="5337" Name="Vital Crystal"      />
-        <Item Id="5338" Name="Aegis Fruit"      />
-        <Item Id="5339" Name="Arcane Crystal"      />
-        <Item Id="5340" Name="Galaxy Pearl"      />
-        <Item Id="5341" Name="Gummy Worm"      />
-        <Item Id="5342" Name="Ambrosia"      />
-        <Item Id="5343" Name="Peddler's Satchel"      />
-        <Item Id="5344" Name="Echo Coating"      />
-        <Item Id="5345" Name="Echo Chamber"     Accessory="True"  />
-        <Item Id="5346" Name="Gas Trap"      />
-        <Item Id="5347" Name="Aether Monolith"     Accessory="True"  />
-        <Item Id="5348" Name="Shimmer Arrow"      />
-        <Item Id="5349" Name="Aetherium Block"      />
-        <Item Id="5350" Name="Faeling"      />
-        <Item Id="5351" Name="Faeling in a Bottle"      />
-        <Item Id="5352" Name="Shimmer Slime Banner"       Tally="289"/>
-        <Item Id="5353" Name="Aether Torch"      />
-        <Item Id="5354" Name="Reflective Shades"     Accessory="True"  />
-        <Item Id="5355" Name="Chromatic Cloak"     Accessory="True"  />
-        <Item Id="5356" Name="Used Gas Trap"      />
-        <Item Id="5357" Name="Aether Campfire"      />
-        <Item Id="5358" Name="Shellphone (Home)"      />
-        <Item Id="5359" Name="Shellphone (Spawn)"      />
-        <Item Id="5360" Name="Shellphone (Ocean)"      />
-        <Item Id="5361" Name="Shellphone (Underworld)"      />
-        <Item Id="5362" Name="Music Box (Aether)"     Accessory="True"  />
-        <Item Id="5363" Name="Infested Spider Wall"      />
-        <Item Id="5364" Name="Bottomless Shimmer Bucket"      />
-        <Item Id="5365" Name="Cursed Blue Brick Wall"      />
-        <Item Id="5366" Name="Cursed Blue Slab Wall"      />
-        <Item Id="5367" Name="Cursed Blue Tiled Wall"      />
-        <Item Id="5368" Name="Cursed Pink Brick Wall"      />
-        <Item Id="5369" Name="Cursed Pink Slab Wall"      />
-        <Item Id="5370" Name="Cursed Pink Tiled Wall"      />
-        <Item Id="5371" Name="Cursed Green Brick Wall"      />
-        <Item Id="5372" Name="Cursed Green Slab Wall"      />
-        <Item Id="5373" Name="Cursed Green Tiled Wall"      />
-        <Item Id="5374" Name="Treacherous Sandstone Wall"      />
-        <Item Id="5375" Name="Treacherous Hardened Sand Wall"      />
-        <Item Id="5376" Name="Forbidden Lihzahrd Brick Wall"      />
-        <Item Id="5377" Name="Spelunker Flare"      />
-        <Item Id="5378" Name="Cursed Flare"      />
-        <Item Id="5379" Name="Rainbow Flare"      />
-        <Item Id="5380" Name="Shimmer Flare"      />
-        <Item Id="5381" Name="Enchanted Moondial"      />
-        <Item Id="5382" Name="Waffle's Iron"      Rack="True" />
-        <Item Id="5383" Name="Bouncy Boulder"      />
-        <Item Id="5384" Name="Life Crystal Boulder"      />
-        <Item Id="5385" Name="Dizzy's Rare Gecko Chester"  Head="280"     />
-        <Item Id="5386" Name="Raynebro's Hoodie"   Body="247"    />
-        <Item Id="5387" Name="Raynebro's Pants"    Legs="235"   />
-        <Item Id="5388" Name="Eye of the Sun"      />
-        <Item Id="5389" Name="Cheesy Pizza Poster"      />
-        <Item Id="5390" Name="Raynebro's Hood"  Head="281"     />
-        <Item Id="5391" Name="Uncumbering Stone"      />
-        <Item Id="5392" Name="Yellow Solution"      />
-        <Item Id="5393" Name="White Solution"      />
-        <Item Id="5394" Name="Brown Solution"      />
-        <Item Id="5395" Name="Poo"      />
-        <Item Id="5396" Name="Poo Wall"      />
-        <Item Id="5397" Name="Aetherium Wall"      />
-        <Item Id="5398" Name="Aetherium Brick"      />
-        <Item Id="5399" Name="Aetherium Brick Wall"      />
-        <Item Id="5400" Name="The Dirtiest Block"      />
-        <Item Id="5401" Name="Lunar Rust Brick"      />
-        <Item Id="5402" Name="Dark Celestial Brick"      />
-        <Item Id="5403" Name="Astra Brick"      />
-        <Item Id="5404" Name="Cosmic Ember Brick"      />
-        <Item Id="5405" Name="Cryocore Brick"      />
-        <Item Id="5406" Name="Mercury Brick"      />
-        <Item Id="5407" Name="Star Royale Brick"      />
-        <Item Id="5408" Name="Heavenforge Brick"      />
-        <Item Id="5409" Name="Lunar Rust Brick Wall"      />
-        <Item Id="5410" Name="Dark Celestial Brick Wall"      />
-        <Item Id="5411" Name="Astra Brick Wall"      />
-        <Item Id="5412" Name="Cosmic Ember Brick Wall"      />
-        <Item Id="5413" Name="Cryocore Brick Wall"      />
-        <Item Id="5414" Name="Mercury Brick Wall"      />
-        <Item Id="5415" Name="Star Royale Brick Wall"      />
-        <Item Id="5416" Name="Heavenforge Brick Wall"      />
-        <Item Id="5417" Name="Ancient Blue Brick"      />
-        <Item Id="5418" Name="Ancient Blue Brick Wall"      />
-        <Item Id="5419" Name="Ancient Green Brick"      />
-        <Item Id="5420" Name="Ancient Green Brick Wall"      />
-        <Item Id="5421" Name="Ancient Pink Brick"      />
-        <Item Id="5422" Name="Ancient Pink Brick Wall"      />
-        <Item Id="5423" Name="Ancient Gold Brick"      />
-        <Item Id="5424" Name="Ancient Gold Brick Wall"      />
-        <Item Id="5425" Name="Ancient Silver Brick"      />
-        <Item Id="5426" Name="Ancient Silver Brick Wall"      />
-        <Item Id="5427" Name="Ancient Copper Brick"      />
-        <Item Id="5428" Name="Ancient Copper Brick Wall"      />
-        <Item Id="5429" Name="Ancient Cobalt Brick"      />
-        <Item Id="5430" Name="Ancient Cobalt Brick Wall"      />
-        <Item Id="5431" Name="Ancient Mythril Brick"      />
-        <Item Id="5432" Name="Ancient Mythril Brick Wall"      />
-        <Item Id="5433" Name="Ancient Obsidian Brick"      />
-        <Item Id="5434" Name="Ancient Obsidian Brick Wall"      />
-        <Item Id="5435" Name="Ancient Hellstone Brick"      />
-        <Item Id="5436" Name="Ancient Hellstone Brick Wall"      />
-        <Item Id="5437" Name="Shellphone"      />
-        <Item Id="5438" Name="Fertilizer"      />
-        <Item Id="5439" Name="Lava Moss Brick"      />
-        <Item Id="5440" Name="Argon Moss Brick"      />
-        <Item Id="5441" Name="Krypton Moss Brick"      />
-        <Item Id="5442" Name="Xenon Moss Brick"      />
-        <Item Id="5443" Name="Neon Moss Brick"      />
-        <Item Id="5444" Name="Helium Moss Brick"      />
-        <Item Id="5445" Name="Lava Moss Brick Wall"      />
-        <Item Id="5446" Name="Argon Moss Brick Wall"      />
-        <Item Id="5447" Name="Krypton Moss Brick Wall"      />
-        <Item Id="5448" Name="Xenon Moss Brick Wall"      />
-        <Item Id="5449" Name="Neon Moss Brick Wall"      />
-        <Item Id="5450" Name="Helium Moss Brick Wall"      />
-        <Item Id="5451" Name="Kwad Racer Drone"      />
-        <Item Id="5452" Name="FPV Goggles"     Accessory="True"  />
+        <Item Id="5043" Name="Torch God's Favor" />
+        <Item Id="5044" Name="Music Box (Journey's End)" Accessory="True" />
+        <Item Id="5045" Name="Plaguebringer's Skull" Head="266" />
+        <Item Id="5046" Name="Plaguebringer's Cloak" Body="235" />
+        <Item Id="5047" Name="Plaguebringer's Treads" Legs="218" />
+        <Item Id="5048" Name="Wandering Jingasa" Head="267" />
+        <Item Id="5049" Name="Wandering Yukata" Body="236" />
+        <Item Id="5050" Name="Wandering Geta" Legs="219" />
+        <Item Id="5051" Name="Timeless Traveler's Hood" Head="268" />
+        <Item Id="5052" Name="Timeless Traveler's Cloak" Body="237" />
+        <Item Id="5053" Name="Timeless Traveler's Footwear" Legs="222" />
+        <Item Id="5054" Name="Floret Protector Helmet" Head="269" />
+        <Item Id="5055" Name="Floret Protector Shirt" Body="238" />
+        <Item Id="5056" Name="Floret Protector Pants" Legs="224" />
+        <Item Id="5057" Name="Capricorn Helmet" Head="270" />
+        <Item Id="5058" Name="Capricorn Chestplate" Body="239" />
+        <Item Id="5059" Name="Capricorn Hooves" Legs="225" />
+        <Item Id="5060" Name="Capricorn Tail" Legs="226" />
+        <Item Id="5061" Name="Video Visage" Head="271" />
+        <Item Id="5062" Name="Lazer Blazer" Body="240" />
+        <Item Id="5063" Name="Pinstripe Pants" Legs="227" />
+        <Item Id="5064" Name="Lavaproof Tackle Bag" Accessory="True" />
+        <Item Id="5065" Name="Resonance Scepter" Rack="True" />
+        <Item Id="5066" Name="Bee Hive" />
+        <Item Id="5067" Name="Antlion Eggs" />
+        <Item Id="5068" Name="Flinx Fur Coat" Body="241" />
+        <Item Id="5069" Name="Flinx Staff" Rack="True" />
+        <Item Id="5070" Name="Flinx Fur" />
+        <Item Id="5071" Name="Royal Tiara" Head="272" />
+        <Item Id="5072" Name="Royal Blouse" Body="242" />
+        <Item Id="5073" Name="Royal Dress" Legs="228" />
+        <Item Id="5074" Name="Spinal Tap" Rack="True" />
+        <Item Id="5075" Name="Rainbow Cursor" Accessory="True" />
+        <Item Id="5076" Name="Royal Scepter" Accessory="True" />
+        <Item Id="5077" Name="Glass Slipper" Accessory="True" />
+        <Item Id="5078" Name="Prince Uniform" Body="243" />
+        <Item Id="5079" Name="Prince Pants" Legs="230" />
+        <Item Id="5080" Name="Prince Cape" Accessory="True" />
+        <Item Id="5081" Name="Potted Crystal Fern" />
+        <Item Id="5082" Name="Potted Crystal Spiral" />
+        <Item Id="5083" Name="Potted Crystal Teardrop" />
+        <Item Id="5084" Name="Potted Crystal Tree" />
+        <Item Id="5085" Name="Princess 64" />
+        <Item Id="5086" Name="Painting of a Lass" />
+        <Item Id="5087" Name="Dark Side of the Hallow" />
+        <Item Id="5088" Name="Bernie's Button" />
+        <Item Id="5089" Name="Glommer's Flower" />
+        <Item Id="5090" Name="Deerclops Eyeball" />
+        <Item Id="5091" Name="Monster Meat" />
+        <Item Id="5092" Name="Monster Lasagna" IsFood="True" />
+        <Item Id="5093" Name="Froggle Bunwich" IsFood="True" />
+        <Item Id="5094" Name="Tentacle Spike" Rack="True" />
+        <Item Id="5095" Name="Lucy the Axe" Rack="True" />
+        <Item Id="5096" Name="Ham Bat" Rack="True" />
+        <Item Id="5097" Name="Bat Bat" Rack="True" />
+        <Item Id="5098" Name="Eye Bone" />
+        <Item Id="5099" Name="Garland" Head="273" />
+        <Item Id="5100" Name="Bone Helm" Accessory="True" />
+        <Item Id="5101" Name="Eyebrella" Head="275" />
+        <Item Id="5102" Name="Gentleman's Vest" Body="244" />
+        <Item Id="5103" Name="Gentleman's Trousers" Legs="231" />
+        <Item Id="5104" Name="Gentleman's Beard" Accessory="True" />
+        <Item Id="5105" Name="Gentleman's Long Beard" Accessory="True" />
+        <Item Id="5106" Name="Gentleman's Magnificent Beard" Accessory="True" />
+        <Item Id="5107" Name="Magiluminescence" Accessory="True" />
+        <Item Id="5108" Name="Deerclops Trophy" />
+        <Item Id="5109" Name="Deerclops Mask" Head="276" />
+        <Item Id="5110" Name="Deerclops Relic" />
+        <Item Id="5111" Name="Treasure Bag (Deerclops)" />
+        <Item Id="5112" Name="Music Box (Deerclops)" Accessory="True" />
+        <Item Id="5113" Name="Radio Thing" Accessory="True" />
+        <Item Id="5114" Name="Abigail's Flower" Rack="True" />
+        <Item Id="5115" Name="Firestarter's Sweater" Body="245" />
+        <Item Id="5116" Name="Firestarter's Skirt" Legs="232" />
+        <Item Id="5117" Name="Pew-matic Horn" Rack="True" />
+        <Item Id="5118" Name="Weather Pain" Rack="True" />
+        <Item Id="5119" Name="Houndius Shootius" Rack="True" />
+        <Item Id="5120" Name="Deer Thing" />
+        <Item Id="5121" Name="The Gentleman Scientist" />
+        <Item Id="5122" Name="The Firestarter" />
+        <Item Id="5123" Name="The Bereaved" />
+        <Item Id="5124" Name="The Strongman" />
+        <Item Id="5125" Name="Fart Kart" />
+        <Item Id="5126" Name="Hand Of Creation" Accessory="True" />
+        <Item Id="5127" Name="Neon Moss" />
+        <Item Id="5128" Name="Helium Moss" />
+        <Item Id="5129" Name="Flymeal" Rack="True" />
+        <Item Id="5130" Name="Lilith's Necklace" />
+        <Item Id="5131" Name="Resplendent Dessert" />
+        <Item Id="5132" Name="Stinkbug" />
+        <Item Id="5133" Name="Stinkbug Cage" />
+        <Item Id="5134" Name="Terraformer" />
+        <Item Id="5135" Name="Venom Dart Trap" />
+        <Item Id="5136" Name="Vulkelf Ears" Head="274" />
+        <Item Id="5137" Name="Stinkbug Blocker" />
+        <Item Id="5138" Name="Ghostly Stinkbug Blocker" />
+        <Item Id="5139" Name="Fishing Bobber" Accessory="True" />
+        <Item Id="5140" Name="Glowing Fishing Bobber" Accessory="True" />
+        <Item Id="5141" Name="Lava Moss Fishing Bobber" Accessory="True" />
+        <Item Id="5142" Name="Krypton Moss Fishing Bobber" Accessory="True" />
+        <Item Id="5143" Name="Xenon Moss Fishing Bobber" Accessory="True" />
+        <Item Id="5144" Name="Argon Moss Fishing Bobber" Accessory="True" />
+        <Item Id="5145" Name="Neon Moss Fishing Bobber" Accessory="True" />
+        <Item Id="5146" Name="Helium Moss Fishing Bobber" Accessory="True" />
+        <Item Id="5147" Name="Wand of Frosting" Rack="True" />
+        <Item Id="5148" Name="Reef Bathtub" />
+        <Item Id="5149" Name="Reef Bed" />
+        <Item Id="5150" Name="Reef Bookcase" />
+        <Item Id="5151" Name="Reef Dresser" />
+        <Item Id="5152" Name="Reef Candelabra" />
+        <Item Id="5153" Name="Reef Candle" />
+        <Item Id="5154" Name="Reef Chair" />
+        <Item Id="5155" Name="Reef Chandelier" />
+        <Item Id="5156" Name="Reef Chest" />
+        <Item Id="5157" Name="Reef Clock" />
+        <Item Id="5158" Name="Reef Door" />
+        <Item Id="5159" Name="Reef Lamp" />
+        <Item Id="5160" Name="Reef Lantern" />
+        <Item Id="5161" Name="Reef Piano" />
+        <Item Id="5162" Name="Reef Platform" />
+        <Item Id="5163" Name="Reef Sink" />
+        <Item Id="5164" Name="Reef Sofa" />
+        <Item Id="5165" Name="Reef Table" />
+        <Item Id="5166" Name="Reef Work Bench" />
+        <Item Id="5167" Name="Trapped Reef Chest" />
+        <Item Id="5168" Name="Reef Toilet" />
+        <Item Id="5169" Name="Balloon Bathtub" />
+        <Item Id="5170" Name="Balloon Bed" />
+        <Item Id="5171" Name="Balloon Bookcase" />
+        <Item Id="5172" Name="Balloon Dresser" />
+        <Item Id="5173" Name="Balloon Candelabra" />
+        <Item Id="5174" Name="Balloon Candle" />
+        <Item Id="5175" Name="Balloon Chair" />
+        <Item Id="5176" Name="Balloon Chandelier" />
+        <Item Id="5177" Name="Balloon Chest" />
+        <Item Id="5178" Name="Balloon Clock" />
+        <Item Id="5179" Name="Balloon Door" />
+        <Item Id="5180" Name="Balloon Lamp" />
+        <Item Id="5181" Name="Balloon Lantern" />
+        <Item Id="5182" Name="Balloon Piano" />
+        <Item Id="5183" Name="Balloon Platform" />
+        <Item Id="5184" Name="Balloon Sink" />
+        <Item Id="5185" Name="Balloon Sofa" />
+        <Item Id="5186" Name="Balloon Table" />
+        <Item Id="5187" Name="Balloon Work Bench" />
+        <Item Id="5188" Name="Trapped Balloon Chest" />
+        <Item Id="5189" Name="Balloon Toilet" />
+        <Item Id="5190" Name="Ash Wood Bathtub" />
+        <Item Id="5191" Name="Ash Wood Bed" />
+        <Item Id="5192" Name="Ash Wood Bookcase" />
+        <Item Id="5193" Name="Ash Wood Dresser" />
+        <Item Id="5194" Name="Ash Wood Candelabra" />
+        <Item Id="5195" Name="Ash Wood Candle" />
+        <Item Id="5196" Name="Ash Wood Chair" />
+        <Item Id="5197" Name="Ash Wood Chandelier" />
+        <Item Id="5198" Name="Ash Wood Chest" />
+        <Item Id="5199" Name="Ash Wood Clock" />
+        <Item Id="5200" Name="Ash Wood Door" />
+        <Item Id="5201" Name="Ash Wood Lamp" />
+        <Item Id="5202" Name="Ash Wood Lantern" />
+        <Item Id="5203" Name="Ash Wood Piano" />
+        <Item Id="5204" Name="Ash Wood Platform" />
+        <Item Id="5205" Name="Ash Wood Sink" />
+        <Item Id="5206" Name="Ash Wood Sofa" />
+        <Item Id="5207" Name="Ash Wood Table" />
+        <Item Id="5208" Name="Ash Wood Work Bench" />
+        <Item Id="5209" Name="Trapped Ash Wood Chest" />
+        <Item Id="5210" Name="Ash Wood Toilet" />
+        <Item Id="5211" Name="Biome Sight Potion" />
+        <Item Id="5212" Name="Scarlet Macaw" />
+        <Item Id="5213" Name="Scarlet Macaw Cage" />
+        <Item Id="5214" Name="Ash Grass Seeds" />
+        <Item Id="5215" Name="Ash Wood" />
+        <Item Id="5216" Name="Ash Wood Wall" />
+        <Item Id="5217" Name="Ash Wood Fence" />
+        <Item Id="5218" Name="Outcast" />
+        <Item Id="5219" Name="Fairy Guides" />
+        <Item Id="5220" Name="A Horrible Night for Alchemy" />
+        <Item Id="5221" Name="Morning Hunt" />
+        <Item Id="5222" Name="Suspiciously Sparkly" />
+        <Item Id="5223" Name="Requiem" />
+        <Item Id="5224" Name="Cat Sword" />
+        <Item Id="5225" Name="Kargoh's Summon" />
+        <Item Id="5226" Name="High Pitch" />
+        <Item Id="5227" Name="A Machine for Terrarians" />
+        <Item Id="5228" Name="Terra Blade Chronicles" />
+        <Item Id="5229" Name="Benny Warhol" />
+        <Item Id="5230" Name="Lizard King" />
+        <Item Id="5231" Name="My Son" />
+        <Item Id="5232" Name="Duality" />
+        <Item Id="5233" Name="Parsec Pals" />
+        <Item Id="5234" Name="Remnants of Devotion" />
+        <Item Id="5235" Name="Not So Lost In Paradise" />
+        <Item Id="5236" Name="Ocular Resonance" />
+        <Item Id="5237" Name="Wings of Evil" />
+        <Item Id="5238" Name="Constellation" />
+        <Item Id="5239" Name="Eyezorhead" />
+        <Item Id="5240" Name="Dread of the Red Sea" />
+        <Item Id="5241" Name="Do Not Eat the Vile Mushroom!" />
+        <Item Id="5242" Name="Yuuma, The Blue Tiger" />
+        <Item Id="5243" Name="Moonman &amp; Company" />
+        <Item Id="5244" Name="Sunshine of Israpony" />
+        <Item Id="5245" Name="Purity" />
+        <Item Id="5246" Name="Sufficiently Advanced" />
+        <Item Id="5247" Name="Strange Growth" />
+        <Item Id="5248" Name="Happy Little Tree" />
+        <Item Id="5249" Name="Strange Dead Fellows" />
+        <Item Id="5250" Name="Secrets" />
+        <Item Id="5251" Name="Thunderbolt" />
+        <Item Id="5252" Name="Crustography" />
+        <Item Id="5253" Name="The Werewolf" />
+        <Item Id="5254" Name="Blessing from the Heavens" />
+        <Item Id="5255" Name="Love is in the Trash Slot" />
+        <Item Id="5256" Name="Fangs" />
+        <Item Id="5257" Name="Hail to the King" />
+        <Item Id="5258" Name="See The World For What It Is" />
+        <Item Id="5259" Name="What Lurks Below" />
+        <Item Id="5260" Name="This Is Getting Out Of Hand" />
+        <Item Id="5261" Name="Buddies" />
+        <Item Id="5262" Name="Midnight Sun" />
+        <Item Id="5263" Name="Couch Gag" />
+        <Item Id="5264" Name="Silent Fish" />
+        <Item Id="5265" Name="The Duke" />
+        <Item Id="5266" Name="Royal Romance" />
+        <Item Id="5267" Name="Bioluminescence" />
+        <Item Id="5268" Name="Wildflowers" />
+        <Item Id="5269" Name="Viking Voyage" />
+        <Item Id="5270" Name="Bifrost" />
+        <Item Id="5271" Name="Heartlands" />
+        <Item Id="5272" Name="Forest Troll" />
+        <Item Id="5273" Name="Aurora Borealis" />
+        <Item Id="5274" Name="Lady Of The Lake" />
+        <Item Id="5275" Name="Joja Cola" IsFood="True" />
+        <Item Id="5276" Name="Stardrop" />
+        <Item Id="5277" Name="Spicy Pepper" IsFood="True" />
+        <Item Id="5278" Name="Pomegranate" IsFood="True" />
+        <Item Id="5279" Name="Ash Wood Helmet" Head="278" />
+        <Item Id="5280" Name="Ash Wood Breasplate" Body="246" />
+        <Item Id="5281" Name="Ash Wood Greaves" Legs="234" />
+        <Item Id="5282" Name="Ash Wood Bow" Rack="True" />
+        <Item Id="5283" Name="Ash Wood Hammer" Rack="True" />
+        <Item Id="5284" Name="Ash Wood Sword" Rack="True" />
+        <Item Id="5285" Name="Moon Globe" />
+        <Item Id="5286" Name="Repaired Life Crystal" />
+        <Item Id="5287" Name="Repaired Mana Crystal" />
+        <Item Id="5288" Name="Terra Fart Kart" />
+        <Item Id="5289" Name="Minecart Upgrade Kit" />
+        <Item Id="5290" Name="Jim's Cap" Head="279" />
+        <Item Id="5291" Name="Echo Wall" />
+        <Item Id="5292" Name="Echo Platform" />
+        <Item Id="5293" Name="Mushroom Torch" />
+        <Item Id="5294" Name="Hive-Five" Rack="True" />
+        <Item Id="5295" Name="Axe of Regrowth" Rack="True" />
+        <Item Id="5296" Name="Chlorophyte Extractinator" />
+        <Item Id="5297" Name="Blue Chicken Egg" />
+        <Item Id="5298" Name="Trimarang" Rack="True" />
+        <Item Id="5299" Name="Mushroom Campfire" />
+        <Item Id="5300" Name="Blue Macaw" />
+        <Item Id="5301" Name="Blue Macaw Cage" />
+        <Item Id="5302" Name="Bottomless Honey Bucket" />
+        <Item Id="5303" Name="Honey Absorbant Sponge" />
+        <Item Id="5304" Name="Ultra Absorbant Sponge" />
+        <Item Id="5305" Name="Goblorc Ears" Head="277" />
+        <Item Id="5306" Name="Reef Block" />
+        <Item Id="5307" Name="Reef Wall" />
+        <Item Id="5308" Name="r/Terraria" />
+        <Item Id="5309" Name="Guide to Environmental Preservation" />
+        <Item Id="5310" Name="Princess Style" />
+        <Item Id="5311" Name="Toucan" />
+        <Item Id="5312" Name="Yellow Cockatiel" />
+        <Item Id="5313" Name="Gray Cockatiel" />
+        <Item Id="5314" Name="Toucan Cage" />
+        <Item Id="5315" Name="Yellow Cockatiel Cage" />
+        <Item Id="5316" Name="Gray Cockatiel Cage" />
+        <Item Id="5317" Name="Macaw Statue" />
+        <Item Id="5318" Name="Toucan Statue" />
+        <Item Id="5319" Name="Cockatiel Statue" />
+        <Item Id="5320" Name="Decorative Healing Potion" />
+        <Item Id="5321" Name="Decorative Mana Potion" />
+        <Item Id="5322" Name="Shadow Candle" />
+        <Item Id="5323" Name="Guide to Peaceful Coexistence" />
+        <Item Id="5324" Name="Rubblemaker (Small)" />
+        <Item Id="5325" Name="Closed Void Bag" />
+        <Item Id="5326" Name="Artisan Loaf" />
+        <Item Id="5327" Name="TNT Barrel" />
+        <Item Id="5328" Name="Chest Lock" />
+        <Item Id="5329" Name="Rubblemaker (Medium)" />
+        <Item Id="5330" Name="Rubblemaker (Large)" />
+        <Item Id="5331" Name="Bundle of Horseshoe Balloons" Accessory="True" />
+        <Item Id="5332" Name="Spiffo Plush" />
+        <Item Id="5333" Name="Glow Tulip" />
+        <Item Id="5334" Name="Ocram's Razor" />
+        <Item Id="5335" Name="Rod of Harmony" Rack="True" />
+        <Item Id="5336" Name="Advanced Combat Techniques: Volume Two" />
+        <Item Id="5337" Name="Vital Crystal" />
+        <Item Id="5338" Name="Aegis Fruit" />
+        <Item Id="5339" Name="Arcane Crystal" />
+        <Item Id="5340" Name="Galaxy Pearl" />
+        <Item Id="5341" Name="Gummy Worm" />
+        <Item Id="5342" Name="Ambrosia" />
+        <Item Id="5343" Name="Peddler's Satchel" />
+        <Item Id="5344" Name="Echo Coating" />
+        <Item Id="5345" Name="Echo Chamber" Accessory="True" />
+        <Item Id="5346" Name="Gas Trap" />
+        <Item Id="5347" Name="Aether Monolith" Accessory="True" />
+        <Item Id="5348" Name="Shimmer Arrow" />
+        <Item Id="5349" Name="Aetherium Block" />
+        <Item Id="5350" Name="Faeling" />
+        <Item Id="5351" Name="Faeling in a Bottle" />
+        <Item Id="5352" Name="Shimmer Slime Banner" Tally="289"/>
+        <Item Id="5353" Name="Aether Torch" />
+        <Item Id="5354" Name="Reflective Shades" Accessory="True" />
+        <Item Id="5355" Name="Chromatic Cloak" Accessory="True" />
+        <Item Id="5356" Name="Used Gas Trap" />
+        <Item Id="5357" Name="Aether Campfire" />
+        <Item Id="5358" Name="Shellphone (Home)" />
+        <Item Id="5359" Name="Shellphone (Spawn)" />
+        <Item Id="5360" Name="Shellphone (Ocean)" />
+        <Item Id="5361" Name="Shellphone (Underworld)" />
+        <Item Id="5362" Name="Music Box (Aether)" Accessory="True" />
+        <Item Id="5363" Name="Infested Spider Wall" />
+        <Item Id="5364" Name="Bottomless Shimmer Bucket" />
+        <Item Id="5365" Name="Cursed Blue Brick Wall" />
+        <Item Id="5366" Name="Cursed Blue Slab Wall" />
+        <Item Id="5367" Name="Cursed Blue Tiled Wall" />
+        <Item Id="5368" Name="Cursed Pink Brick Wall" />
+        <Item Id="5369" Name="Cursed Pink Slab Wall" />
+        <Item Id="5370" Name="Cursed Pink Tiled Wall" />
+        <Item Id="5371" Name="Cursed Green Brick Wall" />
+        <Item Id="5372" Name="Cursed Green Slab Wall" />
+        <Item Id="5373" Name="Cursed Green Tiled Wall" />
+        <Item Id="5374" Name="Treacherous Sandstone Wall" />
+        <Item Id="5375" Name="Treacherous Hardened Sand Wall" />
+        <Item Id="5376" Name="Forbidden Lihzahrd Brick Wall" />
+        <Item Id="5377" Name="Spelunker Flare" />
+        <Item Id="5378" Name="Cursed Flare" />
+        <Item Id="5379" Name="Rainbow Flare" />
+        <Item Id="5380" Name="Shimmer Flare" />
+        <Item Id="5381" Name="Enchanted Moondial" />
+        <Item Id="5382" Name="Waffle's Iron" Rack="True" />
+        <Item Id="5383" Name="Bouncy Boulder" />
+        <Item Id="5384" Name="Life Crystal Boulder" />
+        <Item Id="5385" Name="Dizzy's Rare Gecko Chester" Head="280" />
+        <Item Id="5386" Name="Raynebro's Hoodie" Body="247" />
+        <Item Id="5387" Name="Raynebro's Pants" Legs="235" />
+        <Item Id="5388" Name="Eye of the Sun" />
+        <Item Id="5389" Name="Cheesy Pizza Poster" />
+        <Item Id="5390" Name="Raynebro's Hood" Head="281" />
+        <Item Id="5391" Name="Uncumbering Stone" />
+        <Item Id="5392" Name="Yellow Solution" />
+        <Item Id="5393" Name="White Solution" />
+        <Item Id="5394" Name="Brown Solution" />
+        <Item Id="5395" Name="Poo" />
+        <Item Id="5396" Name="Poo Wall" />
+        <Item Id="5397" Name="Aetherium Wall" />
+        <Item Id="5398" Name="Aetherium Brick" />
+        <Item Id="5399" Name="Aetherium Brick Wall" />
+        <Item Id="5400" Name="The Dirtiest Block" />
+        <Item Id="5401" Name="Lunar Rust Brick" />
+        <Item Id="5402" Name="Dark Celestial Brick" />
+        <Item Id="5403" Name="Astra Brick" />
+        <Item Id="5404" Name="Cosmic Ember Brick" />
+        <Item Id="5405" Name="Cryocore Brick" />
+        <Item Id="5406" Name="Mercury Brick" />
+        <Item Id="5407" Name="Star Royale Brick" />
+        <Item Id="5408" Name="Heavenforge Brick" />
+        <Item Id="5409" Name="Lunar Rust Brick Wall" />
+        <Item Id="5410" Name="Dark Celestial Brick Wall" />
+        <Item Id="5411" Name="Astra Brick Wall" />
+        <Item Id="5412" Name="Cosmic Ember Brick Wall" />
+        <Item Id="5413" Name="Cryocore Brick Wall" />
+        <Item Id="5414" Name="Mercury Brick Wall" />
+        <Item Id="5415" Name="Star Royale Brick Wall" />
+        <Item Id="5416" Name="Heavenforge Brick Wall" />
+        <Item Id="5417" Name="Ancient Blue Brick" />
+        <Item Id="5418" Name="Ancient Blue Brick Wall" />
+        <Item Id="5419" Name="Ancient Green Brick" />
+        <Item Id="5420" Name="Ancient Green Brick Wall" />
+        <Item Id="5421" Name="Ancient Pink Brick" />
+        <Item Id="5422" Name="Ancient Pink Brick Wall" />
+        <Item Id="5423" Name="Ancient Gold Brick" />
+        <Item Id="5424" Name="Ancient Gold Brick Wall" />
+        <Item Id="5425" Name="Ancient Silver Brick" />
+        <Item Id="5426" Name="Ancient Silver Brick Wall" />
+        <Item Id="5427" Name="Ancient Copper Brick" />
+        <Item Id="5428" Name="Ancient Copper Brick Wall" />
+        <Item Id="5429" Name="Ancient Cobalt Brick" />
+        <Item Id="5430" Name="Ancient Cobalt Brick Wall" />
+        <Item Id="5431" Name="Ancient Mythril Brick" />
+        <Item Id="5432" Name="Ancient Mythril Brick Wall" />
+        <Item Id="5433" Name="Ancient Obsidian Brick" />
+        <Item Id="5434" Name="Ancient Obsidian Brick Wall" />
+        <Item Id="5435" Name="Ancient Hellstone Brick" />
+        <Item Id="5436" Name="Ancient Hellstone Brick Wall" />
+        <Item Id="5437" Name="Shellphone" />
+        <Item Id="5438" Name="Fertilizer" />
+        <Item Id="5439" Name="Lava Moss Brick" />
+        <Item Id="5440" Name="Argon Moss Brick" />
+        <Item Id="5441" Name="Krypton Moss Brick" />
+        <Item Id="5442" Name="Xenon Moss Brick" />
+        <Item Id="5443" Name="Neon Moss Brick" />
+        <Item Id="5444" Name="Helium Moss Brick" />
+        <Item Id="5445" Name="Lava Moss Brick Wall" />
+        <Item Id="5446" Name="Argon Moss Brick Wall" />
+        <Item Id="5447" Name="Krypton Moss Brick Wall" />
+        <Item Id="5448" Name="Xenon Moss Brick Wall" />
+        <Item Id="5449" Name="Neon Moss Brick Wall" />
+        <Item Id="5450" Name="Helium Moss Brick Wall" />
+        <Item Id="5451" Name="Kwad Racer Drone" />
+        <Item Id="5452" Name="FPV Goggles" Accessory="True" />
     </Items>
     <Npcs>
         <Npc Id="17" Name="Merchant" Frames="18" />
