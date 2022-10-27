@@ -7300,12 +7300,12 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Tile Id="452" Color="#FFff96b5" Name="Silly Balloon Machine" Framed="true" Size="3,2" IsAnimated="true" />
         <Tile Id="453" Color="#FFFFFFFF" Name="Silly Tied Balloon" Framed="true" Size="1,3" IsAnimated="true">
             <Frames>
-                <Frame UV="0,0" Name="Purple" Variety="Left" />
-                <Frame UV="18,0" Name="Purple" Variety="Right" />
-                <Frame UV="36,0" Name="Green" Variety="Left" />
-                <Frame UV="54,0" Name="Green" Variety="Right" />
-                <Frame UV="72,0" Name="Pink" Variety="Left" />
-                <Frame UV="90,0" Name="Pink" Variety="Right" />
+                <Frame UV="0,0" Variety="Purple Left" />
+                <Frame UV="18,0" Variety="Purple Right" />
+                <Frame UV="36,0" Variety="Green Left" />
+                <Frame UV="54,0" Variety="Green Right" />
+                <Frame UV="72,0" Variety="Pink Left" />
+                <Frame UV="90,0" Variety="Pink Right" />
             </Frames>
         </Tile>
         <Tile Id="454" Color="#FFae10b0" Name="Pigronata" Framed="true" Size="4,3" IsAnimated="true" />
