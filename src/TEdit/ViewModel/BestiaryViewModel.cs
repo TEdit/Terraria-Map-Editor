@@ -130,6 +130,11 @@ namespace TEdit.ViewModel
         {
             if (_wvm.CurrentWorld == null) { return; }
 
+            // clear out kill tally
+            for (int i = 0; i < _wvm.CurrentWorld.KilledMobs.Count; i++) {
+                _wvm.CurrentWorld.KilledMobs[i] = 0;
+            }
+
             foreach (var item in BestiaryData)
             {
                 var bestiaryId = item.Name;
@@ -137,7 +142,7 @@ namespace TEdit.ViewModel
                     _wvm.CurrentWorld.KilledMobs.Count > npcData.BannerId &&
                     npcData.BannerId >= 0)
                 {
-                    _wvm.CurrentWorld.KilledMobs[npcData.BannerId] = item.Defeated;
+                    _wvm.CurrentWorld.KilledMobs[npcData.BannerId] += item.Defeated;
                 }
             }
         }
