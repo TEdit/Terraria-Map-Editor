@@ -2850,7 +2850,7 @@ namespace TEdit.View
         private void DrawNpcTexture(NPC npc)
         {
             int npcId = npc.SpriteId;
-            string townNpcName = World.NpcNames[npcId];
+            string townNpcName = World.NpcNames[npcId].Replace(" ", "");
             bool isPartying = _wvm.CurrentWorld.PartyingNPCs.Contains(npcId);
             int variation = npc.TownNpcVariationIndex;
 
