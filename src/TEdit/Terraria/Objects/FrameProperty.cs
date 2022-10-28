@@ -75,7 +75,7 @@ namespace TEdit.Terraria.Objects
 
         public override string ToString()
         {
-            return $"{Name} {Variety} {Anchor.ToString()}".Trim();
+            return $"{Name}{(string.IsNullOrEmpty(Variety) ? "" : " " + Variety)}{(Anchor is FrameAnchor.None ? "" : " " + Anchor.ToString())}".Trim();
         }
     }
 }
