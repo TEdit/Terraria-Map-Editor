@@ -75,7 +75,20 @@ namespace TEdit.Terraria.Objects
 
         public override string ToString()
         {
-            return $"{Name}{(string.IsNullOrEmpty(Variety) ? "" : " " + Variety)}{(Anchor is FrameAnchor.None ? "" : " " + Anchor.ToString())}".Trim();
+            var sb = new StringBuilder(Name);
+            if (!string.IsNullOrWhiteSpace(Variety))
+            {
+                sb.Append(": ");
+                sb.Append(Variety);
+            }
+            if (Anchor != FrameAnchor.None)
+            {
+                sb.Append(" [");
+                sb.Append(Anchor.ToString());
+                sb.Append(']');
+
+            }
+            return sb.ToString();
         }
     }
 }
