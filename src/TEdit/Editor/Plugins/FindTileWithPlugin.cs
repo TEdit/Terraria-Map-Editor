@@ -38,7 +38,7 @@ namespace TEdit.Editor.Plugins
                         // create a dictionary of dictionaries for fast searching
                         foreach (var frame in prop.Frames)
                         {
-                            if (frame.Name.ToLower().Contains(blockName) ||  // match the frame
+                            if (frame.ToString().ToLower().Contains(blockName) ||  // match the frame
                                  prop.Name.ToLower().Contains(blockName))    // or match block name. This catches cases where the frame name is positional
                             {
                                 // Add this frame to a list 
@@ -49,7 +49,7 @@ namespace TEdit.Editor.Plugins
                                     spriteIds.Add((ushort)prop.Id, frameList);
                                 }
 
-                                frameList.Add(frame.UV, $"{prop.Name} ({frame.Name})");
+                                frameList.Add(frame.UV, $"{prop.Name} ({frame})");
                             }
                         }
                     }
