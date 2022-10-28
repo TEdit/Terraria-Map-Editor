@@ -1,4 +1,5 @@
-﻿using System.Windows.Media;
+﻿using System.Text;
+using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using TEdit.Geometry.Primitives;
 using GalaSoft.MvvmLight;
