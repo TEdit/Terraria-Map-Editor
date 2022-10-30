@@ -2504,7 +2504,7 @@
           "default": { "skyId": 304, "evilId": 306 }
         },
         {
-          "name": "wallSandNHallow",
+          "name": "wallSandHallow",
           "sourceIds": [307],
           "default": { "skyId": 304, "evilId": 307 }
         },
