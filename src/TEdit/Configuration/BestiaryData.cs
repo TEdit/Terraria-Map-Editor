@@ -19,9 +19,19 @@ namespace TEdit.Configuration
         public int BestiaryDisplayIndex { get; set; }
     }
 
+    public class NpcConfiguration
+    {
+        public List<string> Cat { get; private set; } = new();
+        public List<string> Dog { get; private set; } = new();
+        public List<string> Bunny { get; private set; } = new();
+        public List<NpcData> NpcData { get; private set; } = new();
+    }
+
 
     public class BestiaryData
     {
+        public NpcConfiguration Configuration { get; private set; } = new();
+
         public Dictionary<int,NpcData> NpcById { get; private set; } = new();
         public Dictionary<string,NpcData> NpcData { get; private set; } = new();
 
@@ -35,18 +45,19 @@ namespace TEdit.Configuration
             using (JsonTextReader reader = new JsonTextReader(file))
             {
                 JsonSerializer serializer = new JsonSerializer();
-                var npcData = serializer.Deserialize<List<NpcData>>(reader);
+                var npcConfig = serializer.Deserialize<NpcConfiguration>(reader);
                 var bestiaryData = new BestiaryData();
-                bestiaryData.Init(npcData);
+                bestiaryData.Init(npcConfig);
 
                 return bestiaryData;
             }
         }
 
-        private void Init(IEnumerable<NpcData> npcs)
+        private void Init(NpcConfiguration npcConfig)
         {
+            Configuration = npcConfig;
             NpcData.Clear();
-            foreach (var npc in npcs)
+            foreach (var npc in npcConfig.NpcData)
             {
                 NpcById[npc.Id] = npc;
                 NpcData[npc.BestiaryId] = npc;

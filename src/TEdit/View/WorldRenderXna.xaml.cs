@@ -2850,13 +2850,12 @@ namespace TEdit.View
         private void DrawNpcTexture(NPC npc)
         {
             int npcId = npc.SpriteId;
-            string townNpcName = World.NpcNames[npcId].Replace(" ", "");
+            
+            string townNpcName = World.BestiaryData.NpcById[npcId].BestiaryId;
             bool isPartying = _wvm.CurrentWorld.PartyingNPCs.Contains(npcId);
-            int variation = npc.TownNpcVariationIndex;
 
             Texture2D npcTexture = 
-                _textureDictionary.GetTownNPC(townNpcName, isPartying) ??
-                _textureDictionary.GetNPC(npcId);
+                _textureDictionary.GetTownNPC(townNpcName, npcId, variant: npc.TownNpcVariationIndex, partying: isPartying);
 
             if (npcTexture != null)
             {

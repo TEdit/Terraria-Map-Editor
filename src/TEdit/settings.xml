@@ -15334,54 +15334,54 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Item Id="5452" Name="FPV Goggles" Accessory="True" />
     </Items>
     <Npcs>
-        <Npc Id="17" Name="Merchant" Frames="18" />
-        <Npc Id="18" Name="Nurse" Frames="18" />
-        <Npc Id="19" Name="Arms Dealer" Frames="18" />
-        <Npc Id="20" Name="Dryad" Frames="18" />
-        <Npc Id="22" Name="Guide" Frames="18" />
-        <Npc Id="37" Name="Old Man" Frames="18" />
-        <Npc Id="38" Name="Demolitionist" Frames="18" />
-        <Npc Id="54" Name="Clothier" Frames="18" />
-        <Npc Id="105" Name="Bound Goblin" Frames="18" />
-        <Npc Id="106" Name="Bound Wizard" Frames="18" />
-        <Npc Id="107" Name="Goblin Tinkerer" Frames="18" />
-        <Npc Id="108" Name="Wizard" Frames="18" />
-        <Npc Id="123" Name="Bound Mechanic" Frames="16" />
-        <Npc Id="124" Name="Mechanic" Frames="18" />
-        <Npc Id="142" Name="Santa Claus" Frames="18" />
-        <Npc Id="160" Name="Truffle" Frames="18" />
-        <Npc Id="178" Name="Steampunker" Frames="18" />
-        <Npc Id="207" Name="Dye Trader" Frames="18" />
-        <Npc Id="208" Name="Party Girl" Frames="18" />
-        <Npc Id="209" Name="Cyborg" Frames="18" />
-        <Npc Id="227" Name="Painter" Frames="18" />
-        <Npc Id="228" Name="Witch Doctor" Frames="18" />
-        <Npc Id="229" Name="Pirate" Frames="18" />
-        <Npc Id="353" Name="Stylist" Frames="18" />
-        <Npc Id="354" Name="Webbed Stylist" Frames="16" />
-        <Npc Id="357" Name="Worm" Frames="10" />
-        <Npc Id="368" Name="Traveling Merchant" Frames="18" />
-        <Npc Id="369" Name="Angler" Frames="18" />
-        <Npc Id="376" Name="Sleeping Angler" Frames="30" />
-        <Npc Id="377" Name="Grasshopper" Frames="14" />
-        <Npc Id="441" Name="Tax Collector" Frames="18" />
-        <Npc Id="446" Name="Gold Grasshopper" Frames="14" />
-        <Npc Id="448" Name="Gold Worm" Frames="10" />
-        <Npc Id="453" Name="Skeleton Merchant" Frames="18" />
-        <Npc Id="484" Name="Enchanted Nightcrawler" Frames="10" />
-        <Npc Id="485" Name="Grubby" Frames="10" />
-        <Npc Id="486" Name="Sluggy" Frames="10" />
-        <Npc Id="487" Name="Buggy" Frames="10" />
-        <Npc Id="548" Name="Eternia Crystal" Frames="40" />
-        <Npc Id="550" Name="Tavernkeep" Frames="18" />
-        <Npc Id="579" Name="Unconscious Man" Frames="34" />
-        <Npc Id="588" Name="Golfer" Frames="18" />
-        <Npc Id="606" Name="Maggot" Frames="10" />
-        <Npc Id="633" Name="Zoologist" Frames="18" />
-        <Npc Id="637" Name="Cat" Frames="18" />
-        <Npc Id="638" Name="Dog" Frames="18" />
-        <Npc Id="656" Name="Bunny" Frames="18" />
-        <Npc Id="663" Name="Princess" Frames="18" />
+        <Npc Id="17" Name="Merchant"  />
+        <Npc Id="18" Name="Nurse"  />
+        <Npc Id="19" Name="Arms Dealer"  />
+        <Npc Id="20" Name="Dryad"  />
+        <Npc Id="22" Name="Guide"  />
+        <Npc Id="37" Name="Old Man"  />
+        <Npc Id="38" Name="Demolitionist"  />
+        <Npc Id="54" Name="Clothier"  />
+        <Npc Id="105" Name="Bound Goblin"  />
+        <Npc Id="106" Name="Bound Wizard"  />
+        <Npc Id="107" Name="Goblin Tinkerer"  />
+        <Npc Id="108" Name="Wizard"  />
+        <Npc Id="123" Name="Bound Mechanic"  />
+        <Npc Id="124" Name="Mechanic"  />
+        <Npc Id="142" Name="Santa Claus"  />
+        <Npc Id="160" Name="Truffle"  />
+        <Npc Id="178" Name="Steampunker"  />
+        <Npc Id="207" Name="Dye Trader"  />
+        <Npc Id="208" Name="Party Girl"  />
+        <Npc Id="209" Name="Cyborg"  />
+        <Npc Id="227" Name="Painter"  />
+        <Npc Id="228" Name="Witch Doctor"  />
+        <Npc Id="229" Name="Pirate"  />
+        <Npc Id="353" Name="Stylist"  />
+        <Npc Id="354" Name="Webbed Stylist"  />
+        <Npc Id="357" Name="Worm"  />
+        <Npc Id="368" Name="Traveling Merchant"  />
+        <Npc Id="369" Name="Angler"  />
+        <Npc Id="376" Name="Sleeping Angler"  />
+        <Npc Id="377" Name="Grasshopper"  />
+        <Npc Id="441" Name="Tax Collector"  />
+        <Npc Id="446" Name="Gold Grasshopper"  />
+        <Npc Id="448" Name="Gold Worm"  />
+        <Npc Id="453" Name="Skeleton Merchant"  />
+        <Npc Id="484" Name="Enchanted Nightcrawler"  />
+        <Npc Id="485" Name="Grubby"  />
+        <Npc Id="486" Name="Sluggy"  />
+        <Npc Id="487" Name="Buggy"  />
+        <Npc Id="548" Name="Eternia Crystal"  />
+        <Npc Id="550" Name="Tavernkeep"  />
+        <Npc Id="579" Name="Unconscious Man"  />
+        <Npc Id="588" Name="Golfer"  />
+        <Npc Id="606" Name="Maggot"  />
+        <Npc Id="633" Name="Zoologist"  />
+        <Npc Id="637" Name="Cat"  />
+        <Npc Id="638" Name="Dog"  />
+        <Npc Id="656" Name="Bunny"  />
+        <Npc Id="663" Name="Princess"  />
         <Npc Id="669" Name="Stinkbug" Size="10,10" />
         <Npc Id="670" Name="Nerdy Slime" Size="18,20" />
         <Npc Id="671" Name="Scarlet Macaw" Size="14,14" />
@@ -15390,13 +15390,13 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Npc Id="674" Name="Yellow Cockatiel" Size="14,14" />
         <Npc Id="675" Name="Gray Cockatiel" Size="14,14" />
         <Npc Id="677" Name="Faeling" Size="10,10" />
-        <Npc Id="678" Name="Cool Slime" Size="18,20" />
-        <Npc Id="679" Name="Elder Slime" Size="18,20" />
-        <Npc Id="680" Name="Clumsy Slime" Size="18,20" />
-        <Npc Id="681" Name="Diva Slime" Size="18,20" />
-        <Npc Id="682" Name="Surly Slime" Size="18,20" />
-        <Npc Id="683" Name="Mystic Slime" Size="18,20" />
-        <Npc Id="684" Name="Squire Slime" Size="18,20" />
+        <Npc Id="678" Name="Cool Slime" Size="32,32" />
+        <Npc Id="679" Name="Elder Slime" Size="32,32" />
+        <Npc Id="680" Name="Clumsy Slime" Size="32,32" />
+        <Npc Id="681" Name="Diva Slime" Size="32,32" />
+        <Npc Id="682" Name="Surly Slime" Size="32,32" />
+        <Npc Id="683" Name="Mystic Slime" Size="32,32" />
+        <Npc Id="684" Name="Squire Slime" Size="32,32" />
         <Npc Id="685" Name="Old Shaking Chest" Size="30,28" />
     </Npcs>
     <ItemPrefix>

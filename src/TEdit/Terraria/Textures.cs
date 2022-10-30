@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
+using System.Windows.Controls;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
@@ -99,32 +101,76 @@ namespace TEdit.Terraria
 
         public Texture2D GetNPC(int num) => GetTextureById(Npcs, num, "Images\\NPC_{0}");
 
-        public Texture2D GetTownNPC(string name, bool partying = false, bool shimmered = false)
+        public Texture2D GetTownNPC(string name, int npcId, int variant = 0, bool partying = false, bool shimmered = false)
         {
-            var key = new TownNpcKey(name, partying, shimmered);
-            if (name.StartsWith("Town"))
-            {
-                name = name.Substring(4);
-            }
+            var key = new TownNpcKey(name, variant, partying, shimmered);
+
 
             if (!TownNpcs.ContainsKey(key))
             {
-                string texturePath = $"Images\\TownNPCs\\{name}_Default";
+                string variantName = "Default";
+                if (npcId == 637)// cat
+                {
+                    variantName = World.BestiaryData.Configuration.Cat[variant];
+                }
+                else if (npcId == 638) // dog
+                {
+                    variantName = World.BestiaryData.Configuration.Dog[variant];
+                }
+                else if (npcId == 656) // bunny
+                {
+                    variantName = World.BestiaryData.Configuration.Bunny[variant];
+                }
+                else if (npcId == 633) // bestiaryGirl
+                {
+                    if (variant == 1)
+                    {
+                        variantName = "Default_Transformed";
+                    }
+                    else if (variant == 2)
+                    {
+                        variantName = "Default_Credits";
+
+                    }
+                }
+                if (name == "DD2Bartender")
+                {
+                    name = "Tavernkeep";
+                }
+                else if (name == "SantaClaus")
+                {
+                    name = "Santa";
+                }
+                else if (name.StartsWith("Town"))
+                {
+                    name = name.Substring(4);
+                }
+
+
+
+                string texturePath = $"Images\\TownNPCs\\{name}_{variantName}";
 
                 if (partying && shimmered)
                 {
-                    texturePath = $"Images\\TownNPCs\\Shimmered\\{name}_Default_Party";
+                    texturePath = $"Images\\TownNPCs\\Shimmered\\{name}_{variantName}_Party";
                 }
                 else if (shimmered)
                 {
-                    texturePath = $"Images\\TownNPCs\\Shimmered\\{name}_Default";
+                    texturePath = $"Images\\TownNPCs\\Shimmered\\{name}_{variantName}";
                 }
                 else if (partying)
                 {
-                    texturePath = $"Images\\TownNPCs\\{name}_Default_Party";
+                    texturePath = $"Images\\TownNPCs\\{name}_{variantName}_Party";
                 }
 
-                TownNpcs[key] = LoadTexture(texturePath);
+                var tex = LoadTexture(texturePath);
+                if (tex == null)
+                {
+                    TownNpcs[key] = LoadTexture($"Images\\NPC_{npcId}");
+                    Debug.WriteLine($"Loading ID {npcId} texture for NPC {name}:{variant}");
+                }
+
+                TownNpcs[key] = tex;
             }
 
             return TownNpcs[key];
