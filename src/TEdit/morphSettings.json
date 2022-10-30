@@ -241,17 +241,17 @@
           }
         },
         {
-          "name": "wallTreacherousHardenedSand",
+          "name": "wallSandNatural",
           "sourceIds": [216, 217, 218, 219],
           "default": { "skyId": 216 }
         },
         {
-          "name": "wallHardenedSand",
+          "name": "wallSand",
           "sourceIds": [304, 305, 306, 307],
           "default": { "skyId": 304 }
         },
         {
-          "name": "wallTreacherousSandstone",
+          "name": "wallSandstoneNatural",
           "sourceIds": [187, 220, 221, 222],
           "default": { "skyId": 187 }
         },
@@ -586,17 +586,17 @@
           "default": { "skyId": 246 }
         },
         {
-          "name": "wallTreacherousHardenedSand",
+          "name": "wallSandNatural",
           "sourceIds": [216, 217, 218, 219],
           "default": { "skyId": 217 }
         },
         {
-          "name": "wallHardenedSand",
+          "name": "wallSand",
           "sourceIds": [304, 305, 306, 307],
           "default": { "skyId": 305 }
         },
         {
-          "name": "wallTreacherousSandstone",
+          "name": "wallSandstoneNatural",
           "sourceIds": [187, 220, 221, 222],
           "default": { "skyId": 220 }
         },
@@ -931,12 +931,17 @@
           "default": { "skyId": 269 }
         },
         {
-          "name": "wallHardenedSand",
+          "name": "wallSandNatural",
+          "sourceIds": [216, 217, 218, 219],
+          "default": { "skyId": 218 }
+        },
+        {
+          "name": "wallSand",
           "sourceIds": [304, 305, 306, 307],
           "default": { "skyId": 306 }
         },
         {
-          "name": "wallTreacherousSandstone",
+          "name": "wallSandstoneNatural",
           "sourceIds": [187, 220, 221, 222],
           "default": { "skyId": 221 }
         },
@@ -1166,17 +1171,17 @@
           "default": { "skyId": 248 }
         },
         {
-          "name": "wallTreacherousHardenedSand",
+          "name": "wallSandNatural",
           "sourceIds": [216, 217, 218, 219],
           "default": { "skyId": 219 }
         },
         {
-          "name": "wallHardenedSand",
+          "name": "wallSand",
           "sourceIds": [304, 305, 306, 307],
           "default": { "skyId": 307 }
         },
         {
-          "name": "wallTreacherousSandstone",
+          "name": "wallSandstoneNatural",
           "sourceIds": [187, 220, 221, 222],
           "default": { "skyId": 222 }
         },
@@ -1365,19 +1370,19 @@
           "name": "tileSand_CorruptDirt",
           "sourceIds": [112, 398],
           "default": { "skyId": 0 },
-          "touchingAir": { "skyId": 23 }
+          "touchingAir": { "skyId": 2, "evilId": 23 }
         },
         {
           "name": "tileSand_CrimsonDirt",
           "sourceIds": [234, 399],
           "default": { "skyId": 0 },
-          "touchingAir": { "skyId": 199 }
+          "touchingAir": { "skyId": 2, "evilId": 199 }
         },
         {
           "name": "tileSand_HallowDirt",
           "sourceIds": [116, 402],
           "default": { "skyId": 0 },
-          "touchingAir": { "skyId": 109 }
+          "touchingAir": { "skyId": 2, "evilId": 109 }
         },
         {
           "name": "tileStone",
@@ -1641,7 +1646,7 @@
         },
         {
           "name": "wallRocks1Natural",
-          "sourceIds": [196, 212, 204],
+          "sourceIds": [212, 204],
           "default": { "skyId": 196 }
         },
         {
@@ -1661,7 +1666,7 @@
         },
         {
           "name": "wallRocks2Natural",
-          "sourceIds": [197, 213, 205],
+          "sourceIds": [213, 205],
           "default": { "skyId": 197 }
         },
         {
@@ -1681,7 +1686,7 @@
         },
         {
           "name": "wallRocks3Natural",
-          "sourceIds": [198, 214, 206],
+          "sourceIds": [214, 206],
           "default": { "skyId": 198 }
         },
         {
@@ -1701,7 +1706,7 @@
         },
         {
           "name": "wallRocks4Natural",
-          "sourceIds": [199, 215, 207],
+          "sourceIds": [215, 207],
           "default": { "skyId": 199 }
         },
         {
@@ -1721,23 +1726,83 @@
         },
         {
           "name": "wallRocks1",
-          "sourceIds": [284, 300, 292, 276, 280, 288],
+          "sourceIds": [300, 292],
           "default": { "skyId": 284 }
         },
         {
+          "name": "wallRocks1Corrupt",
+          "sourceIds": [276],
+          "default": { "skyId": 284, "evilId": 276 }
+        },
+        {
+          "name": "wallRocks1Crimson",
+          "sourceIds": [280],
+          "default": { "skyId": 284, "evilId": 280 }
+        },
+        {
+          "name": "wallRocks1Hallow",
+          "sourceIds": [288],
+          "default": { "skyId": 284, "evilId": 288 }
+        },
+        {
           "name": "wallRocks2",
-          "sourceIds": [285, 301, 293, 277, 281, 289],
+          "sourceIds": [301, 293],
           "default": { "skyId": 285 }
         },
         {
+          "name": "wallRocks2Corrupt",
+          "sourceIds": [277],
+          "default": { "skyId": 285, "evilId": 277 }
+        },
+        {
+          "name": "wallRocks2Crimson",
+          "sourceIds": [281],
+          "default": { "skyId": 285, "evilId": 281 }
+        },
+        {
+          "name": "wallRocks2Hallow",
+          "sourceIds": [289],
+          "default": { "skyId": 285, "evilId": 289 }
+        },
+        {
           "name": "wallRocks3",
-          "sourceIds": [286, 302, 294, 278, 282, 290],
+          "sourceIds": [302, 294],
           "default": { "skyId": 286 }
         },
         {
+          "name": "wallRocks3Corrupt",
+          "sourceIds": [278],
+          "default": { "skyId": 286, "evilId": 278 }
+        },
+        {
+          "name": "wallRocks3Crimson",
+          "sourceIds": [282],
+          "default": { "skyId": 286, "evilId": 282 }
+        },
+        {
+          "name": "wallRocks3Hallow",
+          "sourceIds": [290],
+          "default": { "skyId": 286, "evilId": 290 }
+        },
+        {
           "name": "wallRocks4",
-          "sourceIds": [287, 303, 295, 279, 283, 291],
+          "sourceIds": [303, 295],
           "default": { "skyId": 287 }
+        },
+        {
+          "name": "wallRocks1Corrupt",
+          "sourceIds": [279],
+          "default": { "skyId": 287, "evilId": 279 }
+        },
+        {
+          "name": "wallRocks1Crimson",
+          "sourceIds": [283],
+          "default": { "skyId": 287, "evilId": 283 }
+        },
+        {
+          "name": "wallRocks1Hallow",
+          "sourceIds": [291],
+          "default": { "skyId": 287, "evilId": 291 }
         }
       ]
     },
@@ -2040,17 +2105,17 @@
           "default": { "skyId": 266 }
         },
         {
-          "name": "wallTreacherousHardenedSand_Snow",
+          "name": "wallSandNatural_Snow",
           "sourceIds": [216, 217, 218, 219],
           "default": { "skyId": 40 }
         },
         {
-          "name": "wallHardenedSand_Snow",
+          "name": "wallSand_Snow",
           "sourceIds": [304, 305, 306, 307],
           "default": { "skyId": 249 }
         },
         {
-          "name": "wallTreacherousSandstone_Ice",
+          "name": "wallSandstoneNatural_Ice",
           "sourceIds": [187, 220, 221, 222],
           "default": { "skyId": 71 }
         },
@@ -2061,42 +2126,42 @@
         },
         {
           "name": "wallRocks1Natural_Ice",
-          "sourceIds": [196, 212, 204, 188, 192, 200],
+          "sourceIds": [212, 204, 188, 192, 200],
           "default": { "skyId": 71 }
         },
         {
           "name": "wallRocks2Natural_Ice",
-          "sourceIds": [197, 213, 205, 189, 193, 201],
+          "sourceIds": [213, 205, 189, 193, 201],
           "default": { "skyId": 71 }
         },
         {
           "name": "wallRocks3Natural_Ice",
-          "sourceIds": [198, 214, 206, 190, 194, 202],
+          "sourceIds": [214, 206, 190, 194, 202],
           "default": { "skyId": 71 }
         },
         {
           "name": "wallRocks4Natural_Ice",
-          "sourceIds": [199, 215, 207, 191, 195, 203],
+          "sourceIds": [215, 207, 191, 195, 203],
           "default": { "skyId": 71 }
         },
         {
           "name": "wallRocks1_Ice",
-          "sourceIds": [284, 300, 292, 276, 280, 288],
+          "sourceIds": [300, 292, 276, 280, 288],
           "default": { "skyId": 266 }
         },
         {
           "name": "wallRocks2_Ice",
-          "sourceIds": [285, 301, 293, 277, 281, 289],
+          "sourceIds": [301, 293, 277, 281, 289],
           "default": { "skyId": 266 }
         },
         {
           "name": "wallRocks3_Ice",
-          "sourceIds": [286, 302, 294, 278, 282, 290],
+          "sourceIds": [302, 294, 278, 282, 290],
           "default": { "skyId": 266 }
         },
         {
           "name": "wallRocks4_Ice",
-          "sourceIds": [287, 303, 295, 279, 283, 291],
+          "sourceIds": [303, 295, 279, 283, 291],
           "default": { "skyId": 266 }
         }
       ]
@@ -2106,7 +2171,7 @@
       "morphTiles": [
         {
           "name": "tileDirt_Sand",
-          "sourceIds": [0, 2, 147],
+          "sourceIds": [0, 2, 477, 147],
           "default": { "skyId": 53 },
           "gravity": { "skyId": 397 }
         },
@@ -2124,13 +2189,7 @@
         },
         {
           "name": "tileGrass_HallowSand",
-          "sourceIds": [109],
-          "default": { "skyId": 53, "evilId": 116 },
-          "gravity": { "skyId": 397, "evilId": 402 }
-        },
-        {
-          "name": "tileMowed_Sand",
-          "sourceIds": [477, 492],
+          "sourceIds": [109, 492],
           "default": { "skyId": 53, "evilId": 116 },
           "gravity": { "skyId": 397, "evilId": 402 }
         },
@@ -2410,83 +2469,123 @@
       ],
       "morphWalls": [
         {
-          "name": "wallDirtNatural_Sand",
+          "name": "wallSandNatural",
           "sourceIds": [2, 40],
           "default": { "skyId": 216 }
         },
         {
-          "name": "wallDirt_Sand",
+          "name": "wallSandNaturalCorrupt",
+          "sourceIds": [217],
+          "default": { "skyId": 216, "evilId": 217 }
+        },
+        {
+          "name": "wallSandNaturalCrimson",
+          "sourceIds": [218],
+          "default": { "skyId": 216, "evilId": 218 }
+        },
+        {
+          "name": "wallSandNaturalHallow",
+          "sourceIds": [219],
+          "default": { "skyId": 216, "evilId": 219 }
+        },
+        {
+          "name": "wallSand",
           "sourceIds": [16, 249],
           "default": { "skyId": 304 }
         },
         {
-          "name": "wallStoneNatural_Sandstone",
-          "sourceIds": [61, 185, 3, 83, 28, 71],
+          "name": "wallSandCorrupt",
+          "sourceIds": [305],
+          "default": { "skyId": 304, "evilId": 305 }
+        },
+        {
+          "name": "wallSandCrimson",
+          "sourceIds": [306],
+          "default": { "skyId": 304, "evilId": 306 }
+        },
+        {
+          "name": "wallSandHallow",
+          "sourceIds": [307],
+          "default": { "skyId": 304, "evilId": 307 }
+        },
+        {
+          "name": "wallSandstoneNatural",
+          "sourceIds": [61, 185, 71],
           "default": { "skyId": 187 }
         },
         {
-          "name": "wallStone_Sandstone",
-          "sourceIds": [1, 262, 274, 246, 269, 248, 266],
-          "default": { "skyId": 275 }
+          "name": "wallSandstoneNaturalCorrupt",
+          "sourceIds": [3, 220, 188, 189, 190, 191],
+          "default": { "skyId": 187, "evilId": 220 }
         },
         {
-          "name": "wallTreacherousHardenedSand",
-          "sourceIds": [216, 217, 218, 219],
-          "default": { "skyId": 216 }
+          "name": "wallSandstoneNaturalCrimson",
+          "sourceIds": [83, 221, 192, 193, 194, 195],
+          "default": { "skyId": 187, "evilId": 221 }
         },
         {
-          "name": "wallHardenedSand",
-          "sourceIds": [304, 305, 306, 307],
-          "default": { "skyId": 304 }
-        },
-        {
-          "name": "wallTreacherousSandstone",
-          "sourceIds": [187, 220, 221, 222],
-          "default": { "skyId": 187 }
+          "name": "wallSandstoneNaturalHallow",
+          "sourceIds": [28, 222, 200, 201, 202, 203],
+          "default": { "skyId": 187, "evilId": 222 }
         },
         {
           "name": "wallSandstone",
-          "sourceIds": [275, 308, 309, 310],
+          "sourceIds": [1, 262, 274, 266],
           "default": { "skyId": 275 }
         },
         {
+          "name": "wallSandstoneCorrupt",
+          "sourceIds": [246, 308, 276, 277, 278, 279],
+          "default": { "skyId": 275, "evilId": 308 }
+        },
+        {
+          "name": "wallSandstoneCrimson",
+          "sourceIds": [269, 309, 280, 281, 282, 283],
+          "default": { "skyId": 275, "evilId": 309 }
+        },
+        {
+          "name": "wallSandstoneHallow",
+          "sourceIds": [248, 310, 288, 289, 290, 291],
+          "default": { "skyId": 275, "evilId": 310 }
+        },
+        {
           "name": "wallRocks1Natural_Sandstone",
-          "sourceIds": [196, 212, 204, 188, 192, 200],
+          "sourceIds": [212, 204],
           "default": { "skyId": 187 }
         },
         {
           "name": "wallRocks2Natural_Sandstone",
-          "sourceIds": [197, 213, 205, 189, 193, 201],
+          "sourceIds": [213, 205],
           "default": { "skyId": 187 }
         },
         {
           "name": "wallRocks3Natural_Sandstone",
-          "sourceIds": [198, 214, 206, 190, 194, 202],
+          "sourceIds": [214, 206],
           "default": { "skyId": 187 }
         },
         {
           "name": "wallRocks4Natural_Sandstone",
-          "sourceIds": [199, 215, 207, 191, 195, 203],
+          "sourceIds": [215, 207],
           "default": { "skyId": 187 }
         },
         {
           "name": "wallRocks1_Sandstone",
-          "sourceIds": [284, 300, 292, 276, 280, 288],
+          "sourceIds": [300, 292],
           "default": { "skyId": 275 }
         },
         {
           "name": "wallRocks2_Sandstone",
-          "sourceIds": [285, 301, 293, 277, 281, 289],
+          "sourceIds": [301, 293],
           "default": { "skyId": 275 }
         },
         {
           "name": "wallRocks3_Sandstone",
-          "sourceIds": [286, 302, 294, 278, 282, 290],
+          "sourceIds": [302, 294],
           "default": { "skyId": 275 }
         },
         {
           "name": "wallRocks4_Sandstone",
-          "sourceIds": [287, 303, 295, 279, 283, 291],
+          "sourceIds": [303, 295],
           "default": { "skyId": 275 }
         }
       ]
