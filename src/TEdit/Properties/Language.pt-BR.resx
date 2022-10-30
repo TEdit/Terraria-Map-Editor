@@ -1323,4 +1323,7 @@ Clique em tentar novamente para escolher uma nova pasta ou cancelar para usar {0
   <data name="bestiary_tally" xml:space="preserve">
     <value>Atualizar mortes</value>
   </data>
+  <data name="tool_wp_mobile" xml:space="preserve">
+    <value>Telemóvel</value>
+  </data>
 </root>

@@ -1323,4 +1323,7 @@
   <data name="bestiary_tally" xml:space="preserve">
     <value>Обновление убивает</value>
   </data>
+  <data name="tool_wp_mobile" xml:space="preserve">
+    <value>Мобильный</value>
+  </data>
 </root>

@@ -1323,4 +1323,7 @@ Press retry to pick a new folder or cancel to use {0} as your terraria path.</va
   <data name="bestiary_tally" xml:space="preserve">
     <value>Update Kills</value>
   </data>
+  <data name="tool_wp_mobile" xml:space="preserve">
+    <value>Mobile</value>
+  </data>
 </root>

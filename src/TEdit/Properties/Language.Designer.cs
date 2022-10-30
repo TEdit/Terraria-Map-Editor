@@ -2852,6 +2852,15 @@ namespace TEdit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Mobile.
+        /// </summary>
+        public static string tool_wp_mobile {
+            get {
+                return ResourceManager.GetString("tool_wp_mobile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Blood Moon.
         /// </summary>
         public static string tool_wp_moon_blood {
