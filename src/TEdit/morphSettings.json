@@ -1986,9 +1986,27 @@
       "morphTiles": [
         {
           "name": "tileDirt_Sand",
-          "sourceIds": [0, 2, 23, 199, 109, 147],
+          "sourceIds": [0, 2, 147],
           "default": { "skyId": 53 },
           "gravity": { "skyId": 397 }
+        },
+        {
+          "name": "tileDirt_Sand_Corrupt",
+          "sourceIds": [ 23 ],
+          "default": { "skyId": 53, "evilId": 112  },
+          "gravity": { "skyId": 397, "evilId": 398 }
+        },
+        {
+          "name": "tileDirt_Sand_Crimson",
+          "sourceIds": [ 199 ],
+          "default": { "skyId": 53, "evilId": 234 },
+          "gravity": { "skyId": 397, "evilId": 399  }
+        },
+        {
+          "name": "tileDirt_Sand_Hallow",
+          "sourceIds": [ 109 ],
+          "default": { "skyId": 53, "evilId": 116 },
+          "gravity": { "skyId": 397, "evilId": 402  }
         },
         {
           "name": "tileMowed_Sand",

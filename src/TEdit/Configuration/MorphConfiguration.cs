@@ -81,6 +81,7 @@ namespace TEdit.Configuration
         private void ApplyWallMorph(MorphToolOptions options, Tile source, MorphLevel level, Vector2Int32 location)
         {
             if (source.Wall == 0) { return; }
+            bool useEvil = options.EnableEvilTiles;
 
             ushort sourceId = source.Wall;
             if (!_wallCache.TryGetValue(sourceId, out var morphId)) { return; }
@@ -96,11 +97,11 @@ namespace TEdit.Configuration
                 // Check if tiles need gravity checks.
                 if (morphId.Gravity != null && AirBelow(location.X, location.Y))
                 {
-                    source.Wall = morphId.Gravity.GetId(level) ?? 397;
+                    source.Wall = morphId.Gravity.GetId(level, useEvil) ?? 0;
                 }
                 else if (morphId.TouchingAir != null && TouchingAir(location.X, location.Y))
                 {
-                    var id = morphId.TouchingAir.GetId(level);
+                    var id = morphId.TouchingAir.GetId(level, useEvil);
                     if (id != null)
                     {
                         source.Wall = id.Value;
@@ -108,7 +109,7 @@ namespace TEdit.Configuration
                 }
                 else
                 {
-                    var id = morphId.Default.GetId(level);
+                    var id = morphId.Default.GetId(level, useEvil);
                     if (id != null)
                     {
                         source.Wall = id.Value;
@@ -123,12 +124,7 @@ namespace TEdit.Configuration
             ushort sourceId = source.Type;
 
             if (!_tileCache.TryGetValue(sourceId, out var morphId)) { return; }
-
-            // check skip base tiles
-            if (!morphId.IsEvil && !options.EnableBaseTiles) { return; }
-
-            // check skip evil tiles
-            if (morphId.IsEvil && !options.EnableEvilTiles) { return; }
+            bool useEvil = options.EnableEvilTiles;
 
             if (morphId.SourceIds.Contains(sourceId))
             {
@@ -142,11 +138,11 @@ namespace TEdit.Configuration
                 // Check if tiles need gravity checks.
                 if (morphId.Gravity != null && AirBelow(location.X, location.Y))
                 {
-                    source.Type = morphId.Gravity.GetId(level) ?? 397;
+                    source.Type = morphId.Gravity.GetId(level, useEvil) ?? 397;
                 }
                 else if (morphId.TouchingAir != null && TouchingAir(location.X, location.Y))
                 {
-                    var id = morphId.TouchingAir.GetId(level);
+                    var id = morphId.TouchingAir.GetId(level, useEvil);
                     if (id != null)
                     {
                         source.Type = id.Value;
@@ -154,7 +150,7 @@ namespace TEdit.Configuration
                 }
                 else
                 {
-                    var id = morphId.Default.GetId(level) ?? source.Type;
+                    var id = morphId.Default.GetId(level, useEvil) ?? source.Type;
 
                     // apply moss to stone blocks
                     if (morphId.UseMoss &&
@@ -273,14 +269,20 @@ namespace TEdit.Configuration
 
     public class MorphIdLevels
     {
+        public ushort? EvilId { get; set; }
         public ushort? SkyId { get; set; }
         public ushort? DirtId { get; set; }
         public ushort? RockId { get; set; }
         public ushort? DeepRockId { get; set; }
         public ushort? HellId { get; set; }
 
-        public ushort? GetId(MorphLevel level)
+        public ushort? GetId(MorphLevel level, bool useEvil)
         {
+            if (useEvil && EvilId != null)
+            {
+                return EvilId;
+            }
+
             if (level == MorphLevel.Dirt)
             {
                 return DirtId ?? SkyId;
@@ -310,8 +312,6 @@ namespace TEdit.Configuration
     {
         public string Name { get; set; }
         public bool Delete { get; set; }
-
-        public bool IsEvil { get; set; }
         public bool UseMoss { get; set; }
 
         public MorphIdLevels Default { get; set; } = new MorphIdLevels();
