@@ -1326,4 +1326,7 @@
   <data name="tool_wp_mobile" xml:space="preserve">
     <value>移动</value>
   </data>
+  <data name="chest_max_stack" xml:space="preserve">
+    <value>麦克斯</value>
+  </data>
 </root>

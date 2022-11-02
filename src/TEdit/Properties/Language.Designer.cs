@@ -241,6 +241,15 @@ namespace TEdit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Max.
+        /// </summary>
+        public static string chest_max_stack {
+            get {
+                return ResourceManager.GetString("chest_max_stack", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Directory does not appear to contain Terraria Content.
         ///Press retry to pick a new folder or cancel to use {0} as your terraria path..
         /// </summary>

@@ -15,6 +15,7 @@ using TEdit.Editor.Tools;
 using TEdit.Helper;
 using TEdit.Properties;
 using System.Collections.Generic;
+using SharpDX.XAudio2;
 
 namespace TEdit.ViewModel
 {
@@ -307,7 +308,7 @@ namespace TEdit.ViewModel
             get { return _cropCommand ??= new RelayCommand(CropWorld); }
         }
 
-        
+
         private bool CanCopy()
         {
             return _selection.IsActive;
@@ -392,6 +393,7 @@ namespace TEdit.ViewModel
         // Chest Commands
         private ICommand _copyChestItemCommand;
         private ICommand _pasteChestItemCommand;
+        private ICommand _chestItemSetToMaxStack;
 
         public ICommand CopyChestItemCommand
         {
@@ -400,6 +402,11 @@ namespace TEdit.ViewModel
         public ICommand PasteChestItemCommand
         {
             get { return _pasteChestItemCommand ??= new RelayCommand<Item>(PasteChestItem); }
+        }
+
+        public ICommand ChestItemSetToMaxStack
+        {
+            get { return _chestItemSetToMaxStack ??= new RelayCommand<Item>(ChestItemMaxStack); }
         }
 
         private Item _chestItemClipboard;
@@ -416,9 +423,24 @@ namespace TEdit.ViewModel
                 item.NetId = _chestItemClipboard.NetId;
                 item.Prefix = _chestItemClipboard.Prefix;
                 item.StackSize = _chestItemClipboard.StackSize;
-            } else
+            }
+            else
             {
                 item.NetId = 0;
+            }
+        }
+
+        private void ChestItemMaxStack(Item item)
+        {
+            if (item == null) return;
+
+            if (World.ItemLookupTable.TryGetValue(item.NetId, out var props) && props.MaxStackSize > 0)
+            {
+                item.StackSize = props.MaxStackSize;
+            }
+            else
+            {
+                item.StackSize = 9999;
             }
         }
 

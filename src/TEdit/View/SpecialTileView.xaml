@@ -22,16 +22,18 @@
             <Grid HorizontalAlignment="Stretch" d:DesignWidth="200">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="45" />
-                    <ColumnDefinition Width="75" />
+                    <ColumnDefinition Width="53" />
                     <ColumnDefinition Width="90" />
+                    <ColumnDefinition Width="22" />
                     <ColumnDefinition Width="22" />
                     <ColumnDefinition Width="22" />
                 </Grid.ColumnDefinitions>
                 <TextBlock Grid.Column="0" Foreground="White" Text="{Binding StackSize}" Width="30" Margin="2" />
                 <TextBlock Grid.Column="1" Foreground="White" Text="{Binding PrefixName}" Margin="2" />
                 <TextBlock Grid.Column="2" Foreground="White" Text="{Binding Name}" Margin="2" />
-                <Button Grid.Column="3" Content="{StaticResource TB_CopyIcon}" ToolTip="{x:Static p:Language.menu_edit_copy}" Command="{Binding DataContext.CopyChestItemCommand, Mode=Default, RelativeSource={RelativeSource AncestorType={x:Type Window}}}" CommandParameter="{Binding}"></Button>
+                <Button Grid.Column="3" Content="{StaticResource TB_CopyIcon}"  ToolTip="{x:Static p:Language.menu_edit_copy}"  Command="{Binding DataContext.CopyChestItemCommand, Mode=Default, RelativeSource={RelativeSource AncestorType={x:Type Window}}}" CommandParameter="{Binding}"></Button>
                 <Button Grid.Column="4" Content="{StaticResource TB_PasteIcon}" ToolTip="{x:Static p:Language.menu_edit_paste}" Command="{Binding DataContext.PasteChestItemCommand, Mode=Default, RelativeSource={RelativeSource AncestorType={x:Type Window}}}" CommandParameter="{Binding}"></Button>
+                <Button Grid.Column="5" Content="^"                             ToolTip="{x:Static p:Language.chest_max_stack}" Command="{Binding DataContext.ChestItemSetToMaxStack, Mode=Default, RelativeSource={RelativeSource AncestorType={x:Type Window}}}" CommandParameter="{Binding}"></Button>
             </Grid>
         </DataTemplate>
         <DataTemplate x:Key="FoodItemTemplate">
@@ -64,8 +66,9 @@
             <Grid HorizontalAlignment="Stretch" d:DesignWidth="200">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="45" />
-                    <ColumnDefinition Width="75" />
+                    <ColumnDefinition Width="53" />
                     <ColumnDefinition Width="116" />
+                    <ColumnDefinition Width="22" />
                     <ColumnDefinition Width="22" />
                     <ColumnDefinition Width="22" />
                 </Grid.ColumnDefinitions>
@@ -88,6 +91,9 @@
                           HorizontalAlignment="Stretch" Margin="1,0" ItemsPanel="{StaticResource Template_ComboPanel}" />
                 <Button Grid.Column="3" Content="{StaticResource TB_CopyIcon}" ToolTip="{x:Static p:Language.menu_edit_copy}" Command="{Binding DataContext.CopyChestItemCommand, Mode=Default, RelativeSource={RelativeSource AncestorType={x:Type Window}}}" CommandParameter="{Binding}"></Button>
                 <Button Grid.Column="4" Content="{StaticResource TB_PasteIcon}" ToolTip="{x:Static p:Language.menu_edit_paste}" Command="{Binding DataContext.PasteChestItemCommand, Mode=Default, RelativeSource={RelativeSource AncestorType={x:Type Window}}}" CommandParameter="{Binding}"></Button>
+                <Button Grid.Column="5" Content="^" ToolTip="{x:Static p:Language.chest_max_stack}" Command="{Binding DataContext.ChestItemSetToMaxStack, Mode=Default, RelativeSource={RelativeSource AncestorType={x:Type Window}}}" CommandParameter="{Binding}"></Button>
+                
+                
             </Grid>
         </DataTemplate>
         <Style TargetType="{x:Type GroupBox}" x:Key="InstructionsVisiblity" BasedOn="{StaticResource {x:Type GroupBox}}">
@@ -256,6 +262,7 @@
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="*" />
+                    <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>

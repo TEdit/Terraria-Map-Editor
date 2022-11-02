@@ -1326,4 +1326,7 @@
   <data name="tool_wp_mobile" xml:space="preserve">
     <value>Мобильный</value>
   </data>
+  <data name="chest_max_stack" xml:space="preserve">
+    <value>Макс</value>
+  </data>
 </root>

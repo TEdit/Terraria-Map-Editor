@@ -1326,4 +1326,7 @@ Naciśnij spróbuj ponownie aby wybrać nowy folder lub anuluj aby użyć {0} ja
   <data name="tool_wp_mobile" xml:space="preserve">
     <value>Ruchomy</value>
   </data>
+  <data name="chest_max_stack" xml:space="preserve">
+    <value>Max</value>
+  </data>
 </root>

@@ -1326,4 +1326,7 @@
   <data name="tool_wp_mobile" xml:space="preserve">
     <value>جوال</value>
   </data>
+  <data name="chest_max_stack" xml:space="preserve">
+    <value>ماكس</value>
+  </data>
 </root>
