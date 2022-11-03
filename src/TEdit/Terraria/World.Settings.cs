@@ -248,7 +248,6 @@ namespace TEdit.Terraria
                     var curFrame = new FrameProperty();
                     // Read XML attributes
                     curFrame.Name = (string)elementFrame.Attribute("Name");
-                    if (curFrame.Name == "Dynasty Table") Debugger.Break();
                     curFrame.Variety = (string)elementFrame.Attribute("Variety");
                     curFrame.UV = StringToVector2Short((string)elementFrame.Attribute("UV"), 0, 0);
                     curFrame.Anchor = InLineEnumTryParse<FrameAnchor>((string)elementFrame.Attribute("Anchor"));
