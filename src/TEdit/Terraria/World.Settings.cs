@@ -14,6 +14,7 @@ using Newtonsoft.Json;
 using TEdit.Configuration;
 using System.Linq;
 using Microsoft.Xna.Framework.Input;
+using System.Diagnostics;
 
 namespace TEdit.Terraria
 {
@@ -247,11 +248,12 @@ namespace TEdit.Terraria
                     var curFrame = new FrameProperty();
                     // Read XML attributes
                     curFrame.Name = (string)elementFrame.Attribute("Name");
+                    if (curFrame.Name == "Dynasty Table") Debugger.Break();
                     curFrame.Variety = (string)elementFrame.Attribute("Variety");
                     curFrame.UV = StringToVector2Short((string)elementFrame.Attribute("UV"), 0, 0);
                     curFrame.Anchor = InLineEnumTryParse<FrameAnchor>((string)elementFrame.Attribute("Anchor"));
-                    var frameSize = StringToVector2Short((string)elementFrame.Attribute("FrameSize"), curTile.FrameSize[0].X, curTile.FrameSize[0].Y);
-
+                    var frameSize = StringToVector2Short((string)elementFrame.Attribute("Size"), curTile.FrameSize[0].X, curTile.FrameSize[0].Y);
+                    curFrame.Size = frameSize;
                     // Assign a default name if none existed
                     if (string.IsNullOrWhiteSpace(curFrame.Name))
                         curFrame.Name = curTile.Name;
@@ -288,6 +290,7 @@ namespace TEdit.Terraria
                     curFrame.Name = curTile.Name;
                     curFrame.Variety = string.Empty;
                     curFrame.UV = new Vector2Short(0, 0);
+                    curFrame.Size = curTile.FrameSize[0];
                     //curFrame.Anchor = InLineEnumTryParse<FrameAnchor>((string)xElement.Attribute("Anchor"));
 
                     curTile.Frames.Add(curFrame);

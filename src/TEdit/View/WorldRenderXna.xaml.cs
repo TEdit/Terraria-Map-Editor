@@ -546,7 +546,7 @@ namespace TEdit.View
                                 {
                                     Tile = sprite.Tile,
                                     StyleColor = styleColor,
-                                    SizeTiles = rowSize,
+                                    SizeTiles = frameName?.Size ?? rowSize,
                                     SizePixelsInterval = sprite.SizePixelsInterval,
                                     Anchor = frameName?.Anchor ?? FrameAnchor.None,
                                     SizeTexture = sprite.SizeTexture,

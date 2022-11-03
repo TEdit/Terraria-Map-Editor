@@ -14,17 +14,21 @@ namespace TEdit.Terraria.Objects
             Name = "Default";
             Color = Colors.Magenta;
             UV = new Vector2Short(0,0);
+            Size = new Vector2Short(1,1);
             Anchor = FrameAnchor.None;
         }
-        public FrameProperty(int id, string name, Vector2Short uv) : this()
+
+        public FrameProperty(int id, string name, Vector2Short uv, Vector2Short size) : this()
         {
             Id = id;
             Name = name;
             UV = uv;
+            Size = size;
         }
 
         private string _name;
         private Vector2Short _uV;
+        private Vector2Short _size;
         private int _id;
         private FrameAnchor _anchor;
         
@@ -60,6 +64,12 @@ namespace TEdit.Terraria.Objects
         {
             get { return _uV; }
             set { Set(nameof(UV), ref _uV, value); }
+        }
+
+        public Vector2Short Size
+        {
+            get { return _size; }
+            set { Set(nameof(Size), ref _size, value); }
         }
 
         public string Name

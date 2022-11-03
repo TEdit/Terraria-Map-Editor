@@ -1220,7 +1220,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
                 <Frame UV="1188,0" Name="Spooky Table" />
                 <Frame UV="1242,0" Name="Pine Table" />
                 <Frame UV="1296,0" Name="Frozen Table" />
-                <Frame UV="1350,0" Name="Dynasty Table" />
+                <Frame UV="1350,0" Name="Dynasty Table" Size="3,1" />
                 <Frame UV="1404,0" Name="Palm Wood Table" />
                 <Frame UV="1458,0" Name="Mushroom Table" />
                 <Frame UV="1512,0" Name="Boreal Wood Table" />
