@@ -834,9 +834,6 @@
   <data name="tool_wp_gold" xml:space="preserve">
     <value>Золото</value>
   </data>
-  <data name="tool_wp_gooworld" xml:space="preserve">
-    <value>Хороший мир</value>
-  </data>
   <data name="tool_wp_guid" xml:space="preserve">
     <value>ID мира</value>
   </data>
@@ -1328,5 +1325,8 @@
   </data>
   <data name="chest_max_stack" xml:space="preserve">
     <value>Макс</value>
+  </data>
+  <data name="tool_wp_gooworld" xml:space="preserve">
+    <value>Для достойных (FTW)</value>
   </data>
 </root>

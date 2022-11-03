@@ -852,9 +852,6 @@
   <data name="tool_wp_gold" xml:space="preserve">
     <value>الطبقة الذهبية</value>
   </data>
-  <data name="tool_wp_gooworld" xml:space="preserve">
-    <value>عالم جيد</value>
-  </data>
   <data name="tool_wp_guid" xml:space="preserve">
     <value>المعرف الفريد العمومي العالمي</value>
   </data>
@@ -1328,5 +1325,8 @@
   </data>
   <data name="chest_max_stack" xml:space="preserve">
     <value>ماكس</value>
+  </data>
+  <data name="tool_wp_gooworld" xml:space="preserve">
+    <value>من أجل المستحقين (FTW)</value>
   </data>
 </root>

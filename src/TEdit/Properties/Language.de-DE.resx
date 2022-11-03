@@ -846,9 +846,6 @@ Klicke auf „Wiederholen“, um einen neuen Ordner auszuwählen, oder auf „Ab
   <data name="tool_wp_gold" xml:space="preserve">
     <value>Golderz</value>
   </data>
-  <data name="tool_wp_gooworld" xml:space="preserve">
-    <value>„For the worthy“</value>
-  </data>
   <data name="tool_wp_guid" xml:space="preserve">
     <value>Welt-GUID</value>
   </data>
@@ -1328,5 +1325,8 @@ Klicke auf „Wiederholen“, um einen neuen Ordner auszuwählen, oder auf „Ab
   </data>
   <data name="chest_max_stack" xml:space="preserve">
     <value>Max</value>
+  </data>
+  <data name="tool_wp_gooworld" xml:space="preserve">
+    <value>Für die Würdigen (FTW)</value>
   </data>
 </root>

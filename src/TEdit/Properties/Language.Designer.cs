@@ -2645,7 +2645,7 @@ namespace TEdit.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Good World.
+        ///   Looks up a localized string similar to For The Worthy (FTW).
         /// </summary>
         public static string tool_wp_gooworld {
             get {

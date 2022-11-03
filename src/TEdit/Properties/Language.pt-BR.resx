@@ -846,9 +846,6 @@ Clique em tentar novamente para escolher uma nova pasta ou cancelar para usar {0
   <data name="tool_wp_gold" xml:space="preserve">
     <value>Nível de ouro</value>
   </data>
-  <data name="tool_wp_gooworld" xml:space="preserve">
-    <value>Mundo bom</value>
-  </data>
   <data name="tool_wp_guid" xml:space="preserve">
     <value>GUID do mundo</value>
   </data>
@@ -1328,5 +1325,8 @@ Clique em tentar novamente para escolher uma nova pasta ou cancelar para usar {0
   </data>
   <data name="chest_max_stack" xml:space="preserve">
     <value>Max</value>
+  </data>
+  <data name="tool_wp_gooworld" xml:space="preserve">
+    <value>Para o Digno (FTW)</value>
   </data>
 </root>
