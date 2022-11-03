@@ -40,7 +40,7 @@
             <enum:EnumItem Value="0">Classic</enum:EnumItem>
             <enum:EnumItem Value="1">Expert</enum:EnumItem>
             <enum:EnumItem Value="2">Master</enum:EnumItem>
-            <enum:EnumItem Value="4">Legendary</enum:EnumItem>
+            <!--<enum:EnumItem Value="4">Legendary</enum:EnumItem>-->
         </enum:EnumItemList>
         <enum:EnumItemList x:Key="oreTierCobaltList" EnumType="{x:Type System:Int32}" SortBy="Value" >
             <enum:EnumItem Value="-1">Not Determined</enum:EnumItem>
