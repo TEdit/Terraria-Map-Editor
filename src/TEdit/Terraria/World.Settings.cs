@@ -205,6 +205,20 @@ namespace TEdit.Terraria
 
         private static void LoadObjectDbXml(string file)
         {
+            TileBricks.Add(new TileProperty
+            {
+                Id = -1,
+                Name = "Air",
+                Color = Color.FromArgb(0, 0, 0, 0)
+            });
+
+            TileBricksMask.Add(new TileProperty
+            {
+                Id = -1,
+                Name = "Air",
+                Color = Color.FromArgb(0, 0, 0, 0)
+            });
+
             var xmlSettings = XElement.Load(file);
 
             // Load Colors

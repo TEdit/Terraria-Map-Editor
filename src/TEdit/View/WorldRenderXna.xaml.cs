@@ -363,6 +363,7 @@ namespace TEdit.View
 
             foreach (var tile in World.TileProperties)
             {
+                if (tile.Id < 0) continue;
                 var tileTex = _textureDictionary.GetTile(tile.Id);
                 TextureToPng(tileTex, $"textures/Tile_{tile.Id}.png");
 

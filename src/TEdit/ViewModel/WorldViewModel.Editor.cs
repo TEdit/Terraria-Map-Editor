@@ -525,9 +525,12 @@ namespace TEdit.ViewModel
         private void SetTile(Tile curTile, bool erase)
         {
             if (TilePicker.TileMaskMode == MaskMode.Off ||
-                (TilePicker.TileMaskMode == MaskMode.Match && curTile.Type == TilePicker.TileMask && curTile.IsActive) ||
+                (TilePicker.TileMaskMode == MaskMode.Match && TilePicker.TileMask > 0 && curTile.Type == TilePicker.TileMask && curTile.IsActive) ||
+                (TilePicker.TileMaskMode == MaskMode.Match && TilePicker.TileMask == -1 && !curTile.IsActive) ||
                 (TilePicker.TileMaskMode == MaskMode.Empty && !curTile.IsActive) ||
-                (TilePicker.TileMaskMode == MaskMode.NotMatching && (curTile.Type != TilePicker.TileMask || !curTile.IsActive)))
+                (TilePicker.TileMaskMode == MaskMode.NotMatching && TilePicker.TileMask > 0 && (curTile.Type != TilePicker.TileMask || !curTile.IsActive)) ||
+                (TilePicker.TileMaskMode == MaskMode.NotMatching && (TilePicker.TileMask == -1 && curTile.IsActive))
+                )
             {
                 if (erase)
                     SetPixelAutomatic(curTile, tile: -1);
