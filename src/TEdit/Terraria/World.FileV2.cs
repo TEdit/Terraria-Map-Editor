@@ -295,14 +295,40 @@ namespace TEdit.Terraria
                     debugger?.Write("\"V\": {0},", tile.V);
                 }
 
-
-                if (tile.TileColor != 0)
+                if (version < 269)
                 {
-                    // set header3 bit[3] for tile color active
-                    header3 |= 0b_0000_1000;
-                    tileData[dataIndex++] = tile.TileColor;
-                    debugger?.Write("\"TileColor\": {0},", tile.TileColor);
+                    if (tile.TileColor != 0 || tile.FullBrightBlock)
+                    {
+
+                        var color = tile.TileColor;
+
+                        // downgraded illuminate coating to illuminate paint
+                        // IF there is no other paint
+                        if (color == 0 && version < 269 && tile.FullBrightBlock)
+                        {
+                            color = 31;
+                        }
+
+                        // set header3 bit[3] for tile color active
+                        header3 |= 0b_0000_1000;
+                        tileData[dataIndex++] = color;
+                        debugger?.Write("\"TileColor\": {0},", color);
+                    }
                 }
+                else
+                {
+                    if (tile.TileColor != 0 && tile.TileColor != 31)
+                    {
+                        var color = tile.TileColor;
+
+                        // set header3 bit[3] for tile color active
+                        header3 |= 0b_0000_1000;
+                        tileData[dataIndex++] = color;
+                        debugger?.Write("\"TileColor\": {0},", color);
+                    }
+                }
+
+
             }
 
             // wall data
@@ -314,13 +340,36 @@ namespace TEdit.Terraria
                 debugger?.Write("\"Wall\": {0},", tile.Wall);
 
                 // save tile wall color
-                if (tile.WallColor != 0)
+                if (version < 269)
                 {
-                    // set header3 bit[4] for wall color active
-                    header3 |= 0b_0001_0000;
-                    tileData[dataIndex++] = tile.WallColor;
-                    debugger?.Write("\"WallColor\": {0},", tile.WallColor);
+                    if (tile.TileColor != 0 || tile.FullBrightWall)
+                    {
+                        var color = tile.WallColor;
 
+                        // downgraded illuminate coating to illuminate paint
+                        // IF there is no other paint
+                        if (color == 0 && version < 269 && tile.FullBrightWall)
+                        {
+                            color = 31;
+                        }
+
+                        // set header3 bit[4] for wall color active
+                        header3 |= 0b_0001_0000;
+                        tileData[dataIndex++] = color;
+                        debugger?.Write("\"WallColor\": {0},", tile.WallColor);
+                    }
+                }
+                else
+                {
+                    // for versions >= 269 upgrade illuminant paint to coating
+                    if (tile.TileColor != 0 && tile.TileColor != 31)
+                    {
+                        var color = tile.TileColor;
+                        // set header3 bit[4] for wall color active
+                        header3 |= 0b_0001_0000;
+                        tileData[dataIndex++] = color;
+                        debugger?.Write("\"WallColor\": {0},", tile.WallColor);
+                    }
                 }
             }
 
@@ -422,11 +471,11 @@ namespace TEdit.Terraria
                 {
                     header4 |= 0b_0000_0100;
                 }
-                if (tile.FullBrightBlock)
+                if (tile.FullBrightBlock || tile.TileColor == 31) // convert illuminant paint
                 {
                     header4 |= 0b_0000_1000;
                 }
-                if (tile.FullBrightWall)
+                if (tile.FullBrightWall || tile.WallColor == 31) // convert illuminant paint
                 {
                     header4 |= 0b_0001_0000;
                 }

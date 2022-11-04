@@ -1329,4 +1329,7 @@ Naciśnij spróbuj ponownie aby wybrać nowy folder lub anuluj aby użyć {0} ja
   <data name="tool_wp_gooworld" xml:space="preserve">
     <value>Dla godnych (FTW)</value>
   </data>
+  <data name="tool_clipboard_replace" xml:space="preserve">
+    <value>Zastępowanie istniejących kafelków</value>
+  </data>
 </root>

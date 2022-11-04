@@ -27,15 +27,16 @@
             <Button Content="{x:Static p:Language.tool_clipboard_empty}"  Padding="2,4" Margin="2" Command="{Binding EmptyClipboardCommand}" />
             <Button Content="{x:Static p:Language.tool_clipboard_importschematic}" Padding="2,4" Margin="2" Command="{Binding ImportSchematicCommand}" CommandParameter="{StaticResource False}" />
             <Button Content="{x:Static p:Language.tool_clipboard_importfalsecolor}" Padding="2,4" Margin="2" Command="{Binding ImportSchematicCommand}" CommandParameter="{StaticResource True}" />
-            <Grid>
+            <Grid >
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto" />
                     <ColumnDefinition Width="Auto" />
                     <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="1*" />
-                    <RowDefinition Height="1*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
                 <CheckBox Grid.Row="0" Grid.Column="0" Content="{x:Static p:Language.tool_clipboard_ispasteempty}" Padding="2,4" Margin="2" IsChecked="{Binding Clipboard.PasteEmpty}"/>
                 <CheckBox Grid.Row="0" Grid.Column="1" Content="{x:Static p:Language.tool_clipboard_ispastetiles}" Padding="2,4" Margin="2" IsChecked="{Binding Clipboard.PasteTiles}"/>
@@ -43,6 +44,7 @@
                 <CheckBox Grid.Row="1" Grid.Column="0" Content="{x:Static p:Language.tool_clipboard_ispasteliquid}" Padding="2,4" Margin="2" IsChecked="{Binding Clipboard.PasteLiquids}"/>
                 <CheckBox Grid.Row="1" Grid.Column="1" Content="{x:Static p:Language.tool_clipboard_ispastewire}" Padding="2,4" Margin="2" IsChecked="{Binding Clipboard.PasteWires}"/>
                 <CheckBox Grid.Row="1" Grid.Column="2" Content="{x:Static p:Language.tool_clipboard_ispastesprite}" Padding="2,4" Margin="2" IsChecked="{Binding Clipboard.PasteSprites}"/>
+                <CheckBox Grid.Row="2" Grid.Column="0" Content="{x:Static p:Language.tool_clipboard_replace}" Padding="2,4" Margin="2" IsChecked="{Binding Clipboard.PasteOverTiles}"/>
             </Grid>
         </StackPanel>
         <ScrollViewer>

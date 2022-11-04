@@ -1329,4 +1329,7 @@
   <data name="tool_wp_gooworld" xml:space="preserve">
     <value>为了值得 （FTW）</value>
   </data>
+  <data name="tool_clipboard_replace" xml:space="preserve">
+    <value>替换现有磁贴</value>
+  </data>
 </root>

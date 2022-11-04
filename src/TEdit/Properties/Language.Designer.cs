@@ -1673,6 +1673,15 @@ namespace TEdit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Replace Existing Tiles.
+        /// </summary>
+        public static string tool_clipboard_replace {
+            get {
+                return ResourceManager.GetString("tool_clipboard_replace", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Freeze Biome Spread.
         /// </summary>
         public static string tool_creative_biomespread {

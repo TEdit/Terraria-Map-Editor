@@ -1329,4 +1329,7 @@ Clique em tentar novamente para escolher uma nova pasta ou cancelar para usar {0
   <data name="tool_wp_gooworld" xml:space="preserve">
     <value>Para o Digno (FTW)</value>
   </data>
+  <data name="tool_clipboard_replace" xml:space="preserve">
+    <value>Substituir telhas existentes</value>
+  </data>
 </root>

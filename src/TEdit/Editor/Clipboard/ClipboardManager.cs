@@ -21,6 +21,7 @@ namespace TEdit.Editor.Clipboard
         private bool _pasteLiquids = true;
         private bool _pasteWires = true;
         private bool _pasteSprites = true;
+        private bool _pasteOverTiles = true;
         private readonly WorldViewModel _wvm;
         public ClipboardManager(WorldViewModel worldView)
         {
@@ -56,6 +57,12 @@ namespace TEdit.Editor.Clipboard
         {
             get { return _pasteSprites; }
             set { Set(nameof(PasteSprites), ref _pasteSprites, value); }
+        }
+
+        public bool PasteOverTiles
+        {
+            get { return _pasteOverTiles; }
+            set { Set(nameof(PasteOverTiles), ref _pasteOverTiles, value); }
         }
         public ClipboardBuffer Buffer
         {
@@ -197,9 +204,12 @@ namespace TEdit.Editor.Clipboard
 
                     //HistMan.AddTileToBuffer(worldX, worldY, ref world.UndoTiles[worldX, worldY]);
                     Tile worldTile = world.Tiles[worldX, worldY];
+
+
                     Tile curTile = (Tile)buffer.Tiles[x, y].Clone();
 
-                    if (!PasteTiles)
+                    if (!PasteTiles ||
+                        (!PasteOverTiles && worldTile.IsActive))
                     {
                         curTile.IsActive = worldTile.IsActive;
                         curTile.Type = worldTile.Type;
@@ -207,6 +217,8 @@ namespace TEdit.Editor.Clipboard
                         curTile.U = worldTile.U;
                         curTile.V = worldTile.V;
                         curTile.BrickStyle = worldTile.BrickStyle;
+                        curTile.FullBrightBlock = worldTile.FullBrightBlock;
+                        curTile.InvisibleBlock = worldTile.InvisibleBlock;
                     }
 
                     if (!PasteEmpty && curTile.IsEmpty)
@@ -215,21 +227,26 @@ namespace TEdit.Editor.Clipboard
                         continue;
                     }
 
-                    if (!PasteWalls)
+                    if (!PasteWalls ||
+                        (!PasteOverTiles && worldTile.Wall > 0))
                     {
                         // if pasting walls is disabled, use the existing wall
                         curTile.Wall = worldTile.Wall;
                         curTile.WallColor = worldTile.WallColor;
+                        curTile.FullBrightWall = worldTile.FullBrightWall;
+                        curTile.InvisibleWall = worldTile.InvisibleWall;
                     }
 
-                    if (!PasteLiquids)
+                    if (!PasteLiquids ||
+                        (!PasteOverTiles && worldTile.LiquidType != LiquidType.None))
                     {
                         // if pasting liquids is disabled, use any existing liquid
                         curTile.LiquidAmount = worldTile.LiquidAmount;
                         curTile.LiquidType = worldTile.LiquidType;
                     }
 
-                    if (!PasteWires)
+                    if (!PasteWires ||
+                        (!PasteOverTiles && worldTile.HasWire))
                     {
                         // if pasting wires is disabled, use any existing wire
                         curTile.WireRed = worldTile.WireRed;
@@ -240,7 +257,8 @@ namespace TEdit.Editor.Clipboard
                         curTile.InActive = worldTile.InActive;
                     }
 
-                    if (!PasteSprites)
+                    if (!PasteSprites ||
+                        (!PasteOverTiles && worldTile.IsActive))
                     {
                         // if pasting sprites is disabled, discard them.
                         // check if sprite has more then one tile state.
@@ -259,7 +277,7 @@ namespace TEdit.Editor.Clipboard
                     world.Tiles[worldX, worldY] = curTile;
 
                     //  Update chest/sign data only if we've pasted tiles
-                    if (PasteTiles)
+                    if (PasteTiles && PasteOverTiles)
                     {
                         // Add new chest data
                         if (Tile.IsChest(curTile.Type))

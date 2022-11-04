@@ -1329,4 +1329,7 @@
   <data name="tool_wp_gooworld" xml:space="preserve">
     <value>Для достойных (FTW)</value>
   </data>
+  <data name="tool_clipboard_replace" xml:space="preserve">
+    <value>Замена существующих плиток</value>
+  </data>
 </root>

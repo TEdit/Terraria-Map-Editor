@@ -1329,4 +1329,7 @@ Klicke auf „Wiederholen“, um einen neuen Ordner auszuwählen, oder auf „Ab
   <data name="tool_wp_gooworld" xml:space="preserve">
     <value>Für die Würdigen (FTW)</value>
   </data>
+  <data name="tool_clipboard_replace" xml:space="preserve">
+    <value>Ersetzen vorhandener Kacheln</value>
+  </data>
 </root>

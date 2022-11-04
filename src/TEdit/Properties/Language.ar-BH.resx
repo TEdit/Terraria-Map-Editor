@@ -1329,4 +1329,7 @@
   <data name="tool_wp_gooworld" xml:space="preserve">
     <value>من أجل المستحقين (FTW)</value>
   </data>
+  <data name="tool_clipboard_replace" xml:space="preserve">
+    <value>استبدال اللوحات الموجودة</value>
+  </data>
 </root>

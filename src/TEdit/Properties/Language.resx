@@ -1329,4 +1329,7 @@ Press retry to pick a new folder or cancel to use {0} as your terraria path.</va
   <data name="chest_max_stack" xml:space="preserve">
     <value>Max</value>
   </data>
+  <data name="tool_clipboard_replace" xml:space="preserve">
+    <value>Replace Existing Tiles</value>
+  </data>
 </root>
