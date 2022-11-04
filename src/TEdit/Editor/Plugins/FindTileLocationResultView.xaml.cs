@@ -35,7 +35,8 @@ namespace TEdit.Editor.Plugins
                 TextBlock item = e.OriginalSource as TextBlock;
                 if ( !string.IsNullOrEmpty(item.Text) )
                 {
-                    string[] positions = item.Text.Split(':')[1].Trim().Split(splitters);
+                    string[] split = item.Text.Split(':');
+                    string[] positions = split[split.Length - 1].Trim().Split(splitters);
                     if (positions.Length == 2)
                     {
                         int x = 0;
