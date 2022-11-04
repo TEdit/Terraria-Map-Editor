@@ -3665,12 +3665,12 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
                 <Frame UV="1836,0" Name="Solar Piano" />
                 <Frame UV="1890,0" Name="Vortex Piano" />
                 <Frame UV="1944,0" Name="Nebula Piano" />
-                <Frame UV="0,36" Name="Stardust Piano" />
-                <Frame UV="54,36" Name="Sandstone Piano" />
-                <Frame UV="108,36" Name="Bamboo Piano" />
-                <Frame UV="162,36" Name="Reef Piano" />
-                <Frame UV="216,36" Name="Balloon Piano" />
-                <Frame UV="270,36" Name="Ash Wood Piano" />
+                <Frame UV="1998,0" Name="Stardust Piano" />
+                <Frame UV="2052,0" Name="Sandstone Piano" />
+                <Frame UV="2106,0" Name="Bamboo Piano" />
+                <Frame UV="2160,0" Name="Reef Piano" />
+                <Frame UV="2214,0" Name="Balloon Piano" />
+                <Frame UV="2268,0" Name="Ash Wood Piano" />
             </Frames>
         </Tile>
         <Tile Id="88" Color="#FFBF8E6F" Name="Dressers" Framed="true" Size="3,2" Placement="floor" SolidTop="true">
@@ -3712,12 +3712,12 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
                 <Frame UV="1836,0" Name="Solar Dresser" />
                 <Frame UV="1890,0" Name="Vortex Dresser" />
                 <Frame UV="1944,0" Name="Nebula Dresser" />
-                <Frame UV="0,36" Name="Stardust Dresser" />
-                <Frame UV="54,36" Name="Sandstone Dresser" />
-                <Frame UV="108,36" Name="Bamboo Dresser" />
-                <Frame UV="162,36" Name="Reef Dresser" />
-                <Frame UV="216,36" Name="Balloon Dresser" />
-                <Frame UV="270,36" Name="Ash Wood Dresser" />
+                <Frame UV="1998,0" Name="Stardust Dresser" />
+                <Frame UV="2052,0" Name="Sandstone Dresser" />
+                <Frame UV="2106,0" Name="Bamboo Dresser" />
+                <Frame UV="2160,0" Name="Reef Dresser" />
+                <Frame UV="2214,0" Name="Balloon Dresser" />
+                <Frame UV="2268,0" Name="Ash Wood Dresser" />
             </Frames>
         </Tile>
         <Tile Id="89" Color="#FFBF8E6F" Name="Benches" Framed="true" Size="3,2" Placement="floor">
@@ -3759,16 +3759,16 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
                 <Frame UV="1836,0" Name="Dynasty Sofa" />
                 <Frame UV="1890,0" Name="Spider Sofa" />
                 <Frame UV="1944,0" Name="Lesion Sofa" />
-                <Frame UV="0,36" Name="Solar Sofa" />
-                <Frame UV="54,36" Name="Vortex Sofa" />
-                <Frame UV="108,36" Name="Nebula Sofa" />
-                <Frame UV="162,36" Name="Stardust Sofa" />
-                <Frame UV="216,36" Name="Sandstone Sofa" />
-                <Frame UV="270,36" Name="Bamboo Sofa" />
-                <Frame UV="324,36" Name="Chippy's Couch" />
-                <Frame UV="378,36" Name="Reef Sofa" />
-                <Frame UV="432,36" Name="Balloon Sofa" />
-                <Frame UV="486,36" Name="Ash Wood Sofa" />
+                <Frame UV="1998,0" Name="Solar Sofa" />
+                <Frame UV="2052,0" Name="Vortex Sofa" />
+                <Frame UV="2106,0" Name="Nebula Sofa" />
+                <Frame UV="2160,0" Name="Stardust Sofa" />
+                <Frame UV="2214,0" Name="Sandstone Sofa" />
+                <Frame UV="2268,0" Name="Bamboo Sofa" />
+                <Frame UV="2322,0" Name="Chippy's Couch" />
+                <Frame UV="2376,0" Name="Reef Sofa" />
+                <Frame UV="2430,0" Name="Balloon Sofa" />
+                <Frame UV="2484,0" Name="Ash Wood Sofa" />
             </Frames>
         </Tile>
         <Tile Id="90" Color="#FF909490" Name="Bathtubs" Framed="true" Size="4,2" Placement="floor">
@@ -4258,18 +4258,18 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
                 <Frame UV="18,1890" Name="Vortex Lamp" Variety="Off" />
                 <Frame UV="0,1944" Name="Nebula Lamp" Variety="On" />
                 <Frame UV="18,1944" Name="Nebula Lamp" Variety="Off" />
-                <Frame UV="36,0" Name="Stardust Lamp" Variety="On" />
-                <Frame UV="54,0" Name="Stardust Lamp" Variety="Off" />
-                <Frame UV="36,54" Name="Sandstone Lamp" Variety="On" />
-                <Frame UV="54,54" Name="Sandstone Lamp" Variety="Off" />
-                <Frame UV="36,108" Name="Bamboo Lamp" Variety="On" />
-                <Frame UV="54,108" Name="Bamboo Lamp" Variety="Off" />
-                <Frame UV="36,162" Name="Reef Lamp" Variety="On" />
-                <Frame UV="54,162" Name="Reef Lamp" Variety="Off" />
-                <Frame UV="36,216" Name="Balloon Lamp" Variety="On" />
-                <Frame UV="54,216" Name="Balloon Lamp" Variety="Off" />
-                <Frame UV="36,270" Name="Ash Wood Lamp" Variety="On" />
-                <Frame UV="54,270" Name="Ash Wood Lamp" Variety="Off" />
+                <Frame UV="0,1998" Name="Stardust Lamp" Variety="On" />
+                <Frame UV="18,1998" Name="Stardust Lamp" Variety="Off" />
+                <Frame UV="0,2052" Name="Sandstone Lamp" Variety="On" />
+                <Frame UV="18,2052" Name="Sandstone Lamp" Variety="Off" />
+                <Frame UV="0,2106" Name="Bamboo Lamp" Variety="On" />
+                <Frame UV="18,2106" Name="Bamboo Lamp" Variety="Off" />
+                <Frame UV="0,2160" Name="Reef Lamp" Variety="On" />
+                <Frame UV="18,2160" Name="Reef Lamp" Variety="Off" />
+                <Frame UV="0,2214" Name="Balloon Lamp" Variety="On" />
+                <Frame UV="18,2214" Name="Balloon Lamp" Variety="Off" />
+                <Frame UV="0,2268" Name="Ash Wood Lamp" Variety="On" />
+                <Frame UV="18,2268" Name="Ash Wood Lamp" Variety="Off" />
             </Frames>
         </Tile>
         <Tile Id="94" Color="#FFBF8E6F" Name="Keg" Framed="true" Size="2,2" Placement="floor" />
@@ -4417,13 +4417,13 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
                 <Frame UV="1836,0" Name="Lesion Bookcase" />
                 <Frame UV="1890,0" Name="Solar Bookcase" />
                 <Frame UV="1944,0" Name="Vortex Bookcase" />
-                <Frame UV="0,72" Name="Nebula Bookcase" />
-                <Frame UV="54,72" Name="Stardust Bookcase" />
-                <Frame UV="108,72" Name="Sandstone Bookcase" />
-                <Frame UV="162,72" Name="Bamboo Bookcase" />
-                <Frame UV="216,72" Name="Reef Bookcase" />
-                <Frame UV="270,72" Name="Balloon Bookcase" />
-                <Frame UV="324,72" Name="Ash Wood Bookcase" />
+                <Frame UV="1998,0" Name="Nebula Bookcase" />
+                <Frame UV="2052,0" Name="Stardust Bookcase" />
+                <Frame UV="2106,0" Name="Sandstone Bookcase" />
+                <Frame UV="2160,0" Name="Bamboo Bookcase" />
+                <Frame UV="2214,0" Name="Reef Bookcase" />
+                <Frame UV="2268,0" Name="Balloon Bookcase" />
+                <Frame UV="2322,0" Name="Ash Wood Bookcase" />
             </Frames>
         </Tile>
         <Tile Id="102" Color="#FFE5D449" Name="Throne" Framed="true" Size="3,4" Placement="floor" />
@@ -5590,18 +5590,18 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
                 <Frame UV="1800,18" Variety="Granite D" FrameSize="2,1" />
                 <Frame UV="1836,18" Variety="Granite E" FrameSize="2,1" />
                 <Frame UV="1872,18" Variety="Granite F" FrameSize="2,1" />
-                <Frame UV="0,36" Variety="Marble A" FrameSize="2,1" />
-                <Frame UV="36,36" Variety="Marble B" FrameSize="2,1" />
-                <Frame UV="72,36" Variety="Marble C" FrameSize="2,1" />
-                <Frame UV="108,36" Variety="Marble D" FrameSize="2,1" />
-                <Frame UV="144,36" Variety="Marble E" FrameSize="2,1" />
-                <Frame UV="180,36" Variety="Marble F" FrameSize="2,1" />
-                <Frame UV="216,36" Variety="Living Wood A" FrameSize="2,1" />
-                <Frame UV="252,36" Variety="Living Wood B" FrameSize="2,1" />
-                <Frame UV="288,36" Variety="Living Wood C" FrameSize="2,1" />
-                <Frame UV="324,36" Variety="Sand A" FrameSize="2,1" />
-                <Frame UV="360,36" Variety="Sand B" FrameSize="2,1" />
-                <Frame UV="396,36" Variety="Sand C" FrameSize="2,1" />
+                <Frame UV="1908,18" Variety="Marble A" FrameSize="2,1" />
+                <Frame UV="1944,18" Variety="Marble B" FrameSize="2,1" />
+                <Frame UV="1980,18" Variety="Marble C" FrameSize="2,1" />
+                <Frame UV="2016,18" Variety="Marble D" FrameSize="2,1" />
+                <Frame UV="2052,18" Variety="Marble E" FrameSize="2,1" />
+                <Frame UV="2088,18" Variety="Marble F" FrameSize="2,1" />
+                <Frame UV="2124,18" Variety="Living Wood A" FrameSize="2,1" />
+                <Frame UV="2160,18" Variety="Living Wood B" FrameSize="2,1" />
+                <Frame UV="2196,18" Variety="Living Wood C" FrameSize="2,1" />
+                <Frame UV="2232,18" Variety="Sand A" FrameSize="2,1" />
+                <Frame UV="2268,18" Variety="Sand B" FrameSize="2,1" />
+                <Frame UV="2304,18" Variety="Sand C" FrameSize="2,1" />
             </Frames>
         </Tile>
         <Tile Id="186" Color="#FFFF00FF" Name="Decos (3x2)" Framed="true" Size="3,2">
@@ -5680,26 +5680,26 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
                 <Frame UV="1728,0" Variety="Sandstone D" />
                 <Frame UV="1782,0" Variety="Sandstone E" />
                 <Frame UV="1836,0" Variety="Sandstone F" />
-                <Frame UV="0,36" Variety="Granite A" />
-                <Frame UV="54,36" Variety="Granite B" />
-                <Frame UV="108,36" Variety="Granite C" />
-                <Frame UV="162,36" Variety="Granite D" />
-                <Frame UV="216,36" Variety="Granite E" />
-                <Frame UV="270,36" Variety="Granite F" />
-                <Frame UV="324,36" Variety="Marble A" />
-                <Frame UV="378,36" Variety="Marble B" />
-                <Frame UV="432,36" Variety="Marble C" />
-                <Frame UV="486,36" Variety="Marble D" />
-                <Frame UV="540,36" Variety="Marble E" />
-                <Frame UV="594,36" Variety="Marble F" />
-                <Frame UV="648,36" Variety="Living Wood A" />
-                <Frame UV="702,36" Variety="Living Wood B" />
-                <Frame UV="756,36" Variety="Living Wood C" />
-                <Frame UV="810,36" Variety="Living Leaf A" />
-                <Frame UV="864,36" Variety="Living Leaf B" />
-                <Frame UV="918,36" Variety="Animal Skull A" />
-                <Frame UV="972,36" Variety="Animal Skull B" />
-                <Frame UV="1026,36" Variety="Animal Skull C" />
+                <Frame UV="1890,0" Variety="Granite A" />
+                <Frame UV="1944,0" Variety="Granite B" />
+                <Frame UV="1998,0" Variety="Granite C" />
+                <Frame UV="2052,0" Variety="Granite D" />
+                <Frame UV="2106,0" Variety="Granite E" />
+                <Frame UV="2160,0" Variety="Granite F" />
+                <Frame UV="2214,0" Variety="Marble A" />
+                <Frame UV="2268,0" Variety="Marble B" />
+                <Frame UV="2322,0" Variety="Marble C" />
+                <Frame UV="2376,0" Variety="Marble D" />
+                <Frame UV="2430,0" Variety="Marble E" />
+                <Frame UV="2484,0" Variety="Marble F" />
+                <Frame UV="2538,0" Variety="Living Wood A" />
+                <Frame UV="2592,0" Variety="Living Wood B" />
+                <Frame UV="2646,0" Variety="Living Wood C" />
+                <Frame UV="2700,0" Variety="Living Leaf A" />
+                <Frame UV="2754,0" Variety="Living Leaf B" />
+                <Frame UV="2808,0" Variety="Animal Skull A" />
+                <Frame UV="2862,0" Variety="Animal Skull B" />
+                <Frame UV="2916,0" Variety="Animal Skull C" />
             </Frames>
         </Tile>
         <Tile Id="188" Color="#FF497811" Name="Cactus Block" Solid="true" Blends="true" MergeWith="0" />
