@@ -1320,8 +1320,8 @@ Klicke auf „Wiederholen“, um einen neuen Ordner auszuwählen, oder auf „Ab
   <data name="bestiary_tally" xml:space="preserve">
     <value>Update-Kills</value>
   </data>
-  <data name="tool_wp_mobile" xml:space="preserve">
-    <value>Mobil</value>
+  <data name="tool_wp_android" xml:space="preserve">
+    <value>Androide Welt</value>
   </data>
   <data name="chest_max_stack" xml:space="preserve">
     <value>Max</value>
