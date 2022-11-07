@@ -2872,9 +2872,9 @@ namespace TEdit.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Mobile.
         /// </summary>
-        public static string tool_wp_mobile {
+        public static string tool_wp_android {
             get {
-                return ResourceManager.GetString("tool_wp_mobile", resourceCulture);
+                return ResourceManager.GetString("tool_wp_android", resourceCulture);
             }
         }
         

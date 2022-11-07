@@ -1320,8 +1320,8 @@ Naciśnij spróbuj ponownie aby wybrać nowy folder lub anuluj aby użyć {0} ja
   <data name="bestiary_tally" xml:space="preserve">
     <value>Aktualizacja Zabójstw</value>
   </data>
-  <data name="tool_wp_mobile" xml:space="preserve">
-    <value>Ruchomy</value>
+  <data name="tool_wp_android" xml:space="preserve">
+    <value>Świat Androida</value>
   </data>
   <data name="chest_max_stack" xml:space="preserve">
     <value>Max</value>
