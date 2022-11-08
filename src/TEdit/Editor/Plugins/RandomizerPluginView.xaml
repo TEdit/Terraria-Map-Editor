@@ -2,17 +2,32 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:view="clr-namespace:TEdit.View" SizeToContent="WidthAndHeight"
-        Title="Randomize World" ResizeMode="NoResize" WindowStartupLocation="CenterOwner" Icon="/TEdit;component/Images/tedit.ico" Height="200" Width="300">
+        Title="Randomize World" ResizeMode="NoResize" WindowStartupLocation="CenterOwner" Icon="/TEdit;component/Images/tedit.ico" Height="200" Width="500">
     <StackPanel Background="{StaticResource ControlBackgroundBrush}" >
         <Label Content="Seed: (Leave blank for random)"></Label>
         <TextBox x:Name="SeedTextBox"></TextBox>
         <CheckBox x:Name="OnlySelectionCheckBox" Content="Only randomize selection" HorizontalAlignment="Center" />
         <CheckBox x:Name="UndoCheckBox" Content="Enable undo (very slow)" HorizontalAlignment="Center" />
         <CheckBox x:Name="RandomizeWallsCheckBox" Content="Randomize background walls" HorizontalAlignment="Center" />
+        <Grid Height="59">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="250" />
+                <ColumnDefinition Width="250"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <CheckBox Grid.Column="0" Grid.Row="0" x:Name="NoNonSolidBlocks" Content="Don't randomize (into) non-solid blocks" HorizontalAlignment="Left" />
+            <CheckBox Grid.Column="0" Grid.Row="1" x:Name="NoGravityBlocks" Content="Don't randomize (into) gravity-blocks" HorizontalAlignment="Left" />
+            <CheckBox Grid.Column="0" Grid.Row="2" x:Name="NoDisappearingBlocks" Content="Don't randomize (into) disappearing blocks" HorizontalAlignment="Left" />
+            <CheckBox Grid.Column="1" Grid.Row="0" x:Name="NoDungeonWalls" Content="Don't randomize (into) dungeon walls" HorizontalAlignment="Left" />
+        </Grid>
         <Grid>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="150" />
-                <ColumnDefinition Width="150"/>
+                <ColumnDefinition Width="250" />
+                <ColumnDefinition Width="250"/>
             </Grid.ColumnDefinitions>
             <Button Margin="5,5,0,5" Content="Cancel" HorizontalAlignment="Left" Padding="20, 3" VerticalAlignment="Center" Click="CancelButtonClick" Grid.ColumnSpan="2" />
             <Button Margin="0,5,5,5" Content="Randomize" HorizontalAlignment="Right" Padding="20, 3" VerticalAlignment="Center" Click="OkButtonClick" Grid.Column="1" />

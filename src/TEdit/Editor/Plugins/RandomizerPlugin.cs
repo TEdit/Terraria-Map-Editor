@@ -131,11 +131,18 @@ namespace TEdit.Editor.Plugins
         private struct BlockRandomizerSettings
         {
             public int Seed { get; set; }
+            public bool NoDisappearingBlocks { get; set; }
+            public bool NoNonSolidBlocks { get; set; }
+            public bool NoGravityBlocks { get; set; }
         }
 
         private struct WallRandomizerSetting
         {
             public int Seed { get; set; }
+            public bool NoDungeonWalls { get; set; }
+            // By dungeon walls I mean any kind of wall that's needed for a biome
+            // - Dungeon (all kinds)
+            // - Lihzahrd Temple
         }
     }
 }
