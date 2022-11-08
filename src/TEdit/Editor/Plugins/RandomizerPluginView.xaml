@@ -19,10 +19,10 @@
                 <RowDefinition />
                 <RowDefinition />
             </Grid.RowDefinitions>
-            <CheckBox Grid.Column="0" Grid.Row="0" x:Name="NoNonSolidBlocks" Content="Don't randomize (into) non-solid blocks" HorizontalAlignment="Left" />
-            <CheckBox Grid.Column="0" Grid.Row="1" x:Name="NoGravityBlocks" Content="Don't randomize (into) gravity-blocks" HorizontalAlignment="Left" />
-            <CheckBox Grid.Column="0" Grid.Row="2" x:Name="NoDisappearingBlocks" Content="Don't randomize (into) disappearing blocks" HorizontalAlignment="Left" />
-            <CheckBox Grid.Column="1" Grid.Row="0" x:Name="NoDungeonWalls" Content="Don't randomize (into) dungeon walls" HorizontalAlignment="Left" />
+            <CheckBox Grid.Column="0" Grid.Row="0" x:Name="NoNonSolidBlocksCheckBox" Content="Don't randomize (into) non-solid blocks" HorizontalAlignment="Left" />
+            <CheckBox Grid.Column="0" Grid.Row="1" x:Name="NoGravityBlocksCheckBox" Content="Don't randomize (into) gravity-blocks" HorizontalAlignment="Left" />
+            <CheckBox Grid.Column="0" Grid.Row="2" x:Name="NoDisappearingBlocksCheckBox" Content="Don't randomize (into) disappearing blocks" HorizontalAlignment="Left" />
+            <CheckBox Grid.Column="1" Grid.Row="0" x:Name="NoDungeonWallsCheckBox" Content="Don't randomize (into) dungeon walls" HorizontalAlignment="Left" />
         </Grid>
         <Grid>
             <Grid.ColumnDefinitions>

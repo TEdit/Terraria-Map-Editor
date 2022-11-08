@@ -13,6 +13,10 @@ namespace TEdit.Editor.Plugins
         public bool OnlySelection { get; private set; }
         public bool EnableUndo { get; private set; }
         public bool EnableWallRandomize { get; private set; }
+        public bool NoNonSolidBlocks { get; private set; }
+        public bool NoGravityBlocks { get; private set; }
+        public bool NoDisappearingBlocks { get; private set; }
+        public bool NoDungeonWalls { get; private set; }
 
         public RandomizerPluginView(bool activeSelection)
         {
@@ -38,6 +42,10 @@ namespace TEdit.Editor.Plugins
                 OnlySelection = OnlySelectionCheckBox.IsChecked ?? false;
                 EnableUndo = UndoCheckBox.IsChecked ?? false;
                 EnableWallRandomize = RandomizeWallsCheckBox.IsChecked ?? false;
+                NoNonSolidBlocks = NoNonSolidBlocksCheckBox.IsChecked ?? false;
+                NoGravityBlocks = NoGravityBlocksCheckBox.IsChecked ?? false;
+                NoDisappearingBlocks = NoDisappearingBlocksCheckBox.IsChecked ?? false;
+                NoDungeonWalls = NoDungeonWallsCheckBox.IsChecked ?? false;
 
                 this.DialogResult = true;
                 this.Close();
