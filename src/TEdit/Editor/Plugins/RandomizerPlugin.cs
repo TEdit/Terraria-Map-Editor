@@ -46,8 +46,7 @@ namespace TEdit.Editor.Plugins
             {
                 // Set the randomizationArea to the selected area
                 randomizationArea = _wvm.Selection.SelectionArea;
-            }
-            else
+            } else
             {
                 // Set the randomizationArea to the whole world
                 randomizationArea = new(0, 0, _wvm.CurrentWorld.Size.X, _wvm.CurrentWorld.Size.Y);
@@ -129,15 +128,14 @@ namespace TEdit.Editor.Plugins
             return mapping;
         }
 
-        private class BlockRandomizerSettings
+        private struct BlockRandomizerSettings
         {
             public int Seed { get; set; }
         }
 
-        private class WallRandomizerSetting
+        private struct WallRandomizerSetting
         {
             public int Seed { get; set; }
         }
     }
-
 }
