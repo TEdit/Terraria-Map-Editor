@@ -134,7 +134,26 @@ namespace TEdit.Editor.Plugins
                     }
                     else if (t.Type == 80) // A cactus
                     {
+                        int currentY = y;
+                        while (true)
+                        {
+                            if (currentY + 1 >= 0)
+                            {
+                                Tile tAbove = _wvm.CurrentWorld.Tiles[x, currentY];
+                                if (tAbove.Type == t.Type)
+                                {
+                                    currentY++;
+                                    continue;
+                                }
+                                else if (tAbove.Type == 53)
+                                {
+                                    break;
+                                }
+                            }
 
+                            t.Type = 53;
+                            break;
+                        }
                     }
                 }
             }
