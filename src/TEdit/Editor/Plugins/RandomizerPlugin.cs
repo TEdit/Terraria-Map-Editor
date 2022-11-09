@@ -1,10 +1,11 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.ApplicationInsights.DataContracts;
 using Microsoft.Xna.Framework;
 using TEdit.Terraria;
+using TEdit.Terraria.Objects;
 using TEdit.ViewModel;
-
 
 namespace TEdit.Editor.Plugins
 {
@@ -30,6 +31,9 @@ namespace TEdit.Editor.Plugins
             BlockRandomizerSettings blockSettings = new()
             {
                 Seed = view.Seed,
+                NoDisappearingBlocks = view.NoDisappearingBlocks,
+                SupportDependentBlocks = view.SupportDependentBlocks,
+                SupportGravityBlocks = view.SupportGravityBlocks,
             };
 
             WallRandomizerSetting wallSettings = new()
@@ -46,7 +50,8 @@ namespace TEdit.Editor.Plugins
             {
                 // Set the randomizationArea to the selected area
                 randomizationArea = _wvm.Selection.SelectionArea;
-            } else
+            }
+            else
             {
                 // Set the randomizationArea to the whole world
                 randomizationArea = new(0, 0, _wvm.CurrentWorld.Size.X, _wvm.CurrentWorld.Size.Y);
@@ -65,7 +70,7 @@ namespace TEdit.Editor.Plugins
                     if (blockMapping.ContainsKey(t.Type))
                         t.Type = (ushort)blockMapping[t.Type];
 
-                    if (wallMapping.ContainsKey(t.Wall))
+                    if (view.EnableWallRandomize && wallMapping.ContainsKey(t.Wall))
                         t.Wall = (ushort)wallMapping[t.Wall];
                 }
             }
@@ -79,50 +84,62 @@ namespace TEdit.Editor.Plugins
 
         private Dictionary<int, int> GetRandomBlockMapping(BlockRandomizerSettings settings)
         {
-            Dictionary<int, int> mapping = new();
             Random rng = new(settings.Seed);
 
-            List<int> tiles = new(Terraria.World.TileBricks.Select(x => x.Id));
-            List<int> shuffledTiles = new(tiles);
+            // Set up lists
+            List<int> fromTiles = new(Terraria.World.TileBricks.Select(x => x.Id));
 
-            int n = shuffledTiles.Count;
-            while (n > 1)
+            if (settings.NoDisappearingBlocks)
+                fromTiles = fromTiles.Where(x => !DisappearingTiles.Contains(x)).ToList();
+
+            List<int> toTiles = new(fromTiles);
+
+            // Shuffle to list
+            for (int n = toTiles.Count; n > 1;)
             {
                 int k = rng.Next(n--);
-                int temp = shuffledTiles[n];
-                shuffledTiles[n] = shuffledTiles[k];
-                shuffledTiles[k] = temp;
+                int temp = toTiles[n];
+                toTiles[n] = toTiles[k];
+                toTiles[k] = temp;
             }
 
-            for (int i = 0; i < tiles.Count; i++)
+            // Add lists to a dictionary
+            Dictionary<int, int> mapping = new();
+            for (int i = 0; i < fromTiles.Count; i++)
             {
-                mapping.Add(tiles[i], shuffledTiles[i]);
+                mapping.Add(fromTiles[i], toTiles[i % toTiles.Count]);
             }
 
             return mapping;
         }
+
+        private List<int> DisappearingTiles = new()
+        {
+            127, // Ice Rod Ice
+            504, // Mystic snake rope
+        };
 
         private Dictionary<int, int> GetRandomWallMapping(WallRandomizerSetting settings)
         {
             Dictionary<int, int> mapping = new();
             Random rng = new(settings.Seed);
 
-            List<int> walls = new(Terraria.World.WallProperties.Select(x => x.Id));
-            walls.Remove(0); // Remove Sky from the walls to be shuffled
-            List<int> shuffledWalls = new(walls);
+            List<int> fromWalls = new(Terraria.World.WallProperties.Select(x => x.Id));
+            fromWalls.Remove(0); // Remove Sky from the walls to be shuffled
+            List<int> toWalls = new(fromWalls);
 
-            int n = shuffledWalls.Count;
+            int n = toWalls.Count;
             while (n > 1)
             {
                 int k = rng.Next(n--);
-                int temp = shuffledWalls[n];
-                shuffledWalls[n] = shuffledWalls[k];
-                shuffledWalls[k] = temp;
+                int temp = toWalls[n];
+                toWalls[n] = toWalls[k];
+                toWalls[k] = temp;
             }
 
-            for (int i = 0; i < walls.Count; i++)
+            for (int i = 0; i < fromWalls.Count; i++)
             {
-                mapping.Add(walls[i], shuffledWalls[i]);
+                mapping.Add(fromWalls[i], toWalls[i]);
             }
 
             return mapping;
@@ -132,17 +149,13 @@ namespace TEdit.Editor.Plugins
         {
             public int Seed { get; set; }
             public bool NoDisappearingBlocks { get; set; }
-            public bool NoNonSolidBlocks { get; set; }
-            public bool NoGravityBlocks { get; set; }
+            public bool SupportDependentBlocks { get; set; }
+            public bool SupportGravityBlocks { get; set; }
         }
 
         private struct WallRandomizerSetting
         {
             public int Seed { get; set; }
-            public bool NoDungeonWalls { get; set; }
-            // By dungeon walls I mean any kind of wall that's needed for a biome
-            // - Dungeon (all kinds)
-            // - Lihzahrd Temple
         }
     }
 }
