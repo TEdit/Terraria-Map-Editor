@@ -32,8 +32,6 @@ namespace TEdit.Editor.Plugins
             {
                 Seed = view.Seed,
                 NoDisappearingBlocks = view.NoDisappearingBlocks,
-                SupportDependentBlocks = view.SupportDependentBlocks,
-                SupportGravityBlocks = view.SupportGravityBlocks,
             };
 
             WallRandomizerSetting wallSettings = new()
@@ -75,11 +73,76 @@ namespace TEdit.Editor.Plugins
                 }
             }
 
+            if (view.SupportDependentBlocks)
+                AddSupportsToDependentBlocks(randomizationArea);
+
+            if (view.SupportGravityBlocks)
+                AddSupportsToGravityBlocks(randomizationArea);
+
             if (view.EnableUndo)
                 _wvm.UndoManager.SaveUndo();
 
             _wvm.UpdateRenderRegion(randomizationArea); // Re-render map
             _wvm.MinimapImage = Render.RenderMiniMap.Render(_wvm.CurrentWorld); // Update Minimap
+        }
+
+        /// <summary>
+        /// This function adds the conditional blocks to all tiles that require them. This includes vines and cacti.
+        /// </summary>
+        private void AddSupportsToDependentBlocks(Rectangle randomizationArea)
+        {
+            Dictionary<int, int> VineHangBlock = new()
+            {
+                { 52, 2 },// Vine
+                { 205, 199 },// Crimson vine
+                { 636, 23 },// Corrupt vine
+                { 115, 109 },// hallow vine
+                { 62, 60 },// Jungle vine
+                { 382, 2 },// flower vine
+                { 528, 70 },// mushroom vine
+                { 638, 633 },// ash vine
+            };
+
+            for (int x = randomizationArea.Left; x < randomizationArea.Right; x++)
+            {
+                for (int y = randomizationArea.Top; y < randomizationArea.Bottom; y++)
+                {
+                    Tile t = _wvm.CurrentWorld.Tiles[x, y];
+
+                    if (VineHangBlock.ContainsKey(t.Type))
+                    {
+                        int currentY = y;
+                        while (true)
+                        {
+                            if (currentY - 1 >= 0)
+                            {
+                                Tile tAbove = _wvm.CurrentWorld.Tiles[x, currentY];
+                                if (tAbove.Type == t.Type)
+                                {
+                                    currentY--;
+                                    continue;
+                                }
+                                else if (tAbove.Type == VineHangBlock[t.Type])
+                                {
+                                    break;
+                                }
+                            }
+
+                            t.Type = (ushort)VineHangBlock[t.Type];
+                            break;
+                        }
+                    }
+                    else if (t.Type == 80) // A cactus
+                    {
+
+                    }
+                }
+            }
+        }
+
+        private void AddSupportsToGravityBlocks(Rectangle randomizationArea)
+        {
+            throw new NotImplementedException();
         }
 
         private Dictionary<int, int> GetRandomBlockMapping(BlockRandomizerSettings settings)
@@ -149,8 +212,6 @@ namespace TEdit.Editor.Plugins
         {
             public int Seed { get; set; }
             public bool NoDisappearingBlocks { get; set; }
-            public bool SupportDependentBlocks { get; set; }
-            public bool SupportGravityBlocks { get; set; }
         }
 
         private struct WallRandomizerSetting
