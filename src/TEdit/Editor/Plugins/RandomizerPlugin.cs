@@ -91,7 +91,7 @@ namespace TEdit.Editor.Plugins
         /// </summary>
         private void AddSupportsToDependentBlocks(Rectangle randomizationArea)
         {
-            Dictionary<int, int> VineHangBlock = new()
+            Dictionary<int, int> VineHangTile = new()
             {
                 { 52, 2 },// Vine
                 { 205, 199 },// Crimson vine
@@ -109,7 +109,7 @@ namespace TEdit.Editor.Plugins
                 {
                     Tile t = _wvm.CurrentWorld.Tiles[x, y];
 
-                    if (VineHangBlock.ContainsKey(t.Type))
+                    if (VineHangTile.ContainsKey(t.Type))
                     {
                         int currentY = y;
                         while (true)
@@ -122,13 +122,13 @@ namespace TEdit.Editor.Plugins
                                     currentY--;
                                     continue;
                                 }
-                                else if (tAbove.Type == VineHangBlock[t.Type])
+                                else if (tAbove.Type == VineHangTile[t.Type])
                                 {
                                     break;
                                 }
                             }
 
-                            t.Type = (ushort)VineHangBlock[t.Type];
+                            t.Type = (ushort)VineHangTile[t.Type];
                             break;
                         }
                     }
@@ -161,7 +161,57 @@ namespace TEdit.Editor.Plugins
 
         private void AddSupportsToGravityBlocks(Rectangle randomizationArea)
         {
-            throw new NotImplementedException();
+            Dictionary<int, int> GravitySupportTile = new()
+            {
+                { 53, 397 },// Sand, Hardened sand
+                { 112, 398 }, // Ebonsand, Corrupt hardened sand
+                { 234, 399 }, // Crimsand, Crimson hardened sand
+                { 116, 402 }, // Pearlsand, hallow hardened sand
+                { 123, 1 }, // Silt, stone
+                { 224, 161 }, // Slush, ice
+                { 330, 7 }, // Copper coin pile, copper ore
+                { 331, 9 }, // Silver coin pile, silver ore
+                { 332, 8 }, // Gold coin pile, gold ore
+                { 333, 169 }, // Plat coin pile, plat ore
+            };
+
+            HashSet<int> Sands = new()
+            {
+                53,
+                112,
+                234,
+                116,
+            };
+
+            for (int x = randomizationArea.Left; x < randomizationArea.Right; x++)
+            {
+                for (int y = randomizationArea.Top; y < randomizationArea.Bottom; y++)
+                {
+                    Tile t = _wvm.CurrentWorld.Tiles[x, y];
+                    if (!GravitySupportTile.Keys.Contains(t.Type))
+                        continue;
+
+                    if (y + 1 > randomizationArea.Bottom)
+                        continue;
+
+                    Tile tBelow = _wvm.CurrentWorld.Tiles[x, y + 1];
+
+                    if (!tBelow.IsEmpty)
+                        continue;
+
+                    if (Sands.Contains(t.Type))
+                    {
+                        if (y + 1 > randomizationArea.Bottom)
+                            continue;
+
+                        Tile tAbove = _wvm.CurrentWorld.Tiles[x, y - 1];
+                        if (tAbove.Type == 80)
+                            continue;
+                    }
+
+                    t.Type = (ushort)GravitySupportTile[t.Type];
+                }
+            }
         }
 
         private Dictionary<int, int> GetRandomBlockMapping(BlockRandomizerSettings settings)
