@@ -28,6 +28,11 @@ namespace TEdit.Editor
         private int _tile = ToolDefaultData.PaintTile;
         private int _wallMask = ToolDefaultData.PaintWallMask;
         private int _tileMask = ToolDefaultData.PaintTileMask;
+
+        private MaskMode _wallPaintMaskMode = MaskMode.Off;
+        private MaskMode _tilePaintMaskMode = MaskMode.Off;
+        private MaskMode _liquidMaskMode = MaskMode.Off;
+
         private bool _blueWireActive = ToolDefaultData.BlueWire;
         private bool _redWireActive = ToolDefaultData.RedWire;
         private bool _greenWireActive = ToolDefaultData.GreenWire;
@@ -262,6 +267,25 @@ namespace TEdit.Editor
         {
             get { return _tileMaskMode; }
             set { Set(nameof(TileMaskMode), ref _tileMaskMode, value); }
+        }
+
+        public MaskMode WallPaintMaskMode
+        {
+            get { return _wallPaintMaskMode; }
+            set { Set(nameof(WallPaintMaskMode), ref _wallPaintMaskMode, value); }
+        }
+
+
+        public MaskMode TilePaintMaskMode
+        {
+            get { return _tilePaintMaskMode; }
+            set { Set(nameof(TilePaintMaskMode), ref _tilePaintMaskMode, value); }
+        }
+
+        public MaskMode LiquidMaskMode
+        {
+            get { return _liquidMaskMode; }
+            set { Set(nameof(LiquidMaskMode), ref _liquidMaskMode, value); }
         }
 
         public PaintMode PaintMode

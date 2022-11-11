@@ -14,6 +14,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{BF790973-1C76-498F-A677-4C8A71BCFCA9}"
 	ProjectSection(SolutionItems) = preProject
 		..\.editorconfig = ..\.editorconfig
+		..\build.ps1 = ..\build.ps1
 	EndProjectSection
 EndProject
 Global
@@ -39,8 +40,8 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {9CD90452-C706-4BBF-8C2E-6C2D1052531B}
 		RESX_PrefixTranslations = False
+		SolutionGuid = {9CD90452-C706-4BBF-8C2E-6C2D1052531B}
 	EndGlobalSection
 	GlobalSection(TestCaseManagementSettings) = postSolution
 		CategoryFile = TEdit.vsmdi

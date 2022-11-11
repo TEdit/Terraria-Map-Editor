@@ -304,7 +304,7 @@ namespace TEdit.Terraria
 
                         // downgraded illuminate coating to illuminate paint
                         // IF there is no other paint
-                        if (color == 0 && version < 269 && tile.FullBrightBlock)
+                        if (color == 0 && tile.FullBrightBlock)
                         {
                             color = 31;
                         }
@@ -342,7 +342,7 @@ namespace TEdit.Terraria
                 // save tile wall color
                 if (version < 269)
                 {
-                    if (tile.TileColor != 0 || tile.FullBrightWall)
+                    if (tile.WallColor != 0 || tile.FullBrightWall)
                     {
                         var color = tile.WallColor;
 
@@ -362,9 +362,9 @@ namespace TEdit.Terraria
                 else
                 {
                     // for versions >= 269 upgrade illuminant paint to coating
-                    if (tile.TileColor != 0 && tile.TileColor != 31)
+                    if (tile.WallColor != 0 && tile.WallColor != 31)
                     {
-                        var color = tile.TileColor;
+                        var color = tile.WallColor;
                         // set header3 bit[4] for wall color active
                         header3 |= 0b_0001_0000;
                         tileData[dataIndex++] = color;
