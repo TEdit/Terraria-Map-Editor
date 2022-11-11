@@ -196,7 +196,7 @@ namespace TEdit.Editor.Plugins
 
                     Tile tBelow = _wvm.CurrentWorld.Tiles[x, y + 1];
 
-                    if (tBelow.IsActive && Terraria.World.TileBricks.Where(x => x.Id == tBelow.Type).First().IsSolid)
+                    if (tBelow.IsActive)
                         continue;
 
                     if (Sands.Contains(t.Type))
