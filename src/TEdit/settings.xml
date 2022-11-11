@@ -6640,7 +6640,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
             </Frames>
         </Tile>
         <Tile Id="381" Color="#FFFE7902" Name="Lava Moss" Solid="true" Blends="true" Special="Grass" Stone="True" />
-        <Tile Id="382" Color="#FF1CD85E" Name="Flower Vines" Solid="true" Blends="true" />
+        <Tile Id="382" Color="#FF1CD85E" Name="Flower Vines" Solid="false" Blends="true" />
         <Tile Id="383" Color="#FFDD8890" Name="Living Mahogany Block" Solid="true" Blends="true" />
         <Tile Id="384" Color="#FF83CE0C" Name="Living Mahogany Leaves Block" Solid="true" Blends="true" />
         <Tile Id="385" Color="#FF571590" Name="Crystal Block" Solid="true" Blends="true" />

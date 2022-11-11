@@ -1,10 +1,11 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.ApplicationInsights.DataContracts;
 using Microsoft.Xna.Framework;
 using TEdit.Terraria;
+using TEdit.Terraria.Objects;
 using TEdit.ViewModel;
-
 
 namespace TEdit.Editor.Plugins
 {
@@ -30,6 +31,7 @@ namespace TEdit.Editor.Plugins
             BlockRandomizerSettings blockSettings = new()
             {
                 Seed = view.Seed,
+                NoDisappearingBlocks = view.NoDisappearingBlocks,
             };
 
             WallRandomizerSetting wallSettings = new()
@@ -37,7 +39,7 @@ namespace TEdit.Editor.Plugins
                 Seed = view.Seed,
             };
 
-            var blockMapping = GetRandomBlockMapping(blockSettings);
+            var tileMapping = GetRandomTileMapping(blockSettings);
             var wallMapping = GetRandomWallMapping(wallSettings);
 
             Rectangle randomizationArea;
@@ -63,13 +65,19 @@ namespace TEdit.Editor.Plugins
 
                     Tile t = _wvm.CurrentWorld.Tiles[x, y];
 
-                    if (blockMapping.ContainsKey(t.Type))
-                        t.Type = (ushort)blockMapping[t.Type];
+                    if (tileMapping.ContainsKey(t.Type))
+                        t.Type = (ushort)tileMapping[t.Type];
 
-                    if (wallMapping.ContainsKey(t.Wall))
+                    if (view.EnableWallRandomize && wallMapping.ContainsKey(t.Wall))
                         t.Wall = (ushort)wallMapping[t.Wall];
                 }
             }
+
+            if (view.SupportDependentBlocks)
+                AddSupportsToDependentBlocks(randomizationArea);
+
+            if (view.SupportGravityBlocks)
+                AddSupportsToGravityBlocks(randomizationArea);
 
             if (view.EnableUndo)
                 _wvm.UndoManager.SaveUndo();
@@ -78,66 +86,207 @@ namespace TEdit.Editor.Plugins
             _wvm.MinimapImage = Render.RenderMiniMap.Render(_wvm.CurrentWorld); // Update Minimap
         }
 
-        private Dictionary<int, int> GetRandomBlockMapping(BlockRandomizerSettings settings)
+        /// <summary>
+        /// This function adds the conditional blocks to all tiles that require them. This includes vines and cacti.
+        /// </summary>
+        private void AddSupportsToDependentBlocks(Rectangle randomizationArea)
         {
-            Dictionary<int, int> mapping = new();
+            Dictionary<int, int> VineHangTile = new()
+            {
+                { 52, 2 },// Vine
+                { 205, 199 },// Crimson vine
+                { 636, 23 },// Corrupt vine
+                { 115, 109 },// hallow vine
+                { 62, 60 },// Jungle vine
+                { 382, 2 },// flower vine
+                { 528, 70 },// mushroom vine
+                { 638, 633 },// ash vine
+            };
+
+            for (int x = randomizationArea.Left; x < randomizationArea.Right; x++)
+            {
+                for (int y = randomizationArea.Top; y < randomizationArea.Bottom; y++)
+                {
+                    Tile t = _wvm.CurrentWorld.Tiles[x, y];
+
+                    if (VineHangTile.ContainsKey(t.Type))
+                    {
+                        int currentY = y;
+                        while (true)
+                        {
+                            if (currentY - 1 >= 0)
+                            {
+                                Tile tAbove = _wvm.CurrentWorld.Tiles[x, currentY];
+                                if (tAbove.Type == t.Type)
+                                {
+                                    currentY--;
+                                    continue;
+                                }
+                                else if (tAbove.Type == VineHangTile[t.Type])
+                                {
+                                    break;
+                                }
+                            }
+
+                            t.Type = (ushort)VineHangTile[t.Type];
+                            break;
+                        }
+                    }
+                    else if (t.Type == 80) // A cactus
+                    {
+                        int currentY = y;
+                        while (true)
+                        {
+                            if (currentY + 1 >= 0)
+                            {
+                                Tile tAbove = _wvm.CurrentWorld.Tiles[x, currentY];
+                                if (tAbove.Type == t.Type)
+                                {
+                                    currentY++;
+                                    continue;
+                                }
+                                else if (tAbove.Type == 53)
+                                {
+                                    break;
+                                }
+                            }
+
+                            t.Type = 53;
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+
+        private void AddSupportsToGravityBlocks(Rectangle randomizationArea)
+        {
+            Dictionary<int, int> GravitySupportTile = new()
+            {
+                { 53, 397 },// Sand, Hardened sand
+                { 112, 398 }, // Ebonsand, Corrupt hardened sand
+                { 234, 399 }, // Crimsand, Crimson hardened sand
+                { 116, 402 }, // Pearlsand, hallow hardened sand
+                { 123, 1 }, // Silt, stone
+                { 224, 161 }, // Slush, ice
+                { 330, 7 }, // Copper coin pile, copper ore
+                { 331, 9 }, // Silver coin pile, silver ore
+                { 332, 8 }, // Gold coin pile, gold ore
+                { 333, 169 }, // Plat coin pile, plat ore
+            };
+
+            HashSet<int> Sands = new()
+            {
+                53,
+                112,
+                234,
+                116,
+            };
+
+            for (int x = randomizationArea.Left; x < randomizationArea.Right; x++)
+            {
+                for (int y = randomizationArea.Top; y < randomizationArea.Bottom; y++)
+                {
+                    Tile t = _wvm.CurrentWorld.Tiles[x, y];
+                    if (!GravitySupportTile.Keys.Contains(t.Type))
+                        continue;
+
+                    if (y + 1 > randomizationArea.Bottom)
+                        continue;
+
+                    Tile tBelow = _wvm.CurrentWorld.Tiles[x, y + 1];
+
+                    if (tBelow.IsActive)
+                        continue;
+
+                    if (Sands.Contains(t.Type))
+                    {
+                        if (y + 1 > randomizationArea.Bottom)
+                            continue;
+
+                        Tile tAbove = _wvm.CurrentWorld.Tiles[x, y - 1];
+                        if (tAbove.Type == 80)
+                            continue;
+                    }
+
+                    t.Type = (ushort)GravitySupportTile[t.Type];
+                }
+            }
+        }
+
+        private Dictionary<int, int> GetRandomTileMapping(BlockRandomizerSettings settings)
+        {
             Random rng = new(settings.Seed);
 
-            List<int> tiles = new(Terraria.World.TileBricks.Select(x => x.Id));
-            List<int> shuffledTiles = new(tiles);
+            // Set up lists
+            List<int> fromTiles = new(Terraria.World.TileBricks.Select(x => x.Id));
+            fromTiles.Remove(-1);
 
-            int n = shuffledTiles.Count;
-            while (n > 1)
+            if (settings.NoDisappearingBlocks)
+                fromTiles = fromTiles.Where(x => !DisappearingTiles.Contains(x)).ToList();
+
+            List<int> toTiles = new(fromTiles);
+
+            // Shuffle to list
+            for (int n = toTiles.Count; n > 1;)
             {
                 int k = rng.Next(n--);
-                int temp = shuffledTiles[n];
-                shuffledTiles[n] = shuffledTiles[k];
-                shuffledTiles[k] = temp;
+                int temp = toTiles[n];
+                toTiles[n] = toTiles[k];
+                toTiles[k] = temp;
             }
 
-            for (int i = 0; i < tiles.Count; i++)
+            // Add lists to a dictionary
+            Dictionary<int, int> mapping = new();
+            for (int i = 0; i < fromTiles.Count; i++)
             {
-                mapping.Add(tiles[i], shuffledTiles[i]);
+                mapping.Add(fromTiles[i], toTiles[i % toTiles.Count]);
             }
 
             return mapping;
         }
+
+        private List<int> DisappearingTiles = new()
+        {
+            127, // Ice Rod Ice
+            504, // Mystic snake rope
+        };
 
         private Dictionary<int, int> GetRandomWallMapping(WallRandomizerSetting settings)
         {
             Dictionary<int, int> mapping = new();
             Random rng = new(settings.Seed);
 
-            List<int> walls = new(Terraria.World.WallProperties.Select(x => x.Id));
-            walls.Remove(0); // Remove Sky from the walls to be shuffled
-            List<int> shuffledWalls = new(walls);
+            List<int> fromWalls = new(Terraria.World.WallProperties.Select(x => x.Id));
+            fromWalls.Remove(0); // Remove Sky from the walls to be shuffled
+            List<int> toWalls = new(fromWalls);
 
-            int n = shuffledWalls.Count;
+            int n = toWalls.Count;
             while (n > 1)
             {
                 int k = rng.Next(n--);
-                int temp = shuffledWalls[n];
-                shuffledWalls[n] = shuffledWalls[k];
-                shuffledWalls[k] = temp;
+                int temp = toWalls[n];
+                toWalls[n] = toWalls[k];
+                toWalls[k] = temp;
             }
 
-            for (int i = 0; i < walls.Count; i++)
+            for (int i = 0; i < fromWalls.Count; i++)
             {
-                mapping.Add(walls[i], shuffledWalls[i]);
+                mapping.Add(fromWalls[i], toWalls[i]);
             }
 
             return mapping;
         }
 
-        private class BlockRandomizerSettings
+        private struct BlockRandomizerSettings
         {
             public int Seed { get; set; }
+            public bool NoDisappearingBlocks { get; set; }
         }
 
-        private class WallRandomizerSetting
+        private struct WallRandomizerSetting
         {
             public int Seed { get; set; }
         }
     }
-
 }
