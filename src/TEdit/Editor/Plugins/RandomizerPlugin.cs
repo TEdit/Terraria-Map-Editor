@@ -39,7 +39,7 @@ namespace TEdit.Editor.Plugins
                 Seed = view.Seed,
             };
 
-            var blockMapping = GetRandomBlockMapping(blockSettings);
+            var tileMapping = GetRandomTileMapping(blockSettings);
             var wallMapping = GetRandomWallMapping(wallSettings);
 
             Rectangle randomizationArea;
@@ -65,8 +65,8 @@ namespace TEdit.Editor.Plugins
 
                     Tile t = _wvm.CurrentWorld.Tiles[x, y];
 
-                    if (blockMapping.ContainsKey(t.Type))
-                        t.Type = (ushort)blockMapping[t.Type];
+                    if (tileMapping.ContainsKey(t.Type))
+                        t.Type = (ushort)tileMapping[t.Type];
 
                     if (view.EnableWallRandomize && wallMapping.ContainsKey(t.Wall))
                         t.Wall = (ushort)wallMapping[t.Wall];
@@ -196,7 +196,7 @@ namespace TEdit.Editor.Plugins
 
                     Tile tBelow = _wvm.CurrentWorld.Tiles[x, y + 1];
 
-                    if (!tBelow.IsEmpty)
+                    if (tBelow.IsActive)
                         continue;
 
                     if (Sands.Contains(t.Type))
@@ -214,12 +214,13 @@ namespace TEdit.Editor.Plugins
             }
         }
 
-        private Dictionary<int, int> GetRandomBlockMapping(BlockRandomizerSettings settings)
+        private Dictionary<int, int> GetRandomTileMapping(BlockRandomizerSettings settings)
         {
             Random rng = new(settings.Seed);
 
             // Set up lists
             List<int> fromTiles = new(Terraria.World.TileBricks.Select(x => x.Id));
+            fromTiles.Remove(-1);
 
             if (settings.NoDisappearingBlocks)
                 fromTiles = fromTiles.Where(x => !DisappearingTiles.Contains(x)).ToList();
