@@ -166,9 +166,25 @@ namespace TEdit
                 path = Path.Combine(path, "Content");
             }
 
-            path = Path.GetFullPath(path);
-            PathToContent = path;
-            PathToWorlds = GetPathToWorlds(steamUserId);
+            try
+            {
+                path = Path.GetFullPath(path);
+                PathToContent = path;
+            }
+            catch (Exception ex)
+            {
+                ErrorLogging.LogException(ex);
+            }
+
+            try
+            {
+                PathToWorlds = GetPathToWorlds(steamUserId);
+            }
+            catch (Exception ex)
+            {
+                ErrorLogging.LogException(ex);
+            }
+
         }
 
         /**
