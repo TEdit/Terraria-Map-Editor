@@ -250,6 +250,7 @@ namespace TEdit.Terraria
 
         private static void AddEntityToWorld(TileEntity te, World world)
         {
+            // remove existing tile entity entry
             var existingEntity = world.TileEntities.FirstOrDefault(existing => existing.PosX == te.PosX && existing.PosY == te.PosY);
             if (existingEntity != null)
             {
@@ -265,6 +266,7 @@ namespace TEdit.Terraria
                 te.Id = 0;
             }
 
+            // add new tile entity entry
             world.TileEntities.Add(te);
         }
 
@@ -299,12 +301,14 @@ namespace TEdit.Terraria
             if (wvm == null) return;
             if (wvm.CurrentWorld == null) return;
 
+            // var sprite2 = World.Sprites2.FirstOrDefault(s => s.Tile == (ushort)te.TileType);
+
             var sprite = World.Sprites.FirstOrDefault(s => s.Tile == (ushort)te.TileType);
             if (sprite == null) return;
 
             AddEntityToWorld(te, wvm.CurrentWorld);
 
-            Sprite.PlaceSprite(te.PosX, te.PosY, sprite, wvm);
+            // Sprite.PlaceSprite(te.PosX, te.PosY, sprite, wvm); // this is probably redundant
 
             PostAddEntityToWorld(te, wvm.CurrentWorld);
         }
@@ -319,7 +323,7 @@ namespace TEdit.Terraria
 
             AddEntityToWorld(te, world);
 
-            Sprite.PlaceSprite(te.PosX, te.PosY, sprite, world);
+            //Sprite.PlaceSprite(te.PosX, te.PosY, sprite, world);
             PostAddEntityToWorld(te, world);
         }
 
