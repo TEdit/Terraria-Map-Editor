@@ -8,6 +8,7 @@ using GalaSoft.MvvmLight;
 using TEdit.Terraria.Objects;
 using TEdit.MvvmLight.Threading;
 using TEdit.Editor;
+using System.Collections.Generic;
 
 namespace TEdit.Terraria
 {
@@ -508,176 +509,21 @@ namespace TEdit.Terraria
             }
         }
 
-        public void UpgradeLegacyTileEntities()
-        {
-            return; // disable this
+        //public void FixNpcs()
+        //{
+        //    TEdit.MvvmLight.Threading.DispatcherHelper.CheckBeginInvokeOnUI(
+        //        () =>
+        //        {
+        //            int[] npcids = { 17, 18, 19, 20, 22, 54, 38, 107, 108, 124, 160, 178, 207, 208, 209, 227, 228, 229, 353, 369, 441 };
+        //            var existingNpcIds = new HashSet<int>(CharacterNames.Select(c => c.Id));
 
-            // don't upgrade legacy worlds
-            if (this.Version < World.CompatibleVersion) return;
-
-            Tile curTile = null;
-            for (int x = 0; x < TilesWide; x++)
-            {
-                for (int y = 0; y < TilesHigh; y++)
-                {
-                    curTile = Tiles[x, y];
-
-                    if (curTile.Type == (ushort)TileType.MannequinLegacy || curTile.Type == (ushort)TileType.WomannequinLegacy)
-                    {
-                        var anchor = GetAnchor(x, y);
-                        int headId = (Tiles[anchor.X, anchor.Y].U - (Tiles[anchor.X, anchor.Y].U % 100)) / 100;
-                        int torsoId = (Tiles[anchor.X, anchor.Y + 1].U - (Tiles[anchor.X, anchor.Y].U % 100)) / 100;
-                        int feetId = (Tiles[anchor.X, anchor.Y + 2].U - (Tiles[anchor.X, anchor.Y].U % 100)) / 100;
-
-                        var entity = TileEntity.CreateForTile(curTile, anchor.X, y, TileEntities.Count);
-                        entity.Items[0].Id = (short)headId;
-                        entity.Items[1].Id = (short)torsoId;
-                        entity.Items[2].Id = (short)feetId;
-
-                        TileEntity.PlaceEntity(entity, this);
-                    }
-                    if (curTile.Type == (ushort)TileType.WeaponRackLegacy)
-                    {
-                        var anchor = GetAnchor(x, y);
-                        int itemId = (Tiles[anchor.X, anchor.Y + 1].U % 5000) - 100;
-                        int prefix = (Tiles[anchor.X, anchor.Y + 1].U % 5000);
-
-                        var entity = TileEntity.CreateForTile(curTile, anchor.X, anchor.Y, TileEntities.Count);
-                        entity.NetId = (short)itemId;
-                        entity.Prefix = (byte)prefix;
-                        entity.StackSize = 1;
-
-                        TileEntity.PlaceEntity(entity, this);
-                    }
-                }
-            }
-        }
-
-        private void FixChand()
-        {
-            // don't upgrade legacy worlds
-            if (this.Version < World.CompatibleVersion) return;
-
-            for (int x = 5; x < TilesWide - 5; x++)
-            {
-                for (int y = 5; y < TilesHigh - 5; y++)
-                {
-                    if (Tiles[x, y].IsActive)
-                    {
-                        int tileType = Tiles[x, y].Type;
-                        if (Tiles[x, y].IsActive &&
-                            (tileType == 35 || tileType == 36 || tileType == 170 || tileType == 171 || tileType == 172))
-                        {
-                            FixChand(x, y);
-                        }
-                    }
-                }
-            }
-        }
-
-        public void FixChand(int x, int y)
-        {
-            // don't upgrade legacy worlds
-            if (this.Version < World.CompatibleVersion) return;
-
-            int newPosition = 0;
-            int type = Tiles[x, y].Type;
-            if (Tiles[x, y].IsActive)
-            {
-                if (type == 35)
-                {
-                    newPosition = 1;
-                }
-                if (type == 36)
-                {
-                    newPosition = 2;
-                }
-                if (type == 170)
-                {
-                    newPosition = 3;
-                }
-                if (type == 171)
-                {
-                    newPosition = 4;
-                }
-                if (type == 172)
-                {
-                    newPosition = 5;
-                }
-            }
-            if (newPosition > 0)
-            {
-                int xShift = x;
-                int yShift = y;
-                xShift = Tiles[x, y].U / 18;
-                while (xShift >= 3)
-                {
-                    xShift = xShift - 3;
-                }
-                if (xShift >= 3)
-                {
-                    xShift = xShift - 3;
-                }
-                xShift = x - xShift;
-                yShift = yShift + Tiles[x, y].V / 18 * -1;
-                for (int x1 = xShift; x1 < xShift + 3; x1++)
-                {
-                    for (int y1 = yShift; y1 < yShift + 3; y1++)
-                    {
-                        if (Tiles[x1, y1] == null)
-                        {
-                            Tiles[x1, y1] = new Tile();
-                        }
-                        if (Tiles[x1, y1].IsActive && Tiles[x1, y1].Type == type)
-                        {
-                            Tiles[x1, y1].Type = (int)TileType.Chandelier;
-                            Tiles[x1, y1].V = (short)(Tiles[x1, y1].V + newPosition * 54);
-                        }
-                    }
-                }
-            }
-        }
-
-        public void FixNpcs()
-        {
-            TEdit.MvvmLight.Threading.DispatcherHelper.CheckBeginInvokeOnUI(
-                () =>
-                {
-                    int[] npcids = { 17, 18, 19, 20, 22, 54, 38, 107, 108, 124, 160, 178, 207, 208, 209, 227, 228, 229, 353, 369, 441 };
-
-                    foreach (int npcid in npcids)
-                    {
-                        if (CharacterNames.All(c => c.Id != npcid))
-                            CharacterNames.Add(GetNewNpc(npcid));
-                    }
-                });
-        }
-
-        private void FixSunflowers()
-        {
-            for (int i = 5; i < TilesWide - 5; ++i)
-            {
-                for (int j = 5; (double)j < GroundLevel; ++j)
-                {
-                    if (Tiles[i, j].IsActive && Tiles[i, j].Type == (int)TileType.Sunflower)
-                    {
-                        int u = Tiles[i, j].U / 18;
-                        int v = j + Tiles[i, j].V / 18 * -1;
-                        while (u > 1)
-                            u -= 2;
-                        int xStart = u * -1 + i;
-                        int uStart = Rand.Next(3) * 36;
-                        int uShift = 0;
-                        for (int xx = xStart; xx < xStart + 2; ++xx)
-                        {
-                            for (int yy = v; yy < v + 4; ++yy)
-                                Tiles[xx, yy].U = (short)(uShift + uStart);
-                            uShift += 18;
-                        }
-                    }
-                }
-            }
-        }
+        //            foreach (int npcid in npcids)
+        //            {
+        //                if (!existingNpcIds.Contains(npcid))
+        //                    CharacterNames.Add(GetNewNpc(npcid));
+        //            }
+        //        });
+        //}
 
         public bool SlopeCheck(Vector2Int32 a, Vector2Int32 b)
         {

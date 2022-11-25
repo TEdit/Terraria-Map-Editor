@@ -248,13 +248,13 @@ namespace TEdit.Terraria
 
             OnProgressChanged(null, new ProgressChangedEventArgs(100, "Saving NPC Names..."));
 
-            try
-            {
-                world.FixNpcs();
-            }
-            catch (Exception)
-            {
-            }
+            //try
+            //{
+            //    world.FixNpcs();
+            //}
+            //catch (Exception)
+            //{
+            //}
 
             if (version >= 31)
             {

@@ -435,7 +435,6 @@ namespace TEdit.Editor.Undo
 
             SaveUndo(updateMax: false);
 
-            _wvm.CurrentWorld.UpgradeLegacyTileEntities();
             OnRedid(this, EventArgs.Empty);
         }
 
