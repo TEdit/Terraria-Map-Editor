@@ -1320,8 +1320,8 @@
   <data name="bestiary_tally" xml:space="preserve">
     <value>更新杀戮</value>
   </data>
-  <data name="tool_wp_android" xml:space="preserve">
-    <value>安卓世界</value>
+  <data name="tool_wp_chinese" xml:space="preserve">
+    <value>中文世界版</value>
   </data>
   <data name="chest_max_stack" xml:space="preserve">
     <value>麦克斯</value>

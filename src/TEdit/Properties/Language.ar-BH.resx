@@ -1320,8 +1320,8 @@
   <data name="bestiary_tally" xml:space="preserve">
     <value>تحديث يقتل</value>
   </data>
-  <data name="tool_wp_android" xml:space="preserve">
-    <value>عالم أندرويد</value>
+  <data name="tool_wp_chinese" xml:space="preserve">
+    <value>النسخة الصينية العالمية</value>
   </data>
   <data name="chest_max_stack" xml:space="preserve">
     <value>ماكس</value>
