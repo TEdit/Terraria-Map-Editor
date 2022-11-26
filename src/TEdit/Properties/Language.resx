@@ -1323,8 +1323,8 @@ Press retry to pick a new folder or cancel to use {0} as your terraria path.</va
   <data name="bestiary_tally" xml:space="preserve">
     <value>Update Kills</value>
   </data>
-  <data name="tool_wp_android" xml:space="preserve">
-    <value>Android World</value>
+  <data name="tool_wp_chinese" xml:space="preserve">
+    <value>Chinese World Version</value>
   </data>
   <data name="chest_max_stack" xml:space="preserve">
     <value>Max</value>

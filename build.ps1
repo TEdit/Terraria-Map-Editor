@@ -32,9 +32,9 @@ if (Test-Path -Path ".\TEdit*.msi") { Remove-Item -Path ".\TEdit*.msi" }
 
 mkdir -Path ".\release"
 
-Copy-Item -Path ".\src\TEdit\bin\Release\net462\zh-CN" -Destination ".\src\TEdit\bin\Release\net462\publish\zh-CN\" -Recurse -Force
-Copy-Item -Path ".\src\TEdit\bin\Release\net462\publish" -Destination ".\release\$filename\" -Recurse -Force
-Copy-Item -Path ".\schematics" -Destination ".\release" -Recurse
+if (Test-Path -Path ".\src\TEdit\bin\Release\net462\zh-CN") { Copy-Item -Path ".\src\TEdit\bin\Release\net462\zh-CN" -Destination ".\src\TEdit\bin\Release\net462\publish\zh-CN\" -Recurse -Force }
+if (Test-Path -Path ".\src\TEdit\bin\Release\net462\publish") { Copy-Item -Path ".\src\TEdit\bin\Release\net462\publish" -Destination ".\release\$filename\" -Recurse -Force }
+if (Test-Path -Path ".\schematics") { Copy-Item -Path ".\schematics" -Destination ".\release" -Recurse }
 
 # Create Installer
 # $env:VERSION_PREFIX = $VersionPrefix
