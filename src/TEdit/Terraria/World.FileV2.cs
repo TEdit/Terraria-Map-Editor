@@ -255,7 +255,7 @@ namespace TEdit.Terraria
             };
 
             byte[] tileData = new byte[size];
-            dataIndex = 4;
+            dataIndex = (version >= 269) ? 4 : 3; // 1.4.4+
 
             byte header4 = (byte)0;
             byte header3 = (byte)0;
