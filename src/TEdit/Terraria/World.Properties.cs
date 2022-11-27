@@ -1037,7 +1037,7 @@ namespace TEdit.Terraria
             {
                 if (!UnsafeGroundLayers)
                 {
-                    return Math.Min(_tilesHigh, 1239);
+                    return (Seed == "get fixed boi" || Seed == "getfixedboi" || Seed == "don't dig up" || Seed == "dont dig up" || Seed == "dontdigup") ? Math.Min(_tilesHigh, 1571) : Math.Min(_tilesHigh, 1239);
                 }
                 else
                 {
@@ -1053,7 +1053,7 @@ namespace TEdit.Terraria
             {
                 if (!UnsafeGroundLayers)
                 {
-                    return Math.Min(_tilesHigh, 1239);
+                    return (Seed == "get fixed boi" || Seed == "getfixedboi" || Seed == "don't dig up" || Seed == "dont dig up" || Seed == "dontdigup") ? Math.Min(_tilesHigh, 1571) : Math.Min(_tilesHigh, 1239);
                 }
                 else
                 {
