@@ -1177,7 +1177,7 @@ namespace TEdit.Terraria
 
         private void FixLayerGap()
         {
-            var gapModSix = RockLevel - GroundLevel % 6;
+            var gapModSix = (RockLevel - GroundLevel) % 6;
             var gapModSixInvert = 6 - gapModSix;
             if (gapModSix == 0) return; // nothing to do if divisible by 6
 
@@ -1187,24 +1187,24 @@ namespace TEdit.Terraria
 
             // priority is 
             // 1) cavern level: down
-            // 2) ground level: up
             // 3) cavern level: up
+            // 2) ground level: up
             // 4) ground level: down
             if (canAdjustCavernDown)
             {
-                RockLevel += gapModSix;
+                RockLevel += gapModSixInvert;
+            }
+            else if (canAdjustCavernUp)
+            {
+                RockLevel -= gapModSix;
             }
             else if (canAdjustGroundUp)
             {
-                GroundLevel -= gapModSixInvert;
-            }
-            else if (canAdjustCavernUp) 
-            {
-                RockLevel -= gapModSixInvert;
-            }
+                GroundLevel -= gapModSix;
+            }            
             else
             {
-                GroundLevel += gapModSix;
+                GroundLevel += gapModSixInvert;
             }
         }
 
