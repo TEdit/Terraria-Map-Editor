@@ -2546,6 +2546,15 @@ namespace TEdit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Chinese World Version.
+        /// </summary>
+        public static string tool_wp_chinese {
+            get {
+                return ResourceManager.GetString("tool_wp_chinese", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cobalt Tier.
         /// </summary>
         public static string tool_wp_cobalt {
@@ -2866,15 +2875,6 @@ namespace TEdit.Properties {
         public static string tool_wp_meteor_spawn {
             get {
                 return ResourceManager.GetString("tool_wp_meteor_spawn", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Mobile.
-        /// </summary>
-        public static string tool_wp_chinese {
-            get {
-                return ResourceManager.GetString("tool_wp_chinese", resourceCulture);
             }
         }
         
@@ -3667,6 +3667,15 @@ namespace TEdit.Properties {
         public static string TrackMode_Track {
             get {
                 return ResourceManager.GetString("TrackMode_Track", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Fix Background Gap.
+        /// </summary>
+        public static string wp_fixbackground {
+            get {
+                return ResourceManager.GetString("wp_fixbackground", resourceCulture);
             }
         }
     }

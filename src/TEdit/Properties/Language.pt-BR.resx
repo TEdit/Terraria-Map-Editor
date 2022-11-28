@@ -1332,4 +1332,7 @@ Clique em tentar novamente para escolher uma nova pasta ou cancelar para usar {0
   <data name="tool_clipboard_replace" xml:space="preserve">
     <value>Substituir telhas existentes</value>
   </data>
+  <data name="wp_fixbackground" xml:space="preserve">
+    <value>Corrigir lacuna de plano de fundo</value>
+  </data>
 </root>
