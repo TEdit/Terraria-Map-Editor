@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Windows.Input;
 using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.Command;
+using Microsoft.Xna.Framework;
 using TEdit.Editor;
 using TEdit.Geometry.Primitives;
 using TEdit.Terraria.Objects;
@@ -13,6 +16,8 @@ namespace TEdit.Terraria
         public Vector2Int32 Size => new Vector2Int32(TilesWide, TilesHigh);
 
         Tile[,] ITileData.Tiles => this.Tiles;
+
+        private const int CavernLevelToBottomOfWorld = 478;
 
         // backgrounds
         // 0 = tree 1 2 3 31 4 5 51 6 7 71 72 73 8
@@ -1031,37 +1036,6 @@ namespace TEdit.Terraria
             set { Set(nameof(TilesWide), ref _tilesWide, value); }
         }
 
-        public int MaxCavernLevel
-        {
-            get
-            {
-                if (!UnsafeGroundLayers)
-                {
-                    return (Seed == "get fixed boi" || Seed == "getfixedboi" || Seed == "don't dig up" || Seed == "dont dig up" || Seed == "dontdigup") ? Math.Min(_tilesHigh, 1571) : Math.Min(_tilesHigh, 1239);
-                }
-                else
-                {
-                    return _maxCavernLevel;
-                }
-            }
-            set { Set(nameof(MaxCavernLevel), ref _maxCavernLevel, value); }
-        }
-
-        public int MaxGroundLevel
-        {
-            get
-            {
-                if (!UnsafeGroundLayers)
-                {
-                    return (Seed == "get fixed boi" || Seed == "getfixedboi" || Seed == "don't dig up" || Seed == "dont dig up" || Seed == "dontdigup") ? Math.Min(_tilesHigh, 1571) : Math.Min(_tilesHigh, 1239);
-                }
-                else
-                {
-                    return _maxGroundLevel;
-                }
-            }
-            set { Set(nameof(MaxGroundLevel), ref _maxGroundLevel, value); }
-        }
 
         public int TilesHigh
         {
@@ -1069,8 +1043,7 @@ namespace TEdit.Terraria
             set
             {
                 Set(nameof(TilesHigh), ref _tilesHigh, value);
-                RaisePropertyChanged(nameof(MaxCavernLevel));
-                RaisePropertyChanged(nameof(MaxGroundLevel));
+                UpdateMaxLayerLevels();
             }
         }
 
@@ -1147,28 +1120,32 @@ namespace TEdit.Terraria
             set { Set(nameof(SpawnY), ref _spawnY, value); }
         }
 
+        public int MaxCavernLevel
+        {
+            get => _maxCavernLevel;
+            set { Set(nameof(MaxCavernLevel), ref _maxCavernLevel, value); }
+        }
+
+        public int MaxGroundLevel
+        {
+            get => _maxGroundLevel;
+            set { Set(nameof(MaxGroundLevel), ref _maxGroundLevel, value); }
+        }
+
         public double GroundLevel
         {
             get { return _groundLevel; }
             set
             {
-                if (!UnsafeGroundLayers)
+                if (value < 0) { return; } // skip if negative
+                if (value > MaxGroundLevel) value = MaxGroundLevel;
+
+                Set(nameof(GroundLevel), ref _groundLevel, value);
+
+                // if levels touch, shift by 6
+                if (GroundLevel >= RockLevel)
                 {
-                    if (value > MaxGroundLevel) value = MaxGroundLevel;
-
-                    Set(nameof(GroundLevel), ref _groundLevel, value);
-                    if (_groundLevel > _rockLevel)
-                        RockLevel = _groundLevel;
-
-                    RaisePropertyChanged(nameof(MaxCavernLevel));
-                }
-                else
-                {
-                    Set(nameof(GroundLevel), ref _groundLevel, value);
-                    if (_groundLevel > _rockLevel)
-                        RockLevel = _groundLevel;
-
-                    RaisePropertyChanged(nameof(MaxCavernLevel));
+                    RockLevel = GroundLevel + 6;
                 }
             }
         }
@@ -1178,28 +1155,97 @@ namespace TEdit.Terraria
             get { return _rockLevel; }
             set
             {
-                if (!UnsafeGroundLayers)
+                if (value < 0) { return; } // skip if negative
+                if (value > MaxCavernLevel) value = MaxCavernLevel;
+
+                Set(nameof(RockLevel), ref _rockLevel, value);
+
+                // if levels touch, shift by 6
+                if (GroundLevel >= RockLevel)
                 {
-                    if (value > MaxCavernLevel) value = MaxCavernLevel;
-
-                    Set(nameof(RockLevel), ref _rockLevel, value);
-
-                    if (_groundLevel > _rockLevel)
-                        GroundLevel = _rockLevel;
-
-                    RaisePropertyChanged(nameof(MaxGroundLevel));
-                }
-                else
-                {
-                    Set(nameof(RockLevel), ref _rockLevel, value);
-
-                    if (_groundLevel > _rockLevel)
-                        GroundLevel = _rockLevel;
-
-                    RaisePropertyChanged(nameof(MaxGroundLevel));
+                    GroundLevel = RockLevel - 6;
                 }
             }
         }
+
+        private ICommand _fixLayerGapCommand;
+
+        public ICommand FixLayerGapCommand
+        {
+            get { return _fixLayerGapCommand ??= new RelayCommand(() => FixLayerGap()); }
+        }
+
+        private void FixLayerGap()
+        {
+            var gapModSix = RockLevel - GroundLevel % 6;
+            var gapModSixInvert = 6 - gapModSix;
+            if (gapModSix == 0) return; // nothing to do if divisible by 6
+
+            bool canAdjustCavernDown = RockLevel <= MaxCavernLevel - 6;
+            bool canAdjustCavernUp = RockLevel >= 12;
+            bool canAdjustGroundUp = GroundLevel > 6;
+
+            // priority is 
+            // 1) cavern level: down
+            // 2) ground level: up
+            // 3) cavern level: up
+            // 4) ground level: down
+            if (canAdjustCavernDown)
+            {
+                RockLevel += gapModSix;
+            }
+            else if (canAdjustGroundUp)
+            {
+                GroundLevel -= gapModSixInvert;
+            }
+            else if (canAdjustCavernUp) 
+            {
+                RockLevel -= gapModSixInvert;
+            }
+            else
+            {
+                GroundLevel += gapModSix;
+            }
+        }
+
+        private void UpdateMaxLayerLevels()
+        {
+            bool bypassLimits = UnsafeGroundLayers;
+
+            if (bypassLimits)
+            {
+                MaxCavernLevel = MathHelper.Clamp(TilesHigh, 0, TilesHigh);
+                MaxGroundLevel = MathHelper.Clamp(TilesHigh - 6, 0, TilesHigh);
+            }
+            else
+            {
+                MaxCavernLevel = MathHelper.Clamp(TilesHigh - CavernLevelToBottomOfWorld, 6, TilesHigh);
+                MaxGroundLevel = MathHelper.Clamp(MaxCavernLevel - 6, 0, TilesHigh);
+            }
+        }
+
+        public bool UnsafeGroundLayers
+        {
+            get { return _unsafeGroundLayers; }
+            set
+            {
+                if (_unsafeGroundLayers == false)
+                {
+                    System.Windows.Forms.DialogResult result = System.Windows.Forms.MessageBox.Show("Values over 1239 could cause visual issues within the world.\n\nDo you wish to continue?", "Enable Unsafe Layer Values?", System.Windows.Forms.MessageBoxButtons.YesNo);
+                    if (result == System.Windows.Forms.DialogResult.Yes)
+                    {
+                        Set(nameof(UnsafeGroundLayers), ref _unsafeGroundLayers, value);
+                        UpdateMaxLayerLevels();
+                    }
+                }
+                else
+                {
+                    Set(nameof(UnsafeGroundLayers), ref _unsafeGroundLayers, value);
+                    UpdateMaxLayerLevels();
+                }
+            }
+        }
+
 
         public double Time
         {
@@ -1297,38 +1343,6 @@ namespace TEdit.Terraria
             set { Set(nameof(SpawnMeteor), ref _spawnMeteor, value); }
         }
 
-        public bool UnsafeGroundLayers
-        {
-            get { return _unsafeGroundLayers; }
-            set {
-                if (_unsafeGroundLayers == false)
-                {
-                    System.Windows.Forms.DialogResult result = System.Windows.Forms.MessageBox.Show("Values over 1239 could cause visual issues within the world.\n\nDo you wish to continue?", "Enable Unsafe Layer Values?", System.Windows.Forms.MessageBoxButtons.YesNo);
-                    if (result == System.Windows.Forms.DialogResult.Yes)
-                    {
-                        MaxGroundLevel = _tilesHigh;
-                        MaxCavernLevel = _tilesHigh;
-
-                        // Control Updates
-                        GroundLevel = 350;
-                        RockLevel = 480;
-
-                        Set(nameof(UnsafeGroundLayers), ref _unsafeGroundLayers, value);
-                    }
-                }
-                else
-                {
-                    MaxGroundLevel = Math.Min(_tilesHigh, 1239);
-                    MaxCavernLevel = Math.Min(_tilesHigh, 1239);
-
-                    // Control Updates
-                    GroundLevel = 350;
-                    RockLevel = 480;
-
-                    Set(nameof(UnsafeGroundLayers), ref _unsafeGroundLayers, value);
-                }
-            }
-        }
 
         public int ShadowOrbCount
         {
@@ -1589,7 +1603,7 @@ namespace TEdit.Terraria
         private byte _MoondialCooldown = 0;
 
         private bool _AfterPartyOfDoom = false;
-            
+
         public bool AfterPartyOfDoom
         {
             get { return _AfterPartyOfDoom; }
@@ -1695,7 +1709,7 @@ namespace TEdit.Terraria
             get { return _UnlockedSlimeBlueSpawn; }
             set { Set(nameof(UnlockedSlimeBlueSpawn), ref _UnlockedSlimeBlueSpawn, value); }
         }
-       
+
 
     }
 }

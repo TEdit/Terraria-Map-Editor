@@ -1332,4 +1332,7 @@
   <data name="tool_clipboard_replace" xml:space="preserve">
     <value>Замена существующих плиток</value>
   </data>
+  <data name="wp_fixbackground" xml:space="preserve">
+    <value>Исправление фонового пробела</value>
+  </data>
 </root>

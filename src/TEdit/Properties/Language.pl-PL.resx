@@ -1332,4 +1332,7 @@ Naciśnij spróbuj ponownie aby wybrać nowy folder lub anuluj aby użyć {0} ja
   <data name="tool_clipboard_replace" xml:space="preserve">
     <value>Zastępowanie istniejących kafelków</value>
   </data>
+  <data name="wp_fixbackground" xml:space="preserve">
+    <value>Napraw lukę w tle</value>
+  </data>
 </root>

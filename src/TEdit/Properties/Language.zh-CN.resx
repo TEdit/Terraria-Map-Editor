@@ -1332,4 +1332,7 @@
   <data name="tool_clipboard_replace" xml:space="preserve">
     <value>替换现有磁贴</value>
   </data>
+  <data name="wp_fixbackground" xml:space="preserve">
+    <value>修复背景间隙</value>
+  </data>
 </root>

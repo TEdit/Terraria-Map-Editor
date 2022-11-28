@@ -1332,4 +1332,7 @@
   <data name="tool_clipboard_replace" xml:space="preserve">
     <value>استبدال اللوحات الموجودة</value>
   </data>
+  <data name="wp_fixbackground" xml:space="preserve">
+    <value>إصلاح فجوة الخلفية</value>
+  </data>
 </root>

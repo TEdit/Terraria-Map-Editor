@@ -388,18 +388,20 @@
         <Separator Grid.ColumnSpan="2" />
         <TextBlock Text="{x:Static p:Language.tool_wp_surface_level}" HorizontalAlignment="Right" />
         <DockPanel>
-            <Slider Value="{Binding CurrentWorld.GroundLevel, Mode=TwoWay}" VerticalAlignment="Center"  Minimum="6" Maximum="{Binding Path=CurrentWorld.MaxGroundLevel}" SmallChange="6" Width="120" />
+            <Slider Value="{Binding CurrentWorld.GroundLevel, Mode=TwoWay}" VerticalAlignment="Center" Minimum="6" Maximum="{Binding Path=CurrentWorld.MaxGroundLevel}" SmallChange="6" Width="120" IsSnapToTickEnabled="True" TickFrequency="6" />
             <TextBox Text="{Binding CurrentWorld.GroundLevel, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="32" DockPanel.Dock="Right" />
         </DockPanel>
         <TextBlock Text="{x:Static p:Language.tool_wp_cavern_level}" HorizontalAlignment="Right" />
         <DockPanel>
-            <Slider Value="{Binding CurrentWorld.RockLevel, Mode=TwoWay}" VerticalAlignment="Center" Minimum="12" Maximum="{Binding Path=CurrentWorld.MaxCavernLevel}" SmallChange="6" Width="120" />
+            <Slider Value="{Binding CurrentWorld.RockLevel, Mode=TwoWay}" VerticalAlignment="Center" Minimum="12" Maximum="{Binding Path=CurrentWorld.MaxCavernLevel}" SmallChange="6" Width="120" IsSnapToTickEnabled="True" TickFrequency="6" />
             <TextBox Text="{Binding CurrentWorld.RockLevel, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="32" DockPanel.Dock="Right" />
         </DockPanel>
         <TextBlock  />
         <DockPanel>
             <CheckBox IsChecked="{Binding CurrentWorld.UnsafeGroundLayers}" Content="{x:Static p:Language.tool_wp_unsafe_level}" VerticalAlignment="Center" />
         </DockPanel>
+        <TextBlock  />
+        <Button Content="{x:Static p:Language.wp_fixbackground}" Padding="3" Command="{Binding CurrentWorld.FixLayerGapCommand}"  />
         <Separator Grid.ColumnSpan="2" />
         <TextBlock Text="{x:Static p:Language.tool_wp_meteor}" HorizontalAlignment="Right" />
         <CheckBox IsChecked="{Binding CurrentWorld.SpawnMeteor}" Content="{x:Static p:Language.tool_wp_meteor_spawn}" VerticalAlignment="Center" VerticalContentAlignment="Center" />

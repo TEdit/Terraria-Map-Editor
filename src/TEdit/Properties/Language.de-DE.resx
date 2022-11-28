@@ -1332,4 +1332,7 @@ Klicke auf „Wiederholen“, um einen neuen Ordner auszuwählen, oder auf „Ab
   <data name="tool_clipboard_replace" xml:space="preserve">
     <value>Ersetzen vorhandener Kacheln</value>
   </data>
+  <data name="wp_fixbackground" xml:space="preserve">
+    <value>Hintergrundlücke schließen</value>
+  </data>
 </root>
