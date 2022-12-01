@@ -6,7 +6,7 @@
              xmlns:tedit="clr-namespace:TEdit.UI.Xaml" 
              mc:Ignorable="d" 
              xmlns:p="clr-namespace:TEdit.Properties"
-             d:DesignHeight="100" d:DesignWidth="26">
+             d:DesignHeight="200" d:DesignWidth="26">
     <UserControl.Resources>
         <DataTemplate x:Key="toolBarItemTemplate">
             <tedit:ToggleButtonDataBound  Margin="1" Height="24" Width="24" FocusVisualStyle="{x:Null}"
