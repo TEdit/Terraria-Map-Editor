@@ -142,7 +142,7 @@
     <Page Update="Editor\Plugins\HouseGenPluginView.xaml">
       <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
     </Page>
-    <Page Update="View\SaveAsVersion.xaml">
+    <Page Update="View\Popups\SaveAsVersion.xaml">
       <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
     </Page>
   </ItemGroup>
