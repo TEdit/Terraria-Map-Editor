@@ -156,7 +156,7 @@ namespace TEdit.Render
 
         #endregion
 
-        public static Color GetTileColor(Tile tile, Color background, bool showWall = true, bool showTile = true, bool showLiquid = true, bool showRedWire = true, bool showBlueWire = true, bool showGreenWire = true, bool showYellowWire = true)
+        public static Color GetTileColor(Tile tile, Color background, bool showWall = true, bool showTile = true, bool showLiquid = true, bool showRedWire = true, bool showBlueWire = true, bool showGreenWire = true, bool showYellowWire = true, bool showCoatings = true)
         {
             var c = new Color(0, 0, 0, 0);
 
@@ -173,6 +173,18 @@ namespace TEdit.Render
                 else
                     c = c.AlphaBlend(Color.Magenta); // Add out-of-range colors
 
+                byte brightness = 255;
+                if (showCoatings)
+                {
+                    // echo: 169 
+                    // normal: 211
+                    // illuminant: 255
+
+                    brightness = 211;
+                    if (tile.InvisibleWall) { brightness = 169; }
+                    if (tile.FullBrightWall) { brightness = 255; }
+                }
+
                 // blend paint
                 if (tile.WallColor > 0 && (!showTile || tile.TileColor == 0))
                 {
@@ -180,22 +192,27 @@ namespace TEdit.Render
                     switch (tile.WallColor)
                     {
                         case 29:
-                            float light = c.B * 0.3f;
+                            float light = c.B * 0.3f * (brightness / 255.0f);
                             c.R = (byte)(c.R * light);
                             c.G = (byte)(c.G * light);
                             c.B = (byte)(c.B * light);
                             break;
                         case 30:
-                            c.R = (byte)((byte.MaxValue - c.R) * 0.5);
-                            c.G = (byte)((byte.MaxValue - c.G) * 0.5);
-                            c.B = (byte)((byte.MaxValue - c.B) * 0.5);
+                            c.R = (byte)((byte.MaxValue - c.R) * 0.5 * (brightness / 255.0f));
+                            c.G = (byte)((byte.MaxValue - c.G) * 0.5 * (brightness / 255.0f));
+                            c.B = (byte)((byte.MaxValue - c.B) * 0.5 * (brightness / 255.0f));
                             break;
                         default:
-                            paint.A = (byte)200;
+                            paint.A = (byte)brightness;
                             c = c.AlphaBlend(paint);
                             break;
                     }
-
+                }
+                else
+                {
+                    c.R = (byte)(c.R * (brightness / 255.0f));
+                    c.G = (byte)(c.G * (brightness / 255.0f));
+                    c.B = (byte)(c.B * (brightness / 255.0f));
                 }
             }
             else
@@ -208,6 +225,18 @@ namespace TEdit.Render
                 else
                     c = c.AlphaBlend(Color.Magenta); // Add out-of-range colors
 
+                byte brightness = 255;
+                if (showCoatings)
+                {
+                    // echo: 169 
+                    // normal: 211
+                    // illuminant: 255
+
+                    brightness = 211;
+                    if (tile.InvisibleBlock) { brightness = 169; }
+                    if (tile.FullBrightBlock) { brightness = 255; }
+                }
+
                 // blend paint
                 if (tile.TileColor > 0 && tile.TileColor <= World.PaintProperties.Count)
                 {
@@ -216,23 +245,28 @@ namespace TEdit.Render
                     switch (tile.TileColor)
                     {
                         case 29:
-                            float light = c.B * 0.3f;
+                            float light = c.B * 0.3f * (brightness / 255.0f);
                             c.R = (byte)(c.R * light);
                             c.G = (byte)(c.G * light);
                             c.B = (byte)(c.B * light);
                             break;
                         case 30:
-                            c.R = (byte)(byte.MaxValue - c.R);
-                            c.G = (byte)(byte.MaxValue - c.G);
-                            c.B = (byte)(byte.MaxValue - c.B);
+                            c.R = (byte)((byte.MaxValue - c.R) * 0.5 * (brightness / 255.0f));
+                            c.G = (byte)((byte.MaxValue - c.G) * 0.5 * (brightness / 255.0f));
+                            c.B = (byte)((byte.MaxValue - c.B) * 0.5 * (brightness / 255.0f));
                             break;
                         default:
-                            paint.A = (byte)200;
+                            paint.A = (byte)brightness;
                             c = c.AlphaBlend(paint);
                             break;
                     }
                 }
-
+                else
+                {
+                    c.R = (byte)(c.R * (brightness / 255.0f));
+                    c.G = (byte)(c.G * (brightness / 255.0f));
+                    c.B = (byte)(c.B * (brightness / 255.0f));
+                }
             }
 
             if (tile.LiquidAmount > 0 && showLiquid)

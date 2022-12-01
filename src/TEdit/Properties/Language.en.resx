@@ -1335,4 +1335,13 @@ Press retry to pick a new folder or cancel to use {0} as your terraria path.</va
   <data name="wp_fixbackground" xml:space="preserve">
     <value>Fix Background Gap</value>
   </data>
+  <data name="tool_paint_coating" xml:space="preserve">
+    <value>Coating</value>
+  </data>
+  <data name="tool_paint_echocoating" xml:space="preserve">
+    <value>Echo</value>
+  </data>
+  <data name="tool_paint_illuminantcoating" xml:space="preserve">
+    <value>Illuminant</value>
+  </data>
 </root>

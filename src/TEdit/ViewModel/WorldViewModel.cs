@@ -109,6 +109,7 @@ namespace TEdit.ViewModel
         private bool _showPoints = true;
         private bool _showTextures = true;
         private bool _showTiles = true;
+        private bool _showCoatings = true;
         private bool _showWalls = true;
         private bool _showActuators = true;
         private bool _showRedWires = true;
@@ -635,6 +636,16 @@ namespace TEdit.ViewModel
             set
             {
                 Set(nameof(ShowLiquid), ref _showLiquid, value);
+                UpdateRenderWorld();
+            }
+        }
+
+        public bool ShowCoating
+        {
+            get { return _showCoatings; }
+            set
+            {
+                Set(nameof(ShowCoating), ref _showCoatings, value);
                 UpdateRenderWorld();
             }
         }

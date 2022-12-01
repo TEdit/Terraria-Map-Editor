@@ -1335,4 +1335,13 @@
   <data name="wp_fixbackground" xml:space="preserve">
     <value>إصلاح فجوة الخلفية</value>
   </data>
+  <data name="tool_paint_coating" xml:space="preserve">
+    <value>طلاء</value>
+  </data>
+  <data name="tool_paint_echocoating" xml:space="preserve">
+    <value>دوي</value>
+  </data>
+  <data name="tool_paint_illuminantcoating" xml:space="preserve">
+    <value>مضيئة</value>
+  </data>
 </root>

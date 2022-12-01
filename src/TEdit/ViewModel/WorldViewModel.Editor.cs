@@ -355,6 +355,10 @@ namespace TEdit.ViewModel
                         SetPixelAutomatic(curTile, wallColor: isErase ? 0 : TilePicker.WallColor);
                     if (TilePicker.ExtrasActive)
                         SetPixelAutomatic(curTile, actuator: isErase ? false : TilePicker.Actuator, actuatorInActive: isErase ? false : TilePicker.ActuatorInActive);
+                    if (TilePicker.EnableTileCoating) 
+                        SetPixelAutomatic(curTile, tileEchoCoating: TilePicker.TileCoatingEcho, tileIlluminantCoating: TilePicker.TileCoatingIlluminant);
+                    if (TilePicker.EnableWallCoating)
+                        SetPixelAutomatic(curTile, tileEchoCoating: TilePicker.WallCoatingEcho, tileIlluminantCoating: TilePicker.WallCoatingIlluminant);
                     break;
                 case PaintMode.Wire:
                     // Is Replace Mode Active?
@@ -835,7 +839,11 @@ namespace TEdit.ViewModel
                                        BrickStyle? brickStyle = null,
                                        bool? actuator = null, bool? actuatorInActive = null,
                                        int? tileColor = null,
-                                       int? wallColor = null)
+                                       int? wallColor = null,
+                                       bool? wallEchoCoating = null,
+                                       bool? wallIlluminantCoating = null,
+                                       bool? tileEchoCoating = null,
+                                       bool? tileIlluminantCoating = null)
         {
             // Set Tile Data
             if (u != null)
@@ -952,6 +960,27 @@ namespace TEdit.ViewModel
                 {
                     curTile.LiquidAmount = 0;
                 }
+            }
+
+            // handle coatings
+            if (wallEchoCoating != null && curTile.Wall != 0)
+            {
+                curTile.InvisibleWall = (bool)wallEchoCoating;
+            }
+
+            if (wallIlluminantCoating != null && curTile.Wall != 0)
+            {
+                curTile.FullBrightWall = (bool)wallIlluminantCoating;
+            }
+
+            if (tileEchoCoating != null && curTile.IsActive)
+            {
+                curTile.InvisibleBlock = (bool)tileEchoCoating;
+            }
+
+            if (tileIlluminantCoating != null && curTile.IsActive)
+            {
+                curTile.FullBrightBlock = (bool)tileIlluminantCoating;
             }
         }
 

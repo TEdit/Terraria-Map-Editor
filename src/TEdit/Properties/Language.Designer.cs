@@ -1871,11 +1871,38 @@ namespace TEdit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Coating.
+        /// </summary>
+        public static string tool_paint_coating {
+            get {
+                return ResourceManager.GetString("tool_paint_coating", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Echo.
+        /// </summary>
+        public static string tool_paint_echocoating {
+            get {
+                return ResourceManager.GetString("tool_paint_echocoating", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Extras.
         /// </summary>
         public static string tool_paint_extras {
             get {
                 return ResourceManager.GetString("tool_paint_extras", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Illuminant.
+        /// </summary>
+        public static string tool_paint_illuminantcoating {
+            get {
+                return ResourceManager.GetString("tool_paint_illuminantcoating", resourceCulture);
             }
         }
         

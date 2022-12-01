@@ -22,6 +22,7 @@ using System.IO;
 using System.Diagnostics;
 using System.Xml.Linq;
 using TEdit.Properties;
+using TEdit.Render;
 
 namespace TEdit.View
 {
@@ -1101,8 +1102,47 @@ namespace TEdit.View
 
                         if (_wvm.ShowWalls)
                         {
-                            // no paint or negative paint = white
-                            var wallPaintColor = curtile.WallColor == 0 || curtile.WallColor == 30 ? Color.White : World.PaintProperties[curtile.WallColor].PaintColor;
+                            // white for inverted
+                            var wallPaintColor = Color.White;
+
+                            if (_wvm.ShowCoating)
+                            {
+                                wallPaintColor = Color.LightGray;
+
+                                if (curtile.InvisibleBlock)
+                                {
+                                    wallPaintColor = Color.DarkGray;
+                                }
+
+                                if (curtile.FullBrightBlock || curtile.WallColor == 30)
+                                {
+                                    wallPaintColor = Color.White;
+                                }
+                            }
+
+                            if (curtile.WallColor > 0 && curtile.WallColor != 30)
+                            {
+                                var paint = World.PaintProperties[curtile.WallColor].Color;
+                                switch (curtile.WallColor)
+                                {
+                                    case 29:
+                                        float light = wallPaintColor.B * 0.3f;
+                                        wallPaintColor.R = (byte)(wallPaintColor.R * light);
+                                        wallPaintColor.G = (byte)(wallPaintColor.G * light);
+                                        wallPaintColor.B = (byte)(wallPaintColor.B * light);
+                                        break;
+                                    case 30:
+                                        wallPaintColor.R = (byte)((byte.MaxValue - wallPaintColor.R) * 0.5);
+                                        wallPaintColor.G = (byte)((byte.MaxValue - wallPaintColor.G) * 0.5);
+                                        wallPaintColor.B = (byte)((byte.MaxValue - wallPaintColor.B) * 0.5);
+                                        break;
+                                    default:
+                                        paint.A = (byte)wallPaintColor.R;
+                                        wallPaintColor = wallPaintColor.AlphaBlend(paint);
+                                        break;
+                                }
+                            }
+
                             if (curtile.Wall > 0)
                             {
                                 var wallTex = _textureDictionary.GetWall(curtile.Wall);
@@ -1126,6 +1166,7 @@ namespace TEdit.View
                                     var dest = new Rectangle(1 + (int)((_scrollPosition.X + x - 0.5) * _zoom), 1 + (int)((_scrollPosition.Y + y - 0.5) * _zoom), (int)_zoom * 2, (int)_zoom * 2);
 
                                     _spriteBatch.Draw(wallTex, dest, source, wallPaintColor, 0f, default, SpriteEffects.None, LayerTileWallTextures);
+
                                 }
                             }
                         }
@@ -1188,7 +1229,45 @@ namespace TEdit.View
                             if (curtile.IsActive)
                             {
                                 // white for inverted
-                                var tilePaintColor = curtile.TileColor == 0 || curtile.TileColor == 30 ? Color.White : World.PaintProperties[curtile.TileColor].PaintColor;
+                                var tilePaintColor = Color.White;
+
+                                if (_wvm.ShowCoating)
+                                {
+                                    tilePaintColor = Color.LightGray;
+
+                                    if (curtile.InvisibleBlock)
+                                    {
+                                        tilePaintColor = Color.DarkGray;
+                                    }
+
+                                    if (curtile.FullBrightBlock || curtile.TileColor == 30)
+                                    {
+                                        tilePaintColor = Color.White;
+                                    }
+                                }
+
+                                if (curtile.TileColor > 0 && curtile.TileColor != 30)
+                                {
+                                    var paint = World.PaintProperties[curtile.TileColor].Color;
+                                    switch (curtile.TileColor)
+                                    {
+                                        case 29:
+                                            float light = tilePaintColor.B * 0.3f;
+                                            tilePaintColor.R = (byte)(tilePaintColor.R * light);
+                                            tilePaintColor.G = (byte)(tilePaintColor.G * light);
+                                            tilePaintColor.B = (byte)(tilePaintColor.B * light);
+                                            break;
+                                        case 30:
+                                            tilePaintColor.R = (byte)((byte.MaxValue - tilePaintColor.R) * 0.5);
+                                            tilePaintColor.G = (byte)((byte.MaxValue - tilePaintColor.G) * 0.5);
+                                            tilePaintColor.B = (byte)((byte.MaxValue - tilePaintColor.B) * 0.5);
+                                            break;
+                                        default:
+                                            paint.A = (byte)tilePaintColor.R;
+                                            tilePaintColor = tilePaintColor.AlphaBlend(paint);
+                                            break;
+                                    }
+                                }
 
                                 if (tileprop.IsFramed)
                                 {
@@ -2851,11 +2930,11 @@ namespace TEdit.View
         private void DrawNpcTexture(NPC npc)
         {
             int npcId = npc.SpriteId;
-            
+
             string townNpcName = World.BestiaryData.NpcById[npcId].BestiaryId;
             bool isPartying = _wvm.CurrentWorld.PartyingNPCs.Contains(npcId);
 
-            Texture2D npcTexture = 
+            Texture2D npcTexture =
                 _textureDictionary.GetTownNPC(townNpcName, npcId, variant: npc.TownNpcVariationIndex, partying: isPartying);
 
             if (npcTexture != null)

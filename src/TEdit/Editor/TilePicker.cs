@@ -51,6 +51,16 @@ namespace TEdit.Editor
         private bool _wireReplaceBlue = false;
         private bool _wireReplaceGreen = false;
         private bool _wireReplaceYellow = false;
+        private bool _usePaintMasks = false;
+
+        private bool _enableWallCoating = false;
+        private bool _enableTileCoating = false;
+        private bool _useCoatingMasks = false;
+
+        private bool _wallCoatingIlluminant = false;
+        private bool _wallCoatingEcho = false;
+        private bool _tileCoatingIlluminant = false;
+        private bool _tileCoatingEcho = false;
 
         private BrickStyle _brickStyle = BrickStyle.Full;
         public BrickStyle BrickStyle
@@ -93,6 +103,56 @@ namespace TEdit.Editor
         {
             get { return _wireReplaceModeYellow; }
             set { Set(nameof(WireReplaceModeYellow), ref _wireReplaceModeYellow, value); }
+        }
+
+
+
+        public bool WallCoatingIlluminant
+        {
+            get { return _wallCoatingIlluminant; }
+            set { Set(nameof(WallCoatingIlluminant), ref _wallCoatingIlluminant, value); }
+        }
+
+        public bool WallCoatingEcho
+        {
+            get { return _wallCoatingEcho; }
+            set { Set(nameof(WallCoatingEcho), ref _wallCoatingEcho, value); }
+        }
+
+        public bool TileCoatingIlluminant
+        {
+            get { return _tileCoatingIlluminant; }
+            set { Set(nameof(TileCoatingIlluminant), ref _tileCoatingIlluminant, value); }
+        }
+
+        public bool TileCoatingEcho
+        {
+            get { return _tileCoatingEcho; }
+            set { Set(nameof(TileCoatingEcho), ref _tileCoatingEcho, value); }
+        }
+
+        public bool EnableWallCoating
+        {
+            get { return _enableWallCoating; }
+            set { Set(nameof(EnableWallCoating), ref _enableWallCoating, value); }
+        }
+
+        public bool EnableTileCoating
+        {
+            get { return _enableTileCoating; }
+            set { Set(nameof(EnableTileCoating), ref _enableTileCoating, value); }
+        }
+
+        public bool UseCoatingMasks
+        {
+            get { return _useCoatingMasks; }
+            set { Set(nameof(UseCoatingMasks), ref _useCoatingMasks, value); }
+        }
+
+        public bool UsePaintMasks
+        {
+            get { return _usePaintMasks; }
+            set { Set(nameof(UsePaintMasks), ref _usePaintMasks, value); }
         }
 
         public bool WireReplaceRed

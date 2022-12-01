@@ -1335,4 +1335,13 @@ Clique em tentar novamente para escolher uma nova pasta ou cancelar para usar {0
   <data name="wp_fixbackground" xml:space="preserve">
     <value>Corrigir lacuna de plano de fundo</value>
   </data>
+  <data name="tool_paint_coating" xml:space="preserve">
+    <value>Revestimento</value>
+  </data>
+  <data name="tool_paint_echocoating" xml:space="preserve">
+    <value>Eco</value>
+  </data>
+  <data name="tool_paint_illuminantcoating" xml:space="preserve">
+    <value>Iluminante</value>
+  </data>
 </root>

@@ -129,6 +129,8 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <GlobalColor Name="Wire1" Color="#700000FF" />
         <GlobalColor Name="Wire2" Color="#7000FF00" />
         <GlobalColor Name="Wire3" Color="#70FFFF00" />
+        <GlobalColor Name="Illuminant" Color="#70FFFFFF" />
+        <GlobalColor Name="Echo" Color="#70000000" />
     </GlobalColors>
     <Tiles>
         <Tile Id="0" Color="#FF976B4B" Name="Dirt Block" Solid="true" Blends="true" />

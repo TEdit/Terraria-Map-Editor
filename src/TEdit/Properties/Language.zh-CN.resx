@@ -1335,4 +1335,13 @@
   <data name="wp_fixbackground" xml:space="preserve">
     <value>修复背景间隙</value>
   </data>
+  <data name="tool_paint_coating" xml:space="preserve">
+    <value>衣</value>
+  </data>
+  <data name="tool_paint_echocoating" xml:space="preserve">
+    <value>回波</value>
+  </data>
+  <data name="tool_paint_illuminantcoating" xml:space="preserve">
+    <value>光源</value>
+  </data>
 </root>

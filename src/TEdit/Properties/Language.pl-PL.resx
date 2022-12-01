@@ -1335,4 +1335,13 @@ Naciśnij spróbuj ponownie aby wybrać nowy folder lub anuluj aby użyć {0} ja
   <data name="wp_fixbackground" xml:space="preserve">
     <value>Napraw lukę w tle</value>
   </data>
+  <data name="tool_paint_coating" xml:space="preserve">
+    <value>Powłoka</value>
+  </data>
+  <data name="tool_paint_echocoating" xml:space="preserve">
+    <value>Echo</value>
+  </data>
+  <data name="tool_paint_illuminantcoating" xml:space="preserve">
+    <value>Oświetlenie</value>
+  </data>
 </root>
