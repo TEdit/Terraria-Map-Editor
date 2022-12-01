@@ -5,9 +5,11 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:tedit="clr-namespace:TEdit.UI.Xaml"
              xmlns:editor="clr-namespace:TEdit.Editor" 
              xmlns:Terraria="clr-namespace:TEdit.Terraria"
+             xmlns:viewModel="clr-namespace:TEdit.ViewModel"
+             xmlns:componentModel="clr-namespace:System.ComponentModel;assembly=PresentationFramework"
              mc:Ignorable="d" 
              xmlns:p="clr-namespace:TEdit.Properties"
-             
+             d:DataContext="{d:DesignInstance Type=viewModel:WorldViewModel}"
              Background="{StaticResource WindowBackgroundBrush}" Foreground="{StaticResource TextBrush}" Height="90">
     <UserControl.Resources>
         <Style TargetType="{x:Type ComboBox}" BasedOn="{StaticResource {x:Type ComboBox}}">
@@ -34,6 +36,9 @@
                 <DataTrigger Binding="{Binding TilePicker.PaintMode}" Value="TileAndWall">
                     <Setter Property="Visibility" Value="Visible" />
                 </DataTrigger>
+                <Trigger Property="componentModel:DesignerProperties.IsInDesignMode" Value="True">
+                    <Setter Property="Visibility" Value="Visible" />
+                </Trigger>
             </Style.Triggers>
         </Style>
         <Style TargetType="{x:Type GroupBox}" x:Key="WallVisibleStyle" BasedOn="{StaticResource {x:Type GroupBox}}">
@@ -42,6 +47,9 @@
                 <DataTrigger Binding="{Binding TilePicker.PaintMode}" Value="TileAndWall">
                     <Setter Property="Visibility" Value="Visible" />
                 </DataTrigger>
+                <Trigger Property="componentModel:DesignerProperties.IsInDesignMode" Value="True">
+                    <Setter Property="Visibility" Value="Visible" />
+                </Trigger>
             </Style.Triggers>
         </Style>
         <Style TargetType="{x:Type GroupBox}" x:Key="LiquidVisibleStyle" BasedOn="{StaticResource {x:Type GroupBox}}">
@@ -50,6 +58,9 @@
                 <DataTrigger Binding="{Binding TilePicker.PaintMode}" Value="Liquid">
                     <Setter Property="Visibility" Value="Visible" />
                 </DataTrigger>
+                <Trigger Property="componentModel:DesignerProperties.IsInDesignMode" Value="True">
+                    <Setter Property="Visibility" Value="Visible" />
+                </Trigger>
             </Style.Triggers>
         </Style>
         <Style TargetType="{x:Type GroupBox}" x:Key="BrickStyleVisiblity" BasedOn="{StaticResource {x:Type GroupBox}}">
@@ -58,6 +69,9 @@
                 <DataTrigger Binding="{Binding TilePicker.PaintMode}" Value="TileAndWall">
                     <Setter Property="Visibility" Value="Visible" />
                 </DataTrigger>
+                <Trigger Property="componentModel:DesignerProperties.IsInDesignMode" Value="True">
+                    <Setter Property="Visibility" Value="Visible" />
+                </Trigger>
             </Style.Triggers>
         </Style>
         <Style TargetType="{x:Type GroupBox}" x:Key="PaintVisibleStyle" BasedOn="{StaticResource {x:Type GroupBox}}">
@@ -66,6 +80,9 @@
                 <DataTrigger Binding="{Binding TilePicker.PaintMode}" Value="TileAndWall">
                     <Setter Property="Visibility" Value="Visible" />
                 </DataTrigger>
+                <Trigger Property="componentModel:DesignerProperties.IsInDesignMode" Value="True">
+                    <Setter Property="Visibility" Value="Visible" />
+                </Trigger>
             </Style.Triggers>
         </Style>
         <Style TargetType="{x:Type GroupBox}" x:Key="WireStyle" BasedOn="{StaticResource {x:Type GroupBox}}">
@@ -74,6 +91,9 @@
                 <DataTrigger Binding="{Binding TilePicker.PaintMode}" Value="Wire">
                     <Setter Property="Visibility" Value="Visible" />
                 </DataTrigger>
+                <Trigger Property="componentModel:DesignerProperties.IsInDesignMode" Value="True">
+                    <Setter Property="Visibility" Value="Visible" />
+                </Trigger>
             </Style.Triggers>
         </Style>
         <Style TargetType="{x:Type GroupBox}" x:Key="TrackStyle" BasedOn="{StaticResource {x:Type GroupBox}}">
@@ -82,6 +102,9 @@
                 <DataTrigger Binding="{Binding TilePicker.PaintMode}" Value="Track">
                     <Setter Property="Visibility" Value="Visible" />
                 </DataTrigger>
+                <Trigger Property="componentModel:DesignerProperties.IsInDesignMode" Value="True">
+                    <Setter Property="Visibility" Value="Visible" />
+                </Trigger>
             </Style.Triggers>
         </Style>
         <Style TargetType="{x:Type TextBlock}" x:Key="TrackStyleText" BasedOn="{StaticResource {x:Type TextBlock}}">
