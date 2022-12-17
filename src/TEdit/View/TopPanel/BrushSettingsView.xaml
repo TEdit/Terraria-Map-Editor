@@ -25,10 +25,10 @@
             </Grid.RowDefinitions>
             <ToggleButton Grid.Row="0" Grid.RowSpan="2" Grid.Column="2" Margin="1,2" BorderThickness="2" VerticalAlignment="Top" 
                     IsChecked="{Binding Path=Brush.IsLocked}" ToolTip="{x:Static p:Language.tool_brush_lock_ratio_tooltip}">
-                <Image Source="../Images/Tools/constrain.png" RenderOptions.BitmapScalingMode="NearestNeighbor" Height="32" Width="32" Stretch="None" />
+                <Image Source="../../Images/Tools/constrain.png" RenderOptions.BitmapScalingMode="NearestNeighbor" Height="32" Width="32" Stretch="None" />
             </ToggleButton>
             <ToggleButton Grid.Row="2" Grid.Column="3" BorderThickness="2" Margin="1" ToolTip="{x:Static p:Language.tool_brush_outline_tooltip}" IsChecked="{Binding Path=Brush.IsOutline, Mode=TwoWay}">
-                <Image Source="../Images/Tools/outline.png" RenderOptions.BitmapScalingMode="NearestNeighbor" Height="16" Stretch="None" />
+                <Image Source="../../Images/Tools/outline.png" RenderOptions.BitmapScalingMode="NearestNeighbor" Height="16" Stretch="None" />
             </ToggleButton>
             <TextBlock Grid.Row="0" Grid.Column="0" Text="{x:Static p:Language.tool_brush_width_label}" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="2" />
             <TextBox Grid.Row="0" Grid.Column="1" Width="30" HorizontalAlignment="Left" Text="{Binding Path=Brush.Width, Mode=TwoWay}" Margin="0,1,0,0" VerticalAlignment="Center" />

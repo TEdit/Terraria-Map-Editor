@@ -126,7 +126,7 @@
         <StackPanel Orientation="Horizontal">
             <StackPanel Orientation="Vertical" >
                 <ToggleButton ToolTip="Eraser" IsChecked="{Binding Path=TilePicker.IsEraser, Mode=TwoWay}" VerticalAlignment="Top" Margin="2 0" BorderThickness="2" HorizontalAlignment="Left">
-                    <Image Source="../Images/Tools/eraser.png" Height="32" Width="32" RenderOptions.BitmapScalingMode="NearestNeighbor" Stretch="UniformToFill" />
+                    <Image Source="../../Images/Tools/eraser.png" Height="32" Width="32" RenderOptions.BitmapScalingMode="NearestNeighbor" Stretch="UniformToFill" />
                 </ToggleButton>
                 <TextBlock Text="{x:Static p:Language.tool_paint_mode}" HorizontalAlignment="Center"  Width="65" VerticalAlignment="Center" />
                 <ComboBox ItemsSource="{StaticResource PaintModeEnum}" 
