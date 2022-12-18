@@ -1547,8 +1547,6 @@ namespace TEdit.Terraria
                 bw.Write(world.InvasionX);
             }
 
-
-
             var frames = GetFramesV0();
             for (int x = 0; x < world.TilesWide; x++)
             {
@@ -1559,7 +1557,10 @@ namespace TEdit.Terraria
                 {
                     Tile tile = world.Tiles[x, y];
 
-                    if (tile.Type == (int)TileType.IceByRod ||
+                    // Prevent these tiles from saving.
+                    // Possible way to filter textures: (tile.Type == (int)TileType.Chandelier && tile.U > 16)
+                    if (tile.Type == (int)TileType.Chandelier ||
+                        tile.Type == (int)TileType.IceByRod ||
                         tile.Type == (int)TileType.MysticSnakeRope ||
                         tile.Type > byte.MaxValue)
                         tile.IsActive = false;
