@@ -1196,20 +1196,22 @@ namespace TEdit.Terraria
                 { "Gold Axe", 3518 },
                 { "Gold Shortsword", 3519 },
                 { "Gold Broadsword", 3520 },
-                { "Gold Pickaxe", 3521 }            };
+                { "Gold Pickaxe", 3521 }
+            };
         }
-
 
         public static void WriteTileDataToStreamV1(Tile tile, BinaryWriter bw, uint version, bool[] frameIds, int maxTileId, int maxWallId)
         {
-            if (tile.Type == (int)TileType.IceByRod ||
+            // Prevent these tiles from saving.
+            // Possible way to filter textures: (tile.Type == (int)TileType.Chandelier && tile.U > 16)
+            if (tile.Type == (int)TileType.Chandelier ||
+                tile.Type == (int)TileType.IceByRod ||
                 tile.Type == (int)TileType.MysticSnakeRope ||
                 tile.Type > byte.MaxValue ||
                 tile.Type > maxTileId)
             {
                 tile.IsActive = false;
             }
-
 
             bw.Write(tile.IsActive);
             if (tile.IsActive)
