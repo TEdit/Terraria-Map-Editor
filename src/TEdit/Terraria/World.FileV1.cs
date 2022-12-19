@@ -1554,6 +1554,74 @@ namespace TEdit.Terraria
             bw.Write(world.InvasionX);
 
             var frames = GetFramesV0();
+
+            for (int x = 0; x < world.TilesWide; x++)
+            {
+                OnProgressChanged(world,
+                    new ProgressChangedEventArgs(x.ProgressPercentage(world.TilesWide), "Removing Future Tiles..."));
+
+                for (int y = 0; y < world.TilesHigh; y++)
+                {
+                    Tile tile = world.Tiles[x, y];
+
+                    // Fix chandelier objects.
+                    if (tile.IsActive && (tile.Type == (int)TileType.Chandelier))
+                    {
+                        // The wiki seems to be wrong on early variants.
+                        if (tile.U > 36 || tile.V > 36) // Max type: copper ON.
+                        {
+                            tile.IsActive = false;
+                        }
+                    }
+
+                    // Prevent these tiles from saving.
+                    if (tile.Type == (int)TileType.IceByRod ||
+                        tile.Type == (int)TileType.MysticSnakeRope ||
+                        tile.Type > byte.MaxValue ||
+                        tile.Type > saveData.MaxTileId)
+                    {
+                        tile.IsActive = false;
+                    }
+                }
+            }
+
+            OnProgressChanged(null, new ProgressChangedEventArgs(100, "Settling Sand..."));
+            int[] _tileSand = {
+                53,  // Sand Block
+                112, // Ebonsand Block
+                116, // Pearlsand
+                123, // silt
+                224, // slush block
+                234, // Crimsand block
+            };
+
+            for (int y = world.TilesHigh - 1; y > 0; y--)
+            {
+                for (int x = 0; x < world.TilesWide; x++)
+                {
+                    var curTile = world.Tiles[x, y];
+                    if (_tileSand.Contains(curTile.Type))
+                    {
+                        // check if tile below current tile is empty and move sand to there if it is.
+                        int shiftAmmount = 1;
+                        while (shiftAmmount + y < world.TilesHigh && !world.Tiles[x, y + shiftAmmount].IsActive)
+                            shiftAmmount++;
+                        shiftAmmount--;
+
+                        if (shiftAmmount > 0)
+                        {
+                            var belowTile = world.Tiles[x, y + shiftAmmount];
+                            if (!belowTile.IsActive)
+                            {
+                                belowTile.IsActive = true;
+                                belowTile.Type = curTile.Type;
+                                curTile.IsActive = false;
+                            }
+                        }
+                    }
+                }
+            }
+
             for (int x = 0; x < world.TilesWide; x++)
             {
                 OnProgressChanged(world,
