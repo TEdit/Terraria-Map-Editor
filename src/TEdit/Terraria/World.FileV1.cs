@@ -1202,10 +1202,22 @@ namespace TEdit.Terraria
 
         public static void WriteTileDataToStreamV1(Tile tile, BinaryWriter bw, uint version, bool[] frameIds, int maxTileId, int maxWallId)
         {
+            // Fix chandelier objects.
+            if (tile.IsActive && (tile.Type == (int)TileType.Chandelier))
+            {
+                // The wiki seems to be wrong on early variants.
+                if (version < 72 && (tile.U > 90 || tile.V > 36)) // Max type: copper.
+                {
+                    tile.IsActive = false;
+                }
+                else if (version < 93 && (tile.U > 90 || tile.V > 360)) // Max type: jackelier.
+                {
+                    tile.IsActive = false;
+                }
+            }
+
             // Prevent these tiles from saving.
-            // Possible way to filter textures: (tile.Type == (int)TileType.Chandelier && tile.U > 16)
-            if (tile.Type == (int)TileType.Chandelier ||
-                tile.Type == (int)TileType.IceByRod ||
+            if (tile.Type == (int)TileType.IceByRod ||
                 tile.Type == (int)TileType.MysticSnakeRope ||
                 tile.Type > byte.MaxValue ||
                 tile.Type > maxTileId)
@@ -1557,10 +1569,18 @@ namespace TEdit.Terraria
                 {
                     Tile tile = world.Tiles[x, y];
 
+                    // Fix chandelier objects.
+                    if (tile.IsActive && (tile.Type == (int)TileType.Chandelier))
+                    {
+                        // The wiki seems to be wrong on early variants.
+                        if (tile.U > 90 || tile.V > 36) // Max type: copper.
+                        {
+                            tile.IsActive = false;
+                        }
+                    }
+
                     // Prevent these tiles from saving.
-                    // Possible way to filter textures: (tile.Type == (int)TileType.Chandelier && tile.U > 16)
-                    if (tile.Type == (int)TileType.Chandelier ||
-                        tile.Type == (int)TileType.IceByRod ||
+                    if (tile.Type == (int)TileType.IceByRod ||
                         tile.Type == (int)TileType.MysticSnakeRope ||
                         tile.Type > byte.MaxValue)
                         tile.IsActive = false;
