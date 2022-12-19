@@ -1206,11 +1206,15 @@ namespace TEdit.Terraria
             if (tile.IsActive && (tile.Type == (int)TileType.Chandelier))
             {
                 // The wiki seems to be wrong on early variants.
-                if (version < 72 && (tile.U > 90 || tile.V > 36)) // Max type: copper.
+                if (version < 36 && (tile.U > 36 || tile.V > 36)) // Max type: copper ON.
                 {
                     tile.IsActive = false;
                 }
-                else if (version < 93 && (tile.U > 90 || tile.V > 360)) // Max type: jackelier.
+                else if (version < 72 && (tile.U > 90 || tile.V > 36)) // Max type: copper OFF.
+                {
+                    tile.IsActive = false;
+                }
+                else if (version < 93 && (tile.U > 90 || tile.V > 360)) // Max type: jackelier OFF.
                 {
                     tile.IsActive = false;
                 }
@@ -1573,7 +1577,7 @@ namespace TEdit.Terraria
                     if (tile.IsActive && (tile.Type == (int)TileType.Chandelier))
                     {
                         // The wiki seems to be wrong on early variants.
-                        if (tile.U > 90 || tile.V > 36) // Max type: copper.
+                        if (tile.U > 36 || tile.V > 36) // Max type: copper ON.
                         {
                             tile.IsActive = false;
                         }
