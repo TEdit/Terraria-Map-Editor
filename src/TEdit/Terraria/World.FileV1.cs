@@ -1522,7 +1522,7 @@ namespace TEdit.Terraria
             var saveData = World.SaveConfiguration.GetData(1);
 
             var version = world.Version;
-            bw.Write(world.Version); // Should be 38?
+            bw.Write(38); // Should be 38?
             bw.Write(world.Title);
             bw.Write((int)world.LeftWorld);
             bw.Write((int)world.RightWorld);
@@ -1642,7 +1642,6 @@ namespace TEdit.Terraria
                 bw.Write(chest.X);
                 bw.Write(chest.Y);
 
-
                 for (int slot = 0; slot < v0_chestSize; slot++)
                 {
                     if (chest.Items[slot].StackSize > byte.MaxValue)
@@ -1662,44 +1661,35 @@ namespace TEdit.Terraria
 
             }
 
-            if (version >= 33)
+            OnProgressChanged(null, new ProgressChangedEventArgs(100, "Saving Signs..."));
+            for (int i = 0; i < 1000; i++)
             {
-                OnProgressChanged(null, new ProgressChangedEventArgs(100, "Saving Signs..."));
-
-                for (int i = 0; i < 1000; i++)
+                if (i >= world.Signs.Count)
                 {
-                    if (i >= world.Signs.Count)
-                    {
-                        bw.Write(false);
-                    }
-                    else
-                    {
-                        Sign curSign = world.Signs[i];
-                        bw.Write(true);
-                        bw.Write(curSign.Text);
-                        bw.Write(curSign.X);
-                        bw.Write(curSign.Y);
-                    }
+                    bw.Write(false);
                 }
-            }
-
-            if (version >= 20)
-            {
-                OnProgressChanged(null, new ProgressChangedEventArgs(100, "Saving NPC Data..."));
-                foreach (NPC curNpc in world.NPCs)
+                else
                 {
+                    Sign curSign = world.Signs[i];
                     bw.Write(true);
-
-                    bw.Write(curNpc.Name);
-                    bw.Write(curNpc.Position.X);
-                    bw.Write(curNpc.Position.Y);
-                    bw.Write(curNpc.IsHomeless);
-                    bw.Write(curNpc.Home.X);
-                    bw.Write(curNpc.Home.Y);
+                    bw.Write(curSign.Text);
+                    bw.Write(curSign.X);
+                    bw.Write(curSign.Y);
                 }
-                bw.Write(false);
             }
 
+            OnProgressChanged(null, new ProgressChangedEventArgs(100, "Saving NPC Data..."));
+            foreach (NPC curNpc in world.NPCs)
+            {
+                bw.Write(true);
+                bw.Write(curNpc.Name);
+                bw.Write(curNpc.Position.X);
+                bw.Write(curNpc.Position.Y);
+                bw.Write(curNpc.IsHomeless);
+                bw.Write(curNpc.Home.X);
+                bw.Write(curNpc.Home.Y);
+            }
+            bw.Write(false);
         }
 
         public static void LoadV1(BinaryReader reader, string filename, World w)
