@@ -22,7 +22,7 @@ namespace TEdit.Terraria
     {
         public static Dictionary<string, short> _legacyItemLookup { get; private set; }
 
-        public static void SaveV1(World world, BinaryWriter bw)
+        public static void SaveV1(World world, BinaryWriter bw, bool ForceLighting)
         {
             var version = world.Version;
 
@@ -211,7 +211,7 @@ namespace TEdit.Terraria
                 {
                     Tile curTile = world.Tiles[x, y];
 
-                    WriteTileDataToStreamV1(curTile, bw, world.Version, frames, saveData.MaxTileId, saveData.MaxWallId);
+                    WriteTileDataToStreamV1(curTile, bw, world.Version, frames, saveData.MaxTileId, saveData.MaxWallId, ForceLighting);
 
                     if (version >= 25)
                     {
@@ -1200,7 +1200,7 @@ namespace TEdit.Terraria
             };
         }
 
-        public static void WriteTileDataToStreamV1(Tile tile, BinaryWriter bw, uint version, bool[] frameIds, int maxTileId, int maxWallId)
+        public static void WriteTileDataToStreamV1(Tile tile, BinaryWriter bw, uint version, bool[] frameIds, int maxTileId, int maxWallId, bool forceLighting = false)
         {
             // Fix chandelier objects.
             if (tile.IsActive && (tile.Type == (int)TileType.Chandelier))
@@ -1263,7 +1263,12 @@ namespace TEdit.Terraria
                 }
             }
 
-            if (version <= 25)
+            // Force add lighting to downgraded worlds.
+            if (forceLighting)
+            {
+                bw.Write(true);
+            }
+            else if (version <= 25)
             {
                 bw.Write(tile.v0_Lit); // legacy hasLight
             }
@@ -1511,10 +1516,13 @@ namespace TEdit.Terraria
             }
         }
 
-        public static void SaveV0(World world, BinaryWriter bw)
+        public static void SaveV0(World world, BinaryWriter bw, bool ForceLighting)
         {
+            // Get the max values from json.
+            var saveData = World.SaveConfiguration.GetData(1);
+
             var version = world.Version;
-            bw.Write(world.Version);
+            bw.Write(world.Version); // Should be 38?
             bw.Write(world.Title);
             bw.Write((int)world.LeftWorld);
             bw.Write((int)world.RightWorld);
@@ -1522,7 +1530,6 @@ namespace TEdit.Terraria
             bw.Write((int)world.BottomWorld);
             bw.Write(world.TilesHigh);
             bw.Write(world.TilesWide);
-
 
             bw.Write(world.SpawnX);
             bw.Write(world.SpawnY);
@@ -1533,35 +1540,18 @@ namespace TEdit.Terraria
             bw.Write(world.DayTime);
             bw.Write(world.MoonPhase);
             bw.Write(world.BloodMoon);
-            if (version >= 28)
-            {
-                bw.Write(world.DungeonX);
-                bw.Write(world.DungeonY);
-            }
-            if (version >= 24)
-            {
-                bw.Write(world.DownedBoss1);
-                bw.Write(world.DownedBoss2);
-            }
 
-            if (version >= 28)
-            {
-                bw.Write(world.DownedBoss3);
-            }
-
-            if (version >= 26)
-            {
-                bw.Write(world.ShadowOrbSmashed);
-                bw.Write(world.SpawnMeteor);
-            }
-
-            if (version >= 27)
-            {
-                bw.Write(world.InvasionDelay);
-                bw.Write(world.InvasionSize);
-                bw.Write(world.InvasionType);
-                bw.Write(world.InvasionX);
-            }
+            bw.Write(world.DungeonX);
+            bw.Write(world.DungeonY);
+            bw.Write(world.DownedBoss1);
+            bw.Write(world.DownedBoss2);
+            bw.Write(world.DownedBoss3);
+            bw.Write(world.ShadowOrbSmashed);
+            bw.Write(world.SpawnMeteor);
+            bw.Write(world.InvasionDelay);
+            bw.Write(world.InvasionSize);
+            bw.Write(world.InvasionType);
+            bw.Write(world.InvasionX);
 
             var frames = GetFramesV0();
             for (int x = 0; x < world.TilesWide; x++)
@@ -1586,8 +1576,11 @@ namespace TEdit.Terraria
                     // Prevent these tiles from saving.
                     if (tile.Type == (int)TileType.IceByRod ||
                         tile.Type == (int)TileType.MysticSnakeRope ||
-                        tile.Type > byte.MaxValue)
+                        tile.Type > byte.MaxValue ||
+                        tile.Type > saveData.MaxTileId)
+                    {
                         tile.IsActive = false;
+                    }
 
                     //if (bw.BaseStream.Position >= 0x11037) Debugger.Break();
 
@@ -1603,10 +1596,13 @@ namespace TEdit.Terraria
                         }
                     }
 
-                    bw.Write((bool)tile.v0_Lit);
+                    // Check if downgrade is occuring and if so add forced lighting.
+                    if (ForceLighting)
+                        bw.Write(true);
+                    else
+                        bw.Write((bool)tile.v0_Lit);
 
-
-                    if (tile.Wall > 0)
+                    if (tile.Wall > 0 && tile.Wall <= byte.MaxValue && tile.Wall <= saveData.MaxWallId)
                     {
                         bw.Write(true);
                         bw.Write((byte)tile.Wall);
@@ -1616,22 +1612,15 @@ namespace TEdit.Terraria
                         bw.Write(false);
                     }
 
-                    if (version >= 34)
+                    if (tile.LiquidAmount > 0 && tile.LiquidType != LiquidType.None)
                     {
-                        if (tile.LiquidAmount > 0 && tile.LiquidType != LiquidType.None)
-                        {
-                            bw.Write(true);
-                            bw.Write(tile.LiquidAmount);
-
-                            if (version >= 35)
-                            {
-                                bw.Write(tile.LiquidType == LiquidType.Lava);
-                            }
-                        }
-                        else
-                        {
-                            bw.Write(false);
-                        }
+                        bw.Write(true);
+                        bw.Write(tile.LiquidAmount);
+                        bw.Write(tile.LiquidType == LiquidType.Lava);
+                    }
+                    else
+                    {
+                        bw.Write(false);
                     }
                 }
             }
