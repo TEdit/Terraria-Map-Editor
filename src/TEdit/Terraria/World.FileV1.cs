@@ -22,7 +22,7 @@ namespace TEdit.Terraria
     {
         public static Dictionary<string, short> _legacyItemLookup { get; private set; }
 
-        public static void SaveV1(World world, BinaryWriter bw)
+        public static void SaveV1(World world, BinaryWriter bw, bool ForceLighting)
         {
             var version = world.Version;
 
@@ -211,7 +211,7 @@ namespace TEdit.Terraria
                 {
                     Tile curTile = world.Tiles[x, y];
 
-                    WriteTileDataToStreamV1(curTile, bw, world.Version, frames, saveData.MaxTileId, saveData.MaxWallId);
+                    WriteTileDataToStreamV1(curTile, bw, world.Version, frames, saveData.MaxTileId, saveData.MaxWallId, ForceLighting);
 
                     if (version >= 25)
                     {
@@ -1196,12 +1196,31 @@ namespace TEdit.Terraria
                 { "Gold Axe", 3518 },
                 { "Gold Shortsword", 3519 },
                 { "Gold Broadsword", 3520 },
-                { "Gold Pickaxe", 3521 }            };
+                { "Gold Pickaxe", 3521 }
+            };
         }
 
-
-        public static void WriteTileDataToStreamV1(Tile tile, BinaryWriter bw, uint version, bool[] frameIds, int maxTileId, int maxWallId)
+        public static void WriteTileDataToStreamV1(Tile tile, BinaryWriter bw, uint version, bool[] frameIds, int maxTileId, int maxWallId, bool forceLighting = false)
         {
+            // Fix chandelier objects.
+            if (tile.IsActive && (tile.Type == (int)TileType.Chandelier))
+            {
+                // The wiki seems to be wrong on early variants.
+                if (version < 36 && (tile.U > 36 || tile.V > 36)) // Max type: copper ON.
+                {
+                    tile.IsActive = false;
+                }
+                else if (version < 72 && (tile.U > 90 || tile.V > 36)) // Max type: copper OFF.
+                {
+                    tile.IsActive = false;
+                }
+                else if (version < 93 && (tile.U > 90 || tile.V > 360)) // Max type: jackelier OFF.
+                {
+                    tile.IsActive = false;
+                }
+            }
+
+            // Prevent these tiles from saving.
             if (tile.Type == (int)TileType.IceByRod ||
                 tile.Type == (int)TileType.MysticSnakeRope ||
                 tile.Type > byte.MaxValue ||
@@ -1209,7 +1228,6 @@ namespace TEdit.Terraria
             {
                 tile.IsActive = false;
             }
-
 
             bw.Write(tile.IsActive);
             if (tile.IsActive)
@@ -1245,7 +1263,12 @@ namespace TEdit.Terraria
                 }
             }
 
-            if (version <= 25)
+            // Force add lighting to downgraded worlds.
+            if (forceLighting)
+            {
+                bw.Write(true);
+            }
+            else if (version <= 25)
             {
                 bw.Write(tile.v0_Lit); // legacy hasLight
             }
@@ -1493,10 +1516,13 @@ namespace TEdit.Terraria
             }
         }
 
-        public static void SaveV0(World world, BinaryWriter bw)
+        public static void SaveV0(World world, BinaryWriter bw, bool ForceLighting)
         {
+            // Get the max values from json.
+            var saveData = World.SaveConfiguration.GetData(1);
+
             var version = world.Version;
-            bw.Write(world.Version);
+            bw.Write(38); // Should be 38?
             bw.Write(world.Title);
             bw.Write((int)world.LeftWorld);
             bw.Write((int)world.RightWorld);
@@ -1504,7 +1530,6 @@ namespace TEdit.Terraria
             bw.Write((int)world.BottomWorld);
             bw.Write(world.TilesHigh);
             bw.Write(world.TilesWide);
-
 
             bw.Write(world.SpawnX);
             bw.Write(world.SpawnY);
@@ -1515,39 +1540,88 @@ namespace TEdit.Terraria
             bw.Write(world.DayTime);
             bw.Write(world.MoonPhase);
             bw.Write(world.BloodMoon);
-            if (version >= 28)
-            {
-                bw.Write(world.DungeonX);
-                bw.Write(world.DungeonY);
-            }
-            if (version >= 24)
-            {
-                bw.Write(world.DownedBoss1);
-                bw.Write(world.DownedBoss2);
-            }
 
-            if (version >= 28)
-            {
-                bw.Write(world.DownedBoss3);
-            }
-
-            if (version >= 26)
-            {
-                bw.Write(world.ShadowOrbSmashed);
-                bw.Write(world.SpawnMeteor);
-            }
-
-            if (version >= 27)
-            {
-                bw.Write(world.InvasionDelay);
-                bw.Write(world.InvasionSize);
-                bw.Write(world.InvasionType);
-                bw.Write(world.InvasionX);
-            }
-
-
+            bw.Write(world.DungeonX);
+            bw.Write(world.DungeonY);
+            bw.Write(world.DownedBoss1);
+            bw.Write(world.DownedBoss2);
+            bw.Write(world.DownedBoss3);
+            bw.Write(world.ShadowOrbSmashed);
+            bw.Write(world.SpawnMeteor);
+            bw.Write(world.InvasionDelay);
+            bw.Write(world.InvasionSize);
+            bw.Write(world.InvasionType);
+            bw.Write(world.InvasionX);
 
             var frames = GetFramesV0();
+
+            for (int x = 0; x < world.TilesWide; x++)
+            {
+                OnProgressChanged(world,
+                    new ProgressChangedEventArgs(x.ProgressPercentage(world.TilesWide), "Removing Future Tiles..."));
+
+                for (int y = 0; y < world.TilesHigh; y++)
+                {
+                    Tile tile = world.Tiles[x, y];
+
+                    // Fix chandelier objects.
+                    if (tile.IsActive && (tile.Type == (int)TileType.Chandelier))
+                    {
+                        // The wiki seems to be wrong on early variants.
+                        if (tile.U > 36 || tile.V > 36) // Max type: copper ON.
+                        {
+                            tile.IsActive = false;
+                        }
+                    }
+
+                    // Prevent these tiles from saving.
+                    if (tile.Type == (int)TileType.IceByRod ||
+                        tile.Type == (int)TileType.MysticSnakeRope ||
+                        tile.Type > byte.MaxValue ||
+                        tile.Type > saveData.MaxTileId)
+                    {
+                        tile.IsActive = false;
+                    }
+                }
+            }
+
+            OnProgressChanged(null, new ProgressChangedEventArgs(100, "Settling Sand..."));
+            int[] _tileSand = {
+                53,  // Sand Block
+                112, // Ebonsand Block
+                116, // Pearlsand
+                123, // silt
+                224, // slush block
+                234, // Crimsand block
+            };
+
+            for (int y = world.TilesHigh - 1; y > 0; y--)
+            {
+                for (int x = 0; x < world.TilesWide; x++)
+                {
+                    var curTile = world.Tiles[x, y];
+                    if (_tileSand.Contains(curTile.Type))
+                    {
+                        // check if tile below current tile is empty and move sand to there if it is.
+                        int shiftAmmount = 1;
+                        while (shiftAmmount + y < world.TilesHigh && !world.Tiles[x, y + shiftAmmount].IsActive)
+                            shiftAmmount++;
+                        shiftAmmount--;
+
+                        if (shiftAmmount > 0)
+                        {
+                            var belowTile = world.Tiles[x, y + shiftAmmount];
+                            if (!belowTile.IsActive)
+                            {
+                                belowTile.IsActive = true;
+                                belowTile.Type = curTile.Type;
+                                curTile.IsActive = false;
+                            }
+                        }
+                    }
+                }
+            }
+
             for (int x = 0; x < world.TilesWide; x++)
             {
                 OnProgressChanged(world,
@@ -1557,10 +1631,24 @@ namespace TEdit.Terraria
                 {
                     Tile tile = world.Tiles[x, y];
 
+                    // Fix chandelier objects.
+                    if (tile.IsActive && (tile.Type == (int)TileType.Chandelier))
+                    {
+                        // The wiki seems to be wrong on early variants.
+                        if (tile.U > 36 || tile.V > 36) // Max type: copper ON.
+                        {
+                            tile.IsActive = false;
+                        }
+                    }
+
+                    // Prevent these tiles from saving.
                     if (tile.Type == (int)TileType.IceByRod ||
                         tile.Type == (int)TileType.MysticSnakeRope ||
-                        tile.Type > byte.MaxValue)
+                        tile.Type > byte.MaxValue ||
+                        tile.Type > saveData.MaxTileId)
+                    {
                         tile.IsActive = false;
+                    }
 
                     //if (bw.BaseStream.Position >= 0x11037) Debugger.Break();
 
@@ -1576,10 +1664,13 @@ namespace TEdit.Terraria
                         }
                     }
 
-                    bw.Write((bool)tile.v0_Lit);
+                    // Check if downgrade is occuring and if so add forced lighting.
+                    if (ForceLighting)
+                        bw.Write(true);
+                    else
+                        bw.Write((bool)tile.v0_Lit);
 
-
-                    if (tile.Wall > 0)
+                    if (tile.Wall > 0 && tile.Wall <= byte.MaxValue && tile.Wall <= saveData.MaxWallId)
                     {
                         bw.Write(true);
                         bw.Write((byte)tile.Wall);
@@ -1589,22 +1680,15 @@ namespace TEdit.Terraria
                         bw.Write(false);
                     }
 
-                    if (version >= 34)
+                    if (tile.LiquidAmount > 0 && tile.LiquidType != LiquidType.None)
                     {
-                        if (tile.LiquidAmount > 0 && tile.LiquidType != LiquidType.None)
-                        {
-                            bw.Write(true);
-                            bw.Write(tile.LiquidAmount);
-
-                            if (version >= 35)
-                            {
-                                bw.Write(tile.LiquidType == LiquidType.Lava);
-                            }
-                        }
-                        else
-                        {
-                            bw.Write(false);
-                        }
+                        bw.Write(true);
+                        bw.Write(tile.LiquidAmount);
+                        bw.Write(tile.LiquidType == LiquidType.Lava);
+                    }
+                    else
+                    {
+                        bw.Write(false);
                     }
                 }
             }
@@ -1626,7 +1710,6 @@ namespace TEdit.Terraria
                 bw.Write(chest.X);
                 bw.Write(chest.Y);
 
-
                 for (int slot = 0; slot < v0_chestSize; slot++)
                 {
                     if (chest.Items[slot].StackSize > byte.MaxValue)
@@ -1646,44 +1729,35 @@ namespace TEdit.Terraria
 
             }
 
-            if (version >= 33)
+            OnProgressChanged(null, new ProgressChangedEventArgs(100, "Saving Signs..."));
+            for (int i = 0; i < 1000; i++)
             {
-                OnProgressChanged(null, new ProgressChangedEventArgs(100, "Saving Signs..."));
-
-                for (int i = 0; i < 1000; i++)
+                if (i >= world.Signs.Count)
                 {
-                    if (i >= world.Signs.Count)
-                    {
-                        bw.Write(false);
-                    }
-                    else
-                    {
-                        Sign curSign = world.Signs[i];
-                        bw.Write(true);
-                        bw.Write(curSign.Text);
-                        bw.Write(curSign.X);
-                        bw.Write(curSign.Y);
-                    }
+                    bw.Write(false);
                 }
-            }
-
-            if (version >= 20)
-            {
-                OnProgressChanged(null, new ProgressChangedEventArgs(100, "Saving NPC Data..."));
-                foreach (NPC curNpc in world.NPCs)
+                else
                 {
+                    Sign curSign = world.Signs[i];
                     bw.Write(true);
-
-                    bw.Write(curNpc.Name);
-                    bw.Write(curNpc.Position.X);
-                    bw.Write(curNpc.Position.Y);
-                    bw.Write(curNpc.IsHomeless);
-                    bw.Write(curNpc.Home.X);
-                    bw.Write(curNpc.Home.Y);
+                    bw.Write(curSign.Text);
+                    bw.Write(curSign.X);
+                    bw.Write(curSign.Y);
                 }
-                bw.Write(false);
             }
 
+            OnProgressChanged(null, new ProgressChangedEventArgs(100, "Saving NPC Data..."));
+            foreach (NPC curNpc in world.NPCs)
+            {
+                bw.Write(true);
+                bw.Write(curNpc.Name);
+                bw.Write(curNpc.Position.X);
+                bw.Write(curNpc.Position.Y);
+                bw.Write(curNpc.IsHomeless);
+                bw.Write(curNpc.Home.X);
+                bw.Write(curNpc.Home.Y);
+            }
+            bw.Write(false);
         }
 
         public static void LoadV1(BinaryReader reader, string filename, World w)

@@ -120,18 +120,23 @@ namespace TEdit.Terraria
                         TextWriter debugger = null;
 
 #endif
-
                         using (var bw = new BinaryWriter(fs))
                         {
-                            if (versionOverride < 0 || world.IsV0)
+                            if (versionOverride < 0 || world.IsV0 || world.Version == 38)
                             {
+                                bool addLight = (currentWorldVersion > world.Version) ? true : false; // Check if world is being downgraded.
                                 world.Version = (uint)Math.Abs(versionOverride);
-                                SaveV0(world, bw);
+                                SaveV0(world, bw, addLight);
                             }
-                            else if (world.Version > 87)
+                            else if (world.Version > 87 && world.Version != 38)
+                            {
                                 SaveV2(world, bw, debugger, incrementRevision);
+                            }
                             else
-                                SaveV1(world, bw);
+                            {
+                                bool addLight = (currentWorldVersion >= 87) ? true : false; // Check if world is being downgraded.
+                                SaveV1(world, bw, addLight);
+                            }
 
                             bw.Close();
                             fs.Close();
