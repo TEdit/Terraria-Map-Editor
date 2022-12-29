@@ -238,7 +238,7 @@ namespace TEdit.Terraria
 
 
         private bool _isV0;
-        private bool _isAndroid;
+        private bool _isChinese;
         private bool _zenithWorld;
         private bool _noTrapsWorld;
         private bool _remixWorld;
@@ -1095,10 +1095,10 @@ namespace TEdit.Terraria
             set { Set(nameof(IsV0), ref _isV0, value); }
         }
 
-        public bool IsAndroid
+        public bool IsChinese
         {
-            get { return _isAndroid; }
-            set { Set(nameof(IsAndroid), ref _isAndroid, value); }
+            get { return _isChinese; }
+            set { Set(nameof(IsChinese), ref _isChinese, value); }
         }
 
 
