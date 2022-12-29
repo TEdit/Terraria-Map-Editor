@@ -24,7 +24,7 @@ namespace TEdit.Terraria
         public static int MaxSigns { get; private set; } = 1000;
 
         public const string DesktopHeader = "relogic";
-        public const string AndroidHeader = "xindong";
+        public const string ChineseHeader = "xindong";
 
         public bool IsTModLoader { get; set; }
 
@@ -724,9 +724,9 @@ namespace TEdit.Terraria
             // World features added in 1.3.0.1
             if (world.Version >= 140)
             {
-                if (world.IsAndroid)
+                if (world.IsChinese)
                 {
-                    bw.Write(AndroidHeader.ToCharArray());
+                    bw.Write(ChineseHeader.ToCharArray());
                 }
                 else
                 {
@@ -2515,9 +2515,9 @@ namespace TEdit.Terraria
 
             if (versionNumber >= 140) // 135
             {
-                // check for android
+                // check for chinese
 
-                w.IsAndroid = (char)r.PeekChar() == 'x';
+                w.IsChinese = (char)r.PeekChar() == 'x';
 
                 string headerFormat = new string(r.ReadChars(7));
                 FileType fileType = (FileType)r.ReadByte();
@@ -2527,14 +2527,14 @@ namespace TEdit.Terraria
                     throw new FileFormatException($"Is not a supported file type: {fileType.ToString()}");
                 }
 
-                if (!w.IsAndroid && headerFormat != DesktopHeader)
+                if (!w.IsChinese && headerFormat != DesktopHeader)
                 {
                     throw new FileFormatException("Invalid desktop world header.");
                 }
 
-                if (w.IsAndroid && headerFormat != AndroidHeader)
+                if (w.IsChinese && headerFormat != ChineseHeader)
                 {
-                    throw new FileFormatException("Invalid android world header.");
+                    throw new FileFormatException("Invalid chinese world header.");
                 }
 
                 w.FileRevision = r.ReadUInt32();
