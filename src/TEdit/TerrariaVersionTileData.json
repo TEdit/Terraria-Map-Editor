@@ -81,8 +81,8 @@
     "1.4.4.9": 279
   },
   "saveVersions": {
-    "1": {
-      "saveVersion": 1,
+    "38": {
+      "saveVersion": 38,
       "gameVersion": "v1.0",
       "maxTileId": 75,
       "maxWallId": 12,

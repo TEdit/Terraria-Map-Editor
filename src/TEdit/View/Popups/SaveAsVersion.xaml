@@ -7,17 +7,21 @@
         WindowStartupLocation="CenterOwner"
         mc:Ignorable="d"
         Background="{StaticResource ControlBackgroundBrush}" Foreground="{DynamicResource TextBrush}"
-        Title="Select World Version" Height="420" Width="420">
+        Title="Select World Version" Height="464" Width="420">
     <Grid>
-        <ScrollViewer>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="109*"/>
+            <ColumnDefinition Width="97*"/>
+        </Grid.ColumnDefinitions>
+        <ScrollViewer Grid.ColumnSpan="2">
             <StackPanel>
                 <UniformGrid Rows="1" HorizontalAlignment="Stretch" Margin="5">
-					<Button Content="1.4.4.9" Height="20" VerticalAlignment="Top" Width="50" Command="{Binding SaveAsVersionCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Mode=Self}, Path=Content}" />
-				</UniformGrid>
+                    <Button Content="1.4.4.9" Height="20" VerticalAlignment="Top" Width="50" Command="{Binding SaveAsVersionCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Mode=Self}, Path=Content}" />
+                </UniformGrid>
                 <UniformGrid Rows="1" HorizontalAlignment="Stretch" Margin="5">
-					<Button Content="1.4.4.8.1" Height="20" VerticalAlignment="Top" Width="50" Command="{Binding SaveAsVersionCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Mode=Self}, Path=Content}" />
-					<Button Content="1.4.4.8" Height="20" VerticalAlignment="Top" Width="50" Command="{Binding SaveAsVersionCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Mode=Self}, Path=Content}" />
-					<Button Content="1.4.4.7" Height="20" VerticalAlignment="Top" Width="50" Command="{Binding SaveAsVersionCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Mode=Self}, Path=Content}" />
+                    <Button Content="1.4.4.8.1" Height="20" VerticalAlignment="Top" Width="50" Command="{Binding SaveAsVersionCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Mode=Self}, Path=Content}" />
+                    <Button Content="1.4.4.8" Height="20" VerticalAlignment="Top" Width="50" Command="{Binding SaveAsVersionCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Mode=Self}, Path=Content}" />
+                    <Button Content="1.4.4.7" Height="20" VerticalAlignment="Top" Width="50" Command="{Binding SaveAsVersionCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Mode=Self}, Path=Content}" />
                     <Button Content="1.4.4.6" Height="20" VerticalAlignment="Top" Width="50" Command="{Binding SaveAsVersionCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Mode=Self}, Path=Content}" />
                     <Button Content="1.4.4.5" Height="20" VerticalAlignment="Top" Width="50" Command="{Binding SaveAsVersionCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Mode=Self}, Path=Content}" />
                     <Button Content="1.4.4.4" Height="20" VerticalAlignment="Top" Width="50" Command="{Binding SaveAsVersionCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Mode=Self}, Path=Content}" />

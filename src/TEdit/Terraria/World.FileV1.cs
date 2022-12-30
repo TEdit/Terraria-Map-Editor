@@ -1519,7 +1519,7 @@ namespace TEdit.Terraria
         public static void SaveV0(World world, BinaryWriter bw, bool ForceLighting)
         {
             // Get the max values from json.
-            var saveData = World.SaveConfiguration.GetData(1);
+            var saveData = World.SaveConfiguration.GetData(38);
 
             var version = world.Version;
             bw.Write(38); // Should be 38?
