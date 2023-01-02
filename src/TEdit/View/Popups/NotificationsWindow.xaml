@@ -34,6 +34,26 @@
                         <Bold>Release Notes</Bold>
                     </Paragraph>
 					
+                    <Paragraph>Version 4.13</Paragraph>
+                    <List>
+                        <ListItem>
+                            <Paragraph>Fixed file compatibility for worlds current down through 1.0.</Paragraph>
+                    	</ListItem>
+                    </List>
+                    
+                    <Paragraph>Version 4.12</Paragraph>
+                    <List>
+                        <ListItem>
+                            <Paragraph>Added a coating editor and added further coating functionality</Paragraph>
+                    	</ListItem>
+                    	<ListItem>
+                            <Paragraph>Updated masks, more use cases and masks on paint/coatings</Paragraph>
+                    	</ListItem>
+                    	<ListItem>
+                            <Paragraph>Fix masks not working for dirt</Paragraph>
+                    	</ListItem>
+                    </List>
+                    
                     <Paragraph>Version 4.11</Paragraph>
                     <List>
                         <ListItem>
