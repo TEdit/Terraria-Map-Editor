@@ -46,20 +46,22 @@ namespace TEdit.ViewModel
             wvm.Tools.Add(new MorphTool(wvm));
             wvm.ActiveTool = defaultTool;
 
-            wvm.Plugins.Add(new SandSettlePlugin(wvm));
-            wvm.Plugins.Add(new SimplePerlinGeneratorPlugin(wvm));
-            wvm.Plugins.Add(new ReplaceAllPlugin(wvm));
-            wvm.Plugins.Add(new RemoveAllChestsPlugin(wvm));
-            wvm.Plugins.Add(new RemoveAllUnlockedChestsPlugin(wvm));
-            wvm.Plugins.Add(new UnlockAllChestsPlugin(wvm));
+            //Sorted by Plugin-Name
             wvm.Plugins.Add(new FindChestWithPlugin(wvm));
             wvm.Plugins.Add(new FindPlanteraBulbPlugin(wvm));
-            wvm.Plugins.Add(new HouseGenPlugin(wvm));
             wvm.Plugins.Add(new FindTileWithPlugin(wvm));
-            wvm.Plugins.Add(new RemoveTileWithPlugin(wvm));
-            wvm.Plugins.Add(new RandomizerPlugin(wvm));
-            wvm.Plugins.Add(new TextStatuePlugin(wvm));
             wvm.Plugins.Add(new SpriteDebuggerPlugin(wvm));
+            wvm.Plugins.Add(new TextStatuePlugin(wvm));
+            wvm.Plugins.Add(new HouseGenPlugin(wvm));
+            wvm.Plugins.Add(new RandomizerPlugin(wvm));
+            wvm.Plugins.Add(new RemoveAllChestsPlugin(wvm));
+            wvm.Plugins.Add(new RemoveAllUnlockedChestsPlugin(wvm));
+            wvm.Plugins.Add(new RemoveTileWithPlugin(wvm));
+            wvm.Plugins.Add(new ReplaceAllPlugin(wvm));
+            wvm.Plugins.Add(new SandSettlePlugin(wvm));
+            wvm.Plugins.Add(new BlockShufflePlugin(wvm));
+            wvm.Plugins.Add(new SimplePerlinGeneratorPlugin(wvm));
+            wvm.Plugins.Add(new UnlockAllChestsPlugin(wvm));
             return wvm;
         }
     }
