@@ -59,10 +59,9 @@ namespace TEdit.ViewModel
             wvm.Plugins.Add(new RemoveTileWithPlugin(wvm));
             wvm.Plugins.Add(new ReplaceAllPlugin(wvm));
             wvm.Plugins.Add(new SandSettlePlugin(wvm));
-            wvm.Plugins.Add(new BlockShufflePlugin(wvm)); //My AddOn
+            wvm.Plugins.Add(new BlockShufflePlugin(wvm));
             wvm.Plugins.Add(new SimplePerlinGeneratorPlugin(wvm));
             wvm.Plugins.Add(new UnlockAllChestsPlugin(wvm));
-
             return wvm;
         }
     }

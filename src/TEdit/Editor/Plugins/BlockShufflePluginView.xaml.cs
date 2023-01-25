@@ -6,8 +6,9 @@ namespace TEdit.Editor.Plugins
     public partial class BlockShufflePluginView : Window
     {
         public int Seed { get; private set; }
-        public bool SensitivePlatform { get; private set; }
         public bool OnlySelection { get; private set; }
+        public bool IncludeTileEntities { get; private set; }
+        public bool SensitivePlatform { get; private set; }
         public bool EnableUndo { get; private set; }
         public int ReplaceEmptyPercentage { get; private set; }
         public bool ConsiderWallEmpty { get; private set; }
@@ -32,12 +33,13 @@ namespace TEdit.Editor.Plugins
             {
                 if (SeedTextBox.Text == "") Seed = (int)DateTime.Now.Ticks;
                 else Seed = SeedTextBox.Text.GetHashCode();
-                SensitivePlatform = SensitivePlatformCheckBox.IsChecked ?? false;
                 OnlySelection = SelectionRadio.IsChecked ?? false;
+                IncludeTileEntities = IncludeTileEntitiesCheckBox.IsChecked ?? false;
+                SensitivePlatform = SensitivePlatformCheckBox.IsChecked ?? false;
                 EnableUndo = UndoCheckBox.IsChecked ?? false;
                 ReplaceEmptyPercentage = (int)ReplaceEmptySlider.Value;
                 if (ReplaceEmptyPercentage > 100) ReplaceEmptyPercentage = 100;
-                if (ReplaceEmptyPercentage < 0) ReplaceEmptyPercentage = 0;
+                if (ReplaceEmptyPercentage < 5) ReplaceEmptyPercentage = 5;
                 ConsiderWallEmpty = ReplaceWallCheckBox.IsChecked ?? false;
                 ConsiderLiquidEmpty = ReplaceLiquidCheckBox.IsChecked ?? false;
                 ConsiderEverything = ReplaceEverythingCheckBox.IsChecked ?? false;
@@ -66,6 +68,12 @@ namespace TEdit.Editor.Plugins
         {
             ReplaceWallCheckBox.IsEnabled = true;
             ReplaceLiquidCheckBox.IsEnabled = true;
+        }
+
+        private void IncludeTileEntitiesCheckBox_Checked(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Some special Tile-Entities (like chests or signs) are still protected and can't be shuffled.",
+                            "Include Information", MessageBoxButton.OK, MessageBoxImage.Information);
         }
     }
 }

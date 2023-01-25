@@ -20,8 +20,6 @@ namespace TEdit.Editor.Plugins
             BlockShufflePluginView settingsView = new(_wvm.Selection.IsActive);
             if (settingsView.ShowDialog() == false)
                 return;
-            if (settingsView.ReplaceEmptyPercentage == 0 && settingsView.ConsiderEverything)
-                return;
 
             //Get affected area
             Rectangle selectionArea = settingsView.OnlySelection ? _wvm.Selection.SelectionArea : new(0, 0, _wvm.CurrentWorld.Size.X, _wvm.CurrentWorld.Size.Y);
@@ -35,7 +33,9 @@ namespace TEdit.Editor.Plugins
                 for (int y = selectionArea.Top; y < selectionArea.Bottom; y++) //From top to bottom
                     if (!IsSensitiveGroup(_wvm.CurrentWorld.Tiles[x, y].Type))
                     {
-                        //Extra Check for "Sensitive" Tiles
+                        if (!settingsView.IncludeTileEntities)
+                            if (World.GetTileProperties(_wvm.CurrentWorld.Tiles[x, y].Type).IsFramed)
+                                continue;
                         if (settingsView.SensitivePlatform)
                             if ((y - 1) > 0 && IsSensitiveGroup(_wvm.CurrentWorld.Tiles[x, y - 1].Type))
                                 continue;
@@ -69,28 +69,26 @@ namespace TEdit.Editor.Plugins
                 for (int y = selectionArea.Top; y < selectionArea.Bottom; y++)
                     if (!IsSensitiveGroup(_wvm.CurrentWorld.Tiles[x, y].Type))
                     {
-                        //Extra Check for "Sensitive" Tiles
+                        if (!settingsView.IncludeTileEntities)
+                            if (World.GetTileProperties(_wvm.CurrentWorld.Tiles[x, y].Type).IsFramed)
+                                continue;
                         if (settingsView.SensitivePlatform)
                             if ((y - 1) > 0 && IsSensitiveGroup(_wvm.CurrentWorld.Tiles[x, y - 1].Type))
                                 continue;
-
                         //Air Replace Options
                         if ((EmptyCheck(_wvm.CurrentWorld.Tiles[x, y], settingsView.ConsiderWallEmpty, settingsView.ConsiderLiquidEmpty)
                             && settingsView.ReplaceEmptyPercentage != 100) || settingsView.ConsiderEverything)
                             if (settingsView.ReplaceEmptyPercentage == 0) continue;
                             else if (rng.Next(0, 100) >= settingsView.ReplaceEmptyPercentage)
                                 continue;
-
                         //Safe Block before updating it!
                         if (settingsView.EnableUndo)
                             _wvm.UndoManager.SaveTile(x, y);
                         //HACK: Edits the World-View (_wvm) directly!
                         _wvm.CurrentWorld.Tiles[x, y] = selectedTiles[lstIndex];
-
                         //Safety: The worldborder does NOT like visual waterfalls -> Remove all Slopes.
                         if (x <= 20 || x >= _wvm.CurrentWorld.TilesWide - 20 || y <= 20 || y >= _wvm.CurrentWorld.TilesHigh - 20)
                             _wvm.CurrentWorld.Tiles[x, y].BrickStyle = BrickStyle.Full;
-
                         //Use "Random" Index:
                         lstIndex++;
                         if (lstIndex >= selectedTiles.Count)
@@ -111,6 +109,15 @@ namespace TEdit.Editor.Plugins
             else return pTile.IsEmpty;
         }
 
+        private static bool IsSensitiveGroup(int pTileType)
+        {
+            if (Tile.IsChest(pTileType)
+               || Tile.IsSign(pTileType)
+               || Tile.IsTileEntity(pTileType)
+               || IsSensitive(pTileType)
+                ) return true;
+            else return false;
+        }
         private static bool IsSensitive(int pTileType)
         {
             return pTileType == 12 //Heart Crystal
@@ -120,19 +127,8 @@ namespace TEdit.Editor.Plugins
                 || pTileType == 237 //Lihzahrd Altar
                 || pTileType == 238 //Plantera Bulb
                 || pTileType == 488 //Fallen Log (Fairys)
+                || pTileType == 639 //Mana Crystal
                 ;
-            //|| tileType == 28 //Pot
-            //|| tileType == 444 //Bee Hive
-        }
-
-        private static bool IsSensitiveGroup(int pTileType)
-        {
-            if (Tile.IsChest(pTileType)
-               || Tile.IsSign(pTileType)
-               || Tile.IsTileEntity(pTileType)
-               || IsSensitive(pTileType)
-                ) return true;
-            else return false;
         }
     }
 }
