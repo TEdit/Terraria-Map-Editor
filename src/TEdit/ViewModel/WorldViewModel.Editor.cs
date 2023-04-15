@@ -358,7 +358,7 @@ namespace TEdit.ViewModel
                     if (TilePicker.EnableTileCoating) 
                         SetPixelAutomatic(curTile, tileEchoCoating: TilePicker.TileCoatingEcho, tileIlluminantCoating: TilePicker.TileCoatingIlluminant);
                     if (TilePicker.EnableWallCoating)
-                        SetPixelAutomatic(curTile, tileEchoCoating: TilePicker.WallCoatingEcho, tileIlluminantCoating: TilePicker.WallCoatingIlluminant);
+                        SetPixelAutomatic(curTile, wallEchoCoating: TilePicker.WallCoatingEcho, wallIlluminantCoating: TilePicker.WallCoatingIlluminant);
                     break;
                 case PaintMode.Wire:
                     // Is Replace Mode Active?
