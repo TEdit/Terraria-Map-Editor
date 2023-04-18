@@ -1109,12 +1109,12 @@ namespace TEdit.View
                             {
                                 wallPaintColor = Color.LightGray;
 
-                                if (curtile.InvisibleBlock)
+                                if (curtile.InvisibleWall)
                                 {
                                     wallPaintColor = Color.DarkGray;
                                 }
 
-                                if (curtile.FullBrightBlock || curtile.WallColor == 30)
+                                if (curtile.FullBrightWall || curtile.WallColor == 30)
                                 {
                                     wallPaintColor = Color.White;
                                 }
