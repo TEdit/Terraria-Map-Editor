@@ -4485,7 +4485,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
                 <Frame UV="1548,0" Name="Ash Wood Clock" />
             </Frames>
         </Tile>
-        <Tile Id="105" Color="#FF909490" Name="Statues" Framed="true" Size="2,3" Placement="floor">
+        <Tile Id="105" Color="#FF909490" Name="Statue" Framed="true" Size="2,3" Placement="floor">
             <Frames>
                 <Frame UV="0,0" Name="Armor Statue" Variety="Left" />
                 <Frame UV="0,162" Name="Armor Statue" Variety="Right" />
@@ -6472,7 +6472,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         </Tile>
         <Tile Id="335" Color="#FFD9AE89" Name="Fireworks Box" Framed="true" Size="2,2" />
         <Tile Id="336" Color="#FFFD3E03" Name="Living Fire Block" Solid="true" Blends="true" />
-        <Tile Id="337" Color="#FF909490" Name="Text Statues" Framed="true" Size="2,3" Placement="floor">
+        <Tile Id="337" Color="#FF909490" Name="Text Statue" Framed="true" Size="2,3" Placement="floor">
             <Frames>
                 <Frame UV="0,0" Variety="0 Statue" />
                 <Frame UV="36,0" Variety="1 Statue" />
