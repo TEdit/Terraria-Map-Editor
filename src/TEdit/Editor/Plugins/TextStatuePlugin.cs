@@ -157,7 +157,7 @@ namespace TEdit.Editor.Plugins
 
                 foreach (var frame in sprite.Styles)
                 {
-                    char c = frame.Value.Name[12];
+                    char c = frame.Value.Name[13]; // [13] - skips the first 13 chars of the string.
                     _textFrames[c] = frame.Value;
                 }
             }
