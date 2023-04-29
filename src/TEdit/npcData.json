@@ -976,6 +976,54 @@
       "BestiaryDisplayIndex": 156
     },
     {
+      "Id": 105,
+      "BannerId": -1,
+      "FullName": "Bound Goblin",
+      "Name": "Bound Goblin",
+      "BestiaryId": "BoundGoblin",
+      "CanTalk": true,
+      "IsCritter": false,
+      "IsKillCredit": true,
+      "IsTownNpc": true,
+      "BestiaryDisplayIndex": 14
+    },
+    {
+      "Id": 106,
+      "BannerId": -1,
+      "FullName": "Bound Wizard",
+      "Name": "Bound Wizard",
+      "BestiaryId": "BoundWizard",
+      "CanTalk": true,
+      "IsCritter": false,
+      "IsKillCredit": true,
+      "IsTownNpc": true,
+      "BestiaryDisplayIndex": 18
+    },
+    {
+      "Id": 123,
+      "BannerId": -1,
+      "FullName": "Bound Mechanic",
+      "Name": "Bound Mechanic",
+      "BestiaryId": "BoundMechanic",
+      "CanTalk": true,
+      "IsCritter": false,
+      "IsKillCredit": true,
+      "IsTownNpc": true,
+      "BestiaryDisplayIndex": 16
+    },
+    {
+      "Id": 679,
+      "BannerId": -1,
+      "FullName": "Old Shaking Chest",
+      "Name": "Old Shaking Chest",
+      "BestiaryId": "OldShakingChest",
+      "CanTalk": true,
+      "IsCritter": false,
+      "IsKillCredit": true,
+      "IsTownNpc": true,
+      "BestiaryDisplayIndex": 32
+    },
+    {
       "Id": 109,
       "BannerId": 17,
       "FullName": "Clown",
