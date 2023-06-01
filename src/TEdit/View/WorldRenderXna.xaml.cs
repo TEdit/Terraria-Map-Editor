@@ -2931,15 +2931,23 @@ namespace TEdit.View
         {
             int npcId = npc.SpriteId;
 
-            string townNpcName = World.BestiaryData.NpcById[npcId].BestiaryId;
+            if (!World.BestiaryData.NpcById.ContainsKey(npcId))
+            {
+                DrawNpcOverlay(npc);
+                return;
+            }
+            
+            var npcData = World.BestiaryData.NpcById[npcId];
+            string npcName = World.BestiaryData.NpcById[npcId].BestiaryId;
             bool isPartying = _wvm.CurrentWorld.PartyingNPCs.Contains(npcId);
 
-            Texture2D npcTexture =
-                _textureDictionary.GetTownNPC(townNpcName, npcId, variant: npc.TownNpcVariationIndex, partying: isPartying);
+            Texture2D npcTexture = npcData.IsTownNpc ?
+                    _textureDictionary.GetTownNPC(npcName, npcId, variant: npc.TownNpcVariationIndex, partying: isPartying) :
+                    null;
 
             if (npcTexture != null)
             {
-                var size = World.NpcFrames[npcId];
+                var size = World.NpcFrames?[npcId] ?? Vector2Short.Zero;
                 short height = size.Y > 0 ? size.Y : (short)55; // default 55 for normal height people
 
                 size = new Vector2Short(size.X, height);
@@ -2984,14 +2992,15 @@ namespace TEdit.View
 
         private void DrawNpcOverlay(NPC npc)
         {
-            string npcName = npc.Name;
-
-            if (_textures.ContainsKey(npcName))
+            //string npcName = npc.Name;
+            int npcId = npc.SpriteId;
+            var tex = _textureDictionary.GetNPC(npcId);
+            if (tex != null)
             {
                 _spriteBatch.Draw(
-                    _textures[npcName],
+                    tex,
                     GetOverlayLocation(npc.Home.X, npc.Home.Y),
-                    _textures[npcName].Bounds,
+                    tex.Bounds,
                     Color.FromNonPremultiplied(255, 255, 255, 128),
                     0f,
                     Vector2.Zero,
