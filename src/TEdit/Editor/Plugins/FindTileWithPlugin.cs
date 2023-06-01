@@ -46,10 +46,10 @@ namespace TEdit.Editor.Plugins
                                 if (!spriteIds.TryGetValue((ushort)prop.Id, out frameList))
                                 {
                                     frameList = new Dictionary<Vector2Short, string>();
-                                    spriteIds.Add((ushort)prop.Id, frameList);
+                                    spriteIds[(ushort)prop.Id] = frameList;
                                 }
 
-                                frameList.Add(frame.UV, $"{prop.Name} ({frame})");
+                                frameList[frame.UV] = $"{prop.Name} ({frame})";
                             }
                         }
                     }
@@ -57,7 +57,7 @@ namespace TEdit.Editor.Plugins
                     {
                         if (prop.Name.ToLower().Contains(blockName))
                         {
-                            tileIds.Add((ushort)prop.Id, prop.Name);
+                            tileIds[(ushort)prop.Id] = prop.Name;
                         }
                     }
 
@@ -71,7 +71,7 @@ namespace TEdit.Editor.Plugins
                 {
                     if (prop.Name.ToLower().Contains(wallName))
                     {
-                        wallIds.Add((ushort)prop.Id, prop.Name);
+                        wallIds[(ushort)prop.Id] = prop.Name;
                     }
 
                 }
