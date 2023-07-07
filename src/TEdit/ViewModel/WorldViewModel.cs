@@ -11,9 +11,9 @@ using System.Windows;
 using System.Windows.Data;
 using System.Windows.Input;
 using System.Windows.Media.Imaging;
-using GalaSoft.MvvmLight;
-using GalaSoft.MvvmLight.Command;
-using TEdit.MvvmLight.Threading;
+using TEdit.Common.Reactive;
+using TEdit.Common.Reactive.Command;
+using TEdit.Framework.Threading;
 using TEdit.Geometry.Primitives;
 using TEdit.Utility;
 using TEdit.Editor;
@@ -27,7 +27,6 @@ using TEdit.Terraria;
 using TEdit.Terraria.Objects;
 using TEdit.View.Popups;
 using Application = System.Windows.Application;
-using DispatcherHelper = GalaSoft.MvvmLight.Threading.DispatcherHelper;
 using MessageBox = System.Windows.MessageBox;
 using OpenFileDialog = Microsoft.Win32.OpenFileDialog;
 using SaveFileDialog = Microsoft.Win32.SaveFileDialog;
@@ -684,7 +683,7 @@ namespace TEdit.ViewModel
             get { return Settings.Default.RealisticColors; }
             set
             {
-                RaisePropertyChanged(nameof(RealisticColors), Settings.Default.RealisticColors, value, true);
+                RaisePropertyChanged(nameof(RealisticColors), Settings.Default.RealisticColors, value);
                 Settings.Default.RealisticColors = value;
                 try { Settings.Default.Save(); } catch (Exception ex) { ErrorLogging.LogException(ex); }
                 MessageBox.Show(Properties.Language.messagebox_restartrequired, Properties.Language.messagebox_restartrequired, MessageBoxButton.OK, MessageBoxImage.Information);

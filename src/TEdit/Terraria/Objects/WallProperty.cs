@@ -1,6 +1,6 @@
 ﻿using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using GalaSoft.MvvmLight;
+using TEdit.Common.Reactive;
 
 namespace TEdit.Terraria.Objects
 {

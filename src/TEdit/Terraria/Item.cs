@@ -1,7 +1,7 @@
 using System;
 using System.Linq;
 using System.Windows;
-using GalaSoft.MvvmLight;
+using TEdit.Common.Reactive;
 using TEdit.Terraria.Objects;
 
 namespace TEdit.Terraria

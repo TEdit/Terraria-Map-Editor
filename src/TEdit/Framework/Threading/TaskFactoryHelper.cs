@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 
-namespace TEdit.MvvmLight.Threading
+namespace TEdit.Framework.Threading
 {
     public static class TaskFactoryHelper
     {

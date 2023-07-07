@@ -1,5 +1,5 @@
 ﻿using System.Linq;
-using GalaSoft.MvvmLight;
+using TEdit.Common.Reactive;
 
 namespace TEdit.Terraria.Objects
 {

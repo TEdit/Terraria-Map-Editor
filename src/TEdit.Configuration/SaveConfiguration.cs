@@ -1,10 +1,8 @@
-﻿using Microsoft.Xna.Framework;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using TEdit.UI.Xaml;
 
 namespace TEdit.Configuration
 {

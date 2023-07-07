@@ -9,7 +9,7 @@ using System.Runtime.InteropServices;
 using System.Collections.ObjectModel;
 using System.Reflection;
 using System.IO;
-using TEdit.MvvmLight.Threading;
+using TEdit.Framework.Threading;
 
 namespace TEdit.Terraria.Tests
 {

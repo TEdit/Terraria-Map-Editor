@@ -9,7 +9,7 @@ using TEdit.Terraria;
 using TEdit.Editor;
 using TEdit.Render;
 using System.Windows;
-using TEdit.MvvmLight.Threading;
+using TEdit.Framework.Threading;
 using System.IO;
 
 namespace TEdit.ViewModel

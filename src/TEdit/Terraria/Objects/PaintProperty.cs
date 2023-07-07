@@ -1,5 +1,5 @@
 ﻿using System.Windows.Media;
-using GalaSoft.MvvmLight;
+using TEdit.Common.Reactive;
 using XnaColor = Microsoft.Xna.Framework.Color;
 
 namespace TEdit.Terraria.Objects

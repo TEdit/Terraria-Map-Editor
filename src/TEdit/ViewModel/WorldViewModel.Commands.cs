@@ -5,7 +5,7 @@ using System.Windows;
 using System.Windows.Input;
 using TEdit.Framework.Events;
 using TEdit.Geometry.Primitives;
-using GalaSoft.MvvmLight.Command;
+using TEdit.Common.Reactive.Command;
 using Microsoft.Win32;
 using TEdit.Terraria;
 using TEdit.Editor;

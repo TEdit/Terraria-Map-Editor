@@ -6,7 +6,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Xml.Linq;
 using TEdit.Geometry.Primitives;
-using GalaSoft.MvvmLight;
+using TEdit.Common.Reactive;
 using TEdit.Editor.Clipboard;
 using XNA = Microsoft.Xna.Framework;
 using TEdit.Terraria.Objects;

@@ -2,14 +2,16 @@
 using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
+using System.Text;
 using System.Windows;
-using TEdit.MvvmLight.Threading;
+using System.Windows.Threading;
+using TEdit.Framework.Threading;
 using TEdit.Properties;
 using TEdit.ViewModel;
-using DispatcherHelper = GalaSoft.MvvmLight.Threading.DispatcherHelper;
 
 namespace TEdit
 {
+
     /// <summary>
     /// Interaction logic for App.xaml
     /// </summary>
@@ -172,4 +174,6 @@ namespace TEdit
 #endif
         }
     }
+
+    
 }

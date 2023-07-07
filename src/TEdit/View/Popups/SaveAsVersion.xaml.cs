@@ -1,7 +1,7 @@
 using System.Windows;
 using System.Windows.Input;
 using TEdit.Terraria;
-using GalaSoft.MvvmLight.Command;
+using TEdit.Common.Reactive.Command;
 
 namespace TEdit.UI.Xaml
 {

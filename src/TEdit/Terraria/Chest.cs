@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.ObjectModel;
-using GalaSoft.MvvmLight;
+using TEdit.Common.Reactive;
 using TEdit.Terraria.Objects;
 using TEdit.ViewModel;
 

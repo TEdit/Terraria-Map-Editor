@@ -32,8 +32,8 @@ namespace TEdit.Configuration
     {
         public NpcConfiguration Configuration { get; private set; } = new();
 
-        public Dictionary<int,NpcData> NpcById { get; private set; } = new();
-        public Dictionary<string,NpcData> NpcData { get; private set; } = new();
+        public Dictionary<int, NpcData> NpcById { get; private set; } = new();
+        public Dictionary<string, NpcData> NpcData { get; private set; } = new();
 
         public List<string> BestiaryTalkedIDs { get; private set; } = new();
         public List<string> BestiaryNearIDs { get; private set; } = new();

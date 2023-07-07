@@ -1,5 +1,5 @@
 using TEdit.Geometry.Primitives;
-using GalaSoft.MvvmLight;
+using TEdit.Common.Reactive;
 using TEdit.Terraria;
 
 namespace TEdit.Editor

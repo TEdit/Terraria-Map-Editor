@@ -37,8 +37,8 @@ namespace TEdit.Utility
         }
 
 
-
         public static double Lerp(double value1, double value2, double amount) => value1 + (value2 - value1) * amount;
+        public static float Lerp(float value1, float value2, float amount) => value1 + (value2 - value1) * amount;
 
 
         public static T Clamp<T>(T value, T min, T max) where T : IComparable<T>
@@ -78,7 +78,7 @@ namespace TEdit.Utility
             float toMax,
             bool clamped = true)
         {
-            return MathHelper.Lerp(toMin, toMax, GetLerpValue(fromMin, fromMax, fromValue, clamped));
+            return Lerp(toMin, toMax, GetLerpValue(fromMin, fromMax, fromValue, clamped));
         }
     }
 }

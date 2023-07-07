@@ -2,7 +2,7 @@
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using TEdit.Geometry.Primitives;
-using GalaSoft.MvvmLight;
+using TEdit.Common.Reactive;
 using System.Linq;
 using TEdit.View;
 

@@ -1,5 +1,5 @@
 ﻿using System;
-using GalaSoft.MvvmLight;
+using TEdit.Common.Reactive;
 using Microsoft.Xna.Framework;
 
 namespace TEdit.Render

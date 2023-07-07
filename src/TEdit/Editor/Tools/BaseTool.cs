@@ -1,6 +1,6 @@
 ﻿using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using GalaSoft.MvvmLight;
+using TEdit.Common.Reactive;
 using TEdit.ViewModel;
 
 namespace TEdit.Editor.Tools

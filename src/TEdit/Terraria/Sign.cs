@@ -1,5 +1,5 @@
 using System;
-using GalaSoft.MvvmLight;
+using TEdit.Common.Reactive;
 using TEdit.ViewModel;
 using TEdit.Terraria.Objects;
 

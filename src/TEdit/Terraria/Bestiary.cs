@@ -1,4 +1,4 @@
-﻿using GalaSoft.MvvmLight;
+﻿using TEdit.Common.Reactive;
 using System;
 using System.Collections.Generic;
 using System.IO;

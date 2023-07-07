@@ -1,5 +1,5 @@
-﻿using GalaSoft.MvvmLight;
-using GalaSoft.MvvmLight.Command;
+﻿using TEdit.Common.Reactive;
+using TEdit.Common.Reactive.Command;
 using System;
 using System.Collections.ObjectModel;
 using System.Linq;

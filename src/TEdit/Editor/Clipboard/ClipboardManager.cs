@@ -2,7 +2,7 @@
 using System.Collections.ObjectModel;
 using System.Windows;
 using TEdit.Geometry.Primitives;
-using GalaSoft.MvvmLight;
+using TEdit.Common.Reactive;
 using TEdit.ViewModel;
 using XNA = Microsoft.Xna.Framework;
 using TEdit.Terraria;

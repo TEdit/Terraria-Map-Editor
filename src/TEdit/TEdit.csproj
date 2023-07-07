@@ -9,8 +9,8 @@
     <DefaultNamespace>TEdit</DefaultNamespace>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <LangVersion>latest</LangVersion>
-    <VersionPrefix>4.16.0</VersionPrefix>
-    <VersionSuffix></VersionSuffix>
+    <VersionPrefix>5.0.0</VersionPrefix>
+    <VersionSuffix>alpha0</VersionSuffix>
     <Platforms>AnyCPU</Platforms>
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
@@ -24,8 +24,7 @@
     <PackageReference Include="Microsoft.ApplicationInsights" Version="2.15.0" />
     <PackageReference Include="Microsoft.ApplicationInsights.WindowsServer" Version="2.15.0" />
     <PackageReference Include="MonoGame.Framework.WindowsDX" Version="3.8.0.1641" />
-    <PackageReference Include="MvvmLightLibs" Version="5.4.1.1" />
-    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
     <PackageReference Include="System.Collections" Version="4.3.0" />
   </ItemGroup>
 
@@ -72,6 +71,12 @@
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     
+  </ItemGroup>
+  
+  <ItemGroup>
+    <ProjectReference Include="..\TEdit.Common\TEdit.Common.csproj" />
+    <ProjectReference Include="..\TEdit.Configuration\TEdit.Configuration.csproj" />
+    <ProjectReference Include="..\TEdit.Terraria\TEdit.Terraria.csproj" />
   </ItemGroup>
 
   <ItemGroup>

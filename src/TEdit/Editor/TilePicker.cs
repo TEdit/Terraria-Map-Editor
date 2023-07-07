@@ -1,5 +1,5 @@
 ﻿using System.ComponentModel;
-using GalaSoft.MvvmLight;
+using TEdit.Common.Reactive;
 using TEdit.Terraria;
 using System.Windows.Input;
 

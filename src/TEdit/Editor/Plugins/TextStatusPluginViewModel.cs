@@ -1,4 +1,4 @@
-﻿using GalaSoft.MvvmLight;
+﻿using TEdit.Common.Reactive;
 using Microsoft.Xna.Framework;
 using System.Windows;
 

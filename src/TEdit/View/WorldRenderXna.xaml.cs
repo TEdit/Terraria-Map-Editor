@@ -5,7 +5,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using TEdit.Geometry.Primitives;
-using GalaSoft.MvvmLight;
+using TEdit.Common.Reactive;
 using TEdit.UI.Xaml.XnaContentHost;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;

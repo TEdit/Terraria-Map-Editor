@@ -20,7 +20,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Runtime.CompilerServices;
 using Microsoft.Win32;
-using GalaSoft.MvvmLight.CommandWpf;
+using TEdit.Common.Reactive.Command;
 using Newtonsoft.Json;
 using TEdit.Terraria;
 using TEdit.ViewModel;

@@ -1,4 +1,4 @@
-using GalaSoft.MvvmLight;
+using TEdit.Common.Reactive;
 using TEdit.ViewModel;
 
 namespace TEdit.Editor.Plugins

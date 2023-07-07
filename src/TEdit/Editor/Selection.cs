@@ -1,6 +1,6 @@
 ﻿using System;
 using TEdit.Geometry.Primitives;
-using GalaSoft.MvvmLight;
+using TEdit.Common.Reactive;
 using Microsoft.Xna.Framework;
 
 namespace TEdit.Editor
