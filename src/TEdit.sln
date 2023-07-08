@@ -21,6 +21,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TEdit.Terraria", "TEdit.Ter
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TEdit.Common", "TEdit.Common\TEdit.Common.csproj", "{4F7D8CE2-ABF8-4A15-ABA0-5A7B2E77FE1A}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TEdit.Desktop", "TEdit.Desktop\TEdit.Desktop.csproj", "{9C942195-8286-42C6-A682-ED297010193E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -49,6 +51,10 @@ Global
 		{4F7D8CE2-ABF8-4A15-ABA0-5A7B2E77FE1A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4F7D8CE2-ABF8-4A15-ABA0-5A7B2E77FE1A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4F7D8CE2-ABF8-4A15-ABA0-5A7B2E77FE1A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9C942195-8286-42C6-A682-ED297010193E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9C942195-8286-42C6-A682-ED297010193E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9C942195-8286-42C6-A682-ED297010193E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9C942195-8286-42C6-A682-ED297010193E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -4,9 +4,9 @@ using System.Linq;
 using TEdit.Terraria;
 using TEdit.Geometry.Primitives;
 using TEdit.ViewModel;
-using TEdit.Editor;
+using TEdit.Configuration;
 
-namespace TEdit.Configuration
+namespace TEdit.Editor
 {
     public static class BiomeMorphExtensions
     {
@@ -50,7 +50,7 @@ namespace TEdit.Configuration
     public class MorphBiomeDataApplier
     {
         static Dictionary<MorphBiomeData, MorphBiomeDataApplier> _morpherCache = new();
-        
+
         public static MorphBiomeDataApplier GetMorpher(MorphBiomeData biome)
         {
             MorphBiomeDataApplier morpher;
@@ -164,7 +164,7 @@ namespace TEdit.Configuration
                     else
                     {
                         source.Type = id;
-                    }                    
+                    }
                 }
 
                 // filter sprites
@@ -180,9 +180,9 @@ namespace TEdit.Configuration
             }
         }
 
-       
 
- 
+
+
 
         public static bool AirBelow(int x, int y)
         {
@@ -206,14 +206,14 @@ namespace TEdit.Configuration
             if (world == null) return false;
 
             // copied from render code. this should probably be made a method so it can be reused
-            neighborTile[e] = (x + 1) < world.TilesWide ? world.Tiles[x + 1, y] : null;
-            neighborTile[n] = (y - 1) > 0 ? world.Tiles[x, y - 1] : null;
-            neighborTile[w] = (x - 1) > 0 ? world.Tiles[x - 1, y] : null;
-            neighborTile[s] = (y + 1) < world.TilesHigh ? world.Tiles[x, y + 1] : null;
-            neighborTile[ne] = (x + 1) < world.TilesWide && (y - 1) > 0 ? world.Tiles[x + 1, y - 1] : null;
-            neighborTile[nw] = (x - 1) > 0 && (y - 1) > 0 ? world.Tiles[x - 1, y - 1] : null;
-            neighborTile[sw] = (x - 1) > 0 && (y + 1) < world.TilesHigh ? world.Tiles[x - 1, y + 1] : null;
-            neighborTile[se] = (x + 1) < world.TilesWide && (y + 1) < world.TilesHigh ? world.Tiles[x + 1, y + 1] : null;
+            neighborTile[e] = x + 1 < world.TilesWide ? world.Tiles[x + 1, y] : null;
+            neighborTile[n] = y - 1 > 0 ? world.Tiles[x, y - 1] : null;
+            neighborTile[w] = x - 1 > 0 ? world.Tiles[x - 1, y] : null;
+            neighborTile[s] = y + 1 < world.TilesHigh ? world.Tiles[x, y + 1] : null;
+            neighborTile[ne] = x + 1 < world.TilesWide && y - 1 > 0 ? world.Tiles[x + 1, y - 1] : null;
+            neighborTile[nw] = x - 1 > 0 && y - 1 > 0 ? world.Tiles[x - 1, y - 1] : null;
+            neighborTile[sw] = x - 1 > 0 && y + 1 < world.TilesHigh ? world.Tiles[x - 1, y + 1] : null;
+            neighborTile[se] = x + 1 < world.TilesWide && y + 1 < world.TilesHigh ? world.Tiles[x + 1, y + 1] : null;
 
             // these loops are split out because checking isactive is orders of magnitude faster than checking the hashset
             // if a tile is empty, this lets the algorithm shortcut the hashcheck, making it faster
