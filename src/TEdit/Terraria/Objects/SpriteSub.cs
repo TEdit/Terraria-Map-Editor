@@ -17,7 +17,7 @@ namespace TEdit.Terraria.Objects
         public TEditColor StyleColor { get; set; }
         public Vector2Short UV { get; set; }
         public Vector2Short SizeTiles { get; set; }
-        public WriteableBitmap Preview { get; set; }
+        public WriteableBitmap Preview { get; set; } //TODO: move rendering separate from config
         public Vector2Short SizeTexture { get; set; }
         public Vector2Short SizePixelsInterval { get; set; }
         public FrameAnchor Anchor { get; set; }
