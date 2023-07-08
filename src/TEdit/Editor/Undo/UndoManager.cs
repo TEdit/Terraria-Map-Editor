@@ -5,9 +5,9 @@ using System.Threading;
 using TEdit.Common.Reactive;
 using TEdit.Terraria;
 using TEdit.ViewModel;
-using TEdit.Terraria.Objects;
 using System.Diagnostics;
 using TEdit.Geometry;
+using TEdit.Render;
 
 namespace TEdit.Editor.Undo
 {

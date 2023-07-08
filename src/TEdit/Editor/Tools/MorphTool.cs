@@ -6,9 +6,9 @@ using System.Windows.Media.Imaging;
 using TEdit.Geometry;
 using TEdit.ViewModel;
 using System.Linq;
-using TEdit.Terraria.Objects;
 using TEdit.Configuration;
 using TEdit.Terraria;
+using TEdit.Render;
 
 namespace TEdit.Editor.Tools
 {

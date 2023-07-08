@@ -935,7 +935,7 @@ namespace TEdit.View
             if (!AreTexturesVisible()) return;
 
             Rectangle visibleBounds = GetViewingArea();
-            Terraria.Objects.BlendRules blendRules = Terraria.Objects.BlendRules.Instance;
+            BlendRules blendRules = BlendRules.Instance;
 
             //Extended the viewing space to give tiles time to cache their UV's
             for (int y = visibleBounds.Top - 1; y < visibleBounds.Bottom + 2; y++)
@@ -1047,7 +1047,7 @@ namespace TEdit.View
             if (!AreTexturesVisible()) return;
 
             Rectangle visibleBounds = GetViewingArea();
-            Terraria.Objects.BlendRules blendRules = Terraria.Objects.BlendRules.Instance;
+            BlendRules blendRules = BlendRules.Instance;
             var width = _wvm.CurrentWorld.TilesWide;
             var height = _wvm.CurrentWorld.TilesHigh;
 
@@ -1163,7 +1163,7 @@ namespace TEdit.View
             if (!AreTexturesVisible()) return;
 
             Rectangle visibleBounds = GetViewingArea();
-            Terraria.Objects.BlendRules blendRules = Terraria.Objects.BlendRules.Instance;
+            BlendRules blendRules = BlendRules.Instance;
             var width = _wvm.CurrentWorld.TilesWide;
             var height = _wvm.CurrentWorld.TilesHigh;
 
@@ -1840,7 +1840,7 @@ namespace TEdit.View
                                         else
                                         {
                                             var type = curtile.Type;
-                                            Vector2Int32 renderUV = GetRenderUV(curtile.Type, curtile.U, curtile.V);
+                                            Vector2Int32 renderUV = TileProperty.GetRenderUV(curtile.Type, curtile.U, curtile.V);
 
                                             source = new Rectangle(renderUV.X, renderUV.Y, tileprop.TextureGrid.X, tileprop.TextureGrid.Y);
                                             if (source.Width <= 0)
@@ -2387,7 +2387,7 @@ namespace TEdit.View
             if (!AreTexturesVisible()) return;
 
             Rectangle visibleBounds = GetViewingArea();
-            Terraria.Objects.BlendRules blendRules = Terraria.Objects.BlendRules.Instance;
+            BlendRules blendRules = BlendRules.Instance;
             var width = _wvm.CurrentWorld.TilesWide;
             var height = _wvm.CurrentWorld.TilesHigh;
 
@@ -2602,55 +2602,7 @@ namespace TEdit.View
         }
 
 
-        public static Vector2Int32 GetRenderUV(ushort type, short U, short V)
-        {
-            int renderU = U;
-            int renderV = V;
-
-            switch (type)
-            {
-                case 87:
-                case 88:
-                case 89:
-                    {
-                        int u = U / 1998;
-                        renderU -= 1998 * u;
-                        renderV += 36 * u;
-                    }
-                    break;
-                case 93:
-                    {
-                        int v = V / 1998;
-                        renderU += 36 * v;
-                        renderV -= 1998 * v;
-                    }
-                    break;
-                case 101:
-                    {
-                        int u = U / 1998;
-                        renderU -= 1998 * u;
-                        renderV += 72 * u;
-                    }
-                    break;
-                case 185:
-                    if (V == 18)
-                    {
-                        int u = U / 1908;
-                        renderU -= 1908 * u;
-                        renderV += 18 * u;
-                    }
-                    break;
-                case 187:
-                    {
-                        int u = U / 1890;
-                        renderU -= 1890 * u;
-                        renderV += 36 * u;
-                    }
-                    break;
-            }
-
-            return new Vector2Int32(renderU, renderV);
-        }
+        
 
         private Vector2Int32 TrackUV(int num)
         {

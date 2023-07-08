@@ -6,8 +6,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using TEdit.Geometry;
 using TEdit.ViewModel;
-using TEdit.Terraria.Objects;
 using TEdit.Terraria;
+using TEdit.Render;
 
 namespace TEdit.Editor.Tools
 {

@@ -4,9 +4,10 @@ using System.Linq;
 using TEdit.Editor;
 using TEdit.ViewModel;
 using TEdit.Geometry;
+using TEdit.Terraria;
 
 /* Heathtech */
-namespace TEdit.Terraria.Objects
+namespace TEdit.Render
 {
     class BlendRules
     {
@@ -279,28 +280,28 @@ namespace TEdit.Terraria.Objects
         {
             if (_wvm.TilePicker.PaintMode == PaintMode.TileAndWall)
             {
-                    //Reset UV Cache for nearby tiles and walls
-                    for (int x = -1; x < regionWidth + 1; x++)
+                //Reset UV Cache for nearby tiles and walls
+                for (int x = -1; x < regionWidth + 1; x++)
+                {
+                    int tilex = x + tileStartX;
+                    for (int y = -1; y < regionHeight + 1; y++)
                     {
-                        int tilex = x + tileStartX;
-                        for (int y = -1; y < regionHeight + 1; y++)
+                        int tiley = y + tileStartY;
+                        if (tilex < 0 || tiley < 0 || tilex >= _wvm.CurrentWorld.TilesWide || tiley >= _wvm.CurrentWorld.TilesHigh)
                         {
-                            int tiley = y + tileStartY;
-                            if (tilex < 0 || tiley < 0 || tilex >= _wvm.CurrentWorld.TilesWide || tiley >= _wvm.CurrentWorld.TilesHigh)
-                            {
-                                continue;
-                            }
-                            Tile curtile = _wvm.CurrentWorld.Tiles[tilex, tiley];
-                            if (_wvm.TilePicker.TileStyleActive)
-                            {
-                                curtile.uvTileCache = 0xFFFF;
-                                curtile.lazyMergeId = 0xFF;
-                                curtile.hasLazyChecked = false;
-                            }
-                            if (_wvm.TilePicker.WallStyleActive)
-                                curtile.uvWallCache = 0xFFFF;
+                            continue;
                         }
+                        Tile curtile = _wvm.CurrentWorld.Tiles[tilex, tiley];
+                        if (_wvm.TilePicker.TileStyleActive)
+                        {
+                            curtile.uvTileCache = 0xFFFF;
+                            curtile.lazyMergeId = 0xFF;
+                            curtile.hasLazyChecked = false;
+                        }
+                        if (_wvm.TilePicker.WallStyleActive)
+                            curtile.uvWallCache = 0xFFFF;
                     }
+                }
             }
         }
     }
@@ -357,18 +358,18 @@ namespace TEdit.Terraria.Objects
         //Works a "bit" of bit-magic to validate rules
         public bool Matches(long neighborMask, long blendMask)
         {
-            long upperCornerInclusionMask = (cornerInclusionMask << 16) & 0x11110000;
+            long upperCornerInclusionMask = cornerInclusionMask << 16 & 0x11110000;
             if ((upperCornerInclusionMask & neighborMask) != upperCornerInclusionMask)
             {
                 return false;
             }
-            long upperCornerExclusionMask = (cornerExclusionMask << 16) & 0x11110000;
+            long upperCornerExclusionMask = cornerExclusionMask << 16 & 0x11110000;
             if (upperCornerExclusionMask != 0 && (upperCornerExclusionMask & neighborMask) != 0x00000000)
             {
                 return false;
             }
             long lowerBlendInclusionMask = blendInclusionMask & 0x00001111;
-            if (lowerBlendInclusionMask != 0 && (lowerBlendInclusionMask ^ (blendMask & 0x00001111)) != 0x00000000)
+            if (lowerBlendInclusionMask != 0 && (lowerBlendInclusionMask ^ blendMask & 0x00001111) != 0x00000000)
             {
                 return false;
             }
@@ -396,7 +397,7 @@ namespace TEdit.Terraria.Objects
             long column = 0x00010000;
             for (int i = 0; i < 4; i++)
             {
-                long upperCornerInclusionMask = (cornerInclusionMask << 16) & column;
+                long upperCornerInclusionMask = cornerInclusionMask << 16 & column;
                 long upperBlendCornerInclusionMask = blendInclusionMask & column;
                 if ((upperCornerInclusionMask & upperBlendCornerInclusionMask) == 0x00000000)
                 {
@@ -421,13 +422,13 @@ namespace TEdit.Terraria.Objects
                     column <<= 4;
                 }
             }
-            long upperCornerExclusionMask = (cornerExclusionMask << 16) & 0x11110000;
+            long upperCornerExclusionMask = cornerExclusionMask << 16 & 0x11110000;
             if (upperCornerExclusionMask != 0 && (upperCornerExclusionMask & neighborMask) != 0x00000000)
             {
                 return false;
             }
             long lowerBlendInclusionMask = blendInclusionMask & 0x00001111;
-            if (lowerBlendInclusionMask != 0 && (lowerBlendInclusionMask ^ (blendMask & 0x00001111)) != 0x00000000)
+            if (lowerBlendInclusionMask != 0 && (lowerBlendInclusionMask ^ blendMask & 0x00001111) != 0x00000000)
             {
                 return false;
             }

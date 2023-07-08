@@ -3,7 +3,7 @@ using System.Windows.Input;
 using System.Windows.Media.Imaging;
 using TEdit.Geometry;
 using TEdit.ViewModel;
-using TEdit.Terraria.Objects;
+using TEdit.Render;
 
 namespace TEdit.Editor.Tools
 {

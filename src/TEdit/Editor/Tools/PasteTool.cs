@@ -4,8 +4,8 @@ using System.Windows.Input;
 using System.Windows.Media.Imaging;
 using Microsoft.Xna.Framework;
 using TEdit.ViewModel;
-using TEdit.Terraria.Objects;
 using TEdit.Geometry;
+using TEdit.Render;
 
 namespace TEdit.Editor.Tools
 {

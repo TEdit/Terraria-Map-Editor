@@ -1,9 +1,9 @@
 using TEdit.ViewModel;
 using System.Linq;
-using TEdit.Terraria.Objects;
 using SharpDX.Direct2D1;
 using System.Collections.Generic;
 using TEdit.Terraria;
+using TEdit.Render;
 
 namespace TEdit.Editor.Plugins
 {

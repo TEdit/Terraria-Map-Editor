@@ -5,10 +5,10 @@ using TEdit.Common.Reactive;
 using TEdit.ViewModel;
 using XNA = Microsoft.Xna.Framework;
 using TEdit.Terraria;
-using TEdit.Terraria.Objects;
 using System.Collections.Generic;
 using System.Linq;
 using TEdit.Geometry;
+using TEdit.Render;
 
 namespace TEdit.Editor.Clipboard
 {
