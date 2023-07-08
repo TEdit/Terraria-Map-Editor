@@ -15,6 +15,7 @@ using System.Linq;
 using Microsoft.Xna.Framework.Input;
 using System.Diagnostics;
 using TEdit.Geometry;
+using TEdit.Common;
 
 namespace TEdit.Terraria
 {
@@ -177,17 +178,18 @@ namespace TEdit.Terraria
         }
 
 
-        private static Color ColorFromString(string colorstring)
+        private static TEditColor ColorFromString(string colorstring)
         {
             if (!string.IsNullOrWhiteSpace(colorstring))
             {
                 var colorFromString = ColorConverter.ConvertFromString(colorstring);
                 if (colorFromString != null)
                 {
-                    return (Color)colorFromString;
+                    var c = (Color)colorFromString;
+                    return TEditColor.FromNonPremultiplied(c.R, c.G, c.B, c.A);
                 }
             }
-            return Colors.Magenta;
+            return TEditColor.Magenta;
         }
         private static XNA.Color XnaColorFromString(string colorstring)
         {
@@ -209,14 +211,14 @@ namespace TEdit.Terraria
             {
                 Id = -1,
                 Name = "Air",
-                Color = Color.FromArgb(0, 0, 0, 0)
+                Color = TEditColor.Transparent
             });
 
             TileBricksMask.Add(new TileProperty
             {
                 Id = -1,
                 Name = "Air",
-                Color = Color.FromArgb(0, 0, 0, 0)
+                Color = TEditColor.Transparent
             });
 
             var xmlSettings = XElement.Load(file);
@@ -327,7 +329,7 @@ namespace TEdit.Terraria
             }
             for (int i = TileProperties.Count; i < 255; i++)
             {
-                TileProperties.Add(new TileProperty(i, "UNKNOWN", Color.FromArgb(255, 255, 0, 255), true));
+                TileProperties.Add(new TileProperty(i, "UNKNOWN", new TEditColor(255, 0, 255, 255), true));
             }
 
             foreach (var xElement in xmlSettings.Elements("Walls").Elements("Wall"))

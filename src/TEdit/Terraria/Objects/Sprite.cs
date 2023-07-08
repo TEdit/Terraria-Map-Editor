@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using TEdit.View;
 using TEdit.Geometry;
+using TEdit.Common;
 
 namespace TEdit.Terraria.Objects
 {
@@ -14,7 +15,7 @@ namespace TEdit.Terraria.Objects
     {
         public ushort Tile { get; set; }
         public int Style { get; set; }
-        public Color StyleColor { get; set; }
+        public TEditColor StyleColor { get; set; }
         public Vector2Short UV { get; set; }
         public Vector2Short SizeTiles { get; set; }
         public WriteableBitmap Preview { get; set; }

@@ -5,12 +5,13 @@ using TEdit.Common.Reactive;
 using System.Linq;
 using TEdit.View;
 using TEdit.Geometry;
+using TEdit.Common;
 
 namespace TEdit.Terraria.Objects
 {
     public class TileProperty : ObservableObject, ITile
     {
-        private Color _color = Colors.Magenta;
+        private TEditColor _color = TEditColor.Magenta;
         private int _id = -1;
         private string _name = "UNKNOWN";
         private bool _isFramed;
@@ -125,7 +126,7 @@ namespace TEdit.Terraria.Objects
             get { return _frames; }
         }
 
-        public TileProperty(int id, string name, Color color, bool isFramed = false)
+        public TileProperty(int id, string name, TEditColor color, bool isFramed = false)
         {
             _color = color;
             _id = id;
@@ -133,7 +134,7 @@ namespace TEdit.Terraria.Objects
             _isFramed = isFramed;
         }
 
-        public Color Color
+        public TEditColor Color
         {
             get { return _color; }
             set { Set(nameof(Color), ref _color, value); }
@@ -186,14 +187,6 @@ namespace TEdit.Terraria.Objects
             get { return _isFramed; }
             set { Set(nameof(IsFramed), ref _isFramed, value); }
         }
-
-        private WriteableBitmap _image;
-        public WriteableBitmap Image
-        {
-            get { return _image; }
-            set { Set(nameof(Image), ref _image, value); }
-        }
-
 
         public bool IsGrass
         {

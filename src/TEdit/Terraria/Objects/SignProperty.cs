@@ -1,7 +1,6 @@
 ﻿using TEdit.Common.Reactive;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
 using TEdit.Geometry;
+using TEdit.Common;
 
 namespace TEdit.Terraria.Objects
 {
@@ -50,16 +49,9 @@ namespace TEdit.Terraria.Objects
             set { Set(nameof(Name), ref _name, value); }
         }
 
-        private WriteableBitmap _image;
-        public WriteableBitmap Image
+        public TEditColor Color
         {
-            get { return _image; }
-            set { Set(nameof(Image), ref _image, value); }
-        }
-
-        public Color Color
-        {
-            get { return Colors.Transparent; }
+            get { return TEditColor.Transparent; }
         }
 
         public int Id

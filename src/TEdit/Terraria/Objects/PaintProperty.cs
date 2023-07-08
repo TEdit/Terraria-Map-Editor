@@ -1,24 +1,24 @@
-﻿using System.Windows.Media;
+﻿
+using TEdit.Common;
 using TEdit.Common.Reactive;
-using XnaColor = Microsoft.Xna.Framework.Color;
 
 namespace TEdit.Terraria.Objects
 {
     public class PaintProperty : ObservableObject
     {
-        private Color _color;
-        private XnaColor _paintColor;
+        private TEditColor _color;
+
         private int _id;
         private string _name;
 
         public PaintProperty()
         {
-            _color = Colors.Magenta;
+            _color = TEditColor.Magenta;
             _id = -1;
             _name = "UNKNOWN";
         }
 
-        public PaintProperty(int id, string name, Color color)
+        public PaintProperty(int id, string name, TEditColor color)
         {
             _color = color;
             _id = id;
@@ -26,18 +26,16 @@ namespace TEdit.Terraria.Objects
         }
 
 
-        public Color Color
+        public TEditColor Color
         {
             get { return _color; }
             set
             {
                 Set(nameof(Color), ref _color, value);
-                _paintColor = new XnaColor(value.R, value.G, value.B, value.A);
                 RaisePropertyChanged("PaintColor");
             }
         }
 
-        public XnaColor PaintColor => _paintColor;
 
         public int Id
         {

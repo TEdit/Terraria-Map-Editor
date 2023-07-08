@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using System;
+using TEdit.Common;
 using TEdit.Terraria;
 
 namespace TEdit.Render
@@ -12,17 +13,17 @@ namespace TEdit.Render
             return AlphaBlend(background.A, background.R, background.B, background.G,
                               color.A, color.R, color.B, color.G);
         }
-        public static Color AlphaBlend(this Color background, System.Windows.Media.Color color)
+        public static Color AlphaBlend(this Color background, TEditColor color)
         {
             return AlphaBlend(background.A, background.R, background.B, background.G,
                               color.A, color.R, color.B, color.G);
         }
-        public static Color AlphaBlend(this System.Windows.Media.Color background, Color color)
+        public static Color AlphaBlend(this TEditColor background, Color color)
         {
             return AlphaBlend(background.A, background.R, background.B, background.G,
                               color.A, color.R, color.B, color.G);
         }
-        public static Color AlphaBlend(this System.Windows.Media.Color background, System.Windows.Media.Color color)
+        public static Color AlphaBlend(this TEditColor background, TEditColor color)
         {
             return AlphaBlend(background.A, background.R, background.B, background.G,
                               color.A, color.R, color.B, color.G);

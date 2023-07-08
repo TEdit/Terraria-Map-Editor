@@ -1,5 +1,4 @@
-﻿using System.Windows.Media;
-using System.Windows.Media.Imaging;
+﻿using TEdit.Common;
 using TEdit.Common.Reactive;
 using TEdit.Geometry;
 
@@ -45,6 +44,7 @@ namespace TEdit.Terraria.Objects
         }
 
 
+        private bool _isFood;
         public bool IsFood
         {
             get { return _isFood; }
@@ -52,19 +52,9 @@ namespace TEdit.Terraria.Objects
         }
 
 
-
-        private WriteableBitmap _image;
-        private bool _isFood;
-
-        public WriteableBitmap Image
+        public TEditColor Color
         {
-            get { return _image; }
-            set { Set(nameof(Image), ref _image, value); }
-        }
-
-        public Color Color
-        {
-            get { return Colors.Transparent; }
+            get { return TEditColor.Transparent; }
         }
 
         public int Id

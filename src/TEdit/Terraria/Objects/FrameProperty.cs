@@ -1,6 +1,7 @@
 ﻿using System.Text;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using TEdit.Common;
 using TEdit.Common.Reactive;
 using TEdit.Geometry;
 
@@ -12,7 +13,7 @@ namespace TEdit.Terraria.Objects
         {
             Id = 0;
             Name = "Default";
-            Color = Colors.Magenta;
+            Color = TEditColor.Magenta;
             UV = new Vector2Short(0,0);
             Size = new Vector2Short(1,1);
             Anchor = FrameAnchor.None;
@@ -32,7 +33,7 @@ namespace TEdit.Terraria.Objects
         private int _id;
         private FrameAnchor _anchor;
         
-        private Color _color;
+        private TEditColor _color;
         private WriteableBitmap _image;
         private string _variety;
          
@@ -49,7 +50,7 @@ namespace TEdit.Terraria.Objects
             set { Set(nameof(Anchor), ref _anchor, value); }
         }
 
-        public Color Color
+        public TEditColor Color
         {
             get { return _color; }
             set { Set(nameof(Color), ref _color, value); }
@@ -76,12 +77,6 @@ namespace TEdit.Terraria.Objects
         {
             get { return _name; }
             set { Set(nameof(Name), ref _name, value); }
-        }
-
-        public WriteableBitmap Image
-        {
-            get { return _image; }
-            set { Set(nameof(Image), ref _image, value); }
         }
 
         public override string ToString()

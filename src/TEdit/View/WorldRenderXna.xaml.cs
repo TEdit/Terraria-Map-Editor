@@ -23,6 +23,7 @@ using System.Xml.Linq;
 using TEdit.Properties;
 using TEdit.Render;
 using TEdit.Geometry;
+using TEdit.Common;
 
 namespace TEdit.View
 {
@@ -220,7 +221,7 @@ namespace TEdit.View
             _gameTimer.Start();
         }
 
-        public static System.Windows.Media.Color GetTextureTileColor(Texture2D texture, Rectangle source, bool useAverage = true)
+        public static TEditColor GetTextureTileColor(Texture2D texture, Rectangle source, bool useAverage = true)
         {
             Dictionary<Color, int> colorHistogram = new Dictionary<Color, int>();
 
@@ -244,14 +245,14 @@ namespace TEdit.View
                 }
             }
 
-            if (colorHistogram.Count == 0) return System.Windows.Media.Color.FromArgb(0, 0, 0, 0);
+            if (colorHistogram.Count == 0) return TEditColor.Transparent;
 
             if (useAverage)
             {
                 var r = colorHistogram.Sum(kvp => kvp.Key.R) / colorHistogram.Count;
                 var g = colorHistogram.Sum(kvp => kvp.Key.G) / colorHistogram.Count;
                 var b = colorHistogram.Sum(kvp => kvp.Key.B) / colorHistogram.Count;
-                return System.Windows.Media.Color.FromArgb(255, (byte)r, (byte)g, (byte)b);
+                return new TEditColor((byte)r, (byte)g, (byte)b, (byte)255);
             }
             else
             {
@@ -262,11 +263,11 @@ namespace TEdit.View
                 var b2 = colorModes.Sum(c => c.B) / colorModes.Count;
                 var colorMode = new Color(r2, g2, b2);
 
-                return System.Windows.Media.Color.FromArgb(
-                    255,
+                return new TEditColor(                    
                     colorMode.R,
                     colorMode.G,
-                    colorMode.B);
+                    colorMode.B, 
+                    (byte)255);
             }
 
 
