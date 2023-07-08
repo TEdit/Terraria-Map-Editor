@@ -303,8 +303,8 @@ namespace TEdit.Terraria
 
             // var sprite2 = World.Sprites2.FirstOrDefault(s => s.Tile == (ushort)te.TileType);
 
-            var sprite = World.Sprites.FirstOrDefault(s => s.Tile == (ushort)te.TileType);
-            if (sprite == null) return;
+            //var sprite = World.Sprites2.FirstOrDefault(s => s.Tile == (ushort)te.TileType);
+            //if (sprite == null) return;
 
             AddEntityToWorld(te, wvm.CurrentWorld);
 
@@ -318,8 +318,8 @@ namespace TEdit.Terraria
             if (te == null) return;
             if (world == null) return;
 
-            var sprite = World.Sprites.FirstOrDefault(s => s.Tile == (ushort)te.TileType);
-            if (sprite == null) return;
+            //var sprite = World.Sprites2.FirstOrDefault(s => s.Tile == (ushort)te.TileType);
+            //if (sprite == null) return;
 
             AddEntityToWorld(te, world);
 

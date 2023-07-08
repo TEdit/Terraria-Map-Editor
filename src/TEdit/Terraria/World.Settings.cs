@@ -59,7 +59,6 @@ namespace TEdit.Terraria
         private static readonly ObservableCollection<WallProperty> _wallProperties = new ObservableCollection<WallProperty>();
         private static readonly ObservableCollection<WallProperty> _wallPropertiesMask = new ObservableCollection<WallProperty>();
         private static readonly ObservableCollection<PaintProperty> _paintProperties = new ObservableCollection<PaintProperty>();
-        private static readonly ObservableCollection<Sprite> _sprites = new ObservableCollection<Sprite>();
 
         private static Vector2 _appSize;
         internal static string AltC;
@@ -94,8 +93,6 @@ namespace TEdit.Terraria
             TileCount = (short)SaveConfiguration.SaveVersions[(int)CompatibleVersion].MaxTileId;
             WallCount = (short)SaveConfiguration.SaveVersions[(int)CompatibleVersion].MaxWallId;
             MaxNpcID = (short)SaveConfiguration.SaveVersions[(int)CompatibleVersion].MaxNpcId;
-
-            Sprites.Add(new Sprite());
 
             if (SettingsTileFrameImportant == null || SettingsTileFrameImportant.Length <= 0)
             {
@@ -286,16 +283,16 @@ namespace TEdit.Terraria
                         if (!string.IsNullOrWhiteSpace(curFrame.Variety))
                             spriteName += " - " + curFrame.Variety;
                     }
-                    Sprites.Add(new Sprite
-                    {
-                        Anchor = curFrame.Anchor,
-                        IsPreviewTexture = false,
-                        Name = spriteName,
-                        Origin = curFrame.UV,
-                        Size = frameSize,
-                        Tile = (ushort)curTile.Id, /* SBlogic */
-                        TileName = curTile.Name
-                    });
+                    //Sprites.Add(new Sprite
+                    //{
+                    //    Anchor = curFrame.Anchor,
+                    //    IsPreviewTexture = false,
+                    //    Name = spriteName,
+                    //    Origin = curFrame.UV,
+                    //    Size = frameSize,
+                    //    Tile = (ushort)curTile.Id, /* SBlogic */
+                    //    TileName = curTile.Name
+                    //});
 
                 }
                 if (curTile.Frames.Count == 0 && curTile.IsFramed)
@@ -309,16 +306,16 @@ namespace TEdit.Terraria
                     //curFrame.Anchor = InLineEnumTryParse<FrameAnchor>((string)xElement.Attribute("Anchor"));
 
                     curTile.Frames.Add(curFrame);
-                    Sprites.Add(new Sprite
-                    {
-                        Anchor = curFrame.Anchor,
-                        IsPreviewTexture = false,
-                        Name = null,
-                        Origin = curFrame.UV,
-                        Size = curTile.FrameSize[0],
-                        Tile = (ushort)curTile.Id,
-                        TileName = curTile.Name
-                    });
+                    //Sprites.Add(new Sprite
+                    //{
+                    //    Anchor = curFrame.Anchor,
+                    //    IsPreviewTexture = false,
+                    //    Name = null,
+                    //    Origin = curFrame.UV,
+                    //    Size = curTile.FrameSize[0],
+                    //    Tile = (ushort)curTile.Id,
+                    //    TileName = curTile.Name
+                    //});
                 }
                 TileProperties.Add(curTile);
                 if (!curTile.IsFramed)
@@ -658,12 +655,6 @@ namespace TEdit.Terraria
         }
 
         public static ObservableCollection<SpriteFull> Sprites2 { get; } = new ObservableCollection<SpriteFull>();
-
-
-        public static ObservableCollection<Sprite> Sprites
-        {
-            get { return _sprites; }
-        }
 
         public static Dictionary<int, string> TallyNames
         {

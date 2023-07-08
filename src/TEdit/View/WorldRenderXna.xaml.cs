@@ -569,50 +569,6 @@ namespace TEdit.View
                     ErrorLogging.Log(e.GraphicsDevice.GraphicsDeviceStatus.ToString());
                 }
             }
-
-            foreach (var sprite in World.Sprites)
-            {
-                if (sprite.Size.X == 0 || sprite.Size.Y == 0)
-                    continue;
-                try
-                {
-                    var tile = World.GetTileProperties(sprite.Tile);
-                    if (tile.TextureGrid.X == 0 || tile.TextureGrid.Y == 0)
-                        continue;
-                    var texture = new Texture2D(e.GraphicsDevice, sprite.Size.X * tile.TextureGrid.X, sprite.Size.Y * tile.TextureGrid.Y);
-                    var tileTex = _textureDictionary.GetTile(sprite.Tile);
-
-                    for (int x = 0; x < sprite.Size.X; x++)
-                    {
-                        for (int y = 0; y < sprite.Size.Y; y++)
-                        {
-                            var source = new Rectangle(x * (tile.TextureGrid.X + tile.FrameGap.X) + sprite.Origin.X, y * (tile.TextureGrid.Y + tile.FrameGap.Y) + sprite.Origin.Y, tile.TextureGrid.X, tile.TextureGrid.Y);
-                            if (sprite.Tile == 171)
-                                source = new Rectangle(x * (tile.TextureGrid.X) + sprite.Origin.X, y * (tile.TextureGrid.Y) + sprite.Origin.Y, tile.TextureGrid.X, tile.TextureGrid.Y);
-                            if (source.Bottom > tileTex.Height)
-                                source.Height -= (source.Bottom - tileTex.Height);
-                            if (source.Right > tileTex.Width)
-                                source.Width -= (source.Right - tileTex.Width);
-
-                            if (source.Height <= 0 || source.Width <= 0)
-                                continue;
-
-                            var color = new Color[source.Height * source.Width];
-                            var dest = new Rectangle(x * tile.TextureGrid.X, y * tile.TextureGrid.Y, source.Width, source.Height);
-                            tileTex.GetData(0, source, color, 0, color.Length);
-                            texture.SetData(0, dest, color, 0, color.Length);
-                        }
-                    }
-                    sprite.IsPreviewTexture = true;
-                    sprite.Preview = texture.Texture2DToWriteableBitmap();
-                }
-                catch (Exception ex)
-                {
-                    ErrorLogging.LogException(ex);
-                    ErrorLogging.Log(e.GraphicsDevice.GraphicsDeviceStatus.ToString());
-                }
-            }
-
         }
 
         #endregion

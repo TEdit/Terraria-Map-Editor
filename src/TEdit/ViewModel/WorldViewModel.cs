@@ -92,7 +92,6 @@ namespace TEdit.ViewModel
         private Item _selectedChestItem;
         private string _selectedPoint;
         private Sign _selectedSign;
-        private Sprite _selectedSprite;
         private KeyValuePair<int, SpriteSub> _selectedSprite2;
         private SpriteFull _selectedSpriteTile2;
         private Vector2Int32 _selectedXmas;
@@ -156,31 +155,6 @@ namespace TEdit.ViewModel
             World.ProgressChanged += OnProgressChanged;
             Brush.BrushChanged += OnPreviewChanged;
             UpdateTitle();
-
-            _spriteFilter = string.Empty;
-            _spritesView = (ListCollectionView)CollectionViewSource.GetDefaultView(World.Sprites);
-            _spritesView.Filter = o =>
-            {
-                if (string.IsNullOrWhiteSpace(_spriteFilter)) return true;
-
-                var sprite = (Sprite)o;
-
-                string[] _spriteFilterSplit = _spriteFilter.Split('/');
-                foreach (string _spriteWord in _spriteFilterSplit)
-                {
-                    if (sprite.TileName == _spriteWord) return true;
-                    if (sprite.Name == _spriteWord) return true;
-                    if (sprite.TileName != null && sprite.TileName.IndexOf(_spriteWord, StringComparison.OrdinalIgnoreCase) >= 0) return true;
-                    if (sprite.Name != null && sprite.Name.IndexOf(_spriteWord, StringComparison.OrdinalIgnoreCase) >= 0) return true;
-                }
-
-                if (sprite.TileName == _spriteFilter) return true;
-                if (sprite.Name == _spriteFilter) return true;
-                if (sprite.TileName != null && sprite.TileName.IndexOf(_spriteFilter, StringComparison.OrdinalIgnoreCase) >= 0) return true;
-                if (sprite.Name != null && sprite.Name.IndexOf(_spriteFilter, StringComparison.OrdinalIgnoreCase) >= 0) return true;
-
-                return false;
-            };
 
             _spritesView2 = (ListCollectionView)CollectionViewSource.GetDefaultView(World.Sprites2);
             _spritesView2.Filter = o =>
@@ -458,16 +432,6 @@ namespace TEdit.ViewModel
                     SetActiveTool(Tools.FirstOrDefault(t => t is SpriteTool2));
                 }
 
-                PreviewChange();
-            }
-        }
-
-        public Sprite SelectedSprite
-        {
-            get { return _selectedSprite; }
-            set
-            {
-                Set(nameof(SelectedSprite), ref _selectedSprite, value);
                 PreviewChange();
             }
         }
