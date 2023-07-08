@@ -4,6 +4,9 @@ using System.Linq;
 using System.Windows.Media.Imaging;
 using TEdit.Terraria;
 using TEdit.ViewModel;
+using TEdit.Geometry;
+using System.Collections.Generic;
+using TEdit.Terraria.Objects;
 
 namespace TEdit.Editor.Tools
 {
@@ -48,10 +51,10 @@ namespace TEdit.Editor.Tools
                 _wvm.TilePicker.Tile = curTile.Type;
             else
             {
-                var sprite = World.Sprites.FirstOrDefault(s => s.Tile == curTile.Type && s.Origin.X == curTile.U && s.Origin.Y == curTile.V);
-                if (sprite == null)
-                    sprite = World.Sprites.FirstOrDefault(s => s.Tile == curTile.Type);
-                _wvm.SelectedSprite = sprite;
+                var sprite = World.Sprites2.FirstOrDefault(s => s.Tile == curTile.Type).GetStyleFromUV(new Vector2Short(curTile.U, curTile.V));
+                if (sprite.Value == null)
+                    sprite = World.Sprites2.FirstOrDefault(s => s.Tile == curTile.Type).Styles.First();
+                _wvm.SelectedSprite2 = sprite;
             }
 
             _wvm.TilePicker.Wall = curTile.Wall;
