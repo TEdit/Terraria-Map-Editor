@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
-using TEdit.Geometry.Primitives;
+using TEdit.Geometry;
 using TEdit.Terraria;
 using TEdit.ViewModel;
 

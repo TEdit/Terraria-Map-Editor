@@ -5,7 +5,6 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using TEdit.Geometry;
-using TEdit.Geometry.Primitives;
 using TEdit.ViewModel;
 using TEdit.Terraria.Objects;
 using TEdit.Terraria;

@@ -1,6 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
-using TEdit.Geometry.Primitives;
+using TEdit.Geometry;
 
 namespace TEdit.Terraria
 {

@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using TEdit.Geometry.Primitives;
 using TEdit.Editor;
 using TEdit.ViewModel;
+using TEdit.Geometry;
 
 /* Heathtech */
 namespace TEdit.Terraria.Objects

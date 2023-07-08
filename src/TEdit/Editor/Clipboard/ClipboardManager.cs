@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.Windows;
-using TEdit.Geometry.Primitives;
 using TEdit.Common.Reactive;
 using TEdit.ViewModel;
 using XNA = Microsoft.Xna.Framework;
@@ -9,6 +8,7 @@ using TEdit.Terraria;
 using TEdit.Terraria.Objects;
 using System.Collections.Generic;
 using System.Linq;
+using TEdit.Geometry;
 
 namespace TEdit.Editor.Clipboard
 {

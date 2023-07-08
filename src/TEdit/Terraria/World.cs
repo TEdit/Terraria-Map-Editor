@@ -3,13 +3,13 @@ using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Windows;
-using TEdit.Geometry.Primitives;
 using TEdit.Common.Reactive;
 using TEdit.Terraria.Objects;
 using TEdit.Framework.Threading;
 using TEdit.Editor;
 using TEdit.Utility;
 using System.Collections.Generic;
+using TEdit.Geometry;
 
 namespace TEdit.Terraria
 {

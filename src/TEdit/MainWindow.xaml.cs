@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Windows;
 using System.Windows.Input;
-using TEdit.Geometry.Primitives;
+using TEdit.Geometry;
 using TEdit.Terraria;
 using TEdit.Editor;
 using TEdit.ViewModel;

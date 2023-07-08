@@ -1,7 +1,7 @@
 ﻿using TEdit.Common.Reactive;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using TEdit.Geometry.Primitives;
+using TEdit.Geometry;
 
 namespace TEdit.Terraria.Objects
 {

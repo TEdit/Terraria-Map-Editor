@@ -1,10 +1,10 @@
 using System;
 using System.Windows.Input;
 using System.Windows.Media.Imaging;
-using TEdit.Geometry.Primitives;
 using TEdit.Terraria;
 using TEdit.ViewModel;
 using TEdit.Terraria.Objects;
+using TEdit.Geometry;
 
 namespace TEdit.Editor.Tools
 {

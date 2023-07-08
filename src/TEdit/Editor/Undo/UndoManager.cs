@@ -2,12 +2,12 @@
 using System.IO;
 using System.Linq;
 using System.Threading;
-using TEdit.Geometry.Primitives;
 using TEdit.Common.Reactive;
 using TEdit.Terraria;
 using TEdit.ViewModel;
 using TEdit.Terraria.Objects;
 using System.Diagnostics;
+using TEdit.Geometry;
 
 namespace TEdit.Editor.Undo
 {

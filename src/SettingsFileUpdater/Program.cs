@@ -4,6 +4,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text.Json;
 using System.Threading;
+using System.Xml.Linq;
 
 namespace SettingsFileUpdater
 {
@@ -42,6 +43,27 @@ namespace SettingsFileUpdater
             // }
             // xdoc.Save("settings3.xml");
 
+//#if DEBUG
+//            XDocument xdoc = XDocument.Load("settings.xml");
+//            var xTiles = xdoc.Root.Element("Tiles");
+//            for (int t = 623; t < World.TileCount; t++)
+//            {
+//                var xTile = xTiles.Elements().FirstOrDefault(e => int.Parse(e.Attribute("Id").Value) == t);
+//                var tileProps = World.TileProperties.FirstOrDefault(item => item.Id == t);
+//                //var sprite = (!tileProps.IsFramed) ? null : World.Sprites2.FirstOrDefault(s => s.Tile == t);
+//                xTile.SetAttributeValue("Color", tileProps.Color.ToString());
+
+//                // update frame colors
+//            }
+//            var xWalls = xdoc.Root.Element("Walls");
+//            for (int t = 0; t < World.WallCount; t++)
+//            {
+//                var xWall = xWalls.Elements().FirstOrDefault(e => int.Parse(e.Attribute("Id").Value) == t);
+//                var wallProps = World.WallProperties.FirstOrDefault(item => item.Id == t);
+//                xWall.SetAttributeValue("Color", wallProps.Color.ColorToString());
+//            }
+//            xdoc.Save("settings2.xml");
+//#endif
 
             //foreach (var item in tilecolors)
             //{

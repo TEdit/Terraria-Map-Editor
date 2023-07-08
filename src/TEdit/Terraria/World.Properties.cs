@@ -6,8 +6,8 @@ using TEdit.Common.Reactive;
 using TEdit.Common.Reactive.Command;
 using Microsoft.Xna.Framework;
 using TEdit.Editor;
-using TEdit.Geometry.Primitives;
 using TEdit.Terraria.Objects;
+using TEdit.Geometry;
 
 namespace TEdit.Terraria
 {

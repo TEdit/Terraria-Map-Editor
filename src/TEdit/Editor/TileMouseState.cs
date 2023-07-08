@@ -1,5 +1,5 @@
 ﻿using System.Windows.Input;
-using TEdit.Geometry.Primitives;
+using TEdit.Geometry;
 using TEdit.UI.Xaml.XnaContentHost;
 
 namespace TEdit.Editor

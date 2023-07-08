@@ -1,10 +1,10 @@
 ﻿using System.Collections.ObjectModel;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using TEdit.Geometry.Primitives;
 using TEdit.Common.Reactive;
 using System.Linq;
 using TEdit.View;
+using TEdit.Geometry;
 
 namespace TEdit.Terraria.Objects
 {

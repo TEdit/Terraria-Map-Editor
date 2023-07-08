@@ -7,7 +7,7 @@ using System.Text;
 using System.Windows;
 using System.Windows.Media.Imaging;
 using TEdit.Editor.Clipboard;
-using TEdit.Geometry.Primitives;
+using TEdit.Geometry;
 using TEdit.Terraria;
 using TEdit.Terraria.Objects;
 using TEdit.ViewModel;

@@ -1,14 +1,14 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel;
 using TEdit.Utility;
-using TEdit.Geometry.Primitives;
-using Vector2 = TEdit.Geometry.Primitives.Vector2;
+using Vector2 = TEdit.Geometry.Vector2;
 using System;
 using System.IO;
 using TEdit.Helper;
 using System.Linq;
 using System.Windows.Documents;
 using static Microsoft.ApplicationInsights.MetricDimensionNames.TelemetryContext;
+using TEdit.Geometry;
 
 namespace TEdit.Terraria
 {

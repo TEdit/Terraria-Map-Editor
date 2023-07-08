@@ -3,8 +3,7 @@ using System.ComponentModel;
 using TEdit.Utility;
 using TEdit.Helper;
 using TEdit.Terraria.Objects;
-using TEdit.Geometry.Primitives;
-using Vector2 = TEdit.Geometry.Primitives.Vector2;
+using Vector2 = TEdit.Geometry.Vector2;
 using System;
 using System.Collections.ObjectModel;
 using System.IO;
@@ -15,6 +14,7 @@ using static Microsoft.ApplicationInsights.MetricDimensionNames.TelemetryContext
 using System.Data;
 using SharpDX.Direct2D1.Effects;
 using System.Diagnostics;
+using TEdit.Geometry;
 
 namespace TEdit.Terraria
 {

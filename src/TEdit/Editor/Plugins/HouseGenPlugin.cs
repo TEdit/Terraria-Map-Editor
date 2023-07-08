@@ -25,7 +25,7 @@ using Newtonsoft.Json;
 using TEdit.Terraria;
 using TEdit.ViewModel;
 using TEdit.Editor.Clipboard;
-using TEdit.Geometry.Primitives;
+using TEdit.Geometry;
 
 namespace TEdit.Editor.Plugins
 {

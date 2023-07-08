@@ -1,5 +1,5 @@
 ﻿using System.Collections.ObjectModel;
-using TEdit.Geometry.Primitives;
+using TEdit.Geometry;
 using TEdit.Terraria;
 
 namespace TEdit.Editor

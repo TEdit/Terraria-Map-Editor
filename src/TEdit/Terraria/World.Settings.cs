@@ -5,7 +5,6 @@ using System.IO;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Xml.Linq;
-using TEdit.Geometry.Primitives;
 using TEdit.Common.Reactive;
 using TEdit.Editor.Clipboard;
 using XNA = Microsoft.Xna.Framework;
@@ -15,6 +14,7 @@ using TEdit.Configuration;
 using System.Linq;
 using Microsoft.Xna.Framework.Input;
 using System.Diagnostics;
+using TEdit.Geometry;
 
 namespace TEdit.Terraria
 {

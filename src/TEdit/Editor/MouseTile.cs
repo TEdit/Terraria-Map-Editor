@@ -1,6 +1,6 @@
-using TEdit.Geometry.Primitives;
 using TEdit.Common.Reactive;
 using TEdit.Terraria;
+using TEdit.Geometry;
 
 namespace TEdit.Editor
 {

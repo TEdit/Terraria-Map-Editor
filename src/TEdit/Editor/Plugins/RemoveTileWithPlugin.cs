@@ -2,8 +2,8 @@ using System.Collections.Generic;
 using TEdit.Terraria;
 using TEdit.ViewModel;
 using System;
-using TEdit.Geometry.Primitives;
 using System.Windows;
+using TEdit.Geometry;
 
 namespace TEdit.Editor.Plugins
 {

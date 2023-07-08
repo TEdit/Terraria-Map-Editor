@@ -2,7 +2,7 @@
 using System.IO;
 using System.Windows.Media.Imaging;
 using TEdit.Configuration;
-using TEdit.Geometry.Primitives;
+using TEdit.Geometry;
 using TEdit.Helper;
 using TEdit.Terraria;
 using TEdit.Terraria.Objects;

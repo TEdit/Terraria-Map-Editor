@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using TEdit.Terraria;
-using TEdit.Geometry.Primitives;
 using TEdit.ViewModel;
 using TEdit.Configuration;
+using TEdit.Geometry;
 
 namespace TEdit.Editor
 {

@@ -2,7 +2,6 @@
 using System.ComponentModel;
 using System.Linq;
 using System.Threading.Tasks;
-using TEdit.Geometry.Primitives;
 using TEdit.Utility;
 using Microsoft.Xna.Framework;
 using TEdit.Terraria;
@@ -11,6 +10,7 @@ using TEdit.Render;
 using System.Windows;
 using TEdit.Framework.Threading;
 using System.IO;
+using TEdit.Geometry;
 
 namespace TEdit.ViewModel
 {

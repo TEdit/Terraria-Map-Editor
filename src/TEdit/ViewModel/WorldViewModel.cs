@@ -14,7 +14,6 @@ using System.Windows.Media.Imaging;
 using TEdit.Common.Reactive;
 using TEdit.Common.Reactive.Command;
 using TEdit.Framework.Threading;
-using TEdit.Geometry.Primitives;
 using TEdit.Utility;
 using TEdit.Editor;
 using TEdit.Editor.Clipboard;
@@ -36,6 +35,7 @@ using System.Linq;
 using Microsoft.Xna.Framework;
 using TEdit.UI.Xaml;
 using static TEdit.Terraria.CreativePowers;
+using TEdit.Geometry;
 
 namespace TEdit.ViewModel
 {

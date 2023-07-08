@@ -3,10 +3,10 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using TEdit.Geometry.Primitives;
 using TEdit.Common.Reactive;
 using Microsoft.Xna.Framework;
 using TEdit.Terraria;
+using TEdit.Geometry;
 
 namespace TEdit.Editor.Clipboard
 {
