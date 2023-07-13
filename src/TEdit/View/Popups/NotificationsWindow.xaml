@@ -39,6 +39,9 @@
                         <ListItem>
                             <Paragraph>Added support to console worlds. Now save between formats!</Paragraph>
                         </ListItem>
+                        <ListItem>
+                            <Paragraph>Fixed the checkbox for old Chinese world formats.</Paragraph>
+                        </ListItem>
                     </List>
                     
                     <Paragraph>Version 4.15</Paragraph>
