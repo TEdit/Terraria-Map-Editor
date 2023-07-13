@@ -287,7 +287,7 @@
         <TextBlock Text="{x:Static p:Language.tool_wp_seed}" HorizontalAlignment="Right" />
         <TextBox Text="{Binding CurrentWorld.Seed}" HorizontalAlignment="Stretch" IsReadOnly="true" />
         <TextBlock />
-        <CheckBox x:Name="mobileCb" Content="{x:Static p:Language.tool_wp_chinese}" VerticalAlignment="Center" Grid.Row="12" Grid.Column="1" IsChecked="{Binding CurrentWorld.IsAndroid, Mode=TwoWay}"/>
+        <CheckBox x:Name="mobileCb" Content="{x:Static p:Language.tool_wp_chinese}" VerticalAlignment="Center" Grid.Row="12" Grid.Column="1" IsChecked="{Binding CurrentWorld.IsChinese, Mode=TwoWay}"/>
         <TextBlock />
         <CheckBox x:Name="consoleCb" Content="{x:Static p:Language.tool_wp_console}" VerticalAlignment="Center" Grid.Row="12" Grid.Column="1" IsChecked="{Binding CurrentWorld.IsConsole, Mode=TwoWay}"/>
 
