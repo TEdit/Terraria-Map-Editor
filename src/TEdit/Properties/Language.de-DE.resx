@@ -1323,6 +1323,9 @@ Klicke auf „Wiederholen“, um einen neuen Ordner auszuwählen, oder auf „Ab
   <data name="tool_wp_chinese" xml:space="preserve">
     <value>Chinesische Weltversion</value>
   </data>
+  <data name="tool_wp_console" xml:space="preserve">
+    <value>Konsolenwelt Version</value>
+  </data>
   <data name="chest_max_stack" xml:space="preserve">
     <value>Max</value>
   </data>

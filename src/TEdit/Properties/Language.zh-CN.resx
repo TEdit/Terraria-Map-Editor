@@ -1323,6 +1323,9 @@
   <data name="tool_wp_chinese" xml:space="preserve">
     <value>中文世界版</value>
   </data>
+  <data name="tool_wp_console" xml:space="preserve">
+    <value>主机世界版</value>
+  </data>
   <data name="chest_max_stack" xml:space="preserve">
     <value>麦克斯</value>
   </data>

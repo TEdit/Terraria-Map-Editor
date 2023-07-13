@@ -1323,6 +1323,9 @@
   <data name="tool_wp_chinese" xml:space="preserve">
     <value>النسخة الصينية العالمية</value>
   </data>
+  <data name="tool_wp_console" xml:space="preserve">
+    <value>إصدار عالم وحدة التحكم</value>
+  </data>
   <data name="chest_max_stack" xml:space="preserve">
     <value>ماكس</value>
   </data>

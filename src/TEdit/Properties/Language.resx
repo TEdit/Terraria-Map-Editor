@@ -1326,6 +1326,9 @@ Press retry to pick a new folder or cancel to use {0} as your terraria path.</va
   <data name="tool_wp_chinese" xml:space="preserve">
     <value>Chinese World Version</value>
   </data>
+  <data name="tool_wp_console" xml:space="preserve">
+    <value>Console World Version</value>
+  </data>
   <data name="chest_max_stack" xml:space="preserve">
     <value>Max</value>
   </data>
