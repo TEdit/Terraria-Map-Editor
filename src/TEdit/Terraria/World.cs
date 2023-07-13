@@ -8,6 +8,7 @@ using GalaSoft.MvvmLight;
 using TEdit.Terraria.Objects;
 using TEdit.MvvmLight.Threading;
 using TEdit.Editor;
+using TEdit.Utility;
 using System.Collections.Generic;
 
 namespace TEdit.Terraria
@@ -138,6 +139,11 @@ namespace TEdit.Terraria
                                 SaveV1(world, bw, addLight);
                             }
 
+                            if (world.IsConsole)
+                            {
+                                ConsoleCompressor.CompressStream(fs);
+                            }
+
                             bw.Close();
                             fs.Close();
 
@@ -174,98 +180,108 @@ namespace TEdit.Terraria
             {
                 lock (_fileLock)
                 {
-                    using (var b = new BinaryReader(File.OpenRead(filename)))
+                    using (var fs = File.OpenRead(filename))
                     {
+                        Stream stream = fs;
+                        if (ConsoleCompressor.IsCompressed(fs))
+                        {
+                            w.IsConsole = true;
+                            stream = ConsoleCompressor.DecompressStream(fs);
+                        }
+
+                        using (var b = new BinaryReader(stream))
+                        {
 
 #if DEBUG
-                        using TextWriter debugger = new StreamWriter(new FileStream(filename + ".json", FileMode.Create));
+                            using TextWriter debugger = new StreamWriter(new FileStream(filename + ".json", FileMode.Create));
 
 #else
-                        TextWriter debugger = null;
+                            TextWriter debugger = null;
 
 #endif
 
-                        string twldPath = Path.Combine(
-                            Path.GetDirectoryName(filename),
-                            Path.GetFileNameWithoutExtension(filename) +
-                            ".twld");
+                            string twldPath = Path.Combine(
+                                Path.GetDirectoryName(filename),
+                                Path.GetFileNameWithoutExtension(filename) +
+                                ".twld");
 
-                        w.IsTModLoader = File.Exists(twldPath);
+                            w.IsTModLoader = File.Exists(twldPath);
 
-                        w.Version = b.ReadUInt32();
+                            w.Version = b.ReadUInt32();
 
-                        // only perform this check for v38 and under
-                        if (w.Version <= 38)
-                        {
-                            // save the stream position
-                            var readerPos = b.BaseStream.Position;
-
-                            // read title and seed
-                            w.Title = b.ReadString();
-                            int seed = b.ReadInt32();
-                            // if seed = 0, use load V0
-                            w.IsV0 = seed == 0 && w.Version <= 38;
-
-                            // reset the stream
-                            b.BaseStream.Position = readerPos;
-                        }
-
-
-                        if (showWarnings)
-                        {
-                            if (w.Version < World.CompatibleVersion && w.IsTModLoader)
+                            // only perform this check for v38 and under
+                            if (w.Version <= 38)
                             {
-                                string message = $"You are loading a legacy TModLoader world version: {w.Version}.\r\n" +
-                                    $"1. Editing legacy files is a BETA feature.\r\n" +
-                                    $"2. Editing modded worlds is unsupported.\r\n" +
-                                    "Please make a backup as you may experience world file corruption.\r\n" +
-                                    "Do you wish to continue?";
-                                if (MessageBox.Show(message, "Convert File?", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.No)
+                                // save the stream position
+                                var readerPos = b.BaseStream.Position;
+
+                                // read title and seed
+                                w.Title = b.ReadString();
+                                int seed = b.ReadInt32();
+                                // if seed = 0, use load V0
+                                w.IsV0 = seed == 0 && w.Version <= 38;
+
+                                // reset the stream
+                                b.BaseStream.Position = readerPos;
+                            }
+
+
+                            if (showWarnings)
+                            {
+                                if (w.Version < World.CompatibleVersion && w.IsTModLoader)
                                 {
-                                    return null;
+                                    string message = $"You are loading a legacy TModLoader world version: {w.Version}.\r\n" +
+                                        $"1. Editing legacy files is a BETA feature.\r\n" +
+                                        $"2. Editing modded worlds is unsupported.\r\n" +
+                                        "Please make a backup as you may experience world file corruption.\r\n" +
+                                        "Do you wish to continue?";
+                                    if (MessageBox.Show(message, "Convert File?", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.No)
+                                    {
+                                        return null;
+                                    }
+                                }
+                                else if (w.Version < World.CompatibleVersion)
+                                {
+                                    string message = $"You are loading a legacy world version: {w.Version}.\r\n" +
+                                        $"Editing legacy files is a BETA feature.\r\n" +
+                                        "Please make a backup as you may experience world file corruption.\r\n" +
+                                        "Do you wish to continue?";
+                                    if (MessageBox.Show(message, "Convert File?", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.No)
+                                    {
+                                        return null;
+                                    }
+                                }
+                                else if (w.IsTModLoader)
+                                {
+                                    string message = $"You are loading a TModLoader world." +
+                                        $"Editing modded worlds is unsupported.\r\n" +
+                                        "Please make a backup as you may experience world file corruption.\r\n" +
+                                        "Do you wish to continue?";
+                                    if (MessageBox.Show(message, "Load Mod World?", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.No)
+                                    {
+                                        return null;
+                                    }
                                 }
                             }
-                            else if (w.Version < World.CompatibleVersion)
+
+                            curVersion = w.Version;
+                            if (w.Version > 87)
                             {
-                                string message = $"You are loading a legacy world version: {w.Version}.\r\n" +
-                                    $"Editing legacy files is a BETA feature.\r\n" +
-                                    "Please make a backup as you may experience world file corruption.\r\n" +
-                                    "Do you wish to continue?";
-                                if (MessageBox.Show(message, "Convert File?", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.No)
-                                {
-                                    return null;
-                                }
+                                LoadV2(b, w, debugger);
                             }
-                            else if (w.IsTModLoader)
+                            else if (w.Version <= 38 && w.IsV0)
                             {
-                                string message = $"You are loading a TModLoader world." +
-                                    $"Editing modded worlds is unsupported.\r\n" +
-                                    "Please make a backup as you may experience world file corruption.\r\n" +
-                                    "Do you wish to continue?";
-                                if (MessageBox.Show(message, "Load Mod World?", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.No)
-                                {
-                                    return null;
-                                }
+                                LoadV0(b, filename, w);
                             }
-                        }
-
-                        curVersion = w.Version;
-                        if (w.Version > 87)
-                        {
-                            LoadV2(b, w, debugger);
-                        }
-                        else if (w.Version <= 38 && w.IsV0)
-                        {
-                            LoadV0(b, filename, w);
-                        }
-                        else
-                        {
-                            LoadV1(b, filename, w);
-                        }
+                            else
+                            {
+                                LoadV1(b, filename, w);
+                            }
 
 
 
-                        //w.UpgradeLegacyTileEntities();
+                            //w.UpgradeLegacyTileEntities();
+                        }
                     }
                     w.LastSave = File.GetLastWriteTimeUtc(filename);
                 }

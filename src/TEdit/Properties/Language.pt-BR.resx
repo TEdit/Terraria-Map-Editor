@@ -1323,6 +1323,9 @@ Clique em tentar novamente para escolher uma nova pasta ou cancelar para usar {0
   <data name="tool_wp_chinese" xml:space="preserve">
     <value>Versão do Mundo Chinês</value>
   </data>
+  <data name="tool_wp_console" xml:space="preserve">
+    <value>Versão do mundo do console</value>
+  </data>
   <data name="chest_max_stack" xml:space="preserve">
     <value>Max</value>
   </data>

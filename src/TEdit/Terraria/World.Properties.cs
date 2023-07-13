@@ -242,6 +242,7 @@ namespace TEdit.Terraria
         private bool _zenithWorld;
         private bool _noTrapsWorld;
         private bool _remixWorld;
+        private bool _isConsole;
 
 
         public Bestiary Bestiary
@@ -1099,6 +1100,12 @@ namespace TEdit.Terraria
         {
             get { return _isChinese; }
             set { Set(nameof(IsChinese), ref _isChinese, value); }
+        }
+
+        public bool IsConsole
+        {
+            get { return _isConsole; }
+            set { Set(nameof(IsConsole), ref _isConsole, value); }
         }
 
 

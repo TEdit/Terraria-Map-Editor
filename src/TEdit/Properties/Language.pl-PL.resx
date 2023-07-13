@@ -1323,6 +1323,9 @@ Naciśnij spróbuj ponownie aby wybrać nowy folder lub anuluj aby użyć {0} ja
   <data name="tool_wp_chinese" xml:space="preserve">
     <value>Chińska wersja światowa</value>
   </data>
+  <data name="tool_wp_console" xml:space="preserve">
+    <value>Światowa wersja konsoli</value>
+  </data>
   <data name="chest_max_stack" xml:space="preserve">
     <value>Max</value>
   </data>

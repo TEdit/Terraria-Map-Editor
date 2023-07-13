@@ -2582,6 +2582,15 @@ namespace TEdit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Console World Version.
+        /// </summary>
+        public static string tool_wp_console {
+            get {
+                return ResourceManager.GetString("tool_wp_console", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cobalt Tier.
         /// </summary>
         public static string tool_wp_cobalt {
