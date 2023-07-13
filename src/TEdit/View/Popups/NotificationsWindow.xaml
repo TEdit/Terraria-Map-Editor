@@ -33,7 +33,40 @@
                     <Paragraph>
                         <Bold>Release Notes</Bold>
                     </Paragraph>
-					
+
+                    <Paragraph>Version 4.16</Paragraph>
+                    <List>
+                        <ListItem>
+                            <Paragraph>Added support to console worlds. Now save between formats!</Paragraph>
+                        </ListItem>
+                    </List>
+                    
+                    <Paragraph>Version 4.15</Paragraph>
+                    <List>
+                        <ListItem>
+                            <Paragraph>Fixes for boss rendering crash</Paragraph>
+                        </ListItem>
+                        <ListItem>
+                            <Paragraph>Fix for tile search crash</Paragraph>
+                        </ListItem>
+                    </List>
+                    
+                    <Paragraph>Version 4.14</Paragraph>
+                    <List>
+                        <ListItem>
+                            <Paragraph>Added a block shuffle plugin</Paragraph>
+                        </ListItem>
+                        <ListItem>
+                            <Paragraph>Fixed issues with saving and rendering of wall coatings</Paragraph>
+                        </ListItem>
+                        <ListItem>
+                            <Paragraph>Fixed the generate text statues plugin</Paragraph>
+                        </ListItem>
+                        <ListItem>
+                            <Paragraph>Fixed an exception caused from adding bound NPCs</Paragraph>
+                        </ListItem>
+                    </List>
+                    
                     <Paragraph>Version 4.13</Paragraph>
                     <List>
                         <ListItem>
