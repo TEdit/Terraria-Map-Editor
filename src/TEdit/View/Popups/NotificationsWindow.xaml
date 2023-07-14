@@ -33,7 +33,43 @@
                     <Paragraph>
                         <Bold>Release Notes</Bold>
                     </Paragraph>
-					
+
+                    <Paragraph>Version 4.16</Paragraph>
+                    <List>
+                        <ListItem>
+                            <Paragraph>Added support to console worlds. Now save between formats!</Paragraph>
+                        </ListItem>
+                        <ListItem>
+                            <Paragraph>Fixed the checkbox for old Chinese world formats.</Paragraph>
+                        </ListItem>
+                    </List>
+                    
+                    <Paragraph>Version 4.15</Paragraph>
+                    <List>
+                        <ListItem>
+                            <Paragraph>Fixes for boss rendering crash.</Paragraph>
+                        </ListItem>
+                        <ListItem>
+                            <Paragraph>Fix for tile search crash.</Paragraph>
+                        </ListItem>
+                    </List>
+                    
+                    <Paragraph>Version 4.14</Paragraph>
+                    <List>
+                        <ListItem>
+                            <Paragraph>Added a block shuffle plugin.</Paragraph>
+                        </ListItem>
+                        <ListItem>
+                            <Paragraph>Fixed issues with saving and rendering of wall coatings.</Paragraph>
+                        </ListItem>
+                        <ListItem>
+                            <Paragraph>Fixed the generate text statues plugin.</Paragraph>
+                        </ListItem>
+                        <ListItem>
+                            <Paragraph>Fixed an exception caused from adding bound NPCs.</Paragraph>
+                        </ListItem>
+                    </List>
+                    
                     <Paragraph>Version 4.13</Paragraph>
                     <List>
                         <ListItem>
@@ -44,39 +80,39 @@
                     <Paragraph>Version 4.12</Paragraph>
                     <List>
                         <ListItem>
-                            <Paragraph>Added a coating editor and added further coating functionality</Paragraph>
+                            <Paragraph>Added a coating editor and added further coating functionality.</Paragraph>
                     	</ListItem>
                     	<ListItem>
-                            <Paragraph>Updated masks, more use cases and masks on paint/coatings</Paragraph>
+                            <Paragraph>Updated masks, more use cases and masks on paint/coatings.</Paragraph>
                     	</ListItem>
                     	<ListItem>
-                            <Paragraph>Fix masks not working for dirt</Paragraph>
+                            <Paragraph>Fix masks not working for dirt.</Paragraph>
                     	</ListItem>
                     </List>
                     
                     <Paragraph>Version 4.11</Paragraph>
                     <List>
                         <ListItem>
-                            <Paragraph>File compatibility for worlds up to 1.4.4 - 1.4.4.5</Paragraph>
+                            <Paragraph>File compatibility for worlds up to 1.4.4 - 1.4.4.5.</Paragraph>
                     	</ListItem>
                     	<ListItem>
-                            <Paragraph>Updated configurations for new items, tiles, walls and NPCs</Paragraph>
+                            <Paragraph>Updated configurations for new items, tiles, walls and NPCs.</Paragraph>
                     	</ListItem>
                     	<ListItem>
-                            <Paragraph>New world property items for 1.4.4.5 features</Paragraph>
+                            <Paragraph>New world property items for 1.4.4.5 features.</Paragraph>
                     	</ListItem>
                         <ListItem>
-                            <Paragraph>Updated bestiary to include missing 1.4.4.5 content</Paragraph>
+                            <Paragraph>Updated bestiary to include missing 1.4.4.5 content.</Paragraph>
                     	</ListItem>
                     </List>
                     
                     <Paragraph>Version 4.10</Paragraph>
                     <List>
                         <ListItem>
-                            <Paragraph>All desktop version support added</Paragraph>
+                            <Paragraph>All desktop version support added.</Paragraph>
                     	</ListItem>
                     	<ListItem>
-                            <Paragraph>Android support added</Paragraph>
+                            <Paragraph>Android support added.</Paragraph>
                     	</ListItem>
                     </List>
                     
@@ -114,7 +150,7 @@
                             <Paragraph>Bugfix: Save as version fixes and improvements.</Paragraph>
                         </ListItem>
                         <ListItem>
-                            <Paragraph>Bugfix: Sign limit error</Paragraph>
+                            <Paragraph>Bugfix: Sign limit error.</Paragraph>
                         </ListItem>
                     </List>
 
@@ -168,10 +204,10 @@
                     <Paragraph>Version 4.2.8</Paragraph>
                     <List>
                         <ListItem>
-                            <Paragraph>Version bump for Terraria 1.4.1.2</Paragraph>
+                            <Paragraph>Version bump for Terraria 1.4.1.2.</Paragraph>
                         </ListItem>
                         <ListItem>
-                            <Paragraph>Procedural House Generator Plugin</Paragraph>
+                            <Paragraph>Procedural House Generator Plugin.</Paragraph>
                         </ListItem>
                     </List>
 
