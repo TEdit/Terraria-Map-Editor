@@ -363,6 +363,7 @@ namespace TEdit.View
                 }
             }
 
+            // load sprites
             foreach (var tile in World.TileProperties)
             {
                 if (tile.Id < 0) continue;
