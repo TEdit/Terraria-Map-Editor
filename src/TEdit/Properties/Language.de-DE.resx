@@ -1347,4 +1347,7 @@ Klicke auf „Wiederholen“, um einen neuen Ordner auszuwählen, oder auf „Ab
   <data name="tool_paint_illuminantcoating" xml:space="preserve">
     <value>Leuchtmittel</value>
   </data>
+  <data name="liquid_amount" xml:space="preserve">
+    <value>Flüssigkeitsmenge:</value>
+  </data>
 </root>
