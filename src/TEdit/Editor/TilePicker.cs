@@ -41,6 +41,7 @@ namespace TEdit.Editor
         private bool _wallStyleActive = ToolDefaultData.PaintWallActive;
         private TrackMode _trackMode = TrackMode.Track;
         private JunctionBoxMode _junctionboxMode = JunctionBoxMode.None;
+        private LiquidAmountMode _liquidAmountMode = LiquidAmountMode.OneHundredPercent;
 
         private WireReplaceMode _wireReplaceModeRed = WireReplaceMode.Red;
         private WireReplaceMode _wireReplaceModeBlue = WireReplaceMode.Blue;
@@ -105,7 +106,11 @@ namespace TEdit.Editor
             set { Set(nameof(WireReplaceModeYellow), ref _wireReplaceModeYellow, value); }
         }
 
-
+        public LiquidAmountMode LiquidAmountMode
+        {
+            get { return _liquidAmountMode; }
+            set { Set(nameof(LiquidAmountMode), ref _liquidAmountMode, value); }
+        }
 
         public bool WallCoatingIlluminant
         {
