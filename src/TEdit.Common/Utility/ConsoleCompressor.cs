@@ -11,9 +11,10 @@
  * WARRANTIES OF MERCHANTABILITY AND/OR FITNESS FOR A PARTICULAR PURPOSE.
  */
 
+using Ionic.Zlib;
 using System;
 using System.IO;
-using Ionic.Zlib;
+
 
 namespace TEdit.Utility
 {
@@ -34,6 +35,7 @@ namespace TEdit.Utility
                     b.Write(0x1AA2227E); // Signature
                     b.Write((int)ms.Length);
 
+                    // TODO: use net7.0 ZLibStream
                     using (var compressor = new ZlibStream(stream, CompressionMode.Compress, CompressionLevel.BestCompression))
                     {
                         ms.Position = 0;
