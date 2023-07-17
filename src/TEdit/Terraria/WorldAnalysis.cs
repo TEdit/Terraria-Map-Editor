@@ -64,6 +64,9 @@ namespace TEdit.Terraria
             sb.WriteLine("===SECTION: Tiles===");
 
             var tileCounts = new Dictionary<int, int>();
+            var wireCounts = new List<int>() { 0, 0, 0, 0 };
+
+
 
             int activeTiles = 0;
             for (int x = 0; x < world.TilesWide; x++)
@@ -72,6 +75,11 @@ namespace TEdit.Terraria
                 {
 
                     var tile = world.Tiles[x, y];
+
+                    if (tile.WireBlue) { wireCounts[0]++; }
+                    if (tile.WireGreen) { wireCounts[1]++; }
+                    if (tile.WireRed) { wireCounts[2]++; }
+                    if (tile.WireYellow) { wireCounts[3]++; }
 
                     if (tile.IsActive)
                     {
@@ -109,6 +117,11 @@ namespace TEdit.Terraria
 
                 sb.WriteLine("{0}: {1} ({2:P2})", name, tilePair.Value, tilePair.Value / totalTiles);
             }
+
+            sb.WriteLine("Blue Wires: {0}", wireCounts[0]);
+            sb.WriteLine("Green Wires: {0}", wireCounts[1]);
+            sb.WriteLine("Red Wires: {0}", wireCounts[2]);
+            sb.WriteLine("Yellow Wires: {0}", wireCounts[3]);
 
 
             sb.WriteLine("===SECTION: Chests===");
