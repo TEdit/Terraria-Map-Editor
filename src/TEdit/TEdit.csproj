@@ -20,7 +20,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Ionic.Zlib" Version="1.9.1.5" />
     <PackageReference Include="Microsoft.ApplicationInsights" Version="2.15.0" />
     <PackageReference Include="Microsoft.ApplicationInsights.WindowsServer" Version="2.15.0" />
     <PackageReference Include="MonoGame.Framework.WindowsDX" Version="3.8.0.1641" />
