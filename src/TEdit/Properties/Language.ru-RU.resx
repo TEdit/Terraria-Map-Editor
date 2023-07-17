@@ -1347,4 +1347,7 @@
   <data name="tool_paint_illuminantcoating" xml:space="preserve">
     <value>Источник света</value>
   </data>
+  <data name="liquid_amount" xml:space="preserve">
+    <value>Количество жидкости:</value>
+  </data>
 </root>

@@ -1347,4 +1347,7 @@ Clique em tentar novamente para escolher uma nova pasta ou cancelar para usar {0
   <data name="tool_paint_illuminantcoating" xml:space="preserve">
     <value>Iluminante</value>
   </data>
+  <data name="liquid_amount" xml:space="preserve">
+    <value>Quantidade Líquida:</value>
+  </data>
 </root>

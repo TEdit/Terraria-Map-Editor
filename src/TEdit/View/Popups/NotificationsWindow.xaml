@@ -42,6 +42,9 @@
                         <ListItem>
                             <Paragraph>Fixed the checkbox for old Chinese world formats.</Paragraph>
                         </ListItem>
+                        <ListItem>
+                            <Paragraph>Added an liquid amount dropdown to liquids.</Paragraph>
+                        </ListItem>
                     </List>
                     
                     <Paragraph>Version 4.15</Paragraph>

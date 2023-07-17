@@ -1350,4 +1350,7 @@ Press retry to pick a new folder or cancel to use {0} as your terraria path.</va
     <value>Illuminant</value>
     <comment>Illuminant</comment>
   </data>
+  <data name="liquid_amount" xml:space="preserve">
+    <value>Liquid Amount:</value>
+  </data>
 </root>

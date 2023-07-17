@@ -1347,4 +1347,7 @@
   <data name="tool_paint_illuminantcoating" xml:space="preserve">
     <value>مضيئة</value>
   </data>
+  <data name="liquid_amount" xml:space="preserve">
+    <value>الكمية السائلة:</value>
+  </data>
 </root>

@@ -1347,4 +1347,7 @@ Naciśnij spróbuj ponownie aby wybrać nowy folder lub anuluj aby użyć {0} ja
   <data name="tool_paint_illuminantcoating" xml:space="preserve">
     <value>Oświetlenie</value>
   </data>
+  <data name="liquid_amount" xml:space="preserve">
+    <value>Płynna ilość:</value>
+  </data>
 </root>
