@@ -120,9 +120,9 @@ namespace TEdit.Terraria
             
             
             sb.WriteLine("===Wires===");
+            sb.WriteLine("Red Wires: {0}", wireCounts[2]);
             sb.WriteLine("Blue Wires: {0}", wireCounts[0]);
             sb.WriteLine("Green Wires: {0}", wireCounts[1]);
-            sb.WriteLine("Red Wires: {0}", wireCounts[2]);
             sb.WriteLine("Yellow Wires: {0}", wireCounts[3]);
             sb.WriteLine("Total: {0}", wireCounts[0] + wireCounts[1] + wireCounts[2] + wireCounts[3]);
             
