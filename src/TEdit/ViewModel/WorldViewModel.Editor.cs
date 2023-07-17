@@ -441,7 +441,7 @@ namespace TEdit.ViewModel
                 case PaintMode.Liquid:
                     SetPixelAutomatic(
                         curTile,
-                        liquid: (isErase || TilePicker.LiquidType == LiquidType.None) ? (byte)0 : (byte)255,
+                        liquid: (isErase || TilePicker.LiquidType == LiquidType.None) ? (byte)0 : (byte)TilePicker.LiquidAmountMode,
                         liquidType: TilePicker.LiquidType);
                     break;
                 case PaintMode.Track:

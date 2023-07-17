@@ -194,9 +194,14 @@
                 </tedit:AutoGrid>
             </GroupBox>
             <GroupBox Header="Liquid" Style="{StaticResource LiquidVisibleStyle}">
-                <StackPanel Orientation="Horizontal" VerticalAlignment="Top">
+                <StackPanel VerticalAlignment="Top">
                     <ComboBox ItemsSource="{StaticResource LiquidType}" 
                           SelectedValue="{Binding TilePicker.LiquidType}" 
+                          SelectedValuePath="Value" Width="100"
+                          ItemTemplate="{StaticResource EnumTemplate}" />
+                    <TextBlock Text="{x:Static p:Language.liquid_amount}" HorizontalAlignment="Left"/>
+                    <ComboBox ItemsSource="{StaticResource LiquidAmountEnum}" 
+                          SelectedValue="{Binding TilePicker.LiquidAmountMode}" 
                           SelectedValuePath="Value" Width="100"
                           ItemTemplate="{StaticResource EnumTemplate}" />
                 </StackPanel>

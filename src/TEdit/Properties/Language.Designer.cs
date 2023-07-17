@@ -458,6 +458,15 @@ namespace TEdit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Liquid Amount:.
+        /// </summary>
+        public static string liquid_amount {
+            get {
+                return ResourceManager.GetString("liquid_amount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Honey.
         /// </summary>
         public static string LiquidType_Honey {
@@ -2582,15 +2591,6 @@ namespace TEdit.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Console World Version.
-        /// </summary>
-        public static string tool_wp_console {
-            get {
-                return ResourceManager.GetString("tool_wp_console", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Cobalt Tier.
         /// </summary>
         public static string tool_wp_cobalt {
@@ -2614,6 +2614,15 @@ namespace TEdit.Properties {
         public static string tool_wp_combatbooktwo {
             get {
                 return ResourceManager.GetString("tool_wp_combatbooktwo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Console World Version.
+        /// </summary>
+        public static string tool_wp_console {
+            get {
+                return ResourceManager.GetString("tool_wp_console", resourceCulture);
             }
         }
         
