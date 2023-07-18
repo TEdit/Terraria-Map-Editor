@@ -501,9 +501,6 @@
   <data name="sprite_styletype" xml:space="preserve">
     <value>نمط</value>
   </data>
-  <data name="sprite_tiletype" xml:space="preserve">
-    <value>نوع التجانب</value>
-  </data>
   <data name="statusbar_extra_label" xml:space="preserve">
     <value>اضافيه</value>
   </data>
@@ -680,9 +677,6 @@
   </data>
   <data name="tool_sprite_style_label" xml:space="preserve">
     <value>نمط:</value>
-  </data>
-  <data name="tool_sprite_tiletype_label" xml:space="preserve">
-    <value>نوع البلاط:</value>
   </data>
   <data name="tool_sprite_title" xml:space="preserve">
     <value>سبرايت بلاسر (قديم)</value>
@@ -1349,5 +1343,11 @@
   </data>
   <data name="liquid_amount" xml:space="preserve">
     <value>الكمية السائلة:</value>
+  </data>
+  <data name="tool_sprite_tiletype_label" xml:space="preserve">
+    <value>مرشح نوع البلاط:</value>
+  </data>
+  <data name="sprite_tiletype" xml:space="preserve">
+    <value>مرشح نوع البلاط</value>
   </data>
 </root>

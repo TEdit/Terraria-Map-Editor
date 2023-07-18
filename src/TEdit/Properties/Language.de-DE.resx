@@ -489,9 +489,6 @@ Klicke auf „Wiederholen“, um einen neuen Ordner auszuwählen, oder auf „Ab
   <data name="sprite_styletype" xml:space="preserve">
     <value>Stil</value>
   </data>
-  <data name="sprite_tiletype" xml:space="preserve">
-    <value>Feldart</value>
-  </data>
   <data name="statusbar_extra_label" xml:space="preserve">
     <value>Extras</value>
   </data>
@@ -674,9 +671,6 @@ Klicke auf „Wiederholen“, um einen neuen Ordner auszuwählen, oder auf „Ab
   </data>
   <data name="tool_sprite_style_label" xml:space="preserve">
     <value>Stil:</value>
-  </data>
-  <data name="tool_sprite_tiletype_label" xml:space="preserve">
-    <value>Feldart:</value>
   </data>
   <data name="tool_sprite_title" xml:space="preserve">
     <value>Grafik platzieren (VERALTET)</value>
@@ -1349,5 +1343,11 @@ Klicke auf „Wiederholen“, um einen neuen Ordner auszuwählen, oder auf „Ab
   </data>
   <data name="liquid_amount" xml:space="preserve">
     <value>Flüssigkeitsmenge:</value>
+  </data>
+  <data name="tool_sprite_tiletype_label" xml:space="preserve">
+    <value>Kacheltyp-Filter:</value>
+  </data>
+  <data name="sprite_tiletype" xml:space="preserve">
+    <value>Kacheltyp-Filter</value>
   </data>
 </root>

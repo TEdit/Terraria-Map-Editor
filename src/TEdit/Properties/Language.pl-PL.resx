@@ -489,9 +489,6 @@ Naciśnij spróbuj ponownie aby wybrać nowy folder lub anuluj aby użyć {0} ja
   <data name="sprite_styletype" xml:space="preserve">
     <value>Styl</value>
   </data>
-  <data name="sprite_tiletype" xml:space="preserve">
-    <value>Typ Płytki</value>
-  </data>
   <data name="statusbar_extra_label" xml:space="preserve">
     <value>Dodatkowe</value>
   </data>
@@ -674,9 +671,6 @@ Naciśnij spróbuj ponownie aby wybrać nowy folder lub anuluj aby użyć {0} ja
   </data>
   <data name="tool_sprite_style_label" xml:space="preserve">
     <value>Styl:</value>
-  </data>
-  <data name="tool_sprite_tiletype_label" xml:space="preserve">
-    <value>Typ Płytki:</value>
   </data>
   <data name="tool_sprite_title" xml:space="preserve">
     <value>Umieszczenie Sprite (STARE)</value>
@@ -1349,5 +1343,11 @@ Naciśnij spróbuj ponownie aby wybrać nowy folder lub anuluj aby użyć {0} ja
   </data>
   <data name="liquid_amount" xml:space="preserve">
     <value>Płynna ilość:</value>
+  </data>
+  <data name="tool_sprite_tiletype_label" xml:space="preserve">
+    <value>Filtr Typ kafelka:</value>
+  </data>
+  <data name="sprite_tiletype" xml:space="preserve">
+    <value>Filtr Typ kafelka</value>
   </data>
 </root>

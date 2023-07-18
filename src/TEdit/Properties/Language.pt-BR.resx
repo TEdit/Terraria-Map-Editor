@@ -489,9 +489,6 @@ Clique em tentar novamente para escolher uma nova pasta ou cancelar para usar {0
   <data name="sprite_styletype" xml:space="preserve">
     <value>Estilo</value>
   </data>
-  <data name="sprite_tiletype" xml:space="preserve">
-    <value>Tipo da peça</value>
-  </data>
   <data name="statusbar_extra_label" xml:space="preserve">
     <value>Extra</value>
   </data>
@@ -674,9 +671,6 @@ Clique em tentar novamente para escolher uma nova pasta ou cancelar para usar {0
   </data>
   <data name="tool_sprite_style_label" xml:space="preserve">
     <value>Estilo:</value>
-  </data>
-  <data name="tool_sprite_tiletype_label" xml:space="preserve">
-    <value>Tipo da peça:</value>
   </data>
   <data name="tool_sprite_title" xml:space="preserve">
     <value>Posicionador de sprites (VELHO)</value>
@@ -1349,5 +1343,11 @@ Clique em tentar novamente para escolher uma nova pasta ou cancelar para usar {0
   </data>
   <data name="liquid_amount" xml:space="preserve">
     <value>Quantidade Líquida:</value>
+  </data>
+  <data name="tool_sprite_tiletype_label" xml:space="preserve">
+    <value>Filtro de tipo de bloco:</value>
+  </data>
+  <data name="sprite_tiletype" xml:space="preserve">
+    <value>Filtro de tipo de bloco</value>
   </data>
 </root>

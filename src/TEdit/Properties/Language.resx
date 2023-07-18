@@ -495,9 +495,6 @@ Press retry to pick a new folder or cancel to use {0} as your terraria path.</va
   <data name="sprite_styletype" xml:space="preserve">
     <value>Style</value>
   </data>
-  <data name="sprite_tiletype" xml:space="preserve">
-    <value>Tile Type</value>
-  </data>
   <data name="statusbar_extra_label" xml:space="preserve">
     <value>Extra</value>
   </data>
@@ -679,7 +676,7 @@ Press retry to pick a new folder or cancel to use {0} as your terraria path.</va
     <value>Style:</value>
   </data>
   <data name="tool_sprite_tiletype_label" xml:space="preserve">
-    <value>Tile Type:</value>
+    <value>Tile Type Filter:</value>
   </data>
   <data name="tool_sprite_title" xml:space="preserve">
     <value>Sprite Placer (OLD)</value>
@@ -1352,5 +1349,8 @@ Press retry to pick a new folder or cancel to use {0} as your terraria path.</va
   </data>
   <data name="liquid_amount" xml:space="preserve">
     <value>Liquid Amount:</value>
+  </data>
+  <data name="sprite_tiletype" xml:space="preserve">
+    <value>Tile Type Filter</value>
   </data>
 </root>

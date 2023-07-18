@@ -489,9 +489,6 @@
   <data name="sprite_styletype" xml:space="preserve">
     <value>样式</value>
   </data>
-  <data name="sprite_tiletype" xml:space="preserve">
-    <value>物块类型</value>
-  </data>
   <data name="statusbar_extra_label" xml:space="preserve">
     <value>附加</value>
   </data>
@@ -674,9 +671,6 @@
   </data>
   <data name="tool_sprite_style_label" xml:space="preserve">
     <value>样式:</value>
-  </data>
-  <data name="tool_sprite_tiletype_label" xml:space="preserve">
-    <value>物块类型:</value>
   </data>
   <data name="tool_sprite_title" xml:space="preserve">
     <value>物品放置器(旧版)</value>
@@ -1349,5 +1343,11 @@
   </data>
   <data name="liquid_amount" xml:space="preserve">
     <value>液体量：</value>
+  </data>
+  <data name="tool_sprite_tiletype_label" xml:space="preserve">
+    <value>磁贴类型筛选器：</value>
+  </data>
+  <data name="sprite_tiletype" xml:space="preserve">
+    <value>磁贴类型筛选器</value>
   </data>
 </root>

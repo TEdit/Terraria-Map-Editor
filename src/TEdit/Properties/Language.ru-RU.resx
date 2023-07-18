@@ -477,9 +477,6 @@
   <data name="sprite_styletype" xml:space="preserve">
     <value>Стиль</value>
   </data>
-  <data name="sprite_tiletype" xml:space="preserve">
-    <value>Тип блока</value>
-  </data>
   <data name="statusbar_extra_label" xml:space="preserve">
     <value>Ещё</value>
   </data>
@@ -662,9 +659,6 @@
   </data>
   <data name="tool_sprite_style_label" xml:space="preserve">
     <value>Стиль:</value>
-  </data>
-  <data name="tool_sprite_tiletype_label" xml:space="preserve">
-    <value>Тип тайла:</value>
   </data>
   <data name="tool_sprite_title" xml:space="preserve">
     <value>Установка спрайтов (СТАРОЕ)</value>
@@ -1349,5 +1343,11 @@
   </data>
   <data name="liquid_amount" xml:space="preserve">
     <value>Количество жидкости:</value>
+  </data>
+  <data name="tool_sprite_tiletype_label" xml:space="preserve">
+    <value>Фильтр типа плитки:</value>
+  </data>
+  <data name="sprite_tiletype" xml:space="preserve">
+    <value>Фильтр типа плитки</value>
   </data>
 </root>

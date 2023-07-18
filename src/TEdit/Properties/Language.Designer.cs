@@ -1367,7 +1367,7 @@ namespace TEdit.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Tile Type.
+        ///   Looks up a localized string similar to Tile Type Filter.
         /// </summary>
         public static string sprite_tiletype {
             get {
@@ -2123,7 +2123,7 @@ namespace TEdit.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Tile Type:.
+        ///   Looks up a localized string similar to Tile Type Filter:.
         /// </summary>
         public static string tool_sprite_tiletype_label {
             get {
