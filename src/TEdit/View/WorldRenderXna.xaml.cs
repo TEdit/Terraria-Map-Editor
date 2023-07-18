@@ -75,6 +75,8 @@ namespace TEdit.View
         private float _zoom = 1;
         private float _minNpcScale = 0.75f;
 
+        private Dictionary<int, WriteableBitmap> _spritePreviews = new Dictionary<int, WriteableBitmap>();
+
         public WorldRenderXna()
         {
             _wvm = ViewModelLocator.WorldViewModel;
@@ -263,10 +265,10 @@ namespace TEdit.View
                 var b2 = colorModes.Sum(c => c.B) / colorModes.Count;
                 var colorMode = new Color(r2, g2, b2);
 
-                return new TEditColor(                    
+                return new TEditColor(
                     colorMode.R,
                     colorMode.G,
-                    colorMode.B, 
+                    colorMode.B,
                     (byte)255);
             }
 
@@ -386,8 +388,6 @@ namespace TEdit.View
 
                     sprite.Tile = (ushort)tile.Id;
                     // this is only for debugging, no need to load in release versions
-                    sprite.Preview = tileTex.Texture2DToWriteableBitmap();
-                    sprite.IsPreviewTexture = true;
                     sprite.Name = tile.Name;
                     sprite.SizeTiles = tile.FrameSize;
                     sprite.SizeTexture = new Vector2Short((short)tileTex.Width, (short)tileTex.Height);
@@ -546,7 +546,7 @@ namespace TEdit.View
                                 var uv = sprite.SizePixelsInterval * new Vector2Short((short)subX, (short)subY);
                                 var frameName = tile.Frames.FirstOrDefault(f => f.UV == uv);
 
-                                sprite.Styles[subId] = new SpriteSub
+                                sprite.Styles[subId] = new SpriteSubPreview
                                 {
                                     Tile = sprite.Tile,
                                     StyleColor = styleColor,
@@ -556,7 +556,6 @@ namespace TEdit.View
                                     SizeTexture = sprite.SizeTexture,
                                     Name = frameName?.ToString() ?? $"{tile.Name}_{subId}",
                                     Preview = texture.Texture2DToWriteableBitmap(),
-                                    IsPreviewTexture = true,
                                     Style = subId,
                                     UV = uv
                                 };
@@ -2559,7 +2558,7 @@ namespace TEdit.View
         }
 
 
-        
+
 
         private Vector2Int32 TrackUV(int num)
         {
@@ -2824,7 +2823,7 @@ namespace TEdit.View
                 DrawNpcOverlay(npc);
                 return;
             }
-            
+
             var npcData = World.BestiaryData.NpcById[npcId];
             string npcName = World.BestiaryData.NpcById[npcId].BestiaryId;
             bool isPartying = _wvm.CurrentWorld.PartyingNPCs.Contains(npcId);

@@ -16,7 +16,7 @@ using System;
 using System.IO;
 
 
-namespace TEdit.Utility
+namespace TEdit.Terraria.IO
 {
     public static class ConsoleCompressor
     {
@@ -74,7 +74,8 @@ namespace TEdit.Utility
             }
         }
 
-        public static bool IsCompressed(FileStream stream){
+        public static bool IsCompressed(FileStream stream)
+        {
             byte[] magic = new byte[4];
             stream.Read(magic, 0, 4);
             stream.Position = 0;

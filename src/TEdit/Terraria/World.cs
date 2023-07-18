@@ -7,9 +7,10 @@ using TEdit.Common.Reactive;
 using TEdit.Terraria.Objects;
 using TEdit.Framework.Threading;
 using TEdit.Editor;
-using TEdit.Utility;
 using System.Collections.Generic;
 using TEdit.Geometry;
+using TEdit.Terraria.IO;
+using TEdit.Terraria.Editor;
 
 namespace TEdit.Terraria
 {

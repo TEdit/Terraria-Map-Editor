@@ -92,7 +92,7 @@ namespace TEdit.ViewModel
         private Item _selectedChestItem;
         private string _selectedPoint;
         private Sign _selectedSign;
-        private KeyValuePair<int, SpriteSub> _selectedSprite2;
+        private KeyValuePair<int, SpriteSubPreview> _selectedSprite2;
         private SpriteFull _selectedSpriteTile2;
         private Vector2Int32 _selectedXmas;
         private int _selectedXmasStar;
@@ -202,13 +202,13 @@ namespace TEdit.ViewModel
         private void UpdateSpriteStyleView()
         {
             if (SelectedSpriteTile2 == null) { return; }
-            SpriteStylesView = (ListCollectionView)CollectionViewSource.GetDefaultView(new ObservableCollection<KeyValuePair<int, SpriteSub>>(SelectedSpriteTile2.Styles.ToList()));
+            SpriteStylesView = (ListCollectionView)CollectionViewSource.GetDefaultView(new ObservableCollection<KeyValuePair<int, SpriteSubPreview>>(SelectedSpriteTile2.Styles.ToList()));
             SpriteStylesView.SortDescriptions.Add(new SortDescription("Key", ListSortDirection.Ascending));
             SpriteStylesView.Filter = (o) =>
             {
                 if (string.IsNullOrWhiteSpace(_spriteFilter)) return true;
 
-                var sprite = (KeyValuePair<int, SpriteSub>)o;
+                var sprite = (KeyValuePair<int, SpriteSubPreview>)o;
                 string[] _spriteFilterSplit = _spriteFilter.Split(new char[] { '/', ',' }, StringSplitOptions.RemoveEmptyEntries);
                 foreach (string _spriteWord in _spriteFilterSplit)
                 {
@@ -405,7 +405,7 @@ namespace TEdit.ViewModel
             set { Set(nameof(ShowTextures), ref _showTextures, value); }
         }
 
-        public KeyValuePair<int, SpriteSub> SelectedSprite2
+        public KeyValuePair<int, SpriteSubPreview> SelectedSprite2
         {
             get { return _selectedSprite2; }
             set

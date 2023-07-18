@@ -3,6 +3,8 @@ using System.Windows.Input;
 using System.Windows.Media.Imaging;
 using TEdit.Geometry;
 using TEdit.Terraria;
+using TEdit.Terraria.Editor;
+using TEdit.Terraria.Objects;
 using TEdit.ViewModel;
 namespace TEdit.Editor.Tools
 {
@@ -21,15 +23,7 @@ namespace TEdit.Editor.Tools
             ToolType = ToolType.Pixel;
         }
 
-        public override bool PreviewIsTexture
-        {
-            get
-            {
-                if (_wvm.SelectedSprite2.Value != null)
-                    return _wvm.SelectedSprite2.Value.IsPreviewTexture;
-                return false;
-            }
-        }
+        public override bool PreviewIsTexture => false;
 
         public override void MouseDown(TileMouseState e)
         {

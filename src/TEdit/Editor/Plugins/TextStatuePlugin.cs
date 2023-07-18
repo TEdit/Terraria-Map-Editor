@@ -16,7 +16,7 @@ namespace TEdit.Editor.Plugins
 {
     public class TextStatuePlugin : BasePlugin, INotifyPropertyChanged
     {
-        Dictionary<char, SpriteSub> _textFrames = new Dictionary<char, SpriteSub>();
+        Dictionary<char, SpriteSubPreview> _textFrames = new Dictionary<char, SpriteSubPreview>();
         private TileProperty _textStatueTileProperties;
         private Vector2Short _size;
 
