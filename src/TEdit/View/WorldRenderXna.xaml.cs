@@ -384,7 +384,7 @@ namespace TEdit.View
 
                 try
                 {
-                    var sprite = new SpriteFull();
+                    var sprite = new SpriteSheet();
 
                     sprite.Tile = (ushort)tile.Id;
                     // this is only for debugging, no need to load in release versions
@@ -546,7 +546,7 @@ namespace TEdit.View
                                 var uv = sprite.SizePixelsInterval * new Vector2Short((short)subX, (short)subY);
                                 var frameName = tile.Frames.FirstOrDefault(f => f.UV == uv);
 
-                                sprite.Styles[subId] = new SpriteSubPreview
+                                sprite.Styles.Add(new SpriteItemPreview
                                 {
                                     Tile = sprite.Tile,
                                     StyleColor = styleColor,
@@ -558,7 +558,7 @@ namespace TEdit.View
                                     Preview = texture.Texture2DToWriteableBitmap(),
                                     Style = subId,
                                     UV = uv
-                                };
+                                });
                             }
                         }
                     }
@@ -568,8 +568,12 @@ namespace TEdit.View
                     ErrorLogging.LogException(ex);
                     ErrorLogging.Log(e.GraphicsDevice.GraphicsDeviceStatus.ToString());
                 }
+
             }
+            _wvm.InitSpriteViews();
+
         }
+
 
         #endregion
 
@@ -1796,7 +1800,7 @@ namespace TEdit.View
                                         else
                                         {
                                             var type = curtile.Type;
-                                            Vector2Int32 renderUV = TileProperty.GetRenderUV(curtile.Type, curtile.U, curtile.V);
+                                            var renderUV = TileProperty.GetRenderUV(curtile.Type, curtile.U, curtile.V);
 
                                             source = new Rectangle(renderUV.X, renderUV.Y, tileprop.TextureGrid.X, tileprop.TextureGrid.Y);
                                             if (source.Width <= 0)
@@ -2934,13 +2938,13 @@ namespace TEdit.View
             }
 
             if (_wvm.ActiveTool.Name == "Sprite2" &&
-                _wvm.SelectedSprite2.Value != null &&
-                _wvm.SelectedSpriteTile2 != null)
+                _wvm.SelectedSpriteItem != null &&
+                _wvm.SelectedSpriteSheet != null)
             {
-                var texsize = _wvm.SelectedSpriteTile2.SizePixelsRender;
+                var texsize = _wvm.SelectedSpriteSheet.SizePixelsRender;
                 if (texsize.X != 16 || texsize.Y != 16)
                 {
-                    switch (_wvm.SelectedSprite2.Value?.Anchor)
+                    switch (_wvm.SelectedSpriteItem?.Anchor)
                     {
                         case FrameAnchor.None:
                             position.X += ((16 - texsize.X) / 2F) * _zoom / 16;

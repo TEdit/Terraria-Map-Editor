@@ -92,8 +92,8 @@ namespace TEdit.ViewModel
         private Item _selectedChestItem;
         private string _selectedPoint;
         private Sign _selectedSign;
-        private KeyValuePair<int, SpriteSubPreview> _selectedSprite2;
-        private SpriteFull _selectedSpriteTile2;
+        private SpriteItemPreview _selectedSpriteItem;
+        private SpriteSheet _selectedSpriteSheet;
         private Vector2Int32 _selectedXmas;
         private int _selectedXmasStar;
         private int _selectedXmasGarland;
@@ -116,8 +116,8 @@ namespace TEdit.ViewModel
         private bool _showYellowWires = true;
         private bool _showWireTransparency = true;
         private string _spriteFilter;
-        private ListCollectionView _spritesView;
-        private ListCollectionView _spritesView2;
+        private ushort _spriteTileFilter;
+        private ListCollectionView _spriteSheetView;
         private ListCollectionView _spriteStylesView;
         private ICommand _viewLogCommand;
         private ICommand _showNewsCommand;
@@ -156,31 +156,7 @@ namespace TEdit.ViewModel
             Brush.BrushChanged += OnPreviewChanged;
             UpdateTitle();
 
-            _spritesView2 = (ListCollectionView)CollectionViewSource.GetDefaultView(World.Sprites2);
-            _spritesView2.Filter = o =>
-            {
-                if (string.IsNullOrWhiteSpace(_spriteFilter)) return true;
-
-                var sprite = (SpriteFull)o;
-
-                string[] _spriteFilterSplit = _spriteFilter.Split(new char[] { '/', ',' }, StringSplitOptions.RemoveEmptyEntries);
-
-                if (sprite.Tile.ToString().StartsWith(_spriteFilter)) return true;
-
-                foreach (string _spriteWord in _spriteFilterSplit)
-                {
-                    if (sprite.Name == _spriteWord) return true;
-                    if (sprite.Name != null && sprite.Name.IndexOf(_spriteWord, StringComparison.OrdinalIgnoreCase) >= 0) return true;
-
-                    foreach (var style in sprite.Styles)
-                    {
-                        if (style.Value.Name != null && style.Value.Name.IndexOf(_spriteWord, StringComparison.OrdinalIgnoreCase) >= 0) return true;
-                    }
-                }
-                return false;
-            };
-
-            UpdateSpriteStyleView();
+            InitSpriteViews();
 
             _saveTimer.AutoReset = true;
             _saveTimer.Elapsed += SaveTimerTick;
@@ -199,21 +175,50 @@ namespace TEdit.ViewModel
             }
         }
 
-        private void UpdateSpriteStyleView()
+        public void InitSpriteViews()
         {
-            if (SelectedSpriteTile2 == null) { return; }
-            SpriteStylesView = (ListCollectionView)CollectionViewSource.GetDefaultView(new ObservableCollection<KeyValuePair<int, SpriteSubPreview>>(SelectedSpriteTile2.Styles.ToList()));
-            SpriteStylesView.SortDescriptions.Add(new SortDescription("Key", ListSortDirection.Ascending));
-            SpriteStylesView.Filter = (o) =>
+            _spriteSheetView = (ListCollectionView)CollectionViewSource.GetDefaultView(World.Sprites2);
+            _spriteSheetView.Filter = o =>
             {
+
                 if (string.IsNullOrWhiteSpace(_spriteFilter)) return true;
 
-                var sprite = (KeyValuePair<int, SpriteSubPreview>)o;
+                var sprite = (SpriteSheet)o;
+
+
+                string[] _spriteFilterSplit = _spriteFilter.Split(new char[] { '/', ',' }, StringSplitOptions.RemoveEmptyEntries);
+
+                if (sprite.Tile.ToString().StartsWith(_spriteFilter)) return true;
+
+                foreach (string _spriteWord in _spriteFilterSplit)
+                {
+                    if (sprite.Name == _spriteWord) return true;
+                    if (sprite.Name != null && sprite.Name.IndexOf(_spriteWord, StringComparison.OrdinalIgnoreCase) >= 0) return true;
+
+                    foreach (var style in sprite.Styles)
+                    {
+                        if (style.Name != null && style.Name.IndexOf(_spriteWord, StringComparison.OrdinalIgnoreCase) >= 0) return true;
+                    }
+                }
+                return false;
+            };
+
+            _spriteStylesView = (ListCollectionView)CollectionViewSource.GetDefaultView(new ObservableCollection<SpriteItemPreview>(World.Sprites2.SelectMany(s => s.Styles).Select(s => (SpriteItemPreview)s).ToList()));
+            _spriteStylesView.SortDescriptions.Add(new SortDescription("Name", ListSortDirection.Ascending));
+            _spriteStylesView.Filter = (o) =>
+            {
+                var sprite = (SpriteItemPreview)o;
+
+                if (_spriteTileFilter <= 0 && string.IsNullOrWhiteSpace(_spriteFilter)) { return false; }
+
+                if (_spriteTileFilter > 0 && sprite.Tile != _spriteTileFilter) return false;
+                if (string.IsNullOrWhiteSpace(_spriteFilter)) return true;
+
                 string[] _spriteFilterSplit = _spriteFilter.Split(new char[] { '/', ',' }, StringSplitOptions.RemoveEmptyEntries);
                 foreach (string _spriteWord in _spriteFilterSplit)
                 {
-                    if (sprite.Value.Name == _spriteWord) return true;
-                    if (sprite.Value.Name != null && sprite.Value.Name.IndexOf(_spriteWord, StringComparison.OrdinalIgnoreCase) >= 0) return true;
+                    if (sprite.Name == _spriteWord) return true;
+                    if (sprite.Name != null && sprite.Name.IndexOf(_spriteWord, StringComparison.OrdinalIgnoreCase) >= 0) return true;
                 }
                 return false;
             };
@@ -225,23 +230,9 @@ namespace TEdit.ViewModel
             set { Set(nameof(MinimapImage), ref _minimapImage, value); }
         }
 
-        public ListCollectionView SpritesView
-        {
-            get { return _spritesView; }
-            set { Set(nameof(SpritesView), ref _spritesView, value); }
-        }
+        public ListCollectionView SpriteSheetView => _spriteSheetView;
 
-        public ListCollectionView SpritesView2
-        {
-            get { return _spritesView2; }
-            set { Set(nameof(SpritesView), ref _spritesView2, value); }
-        }
-
-        public ListCollectionView SpriteStylesView
-        {
-            get { return _spriteStylesView; }
-            set { Set(nameof(SpriteStylesView), ref _spriteStylesView, value); }
-        }
+        public ListCollectionView SpriteStylesView => _spriteStylesView;
 
         public string SpriteFilter
         {
@@ -249,9 +240,52 @@ namespace TEdit.ViewModel
             set
             {
                 Set(nameof(SpriteFilter), ref _spriteFilter, value);
+                SpriteSheetView.Refresh();
+                SpriteStylesView.Refresh();
+            }
+        }
 
-                SpritesView2.Refresh();
-                SpriteStylesView?.Refresh();
+        public ushort SpriteTileFilter
+        {
+            get { return _spriteTileFilter; }
+            set
+            {
+                Set(nameof(SpriteFilter), ref _spriteTileFilter, value);
+                SpriteStylesView.Refresh();
+            }
+        }
+
+        public SpriteItemPreview SelectedSpriteItem
+        {
+            get { return _selectedSpriteItem; }
+            set
+            {
+                Set("SelectedSpriteItem", ref _selectedSpriteItem, value);
+                PreviewChange();
+            }
+        }
+
+        public SpriteSheet SelectedSpriteSheet
+        {
+            get { return _selectedSpriteSheet; }
+            set
+            {
+                Set("SelectedSpriteSheet", ref _selectedSpriteSheet, value);
+
+                if (value == null) { SpriteTileFilter = 0; }
+                else { SpriteTileFilter = value.Tile; }
+
+                if (value?.Styles != null && value.Styles.Count > 0)
+                {
+                    SelectedSpriteItem = value.Styles.First() as SpriteItemPreview;
+                }
+
+                if (ActiveTool is not SpriteTool2)
+                {
+                    SetActiveTool(Tools.FirstOrDefault(t => t is SpriteTool2));
+                }
+
+                PreviewChange();
             }
         }
 
@@ -403,37 +437,6 @@ namespace TEdit.ViewModel
         {
             get { return _showTextures; }
             set { Set(nameof(ShowTextures), ref _showTextures, value); }
-        }
-
-        public KeyValuePair<int, SpriteSubPreview> SelectedSprite2
-        {
-            get { return _selectedSprite2; }
-            set
-            {
-                Set("SelectedSprite2", ref _selectedSprite2, value);
-                PreviewChange();
-            }
-        }
-
-        public SpriteFull SelectedSpriteTile2
-        {
-            get { return _selectedSpriteTile2; }
-            set
-            {
-                Set("SelectedSpriteTile2", ref _selectedSpriteTile2, value);
-                UpdateSpriteStyleView();
-                if (value?.Styles != null && value.Styles.Count > 0)
-                {
-                    SelectedSprite2 = value.Styles.First();
-                }
-
-                if (ActiveTool is not SpriteTool2)
-                {
-                    SetActiveTool(Tools.FirstOrDefault(t => t is SpriteTool2));
-                }
-
-                PreviewChange();
-            }
         }
 
         public ObservableCollection<string> Points

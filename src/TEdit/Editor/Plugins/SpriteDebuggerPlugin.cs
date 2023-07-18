@@ -1,6 +1,7 @@
 ﻿using TEdit.ViewModel;
 using TEdit.Terraria;
 using TEdit.Terraria.Objects;
+using TEdit.Terraria.Editor;
 
 namespace TEdit.Editor.Plugins
 {
@@ -45,9 +46,9 @@ namespace TEdit.Editor.Plugins
 
                 foreach (var style in sprite.Styles)
                 {
-                    var s = style.Value;
+                    var s = style;
                     var tileOffset = s.UV / s.SizePixelsInterval;
-                    style.Value?.Place(tileOffset.X + x, tileOffset.Y + y, _wvm);
+                    style?.Place(tileOffset.X + x, tileOffset.Y + y, _wvm);
                 }
 
                 y += spriteTilesY;

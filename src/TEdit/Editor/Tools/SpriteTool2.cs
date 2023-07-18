@@ -27,7 +27,7 @@ namespace TEdit.Editor.Tools
 
         public override void MouseDown(TileMouseState e)
         {
-            if (_wvm.SelectedSprite2.Value == null)
+            if (_wvm.SelectedSpriteItem == null)
                 return;
 
             var x = e.Location.X;
@@ -44,21 +44,21 @@ namespace TEdit.Editor.Tools
             _isLeftDown = (e.LeftButton == MouseButtonState.Pressed);
             _isRightDown = (e.RightButton == MouseButtonState.Pressed);
 
-            if (_wvm.SelectedSprite2.Value.SizeTiles.X == 1 && _wvm.SelectedSprite2.Value.SizeTiles.Y == 1)
+            if (_wvm.SelectedSpriteItem.SizeTiles.X == 1 && _wvm.SelectedSpriteItem.SizeTiles.Y == 1)
                 CheckDirectionandDraw(e.Location);
         }
 
         private void PlaceSelectedSprite(int x, int y)
         {
-            ushort tileId = _wvm.SelectedSprite2.Value.Tile;
+            ushort tileId = _wvm.SelectedSpriteItem.Tile;
 
-            _wvm.SelectedSprite2.Value.Place(x, y, _wvm);
+            _wvm.SelectedSpriteItem.Place(x, y, _wvm);
 
             if (Tile.IsTileEntity(tileId))
             {
                 // if the tile entity is not the same as it was, create a new TE.
                 var existingTe = _wvm.CurrentWorld.GetTileEntityAtTile(x, y);
-                if (existingTe == null || (ushort)existingTe.TileType != _wvm.SelectedSpriteTile2.Tile)
+                if (existingTe == null || (ushort)existingTe.TileType != _wvm.SelectedSpriteSheet.Tile)
                 {
                     var te = TileEntity.CreateForTile(_wvm.CurrentWorld.Tiles[x, y], x, y, 0);
                     TileEntity.PlaceEntity(te, _wvm); // this will also remove the existing if there is one
@@ -87,8 +87,8 @@ namespace TEdit.Editor.Tools
             _isLeftDown = (e.LeftButton == MouseButtonState.Pressed);
             _isRightDown = (e.RightButton == MouseButtonState.Pressed);
 
-            if (_wvm.SelectedSprite2.Value == null) { return; }
-            if (_wvm.SelectedSprite2.Value.SizeTiles.X == 1 && _wvm.SelectedSprite2.Value.SizeTiles.Y == 1)
+            if (_wvm.SelectedSpriteItem == null) { return; }
+            if (_wvm.SelectedSpriteItem.SizeTiles.X == 1 && _wvm.SelectedSpriteItem.SizeTiles.Y == 1)
             {
                 CheckDirectionandDraw(e.Location);
             }
@@ -96,8 +96,8 @@ namespace TEdit.Editor.Tools
 
         public override void MouseUp(TileMouseState e)
         {
-            if (_wvm.SelectedSprite2.Value == null) { return; }
-            if (_wvm.SelectedSprite2.Value.SizeTiles.X == 1 && _wvm.SelectedSprite2.Value.SizeTiles.Y == 1)
+            if (_wvm.SelectedSpriteItem == null) { return; }
+            if (_wvm.SelectedSpriteItem.SizeTiles.X == 1 && _wvm.SelectedSpriteItem.SizeTiles.Y == 1)
             {
                 CheckDirectionandDraw(e.Location);
             }
@@ -145,7 +145,7 @@ namespace TEdit.Editor.Tools
                     _wvm.CheckTiles[index] = true;
                     if (_wvm.Selection.IsValid(pixel))
                     {
-                        if (_wvm.SelectedSpriteTile2 == null)
+                        if (_wvm.SelectedSpriteSheet == null)
                             return;
 
                         PlaceSelectedSprite(pixel.X, pixel.Y);
@@ -164,7 +164,7 @@ namespace TEdit.Editor.Tools
                     _wvm.CheckTiles[index] = true;
                     if (_wvm.Selection.IsValid(pixel))
                     {
-                        if (_wvm.SelectedSpriteTile2 == null)
+                        if (_wvm.SelectedSpriteSheet == null)
                             return;
 
 
@@ -176,8 +176,8 @@ namespace TEdit.Editor.Tools
 
         public override WriteableBitmap PreviewTool()
         {
-            if (_wvm.SelectedSprite2.Value != null)
-                return _wvm.SelectedSprite2.Value.Preview;
+            if (_wvm.SelectedSpriteItem != null)
+                return ((SpriteItemPreview)_wvm.SelectedSpriteItem).Preview;
             return base.PreviewTool();
         }
     }

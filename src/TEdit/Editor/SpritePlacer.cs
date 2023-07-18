@@ -9,7 +9,7 @@ namespace TEdit.Terraria.Editor;
 
 public static class SpritePlacer
 {
-    public static void Place(this SpriteSub spriteSub, int destinationX, int destinationY, WorldViewModel wvm)
+    public static void Place(this SpriteItem spriteSub, int destinationX, int destinationY, WorldViewModel wvm)
     {
         ErrorLogging.TelemetryClient?.TrackEvent("PlaceSprite", new Dictionary<string, string> { ["Tile"] = spriteSub.Tile.ToString(), ["UV"] = spriteSub.UV.ToString() });
 
@@ -61,7 +61,7 @@ public static class SpritePlacer
         }
     }
 
-    public static void Place(this SpriteSub spriteSub, int destinationX, int destinationY, ITileData world)
+    public static void Place(this SpriteItem spriteSub, int destinationX, int destinationY, ITileData world)
     {
         ErrorLogging.TelemetryClient?.TrackEvent("PlaceSprite", new Dictionary<string, string> { ["Tile"] = spriteSub.Tile.ToString(), ["UV"] = spriteSub.UV.ToString() });
 
@@ -104,7 +104,7 @@ public static class SpritePlacer
         }
     }
 
-    public static Vector2Short[,] GetTiles(this SpriteSub spriteSub)
+    public static Vector2Short[,] GetTiles(this SpriteItem spriteSub)
     {
         var tiles = new Vector2Short[spriteSub.SizeTiles.X, spriteSub.SizeTiles.Y];
         for (int x = 0; x < spriteSub.SizeTiles.X; x++)

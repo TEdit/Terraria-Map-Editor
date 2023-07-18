@@ -324,6 +324,7 @@ namespace TEdit.Terraria
                     TileBricksMask.Add(curTile);
                 }
             }
+
             for (int i = TileProperties.Count; i < 255; i++)
             {
                 TileProperties.Add(new TileProperty
@@ -654,7 +655,7 @@ namespace TEdit.Terraria
             get { return _itemLookup; }
         }
 
-        public static ObservableCollection<SpriteFull> Sprites2 { get; } = new ObservableCollection<SpriteFull>();
+        public static ObservableCollection<SpriteSheet> Sprites2 { get; } = new ObservableCollection<SpriteSheet>();
 
         public static Dictionary<int, string> TallyNames
         {

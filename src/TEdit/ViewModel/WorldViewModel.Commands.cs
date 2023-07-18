@@ -41,7 +41,7 @@ namespace TEdit.ViewModel
         private ICommand _saveTileEntityCommand;
         private ICommand _npcRemoveCommand;
         private ICommand _importBestiaryCommand;
-
+        private ICommand _clearSpriteSelection;
         private ICommand _npcAddCommand;
         private ICommand _requestZoomCommand;
         private ICommand _requestScrollCommand;
@@ -66,6 +66,20 @@ namespace TEdit.ViewModel
         protected virtual void OnRequestScroll(object sender, ScrollEventArgs e)
         {
             if (RequestScroll != null) RequestScroll(sender, e);
+        }
+
+        public ICommand ClearSpriteSelection
+        {
+            get
+            {
+                return _clearSpriteSelection ??= new RelayCommand(
+                    () =>
+                    {
+                        SpriteFilter = string.Empty;
+                        SelectedSpriteSheet = null;
+                        SpriteStylesView.Refresh();
+                    });
+            }
         }
 
         public ICommand RequestPanCommand

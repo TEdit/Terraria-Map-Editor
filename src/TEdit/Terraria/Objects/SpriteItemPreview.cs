@@ -10,7 +10,7 @@ using TEdit.Render;
 
 namespace TEdit.Terraria.Objects
 {
-    public class SpriteSubPreview : SpriteSub
+    public class SpriteItemPreview : SpriteItem
     {
         public WriteableBitmap Preview { get; set; } //TODO: move rendering separate from config
     }

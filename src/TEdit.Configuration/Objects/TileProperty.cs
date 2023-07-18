@@ -105,7 +105,7 @@ namespace TEdit.Terraria.Objects
         }
 
 
-        public static Vector2Int32 GetRenderUV(ushort type, short U, short V)
+        public static Vector2Short GetRenderUV(ushort type, short U, short V)
         {
             int renderU = U;
             int renderV = V;
@@ -152,7 +152,7 @@ namespace TEdit.Terraria.Objects
                     break;
             }
 
-            return new Vector2Int32(renderU, renderV);
+            return new Vector2Short((short)renderU, (short)renderV);
         }
     }
 }

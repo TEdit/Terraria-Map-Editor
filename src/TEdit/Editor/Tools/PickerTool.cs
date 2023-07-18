@@ -7,6 +7,7 @@ using TEdit.ViewModel;
 using TEdit.Geometry;
 using System.Collections.Generic;
 using TEdit.Terraria.Objects;
+using TEdit.Terraria.Editor;
 
 namespace TEdit.Editor.Tools
 {
@@ -52,9 +53,9 @@ namespace TEdit.Editor.Tools
             else
             {
                 var sprite = World.Sprites2.FirstOrDefault(s => s.Tile == curTile.Type).GetStyleFromUV(new Vector2Short(curTile.U, curTile.V));
-                if (sprite.Value == null)
+                if (sprite == null)
                     sprite = World.Sprites2.FirstOrDefault(s => s.Tile == curTile.Type).Styles.First();
-                _wvm.SelectedSprite2 = sprite;
+                _wvm.SelectedSpriteItem = (SpriteItemPreview)sprite;
             }
 
             _wvm.TilePicker.Wall = curTile.Wall;

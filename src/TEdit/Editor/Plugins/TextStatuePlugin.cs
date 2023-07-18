@@ -9,6 +9,7 @@ using System.Windows.Media.Imaging;
 using TEdit.Editor.Clipboard;
 using TEdit.Geometry;
 using TEdit.Terraria;
+using TEdit.Terraria.Editor;
 using TEdit.Terraria.Objects;
 using TEdit.ViewModel;
 
@@ -16,7 +17,7 @@ namespace TEdit.Editor.Plugins
 {
     public class TextStatuePlugin : BasePlugin, INotifyPropertyChanged
     {
-        Dictionary<char, SpriteSubPreview> _textFrames = new Dictionary<char, SpriteSubPreview>();
+        Dictionary<char, SpriteItem> _textFrames = new();
         private TileProperty _textStatueTileProperties;
         private Vector2Short _size;
 
@@ -157,8 +158,8 @@ namespace TEdit.Editor.Plugins
 
                 foreach (var frame in sprite.Styles)
                 {
-                    char c = frame.Value.Name[13]; // [13] - skips the first 13 chars of the string.
-                    _textFrames[c] = frame.Value;
+                    char c = frame.Name[13]; // [13] - skips the first 13 chars of the string.
+                    _textFrames[c] = frame;
                 }
             }
         }

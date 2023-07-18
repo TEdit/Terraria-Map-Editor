@@ -5,8 +5,7 @@ using TEdit.Geometry;
 
 namespace TEdit.Terraria.Objects
 {
-
-    public class SpriteFull 
+    public class SpriteSheet
     {
         public ushort Tile { get; set; }
         public string Name { get; set; }
@@ -15,11 +14,11 @@ namespace TEdit.Terraria.Objects
         public Vector2Short SizePixelsInterval { get; set; }
         public Vector2Short SizeTexture { get; set; }
         public bool IsAnimated { get; set; }
-        public Dictionary<int, SpriteSub> Styles { get; } = new Dictionary<int, SpriteSub>();
-        public SpriteSub Default => Styles.Values.FirstOrDefault();
+        public List<SpriteItem> Styles { get; } = new();
+        public SpriteItem Default => Styles.FirstOrDefault();
     }
 
-    public class SpriteSub
+    public class SpriteItem
     {
         public ushort Tile { get; set; }
         public int Style { get; set; }
@@ -30,5 +29,20 @@ namespace TEdit.Terraria.Objects
         public Vector2Short SizePixelsInterval { get; set; }
         public FrameAnchor Anchor { get; set; }
         public string Name { get; set; }
+
+        public bool ContainsUV(Vector2Short uv)
+        {
+            if (UV == uv) { return true; }
+
+            if (uv.X >= UV.X &&
+                uv.Y >= UV.Y &&
+                uv.X < UV.X + (SizePixelsInterval.X * SizeTiles.X) &&
+                uv.Y < UV.Y + (SizePixelsInterval.Y * SizeTiles.Y))
+            {
+                return true;
+            }
+
+            return false;
+        }
     }
 }
