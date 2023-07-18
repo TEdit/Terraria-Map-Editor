@@ -36,6 +36,7 @@ using Microsoft.Xna.Framework;
 using TEdit.UI.Xaml;
 using static TEdit.Terraria.CreativePowers;
 using TEdit.Geometry;
+using TEdit.Configuration;
 
 namespace TEdit.ViewModel
 {

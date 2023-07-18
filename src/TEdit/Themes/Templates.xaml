@@ -3,6 +3,7 @@
                     xmlns:System="clr-namespace:System;assembly=mscorlib"
                     xmlns:ComponentModel="clr-namespace:System.ComponentModel;assembly=WindowsBase"
                     xmlns:Terraria="clr-namespace:TEdit.Terraria"
+                    xmlns:config="clr-namespace:TEdit.Configuration;assembly=TEdit.Configuration"
                     xmlns:tedit="clr-namespace:TEdit.UI.Xaml"
                     xmlns:p="clr-namespace:TEdit.Properties"
                     xmlns:enum="clr-namespace:TEdit.UI.Xaml.Enum">
@@ -11,8 +12,8 @@
     <enum:EnumItemList x:Key="JunctionBoxEnum" ResourceType="{x:Type p:Language}" EnumType="{x:Type Editor:JunctionBoxMode}" SortBy="Value"  />
     <enum:EnumItemList x:Key="MaskModeEnum" ResourceType="{x:Type p:Language}" EnumType="{x:Type Editor:MaskMode}" x:Shared="false" SortBy="Value" />
     <enum:EnumItemList x:Key="HalfBlockMode" ResourceType="{x:Type p:Language}" EnumType="{x:Type Editor:HalfBlockMode}" x:Shared="false" SortBy="Value" />
-    <enum:EnumItemList x:Key="BrickStyle" ResourceType="{x:Type p:Language}" EnumType="{x:Type Terraria:BrickStyle}" x:Shared="false" SortBy="Value" />
-    <enum:EnumItemList x:Key="LiquidType" ResourceType="{x:Type p:Language}" EnumType="{x:Type Terraria:LiquidType}" x:Shared="false" SortBy="Value" />
+    <enum:EnumItemList x:Key="BrickStyle" ResourceType="{x:Type p:Language}" EnumType="{x:Type config:BrickStyle}" x:Shared="false" SortBy="Value" />
+    <enum:EnumItemList x:Key="LiquidType" ResourceType="{x:Type p:Language}" EnumType="{x:Type config:LiquidType}" x:Shared="false" SortBy="Value" />
     <enum:EnumItemList x:Key="LiquidAmountEnum" ResourceType="{x:Type p:Language}" EnumType="{x:Type Editor:LiquidAmountMode}" SortBy="Value" />
     <enum:EnumItemList x:Key="WireReplaceModeEnum" ResourceType="{x:Type p:Language}" EnumType="{x:Type Editor:WireReplaceMode}" SortBy="Value"  />
 

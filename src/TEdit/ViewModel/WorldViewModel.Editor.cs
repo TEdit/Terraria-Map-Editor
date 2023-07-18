@@ -11,6 +11,7 @@ using System.Windows;
 using TEdit.Framework.Threading;
 using System.IO;
 using TEdit.Geometry;
+using TEdit.Configuration;
 
 namespace TEdit.ViewModel
 {

@@ -8,6 +8,7 @@ using TEdit.Geometry;
 using TEdit.ViewModel;
 using TEdit.Terraria;
 using TEdit.Render;
+using TEdit.Configuration;
 
 namespace TEdit.Editor.Tools
 {

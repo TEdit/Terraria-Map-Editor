@@ -12,5 +12,6 @@ namespace TEdit.Terraria.Objects
         public string Name { get; set; } = "UNKNOWN";
         public TEditColor Color => TEditColor.Transparent;
         public int Id { get; set; }
+
     }
 }

@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.Linq;
 using TEdit.Geometry;
 using TEdit.Render;
+using TEdit.Configuration;
 
 namespace TEdit.Editor.Clipboard
 {

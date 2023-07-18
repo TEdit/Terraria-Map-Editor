@@ -3,6 +3,7 @@ using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using TEdit.Common.Reactive;
+using TEdit.Configuration;
 using TEdit.Terraria.Objects;
 using TEdit.ViewModel;
 

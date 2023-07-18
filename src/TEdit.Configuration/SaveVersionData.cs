@@ -27,4 +27,5 @@ namespace TEdit.Configuration
             return result;
         }
     }
+
 }

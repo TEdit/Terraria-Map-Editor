@@ -9,6 +9,7 @@ using System.Linq;
 using System.Windows.Documents;
 using static Microsoft.ApplicationInsights.MetricDimensionNames.TelemetryContext;
 using TEdit.Geometry;
+using TEdit.Configuration;
 
 namespace TEdit.Terraria
 {

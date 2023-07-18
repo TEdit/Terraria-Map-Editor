@@ -2,6 +2,7 @@
 using TEdit.Common.Reactive;
 using TEdit.Terraria;
 using System.Windows.Input;
+using TEdit.Configuration;
 
 namespace TEdit.Editor
 {

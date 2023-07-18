@@ -15,6 +15,7 @@ using System.Data;
 using SharpDX.Direct2D1.Effects;
 using System.Diagnostics;
 using TEdit.Geometry;
+using TEdit.Configuration;
 
 namespace TEdit.Terraria
 {

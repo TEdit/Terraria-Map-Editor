@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using System;
 using TEdit.Common;
+using TEdit.Configuration;
 using TEdit.Terraria;
 
 namespace TEdit.Render

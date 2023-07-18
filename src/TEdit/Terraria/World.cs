@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using TEdit.Geometry;
 using TEdit.Terraria.IO;
 using TEdit.Terraria.Editor;
+using TEdit.Configuration;
 
 namespace TEdit.Terraria
 {
