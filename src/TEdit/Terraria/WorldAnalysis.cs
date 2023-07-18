@@ -117,12 +117,15 @@ namespace TEdit.Terraria
 
                 sb.WriteLine("{0}: {1} ({2:P2})", name, tilePair.Value, tilePair.Value / totalTiles);
             }
-
+            
+            
+            sb.WriteLine("===Wires===");
+            sb.WriteLine("Red Wires: {0}", wireCounts[2]);
             sb.WriteLine("Blue Wires: {0}", wireCounts[0]);
             sb.WriteLine("Green Wires: {0}", wireCounts[1]);
-            sb.WriteLine("Red Wires: {0}", wireCounts[2]);
             sb.WriteLine("Yellow Wires: {0}", wireCounts[3]);
-
+            sb.WriteLine("Total: {0}", wireCounts[0] + wireCounts[1] + wireCounts[2] + wireCounts[3]);
+            
 
             sb.WriteLine("===SECTION: Chests===");
             sb.WriteProperty("Chest Count", world.Chests.Count);
