@@ -5,30 +5,8 @@ using System.Linq;
 
 namespace TEdit.Configuration;
 
-public class BestiaryNpcData
-{
-    public int Id { get; set; }
-    public int BannerId { get; set; }
-    public string FullName { get; set; }
-    public string Name { get; set; }
-    public string BestiaryId { get; set; }
-    public bool CanTalk { get; set; }
-    public bool IsCritter { get; set; }
-    public bool IsTownNpc { get; set; }
-    public bool IsKillCredit { get; set; }
-    public int BestiaryDisplayIndex { get; set; }
-}
 
-public class BestiaryNpcConfiguration
-{
-    public List<string> Cat { get; private set; } = new();
-    public List<string> Dog { get; private set; } = new();
-    public List<string> Bunny { get; private set; } = new();
-    public List<BestiaryNpcData> NpcData { get; private set; } = new();
-}
-
-
-public class BestiaryData
+public class BestiaryConfiguration
 {
     public BestiaryNpcConfiguration Configuration { get; private set; } = new();
 
@@ -39,14 +17,14 @@ public class BestiaryData
     public List<string> BestiaryNearIDs { get; private set; } = new();
     public List<string> BestiaryKilledIDs { get; private set; } = new();
 
-    public static BestiaryData LoadJson(string fileName)
+    public static BestiaryConfiguration LoadJson(string fileName)
     {
         using (StreamReader file = File.OpenText(fileName))
         using (JsonTextReader reader = new JsonTextReader(file))
         {
             JsonSerializer serializer = new JsonSerializer();
             var npcConfig = serializer.Deserialize<BestiaryNpcConfiguration>(reader);
-            var bestiaryData = new BestiaryData();
+            var bestiaryData = new BestiaryConfiguration();
             bestiaryData.Init(npcConfig);
 
             return bestiaryData;

@@ -19,16 +19,10 @@ using TEdit.Common;
 
 namespace TEdit.Terraria
 {
-    public static class ColorExtensions
-    {
-        public static string ColorToString(this Color c) => string.Format("#{0:X2}{1:X2}{2:X2}{3:X2}", c.A, c.R, c.G, c.B);
-        public static string Vector2String(this Vector2Short v) => string.Format("{{x: {0}, y: {1}}}", v.X, v.Y);
-
-    }
     public partial class World
     {
-        public static SaveConfiguration SaveConfiguration { get; set; }
-        public static BestiaryData BestiaryData { get; set; }
+        public static SaveVersionManager SaveConfiguration { get; set; }
+        public static BestiaryConfiguration BestiaryData { get; set; }
         public static MorphConfiguration MorphSettings { get; set; }
 
         public static List<string> Biomes => MorphSettings.Biomes.Keys.ToList();
@@ -70,13 +64,13 @@ namespace TEdit.Terraria
                 return;
 
             var saveVersionPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "TerrariaVersionTileData.json");
-            SaveConfiguration = SaveConfiguration.LoadJson(saveVersionPath);
+            SaveConfiguration = SaveVersionManager.LoadJson(saveVersionPath);
 
             var settingspath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "settings.xml");
             LoadObjectDbXml(settingspath);
 
             var bestiaryDataPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "npcData.json");
-            BestiaryData = BestiaryData.LoadJson(bestiaryDataPath);
+            BestiaryData = BestiaryConfiguration.LoadJson(bestiaryDataPath);
 
             try
             {

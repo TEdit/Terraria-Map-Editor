@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace TEdit.Configuration
 {
-    public class SaveConfiguration
+    public class SaveVersionManager
     {
         public Dictionary<string, uint> GameVersionToSaveVersion { get; set; }
 
@@ -45,14 +45,13 @@ namespace TEdit.Configuration
             }
         }
 
-
-        public static SaveConfiguration LoadJson(string fileName)
+        public static SaveVersionManager LoadJson(string fileName)
         {
             using (StreamReader file = File.OpenText(fileName))
             using (JsonTextReader reader = new JsonTextReader(file))
             {
                 JsonSerializer serializer = new JsonSerializer();
-                return serializer.Deserialize<SaveConfiguration>(reader);
+                return serializer.Deserialize<SaveVersionManager>(reader);
             }
         }
     }

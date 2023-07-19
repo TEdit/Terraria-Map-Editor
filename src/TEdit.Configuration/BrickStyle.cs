@@ -1,16 +1,11 @@
-﻿using System.ComponentModel;
+﻿namespace TEdit.Configuration;
 
-namespace TEdit.Configuration
+public enum BrickStyle : byte
 {
-    public enum BrickStyle : byte
-    {
-        [Description("Full Brick")]
-        Full = 0x0,
-        HalfBrick = 0x1,
-        SlopeTopRight = 0x2,
-        SlopeTopLeft = 0x3,
-        SlopeBottomRight = 0x4,
-        SlopeBottomLeft = 0x5,
-    }
-
+    Full = 0x0,
+    HalfBrick = 0x1,
+    SlopeTopRight = 0x2,
+    SlopeTopLeft = 0x3,
+    SlopeBottomRight = 0x4,
+    SlopeBottomLeft = 0x5,
 }

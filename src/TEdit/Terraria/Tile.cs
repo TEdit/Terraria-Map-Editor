@@ -6,7 +6,7 @@ using TEdit.Geometry;
 namespace TEdit.Terraria
 {
 
-    
+
 
     [Serializable]
     public class Tile
