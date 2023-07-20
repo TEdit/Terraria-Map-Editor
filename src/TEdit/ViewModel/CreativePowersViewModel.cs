@@ -51,24 +51,24 @@ namespace TEdit.ViewModel
             var powers = _wvm?.CurrentWorld?.CreativePowers;
             if (powers == null) { return; }
 
-            var spawnRate = powers.GetPowerFloat(CreativePowers.CreativePowerId.setspawnrate);
+            var spawnRate = powers.GetPowerFloat(CreativePowerId.setspawnrate);
             EnableSpawnRate = (spawnRate != null);
             SpawnRate = spawnRate ?? 0f;
 
-            var timeSpeed = powers.GetPowerFloat(CreativePowers.CreativePowerId.time_setspeed);
+            var timeSpeed = powers.GetPowerFloat(CreativePowerId.time_setspeed);
             EnableTimeSpeed = (timeSpeed != null);
             TimeSpeed = timeSpeed ?? 0f;
 
-            //var setdifficulty = powers.GetPowerFloat(CreativePowers.CreativePowerId.setdifficulty);
+            //var setdifficulty = powers.GetPowerFloat(CreativePowerId.setdifficulty);
             //EnableDifficulty = (setdifficulty != null);
             //Difficulty = setdifficulty ?? 0f;
 
-            IsTimeFrozen = powers.GetPowerBool(CreativePowers.CreativePowerId.time_setfrozen) ?? false;
-            //IsGodMode = powers.GetPowerBool(CreativePowers.CreativePowerId.godmode) ?? false;
-            IsRainFrozen = powers.GetPowerBool(CreativePowers.CreativePowerId.rain_setfrozen) ?? false;
-            IsWindFrozen = powers.GetPowerBool(CreativePowers.CreativePowerId.wind_setfrozen) ?? false;
-            //IsIncreasePlacementRange = powers.GetPowerBool(CreativePowers.CreativePowerId.increaseplacementrange) ?? false;
-            IsBiomeSpreadFrozen = powers.GetPowerBool(CreativePowers.CreativePowerId.biomespread_setfrozen) ?? false;
+            IsTimeFrozen = powers.GetPowerBool(CreativePowerId.time_setfrozen) ?? false;
+            //IsGodMode = powers.GetPowerBool(CreativePowerId.godmode) ?? false;
+            IsRainFrozen = powers.GetPowerBool(CreativePowerId.rain_setfrozen) ?? false;
+            IsWindFrozen = powers.GetPowerBool(CreativePowerId.wind_setfrozen) ?? false;
+            //IsIncreasePlacementRange = powers.GetPowerBool(CreativePowerId.increaseplacementrange) ?? false;
+            IsBiomeSpreadFrozen = powers.GetPowerBool(CreativePowerId.biomespread_setfrozen) ?? false;
         }
 
         public void SaveToWorld()
@@ -76,15 +76,15 @@ namespace TEdit.ViewModel
             var powers = _wvm?.CurrentWorld?.CreativePowers;
             if (powers == null) { return; }
 
-            powers.SetPowerStateSafe(CreativePowers.CreativePowerId.setspawnrate, value: EnableSpawnRate ? SpawnRate : null);
-            powers.SetPowerStateSafe(CreativePowers.CreativePowerId.time_setspeed, value: EnableTimeSpeed ? TimeSpeed : null);
-            //powers.SetPowerStateSafe(CreativePowers.CreativePowerId.setdifficulty, value: EnableDifficulty ? Difficulty : null);
-            powers.SetPowerStateSafe(CreativePowers.CreativePowerId.time_setfrozen, isEnabled: IsTimeFrozen);
-            //powers.SetPowerStateSafe(CreativePowers.CreativePowerId.godmode, isEnabled: IsGodMode);
-            powers.SetPowerStateSafe(CreativePowers.CreativePowerId.rain_setfrozen, isEnabled: IsRainFrozen);
-            powers.SetPowerStateSafe(CreativePowers.CreativePowerId.wind_setfrozen, isEnabled: IsWindFrozen);
-            //powers.SetPowerStateSafe(CreativePowers.CreativePowerId.increaseplacementrange, isEnabled: IsIncreasePlacementRange);
-            powers.SetPowerStateSafe(CreativePowers.CreativePowerId.biomespread_setfrozen, isEnabled: IsBiomeSpreadFrozen);
+            powers.SetPowerStateSafe(CreativePowerId.setspawnrate, value: EnableSpawnRate ? SpawnRate : null);
+            powers.SetPowerStateSafe(CreativePowerId.time_setspeed, value: EnableTimeSpeed ? TimeSpeed : null);
+            //powers.SetPowerStateSafe(CreativePowerId.setdifficulty, value: EnableDifficulty ? Difficulty : null);
+            powers.SetPowerStateSafe(CreativePowerId.time_setfrozen, isEnabled: IsTimeFrozen);
+            //powers.SetPowerStateSafe(CreativePowerId.godmode, isEnabled: IsGodMode);
+            powers.SetPowerStateSafe(CreativePowerId.rain_setfrozen, isEnabled: IsRainFrozen);
+            powers.SetPowerStateSafe(CreativePowerId.wind_setfrozen, isEnabled: IsWindFrozen);
+            //powers.SetPowerStateSafe(CreativePowerId.increaseplacementrange, isEnabled: IsIncreasePlacementRange);
+            powers.SetPowerStateSafe(CreativePowerId.biomespread_setfrozen, isEnabled: IsBiomeSpreadFrozen);
         }
 
         public bool EnableSpawnRate

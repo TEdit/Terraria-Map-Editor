@@ -1,15 +1,13 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel;
 using TEdit.Utility;
-using Vector2 = TEdit.Geometry.Vector2;
 using System;
 using System.IO;
 using TEdit.Helper;
 using System.Linq;
-using System.Windows.Documents;
-using static Microsoft.ApplicationInsights.MetricDimensionNames.TelemetryContext;
 using TEdit.Geometry;
 using TEdit.Configuration;
+using TEdit.Common.Exceptions;
 
 namespace TEdit.Terraria
 {
@@ -50,9 +48,9 @@ namespace TEdit.Terraria
 
 
                 if (w.Version < 87)
-                    throw new FileFormatException("World file too old, please update it by loading in game.");
+                    throw new TEditFileFormatException("World file too old, please update it by loading in game.");
                 if (w.Version > world.Version)
-                    throw new FileFormatException("Source world version is greater than target world. Please reload both in game and resave");
+                    throw new TEditFileFormatException("Source world version is greater than target world. Please reload both in game and resave");
 
                 // reset the stream
                 b.BaseStream.Position = (long)0;
@@ -60,18 +58,18 @@ namespace TEdit.Terraria
                 OnProgressChanged(null, new ProgressChangedEventArgs(0, "Loading File Header..."));
                 // read section pointers and tile frame data
                 if (!LoadSectionHeader(b, out tileFrameImportant, out sectionPointers, w))
-                    throw new FileFormatException("Invalid File Format Section");
+                    throw new TEditFileFormatException("Invalid File Format Section");
 
                 w.TileFrameImportant = tileFrameImportant;
 
                 // we should be at the end of the first section
                 if (b.BaseStream.Position != sectionPointers[0])
-                    throw new FileFormatException("Unexpected Position: Invalid File Format Section");
+                    throw new TEditFileFormatException("Unexpected Position: Invalid File Format Section");
 
                 // Load the flags
                 LoadHeaderFlags(b, w, sectionPointers[1]);
                 if (b.BaseStream.Position != sectionPointers[1])
-                    throw new FileFormatException("Unexpected Position: Invalid Header Flags");
+                    throw new TEditFileFormatException("Unexpected Position: Invalid Header Flags");
 
                 if (w.Version >= 210 && sectionPointers.Length > 9)
                 {
@@ -79,7 +77,7 @@ namespace TEdit.Terraria
                     b.BaseStream.Position = sectionPointers[8];
                     LoadBestiary(b, w);
                     if (b.BaseStream.Position != sectionPointers[9])
-                        throw new FileFormatException("Unexpected Position: Invalid Bestiary Section");
+                        throw new TEditFileFormatException("Unexpected Position: Invalid Bestiary Section");
                 }
             }
 
@@ -91,7 +89,7 @@ namespace TEdit.Terraria
 
         public static void SaveV2(World world, BinaryWriter bw, TextWriter debugger = null, bool incrementRevision = true)
         {
-            world.Validate();
+            world.ValidateAsync();
 
             if (incrementRevision)
             {
@@ -1486,18 +1484,18 @@ namespace TEdit.Terraria
             OnProgressChanged(null, new ProgressChangedEventArgs(0, "Loading File Header..."));
             // read section pointers and tile frame data
             if (!LoadSectionHeader(b, out tileFrameImportant, out sectionPointers, w))
-                throw new FileFormatException("Invalid File Format Section");
+                throw new TEditFileFormatException("Invalid File Format Section");
 
             w.TileFrameImportant = tileFrameImportant;
 
             // we should be at the end of the first section
             if (b.BaseStream.Position != sectionPointers[0])
-                throw new FileFormatException("Unexpected Position: Invalid File Format Section");
+                throw new TEditFileFormatException("Unexpected Position: Invalid File Format Section");
 
             // Load the flags
             LoadHeaderFlags(b, w, sectionPointers[1], debugger);
             if (b.BaseStream.Position != sectionPointers[1])
-                throw new FileFormatException("Unexpected Position: Invalid Header Flags");
+                throw new TEditFileFormatException("Unexpected Position: Invalid Header Flags");
 
             OnProgressChanged(null, new ProgressChangedEventArgs(0, "Loading Tiles..."));
             w.Tiles = LoadTileData(b, w.TilesWide, w.TilesHigh, (int)w.Version, w.TileFrameImportant, debugger);
@@ -1518,7 +1516,7 @@ namespace TEdit.Terraria
             }
 
             if (b.BaseStream.Position != sectionPointers[3])
-                throw new FileFormatException("Unexpected Position: Invalid Chest Data");
+                throw new TEditFileFormatException("Unexpected Position: Invalid Chest Data");
 
             OnProgressChanged(null, new ProgressChangedEventArgs(100, "Loading Signs..."));
 
@@ -1532,7 +1530,7 @@ namespace TEdit.Terraria
             }
 
             if (b.BaseStream.Position != sectionPointers[4])
-                throw new FileFormatException("Unexpected Position: Invalid Sign Data");
+                throw new TEditFileFormatException("Unexpected Position: Invalid Sign Data");
 
             OnProgressChanged(null, new ProgressChangedEventArgs(100, "Loading NPCs..."));
             LoadNPCsData(b, w);
@@ -1541,41 +1539,41 @@ namespace TEdit.Terraria
                 OnProgressChanged(null, new ProgressChangedEventArgs(100, "Loading Mobs..."));
                 LoadMobsData(b, w);
                 if (b.BaseStream.Position != sectionPointers[5])
-                    throw new FileFormatException("Unexpected Position: Invalid Mob and NPC Data");
+                    throw new TEditFileFormatException("Unexpected Position: Invalid Mob and NPC Data");
 
                 OnProgressChanged(null, new ProgressChangedEventArgs(100, "Loading Tile Entities Section..."));
                 LoadTileEntities(b, w);
                 if (b.BaseStream.Position != sectionPointers[6])
-                    throw new FileFormatException("Unexpected Position: Invalid Tile Entities Section");
+                    throw new TEditFileFormatException("Unexpected Position: Invalid Tile Entities Section");
             }
             else
             {
                 if (b.BaseStream.Position != sectionPointers[5])
-                    throw new FileFormatException("Unexpected Position: Invalid NPC Data");
+                    throw new TEditFileFormatException("Unexpected Position: Invalid NPC Data");
             }
             if (w.Version >= 170)
             {
                 LoadPressurePlate(b, w);
                 if (b.BaseStream.Position != sectionPointers[7])
-                    throw new FileFormatException("Unexpected Position: Invalid Weighted Pressure Plate Section");
+                    throw new TEditFileFormatException("Unexpected Position: Invalid Weighted Pressure Plate Section");
             }
             if (w.Version >= 189)
             {
                 LoadTownManager(b, w);
                 if (b.BaseStream.Position != sectionPointers[8])
-                    throw new FileFormatException("Unexpected Position: Invalid Town Manager Section");
+                    throw new TEditFileFormatException("Unexpected Position: Invalid Town Manager Section");
             }
             if (w.Version >= 210)
             {
                 LoadBestiary(b, w);
                 if (b.BaseStream.Position != sectionPointers[9])
-                    throw new FileFormatException("Unexpected Position: Invalid Bestiary Section");
+                    throw new TEditFileFormatException("Unexpected Position: Invalid Bestiary Section");
             }
             if (w.Version >= 220)
             {
                 LoadCreativePowers(b, w);
                 if (b.BaseStream.Position != sectionPointers[10])
-                    throw new FileFormatException("Unexpected Position: Invalid Creative Powers Section");
+                    throw new TEditFileFormatException("Unexpected Position: Invalid Creative Powers Section");
             }
 
             OnProgressChanged(null, new ProgressChangedEventArgs(100, "Verifying File..."));
@@ -1613,7 +1611,7 @@ namespace TEdit.Terraria
                             if (y >= maxY)
                             {
                                 break;
-                                throw new FileFormatException(
+                                throw new TEditFileFormatException(
                                     $"Invalid Tile Data: RLE Compression outside of bounds [{x},{y}]");
                             }
                             tiles[x, y] = (Tile)tile.Clone();
@@ -2041,13 +2039,13 @@ namespace TEdit.Terraria
         public static void LoadFooter(BinaryReader r, World w)
         {
             if (!r.ReadBoolean())
-                throw new FileFormatException("Invalid Footer");
+                throw new TEditFileFormatException("Invalid Footer");
 
             if (r.ReadString() != w.Title)
-                throw new FileFormatException("Invalid Footer");
+                throw new TEditFileFormatException("Invalid Footer");
 
             if (r.ReadInt32() != w.WorldId)
-                throw new FileFormatException("Invalid Footer");
+                throw new TEditFileFormatException("Invalid Footer");
         }
 
         public static List<TileEntity> LoadTileEntityData(BinaryReader r, uint version)
@@ -2525,17 +2523,17 @@ namespace TEdit.Terraria
 
                 if (fileType != FileType.World)
                 {
-                    throw new FileFormatException($"Is not a supported file type: {fileType.ToString()}");
+                    throw new TEditFileFormatException($"Is not a supported file type: {fileType.ToString()}");
                 }
 
                 if (!w.IsChinese && headerFormat != DesktopHeader)
                 {
-                    throw new FileFormatException("Invalid desktop world header.");
+                    throw new TEditFileFormatException("Invalid desktop world header.");
                 }
 
                 if (w.IsChinese && headerFormat != ChineseHeader)
                 {
-                    throw new FileFormatException("Invalid chinese world header.");
+                    throw new TEditFileFormatException("Invalid chinese world header.");
                 }
 
                 w.FileRevision = r.ReadUInt32();

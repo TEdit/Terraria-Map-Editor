@@ -4,10 +4,9 @@ using System.Linq;
 using System.Windows.Input;
 using TEdit.Common.Reactive;
 using TEdit.Common.Reactive.Command;
-using Microsoft.Xna.Framework;
-using TEdit.Editor;
 using TEdit.Terraria.Objects;
 using TEdit.Geometry;
+using TEdit.Utility;
 
 namespace TEdit.Terraria
 {
@@ -1221,13 +1220,13 @@ namespace TEdit.Terraria
 
             if (bypassLimits)
             {
-                MaxCavernLevel = MathHelper.Clamp(TilesHigh, 0, TilesHigh);
-                MaxGroundLevel = MathHelper.Clamp(TilesHigh - 6, 0, TilesHigh);
+                MaxCavernLevel = Calc.Clamp(TilesHigh, 0, TilesHigh);
+                MaxGroundLevel = Calc.Clamp(TilesHigh - 6, 0, TilesHigh);
             }
             else
             {
-                MaxCavernLevel = MathHelper.Clamp(TilesHigh - CavernLevelToBottomOfWorld, 6, TilesHigh);
-                MaxGroundLevel = MathHelper.Clamp(MaxCavernLevel - 6, 0, TilesHigh);
+                MaxCavernLevel = Calc.Clamp(TilesHigh - CavernLevelToBottomOfWorld, 6, TilesHigh);
+                MaxGroundLevel = Calc.Clamp(MaxCavernLevel - 6, 0, TilesHigh);
             }
         }
 
@@ -1236,16 +1235,16 @@ namespace TEdit.Terraria
             get { return _unsafeGroundLayers; }
             set
             {
-                if (_unsafeGroundLayers == false)
-                {
-                    System.Windows.Forms.DialogResult result = System.Windows.Forms.MessageBox.Show("Values over 1239 could cause visual issues within the world.\n\nDo you wish to continue?", "Enable Unsafe Layer Values?", System.Windows.Forms.MessageBoxButtons.YesNo);
-                    if (result == System.Windows.Forms.DialogResult.Yes)
-                    {
-                        Set(nameof(UnsafeGroundLayers), ref _unsafeGroundLayers, value);
-                        UpdateMaxLayerLevels();
-                    }
-                }
-                else
+                //if (_unsafeGroundLayers == false)
+                //{
+                //    System.Windows.Forms.DialogResult result = System.Windows.Forms.MessageBox.Show("Values over 1239 could cause visual issues within the world.\n\nDo you wish to continue?", "Enable Unsafe Layer Values?", System.Windows.Forms.MessageBoxButtons.YesNo);
+                //    if (result == System.Windows.Forms.DialogResult.Yes)
+                //    {
+                //        Set(nameof(UnsafeGroundLayers), ref _unsafeGroundLayers, value);
+                //        UpdateMaxLayerLevels();
+                //    }
+                //}
+                //else
                 {
                     Set(nameof(UnsafeGroundLayers), ref _unsafeGroundLayers, value);
                     UpdateMaxLayerLevels();

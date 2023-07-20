@@ -40,29 +40,7 @@ using TEdit.Configuration;
 
 namespace TEdit.ViewModel
 {
-    public class CreativePowerArgs
-    {
-        public CreativePowerArgs()
-        {
-
-        }
-
-        public CreativePowerArgs(CreativePowerId id, bool isActive)
-        {
-            Id = id;
-            IsActive = isActive;
-        }
-
-        public CreativePowerArgs(CreativePowerId id, float value)
-        {
-            Id = id;
-            Value = value;
-        }
-
-        public CreativePowerId Id { get; set; }
-        public float Value { get; set; }
-        public bool IsActive { get; set; }
-    }
+    
 
     public partial class WorldViewModel : ViewModelBase
     {
@@ -819,7 +797,7 @@ namespace TEdit.ViewModel
             sfd.OverwritePrompt = true;
             if (sfd.ShowDialog() == true)
             {
-                TEdit.Terraria.WorldAnalysis.AnalyzeWorld(CurrentWorld, sfd.FileName);
+                Editor.WorldAnalysis.AnalyzeWorld(CurrentWorld, sfd.FileName);
 
             }
         }
@@ -834,7 +812,7 @@ namespace TEdit.ViewModel
 
         private void AnalyzeWorld()
         {
-            WorldAnalysis = TEdit.Terraria.WorldAnalysis.AnalyzeWorld(CurrentWorld);
+            WorldAnalysis = Editor.WorldAnalysis.AnalyzeWorld(CurrentWorld);
         }
 
         private string _worldAnalysis;

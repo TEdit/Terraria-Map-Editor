@@ -190,7 +190,7 @@ namespace TEdit.ViewModel
                             item.StackSize = 1;
                         }
                     }
-                    TileEntity.PlaceEntity(SelectedTileEntity, this);
+                    TileEntity.PlaceEntity(SelectedTileEntity, this.CurrentWorld);
                 }
             }
             else

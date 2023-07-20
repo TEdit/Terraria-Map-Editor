@@ -1,14 +1,16 @@
 ﻿<UserControl x:Class="TEdit.View.SpecialTileView"
-      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-      xmlns:enum="clr-namespace:TEdit.UI.Xaml.Enum"
-      xmlns:System="clr-namespace:System;assembly=mscorlib" 
-             xmlns:p="clr-namespace:TEdit.Properties"
-             xmlns:converters="clr-namespace:TEdit.Converters"
-             mc:Ignorable="d"
-      d:DesignHeight="300" d:DesignWidth="300">
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+    xmlns:enum="clr-namespace:TEdit.UI.Xaml.Enum"
+    xmlns:System="clr-namespace:System;assembly=mscorlib" 
+    xmlns:p="clr-namespace:TEdit.Properties"
+    xmlns:converters="clr-namespace:TEdit.Converters"
+    mc:Ignorable="d"
+    d:DesignHeight="300"
+    d:DesignWidth="300">
 
     <UserControl.Resources>
         <Image x:Key="TB_CopyIcon" x:Shared="false" Source="/Images/Toolbar/copy.png" Height="16" Width="16" SnapsToDevicePixels="True" RenderOptions.BitmapScalingMode="NearestNeighbor"/>
@@ -92,8 +94,8 @@
                 <Button Grid.Column="3" Content="{StaticResource TB_CopyIcon}" ToolTip="{x:Static p:Language.menu_edit_copy}" Command="{Binding DataContext.CopyChestItemCommand, Mode=Default, RelativeSource={RelativeSource AncestorType={x:Type Window}}}" CommandParameter="{Binding}"></Button>
                 <Button Grid.Column="4" Content="{StaticResource TB_PasteIcon}" ToolTip="{x:Static p:Language.menu_edit_paste}" Command="{Binding DataContext.PasteChestItemCommand, Mode=Default, RelativeSource={RelativeSource AncestorType={x:Type Window}}}" CommandParameter="{Binding}"></Button>
                 <Button Grid.Column="5" Content="^" ToolTip="{x:Static p:Language.chest_max_stack}" Command="{Binding DataContext.ChestItemSetToMaxStack, Mode=Default, RelativeSource={RelativeSource AncestorType={x:Type Window}}}" CommandParameter="{Binding}"></Button>
-                
-                
+
+
             </Grid>
         </DataTemplate>
         <Style TargetType="{x:Type GroupBox}" x:Key="InstructionsVisiblity" BasedOn="{StaticResource {x:Type GroupBox}}">
@@ -225,7 +227,7 @@
                     <RowDefinition Height="*" />
                     <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
-                <StackPanel Orientation="Horizontal" Grid.Row="0">
+                <!--<StackPanel Orientation="Horizontal" Grid.Row="0">
                     <TextBlock Text="{x:Static p:Language.specialtile_label_signtype}" Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" VerticalAlignment="Center" />
                     <ComboBox Width="150px"
                       ItemsSource="{Binding Source={StaticResource SignsCollection}}"
@@ -234,7 +236,7 @@
                       DisplayMemberPath="Name"
                       IsSynchronizedWithCurrentItem="False"
                       HorizontalAlignment="Stretch" Margin="1,0" ItemsPanel="{StaticResource Template_ComboPanel}" />
-                </StackPanel>
+                </StackPanel>-->
                 <StackPanel Orientation="Horizontal" Grid.Row="1">
                     <TextBlock Text="{x:Static p:Language.specialtile_label_signtext}" Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" />
                     <TextBlock Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" >
@@ -255,7 +257,7 @@
                 </UniformGrid>
             </Grid>
         </GroupBox>
-        <GroupBox BorderThickness="0" Style="{StaticResource ChestVisiblity}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" >
+        <GroupBox Style="{StaticResource ChestVisiblity}" BorderThickness="0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" >
             <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" >
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
@@ -270,7 +272,7 @@
                     <TextBlock Text="{x:Static p:Language.specialtile_label_chestname}" Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" VerticalAlignment="Center" />
                     <TextBox Margin="2" Width="100px" Height="20px" MaxLength="20" MaxLines="1" Text="{Binding SelectedChest.Name}" />
                 </StackPanel>
-                <StackPanel Orientation="Horizontal" Grid.Row="1">
+                <!--<StackPanel Orientation="Horizontal" Grid.Row="1">
                     <TextBlock Text="{x:Static p:Language.specialtile_label_chesttype}" Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" VerticalAlignment="Center" />
                     <ComboBox Width="150px"
                       ItemsSource="{Binding Source={StaticResource ChestsCollection}}"
@@ -278,8 +280,9 @@
                       SelectedValuePath="ChestId"
                       DisplayMemberPath="Name"
                       IsSynchronizedWithCurrentItem="False"
-                      HorizontalAlignment="Stretch" Margin="1,0" ItemsPanel="{StaticResource Template_ComboPanel}" />
-                </StackPanel>
+                      HorizontalAlignment="Stretch" Margin="1,0" ItemsPanel="{StaticResource Template_ComboPanel}">
+                    </ComboBox>
+                </StackPanel>-->
                 <StackPanel Orientation="Horizontal" Grid.Row="2">
                     <TextBlock Text="{x:Static p:Language.specialtile_label_chestcontents}" Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" />
                     <TextBlock Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" DockPanel.Dock="Top">

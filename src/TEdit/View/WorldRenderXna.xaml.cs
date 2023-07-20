@@ -2515,7 +2515,7 @@ namespace TEdit.View
                                 else if (curtile.LiquidType == LiquidType.Shimmer)
                                 {
                                     tileTex = (Texture2D)_textureDictionary.GetLiquid(14);
-                                    liquidColor = World.GlobalColors["Shimmer"];
+                                    liquidColor = new Color(World.GlobalColors["Shimmer"].PackedValue);
                                 }
                                 else
                                 {

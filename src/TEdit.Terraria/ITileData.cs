@@ -1,8 +1,7 @@
 ﻿using System.Collections.ObjectModel;
 using TEdit.Geometry;
-using TEdit.Terraria;
 
-namespace TEdit.Editor
+namespace TEdit.Terraria
 {
     public interface ITileData
     {

@@ -8,12 +8,6 @@ using System;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
-using MonoGame.Framework.Utilities;
-using System.Windows.Documents;
-using static Microsoft.ApplicationInsights.MetricDimensionNames.TelemetryContext;
-using System.Data;
-using SharpDX.Direct2D1.Effects;
-using System.Diagnostics;
 using TEdit.Geometry;
 using TEdit.Configuration;
 

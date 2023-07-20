@@ -2,16 +2,12 @@
 using System.ComponentModel;
 using System.IO;
 using System.Linq;
-using System.Windows;
 using TEdit.Common.Reactive;
 using TEdit.Terraria.Objects;
-using TEdit.Framework.Threading;
-using TEdit.Editor;
-using System.Collections.Generic;
 using TEdit.Geometry;
 using TEdit.Terraria.IO;
-using TEdit.Terraria.Editor;
 using TEdit.Configuration;
+using System.Threading.Tasks;
 
 namespace TEdit.Terraria
 {
@@ -64,14 +60,14 @@ namespace TEdit.Terraria
             bool incrementRevision = true,
             bool showWarnings = true)
         {
-            ErrorLogging.TelemetryClient?.TrackEvent(nameof(Save));
+            //ErrorLogging.TelemetryClient?.TrackEvent(nameof(Save));
 
             if (showWarnings)
             {
                 try
                 {
                     OnProgressChanged(world, new ProgressChangedEventArgs(0, "Validating World..."));
-                    world.Validate();
+                    world.ValidateAsync();
                 }
                 catch (ArgumentOutOfRangeException err)
                 {
@@ -290,7 +286,7 @@ namespace TEdit.Terraria
             }
             catch (Exception err)
             {
-                ErrorLogging.LogException(err);
+                //ErrorLogging.LogException(err);
                 string msg =
                     "There was an error reading the world file.\r\n" +
                     "This is usually caused by a corrupt save file or a world version newer than supported.\r\n\r\n" +
@@ -418,26 +414,25 @@ namespace TEdit.Terraria
                 return new Vector2Int32(x, y);
         }
 
-        public void Validate()
+        public async Task ValidateAsync()
         {
-            var t = TaskFactoryHelper.UiTaskFactory.StartNew(() =>
+            await Task.Delay(0);
+
+            for (int x = 0; x < TilesWide; x++)
             {
-                for (int x = 0; x < TilesWide; x++)
+                OnProgressChanged(this,
+                    new ProgressChangedEventArgs((int)(x / (float)TilesWide * 100.0), "Validating World..."));
+
+                for (int y = 0; y < TilesHigh; y++)
                 {
-                    OnProgressChanged(this,
-                        new ProgressChangedEventArgs((int)(x / (float)TilesWide * 100.0), "Validating World..."));
+                    Tile curTile = Tiles[x, y];
 
-                    for (int y = 0; y < TilesHigh; y++)
-                    {
-                        Tile curTile = Tiles[x, y];
+                    if (curTile.Type == (int)TileType.IceByRod)
+                        curTile.IsActive = false;
 
-                        if (curTile.Type == (int)TileType.IceByRod)
-                            curTile.IsActive = false;
-
-                        ValSpecial(x, y);
-                    }
+                    ValSpecial(x, y);
                 }
-            });
+            }
 
             foreach (Chest chest in Chests.ToArray())
             {
@@ -489,7 +484,7 @@ namespace TEdit.Terraria
                 var anchor = GetAnchor(x, y);
                 if (!Tiles[anchor.X, anchor.Y].IsActive || !Tile.IsTileEntity(Tiles[anchor.X, anchor.Y].Type))
                 {
-                    TaskFactoryHelper.ExecuteUiTask(() => TileEntities.Remove(tileEntity));
+                    TileEntities.Remove(tileEntity);
                 }
             }
 

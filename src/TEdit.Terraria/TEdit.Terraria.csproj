@@ -12,6 +12,7 @@
 
     <ItemGroup>
         <ProjectReference Include="..\TEdit.Common\TEdit.Common.csproj" />
+        <ProjectReference Include="..\TEdit.Configuration\TEdit.Configuration.csproj" />
     </ItemGroup>
 
 </Project>

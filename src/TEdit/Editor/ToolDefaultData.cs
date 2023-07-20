@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Xml.Linq;
-using TEdit.Editor;
 
-namespace TEdit.Terraria
+namespace TEdit.Editor
 {
     public partial class ToolDefaultData
     {
@@ -23,7 +22,7 @@ namespace TEdit.Terraria
         private static int _paintWallMask;
         private static bool _paintWallActive;
         private static MaskMode _paintWallMaskMode;
-        
+
         private static bool _redWire;
         private static bool _greenWire;
         private static bool _blueWire;
@@ -71,7 +70,7 @@ namespace TEdit.Terraria
 
         private static Enum ToEnum(Type type, string name)
         {
-              return (Enum)Enum.Parse(type, name, true);
+            return (Enum)Enum.Parse(type, name, true);
         }
 
         public static PaintMode PaintMode

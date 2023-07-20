@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using TEdit.Common.Reactive;
-using TEdit.Terraria.Objects;
-using TEdit.ViewModel;
 
 namespace TEdit.Terraria
 {
@@ -41,54 +39,7 @@ namespace TEdit.Terraria
         private string _name = string.Empty;
         private int _chestId = -1;
 
-        public int ChestId
-        {
-            get
-            {
-                WorldViewModel wvm = ViewModelLocator.WorldViewModel;
-                World world = wvm.CurrentWorld;
-                var uvX = world.Tiles[X, Y].U;
-                var uvY = world.Tiles[X, Y].V;
-                var type = world.Tiles[X, Y].Type;
-                foreach (ChestProperty prop in World.ChestProperties)
-                {
-                    if (prop.TileType == type && prop.UV.X == uvX && prop.UV.Y == uvY)
-                    {
-                        _chestId = prop.ChestId;
-                        break;
-                    }
-                }
-                return _chestId;
-            }
-            set
-            {
-                foreach (ChestProperty prop in World.ChestProperties)
-                {
-                    if (prop.ChestId == value)
-                    {
-                        WorldViewModel wvm = ViewModelLocator.WorldViewModel;
-                        World world = wvm.CurrentWorld;
-                        int rowNum = 2, colNum = 2;
-                        // Chests are 2 * 2, dressers are 2 * 3.
-                        if (prop.TileType == 88)
-                        {
-                            colNum = 3;
-                        }
-                        for (int i = 0; i < colNum; ++i)
-                        {
-                            for (int j = 0; j < rowNum; ++j)
-                            {
-                                world.Tiles[X + i, Y + j].U = (short)(prop.UV.X + 18 * i);
-                                world.Tiles[X + i, Y + j].V = (short)(prop.UV.Y + 18 * j);
-                                world.Tiles[X + i, Y + j].Type = prop.TileType;
-                            }
-                        }
-                        Set(nameof(ChestId), ref _chestId, value);
-                        break;
-                    }
-                }
-            }
-        } 
+        
 
         public string Name
         {
@@ -106,7 +57,6 @@ namespace TEdit.Terraria
             get { return _x; }
             set { Set(nameof(X), ref _x, value); }
         }
-
 
         private readonly ObservableCollection<Item> _items = new ObservableCollection<Item>();
         public ObservableCollection<Item> Items

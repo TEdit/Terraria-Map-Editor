@@ -2,20 +2,14 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
-using System.Windows.Input;
-using System.Windows.Media;
 using System.Xml.Linq;
 using TEdit.Common.Reactive;
-using TEdit.Editor.Clipboard;
-using XNA = Microsoft.Xna.Framework;
 using TEdit.Terraria.Objects;
-using Newtonsoft.Json;
 using TEdit.Configuration;
 using System.Linq;
-using Microsoft.Xna.Framework.Input;
-using System.Diagnostics;
 using TEdit.Geometry;
 using TEdit.Common;
+using TEdit.Utility;
 
 namespace TEdit.Terraria
 {
@@ -28,11 +22,10 @@ namespace TEdit.Terraria
         public static List<string> Biomes => MorphSettings.Biomes.Keys.ToList();
         public static Dictionary<string, int> MossTypes => MorphSettings.MossTypes;
 
-        private static readonly Dictionary<string, XNA.Color> _globalColors = new Dictionary<string, XNA.Color>();
+        private static readonly Dictionary<string, TEditColor> _globalColors = new Dictionary<string, TEditColor>();
         private static readonly Dictionary<string, int> _npcIds = new Dictionary<string, int>();
         private static readonly Dictionary<int, Vector2Short> _npcFrames = new Dictionary<int, Vector2Short>();
         private static readonly Dictionary<byte, string> _prefix = new Dictionary<byte, string>();
-        private static readonly KeyboardShortcuts _shortcuts = new KeyboardShortcuts();
         private static readonly Dictionary<int, ItemProperty> _itemLookup = new Dictionary<int, ItemProperty>();
         private static readonly Dictionary<int, string> _tallynames = new Dictionary<int, string>();
         private static readonly Dictionary<string, string> _frameNames = new Dictionary<string, string>();
@@ -169,32 +162,7 @@ namespace TEdit.Terraria
         }
 
 
-        private static TEditColor ColorFromString(string colorstring)
-        {
-            if (!string.IsNullOrWhiteSpace(colorstring))
-            {
-                var colorFromString = ColorConverter.ConvertFromString(colorstring);
-                if (colorFromString != null)
-                {
-                    var c = (Color)colorFromString;
-                    return TEditColor.FromNonPremultiplied(c.R, c.G, c.B, c.A);
-                }
-            }
-            return TEditColor.Magenta;
-        }
-        private static XNA.Color XnaColorFromString(string colorstring)
-        {
-            if (!string.IsNullOrWhiteSpace(colorstring))
-            {
-                var colorFromString = ColorConverter.ConvertFromString(colorstring);
-                if (colorFromString != null)
-                {
-                    var c = (Color)colorFromString;
-                    return XNA.Color.FromNonPremultiplied(c.R, c.G, c.B, c.A);
-                }
-            }
-            return XNA.Color.Magenta;
-        }
+
 
         private static void LoadObjectDbXml(string file)
         {
@@ -218,7 +186,7 @@ namespace TEdit.Terraria
             foreach (var xElement in xmlSettings.Elements("GlobalColors").Elements("GlobalColor"))
             {
                 string name = (string)xElement.Attribute("Name");
-                XNA.Color color = XnaColorFromString((string)xElement.Attribute("Color"));
+                var color = TEditColor.FromString((string)xElement.Attribute("Color"));
                 GlobalColors.Add(name, color);
             }
 
@@ -228,7 +196,7 @@ namespace TEdit.Terraria
                 var curTile = new TileProperty();
 
                 // Read XML attributes
-                curTile.Color = ColorFromString((string)xElement.Attribute("Color"));
+                curTile.Color = TEditColor.FromString((string)xElement.Attribute("Color"));
                 curTile.Name = (string)xElement.Attribute("Name");
                 curTile.Id = (int?)xElement.Attribute("Id") ?? 0;
                 curTile.IsFramed = (bool?)xElement.Attribute("Framed") ?? false;
@@ -332,7 +300,7 @@ namespace TEdit.Terraria
             foreach (var xElement in xmlSettings.Elements("Walls").Elements("Wall"))
             {
                 var curWall = new WallProperty();
-                curWall.Color = ColorFromString((string)xElement.Attribute("Color"));
+                curWall.Color = TEditColor.FromString((string)xElement.Attribute("Color"));
                 curWall.Name = (string)xElement.Attribute("Name");
                 curWall.Id = (int?)xElement.Attribute("Id") ?? -1;
                 WallProperties.Add(curWall);
@@ -389,7 +357,7 @@ namespace TEdit.Terraria
                 var curPaint = new PaintProperty();
                 curPaint.Id = (int?)xElement.Attribute("Id") ?? -1;
                 curPaint.Name = (string)xElement.Attribute("Name");
-                curPaint.Color = ColorFromString((string)xElement.Attribute("Color"));
+                curPaint.Color = TEditColor.FromString((string)xElement.Attribute("Color"));
                 PaintProperties.Add(curPaint);
             }
 
@@ -468,17 +436,16 @@ namespace TEdit.Terraria
                 var key = InLineEnumTryParse<Key>((string)xElement.Attribute("Key"));
                 var modifier = InLineEnumTryParse<ModifierKeys>((string)xElement.Attribute("Modifier"));
                 var tool = (string)xElement.Attribute("Action");
-                ShortcutKeys.Add(tool, key, modifier);
+                App.Add(tool, key, modifier);
             }
 
             XElement appSettings = xmlSettings.Element("App");
             int appWidth = (int?)appSettings.Attribute("Width") ?? 800;
             int appHeight = (int?)appSettings.Attribute("Height") ?? 600;
-            int clipboardSize = (int)XNA.MathHelper.Clamp((int?)appSettings.Attribute("ClipboardRenderSize") ?? 512, 64, 4096);
+            int clipboardSize = (int)Calc.Clamp((int?)appSettings.Attribute("ClipboardRenderSize") ?? 512, 64, 4096);
 
             _appSize = new Vector2(appWidth, appHeight);
             ClipboardBuffer.ClipboardRenderSize = clipboardSize;
-
             ToolDefaultData.LoadSettings(xmlSettings.Elements("Tools"));
 
             AltC = (string)xmlSettings.Element("AltC");
@@ -526,7 +493,7 @@ namespace TEdit.Terraria
             return null;
         }
 
-        public static Dictionary<string, XNA.Color> GlobalColors
+        public static Dictionary<string, TEditColor> GlobalColors
         {
             get { return _globalColors; }
         }
@@ -585,10 +552,7 @@ namespace TEdit.Terraria
             get { return _prefix; }
         }
 
-        public static KeyboardShortcuts ShortcutKeys
-        {
-            get { return _shortcuts; }
-        }
+
 
         public static ObservableCollection<TileProperty> TileProperties
         {

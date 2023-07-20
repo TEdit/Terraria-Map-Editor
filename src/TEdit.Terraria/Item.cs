@@ -107,10 +107,10 @@ namespace TEdit.Terraria
             return new Item(_stackSize, _netId) { Prefix = _prefix };
         }
 
-        public Visibility IsVisible
-        {
-            get { return _netId == 0 ? Visibility.Collapsed : Visibility.Visible; }
-        }
+        //public Visibility IsVisible
+        //{
+        //    get { return _netId == 0 ? Visibility.Collapsed : Visibility.Visible; }
+        //}
 
         public override string ToString()
         {

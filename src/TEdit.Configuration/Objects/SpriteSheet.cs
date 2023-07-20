@@ -16,6 +16,20 @@ namespace TEdit.Terraria.Objects
         public bool IsAnimated { get; set; }
         public List<SpriteItem> Styles { get; } = new();
         public SpriteItem Default => Styles.FirstOrDefault();
+
+        public SpriteItem GetStyleFromUV(Vector2Short uv)
+        {
+            var renderUV = TileProperty.GetRenderUV(Tile, uv.X, uv.Y);
+
+            foreach (var item in Styles)
+            {
+                if (item?.ContainsUV(renderUV) == true)
+                {
+                    return item;
+                }
+            }
+            return default;
+        }
     }
 
     public class SpriteItem
@@ -44,5 +58,7 @@ namespace TEdit.Terraria.Objects
 
             return false;
         }
+
+
     }
 }

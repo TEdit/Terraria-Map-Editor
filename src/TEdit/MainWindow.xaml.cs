@@ -53,7 +53,7 @@ namespace TEdit
 
         private void HandleKeyUpEvent(object sender, KeyEventArgs e)
         {
-            var command = World.ShortcutKeys.Get(e);
+            var command = App.ShortcutKeys.Get(e);
             if (command == null) return;
 
             switch (command)
@@ -73,7 +73,7 @@ namespace TEdit
             {
                 ScrollEventArgs scrollValue = null;
 
-                var command = World.ShortcutKeys.Get(e.Key, e.KeyboardDevice.Modifiers);
+                var command = App.ShortcutKeys.Get(e.Key, e.KeyboardDevice.Modifiers);
                 if (command == null) return;
 
                 switch (command)

@@ -294,15 +294,6 @@
         <Separator Grid.ColumnSpan="2" />
         <TextBlock Text="{x:Static p:Language.tool_wp_moon_phase}" HorizontalAlignment="Right" />
         <DockPanel>
-            <!--<TextBox Width="30" DockPanel.Dock="Right" Height="16">
-                    <TextBox.Text>
-                        <Binding Path="CurrentWorld.MoonPhase" Mode="TwoWay" UpdateSourceTrigger="PropertyChanged">
-                            <Binding.ValidationRules>
-                                <tedit:IntegerRangeValidationRule Min="0" Max="7" />
-                            </Binding.ValidationRules>
-                        </Binding>
-                    </TextBox.Text>
-                </TextBox>-->
             <Slider Value="{Binding CurrentWorld.MoonPhase, Mode=TwoWay}" VerticalAlignment="Center" Minimum="0" Maximum="7" Width="128" />
             <TextBox Text="{Binding CurrentWorld.MoonPhase, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="16" DockPanel.Dock="Right" />
         </DockPanel>

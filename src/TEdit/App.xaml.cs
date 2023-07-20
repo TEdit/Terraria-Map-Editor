@@ -173,6 +173,8 @@ namespace TEdit
             // Current.Shutdown();
 #endif
         }
+
+        public static KeyboardShortcuts ShortcutKeys { get; } = new KeyboardShortcuts();
     }
 
     

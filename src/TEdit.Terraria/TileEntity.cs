@@ -4,8 +4,6 @@ using System.IO;
 using System.Linq;
 using TEdit.Common.Reactive;
 using TEdit.Configuration;
-using TEdit.Terraria.Objects;
-using TEdit.ViewModel;
 
 namespace TEdit.Terraria
 {
@@ -293,16 +291,6 @@ namespace TEdit.Terraria
                 case TileEntityType.TeleportationPylon:
                     break;
             }
-        }
-
-        public static void PlaceEntity(TileEntity te, WorldViewModel wvm)
-        {
-            if (te == null) return;
-            if (wvm == null) return;
-            if (wvm.CurrentWorld == null) return;
-
-            AddEntityToWorld(te, wvm.CurrentWorld);
-            PostAddEntityToWorld(te, wvm.CurrentWorld);
         }
 
         public static void PlaceEntity(TileEntity te, World world)

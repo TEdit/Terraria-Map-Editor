@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ColorMine.ColorSpaces;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Runtime.Serialization;
@@ -15,6 +16,18 @@ namespace TEdit.Common
     [DebuggerDisplay("{DebugDisplayString,nq}")]
     public struct TEditColor : IEquatable<TEditColor>
     {
+        public static TEditColor FromString(string hex)
+        {
+            var rgba = Convert.ToUInt32(hex, 16);
+
+            float r = ((int)((rgba & 0xff000000) >> 24)/ 255.0f);
+            float g = ((int)((rgba & 0x00ff0000) >> 16)/ 255.0f);
+            float b = ((int)((rgba & 0x0000ff00) >> 8) / 255.0f);
+            float a = ((int)(rgba & 0x000000ff)        / 255.0f);
+
+            return new TEditColor(r, g, b, a);
+        }
+        
         private uint _packedValue;
 
 

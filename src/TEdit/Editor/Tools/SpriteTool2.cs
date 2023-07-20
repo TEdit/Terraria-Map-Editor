@@ -61,7 +61,7 @@ namespace TEdit.Editor.Tools
                 if (existingTe == null || (ushort)existingTe.TileType != _wvm.SelectedSpriteSheet.Tile)
                 {
                     var te = TileEntity.CreateForTile(_wvm.CurrentWorld.Tiles[x, y], x, y, 0);
-                    TileEntity.PlaceEntity(te, _wvm); // this will also remove the existing if there is one
+                    TileEntity.PlaceEntity(te, _wvm.CurrentWorld); // this will also remove the existing if there is one
                 }
             }
             else if (Tile.IsChest(tileId))
