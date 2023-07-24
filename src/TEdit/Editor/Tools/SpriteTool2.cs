@@ -33,8 +33,6 @@ namespace TEdit.Editor.Tools
             var x = e.Location.X;
             var y = e.Location.Y;
 
-            PlaceSelectedSprite(x, y);
-
             if (!_isRightDown && !_isLeftDown)
             {
                 _startPoint = e.Location;
@@ -46,6 +44,8 @@ namespace TEdit.Editor.Tools
 
             if (_wvm.SelectedSpriteItem.SizeTiles.X == 1 && _wvm.SelectedSpriteItem.SizeTiles.Y == 1)
                 CheckDirectionandDraw(e.Location);
+            else
+                PlaceSelectedSprite(x, y);
         }
 
         private void PlaceSelectedSprite(int x, int y)
