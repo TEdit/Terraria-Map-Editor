@@ -165,7 +165,7 @@ namespace TEdit
             DispatcherHelper.Initialize();
             TaskFactoryHelper.Initialize();
 
-
+            LoadAppSettings();
 
             base.OnStartup(e);
         }
