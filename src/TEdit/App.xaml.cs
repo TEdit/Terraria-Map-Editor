@@ -4,10 +4,16 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Windows;
+using System.Windows.Input;
 using System.Windows.Threading;
+using System.Xml.Linq;
+using TEdit.Editor.Clipboard;
+using TEdit.Editor;
 using TEdit.Framework.Threading;
 using TEdit.Properties;
+using TEdit.Utility;
 using TEdit.ViewModel;
+using System.IO;
 
 namespace TEdit
 {
@@ -20,7 +26,7 @@ namespace TEdit
         static App()
         {
             DispatcherHelper.Initialize();
-            
+
 
             switch (Settings.Default.Language)
             {
@@ -159,6 +165,8 @@ namespace TEdit
             DispatcherHelper.Initialize();
             TaskFactoryHelper.Initialize();
 
+
+
             base.OnStartup(e);
         }
 
@@ -175,7 +183,32 @@ namespace TEdit
         }
 
         public static KeyboardShortcuts ShortcutKeys { get; } = new KeyboardShortcuts();
+
+
+        public static void LoadAppSettings()
+        {
+            var settingspath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "settings.xml");
+            var xmlSettings = XElement.Load(settingspath);
+            foreach (var xElement in xmlSettings.Elements("ShortCutKeys").Elements("Shortcut"))
+            {
+
+                Enum.TryParse<Key>((string)xElement.Attribute("Key"), out var key);
+                Enum.TryParse<ModifierKeys>((string)xElement.Attribute("Modifier"), out var modifier);
+
+                var tool = (string)xElement.Attribute("Action");
+                ShortcutKeys.Add(tool, key, modifier);
+            }
+
+            XElement appSettings = xmlSettings.Element("App");
+            int appWidth = (int?)appSettings.Attribute("Width") ?? 800;
+            int appHeight = (int?)appSettings.Attribute("Height") ?? 600;
+            int clipboardSize = (int)Calc.Clamp((int?)appSettings.Attribute("ClipboardRenderSize") ?? 512, 64, 4096);
+
+
+            ClipboardBuffer.ClipboardRenderSize = clipboardSize;
+            ToolDefaultData.LoadSettings(xmlSettings.Elements("Tools"));
+        }
     }
 
-    
+
 }

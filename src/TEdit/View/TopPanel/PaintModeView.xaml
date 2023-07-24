@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:tedit="clr-namespace:TEdit.UI.Xaml"
              xmlns:editor="clr-namespace:TEdit.Editor" 
-             xmlns:Terraria="clr-namespace:TEdit.Terraria"
+             xmlns:Terraria="clr-namespace:TEdit.Terraria;assembly=TEdit.Terraria"
              xmlns:viewModel="clr-namespace:TEdit.ViewModel"
              xmlns:componentModel="clr-namespace:System.ComponentModel;assembly=PresentationFramework"
              mc:Ignorable="d" 

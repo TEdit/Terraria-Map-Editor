@@ -23,8 +23,6 @@ namespace TEdit
         public MainWindow()
         {
             InitializeComponent();
-            Width = World.AppSize.X;
-            Height = World.AppSize.Y;
             DataContext = ViewModelLocator.WorldViewModel;
             _vm = (WorldViewModel)DataContext;
             AddHandler(Keyboard.KeyDownEvent, (KeyEventHandler)HandleKeyDownEvent);

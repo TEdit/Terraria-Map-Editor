@@ -18,7 +18,7 @@ namespace TEdit.Common
     {
         public static TEditColor FromString(string hex)
         {
-            var rgba = Convert.ToUInt32(hex, 16);
+            var rgba = Convert.ToUInt32(hex.Substring(1), 16);
 
             float r = ((int)((rgba & 0xff000000) >> 24)/ 255.0f);
             float g = ((int)((rgba & 0x00ff0000) >> 16)/ 255.0f);

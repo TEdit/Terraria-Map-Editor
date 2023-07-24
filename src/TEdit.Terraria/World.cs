@@ -8,9 +8,11 @@ using TEdit.Geometry;
 using TEdit.Terraria.IO;
 using TEdit.Configuration;
 using System.Threading.Tasks;
+using TEdit.Common.Exceptions;
 
 namespace TEdit.Terraria
 {
+
     public partial class World : ObservableObject, ITileData
     {
         private static readonly object _fileLock = new object();
@@ -57,41 +59,8 @@ namespace TEdit.Terraria
             string filename,
             bool resetTime = false,
             int versionOverride = 0,
-            bool incrementRevision = true,
-            bool showWarnings = true)
+            bool incrementRevision = true)
         {
-            //ErrorLogging.TelemetryClient?.TrackEvent(nameof(Save));
-
-            if (showWarnings)
-            {
-                try
-                {
-                    OnProgressChanged(world, new ProgressChangedEventArgs(0, "Validating World..."));
-                    world.ValidateAsync();
-                }
-                catch (ArgumentOutOfRangeException err)
-                {
-                    string msg = "There is a problem in your world.\r\n" +
-                                 $"{err.ParamName}\r\n" +
-                                 $"This world may not open in Terraria\r\n" +
-                                 "Would you like to save anyways??\r\n";
-                    if (MessageBox.Show(msg, "World Error", MessageBoxButton.YesNo, MessageBoxImage.Error) !=
-                        MessageBoxResult.Yes)
-                        return;
-                }
-                catch (Exception ex)
-                {
-                    string msg = "There is a problem in your world.\r\n" +
-                                 $"{ex.Message}\r\n" +
-                                 "This world may not open in Terraria\r\n" +
-                                 "Would you like to save anyways??\r\n";
-
-                    if (MessageBox.Show(msg, "World Error", MessageBoxButton.YesNo, MessageBoxImage.Error) !=
-                        MessageBoxResult.Yes)
-                        return;
-                }
-            }
-
             lock (_fileLock)
             {
                 uint currentWorldVersion = world.Version;
@@ -167,16 +136,119 @@ namespace TEdit.Terraria
                     if (versionOverride > 0) { world.Version = currentWorldVersion; }
                 }
             }
-
         }
 
-        public static World LoadWorld(string filename, bool showWarnings = true)
+
+        public static WorldValidationStatus ValidateWorldFile(string filename)
         {
             var w = new World();
             uint curVersion = 0;
-            try
+            WorldValidationStatus status = new();
+
+            lock (_fileLock)
             {
-                lock (_fileLock)
+                try
+                {
+                    using (var fs = File.OpenRead(filename))
+                    {
+                        Stream stream = fs;
+                        if (ConsoleCompressor.IsCompressed(fs))
+                        {
+                            w.IsConsole = true;
+                            status.IsConsole = true;
+                            stream = ConsoleCompressor.DecompressStream(fs);
+                        }
+
+                        using (var b = new BinaryReader(stream))
+                        {
+                            string twldPath = Path.Combine(
+                                Path.GetDirectoryName(filename),
+                                Path.GetFileNameWithoutExtension(filename) +
+                                ".twld");
+
+                            if (File.Exists(twldPath))
+                            {
+                                w.IsTModLoader = true;
+                                status.IsTModLoader = true;
+                            }
+
+                            w.Version = b.ReadUInt32();
+                            status.Version = w.Version;
+
+                            // only perform this check for v38 and under
+                            if (w.Version <= 38)
+                            {
+                                // save the stream position
+                                var readerPos = b.BaseStream.Position;
+
+                                // read title and seed
+                                w.Title = b.ReadString();
+                                int seed = b.ReadInt32();
+                                // if seed = 0, use load V0
+                                w.IsV0 = seed == 0 && w.Version <= 38;
+
+                                // reset the stream
+                                b.BaseStream.Position = readerPos;
+                            }
+
+                            curVersion = w.Version;
+
+                            if (w.Version < World.CompatibleVersion)
+                            {
+                                status.IsLegacy = true;
+                            }
+
+                            if (w.Version > 87)
+                            {
+                                status.LoaderVersion = 2;
+
+                            }
+                            else if (w.Version <= 38 && w.IsV0)
+                            {
+                                status.LoaderVersion = 0;
+                            }
+                            else
+                            {
+                                status.LoaderVersion = 1;
+                            }
+
+                            // reset the stream
+                            b.BaseStream.Position = (long)0;
+
+                            OnProgressChanged(null, new ProgressChangedEventArgs(0, "Loading File Header..."));
+                            // read section pointers and tile frame data
+                            if (!LoadSectionHeader(b, out _, out _, w))
+                                throw new TEditFileFormatException("Invalid File Format Section");
+
+                            if (w.IsChinese)
+                            {
+                                status.IsChinese = true;
+                            }
+                        }
+                    }
+                    w.LastSave = File.GetLastWriteTimeUtc(filename);
+                    status.LastSave = w.LastSave;
+                    status.IsValid = true;
+                }
+                catch (Exception ex)
+                {
+                    // save error and return status
+                    status.IsValid = false;
+                    status.Message = ex.Message;
+                }
+            }
+
+            return status;
+        }
+
+        public static (World World, Exception Error) LoadWorld(string filename)
+        {
+            var w = new World();
+            uint curVersion = 0;
+
+            lock (_fileLock)
+            {
+                try
                 {
                     using (var fs = File.OpenRead(filename))
                     {
@@ -192,10 +264,8 @@ namespace TEdit.Terraria
 
 #if DEBUG
                             using TextWriter debugger = new StreamWriter(new FileStream(filename + ".json", FileMode.Create));
-
 #else
                             TextWriter debugger = null;
-
 #endif
 
                             string twldPath = Path.Combine(
@@ -223,45 +293,6 @@ namespace TEdit.Terraria
                                 b.BaseStream.Position = readerPos;
                             }
 
-
-                            if (showWarnings)
-                            {
-                                if (w.Version < World.CompatibleVersion && w.IsTModLoader)
-                                {
-                                    string message = $"You are loading a legacy TModLoader world version: {w.Version}.\r\n" +
-                                        $"1. Editing legacy files is a BETA feature.\r\n" +
-                                        $"2. Editing modded worlds is unsupported.\r\n" +
-                                        "Please make a backup as you may experience world file corruption.\r\n" +
-                                        "Do you wish to continue?";
-                                    if (MessageBox.Show(message, "Convert File?", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.No)
-                                    {
-                                        return null;
-                                    }
-                                }
-                                else if (w.Version < World.CompatibleVersion)
-                                {
-                                    string message = $"You are loading a legacy world version: {w.Version}.\r\n" +
-                                        $"Editing legacy files is a BETA feature.\r\n" +
-                                        "Please make a backup as you may experience world file corruption.\r\n" +
-                                        "Do you wish to continue?";
-                                    if (MessageBox.Show(message, "Convert File?", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.No)
-                                    {
-                                        return null;
-                                    }
-                                }
-                                else if (w.IsTModLoader)
-                                {
-                                    string message = $"You are loading a TModLoader world." +
-                                        $"Editing modded worlds is unsupported.\r\n" +
-                                        "Please make a backup as you may experience world file corruption.\r\n" +
-                                        "Do you wish to continue?";
-                                    if (MessageBox.Show(message, "Load Mod World?", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.No)
-                                    {
-                                        return null;
-                                    }
-                                }
-                            }
-
                             curVersion = w.Version;
                             if (w.Version > 87)
                             {
@@ -276,39 +307,18 @@ namespace TEdit.Terraria
                                 LoadV1(b, filename, w);
                             }
 
-
-
                             //w.UpgradeLegacyTileEntities();
                         }
                     }
                     w.LastSave = File.GetLastWriteTimeUtc(filename);
                 }
+                catch (Exception ex)
+                {
+                    return (w, ex);
+                }
             }
-            catch (Exception err)
-            {
-                //ErrorLogging.LogException(err);
-                string msg =
-                    "There was an error reading the world file.\r\n" +
-                    "This is usually caused by a corrupt save file or a world version newer than supported.\r\n\r\n" +
-                    $"TEdit v{TEdit.App.Version}\r\n" +
-                    $"TEdit Max World: {CompatibleVersion}\r\n" +
-                    $"Current World: {curVersion}\r\n\r\n" +
-                    "Do you wish to force it to load anyway?\r\n\r\n" +
-                    "WARNING: This may have unexpected results including corrupt world files and program crashes.\r\n\r\n" +
-                    $"The error is :\r\n{err.Message}\r\n\r\n{err}\r\n";
 
-                if (showWarnings)
-                {
-                    if (MessageBox.Show(msg, "World File Error", MessageBoxButton.YesNo, MessageBoxImage.Error) !=
-                        MessageBoxResult.Yes)
-                        return null;
-                }
-                else
-                {
-                    throw;
-                }
-            }
-            return w;
+            return (w, null);
         }
 
         public void ResetTime()

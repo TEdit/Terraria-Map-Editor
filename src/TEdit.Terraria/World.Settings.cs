@@ -47,9 +47,8 @@ namespace TEdit.Terraria
         private static readonly ObservableCollection<WallProperty> _wallPropertiesMask = new ObservableCollection<WallProperty>();
         private static readonly ObservableCollection<PaintProperty> _paintProperties = new ObservableCollection<PaintProperty>();
 
-        private static Vector2 _appSize;
-        internal static string AltC;
-        internal static int? SteamUserId;
+        public static string AltC;
+        public static int? SteamUserId;
 
         static World()
         {
@@ -60,6 +59,8 @@ namespace TEdit.Terraria
             SaveConfiguration = SaveVersionManager.LoadJson(saveVersionPath);
 
             var settingspath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "settings.xml");
+
+
             LoadObjectDbXml(settingspath);
 
             var bestiaryDataPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "npcData.json");
@@ -431,23 +432,6 @@ namespace TEdit.Terraria
                 ItemPrefix.Add((byte)id, name);
             }
 
-            foreach (var xElement in xmlSettings.Elements("ShortCutKeys").Elements("Shortcut"))
-            {
-                var key = InLineEnumTryParse<Key>((string)xElement.Attribute("Key"));
-                var modifier = InLineEnumTryParse<ModifierKeys>((string)xElement.Attribute("Modifier"));
-                var tool = (string)xElement.Attribute("Action");
-                App.Add(tool, key, modifier);
-            }
-
-            XElement appSettings = xmlSettings.Element("App");
-            int appWidth = (int?)appSettings.Attribute("Width") ?? 800;
-            int appHeight = (int?)appSettings.Attribute("Height") ?? 600;
-            int clipboardSize = (int)Calc.Clamp((int?)appSettings.Attribute("ClipboardRenderSize") ?? 512, 64, 4096);
-
-            _appSize = new Vector2(appWidth, appHeight);
-            ClipboardBuffer.ClipboardRenderSize = clipboardSize;
-            ToolDefaultData.LoadSettings(xmlSettings.Elements("Tools"));
-
             AltC = (string)xmlSettings.Element("AltC");
             SteamUserId = (int?)xmlSettings.Element("SteamUserId") ?? null;
         }
@@ -625,10 +609,6 @@ namespace TEdit.Terraria
             get { return _frameNames; }
         }
 
-        internal static Vector2 AppSize
-        {
-            get { return _appSize; }
-        }
 
         public static string GetFrameNameKey(int id, short u, short v)
         {

@@ -37,10 +37,11 @@ using TEdit.UI.Xaml;
 using static TEdit.Terraria.CreativePowers;
 using TEdit.Geometry;
 using TEdit.Configuration;
+using System.Windows.Documents;
 
 namespace TEdit.ViewModel
 {
-    
+
 
     public partial class WorldViewModel : ViewModelBase
     {
@@ -1095,8 +1096,40 @@ namespace TEdit.ViewModel
 
         private void SaveWorldThreaded(string filename, uint version = 0)
         {
-            Task.Factory.StartNew(() => World.Save(CurrentWorld, filename, versionOverride: (int)version))
-                .ContinueWith(t => CommandManager.InvalidateRequerySuggested(), TaskFactoryHelper.UiTaskScheduler);
+            Task.Factory.StartNew(async () =>
+            {
+                ErrorLogging.TelemetryClient?.TrackEvent(nameof(SaveWorldThreaded));
+
+                try
+                {
+                    OnProgressChanged(CurrentWorld, new ProgressChangedEventArgs(0, "Validating World..."));
+                    await CurrentWorld.ValidateAsync();
+                }
+                catch (ArgumentOutOfRangeException err)
+                {
+                    string msg = "There is a problem in your world.\r\n" +
+                                 $"{err.ParamName}\r\n" +
+                                 $"This world may not open in Terraria\r\n" +
+                                 "Would you like to save anyways??\r\n";
+                    if (MessageBox.Show(msg, "World Error", MessageBoxButton.YesNo, MessageBoxImage.Error) !=
+                        MessageBoxResult.Yes)
+                        return;
+                }
+                catch (Exception ex)
+                {
+                    string msg = "There is a problem in your world.\r\n" +
+                                 $"{ex.Message}\r\n" +
+                                 "This world may not open in Terraria\r\n" +
+                                 "Would you like to save anyways??\r\n";
+
+                    if (MessageBox.Show(msg, "World Error", MessageBoxButton.YesNo, MessageBoxImage.Error) !=
+                        MessageBoxResult.Yes)
+                        return;
+                }
+
+                World.Save(CurrentWorld, filename, versionOverride: (int)version);
+            })
+            .ContinueWith(t => CommandManager.InvalidateRequerySuggested(), TaskFactoryHelper.UiTaskScheduler);
         }
 
         public void LoadWorld(string filename)
@@ -1108,44 +1141,127 @@ namespace TEdit.ViewModel
             CurrentWorld = null;
             GC.WaitForFullGCComplete();
 
-            Task.Factory.StartNew(() => World.LoadWorld(filename))
-                .ContinueWith(t => CurrentWorld = t.Result, TaskFactoryHelper.UiTaskScheduler)
-                .ContinueWith(t => RenderEntireWorld())
-                .ContinueWith(t =>
+            Task.Factory.StartNew(() =>
+            {
+                // perform validations
+                var validation = World.ValidateWorldFile(filename);
+                if (!validation.IsValid)
                 {
-                    try
+                    //ErrorLogging.LogException(err);
+                    string msg =
+                        "There was an error reading the world file.\r\n" +
+                        "This is usually caused by a corrupt save file or a world version newer than supported.\r\n\r\n" +
+                        $"TEdit v{TEdit.App.Version}\r\n" +
+                        $"TEdit Max World: {World.CompatibleVersion}\r\n" +
+                        $"Current World: {validation.Version}\r\n\r\n" +
+                        "Do you wish to force it to load anyway?\r\n\r\n" +
+                        "WARNING: This may have unexpected results including corrupt world files and program crashes.\r\n\r\n" +
+                        $"The error is :\r\n{validation.Message}";
+
+                    // there is no recovering here, so just show the message and return (aka abort)
+                    MessageBox.Show(msg, "World File Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return null;
+                }
+
+                if (validation.IsLegacy && validation.IsTModLoader)
+                {
+                    string message = $"You are loading a legacy TModLoader world version: {validation.Version}.\r\n" +
+                        $"1. Editing legacy files is a BETA feature.\r\n" +
+                        $"2. Editing modded worlds is unsupported.\r\n" +
+                        "Please make a backup as you may experience world file corruption.\r\n" +
+                        "Do you wish to continue?";
+
+                    if (MessageBox.Show(message, "Convert File?", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.No)
                     {
-                        if (CurrentWorld != null)
+                        // if no, abort
+                        return null;
+                    }
+                }
+                else if (validation.IsLegacy)
+                {
+                    // this has been around forever, removing "beta" warning for now 
+                    // string message = $"You are loading a legacy world version: {validation.Version}.\r\n" +
+                    //     $"Editing legacy files is a BETA feature.\r\n" +
+                    //     "Please make a backup as you may experience world file corruption.\r\n" +
+                    //     "Do you wish to continue?";
+                    // 
+                    // if (MessageBox.Show(message, "Convert File?", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.No)
+                    // {
+                    //     return;
+                    // }
+                }
+                else if (validation.IsTModLoader)
+                {
+                    string message = $"You are loading a TModLoader world." +
+                        $"Editing modded worlds is unsupported.\r\n" +
+                        "Please make a backup as you may experience world file corruption.\r\n" +
+                        "Do you wish to continue?";
+
+                    if (MessageBox.Show(message, "Load Mod World?", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.No)
+                    {
+                        return null;
+                    }
+                }
+
+
+                var (world, error) = World.LoadWorld(filename);
+                if (error != null)
+                {
+                    string msg =
+                    "There was an error reading the world file.\r\n" +
+                    "This is usually caused by a corrupt save file or a world version newer than supported.\r\n\r\n" +
+                    $"TEdit v{TEdit.App.Version}\r\n" +
+                    $"TEdit Max World: {World.CompatibleVersion}\r\n" +
+                    $"Current World: {validation.Version}\r\n\r\n" +
+                    "Do you wish to force it to load anyway?\r\n\r\n" +
+                    "WARNING: This may have unexpected results including corrupt world files and program crashes.\r\n\r\n" +
+                    $"The error is :\r\n{error.Message}";
+
+                    if (MessageBox.Show(msg, "Load Invalid World?", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.No)
+                    {
+                        return null;
+                    }
+                }
+
+                return world;
+            })
+            .ContinueWith(t => CurrentWorld = t.Result, TaskFactoryHelper.UiTaskScheduler)
+            .ContinueWith(t => RenderEntireWorld())
+            .ContinueWith(t =>
+            {
+                try
+                {
+                    if (CurrentWorld != null)
+                    {
+                        ErrorLogging.TelemetryClient?.TrackEvent(nameof(LoadWorld));
+
+                        PixelMap = t.Result;
+                        UpdateTitle();
+                        Points.Clear();
+                        Points.Add("Spawn");
+                        Points.Add("Dungeon");
+                        foreach (NPC npc in CurrentWorld.NPCs)
                         {
-                            ErrorLogging.TelemetryClient?.TrackEvent(nameof(LoadWorld));
-
-                            PixelMap = t.Result;
-                            UpdateTitle();
-                            Points.Clear();
-                            Points.Add("Spawn");
-                            Points.Add("Dungeon");
-                            foreach (NPC npc in CurrentWorld.NPCs)
-                            {
-                                Points.Add(npc.Name);
-                            }
-                            MinimapImage = RenderMiniMap.Render(CurrentWorld);
-                            _loadTimer.Stop();
-                            OnProgressChanged(this, new ProgressChangedEventArgs(0,
-                                $"World loaded in {_loadTimer.Elapsed.TotalSeconds} seconds."));
-                            _saveTimer.Start();
+                            Points.Add(npc.Name);
                         }
-                    }
-                    catch (Exception ex)
-                    {
-                        ErrorLogging.LogException(ex);
-                    }
-                    finally
-                    {
-
+                        MinimapImage = RenderMiniMap.Render(CurrentWorld);
                         _loadTimer.Stop();
+                        OnProgressChanged(this, new ProgressChangedEventArgs(0,
+                            $"World loaded in {_loadTimer.Elapsed.TotalSeconds} seconds."));
+                        _saveTimer.Start();
                     }
+                }
+                catch (Exception ex)
+                {
+                    ErrorLogging.LogException(ex);
+                }
+                finally
+                {
 
-                }, TaskFactoryHelper.UiTaskScheduler);
+                    _loadTimer.Stop();
+                }
+
+            }, TaskFactoryHelper.UiTaskScheduler);
         }
     }
 }

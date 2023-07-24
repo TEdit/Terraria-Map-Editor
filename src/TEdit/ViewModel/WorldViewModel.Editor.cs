@@ -12,6 +12,7 @@ using TEdit.Framework.Threading;
 using System.IO;
 using TEdit.Geometry;
 using TEdit.Configuration;
+using TEdit.Common;
 
 namespace TEdit.ViewModel
 {
@@ -28,7 +29,7 @@ namespace TEdit.ViewModel
                         UndoManager.SaveTile(x, y);
                         CurrentWorld.Tiles[x, y].Reset();
 
-                        Color curBgColor = GetBackgroundColor(y);
+                        var curBgColor = new Color( GetBackgroundColor(y).PackedValue);
                         PixelMap.SetPixelColor(x, y, Render.PixelMap.GetTileColor(CurrentWorld.Tiles[x, y], curBgColor, _showWalls, _showTiles, _showLiquid, _showRedWires, _showBlueWires, _showGreenWires, _showYellowWires));
                     }
                 }
@@ -453,7 +454,7 @@ namespace TEdit.ViewModel
 
             // curTile.BrickStyle = TilePicker.BrickStyle;
 
-            Color curBgColor = GetBackgroundColor(y);
+            Color curBgColor = new Color(GetBackgroundColor(y).PackedValue);
             PixelMap.SetPixelColor(x, y, Render.PixelMap.GetTileColor(CurrentWorld.Tiles[x, y], curBgColor, _showWalls, _showTiles, _showLiquid, _showRedWires, _showBlueWires, _showGreenWires, _showYellowWires));
         }
 
@@ -466,7 +467,7 @@ namespace TEdit.ViewModel
                     {
                         for (int y = 0; y < CurrentWorld.TilesHigh; y++)
                         {
-                            Color curBgColor = GetBackgroundColor(y);
+                            Color curBgColor = new Color(GetBackgroundColor(y).PackedValue);
                             OnProgressChanged(this, new ProgressChangedEventArgs(y.ProgressPercentage(CurrentWorld.TilesHigh), "Calculating Colors..."));
                             for (int x = 0; x < CurrentWorld.TilesWide; x++)
                             {
@@ -484,7 +485,7 @@ namespace TEdit.ViewModel
         }
         public void UpdateRenderPixel(int x, int y)
         {
-            Color curBgColor = GetBackgroundColor(y);
+            Color curBgColor = new Color(GetBackgroundColor(y).PackedValue);
             PixelMap.SetPixelColor(x, y, Render.PixelMap.GetTileColor(CurrentWorld.Tiles[x, y], curBgColor, _showWalls, _showTiles, _showLiquid, _showRedWires, _showBlueWires, _showGreenWires, _showYellowWires));
         }
 
@@ -501,7 +502,7 @@ namespace TEdit.ViewModel
                 {
                     for (int y = bounded.Top; y < bounded.Bottom; y++)
                     {
-                        Color curBgColor = GetBackgroundColor(y);
+                        Color curBgColor = new Color(GetBackgroundColor(y).PackedValue);
                         OnProgressChanged(this, new ProgressChangedEventArgs(y.ProgressPercentage(CurrentWorld.TilesHigh), "Calculating Colors..."));
                         for (int x = bounded.Left; x < bounded.Right; x++)
                         {
@@ -994,7 +995,7 @@ namespace TEdit.ViewModel
 
                 for (int y = 0; y < CurrentWorld.TilesHigh; y++)
                 {
-                    Color curBgColor = GetBackgroundColor(y);
+                    Color curBgColor = new Color(GetBackgroundColor(y).PackedValue);
                     OnProgressChanged(this, new ProgressChangedEventArgs(y.ProgressPercentage(CurrentWorld.TilesHigh), "Calculating Colors..."));
                     for (int x = 0; x < CurrentWorld.TilesWide; x++)
                     {
@@ -1009,7 +1010,7 @@ namespace TEdit.ViewModel
             return pixels;
         }
 
-        public Color GetBackgroundColor(int y)
+        public TEditColor GetBackgroundColor(int y)
         {
             if (y < 80)
                 return World.GlobalColors["Space"];

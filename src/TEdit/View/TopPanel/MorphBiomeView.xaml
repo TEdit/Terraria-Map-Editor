@@ -6,7 +6,7 @@
              xmlns:Editor="clr-namespace:TEdit.Editor"
              xmlns:enum="clr-namespace:TEdit.UI.Xaml.Enum"
              xmlns:p="clr-namespace:TEdit.Properties"
-             xmlns:Terraria="clr-namespace:TEdit.Terraria"
+             xmlns:Terraria="clr-namespace:TEdit.Terraria;assembly=TEdit.Terraria"
              d:DesignWidth="400"
              d:DesignHeight="100"
              Background="{StaticResource WindowBackgroundBrush}"

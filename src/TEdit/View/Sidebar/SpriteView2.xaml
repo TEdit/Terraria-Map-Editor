@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:p="clr-namespace:TEdit.Properties"
              xmlns:viewModel="clr-namespace:TEdit.ViewModel"             
-             xmlns:Terraria="clr-namespace:TEdit.Terraria" xmlns:tedit="clr-namespace:TEdit.UI.Xaml" mc:Ignorable="d" 
+             xmlns:Terraria="clr-namespace:TEdit.Terraria;assembly=TEdit.Terraria" xmlns:tedit="clr-namespace:TEdit.UI.Xaml" mc:Ignorable="d" 
              d:DataContext="{d:DesignInstance Type=viewModel:WorldViewModel}"
              d:DesignHeight="600" d:DesignWidth="300" Background="{StaticResource WindowBackgroundBrush}" Foreground="{DynamicResource TextBrush}">
     <UserControl.Resources>
