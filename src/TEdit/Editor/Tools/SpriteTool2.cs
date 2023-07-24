@@ -23,7 +23,7 @@ namespace TEdit.Editor.Tools
             ToolType = ToolType.Pixel;
         }
 
-        public override bool PreviewIsTexture => false;
+        public override bool PreviewIsTexture => true;
 
         public override void MouseDown(TileMouseState e)
         {
