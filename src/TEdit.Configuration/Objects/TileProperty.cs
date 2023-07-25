@@ -104,6 +104,58 @@ namespace TEdit.Terraria.Objects
             return frame != null;
         }
 
+        public static Vector2Short GetWorldUV(ushort type, ushort U, ushort V)
+        {
+            int worldU = U;
+            int worldV = V;
+
+            switch (type)
+            {
+                case 87:
+                case 88:
+                case 89:
+                    {
+                        int v = V / 36;
+                        worldU += 1998 * v;
+                        worldV -= 36 * v;
+                    }
+                    break;
+                case 93:
+                    {
+                        int u = U / 36;
+                        //int v = V / 1998;
+                        worldU -= 36 * u;
+                        worldV += 1998 * u;
+                    }
+                    break;
+                case 101:
+                    {
+                        //int u = U / 1998;
+                        int v = V / 72;
+                        worldU += 1998 * v;
+                        worldV -= 72 * v;
+                    }
+                    break;
+                case 185:
+                    if (V == 36)
+                    {
+                        worldU += 1908;
+                        worldV -= 18;
+                    }
+                    break;
+                case 187:
+                    {
+                        //int u = U / 1890;
+                        int v = V / 36;
+                        worldU += 1890 * v;
+                        worldV -= 36 * v;
+                    }
+                    break;
+            }
+
+            return new Vector2Short((short)worldU, (short)worldV);
+        }
+    
 
         public static Vector2Short GetRenderUV(ushort type, short U, short V)
         {

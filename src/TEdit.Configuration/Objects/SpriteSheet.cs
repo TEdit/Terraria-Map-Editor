@@ -92,6 +92,10 @@ namespace TEdit.Terraria.Objects
                         }
                     }
 
+                    var translated = TileProperty.GetWorldUV(Tile, (ushort) tileX, (ushort)tileY);
+                    tileX = translated.X;
+                    tileY = translated.Y;
+
                     tiles[x, y] = new Vector2Short((short)tileX, (short)tileY);
                 }
             }
