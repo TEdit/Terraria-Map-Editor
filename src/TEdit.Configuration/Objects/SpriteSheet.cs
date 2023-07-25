@@ -59,6 +59,50 @@ namespace TEdit.Terraria.Objects
             return false;
         }
 
+        public Vector2Short[,] GetTiles()
+        {
+            var tiles = new Vector2Short[SizeTiles.X, SizeTiles.Y];
+            for (int x = 0; x < SizeTiles.X; x++)
+            {
+                for (int y = 0; y < SizeTiles.Y; y++)
+                {
+                    var curSize = SizePixelsInterval;
+                    var tileX = ((curSize.X) * x + UV.X);
+                    var tileY = ((curSize.Y) * y + UV.Y);
 
+                    if (Tile == 388 || Tile == 389)
+                    {
+                        switch (y)
+                        {
+                            case 0:
+                                tileY = UV.Y;
+                                break;
+                            case 1:
+                                tileY = 20 + UV.Y;
+                                break;
+                            case 2:
+                                tileY = 20 + 18 + UV.Y;
+                                break;
+                            case 3:
+                                tileY = 20 + 18 + 18 + UV.Y;
+                                break;
+                            case 4:
+                                tileY = 20 + 18 + 18 + 18 + UV.Y;
+                                break;
+                        }
+                    }
+
+                    tiles[x, y] = new Vector2Short((short)tileX, (short)tileY);
+                }
+            }
+
+            return tiles;
+        }
+    }
+
+    public class SpriteTile
+    {
+        public int Tile { get; set; }
+        public Vector2Short UV { get; set; }
     }
 }

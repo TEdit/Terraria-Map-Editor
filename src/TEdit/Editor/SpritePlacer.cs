@@ -103,44 +103,4 @@ public static class SpritePlacer
             }
         }
     }
-
-    public static Vector2Short[,] GetTiles(this SpriteItem spriteSub)
-    {
-        var tiles = new Vector2Short[spriteSub.SizeTiles.X, spriteSub.SizeTiles.Y];
-        for (int x = 0; x < spriteSub.SizeTiles.X; x++)
-        {
-            for (int y = 0; y < spriteSub.SizeTiles.Y; y++)
-            {
-                var curSize = spriteSub.SizePixelsInterval;
-                var tileX = ((curSize.X) * x + spriteSub.UV.X);
-                var tileY = ((curSize.Y) * y + spriteSub.UV.Y);
-
-                if (spriteSub.Tile == 388 || spriteSub.Tile == 389)
-                {
-                    switch (y)
-                    {
-                        case 0:
-                            tileY = spriteSub.UV.Y;
-                            break;
-                        case 1:
-                            tileY = 20 + spriteSub.UV.Y;
-                            break;
-                        case 2:
-                            tileY = 20 + 18 + spriteSub.UV.Y;
-                            break;
-                        case 3:
-                            tileY = 20 + 18 + 18 + spriteSub.UV.Y;
-                            break;
-                        case 4:
-                            tileY = 20 + 18 + 18 + 18 + spriteSub.UV.Y;
-                            break;
-                    }
-                }
-
-                tiles[x, y] = new Vector2Short((short)tileX, (short)tileY);
-            }
-        }
-
-        return tiles;
-    }
 }
