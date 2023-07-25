@@ -4890,89 +4890,89 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
             </Frames>
         </Tile>
         <Tile Id="138" Color="#FF606060" Name="Boulder" Framed="true" Size="2,2" Solid="true" />
-        <Tile Id="139" Color="#FFBF8E6F" Name="Music Boxes" Framed="true" Size="2,2" IsAnimated="true">
+        <Tile Id="139" Color="#FFBF8E6F" Name="Music Boxes" Framed="true" Size="2,2">
             <Frames>
-                <Frame UV="0,0" Name="Music Box (Overworld Day)" Variety="Off" />
-                <Frame UV="36,0" Name="Music Box (Overworld Day)" Variety="On" />
-                <Frame UV="72,0" Name="Music Box (Alt Title)" Variety="Off" />
-                <Frame UV="108,0" Name="Music Box (Alt Title)" Variety="On" />
-                <Frame UV="0,36" Name="Music Box (Eerie)" Variety="Off" />
-                <Frame UV="36,36" Name="Music Box (Eerie)" Variety="On" />
-                <Frame UV="0,72" Name="Music Box (Night)" Variety="Off" />
-                <Frame UV="36,72" Name="Music Box (Night)" Variety="On" />
-                <Frame UV="0,108" Name="Music Box (Title)" Variety="Off" />
-                <Frame UV="36,108" Name="Music Box (Title)" Variety="On" />
-                <Frame UV="0,144" Name="Music Box (Underground)" Variety="Off" />
-                <Frame UV="36,144" Name="Music Box (Underground)" Variety="On" />
-                <Frame UV="0,180" Name="Music Box (Boss 1)" Variety="Off" />
-                <Frame UV="36,180" Name="Music Box (Boss 1)" Variety="On" />
-                <Frame UV="0,216" Name="Music Box (Jungle)" Variety="Off" />
-                <Frame UV="36,216" Name="Music Box (Jungle)" Variety="On" />
-                <Frame UV="0,252" Name="Music Box (Corruption)" Variety="Off" />
-                <Frame UV="36,252" Name="Music Box (Corruption)" Variety="On" />
-                <Frame UV="0,288" Name="Music Box (Underground Corruption)" Variety="Off" />
-                <Frame UV="36,288" Name="Music Box (Underground Corruption)" Variety="On" />
-                <Frame UV="0,324" Name="Music Box (The Hallow)" Variety="Off" />
-                <Frame UV="36,324" Name="Music Box (The Hallow)" Variety="On" />
-                <Frame UV="0,360" Name="Music Box (Boss 2)" Variety="Off" />
-                <Frame UV="36,360" Name="Music Box (Boss 2)" Variety="On" />
-                <Frame UV="0,396" Name="Music Box (Underground Hallow)" Variety="Off" />
-                <Frame UV="36,396" Name="Music Box (Underground Hallow)" Variety="On" />
-                <Frame UV="0,432" Name="Music Box (Boss 3)" Variety="Off" />
-                <Frame UV="36,432" Name="Music Box (Boss 3)" Variety="On" />
-                <Frame UV="0,468" Name="Music Box (Snow)" Variety="Off" />
-                <Frame UV="36,468" Name="Music Box (Snow)" Variety="On" />
-                <Frame UV="0,504" Name="Music Box (Space)" Variety="Off" />
-                <Frame UV="36,504" Name="Music Box (Space)" Variety="On" />
-                <Frame UV="0,540" Name="Music Box (Crimson)" Variety="Off" />
-                <Frame UV="36,540" Name="Music Box (Crimson)" Variety="On" />
-                <Frame UV="0,576" Name="Music Box (Boss 4)" Variety="Off" />
-                <Frame UV="36,576" Name="Music Box (Boss 4)" Variety="On" />
-                <Frame UV="0,612" Name="Music Box (Alt Overworld Day)" Variety="Off" />
-                <Frame UV="36,612" Name="Music Box (Alt Overworld Day)" Variety="On" />
-                <Frame UV="0,648" Name="Music Box (Rain)" Variety="Off" />
-                <Frame UV="36,648" Name="Music Box (Rain)" Variety="On" />
-                <Frame UV="0,684" Name="Music Box (Ice)" Variety="Off" />
-                <Frame UV="36,684" Name="Music Box (Ice)" Variety="On" />
-                <Frame UV="0,720" Name="Music Box (Desert)" Variety="Off" />
-                <Frame UV="36,720" Name="Music Box (Desert)" Variety="On" />
-                <Frame UV="0,756" Name="Music Box (Ocean)" Variety="Off" />
-                <Frame UV="36,756" Name="Music Box (Ocean)" Variety="On" />
-                <Frame UV="0,792" Name="Music Box (Dungeon)" Variety="Off" />
-                <Frame UV="36,792" Name="Music Box (Dungeon)" Variety="On" />
-                <Frame UV="0,828" Name="Music Box (Plantera)" Variety="Off" />
-                <Frame UV="36,828" Name="Music Box (Plantera)" Variety="On" />
-                <Frame UV="0,864" Name="Music Box (Boss 5)" Variety="Off" />
-                <Frame UV="36,864" Name="Music Box (Boss 5)" Variety="On" />
-                <Frame UV="0,900" Name="Music Box (Temple)" Variety="Off" />
-                <Frame UV="36,900" Name="Music Box (Temple)" Variety="On" />
-                <Frame UV="0,936" Name="Music Box (Eclipse)" Variety="Off" />
-                <Frame UV="36,936" Name="Music Box (Eclipse)" Variety="On" />
-                <Frame UV="0,972" Name="Music Box (Mushrooms)" Variety="Off" />
-                <Frame UV="36,972" Name="Music Box (Mushrooms)" Variety="On" />
-                <Frame UV="0,1008" Name="Music Box (Pumpkin Moon)" Variety="Off" />
+                <Frame UV="0,0"     Name="Music Box (Overworld Day)" Variety="Off" />
+                <Frame UV="36,0"    Name="Music Box (Overworld Day)" Variety="On" />
+                <Frame UV="72,0"    Name="Music Box (Alt Title)" Variety="Off" />
+                <Frame UV="108,0"   Name="Music Box (Alt Title)" Variety="On" />
+                <Frame UV="0,36"    Name="Music Box (Eerie)" Variety="Off" />
+                <Frame UV="36,36"   Name="Music Box (Eerie)" Variety="On" />
+                <Frame UV="0,72"    Name="Music Box (Night)" Variety="Off" />
+                <Frame UV="36,72"   Name="Music Box (Night)" Variety="On" />
+                <Frame UV="0,108"   Name="Music Box (Title)" Variety="Off" />
+                <Frame UV="36,108"  Name="Music Box (Title)" Variety="On" />
+                <Frame UV="0,144"   Name="Music Box (Underground)" Variety="Off" />
+                <Frame UV="36,144"  Name="Music Box (Underground)" Variety="On" />
+                <Frame UV="0,180"   Name="Music Box (Boss 1)" Variety="Off" />
+                <Frame UV="36,180"  Name="Music Box (Boss 1)" Variety="On" />
+                <Frame UV="0,216"   Name="Music Box (Jungle)" Variety="Off" />
+                <Frame UV="36,216"  Name="Music Box (Jungle)" Variety="On" />
+                <Frame UV="0,252"   Name="Music Box (Corruption)" Variety="Off" />
+                <Frame UV="36,252"  Name="Music Box (Corruption)" Variety="On" />
+                <Frame UV="0,288"   Name="Music Box (Underground Corruption)" Variety="Off" />
+                <Frame UV="36,288"  Name="Music Box (Underground Corruption)" Variety="On" />
+                <Frame UV="0,324"   Name="Music Box (The Hallow)" Variety="Off" />
+                <Frame UV="36,324"  Name="Music Box (The Hallow)" Variety="On" />
+                <Frame UV="0,360"   Name="Music Box (Boss 2)" Variety="Off" />
+                <Frame UV="36,360"  Name="Music Box (Boss 2)" Variety="On" />
+                <Frame UV="0,396"   Name="Music Box (Underground Hallow)" Variety="Off" />
+                <Frame UV="36,396"  Name="Music Box (Underground Hallow)" Variety="On" />
+                <Frame UV="0,432"   Name="Music Box (Boss 3)" Variety="Off" />
+                <Frame UV="36,432"  Name="Music Box (Boss 3)" Variety="On" />
+                <Frame UV="0,468"   Name="Music Box (Snow)" Variety="Off" />
+                <Frame UV="36,468"  Name="Music Box (Snow)" Variety="On" />
+                <Frame UV="0,504"   Name="Music Box (Space)" Variety="Off" />
+                <Frame UV="36,504"  Name="Music Box (Space)" Variety="On" />
+                <Frame UV="0,540"   Name="Music Box (Crimson)" Variety="Off" />
+                <Frame UV="36,540"  Name="Music Box (Crimson)" Variety="On" />
+                <Frame UV="0,576"   Name="Music Box (Boss 4)" Variety="Off" />
+                <Frame UV="36,576"  Name="Music Box (Boss 4)" Variety="On" />
+                <Frame UV="0,612"   Name="Music Box (Alt Overworld Day)" Variety="Off" />
+                <Frame UV="36,612"  Name="Music Box (Alt Overworld Day)" Variety="On" />
+                <Frame UV="0,648"   Name="Music Box (Rain)" Variety="Off" />
+                <Frame UV="36,648"  Name="Music Box (Rain)" Variety="On" />
+                <Frame UV="0,684"   Name="Music Box (Ice)" Variety="Off" />
+                <Frame UV="36,684"  Name="Music Box (Ice)" Variety="On" />
+                <Frame UV="0,720"   Name="Music Box (Desert)" Variety="Off" />
+                <Frame UV="36,720"  Name="Music Box (Desert)" Variety="On" />
+                <Frame UV="0,756"   Name="Music Box (Ocean)" Variety="Off" />
+                <Frame UV="36,756"  Name="Music Box (Ocean)" Variety="On" />
+                <Frame UV="0,792"   Name="Music Box (Dungeon)" Variety="Off" />
+                <Frame UV="36,792"  Name="Music Box (Dungeon)" Variety="On" />
+                <Frame UV="0,828"   Name="Music Box (Plantera)" Variety="Off" />
+                <Frame UV="36,828"  Name="Music Box (Plantera)" Variety="On" />
+                <Frame UV="0,864"   Name="Music Box (Boss 5)" Variety="Off" />
+                <Frame UV="36,864"  Name="Music Box (Boss 5)" Variety="On" />
+                <Frame UV="0,900"   Name="Music Box (Temple)" Variety="Off" />
+                <Frame UV="36,900"  Name="Music Box (Temple)" Variety="On" />
+                <Frame UV="0,936"   Name="Music Box (Eclipse)" Variety="Off" />
+                <Frame UV="36,936"  Name="Music Box (Eclipse)" Variety="On" />
+                <Frame UV="0,972"   Name="Music Box (Mushrooms)" Variety="Off" />
+                <Frame UV="36,972"  Name="Music Box (Mushrooms)" Variety="On" />
+                <Frame UV="0,1008"  Name="Music Box (Pumpkin Moon)" Variety="Off" />
                 <Frame UV="36,1008" Name="Music Box (Pumpkin Moon)" Variety="On" />
-                <Frame UV="0,1044" Name="Music Box (Alt Underground)" Variety="Off" />
+                <Frame UV="0,1044"  Name="Music Box (Alt Underground)" Variety="Off" />
                 <Frame UV="36,1044" Name="Music Box (Alt Underground)" Variety="On" />
-                <Frame UV="0,1080" Name="Music Box (Frost Moon)" Variety="Off" />
+                <Frame UV="0,1080"  Name="Music Box (Frost Moon)" Variety="Off" />
                 <Frame UV="36,1080" Name="Music Box (Frost Moon)" Variety="On" />
-                <Frame UV="0,1116" Name="Music Box (Underground Crimson)" Variety="Off" />
+                <Frame UV="0,1116"  Name="Music Box (Underground Crimson)" Variety="Off" />
                 <Frame UV="36,1116" Name="Music Box (Underground Crimson)" Variety="On" />
-                <Frame UV="0,1152" Name="Music Box (Lunar Boss)" Variety="Off" />
+                <Frame UV="0,1152"  Name="Music Box (Lunar Boss)" Variety="Off" />
                 <Frame UV="36,1152" Name="Music Box (Lunar Boss)" Variety="On" />
-                <Frame UV="0,1188" Name="Music Box (Martian Madness)" Variety="Off" />
+                <Frame UV="0,1188"  Name="Music Box (Martian Madness)" Variety="Off" />
                 <Frame UV="36,1188" Name="Music Box (Martian Madness)" Variety="On" />
-                <Frame UV="0,1224" Name="Music Box (Pirate Invasion)" Variety="Off" />
+                <Frame UV="0,1224"  Name="Music Box (Pirate Invasion)" Variety="Off" />
                 <Frame UV="36,1224" Name="Music Box (Pirate Invasion)" Variety="On" />
-                <Frame UV="0,1260" Name="Music Box (Hell)" Variety="Off" />
+                <Frame UV="0,1260"  Name="Music Box (Hell)" Variety="Off" />
                 <Frame UV="36,1260" Name="Music Box (Hell)" Variety="On" />
-                <Frame UV="0,1296" Name="Music Box (The Towers)" Variety="Off" />
+                <Frame UV="0,1296"  Name="Music Box (The Towers)" Variety="Off" />
                 <Frame UV="36,1296" Name="Music Box (The Towers)" Variety="On" />
-                <Frame UV="0,1332" Name="Music Box (Goblin Invasion)" Variety="Off" />
+                <Frame UV="0,1332"  Name="Music Box (Goblin Invasion)" Variety="Off" />
                 <Frame UV="36,1332" Name="Music Box (Goblin Invasion)" Variety="On" />
-                <Frame UV="0,1368" Name="Music Box (Sandstorm)" Variety="Off" />
+                <Frame UV="0,1368"  Name="Music Box (Sandstorm)" Variety="Off" />
                 <Frame UV="36,1368" Name="Music Box (Sandstorm)" Variety="On" />
-                <Frame UV="0,1404" Name="Music Box (Old One's Army)" Variety="Off" />
+                <Frame UV="0,1404"  Name="Music Box (Old One's Army)" Variety="Off" />
                 <Frame UV="36,1404" Name="Music Box (Old One's Army)" Variety="On" />
             </Frames>
         </Tile>
