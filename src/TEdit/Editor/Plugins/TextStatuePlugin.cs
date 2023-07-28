@@ -6,9 +6,9 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Windows;
 using System.Windows.Media.Imaging;
+using TEdit.Configuration;
 using TEdit.Editor.Clipboard;
 using TEdit.Geometry;
-using TEdit.Terraria;
 using TEdit.Terraria.Editor;
 using TEdit.Terraria.Objects;
 using TEdit.ViewModel;
@@ -151,8 +151,8 @@ namespace TEdit.Editor.Plugins
         {
             if (_textStatueTileProperties == null)
             {
-                _textStatueTileProperties = World.TileProperties[337];
-                var sprite = World.Sprites2.FirstOrDefault(x => x.Tile == (uint)_textStatueTileProperties.Id);
+                _textStatueTileProperties = WorldConfiguration.TileProperties[337];
+                var sprite = WorldConfiguration.Sprites2.FirstOrDefault(x => x.Tile == (uint)_textStatueTileProperties.Id);
 
                 _size = _textStatueTileProperties.FrameSize.FirstOrDefault();
 

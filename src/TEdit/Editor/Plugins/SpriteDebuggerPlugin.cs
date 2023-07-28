@@ -1,7 +1,7 @@
 ﻿using TEdit.ViewModel;
-using TEdit.Terraria;
 using TEdit.Terraria.Objects;
 using TEdit.Terraria.Editor;
+using TEdit.Configuration;
 
 namespace TEdit.Editor.Plugins
 {
@@ -22,7 +22,7 @@ namespace TEdit.Editor.Plugins
             int y = 0;
 
             int currentMaxX = 0;
-            foreach (var sprite in World.Sprites2)
+            foreach (var sprite in WorldConfiguration.Sprites2)
             {
                 int spriteTilesX = sprite.SizeTexture.Width / sprite.SizePixelsInterval.Width;
                 int spriteTilesY = sprite.SizeTexture.Height / sprite.SizePixelsInterval.Height;

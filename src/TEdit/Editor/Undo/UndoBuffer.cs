@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
+using TEdit.Configuration;
 using TEdit.Geometry;
 using TEdit.Terraria;
 using TEdit.ViewModel;
@@ -74,11 +75,11 @@ namespace TEdit.Editor.Undo
         public void SaveTileData()
         {
             var world = ViewModelLocator.WorldViewModel?.CurrentWorld;
-            var version = world?.Version ?? World.CompatibleVersion;
-            var tileFrameImportant = ViewModelLocator.WorldViewModel?.CurrentWorld?.TileFrameImportant ?? World.SettingsTileFrameImportant;
+            var version = world?.Version ?? WorldConfiguration.CompatibleVersion;
+            var tileFrameImportant = ViewModelLocator.WorldViewModel?.CurrentWorld?.TileFrameImportant ?? WorldConfiguration.SettingsTileFrameImportant;
 
-            int maxTileId = World.SaveConfiguration.SaveVersions[(int)version].MaxTileId;
-            int maxWallId = World.SaveConfiguration.SaveVersions[(int)version].MaxWallId;
+            int maxTileId = WorldConfiguration.SaveConfiguration.SaveVersions[(int)version].MaxTileId;
+            int maxWallId = WorldConfiguration.SaveConfiguration.SaveVersions[(int)version].MaxWallId;
             lock (UndoSaveLock)
             {
                 int count = _undoTiles.Count;
@@ -111,7 +112,7 @@ namespace TEdit.Editor.Undo
         public void Close()
         {
             var world = ViewModelLocator.WorldViewModel.CurrentWorld;
-            var version = world?.Version ?? World.CompatibleVersion;
+            var version = world?.Version ?? WorldConfiguration.CompatibleVersion;
 
             Debug.WriteLine($"Saving {file}");
             SaveTileData();
@@ -127,7 +128,7 @@ namespace TEdit.Editor.Undo
 
         public static IEnumerable<UndoTile> ReadUndoTilesFromStream(BinaryReader br)
         {
-            var tileFrameImportant = ViewModelLocator.WorldViewModel?.CurrentWorld?.TileFrameImportant ?? World.SettingsTileFrameImportant;
+            var tileFrameImportant = ViewModelLocator.WorldViewModel?.CurrentWorld?.TileFrameImportant ?? WorldConfiguration.SettingsTileFrameImportant;
 
             var tilecount = br.ReadInt32();
             for (int i = 0; i < tilecount; i++)
@@ -135,7 +136,7 @@ namespace TEdit.Editor.Undo
                 int rle;
                 int x = br.ReadInt32();
                 int y = br.ReadInt32();
-                var curTile = World.DeserializeTileData(br, tileFrameImportant, (int)World.CompatibleVersion, out rle);
+                var curTile = World.DeserializeTileData(br, tileFrameImportant, (int)WorldConfiguration.CompatibleVersion, out rle);
 
                 yield return new UndoTile(new Vector2Int32(x, y), curTile);
             }

@@ -49,3 +49,48 @@ public enum TileType : int
     TallGateClosed = 389,
     JunctionBox = 424
 }
+
+public static class TileTypes
+{
+    public static bool IsChest(int tileType)
+    {
+        return tileType == (int)TileType.Chest
+            || tileType == (int)TileType.Dresser
+            || tileType == (int)TileType.Chest2
+            || tileType == (int)TileType.TrappedChest2
+            || tileType == (int)TileType.TrappedChest;
+    }
+
+    public static bool IsSign(int tileType)
+    {
+        return tileType == (int)TileType.Sign
+            || tileType == (int)TileType.GraveMarker
+            || tileType == (int)TileType.AnnouncementBox
+            || tileType == (int)TileType.TatteredSign;
+    }
+    public static bool IsTileEntity(int tileType)
+    {
+        return tileType == (int)TileType.DisplayDoll
+            || tileType == (int)TileType.MannequinLegacy
+            || tileType == (int)TileType.WomannequinLegacy
+            || tileType == (int)TileType.FoodPlatter
+            || tileType == (int)TileType.TrainingDummy
+            || tileType == (int)TileType.ItemFrame
+            || tileType == (int)TileType.LogicSensor
+            || tileType == (int)TileType.WeaponRackLegacy
+            || tileType == (int)TileType.WeaponRack
+            || tileType == (int)TileType.HatRack
+            || tileType == (int)TileType.TeleportationPylon;
+    }
+
+    public static bool StopsWalls(ushort type)
+    {
+        return type == (ushort)TileType.DoorClosed ||
+               type == (ushort)TileType.DoorOpen ||
+               type == (ushort)TileType.TrapDoor ||
+               type == (ushort)TileType.TrapDoorOpen ||
+               type == (ushort)TileType.TallGate ||
+               type == (ushort)TileType.DoorClosed ||
+               type == (ushort)TileType.TallGateClosed;
+    }
+}

@@ -1,7 +1,7 @@
 using System.Windows;
 using System.Windows.Input;
-using TEdit.Terraria;
 using TEdit.Common.Reactive.Command;
+using TEdit.Configuration;
 
 namespace TEdit.UI.Xaml
 {
@@ -36,7 +36,7 @@ namespace TEdit.UI.Xaml
 
         private void SaveAsVersionCommandAction(string gameVersion)
         {
-            if (World.SaveConfiguration.GameVersionToSaveVersion.TryGetValue(gameVersion, out uint worldVersion))
+            if (WorldConfiguration.SaveConfiguration.GameVersionToSaveVersion.TryGetValue(gameVersion, out uint worldVersion))
             {
                 WorldVersion = worldVersion;
                 this.DialogResult = true;
@@ -44,7 +44,7 @@ namespace TEdit.UI.Xaml
             }
             else
             {
-                WorldVersion = World.CompatibleVersion;
+                WorldVersion = WorldConfiguration.CompatibleVersion;
                 this.DialogResult = false;
                 this.Close();
             }

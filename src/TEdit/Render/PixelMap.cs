@@ -165,10 +165,10 @@ namespace TEdit.Render
             if (tile.Wall > 0 && showWall)
             {
 
-                if (World.WallProperties.Count > tile.Wall)
+                if (WorldConfiguration.WallProperties.Count > tile.Wall)
                 {
-                    if (World.WallProperties[tile.Wall].Color.A != 0)
-                        c = c.AlphaBlend(World.WallProperties[tile.Wall].Color);
+                    if (WorldConfiguration.WallProperties[tile.Wall].Color.A != 0)
+                        c = c.AlphaBlend(WorldConfiguration.WallProperties[tile.Wall].Color);
                     else
                         c = background;
                 }
@@ -190,7 +190,7 @@ namespace TEdit.Render
                 // blend paint
                 if (tile.WallColor > 0 && (!showTile || tile.TileColor == 0))
                 {
-                    var paint = World.PaintProperties[tile.WallColor].Color;
+                    var paint = WorldConfiguration.PaintProperties[tile.WallColor].Color;
                     switch (tile.WallColor)
                     {
                         case 29:
@@ -222,8 +222,8 @@ namespace TEdit.Render
 
             if (tile.IsActive && showTile)
             {
-                if (World.TileProperties.Count > tile.Type)
-                    c = c.AlphaBlend(World.TileProperties[tile.Type].Color);
+                if (WorldConfiguration.TileProperties.Count > tile.Type)
+                    c = c.AlphaBlend(WorldConfiguration.TileProperties[tile.Type].Color);
                 else
                     c = c.AlphaBlend(Color.Magenta); // Add out-of-range colors
 
@@ -240,9 +240,9 @@ namespace TEdit.Render
                 }
 
                 // blend paint
-                if (tile.TileColor > 0 && tile.TileColor <= World.PaintProperties.Count)
+                if (tile.TileColor > 0 && tile.TileColor <= WorldConfiguration.PaintProperties.Count)
                 {
-                    var paint = World.PaintProperties[tile.TileColor].Color;
+                    var paint = WorldConfiguration.PaintProperties[tile.TileColor].Color;
 
                     switch (tile.TileColor)
                     {
@@ -273,27 +273,27 @@ namespace TEdit.Render
 
             if (tile.LiquidAmount > 0 && showLiquid)
             {
-                if (tile.LiquidType == LiquidType.Lava) c = c.AlphaBlend(World.GlobalColors["Lava"]);
-                else if (tile.LiquidType == LiquidType.Honey) c = c.AlphaBlend(World.GlobalColors["Honey"]);
-                else if (tile.LiquidType == LiquidType.Shimmer) c = c.AlphaBlend(World.GlobalColors["Shimmer"]);
-                else c = c.AlphaBlend(World.GlobalColors["Water"]);
+                if (tile.LiquidType == LiquidType.Lava) c = c.AlphaBlend(WorldConfiguration.GlobalColors["Lava"]);
+                else if (tile.LiquidType == LiquidType.Honey) c = c.AlphaBlend(WorldConfiguration.GlobalColors["Honey"]);
+                else if (tile.LiquidType == LiquidType.Shimmer) c = c.AlphaBlend(WorldConfiguration.GlobalColors["Shimmer"]);
+                else c = c.AlphaBlend(WorldConfiguration.GlobalColors["Water"]);
             }
 
             if (tile.WireRed && showRedWire)
             {
-                c = c.AlphaBlend(World.GlobalColors["Wire"]);
+                c = c.AlphaBlend(WorldConfiguration.GlobalColors["Wire"]);
             }
             if (tile.WireGreen && showGreenWire)
             {
-                c = c.AlphaBlend(World.GlobalColors["Wire2"]);
+                c = c.AlphaBlend(WorldConfiguration.GlobalColors["Wire2"]);
             }
             if (tile.WireBlue && showBlueWire)
             {
-                c = c.AlphaBlend(World.GlobalColors["Wire1"]);
+                c = c.AlphaBlend(WorldConfiguration.GlobalColors["Wire1"]);
             }
             if (tile.WireYellow && showYellowWire)
             {
-                c = c.AlphaBlend(World.GlobalColors["Wire3"]);
+                c = c.AlphaBlend(WorldConfiguration.GlobalColors["Wire3"]);
             }
 
             return c;

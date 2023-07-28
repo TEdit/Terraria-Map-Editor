@@ -6,6 +6,7 @@ using System.Windows.Controls;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
+using TEdit.Configuration;
 using TEdit.Terraria;
 
 namespace TEdit.Render
@@ -112,15 +113,15 @@ namespace TEdit.Render
                 string variantName = "Default";
                 if (npcId == 637)// cat
                 {
-                    variantName = World.BestiaryData.Configuration.Cat[variant];
+                    variantName = WorldConfiguration.BestiaryData.Configuration.Cat[variant];
                 }
                 else if (npcId == 638) // dog
                 {
-                    variantName = World.BestiaryData.Configuration.Dog[variant];
+                    variantName = WorldConfiguration.BestiaryData.Configuration.Dog[variant];
                 }
                 else if (npcId == 656) // bunny
                 {
-                    variantName = World.BestiaryData.Configuration.Bunny[variant];
+                    variantName = WorldConfiguration.BestiaryData.Configuration.Bunny[variant];
                 }
                 else if (npcId == 633) // bestiaryGirl
                 {

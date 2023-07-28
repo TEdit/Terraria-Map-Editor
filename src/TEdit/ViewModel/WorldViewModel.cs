@@ -157,7 +157,7 @@ namespace TEdit.ViewModel
 
         public void InitSpriteViews()
         {
-            _spriteSheetView = (ListCollectionView)CollectionViewSource.GetDefaultView(World.Sprites2);
+            _spriteSheetView = (ListCollectionView)CollectionViewSource.GetDefaultView(WorldConfiguration.Sprites2);
             _spriteSheetView.Filter = o =>
             {
 
@@ -183,7 +183,7 @@ namespace TEdit.ViewModel
                 return false;
             };
 
-            _spriteStylesView = (ListCollectionView)CollectionViewSource.GetDefaultView(new ObservableCollection<SpriteItemPreview>(World.Sprites2.SelectMany(s => s.Styles).Select(s => (SpriteItemPreview)s).ToList()));
+            _spriteStylesView = (ListCollectionView)CollectionViewSource.GetDefaultView(new ObservableCollection<SpriteItemPreview>(WorldConfiguration.Sprites2.SelectMany(s => s.Styles).Select(s => (SpriteItemPreview)s).ToList()));
             _spriteStylesView.SortDescriptions.Add(new SortDescription("Name", ListSortDirection.Ascending));
             _spriteStylesView.Filter = (o) =>
             {
@@ -1045,7 +1045,7 @@ namespace TEdit.ViewModel
             var sfd = new SaveFileDialog();
             sfd.Filter =
                 "Terraria World File|*.wld|" +
-                string.Join("|", World.SaveConfiguration.SaveVersions.Values.Reverse().Select(vers => $"Terraria {vers.GameVersion}|*.wld"));
+                string.Join("|", WorldConfiguration.SaveConfiguration.SaveVersions.Values.Reverse().Select(vers => $"Terraria {vers.GameVersion}|*.wld"));
 
             sfd.Title = "Save World As";
             sfd.InitialDirectory = DependencyChecker.PathToWorlds;
@@ -1064,7 +1064,7 @@ namespace TEdit.ViewModel
                             .Replace("*.wld", "")
                             .Split('|')[sfd.FilterIndex - 1];
 
-                        if (World.SaveConfiguration.GameVersionToSaveVersion.TryGetValue(name, out uint versionOverride))
+                        if (WorldConfiguration.SaveConfiguration.GameVersionToSaveVersion.TryGetValue(name, out uint versionOverride))
                         {
                             SaveWorldFile(versionOverride);
                             return;
@@ -1152,7 +1152,7 @@ namespace TEdit.ViewModel
                         "There was an error reading the world file.\r\n" +
                         "This is usually caused by a corrupt save file or a world version newer than supported.\r\n\r\n" +
                         $"TEdit v{TEdit.App.Version}\r\n" +
-                        $"TEdit Max World: {World.CompatibleVersion}\r\n" +
+                        $"TEdit Max World: {WorldConfiguration.CompatibleVersion}\r\n" +
                         $"Current World: {validation.Version}\r\n\r\n" +
                         "Do you wish to force it to load anyway?\r\n\r\n" +
                         "WARNING: This may have unexpected results including corrupt world files and program crashes.\r\n\r\n" +
@@ -1211,7 +1211,7 @@ namespace TEdit.ViewModel
                     "There was an error reading the world file.\r\n" +
                     "This is usually caused by a corrupt save file or a world version newer than supported.\r\n\r\n" +
                     $"TEdit v{TEdit.App.Version}\r\n" +
-                    $"TEdit Max World: {World.CompatibleVersion}\r\n" +
+                    $"TEdit Max World: {WorldConfiguration.CompatibleVersion}\r\n" +
                     $"Current World: {validation.Version}\r\n\r\n" +
                     "Do you wish to force it to load anyway?\r\n\r\n" +
                     "WARNING: This may have unexpected results including corrupt world files and program crashes.\r\n\r\n" +

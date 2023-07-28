@@ -16,6 +16,7 @@ using TEdit.Helper;
 using TEdit.Properties;
 using System.Collections.Generic;
 using SharpDX.XAudio2;
+using TEdit.Configuration;
 
 namespace TEdit.ViewModel
 {
@@ -104,9 +105,9 @@ namespace TEdit.ViewModel
 
         private void AddNpc(int npcId)
         {
-            if (CurrentWorld != null && World.NpcNames.ContainsKey(npcId))
+            if (CurrentWorld != null && WorldConfiguration.NpcNames.ContainsKey(npcId))
             {
-                string name = World.NpcNames[npcId];
+                string name = WorldConfiguration.NpcNames[npcId];
                 if (CurrentWorld.NPCs.All(n => n.SpriteId != npcId))
                 {
                     var spawn = new Vector2Int32(CurrentWorld.SpawnX, CurrentWorld.SpawnY);
@@ -448,7 +449,7 @@ namespace TEdit.ViewModel
         {
             if (item == null) return;
 
-            if (World.ItemLookupTable.TryGetValue(item.NetId, out var props) && props.MaxStackSize > 0)
+            if (WorldConfiguration.ItemLookupTable.TryGetValue(item.NetId, out var props) && props.MaxStackSize > 0)
             {
                 item.StackSize = props.MaxStackSize;
             }

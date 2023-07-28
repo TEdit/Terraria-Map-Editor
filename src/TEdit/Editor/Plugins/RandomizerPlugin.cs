@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.ApplicationInsights.DataContracts;
 using Microsoft.Xna.Framework;
+using TEdit.Configuration;
 using TEdit.Terraria;
 using TEdit.Terraria.Objects;
 using TEdit.ViewModel;
@@ -219,7 +220,7 @@ namespace TEdit.Editor.Plugins
             Random rng = new(settings.Seed);
 
             // Set up lists
-            List<int> fromTiles = new(Terraria.World.TileBricks.Select(x => x.Id));
+            List<int> fromTiles = new(WorldConfiguration.TileBricks.Select(x => x.Id));
             fromTiles.Remove(-1);
 
             if (settings.NoDisappearingBlocks)
@@ -257,7 +258,7 @@ namespace TEdit.Editor.Plugins
             Dictionary<int, int> mapping = new();
             Random rng = new(settings.Seed);
 
-            List<int> fromWalls = new(Terraria.World.WallProperties.Select(x => x.Id));
+            List<int> fromWalls = new(WorldConfiguration.WallProperties.Select(x => x.Id));
             fromWalls.Remove(0); // Remove Sky from the walls to be shuffled
             List<int> toWalls = new(fromWalls);
 

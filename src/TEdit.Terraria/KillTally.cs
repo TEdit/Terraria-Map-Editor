@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Text;
 using System.Text.RegularExpressions;
+using TEdit.Configuration;
 
 namespace TEdit.Terraria
 {
@@ -34,18 +35,18 @@ namespace TEdit.Terraria
                 if (count == 0)
                 {
                     // Monster never killed
-                    if (index > 0 && index <= World.TallyNames.Count)
+                    if (index > 0 && index <= WorldConfiguration.TallyNames.Count)
                     {
-                        World.TallyNames[index] = Regex.Replace(World.TallyNames[index], @" Banner", "");
-                        bufferNoKill += $"[{index}] {World.TallyNames[index]}\n";
+                        WorldConfiguration.TallyNames[index] = Regex.Replace(WorldConfiguration.TallyNames[index], @" Banner", "");
+                        bufferNoKill += $"[{index}] {WorldConfiguration.TallyNames[index]}\n";
                     }
 
                 }
                 else if (count < 50)
                 {
                     // Monster killed, but banner never obtained (less than 50 kills)
-                    World.TallyNames[index] = Regex.Replace(World.TallyNames[index], @" Banner", "");
-                    bufferNoBanner += $"[{index}] {World.TallyNames[index]}: {count}\n";
+                    WorldConfiguration.TallyNames[index] = Regex.Replace(WorldConfiguration.TallyNames[index], @" Banner", "");
+                    bufferNoBanner += $"[{index}] {WorldConfiguration.TallyNames[index]}: {count}\n";
                     killcount = killcount + count;
                 }
                 else
@@ -60,8 +61,8 @@ namespace TEdit.Terraria
                     else
                         bannerText = "banner";
 
-                    World.TallyNames[index] = Regex.Replace(World.TallyNames[index], @" Banner", "");
-                    bufferBanner += $"[{index}] {World.TallyNames[index]}: {count} ({banners} {bannerText} earned)\n";
+                    WorldConfiguration.TallyNames[index] = Regex.Replace(WorldConfiguration.TallyNames[index], @" Banner", "");
+                    bufferBanner += $"[{index}] {WorldConfiguration.TallyNames[index]}: {count} ({banners} {bannerText} earned)\n";
                     killcount = killcount + count;
                     uniquecount = uniquecount + 1;
                     bannercount = bannercount + banners;

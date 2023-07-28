@@ -7,6 +7,7 @@ using TEdit.Common.Reactive.Command;
 using TEdit.Terraria.Objects;
 using TEdit.Geometry;
 using TEdit.Utility;
+using TEdit.Configuration;
 
 namespace TEdit.Terraria
 {
@@ -16,7 +17,6 @@ namespace TEdit.Terraria
 
         Tile[,] ITileData.Tiles => this.Tiles;
 
-        private const int CavernLevelToBottomOfWorld = 478;
 
         // backgrounds
         // 0 = tree 1 2 3 31 4 5 51 6 7 71 72 73 8
@@ -33,8 +33,8 @@ namespace TEdit.Terraria
         private readonly ObservableCollection<NpcName> _charNames = new ObservableCollection<NpcName>();
         private readonly ObservableCollection<Chest> _chests = new ObservableCollection<Chest>();
         private readonly ObservableCollection<NPC> _npcs = new ObservableCollection<NPC>();
-        private readonly ObservableCollection<int> _shimmeredTownNPCs = new ObservableCollection<int>(Enumerable.Repeat(0, MaxNpcID));
-        private readonly ObservableCollection<int> _killedMobs = new ObservableCollection<int>(Enumerable.Repeat(0, MaxNpcID));
+        private readonly ObservableCollection<int> _shimmeredTownNPCs = new ObservableCollection<int>(Enumerable.Repeat(0, WorldConfiguration.MaxNpcID));
+        private readonly ObservableCollection<int> _killedMobs = new ObservableCollection<int>(Enumerable.Repeat(0, WorldConfiguration.MaxNpcID));
         private readonly ObservableCollection<NPC> _mobs = new ObservableCollection<NPC>();
         private readonly ObservableCollection<Sign> _signs = new ObservableCollection<Sign>();
         private readonly ObservableCollection<TileEntity> _tileEntities = new ObservableCollection<TileEntity>();
@@ -1225,7 +1225,7 @@ namespace TEdit.Terraria
             }
             else
             {
-                MaxCavernLevel = Calc.Clamp(TilesHigh - CavernLevelToBottomOfWorld, 6, TilesHigh);
+                MaxCavernLevel = Calc.Clamp(TilesHigh - WorldConfiguration.CavernLevelToBottomOfWorld, 6, TilesHigh);
                 MaxGroundLevel = Calc.Clamp(MaxCavernLevel - 6, 0, TilesHigh);
             }
         }
@@ -1559,7 +1559,7 @@ namespace TEdit.Terraria
         private static NpcName GetNewNpc(int id)
         {
             string name;
-            if (NpcNames.TryGetValue(id, out name))
+            if (WorldConfiguration.NpcNames.TryGetValue(id, out name))
             {
                 return new NpcName(id, name);
             }

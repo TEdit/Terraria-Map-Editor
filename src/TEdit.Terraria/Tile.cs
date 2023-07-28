@@ -59,16 +59,6 @@ namespace TEdit.Terraria
         [NonSerialized] /* Heathtech */
         public bool hasLazyChecked = false; //Whether the above check has taken place
 
-        public static bool StopsWalls(ushort type)
-        {
-            return type == (ushort)TileType.DoorClosed ||
-                   type == (ushort)TileType.DoorOpen ||
-                   type == (ushort)TileType.TrapDoor ||
-                   type == (ushort)TileType.TrapDoorOpen ||
-                   type == (ushort)TileType.TallGate ||
-                   type == (ushort)TileType.DoorClosed ||
-                   type == (ushort)TileType.TallGateClosed;
-        }
 
         public Vector2Short GetUV() => new Vector2Short(U, V);
 
@@ -101,41 +91,11 @@ namespace TEdit.Terraria
             InvisibleWall = false;
         }
 
-        public static bool IsChest(int tileType)
-        {
-            return tileType == (int)TileType.Chest
-                || tileType == (int)TileType.Dresser
-                || tileType == (int)TileType.Chest2
-                || tileType == (int)TileType.TrappedChest2
-                || tileType == (int)TileType.TrappedChest;
-        }
+        public bool IsTileEntity() => IsTileEntity(this.Type);
 
-        public static bool IsSign(int tileType)
-        {
-            return tileType == (int)TileType.Sign 
-                || tileType == (int)TileType.GraveMarker 
-                || tileType == (int)TileType.AnnouncementBox 
-                || tileType == (int)TileType.TatteredSign;
-        }
-
-        public bool IsTileEntity()
-        {
-            return Tile.IsTileEntity(this.Type);
-        }
-
-        public static bool IsTileEntity(int tileType)
-        {
-            return tileType == (int)TileType.DisplayDoll
-                || tileType == (int)TileType.MannequinLegacy
-                || tileType == (int)TileType.WomannequinLegacy
-                || tileType == (int)TileType.FoodPlatter
-                || tileType == (int)TileType.TrainingDummy
-                || tileType == (int)TileType.ItemFrame
-                || tileType == (int)TileType.LogicSensor
-                || tileType == (int)TileType.WeaponRackLegacy
-                || tileType == (int)TileType.WeaponRack
-                || tileType == (int)TileType.HatRack
-                || tileType == (int)TileType.TeleportationPylon;
-        }
+        public static bool IsChest(int tileType) => TileTypes.IsChest(tileType);
+        public static bool IsSign(int tileType) => TileTypes.IsSign(tileType);
+        public static bool StopsWalls(ushort type) => TileTypes.StopsWalls(type);
+        public static bool IsTileEntity(int tileType) => TileTypes.IsTileEntity(tileType);
     }
 }

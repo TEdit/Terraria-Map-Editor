@@ -13,25 +13,12 @@ namespace TEdit.Terraria
 {
     public partial class World
     {
-        public static uint CompatibleVersion { get; private set; } = 275;
-        public static short TileCount { get; private set; } = 693; // updated by json
-        public static short WallCount { get; private set; } = 346; // updated by json
-
-        public static short MaxNpcID { get; private set; } = 687; // updated by json
-
-        public static int MaxChests { get; private set; } = 8000;
-        public static int MaxSigns { get; private set; } = 1000;
-
-        public const string DesktopHeader = "relogic";
-        public const string ChineseHeader = "xindong";
-
         public bool IsTModLoader { get; set; }
 
         public short GetSectionCount() => ((int)Version >= 220) ? (short)11 : (short)10;
 
         public bool[] TileFrameImportant { get; set; }
 
-        public static bool[] SettingsTileFrameImportant { get; set; }
 
         public static void ImportKillsAndBestiary(World world, string worldFileName)
         {
@@ -97,7 +84,7 @@ namespace TEdit.Terraria
             }
 
             int[] sectionPointers = new int[world.GetSectionCount()];
-            bool[] tileFrameImportant = SaveConfiguration.GetTileFramesForVersion((int)world.Version);
+            bool[] tileFrameImportant = WorldConfiguration.SaveConfiguration.GetTileFramesForVersion((int)world.Version);
 
             debugger?.WriteLine("{");
 
@@ -161,8 +148,8 @@ namespace TEdit.Terraria
         {
             debugger?.WriteLine("\"Tiles\": [");
 
-            int maxTileId = World.SaveConfiguration.GetData(version).MaxTileId;
-            int maxWallId = World.SaveConfiguration.GetData(version).MaxWallId;
+            int maxTileId = WorldConfiguration.SaveConfiguration.GetData(version).MaxTileId;
+            int maxWallId = WorldConfiguration.SaveConfiguration.GetData(version).MaxWallId;
 
             for (int x = 0; x < maxX; x++)
             {
@@ -529,7 +516,7 @@ namespace TEdit.Terraria
                     Item item = chest.Items[slot];
 
                     // check if target version allows item.
-                    if (item != null && item.NetId <= World.SaveConfiguration.GetData(version).MaxItemId)
+                    if (item != null && item.NetId <= WorldConfiguration.SaveConfiguration.GetData(version).MaxItemId)
                     {
                         bw.Write((short)item.StackSize);
                         if (item.StackSize > 0)
@@ -574,7 +561,7 @@ namespace TEdit.Terraria
 
         public static int SaveNPCs(World world, BinaryWriter bw, int version)
         {
-            var maxNPC = World.SaveConfiguration.GetData(version).MaxNpcId;
+            var maxNPC = WorldConfiguration.SaveConfiguration.GetData(version).MaxNpcId;
 
             if (world.Version >= 268)
             {
@@ -596,7 +583,7 @@ namespace TEdit.Terraria
                 }
                 else
                 {
-                    bw.Write(NpcNames[npc.SpriteId]);
+                    bw.Write(WorldConfiguration.NpcNames[npc.SpriteId]);
                 }
 
                 bw.Write(npc.DisplayName);
@@ -625,7 +612,7 @@ namespace TEdit.Terraria
 
         public static int SaveTownManager(IList<TownManager> rooms, BinaryWriter bw, int version)
         {
-            var maxNPC = World.SaveConfiguration.GetData(version).MaxNpcId;
+            var maxNPC = WorldConfiguration.SaveConfiguration.GetData(version).MaxNpcId;
 
             var validRoomsForVersion = rooms.Where(r => r.NpcId <= maxNPC).ToList();
 
@@ -641,7 +628,7 @@ namespace TEdit.Terraria
 
         public static int SaveMobs(IEnumerable<NPC> mobs, BinaryWriter bw, int version)
         {
-            var maxNPC = World.SaveConfiguration.GetData(version).MaxNpcId;
+            var maxNPC = WorldConfiguration.SaveConfiguration.GetData(version).MaxNpcId;
 
             foreach (NPC mob in mobs)
             {
@@ -654,7 +641,7 @@ namespace TEdit.Terraria
                 }
                 else
                 {
-                    bw.Write(NpcNames[mob.SpriteId]);
+                    bw.Write(WorldConfiguration.NpcNames[mob.SpriteId]);
                 }
                 bw.Write(mob.Position.X);
                 bw.Write(mob.Position.Y);
@@ -725,11 +712,11 @@ namespace TEdit.Terraria
             {
                 if (world.IsChinese)
                 {
-                    bw.Write(ChineseHeader.ToCharArray());
+                    bw.Write(WorldConfiguration.ChineseHeader.ToCharArray());
                 }
                 else
                 {
-                    bw.Write(DesktopHeader.ToCharArray());
+                    bw.Write(WorldConfiguration.DesktopHeader.ToCharArray());
                 }
                 bw.Write((byte)FileType.World);
 
@@ -897,7 +884,7 @@ namespace TEdit.Terraria
             }
 
             // check if target moonType is over max
-            if (world.MoonType > World.SaveConfiguration.GetData(version).MaxMoonId)
+            if (world.MoonType > WorldConfiguration.SaveConfiguration.GetData(version).MaxMoonId)
             {
                 // target is out of range, reset to zero
                 bw.Write((byte)0);
@@ -1162,8 +1149,8 @@ namespace TEdit.Terraria
                 return (int)bw.BaseStream.Position;
             }
 
-            var maxNPCId = World.SaveConfiguration.GetData(version).MaxNpcId;
-            debugger?.WriteLine("\"KillTallyMax\": {0},", MaxNpcID);
+            var maxNPCId = WorldConfiguration.SaveConfiguration.GetData(version).MaxNpcId;
+            debugger?.WriteLine("\"KillTallyMax\": {0},", WorldConfiguration.MaxNpcID);
             bw.Write((short)(maxNPCId + 1));
             debugger?.Write("\"KillTally\": [");
             for (int i = 0; i <= maxNPCId; i++)
@@ -1786,7 +1773,7 @@ namespace TEdit.Terraria
 
                 // grab bits[4, 5, 6] and shift 4 places to 0,1,2. This byte is our brick style
                 byte brickStyle = (byte)((header2 & 0b_0111_0000) >> 4);
-                if (brickStyle != 0 && TileProperties.Count > tile.Type && TileProperties[tile.Type].HasSlopes)
+                if (brickStyle != 0 && WorldConfiguration.TileProperties.Count > tile.Type && WorldConfiguration.TileProperties[tile.Type].HasSlopes)
                 {
                     tile.BrickStyle = (BrickStyle)brickStyle;
                     debugger?.Write("\"BrickStyle\": {0},", tile.BrickStyle);
@@ -1963,14 +1950,14 @@ namespace TEdit.Terraria
                 if (w.Version >= 190)
                 {
                     npc.SpriteId = r.ReadInt32();
-                    if (NpcNames.ContainsKey(npc.SpriteId))
-                        npc.Name = NpcNames[npc.SpriteId];
+                    if (WorldConfiguration.NpcNames.ContainsKey(npc.SpriteId))
+                        npc.Name = WorldConfiguration.NpcNames[npc.SpriteId];
                 }
                 else
                 {
                     npc.Name = r.ReadString();
-                    if (NpcIds.ContainsKey(npc.Name))
-                        npc.SpriteId = NpcIds[npc.Name];
+                    if (WorldConfiguration.NpcIds.ContainsKey(npc.Name))
+                        npc.SpriteId = WorldConfiguration.NpcIds[npc.Name];
                 }
                 npc.DisplayName = r.ReadString();
                 npc.Position = new Vector2(r.ReadSingle(), r.ReadSingle());
@@ -2001,8 +1988,8 @@ namespace TEdit.Terraria
                 else
                 {
                     npc.Name = r.ReadString();
-                    if (NpcIds.ContainsKey(npc.Name))
-                        npc.SpriteId = NpcIds[npc.Name];
+                    if (WorldConfiguration.NpcIds.ContainsKey(npc.Name))
+                        npc.SpriteId = WorldConfiguration.NpcIds[npc.Name];
                 }
                 npc.Position = new Vector2(r.ReadSingle(), r.ReadSingle());
                 w.Mobs.Add(npc);
@@ -2270,8 +2257,8 @@ namespace TEdit.Terraria
 
             if (w.Version < 109) { return; }
 
-            var versionMaxNPCId = World.SaveConfiguration.GetData(w.Version).MaxNpcId;
-            var maxNpcId = World.SaveConfiguration.GetData(World.SaveConfiguration.GetMaxVersion()).MaxNpcId;
+            var versionMaxNPCId = WorldConfiguration.SaveConfiguration.GetData(w.Version).MaxNpcId;
+            var maxNpcId = WorldConfiguration.SaveConfiguration.GetData(WorldConfiguration.SaveConfiguration.GetMaxVersion()).MaxNpcId;
             int numberOfMobs = r.ReadInt16();
             w.KilledMobs.Clear();
             for (int counter = 0; counter <= maxNpcId; counter++)
@@ -2526,12 +2513,12 @@ namespace TEdit.Terraria
                     throw new TEditFileFormatException($"Is not a supported file type: {fileType.ToString()}");
                 }
 
-                if (!w.IsChinese && headerFormat != DesktopHeader)
+                if (!w.IsChinese && headerFormat != WorldConfiguration.DesktopHeader)
                 {
                     throw new TEditFileFormatException("Invalid desktop world header.");
                 }
 
-                if (w.IsChinese && headerFormat != ChineseHeader)
+                if (w.IsChinese && headerFormat != WorldConfiguration.ChineseHeader)
                 {
                     throw new TEditFileFormatException("Invalid chinese world header.");
                 }

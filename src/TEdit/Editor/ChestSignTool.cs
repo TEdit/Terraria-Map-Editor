@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TEdit.Configuration;
 using TEdit.Terraria;
 using TEdit.Terraria.Objects;
 using TEdit.ViewModel;
@@ -18,7 +19,7 @@ namespace TEdit.Editor
             var uvY = world.Tiles[X, Y].V;
             var type = world.Tiles[X, Y].Type;
 
-            foreach (SignProperty prop in World.SignProperties)
+            foreach (SignProperty prop in WorldConfiguration.SignProperties)
             {
                 if (prop.TileType == type && prop.UV.X == uvX && prop.UV.Y == uvY)
                 {
@@ -31,7 +32,7 @@ namespace TEdit.Editor
 
         public static void SetSignId(World world, int X, int Y, int signId)
         {
-            foreach (SignProperty prop in World.SignProperties)
+            foreach (SignProperty prop in WorldConfiguration.SignProperties)
             {
                 if (prop.SignId == signId)
                 {
@@ -54,7 +55,7 @@ namespace TEdit.Editor
             var uvX = world.Tiles[X, Y].U;
             var uvY = world.Tiles[X, Y].V;
             var type = world.Tiles[X, Y].Type;
-            foreach (ChestProperty prop in World.ChestProperties)
+            foreach (ChestProperty prop in WorldConfiguration.ChestProperties)
             {
                 if (prop.TileType == type && prop.UV.X == uvX && prop.UV.Y == uvY)
                 {
@@ -66,7 +67,7 @@ namespace TEdit.Editor
 
         public static void SetChestId(World world, int X, int Y, int chestId)
         {
-            foreach (ChestProperty prop in World.ChestProperties)
+            foreach (ChestProperty prop in WorldConfiguration.ChestProperties)
             {
                 if (prop.ChestId == chestId)
                 {

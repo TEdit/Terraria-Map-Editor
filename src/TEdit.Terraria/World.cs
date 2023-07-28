@@ -33,7 +33,7 @@ namespace TEdit.Terraria
             Signs.Clear();
             Chests.Clear();
             CharacterNames.Clear();
-            TileFrameImportant = SettingsTileFrameImportant.ToArray(); // clone for "new" world. Loaded worlds will replace this with file data
+            TileFrameImportant = WorldConfiguration.SettingsTileFrameImportant.ToArray(); // clone for "new" world. Loaded worlds will replace this with file data
         }
 
 
@@ -193,7 +193,7 @@ namespace TEdit.Terraria
 
                             curVersion = w.Version;
 
-                            if (w.Version < World.CompatibleVersion)
+                            if (w.Version < WorldConfiguration.CompatibleVersion)
                             {
                                 status.IsLegacy = true;
                             }
@@ -401,7 +401,7 @@ namespace TEdit.Terraria
         public Vector2Int32 GetAnchor(int x, int y)
         {
             Tile tile = Tiles[x, y];
-            TileProperty tileprop = TileProperties[tile.Type];
+            TileProperty tileprop = WorldConfiguration.TileProperties[tile.Type];
             var size = tileprop.FrameSize[0];
             if (tileprop.IsFramed && (size.X > 1 || size.Y > 1 || tileprop.FrameSize.Length > 1))
             {
@@ -410,7 +410,7 @@ namespace TEdit.Terraria
                     new Vector2Int32(x, y);
                 }
 
-                var sprite = World.Sprites2.FirstOrDefault(s => s.Tile == tile.Type);
+                var sprite = WorldConfiguration.Sprites2.FirstOrDefault(s => s.Tile == tile.Type);
                 var style = sprite?.GetStyleFromUV(tile.GetUV());
 
                 var sizeTiles = style?.SizeTiles ?? sprite?.SizeTiles?.FirstOrDefault() ?? tileprop.FrameSize.FirstOrDefault();
@@ -501,10 +501,10 @@ namespace TEdit.Terraria
             OnProgressChanged(this,
                     new ProgressChangedEventArgs(0, "Validating Complete..."));
 
-            if (Chests.Count > World.MaxChests)
-                throw new ArgumentOutOfRangeException($"Chest Count is {Chests.Count} which is greater than {World.MaxChests}.");
-            if (Signs.Count > World.MaxSigns)
-                throw new ArgumentOutOfRangeException($"Sign Count is {Signs.Count} which is greater than {World.MaxSigns}.");
+            if (Chests.Count > WorldConfiguration.MaxChests)
+                throw new ArgumentOutOfRangeException($"Chest Count is {Chests.Count} which is greater than {WorldConfiguration.MaxChests}.");
+            if (Signs.Count > WorldConfiguration.MaxSigns)
+                throw new ArgumentOutOfRangeException($"Sign Count is {Signs.Count} which is greater than {WorldConfiguration.MaxSigns}.");
         }
 
         private void ValSpecial(int x, int y)
@@ -564,8 +564,8 @@ namespace TEdit.Terraria
             var tb = Tiles[b.X, b.Y];
 
 
-            var tpa = World.GetTileProperties(ta.Type);
-            var tpb = World.GetTileProperties(tb.Type);
+            var tpa = WorldConfiguration.GetTileProperties(ta.Type);
+            var tpb = WorldConfiguration.GetTileProperties(tb.Type);
 
             if (ta.IsActive == tb.IsActive && !tpa.IsFramed && !tpb.IsFramed) return true;
 

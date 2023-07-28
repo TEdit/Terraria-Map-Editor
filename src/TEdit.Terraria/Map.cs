@@ -1,5 +1,6 @@
 ﻿using System.IO;
 using TEdit.Common.Reactive;
+using TEdit.Configuration;
 
 namespace TEdit.Terraria
 {
@@ -106,7 +107,7 @@ namespace TEdit.Terraria
             {
                 m.Version = b.ReadInt32();
 
-                if (m.Version <= World.CompatibleVersion)
+                if (m.Version <= WorldConfiguration.CompatibleVersion)
                 {
                     m.WorldName = b.ReadString();
                     m.WorldId = b.ReadInt32();

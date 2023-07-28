@@ -5,16 +5,28 @@ using System.IO;
 using System.Xml.Linq;
 using TEdit.Common.Reactive;
 using TEdit.Terraria.Objects;
-using TEdit.Configuration;
 using System.Linq;
 using TEdit.Geometry;
 using TEdit.Common;
 using TEdit.Utility;
 
-namespace TEdit.Terraria
+namespace TEdit.Configuration
 {
-    public partial class World
+    public class WorldConfiguration
     {
+        public static uint CompatibleVersion { get; private set; } = 275;
+        public static short TileCount { get; private set; } = 693; // updated by json
+        public static short WallCount { get; private set; } = 346; // updated by json
+        public static short MaxNpcID { get; private set; } = 687; // updated by json
+        public static int MaxChests { get; private set; } = 8000;
+        public static int MaxSigns { get; private set; } = 1000;
+        public static int CavernLevelToBottomOfWorld { get; private set; } = 478;
+
+        public const string DesktopHeader = "relogic";
+        public const string ChineseHeader = "xindong";
+
+        public static bool[] SettingsTileFrameImportant { get; private set; }
+
         public static SaveVersionManager SaveConfiguration { get; set; }
         public static BestiaryConfiguration BestiaryData { get; set; }
         public static MorphConfiguration MorphSettings { get; set; }
@@ -47,10 +59,9 @@ namespace TEdit.Terraria
         private static readonly ObservableCollection<WallProperty> _wallPropertiesMask = new ObservableCollection<WallProperty>();
         private static readonly ObservableCollection<PaintProperty> _paintProperties = new ObservableCollection<PaintProperty>();
 
-        public static string AltC;
-        public static int? SteamUserId;
 
-        static World()
+
+        static WorldConfiguration()
         {
             if (ViewModelBase.IsInDesignModeStatic)
                 return;
@@ -367,7 +378,7 @@ namespace TEdit.Terraria
             {
                 string tileName = (string)tileElement.Attribute("Name");
                 int type = (int)tileElement.Attribute("Id");
-                if (Tile.IsChest(type))
+                if (TileTypes.IsChest(type))
                 {
                     foreach (var xElement in tileElement.Elements("Frames").Elements("Frame"))
                     {
@@ -398,7 +409,7 @@ namespace TEdit.Terraria
             {
                 var tileId = (int?)tileElement.Attribute("Id") ?? 0;
                 string tileName = (string)tileElement.Attribute("Name");
-                if (Tile.IsSign(tileId))
+                if (TileTypes.IsSign(tileId))
                 {
                     ushort type = (ushort)((int?)tileElement.Attribute("Id") ?? 55);
                     foreach (var xElement in tileElement.Elements("Frames").Elements("Frame"))
@@ -432,8 +443,7 @@ namespace TEdit.Terraria
                 ItemPrefix.Add((byte)id, name);
             }
 
-            AltC = (string)xmlSettings.Element("AltC");
-            SteamUserId = (int?)xmlSettings.Element("SteamUserId") ?? null;
+
         }
 
         public static TileProperty GetBrickFromColor(byte a, byte r, byte g, byte b)

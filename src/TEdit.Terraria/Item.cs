@@ -2,6 +2,7 @@ using System;
 using System.Linq;
 using System.Windows;
 using TEdit.Common.Reactive;
+using TEdit.Configuration;
 using TEdit.Terraria.Objects;
 
 namespace TEdit.Terraria
@@ -22,7 +23,7 @@ namespace TEdit.Terraria
             set
             {
                 Set(nameof(NetId), ref _netId, value);
-                _currentItemProperty = World.ItemProperties.FirstOrDefault(x => x.Id == _netId);
+                _currentItemProperty = WorldConfiguration.ItemProperties.FirstOrDefault(x => x.Id == _netId);
                 if (_netId == 0)
                     StackSize = 0;
                 else
@@ -36,7 +37,7 @@ namespace TEdit.Terraria
 
         public void SetFromName(string name)
         {
-            var curItem = World.ItemProperties.FirstOrDefault(x => x.Name == name);
+            var curItem = WorldConfiguration.ItemProperties.FirstOrDefault(x => x.Name == name);
             NetId = curItem.Id;
             if (NetId != 0)
             StackSize = 1;
@@ -49,7 +50,7 @@ namespace TEdit.Terraria
 
         public string PrefixName
         {
-            get { return World.ItemPrefix.Count > Prefix ? World.ItemPrefix[Prefix] : "Unknown " + Prefix.ToString(); }
+            get { return WorldConfiguration.ItemPrefix.Count > Prefix ? WorldConfiguration.ItemPrefix[Prefix] : "Unknown " + Prefix.ToString(); }
         }
 
         public string GetName()

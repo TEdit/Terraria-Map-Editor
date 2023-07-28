@@ -19,13 +19,13 @@ namespace TEdit
             Properties.Settings.Default.Reload();
 
             string path = Properties.Settings.Default.TerrariaPath;
-            int? steamUserId = TEdit.Terraria.World.SteamUserId;
+            int? steamUserId = App.SteamUserId;
 
             // if hard coded in settings.xml try that location first
-            if (!string.IsNullOrWhiteSpace(TEdit.Terraria.World.AltC))
+            if (!string.IsNullOrWhiteSpace(App.AltC))
             {
-                if (Directory.Exists(TEdit.Terraria.World.AltC))
-                    path = TEdit.Terraria.World.AltC;
+                if (Directory.Exists(App.AltC))
+                    path = App.AltC;
             }
 
             // if the folder is missing, reset.

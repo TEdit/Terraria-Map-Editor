@@ -8,6 +8,7 @@ using TEdit.ViewModel;
 using System.Diagnostics;
 using TEdit.Geometry;
 using TEdit.Render;
+using TEdit.Configuration;
 
 namespace TEdit.Editor.Undo
 {
@@ -360,7 +361,7 @@ namespace TEdit.Editor.Undo
                 {
                     _wvm.CurrentWorld.Signs.Add(sign);
                 }
-                foreach (var te in World.LoadTileEntityData(br, World.CompatibleVersion))
+                foreach (var te in World.LoadTileEntityData(br, WorldConfiguration.CompatibleVersion))
                 {
                     _wvm.CurrentWorld.TileEntities.Add(te);
                 }
@@ -427,7 +428,7 @@ namespace TEdit.Editor.Undo
                 {
                     _wvm.CurrentWorld.Signs.Add(sign);
                 }
-                foreach (var te in World.LoadTileEntityData(br, World.CompatibleVersion))
+                foreach (var te in World.LoadTileEntityData(br, WorldConfiguration.CompatibleVersion))
                 {
                     _wvm.CurrentWorld.TileEntities.Add(te);
                 }

@@ -193,8 +193,8 @@ namespace TEdit.Terraria
                 bw.Write(world.WindSpeedSet);
             }
 
-            var saveData = World.SaveConfiguration.GetData((int)version);
-            var frames = SaveConfiguration.GetTileFramesForVersion((int)version);
+            var saveData = WorldConfiguration.SaveConfiguration.GetData((int)version);
+            var frames = WorldConfiguration.SaveConfiguration.GetTileFramesForVersion((int)version);
 
             for (int x = 0; x < world.TilesWide; ++x)
             {
@@ -318,7 +318,7 @@ namespace TEdit.Terraria
         {
             int chestSize = (version < 58) ? 20 : 40;
 
-            var maxItemId = SaveConfiguration.SaveVersions[(int)version].MaxItemId;
+            var maxItemId = WorldConfiguration.SaveConfiguration.SaveVersions[(int)version].MaxItemId;
 
             for (int i = 0; i < 1000; ++i)
             {
@@ -1503,8 +1503,8 @@ namespace TEdit.Terraria
                     npc.Home = new Vector2Int32(reader.ReadInt32(), reader.ReadInt32());
                     npc.SpriteId = 0;
 
-                    if (!string.IsNullOrWhiteSpace(npc.Name) && NpcIds.ContainsKey(npc.Name))
-                        npc.SpriteId = NpcIds[npc.Name];
+                    if (!string.IsNullOrWhiteSpace(npc.Name) && WorldConfiguration.NpcIds.ContainsKey(npc.Name))
+                        npc.SpriteId = WorldConfiguration.NpcIds[npc.Name];
 
                     w.NPCs.Add(npc);
                 }
@@ -1514,7 +1514,7 @@ namespace TEdit.Terraria
         public static void SaveV0(World world, BinaryWriter bw, bool ForceLighting)
         {
             // Get the max values from json.
-            var saveData = World.SaveConfiguration.GetData(38);
+            var saveData = WorldConfiguration.SaveConfiguration.GetData(38);
 
             var version = world.Version;
             bw.Write(38); // Should be 38?
@@ -1982,7 +1982,7 @@ namespace TEdit.Terraria
                 }
             }
 
-            bool[] tileFrameImportant = SaveConfiguration.GetTileFramesForVersion((int)version);
+            bool[] tileFrameImportant = WorldConfiguration.SaveConfiguration.GetTileFramesForVersion((int)version);
 
             for (int x = 0; x < w.TilesWide; ++x)
             {
@@ -2049,8 +2049,8 @@ namespace TEdit.Terraria
                 npc.Home = new Vector2Int32(reader.ReadInt32(), reader.ReadInt32());
                 npc.SpriteId = 0;
 
-                if (!string.IsNullOrWhiteSpace(npc.Name) && NpcIds.ContainsKey(npc.Name))
-                    npc.SpriteId = NpcIds[npc.Name];
+                if (!string.IsNullOrWhiteSpace(npc.Name) && WorldConfiguration.NpcIds.ContainsKey(npc.Name))
+                    npc.SpriteId = WorldConfiguration.NpcIds[npc.Name];
 
                 w.NPCs.Add(npc);
             }
@@ -2326,7 +2326,7 @@ namespace TEdit.Terraria
             {
                 bool isHalfBrick = b.ReadBoolean();
 
-                var tileProperty = TileProperties[tile.Type];
+                var tileProperty = WorldConfiguration.TileProperties[tile.Type];
 
                 if (isHalfBrick && tileProperty?.HasSlopes == true)
                 {

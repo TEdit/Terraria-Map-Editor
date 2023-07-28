@@ -356,7 +356,7 @@ namespace TEdit.Editor.Tools
         private BrickStyle? GetBrickStyle(Vector2Int32 v)
         {
             var t = _wvm.CurrentWorld.Tiles[v.X, v.Y];
-            var tp = World.GetTileProperties(t.Type);
+            var tp = WorldConfiguration.GetTileProperties(t.Type);
             if (!t.IsActive || t.LiquidType != LiquidType.None || tp.IsFramed) return null;
 
             bool up = _wvm.CurrentWorld.SlopeCheck(v, new Vector2Int32(v.X, v.Y - 1));

@@ -35,7 +35,7 @@ namespace TEdit.Editor.Plugins
                     if (!IsSensitiveGroup(_wvm.CurrentWorld.Tiles[x, y].Type))
                     {
                         if (!settingsView.IncludeTileEntities)
-                            if (World.GetTileProperties(_wvm.CurrentWorld.Tiles[x, y].Type).IsFramed)
+                            if (WorldConfiguration.GetTileProperties(_wvm.CurrentWorld.Tiles[x, y].Type).IsFramed)
                                 continue;
                         if (settingsView.SensitivePlatform)
                             if ((y - 1) > 0 && IsSensitiveGroup(_wvm.CurrentWorld.Tiles[x, y - 1].Type))
@@ -71,7 +71,7 @@ namespace TEdit.Editor.Plugins
                     if (!IsSensitiveGroup(_wvm.CurrentWorld.Tiles[x, y].Type))
                     {
                         if (!settingsView.IncludeTileEntities)
-                            if (World.GetTileProperties(_wvm.CurrentWorld.Tiles[x, y].Type).IsFramed)
+                            if (WorldConfiguration.GetTileProperties(_wvm.CurrentWorld.Tiles[x, y].Type).IsFramed)
                                 continue;
                         if (settingsView.SensitivePlatform)
                             if ((y - 1) > 0 && IsSensitiveGroup(_wvm.CurrentWorld.Tiles[x, y - 1].Type))

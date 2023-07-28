@@ -8,6 +8,7 @@ using System.Windows.Input;
 using System.Windows.Media.Media3D;
 using TEdit.Helper;
 using TEdit.Terraria;
+using TEdit.Configuration;
 
 namespace TEdit.ViewModel
 {
@@ -138,7 +139,7 @@ namespace TEdit.ViewModel
             foreach (var item in BestiaryData)
             {
                 var bestiaryId = item.Name;
-                if (World.BestiaryData.NpcData.TryGetValue(bestiaryId, out var npcData) &&
+                if (WorldConfiguration.BestiaryData.NpcData.TryGetValue(bestiaryId, out var npcData) &&
                     _wvm.CurrentWorld.KilledMobs.Count > npcData.BannerId &&
                     npcData.BannerId >= 0)
                 {
@@ -167,17 +168,17 @@ namespace TEdit.ViewModel
                 ErrorLogging.TelemetryClient?.TrackEvent(nameof(CompleteBestiary));
                 var bestiaryEdits = new Bestiary();
 
-                foreach (string line in World.BestiaryData.BestiaryKilledIDs)
+                foreach (string line in WorldConfiguration.BestiaryData.BestiaryKilledIDs)
                 {
                     // Prevent writing to values already 50 or over.
                     _wvm.CurrentWorld.Bestiary.NPCKills.TryGetValue(line, out var kills);
                     bestiaryEdits.NPCKills[line] = (kills < 50) ? 50 : kills;
                 }
-                foreach (string line in World.BestiaryData.BestiaryTalkedIDs)
+                foreach (string line in WorldConfiguration.BestiaryData.BestiaryTalkedIDs)
                 {
                     bestiaryEdits.NPCChat.Add(line);
                 }
-                foreach (string line in World.BestiaryData.BestiaryNearIDs)
+                foreach (string line in WorldConfiguration.BestiaryData.BestiaryNearIDs)
                 {
                     bestiaryEdits.NPCNear.Add(line);
                 }
@@ -284,9 +285,9 @@ namespace TEdit.ViewModel
 
             BestiaryData.Clear();
 
-            foreach (string entity in World.BestiaryData.BestiaryKilledIDs
-                                            .Union(World.BestiaryData.BestiaryNearIDs)
-                                            .Union(World.BestiaryData.BestiaryTalkedIDs)
+            foreach (string entity in WorldConfiguration.BestiaryData.BestiaryKilledIDs
+                                            .Union(WorldConfiguration.BestiaryData.BestiaryNearIDs)
+                                            .Union(WorldConfiguration.BestiaryData.BestiaryTalkedIDs)
                                             .Distinct()
                                             .OrderBy(e => e))
             {
@@ -296,9 +297,9 @@ namespace TEdit.ViewModel
 
                 BestiaryData.Add(new BestiaryItem
                 {
-                    CanKill = World.BestiaryData.BestiaryKilledIDs.Contains(entity),
-                    CanNear = World.BestiaryData.BestiaryNearIDs.Contains(entity),
-                    CanTalk = World.BestiaryData.BestiaryTalkedIDs.Contains(entity),
+                    CanKill = WorldConfiguration.BestiaryData.BestiaryKilledIDs.Contains(entity),
+                    CanNear = WorldConfiguration.BestiaryData.BestiaryNearIDs.Contains(entity),
+                    CanTalk = WorldConfiguration.BestiaryData.BestiaryTalkedIDs.Contains(entity),
                     Name = entity,
                     Defeated = kills,
                     Near = near,

@@ -3,6 +3,7 @@ using TEdit.Terraria;
 using TEdit.ViewModel;
 using System;
 using TEdit.Geometry;
+using TEdit.Configuration;
 
 namespace TEdit.Editor.Plugins
 {
@@ -31,7 +32,7 @@ namespace TEdit.Editor.Plugins
             Dictionary<ushort, Dictionary<Vector2Short, string>> spriteIds = new Dictionary<ushort, Dictionary<Vector2Short, string>>();
             if (!string.IsNullOrWhiteSpace(blockName))
             {
-                foreach (var prop in World.TileProperties)
+                foreach (var prop in WorldConfiguration.TileProperties)
                 {
                     if (prop.IsFramed)
                     {
@@ -67,7 +68,7 @@ namespace TEdit.Editor.Plugins
             Dictionary<ushort, string> wallIds = new Dictionary<ushort, string>();
             if (!string.IsNullOrWhiteSpace(wallName))
             {
-                foreach (var prop in World.WallProperties)
+                foreach (var prop in WorldConfiguration.WallProperties)
                 {
                     if (prop.Name.ToLower().Contains(wallName))
                     {

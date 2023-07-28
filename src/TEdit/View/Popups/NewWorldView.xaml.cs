@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using TEdit.Configuration;
 using TEdit.Terraria;
 using TEdit.Terraria.Objects;
 
@@ -14,7 +15,7 @@ namespace TEdit.View.Popups
         {
             InitializeComponent();
             _newWorld = new World(1200, 4200, "TEdit World");
-            _newWorld.Version = World.CompatibleVersion;
+            _newWorld.Version = WorldConfiguration.CompatibleVersion;
             _newWorld.GroundLevel = 350;
             _newWorld.RockLevel = 480;
             _newWorld.ResetTime();

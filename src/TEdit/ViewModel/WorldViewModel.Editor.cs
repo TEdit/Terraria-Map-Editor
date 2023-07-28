@@ -869,7 +869,7 @@ namespace TEdit.ViewModel
                 {
                     curTile.Type = (ushort)tile;
                     curTile.IsActive = true;
-                    if (World.TileProperties[curTile.Type].IsSolid)
+                    if (WorldConfiguration.TileProperties[curTile.Type].IsSolid)
                     {
                         curTile.U = -1;
                         curTile.V = -1;
@@ -948,9 +948,9 @@ namespace TEdit.ViewModel
             // clear liquids for solid tiles
             if (curTile.IsActive)
             {
-                if (World.TileProperties[curTile.Type].IsSolid &&
+                if (WorldConfiguration.TileProperties[curTile.Type].IsSolid &&
                     !curTile.InActive &&
-                    !World.TileProperties[curTile.Type].IsPlatform &&
+                    !WorldConfiguration.TileProperties[curTile.Type].IsPlatform &&
                     curTile.Type != 52 && // Exclude Vines
                     curTile.Type != 62 && // Exclude Jungle Vines
                     curTile.Type != 115 && // Exclude Hallowed Vines, 
@@ -1013,15 +1013,15 @@ namespace TEdit.ViewModel
         public TEditColor GetBackgroundColor(int y)
         {
             if (y < 80)
-                return World.GlobalColors["Space"];
+                return WorldConfiguration.GlobalColors["Space"];
             else if (y > CurrentWorld.TilesHigh - 192)
-                return World.GlobalColors["Hell"];
+                return WorldConfiguration.GlobalColors["Hell"];
             else if (y > CurrentWorld.RockLevel)
-                return World.GlobalColors["Rock"];
+                return WorldConfiguration.GlobalColors["Rock"];
             else if (y > CurrentWorld.GroundLevel)
-                return World.GlobalColors["Earth"];
+                return WorldConfiguration.GlobalColors["Earth"];
             else
-                return World.GlobalColors["Sky"];
+                return WorldConfiguration.GlobalColors["Sky"];
         }
     }
 }

@@ -156,7 +156,7 @@ namespace TEdit.Editor
                     // apply moss to stone blocks
                     if (morphId.UseMoss &&
                         options.EnableMoss &&
-                        (World.MorphSettings.IsMoss(source.Type) ||
+                        (WorldConfiguration.MorphSettings.IsMoss(source.Type) ||
                          TouchingAir(location.X, location.Y)))
                     {
                         source.Type = (ushort)options.MossType;
@@ -169,7 +169,7 @@ namespace TEdit.Editor
 
                 // filter sprites
                 if (options.EnableSprites &&
-                    World.TileProperties[sourceId].IsFramed &&
+                    WorldConfiguration.TileProperties[sourceId].IsFramed &&
                     morphId.SpriteOffsets.Count > 0)
                 {
                     // filter and apply morph (offset or delete)

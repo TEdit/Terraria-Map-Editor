@@ -1,6 +1,7 @@
 using TEdit.Common.Reactive;
 using TEdit.Terraria;
 using TEdit.Geometry;
+using TEdit.Configuration;
 
 namespace TEdit.Editor
 {
@@ -57,9 +58,9 @@ namespace TEdit.Editor
             {
                 Set(nameof(Tile), ref _tile, value);
 
-                if (World.TileProperties.Count > _tile.Type)
+                if (WorldConfiguration.TileProperties.Count > _tile.Type)
                 {
-                    TEdit.Terraria.Objects.TileProperty tileProperty = World.TileProperties[_tile.Type];
+                    TEdit.Terraria.Objects.TileProperty tileProperty = WorldConfiguration.TileProperties[_tile.Type];
                     TileName = tileProperty.Name;
 
                     // TODO: add sprite names here
@@ -68,8 +69,8 @@ namespace TEdit.Editor
                 else
                     TileName = $"INVALID TILE ({_tile.Type})";
 
-                if (World.WallProperties.Count > _tile.Wall)
-                    WallName = $"{World.WallProperties[_tile.Wall].Name} ({_tile.Wall})";
+                if (WorldConfiguration.WallProperties.Count > _tile.Wall)
+                    WallName = $"{WorldConfiguration.WallProperties[_tile.Wall].Name} ({_tile.Wall})";
                 else
                     WallName = $"INVALID WALL ({_tile.Wall})";
 
@@ -85,13 +86,13 @@ namespace TEdit.Editor
                 {
                     if (_tile.WallColor > 0)
                         Paint =
-                            $"Tile: {World.PaintProperties[_tile.TileColor].Name}, Wall: {World.PaintProperties[_tile.WallColor].Name}";
+                            $"Tile: {WorldConfiguration.PaintProperties[_tile.TileColor].Name}, Wall: {WorldConfiguration.PaintProperties[_tile.WallColor].Name}";
                     else
-                        Paint = $"Tile: {World.PaintProperties[_tile.TileColor].Name}";
+                        Paint = $"Tile: {WorldConfiguration.PaintProperties[_tile.TileColor].Name}";
                 }
                 else if (_tile.WallColor > 0)
                 {
-                    Paint = $"Wall: {World.PaintProperties[_tile.WallColor].Name}";
+                    Paint = $"Wall: {WorldConfiguration.PaintProperties[_tile.WallColor].Name}";
                 }
                 else
                 {

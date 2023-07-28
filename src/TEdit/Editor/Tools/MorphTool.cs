@@ -7,7 +7,6 @@ using TEdit.Geometry;
 using TEdit.ViewModel;
 using System.Linq;
 using TEdit.Configuration;
-using TEdit.Terraria;
 using TEdit.Render;
 
 namespace TEdit.Editor.Tools
@@ -65,7 +64,7 @@ namespace TEdit.Editor.Tools
             _targetBiome = null;
             if (!_isRightDown && !_isLeftDown)
             {
-                World.MorphSettings.Biomes.TryGetValue(_wvm.MorphToolOptions.TargetBiome, out _targetBiome);
+                WorldConfiguration.MorphSettings.Biomes.TryGetValue(_wvm.MorphToolOptions.TargetBiome, out _targetBiome);
                 _biomeMorpher = MorphBiomeDataApplier.GetMorpher(_targetBiome);
                 _startPoint = e.Location;
                 _dirtLayer = (int)_wvm.CurrentWorld.GroundLevel;

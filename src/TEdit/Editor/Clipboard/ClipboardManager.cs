@@ -263,7 +263,7 @@ namespace TEdit.Editor.Clipboard
                     {
                         // if pasting sprites is disabled, discard them.
                         // check if sprite has more then one tile state.
-                        if (World.TileProperties[curTile.Type].Frames.Count() > 0)
+                        if (WorldConfiguration.TileProperties[curTile.Type].Frames.Count() > 0)
                         {
                             // Change Sprite To Air
                             curTile.U = 0;
@@ -368,7 +368,7 @@ namespace TEdit.Editor.Clipboard
                     }
 
                     Tile tile = (Tile)buffer.Tiles[x, y].Clone();
-                    var tileProperties = World.TileProperties[tile.Type];
+                    var tileProperties = WorldConfiguration.TileProperties[tile.Type];
                     flippedBuffer.Tiles[bufferX, bufferY] = (Tile)tile;
 
                     // locate all the sprites and make a list
@@ -484,7 +484,7 @@ namespace TEdit.Editor.Clipboard
 
             foreach (var te in buffer.TileEntities)
             {
-                var tileProperties = World.TileProperties[(int)te.TileType];
+                var tileProperties = WorldConfiguration.TileProperties[(int)te.TileType];
                 Vector2Short tileSize = tileProperties.FrameSize[0];
 
                 var flipOrigin = FlipFramed(buffer.Size, new Vector2Int32(te.PosX, te.PosY), tileSize, flipX);
@@ -512,7 +512,7 @@ namespace TEdit.Editor.Clipboard
                         {
                             // Offet tiles 90
                             Tile tile = (Tile)flippedBuffer.Tiles[x, y].Clone();
-                            var tileProperties = World.TileProperties[tile.Type];
+                            var tileProperties = WorldConfiguration.TileProperties[tile.Type];
 
                             // kill sprites
                             if (tileProperties.IsFramed)

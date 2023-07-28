@@ -2,8 +2,10 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:tedit="clr-namespace:TEdit.UI.Xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:tedit="clr-namespace:TEdit.UI.Xaml"
              xmlns:Editor="clr-namespace:TEdit.Editor"
+             xmlns:config="clr-namespace:TEdit.Configuration;assembly=TEdit.Configuration"
              xmlns:enum="clr-namespace:TEdit.UI.Xaml.Enum"
              xmlns:p="clr-namespace:TEdit.Properties"
              xmlns:Terraria="clr-namespace:TEdit.Terraria;assembly=TEdit.Terraria"
@@ -18,11 +20,11 @@
         <StackPanel Orientation="Vertical" Margin="2">
             <TextBlock Text="{x:Static p:Language.tool_morph_label}" Margin="2" />
             <ComboBox Width="200"
-                  ItemsSource="{Binding Source={x:Static Terraria:World.Biomes}, Mode=OneTime}" 
+                  ItemsSource="{Binding Source={x:Static config:WorldConfiguration.Biomes}, Mode=OneTime}" 
                   SelectedValue="{Binding MorphToolOptions.TargetBiome}" />
             <TextBlock Text="Moss Type" Margin="2" />
             <ComboBox Width="200"
-                  ItemsSource="{Binding Source={x:Static Terraria:World.MossTypes}, Mode=OneTime}" 
+                  ItemsSource="{Binding Source={x:Static config:WorldConfiguration.MossTypes}, Mode=OneTime}" 
                       SelectedValuePath="Value" 
                       DisplayMemberPath="Key"
                   SelectedValue="{Binding MorphToolOptions.MossType}" />

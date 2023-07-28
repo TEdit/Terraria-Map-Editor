@@ -323,12 +323,12 @@ namespace TEdit.View
         {
             // If the texture dictionary is valid (Found terraria and loaded content) load texture data
 
-            foreach (var id in World.NpcIds)
+            foreach (var id in WorldConfiguration.NpcIds)
             {
                 _textureDictionary.GetNPC(id.Value);
             }
 
-            foreach (var tile in World.TileProperties.Where(t => t.IsFramed))
+            foreach (var tile in WorldConfiguration.TileProperties.Where(t => t.IsFramed))
             {
                 var tileTexture = _textureDictionary.GetTile(tile.Id);
             }
@@ -345,14 +345,14 @@ namespace TEdit.View
 
             //}
 
-            foreach (var npc in World.BestiaryData.NpcData)
+            foreach (var npc in WorldConfiguration.BestiaryData.NpcData)
             {
                 if (npc.Value.Id < 0) continue;
                 var tex = (Texture2D)_textureDictionary.GetNPC(npc.Value.Id);
                 TextureToPng(tex, $"textures/NPC_{npc.Value.Id}.png");
             }
 
-            foreach (var wall in World.WallProperties)
+            foreach (var wall in WorldConfiguration.WallProperties)
             {
                 if (wall.Id == 0) continue;
                 var wallTex = _textureDictionary.GetWall(wall.Id);
@@ -367,7 +367,7 @@ namespace TEdit.View
             }
 
             // load sprites
-            foreach (var tile in World.TileProperties)
+            foreach (var tile in WorldConfiguration.TileProperties)
             {
                 if (tile.Id < 0) continue;
                 var tileTex = _textureDictionary.GetTile(tile.Id);
@@ -404,7 +404,7 @@ namespace TEdit.View
                     else if (tile.Id == 216) { sprite.SizePixelsInterval += new Vector2Short(2, 4); }
                     else if (tile.Id != 171) { sprite.SizePixelsInterval += interval; }
 
-                    World.Sprites2.Add(sprite);
+                    WorldConfiguration.Sprites2.Add(sprite);
 
                     int numX = (sprite.SizeTexture.X + 2) / sprite.SizePixelsInterval.X;
                     int numY = (sprite.SizeTexture.Y + 2) / sprite.SizePixelsInterval.Y;
@@ -781,7 +781,7 @@ namespace TEdit.View
                             if (weapon == 0) continue;
                             tileTex = (Texture2D)_textureDictionary.GetItem(weapon);
                             SpriteEffects effect = curtile.U == 0 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
-                            World.ItemLookupTable.TryGetValue(weapon, out var itemProps);
+                            WorldConfiguration.ItemLookupTable.TryGetValue(weapon, out var itemProps);
                             float scale = itemProps?.Scale ?? 1.0f;
                             source = new Rectangle(0, 0, tileTex.Width, tileTex.Height);
                             _spriteBatch.Draw(
@@ -814,7 +814,7 @@ namespace TEdit.View
                                 else
                                     scale = 40f / (float)tileTex.Height;
                             }
-                            if (World.ItemLookupTable.TryGetValue(weapon, out var itemProps))
+                            if (WorldConfiguration.ItemLookupTable.TryGetValue(weapon, out var itemProps))
                             {
                                 scale *= itemProps?.Scale ?? 1.0f;
                             }
@@ -1062,7 +1062,7 @@ namespace TEdit.View
 
                             if (curtile.WallColor > 0 && curtile.WallColor != 30)
                             {
-                                var paint = World.PaintProperties[curtile.WallColor].Color;
+                                var paint = WorldConfiguration.PaintProperties[curtile.WallColor].Color;
                                 switch (curtile.WallColor)
                                 {
                                     case 29:
@@ -1148,8 +1148,8 @@ namespace TEdit.View
 
                         if ((curtile.TileColor == 30) != drawInverted) continue;
 
-                        if (curtile.Type >= World.TileProperties.Count) { continue; }
-                        var tileprop = World.GetTileProperties(curtile.Type);
+                        if (curtile.Type >= WorldConfiguration.TileProperties.Count) { continue; }
+                        var tileprop = WorldConfiguration.GetTileProperties(curtile.Type);
 
                         //Neighbor tiles are often used when dynamically determining which UV position to render
                         //Tile[] neighborTile = new Tile[8];
@@ -1188,7 +1188,7 @@ namespace TEdit.View
 
                                 if (curtile.TileColor > 0 && curtile.TileColor != 30)
                                 {
-                                    var paint = World.PaintProperties[curtile.TileColor].Color;
+                                    var paint = WorldConfiguration.PaintProperties[curtile.TileColor].Color;
                                     switch (curtile.TileColor)
                                     {
                                         case 29:
@@ -1488,7 +1488,7 @@ namespace TEdit.View
                                                     else
                                                         scale = 40f / (float)tileTex.Height;
                                                 }
-                                                if (World.ItemLookupTable.TryGetValue(weapon, out var itemProps))
+                                                if (WorldConfiguration.ItemLookupTable.TryGetValue(weapon, out var itemProps))
                                                 {
                                                     scale *= itemProps?.Scale ?? 1.0f;
                                                 }
@@ -1521,7 +1521,7 @@ namespace TEdit.View
                                                         else
                                                             scale = 20f / (float)tileTex.Height;
                                                     }
-                                                    if (World.ItemLookupTable.TryGetValue(item, out var itemProps))
+                                                    if (WorldConfiguration.ItemLookupTable.TryGetValue(item, out var itemProps))
                                                     {
                                                         scale *= itemProps?.Scale ?? 1.0f;
                                                     }
@@ -1562,7 +1562,7 @@ namespace TEdit.View
                                                 {
                                                     tileTex = (Texture2D)_textureDictionary.GetItem(item);
                                                     bool isFood = false;
-                                                    if (World.ItemLookupTable.TryGetValue(item, out var itemData))
+                                                    if (WorldConfiguration.ItemLookupTable.TryGetValue(item, out var itemData))
                                                     {
                                                         isFood = itemData?.IsFood ?? false;
 
@@ -1879,9 +1879,9 @@ namespace TEdit.View
                                             uv = new Vector2Int32(0, 0);
                                             byte state = 0x00;
                                             state |= (byte)((neighborTile[w] != null && neighborTile[w].IsActive && neighborTile[w].Type == curtile.Type) ? 0x01 : 0x00);
-                                            state |= (byte)((neighborTile[w] != null && neighborTile[w].IsActive && World.GetTileProperties(neighborTile[w].Type).HasSlopes && neighborTile[w].Type != curtile.Type) ? 0x02 : 0x00);
+                                            state |= (byte)((neighborTile[w] != null && neighborTile[w].IsActive && WorldConfiguration.GetTileProperties(neighborTile[w].Type).HasSlopes && neighborTile[w].Type != curtile.Type) ? 0x02 : 0x00);
                                             state |= (byte)((neighborTile[e] != null && neighborTile[e].IsActive && neighborTile[e].Type == curtile.Type) ? 0x04 : 0x00);
-                                            state |= (byte)((neighborTile[e] != null && neighborTile[e].IsActive && World.GetTileProperties(neighborTile[e].Type).HasSlopes && neighborTile[e].Type != curtile.Type) ? 0x08 : 0x00);
+                                            state |= (byte)((neighborTile[e] != null && neighborTile[e].IsActive && WorldConfiguration.GetTileProperties(neighborTile[e].Type).HasSlopes && neighborTile[e].Type != curtile.Type) ? 0x08 : 0x00);
                                             switch (state)
                                             {
                                                 case 0x00:
@@ -2191,26 +2191,26 @@ namespace TEdit.View
                                             }
                                             else if (tileprop.IsStone) //Stone & Gems
                                             {
-                                                sameStyle |= (neighborTile[e] != null && neighborTile[e].IsActive && World.GetTileProperties(neighborTile[e].Type).IsStone) ? 0x0001 : 0x0000;
-                                                sameStyle |= (neighborTile[n] != null && neighborTile[n].IsActive && World.GetTileProperties(neighborTile[n].Type).IsStone) ? 0x0010 : 0x0000;
-                                                sameStyle |= (neighborTile[w] != null && neighborTile[w].IsActive && World.GetTileProperties(neighborTile[w].Type).IsStone) ? 0x0100 : 0x0000;
-                                                sameStyle |= (neighborTile[s] != null && neighborTile[s].IsActive && World.GetTileProperties(neighborTile[s].Type).IsStone) ? 0x1000 : 0x0000;
-                                                sameStyle |= (neighborTile[ne] != null && neighborTile[ne].IsActive && World.GetTileProperties(neighborTile[ne].Type).IsStone) ? 0x00010000 : 0x00000000;
-                                                sameStyle |= (neighborTile[nw] != null && neighborTile[nw].IsActive && World.GetTileProperties(neighborTile[nw].Type).IsStone) ? 0x00100000 : 0x00000000;
-                                                sameStyle |= (neighborTile[sw] != null && neighborTile[sw].IsActive && World.GetTileProperties(neighborTile[sw].Type).IsStone) ? 0x01000000 : 0x00000000;
-                                                sameStyle |= (neighborTile[se] != null && neighborTile[se].IsActive && World.GetTileProperties(neighborTile[se].Type).IsStone) ? 0x10000000 : 0x00000000;
+                                                sameStyle |= (neighborTile[e] != null && neighborTile[e].IsActive && WorldConfiguration.GetTileProperties(neighborTile[e].Type).IsStone) ? 0x0001 : 0x0000;
+                                                sameStyle |= (neighborTile[n] != null && neighborTile[n].IsActive && WorldConfiguration.GetTileProperties(neighborTile[n].Type).IsStone) ? 0x0010 : 0x0000;
+                                                sameStyle |= (neighborTile[w] != null && neighborTile[w].IsActive && WorldConfiguration.GetTileProperties(neighborTile[w].Type).IsStone) ? 0x0100 : 0x0000;
+                                                sameStyle |= (neighborTile[s] != null && neighborTile[s].IsActive && WorldConfiguration.GetTileProperties(neighborTile[s].Type).IsStone) ? 0x1000 : 0x0000;
+                                                sameStyle |= (neighborTile[ne] != null && neighborTile[ne].IsActive && WorldConfiguration.GetTileProperties(neighborTile[ne].Type).IsStone) ? 0x00010000 : 0x00000000;
+                                                sameStyle |= (neighborTile[nw] != null && neighborTile[nw].IsActive && WorldConfiguration.GetTileProperties(neighborTile[nw].Type).IsStone) ? 0x00100000 : 0x00000000;
+                                                sameStyle |= (neighborTile[sw] != null && neighborTile[sw].IsActive && WorldConfiguration.GetTileProperties(neighborTile[sw].Type).IsStone) ? 0x01000000 : 0x00000000;
+                                                sameStyle |= (neighborTile[se] != null && neighborTile[se].IsActive && WorldConfiguration.GetTileProperties(neighborTile[se].Type).IsStone) ? 0x10000000 : 0x00000000;
                                             }
                                             else //Everything else
                                             {
                                                 //Join to nearby tiles if their merge type is this tile's type
-                                                sameStyle |= (neighborTile[e] != null && neighborTile[e].IsActive && tileprop.Merges(World.GetTileProperties(neighborTile[e].Type))) ? 0x0001 : 0x0000;
-                                                sameStyle |= (neighborTile[n] != null && neighborTile[n].IsActive && tileprop.Merges(World.GetTileProperties(neighborTile[n].Type))) ? 0x0010 : 0x0000;
-                                                sameStyle |= (neighborTile[w] != null && neighborTile[w].IsActive && tileprop.Merges(World.GetTileProperties(neighborTile[w].Type))) ? 0x0100 : 0x0000;
-                                                sameStyle |= (neighborTile[s] != null && neighborTile[s].IsActive && tileprop.Merges(World.GetTileProperties(neighborTile[s].Type))) ? 0x1000 : 0x0000;
-                                                sameStyle |= (neighborTile[ne] != null && neighborTile[ne].IsActive && tileprop.Merges(World.GetTileProperties(neighborTile[ne].Type))) ? 0x00010000 : 0x00000000;
-                                                sameStyle |= (neighborTile[nw] != null && neighborTile[nw].IsActive && tileprop.Merges(World.GetTileProperties(neighborTile[nw].Type))) ? 0x00100000 : 0x00000000;
-                                                sameStyle |= (neighborTile[sw] != null && neighborTile[sw].IsActive && tileprop.Merges(World.GetTileProperties(neighborTile[sw].Type))) ? 0x01000000 : 0x00000000;
-                                                sameStyle |= (neighborTile[se] != null && neighborTile[se].IsActive && tileprop.Merges(World.GetTileProperties(neighborTile[se].Type))) ? 0x10000000 : 0x00000000;
+                                                sameStyle |= (neighborTile[e] != null && neighborTile[e].IsActive && tileprop.Merges(WorldConfiguration.GetTileProperties(neighborTile[e].Type))) ? 0x0001 : 0x0000;
+                                                sameStyle |= (neighborTile[n] != null && neighborTile[n].IsActive && tileprop.Merges(WorldConfiguration.GetTileProperties(neighborTile[n].Type))) ? 0x0010 : 0x0000;
+                                                sameStyle |= (neighborTile[w] != null && neighborTile[w].IsActive && tileprop.Merges(WorldConfiguration.GetTileProperties(neighborTile[w].Type))) ? 0x0100 : 0x0000;
+                                                sameStyle |= (neighborTile[s] != null && neighborTile[s].IsActive && tileprop.Merges(WorldConfiguration.GetTileProperties(neighborTile[s].Type))) ? 0x1000 : 0x0000;
+                                                sameStyle |= (neighborTile[ne] != null && neighborTile[ne].IsActive && tileprop.Merges(WorldConfiguration.GetTileProperties(neighborTile[ne].Type))) ? 0x00010000 : 0x00000000;
+                                                sameStyle |= (neighborTile[nw] != null && neighborTile[nw].IsActive && tileprop.Merges(WorldConfiguration.GetTileProperties(neighborTile[nw].Type))) ? 0x00100000 : 0x00000000;
+                                                sameStyle |= (neighborTile[sw] != null && neighborTile[sw].IsActive && tileprop.Merges(WorldConfiguration.GetTileProperties(neighborTile[sw].Type))) ? 0x01000000 : 0x00000000;
+                                                sameStyle |= (neighborTile[se] != null && neighborTile[se].IsActive && tileprop.Merges(WorldConfiguration.GetTileProperties(neighborTile[se].Type))) ? 0x10000000 : 0x00000000;
                                                 //Join if nearby tiles have the same type as this tile's type
                                                 sameStyle |= (neighborTile[e] != null && neighborTile[e].IsActive && curtile.Type == neighborTile[e].Type) ? 0x0001 : 0x0000;
                                                 sameStyle |= (neighborTile[n] != null && neighborTile[n].IsActive && curtile.Type == neighborTile[n].Type) ? 0x0010 : 0x0000;
@@ -2224,16 +2224,16 @@ namespace TEdit.View
                                             if (curtile.hasLazyChecked == false)
                                             {
                                                 bool lazyCheckReady = true;
-                                                lazyCheckReady &= (neighborTile[e] == null || neighborTile[e].IsActive == false || !tileprop.Merges(World.GetTileProperties(neighborTile[e].Type))) ? true : (neighborTile[e].lazyMergeId != 0xFF);
-                                                lazyCheckReady &= (neighborTile[n] == null || neighborTile[n].IsActive == false || !tileprop.Merges(World.GetTileProperties(neighborTile[n].Type))) ? true : (neighborTile[n].lazyMergeId != 0xFF);
-                                                lazyCheckReady &= (neighborTile[w] == null || neighborTile[w].IsActive == false || !tileprop.Merges(World.GetTileProperties(neighborTile[w].Type))) ? true : (neighborTile[w].lazyMergeId != 0xFF);
-                                                lazyCheckReady &= (neighborTile[s] == null || neighborTile[s].IsActive == false || !tileprop.Merges(World.GetTileProperties(neighborTile[s].Type))) ? true : (neighborTile[s].lazyMergeId != 0xFF);
+                                                lazyCheckReady &= (neighborTile[e] == null || neighborTile[e].IsActive == false || !tileprop.Merges(WorldConfiguration.GetTileProperties(neighborTile[e].Type))) ? true : (neighborTile[e].lazyMergeId != 0xFF);
+                                                lazyCheckReady &= (neighborTile[n] == null || neighborTile[n].IsActive == false || !tileprop.Merges(WorldConfiguration.GetTileProperties(neighborTile[n].Type))) ? true : (neighborTile[n].lazyMergeId != 0xFF);
+                                                lazyCheckReady &= (neighborTile[w] == null || neighborTile[w].IsActive == false || !tileprop.Merges(WorldConfiguration.GetTileProperties(neighborTile[w].Type))) ? true : (neighborTile[w].lazyMergeId != 0xFF);
+                                                lazyCheckReady &= (neighborTile[s] == null || neighborTile[s].IsActive == false || !tileprop.Merges(WorldConfiguration.GetTileProperties(neighborTile[s].Type))) ? true : (neighborTile[s].lazyMergeId != 0xFF);
                                                 if (lazyCheckReady)
                                                 {
-                                                    sameStyle &= 0x11111110 | ((neighborTile[e] == null || neighborTile[e].IsActive == false || !tileprop.Merges(World.GetTileProperties(neighborTile[e].Type))) ? 0x00000001 : ((neighborTile[e].lazyMergeId & 0x04) >> 2));
-                                                    sameStyle &= 0x11111101 | ((neighborTile[n] == null || neighborTile[n].IsActive == false || !tileprop.Merges(World.GetTileProperties(neighborTile[n].Type))) ? 0x00000010 : ((neighborTile[n].lazyMergeId & 0x08) << 1));
-                                                    sameStyle &= 0x11111011 | ((neighborTile[w] == null || neighborTile[w].IsActive == false || !tileprop.Merges(World.GetTileProperties(neighborTile[w].Type))) ? 0x00000100 : ((neighborTile[w].lazyMergeId & 0x01) << 8));
-                                                    sameStyle &= 0x11110111 | ((neighborTile[s] == null || neighborTile[s].IsActive == false || !tileprop.Merges(World.GetTileProperties(neighborTile[s].Type))) ? 0x00001000 : ((neighborTile[s].lazyMergeId & 0x02) << 11));
+                                                    sameStyle &= 0x11111110 | ((neighborTile[e] == null || neighborTile[e].IsActive == false || !tileprop.Merges(WorldConfiguration.GetTileProperties(neighborTile[e].Type))) ? 0x00000001 : ((neighborTile[e].lazyMergeId & 0x04) >> 2));
+                                                    sameStyle &= 0x11111101 | ((neighborTile[n] == null || neighborTile[n].IsActive == false || !tileprop.Merges(WorldConfiguration.GetTileProperties(neighborTile[n].Type))) ? 0x00000010 : ((neighborTile[n].lazyMergeId & 0x08) << 1));
+                                                    sameStyle &= 0x11111011 | ((neighborTile[w] == null || neighborTile[w].IsActive == false || !tileprop.Merges(WorldConfiguration.GetTileProperties(neighborTile[w].Type))) ? 0x00000100 : ((neighborTile[w].lazyMergeId & 0x01) << 8));
+                                                    sameStyle &= 0x11110111 | ((neighborTile[s] == null || neighborTile[s].IsActive == false || !tileprop.Merges(WorldConfiguration.GetTileProperties(neighborTile[s].Type))) ? 0x00001000 : ((neighborTile[s].lazyMergeId & 0x02) << 11));
                                                     curtile.hasLazyChecked = true;
                                                 }
                                             }
@@ -2368,7 +2368,7 @@ namespace TEdit.View
                         }
 
                         var curtile = _wvm.CurrentWorld.Tiles[x, y];
-                        if (curtile.Type >= World.TileProperties.Count) { continue; }
+                        if (curtile.Type >= WorldConfiguration.TileProperties.Count) { continue; }
 
                         //Neighbor tiles are often used when dynamically determining which UV position to render
 #pragma warning disable CS0219 // Variable is assigned but its value is never used
@@ -2488,7 +2488,7 @@ namespace TEdit.View
                         }
 
                         var curtile = _wvm.CurrentWorld.Tiles[x, y];
-                        if (curtile.Type >= World.TileProperties.Count) { continue; }
+                        if (curtile.Type >= WorldConfiguration.TileProperties.Count) { continue; }
 
                         //Neighbor tiles are often used when dynamically determining which UV position to render
 #pragma warning disable CS0219 // Variable is assigned but its value is never used
@@ -2515,7 +2515,7 @@ namespace TEdit.View
                                 else if (curtile.LiquidType == LiquidType.Shimmer)
                                 {
                                     tileTex = (Texture2D)_textureDictionary.GetLiquid(14);
-                                    liquidColor = new Color(World.GlobalColors["Shimmer"].PackedValue);
+                                    liquidColor = new Color(WorldConfiguration.GlobalColors["Shimmer"].PackedValue);
                                 }
                                 else
                                 {
@@ -2823,14 +2823,14 @@ namespace TEdit.View
         {
             int npcId = npc.SpriteId;
 
-            if (!World.BestiaryData.NpcById.ContainsKey(npcId))
+            if (!WorldConfiguration.BestiaryData.NpcById.ContainsKey(npcId))
             {
                 DrawNpcOverlay(npc);
                 return;
             }
 
-            var npcData = World.BestiaryData.NpcById[npcId];
-            string npcName = World.BestiaryData.NpcById[npcId].BestiaryId;
+            var npcData = WorldConfiguration.BestiaryData.NpcById[npcId];
+            string npcName = WorldConfiguration.BestiaryData.NpcById[npcId].BestiaryId;
             bool isPartying = _wvm.CurrentWorld.PartyingNPCs.Contains(npcId);
 
             Texture2D npcTexture = npcData.IsTownNpc ?
@@ -2839,7 +2839,7 @@ namespace TEdit.View
 
             if (npcTexture != null)
             {
-                var size = World.NpcFrames?[npcId] ?? Vector2Short.Zero;
+                var size = WorldConfiguration.NpcFrames?[npcId] ?? Vector2Short.Zero;
                 short height = size.Y > 0 ? size.Y : (short)55; // default 55 for normal height people
 
                 size = new Vector2Short(size.X, height);

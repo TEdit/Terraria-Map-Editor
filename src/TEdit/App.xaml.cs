@@ -183,7 +183,8 @@ namespace TEdit
         }
 
         public static KeyboardShortcuts ShortcutKeys { get; } = new KeyboardShortcuts();
-
+        public static string AltC { get; set; }
+        public static int? SteamUserId { get; set; }
 
         public static void LoadAppSettings()
         {
@@ -207,8 +208,8 @@ namespace TEdit
 
             ClipboardBuffer.ClipboardRenderSize = clipboardSize;
             ToolDefaultData.LoadSettings(xmlSettings.Elements("Tools"));
+            AltC = (string)xmlSettings.Element("AltC");
+            SteamUserId = (int?)xmlSettings.Element("SteamUserId") ?? null;
         }
     }
-
-
 }

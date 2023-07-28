@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <LangVersion>latest</LangVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\TEdit.Common\TEdit.Common.csproj" />
+    <ProjectReference Include="..\TEdit.Configuration\TEdit.Configuration.csproj" />
+    <ProjectReference Include="..\TEdit.Terraria\TEdit.Terraria.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -2,12 +2,12 @@ using System;
 using System.Windows.Input;
 using System.Linq;
 using System.Windows.Media.Imaging;
-using TEdit.Terraria;
 using TEdit.ViewModel;
 using TEdit.Geometry;
 using System.Collections.Generic;
 using TEdit.Terraria.Objects;
 using TEdit.Terraria.Editor;
+using TEdit.Configuration;
 
 namespace TEdit.Editor.Tools
 {
@@ -48,13 +48,13 @@ namespace TEdit.Editor.Tools
         private void PickTile(int x, int y)
         {
             var curTile = _wvm.CurrentWorld.Tiles[x, y];
-            if (!World.TileProperties[curTile.Type].IsFramed)
+            if (!WorldConfiguration.TileProperties[curTile.Type].IsFramed)
                 _wvm.TilePicker.Tile = curTile.Type;
             else
             {
-                var sprite = World.Sprites2.FirstOrDefault(s => s.Tile == curTile.Type).GetStyleFromUV(new Vector2Short(curTile.U, curTile.V));
+                var sprite = WorldConfiguration.Sprites2.FirstOrDefault(s => s.Tile == curTile.Type).GetStyleFromUV(new Vector2Short(curTile.U, curTile.V));
                 if (sprite == null)
-                    sprite = World.Sprites2.FirstOrDefault(s => s.Tile == curTile.Type).Styles.First();
+                    sprite = WorldConfiguration.Sprites2.FirstOrDefault(s => s.Tile == curTile.Type).Styles.First();
                 _wvm.SelectedSpriteItem = (SpriteItemPreview)sprite;
             }
 
@@ -118,7 +118,7 @@ namespace TEdit.Editor.Tools
         private void PickmaskTile(int x, int y)
         {
             var curTile = _wvm.CurrentWorld.Tiles[x, y];
-            if (!World.TileProperties[curTile.Type].IsFramed)
+            if (!WorldConfiguration.TileProperties[curTile.Type].IsFramed)
                 _wvm.TilePicker.TileMask = curTile.Type;
             _wvm.TilePicker.WallMask = curTile.Wall;
         }

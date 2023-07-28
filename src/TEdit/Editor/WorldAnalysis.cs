@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using TEdit.Configuration;
 using TEdit.Terraria;
 
 namespace TEdit.Editor
@@ -107,9 +108,9 @@ namespace TEdit.Editor
             foreach (var tilePair in tiles)
             {
                 string name = tilePair.Key.ToString();
-                if (World.TileProperties.Count >= tilePair.Key)
+                if (WorldConfiguration.TileProperties.Count >= tilePair.Key)
                 {
-                    var prop = World.TileProperties[tilePair.Key];
+                    var prop = WorldConfiguration.TileProperties[tilePair.Key];
                     if (prop != null)
                     {
                         name = prop.Name;

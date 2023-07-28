@@ -1,4 +1,5 @@
 using System.Windows;
+using TEdit.Configuration;
 using TEdit.Render;
 using TEdit.Terraria;
 using TEdit.ViewModel;
@@ -87,7 +88,7 @@ namespace TEdit.Editor.Plugins
                             curTile.Type = (ushort)tileTarget;
                             curTile.IsActive = true;
                             
-                            if (World.TileProperties[curTile.Type].IsSolid)
+                            if (WorldConfiguration.TileProperties[curTile.Type].IsSolid)
                             {
                                 curTile.U = -1;
                                 curTile.V = -1;

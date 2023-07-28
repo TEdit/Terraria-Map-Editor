@@ -49,8 +49,8 @@ namespace SettingsFileUpdater
 //            for (int t = 623; t < World.TileCount; t++)
 //            {
 //                var xTile = xTiles.Elements().FirstOrDefault(e => int.Parse(e.Attribute("Id").Value) == t);
-//                var tileProps = World.TileProperties.FirstOrDefault(item => item.Id == t);
-//                //var sprite = (!tileProps.IsFramed) ? null : World.Sprites2.FirstOrDefault(s => s.Tile == t);
+//                var tileProps = WorldConfiguration.TileProperties.FirstOrDefault(item => item.Id == t);
+//                //var sprite = (!tileProps.IsFramed) ? null : WorldConfiguration.Sprites2.FirstOrDefault(s => s.Tile == t);
 //                xTile.SetAttributeValue("Color", tileProps.Color.ToString());
 
 //                // update frame colors
@@ -59,7 +59,7 @@ namespace SettingsFileUpdater
 //            for (int t = 0; t < World.WallCount; t++)
 //            {
 //                var xWall = xWalls.Elements().FirstOrDefault(e => int.Parse(e.Attribute("Id").Value) == t);
-//                var wallProps = World.WallProperties.FirstOrDefault(item => item.Id == t);
+//                var wallProps = WorldConfiguration.WallProperties.FirstOrDefault(item => item.Id == t);
 //                xWall.SetAttributeValue("Color", wallProps.Color.ColorToString());
 //            }
 //            xdoc.Save("settings2.xml");
