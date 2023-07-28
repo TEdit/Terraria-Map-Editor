@@ -9,9 +9,46 @@ using System.Diagnostics;
 using TEdit.Geometry;
 using TEdit.Render;
 using TEdit.Configuration;
+using System.Threading.Tasks;
 
 namespace TEdit.Editor.Undo
 {
+    public class UndoManagerWrapper : IUndoManager
+    {
+        private readonly UndoManager _um;
+
+        public UndoManagerWrapper(UndoManager um)
+        {
+            _um = um;
+        }
+        public Task RedoAsync(World world)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void SaveTile(World world, Vector2Int32 location, bool removeEntities = false) =>
+            SaveTile(world, location.X, location.Y, removeEntities);
+
+        public void SaveTile(World world, int x, int y, bool removeEntities = false) =>
+            _um.SaveTile(x, y, removeEntities);
+
+        public Task SaveUndoAsync()
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task StartUndoAsync()
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task UndoAsync(World world)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+
     public class UndoManager : ObservableObject, IDisposable
     {
         private static Random r = new Random();

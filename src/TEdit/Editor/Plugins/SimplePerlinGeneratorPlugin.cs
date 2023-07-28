@@ -1,5 +1,6 @@
 using System;
 using Microsoft.Xna.Framework;
+using TEdit.Geometry;
 using TEdit.ViewModel;
 
 namespace TEdit.Editor.Plugins
@@ -25,12 +26,17 @@ namespace TEdit.Editor.Plugins
             _noiseGenerator = new PerlinNoise((int)DateTime.Now.Ticks);
             //}
 
-            var area = new Rectangle(0, (int)_wvm.CurrentWorld.GroundLevel, _wvm.CurrentWorld.TilesWide, _wvm.CurrentWorld.TilesHigh - (int)_wvm.CurrentWorld.GroundLevel - 196);
+            var area = new RectangleInt32(0, (int)_wvm.CurrentWorld.GroundLevel, _wvm.CurrentWorld.TilesWide, _wvm.CurrentWorld.TilesHigh - (int)_wvm.CurrentWorld.GroundLevel - 196);
 
             if (_wvm.Selection.IsActive)
             {
-                if (!_wvm.Selection.SelectionArea.Intersect(new Rectangle(0, 0, _wvm.CurrentWorld.TilesWide, _wvm.CurrentWorld.TilesHigh), out area))
+
+                var worldSize = new RectangleInt32(0, 0, _wvm.CurrentWorld.TilesWide, _wvm.CurrentWorld.TilesHigh);
+                var selection = _wvm.Selection.SelectionArea;
+                if (!RectangleInt32.Intersect(ref selection, ref worldSize, out area))
+                {
                     return;
+                }
             }
 
             if (area.Width <= 0 || area.Height <= 0)

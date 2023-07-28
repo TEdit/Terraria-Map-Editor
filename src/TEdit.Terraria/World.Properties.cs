@@ -28,7 +28,6 @@ namespace TEdit.Terraria
         // 6 = desert 1
         // 7 = ocean 1 2
 
-        public static byte MaxMoons = 3;
         private readonly ObservableCollection<String> _anglers = new ObservableCollection<String>();
         private readonly ObservableCollection<NpcName> _charNames = new ObservableCollection<NpcName>();
         private readonly ObservableCollection<Chest> _chests = new ObservableCollection<Chest>();

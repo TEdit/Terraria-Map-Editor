@@ -113,7 +113,7 @@ namespace TEdit.Editor.Clipboard
         public ClipboardBuffer GetSelectionBuffer()
         {
             World world = _wvm.CurrentWorld;
-            XNA.Rectangle area = _wvm.Selection.SelectionArea;
+            var area = _wvm.Selection.SelectionArea;
             var buffer = new ClipboardBuffer(new Vector2Int32(area.Width, area.Height));
 
             for (int x = 0; x < area.Width; x++)

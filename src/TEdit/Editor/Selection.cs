@@ -1,13 +1,12 @@
 ﻿using System;
 using TEdit.Common.Reactive;
-using Microsoft.Xna.Framework;
 using TEdit.Geometry;
 
 namespace TEdit.Editor
 {
-    public class Selection : ObservableObject
+    public class Selection : ObservableObject, ISelection
     {
-        private Rectangle _selectionArea = new Rectangle(0, 0, 0, 0);
+        private RectangleInt32 _selectionArea = new RectangleInt32(0, 0, 0, 0);
         private bool _isActive;
 
         public bool IsActive
@@ -28,7 +27,7 @@ namespace TEdit.Editor
             return SelectionArea.Contains(x, y);
         }
 
-        public Rectangle SelectionArea
+        public RectangleInt32 SelectionArea
         {
             get { return _selectionArea; }
             set { Set(nameof(SelectionArea), ref _selectionArea, value); }
@@ -41,7 +40,7 @@ namespace TEdit.Editor
             int width = Math.Abs(p2.X - p1.X) + 1;
             int height = Math.Abs(p2.Y - p1.Y) + 1;
 
-            SelectionArea = new Rectangle(x1, y1, width, height);
+            SelectionArea = new RectangleInt32(x1, y1, width, height);
             IsActive = true;
         }
     }

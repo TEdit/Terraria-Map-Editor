@@ -12,6 +12,7 @@ using TEdit.Configuration;
 
 namespace TEdit.Editor.Tools
 {
+
     public class BrushToolBase : BaseTool
     {
         protected bool _isLeftDown;

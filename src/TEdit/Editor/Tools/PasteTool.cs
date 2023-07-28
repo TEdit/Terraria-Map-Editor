@@ -47,7 +47,7 @@ namespace TEdit.Editor.Tools
         private void PasteClipboard(Vector2Int32 anchor)
         {
             _wvm.Clipboard.PasteBufferIntoWorld(anchor);
-            _wvm.UpdateRenderRegion(new Rectangle(anchor.X, anchor.Y, _wvm.Clipboard.Buffer.Size.X, _wvm.Clipboard.Buffer.Size.Y));
+            _wvm.UpdateRenderRegion(new RectangleInt32(anchor, _wvm.Clipboard.Buffer.Size));
 
             /* Heathtech */
             BlendRules.ResetUVCache(_wvm, anchor.X, anchor.Y, _wvm.Clipboard.Buffer.Size.X, _wvm.Clipboard.Buffer.Size.Y);

@@ -10,8 +10,8 @@ public interface IUndoManager
 {
     Task StartUndoAsync();
 
-    void SaveTile(World world, Vector2Int32 location);
-    void SaveTile(World world, int x, int y);
+    void SaveTile(World world, Vector2Int32 location, bool removeEntities = false);
+    void SaveTile(World world, int x, int y, bool removeEntities = false);
 
     Task SaveUndoAsync();
 

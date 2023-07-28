@@ -23,7 +23,7 @@ namespace TEdit.Editor.Plugins
                 return;
 
             //Get affected area
-            Rectangle selectionArea = settingsView.OnlySelection ? _wvm.Selection.SelectionArea : new(0, 0, _wvm.CurrentWorld.Size.X, _wvm.CurrentWorld.Size.Y);
+            var selectionArea = settingsView.OnlySelection ? _wvm.Selection.SelectionArea : new(0, 0, _wvm.CurrentWorld.Size.X, _wvm.CurrentWorld.Size.Y);
 
             //Randomizer with Seed
             Random rng = new(settingsView.Seed);

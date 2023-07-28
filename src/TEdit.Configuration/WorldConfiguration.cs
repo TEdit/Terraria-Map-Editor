@@ -21,6 +21,7 @@ namespace TEdit.Configuration
         public static int MaxChests { get; private set; } = 8000;
         public static int MaxSigns { get; private set; } = 1000;
         public static int CavernLevelToBottomOfWorld { get; private set; } = 478;
+        public static byte MaxMoons = 3;
 
         public const string DesktopHeader = "relogic";
         public const string ChineseHeader = "xindong";

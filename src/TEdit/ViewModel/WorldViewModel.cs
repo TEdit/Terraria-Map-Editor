@@ -466,7 +466,14 @@ namespace TEdit.ViewModel
         public World CurrentWorld
         {
             get { return _currentWorld; }
-            set { Set(nameof(CurrentWorld), ref _currentWorld, value); }
+            set
+            {
+                Set(nameof(CurrentWorld), ref _currentWorld, value);
+
+                var rb = new RenderBlender(CurrentWorld, TilePicker);
+                var undo = new UndoManagerWrapper(UndoManager);
+                WorldEditor = new WorldEditor(CurrentWorld, Selection, undo, rb);
+            }
         }
 
         public ProgressChangedEventArgs Progress

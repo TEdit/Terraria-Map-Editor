@@ -1781,7 +1781,7 @@ namespace TEdit.Terraria
             }
             else
             {
-                w.MoonType = (byte)w.Rand.Next(MaxMoons);
+                w.MoonType = (byte)w.Rand.Next(WorldConfiguration.MaxMoons);
             }
 
 

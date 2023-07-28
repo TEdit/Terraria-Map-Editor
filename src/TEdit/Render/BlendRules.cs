@@ -5,10 +5,28 @@ using TEdit.Editor;
 using TEdit.ViewModel;
 using TEdit.Geometry;
 using TEdit.Terraria;
+using SharpDX.Direct3D11;
 
 /* Heathtech */
 namespace TEdit.Render
 {
+    public class RenderBlender : INotifyTileChanged
+    {
+        private readonly World _world;
+        private readonly TilePicker _tilePicker;
+
+        public RenderBlender(World world, TilePicker tilePicker)
+        {
+            _world = world;
+            _tilePicker = tilePicker;
+        }
+
+        public void UpdateTile(int x, int y, int width = 1, int height = 1)
+        {
+            BlendRules.ResetUVCache(_world, _tilePicker,x, y, width, height);
+        }
+    }
+
     class BlendRules
     {
         private static BlendRules instance;
@@ -276,9 +294,18 @@ namespace TEdit.Render
         }
 
         //This function resets the UV state for the specified tile locations (as well as nearby tiles) such that the UV cache must be re-evaluated
-        public static void ResetUVCache(WorldViewModel _wvm, int tileStartX, int tileStartY, int regionWidth, int regionHeight)
+        public static void ResetUVCache(WorldViewModel _wvm, int tileStartX, int tileStartY, int regionWidth, int regionHeight) =>
+            ResetUVCache(_wvm.CurrentWorld, _wvm.TilePicker, tileStartX, tileStartY, regionWidth, regionHeight);
+
+        public static void ResetUVCache(
+            World world,
+            TilePicker tilePicker, 
+            int tileStartX, 
+            int tileStartY, 
+            int regionWidth, 
+            int regionHeight)
         {
-            if (_wvm.TilePicker.PaintMode == PaintMode.TileAndWall)
+            if (tilePicker.PaintMode == PaintMode.TileAndWall)
             {
                 //Reset UV Cache for nearby tiles and walls
                 for (int x = -1; x < regionWidth + 1; x++)
@@ -287,18 +314,18 @@ namespace TEdit.Render
                     for (int y = -1; y < regionHeight + 1; y++)
                     {
                         int tiley = y + tileStartY;
-                        if (tilex < 0 || tiley < 0 || tilex >= _wvm.CurrentWorld.TilesWide || tiley >= _wvm.CurrentWorld.TilesHigh)
+                        if (tilex < 0 || tiley < 0 || tilex >= world.TilesWide || tiley >= world.TilesHigh)
                         {
                             continue;
                         }
-                        Tile curtile = _wvm.CurrentWorld.Tiles[tilex, tiley];
-                        if (_wvm.TilePicker.TileStyleActive)
+                        Tile curtile = world.Tiles[tilex, tiley];
+                        if (tilePicker.TileStyleActive)
                         {
                             curtile.uvTileCache = 0xFFFF;
                             curtile.lazyMergeId = 0xFF;
                             curtile.hasLazyChecked = false;
                         }
-                        if (_wvm.TilePicker.WallStyleActive)
+                        if (tilePicker.WallStyleActive)
                             curtile.uvWallCache = 0xFFFF;
                     }
                 }

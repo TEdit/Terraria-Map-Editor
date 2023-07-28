@@ -4,6 +4,7 @@ using System.Linq;
 using Microsoft.ApplicationInsights.DataContracts;
 using Microsoft.Xna.Framework;
 using TEdit.Configuration;
+using TEdit.Geometry;
 using TEdit.Terraria;
 using TEdit.Terraria.Objects;
 using TEdit.ViewModel;
@@ -43,7 +44,7 @@ namespace TEdit.Editor.Plugins
             var tileMapping = GetRandomTileMapping(blockSettings);
             var wallMapping = GetRandomWallMapping(wallSettings);
 
-            Rectangle randomizationArea;
+            RectangleInt32 randomizationArea;
 
             if (view.OnlySelection)
             {
@@ -90,7 +91,7 @@ namespace TEdit.Editor.Plugins
         /// <summary>
         /// This function adds the conditional blocks to all tiles that require them. This includes vines and cacti.
         /// </summary>
-        private void AddSupportsToDependentBlocks(Rectangle randomizationArea)
+        private void AddSupportsToDependentBlocks(RectangleInt32 randomizationArea)
         {
             Dictionary<int, int> VineHangTile = new()
             {
@@ -160,7 +161,7 @@ namespace TEdit.Editor.Plugins
             }
         }
 
-        private void AddSupportsToGravityBlocks(Rectangle randomizationArea)
+        private void AddSupportsToGravityBlocks(RectangleInt32 randomizationArea)
         {
             Dictionary<int, int> GravitySupportTile = new()
             {
