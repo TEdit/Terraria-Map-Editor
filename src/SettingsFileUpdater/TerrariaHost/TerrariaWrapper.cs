@@ -145,7 +145,7 @@ namespace SettingsFileUpdater.TerrariaHost
         public string GetWallsXml()
         {
             List<Terraria.Item> curItems = new List<Item>();
-            for (int i = -255; i < maxItemTypes; i++)
+            for (int i = -255; i < ItemID.Count; i++)
             {
                 try
                 {
@@ -159,7 +159,7 @@ namespace SettingsFileUpdater.TerrariaHost
                 }
             }
             var output = new StringBuilder("  <Walls>\r\n");
-            for (int i = 0; i < maxWallTypes; i++)
+            for (int i = 0; i < WallID.Count; i++)
             {
 
                 var creatingWall = curItems.FirstOrDefault(x => x.createWall == i);
@@ -190,7 +190,7 @@ namespace SettingsFileUpdater.TerrariaHost
             XDocument tiles = new XDocument(root);
 
             List<Terraria.Item> curItems = new List<Item>();
-            for (int i = 0; i < maxItemTypes; i++)
+            for (int i = 0; i < ItemID.Count; i++)
             {
                 try
                 {
@@ -204,7 +204,7 @@ namespace SettingsFileUpdater.TerrariaHost
                 }
             }
 
-            for (int i = 0; i < maxTileSets; i++)
+            for (int i = 0; i < TileID.Count; i++)
             {
                 string origName = origTiles.Elements().FirstOrDefault(e => e.Attribute("Id").Value == i.ToString())?.Attribute("Name").Value;
 
@@ -481,10 +481,10 @@ namespace SettingsFileUpdater.TerrariaHost
                 "    \"" + Main.curRelease + "\": {" + Environment.NewLine,
                 "      \"saveVersion\": " + Main.curRelease + "," + Environment.NewLine,
                 "      \"gameVersion\": \"" + Main.versionNumber + "\"," + Environment.NewLine,
-                "      \"MaxTileId\": " + (Main.maxTileSets - 1) + "," + Environment.NewLine,
-                "      \"MaxWallId\": " + (Main.maxWallTypes - 1) + "," + Environment.NewLine,
-                "      \"MaxItemId\": " + (Main.maxItemTypes - 1) + "," + Environment.NewLine,
-                "      \"MaxNpcId\": " + (Main.maxNPCTypes - 1) + "," + Environment.NewLine,
+                "      \"MaxTileId\": " + (TileID.Count - 1) + "," + Environment.NewLine,
+                "      \"MaxWallId\": " + (WallID.Count - 1) + "," + Environment.NewLine,
+                "      \"MaxItemId\": " + (ItemID.Count - 1) + "," + Environment.NewLine,
+                "      \"MaxNpcId\": " + (NPCID.Count - 1) + "," + Environment.NewLine,
                 "      \"maxMoonId\": " + Main.maxMoons + "," + Environment.NewLine,
                 "      \"framedTileIds\": [ " + TileFrameData.Substring(0, TileFrameData.Length - 2) + " ]" + Environment.NewLine,
                 "    },"
