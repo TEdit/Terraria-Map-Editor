@@ -165,14 +165,6 @@ namespace TEdit
             }
         }
 
-        public static string Version
-        {
-            get
-            {
-                Assembly asm = Assembly.GetExecutingAssembly();
-                FileVersionInfo fvi = FileVersionInfo.GetVersionInfo(asm.Location);
-                return fvi.FileVersion;
-            }
-        }
+        public static string Version => Assembly.GetEntryAssembly().GetCustomAttribute<AssemblyInformationalVersionAttribute>().InformationalVersion;
     }
 }

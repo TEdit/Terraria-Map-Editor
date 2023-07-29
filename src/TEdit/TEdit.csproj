@@ -1,8 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
-
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>net462</TargetFramework>
+    <TargetFramework>net7.0-windows</TargetFramework>
     <UseWPF>true</UseWPF>
     <ApplicationIcon>Images\tedit.ico</ApplicationIcon>
     <AssemblyName>TEdit</AssemblyName>
@@ -13,26 +12,17 @@
     <VersionSuffix>alpha0</VersionSuffix>
     <Platforms>AnyCPU</Platforms>
     <ApplicationManifest>app.manifest</ApplicationManifest>
+      <PublishSingleFile>true</PublishSingleFile>
+      <SelfContained>true</SelfContained>
+      <RuntimeIdentifier>win-x64</RuntimeIdentifier>
   </PropertyGroup>
-
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugType>portable</DebugType>
-  </PropertyGroup>
-
   <ItemGroup>
     <PackageReference Include="Microsoft.ApplicationInsights" Version="2.15.0" />
     <PackageReference Include="Microsoft.ApplicationInsights.WindowsServer" Version="2.15.0" />
     <PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" Version="1.1.39" />
     <PackageReference Include="MonoGame.Framework.WindowsDX" Version="3.8.0.1641" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
-    <PackageReference Include="System.Collections" Version="4.3.0" />
   </ItemGroup>
-
-  <ItemGroup>
-    <Reference Include="System.Net.Http" />
-    <Reference Include="System.Windows.Forms" />
-  </ItemGroup>
-
   <ItemGroup>
     <None Remove="Images/**/*" />
     <None Remove="morphSettings.json" />
@@ -40,23 +30,13 @@
     <None Remove="settings.xml" />
     <None Remove="TerrariaVersionTileData.json" />
   </ItemGroup>
-
   <ItemGroup>
-    <SplashScreen Include="Images\te4.png" />
-    <Content Include="morphSettings.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="npcData.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="settings.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="TerrariaVersionTileData.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+    <SplashScreen Include="Images\te4.png" ExcludeFromSingleFile="true" CopyToOutputDirectory="Always" />
+    <Content Include="morphSettings.json" ExcludeFromSingleFile="true" CopyToOutputDirectory="Always" />
+    <Content Include="npcData.json" ExcludeFromSingleFile="true" CopyToOutputDirectory="Always" />
+    <Content Include="settings.xml" ExcludeFromSingleFile="true" CopyToOutputDirectory="Always" />
+    <Content Include="TerrariaVersionTileData.json" ExcludeFromSingleFile="true" CopyToOutputDirectory="Always" />
   </ItemGroup>
-  
   <ItemGroup>
     <EmbeddedResource Include="Images/Overlays/*.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
@@ -70,16 +50,13 @@
     <Resource Include="Images/*.ico">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
-    
   </ItemGroup>
-  
   <ItemGroup>
     <ProjectReference Include="..\TEdit.Common\TEdit.Common.csproj" />
     <ProjectReference Include="..\TEdit.Configuration\TEdit.Configuration.csproj" />
     <ProjectReference Include="..\TEdit.Editor\TEdit.Editor.csproj" />
     <ProjectReference Include="..\TEdit.Terraria\TEdit.Terraria.csproj" />
   </ItemGroup>
-
   <ItemGroup>
     <Compile Update="Properties\Language.Designer.cs">
       <DesignTime>True</DesignTime>
@@ -127,21 +104,18 @@
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
   </ItemGroup>
-
   <ItemGroup>
     <EmbeddedResource Update="Properties\Language.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Language.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
-
   <ItemGroup>
     <None Update="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
   </ItemGroup>
-
   <ItemGroup>
     <Page Update="Editor\Plugins\TextStatuePluginView.xaml">
       <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
@@ -153,7 +127,6 @@
       <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
     </Page>
   </ItemGroup>
-
   <Target Name="Sign" AfterTargets="Publish" Condition=" $(signcert) != '' ">
     <Exec Command="signtool.exe sign /v /fd sha256 /n &quot;$(signcert)&quot; /t http://timestamp.digicert.com &quot;$(PublishDir)$(TargetFileName)&quot; " Condition="$(TargetFileName) != ''" ContinueOnError="WarnAndContinue" />
   </Target>

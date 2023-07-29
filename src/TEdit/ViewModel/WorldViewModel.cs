@@ -470,9 +470,16 @@ namespace TEdit.ViewModel
             {
                 Set(nameof(CurrentWorld), ref _currentWorld, value);
 
-                var rb = new RenderBlender(CurrentWorld, TilePicker);
-                var undo = new UndoManagerWrapper(UndoManager);
-                WorldEditor = new WorldEditor(CurrentWorld, Selection, undo, rb);
+                if (value != null)
+                {
+                    var rb = new RenderBlender(CurrentWorld, TilePicker);
+                    var undo = new UndoManagerWrapper(UndoManager);
+                    WorldEditor = new WorldEditor(CurrentWorld, Selection, undo, rb);
+                }
+                else
+                {
+                    WorldEditor = null;
+                }
             }
         }
 
