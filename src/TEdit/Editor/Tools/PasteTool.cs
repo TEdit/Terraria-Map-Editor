@@ -6,6 +6,7 @@ using Microsoft.Xna.Framework;
 using TEdit.ViewModel;
 using TEdit.Geometry;
 using TEdit.Render;
+using TEdit.UI;
 
 namespace TEdit.Editor.Tools
 {

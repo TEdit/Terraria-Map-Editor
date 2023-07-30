@@ -332,13 +332,11 @@ namespace TEdit.ViewModel
 
         public void SetPixel(int x, int y, PaintMode? mode = null, bool? erase = null)
         {
-
             if (CurrentWorld == null) return;
             if (TilePicker == null) return;
 
             WorldEditor.SetPixel(x, y, mode, erase);
-
-            UpdateRenderPixel(x, y);
+            UpdateRenderPixel(x,y);
         }
 
         private void UpdateRenderWorld()

@@ -4,7 +4,6 @@ using System.Threading.Tasks;
 using TEdit.Configuration;
 using TEdit.Editor.Undo;
 using TEdit.Geometry;
-using TEdit.Render;
 using TEdit.Terraria;
 
 namespace TEdit.Editor;
@@ -18,6 +17,9 @@ public interface ISelection
     void SetRectangle(Vector2Int32 p1, Vector2Int32 p2);
 }
 
+public delegate void NotifyTileChanged(int x, int y, int height = 1, int width = 1);
+public delegate Task NotifyTileChangedAsync(int x, int y, int height = 1, int width = 1);
+
 public interface INotifyTileChanged
 {
     void UpdateTile(int x, int y, int height = 1, int width = 1);
@@ -29,14 +31,14 @@ public class WorldEditor
     private readonly World _world;
     private readonly ISelection _selection;
     private readonly IUndoManager _undo;
-    private readonly INotifyTileChanged _notifyTileChanged;
+    private readonly NotifyTileChanged? _notifyTileChanged;
     public bool[] _checkTiles;
 
     public WorldEditor(
         World world,
         ISelection selection,
         IUndoManager undo,
-        INotifyTileChanged notifyTileChanged)
+        NotifyTileChanged? notifyTileChanged)
     {
         _world = world;
         _selection = selection;
@@ -744,7 +746,7 @@ public class WorldEditor
                     _undo.SaveTile(_world, pixel);
                     SetPixel(pixel.X, pixel.Y);
 
-                    _notifyTileChanged.UpdateTile(pixel.X, pixel.Y, 1, 1);
+                    _notifyTileChanged?.Invoke(pixel.X, pixel.Y, 1, 1);
                 }
             }
         }
@@ -779,7 +781,7 @@ public class WorldEditor
                             SetPixel(pixel.X, pixel.Y, mode: PaintMode.TileAndWall);
 
                         // BlendRules.ResetUVCache(_wvm, pixel.X, pixel.Y, 1, 1);
-                        _notifyTileChanged.UpdateTile(pixel.X, pixel.Y, 1, 1);
+                        _notifyTileChanged?.Invoke(pixel.X, pixel.Y, 1, 1);
                     }
                 }
             }
@@ -808,7 +810,7 @@ public class WorldEditor
                 }
 
                 /* Heathtech */
-                _notifyTileChanged.UpdateTile(pixel.X, pixel.Y, 1, 1);
+                _notifyTileChanged?.Invoke(pixel.X, pixel.Y, 1, 1);
             }
         }
     }

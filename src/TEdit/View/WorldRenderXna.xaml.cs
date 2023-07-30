@@ -25,6 +25,7 @@ using TEdit.Render;
 using TEdit.Geometry;
 using TEdit.Common;
 using TEdit.Configuration;
+using TEdit.UI;
 
 namespace TEdit.View
 {

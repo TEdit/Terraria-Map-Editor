@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using TEdit.Terraria.Objects;
 using TEdit.Terraria.Editor;
 using TEdit.Configuration;
+using TEdit.UI;
 
 namespace TEdit.Editor.Tools
 {

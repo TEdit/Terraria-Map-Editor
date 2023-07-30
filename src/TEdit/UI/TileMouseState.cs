@@ -2,7 +2,7 @@
 using TEdit.Geometry;
 using TEdit.UI.Xaml.XnaContentHost;
 
-namespace TEdit.Editor
+namespace TEdit.UI
 {
     public class TileMouseState
     {
@@ -16,12 +16,12 @@ namespace TEdit.Editor
         public static TileMouseState FromHwndMouseEventArgs(HwndMouseEventArgs e, Vector2Int32 tile)
         {
             return new TileMouseState
-                       {
-                           LeftButton = e.LeftButton,
-                           RightButton = e.RightButton,
-                           MiddleButton = e.MiddleButton,
-                           Location = tile
-                       };
+            {
+                LeftButton = e.LeftButton,
+                RightButton = e.RightButton,
+                MiddleButton = e.MiddleButton,
+                Location = tile
+            };
         }
     }
 }

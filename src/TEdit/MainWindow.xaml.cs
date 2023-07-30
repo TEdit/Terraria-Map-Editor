@@ -203,7 +203,7 @@ namespace TEdit
                         _vm.TilePicker.IsEraser = !_vm.TilePicker.IsEraser;
                         break;
                     case "swap":
-                        _vm.TilePicker.Swap(Keyboard.Modifiers);
+                        _vm.TilePicker.Swap(Keyboard.Modifiers.HasFlag(ModifierKeys.Shift));
                         break;
                     case "toggletile":
                         _vm.TilePicker.TileStyleActive = !_vm.TilePicker.TileStyleActive;

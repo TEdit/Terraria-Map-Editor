@@ -8,6 +8,7 @@ using TEdit.ViewModel;
 using System.Linq;
 using TEdit.Configuration;
 using TEdit.Render;
+using TEdit.UI;
 
 namespace TEdit.Editor.Tools
 {

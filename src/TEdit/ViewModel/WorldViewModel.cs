@@ -38,6 +38,7 @@ using static TEdit.Terraria.CreativePowers;
 using TEdit.Geometry;
 using TEdit.Configuration;
 using System.Windows.Documents;
+using TEdit.UI;
 
 namespace TEdit.ViewModel
 {
@@ -56,7 +57,7 @@ namespace TEdit.ViewModel
         private readonly TilePicker _tilePicker = new TilePicker();
         private readonly MorphToolOptions _MorphToolOptions = new MorphToolOptions();
         private readonly ObservableCollection<ITool> _tools = new ObservableCollection<ITool>();
-        private readonly UndoManager _undoManager;
+        private UndoManager _undoManager;
         public bool[] CheckTiles;
         private ITool _activeTool;
         private bool _checkUpdates;
@@ -130,7 +131,8 @@ namespace TEdit.ViewModel
 
             IsAutoSaveEnabled = Settings.Default.Autosave;
 
-            _undoManager = new UndoManager(this);
+
+
             _clipboard = new ClipboardManager(this);
             World.ProgressChanged += OnProgressChanged;
             Brush.BrushChanged += OnPreviewChanged;
@@ -142,10 +144,6 @@ namespace TEdit.ViewModel
             _saveTimer.Elapsed += SaveTimerTick;
             // 3 minute save timer
             _saveTimer.Interval = 3 * 60 * 1000;
-
-            _undoManager.Redid += UpdateMinimap;
-            _undoManager.Undid += UpdateMinimap;
-            _undoManager.UndoSaved += UpdateMinimap;
 
             // Test File Association and command line
             if (Application.Current.Properties["OpenFile"] != null)
@@ -473,8 +471,17 @@ namespace TEdit.ViewModel
                 if (value != null)
                 {
                     var rb = new RenderBlender(CurrentWorld, TilePicker);
+
+                    NotifyTileChanged updateTiles = (x, y, width, height) =>
+                    {
+                        UpdateRenderPixel(x, y);
+                        //UpdateRenderRegion(new RectangleInt32(x, y, width, height));
+                        rb.UpdateTile(x, y, width, height);
+                    };
+
+                    _undoManager = new UndoManager(CurrentWorld, updateTiles, UpdateMinimap);
                     var undo = new UndoManagerWrapper(UndoManager);
-                    WorldEditor = new WorldEditor(CurrentWorld, Selection, undo, rb);
+                    WorldEditor = new WorldEditor(CurrentWorld, Selection, undo, updateTiles);
                 }
                 else
                 {
@@ -709,7 +716,7 @@ namespace TEdit.ViewModel
             }
         }
 
-        private void UpdateMinimap(object sender, EventArgs eventArgs)
+        private void UpdateMinimap()
         {
             if (CurrentWorld != null)
             {

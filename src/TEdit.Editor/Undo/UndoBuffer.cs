@@ -5,7 +5,6 @@ using System.IO;
 using TEdit.Configuration;
 using TEdit.Geometry;
 using TEdit.Terraria;
-using TEdit.ViewModel;
 
 namespace TEdit.Editor.Undo
 {
@@ -15,18 +14,20 @@ namespace TEdit.Editor.Undo
         private string file;
         private static readonly object UndoSaveLock = new object();
 
-        public UndoBuffer(string fileName)
+        public UndoBuffer(string fileName, World world)
         {
             file = Path.GetFileNameWithoutExtension(fileName);
             Debug.WriteLine($"Creating UNDO file {fileName}");
             _writer = new BinaryWriter(new FileStream(fileName, FileMode.Create), System.Text.Encoding.UTF8, false);
             _writer.Write((Int32)0);
+            _world = world;
         }
 
         private readonly List<UndoTile> _undoTiles = new List<UndoTile>();
         private readonly List<Sign> _signs = new List<Sign>();
         private readonly List<Chest> _chests = new List<Chest>();
         private readonly List<TileEntity> _tileEntities = new List<TileEntity>();
+        private readonly World _world;
 
         public IList<Chest> Chests
         {
@@ -52,7 +53,7 @@ namespace TEdit.Editor.Undo
 
         public void Add(Vector2Int32 location, Tile tile)
         {
-            var undoTile = new UndoTile(location, tile);
+            var undoTile = new UndoTile(tile, location);
 
             if (undoTile == null)
             {
@@ -74,9 +75,9 @@ namespace TEdit.Editor.Undo
 
         public void SaveTileData()
         {
-            var world = ViewModelLocator.WorldViewModel?.CurrentWorld;
+            var world = _world;
             var version = world?.Version ?? WorldConfiguration.CompatibleVersion;
-            var tileFrameImportant = ViewModelLocator.WorldViewModel?.CurrentWorld?.TileFrameImportant ?? WorldConfiguration.SettingsTileFrameImportant;
+            var tileFrameImportant = world?.TileFrameImportant ?? WorldConfiguration.SettingsTileFrameImportant;
 
             int maxTileId = WorldConfiguration.SaveConfiguration.SaveVersions[(int)version].MaxTileId;
             int maxWallId = WorldConfiguration.SaveConfiguration.SaveVersions[(int)version].MaxWallId;
@@ -111,7 +112,7 @@ namespace TEdit.Editor.Undo
 
         public void Close()
         {
-            var world = ViewModelLocator.WorldViewModel.CurrentWorld;
+            var world = _world;
             var version = world?.Version ?? WorldConfiguration.CompatibleVersion;
 
             Debug.WriteLine($"Saving {file}");
@@ -126,9 +127,9 @@ namespace TEdit.Editor.Undo
             _writer = null;
         }
 
-        public static IEnumerable<UndoTile> ReadUndoTilesFromStream(BinaryReader br)
+        public static IEnumerable<UndoTile> ReadUndoTilesFromStream(BinaryReader br, bool[]? tileFrameImportance = null)
         {
-            var tileFrameImportant = ViewModelLocator.WorldViewModel?.CurrentWorld?.TileFrameImportant ?? WorldConfiguration.SettingsTileFrameImportant;
+            var tileFrameImportant = tileFrameImportance ?? WorldConfiguration.SettingsTileFrameImportant;
 
             var tilecount = br.ReadInt32();
             for (int i = 0; i < tilecount; i++)
@@ -138,7 +139,7 @@ namespace TEdit.Editor.Undo
                 int y = br.ReadInt32();
                 var curTile = World.DeserializeTileData(br, tileFrameImportant, (int)WorldConfiguration.CompatibleVersion, out rle);
 
-                yield return new UndoTile(new Vector2Int32(x, y), curTile);
+                yield return new UndoTile(curTile, new Vector2Int32(x, y));
             }
         }
 

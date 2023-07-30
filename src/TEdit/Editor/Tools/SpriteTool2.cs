@@ -5,6 +5,7 @@ using TEdit.Geometry;
 using TEdit.Terraria;
 using TEdit.Terraria.Editor;
 using TEdit.Terraria.Objects;
+using TEdit.UI;
 using TEdit.ViewModel;
 namespace TEdit.Editor.Tools
 {

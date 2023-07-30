@@ -366,7 +366,7 @@ namespace TEdit.Editor
             }
         }
 
-        public void Swap(ModifierKeys modifier)
+        public void Swap(bool wall = false)
         {
             switch (PaintMode)
             {
@@ -377,7 +377,7 @@ namespace TEdit.Editor
                 //                    SwapWall();
                 //                    break;
                 case PaintMode.TileAndWall:
-                    if (modifier.HasFlag(ModifierKeys.Shift))
+                    if (wall)
                         SwapWall();
                     else
                         SwapTile();

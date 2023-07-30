@@ -1,14 +1,15 @@
 ﻿<UserControl x:Class="TEdit.View.BrushSettingsView" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:Editor="clr-namespace:TEdit.Editor"
-             xmlns:tedit="clr-namespace:TEdit.UI.Xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+
              xmlns:p="clr-namespace:TEdit.Properties"
              xmlns:enum="clr-namespace:TEdit.UI.Xaml.Enum"
+             xmlns:editor="clr-namespace:TEdit.Editor;assembly=TEdit.Editor"
              mc:Ignorable="d"
              Background="{StaticResource WindowBackgroundBrush}" Foreground="{StaticResource TextBrush}">
     <UserControl.Resources>
-        <enum:EnumItemList x:Key="BrushShapeEnum" ResourceType="{x:Type p:Language}" EnumType="{x:Type Editor:BrushShape}" x:Shared="false" SortBy="Value" />
+        <enum:EnumItemList x:Key="BrushShapeEnum" ResourceType="{x:Type p:Language}" EnumType="{x:Type editor:BrushShape}" x:Shared="false" SortBy="Value" />
     </UserControl.Resources>
     <Grid>
         <Grid>

@@ -1,4 +1,5 @@
 ﻿using System.Windows.Media.Imaging;
+using TEdit.UI;
 
 namespace TEdit.Editor.Tools
 {

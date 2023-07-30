@@ -7,7 +7,6 @@ using TEdit.Terraria;
 using TEdit.ViewModel;
 using System.Diagnostics;
 using TEdit.Geometry;
-using TEdit.Render;
 using TEdit.Configuration;
 using System.Threading.Tasks;
 
@@ -163,43 +162,34 @@ namespace TEdit.Editor.Undo
         private static readonly string UndoFile;
         private static readonly string RedoFile;
 
-        private readonly WorldViewModel _wvm;
+        private readonly World _world;
+        private readonly NotifyTileChanged _notifyTileChanged;
+        private readonly Action _undoApplied;
         private UndoBuffer _buffer;
         private int _currentIndex = 0;
         private int _maxIndex = 0;
 
-        public event EventHandler Undid;
-        public event EventHandler Redid;
-        public event EventHandler UndoSaved;
+
 
         public string GetUndoFileName()
         {
             return string.Format(UndoFile, _currentIndex);
         }
-        protected virtual void OnUndoSaved(object sender, EventArgs e)
-        {
-            if (UndoSaved != null) UndoSaved(sender, e);
-        }
 
-        protected virtual void OnRedid(object sender, EventArgs e)
-        {
-            if (Redid != null) Redid(sender, e);
-        }
-
-        protected virtual void OnUndid(object sender, EventArgs e)
-        {
-            if (Undid != null) Undid(sender, e);
-        }
-
-        public UndoManager(WorldViewModel viewModel)
+        public UndoManager(
+            World world,
+            NotifyTileChanged? notifyTileChanged,
+            Action undoApplied)
         {
             if (!Directory.Exists(Dir))
             {
                 Directory.CreateDirectory(Dir);
             }
 
-            _wvm = viewModel;
-            _buffer = new UndoBuffer(GetUndoFileName());
+            _world = world;
+            _buffer = new UndoBuffer(GetUndoFileName(), _world);
+            _notifyTileChanged = notifyTileChanged;
+            _undoApplied = undoApplied;
         }
 
         public UndoBuffer Buffer
@@ -221,7 +211,7 @@ namespace TEdit.Editor.Undo
             _currentIndex++;
             _buffer.Close();
             CreateBuffer();
-            OnUndoSaved(this, EventArgs.Empty);
+            _undoApplied?.Invoke();
 
         }
 
@@ -229,7 +219,7 @@ namespace TEdit.Editor.Undo
         {
             _buffer?.Dispose();
             _buffer = null;
-            Buffer = new UndoBuffer(GetUndoFileName());
+            Buffer = new UndoBuffer(GetUndoFileName(), _world);
         }
 
         public void SaveTile(Vector2Int32 p)
@@ -246,36 +236,36 @@ namespace TEdit.Editor.Undo
 
         private void SaveTileToBuffer(UndoBuffer buffer, int x, int y, bool removeEntities = false)
         {
-            var curTile = (Tile)_wvm.CurrentWorld.Tiles[x, y].Clone();
+            var curTile = (Tile)_world.Tiles[x, y].Clone();
 
-            if (_wvm.CurrentWorld.IsAnchor(x, y))
+            if (_world.IsAnchor(x, y))
             {
                 if (Tile.IsChest(curTile.Type))
                 {
-                    var curchest = _wvm.CurrentWorld.GetChestAtTile(x, y);
+                    var curchest = _world.GetChestAtTile(x, y);
                     if (curchest != null)
                     {
-                        if (removeEntities) { _wvm.CurrentWorld.Chests.Remove(curchest); }
+                        if (removeEntities) { _world.Chests.Remove(curchest); }
                         var chest = curchest.Copy();
                         buffer.Chests.Add(chest);
                     }
                 }
                 if (Tile.IsSign(curTile.Type))
                 {
-                    var cursign = _wvm.CurrentWorld.GetSignAtTile(x, y);
+                    var cursign = _world.GetSignAtTile(x, y);
                     if (cursign != null)
                     {
-                        if (removeEntities) { _wvm.CurrentWorld.Signs.Remove(cursign); }
+                        if (removeEntities) { _world.Signs.Remove(cursign); }
                         var sign = cursign.Copy();
                         buffer.Signs.Add(sign);
                     }
                 }
                 if (Tile.IsTileEntity(curTile.Type))
                 {
-                    var curTe = _wvm.CurrentWorld.GetTileEntityAtTile(x, y);
+                    var curTe = _world.GetTileEntityAtTile(x, y);
                     if (curTe != null)
                     {
-                        if (removeEntities) { _wvm.CurrentWorld.TileEntities.Remove(curTe); }
+                        if (removeEntities) { _world.TileEntities.Remove(curTe); }
                         var te = curTe.Copy();
                         buffer.TileEntities.Add(te);
                     }
@@ -291,17 +281,17 @@ namespace TEdit.Editor.Undo
 
 
             var lastTile = Buffer.LastTile;
-            var existingLastTile = _wvm.CurrentWorld.Tiles[lastTile.Location.X, lastTile.Location.Y];
+            var existingLastTile = _world.Tiles[lastTile.Location.X, lastTile.Location.Y];
 
             // remove deleted chests or signs if required
             if (Tile.IsChest(lastTile.Tile.Type))
             {
                 if (!Tile.IsChest(existingLastTile.Type) || !existingLastTile.IsActive)
                 {
-                    var curchest = _wvm.CurrentWorld.GetChestAtTile(lastTile.Location.X, lastTile.Location.Y);
+                    var curchest = _world.GetChestAtTile(lastTile.Location.X, lastTile.Location.Y);
                     if (curchest != null)
                     {
-                        _wvm.CurrentWorld.Chests.Remove(curchest);
+                        _world.Chests.Remove(curchest);
                     }
                 }
             }
@@ -309,10 +299,10 @@ namespace TEdit.Editor.Undo
             {
                 if (!Tile.IsSign(existingLastTile.Type) || !existingLastTile.IsActive)
                 {
-                    var cursign = _wvm.CurrentWorld.GetSignAtTile(lastTile.Location.X, lastTile.Location.Y);
+                    var cursign = _world.GetSignAtTile(lastTile.Location.X, lastTile.Location.Y);
                     if (cursign != null)
                     {
-                        _wvm.CurrentWorld.Signs.Remove(cursign);
+                        _world.Signs.Remove(cursign);
                     }
                 }
             }
@@ -320,39 +310,39 @@ namespace TEdit.Editor.Undo
             {
                 if (!Tile.IsTileEntity(existingLastTile.Type) || !existingLastTile.IsActive)
                 {
-                    var curTe = _wvm.CurrentWorld.GetTileEntityAtTile(lastTile.Location.X, lastTile.Location.Y);
+                    var curTe = _world.GetTileEntityAtTile(lastTile.Location.X, lastTile.Location.Y);
                     if (curTe != null)
                     {
-                        _wvm.CurrentWorld.TileEntities.Remove(curTe);
+                        _world.TileEntities.Remove(curTe);
                     }
                 }
             }
 
             // Add new chests and signs if required
-            if (_wvm.CurrentWorld.IsAnchor(lastTile.Location.X, lastTile.Location.Y))
+            if (_world.IsAnchor(lastTile.Location.X, lastTile.Location.Y))
             {
                 if (Tile.IsChest(existingLastTile.Type))
                 {
-                    var curchest = _wvm.CurrentWorld.GetChestAtTile(lastTile.Location.X, lastTile.Location.Y);
+                    var curchest = _world.GetChestAtTile(lastTile.Location.X, lastTile.Location.Y);
                     if (curchest == null)
                     {
-                        _wvm.CurrentWorld.Chests.Add(new Chest(lastTile.Location.X, lastTile.Location.Y));
+                        _world.Chests.Add(new Chest(lastTile.Location.X, lastTile.Location.Y));
                     }
                 }
                 else if (Tile.IsSign(existingLastTile.Type))
                 {
-                    var cursign = _wvm.CurrentWorld.GetSignAtTile(lastTile.Location.X, lastTile.Location.Y);
+                    var cursign = _world.GetSignAtTile(lastTile.Location.X, lastTile.Location.Y);
                     if (cursign == null)
                     {
-                        _wvm.CurrentWorld.Signs.Add(new Sign(lastTile.Location.X, lastTile.Location.Y, string.Empty));
+                        _world.Signs.Add(new Sign(lastTile.Location.X, lastTile.Location.Y, string.Empty));
                     }
                 }
                 else if (Tile.IsTileEntity(existingLastTile.Type))
                 {
-                    var curTe = _wvm.CurrentWorld.GetTileEntityAtTile(lastTile.Location.X, lastTile.Location.Y);
+                    var curTe = _world.GetTileEntityAtTile(lastTile.Location.X, lastTile.Location.Y);
                     if (curTe == null)
                     {
-                        _wvm.CurrentWorld.TileEntities.Add(TileEntity.CreateForTile(existingLastTile, lastTile.Location.X, lastTile.Location.Y, _wvm.CurrentWorld.TileEntities.Count));
+                        _world.TileEntities.Add(TileEntity.CreateForTile(existingLastTile, lastTile.Location.X, lastTile.Location.Y, _world.TileEntities.Count));
                     }
                 }
             }
@@ -368,22 +358,21 @@ namespace TEdit.Editor.Undo
 
             string undoFileName = string.Format(UndoFile, _currentIndex - 1); // load previous undo file
             string redoFileName = string.Format(RedoFile, _currentIndex);     // create redo file at current index
-            UndoBuffer redo = new UndoBuffer(redoFileName);
+            UndoBuffer redo = new UndoBuffer(redoFileName, _world);
 
             Debug.WriteLine($"Opening undo file for undo: {Path.GetFileNameWithoutExtension(undoFileName)}");
             using (var stream = new FileStream(undoFileName, FileMode.Open))
             using (BinaryReader br = new BinaryReader(stream, System.Text.Encoding.UTF8, false))
             {
-                foreach (var undoTile in UndoBuffer.ReadUndoTilesFromStream(br))
+                foreach (var undoTile in UndoBuffer.ReadUndoTilesFromStream(br, _world.TileFrameImportant))
                 {
 
                     Vector2Int32 pixel = undoTile.Location;
                     SaveTileToBuffer(redo, pixel.X, pixel.Y, true);
-                    _wvm.CurrentWorld.Tiles[pixel.X, pixel.Y] = (Tile)undoTile.Tile;
-                    _wvm.UpdateRenderPixel(pixel);
+                    _world.Tiles[pixel.X, pixel.Y] = (Tile)undoTile.Tile;
 
                     /* Heathtech */
-                    BlendRules.ResetUVCache(_wvm, pixel.X, pixel.Y, 1, 1);
+                    _notifyTileChanged?.Invoke(pixel.X, pixel.Y, 1, 1);
                 }
 
                 redo.Close();
@@ -392,22 +381,21 @@ namespace TEdit.Editor.Undo
 
                 foreach (var chest in World.LoadChestData(br))
                 {
-                    _wvm.CurrentWorld.Chests.Add(chest);
+                    _world.Chests.Add(chest);
                 }
                 foreach (var sign in World.LoadSignData(br))
                 {
-                    _wvm.CurrentWorld.Signs.Add(sign);
+                    _world.Signs.Add(sign);
                 }
                 foreach (var te in World.LoadTileEntityData(br, WorldConfiguration.CompatibleVersion))
                 {
-                    _wvm.CurrentWorld.TileEntities.Add(te);
+                    _world.TileEntities.Add(te);
                 }
             }
 
             _currentIndex--; // move index back one, create a new buffer
             CreateBuffer();
-            //_wvm.CurrentWorld.UpgradeLegacyTileEntities();
-            OnUndid(this, EventArgs.Empty);
+            _undoApplied?.Invoke();
         }
 
 
@@ -427,53 +415,51 @@ namespace TEdit.Editor.Undo
             using (var stream = new FileStream(redoFileName, FileMode.Open))
             using (BinaryReader br = new BinaryReader(stream))
             {
-                foreach (var undoTile in UndoBuffer.ReadUndoTilesFromStream(br))
+                foreach (var undoTile in UndoBuffer.ReadUndoTilesFromStream(br, _world.TileFrameImportant))
                 {
-                    var curTile = (Tile)_wvm.CurrentWorld.Tiles[undoTile.Location.X, undoTile.Location.Y];
+                    var curTile = (Tile)_world.Tiles[undoTile.Location.X, undoTile.Location.Y];
                     SaveTile(undoTile.Location);
 
                     if (Tile.IsChest(curTile.Type))
                     {
-                        var curchest = _wvm.CurrentWorld.GetChestAtTile(undoTile.Location.X, undoTile.Location.Y);
+                        var curchest = _world.GetChestAtTile(undoTile.Location.X, undoTile.Location.Y);
                         if (curchest != null)
-                            _wvm.CurrentWorld.Chests.Remove(curchest);
+                            _world.Chests.Remove(curchest);
                     }
                     if (Tile.IsSign(curTile.Type))
                     {
-                        var cursign = _wvm.CurrentWorld.GetSignAtTile(undoTile.Location.X, undoTile.Location.Y);
+                        var cursign = _world.GetSignAtTile(undoTile.Location.X, undoTile.Location.Y);
                         if (cursign != null)
-                            _wvm.CurrentWorld.Signs.Remove(cursign);
+                            _world.Signs.Remove(cursign);
                     }
                     if (Tile.IsTileEntity(curTile.Type))
                     {
-                        var curTe = _wvm.CurrentWorld.GetTileEntityAtTile(undoTile.Location.X, undoTile.Location.Y);
+                        var curTe = _world.GetTileEntityAtTile(undoTile.Location.X, undoTile.Location.Y);
                         if (curTe != null)
-                            _wvm.CurrentWorld.TileEntities.Remove(curTe);
+                            _world.TileEntities.Remove(curTe);
                     }
 
-                    _wvm.CurrentWorld.Tiles[undoTile.Location.X, undoTile.Location.Y] = (Tile)undoTile.Tile;
-                    _wvm.UpdateRenderPixel(undoTile.Location);
+                    _world.Tiles[undoTile.Location.X, undoTile.Location.Y] = (Tile)undoTile.Tile;
 
-                    /* Heathtech */
-                    BlendRules.ResetUVCache(_wvm, undoTile.Location.X, undoTile.Location.Y, 1, 1);
+                    _notifyTileChanged?.Invoke(undoTile.Location.X, undoTile.Location.Y, 1, 1);
                 }
                 foreach (var chest in World.LoadChestData(br))
                 {
-                    _wvm.CurrentWorld.Chests.Add(chest);
+                    _world.Chests.Add(chest);
                 }
                 foreach (var sign in World.LoadSignData(br))
                 {
-                    _wvm.CurrentWorld.Signs.Add(sign);
+                    _world.Signs.Add(sign);
                 }
                 foreach (var te in World.LoadTileEntityData(br, WorldConfiguration.CompatibleVersion))
                 {
-                    _wvm.CurrentWorld.TileEntities.Add(te);
+                    _world.TileEntities.Add(te);
                 }
             }
 
             SaveUndo(updateMax: false);
 
-            OnRedid(this, EventArgs.Empty);
+            _undoApplied?.Invoke();
         }
 
         #region Destructor to cleanup files

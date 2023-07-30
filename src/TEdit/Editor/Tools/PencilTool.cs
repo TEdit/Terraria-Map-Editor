@@ -4,6 +4,7 @@ using System.Windows.Media.Imaging;
 using TEdit.Geometry;
 using TEdit.ViewModel;
 using TEdit.Render;
+using TEdit.UI;
 
 namespace TEdit.Editor.Tools
 {

@@ -3,6 +3,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using TEdit.Geometry;
+using TEdit.UI;
 using TEdit.ViewModel;
 
 namespace TEdit.Editor.Tools

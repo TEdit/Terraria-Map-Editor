@@ -29,7 +29,7 @@ namespace TEdit.Editor
         private static bool _yellowWire;
 
         //  Invoked from World.Settings
-        internal static void LoadSettings(IEnumerable<XElement> xmlToolSettings)
+        public static void LoadSettings(IEnumerable<XElement> xmlToolSettings)
         {
             foreach (var xElement in xmlToolSettings.Elements("Tool"))
             {

@@ -3,7 +3,7 @@ using TEdit.Terraria;
 using TEdit.Geometry;
 using TEdit.Configuration;
 
-namespace TEdit.Editor
+namespace TEdit.UI
 {
     public class MouseTile : ObservableObject
     {
@@ -60,7 +60,7 @@ namespace TEdit.Editor
 
                 if (WorldConfiguration.TileProperties.Count > _tile.Type)
                 {
-                    TEdit.Terraria.Objects.TileProperty tileProperty = WorldConfiguration.TileProperties[_tile.Type];
+                    Terraria.Objects.TileProperty tileProperty = WorldConfiguration.TileProperties[_tile.Type];
                     TileName = tileProperty.Name;
 
                     // TODO: add sprite names here
@@ -81,7 +81,7 @@ namespace TEdit.Editor
                 }
                 else
                     TileExtras = string.Empty;
-                
+
                 if (_tile.TileColor > 0)
                 {
                     if (_tile.WallColor > 0)
