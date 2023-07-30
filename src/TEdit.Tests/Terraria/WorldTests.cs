@@ -9,17 +9,11 @@ using System.Runtime.InteropServices;
 using System.Collections.ObjectModel;
 using System.Reflection;
 using System.IO;
-using TEdit.Framework.Threading;
 
 namespace TEdit.Terraria.Tests
 {
     public class WorldTests
     {
-        static WorldTests()
-        {
-            TaskFactoryHelper.Initialize();
-        }
-
         [Theory]
         [InlineData(".\\WorldFiles\\v1.0.wld")]
         public void LoadWorldV0_Test(string fileName)

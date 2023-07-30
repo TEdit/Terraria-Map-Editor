@@ -1,16 +1,21 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFrameworks>netstandard2.0;net7.0</TargetFrameworks>
       <LangVersion>latest</LangVersion>
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="JsonFlatFileDataStore" Version="2.4.2" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\TEdit.Common\TEdit.Common.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="BiomeMorph\" />
   </ItemGroup>
 
 </Project>
