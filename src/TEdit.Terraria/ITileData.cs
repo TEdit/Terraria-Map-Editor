@@ -1,4 +1,4 @@
-﻿using System.Collections.ObjectModel;
+﻿using System.Collections.Generic;
 using TEdit.Geometry;
 
 namespace TEdit.Terraria
@@ -7,9 +7,9 @@ namespace TEdit.Terraria
     {
         Vector2Int32 Size { get; }
         Tile[,] Tiles { get; }
-        ObservableCollection<Sign> Signs { get; }
-        ObservableCollection<Chest> Chests { get; }
-        ObservableCollection<TileEntity> TileEntities { get; }
+        List<Sign> Signs { get; }
+        List<Chest> Chests { get; }
+        List<TileEntity> TileEntities { get; }
         Chest GetChestAtTile(int x, int y, bool findOrigin = false);
         Sign GetSignAtTile(int x, int y, bool findOrigin = false);
         TileEntity GetTileEntityAtTile(int x, int y, bool findOrigin = false);

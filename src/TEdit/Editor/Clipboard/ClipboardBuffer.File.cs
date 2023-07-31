@@ -6,18 +6,17 @@ using TEdit.Geometry;
 using TEdit.Helper;
 using TEdit.Terraria;
 using TEdit.Terraria.Objects;
-using TEdit.ViewModel;
 
 namespace TEdit.Editor.Clipboard
 {
     public partial class ClipboardBuffer
     {
-        public void Save(string filename)
+        public void Save(string filename, uint? version)
         {
             // Catch pngs that are real color
             if (string.Equals(".png", Path.GetExtension(filename), StringComparison.InvariantCultureIgnoreCase))
             {
-                Preview.SavePng(filename);
+                //Preview.SavePng(filename);
                 return;
             }
 
@@ -26,16 +25,14 @@ namespace TEdit.Editor.Clipboard
             {
                 using (var bw = new BinaryWriter(stream))
                 {
-                    SaveV4(bw);
+                    SaveV4(bw, version ?? WorldConfiguration.CompatibleVersion);
                     bw.Close();
                 }
             }
         }
 
-        private void SaveV1(BinaryWriter bw)
+        private void SaveV1(BinaryWriter bw, uint version)
         {
-            var world = ViewModelLocator.WorldViewModel.CurrentWorld;            
-            var version = world?.Version ?? WorldConfiguration.CompatibleVersion;
             var saveData = WorldConfiguration.SaveConfiguration.GetData(version);
             bw.Write(Name);
             bw.Write(version);
@@ -69,12 +66,10 @@ namespace TEdit.Editor.Clipboard
             bw.Write(Size.Y);
         }
 
-        private void SaveV2(BinaryWriter bw)
+        private void SaveV2(BinaryWriter bw, uint version)
         {
-            var world = ViewModelLocator.WorldViewModel.CurrentWorld;
-            var version = world?.Version ?? WorldConfiguration.CompatibleVersion;
             bw.Write(Name);
-            bw.Write(world.Version);
+            bw.Write(version);
             bw.Write(Size.X);
             bw.Write(Size.Y);
 
@@ -89,12 +84,10 @@ namespace TEdit.Editor.Clipboard
             bw.Write(Size.Y);
         }
 
-        private void SaveV3(BinaryWriter bw)
+        private void SaveV3(BinaryWriter bw, uint version)
         {
-            var world = ViewModelLocator.WorldViewModel.CurrentWorld;
-            var version = world?.Version ?? WorldConfiguration.CompatibleVersion;
             bw.Write(Name);
-            bw.Write(world.Version);
+            bw.Write(version);
             bw.Write(Size.X);
             bw.Write(Size.Y);
 
@@ -110,12 +103,9 @@ namespace TEdit.Editor.Clipboard
             bw.Write(Size.Y);
         }
 
-        private void SaveV4(BinaryWriter bw)
+        private void SaveV4(BinaryWriter bw, uint version)
         {
-            var world = ViewModelLocator.WorldViewModel?.CurrentWorld;
-
-            var version = world?.Version ?? WorldConfiguration.CompatibleVersion;
-            var tileFrameImportant = world?.TileFrameImportant ?? WorldConfiguration.SettingsTileFrameImportant;
+            var tileFrameImportant = this.TileFrameImportant ?? WorldConfiguration.SettingsTileFrameImportant;
 
             bw.Write(Name);
             bw.Write(version + 10000);
@@ -130,7 +120,7 @@ namespace TEdit.Editor.Clipboard
 
             // Check if the version attemting to save exists.
             var frames = new bool[0];
-            if ((int)world.Version <= WorldConfiguration.CompatibleVersion) 
+            if ((int)version <= WorldConfiguration.CompatibleVersion) 
             {
                 // World version is not a future release
                 frames = WorldConfiguration.SaveConfiguration.GetData((int)version).GetFrames();
@@ -157,7 +147,7 @@ namespace TEdit.Editor.Clipboard
             var tileFrameImportant = World.ReadBitArray(b);
             int sizeX = b.ReadInt32();
             int sizeY = b.ReadInt32();
-            var buffer = new ClipboardBuffer(new Vector2Int32(sizeX, sizeY));
+            var buffer = new ClipboardBuffer(new Vector2Int32(sizeX, sizeY), tileFrameImportant: tileFrameImportant);
             buffer.Name = name;
 
             buffer.Tiles = World.LoadTileData(b, sizeX, sizeY, version, tileFrameImportant);

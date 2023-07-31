@@ -48,10 +48,10 @@ namespace TEdit.Terraria
             WorldId = r.Next(int.MaxValue);
             Guid = Guid.NewGuid();
             Seed = "";
-            _npcs.Clear();
-            _signs.Clear();
-            _chests.Clear();
-            _charNames.Clear();
+            NPCs.Clear();
+            Signs.Clear();
+            Chests.Clear();
+            CharacterNames.Clear();
         }
 
         public static void Save(

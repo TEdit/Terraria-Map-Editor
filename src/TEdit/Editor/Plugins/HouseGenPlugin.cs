@@ -62,34 +62,30 @@ namespace TEdit.Editor.Plugins
         {
             private readonly Random _rand = new();
 
-            private ObservableCollection<ClipboardBuffer> _clipboardManagerLoadedBuffers;
-            
+            private ObservableCollection<ClipboardBufferPreview> _clipboardManagerLoadedBuffers;
+
             private ObservableCollection<HouseGenTemplate> _templates;
             public ObservableCollection<HouseGenTemplate> HouseGenTemplates => _templates;
 
             private HouseGenTemplate _selectedTemplate;
-            public HouseGenTemplate SelectedTemplate  {
-                get { return  _selectedTemplate; }
+            public HouseGenTemplate SelectedTemplate
+            {
+                get { return _selectedTemplate; }
                 set { _selectedTemplate = value; OnPropertyChanged(); }
             }
 
-            private ClipboardBuffer _generatedSchematic;
-            public ClipboardBuffer GeneratredSchematic
+            private ClipboardBufferPreview _generatedSchematic;
+            public ClipboardBufferPreview GeneratredSchematic
             {
                 get { return _generatedSchematic; }
-                set { _generatedSchematic = value;}
+                set { _generatedSchematic = value; }
             }
 
             /// <summary>
             /// https://docs.microsoft.com/en-us/dotnet/desktop/wpf/data/how-to-implement-property-change-notification?view=netframeworkdesktop-4.8
             /// </summary>
 
-            private WriteableBitmap _preview;
-            public WriteableBitmap Preview
-            {
-                get { return _preview??=_generatedSchematic?.Preview; }
-                set { _preview = value; OnPropertyChanged(); }
-            }
+            public WriteableBitmap Preview => GeneratredSchematic.Preview;
 
             public event PropertyChangedEventHandler PropertyChanged;
             // Create the OnPropertyChanged method to raise the event
@@ -114,17 +110,17 @@ namespace TEdit.Editor.Plugins
             {
                 get { return _importCommand ??= new RelayCommand(ImportTemplateSchematic); }
             }
-            
+
             public ICommand GenerateCommand
             {
-                get { return _generateCommand ??= new RelayCommand(() => Generate(SelectedTemplate),GenerateCanExecute); }
+                get { return _generateCommand ??= new RelayCommand(() => Generate(SelectedTemplate), GenerateCanExecute); }
             }
-            
+
             public ICommand CopyCommand
             {
-                get { return _copyCommand ??= new RelayCommand(Copy,CopyCanExecute); }
+                get { return _copyCommand ??= new RelayCommand(Copy, CopyCanExecute); }
             }
-            
+
             /*
             public ICommand CancelCommand
             {
@@ -142,7 +138,7 @@ namespace TEdit.Editor.Plugins
                 return Preview != null;
             }
 
-            public HouseGenViewModel(ObservableCollection<ClipboardBuffer> loadedBuffers)
+            public HouseGenViewModel(ObservableCollection<ClipboardBufferPreview> loadedBuffers)
             {
                 _templates = new ObservableCollection<HouseGenTemplate>();
                 _clipboardManagerLoadedBuffers = loadedBuffers;
@@ -168,7 +164,7 @@ namespace TEdit.Editor.Plugins
                         ErrorLogging.TelemetryClient?.TrackEvent(nameof(ImportTemplateSchematic));
 
                         _templates.Add(LoadTemplate(ofd.FileName));
-                        SelectedTemplate = _templates[_templates.Count-1];
+                        SelectedTemplate = _templates[_templates.Count - 1];
                     }
                 }
                 catch (Exception ex)
@@ -179,12 +175,12 @@ namespace TEdit.Editor.Plugins
 
             private void Generate(HouseGenTemplate template)
             {
-                
+
                 //Retrive buffer size.
                 _generatedSchematicSize.X = template.Schematic.Size.X;
                 _generatedSchematicSize.Y = template.Schematic.Size.Y / template.Data.Count;
 
-                _generatedSchematic = new(_generatedSchematicSize);
+                var bufferData = new ClipboardBuffer(_generatedSchematicSize);
 
                 int type;
 
@@ -201,7 +197,7 @@ namespace TEdit.Editor.Plugins
                         {
                             try
                             {
-                                _generatedSchematic.Tiles[x + room.X, y + room.Y] =
+                                bufferData.Tiles[x + room.X, y + room.Y] =
                                     (Tile)template.Schematic.Tiles[x + room.X, y + room.Y + (_generatedSchematicSize.Y * type)].Clone();
                             }
                             catch (IndexOutOfRangeException e)
@@ -226,7 +222,7 @@ namespace TEdit.Editor.Plugins
                         {
                             try
                             {
-                                _generatedSchematic.Tiles[x + roof.X, y + roof.Y] =
+                                bufferData.Tiles[x + roof.X, y + roof.Y] =
                                     (Tile)template.Schematic.Tiles[x + roof.X, y + roof.Y + (_generatedSchematicSize.Y * type)].Clone();
                             }
                             catch (IndexOutOfRangeException e)
@@ -244,7 +240,7 @@ namespace TEdit.Editor.Plugins
                     {
                         try
                         {
-                            if (_generatedSchematic.Tiles[x2, y2] == null) { _generatedSchematic.Tiles[x2, y2] = new Tile(); }
+                            if (bufferData.Tiles[x2, y2] == null) { bufferData.Tiles[x2, y2] = new Tile(); }
                         }
                         catch (IndexOutOfRangeException e)
                         {
@@ -253,16 +249,14 @@ namespace TEdit.Editor.Plugins
                     }
                 }
 
-                _generatedSchematic.RenderBuffer();
-                Preview = _generatedSchematic.Preview;
-
+                _generatedSchematic = new ClipboardBufferPreview(bufferData);
             }
 
             private void Copy()
             {
                 _clipboardManagerLoadedBuffers.Add(GeneratredSchematic);
             }
-            
+
             /*
             private void Cancel()
             {
@@ -286,7 +280,7 @@ namespace TEdit.Editor.Plugins
                 HouseGenTemplateData data = JsonConvert.DeserializeObject<HouseGenTemplateData>(jsonValue);
 
                 return new HouseGenTemplate(filename, schematic, data);
-            }  
+            }
         }
 
         public class HouseGenTemplate

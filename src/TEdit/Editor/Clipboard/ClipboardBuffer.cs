@@ -1,23 +1,27 @@
-﻿using System;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Windows.Media;
+﻿using System.Linq;
 using System.Windows.Media.Imaging;
-using TEdit.Common.Reactive;
-using Microsoft.Xna.Framework;
 using TEdit.Terraria;
 using TEdit.Geometry;
+using TEdit.Configuration;
+using System.Collections.Generic;
 
 namespace TEdit.Editor.Clipboard
 {
-    public partial class ClipboardBuffer : ObservableObject, ITileData
-    {
-        public static int ClipboardRenderSize = 512;
 
-        public ClipboardBuffer(Vector2Int32 size, bool initTiles = false)
+    public partial class ClipboardBuffer : ITileData
+    {
+        private string _name;
+        private WriteableBitmap _preview;
+        private Vector2Int32 _size;
+
+        public ClipboardBuffer(
+            Vector2Int32 size, 
+            bool initTiles = false,
+            bool[] tileFrameImportant = null)
         {
             Size = size;
             Tiles = new Tile[size.X, size.Y];
+            TileFrameImportant = tileFrameImportant ?? WorldConfiguration.SettingsTileFrameImportant;
 
             if (initTiles)
             {
@@ -31,64 +35,25 @@ namespace TEdit.Editor.Clipboard
             }
         }
 
-        private string _name;
-        private WriteableBitmap _preview;
+        public bool[] TileFrameImportant { get; set; }
+        public Tile[,] Tiles { get; set; }
 
-        public WriteableBitmap Preview
-        {
-            get { return _preview; }
-            set { Set(nameof(Preview), ref _preview, value); }
-        }
-
-        public string Name
-        {
-            get { return _name; }
-            set { Set(nameof(Name), ref _name, value); }
-        }
-
-        private Vector2Int32 _size;
-
-
+        public string Name { get; set; }
         public Vector2Int32 Size
         {
             get { return _size; }
             set
             {
-                Set(nameof(Size), ref _size, value);
+                _size = value;
                 Tiles = new Tile[_size.X, _size.Y];
             }
         }
 
+        public double RenderScale { get; set; }
+        public List<Chest> Chests { get; } = new();
+        public List<Sign> Signs { get; } = new();
+        public List<TileEntity> TileEntities { get; } = new();
 
-        public Tile[,] Tiles { get; set; }
-
-        private readonly ObservableCollection<Chest> _chests = new ObservableCollection<Chest>();
-        private readonly ObservableCollection<Sign> _signs = new ObservableCollection<Sign>();
-        private readonly ObservableCollection<TileEntity> _tileEntities = new ObservableCollection<TileEntity>();
-
-        public ObservableCollection<Chest> Chests
-        {
-            get { return _chests; }
-        }
-
-        private double _renderScale;
-
-
-        public double RenderScale
-        {
-            get { return _renderScale; }
-            set { Set(nameof(RenderScale), ref _renderScale, value); }
-        }
-
-        public ObservableCollection<Sign> Signs
-        {
-            get { return _signs; }
-        }
-
-        public ObservableCollection<TileEntity> TileEntities
-        {
-            get { return _tileEntities; }
-        }
         // since we are using these functions to add chests into the world we don't need to check all spots, only the anchor spot
         public Chest GetChestAtTile(int x, int y, bool findOrigin = false)
         {
@@ -105,35 +70,77 @@ namespace TEdit.Editor.Clipboard
         	return TileEntities.FirstOrDefault(c => (c.PosX == x) && (c.PosY == y));
         }
 
-        public void RenderBuffer()
+        public static ClipboardBuffer GetSelectionBuffer(World world, RectangleInt32 area)
         {
-            double scale = Math.Max((double)Size.X / ClipboardRenderSize, (double)Size.Y / ClipboardRenderSize);
+            var buffer = new ClipboardBuffer(
+                new Vector2Int32(area.Width, area.Height),
+                tileFrameImportant: world.TileFrameImportant);
 
-            int previewX = Size.X;
-            int previewY = Size.Y;
-            if (scale > 1.0)
+            for (int x = 0; x < area.Width; x++)
             {
-                previewX = (int)MathHelper.Clamp((float)Math.Min(ClipboardRenderSize, Size.X / scale), 1, ClipboardRenderSize);
-                previewY = (int)MathHelper.Clamp((float)Math.Min(ClipboardRenderSize, Size.Y / scale), 1, ClipboardRenderSize);
-            }
-            else
-                scale = 1;
-
-            var bmp = new WriteableBitmap(previewX, previewY, 96, 96, PixelFormats.Bgra32, null);
-            for (int x = 0; x < previewX; x++)
-            {
-                int tileX = (int)MathHelper.Clamp((float)(scale * x), 0, Size.X - 1);
-
-                for (int y = 0; y < previewY; y++)
+                for (int y = 0; y < area.Height; y++)
                 {
-                    int tileY = (int)MathHelper.Clamp((float)(scale * y), 0, Size.Y - 1);
+                    Tile curTile = (Tile)world.Tiles[x + area.X, y + area.Y].Clone();
 
-                    var color = Render.PixelMap.GetTileColor(Tiles[tileX, tileY], Microsoft.Xna.Framework.Color.Transparent);
-                    bmp.SetPixel(x, y, color.A, color.R, color.G, color.B);
+                    if (Tile.IsChest(curTile.Type))
+                    {
+                        if (buffer.GetChestAtTile(x, y) == null)
+                        {
+                            var anchor = world.GetAnchor(x + area.X, y + area.Y);
+                            if (anchor.X == x + area.X && anchor.Y == y + area.Y)
+                            {
+                                var data = world.GetChestAtTile(x + area.X, y + area.Y);
+                                if (data != null)
+                                {
+                                    var newChest = data.Copy();
+                                    newChest.X = x;
+                                    newChest.Y = y;
+                                    buffer.Chests.Add(newChest);
+                                }
+                            }
+                        }
+                    }
+                    if (Tile.IsSign(curTile.Type))
+                    {
+                        if (buffer.GetSignAtTile(x, y) == null)
+                        {
+                            var anchor = world.GetAnchor(x + area.X, y + area.Y);
+                            if (anchor.X == x + area.X && anchor.Y == y + area.Y)
+                            {
+                                var data = world.GetSignAtTile(x + area.X, y + area.Y);
+                                if (data != null)
+                                {
+                                    var newSign = data.Copy();
+                                    newSign.X = x;
+                                    newSign.Y = y;
+                                    buffer.Signs.Add(newSign);
+                                }
+                            }
+                        }
+                    }
+                    if (Tile.IsTileEntity(curTile.Type))
+                    {
+                        if (buffer.GetTileEntityAtTile(x, y) == null)
+                        {
+                            var anchor = world.GetAnchor(x + area.X, y + area.Y);
+                            if (anchor.X == x + area.X && anchor.Y == y + area.Y)
+                            {
+                                var data = world.GetTileEntityAtTile(x + area.X, y + area.Y);
+                                if (data != null)
+                                {
+                                    var newEntity = data.Copy();
+                                    newEntity.PosX = (short)x;
+                                    newEntity.PosY = (short)y;
+                                    buffer.TileEntities.Add(newEntity);
+                                }
+                            }
+                        }
+                    }
+                    buffer.Tiles[x, y] = curTile;
                 }
             }
-            Preview = bmp;
-            RenderScale = scale;
+
+            return buffer;
         }
     }
 }

@@ -33,13 +33,6 @@ namespace TEdit.Editor.Plugins
             set { _generatedSchematic = value; OnPropertyChanged(); }
         }
 
-        private WriteableBitmap _preview;
-        public WriteableBitmap Preview
-        {
-            get { return _preview ??= _generatedSchematic?.Preview; }
-            set { _preview = value; OnPropertyChanged(); }
-        }
-
         public override void Execute()
         {
             var view = new TextStatuePluginView();
@@ -142,9 +135,10 @@ namespace TEdit.Editor.Plugins
                 y += _size.Height + rowSpacing;
             }
 
-            _generatedSchematic.RenderBuffer();
-            _wvm.Clipboard.LoadedBuffers.Add(_generatedSchematic);
-            _wvm.ClipboardSetActiveCommand.Execute(_generatedSchematic);
+
+            var bufferRendered = new ClipboardBufferPreview(_generatedSchematic);
+            _wvm.Clipboard.LoadedBuffers.Add(bufferRendered);
+            _wvm.ClipboardSetActiveCommand.Execute(bufferRendered);
         }
 
         private void Initialize()

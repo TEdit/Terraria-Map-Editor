@@ -56,8 +56,8 @@ namespace TEdit.ViewModel
         {
             if (!CanCopy())
                 return;
-            _clipboard.Buffer = _clipboard.GetSelectionBuffer();
-            _clipboard.LoadedBuffers.Add(_clipboard.Buffer);
+
+            _clipboard.CopySelection(CurrentWorld, Selection.SelectionArea);
         }
 
         public void CropWorld()

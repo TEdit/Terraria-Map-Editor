@@ -8,6 +8,7 @@ using TEdit.Terraria.Objects;
 using TEdit.Geometry;
 using TEdit.Utility;
 using TEdit.Configuration;
+using System.Collections.Generic;
 
 namespace TEdit.Terraria
 {
@@ -574,25 +575,16 @@ namespace TEdit.Terraria
             get { return _mobs; }
         }
 
-        public ObservableCollection<Sign> Signs
-        {
-            get { return _signs; }
-        }
+        public List<Sign> Signs { get; } = new();
 
-        public ObservableCollection<Chest> Chests
-        {
-            get { return _chests; }
-        }
+        public List<Chest> Chests { get; } = new();
 
         public ObservableCollection<NpcName> CharacterNames
         {
             get { return _charNames; }
         }
 
-        public ObservableCollection<TileEntity> TileEntities
-        {
-            get { return _tileEntities; }
-        }
+        public List<TileEntity> TileEntities { get; } = new();
 
         public ObservableCollection<int> PartyingNPCs
         {

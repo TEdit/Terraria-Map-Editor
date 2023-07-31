@@ -473,17 +473,17 @@ namespace TEdit.ViewModel
 
         public ICommand ClipboardSetActiveCommand
         {
-            get { return _clipboardSetActiveCommand ??= new RelayCommand<ClipboardBuffer>(ActivateBuffer); }
+            get { return _clipboardSetActiveCommand ??= new RelayCommand<ClipboardBufferPreview>(ActivateBuffer); }
         }
 
         public ICommand RemoveSchematicCommand
         {
-            get { return _removeSchematicCommand ??= new RelayCommand<ClipboardBuffer>(_clipboard.Remove); }
+            get { return _removeSchematicCommand ??= new RelayCommand<ClipboardBufferPreview>((b) => _clipboard?.Remove(b)); }
         }
 
         public ICommand ExportSchematicCommand
         {
-            get { return _exportSchematicCommand ??= new RelayCommand<ClipboardBuffer>(ExportSchematicFile); }
+            get { return _exportSchematicCommand ??= new RelayCommand<ClipboardBufferPreview>(ExportSchematicFile); }
         }
 
         public ICommand ImportSchematicCommand
@@ -493,23 +493,45 @@ namespace TEdit.ViewModel
 
         public ICommand EmptyClipboardCommand
         {
-            get { return _emptyClipboardCommand ??= new RelayCommand(_clipboard.ClearBuffers); }
+            get { return _emptyClipboardCommand ??= new RelayCommand(() => _clipboard?.ClearBuffers()); }
         }
 
         public ICommand ClipboardFlipXCommand
         {
-            get { return _clipboardFlipXCommand ??= new RelayCommand<ClipboardBuffer>(_clipboard.FlipX); }
+            get
+            {
+                return _clipboardFlipXCommand ??= new RelayCommand<ClipboardBufferPreview>(b =>
+                {
+                    _clipboard.FlipX(b);
+                    this.PreviewChange();
+                });
+            }
         }
+
         public ICommand ClipboardFlipYCommand
         {
-            get { return _clipboardFlipYCommand ??= new RelayCommand<ClipboardBuffer>(_clipboard.FlipY); }
+            get
+            {
+                return _clipboardFlipYCommand ??= new RelayCommand<ClipboardBufferPreview>(b =>
+                {
+                    _clipboard.FlipY(b);
+                    this.PreviewChange();
+                });
+            }
         }
         public ICommand ClipboardRotateCommand
         {
-            get { return _clipboardRotateCommand ??= new RelayCommand<ClipboardBuffer>(_clipboard.Rotate); }
+            get
+            {
+                return _clipboardRotateCommand ??= new RelayCommand<ClipboardBufferPreview>(b =>
+                {
+                    _clipboard.Rotate(b);
+                    this.PreviewChange();
+                });
+            }
         }
 
-        private void ActivateBuffer(ClipboardBuffer item)
+        private void ActivateBuffer(ClipboardBufferPreview item)
         {
             _clipboard.Buffer = item;
             EditPaste();
@@ -573,11 +595,19 @@ namespace TEdit.ViewModel
             if ((bool)ofd.ShowDialog())
             {
                 ErrorLogging.TelemetryClient?.TrackEvent(nameof(ImportSchematic));
-                _clipboard.Import(ofd.FileName);
+
+                try
+                {
+                    _clipboard.Import(ofd.FileName);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Schematic File Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
             }
         }
 
-        private void ExportSchematicFile(ClipboardBuffer buffer)
+        private void ExportSchematicFile(ClipboardBufferPreview buffer)
         {
             var sfd = new SaveFileDialog();
             sfd.Filter = "TEdit Schematic File|*.TEditSch|Png Image (Real TileColor)|*.png";
@@ -591,7 +621,7 @@ namespace TEdit.ViewModel
                 try
                 {
                     ErrorLogging.TelemetryClient?.TrackEvent(nameof(ExportSchematicFile));
-                    buffer.Save(sfd.FileName);
+                    buffer.Buffer.Save(sfd.FileName, this.CurrentWorld?.Version ?? WorldConfiguration.CompatibleVersion);
                 }
                 catch (Exception ex)
                 {

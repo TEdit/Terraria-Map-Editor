@@ -7,6 +7,7 @@ using TEdit.ViewModel;
 using TEdit.Geometry;
 using TEdit.Render;
 using TEdit.UI;
+using TEdit.Editor.Clipboard;
 
 namespace TEdit.Editor.Tools
 {
@@ -39,19 +40,22 @@ namespace TEdit.Editor.Tools
         {
             if (_wvm.Clipboard.Buffer != null)
             {
-                PreviewScale = _wvm.Clipboard.Buffer.RenderScale;
-                return _wvm.Clipboard.Buffer.Preview;
+                var preview = _wvm.Clipboard.Buffer.Preview;
+                PreviewScale = _wvm.Clipboard.Buffer.PreviewScale;
+                return preview;
             }
             return base.PreviewTool();
         }
 
         private void PasteClipboard(Vector2Int32 anchor)
         {
-            _wvm.Clipboard.PasteBufferIntoWorld(anchor);
-            _wvm.UpdateRenderRegion(new RectangleInt32(anchor, _wvm.Clipboard.Buffer.Size));
+            ErrorLogging.TelemetryClient?.TrackEvent("Paste");
+
+            _wvm.Clipboard.PasteBufferIntoWorld(_wvm.CurrentWorld, anchor);
+            _wvm.UpdateRenderRegion(new RectangleInt32(anchor, _wvm.Clipboard.Buffer.Buffer.Size));
 
             /* Heathtech */
-            BlendRules.ResetUVCache(_wvm, anchor.X, anchor.Y, _wvm.Clipboard.Buffer.Size.X, _wvm.Clipboard.Buffer.Size.Y);
+            BlendRules.ResetUVCache(_wvm, anchor.X, anchor.Y, _wvm.Clipboard.Buffer.Buffer.Size.X, _wvm.Clipboard.Buffer.Buffer.Size.Y);
         }
     }
 }

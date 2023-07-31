@@ -47,7 +47,6 @@ namespace TEdit.ViewModel
     public partial class WorldViewModel : ViewModelBase
     {
         private readonly BrushSettings _brush = new BrushSettings();
-        private readonly ClipboardManager _clipboard;
         private readonly Stopwatch _loadTimer = new Stopwatch();
         private readonly MouseTile _mouseOverTile = new MouseTile();
         private readonly ObservableCollection<IPlugin> _plugins = new ObservableCollection<IPlugin>();
@@ -63,6 +62,7 @@ namespace TEdit.ViewModel
         private bool _checkUpdates;
         private string _currentFile;
         public static World _currentWorld;
+        private  ClipboardManager _clipboard;
         private bool _isAutoSaveEnabled = true;
         private ICommand _launchWikiCommand;
         private WriteableBitmap _minimapImage;
@@ -133,7 +133,7 @@ namespace TEdit.ViewModel
 
 
 
-            _clipboard = new ClipboardManager(this);
+
             World.ProgressChanged += OnProgressChanged;
             Brush.BrushChanged += OnPreviewChanged;
             UpdateTitle();
@@ -443,6 +443,7 @@ namespace TEdit.ViewModel
         public ClipboardManager Clipboard
         {
             get { return _clipboard; }
+            set { Set(nameof(Clipboard), ref _clipboard, value); }
         }
 
         public Selection Selection
@@ -481,6 +482,13 @@ namespace TEdit.ViewModel
 
                     _undoManager = new UndoManager(CurrentWorld, updateTiles, UpdateMinimap);
                     var undo = new UndoManagerWrapper(UndoManager);
+
+
+                    Clipboard = new ClipboardManager(
+                        Selection,
+                        undo,
+                        rb.UpdateTile);
+
                     WorldEditor = new WorldEditor(CurrentWorld, Selection, undo, updateTiles);
                 }
                 else

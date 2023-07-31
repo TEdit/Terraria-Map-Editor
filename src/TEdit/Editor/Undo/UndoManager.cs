@@ -33,7 +33,8 @@ namespace TEdit.Editor.Undo
 
         public Task SaveUndoAsync()
         {
-            throw new NotImplementedException();
+            _um.SaveUndo();
+            return Task.CompletedTask;
         }
 
         public Task StartUndoAsync()

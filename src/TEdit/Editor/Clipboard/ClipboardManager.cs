@@ -10,12 +10,39 @@ using System.Linq;
 using TEdit.Geometry;
 using TEdit.Render;
 using TEdit.Configuration;
+using TEdit.Editor.Undo;
+using System.Windows.Media.Imaging;
+using System.Windows.Forms;
 
 namespace TEdit.Editor.Clipboard
 {
+    public class ClipboardBufferPreview
+    {
+        public ClipboardBufferPreview(ClipboardBuffer buffer)
+        {
+            Buffer = buffer;
+            Preview = ClipboardBufferRenderer.RenderBuffer(buffer, out var scale);
+            PreviewScale = scale;
+        }
+
+        public ClipboardBuffer Buffer { get; }
+        public WriteableBitmap Preview { get; }
+        public double PreviewScale { get; }
+    }
+
+    public class PasteOptions
+    {
+        public bool PasteEmpty { get; set; }
+        public bool PasteTiles { get; set; }
+        public bool PasteWalls { get; set; }
+        public bool PasteLiquids { get; set; }
+        public bool PasteWires { get; set; }
+        public bool PasteSprites { get; set; }
+        public bool PasteOverTiles { get; set; }
+    }
+
     public class ClipboardManager : ObservableObject
     {
-        private ClipboardBuffer _buffer;
         private bool _pasteEmpty = true;
         private bool _pasteTiles = true;
         private bool _pasteWalls = true;
@@ -23,10 +50,20 @@ namespace TEdit.Editor.Clipboard
         private bool _pasteWires = true;
         private bool _pasteSprites = true;
         private bool _pasteOverTiles = true;
-        private readonly WorldViewModel _wvm;
-        public ClipboardManager(WorldViewModel worldView)
+        private readonly ObservableCollection<ClipboardBufferPreview> _loadedBuffers = new ObservableCollection<ClipboardBufferPreview>();
+        private ClipboardBufferPreview _buffer;
+        private readonly ISelection _selection;
+        private readonly IUndoManager _undo;
+        private readonly NotifyTileChanged _notifyTileChanged;
+
+        public ClipboardManager(
+            ISelection selection,
+            IUndoManager undo,
+            NotifyTileChanged? notifyTileChanged)
         {
-            _wvm = worldView;
+            _selection = selection;
+            _undo = undo;
+            _notifyTileChanged = notifyTileChanged;
         }
 
         public bool PasteEmpty
@@ -65,14 +102,14 @@ namespace TEdit.Editor.Clipboard
             get { return _pasteOverTiles; }
             set { Set(nameof(PasteOverTiles), ref _pasteOverTiles, value); }
         }
-        public ClipboardBuffer Buffer
+
+        public ClipboardBufferPreview Buffer
         {
             get { return _buffer; }
             set { Set(nameof(Buffer), ref _buffer, value); }
         }
 
-        private readonly ObservableCollection<ClipboardBuffer> _loadedBuffers = new ObservableCollection<ClipboardBuffer>();
-        public ObservableCollection<ClipboardBuffer> LoadedBuffers
+        public ObservableCollection<ClipboardBufferPreview> LoadedBuffers
         {
             get { return _loadedBuffers; }
         }
@@ -83,7 +120,7 @@ namespace TEdit.Editor.Clipboard
             LoadedBuffers.Clear();
         }
 
-        public void Remove(ClipboardBuffer item)
+        public void Remove(ClipboardBufferPreview item)
         {
             if (LoadedBuffers.Contains(item))
                 LoadedBuffers.Remove(item);
@@ -91,109 +128,41 @@ namespace TEdit.Editor.Clipboard
 
         public void Import(string filename)
         {
-            ClipboardBuffer buffer = null;
-            try
-            {
-                buffer = ClipboardBuffer.Load(filename);
-
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Schematic File Error", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
+            var bufferData = ClipboardBuffer.Load(filename);
+            var buffer = new ClipboardBufferPreview(bufferData);
 
             if (buffer != null)
             {
-                buffer.RenderBuffer();
                 LoadedBuffers.Add(buffer);
             }
-
         }
 
-        public ClipboardBuffer GetSelectionBuffer()
+        public void CopySelection(World world, RectangleInt32 selection)
         {
-            World world = _wvm.CurrentWorld;
-            var area = _wvm.Selection.SelectionArea;
-            var buffer = new ClipboardBuffer(new Vector2Int32(area.Width, area.Height));
-
-            for (int x = 0; x < area.Width; x++)
-            {
-                for (int y = 0; y < area.Height; y++)
-                {
-                    Tile curTile = (Tile)world.Tiles[x + area.X, y + area.Y].Clone();
-
-                    if (Tile.IsChest(curTile.Type))
-                    {
-                        if (buffer.GetChestAtTile(x, y) == null)
-                        {
-                            var anchor = world.GetAnchor(x + area.X, y + area.Y);
-                            if (anchor.X == x + area.X && anchor.Y == y + area.Y)
-                            {
-                                var data = world.GetChestAtTile(x + area.X, y + area.Y);
-                                if (data != null)
-                                {
-                                    var newChest = data.Copy();
-                                    newChest.X = x;
-                                    newChest.Y = y;
-                                    buffer.Chests.Add(newChest);
-                                }
-                            }
-                        }
-                    }
-                    if (Tile.IsSign(curTile.Type))
-                    {
-                        if (buffer.GetSignAtTile(x, y) == null)
-                        {
-                            var anchor = world.GetAnchor(x + area.X, y + area.Y);
-                            if (anchor.X == x + area.X && anchor.Y == y + area.Y)
-                            {
-                                var data = world.GetSignAtTile(x + area.X, y + area.Y);
-                                if (data != null)
-                                {
-                                    var newSign = data.Copy();
-                                    newSign.X = x;
-                                    newSign.Y = y;
-                                    buffer.Signs.Add(newSign);
-                                }
-                            }
-                        }
-                    }
-                    if (Tile.IsTileEntity(curTile.Type))
-                    {
-                        if (buffer.GetTileEntityAtTile(x, y) == null)
-                        {
-                            var anchor = world.GetAnchor(x + area.X, y + area.Y);
-                            if (anchor.X == x + area.X && anchor.Y == y + area.Y)
-                            {
-                                var data = world.GetTileEntityAtTile(x + area.X, y + area.Y);
-                                if (data != null)
-                                {
-                                    var newEntity = data.Copy();
-                                    newEntity.PosX = (short)x;
-                                    newEntity.PosY = (short)y;
-                                    buffer.TileEntities.Add(newEntity);
-                                }
-                            }
-                        }
-                    }
-                    buffer.Tiles[x, y] = curTile;
-                }
-            }
-
-            buffer.RenderBuffer();
-            return buffer;
+            var bufferData = ClipboardBuffer.GetSelectionBuffer(world, selection);
+            LoadedBuffers.Add(new ClipboardBufferPreview(bufferData));
         }
 
-        public void PasteBufferIntoWorld(Vector2Int32 anchor)
+        public void PasteBufferIntoWorld(World world, Vector2Int32 anchor)
         {
             if (Buffer == null) return;
             if (!PasteTiles && !PasteLiquids && !PasteWalls && !PasteWires) return;
 
-            ErrorLogging.TelemetryClient?.TrackEvent("Paste");
+            _selection.IsActive = false; // clear selection when pasting to prevent "unable to use pencil" issue
 
-            _wvm.Selection.IsActive = false; // clear selection when pasting to prevent "unable to use pencil" issue
-            World world = _wvm.CurrentWorld;
-            ClipboardBuffer buffer = _wvm.Clipboard.Buffer;
+            ClipboardBuffer buffer = Buffer.Buffer;
+            var pasteOptions = new PasteOptions
+            {
+                PasteEmpty = PasteEmpty,
+                PasteLiquids = PasteLiquids,
+                PasteWalls = PasteWalls,
+                PasteOverTiles = PasteOverTiles,
+                PasteSprites = PasteSprites,
+                PasteTiles = PasteTiles,
+                PasteWires = PasteWires
+            };
+
+
             for (int x = 0; x < buffer.Size.X; x++)
             {
                 for (int y = 0; y < buffer.Size.Y; y++)
@@ -209,8 +178,8 @@ namespace TEdit.Editor.Clipboard
 
                     Tile curTile = (Tile)buffer.Tiles[x, y].Clone();
 
-                    if (!PasteTiles ||
-                        (!PasteOverTiles && worldTile.IsActive))
+                    if (!pasteOptions.PasteTiles ||
+                        (!pasteOptions.PasteOverTiles && worldTile.IsActive))
                     {
                         curTile.IsActive = worldTile.IsActive;
                         curTile.Type = worldTile.Type;
@@ -222,14 +191,14 @@ namespace TEdit.Editor.Clipboard
                         curTile.InvisibleBlock = worldTile.InvisibleBlock;
                     }
 
-                    if (!PasteEmpty && curTile.IsEmpty)
+                    if (!pasteOptions.PasteEmpty && curTile.IsEmpty)
                     {
                         // skip tiles that are empty if paste empty is not true
                         continue;
                     }
 
-                    if (!PasteWalls ||
-                        (!PasteOverTiles && worldTile.Wall > 0))
+                    if (!pasteOptions.PasteWalls ||
+                        (!pasteOptions.PasteOverTiles && worldTile.Wall > 0))
                     {
                         // if pasting walls is disabled, use the existing wall
                         curTile.Wall = worldTile.Wall;
@@ -238,16 +207,16 @@ namespace TEdit.Editor.Clipboard
                         curTile.InvisibleWall = worldTile.InvisibleWall;
                     }
 
-                    if (!PasteLiquids ||
-                        (!PasteOverTiles && worldTile.LiquidType != LiquidType.None))
+                    if (!pasteOptions.PasteLiquids ||
+                        (!pasteOptions.PasteOverTiles && worldTile.LiquidType != LiquidType.None))
                     {
                         // if pasting liquids is disabled, use any existing liquid
                         curTile.LiquidAmount = worldTile.LiquidAmount;
                         curTile.LiquidType = worldTile.LiquidType;
                     }
 
-                    if (!PasteWires ||
-                        (!PasteOverTiles && worldTile.HasWire))
+                    if (!pasteOptions.PasteWires ||
+                        (!pasteOptions.PasteOverTiles && worldTile.HasWire))
                     {
                         // if pasting wires is disabled, use any existing wire
                         curTile.WireRed = worldTile.WireRed;
@@ -258,8 +227,8 @@ namespace TEdit.Editor.Clipboard
                         curTile.InActive = worldTile.InActive;
                     }
 
-                    if (!PasteSprites ||
-                        (!PasteOverTiles && worldTile.IsActive))
+                    if (!pasteOptions.PasteSprites ||
+                        (!pasteOptions.PasteOverTiles && worldTile.IsActive))
                     {
                         // if pasting sprites is disabled, discard them.
                         // check if sprite has more then one tile state.
@@ -272,13 +241,13 @@ namespace TEdit.Editor.Clipboard
                     }
 
                     // save undo
-                    _wvm.UndoManager.SaveTile(worldX, worldY);
+                    _undo.SaveTile(world, worldX, worldY);
 
                     // update world tile
                     world.Tiles[worldX, worldY] = curTile;
 
                     //  Update chest/sign data only if we've pasted tiles
-                    if (PasteTiles && PasteOverTiles)
+                    if (pasteOptions.PasteTiles && pasteOptions.PasteOverTiles)
                     {
                         // Add new chest data
                         if (Tile.IsChest(curTile.Type))
@@ -335,15 +304,16 @@ namespace TEdit.Editor.Clipboard
                 }
             }
 
-            _wvm.UndoManager.SaveUndo();
+            _undo.SaveUndoAsync();
 
             /* Heathtech */
-            BlendRules.ResetUVCache(_wvm, anchor.X, anchor.Y, buffer.Size.X, buffer.Size.Y);
+            _notifyTileChanged(anchor.X, anchor.Y, buffer.Size.X, buffer.Size.Y);
         }
 
         // Reverse the buffer along the x- or y- axis
-        public void Flip(ClipboardBuffer buffer, bool flipX, bool rotate)
+        public void Flip(ClipboardBufferPreview bufferPreview, bool flipX, bool rotate)
         {
+            var buffer = bufferPreview.Buffer;
             ClipboardBuffer flippedBuffer = new ClipboardBuffer(buffer.Size);
             //var sprites = new Dictionary<Vector2Int32, Sprite>();
             var spriteSizes = new Dictionary<Vector2Int32, Vector2Short>();
@@ -494,12 +464,12 @@ namespace TEdit.Editor.Clipboard
             }
 
             // Replace the existing buffer with the new one
-            ClipboardBuffer rotatedBuffer = new ClipboardBuffer(new Vector2Int32(flippedBuffer.Size.Y, flippedBuffer.Size.X));
-            int bufferIndex = LoadedBuffers.IndexOf(buffer);
+            int bufferIndex = LoadedBuffers.IndexOf(bufferPreview);
             if (bufferIndex > -1)
             {
                 if (rotate)
                 {
+                    ClipboardBuffer rotatedBuffer = new ClipboardBuffer(new Vector2Int32(flippedBuffer.Size.Y, flippedBuffer.Size.X));
                     // Attempt to make a new buffer
                     int FlipmaxX = flippedBuffer.Size.X - 1;
                     int FlipmaxY = flippedBuffer.Size.Y - 1;
@@ -524,36 +494,18 @@ namespace TEdit.Editor.Clipboard
                     }
 
                     // Replace Buffers
-                    LoadedBuffers.Insert(bufferIndex, rotatedBuffer);
+                    ClipboardBufferPreview bufferPreviewNew = new ClipboardBufferPreview(rotatedBuffer);
+                    LoadedBuffers.Insert(bufferIndex, bufferPreviewNew);
                     LoadedBuffers.RemoveAt(bufferIndex + 1);
+                    Buffer = bufferPreviewNew;
                 }
                 else
                 {
-                    LoadedBuffers.Insert(bufferIndex, flippedBuffer);
+                    ClipboardBufferPreview bufferPreviewNew = new ClipboardBufferPreview(flippedBuffer);
+                    LoadedBuffers.Insert(bufferIndex, bufferPreviewNew);
                     LoadedBuffers.RemoveAt(bufferIndex + 1);
+                    Buffer = bufferPreviewNew;
                 }
-            }
-
-            if (rotate)
-            {
-                rotatedBuffer.RenderBuffer();
-            }
-            else
-            {
-                flippedBuffer.RenderBuffer();
-            }
-
-            if (Buffer == buffer)
-            {
-                if (rotate)
-                {
-                    Buffer = rotatedBuffer;
-                }
-                else
-                {
-                    Buffer = flippedBuffer;
-                }
-                _wvm.PreviewChange();
             }
         }
 
@@ -581,15 +533,15 @@ namespace TEdit.Editor.Clipboard
         }
 
 
-        public void FlipX(ClipboardBuffer buffer)
+        public void FlipX(ClipboardBufferPreview buffer)
         {
             Flip(buffer, true, false);
         }
-        public void FlipY(ClipboardBuffer buffer)
+        public void FlipY(ClipboardBufferPreview buffer)
         {
             Flip(buffer, false, false);
         }
-        public void Rotate(ClipboardBuffer buffer)
+        public void Rotate(ClipboardBufferPreview buffer)
         {
             Flip(buffer, false, true);
         }

@@ -25,7 +25,6 @@ public interface INotifyTileChanged
     void UpdateTile(int x, int y, int height = 1, int width = 1);
 }
 
-
 public class WorldEditor
 {
     private readonly World _world;
@@ -275,33 +274,33 @@ public class WorldEditor
         {
             if (erase)
             {
-                int num1 = curTile.U;
-                int num2 = curTile.V;
+                int u = curTile.U;
+                int v = curTile.V;
                 SetPixelAutomatic(curTile, tile: -1, u: 0, v: 0);
-                if (num1 > 0)
+                if (u > 0)
                 {
-                    switch (Minecart.LeftSideConnection[num1])
+                    switch (Minecart.LeftSideConnection[u])
                     {
                         case 0: SetTrack(x - 1, y - 1, _world.Tiles[x - 1, y - 1], false, false, false); break;
                         case 1: SetTrack(x - 1, y, _world.Tiles[x - 1, y], false, false, false); break;
                         case 2: SetTrack(x - 1, y + 1, _world.Tiles[x - 1, y + 1], false, false, false); break;
                     }
-                    switch (Minecart.RightSideConnection[num1])
+                    switch (Minecart.RightSideConnection[u])
                     {
                         case 0: SetTrack(x + 1, y - 1, _world.Tiles[x + 1, y - 1], false, false, false); break;
                         case 1: SetTrack(x + 1, y, _world.Tiles[x + 1, y], false, false, false); break;
                         case 2: SetTrack(x + 1, y + 1, _world.Tiles[x + 1, y + 1], false, false, false); break;
                     }
                 }
-                if (num2 > 0)
+                if (v > 0)
                 {
-                    switch (Minecart.LeftSideConnection[num2])
+                    switch (Minecart.LeftSideConnection[v])
                     {
                         case 0: SetTrack(x - 1, y - 1, _world.Tiles[x - 1, y - 1], false, false, false); break;
                         case 1: SetTrack(x - 1, y, _world.Tiles[x - 1, y], false, false, false); break;
                         case 2: SetTrack(x - 1, y + 1, _world.Tiles[x - 1, y + 1], false, false, false); break;
                     }
-                    switch (Minecart.RightSideConnection[num2])
+                    switch (Minecart.RightSideConnection[v])
                     {
                         case 0: SetTrack(x + 1, y - 1, _world.Tiles[x + 1, y - 1], false, false, false); break;
                         case 1: SetTrack(x + 1, y, _world.Tiles[x + 1, y], false, false, false); break;
@@ -426,7 +425,10 @@ public class WorldEditor
                                 num6 = -1;
                                 break;
                             }
-                            if ((Minecart.LeftSideConnection[array[num6]] != Minecart.LeftSideConnection[array[num5]] || Minecart.RightSideConnection[array[num6]] != Minecart.RightSideConnection[array[num5]]) && Minecart.TrackType[array[num6]] == num4 && Minecart.LeftSideConnection[array[num6]] != -1 && Minecart.RightSideConnection[array[num6]] != -1)
+                            if ((Minecart.LeftSideConnection[array[num6]] != Minecart.LeftSideConnection[array[num5]] || 
+                                Minecart.RightSideConnection[array[num6]] != Minecart.RightSideConnection[array[num5]]) && 
+                                Minecart.TrackType[array[num6]] == num4 && Minecart.LeftSideConnection[array[num6]] != -1 && 
+                                Minecart.RightSideConnection[array[num6]] != -1)
                                 flag3 = true;
                         }
                     }
@@ -437,7 +439,9 @@ public class WorldEditor
                             num5++;
                             if (num5 >= array.Length)
                                 break;
-                            if (Minecart.TrackType[array[num5]] == num4 && (Minecart.LeftSideConnection[array[num5]] == -1 || Minecart.RightSideConnection[array[num5]] == -1) == flag2)
+                            if (Minecart.TrackType[array[num5]] == num4 && 
+                                (Minecart.LeftSideConnection[array[num5]] == -1 || 
+                                Minecart.RightSideConnection[array[num5]] == -1) == flag2)
                                 goto IL_100;
                         }
                         num5 = -1;

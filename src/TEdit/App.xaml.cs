@@ -206,7 +206,7 @@ namespace TEdit
             int clipboardSize = (int)Calc.Clamp((int?)appSettings.Attribute("ClipboardRenderSize") ?? 512, 64, 4096);
 
 
-            ClipboardBuffer.ClipboardRenderSize = clipboardSize;
+            ClipboardBufferRenderer.ClipboardRenderSize = clipboardSize;
             ToolDefaultData.LoadSettings(xmlSettings.Elements("Tools"));
             AltC = (string)xmlSettings.Element("AltC");
             SteamUserId = (int?)xmlSettings.Element("SteamUserId") ?? null;

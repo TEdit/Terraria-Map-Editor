@@ -2024,7 +2024,7 @@ namespace TEdit.Terraria
 
             OnProgressChanged(null, new ProgressChangedEventArgs(100, "Loading Chests..."));
             w.Chests.Clear();
-            ((ObservableCollection<Chest>)w.Chests).AddRange(ReadChestDataFromStreamV1(reader, version));
+            w.Chests.AddRange(ReadChestDataFromStreamV1(reader, version));
 
             OnProgressChanged(null, new ProgressChangedEventArgs(100, "Loading Signs..."));
             w.Signs.Clear();
