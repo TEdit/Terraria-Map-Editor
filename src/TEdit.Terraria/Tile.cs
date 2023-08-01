@@ -94,6 +94,6 @@ namespace TEdit.Terraria
         public bool IsTileEntity() => TileTypes.IsTileEntity(Type);
         public bool IsChest() => TileTypes.IsChest(Type);
         public bool IsSign() => TileTypes.IsSign(Type);
-        public bool StopsWalls() => TileTypes.StopsWalls(Type);
+        public bool StopsWallsFloodFill() => TileTypes.StopsWallsFloodFill(Type);
     }
 }

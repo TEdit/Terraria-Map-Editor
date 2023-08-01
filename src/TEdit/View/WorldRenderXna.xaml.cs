@@ -682,11 +682,8 @@ namespace TEdit.View
 
 
             // Draw sprite overlays
-            if (_wvm.ShowTextures && _textureDictionary.Valid)
+            if (_wvm.ShowTextures && _textureDictionary.Valid && AreTexturesVisible())
             {
-
-
-
                 if (_wvm.ShowWalls)
                 {
                     _spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.Default, RasterizerState.CullNone);
@@ -707,7 +704,6 @@ namespace TEdit.View
                     _spriteBatch.Begin(SpriteSortMode.Immediate, _negativePaint, SamplerState.PointClamp, DepthStencilState.Default, RasterizerState.CullNone);
                     DrawTileTextures(true);
                     _spriteBatch.End();
-
                 }
 
                 if ((_wvm.ShowTiles) ||
@@ -756,8 +752,6 @@ namespace TEdit.View
 
         private void DrawTileEntities()
         {
-            if (!AreTexturesVisible()) return;
-
             Texture2D tileTex;
             Tile curtile;
             int x;
@@ -892,6 +886,19 @@ namespace TEdit.View
             }
         }
 
+        static int[,] backstyle = new int[9,7]
+        {
+            {66, 67, 68, 69, 128, 125, 185},
+            {70, 71, 68, 72, 128, 125, 185},
+            {73, 74, 75, 76, 134, 125, 185},
+            {77, 78, 79, 82, 134, 125, 185},
+            {83, 84, 85, 86, 137, 125, 185},
+            {83, 87, 88, 89, 137, 125, 185},
+            {121, 122, 123, 124, 140, 125, 185},
+            {153, 147, 148, 149, 150, 125, 185},
+            {146, 154, 155, 156, 157, 125, 185}
+        };
+
         private void DrawTileBackgrounds()
         {
             if (!AreTexturesVisible()) return;
@@ -917,17 +924,7 @@ namespace TEdit.View
                         //draw background textures
                         if (y >= 80)
                         {
-                            int[,] backstyle = {
-                                {66, 67, 68, 69, 128, 125, 185},
-                                {70, 71, 68, 72, 128, 125, 185},
-                                {73, 74, 75, 76, 134, 125, 185},
-                                {77, 78, 79, 82, 134, 125, 185},
-                                {83, 84, 85, 86, 137, 125, 185},
-                                {83, 87, 88, 89, 137, 125, 185},
-                                {121, 122, 123, 124, 140, 125, 185},
-                                {153, 147, 148, 149, 150, 125, 185},
-                                {146, 154, 155, 156, 157, 125, 185}
-                            };
+
                             int hellback = _wvm.CurrentWorld.HellBackStyle;
                             int backX = 0;
                             if (x <= _wvm.CurrentWorld.CaveBackX0)
@@ -1004,10 +1001,10 @@ namespace TEdit.View
         private Tile[] neighborTile = new Tile[8];
         const int e = 0, n = 1, w = 2, s = 3, ne = 4, nw = 5, sw = 6, se = 7;
 
+        Texture2D wallTex;
+
         private void DrawTileWalls(bool drawInverted = false)
         {
-            if (!AreTexturesVisible()) return;
-
             Rectangle visibleBounds = GetViewingArea();
             BlendRules blendRules = BlendRules.Instance;
             var width = _wvm.CurrentWorld.TilesWide;
@@ -1086,7 +1083,7 @@ namespace TEdit.View
 
                             if (curtile.Wall > 0)
                             {
-                                var wallTex = _textureDictionary.GetWall(curtile.Wall);
+                                wallTex = _textureDictionary.GetWall(curtile.Wall);
 
                                 if (wallTex != null)
                                 {
@@ -1120,10 +1117,9 @@ namespace TEdit.View
             }
         }
 
+        Texture2D tileTex;
         private void DrawTileTextures(bool drawInverted = false)
         {
-            if (!AreTexturesVisible()) return;
-
             Rectangle visibleBounds = GetViewingArea();
             BlendRules blendRules = BlendRules.Instance;
             var width = _wvm.CurrentWorld.TilesWide;
@@ -1213,7 +1209,7 @@ namespace TEdit.View
                                 if (tileprop.IsFramed)
                                 {
                                     Rectangle source = new Rectangle(), dest = new Rectangle();
-                                    var tileTex = _textureDictionary.GetTile(curtile.Type);
+                                    tileTex = _textureDictionary.GetTile(curtile.Type);
 
                                     bool isTreeSpecial = false, isMushroom = false;
                                     bool isLeft = false, isBase = false, isRight = false;
@@ -2346,8 +2342,6 @@ namespace TEdit.View
 
         private void DrawTileWires()
         {
-            if (!AreTexturesVisible()) return;
-
             Rectangle visibleBounds = GetViewingArea();
             BlendRules blendRules = BlendRules.Instance;
             var width = _wvm.CurrentWorld.TilesWide;
@@ -2375,7 +2369,7 @@ namespace TEdit.View
 #pragma warning disable CS0219 // Variable is assigned but its value is never used
                         int e = 0, n = 1, w = 2, s = 3, ne = 4, nw = 5, sw = 6, se = 7;
 #pragma warning restore CS0219 // Variable is assigned but its value is never used
-                        Tile[] neighborTile = new Tile[8];
+                        //Tile[] neighborTile = new Tile[8];
                         neighborTile[e] = (x + 1) < width ? _wvm.CurrentWorld.Tiles[x + 1, y] : null;
                         neighborTile[n] = (y - 1) > 0 ? _wvm.CurrentWorld.Tiles[x, y - 1] : null;
                         neighborTile[w] = (x - 1) > 0 ? _wvm.CurrentWorld.Tiles[x - 1, y] : null;
@@ -2469,8 +2463,6 @@ namespace TEdit.View
 
         private void DrawTileLiquid()
         {
-            if (!AreTexturesVisible()) return;
-
             Rectangle visibleBounds = GetViewingArea();
 
             //Extended the viewing space to give tiles time to cache their UV's
@@ -2495,7 +2487,7 @@ namespace TEdit.View
 #pragma warning disable CS0219 // Variable is assigned but its value is never used
                         int e = 0, n = 1, w = 2, s = 3, ne = 4, nw = 5, sw = 6, se = 7;
 #pragma warning restore CS0219 // Variable is assigned but its value is never used
-                        Tile[] neighborTile = new Tile[8];
+                        //Tile[] neighborTile = new Tile[8];
 
                         neighborTile[n] = (y - 1) > 0 ? _wvm.CurrentWorld.Tiles[x, y - 1] : null;
 

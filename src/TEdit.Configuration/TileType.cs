@@ -83,7 +83,7 @@ public static class TileTypes
             || tileType == (int)TileType.TeleportationPylon;
     }
 
-    public static bool StopsWalls(ushort type)
+    public static bool StopsWallsFloodFill(ushort type)
     {
         return type == (ushort)TileType.DoorClosed ||
                type == (ushort)TileType.DoorOpen ||

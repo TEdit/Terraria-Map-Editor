@@ -90,13 +90,13 @@ namespace TEdit.Editor.Tools
                 case PaintMode.TileAndWall:
                     if (_wvm.TilePicker.TileStyleActive && (originTile.Type != nextTile.Type || originTile.IsActive != nextTile.IsActive))
                         return false;
-                    if (_wvm.TilePicker.WallStyleActive && (originTile.Wall != nextTile.Wall || (originTile.IsActive && (originTile.Type != nextTile.Type || !nextTile.IsActive)) || (originTile.Type != nextTile.Type && nextTile.IsActive && (nextTile.StopsWalls() || !WorldConfiguration.GetTileProperties(nextTile.Type).IsFramed))))
+                    if (_wvm.TilePicker.WallStyleActive && (originTile.Wall != nextTile.Wall || (originTile.IsActive && (originTile.Type != nextTile.Type || !nextTile.IsActive)) || (originTile.Type != nextTile.Type && nextTile.IsActive && (nextTile.StopsWallsFloodFill() || !WorldConfiguration.GetTileProperties(nextTile.Type).IsFramed))))
                         return false;
                     if (_wvm.TilePicker.BrickStyleActive && (originTile.BrickStyle != nextTile.BrickStyle))
                         return false;
                     if (_wvm.TilePicker.TilePaintActive && (originTile.Type != nextTile.Type || originTile.IsActive != nextTile.IsActive))
                         return false;
-                    if (_wvm.TilePicker.WallPaintActive && (originTile.Wall != nextTile.Wall || (originTile.IsActive && (originTile.Type != nextTile.Type || !nextTile.IsActive)) || (originTile.Type != nextTile.Type && nextTile.IsActive && (nextTile.StopsWalls() || !WorldConfiguration.GetTileProperties(nextTile.Type).IsFramed))))
+                    if (_wvm.TilePicker.WallPaintActive && (originTile.Wall != nextTile.Wall || (originTile.IsActive && (originTile.Type != nextTile.Type || !nextTile.IsActive)) || (originTile.Type != nextTile.Type && nextTile.IsActive && (nextTile.StopsWallsFloodFill() || !WorldConfiguration.GetTileProperties(nextTile.Type).IsFramed))))
                         return false;
                     if (_wvm.TilePicker.ExtrasActive && (originTile.Actuator != nextTile.Actuator || originTile.InActive != nextTile.InActive || originTile.IsActive != nextTile.IsActive))
                         return false;
