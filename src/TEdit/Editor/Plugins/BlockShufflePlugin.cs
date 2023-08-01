@@ -112,9 +112,9 @@ namespace TEdit.Editor.Plugins
 
         private static bool IsSensitiveGroup(int pTileType)
         {
-            if (Tile.IsChest(pTileType)
-               || Tile.IsSign(pTileType)
-               || Tile.IsTileEntity(pTileType)
+            if (  TileTypes.IsChest(pTileType)
+               || TileTypes.IsSign(pTileType)
+               || TileTypes.IsTileEntity(pTileType)
                || IsSensitive(pTileType)
                 ) return true;
             else return false;

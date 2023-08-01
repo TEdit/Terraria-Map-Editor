@@ -36,7 +36,7 @@ namespace TEdit.Editor.Tools
             _rightClick = false;
 
             Tile curTile = _wvm.CurrentWorld.Tiles[e.Location.X, e.Location.Y];
-            if (Tile.IsChest(curTile.Type))
+            if (curTile.IsChest())
             {
                 Chest chest = _wvm.CurrentWorld.GetChestAtTile(e.Location.X, e.Location.Y, true);
                 if (chest != null)
@@ -45,7 +45,7 @@ namespace TEdit.Editor.Tools
                     return;
                 }
             }
-            else if (Tile.IsSign(curTile.Type))
+            else if (curTile.IsSign())
             {
                 Sign sign = _wvm.CurrentWorld.GetSignAtTile(e.Location.X, e.Location.Y, true);
                 if (sign != null)

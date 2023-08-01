@@ -49,7 +49,7 @@ public class WorldEditor
     public async Task BeginOperationAsync()
     {
         _checkTiles = new bool[_world.TilesWide * _world.TilesHigh];
-        await _undo.StartUndoAsync();
+        //await _undo.StartUndoAsync();
     }
 
     public async Task EndOperationAsync()

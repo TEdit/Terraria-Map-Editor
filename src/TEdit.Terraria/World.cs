@@ -451,7 +451,7 @@ namespace TEdit.Terraria
                 {
                     for (int y = chest.Y; y < chest.Y + 1; y++)
                     {
-                        if (!Tiles[x, y].IsActive || !Tile.IsChest(Tiles[x, y].Type))
+                        if (!Tiles[x, y].IsActive || !Tiles[x, y].IsChest())
                         {
                             Chests.Remove(chest);
                             removed = true;
@@ -475,7 +475,7 @@ namespace TEdit.Terraria
                 {
                     for (int y = sign.Y; y < sign.Y + 1; y++)
                     {
-                        if (!Tiles[x, y].IsActive || !Tile.IsSign(Tiles[x, y].Type))
+                        if (!Tiles[x, y].IsActive || !Tiles[x, y].IsSign())
                         {
                             Signs.Remove(sign);
                             removed = true;
@@ -492,7 +492,7 @@ namespace TEdit.Terraria
                 int x = tileEntity.PosX;
                 int y = tileEntity.PosY;
                 var anchor = GetAnchor(x, y);
-                if (!Tiles[anchor.X, anchor.Y].IsActive || !Tile.IsTileEntity(Tiles[anchor.X, anchor.Y].Type))
+                if (!Tiles[anchor.X, anchor.Y].IsActive || !Tiles[x, y].IsTileEntity())
                 {
                     TileEntities.Remove(tileEntity);
                 }
@@ -511,7 +511,7 @@ namespace TEdit.Terraria
         {
             Tile curTile = Tiles[x, y];
             //validate chest entry exists
-            if (Tile.IsChest(curTile.Type))
+            if (curTile.IsChest())
             {
                 if (IsAnchor(x, y) && GetChestAtTile(x, y, true) == null)
                 {
@@ -519,7 +519,7 @@ namespace TEdit.Terraria
                 }
             }
             //validate sign entry exists
-            else if (Tile.IsSign(curTile.Type))
+            else if (curTile.IsSign())
             {
                 if (IsAnchor(x, y) && GetSignAtTile(x, y, true) == null)
                 {
@@ -527,7 +527,7 @@ namespace TEdit.Terraria
                 }
             }
             //validate TileEntity
-            else if (Tile.IsTileEntity(curTile.Type))
+            else if (curTile.IsTileEntity())
             {
                 if (IsAnchor(x, y) && GetTileEntityAtTile(x, y, true) == null)
                 {

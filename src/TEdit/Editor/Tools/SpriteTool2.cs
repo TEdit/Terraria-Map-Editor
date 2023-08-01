@@ -1,6 +1,7 @@
 using System;
 using System.Windows.Input;
 using System.Windows.Media.Imaging;
+using TEdit.Configuration;
 using TEdit.Geometry;
 using TEdit.Terraria;
 using TEdit.Terraria.Editor;
@@ -55,7 +56,7 @@ namespace TEdit.Editor.Tools
 
             _wvm.SelectedSpriteItem.Place(x, y, _wvm);
 
-            if (Tile.IsTileEntity(tileId))
+            if (TileTypes.IsTileEntity(tileId))
             {
                 // if the tile entity is not the same as it was, create a new TE.
                 var existingTe = _wvm.CurrentWorld.GetTileEntityAtTile(x, y);
@@ -65,7 +66,7 @@ namespace TEdit.Editor.Tools
                     TileEntity.PlaceEntity(te, _wvm.CurrentWorld); // this will also remove the existing if there is one
                 }
             }
-            else if (Tile.IsChest(tileId))
+            else if (TileTypes.IsChest(tileId))
             {
                 var existingChest = _wvm.CurrentWorld.GetChestAtTile(x, y);
                 if (existingChest == null)
@@ -73,7 +74,7 @@ namespace TEdit.Editor.Tools
                     _wvm.CurrentWorld.Chests.Add(new Chest(x, y));
                 }
             }
-            else if (Tile.IsSign(tileId))
+            else if (TileTypes.IsSign(tileId))
             {
                 var existingSign = _wvm.CurrentWorld.GetSignAtTile(x, y);
                 if (existingSign == null)

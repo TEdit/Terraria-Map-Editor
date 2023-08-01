@@ -2031,7 +2031,7 @@ namespace TEdit.Terraria
 
             foreach (Sign sign in ReadSignDataFromStreamV1(reader, version))
             {
-                if (w.Tiles[sign.X, sign.Y].IsActive && Tile.IsSign(w.Tiles[sign.X, sign.Y].Type))
+                if (w.Tiles[sign.X, sign.Y].IsActive && w.Tiles[sign.X, sign.Y].IsSign())
                 {
                     w.Signs.Add(sign);
                 }

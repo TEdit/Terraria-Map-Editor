@@ -13,7 +13,7 @@ namespace TEdit.Terraria
     {
         public static readonly Tile Empty = new Tile();
 
-        public bool IsEmpty { get => !IsActive && Wall == 0 && !HasLiquid && !HasWire; }
+        public bool IsEmpty { get => !IsActive && Wall == 0 && !HasLiquid && !HasWire && !Actuator; }
         public bool HasWire { get => WireBlue || WireRed || WireGreen || WireYellow; }
         public bool HasLiquid { get => LiquidAmount > 0 && LiquidType != LiquidType.None; }
         public bool HasMultipleWires
@@ -91,11 +91,9 @@ namespace TEdit.Terraria
             InvisibleWall = false;
         }
 
-        public bool IsTileEntity() => IsTileEntity(this.Type);
-
-        public static bool IsChest(int tileType) => TileTypes.IsChest(tileType);
-        public static bool IsSign(int tileType) => TileTypes.IsSign(tileType);
-        public static bool StopsWalls(ushort type) => TileTypes.StopsWalls(type);
-        public static bool IsTileEntity(int tileType) => TileTypes.IsTileEntity(tileType);
+        public bool IsTileEntity() => TileTypes.IsTileEntity(Type);
+        public bool IsChest() => TileTypes.IsChest(Type);
+        public bool IsSign() => TileTypes.IsSign(Type);
+        public bool StopsWalls() => TileTypes.StopsWalls(Type);
     }
 }

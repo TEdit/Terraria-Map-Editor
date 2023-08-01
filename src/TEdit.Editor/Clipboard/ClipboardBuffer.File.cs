@@ -1,9 +1,7 @@
 ﻿using System;
 using System.IO;
-using System.Windows.Media.Imaging;
 using TEdit.Configuration;
 using TEdit.Geometry;
-using TEdit.Helper;
 using TEdit.Terraria;
 using TEdit.Terraria.Objects;
 
@@ -237,7 +235,8 @@ namespace TEdit.Editor.Clipboard
         {
             string ext = Path.GetExtension(filename);
             if (string.Equals(ext, ".jpg", StringComparison.InvariantCultureIgnoreCase) || string.Equals(ext, ".png", StringComparison.InvariantCultureIgnoreCase) || string.Equals(ext, ".bmp", StringComparison.InvariantCultureIgnoreCase))
-                return LoadFromImage(filename);
+               throw new NotImplementedException();
+//                return LoadFromImage(filename);
 
             using (var stream = new FileStream(filename, FileMode.Open))
             {
@@ -297,43 +296,43 @@ namespace TEdit.Editor.Clipboard
 
         #region Old Versions
 
-        public static ClipboardBuffer LoadFromImage(string filename)
-        {
-            var urifrompath = new Uri(filename);
-            var bmp = new BitmapImage(urifrompath);
-            if (bmp.Width > 8400)
-                return null;
-            if (bmp.Height > 2400)
-                return null;
+        //public static ClipboardBuffer LoadFromImage(string filename)
+        //{
+        //    var urifrompath = new Uri(filename);
+        //    var bmp = new BitmapImage(urifrompath);
+        //    if (bmp.Width > 8400)
+        //        return null;
+        //    if (bmp.Height > 2400)
+        //        return null;
 
 
 
-            string name = Path.GetFileNameWithoutExtension(filename);
-            var buffer = new ClipboardBuffer(new Vector2Int32(bmp.PixelWidth, bmp.PixelHeight));
-            buffer.Name = name;
+        //    string name = Path.GetFileNameWithoutExtension(filename);
+        //    var buffer = new ClipboardBuffer(new Vector2Int32(bmp.PixelWidth, bmp.PixelHeight));
+        //    buffer.Name = name;
 
-            var wbmp = new WriteableBitmap(bmp);
-            if (wbmp.Format.BitsPerPixel < 32)
-                return null;
-            wbmp.Lock();
-            unsafe
-            {
-                var pixels = (int*)wbmp.BackBuffer;
-                for (int y = 0; y < bmp.PixelHeight; y++)
-                {
-                    int row = y * bmp.PixelWidth;
-                    for (int x = 0; x < bmp.PixelWidth; x++)
-                    {
+        //    var wbmp = new WriteableBitmap(bmp);
+        //    if (wbmp.Format.BitsPerPixel < 32)
+        //        return null;
+        //    wbmp.Lock();
+        //    unsafe
+        //    {
+        //        var pixels = (int*)wbmp.BackBuffer;
+        //        for (int y = 0; y < bmp.PixelHeight; y++)
+        //        {
+        //            int row = y * bmp.PixelWidth;
+        //            for (int x = 0; x < bmp.PixelWidth; x++)
+        //            {
 
-                        buffer.Tiles[x, y] = TileFromColor(pixels[x + row]);
-                    }
-                }
+        //                buffer.Tiles[x, y] = TileFromColor(pixels[x + row]);
+        //            }
+        //        }
 
-            }
-            wbmp.Unlock();
+        //    }
+        //    wbmp.Unlock();
 
-            return buffer;
-        }
+        //    return buffer;
+        //}
 
         private static Tile TileFromColor(int color)
         {
@@ -397,7 +396,7 @@ namespace TEdit.Editor.Clipboard
             buffer.Signs.Clear();
             foreach (Sign sign in World.ReadSignDataFromStreamV1(b, tVersion))
             {
-                if (buffer.Tiles[sign.X, sign.Y].IsActive && Tile.IsSign(buffer.Tiles[sign.X, sign.Y].Type))
+                if (buffer.Tiles[sign.X, sign.Y].IsActive && buffer.Tiles[sign.X, sign.Y].IsSign())
                     buffer.Signs.Add(sign);
             }
 
@@ -554,7 +553,7 @@ namespace TEdit.Editor.Clipboard
                             sign.X = b.ReadInt32();
                             sign.Y = b.ReadInt32();
 
-                            if (buffer.Tiles[sign.X, sign.Y].IsActive && Tile.IsSign(buffer.Tiles[sign.X, sign.Y].Type))
+                            if (buffer.Tiles[sign.X, sign.Y].IsActive && buffer.Tiles[sign.X, sign.Y].IsSign())
                             {
                                 buffer.Signs.Add(sign);
                             }
@@ -692,7 +691,7 @@ namespace TEdit.Editor.Clipboard
                                 return Load3(filename, true);
                             }
                             else
-                                System.Windows.MessageBox.Show("Verification failed. Some schematic data may be missing.", "Legacy Schematic Version");
+                                throw new TEdit.Common.Exceptions.TEditFileFormatException("Verification failed. Some schematic data may be missing.");
                         }
 
                         br.Close();
@@ -820,7 +819,7 @@ namespace TEdit.Editor.Clipboard
                             string signText = reader.ReadString();
                             int x = reader.ReadInt32();
                             int y = reader.ReadInt32();
-                            if (buffer.Tiles[x, y].IsActive && Tile.IsSign(buffer.Tiles[x, y].Type))
+                            if (buffer.Tiles[x, y].IsActive && buffer.Tiles[x, y].IsSign())
                             // validate tile location
                             {
                                 var sign = new Sign(x, y, signText);
@@ -835,7 +834,7 @@ namespace TEdit.Editor.Clipboard
                     int checky = reader.ReadInt32();
 
                     if (checkName != buffer.Name || checkversion != version || checkx != maxx || checky != maxy)
-                        System.Windows.MessageBox.Show("Verification failed. Some schematic data may be missing.", "Legacy Schematic Version");
+                        throw new TEdit.Common.Exceptions.TEditFileFormatException("Verification failed. Some schematic data may be missing.");
 
                     return buffer;
 
@@ -953,7 +952,7 @@ namespace TEdit.Editor.Clipboard
                             string signText = reader.ReadString();
                             int x = reader.ReadInt32();
                             int y = reader.ReadInt32();
-                            if (buffer.Tiles[x, y].IsActive && Tile.IsSign(buffer.Tiles[x, y].Type))
+                            if (buffer.Tiles[x, y].IsActive && buffer.Tiles[x, y].IsSign())
                             // validate tile location
                             {
                                 var sign = new Sign(x, y, signText);

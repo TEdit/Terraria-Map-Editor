@@ -241,7 +241,7 @@ namespace TEdit.Editor.Undo
 
             if (_world.IsAnchor(x, y))
             {
-                if (Tile.IsChest(curTile.Type))
+                if (curTile.IsChest())
                 {
                     var curchest = _world.GetChestAtTile(x, y);
                     if (curchest != null)
@@ -251,7 +251,7 @@ namespace TEdit.Editor.Undo
                         buffer.Chests.Add(chest);
                     }
                 }
-                if (Tile.IsSign(curTile.Type))
+                if (curTile.IsSign())
                 {
                     var cursign = _world.GetSignAtTile(x, y);
                     if (cursign != null)
@@ -261,7 +261,7 @@ namespace TEdit.Editor.Undo
                         buffer.Signs.Add(sign);
                     }
                 }
-                if (Tile.IsTileEntity(curTile.Type))
+                if (curTile.IsTileEntity())
                 {
                     var curTe = _world.GetTileEntityAtTile(x, y);
                     if (curTe != null)
@@ -285,9 +285,9 @@ namespace TEdit.Editor.Undo
             var existingLastTile = _world.Tiles[lastTile.Location.X, lastTile.Location.Y];
 
             // remove deleted chests or signs if required
-            if (Tile.IsChest(lastTile.Tile.Type))
+            if (lastTile.Tile.IsChest())
             {
-                if (!Tile.IsChest(existingLastTile.Type) || !existingLastTile.IsActive)
+                if (!existingLastTile.IsChest() || !existingLastTile.IsActive)
                 {
                     var curchest = _world.GetChestAtTile(lastTile.Location.X, lastTile.Location.Y);
                     if (curchest != null)
@@ -296,9 +296,9 @@ namespace TEdit.Editor.Undo
                     }
                 }
             }
-            else if (Tile.IsSign(lastTile.Tile.Type))
+            else if (lastTile.Tile.IsSign())
             {
-                if (!Tile.IsSign(existingLastTile.Type) || !existingLastTile.IsActive)
+                if (!existingLastTile.IsSign() || !existingLastTile.IsActive)
                 {
                     var cursign = _world.GetSignAtTile(lastTile.Location.X, lastTile.Location.Y);
                     if (cursign != null)
@@ -307,9 +307,9 @@ namespace TEdit.Editor.Undo
                     }
                 }
             }
-            else if (Tile.IsTileEntity(lastTile.Tile.Type))
+            else if (lastTile.Tile.IsTileEntity())
             {
-                if (!Tile.IsTileEntity(existingLastTile.Type) || !existingLastTile.IsActive)
+                if (!existingLastTile.IsTileEntity() || !existingLastTile.IsActive)
                 {
                     var curTe = _world.GetTileEntityAtTile(lastTile.Location.X, lastTile.Location.Y);
                     if (curTe != null)
@@ -322,7 +322,7 @@ namespace TEdit.Editor.Undo
             // Add new chests and signs if required
             if (_world.IsAnchor(lastTile.Location.X, lastTile.Location.Y))
             {
-                if (Tile.IsChest(existingLastTile.Type))
+                if (existingLastTile.IsChest())
                 {
                     var curchest = _world.GetChestAtTile(lastTile.Location.X, lastTile.Location.Y);
                     if (curchest == null)
@@ -330,7 +330,7 @@ namespace TEdit.Editor.Undo
                         _world.Chests.Add(new Chest(lastTile.Location.X, lastTile.Location.Y));
                     }
                 }
-                else if (Tile.IsSign(existingLastTile.Type))
+                else if (existingLastTile.IsSign())
                 {
                     var cursign = _world.GetSignAtTile(lastTile.Location.X, lastTile.Location.Y);
                     if (cursign == null)
@@ -338,7 +338,7 @@ namespace TEdit.Editor.Undo
                         _world.Signs.Add(new Sign(lastTile.Location.X, lastTile.Location.Y, string.Empty));
                     }
                 }
-                else if (Tile.IsTileEntity(existingLastTile.Type))
+                else if (existingLastTile.IsTileEntity())
                 {
                     var curTe = _world.GetTileEntityAtTile(lastTile.Location.X, lastTile.Location.Y);
                     if (curTe == null)
@@ -421,19 +421,19 @@ namespace TEdit.Editor.Undo
                     var curTile = (Tile)_world.Tiles[undoTile.Location.X, undoTile.Location.Y];
                     SaveTile(undoTile.Location);
 
-                    if (Tile.IsChest(curTile.Type))
+                    if (curTile.IsChest())
                     {
                         var curchest = _world.GetChestAtTile(undoTile.Location.X, undoTile.Location.Y);
                         if (curchest != null)
                             _world.Chests.Remove(curchest);
                     }
-                    if (Tile.IsSign(curTile.Type))
+                    if (curTile.IsSign())
                     {
                         var cursign = _world.GetSignAtTile(undoTile.Location.X, undoTile.Location.Y);
                         if (cursign != null)
                             _world.Signs.Remove(cursign);
                     }
-                    if (Tile.IsTileEntity(curTile.Type))
+                    if (curTile.IsTileEntity())
                     {
                         var curTe = _world.GetTileEntityAtTile(undoTile.Location.X, undoTile.Location.Y);
                         if (curTe != null)

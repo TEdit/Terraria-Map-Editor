@@ -1510,7 +1510,7 @@ namespace TEdit.Terraria
             foreach (Sign sign in LoadSignData(b))
             {
                 Tile tile = w.Tiles[sign.X, sign.Y];
-                if (tile.IsActive && Tile.IsSign(tile.Type))
+                if (tile.IsActive && tile.IsSign())
                 {
                     w.Signs.Add(sign);
                 }
