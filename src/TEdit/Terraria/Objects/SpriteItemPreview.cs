@@ -8,10 +8,9 @@ using TEdit.Geometry;
 using TEdit.Common;
 using TEdit.Render;
 
-namespace TEdit.Terraria.Objects
+namespace TEdit.Terraria.Objects;
+
+public class SpriteItemPreview : SpriteItem
 {
-    public class SpriteItemPreview : SpriteItem
-    {
-        public WriteableBitmap Preview { get; set; } //TODO: move rendering separate from config
-    }
+    public WriteableBitmap Preview { get; set; } //TODO: move rendering separate from config
 }

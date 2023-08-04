@@ -8,30 +8,29 @@ using System.Windows;
 using System.Windows.Media.Imaging;
 using System.Windows.Interop;
 
-namespace TEdit.UI.Xaml.Enum
+namespace TEdit.UI.Xaml.Enum;
+
+static class ImageSourceHelpers
 {
-    static class ImageSourceHelpers
+    public static ImageSource CreateFromBitmap(Bitmap bmp)
     {
-        public static ImageSource CreateFromBitmap(Bitmap bmp)
+        var hBitmap = bmp.GetHbitmap();
+        try
         {
-            var hBitmap = bmp.GetHbitmap();
-            try
-            {
-                return Imaging.CreateBitmapSourceFromHBitmap(hBitmap, IntPtr.Zero, Int32Rect.Empty, BitmapSizeOptions.FromEmptyOptions());
-            }
-            finally
-            {
-                DeleteObject(hBitmap);
-            }
+            return Imaging.CreateBitmapSourceFromHBitmap(hBitmap, IntPtr.Zero, Int32Rect.Empty, BitmapSizeOptions.FromEmptyOptions());
         }
-
-        [System.Runtime.InteropServices.DllImport("gdi32.dll")]
-        private static extern bool DeleteObject(IntPtr hObject);
-
-
-        internal static ImageSource CreateFromIcon(Icon icon)
+        finally
         {
-            return Imaging.CreateBitmapSourceFromHIcon(icon.Handle, Int32Rect.Empty, BitmapSizeOptions.FromEmptyOptions());
+            DeleteObject(hBitmap);
         }
+    }
+
+    [System.Runtime.InteropServices.DllImport("gdi32.dll")]
+    private static extern bool DeleteObject(IntPtr hObject);
+
+
+    internal static ImageSource CreateFromIcon(Icon icon)
+    {
+        return Imaging.CreateBitmapSourceFromHIcon(icon.Handle, Int32Rect.Empty, BitmapSizeOptions.FromEmptyOptions());
     }
 }

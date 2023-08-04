@@ -8,115 +8,114 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace TEdit.Properties {
+namespace TEdit.Properties; 
+
+
+[global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
+[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "17.3.0.0")]
+internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
     
+    private static Settings defaultInstance = ((Settings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Settings())));
     
-    [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "17.3.0.0")]
-    internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
-        
-        private static Settings defaultInstance = ((Settings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Settings())));
-        
-        public static Settings Default {
-            get {
-                return defaultInstance;
-            }
+    public static Settings Default {
+        get {
+            return defaultInstance;
         }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string TerrariaPath {
-            get {
-                return ((string)(this["TerrariaPath"]));
-            }
-            set {
-                this["TerrariaPath"] = value;
-            }
+    }
+    
+    [global::System.Configuration.UserScopedSettingAttribute()]
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+    [global::System.Configuration.DefaultSettingValueAttribute("")]
+    public string TerrariaPath {
+        get {
+            return ((string)(this["TerrariaPath"]));
         }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("True")]
-        public bool Autosave {
-            get {
-                return ((bool)(this["Autosave"]));
-            }
-            set {
-                this["Autosave"] = value;
-            }
+        set {
+            this["TerrariaPath"] = value;
         }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("True")]
-        public bool CheckUpdates {
-            get {
-                return ((bool)(this["CheckUpdates"]));
-            }
-            set {
-                this["CheckUpdates"] = value;
-            }
+    }
+    
+    [global::System.Configuration.UserScopedSettingAttribute()]
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+    [global::System.Configuration.DefaultSettingValueAttribute("True")]
+    public bool Autosave {
+        get {
+            return ((bool)(this["Autosave"]));
         }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Automatic")]
-        public global::TEdit.ViewModel.LanguageSelection Language {
-            get {
-                return ((global::TEdit.ViewModel.LanguageSelection)(this["Language"]));
-            }
-            set {
-                this["Language"] = value;
-            }
+        set {
+            this["Autosave"] = value;
         }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("-1")]
-        public int Telemetry {
-            get {
-                return ((int)(this["Telemetry"]));
-            }
-            set {
-                this["Telemetry"] = value;
-            }
+    }
+    
+    [global::System.Configuration.UserScopedSettingAttribute()]
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+    [global::System.Configuration.DefaultSettingValueAttribute("True")]
+    public bool CheckUpdates {
+        get {
+            return ((bool)(this["CheckUpdates"]));
         }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("6")]
-        public float TextureVisibilityZoomLevel {
-            get {
-                return ((float)(this["TextureVisibilityZoomLevel"]));
-            }
-            set {
-                this["TextureVisibilityZoomLevel"] = value;
-            }
+        set {
+            this["CheckUpdates"] = value;
         }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("True")]
-        public bool ShowNews {
-            get {
-                return ((bool)(this["ShowNews"]));
-            }
-            set {
-                this["ShowNews"] = value;
-            }
+    }
+    
+    [global::System.Configuration.UserScopedSettingAttribute()]
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+    [global::System.Configuration.DefaultSettingValueAttribute("Automatic")]
+    public global::TEdit.ViewModel.LanguageSelection Language {
+        get {
+            return ((global::TEdit.ViewModel.LanguageSelection)(this["Language"]));
         }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool RealisticColors {
-            get {
-                return ((bool)(this["RealisticColors"]));
-            }
-            set {
-                this["RealisticColors"] = value;
-            }
+        set {
+            this["Language"] = value;
+        }
+    }
+    
+    [global::System.Configuration.UserScopedSettingAttribute()]
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+    [global::System.Configuration.DefaultSettingValueAttribute("-1")]
+    public int Telemetry {
+        get {
+            return ((int)(this["Telemetry"]));
+        }
+        set {
+            this["Telemetry"] = value;
+        }
+    }
+    
+    [global::System.Configuration.UserScopedSettingAttribute()]
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+    [global::System.Configuration.DefaultSettingValueAttribute("6")]
+    public float TextureVisibilityZoomLevel {
+        get {
+            return ((float)(this["TextureVisibilityZoomLevel"]));
+        }
+        set {
+            this["TextureVisibilityZoomLevel"] = value;
+        }
+    }
+    
+    [global::System.Configuration.UserScopedSettingAttribute()]
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+    [global::System.Configuration.DefaultSettingValueAttribute("True")]
+    public bool ShowNews {
+        get {
+            return ((bool)(this["ShowNews"]));
+        }
+        set {
+            this["ShowNews"] = value;
+        }
+    }
+    
+    [global::System.Configuration.UserScopedSettingAttribute()]
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+    [global::System.Configuration.DefaultSettingValueAttribute("False")]
+    public bool RealisticColors {
+        get {
+            return ((bool)(this["RealisticColors"]));
+        }
+        set {
+            this["RealisticColors"] = value;
         }
     }
 }

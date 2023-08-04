@@ -9,80 +9,79 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Shapes;
 
-namespace TEdit.UI.Xaml
+namespace TEdit.UI.Xaml;
+
+
+/// <summary>
+/// Interaction logic for ScrollViewerThumbnail.xaml
+/// </summary>
+public class ScrollViewerThumbnail : UserControl
 {
+    private const string PART_Highlight = "PART_Highlight";
+    private const string PART_View = "PART_View";
 
-    /// <summary>
-    /// Interaction logic for ScrollViewerThumbnail.xaml
-    /// </summary>
-    public class ScrollViewerThumbnail : UserControl
+    public static readonly DependencyProperty ScrollViewerProperty =
+        DependencyProperty.Register("ScrollViewer", typeof (ScrollViewer), typeof (ScrollViewerThumbnail),
+                                    new UIPropertyMetadata(null));
+
+    public static readonly DependencyProperty HighlightFillProperty =
+        DependencyProperty.Register("HighlightFill",
+                                    typeof (Brush),
+                                    typeof (ScrollViewerThumbnail),
+                                    new UIPropertyMetadata(new SolidColorBrush(Color.FromArgb(128, 255, 255, 0))));
+
+    static ScrollViewerThumbnail()
     {
-        private const string PART_Highlight = "PART_Highlight";
-        private const string PART_View = "PART_View";
+        DefaultStyleKeyProperty.OverrideMetadata(typeof (ScrollViewerThumbnail),
+                                                 new FrameworkPropertyMetadata(typeof (ScrollViewerThumbnail)));
+    }
 
-        public static readonly DependencyProperty ScrollViewerProperty =
-            DependencyProperty.Register("ScrollViewer", typeof (ScrollViewer), typeof (ScrollViewerThumbnail),
-                                        new UIPropertyMetadata(null));
+    public ScrollViewer ScrollViewer
+    {
+        get { return (ScrollViewer) GetValue(ScrollViewerProperty); }
+        set { SetValue(ScrollViewerProperty, value); }
+    }
 
-        public static readonly DependencyProperty HighlightFillProperty =
-            DependencyProperty.Register("HighlightFill",
-                                        typeof (Brush),
-                                        typeof (ScrollViewerThumbnail),
-                                        new UIPropertyMetadata(new SolidColorBrush(Color.FromArgb(128, 255, 255, 0))));
+    // Using a DependencyProperty as the backing store for ScrollViewer. This enables animation, styling, binding, etc...
 
-        static ScrollViewerThumbnail()
-        {
-            DefaultStyleKeyProperty.OverrideMetadata(typeof (ScrollViewerThumbnail),
-                                                     new FrameworkPropertyMetadata(typeof (ScrollViewerThumbnail)));
-        }
+    public Brush HighlightFill
+    {
+        get { return (Brush) GetValue(HighlightFillProperty); }
+        set { SetValue(HighlightFillProperty, value); }
+    }
 
-        public ScrollViewer ScrollViewer
-        {
-            get { return (ScrollViewer) GetValue(ScrollViewerProperty); }
-            set { SetValue(ScrollViewerProperty, value); }
-        }
+    public override void OnApplyTemplate()
+    {
+        base.OnApplyTemplate();
 
-        // Using a DependencyProperty as the backing store for ScrollViewer. This enables animation, styling, binding, etc...
+        var partHighlight = (Thumb) Template.FindName(PART_Highlight, this);
+        partHighlight.DragDelta += PartHighlightDragDelta;
 
-        public Brush HighlightFill
-        {
-            get { return (Brush) GetValue(HighlightFillProperty); }
-            set { SetValue(HighlightFillProperty, value); }
-        }
+        var partView = (Rectangle) Template.FindName(PART_View, this);
+        partView.MouseDown += PartViewMouseDown;
+        //partView.MouseMove += partView_MouseMove;
+    }
 
-        public override void OnApplyTemplate()
-        {
-            base.OnApplyTemplate();
-
-            var partHighlight = (Thumb) Template.FindName(PART_Highlight, this);
-            partHighlight.DragDelta += PartHighlightDragDelta;
-
-            var partView = (Rectangle) Template.FindName(PART_View, this);
-            partView.MouseDown += PartViewMouseDown;
-            //partView.MouseMove += partView_MouseMove;
-        }
-
-        private void PartViewMouseMove(object sender, MouseEventArgs e)
-        {
-            if (e.LeftButton == MouseButtonState.Pressed)
-            {
-                Point loc = e.GetPosition((IInputElement) sender);
-                ScrollViewer.ScrollToVerticalOffset(loc.Y);
-                ScrollViewer.ScrollToHorizontalOffset(loc.X);
-            }
-        }
-
-        private void PartViewMouseDown(object sender, MouseButtonEventArgs e)
+    private void PartViewMouseMove(object sender, MouseEventArgs e)
+    {
+        if (e.LeftButton == MouseButtonState.Pressed)
         {
             Point loc = e.GetPosition((IInputElement) sender);
             ScrollViewer.ScrollToVerticalOffset(loc.Y);
             ScrollViewer.ScrollToHorizontalOffset(loc.X);
         }
+    }
 
-        private void PartHighlightDragDelta(object sender, DragDeltaEventArgs e)
-        {
-            ScrollViewer.ScrollToVerticalOffset(ScrollViewer.VerticalOffset + e.VerticalChange);
-            ScrollViewer.ScrollToHorizontalOffset(ScrollViewer.HorizontalOffset + e.HorizontalChange);
-        }
+    private void PartViewMouseDown(object sender, MouseButtonEventArgs e)
+    {
+        Point loc = e.GetPosition((IInputElement) sender);
+        ScrollViewer.ScrollToVerticalOffset(loc.Y);
+        ScrollViewer.ScrollToHorizontalOffset(loc.X);
+    }
+
+    private void PartHighlightDragDelta(object sender, DragDeltaEventArgs e)
+    {
+        ScrollViewer.ScrollToVerticalOffset(ScrollViewer.VerticalOffset + e.VerticalChange);
+        ScrollViewer.ScrollToHorizontalOffset(ScrollViewer.HorizontalOffset + e.HorizontalChange);
     }
 }

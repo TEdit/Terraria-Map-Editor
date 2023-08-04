@@ -1,36 +1,35 @@
 ﻿using System;
 using System.Threading.Tasks;
 
-namespace TEdit.Framework.Threading
+namespace TEdit.Framework.Threading;
+
+public static class TaskFactoryHelper
 {
-    public static class TaskFactoryHelper
+    public static TaskFactory UiTaskFactory
     {
-        public static TaskFactory UiTaskFactory
+        get;
+        private set;
+    }
+
+    public static TaskScheduler UiTaskScheduler
+    {
+        get;
+        private set;
+    }
+
+    public static Task ExecuteUiTask(Action action)
+    {
+        return UiTaskFactory.StartNew(action);
+    }
+
+    public static void Initialize()
+    {
+        if (UiTaskFactory != null)
         {
-            get;
-            private set;
+            return;
         }
 
-        public static TaskScheduler UiTaskScheduler
-        {
-            get;
-            private set;
-        }
-
-        public static Task ExecuteUiTask(Action action)
-        {
-            return UiTaskFactory.StartNew(action);
-        }
-
-        public static void Initialize()
-        {
-            if (UiTaskFactory != null)
-            {
-                return;
-            }
-
-            UiTaskScheduler = TaskScheduler.FromCurrentSynchronizationContext();
-            UiTaskFactory = new TaskFactory(UiTaskScheduler);
-        }
+        UiTaskScheduler = TaskScheduler.FromCurrentSynchronizationContext();
+        UiTaskFactory = new TaskFactory(UiTaskScheduler);
     }
 }

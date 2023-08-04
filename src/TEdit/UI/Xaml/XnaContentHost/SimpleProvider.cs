@@ -8,24 +8,23 @@
 using System;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace TEdit.UI.Xaml.XnaContentHost
-{
-    public class SimpleProvider : IServiceProvider
-    {
-        private readonly IGraphicsDeviceService _graphicsDeviceService;
-        public SimpleProvider(IGraphicsDeviceService graphicsDeviceService)
-        {
-            _graphicsDeviceService = graphicsDeviceService;
-        }
-        public Object GetService(Type type)
-        {
-            if (type == typeof(IGraphicsDeviceService))
-            {
-                if (_graphicsDeviceService != null)
-                    return _graphicsDeviceService;
-            }
+namespace TEdit.UI.Xaml.XnaContentHost;
 
-            return null;
+public class SimpleProvider : IServiceProvider
+{
+    private readonly IGraphicsDeviceService _graphicsDeviceService;
+    public SimpleProvider(IGraphicsDeviceService graphicsDeviceService)
+    {
+        _graphicsDeviceService = graphicsDeviceService;
+    }
+    public Object GetService(Type type)
+    {
+        if (type == typeof(IGraphicsDeviceService))
+        {
+            if (_graphicsDeviceService != null)
+                return _graphicsDeviceService;
         }
+
+        return null;
     }
 }

@@ -1,15 +1,14 @@
 ﻿using System.Windows.Controls;
 
-namespace TEdit.View
+namespace TEdit.View;
+
+/// <summary>
+/// Interaction logic for NpcNameEditor.xaml
+/// </summary>
+public partial class NpcNameEditor : UserControl
 {
-    /// <summary>
-    /// Interaction logic for NpcNameEditor.xaml
-    /// </summary>
-    public partial class NpcNameEditor : UserControl
+    public NpcNameEditor()
     {
-        public NpcNameEditor()
-        {
-            InitializeComponent();
-        }
+        InitializeComponent();
     }
 }

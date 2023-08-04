@@ -1,15 +1,14 @@
 ﻿using System.Windows.Controls;
 
-namespace TEdit.View
+namespace TEdit.View;
+
+/// <summary>
+/// Interaction logic for WorldAnalysis.xaml
+/// </summary>
+public partial class WorldAnalysis : UserControl
 {
-    /// <summary>
-    /// Interaction logic for WorldAnalysis.xaml
-    /// </summary>
-    public partial class WorldAnalysis : UserControl
+    public WorldAnalysis()
     {
-        public WorldAnalysis()
-        {
-            InitializeComponent();
-        }
+        InitializeComponent();
     }
 }

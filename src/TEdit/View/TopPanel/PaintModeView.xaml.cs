@@ -1,15 +1,14 @@
 ﻿using System.Windows.Controls;
 
-namespace TEdit.View
+namespace TEdit.View;
+
+/// <summary>
+/// Interaction logic for PaintModeView.xaml
+/// </summary>
+public partial class PaintModeView : UserControl
 {
-    /// <summary>
-    /// Interaction logic for PaintModeView.xaml
-    /// </summary>
-    public partial class PaintModeView : UserControl
+    public PaintModeView()
     {
-        public PaintModeView()
-        {
-            InitializeComponent();
-        }
+        InitializeComponent();
     }
 }

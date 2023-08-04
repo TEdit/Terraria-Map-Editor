@@ -1,10 +1,9 @@
-﻿namespace TEdit.Editor.Tools
+﻿namespace TEdit.Editor.Tools;
+
+public enum ToolType
 {
-    public enum ToolType
-    {
-        Other,
-        Brush,
-        Pixel,
-        Npc
-    }
+    Other,
+    Brush,
+    Pixel,
+    Npc
 }

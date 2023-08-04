@@ -1,21 +1,20 @@
 ﻿using System.Linq;
 using TEdit.Common.Reactive;
 
-namespace TEdit.Terraria.Objects
-{
-    public class NpcName : ObservableObject
-    {
-        public NpcName()
-        {
-            
-        }
-        public NpcName(int id, string name)
-        {
-            Id = id;
-            Name = name;
-        }
+namespace TEdit.Terraria.Objects;
 
-        public int Id { get; set; }
-        public string Name { get; set; }
+public class NpcName : ObservableObject
+{
+    public NpcName()
+    {
+        
     }
+    public NpcName(int id, string name)
+    {
+        Id = id;
+        Name = name;
+    }
+
+    public int Id { get; set; }
+    public string Name { get; set; }
 }

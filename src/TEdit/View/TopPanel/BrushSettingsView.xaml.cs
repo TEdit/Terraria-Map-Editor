@@ -1,15 +1,14 @@
 ﻿using System.Windows.Controls;
 
-namespace TEdit.View
+namespace TEdit.View;
+
+/// <summary>
+/// Interaction logic for ToolPropertiesView.xaml
+/// </summary>
+public partial class BrushSettingsView : UserControl
 {
-    /// <summary>
-    /// Interaction logic for ToolPropertiesView.xaml
-    /// </summary>
-    public partial class BrushSettingsView : UserControl
+    public BrushSettingsView()
     {
-        public BrushSettingsView()
-        {
-            InitializeComponent();
-        }
+        InitializeComponent();
     }
 }

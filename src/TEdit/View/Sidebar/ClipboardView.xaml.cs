@@ -1,15 +1,14 @@
 ﻿using System.Windows.Controls;
 
-namespace TEdit.View
+namespace TEdit.View;
+
+/// <summary>
+/// Interaction logic for ClipboardView.xaml
+/// </summary>
+public partial class ClipboardView : UserControl
 {
-    /// <summary>
-    /// Interaction logic for ClipboardView.xaml
-    /// </summary>
-    public partial class ClipboardView : UserControl
+    public ClipboardView()
     {
-        public ClipboardView()
-        {
-            InitializeComponent();
-        }
+        InitializeComponent();
     }
 }

@@ -1,8 +1,7 @@
-﻿namespace TEdit.Editor.Plugins
+﻿namespace TEdit.Editor.Plugins;
+
+public interface IPlugin
 {
-    public interface IPlugin
-    {
-        string Name { get; }
-        void Execute();
-    }
+    string Name { get; }
+    void Execute();
 }

@@ -2,9 +2,8 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace TEdit.Configuration
+namespace TEdit.Configuration;
+
+public class SettingsManager
 {
-    public class SettingsManager
-    {
-    }
 }

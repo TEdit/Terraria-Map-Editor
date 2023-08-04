@@ -1,15 +1,14 @@
 ﻿using System.Windows.Controls;
 
-namespace TEdit.View
+namespace TEdit.View;
+
+/// <summary>
+/// Interaction logic for WorldPropertiesView.xaml
+/// </summary>
+public partial class WorldPropertiesView : UserControl
 {
-    /// <summary>
-    /// Interaction logic for WorldPropertiesView.xaml
-    /// </summary>
-    public partial class WorldPropertiesView : UserControl
+    public WorldPropertiesView()
     {
-        public WorldPropertiesView()
-        {
-            InitializeComponent();
-        }
+        InitializeComponent();
     }
 }

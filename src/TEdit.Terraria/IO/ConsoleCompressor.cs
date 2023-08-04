@@ -16,70 +16,69 @@ using System;
 using System.IO;
 
 
-namespace TEdit.Terraria.IO
+namespace TEdit.Terraria.IO;
+
+public static class ConsoleCompressor
 {
-    public static class ConsoleCompressor
+    private static int BUFFER_SIZE = 16384;
+
+    public static void CompressStream(FileStream stream)
     {
-        private static int BUFFER_SIZE = 16384;
-
-        public static void CompressStream(FileStream stream)
+        stream.Position = 0;
+        using (var ms = new MemoryStream())
         {
-            stream.Position = 0;
-            using (var ms = new MemoryStream())
+            stream.CopyTo(ms);
+            stream.SetLength(0);
+
+            using (var b = new BinaryWriter(stream))
             {
-                stream.CopyTo(ms);
-                stream.SetLength(0);
+                b.Write(0x1AA2227E); // Signature
+                b.Write((int)ms.Length);
 
-                using (var b = new BinaryWriter(stream))
+                // TODO: use net7.0 ZLibStream
+                using (var compressor = new ZlibStream(stream, CompressionMode.Compress, CompressionLevel.BestCompression))
                 {
-                    b.Write(0x1AA2227E); // Signature
-                    b.Write((int)ms.Length);
+                    ms.Position = 0;
 
-                    // TODO: use net7.0 ZLibStream
-                    using (var compressor = new ZlibStream(stream, CompressionMode.Compress, CompressionLevel.BestCompression))
+                    byte[] buffer = new byte[BUFFER_SIZE];
+                    int n;
+                    while ((n = ms.Read(buffer, 0, BUFFER_SIZE)) != 0)
                     {
-                        ms.Position = 0;
-
-                        byte[] buffer = new byte[BUFFER_SIZE];
-                        int n;
-                        while ((n = ms.Read(buffer, 0, BUFFER_SIZE)) != 0)
-                        {
-                            compressor.Write(buffer, 0, n);
-                        }
+                        compressor.Write(buffer, 0, n);
                     }
                 }
             }
         }
+    }
 
-        public static MemoryStream DecompressStream(FileStream stream)
+    public static MemoryStream DecompressStream(FileStream stream)
+    {
+        using (var br = new BinaryReader(stream))
         {
-            using (var br = new BinaryReader(stream))
+            int signature = br.ReadInt32(); // 0x1AA2227E
+            int outputSize = br.ReadInt32();
+
+            var ms = new MemoryStream();
+
+            var decompressor = new ZlibStream(ms, CompressionMode.Decompress, CompressionLevel.BestCompression);
+
+            byte[] buffer = new byte[BUFFER_SIZE];
+            int n;
+            while ((n = stream.Read(buffer, 0, BUFFER_SIZE)) != 0)
             {
-                int signature = br.ReadInt32(); // 0x1AA2227E
-                int outputSize = br.ReadInt32();
-
-                var ms = new MemoryStream();
-
-                var decompressor = new ZlibStream(ms, CompressionMode.Decompress, CompressionLevel.BestCompression);
-
-                byte[] buffer = new byte[BUFFER_SIZE];
-                int n;
-                while ((n = stream.Read(buffer, 0, BUFFER_SIZE)) != 0)
-                {
-                    decompressor.Write(buffer, 0, n);
-                }
-
-                ms.Position = 0;
-                return ms;
+                decompressor.Write(buffer, 0, n);
             }
-        }
 
-        public static bool IsCompressed(FileStream stream)
-        {
-            byte[] magic = new byte[4];
-            stream.Read(magic, 0, 4);
-            stream.Position = 0;
-            return BitConverter.ToInt32(magic, 0) == 0x1AA2227E;
+            ms.Position = 0;
+            return ms;
         }
+    }
+
+    public static bool IsCompressed(FileStream stream)
+    {
+        byte[] magic = new byte[4];
+        stream.Read(magic, 0, 4);
+        stream.Position = 0;
+        return BitConverter.ToInt32(magic, 0) == 0x1AA2227E;
     }
 }

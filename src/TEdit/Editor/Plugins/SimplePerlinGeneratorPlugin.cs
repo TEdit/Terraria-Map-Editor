@@ -3,111 +3,110 @@ using Microsoft.Xna.Framework;
 using TEdit.Geometry;
 using TEdit.ViewModel;
 
-namespace TEdit.Editor.Plugins
+namespace TEdit.Editor.Plugins;
+
+public sealed class SimplePerlinGeneratorPlugin : BasePlugin
 {
-    public sealed class SimplePerlinGeneratorPlugin : BasePlugin
+    private PerlinNoise _noiseGenerator;
+    public SimplePerlinGeneratorPlugin(WorldViewModel worldViewModel)
+        : base(worldViewModel)
     {
-        private PerlinNoise _noiseGenerator;
-        public SimplePerlinGeneratorPlugin(WorldViewModel worldViewModel)
-            : base(worldViewModel)
+        _noiseGenerator = new PerlinNoise(1);
+        Name = "Simple Ore Generator";
+    }
+
+    public override void Execute()
+    {
+        if (_wvm.CurrentWorld == null)
+            return;
+
+        // refresh generator if needed
+        //if (_noiseGenerator.Seed != _wvm.CurrentWorld.WorldId)
+        //{
+        _noiseGenerator = new PerlinNoise((int)DateTime.Now.Ticks);
+        //}
+
+        var area = new RectangleInt32(0, (int)_wvm.CurrentWorld.GroundLevel, _wvm.CurrentWorld.TilesWide, _wvm.CurrentWorld.TilesHigh - (int)_wvm.CurrentWorld.GroundLevel - 196);
+
+        if (_wvm.Selection.IsActive)
         {
-            _noiseGenerator = new PerlinNoise(1);
-            Name = "Simple Ore Generator";
+
+            var worldSize = new RectangleInt32(0, 0, _wvm.CurrentWorld.TilesWide, _wvm.CurrentWorld.TilesHigh);
+            var selection = _wvm.Selection.SelectionArea;
+            if (!RectangleInt32.Intersect(ref selection, ref worldSize, out area))
+            {
+                return;
+            }
         }
 
-        public override void Execute()
+        if (area.Width <= 0 || area.Height <= 0)
+            return;
+
+        var tile = (ushort)_wvm.TilePicker.Tile;
+        for (int x = area.Left; x < area.Right; x++)
         {
-            if (_wvm.CurrentWorld == null)
-                return;
-
-            // refresh generator if needed
-            //if (_noiseGenerator.Seed != _wvm.CurrentWorld.WorldId)
-            //{
-            _noiseGenerator = new PerlinNoise((int)DateTime.Now.Ticks);
-            //}
-
-            var area = new RectangleInt32(0, (int)_wvm.CurrentWorld.GroundLevel, _wvm.CurrentWorld.TilesWide, _wvm.CurrentWorld.TilesHigh - (int)_wvm.CurrentWorld.GroundLevel - 196);
-
-            if (_wvm.Selection.IsActive)
+            for (int y = area.Top; y < area.Bottom; y++)
             {
-
-                var worldSize = new RectangleInt32(0, 0, _wvm.CurrentWorld.TilesWide, _wvm.CurrentWorld.TilesHigh);
-                var selection = _wvm.Selection.SelectionArea;
-                if (!RectangleInt32.Intersect(ref selection, ref worldSize, out area))
+                var result = TestOctaveGenerator(x, y);
+                if (result > 0.6 && result < 0.75)
                 {
-                    return;
-                }
-            }
+                    var curTile = _wvm.CurrentWorld.Tiles[x, y];
 
-            if (area.Width <= 0 || area.Height <= 0)
-                return;
+                    // Only replace if the tile is dirt or stone and if the wall is empty, stone or dirt.
 
-            var tile = (ushort)_wvm.TilePicker.Tile;
-            for (int x = area.Left; x < area.Right; x++)
-            {
-                for (int y = area.Top; y < area.Bottom; y++)
-                {
-                    var result = TestOctaveGenerator(x, y);
-                    if (result > 0.6 && result < 0.75)
+                    if (curTile.IsActive && _wvm.TilePicker.TileMaskMode == MaskMode.Match && curTile.Type != _wvm.TilePicker.TileMask)
                     {
-                        var curTile = _wvm.CurrentWorld.Tiles[x, y];
-
-                        // Only replace if the tile is dirt or stone and if the wall is empty, stone or dirt.
-
-                        if (curTile.IsActive && _wvm.TilePicker.TileMaskMode == MaskMode.Match && curTile.Type != _wvm.TilePicker.TileMask)
-                        {
-                            // test mask
-                            continue;
-                        }
-
-                        if (curTile.IsActive && _wvm.TilePicker.TileMaskMode == MaskMode.NotMatching && curTile.Type == _wvm.TilePicker.TileMask)
-                        {
-                            // test inverted mask
-                            continue;
-                        }
-
-                        if (!curTile.IsActive && _wvm.TilePicker.TileMaskMode == MaskMode.Empty)
-                        {
-                            // if mask is empty and tile is active, skip
-                            continue;
-                        }
-
-                        if (_wvm.TilePicker.TileMaskMode == MaskMode.Off && !(curTile.Type >= 0 && curTile.Type <= 1 && (curTile.Wall >= 0 && curTile.Wall <= 2)))
-                        {
-                            // if no mask, only match dirt or stone
-                            continue;
-                        }
-
-                        _wvm.UndoManager.SaveTile(x, y);
-                        _wvm.CurrentWorld.Tiles[x, y].IsActive = true;
-                        _wvm.CurrentWorld.Tiles[x, y].Type = tile;
-                        _wvm.UpdateRenderPixel(x, y);
-
+                        // test mask
+                        continue;
                     }
+
+                    if (curTile.IsActive && _wvm.TilePicker.TileMaskMode == MaskMode.NotMatching && curTile.Type == _wvm.TilePicker.TileMask)
+                    {
+                        // test inverted mask
+                        continue;
+                    }
+
+                    if (!curTile.IsActive && _wvm.TilePicker.TileMaskMode == MaskMode.Empty)
+                    {
+                        // if mask is empty and tile is active, skip
+                        continue;
+                    }
+
+                    if (_wvm.TilePicker.TileMaskMode == MaskMode.Off && !(curTile.Type >= 0 && curTile.Type <= 1 && (curTile.Wall >= 0 && curTile.Wall <= 2)))
+                    {
+                        // if no mask, only match dirt or stone
+                        continue;
+                    }
+
+                    _wvm.UndoManager.SaveTile(x, y);
+                    _wvm.CurrentWorld.Tiles[x, y].IsActive = true;
+                    _wvm.CurrentWorld.Tiles[x, y].Type = tile;
+                    _wvm.UpdateRenderPixel(x, y);
+
                 }
             }
-            _wvm.UndoManager.SaveUndo();
         }
+        _wvm.UndoManager.SaveUndo();
+    }
 
-        private float TestOctaveGenerator(int worldX, int worldY)
+    private float TestOctaveGenerator(int worldX, int worldY)
+    {
+        float result = 0f;
+
+        int octaves = 5;
+        float amplitude = 1f;
+        float persistance = 0.35f;
+        float frequency = 0.04f;
+
+        for (int i = 0; i < octaves; i++)
         {
-            float result = 0f;
-
-            int octaves = 5;
-            float amplitude = 1f;
-            float persistance = 0.35f;
-            float frequency = 0.04f;
-
-            for (int i = 0; i < octaves; i++)
-            {
-                result += _noiseGenerator.Noise(worldX * frequency, worldY * frequency) * amplitude;
-                amplitude *= persistance;
-                frequency *= 2.0f;
-            }
-
-            if (result < 0) result = 0.0f;
-            if (result > 1) result = 1.0f;
-            return result;
+            result += _noiseGenerator.Noise(worldX * frequency, worldY * frequency) * amplitude;
+            amplitude *= persistance;
+            frequency *= 2.0f;
         }
+
+        if (result < 0) result = 0.0f;
+        if (result > 1) result = 1.0f;
+        return result;
     }
 }

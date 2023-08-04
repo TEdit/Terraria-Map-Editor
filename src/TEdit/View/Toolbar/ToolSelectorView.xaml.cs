@@ -1,15 +1,14 @@
 ﻿using System.Windows.Controls;
 
-namespace TEdit.View
+namespace TEdit.View;
+
+/// <summary>
+/// Interaction logic for ToolSelectorView.xaml
+/// </summary>
+public partial class ToolSelectorView : UserControl
 {
-    /// <summary>
-    /// Interaction logic for ToolSelectorView.xaml
-    /// </summary>
-    public partial class ToolSelectorView : UserControl
+    public ToolSelectorView()
     {
-        public ToolSelectorView()
-        {
-            InitializeComponent();
-        }
+        InitializeComponent();
     }
 }

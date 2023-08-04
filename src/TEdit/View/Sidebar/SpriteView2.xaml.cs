@@ -3,28 +3,27 @@ using System.Windows.Data;
 using System.Windows.Input;
 using TEdit.ViewModel;
 
-namespace TEdit.View
+namespace TEdit.View;
+
+/// <summary>
+/// Interaction logic for SpriteView.xaml
+/// </summary>
+public partial class SpriteView2 : UserControl
 {
-    /// <summary>
-    /// Interaction logic for SpriteView.xaml
-    /// </summary>
-    public partial class SpriteView2 : UserControl
+    private WorldViewModel _wvm;
+
+    public SpriteView2()
     {
-        private WorldViewModel _wvm;
+        InitializeComponent();
+        _wvm = ViewModelLocator.WorldViewModel;
+    }
 
-        public SpriteView2()
+    private void TextBox_KeyUp(object sender, KeyEventArgs e)
+    {
+        if (e.Key == Key.Enter)
         {
-            InitializeComponent();
-            _wvm = ViewModelLocator.WorldViewModel;
-        }
-
-        private void TextBox_KeyUp(object sender, KeyEventArgs e)
-        {
-            if (e.Key == Key.Enter)
-            {
-                BindingExpression binding = ((TextBox)sender).GetBindingExpression(TextBox.TextProperty);
-                binding.UpdateSource();
-            }
+            BindingExpression binding = ((TextBox)sender).GetBindingExpression(TextBox.TextProperty);
+            binding.UpdateSource();
         }
     }
 }

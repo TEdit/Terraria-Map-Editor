@@ -10,27 +10,24 @@ using TEdit.Geometry;
 using TEdit.Common;
 using TEdit.Common.Serialization;
 
-namespace TEdit.Configuration.Tests
+namespace TEdit.Configuration.Tests;
+
+public class WorldConfigurationTests
 {
-    public class WorldConfigurationTests
+
+    [Fact()]
+    public void SerializeAsJson()
     {
-
-        [Fact()]
-        public void SerializeAsJson()
-        {
-            var json = JsonSerializer.Serialize(
-                WorldConfiguration.TileProperties,
-                options: TEditJsonSerializer.DefaultOptions);
-        }
-
-        [Fact()]
-        public void DeserializeVector2Short()
-        {
-            var vector = JsonSerializer.Deserialize<Vector2Short>(
-                "[1,2]", 
-                options: TEditJsonSerializer.DefaultOptions);
-        }
+        var json = JsonSerializer.Serialize(
+            WorldConfiguration.TileProperties,
+            options: TEditJsonSerializer.DefaultOptions);
     }
 
-
+    [Fact()]
+    public void DeserializeVector2Short()
+    {
+        var vector = JsonSerializer.Deserialize<Vector2Short>(
+            "[1,2]", 
+            options: TEditJsonSerializer.DefaultOptions);
+    }
 }

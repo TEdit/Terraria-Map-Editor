@@ -1,10 +1,9 @@
-﻿namespace TEdit.Terraria
+﻿namespace TEdit.Terraria;
+
+public enum FileType : byte
 {
-    public enum FileType : byte
-    {
-        None,
-        Map,
-        World,
-        Player
-    }
+    None,
+    Map,
+    World,
+    Player
 }

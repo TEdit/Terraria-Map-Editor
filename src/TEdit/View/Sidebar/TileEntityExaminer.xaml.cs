@@ -1,15 +1,14 @@
 ﻿using System.Windows.Controls;
 
-namespace TEdit.View
+namespace TEdit.View;
+
+/// <summary>
+/// Interaction logic for TileEntityExaminer.xaml
+/// </summary>
+public partial class TileEntityExaminer : UserControl
 {
-    /// <summary>
-    /// Interaction logic for TileEntityExaminer.xaml
-    /// </summary>
-    public partial class TileEntityExaminer : UserControl
+    public TileEntityExaminer()
     {
-        public TileEntityExaminer()
-        {
-            InitializeComponent();
-        }
+        InitializeComponent();
     }
 }

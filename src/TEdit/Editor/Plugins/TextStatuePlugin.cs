@@ -13,157 +13,156 @@ using TEdit.Terraria.Editor;
 using TEdit.Terraria.Objects;
 using TEdit.ViewModel;
 
-namespace TEdit.Editor.Plugins
+namespace TEdit.Editor.Plugins;
+
+public class TextStatuePlugin : BasePlugin, INotifyPropertyChanged
 {
-    public class TextStatuePlugin : BasePlugin, INotifyPropertyChanged
+    Dictionary<char, SpriteItem> _textFrames = new();
+    private TileProperty _textStatueTileProperties;
+    private Vector2Short _size;
+
+    public TextStatuePlugin(WorldViewModel worldViewModel) : base(worldViewModel)
     {
-        Dictionary<char, SpriteItem> _textFrames = new();
-        private TileProperty _textStatueTileProperties;
-        private Vector2Short _size;
+        Name = "Generate Text Statues";
+    }
 
-        public TextStatuePlugin(WorldViewModel worldViewModel) : base(worldViewModel)
+    private ClipboardBuffer _generatedSchematic;
+    public ClipboardBuffer GeneratredSchematic
+    {
+        get { return _generatedSchematic; }
+        set { _generatedSchematic = value; OnPropertyChanged(); }
+    }
+
+    public override void Execute()
+    {
+        var view = new TextStatuePluginView();
+        view.Owner = Application.Current.MainWindow;
+
+
+        if (view.ShowDialog() == true)
         {
-            Name = "Generate Text Statues";
+            GenerateTextStatues(
+                view.ViewModel.TextValue,
+                (byte)view.ViewModel.LetterSpacing,
+                (byte)view.ViewModel.LineSpacing,
+                view.ViewModel.LineLength,
+                view.ViewModel.Justification);
+
+            _wvm.SelectedTabIndex = 3;
         }
+    }
 
-        private ClipboardBuffer _generatedSchematic;
-        public ClipboardBuffer GeneratredSchematic
+    IEnumerable<string> SplitToLines(string stringToSplit, int maximumLineLength = 64)
+    {
+        var words = stringToSplit.Split(' ');
+        StringBuilder line = new StringBuilder(400);
+
+        foreach (var word in words)
         {
-            get { return _generatedSchematic; }
-            set { _generatedSchematic = value; OnPropertyChanged(); }
-        }
-
-        public override void Execute()
-        {
-            var view = new TextStatuePluginView();
-            view.Owner = Application.Current.MainWindow;
-
-
-            if (view.ShowDialog() == true)
+            if (line.Length + word.Length > maximumLineLength)
             {
-                GenerateTextStatues(
-                    view.ViewModel.TextValue,
-                    (byte)view.ViewModel.LetterSpacing,
-                    (byte)view.ViewModel.LineSpacing,
-                    view.ViewModel.LineLength,
-                    view.ViewModel.Justification);
-
-                _wvm.SelectedTabIndex = 3;
+                yield return line.ToString();
+                line.Clear();
             }
-        }
-
-        IEnumerable<string> SplitToLines(string stringToSplit, int maximumLineLength = 64)
-        {
-            var words = stringToSplit.Split(' ');
-            StringBuilder line = new StringBuilder(400);
-
-            foreach (var word in words)
+            else
             {
-                if (line.Length + word.Length > maximumLineLength)
-                {
-                    yield return line.ToString();
-                    line.Clear();
-                }
-                else
-                {
-                    line.Append(' ');
-                }
-
-                line.Append(word);
+                line.Append(' ');
             }
 
-            yield return line.ToString();
+            line.Append(word);
         }
 
-        public void GenerateTextStatues(
-            string text,
-            byte letterSpacing = 0,
-            byte rowSpacing = 1,
-            int splitLength = 400,
-            TextAlignment justification = TextAlignment.Left)
+        yield return line.ToString();
+    }
+
+    public void GenerateTextStatues(
+        string text,
+        byte letterSpacing = 0,
+        byte rowSpacing = 1,
+        int splitLength = 400,
+        TextAlignment justification = TextAlignment.Left)
+    {
+        if (string.IsNullOrWhiteSpace(text)) { return; }
+
+        Initialize();
+
+        string textUpper = text.ToUpperInvariant();
+
+        var linesSplit = textUpper.Split('\n');
+        var lines = new List<string>();
+
+        foreach (var line in linesSplit)
         {
-            if (string.IsNullOrWhiteSpace(text)) { return; }
+            lines.AddRange(SplitToLines(line, splitLength));
+        }
 
-            Initialize();
 
-            string textUpper = text.ToUpperInvariant();
+        if (lines == null || lines.Count == 0) { return; }
+        int lineCount = lines.Count;
+        int maxLineWidth = lines.Max(x => x.Length);
 
-            var linesSplit = textUpper.Split('\n');
-            var lines = new List<string>();
+        int height = (_size.Height * lineCount) + (rowSpacing * (lineCount - 1));
+        int width = (_size.Width * maxLineWidth) + (letterSpacing * (maxLineWidth - 1));
 
-            foreach (var line in linesSplit)
+        Vector2Int32 _generatedSchematicSize = new Vector2Int32(width, height);
+        _generatedSchematic = new(_generatedSchematicSize, true);
+
+        int y = 0;
+        foreach (var line in lines)
+        {
+            // justify the text for the line
+            var start = justification switch
             {
-                lines.AddRange(SplitToLines(line, splitLength));
-            }
+                TextAlignment.Left => 0,
+                TextAlignment.Center => (int)Math.Ceiling((maxLineWidth - line.Length) / 2.0),
+                TextAlignment.Right => maxLineWidth - line.Length,
+                _ => 0,
+            };
 
 
-            if (lines == null || lines.Count == 0) { return; }
-            int lineCount = lines.Count;
-            int maxLineWidth = lines.Max(x => x.Length);
+            int x = _size.Width * start;
 
-            int height = (_size.Height * lineCount) + (rowSpacing * (lineCount - 1));
-            int width = (_size.Width * maxLineWidth) + (letterSpacing * (maxLineWidth - 1));
-
-            Vector2Int32 _generatedSchematicSize = new Vector2Int32(width, height);
-            _generatedSchematic = new(_generatedSchematicSize, true);
-
-            int y = 0;
-            foreach (var line in lines)
+            foreach (char c in line)
             {
-                // justify the text for the line
-                var start = justification switch
+                if (_textFrames.TryGetValue(c, out var sprite))
                 {
-                    TextAlignment.Left => 0,
-                    TextAlignment.Center => (int)Math.Ceiling((maxLineWidth - line.Length) / 2.0),
-                    TextAlignment.Right => maxLineWidth - line.Length,
-                    _ => 0,
-                };
-
-
-                int x = _size.Width * start;
-
-                foreach (char c in line)
-                {
-                    if (_textFrames.TryGetValue(c, out var sprite))
-                    {
-                        sprite.Place(x, y, _generatedSchematic);
-                    }
-
-                    x += _size.Width + letterSpacing;
+                    sprite.Place(x, y, _generatedSchematic);
                 }
 
-                y += _size.Height + rowSpacing;
+                x += _size.Width + letterSpacing;
             }
 
-
-            var bufferRendered = new ClipboardBufferPreview(_generatedSchematic);
-            _wvm.Clipboard.LoadedBuffers.Add(bufferRendered);
-            _wvm.ClipboardSetActiveCommand.Execute(bufferRendered);
+            y += _size.Height + rowSpacing;
         }
 
-        private void Initialize()
+
+        var bufferRendered = new ClipboardBufferPreview(_generatedSchematic);
+        _wvm.Clipboard.LoadedBuffers.Add(bufferRendered);
+        _wvm.ClipboardSetActiveCommand.Execute(bufferRendered);
+    }
+
+    private void Initialize()
+    {
+        if (_textStatueTileProperties == null)
         {
-            if (_textStatueTileProperties == null)
+            _textStatueTileProperties = WorldConfiguration.TileProperties[337];
+            var sprite = WorldConfiguration.Sprites2.FirstOrDefault(x => x.Tile == (uint)_textStatueTileProperties.Id);
+
+            _size = _textStatueTileProperties.FrameSize.FirstOrDefault();
+
+            foreach (var frame in sprite.Styles)
             {
-                _textStatueTileProperties = WorldConfiguration.TileProperties[337];
-                var sprite = WorldConfiguration.Sprites2.FirstOrDefault(x => x.Tile == (uint)_textStatueTileProperties.Id);
-
-                _size = _textStatueTileProperties.FrameSize.FirstOrDefault();
-
-                foreach (var frame in sprite.Styles)
-                {
-                    char c = frame.Name[13]; // [13] - skips the first 13 chars of the string.
-                    _textFrames[c] = frame;
-                }
+                char c = frame.Name[13]; // [13] - skips the first 13 chars of the string.
+                _textFrames[c] = frame;
             }
         }
+    }
 
-        public new event PropertyChangedEventHandler PropertyChanged;
-        // Create the OnPropertyChanged method to raise the event
-        // The calling member's name will be used as the parameter.
-        protected void OnPropertyChanged([CallerMemberName] string name = null)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
-        }
+    public new event PropertyChangedEventHandler PropertyChanged;
+    // Create the OnPropertyChanged method to raise the event
+    // The calling member's name will be used as the parameter.
+    protected void OnPropertyChanged([CallerMemberName] string name = null)
+    {
+        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
     }
 }

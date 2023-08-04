@@ -1,11 +1,10 @@
-﻿namespace TEdit.Configuration
+﻿namespace TEdit.Configuration;
+
+public enum MorphLevel
 {
-    public enum MorphLevel
-    {
-        Sky,
-        Dirt,
-        Rock,
-        DeepRock,
-        Hell
-    }
+    Sky,
+    Dirt,
+    Rock,
+    DeepRock,
+    Hell
 }
