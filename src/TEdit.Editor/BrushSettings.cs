@@ -47,7 +47,6 @@ public class BrushSettings : ObservableObject
         OnBrushChanged(this, new EventArgs());
     }
 
-
     public int MaxWidth { get { return _maxWidth; } }
     public int MaxHeight { get { return _maxHeight; } }
     public int MinWidth { get { return _minWidth; } }

@@ -15,7 +15,6 @@ using Ionic.Zlib;
 using System;
 using System.IO;
 
-
 namespace TEdit.Terraria.IO;
 
 public static class ConsoleCompressor
