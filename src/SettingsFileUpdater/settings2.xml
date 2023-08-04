@@ -2362,7 +2362,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="130,0" Variety="Sponge" />
       </Frames>
     </Tile>
-    <Tile Id="82" Color="#FFFF7800" Name="Herb Seeds" Framed="true" UseFrameName="true" FrameNamePostfix="seed" >
+    <Tile Id="82" Color="#FFFF7800" Name="Herb Seeds" Framed="true" UseFrameName="true" FrameNameSuffix="seed" >
       <Frames>
         <Frame UV="0,0" Name="Daybloom" growsOn="2,78" />
         <Frame UV="18,0" Name="Moonglow" growsOn="60,78" />
@@ -2384,7 +2384,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Frame UV="108,0" Name="Shiverthorn" growsOn="147,161" />
       </Frames>
     </Tile>
-    <Tile Id="84" Color="#FFFF7800" Name="Herb Bloom" Framed="true" Light="true" UseFrameName="true" FrameNamePostfix="bloom" >
+    <Tile Id="84" Color="#FFFF7800" Name="Herb Bloom" Framed="true" Light="true" UseFrameName="true" FrameNameSuffix="bloom" >
       <Frames>
         <Frame UV="0,0" Name="Daybloom" growsOn="2,78" />
         <Frame UV="18,0" Name="Moonglow" growsOn="60,78" />
@@ -11610,7 +11610,7 @@ Single tile object; may contain Frame tags. Has the following properties:
  it usually boils Top to trial-and-error and seeing if the world file can't be read.)
 
  * useFrameName - Default is false; if true, isFramed is required.  When mousing over tiles, display the frame name rather than the tile name.
- * frameNamePostfix - Default is empty.  When useFrameName is true, append a postfix to the display name.
+ * FrameNameSuffix - Default is empty.  When useFrameName is true, append a postfix to the display name.
 
  * size - Required if not default; default is "1,1". This is the width and height of tile
  objects that span multiple tiles. If this property is beyond "1,1", then isFramed MUST be true.

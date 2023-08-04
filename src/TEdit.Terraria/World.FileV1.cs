@@ -3,7 +3,7 @@ using System.ComponentModel;
 using TEdit.Utility;
 using TEdit.Helper;
 using TEdit.Terraria.Objects;
-using Vector2 = TEdit.Geometry.Vector2;
+using Vector2 = TEdit.Geometry.Vector2Float;
 using System;
 using System.Collections.ObjectModel;
 using System.IO;

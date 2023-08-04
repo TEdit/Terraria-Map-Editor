@@ -15,7 +15,7 @@ using System;
 namespace TEdit.Geometry;
 
 [Serializable]
-public struct Vector4
+public struct Vector4Float
 {
 
     public float X;
@@ -23,7 +23,7 @@ public struct Vector4
     public float Z;
     public float W;
 
-    public Vector4(float x, float y, float z, float w)
+    public Vector4Float(float x, float y, float z, float w)
         : this()
     {
         X = x;
@@ -37,9 +37,9 @@ public struct Vector4
         return $"({X:0.000},{Y:0.000},{Z:0.000},{W:0.000})";
     }
 
-    public static bool Parse(string text, out Vector4 vector)
+    public static bool Parse(string text, out Vector4Float vector)
     {
-        vector = new Vector4();
+        vector = new Vector4Float();
         if (string.IsNullOrWhiteSpace(text)) return false;
 
         var split = text.Split(',', 'x');
@@ -51,31 +51,31 @@ public struct Vector4
             int.TryParse(split[3], out w))
             return false;
 
-        vector = new Vector4(x, y, y, z);
+        vector = new Vector4Float(x, y, y, z);
         return true;
     }
 
-    public static Vector4 operator -(Vector4 a, Vector4 b)
+    public static Vector4Float operator -(Vector4Float a, Vector4Float b)
     {
-        return new Vector4(a.X - b.X, a.Y - b.Y, a.Z - b.Z, a.W - b.W);
+        return new Vector4Float(a.X - b.X, a.Y - b.Y, a.Z - b.Z, a.W - b.W);
     }
 
-    public static Vector4 operator +(Vector4 a, Vector4 b)
+    public static Vector4Float operator +(Vector4Float a, Vector4Float b)
     {
-        return new Vector4(a.X + b.X, a.Y + b.Y, a.Z + b.Z, a.W + b.W);
+        return new Vector4Float(a.X + b.X, a.Y + b.Y, a.Z + b.Z, a.W + b.W);
     }
 
-    public static Vector4 operator *(Vector4 a, float scale)
+    public static Vector4Float operator *(Vector4Float a, float scale)
     {
-        return new Vector4(a.X * scale, a.Y * scale, a.Z * scale, a.W * scale);
+        return new Vector4Float(a.X * scale, a.Y * scale, a.Z * scale, a.W * scale);
     }
 
-    public static Vector4 operator /(Vector4 a, float scale)
+    public static Vector4Float operator /(Vector4Float a, float scale)
     {
         if (scale == 0) { throw new DivideByZeroException(); }
-        return new Vector4(a.X / scale, a.Y / scale, a.Z / scale, a.W / scale);
+        return new Vector4Float(a.X / scale, a.Y / scale, a.Z / scale, a.W / scale);
     }
-    public bool Equals(Vector4 other)
+    public bool Equals(Vector4Float other)
     {
         return other.W.Equals(W) && other.X.Equals(X) && other.Y.Equals(Y) && other.Z.Equals(Z);
     }
@@ -83,8 +83,8 @@ public struct Vector4
     public override bool Equals(object obj)
     {
         if (ReferenceEquals(null, obj)) return false;
-        if (obj.GetType() != typeof(Vector4)) return false;
-        return Equals((Vector4)obj);
+        if (obj.GetType() != typeof(Vector4Float)) return false;
+        return Equals((Vector4Float)obj);
     }
 
     public override int GetHashCode()
@@ -99,12 +99,12 @@ public struct Vector4
         }
     }
 
-    public static bool operator ==(Vector4 left, Vector4 right)
+    public static bool operator ==(Vector4Float left, Vector4Float right)
     {
         return left.Equals(right);
     }
 
-    public static bool operator !=(Vector4 left, Vector4 right)
+    public static bool operator !=(Vector4Float left, Vector4Float right)
     {
         return !left.Equals(right);
     }

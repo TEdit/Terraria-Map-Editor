@@ -2,14 +2,31 @@
 using TEdit.Geometry;
 using TEdit.Common;
 using System.Collections.Generic;
+using System.Text.Json.Serialization;
 
 namespace TEdit.Terraria.Objects
 {
     public class TileProperty : ITile
     {
+        private readonly List<FrameProperty> _frames = new List<FrameProperty>();
+        private Vector2Short[] _frameSize = new Vector2Short[] { new Vector2Short(1, 1) };
+
         public override string ToString() => Name;
-        public Vector2Short TextureGrid { get; set; }
-        public Vector2Short FrameGap { get; set; } = new Vector2Short(0, 0);
+
+        [JsonIgnore(Condition = JsonIgnoreCondition.Never)]
+        [JsonPropertyOrder(0)]
+        public int Id { get; set; }
+
+        [JsonIgnore(Condition = JsonIgnoreCondition.Never)]
+        [JsonPropertyOrder(1)]
+        public string Name { get; set; } = "UNKNOWN";
+
+        [JsonIgnore(Condition = JsonIgnoreCondition.Never)]
+        [JsonPropertyOrder(2)]
+        public TEditColor Color { get; set; }
+
+        public Vector2Short TextureGrid { get; set; } = new Vector2Short(16, 16);
+        public Vector2Short FrameGap { get; set; } = new Vector2Short(2, 2);
         public FramePlacement Placement { get; set; }
         public bool IsAnimated { get; set; }
         public bool IsLight { get; set; }
@@ -17,11 +34,15 @@ namespace TEdit.Terraria.Objects
         public bool IsSolid { get; set; }
         public bool SaveSlope { get; set; }
         public bool HasSlopes => IsSolid || SaveSlope;
-        public List<FrameProperty> Frames { get; } = new List<FrameProperty>();
-        public TEditColor Color { get; set; }
-        public int Id { get; set; }
-        public string Name { get; set; } = "UNKNOWN";
-        public Vector2Short[] FrameSize { get; set; } = new Vector2Short[] { new Vector2Short(1, 1) };
+
+
+        public List<FrameProperty> Frames => IsFramed ? _frames : null;
+        public Vector2Short[] FrameSize
+        {
+            get => IsFramed ? _frameSize : null;
+            set => _frameSize = value;
+        }
+
         public bool IsFramed { get; set; }
         public bool IsGrass { get; set; }
         public bool IsPlatform { get; set; }
@@ -29,6 +50,7 @@ namespace TEdit.Terraria.Objects
         public bool IsStone { get; set; }
         public bool CanBlend { get; set; }
         public int? MergeWith { get; set; }
+        public string? FrameNameSuffix { get; set; }
 
         public bool Merges(int other)
         {
@@ -155,7 +177,7 @@ namespace TEdit.Terraria.Objects
 
             return new Vector2Short((short)worldU, (short)worldV);
         }
-    
+
 
         public static Vector2Short GetRenderUV(ushort type, short U, short V)
         {

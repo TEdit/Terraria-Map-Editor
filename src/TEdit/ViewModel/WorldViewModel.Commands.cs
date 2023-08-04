@@ -111,7 +111,7 @@ namespace TEdit.ViewModel
                 if (CurrentWorld.NPCs.All(n => n.SpriteId != npcId))
                 {
                     var spawn = new Vector2Int32(CurrentWorld.SpawnX, CurrentWorld.SpawnY);
-                    CurrentWorld.NPCs.Add(new NPC { Home = spawn, IsHomeless = true, DisplayName = name, Name = name, Position = new Vector2(spawn.X * 16, spawn.Y * 16), SpriteId = npcId });
+                    CurrentWorld.NPCs.Add(new NPC { Home = spawn, IsHomeless = true, DisplayName = name, Name = name, Position = new Vector2Float(spawn.X * 16, spawn.Y * 16), SpriteId = npcId });
                     Points.Add(name);
                     MessageBox.Show($"{name} added to spawn.", "NPC Added");
                 }

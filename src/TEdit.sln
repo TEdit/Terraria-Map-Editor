@@ -23,7 +23,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TEdit.Common", "TEdit.Commo
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TEdit.Desktop", "TEdit.Desktop\TEdit.Desktop.csproj", "{9C942195-8286-42C6-A682-ED297010193E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TEdit.Editor", "TEdit.Editor\TEdit.Editor.csproj", "{10D77A71-3445-4645-995F-A4032B407575}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TEdit.Editor", "TEdit.Editor\TEdit.Editor.csproj", "{10D77A71-3445-4645-995F-A4032B407575}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TEdit.Configuration.Tests", "TEdit.Configuration.Tests\TEdit.Configuration.Tests.csproj", "{F559A01F-8B12-4A6F-8992-D35258B83417}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -60,13 +62,17 @@ Global
 		{10D77A71-3445-4645-995F-A4032B407575}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{10D77A71-3445-4645-995F-A4032B407575}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{10D77A71-3445-4645-995F-A4032B407575}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F559A01F-8B12-4A6F-8992-D35258B83417}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F559A01F-8B12-4A6F-8992-D35258B83417}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F559A01F-8B12-4A6F-8992-D35258B83417}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F559A01F-8B12-4A6F-8992-D35258B83417}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {9CD90452-C706-4BBF-8C2E-6C2D1052531B}
 		RESX_PrefixTranslations = False
+		SolutionGuid = {9CD90452-C706-4BBF-8C2E-6C2D1052531B}
 	EndGlobalSection
 	GlobalSection(TestCaseManagementSettings) = postSolution
 		CategoryFile = TEdit.vsmdi

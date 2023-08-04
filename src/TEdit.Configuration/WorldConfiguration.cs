@@ -67,19 +67,22 @@ namespace TEdit.Configuration
                 return;
 
             var saveVersionPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "TerrariaVersionTileData.json");
-            SaveConfiguration = SaveVersionManager.LoadJson(saveVersionPath);
+            if (File.Exists(saveVersionPath))
+                SaveConfiguration = SaveVersionManager.LoadJson(saveVersionPath);
 
             var settingspath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "settings.xml");
-
-
-            LoadObjectDbXml(settingspath);
+            if (File.Exists(settingspath))
+                LoadObjectDbXml(settingspath);
 
             var bestiaryDataPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "npcData.json");
-            BestiaryData = BestiaryConfiguration.LoadJson(bestiaryDataPath);
+            if (File.Exists(bestiaryDataPath))
+                BestiaryData = BestiaryConfiguration.LoadJson(bestiaryDataPath);
 
             try
             {
-                MorphSettings = MorphConfiguration.LoadJson(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "morphSettings.json"));
+                var morphPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "morphSettings.json");
+                if (File.Exists(morphPath))
+                    MorphSettings = MorphConfiguration.LoadJson(morphPath);
 
             }
             catch (Exception ex)
@@ -87,22 +90,28 @@ namespace TEdit.Configuration
                 throw new ApplicationException("Invalid morphSettings.json", ex);
             }
 
-            // Used to dynamically update static CompatibleVersion
-            CompatibleVersion = (uint)SaveConfiguration.SaveVersions.Keys.Max();
-            TileCount = (short)SaveConfiguration.SaveVersions[(int)CompatibleVersion].MaxTileId;
-            WallCount = (short)SaveConfiguration.SaveVersions[(int)CompatibleVersion].MaxWallId;
-            MaxNpcID = (short)SaveConfiguration.SaveVersions[(int)CompatibleVersion].MaxNpcId;
-
-            if (SettingsTileFrameImportant == null || SettingsTileFrameImportant.Length <= 0)
+            try
             {
-                SettingsTileFrameImportant = new bool[TileCount + 1];
-                for (int i = 0; i <= TileCount; i++)
+                // Used to dynamically update static CompatibleVersion
+                CompatibleVersion = (uint)SaveConfiguration.SaveVersions.Keys.Max();
+                TileCount = (short)SaveConfiguration.SaveVersions[(int)CompatibleVersion].MaxTileId;
+                WallCount = (short)SaveConfiguration.SaveVersions[(int)CompatibleVersion].MaxWallId;
+                MaxNpcID = (short)SaveConfiguration.SaveVersions[(int)CompatibleVersion].MaxNpcId;
+
+                if (SettingsTileFrameImportant == null || SettingsTileFrameImportant.Length <= 0)
                 {
-                    if (TileProperties.Count > i)
+                    SettingsTileFrameImportant = new bool[TileCount + 1];
+                    for (int i = 0; i <= TileCount; i++)
                     {
-                        SettingsTileFrameImportant[i] = TileProperties[i].IsFramed;
+                        if (TileProperties.Count > i)
+                        {
+                            SettingsTileFrameImportant[i] = TileProperties[i].IsFramed;
+                        }
                     }
                 }
+            }
+            catch (Exception ex)
+            {
             }
 
         }
@@ -174,9 +183,7 @@ namespace TEdit.Configuration
         }
 
 
-
-
-        private static void LoadObjectDbXml(string file)
+        public static void LoadObjectDbXml(string file)
         {
             TileBricks.Add(new TileProperty
             {
@@ -228,7 +235,7 @@ namespace TEdit.Configuration
                 curTile.IsStone = (bool?)xElement.Attribute("Stone") ?? false; /* Heathtech */
                 curTile.CanBlend = (bool?)xElement.Attribute("Blends") ?? false; /* Heathtech */
                 curTile.MergeWith = (int?)xElement.Attribute("MergeWith") ?? null; /* Heathtech */
-                string frameNamePostfix = (string)xElement.Attribute("FrameNamePostfix") ?? null;
+                curTile.FrameNameSuffix = (string)xElement.Attribute("FrameNameSuffix") ?? null;
 
                 foreach (var elementFrame in xElement.Elements("Frames").Elements("Frame"))
                 {
@@ -269,7 +276,7 @@ namespace TEdit.Configuration
                     //});
 
                 }
-                if (curTile.Frames.Count == 0 && curTile.IsFramed)
+                if (curTile.IsFramed &&curTile.Frames.Count == 0)
                 {
                     var curFrame = new FrameProperty();
                     // Read XML attributes
@@ -442,8 +449,6 @@ namespace TEdit.Configuration
                 string name = (string)xElement.Attribute("Name");
                 ItemPrefix.Add((byte)id, name);
             }
-
-
         }
 
         public static TileProperty GetBrickFromColor(byte a, byte r, byte g, byte b)

@@ -10,7 +10,7 @@ namespace TEdit.Terraria
         private Vector2Int32 _home;
         private bool _isHomeless;
         private string _name;
-        private Vector2 _position;
+        private Vector2Float _position;
         private int _spriteId;
 
         private string _displayName;
@@ -28,7 +28,7 @@ namespace TEdit.Terraria
             set { Set(nameof(SpriteId), ref _spriteId, value); }
         }
 
-        public Vector2 Position
+        public Vector2Float Position
         {
             get { return _position; }
             set { Set(nameof(Position), ref _position, value); }

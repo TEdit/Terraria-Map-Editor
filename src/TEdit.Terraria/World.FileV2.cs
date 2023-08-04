@@ -1960,7 +1960,7 @@ namespace TEdit.Terraria
                         npc.SpriteId = WorldConfiguration.NpcIds[npc.Name];
                 }
                 npc.DisplayName = r.ReadString();
-                npc.Position = new Vector2(r.ReadSingle(), r.ReadSingle());
+                npc.Position = new Vector2Float(r.ReadSingle(), r.ReadSingle());
                 npc.IsHomeless = r.ReadBoolean();
                 npc.Home = new Vector2Int32(r.ReadInt32(), r.ReadInt32());
 
@@ -1991,7 +1991,7 @@ namespace TEdit.Terraria
                     if (WorldConfiguration.NpcIds.ContainsKey(npc.Name))
                         npc.SpriteId = WorldConfiguration.NpcIds[npc.Name];
                 }
-                npc.Position = new Vector2(r.ReadSingle(), r.ReadSingle());
+                npc.Position = new Vector2Float(r.ReadSingle(), r.ReadSingle());
                 w.Mobs.Add(npc);
                 totalMobs++;
                 flag = r.ReadBoolean();

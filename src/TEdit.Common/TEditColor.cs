@@ -20,14 +20,16 @@ namespace TEdit.Common
         {
             var rgba = Convert.ToUInt32(hex.Substring(1), 16);
 
-            float a = ((int)((rgba & 0xff000000) >> 24)/ 255.0f);
-            float r = ((int)((rgba & 0x00ff0000) >> 16)/ 255.0f);
+            float a = ((int)((rgba & 0xff000000) >> 24) / 255.0f);
+            float r = ((int)((rgba & 0x00ff0000) >> 16) / 255.0f);
             float g = ((int)((rgba & 0x0000ff00) >> 8) / 255.0f);
-            float b = ((int)(rgba & 0x000000ff)        / 255.0f);
+            float b = ((int)(rgba & 0x000000ff) / 255.0f);
 
             return new TEditColor(r, g, b, a);
         }
-        
+
+        public static string ToHexString(TEditColor color) => $"#{color.A:X2}{color.R:X2}{color.G:X2}{color.B:X2}";
+
         private uint _packedValue;
 
 
@@ -999,7 +1001,7 @@ namespace TEdit.Common
         // Parameters:
         //   color:
         //     A Microsoft.Xna.Framework.Vector4 representing color.
-        public TEditColor(Vector4 color)
+        public TEditColor(Vector4Float color)
             : this((int)(color.X * 255f), (int)(color.Y * 255f), (int)(color.Z * 255f), (int)(color.W * 255f))
         {
         }
@@ -1012,7 +1014,7 @@ namespace TEdit.Common
         // Parameters:
         //   color:
         //     A Microsoft.Xna.Framework.Vector3 representing color.
-        public TEditColor(Vector3 color)
+        public TEditColor(Vector3Float color)
             : this((int)(color.X * 255f), (int)(color.Y * 255f), (int)(color.Z * 255f))
         {
         }
@@ -1333,9 +1335,9 @@ namespace TEdit.Common
         //
         // Returns:
         //     A Microsoft.Xna.Framework.Vector3 representation for this object.
-        public Vector3 ToVector3()
+        public Vector3Float ToVector3()
         {
-            return new Vector3((float)(int)R / 255f, (float)(int)G / 255f, (float)(int)B / 255f);
+            return new Vector3Float((float)(int)R / 255f, (float)(int)G / 255f, (float)(int)B / 255f);
         }
 
         //
@@ -1344,9 +1346,9 @@ namespace TEdit.Common
         //
         // Returns:
         //     A Microsoft.Xna.Framework.Vector4 representation for this object.
-        public Vector4 ToVector4()
+        public Vector4Float ToVector4()
         {
-            return new Vector4((float)(int)R / 255f, (float)(int)G / 255f, (float)(int)B / 255f, (float)(int)A / 255f);
+            return new Vector4Float((float)(int)R / 255f, (float)(int)G / 255f, (float)(int)B / 255f, (float)(int)A / 255f);
         }
 
         //
@@ -1356,20 +1358,7 @@ namespace TEdit.Common
         //
         // Returns:
         //     System.String representation of this Microsoft.Xna.Framework.Color.
-        public override string ToString()
-        {
-            StringBuilder stringBuilder = new StringBuilder(25);
-            stringBuilder.Append("{R:");
-            stringBuilder.Append(R);
-            stringBuilder.Append(" G:");
-            stringBuilder.Append(G);
-            stringBuilder.Append(" B:");
-            stringBuilder.Append(B);
-            stringBuilder.Append(" A:");
-            stringBuilder.Append(A);
-            stringBuilder.Append("}");
-            return stringBuilder.ToString();
-        }
+        public override string ToString() => ToHexString(this);
 
         //
         // Summary:
@@ -1382,7 +1371,7 @@ namespace TEdit.Common
         //
         // Returns:
         //     A Microsoft.Xna.Framework.Color which contains premultiplied alpha data.
-        public static TEditColor FromNonPremultiplied(Vector4 vector)
+        public static TEditColor FromNonPremultiplied(Vector4Float vector)
         {
             return new TEditColor(vector.X * vector.W, vector.Y * vector.W, vector.Z * vector.W, vector.W);
         }

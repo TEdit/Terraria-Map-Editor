@@ -315,7 +315,7 @@ public struct RectangleInt32 : IEquatable<RectangleInt32>
     // Returns:
     //     true if the provided Microsoft.Xna.Framework.Vector2 lies inside this Microsoft.Xna.Framework.Rectangle;
     //     false otherwise.
-    public bool Contains(Vector2 value)
+    public bool Contains(Vector2Float value)
     {
         if ((float)X <= value.X && value.X < (float)(X + Width) && (float)Y <= value.Y)
         {
@@ -337,7 +337,7 @@ public struct RectangleInt32 : IEquatable<RectangleInt32>
     //   result:
     //     true if the provided Microsoft.Xna.Framework.Vector2 lies inside this Microsoft.Xna.Framework.Rectangle;
     //     false otherwise. As an output parameter.
-    public void Contains(ref Vector2 value, out bool result)
+    public void Contains(ref Vector2Float value, out bool result)
     {
         result = (float)X <= value.X && value.X < (float)(X + Width) && (float)Y <= value.Y && value.Y < (float)(Y + Height);
     }
@@ -609,7 +609,7 @@ public struct RectangleInt32 : IEquatable<RectangleInt32>
     // Parameters:
     //   amount:
     //     The x and y components to add to this Microsoft.Xna.Framework.Rectangle.
-    public void Offset(Vector2 amount)
+    public void Offset(Vector2Float amount)
     {
         X += (int)amount.X;
         Y += (int)amount.Y;
