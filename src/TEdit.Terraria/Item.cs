@@ -1,124 +1,121 @@
 using System;
 using System.Linq;
-using System.Windows;
 using TEdit.Common.Reactive;
 using TEdit.Configuration;
 using TEdit.Terraria.Objects;
 
-namespace TEdit.Terraria
+namespace TEdit.Terraria;
+
+public class Item : ObservableObject
 {
-    [Serializable]
-    public class Item : ObservableObject
+    private const int MaxStackSize = Int16.MaxValue;
+
+    private int _stackSize;
+    private byte _prefix;
+    private int _netId;
+
+
+    public int NetId
     {
-        private const int MaxStackSize = Int16.MaxValue;
-
-        private int _stackSize;
-        private byte _prefix;
-        private int _netId;
-
-
-        public int NetId
+        get { return _netId; }
+        set
         {
-            get { return _netId; }
-            set
+            Set(nameof(NetId), ref _netId, value);
+            _currentItemProperty = WorldConfiguration.ItemProperties.FirstOrDefault(x => x.Id == _netId);
+            if (_netId == 0)
+                StackSize = 0;
+            else
             {
-                Set(nameof(NetId), ref _netId, value);
-                _currentItemProperty = WorldConfiguration.ItemProperties.FirstOrDefault(x => x.Id == _netId);
-                if (_netId == 0)
-                    StackSize = 0;
-                else
-                {
-                    if (StackSize == 0)
-                        StackSize = 1;
-                }
-                RaisePropertyChanged("Name");
+                if (StackSize == 0)
+                    StackSize = 1;
             }
+            RaisePropertyChanged("Name");
         }
+    }
 
-        public void SetFromName(string name)
+    public void SetFromName(string name)
+    {
+        var curItem = WorldConfiguration.ItemProperties.FirstOrDefault(x => x.Name == name);
+        NetId = curItem.Id;
+        if (NetId != 0)
+        StackSize = 1;
+    }
+
+    public string Name
+    {
+        get { return GetName(); }
+    }
+
+    public string PrefixName
+    {
+        get { return WorldConfiguration.ItemPrefix.Count > Prefix ? WorldConfiguration.ItemPrefix[Prefix] : "Unknown " + Prefix.ToString(); }
+    }
+
+    public string GetName()
+    {
+        if (_currentItemProperty != null)
+            return _currentItemProperty.Name;
+
+        return "[empty]";
+    }
+
+    public byte Prefix
+    {
+        get { return _prefix; }
+        set { Set(nameof(Prefix), ref _prefix, value); RaisePropertyChanged("PrefixName"); }
+    }
+
+    public Item()
+    {
+        StackSize = 0;
+        NetId = 0;
+    }
+
+    public Item(int stackSize, int netId)
+    {
+        StackSize = stackSize;
+        NetId = stackSize > 0 ? netId : 0;
+    }
+
+
+
+    private ItemProperty _currentItemProperty;
+    public int StackSize
+    {
+        get { return _stackSize; }
+        set
         {
-            var curItem = WorldConfiguration.ItemProperties.FirstOrDefault(x => x.Name == name);
-            NetId = curItem.Id;
-            if (NetId != 0)
-            StackSize = 1;
-        }
-
-        public string Name
-        {
-            get { return GetName(); }
-        }
-
-        public string PrefixName
-        {
-            get { return WorldConfiguration.ItemPrefix.Count > Prefix ? WorldConfiguration.ItemPrefix[Prefix] : "Unknown " + Prefix.ToString(); }
-        }
-
-        public string GetName()
-        {
-            if (_currentItemProperty != null)
-                return _currentItemProperty.Name;
-
-            return "[empty]";
-        }
-
-        public byte Prefix
-        {
-            get { return _prefix; }
-            set { Set(nameof(Prefix), ref _prefix, value); RaisePropertyChanged("PrefixName"); }
-        }
-
-        public Item()
-        {
-            StackSize = 0;
-            NetId = 0;
-        }
-
-        public Item(int stackSize, int netId)
-        {
-            StackSize = stackSize;
-            NetId = stackSize > 0 ? netId : 0;
-        }
-
-
-
-        private ItemProperty _currentItemProperty;
-        public int StackSize
-        {
-            get { return _stackSize; }
-            set
+            int max = MaxStackSize;
+            if (_currentItemProperty != null && _currentItemProperty.MaxStackSize > 0)
             {
-                int max = MaxStackSize;
-                if (_currentItemProperty != null && _currentItemProperty.MaxStackSize > 0)
-                {
-                    max = _currentItemProperty.MaxStackSize;
-                }
-
-                int validValue = value;
-                if (validValue > max)
-                    validValue = max;
-                if (validValue < 0)
-                    validValue = 0;
-
-                Set(nameof(StackSize), ref _stackSize, validValue);
+                max = _currentItemProperty.MaxStackSize;
             }
+
+            int validValue = value;
+            if (validValue > max)
+                validValue = max;
+            if (validValue < 0)
+                validValue = 0;
+
+            Set(nameof(StackSize), ref _stackSize, validValue);
         }
+    }
 
-        public Item Copy()
-        {
-            return new Item(_stackSize, _netId) { Prefix = _prefix };
-        }
+    public Item Copy()
+    {
+        return new Item(_stackSize, _netId) { Prefix = _prefix };
+    }
 
-        //public Visibility IsVisible
-        //{
-        //    get { return _netId == 0 ? Visibility.Collapsed : Visibility.Visible; }
-        //}
+    //public Visibility IsVisible
+    //{
+    //    get { return _netId == 0 ? Visibility.Collapsed : Visibility.Visible; }
+    //}
 
-        public override string ToString()
-        {
-            if (StackSize > 0)
-                return $"{_currentItemProperty?.Name}: {StackSize}";
+    public override string ToString()
+    {
+        if (StackSize > 0)
+            return $"{_currentItemProperty?.Name}: {StackSize}";
 
-            return _currentItemProperty?.Name;
-        }
+        return _currentItemProperty?.Name;
     }
 }

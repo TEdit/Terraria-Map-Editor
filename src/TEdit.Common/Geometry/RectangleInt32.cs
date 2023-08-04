@@ -1,22 +1,7 @@
-﻿/* 
-Copyright (c) 2011 BinaryConstruct
- 
-This source is subject to the Microsoft Public License.
-See http://www.microsoft.com/opensource/licenses.mspx#Ms-PL.
-All other rights reserved.
-
-THIS CODE AND INFORMATION IS PROVIDED "AS IS" WITHOUT WARRANTY OF ANY KIND, 
-EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE IMPLIED 
-WARRANTIES OF MERCHANTABILITY AND/OR FITNESS FOR A PARTICULAR PURPOSE.
- */
-
-using System;
-using System.Drawing;
-using System.Runtime.Serialization;
+﻿using System;
 
 namespace TEdit.Geometry;
 
-[Serializable]
 public struct RectangleInt32 : IEquatable<RectangleInt32>
 {
     private static RectangleInt32 emptyRectangle;
@@ -24,25 +9,21 @@ public struct RectangleInt32 : IEquatable<RectangleInt32>
     //
     // Summary:
     //     The x coordinate of the top-left corner of this Microsoft.Xna.Framework.Rectangle.
-    [DataMember]
     public int X;
 
     //
     // Summary:
     //     The y coordinate of the top-left corner of this Microsoft.Xna.Framework.Rectangle.
-    [DataMember]
     public int Y;
 
     //
     // Summary:
     //     The width of this Microsoft.Xna.Framework.Rectangle.
-    [DataMember]
     public int Width;
 
     //
     // Summary:
     //     The height of this Microsoft.Xna.Framework.Rectangle.
-    [DataMember]
     public int Height;
 
     //

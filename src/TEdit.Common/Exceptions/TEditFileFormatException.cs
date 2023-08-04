@@ -1,25 +1,27 @@
 ﻿using System;
-using System.Runtime.Serialization;
 
-namespace TEdit.Common.Exceptions
+namespace TEdit.Common.Exceptions;
+
+public class TEditFileFormatException : Exception
 {
-    [Serializable]
-    public class TEditFileFormatException : Exception
+    public TEditFileFormatException()
     {
-        public TEditFileFormatException()
-        {
-        }
+    }
 
-        public TEditFileFormatException(string message) : base(message)
-        {
-        }
+    public TEditFileFormatException(
+        string message) : base(message)
+    {
+    }
 
-        public TEditFileFormatException(string message, Exception innerException) : base(message, innerException)
-        {
-        }
+    public TEditFileFormatException(
+        string message, 
+        Exception innerException) : base(message, innerException)
+    {
+    }
 
-        protected TEditFileFormatException(SerializationInfo info, StreamingContext context) : base(info, context)
-        {
-        }
+    protected TEditFileFormatException(
+        System.Runtime.Serialization.SerializationInfo info, 
+        System.Runtime.Serialization.StreamingContext context) : base(info, context)
+    {
     }
 }
