@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using SharpDX.Direct3D11;
@@ -22,7 +23,7 @@ namespace TEdit.Terraria
             rain_setfrozen = 9,
             wind_setfrozen = 10,
             increaseplacementrange = 11, // player only
-            setdifficulty = 12,          // player only
+            setdifficulty = 12,
             biomespread_setfrozen = 13,
             setspawnrate = 14,
         }
@@ -49,11 +50,21 @@ namespace TEdit.Terraria
             switch (id)
             {
                 case CreativePowerId.time_setspeed:
+				    if (_powers.ContainsKey(id) && value != null)
+                    {
+                        _powers[id] = MathHelper.Clamp((float)value, 0, 1f);
+                    }
+                    return;
                 case CreativePowerId.setdifficulty:
+				    if (_powers.ContainsKey(id) && value != null)
+                    {
+                        _powers[id] = MathHelper.Clamp((float)value, 0, 1f);
+                    }
+                    return;
                 case CreativePowerId.setspawnrate:
                     if (_powers.ContainsKey(id) && value != null)
                     {
-                        _powers[id] = MathHelper.Clamp((float)id, 0, 1f);
+                        _powers[id] = MathHelper.Clamp((float)value, 0, 1f);
                     }
                     return;
                 default:
@@ -72,11 +83,6 @@ namespace TEdit.Terraria
                 case CreativePowerId.time_setspeed:
                 case CreativePowerId.setdifficulty:
                 case CreativePowerId.setspawnrate:
-                    if (_powers.ContainsKey(args.Id))
-                    {
-                        _powers[args.Id] = MathHelper.Clamp((float)args.Value, 0, 1f);
-                    }
-                    return;
                 default:
                     if (_powers.ContainsKey(args.Id))
                     {
@@ -108,7 +114,17 @@ namespace TEdit.Terraria
             switch (id)
             {
                 case CreativePowerId.time_setspeed:
+				    if (_powers.TryGetValue(id, out object t))
+                    {
+                        return (float)t;
+                    }
+                    return null;
                 case CreativePowerId.setdifficulty:
+				    if (_powers.TryGetValue(id, out object u))
+                    {
+                        return (float)u;
+                    }
+                    return null;
                 case CreativePowerId.setspawnrate:
                     if (_powers.TryGetValue(id, out object v))
                     {
@@ -119,7 +135,7 @@ namespace TEdit.Terraria
                     throw new System.ArgumentOutOfRangeException(nameof(id), $"Power {id.ToString()} is not type of float.");
             }
         }
-
+		
         // public bool DisablePower(CreativePowerId id) => _powers.Remove(id);
 
         public void Save(BinaryWriter w)
@@ -138,7 +154,7 @@ namespace TEdit.Terraria
                         w.Write((bool)item.Value);
                         break;
                     case CreativePowerId.time_setspeed:
-                        w.Write(MathHelper.Clamp((float)item.Value, 0, 1f));
+					    w.Write((float)item.Value);
                         break;
                     case CreativePowerId.rain_setfrozen:
                         w.Write((bool)item.Value);
