@@ -12,13 +12,13 @@ public enum CreativePowerId : ushort
     // time_setdusk = 3,
     // time_setmidnight = 4,
     godmode = 5,                  // player only
-    // wind_setstrength = 6,
-    // rain_setstrength = 7,
+                                  // wind_setstrength = 6,
+                                  // rain_setstrength = 7,
     time_setspeed = 8,
     rain_setfrozen = 9,
     wind_setfrozen = 10,
     increaseplacementrange = 11, // player only
-    setdifficulty = 12,          // player only
+    setdifficulty = 12,
     biomespread_setfrozen = 13,
     setspawnrate = 14,
 }
@@ -29,6 +29,7 @@ public class CreativePowerArgs
     public float Value { get; set; }
     public bool IsActive { get; set; }
 }
+
 
 public class CreativePowers
 {
@@ -54,11 +55,21 @@ public class CreativePowers
         switch (id)
         {
             case CreativePowerId.time_setspeed:
+                if (_powers.ContainsKey(id) && value != null)
+                {
+                    _powers[id] = Calc.Clamp((float)value, 0, 1f);
+                }
+                return;
             case CreativePowerId.setdifficulty:
+                if (_powers.ContainsKey(id) && value != null)
+                {
+                    _powers[id] = Calc.Clamp((float)value, 0, 1f);
+                }
+                return;
             case CreativePowerId.setspawnrate:
                 if (_powers.ContainsKey(id) && value != null)
                 {
-                    _powers[id] = Calc.Clamp((float)id, 0, 1f);
+                    _powers[id] = Calc.Clamp((float)value, 0, 1f);
                 }
                 return;
             default:
@@ -77,11 +88,6 @@ public class CreativePowers
             case CreativePowerId.time_setspeed:
             case CreativePowerId.setdifficulty:
             case CreativePowerId.setspawnrate:
-                if (_powers.ContainsKey(args.Id))
-                {
-                    _powers[args.Id] = Calc.Clamp((float)args.Value, 0, 1f);
-                }
-                return;
             default:
                 if (_powers.ContainsKey(args.Id))
                 {
@@ -98,7 +104,7 @@ public class CreativePowers
             case CreativePowerId.time_setspeed:
             case CreativePowerId.setdifficulty:
             case CreativePowerId.setspawnrate:
-                throw new System.ArgumentOutOfRangeException(nameof(id), $"Power {id} is not type of boolean.");
+                throw new System.ArgumentOutOfRangeException(nameof(id), $"Power {id.ToString()} is not type of boolean.");
             default:
                 if (_powers.TryGetValue(id, out object v))
                 {
@@ -113,7 +119,17 @@ public class CreativePowers
         switch (id)
         {
             case CreativePowerId.time_setspeed:
+                if (_powers.TryGetValue(id, out object t))
+                {
+                    return (float)t;
+                }
+                return null;
             case CreativePowerId.setdifficulty:
+                if (_powers.TryGetValue(id, out object u))
+                {
+                    return (float)u;
+                }
+                return null;
             case CreativePowerId.setspawnrate:
                 if (_powers.TryGetValue(id, out object v))
                 {
@@ -121,7 +137,7 @@ public class CreativePowers
                 }
                 return null;
             default:
-                throw new System.ArgumentOutOfRangeException(nameof(id), $"Power {id} is not type of float.");
+                throw new System.ArgumentOutOfRangeException(nameof(id), $"Power {id.ToString()} is not type of float.");
         }
     }
 
@@ -143,7 +159,7 @@ public class CreativePowers
                     w.Write((bool)item.Value);
                     break;
                 case CreativePowerId.time_setspeed:
-                    w.Write(Calc.Clamp((float)item.Value, 0, 1f));
+                    w.Write((float)item.Value);
                     break;
                 case CreativePowerId.rain_setfrozen:
                     w.Write((bool)item.Value);
