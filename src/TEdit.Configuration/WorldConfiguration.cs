@@ -8,6 +8,7 @@ using TEdit.Terraria.Objects;
 using System.Linq;
 using TEdit.Geometry;
 using TEdit.Common;
+using TEdit.Configuration.BiomeMorph;
 
 namespace TEdit.Configuration;
 

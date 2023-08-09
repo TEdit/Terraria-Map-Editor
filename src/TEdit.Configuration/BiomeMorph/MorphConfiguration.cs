@@ -2,7 +2,7 @@
 using System.IO;
 using Newtonsoft.Json;
 
-namespace TEdit.Configuration;
+namespace TEdit.Configuration.BiomeMorph;
 
 public class MorphConfiguration
 {

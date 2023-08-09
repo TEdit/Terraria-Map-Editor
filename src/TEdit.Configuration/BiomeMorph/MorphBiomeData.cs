@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace TEdit.Configuration;
+namespace TEdit.Configuration.BiomeMorph;
 
 public class MorphBiomeData
 {

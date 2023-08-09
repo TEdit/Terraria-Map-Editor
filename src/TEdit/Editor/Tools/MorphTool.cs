@@ -9,6 +9,7 @@ using System.Linq;
 using TEdit.Configuration;
 using TEdit.Render;
 using TEdit.UI;
+using TEdit.Configuration.BiomeMorph;
 
 namespace TEdit.Editor.Tools;
 

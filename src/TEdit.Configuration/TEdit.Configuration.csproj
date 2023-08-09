@@ -14,8 +14,4 @@
     <ProjectReference Include="..\TEdit.Common\TEdit.Common.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="BiomeMorph\" />
-  </ItemGroup>
-
 </Project>

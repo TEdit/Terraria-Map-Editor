@@ -5,6 +5,7 @@ using TEdit.Terraria;
 using TEdit.ViewModel;
 using TEdit.Configuration;
 using TEdit.Geometry;
+using TEdit.Configuration.BiomeMorph;
 
 namespace TEdit.Editor;
 

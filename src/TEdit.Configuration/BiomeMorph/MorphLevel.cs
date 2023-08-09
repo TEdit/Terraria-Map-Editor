@@ -1,4 +1,4 @@
-﻿namespace TEdit.Configuration;
+﻿namespace TEdit.Configuration.BiomeMorph;
 
 public enum MorphLevel
 {

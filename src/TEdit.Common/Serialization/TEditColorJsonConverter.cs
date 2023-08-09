@@ -12,21 +12,3 @@ public class TEditColorJsonConverter : JsonConverter<TEditColor>
     public override void Write(Utf8JsonWriter writer, TEditColor value, JsonSerializerOptions options) =>
         writer.WriteStringValue(TEditColor.ToHexString(value));
 }
-
-public class TEditJsonSerializer
-{
-    static TEditJsonSerializer()
-    {
-        DefaultOptions = new JsonSerializerOptions
-        {
-            WriteIndented = true,
-            DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingDefault,
-            PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
-        };
-
-        DefaultOptions.Converters.Add(new Vector2ShortJsonConverter());
-        DefaultOptions.Converters.Add(new TEditColorJsonConverter());
-    }
-
-    public static JsonSerializerOptions DefaultOptions { get; }
-}
