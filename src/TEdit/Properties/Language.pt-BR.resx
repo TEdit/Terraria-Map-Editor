@@ -1248,8 +1248,8 @@ Clique em tentar novamente para escolher uma nova pasta ou cancelar para usar {0
   <data name="tool_wp_seed_notraps" xml:space="preserve">
     <value>Sem armadilhas</value>
   </data>
-  <data name="tool_wp_afterpartyofdoom" xml:space="preserve">
-    <value>Depois do Partido da Perdição</value>
+  <data name="tool_wp_partyofdoom" xml:space="preserve">
+    <value>Partido da Perdição</value>
   </data>
   <data name="tool_wp_lanternnight_cooldown" xml:space="preserve">
     <value>Resfriamento noturno da lanterna</value>

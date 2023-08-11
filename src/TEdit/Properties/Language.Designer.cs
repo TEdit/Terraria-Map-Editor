@@ -2159,11 +2159,11 @@ namespace TEdit.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to After Party of Doom.
+        ///   Looks up a localized string similar to Party of Doom.
         /// </summary>
-        public static string tool_wp_afterpartyofdoom {
+        public static string tool_wp_partyofdoom {
             get {
-                return ResourceManager.GetString("tool_wp_afterpartyofdoom", resourceCulture);
+                return ResourceManager.GetString("tool_wp_partyofdoom", resourceCulture);
             }
         }
         

@@ -1609,12 +1609,12 @@ namespace TEdit.Terraria
 
         private byte _MoondialCooldown = 0;
 
-        private bool _AfterPartyOfDoom = false;
+        private bool _PartyOfDoom = false;
 
-        public bool AfterPartyOfDoom
+        public bool PartyOfDoom
         {
-            get { return _AfterPartyOfDoom; }
-            set { Set(nameof(AfterPartyOfDoom), ref _AfterPartyOfDoom, value); }
+            get { return _PartyOfDoom; }
+            set { Set(nameof(PartyOfDoom), ref _PartyOfDoom, value); }
         }
         public byte MoondialCooldown
         {

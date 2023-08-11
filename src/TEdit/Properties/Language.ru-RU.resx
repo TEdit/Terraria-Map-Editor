@@ -1248,8 +1248,8 @@
   <data name="tool_wp_seed_notraps" xml:space="preserve">
     <value>Без ловушек</value>
   </data>
-  <data name="tool_wp_afterpartyofdoom" xml:space="preserve">
-    <value>После Вечеринки Судьбы</value>
+  <data name="tool_wp_partyofdoom" xml:space="preserve">
+    <value>Вечеринка Судьбы</value>
   </data>
   <data name="tool_wp_lanternnight_cooldown" xml:space="preserve">
     <value>Фонарь Ночное охлаждение</value>

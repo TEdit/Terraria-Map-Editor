@@ -1248,8 +1248,8 @@ Klicke auf „Wiederholen“, um einen neuen Ordner auszuwählen, oder auf „Ab
   <data name="tool_wp_seed_notraps" xml:space="preserve">
     <value>Keine Fallen</value>
   </data>
-  <data name="tool_wp_afterpartyofdoom" xml:space="preserve">
-    <value>Nach Party of Doom</value>
+  <data name="tool_wp_partyofdoom" xml:space="preserve">
+    <value>Party of Doom</value>
   </data>
   <data name="tool_wp_lanternnight_cooldown" xml:space="preserve">
     <value>Laternennacht Cooldown</value>

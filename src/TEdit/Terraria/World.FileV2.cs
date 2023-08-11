@@ -1024,8 +1024,8 @@ namespace TEdit.Terraria
 
             if (world.Version >= 257)
             {
-                bw.Write(world.AfterPartyOfDoom);
-                debugger?.WriteLine("\"AfterPartyOfDoom\": {0},", world.AfterPartyOfDoom);
+                bw.Write(world.PartyOfDoom);
+                debugger?.WriteLine("\"PartyOfDoom\": {0},", world.PartyOfDoom);
             }
 
             bw.Write(world.InvasionDelay);
@@ -2204,7 +2204,7 @@ namespace TEdit.Terraria
             w.ShadowOrbCount = (int)r.ReadByte();
             w.AltarCount = r.ReadInt32();
             w.HardMode = r.ReadBoolean();
-            if (w.Version >= 257) { w.AfterPartyOfDoom = r.ReadBoolean(); }
+            if (w.Version >= 257) { w.PartyOfDoom = r.ReadBoolean(); }
             w.InvasionDelay = r.ReadInt32();
             w.InvasionSize = r.ReadInt32();
             w.InvasionType = r.ReadInt32();
