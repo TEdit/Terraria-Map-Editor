@@ -239,36 +239,39 @@ public class UndoManager : ObservableObject, IDisposable
     {
         var curTile = (Tile)_world.Tiles[x, y].Clone();
 
-        if (_world.IsAnchor(x, y))
+        if (buffer.TileImportance[curTile.Type])
         {
-            if (curTile.IsChest())
+            if (_world.IsAnchor(x, y))
             {
-                var curchest = _world.GetChestAtTile(x, y);
-                if (curchest != null)
+                if (curTile.IsChest())
                 {
-                    if (removeEntities) { _world.Chests.Remove(curchest); }
-                    var chest = curchest.Copy();
-                    buffer.Chests.Add(chest);
+                    var curchest = _world.GetChestAtTile(x, y);
+                    if (curchest != null)
+                    {
+                        if (removeEntities) { _world.Chests.Remove(curchest); }
+                        var chest = curchest.Copy();
+                        buffer.Chests.Add(chest);
+                    }
                 }
-            }
-            if (curTile.IsSign())
-            {
-                var cursign = _world.GetSignAtTile(x, y);
-                if (cursign != null)
+                if (curTile.IsSign())
                 {
-                    if (removeEntities) { _world.Signs.Remove(cursign); }
-                    var sign = cursign.Copy();
-                    buffer.Signs.Add(sign);
+                    var cursign = _world.GetSignAtTile(x, y);
+                    if (cursign != null)
+                    {
+                        if (removeEntities) { _world.Signs.Remove(cursign); }
+                        var sign = cursign.Copy();
+                        buffer.Signs.Add(sign);
+                    }
                 }
-            }
-            if (curTile.IsTileEntity())
-            {
-                var curTe = _world.GetTileEntityAtTile(x, y);
-                if (curTe != null)
+                if (curTile.IsTileEntity())
                 {
-                    if (removeEntities) { _world.TileEntities.Remove(curTe); }
-                    var te = curTe.Copy();
-                    buffer.TileEntities.Add(te);
+                    var curTe = _world.GetTileEntityAtTile(x, y);
+                    if (curTe != null)
+                    {
+                        if (removeEntities) { _world.TileEntities.Remove(curTe); }
+                        var te = curTe.Copy();
+                        buffer.TileEntities.Add(te);
+                    }
                 }
             }
         }

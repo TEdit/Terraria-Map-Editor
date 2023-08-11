@@ -4,6 +4,10 @@ namespace TEdit.Geometry;
 
 public struct Vector2Int32
 {
+    public static Vector2Int32 Zero = new Vector2Int32(0, 0);
+    public static Vector2Int32 One = new Vector2Int32(1, 1);
+    public static Vector2Int32 NegativeOne = new Vector2Int32(-1, -1);
+
     public int X;
     public int Y;
 

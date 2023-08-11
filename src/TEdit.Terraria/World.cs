@@ -401,6 +401,8 @@ public partial class World : ObservableObject, ITileData
     public Vector2Int32 GetAnchor(int x, int y)
     {
         Tile tile = Tiles[x, y];
+        if (!TileFrameImportant[tile.Type]) { return new Vector2Int32(x, y); }
+
         TileProperty tileprop = WorldConfiguration.TileProperties[tile.Type];
         var size = tileprop.FrameSize[0];
         if (tileprop.IsFramed && (size.X > 1 || size.Y > 1 || tileprop.FrameSize.Length > 1))

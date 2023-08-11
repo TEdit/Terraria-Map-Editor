@@ -127,6 +127,8 @@ public class UndoBuffer
         _writer = null;
     }
 
+    public bool[] TileImportance => _world?.TileFrameImportant ?? WorldConfiguration.SettingsTileFrameImportant;
+
     public static IEnumerable<UndoTile> ReadUndoTilesFromStream(BinaryReader br, bool[]? tileFrameImportance = null)
     {
         var tileFrameImportant = tileFrameImportance ?? WorldConfiguration.SettingsTileFrameImportant;
