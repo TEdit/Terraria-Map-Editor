@@ -417,6 +417,9 @@
         <CheckBox IsChecked="{Binding CurrentWorld.CombatBookVolumeTwoWasUsed}" Content="{x:Static p:Language.tool_wp_combatbooktwo}" VerticalAlignment="Center" VerticalContentAlignment="Center" />
         <TextBlock />
         <CheckBox IsChecked="{Binding CurrentWorld.PeddlersSatchelWasUsed}" Content="{x:Static p:Language.tool_wp_peddlerssatchel}" VerticalAlignment="Center" VerticalContentAlignment="Center" />
+        <TextBlock Text="{x:Static p:Language.tool_wp_partyofdoom}" HorizontalAlignment="Right" />
+        <CheckBox IsChecked="{Binding CurrentWorld.PartyOfDoom}" Content="{x:Static p:Language.tool_wp_partyofdoom}" VerticalAlignment="Center" VerticalContentAlignment="Center" />
+
         <Separator Grid.ColumnSpan="2" />
         <TextBlock Text="{x:Static p:Language.tool_wp_seed}" HorizontalAlignment="Right" />
         <CheckBox IsChecked="{Binding CurrentWorld.DrunkWorld}" Content="{x:Static p:Language.tool_wp_drunk}" VerticalAlignment="Center" VerticalContentAlignment="Center" />
@@ -513,9 +516,7 @@
         <CheckBox IsChecked="{Binding CurrentWorld.DownedCelestialVortex}" Content="{x:Static p:Language.tool_wp_boss_vortexpillar}" VerticalAlignment="Center" VerticalContentAlignment="Center" />
         <TextBlock />
         <CheckBox IsChecked="{Binding CurrentWorld.DownedCelestialStardust}" Content="{x:Static p:Language.tool_wp_boss_stardustpillar}" VerticalAlignment="Center" VerticalContentAlignment="Center" />
-        <TextBlock />
-        <CheckBox IsChecked="{Binding CurrentWorld.PartyOfDoom}" Content="{x:Static p:Language.tool_wp_partyofdoom}" VerticalAlignment="Center" VerticalContentAlignment="Center" />
-
+        
         <Separator Grid.ColumnSpan="2" />
         <TextBlock Text="{x:Static p:Language.tool_wp_lanternnight}" HorizontalAlignment="Right"/>
         <CheckBox IsChecked="{Binding CurrentWorld.LanternNightCooldown}" Content="{x:Static p:Language.tool_wp_lanternnight_cooldown}" VerticalAlignment="Center" VerticalContentAlignment="Center" />
