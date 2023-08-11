@@ -514,7 +514,7 @@
         <TextBlock />
         <CheckBox IsChecked="{Binding CurrentWorld.DownedCelestialStardust}" Content="{x:Static p:Language.tool_wp_boss_stardustpillar}" VerticalAlignment="Center" VerticalContentAlignment="Center" />
         <TextBlock />
-        <CheckBox IsChecked="{Binding CurrentWorld.AfterPartyOfDoom}" Content="{x:Static p:Language.tool_wp_afterpartyofdoom}" VerticalAlignment="Center" VerticalContentAlignment="Center" />
+        <CheckBox IsChecked="{Binding CurrentWorld.PartyOfDoom}" Content="{x:Static p:Language.tool_wp_partyofdoom}" VerticalAlignment="Center" VerticalContentAlignment="Center" />
 
         <Separator Grid.ColumnSpan="2" />
         <TextBlock Text="{x:Static p:Language.tool_wp_lanternnight}" HorizontalAlignment="Right"/>
