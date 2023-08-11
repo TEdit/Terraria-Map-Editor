@@ -1248,8 +1248,8 @@ Naciśnij spróbuj ponownie aby wybrać nowy folder lub anuluj aby użyć {0} ja
   <data name="tool_wp_seed_notraps" xml:space="preserve">
     <value>Bez pułapek</value>
   </data>
-  <data name="tool_wp_afterpartyofdoom" xml:space="preserve">
-    <value>After Party of Doom</value>
+  <data name="tool_wp_partyofdoom" xml:space="preserve">
+    <value>Party of Doom</value>
   </data>
   <data name="tool_wp_lanternnight_cooldown" xml:space="preserve">
     <value>Nocny czas odnowienia latarni</value>

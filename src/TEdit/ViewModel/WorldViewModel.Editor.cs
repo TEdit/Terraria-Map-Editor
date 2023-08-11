@@ -107,6 +107,8 @@ namespace TEdit.ViewModel
                     memStream.Flush();
                     var reader = new BinaryReader(memStream);
                     w.Version = CurrentWorld.Version;
+
+                    // Check
                     World.LoadV2(reader, w);
                 }
 
