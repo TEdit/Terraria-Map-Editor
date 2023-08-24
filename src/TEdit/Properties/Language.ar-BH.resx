@@ -1242,8 +1242,8 @@
   <data name="tool_wp_seed_notraps" xml:space="preserve">
     <value>لا الفخاخ</value>
   </data>
-  <data name="tool_wp_afterpartyofdoom" xml:space="preserve">
-    <value>بعد حفلة الموت</value>
+  <data name="tool_wp_partyofdoom" xml:space="preserve">
+    <value>حزب العذاب</value>
   </data>
   <data name="tool_wp_lanternnight_cooldown" xml:space="preserve">
     <value>فانوس ليلة التبريد</value>
