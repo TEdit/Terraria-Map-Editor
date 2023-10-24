@@ -16,6 +16,13 @@ using Terraria.GameContent.Bestiary;
 using System.Collections;
 using System.Reflection;
 using Terraria.ID;
+using Terraria.IO;
+using Terraria.WorldBuilding;
+using Terraria.Server;
+using System.Threading.Tasks;
+using System.Threading;
+using Terraria.GameContent.UI.States;
+using System.Diagnostics;
 
 namespace SettingsFileUpdater.TerrariaHost
 {
@@ -23,11 +30,12 @@ namespace SettingsFileUpdater.TerrariaHost
     public class TerrariaWrapper : Terraria.Main
 
     {
-        public static TerrariaWrapper Initialize()
+        public static TerrariaWrapper Initialize(bool dedServer = false)
         {
 
             TerrariaWrapper.worldName = "world";
             TerrariaWrapper.dedServ = true;
+
 
             var terrariaAsm = typeof(Terraria.Program).Assembly;
             //var init = typeof(Terraria.Program).GetMethod("ForceLoadAssembly", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Static, null, new Type[] { typeof(Assembly), typeof(bool) }, null);
@@ -40,22 +48,30 @@ namespace SettingsFileUpdater.TerrariaHost
             //Platform.Get<IWindowService>().SetQuickEditEnabled(false);
 
             var main = new TerrariaWrapper();
+
+
             try
             {
                 Lang.InitializeLegacyLocalization();
                 SocialAPI.Initialize(null);
                 LaunchInitializer.LoadParameters(main);
-                main.InitBase();
-                //Task.Factory.StartNew(() => main.DedServ());
-                //Thread.Sleep(10000);
-                //main.Run();
+                Main.OnEnginePreload += new Action(Terraria.Program.StartForceLoad);
+                // main.InitBase();
+
+                if (dedServer)
+                {
+                    Task.Factory.StartNew(() => main.DedServ());
+                    Thread.Sleep(2000);
+                    main.Run();
+                }
+
                 return main;
 
             }
-            catch (Exception exception)
+            catch (Exception ex)
             {
+                return null;
             }
-            return null;
         }
 
         public static string Localize(string value) =>
@@ -64,6 +80,57 @@ namespace SettingsFileUpdater.TerrariaHost
         public TerrariaWrapper() : base()
         {
 
+        }
+
+        public void MakeWorldFile(string seedName, string worldname, int gameMode = 0)
+        {
+            GameMode = gameMode;
+            worldName = worldname;
+            bool cloudSave = false;
+
+            WorldFileData worldFileData = new WorldFileData(Main.GetWorldPathFromName(worldname, cloudSave), cloudSave);
+            if (Main.autoGenFileLocation != null && Main.autoGenFileLocation != "")
+            {
+                worldFileData = new WorldFileData(Main.autoGenFileLocation, cloudSave);
+                Main.autoGenFileLocation = null;
+            }
+
+            worldFileData.Name = worldname;
+            worldFileData.GameMode = GameMode;
+            worldFileData.CreationTime = DateTime.Now;
+            worldFileData.Metadata = FileMetadata.FromCurrentSettings(FileType.World);
+            worldFileData.WorldGeneratorVersion = 1198295875585uL;
+            worldFileData.UniqueId = Guid.NewGuid();
+            if (Main.DefaultSeed == "")
+            {
+                worldFileData.SetSeedToRandom();
+            }
+            else
+            {
+                worldFileData.SetSeed(Main.DefaultSeed);
+            }
+
+
+            ActiveWorldFileData = worldFileData;
+
+
+            seedName = seedName.Trim();
+            ActiveWorldFileData.SetSeed(seedName);
+            UIWorldCreation.ProcessSpecialWorldSeeds(seedName);
+            GenerationProgress progress = new GenerationProgress();
+
+
+            Task newWorld = WorldGen.CreateNewWorld(progress);
+            while (!newWorld.IsCompleted)
+            {
+                string msg = $"Generating World [{worldName}] {progress.TotalProgress:P0}: {progress.Message} {progress.Value:P0}";
+                Console.WriteLine(msg);
+                Debug.WriteLine(msg);
+                Task.Delay(250).Wait();
+            }
+
+
+            WorldFile.SaveWorld(false, true);
         }
 
         public void InitBase()
@@ -421,7 +488,7 @@ namespace SettingsFileUpdater.TerrariaHost
         {
             var bPopulator = new BestiaryDatabaseNPCsPopulator();
             var bestiary = new BestiaryDatabase();
- 
+
             bPopulator.Populate(bestiary);
 
             BestiaryUICollectionInfo bestiaryUICollectionInfo = new BestiaryUICollectionInfo()
@@ -441,7 +508,7 @@ namespace SettingsFileUpdater.TerrariaHost
                     npc = new NPC();
                     npc.SetDefaults(info.NetId);
                 }
-               
+
                 int killId = Item.NPCtoBanner(npc.BannerID());
                 if (killId <= 0 || npc.ExcludedFromDeathTally())
                     killId = -1;

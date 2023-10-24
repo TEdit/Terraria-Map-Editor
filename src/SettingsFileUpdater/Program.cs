@@ -1,9 +1,11 @@
-﻿using System;
+﻿using SettingsFileUpdater.TerrariaHost;
+using System;
 using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Text.Json;
 using System.Threading;
+using System.Threading.Tasks;
 using System.Xml.Linq;
 
 namespace SettingsFileUpdater
@@ -18,9 +20,15 @@ namespace SettingsFileUpdater
 
             LoadTerrariaAsm();
             Thread.CurrentThread.Name = "Main Thread";
-            Terraria.Program.SavePath = Assembly.GetExecutingAssembly().Location;
-            var wrapper = TerrariaHost.TerrariaWrapper.Initialize();
+            //Terraria.Program.SavePath = Path.GetDirectoryName( Assembly.GetExecutingAssembly().Location);
 
+            var wrapper = TerrariaHost.TerrariaWrapper.Initialize(true);
+            wrapper.MakeWorldFile("1234", "1234", 0);
+
+
+
+
+            
 
             // XDocument xdoc = XDocument.Load("settings.xml");
             // 
@@ -78,6 +86,7 @@ namespace SettingsFileUpdater
             //     var wall = tiles.Elements().FirstOrDefault(t => int.Parse(t.Attribute("Id").Value) == item.Key);
             //     wall.SetAttributeValue("Color", item.Value);
             // }
+            return;
 
             var bestiaryNpcs = wrapper.GetBestiaryData().ToList();
 
