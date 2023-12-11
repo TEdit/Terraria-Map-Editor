@@ -217,7 +217,7 @@ public class WeakFunc<TResult>
             return (TResult)Method.Invoke(funcTarget, null);
         }
 
-        return default(TResult);
+        return default;
     }
 
     //
@@ -351,7 +351,7 @@ public class WeakFunc<T, TResult> : WeakFunc<TResult>, IExecuteWithObjectAndResu
     //     The result of the Func stored as reference.
     public new TResult Execute()
     {
-        return Execute(default(T));
+        return Execute(default);
     }
 
     //
@@ -377,7 +377,7 @@ public class WeakFunc<T, TResult> : WeakFunc<TResult>, IExecuteWithObjectAndResu
             return (TResult)base.Method.Invoke(funcTarget, new object[1] { parameter });
         }
 
-        return default(TResult);
+        return default;
     }
 
     //

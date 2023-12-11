@@ -143,7 +143,7 @@ public class WeakAction<T> : WeakAction, IExecuteWithObject
     //     The action's parameter is set to default(T).
     public new void Execute()
     {
-        Execute(default(T));
+        Execute(default);
     }
 
     //

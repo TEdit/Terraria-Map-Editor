@@ -5,7 +5,6 @@ using System.Diagnostics;
 using System.Linq.Expressions;
 using System.Reflection;
 using System.Runtime.CompilerServices;
-using System.Text;
 
 namespace TEdit.Common.Reactive;
 
@@ -100,6 +99,71 @@ public class ObservableObject : INotifyPropertyChanged
                 RaisePropertyChanged(propertyName);
             }
         }
+    }
+
+    //
+    // Summary:
+    //     Raises the PropertyChanged event if needed, and broadcasts a PropertyChangedMessage
+    //     using the Messenger instance (or the static default instance if no Messenger
+    //     instance is available).
+    //
+    // Parameters:
+    //   propertyName:
+    //     The name of the property that changed.
+    //
+    //   oldValue:
+    //     The property's value before the change occurred.
+    //
+    //   newValue:
+    //     The property's value after the change occurred.
+    //
+    //   broadcast:
+    //     If true, a PropertyChangedMessage will be broadcasted. If false, only the event
+    //     will be raised.
+    //
+    // Type parameters:
+    //   T:
+    //     The type of the property that changed.
+    //
+    // Remarks:
+    //     If the propertyName parameter does not correspond to an existing property on
+    //     the current class, an exception is thrown in DEBUG configuration only.
+    public virtual void RaisePropertyChanged<T>([CallerMemberName] string propertyName = null, T oldValue = default, T newValue = default)
+    {
+        if (string.IsNullOrEmpty(propertyName))
+        {
+            throw new ArgumentException("This method cannot be called with an empty string", "propertyName");
+        }
+
+        RaisePropertyChanged(propertyName);
+    }
+
+    //
+    // Summary:
+    //     Raises the PropertyChanged event if needed, and broadcasts a PropertyChangedMessage
+    //     using the Messenger instance (or the static default instance if no Messenger
+    //     instance is available).
+    //
+    // Parameters:
+    //   propertyExpression:
+    //     An expression identifying the property that changed.
+    //
+    //   oldValue:
+    //     The property's value before the change occurred.
+    //
+    //   newValue:
+    //     The property's value after the change occurred.
+    //
+    //   broadcast:
+    //     If true, a PropertyChangedMessage will be broadcasted. If false, only the event
+    //     will be raised.
+    //
+    // Type parameters:
+    //   T:
+    //     The type of the property that changed.
+    public virtual void RaisePropertyChanged<T>(Expression<Func<T>> propertyExpression, T oldValue, T newValue)
+    {
+        RaisePropertyChanged(propertyExpression);
     }
 
     //

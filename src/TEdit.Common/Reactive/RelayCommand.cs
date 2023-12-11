@@ -120,7 +120,7 @@ public class RelayCommand<T> : ICommand
         {
             if (parameter == null && typeof(T).GetTypeInfo().IsValueType)
             {
-                return _canExecute.Execute(default(T));
+                return _canExecute.Execute(default);
             }
 
             if (parameter == null || parameter is T)
@@ -151,7 +151,7 @@ public class RelayCommand<T> : ICommand
         {
             if (typeof(T).GetTypeInfo().IsValueType)
             {
-                _execute.Execute(default(T));
+                _execute.Execute(default);
             }
             else
             {
