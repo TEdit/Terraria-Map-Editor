@@ -1,14 +1,37 @@
 <Window xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:vm="using:TEdit.Desktop.ViewModels"
+        xmlns:tedit="using:TEdit.Desktop.ViewModels"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="TEdit.Desktop.Views.MainWindow"
-
+        xmlns:c="clr-namespace:TEdit.Desktop.Controls"
         Icon="/Assets/avalonia-logo.ico"
-        Title="TEdit.Desktop">
+        Title="TEdit.Desktop1">
     <!-- d:DataContext="{d:DesignInstance vm:MainWindowViewModel, IsDesignTimeCreatable=False}" -->
-    <TextBlock  HorizontalAlignment="Center" VerticalAlignment="Center"/>
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.ThemeDictionaries>
+                <ResourceDictionary x:Key='Dark'>
+                    <SolidColorBrush x:Key='BackgroundBrush'>DodgerBlue</SolidColorBrush>
+                    <SolidColorBrush x:Key='ForegroundBrush'>White</SolidColorBrush>
+                </ResourceDictionary>
+            </ResourceDictionary.ThemeDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
 
+    <Window.Styles>
+        <Style Selector="Button">
+            <Setter Property="Background" Value="{DynamicResource BackgroundBrush}" />
+            <Setter Property="Foreground" Value="{DynamicResource ForegroundBrush}" />
+        </Style>
+    </Window.Styles>
+
+    <DockPanel>
+        <StackPanel Spacing="5" Margin="5" DockPanel.Dock="Left">
+            <Button Content="Dark button"/>
+        </StackPanel>
+        <c:AdvancedImageBox ShowGrid="True" GridCellSize="15" />
+    </DockPanel>
 </Window>

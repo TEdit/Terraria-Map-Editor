@@ -1,0 +1,14 @@
+<Styles xmlns="https://github.com/avaloniaui">
+    <Design.PreviewWith>
+        <Border Padding="20">
+            <TextBlock Text="Styles"></TextBlock>
+        </Border>
+    </Design.PreviewWith>
+    <Styles.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <MergeResourceInclude Source="/Controls/Styles/AdvancedImageBox.axaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Styles.Resources>
+</Styles>
