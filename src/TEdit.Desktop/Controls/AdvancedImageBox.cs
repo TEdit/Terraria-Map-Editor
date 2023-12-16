@@ -88,7 +88,7 @@ public class WorldRenderLayer : IRenderLayer
 
                         var tileColor = Color.FromArgb(color.A, color.R, color.G, color.B);
                         var tileBrush = new SolidColorBrush(tileColor);
-
+  
                         context.FillRectangle(tileBrush, tileRect);
                     }
                 }
@@ -1329,7 +1329,7 @@ public class AdvancedImageBox : TemplatedControl, IScrollable
             worldRenderLayer.World = World;
             worldRenderLayer.Enabled = true;
         }
-        else
+        else if (World == null)
         {
             worldRenderLayer.World = null;
             worldRenderLayer.Enabled = false;
