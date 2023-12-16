@@ -31,8 +31,11 @@ using Color = Avalonia.Media.Color;
 using Pen = Avalonia.Media.Pen;
 using Point = Avalonia.Point;
 using Size = Avalonia.Size;
+using TEdit.Terraria;
+using TEdit.Common;
 
 namespace TEdit.Desktop.Controls;
+
 
 public interface IRenderLayer
 {
@@ -41,6 +44,57 @@ public interface IRenderLayer
     bool Enabled { get; set; }
 
     void Render(DrawingContext context, Rect worldSourceRect, Rect viewportRect);
+}
+
+public class WorldRenderLayer : IRenderLayer
+{
+    public Size SizePixels => throw new NotImplementedException();
+
+    public Size SizeTiles => throw new NotImplementedException();
+
+    public bool Enabled { get; set; } = true;
+
+    public World? World { get; set; } = null!;
+
+    public void Render(DrawingContext context, Rect worldSourceRect, Rect viewportRect)
+    {
+        if (Enabled && World != null)
+        {
+            var world = World;
+            var tiles = world.Tiles;
+            var tileCount = tiles.Length;
+            var tileWidth = world.TilesWide;
+            var tileHeight = world.TilesHigh;
+            var tileScale = 2;
+            var tileOffset = new Point(0, 0);
+
+            var tileRect = new Rect(tileOffset, new Size(tileScale, tileScale));
+
+
+            for (int x = 0; x < tileWidth && x < viewportRect.Width / tileScale; x++)
+            {
+                for (int y = 0; y < tileHeight && y < viewportRect.Height / tileScale; y++)
+                {
+
+                    var tile = tiles[x, y];
+                    if (tile.IsActive)
+                    {
+                        var tileX = x;
+                        var tileY = y;
+
+                        tileRect = new Rect(tileOffset + new Vector(tileX * tileScale, tileY * tileScale), new Size(tileScale, tileScale));
+
+                        var color = PixelMap.GetTileColor(tile, TEditColor.White);
+
+                        var tileColor = Color.FromArgb(color.A, color.R, color.G, color.B);
+                        var tileBrush = new SolidColorBrush(tileColor);
+
+                        context.FillRectangle(tileBrush, tileRect);
+                    }
+                }
+            }
+        }
+    }
 }
 
 public class BackgroundGridRenderLayer : IRenderLayer
@@ -603,6 +657,18 @@ public class AdvancedImageBox : TemplatedControl, IScrollable
         set => SetValue(ImageProperty, value);
     }
 
+    public static readonly StyledProperty<World?> WorldProperty =
+    AvaloniaProperty.Register<AdvancedImageBox, World?>(nameof(World));
+
+    /// <summary>
+    /// Gets or sets the image to be displayed
+    /// </summary>
+    public World? World
+    {
+        get => GetValue(WorldProperty);
+        set => SetValue(WorldProperty, value);
+    }
+
     public WriteableBitmap? ImageAsWriteableBitmap
     {
         get
@@ -669,7 +735,7 @@ public class AdvancedImageBox : TemplatedControl, IScrollable
     }
 
     public static readonly StyledProperty<Size> VirtualSizeProperty =
-    AvaloniaProperty.Register<AdvancedImageBox, Size>(nameof(VirtualSize), new(100,100));
+    AvaloniaProperty.Register<AdvancedImageBox, Size>(nameof(VirtualSize), new(100, 100));
 
     /// <summary>
     /// Gets or sets the grid visibility when reach high zoom levels
@@ -680,7 +746,7 @@ public class AdvancedImageBox : TemplatedControl, IScrollable
         set => SetValue(VirtualSizeProperty, value);
     }
 
-    public Size GetImageSize() => Image?.Size ?? VirtualSize;
+    public Size GetImageSize => Image?.Size ?? VirtualSize;
 
     public static readonly StyledProperty<bool> ShowGridProperty =
         AvaloniaProperty.Register<AdvancedImageBox, bool>(nameof(ShowGrid), true);
@@ -991,7 +1057,7 @@ public class AdvancedImageBox : TemplatedControl, IScrollable
         get
         {
             if (!IsImageLoaded) return 100;
-            var size = GetImageSize();
+            var size = GetImageSize;
 
             double zoom;
             double aspectRatio;
@@ -1033,13 +1099,13 @@ public class AdvancedImageBox : TemplatedControl, IScrollable
     /// Gets the width of the scaled image.
     /// </summary>
     /// <value>The width of the scaled image.</value>
-    public double ScaledImageWidth => Image?.Size.Width * ZoomFactor ?? 0;
+    public double ScaledImageWidth => GetImageSize.Width * ZoomFactor;
 
     /// <summary>
     /// Gets the height of the scaled image.
     /// </summary>
     /// <value>The height of the scaled image.</value>
-    public double ScaledImageHeight => Image?.Size.Height * ZoomFactor ?? 0;
+    public double ScaledImageHeight => GetImageSize.Height * ZoomFactor;
 
     public static readonly StyledProperty<ISolidColorBrush> PixelGridColorProperty =
         AvaloniaProperty.Register<AdvancedImageBox, ISolidColorBrush>(nameof(PixelGridColor), Brushes.DimGray);
@@ -1233,6 +1299,7 @@ public class AdvancedImageBox : TemplatedControl, IScrollable
     }
 
     BackgroundGridRenderLayer backgroundGridLayer = new();
+    WorldRenderLayer worldRenderLayer = new();
 
     public override void Render(DrawingContext context)
     {
@@ -1245,7 +1312,7 @@ public class AdvancedImageBox : TemplatedControl, IScrollable
 
 
         var image = Image;
-        var size = GetImageSize();
+        var size = GetImageSize;
 
         var viewPort = new Rect(Viewport);
         var imageViewPort = GetImageViewPort();
@@ -1256,6 +1323,20 @@ public class AdvancedImageBox : TemplatedControl, IScrollable
         {
             backgroundGridLayer.Render(context, worldSource, viewPort);
         }
+
+        if (World != null && worldRenderLayer.World != World)
+        {
+            worldRenderLayer.World = World;
+            worldRenderLayer.Enabled = true;
+        }
+        else
+        {
+            worldRenderLayer.World = null;
+            worldRenderLayer.Enabled = false;
+        }
+
+        worldRenderLayer.Render(context, worldSource, viewPort);
+
 
         // Draw image
         if (image is null) return;
@@ -1440,7 +1521,7 @@ public class AdvancedImageBox : TemplatedControl, IScrollable
     /*protected override void OnPointerPressed(PointerPressedEventArgs e)
     {
         base.OnPointerPressed(e);
-        
+
         if (e.Handled
             || _isPanning
             || _isSelecting
@@ -1918,7 +1999,7 @@ public class AdvancedImageBox : TemplatedControl, IScrollable
             x = (point.X + Offset.X - viewport.X) / ZoomFactor;
             y = (point.Y + Offset.Y - viewport.Y) / ZoomFactor;
 
-            var size = GetImageSize();
+            var size = GetImageSize;
             if (fitToBounds)
             {
                 x = Math.Clamp(x, 0, size.Width - 1);
@@ -2048,7 +2129,7 @@ public class AdvancedImageBox : TemplatedControl, IScrollable
     /// </returns>
     public Rectangle FitRectangle(Rectangle rectangle)
     {
-        var size = GetImageSize();
+        var size = GetImageSize;
 
         var x = rectangle.X;
         var y = rectangle.Y;
@@ -2087,7 +2168,7 @@ public class AdvancedImageBox : TemplatedControl, IScrollable
     /// </returns>
     public Rect FitRectangle(Rect rectangle)
     {
-        var size = GetImageSize();
+        var size = GetImageSize;
 
         var x = rectangle.X;
         var y = rectangle.Y;
@@ -2367,7 +2448,7 @@ public class AdvancedImageBox : TemplatedControl, IScrollable
     /// <exception cref="System.InvalidOperationException">Thrown if no image is currently set</exception>
     public void SelectAll()
     {
-        var size = GetImageSize();
+        var size = GetImageSize;
         SelectionRegion = new Rect(0, 0, size.Width, size.Height);
     }
 
@@ -2388,7 +2469,7 @@ public class AdvancedImageBox : TemplatedControl, IScrollable
     /// <returns></returns>
     public Rect GetSourceImageRegion()
     {
-        var size = GetImageSize();
+        var size = GetImageSize;
 
         switch (SizeMode)
         {
@@ -2439,7 +2520,7 @@ public class AdvancedImageBox : TemplatedControl, IScrollable
                 height = viewPortSize.Height;
                 break;
             case SizeModes.Fit:
-                var size = GetImageSize();
+                var size = GetImageSize;
                 double scaleFactor = Math.Min(viewPortSize.Width / size.Width, viewPortSize.Height / size.Height);
 
                 width = Math.Floor(size.Width * scaleFactor);
