@@ -6,6 +6,7 @@
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="TEdit.Desktop.Views.MainWindow"
         xmlns:c="clr-namespace:TEdit.Desktop.Controls"
+        xmlns:r="clr-namespace:TEdit.Desktop.Controls.WorldRenderEngine"
         Icon="/Assets/avalonia-logo.ico"
         Title="TEdit.Desktop1"
         x:DataType="vm:MainWindowViewModel"
@@ -31,9 +32,16 @@
     <DockPanel>
         <StackPanel Spacing="5" Margin="5" DockPanel.Dock="Left">
             <Button Click="LoadWorldButton_Clicked">Load World</Button>
-           
-        <TextBox Text="{Binding World.Title}" />
+
+            <TextBox Text="{Binding World.Title}" />
         </StackPanel>
-        <c:AdvancedImageBox ShowGrid="True" GridCellSize="15" World="{Binding World}"  />
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1" />
+                <ColumnDefinition Width="1*" />
+            </Grid.ColumnDefinitions>
+            <!--<c:AdvancedImageBox ShowGrid="True" GridCellSize="15" World="{Binding World}" Grid.Column="0"  />-->
+            <r:SkiaWorldRenderer Grid.Column="1" World="{Binding World}" />
+        </Grid>
     </DockPanel>
 </Window>

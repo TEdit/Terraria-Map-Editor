@@ -51,6 +51,8 @@
     <PackageReference Include="Avalonia.ReactiveUI" Version="11.0.6" />
       
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="8.0.0" />
+      
+    <PackageReference Include="SkiaSharp" Version="2.88.6" />
   </ItemGroup>
 
   <ItemGroup>

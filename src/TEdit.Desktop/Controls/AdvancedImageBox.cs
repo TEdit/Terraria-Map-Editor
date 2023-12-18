@@ -13,6 +13,7 @@
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.Metadata;
+using Avalonia.Controls.Presenters;
 using Avalonia.Controls.Primitives;
 using Avalonia.Input;
 using Avalonia.Media;
@@ -24,15 +25,14 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
 using System.Runtime.CompilerServices;
-using Avalonia.Controls.Presenters;
-using Brushes = Avalonia.Media.Brushes;
+using TEdit.Desktop.Controls.RenderLayer;
+using TEdit.Terraria;
 using Bitmap = Avalonia.Media.Imaging.Bitmap;
+using Brushes = Avalonia.Media.Brushes;
 using Color = Avalonia.Media.Color;
 using Pen = Avalonia.Media.Pen;
 using Point = Avalonia.Point;
 using Size = Avalonia.Size;
-using TEdit.Terraria;
-using TEdit.Desktop.Controls.RenderLayer;
 
 namespace TEdit.Desktop.Controls;
 
@@ -485,6 +485,7 @@ public class AdvancedImageBox : TemplatedControl, IScrollable
         AvaloniaProperty.RegisterDirect<AdvancedImageBox, bool>(
             nameof(CanRender),
             o => o.CanRender);
+
 
     /// <summary>
     /// Gets or sets if control can render the image
@@ -1194,6 +1195,10 @@ public class AdvancedImageBox : TemplatedControl, IScrollable
     public override void Render(DrawingContext context)
     {
         //Debug.WriteLine($"Render: {DateTime.Now.Ticks}");
+        //var canvas = (context as ISkiaDrawingContextImpl)?.SkCanvas;
+        //if (canvas == null)
+        //    context.DrawText(Brushes.Black, new Point(), _noSkia.PlatformImpl);
+
         base.Render(context);
 
         if (ViewPort == null) return;
