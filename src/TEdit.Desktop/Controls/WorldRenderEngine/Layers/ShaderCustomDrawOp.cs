@@ -7,7 +7,7 @@ using SkiaSharp;
 using System;
 using System.Diagnostics;
 
-namespace TEdit.Desktop.Controls.WorldRenderEngine;
+namespace TEdit.Desktop.Controls.WorldRenderEngine.Layers;
 
 public class ShaderCustomDrawOp : ICustomDrawOperation
 {

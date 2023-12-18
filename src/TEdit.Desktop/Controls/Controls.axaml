@@ -8,6 +8,7 @@
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <MergeResourceInclude Source="/Controls/Styles/AdvancedImageBox.axaml"/>
+                <MergeResourceInclude Source="/Controls/Styles/SkiaWorldRenderBox.axaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Styles.Resources>

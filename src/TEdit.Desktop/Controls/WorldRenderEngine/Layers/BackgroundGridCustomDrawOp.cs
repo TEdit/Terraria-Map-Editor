@@ -6,7 +6,7 @@ using Avalonia.Skia;
 using SkiaSharp;
 using System;
 
-namespace TEdit.Desktop.Controls.WorldRenderEngine;
+namespace TEdit.Desktop.Controls.WorldRenderEngine.Layers;
 
 public class BackgroundGridCustomDrawOp : ICustomDrawOperation
 {

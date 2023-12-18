@@ -10,7 +10,7 @@ namespace TEdit.Desktop.Views;
 public partial class MainWindow : Window
 {
     protected MainWindowViewModel MainWindowViewModel => (MainWindowViewModel)this.DataContext!;
-    
+
     public MainWindow()
     {
         InitializeComponent();
@@ -42,12 +42,13 @@ public partial class MainWindow : Window
         if (files.Count == 1)
         {
             var file = files[0];
-            
+
             (var world, var errors) = World.LoadWorld(file.TryGetLocalPath());
 
             if (world != null)
             {
                 MainWindowViewModel.World = world;
+                MainWindowViewModel.PixelTileCache.Clear();
             }
         }
     }

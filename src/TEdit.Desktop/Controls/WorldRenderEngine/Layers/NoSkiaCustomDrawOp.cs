@@ -4,7 +4,7 @@ using Avalonia.Platform;
 using Avalonia.Rendering.SceneGraph;
 using Avalonia.Skia;
 
-namespace TEdit.Desktop.Controls.WorldRenderEngine;
+namespace TEdit.Desktop.Controls.WorldRenderEngine.Layers;
 
 public class NoSkiaCustomDrawOp : ICustomDrawOperation
 {

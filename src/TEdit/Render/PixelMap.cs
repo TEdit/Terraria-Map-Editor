@@ -158,6 +158,8 @@ public static class PixelMap
 
     #endregion
 
+
+
     public static Color GetTileColor(Tile tile, Color background, bool showWall = true, bool showTile = true, bool showLiquid = true, bool showRedWire = true, bool showBlueWire = true, bool showGreenWire = true, bool showYellowWire = true, bool showCoatings = true)
     {
         var c = new Color(0, 0, 0, 0);

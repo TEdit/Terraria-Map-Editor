@@ -41,7 +41,7 @@
                 <ColumnDefinition Width="1*" />
             </Grid.ColumnDefinitions>
             <!--<c:AdvancedImageBox ShowGrid="True" GridCellSize="15" World="{Binding World}" Grid.Column="0"  />-->
-            <r:SkiaWorldRenderer Grid.Column="1" World="{Binding World}" />
+            <c:SkiaWorldRenderBox Grid.Column="1" World="{Binding World}" PixelTileCache="{Binding PixelTileCache}" />
         </Grid>
     </DockPanel>
 </Window>

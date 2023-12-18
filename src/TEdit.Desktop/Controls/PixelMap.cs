@@ -10,11 +10,11 @@
 // Port from: https://raw.githubusercontent.com/sn4k3/UVtools/master/UVtools.AvaloniaControls/AdvancedImageBox.cs
 
 
-using System;
-using TEdit.Terraria;
-using TEdit.Configuration;
-using TEdit.Common;
 using Avalonia.Media;
+using System;
+using TEdit.Common;
+using TEdit.Configuration;
+using TEdit.Terraria;
 
 namespace TEdit.Desktop.Controls;
 
