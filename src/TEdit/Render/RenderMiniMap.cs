@@ -26,8 +26,6 @@ public class RenderMiniMap
         return bmp;
     }
 
-
-
     public static void UpdateMinimap(World w, ref WriteableBitmap bmp)
     {
         bmp.Lock();
@@ -43,8 +41,6 @@ public class RenderMiniMap
 
                 int worldX = x * Resolution;
                 int worldY = y * Resolution;
-
-
 
                 pixels[i] = XnaColorToWindowsInt(PixelMap.GetTileColor(w.Tiles[worldX, worldY], Microsoft.Xna.Framework.Color.Transparent));
             }

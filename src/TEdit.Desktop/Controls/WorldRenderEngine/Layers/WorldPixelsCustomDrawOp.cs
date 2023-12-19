@@ -13,6 +13,7 @@ using TEdit.Terraria;
 
 namespace TEdit.Desktop.Controls.WorldRenderEngine.Layers;
 
+
 public class WorldPixelsCustomDrawOp : ICustomDrawOperation
 {
     private readonly Vector _offset;
@@ -126,10 +127,10 @@ public class WorldPixelsCustomDrawOp : ICustomDrawOperation
                 var currentBlockY = y + blockY;
 
                 var block = blocks[currentBlockX, currentBlockY];
-                if (block.IsActive)
+                //if (block.IsActive)
                 {
                     var bgColor = GetBackgroundColor(currentBlockY);
-                    var tileColor = PixelMap.GetTileColor(block, bgColor).ToSKColor();
+                    var tileColor = PixelMap.GetTileColor(block, bgColor).ToSKColor().WithAlpha(255);
 
                     bmp.SetPixel(
                         x,

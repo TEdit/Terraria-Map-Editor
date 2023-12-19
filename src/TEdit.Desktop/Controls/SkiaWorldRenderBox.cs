@@ -37,8 +37,8 @@ public class SkiaWorldRenderBox : TemplatedControl
 
     static SkiaWorldRenderBox()
     {
-        FocusableProperty.OverrideDefaultValue(typeof(AdvancedImageBox), true);
-        AffectsRender<AdvancedImageBox>(
+        FocusableProperty.OverrideDefaultValue(typeof(SkiaWorldRenderBox), true);
+        AffectsRender<SkiaWorldRenderBox>(
             GridCellSizeProperty,
             GridColorProperty,
             GridColorAlternateProperty,

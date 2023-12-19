@@ -35,6 +35,11 @@
 
             <TextBox Text="{Binding World.Title}" />
         </StackPanel>
+        <Grid DockPanel.Dock="Top">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <c:SkiaMinimapRenderBox World="{Binding World}" Height="100" Width="300" />
+            </StackPanel>
+        </Grid>
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1" />

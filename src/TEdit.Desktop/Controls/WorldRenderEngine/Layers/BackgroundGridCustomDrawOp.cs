@@ -12,11 +12,12 @@ public class BackgroundGridCustomDrawOp : ICustomDrawOperation
 {
     private static SKPaint _rowPaint;
     private static SKPaint _altPaint;
+    private readonly int _cellSize = 16;
 
-    public BackgroundGridCustomDrawOp(Rect bounds)
+    public BackgroundGridCustomDrawOp(Rect bounds, int cellSize = 16)
     {
         Bounds = bounds;
-
+        _cellSize = cellSize;
         LoadContent();
     }
 
@@ -65,17 +66,16 @@ public class BackgroundGridCustomDrawOp : ICustomDrawOperation
     private void DrawBackgroundGrid(SKCanvas canvas)
     {
         canvas.Save();
-        const int cellSize = 16;
 
         int currentColor = 0;
 
-        for (int y = 0; y < Bounds.Height; y += cellSize)
+        for (int y = 0; y < Bounds.Height; y += _cellSize)
         {
             var firstRowColor = currentColor;
 
-            for (int x = 0; x < Bounds.Width; x += cellSize)
+            for (int x = 0; x < Bounds.Width; x += _cellSize)
             {
-                canvas.DrawRect(x, y, cellSize, cellSize, currentColor == 0 ? _rowPaint : _altPaint);
+                canvas.DrawRect(x, y, _cellSize, _cellSize, currentColor == 0 ? _rowPaint : _altPaint);
                 currentColor = currentColor == 0 ? 1 : 0;
             }
 
