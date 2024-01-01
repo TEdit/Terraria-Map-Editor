@@ -309,7 +309,7 @@
     <value>Русский</value>
   </data>
   <data name="menu_language_zh" xml:space="preserve">
-    <value>中文</value>
+    <value>简体中文</value>
   </data>
   <data name="menu_layers" xml:space="preserve">
     <value>地层</value>
@@ -838,13 +838,13 @@
     <value>困难模式</value>
   </data>
   <data name="tool_wp_drunk" xml:space="preserve">
-    <value>醉酒世界（Drunk world）</value>
+    <value>醉酒世界（Drunk World）</value>
   </data>
   <data name="tool_wp_event" xml:space="preserve">
     <value>事件</value>
   </data>
   <data name="tool_wp_gamemode" xml:space="preserve">
-    <value>游戏模式</value>
+    <value>世界模式</value>
   </data>
   <data name="tool_wp_gold" xml:space="preserve">
     <value>金矿</value>
@@ -871,13 +871,13 @@
     <value>入侵</value>
   </data>
   <data name="tool_wp_invasion_frostlegion" xml:space="preserve">
-    <value>寒霜军团</value>
+    <value>雪人军团</value>
   </data>
   <data name="tool_wp_invasion_goblinarmy" xml:space="preserve">
     <value>哥布林军团</value>
   </data>
   <data name="tool_wp_invasion_martianmadness" xml:space="preserve">
-    <value>火星入侵</value>
+    <value>火星暴乱</value>
   </data>
   <data name="tool_wp_invasion_pirateinvasion" xml:space="preserve">
     <value>海盗入侵</value>
@@ -1003,7 +1003,7 @@
     <value>沙尘暴</value>
   </data>
   <data name="tool_wp_sandstorm_active" xml:space="preserve">
-    <value>正在沙尘暴</value>
+    <value>正在刮沙尘暴</value>
   </data>
   <data name="tool_wp_sandstorm_severity" xml:space="preserve">
     <value>严重程度</value>
@@ -1105,7 +1105,7 @@
     <value>鹿角怪</value>
   </data>
   <data name="tool_wp_dontstarve" xml:space="preserve">
-    <value>饥荒（The Constant）</value>
+    <value>永恒领域（The Constant）</value>
   </data>
   <data name="tool_wp_notthebees" xml:space="preserve">
     <value>不要蜜蜂（Not the bees）</value>
@@ -1135,7 +1135,7 @@
     <value>接线盒：</value>
   </data>
   <data name="menu_edit_crop" xml:space="preserve">
-    <value>作物世界</value>
+    <value>裁剪世界</value>
   </data>
   <data name="tab_bestiary" xml:space="preserve">
     <value>怪物图鉴</value>
@@ -1249,25 +1249,25 @@
     <value>无陷阱（No traps）</value>
   </data>
   <data name="tool_wp_afterpartyofdoom" xml:space="preserve">
-    <value>末日派对之后</value>
+    <value>死亡派对</value>
   </data>
   <data name="tool_wp_lanternnight_cooldown" xml:space="preserve">
-    <value>灯笼之夜冷却时间</value>
+    <value>灯笼夜冷却中</value>
   </data>
   <data name="tool_wp_lanternnight" xml:space="preserve">
-    <value>灯笼之夜</value>
+    <value>灯笼夜</value>
   </data>
   <data name="tool_wp_lanternnight_genuine" xml:space="preserve">
-    <value>灯笼之夜正版</value>
+    <value>自然开始的灯笼夜</value>
   </data>
   <data name="tool_wp_lanternnight_manual" xml:space="preserve">
-    <value>灯笼之夜手册</value>
+    <value>手动开始的灯笼夜</value>
   </data>
   <data name="tool_wp_lanternnight_nextgenuine" xml:space="preserve">
-    <value>灯笼之夜接下来是真的</value>
+    <value>下一夜是灯笼夜</value>
   </data>
   <data name="menu_layers_usetexturecolor" xml:space="preserve">
-    <value>使用逼真的颜色</value>
+    <value>使用实际颜色</value>
   </data>
   <data name="messagebox_restartrequired" xml:space="preserve">
     <value>需要重新启动</value>
@@ -1342,10 +1342,10 @@
     <value>涂料</value>
   </data>
   <data name="tool_paint_echocoating" xml:space="preserve">
-    <value>夜明</value>
+    <value>回声</value>
   </data>
   <data name="tool_paint_illuminantcoating" xml:space="preserve">
-    <value>光源</value>
+    <value>夜明</value>
   </data>
   <data name="liquid_amount" xml:space="preserve">
     <value>液体量：</value>
