@@ -49,3 +49,4 @@ build/
 *.wxs
 *.wix
 *.msi
+/src/publish/*

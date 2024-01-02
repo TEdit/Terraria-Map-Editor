@@ -1,7 +1,6 @@
-﻿using Avalonia.Controls;
+﻿using Avalonia;
+using Avalonia.Controls;
 using Avalonia.Platform.Storage;
-using ReactiveUI;
-using System.Reactive;
 using System.Threading.Tasks;
 using TEdit.Desktop.Controls.WorldRenderEngine;
 using TEdit.Desktop.Services;
@@ -9,25 +8,35 @@ using TEdit.Terraria;
 
 namespace TEdit.Desktop.ViewModels;
 
-public class MainWindowViewModel : ViewModelBase
+public partial class MainWindowViewModel : ObservableObject
 {
-    private readonly IRasterTileCache _pixelTileCache;
+    [ObservableProperty]
+    private DocumentViewModel _selectedDocument;
+
+    public MainWindowViewModel()
+    {
+        _selectedDocument = new DocumentViewModel();
+    }
+}
+
+public partial class DocumentViewModel : ObservableObject
+{
+    [ObservableProperty]
     private World? _world;
 
+    [ObservableProperty]
+    private int _zoom = 100;
 
-    public MainWindowViewModel(IRasterTileCache pixelTileCache)
-    {
-        _pixelTileCache = pixelTileCache;
-    }
+    [ObservableProperty]
+    private int _minZoom = 7;
 
-    public IRasterTileCache PixelTileCache
-    {
-        get => _pixelTileCache;
-    }
+    [ObservableProperty]
+    private int _maxZoom = 6400;
 
-    public World? World
+    [ObservableProperty]
+    private Point _cursorTileCoordinate;
+
+    public DocumentViewModel()
     {
-        get => _world;
-        set => this.RaiseAndSetIfChanged(ref _world, value);
     }
 }

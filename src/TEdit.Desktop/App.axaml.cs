@@ -20,8 +20,6 @@ public partial class App : Application
         services.AddTransient<MainWindowViewModel>();
         services.AddTransient<IDialogService, DialogService>();
 
-        services.AddSingleton<IRasterTileCache, RasterTileCache>();
-
         //services.AddSingleton<IMyInterface, MyImplementation>()
         var serviceProvider = services.BuildServiceProvider();
         this.Resources[typeof(IServiceProvider)] = serviceProvider;

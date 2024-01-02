@@ -1,15 +1,15 @@
-﻿using System.Collections.Generic;
-using System.ComponentModel;
-using TEdit.Utility;
-using TEdit.Helper;
-using TEdit.Terraria.Objects;
-using Vector2 = TEdit.Geometry.Vector2Float;
-using System;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.IO;
 using System.Linq;
-using TEdit.Geometry;
 using TEdit.Configuration;
+using TEdit.Geometry;
+using TEdit.Helper;
+using TEdit.Terraria.Objects;
+using TEdit.Utility;
+using Vector2 = TEdit.Geometry.Vector2Float;
 
 namespace TEdit.Terraria;
 
@@ -227,11 +227,9 @@ public partial class World
         WriteSignDataToStreamV1(world.Signs, bw, world.Version);
         OnProgressChanged(null, new ProgressChangedEventArgs(100, "Saving NPC Data..."));
 
-
         foreach (NPC curNpc in world.NPCs.Where(n => n.SpriteId <= saveData.MaxNpcId))
         {
             bw.Write(true);
-
             bw.Write(curNpc.Name);
             bw.Write(curNpc.Position.X);
             bw.Write(curNpc.Position.Y);
@@ -239,17 +237,10 @@ public partial class World
             bw.Write(curNpc.Home.X);
             bw.Write(curNpc.Home.Y);
         }
+
         bw.Write(false);
 
         OnProgressChanged(null, new ProgressChangedEventArgs(100, "Saving NPC Names..."));
-
-        //try
-        //{
-        //    world.FixNpcs();
-        //}
-        //catch (Exception)
-        //{
-        //}
 
         if (version >= 31)
         {
@@ -465,7 +456,6 @@ public partial class World
     {
         if (_legacyItemLookup == null)
             _legacyItemLookup = GenerateLegacyItemDictionary();
-
 
         if (release <= 4)
         {
@@ -1327,7 +1317,7 @@ public partial class World
         }
     }
 
-    public static void LoadV0(BinaryReader reader, string filename, World w)
+    public static void LoadV0(BinaryReader reader, string filename, World w, bool headersOnly = false)
     {
         uint version = w.Version;
         w.Title = reader.ReadString();
@@ -1350,6 +1340,7 @@ public partial class World
         w.DayTime = reader.ReadBoolean();
         w.MoonPhase = reader.ReadInt32();
         w.BloodMoon = reader.ReadBoolean();
+
         if (version >= 28)
         {
             w.DungeonX = reader.ReadInt32();
@@ -1394,6 +1385,10 @@ public partial class World
         }
 
         var frames = GetFramesV0();
+        w.TileFrameImportant = frames;
+
+        if (headersOnly) { return; }
+
         for (int x = 0; x < w.TilesWide; ++x)
         {
             OnProgressChanged(null,
@@ -1525,17 +1520,14 @@ public partial class World
         bw.Write((int)world.BottomWorld);
         bw.Write(world.TilesHigh);
         bw.Write(world.TilesWide);
-
         bw.Write(world.SpawnX);
         bw.Write(world.SpawnY);
         bw.Write(world.GroundLevel);
         bw.Write(world.RockLevel);
-
         bw.Write(world.Time);
         bw.Write(world.DayTime);
         bw.Write(world.MoonPhase);
         bw.Write(world.BloodMoon);
-
         bw.Write(world.DungeonX);
         bw.Write(world.DungeonY);
         bw.Write(world.DownedBoss1);
@@ -1755,14 +1747,13 @@ public partial class World
         bw.Write(false);
     }
 
-    public static void LoadV1(BinaryReader reader, string filename, World w)
+    public static void LoadV1(BinaryReader reader, string filename, World w, bool headersOnly = false)
     {
         uint version = w.Version;
         w.Title = reader.ReadString();
 
         w.WorldId = reader.ReadInt32();
         w.Rand = new Random(w.WorldId);
-
 
         w.LeftWorld = reader.ReadInt32();
         w.RightWorld = reader.ReadInt32();
@@ -1774,7 +1765,6 @@ public partial class World
         //if (w.TilesHigh > 10000 || w.TilesWide > 10000 || w.TilesHigh <= 0 || w.TilesWide <= 0)
         //    throw new FileLoadException(string.Format("Invalid File: {0}", filename));
 
-
         if (version >= 63)
         {
             w.MoonType = reader.ReadByte();
@@ -1783,7 +1773,6 @@ public partial class World
         {
             w.MoonType = (byte)w.Rand.Next(WorldConfiguration.MaxMoons);
         }
-
 
         if (version >= 44)
         {
@@ -1902,7 +1891,6 @@ public partial class World
             w.DownedPirates = reader.ReadBoolean();
         }
 
-
         w.ShadowOrbSmashed = reader.ReadBoolean();
         w.SpawnMeteor = reader.ReadBoolean();
         w.ShadowOrbCount = reader.ReadByte();
@@ -1984,6 +1972,8 @@ public partial class World
 
         bool[] tileFrameImportant = WorldConfiguration.SaveConfiguration.GetTileFramesForVersion((int)version);
 
+        if (headersOnly) { return; }
+
         for (int x = 0; x < w.TilesWide; ++x)
         {
             OnProgressChanged(null,
@@ -2015,12 +2005,6 @@ public partial class World
                 }
             }
         }
-
-        // if (version < 67)
-        //     w.FixSunflowers();
-        // if (version < 72)
-        //     w.FixChand();
-
 
         OnProgressChanged(null, new ProgressChangedEventArgs(100, "Loading Chests..."));
         w.Chests.Clear();
@@ -2054,11 +2038,6 @@ public partial class World
 
             w.NPCs.Add(npc);
         }
-        // if (version>=0x1f) read the names of the following npcs:
-        // merchant, nurse, arms dealer, dryad, guide, clothier, demolitionist,
-        // tinkerer and wizard
-        // if (version>=0x23) read the name of the mechanic
-
 
         if (version >= 31 && version <= 83)
         {
@@ -2114,8 +2093,6 @@ public partial class World
             {
                 w.CharacterNames.Add(new NpcName(124, "Nancy"));
             }
-
-
         }
         else
         {
@@ -2229,12 +2206,7 @@ public partial class World
     public static Tile ReadTileDataFromStreamV1(BinaryReader b, uint version, bool[] frames)
     {
         var tile = new Tile();
-
-        //if (b.BaseStream.Position == 0x97e50) Debugger.Break();
-        //if (b.BaseStream.Position == 0x98010) Debugger.Break();
-
         tile.IsActive = b.ReadBoolean();
-
 
         if (tile.IsActive)
         {
@@ -2341,11 +2313,13 @@ public partial class World
                     tile.BrickStyle = 0;
             }
         }
+
         if (version >= 42)
         {
             tile.Actuator = b.ReadBoolean();
             tile.InActive = b.ReadBoolean();
         }
+
         return tile;
     }
 }

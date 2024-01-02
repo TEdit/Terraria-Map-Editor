@@ -1,13 +1,13 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
-using TEdit.Utility;
-using System;
 using System.IO;
-using TEdit.Helper;
 using System.Linq;
-using TEdit.Geometry;
-using TEdit.Configuration;
 using TEdit.Common.Exceptions;
+using TEdit.Configuration;
+using TEdit.Geometry;
+using TEdit.Helper;
+using TEdit.Utility;
 
 namespace TEdit.Terraria;
 
@@ -18,7 +18,6 @@ public partial class World
     public short GetSectionCount() => ((int)Version >= 220) ? (short)11 : (short)10;
 
     public bool[] TileFrameImportant { get; set; }
-
 
     public static void ImportKillsAndBestiary(World world, string worldFileName)
     {
@@ -74,7 +73,7 @@ public partial class World
         world.KilledMobs.AddRange(w.KilledMobs);
     }
 
-    public static void SaveV2(World world, BinaryWriter bw, TextWriter debugger = null, bool incrementRevision = true)
+    public static void SaveV2(World world, BinaryWriter bw, bool incrementRevision = true)
     {
         world.ValidateAsync();
 
@@ -86,14 +85,11 @@ public partial class World
         int[] sectionPointers = new int[world.GetSectionCount()];
         bool[] tileFrameImportant = WorldConfiguration.SaveConfiguration.GetTileFramesForVersion((int)world.Version);
 
-        debugger?.WriteLine("{");
-
-
         OnProgressChanged(null, new ProgressChangedEventArgs(0, "Save headers..."));
-        sectionPointers[0] = SaveSectionHeader(world, bw, tileFrameImportant, debugger);
-        sectionPointers[1] = SaveHeaderFlags(world, bw, (int)world.Version, debugger);
+        sectionPointers[0] = SaveSectionHeader(world, bw, tileFrameImportant);
+        sectionPointers[1] = SaveHeaderFlags(world, bw, (int)world.Version);
         OnProgressChanged(null, new ProgressChangedEventArgs(0, "Save Tiles..."));
-        sectionPointers[2] = SaveTiles(world.Tiles, (int)world.Version, world.TilesWide, world.TilesHigh, bw, tileFrameImportant, debugger);
+        sectionPointers[2] = SaveTiles(world.Tiles, (int)world.Version, world.TilesWide, world.TilesHigh, bw, tileFrameImportant);
 
         OnProgressChanged(null, new ProgressChangedEventArgs(91, "Save Chests..."));
         sectionPointers[3] = SaveChests(world.Chests, bw, (int)world.Version);
@@ -140,13 +136,10 @@ public partial class World
         SaveFooter(world, bw);
         UpdateSectionPointers(world.Version, sectionPointers, bw);
         OnProgressChanged(null, new ProgressChangedEventArgs(100, "Save Complete."));
-
-        debugger?.WriteLine("}");
     }
 
-    public static int SaveTiles(Tile[,] tiles, int version, int maxX, int maxY, BinaryWriter bw, bool[] tileFrameImportant, TextWriter debugger = null)
+    public static int SaveTiles(Tile[,] tiles, int version, int maxX, int maxY, BinaryWriter bw, bool[] tileFrameImportant)
     {
-        debugger?.WriteLine("\"Tiles\": [");
 
         int maxTileId = WorldConfiguration.SaveConfiguration.GetData(version).MaxTileId;
         int maxWallId = WorldConfiguration.SaveConfiguration.GetData(version).MaxWallId;
@@ -160,13 +153,10 @@ public partial class World
             {
                 Tile tile = tiles[x, y];
 
-
                 int dataIndex;
                 int headerIndex;
 
-                debugger?.Write("{");
-
-                byte[] tileData = SerializeTileData(tile, version, maxTileId, maxWallId, tileFrameImportant, out dataIndex, out headerIndex, debugger);
+                byte[] tileData = SerializeTileData(tile, version, maxTileId, maxWallId, tileFrameImportant, out dataIndex, out headerIndex);
 
                 // rle compression
                 byte header1 = tileData[headerIndex];
@@ -180,8 +170,6 @@ public partial class World
                     remainingY--;
                     nextY++;
                 }
-
-                debugger?.Write(",\"RLE\": {0}", rle);
 
                 y = y + rle;
 
@@ -208,14 +196,10 @@ public partial class World
                 tileData[headerIndex] = header1;
                 // end rle compression
 
-                debugger?.WriteLine(",\"TileDataSize\": {0}}},", rle);
 
                 bw.Write(tileData, headerIndex, dataIndex - headerIndex);
             }
         }
-
-        debugger?.WriteLine("],");
-        debugger?.WriteLine("\"SECTION_2\": {0},", bw.BaseStream.Position);
 
         return (int)bw.BaseStream.Position;
     }
@@ -230,8 +214,7 @@ public partial class World
         int maxWallId,
         bool[] tileFrameImportant,
         out int dataIndex,
-        out int headerIndex,
-        TextWriter debugger = null)
+        out int headerIndex)
     {
         int size = version switch
         {
@@ -249,7 +232,6 @@ public partial class World
         byte header1 = (byte)0;
 
         // tile data
-        debugger?.Write("\"IsActive\": {0},", tile.IsActive);
 
         if (tile.IsActive && tile.Type <= maxTileId && tile.Type != (int)TileType.IceByRod)
         {
@@ -267,7 +249,6 @@ public partial class World
                 header1 |= 0b_0010_0000;
             }
 
-            debugger?.Write("\"Type\": {0},", tile.Type);
 
             if (tileFrameImportant[tile.Type])
             {
@@ -277,8 +258,6 @@ public partial class World
                 tileData[dataIndex++] = (byte)(tile.V & 0xFF); // low byte
                 tileData[dataIndex++] = (byte)((tile.V & 0xFF00) >> 8); // high byte
 
-                debugger?.Write("\"U\": {0},", tile.U);
-                debugger?.Write("\"V\": {0},", tile.V);
             }
 
             if (version < 269)
@@ -298,7 +277,6 @@ public partial class World
                     // set header3 bit[3] for tile color active
                     header3 |= 0b_0000_1000;
                     tileData[dataIndex++] = color;
-                    debugger?.Write("\"TileColor\": {0},", color);
                 }
             }
             else
@@ -310,7 +288,6 @@ public partial class World
                     // set header3 bit[3] for tile color active
                     header3 |= 0b_0000_1000;
                     tileData[dataIndex++] = color;
-                    debugger?.Write("\"TileColor\": {0},", color);
                 }
             }
 
@@ -323,7 +300,6 @@ public partial class World
             // set header1 bit[2] for wall active
             header1 |= 0b_0000_0100;
             tileData[dataIndex++] = (byte)tile.Wall;
-            debugger?.Write("\"Wall\": {0},", tile.Wall);
 
             // save tile wall color
             if (version < 269)
@@ -342,7 +318,6 @@ public partial class World
                     // set header3 bit[4] for wall color active
                     header3 |= 0b_0001_0000;
                     tileData[dataIndex++] = color;
-                    debugger?.Write("\"WallColor\": {0},", tile.WallColor);
                 }
             }
             else
@@ -354,7 +329,6 @@ public partial class World
                     // set header3 bit[4] for wall color active
                     header3 |= 0b_0001_0000;
                     tileData[dataIndex++] = color;
-                    debugger?.Write("\"WallColor\": {0},", tile.WallColor);
                 }
             }
         }
@@ -386,8 +360,6 @@ public partial class World
 
             tileData[dataIndex++] = tile.LiquidAmount;
 
-            debugger?.Write("\"LiquidType\": \"{0}\",", tile.LiquidType.ToString());
-            debugger?.Write("\"LiquidAmount\": {0},", tile.LiquidAmount);
         }
 
         // wire data
@@ -395,21 +367,18 @@ public partial class World
         {
             // red wire = header2 bit[1]
             header2 |= 0b_0000_0010;
-            debugger?.Write("\"WireRed\": {0},", tile.WireRed);
 
         }
         if (tile.WireBlue)
         {
             // blue wire = header2 bit[2]
             header2 |= 0b_0000_0100;
-            debugger?.Write("\"WireBlue\": {0},", tile.WireBlue);
 
         }
         if (tile.WireGreen)
         {
             // green wire = header2 bit[3]
             header2 |= 0b_0000_1000;
-            debugger?.Write("\"WireGreen\": {0},", tile.WireGreen);
         }
 
         // brick style
@@ -417,7 +386,6 @@ public partial class World
 
         // set bits[4,5,6] of header2
         header2 = (byte)(header2 | brickStyle);
-        debugger?.Write("\"BrickStyle\": {0},", tile.BrickStyle);
 
 
         // actuator data
@@ -425,18 +393,15 @@ public partial class World
         {
             // set bit[1] of header3
             header3 |= 0b_0000_0010;
-            debugger?.Write("\"Actuator\": {0},", tile.Actuator);
         }
         if (tile.InActive)
         {
             // set bit[2] of header3
             header3 |= 0b_0000_0100;
-            debugger?.Write("\"InActive\": {0},", tile.InActive);
         }
         if (tile.WireYellow)
         {
             header3 |= 0b_0010_0000;
-            debugger?.Write("\"WireYellow\": {0},", tile.WireYellow);
         }
 
         // wall high byte
@@ -702,10 +667,9 @@ public partial class World
         return (int)bw.BaseStream.Position;
     }
 
-    public static int SaveSectionHeader(World world, BinaryWriter bw, bool[] tileFrameImportant, TextWriter debugger = null)
+    public static int SaveSectionHeader(World world, BinaryWriter bw, bool[] tileFrameImportant)
     {
         bw.Write(world.Version);
-        debugger?.WriteLine("\"Version\": {0},", world.Version);
 
         // World features added in 1.3.0.1
         if (world.Version >= 140)
@@ -721,18 +685,15 @@ public partial class World
             bw.Write((byte)FileType.World);
 
             bw.Write((int)world.FileRevision);
-            debugger?.WriteLine("\"FileRevision\": {0},", world.FileRevision);
 
             UInt64 worldHeaderFlags = 0;
             if (world.IsFavorite) { worldHeaderFlags |= 0x1; }
 
             bw.Write(worldHeaderFlags);
-            debugger?.WriteLine("\"IsFavorite\": {0},", world.IsFavorite);
         }
 
         short sections = world.GetSectionCount();
         bw.Write(sections);
-        debugger?.WriteLine("\"Sections\": {0},", sections);
 
         // write section pointer placeholders
         for (int i = 0; i < sections; i++)
@@ -743,30 +704,14 @@ public partial class World
         // write bitpacked tile frame importance           
         WriteBitArray(bw, tileFrameImportant);
 
-        if (debugger != null)
-        {
-            debugger?.Write("\"TileFrameImportant\":[ ");
-            for (int i = 0; i < tileFrameImportant.Length; i++)
-            {
-                if (tileFrameImportant[i])
-                {
-                    debugger?.Write(i);
-                    debugger?.Write(',');
-                }
-            }
-            debugger?.WriteLine("],");
 
-        }
-
-        debugger?.WriteLine("\"SECTION_0\": {0},", (int)bw.BaseStream.Position);
 
         return (int)bw.BaseStream.Position;
     }
 
-    public static int SaveHeaderFlags(World world, BinaryWriter bw, int version, TextWriter debugger = null)
+    public static int SaveHeaderFlags(World world, BinaryWriter bw, int version)
     {
         bw.Write(world.Title);
-        debugger?.WriteLine("\"Title\": {0},", world.Title);
 
         if (world.Version >= 179)
         {
@@ -774,113 +719,90 @@ public partial class World
             {
                 int.TryParse(world.Seed, out var seed);
                 bw.Write(seed);
-                debugger?.WriteLine("\"Seed\": {0},", seed);
             }
             else
             {
                 bw.Write(world.Seed);
-                debugger?.WriteLine("\"Seed\": {0},", world.Seed);
             }
 
             bw.Write(world.WorldGenVersion);
-            debugger?.WriteLine("\"WorldGenVersion\": {0},", world.WorldGenVersion);
 
         }
 
         if (world.Version >= 181)
         {
             bw.Write(world.Guid.ToByteArray());
-            debugger?.WriteLine("\"Guid\": \"{0}\",", world.Guid);
 
         }
 
         bw.Write(world.WorldId);
-        debugger?.WriteLine("\"WorldId\": {0},", world.WorldId);
 
         bw.Write((int)world.LeftWorld);
-        debugger?.WriteLine("\"LeftWorld\": {0},", world.LeftWorld);
 
         bw.Write((int)world.RightWorld);
-        debugger?.WriteLine("\"RightWorld\": {0},", world.RightWorld);
 
         bw.Write((int)world.TopWorld);
-        debugger?.WriteLine("\"TopWorld\": {0},", world.TopWorld);
 
         bw.Write((int)world.BottomWorld);
-        debugger?.WriteLine("\"BottomWorld\": {0},", world.BottomWorld);
 
         bw.Write(world.TilesHigh);
-        debugger?.WriteLine("\"TilesHigh\": {0},", world.TilesHigh);
 
         bw.Write(world.TilesWide);
-        debugger?.WriteLine("\"TilesWide\": {0},", world.TilesWide);
 
 
         if (world.Version >= 209)
         {
 
             bw.Write(world.GameMode);
-            debugger?.WriteLine("\"GameMode\": {0},", world.GameMode);
 
 
             if (world.Version >= 222)
             {
                 bw.Write(world.DrunkWorld);
-                debugger?.WriteLine("\"DrunkWorld\": {0},", world.DrunkWorld);
             }
             if (world.Version >= 227)
             {
                 bw.Write(world.GoodWorld);
-                debugger?.WriteLine("\"GoodWorld\": {0},", world.GoodWorld);
             }
             if (world.Version >= 238)
             {
                 bw.Write(world.TenthAnniversaryWorld);
-                debugger?.WriteLine("\"TenthAnniversaryWorld\": {0},", world.TenthAnniversaryWorld);
             }
             if (world.Version >= 239)
             {
                 bw.Write(world.DontStarveWorld);
-                debugger?.WriteLine("\"DontStarveWorld\": {0},", world.DontStarveWorld);
             }
             if (world.Version >= 241)
             {
                 bw.Write(world.NotTheBeesWorld);
-                debugger?.WriteLine("\"NotTheBeesWorld\": {0},", world.NotTheBeesWorld);
             }
             if (world.Version >= 249)
             {
                 bw.Write(world.RemixWorld);
-                debugger?.WriteLine("\"RemixWorld\": {0},", world.RemixWorld);
             }
             if (world.Version >= 266)
             {
                 bw.Write(world.NoTrapsWorld);
-                debugger?.WriteLine("\"NoTrapsWorld\": {0},", world.NoTrapsWorld);
             }
             if (world.Version >= 266)
             {
                 bw.Write(world.ZenithWorld);
-                debugger?.WriteLine("\"ZenithWorld\": {0},", world.ZenithWorld);
             }
         }
         else if (world.Version == 208)
         {
             bw.Write((bool)(world.GameMode == 2)); // true = Master: 2, else false
-            debugger?.WriteLine("\"Legacy Master\": {0},", world.GameMode == 2);
 
         }
         else if (world.Version >= 112)
         {
             bw.Write((bool)(world.GameMode == 1)); // true = expert: 1, else false
-            debugger?.WriteLine("\"Legacy Expert\": {0},", world.GameMode == 1);
 
         }
 
         if (world.Version >= 141)
         {
             bw.Write(world.CreationTime);
-            debugger?.WriteLine("\"CreationTime\": {0},", world.CreationTime);
         }
 
         // check if target moonType is over max
@@ -888,505 +810,346 @@ public partial class World
         {
             // target is out of range, reset to zero
             bw.Write((byte)0);
-            debugger?.WriteLine("\"Moon\": 0,");
 
         }
         else
         {
             bw.Write((byte)world.MoonType);
-            debugger?.WriteLine("\"Moon\": {0},", world.MoonType);
         }
         bw.Write(world.TreeX0);
-        debugger?.WriteLine("\"TreeX0\": {0},", world.TreeX0);
 
         bw.Write(world.TreeX1);
-        debugger?.WriteLine("\"TreeX1\": {0},", world.TreeX1);
         bw.Write(world.TreeX2);
-        debugger?.WriteLine("\"TreeX2\": {0},", world.TreeX2);
         bw.Write(world.TreeStyle0);
-        debugger?.WriteLine("\"TreeStyle0\": {0},", world.TreeStyle0);
         bw.Write(world.TreeStyle1);
-        debugger?.WriteLine("\"TreeStyle1\": {0},", world.TreeStyle1);
         bw.Write(world.TreeStyle2);
-        debugger?.WriteLine("\"TreeStyle2\": {0},", world.TreeStyle2);
         bw.Write(world.TreeStyle3);
-        debugger?.WriteLine("\"TreeStyle3\": {0},", world.TreeStyle3);
         bw.Write(world.CaveBackX0);
-        debugger?.WriteLine("\"CaveBackX0\": {0},", world.CaveBackX0);
         bw.Write(world.CaveBackX1);
-        debugger?.WriteLine("\"CaveBackX1\": {0},", world.CaveBackX1);
         bw.Write(world.CaveBackX2);
-        debugger?.WriteLine("\"CaveBackX2\": {0},", world.CaveBackX2);
         bw.Write(world.CaveBackStyle0);
-        debugger?.WriteLine("\"CaveBackStyle0\": {0},", world.CaveBackStyle0);
         bw.Write(world.CaveBackStyle1);
-        debugger?.WriteLine("\"CaveBackStyle1\": {0},", world.CaveBackStyle1);
         bw.Write(world.CaveBackStyle2);
-        debugger?.WriteLine("\"CaveBackStyle2\": {0},", world.CaveBackStyle2);
         bw.Write(world.CaveBackStyle3);
-        debugger?.WriteLine("\"CaveBackStyle3\": {0},", world.CaveBackStyle3);
         bw.Write(world.IceBackStyle);
-        debugger?.WriteLine("\"IceBackStyle\": {0},", world.IceBackStyle);
         bw.Write(world.JungleBackStyle);
-        debugger?.WriteLine("\"JungleBackStyle\": {0},", world.JungleBackStyle);
         bw.Write(world.HellBackStyle);
-        debugger?.WriteLine("\"HellBackStyle\": {0},", world.HellBackStyle);
         bw.Write(world.SpawnX);
-        debugger?.WriteLine("\"SpawnX\": {0},", world.SpawnX);
         bw.Write(world.SpawnY);
-        debugger?.WriteLine("\"SpawnY\": {0},", world.SpawnY);
         bw.Write(world.GroundLevel);
-        debugger?.WriteLine("\"GroundLevel\": {0},", world.GroundLevel);
         bw.Write(world.RockLevel);
-        debugger?.WriteLine("\"RockLevel\": {0},", world.RockLevel);
         bw.Write(world.Time);
-        debugger?.WriteLine("\"Time\": {0},", world.Time);
         bw.Write(world.DayTime);
-        debugger?.WriteLine("\"DayTime\": {0},", world.DayTime);
         bw.Write(world.MoonPhase);
-        debugger?.WriteLine("\"MoonPhase\": {0},", world.MoonPhase);
         bw.Write(world.BloodMoon);
-        debugger?.WriteLine("\"BloodMoon\": {0},", world.BloodMoon);
         bw.Write(world.IsEclipse);
-        debugger?.WriteLine("\"IsEclipse\": {0},", world.IsEclipse);
         bw.Write(world.DungeonX);
-        debugger?.WriteLine("\"DungeonX\": {0},", world.DungeonX);
         bw.Write(world.DungeonY);
-        debugger?.WriteLine("\"DungeonY\": {0},", world.DungeonY);
         bw.Write(world.IsCrimson);
-        debugger?.WriteLine("\"IsCrimson\": {0},", world.IsCrimson);
         bw.Write(world.DownedBoss1);
-        debugger?.WriteLine("\"DownedBoss1\": {0},", world.DownedBoss1);
         bw.Write(world.DownedBoss2);
-        debugger?.WriteLine("\"DownedBoss2\": {0},", world.DownedBoss2);
         bw.Write(world.DownedBoss3);
-        debugger?.WriteLine("\"DownedBoss3\": {0},", world.DownedBoss3);
         bw.Write(world.DownedQueenBee);
-        debugger?.WriteLine("\"DownedQueenBee\": {0},", world.DownedQueenBee);
         bw.Write(world.DownedMechBoss1);
-        debugger?.WriteLine("\"DownedMechBoss1\": {0},", world.DownedMechBoss1);
         bw.Write(world.DownedMechBoss2);
-        debugger?.WriteLine("\"DownedMechBoss2\": {0},", world.DownedMechBoss2);
         bw.Write(world.DownedMechBoss3);
-        debugger?.WriteLine("\"DownedMechBoss3\": {0},", world.DownedMechBoss3);
         bw.Write(world.DownedMechBossAny);
-        debugger?.WriteLine("\"DownedMechBossAny\": {0},", world.DownedMechBossAny);
         bw.Write(world.DownedPlantBoss);
-        debugger?.WriteLine("\"DownedPlantBoss\": {0},", world.DownedPlantBoss);
         bw.Write(world.DownedGolemBoss);
-        debugger?.WriteLine("\"DownedGolemBoss\": {0},", world.DownedGolemBoss);
 
         if (world.Version >= 118)
         {
             bw.Write(world.DownedSlimeKingBoss);
-            debugger?.WriteLine("\"DownedSlimeKingBoss\": {0},", world.DownedSlimeKingBoss);
         }
 
         bw.Write(world.SavedGoblin);
-        debugger?.WriteLine("\"SavedGoblin\": {0},", world.SavedGoblin);
         bw.Write(world.SavedWizard);
-        debugger?.WriteLine("\"SavedWizard\": {0},", world.SavedWizard);
         bw.Write(world.SavedMech);
-        debugger?.WriteLine("\"SavedMech\": {0},", world.SavedMech);
         bw.Write(world.DownedGoblins);
-        debugger?.WriteLine("\"DownedGoblins\": {0},", world.DownedGoblins);
         bw.Write(world.DownedClown);
-        debugger?.WriteLine("\"DownedClown\": {0},", world.DownedClown);
         bw.Write(world.DownedFrost);
-        debugger?.WriteLine("\"DownedFrost\": {0},", world.DownedFrost);
         bw.Write(world.DownedPirates);
-        debugger?.WriteLine("\"DownedPirates\": {0},", world.DownedPirates);
         bw.Write(world.ShadowOrbSmashed);
-        debugger?.WriteLine("\"ShadowOrbSmashed\": {0},", world.ShadowOrbSmashed);
         bw.Write(world.SpawnMeteor);
-        debugger?.WriteLine("\"SpawnMeteor\": {0},", world.SpawnMeteor);
         bw.Write((byte)world.ShadowOrbCount);
-        debugger?.WriteLine("\"ShadowOrbCount\": {0},", world.ShadowOrbCount);
 
         bw.Write(world.AltarCount);
-        debugger?.WriteLine("\"AltarCount\": {0},", world.AltarCount);
         bw.Write(world.HardMode);
-        debugger?.WriteLine("\"HardMode\": {0},", world.HardMode);
 
         if (world.Version >= 257)
         {
             bw.Write(world.AfterPartyOfDoom);
-            debugger?.WriteLine("\"AfterPartyOfDoom\": {0},", world.AfterPartyOfDoom);
         }
 
         bw.Write(world.InvasionDelay);
-        debugger?.WriteLine("\"InvasionDelay\": {0},", world.InvasionDelay);
         bw.Write(world.InvasionSize);
-        debugger?.WriteLine("\"InvasionSize\": {0},", world.InvasionSize);
         bw.Write(world.InvasionType);
-        debugger?.WriteLine("\"InvasionType\": {0},", world.InvasionType);
         bw.Write(world.InvasionX);
-        debugger?.WriteLine("\"InvasionX\": {0},", world.InvasionX);
 
         if (world.Version >= 118)
         {
             bw.Write(world.SlimeRainTime);
-            debugger?.WriteLine("\"SlimeRainTime\": {0},", world.SlimeRainTime);
 
         }
 
         if (world.Version >= 113)
         {
             bw.Write((byte)world.SundialCooldown);
-            debugger?.WriteLine("\"SundialCooldown\": {0},", world.SundialCooldown);
         }
 
         bw.Write(world.TempRaining);
-        debugger?.WriteLine("\"TempRaining\": {0},", world.TempRaining);
         bw.Write(world.TempRainTime);
-        debugger?.WriteLine("\"TempRainTime\": {0},", world.TempRainTime);
         bw.Write(world.TempMaxRain);
-        debugger?.WriteLine("\"TempMaxRain\": {0},", world.TempMaxRain);
         bw.Write(world.SavedOreTiersCobalt);
-        debugger?.WriteLine("\"SavedOreTiersCobalt\": {0},", world.SavedOreTiersCobalt);
         bw.Write(world.SavedOreTiersMythril);
-        debugger?.WriteLine("\"SavedOreTiersMythril\": {0},", world.SavedOreTiersMythril);
         bw.Write(world.SavedOreTiersAdamantite);
-        debugger?.WriteLine("\"SavedOreTiersAdamantite\": {0},", world.SavedOreTiersAdamantite);
         bw.Write(world.BgTree);
-        debugger?.WriteLine("\"BgTree\": {0},", world.BgTree);
         bw.Write(world.BgCorruption);
-        debugger?.WriteLine("\"BgCorruption\": {0},", world.BgCorruption);
         bw.Write(world.BgJungle);
-        debugger?.WriteLine("\"BgJungle\": {0},", world.BgJungle);
         bw.Write(world.BgSnow);
-        debugger?.WriteLine("\"BgSnow\": {0},", world.BgSnow);
         bw.Write(world.BgHallow);
-        debugger?.WriteLine("\"BgHallow\": {0},", world.BgHallow);
         bw.Write(world.BgCrimson);
-        debugger?.WriteLine("\"BgCrimson\": {0},", world.BgCrimson);
         bw.Write(world.BgDesert);
-        debugger?.WriteLine("\"BgDesert\": {0},", world.BgDesert);
         bw.Write(world.BgOcean);
-        debugger?.WriteLine("\"BgOcean\": {0},", world.BgOcean);
         bw.Write((int)world.CloudBgActive);
-        debugger?.WriteLine("\"CloudBgActive\": {0},", world.CloudBgActive);
 
         bw.Write(world.NumClouds);
-        debugger?.WriteLine("\"NumClouds\": {0},", world.NumClouds);
         bw.Write(world.WindSpeedSet);
-        debugger?.WriteLine("\"WindSpeedSet\": {0},", world.WindSpeedSet);
 
         if (world.Version < 95)
         {
-            debugger?.WriteLine("\"SECTION_1\": {0}", bw.BaseStream.Position);
             return (int)bw.BaseStream.Position;
         }
 
         bw.Write(world.Anglers.Count);
-        debugger?.WriteLine("\"Anglers\": [", world.Anglers.Count);
 
 
         foreach (string angler in world.Anglers)
         {
             bw.Write(angler);
-            debugger?.Write("{0},", angler);
         }
 
-        debugger?.WriteLine("],");
 
 
         if (world.Version < 99)
         {
-            debugger?.WriteLine("\"SECTION_1\": {0}", bw.BaseStream.Position);
             return (int)bw.BaseStream.Position;
         }
 
         bw.Write(world.SavedAngler);
-        debugger?.WriteLine("\"SavedAngler\": {0},", world.SavedAngler);
 
         if (world.Version < 101)
         {
-            debugger?.WriteLine("\"SECTION_1\": {0}", bw.BaseStream.Position);
             return (int)bw.BaseStream.Position;
         }
 
         bw.Write(world.AnglerQuest);
-        debugger?.WriteLine("\"AnglerQuest\": {0},", world.AnglerQuest);
 
         if (world.Version < 104)
         {
-            debugger?.WriteLine("\"SECTION_1\": {0}", bw.BaseStream.Position);
             return (int)bw.BaseStream.Position;
         }
 
         if (world.Version > 104)
         {
             bw.Write(world.SavedStylist);
-            debugger?.WriteLine("\"SavedStylist\": {0},", world.SavedStylist);
         }
 
         if (world.Version >= 129)
         {
             bw.Write(world.SavedTaxCollector);
-            debugger?.WriteLine("\"SavedTaxCollector\": {0},", world.SavedTaxCollector);
         }
         if (world.Version >= 201)
         {
             bw.Write(world.SavedGolfer);
-            debugger?.WriteLine("\"SavedGolfer\": {0},", world.SavedGolfer);
         }
         if (world.Version >= 107)
         {
             bw.Write(world.InvasionSizeStart);
-            debugger?.WriteLine("\"InvasionSizeStart\": {0},", world.InvasionSizeStart);
         }
 
         if (world.Version >= 108)
         {
             bw.Write(world.CultistDelay);
-            debugger?.WriteLine("\"CultistDelay\": {0},", world.CultistDelay);
         }
 
         if (world.Version < 109)
         {
-            debugger?.WriteLine("\"SECTION_1\": {0}", bw.BaseStream.Position);
             return (int)bw.BaseStream.Position;
         }
 
         var maxNPCId = WorldConfiguration.SaveConfiguration.GetData(version).MaxNpcId;
-        debugger?.WriteLine("\"KillTallyMax\": {0},", WorldConfiguration.MaxNpcID);
         bw.Write((short)(maxNPCId + 1));
-        debugger?.Write("\"KillTally\": [");
         for (int i = 0; i <= maxNPCId; i++)
         {
             if (world.KilledMobs.Count > i)
             {
                 bw.Write(world.KilledMobs[i]);
-                debugger?.Write("{0},", world.KilledMobs[i]);
             }
             else
             {
                 bw.Write(0);
-                debugger?.Write("0,");
             }
         }
-        debugger?.WriteLine("],");
 
         if (world.Version < 128)
         {
-            debugger?.WriteLine("\"SECTION_1\": {0}", bw.BaseStream.Position);
             return (int)bw.BaseStream.Position;
         }
 
         if (world.Version >= 140)
         {
             bw.Write(world.FastForwardTime);
-            debugger?.WriteLine("\"FastForwardTime\": {0},", world.FastForwardTime);
         }
 
         if (world.Version < 131)
         {
-            debugger?.WriteLine("\"SECTION_1\": {0}", bw.BaseStream.Position);
             return (int)bw.BaseStream.Position;
         }
 
         bw.Write(world.DownedFishron);
-        debugger?.WriteLine("\"DownedFishron\": {0},", world.DownedFishron);
 
         if (world.Version >= 140)
         {
             bw.Write(world.DownedMartians);
-            debugger?.WriteLine("\"DownedMartians\": {0},", world.DownedMartians);
             bw.Write(world.DownedLunaticCultist);
-            debugger?.WriteLine("\"DownedLunaticCultist\": {0},", world.DownedLunaticCultist);
             bw.Write(world.DownedMoonlord);
-            debugger?.WriteLine("\"DownedMoonlord\": {0},", world.DownedMoonlord);
         }
 
         bw.Write(world.DownedHalloweenKing);
-        debugger?.WriteLine("\"DownedHalloweenKing\": {0},", world.DownedHalloweenKing);
         bw.Write(world.DownedHalloweenTree);
-        debugger?.WriteLine("\"DownedHalloweenTree\": {0},", world.DownedHalloweenTree);
         bw.Write(world.DownedChristmasQueen);
-        debugger?.WriteLine("\"DownedChristmasQueen\": {0},", world.DownedChristmasQueen);
 
         if (world.Version < 140)
         {
-            debugger?.WriteLine("\"SECTION_1\": {0}", bw.BaseStream.Position);
             return (int)bw.BaseStream.Position;
         }
 
         bw.Write(world.DownedSanta);
-        debugger?.WriteLine("\"DownedSanta\": {0},", world.DownedSanta);
         bw.Write(world.DownedChristmasTree);
-        debugger?.WriteLine("\"DownedChristmasTree\": {0},", world.DownedChristmasTree);
 
         if (world.Version >= 140)
         {
             bw.Write(world.DownedCelestialSolar);
-            debugger?.WriteLine("\"DownedCelestialSolar\": {0},", world.DownedCelestialSolar);
             bw.Write(world.DownedCelestialVortex);
-            debugger?.WriteLine("\"DownedCelestialVortex\": {0},", world.DownedCelestialVortex);
             bw.Write(world.DownedCelestialNebula);
-            debugger?.WriteLine("\"DownedCelestialNebula\": {0},", world.DownedCelestialNebula);
             bw.Write(world.DownedCelestialStardust);
-            debugger?.WriteLine("\"DownedCelestialStardust\": {0},", world.DownedCelestialStardust);
             bw.Write(world.CelestialSolarActive);
-            debugger?.WriteLine("\"CelestialSolarActive\": {0},", world.CelestialSolarActive);
             bw.Write(world.CelestialVortexActive);
-            debugger?.WriteLine("\"CelestialVortexActive\": {0},", world.CelestialVortexActive);
             bw.Write(world.CelestialNebulaActive);
-            debugger?.WriteLine("\"CelestialNebulaActive\": {0},", world.CelestialNebulaActive);
             bw.Write(world.CelestialStardustActive);
-            debugger?.WriteLine("\"CelestialStardustActive\": {0},", world.CelestialStardustActive);
             bw.Write(world.Apocalypse);
-            debugger?.WriteLine("\"Apocalypse\": {0},", world.Apocalypse);
         }
 
         if (world.Version >= 170)
         {
             bw.Write(world.PartyManual);
-            debugger?.WriteLine("\"PartyManual\": {0},", world.PartyManual);
             bw.Write(world.PartyGenuine);
-            debugger?.WriteLine("\"PartyGenuine\": {0},", world.PartyGenuine);
             bw.Write(world.PartyCooldown);
-            debugger?.WriteLine("\"PartyCooldown\": {0},", world.PartyCooldown);
 
             bw.Write(world.PartyingNPCs.Count);
-            debugger?.Write("\"PartyingNPCs\": [", world.PartyingNPCs.Count);
 
             foreach (int partier in world.PartyingNPCs)
             {
                 bw.Write(partier);
-                debugger?.Write("{0},", partier);
 
             }
 
-            debugger?.WriteLine("],");
         }
 
         if (world.Version >= 174)
         {
             bw.Write(world.SandStormHappening);
-            debugger?.WriteLine("\"SandStormHappening\": {0},", world.SandStormHappening);
             bw.Write(world.SandStormTimeLeft);
-            debugger?.WriteLine("\"SandStormTimeLeft\": {0},", world.SandStormTimeLeft);
             bw.Write(world.SandStormSeverity);
-            debugger?.WriteLine("\"SandStormSeverity\": {0},", world.SandStormSeverity);
             bw.Write(world.SandStormIntendedSeverity);
-            debugger?.WriteLine("\"SandStormIntendedSeverity\": {0},", world.SandStormIntendedSeverity);
         }
 
         if (world.Version >= 178)
         {
             bw.Write(world.SavedBartender);
-            debugger?.WriteLine("\"SavedBartender\": {0},", world.SavedBartender);
             bw.Write(world.DownedDD2InvasionT1);
-            debugger?.WriteLine("\"DownedDD2InvasionT1\": {0},", world.DownedDD2InvasionT1);
             bw.Write(world.DownedDD2InvasionT2);
-            debugger?.WriteLine("\"DownedDD2InvasionT2\": {0},", world.DownedDD2InvasionT2);
             bw.Write(world.DownedDD2InvasionT3);
-            debugger?.WriteLine("\"DownedDD2InvasionT3\": {0},", world.DownedDD2InvasionT3);
         }
 
         // 1.4 Journey's End
         if (world.Version > 194)
         {
             bw.Write((byte)world.MushroomBg);
-            debugger?.WriteLine("\"MushroomBg\": {0},", world.MushroomBg);
 
         }
 
         if (world.Version >= 215)
         {
             bw.Write((byte)world.UnderworldBg);
-            debugger?.WriteLine("\"UnderworldBg\": {0},", world.UnderworldBg);
 
         }
 
         if (world.Version >= 195)
         {
             bw.Write((byte)world.BgTree2);
-            debugger?.WriteLine("\"BgTree2\": {0},", world.BgTree2);
 
             bw.Write((byte)world.BgTree3);
-            debugger?.WriteLine("\"BgTree3\": {0},", world.BgTree3);
 
             bw.Write((byte)world.BgTree4);
-            debugger?.WriteLine("\"BgTree4\": {0},", world.BgTree4);
 
         }
 
         if (world.Version >= 204)
         {
             bw.Write(world.CombatBookUsed);
-            debugger?.WriteLine("\"CombatBookUsed\": {0},", world.CombatBookUsed);
         }
 
         if (world.Version >= 207)
         {
             bw.Write(world.LanternNightCooldown);
-            debugger?.WriteLine("\"TempLanternNightCooldown\": {0},", world.LanternNightCooldown);
             bw.Write(world.LanternNightGenuine);
-            debugger?.WriteLine("\"TempLanternNightGenuine\": {0},", world.LanternNightGenuine);
             bw.Write(world.LanternNightManual);
-            debugger?.WriteLine("\"TempLanternNightManual\": {0},", world.LanternNightManual);
             bw.Write(world.LanternNightNextNightIsGenuine);
-            debugger?.WriteLine("\"TempLanternNightNextNightIsGenuine\": {0},", world.LanternNightNextNightIsGenuine);
         }
 
         if (world.Version >= 211)
         {
             // tree tops
             bw.Write(world.TreeTopVariations.Count);
-            debugger?.Write("\"TreeTopVariations\": [", world.TreeTopVariations.Count);
 
             for (int i = 0; i < world.TreeTopVariations.Count; i++)
             {
                 bw.Write(world.TreeTopVariations[i]);
-                debugger?.Write("{0},", world.TreeTopVariations[i]);
             }
-            debugger?.WriteLine("],");
         }
 
         if (world.Version >= 212)
         {
             bw.Write(world.ForceHalloweenForToday);
-            debugger?.WriteLine("\"ForceHalloweenForToday\": {0},", world.ForceHalloweenForToday);
             bw.Write(world.ForceXMasForToday);
-            debugger?.WriteLine("\"ForceXMasForToday\": {0},", world.ForceXMasForToday);
         }
 
         if (world.Version >= 216)
         {
             bw.Write(world.SavedOreTiersCopper);
-            debugger?.WriteLine("\"SavedOreTiersCopper\": {0},", world.SavedOreTiersCopper);
             bw.Write(world.SavedOreTiersIron);
-            debugger?.WriteLine("\"SavedOreTiersIron\": {0},", world.SavedOreTiersIron);
             bw.Write(world.SavedOreTiersSilver);
-            debugger?.WriteLine("\"SavedOreTiersSilver\": {0},", world.SavedOreTiersSilver);
             bw.Write(world.SavedOreTiersGold);
-            debugger?.WriteLine("\"SavedOreTiersGold\": {0},", world.SavedOreTiersGold);
         }
 
         if (world.Version >= 217)
         {
             bw.Write(world.BoughtCat);
-            debugger?.WriteLine("\"BoughtCat\": {0},", world.BoughtCat);
             bw.Write(world.BoughtDog);
-            debugger?.WriteLine("\"BoughtDog\": {0},", world.BoughtDog);
             bw.Write(world.BoughtBunny);
-            debugger?.WriteLine("\"BoughtBunny\": {0},", world.BoughtBunny);
         }
 
         if (world.Version >= 223)
         {
             bw.Write(world.DownedEmpressOfLight);
-            debugger?.WriteLine("\"DownedEmpressOfLight\": {0},", world.DownedEmpressOfLight);
             bw.Write(world.DownedQueenSlime);
-            debugger?.WriteLine("\"DownedQueenSlime\": {0},", world.DownedQueenSlime);
         }
 
         if (world.Version >= 240)
         {
             bw.Write(world.DownedDeerclops);
-            debugger?.WriteLine("\"DownedDeerclops\": {0},", world.DownedDeerclops);
         }
 
         if (world.Version >= 250)
@@ -1433,15 +1196,12 @@ public partial class World
             bw.Write((byte)world.MoondialCooldown);
         }
 
-
         // unknown flags from data file
         if (world.UnknownData != null && world.UnknownData.Length > 0)
         {
             bw.Write(world.UnknownData);
-            debugger?.WriteLine("\"UnknownData\": {0},", string.Join("", world.UnknownData));
         }
 
-        debugger?.WriteLine("\"SECTION_1\": {0}", bw.BaseStream.Position);
         return (int)bw.BaseStream.Position;
     }
 
@@ -1458,7 +1218,7 @@ public partial class World
         return (int)bw.BaseStream.Position;
     }
 
-    public static void LoadV2(BinaryReader b, World w, TextWriter debugger = null)
+    public static void LoadV2(BinaryReader b, World w, bool headersOnly = false)
     {
         //throw new NotImplementedException("World Version > 87");
 
@@ -1480,12 +1240,14 @@ public partial class World
             throw new TEditFileFormatException("Unexpected Position: Invalid File Format Section");
 
         // Load the flags
-        LoadHeaderFlags(b, w, sectionPointers[1], debugger);
+        LoadHeaderFlags(b, w, sectionPointers[1]);
         if (b.BaseStream.Position != sectionPointers[1])
             throw new TEditFileFormatException("Unexpected Position: Invalid Header Flags");
 
+        if (headersOnly) { return; }
+
         OnProgressChanged(null, new ProgressChangedEventArgs(0, "Loading Tiles..."));
-        w.Tiles = LoadTileData(b, w.TilesWide, w.TilesHigh, (int)w.Version, w.TileFrameImportant, debugger);
+        w.Tiles = LoadTileData(b, w.TilesWide, w.TilesHigh, (int)w.Version, w.TileFrameImportant);
 
         if (b.BaseStream.Position != sectionPointers[2])
             b.BaseStream.Position = sectionPointers[2];
@@ -1569,10 +1331,9 @@ public partial class World
         OnProgressChanged(null, new ProgressChangedEventArgs(100, "Load Complete."));
     }
 
-    public static Tile[,] LoadTileData(BinaryReader r, int maxX, int maxY, int version, bool[] tileFrameImportant, TextWriter debugger = null)
+    public static Tile[,] LoadTileData(BinaryReader r, int maxX, int maxY, int version, bool[] tileFrameImportant)
     {
         var tiles = new Tile[maxX, maxY];
-        debugger?.WriteLine("\"Tiles\": [");
         int rle;
         for (int x = 0; x < maxX; x++)
         {
@@ -1583,14 +1344,12 @@ public partial class World
             {
                 try
                 {
-                    debugger?.Write("{{ \"x\": {0},\"y\": {1},", x, y);
 
-                    Tile tile = DeserializeTileData(r, tileFrameImportant, version, out rle, debugger);
+                    Tile tile = DeserializeTileData(r, tileFrameImportant, version, out rle);
 
 
                     tiles[x, y] = tile;
 
-                    debugger?.WriteLine("\"RLE\": {0} }},", rle);
                     while (rle > 0)
                     {
                         y++;
@@ -1620,12 +1379,11 @@ public partial class World
                 }
             }
         }
-        debugger?.WriteLine("]");
 
         return tiles;
     }
 
-    public static Tile DeserializeTileData(BinaryReader r, bool[] tileFrameImportant, int version, out int rle, TextWriter debugger = null)
+    public static Tile DeserializeTileData(BinaryReader r, bool[] tileFrameImportant, int version, out int rle)
     {
         Tile tile = new Tile();
 
@@ -1665,7 +1423,6 @@ public partial class World
 
         // check bit[1] for active tile
         bool isActive = (header1 & 0b_0000_0010) == 0b_0000_0010;
-        debugger?.Write("\"IsActive\": {0},", isActive);
 
         if (isActive)
         {
@@ -1685,7 +1442,6 @@ public partial class World
                 tileType = tileType << 8 | lowerByte;
             }
             tile.Type = (ushort)tileType; // convert type to ushort after bit operations
-            debugger?.Write("\"Type\": {0},", tileType);
 
             // read frame UV coords
             if (!tileFrameImportant[tileType])
@@ -1705,15 +1461,12 @@ public partial class World
                     tile.V = 0;
                 }
 
-                debugger?.Write("\"U\": {0},", tile.U);
-                debugger?.Write("\"V\": {0},", tile.V);
             }
 
             // check header3 bit[3] for tile color
             if ((header3 & 0b_0000_1000) == 0b_0000_1000)
             {
                 tile.TileColor = r.ReadByte();
-                debugger?.Write("\"TileColor\": {0},", tile.TileColor);
             }
         }
 
@@ -1721,14 +1474,12 @@ public partial class World
         if ((header1 & 0b_0000_0100) == 0b_0000_0100) // check bit[3] bit for active wall
         {
             tile.Wall = r.ReadByte();
-            debugger?.Write("\"Wall\": {0},", tile.Wall);
 
 
             // check bit[4] of header3 to see if there is a wall color
             if ((header3 & 0b_0001_0000) == 0b_0001_0000)
             {
                 tile.WallColor = r.ReadByte();
-                debugger?.Write("\"WallColor\": {0},", tile.WallColor);
             }
         }
 
@@ -1745,8 +1496,6 @@ public partial class World
                 tile.LiquidType = LiquidType.Shimmer;
             }
 
-            debugger?.Write("\"LiquidType\": \"{0}\",", tile.LiquidType.ToString());
-            debugger?.Write("\"LiquidAmount\": {0},", tile.LiquidAmount);
         }
 
         // check if we have data in header2 other than just telling us we have header3
@@ -1756,19 +1505,16 @@ public partial class World
             if ((header2 & 0b_0000_0010) == 0b_0000_0010)
             {
                 tile.WireRed = true;
-                debugger?.Write("\"WireRed\": {0},", tile.WireRed);
             }
             // check bit[2] for blue wire
             if ((header2 & 0b_0000_0100) == 0b_0000_0100)
             {
                 tile.WireBlue = true;
-                debugger?.Write("\"WireBlue\": {0},", tile.WireBlue);
             }
             // check bit[3] for green wire
             if ((header2 & 0b_0000_1000) == 0b_0000_1000)
             {
                 tile.WireGreen = true;
-                debugger?.Write("\"WireGreen\": {0},", tile.WireGreen);
             }
 
             // grab bits[4, 5, 6] and shift 4 places to 0,1,2. This byte is our brick style
@@ -1776,7 +1522,6 @@ public partial class World
             if (brickStyle != 0 && WorldConfiguration.TileProperties.Count > tile.Type && WorldConfiguration.TileProperties[tile.Type].HasSlopes)
             {
                 tile.BrickStyle = (BrickStyle)brickStyle;
-                debugger?.Write("\"BrickStyle\": {0},", tile.BrickStyle);
             }
         }
 
@@ -1787,20 +1532,17 @@ public partial class World
             if ((header3 & 0b_0000_0010) == 0b_0000_0010)
             {
                 tile.Actuator = true;
-                debugger?.Write("\"Actuator\": {0},", tile.Actuator);
             }
 
             // check bit[2] for inactive due to actuator
             if ((header3 & 0b_0000_0100) == 0b_0000_0100)
             {
                 tile.InActive = true;
-                debugger?.Write("\"InActive\": {0},", tile.InActive);
             }
 
             if ((header3 & 0b_0010_0000) == 0b_0010_0000)
             {
                 tile.WireYellow = true;
-                debugger?.Write("\"WireYellow\": {0},", tile.WireYellow);
             }
 
             if (version >= 222)
@@ -1808,7 +1550,6 @@ public partial class World
                 if ((header3 & 0b_0100_0000) == 0b_0100_0000)
                 {
                     tile.Wall = (ushort)(r.ReadByte() << 8 | tile.Wall);
-                    debugger?.Write("\"WallExtra\": {0},", tile.Wall);
 
                 }
             }
@@ -2068,7 +1809,7 @@ public partial class World
         }
     }
 
-    public static void LoadHeaderFlags(BinaryReader r, World w, int expectedPosition, TextWriter debugger = null)
+    public static void LoadHeaderFlags(BinaryReader r, World w, int expectedPosition)
     {
         w.Title = r.ReadString();
         if (w.Version >= 179)
@@ -2229,13 +1970,10 @@ public partial class World
 
         w.SavedAngler = r.ReadBoolean();
 
-
         if (w.Version < 101) { return; }
         w.AnglerQuest = r.ReadInt32();
 
-
         if (w.Version < 104) { return; }
-
 
         w.SavedStylist = r.ReadBoolean();
 
@@ -2272,7 +2010,6 @@ public partial class World
                 w.KilledMobs.Add(0); // fill with 0s to max version npc id
             }
         }
-
 
         if (w.Version < 128) { return; }
 
@@ -2348,7 +2085,6 @@ public partial class World
         {
             w.UnderworldBg = r.ReadByte();
         }
-
 
         if (w.Version >= 195)
         {
@@ -2623,6 +2359,4 @@ public partial class World
             writer.Write(data);
         }
     }
-
-
 }

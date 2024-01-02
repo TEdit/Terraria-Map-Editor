@@ -47,8 +47,7 @@ public partial class MainWindow : Window
 
             if (world != null)
             {
-                MainWindowViewModel.World = world;
-                MainWindowViewModel.PixelTileCache.Clear();
+                MainWindowViewModel.SelectedDocument.World = world;
             }
         }
     }

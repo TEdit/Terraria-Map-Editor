@@ -13,20 +13,19 @@ using TEdit.Terraria;
 
 namespace TEdit.Desktop.Controls.WorldRenderEngine.Layers;
 
-
 public class WorldPixelsCustomDrawOp : ICustomDrawOperation
 {
     private readonly Vector _offset;
     private readonly World? World;
     private readonly IRasterTileCache _pixelTiles;
-    private readonly float _zoom = 1f;
+    private readonly double _zoom = 1f;
 
     public WorldPixelsCustomDrawOp(
         Rect bounds,
         Vector offset,
         World? world,
         IRasterTileCache _pixelTiles,
-        float tileScale = 1f
+        double tileScale = 1f
         )
     {
         Bounds = bounds;
@@ -91,7 +90,7 @@ public class WorldPixelsCustomDrawOp : ICustomDrawOperation
         return tile;
     }
 
-    public TEditColor GetBackgroundColor(int y)
+    private TEditColor GetBackgroundColor(int y)
     {
         if (World == null) { return TEditColor.White; }
         if (y < 80)
@@ -184,10 +183,10 @@ public class WorldPixelsCustomDrawOp : ICustomDrawOperation
                         tile.Bitmap,
                         new SKRect(0, 0, tile.Bitmap.Width, tile.Bitmap.Height),
                         new SKRect(
-                            tileCanvasX,
-                            tileCanvasY,
-                            tileCanvasX + tileCanvasWidth,
-                            tileCanvasY + tileCanvasHeight)
+                            (float)tileCanvasX,
+                            (float)tileCanvasY,
+                            (float)(tileCanvasX + tileCanvasWidth),
+                            (float)(tileCanvasY + tileCanvasHeight))
                         //paint
                         );
                 }

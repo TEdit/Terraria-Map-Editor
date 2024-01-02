@@ -1,7 +1,7 @@
-using System;
 using Avalonia.Controls;
 using Avalonia.Controls.Templates;
 using Microsoft.Extensions.DependencyInjection;
+using System;
 using TEdit.Desktop.ViewModels;
 
 namespace TEdit.Desktop;
@@ -40,6 +40,6 @@ public class ViewLocator : IDataTemplate
 
     public bool Match(object data)
     {
-        return data is ViewModelBase;
+        return data is ObservableObject;
     }
 }

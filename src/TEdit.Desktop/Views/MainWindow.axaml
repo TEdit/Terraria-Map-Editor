@@ -1,12 +1,12 @@
 <Window xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:vm="using:TEdit.Desktop.ViewModels"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:vm="using:TEdit.Desktop.ViewModels"
+        xmlns:v="using:TEdit.Desktop.Views"
+        xmlns:c="clr-namespace:TEdit.Desktop.Controls"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="TEdit.Desktop.Views.MainWindow"
-        xmlns:c="clr-namespace:TEdit.Desktop.Controls"
-        xmlns:r="clr-namespace:TEdit.Desktop.Controls.WorldRenderEngine"
         Icon="/Assets/avalonia-logo.ico"
         Title="TEdit.Desktop1"
         x:DataType="vm:MainWindowViewModel"
@@ -33,20 +33,8 @@
         <StackPanel Spacing="5" Margin="5" DockPanel.Dock="Left">
             <Button Click="LoadWorldButton_Clicked">Load World</Button>
 
-            <TextBox Text="{Binding World.Title}" />
+            <TextBox Text="{Binding SelectedDocument.World.Title}" />
         </StackPanel>
-        <Grid DockPanel.Dock="Top">
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                <c:SkiaMinimapRenderBox World="{Binding World}" Height="100" Width="300" />
-            </StackPanel>
-        </Grid>
-        <Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="1" />
-                <ColumnDefinition Width="1*" />
-            </Grid.ColumnDefinitions>
-            <!--<c:AdvancedImageBox ShowGrid="True" GridCellSize="15" World="{Binding World}" Grid.Column="0"  />-->
-            <c:SkiaWorldRenderBox Grid.Column="1" World="{Binding World}" PixelTileCache="{Binding PixelTileCache}" />
-        </Grid>
+        <v:DocumentView DataContext="{Binding SelectedDocument}" />
     </DockPanel>
 </Window>

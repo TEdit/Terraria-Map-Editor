@@ -6,18 +6,17 @@ using Avalonia.Controls.Primitives;
 using Avalonia.Input;
 using Avalonia.Media;
 using Avalonia.Media.Imaging;
-using Avalonia.Styling;
 using Avalonia.Threading;
-using Avalonia.Utilities;
 using System;
-using System.Globalization;
-using System.IO;
+using System.Collections;
+using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using TEdit.Desktop.Controls.WorldRenderEngine;
 using TEdit.Desktop.Controls.WorldRenderEngine.Layers;
 using TEdit.Geometry;
 using TEdit.Terraria;
-using static TEdit.Desktop.Controls.AdvancedImageBox;
 
 namespace TEdit.Desktop.Controls;
 
@@ -25,15 +24,414 @@ namespace TEdit.Desktop.Controls;
 [TemplatePart("PART_HorizontalScrollBar", typeof(ScrollBar))]
 [TemplatePart("PART_VerticalScrollBar", typeof(ScrollBar))]
 [TemplatePart("PART_ScrollBarsSeparator", typeof(Panel))]
-public class SkiaWorldRenderBox : TemplatedControl
+public class SkiaWorldRenderBox : TemplatedControl, IScrollable
 {
-    private readonly GlyphRun _noSkia;
+    #region BindableBase
+    /// <summary>
+    ///     Multicast event for property change notifications.
+    /// </summary>
+    private PropertyChangedEventHandler? _propertyChanged;
 
+    public new event PropertyChangedEventHandler? PropertyChanged
+    {
+        add { _propertyChanged -= value; _propertyChanged += value; }
+        remove => _propertyChanged -= value;
+    }
+
+
+    protected bool SetProperty<T>(ref T field, T value, [CallerMemberName] string? propertyName = null)
+    {
+        if (EqualityComparer<T>.Default.Equals(field, value)) return false;
+        field = value;
+        RaisePropertyChanged(propertyName!);
+        return true;
+    }
+
+    protected virtual void OnPropertyChanged(PropertyChangedEventArgs e)
+    {
+    }
+
+    /// <summary>
+    ///     Notifies listeners that a property value has changed.
+    /// </summary>
+    /// <param name="propertyName">
+    ///     Name of the property used to notify listeners.  This
+    ///     value is optional and can be provided automatically when invoked from compilers
+    ///     that support <see cref="CallerMemberNameAttribute" />.
+    /// </param>
+    protected void RaisePropertyChanged([CallerMemberName] string? propertyName = null)
+    {
+        var e = new PropertyChangedEventArgs(propertyName);
+        OnPropertyChanged(e);
+        _propertyChanged?.Invoke(this, e);
+    }
+    #endregion
+    #region Sub Classes
+
+    /// <summary>
+    /// Represents available levels of zoom in an <see cref="SkiaWorldRenderBox"/> control
+    /// </summary>
+    public class ZoomLevelCollection : IList<int>
+    {
+        #region Public Constructors
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ZoomLevelCollection"/> class.
+        /// </summary>
+        public ZoomLevelCollection()
+        {
+            List = new SortedList<int, int>();
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ZoomLevelCollection"/> class.
+        /// </summary>
+        /// <param name="collection">The default values to populate the collection with.</param>
+        /// <exception cref="System.ArgumentNullException">Thrown if the <c>collection</c> parameter is null</exception>
+        public ZoomLevelCollection(IEnumerable<int> collection)
+            : this()
+        {
+            if (collection == null)
+            {
+                throw new ArgumentNullException(nameof(collection));
+            }
+
+            AddRange(collection);
+        }
+
+        #endregion
+
+        #region Public Class Properties
+
+        /// <summary>
+        /// Returns the default zoom levels
+        /// </summary>
+        public static ZoomLevelCollection Default =>
+            new(new[] {
+                7, 10, 15, 20, 25, 30, 50, 70, 100, 150, 200, 300, 400, 500, 600, 700, 800, 1200, 1600, 3200, 6400
+            });
+
+        #endregion
+
+        #region Public Properties
+
+        /// <summary>
+        /// Gets the number of elements contained in the <see cref="ZoomLevelCollection" />.
+        /// </summary>
+        /// <returns>
+        /// The number of elements contained in the <see cref="ZoomLevelCollection" />.
+        /// </returns>
+        public int Count => List.Count;
+
+        /// <summary>
+        /// Gets a value indicating whether the <see cref="T:System.Collections.Generic.ICollection`1" /> is read-only.
+        /// </summary>
+        /// <value><c>true</c> if this instance is read only; otherwise, <c>false</c>.</value>
+        /// <returns>true if the <see cref="T:System.Collections.Generic.ICollection`1" /> is read-only; otherwise, false.
+        /// </returns>
+        public bool IsReadOnly => false;
+
+        /// <summary>
+        /// Gets or sets the zoom level at the specified index.
+        /// </summary>
+        /// <param name="index">The index.</param>
+        public int this[int index]
+        {
+            get => List.Values[index];
+            set
+            {
+                List.RemoveAt(index);
+                Add(value);
+            }
+        }
+
+        #endregion
+
+        #region Protected Properties
+
+        /// <summary>
+        /// Gets or sets the backing list.
+        /// </summary>
+        protected SortedList<int, int> List { get; set; }
+
+        #endregion
+
+        #region Public Members
+
+        /// <summary>
+        /// Adds an item to the <see cref="T:System.Collections.Generic.ICollection`1" />.
+        /// </summary>
+        /// <param name="item">The object to add to the <see cref="T:System.Collections.Generic.ICollection`1" />.</param>
+        public void Add(int item)
+        {
+            List.Add(item, item);
+        }
+
+        /// <summary>
+        /// Adds a range of items to the <see cref="ZoomLevelCollection"/>.
+        /// </summary>
+        /// <param name="collection">The items to add to the collection.</param>
+        /// <exception cref="System.ArgumentNullException">Thrown if the <c>collection</c> parameter is null.</exception>
+        public void AddRange(IEnumerable<int> collection)
+        {
+            if (collection == null)
+            {
+                throw new ArgumentNullException(nameof(collection));
+            }
+
+            foreach (int value in collection)
+            {
+                Add(value);
+            }
+        }
+
+        /// <summary>
+        /// Removes all items from the <see cref="T:System.Collections.Generic.ICollection`1" />.
+        /// </summary>
+        public void Clear()
+        {
+            List.Clear();
+        }
+
+        /// <summary>
+        /// Determines whether the <see cref="T:System.Collections.Generic.ICollection`1" /> contains a specific value.
+        /// </summary>
+        /// <param name="item">The object to locate in the <see cref="T:System.Collections.Generic.ICollection`1" />.</param>
+        /// <returns>true if <paramref name="item" /> is found in the <see cref="T:System.Collections.Generic.ICollection`1" />; otherwise, false.</returns>
+        public bool Contains(int item)
+        {
+            return List.ContainsKey(item);
+        }
+
+        /// <summary>
+        /// Copies a range of elements this collection into a destination <see cref="Array"/>.
+        /// </summary>
+        /// <param name="array">The <see cref="Array"/> that receives the data.</param>
+        /// <param name="arrayIndex">A 64-bit integer that represents the index in the <see cref="Array"/> at which storing begins.</param>
+        public void CopyTo(int[] array, int arrayIndex)
+        {
+            for (int i = 0; i < Count; i++)
+            {
+                array[arrayIndex + i] = List.Values[i];
+            }
+        }
+
+        /// <summary>
+        /// Finds the index of a zoom level matching or nearest to the specified value.
+        /// </summary>
+        /// <param name="zoomLevel">The zoom level.</param>
+        public int FindNearest(int zoomLevel)
+        {
+            int nearestValue = List.Values[0];
+            int nearestDifference = Math.Abs(nearestValue - zoomLevel);
+            for (int i = 1; i < Count; i++)
+            {
+                int value = List.Values[i];
+                int difference = Math.Abs(value - zoomLevel);
+                if (difference < nearestDifference)
+                {
+                    nearestValue = value;
+                    nearestDifference = difference;
+                }
+            }
+            return nearestValue;
+        }
+
+        /// <summary>
+        /// Returns an enumerator that iterates through the collection.
+        /// </summary>
+        /// <returns>A <see cref="T:System.Collections.Generic.IEnumerator`1" /> that can be used to iterate through the collection.</returns>
+        public IEnumerator<int> GetEnumerator()
+        {
+            return List.Values.GetEnumerator();
+        }
+
+        /// <summary>
+        /// Determines the index of a specific item in the <see cref="T:System.Collections.Generic.IList`1" />.
+        /// </summary>
+        /// <param name="item">The object to locate in the <see cref="T:System.Collections.Generic.IList`1" />.</param>
+        /// <returns>The index of <paramref name="item" /> if found in the list; otherwise, -1.</returns>
+        public int IndexOf(int item)
+        {
+            return List.IndexOfKey(item);
+        }
+
+        /// <summary>
+        /// Not implemented.
+        /// </summary>
+        /// <param name="index">The index.</param>
+        /// <param name="item">The item.</param>
+        /// <exception cref="System.NotImplementedException">Not implemented</exception>
+        public void Insert(int index, int item)
+        {
+            throw new NotImplementedException();
+        }
+
+        /// <summary>
+        /// Returns the next increased zoom level for the given current zoom.
+        /// </summary>
+        /// <param name="zoomLevel">The current zoom level.</param>
+        /// <param name="constrainZoomLevel">When positive, constrain maximum zoom to this value</param>
+        /// <returns>The next matching increased zoom level for the given current zoom if applicable, otherwise the nearest zoom.</returns>
+        public int NextZoom(int zoomLevel, int constrainZoomLevel = 0)
+        {
+            var index = IndexOf(FindNearest(zoomLevel));
+            if (index < Count - 1) index++;
+
+            return constrainZoomLevel > 0 && this[index] >= constrainZoomLevel ? constrainZoomLevel : this[index];
+        }
+
+        /// <summary>
+        /// Returns the next decreased zoom level for the given current zoom.
+        /// </summary>
+        /// <param name="zoomLevel">The current zoom level.</param>
+        /// <param name="constrainZoomLevel">When positive, constrain minimum zoom to this value</param>
+        /// <returns>The next matching decreased zoom level for the given current zoom if applicable, otherwise the nearest zoom.</returns>
+        public int PreviousZoom(int zoomLevel, int constrainZoomLevel = 0)
+        {
+            var index = IndexOf(FindNearest(zoomLevel));
+            if (index > 0) index--;
+
+            return constrainZoomLevel > 0 && this[index] <= constrainZoomLevel ? constrainZoomLevel : this[index];
+        }
+
+        /// <summary>
+        /// Removes the first occurrence of a specific object from the <see cref="T:System.Collections.Generic.ICollection`1" />.
+        /// </summary>
+        /// <param name="item">The object to remove from the <see cref="T:System.Collections.Generic.ICollection`1" />.</param>
+        /// <returns>true if <paramref name="item" /> was successfully removed from the <see cref="T:System.Collections.Generic.ICollection`1" />; otherwise, false. This method also returns false if <paramref name="item" /> is not found in the original <see cref="T:System.Collections.Generic.ICollection`1" />.</returns>
+        public bool Remove(int item)
+        {
+            return List.Remove(item);
+        }
+
+        /// <summary>
+        /// Removes the element at the specified index of the <see cref="ZoomLevelCollection"/>.
+        /// </summary>
+        /// <param name="index">The zero-based index of the element to remove.</param>
+        public void RemoveAt(int index)
+        {
+            List.RemoveAt(index);
+        }
+
+        /// <summary>
+        /// Copies the elements of the <see cref="ZoomLevelCollection"/> to a new array.
+        /// </summary>
+        /// <returns>An array containing copies of the elements of the <see cref="ZoomLevelCollection"/>.</returns>
+        public int[] ToArray()
+        {
+            var results = new int[Count];
+            CopyTo(results, 0);
+
+            return results;
+        }
+
+        #endregion
+
+        #region IList<int> Members
+
+        /// <summary>
+        /// Returns an enumerator that iterates through a collection.
+        /// </summary>
+        /// <returns>An <see cref="ZoomLevelCollection" /> object that can be used to iterate through the collection.</returns>
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return GetEnumerator();
+        }
+
+        #endregion
+    }
+
+    #endregion
+
+    #region Enums
+
+    /// <summary>
+    /// Determines the sizing mode of an image hosted in an <see cref="SkiaWorldRenderBox" /> control.
+    /// </summary>
+    public enum SizeModes : byte
+    {
+        /// <summary>
+        /// The image is displayed according to current zoom and scroll properties.
+        /// </summary>
+        Normal,
+
+        /// <summary>
+        /// The image is stretched to fill the client area of the control.
+        /// </summary>
+        Stretch,
+
+        /// <summary>
+        /// The image is stretched to fill as much of the client area of the control as possible, whilst retaining the same aspect ratio for the width and height.
+        /// </summary>
+        Fit
+    }
+
+    [Flags]
+    public enum MouseButtons : byte
+    {
+        None = 0,
+        LeftButton = 1,
+        MiddleButton = 2,
+        RightButton = 4
+    }
+
+    /// <summary>
+    /// Describes the zoom action occurring
+    /// </summary>
+    [Flags]
+    public enum ZoomActions : byte
+    {
+        /// <summary>
+        /// No action.
+        /// </summary>
+        None = 0,
+
+        /// <summary>
+        /// The control is increasing the zoom.
+        /// </summary>
+        ZoomIn = 1,
+
+        /// <summary>
+        /// The control is decreasing the zoom.
+        /// </summary>
+        ZoomOut = 2,
+
+        /// <summary>
+        /// The control zoom was reset.
+        /// </summary>
+        ActualSize = 4
+    }
+
+    public enum SelectionModes
+    {
+        /// <summary>
+        ///   No selection.
+        /// </summary>
+        None,
+
+        /// <summary>
+        ///   Rectangle selection.
+        /// </summary>
+        Rectangle,
+
+        /// <summary>
+        ///   Zoom selection.
+        /// </summary>
+        Zoom
+    }
+
+    #endregion
+
+    private readonly GlyphRun _noSkia;
+    ZoomLevelCollection _zoomLevels = ZoomLevelCollection.Default;
     private Point _startMousePosition;
     private Vector _startScrollPosition;
     private Point _pointerPosition;
     private bool _isPanning;
     private bool _isSelecting;
+    private IRasterTileCache _pixelTileCache = new RasterTileCache();
+    private int _oldZoom = 100;
 
     static SkiaWorldRenderBox()
     {
@@ -92,11 +490,24 @@ public class SkiaWorldRenderBox : TemplatedControl
     private void ProcessMouseZoom(bool isZoomIn, Point cursorPosition)
     => PerformZoom(isZoomIn ? ZoomActions.ZoomIn : ZoomActions.ZoomOut, true, cursorPosition);
 
+    private int GetZoomLevel(ZoomActions action)
+    {
+        var result = action switch
+        {
+            ZoomActions.None => Zoom,
+            ZoomActions.ZoomIn => _zoomLevels.NextZoom(Zoom),
+            ZoomActions.ZoomOut => _zoomLevels.PreviousZoom(Zoom),
+            ZoomActions.ActualSize => 100,
+            _ => throw new ArgumentOutOfRangeException(nameof(action), action, null),
+        };
+        return result;
+    }
+
     private void PerformZoom(ZoomActions action, bool preservePosition, Point relativePoint)
     {
         Point currentPixel = PointToImage(relativePoint);
-        float currentZoom = Zoom;
-        float newZoom = action == ZoomActions.ZoomIn ? currentZoom * 1.1f : currentZoom / 1.1f;
+        int currentZoom = Zoom;
+        int newZoom = GetZoomLevel(action);
 
         /*if (preservePosition && Zoom != currentZoom)
             CanRender = false;*/
@@ -130,29 +541,42 @@ public class SkiaWorldRenderBox : TemplatedControl
             imageViewPort,
             Offset,
             World,
-            PixelTileCache,
-            Zoom));
+            _pixelTileCache,
+            Zoom / 100d));
+
+        //context.DrawRectangle()
+        var cursorTile = GetScaledRectangle(WorldCoordinate, new(1, 1));
+        context.DrawRectangle(Brushes.Aqua, null, cursorTile);
 
         Dispatcher.UIThread.InvokeAsync(InvalidateVisual, DispatcherPriority.Background);
     }
 
-
     /// <summary>
     /// Defines the <see cref="World"/> property.
     /// </summary>
-    public static readonly StyledProperty<World?> WorldProperty =
-        AvaloniaProperty.Register<SkiaWorldRenderBox, World?>(nameof(World));
+    public static readonly DirectProperty<SkiaWorldRenderBox, World?> WorldProperty =
+    AvaloniaProperty.RegisterDirect<SkiaWorldRenderBox, World?>(
+        nameof(World),
+        o => o.World,
+        (o, v) => o.World = v);
+
+
+    private World? _world = null;
 
     /// <summary>
     /// The Terraria World
     /// </summary>
     public World? World
     {
-        get { return GetValue(WorldProperty); }
+        get => _world;
         set
         {
-            SetValue(WorldProperty, value);
-            PixelTileCache?.Clear();
+            // SetValue(WorldProperty, value);
+            if (_world == value) return;
+
+            _world = value;
+            Zoom = 100;
+            _pixelTileCache?.Clear();
             UpdateViewPort();
             TriggerRender();
         }
@@ -168,13 +592,13 @@ public class SkiaWorldRenderBox : TemplatedControl
     /// Gets the width of the scaled image.
     /// </summary>
     /// <value>The width of the scaled image.</value>
-    public double ScaledWidth => (double)(World?.TilesWide ?? 0d) * Zoom;
+    public double ScaledWidth => (double)(World?.TilesWide ?? 0d) * (Zoom / 100d);
 
     /// <summary>
     /// Gets the height of the scaled image.
     /// </summary>
     /// <value>The height of the scaled image.</value>
-    public double ScaledHeight => (double)(World?.TilesHigh ?? 0d) * Zoom;
+    public double ScaledHeight => (double)(World?.TilesHigh ?? 0d) * (Zoom / 100d);
 
     private bool UpdateViewPort()
     {
@@ -207,44 +631,147 @@ public class SkiaWorldRenderBox : TemplatedControl
     }
 
 
+    public static readonly DirectProperty<SkiaWorldRenderBox, ZoomLevelCollection> ZoomLevelsProperty =
+        AvaloniaProperty.RegisterDirect<SkiaWorldRenderBox, ZoomLevelCollection>(
+            nameof(ZoomLevels),
+            o => o.ZoomLevels,
+            (o, v) => o.ZoomLevels = v);
+
+    /// <summary>
+    ///   Gets or sets the zoom levels.
+    /// </summary>
+    /// <value>The zoom levels.</value>
+    public ZoomLevelCollection ZoomLevels
+    {
+        get => _zoomLevels;
+        set => SetAndRaise(ZoomLevelsProperty, ref _zoomLevels, value);
+    }
+
+    public static readonly StyledProperty<int> MinZoomProperty =
+        AvaloniaProperty.Register<SkiaWorldRenderBox, int>(nameof(MinZoom), 10);
+
+    /// <summary>
+    /// Gets or sets the minimum possible zoom.
+    /// </summary>
+    /// <value>The zoom.</value>
+    public int MinZoom
+    {
+        get => GetValue(MinZoomProperty);
+        set => SetValue(MinZoomProperty, value);
+    }
+
+    public static readonly StyledProperty<int> MaxZoomProperty =
+        AvaloniaProperty.Register<SkiaWorldRenderBox, int>(nameof(MaxZoom), 6400);
+
+    /// <summary>
+    /// Gets or sets the maximum possible zoom.
+    /// </summary>
+    /// <value>The zoom.</value>
+    public int MaxZoom
+    {
+        get => GetValue(MaxZoomProperty);
+        set => SetValue(MaxZoomProperty, value);
+    }
+
+    public static readonly StyledProperty<bool> ConstrainZoomOutToFitLevelProperty =
+        AvaloniaProperty.Register<SkiaWorldRenderBox, bool>(nameof(ConstrainZoomOutToFitLevel), true);
+
+    /// <summary>
+    /// Gets or sets if the zoom out should constrain to fit image as the lowest zoom level.
+    /// </summary>
+    public bool ConstrainZoomOutToFitLevel
+    {
+        get => GetValue(ConstrainZoomOutToFitLevelProperty);
+        set => SetValue(ConstrainZoomOutToFitLevelProperty, value);
+    }
+
+    public static readonly DirectProperty<SkiaWorldRenderBox, int> OldZoomProperty =
+        AvaloniaProperty.RegisterDirect<SkiaWorldRenderBox, int>(
+            nameof(OldZoom),
+            o => o.OldZoom);
+
+    /// <summary>
+    /// Gets the previous zoom value
+    /// </summary>
+    /// <value>The zoom.</value>
+    public int OldZoom
+    {
+        get => _oldZoom;
+        private set => SetAndRaise(OldZoomProperty, ref _oldZoom, value);
+    }
 
     /// <summary>
     /// Defines the <see cref="Zoom"/> property.
     /// </summary>
-    public static readonly StyledProperty<float> ZoomProperty =
-        AvaloniaProperty.Register<SkiaWorldRenderBox, float>(nameof(Zoom), 1.0f);
+    public static readonly StyledProperty<int> ZoomProperty =
+        AvaloniaProperty.Register<SkiaWorldRenderBox, int>(nameof(ZoomProperty), 100);
 
     /// <summary>
     /// Zoom level
     /// </summary>
-    public float Zoom
+    public int Zoom
     {
-        get { return GetValue(ZoomProperty); }
+        get => GetValue(ZoomProperty);
         set
         {
-            SetValue(ZoomProperty, value);
+            var minZoom = MinZoom;
+            if (ConstrainZoomOutToFitLevel) minZoom = Math.Max(ZoomLevelToFit, minZoom);
+            var newZoom = Math.Clamp(value, minZoom, MaxZoom);
+
+            var previousZoom = Zoom;
+            if (previousZoom == newZoom) return;
+
+            SetValue(ZoomProperty, newZoom);
             UpdateViewPort();
             TriggerRender();
         }
     }
 
-    /// <summary>
-    /// Defines the <see cref="PixelTileCache"/> property.
-    /// </summary>
-    public static readonly StyledProperty<IRasterTileCache> PixelTileCacheProperty =
-        AvaloniaProperty.Register<SkiaWorldRenderBox, IRasterTileCache>(nameof(PixelTileCache), null);
+    public Size WorldSize => World is null ? default : new Size(World.TilesWide, World.TilesHigh);
+
 
     /// <summary>
-    /// Comment
+    /// Gets the zoom to fit level which shows all the image
     /// </summary>
-    public IRasterTileCache PixelTileCache
+    public int ZoomLevelToFit
     {
-        get { return GetValue(PixelTileCacheProperty); }
-        set { SetValue(PixelTileCacheProperty, value); }
+        get
+        {
+            if (World == null) return 100;
+            var size = WorldSize;
+
+            double zoom;
+            double aspectRatio;
+
+            if (size.Width > size.Height)
+            {
+                aspectRatio = Viewport.Width / size.Width;
+                zoom = aspectRatio * 100.0;
+
+                if (Viewport.Height < size.Height * zoom / 100.0)
+                {
+                    aspectRatio = Viewport.Height / size.Height;
+                    zoom = aspectRatio * 100.0;
+                }
+            }
+            else
+            {
+                aspectRatio = Viewport.Height / size.Height;
+                zoom = aspectRatio * 100.0;
+
+                if (Viewport.Width < size.Width * zoom / 100.0)
+                {
+                    aspectRatio = Viewport.Width / size.Width;
+                    zoom = aspectRatio * 100.0;
+                }
+            }
+
+            return (int)zoom;
+        }
     }
 
     public static readonly StyledProperty<byte> GridCellSizeProperty =
-    AvaloniaProperty.Register<AdvancedImageBox, byte>(nameof(GridCellSize), 15);
+    AvaloniaProperty.Register<SkiaWorldRenderBox, byte>(nameof(GridCellSize), 15);
 
     /// <summary>
     /// Gets the image view port.
@@ -275,7 +802,17 @@ public class SkiaWorldRenderBox : TemplatedControl
     protected internal ScrollBar VerticalScrollBar = null!;
 
     /// <inheritdoc />
-    public Size Extent => new(Math.Max(ViewPort.Bounds.Width, World?.TilesWide ?? 0 * Zoom), Math.Max(ViewPort.Bounds.Height, World?.TilesHigh ?? 0 * Zoom));
+    public Size Extent => new(
+        Math.Max(ViewPort.Bounds.Width, World?.TilesWide ?? 0 * (Zoom / 100d)),
+        Math.Max(ViewPort.Bounds.Height, World?.TilesHigh ?? 0 * (Zoom / 100d)));
+
+
+    /// <summary>
+    /// Defines the <see cref="Offset"/> property.
+    /// </summary>
+    public static readonly DirectProperty<SkiaWorldRenderBox, Vector> OffsetProperty =
+        AvaloniaProperty.RegisterDirect<SkiaWorldRenderBox, Vector>(nameof(Offset), o => o.Offset);
+
 
     /// <inheritdoc />
     public Vector Offset
@@ -314,7 +851,7 @@ public class SkiaWorldRenderBox : TemplatedControl
     }
 
     public static readonly StyledProperty<bool> AutoCenterProperty =
-    AvaloniaProperty.Register<AdvancedImageBox, bool>(nameof(AutoCenter), true);
+    AvaloniaProperty.Register<SkiaWorldRenderBox, bool>(nameof(AutoCenter), true);
 
     /// <summary>
     /// Gets or sets if image is auto centered
@@ -335,7 +872,7 @@ public class SkiaWorldRenderBox : TemplatedControl
     }
 
     public static readonly StyledProperty<ISolidColorBrush> GridColorProperty =
-        AvaloniaProperty.Register<AdvancedImageBox, ISolidColorBrush>(nameof(GridColor), Brushes.Black);
+        AvaloniaProperty.Register<SkiaWorldRenderBox, ISolidColorBrush>(nameof(GridColor), Brushes.Black);
 
     /// <summary>
     /// Gets or sets the color used to create the checkerboard style background
@@ -347,7 +884,7 @@ public class SkiaWorldRenderBox : TemplatedControl
     }
 
     public static readonly StyledProperty<ISolidColorBrush> GridColorAlternateProperty =
-        AvaloniaProperty.Register<AdvancedImageBox, ISolidColorBrush>(nameof(GridColorAlternate), Brushes.DarkGray);
+        AvaloniaProperty.Register<SkiaWorldRenderBox, ISolidColorBrush>(nameof(GridColorAlternate), Brushes.DarkGray);
 
     /// <summary>
     /// Gets or sets the color used to create the checkerboard style background
@@ -358,25 +895,25 @@ public class SkiaWorldRenderBox : TemplatedControl
         set => SetValue(GridColorAlternateProperty, value);
     }
 
-    public static readonly DirectProperty<AdvancedImageBox, Point> PointerPositionProperty =
-       AvaloniaProperty.RegisterDirect<AdvancedImageBox, Point>(
-           nameof(PointerPosition),
-           o => o.PointerPosition);
+    /// <summary>
+    /// Defines the <see cref="WorldCoordinate"/> property.
+    /// </summary>
+    public static readonly DirectProperty<SkiaWorldRenderBox, Point> WorldCoordinateProperty =
+        AvaloniaProperty.RegisterDirect<SkiaWorldRenderBox, Point>(nameof(WorldCoordinate), o => o.WorldCoordinate);
 
-
-
+    private Point _worldCoordinate;
 
     /// <summary>
-    /// Gets the current pointer position
+    /// Comment
     /// </summary>
-    public Point PointerPosition
+    public Point WorldCoordinate
     {
-        get => _pointerPosition;
-        private set => SetAndRaise(PointerPositionProperty, ref _pointerPosition, value);
+        get => _worldCoordinate;
+        private set => SetAndRaise(WorldCoordinateProperty, ref _worldCoordinate, value);
     }
 
-    public static readonly DirectProperty<AdvancedImageBox, bool> IsPanningProperty =
-        AvaloniaProperty.RegisterDirect<AdvancedImageBox, bool>(
+    public static readonly DirectProperty<SkiaWorldRenderBox, bool> IsPanningProperty =
+        AvaloniaProperty.RegisterDirect<SkiaWorldRenderBox, bool>(
             nameof(IsPanning),
             o => o.IsPanning);
 
@@ -405,8 +942,8 @@ public class SkiaWorldRenderBox : TemplatedControl
     }
 
 
-    public static readonly DirectProperty<AdvancedImageBox, bool> IsSelectingProperty =
-        AvaloniaProperty.RegisterDirect<AdvancedImageBox, bool>(
+    public static readonly DirectProperty<SkiaWorldRenderBox, bool> IsSelectingProperty =
+        AvaloniaProperty.RegisterDirect<SkiaWorldRenderBox, bool>(
             nameof(IsSelecting),
             o => o.IsSelecting);
 
@@ -432,7 +969,7 @@ public class SkiaWorldRenderBox : TemplatedControl
     }
 
     public static readonly StyledProperty<bool> AutoPanProperty =
-        AvaloniaProperty.Register<AdvancedImageBox, bool>(nameof(AutoPan), true);
+        AvaloniaProperty.Register<SkiaWorldRenderBox, bool>(nameof(AutoPan), true);
 
     /// <summary>
     /// Gets or sets if the control can pan with the mouse
@@ -444,7 +981,7 @@ public class SkiaWorldRenderBox : TemplatedControl
     }
 
     public static readonly StyledProperty<MouseButtons> PanWithMouseButtonsProperty =
-        AvaloniaProperty.Register<AdvancedImageBox, MouseButtons>(nameof(PanWithMouseButtons), MouseButtons.LeftButton | MouseButtons.MiddleButton | MouseButtons.RightButton);
+        AvaloniaProperty.Register<SkiaWorldRenderBox, MouseButtons>(nameof(PanWithMouseButtons), MouseButtons.LeftButton | MouseButtons.MiddleButton | MouseButtons.RightButton);
 
     /// <summary>
     /// Gets or sets the mouse buttons to pan the image
@@ -456,7 +993,7 @@ public class SkiaWorldRenderBox : TemplatedControl
     }
 
     public static readonly StyledProperty<bool> PanWithArrowsProperty =
-        AvaloniaProperty.Register<AdvancedImageBox, bool>(nameof(PanWithArrows), true);
+        AvaloniaProperty.Register<SkiaWorldRenderBox, bool>(nameof(PanWithArrows), true);
 
     /// <summary>
     /// Gets or sets if the control can pan with the keyboard arrows
@@ -468,7 +1005,7 @@ public class SkiaWorldRenderBox : TemplatedControl
     }
 
     public static readonly StyledProperty<MouseButtons> SelectWithMouseButtonsProperty =
-        AvaloniaProperty.Register<AdvancedImageBox, MouseButtons>(nameof(SelectWithMouseButtons), MouseButtons.LeftButton | MouseButtons.RightButton);
+        AvaloniaProperty.Register<SkiaWorldRenderBox, MouseButtons>(nameof(SelectWithMouseButtons), MouseButtons.LeftButton | MouseButtons.RightButton);
 
 
     /// <summary>
@@ -482,7 +1019,7 @@ public class SkiaWorldRenderBox : TemplatedControl
 
 
     public static readonly StyledProperty<SelectionModes> SelectionModeProperty =
-        AvaloniaProperty.Register<AdvancedImageBox, SelectionModes>(nameof(SelectionMode), SelectionModes.None);
+        AvaloniaProperty.Register<SkiaWorldRenderBox, SelectionModes>(nameof(SelectionMode), SelectionModes.None);
 
     public SelectionModes SelectionMode
     {
@@ -491,7 +1028,7 @@ public class SkiaWorldRenderBox : TemplatedControl
     }
 
     public static readonly StyledProperty<ISolidColorBrush> SelectionColorProperty =
-        AvaloniaProperty.Register<AdvancedImageBox, ISolidColorBrush>(nameof(SelectionColor), new SolidColorBrush(new Color(127, 0, 128, 255)));
+        AvaloniaProperty.Register<SkiaWorldRenderBox, ISolidColorBrush>(nameof(SelectionColor), new SolidColorBrush(new Color(127, 0, 128, 255)));
 
     public ISolidColorBrush SelectionColor
     {
@@ -500,10 +1037,10 @@ public class SkiaWorldRenderBox : TemplatedControl
     }
 
     public static readonly StyledProperty<Rect> SelectionRegionProperty =
-        AvaloniaProperty.Register<AdvancedImageBox, Rect>(nameof(SelectionRegion));
+        AvaloniaProperty.Register<SkiaWorldRenderBox, Rect>(nameof(SelectionRegion));
 
     public static readonly StyledProperty<bool> InvertMousePanProperty =
-    AvaloniaProperty.Register<AdvancedImageBox, bool>(nameof(InvertMousePan), false);
+    AvaloniaProperty.Register<SkiaWorldRenderBox, bool>(nameof(InvertMousePan), false);
 
     /// <summary>
     /// Gets or sets if mouse pan is inverted
@@ -567,7 +1104,7 @@ public class SkiaWorldRenderBox : TemplatedControl
 
     private void ViewPortOnPointerExited(object? sender, PointerEventArgs e)
     {
-        PointerPosition = new Point(-1, -1);
+        _pointerPosition = new Point(-1, -1);
         TriggerRender(true);
         e.Handled = true;
     }
@@ -618,7 +1155,9 @@ public class SkiaWorldRenderBox : TemplatedControl
         if (e.Handled) return;
 
         var pointer = e.GetCurrentPoint(ViewPort);
-        PointerPosition = pointer.Position;
+        _pointerPosition = pointer.Position;
+        (double wcX, double wcY) = PointToImage(_pointerPosition, true);
+        WorldCoordinate = new Point((int)wcX, (int)wcY); // cast to int
 
         if (!_isPanning && !_isSelecting)
         {
@@ -777,8 +1316,8 @@ public class SkiaWorldRenderBox : TemplatedControl
 
         if (!fitToBounds || viewport.Contains(point))
         {
-            x = (point.X + Offset.X - viewport.X) / Zoom;
-            y = (point.Y + Offset.Y - viewport.Y) / Zoom;
+            x = (point.X + Offset.X - viewport.X) / (Zoom / 100d);
+            y = (point.Y + Offset.Y - viewport.Y) / (Zoom / 100d);
 
             var size = World?.Size ?? Vector2Int32.Zero;
             if (fitToBounds)
@@ -917,7 +1456,7 @@ public class SkiaWorldRenderBox : TemplatedControl
     public void ScrollTo(Point imageLocation, Point relativeDisplayPoint)
     {
         //CanRender = false;
-        var zoom = Zoom;
+        var zoom = (Zoom / 100d);
         var x = imageLocation.X * zoom - relativeDisplayPoint.X;
         var y = imageLocation.Y * zoom - relativeDisplayPoint.Y;
 
@@ -983,7 +1522,7 @@ public class SkiaWorldRenderBox : TemplatedControl
     /// <returns>A <see cref="Point"/> which has been scaled to match the current zoom level</returns>
     public Point GetScaledPoint(Point source)
     {
-        return new(source.X * Zoom, source.Y * Zoom);
+        return new(source.X * (Zoom / 100d) - Offset.X, source.Y * (Zoom / 100d) - Offset.Y);
     }
 
     /// <summary>
@@ -1019,7 +1558,7 @@ public class SkiaWorldRenderBox : TemplatedControl
     /// <returns>A <see cref="Rectangle"/> which has been scaled to match the current zoom level</returns>
     public Rect GetScaledRectangle(Rect source)
     {
-        return new(source.Left * Zoom, source.Top * Zoom, source.Width * Zoom, source.Height * Zoom);
+        return new(source.Left * (Zoom / 100d) - Offset.X, source.Top * (Zoom / 100d) - Offset.Y, source.Width * (Zoom / 100d), source.Height * (Zoom / 100d));
     }
 
     /// <summary>
@@ -1040,7 +1579,7 @@ public class SkiaWorldRenderBox : TemplatedControl
     /// <returns>A <see cref="Size"/> which has been resized to match the current zoom level</returns>
     public Size GetScaledSize(Size source)
     {
-        return new(source.Width * Zoom, source.Height * Zoom);
+        return new(source.Width * (Zoom / 100d), source.Height * (Zoom / 100d));
     }
 
     /// <summary>

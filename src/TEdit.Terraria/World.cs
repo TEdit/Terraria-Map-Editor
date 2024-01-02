@@ -2,16 +2,15 @@
 using System.ComponentModel;
 using System.IO;
 using System.Linq;
-using TEdit.Common.Reactive;
-using TEdit.Terraria.Objects;
-using TEdit.Geometry;
-using TEdit.Terraria.IO;
-using TEdit.Configuration;
 using System.Threading.Tasks;
 using TEdit.Common.Exceptions;
+using TEdit.Common.Reactive;
+using TEdit.Configuration;
+using TEdit.Geometry;
+using TEdit.Terraria.IO;
+using TEdit.Terraria.Objects;
 
 namespace TEdit.Terraria;
-
 
 public partial class World : ObservableObject, ITileData
 {
@@ -81,13 +80,6 @@ public partial class World : ObservableObject, ITileData
                 string temp = filename + ".tmp";
                 using (var fs = new FileStream(temp, FileMode.Create))
                 {
-#if DEBUG
-                    using TextWriter debugger = new StreamWriter(new FileStream(filename + ".txt", FileMode.Create));
-
-#else
-                    TextWriter debugger = null;
-
-#endif
                     using (var bw = new BinaryWriter(fs))
                     {
                         if (versionOverride < 0 || world.IsV0 || world.Version == 38)
@@ -98,7 +90,7 @@ public partial class World : ObservableObject, ITileData
                         }
                         else if (world.Version > 87 && world.Version != 38)
                         {
-                            SaveV2(world, bw, debugger, incrementRevision);
+                            SaveV2(world, bw, incrementRevision);
                         }
                         else
                         {
@@ -241,10 +233,9 @@ public partial class World : ObservableObject, ITileData
         return status;
     }
 
-    public static (World World, Exception Error) LoadWorld(string filename)
+    public static (World World, Exception Error) LoadWorld(string filename, bool headersOnly = false)
     {
         var w = new World();
-        uint curVersion = 0;
 
         lock (_fileLock)
         {
@@ -261,13 +252,6 @@ public partial class World : ObservableObject, ITileData
 
                     using (var b = new BinaryReader(stream))
                     {
-
-#if DEBUG
-                        using TextWriter debugger = new StreamWriter(new FileStream(filename + ".json", FileMode.Create));
-#else
-                        TextWriter debugger = null;
-#endif
-
                         string twldPath = Path.Combine(
                             Path.GetDirectoryName(filename),
                             Path.GetFileNameWithoutExtension(filename) +
@@ -293,21 +277,18 @@ public partial class World : ObservableObject, ITileData
                             b.BaseStream.Position = readerPos;
                         }
 
-                        curVersion = w.Version;
                         if (w.Version > 87)
                         {
-                            LoadV2(b, w, debugger);
+                            LoadV2(b, w, headersOnly);
                         }
                         else if (w.Version <= 38 && w.IsV0)
                         {
-                            LoadV0(b, filename, w);
+                            LoadV0(b, filename, w, headersOnly);
                         }
                         else
                         {
-                            LoadV1(b, filename, w);
+                            LoadV1(b, filename, w, headersOnly);
                         }
-
-                        //w.UpgradeLegacyTileEntities();
                     }
                 }
                 w.LastSave = File.GetLastWriteTimeUtc(filename);

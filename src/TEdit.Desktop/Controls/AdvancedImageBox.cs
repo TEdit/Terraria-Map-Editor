@@ -42,6 +42,7 @@ namespace TEdit.Desktop.Controls;
 [TemplatePart("PART_ScrollBarsSeparator", typeof(Panel))]
 public class AdvancedImageBox : TemplatedControl, IScrollable
 {
+    public List<IRenderLayer> RenderLayers { get; } = new();
     #region BindableBase
     /// <summary>
     ///     Multicast event for property change notifications.
@@ -54,9 +55,8 @@ public class AdvancedImageBox : TemplatedControl, IScrollable
         remove => _propertyChanged -= value;
     }
 
-    public List<IRenderLayer> RenderLayers { get; } = new();
 
-    protected bool RaiseAndSetIfChanged<T>(ref T field, T value, [CallerMemberName] string? propertyName = null)
+    protected bool SetProperty<T>(ref T field, T value, [CallerMemberName] string? propertyName = null)
     {
         if (EqualityComparer<T>.Default.Equals(field, value)) return false;
         field = value;
@@ -889,7 +889,6 @@ public class AdvancedImageBox : TemplatedControl, IScrollable
         set => SetValue(ConstrainZoomOutToFitLevelProperty, value);
     }
 
-
     public static readonly DirectProperty<AdvancedImageBox, int> OldZoomProperty =
         AvaloniaProperty.RegisterDirect<AdvancedImageBox, int>(
             nameof(OldZoom),
@@ -1053,7 +1052,7 @@ public class AdvancedImageBox : TemplatedControl, IScrollable
         set
         {
             SetValue(SelectionRegionProperty, value);
-            //if (!RaiseAndSetIfChanged(ref _selectionRegion, value)) return;
+            //if (!SetProperty(ref _selectionRegion, value)) return;
             TriggerRender();
             RaisePropertyChanged(nameof(HaveSelection));
             RaisePropertyChanged(nameof(SelectionRegionNet));
