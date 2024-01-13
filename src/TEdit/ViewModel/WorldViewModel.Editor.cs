@@ -1,19 +1,19 @@
-﻿using System;
+﻿using Microsoft.Xna.Framework;
+using System;
 using System.ComponentModel;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
-using TEdit.Utility;
-using Microsoft.Xna.Framework;
-using TEdit.Terraria;
-using TEdit.Editor;
-using TEdit.Render;
 using System.Windows;
-using TEdit.Framework.Threading;
-using System.IO;
-using TEdit.Geometry;
-using TEdit.Configuration;
 using TEdit.Common;
+using TEdit.Configuration;
+using TEdit.Editor;
 using TEdit.Editor.Undo;
+using TEdit.Framework.Threading;
+using TEdit.Geometry;
+using TEdit.Render;
+using TEdit.Terraria;
+using TEdit.Utility;
 
 namespace TEdit.ViewModel;
 
@@ -112,7 +112,6 @@ public partial class WorldViewModel
                 w.Version = CurrentWorld.Version;
                 World.LoadV2(reader, w);
             }
-
 
             int borderTop = addBorders ? 41 : 0;
             int borderLeft = addBorders ? 41 : 0;
@@ -336,7 +335,7 @@ public partial class WorldViewModel
         if (TilePicker == null) return;
 
         WorldEditor.SetPixel(x, y, mode, erase);
-        UpdateRenderPixel(x,y);
+        UpdateRenderPixel(x, y);
     }
 
     private void UpdateRenderWorld()

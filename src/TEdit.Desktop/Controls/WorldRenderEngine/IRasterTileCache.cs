@@ -6,9 +6,12 @@ namespace TEdit.Desktop.Controls.WorldRenderEngine;
 
 public interface IRasterTileCache : IDisposable
 {
-    Dictionary<SKPointI, RasterTile> Tiles { get; }
-    void AddOrUpdate(RasterTile tile);
+    void SetTile(RasterTile tile, int x, int y);
+    RasterTile? GetTile(int x, int y);
     void Clear();
 
     int TileSize { get; }
+
+    int TilesX { get; }
+    int TilesY { get; }
 }

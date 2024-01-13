@@ -17,7 +17,7 @@ public partial class World
 {
     public static Dictionary<string, short> _legacyItemLookup { get; private set; }
 
-    public static void SaveV1(World world, BinaryWriter bw, bool ForceLighting)
+    public static void SaveV1(World world, BinaryWriter bw, bool ForceLighting, IProgress<ProgressChangedEventArgs>? progress = null)
     {
         var version = world.Version;
 
@@ -198,8 +198,8 @@ public partial class World
 
         for (int x = 0; x < world.TilesWide; ++x)
         {
-            OnProgressChanged(world,
-                new ProgressChangedEventArgs(x.ProgressPercentage(world.TilesWide), "Saving Tiles..."));
+            progress?.Report(
+                 new ProgressChangedEventArgs(x.ProgressPercentage(world.TilesWide), "Saving Tiles..."));
 
             int rle = 0;
             for (int y = 0; y < world.TilesHigh; y = y + rle + 1)
@@ -221,11 +221,11 @@ public partial class World
 
         int chestSize = (world.Version < 48) ? 20 : 40;
 
-        OnProgressChanged(null, new ProgressChangedEventArgs(100, "Saving Chests..."));
+        progress?.Report(new ProgressChangedEventArgs(100, "Saving Chests..."));
         WriteChestDataToStreamV1(world.Chests, bw, world.Version);
-        OnProgressChanged(null, new ProgressChangedEventArgs(100, "Saving Signs..."));
+        progress?.Report(new ProgressChangedEventArgs(100, "Saving Signs..."));
         WriteSignDataToStreamV1(world.Signs, bw, world.Version);
-        OnProgressChanged(null, new ProgressChangedEventArgs(100, "Saving NPC Data..."));
+        progress?.Report(new ProgressChangedEventArgs(100, "Saving NPC Data..."));
 
         foreach (NPC curNpc in world.NPCs.Where(n => n.SpriteId <= saveData.MaxNpcId))
         {
@@ -240,7 +240,7 @@ public partial class World
 
         bw.Write(false);
 
-        OnProgressChanged(null, new ProgressChangedEventArgs(100, "Saving NPC Names..."));
+        progress?.Report(new ProgressChangedEventArgs(100, "Saving NPC Names..."));
 
         if (version >= 31)
         {
@@ -279,7 +279,7 @@ public partial class World
 
         if (version >= 7)
         {
-            OnProgressChanged(null, new ProgressChangedEventArgs(100, "Saving Validation Data..."));
+            progress?.Report(new ProgressChangedEventArgs(100, "Saving Validation Data..."));
             bw.Write(true);
             bw.Write(world.Title);
             bw.Write(world.WorldId);
@@ -1317,7 +1317,7 @@ public partial class World
         }
     }
 
-    public static void LoadV0(BinaryReader reader, string filename, World w, bool headersOnly = false)
+    public static void LoadV0(BinaryReader reader, string filename, World w, bool headersOnly = false, IProgress<ProgressChangedEventArgs>? progress = null)
     {
         uint version = w.Version;
         w.Title = reader.ReadString();
@@ -1391,8 +1391,8 @@ public partial class World
 
         for (int x = 0; x < w.TilesWide; ++x)
         {
-            OnProgressChanged(null,
-                new ProgressChangedEventArgs(x.ProgressPercentage(w.TilesWide), "Loading Tiles..."));
+            progress?.Report(
+                 new ProgressChangedEventArgs(x.ProgressPercentage(w.TilesWide), "Loading Tiles..."));
 
             for (int y = 0; y < w.TilesHigh; y++)
             {
@@ -1436,7 +1436,7 @@ public partial class World
             }
         }
 
-        OnProgressChanged(null, new ProgressChangedEventArgs(100, "Loading Chests..."));
+        progress?.Report(new ProgressChangedEventArgs(100, "Loading Chests..."));
         for (int i = 0; i < 1000; i++)
         {
             const int v0_chestSize = 20;
@@ -1464,7 +1464,7 @@ public partial class World
 
         if (version >= 33)
         {
-            OnProgressChanged(null, new ProgressChangedEventArgs(100, "Loading Signs..."));
+            progress?.Report(new ProgressChangedEventArgs(100, "Loading Signs..."));
             for (int i = 0; i < 1000; i++)
             {
                 if (reader.ReadBoolean())
@@ -1487,7 +1487,7 @@ public partial class World
         if (version >= 20)
         {
             w.NPCs.Clear();
-            OnProgressChanged(null, new ProgressChangedEventArgs(100, "Loading NPC Data..."));
+            progress?.Report(new ProgressChangedEventArgs(100, "Loading NPC Data..."));
             while (reader.ReadBoolean())
             {
                 var npc = new NPC();
@@ -1506,7 +1506,7 @@ public partial class World
         }
     }
 
-    public static void SaveV0(World world, BinaryWriter bw, bool ForceLighting)
+    public static void SaveV0(World world, BinaryWriter bw, bool ForceLighting, IProgress<ProgressChangedEventArgs>? progress = null)
     {
         // Get the max values from json.
         var saveData = WorldConfiguration.SaveConfiguration.GetData(38);
@@ -1544,8 +1544,8 @@ public partial class World
 
         for (int x = 0; x < world.TilesWide; x++)
         {
-            OnProgressChanged(world,
-                new ProgressChangedEventArgs(x.ProgressPercentage(world.TilesWide), "Removing Future Tiles..."));
+            progress?.Report(
+                 new ProgressChangedEventArgs(x.ProgressPercentage(world.TilesWide), "Removing Future Tiles..."));
 
             for (int y = 0; y < world.TilesHigh; y++)
             {
@@ -1572,7 +1572,7 @@ public partial class World
             }
         }
 
-        OnProgressChanged(null, new ProgressChangedEventArgs(100, "Settling Sand..."));
+        progress?.Report(new ProgressChangedEventArgs(100, "Settling Sand..."));
         int[] _tileSand = {
             53,  // Sand Block
             112, // Ebonsand Block
@@ -1611,8 +1611,8 @@ public partial class World
 
         for (int x = 0; x < world.TilesWide; x++)
         {
-            OnProgressChanged(world,
-                new ProgressChangedEventArgs(x.ProgressPercentage(world.TilesWide), "Saving Tiles..."));
+            progress?.Report(
+                 new ProgressChangedEventArgs(x.ProgressPercentage(world.TilesWide), "Saving Tiles..."));
 
             for (int y = 0; y < world.TilesHigh; y++)
             {
@@ -1680,7 +1680,7 @@ public partial class World
             }
         }
 
-        OnProgressChanged(null, new ProgressChangedEventArgs(100, "Saving Chests..."));
+        progress?.Report(new ProgressChangedEventArgs(100, "Saving Chests..."));
 
         for (int i = 0; i < 1000; i++)
         {
@@ -1716,7 +1716,7 @@ public partial class World
 
         }
 
-        OnProgressChanged(null, new ProgressChangedEventArgs(100, "Saving Signs..."));
+        progress?.Report(new ProgressChangedEventArgs(100, "Saving Signs..."));
         for (int i = 0; i < 1000; i++)
         {
             if (i >= world.Signs.Count)
@@ -1733,7 +1733,7 @@ public partial class World
             }
         }
 
-        OnProgressChanged(null, new ProgressChangedEventArgs(100, "Saving NPC Data..."));
+        progress?.Report(new ProgressChangedEventArgs(100, "Saving NPC Data..."));
         foreach (NPC curNpc in world.NPCs)
         {
             bw.Write(true);
@@ -1747,7 +1747,7 @@ public partial class World
         bw.Write(false);
     }
 
-    public static void LoadV1(BinaryReader reader, string filename, World w, bool headersOnly = false)
+    public static void LoadV1(BinaryReader reader, string filename, World w, bool headersOnly = false, IProgress<ProgressChangedEventArgs>? progress = null)
     {
         uint version = w.Version;
         w.Title = reader.ReadString();
@@ -1976,8 +1976,8 @@ public partial class World
 
         for (int x = 0; x < w.TilesWide; ++x)
         {
-            OnProgressChanged(null,
-                new ProgressChangedEventArgs(x.ProgressPercentage(w.TilesWide), "Loading Tiles..."));
+            progress?.Report(
+                 new ProgressChangedEventArgs(x.ProgressPercentage(w.TilesWide), "Loading Tiles..."));
 
             for (int y = 0; y < w.TilesHigh; y++)
             {
@@ -2006,11 +2006,11 @@ public partial class World
             }
         }
 
-        OnProgressChanged(null, new ProgressChangedEventArgs(100, "Loading Chests..."));
+        progress?.Report(new ProgressChangedEventArgs(100, "Loading Chests..."));
         w.Chests.Clear();
         w.Chests.AddRange(ReadChestDataFromStreamV1(reader, version));
 
-        OnProgressChanged(null, new ProgressChangedEventArgs(100, "Loading Signs..."));
+        progress?.Report(new ProgressChangedEventArgs(100, "Loading Signs..."));
         w.Signs.Clear();
 
         foreach (Sign sign in ReadSignDataFromStreamV1(reader, version))
@@ -2022,7 +2022,7 @@ public partial class World
         }
 
         w.NPCs.Clear();
-        OnProgressChanged(null, new ProgressChangedEventArgs(100, "Loading NPC Data..."));
+        progress?.Report(new ProgressChangedEventArgs(100, "Loading NPC Data..."));
         while (reader.ReadBoolean())
         {
             var npc = new NPC();
@@ -2041,7 +2041,7 @@ public partial class World
 
         if (version >= 31 && version <= 83)
         {
-            OnProgressChanged(null, new ProgressChangedEventArgs(100, "Loading NPC Names..."));
+            progress?.Report(new ProgressChangedEventArgs(100, "Loading NPC Names..."));
             w.CharacterNames.Add(new NpcName(17, reader.ReadString()));
             w.CharacterNames.Add(new NpcName(18, reader.ReadString()));
             w.CharacterNames.Add(new NpcName(19, reader.ReadString()));
@@ -2120,7 +2120,7 @@ public partial class World
 
         if (version >= 7)
         {
-            OnProgressChanged(null, new ProgressChangedEventArgs(100, "Validating File..."));
+            progress?.Report(new ProgressChangedEventArgs(100, "Validating File..."));
             bool validation = reader.ReadBoolean();
             string checkTitle = reader.ReadString();
             int checkVersion = reader.ReadInt32();
@@ -2135,7 +2135,7 @@ public partial class World
                     $"Error reading world file validation parameters! {filename}");
             }
         }
-        OnProgressChanged(null, new ProgressChangedEventArgs(0, "World Load Complete."));
+        progress?.Report(new ProgressChangedEventArgs(0, "World Load Complete."));
     }
 
     public static IEnumerable<Sign> ReadSignDataFromStreamV1(BinaryReader b, uint version)

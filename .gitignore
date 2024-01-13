@@ -50,3 +50,4 @@ build/
 *.wix
 *.msi
 /src/publish/*
+/publish/

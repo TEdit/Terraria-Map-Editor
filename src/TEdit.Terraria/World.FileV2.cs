@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using TEdit.Common.Exceptions;
@@ -19,7 +20,7 @@ public partial class World
 
     public bool[] TileFrameImportant { get; set; }
 
-    public static void ImportKillsAndBestiary(World world, string worldFileName)
+    public static void ImportKillsAndBestiary(World world, string worldFileName, IProgress<ProgressChangedEventArgs>? progress = null)
     {
         World w = new World();
 
@@ -41,7 +42,7 @@ public partial class World
             // reset the stream
             b.BaseStream.Position = (long)0;
 
-            OnProgressChanged(null, new ProgressChangedEventArgs(0, "Loading File Header..."));
+            progress?.Report(new ProgressChangedEventArgs(0, "Loading File Header..."));
             // read section pointers and tile frame data
             if (!LoadSectionHeader(b, out tileFrameImportant, out sectionPointers, w))
                 throw new TEditFileFormatException("Invalid File Format Section");
@@ -73,9 +74,9 @@ public partial class World
         world.KilledMobs.AddRange(w.KilledMobs);
     }
 
-    public static void SaveV2(World world, BinaryWriter bw, bool incrementRevision = true)
+    public static void SaveV2(World world, BinaryWriter bw, bool incrementRevision = true, IProgress<ProgressChangedEventArgs>? progress = null)
     {
-        world.ValidateAsync();
+        world.Validate(progress);
 
         if (incrementRevision)
         {
@@ -85,60 +86,60 @@ public partial class World
         int[] sectionPointers = new int[world.GetSectionCount()];
         bool[] tileFrameImportant = WorldConfiguration.SaveConfiguration.GetTileFramesForVersion((int)world.Version);
 
-        OnProgressChanged(null, new ProgressChangedEventArgs(0, "Save headers..."));
+        progress?.Report(new ProgressChangedEventArgs(0, "Save headers..."));
         sectionPointers[0] = SaveSectionHeader(world, bw, tileFrameImportant);
         sectionPointers[1] = SaveHeaderFlags(world, bw, (int)world.Version);
-        OnProgressChanged(null, new ProgressChangedEventArgs(0, "Save Tiles..."));
+        progress?.Report(new ProgressChangedEventArgs(0, "Save Tiles..."));
         sectionPointers[2] = SaveTiles(world.Tiles, (int)world.Version, world.TilesWide, world.TilesHigh, bw, tileFrameImportant);
 
-        OnProgressChanged(null, new ProgressChangedEventArgs(91, "Save Chests..."));
+        progress?.Report(new ProgressChangedEventArgs(91, "Save Chests..."));
         sectionPointers[3] = SaveChests(world.Chests, bw, (int)world.Version);
-        OnProgressChanged(null, new ProgressChangedEventArgs(92, "Save Signs..."));
+        progress?.Report(new ProgressChangedEventArgs(92, "Save Signs..."));
         sectionPointers[4] = SaveSigns(world.Signs, bw, (int)world.Version);
-        OnProgressChanged(null, new ProgressChangedEventArgs(93, "Save NPCs..."));
+        progress?.Report(new ProgressChangedEventArgs(93, "Save NPCs..."));
 
         sectionPointers[5] = SaveNPCs(world, bw, (int)world.Version);
 
         if (world.Version >= 140)
         {
-            OnProgressChanged(null, new ProgressChangedEventArgs(94, "Save Mobs..."));
+            progress?.Report(new ProgressChangedEventArgs(94, "Save Mobs..."));
             sectionPointers[5] = SaveMobs(world.Mobs, bw, (int)world.Version);
 
-            OnProgressChanged(null, new ProgressChangedEventArgs(95, "Save Tile Entities Section..."));
+            progress?.Report(new ProgressChangedEventArgs(95, "Save Tile Entities Section..."));
             sectionPointers[6] = SaveTileEntities(world.TileEntities, bw);
         }
 
         if (world.Version >= 170)
         {
-            OnProgressChanged(null, new ProgressChangedEventArgs(96, "Save Weighted Pressure Plates..."));
+            progress?.Report(new ProgressChangedEventArgs(96, "Save Weighted Pressure Plates..."));
             sectionPointers[7] = SavePressurePlate(world.PressurePlates, bw);
         }
 
         if (world.Version >= 189)
         {
-            OnProgressChanged(null, new ProgressChangedEventArgs(97, "Save Town Manager..."));
+            progress?.Report(new ProgressChangedEventArgs(97, "Save Town Manager..."));
             sectionPointers[8] = SaveTownManager(world.PlayerRooms, bw, (int)world.Version);
         }
 
         if (world.Version >= 210)
         {
-            OnProgressChanged(null, new ProgressChangedEventArgs(98, "Save Bestiary..."));
+            progress?.Report(new ProgressChangedEventArgs(98, "Save Bestiary..."));
             sectionPointers[9] = SaveBestiary(world.Bestiary, bw);
         }
 
         if (world.Version >= 220)
         {
-            OnProgressChanged(null, new ProgressChangedEventArgs(99, "Save Creative Powers..."));
+            progress?.Report(new ProgressChangedEventArgs(99, "Save Creative Powers..."));
             sectionPointers[10] = SaveCreativePowers(world.CreativePowers, bw);
         }
 
-        OnProgressChanged(null, new ProgressChangedEventArgs(100, "Save Footers..."));
+        progress?.Report(new ProgressChangedEventArgs(100, "Save Footers..."));
         SaveFooter(world, bw);
         UpdateSectionPointers(world.Version, sectionPointers, bw);
-        OnProgressChanged(null, new ProgressChangedEventArgs(100, "Save Complete."));
+        progress?.Report(new ProgressChangedEventArgs(100, "Save Complete."));
     }
 
-    public static int SaveTiles(Tile[,] tiles, int version, int maxX, int maxY, BinaryWriter bw, bool[] tileFrameImportant)
+    public static int SaveTiles(Tile[,] tiles, int version, int maxX, int maxY, BinaryWriter bw, bool[] tileFrameImportant, IProgress<ProgressChangedEventArgs>? progress = null)
     {
 
         int maxTileId = WorldConfiguration.SaveConfiguration.GetData(version).MaxTileId;
@@ -146,7 +147,7 @@ public partial class World
 
         for (int x = 0; x < maxX; x++)
         {
-            OnProgressChanged(null, new ProgressChangedEventArgs((int)(x.ProgressPercentage(maxX) * 0.9), "Saving Tiles..."));
+            progress?.Report(new ProgressChangedEventArgs((int)(x.ProgressPercentage(maxX) * 0.9), "Saving Tiles..."));
 
 
             for (int y = 0; y < maxY; y++)
@@ -1218,7 +1219,7 @@ public partial class World
         return (int)bw.BaseStream.Position;
     }
 
-    public static void LoadV2(BinaryReader b, World w, bool headersOnly = false)
+    public static void LoadV2(BinaryReader b, World w, bool headersOnly = false, IProgress<ProgressChangedEventArgs>? progress = null)
     {
         //throw new NotImplementedException("World Version > 87");
 
@@ -1228,7 +1229,7 @@ public partial class World
         // reset the stream
         b.BaseStream.Position = (long)0;
 
-        OnProgressChanged(null, new ProgressChangedEventArgs(0, "Loading File Header..."));
+        progress?.Report(new ProgressChangedEventArgs(0, "Loading File Header..."));
         // read section pointers and tile frame data
         if (!LoadSectionHeader(b, out tileFrameImportant, out sectionPointers, w))
             throw new TEditFileFormatException("Invalid File Format Section");
@@ -1246,14 +1247,14 @@ public partial class World
 
         if (headersOnly) { return; }
 
-        OnProgressChanged(null, new ProgressChangedEventArgs(0, "Loading Tiles..."));
+        progress?.Report(new ProgressChangedEventArgs(0, "Loading Tiles..."));
         w.Tiles = LoadTileData(b, w.TilesWide, w.TilesHigh, (int)w.Version, w.TileFrameImportant);
 
         if (b.BaseStream.Position != sectionPointers[2])
             b.BaseStream.Position = sectionPointers[2];
         //throw new FileFormatException("Unexpected Position: Invalid Tile Data");
 
-        OnProgressChanged(null, new ProgressChangedEventArgs(100, "Loading Chests..."));
+        progress?.Report(new ProgressChangedEventArgs(100, "Loading Chests..."));
 
         foreach (Chest chest in LoadChestData(b))
         {
@@ -1267,7 +1268,7 @@ public partial class World
         if (b.BaseStream.Position != sectionPointers[3])
             throw new TEditFileFormatException("Unexpected Position: Invalid Chest Data");
 
-        OnProgressChanged(null, new ProgressChangedEventArgs(100, "Loading Signs..."));
+        progress?.Report(new ProgressChangedEventArgs(100, "Loading Signs..."));
 
         foreach (Sign sign in LoadSignData(b))
         {
@@ -1281,16 +1282,16 @@ public partial class World
         if (b.BaseStream.Position != sectionPointers[4])
             throw new TEditFileFormatException("Unexpected Position: Invalid Sign Data");
 
-        OnProgressChanged(null, new ProgressChangedEventArgs(100, "Loading NPCs..."));
+        progress?.Report(new ProgressChangedEventArgs(100, "Loading NPCs..."));
         LoadNPCsData(b, w);
         if (w.Version >= 140)
         {
-            OnProgressChanged(null, new ProgressChangedEventArgs(100, "Loading Mobs..."));
+            progress?.Report(new ProgressChangedEventArgs(100, "Loading Mobs..."));
             LoadMobsData(b, w);
             if (b.BaseStream.Position != sectionPointers[5])
                 throw new TEditFileFormatException("Unexpected Position: Invalid Mob and NPC Data");
 
-            OnProgressChanged(null, new ProgressChangedEventArgs(100, "Loading Tile Entities Section..."));
+            progress?.Report(new ProgressChangedEventArgs(100, "Loading Tile Entities Section..."));
             LoadTileEntities(b, w);
             if (b.BaseStream.Position != sectionPointers[6])
                 throw new TEditFileFormatException("Unexpected Position: Invalid Tile Entities Section");
@@ -1325,20 +1326,20 @@ public partial class World
                 throw new TEditFileFormatException("Unexpected Position: Invalid Creative Powers Section");
         }
 
-        OnProgressChanged(null, new ProgressChangedEventArgs(100, "Verifying File..."));
+        progress?.Report(new ProgressChangedEventArgs(100, "Verifying File..."));
         LoadFooter(b, w);
 
-        OnProgressChanged(null, new ProgressChangedEventArgs(100, "Load Complete."));
+        progress?.Report(new ProgressChangedEventArgs(100, "Load Complete."));
     }
 
-    public static Tile[,] LoadTileData(BinaryReader r, int maxX, int maxY, int version, bool[] tileFrameImportant)
+    public static Tile[,] LoadTileData(BinaryReader r, int maxX, int maxY, int version, bool[] tileFrameImportant, IProgress<ProgressChangedEventArgs>? progress = null)
     {
         var tiles = new Tile[maxX, maxY];
         int rle;
         for (int x = 0; x < maxX; x++)
         {
-            OnProgressChanged(null,
-                new ProgressChangedEventArgs(x.ProgressPercentage(maxX), "Loading Tiles..."));
+            progress?.Report(
+                 new ProgressChangedEventArgs(x.ProgressPercentage(maxX), "Loading Tiles..."));
 
             for (int y = 0; y < maxY; y++)
             {

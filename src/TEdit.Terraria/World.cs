@@ -2,6 +2,7 @@
 using System.ComponentModel;
 using System.IO;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using TEdit.Common.Exceptions;
 using TEdit.Common.Reactive;
@@ -14,17 +15,13 @@ namespace TEdit.Terraria;
 
 public partial class World : ObservableObject, ITileData
 {
+    private SemaphoreSlim _fileSemaphore = new SemaphoreSlim(0, 1);
     private static readonly object _fileLock = new object();
+
     /// <summary>
     ///     Triggered when an operation reports progress.
     /// </summary>
     public static event ProgressChangedEventHandler ProgressChanged;
-
-    private static void OnProgressChanged(object sender, ProgressChangedEventArgs e)
-    {
-        if (ProgressChanged != null)
-            ProgressChanged(sender, e);
-    }
 
     public World()
     {
@@ -34,8 +31,6 @@ public partial class World : ObservableObject, ITileData
         CharacterNames.Clear();
         TileFrameImportant = WorldConfiguration.SettingsTileFrameImportant.ToArray(); // clone for "new" world. Loaded worlds will replace this with file data
     }
-
-
 
     public World(int height, int width, string title, int seed = -1)
         : this()
@@ -53,12 +48,16 @@ public partial class World : ObservableObject, ITileData
         CharacterNames.Clear();
     }
 
+    public static Task SaveAsync(World world, string filename, bool resetTime = false, int versionOverride = 0, bool incrementRevision = true, IProgress<ProgressChangedEventArgs>? progress = null)
+        => Task.Run(() => Save(world, filename, resetTime, versionOverride, incrementRevision, progress));
+
     public static void Save(
         World world,
         string filename,
         bool resetTime = false,
         int versionOverride = 0,
-        bool incrementRevision = true)
+        bool incrementRevision = true,
+        IProgress<ProgressChangedEventArgs>? progress = null)
     {
         lock (_fileLock)
         {
@@ -70,7 +69,7 @@ public partial class World : ObservableObject, ITileData
 
                 if (resetTime)
                 {
-                    OnProgressChanged(world, new ProgressChangedEventArgs(0, "Resetting Time..."));
+                    progress?.Report(new ProgressChangedEventArgs(0, "Resetting Time..."));
                     //world.ResetTime();
                 }
 
@@ -86,16 +85,16 @@ public partial class World : ObservableObject, ITileData
                         {
                             bool addLight = (currentWorldVersion > world.Version) ? true : false; // Check if world is being downgraded.
                             world.Version = (uint)Math.Abs(versionOverride);
-                            SaveV0(world, bw, addLight);
+                            SaveV0(world, bw, addLight, progress);
                         }
                         else if (world.Version > 87 && world.Version != 38)
                         {
-                            SaveV2(world, bw, incrementRevision);
+                            SaveV2(world, bw, incrementRevision, progress);
                         }
                         else
                         {
                             bool addLight = (currentWorldVersion >= 87) ? true : false; // Check if world is being downgraded.
-                            SaveV1(world, bw, addLight);
+                            SaveV1(world, bw, addLight, progress);
                         }
 
                         if (world.IsConsole)
@@ -116,7 +115,7 @@ public partial class World : ObservableObject, ITileData
                         File.Copy(temp, filename, true);
                         // delete temp save file
                         File.Delete(temp);
-                        OnProgressChanged(null, new ProgressChangedEventArgs(0, "World Save Complete."));
+                        progress?.Report(new ProgressChangedEventArgs(0, "World Save Complete."));
                     }
                 }
 
@@ -130,8 +129,10 @@ public partial class World : ObservableObject, ITileData
         }
     }
 
+    public static Task<WorldValidationStatus> ValidateWorldFileAsync(string filename, IProgress<ProgressChangedEventArgs>? progress = null)
+        => Task.Run(() => ValidateWorldFile(filename, progress));
 
-    public static WorldValidationStatus ValidateWorldFile(string filename)
+    public static WorldValidationStatus ValidateWorldFile(string filename, IProgress<ProgressChangedEventArgs>? progress = null)
     {
         var w = new World();
         uint curVersion = 0;
@@ -207,7 +208,7 @@ public partial class World : ObservableObject, ITileData
                         // reset the stream
                         b.BaseStream.Position = (long)0;
 
-                        OnProgressChanged(null, new ProgressChangedEventArgs(0, "Loading File Header..."));
+                        progress?.Report(new ProgressChangedEventArgs(0, "Loading File Header..."));
                         // read section pointers and tile frame data
                         if (!LoadSectionHeader(b, out _, out _, w))
                             throw new TEditFileFormatException("Invalid File Format Section");
@@ -233,7 +234,10 @@ public partial class World : ObservableObject, ITileData
         return status;
     }
 
-    public static (World World, Exception Error) LoadWorld(string filename, bool headersOnly = false)
+    public static Task<(World World, Exception Error)> LoadWorldAsync(string filename, bool headersOnly = false, IProgress<ProgressChangedEventArgs>? progress = null)
+        => Task.Run(() => LoadWorld(filename, headersOnly, progress));
+
+    public static (World World, Exception Error) LoadWorld(string filename, bool headersOnly = false, IProgress<ProgressChangedEventArgs>? progress = null)
     {
         var w = new World();
 
@@ -279,15 +283,15 @@ public partial class World : ObservableObject, ITileData
 
                         if (w.Version > 87)
                         {
-                            LoadV2(b, w, headersOnly);
+                            LoadV2(b, w, headersOnly, progress);
                         }
                         else if (w.Version <= 38 && w.IsV0)
                         {
-                            LoadV0(b, filename, w, headersOnly);
+                            LoadV0(b, filename, w, headersOnly, progress);
                         }
                         else
                         {
-                            LoadV1(b, filename, w, headersOnly);
+                            LoadV1(b, filename, w, headersOnly, progress);
                         }
                     }
                 }
@@ -407,14 +411,14 @@ public partial class World : ObservableObject, ITileData
             return new Vector2Int32(x, y);
     }
 
-    public async Task ValidateAsync()
-    {
-        await Task.Delay(0);
 
+    public Task ValidAsync(IProgress<ProgressChangedEventArgs>? progress = null) => Task.Run(() => Validate(progress));
+
+    public void Validate(IProgress<ProgressChangedEventArgs>? progress = null)
+    {
         for (int x = 0; x < TilesWide; x++)
         {
-            OnProgressChanged(this,
-                new ProgressChangedEventArgs((int)(x / (float)TilesWide * 100.0), "Validating World..."));
+            progress?.Report(new ProgressChangedEventArgs((int)(x / (float)TilesWide * 100.0), "Validating World..."));
 
             for (int y = 0; y < TilesHigh; y++)
             {
@@ -481,8 +485,7 @@ public partial class World : ObservableObject, ITileData
             }
         }
 
-        OnProgressChanged(this,
-                new ProgressChangedEventArgs(0, "Validating Complete..."));
+        progress?.Report(new ProgressChangedEventArgs(0, "Validating Complete..."));
 
         if (Chests.Count > WorldConfiguration.MaxChests)
             throw new ArgumentOutOfRangeException($"Chest Count is {Chests.Count} which is greater than {WorldConfiguration.MaxChests}.");

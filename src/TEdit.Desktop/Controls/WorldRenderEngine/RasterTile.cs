@@ -5,14 +5,16 @@ namespace TEdit.Desktop.Controls.WorldRenderEngine;
 
 public class RasterTile : IDisposable
 {
-    private bool _disposedValue;
-
     public SKBitmap? Bitmap { get; set; }
     public bool IsDirty { get; set; }
-    public SKPointI TilePosition { get; set; }
-    public SKPointI BlockPosition { get; set; }
+
+    public int TileX { get; set; }
+    public int TileY { get; set; }
+    public int PixelX { get; set; }
+    public int PixelY { get; set; }
 
     #region Dispose
+    private bool _disposedValue;
     protected virtual void Dispose(bool disposing)
     {
         if (!_disposedValue)

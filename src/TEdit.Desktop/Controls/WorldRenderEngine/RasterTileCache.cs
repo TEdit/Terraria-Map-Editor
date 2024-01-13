@@ -1,6 +1,8 @@
 ﻿using SkiaSharp;
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using TEdit.Common;
 
 namespace TEdit.Desktop.Controls.WorldRenderEngine;
 
@@ -8,26 +10,96 @@ public class RasterTileCache : IRasterTileCache
 {
     private bool _disposedValue;
 
-    public Dictionary<SKPointI, RasterTile> Tiles { get; } = new();
+    private readonly int _pixelsHigh;
+    private readonly int _pixelsWide;
 
-    public int TileSize => 100;
+    public int TilesX { get; }
+    public int TilesY { get; }
+    public int TileSize { get; } = 100;
 
-    public void AddOrUpdate(RasterTile tile)
+    private RasterTile[] _tiles;
+
+    public RasterTileCache(int pixelsHigh, int pixelsWide, int tileSize = 100)
     {
-        if (Tiles.TryGetValue(tile.TilePosition, out var existingTile))
+        TileSize = tileSize;
+
+        _pixelsHigh = pixelsHigh;
+        _pixelsWide = pixelsWide;
+
+        TilesX = (int)Math.Ceiling((float)_pixelsWide / TileSize);
+        TilesY = (int)Math.Ceiling((float)_pixelsHigh / TileSize);
+
+        _tiles = new RasterTile[TilesX * TilesY];
+    }
+
+    public RasterTile? GetTile(int x, int y)
+    {
+        int tileIndex = TileXYToTileIndex(x, y);
+
+        if (tileIndex >= _tiles.Length) { return null; }
+
+        return _tiles[tileIndex];
+    }
+
+    public void SetTile(RasterTile tile, int x, int y)
+    {
+        int tileIndex = TileXYToTileIndex(x, y);
+
+        var existing = _tiles[tileIndex];
+        if (existing?.Bitmap != null)
         {
-            existingTile?.Dispose();
+            existing.Dispose();
         }
 
-        Tiles[tile.TilePosition] = tile;
+        _tiles[tileIndex] = tile;
+    }
+
+    private int TileXYToTileIndex(int x, int y) => x + y * TilesX;
+
+    private int PixelToTileIndex(int worldPixelX, int worldPixelY)
+    {
+        int curTileX = worldPixelX / TileSize;
+        int curTileY = worldPixelY / TileSize;
+
+        int tileIndex = curTileX + curTileY * TilesX;
+
+        return tileIndex;
+    }
+
+    private (int tileIndex, int tilePixelX, int tilePixelY) PixelToTilePixelIndex(int worldPixelX, int worldPixelY)
+    {
+        int curTileX = worldPixelX / TileSize;
+        int curTileY = worldPixelY / TileSize;
+
+        int tilePixelX = worldPixelX - (curTileX * TileSize);
+        int tilePixelY = worldPixelY - (curTileY * TileSize);
+
+        int tileIndex = curTileX + curTileY * TilesX;
+
+        return (tileIndex, tilePixelX, tilePixelY);
+    }
+
+    public void SetPixelColor(int x, int y, SKColor color)
+    {
+        (int tileIndex, int tilePixelX, int tilePixelY) = PixelToTilePixelIndex(x, y);
+
+        _tiles[tileIndex]?.Bitmap?.SetPixel(tilePixelX, tilePixelY, color);
+    }
+
+    public SKColor? GetPixelColor(int x, int y)
+    {
+        (int tileIndex, int tilePixelX, int tilePixelY) = PixelToTilePixelIndex(x, y);
+
+        return _tiles[tileIndex]?.Bitmap?.GetPixel(tilePixelX, tilePixelY);
     }
 
     public void Clear()
     {
-        var tiles = Tiles.Values;
-        Tiles.Clear();
+        var tiles = _tiles.ToList();
+        _tiles = new RasterTile[TilesX * TilesY];
         foreach (var tile in tiles)
         {
+            tile.IsDirty = true;
             tile?.Dispose();
         }
     }
@@ -40,8 +112,8 @@ public class RasterTileCache : IRasterTileCache
         {
             if (disposing)
             {
-                var tiles = Tiles.Values;
-                Tiles.Clear();
+                var tiles = _tiles.ToList();
+                _tiles = new RasterTile[0];
                 foreach (var tile in tiles)
                 {
                     tile?.Dispose();

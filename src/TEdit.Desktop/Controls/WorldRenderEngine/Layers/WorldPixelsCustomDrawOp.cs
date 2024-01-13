@@ -7,31 +7,92 @@ using Avalonia.Skia;
 using SkiaSharp;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using TEdit.Common;
 using TEdit.Configuration;
 using TEdit.Terraria;
 
 namespace TEdit.Desktop.Controls.WorldRenderEngine.Layers;
 
+public class RasterTileRenderer
+{
+    private static TEditColor GetBackgroundColor(World _world, int y)
+    {
+        if (_world == null) { return TEditColor.White; }
+        if (y < 80)
+            return WorldConfiguration.GlobalColors["Space"];
+        else if (y > _world.TilesHigh - 192)
+            return WorldConfiguration.GlobalColors["Hell"];
+        else if (y > _world.RockLevel)
+            return WorldConfiguration.GlobalColors["Rock"];
+        else if (y > _world.GroundLevel)
+            return WorldConfiguration.GlobalColors["Earth"];
+        else
+            return WorldConfiguration.GlobalColors["Sky"];
+    }
+
+    public static SKBitmap CreateBitmapTile(World _world, int xTile, int yTile, int tileSize)
+    {
+        ArgumentNullException.ThrowIfNull(_world);
+
+        var bmp = new SKBitmap(tileSize, tileSize, SKImageInfo.PlatformColorType, SKAlphaType.Premul);
+
+        var world = _world;
+        int worldWidth = world.TilesWide;
+        int worldHeight = world.TilesHigh;
+
+        var blocks = world.Tiles;
+
+        int blockX = xTile * tileSize;
+        int blockY = yTile * tileSize;
+
+        for (int x = 0; x + blockX < worldWidth && x < tileSize; x++)
+        {
+            for (int y = 0; y + blockY < worldHeight && y < tileSize; y++)
+            {
+                var currentBlockX = x + blockX;
+                var currentBlockY = y + blockY;
+
+                var block = blocks[currentBlockX, currentBlockY];
+                //if (block.IsActive)
+                {
+                    var bgColor = GetBackgroundColor(_world, currentBlockY);
+                    var tileColor = PixelMap.GetTileColor(block, bgColor).ToSKColor().WithAlpha(255);
+
+                    bmp.SetPixel(
+                        x,
+                        y,
+                        tileColor);
+                }
+            }
+        }
+
+        //bmp.SetImmutable();
+
+
+        return bmp;
+    }
+}
+
 public class WorldPixelsCustomDrawOp : ICustomDrawOperation
 {
     private readonly Vector _offset;
-    private readonly World? World;
-    private readonly IRasterTileCache _pixelTiles;
+    private readonly World? _world;
+    private readonly IRasterTileCache _tileCache;
     private readonly double _zoom = 1f;
 
     public WorldPixelsCustomDrawOp(
         Rect bounds,
         Vector offset,
         World? world,
-        IRasterTileCache _pixelTiles,
+        IRasterTileCache tileCache,
         double tileScale = 1f
         )
     {
         Bounds = bounds;
         _offset = offset;
-        World = world;
-        this._pixelTiles = _pixelTiles;
+        _world = world;
+        this._tileCache = tileCache;
         _zoom = tileScale;
         LoadContent();
     }
@@ -52,7 +113,7 @@ public class WorldPixelsCustomDrawOp : ICustomDrawOperation
 
     public void Render(ImmediateDrawingContext context)
     {
-        if (World == null) { return; }
+        if (_world == null) { return; }
 
         var leaseFeature = context.TryGetFeature<ISkiaSharpApiLeaseFeature>();
         if (leaseFeature == null) { return; }
@@ -63,95 +124,42 @@ public class WorldPixelsCustomDrawOp : ICustomDrawOperation
         DrawWorldPixelTiles(canvas);
     }
 
-    private RasterTile GetTile(int x, int y)
+    int _maxRenderPerFrame = 2;
+
+    private RasterTile? GetTile(int x, int y)
     {
-        var tilePos = new SKPointI(x, y);
-        var blockPos = new SKPointI(x * _pixelTiles.TileSize, y * _pixelTiles.TileSize);
+        var tile = _tileCache.GetTile(x, y);
 
-        if (blockPos.X > World.TilesWide || blockPos.Y > World.TilesHigh)
-            return null;
-
-        _pixelTiles.Tiles.TryGetValue(new SKPointI(x, y), out var tile);
-
-        if (tile == null || tile.IsDirty)
+        if (tile != null)
         {
-            tile = new RasterTile
+            // update dirty tiles
+            if (tile.IsDirty && _maxRenderPerFrame > 0)
             {
-                Bitmap = CreateBitmapTile(x, y),
-                TilePosition = tilePos,
-                BlockPosition = blockPos,
-                IsDirty = false
-            };
+                _maxRenderPerFrame--;
 
-            _pixelTiles.AddOrUpdate(tile);
-
+                tile.Bitmap = RasterTileRenderer.CreateBitmapTile(_world, x, y, _tileCache.TileSize);
+                tile.IsDirty = false;
+            }
         }
 
         return tile;
     }
 
-    private TEditColor GetBackgroundColor(int y)
+    SKPaint greenBorder = new SKPaint
     {
-        if (World == null) { return TEditColor.White; }
-        if (y < 80)
-            return WorldConfiguration.GlobalColors["Space"];
-        else if (y > World.TilesHigh - 192)
-            return WorldConfiguration.GlobalColors["Hell"];
-        else if (y > World.RockLevel)
-            return WorldConfiguration.GlobalColors["Rock"];
-        else if (y > World.GroundLevel)
-            return WorldConfiguration.GlobalColors["Earth"];
-        else
-            return WorldConfiguration.GlobalColors["Sky"];
-    }
-
-    private SKBitmap CreateBitmapTile(int xTile, int yTile)
-    {
-        var bmp = new SKBitmap(_pixelTiles.TileSize, _pixelTiles.TileSize, SKImageInfo.PlatformColorType, SKAlphaType.Premul);
-
-        var world = World;
-        int worldWidth = world.TilesWide;
-        int worldHeight = world.TilesHigh;
-
-        var blocks = world.Tiles;
-
-        int blockX = xTile * _pixelTiles.TileSize;
-        int blockY = yTile * _pixelTiles.TileSize;
-
-        for (int x = 0; x + blockX < worldWidth && x < _pixelTiles.TileSize; x++)
-        {
-            for (int y = 0; y + blockY < worldHeight && y < _pixelTiles.TileSize; y++)
-            {
-                var currentBlockX = x + blockX;
-                var currentBlockY = y + blockY;
-
-                var block = blocks[currentBlockX, currentBlockY];
-                //if (block.IsActive)
-                {
-                    var bgColor = GetBackgroundColor(currentBlockY);
-                    var tileColor = PixelMap.GetTileColor(block, bgColor).ToSKColor().WithAlpha(255);
-
-                    bmp.SetPixel(
-                        x,
-                        y,
-                        tileColor);
-                }
-            }
-        }
-
-        bmp.SetImmutable();
-
-        return bmp;
-    }
+        Color = SKColors.Green,
+        Style = SKPaintStyle.Stroke,
+        StrokeWidth = 1f,
+    };
 
     private void DrawWorldPixelTiles(SKCanvas canvas)
     {
-        if (World == null) { return; }
+        if (_world == null) { return; }
 
         canvas.Save();
 
-        int numTilesX = (int)Math.Ceiling(Bounds.Width / _pixelTiles.TileSize / _zoom);
-        int numTilesY = (int)Math.Ceiling(Bounds.Height / _pixelTiles.TileSize / _zoom);
+        int numTilesX = (int)Math.Ceiling((double)Bounds.Width / _tileCache.TileSize / _zoom) + 1; // draw one extra tile to cover border
+        int numTilesY = (int)Math.Ceiling((double)Bounds.Height / _tileCache.TileSize / _zoom) + 1;
 
         using var paint = new SKPaint
         {
@@ -163,33 +171,46 @@ public class WorldPixelsCustomDrawOp : ICustomDrawOperation
             BlendMode = SKBlendMode.SrcOver,
         };
 
-        var xTileOffset = (int)(_offset.X / _pixelTiles.TileSize / _zoom);
-        var yTileOffset = (int)(_offset.Y / _pixelTiles.TileSize / _zoom);
+        var xTileOffset = (int)Math.Floor((double)_offset.X / _tileCache.TileSize / _zoom);
+        var yTileOffset = (int)Math.Floor((double)_offset.Y / _tileCache.TileSize / _zoom);
 
-        for (int x = xTileOffset; x <= numTilesX + xTileOffset; x++)
+        var maxTileX = Math.Min(_tileCache.TilesX, numTilesX + xTileOffset);
+        var maxTileY = Math.Min(_tileCache.TilesY, numTilesY + yTileOffset);
+
+        for (int x = xTileOffset; x < maxTileX; x++)
         {
-            for (int y = yTileOffset; y <= numTilesY + yTileOffset; y++)
+            for (int y = yTileOffset; y < maxTileY; y++)
             {
-                var tileCanvasX = x * _zoom * _pixelTiles.TileSize - (int)_offset.X + (int)Bounds.X;
-                var tileCanvasY = y * _zoom * _pixelTiles.TileSize - (int)_offset.Y + (int)Bounds.Y;
-                var tileCanvasWidth = _pixelTiles.TileSize * _zoom;
-                var tileCanvasHeight = _pixelTiles.TileSize * _zoom;
+                var tileCanvasX = x * _zoom * _tileCache.TileSize - (int)_offset.X + (int)Bounds.X;
+                var tileCanvasY = y * _zoom * _tileCache.TileSize - (int)_offset.Y + (int)Bounds.Y;
+                var tileCanvasWidth = _tileCache.TileSize * _zoom;
+                var tileCanvasHeight = _tileCache.TileSize * _zoom;
 
                 var tile = GetTile(x, y);
+
+                var canvasRect = new SKRect(
+                            (float)tileCanvasX,
+                            (float)tileCanvasY,
+                            (float)(tileCanvasX + tileCanvasWidth),
+                            (float)(tileCanvasY + tileCanvasHeight));
 
                 if (tile?.Bitmap != null)
                 {
                     canvas.DrawBitmap(
                         tile.Bitmap,
                         new SKRect(0, 0, tile.Bitmap.Width, tile.Bitmap.Height),
-                        new SKRect(
-                            (float)tileCanvasX,
-                            (float)tileCanvasY,
-                            (float)(tileCanvasX + tileCanvasWidth),
-                            (float)(tileCanvasY + tileCanvasHeight))
+                        canvasRect
                         //paint
                         );
+
                 }
+                else
+                {
+                    int b = 0;
+                }
+
+                canvas.DrawRect(canvasRect, greenBorder);
+
             }
         }
 

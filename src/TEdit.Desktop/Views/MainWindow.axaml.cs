@@ -1,7 +1,10 @@
 using Avalonia.Controls;
 using Avalonia.Interactivity;
 using Avalonia.Platform.Storage;
+using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Threading.Tasks;
 using TEdit.Desktop.ViewModels;
 using TEdit.Terraria;
 
@@ -18,6 +21,11 @@ public partial class MainWindow : Window
     }
 
     public async void LoadWorldButton_Clicked(object sender, RoutedEventArgs args)
+    {
+        await OpenWorldDialog();
+    }
+
+    private async Task OpenWorldDialog()
     {
         var fileTypes = new List<FilePickerFileType>
         {
@@ -43,12 +51,25 @@ public partial class MainWindow : Window
         {
             var file = files[0];
 
-            (var world, var errors) = World.LoadWorld(file.TryGetLocalPath());
+            await LoadWorld(file);
+        }
+    }
 
-            if (world != null)
-            {
-                MainWindowViewModel.SelectedDocument.World = world;
-            }
+    private async Task LoadWorld(IStorageFile file)
+    {
+        var progress = new Progress<ProgressChangedEventArgs>(ProgressChangedEventArgs =>
+               {
+                   MainWindowViewModel.ProgressPercentage = ProgressChangedEventArgs.ProgressPercentage;
+                   MainWindowViewModel.ProgressText = ProgressChangedEventArgs.UserState?.ToString() ?? string.Empty;
+               });
+
+        (var world, var errors) = await World.LoadWorldAsync(file.TryGetLocalPath(), progress: progress);
+
+        ((IProgress<ProgressChangedEventArgs>)progress).Report(new ProgressChangedEventArgs(0, string.Empty));
+
+        if (world != null)
+        {
+            MainWindowViewModel.SelectedDocument.World = world;
         }
     }
 }

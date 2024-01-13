@@ -6,13 +6,16 @@ using Avalonia.Controls.Primitives;
 using Avalonia.Input;
 using Avalonia.Media;
 using Avalonia.Media.Imaging;
+using Avalonia.Skia;
 using Avalonia.Threading;
+using SkiaSharp;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using System.Threading.Tasks;
 using TEdit.Desktop.Controls.WorldRenderEngine;
 using TEdit.Desktop.Controls.WorldRenderEngine.Layers;
 using TEdit.Geometry;
@@ -430,7 +433,7 @@ public class SkiaWorldRenderBox : TemplatedControl, IScrollable
     private Point _pointerPosition;
     private bool _isPanning;
     private bool _isSelecting;
-    private IRasterTileCache _pixelTileCache = new RasterTileCache();
+    private IRasterTileCache _pixelTileCache = new RasterTileCache(0, 0);
     private int _oldZoom = 100;
 
     static SkiaWorldRenderBox()
@@ -526,14 +529,16 @@ public class SkiaWorldRenderBox : TemplatedControl, IScrollable
         InvalidateVisual();
     }
 
+    Brush redBrush = new Avalonia.Media.SolidColorBrush(Colors.Red, 0.5d);
+
     public override void Render(DrawingContext context)
     {
         base.Render(context);
 
         var imageViewPort = GetImageViewPort();
 
-
         var viewport = Bounds;
+
         context.Custom(new NoSkiaCustomDrawOp(viewport, _noSkia));
         context.Custom(new BackgroundGridCustomDrawOp(viewport));
 
@@ -547,6 +552,27 @@ public class SkiaWorldRenderBox : TemplatedControl, IScrollable
         //context.DrawRectangle()
         var cursorTile = GetScaledRectangle(WorldCoordinate, new(1, 1));
         context.DrawRectangle(Brushes.Aqua, null, cursorTile);
+
+        // draw out of bounds
+        int borderTop = 41;
+        int borderLeft = 41;
+        int borderRight = 42;
+        int borderBottom = 42;
+
+        if (World != null)
+        {
+            int sidebarHeight = World.TilesHigh - borderTop - borderBottom;
+
+            var topRect = GetScaledRectangle(0, 0, World.TilesWide, borderTop);
+            var leftRect = GetScaledRectangle(0, borderTop, borderLeft, sidebarHeight);
+            var rightRect = GetScaledRectangle(World.TilesWide - borderRight, borderTop, borderRight, sidebarHeight);
+            var bottomRect = GetScaledRectangle(0, World.TilesHigh - borderBottom, World.TilesWide, borderBottom);
+
+            context.DrawRectangle(redBrush, null, topRect);
+            context.DrawRectangle(redBrush, null, leftRect);
+            context.DrawRectangle(redBrush, null, rightRect);
+            context.DrawRectangle(redBrush, null, bottomRect);
+        }
 
         Dispatcher.UIThread.InvokeAsync(InvalidateVisual, DispatcherPriority.Background);
     }
@@ -571,15 +597,58 @@ public class SkiaWorldRenderBox : TemplatedControl, IScrollable
         get => _world;
         set
         {
-            // SetValue(WorldProperty, value);
+
             if (_world == value) return;
 
+            // clear the render tile cache when switching worlds
+            _world = null;
+            var oldCache = _pixelTileCache;
+
             _world = value;
-            Zoom = 100;
-            _pixelTileCache?.Clear();
+
+            _pixelTileCache = new RasterTileCache(_world.TilesHigh, _world.TilesWide);
+            oldCache?.Dispose();
+            StartFullRender();
+
             UpdateViewPort();
             TriggerRender();
         }
+    }
+
+    private void StartFullRender()
+    {
+        Task.Factory.StartNew(() =>
+        {
+            int numX = _pixelTileCache.TilesX;
+            int numY = _pixelTileCache.TilesY;
+
+            for (int x = 0; x < numX; x++)
+            {
+                Parallel.For(
+                    0,
+                    numY,
+                    new ParallelOptions { MaxDegreeOfParallelism = 4 },
+                    y =>
+                    {
+                        RenderTile(y, x);
+                    });
+            }
+        });
+    }
+
+    private void RenderTile(int y, int x)
+    {
+        var tile = new RasterTile
+        {
+            Bitmap = RasterTileRenderer.CreateBitmapTile(_world, x, y, _pixelTileCache.TileSize),
+            TileX = x,
+            TileY = y,
+            PixelX = x * _pixelTileCache.TileSize,
+            PixelY = y * _pixelTileCache.TileSize,
+            IsDirty = false
+        };
+
+        _pixelTileCache.SetTile(tile, x, y);
     }
 
     /// <summary>
@@ -827,7 +896,7 @@ public class SkiaWorldRenderBox : TemplatedControl, IScrollable
     }
 
     /// <inheritdoc />
-    public Size Viewport => ViewPort.Bounds.Size;
+    public Size Viewport => this.Bounds.Size;
     #endregion
 
     #region Properties
@@ -1319,7 +1388,7 @@ public class SkiaWorldRenderBox : TemplatedControl, IScrollable
             x = (point.X + Offset.X - viewport.X) / (Zoom / 100d);
             y = (point.Y + Offset.Y - viewport.Y) / (Zoom / 100d);
 
-            var size = World?.Size ?? Vector2Int32.Zero;
+            var size = World?.Size ?? Vector2Int32.One;
             if (fitToBounds)
             {
                 x = Math.Clamp(x, 0, size.X - 1);
@@ -1522,7 +1591,18 @@ public class SkiaWorldRenderBox : TemplatedControl, IScrollable
     /// <returns>A <see cref="Point"/> which has been scaled to match the current zoom level</returns>
     public Point GetScaledPoint(Point source)
     {
-        return new(source.X * (Zoom / 100d) - Offset.X, source.Y * (Zoom / 100d) - Offset.Y);
+        var viewPortSize = Viewport;
+
+        double xOffset = HorizontalScrollBar.Value;
+        double yOffset = VerticalScrollBar.Value;
+
+        if (AutoCenter)
+        {
+            xOffset = (!IsHorizontalBarVisible ? (viewPortSize.Width - ScaledWidth) / 2 : 0);
+            yOffset = (!IsVerticalBarVisible ? (viewPortSize.Height - ScaledHeight) / 2 : 0);
+        }
+
+        return new(source.X * (Zoom / 100d) - xOffset, source.Y * (Zoom / 100d) - yOffset);
     }
 
     /// <summary>
@@ -1558,7 +1638,21 @@ public class SkiaWorldRenderBox : TemplatedControl, IScrollable
     /// <returns>A <see cref="Rectangle"/> which has been scaled to match the current zoom level</returns>
     public Rect GetScaledRectangle(Rect source)
     {
-        return new(source.Left * (Zoom / 100d) - Offset.X, source.Top * (Zoom / 100d) - Offset.Y, source.Width * (Zoom / 100d), source.Height * (Zoom / 100d));
+        var viewPortSize = Viewport;
+        double xOffset = HorizontalScrollBar.Value;
+        double yOffset = VerticalScrollBar.Value;
+
+        if (AutoCenter)
+        {
+            xOffset = (!IsHorizontalBarVisible ? -(viewPortSize.Width - ScaledWidth) / 2 : xOffset);
+            yOffset = (!IsVerticalBarVisible ? -(viewPortSize.Height - ScaledHeight) / 2 : yOffset);
+        }
+
+        return new(
+            source.Left * (Zoom / 100d) - xOffset,
+            source.Top * (Zoom / 100d) - yOffset,
+            source.Width * (Zoom / 100d),
+            source.Height * (Zoom / 100d));
     }
 
     /// <summary>
