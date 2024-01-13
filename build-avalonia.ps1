@@ -39,5 +39,5 @@ $platforms | ForEach-Object {
 
     & dotnet $buildArgs
 
-    Compress-Archive -Path ".\publish\$_\*" -DestinationPath ".\publish\TEdit-$VersionPrefix-$VersionSuffix-$_-x64.zip"
+    Compress-Archive -Path ".\publish\$_\*" -DestinationPath ".\publish\TEdit-$VersionPrefix-$VersionSuffix-$_.zip"
 }
