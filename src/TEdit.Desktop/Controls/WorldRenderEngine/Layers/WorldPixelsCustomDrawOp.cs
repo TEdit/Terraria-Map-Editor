@@ -1,18 +1,16 @@
 ﻿using Avalonia;
-using Avalonia.Controls.Documents;
 using Avalonia.Media;
 using Avalonia.Platform;
 using Avalonia.Rendering.SceneGraph;
 using Avalonia.Skia;
 using SkiaSharp;
 using System;
-using System.Collections.Generic;
-using System.Diagnostics;
 using TEdit.Common;
 using TEdit.Configuration;
 using TEdit.Terraria;
 
 namespace TEdit.Desktop.Controls.WorldRenderEngine.Layers;
+
 
 public class RasterTileRenderer
 {
@@ -217,3 +215,4 @@ public class WorldPixelsCustomDrawOp : ICustomDrawOperation
         canvas.Restore();
     }
 }
+

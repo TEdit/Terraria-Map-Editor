@@ -14,6 +14,7 @@ using Avalonia.Media;
 using System;
 using TEdit.Common;
 using TEdit.Configuration;
+using TEdit.Desktop.Controls.WorldRenderEngine.Layers;
 using TEdit.Terraria;
 
 namespace TEdit.Desktop.Controls;
@@ -171,11 +172,11 @@ public static class PixelMap
 
     #endregion
 
-    public static TEditColor GetTileColor(Tile tile, TEditColor background, bool showWall = true, bool showTile = true, bool showLiquid = true, bool showRedWire = true, bool showBlueWire = true, bool showGreenWire = true, bool showYellowWire = true, bool showCoatings = true)
+    public static TEditColor GetTileColor(Tile tile, TEditColor background, RenderLayerVisibility? layers = null)
     {
         var c = new TEditColor(0, 0, 0, 0);
 
-        if (tile.Wall > 0 && showWall)
+        if (tile.Wall > 0 && (layers?.Wall ?? true))
         {
 
             if (WorldConfiguration.WallProperties.Count > tile.Wall)
@@ -189,7 +190,7 @@ public static class PixelMap
                 c = c.AlphaBlend(TEditColor.Magenta); // Add out-of-range colors
 
             byte brightness = 255;
-            if (showCoatings)
+            if (layers?.Coatings ?? true)
             {
                 // echo: 169 
                 // normal: 211
@@ -201,7 +202,7 @@ public static class PixelMap
             }
 
             // blend paint
-            if (tile.WallColor > 0 && (!showTile || tile.TileColor == 0))
+            if (tile.WallColor > 0 && (!(layers?.Tile ?? true) || tile.TileColor == 0))
             {
                 var paint = WorldConfiguration.PaintProperties[tile.WallColor].Color;
                 switch (tile.WallColor)
@@ -233,7 +234,7 @@ public static class PixelMap
         else
             c = background;
 
-        if (tile.IsActive && showTile)
+        if (tile.IsActive && (layers?.Tile ?? true))
         {
             if (WorldConfiguration.TileProperties.Count > tile.Type)
                 c = c.AlphaBlend(WorldConfiguration.TileProperties[tile.Type].Color);
@@ -241,7 +242,7 @@ public static class PixelMap
                 c = c.AlphaBlend(TEditColor.Magenta); // Add out-of-range colors
 
             byte brightness = 255;
-            if (showCoatings)
+            if ((layers?.Coatings ?? true))
             {
                 // echo: 169 
                 // normal: 211
@@ -284,7 +285,7 @@ public static class PixelMap
             }
         }
 
-        if (tile.LiquidAmount > 0 && showLiquid)
+        if (tile.LiquidAmount > 0 && (layers?.Liquid ?? true))
         {
             if (tile.LiquidType == LiquidType.Lava) c = c.AlphaBlend(WorldConfiguration.GlobalColors["Lava"]);
             else if (tile.LiquidType == LiquidType.Honey) c = c.AlphaBlend(WorldConfiguration.GlobalColors["Honey"]);
@@ -292,19 +293,19 @@ public static class PixelMap
             else c = c.AlphaBlend(WorldConfiguration.GlobalColors["Water"]);
         }
 
-        if (tile.WireRed && showRedWire)
+        if (tile.WireRed && (layers?.WireRed ?? true))
         {
             c = c.AlphaBlend(WorldConfiguration.GlobalColors["Wire"]);
         }
-        if (tile.WireGreen && showGreenWire)
+        if (tile.WireGreen && (layers?.WireGreen ?? true))
         {
             c = c.AlphaBlend(WorldConfiguration.GlobalColors["Wire2"]);
         }
-        if (tile.WireBlue && showBlueWire)
+        if (tile.WireBlue && (layers?.WireBlue ?? true))
         {
             c = c.AlphaBlend(WorldConfiguration.GlobalColors["Wire1"]);
         }
-        if (tile.WireYellow && showYellowWire)
+        if (tile.WireYellow && (layers?.WireYellow ?? true))
         {
             c = c.AlphaBlend(WorldConfiguration.GlobalColors["Wire3"]);
         }

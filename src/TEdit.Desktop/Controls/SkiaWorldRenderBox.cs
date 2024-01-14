@@ -574,6 +574,9 @@ public class SkiaWorldRenderBox : TemplatedControl, IScrollable
             context.DrawRectangle(redBrush, null, bottomRect);
         }
 
+        var selectionRect = GetScaledRectangle(SelectionRegion);
+        context.DrawRectangle(SelectionColor, null, selectionRect);
+
         Dispatcher.UIThread.InvokeAsync(InvalidateVisual, DispatcherPriority.Background);
     }
 
@@ -1050,7 +1053,7 @@ public class SkiaWorldRenderBox : TemplatedControl, IScrollable
     }
 
     public static readonly StyledProperty<MouseButtons> PanWithMouseButtonsProperty =
-        AvaloniaProperty.Register<SkiaWorldRenderBox, MouseButtons>(nameof(PanWithMouseButtons), MouseButtons.LeftButton | MouseButtons.MiddleButton | MouseButtons.RightButton);
+        AvaloniaProperty.Register<SkiaWorldRenderBox, MouseButtons>(nameof(PanWithMouseButtons), MouseButtons.MiddleButton);
 
     /// <summary>
     /// Gets or sets the mouse buttons to pan the image
@@ -1074,7 +1077,7 @@ public class SkiaWorldRenderBox : TemplatedControl, IScrollable
     }
 
     public static readonly StyledProperty<MouseButtons> SelectWithMouseButtonsProperty =
-        AvaloniaProperty.Register<SkiaWorldRenderBox, MouseButtons>(nameof(SelectWithMouseButtons), MouseButtons.LeftButton | MouseButtons.RightButton);
+        AvaloniaProperty.Register<SkiaWorldRenderBox, MouseButtons>(nameof(SelectWithMouseButtons), MouseButtons.RightButton);
 
 
     /// <summary>

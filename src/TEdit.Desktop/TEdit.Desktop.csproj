@@ -64,4 +64,8 @@
       <DependentUpon>DocumentView.axaml</DependentUpon>
     </Compile>
   </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Controls\RenderLayer\" />
+  </ItemGroup>
 </Project>
