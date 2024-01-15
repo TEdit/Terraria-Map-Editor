@@ -1,4 +1,5 @@
 ﻿using Avalonia;
+using TEdit.Desktop.Editor;
 using TEdit.Terraria;
 
 namespace TEdit.Desktop.ViewModels;
@@ -20,9 +21,10 @@ public partial class DocumentViewModel : ObservableObject
     [ObservableProperty]
     private Point _cursorTileCoordinate;
 
+    [ObservableProperty]
+    private IMouseTool? _activeTool;
+
     public DocumentViewModel()
     {
     }
-
-
 }

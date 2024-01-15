@@ -1,44 +1,44 @@
-﻿using System;
+﻿using Microsoft.Xna.Framework;
+using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
+using System.Linq;
 using System.Net.Http;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Timers;
 using System.Windows;
 using System.Windows.Data;
+using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media.Imaging;
 using TEdit.Common.Reactive;
 using TEdit.Common.Reactive.Command;
-using TEdit.Framework.Threading;
-using TEdit.Utility;
+using TEdit.Configuration;
 using TEdit.Editor;
 using TEdit.Editor.Clipboard;
 using TEdit.Editor.Plugins;
 using TEdit.Editor.Tools;
 using TEdit.Editor.Undo;
+using TEdit.Framework.Threading;
+using TEdit.Geometry;
 using TEdit.Properties;
 using TEdit.Render;
 using TEdit.Terraria;
 using TEdit.Terraria.Objects;
+using TEdit.UI;
+using TEdit.UI.Xaml;
+using TEdit.Utility;
 using TEdit.View.Popups;
+using static TEdit.Terraria.CreativePowers;
 using Application = System.Windows.Application;
 using MessageBox = System.Windows.MessageBox;
 using OpenFileDialog = Microsoft.Win32.OpenFileDialog;
 using SaveFileDialog = Microsoft.Win32.SaveFileDialog;
 using Timer = System.Timers.Timer;
-using System.Collections.Generic;
-using System.Linq;
-using Microsoft.Xna.Framework;
-using TEdit.UI.Xaml;
-using static TEdit.Terraria.CreativePowers;
-using TEdit.Geometry;
-using TEdit.Configuration;
-using System.Windows.Documents;
-using TEdit.UI;
 
 namespace TEdit.ViewModel;
 
@@ -62,7 +62,7 @@ public partial class WorldViewModel : ViewModelBase
     private bool _checkUpdates;
     private string _currentFile;
     public static World _currentWorld;
-    private  ClipboardManager _clipboard;
+    private ClipboardManager _clipboard;
     private bool _isAutoSaveEnabled = true;
     private ICommand _launchWikiCommand;
     private WriteableBitmap _minimapImage;
@@ -1132,7 +1132,7 @@ public partial class WorldViewModel : ViewModelBase
             try
             {
                 OnProgressChanged(CurrentWorld, new ProgressChangedEventArgs(0, "Validating World..."));
-                await CurrentWorld.ValidateAsync();
+                // await CurrentWorld.ValidateAsync();
             }
             catch (ArgumentOutOfRangeException err)
             {

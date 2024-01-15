@@ -18,8 +18,10 @@ using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using TEdit.Desktop.Controls.WorldRenderEngine;
 using TEdit.Desktop.Controls.WorldRenderEngine.Layers;
+using TEdit.Desktop.Editor;
 using TEdit.Geometry;
 using TEdit.Terraria;
+using static SkiaSharp.SKImageFilter;
 
 namespace TEdit.Desktop.Controls;
 
@@ -554,13 +556,17 @@ public class SkiaWorldRenderBox : TemplatedControl, IScrollable
         context.DrawRectangle(Brushes.Aqua, null, cursorTile);
 
         // draw out of bounds
-        int borderTop = 41;
-        int borderLeft = 41;
-        int borderRight = 42;
-        int borderBottom = 42;
+
+
+        var selectionRect = GetScaledRectangle(SelectionRegion);
+        context.DrawRectangle(SelectionColor, null, selectionRect);
 
         if (World != null)
         {
+            int borderTop = 41;
+            int borderLeft = 41;
+            int borderRight = 42;
+            int borderBottom = 42;
             int sidebarHeight = World.TilesHigh - borderTop - borderBottom;
 
             var topRect = GetScaledRectangle(0, 0, World.TilesWide, borderTop);
@@ -574,10 +580,26 @@ public class SkiaWorldRenderBox : TemplatedControl, IScrollable
             context.DrawRectangle(redBrush, null, bottomRect);
         }
 
-        var selectionRect = GetScaledRectangle(SelectionRegion);
-        context.DrawRectangle(SelectionColor, null, selectionRect);
-
         Dispatcher.UIThread.InvokeAsync(InvalidateVisual, DispatcherPriority.Background);
+    }
+
+
+    /// <summary>
+    /// Defines the <see cref="World"/> property.
+    /// </summary>
+    public static readonly DirectProperty<SkiaWorldRenderBox, IMouseTool?> ActiveToolProperty =
+    AvaloniaProperty.RegisterDirect<SkiaWorldRenderBox, IMouseTool?>(
+        nameof(ActiveTool),
+        o => o.ActiveTool,
+        (o, v) => o.ActiveTool = v);
+
+
+    private IMouseTool? _activeTool = null;
+
+    public IMouseTool? ActiveTool
+    {
+        get => _activeTool;
+        set => SetProperty(ref _activeTool, value);
     }
 
     /// <summary>

@@ -32,6 +32,7 @@
                 Grid.Column="1" 
                 World="{Binding World}" 
                 Zoom="{Binding Zoom, Mode=TwoWay}"
+                ActiveTool="{Binding ActiveTool}"
                 MaxZoom="{Binding MaxZoom, Mode=TwoWay}"
                 MinZoom="{Binding MinZoom, Mode=TwoWay}"
                 WorldCoordinate="{Binding CursorTileCoordinate, Mode=OneWayToSource}" />

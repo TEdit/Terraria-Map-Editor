@@ -103,6 +103,8 @@ public class WorldPixelsCustomDrawOp : ICustomDrawOperation
     public void Dispose()
     {
         // No-op
+        _redHighlight?.Dispose();
+        _greenBorder?.Dispose();
     }
 
     public Rect Bounds { get; }
@@ -143,11 +145,17 @@ public class WorldPixelsCustomDrawOp : ICustomDrawOperation
         return tile;
     }
 
-    SKPaint greenBorder = new SKPaint
+    SKPaint _greenBorder = new SKPaint
     {
         Color = SKColors.Green,
         Style = SKPaintStyle.Stroke,
         StrokeWidth = 1f,
+    };
+
+    SKPaint _redHighlight = new SKPaint
+    {
+        Color = SKColors.Red.WithAlpha(128),
+        Style = SKPaintStyle.Fill,
     };
 
     private void DrawWorldPixelTiles(SKCanvas canvas)
@@ -156,8 +164,10 @@ public class WorldPixelsCustomDrawOp : ICustomDrawOperation
 
         canvas.Save();
 
-        int numTilesX = (int)Math.Ceiling((double)Bounds.Width / _tileCache.TileSize / _zoom) + 1; // draw one extra tile to cover border
-        int numTilesY = (int)Math.Ceiling((double)Bounds.Height / _tileCache.TileSize / _zoom) + 1;
+        int tileSize = _tileCache.TileSize;
+
+        int numTilesX = (int)Math.Ceiling((double)Bounds.Width / tileSize / _zoom) + 1; // draw one extra tile to cover border
+        int numTilesY = (int)Math.Ceiling((double)Bounds.Height / tileSize / _zoom) + 1;
 
         using var paint = new SKPaint
         {
@@ -169,8 +179,8 @@ public class WorldPixelsCustomDrawOp : ICustomDrawOperation
             BlendMode = SKBlendMode.SrcOver,
         };
 
-        var xTileOffset = (int)Math.Floor((double)_offset.X / _tileCache.TileSize / _zoom);
-        var yTileOffset = (int)Math.Floor((double)_offset.Y / _tileCache.TileSize / _zoom);
+        var xTileOffset = (int)Math.Floor((double)_offset.X / tileSize / _zoom);
+        var yTileOffset = (int)Math.Floor((double)_offset.Y / tileSize / _zoom);
 
         var maxTileX = Math.Min(_tileCache.TilesX, numTilesX + xTileOffset);
         var maxTileY = Math.Min(_tileCache.TilesY, numTilesY + yTileOffset);
@@ -179,10 +189,10 @@ public class WorldPixelsCustomDrawOp : ICustomDrawOperation
         {
             for (int y = yTileOffset; y < maxTileY; y++)
             {
-                var tileCanvasX = x * _zoom * _tileCache.TileSize - (int)_offset.X + (int)Bounds.X;
-                var tileCanvasY = y * _zoom * _tileCache.TileSize - (int)_offset.Y + (int)Bounds.Y;
-                var tileCanvasWidth = _tileCache.TileSize * _zoom;
-                var tileCanvasHeight = _tileCache.TileSize * _zoom;
+                var tileCanvasX = x * _zoom * tileSize - (int)_offset.X + (int)Bounds.X;
+                var tileCanvasY = y * _zoom * tileSize - (int)_offset.Y + (int)Bounds.Y;
+                var tileCanvasWidth = tileSize * _zoom;
+                var tileCanvasHeight = tileSize * _zoom;
 
                 var tile = GetTile(x, y);
 
@@ -207,7 +217,7 @@ public class WorldPixelsCustomDrawOp : ICustomDrawOperation
                     int b = 0;
                 }
 
-                canvas.DrawRect(canvasRect, greenBorder);
+                canvas.DrawRect(canvasRect, _greenBorder);
 
             }
         }
