@@ -1,3 +1,7 @@
+# ARCHIVED TEditv4 BRANCH
+
+All new development should be on main branch
+
 # Terraria Map Editor - BinaryConstruct
 
 [![Build status](https://ci.appveyor.com/api/projects/status/xi3k3j54un10a0o4?svg=true)](https://ci.appveyor.com/project/BinaryConstruct/terraria-map-editor) [![GitHub Version](https://img.shields.io/github/tag/TEdit/Terraria-Map-Editor.svg?label=GitHub)](https://github.com/TEdit/Terraria-Map-Editor) [![CodeFactor](https://www.codefactor.io/repository/github/tedit/terraria-map-editor/badge)](https://www.codefactor.io/repository/github/tedit/terraria-map-editor)
