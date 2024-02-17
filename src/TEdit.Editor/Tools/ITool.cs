@@ -12,4 +12,6 @@ public interface ITool
     void Start(int x, int y);
     void Move(int x, int y);
     void End(int x, int y);
+    void Commit();
+    void Cancel();
 }
