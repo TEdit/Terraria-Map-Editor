@@ -2234,7 +2234,7 @@ public partial class World
     {
         tileFrameImportant = null;
         sectionPointers = null;
-        int versionNumber = r.ReadInt32();
+        uint versionNumber = r.ReadUInt32();
 
         if (versionNumber >= 140) // 135
         {
