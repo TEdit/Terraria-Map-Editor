@@ -48,6 +48,8 @@
     <PackageReference Include="Avalonia.Fonts.Inter" Version="11.0.6" />
     <!--Condition below is needed to remove Avalonia.Diagnostics package from build output in Release configuration.-->
     <PackageReference Condition="'$(Configuration)' == 'Debug'" Include="Avalonia.Diagnostics" Version="11.0.6" />
+    <PackageReference Include="bodong.Avalonia.PropertyGrid" Version="11.0.6.3" />
+    <PackageReference Include="bodong.PropertyModels" Version="11.0.6.2" />
     <PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.2" />
       
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="8.0.0" />
@@ -67,5 +69,9 @@
 
   <ItemGroup>
     <Folder Include="Controls\RenderLayer\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <UpToDateCheckInput Remove="Views\WorldPropertiesView.axaml" />
   </ItemGroup>
 </Project>

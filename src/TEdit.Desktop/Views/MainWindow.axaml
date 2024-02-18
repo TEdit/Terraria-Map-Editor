@@ -32,8 +32,8 @@
     <DockPanel>
         <StackPanel Spacing="5" Margin="5" DockPanel.Dock="Left">
             <Button Click="LoadWorldButton_Clicked">Load World</Button>
-
             <TextBox Text="{Binding SelectedDocument.World.Title}" />
+            <v:WorldPropertiesView DataContext="{Binding SelectedDocument}" />
         </StackPanel>
         <Border DockPanel.Dock="Bottom" MinHeight="24" Padding="8,4" BorderThickness="0,1,0,0" BorderBrush="#666666">
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" >

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Windows.Input;
 using TEdit.Common.Reactive;
@@ -381,6 +382,7 @@ public partial class World : ObservableObject, ITileData
     }
 
 
+    [Category("World")]
     public string Seed
     {
         get => _seed;
@@ -417,18 +419,22 @@ public partial class World : ObservableObject, ITileData
         set => Set(nameof(SavedBartender), ref _savedBartender, value);
     }
 
+    [Category("Bosses")]
+
     public bool DownedDD2InvasionT1
     {
         get => _downedDD2InvasionT1;
         set => Set(nameof(DownedDD2InvasionT1), ref _downedDD2InvasionT1, value);
     }
 
+    [Category("Bosses")]
     public bool DownedDD2InvasionT2
     {
         get => _downedDD2InvasionT2;
         set => Set(nameof(DownedDD2InvasionT2), ref _downedDD2InvasionT2, value);
     }
 
+    [Category("Bosses")]
     public bool DownedDD2InvasionT3
     {
         get => _downedDD2InvasionT3;
@@ -471,12 +477,14 @@ public partial class World : ObservableObject, ITileData
         set => Set(nameof(SundialCooldown), ref _sundialCooldown, value);
     }
 
+    [Category("World")]
     public uint FileRevision
     {
         get => _fileRevision;
         set => Set(nameof(FileRevision), ref _fileRevision, value);
     }
 
+    [Category("World")]
     public bool IsFavorite
     {
         get => _isFavorite;
@@ -886,36 +894,42 @@ public partial class World : ObservableObject, ITileData
         set => Set(nameof(TempRaining), ref _tempRaining, value);
     }
 
+    [Category("Bosses")]
     public bool DownedPirates
     {
         get => _downedPirates;
         set => Set(nameof(DownedPirates), ref _downedPirates, value);
     }
 
+    [Category("Bosses")]
     public bool DownedGolemBoss
     {
         get => _downedGolemBoss;
         set => Set(nameof(DownedGolemBoss), ref _downedGolemBoss, value);
     }
 
+    [Category("Bosses")]
     public bool DownedSlimeKingBoss
     {
         get => _downedSlimeKingBoss;
         set => Set(nameof(DownedSlimeKingBoss), ref _downedSlimeKingBoss, value);
     }
 
+    [Category("Bosses")]
     public bool DownedPlantBoss
     {
         get => _downedPlantBoss;
         set => Set(nameof(DownedPlantBoss), ref _downedPlantBoss, value);
     }
 
+    [Category("Bosses")]
     public bool DownedMechBossAny
     {
         get => _downedMechBossAny;
         set => Set(nameof(DownedMechBossAny), ref _downedMechBossAny, value);
     }
 
+    [Category("Bosses")]
     public bool DownedMechBoss3
     {
         get => _downedMechBoss3;
@@ -929,6 +943,7 @@ public partial class World : ObservableObject, ITileData
         }
     }
 
+    [Category("Bosses")]
     public bool DownedMechBoss2
     {
         get => _downedMechBoss2;
@@ -942,6 +957,7 @@ public partial class World : ObservableObject, ITileData
         }
     }
 
+    [Category("Bosses")]
     public bool DownedMechBoss1
     {
         get => _downedMechBoss1;
@@ -955,108 +971,127 @@ public partial class World : ObservableObject, ITileData
         }
     }
 
+    [Category("Bosses")]
     public bool DownedQueenBee
     {
         get => _downedQueenBee;
         set => Set(nameof(DownedQueenBee), ref _downedQueenBee, value);
     }
 
+    [Category("Bosses")]
     public bool DownedFishron
     {
         get => _downedFishron;
         set => Set(nameof(DownedFishron), ref _downedFishron, value);
     }
 
+    [Category("Bosses")]
     public bool DownedMartians
     {
         get => _downedMartians;
         set => Set(nameof(DownedMartians), ref _downedMartians, value);
     }
 
+    [Category("Bosses")]
     public bool DownedLunaticCultist
     {
         get => _downedLunaticCultist;
         set => Set(nameof(DownedLunaticCultist), ref _downedLunaticCultist, value);
     }
 
+    [Category("Bosses")]
     public bool DownedMoonlord
     {
         get => _downedMoonlord;
         set => Set(nameof(DownedMoonlord), ref _downedMoonlord, value);
     }
 
+    [Category("Bosses")]
     public bool DownedHalloweenKing
     {
         get => _downedHalloweenKing;
         set => Set(nameof(DownedHalloweenKing), ref _downedHalloweenKing, value);
     }
 
+    [Category("Bosses")]
     public bool DownedHalloweenTree
     {
         get => _downedHalloweenTree;
         set => Set(nameof(DownedHalloweenTree), ref _downedHalloweenTree, value);
     }
 
+    [Category("Bosses")]
     public bool DownedChristmasQueen
     {
         get => _downedChristmasQueen;
         set => Set(nameof(DownedChristmasQueen), ref _downedChristmasQueen, value);
     }
 
+    [Category("Bosses")]
     public bool DownedSanta
     {
         get => _downedSanta;
         set => Set(nameof(DownedSanta), ref _downedSanta, value);
     }
 
+    [Category("Bosses")]
+    [DisplayName("Target Name")]
     public bool DownedChristmasTree
     {
         get => _downedChristmasTree;
         set => Set(nameof(DownedChristmasTree), ref _downedChristmasTree, value);
     }
 
+    [Category("Bosses")]
     public bool DownedCelestialSolar
     {
         get => _downedCelestialSolar;
         set => Set(nameof(DownedCelestialSolar), ref _downedCelestialSolar, value);
     }
 
+    [Category("Bosses")]
     public bool DownedCelestialVortex
     {
         get => _downedCelestialVortex;
         set => Set(nameof(DownedCelestialVortex), ref _downedCelestialVortex, value);
     }
 
+    [Category("Bosses")]
     public bool DownedCelestialNebula
     {
         get => _downedCeslestialNebula;
         set => Set(nameof(DownedCelestialNebula), ref _downedCeslestialNebula, value);
     }
 
+    [Category("Bosses")]
     public bool DownedCelestialStardust
     {
         get => _downedCelestialStardust;
         set => Set(nameof(DownedCelestialStardust), ref _downedCelestialStardust, value);
     }
 
+    [Category("Bosses")]
     public bool CelestialSolarActive
     {
         get => _celestialSolarActive;
         set => Set(nameof(CelestialSolarActive), ref _celestialSolarActive, value);
     }
 
+    [Category("Bosses")]
     public bool CelestialVortexActive
     {
         get => _celestialVortexActive;
         set => Set(nameof(CelestialVortexActive), ref _celestialVortexActive, value);
     }
 
+    [Category("Bosses")]
     public bool CelestialNebulaActive
     {
         get => _celestialNebulaActive;
         set => Set(nameof(CelestialNebulaActive), ref _celestialNebulaActive, value);
     }
 
+    [Category("Bosses")]
     public bool CelestialStardustActive
     {
         get => _celestialStardustActive;
@@ -1115,12 +1150,14 @@ public partial class World : ObservableObject, ITileData
         set => Set(nameof(LeftWorld), ref _leftWorld, value);
     }
 
+    [Category("World")]
     public int WorldId
     {
         get => _worldId;
         set => Set(nameof(WorldId), ref _worldId, value);
     }
 
+    [Category("World")]
     public System.Guid WorldGUID
     {
         get => Guid;
@@ -1139,18 +1176,21 @@ public partial class World : ObservableObject, ITileData
         set => Set(nameof(IsV0), ref _isV0, value);
     }
 
+    [Category("World")]
     public bool IsChinese
     {
         get => _isChinese;
         set => Set(nameof(IsChinese), ref _isChinese, value);
     }
 
+    [Category("World")]
     public bool IsConsole
     {
         get => _isConsole;
         set => Set(nameof(IsConsole), ref _isConsole, value);
     }
 
+    [Category("World")]
     public string Title
     {
         get => _title;
