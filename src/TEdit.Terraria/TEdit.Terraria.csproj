@@ -3,12 +3,15 @@
     <PropertyGroup>
         <TargetFrameworks>netstandard2.0;net8.0</TargetFrameworks>
         <LangVersion>latest</LangVersion>
+      
     </PropertyGroup>
 
 
     <ItemGroup>
         <PackageReference Include="DotNetZip" Version="1.16.0" />
         <PackageReference Include="bodong.PropertyModels" Version="11.0.6.2" />
+		<PackageReference Include="ReactiveUI" Version="19.5.41" />
+		<PackageReference Include="ReactiveUI.Fody" Version="19.5.41" />
     </ItemGroup>
 
     <ItemGroup>

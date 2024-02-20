@@ -7,7 +7,9 @@
 
   <ItemGroup>
     <PackageReference Include="ColorMinePortable" Version="2.0.4" />
-      <PackageReference Include="System.Text.Json" Version="8.0.0" />
+    <PackageReference Include="ReactiveUI" Version="19.5.41" />
+    <PackageReference Include="ReactiveUI.Fody" Version="19.5.41" />
+    <PackageReference Include="System.Text.Json" Version="8.0.0" />
   </ItemGroup>
 
 </Project>

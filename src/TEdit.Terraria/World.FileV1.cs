@@ -88,9 +88,9 @@ public partial class World
             bw.Write(world.IsCrimson);
         }
 
-        bw.Write(world.DownedBoss1);
-        bw.Write(world.DownedBoss2);
-        bw.Write(world.DownedBoss3);
+        bw.Write(world.DownedBoss1EyeofCthulhu);
+        bw.Write(world.DownedBoss2EaterofWorlds);
+        bw.Write(world.DownedBoss3Skeletron);
 
         if (version >= 66)
         {
@@ -99,9 +99,9 @@ public partial class World
 
         if (version >= 44)
         {
-            bw.Write(world.DownedMechBoss1);
-            bw.Write(world.DownedMechBoss2);
-            bw.Write(world.DownedMechBoss3);
+            bw.Write(world.DownedMechBoss1TheDestroyer);
+            bw.Write(world.DownedMechBoss2TheTwins);
+            bw.Write(world.DownedMechBoss3SkeletronPrime);
             bw.Write(world.DownedMechBossAny);
         }
 
@@ -155,7 +155,7 @@ public partial class World
 
         if (version >= 53)
         {
-            bw.Write(world.TempRaining);
+            bw.Write(world.IsRaining);
             bw.Write(world.TempRainTime);
             bw.Write(world.TempMaxRain);
         }
@@ -1348,17 +1348,17 @@ public partial class World
         }
         if (version >= 24)
         {
-            w.DownedBoss1 = reader.ReadBoolean();
-            w.DownedBoss2 = reader.ReadBoolean();
+            w.DownedBoss1EyeofCthulhu = reader.ReadBoolean();
+            w.DownedBoss2EaterofWorlds = reader.ReadBoolean();
         }
 
         if (version >= 28)
         {
-            w.DownedBoss3 = reader.ReadBoolean();
+            w.DownedBoss3Skeletron = reader.ReadBoolean();
         }
         else
         {
-            w.DownedBoss3 = true;
+            w.DownedBoss3Skeletron = true;
         }
 
         if (version >= 26)
@@ -1530,9 +1530,9 @@ public partial class World
         bw.Write(world.BloodMoon);
         bw.Write(world.DungeonX);
         bw.Write(world.DungeonY);
-        bw.Write(world.DownedBoss1);
-        bw.Write(world.DownedBoss2);
-        bw.Write(world.DownedBoss3);
+        bw.Write(world.DownedBoss1EyeofCthulhu);
+        bw.Write(world.DownedBoss2EaterofWorlds);
+        bw.Write(world.DownedBoss3Skeletron);
         bw.Write(world.ShadowOrbSmashed);
         bw.Write(world.SpawnMeteor);
         bw.Write(world.InvasionDelay);
@@ -1844,9 +1844,9 @@ public partial class World
             w.IsCrimson = false;
         }
 
-        w.DownedBoss1 = reader.ReadBoolean();
-        w.DownedBoss2 = reader.ReadBoolean();
-        w.DownedBoss3 = reader.ReadBoolean();
+        w.DownedBoss1EyeofCthulhu = reader.ReadBoolean();
+        w.DownedBoss2EaterofWorlds = reader.ReadBoolean();
+        w.DownedBoss3Skeletron = reader.ReadBoolean();
 
         if (version >= 66)
         {
@@ -1855,9 +1855,9 @@ public partial class World
 
         if (version >= 44)
         {
-            w.DownedMechBoss1 = reader.ReadBoolean();
-            w.DownedMechBoss2 = reader.ReadBoolean();
-            w.DownedMechBoss3 = reader.ReadBoolean();
+            w.DownedMechBoss1TheDestroyer = reader.ReadBoolean();
+            w.DownedMechBoss2TheTwins = reader.ReadBoolean();
+            w.DownedMechBoss3SkeletronPrime = reader.ReadBoolean();
             w.DownedMechBossAny = reader.ReadBoolean();
         }
 
@@ -1908,7 +1908,7 @@ public partial class World
 
         if (version >= 53)
         {
-            w.TempRaining = reader.ReadBoolean();
+            w.IsRaining = reader.ReadBoolean();
             w.TempRainTime = reader.ReadInt32();
             w.TempMaxRain = reader.ReadSingle();
         }
