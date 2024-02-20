@@ -4,25 +4,19 @@ using TEdit.Terraria;
 
 namespace TEdit.Desktop.ViewModels;
 
-public partial class DocumentViewModel : ObservableObject
+public partial class DocumentViewModel : ReactiveObject
 {
-    [ObservableProperty]
-    private World? _world;
+    [Reactive] public World? World { get; set; }
 
-    [ObservableProperty]
-    private int _zoom = 100;
+    [Reactive] public int Zoom { get; set; } = 100;
 
-    [ObservableProperty]
-    private int _minZoom = 7;
+    [Reactive] public int MinZoom { get; set; } = 7;
 
-    [ObservableProperty]
-    private int _maxZoom = 6400;
+    [Reactive] public int MaxZoom { get; set; } = 6400;
 
-    [ObservableProperty]
-    private Point _cursorTileCoordinate;
+    [Reactive] public Point CursorTileCoordinate { get; set; }
 
-    [ObservableProperty]
-    private IMouseTool? _activeTool;
+    [Reactive] public IMouseTool? ActiveTool { get; set; }
 
     public DocumentViewModel()
     {

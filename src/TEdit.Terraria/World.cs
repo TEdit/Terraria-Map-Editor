@@ -13,7 +13,7 @@ using TEdit.Terraria.Objects;
 
 namespace TEdit.Terraria;
 
-public partial class World : ObservableObject, ITileData
+public partial class World
 {
     private SemaphoreSlim _fileSemaphore = new SemaphoreSlim(0, 1);
     private static readonly object _fileLock = new object();
@@ -40,7 +40,7 @@ public partial class World : ObservableObject, ITileData
         Title = title;
         Random r = seed <= 0 ? new Random((int)DateTime.Now.Ticks) : new Random(seed);
         WorldId = r.Next(int.MaxValue);
-        Guid = Guid.NewGuid();
+        WorldGUID = Guid.NewGuid();
         Seed = "";
         NPCs.Clear();
         Signs.Clear();
@@ -119,7 +119,7 @@ public partial class World : ObservableObject, ITileData
                     }
                 }
 
-                world._lastSave = File.GetLastWriteTimeUtc(filename);
+                world.LastSave = File.GetLastWriteTimeUtc(filename);
             }
             finally
             {
@@ -321,7 +321,7 @@ public partial class World : ObservableObject, ITileData
 
     public bool ValidTileLocation(int x, int y)
     {
-        return (x >= 0 && y >= 0 && y < _tilesHigh && x < _tilesWide);
+        return (x >= 0 && y >= 0 && y < _tilesHigh && x < TilesWide);
     }
 
     public Chest GetChestAtTile(int x, int y, bool findOrigin = false)

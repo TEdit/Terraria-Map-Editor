@@ -48,14 +48,14 @@ public static class WorldAnalysis
 
     private static void WriteAnalyzeWorld(StreamWriter sb, World world, bool fullAnalysis = false)
     {
-        try
-        {
-            world.ValidateAsync();
-        }
-        catch (Exception ex)
-        {
-            sb.WriteLine(ex.Message);
-        }
+        // try
+        // {
+        //     world.ValidateAsync();
+        // }
+        // catch (Exception ex)
+        // {
+        //     sb.WriteLine(ex.Message);
+        // }
 
         WriteHeader(sb, world);
         WriteFlags(sb, world);
@@ -255,13 +255,13 @@ public static class WorldAnalysis
 
         sb.WriteProperty("world.IsCrimson", world.IsCrimson);
 
-        sb.WriteProperty("world.DownedBoss1", world.DownedBoss1);
-        sb.WriteProperty("world.DownedBoss2", world.DownedBoss2);
-        sb.WriteProperty("world.DownedBoss3", world.DownedBoss3);
+        sb.WriteProperty("world.DownedBoss1", world.DownedBoss1EyeofCthulhu);
+        sb.WriteProperty("world.DownedBoss2", world.DownedBoss2EaterofWorlds);
+        sb.WriteProperty("world.DownedBoss3", world.DownedBoss3Skeletron);
         sb.WriteProperty("world.DownedQueenBee", world.DownedQueenBee);
-        sb.WriteProperty("world.DownedMechBoss1", world.DownedMechBoss1);
-        sb.WriteProperty("world.DownedMechBoss2", world.DownedMechBoss2);
-        sb.WriteProperty("world.DownedMechBoss3", world.DownedMechBoss3);
+        sb.WriteProperty("world.DownedMechBoss1", world.DownedMechBoss1TheDestroyer);
+        sb.WriteProperty("world.DownedMechBoss2", world.DownedMechBoss2TheTwins);
+        sb.WriteProperty("world.DownedMechBoss3", world.DownedMechBoss3SkeletronPrime);
         sb.WriteProperty("world.DownedMechBossAny", world.DownedMechBossAny);
         sb.WriteProperty("world.DownedPlantBoss", world.DownedPlantBoss);
         sb.WriteProperty("world.DownedGolemBoss", world.DownedGolemBoss);
@@ -284,7 +284,7 @@ public static class WorldAnalysis
         sb.WriteProperty("world.InvasionType", world.InvasionType);
         sb.WriteProperty("world.InvasionX", world.InvasionX);
 
-        sb.WriteProperty("world.TempRaining", world.TempRaining);
+        sb.WriteProperty("world.TempRaining", world.IsRaining);
         sb.WriteProperty("world.TempRainTime", world.TempRainTime);
         sb.WriteProperty("world.TempMaxRain", world.TempMaxRain);
         sb.WriteProperty("world.OreTierCobalt", world.SavedOreTiersCobalt);

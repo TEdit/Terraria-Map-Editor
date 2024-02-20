@@ -13,7 +13,7 @@ indent_size = 4
 
 [*.{xaml,xml,csproj}]
 indent_style = space
-indent_size = 4
+indent_size = 2
 
 [*.ps]
 indent_style = space

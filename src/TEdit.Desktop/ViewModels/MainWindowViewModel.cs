@@ -1,5 +1,6 @@
 ﻿using Avalonia.Controls;
 using Avalonia.Platform.Storage;
+using ReactiveUI.Fody.Helpers;
 using System.Threading.Tasks;
 using TEdit.Desktop.Controls.WorldRenderEngine;
 using TEdit.Desktop.Controls.WorldRenderEngine.Layers;
@@ -7,22 +8,22 @@ using TEdit.Desktop.Services;
 
 namespace TEdit.Desktop.ViewModels;
 
-public partial class MainWindowViewModel : ObservableObject
+public class MainWindowViewModel : ReactiveObject
 {
-    [ObservableProperty]
-    private DocumentViewModel _selectedDocument;
+    [Reactive]
+    public DocumentViewModel SelectedDocument { get; set; }
 
-    [ObservableProperty]
-    private int _progressPercentage;
+    [Reactive]
+    public int ProgressPercentage { get; set; }
 
-    [ObservableProperty]
-    private string _progressText = string.Empty;
+    [Reactive]
+    public string ProgressText { get; set; } = string.Empty;
 
-    [ObservableProperty]
-    private RenderLayerVisibility _renderLayerVisibility = new();
+    [Reactive]
+    public RenderLayerVisibility RenderLayerVisibility { get; set; } = new();
 
     public MainWindowViewModel()
     {
-        _selectedDocument = new DocumentViewModel();
+        SelectedDocument = new DocumentViewModel();
     }
 }

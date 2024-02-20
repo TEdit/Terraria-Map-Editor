@@ -327,7 +327,7 @@
         </DockPanel>
         <Separator Grid.ColumnSpan="2" />
         <TextBlock Text="{x:Static p:Language.tool_wp_rain}" HorizontalAlignment="Right" />
-        <CheckBox IsChecked="{Binding Path=CurrentWorld.TempRaining, Mode=TwoWay}" Content="{x:Static p:Language.tool_wp_rain_active}" VerticalAlignment="Center" Grid.Row="12" Grid.Column="1" />
+        <CheckBox IsChecked="{Binding Path=CurrentWorld.IsRaining, Mode=TwoWay}" Content="{x:Static p:Language.tool_wp_rain_active}" VerticalAlignment="Center" Grid.Row="12" Grid.Column="1" />
         <TextBlock Text="{x:Static p:Language.tool_wp_rain_time}" HorizontalAlignment="Right" />
         <DockPanel>
             <TextBlock Text="{Binding CurrentWorld.TempRainTime, StringFormat={}{0:0}}" Width="30" DockPanel.Dock="Right" />
@@ -460,22 +460,22 @@
         <TextBlock Text="{x:Static p:Language.tool_wp_prehardmode}" HorizontalAlignment="Right" />
         <CheckBox IsChecked="{Binding CurrentWorld.DownedSlimeKingBoss}" Content="{x:Static p:Language.tool_wp_boss_kingslime}" VerticalAlignment="Center" VerticalContentAlignment="Center" />
         <TextBlock Text="{x:Static p:Language.tool_wp_boss_downed}" HorizontalAlignment="Right" />
-        <CheckBox IsChecked="{Binding CurrentWorld.DownedBoss1}" Content="{x:Static p:Language.tool_wp_boss_eyeofcthulhu}" VerticalAlignment="Center" VerticalContentAlignment="Center" />
+        <CheckBox IsChecked="{Binding CurrentWorld.DownedBoss1EyeofCthulhu}" Content="{x:Static p:Language.tool_wp_boss_eyeofcthulhu}" VerticalAlignment="Center" VerticalContentAlignment="Center" />
         <TextBlock />
-        <CheckBox IsChecked="{Binding CurrentWorld.DownedBoss2}" Style="{StaticResource Boss2}" VerticalAlignment="Center" VerticalContentAlignment="Center" />
+        <CheckBox IsChecked="{Binding CurrentWorld.DownedBoss2EaterofWorlds}" Style="{StaticResource Boss2}" VerticalAlignment="Center" VerticalContentAlignment="Center" />
         <TextBlock />
         <CheckBox IsChecked="{Binding CurrentWorld.DownedQueenBee}" Content="{x:Static p:Language.tool_wp_boss_queenbee}" VerticalAlignment="Center" VerticalContentAlignment="Center" />
         <TextBlock />
-        <CheckBox IsChecked="{Binding CurrentWorld.DownedBoss3}" Content="{x:Static p:Language.tool_wp_boss_skeletron}" VerticalAlignment="Center" VerticalContentAlignment="Center" />
+        <CheckBox IsChecked="{Binding CurrentWorld.DownedBoss3Skeletron}" Content="{x:Static p:Language.tool_wp_boss_skeletron}" VerticalAlignment="Center" VerticalContentAlignment="Center" />
         <TextBlock />
         <CheckBox IsChecked="{Binding CurrentWorld.HardMode}" Content="{x:Static p:Language.tool_wp_boss_walloffflesh}" VerticalAlignment="Center" VerticalContentAlignment="Center" />
         <Separator Grid.ColumnSpan="2" />
         <TextBlock Text="{x:Static p:Language.tool_wp_hardmode}" HorizontalAlignment="Right" />
-        <CheckBox IsChecked="{Binding CurrentWorld.DownedMechBoss2}" Content="{x:Static p:Language.tool_wp_boss_twins}" VerticalAlignment="Center" VerticalContentAlignment="Center" />
+        <CheckBox IsChecked="{Binding CurrentWorld.DownedMechBoss2TheTwins}" Content="{x:Static p:Language.tool_wp_boss_twins}" VerticalAlignment="Center" VerticalContentAlignment="Center" />
         <TextBlock Text="{x:Static p:Language.tool_wp_boss_downed}" HorizontalAlignment="Right" />
-        <CheckBox IsChecked="{Binding CurrentWorld.DownedMechBoss1}" Content="{x:Static p:Language.tool_wp_boss_destroyer}" VerticalAlignment="Center" VerticalContentAlignment="Center" />
+        <CheckBox IsChecked="{Binding CurrentWorld.DownedMechBoss1TheDestroyer}" Content="{x:Static p:Language.tool_wp_boss_destroyer}" VerticalAlignment="Center" VerticalContentAlignment="Center" />
         <TextBlock />
-        <CheckBox IsChecked="{Binding CurrentWorld.DownedMechBoss3}" Content="{x:Static p:Language.tool_wp_boss_skeletronprime}" VerticalAlignment="Center" VerticalContentAlignment="Center" />
+        <CheckBox IsChecked="{Binding CurrentWorld.DownedMechBoss3SkeletronPrime}" Content="{x:Static p:Language.tool_wp_boss_skeletronprime}" VerticalAlignment="Center" VerticalContentAlignment="Center" />
         <TextBlock />
         <CheckBox IsChecked="{Binding CurrentWorld.DownedPlantBoss}" Content="{x:Static p:Language.tool_wp_boss_plantera}" VerticalAlignment="Center" VerticalContentAlignment="Center" />
         <TextBlock />
