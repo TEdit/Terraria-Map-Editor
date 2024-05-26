@@ -41,21 +41,21 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Avalonia" Version="11.0.6" />
-    <PackageReference Include="Avalonia.Desktop" Version="11.0.6" />
-    <PackageReference Include="Avalonia.Themes.Fluent" Version="11.0.6" />
-    <PackageReference Include="Avalonia.Fonts.Inter" Version="11.0.6" />
+    <PackageReference Include="Avalonia" Version="11.0.10" />
+    <PackageReference Include="Avalonia.Desktop" Version="11.0.10" />
+    <PackageReference Include="Avalonia.Themes.Fluent" Version="11.0.10" />
+    <PackageReference Include="Avalonia.Fonts.Inter" Version="11.0.10" />
     <!--Condition below is needed to remove Avalonia.Diagnostics package from build output in Release configuration.-->
-    <PackageReference Condition="'$(Configuration)' == 'Debug'" Include="Avalonia.Diagnostics" Version="11.0.6" />
+    <PackageReference Condition="'$(Configuration)' == 'Debug'" Include="Avalonia.Diagnostics" Version="11.0.10" />
     <PackageReference Include="bodong.Avalonia.PropertyGrid" Version="11.0.6.3" />
     <PackageReference Include="bodong.PropertyModels" Version="11.0.6.2" />
 
-	<PackageReference Include="ReactiveUI" Version="19.5.41" />
+	<PackageReference Include="ReactiveUI" Version="20.1.1" />
 	<PackageReference Include="ReactiveUI.Fody" Version="19.5.41" />
       
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="8.0.0" />
       
-    <PackageReference Include="SkiaSharp" Version="2.88.6" />
+    <PackageReference Include="SkiaSharp" Version="2.88.8" />
   </ItemGroup>
 
   <ItemGroup>

@@ -51,3 +51,4 @@ build/
 *.msi
 /src/publish/*
 /publish/
+/TEdit-4.16.0
