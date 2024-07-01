@@ -798,6 +798,7 @@ public partial class WorldViewModel : ViewModelBase
         {
 #if !DEBUG
             if (MessageBox.Show("You are using an outdated version of TEdit. Do you wish to download the update?", "Update?", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+            {
                 try
                 {
                     Process.Start("http://www.binaryconstruct.com/downloads/");
@@ -813,7 +814,6 @@ public partial class WorldViewModel : ViewModelBase
         {
             MessageBox.Show("TEdit is up to date.", "Update");
         }
-
     }
 
     private ICommand _analyzeWorldCommand;

@@ -1,7 +1,10 @@
 param(
+    [string] $ReleasePath = ".\release",
     [string] $VersionPrefix = "5.0.0",
-    [string] $VersionSuffix = "alpha2"
+    [string] $VersionSuffix = $null
 )
+
+$publishPath = "publish\avalonia"
 
 $platforms = $(
     # linux builds
@@ -17,7 +20,7 @@ $platforms = $(
     "osx-arm64"
 )
 
-if (Test-Path -Path ".\publish\TEdit*.zip") { Remove-Item -Path ".\publish\TEdit*.zip" }
+if (Test-Path -Path ".\$publishPath") { Remove-Item -Path ".\$publishPath" -Force -Recurse }
 
 $platforms | ForEach-Object {
     $buildArgs = @(
@@ -30,7 +33,7 @@ $platforms | ForEach-Object {
         "true"
         "-p:PublishSingleFile=true"
         "-o"
-        ".\publish\$_"
+        ".\$publishPath\$_"
         "/p:VersionPrefix=""$VersionPrefix"""
         "--version-suffix"
         "$VersionSuffix"
@@ -39,5 +42,5 @@ $platforms | ForEach-Object {
 
     & dotnet $buildArgs
 
-    Compress-Archive -Path ".\publish\$_\*" -DestinationPath ".\publish\TEdit-$VersionPrefix-$VersionSuffix-$_.zip"
+    Compress-Archive -Path ".\$publishPath\$_\*" -DestinationPath ".\$ReleasePath\TEditAvalonia-$VersionPrefix-$VersionSuffix-$_.zip"
 }
