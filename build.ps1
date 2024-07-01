@@ -3,6 +3,7 @@ param(
     [string] $Version = "5.0.0-dev"
 )
 
+$versionfixed = $Version.Replace("/", "_");
 $versionSplit = $versionfixed.Split("-");
 
 $VersionPrefix = $versionSplit[0]
