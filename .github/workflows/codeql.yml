@@ -65,7 +65,7 @@ jobs:
 
     - name: Build code
       shell: pwsh
-      run: 
+      run: |
         dotnet restore .\src
         dotnet build .\src\TEdit.sln
 
