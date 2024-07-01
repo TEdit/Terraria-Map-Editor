@@ -59,7 +59,7 @@ jobs:
     # If this step fails, then you should remove it and run the build manually (see below)
     # Install the .NET Core workload
     - name: Setup .NET
-      uses: actions/setup-dotnet@v3
+      uses: actions/setup-dotnet@v4
       with:
         dotnet-version: '8.0.x'
 
