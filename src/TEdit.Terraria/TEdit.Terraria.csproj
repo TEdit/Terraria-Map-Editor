@@ -9,7 +9,7 @@
 
     <ItemGroup>
         <PackageReference Include="DotNetZip" Version="1.16.0" />
-        <PackageReference Include="bodong.PropertyModels" Version="11.0.6.2" />
+        <PackageReference Include="bodong.PropertyModels" Version="11.0.10.1" />
 		<PackageReference Include="ReactiveUI" Version="20.1.1" />
 		<PackageReference Include="ReactiveUI.Fody" Version="19.5.41" />
     </ItemGroup>
