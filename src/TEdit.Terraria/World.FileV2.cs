@@ -732,7 +732,7 @@ public partial class World
 
         if (world.Version >= 181)
         {
-            bw.Write(world.Guid.ToByteArray());
+            bw.Write(world.WorldGUID.ToByteArray());
 
         }
 
@@ -847,13 +847,13 @@ public partial class World
         bw.Write(world.DungeonX);
         bw.Write(world.DungeonY);
         bw.Write(world.IsCrimson);
-        bw.Write(world.DownedBoss1);
-        bw.Write(world.DownedBoss2);
-        bw.Write(world.DownedBoss3);
+        bw.Write(world.DownedBoss1EyeofCthulhu);
+        bw.Write(world.DownedBoss2EaterofWorlds);
+        bw.Write(world.DownedBoss3Skeletron);
         bw.Write(world.DownedQueenBee);
-        bw.Write(world.DownedMechBoss1);
-        bw.Write(world.DownedMechBoss2);
-        bw.Write(world.DownedMechBoss3);
+        bw.Write(world.DownedMechBoss1TheDestroyer);
+        bw.Write(world.DownedMechBoss2TheTwins);
+        bw.Write(world.DownedMechBoss3SkeletronPrime);
         bw.Write(world.DownedMechBossAny);
         bw.Write(world.DownedPlantBoss);
         bw.Write(world.DownedGolemBoss);
@@ -879,7 +879,7 @@ public partial class World
 
         if (world.Version >= 257)
         {
-            bw.Write(world.AfterPartyOfDoom);
+            bw.Write(world.PartyOfDoom);
         }
 
         bw.Write(world.InvasionDelay);
@@ -898,7 +898,7 @@ public partial class World
             bw.Write((byte)world.SundialCooldown);
         }
 
-        bw.Write(world.TempRaining);
+        bw.Write(world.IsRaining);
         bw.Write(world.TempRainTime);
         bw.Write(world.TempMaxRain);
         bw.Write(world.SavedOreTiersCobalt);
@@ -1793,7 +1793,6 @@ public partial class World
     public static void LoadTileEntities(BinaryReader r, World w)
     {
         var entities = LoadTileEntityData(r, w.Version);
-        w.TileEntitiesNumber = entities.Count;
 
         w.TileEntities.AddRange(entities);
     }
@@ -1825,11 +1824,11 @@ public partial class World
             w.Seed = "";
         if (w.Version >= 181)
         {
-            w.Guid = new Guid(r.ReadBytes(16));
+            w.WorldGUID = new Guid(r.ReadBytes(16));
         }
         else
         {
-            w.Guid = Guid.NewGuid();
+            w.WorldGUID = Guid.NewGuid();
         }
         w.WorldId = r.ReadInt32();
         w.LeftWorld = (float)r.ReadInt32();
@@ -1906,13 +1905,13 @@ public partial class World
 
         w.IsCrimson = r.ReadBoolean();
 
-        w.DownedBoss1 = r.ReadBoolean();
-        w.DownedBoss2 = r.ReadBoolean();
-        w.DownedBoss3 = r.ReadBoolean();
+        w.DownedBoss1EyeofCthulhu = r.ReadBoolean();
+        w.DownedBoss2EaterofWorlds = r.ReadBoolean();
+        w.DownedBoss3Skeletron = r.ReadBoolean();
         w.DownedQueenBee = r.ReadBoolean();
-        w.DownedMechBoss1 = r.ReadBoolean();
-        w.DownedMechBoss2 = r.ReadBoolean();
-        w.DownedMechBoss3 = r.ReadBoolean();
+        w.DownedMechBoss1TheDestroyer = r.ReadBoolean();
+        w.DownedMechBoss2TheTwins = r.ReadBoolean();
+        w.DownedMechBoss3SkeletronPrime = r.ReadBoolean();
         w.DownedMechBossAny = r.ReadBoolean();
         w.DownedPlantBoss = r.ReadBoolean();
         w.DownedGolemBoss = r.ReadBoolean();
@@ -1932,7 +1931,7 @@ public partial class World
         w.ShadowOrbCount = (int)r.ReadByte();
         w.AltarCount = r.ReadInt32();
         w.HardMode = r.ReadBoolean();
-        if (w.Version >= 257) { w.AfterPartyOfDoom = r.ReadBoolean(); }
+        if (w.Version >= 257) { w.PartyOfDoom = r.ReadBoolean(); }
         w.InvasionDelay = r.ReadInt32();
         w.InvasionSize = r.ReadInt32();
         w.InvasionType = r.ReadInt32();
@@ -1942,7 +1941,7 @@ public partial class World
 
         if (w.Version >= 113) { w.SundialCooldown = r.ReadByte(); }
 
-        w.TempRaining = r.ReadBoolean();
+        w.IsRaining = r.ReadBoolean();
         w.TempRainTime = r.ReadInt32();
         w.TempMaxRain = r.ReadSingle();
         w.SavedOreTiersCobalt = r.ReadInt32();

@@ -1,9 +1,10 @@
-﻿using System;
+﻿using ReactiveUI;
+using System;
 
 namespace TEdit.Desktop.Controls.WorldRenderEngine.Layers;
 
 
-public class RenderLayerVisibility : ObservableObject
+public class RenderLayerVisibility : ReactiveObject
 {
     public bool Wall { get; set; } = true;
     public bool Tile { get; set; } = true;

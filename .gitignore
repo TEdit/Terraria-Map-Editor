@@ -51,3 +51,4 @@ build/
 *.msi
 /src/publish/*
 /publish/
+/publish-avalonia/

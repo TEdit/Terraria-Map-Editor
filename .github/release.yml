@@ -6,6 +6,7 @@ changelog:
       - ignore-for-release
     authors:
       - octocat
+      - dependabot
   categories:
     - title: Breaking Changes 🛠
       labels:
@@ -13,15 +14,18 @@ changelog:
     - title: Major Update 🛸
       labels:
         - Semver-Major
-        - Feature   
+        - Feature
     - title: New Features 🎉
       labels:
         - Semver-Minor
-        - Feature
+        - enhancement
+    - title: Dependencies 👒
+      labels:
+        - dependencies
     - title: Bugfixes 🐛
       labels:
         - Semver-Patch
-        - Confirmed-Bug
+        - bug
     - title: Other Changes
       labels:
         - "*"

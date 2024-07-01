@@ -1,62 +1,34 @@
-
 name: .NET Core Desktop
 
 on:
   push:
-    branches: [ main ]
+    branches:
+      - "*"
   pull_request:
-    branches: [ main ]
+    branches:
+      - "*"
 
 jobs:
   build:
     strategy:
       matrix:
-        configuration: [Debug, Release]
+        configuration: [Release]
 
     runs-on: windows-latest
 
-    env:
-      Solution_Name: .\\src\\TEdit.sln
-      Publish_Path: .\\src\\TEdit\\bin\\Release\\net462\\publish
-      File_Name: TEdit_${{github.ref_name}}
-
     steps:
-    - name: Checkout
-      uses: actions/checkout@v2
-      with:
-        fetch-depth: 0
+      - name: Checkout
+        uses: actions/checkout@v4
 
-    # Install the .NET Core workload
-    - name: Install .NET Core
-      uses: actions/setup-dotnet@v1
-      with:
-        dotnet-version: 7.0.x
+      # Install the .NET Core workload
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: "8.0.x"
 
-    # Add  MSBuild to the PATH: https://github.com/microsoft/setup-msbuild
-    - name: Setup MSBuild.exe
-      uses: microsoft/setup-msbuild@v1.0.2
-
-    # Restore the application to populate the obj folder with RuntimeIdentifiers
-    - name: Restore the application
-      run: msbuild $env:Solution_Name /t:Restore /p:Configuration=$env:Configuration
-      env:
-        Configuration: ${{ matrix.configuration }}
-
-    - name: Publish binary files
-      shell: pwsh
-      run: |
-        dotnet publish -c Release $env:Solution_Name
-
-    # Create the app package by building and packaging the Windows Application Packaging project
-    - name: Create the app package
-      shell: pwsh
-      run: |
-        Copy-Item -Path $env:Publish_Path -Destination ".\release\TEdit_main\" -Recurse -Force -Verbose
-        Copy-Item -Path ".\schematics" -Destination ".\release" -Recurse -Verbose        
-
-    - uses: actions/upload-artifact@v2
-      if: github.ref == 'refs/heads/main' || startsWith(github.ref, 'refs/tags/')
-      with:
-        name: TEdit-zip
-        path: .\release
-        if-no-files-found: error
+      # Create the app package by building and packaging the Windows Application Packaging project
+      - name: Build code
+        shell: pwsh
+        run: |
+          dotnet restore .\src
+          dotnet build .\src\TEdit.sln /p:EnableWindowsTargeting=true /p:Configuration=Release

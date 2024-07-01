@@ -109,7 +109,7 @@ public static class ErrorLogging
         client.Context.Session.Id = Guid.NewGuid().ToString();
         client.Context.User.Id = "TEdit";
         client.Context.Cloud.RoleInstance = "TEdit-Wpf";
-        client.Context.GlobalProperties["Version"] = App.Version;
+        client.Context.GlobalProperties["Version"] = App.Version.ToString();
         // client.Context.Device.Model
         client.Context.Device.OperatingSystem = Environment.OSVersion.ToString();
         return client;
