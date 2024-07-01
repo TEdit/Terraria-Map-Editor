@@ -1,9 +1,8 @@
 param(
     [string] $ReleasePath = ".\release",
-    [string] $Version = "5.0.0-beta2"
+    [string] $Version = "5.0.0-dev"
 )
 
-$versionfixed = $Version.Replace("/", "");
 $versionSplit = $versionfixed.Split("-");
 
 $VersionPrefix = $versionSplit[0]
