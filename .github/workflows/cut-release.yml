@@ -14,48 +14,24 @@ jobs:
 
     runs-on: windows-latest
 
-    env:
-      Solution_Name: .\\src\\TEdit.sln
-      Publish_Path: .\\src\\TEdit\\bin\\Release\\net462\\publish
-      File_Name: TEdit_${{github.ref_name}}
-
     steps:
     - name: Checkout
-      uses: actions/checkout@v2
-      with:
-        fetch-depth: 0
+      uses: actions/checkout@v4
 
     # Install the .NET Core workload
-    - name: Install .NET Core
-      uses: actions/setup-dotnet@v1
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v3
       with:
-        dotnet-version: 8.0.x
+        dotnet-version: '8.0.x'
 
-    # Add  MSBuild to the PATH: https://github.com/microsoft/setup-msbuild
-    - name: Setup MSBuild.exe
-      uses: microsoft/setup-msbuild@v1.0.2
-
-    # Restore the application to populate the obj folder with RuntimeIdentifiers
-    - name: Restore the application
-      run: msbuild $env:Solution_Name /t:Restore /p:Configuration=$env:Configuration
-      env:
-        Configuration: ${{ matrix.configuration }}
-
-    - name: Publish binary files
-      shell: pwsh
-      run: |
-        dotnet publish -c Release $env:Solution_Name
 
     # Create the app package by building and packaging the Windows Application Packaging project
     - name: Create the app package
       shell: pwsh
-      run: |
-        Copy-Item -Path $env:Publish_Path -Destination ".\release\TEdit_main\" -Recurse -Force -Verbose
-        Copy-Item -Path ".\schematics" -Destination ".\release" -Recurse -Verbose
-        Compress-Archive -Path ".\release\*" -DestinationPath ".\TEdit_main.zip" -Verbose
+      run: build.ps1
         
     - name: Create Release
       uses: ncipollo/release-action@v1
       with: 
-        artifacts: "TEdit_*.zip"
+        artifacts: "release/TEdit_*.zip"
         generateReleaseNotes: true
