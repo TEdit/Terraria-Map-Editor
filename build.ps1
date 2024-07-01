@@ -1,8 +1,18 @@
 param(
     [string] $ReleasePath = ".\release",
-    [string] $VersionPrefix = "5.0.0",
-    [string] $VersionSuffix = "beta1"
+    [string] $Version = "5.0.0-beta2"
 )
+
+$versionfixed = $Version.Replace("/", "");
+$versionSplit = $versionfixed.Split("-");
+
+$VersionPrefix = $versionSplit[0]
+
+if ($versionSplit.Length -gt 1) {
+    $VersionSuffix = $versionSplit[1]
+} else {
+    $VersionSuffix = ""
+}
 
 if (Test-Path -Path ".\$ReleasePath") { Remove-Item -Path ".\$ReleasePath" -Force -Recurse }
 New-Item -Path ".\$ReleasePath\" -Force -ItemType "directory"
