@@ -31,5 +31,5 @@ jobs:
       - name: Create Release
         uses: ncipollo/release-action@v1
         with:
-          artifacts: "release/TEdit_*.zip"
+          artifacts: "release/TEdit*.zip"
           generateReleaseNotes: true
