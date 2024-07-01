@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Semver;
+using System;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Text;
@@ -7,13 +9,12 @@ using System.Windows;
 using System.Windows.Input;
 using System.Windows.Threading;
 using System.Xml.Linq;
-using TEdit.Editor.Clipboard;
 using TEdit.Editor;
+using TEdit.Editor.Clipboard;
 using TEdit.Framework.Threading;
 using TEdit.Properties;
 using TEdit.Utility;
 using TEdit.ViewModel;
-using System.IO;
 
 namespace TEdit;
 
@@ -58,10 +59,11 @@ public partial class App : Application
         }
     }
 
-    public static string Version { get; set; }
+    public static SemVersion Version { get; set; }
 
     protected override void OnStartup(StartupEventArgs e)
     {
+        Version = SemVersion.Parse(Assembly.GetEntryAssembly().GetCustomAttribute<AssemblyInformationalVersionAttribute>().InformationalVersion, SemVersionStyles.Any);
         ErrorLogging.Initialize();
         AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
         ErrorLogging.Log($"Starting TEdit {ErrorLogging.Version}");
@@ -77,7 +79,6 @@ public partial class App : Application
             ErrorLogging.LogException(ex);
         }
 
-        Version = Assembly.GetEntryAssembly().GetCustomAttribute<AssemblyInformationalVersionAttribute>().InformationalVersion;
 
         try
         {

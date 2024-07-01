@@ -615,12 +615,12 @@ public partial class WorldViewModel : ViewModelBase
         }
     }
 
-    public bool ShowCoating
+    public bool ShowCoatings
     {
         get { return _showCoatings; }
         set
         {
-            Set(nameof(ShowCoating), ref _showCoatings, value);
+            Set(nameof(ShowCoatings), ref _showCoatings, value);
             UpdateRenderWorld();
         }
     }
@@ -647,6 +647,11 @@ public partial class WorldViewModel : ViewModelBase
     public ICommand ShowNewsCommand
     {
         get { return _showNewsCommand ??= new RelayCommand(ShowNewsDialog); }
+    }
+
+    public ICommand CheckUpdatesCommand
+    {
+        get { return _checkUpdatesCommand ??= new RelayCommand(async () => await CheckVersion(false)); }
     }
 
     public ICommand ViewLogCommand
@@ -763,9 +768,9 @@ public partial class WorldViewModel : ViewModelBase
             $"TEdit v{App.Version} {Path.GetFileName(_currentFile)}";
     }
 
-    public async void CheckVersion(bool auto = true)
+    public async Task CheckVersion(bool auto = true)
     {
-        bool isoutofdate = false;
+        bool isOutdated = false;
 
         const string versionRegex = @"""tag_name"":\s?""(?<version>[^\""]*)""";
         try
@@ -776,10 +781,10 @@ public partial class WorldViewModel : ViewModelBase
                 string githubReleases = await client.GetStringAsync("https://api.github.com/repos/TEdit/Terraria-map-Editor/releases");
                 var versions = Regex.Match(githubReleases, versionRegex);
 
-                isoutofdate = versions.Success && (App.Version != versions?.Groups?[1].Value);
+                var githubVersion = Semver.SemVersion.Parse(versions?.Groups?[1].Value, Semver.SemVersionStyles.Any);
+                var appVersion = App.Version;
 
-                // ignore revision, build should be enough
-                // if ((revis != -1) && (revis > App.Version.ProductPrivatePart)) return true;
+                isOutdated = appVersion.ComparePrecedenceTo(githubVersion) < 0;
             }
         }
         catch (Exception)
@@ -788,13 +793,20 @@ public partial class WorldViewModel : ViewModelBase
         }
 
 
-        if (isoutofdate && MessageBox.Show("You are using an outdated version of TEdit. Do you wish to download the update?", "Update?", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+
+        if (isOutdated)
         {
-            try
-            {
-                Process.Start("http://www.binaryconstruct.com/downloads/");
+#if !DEBUG
+            if (MessageBox.Show("You are using an outdated version of TEdit. Do you wish to download the update?", "Update?", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+                try
+                {
+                    Process.Start("http://www.binaryconstruct.com/downloads/");
+                }
+                catch { }
             }
-            catch { }
+#else
+            MessageBox.Show("This is a debug build, version checking disabled.", "Update");
+#endif
 
         }
         else if (!auto)

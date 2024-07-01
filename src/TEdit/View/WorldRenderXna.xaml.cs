@@ -1043,7 +1043,7 @@ public partial class WorldRenderXna : UserControl
                         // white for inverted
                         var wallPaintColor = Color.White;
 
-                        if (_wvm.ShowCoating)
+                        if (_wvm.ShowCoatings)
                         {
                             wallPaintColor = Color.LightGray;
 
@@ -1168,7 +1168,7 @@ public partial class WorldRenderXna : UserControl
                             // white for inverted
                             var tilePaintColor = Color.White;
 
-                            if (_wvm.ShowCoating)
+                            if (_wvm.ShowCoatings)
                             {
                                 tilePaintColor = Color.LightGray;
 
