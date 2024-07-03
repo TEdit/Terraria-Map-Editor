@@ -19,6 +19,8 @@ namespace TEdit.ViewModel;
 
 public partial class WorldViewModel
 {
+    private WorldEditor _worldEditor;
+
     public void EditDelete()
     {
         if (Selection.IsActive)
@@ -327,7 +329,15 @@ public partial class WorldViewModel
         }
     }
 
-    private WorldEditor WorldEditor { get; set; }
+    private WorldEditor WorldEditor
+    {
+        get => _worldEditor;
+        set
+        {
+            _worldEditor = value;
+            RaisePropertyChanged("TilePicker");
+        }
+    }
 
     public void SetPixel(int x, int y, PaintMode? mode = null, bool? erase = null)
     {

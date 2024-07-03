@@ -3,8 +3,40 @@ using System;
 using System.Globalization;
 using System.Windows;
 using System.Windows.Data;
+using TEdit.Common;
 
 namespace TEdit.Converters;
+
+public class TEditColorToMediaColorConverter : IValueConverter
+{
+    public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+    {
+        if (value == null)
+            return DependencyProperty.UnsetValue;
+
+        if (value is TEditColor)
+        {
+            TEditColor tEditColor = (TEditColor)value;
+            return System.Windows.Media.Color.FromArgb(tEditColor.A, tEditColor.R, tEditColor.G, tEditColor.B);
+        }
+
+        return DependencyProperty.UnsetValue;
+    }
+
+    public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+    {
+        if (value == null)
+            return DependencyProperty.UnsetValue;
+
+        if (value is System.Windows.Media.Color)
+        {
+            System.Windows.Media.Color mediaColor = (System.Windows.Media.Color)value;
+            return new TEditColor(mediaColor.A, mediaColor.R, mediaColor.G, mediaColor.B);
+        }
+
+        return DependencyProperty.UnsetValue;
+    }
+}
 
 public class EnumToBoolConverter : IValueConverter
 {
