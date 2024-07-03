@@ -5,6 +5,7 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Windows.Input;
+using System.Xml.Linq;
 using TEdit.Common.Reactive;
 using TEdit.Common.Reactive.Command;
 using TEdit.Configuration;
@@ -737,17 +738,31 @@ public partial class World : ReactiveObject, ITileData
     public int TreeTop1
     {
         get => TreeTopVariations[0];
-        set => TreeTopVariations[0] = (int)value;
+        set
+        {
+            TreeTopVariations[0] = (int)value;
+            this.RaisePropertyChanged();
+        }
     }
     public int TreeTop2
     {
         get => TreeTopVariations[1];
-        set => TreeTopVariations[1] = (int)value;
+        set
+        {
+            TreeTopVariations[1] = (int)value;
+            this.RaisePropertyChanged();
+        }
     }
     public int TreeTop3
     {
         get => TreeTopVariations[2];
-        set => TreeTopVariations[2] = (int)value;
+        set
+        {
+
+            TreeTopVariations[2] = value;
+            this.RaisePropertyChanged();
+
+        }
     }
     public int TreeTop4
     {
@@ -763,11 +778,13 @@ public partial class World : ReactiveObject, ITileData
     [Reactive] public byte BgJungle { get; set; }
     [Reactive] public byte BgCorruption { get; set; }
     [Reactive] public byte BgTree { get; set; }
+
     public byte Bg8
     {
         get => BgTree;
         set => BgTree = value;
     }
+
     [Reactive] public byte BgTree2 { get; set; }
     [Reactive] public byte BgTree3 { get; set; }
     [Reactive] public byte BgTree4 { get; set; }
@@ -783,6 +800,7 @@ public partial class World : ReactiveObject, ITileData
         set
         {
             _tilesHigh = value;
+            this.RaiseAndSetIfChanged(ref _tilesHigh, value);
             UpdateMaxLayerLevels();
         }
     }
