@@ -7,7 +7,9 @@
                     xmlns:editor="clr-namespace:TEdit.Editor;assembly=TEdit.Editor"
                     xmlns:tedit="clr-namespace:TEdit.UI.Xaml"
                     xmlns:p="clr-namespace:TEdit.Properties"
-                    xmlns:enum="clr-namespace:TEdit.UI.Xaml.Enum">
+                    xmlns:enum="clr-namespace:TEdit.UI.Xaml.Enum"
+                    xmlns:cv="clr-namespace:TEdit.Converters"
+                    >
     <enum:EnumItemList x:Key="PaintModeEnum" ResourceType="{x:Type p:Language}" EnumType="{x:Type editor:PaintMode}" SortBy="Value"  />
     <enum:EnumItemList x:Key="TrackModeEnum" ResourceType="{x:Type p:Language}" EnumType="{x:Type editor:TrackMode}" SortBy="Value"  />
     <enum:EnumItemList x:Key="JunctionBoxEnum" ResourceType="{x:Type p:Language}" EnumType="{x:Type editor:JunctionBoxMode}" SortBy="Value"  />
@@ -17,13 +19,14 @@
     <enum:EnumItemList x:Key="LiquidType" ResourceType="{x:Type p:Language}" EnumType="{x:Type config:LiquidType}" x:Shared="false" SortBy="Value" />
     <enum:EnumItemList x:Key="LiquidAmountEnum" ResourceType="{x:Type p:Language}" EnumType="{x:Type editor:LiquidAmountMode}" SortBy="Value" />
     <enum:EnumItemList x:Key="WireReplaceModeEnum" ResourceType="{x:Type p:Language}" EnumType="{x:Type editor:WireReplaceMode}" SortBy="Value"  />
+  <cv:TEditColorToMediaColorConverter x:Key="TEditColorToMediaColorConverter" />
 
-    <DataTemplate x:Key="ColorPickerTemplate" >
+  <DataTemplate x:Key="ColorPickerTemplate" >
         <DockPanel LastChildFill="True">
             <Border BorderBrush="Black" BorderThickness="1" Margin="2,1" DockPanel.Dock="Left" >
                 <Rectangle Height="12" Width="12">
                     <Rectangle.Fill>
-                        <SolidColorBrush Color="{Binding Path=Color}" />
+            <SolidColorBrush Color="{Binding Path=Color, Converter={StaticResource TEditColorToMediaColorConverter}}" />
                     </Rectangle.Fill>
                 </Rectangle>
             </Border>

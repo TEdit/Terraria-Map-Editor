@@ -53,7 +53,6 @@ public partial class WorldViewModel : ViewModelBase
     private readonly ObservableCollection<string> _points = new ObservableCollection<string>();
     private readonly Timer _saveTimer = new Timer();
     private readonly Selection _selection = new Selection();
-    private readonly TilePicker _tilePicker = new TilePicker();
     private readonly MorphToolOptions _MorphToolOptions = new MorphToolOptions();
     private readonly ObservableCollection<ITool> _tools = new ObservableCollection<ITool>();
     private UndoManager _undoManager;
@@ -490,6 +489,7 @@ public partial class WorldViewModel : ViewModelBase
                     rb.UpdateTile);
 
                 WorldEditor = new WorldEditor(CurrentWorld, Selection, undo, updateTiles);
+
             }
             else
             {
@@ -519,7 +519,7 @@ public partial class WorldViewModel : ViewModelBase
 
     public TilePicker TilePicker
     {
-        get { return _tilePicker; }
+        get { return WorldEditor?.TilePicker; }
     }
 
     public ObservableCollection<ITool> Tools
