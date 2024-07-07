@@ -29,16 +29,18 @@
         </Style>
     </Window.Styles>
 
-    <Grid RowDefinitions="*, 24" ColumnDefinitions="300, 3, *">
-        <Grid Grid.Column="0" Grid.RowSpan="3" RowDefinitions="30,30,*" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+    <Grid RowDefinitions="*, 24" ColumnDefinitions="34, 300, 3, *">
+
+        <v:PaintModeView Grid.Column="0" DataContext="{Binding ToolSelection}"></v:PaintModeView>
+        <Grid Grid.Column="1" Grid.RowSpan="3" RowDefinitions="30,30,*" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
             <Button Grid.Row="0" Click="LoadWorldButton_Clicked" HorizontalAlignment="Stretch">Load World</Button>
             <TextBox Grid.Row="1" Text="{Binding SelectedDocument.World.Title}"  HorizontalAlignment="Stretch" />
             <v:WorldPropertiesView Grid.Row="2" DataContext="{Binding SelectedDocument}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
         </Grid>
 
-        <GridSplitter Grid.Column="1" Width="3" ResizeDirection="Columns" Background="Gray" />
+        <GridSplitter Grid.Column="2" Width="3" ResizeDirection="Columns" Background="Gray" />
 
-        <v:DocumentView Grid.Column="2" Grid.Row="0" DataContext="{Binding SelectedDocument}" />
+        <v:DocumentView Grid.Column="3" Grid.Row="0" DataContext="{Binding SelectedDocument}" />
 
         <Border Grid.ColumnSpan="3" Grid.Row="1" MinHeight="24" Padding="8,4" BorderThickness="0,1,0,0" BorderBrush="#666666">
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" >

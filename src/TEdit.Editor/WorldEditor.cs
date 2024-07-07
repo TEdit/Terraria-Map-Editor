@@ -32,8 +32,10 @@ public class WorldEditor
     private readonly IUndoManager _undo;
     private readonly NotifyTileChanged? _notifyTileChanged;
     public bool[] _checkTiles;
+    public TilePicker TilePicker { get; }
 
     public WorldEditor(
+        TilePicker tilePicker,
         World world,
         ISelection selection,
         IUndoManager undo,
@@ -44,6 +46,7 @@ public class WorldEditor
         _undo = undo;
         _notifyTileChanged = notifyTileChanged;
         _checkTiles = new bool[_world.TilesWide * _world.TilesHigh];
+        TilePicker = tilePicker;
     }
 
     public async Task BeginOperationAsync()
@@ -58,7 +61,6 @@ public class WorldEditor
     }
 
     public BrushSettings Brush { get; set; } = new BrushSettings();
-    public TilePicker TilePicker { get; set; } = new TilePicker();
 
     public void SetPixel(int x, int y, PaintMode? mode = null, bool? erase = null)
     {
@@ -425,9 +427,9 @@ public class WorldEditor
                                 num6 = -1;
                                 break;
                             }
-                            if ((Minecart.LeftSideConnection[array[num6]] != Minecart.LeftSideConnection[array[num5]] || 
-                                Minecart.RightSideConnection[array[num6]] != Minecart.RightSideConnection[array[num5]]) && 
-                                Minecart.TrackType[array[num6]] == num4 && Minecart.LeftSideConnection[array[num6]] != -1 && 
+                            if ((Minecart.LeftSideConnection[array[num6]] != Minecart.LeftSideConnection[array[num5]] ||
+                                Minecart.RightSideConnection[array[num6]] != Minecart.RightSideConnection[array[num5]]) &&
+                                Minecart.TrackType[array[num6]] == num4 && Minecart.LeftSideConnection[array[num6]] != -1 &&
                                 Minecart.RightSideConnection[array[num6]] != -1)
                                 flag3 = true;
                         }
@@ -439,8 +441,8 @@ public class WorldEditor
                             num5++;
                             if (num5 >= array.Length)
                                 break;
-                            if (Minecart.TrackType[array[num5]] == num4 && 
-                                (Minecart.LeftSideConnection[array[num5]] == -1 || 
+                            if (Minecart.TrackType[array[num5]] == num4 &&
+                                (Minecart.LeftSideConnection[array[num5]] == -1 ||
                                 Minecart.RightSideConnection[array[num5]] == -1) == flag2)
                                 goto IL_100;
                         }

@@ -10,20 +10,17 @@ namespace TEdit.Desktop.ViewModels;
 
 public class MainWindowViewModel : ReactiveObject
 {
-    [Reactive]
-    public DocumentViewModel SelectedDocument { get; set; }
+    [Reactive] public DocumentViewModel SelectedDocument { get; set; }
+    [Reactive] public ToolSelectionViewModel ToolSelection { get; set; }
+    [Reactive] public int ProgressPercentage { get; set; }
+    [Reactive] public string ProgressText { get; set; } = string.Empty;
+    [Reactive] public RenderLayerVisibility RenderLayerVisibility { get; set; } = new();
 
-    [Reactive]
-    public int ProgressPercentage { get; set; }
-
-    [Reactive]
-    public string ProgressText { get; set; } = string.Empty;
-
-    [Reactive]
-    public RenderLayerVisibility RenderLayerVisibility { get; set; } = new();
-
-    public MainWindowViewModel()
+    public MainWindowViewModel(
+        DocumentViewModel dvm,
+        ToolSelectionViewModel toolSelection)
     {
-        SelectedDocument = new DocumentViewModel();
+        SelectedDocument = dvm;
+        ToolSelection = toolSelection;
     }
 }

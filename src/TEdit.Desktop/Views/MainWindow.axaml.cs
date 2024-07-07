@@ -17,7 +17,6 @@ public partial class MainWindow : Window
     public MainWindow()
     {
         InitializeComponent();
-        this.DataContext = this.CreateInstance<MainWindowViewModel>();
     }
 
     public async void LoadWorldButton_Clicked(object sender, RoutedEventArgs args)

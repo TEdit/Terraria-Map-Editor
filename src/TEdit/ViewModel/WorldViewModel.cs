@@ -470,6 +470,8 @@ public partial class WorldViewModel : ViewModelBase
 
             if (value != null)
             {
+
+
                 var rb = new RenderBlender(CurrentWorld, TilePicker);
 
                 NotifyTileChanged updateTiles = (x, y, width, height) =>
@@ -480,6 +482,7 @@ public partial class WorldViewModel : ViewModelBase
                 };
 
                 _undoManager = new UndoManager(CurrentWorld, updateTiles, UpdateMinimap);
+
                 var undo = new UndoManagerWrapper(UndoManager);
 
 
@@ -488,7 +491,7 @@ public partial class WorldViewModel : ViewModelBase
                     undo,
                     rb.UpdateTile);
 
-                WorldEditor = new WorldEditor(CurrentWorld, Selection, undo, updateTiles);
+                WorldEditor = new WorldEditor(TilePicker, CurrentWorld, Selection, undo, updateTiles);
 
             }
             else
@@ -517,10 +520,7 @@ public partial class WorldViewModel : ViewModelBase
 
     public MorphToolOptions MorphToolOptions => _MorphToolOptions;
 
-    public TilePicker TilePicker
-    {
-        get { return WorldEditor?.TilePicker; }
-    }
+    public TilePicker TilePicker { get; } = new TilePicker();
 
     public ObservableCollection<ITool> Tools
     {
