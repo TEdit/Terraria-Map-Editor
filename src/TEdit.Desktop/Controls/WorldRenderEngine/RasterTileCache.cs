@@ -44,6 +44,7 @@ public class RasterTileCache : IRasterTileCache
     public void SetTile(RasterTile tile, int x, int y)
     {
         int tileIndex = TileXYToTileIndex(x, y);
+        if (_tiles == null || _tiles.Length <= tileIndex) { return; }
 
         var existing = _tiles[tileIndex];
         if (existing?.Bitmap != null)
@@ -56,7 +57,7 @@ public class RasterTileCache : IRasterTileCache
 
     private int TileXYToTileIndex(int x, int y) => x + y * TilesX;
 
-    private int PixelToTileIndex(int worldPixelX, int worldPixelY)
+    public int PixelToTileIndex(int worldPixelX, int worldPixelY)
     {
         int curTileX = worldPixelX / TileSize;
         int curTileY = worldPixelY / TileSize;

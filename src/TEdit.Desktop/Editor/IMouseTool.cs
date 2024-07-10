@@ -6,7 +6,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TEdit.Desktop.Services;
 using TEdit.Desktop.ViewModels;
+using TEdit.Editor;
 using static TEdit.Desktop.Controls.SkiaWorldRenderBox;
 
 namespace TEdit.Desktop.Editor;
@@ -18,10 +20,10 @@ public interface IMouseTool
     string Tooltip { get; }
     bool IsActive { get; set; }
     string IconName { get; }
-    void Move(PointerPoint buttons, Point worldCoordinate) { }
-    void Press(PointerPoint buttons, Point worldCoordinate) { }
-    void Release(PointerPoint buttons, Point worldCoordinate) { }
-    void LeaveWindow(PointerPoint buttons, Point worldCoordinate) { }
+    void Move(WorldEditor editor, PointerPoint buttons, Point worldCoordinate) { }
+    void Press(WorldEditor editor, PointerPoint buttons, Point worldCoordinate) { }
+    void Release(WorldEditor editor, PointerPoint buttons, Point worldCoordinate) { }
+    void LeaveWindow(WorldEditor editor, PointerPoint buttons, Point worldCoordinate) { }
     void Scroll(int delta, Point worldCoordinate) { }
 }
 
@@ -54,11 +56,11 @@ public class SelectTool : ReactiveObject, IMouseTool
 
 public class PencilTool : ReactiveObject, IMouseTool
 {
-    private readonly MainWindowViewModel _wvm;
+    private readonly IDocumentService _documentService;
 
-    public PencilTool(MainWindowViewModel wvm)
+    public PencilTool(IDocumentService documentService)
     {
-        _wvm = wvm;
+        _documentService = documentService;
     }
 
     public ICustomDrawOperation? DrawTool { get; }
@@ -67,11 +69,11 @@ public class PencilTool : ReactiveObject, IMouseTool
     [Reactive] public bool IsActive { get; set; }
     public string IconName { get; } = "mdi-pencil";
 
-    public void Press(PointerPoint buttons, Point worldCoordinate)
+    public void Press(WorldEditor editor, PointerPoint buttons, Point worldCoordinate)
     {
         if (IsActive)
         {
-            _wvm.SelectedDocument.Editor.SetPixel((int)worldCoordinate.X, (int)worldCoordinate.Y);
+            editor.SetPixel((int)worldCoordinate.X, (int)worldCoordinate.Y);
         }
     }
 }

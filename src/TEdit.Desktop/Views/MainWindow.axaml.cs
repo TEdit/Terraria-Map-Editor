@@ -62,13 +62,8 @@ public partial class MainWindow : Window
                    MainWindowViewModel.ProgressText = ProgressChangedEventArgs.UserState?.ToString() ?? string.Empty;
                });
 
-        (var world, var errors) = await World.LoadWorldAsync(file.TryGetLocalPath(), progress: progress);
+        await MainWindowViewModel.DocumentService.LoadWorldAsync(file, progress);
 
         ((IProgress<ProgressChangedEventArgs>)progress).Report(new ProgressChangedEventArgs(0, string.Empty));
-
-        if (world != null)
-        {
-            MainWindowViewModel.SelectedDocument.World = world;
-        }
     }
 }

@@ -35,6 +35,7 @@
 			<c:SkiaWorldRenderBox
                 Grid.Column="1"
                 World="{Binding World}"
+                WorldEditor="{Binding WorldEditor}"
                 Zoom="{Binding Zoom, Mode=TwoWay}"
                 ActiveTool="{Binding ToolSelection.ActiveTool}"
                 MaxZoom="{Binding MaxZoom, Mode=TwoWay}"

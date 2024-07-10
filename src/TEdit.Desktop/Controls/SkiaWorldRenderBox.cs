@@ -16,10 +16,13 @@ using System.ComponentModel;
 using System.Linq;
 using System.Reflection;
 using System.Runtime.CompilerServices;
+using System.Threading;
+using System.Threading.Channels;
 using System.Threading.Tasks;
 using TEdit.Desktop.Controls.WorldRenderEngine;
 using TEdit.Desktop.Controls.WorldRenderEngine.Layers;
 using TEdit.Desktop.Editor;
+using TEdit.Editor;
 using TEdit.Geometry;
 using TEdit.Terraria;
 using static SkiaSharp.SKImageFilter;
@@ -586,7 +589,7 @@ public class SkiaWorldRenderBox : TemplatedControl, IScrollable
 
 
     /// <summary>
-    /// Defines the <see cref="World"/> property.
+    /// Defines the <see cref="IMouseTool"/> property.
     /// </summary>
     public static readonly DirectProperty<SkiaWorldRenderBox, IMouseTool?> ActiveToolProperty =
     AvaloniaProperty.RegisterDirect<SkiaWorldRenderBox, IMouseTool?>(
@@ -601,6 +604,24 @@ public class SkiaWorldRenderBox : TemplatedControl, IScrollable
     {
         get => _activeTool;
         set => SetProperty(ref _activeTool, value);
+    }
+
+    /// <summary>
+    /// Defines the <see cref="World"/> property.
+    /// </summary>
+    public static readonly DirectProperty<SkiaWorldRenderBox, WorldEditor> WorldEditorProperty =
+    AvaloniaProperty.RegisterDirect<SkiaWorldRenderBox, WorldEditor>(
+        nameof(WorldEditor),
+        o => o.WorldEditor,
+        (o, v) => o.WorldEditor = v);
+
+
+    private WorldEditor _worldEditor = null;
+
+    public WorldEditor WorldEditor
+    {
+        get => _worldEditor;
+        set => SetProperty(ref _worldEditor, value);
     }
 
     /// <summary>
@@ -623,7 +644,6 @@ public class SkiaWorldRenderBox : TemplatedControl, IScrollable
         get => _world;
         set
         {
-
             if (_world == value) return;
 
             // clear the render tile cache when switching worlds
@@ -632,38 +652,60 @@ public class SkiaWorldRenderBox : TemplatedControl, IScrollable
 
             _world = value;
 
-            _pixelTileCache = new RasterTileCache(_world.TilesHigh, _world.TilesWide);
+            _fullRenderCancel.Cancel();
             oldCache?.Dispose();
-            StartFullRender();
+            _fullRenderCancel.TryReset();
+
+            if (_world == null) return;
+
+            _pixelTileCache = new RasterTileCache(_world.TilesHigh, _world.TilesWide);
+            StartFullRender(_fullRenderCancel.Token);
 
             UpdateViewPort();
             TriggerRender();
         }
     }
 
-    private void StartFullRender()
-    {
-        Task.Factory.StartNew(() =>
-        {
-            int numX = _pixelTileCache.TilesX;
-            int numY = _pixelTileCache.TilesY;
+    private CancellationTokenSource _fullRenderCancel = new CancellationTokenSource();
 
-            for (int x = 0; x < numX; x++)
+    private void StartFullRender(CancellationToken cancel)
+    {
+        Task.Factory.StartNew(async () =>
+        {
+            // await _fullRenderLock.WaitAsync();
+
+            try
             {
-                Parallel.For(
-                    0,
-                    numY,
-                    new ParallelOptions { MaxDegreeOfParallelism = 4 },
-                    y =>
-                    {
-                        RenderTile(y, x);
-                    });
+                int numX = _pixelTileCache.TilesX;
+                int numY = _pixelTileCache.TilesY;
+
+                for (int x = 0; x < numX; x++)
+                {
+                    await Parallel.ForAsync(
+                        0,
+                        numY,
+                        new ParallelOptions { MaxDegreeOfParallelism = 4 },
+                        (y, c) =>
+                        {
+                            if (!c.IsCancellationRequested)
+                            {
+                                RenderTile(y, x, c);
+                            }
+
+                            return ValueTask.CompletedTask;
+                        });
+                }
+            }
+            finally
+            {
+                _fullRenderCancel.TryReset();
             }
         });
     }
 
-    private void RenderTile(int y, int x)
+    private void RenderTile(int y, int x, CancellationToken cancel)
     {
+        if (_world == null) { return; }
         var tile = new RasterTile
         {
             Bitmap = RasterTileRenderer.CreateBitmapTile(_world, x, y, _pixelTileCache.TileSize),
@@ -674,7 +716,10 @@ public class SkiaWorldRenderBox : TemplatedControl, IScrollable
             IsDirty = false
         };
 
-        _pixelTileCache.SetTile(tile, x, y);
+        if (!cancel.IsCancellationRequested)
+        {
+            _pixelTileCache.SetTile(tile, x, y);
+        }
     }
 
     /// <summary>
@@ -697,6 +742,8 @@ public class SkiaWorldRenderBox : TemplatedControl, IScrollable
 
     private bool UpdateViewPort()
     {
+        if (HorizontalScrollBar == null || VerticalScrollBar == null) return false;
+
         if (World == null)
         {
             HorizontalScrollBar.Maximum = 0;
@@ -1194,7 +1241,7 @@ public class SkiaWorldRenderBox : TemplatedControl, IScrollable
         if (e.Handled) return;
 
         var pointer = e.GetCurrentPoint(this);
-        ActiveTool?.Release(pointer, WorldCoordinate);
+        ActiveTool?.Release(WorldEditor, pointer, WorldCoordinate);
 
         IsPanning = false;
         IsSelecting = false;
@@ -1204,7 +1251,7 @@ public class SkiaWorldRenderBox : TemplatedControl, IScrollable
     {
         _pointerPosition = new Point(-1, -1);
         var pointer = e.GetCurrentPoint(this);
-        ActiveTool?.LeaveWindow(pointer, WorldCoordinate);
+        ActiveTool?.LeaveWindow(WorldEditor, pointer, WorldCoordinate);
 
 
         TriggerRender(true);
@@ -1222,7 +1269,8 @@ public class SkiaWorldRenderBox : TemplatedControl, IScrollable
 
         if (ActiveTool != null)
         {
-            ActiveTool?.Press(pointer, WorldCoordinate);
+            ActiveTool?.Press(WorldEditor, pointer, WorldCoordinate);
+
         }
 
         if (SelectionMode != SelectionModes.None)
@@ -1266,7 +1314,7 @@ public class SkiaWorldRenderBox : TemplatedControl, IScrollable
         (double wcX, double wcY) = PointToImage(_pointerPosition, true);
         WorldCoordinate = new Point((int)wcX, (int)wcY); // cast to int
 
-        ActiveTool?.Move(pointer, WorldCoordinate);
+        ActiveTool?.Move(WorldEditor, pointer, WorldCoordinate);
 
         if (!_isPanning && !_isSelecting)
         {

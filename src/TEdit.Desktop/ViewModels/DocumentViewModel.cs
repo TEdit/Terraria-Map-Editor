@@ -2,14 +2,13 @@
 using Avalonia.Controls;
 using TEdit.Desktop.Controls;
 using TEdit.Editor;
+using TEdit.Editor.Undo;
 using TEdit.Terraria;
 
 namespace TEdit.Desktop.ViewModels;
 
 public partial class DocumentViewModel : ReactiveObject
 {
-    [Reactive] public World? World { get; set; }
-
     [Reactive] public int Zoom { get; set; } = 100;
 
     [Reactive] public int MinZoom { get; set; } = 7;
@@ -19,14 +18,21 @@ public partial class DocumentViewModel : ReactiveObject
     [Reactive] public Point CursorTileCoordinate { get; set; }
 
     [Reactive] public SkiaWorldRenderBox.SelectionModes SelectionMode { get; set; }
-    [Reactive] public WorldEditor Editor { get; set; }
 
     public ToolSelectionViewModel ToolSelection { get; }
+    public TilePicker TilePicker { get; }
+    public ISelection Selection { get; }
+    [Reactive] public World World { get; private set; }
+    [Reactive] public WorldEditor WorldEditor { get; private set; }
 
-    public DocumentViewModel(ToolSelectionViewModel toolSelection, TilePicker tilePicker)
+    public DocumentViewModel(World world, ToolSelectionViewModel toolSelection, TilePicker tilePicker)
     {
+        World = world;
         ToolSelection = toolSelection;
+        TilePicker = tilePicker;
+        Selection = new Selection();
+        IUndoManager undoManager = null;
 
-        Editor = new WorldEditor(tilePicker, World, null, null, (x, y, height, width) => { });
+        WorldEditor = new WorldEditor(tilePicker, World, Selection, undoManager, (x, y, height, width) => { });
     }
 }

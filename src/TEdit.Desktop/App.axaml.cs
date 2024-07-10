@@ -24,13 +24,13 @@ public partial class App : Application
 
         // register view models
         services.AddSingleton<MainWindowViewModel>();
-
-        services.AddTransient<DocumentViewModel>();
         services.AddTransient<FileManagerViewModel>();
 
         // register editing tools
         services.AddSingleton<ToolSelectionViewModel>();
         services.AddSingleton<TilePicker>();
+        services.AddSingleton<IDocumentService, DocumentService>();
+
         services.AddSingleton<IMouseTool, ArrowTool>();
         services.AddSingleton<IMouseTool, BrushTool>();
         services.AddSingleton<IMouseTool, PencilTool>();
