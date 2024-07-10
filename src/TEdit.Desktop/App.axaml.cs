@@ -32,7 +32,7 @@ public partial class App : Application
         services.AddSingleton<IDocumentService, DocumentService>();
 
         services.AddSingleton<IMouseTool, ArrowTool>();
-        services.AddSingleton<IMouseTool, BrushTool>();
+        //services.AddSingleton<IMouseTool, BrushTool>();
         services.AddSingleton<IMouseTool, PencilTool>();
         services.AddSingleton<IMouseTool, SelectTool>();
 

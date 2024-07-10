@@ -29,6 +29,13 @@ public class RasterTileRenderer
             return WorldConfiguration.GlobalColors["Sky"];
     }
 
+    public static SKColor GetBlockColor(World _world, int currentBlockX, int currentBlockY)
+    {
+        var block = _world.Tiles[currentBlockX, currentBlockY];
+        var bgColor = GetBackgroundColor(_world, currentBlockY);
+        return PixelMap.GetTileColor(block, bgColor).ToSKColor().WithAlpha(255);
+    }
+
     public static SKBitmap CreateBitmapTile(World _world, int xTile, int yTile, int tileSize)
     {
         ArgumentNullException.ThrowIfNull(_world);

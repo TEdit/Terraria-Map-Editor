@@ -1270,7 +1270,7 @@ public class SkiaWorldRenderBox : TemplatedControl, IScrollable
         if (ActiveTool != null)
         {
             ActiveTool?.Press(WorldEditor, pointer, WorldCoordinate);
-
+            _pixelTileCache.SetPixelDirty((int)WorldCoordinate.X, (int)WorldCoordinate.Y);
         }
 
         if (SelectionMode != SelectionModes.None)
@@ -1314,7 +1314,11 @@ public class SkiaWorldRenderBox : TemplatedControl, IScrollable
         (double wcX, double wcY) = PointToImage(_pointerPosition, true);
         WorldCoordinate = new Point((int)wcX, (int)wcY); // cast to int
 
-        ActiveTool?.Move(WorldEditor, pointer, WorldCoordinate);
+        if (ActiveTool != null)
+        {
+            ActiveTool?.Move(WorldEditor, pointer, WorldCoordinate);
+            _pixelTileCache.SetPixelDirty((int)WorldCoordinate.X, (int)WorldCoordinate.Y);
+        }
 
         if (!_isPanning && !_isSelecting)
         {

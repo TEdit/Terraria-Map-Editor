@@ -57,7 +57,10 @@ public class WorldEditor
 
     public async Task EndOperationAsync()
     {
+        if (_undo == null) return;
+
         await _undo.SaveUndoAsync();
+
     }
 
     public BrushSettings Brush { get; set; } = new BrushSettings();
@@ -66,6 +69,10 @@ public class WorldEditor
     {
         if (_world == null) return;
         if (TilePicker == null) return;
+
+        int index = GetTileIndex(x, y);
+        if (_checkTiles[index]) { return; }
+        else { _checkTiles[index] = true; }
 
         Tile curTile = _world.Tiles[x, y];
         if (curTile == null) return;
@@ -185,6 +192,11 @@ public class WorldEditor
                 SetTrack(x, y, curTile, isErase, (TilePicker.TrackMode == TrackMode.Hammer), true);
                 break;
         }
+    }
+
+    private int GetTileIndex(int x, int y)
+    {
+        return x + y * _world.TilesWide;
     }
 
     private void SetWall(Tile curTile, bool erase)

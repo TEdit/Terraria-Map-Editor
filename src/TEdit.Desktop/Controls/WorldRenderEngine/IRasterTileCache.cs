@@ -10,6 +10,8 @@ public interface IRasterTileCache : IDisposable
     RasterTile? GetTile(int x, int y);
     void Clear();
 
+    void SetPixelDirty(int x, int y);
+
     int TileSize { get; }
 
     int TilesX { get; }

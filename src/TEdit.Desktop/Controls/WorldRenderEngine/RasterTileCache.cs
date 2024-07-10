@@ -67,6 +67,12 @@ public class RasterTileCache : IRasterTileCache
         return tileIndex;
     }
 
+    public void SetPixelDirty(int x, int y)
+    {
+        (int tileIndex, int tilePixelX, int tilePixelY) = PixelToTilePixelIndex(x, y);
+        _tiles[tileIndex].IsDirty = true;
+    }
+
     private (int tileIndex, int tilePixelX, int tilePixelY) PixelToTilePixelIndex(int worldPixelX, int worldPixelY)
     {
         int curTileX = worldPixelX / TileSize;

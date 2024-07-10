@@ -6,27 +6,27 @@ namespace TEdit.Editor;
 
 public partial class ToolDefaultData
 {
-    private static PaintMode _paintMode;
+    private static PaintMode _paintMode = PaintMode.TileAndWall;
 
-    private static int _brushWidth;
-    private static int _brushHeight;
-    private static int _brushOutline;
-    private static BrushShape _brushShape;
+    private static int _brushWidth = 20;
+    private static int _brushHeight = 20;
+    private static int _brushOutline = 1;
+    private static BrushShape _brushShape = BrushShape.Square;
 
-    private static int _paintTile;
-    private static int _paintTileMask;
-    private static bool _paintTileActive;
-    private static MaskMode _paintTileMaskMode;
+    private static int _paintTile = 0;
+    private static int _paintTileMask = 0;
+    private static bool _paintTileActive = true;
+    private static MaskMode _paintTileMaskMode = MaskMode.Off;
 
-    private static int _paintWall;
-    private static int _paintWallMask;
-    private static bool _paintWallActive;
-    private static MaskMode _paintWallMaskMode;
+    private static int _paintWall = 0;
+    private static int _paintWallMask = 0;
+    private static bool _paintWallActive = true;
+    private static MaskMode _paintWallMaskMode = MaskMode.Off;
 
-    private static bool _redWire;
-    private static bool _greenWire;
-    private static bool _blueWire;
-    private static bool _yellowWire;
+    private static bool _redWire = false;
+    private static bool _greenWire = false;
+    private static bool _blueWire = false;
+    private static bool _yellowWire = false;
 
     //  Invoked from World.Settings
     public static void LoadSettings(IEnumerable<XElement> xmlToolSettings)
