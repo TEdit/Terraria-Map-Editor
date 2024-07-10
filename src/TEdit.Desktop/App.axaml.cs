@@ -8,6 +8,7 @@ using TEdit.Desktop.Editor;
 using TEdit.Desktop.Services;
 using TEdit.Desktop.ViewModels;
 using TEdit.Desktop.Views;
+using TEdit.Editor;
 
 namespace TEdit.Desktop;
 
@@ -22,12 +23,14 @@ public partial class App : Application
         var services = new ServiceCollection();
 
         // register view models
-        services.AddTransient<MainWindowViewModel>();
+        services.AddSingleton<MainWindowViewModel>();
+
         services.AddTransient<DocumentViewModel>();
         services.AddTransient<FileManagerViewModel>();
 
         // register editing tools
         services.AddSingleton<ToolSelectionViewModel>();
+        services.AddSingleton<TilePicker>();
         services.AddSingleton<IMouseTool, ArrowTool>();
         services.AddSingleton<IMouseTool, BrushTool>();
         services.AddSingleton<IMouseTool, PencilTool>();

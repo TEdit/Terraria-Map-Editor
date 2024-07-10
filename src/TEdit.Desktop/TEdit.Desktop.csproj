@@ -61,6 +61,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\TEdit.Editor\TEdit.Editor.csproj" />
     <ProjectReference Include="..\TEdit.Terraria\TEdit.Terraria.csproj" />
   </ItemGroup>
 

@@ -1,6 +1,7 @@
 ﻿using Avalonia;
 using Avalonia.Controls;
 using TEdit.Desktop.Controls;
+using TEdit.Editor;
 using TEdit.Terraria;
 
 namespace TEdit.Desktop.ViewModels;
@@ -18,11 +19,14 @@ public partial class DocumentViewModel : ReactiveObject
     [Reactive] public Point CursorTileCoordinate { get; set; }
 
     [Reactive] public SkiaWorldRenderBox.SelectionModes SelectionMode { get; set; }
+    [Reactive] public WorldEditor Editor { get; set; }
 
     public ToolSelectionViewModel ToolSelection { get; }
 
-    public DocumentViewModel(ToolSelectionViewModel toolSelection)
+    public DocumentViewModel(ToolSelectionViewModel toolSelection, TilePicker tilePicker)
     {
         ToolSelection = toolSelection;
+
+        Editor = new WorldEditor(tilePicker, World, null, null, (x, y, height, width) => { });
     }
 }

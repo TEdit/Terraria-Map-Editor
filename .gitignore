@@ -52,3 +52,4 @@ build/
 /src/publish/*
 /publish/
 /publish-avalonia/
+.idea/

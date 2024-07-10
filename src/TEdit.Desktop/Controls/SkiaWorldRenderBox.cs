@@ -14,6 +14,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using TEdit.Desktop.Controls.WorldRenderEngine;
@@ -1192,6 +1193,9 @@ public class SkiaWorldRenderBox : TemplatedControl, IScrollable
         base.OnPointerReleased(e);
         if (e.Handled) return;
 
+        var pointer = e.GetCurrentPoint(this);
+        ActiveTool?.Release(pointer, WorldCoordinate);
+
         IsPanning = false;
         IsSelecting = false;
     }
@@ -1199,6 +1203,10 @@ public class SkiaWorldRenderBox : TemplatedControl, IScrollable
     private void ViewPortOnPointerExited(object? sender, PointerEventArgs e)
     {
         _pointerPosition = new Point(-1, -1);
+        var pointer = e.GetCurrentPoint(this);
+        ActiveTool?.LeaveWindow(pointer, WorldCoordinate);
+
+
         TriggerRender(true);
         e.Handled = true;
     }
@@ -1211,6 +1219,11 @@ public class SkiaWorldRenderBox : TemplatedControl, IScrollable
             || World is null) { return; }
 
         var pointer = e.GetCurrentPoint(this);
+
+        if (ActiveTool != null)
+        {
+            ActiveTool?.Press(pointer, WorldCoordinate);
+        }
 
         if (SelectionMode != SelectionModes.None)
         {
@@ -1252,6 +1265,8 @@ public class SkiaWorldRenderBox : TemplatedControl, IScrollable
         _pointerPosition = pointer.Position;
         (double wcX, double wcY) = PointToImage(_pointerPosition, true);
         WorldCoordinate = new Point((int)wcX, (int)wcY); // cast to int
+
+        ActiveTool?.Move(pointer, WorldCoordinate);
 
         if (!_isPanning && !_isSelecting)
         {
