@@ -1,0 +1,220 @@
+﻿<Window x:Class="TEdit.Editor.Plugins.ImageToPixelartEditorView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:view="clr-namespace:TEdit.View"
+        Title="Image To Pixel-Art To Schematic v0.1 | Coded By: D.RUSS#2430 | Terraria Modding"
+        WindowStartupLocation="CenterOwner"
+        Icon="/TEdit;component/Images/tedit.ico"
+        ResizeMode="CanResizeWithGrip" 
+        Topmost="False"
+        Width="1470"
+        Height="764">
+
+  <!-- Main Container -->
+  <Grid Background="{StaticResource ControlBackgroundBrush}">
+    <Grid.RowDefinitions>
+      <RowDefinition Height="*" />
+      <RowDefinition Height="Auto" />
+    </Grid.RowDefinitions>
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition Width="*" />
+      <ColumnDefinition Width="Auto" />
+    </Grid.ColumnDefinitions>
+
+    <!-- Image and Tiled Background Container -->
+    <Grid Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2">
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="*" />
+        <ColumnDefinition Width="*" />
+      </Grid.ColumnDefinitions>
+
+      <!-- First Tiled Background Image -->
+      <Border Margin="12,10,6,10" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+        <Border.Background>
+          <ImageBrush x:Name="TiledBackground1" TileMode="Tile" Viewport="0,0,59,59" ViewportUnits="Absolute" ImageSource="/TEdit;component/Images/Pixelart/etp.jpg" />
+        </Border.Background>
+        <Image x:Name="BackgroundImage1" RenderOptions.BitmapScalingMode="NearestNeighbor" Stretch="Uniform" Source="/TEdit;component/Images/Pixelart/globeTest.png" AllowDrop="True" Drop="BackgroundImage1_Drop" DragEnter="BackgroundImage1_DragEnter" />
+      </Border>
+
+      <!-- Second Tiled Background Image -->
+      <Border Margin="6,10,12,10" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="1">
+        <Border.Background>
+          <ImageBrush x:Name="TiledBackground2" TileMode="Tile" Viewport="0,0,59,59" ViewportUnits="Absolute" ImageSource="/TEdit;component/Images/Pixelart/etp.jpg" />
+        </Border.Background>
+        <Image x:Name="BackgroundImage2" RenderOptions.BitmapScalingMode="NearestNeighbor" Stretch="Uniform" />
+      </Border>
+    </Grid>
+
+    <!-- Basic Configurations GroupBox -->
+    <GroupBox Margin="10" HorizontalAlignment="Left" VerticalAlignment="Bottom" BorderBrush="White" Height="156" Grid.Row="1" Grid.Column="0">
+      <GroupBox.Header>
+        <TextBlock Text="Basic Configurations:" Foreground="White"/>
+      </GroupBox.Header>
+      <Canvas Height="136" Width="466">
+        <!-- Basic Configuration Controls -->
+        <Label x:Name="Spacing" Height="19" Width="44" FontSize="11" FontFamily="Microsoft Sans Serif" TabIndex="1" HorizontalAlignment="Center" VerticalAlignment="Top" Content="Spacing" Canvas.Top="12" />
+        <TextBox x:Name="NUDTextBox1" Text="4" TextAlignment="Left" TextChanged="NUDTextBox1_TextChanged" Height="26" Width="143" Canvas.Top="29" HorizontalAlignment="Center" VerticalAlignment="Top" PreviewMouseWheel="NUDTextBox1_PreviewMouseWheel" TabIndex="2"/>
+        <RepeatButton x:Name="NUDButtonUP1" FontSize="8" FontFamily="Marlett" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Click="NUDButtonUP1_Click" Content="5" Height="13" Canvas.Left="143" Width="6" Canvas.Top="29" HorizontalAlignment="Center" VerticalAlignment="Top" TabIndex="3"/>
+        <RepeatButton x:Name="NUDButtonDown1" FontSize="8" FontFamily="Marlett" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Height="13" Click="NUDButtonDown1_Click" Content="6" Canvas.Left="143" Canvas.Top="42" VerticalAlignment="Top" Width="6" HorizontalAlignment="Center" TabIndex="4"/>
+
+        <Label x:Name="NewRatioPercentLevel" Height="19" Width="100" FontSize="11" FontFamily="Microsoft Sans Serif" TabIndex="5" HorizontalAlignment="Center" VerticalAlignment="Top" Canvas.Left="157" Canvas.Top="12" Content="New Ratio % Level:" />
+        <Label x:Name="NewRatioPercentLevelData" Height="15" Width="50" FontSize="11" HorizontalAlignment="Left" VerticalAlignment="Center" Canvas.Left="257" Canvas.Top="12" Content="0" TabIndex="6"/>
+        <TextBox x:Name="NUDTextBox2" Text="0" TextAlignment="Left" TextChanged="NUDTextBox2_TextChanged" Height="26" Width="143" Canvas.Left="156" Canvas.Top="29" HorizontalAlignment="Center" VerticalAlignment="Top" PreviewMouseWheel="NUDTextBox2_PreviewMouseWheel" TabIndex="7"/>
+        <RepeatButton x:Name="NUDButtonUP2" FontSize="8" FontFamily="Marlett" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Click="NUDButtonUP2_Click" Content="5" Height="13" Canvas.Left="299" Width="6" Canvas.Top="29" HorizontalAlignment="Center" VerticalAlignment="Top" TabIndex="8"/>
+        <RepeatButton x:Name="NUDButtonDown2" FontSize="8" FontFamily="Marlett" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Height="13" Click="NUDButtonDown2_Click" Content="6" Canvas.Left="299" Canvas.Top="42" Width="6" HorizontalAlignment="Center" VerticalAlignment="Top" TabIndex="9"/>
+
+        <Button x:Name="CopyToClipboard" Height="43" Width="151" HorizontalAlignment="Center" VerticalAlignment="Top" Content="Copy To Clipboard" Canvas.Left="311" Canvas.Top="14" Click="CopyToClipboard_Click" IsEnabled="False" ToolTip="Copy the generated pixel art to the clipboard." TabIndex="10" />
+        <Button x:Name="SaveImage" Height="23" Width="151" HorizontalAlignment="Left" VerticalAlignment="Center" Content="Save Image" Canvas.Left="-1" Canvas.Top="61" Click="SaveImage_Click" ToolTip="Save the generated pixel art as an image." TabIndex="11"/>
+        <Button x:Name="RefreshRatio" Height="23" Width="151" HorizontalAlignment="Center" VerticalAlignment="Top" Content="Set New Ratio" Canvas.Left="155" Canvas.Top="61" Click="RefreshRatio_Click" ToolTip="Set new image zoom ratio." TabIndex="12"/>
+        <Button x:Name="OverwriteExistingFile" Height="23" Width="151" HorizontalAlignment="Center" VerticalAlignment="Center" Content="Overwrite Existing File" Canvas.Left="311" Canvas.Top="61" Click="OverwriteExistingFile_Click" IsEnabled="False" ToolTip="Overwrite the existing schematic." TabIndex="13"/>
+        <Button x:Name="OpenNewImage" Height="43" Width="151" Click="OpenNewImage_Click" HorizontalAlignment="Left" VerticalAlignment="Center" Content="Open New Image" Canvas.Left="-1" Canvas.Top="88" ToolTip="Open a new image for conversion." TabIndex="14"/>
+        <Button x:Name="ConvertToPixelArt" Height="43" Width="151" HorizontalAlignment="Left" VerticalAlignment="Center" Content="Convert To Pixel Art" Canvas.Left="156" Canvas.Top="88" Click="ConvertToPixelArt_Click" ToolTip="Convert the current image to pixel art." TabIndex="15"/>
+        <Button x:Name="SaveSchematicToFile" Height="43" Width="151" HorizontalAlignment="Right" VerticalAlignment="Bottom" Content="Save Schematic To File" Canvas.Left="311" Canvas.Top="88" Click="SaveSchematicToFile_Click" IsEnabled="False" TabIndex="16"/>
+      </Canvas>
+    </GroupBox>
+
+    <!-- Schematic Rotation GroupBox -->
+    <GroupBox Margin="493,0,0,60" HorizontalAlignment="Left" VerticalAlignment="Bottom" BorderBrush="White" Height="106" Grid.Row="1" Grid.Column="0" >
+      <GroupBox.Header>
+        <TextBlock Text="Schematic Rotation:" Foreground="White"/>
+      </GroupBox.Header>
+      <Canvas Height="92" Width="178" >
+
+        <!-- Schematic Rotation Controls -->
+        <RadioButton x:Name="Rotation0" Height="14" Width="87" HorizontalAlignment="Left" VerticalAlignment="Center" Canvas.Left="1" Canvas.Top="4" Content="No Rotation" IsChecked="False" TabIndex="17" />
+        <RadioButton x:Name="Rotation90" Height="16" Width="83" HorizontalAlignment="Center" VerticalAlignment="Top" Canvas.Left="89" Canvas.Top="4" Content="90 Degrees" IsChecked="False" TabIndex="18" />
+        <RadioButton x:Name="Rotation180" Height="18" Width="87" TabIndex="19" HorizontalAlignment="Left" VerticalAlignment="Center" Canvas.Left="1" Canvas.Top="25" Content="180 Degrees" IsChecked="False" />
+        <RadioButton x:Name="Rotation270" Height="18" Width="89" TabIndex="20" HorizontalAlignment="Center" VerticalAlignment="Top" Canvas.Left="89" Canvas.Top="25" Content="270 Degrees" IsChecked="False" />
+
+        <GroupBox HorizontalAlignment="Center" VerticalAlignment="Top" BorderBrush="White" Canvas.Top="43" Canvas.Left="-2" Width="182" Height="44" >
+          <GroupBox.Header>
+            <TextBlock Text="World Axis:" Foreground="White"/>
+          </GroupBox.Header>
+          <Canvas Height="22" Margin="-2,0,-2,0" >
+
+            <!-- World Axis Controls -->
+            <RadioButton x:Name="XAxis" Height="14" Width="59" TabIndex="21" HorizontalAlignment="Left" VerticalAlignment="Center" Content="X-Axis" IsChecked="False" Canvas.Top="3" Canvas.Left="-1" />
+            <RadioButton x:Name="YAxis" Height="14" Width="59" TabIndex="22" HorizontalAlignment="Center" VerticalAlignment="Top" Canvas.Left="87" Content="Y-Axis" Canvas.Top="3" IsChecked="False" />
+          </Canvas>
+        </GroupBox>
+      </Canvas>
+    </GroupBox>
+
+    <!-- Color Filter Tools GroupBox -->
+    <GroupBox Margin="493,0,0,10" HorizontalAlignment="Left" VerticalAlignment="Bottom" BorderBrush="White" Height="50" Grid.Row="1" Grid.Column="0" >
+      <GroupBox.Header>
+        <TextBlock Text="Color Filter Tools:" Foreground="White"/>
+      </GroupBox.Header>
+      <Canvas Height="25" Width="178" >
+
+        <!-- Color Filter Tools Controls -->
+        <!-- Color Filter Tools Controls -->
+        <Button x:Name="DelNullColors" Height="23" Width="87" TabIndex="23" HorizontalAlignment="Left" VerticalAlignment="Center" Content="Del Null Colors" Canvas.Top="2" Click="DelNullColors_Click" ToolTip="Remove colors from filter not in rendered pixel art." />
+        <Button x:Name="ResetColors" Height="23" Width="87" TabIndex="24" HorizontalAlignment="Left" VerticalAlignment="Center" Content="Reset Colors" Canvas.Left="92" Canvas.Top="2" Click="ResetColors_Click" ToolTip="Reset the color filter to defined settings." />
+      </Canvas>
+    </GroupBox>
+
+    <!-- Grid Options GroupBox -->
+    <GroupBox Margin="688,0,0,10" HorizontalAlignment="Left" VerticalAlignment="Bottom" BorderBrush="White" Height="156" Grid.Row="1" Grid.Column="0" >
+      <GroupBox.Header>
+        <TextBlock Text="Grid Options:" Foreground="White"/>
+      </GroupBox.Header>
+      <Canvas Height="128" Width="150" >
+
+        <!-- Grid Options Controls -->
+        <CheckBox x:Name="ShowGrid" Height="14" Width="79" TabIndex="25" HorizontalAlignment="Left" VerticalAlignment="Center" Content="Show Grid" Canvas.Left="-1" ToolTip="Place a grid over the rendered pixel art." />
+        <CheckBox x:Name="Backdrop" Height="20" Width="79" TabIndex="26" HorizontalAlignment="Center" VerticalAlignment="Top" Content="Backdrop" Canvas.Left="79" ToolTip="Add a backdrop to the transparent pixels." />
+        <Button x:Name="PickGridColor" Height="23" Width="151" TabIndex="27" Background="Red" HorizontalAlignment="Center" VerticalAlignment="Top" Click="PickGridColor_Click" Canvas.Top="17" Content="Grid Color" ToolTip="Change the grid color." />
+
+        <Label x:Name="GridYOffset" Height="19" Width="65" FontSize="11" FontFamily="Microsoft Sans Serif" TabIndex="28" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Top="45" Content="Grid Y Offset:" />
+        <TextBox x:Name="NUDTextBox3" Text="0" TextAlignment="Left" TextChanged="NUDTextBox3_TextChanged" Height="26" Width="143" Canvas.Top="59" HorizontalAlignment="Center" VerticalAlignment="Top" PreviewMouseWheel="NUDTextBox3_PreviewMouseWheel" ToolTip="Offset the grid Y-Axis."/>
+        <RepeatButton x:Name="NUDButtonUP3" FontSize="8" FontFamily="Marlett" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Click="NUDButtonUP3_Click" Content="5" Height="14" Canvas.Left="143" Width="6" Canvas.Top="59" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+        <RepeatButton x:Name="NUDButtonDown3" FontSize="8"  FontFamily="Marlett" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Height="12" Click="NUDButtonDown3_Click" Content="6" Canvas.Left="143" Canvas.Top="73" Width="6" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+
+        <Label x:Name="GridXOffset" Height="19" Width="65" FontSize="11" FontFamily="Microsoft Sans Serif" TabIndex="29" HorizontalAlignment="Center" VerticalAlignment="Top" Canvas.Top="88" Content="Grid X Offset:" />
+        <TextBox x:Name="NUDTextBox4" Text="0" TextAlignment="Left" TextChanged="NUDTextBox4_TextChanged" Height="26" Width="143" Canvas.Top="102" HorizontalAlignment="Left" VerticalAlignment="Top" PreviewMouseWheel="NUDTextBox4_PreviewMouseWheel" ToolTip="Offset the grid X-Axis."/>
+        <RepeatButton x:Name="NUDButtonUP4" FontSize="8" FontFamily="Marlett" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Click="NUDButtonUP4_Click" Content="5" Height="14" Canvas.Left="143" Width="6" Canvas.Top="102" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <RepeatButton x:Name="NUDButtonDown4" FontSize="8"  FontFamily="Marlett" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Height="12" Click="NUDButtonDown4_Click" Content="6" Canvas.Left="143" Canvas.Top="116" Width="6" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+      </Canvas>
+    </GroupBox>
+
+    <GroupBox Margin="855,0,0,10" HorizontalAlignment="Left" VerticalAlignment="Bottom" BorderBrush="White" Height="156" Width="127" Grid.Row="1" Grid.Column="0" >
+      <GroupBox.Header>
+        <TextBlock Text="Scaling Mode:" Foreground="White"/>
+      </GroupBox.Header>
+      <Canvas Height="133" Margin="0,0,-2,0" >
+
+        <!-- Scaling Mode Controls -->
+        <RadioButton x:Name="Bilinear" Height="19" Width="64" TabIndex="30" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="-1" Content="Bilinear" Canvas.Top="0" IsChecked="False" />
+        <RadioButton x:Name="NearestNeighbor" Height="19" Width="118" TabIndex="31" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="-1" Canvas.Top="19" Content="Nearest Neighbor" IsChecked="False" />
+        <RadioButton x:Name="Bicubic" Height="19" Width="63" TabIndex="32" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="-1" Canvas.Top="38" Content="Bicubic" IsChecked="False" />
+        <RadioButton x:Name="Lanczos" Height="19" Width="63" TabIndex="33" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="-1" Canvas.Top="57" Content="Lanczos" IsChecked="False" Checked="RadioButton_Checked" Unchecked="RadioButton_Unchecked"/>
+        <RadioButton x:Name="Hermite" Height="19" Width="65" TabIndex="34" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="-1" Canvas.Top="76" Content="Hermite" IsChecked="False" />
+        <RadioButton x:Name="Spline" Height="19" Width="63" TabIndex="35" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="-1" Canvas.Top="95" Content="Spline" IsChecked="False" />
+        <RadioButton x:Name="Gaussian" Height="19" Width="73" TabIndex="36" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="-1" Canvas.Top="114" Content="Gaussian" IsChecked="False" Checked="RadioButton_Checked" Unchecked="RadioButton_Unchecked"/>
+
+        <TextBox x:Name="AEquals" Height="20" Width="38" TabIndex="37" HorizontalAlignment="Center" VerticalAlignment="Center" IsReadOnly="True" TextWrapping="Wrap" Text="3" Canvas.Left="79" Canvas.Top="57" TextChanged="AEquals_TextChanged" ToolTip="Change the A=." />
+        <TextBox x:Name="SigmaEquals" Height="20" Width="38" TabIndex="38" HorizontalAlignment="Center" VerticalAlignment="Center" IsReadOnly="True" TextWrapping="Wrap" Text="1.0" Canvas.Left="79" Canvas.Top="114" TextChanged="SigmaEquals_TextChanged" ToolTip="Change the Sigma=." />
+      </Canvas>
+    </GroupBox>
+
+    <!-- Color Filter Settings GroupBox -->
+    <GroupBox Margin="987,0,0,66" HorizontalAlignment="Left" VerticalAlignment="Bottom" Canvas.Left="318" BorderBrush="White" Canvas.Top="-8" Height="100" Width="127" Grid.Row="1" Grid.Column="0">
+      <GroupBox.Header>
+        <TextBlock Text="Color Filter Settings:" Foreground="White"/>
+      </GroupBox.Header>
+      <Canvas Height="74" Margin="0,0,-2,0">
+
+        <!-- Color Filter Settings Controls -->
+        <CheckBox x:Name="UseTiles" Height="14" Width="76" TabIndex="39" HorizontalAlignment="Left" VerticalAlignment="Top" IsChecked="False" Content="Use Tiles" Checked="CheckBox_Changed" Unchecked="CheckBox_Changed" />
+        <CheckBox x:Name="UseWalls" Height="14" Width="76" TabIndex="40" HorizontalAlignment="Center" VerticalAlignment="Top" IsChecked="False" Content="Use Walls" Panel.ZIndex="10" Canvas.Top="19" Checked="CheckBox_Changed" Unchecked="CheckBox_Changed" />
+        <CheckBox x:Name="BuildSafe" Height="14" Width="76" TabIndex="41" HorizontalAlignment="Center" VerticalAlignment="Top" IsChecked="False" Content="Build Safe" Panel.ZIndex="10" Canvas.Top="38" Checked="CheckBox_Changed" Unchecked="CheckBox_Changed" />
+        <CheckBox x:Name="UniqueColors" Height="17" Width="100" TabIndex="42" HorizontalAlignment="Center" VerticalAlignment="Top" IsChecked="False" Content="Unique Colors" Panel.ZIndex="10" Canvas.Top="57" Checked="CheckBox_Changed" Unchecked="CheckBox_Changed" />
+      </Canvas>
+    </GroupBox>
+
+    <!-- Color Filter Data Controls -->
+    <GroupBox Margin="987,0,0,10" HorizontalAlignment="Left" VerticalAlignment="Bottom" Canvas.Left="318" BorderBrush="White" Canvas.Top="-8" Height="56" Width="127" Grid.Row="1" Grid.Column="0">
+      <GroupBox.Header>
+        <TextBlock Text="Color Filter Data:" Foreground="White"/>
+      </GroupBox.Header>
+      <Canvas Height="33" Margin="0,0,-2,0">
+
+        <!-- Color Filter Data Controls -->
+        <Label x:Name="TotalColors" Height="16" Width="79" FontSize="11" FontFamily="Microsoft Sans Serif" TabIndex="43" HorizontalAlignment="Left" VerticalAlignment="Center" Content="Total Colors -----" Canvas.Left="1" Canvas.Top="3" />
+        <Label x:Name="TotalColorsData" Height="12" Width="33" FontSize="11" FontFamily="Microsoft Sans Serif" TabIndex="44" HorizontalAlignment="Left" VerticalAlignment="Center" Canvas.Left="84" Canvas.Top="3" Content="0" />
+        <Label x:Name="FilteredColors" Height="15" Width="79" FontSize="11" FontFamily="Microsoft Sans Serif" TabIndex="45" HorizontalAlignment="Center" VerticalAlignment="Top" Content="Filtered Colors --" Canvas.Left="1" Canvas.Top="19" />
+        <Label x:Name="FilteredColorsData" Height="12" Width="33" FontSize="11" FontFamily="Microsoft Sans Serif" TabIndex="46" HorizontalAlignment="Center" VerticalAlignment="Top" Canvas.Left="84" Canvas.Top="19" Content="0" />
+      </Canvas>
+    </GroupBox>
+
+    <!-- Pixel Art Statistics GroupBox -->
+    <GroupBox Margin="1119,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center" BorderBrush="White" Height="156" Width="327" Grid.Row="1" Grid.Column="0">
+      <GroupBox.Header>
+        <TextBlock Text="Pixel Art Statistics:" Foreground="White"/>
+      </GroupBox.Header>
+      <Canvas Height="135" Margin="0,0,3,0">
+
+        <!-- Pixelart Statistics Controls -->
+        <Label x:Name="TotalHeight" Height="19" Width="79" FontSize="11" FontFamily="Microsoft Sans Serif" TabIndex="47" HorizontalAlignment="Center" VerticalAlignment="Top" Content="Total Height ------" Canvas.Left="6" Canvas.Top="6" />
+        <Label x:Name="TotalHeightData" Height="12" Width="80" FontSize="11" FontFamily="Microsoft Sans Serif" TabIndex="48" HorizontalAlignment="Center" VerticalAlignment="Top" Canvas.Left="89" Canvas.Top="6" Content="0" />
+        <Label x:Name="TotalWidth" Height="19" Width="78" FontSize="11" FontFamily="Microsoft Sans Serif" TabIndex="49" HorizontalAlignment="Center" VerticalAlignment="Top" Content="Total Width ------" Canvas.Left="6" Canvas.Top="24" />
+        <Label x:Name="TotalWidthData" Height="12" Width="80" FontSize="11" FontFamily="Microsoft Sans Serif" TabIndex="50" HorizontalAlignment="Center" VerticalAlignment="Top" Canvas.Left="89" Canvas.Top="24" Content="0" />
+        <Label x:Name="TotalBlocks" Height="19" Width="79" FontSize="11" FontFamily="Microsoft Sans Serif" TabIndex="51" HorizontalAlignment="Center" VerticalAlignment="Top" Content="Total Blocks ------" Canvas.Left="6" Canvas.Top="42" />
+        <Label x:Name="TotalBlocksData" Height="15" Width="80" FontSize="11" FontFamily="Microsoft Sans Serif" TabIndex="52" HorizontalAlignment="Center" VerticalAlignment="Top" Canvas.Left="89" Canvas.Top="42" Content="0" />
+
+        <CheckBox x:Name="GenerateSchematic" Height="19" Width="130" TabIndex="53" HorizontalAlignment="Right" VerticalAlignment="Center" IsChecked="False" Canvas.Left="182" Content="Generate Schematic" ToolTip="Generate schematic file while rendering pixel art (slight speed impact)." />
+        <CheckBox x:Name="GatherStatistics" Height="14" Width="120" TabIndex="54" HorizontalAlignment="Right" VerticalAlignment="Center" IsChecked="False" Canvas.Left="182" Canvas.Top="19" Content="Gather Statistics" ToolTip="Record pixelart statistics." />
+        <CheckBox x:Name="ProgressBar" Height="19" Width="96" TabIndex="55" HorizontalAlignment="Right" VerticalAlignment="Center" IsChecked="False" Canvas.Left="182" Canvas.Top="38" Content="Progress Bar" ToolTip="Show the pixel art progression (slight speed impact)." />
+
+        <Label x:Name="CurrentImage" Height="20" Width="78" FontSize="11" FontFamily="Microsoft Sans Serif" TabIndex="56" HorizontalAlignment="Center" VerticalAlignment="Top" Canvas.Left="6" Canvas.Top="69" Content="Current Image:" />
+        <TextBox x:Name="CurrentImageData" Height="18" FontSize="11" Width="222" TabIndex="57" HorizontalAlignment="Center" VerticalAlignment="Top" IsReadOnly="True" TextWrapping="Wrap" Text="Default" Canvas.Left="89" Canvas.Top="67" />
+        <Label x:Name="SaveDirectory" Height="18" Width="78" FontSize="11" FontFamily="Microsoft Sans Serif" TabIndex="58" HorizontalAlignment="Center" VerticalAlignment="Top" Canvas.Left="6" Canvas.Top="91" Content="Save Directory:" />
+        <TextBox x:Name="SaveDirectoryData" Height="18" FontSize="11" Width="222" TabIndex="59" HorizontalAlignment="Center" VerticalAlignment="Top" IsReadOnly="True" TextWrapping="Wrap" Text="None" Canvas.Left="89" Canvas.Top="89" />
+
+        <Label x:Name="Progress" Height="15" Width="52" FontSize="11" FontFamily="Microsoft Sans Serif" TabIndex="60" Background="Transparent" HorizontalAlignment="Center" VerticalAlignment="Top" Content="Progress:" Canvas.Left="6" Canvas.Top="112" />
+        <ProgressBar Name="ProgressBar1" Width="222" Height="18" Minimum="0" Maximum="100" Value="{Binding Path=ProgressValue}" HorizontalAlignment="Center" VerticalAlignment="Top" Canvas.Left="89" Canvas.Top="111"/>
+      </Canvas>
+    </GroupBox>
+  </Grid>
+</Window>
