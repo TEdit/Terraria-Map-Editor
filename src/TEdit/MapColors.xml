@@ -4,7 +4,7 @@
 Terraria MapColors.XML Specifications
 ====================================
 Current Game Ver: Terraria 1.4.4.9
-Current File Ver: 0.3
+Current File Ver: 0.4
 Primary URL: https://github.com/TEdit/Terraria-Map-Editor/tree/main/src/TEdit/MapColors.xml
 ====================================
 
@@ -1688,37 +1688,37 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Tile Id="54" Name="Glass" Paint="28" Color="#FFFEB17C" BuildSafe="True" />
         <Tile Id="54" Name="Glass" Paint="29" Color="#FF070707" BuildSafe="True" />
         <Tile Id="54" Name="Glass" Paint="30" Color="#FF370901" BuildSafe="True" />
-        <Tile Id="55" Name="Signs" Paint="0" Color="#FFBF8E6F" BuildSafe="True" />
-        <Tile Id="55" Name="Signs" Paint="1" Color="#FFBF0000" BuildSafe="True" />
-        <Tile Id="55" Name="Signs" Paint="2" Color="#FFBF5F00" BuildSafe="True" />
-        <Tile Id="55" Name="Signs" Paint="3" Color="#FFBFBF00" BuildSafe="True" />
-        <Tile Id="55" Name="Signs" Paint="4" Color="#FF5FBF00" BuildSafe="True" />
-        <Tile Id="55" Name="Signs" Paint="5" Color="#FF00BF00" BuildSafe="True" />
-        <Tile Id="55" Name="Signs" Paint="6" Color="#FF00BF5F" BuildSafe="True" />
-        <Tile Id="55" Name="Signs" Paint="7" Color="#FF00BFBF" BuildSafe="True" />
-        <Tile Id="55" Name="Signs" Paint="8" Color="#FF005FBF" BuildSafe="True" />
-        <Tile Id="55" Name="Signs" Paint="9" Color="#FF0000BF" BuildSafe="True" />
-        <Tile Id="55" Name="Signs" Paint="10" Color="#FF5F00BF" BuildSafe="True" />
-        <Tile Id="55" Name="Signs" Paint="11" Color="#FFBF00BF" BuildSafe="True" />
-        <Tile Id="55" Name="Signs" Paint="12" Color="#FFBF005F" BuildSafe="True" />
-        <Tile Id="55" Name="Signs" Paint="13" Color="#FFBF0000" BuildSafe="True" />
-        <Tile Id="55" Name="Signs" Paint="14" Color="#FFBF5F00" BuildSafe="True" />
-        <Tile Id="55" Name="Signs" Paint="15" Color="#FFBFBF00" BuildSafe="True" />
-        <Tile Id="55" Name="Signs" Paint="16" Color="#FF5FBF00" BuildSafe="True" />
-        <Tile Id="55" Name="Signs" Paint="17" Color="#FF00BF00" BuildSafe="True" />
-        <Tile Id="55" Name="Signs" Paint="18" Color="#FF00BF5F" BuildSafe="True" />
-        <Tile Id="55" Name="Signs" Paint="19" Color="#FF00BFBF" BuildSafe="True" />
-        <Tile Id="55" Name="Signs" Paint="20" Color="#FF005FBF" BuildSafe="True" />
-        <Tile Id="55" Name="Signs" Paint="21" Color="#FF0000BF" BuildSafe="True" />
-        <Tile Id="55" Name="Signs" Paint="22" Color="#FF5F00BF" BuildSafe="True" />
-        <Tile Id="55" Name="Signs" Paint="23" Color="#FFBF00BF" BuildSafe="True" />
-        <Tile Id="55" Name="Signs" Paint="24" Color="#FFBF005F" BuildSafe="True" />
-        <Tile Id="55" Name="Signs" Paint="25" Color="#FF383838" BuildSafe="True" />
-        <Tile Id="55" Name="Signs" Paint="26" Color="#FFBFBFBF" BuildSafe="True" />
-        <Tile Id="55" Name="Signs" Paint="27" Color="#FF838383" BuildSafe="True" />
-        <Tile Id="55" Name="Signs" Paint="28" Color="#FFBF855D" BuildSafe="True" />
-        <Tile Id="55" Name="Signs" Paint="29" Color="#FF030303" BuildSafe="True" />
-        <Tile Id="55" Name="Signs" Paint="30" Color="#FF407190" BuildSafe="True" />
+        <Tile Id="55" Name="Signs" Paint="0" Color="#FFBF8E6F" BuildSafe="False" />
+        <Tile Id="55" Name="Signs" Paint="1" Color="#FFBF0000" BuildSafe="False" />
+        <Tile Id="55" Name="Signs" Paint="2" Color="#FFBF5F00" BuildSafe="False" />
+        <Tile Id="55" Name="Signs" Paint="3" Color="#FFBFBF00" BuildSafe="False" />
+        <Tile Id="55" Name="Signs" Paint="4" Color="#FF5FBF00" BuildSafe="False" />
+        <Tile Id="55" Name="Signs" Paint="5" Color="#FF00BF00" BuildSafe="False" />
+        <Tile Id="55" Name="Signs" Paint="6" Color="#FF00BF5F" BuildSafe="False" />
+        <Tile Id="55" Name="Signs" Paint="7" Color="#FF00BFBF" BuildSafe="False" />
+        <Tile Id="55" Name="Signs" Paint="8" Color="#FF005FBF" BuildSafe="False" />
+        <Tile Id="55" Name="Signs" Paint="9" Color="#FF0000BF" BuildSafe="False" />
+        <Tile Id="55" Name="Signs" Paint="10" Color="#FF5F00BF" BuildSafe="False" />
+        <Tile Id="55" Name="Signs" Paint="11" Color="#FFBF00BF" BuildSafe="False" />
+        <Tile Id="55" Name="Signs" Paint="12" Color="#FFBF005F" BuildSafe="False" />
+        <Tile Id="55" Name="Signs" Paint="13" Color="#FFBF0000" BuildSafe="False" />
+        <Tile Id="55" Name="Signs" Paint="14" Color="#FFBF5F00" BuildSafe="False" />
+        <Tile Id="55" Name="Signs" Paint="15" Color="#FFBFBF00" BuildSafe="False" />
+        <Tile Id="55" Name="Signs" Paint="16" Color="#FF5FBF00" BuildSafe="False" />
+        <Tile Id="55" Name="Signs" Paint="17" Color="#FF00BF00" BuildSafe="False" />
+        <Tile Id="55" Name="Signs" Paint="18" Color="#FF00BF5F" BuildSafe="False" />
+        <Tile Id="55" Name="Signs" Paint="19" Color="#FF00BFBF" BuildSafe="False" />
+        <Tile Id="55" Name="Signs" Paint="20" Color="#FF005FBF" BuildSafe="False" />
+        <Tile Id="55" Name="Signs" Paint="21" Color="#FF0000BF" BuildSafe="False" />
+        <Tile Id="55" Name="Signs" Paint="22" Color="#FF5F00BF" BuildSafe="False" />
+        <Tile Id="55" Name="Signs" Paint="23" Color="#FFBF00BF" BuildSafe="False" />
+        <Tile Id="55" Name="Signs" Paint="24" Color="#FFBF005F" BuildSafe="False" />
+        <Tile Id="55" Name="Signs" Paint="25" Color="#FF383838" BuildSafe="False" />
+        <Tile Id="55" Name="Signs" Paint="26" Color="#FFBFBFBF" BuildSafe="False" />
+        <Tile Id="55" Name="Signs" Paint="27" Color="#FF838383" BuildSafe="False" />
+        <Tile Id="55" Name="Signs" Paint="28" Color="#FFBF855D" BuildSafe="False" />
+        <Tile Id="55" Name="Signs" Paint="29" Color="#FF030303" BuildSafe="False" />
+        <Tile Id="55" Name="Signs" Paint="30" Color="#FF407190" BuildSafe="False" />
         <Tile Id="56" Name="Obsidian" Paint="0" Color="#FF2B2854" BuildSafe="True" />
         <Tile Id="56" Name="Obsidian" Paint="1" Color="#FF540000" BuildSafe="True" />
         <Tile Id="56" Name="Obsidian" Paint="2" Color="#FF542900" BuildSafe="True" />
@@ -2618,37 +2618,37 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Tile Id="84" Name="BloomingHerbs" Paint="28" Color="#FFF6AB78" BuildSafe="False" />
         <Tile Id="84" Name="BloomingHerbs" Paint="29" Color="#FF000000" BuildSafe="False" />
         <Tile Id="84" Name="BloomingHerbs" Paint="30" Color="#FF093AE5" BuildSafe="False" />
-        <Tile Id="85" Name="Tombstones" Paint="0" Color="#FFC0C0C0" BuildSafe="True" />
-        <Tile Id="85" Name="Tombstones" Paint="1" Color="#FFC00000" BuildSafe="True" />
-        <Tile Id="85" Name="Tombstones" Paint="2" Color="#FFC05F00" BuildSafe="True" />
-        <Tile Id="85" Name="Tombstones" Paint="3" Color="#FFC0C000" BuildSafe="True" />
-        <Tile Id="85" Name="Tombstones" Paint="4" Color="#FF5FC000" BuildSafe="True" />
-        <Tile Id="85" Name="Tombstones" Paint="5" Color="#FF00C000" BuildSafe="True" />
-        <Tile Id="85" Name="Tombstones" Paint="6" Color="#FF00C05F" BuildSafe="True" />
-        <Tile Id="85" Name="Tombstones" Paint="7" Color="#FF00C0C0" BuildSafe="True" />
-        <Tile Id="85" Name="Tombstones" Paint="8" Color="#FF005FC0" BuildSafe="True" />
-        <Tile Id="85" Name="Tombstones" Paint="9" Color="#FF0000C0" BuildSafe="True" />
-        <Tile Id="85" Name="Tombstones" Paint="10" Color="#FF5F00C0" BuildSafe="True" />
-        <Tile Id="85" Name="Tombstones" Paint="11" Color="#FFC000C0" BuildSafe="True" />
-        <Tile Id="85" Name="Tombstones" Paint="12" Color="#FFC0005F" BuildSafe="True" />
-        <Tile Id="85" Name="Tombstones" Paint="13" Color="#FFC00000" BuildSafe="True" />
-        <Tile Id="85" Name="Tombstones" Paint="14" Color="#FFC05F00" BuildSafe="True" />
-        <Tile Id="85" Name="Tombstones" Paint="15" Color="#FFC0C000" BuildSafe="True" />
-        <Tile Id="85" Name="Tombstones" Paint="16" Color="#FF5FC000" BuildSafe="True" />
-        <Tile Id="85" Name="Tombstones" Paint="17" Color="#FF00C000" BuildSafe="True" />
-        <Tile Id="85" Name="Tombstones" Paint="18" Color="#FF00C05F" BuildSafe="True" />
-        <Tile Id="85" Name="Tombstones" Paint="19" Color="#FF00C0C0" BuildSafe="True" />
-        <Tile Id="85" Name="Tombstones" Paint="20" Color="#FF005FC0" BuildSafe="True" />
-        <Tile Id="85" Name="Tombstones" Paint="21" Color="#FF0000C0" BuildSafe="True" />
-        <Tile Id="85" Name="Tombstones" Paint="22" Color="#FF5F00C0" BuildSafe="True" />
-        <Tile Id="85" Name="Tombstones" Paint="23" Color="#FFC000C0" BuildSafe="True" />
-        <Tile Id="85" Name="Tombstones" Paint="24" Color="#FFC0005F" BuildSafe="True" />
-        <Tile Id="85" Name="Tombstones" Paint="25" Color="#FF383838" BuildSafe="True" />
-        <Tile Id="85" Name="Tombstones" Paint="26" Color="#FFC0C0C0" BuildSafe="True" />
-        <Tile Id="85" Name="Tombstones" Paint="27" Color="#FF838383" BuildSafe="True" />
-        <Tile Id="85" Name="Tombstones" Paint="28" Color="#FFC0865E" BuildSafe="True" />
-        <Tile Id="85" Name="Tombstones" Paint="29" Color="#FF050505" BuildSafe="True" />
-        <Tile Id="85" Name="Tombstones" Paint="30" Color="#FF3F3F3F" BuildSafe="True" />
+        <Tile Id="85" Name="Tombstones" Paint="0" Color="#FFC0C0C0" BuildSafe="False" />
+        <Tile Id="85" Name="Tombstones" Paint="1" Color="#FFC00000" BuildSafe="False" />
+        <Tile Id="85" Name="Tombstones" Paint="2" Color="#FFC05F00" BuildSafe="False" />
+        <Tile Id="85" Name="Tombstones" Paint="3" Color="#FFC0C000" BuildSafe="False" />
+        <Tile Id="85" Name="Tombstones" Paint="4" Color="#FF5FC000" BuildSafe="False" />
+        <Tile Id="85" Name="Tombstones" Paint="5" Color="#FF00C000" BuildSafe="False" />
+        <Tile Id="85" Name="Tombstones" Paint="6" Color="#FF00C05F" BuildSafe="False" />
+        <Tile Id="85" Name="Tombstones" Paint="7" Color="#FF00C0C0" BuildSafe="False" />
+        <Tile Id="85" Name="Tombstones" Paint="8" Color="#FF005FC0" BuildSafe="False" />
+        <Tile Id="85" Name="Tombstones" Paint="9" Color="#FF0000C0" BuildSafe="False" />
+        <Tile Id="85" Name="Tombstones" Paint="10" Color="#FF5F00C0" BuildSafe="False" />
+        <Tile Id="85" Name="Tombstones" Paint="11" Color="#FFC000C0" BuildSafe="False" />
+        <Tile Id="85" Name="Tombstones" Paint="12" Color="#FFC0005F" BuildSafe="False" />
+        <Tile Id="85" Name="Tombstones" Paint="13" Color="#FFC00000" BuildSafe="False" />
+        <Tile Id="85" Name="Tombstones" Paint="14" Color="#FFC05F00" BuildSafe="False" />
+        <Tile Id="85" Name="Tombstones" Paint="15" Color="#FFC0C000" BuildSafe="False" />
+        <Tile Id="85" Name="Tombstones" Paint="16" Color="#FF5FC000" BuildSafe="False" />
+        <Tile Id="85" Name="Tombstones" Paint="17" Color="#FF00C000" BuildSafe="False" />
+        <Tile Id="85" Name="Tombstones" Paint="18" Color="#FF00C05F" BuildSafe="False" />
+        <Tile Id="85" Name="Tombstones" Paint="19" Color="#FF00C0C0" BuildSafe="False" />
+        <Tile Id="85" Name="Tombstones" Paint="20" Color="#FF005FC0" BuildSafe="False" />
+        <Tile Id="85" Name="Tombstones" Paint="21" Color="#FF0000C0" BuildSafe="False" />
+        <Tile Id="85" Name="Tombstones" Paint="22" Color="#FF5F00C0" BuildSafe="False" />
+        <Tile Id="85" Name="Tombstones" Paint="23" Color="#FFC000C0" BuildSafe="False" />
+        <Tile Id="85" Name="Tombstones" Paint="24" Color="#FFC0005F" BuildSafe="False" />
+        <Tile Id="85" Name="Tombstones" Paint="25" Color="#FF383838" BuildSafe="False" />
+        <Tile Id="85" Name="Tombstones" Paint="26" Color="#FFC0C0C0" BuildSafe="False" />
+        <Tile Id="85" Name="Tombstones" Paint="27" Color="#FF838383" BuildSafe="False" />
+        <Tile Id="85" Name="Tombstones" Paint="28" Color="#FFC0865E" BuildSafe="False" />
+        <Tile Id="85" Name="Tombstones" Paint="29" Color="#FF050505" BuildSafe="False" />
+        <Tile Id="85" Name="Tombstones" Paint="30" Color="#FF3F3F3F" BuildSafe="False" />
         <Tile Id="86" Name="Loom" Paint="0" Color="#FFBF8E6F" BuildSafe="True" />
         <Tile Id="86" Name="Loom" Paint="1" Color="#FFBF0000" BuildSafe="True" />
         <Tile Id="86" Name="Loom" Paint="2" Color="#FFBF5F00" BuildSafe="True" />
@@ -4540,37 +4540,37 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Tile Id="146" Name="GreenCandyCaneBlock" Paint="28" Color="#FFC0865E" BuildSafe="True" />
         <Tile Id="146" Name="GreenCandyCaneBlock" Paint="29" Color="#FF000000" BuildSafe="True" />
         <Tile Id="146" Name="GreenCandyCaneBlock" Paint="30" Color="#FFD43FE1" BuildSafe="True" />
-        <Tile Id="147" Name="SnowBlock" Paint="0" Color="#FFD3ECF1" BuildSafe="True" />
-        <Tile Id="147" Name="SnowBlock" Paint="1" Color="#FFF10000" BuildSafe="True" />
-        <Tile Id="147" Name="SnowBlock" Paint="2" Color="#FFF17800" BuildSafe="True" />
-        <Tile Id="147" Name="SnowBlock" Paint="3" Color="#FFF1F100" BuildSafe="True" />
-        <Tile Id="147" Name="SnowBlock" Paint="4" Color="#FF78F100" BuildSafe="True" />
-        <Tile Id="147" Name="SnowBlock" Paint="5" Color="#FF00F100" BuildSafe="True" />
-        <Tile Id="147" Name="SnowBlock" Paint="6" Color="#FF00F178" BuildSafe="True" />
-        <Tile Id="147" Name="SnowBlock" Paint="7" Color="#FF00F1F1" BuildSafe="True" />
-        <Tile Id="147" Name="SnowBlock" Paint="8" Color="#FF0078F1" BuildSafe="True" />
-        <Tile Id="147" Name="SnowBlock" Paint="9" Color="#FF0000F1" BuildSafe="True" />
-        <Tile Id="147" Name="SnowBlock" Paint="10" Color="#FF7800F1" BuildSafe="True" />
-        <Tile Id="147" Name="SnowBlock" Paint="11" Color="#FFF100F1" BuildSafe="True" />
-        <Tile Id="147" Name="SnowBlock" Paint="12" Color="#FFF10078" BuildSafe="True" />
-        <Tile Id="147" Name="SnowBlock" Paint="13" Color="#FFF10000" BuildSafe="True" />
-        <Tile Id="147" Name="SnowBlock" Paint="14" Color="#FFF17800" BuildSafe="True" />
-        <Tile Id="147" Name="SnowBlock" Paint="15" Color="#FFF1F100" BuildSafe="True" />
-        <Tile Id="147" Name="SnowBlock" Paint="16" Color="#FF78F100" BuildSafe="True" />
-        <Tile Id="147" Name="SnowBlock" Paint="17" Color="#FF00F100" BuildSafe="True" />
-        <Tile Id="147" Name="SnowBlock" Paint="18" Color="#FF00F178" BuildSafe="True" />
-        <Tile Id="147" Name="SnowBlock" Paint="19" Color="#FF00F1F1" BuildSafe="True" />
-        <Tile Id="147" Name="SnowBlock" Paint="20" Color="#FF0078F1" BuildSafe="True" />
-        <Tile Id="147" Name="SnowBlock" Paint="21" Color="#FF0000F1" BuildSafe="True" />
-        <Tile Id="147" Name="SnowBlock" Paint="22" Color="#FF7800F1" BuildSafe="True" />
-        <Tile Id="147" Name="SnowBlock" Paint="23" Color="#FFF100F1" BuildSafe="True" />
-        <Tile Id="147" Name="SnowBlock" Paint="24" Color="#FFF10078" BuildSafe="True" />
-        <Tile Id="147" Name="SnowBlock" Paint="25" Color="#FF464646" BuildSafe="True" />
-        <Tile Id="147" Name="SnowBlock" Paint="26" Color="#FFF1F1F1" BuildSafe="True" />
-        <Tile Id="147" Name="SnowBlock" Paint="27" Color="#FFA5A5A5" BuildSafe="True" />
-        <Tile Id="147" Name="SnowBlock" Paint="28" Color="#FFF1A876" BuildSafe="True" />
-        <Tile Id="147" Name="SnowBlock" Paint="29" Color="#FF060606" BuildSafe="True" />
-        <Tile Id="147" Name="SnowBlock" Paint="30" Color="#FF2C130E" BuildSafe="True" />
+        <Tile Id="147" Name="SnowBlock" Paint="0" Color="#FFD3ECF1" BuildSafe="False" />
+        <Tile Id="147" Name="SnowBlock" Paint="1" Color="#FFF10000" BuildSafe="False" />
+        <Tile Id="147" Name="SnowBlock" Paint="2" Color="#FFF17800" BuildSafe="False" />
+        <Tile Id="147" Name="SnowBlock" Paint="3" Color="#FFF1F100" BuildSafe="False" />
+        <Tile Id="147" Name="SnowBlock" Paint="4" Color="#FF78F100" BuildSafe="False" />
+        <Tile Id="147" Name="SnowBlock" Paint="5" Color="#FF00F100" BuildSafe="False" />
+        <Tile Id="147" Name="SnowBlock" Paint="6" Color="#FF00F178" BuildSafe="False" />
+        <Tile Id="147" Name="SnowBlock" Paint="7" Color="#FF00F1F1" BuildSafe="False" />
+        <Tile Id="147" Name="SnowBlock" Paint="8" Color="#FF0078F1" BuildSafe="False" />
+        <Tile Id="147" Name="SnowBlock" Paint="9" Color="#FF0000F1" BuildSafe="False" />
+        <Tile Id="147" Name="SnowBlock" Paint="10" Color="#FF7800F1" BuildSafe="False" />
+        <Tile Id="147" Name="SnowBlock" Paint="11" Color="#FFF100F1" BuildSafe="False" />
+        <Tile Id="147" Name="SnowBlock" Paint="12" Color="#FFF10078" BuildSafe="False" />
+        <Tile Id="147" Name="SnowBlock" Paint="13" Color="#FFF10000" BuildSafe="False" />
+        <Tile Id="147" Name="SnowBlock" Paint="14" Color="#FFF17800" BuildSafe="False" />
+        <Tile Id="147" Name="SnowBlock" Paint="15" Color="#FFF1F100" BuildSafe="False" />
+        <Tile Id="147" Name="SnowBlock" Paint="16" Color="#FF78F100" BuildSafe="False" />
+        <Tile Id="147" Name="SnowBlock" Paint="17" Color="#FF00F100" BuildSafe="False" />
+        <Tile Id="147" Name="SnowBlock" Paint="18" Color="#FF00F178" BuildSafe="False" />
+        <Tile Id="147" Name="SnowBlock" Paint="19" Color="#FF00F1F1" BuildSafe="False" />
+        <Tile Id="147" Name="SnowBlock" Paint="20" Color="#FF0078F1" BuildSafe="False" />
+        <Tile Id="147" Name="SnowBlock" Paint="21" Color="#FF0000F1" BuildSafe="False" />
+        <Tile Id="147" Name="SnowBlock" Paint="22" Color="#FF7800F1" BuildSafe="False" />
+        <Tile Id="147" Name="SnowBlock" Paint="23" Color="#FFF100F1" BuildSafe="False" />
+        <Tile Id="147" Name="SnowBlock" Paint="24" Color="#FFF10078" BuildSafe="False" />
+        <Tile Id="147" Name="SnowBlock" Paint="25" Color="#FF464646" BuildSafe="False" />
+        <Tile Id="147" Name="SnowBlock" Paint="26" Color="#FFF1F1F1" BuildSafe="False" />
+        <Tile Id="147" Name="SnowBlock" Paint="27" Color="#FFA5A5A5" BuildSafe="False" />
+        <Tile Id="147" Name="SnowBlock" Paint="28" Color="#FFF1A876" BuildSafe="False" />
+        <Tile Id="147" Name="SnowBlock" Paint="29" Color="#FF060606" BuildSafe="False" />
+        <Tile Id="147" Name="SnowBlock" Paint="30" Color="#FF2C130E" BuildSafe="False" />
         <Tile Id="148" Name="SnowBrick" Paint="0" Color="#FFD3ECF1" BuildSafe="True" />
         <Tile Id="148" Name="SnowBrick" Paint="1" Color="#FFF10000" BuildSafe="True" />
         <Tile Id="148" Name="SnowBrick" Paint="2" Color="#FFF17800" BuildSafe="True" />
@@ -4602,7 +4602,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Tile Id="148" Name="SnowBrick" Paint="28" Color="#FFF1A876" BuildSafe="True" />
         <Tile Id="148" Name="SnowBrick" Paint="29" Color="#FF060606" BuildSafe="True" />
         <Tile Id="148" Name="SnowBrick" Paint="30" Color="#FF2C130E" BuildSafe="True" />
-        <Tile Id="149" Name="HolidayLights" Paint="0" Color="#FFDC3232" BuildSafe="True" />
+        <Tile Id="149" Name="HolidayLights" Paint="0" Color="#FFDC3232" BuildSafe="False" />
         <Tile Id="149" Name="HolidayLights" Paint="1" Color="#FFDC0000" BuildSafe="True" />
         <Tile Id="149" Name="HolidayLights" Paint="2" Color="#FFDC6D00" BuildSafe="True" />
         <Tile Id="149" Name="HolidayLights" Paint="3" Color="#FFDCDC00" BuildSafe="True" />
@@ -4632,7 +4632,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Tile Id="149" Name="HolidayLights" Paint="27" Color="#FF969696" BuildSafe="True" />
         <Tile Id="149" Name="HolidayLights" Paint="28" Color="#FFDC996B" BuildSafe="True" />
         <Tile Id="149" Name="HolidayLights" Paint="29" Color="#FF010101" BuildSafe="True" />
-        <Tile Id="149" Name="HolidayLights" Paint="30" Color="#FF23CDCD" BuildSafe="True" />
+        <Tile Id="149" Name="HolidayLights" Paint="30" Color="#FF23CDCD" BuildSafe="False" />
         <Tile Id="150" Name="AdamantiteBeam" Paint="0" Color="#FF801A34" BuildSafe="True" />
         <Tile Id="150" Name="AdamantiteBeam" Paint="1" Color="#FF800000" BuildSafe="True" />
         <Tile Id="150" Name="AdamantiteBeam" Paint="2" Color="#FF803F00" BuildSafe="True" />
@@ -15793,68 +15793,68 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Tile Id="509" Name="VoidMonolith" Paint="28" Color="#FF3C291D" BuildSafe="True" />
         <Tile Id="509" Name="VoidMonolith" Paint="29" Color="#FF010101" BuildSafe="True" />
         <Tile Id="509" Name="VoidMonolith" Paint="30" Color="#FFCDCDC3" BuildSafe="True" />
-        <Tile Id="510" Name="ArrowSign" Paint="0" Color="#FFBF8E6F" BuildSafe="True" />
-        <Tile Id="510" Name="ArrowSign" Paint="1" Color="#FFBF0000" BuildSafe="True" />
-        <Tile Id="510" Name="ArrowSign" Paint="2" Color="#FFBF5F00" BuildSafe="True" />
-        <Tile Id="510" Name="ArrowSign" Paint="3" Color="#FFBFBF00" BuildSafe="True" />
-        <Tile Id="510" Name="ArrowSign" Paint="4" Color="#FF5FBF00" BuildSafe="True" />
-        <Tile Id="510" Name="ArrowSign" Paint="5" Color="#FF00BF00" BuildSafe="True" />
-        <Tile Id="510" Name="ArrowSign" Paint="6" Color="#FF00BF5F" BuildSafe="True" />
-        <Tile Id="510" Name="ArrowSign" Paint="7" Color="#FF00BFBF" BuildSafe="True" />
-        <Tile Id="510" Name="ArrowSign" Paint="8" Color="#FF005FBF" BuildSafe="True" />
-        <Tile Id="510" Name="ArrowSign" Paint="9" Color="#FF0000BF" BuildSafe="True" />
-        <Tile Id="510" Name="ArrowSign" Paint="10" Color="#FF5F00BF" BuildSafe="True" />
-        <Tile Id="510" Name="ArrowSign" Paint="11" Color="#FFBF00BF" BuildSafe="True" />
-        <Tile Id="510" Name="ArrowSign" Paint="12" Color="#FFBF005F" BuildSafe="True" />
-        <Tile Id="510" Name="ArrowSign" Paint="13" Color="#FFBF0000" BuildSafe="True" />
-        <Tile Id="510" Name="ArrowSign" Paint="14" Color="#FFBF5F00" BuildSafe="True" />
-        <Tile Id="510" Name="ArrowSign" Paint="15" Color="#FFBFBF00" BuildSafe="True" />
-        <Tile Id="510" Name="ArrowSign" Paint="16" Color="#FF5FBF00" BuildSafe="True" />
-        <Tile Id="510" Name="ArrowSign" Paint="17" Color="#FF00BF00" BuildSafe="True" />
-        <Tile Id="510" Name="ArrowSign" Paint="18" Color="#FF00BF5F" BuildSafe="True" />
-        <Tile Id="510" Name="ArrowSign" Paint="19" Color="#FF00BFBF" BuildSafe="True" />
-        <Tile Id="510" Name="ArrowSign" Paint="20" Color="#FF005FBF" BuildSafe="True" />
-        <Tile Id="510" Name="ArrowSign" Paint="21" Color="#FF0000BF" BuildSafe="True" />
-        <Tile Id="510" Name="ArrowSign" Paint="22" Color="#FF5F00BF" BuildSafe="True" />
-        <Tile Id="510" Name="ArrowSign" Paint="23" Color="#FFBF00BF" BuildSafe="True" />
-        <Tile Id="510" Name="ArrowSign" Paint="24" Color="#FFBF005F" BuildSafe="True" />
-        <Tile Id="510" Name="ArrowSign" Paint="25" Color="#FF383838" BuildSafe="True" />
-        <Tile Id="510" Name="ArrowSign" Paint="26" Color="#FFBFBFBF" BuildSafe="True" />
-        <Tile Id="510" Name="ArrowSign" Paint="27" Color="#FF838383" BuildSafe="True" />
-        <Tile Id="510" Name="ArrowSign" Paint="28" Color="#FFBF855D" BuildSafe="True" />
-        <Tile Id="510" Name="ArrowSign" Paint="29" Color="#FF030303" BuildSafe="True" />
-        <Tile Id="510" Name="ArrowSign" Paint="30" Color="#FF407190" BuildSafe="True" />
-        <Tile Id="511" Name="PaintedArrowSign" Paint="0" Color="#FFBB444A" BuildSafe="True" />
-        <Tile Id="511" Name="PaintedArrowSign" Paint="1" Color="#FFBB0000" BuildSafe="True" />
-        <Tile Id="511" Name="PaintedArrowSign" Paint="2" Color="#FFBB5D00" BuildSafe="True" />
-        <Tile Id="511" Name="PaintedArrowSign" Paint="3" Color="#FFBBBB00" BuildSafe="True" />
-        <Tile Id="511" Name="PaintedArrowSign" Paint="4" Color="#FF5DBB00" BuildSafe="True" />
-        <Tile Id="511" Name="PaintedArrowSign" Paint="5" Color="#FF00BB00" BuildSafe="True" />
-        <Tile Id="511" Name="PaintedArrowSign" Paint="6" Color="#FF00BB5D" BuildSafe="True" />
-        <Tile Id="511" Name="PaintedArrowSign" Paint="7" Color="#FF00BBBB" BuildSafe="True" />
-        <Tile Id="511" Name="PaintedArrowSign" Paint="8" Color="#FF005DBB" BuildSafe="True" />
-        <Tile Id="511" Name="PaintedArrowSign" Paint="9" Color="#FF0000BB" BuildSafe="True" />
-        <Tile Id="511" Name="PaintedArrowSign" Paint="10" Color="#FF5D00BB" BuildSafe="True" />
-        <Tile Id="511" Name="PaintedArrowSign" Paint="11" Color="#FFBB00BB" BuildSafe="True" />
-        <Tile Id="511" Name="PaintedArrowSign" Paint="12" Color="#FFBB005D" BuildSafe="True" />
-        <Tile Id="511" Name="PaintedArrowSign" Paint="13" Color="#FFBB0000" BuildSafe="True" />
-        <Tile Id="511" Name="PaintedArrowSign" Paint="14" Color="#FFBB5D00" BuildSafe="True" />
-        <Tile Id="511" Name="PaintedArrowSign" Paint="15" Color="#FFBBBB00" BuildSafe="True" />
-        <Tile Id="511" Name="PaintedArrowSign" Paint="16" Color="#FF5DBB00" BuildSafe="True" />
-        <Tile Id="511" Name="PaintedArrowSign" Paint="17" Color="#FF00BB00" BuildSafe="True" />
-        <Tile Id="511" Name="PaintedArrowSign" Paint="18" Color="#FF00BB5D" BuildSafe="True" />
-        <Tile Id="511" Name="PaintedArrowSign" Paint="19" Color="#FF00BBBB" BuildSafe="True" />
-        <Tile Id="511" Name="PaintedArrowSign" Paint="20" Color="#FF005DBB" BuildSafe="True" />
-        <Tile Id="511" Name="PaintedArrowSign" Paint="21" Color="#FF0000BB" BuildSafe="True" />
-        <Tile Id="511" Name="PaintedArrowSign" Paint="22" Color="#FF5D00BB" BuildSafe="True" />
-        <Tile Id="511" Name="PaintedArrowSign" Paint="23" Color="#FFBB00BB" BuildSafe="True" />
-        <Tile Id="511" Name="PaintedArrowSign" Paint="24" Color="#FFBB005D" BuildSafe="True" />
-        <Tile Id="511" Name="PaintedArrowSign" Paint="25" Color="#FF363636" BuildSafe="True" />
-        <Tile Id="511" Name="PaintedArrowSign" Paint="26" Color="#FFBBBBBB" BuildSafe="True" />
-        <Tile Id="511" Name="PaintedArrowSign" Paint="27" Color="#FF808080" BuildSafe="True" />
-        <Tile Id="511" Name="PaintedArrowSign" Paint="28" Color="#FFBB825B" BuildSafe="True" />
-        <Tile Id="511" Name="PaintedArrowSign" Paint="29" Color="#FF020202" BuildSafe="True" />
-        <Tile Id="511" Name="PaintedArrowSign" Paint="30" Color="#FF44BBB5" BuildSafe="True" />
+        <Tile Id="510" Name="ArrowSign" Paint="0" Color="#FFBF8E6F" BuildSafe="False" />
+        <Tile Id="510" Name="ArrowSign" Paint="1" Color="#FFBF0000" BuildSafe="False" />
+        <Tile Id="510" Name="ArrowSign" Paint="2" Color="#FFBF5F00" BuildSafe="False" />
+        <Tile Id="510" Name="ArrowSign" Paint="3" Color="#FFBFBF00" BuildSafe="False" />
+        <Tile Id="510" Name="ArrowSign" Paint="4" Color="#FF5FBF00" BuildSafe="False" />
+        <Tile Id="510" Name="ArrowSign" Paint="5" Color="#FF00BF00" BuildSafe="False" />
+        <Tile Id="510" Name="ArrowSign" Paint="6" Color="#FF00BF5F" BuildSafe="False" />
+        <Tile Id="510" Name="ArrowSign" Paint="7" Color="#FF00BFBF" BuildSafe="False" />
+        <Tile Id="510" Name="ArrowSign" Paint="8" Color="#FF005FBF" BuildSafe="False" />
+        <Tile Id="510" Name="ArrowSign" Paint="9" Color="#FF0000BF" BuildSafe="False" />
+        <Tile Id="510" Name="ArrowSign" Paint="10" Color="#FF5F00BF" BuildSafe="False" />
+        <Tile Id="510" Name="ArrowSign" Paint="11" Color="#FFBF00BF" BuildSafe="False" />
+        <Tile Id="510" Name="ArrowSign" Paint="12" Color="#FFBF005F" BuildSafe="False" />
+        <Tile Id="510" Name="ArrowSign" Paint="13" Color="#FFBF0000" BuildSafe="False" />
+        <Tile Id="510" Name="ArrowSign" Paint="14" Color="#FFBF5F00" BuildSafe="False" />
+        <Tile Id="510" Name="ArrowSign" Paint="15" Color="#FFBFBF00" BuildSafe="False" />
+        <Tile Id="510" Name="ArrowSign" Paint="16" Color="#FF5FBF00" BuildSafe="False" />
+        <Tile Id="510" Name="ArrowSign" Paint="17" Color="#FF00BF00" BuildSafe="False" />
+        <Tile Id="510" Name="ArrowSign" Paint="18" Color="#FF00BF5F" BuildSafe="False" />
+        <Tile Id="510" Name="ArrowSign" Paint="19" Color="#FF00BFBF" BuildSafe="False" />
+        <Tile Id="510" Name="ArrowSign" Paint="20" Color="#FF005FBF" BuildSafe="False" />
+        <Tile Id="510" Name="ArrowSign" Paint="21" Color="#FF0000BF" BuildSafe="False" />
+        <Tile Id="510" Name="ArrowSign" Paint="22" Color="#FF5F00BF" BuildSafe="False" />
+        <Tile Id="510" Name="ArrowSign" Paint="23" Color="#FFBF00BF" BuildSafe="False" />
+        <Tile Id="510" Name="ArrowSign" Paint="24" Color="#FFBF005F" BuildSafe="False" />
+        <Tile Id="510" Name="ArrowSign" Paint="25" Color="#FF383838" BuildSafe="False" />
+        <Tile Id="510" Name="ArrowSign" Paint="26" Color="#FFBFBFBF" BuildSafe="False" />
+        <Tile Id="510" Name="ArrowSign" Paint="27" Color="#FF838383" BuildSafe="False" />
+        <Tile Id="510" Name="ArrowSign" Paint="28" Color="#FFBF855D" BuildSafe="False" />
+        <Tile Id="510" Name="ArrowSign" Paint="29" Color="#FF030303" BuildSafe="False" />
+        <Tile Id="510" Name="ArrowSign" Paint="30" Color="#FF407190" BuildSafe="False" />
+        <Tile Id="511" Name="PaintedArrowSign" Paint="0" Color="#FFBB444A" BuildSafe="False" />
+        <Tile Id="511" Name="PaintedArrowSign" Paint="1" Color="#FFBB0000" BuildSafe="False" />
+        <Tile Id="511" Name="PaintedArrowSign" Paint="2" Color="#FFBB5D00" BuildSafe="False" />
+        <Tile Id="511" Name="PaintedArrowSign" Paint="3" Color="#FFBBBB00" BuildSafe="False" />
+        <Tile Id="511" Name="PaintedArrowSign" Paint="4" Color="#FF5DBB00" BuildSafe="False" />
+        <Tile Id="511" Name="PaintedArrowSign" Paint="5" Color="#FF00BB00" BuildSafe="False" />
+        <Tile Id="511" Name="PaintedArrowSign" Paint="6" Color="#FF00BB5D" BuildSafe="False" />
+        <Tile Id="511" Name="PaintedArrowSign" Paint="7" Color="#FF00BBBB" BuildSafe="False" />
+        <Tile Id="511" Name="PaintedArrowSign" Paint="8" Color="#FF005DBB" BuildSafe="False" />
+        <Tile Id="511" Name="PaintedArrowSign" Paint="9" Color="#FF0000BB" BuildSafe="False" />
+        <Tile Id="511" Name="PaintedArrowSign" Paint="10" Color="#FF5D00BB" BuildSafe="False" />
+        <Tile Id="511" Name="PaintedArrowSign" Paint="11" Color="#FFBB00BB" BuildSafe="False" />
+        <Tile Id="511" Name="PaintedArrowSign" Paint="12" Color="#FFBB005D" BuildSafe="False" />
+        <Tile Id="511" Name="PaintedArrowSign" Paint="13" Color="#FFBB0000" BuildSafe="False" />
+        <Tile Id="511" Name="PaintedArrowSign" Paint="14" Color="#FFBB5D00" BuildSafe="False" />
+        <Tile Id="511" Name="PaintedArrowSign" Paint="15" Color="#FFBBBB00" BuildSafe="False" />
+        <Tile Id="511" Name="PaintedArrowSign" Paint="16" Color="#FF5DBB00" BuildSafe="False" />
+        <Tile Id="511" Name="PaintedArrowSign" Paint="17" Color="#FF00BB00" BuildSafe="False" />
+        <Tile Id="511" Name="PaintedArrowSign" Paint="18" Color="#FF00BB5D" BuildSafe="False" />
+        <Tile Id="511" Name="PaintedArrowSign" Paint="19" Color="#FF00BBBB" BuildSafe="False" />
+        <Tile Id="511" Name="PaintedArrowSign" Paint="20" Color="#FF005DBB" BuildSafe="False" />
+        <Tile Id="511" Name="PaintedArrowSign" Paint="21" Color="#FF0000BB" BuildSafe="False" />
+        <Tile Id="511" Name="PaintedArrowSign" Paint="22" Color="#FF5D00BB" BuildSafe="False" />
+        <Tile Id="511" Name="PaintedArrowSign" Paint="23" Color="#FFBB00BB" BuildSafe="False" />
+        <Tile Id="511" Name="PaintedArrowSign" Paint="24" Color="#FFBB005D" BuildSafe="False" />
+        <Tile Id="511" Name="PaintedArrowSign" Paint="25" Color="#FF363636" BuildSafe="False" />
+        <Tile Id="511" Name="PaintedArrowSign" Paint="26" Color="#FFBBBBBB" BuildSafe="False" />
+        <Tile Id="511" Name="PaintedArrowSign" Paint="27" Color="#FF808080" BuildSafe="False" />
+        <Tile Id="511" Name="PaintedArrowSign" Paint="28" Color="#FFBB825B" BuildSafe="False" />
+        <Tile Id="511" Name="PaintedArrowSign" Paint="29" Color="#FF020202" BuildSafe="False" />
+        <Tile Id="511" Name="PaintedArrowSign" Paint="30" Color="#FF44BBB5" BuildSafe="False" />
         <Tile Id="512" Name="GreenMossBrick" Paint="0" Color="#FF318672" BuildSafe="False" />
         <Tile Id="512" Name="GreenMossBrick" Paint="1" Color="#FF860000" BuildSafe="False" />
         <Tile Id="512" Name="GreenMossBrick" Paint="2" Color="#FF864200" BuildSafe="False" />
@@ -17746,37 +17746,37 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Tile Id="572" Name="SoulBottles" Paint="28" Color="#FFFFB27D" BuildSafe="True" />
         <Tile Id="572" Name="SoulBottles" Paint="29" Color="#FF060606" BuildSafe="True" />
         <Tile Id="572" Name="SoulBottles" Paint="30" Color="#FF00452B" BuildSafe="True" />
-        <Tile Id="573" Name="TatteredWoodSign" Paint="0" Color="#FFBF8E6F" BuildSafe="True" />
-        <Tile Id="573" Name="TatteredWoodSign" Paint="1" Color="#FFBF0000" BuildSafe="True" />
-        <Tile Id="573" Name="TatteredWoodSign" Paint="2" Color="#FFBF5F00" BuildSafe="True" />
-        <Tile Id="573" Name="TatteredWoodSign" Paint="3" Color="#FFBFBF00" BuildSafe="True" />
-        <Tile Id="573" Name="TatteredWoodSign" Paint="4" Color="#FF5FBF00" BuildSafe="True" />
-        <Tile Id="573" Name="TatteredWoodSign" Paint="5" Color="#FF00BF00" BuildSafe="True" />
-        <Tile Id="573" Name="TatteredWoodSign" Paint="6" Color="#FF00BF5F" BuildSafe="True" />
-        <Tile Id="573" Name="TatteredWoodSign" Paint="7" Color="#FF00BFBF" BuildSafe="True" />
-        <Tile Id="573" Name="TatteredWoodSign" Paint="8" Color="#FF005FBF" BuildSafe="True" />
-        <Tile Id="573" Name="TatteredWoodSign" Paint="9" Color="#FF0000BF" BuildSafe="True" />
-        <Tile Id="573" Name="TatteredWoodSign" Paint="10" Color="#FF5F00BF" BuildSafe="True" />
-        <Tile Id="573" Name="TatteredWoodSign" Paint="11" Color="#FFBF00BF" BuildSafe="True" />
-        <Tile Id="573" Name="TatteredWoodSign" Paint="12" Color="#FFBF005F" BuildSafe="True" />
-        <Tile Id="573" Name="TatteredWoodSign" Paint="13" Color="#FFBF0000" BuildSafe="True" />
-        <Tile Id="573" Name="TatteredWoodSign" Paint="14" Color="#FFBF5F00" BuildSafe="True" />
-        <Tile Id="573" Name="TatteredWoodSign" Paint="15" Color="#FFBFBF00" BuildSafe="True" />
-        <Tile Id="573" Name="TatteredWoodSign" Paint="16" Color="#FF5FBF00" BuildSafe="True" />
-        <Tile Id="573" Name="TatteredWoodSign" Paint="17" Color="#FF00BF00" BuildSafe="True" />
-        <Tile Id="573" Name="TatteredWoodSign" Paint="18" Color="#FF00BF5F" BuildSafe="True" />
-        <Tile Id="573" Name="TatteredWoodSign" Paint="19" Color="#FF00BFBF" BuildSafe="True" />
-        <Tile Id="573" Name="TatteredWoodSign" Paint="20" Color="#FF005FBF" BuildSafe="True" />
-        <Tile Id="573" Name="TatteredWoodSign" Paint="21" Color="#FF0000BF" BuildSafe="True" />
-        <Tile Id="573" Name="TatteredWoodSign" Paint="22" Color="#FF5F00BF" BuildSafe="True" />
-        <Tile Id="573" Name="TatteredWoodSign" Paint="23" Color="#FFBF00BF" BuildSafe="True" />
-        <Tile Id="573" Name="TatteredWoodSign" Paint="24" Color="#FFBF005F" BuildSafe="True" />
-        <Tile Id="573" Name="TatteredWoodSign" Paint="25" Color="#FF383838" BuildSafe="True" />
-        <Tile Id="573" Name="TatteredWoodSign" Paint="26" Color="#FFBFBFBF" BuildSafe="True" />
-        <Tile Id="573" Name="TatteredWoodSign" Paint="27" Color="#FF838383" BuildSafe="True" />
-        <Tile Id="573" Name="TatteredWoodSign" Paint="28" Color="#FFBF855D" BuildSafe="True" />
-        <Tile Id="573" Name="TatteredWoodSign" Paint="29" Color="#FF030303" BuildSafe="True" />
-        <Tile Id="573" Name="TatteredWoodSign" Paint="30" Color="#FF407190" BuildSafe="True" />
+        <Tile Id="573" Name="TatteredWoodSign" Paint="0" Color="#FFBF8E6F" BuildSafe="False" />
+        <Tile Id="573" Name="TatteredWoodSign" Paint="1" Color="#FFBF0000" BuildSafe="False" />
+        <Tile Id="573" Name="TatteredWoodSign" Paint="2" Color="#FFBF5F00" BuildSafe="False" />
+        <Tile Id="573" Name="TatteredWoodSign" Paint="3" Color="#FFBFBF00" BuildSafe="False" />
+        <Tile Id="573" Name="TatteredWoodSign" Paint="4" Color="#FF5FBF00" BuildSafe="False" />
+        <Tile Id="573" Name="TatteredWoodSign" Paint="5" Color="#FF00BF00" BuildSafe="False" />
+        <Tile Id="573" Name="TatteredWoodSign" Paint="6" Color="#FF00BF5F" BuildSafe="False" />
+        <Tile Id="573" Name="TatteredWoodSign" Paint="7" Color="#FF00BFBF" BuildSafe="False" />
+        <Tile Id="573" Name="TatteredWoodSign" Paint="8" Color="#FF005FBF" BuildSafe="False" />
+        <Tile Id="573" Name="TatteredWoodSign" Paint="9" Color="#FF0000BF" BuildSafe="False" />
+        <Tile Id="573" Name="TatteredWoodSign" Paint="10" Color="#FF5F00BF" BuildSafe="False" />
+        <Tile Id="573" Name="TatteredWoodSign" Paint="11" Color="#FFBF00BF" BuildSafe="False" />
+        <Tile Id="573" Name="TatteredWoodSign" Paint="12" Color="#FFBF005F" BuildSafe="False" />
+        <Tile Id="573" Name="TatteredWoodSign" Paint="13" Color="#FFBF0000" BuildSafe="False" />
+        <Tile Id="573" Name="TatteredWoodSign" Paint="14" Color="#FFBF5F00" BuildSafe="False" />
+        <Tile Id="573" Name="TatteredWoodSign" Paint="15" Color="#FFBFBF00" BuildSafe="False" />
+        <Tile Id="573" Name="TatteredWoodSign" Paint="16" Color="#FF5FBF00" BuildSafe="False" />
+        <Tile Id="573" Name="TatteredWoodSign" Paint="17" Color="#FF00BF00" BuildSafe="False" />
+        <Tile Id="573" Name="TatteredWoodSign" Paint="18" Color="#FF00BF5F" BuildSafe="False" />
+        <Tile Id="573" Name="TatteredWoodSign" Paint="19" Color="#FF00BFBF" BuildSafe="False" />
+        <Tile Id="573" Name="TatteredWoodSign" Paint="20" Color="#FF005FBF" BuildSafe="False" />
+        <Tile Id="573" Name="TatteredWoodSign" Paint="21" Color="#FF0000BF" BuildSafe="False" />
+        <Tile Id="573" Name="TatteredWoodSign" Paint="22" Color="#FF5F00BF" BuildSafe="False" />
+        <Tile Id="573" Name="TatteredWoodSign" Paint="23" Color="#FFBF00BF" BuildSafe="False" />
+        <Tile Id="573" Name="TatteredWoodSign" Paint="24" Color="#FFBF005F" BuildSafe="False" />
+        <Tile Id="573" Name="TatteredWoodSign" Paint="25" Color="#FF383838" BuildSafe="False" />
+        <Tile Id="573" Name="TatteredWoodSign" Paint="26" Color="#FFBFBFBF" BuildSafe="False" />
+        <Tile Id="573" Name="TatteredWoodSign" Paint="27" Color="#FF838383" BuildSafe="False" />
+        <Tile Id="573" Name="TatteredWoodSign" Paint="28" Color="#FFBF855D" BuildSafe="False" />
+        <Tile Id="573" Name="TatteredWoodSign" Paint="29" Color="#FF030303" BuildSafe="False" />
+        <Tile Id="573" Name="TatteredWoodSign" Paint="30" Color="#FF407190" BuildSafe="False" />
         <Tile Id="574" Name="BorealBeam" Paint="0" Color="#FF4C392C" BuildSafe="True" />
         <Tile Id="574" Name="BorealBeam" Paint="1" Color="#FF4C0000" BuildSafe="True" />
         <Tile Id="574" Name="BorealBeam" Paint="2" Color="#FF4C2500" BuildSafe="True" />
