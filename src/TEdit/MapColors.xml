@@ -4602,7 +4602,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Tile Id="148" Name="SnowBrick" Paint="28" Color="#FFF1A876" BuildSafe="True" />
         <Tile Id="148" Name="SnowBrick" Paint="29" Color="#FF060606" BuildSafe="True" />
         <Tile Id="148" Name="SnowBrick" Paint="30" Color="#FF2C130E" BuildSafe="True" />
-        <Tile Id="149" Name="HolidayLights" Paint="0" Color="#FFDC3232" BuildSafe="True" />
+        <Tile Id="149" Name="HolidayLights" Paint="0" Color="#FFDC3232" BuildSafe="False" />
         <Tile Id="149" Name="HolidayLights" Paint="1" Color="#FFDC0000" BuildSafe="True" />
         <Tile Id="149" Name="HolidayLights" Paint="2" Color="#FFDC6D00" BuildSafe="True" />
         <Tile Id="149" Name="HolidayLights" Paint="3" Color="#FFDCDC00" BuildSafe="True" />
@@ -4632,7 +4632,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Tile Id="149" Name="HolidayLights" Paint="27" Color="#FF969696" BuildSafe="True" />
         <Tile Id="149" Name="HolidayLights" Paint="28" Color="#FFDC996B" BuildSafe="True" />
         <Tile Id="149" Name="HolidayLights" Paint="29" Color="#FF010101" BuildSafe="True" />
-        <Tile Id="149" Name="HolidayLights" Paint="30" Color="#FF23CDCD" BuildSafe="True" />
+        <Tile Id="149" Name="HolidayLights" Paint="30" Color="#FF23CDCD" BuildSafe="False" />
         <Tile Id="150" Name="AdamantiteBeam" Paint="0" Color="#FF801A34" BuildSafe="True" />
         <Tile Id="150" Name="AdamantiteBeam" Paint="1" Color="#FF800000" BuildSafe="True" />
         <Tile Id="150" Name="AdamantiteBeam" Paint="2" Color="#FF803F00" BuildSafe="True" />
