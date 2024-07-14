@@ -32,13 +32,21 @@
   </ItemGroup>
   <ItemGroup>
     <None Remove="Images/**/*" />
+    <None Remove="MapColors.xml" />
     <None Remove="morphSettings.json" />
     <None Remove="npcData.json" />
     <None Remove="settings.xml" />
     <None Remove="TerrariaVersionTileData.json" />
   </ItemGroup>
   <ItemGroup>
-    <SplashScreen Include="Images\te4.png" ExcludeFromSingleFile="true" CopyToOutputDirectory="Always" />
+    <Resource Include="Images\Pixelart\etp.jpg" />
+    <Resource Include="Images\Pixelart\globeTest.png" />
+    <SplashScreen Include="Images\te5.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </SplashScreen>
+    <Content Include="MapColors.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="morphSettings.json" ExcludeFromSingleFile="true" CopyToOutputDirectory="Always" />
     <Content Include="npcData.json" ExcludeFromSingleFile="true" CopyToOutputDirectory="Always" />
     <Content Include="settings.xml" ExcludeFromSingleFile="true" CopyToOutputDirectory="Always" />
