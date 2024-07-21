@@ -213,6 +213,24 @@ public sealed class MorphTool : BaseTool
         _biomeMorpher.ApplyMorph(_wvm.MorphToolOptions, curtile, level, p);
     }
 
+    public void MorphTileExternal(Vector2Int32 p)
+    {
+        // Always use Purify.
+        WorldConfiguration.MorphSettings.Biomes.TryGetValue("Purify", out _targetBiome);
+        _biomeMorpher = MorphBiomeDataApplier.GetMorpher(_targetBiome);
+
+        var curtile = _wvm.CurrentWorld.Tiles[p.X, p.Y];
+
+        MorphLevel level = MorphLevel.Sky;
+        if (p.Y > _hellLayer) { level = MorphLevel.Hell; }
+        else if (p.Y > _deepRockLayer) { level = MorphLevel.DeepRock; }
+        else if (p.Y > _rockLayer) { level = MorphLevel.Rock; }
+        else if (p.Y > _dirtLayer) { level = MorphLevel.Dirt; }
+
+        _biomeMorpher.ApplyMorph(_wvm.MorphToolOptions, curtile, level, p);
+        _wvm.UpdateRenderPixel(p);
+    }
+
     private void MorphTileLegacy(Vector2Int32 p)
     {
         var curtile = _wvm.CurrentWorld.Tiles[p.X, p.Y];
