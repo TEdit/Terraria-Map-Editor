@@ -48,6 +48,7 @@ public static class ViewModelLocator
 
         //Sorted by Plugin-Name
         wvm.Plugins.Add(new BlockShufflePlugin(wvm));
+        wvm.Plugins.Add(new CleanseWorldPlugin(wvm));
         wvm.Plugins.Add(new FindChestWithPlugin(wvm));
         wvm.Plugins.Add(new FindPlanteraBulbPlugin(wvm));
         wvm.Plugins.Add(new FindTileWithPlugin(wvm));
