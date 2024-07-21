@@ -215,7 +215,8 @@ public sealed class MorphTool : BaseTool
 
     public void MorphTileExternal(Vector2Int32 p)
     {
-        WorldConfiguration.MorphSettings.Biomes.TryGetValue(_wvm.MorphToolOptions.TargetBiome, out _targetBiome);
+        // Always use Purify.
+        WorldConfiguration.MorphSettings.Biomes.TryGetValue("Purify", out _targetBiome);
         _biomeMorpher = MorphBiomeDataApplier.GetMorpher(_targetBiome);
 
         var curtile = _wvm.CurrentWorld.Tiles[p.X, p.Y];
