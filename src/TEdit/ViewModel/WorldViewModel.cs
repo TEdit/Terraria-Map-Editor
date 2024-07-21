@@ -1140,7 +1140,6 @@ public partial class WorldViewModel : ViewModelBase
         Task.Factory.StartNew(async () =>
         {
             ErrorLogging.TelemetryClient?.TrackEvent(nameof(SaveWorldThreaded));
-
             try
             {
                 OnProgressChanged(CurrentWorld, new ProgressChangedEventArgs(0, "Validating World..."));
@@ -1148,29 +1147,22 @@ public partial class WorldViewModel : ViewModelBase
             }
             catch (ArgumentOutOfRangeException err)
             {
-                string msg = "There is a problem in your world.\r\n" +
-                             $"{err.ParamName}\r\n" +
-                             $"This world may not open in Terraria\r\n" +
-                             "Would you like to save anyways??\r\n";
-                if (MessageBox.Show(msg, "World Error", MessageBoxButton.YesNo, MessageBoxImage.Error) !=
-                    MessageBoxResult.Yes)
+                string msg = "There is a problem in your world.\r\n" + $"{err.ParamName}\r\n" + $"This world may not open in Terraria\r\n" + "Would you like to save anyways??\r\n";
+                if (MessageBox.Show(msg, "World Error", MessageBoxButton.YesNo, MessageBoxImage.Error) != MessageBoxResult.Yes)
                     return;
             }
             catch (Exception ex)
             {
-                string msg = "There is a problem in your world.\r\n" +
-                             $"{ex.Message}\r\n" +
-                             "This world may not open in Terraria\r\n" +
-                             "Would you like to save anyways??\r\n";
-
-                if (MessageBox.Show(msg, "World Error", MessageBoxButton.YesNo, MessageBoxImage.Error) !=
-                    MessageBoxResult.Yes)
+                string msg = "There is a problem in your world.\r\n" + $"{ex.Message}\r\n" + "This world may not open in Terraria\r\n" + "Would you like to save anyways??\r\n";
+                if (MessageBox.Show(msg, "World Error", MessageBoxButton.YesNo, MessageBoxImage.Error) != MessageBoxResult.Yes)
                     return;
             }
 
-            World.Save(CurrentWorld, filename, versionOverride: (int)version);
-        })
-        .ContinueWith(t => CommandManager.InvalidateRequerySuggested(), TaskFactoryHelper.UiTaskScheduler);
+            await World.SaveAsync(CurrentWorld, filename, versionOverride: (int)version, progress: new Progress<ProgressChangedEventArgs>(e =>
+            {
+                DispatcherHelper.CheckBeginInvokeOnUI(() => OnProgressChanged(CurrentWorld, e));
+            }));
+        }).ContinueWith(t => CommandManager.InvalidateRequerySuggested(), TaskFactoryHelper.UiTaskScheduler);
     }
 
     public void LoadWorld(string filename)
