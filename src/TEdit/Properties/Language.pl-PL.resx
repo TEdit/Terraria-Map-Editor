@@ -1164,6 +1164,9 @@ Naciśnij spróbuj ponownie aby wybrać nowy folder lub anuluj aby użyć {0} ja
   <data name="menu_layers_wire_transparency" xml:space="preserve">
     <value>Przezroczystość przewodu</value>
   </data>
+  <data name="tool_wp_safe_level" xml:space="preserve">
+    <value>Używaj tylko bezpiecznych wartości</value>
+  </data>
   <data name="tool_wp_unsafe_level" xml:space="preserve">
     <value>Zezwalaj na niebezpieczne wartości</value>
   </data>

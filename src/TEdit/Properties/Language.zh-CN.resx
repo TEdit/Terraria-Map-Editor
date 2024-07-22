@@ -1170,6 +1170,9 @@
   <data name="menu_layers_wire_transparency" xml:space="preserve">
     <value>电线透明度</value>
   </data>
+  <data name="tool_wp_safe_level" xml:space="preserve">
+    <value>仅使用安全值</value>
+  </data>
   <data name="tool_wp_unsafe_level" xml:space="preserve">
     <value>允许不安全的值</value>
   </data>

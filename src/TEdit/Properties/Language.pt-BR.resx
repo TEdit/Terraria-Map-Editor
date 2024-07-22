@@ -1164,6 +1164,9 @@ Clique em tentar novamente para escolher uma nova pasta ou cancelar para usar {0
   <data name="menu_layers_wire_transparency" xml:space="preserve">
     <value>Transparência aramada</value>
   </data>
+  <data name="tool_wp_safe_level" xml:space="preserve">
+    <value>Use apenas valores seguros</value>
+  </data>
   <data name="tool_wp_unsafe_level" xml:space="preserve">
     <value>Permitir valores inseguros</value>
   </data>
