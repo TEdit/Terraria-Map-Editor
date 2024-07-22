@@ -72,7 +72,7 @@ public class WorldEditor
 
         int index = GetTileIndex(x, y);
         if (_checkTiles[index]) { return; }
-        else { _checkTiles[index] = true; }
+        // else { _checkTiles[index] = true; }
 
         Tile curTile = _world.Tiles[x, y];
         if (curTile == null) return;
