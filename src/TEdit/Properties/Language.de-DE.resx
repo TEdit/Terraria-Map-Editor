@@ -1164,6 +1164,9 @@ Klicke auf „Wiederholen“, um einen neuen Ordner auszuwählen, oder auf „Ab
   <data name="menu_layers_wire_transparency" xml:space="preserve">
     <value>Kabelsichtbarkeit</value>
   </data>
+  <data name="tool_wp_safe_level" xml:space="preserve">
+    <value>Verwenden Sie nur sichere Werte</value>
+  </data>
   <data name="tool_wp_unsafe_level" xml:space="preserve">
     <value>Unsichere Werte zulassen</value>
   </data>

@@ -86,9 +86,9 @@ public partial class World : ReactiveObject, ITileData
 
     private void UpdateMaxLayerLevels()
     {
-        bool bypassLimits = UnsafeGroundLayers;
-        if (bypassLimits)
+        if (!SafeGroundLayers)
         {
+			// Defualt: Use unsafe levels.
             MaxCavernLevel = Calc.Clamp(TilesHigh, 0, TilesHigh);
             MaxGroundLevel = Calc.Clamp(TilesHigh - 6, 0, TilesHigh);
         }
@@ -96,10 +96,15 @@ public partial class World : ReactiveObject, ITileData
         {
             MaxCavernLevel = Calc.Clamp(TilesHigh - WorldConfiguration.CavernLevelToBottomOfWorld, 6, TilesHigh);
             MaxGroundLevel = Calc.Clamp(MaxCavernLevel - 6, 0, TilesHigh);
+			
+			// Adjust the sliders to reflect new values if over the max.
+			if (GroundLevel > MaxGroundLevel)
+			    GroundLevel = MaxGroundLevel;
+			if (RockLevel > MaxCavernLevel)
+			    RockLevel = MaxCavernLevel;
         }
     }
-
-
+	
     public uint WorldVersion => Version;
     public Random Rand;
     public int[] TreeBG = new int[3];
@@ -113,7 +118,7 @@ public partial class World : ReactiveObject, ITileData
     private double _groundLevel;
     private double _rockLevel;
     private int _shadowOrbCount;
-    private bool _unsafeGroundLayers;
+	private bool _safeGroundLayers;
     private int _tilesHigh;
     private int _treeX0;
     private int _treeX1;
@@ -283,14 +288,14 @@ public partial class World : ReactiveObject, ITileData
             }
         }
     }
-
-    [Category("Levels")]
-    public bool UnsafeGroundLayers
+	
+	[Category("Levels")]
+    public bool SafeGroundLayers
     {
-        get => _unsafeGroundLayers;
+        get => _safeGroundLayers;
         set
         {
-            this.RaiseAndSetIfChanged(ref _unsafeGroundLayers, value);
+            this.RaiseAndSetIfChanged(ref _safeGroundLayers, value);
             UpdateMaxLayerLevels();
         }
     }

@@ -3642,6 +3642,15 @@ public class Language {
             return ResourceManager.GetString("tool_wp_time_sundial_cooldown", resourceCulture);
         }
     }
+	
+	/// <summary>
+    ///   Looks up a localized string similar to Use Safe Values Only.
+    /// </summary>
+    public static string tool_wp_safe_level {
+        get {
+            return ResourceManager.GetString("tool_wp_safe_level", resourceCulture);
+        }
+    }
     
     /// <summary>
     ///   Looks up a localized string similar to Allow Unsafe Values.

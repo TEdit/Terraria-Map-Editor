@@ -1164,6 +1164,9 @@
   <data name="menu_layers_wire_transparency" xml:space="preserve">
     <value>Прозрачность проводов</value>
   </data>
+  <data name="tool_wp_safe_level" xml:space="preserve">
+    <value>Используйте только безопасные значения</value>
+  </data>
   <data name="tool_wp_unsafe_level" xml:space="preserve">
     <value>Разрешить небезопасные значения</value>
   </data>
