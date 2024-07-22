@@ -391,7 +391,7 @@
         </DockPanel>
         <TextBlock  />
         <DockPanel>
-            <CheckBox IsChecked="{Binding CurrentWorld.UnsafeGroundLayers}" Content="{x:Static p:Language.tool_wp_unsafe_level}" VerticalAlignment="Center" />
+            <CheckBox IsChecked="{Binding CurrentWorld.SafeGroundLayers}" Content="{x:Static p:Language.tool_wp_safe_level}" VerticalAlignment="Center" />
         </DockPanel>
         <TextBlock  />
         <Button Content="{x:Static p:Language.wp_fixbackground}" Padding="3" Command="{Binding CurrentWorld.FixLayerGapCommand}"  />
