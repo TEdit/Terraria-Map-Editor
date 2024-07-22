@@ -48,8 +48,85 @@ public partial class World
         CharacterNames.Clear();
     }
 
-    public static Task SaveAsync(World world, string filename, bool resetTime = false, int versionOverride = 0, bool incrementRevision = true, IProgress<ProgressChangedEventArgs>? progress = null)
-        => Task.Run(() => Save(world, filename, resetTime, versionOverride, incrementRevision, progress));
+    public static async Task SaveAsync(World world, string filename, bool resetTime = false, int versionOverride = 0, bool incrementRevision = true, IProgress<ProgressChangedEventArgs>? progress = null)
+    {
+        await Task.Run(() =>
+        {
+            lock (_fileLock)
+            {
+                uint currentWorldVersion = world.Version;
+                try
+                {
+                    // Set the world version for this save
+                    if (versionOverride > 0)
+                    {
+                        world.Version = (uint)(versionOverride);
+                    }
+
+                    if (resetTime)
+                    {
+                        progress?.Report(new ProgressChangedEventArgs(0, "Resetting Time..."));
+                    // world.ResetTime();
+                    }
+
+                    if (filename == null)
+                        return;
+                    string temp = filename + ".tmp";
+                    using (var fs = new FileStream(temp, FileMode.Create))
+                    {
+                        using (var bw = new BinaryWriter(fs))
+                        {
+                            if (versionOverride < 0 || world.IsV0 || world.Version == 38)
+                            {
+                                bool addLight = (currentWorldVersion > world.Version); // Check if world is being downgraded.
+                                world.Version = (uint)Math.Abs(versionOverride);
+                                SaveV0(world, bw, addLight, progress);
+                            }
+                            else if (world.Version > 87 && world.Version != 38)
+                            {
+                                SaveV2(world, bw, incrementRevision, progress);
+                            }
+                            else
+                            {
+                                bool addLight = (currentWorldVersion >= 87); // Check if world is being downgraded.
+                                SaveV1(world, bw, addLight, progress);
+                            }
+
+                            if (world.IsConsole)
+                            {
+                                ConsoleCompressor.CompressStream(fs);
+                            }
+
+                            bw.Close();
+                            fs.Close();
+                            // Make a backup of the current file if it exists
+                            if (File.Exists(filename))
+                            {
+                                string backup = filename + "." + DateTime.Now.ToString("yyyyMMddHHmmss") + ".TEdit";
+                                File.Copy(filename, backup, true);
+                            }
+
+                            // Replace the actual file with temp save file
+                            File.Copy(temp, filename, true);
+                            // Delete temp save file
+                            File.Delete(temp);
+                            progress?.Report(new ProgressChangedEventArgs(100, "World Save Complete."));
+                        }
+                    }
+
+                    world.LastSave = File.GetLastWriteTimeUtc(filename);
+                }
+                finally
+                {
+                    // Restore the version
+                    if (versionOverride > 0)
+                    {
+                        world.Version = currentWorldVersion;
+                    }
+                }
+            }
+        });
+    }
 
     public static void Save(
         World world,
