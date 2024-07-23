@@ -3,5 +3,12 @@
   "extends": [
     "config:recommended",
     ":dependencyDashboard"
-  ]
+  ],
+  "packageRules": [
+    {
+      "groupName": "Avalonia",
+      "matchPackagePatterns": [
+        "Avalonia*"
+      ]
+    }
 }
