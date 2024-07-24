@@ -84,6 +84,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Shortcut Key="Space" Action="Pan" />
         <Shortcut Key="OemPlus" Modifier="Control" Action="ZoomIn" />
         <Shortcut Key="OemMinus" Modifier="Control" Action="ZoomOut" />
+		<Shortcut Key="F5" Action="ReloadWorld" />
         <!-- Tools -->
         <Shortcut Key="A" Action="Arrow" />
         <Shortcut Key="B" Action="Brush" />
@@ -1235,7 +1236,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
                 <Frame UV="0,36" Name="Crystal Table" />
             </Frames>
         </Tile>
-        <Tile Id="15" Color="#FFBF8E6F" Name="Chairs" Framed="true" Size="1,2" Placement="floor" TextureGrid="16,16" FrameGap="0,4">
+        <Tile Id="15" Color="#FFBF8E6F" Name="Chairs" Framed="true" Size="1,2" Placement="floor" TextureGrid="16,16" FrameGap="0,2">
             <Frames>
                 <Frame UV="0,0" Name="Wooden Chair" Anchor="Left" />
                 <Frame UV="18,0" Name="Wooden Chair" Anchor="Right" />
@@ -7295,7 +7296,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Tile Id="449" Color="#FF5bbaf0" Name="Blue Streamer" Solid="true" Blends="true" />
         <Tile Id="450" Color="#FF5cf05b" Name="Green Streamer" Solid="true" Blends="true" />
         <Tile Id="451" Color="#FFf05b93" Name="Pink Streamer" Solid="true" Blends="true" />
-        <Tile Id="452" Color="#FFff96b5" Name="Silly Balloon Machine" Framed="true" Size="3,2" IsAnimated="true" />
+        <Tile Id="452" Color="#FFff96b5" Name="Silly Balloon Machine" Framed="true" Size="3,3" IsAnimated="true" />
         <Tile Id="453" Color="#FFFFFFFF" Name="Silly Tied Balloon" Framed="true" Size="1,3" IsAnimated="true">
             <Frames>
                 <Frame UV="0,0" Variety="Purple Left" />
@@ -14027,6 +14028,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Item Id="4140" Name="Spider Nest Wall" />
         <Item Id="4141" Name="Meteor Toilet" />
         <Item Id="4142" Name="Decay Chamber" />
+        <Item Id="4143" Name="ManaCloakStar" />
         <Item Id="4144" Name="Terragrim" Rack="True" />
         <Item Id="4145" Name="Solar Bathtub" />
         <Item Id="4146" Name="Solar Bed" />
@@ -15334,6 +15336,9 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Item Id="5450" Name="Helium Moss Brick Wall" />
         <Item Id="5451" Name="Kwad Racer Drone" />
         <Item Id="5452" Name="FPV Goggles" Accessory="True" />
+        <Item Id="5453" Name="Guide to Critter Companionship (Inactive)" />
+        <Item Id="5454" Name="Guide to Environmental Preservation (Inactive)" />
+        <Item Id="5455" Name="Guide to Peaceful Coexistence (Inactive)" />
     </Items>
     <Npcs>
         <Npc Id="17" Name="Merchant"  />
