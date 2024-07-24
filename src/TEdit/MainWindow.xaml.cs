@@ -126,6 +126,10 @@ public partial class MainWindow : Window
                     if (_vm.SaveAsVersionCommand.CanExecute(null))
                         _vm.SaveAsVersionCommand.Execute(null);
                     break;
+                case "reloadworld":
+                    if (_vm.ReloadCommand.CanExecute(null))
+                        _vm.ReloadCommand.Execute(null);
+                    break;
                 case "deleteselection":
                     if (_vm.DeleteCommand.CanExecute(null))
                         _vm.DeleteCommand.Execute(null);

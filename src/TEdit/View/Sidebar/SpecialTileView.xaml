@@ -270,7 +270,7 @@
                 </Grid.RowDefinitions>
                 <StackPanel Orientation="Horizontal" Grid.Row="0">
                     <TextBlock Text="{x:Static p:Language.specialtile_label_chestname}" Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" VerticalAlignment="Center" />
-                    <TextBox Margin="2" Width="100px" Height="20px" MaxLength="20" MaxLines="1" Text="{Binding SelectedChest.Name}" />
+                    <TextBox Margin="2" Width="100px" Height="20px" MaxLength="100" MaxLines="1" Text="{Binding SelectedChest.Name}" />
                 </StackPanel>
                 <!--<StackPanel Orientation="Horizontal" Grid.Row="1">
                     <TextBlock Text="{x:Static p:Language.specialtile_label_chesttype}" Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" VerticalAlignment="Center" />

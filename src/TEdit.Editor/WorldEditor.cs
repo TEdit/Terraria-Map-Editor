@@ -651,7 +651,7 @@ public class WorldEditor
                 curTile.Type != 365 && // Exclude Silk Rope
                 curTile.Type != 366) // Exclude Web Rope
             {
-                curTile.LiquidAmount = 0;
+                // curTile.LiquidAmount = 0;
             }
         }
 

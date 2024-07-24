@@ -1165,6 +1165,25 @@ public partial class WorldViewModel : ViewModelBase
         }).ContinueWith(t => CommandManager.InvalidateRequerySuggested(), TaskFactoryHelper.UiTaskScheduler);
     }
 
+    public void ReloadWorld()
+    {
+        // perform validations.
+        if (CurrentWorld == null)
+        {
+            MessageBox.Show("No opened world loaded for reloading.", "World File Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            return;
+        }
+        else
+        {
+            // Prompt for world loading.
+            if (MessageBox.Show("Unsaved work will be lost!", "Reload Current World?", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.No)
+                return; // if no, abort.
+
+            // Load world.
+            LoadWorld(CurrentFile);
+        }
+    }
+
     public void LoadWorld(string filename)
     {
         _loadTimer.Reset();
