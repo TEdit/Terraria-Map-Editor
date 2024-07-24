@@ -28,6 +28,7 @@ public partial class WorldViewModel
     private ICommand _setTool;
     private ICommand _closeApplication;
     private ICommand _commandOpenWorld;
+    private ICommand _commandReloadWorld;
     private ICommand _deleteCommand;
     private ICommand _pasteCommand;
     private ICommand _copyCommand;
@@ -350,6 +351,11 @@ public partial class WorldViewModel
     public ICommand OpenCommand
     {
         get { return _commandOpenWorld ??= new RelayCommand(OpenWorld); }
+    }
+
+    public ICommand ReloadCommand
+    {
+        get { return _commandReloadWorld ??= new RelayCommand(ReloadWorld); }
     }
 
     public ICommand SaveAsVersionCommand
