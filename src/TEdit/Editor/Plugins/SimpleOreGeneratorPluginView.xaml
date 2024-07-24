@@ -1,0 +1,189 @@
+﻿<Window x:Class="TEdit.Editor.Plugins.SimpleOreGeneratorPluginView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:view="clr-namespace:TEdit.View"
+        SizeToContent="WidthAndHeight"
+        Title="Simple Ore Generator"
+        ResizeMode="NoResize"
+        WindowStartupLocation="CenterOwner"
+        Icon="/TEdit;component/Images/tedit.ico"
+        Height="640" Width="279">
+
+    <Border Background="{StaticResource ControlBackgroundBrush}" Padding="10">
+        <StackPanel>
+
+            <!-- Tier 1 Ores -->
+            <GroupBox BorderBrush="White" Margin="0,0,0,0" Width="260" Height="40">
+                <GroupBox.Header>
+                    <TextBlock Text="Tier 1" Foreground="White"/>
+                </GroupBox.Header>
+                <Canvas>
+                    <RadioButton x:Name="Tier1BothRadioButton" Content="Both" HorizontalAlignment="Left" VerticalAlignment="Center" TabIndex="1" IsChecked="False"/>
+                    <RadioButton x:Name="CopperRadioButton" Content="Copper" HorizontalAlignment="Left" Canvas.Left="51" VerticalAlignment="Center" TabIndex="2" IsChecked="False"/>
+                    <RadioButton x:Name="TinRadioButton" Content="Tin" HorizontalAlignment="Left" Canvas.Left="116" VerticalAlignment="Center" TabIndex="3" IsChecked="False"/>
+                    <RadioButton x:Name="Tier1NARadioButton" Content="N/A" HorizontalAlignment="Left" Canvas.Left="158" VerticalAlignment="Center" TabIndex="4" IsChecked="False"/>
+                </Canvas>
+            </GroupBox>
+
+            <!-- Tier 2 Ores -->
+            <GroupBox BorderBrush="White" Margin="0,0,0,0" Width="260" Height="40">
+                <GroupBox.Header>
+                    <TextBlock Text="Tier 2" Foreground="White"/>
+                </GroupBox.Header>
+                <Canvas>
+                    <RadioButton x:Name="Tier2BothRadioButton" Content="Both" HorizontalAlignment="Left" VerticalAlignment="Center" TabIndex="5" IsChecked="False"/>
+                    <RadioButton x:Name="IronRadioButton" Content="Iron" HorizontalAlignment="Left" Canvas.Left="51" VerticalAlignment="Center" TabIndex="6" IsChecked="False"/>
+                    <RadioButton x:Name="LeadRadioButton" Content="Lead" HorizontalAlignment="Left" Canvas.Left="98" VerticalAlignment="Center" TabIndex="7" IsChecked="False"/>
+                    <RadioButton x:Name="Tier2NARadioButton" Content="N/A" HorizontalAlignment="Left" Canvas.Left="149" VerticalAlignment="Center" TabIndex="8" IsChecked="False"/>
+                </Canvas>
+            </GroupBox>
+
+            <!-- Tier 3 Ores -->
+            <GroupBox BorderBrush="White" Margin="0,0,0,0" Width="260" Height="40">
+                <GroupBox.Header>
+                    <TextBlock Text="Tier 3" Foreground="White"/>
+                </GroupBox.Header>
+                <Canvas>
+                    <RadioButton x:Name="Tier3BothRadioButton" Content="Both" HorizontalAlignment="Left" VerticalAlignment="Center" TabIndex="9" IsChecked="False"/>
+                    <RadioButton x:Name="SilverRadioButton" Content="Silver" HorizontalAlignment="Left" Canvas.Left="51" VerticalAlignment="Center" TabIndex="10" IsChecked="False"/>
+                    <RadioButton x:Name="TungstenRadioButton" Content="Tungsten" HorizontalAlignment="Left" Canvas.Left="105" VerticalAlignment="Center" TabIndex="11" IsChecked="False"/>
+                    <RadioButton x:Name="Tier3NARadioButton" Content="N/A" HorizontalAlignment="Left" Canvas.Left="180" VerticalAlignment="Center" TabIndex="12" IsChecked="False"/>
+                </Canvas>
+            </GroupBox>
+
+            <!-- Tier 4 Ores -->
+            <GroupBox BorderBrush="White" Margin="0,0,0,0" Width="260" Height="40">
+                <GroupBox.Header>
+                    <TextBlock Text="Tier 4" Foreground="White"/>
+                </GroupBox.Header>
+                <Canvas>
+                    <RadioButton x:Name="Tier4BothRadioButton" Content="Both" HorizontalAlignment="Left" VerticalAlignment="Center" TabIndex="13" IsChecked="False"/>
+                    <RadioButton x:Name="GoldRadioButton" Content="Gold" HorizontalAlignment="Left" Canvas.Left="51" VerticalAlignment="Center" TabIndex="14" IsChecked="False"/>
+                    <RadioButton x:Name="PlatinumRadioButton" Content="Platinum" HorizontalAlignment="Left" Canvas.Left="102" VerticalAlignment="Center" TabIndex="15" IsChecked="False"/>
+                    <RadioButton x:Name="Tier4NARadioButton" Content="N/A" HorizontalAlignment="Left" Canvas.Left="175" VerticalAlignment="Center" TabIndex="16" IsChecked="False"/>
+                </Canvas>
+            </GroupBox>
+
+            <!-- Tier 5 Ores -->
+            <GroupBox BorderBrush="White" Margin="0,0,0,0" Width="260" Height="40">
+                <GroupBox.Header>
+                    <TextBlock Text="Tier 5" Foreground="White"/>
+                </GroupBox.Header>
+                <Canvas>
+                    <CheckBox x:Name="MeteoriteCheckbox" Content="Meteorite" HorizontalAlignment="Left" VerticalAlignment="Center" TabIndex="17" IsChecked="False"/>
+                </Canvas>
+            </GroupBox>
+
+            <!-- Tier 6 Ores -->
+            <GroupBox BorderBrush="White" Margin="0,0,0,0" Width="260" Height="40">
+                <GroupBox.Header>
+                    <TextBlock Text="Tier 6" Foreground="White"/>
+                </GroupBox.Header>
+                <Canvas>
+                    <RadioButton x:Name="Tier6BothRadioButton" Content="Both" HorizontalAlignment="Left" VerticalAlignment="Center" TabIndex="18" IsChecked="False"/>
+                    <RadioButton x:Name="DemoniteRadioButton" Content="Demonite" HorizontalAlignment="Left" Canvas.Left="51" VerticalAlignment="Center" TabIndex="19" IsChecked="False"/>
+                    <RadioButton x:Name="CrimtaneRadioButton" Content="Crimtane" HorizontalAlignment="Left" Canvas.Left="129" VerticalAlignment="Center" TabIndex="20" IsChecked="False"/>
+                    <RadioButton x:Name="Tier6NARadioButton" Content="N/A" HorizontalAlignment="Left" Canvas.Left="203" VerticalAlignment="Center" TabIndex="21" IsChecked="False"/>
+                </Canvas>
+            </GroupBox>
+
+            <!-- Tier 7 Ores -->
+            <GroupBox BorderBrush="White" Margin="0,0,0,0" Width="260" Height="40">
+                <GroupBox.Header>
+                    <TextBlock Text="Tier 7" Foreground="White"/>
+                </GroupBox.Header>
+                <Canvas>
+                    <CheckBox x:Name="ObsidianCheckbox" Content="Obsidian" HorizontalAlignment="Left" VerticalAlignment="Center" TabIndex="22" IsChecked="False"/>
+                </Canvas>
+            </GroupBox>
+
+            <!-- Tier 8 Ores -->
+            <GroupBox BorderBrush="White" Margin="0,0,0,0" Width="260" Height="40">
+                <GroupBox.Header>
+                    <TextBlock Text="Tier 8" Foreground="White"/>
+                </GroupBox.Header>
+                <Canvas>
+                    <CheckBox x:Name="HellstoneCheckbox" Content="Hellstone" HorizontalAlignment="Left" VerticalAlignment="Center" TabIndex="23" IsChecked="False"/>
+                </Canvas>
+            </GroupBox>
+
+            <!-- Tier 9 Ores -->
+            <GroupBox BorderBrush="White" Margin="0,0,0,0" Width="260" Height="40">
+                <GroupBox.Header>
+                    <TextBlock Text="Tier 9" Foreground="White"/>
+                </GroupBox.Header>
+                <Canvas>
+                    <RadioButton x:Name="Tier9BothRadioButton" Content="Both" HorizontalAlignment="Left" VerticalAlignment="Center" TabIndex="24" IsChecked="False"/>
+                    <RadioButton x:Name="CobaltRadioButton" Content="Cobalt" HorizontalAlignment="Left" Canvas.Left="51" VerticalAlignment="Center" TabIndex="25" IsChecked="False"/>
+                    <RadioButton x:Name="PalladiumRadioButton" Content="Palladium" HorizontalAlignment="Left" Canvas.Left="112" VerticalAlignment="Center" TabIndex="26" IsChecked="False"/>
+                    <RadioButton x:Name="Tier9NARadioButton" Content="N/A" HorizontalAlignment="Left" Canvas.Left="189" VerticalAlignment="Center" TabIndex="27" IsChecked="False"/>
+                </Canvas>
+            </GroupBox>
+
+            <!-- Tier 10 Ores -->
+            <GroupBox BorderBrush="White" Margin="0,0,0,0" Width="260" Height="40">
+                <GroupBox.Header>
+                    <TextBlock Text="Tier 10" Foreground="White"/>
+                </GroupBox.Header>
+                <Canvas>
+                    <RadioButton x:Name="Tier10BothRadioButton" Content="Both" HorizontalAlignment="Left" VerticalAlignment="Center" TabIndex="28" IsChecked="False"/>
+                    <RadioButton x:Name="MythrilRadioButton" Content="Mythril" HorizontalAlignment="Left" Canvas.Left="51" VerticalAlignment="Center" TabIndex="29" IsChecked="False"/>
+                    <RadioButton x:Name="OrichalcumRadioButton" Content="Orichalcum" HorizontalAlignment="Left" Canvas.Left="114" VerticalAlignment="Center" TabIndex="30" IsChecked="False"/>
+                    <RadioButton x:Name="Tier10NARadioButton" Content="N/A" HorizontalAlignment="Left" Canvas.Left="200" VerticalAlignment="Center" TabIndex="31" IsChecked="False"/>
+                </Canvas>
+            </GroupBox>
+
+            <!-- Tier 11 Ores -->
+            <GroupBox BorderBrush="White" Margin="0,0,0,0" Width="260" Height="40">
+                <GroupBox.Header>
+                    <TextBlock Text="Tier 11" Foreground="White"/>
+                </GroupBox.Header>
+                <Canvas>
+                    <RadioButton x:Name="Tier11BothRadioButton" Content="Both" HorizontalAlignment="Left" VerticalAlignment="Center" TabIndex="32" IsChecked="False"/>
+                    <RadioButton x:Name="AdamantiteRadioButton" Content="Adamantite" HorizontalAlignment="Left" Canvas.Left="51" VerticalAlignment="Center" TabIndex="33" IsChecked="False"/>
+                    <RadioButton x:Name="TitaniumRadioButton" Content="Titanium" HorizontalAlignment="Left" Canvas.Left="138" VerticalAlignment="Center" TabIndex="34" IsChecked="False"/>
+                    <RadioButton x:Name="Tier11NARadioButton" Content="N/A" HorizontalAlignment="Left" Canvas.Left="210" VerticalAlignment="Center" TabIndex="35" IsChecked="False"/>
+                </Canvas>
+            </GroupBox>
+
+            <!-- Tier 12 Ores -->
+            <GroupBox BorderBrush="White" Margin="0,0,0,0" Width="260" Height="40">
+                <GroupBox.Header>
+                    <TextBlock Text="Tier 12" Foreground="White"/>
+                </GroupBox.Header>
+                <Canvas>
+                    <CheckBox x:Name="ChlorophyteCheckbox" Content="Chlorophyte" HorizontalAlignment="Left" VerticalAlignment="Center" TabIndex="36" IsChecked="False"/>
+                </Canvas>
+            </GroupBox>
+
+            <!-- Tier 13 Ores -->
+
+            <GroupBox BorderBrush="White" Margin="0,0,0,0" Width="260" Height="40">
+                <GroupBox.Header>
+                    <TextBlock Text="Tier 13" Foreground="White"/>
+                </GroupBox.Header>
+                <Canvas>
+                    <CheckBox x:Name="LuminiteCheckbox" Content="Luminite" HorizontalAlignment="Left" VerticalAlignment="Center" TabIndex="37" IsChecked="False"/>
+                </Canvas>
+            </GroupBox>
+
+            <Grid Height="3"/>
+            
+            <!-- Generation Options -->
+            <CheckBox x:Name="IncludeAshCheckBox" Content="Convert Ash Blocks" HorizontalAlignment="Center" VerticalAlignment="Bottom" IsChecked="False" TabIndex="39"/>
+            <Grid Height="3"/>
+            <CheckBox x:Name="OnlyUseSelectionCheckBox" Content="Only Use Selection" HorizontalAlignment="Center" VerticalAlignment="Top" TabIndex="38"/>
+            <Grid Height="3"/>
+            <CheckBox x:Name="UndoCheckBox" Content="Enable Undo" HorizontalAlignment="Center" VerticalAlignment="Bottom" IsChecked="False" TabIndex="39"/>
+
+            <Grid Height="3"/>
+
+            <!-- Cancel or OK -->
+            <Grid Width="264">
+                <Button Content="Cancel" HorizontalAlignment="Left" VerticalAlignment="Center" Click="CancelButtonClick" Height="22" Width="75" TabIndex="40"/>
+                <Button Content="Generate" HorizontalAlignment="Right" VerticalAlignment="Center" Click="OkButtonClick" Height="22" Width="75" TabIndex="41"/>
+            </Grid>
+
+        </StackPanel>
+    </Border>
+</Window>
