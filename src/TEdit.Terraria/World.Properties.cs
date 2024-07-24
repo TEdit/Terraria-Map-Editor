@@ -795,15 +795,17 @@ public partial class World : ReactiveObject, ITileData
     [Reactive] public byte BgTree4 { get; set; }
     [Reactive] public byte UnderworldBg { get; set; }
     [Reactive] public byte MushroomBg { get; set; }
-
-
-
+	
     [Reactive] public int TilesWide { get; set; }
+	[Reactive] public int TilesHighReactive { get; set; }
     public int TilesHigh
     {
         get => _tilesHigh;
         set
         {
+			// Update the reactive property to ensure UI and other bindings are notified.
+			TilesHighReactive = value;
+			
             _tilesHigh = value;
             this.RaiseAndSetIfChanged(ref _tilesHigh, value);
             UpdateMaxLayerLevels();
