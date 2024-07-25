@@ -48,17 +48,37 @@ public sealed class PickerTool : BaseTool
 
     private void PickTile(int x, int y)
     {
+		// Get the current tile at the specified coordinates.
         var curTile = _wvm.CurrentWorld.Tiles[x, y];
-        if (!WorldConfiguration.TileProperties[curTile.Type].IsFramed)
+		
+		if (!WorldConfiguration.TileProperties[curTile.Type].IsFramed && !curTile.IsActive) // Check if the tile is not active.
+			_wvm.TilePicker.Tile = -1;
+        else if (!WorldConfiguration.TileProperties[curTile.Type].IsFramed) // Check if the tile is not framed.
             _wvm.TilePicker.Tile = curTile.Type;
         else
         {
-            var sprite = WorldConfiguration.Sprites2.FirstOrDefault(s => s.Tile == curTile.Type).GetStyleFromUV(new Vector2Short(curTile.U, curTile.V));
-            if (sprite == null)
-                sprite = WorldConfiguration.Sprites2.FirstOrDefault(s => s.Tile == curTile.Type).Styles.First();
-            _wvm.SelectedSpriteItem = (SpriteItemPreview)sprite;
+			// Retrieve the corresponding sprite configuration for the tile type.
+            var spriteConfig = WorldConfiguration.Sprites2.FirstOrDefault(s => s.Tile == curTile.Type);
+            if (spriteConfig != null)
+            {
+				// Get the style from the UV coordinates of the current tile.
+                var sprite = spriteConfig.GetStyleFromUV(new Vector2Short(curTile.U, curTile.V));
+                if (sprite == null)
+                {
+					// If no specific style is found, use the first style available.
+                    sprite = spriteConfig.Styles.FirstOrDefault();
+                }
+
+                if (sprite != null)
+                {
+					// Set the selected sprite item and the corresponding sprite sheet.
+                    _wvm.SelectedSpriteSheet = spriteConfig; // Set the corresponding SpriteSheet.
+					_wvm.SelectedSpriteItem = (SpriteItemPreview)sprite;
+                }
+            }
         }
 
+		// Set the other properties of the TilePicker from the current tile.
         _wvm.TilePicker.Wall = curTile.Wall;
         _wvm.TilePicker.WallColor = curTile.WallColor;
         _wvm.TilePicker.TileColor = curTile.TileColor;
@@ -71,7 +91,7 @@ public sealed class PickerTool : BaseTool
         _wvm.TilePicker.Actuator = curTile.Actuator;
         _wvm.TilePicker.ActuatorInActive = curTile.InActive;
 
-        // Get Picker For JunctionBoxes
+        // Get Picker For JunctionBoxes.
         if (curTile.Type != 424)
         {
             _wvm.TilePicker.JunctionBoxMode = JunctionBoxMode.None;
