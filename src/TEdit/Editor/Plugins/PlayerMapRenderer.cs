@@ -109,10 +109,10 @@ namespace TEdit.Editor.Plugins
                         binaryWriter.Write(world.Version);                                       // Write world version
 
                         binaryWriter.Write(27981915666277746UL | ((ulong)FileType.Map << 56));   // Map type identifier
-                        binaryWriter.Write(1U);                                                  // Write file revision (always 1)
+                        binaryWriter.Write(world.FileRevision += 1U);                            // Write file revision
                         binaryWriter.Write((ulong)((long)((world.IsFavorite ? 1 : 0) & 1) | 0)); // Is favorite flag
 
-                        binaryWriter.Write("Quick Load Test"); // Placeholder for map name
+                        binaryWriter.Write(world.Title);       // Write world name
                         binaryWriter.Write(world.WorldId);     // Write world ID
                         binaryWriter.Write(world.TilesHigh);   // Write max tiles Y
                         binaryWriter.Write(world.TilesWide);   // Write max tiles X
