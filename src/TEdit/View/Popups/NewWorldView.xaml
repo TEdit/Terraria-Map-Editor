@@ -1,7 +1,15 @@
 ﻿<Window x:Class="TEdit.View.Popups.NewWorldView"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:tedit="clr-namespace:TEdit.UI.Xaml" Title="New World"  WindowStartupLocation="CenterOwner" WindowStyle="ToolWindow"
-         Background="{StaticResource WindowBackgroundBrush}" Foreground="{DynamicResource TextBrush}" Icon="/TEdit;component/Images/tedit.ico" Height="215" Width="300" >
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:tedit="clr-namespace:TEdit.UI.Xaml"
+        Title="New World"
+        WindowStartupLocation="CenterOwner"
+        WindowStyle="ToolWindow"
+        Background="{StaticResource WindowBackgroundBrush}"
+        Foreground="{DynamicResource TextBrush}"
+        Icon="/TEdit;component/Images/tedit.ico"
+        Height="560"
+        Width="330">
     <Window.Resources>
         <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource {x:Type TextBlock}}">
             <Setter Property="Margin" Value="2" />
@@ -14,6 +22,8 @@
                 <ColumnDefinition Width="1*" />
                 <ColumnDefinition Width="1.6*" />
             </tedit:AutoGrid.ColumnDefinitions>
+
+            <!-- World Properties -->
             <TextBlock Text="World Name" HorizontalAlignment="Right" />
             <TextBox Text="{Binding Title, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="1" />
             <TextBlock Text="World Id (Seed)" HorizontalAlignment="Right" />
@@ -22,28 +32,141 @@
             <TextBlock Text="Width" HorizontalAlignment="Right" />
             <DockPanel>
                 <TextBlock Text="{Binding TilesWide, StringFormat={}{0:0}}" Width="30" DockPanel.Dock="Right" />
-                <Slider Value="{Binding TilesWide, Mode=TwoWay}" VerticalAlignment="Center"  Minimum="200" Maximum="8400" SmallChange="50" LargeChange="500" Interval="50" TickFrequency="50" IsSnapToTickEnabled="True" />
+                <Slider Value="{Binding TilesWide, Mode=TwoWay}" VerticalAlignment="Center" Minimum="200" Maximum="8400" SmallChange="50" LargeChange="500" Interval="50" TickFrequency="50" IsSnapToTickEnabled="True" />
             </DockPanel>
             <TextBlock Text="Height" HorizontalAlignment="Right" />
             <DockPanel>
-                <TextBlock Text="{Binding TilesHighReactive, StringFormat={}{0:0}}" Width="30" DockPanel.Dock="Right" />
+                <TextBlock Text="{Binding TilesHigh, StringFormat={}{0:0}}" Width="30" DockPanel.Dock="Right" />
                 <Slider Value="{Binding TilesHigh, Mode=TwoWay}" VerticalAlignment="Center" Minimum="200" Maximum="2400" SmallChange="50" LargeChange="500" Interval="50" TickFrequency="50" IsSnapToTickEnabled="True" />
             </DockPanel>
             <Separator Grid.ColumnSpan="2" />
             <TextBlock Text="Surface Level" HorizontalAlignment="Right" />
             <DockPanel>
                 <TextBlock Text="{Binding GroundLevel, StringFormat={}{0:0}}" Width="30" DockPanel.Dock="Right" />
-                <Slider Value="{Binding GroundLevel, Mode=TwoWay}" VerticalAlignment="Center"  Minimum="0" Maximum="{Binding Path=MaxGroundLevel}" SmallChange="1" />
+                <Slider Value="{Binding GroundLevel, Mode=TwoWay}" VerticalAlignment="Center" Minimum="0" Maximum="{Binding Path=MaxGroundLevel}" SmallChange="1" />
             </DockPanel>
             <TextBlock Text="Cavern Level" HorizontalAlignment="Right" />
             <DockPanel>
                 <TextBlock Text="{Binding RockLevel, StringFormat={}{0:0}}" Width="30" DockPanel.Dock="Right" />
                 <Slider Value="{Binding RockLevel, Mode=TwoWay}" VerticalAlignment="Center" Minimum="0" Maximum="{Binding Path=MaxCavernLevel}" SmallChange="1" />
             </DockPanel>
+
+            <!-- Hills -->
+            <Separator Grid.ColumnSpan="2" />
+            <TextBlock Text="Hill Terrain Size" HorizontalAlignment="Right" />
+            <DockPanel>
+                <TextBlock Text="{Binding HillSize, StringFormat={}{0:0}}" Width="30" DockPanel.Dock="Right" />
+                <Slider Value="{Binding HillSize, Mode=TwoWay}" VerticalAlignment="Center" Minimum="0" Maximum="500" SmallChange="1" LargeChange="10" Interval="1" TickFrequency="1" IsSnapToTickEnabled="True" />
+            </DockPanel>
+            <TextBlock Text="Add Grass" HorizontalAlignment="Right" />
+            <CheckBox IsChecked="{Binding GenerateGrass, Mode=TwoWay}" Margin="1" />
+            <TextBlock Text="Add Walls" HorizontalAlignment="Right" />
+            <CheckBox IsChecked="{Binding GenerateWalls, Mode=TwoWay}" Margin="1" />
+            
+            <!-- Caves -->
+            <Separator Grid.ColumnSpan="2" />
+            <TextBlock Text="Generate Caves (slow)" HorizontalAlignment="Right" />
+            <CheckBox IsChecked="{Binding GenerateCaves, Mode=TwoWay}" Margin="1" />
+            <TextBlock Text="Cave Preset" HorizontalAlignment="Right" />
+            <ComboBox ItemsSource="{Binding CavePresets}" 
+            SelectedIndex="{Binding CavePresetIndex, Mode=TwoWay}" 
+            Text="Normal" 
+            SelectionChanged="ComboBox_SelectionChanged" />
+            <TextBlock Text="Include Surface" HorizontalAlignment="Right" />
+            <CheckBox IsChecked="{Binding SurfaceCaves, Mode=TwoWay}" Margin="1" />
+            <TextBlock Text="Cave Noise" HorizontalAlignment="Right" />
+            <DockPanel>
+                <TextBlock Text="{Binding CaveNoise, StringFormat={}{0:0.00}}" Width="30" DockPanel.Dock="Right" />
+                <Slider Value="{Binding CaveNoise, Mode=TwoWay}" 
+            VerticalAlignment="Center" 
+            Minimum="0.01" 
+            Maximum="0.5"
+            SmallChange="0.01" 
+            LargeChange="0.1" 
+            TickFrequency="0.01" 
+            IsSnapToTickEnabled="True" />
+            </DockPanel>
+            <TextBlock Text="Cave Multiplier" HorizontalAlignment="Right" />
+            <DockPanel>
+                <TextBlock Text="{Binding CaveMultiplier, StringFormat={}{0:0.00}}" Width="30" DockPanel.Dock="Right" />
+                <Slider Value="{Binding CaveMultiplier, Mode=TwoWay}"
+            VerticalAlignment="Center" 
+            Minimum="0.00" 
+            Maximum="0.05" 
+            SmallChange="0.01" 
+            LargeChange="0.05" 
+            TickFrequency="0.01" 
+            IsSnapToTickEnabled="True" />
+            </DockPanel>
+            <TextBlock Text="Cave Density Chance" HorizontalAlignment="Right" />
+            <DockPanel>
+                <TextBlock Text="{Binding CaveDensity, StringFormat={}{0:0.00}}" Width="30" DockPanel.Dock="Right" />
+                <Slider Value="{Binding CaveDensity, Mode=TwoWay}" 
+            VerticalAlignment="Center" 
+            Minimum="0.1" 
+            Maximum="10.0" 
+            SmallChange="0.1" 
+            LargeChange="1" 
+            TickFrequency="0.01" 
+            IsSnapToTickEnabled="True" />
+            </DockPanel>
+
+            <!-- Underworld -->
+            <Separator Grid.ColumnSpan="2" />
+            <TextBlock Text="Generate Underworld" HorizontalAlignment="Right" />
+            <CheckBox IsChecked="{Binding GenerateUnderworld, Mode=TwoWay}" Margin="1" />
+            <TextBlock Text="Add Ash" HorizontalAlignment="Right" />
+            <CheckBox IsChecked="{Binding GenerateAsh, Mode=TwoWay}" Margin="1" />
+            <TextBlock Text="Add Lava" HorizontalAlignment="Right" />
+            <CheckBox IsChecked="{Binding GenerateLava, Mode=TwoWay}" Margin="1" />
+            <TextBlock Text="Roof Noise" HorizontalAlignment="Right" />
+            <DockPanel>
+                <TextBlock Text="{Binding UnderworldRoofNoise, StringFormat={}{0:0.00}}" Width="30" DockPanel.Dock="Right" />
+                <Slider Value="{Binding UnderworldRoofNoise, Mode=TwoWay}" 
+            VerticalAlignment="Center" 
+            Minimum="0.01" 
+            Maximum="0.3"
+            SmallChange="0.01" 
+            LargeChange="0.1" 
+            TickFrequency="0.01" 
+            IsSnapToTickEnabled="True" />
+            </DockPanel>
+            <TextBlock Text="Floor Noise" HorizontalAlignment="Right" />
+            <DockPanel>
+                <TextBlock Text="{Binding UnderworldFloorNoise, StringFormat={}{0:0.00}}" Width="30" DockPanel.Dock="Right" />
+                <Slider Value="{Binding UnderworldFloorNoise, Mode=TwoWay}" 
+            VerticalAlignment="Center" 
+            Minimum="0.01" 
+            Maximum="0.3"
+            SmallChange="0.01" 
+            LargeChange="0.1" 
+            TickFrequency="0.01" 
+            IsSnapToTickEnabled="True" />
+            </DockPanel>
+            <TextBlock Text="Lava Noise" HorizontalAlignment="Right" />
+            <DockPanel>
+                <TextBlock Text="{Binding UnderworldLavaNoise, StringFormat={}{0:0.00}}" Width="30" DockPanel.Dock="Right" />
+                <Slider Value="{Binding UnderworldLavaNoise, Mode=TwoWay}" 
+            VerticalAlignment="Center" 
+            Minimum="0.01" 
+            Maximum="0.3"
+            SmallChange="0.01" 
+            LargeChange="0.1" 
+            TickFrequency="0.01" 
+            IsSnapToTickEnabled="True" />
+            </DockPanel>
+
+            <!-- Ores -->
+            <Separator Grid.ColumnSpan="2" />
+            <TextBlock Text="Generate Ores" HorizontalAlignment="Right" />
+            <CheckBox IsChecked="{Binding GenerateOres, Mode=TwoWay}" Margin="1" Content="(Launches ore-gen plugin)" />
+
+            <!-- Bottom Buttons -->
+            <Separator Grid.ColumnSpan="2" />
         </tedit:AutoGrid>
         <UniformGrid Columns="2" Margin="2">
             <Button Content="Cancel" Padding="4" Margin="2" Click="CancelClick" />
-            <Button Content="Ok"     Padding="4" Margin="2" Click="OkClick" />
+            <Button Content="Ok" Padding="4" Margin="2" Click="OkClick" />
         </UniformGrid>
     </StackPanel>
 </Window>
