@@ -10,6 +10,12 @@
       "matchPackagePatterns": [
         "Avalonia*"
       ]
+    },
+    {
+      "groupName": "Avalonia Property Grid",
+      "matchPackagePatterns": [
+        "bodong.*"
+      ]
     }
   ]
 }
