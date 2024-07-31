@@ -743,87 +743,87 @@ public partial class World : ReactiveObject, ITileData
     private double _underworldLavaNoise;
     private bool _generateOres;
 
-	[Reactive] public double HillSize
+	public double HillSize
     {
         get => _hillSize;
         set => this.RaiseAndSetIfChanged(ref _hillSize, value);
     }
-    [Reactive] public bool GenerateGrass
+    public bool GenerateGrass
     {
         get => _generateGrass;
         set => this.RaiseAndSetIfChanged(ref _generateGrass, value);
     }
-    [Reactive] public bool GenerateWalls
+    public bool GenerateWalls
     {
         get => _generateWalls;
         set => this.RaiseAndSetIfChanged(ref _generateWalls, value);
     }
-    [Reactive] public bool GenerateCaves
+    public bool GenerateCaves
     {
         get => _generateCaves;
         set => this.RaiseAndSetIfChanged(ref _generateCaves, value);
     }
-    [Reactive] public int CavePresetIndex
+    public int CavePresetIndex
     {
         get => _cavePresetIndex;
         set => this.RaiseAndSetIfChanged(ref _cavePresetIndex, value);
     }
-    [Reactive] public ObservableCollection<string> CavePresets
+    public ObservableCollection<string> CavePresets
     {
         get => _cavePresets;
         set => this.RaiseAndSetIfChanged(ref _cavePresets, value);
     }
-    [Reactive] public bool SurfaceCaves
+    public bool SurfaceCaves
     {
         get => _surfaceCaves;
         set => this.RaiseAndSetIfChanged(ref _surfaceCaves, value);
     }
-    [Reactive] public double CaveNoise
+    public double CaveNoise
     {
         get => _caveNoise;
         set => this.RaiseAndSetIfChanged(ref _caveNoise, value);
     }
-    [Reactive] public double CaveMultiplier
+    public double CaveMultiplier
     {
         get => _caveMultiplier;
         set => this.RaiseAndSetIfChanged(ref _caveMultiplier, value);
     }
-    [Reactive] public double CaveDensity
+    public double CaveDensity
     {
         get => _caveDensity;
         set => this.RaiseAndSetIfChanged(ref _caveDensity, value);
     }
-    [Reactive] public bool GenerateUnderworld
+    public bool GenerateUnderworld
     {
         get => _generateUnderworld;
         set => this.RaiseAndSetIfChanged(ref _generateUnderworld, value);
     }
-    [Reactive] public bool GenerateAsh
+    public bool GenerateAsh
     {
         get => _generateAsh;
         set => this.RaiseAndSetIfChanged(ref _generateAsh, value);
     }
-    [Reactive] public bool GenerateLava
+    public bool GenerateLava
     {
         get => _generateLava;
         set => this.RaiseAndSetIfChanged(ref _generateLava, value);
     }
-    [Reactive] public double UnderworldRoofNoise
+    public double UnderworldRoofNoise
     {
         get => _underworldRoofNoise;
         set => this.RaiseAndSetIfChanged(ref _underworldRoofNoise, value);
     }
-    [Reactive] public double UnderworldFloorNoise
+    public double UnderworldFloorNoise
     {
         get => _underworldFloorNoise;
         set => this.RaiseAndSetIfChanged(ref _underworldFloorNoise, value);
     }
-    [Reactive] public double UnderworldLavaNoise
+    public double UnderworldLavaNoise
     {
         get => _underworldLavaNoise;
         set => this.RaiseAndSetIfChanged(ref _underworldLavaNoise, value);
     }
-    [Reactive] public bool GenerateOres
+    public bool GenerateOres
     {
         get => _generateOres;
         set => this.RaiseAndSetIfChanged(ref _generateOres, value);
