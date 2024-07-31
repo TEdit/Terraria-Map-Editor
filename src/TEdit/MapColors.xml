@@ -14,6 +14,37 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
 
 <Colors>
     <Tiles>
+        <Tile Id="0" Name="Dirt" Paint="0" Color="#FF976B4B" BuildSafe="True" />
+        <Tile Id="0" Name="Dirt" Paint="1" Color="#FF970000" BuildSafe="True" />
+        <Tile Id="0" Name="Dirt" Paint="2" Color="#FF974B00" BuildSafe="True" />
+        <Tile Id="0" Name="Dirt" Paint="3" Color="#FF979700" BuildSafe="True" />
+        <Tile Id="0" Name="Dirt" Paint="4" Color="#FF4B9700" BuildSafe="True" />
+        <Tile Id="0" Name="Dirt" Paint="5" Color="#FF009700" BuildSafe="True" />
+        <Tile Id="0" Name="Dirt" Paint="6" Color="#FF00974B" BuildSafe="True" />
+        <Tile Id="0" Name="Dirt" Paint="7" Color="#FF009797" BuildSafe="True" />
+        <Tile Id="0" Name="Dirt" Paint="8" Color="#FF004B97" BuildSafe="True" />
+        <Tile Id="0" Name="Dirt" Paint="9" Color="#FF000097" BuildSafe="True" />
+        <Tile Id="0" Name="Dirt" Paint="10" Color="#FF4B0097" BuildSafe="True" />
+        <Tile Id="0" Name="Dirt" Paint="11" Color="#FF970097" BuildSafe="True" />
+        <Tile Id="0" Name="Dirt" Paint="12" Color="#FF97004B" BuildSafe="True" />
+        <Tile Id="0" Name="Dirt" Paint="13" Color="#FF970000" BuildSafe="True" />
+        <Tile Id="0" Name="Dirt" Paint="14" Color="#FF974B00" BuildSafe="True" />
+        <Tile Id="0" Name="Dirt" Paint="15" Color="#FF979700" BuildSafe="True" />
+        <Tile Id="0" Name="Dirt" Paint="16" Color="#FF4B9700" BuildSafe="True" />
+        <Tile Id="0" Name="Dirt" Paint="17" Color="#FF009700" BuildSafe="True" />
+        <Tile Id="0" Name="Dirt" Paint="18" Color="#FF00974B" BuildSafe="True" />
+        <Tile Id="0" Name="Dirt" Paint="19" Color="#FF009797" BuildSafe="True" />
+        <Tile Id="0" Name="Dirt" Paint="20" Color="#FF004B97" BuildSafe="True" />
+        <Tile Id="0" Name="Dirt" Paint="21" Color="#FF000097" BuildSafe="True" />
+        <Tile Id="0" Name="Dirt" Paint="22" Color="#FF4B0097" BuildSafe="True" />
+        <Tile Id="0" Name="Dirt" Paint="23" Color="#FF970097" BuildSafe="True" />
+        <Tile Id="0" Name="Dirt" Paint="24" Color="#FF97004B" BuildSafe="True" />
+        <Tile Id="0" Name="Dirt" Paint="25" Color="#FF2C2C2C" BuildSafe="True" />
+        <Tile Id="0" Name="Dirt" Paint="26" Color="#FF979797" BuildSafe="True" />
+        <Tile Id="0" Name="Dirt" Paint="27" Color="#FF676767" BuildSafe="True" />
+        <Tile Id="0" Name="Dirt" Paint="28" Color="#FF97694A" BuildSafe="True" />
+        <Tile Id="0" Name="Dirt" Paint="29" Color="#FF020202" BuildSafe="True" />
+        <Tile Id="0" Name="Dirt" Paint="30" Color="#FF6894B4" BuildSafe="True" />
         <Tile Id="1" Name="Stone" Paint="0" Color="#FF808080" BuildSafe="True" />
         <Tile Id="1" Name="Stone" Paint="1" Color="#FF800000" BuildSafe="True" />
         <Tile Id="1" Name="Stone" Paint="2" Color="#FF803F00" BuildSafe="True" />
@@ -21466,8 +21497,8 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Tile Id="692" Name="RainbowMossBlock" Paint="28" Color="#FFFFB27D" BuildSafe="False" />
         <Tile Id="692" Name="RainbowMossBlock" Paint="29" Color="#FF050505" BuildSafe="False" />
         <Tile Id="692" Name="RainbowMossBlock" Paint="30" Color="#FFB2B300" BuildSafe="False" />
-	</Tiles>
-	<Walls>
+    </Tiles>
+    <Walls>
         <Wall Id="1" Name="Stone" Paint="0" Color="#FF343434" BuildSafe="True" />
         <Wall Id="1" Name="Stone" Paint="1" Color="#FF340000" BuildSafe="True" />
         <Wall Id="1" Name="Stone" Paint="2" Color="#FF341900" BuildSafe="True" />
@@ -32194,5 +32225,5 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Wall Id="346" Name="RainbowMossBlockWall" Paint="28" Color="#FF342419" BuildSafe="True" />
         <Wall Id="346" Name="RainbowMossBlockWall" Paint="29" Color="#FF010101" BuildSafe="True" />
         <Wall Id="346" Name="RainbowMossBlockWall" Paint="30" Color="#FF656565" BuildSafe="True" />
-	</Walls>
+    </Walls>
 </Colors>
