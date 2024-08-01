@@ -25,6 +25,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Xml.Linq;
+using System.Threading;
 
 using TEdit.Editor.Clipboard;
 using TEdit.Geometry; /* TE4: using TEdit.Common.Geometry.Primitives; */
@@ -49,6 +50,7 @@ namespace TEdit.Editor.Plugins
     public partial class ImageToPixelartEditorView : Window
     {
         private readonly WorldViewModel _worldViewModel;
+        private static CancellationTokenSource _cancellationTokenSource;
         public static Color GridColor { get; set; } = Color.Red;
         public static List<TileWallData> TileWallDataList { get; set; }
         public static Color[] Clrs { get; set; } = new Color[1];
@@ -599,8 +601,37 @@ namespace TEdit.Editor.Plugins
         // Convert pixelart.
         private async void ConvertToPixelArt_Click(object sender, RoutedEventArgs e)
         {
-            // Call ConvertPixelArt asynchronously.
-            await ConvertPixelArt(buildSchematic: (bool)GenerateSchematic.IsChecked); // False as we're just building only.
+            // Check the current button content.
+            if (ConvertToPixelArt.Content.ToString() == "Convert To Pixel Art")
+            {
+                // Start or restart the conversion.
+                _cancellationTokenSource?.Cancel(); // Cancel any existing conversion tasks.
+                _cancellationTokenSource = new CancellationTokenSource(); // Create a new CancellationTokenSource for the new operation.
+                ConvertToPixelArt.ToolTip = "Cancle the current rendering operation."; // Change button tooltip.
+                ConvertToPixelArt.Content = "Cancel Conversion"; // Change button content to indicate the operation can be cancelled.
+
+                try
+                {
+                    // Call ConvertPixelArt asynchronously with the cancellation token.
+                    await ConvertPixelArt(buildSchematic: (bool)GenerateSchematic.IsChecked, cancellationToken: _cancellationTokenSource.Token); // False as we're just building only.
+                }
+                catch (OperationCanceledException)
+                {
+                    // Handle cancellation.
+                    MessageBox.Show("Rendering was cancelled.");
+                }
+                finally
+                {
+                    // Reset button content, tooltip, and state.
+                    ConvertToPixelArt.ToolTip = "Convert the current image to pixel art.";
+                    ConvertToPixelArt.Content = "Convert To Pixel Art";
+                }
+            }
+            else if (ConvertToPixelArt.Content.ToString() == "Cancel Conversion")
+            {
+                // Cancel the ongoing conversion.
+                _cancellationTokenSource?.Cancel();
+            }
         }
         #endregion
 
@@ -1105,14 +1136,14 @@ namespace TEdit.Editor.Plugins
 
         #region Main Pixelart Conversion
 
-        private async Task ConvertPixelArt(bool buildSchematic = false)
+        private async Task ConvertPixelArt(bool buildSchematic = false, CancellationToken cancellationToken = default)
         {
             Bitmap btm = new(1, 1);
             Bitmap bBt = new(1, 1);
             Graphics g = null;
 
-            // Disable all controls on main form.
-            SetEnabledState(this, false);
+            // Disable all controls on main form excluding certain controls.
+            SetEnabledState(this, false, new List<string> { "MainWindow", "MainGrid", "BasicConfigurationGroupBox", "BasicConfigurationCanvas", "ConvertToPixelArt", "PixelArtStatisticsGroupBox", "PixelArtStatisticsCanvas", "ProgressBar1" });
 
             bool isProgressBarChecked = false;
             bool isGatherStatisticsChecked = false;
@@ -1217,162 +1248,176 @@ namespace TEdit.Editor.Plugins
                     });
                 }
 
-                await Task.Run(() =>
+                try
                 {
-                    using (g = Graphics.FromImage(bBt))
+                    await Task.Run(() =>
                     {
-                        List<Color> block = new();
-                        Color final = Color.Black;
-
-                        int progressCounter = 0;
-                        int progressUpdateInterval = Math.Max(totalBlocks / 100, 1); // Update progress every 1%. // Ensure progressUpdateInterval is at least 1.
-
-                        for (int x = 0; x < btm.Width; x += num)
+                        using (g = Graphics.FromImage(bBt))
                         {
-                            for (int y = 0; y < btm.Height; y += num)
+                            List<Color> block = new();
+                            Color final = Color.Black;
+
+                            int progressCounter = 0;
+                            int progressUpdateInterval = Math.Max(totalBlocks / 100, 1); // Update progress every 1%. // Ensure progressUpdateInterval is at least 1.
+
+                            for (int x = 0; x < btm.Width; x += num)
                             {
-                                // Get interpolation type.
-                                if (isNearestNeighborChecked)
+                                for (int y = 0; y < btm.Height; y += num)
                                 {
-                                    final = NearestNeighborInterpolation(btm, x, y, num, isBackdropChecked);
-                                }
-                                else if (isBicubicChecked)
-                                {
-                                    final = BicubicInterpolation(btm, x, y, isBackdropChecked);
-                                }
-                                else if (isLanczosChecked)
-                                {
-                                    final = LanczosInterpolation(btm, x, y, num, AEqualsValue, isBackdropChecked); // Lanczos with a=3.
-                                }
-                                else if (isHermiteChecked)
-                                {
-                                    final = HermiteInterpolation(btm, x, y, isBackdropChecked);
-                                }
-                                else if (isSplineChecked)
-                                {
-                                    final = SplineInterpolation(btm, x, y, num, isBackdropChecked);
-                                }
-                                else if (isGaussianChecked)
-                                {
-                                    final = GaussianInterpolation(btm, x, y, SigmaEqualsValue, isBackdropChecked); // Example with sigma=1.0.
-                                }
-                                else // Else use Bilinear (defualt).
-                                {
-                                    final = BilinearInterpolation(btm, x, y, num, isBackdropChecked);
-                                }
+                                    // Check for cancellation.
+                                    cancellationToken.ThrowIfCancellationRequested();
 
-                                // Record schematic data. There should not be any transparent tiles.
-                                if (final.A != 0)
-                                {
-                                    SolidBrush sb = new(final);
-                                    Rectangle rec = new(x, y, num, num);
-                                    g.FillRectangle(sb, rec);
-                                }
-
-                                // Build schematic from final & GeneratedSchematic.
-                                if (buildSchematic)
-                                {
-                                    // Define rotation data.
-                                    Point rotationData = new();
-                                    Dispatcher.Invoke(() =>
+                                    // Get interpolation type.
+                                    if (isNearestNeighborChecked)
                                     {
-                                        rotationData = GetRotationData(x / num, y / num, blocksPerRow, blocksPerColumn);
-                                    });
-
-                                    if (final.A == 0)
-                                    {
-                                        // Set schematic data as "air".
-                                        GeneratedSchematic.Tiles[rotationData.X, rotationData.Y] = new Tile { Type = 0, IsActive = false };
+                                        final = NearestNeighborInterpolation(btm, x, y, num, isBackdropChecked);
                                     }
-                                    else
+                                    else if (isBicubicChecked)
                                     {
-                                        // Compare the hex codes between the "final" color from Interpolation and the filtered color list.
-                                        // Convert final color to HTML string with alpha channel as "FF".
-                                        string finalHtmlColor = $"#{final.A:X2}{final.R:X2}{final.G:X2}{final.B:X2}";
-
-                                        // Find the first matching TileWallData where the color matches finalHtmlColor
-                                        TileWallData matchedTile = ClrsTileWallData
-                                            .FirstOrDefault(t => t.Color.Equals(finalHtmlColor, StringComparison.OrdinalIgnoreCase));
-
-                                        if (matchedTile != null)
-                                        {
-                                            // Build schematic.
-                                            if (matchedTile.Type == "Tile")
-                                            {
-                                                GeneratedSchematic.Tiles[rotationData.X, rotationData.Y] = new Tile { Type = (ushort)matchedTile.Id, TileColor = (byte)matchedTile.Paint, IsActive = true };
-                                            }
-                                            else if (matchedTile.Type == "Wall")
-                                            {
-                                                GeneratedSchematic.Tiles[rotationData.X, rotationData.Y] = new Tile { Wall = (ushort)matchedTile.Id, WallColor = (byte)matchedTile.Paint, IsActive = false };
-                                            }
-                                        } // There should never be a case where it does not find the tile!
+                                        final = BicubicInterpolation(btm, x, y, isBackdropChecked);
                                     }
-                                }
-
-                                // Gather statistics.
-                                if (isGatherStatisticsChecked && final.A != 0)
-                                    renderedCount++;
-
-                                // Progress progress bar.
-                                if (isProgressBarChecked)
-                                {
-                                    progressCounter++;
-                                    if (progressCounter % progressUpdateInterval == 0)
+                                    else if (isLanczosChecked)
                                     {
-                                        Dispatcher.BeginInvoke(() =>
+                                        final = LanczosInterpolation(btm, x, y, num, AEqualsValue, isBackdropChecked); // Lanczos with a=3.
+                                    }
+                                    else if (isHermiteChecked)
+                                    {
+                                        final = HermiteInterpolation(btm, x, y, isBackdropChecked);
+                                    }
+                                    else if (isSplineChecked)
+                                    {
+                                        final = SplineInterpolation(btm, x, y, num, isBackdropChecked);
+                                    }
+                                    else if (isGaussianChecked)
+                                    {
+                                        final = GaussianInterpolation(btm, x, y, SigmaEqualsValue, isBackdropChecked); // Example with sigma=1.0.
+                                    }
+                                    else // Else use Bilinear (defualt).
+                                    {
+                                        final = BilinearInterpolation(btm, x, y, num, isBackdropChecked);
+                                    }
+
+                                    // Record schematic data. There should not be any transparent tiles.
+                                    if (final.A != 0)
+                                    {
+                                        SolidBrush sb = new(final);
+                                        Rectangle rec = new(x, y, num, num);
+                                        g.FillRectangle(sb, rec);
+                                    }
+
+                                    // Build schematic from final & GeneratedSchematic.
+                                    if (buildSchematic)
+                                    {
+                                        // Define rotation data.
+                                        Point rotationData = new();
+                                        Dispatcher.Invoke(() =>
                                         {
-                                            ProgressBar1.Value = Math.Min(ProgressBar1.Value + progressUpdateInterval, ProgressBar1.Maximum);
+                                            rotationData = GetRotationData(x / num, y / num, blocksPerRow, blocksPerColumn);
                                         });
+
+                                        if (final.A == 0)
+                                        {
+                                            // Set schematic data as "air".
+                                            GeneratedSchematic.Tiles[rotationData.X, rotationData.Y] = new Tile { Type = 0, IsActive = false };
+                                        }
+                                        else
+                                        {
+                                            // Compare the hex codes between the "final" color from Interpolation and the filtered color list.
+                                            // Convert final color to HTML string with alpha channel as "FF".
+                                            string finalHtmlColor = $"#{final.A:X2}{final.R:X2}{final.G:X2}{final.B:X2}";
+
+                                            // Find the first matching TileWallData where the color matches finalHtmlColor
+                                            TileWallData matchedTile = ClrsTileWallData
+                                                .FirstOrDefault(t => t.Color.Equals(finalHtmlColor, StringComparison.OrdinalIgnoreCase));
+
+                                            if (matchedTile != null)
+                                            {
+                                                // Build schematic.
+                                                if (matchedTile.Type == "Tile")
+                                                {
+                                                    GeneratedSchematic.Tiles[rotationData.X, rotationData.Y] = new Tile { Type = (ushort)matchedTile.Id, TileColor = (byte)matchedTile.Paint, IsActive = true };
+                                                }
+                                                else if (matchedTile.Type == "Wall")
+                                                {
+                                                    GeneratedSchematic.Tiles[rotationData.X, rotationData.Y] = new Tile { Wall = (ushort)matchedTile.Id, WallColor = (byte)matchedTile.Paint, IsActive = false };
+                                                }
+                                            } // There should never be a case where it does not find the tile!
+                                        }
+                                    }
+
+                                    // Gather statistics.
+                                    if (isGatherStatisticsChecked && final.A != 0)
+                                        renderedCount++;
+
+                                    // Progress progress bar.
+                                    if (isProgressBarChecked)
+                                    {
+                                        progressCounter++;
+                                        if (progressCounter % progressUpdateInterval == 0)
+                                        {
+                                            Dispatcher.BeginInvoke(() =>
+                                            {
+                                                ProgressBar1.Value = Math.Min(ProgressBar1.Value + progressUpdateInterval, ProgressBar1.Maximum);
+                                            });
+                                        }
                                     }
                                 }
                             }
-                        }
 
-                        // Grid function.
-                        if (isShowGridChecked)
-                        {
+                            // Grid function.
+                            if (isShowGridChecked)
+                            {
+                                Dispatcher.Invoke(() =>
+                                {
+                                    HighlightCells(g, bBt.Width, num, int.Parse(NUDTextBox3.Text), int.Parse(NUDTextBox4.Text));
+                                });
+                            }
+
+                            // Apply rotation if needed
+                            Bitmap rotatedImage = new(bBt);
                             Dispatcher.Invoke(() =>
                             {
-                                HighlightCells(g, bBt.Width, num, int.Parse(NUDTextBox3.Text), int.Parse(NUDTextBox4.Text));
+                                ApplyRotation(rotatedImage);
+                            });
+
+                            Dispatcher.Invoke(() =>
+                            {
+                                // Render Box
+                                BackgroundImage2.Source = BitmapToImageSource(rotatedImage);
+
+                                // Update the "schematic".
+                                // if (buildSchematic)
+                                // richTextBox2.Text = sb2.ToString();
+
+                                // Populate Stats
+                                if (isGatherStatisticsChecked)
+                                {
+                                    // TotalHeightData.Content = (isRotation90Checked || isRotation270Checked) ? blocksPerRow.ToString() : blocksPerColumn.ToString(); // Check if axis is rotated.
+                                    // TotalWidthData.Content = (isRotation90Checked || isRotation270Checked) ? blocksPerColumn.ToString() : blocksPerRow.ToString(); // Check if axis is rotated.
+                                    TotalBlocksData.Content = renderedCount.ToString();
+                                }
+
+                                // Enable schematic controls.
+                                if (buildSchematic)
+                                {
+                                    CopyToClipboard.IsEnabled = true;
+                                    OverwriteExistingFile.IsEnabled = true;
+                                    SaveSchematicToFile.IsEnabled = true;
+                                }
                             });
                         }
 
-                        // Apply rotation if needed
-                        Bitmap rotatedImage = new(bBt);
-                        Dispatcher.Invoke(() =>
-                        {
-                            ApplyRotation(rotatedImage);
-                        });
+                        // End section.
+                    }, cancellationToken); // Pass the cancellation token to Task.Run.
+                }
+                catch (OperationCanceledException)
+                {
+                    // Opteration was cancled, show message.
+                    MessageBox.Show("Rendering operation was cancled!");
 
-                        Dispatcher.Invoke(() =>
-                        {
-                            // Render Box
-                            BackgroundImage2.Source = BitmapToImageSource(rotatedImage);
-
-                            // Update the "schematic".
-                            // if (buildSchematic)
-                            // richTextBox2.Text = sb2.ToString();
-
-                            // Populate Stats
-                            if (isGatherStatisticsChecked)
-                            {
-                                // TotalHeightData.Content = (isRotation90Checked || isRotation270Checked) ? blocksPerRow.ToString() : blocksPerColumn.ToString(); // Check if axis is rotated.
-                                // TotalWidthData.Content = (isRotation90Checked || isRotation270Checked) ? blocksPerColumn.ToString() : blocksPerRow.ToString(); // Check if axis is rotated.
-                                TotalBlocksData.Content = renderedCount.ToString();
-                            }
-
-                            // Enable schematic controls.
-                            if (buildSchematic)
-                            {
-                                CopyToClipboard.IsEnabled = true;
-                                OverwriteExistingFile.IsEnabled = true;
-                                SaveSchematicToFile.IsEnabled = true;
-                            }
-                        });
-                    }
-
-                    // End section.
-                });
+                    // Update some controls.
+                    TotalBlocksData.Content = "0";
+                }
             }
             catch (Exception ex)
             {
@@ -2005,20 +2050,25 @@ namespace TEdit.Editor.Plugins
 
         #region Disable & Enable WPF Controls
 
-        public void SetEnabledState(UIElement element, bool isEnabled)
+        public void SetEnabledState(UIElement element, bool isEnabled, IEnumerable<string> controlsToExclude = null)
         {
             if (element == null) return;
 
-            if (element is System.Windows.Controls.Control control)
+            if (element is Control control)
             {
-                control.IsEnabled = isEnabled;
+                // Check if this control should be excluded.
+                if (controlsToExclude == null || !controlsToExclude.Contains(control.Name))
+                {
+                    // Set the enabled state of the control.
+                    control.IsEnabled = isEnabled;
+                }
             }
 
-            // Recursively set the enabled state for child elements
+            // Recursively process child elements.
             for (int i = 0; i < VisualTreeHelper.GetChildrenCount(element); i++)
             {
                 var child = VisualTreeHelper.GetChild(element, i) as UIElement;
-                SetEnabledState(child, isEnabled);
+                SetEnabledState(child, isEnabled, controlsToExclude);
             }
         }
         #endregion
