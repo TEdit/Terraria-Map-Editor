@@ -62,6 +62,22 @@ public class Tile
         return MemberwiseClone();
     }
 
+    // Added legacy enums back
+    public enum WallType : int
+    {
+        Sky = 0,
+        StoneWall = 1,
+        DirtWall = 2
+    }
+
+    public enum TileType : int
+    {
+        DirtBlock = 0,
+        StoneBlock = 1,
+        GrassBlock = 2,
+        AshBlock = 57
+    }
+
     public void Reset()
     {
         Actuator = false;

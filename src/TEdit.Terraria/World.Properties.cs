@@ -88,7 +88,7 @@ public partial class World : ReactiveObject, ITileData
     {
         if (!SafeGroundLayers)
         {
-			// Defualt: Use unsafe levels.
+            // Defualt: Use unsafe levels.
             MaxCavernLevel = Calc.Clamp(TilesHigh, 0, TilesHigh);
             MaxGroundLevel = Calc.Clamp(TilesHigh - 6, 0, TilesHigh);
         }
@@ -96,15 +96,15 @@ public partial class World : ReactiveObject, ITileData
         {
             MaxCavernLevel = Calc.Clamp(TilesHigh - WorldConfiguration.CavernLevelToBottomOfWorld, 6, TilesHigh);
             MaxGroundLevel = Calc.Clamp(MaxCavernLevel - 6, 0, TilesHigh);
-			
-			// Adjust the sliders to reflect new values if over the max.
-			if (GroundLevel > MaxGroundLevel)
-			    GroundLevel = MaxGroundLevel;
-			if (RockLevel > MaxCavernLevel)
-			    RockLevel = MaxCavernLevel;
+            
+            // Adjust the sliders to reflect new values if over the max.
+            if (GroundLevel > MaxGroundLevel)
+                GroundLevel = MaxGroundLevel;
+            if (RockLevel > MaxCavernLevel)
+                RockLevel = MaxCavernLevel;
         }
     }
-	
+    
     public uint WorldVersion => Version;
     public Random Rand;
     public int[] TreeBG = new int[3];
@@ -118,7 +118,7 @@ public partial class World : ReactiveObject, ITileData
     private double _groundLevel;
     private double _rockLevel;
     private int _shadowOrbCount;
-	private bool _safeGroundLayers;
+    private bool _safeGroundLayers;
     private int _tilesHigh;
     private int _treeX0;
     private int _treeX1;
@@ -288,8 +288,8 @@ public partial class World : ReactiveObject, ITileData
             }
         }
     }
-	
-	[Category("Levels")]
+    
+    [Category("Levels")]
     public bool SafeGroundLayers
     {
         get => _safeGroundLayers;
@@ -723,18 +723,122 @@ public partial class World : ReactiveObject, ITileData
 
     #endregion Invasions
 
+    #region Custom World Generation
+
+    private double _hillSize;
+    private bool _generateGrass;
+    private bool _generateWalls;
+    private bool _generateCaves;
+    private ObservableCollection<string> _cavePresets;
+    private int _cavePresetIndex;
+    private bool _surfaceCaves;
+    private double _caveNoise;
+    private double _caveMultiplier;
+    private double _caveDensity;
+    private bool _generateUnderworld;
+    private bool _generateAsh;
+    private bool _generateLava;
+    private double _underworldRoofNoise;
+    private double _underworldFloorNoise;
+    private double _underworldLavaNoise;
+    private bool _generateOres;
+
+	public double HillSize
+    {
+        get => _hillSize;
+        set => this.RaiseAndSetIfChanged(ref _hillSize, value);
+    }
+    public bool GenerateGrass
+    {
+        get => _generateGrass;
+        set => this.RaiseAndSetIfChanged(ref _generateGrass, value);
+    }
+    public bool GenerateWalls
+    {
+        get => _generateWalls;
+        set => this.RaiseAndSetIfChanged(ref _generateWalls, value);
+    }
+    public bool GenerateCaves
+    {
+        get => _generateCaves;
+        set => this.RaiseAndSetIfChanged(ref _generateCaves, value);
+    }
+    public int CavePresetIndex
+    {
+        get => _cavePresetIndex;
+        set => this.RaiseAndSetIfChanged(ref _cavePresetIndex, value);
+    }
+    public ObservableCollection<string> CavePresets
+    {
+        get => _cavePresets;
+        set => this.RaiseAndSetIfChanged(ref _cavePresets, value);
+    }
+    public bool SurfaceCaves
+    {
+        get => _surfaceCaves;
+        set => this.RaiseAndSetIfChanged(ref _surfaceCaves, value);
+    }
+    public double CaveNoise
+    {
+        get => _caveNoise;
+        set => this.RaiseAndSetIfChanged(ref _caveNoise, value);
+    }
+    public double CaveMultiplier
+    {
+        get => _caveMultiplier;
+        set => this.RaiseAndSetIfChanged(ref _caveMultiplier, value);
+    }
+    public double CaveDensity
+    {
+        get => _caveDensity;
+        set => this.RaiseAndSetIfChanged(ref _caveDensity, value);
+    }
+    public bool GenerateUnderworld
+    {
+        get => _generateUnderworld;
+        set => this.RaiseAndSetIfChanged(ref _generateUnderworld, value);
+    }
+    public bool GenerateAsh
+    {
+        get => _generateAsh;
+        set => this.RaiseAndSetIfChanged(ref _generateAsh, value);
+    }
+    public bool GenerateLava
+    {
+        get => _generateLava;
+        set => this.RaiseAndSetIfChanged(ref _generateLava, value);
+    }
+    public double UnderworldRoofNoise
+    {
+        get => _underworldRoofNoise;
+        set => this.RaiseAndSetIfChanged(ref _underworldRoofNoise, value);
+    }
+    public double UnderworldFloorNoise
+    {
+        get => _underworldFloorNoise;
+        set => this.RaiseAndSetIfChanged(ref _underworldFloorNoise, value);
+    }
+    public double UnderworldLavaNoise
+    {
+        get => _underworldLavaNoise;
+        set => this.RaiseAndSetIfChanged(ref _underworldLavaNoise, value);
+    }
+    public bool GenerateOres
+    {
+        get => _generateOres;
+        set => this.RaiseAndSetIfChanged(ref _generateOres, value);
+    }
+    #endregion
+
     [Reactive] public bool PartyManual { get; set; }
     [Reactive] public bool PartyGenuine { get; set; }
     [Reactive] public int PartyCooldown { get; set; }
 
-
     public int TileEntitiesNumber => TileEntities.Count;
-
 
     [Reactive][ReadOnly(true)] public byte[] UnknownData { get; set; }
 
     [Reactive] public Int64 CreationTime { get; set; }
-
 
     [Reactive] public int IceBackStyle { get; set; }
     [Reactive] public int JungleBackStyle { get; set; }
@@ -795,17 +899,17 @@ public partial class World : ReactiveObject, ITileData
     [Reactive] public byte BgTree4 { get; set; }
     [Reactive] public byte UnderworldBg { get; set; }
     [Reactive] public byte MushroomBg { get; set; }
-	
+    
     [Reactive] public int TilesWide { get; set; }
-	[Reactive] public int TilesHighReactive { get; set; }
+    [Reactive] public int TilesHighReactive { get; set; }
     public int TilesHigh
     {
         get => _tilesHigh;
         set
         {
-			// Update the reactive property to ensure UI and other bindings are notified.
-			TilesHighReactive = value;
-			
+            // Update the reactive property to ensure UI and other bindings are notified.
+            TilesHighReactive = value;
+            
             _tilesHigh = value;
             this.RaiseAndSetIfChanged(ref _tilesHigh, value);
             UpdateMaxLayerLevels();
