@@ -1,18 +1,18 @@
 ﻿using System;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Threading;
+using System.Threading.Tasks;
 using TEdit.Common.Reactive;
+using TEdit.Configuration;
+using TEdit.Geometry;
 using TEdit.Terraria;
 using TEdit.ViewModel;
-using System.Diagnostics;
-using TEdit.Geometry;
-using TEdit.Configuration;
-using System.Threading.Tasks;
 
 namespace TEdit.Editor.Undo;
 
-public class UndoManagerWrapper : IUndoManager
+public class UndoManagerWrapper : IUndoManager, IDisposable
 {
     private readonly UndoManager _um;
 
@@ -20,6 +20,12 @@ public class UndoManagerWrapper : IUndoManager
     {
         _um = um;
     }
+
+    public void Dispose()
+    {
+        _um.Dispose();
+    }
+
     public Task RedoAsync(World world)
     {
         throw new NotImplementedException();

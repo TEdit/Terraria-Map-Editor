@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using TEdit.Configuration;
@@ -25,7 +26,7 @@ public interface INotifyTileChanged
     void UpdateTile(int x, int y, int height = 1, int width = 1);
 }
 
-public class WorldEditor
+public class WorldEditor : IDisposable
 {
     private readonly World _world;
     private readonly ISelection _selection;
@@ -850,5 +851,10 @@ public class WorldEditor
         }
         var area = Shape.DrawLine(leftPoint, rightPoint).ToList();
         FillSolid(area);
+    }
+
+    public void Dispose()
+    {
+        _undo.Dispose();
     }
 }
