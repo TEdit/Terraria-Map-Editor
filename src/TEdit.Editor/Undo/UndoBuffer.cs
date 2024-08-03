@@ -8,7 +8,7 @@ using TEdit.Terraria;
 
 namespace TEdit.Editor.Undo;
 
-public class UndoBuffer
+public class UndoBuffer : IDisposable
 {
     private const int FlushSize = 10000;
     private string file;
@@ -22,6 +22,7 @@ public class UndoBuffer
         _writer.Write((Int32)0);
         _world = world;
     }
+
 
     private readonly List<UndoTile> _undoTiles = new List<UndoTile>();
     private readonly List<Sign> _signs = new List<Sign>();

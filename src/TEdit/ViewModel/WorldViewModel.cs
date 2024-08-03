@@ -471,6 +471,7 @@ public partial class WorldViewModel : ViewModelBase
             if (value != null)
             {
 
+                WorldEditor?.Dispose();
 
                 var rb = new RenderBlender(CurrentWorld, TilePicker);
 
@@ -496,6 +497,7 @@ public partial class WorldViewModel : ViewModelBase
             }
             else
             {
+                WorldEditor?.Dispose();
                 WorldEditor = null;
             }
         }
@@ -1688,7 +1690,7 @@ public partial class WorldViewModel : ViewModelBase
         _loadTimer.Start();
         _saveTimer.Stop();
         CurrentFile = filename;
-        CurrentWorld = null;
+        //CurrentWorld = null;
         GC.WaitForFullGCComplete();
 
         Task.Factory.StartNew(() =>

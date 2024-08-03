@@ -1,10 +1,11 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using TEdit.Geometry;
 using TEdit.Terraria;
 
 namespace TEdit.Editor.Undo;
 
-public interface IUndoManager
+public interface IUndoManager : IDisposable
 {
     Task StartUndoAsync();
 
