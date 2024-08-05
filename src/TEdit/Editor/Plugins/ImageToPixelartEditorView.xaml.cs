@@ -604,6 +604,14 @@ namespace TEdit.Editor.Plugins
             // Check the current button content.
             if (ConvertToPixelArt.Content.ToString() == "Convert To Pixel Art")
             {
+                // Ensure the color filter is not zero.
+                if (ClrsTileWallData.Count == 0)
+                {
+                    // Display error.
+                    MessageBox.Show("The color filter is zero. Adjust your settings.");
+                    return;
+                }
+                
                 // Start or restart the conversion.
                 _cancellationTokenSource?.Cancel(); // Cancel any existing conversion tasks.
                 _cancellationTokenSource = new CancellationTokenSource(); // Create a new CancellationTokenSource for the new operation.
@@ -1255,7 +1263,7 @@ namespace TEdit.Editor.Plugins
                         using (g = Graphics.FromImage(bBt))
                         {
                             List<Color> block = new();
-                            Color final = Color.Black;
+                            Color final = Color.Lime;
 
                             int progressCounter = 0;
                             int progressUpdateInterval = Math.Max(totalBlocks / 100, 1); // Update progress every 1%. // Ensure progressUpdateInterval is at least 1.
@@ -1467,7 +1475,7 @@ namespace TEdit.Editor.Plugins
             if (includeTransparent || nearestColor.A != 0)
             {
                 if (includeTransparent && nearestColor.A == 0)
-                    nearestColor = Color.Black; // Default color for transparency, or you can choose another default color.
+                    nearestColor = Color.Lime; // Default color for transparency, or you can choose another default color.
 
                 return Clr(new Color[] { nearestColor });
             }
@@ -1488,7 +1496,7 @@ namespace TEdit.Editor.Plugins
                         if (includeTransparent || color.A != 0)
                         {
                             if (includeTransparent && color.A == 0)
-                                color = Color.Black; // Default color for transparency, or you can choose another default color.
+                                color = Color.Lime; // Default color for transparency, or you can choose another default color.
                             block.Add(color);
                         }
                     }
@@ -1528,7 +1536,7 @@ namespace TEdit.Editor.Plugins
                     if (includeTransparent || pixel.A != 0)
                     {
                         if (includeTransparent && pixel.A == 0)
-                            pixel = Color.Black; // Default color for transparency, or you can choose another default color.
+                            pixel = Color.Lime; // Default color for transparency, or you can choose another default color.
 
                         double coeff = dx[i + 1] * dy[j + 1];
                         r += pixel.R * coeff;
@@ -1565,7 +1573,7 @@ namespace TEdit.Editor.Plugins
                     if (includeTransparent || pixel.A != 0)
                     {
                         if (includeTransparent && pixel.A == 0)
-                            pixel = Color.Black; // Default color for transparency, or you can choose another default color.
+                            pixel = Color.Lime; // Default color for transparency, or you can choose another default color.
 
                         double lanczosWeight = LanczosKernel(i / (double)num, a) * LanczosKernel(j / (double)num, a);
                         r += pixel.R * lanczosWeight;
@@ -1610,7 +1618,7 @@ namespace TEdit.Editor.Plugins
                     if (includeTransparent || pixel.A != 0)
                     {
                         if (includeTransparent && pixel.A == 0)
-                            pixel = Color.Black; // Default color for transparency, or you can choose another default color.
+                            pixel = Color.Lime; // Default color for transparency, or you can choose another default color.
 
                         double coeff = dx[i] * dy[j];
                         r += pixel.R * coeff;
@@ -1648,7 +1656,7 @@ namespace TEdit.Editor.Plugins
                     if (includeTransparent || pixel.A != 0)
                     {
                         if (includeTransparent && pixel.A == 0)
-                            pixel = Color.Black; // Default color for transparency, or you can choose another default color.
+                            pixel = Color.Lime; // Default color for transparency, or you can choose another default color.
 
                         double coeff = SplineKernel(i / (double)num) * SplineKernel(j / (double)num);
                         r += pixel.R * coeff;
@@ -1688,7 +1696,7 @@ namespace TEdit.Editor.Plugins
                     if (includeTransparent || pixel.A != 0)
                     {
                         if (includeTransparent && pixel.A == 0)
-                            pixel = Color.Black; // Default color for transparency, or you can choose another default color.
+                            pixel = Color.Lime; // Default color for transparency, or you can choose another default color.
 
                         double weight = GaussianKernel(i, j, sigma);
                         r += pixel.R * weight;
