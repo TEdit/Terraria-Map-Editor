@@ -344,6 +344,9 @@ Klicke auf „Wiederholen“, um einen neuen Ordner auszuwählen, oder auf „Ab
   <data name="menu_layers_wire_yellow" xml:space="preserve">
     <value>Gelbe Kabel</value>
   </data>
+  <data name="menu_layers_wire_all" xml:space="preserve">
+    <value>Alle draden</value>
+  </data>
   <data name="menu_plugins" xml:space="preserve">
     <value>Plugins</value>
   </data>

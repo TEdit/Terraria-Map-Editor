@@ -944,6 +944,15 @@ public class Language {
     }
     
     /// <summary>
+    ///   Looks up a localized string similar to All Wires.
+    /// </summary>
+    public static string menu_layers_wire_all {
+        get {
+            return ResourceManager.GetString("menu_layers_wire_all", resourceCulture);
+        }
+    }
+    
+    /// <summary>
     ///   Looks up a localized string similar to Plugins.
     /// </summary>
     public static string menu_plugins {

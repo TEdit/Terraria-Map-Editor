@@ -347,6 +347,9 @@
   <data name="menu_layers_wire_yellow" xml:space="preserve">
     <value>黄电线</value>
   </data>
+  <data name="menu_layers_wire_all" xml:space="preserve">
+    <value>所有电线</value>
+  </data>
   <data name="menu_plugins" xml:space="preserve">
     <value>插件</value>
   </data>

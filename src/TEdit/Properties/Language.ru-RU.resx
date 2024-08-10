@@ -332,6 +332,9 @@
   <data name="menu_layers_wire_yellow" xml:space="preserve">
     <value>Жёлтые провода</value>
   </data>
+  <data name="menu_layers_wire_all" xml:space="preserve">
+    <value>Все провода</value>
+  </data>
   <data name="menu_plugins" xml:space="preserve">
     <value>Плагины</value>
   </data>
