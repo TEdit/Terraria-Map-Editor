@@ -94,6 +94,7 @@ public partial class WorldViewModel : ViewModelBase
     private bool _showBlueWires = true;
     private bool _showGreenWires = true;
     private bool _showYellowWires = true;
+    private bool _showAllWires = true;
     private bool _showWireTransparency = true;
     private string _spriteFilter;
     private ushort _spriteTileFilter;
@@ -580,7 +581,26 @@ public partial class WorldViewModel : ViewModelBase
             UpdateRenderWorld();
         }
     }
-
+    
+    public bool ShowAllWires
+    {
+        get { return _showAllWires; }
+        set
+        {
+            Set(nameof(ShowAllWires), ref _showAllWires, value);
+            ToggleWireStates(_showAllWires);
+            UpdateRenderWorld();
+        }
+    }
+    
+    public void ToggleWireStates(bool state)
+    {
+        ShowRedWires = state;
+        ShowBlueWires = state;
+        ShowGreenWires = state;
+        ShowYellowWires = state;
+    }
+    
     public bool ShowWireTransparency
     {
         get { return _showWireTransparency; }
