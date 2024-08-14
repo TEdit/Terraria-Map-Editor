@@ -384,6 +384,9 @@
   <data name="menu_layers_wire_yellow" xml:space="preserve">
     <value>سلك أصفر</value>
   </data>
+  <data name="menu_layers_wire_all" xml:space="preserve">
+    <value>جميع الأسلاك</value>
+  </data>
   <data name="menu_plugins" xml:space="preserve">
     <value>الإضافات</value>
   </data>

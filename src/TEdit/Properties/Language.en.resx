@@ -347,6 +347,9 @@ Press retry to pick a new folder or cancel to use {0} as your terraria path.</va
   <data name="menu_layers_wire_yellow" xml:space="preserve">
     <value>Yellow Wire</value>
   </data>
+  <data name="menu_layers_wire_all" xml:space="preserve">
+    <value>All Wires</value>
+  </data>
   <data name="menu_plugins" xml:space="preserve">
     <value>Plugins</value>
   </data>

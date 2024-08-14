@@ -344,6 +344,9 @@ Naciśnij spróbuj ponownie aby wybrać nowy folder lub anuluj aby użyć {0} ja
   <data name="menu_layers_wire_yellow" xml:space="preserve">
     <value>Żółte Kable</value>
   </data>
+  <data name="menu_layers_wire_all" xml:space="preserve">
+    <value>Wszystkie przewody</value>
+  </data>
   <data name="menu_plugins" xml:space="preserve">
     <value>Pluginy</value>
   </data>

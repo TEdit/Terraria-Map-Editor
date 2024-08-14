@@ -344,6 +344,9 @@ Clique em tentar novamente para escolher uma nova pasta ou cancelar para usar {0
   <data name="menu_layers_wire_yellow" xml:space="preserve">
     <value>Fio amarelo</value>
   </data>
+  <data name="menu_layers_wire_all" xml:space="preserve">
+    <value>Todos os fios</value>
+  </data>
   <data name="menu_plugins" xml:space="preserve">
     <value>Plugins</value>
   </data>
