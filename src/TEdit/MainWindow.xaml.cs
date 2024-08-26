@@ -2,12 +2,14 @@
 using System.Linq;
 using System.Windows;
 using System.Windows.Input;
+using System.Collections.Generic;
 using TEdit.Geometry;
 using TEdit.Terraria;
 using TEdit.Editor;
 using TEdit.ViewModel;
 using TEdit.Properties;
 using TEdit.UI.Xaml;
+using TEdit.View.Popups;
 using System.IO;
 
 namespace TEdit;
@@ -27,11 +29,7 @@ public partial class MainWindow : Window
         _vm = (WorldViewModel)DataContext;
         AddHandler(Keyboard.KeyDownEvent, (KeyEventHandler)HandleKeyDownEvent);
         AddHandler(Keyboard.KeyUpEvent, (KeyEventHandler)HandleKeyUpEvent);
-
-        
     }
-
-
 
     void MainWindow_Loaded(object sender, RoutedEventArgs e)
     {
@@ -266,6 +264,37 @@ public partial class MainWindow : Window
             string filelocation = Path.GetFullPath(files[0]);
 
             _vm.LoadWorld(filelocation);
+        }
+    }
+	
+	private void TextBox_PreviewMouseDown(object sender, MouseButtonEventArgs e)
+    {
+        // Check if the left mouse button was clicked
+        if (e.LeftButton == MouseButtonState.Pressed)
+        {
+            // Prevent the default focus behavior on click
+            e.Handled = true;
+
+            // Ensure the selection area is active.
+            if (!_vm.Selection.IsActive)
+                return;
+
+            // Build the list of tiles per the selection area.
+            List<Tuple<Tile, Vector2Int32>> tileList = new();
+            for (int x = _vm.Selection.SelectionArea.Left; x < _vm.Selection.SelectionArea.Right; x++)
+            {
+                for (int y = _vm.Selection.SelectionArea.Top; y < _vm.Selection.SelectionArea.Bottom; y++)
+                {
+                    tileList.Add(new Tuple<Tile, Vector2Int32>(_vm.CurrentWorld.Tiles[x, y], new Vector2Int32(x, y)));
+                }
+            }
+
+            // Clear the selection for better viewing.
+            _vm.Selection.SetRectangle(new Vector2Int32(0, 0), new Vector2Int32(0, 0));
+
+            // Pass the tile data onto the new controller.
+            UVEditorWindow uvEditorWindow = new(tileList, _vm);
+            uvEditorWindow.ShowDialog();
         }
     }
 }
