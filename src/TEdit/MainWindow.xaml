@@ -155,7 +155,7 @@
                         <TextBlock Text="{x:Static p:Language.statusbar_extra_label}" VerticalAlignment="Center" Margin="5,0"/>
                         <TextBox Text="{Binding MouseOverTile.TileExtras, Mode=OneWay}" Width="100" IsReadOnly="True" />
                         <TextBlock Text="{x:Static p:Language.statusbar_frame_label}" VerticalAlignment="Center" Margin="5,0"/>
-                        <TextBox Text="{Binding MouseOverTile.UV, StringFormat={}{0}, Mode=OneWay}" Width="50" IsReadOnly="True" />
+                        <TextBox Text="{Binding MouseOverTile.UV, StringFormat={}{0}, Mode=OneWay}" Width="50" IsReadOnly="True" PreviewMouseDown="TextBox_PreviewMouseDown"/>
                         <TextBlock Text="{x:Static p:Language.statusbar_paint_label}" VerticalAlignment="Center" Margin="5,0"/>
                         <TextBox Text="{Binding MouseOverTile.Paint, Mode=OneWay}" Width="180" IsReadOnly="True" />
                         <TextBlock Text="{x:Static p:Language.statusbar_selection_label}" VerticalAlignment="Center" Margin="5,0"/>
