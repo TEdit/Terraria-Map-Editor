@@ -52,7 +52,7 @@
     <PackageReference Include="bodong.PropertyModels" Version="11.1.1.1" />
     <PackageReference Include="Projektanker.Icons.Avalonia.MaterialDesign" Version="9.4.0" />
 
-	<PackageReference Include="ReactiveUI" Version="20.1.1" />
+	<PackageReference Include="ReactiveUI" Version="20.1.63" />
 	<PackageReference Include="ReactiveUI.Fody" Version="19.5.41" />
       
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="8.0.0" />
