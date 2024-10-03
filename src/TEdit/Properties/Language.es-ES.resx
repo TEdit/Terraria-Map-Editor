@@ -118,19 +118,19 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="bestiary_chat" xml:space="preserve">
-    <value>Charlar</value>
+    <value>Encontrado</value>
   </data>
   <data name="bestiary_clear" xml:space="preserve">
-    <value>Claro</value>
+    <value>Reiniciar</value>
   </data>
   <data name="bestiary_complete" xml:space="preserve">
-    <value>Íntegro</value>
+    <value>Completar</value>
   </data>
   <data name="bestiary_defeated" xml:space="preserve">
     <value>Vencido</value>
   </data>
   <data name="bestiary_load" xml:space="preserve">
-    <value>Carga</value>
+    <value>Cargar</value>
   </data>
   <data name="bestiary_name" xml:space="preserve">
     <value>Nombre</value>
@@ -139,13 +139,13 @@
     <value>Cerca</value>
   </data>
   <data name="bestiary_save" xml:space="preserve">
-    <value>Salvar</value>
+    <value>Guardar</value>
   </data>
   <data name="bestiary_talked" xml:space="preserve">
-    <value>Hablar</value>
+    <value>Descubierto</value>
   </data>
   <data name="bestiary_tally" xml:space="preserve">
-    <value>Asesinatos de actualización</value>
+    <value>Bestiario</value>
   </data>
   <data name="BrickStyle_Full" xml:space="preserve">
     <value>Ladrillo completo</value>
@@ -154,16 +154,16 @@
     <value>Medio ladrillo</value>
   </data>
   <data name="BrickStyle_SlopeBottomLeft" xml:space="preserve">
-    <value>Pendiente Inferior Izquierda</value>
+    <value>Pendiente abajo Izquierda</value>
   </data>
   <data name="BrickStyle_SlopeBottomRight" xml:space="preserve">
-    <value>Pendiente abajo a la derecha</value>
+    <value>Pendiente abajo derecha</value>
   </data>
   <data name="BrickStyle_SlopeTopLeft" xml:space="preserve">
-    <value>Pendiente superior izquierda</value>
+    <value>Pendiente arriba izquierda</value>
   </data>
   <data name="BrickStyle_SlopeTopRight" xml:space="preserve">
-    <value>Pendiente superior derecha</value>
+    <value>Pendiente arriba derecha</value>
   </data>
   <data name="BrushShape_Left" xml:space="preserve">
     <value>Diagonal izquierda</value>
@@ -185,8 +185,8 @@
     <value>Máximo</value>
   </data>
   <data name="dialog_error_terriaria_folder_message" xml:space="preserve">
-    <value>El directorio no parece contener contenido de Terraria.
-Presione reintentar para elegir una nueva carpeta o cancelar para usar {0} como ruta de terrario.</value>
+    <value>El directorio no parece tener contenido de Terraria.
+Presione reintentar para elegir una nueva carpeta o cancelar para usar {0} como ruta de terraria.</value>
   </data>
   <data name="dialog_error_terriaria_folder_title" xml:space="preserve">
     <value>Contenido de Terraria no encontrado</value>
@@ -204,16 +204,16 @@ Presione reintentar para elegir una nueva carpeta o cancelar para usar {0} como 
     <value>Datos de los PNJ</value>
   </data>
   <data name="editor_tabs_special" xml:space="preserve">
-    <value>Baldosas especiales</value>
+    <value>Bloques especiales</value>
   </data>
   <data name="editor_tabs_sprites" xml:space="preserve">
     <value>Sprites</value>
   </data>
   <data name="editor_tabs_tally" xml:space="preserve">
-    <value>Cuenta</value>
+    <value>Bestiario</value>
   </data>
   <data name="editor_tabs_tileentities" xml:space="preserve">
-    <value>Entidades de mosaico</value>
+    <value>Entidades de bloques</value>
   </data>
   <data name="editor_tabs_worldproperties" xml:space="preserve">
     <value>Propiedades del mundo</value>
@@ -225,7 +225,7 @@ Presione reintentar para elegir una nueva carpeta o cancelar para usar {0} como 
     <value>¿Te gusta? ¡Apóyanos!</value>
   </data>
   <data name="HalfBlockMode_HalfBLock" xml:space="preserve">
-    <value>Media cuadra</value>
+    <value>Medio bloque</value>
   </data>
   <data name="HalfBlockMode_NoAction" xml:space="preserve">
     <value>Sin cambios</value>
@@ -237,7 +237,7 @@ Presione reintentar para elegir una nueva carpeta o cancelar para usar {0} como 
     <value>Rampa a la derecha</value>
   </data>
   <data name="HalfBlockMode_Solid" xml:space="preserve">
-    <value>Conjunto sólido</value>
+    <value>Bloque sólido</value>
   </data>
   <data name="JunctionBoxMode_Left" xml:space="preserve">
     <value>Mirando a la izquierda</value>
@@ -249,10 +249,10 @@ Presione reintentar para elegir una nueva carpeta o cancelar para usar {0} como 
     <value>Normal</value>
   </data>
   <data name="JunctionBoxMode_Right" xml:space="preserve">
-    <value>Orientado a la derecha</value>
+    <value>Mirando a la derecha</value>
   </data>
   <data name="JunctionBox_Use" xml:space="preserve">
-    <value>Caja de conexiones:</value>
+    <value>Conector:</value>
   </data>
   <data name="LiquidType_Honey" xml:space="preserve">
     <value>Miel</value>
@@ -270,16 +270,16 @@ Presione reintentar para elegir una nueva carpeta o cancelar para usar {0} como 
     <value>Cantidad de líquido:</value>
   </data>
   <data name="MaskMode_Empty" xml:space="preserve">
-    <value>Editar vacío</value>
+    <value>Vacío</value>
   </data>
   <data name="MaskMode_Match" xml:space="preserve">
-    <value>Coincidencia de ediciones</value>
+    <value>Coincidencide</value>
   </data>
   <data name="MaskMode_NotMatching" xml:space="preserve">
-    <value>Edición que no coincide</value>
+    <value>No coincide</value>
   </data>
   <data name="MaskMode_Off" xml:space="preserve">
-    <value>Desactivar mascarilla</value>
+    <value>Desactivar máscara</value>
   </data>
   <data name="menu_edit" xml:space="preserve">
     <value>Editar</value>
@@ -288,7 +288,7 @@ Presione reintentar para elegir una nueva carpeta o cancelar para usar {0} como 
     <value>Copiar</value>
   </data>
   <data name="menu_edit_crop" xml:space="preserve">
-    <value>Mundo de los cultivos</value>
+    <value>Cortar</value>
   </data>
   <data name="menu_edit_delete" xml:space="preserve">
     <value>Eliminar selección</value>
@@ -306,13 +306,13 @@ Presione reintentar para elegir una nueva carpeta o cancelar para usar {0} como 
     <value>Archivo</value>
   </data>
   <data name="menu_file_autosave" xml:space="preserve">
-    <value>Habilitar el guardado automático</value>
+    <value>Habilitar autoguardado</value>
   </data>
   <data name="menu_file_autoupdate" xml:space="preserve">
-    <value>Buscar actualizaciones al inicio</value>
+    <value>Buscar actualizaciones en arranque</value>
   </data>
   <data name="menu_file_exit" xml:space="preserve">
-    <value>Salida</value>
+    <value>Salir</value>
   </data>
   <data name="menu_file_new" xml:space="preserve">
     <value>Nuevo</value>
@@ -321,7 +321,7 @@ Presione reintentar para elegir una nueva carpeta o cancelar para usar {0} como 
     <value>Abrir</value>
   </data>
   <data name="menu_file_save" xml:space="preserve">
-    <value>Salvar</value>
+    <value>Guardar</value>
   </data>
   <data name="menu_file_saveas" xml:space="preserve">
     <value>Guardar como</value>
@@ -330,7 +330,7 @@ Presione reintentar para elegir una nueva carpeta o cancelar para usar {0} como 
     <value>Guardar como versión</value>
   </data>
   <data name="menu_file_update" xml:space="preserve">
-    <value>Buscar actualizaciones ahora</value>
+    <value>Buscar actualizaciones</value>
   </data>
   <data name="menu_help" xml:space="preserve">
     <value>Ayuda</value>
@@ -384,7 +384,7 @@ Presione reintentar para elegir una nueva carpeta o cancelar para usar {0} como 
     <value>Actuadores</value>
   </data>
   <data name="menu_layers_grid" xml:space="preserve">
-    <value>Cuadrícula de diseño</value>
+    <value>Cuadrícula</value>
   </data>
   <data name="menu_layers_liquid" xml:space="preserve">
     <value>Líquidos</value>
@@ -396,10 +396,10 @@ Presione reintentar para elegir una nueva carpeta o cancelar para usar {0} como 
     <value>Texturas</value>
   </data>
   <data name="menu_layers_tiles" xml:space="preserve">
-    <value>Losa</value>
+    <value>Bloques</value>
   </data>
   <data name="menu_layers_usetexturecolor" xml:space="preserve">
-    <value>Usa colores realistas</value>
+    <value>Usar colores realistas</value>
   </data>
   <data name="menu_layers_walls" xml:space="preserve">
     <value>Paredes</value>
@@ -408,22 +408,22 @@ Presione reintentar para elegir una nueva carpeta o cancelar para usar {0} como 
     <value>Todos los cables</value>
   </data>
   <data name="menu_layers_wire_blue" xml:space="preserve">
-    <value>Alambre azul</value>
+    <value>Cable azul</value>
   </data>
   <data name="menu_layers_wire_green" xml:space="preserve">
-    <value>Alambre verde</value>
+    <value>Cable verde</value>
   </data>
   <data name="menu_layers_wire_red" xml:space="preserve">
-    <value>Alambre rojo</value>
+    <value>Cable rojo</value>
   </data>
   <data name="menu_layers_wire_transparency" xml:space="preserve">
     <value>Transparencia de cables</value>
   </data>
   <data name="menu_layers_wire_yellow" xml:space="preserve">
-    <value>Alambre amarillo</value>
+    <value>Cable amarillo</value>
   </data>
   <data name="menu_plugins" xml:space="preserve">
-    <value>Complementos</value>
+    <value>Plugins</value>
   </data>
   <data name="menu_telemetry" xml:space="preserve">
     <value>Habilitar el informe de errores</value>
@@ -446,7 +446,7 @@ Presione reintentar para elegir una nueva carpeta o cancelar para usar {0} como 
     <comment>enum:MorphBiome.Crimson</comment>
   </data>
   <data name="MorphBiome_Custom" xml:space="preserve">
-    <value>Costumbre</value>
+    <value>Personalizado</value>
     <comment>enum:MorphBiome.Custom</comment>
   </data>
   <data name="MorphBiome_Desert" xml:space="preserve">
@@ -454,7 +454,7 @@ Presione reintentar para elegir una nueva carpeta o cancelar para usar {0} como 
     <comment>enum:MorphBiome.Desert</comment>
   </data>
   <data name="MorphBiome_Hallow" xml:space="preserve">
-    <value>Santificar</value>
+    <value>Bendición</value>
     <comment>enum:MorphBiome.Hallow</comment>
   </data>
   <data name="MorphBiome_Jungle" xml:space="preserve">
@@ -469,37 +469,37 @@ Presione reintentar para elegir una nueva carpeta o cancelar para usar {0} como 
     <value>Líquido</value>
   </data>
   <data name="PaintMode_TileAndWall" xml:space="preserve">
-    <value>Azulejo/Pared</value>
+    <value>Bloque/Pared</value>
   </data>
   <data name="PaintMode_Track" xml:space="preserve">
-    <value>Pista</value>
+    <value>Pista de vagoneta</value>
   </data>
   <data name="PaintMode_Wire" xml:space="preserve">
-    <value>Alambre</value>
+    <value>Cable</value>
   </data>
   <data name="specialtile_button_cancel" xml:space="preserve">
     <value>Cancelar</value>
   </data>
   <data name="specialtile_button_save" xml:space="preserve">
-    <value>Salvar</value>
+    <value>Guardar</value>
   </data>
   <data name="specialtile_label_acc1" xml:space="preserve">
-    <value>ACC1</value>
+    <value>Acc1</value>
   </data>
   <data name="specialtile_label_acc2" xml:space="preserve">
-    <value>ACC2</value>
+    <value>Acc2</value>
   </data>
   <data name="specialtile_label_acc3" xml:space="preserve">
-    <value>ACC3</value>
+    <value>Acc3</value>
   </data>
   <data name="specialtile_label_acc4" xml:space="preserve">
-    <value>ACC4</value>
+    <value>Acc4</value>
   </data>
   <data name="specialtile_label_acc5" xml:space="preserve">
-    <value>ACC5</value>
+    <value>Acc5</value>
   </data>
   <data name="specialtile_label_acc6" xml:space="preserve">
-    <value>ACC6</value>
+    <value>Acc6</value>
   </data>
   <data name="specialtile_label_body" xml:space="preserve">
     <value>Cuerpo</value>
@@ -511,16 +511,16 @@ Presione reintentar para elegir una nueva carpeta o cancelar para usar {0} como 
     <value>Nombre del cofre</value>
   </data>
   <data name="specialtile_label_chesttype" xml:space="preserve">
-    <value>Tipo de pecho</value>
+    <value>Tipo de Cofre</value>
   </data>
   <data name="specialtile_label_editselecteditem" xml:space="preserve">
-    <value>Editar elemento seleccionado</value>
+    <value>Editar selección</value>
   </data>
   <data name="specialtile_label_head" xml:space="preserve">
     <value>Cabeza</value>
   </data>
   <data name="specialtile_label_itemframecontents" xml:space="preserve">
-    <value>Contenido del marco del elemento</value>
+    <value>Contenido del marco</value>
   </data>
   <data name="specialtile_label_legs" xml:space="preserve">
     <value>Piernas</value>
@@ -535,13 +535,13 @@ Presione reintentar para elegir una nueva carpeta o cancelar para usar {0} como 
     <value>Contenido del plato</value>
   </data>
   <data name="specialtile_label_signtext" xml:space="preserve">
-    <value>Texto de signo</value>
+    <value>Texto de letrero</value>
   </data>
   <data name="specialtile_label_signtype" xml:space="preserve">
-    <value>Tipo de signo</value>
+    <value>Tipo de letrero</value>
   </data>
   <data name="specialtile_label_weaponrack" xml:space="preserve">
-    <value>Objeto de estante de armas</value>
+    <value>Objetos de estante de armas</value>
   </data>
   <data name="specialtile_label_xmas_bulbs" xml:space="preserve">
     <value>Bulbos</value>
@@ -559,10 +559,10 @@ Presione reintentar para elegir una nueva carpeta o cancelar para usar {0} como 
     <value>Estrella</value>
   </data>
   <data name="specialtile_tooltip" xml:space="preserve">
-    <value>Con la herramienta Flecha, haga clic derecho en un letrero, cofre, maniquí, estante de armas, marco de artículos o árbol de Navidad.</value>
+    <value>Con la herramienta Flecha haz clic derecho en un letrero, cofre, maniquí, estante de armas, marco o árbol de Navidad para editarlos</value>
   </data>
   <data name="sprite_filter_button" xml:space="preserve">
-    <value>Filtro</value>
+    <value>Filtrar</value>
   </data>
   <data name="sprite_filter_label" xml:space="preserve">
     <value>Filtro:</value>
@@ -571,7 +571,7 @@ Presione reintentar para elegir una nueva carpeta o cancelar para usar {0} como 
     <value>Estilo</value>
   </data>
   <data name="sprite_tiletype" xml:space="preserve">
-    <value>Filtro de tipo de mosaico</value>
+    <value>Filtro de tipos de sprite</value>
   </data>
   <data name="statusbar_extra_label" xml:space="preserve">
     <value>Extra</value>
@@ -580,7 +580,7 @@ Presione reintentar para elegir una nueva carpeta o cancelar para usar {0} como 
     <value>Marco</value>
   </data>
   <data name="statusbar_paint_label" xml:space="preserve">
-    <value>Pintar</value>
+    <value>Pintura</value>
   </data>
   <data name="statusbar_position_label" xml:space="preserve">
     <value>Posición</value>
@@ -589,7 +589,7 @@ Presione reintentar para elegir una nueva carpeta o cancelar para usar {0} como 
     <value>Selección</value>
   </data>
   <data name="statusbar_tile_label" xml:space="preserve">
-    <value>Teja</value>
+    <value>Bloque</value>
   </data>
   <data name="statusbar_wall_label" xml:space="preserve">
     <value>Pared</value>
@@ -616,7 +616,7 @@ Presione reintentar para elegir una nueva carpeta o cancelar para usar {0} como 
     <value>Editar</value>
   </data>
   <data name="tool_bestiary_import" xml:space="preserve">
-    <value>Importación</value>
+    <value>Importar</value>
   </data>
   <data name="tool_bestiary_save" xml:space="preserve">
     <value>Guardar Bestiario</value>
@@ -631,7 +631,7 @@ Presione reintentar para elegir una nueva carpeta o cancelar para usar {0} como 
     <value>Altura</value>
   </data>
   <data name="tool_brush_lock_ratio_tooltip" xml:space="preserve">
-    <value>Ancho y alto del cuadrado</value>
+    <value>Ancho y alto del pincel</value>
   </data>
   <data name="tool_brush_outline_thickness_label" xml:space="preserve">
     <value>Contorno</value>
@@ -643,7 +643,7 @@ Presione reintentar para elegir una nueva carpeta o cancelar para usar {0} como 
     <value>Forma</value>
   </data>
   <data name="tool_brush_title" xml:space="preserve">
-    <value>Cepillo</value>
+    <value>Pincel</value>
   </data>
   <data name="tool_brush_width_label" xml:space="preserve">
     <value>Ancho</value>
@@ -658,16 +658,16 @@ Presione reintentar para elegir una nueva carpeta o cancelar para usar {0} como 
     <value>Importar esquema o imagen</value>
   </data>
   <data name="tool_clipboard_ispasteempty" xml:space="preserve">
-    <value>Pegar mosaicos vacíos</value>
+    <value>Pegar bloques vacíos</value>
   </data>
   <data name="tool_clipboard_ispasteliquid" xml:space="preserve">
-    <value>Pasta de líquidos</value>
+    <value>Pegar líquidos</value>
   </data>
   <data name="tool_clipboard_ispastesprite" xml:space="preserve">
     <value>Pegar sprites</value>
   </data>
   <data name="tool_clipboard_ispastetiles" xml:space="preserve">
-    <value>Pegar mosaicos</value>
+    <value>Pegar bloques</value>
   </data>
   <data name="tool_clipboard_ispastewalls" xml:space="preserve">
     <value>Pegar paredes</value>
@@ -676,7 +676,7 @@ Presione reintentar para elegir una nueva carpeta o cancelar para usar {0} como 
     <value>Pegar cables</value>
   </data>
   <data name="tool_clipboard_replace" xml:space="preserve">
-    <value>Reemplazar baldosas existentes</value>
+    <value>Reemplazar bloques existentes</value>
   </data>
   <data name="tool_creative_biomespread" xml:space="preserve">
     <value>Congelar propagación del bioma</value>
@@ -697,13 +697,13 @@ Presione reintentar para elegir una nueva carpeta o cancelar para usar {0} como 
     <value>Modo Dios</value>
   </data>
   <data name="tool_creative_increaseplacementrange" xml:space="preserve">
-    <value>Aumentar el alcance</value>
+    <value>Aumentar alcance</value>
   </data>
   <data name="tool_creative_power" xml:space="preserve">
     <value>Poder</value>
   </data>
   <data name="tool_creative_rainfrozen" xml:space="preserve">
-    <value>Lluvia helada</value>
+    <value>Congelar lluvia</value>
   </data>
   <data name="tool_creative_spawn_rate" xml:space="preserve">
     <value>Tasa de aparición</value>
@@ -718,31 +718,31 @@ Presione reintentar para elegir una nueva carpeta o cancelar para usar {0} como 
     <value>Valor</value>
   </data>
   <data name="tool_creative_windfrozen" xml:space="preserve">
-    <value>Viento helado</value>
+    <value>Congelar viento</value>
   </data>
   <data name="tool_fill_title" xml:space="preserve">
     <value>Llenar</value>
   </data>
   <data name="tool_morph_label" xml:space="preserve">
-    <value>Metamorfosis en bioma</value>
+    <value>Transformar bioma</value>
   </data>
   <data name="tool_morph_title" xml:space="preserve">
-    <value>Morfosis del bioma</value>
+    <value>Cambiar bioma</value>
   </data>
   <data name="tool_npc_add" xml:space="preserve">
-    <value>Añadir NPC</value>
+    <value>Añadir PNJ</value>
   </data>
   <data name="tool_npc_name" xml:space="preserve">
     <value>Nombre</value>
   </data>
   <data name="tool_paint_actuator" xml:space="preserve">
-    <value>Es Actuador</value>
+    <value>Tiene actuador</value>
   </data>
   <data name="tool_paint_brickstyle" xml:space="preserve">
     <value>Estilo ladrillo</value>
   </data>
   <data name="tool_paint_coating" xml:space="preserve">
-    <value>Capa</value>
+    <value>Revestimiento</value>
   </data>
   <data name="tool_paint_echocoating" xml:space="preserve">
     <value>Eco</value>
@@ -754,16 +754,16 @@ Presione reintentar para elegir una nueva carpeta o cancelar para usar {0} como 
     <value>Iluminador</value>
   </data>
   <data name="tool_paint_inactive" xml:space="preserve">
-    <value>Actuador/Azulejo Inactivo</value>
+    <value>Inactivo</value>
   </data>
   <data name="tool_paint_junctionbox_left_tooltip" xml:space="preserve">
     <value>Agregue la caja de conexiones de intersección orientada hacia la izquierda.</value>
   </data>
   <data name="tool_paint_junctionbox_normal_tooltip" xml:space="preserve">
-    <value>Agregue la caja de conexiones defualt.</value>
+    <value>Normal</value>
   </data>
   <data name="tool_paint_junctionbox_right_tooltip" xml:space="preserve">
-    <value>Agregue la caja de conexiones de intersección orientada hacia la derecha.</value>
+    <value>Hacia la derecha</value>
   </data>
   <data name="tool_paint_mask" xml:space="preserve">
     <value>Máscara</value>
@@ -775,16 +775,16 @@ Presione reintentar para elegir una nueva carpeta o cancelar para usar {0} como 
     <value>Modo de pintura</value>
   </data>
   <data name="tool_paint_tile_title" xml:space="preserve">
-    <value>Teja</value>
+    <value>Bloque</value>
   </data>
   <data name="tool_paint_track_booster_tooltip" xml:space="preserve">
-    <value>Agregue Booster a la pista existente, úselo con Eraser para eliminar solo el booster.</value>
+    <value>Agregar potenciador a la pista existente, úsalo con Borrador para eliminar solo el potenciador</value>
   </data>
   <data name="tool_paint_track_hammer_tooltip" xml:space="preserve">
-    <value>Utilice Hammer para modificar los extremos de las vías, las intersecciones y la dirección del booster.</value>
+    <value>Utiliza Martillo para modificar los extremos de las vías, las intersecciones y la dirección del potenciador</value>
   </data>
   <data name="tool_paint_track_pressure_tooltip" xml:space="preserve">
-    <value>Agregue la placa de presión a la pista existente, úsela con el borrador para quitar solo la placa.</value>
+    <value>Agregar placa de presión a la pista existente, úsalo con el Borrador para quitar solo la placa</value>
   </data>
   <data name="tool_paint_wall_title" xml:space="preserve">
     <value>Pared</value>
@@ -808,16 +808,16 @@ Presione reintentar para elegir una nueva carpeta o cancelar para usar {0} como 
     <value>Lápiz</value>
   </data>
   <data name="tool_picker_title" xml:space="preserve">
-    <value>Selector: seleccione el color del mosaico</value>
+    <value>Selector: seleccione el bloque</value>
   </data>
   <data name="tool_point_title" xml:space="preserve">
-    <value>Puntos de interés especial</value>
+    <value>Puntos de interés</value>
   </data>
   <data name="tool_sprite2_title" xml:space="preserve">
-    <value>Placer de sprites</value>
+    <value>Colocador de sprites</value>
   </data>
   <data name="tool_sprite_filter_button" xml:space="preserve">
-    <value>Filtro</value>
+    <value>Filtrar</value>
   </data>
   <data name="tool_sprite_filter_label" xml:space="preserve">
     <value>Filtro:</value>
@@ -826,10 +826,10 @@ Presione reintentar para elegir una nueva carpeta o cancelar para usar {0} como 
     <value>Estilo:</value>
   </data>
   <data name="tool_sprite_tiletype_label" xml:space="preserve">
-    <value>Filtro de tipo de mosaico:</value>
+    <value>Filtro de tipo de sprite:</value>
   </data>
   <data name="tool_sprite_title" xml:space="preserve">
-    <value>Placer de sprites (ANTIGUO)</value>
+    <value>Colocador de sprites (ANTIGUO)</value>
   </data>
   <data name="tool_wp_adamantite" xml:space="preserve">
     <value>Nivel Adamantita</value>
@@ -838,61 +838,61 @@ Presione reintentar para elegir una nueva carpeta o cancelar para usar {0} como 
     <value>Altares destrozados</value>
   </data>
   <data name="tool_wp_bg_corrupt" xml:space="preserve">
-    <value>BG corrupto</value>
+    <value>Fondo corrupto</value>
   </data>
   <data name="tool_wp_bg_crimson" xml:space="preserve">
-    <value>BG carmesí</value>
+    <value>Fondo carmesí</value>
   </data>
   <data name="tool_wp_bg_deepice" xml:space="preserve">
-    <value>Hielo profundo BG</value>
+    <value>Fondo hielo profundo BG</value>
   </data>
   <data name="tool_wp_bg_deepjungle" xml:space="preserve">
-    <value>Jungla profunda BG</value>
+    <value>Fondo jungla profunda BG</value>
   </data>
   <data name="tool_wp_bg_desert" xml:space="preserve">
-    <value>Desierto BG</value>
+    <value>Fondo Desierto</value>
   </data>
   <data name="tool_wp_bg_forest" xml:space="preserve">
-    <value>BG del bosque</value>
+    <value>Fondo bosque</value>
   </data>
   <data name="tool_wp_bg_hallow" xml:space="preserve">
-    <value>Reliquia BG</value>
+    <value>Fondo bendición</value>
   </data>
   <data name="tool_wp_bg_hell" xml:space="preserve">
-    <value>Infierno BG</value>
+    <value>Fondo inframundo</value>
   </data>
   <data name="tool_wp_bg_jungle" xml:space="preserve">
-    <value>Jungla BG</value>
+    <value>Fondo jungla</value>
   </data>
   <data name="tool_wp_bg_mushroom" xml:space="preserve">
-    <value>Champiñón BG</value>
+    <value>Fondo Champiñón</value>
   </data>
   <data name="tool_wp_bg_ocean" xml:space="preserve">
-    <value>BG oceánico</value>
+    <value>Fondo oceáno</value>
   </data>
   <data name="tool_wp_bg_snow" xml:space="preserve">
-    <value>Nieve BG</value>
+    <value>Fondo Nieve</value>
   </data>
   <data name="tool_wp_bg_tree2" xml:space="preserve">
-    <value>Árbol 2 BG</value>
+    <value>]Fondo árbol 2</value>
   </data>
   <data name="tool_wp_bg_tree3" xml:space="preserve">
-    <value>Árbol 3 BG</value>
+    <value>Fondo árbol 3</value>
   </data>
   <data name="tool_wp_bg_tree4" xml:space="preserve">
-    <value>Árbol 4 BG</value>
+    <value>Fondo árbol 4</value>
   </data>
   <data name="tool_wp_bg_underworld" xml:space="preserve">
-    <value>Inframundo BG</value>
+    <value>Fondo Inframundo</value>
   </data>
   <data name="tool_wp_boss_deerclops" xml:space="preserve">
-    <value>Ciervos</value>
+    <value>Ciervíclope</value>
   </data>
   <data name="tool_wp_boss_destroyer" xml:space="preserve">
-    <value>El Destructor</value>
+    <value>Destructor</value>
   </data>
   <data name="tool_wp_boss_downed" xml:space="preserve">
-    <value>Jefes derribados</value>
+    <value>Jefes vencidos</value>
   </data>
   <data name="tool_wp_boss_dukefishron" xml:space="preserve">
     <value>Duque Fishron</value>
@@ -904,22 +904,22 @@ Presione reintentar para elegir una nueva carpeta o cancelar para usar {0} como 
     <value>Emperatriz de la Luz</value>
   </data>
   <data name="tool_wp_boss_everscream" xml:space="preserve">
-    <value>Everscream</value>
+    <value>Gritoeterno</value>
   </data>
   <data name="tool_wp_boss_eyeofcthulhu" xml:space="preserve">
     <value>Ojo de Cthulhu</value>
   </data>
   <data name="tool_wp_boss_flyingdutchman" xml:space="preserve">
-    <value>Holandés errante</value>
+    <value>Holandés volador</value>
   </data>
   <data name="tool_wp_boss_golem" xml:space="preserve">
-    <value>Golem</value>
+    <value>Gólem</value>
   </data>
   <data name="tool_wp_boss_icequeen" xml:space="preserve">
     <value>Reina de Hielo</value>
   </data>
   <data name="tool_wp_boss_kingslime" xml:space="preserve">
-    <value>Slime del Rey</value>
+    <value>Rey Slime</value>
   </data>
   <data name="tool_wp_boss_lunaticcultist" xml:space="preserve">
     <value>Sectario lunático</value>
@@ -928,7 +928,7 @@ Presione reintentar para elegir una nueva carpeta o cancelar para usar {0} como 
     <value>Señor de la Luna</value>
   </data>
   <data name="tool_wp_boss_mourningwood" xml:space="preserve">
-    <value>Madera de luto</value>
+    <value>Árbol de luto</value>
   </data>
   <data name="tool_wp_boss_nebulapillar" xml:space="preserve">
     <value>Pilar de la Nebulosa</value>
@@ -937,22 +937,22 @@ Presione reintentar para elegir una nueva carpeta o cancelar para usar {0} como 
     <value>Plantera</value>
   </data>
   <data name="tool_wp_boss_pumpking" xml:space="preserve">
-    <value>Bombeo</value>
+    <value>Rey calabaza</value>
   </data>
   <data name="tool_wp_boss_queenbee" xml:space="preserve">
     <value>Abeja reina</value>
   </data>
   <data name="tool_wp_boss_queenslime" xml:space="preserve">
-    <value>Reina Baba</value>
+    <value>Reina Slime</value>
   </data>
   <data name="tool_wp_boss_santank1" xml:space="preserve">
-    <value>Papá Noel NK1</value>
+    <value>Papá-NK1</value>
   </data>
   <data name="tool_wp_boss_skeletron" xml:space="preserve">
-    <value>Esqueleto</value>
+    <value>Esqueletrón</value>
   </data>
   <data name="tool_wp_boss_skeletronprime" xml:space="preserve">
-    <value>Skeletron Prime</value>
+    <value>Esqueletrón Mayor</value>
   </data>
   <data name="tool_wp_boss_solarpillar" xml:space="preserve">
     <value>Pilar solar</value>
@@ -967,25 +967,25 @@ Presione reintentar para elegir una nueva carpeta o cancelar para usar {0} como 
     <value>Pilar de vórtice</value>
   </data>
   <data name="tool_wp_boss_walloffflesh" xml:space="preserve">
-    <value>Muro de carne</value>
+    <value>Muro carnoso</value>
   </data>
   <data name="tool_wp_cavern_level" xml:space="preserve">
     <value>Nivel de la caverna</value>
   </data>
   <data name="tool_wp_chinese" xml:space="preserve">
-    <value>Versión mundial china</value>
+    <value>Versión china</value>
   </data>
   <data name="tool_wp_cobalt" xml:space="preserve">
     <value>Nivel de cobalto</value>
   </data>
   <data name="tool_wp_combatbook" xml:space="preserve">
-    <value>Libro de combate</value>
+    <value>Técnicas de combate avanzadas</value>
   </data>
   <data name="tool_wp_combatbooktwo" xml:space="preserve">
-    <value>Libro de Combate Volumen Dos</value>
+    <value>Técnicas de combate avanzadas: Volumen 2</value>
   </data>
   <data name="tool_wp_console" xml:space="preserve">
-    <value>Versión mundial para consolas</value>
+    <value>Versión para consolas</value>
   </data>
   <data name="tool_wp_copper" xml:space="preserve">
     <value>Nivel de cobre</value>
@@ -1000,10 +1000,10 @@ Presione reintentar para elegir una nueva carpeta o cancelar para usar {0} como 
     <value>Modo difícil</value>
   </data>
   <data name="tool_wp_dontstarve" xml:space="preserve">
-    <value>No mueras de hambre al mundo</value>
+    <value>Mundo Don't Starve</value>
   </data>
   <data name="tool_wp_drunk" xml:space="preserve">
-    <value>Mundo borracho</value>
+    <value>Drunk World</value>
   </data>
   <data name="tool_wp_event" xml:space="preserve">
     <value>Evento</value>
@@ -1015,31 +1015,31 @@ Presione reintentar para elegir una nueva carpeta o cancelar para usar {0} como 
     <value>Nivel Oro</value>
   </data>
   <data name="tool_wp_gooworld" xml:space="preserve">
-    <value>Para Los Dignos (FTW)</value>
+    <value>For The Worthy (FTW)</value>
   </data>
   <data name="tool_wp_guid" xml:space="preserve">
-    <value>GUID mundial</value>
+    <value>GUID</value>
   </data>
   <data name="tool_wp_hardmode" xml:space="preserve">
     <value>Modo difícil</value>
   </data>
   <data name="tool_wp_holiday" xml:space="preserve">
-    <value>Forzar vacaciones</value>
+    <value>Forzar época festiva</value>
   </data>
   <data name="tool_wp_holiday_halloween" xml:space="preserve">
-    <value>Víspera de Todos los Santos</value>
+    <value>Halloween</value>
   </data>
   <data name="tool_wp_holiday_xmas" xml:space="preserve">
     <value>Navidad</value>
   </data>
   <data name="tool_wp_id" xml:space="preserve">
-    <value>Identificación mundial</value>
+    <value>Identificador (ID)</value>
   </data>
   <data name="tool_wp_invasion" xml:space="preserve">
     <value>Invasiones</value>
   </data>
   <data name="tool_wp_invasion_frostlegion" xml:space="preserve">
-    <value>Legión de Escarcha</value>
+    <value>Legión de escarcha</value>
   </data>
   <data name="tool_wp_invasion_goblinarmy" xml:space="preserve">
     <value>Ejército de duendes</value>
@@ -1066,34 +1066,34 @@ Presione reintentar para elegir una nueva carpeta o cancelar para usar {0} como 
     <value>Fin del viaje</value>
   </data>
   <data name="tool_wp_lanternnight" xml:space="preserve">
-    <value>Noche de farolillos</value>
+    <value>Noche de faroles</value>
   </data>
   <data name="tool_wp_lanternnight_cooldown" xml:space="preserve">
-    <value>Enfriamiento de la noche de los faroles</value>
+    <value>Enfriamiento de la noche de faroles</value>
   </data>
   <data name="tool_wp_lanternnight_genuine" xml:space="preserve">
-    <value>Noche de linternas Genuino</value>
+    <value>Noche de faroles genuino</value>
   </data>
   <data name="tool_wp_lanternnight_manual" xml:space="preserve">
-    <value>Manual de la Noche de los Faroles</value>
+    <value>Noche de faroles manual</value>
   </data>
   <data name="tool_wp_lanternnight_nextgenuine" xml:space="preserve">
-    <value>La próxima noche de linternas es genuina</value>
+    <value>Siguiente noche de faroles será genuina</value>
   </data>
   <data name="tool_wp_meteor" xml:space="preserve">
-    <value>Meteoro</value>
+    <value>Meteorito</value>
   </data>
   <data name="tool_wp_meteor_spawn" xml:space="preserve">
-    <value>Engendrar meteorito</value>
+    <value>Aparecer meteorito</value>
   </data>
   <data name="tool_wp_moondial_cooldown" xml:space="preserve">
-    <value>Enfriamiento de Reloj de Luna</value>
+    <value>Enfriamiento de Reloj Lunar Encantado</value>
   </data>
   <data name="tool_wp_moon_blood" xml:space="preserve">
     <value>Luna de sangre</value>
   </data>
   <data name="tool_wp_moon_eclipse" xml:space="preserve">
-    <value>Es Eclipse</value>
+    <value>Eclipse</value>
   </data>
   <data name="tool_wp_moon_phase" xml:space="preserve">
     <value>Fase lunar</value>
@@ -1108,7 +1108,7 @@ Presione reintentar para elegir una nueva carpeta o cancelar para usar {0} como 
     <value>Nombre del mundo</value>
   </data>
   <data name="tool_wp_notthebees" xml:space="preserve">
-    <value>No es el mundo de las abejas</value>
+    <value>Not The Bees</value>
   </data>
   <data name="tool_wp_npc_angler" xml:space="preserve">
     <value>Pescador</value>
@@ -1117,7 +1117,7 @@ Presione reintentar para elegir una nueva carpeta o cancelar para usar {0} como 
     <value>Misión del pescador</value>
   </data>
   <data name="tool_wp_npc_arms_dealer" xml:space="preserve">
-    <value>Traficante</value>
+    <value>Traficante de armas</value>
   </data>
   <data name="tool_wp_npc_bought" xml:space="preserve">
     <value>NPCs comprados</value>
@@ -1138,16 +1138,16 @@ Presione reintentar para elegir una nueva carpeta o cancelar para usar {0} como 
     <value>Comerciante de tintes</value>
   </data>
   <data name="tool_wp_npc_goblintinkerer" xml:space="preserve">
-    <value>Manitas goblin</value>
+    <value>Duende chapucero</value>
   </data>
   <data name="tool_wp_npc_golfer" xml:space="preserve">
     <value>Golfista</value>
   </data>
   <data name="tool_wp_npc_mechanic" xml:space="preserve">
-    <value>Mecánico</value>
+    <value>Mecánica</value>
   </data>
   <data name="tool_wp_npc_merchant" xml:space="preserve">
-    <value>Comerciante</value>
+    <value>Mercader</value>
   </data>
   <data name="tool_wp_npc_nurse" xml:space="preserve">
     <value>Enfermera</value>
@@ -1159,43 +1159,43 @@ Presione reintentar para elegir una nueva carpeta o cancelar para usar {0} como 
     <value>Princesa</value>
   </data>
   <data name="tool_wp_npc_saved" xml:space="preserve">
-    <value>PNJs salvados</value>
+    <value>PNJs encontrados</value>
   </data>
   <data name="tool_wp_npc_slime_blue" xml:space="preserve">
-    <value>Baba azul</value>
+    <value>Slime Nerd</value>
   </data>
   <data name="tool_wp_npc_slime_copper" xml:space="preserve">
-    <value>Baba de cobre</value>
+    <value>Slime Escudero</value>
   </data>
   <data name="tool_wp_npc_slime_green" xml:space="preserve">
-    <value>Baba verde</value>
+    <value>Slime Cool</value>
   </data>
   <data name="tool_wp_npc_slime_old" xml:space="preserve">
-    <value>Viejo Baba</value>
+    <value>Slime Anciano</value>
   </data>
   <data name="tool_wp_npc_slime_purple" xml:space="preserve">
-    <value>Baba púrpura</value>
+    <value>Slime Torpe</value>
   </data>
   <data name="tool_wp_npc_slime_rainbow" xml:space="preserve">
-    <value>Baba arcoíris</value>
+    <value>Slime Dive</value>
   </data>
   <data name="tool_wp_npc_slime_red" xml:space="preserve">
-    <value>Baba roja</value>
+    <value>Slime Malhumorado</value>
   </data>
   <data name="tool_wp_npc_slime_yellow" xml:space="preserve">
-    <value>Baba amarilla</value>
+    <value>Slime Místico</value>
   </data>
   <data name="tool_wp_npc_spawn_unlocked" xml:space="preserve">
-    <value>Engendro de NPC desbloqueado</value>
+    <value>Aparición de NPC desbloqueado</value>
   </data>
   <data name="tool_wp_npc_stylist" xml:space="preserve">
     <value>Estilista</value>
   </data>
   <data name="tool_wp_npc_tavernkeep" xml:space="preserve">
-    <value>Tabernera</value>
+    <value>Tabernero</value>
   </data>
   <data name="tool_wp_npc_taxcollector" xml:space="preserve">
-    <value>Recaudador</value>
+    <value>Recaudador de impuestos</value>
   </data>
   <data name="tool_wp_npc_truffle" xml:space="preserve">
     <value>Trufa</value>
@@ -1204,7 +1204,7 @@ Presione reintentar para elegir una nueva carpeta o cancelar para usar {0} como 
     <value>Hechicero</value>
   </data>
   <data name="tool_wp_oldonesarmy" xml:space="preserve">
-    <value>Ejército del Viejo</value>
+    <value>Ejército del Antiguo</value>
   </data>
   <data name="tool_wp_oldonesarmy_t1" xml:space="preserve">
     <value>Nivel 1</value>
@@ -1219,10 +1219,10 @@ Presione reintentar para elegir una nueva carpeta o cancelar para usar {0} como 
     <value>Orbes destrozados</value>
   </data>
   <data name="tool_wp_partyofdoom" xml:space="preserve">
-    <value>Partido de la perdición</value>
+    <value>Party of Doom (getfixedboy)</value>
   </data>
   <data name="tool_wp_peddlerssatchel" xml:space="preserve">
-    <value>Cartera de vendedor ambulante</value>
+    <value>Mochila de vendedor ambulante</value>
   </data>
   <data name="tool_wp_prehardmode" xml:space="preserve">
     <value>Modo Pre-Difícil</value>
@@ -1237,7 +1237,7 @@ Presione reintentar para elegir una nueva carpeta o cancelar para usar {0} como 
     <value>Lluvia máxima</value>
   </data>
   <data name="tool_wp_rain_slime" xml:space="preserve">
-    <value>Tiempo de lluvia de limo</value>
+    <value>Está lloviendo slimes</value>
   </data>
   <data name="tool_wp_rain_time" xml:space="preserve">
     <value>Tiempo de lluvia</value>
@@ -1246,19 +1246,19 @@ Presione reintentar para elegir una nueva carpeta o cancelar para usar {0} como 
     <value>Revisión</value>
   </data>
   <data name="tool_wp_safe_level" xml:space="preserve">
-    <value>Usar solo valores seguros</value>
+    <value>Solo valores seguros</value>
   </data>
   <data name="tool_wp_sandstorm" xml:space="preserve">
     <value>Tormenta de arena</value>
   </data>
   <data name="tool_wp_sandstorm_active" xml:space="preserve">
-    <value>Está asaltando</value>
+    <value>Tormenta de arena activa</value>
   </data>
   <data name="tool_wp_sandstorm_severity" xml:space="preserve">
     <value>Severidad</value>
   </data>
   <data name="tool_wp_sandstorm_severity_target" xml:space="preserve">
-    <value>Severidad dentada</value>
+    <value>Severidad objetivo</value>
   </data>
   <data name="tool_wp_sandstorm_time" xml:space="preserve">
     <value>Tiempo restante</value>
@@ -1267,13 +1267,13 @@ Presione reintentar para elegir una nueva carpeta o cancelar para usar {0} como 
     <value>Semilla</value>
   </data>
   <data name="tool_wp_seed_notraps" xml:space="preserve">
-    <value>Sin trampas</value>
+    <value>notraps (sin trampas)</value>
   </data>
   <data name="tool_wp_seed_remix" xml:space="preserve">
     <value>Remix</value>
   </data>
   <data name="tool_wp_seed_zenith" xml:space="preserve">
-    <value>Cenit</value>
+    <value>Zenit</value>
   </data>
   <data name="tool_wp_silver" xml:space="preserve">
     <value>Nivel Plata</value>
@@ -1327,25 +1327,25 @@ Presione reintentar para elegir una nueva carpeta o cancelar para usar {0} como 
     <value>Hora</value>
   </data>
   <data name="tool_wp_time_sundial" xml:space="preserve">
-    <value>Usar reloj de sol</value>
+    <value>Usar reloj de sol encantado</value>
   </data>
   <data name="tool_wp_time_sundial_cooldown" xml:space="preserve">
     <value>Enfriamiento del reloj de sol</value>
   </data>
   <data name="tool_wp_unsafe_level" xml:space="preserve">
-    <value>Permitir valores no seguros</value>
+    <value>Permitir valores NO seguros</value>
   </data>
   <data name="tool_wp_usemoondial" xml:space="preserve">
-    <value>Usar Moondial</value>
+    <value>Usar Reloj Lunar Encantado</value>
   </data>
   <data name="tool_wp_weather_clouds" xml:space="preserve">
-    <value>Nubes de números</value>
+    <value>Nubes de clima</value>
   </data>
   <data name="tool_wp_weather_windspeed" xml:space="preserve">
     <value>Velocidad del viento</value>
   </data>
   <data name="TrackMode_Booster" xml:space="preserve">
-    <value>Booster</value>
+    <value>Potenciador</value>
   </data>
   <data name="TrackMode_Hammer" xml:space="preserve">
     <value>Martillo</value>
@@ -1357,6 +1357,6 @@ Presione reintentar para elegir una nueva carpeta o cancelar para usar {0} como 
     <value>Pista</value>
   </data>
   <data name="wp_fixbackground" xml:space="preserve">
-    <value>Arreglar el espacio de fondo</value>
+    <value>Arreglar fondo</value>
   </data>
 </root>
