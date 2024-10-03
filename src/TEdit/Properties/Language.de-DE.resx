@@ -117,6 +117,36 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="bestiary_chat" xml:space="preserve">
+    <value>Plaudern</value>
+  </data>
+  <data name="bestiary_clear" xml:space="preserve">
+    <value>Leeren</value>
+  </data>
+  <data name="bestiary_complete" xml:space="preserve">
+    <value>Vervollständ</value>
+  </data>
+  <data name="bestiary_defeated" xml:space="preserve">
+    <value>Besiegt</value>
+  </data>
+  <data name="bestiary_load" xml:space="preserve">
+    <value>Laden</value>
+  </data>
+  <data name="bestiary_name" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="bestiary_near" xml:space="preserve">
+    <value>Nahe</value>
+  </data>
+  <data name="bestiary_save" xml:space="preserve">
+    <value>Speichern</value>
+  </data>
+  <data name="bestiary_talked" xml:space="preserve">
+    <value>Ansprechen</value>
+  </data>
+  <data name="bestiary_tally" xml:space="preserve">
+    <value>Update-Kills</value>
+  </data>
   <data name="BrickStyle_Full" xml:space="preserve">
     <value>Voller Block</value>
   </data>
@@ -151,6 +181,9 @@
     <value>Rechteck</value>
     <comment>enum:BrushShape.Square</comment>
   </data>
+  <data name="chest_max_stack" xml:space="preserve">
+    <value>Max</value>
+  </data>
   <data name="dialog_error_terriaria_folder_message" xml:space="preserve">
     <value>Das Verzeichnis scheint keinen Terraria-Inhalt zu enthalten.
 Klicke auf „Wiederholen“, um einen neuen Ordner auszuwählen, oder auf „Abbrechen“, um {0} als deinen Terraria-Pfad zu verwenden.</value>
@@ -163,6 +196,9 @@ Klicke auf „Wiederholen“, um einen neuen Ordner auszuwählen, oder auf „Ab
   </data>
   <data name="editor_tabs_clipboard" xml:space="preserve">
     <value>Zwischenablage</value>
+  </data>
+  <data name="editor_tabs_creative" xml:space="preserve">
+    <value>Kreative Kräfte</value>
   </data>
   <data name="editor_tabs_npc" xml:space="preserve">
     <value>NPC-Daten</value>
@@ -203,6 +239,21 @@ Klicke auf „Wiederholen“, um einen neuen Ordner auszuwählen, oder auf „Ab
   <data name="HalfBlockMode_Solid" xml:space="preserve">
     <value>Voller Block</value>
   </data>
+  <data name="JunctionBoxMode_Left" xml:space="preserve">
+    <value>Nach links gerichtet</value>
+  </data>
+  <data name="JunctionBoxMode_None" xml:space="preserve">
+    <value>Keine</value>
+  </data>
+  <data name="JunctionBoxMode_Normal" xml:space="preserve">
+    <value>Normal</value>
+  </data>
+  <data name="JunctionBoxMode_Right" xml:space="preserve">
+    <value>Nach rechts gerichtet</value>
+  </data>
+  <data name="JunctionBox_Use" xml:space="preserve">
+    <value>Kabelkreuzung:</value>
+  </data>
   <data name="LiquidType_Honey" xml:space="preserve">
     <value>Honig</value>
   </data>
@@ -214,6 +265,9 @@ Klicke auf „Wiederholen“, um einen neuen Ordner auszuwählen, oder auf „Ab
   </data>
   <data name="LiquidType_Water" xml:space="preserve">
     <value>Wasser</value>
+  </data>
+  <data name="liquid_amount" xml:space="preserve">
+    <value>Flüssigkeitsmenge:</value>
   </data>
   <data name="MaskMode_Empty" xml:space="preserve">
     <value>Nur leere</value>
@@ -232,6 +286,9 @@ Klicke auf „Wiederholen“, um einen neuen Ordner auszuwählen, oder auf „Ab
   </data>
   <data name="menu_edit_copy" xml:space="preserve">
     <value>Kopieren</value>
+  </data>
+  <data name="menu_edit_crop" xml:space="preserve">
+    <value>Welt zuschneiden</value>
   </data>
   <data name="menu_edit_delete" xml:space="preserve">
     <value>Inhalte der Auswahl löschen</value>
@@ -296,17 +353,29 @@ Klicke auf „Wiederholen“, um einen neuen Ordner auszuwählen, oder auf „Ab
   <data name="menu_language" xml:space="preserve">
     <value>Sprache</value>
   </data>
+  <data name="menu_language_ar" xml:space="preserve">
+    <value>العربية</value>
+  </data>
   <data name="menu_language_de" xml:space="preserve">
     <value>Deutsch</value>
   </data>
   <data name="menu_language_en" xml:space="preserve">
     <value>English</value>
   </data>
+  <data name="menu_language_es" xml:space="preserve">
+    <value>Español</value>
+  </data>
   <data name="menu_language_pl" xml:space="preserve">
     <value>Polski</value>
   </data>
+  <data name="menu_language_pt" xml:space="preserve">
+    <value>Português</value>
+  </data>
   <data name="menu_language_ru" xml:space="preserve">
     <value>Русский</value>
+  </data>
+  <data name="menu_language_zh" xml:space="preserve">
+    <value>中文</value>
   </data>
   <data name="menu_layers" xml:space="preserve">
     <value>Ansicht</value>
@@ -329,8 +398,14 @@ Klicke auf „Wiederholen“, um einen neuen Ordner auszuwählen, oder auf „Ab
   <data name="menu_layers_tiles" xml:space="preserve">
     <value>Felder</value>
   </data>
+  <data name="menu_layers_usetexturecolor" xml:space="preserve">
+    <value>Verwenden Sie realistische Farben</value>
+  </data>
   <data name="menu_layers_walls" xml:space="preserve">
     <value>Wände</value>
+  </data>
+  <data name="menu_layers_wire_all" xml:space="preserve">
+    <value>Alle draden</value>
   </data>
   <data name="menu_layers_wire_blue" xml:space="preserve">
     <value>Blaue Kabel</value>
@@ -341,11 +416,11 @@ Klicke auf „Wiederholen“, um einen neuen Ordner auszuwählen, oder auf „Ab
   <data name="menu_layers_wire_red" xml:space="preserve">
     <value>Rote Kabel</value>
   </data>
+  <data name="menu_layers_wire_transparency" xml:space="preserve">
+    <value>Kabelsichtbarkeit</value>
+  </data>
   <data name="menu_layers_wire_yellow" xml:space="preserve">
     <value>Gelbe Kabel</value>
-  </data>
-  <data name="menu_layers_wire_all" xml:space="preserve">
-    <value>Alle draden</value>
   </data>
   <data name="menu_plugins" xml:space="preserve">
     <value>Plugins</value>
@@ -358,6 +433,9 @@ Klicke auf „Wiederholen“, um einen neuen Ordner auszuwählen, oder auf „Ab
   </data>
   <data name="menu_toolbar_zoom_out" xml:space="preserve">
     <value>Herauszoomen</value>
+  </data>
+  <data name="messagebox_restartrequired" xml:space="preserve">
+    <value>Neustart erforderlich</value>
   </data>
   <data name="MorphBiome_Corruption" xml:space="preserve">
     <value>Verderben</value>
@@ -492,6 +570,9 @@ Klicke auf „Wiederholen“, um einen neuen Ordner auszuwählen, oder auf „Ab
   <data name="sprite_styletype" xml:space="preserve">
     <value>Stil</value>
   </data>
+  <data name="sprite_tiletype" xml:space="preserve">
+    <value>Kacheltyp-Filter</value>
+  </data>
   <data name="statusbar_extra_label" xml:space="preserve">
     <value>Extras</value>
   </data>
@@ -513,6 +594,9 @@ Klicke auf „Wiederholen“, um einen neuen Ordner auszuwählen, oder auf „Ab
   <data name="statusbar_wall_label" xml:space="preserve">
     <value>Wand</value>
   </data>
+  <data name="tab_bestiary" xml:space="preserve">
+    <value>Bestiarium</value>
+  </data>
   <data name="tool_analyze_analyze_button" xml:space="preserve">
     <value>Analysieren</value>
   </data>
@@ -527,6 +611,9 @@ Klicke auf „Wiederholen“, um einen neuen Ordner auszuwählen, oder auf „Ab
   </data>
   <data name="tool_arrow_title" xml:space="preserve">
     <value>Pfeil</value>
+  </data>
+  <data name="tool_bestiary_edit" xml:space="preserve">
+    <value>Bearbeiten</value>
   </data>
   <data name="tool_bestiary_import" xml:space="preserve">
     <value>Importieren</value>
@@ -576,6 +663,9 @@ Klicke auf „Wiederholen“, um einen neuen Ordner auszuwählen, oder auf „Ab
   <data name="tool_clipboard_ispasteliquid" xml:space="preserve">
     <value>Flüssigkeiten einfügen</value>
   </data>
+  <data name="tool_clipboard_ispastesprite" xml:space="preserve">
+    <value>Grafiken einfügen</value>
+  </data>
   <data name="tool_clipboard_ispastetiles" xml:space="preserve">
     <value>Felder einfügen</value>
   </data>
@@ -585,8 +675,50 @@ Klicke auf „Wiederholen“, um einen neuen Ordner auszuwählen, oder auf „Ab
   <data name="tool_clipboard_ispastewire" xml:space="preserve">
     <value>Kabel einfügen</value>
   </data>
-  <data name="tool_clipboard_ispastesprite" xml:space="preserve">
-    <value>Grafiken einfügen</value>
+  <data name="tool_clipboard_replace" xml:space="preserve">
+    <value>Ersetzen vorhandener Kacheln</value>
+  </data>
+  <data name="tool_creative_biomespread" xml:space="preserve">
+    <value>Biom-Ausbreitung einfrieren</value>
+  </data>
+  <data name="tool_creative_difficulty" xml:space="preserve">
+    <value>Schwierigkeitsgrad des Feindes</value>
+  </data>
+  <data name="tool_creative_enable_difficulty" xml:space="preserve">
+    <value>Gegnerische Schwierigkeit aktivieren</value>
+  </data>
+  <data name="tool_creative_enable_spawn_rate" xml:space="preserve">
+    <value>Spawn-Rate aktivieren</value>
+  </data>
+  <data name="tool_creative_enable_time_speed" xml:space="preserve">
+    <value>Zeitgeschwindigkeit aktivieren</value>
+  </data>
+  <data name="tool_creative_godmode" xml:space="preserve">
+    <value>Gott-Modus</value>
+  </data>
+  <data name="tool_creative_increaseplacementrange" xml:space="preserve">
+    <value>Reichweite erhöhen</value>
+  </data>
+  <data name="tool_creative_power" xml:space="preserve">
+    <value>Macht</value>
+  </data>
+  <data name="tool_creative_rainfrozen" xml:space="preserve">
+    <value>Gefrierregen</value>
+  </data>
+  <data name="tool_creative_spawn_rate" xml:space="preserve">
+    <value>Spawn-Rate</value>
+  </data>
+  <data name="tool_creative_timefrozen" xml:space="preserve">
+    <value>Freeze-Zeit</value>
+  </data>
+  <data name="tool_creative_time_speed" xml:space="preserve">
+    <value>Zeitgeschwindigkeit</value>
+  </data>
+  <data name="tool_creative_value" xml:space="preserve">
+    <value>Wert</value>
+  </data>
+  <data name="tool_creative_windfrozen" xml:space="preserve">
+    <value>Frostiger Wind</value>
   </data>
   <data name="tool_fill_title" xml:space="preserve">
     <value>Füllen – Auswahl ausfüllen</value>
@@ -609,11 +741,29 @@ Klicke auf „Wiederholen“, um einen neuen Ordner auszuwählen, oder auf „Ab
   <data name="tool_paint_brickstyle" xml:space="preserve">
     <value>Blockform</value>
   </data>
+  <data name="tool_paint_coating" xml:space="preserve">
+    <value>Beschichtung</value>
+  </data>
+  <data name="tool_paint_echocoating" xml:space="preserve">
+    <value>Echo</value>
+  </data>
   <data name="tool_paint_extras" xml:space="preserve">
     <value>Extras</value>
   </data>
+  <data name="tool_paint_illuminantcoating" xml:space="preserve">
+    <value>Leuchtmittel</value>
+  </data>
   <data name="tool_paint_inactive" xml:space="preserve">
     <value>Ist inaktiv (Aktor)</value>
+  </data>
+  <data name="tool_paint_junctionbox_left_tooltip" xml:space="preserve">
+    <value>Nach links gerichtete Kabelkreuzung hinzufügen.</value>
+  </data>
+  <data name="tool_paint_junctionbox_normal_tooltip" xml:space="preserve">
+    <value>Normale Kabelkreuzung hinzufügen.</value>
+  </data>
+  <data name="tool_paint_junctionbox_right_tooltip" xml:space="preserve">
+    <value>Nach rechts gerichtete Kabelkreuzung hinzufügen.</value>
   </data>
   <data name="tool_paint_mask" xml:space="preserve">
     <value>Maske</value>
@@ -675,6 +825,9 @@ Klicke auf „Wiederholen“, um einen neuen Ordner auszuwählen, oder auf „Ab
   <data name="tool_sprite_style_label" xml:space="preserve">
     <value>Stil:</value>
   </data>
+  <data name="tool_sprite_tiletype_label" xml:space="preserve">
+    <value>Kacheltyp-Filter:</value>
+  </data>
   <data name="tool_sprite_title" xml:space="preserve">
     <value>Grafik platzieren (VERALTET)</value>
   </data>
@@ -731,6 +884,9 @@ Klicke auf „Wiederholen“, um einen neuen Ordner auszuwählen, oder auf „Ab
   </data>
   <data name="tool_wp_bg_underworld" xml:space="preserve">
     <value>HG Unterwelt</value>
+  </data>
+  <data name="tool_wp_boss_deerclops" xml:space="preserve">
+    <value>Rehklop</value>
   </data>
   <data name="tool_wp_boss_destroyer" xml:space="preserve">
     <value>Der Zerstörer</value>
@@ -816,8 +972,20 @@ Klicke auf „Wiederholen“, um einen neuen Ordner auszuwählen, oder auf „Ab
   <data name="tool_wp_cavern_level" xml:space="preserve">
     <value>Höhlenniveau</value>
   </data>
+  <data name="tool_wp_chinese" xml:space="preserve">
+    <value>Chinesische Weltversion</value>
+  </data>
   <data name="tool_wp_cobalt" xml:space="preserve">
     <value>Kobalterz</value>
+  </data>
+  <data name="tool_wp_combatbook" xml:space="preserve">
+    <value>Kampfbuch</value>
+  </data>
+  <data name="tool_wp_combatbooktwo" xml:space="preserve">
+    <value>Combat Book Band Zwei</value>
+  </data>
+  <data name="tool_wp_console" xml:space="preserve">
+    <value>Konsolenwelt Version</value>
   </data>
   <data name="tool_wp_copper" xml:space="preserve">
     <value>Kupfererz</value>
@@ -831,6 +999,9 @@ Klicke auf „Wiederholen“, um einen neuen Ordner auszuwählen, oder auf „Ab
   <data name="tool_wp_difficulty_hardmode" xml:space="preserve">
     <value>Hardmode</value>
   </data>
+  <data name="tool_wp_dontstarve" xml:space="preserve">
+    <value>„The Constant“</value>
+  </data>
   <data name="tool_wp_drunk" xml:space="preserve">
     <value>„Drunk world“</value>
   </data>
@@ -842,6 +1013,9 @@ Klicke auf „Wiederholen“, um einen neuen Ordner auszuwählen, oder auf „Ab
   </data>
   <data name="tool_wp_gold" xml:space="preserve">
     <value>Golderz</value>
+  </data>
+  <data name="tool_wp_gooworld" xml:space="preserve">
+    <value>Für die Würdigen (FTW)</value>
   </data>
   <data name="tool_wp_guid" xml:space="preserve">
     <value>Welt-GUID</value>
@@ -891,11 +1065,29 @@ Klicke auf „Wiederholen“, um einen neuen Ordner auszuwählen, oder auf „Ab
   <data name="tool_wp_journeysend" xml:space="preserve">
     <value>Journey's End</value>
   </data>
+  <data name="tool_wp_lanternnight" xml:space="preserve">
+    <value>Laternennacht</value>
+  </data>
+  <data name="tool_wp_lanternnight_cooldown" xml:space="preserve">
+    <value>Laternennacht Cooldown</value>
+  </data>
+  <data name="tool_wp_lanternnight_genuine" xml:space="preserve">
+    <value>Laternennacht echt</value>
+  </data>
+  <data name="tool_wp_lanternnight_manual" xml:space="preserve">
+    <value>Lantern Night Handbuch</value>
+  </data>
+  <data name="tool_wp_lanternnight_nextgenuine" xml:space="preserve">
+    <value>Lantern Night Next ist echt</value>
+  </data>
   <data name="tool_wp_meteor" xml:space="preserve">
     <value>Meteorit</value>
   </data>
   <data name="tool_wp_meteor_spawn" xml:space="preserve">
     <value>erscheinen lassen</value>
+  </data>
+  <data name="tool_wp_moondial_cooldown" xml:space="preserve">
+    <value>Moon Dial Abklingzeit</value>
   </data>
   <data name="tool_wp_moon_blood" xml:space="preserve">
     <value>Blutmond</value>
@@ -915,11 +1107,17 @@ Klicke auf „Wiederholen“, um einen neuen Ordner auszuwählen, oder auf „Ab
   <data name="tool_wp_name" xml:space="preserve">
     <value>Weltname</value>
   </data>
+  <data name="tool_wp_notthebees" xml:space="preserve">
+    <value>„Not the bees“</value>
+  </data>
   <data name="tool_wp_npc_angler" xml:space="preserve">
     <value>Angler</value>
   </data>
   <data name="tool_wp_npc_angler_mission" xml:space="preserve">
     <value>Angler-Quest</value>
+  </data>
+  <data name="tool_wp_npc_arms_dealer" xml:space="preserve">
+    <value>Waffenhändler</value>
   </data>
   <data name="tool_wp_npc_bought" xml:space="preserve">
     <value>Erworbene NPCs</value>
@@ -930,8 +1128,14 @@ Klicke auf „Wiederholen“, um einen neuen Ordner auszuwählen, oder auf „Ab
   <data name="tool_wp_npc_cat" xml:space="preserve">
     <value>Katze</value>
   </data>
+  <data name="tool_wp_npc_demolitionist" xml:space="preserve">
+    <value>Demolitionist</value>
+  </data>
   <data name="tool_wp_npc_dog" xml:space="preserve">
     <value>Hund</value>
+  </data>
+  <data name="tool_wp_npc_dye_trader" xml:space="preserve">
+    <value>Farbstoffhändler</value>
   </data>
   <data name="tool_wp_npc_goblintinkerer" xml:space="preserve">
     <value>Goblin-Tüftler</value>
@@ -942,8 +1146,47 @@ Klicke auf „Wiederholen“, um einen neuen Ordner auszuwählen, oder auf „Ab
   <data name="tool_wp_npc_mechanic" xml:space="preserve">
     <value>Mechanikerin</value>
   </data>
+  <data name="tool_wp_npc_merchant" xml:space="preserve">
+    <value>Kaufmann</value>
+  </data>
+  <data name="tool_wp_npc_nurse" xml:space="preserve">
+    <value>Krankenschwester</value>
+  </data>
+  <data name="tool_wp_npc_partygirl" xml:space="preserve">
+    <value>Partygirl</value>
+  </data>
+  <data name="tool_wp_npc_princess" xml:space="preserve">
+    <value>Prinzessin</value>
+  </data>
   <data name="tool_wp_npc_saved" xml:space="preserve">
     <value>Gerettete NPCs</value>
+  </data>
+  <data name="tool_wp_npc_slime_blue" xml:space="preserve">
+    <value>Blauer Schleim</value>
+  </data>
+  <data name="tool_wp_npc_slime_copper" xml:space="preserve">
+    <value>Kupferschleim</value>
+  </data>
+  <data name="tool_wp_npc_slime_green" xml:space="preserve">
+    <value>Grüner Schleim</value>
+  </data>
+  <data name="tool_wp_npc_slime_old" xml:space="preserve">
+    <value>Alter Schleim</value>
+  </data>
+  <data name="tool_wp_npc_slime_purple" xml:space="preserve">
+    <value>Lila Schleim</value>
+  </data>
+  <data name="tool_wp_npc_slime_rainbow" xml:space="preserve">
+    <value>Regenbogenschleim</value>
+  </data>
+  <data name="tool_wp_npc_slime_red" xml:space="preserve">
+    <value>Roter Schleim</value>
+  </data>
+  <data name="tool_wp_npc_slime_yellow" xml:space="preserve">
+    <value>Gelber Schleim</value>
+  </data>
+  <data name="tool_wp_npc_spawn_unlocked" xml:space="preserve">
+    <value>NPC-Spawn freigeschaltet</value>
   </data>
   <data name="tool_wp_npc_stylist" xml:space="preserve">
     <value>Stylistin</value>
@@ -953,6 +1196,9 @@ Klicke auf „Wiederholen“, um einen neuen Ordner auszuwählen, oder auf „Ab
   </data>
   <data name="tool_wp_npc_taxcollector" xml:space="preserve">
     <value>Steuereintreiber</value>
+  </data>
+  <data name="tool_wp_npc_truffle" xml:space="preserve">
+    <value>Trüffel</value>
   </data>
   <data name="tool_wp_npc_wizard" xml:space="preserve">
     <value>Zauberer</value>
@@ -971,6 +1217,12 @@ Klicke auf „Wiederholen“, um einen neuen Ordner auszuwählen, oder auf „Ab
   </data>
   <data name="tool_wp_orbs" xml:space="preserve">
     <value>Zerstörte Kugeln</value>
+  </data>
+  <data name="tool_wp_partyofdoom" xml:space="preserve">
+    <value>Party of Doom</value>
+  </data>
+  <data name="tool_wp_peddlerssatchel" xml:space="preserve">
+    <value>Hausierer-Schulranzen</value>
   </data>
   <data name="tool_wp_prehardmode" xml:space="preserve">
     <value>Pre-Hardmode</value>
@@ -993,6 +1245,9 @@ Klicke auf „Wiederholen“, um einen neuen Ordner auszuwählen, oder auf „Ab
   <data name="tool_wp_revision" xml:space="preserve">
     <value>Revision</value>
   </data>
+  <data name="tool_wp_safe_level" xml:space="preserve">
+    <value>Verwenden Sie nur sichere Werte</value>
+  </data>
   <data name="tool_wp_sandstorm" xml:space="preserve">
     <value>Sandsturm</value>
   </data>
@@ -1010,6 +1265,15 @@ Klicke auf „Wiederholen“, um einen neuen Ordner auszuwählen, oder auf „Ab
   </data>
   <data name="tool_wp_seed" xml:space="preserve">
     <value>Seed</value>
+  </data>
+  <data name="tool_wp_seed_notraps" xml:space="preserve">
+    <value>Keine Fallen</value>
+  </data>
+  <data name="tool_wp_seed_remix" xml:space="preserve">
+    <value>Remix</value>
+  </data>
+  <data name="tool_wp_seed_zenith" xml:space="preserve">
+    <value>Zenit</value>
   </data>
   <data name="tool_wp_silver" xml:space="preserve">
     <value>Silbererz</value>
@@ -1053,6 +1317,9 @@ Klicke auf „Wiederholen“, um einen neuen Ordner auszuwählen, oder auf „Ab
   <data name="tool_wp_surface_level" xml:space="preserve">
     <value>Oberflächenniveau</value>
   </data>
+  <data name="tool_wp_tenthanniversary" xml:space="preserve">
+    <value>„Celebrationmk10“</value>
+  </data>
   <data name="tool_wp_time_day" xml:space="preserve">
     <value>Tagsüber</value>
   </data>
@@ -1064,6 +1331,12 @@ Klicke auf „Wiederholen“, um einen neuen Ordner auszuwählen, oder auf „Ab
   </data>
   <data name="tool_wp_time_sundial_cooldown" xml:space="preserve">
     <value>Sonnenuhr-Abklingzeit</value>
+  </data>
+  <data name="tool_wp_unsafe_level" xml:space="preserve">
+    <value>Unsichere Werte zulassen</value>
+  </data>
+  <data name="tool_wp_usemoondial" xml:space="preserve">
+    <value>Verwenden Sie das Moon-Zifferblatt</value>
   </data>
   <data name="tool_wp_weather_clouds" xml:space="preserve">
     <value>Wolkenanzahl</value>
@@ -1083,277 +1356,7 @@ Klicke auf „Wiederholen“, um einen neuen Ordner auszuwählen, oder auf „Ab
   <data name="TrackMode_Track" xml:space="preserve">
     <value>Gleis</value>
   </data>
-  <data name="tool_wp_tenthanniversary" xml:space="preserve">
-    <value>„Celebrationmk10“</value>
-  </data>
-  <data name="menu_language_pt" xml:space="preserve">
-    <value>Português</value>
-  </data>
-  <data name="menu_language_ar" xml:space="preserve">
-    <value>العربية</value>
-  </data>
-  <data name="menu_language_zh" xml:space="preserve">
-    <value>中文</value>
-  </data>
-  <data name="tool_bestiary_edit" xml:space="preserve">
-    <value>Bearbeiten</value>
-  </data>
-  <data name="tool_wp_boss_deerclops" xml:space="preserve">
-    <value>Rehklop</value>
-  </data>
-  <data name="tool_wp_dontstarve" xml:space="preserve">
-    <value>„The Constant“</value>
-  </data>
-  <data name="tool_wp_notthebees" xml:space="preserve">
-    <value>„Not the bees“</value>
-  </data>
-  <data name="JunctionBoxMode_Left" xml:space="preserve">
-    <value>Nach links gerichtet</value>
-  </data>
-  <data name="JunctionBoxMode_None" xml:space="preserve">
-    <value>Keine</value>
-  </data>
-  <data name="JunctionBoxMode_Normal" xml:space="preserve">
-    <value>Normal</value>
-  </data>
-  <data name="JunctionBoxMode_Right" xml:space="preserve">
-    <value>Nach rechts gerichtet</value>
-  </data>
-  <data name="tool_paint_junctionbox_left_tooltip" xml:space="preserve">
-    <value>Nach links gerichtete Kabelkreuzung hinzufügen.</value>
-  </data>
-  <data name="tool_paint_junctionbox_normal_tooltip" xml:space="preserve">
-    <value>Normale Kabelkreuzung hinzufügen.</value>
-  </data>
-  <data name="tool_paint_junctionbox_right_tooltip" xml:space="preserve">
-    <value>Nach rechts gerichtete Kabelkreuzung hinzufügen.</value>
-  </data>
-  <data name="JunctionBox_Use" xml:space="preserve">
-    <value>Kabelkreuzung:</value>
-  </data>
-  <data name="menu_edit_crop" xml:space="preserve">
-    <value>Welt zuschneiden</value>
-  </data>
-  <data name="tab_bestiary" xml:space="preserve">
-    <value>Bestiarium</value>
-  </data>
-  <data name="bestiary_name" xml:space="preserve">
-    <value>Name</value>
-  </data>
-  <data name="bestiary_save" xml:space="preserve">
-    <value>Speichern</value>
-  </data>
-  <data name="bestiary_defeated" xml:space="preserve">
-    <value>Besiegt</value>
-  </data>
-  <data name="bestiary_near" xml:space="preserve">
-    <value>Nahe</value>
-  </data>
-  <data name="bestiary_talked" xml:space="preserve">
-    <value>Ansprechen</value>
-  </data>
-  <data name="bestiary_clear" xml:space="preserve">
-    <value>Leeren</value>
-  </data>
-  <data name="bestiary_chat" xml:space="preserve">
-    <value>Plaudern</value>
-  </data>
-  <data name="bestiary_complete" xml:space="preserve">
-    <value>Vervollständ</value>
-  </data>
-  <data name="bestiary_load" xml:space="preserve">
-    <value>Laden</value>
-  </data>
-  <data name="menu_layers_wire_transparency" xml:space="preserve">
-    <value>Kabelsichtbarkeit</value>
-  </data>
-  <data name="tool_wp_safe_level" xml:space="preserve">
-    <value>Verwenden Sie nur sichere Werte</value>
-  </data>
-  <data name="tool_wp_unsafe_level" xml:space="preserve">
-    <value>Unsichere Werte zulassen</value>
-  </data>
-  <data name="tool_wp_npc_spawn_unlocked" xml:space="preserve">
-    <value>NPC-Spawn freigeschaltet</value>
-  </data>
-  <data name="tool_wp_npc_slime_blue" xml:space="preserve">
-    <value>Blauer Schleim</value>
-  </data>
-  <data name="tool_wp_npc_slime_green" xml:space="preserve">
-    <value>Grüner Schleim</value>
-  </data>
-  <data name="tool_wp_npc_slime_old" xml:space="preserve">
-    <value>Alter Schleim</value>
-  </data>
-  <data name="tool_wp_npc_slime_purple" xml:space="preserve">
-    <value>Lila Schleim</value>
-  </data>
-  <data name="tool_wp_npc_slime_rainbow" xml:space="preserve">
-    <value>Regenbogenschleim</value>
-  </data>
-  <data name="tool_wp_npc_slime_red" xml:space="preserve">
-    <value>Roter Schleim</value>
-  </data>
-  <data name="tool_wp_npc_slime_yellow" xml:space="preserve">
-    <value>Gelber Schleim</value>
-  </data>
-  <data name="tool_wp_npc_slime_copper" xml:space="preserve">
-    <value>Kupferschleim</value>
-  </data>
-  <data name="tool_wp_combatbooktwo" xml:space="preserve">
-    <value>Combat Book Band Zwei</value>
-  </data>
-  <data name="tool_wp_moondial_cooldown" xml:space="preserve">
-    <value>Moon Dial Abklingzeit</value>
-  </data>
-  <data name="tool_wp_npc_princess" xml:space="preserve">
-    <value>Prinzessin</value>
-  </data>
-  <data name="tool_wp_npc_nurse" xml:space="preserve">
-    <value>Krankenschwester</value>
-  </data>
-  <data name="tool_wp_npc_partygirl" xml:space="preserve">
-    <value>Partygirl</value>
-  </data>
-  <data name="tool_wp_npc_merchant" xml:space="preserve">
-    <value>Kaufmann</value>
-  </data>
-  <data name="tool_wp_npc_demolitionist" xml:space="preserve">
-    <value>Demolitionist</value>
-  </data>
-  <data name="tool_wp_npc_dye_trader" xml:space="preserve">
-    <value>Farbstoffhändler</value>
-  </data>
-  <data name="tool_wp_npc_truffle" xml:space="preserve">
-    <value>Trüffel</value>
-  </data>
-  <data name="tool_wp_npc_arms_dealer" xml:space="preserve">
-    <value>Waffenhändler</value>
-  </data>
-  <data name="tool_wp_peddlerssatchel" xml:space="preserve">
-    <value>Hausierer-Schulranzen</value>
-  </data>
-  <data name="tool_wp_usemoondial" xml:space="preserve">
-    <value>Verwenden Sie das Moon-Zifferblatt</value>
-  </data>
-  <data name="tool_wp_combatbook" xml:space="preserve">
-    <value>Kampfbuch</value>
-  </data>
-  <data name="tool_wp_seed_zenith" xml:space="preserve">
-    <value>Zenit</value>
-  </data>
-  <data name="tool_wp_seed_remix" xml:space="preserve">
-    <value>Remix</value>
-  </data>
-  <data name="tool_wp_seed_notraps" xml:space="preserve">
-    <value>Keine Fallen</value>
-  </data>
-  <data name="tool_wp_partyofdoom" xml:space="preserve">
-    <value>Party of Doom</value>
-  </data>
-  <data name="tool_wp_lanternnight_cooldown" xml:space="preserve">
-    <value>Laternennacht Cooldown</value>
-  </data>
-  <data name="tool_wp_lanternnight" xml:space="preserve">
-    <value>Laternennacht</value>
-  </data>
-  <data name="tool_wp_lanternnight_genuine" xml:space="preserve">
-    <value>Laternennacht echt</value>
-  </data>
-  <data name="tool_wp_lanternnight_manual" xml:space="preserve">
-    <value>Lantern Night Handbuch</value>
-  </data>
-  <data name="tool_wp_lanternnight_nextgenuine" xml:space="preserve">
-    <value>Lantern Night Next ist echt</value>
-  </data>
-  <data name="menu_layers_usetexturecolor" xml:space="preserve">
-    <value>Verwenden Sie realistische Farben</value>
-  </data>
-  <data name="messagebox_restartrequired" xml:space="preserve">
-    <value>Neustart erforderlich</value>
-  </data>
-  <data name="tool_creative_enable_time_speed" xml:space="preserve">
-    <value>Zeitgeschwindigkeit aktivieren</value>
-  </data>
-  <data name="tool_creative_enable_difficulty" xml:space="preserve">
-    <value>Gegnerische Schwierigkeit aktivieren</value>
-  </data>
-  <data name="tool_creative_enable_spawn_rate" xml:space="preserve">
-    <value>Spawn-Rate aktivieren</value>
-  </data>
-  <data name="tool_creative_difficulty" xml:space="preserve">
-    <value>Schwierigkeitsgrad des Feindes</value>
-  </data>
-  <data name="tool_creative_spawn_rate" xml:space="preserve">
-    <value>Spawn-Rate</value>
-  </data>
-  <data name="tool_creative_time_speed" xml:space="preserve">
-    <value>Zeitgeschwindigkeit</value>
-  </data>
-  <data name="tool_creative_timefrozen" xml:space="preserve">
-    <value>Freeze-Zeit</value>
-  </data>
-  <data name="tool_creative_windfrozen" xml:space="preserve">
-    <value>Frostiger Wind</value>
-  </data>
-  <data name="tool_creative_godmode" xml:space="preserve">
-    <value>Gott-Modus</value>
-  </data>
-  <data name="tool_creative_increaseplacementrange" xml:space="preserve">
-    <value>Reichweite erhöhen</value>
-  </data>
-  <data name="tool_creative_power" xml:space="preserve">
-    <value>Macht</value>
-  </data>
-  <data name="tool_creative_value" xml:space="preserve">
-    <value>Wert</value>
-  </data>
-  <data name="tool_creative_rainfrozen" xml:space="preserve">
-    <value>Gefrierregen</value>
-  </data>
-  <data name="tool_creative_biomespread" xml:space="preserve">
-    <value>Biom-Ausbreitung einfrieren</value>
-  </data>
-  <data name="editor_tabs_creative" xml:space="preserve">
-    <value>Kreative Kräfte</value>
-  </data>
-  <data name="bestiary_tally" xml:space="preserve">
-    <value>Update-Kills</value>
-  </data>
-  <data name="tool_wp_chinese" xml:space="preserve">
-    <value>Chinesische Weltversion</value>
-  </data>
-  <data name="tool_wp_console" xml:space="preserve">
-    <value>Konsolenwelt Version</value>
-  </data>
-  <data name="chest_max_stack" xml:space="preserve">
-    <value>Max</value>
-  </data>
-  <data name="tool_wp_gooworld" xml:space="preserve">
-    <value>Für die Würdigen (FTW)</value>
-  </data>
-  <data name="tool_clipboard_replace" xml:space="preserve">
-    <value>Ersetzen vorhandener Kacheln</value>
-  </data>
   <data name="wp_fixbackground" xml:space="preserve">
     <value>Hintergrundlücke schließen</value>
-  </data>
-  <data name="tool_paint_coating" xml:space="preserve">
-    <value>Beschichtung</value>
-  </data>
-  <data name="tool_paint_echocoating" xml:space="preserve">
-    <value>Echo</value>
-  </data>
-  <data name="tool_paint_illuminantcoating" xml:space="preserve">
-    <value>Leuchtmittel</value>
-  </data>
-  <data name="liquid_amount" xml:space="preserve">
-    <value>Flüssigkeitsmenge:</value>
-  </data>
-  <data name="tool_sprite_tiletype_label" xml:space="preserve">
-    <value>Kacheltyp-Filter:</value>
-  </data>
-  <data name="sprite_tiletype" xml:space="preserve">
-    <value>Kacheltyp-Filter</value>
   </data>
 </root>

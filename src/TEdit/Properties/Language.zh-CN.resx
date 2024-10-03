@@ -117,6 +117,36 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="bestiary_chat" xml:space="preserve">
+    <value>聊天</value>
+  </data>
+  <data name="bestiary_clear" xml:space="preserve">
+    <value>清除</value>
+  </data>
+  <data name="bestiary_complete" xml:space="preserve">
+    <value>完成图鉴</value>
+  </data>
+  <data name="bestiary_defeated" xml:space="preserve">
+    <value>打败</value>
+  </data>
+  <data name="bestiary_load" xml:space="preserve">
+    <value>加载</value>
+  </data>
+  <data name="bestiary_name" xml:space="preserve">
+    <value>名字</value>
+  </data>
+  <data name="bestiary_near" xml:space="preserve">
+    <value>近</value>
+  </data>
+  <data name="bestiary_save" xml:space="preserve">
+    <value>保存</value>
+  </data>
+  <data name="bestiary_talked" xml:space="preserve">
+    <value>说话</value>
+  </data>
+  <data name="bestiary_tally" xml:space="preserve">
+    <value>更新杀怪</value>
+  </data>
   <data name="BrickStyle_Full" xml:space="preserve">
     <value>全砖</value>
   </data>
@@ -151,6 +181,9 @@
     <value>矩形</value>
     <comment>enum:BrushShape.Square</comment>
   </data>
+  <data name="chest_max_stack" xml:space="preserve">
+    <value>最大</value>
+  </data>
   <data name="dialog_error_terriaria_folder_message" xml:space="preserve">
     <value>当前路径未找到Terraria内容.
 点击‘retry’选择一个新的文件夹或用‘{0}’作为Terraria的路径.</value>
@@ -163,6 +196,9 @@
   </data>
   <data name="editor_tabs_clipboard" xml:space="preserve">
     <value>剪贴板</value>
+  </data>
+  <data name="editor_tabs_creative" xml:space="preserve">
+    <value>创造能力</value>
   </data>
   <data name="editor_tabs_npc" xml:space="preserve">
     <value>NPC数据</value>
@@ -203,6 +239,21 @@
   <data name="HalfBlockMode_Solid" xml:space="preserve">
     <value>凝固</value>
   </data>
+  <data name="JunctionBoxMode_Left" xml:space="preserve">
+    <value>朝左</value>
+  </data>
+  <data name="JunctionBoxMode_None" xml:space="preserve">
+    <value>没有任何</value>
+  </data>
+  <data name="JunctionBoxMode_Normal" xml:space="preserve">
+    <value>普通的</value>
+  </data>
+  <data name="JunctionBoxMode_Right" xml:space="preserve">
+    <value>右脸</value>
+  </data>
+  <data name="JunctionBox_Use" xml:space="preserve">
+    <value>接线盒：</value>
+  </data>
   <data name="LiquidType_Honey" xml:space="preserve">
     <value>蜂蜜</value>
   </data>
@@ -214,6 +265,9 @@
   </data>
   <data name="LiquidType_Water" xml:space="preserve">
     <value>水</value>
+  </data>
+  <data name="liquid_amount" xml:space="preserve">
+    <value>液体量：</value>
   </data>
   <data name="MaskMode_Empty" xml:space="preserve">
     <value>允许为空</value>
@@ -232,6 +286,9 @@
   </data>
   <data name="menu_edit_copy" xml:space="preserve">
     <value>复制</value>
+  </data>
+  <data name="menu_edit_crop" xml:space="preserve">
+    <value>裁剪世界</value>
   </data>
   <data name="menu_edit_delete" xml:space="preserve">
     <value>删除选择区</value>
@@ -299,11 +356,20 @@
   <data name="menu_language_ar" xml:space="preserve">
     <value>العربية</value>
   </data>
+  <data name="menu_language_de" xml:space="preserve">
+    <value>Deutsch</value>
+  </data>
   <data name="menu_language_en" xml:space="preserve">
     <value>English</value>
   </data>
+  <data name="menu_language_es" xml:space="preserve">
+    <value>Español</value>
+  </data>
   <data name="menu_language_pl" xml:space="preserve">
     <value>Polski</value>
+  </data>
+  <data name="menu_language_pt" xml:space="preserve">
+    <value>Português</value>
   </data>
   <data name="menu_language_ru" xml:space="preserve">
     <value>Русский</value>
@@ -332,8 +398,14 @@
   <data name="menu_layers_tiles" xml:space="preserve">
     <value>物块</value>
   </data>
+  <data name="menu_layers_usetexturecolor" xml:space="preserve">
+    <value>使用实际颜色</value>
+  </data>
   <data name="menu_layers_walls" xml:space="preserve">
     <value>墙</value>
+  </data>
+  <data name="menu_layers_wire_all" xml:space="preserve">
+    <value>所有电线</value>
   </data>
   <data name="menu_layers_wire_blue" xml:space="preserve">
     <value>蓝电线</value>
@@ -344,11 +416,11 @@
   <data name="menu_layers_wire_red" xml:space="preserve">
     <value>红电线</value>
   </data>
+  <data name="menu_layers_wire_transparency" xml:space="preserve">
+    <value>电线透明度</value>
+  </data>
   <data name="menu_layers_wire_yellow" xml:space="preserve">
     <value>黄电线</value>
-  </data>
-  <data name="menu_layers_wire_all" xml:space="preserve">
-    <value>所有电线</value>
   </data>
   <data name="menu_plugins" xml:space="preserve">
     <value>插件</value>
@@ -361,6 +433,9 @@
   </data>
   <data name="menu_toolbar_zoom_out" xml:space="preserve">
     <value>缩小</value>
+  </data>
+  <data name="messagebox_restartrequired" xml:space="preserve">
+    <value>需要重新启动</value>
   </data>
   <data name="MorphBiome_Corruption" xml:space="preserve">
     <value>腐化</value>
@@ -519,6 +594,9 @@
   <data name="statusbar_wall_label" xml:space="preserve">
     <value>墙</value>
   </data>
+  <data name="tab_bestiary" xml:space="preserve">
+    <value>怪物图鉴</value>
+  </data>
   <data name="tool_analyze_analyze_button" xml:space="preserve">
     <value>分析</value>
   </data>
@@ -533,6 +611,9 @@
   </data>
   <data name="tool_arrow_title" xml:space="preserve">
     <value>箭头</value>
+  </data>
+  <data name="tool_bestiary_edit" xml:space="preserve">
+    <value>编辑</value>
   </data>
   <data name="tool_bestiary_import" xml:space="preserve">
     <value>导入</value>
@@ -582,6 +663,9 @@
   <data name="tool_clipboard_ispasteliquid" xml:space="preserve">
     <value>粘贴液体</value>
   </data>
+  <data name="tool_clipboard_ispastesprite" xml:space="preserve">
+    <value>粘贴精灵</value>
+  </data>
   <data name="tool_clipboard_ispastetiles" xml:space="preserve">
     <value>粘贴物块</value>
   </data>
@@ -591,8 +675,50 @@
   <data name="tool_clipboard_ispastewire" xml:space="preserve">
     <value>粘贴电线</value>
   </data>
-  <data name="tool_clipboard_ispastesprite" xml:space="preserve">
-    <value>粘贴精灵</value>
+  <data name="tool_clipboard_replace" xml:space="preserve">
+    <value>替换现有物块</value>
+  </data>
+  <data name="tool_creative_biomespread" xml:space="preserve">
+    <value>禁用感染蔓延</value>
+  </data>
+  <data name="tool_creative_difficulty" xml:space="preserve">
+    <value>敌人难度</value>
+  </data>
+  <data name="tool_creative_enable_difficulty" xml:space="preserve">
+    <value>启用敌人难度</value>
+  </data>
+  <data name="tool_creative_enable_spawn_rate" xml:space="preserve">
+    <value>启用生成速率</value>
+  </data>
+  <data name="tool_creative_enable_time_speed" xml:space="preserve">
+    <value>启用时间速度</value>
+  </data>
+  <data name="tool_creative_godmode" xml:space="preserve">
+    <value>无敌模式</value>
+  </data>
+  <data name="tool_creative_increaseplacementrange" xml:space="preserve">
+    <value>增加射程</value>
+  </data>
+  <data name="tool_creative_power" xml:space="preserve">
+    <value>能力</value>
+  </data>
+  <data name="tool_creative_rainfrozen" xml:space="preserve">
+    <value>禁用雨情变化</value>
+  </data>
+  <data name="tool_creative_spawn_rate" xml:space="preserve">
+    <value>生成速率</value>
+  </data>
+  <data name="tool_creative_timefrozen" xml:space="preserve">
+    <value>定格时间流逝</value>
+  </data>
+  <data name="tool_creative_time_speed" xml:space="preserve">
+    <value>时间速度</value>
+  </data>
+  <data name="tool_creative_value" xml:space="preserve">
+    <value>值</value>
+  </data>
+  <data name="tool_creative_windfrozen" xml:space="preserve">
+    <value>禁用风况变化</value>
   </data>
   <data name="tool_fill_title" xml:space="preserve">
     <value>填充</value>
@@ -615,11 +741,29 @@
   <data name="tool_paint_brickstyle" xml:space="preserve">
     <value>砖块类型</value>
   </data>
+  <data name="tool_paint_coating" xml:space="preserve">
+    <value>涂料</value>
+  </data>
+  <data name="tool_paint_echocoating" xml:space="preserve">
+    <value>回声</value>
+  </data>
   <data name="tool_paint_extras" xml:space="preserve">
     <value>附加功能</value>
   </data>
+  <data name="tool_paint_illuminantcoating" xml:space="preserve">
+    <value>夜明</value>
+  </data>
   <data name="tool_paint_inactive" xml:space="preserve">
     <value>制动/虚化</value>
+  </data>
+  <data name="tool_paint_junctionbox_left_tooltip" xml:space="preserve">
+    <value>添加朝左的交叉路口接线盒。</value>
+  </data>
+  <data name="tool_paint_junctionbox_normal_tooltip" xml:space="preserve">
+    <value>添加默认接线盒。</value>
+  </data>
+  <data name="tool_paint_junctionbox_right_tooltip" xml:space="preserve">
+    <value>添加朝右的交叉路口接线盒。</value>
   </data>
   <data name="tool_paint_mask" xml:space="preserve">
     <value>覆盖</value>
@@ -690,6 +834,9 @@
   <data name="tool_wp_adamantite" xml:space="preserve">
     <value>精金矿</value>
   </data>
+  <data name="tool_wp_afterpartyofdoom" xml:space="preserve">
+    <value>死亡派对</value>
+  </data>
   <data name="tool_wp_altars" xml:space="preserve">
     <value>祭坛已损坏</value>
   </data>
@@ -740,6 +887,9 @@
   </data>
   <data name="tool_wp_bg_underworld" xml:space="preserve">
     <value>地下背景</value>
+  </data>
+  <data name="tool_wp_boss_deerclops" xml:space="preserve">
+    <value>鹿角怪</value>
   </data>
   <data name="tool_wp_boss_destroyer" xml:space="preserve">
     <value>毁灭者</value>
@@ -825,8 +975,20 @@
   <data name="tool_wp_cavern_level" xml:space="preserve">
     <value>洞穴深度</value>
   </data>
+  <data name="tool_wp_chinese" xml:space="preserve">
+    <value>中国版世界</value>
+  </data>
   <data name="tool_wp_cobalt" xml:space="preserve">
     <value>钴矿</value>
+  </data>
+  <data name="tool_wp_combatbook" xml:space="preserve">
+    <value>先进战斗技术</value>
+  </data>
+  <data name="tool_wp_combatbooktwo" xml:space="preserve">
+    <value>先进战斗技术：卷二</value>
+  </data>
+  <data name="tool_wp_console" xml:space="preserve">
+    <value>主机版世界</value>
   </data>
   <data name="tool_wp_copper" xml:space="preserve">
     <value>铜矿</value>
@@ -840,6 +1002,9 @@
   <data name="tool_wp_difficulty_hardmode" xml:space="preserve">
     <value>困难模式</value>
   </data>
+  <data name="tool_wp_dontstarve" xml:space="preserve">
+    <value>永恒领域（The Constant）</value>
+  </data>
   <data name="tool_wp_drunk" xml:space="preserve">
     <value>醉酒世界（Drunk World）</value>
   </data>
@@ -851,6 +1016,9 @@
   </data>
   <data name="tool_wp_gold" xml:space="preserve">
     <value>金矿</value>
+  </data>
+  <data name="tool_wp_gooworld" xml:space="preserve">
+    <value>For the worthy （FTW）</value>
   </data>
   <data name="tool_wp_guid" xml:space="preserve">
     <value>世界GUID</value>
@@ -900,11 +1068,29 @@
   <data name="tool_wp_journeysend" xml:space="preserve">
     <value>旅程的结束</value>
   </data>
+  <data name="tool_wp_lanternnight" xml:space="preserve">
+    <value>灯笼夜</value>
+  </data>
+  <data name="tool_wp_lanternnight_cooldown" xml:space="preserve">
+    <value>灯笼夜冷却中</value>
+  </data>
+  <data name="tool_wp_lanternnight_genuine" xml:space="preserve">
+    <value>自然开始的灯笼夜</value>
+  </data>
+  <data name="tool_wp_lanternnight_manual" xml:space="preserve">
+    <value>手动开始的灯笼夜</value>
+  </data>
+  <data name="tool_wp_lanternnight_nextgenuine" xml:space="preserve">
+    <value>下一夜是灯笼夜</value>
+  </data>
   <data name="tool_wp_meteor" xml:space="preserve">
     <value>陨石</value>
   </data>
   <data name="tool_wp_meteor_spawn" xml:space="preserve">
     <value>生成陨石</value>
+  </data>
+  <data name="tool_wp_moondial_cooldown" xml:space="preserve">
+    <value>月晷冷却时间</value>
   </data>
   <data name="tool_wp_moon_blood" xml:space="preserve">
     <value>血月</value>
@@ -924,11 +1110,17 @@
   <data name="tool_wp_name" xml:space="preserve">
     <value>世界名称</value>
   </data>
+  <data name="tool_wp_notthebees" xml:space="preserve">
+    <value>不要蜜蜂（Not the bees）</value>
+  </data>
   <data name="tool_wp_npc_angler" xml:space="preserve">
     <value>渔夫</value>
   </data>
   <data name="tool_wp_npc_angler_mission" xml:space="preserve">
     <value>渔夫任务</value>
+  </data>
+  <data name="tool_wp_npc_arms_dealer" xml:space="preserve">
+    <value>军火商</value>
   </data>
   <data name="tool_wp_npc_bought" xml:space="preserve">
     <value>已购买的宠物</value>
@@ -939,8 +1131,14 @@
   <data name="tool_wp_npc_cat" xml:space="preserve">
     <value>猫</value>
   </data>
+  <data name="tool_wp_npc_demolitionist" xml:space="preserve">
+    <value>爆破专家</value>
+  </data>
   <data name="tool_wp_npc_dog" xml:space="preserve">
     <value>狗</value>
+  </data>
+  <data name="tool_wp_npc_dye_trader" xml:space="preserve">
+    <value>染料商</value>
   </data>
   <data name="tool_wp_npc_goblintinkerer" xml:space="preserve">
     <value>哥布林工匠</value>
@@ -951,8 +1149,47 @@
   <data name="tool_wp_npc_mechanic" xml:space="preserve">
     <value>机械师</value>
   </data>
+  <data name="tool_wp_npc_merchant" xml:space="preserve">
+    <value>商人</value>
+  </data>
+  <data name="tool_wp_npc_nurse" xml:space="preserve">
+    <value>护士</value>
+  </data>
+  <data name="tool_wp_npc_partygirl" xml:space="preserve">
+    <value>派对女孩</value>
+  </data>
+  <data name="tool_wp_npc_princess" xml:space="preserve">
+    <value>公主</value>
+  </data>
   <data name="tool_wp_npc_saved" xml:space="preserve">
     <value>已拯救的NPC</value>
+  </data>
+  <data name="tool_wp_npc_slime_blue" xml:space="preserve">
+    <value>书呆子史莱姆</value>
+  </data>
+  <data name="tool_wp_npc_slime_copper" xml:space="preserve">
+    <value>侍卫史莱姆</value>
+  </data>
+  <data name="tool_wp_npc_slime_green" xml:space="preserve">
+    <value>酷酷史莱姆</value>
+  </data>
+  <data name="tool_wp_npc_slime_old" xml:space="preserve">
+    <value>长者史莱姆</value>
+  </data>
+  <data name="tool_wp_npc_slime_purple" xml:space="preserve">
+    <value>笨拙史莱姆</value>
+  </data>
+  <data name="tool_wp_npc_slime_rainbow" xml:space="preserve">
+    <value>天后史莱姆</value>
+  </data>
+  <data name="tool_wp_npc_slime_red" xml:space="preserve">
+    <value>暴躁史莱姆</value>
+  </data>
+  <data name="tool_wp_npc_slime_yellow" xml:space="preserve">
+    <value>神秘史莱姆</value>
+  </data>
+  <data name="tool_wp_npc_spawn_unlocked" xml:space="preserve">
+    <value>NPC生成解锁</value>
   </data>
   <data name="tool_wp_npc_stylist" xml:space="preserve">
     <value>发型师</value>
@@ -962,6 +1199,9 @@
   </data>
   <data name="tool_wp_npc_taxcollector" xml:space="preserve">
     <value>税收官</value>
+  </data>
+  <data name="tool_wp_npc_truffle" xml:space="preserve">
+    <value>松露人</value>
   </data>
   <data name="tool_wp_npc_wizard" xml:space="preserve">
     <value>巫师</value>
@@ -980,6 +1220,12 @@
   </data>
   <data name="tool_wp_orbs" xml:space="preserve">
     <value>猩红之心/暗影珠已损坏</value>
+  </data>
+  <data name="tool_wp_partyofdoom" xml:space="preserve">
+    <value>末日派对</value>
+  </data>
+  <data name="tool_wp_peddlerssatchel" xml:space="preserve">
+    <value>商贩背包</value>
   </data>
   <data name="tool_wp_prehardmode" xml:space="preserve">
     <value>困难模式前</value>
@@ -1002,6 +1248,9 @@
   <data name="tool_wp_revision" xml:space="preserve">
     <value>修订版本</value>
   </data>
+  <data name="tool_wp_safe_level" xml:space="preserve">
+    <value>仅使用安全值</value>
+  </data>
   <data name="tool_wp_sandstorm" xml:space="preserve">
     <value>沙尘暴</value>
   </data>
@@ -1019,6 +1268,15 @@
   </data>
   <data name="tool_wp_seed" xml:space="preserve">
     <value>种子</value>
+  </data>
+  <data name="tool_wp_seed_notraps" xml:space="preserve">
+    <value>无陷阱（No traps）</value>
+  </data>
+  <data name="tool_wp_seed_remix" xml:space="preserve">
+    <value>反转种子（Don't dig up）</value>
+  </data>
+  <data name="tool_wp_seed_zenith" xml:space="preserve">
+    <value>天顶种子（Get fixed boi）</value>
   </data>
   <data name="tool_wp_silver" xml:space="preserve">
     <value>银矿</value>
@@ -1062,6 +1320,9 @@
   <data name="tool_wp_surface_level" xml:space="preserve">
     <value>表层深度</value>
   </data>
+  <data name="tool_wp_tenthanniversary" xml:space="preserve">
+    <value>十周年（Celebrationmk10）</value>
+  </data>
   <data name="tool_wp_time_day" xml:space="preserve">
     <value>白天</value>
   </data>
@@ -1073,6 +1334,12 @@
   </data>
   <data name="tool_wp_time_sundial_cooldown" xml:space="preserve">
     <value>日晷冷却时间</value>
+  </data>
+  <data name="tool_wp_unsafe_level" xml:space="preserve">
+    <value>允许不安全的值</value>
+  </data>
+  <data name="tool_wp_usemoondial" xml:space="preserve">
+    <value>使用月晷</value>
   </data>
   <data name="tool_wp_weather_clouds" xml:space="preserve">
     <value>云量</value>
@@ -1092,274 +1359,7 @@
   <data name="TrackMode_Track" xml:space="preserve">
     <value>普通轨道</value>
   </data>
-  <data name="menu_language_de" xml:space="preserve">
-    <value>Deutsch</value>
-  </data>
-  <data name="menu_language_pt" xml:space="preserve">
-    <value>Português</value>
-  </data>
-  <data name="tool_wp_tenthanniversary" xml:space="preserve">
-    <value>十周年（Celebrationmk10）</value>
-  </data>
-  <data name="tool_bestiary_edit" xml:space="preserve">
-    <value>编辑</value>
-  </data>
-  <data name="tool_wp_boss_deerclops" xml:space="preserve">
-    <value>鹿角怪</value>
-  </data>
-  <data name="tool_wp_dontstarve" xml:space="preserve">
-    <value>永恒领域（The Constant）</value>
-  </data>
-  <data name="tool_wp_notthebees" xml:space="preserve">
-    <value>不要蜜蜂（Not the bees）</value>
-  </data>
-  <data name="JunctionBoxMode_Left" xml:space="preserve">
-    <value>朝左</value>
-  </data>
-  <data name="JunctionBoxMode_None" xml:space="preserve">
-    <value>没有任何</value>
-  </data>
-  <data name="JunctionBoxMode_Normal" xml:space="preserve">
-    <value>普通的</value>
-  </data>
-  <data name="JunctionBoxMode_Right" xml:space="preserve">
-    <value>右脸</value>
-  </data>
-  <data name="tool_paint_junctionbox_left_tooltip" xml:space="preserve">
-    <value>添加朝左的交叉路口接线盒。</value>
-  </data>
-  <data name="tool_paint_junctionbox_normal_tooltip" xml:space="preserve">
-    <value>添加默认接线盒。</value>
-  </data>
-  <data name="tool_paint_junctionbox_right_tooltip" xml:space="preserve">
-    <value>添加朝右的交叉路口接线盒。</value>
-  </data>
-  <data name="JunctionBox_Use" xml:space="preserve">
-    <value>接线盒：</value>
-  </data>
-  <data name="menu_edit_crop" xml:space="preserve">
-    <value>裁剪世界</value>
-  </data>
-  <data name="tab_bestiary" xml:space="preserve">
-    <value>怪物图鉴</value>
-  </data>
-  <data name="bestiary_name" xml:space="preserve">
-    <value>名字</value>
-  </data>
-  <data name="bestiary_save" xml:space="preserve">
-    <value>保存</value>
-  </data>
-  <data name="bestiary_defeated" xml:space="preserve">
-    <value>打败</value>
-  </data>
-  <data name="bestiary_near" xml:space="preserve">
-    <value>近</value>
-  </data>
-  <data name="bestiary_talked" xml:space="preserve">
-    <value>说话</value>
-  </data>
-  <data name="bestiary_clear" xml:space="preserve">
-    <value>清除</value>
-  </data>
-  <data name="bestiary_chat" xml:space="preserve">
-    <value>聊天</value>
-  </data>
-  <data name="bestiary_complete" xml:space="preserve">
-    <value>完成图鉴</value>
-  </data>
-  <data name="bestiary_load" xml:space="preserve">
-    <value>加载</value>
-  </data>
-  <data name="menu_layers_wire_transparency" xml:space="preserve">
-    <value>电线透明度</value>
-  </data>
-  <data name="tool_wp_safe_level" xml:space="preserve">
-    <value>仅使用安全值</value>
-  </data>
-  <data name="tool_wp_unsafe_level" xml:space="preserve">
-    <value>允许不安全的值</value>
-  </data>
-  <data name="tool_wp_npc_spawn_unlocked" xml:space="preserve">
-    <value>NPC生成解锁</value>
-  </data>
-  <data name="tool_wp_npc_slime_blue" xml:space="preserve">
-    <value>书呆子史莱姆</value>
-  </data>
-  <data name="tool_wp_npc_slime_copper" xml:space="preserve">
-    <value>侍卫史莱姆</value>
-  </data>
-  <data name="tool_wp_npc_slime_green" xml:space="preserve">
-    <value>酷酷史莱姆</value>
-  </data>
-  <data name="tool_wp_npc_slime_old" xml:space="preserve">
-    <value>长者史莱姆</value>
-  </data>
-  <data name="tool_wp_npc_slime_purple" xml:space="preserve">
-    <value>笨拙史莱姆</value>
-  </data>
-  <data name="tool_wp_npc_slime_rainbow" xml:space="preserve">
-    <value>天后史莱姆</value>
-  </data>
-  <data name="tool_wp_npc_slime_red" xml:space="preserve">
-    <value>暴躁史莱姆</value>
-  </data>
-  <data name="tool_wp_npc_slime_yellow" xml:space="preserve">
-    <value>神秘史莱姆</value>
-  </data>
-  <data name="tool_wp_combatbooktwo" xml:space="preserve">
-    <value>先进战斗技术：卷二</value>
-  </data>
-  <data name="tool_wp_usemoondial" xml:space="preserve">
-    <value>使用月晷</value>
-  </data>
-  <data name="tool_wp_moondial_cooldown" xml:space="preserve">
-    <value>月晷冷却时间</value>
-  </data>
-  <data name="tool_wp_npc_princess" xml:space="preserve">
-    <value>公主</value>
-  </data>
-  <data name="tool_wp_npc_nurse" xml:space="preserve">
-    <value>护士</value>
-  </data>
-  <data name="tool_wp_npc_partygirl" xml:space="preserve">
-    <value>派对女孩</value>
-  </data>
-  <data name="tool_wp_npc_merchant" xml:space="preserve">
-    <value>商人</value>
-  </data>
-  <data name="tool_wp_npc_demolitionist" xml:space="preserve">
-    <value>爆破专家</value>
-  </data>
-  <data name="tool_wp_npc_dye_trader" xml:space="preserve">
-    <value>染料商</value>
-  </data>
-  <data name="tool_wp_npc_truffle" xml:space="preserve">
-    <value>松露人</value>
-  </data>
-  <data name="tool_wp_npc_arms_dealer" xml:space="preserve">
-    <value>军火商</value>
-  </data>
-  <data name="tool_wp_peddlerssatchel" xml:space="preserve">
-    <value>商贩背包</value>
-  </data>
-  <data name="tool_wp_combatbook" xml:space="preserve">
-    <value>先进战斗技术</value>
-  </data>
-  <data name="tool_wp_seed_zenith" xml:space="preserve">
-    <value>天顶种子（Get fixed boi）</value>
-  </data>
-  <data name="tool_wp_seed_remix" xml:space="preserve">
-    <value>反转种子（Don't dig up）</value>
-  </data>
-  <data name="tool_wp_seed_notraps" xml:space="preserve">
-    <value>无陷阱（No traps）</value>
-  </data>
-  <data name="tool_wp_afterpartyofdoom" xml:space="preserve">
-    <value>死亡派对</value>
-  </data>
-  <data name="tool_wp_lanternnight_cooldown" xml:space="preserve">
-    <value>灯笼夜冷却中</value>
-  </data>
-  <data name="tool_wp_lanternnight" xml:space="preserve">
-    <value>灯笼夜</value>
-  </data>
-  <data name="tool_wp_lanternnight_genuine" xml:space="preserve">
-    <value>自然开始的灯笼夜</value>
-  </data>
-  <data name="tool_wp_lanternnight_manual" xml:space="preserve">
-    <value>手动开始的灯笼夜</value>
-  </data>
-  <data name="tool_wp_lanternnight_nextgenuine" xml:space="preserve">
-    <value>下一夜是灯笼夜</value>
-  </data>
-  <data name="menu_layers_usetexturecolor" xml:space="preserve">
-    <value>使用实际颜色</value>
-  </data>
-  <data name="messagebox_restartrequired" xml:space="preserve">
-    <value>需要重新启动</value>
-  </data>
-  <data name="tool_creative_enable_time_speed" xml:space="preserve">
-    <value>启用时间速度</value>
-  </data>
-  <data name="tool_creative_enable_difficulty" xml:space="preserve">
-    <value>启用敌人难度</value>
-  </data>
-  <data name="tool_creative_enable_spawn_rate" xml:space="preserve">
-    <value>启用生成速率</value>
-  </data>
-  <data name="tool_creative_difficulty" xml:space="preserve">
-    <value>敌人难度</value>
-  </data>
-  <data name="tool_creative_spawn_rate" xml:space="preserve">
-    <value>生成速率</value>
-  </data>
-  <data name="tool_creative_time_speed" xml:space="preserve">
-    <value>时间速度</value>
-  </data>
-  <data name="tool_creative_timefrozen" xml:space="preserve">
-    <value>定格时间流逝</value>
-  </data>
-  <data name="tool_creative_windfrozen" xml:space="preserve">
-    <value>禁用风况变化</value>
-  </data>
-  <data name="tool_creative_godmode" xml:space="preserve">
-    <value>无敌模式</value>
-  </data>
-  <data name="tool_creative_increaseplacementrange" xml:space="preserve">
-    <value>增加射程</value>
-  </data>
-  <data name="tool_creative_power" xml:space="preserve">
-    <value>能力</value>
-  </data>
-  <data name="tool_creative_value" xml:space="preserve">
-    <value>值</value>
-  </data>
-  <data name="tool_creative_rainfrozen" xml:space="preserve">
-    <value>禁用雨情变化</value>
-  </data>
-  <data name="tool_creative_biomespread" xml:space="preserve">
-    <value>禁用感染蔓延</value>
-  </data>
-  <data name="editor_tabs_creative" xml:space="preserve">
-    <value>创造能力</value>
-  </data>
-  <data name="bestiary_tally" xml:space="preserve">
-    <value>更新杀怪</value>
-  </data>
-  <data name="tool_wp_chinese" xml:space="preserve">
-    <value>中国版世界</value>
-  </data>
-  <data name="tool_wp_console" xml:space="preserve">
-    <value>主机版世界</value>
-  </data>
-  <data name="chest_max_stack" xml:space="preserve">
-    <value>最大</value>
-  </data>
-  <data name="tool_wp_gooworld" xml:space="preserve">
-    <value>For the worthy （FTW）</value>
-  </data>
-  <data name="tool_clipboard_replace" xml:space="preserve">
-    <value>替换现有物块</value>
-  </data>
   <data name="wp_fixbackground" xml:space="preserve">
     <value>修复背景间隙</value>
-  </data>
-  <data name="tool_paint_coating" xml:space="preserve">
-    <value>涂料</value>
-  </data>
-  <data name="tool_paint_echocoating" xml:space="preserve">
-    <value>回声</value>
-  </data>
-  <data name="tool_paint_illuminantcoating" xml:space="preserve">
-    <value>夜明</value>
-  </data>
-  <data name="liquid_amount" xml:space="preserve">
-    <value>液体量：</value>
-  </data>
-  <data name="tool_sprite_tiletype_label" xml:space="preserve">
-    <value>磁贴类型筛选器：</value>
-  </data>
-  <data name="sprite_tiletype" xml:space="preserve">
-    <value>磁贴类型筛选器</value>
   </data>
 </root>

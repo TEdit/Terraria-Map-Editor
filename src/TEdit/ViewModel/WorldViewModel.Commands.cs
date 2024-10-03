@@ -1,22 +1,22 @@
-﻿using System;
-using System.Linq;
+﻿using Microsoft.Win32;
+using SharpDX.XAudio2;
+using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Windows;
 using System.Windows.Input;
-using TEdit.Framework.Events;
-using TEdit.Geometry;
 using TEdit.Common.Reactive.Command;
-using Microsoft.Win32;
-using TEdit.Terraria;
+using TEdit.Configuration;
 using TEdit.Editor;
 using TEdit.Editor.Clipboard;
 using TEdit.Editor.Plugins;
 using TEdit.Editor.Tools;
+using TEdit.Framework.Events;
+using TEdit.Geometry;
 using TEdit.Helper;
 using TEdit.Properties;
-using System.Collections.Generic;
-using SharpDX.XAudio2;
-using TEdit.Configuration;
+using TEdit.Terraria;
 
 namespace TEdit.ViewModel;
 
@@ -649,5 +649,6 @@ public enum LanguageSelection
     Chinese,
     Polish,
     German,
-    Portuguese
+    Portuguese,
+    Spanish
 }
