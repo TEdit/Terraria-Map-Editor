@@ -117,58 +117,35 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="BrushShape_Left" xml:space="preserve">
-    <value>قطري لليسار</value>
-    <comment>enum:BrushShape.Left</comment>
+  <data name="bestiary_chat" xml:space="preserve">
+    <value>ثَرْثَرَ</value>
   </data>
-  <data name="BrushShape_Right" xml:space="preserve">
-    <value>قطري لليمين</value>
-    <comment>enum:BrushShape.Right</comment>
+  <data name="bestiary_clear" xml:space="preserve">
+    <value>واضح</value>
   </data>
-  <data name="BrushShape_Round" xml:space="preserve">
-    <value>إهليلج</value>
-    <comment>enum:BrushShape.Round</comment>
+  <data name="bestiary_complete" xml:space="preserve">
+    <value>كامل</value>
   </data>
-  <data name="BrushShape_Square" xml:space="preserve">
-    <value>مستطيل</value>
-    <comment>enum:BrushShape.Square</comment>
+  <data name="bestiary_defeated" xml:space="preserve">
+    <value>مغلوب</value>
   </data>
-  <data name="MorphBiome_Corruption" xml:space="preserve">
-    <value>فساد</value>
-    <comment>enum:MorphBiome.Corruption</comment>
+  <data name="bestiary_load" xml:space="preserve">
+    <value>حمل</value>
   </data>
-  <data name="MorphBiome_Crimson" xml:space="preserve">
-    <value>قرمزي</value>
-    <comment>enum:MorphBiome.Crimson</comment>
+  <data name="bestiary_name" xml:space="preserve">
+    <value>اسم</value>
   </data>
-  <data name="MorphBiome_Custom" xml:space="preserve">
-    <value>تقليد</value>
-    <comment>enum:MorphBiome.Custom</comment>
+  <data name="bestiary_near" xml:space="preserve">
+    <value>قرب</value>
   </data>
-  <data name="MorphBiome_Desert" xml:space="preserve">
-    <value>صحراء</value>
-    <comment>enum:MorphBiome.Desert</comment>
+  <data name="bestiary_save" xml:space="preserve">
+    <value>أنقذ</value>
   </data>
-  <data name="MorphBiome_Hallow" xml:space="preserve">
-    <value>هالو</value>
-    <comment>enum:MorphBiome.Hallow</comment>
+  <data name="bestiary_talked" xml:space="preserve">
+    <value>تكلم</value>
   </data>
-  <data name="MorphBiome_Jungle" xml:space="preserve">
-    <value>أيك</value>
-    <comment>enum:MorphBiome.Jungle</comment>
-  </data>
-  <data name="MorphBiome_Purify" xml:space="preserve">
-    <value>خلص</value>
-    <comment>enum:MorphBiome.Purify</comment>
-  </data>
-  <data name="statusbar_tile_label" xml:space="preserve">
-    <value>بلاط</value>
-  </data>
-  <data name="tool_paint_tile_title" xml:space="preserve">
-    <value>بلاط</value>
-  </data>
-  <data name="menu_language_ar" xml:space="preserve">
-    <value>العربية</value>
+  <data name="bestiary_tally" xml:space="preserve">
+    <value>تحديث يقتل</value>
   </data>
   <data name="BrickStyle_Full" xml:space="preserve">
     <value>الطوب الكامل</value>
@@ -188,6 +165,25 @@
   <data name="BrickStyle_SlopeTopRight" xml:space="preserve">
     <value>المنحدر العلوي الأيمن</value>
   </data>
+  <data name="BrushShape_Left" xml:space="preserve">
+    <value>قطري لليسار</value>
+    <comment>enum:BrushShape.Left</comment>
+  </data>
+  <data name="BrushShape_Right" xml:space="preserve">
+    <value>قطري لليمين</value>
+    <comment>enum:BrushShape.Right</comment>
+  </data>
+  <data name="BrushShape_Round" xml:space="preserve">
+    <value>إهليلج</value>
+    <comment>enum:BrushShape.Round</comment>
+  </data>
+  <data name="BrushShape_Square" xml:space="preserve">
+    <value>مستطيل</value>
+    <comment>enum:BrushShape.Square</comment>
+  </data>
+  <data name="chest_max_stack" xml:space="preserve">
+    <value>ماكس</value>
+  </data>
   <data name="dialog_error_terriaria_folder_message" xml:space="preserve">
     <value>لا يبدو أن الدليل يحتوي على محتوى Terraria.
 اضغط على إعادة المحاولة لاختيار مجلد جديد أو إلغاء لاستخدام {0} كمسار terraria الخاص بك.</value>
@@ -200,6 +196,9 @@
   </data>
   <data name="editor_tabs_clipboard" xml:space="preserve">
     <value>حافظة</value>
+  </data>
+  <data name="editor_tabs_creative" xml:space="preserve">
+    <value>القوى الإبداعية</value>
   </data>
   <data name="editor_tabs_npc" xml:space="preserve">
     <value>بيانات المجلس الوطني للصحافه</value>
@@ -240,6 +239,21 @@
   <data name="HalfBlockMode_Solid" xml:space="preserve">
     <value>تعيين صلب</value>
   </data>
+  <data name="JunctionBoxMode_Left" xml:space="preserve">
+    <value>مواجهة اليسار</value>
+  </data>
+  <data name="JunctionBoxMode_None" xml:space="preserve">
+    <value>لا أحد</value>
+  </data>
+  <data name="JunctionBoxMode_Normal" xml:space="preserve">
+    <value>طبيعي</value>
+  </data>
+  <data name="JunctionBoxMode_Right" xml:space="preserve">
+    <value>المواجهة اليمنى</value>
+  </data>
+  <data name="JunctionBox_Use" xml:space="preserve">
+    <value>مربع تقاطع:</value>
+  </data>
   <data name="LiquidType_Honey" xml:space="preserve">
     <value>عسل</value>
   </data>
@@ -251,6 +265,9 @@
   </data>
   <data name="LiquidType_Water" xml:space="preserve">
     <value>الماء</value>
+  </data>
+  <data name="liquid_amount" xml:space="preserve">
+    <value>الكمية السائلة:</value>
   </data>
   <data name="MaskMode_Empty" xml:space="preserve">
     <value>تحرير فارغ</value>
@@ -269,6 +286,9 @@
   </data>
   <data name="menu_edit_copy" xml:space="preserve">
     <value>نسخ</value>
+  </data>
+  <data name="menu_edit_crop" xml:space="preserve">
+    <value>عالم المحاصيل</value>
   </data>
   <data name="menu_edit_delete" xml:space="preserve">
     <value>حذف التحديد</value>
@@ -333,14 +353,23 @@
   <data name="menu_language" xml:space="preserve">
     <value>اللغة</value>
   </data>
+  <data name="menu_language_ar" xml:space="preserve">
+    <value>العربية</value>
+  </data>
   <data name="menu_language_de" xml:space="preserve">
     <value>Deutsch</value>
   </data>
   <data name="menu_language_en" xml:space="preserve">
     <value>English</value>
   </data>
+  <data name="menu_language_es" xml:space="preserve">
+    <value>Español</value>
+  </data>
   <data name="menu_language_pl" xml:space="preserve">
     <value>Polski</value>
+  </data>
+  <data name="menu_language_pt" xml:space="preserve">
+    <value>Português</value>
   </data>
   <data name="menu_language_ru" xml:space="preserve">
     <value>Русский</value>
@@ -369,8 +398,14 @@
   <data name="menu_layers_tiles" xml:space="preserve">
     <value>البلاط</value>
   </data>
+  <data name="menu_layers_usetexturecolor" xml:space="preserve">
+    <value>استخدام ألوان واقعية</value>
+  </data>
   <data name="menu_layers_walls" xml:space="preserve">
     <value>جدران</value>
+  </data>
+  <data name="menu_layers_wire_all" xml:space="preserve">
+    <value>جميع الأسلاك</value>
   </data>
   <data name="menu_layers_wire_blue" xml:space="preserve">
     <value>بلو واير</value>
@@ -381,11 +416,11 @@
   <data name="menu_layers_wire_red" xml:space="preserve">
     <value>سلك أحمر</value>
   </data>
+  <data name="menu_layers_wire_transparency" xml:space="preserve">
+    <value>شفافية الأسلاك</value>
+  </data>
   <data name="menu_layers_wire_yellow" xml:space="preserve">
     <value>سلك أصفر</value>
-  </data>
-  <data name="menu_layers_wire_all" xml:space="preserve">
-    <value>جميع الأسلاك</value>
   </data>
   <data name="menu_plugins" xml:space="preserve">
     <value>الإضافات</value>
@@ -398,6 +433,37 @@
   </data>
   <data name="menu_toolbar_zoom_out" xml:space="preserve">
     <value>تصغير</value>
+  </data>
+  <data name="messagebox_restartrequired" xml:space="preserve">
+    <value>إعادة التشغيل مطلوبة</value>
+  </data>
+  <data name="MorphBiome_Corruption" xml:space="preserve">
+    <value>فساد</value>
+    <comment>enum:MorphBiome.Corruption</comment>
+  </data>
+  <data name="MorphBiome_Crimson" xml:space="preserve">
+    <value>قرمزي</value>
+    <comment>enum:MorphBiome.Crimson</comment>
+  </data>
+  <data name="MorphBiome_Custom" xml:space="preserve">
+    <value>تقليد</value>
+    <comment>enum:MorphBiome.Custom</comment>
+  </data>
+  <data name="MorphBiome_Desert" xml:space="preserve">
+    <value>صحراء</value>
+    <comment>enum:MorphBiome.Desert</comment>
+  </data>
+  <data name="MorphBiome_Hallow" xml:space="preserve">
+    <value>هالو</value>
+    <comment>enum:MorphBiome.Hallow</comment>
+  </data>
+  <data name="MorphBiome_Jungle" xml:space="preserve">
+    <value>أيك</value>
+    <comment>enum:MorphBiome.Jungle</comment>
+  </data>
+  <data name="MorphBiome_Purify" xml:space="preserve">
+    <value>خلص</value>
+    <comment>enum:MorphBiome.Purify</comment>
   </data>
   <data name="PaintMode_Liquid" xml:space="preserve">
     <value>سائل</value>
@@ -504,6 +570,9 @@
   <data name="sprite_styletype" xml:space="preserve">
     <value>نمط</value>
   </data>
+  <data name="sprite_tiletype" xml:space="preserve">
+    <value>مرشح نوع البلاط</value>
+  </data>
   <data name="statusbar_extra_label" xml:space="preserve">
     <value>اضافيه</value>
   </data>
@@ -519,8 +588,14 @@
   <data name="statusbar_selection_label" xml:space="preserve">
     <value>إنتخاب</value>
   </data>
+  <data name="statusbar_tile_label" xml:space="preserve">
+    <value>بلاط</value>
+  </data>
   <data name="statusbar_wall_label" xml:space="preserve">
     <value>جدار</value>
+  </data>
+  <data name="tab_bestiary" xml:space="preserve">
+    <value>بيستاري</value>
   </data>
   <data name="tool_analyze_analyze_button" xml:space="preserve">
     <value>حلل</value>
@@ -536,6 +611,9 @@
   </data>
   <data name="tool_arrow_title" xml:space="preserve">
     <value>سهم</value>
+  </data>
+  <data name="tool_bestiary_edit" xml:space="preserve">
+    <value>حرر</value>
   </data>
   <data name="tool_bestiary_import" xml:space="preserve">
     <value>استورد</value>
@@ -585,6 +663,9 @@
   <data name="tool_clipboard_ispasteliquid" xml:space="preserve">
     <value>لصق السوائل</value>
   </data>
+  <data name="tool_clipboard_ispastesprite" xml:space="preserve">
+    <value>لصق العفاريت</value>
+  </data>
   <data name="tool_clipboard_ispastetiles" xml:space="preserve">
     <value>لصق البلاط</value>
   </data>
@@ -594,8 +675,50 @@
   <data name="tool_clipboard_ispastewire" xml:space="preserve">
     <value>لصق الأسلاك</value>
   </data>
-  <data name="tool_clipboard_ispastesprite" xml:space="preserve">
-    <value>لصق العفاريت</value>
+  <data name="tool_clipboard_replace" xml:space="preserve">
+    <value>استبدال اللوحات الموجودة</value>
+  </data>
+  <data name="tool_creative_biomespread" xml:space="preserve">
+    <value>تجميد انتشار بيوم</value>
+  </data>
+  <data name="tool_creative_difficulty" xml:space="preserve">
+    <value>صعوبة العدو</value>
+  </data>
+  <data name="tool_creative_enable_difficulty" xml:space="preserve">
+    <value>تمكين صعوبة العدو</value>
+  </data>
+  <data name="tool_creative_enable_spawn_rate" xml:space="preserve">
+    <value>تمكين معدل التفريخ</value>
+  </data>
+  <data name="tool_creative_enable_time_speed" xml:space="preserve">
+    <value>تمكين سرعة الوقت</value>
+  </data>
+  <data name="tool_creative_godmode" xml:space="preserve">
+    <value>وضع الله</value>
+  </data>
+  <data name="tool_creative_increaseplacementrange" xml:space="preserve">
+    <value>زيادة النطاق</value>
+  </data>
+  <data name="tool_creative_power" xml:space="preserve">
+    <value>قوة</value>
+  </data>
+  <data name="tool_creative_rainfrozen" xml:space="preserve">
+    <value>تجميد المطر</value>
+  </data>
+  <data name="tool_creative_spawn_rate" xml:space="preserve">
+    <value>معدل التفريخ</value>
+  </data>
+  <data name="tool_creative_timefrozen" xml:space="preserve">
+    <value>وقت التجميد</value>
+  </data>
+  <data name="tool_creative_time_speed" xml:space="preserve">
+    <value>سرعة الوقت</value>
+  </data>
+  <data name="tool_creative_value" xml:space="preserve">
+    <value>قيمة</value>
+  </data>
+  <data name="tool_creative_windfrozen" xml:space="preserve">
+    <value>تجميد الرياح</value>
   </data>
   <data name="tool_fill_title" xml:space="preserve">
     <value>ملء</value>
@@ -618,11 +741,29 @@
   <data name="tool_paint_brickstyle" xml:space="preserve">
     <value>نمط الطوب</value>
   </data>
+  <data name="tool_paint_coating" xml:space="preserve">
+    <value>طلاء</value>
+  </data>
+  <data name="tool_paint_echocoating" xml:space="preserve">
+    <value>دوي</value>
+  </data>
   <data name="tool_paint_extras" xml:space="preserve">
     <value>اضافات</value>
   </data>
+  <data name="tool_paint_illuminantcoating" xml:space="preserve">
+    <value>مضيئة</value>
+  </data>
   <data name="tool_paint_inactive" xml:space="preserve">
     <value>المحرك / البلاط معطل</value>
+  </data>
+  <data name="tool_paint_junctionbox_left_tooltip" xml:space="preserve">
+    <value>إضافة مربع تقاطع تواجه اليسار.</value>
+  </data>
+  <data name="tool_paint_junctionbox_normal_tooltip" xml:space="preserve">
+    <value>إضافة مربع تقاطع افتراضي.</value>
+  </data>
+  <data name="tool_paint_junctionbox_right_tooltip" xml:space="preserve">
+    <value>أضف مربع تقاطع المواجهة اليمنى.</value>
   </data>
   <data name="tool_paint_mask" xml:space="preserve">
     <value>قناع</value>
@@ -632,6 +773,9 @@
   </data>
   <data name="tool_paint_mode" xml:space="preserve">
     <value>وضع الطلاء</value>
+  </data>
+  <data name="tool_paint_tile_title" xml:space="preserve">
+    <value>بلاط</value>
   </data>
   <data name="tool_paint_track_booster_tooltip" xml:space="preserve">
     <value>إضافة الداعم إلى المسار الحالي، واستخدام مع ممحاة لإزالة الداعم فقط.</value>
@@ -680,6 +824,9 @@
   </data>
   <data name="tool_sprite_style_label" xml:space="preserve">
     <value>نمط:</value>
+  </data>
+  <data name="tool_sprite_tiletype_label" xml:space="preserve">
+    <value>مرشح نوع البلاط:</value>
   </data>
   <data name="tool_sprite_title" xml:space="preserve">
     <value>سبرايت بلاسر (قديم)</value>
@@ -737,6 +884,9 @@
   </data>
   <data name="tool_wp_bg_underworld" xml:space="preserve">
     <value>عالم الجريمة BG</value>
+  </data>
+  <data name="tool_wp_boss_deerclops" xml:space="preserve">
+    <value>العملاق الغزلان</value>
   </data>
   <data name="tool_wp_boss_destroyer" xml:space="preserve">
     <value>المدمرة</value>
@@ -822,8 +972,20 @@
   <data name="tool_wp_cavern_level" xml:space="preserve">
     <value>مستوى الكهف</value>
   </data>
+  <data name="tool_wp_chinese" xml:space="preserve">
+    <value>النسخة الصينية العالمية</value>
+  </data>
   <data name="tool_wp_cobalt" xml:space="preserve">
     <value>مستوى الكوبالت</value>
+  </data>
+  <data name="tool_wp_combatbook" xml:space="preserve">
+    <value>كتاب القتال</value>
+  </data>
+  <data name="tool_wp_combatbooktwo" xml:space="preserve">
+    <value>كتاب القتال المجلد الثاني</value>
+  </data>
+  <data name="tool_wp_console" xml:space="preserve">
+    <value>إصدار عالم وحدة التحكم</value>
   </data>
   <data name="tool_wp_copper" xml:space="preserve">
     <value>الطبقة النحاسية</value>
@@ -837,6 +999,9 @@
   <data name="tool_wp_difficulty_hardmode" xml:space="preserve">
     <value>هاردمود</value>
   </data>
+  <data name="tool_wp_dontstarve" xml:space="preserve">
+    <value>لا تجويع العالم</value>
+  </data>
   <data name="tool_wp_drunk" xml:space="preserve">
     <value>العالم في حالة سكر</value>
   </data>
@@ -848,6 +1013,9 @@
   </data>
   <data name="tool_wp_gold" xml:space="preserve">
     <value>الطبقة الذهبية</value>
+  </data>
+  <data name="tool_wp_gooworld" xml:space="preserve">
+    <value>من أجل المستحقين (FTW)</value>
   </data>
   <data name="tool_wp_guid" xml:space="preserve">
     <value>المعرف الفريد العمومي العالمي</value>
@@ -897,11 +1065,29 @@
   <data name="tool_wp_journeysend" xml:space="preserve">
     <value>نهاية الرحلة</value>
   </data>
+  <data name="tool_wp_lanternnight" xml:space="preserve">
+    <value>ليلة الفانوس</value>
+  </data>
+  <data name="tool_wp_lanternnight_cooldown" xml:space="preserve">
+    <value>فانوس ليلة التبريد</value>
+  </data>
+  <data name="tool_wp_lanternnight_genuine" xml:space="preserve">
+    <value>ليلة فانوس حقيقية</value>
+  </data>
+  <data name="tool_wp_lanternnight_manual" xml:space="preserve">
+    <value>دليل ليلة الفانوس</value>
+  </data>
+  <data name="tool_wp_lanternnight_nextgenuine" xml:space="preserve">
+    <value>ليلة الفانوس التالية حقيقية</value>
+  </data>
   <data name="tool_wp_meteor" xml:space="preserve">
     <value>نيزك</value>
   </data>
   <data name="tool_wp_meteor_spawn" xml:space="preserve">
     <value>تفرخ نيزك</value>
+  </data>
+  <data name="tool_wp_moondial_cooldown" xml:space="preserve">
+    <value>القمر الاتصال الهاتفي التبريد</value>
   </data>
   <data name="tool_wp_moon_blood" xml:space="preserve">
     <value>قمر الدم</value>
@@ -921,11 +1107,17 @@
   <data name="tool_wp_name" xml:space="preserve">
     <value>اسم العالم</value>
   </data>
+  <data name="tool_wp_notthebees" xml:space="preserve">
+    <value>ليس عالم النحل</value>
+  </data>
   <data name="tool_wp_npc_angler" xml:space="preserve">
     <value>الصياد</value>
   </data>
   <data name="tool_wp_npc_angler_mission" xml:space="preserve">
     <value>بعثة الصياد</value>
+  </data>
+  <data name="tool_wp_npc_arms_dealer" xml:space="preserve">
+    <value>تاجر أسلحة</value>
   </data>
   <data name="tool_wp_npc_bought" xml:space="preserve">
     <value>NPCs اشترى</value>
@@ -936,8 +1128,14 @@
   <data name="tool_wp_npc_cat" xml:space="preserve">
     <value>قط</value>
   </data>
+  <data name="tool_wp_npc_demolitionist" xml:space="preserve">
+    <value>الهدم</value>
+  </data>
   <data name="tool_wp_npc_dog" xml:space="preserve">
     <value>الكلب</value>
+  </data>
+  <data name="tool_wp_npc_dye_trader" xml:space="preserve">
+    <value>صبغ التاجر</value>
   </data>
   <data name="tool_wp_npc_goblintinkerer" xml:space="preserve">
     <value>غوبلين تينكر</value>
@@ -948,8 +1146,47 @@
   <data name="tool_wp_npc_mechanic" xml:space="preserve">
     <value>ميكانيكي</value>
   </data>
+  <data name="tool_wp_npc_merchant" xml:space="preserve">
+    <value>تاجر</value>
+  </data>
+  <data name="tool_wp_npc_nurse" xml:space="preserve">
+    <value>ممرض</value>
+  </data>
+  <data name="tool_wp_npc_partygirl" xml:space="preserve">
+    <value>فتاة الحفلات</value>
+  </data>
+  <data name="tool_wp_npc_princess" xml:space="preserve">
+    <value>الاميره</value>
+  </data>
   <data name="tool_wp_npc_saved" xml:space="preserve">
     <value>NPCs المحفوظة</value>
+  </data>
+  <data name="tool_wp_npc_slime_blue" xml:space="preserve">
+    <value>الوحل الأزرق</value>
+  </data>
+  <data name="tool_wp_npc_slime_copper" xml:space="preserve">
+    <value>الوحل النحاسي</value>
+  </data>
+  <data name="tool_wp_npc_slime_green" xml:space="preserve">
+    <value>الوحل الأخضر</value>
+  </data>
+  <data name="tool_wp_npc_slime_old" xml:space="preserve">
+    <value>الوحل القديم</value>
+  </data>
+  <data name="tool_wp_npc_slime_purple" xml:space="preserve">
+    <value>الوحل الأرجواني</value>
+  </data>
+  <data name="tool_wp_npc_slime_rainbow" xml:space="preserve">
+    <value>قوس قزح الوحل</value>
+  </data>
+  <data name="tool_wp_npc_slime_red" xml:space="preserve">
+    <value>الوحل الأحمر</value>
+  </data>
+  <data name="tool_wp_npc_slime_yellow" xml:space="preserve">
+    <value>الوحل الأصفر</value>
+  </data>
+  <data name="tool_wp_npc_spawn_unlocked" xml:space="preserve">
+    <value>NPC تفرخ مقفلة</value>
   </data>
   <data name="tool_wp_npc_stylist" xml:space="preserve">
     <value>المصمم</value>
@@ -959,6 +1196,9 @@
   </data>
   <data name="tool_wp_npc_taxcollector" xml:space="preserve">
     <value>جباية الضرائب</value>
+  </data>
+  <data name="tool_wp_npc_truffle" xml:space="preserve">
+    <value>الكماه</value>
   </data>
   <data name="tool_wp_npc_wizard" xml:space="preserve">
     <value>ساحر</value>
@@ -977,6 +1217,12 @@
   </data>
   <data name="tool_wp_orbs" xml:space="preserve">
     <value>الأجرام السماوية حطمت</value>
+  </data>
+  <data name="tool_wp_partyofdoom" xml:space="preserve">
+    <value>حزب العذاب</value>
+  </data>
+  <data name="tool_wp_peddlerssatchel" xml:space="preserve">
+    <value>حقيبة البائع المتجول</value>
   </data>
   <data name="tool_wp_prehardmode" xml:space="preserve">
     <value>ما قبل هاردمود</value>
@@ -999,6 +1245,9 @@
   <data name="tool_wp_revision" xml:space="preserve">
     <value>مراجعه</value>
   </data>
+  <data name="tool_wp_safe_level" xml:space="preserve">
+    <value>استخدم القيم الآمنة فقط</value>
+  </data>
   <data name="tool_wp_sandstorm" xml:space="preserve">
     <value>عاصفه رمليه</value>
   </data>
@@ -1016,6 +1265,15 @@
   </data>
   <data name="tool_wp_seed" xml:space="preserve">
     <value>بذرة</value>
+  </data>
+  <data name="tool_wp_seed_notraps" xml:space="preserve">
+    <value>لا الفخاخ</value>
+  </data>
+  <data name="tool_wp_seed_remix" xml:space="preserve">
+    <value>ريميكس</value>
+  </data>
+  <data name="tool_wp_seed_zenith" xml:space="preserve">
+    <value>سَمْت</value>
   </data>
   <data name="tool_wp_silver" xml:space="preserve">
     <value>الطبقة الفضية</value>
@@ -1074,6 +1332,12 @@
   <data name="tool_wp_time_sundial_cooldown" xml:space="preserve">
     <value>تهدئة الشمس</value>
   </data>
+  <data name="tool_wp_unsafe_level" xml:space="preserve">
+    <value>السماح بالقيم غير الآمنة</value>
+  </data>
+  <data name="tool_wp_usemoondial" xml:space="preserve">
+    <value>استخدام قرص القمر</value>
+  </data>
   <data name="tool_wp_weather_clouds" xml:space="preserve">
     <value>سحب الأرقام</value>
   </data>
@@ -1092,268 +1356,7 @@
   <data name="TrackMode_Track" xml:space="preserve">
     <value>المسار</value>
   </data>
-  <data name="menu_language_pt" xml:space="preserve">
-    <value>Português</value>
-  </data>
-  <data name="tool_bestiary_edit" xml:space="preserve">
-    <value>حرر</value>
-  </data>
-  <data name="tool_wp_boss_deerclops" xml:space="preserve">
-    <value>العملاق الغزلان</value>
-  </data>
-  <data name="tool_wp_dontstarve" xml:space="preserve">
-    <value>لا تجويع العالم</value>
-  </data>
-  <data name="tool_wp_notthebees" xml:space="preserve">
-    <value>ليس عالم النحل</value>
-  </data>
-  <data name="JunctionBoxMode_Left" xml:space="preserve">
-    <value>مواجهة اليسار</value>
-  </data>
-  <data name="JunctionBoxMode_None" xml:space="preserve">
-    <value>لا أحد</value>
-  </data>
-  <data name="JunctionBoxMode_Normal" xml:space="preserve">
-    <value>طبيعي</value>
-  </data>
-  <data name="JunctionBoxMode_Right" xml:space="preserve">
-    <value>المواجهة اليمنى</value>
-  </data>
-  <data name="tool_paint_junctionbox_left_tooltip" xml:space="preserve">
-    <value>إضافة مربع تقاطع تواجه اليسار.</value>
-  </data>
-  <data name="tool_paint_junctionbox_normal_tooltip" xml:space="preserve">
-    <value>إضافة مربع تقاطع افتراضي.</value>
-  </data>
-  <data name="tool_paint_junctionbox_right_tooltip" xml:space="preserve">
-    <value>أضف مربع تقاطع المواجهة اليمنى.</value>
-  </data>
-  <data name="JunctionBox_Use" xml:space="preserve">
-    <value>مربع تقاطع:</value>
-  </data>
-  <data name="menu_edit_crop" xml:space="preserve">
-    <value>عالم المحاصيل</value>
-  </data>
-  <data name="tab_bestiary" xml:space="preserve">
-    <value>بيستاري</value>
-  </data>
-  <data name="bestiary_name" xml:space="preserve">
-    <value>اسم</value>
-  </data>
-  <data name="bestiary_save" xml:space="preserve">
-    <value>أنقذ</value>
-  </data>
-  <data name="bestiary_defeated" xml:space="preserve">
-    <value>مغلوب</value>
-  </data>
-  <data name="bestiary_near" xml:space="preserve">
-    <value>قرب</value>
-  </data>
-  <data name="bestiary_talked" xml:space="preserve">
-    <value>تكلم</value>
-  </data>
-  <data name="bestiary_clear" xml:space="preserve">
-    <value>واضح</value>
-  </data>
-  <data name="bestiary_chat" xml:space="preserve">
-    <value>ثَرْثَرَ</value>
-  </data>
-  <data name="bestiary_complete" xml:space="preserve">
-    <value>كامل</value>
-  </data>
-  <data name="bestiary_load" xml:space="preserve">
-    <value>حمل</value>
-  </data>
-  <data name="menu_layers_wire_transparency" xml:space="preserve">
-    <value>شفافية الأسلاك</value>
-  </data>
-  <data name="tool_wp_safe_level" xml:space="preserve">
-    <value>استخدم القيم الآمنة فقط</value>
-  </data>
-  <data name="tool_wp_unsafe_level" xml:space="preserve">
-    <value>السماح بالقيم غير الآمنة</value>
-  </data>
-  <data name="tool_wp_npc_spawn_unlocked" xml:space="preserve">
-    <value>NPC تفرخ مقفلة</value>
-  </data>
-  <data name="tool_wp_npc_slime_blue" xml:space="preserve">
-    <value>الوحل الأزرق</value>
-  </data>
-  <data name="tool_wp_npc_slime_green" xml:space="preserve">
-    <value>الوحل الأخضر</value>
-  </data>
-  <data name="tool_wp_npc_slime_old" xml:space="preserve">
-    <value>الوحل القديم</value>
-  </data>
-  <data name="tool_wp_npc_slime_purple" xml:space="preserve">
-    <value>الوحل الأرجواني</value>
-  </data>
-  <data name="tool_wp_npc_slime_rainbow" xml:space="preserve">
-    <value>قوس قزح الوحل</value>
-  </data>
-  <data name="tool_wp_npc_slime_red" xml:space="preserve">
-    <value>الوحل الأحمر</value>
-  </data>
-  <data name="tool_wp_npc_slime_yellow" xml:space="preserve">
-    <value>الوحل الأصفر</value>
-  </data>
-  <data name="tool_wp_npc_slime_copper" xml:space="preserve">
-    <value>الوحل النحاسي</value>
-  </data>
-  <data name="tool_wp_combatbooktwo" xml:space="preserve">
-    <value>كتاب القتال المجلد الثاني</value>
-  </data>
-  <data name="tool_wp_moondial_cooldown" xml:space="preserve">
-    <value>القمر الاتصال الهاتفي التبريد</value>
-  </data>
-  <data name="tool_wp_npc_princess" xml:space="preserve">
-    <value>الاميره</value>
-  </data>
-  <data name="tool_wp_npc_nurse" xml:space="preserve">
-    <value>ممرض</value>
-  </data>
-  <data name="tool_wp_npc_partygirl" xml:space="preserve">
-    <value>فتاة الحفلات</value>
-  </data>
-  <data name="tool_wp_npc_merchant" xml:space="preserve">
-    <value>تاجر</value>
-  </data>
-  <data name="tool_wp_npc_demolitionist" xml:space="preserve">
-    <value>الهدم</value>
-  </data>
-  <data name="tool_wp_npc_dye_trader" xml:space="preserve">
-    <value>صبغ التاجر</value>
-  </data>
-  <data name="tool_wp_npc_truffle" xml:space="preserve">
-    <value>الكماه</value>
-  </data>
-  <data name="tool_wp_npc_arms_dealer" xml:space="preserve">
-    <value>تاجر أسلحة</value>
-  </data>
-  <data name="tool_wp_peddlerssatchel" xml:space="preserve">
-    <value>حقيبة البائع المتجول</value>
-  </data>
-  <data name="tool_wp_usemoondial" xml:space="preserve">
-    <value>استخدام قرص القمر</value>
-  </data>
-  <data name="tool_wp_combatbook" xml:space="preserve">
-    <value>كتاب القتال</value>
-  </data>
-  <data name="tool_wp_seed_zenith" xml:space="preserve">
-    <value>سَمْت</value>
-  </data>
-  <data name="tool_wp_seed_remix" xml:space="preserve">
-    <value>ريميكس</value>
-  </data>
-  <data name="tool_wp_seed_notraps" xml:space="preserve">
-    <value>لا الفخاخ</value>
-  </data>
-  <data name="tool_wp_partyofdoom" xml:space="preserve">
-    <value>حزب العذاب</value>
-  </data>
-  <data name="tool_wp_lanternnight_cooldown" xml:space="preserve">
-    <value>فانوس ليلة التبريد</value>
-  </data>
-  <data name="tool_wp_lanternnight" xml:space="preserve">
-    <value>ليلة الفانوس</value>
-  </data>
-  <data name="tool_wp_lanternnight_genuine" xml:space="preserve">
-    <value>ليلة فانوس حقيقية</value>
-  </data>
-  <data name="tool_wp_lanternnight_manual" xml:space="preserve">
-    <value>دليل ليلة الفانوس</value>
-  </data>
-  <data name="tool_wp_lanternnight_nextgenuine" xml:space="preserve">
-    <value>ليلة الفانوس التالية حقيقية</value>
-  </data>
-  <data name="menu_layers_usetexturecolor" xml:space="preserve">
-    <value>استخدام ألوان واقعية</value>
-  </data>
-  <data name="messagebox_restartrequired" xml:space="preserve">
-    <value>إعادة التشغيل مطلوبة</value>
-  </data>
-  <data name="tool_creative_enable_time_speed" xml:space="preserve">
-    <value>تمكين سرعة الوقت</value>
-  </data>
-  <data name="tool_creative_enable_difficulty" xml:space="preserve">
-    <value>تمكين صعوبة العدو</value>
-  </data>
-  <data name="tool_creative_enable_spawn_rate" xml:space="preserve">
-    <value>تمكين معدل التفريخ</value>
-  </data>
-  <data name="tool_creative_difficulty" xml:space="preserve">
-    <value>صعوبة العدو</value>
-  </data>
-  <data name="tool_creative_spawn_rate" xml:space="preserve">
-    <value>معدل التفريخ</value>
-  </data>
-  <data name="tool_creative_time_speed" xml:space="preserve">
-    <value>سرعة الوقت</value>
-  </data>
-  <data name="tool_creative_timefrozen" xml:space="preserve">
-    <value>وقت التجميد</value>
-  </data>
-  <data name="tool_creative_windfrozen" xml:space="preserve">
-    <value>تجميد الرياح</value>
-  </data>
-  <data name="tool_creative_godmode" xml:space="preserve">
-    <value>وضع الله</value>
-  </data>
-  <data name="tool_creative_increaseplacementrange" xml:space="preserve">
-    <value>زيادة النطاق</value>
-  </data>
-  <data name="tool_creative_power" xml:space="preserve">
-    <value>قوة</value>
-  </data>
-  <data name="tool_creative_value" xml:space="preserve">
-    <value>قيمة</value>
-  </data>
-  <data name="tool_creative_rainfrozen" xml:space="preserve">
-    <value>تجميد المطر</value>
-  </data>
-  <data name="tool_creative_biomespread" xml:space="preserve">
-    <value>تجميد انتشار بيوم</value>
-  </data>
-  <data name="editor_tabs_creative" xml:space="preserve">
-    <value>القوى الإبداعية</value>
-  </data>
-  <data name="bestiary_tally" xml:space="preserve">
-    <value>تحديث يقتل</value>
-  </data>
-  <data name="tool_wp_chinese" xml:space="preserve">
-    <value>النسخة الصينية العالمية</value>
-  </data>
-  <data name="tool_wp_console" xml:space="preserve">
-    <value>إصدار عالم وحدة التحكم</value>
-  </data>
-  <data name="chest_max_stack" xml:space="preserve">
-    <value>ماكس</value>
-  </data>
-  <data name="tool_wp_gooworld" xml:space="preserve">
-    <value>من أجل المستحقين (FTW)</value>
-  </data>
-  <data name="tool_clipboard_replace" xml:space="preserve">
-    <value>استبدال اللوحات الموجودة</value>
-  </data>
   <data name="wp_fixbackground" xml:space="preserve">
     <value>إصلاح فجوة الخلفية</value>
-  </data>
-  <data name="tool_paint_coating" xml:space="preserve">
-    <value>طلاء</value>
-  </data>
-  <data name="tool_paint_echocoating" xml:space="preserve">
-    <value>دوي</value>
-  </data>
-  <data name="tool_paint_illuminantcoating" xml:space="preserve">
-    <value>مضيئة</value>
-  </data>
-  <data name="liquid_amount" xml:space="preserve">
-    <value>الكمية السائلة:</value>
-  </data>
-  <data name="tool_sprite_tiletype_label" xml:space="preserve">
-    <value>مرشح نوع البلاط:</value>
-  </data>
-  <data name="sprite_tiletype" xml:space="preserve">
-    <value>مرشح نوع البلاط</value>
   </data>
 </root>

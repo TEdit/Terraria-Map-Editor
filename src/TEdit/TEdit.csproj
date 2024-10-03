@@ -93,6 +93,11 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Language.ru-RU.resx</DependentUpon>
     </Compile>
+    <Compile Update="Properties\Language.es-ES.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Language.es-ES.resx</DependentUpon>
+    </Compile>
     <Compile Update="Properties\Language.ar-BH.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>

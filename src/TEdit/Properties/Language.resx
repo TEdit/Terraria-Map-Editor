@@ -117,6 +117,36 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="bestiary_chat" xml:space="preserve">
+    <value>Chat</value>
+  </data>
+  <data name="bestiary_clear" xml:space="preserve">
+    <value>Clear</value>
+  </data>
+  <data name="bestiary_complete" xml:space="preserve">
+    <value>Complete</value>
+  </data>
+  <data name="bestiary_defeated" xml:space="preserve">
+    <value>Defeated</value>
+  </data>
+  <data name="bestiary_load" xml:space="preserve">
+    <value>Load</value>
+  </data>
+  <data name="bestiary_name" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="bestiary_near" xml:space="preserve">
+    <value>Near</value>
+  </data>
+  <data name="bestiary_save" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="bestiary_talked" xml:space="preserve">
+    <value>Talk</value>
+  </data>
+  <data name="bestiary_tally" xml:space="preserve">
+    <value>Update Kills</value>
+  </data>
   <data name="BrickStyle_Full" xml:space="preserve">
     <value>Full Brick</value>
   </data>
@@ -151,6 +181,9 @@
     <value>Rectangle</value>
     <comment>enum:BrushShape.Square</comment>
   </data>
+  <data name="chest_max_stack" xml:space="preserve">
+    <value>Max</value>
+  </data>
   <data name="dialog_error_terriaria_folder_message" xml:space="preserve">
     <value>Directory does not appear to contain Terraria Content.
 Press retry to pick a new folder or cancel to use {0} as your terraria path.</value>
@@ -163,6 +196,9 @@ Press retry to pick a new folder or cancel to use {0} as your terraria path.</va
   </data>
   <data name="editor_tabs_clipboard" xml:space="preserve">
     <value>Clipboard</value>
+  </data>
+  <data name="editor_tabs_creative" xml:space="preserve">
+    <value>Creative Powers</value>
   </data>
   <data name="editor_tabs_npc" xml:space="preserve">
     <value>NPC Data</value>
@@ -203,6 +239,21 @@ Press retry to pick a new folder or cancel to use {0} as your terraria path.</va
   <data name="HalfBlockMode_Solid" xml:space="preserve">
     <value>Set Solid</value>
   </data>
+  <data name="JunctionBoxMode_Left" xml:space="preserve">
+    <value>Left Facing</value>
+  </data>
+  <data name="JunctionBoxMode_None" xml:space="preserve">
+    <value>None</value>
+  </data>
+  <data name="JunctionBoxMode_Normal" xml:space="preserve">
+    <value>Normal</value>
+  </data>
+  <data name="JunctionBoxMode_Right" xml:space="preserve">
+    <value>Right Facing</value>
+  </data>
+  <data name="JunctionBox_Use" xml:space="preserve">
+    <value>Junction Box:</value>
+  </data>
   <data name="LiquidType_Honey" xml:space="preserve">
     <value>Honey</value>
   </data>
@@ -214,6 +265,9 @@ Press retry to pick a new folder or cancel to use {0} as your terraria path.</va
   </data>
   <data name="LiquidType_Water" xml:space="preserve">
     <value>Water</value>
+  </data>
+  <data name="liquid_amount" xml:space="preserve">
+    <value>Liquid Amount:</value>
   </data>
   <data name="MaskMode_Empty" xml:space="preserve">
     <value>Edit Empty</value>
@@ -232,6 +286,9 @@ Press retry to pick a new folder or cancel to use {0} as your terraria path.</va
   </data>
   <data name="menu_edit_copy" xml:space="preserve">
     <value>Copy</value>
+  </data>
+  <data name="menu_edit_crop" xml:space="preserve">
+    <value>Crop World</value>
   </data>
   <data name="menu_edit_delete" xml:space="preserve">
     <value>Delete Selection</value>
@@ -305,8 +362,14 @@ Press retry to pick a new folder or cancel to use {0} as your terraria path.</va
   <data name="menu_language_en" xml:space="preserve">
     <value>English</value>
   </data>
+  <data name="menu_language_es" xml:space="preserve">
+    <value>Español</value>
+  </data>
   <data name="menu_language_pl" xml:space="preserve">
     <value>Polski</value>
+  </data>
+  <data name="menu_language_pt" xml:space="preserve">
+    <value>Português</value>
   </data>
   <data name="menu_language_ru" xml:space="preserve">
     <value>Русский</value>
@@ -335,8 +398,14 @@ Press retry to pick a new folder or cancel to use {0} as your terraria path.</va
   <data name="menu_layers_tiles" xml:space="preserve">
     <value>Tiles</value>
   </data>
+  <data name="menu_layers_usetexturecolor" xml:space="preserve">
+    <value>Use Realistic Colors</value>
+  </data>
   <data name="menu_layers_walls" xml:space="preserve">
     <value>Walls</value>
+  </data>
+  <data name="menu_layers_wire_all" xml:space="preserve">
+    <value>All Wires</value>
   </data>
   <data name="menu_layers_wire_blue" xml:space="preserve">
     <value>Blue Wire</value>
@@ -347,11 +416,11 @@ Press retry to pick a new folder or cancel to use {0} as your terraria path.</va
   <data name="menu_layers_wire_red" xml:space="preserve">
     <value>Red Wire</value>
   </data>
+  <data name="menu_layers_wire_transparency" xml:space="preserve">
+    <value>Wire Transparency</value>
+  </data>
   <data name="menu_layers_wire_yellow" xml:space="preserve">
     <value>Yellow Wire</value>
-  </data>
-  <data name="menu_layers_wire_all" xml:space="preserve">
-    <value>All Wires</value>
   </data>
   <data name="menu_plugins" xml:space="preserve">
     <value>Plugins</value>
@@ -364,6 +433,9 @@ Press retry to pick a new folder or cancel to use {0} as your terraria path.</va
   </data>
   <data name="menu_toolbar_zoom_out" xml:space="preserve">
     <value>Zoom Out</value>
+  </data>
+  <data name="messagebox_restartrequired" xml:space="preserve">
+    <value>Restart Required</value>
   </data>
   <data name="MorphBiome_Corruption" xml:space="preserve">
     <value>Corruption</value>
@@ -498,6 +570,9 @@ Press retry to pick a new folder or cancel to use {0} as your terraria path.</va
   <data name="sprite_styletype" xml:space="preserve">
     <value>Style</value>
   </data>
+  <data name="sprite_tiletype" xml:space="preserve">
+    <value>Tile Type Filter</value>
+  </data>
   <data name="statusbar_extra_label" xml:space="preserve">
     <value>Extra</value>
   </data>
@@ -519,6 +594,9 @@ Press retry to pick a new folder or cancel to use {0} as your terraria path.</va
   <data name="statusbar_wall_label" xml:space="preserve">
     <value>Wall</value>
   </data>
+  <data name="tab_bestiary" xml:space="preserve">
+    <value>Bestiary</value>
+  </data>
   <data name="tool_analyze_analyze_button" xml:space="preserve">
     <value>Analyze</value>
   </data>
@@ -533,6 +611,9 @@ Press retry to pick a new folder or cancel to use {0} as your terraria path.</va
   </data>
   <data name="tool_arrow_title" xml:space="preserve">
     <value>Arrow</value>
+  </data>
+  <data name="tool_bestiary_edit" xml:space="preserve">
+    <value>Edit</value>
   </data>
   <data name="tool_bestiary_import" xml:space="preserve">
     <value>Import</value>
@@ -582,6 +663,9 @@ Press retry to pick a new folder or cancel to use {0} as your terraria path.</va
   <data name="tool_clipboard_ispasteliquid" xml:space="preserve">
     <value>Paste Liquids</value>
   </data>
+  <data name="tool_clipboard_ispastesprite" xml:space="preserve">
+    <value>Paste Sprites</value>
+  </data>
   <data name="tool_clipboard_ispastetiles" xml:space="preserve">
     <value>Paste Tiles</value>
   </data>
@@ -590,6 +674,51 @@ Press retry to pick a new folder or cancel to use {0} as your terraria path.</va
   </data>
   <data name="tool_clipboard_ispastewire" xml:space="preserve">
     <value>Paste Wires</value>
+  </data>
+  <data name="tool_clipboard_replace" xml:space="preserve">
+    <value>Replace Existing Tiles</value>
+  </data>
+  <data name="tool_creative_biomespread" xml:space="preserve">
+    <value>Freeze Biome Spread</value>
+  </data>
+  <data name="tool_creative_difficulty" xml:space="preserve">
+    <value>Enemy Difficulty</value>
+  </data>
+  <data name="tool_creative_enable_difficulty" xml:space="preserve">
+    <value>Enable Enemy Difficulty</value>
+  </data>
+  <data name="tool_creative_enable_spawn_rate" xml:space="preserve">
+    <value>Enable Spawn Rate</value>
+  </data>
+  <data name="tool_creative_enable_time_speed" xml:space="preserve">
+    <value>Enable Time Speed</value>
+  </data>
+  <data name="tool_creative_godmode" xml:space="preserve">
+    <value>God Mode</value>
+  </data>
+  <data name="tool_creative_increaseplacementrange" xml:space="preserve">
+    <value>Increase Range</value>
+  </data>
+  <data name="tool_creative_power" xml:space="preserve">
+    <value>Power</value>
+  </data>
+  <data name="tool_creative_rainfrozen" xml:space="preserve">
+    <value>Freeze Rain</value>
+  </data>
+  <data name="tool_creative_spawn_rate" xml:space="preserve">
+    <value>Spawn Rate</value>
+  </data>
+  <data name="tool_creative_timefrozen" xml:space="preserve">
+    <value>Freeze Time</value>
+  </data>
+  <data name="tool_creative_time_speed" xml:space="preserve">
+    <value>Time Speed</value>
+  </data>
+  <data name="tool_creative_value" xml:space="preserve">
+    <value>Value</value>
+  </data>
+  <data name="tool_creative_windfrozen" xml:space="preserve">
+    <value>Freeze Wind</value>
   </data>
   <data name="tool_fill_title" xml:space="preserve">
     <value>Fill</value>
@@ -612,11 +741,32 @@ Press retry to pick a new folder or cancel to use {0} as your terraria path.</va
   <data name="tool_paint_brickstyle" xml:space="preserve">
     <value>Brick Style</value>
   </data>
+  <data name="tool_paint_coating" xml:space="preserve">
+    <value>Coating</value>
+    <comment>Coating</comment>
+  </data>
+  <data name="tool_paint_echocoating" xml:space="preserve">
+    <value>Echo</value>
+    <comment>Echo</comment>
+  </data>
   <data name="tool_paint_extras" xml:space="preserve">
     <value>Extras</value>
   </data>
+  <data name="tool_paint_illuminantcoating" xml:space="preserve">
+    <value>Illuminant</value>
+    <comment>Illuminant</comment>
+  </data>
   <data name="tool_paint_inactive" xml:space="preserve">
     <value>Actuator/Tile InActive</value>
+  </data>
+  <data name="tool_paint_junctionbox_left_tooltip" xml:space="preserve">
+    <value>Add left facing intersection junction box.</value>
+  </data>
+  <data name="tool_paint_junctionbox_normal_tooltip" xml:space="preserve">
+    <value>Add defualt junction box.</value>
+  </data>
+  <data name="tool_paint_junctionbox_right_tooltip" xml:space="preserve">
+    <value>Add right facing intersection junction box.</value>
   </data>
   <data name="tool_paint_mask" xml:space="preserve">
     <value>Mask</value>
@@ -738,6 +888,9 @@ Press retry to pick a new folder or cancel to use {0} as your terraria path.</va
   <data name="tool_wp_bg_underworld" xml:space="preserve">
     <value>Underworld BG</value>
   </data>
+  <data name="tool_wp_boss_deerclops" xml:space="preserve">
+    <value>Deerclops</value>
+  </data>
   <data name="tool_wp_boss_destroyer" xml:space="preserve">
     <value>The Destroyer</value>
   </data>
@@ -822,8 +975,20 @@ Press retry to pick a new folder or cancel to use {0} as your terraria path.</va
   <data name="tool_wp_cavern_level" xml:space="preserve">
     <value>Cavern Level</value>
   </data>
+  <data name="tool_wp_chinese" xml:space="preserve">
+    <value>Chinese World Version</value>
+  </data>
   <data name="tool_wp_cobalt" xml:space="preserve">
     <value>Cobalt Tier</value>
+  </data>
+  <data name="tool_wp_combatbook" xml:space="preserve">
+    <value>Combat Book</value>
+  </data>
+  <data name="tool_wp_combatbooktwo" xml:space="preserve">
+    <value>Combat Book Volume Two</value>
+  </data>
+  <data name="tool_wp_console" xml:space="preserve">
+    <value>Console World Version</value>
   </data>
   <data name="tool_wp_copper" xml:space="preserve">
     <value>Copper Tier</value>
@@ -836,6 +1001,9 @@ Press retry to pick a new folder or cancel to use {0} as your terraria path.</va
   </data>
   <data name="tool_wp_difficulty_hardmode" xml:space="preserve">
     <value>Hardmode</value>
+  </data>
+  <data name="tool_wp_dontstarve" xml:space="preserve">
+    <value>Don't Starve World</value>
   </data>
   <data name="tool_wp_drunk" xml:space="preserve">
     <value>Drunk World</value>
@@ -900,11 +1068,29 @@ Press retry to pick a new folder or cancel to use {0} as your terraria path.</va
   <data name="tool_wp_journeysend" xml:space="preserve">
     <value>Journey's End</value>
   </data>
+  <data name="tool_wp_lanternnight" xml:space="preserve">
+    <value>Lantern Night</value>
+  </data>
+  <data name="tool_wp_lanternnight_cooldown" xml:space="preserve">
+    <value>Lantern Night Cooldown</value>
+  </data>
+  <data name="tool_wp_lanternnight_genuine" xml:space="preserve">
+    <value>Lantern Night Genuine</value>
+  </data>
+  <data name="tool_wp_lanternnight_manual" xml:space="preserve">
+    <value>Lantern Night Manual</value>
+  </data>
+  <data name="tool_wp_lanternnight_nextgenuine" xml:space="preserve">
+    <value>Lantern Night Next Is Genuine</value>
+  </data>
   <data name="tool_wp_meteor" xml:space="preserve">
     <value>Meteor</value>
   </data>
   <data name="tool_wp_meteor_spawn" xml:space="preserve">
     <value>Spawn Meteor</value>
+  </data>
+  <data name="tool_wp_moondial_cooldown" xml:space="preserve">
+    <value>Moondial Cooldown</value>
   </data>
   <data name="tool_wp_moon_blood" xml:space="preserve">
     <value>Blood Moon</value>
@@ -924,11 +1110,17 @@ Press retry to pick a new folder or cancel to use {0} as your terraria path.</va
   <data name="tool_wp_name" xml:space="preserve">
     <value>World Name</value>
   </data>
+  <data name="tool_wp_notthebees" xml:space="preserve">
+    <value>Not The Bees World</value>
+  </data>
   <data name="tool_wp_npc_angler" xml:space="preserve">
     <value>Angler</value>
   </data>
   <data name="tool_wp_npc_angler_mission" xml:space="preserve">
     <value>Angler Mission</value>
+  </data>
+  <data name="tool_wp_npc_arms_dealer" xml:space="preserve">
+    <value>Arms Dealer</value>
   </data>
   <data name="tool_wp_npc_bought" xml:space="preserve">
     <value>NPCs Bought</value>
@@ -939,8 +1131,14 @@ Press retry to pick a new folder or cancel to use {0} as your terraria path.</va
   <data name="tool_wp_npc_cat" xml:space="preserve">
     <value>Cat</value>
   </data>
+  <data name="tool_wp_npc_demolitionist" xml:space="preserve">
+    <value>Demolitionist</value>
+  </data>
   <data name="tool_wp_npc_dog" xml:space="preserve">
     <value>Dog</value>
+  </data>
+  <data name="tool_wp_npc_dye_trader" xml:space="preserve">
+    <value>Dye Trader</value>
   </data>
   <data name="tool_wp_npc_goblintinkerer" xml:space="preserve">
     <value>Goblin Tinkerer</value>
@@ -951,8 +1149,47 @@ Press retry to pick a new folder or cancel to use {0} as your terraria path.</va
   <data name="tool_wp_npc_mechanic" xml:space="preserve">
     <value>Mechanic</value>
   </data>
+  <data name="tool_wp_npc_merchant" xml:space="preserve">
+    <value>Merchant</value>
+  </data>
+  <data name="tool_wp_npc_nurse" xml:space="preserve">
+    <value>Nurse</value>
+  </data>
+  <data name="tool_wp_npc_partygirl" xml:space="preserve">
+    <value>Party Girl</value>
+  </data>
+  <data name="tool_wp_npc_princess" xml:space="preserve">
+    <value>Princess</value>
+  </data>
   <data name="tool_wp_npc_saved" xml:space="preserve">
     <value>NPCs Saved</value>
+  </data>
+  <data name="tool_wp_npc_slime_blue" xml:space="preserve">
+    <value>Blue Slime</value>
+  </data>
+  <data name="tool_wp_npc_slime_copper" xml:space="preserve">
+    <value>Copper Slime</value>
+  </data>
+  <data name="tool_wp_npc_slime_green" xml:space="preserve">
+    <value>Green Slime</value>
+  </data>
+  <data name="tool_wp_npc_slime_old" xml:space="preserve">
+    <value>Old Slime</value>
+  </data>
+  <data name="tool_wp_npc_slime_purple" xml:space="preserve">
+    <value>Purple Slime</value>
+  </data>
+  <data name="tool_wp_npc_slime_rainbow" xml:space="preserve">
+    <value>Rainbow Slime</value>
+  </data>
+  <data name="tool_wp_npc_slime_red" xml:space="preserve">
+    <value>Red Slime</value>
+  </data>
+  <data name="tool_wp_npc_slime_yellow" xml:space="preserve">
+    <value>Yellow Slime</value>
+  </data>
+  <data name="tool_wp_npc_spawn_unlocked" xml:space="preserve">
+    <value>NPC Spawn Unlocked</value>
   </data>
   <data name="tool_wp_npc_stylist" xml:space="preserve">
     <value>Stylist</value>
@@ -962,6 +1199,9 @@ Press retry to pick a new folder or cancel to use {0} as your terraria path.</va
   </data>
   <data name="tool_wp_npc_taxcollector" xml:space="preserve">
     <value>Tax Collector</value>
+  </data>
+  <data name="tool_wp_npc_truffle" xml:space="preserve">
+    <value>Truffle</value>
   </data>
   <data name="tool_wp_npc_wizard" xml:space="preserve">
     <value>Wizard</value>
@@ -980,6 +1220,12 @@ Press retry to pick a new folder or cancel to use {0} as your terraria path.</va
   </data>
   <data name="tool_wp_orbs" xml:space="preserve">
     <value>Orbs Smashed</value>
+  </data>
+  <data name="tool_wp_partyofdoom" xml:space="preserve">
+    <value>Party of Doom</value>
+  </data>
+  <data name="tool_wp_peddlerssatchel" xml:space="preserve">
+    <value>Peddler's Satchel</value>
   </data>
   <data name="tool_wp_prehardmode" xml:space="preserve">
     <value>Pre-Hardmode</value>
@@ -1002,6 +1248,9 @@ Press retry to pick a new folder or cancel to use {0} as your terraria path.</va
   <data name="tool_wp_revision" xml:space="preserve">
     <value>Revision</value>
   </data>
+  <data name="tool_wp_safe_level" xml:space="preserve">
+    <value>Use Safe Values Only</value>
+  </data>
   <data name="tool_wp_sandstorm" xml:space="preserve">
     <value>Sandstorm</value>
   </data>
@@ -1019,6 +1268,15 @@ Press retry to pick a new folder or cancel to use {0} as your terraria path.</va
   </data>
   <data name="tool_wp_seed" xml:space="preserve">
     <value>Seed</value>
+  </data>
+  <data name="tool_wp_seed_notraps" xml:space="preserve">
+    <value>No Traps</value>
+  </data>
+  <data name="tool_wp_seed_remix" xml:space="preserve">
+    <value>Remix</value>
+  </data>
+  <data name="tool_wp_seed_zenith" xml:space="preserve">
+    <value>Zenith</value>
   </data>
   <data name="tool_wp_silver" xml:space="preserve">
     <value>Silver Tier</value>
@@ -1077,6 +1335,12 @@ Press retry to pick a new folder or cancel to use {0} as your terraria path.</va
   <data name="tool_wp_time_sundial_cooldown" xml:space="preserve">
     <value>Sundial Cooldown</value>
   </data>
+  <data name="tool_wp_unsafe_level" xml:space="preserve">
+    <value>Allow Unsafe Values</value>
+  </data>
+  <data name="tool_wp_usemoondial" xml:space="preserve">
+    <value>Use Moondial</value>
+  </data>
   <data name="tool_wp_weather_clouds" xml:space="preserve">
     <value>Number Clouds</value>
   </data>
@@ -1095,268 +1359,7 @@ Press retry to pick a new folder or cancel to use {0} as your terraria path.</va
   <data name="TrackMode_Track" xml:space="preserve">
     <value>Track</value>
   </data>
-  <data name="menu_language_pt" xml:space="preserve">
-    <value>Português</value>
-  </data>
-  <data name="tool_bestiary_edit" xml:space="preserve">
-    <value>Edit</value>
-  </data>
-  <data name="tool_wp_boss_deerclops" xml:space="preserve">
-    <value>Deerclops</value>
-  </data>
-  <data name="tool_wp_dontstarve" xml:space="preserve">
-    <value>Don't Starve World</value>
-  </data>
-  <data name="tool_wp_notthebees" xml:space="preserve">
-    <value>Not The Bees World</value>
-  </data>
-  <data name="JunctionBoxMode_Left" xml:space="preserve">
-    <value>Left Facing</value>
-  </data>
-  <data name="JunctionBoxMode_None" xml:space="preserve">
-    <value>None</value>
-  </data>
-  <data name="JunctionBoxMode_Normal" xml:space="preserve">
-    <value>Normal</value>
-  </data>
-  <data name="JunctionBoxMode_Right" xml:space="preserve">
-    <value>Right Facing</value>
-  </data>
-  <data name="tool_paint_junctionbox_left_tooltip" xml:space="preserve">
-    <value>Add left facing intersection junction box.</value>
-  </data>
-  <data name="tool_paint_junctionbox_normal_tooltip" xml:space="preserve">
-    <value>Add defualt junction box.</value>
-  </data>
-  <data name="tool_paint_junctionbox_right_tooltip" xml:space="preserve">
-    <value>Add right facing intersection junction box.</value>
-  </data>
-  <data name="JunctionBox_Use" xml:space="preserve">
-    <value>Junction Box:</value>
-  </data>
-  <data name="menu_edit_crop" xml:space="preserve">
-    <value>Crop World</value>
-  </data>
-  <data name="tab_bestiary" xml:space="preserve">
-    <value>Bestiary</value>
-  </data>
-  <data name="bestiary_name" xml:space="preserve">
-    <value>Name</value>
-  </data>
-  <data name="bestiary_defeated" xml:space="preserve">
-    <value>Defeated</value>
-  </data>
-  <data name="bestiary_near" xml:space="preserve">
-    <value>Near</value>
-  </data>
-  <data name="bestiary_talked" xml:space="preserve">
-    <value>Talk</value>
-  </data>
-  <data name="bestiary_clear" xml:space="preserve">
-    <value>Clear</value>
-  </data>
-  <data name="bestiary_chat" xml:space="preserve">
-    <value>Chat</value>
-  </data>
-  <data name="bestiary_complete" xml:space="preserve">
-    <value>Complete</value>
-  </data>
-  <data name="bestiary_load" xml:space="preserve">
-    <value>Load</value>
-  </data>
-  <data name="bestiary_save" xml:space="preserve">
-    <value>Save</value>
-  </data>
-  <data name="tool_clipboard_ispastesprite" xml:space="preserve">
-    <value>Paste Sprites</value>
-  </data>
-  <data name="menu_layers_wire_transparency" xml:space="preserve">
-    <value>Wire Transparency</value>
-  </data>
-  <data name="tool_wp_safe_level" xml:space="preserve">
-    <value>Use Safe Values Only</value>
-  </data>
-  <data name="tool_wp_unsafe_level" xml:space="preserve">
-    <value>Allow Unsafe Values</value>
-  </data>
-  <data name="tool_wp_npc_spawn_unlocked" xml:space="preserve">
-    <value>NPC Spawn Unlocked</value>
-  </data>
-  <data name="tool_wp_npc_slime_blue" xml:space="preserve">
-    <value>Blue Slime</value>
-  </data>
-  <data name="tool_wp_npc_slime_green" xml:space="preserve">
-    <value>Green Slime</value>
-  </data>
-  <data name="tool_wp_npc_slime_old" xml:space="preserve">
-    <value>Old Slime</value>
-  </data>
-  <data name="tool_wp_npc_slime_purple" xml:space="preserve">
-    <value>Purple Slime</value>
-  </data>
-  <data name="tool_wp_npc_slime_rainbow" xml:space="preserve">
-    <value>Rainbow Slime</value>
-  </data>
-  <data name="tool_wp_npc_slime_red" xml:space="preserve">
-    <value>Red Slime</value>
-  </data>
-  <data name="tool_wp_npc_slime_yellow" xml:space="preserve">
-    <value>Yellow Slime</value>
-  </data>
-  <data name="tool_wp_npc_slime_copper" xml:space="preserve">
-    <value>Copper Slime</value>
-  </data>
-  <data name="tool_wp_combatbooktwo" xml:space="preserve">
-    <value>Combat Book Volume Two</value>
-  </data>
-  <data name="tool_wp_usemoondial" xml:space="preserve">
-    <value>Use Moondial</value>
-  </data>
-  <data name="tool_wp_moondial_cooldown" xml:space="preserve">
-    <value>Moondial Cooldown</value>
-  </data>
-  <data name="tool_wp_npc_princess" xml:space="preserve">
-    <value>Princess</value>
-  </data>
-  <data name="tool_wp_npc_nurse" xml:space="preserve">
-    <value>Nurse</value>
-  </data>
-  <data name="tool_wp_npc_partygirl" xml:space="preserve">
-    <value>Party Girl</value>
-  </data>
-  <data name="tool_wp_npc_merchant" xml:space="preserve">
-    <value>Merchant</value>
-  </data>
-  <data name="tool_wp_npc_demolitionist" xml:space="preserve">
-    <value>Demolitionist</value>
-  </data>
-  <data name="tool_wp_npc_dye_trader" xml:space="preserve">
-    <value>Dye Trader</value>
-  </data>
-  <data name="tool_wp_npc_truffle" xml:space="preserve">
-    <value>Truffle</value>
-  </data>
-  <data name="tool_wp_npc_arms_dealer" xml:space="preserve">
-    <value>Arms Dealer</value>
-  </data>
-  <data name="tool_wp_peddlerssatchel" xml:space="preserve">
-    <value>Peddler's Satchel</value>
-  </data>
-  <data name="tool_wp_combatbook" xml:space="preserve">
-    <value>Combat Book</value>
-  </data>
-  <data name="tool_wp_seed_zenith" xml:space="preserve">
-    <value>Zenith</value>
-  </data>
-  <data name="tool_wp_seed_remix" xml:space="preserve">
-    <value>Remix</value>
-  </data>
-  <data name="tool_wp_seed_notraps" xml:space="preserve">
-    <value>No Traps</value>
-  </data>
-  <data name="tool_wp_partyofdoom" xml:space="preserve">
-    <value>Party of Doom</value>
-  </data>
-  <data name="tool_wp_lanternnight_cooldown" xml:space="preserve">
-    <value>Lantern Night Cooldown</value>
-  </data>
-  <data name="tool_wp_lanternnight" xml:space="preserve">
-    <value>Lantern Night</value>
-  </data>
-  <data name="tool_wp_lanternnight_genuine" xml:space="preserve">
-    <value>Lantern Night Genuine</value>
-  </data>
-  <data name="tool_wp_lanternnight_manual" xml:space="preserve">
-    <value>Lantern Night Manual</value>
-  </data>
-  <data name="tool_wp_lanternnight_nextgenuine" xml:space="preserve">
-    <value>Lantern Night Next Is Genuine</value>
-  </data>
-  <data name="menu_layers_usetexturecolor" xml:space="preserve">
-    <value>Use Realistic Colors</value>
-  </data>
-  <data name="messagebox_restartrequired" xml:space="preserve">
-    <value>Restart Required</value>
-  </data>
-  <data name="tool_creative_enable_time_speed" xml:space="preserve">
-    <value>Enable Time Speed</value>
-  </data>
-  <data name="tool_creative_enable_difficulty" xml:space="preserve">
-    <value>Enable Enemy Difficulty</value>
-  </data>
-  <data name="tool_creative_enable_spawn_rate" xml:space="preserve">
-    <value>Enable Spawn Rate</value>
-  </data>
-  <data name="tool_creative_difficulty" xml:space="preserve">
-    <value>Enemy Difficulty</value>
-  </data>
-  <data name="tool_creative_spawn_rate" xml:space="preserve">
-    <value>Spawn Rate</value>
-  </data>
-  <data name="tool_creative_time_speed" xml:space="preserve">
-    <value>Time Speed</value>
-  </data>
-  <data name="tool_creative_timefrozen" xml:space="preserve">
-    <value>Freeze Time</value>
-  </data>
-  <data name="tool_creative_windfrozen" xml:space="preserve">
-    <value>Freeze Wind</value>
-  </data>
-  <data name="tool_creative_godmode" xml:space="preserve">
-    <value>God Mode</value>
-  </data>
-  <data name="tool_creative_increaseplacementrange" xml:space="preserve">
-    <value>Increase Range</value>
-  </data>
-  <data name="tool_creative_biomespread" xml:space="preserve">
-    <value>Freeze Biome Spread</value>
-  </data>
-  <data name="tool_creative_rainfrozen" xml:space="preserve">
-    <value>Freeze Rain</value>
-  </data>
-  <data name="tool_creative_power" xml:space="preserve">
-    <value>Power</value>
-  </data>
-  <data name="tool_creative_value" xml:space="preserve">
-    <value>Value</value>
-  </data>
-  <data name="editor_tabs_creative" xml:space="preserve">
-    <value>Creative Powers</value>
-  </data>
-  <data name="bestiary_tally" xml:space="preserve">
-    <value>Update Kills</value>
-  </data>
-  <data name="tool_wp_chinese" xml:space="preserve">
-    <value>Chinese World Version</value>
-  </data>
-  <data name="tool_wp_console" xml:space="preserve">
-    <value>Console World Version</value>
-  </data>
-  <data name="chest_max_stack" xml:space="preserve">
-    <value>Max</value>
-  </data>
-  <data name="tool_clipboard_replace" xml:space="preserve">
-    <value>Replace Existing Tiles</value>
-  </data>
   <data name="wp_fixbackground" xml:space="preserve">
     <value>Fix Background Gap</value>
-  </data>
-  <data name="tool_paint_coating" xml:space="preserve">
-    <value>Coating</value>
-    <comment>Coating</comment>
-  </data>
-  <data name="tool_paint_echocoating" xml:space="preserve">
-    <value>Echo</value>
-    <comment>Echo</comment>
-  </data>
-  <data name="tool_paint_illuminantcoating" xml:space="preserve">
-    <value>Illuminant</value>
-    <comment>Illuminant</comment>
-  </data>
-  <data name="liquid_amount" xml:space="preserve">
-    <value>Liquid Amount:</value>
-  </data>
-  <data name="sprite_tiletype" xml:space="preserve">
-    <value>Tile Type Filter</value>
   </data>
 </root>
