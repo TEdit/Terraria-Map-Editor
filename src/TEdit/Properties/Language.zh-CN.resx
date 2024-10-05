@@ -378,7 +378,7 @@
     <value>简体中文</value>
   </data>
   <data name="menu_layers" xml:space="preserve">
-    <value>地层</value>
+    <value>图层</value>
   </data>
   <data name="menu_layers_actuators" xml:space="preserve">
     <value>制动器</value>
@@ -393,7 +393,7 @@
     <value>地点</value>
   </data>
   <data name="menu_layers_textures" xml:space="preserve">
-    <value>材质贴图</value>
+    <value>纹理贴图</value>
   </data>
   <data name="menu_layers_tiles" xml:space="preserve">
     <value>物块</value>
@@ -778,13 +778,13 @@
     <value>物块</value>
   </data>
   <data name="tool_paint_track_booster_tooltip" xml:space="preserve">
-    <value>将普通轨道变为增速轨道，使用橡皮模式将增速轨道变为普通轨道。</value>
+    <value>将普通轨道变为加速轨道，使用擦除模式将增速轨道变为普通轨道。</value>
   </data>
   <data name="tool_paint_track_hammer_tooltip" xml:space="preserve">
-    <value>使用锤子工具改变轨道末端样式，交叉点样式和增速轨道的加速方向。</value>
+    <value>使用锤子工具改变轨道末端样式，交叉点样式和加速轨道的加速方向。</value>
   </data>
   <data name="tool_paint_track_pressure_tooltip" xml:space="preserve">
-    <value>将普通轨道变为压力板轨道，使用橡皮模式将压力板轨道变为普通轨道。</value>
+    <value>将普通轨道变为压力板轨道，使用擦除模式将压力板轨道变为普通轨道。</value>
   </data>
   <data name="tool_paint_wall_title" xml:space="preserve">
     <value>墙</value>
@@ -895,7 +895,7 @@
     <value>毁灭者</value>
   </data>
   <data name="tool_wp_boss_downed" xml:space="preserve">
-    <value>已击败Boss</value>
+    <value>已击败的Boss</value>
   </data>
   <data name="tool_wp_boss_dukefishron" xml:space="preserve">
     <value>猪龙鱼公爵</value>
