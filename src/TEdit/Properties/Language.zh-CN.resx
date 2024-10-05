@@ -834,9 +834,6 @@
   <data name="tool_wp_adamantite" xml:space="preserve">
     <value>精金矿</value>
   </data>
-  <data name="tool_wp_afterpartyofdoom" xml:space="preserve">
-    <value>死亡派对</value>
-  </data>
   <data name="tool_wp_altars" xml:space="preserve">
     <value>祭坛已损坏</value>
   </data>
@@ -1222,7 +1219,7 @@
     <value>猩红之心/暗影珠已损坏</value>
   </data>
   <data name="tool_wp_partyofdoom" xml:space="preserve">
-    <value>末日派对</value>
+    <value>死亡派对</value>
   </data>
   <data name="tool_wp_peddlerssatchel" xml:space="preserve">
     <value>商贩背包</value>
