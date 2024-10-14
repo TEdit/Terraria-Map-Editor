@@ -21,7 +21,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TEdit.Terraria", "TEdit.Ter
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TEdit.Common", "TEdit.Common\TEdit.Common.csproj", "{4F7D8CE2-ABF8-4A15-ABA0-5A7B2E77FE1A}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TEdit.Desktop", "TEdit.Desktop\TEdit.Desktop.csproj", "{9C942195-8286-42C6-A682-ED297010193E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TEdit5", "TEdit5\TEdit5.csproj", "{9C942195-8286-42C6-A682-ED297010193E}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TEdit.Editor", "TEdit.Editor\TEdit.Editor.csproj", "{10D77A71-3445-4645-995F-A4032B407575}"
 EndProject

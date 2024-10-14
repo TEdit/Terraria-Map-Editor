@@ -1,0 +1,70 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:vm="using:TEdit5.ViewModels"
+        xmlns:v="using:TEdit5.Views"
+        xmlns:c="clr-namespace:TEdit5.Controls"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="TEdit5.Views.MainWindow"
+        Icon="/Assets/avalonia-logo.ico"
+        Title="TEdit51"
+        x:DataType="vm:MainWindowViewModel"
+        >
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.ThemeDictionaries>
+                <ResourceDictionary x:Key='Dark'>
+                    <SolidColorBrush x:Key='BackgroundBrush'>DodgerBlue</SolidColorBrush>
+                    <SolidColorBrush x:Key='ForegroundBrush'>White</SolidColorBrush>
+                </ResourceDictionary>
+            </ResourceDictionary.ThemeDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+
+    <Window.Styles>
+        <Style Selector="Button">
+            <Setter Property="Background" Value="{DynamicResource BackgroundBrush}" />
+            <Setter Property="Foreground" Value="{DynamicResource ForegroundBrush}" />
+        </Style>
+    </Window.Styles>
+
+    <Grid RowDefinitions="*, 24" ColumnDefinitions="34, 300, 3, *">
+
+        <v:PaintModeView Grid.Column="0" DataContext="{Binding ToolSelection}"></v:PaintModeView>
+        <Grid Grid.Column="1" Grid.RowSpan="3" RowDefinitions="30,30,*" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+            <Button Grid.Row="0" Click="LoadWorldButton_Clicked" HorizontalAlignment="Stretch">Load World</Button>
+            <TextBox Grid.Row="1" Text="{Binding SelectedDocument.World.Title}"  HorizontalAlignment="Stretch" />
+            <v:WorldPropertiesView Grid.Row="2" DataContext="{Binding SelectedDocument}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
+        </Grid>
+
+        <GridSplitter Grid.Column="2" Width="3" ResizeDirection="Columns" Background="Gray" />
+
+        <TabControl
+            Grid.Column="3"
+            Grid.Row="0"
+            ItemsSource="{Binding DocumentService.Documents}"
+            SelectedItem="{Binding SelectedDocument}"
+            HorizontalAlignment="Stretch"
+            VerticalAlignment="Stretch" MinHeight="300" MinWidth="300">
+            <TabControl.ContentTemplate>
+                <DataTemplate x:DataType="vm:DocumentViewModel">
+                    <v:DocumentView DataContext="{Binding}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
+                </DataTemplate>
+            </TabControl.ContentTemplate>
+            <TabControl.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding World.Title}" />
+                </DataTemplate>
+            </TabControl.ItemTemplate>
+        </TabControl>
+
+        <Border Grid.ColumnSpan="3" Grid.Row="1" MinHeight="24" Padding="8,4" BorderThickness="0,1,0,0" BorderBrush="#666666">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" >
+                <Label Margin="2,0" Content="{Binding ProgressText, Mode=OneWay}" />
+                <ProgressBar Margin="2,0" Value="{Binding ProgressPercentage, Mode=OneWay}" />
+            </StackPanel>
+        </Border>
+    </Grid>
+
+</Window>

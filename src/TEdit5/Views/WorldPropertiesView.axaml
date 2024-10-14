@@ -1,0 +1,20 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:c="clr-namespace:TEdit5.Controls"
+             xmlns:vm="using:TEdit5.ViewModels"
+             xmlns:pgc="clr-namespace:Avalonia.PropertyGrid.Controls;assembly=Avalonia.PropertyGrid"
+             mc:Ignorable="d" d:DesignWidth="400" d:DesignHeight="450"
+             x:Class="TEdit5.Views.WorldPropertiesView"
+             x:DataType="vm:DocumentViewModel">
+    <Grid RowDefinitions="*,20">
+        <ScrollViewer Grid.Row="0">
+            <pgc:PropertyGrid
+                x:Name="worldProps"
+                Margin="4"
+                DataContext="{Binding World}">
+            </pgc:PropertyGrid>
+        </ScrollViewer>
+    </Grid>
+</UserControl>

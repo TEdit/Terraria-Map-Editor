@@ -1,0 +1,74 @@
+<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:c="clr-namespace:TEdit5.Controls">
+    <Design.PreviewWith>
+        <Border Padding="20" Height="400" Width="400">
+            <c:SkiaWorldRenderBox GridCellSize="16"/>
+        </Border>
+    </Design.PreviewWith>
+
+    <ResourceDictionary.ThemeDictionaries>
+        <ResourceDictionary x:Key="Light">
+            <SolidColorBrush x:Key="SkiaWorldRenderBoxGridColor" Color="White" />
+            <SolidColorBrush x:Key="SkiaWorldRenderBoxGridAlternateColor" Color="Gainsboro" />
+        </ResourceDictionary>
+        <ResourceDictionary x:Key="Dark">
+            <SolidColorBrush x:Key="SkiaWorldRenderBoxGridColor" Color="#263238" />
+            <SolidColorBrush x:Key="SkiaWorldRenderBoxGridAlternateColor" Color="#1E1E1E" />
+        </ResourceDictionary>
+    </ResourceDictionary.ThemeDictionaries>
+
+    <ControlTheme x:Key="{x:Type c:SkiaWorldRenderBox}" TargetType="c:SkiaWorldRenderBox">
+        <Setter Property="GridColor" Value="{DynamicResource SkiaWorldRenderBoxGridColor}" />
+        <Setter Property="GridColorAlternate" Value="{DynamicResource SkiaWorldRenderBoxGridAlternateColor}" />
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="Padding" Value="0" />
+
+        <Setter Property="Template">
+            <ControlTemplate>
+                <Grid RowDefinitions="*,Auto" ColumnDefinitions="*,Auto">
+
+                    <ScrollContentPresenter Grid.Row="0" Grid.Column="0"
+									  Name="PART_ContentPresenter"
+                                      Background="{TemplateBinding Background}"
+                                      ScrollViewer.IsScrollInertiaEnabled="True">
+                        <ScrollContentPresenter.GestureRecognizers>
+                            <ScrollGestureRecognizer CanHorizontallyScroll="True"
+                                                     CanVerticallyScroll="True"
+                                                     IsScrollInertiaEnabled="True"/>
+                        </ScrollContentPresenter.GestureRecognizers>
+                    </ScrollContentPresenter>
+
+                    <ScrollBar Name="PART_VerticalScrollBar"
+							   Grid.Row="0" Grid.Column="1"
+							   Orientation="Vertical"
+							   ViewportSize="{Binding Bounds.Height, ElementName=PART_ContentPresenter}"
+							   Minimum="0"
+							   Maximum="0"
+							   Visibility="Visible"/>
+
+                    <ScrollBar Name="PART_HorizontalScrollBar"
+							   Grid.Row="1" Grid.Column="0"
+							   Orientation="Horizontal"
+							   ViewportSize="{Binding Bounds.Width, ElementName=PART_ContentPresenter}"
+							   Minimum="0"
+							   Maximum="0"
+							   Visibility="Visible"/>
+
+                    <Panel x:Name="PART_ScrollBarsSeparator"
+                           Grid.Row="1"
+                           Grid.Column="1"
+                           Background="{DynamicResource ScrollViewerScrollBarsSeparatorBackground}"
+                           Opacity="0">
+                        <Panel.Transitions>
+                            <Transitions>
+                                <DoubleTransition Property="Opacity" Duration="0:0:0.1" />
+                            </Transitions>
+                        </Panel.Transitions>
+                    </Panel>
+
+                </Grid>
+            </ControlTemplate>
+        </Setter>
+    </ControlTheme>
+</ResourceDictionary>

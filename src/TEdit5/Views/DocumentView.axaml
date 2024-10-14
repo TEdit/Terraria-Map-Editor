@@ -1,0 +1,47 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:c="clr-namespace:TEdit5.Controls"
+             xmlns:vm="using:TEdit5.ViewModels"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="TEdit5.Views.DocumentView"
+             x:DataType="vm:DocumentViewModel">
+	<DockPanel>
+		<Grid DockPanel.Dock="Top">
+			<Grid>
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="*" />
+					<ColumnDefinition Width="300" />
+				</Grid.ColumnDefinitions>
+				<c:SkiaMinimapRenderBox World="{Binding World}" Height="100" Width="300" Grid.Column="1" />
+			</Grid>
+		</Grid>
+		<Border DockPanel.Dock="Bottom" MinHeight="24" Padding="8,4" BorderThickness="0,1,0,0" BorderBrush="#666666">
+			<StackPanel Orientation="Horizontal"  >
+				<TextBox Margin="2,0" Text="{Binding Zoom, Mode=TwoWay}" />
+				<TextBox Margin="2,0" Text="{Binding MaxZoom, Mode=TwoWay}" />
+				<TextBox Margin="2,0" Text="{Binding MinZoom, Mode=TwoWay}" />
+				<TextBox Margin="2,0" Text="{Binding CursorTileCoordinate.X, Mode=TwoWay}" />
+				<TextBox Margin="2,0" Text="{Binding CursorTileCoordinate.Y, Mode=TwoWay}" />
+
+			</StackPanel>
+		</Border>
+		<Grid>
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="1" />
+				<ColumnDefinition Width="1*" />
+			</Grid.ColumnDefinitions>
+			<c:SkiaWorldRenderBox
+                Grid.Column="1"
+                World="{Binding World}"
+                WorldEditor="{Binding WorldEditor}"
+                Zoom="{Binding Zoom, Mode=TwoWay}"
+                ActiveTool="{Binding ToolSelection.ActiveTool}"
+                MaxZoom="{Binding MaxZoom, Mode=TwoWay}"
+                MinZoom="{Binding MinZoom, Mode=TwoWay}"
+                WorldCoordinate="{Binding CursorTileCoordinate, Mode=OneWayToSource}"
+				SelectionMode="{Binding SelectionMode, Mode=TwoWay}"/>
+		</Grid>
+	</DockPanel>
+</UserControl>

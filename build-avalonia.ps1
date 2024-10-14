@@ -37,7 +37,7 @@ $platforms | ForEach-Object {
         "/p:VersionPrefix=""$VersionPrefix"""
         "--version-suffix"
         "$VersionSuffix"
-        ".\src\TEdit.Desktop\TEdit.Desktop.csproj"
+        ".\src\TEdit5\TEdit5.csproj"
     )
 
     & dotnet $buildArgs
