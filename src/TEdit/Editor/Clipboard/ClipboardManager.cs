@@ -113,6 +113,8 @@ public class ClipboardManager : ObservableObject
     {
         var bufferData = ClipboardBuffer.GetSelectionBuffer(world, selection);
         LoadedBuffers.Add(new ClipboardBufferPreview(bufferData));
+		
+        Buffer = new ClipboardBufferPreview(bufferData); // Set the last added buffer as the active one
     }
 
     public void PasteBufferIntoWorld(World world, Vector2Int32 anchor)
