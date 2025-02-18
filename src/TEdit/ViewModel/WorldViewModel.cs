@@ -462,6 +462,7 @@ public partial class WorldViewModel : ViewModelBase
         set { Set(nameof(CurrentFile), ref _currentFile, value); }
     }
 
+    private ClipboardManager _clipboardManager;
     public World CurrentWorld
     {
         get { return _currentWorld; }
@@ -487,14 +488,30 @@ public partial class WorldViewModel : ViewModelBase
 
                 var undo = new UndoManagerWrapper(UndoManager);
 
+                // Preserve clipboard between world loads.
+                if (_clipboardManager == null)
+                {
+                    Clipboard = new ClipboardManager(Selection, undo, rb.UpdateTile);
+                }
+                else
+                {
+                    Clipboard = new ClipboardManager(Selection, undo, rb.UpdateTile);
 
-                Clipboard = new ClipboardManager(
-                    Selection,
-                    undo,
-                    rb.UpdateTile);
+                    // Add all previously loaded buffers to the new clipboard.
+                    foreach (var buffer in _clipboardManager.LoadedBuffers)
+                    {
+                        Clipboard.LoadedBuffers.Add(buffer);
+                    }
+                
+                    // Preserve the current active buffer if it's not null.
+                    if (_clipboardManager.Buffer != null)
+                    {
+                        Clipboard.Buffer = _clipboardManager.Buffer;
+                    }
+                }
+                _clipboardManager = Clipboard;
 
                 WorldEditor = new WorldEditor(TilePicker, CurrentWorld, Selection, undo, updateTiles);
-
             }
             else
             {
