@@ -1,22 +1,21 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-    <PropertyGroup>
-        <TargetFrameworks>netstandard2.0;net9.0</TargetFrameworks>
-        <LangVersion>latest</LangVersion>
-      
-    </PropertyGroup>
+  <PropertyGroup>
+    <TargetFrameworks>net9.0</TargetFrameworks>
+    <LangVersion>latest</LangVersion>
+
+  </PropertyGroup>
 
 
-    <ItemGroup>
-        <PackageReference Include="DotNetZip" Version="1.16.0" />
-        <PackageReference Include="bodong.PropertyModels" Version="11.1.1.1" />
-		<PackageReference Include="ReactiveUI" Version="20.1.63" />
-		<PackageReference Include="ReactiveUI.Fody" Version="19.5.41" />
-    </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="bodong.PropertyModels" Version="11.2.3.5" />
+    <PackageReference Include="ReactiveUI" Version="20.1.63" />
+    <PackageReference Include="ReactiveUI.Fody" Version="19.5.41" />
+  </ItemGroup>
 
-    <ItemGroup>
-        <ProjectReference Include="..\TEdit.Common\TEdit.Common.csproj" />
-        <ProjectReference Include="..\TEdit.Configuration\TEdit.Configuration.csproj" />
-    </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\TEdit.Common\TEdit.Common.csproj" />
+    <ProjectReference Include="..\TEdit.Configuration\TEdit.Configuration.csproj" />
+  </ItemGroup>
 
 </Project>

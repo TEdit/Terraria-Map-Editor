@@ -11,9 +11,9 @@
  * WARRANTIES OF MERCHANTABILITY AND/OR FITNESS FOR A PARTICULAR PURPOSE.
  */
 
-using Ionic.Zlib;
 using System;
 using System.IO;
+using System.IO.Compression;
 
 namespace TEdit.Terraria.IO;
 
@@ -35,7 +35,7 @@ public static class ConsoleCompressor
                 b.Write((int)ms.Length);
 
                 // TODO: use net7.0 ZLibStream
-                using (var compressor = new ZlibStream(stream, CompressionMode.Compress, CompressionLevel.BestCompression))
+                using (var compressor = new ZLibStream(stream, CompressionLevel.SmallestSize))
                 {
                     ms.Position = 0;
 
@@ -59,7 +59,7 @@ public static class ConsoleCompressor
 
             var ms = new MemoryStream();
 
-            var decompressor = new ZlibStream(ms, CompressionMode.Decompress, CompressionLevel.BestCompression);
+            var decompressor = new ZLibStream(ms, CompressionMode.Decompress);
 
             byte[] buffer = new byte[BUFFER_SIZE];
             int n;
