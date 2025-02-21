@@ -6,16 +6,19 @@
   ],
   "packageRules": [
     {
+      "matchUpdateTypes": ["minor", "patch"],
+      "matchCurrentVersion": "!/^0/",
+      "automerge": true
+    },
+    {
       "groupName": "Avalonia",
-      "matchPackagePatterns": [
-        "Avalonia*"
-      ]
+      "matchPackagePatterns": ["Avalonia*"],
+      "automerge": true
     },
     {
       "groupName": "Avalonia Property Grid",
-      "matchPackagePatterns": [
-        "bodong.*"
-      ]
+      "matchPackagePatterns": ["bodong.*"],
+      "automerge": false
     }
   ]
 }
