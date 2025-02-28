@@ -8,7 +8,7 @@
 
 
   <ItemGroup>
-    <PackageReference Include="bodong.PropertyModels" Version="11.2.3.5" />
+    <PackageReference Include="bodong.PropertyModels" Version="11.2.4" />
     <PackageReference Include="ReactiveUI" Version="20.1.63" />
     <PackageReference Include="ReactiveUI.Fody" Version="19.5.41" />
   </ItemGroup>
