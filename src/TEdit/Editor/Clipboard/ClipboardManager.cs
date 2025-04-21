@@ -120,7 +120,7 @@ public class ClipboardManager : ObservableObject
     public void PasteBufferIntoWorld(World world, Vector2Int32 anchor)
     {
         if (Buffer == null) return;
-        if (!PasteTiles && !PasteLiquids && !PasteWalls && !PasteWires) return;
+        if (!PasteTiles && !PasteLiquids && !PasteWalls && !PasteWires && !PasteSprites) return;
 
         _selection.IsActive = false; // clear selection when pasting to prevent "unable to use pencil" issue
 
