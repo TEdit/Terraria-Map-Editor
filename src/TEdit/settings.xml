@@ -84,7 +84,7 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
         <Shortcut Key="Space" Action="Pan" />
         <Shortcut Key="OemPlus" Modifier="Control" Action="ZoomIn" />
         <Shortcut Key="OemMinus" Modifier="Control" Action="ZoomOut" />
-		<Shortcut Key="F5" Action="ReloadWorld" />
+        <Shortcut Key="F5" Action="ReloadWorld" />
         <!-- Tools -->
         <Shortcut Key="A" Action="Arrow" />
         <Shortcut Key="B" Action="Brush" />
@@ -15495,18 +15495,20 @@ PLEASE KEEP FORMATTING IF SUBMITTING PULL REQUEST FOR THIS FILE. THANKS!
     </ItemPrefix>
     <Paints>
         <Paint Id="0" Name="None" Color="#00000000" />
-        <Paint Id="1" Name="Red" Color="#FFFF0000" />
-        <Paint Id="2" Name="Orange" Color="#FFFF7F00" />
-        <Paint Id="3" Name="Yellow" Color="#FFFFFF00" />
-        <Paint Id="4" Name="Lime" Color="#FF7FFF00" />
-        <Paint Id="5" Name="Green" Color="#FF00FF00" />
-        <Paint Id="6" Name="Teal" Color="#FF00FF7F" />
-        <Paint Id="7" Name="Cyan" Color="#FF00FFFF" />
-        <Paint Id="8" Name="Sky Blue" Color="#FF007FFF" />
-        <Paint Id="9" Name="Blue" Color="#FF0000FF" />
-        <Paint Id="10" Name="Purple" Color="#FF7F00FF" />
-        <Paint Id="11" Name="Violet" Color="#FFFF00FF" />
-        <Paint Id="12" Name="Pink" Color="#FFFF007F" />
+        <!-- Non-deep paints, lightened ~25% toward white -->
+        <Paint Id="1" Name="Red" Color="#FFFF4040" />
+        <Paint Id="2" Name="Orange" Color="#FFFF9F40" />
+        <Paint Id="3" Name="Yellow" Color="#FFFFFF40" />
+        <Paint Id="4" Name="Lime" Color="#FF9FFF40" />
+        <Paint Id="5" Name="Green" Color="#FF40FF40" />
+        <Paint Id="6" Name="Teal" Color="#FF40FF9F" />
+        <Paint Id="7" Name="Cyan" Color="#FF40FFFF" />
+        <Paint Id="8" Name="Sky Blue" Color="#FF409FFF" />
+        <Paint Id="9" Name="Blue" Color="#FF4040FF" />
+        <Paint Id="10" Name="Purple" Color="#FF9F40FF" />
+        <Paint Id="11" Name="Violet" Color="#FFFF40FF" />
+        <Paint Id="12" Name="Pink" Color="#FFFF409F" />
+        <!-- -->
         <Paint Id="13" Name="Deep Red" Color="#FFFF0000" />
         <Paint Id="14" Name="Deep Orange" Color="#FFFF7F00" />
         <Paint Id="15" Name="Deep Yellow" Color="#FFFFFF00" />
