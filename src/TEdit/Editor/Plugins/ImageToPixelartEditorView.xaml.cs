@@ -10,37 +10,38 @@ EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE IMPLIED
 WARRANTIES OF MERCHANTABILITY AND/OR FITNESS FOR A PARTICULAR PURPOSE.
  */
 
-using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Drawing.Imaging;
-using System.IO;
-using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
-using System.Windows;
+using System.Windows.Media.Imaging;
+using System.Collections.Generic;
 using System.Windows.Controls;
+using System.Drawing.Imaging;
+using System.Threading.Tasks;
+using System.Globalization;
 using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Xml.Linq;
 using System.Threading;
+using System.Xml.Linq;
+using System.Drawing;
+using System.Windows;
+using System.IO;
+using System.Linq;
+using System;
 
 using TEdit.Editor.Clipboard;
-using TEdit.Geometry; /* TE4: using TEdit.Common.Geometry.Primitives; */
-using TEdit.ViewModel;
 using TEdit.Configuration;
+using TEdit.ViewModel;
+using TEdit.Geometry; /* TE4: using TEdit.Common.Geometry.Primitives; */
 
-using Bitmap = System.Drawing.Bitmap;
 using BitmapSource = System.Windows.Media.Imaging.BitmapSource;
-using Color = System.Drawing.Color;
+using SolidColorBrush = System.Windows.Media.SolidColorBrush;
 using MessageBox = System.Windows.Forms.MessageBox;
-using Pen = System.Drawing.Pen;
+using Bitmap = System.Drawing.Bitmap;
+using Color = System.Drawing.Color;
 using Point = System.Drawing.Point;
 using Size = System.Drawing.Size;
-using SolidColorBrush = System.Windows.Media.SolidColorBrush;
 using Tile = TEdit.Terraria.Tile;
+using Pen = System.Drawing.Pen;
 
 namespace TEdit.Editor.Plugins
 {
@@ -1183,7 +1184,7 @@ namespace TEdit.Editor.Plugins
                 isRotation90Checked = (bool)Rotation90.IsChecked;
                 isRotation270Checked = (bool)Rotation270.IsChecked;
                 AEqualsValue = int.Parse(AEquals.Text);
-                SigmaEqualsValue = double.Parse(SigmaEquals.Text);
+                SigmaEqualsValue = double.Parse(SigmaEquals.Text, CultureInfo.InvariantCulture);
             });
 
             try
