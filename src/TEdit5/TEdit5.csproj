@@ -50,7 +50,7 @@
     <PackageReference Condition="'$(Configuration)' == 'Debug'" Include="Avalonia.Diagnostics" Version="11.3.0" />
     <PackageReference Include="bodong.Avalonia.PropertyGrid" Version="11.2.4" />
     <PackageReference Include="bodong.PropertyModels" Version="11.2.4" />
-    <PackageReference Include="Projektanker.Icons.Avalonia.MaterialDesign" Version="9.6.1" />
+    <PackageReference Include="Projektanker.Icons.Avalonia.MaterialDesign" Version="9.6.2" />
 
 	<PackageReference Include="ReactiveUI" Version="20.2.45" />
 	<PackageReference Include="ReactiveUI.Fody" Version="19.5.41" />
