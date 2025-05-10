@@ -1734,7 +1734,22 @@ public partial class WorldViewModel : ViewModelBase
         {
             // perform validations
             var validation = World.ValidateWorldFile(filename);
-            if (!validation.IsValid)
+            if (validation.IsCorrupt)
+            {
+                // The world file contains all-zeros (corrupt).
+                string msg =
+                    "The world file appears to be empty or corrupt (all bytes are zero).\r\n" +
+                    "This file cannot be recovered as no data exists.\r\n\r\n" +
+                    "What can I do?\r\n" +
+                    "1. Restore a previously made backup (.bak, .bak2).\r\n" +
+                    "2. Restore a previously made manual backup.\r\n" +
+                    "3. Restore a previously created TEdit checkpoint (.TEdit).\r\n" +
+                    "4. Restore a backup via windows file history (if previously enabled).";
+
+                MessageBox.Show(msg, "Corrupt World File", MessageBoxButton.OK, MessageBoxImage.Error);
+                return null;
+            }
+            else if (!validation.IsValid)
             {
                 //ErrorLogging.LogException(err);
                 string msg =
@@ -1768,16 +1783,16 @@ public partial class WorldViewModel : ViewModelBase
             }
             else if (validation.IsLegacy)
             {
-                // this has been around forever, removing "beta" warning for now 
-                // string message = $"You are loading a legacy world version: {validation.Version}.\r\n" +
-                //     $"Editing legacy files is a BETA feature.\r\n" +
-                //     "Please make a backup as you may experience world file corruption.\r\n" +
-                //     "Do you wish to continue?";
-                // 
-                // if (MessageBox.Show(message, "Convert File?", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.No)
-                // {
-                //     return;
-                // }
+                // Reworked "IsLegacy" to be versions < 1.0.
+                string message = $"You are loading a legacy world version: {validation.Version}.\r\n" +
+                    $"Editing legacy files could cause unexpected results.\r\n" +
+                    "Please make a backup as you may experience world file corruption.\r\n" +
+                    "Do you wish to continue?";
+                
+                if (MessageBox.Show(message, "Convert File?", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.No)
+                {
+                    return null;
+                }
             }
             else if (validation.IsTModLoader)
             {
