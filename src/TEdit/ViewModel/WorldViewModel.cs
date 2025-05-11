@@ -1632,29 +1632,27 @@ public partial class WorldViewModel : ViewModelBase
         {
             CurrentFile = sfd.FileName;
 
-            if (sfd.FilterIndex > 0)
+            if (sfd.FilterIndex > 1)
             {
                 try
                 {
-                    var name = sfd.Filter.ToString()
-                        .Replace("Terraria World File|", "")
-                        .Replace("*.wld|Terraria v", "")
-                        .Replace("*.wld", "")
-                        .Split('|')[sfd.FilterIndex - 1];
+                    var parts = sfd.Filter.Split('|');
+                    var desc = parts[(sfd.FilterIndex - 1) * 2];
+                    var key = desc.Replace("Terraria v", "");
 
-                    if (WorldConfiguration.SaveConfiguration.GameVersionToSaveVersion.TryGetValue(name, out uint versionOverride))
+                    if (WorldConfiguration.SaveConfiguration.GameVersionToSaveVersion.TryGetValue(key, out uint versionOverride))
                     {
                         SaveWorldFile(versionOverride);
                         return;
                     }
                 }
                 catch (Exception)
-                {
-                    // fall back to default save
-                }
-
-                SaveWorldFile();
+                { }
             }
+
+            // Maintain the existing world version.
+            // This is also the fallback for parsing failures.
+            SaveWorldFile(CurrentWorld.Version);
         }
     }
 
