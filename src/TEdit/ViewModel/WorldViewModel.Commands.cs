@@ -589,26 +589,32 @@ public partial class WorldViewModel
 
     private void ImportSchematic(bool isFalseColor)
     {
+        var ofd = new OpenFileDialog
+        {
+            Filter = "TEdit Schematic File|*.TEditSch|Png Image (Real TileColor)|*.png|Bitmap Image (Real TileColor)|*.bmp",
+            DefaultExt = "TEdit Schematic File|*.TEditSch",
+            Title = "Import TEdit Schematic File",
+            InitialDirectory = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), @"My Games\Terraria\Schematics"),
+            Multiselect = true
+        };
 
-        var ofd = new OpenFileDialog();
-        ofd.Filter = "TEdit Schematic File|*.TEditSch|Png Image (Real TileColor)|*.png|Bitmap Image (Real TileColor)|*.bmp";
-        ofd.DefaultExt = "TEdit Schematic File|*.TEditSch";
-        ofd.Title = "Import TEdit Schematic File";
-        ofd.InitialDirectory = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), @"My Games\Terraria\Schematics");
         if (!Directory.Exists(ofd.InitialDirectory))
             Directory.CreateDirectory(ofd.InitialDirectory);
-        ofd.Multiselect = false;
+
         if ((bool)ofd.ShowDialog())
         {
             ErrorLogging.TelemetryClient?.TrackEvent(nameof(ImportSchematic));
 
-            try
+            foreach (var file in ofd.FileNames)
             {
-                _clipboard.Import(ofd.FileName);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Schematic File Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                try
+                {
+                    _clipboard.Import(file);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Schematic File Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
             }
         }
     }
