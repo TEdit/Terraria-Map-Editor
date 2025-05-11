@@ -88,7 +88,11 @@ public partial class World
                             }
                             else
                             {
-                                bool addLight = (currentWorldVersion >= 87); // Check if world is being downgraded.
+                                // Check if world is being downgraded below v26.
+                                // currentWorldVersion = whatever version the file is now.
+                                // world.Version       = the target (downgrade‐to) version.
+                                bool addLight = world.Version <= 25
+                                             && currentWorldVersion > world.Version;
                                 SaveV1(world, bw, addLight, progress);
                             }
 
