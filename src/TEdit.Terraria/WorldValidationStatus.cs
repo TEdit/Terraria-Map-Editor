@@ -5,6 +5,11 @@ namespace TEdit.Terraria;
 public class WorldValidationStatus
 {
     /// <summary>
+    /// File is corrupt (contains no valid data).
+    /// </summary>
+    public bool IsCorrupt { get; set; }
+
+    /// <summary>
     /// All validations passed
     /// </summary>
     public bool IsValid { get; set; }
@@ -45,7 +50,7 @@ public class WorldValidationStatus
     public DateTime LastSave { get; set; }
 
     /// <summary>
-    /// Validion error message.
+    /// Validation error message.
     /// </summary>
     public string Message { get; set; }
 }

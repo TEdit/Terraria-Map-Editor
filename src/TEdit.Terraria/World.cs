@@ -88,7 +88,11 @@ public partial class World
                             }
                             else
                             {
-                                bool addLight = (currentWorldVersion >= 87); // Check if world is being downgraded.
+                                // Check if world is being downgraded below v26.
+                                // currentWorldVersion = whatever version the file is now.
+                                // world.Version       = the target (downgrade‐to) version.
+                                bool addLight = world.Version <= 25
+                                             && currentWorldVersion > world.Version;
                                 SaveV1(world, bw, addLight, progress);
                             }
 
@@ -170,7 +174,11 @@ public partial class World
                         }
                         else
                         {
-                            bool addLight = (currentWorldVersion >= 87) ? true : false; // Check if world is being downgraded.
+                            // Check if world is being downgraded below v26.
+                            // currentWorldVersion = whatever version the file is now.
+                            // world.Version       = the target (downgrade‐to) version.
+                            bool addLight = world.Version <= 25
+                                         && currentWorldVersion > world.Version;
                             SaveV1(world, bw, addLight, progress);
                         }
 
@@ -263,8 +271,38 @@ public partial class World
 
                         curVersion = w.Version;
 
+                        // Check if the world version is less then recorded in the config.
                         if (w.Version < WorldConfiguration.CompatibleVersion)
                         {
+                            // Save the stream position.
+                            var readerPos = b.BaseStream.Position;
+
+                            // Check if the world file contains all-zeros (corrupt).
+                            const int BufferSize = 8192;
+                            var buffer = new byte[BufferSize];
+                            bool foundNonZero = false;
+                            int read;
+                            while ((read = fs.Read(buffer, 0, BufferSize)) > 0)
+                            {
+                                for (int i = 0; i < read; i++)
+                                    if (buffer[i] != 0)
+                                    {
+                                        foundNonZero = true;
+                                        break;
+                                    }
+                                if (foundNonZero) break;
+                            }
+                            if (!foundNonZero)
+                            {
+                                // This world file contains no data, error out.
+                                status.IsCorrupt = true;
+                                return status;
+                            }
+
+                            // Reset the stream.
+                            b.BaseStream.Position = readerPos;
+
+                            // World file is not empty, must be an alpha.
                             status.IsLegacy = true;
                         }
 

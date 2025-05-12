@@ -290,6 +290,9 @@ Klicke auf „Wiederholen“, um einen neuen Ordner auszuwählen, oder auf „Ab
   <data name="menu_edit_crop" xml:space="preserve">
     <value>Welt zuschneiden</value>
   </data>
+  <data name="menu_edit_expand" xml:space="preserve">
+    <value>Welt erweitern</value>
+  </data>
   <data name="menu_edit_delete" xml:space="preserve">
     <value>Inhalte der Auswahl löschen</value>
   </data>

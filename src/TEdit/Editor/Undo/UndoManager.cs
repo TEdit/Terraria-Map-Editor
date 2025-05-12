@@ -432,19 +432,19 @@ public class UndoManager : ObservableObject, IDisposable
 
                 if (curTile.IsChest())
                 {
-                    var curchest = _world.GetChestAtTile(undoTile.Location.X, undoTile.Location.Y);
+                    var curchest = _world.GetChestAtTile(undoTile.Location.X, undoTile.Location.Y, true);
                     if (curchest != null)
                         _world.Chests.Remove(curchest);
                 }
                 if (curTile.IsSign())
                 {
-                    var cursign = _world.GetSignAtTile(undoTile.Location.X, undoTile.Location.Y);
+                    var cursign = _world.GetSignAtTile(undoTile.Location.X, undoTile.Location.Y, true);
                     if (cursign != null)
                         _world.Signs.Remove(cursign);
                 }
                 if (curTile.IsTileEntity())
                 {
-                    var curTe = _world.GetTileEntityAtTile(undoTile.Location.X, undoTile.Location.Y);
+                    var curTe = _world.GetTileEntityAtTile(undoTile.Location.X, undoTile.Location.Y, true);
                     if (curTe != null)
                         _world.TileEntities.Remove(curTe);
                 }

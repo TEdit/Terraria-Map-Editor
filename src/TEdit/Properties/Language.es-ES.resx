@@ -290,6 +290,9 @@ Presione reintentar para elegir una nueva carpeta o cancelar para usar {0} como 
   <data name="menu_edit_crop" xml:space="preserve">
     <value>Cortar</value>
   </data>
+  <data name="menu_edit_expand" xml:space="preserve">
+    <value>Expandir mundo</value>
+  </data>
   <data name="menu_edit_delete" xml:space="preserve">
     <value>Eliminar selección</value>
   </data>

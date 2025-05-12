@@ -1632,29 +1632,27 @@ public partial class WorldViewModel : ViewModelBase
         {
             CurrentFile = sfd.FileName;
 
-            if (sfd.FilterIndex > 0)
+            if (sfd.FilterIndex > 1)
             {
                 try
                 {
-                    var name = sfd.Filter.ToString()
-                        .Replace("Terraria World File|", "")
-                        .Replace("*.wld|Terraria v", "")
-                        .Replace("*.wld", "")
-                        .Split('|')[sfd.FilterIndex - 1];
+                    var parts = sfd.Filter.Split('|');
+                    var desc = parts[(sfd.FilterIndex - 1) * 2];
+                    var key = desc.Replace("Terraria v", "");
 
-                    if (WorldConfiguration.SaveConfiguration.GameVersionToSaveVersion.TryGetValue(name, out uint versionOverride))
+                    if (WorldConfiguration.SaveConfiguration.GameVersionToSaveVersion.TryGetValue(key, out uint versionOverride))
                     {
                         SaveWorldFile(versionOverride);
                         return;
                     }
                 }
                 catch (Exception)
-                {
-                    // fall back to default save
-                }
-
-                SaveWorldFile();
+                { }
             }
+
+            // Maintain the existing world version.
+            // This is also the fallback for parsing failures.
+            SaveWorldFile(CurrentWorld.Version);
         }
     }
 
@@ -1734,7 +1732,22 @@ public partial class WorldViewModel : ViewModelBase
         {
             // perform validations
             var validation = World.ValidateWorldFile(filename);
-            if (!validation.IsValid)
+            if (validation.IsCorrupt)
+            {
+                // The world file contains all-zeros (corrupt).
+                string msg =
+                    "The world file appears to be empty or corrupt (all bytes are zero).\r\n" +
+                    "This file cannot be recovered as no data exists.\r\n\r\n" +
+                    "What can I do?\r\n" +
+                    "1. Restore a previously made backup (.bak, .bak2).\r\n" +
+                    "2. Restore a previously made manual backup.\r\n" +
+                    "3. Restore a previously created TEdit checkpoint (.TEdit).\r\n" +
+                    "4. Restore a backup via windows file history (if previously enabled).";
+
+                MessageBox.Show(msg, "Corrupt World File", MessageBoxButton.OK, MessageBoxImage.Error);
+                return null;
+            }
+            else if (!validation.IsValid)
             {
                 //ErrorLogging.LogException(err);
                 string msg =
@@ -1768,16 +1781,16 @@ public partial class WorldViewModel : ViewModelBase
             }
             else if (validation.IsLegacy)
             {
-                // this has been around forever, removing "beta" warning for now 
-                // string message = $"You are loading a legacy world version: {validation.Version}.\r\n" +
-                //     $"Editing legacy files is a BETA feature.\r\n" +
-                //     "Please make a backup as you may experience world file corruption.\r\n" +
-                //     "Do you wish to continue?";
-                // 
-                // if (MessageBox.Show(message, "Convert File?", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.No)
-                // {
-                //     return;
-                // }
+                // Reworked "IsLegacy" to be versions < 1.0.
+                string message = $"You are loading a legacy world version: {validation.Version}.\r\n" +
+                    $"Editing legacy files could cause unexpected results.\r\n" +
+                    "Please make a backup as you may experience world file corruption.\r\n" +
+                    "Do you wish to continue?";
+                
+                if (MessageBox.Show(message, "Convert File?", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.No)
+                {
+                    return null;
+                }
             }
             else if (validation.IsTModLoader)
             {

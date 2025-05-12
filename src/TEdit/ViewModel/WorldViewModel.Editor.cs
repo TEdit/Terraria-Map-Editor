@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Forms.VisualStyles;
 using TEdit.Common;
 using TEdit.Configuration;
 using TEdit.Editor;
@@ -14,6 +15,7 @@ using TEdit.Geometry;
 using TEdit.Render;
 using TEdit.Terraria;
 using TEdit.Utility;
+using TEdit.View.Popups;
 
 namespace TEdit.ViewModel;
 
@@ -62,7 +64,7 @@ public partial class WorldViewModel
         _clipboard.CopySelection(CurrentWorld, Selection.SelectionArea);
     }
 
-    public void CropWorld()
+    public async void CropWorld()
     {
         if (CurrentWorld == null) return;
         if (!CanCopy())
@@ -71,7 +73,7 @@ public partial class WorldViewModel
         bool addBorders = false;
 
         if (MessageBox.Show(
-            "This will generate a new world with a selected region. Any progress done to this world will be lost, Continue?",
+            "This will generate a new world within the selected region.\nAll progress outside of the cropped zone will be lost., Continue?",
             "Crop World?",
             MessageBoxButton.YesNo,
             MessageBoxImage.Question,
@@ -92,46 +94,107 @@ public partial class WorldViewModel
 
         // addborders
         // 41 block buffer left and top for "off-screen" on all sides.
-        // 42 block buffer right and bottom for "off-screen" on all sides. 
+        // 42 block buffer right and bottom for "off-screen" on all sides.
+
+        var area = Selection.SelectionArea;
+        var sel = new RectangleInt32(
+                      (int)area.Left,
+                      (int)area.Top,
+                      (int)area.Width,
+                      (int)area.Height);
+
+        int bL = addBorders ? 41 : 0;
+        int bT = addBorders ? 41 : 0;
+        int bR = addBorders ? 42 : 0;
+        int bB = addBorders ? 42 : 0;
+
+        // Remove existing selection.
+        Selection.IsActive = false;
 
         // Generate New Worlds
-        _loadTimer.Reset();
-        _loadTimer.Start();
-        _saveTimer.Stop();
+        _loadTimer.Restart(); _loadTimer.Start(); _saveTimer.Stop();
+        var uiProgress = new Progress<ProgressChangedEventArgs>(e => OnProgressChanged(this, e));
+        var newWorld = await TransformWorldAsync(CurrentWorld, sel, bL, bT, bR, bB, uiProgress)
+                              .ConfigureAwait(true);
 
-        World w = new World();
-        Task.Factory.StartNew((Func<World>)(() =>
+        CurrentWorld = newWorld;
+        FinalizeLoad();
+    }
+
+    public async void ExpandWorld()
+    {
+        if (CurrentWorld == null) return;
+
+        var dlg = new ExpandWorldView(
+            currentWidth: CurrentWorld.TilesWide,
+            currentHeight: CurrentWorld.TilesHigh
+        )
         {
-            var selectionArea = Selection.SelectionArea;
-            Selection.IsActive = false;
-            // TODO: header data needs to be copied
+            // Owner = Application.Current.MainWindow
+        };
+
+        if (dlg.ShowDialog() != true)
+            return;
+
+        int newWidth = dlg._newWidth;
+        int newHeight = dlg._newHeight;
+
+        // Calculates the inset (border) values required to center a rectangle of size.
+        var sel = new RectangleInt32(0, 0, CurrentWorld.TilesWide, CurrentWorld.TilesHigh);
+
+        int deltaW = newWidth - sel.Width;
+        int deltaH = newHeight - sel.Height;
+
+        int bL = deltaW / 2;
+        int bR = deltaW - bL;
+        int bT = deltaH / 2;
+        int bB = deltaH - bT;
+
+        // Generate New Worlds
+        _loadTimer.Restart(); _loadTimer.Start(); _saveTimer.Stop();
+        var uiProgress = new Progress<ProgressChangedEventArgs>(e => OnProgressChanged(this, e));
+        var newWorld = await TransformWorldAsync(CurrentWorld, sel, bL, bT, bR, bB, uiProgress)
+                              .ConfigureAwait(true);
+
+        CurrentWorld = newWorld;
+        FinalizeLoad();
+    }
+
+    private Task<World> TransformWorldAsync(
+        World sourceWorld,
+        RectangleInt32 selectionArea, // The region you want to keep.
+        int borderLeft,
+        int borderTop,
+        int borderRight,
+        int borderBottom,
+        IProgress<ProgressChangedEventArgs> progress = null)
+    {
+        return Task.Factory.StartNew(() =>
+        {
+            World w = new World();
+
+            // TODO: Header data needs to be copied.
             using (var memStream = new MemoryStream())
             {
                 var writer = new BinaryWriter(memStream);
-                World.SaveV2(CurrentWorld, writer);
+                World.SaveV2(sourceWorld, writer);
                 memStream.Flush();
                 var reader = new BinaryReader(memStream);
-                w.Version = CurrentWorld.Version;
+                w.Version = sourceWorld.Version;
                 World.LoadV2(reader, w);
             }
-
-            int borderTop = addBorders ? 41 : 0;
-            int borderLeft = addBorders ? 41 : 0;
-            int borderRight = addBorders ? 42 : 0;
-            int borderBottom = addBorders ? 42 : 0;
 
             var tileArea = new Rectangle(borderLeft, borderTop, (int)selectionArea.Width, selectionArea.Height);
 
             int worldWidth = selectionArea.Width + borderLeft + borderRight;
             int worldHeight = selectionArea.Height + borderTop + borderBottom;
 
-
-            //w.ResetTime();
+            // w.ResetTime();
             w.CreationTime = System.DateTime.Now.ToBinary();
             w.TilesHigh = worldHeight;
             w.TilesWide = worldWidth;
 
-            // calc new ground heights
+            // Calc new ground heights.
             int topOffset = selectionArea.Top - borderTop;
             int leftOffset = selectionArea.Left - borderLeft;
 
@@ -145,39 +208,41 @@ public partial class WorldViewModel
             w.RockLevel = rockLevel;
 
 
-            // shift spawn point
+            // Shift spawn point.
             int spawnX = w.SpawnX - leftOffset;
             int spawnY = w.SpawnY - topOffset;
 
-            // check out of bounds, and move
+            // Check out of bounds, and move.
             if (spawnX < tileArea.Left || spawnX > tileArea.Right) { spawnX = worldWidth / 2; };
             if (spawnY < tileArea.Top || spawnY > tileArea.Bottom) { spawnY = (int)groundLevel / 2; };
 
             w.SpawnX = spawnX;
             w.SpawnY = spawnY;
 
-            // shift dungeon point
+            // Shift dungeon point.
             int dungeonX = w.DungeonX - leftOffset;
             int dungeonY = w.DungeonY - topOffset;
 
-            // check out of bounds, and move
+            // Check out of bounds, and move.
             if (dungeonX < tileArea.Left || dungeonX > tileArea.Right) { dungeonX = worldWidth / 2; };
             if (dungeonY < tileArea.Top || dungeonY > tileArea.Bottom) { dungeonY = (int)groundLevel / 4; };
 
             w.DungeonX = dungeonX;
             w.DungeonY = dungeonY;
 
-            // calc size
+            // Calc size.
             w.BottomWorld = w.TilesHigh * 16;
             w.RightWorld = w.TilesWide * 16;
 
-            // generate empty tiles
+            // Generate empty tiles.
             var tiles = new Tile[w.TilesWide, w.TilesHigh];
-            var tile = new Tile(); // empty tile
+            var tile = new Tile(); // Empty tile.
             for (int y = 0; y < w.TilesHigh; y++)
             {
-                OnProgressChanged(w, new ProgressChangedEventArgs(Calc.ProgressPercentage(y, w.TilesHigh), "Cloning World..."));
-                // Generate No Extra Tiles
+                int percent = Calc.ProgressPercentage(y, w.TilesHigh);
+                progress?.Report(new ProgressChangedEventArgs(percent, "Cloning World..."));
+
+                // Generate no extra tiles.
                 for (int x = 0; x < w.TilesWide; x++)
                 {
                     if (tileArea.Contains(x, y))
@@ -193,127 +258,113 @@ public partial class WorldViewModel
 
             w.Tiles = tiles;
 
-            // move NPCs
-            foreach (var npc in w.NPCs.ToList()) // to list since we are removing out of bounds NPCs below
+            // Move NPCs.
+            foreach (var npc in w.NPCs.ToList()) // To list since we are removing out of bounds NPCs below.
             {
                 npc.Home -= new Vector2Int32(leftOffset, topOffset);
                 if (!tileArea.Contains(npc.Home.X, npc.Home.Y))
                 {
                     if (npc.Name == "Old Man")
                     {
-                        npc.Home = new Vector2Int32(w.DungeonX, w.DungeonY); // move homeless old man to dungeon
+                        npc.Home = new Vector2Int32(w.DungeonX, w.DungeonY); // Move homeless old man to dungeon.
                     }
                     else
                     {
-                        npc.Home = new Vector2Int32(w.SpawnX, w.SpawnY); // move homeless npc to spawn
+                        npc.Home = new Vector2Int32(w.SpawnX, w.SpawnY); // Move homeless npc to spawn.
                         npc.IsHomeless = true;
                     }
                 }
             }
 
-            // move mobs
-            foreach (var mob in w.Mobs.ToList()) // to list since we are removing out of bounds NPCs below
+            // Move mobs.
+            foreach (var mob in w.Mobs.ToList()) // To list since we are removing out of bounds NPCs below.
             {
                 mob.Home -= new Vector2Int32(leftOffset, topOffset);
                 if (!tileArea.Contains(mob.Home.X, mob.Home.Y))
                 {
-                    w.Mobs.Remove(mob); // remove out of bounds
+                    w.Mobs.Remove(mob); // Remove out of bounds.
                 }
             }
 
-            // move chests
+            // Move chests.
             foreach (var chest in w.Chests.ToList())
             {
                 chest.X -= leftOffset;
                 chest.Y -= topOffset;
                 if (!tileArea.Contains(chest.X, chest.Y))
                 {
-                    w.Chests.Remove(chest); // remove out of bounds
+                    w.Chests.Remove(chest); // Remove out of bounds.
                 }
             }
 
-            // move signs
+            // Move signs.
             foreach (var sign in w.Signs.ToList())
             {
                 sign.X -= leftOffset;
                 sign.Y -= topOffset;
                 if (!tileArea.Contains(sign.X, sign.Y))
                 {
-                    w.Signs.Remove(sign); // remove out of bounds
+                    w.Signs.Remove(sign); // Remove out of bounds.
                 }
             }
 
-            // move tile entities
+            // Move tile entities.
             foreach (var te in w.TileEntities.ToList())
             {
                 te.PosX -= (short)leftOffset;
                 te.PosY -= (short)topOffset;
                 if (!tileArea.Contains(te.PosX, te.PosY))
                 {
-                    w.TileEntities.Remove(te); // remove out of bounds
+                    w.TileEntities.Remove(te); // Remove out of bounds.
                 }
             }
 
-            // move pressure plates
-            foreach (var item in w.PressurePlates.ToList()) // to list since we are removing out of bounds NPCs below
+            // Move pressure plates.
+            foreach (var item in w.PressurePlates.ToList()) // To list since we are removing out of bounds NPCs below.
             {
                 item.PosX -= leftOffset;
                 item.PosY -= topOffset;
                 if (!tileArea.Contains(item.PosX, item.PosY))
                 {
-                    w.PressurePlates.Remove(item); // remove out of bounds
+                    w.PressurePlates.Remove(item); // Remove out of bounds.
                 }
             }
 
 
-            // Move Town manager items 
+            // Move Town manager items.
             foreach (var room in w.PlayerRooms.ToList())
             {
                 room.Home -= new Vector2Int32(leftOffset, topOffset);
                 if (!tileArea.Contains(room.Home.X, room.Home.Y))
                 {
-                    w.PlayerRooms.Remove(room); // remove out of bounds
+                    w.PlayerRooms.Remove(room); // Remove out of bounds.
                 }
             }
 
             return w;
-        }))
-            .ContinueWith(t => CurrentWorld = t.Result, TaskFactoryHelper.UiTaskScheduler)
-            .ContinueWith(t => RenderEntireWorld())
-            .ContinueWith(t =>
-            {
-                CurrentFile = null;
-                PixelMap = t.Result;
-                UpdateTitle();
+        });
+    }
 
-                Points.Clear();
-                Points.Add("Spawn");
-                Points.Add("Dungeon");
-                foreach (NPC npc in CurrentWorld.NPCs)
-                {
-                    Points.Add(npc.Name);
-                }
+    private void FinalizeLoad()
+    {
+        CurrentFile = null;
+        PixelMap = RenderEntireWorld();
+        UpdateTitle();
 
-                MinimapImage = RenderMiniMap.Render(CurrentWorld);
+        Points.Clear();
+        Points.Add("Spawn");
+        Points.Add("Dungeon");
+        foreach (NPC npc in CurrentWorld.NPCs)
+        {
+            Points.Add(npc.Name);
+        }
 
-                // if (addBounderies)
-                // {
-                //     Clipboard.PasteBufferIntoWorld(new Vector2Int32(41, 41));
-                //     UpdateRenderRegion(new Rectangle(41, 41, _clipboard.Buffer.Size.X + 42, _clipboard.Buffer.Size.Y + 42)); // Update Map
-                // } // Paste Clipboard Buffer Offset
-                // else
-                // {
-                //     Clipboard.PasteBufferIntoWorld(new Vector2Int32(0, 0));
-                //     UpdateRenderRegion(new Rectangle(0, 0, _clipboard.Buffer.Size.X, _clipboard.Buffer.Size.Y)); // Update Map
-                // } // Paste Clipboard Without Offset
-                // Clipboard.Remove(_clipboard.LoadedBuffers.Last()); // Remove Buffer
-                // 
-                _loadTimer.Stop();
-                OnProgressChanged(this, new ProgressChangedEventArgs(0,
-                     $"World loaded in {_loadTimer.Elapsed.TotalSeconds} seconds."));
-                _saveTimer.Start();
+        MinimapImage = RenderMiniMap.Render(CurrentWorld);
 
-            }, TaskFactoryHelper.UiTaskScheduler);
+        _loadTimer.Stop();
+        OnProgressChanged(this, new ProgressChangedEventArgs(0,
+             $"World loaded in {_loadTimer.Elapsed.TotalSeconds} seconds."));
+        _saveTimer.Start();
     }
 
     public void EditPaste()

@@ -290,6 +290,9 @@
   <data name="menu_edit_crop" xml:space="preserve">
     <value>Обрезать мир</value>
   </data>
+  <data name="menu_edit_expand" xml:space="preserve">
+    <value>Расширить мир</value>
+  </data>
   <data name="menu_edit_delete" xml:space="preserve">
     <value>Удалить выделение</value>
   </data>
