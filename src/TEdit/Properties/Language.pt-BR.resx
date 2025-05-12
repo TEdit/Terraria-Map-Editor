@@ -290,6 +290,9 @@ Clique em tentar novamente para escolher uma nova pasta ou cancelar para usar {0
   <data name="menu_edit_crop" xml:space="preserve">
     <value>Mundo da colheita</value>
   </data>
+  <data name="menu_edit_expand" xml:space="preserve">
+    <value>Expandir o mundo</value>
+  </data>
   <data name="menu_edit_delete" xml:space="preserve">
     <value>Deletar Seleção</value>
   </data>

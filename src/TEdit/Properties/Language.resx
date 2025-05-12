@@ -290,6 +290,9 @@ Press retry to pick a new folder or cancel to use {0} as your terraria path.</va
   <data name="menu_edit_crop" xml:space="preserve">
     <value>Crop World</value>
   </data>
+  <data name="menu_edit_expand" xml:space="preserve">
+    <value>Expand World</value>
+  </data>
   <data name="menu_edit_delete" xml:space="preserve">
     <value>Delete Selection</value>
   </data>

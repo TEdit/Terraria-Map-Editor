@@ -33,6 +33,7 @@ public partial class WorldViewModel
     private ICommand _pasteCommand;
     private ICommand _copyCommand;
     private ICommand _cropCommand;
+    private ICommand _expandCommand;
     private ICommand _undoCommand;
     private ICommand _redoCommand;
     private ICommand _newWorldCommand;
@@ -323,7 +324,10 @@ public partial class WorldViewModel
     {
         get { return _cropCommand ??= new RelayCommand(CropWorld); }
     }
-
+    public ICommand ExpandCommand
+    {
+        get { return _expandCommand ??= new RelayCommand(ExpandWorld); }
+    }
 
     private bool CanCopy()
     {

@@ -566,6 +566,15 @@ namespace TEdit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Expand World.
+        /// </summary>
+        public static string menu_edit_expand {
+            get {
+                return ResourceManager.GetString("menu_edit_expand", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Delete Selection.
         /// </summary>
         public static string menu_edit_delete {

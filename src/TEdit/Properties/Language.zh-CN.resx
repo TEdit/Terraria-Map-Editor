@@ -290,6 +290,9 @@
   <data name="menu_edit_crop" xml:space="preserve">
     <value>裁剪世界</value>
   </data>
+  <data name="menu_edit_expand" xml:space="preserve">
+    <value>拓展世界</value>
+  </data>
   <data name="menu_edit_delete" xml:space="preserve">
     <value>删除选择区</value>
   </data>

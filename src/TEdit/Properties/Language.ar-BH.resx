@@ -290,6 +290,9 @@
   <data name="menu_edit_crop" xml:space="preserve">
     <value>عالم المحاصيل</value>
   </data>
+  <data name="menu_edit_expand" xml:space="preserve">
+    <value>توسيع العالم</value>
+  </data>
   <data name="menu_edit_delete" xml:space="preserve">
     <value>حذف التحديد</value>
   </data>
