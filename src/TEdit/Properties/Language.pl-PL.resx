@@ -1362,4 +1362,88 @@ Naciśnij spróbuj ponownie aby wybrać nowy folder lub anuluj aby użyć {0} ja
   <data name="wp_fixbackground" xml:space="preserve">
     <value>Napraw lukę w tle</value>
   </data>
+  <data name="menu_filter_header_tiles" xml:space="preserve">
+    <value>Płytki</value>
+  </data>
+  <data name="menu_filter_header_walls" xml:space="preserve">
+    <value>Ściany</value>
+  </data>
+  <data name="menu_filter_header_liquids" xml:space="preserve">
+    <value>Płyny</value>
+  </data>
+  <data name="menu_filter_header_wires" xml:space="preserve">
+    <value>Przewody</value>
+  </data>
+  <data name="menu_filter_tab_searchname" xml:space="preserve">
+    <value>Nazwa</value>
+  </data>
+  <data name="menu_filter_tab_check_all" xml:space="preserve">
+    <value>Zaznacz wszystko</value>
+  </data>
+  <data name="menu_filter_tab_uncheck_all" xml:space="preserve">
+    <value>Odznacz wszystko</value>
+  </data>
+  <data name="menu_filter_filtermode" xml:space="preserve">
+    <value>Tryb filtra</value>
+  </data>
+  <data name="menu_filter_backgroundmode" xml:space="preserve">
+    <value>Tryb tła</value>
+  </data>
+  <data name="menu_filter_hide" xml:space="preserve">
+    <value>Ukrywać</value>
+  </data>
+  <data name="menu_filter_grayscale" xml:space="preserve">
+    <value>Skala szarości</value>
+  </data>
+  <data name="menu_filter_normal" xml:space="preserve">
+    <value>Normalna</value>
+  </data>
+  <data name="menu_filter_transparent" xml:space="preserve">
+    <value>Przezroczysty</value>
+  </data>
+  <data name="menu_filter_custom" xml:space="preserve">
+    <value>Zwyczaj</value>
+  </data>
+  <data name="menu_filter_cancel" xml:space="preserve">
+    <value>Anulować</value>
+  </data>
+  <data name="menu_filter_disable" xml:space="preserve">
+    <value>Wyłączyć</value>
+  </data>
+  <data name="menu_filter_apply" xml:space="preserve">
+    <value>Stosować</value>
+  </data>
+  <data name="menu_uveditor_moveallframes" xml:space="preserve">
+    <value>Przesuń wszystkie klatki</value>
+  </data>
+  <data name="menu_uveditor_moveamount" xml:space="preserve">
+    <value>Ilość ruchu (klatki)</value>
+  </data>
+  <data name="menu_uveditor_setmanualuv" xml:space="preserve">
+    <value>Ustaw ręczne UV dla wszystkich</value>
+  </data>
+  <data name="menu_uveditor_selectedframes" xml:space="preserve">
+    <value>Wybrane ramki</value>
+  </data>
+  <data name="menu_uveditor_setvalues" xml:space="preserve">
+    <value>Ustaw wartości</value>
+  </data>
+  <data name="menu_uveditor_cancel" xml:space="preserve">
+    <value>Anuluj</value>
+  </data>
+  <data name="menu_uveditor_restore" xml:space="preserve">
+    <value>Przywrócić</value>
+  </data>
+  <data name="menu_uveditor_ok" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="menu_filter" xml:space="preserve">
+    <value>Filtr</value>
+  </data>
+  <data name="menu_filter_title" xml:space="preserve">
+    <value>Zaawansowany filtr</value>
+  </data>
+  <data name="menu_uveditor_title" xml:space="preserve">
+    <value>Edytor UV</value>
+  </data>
 </root>

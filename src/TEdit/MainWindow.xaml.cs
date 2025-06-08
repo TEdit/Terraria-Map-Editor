@@ -11,6 +11,8 @@ using TEdit.Properties;
 using TEdit.UI.Xaml;
 using TEdit.View.Popups;
 using System.IO;
+using System.Windows.Controls;
+using TEdit.View;
 
 namespace TEdit;
 
@@ -296,5 +298,19 @@ public partial class MainWindow : Window
             UVEditorWindow uvEditorWindow = new(tileList, _vm);
             uvEditorWindow.ShowDialog();
         }
+    }
+
+    private void FilterMenuItem_Click(object sender, RoutedEventArgs e)
+    {
+        // Prevent the default focus behavior on clickAdd commentMore actions
+        // e.Handled = true;
+
+        // Ensure a world is loaded.
+        if (_vm.CurrentWorld == null)
+            return;
+
+        // Launch the advanced filter popup.
+        FilterWindow filterWindow = new(_vm);
+        filterWindow.ShowDialog();
     }
 }

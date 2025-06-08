@@ -130,8 +130,9 @@
                             </ControlTemplate>
                         </MenuItem.Template>
                     </MenuItem>
-                </MenuItem>
-                <MenuItem Header="{x:Static p:Language.menu_plugins}" ItemsSource="{Binding Plugins}" ItemContainerStyle="{StaticResource SubmenuItemStyle}">
+        </MenuItem>
+        <MenuItem Header="{x:Static p:Language.menu_filter}" Click="FilterMenuItem_Click" />
+        <MenuItem Header="{x:Static p:Language.menu_plugins}" ItemsSource="{Binding Plugins}" ItemContainerStyle="{StaticResource SubmenuItemStyle}">
 
                 </MenuItem>
                 <MenuItem Header="{x:Static p:Language.menu_help}">

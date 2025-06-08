@@ -1362,4 +1362,88 @@
   <data name="wp_fixbackground" xml:space="preserve">
     <value>修复背景间隙</value>
   </data>
+  <data name="menu_filter_header_tiles" xml:space="preserve">
+    <value>瓷砖</value>
+  </data>
+  <data name="menu_filter_header_walls" xml:space="preserve">
+    <value>墙壁</value>
+  </data>
+  <data name="menu_filter_header_liquids" xml:space="preserve">
+    <value>液体</value>
+  </data>
+  <data name="menu_filter_header_wires" xml:space="preserve">
+    <value>电线</value>
+  </data>
+  <data name="menu_filter_tab_searchname" xml:space="preserve">
+    <value>姓名</value>
+  </data>
+  <data name="menu_filter_tab_check_all" xml:space="preserve">
+    <value>检查全部</value>
+  </data>
+  <data name="menu_filter_tab_uncheck_all" xml:space="preserve">
+    <value>取消选中全部</value>
+  </data>
+  <data name="menu_filter_filtermode" xml:space="preserve">
+    <value>过滤模式</value>
+  </data>
+  <data name="menu_filter_backgroundmode" xml:space="preserve">
+    <value>背景模式</value>
+  </data>
+  <data name="menu_filter_hide" xml:space="preserve">
+    <value>隐藏</value>
+  </data>
+  <data name="menu_filter_grayscale" xml:space="preserve">
+    <value>灰度</value>
+  </data>
+  <data name="menu_filter_normal" xml:space="preserve">
+    <value>普通的</value>
+  </data>
+  <data name="menu_filter_transparent" xml:space="preserve">
+    <value>透明的</value>
+  </data>
+  <data name="menu_filter_custom" xml:space="preserve">
+    <value>风俗</value>
+  </data>
+  <data name="menu_filter_cancel" xml:space="preserve">
+    <value>取消</value>
+  </data>
+  <data name="menu_filter_disable" xml:space="preserve">
+    <value>禁用</value>
+  </data>
+  <data name="menu_filter_apply" xml:space="preserve">
+    <value>申请</value>
+  </data>
+  <data name="menu_uveditor_moveallframes" xml:space="preserve">
+    <value>移动所有帧</value>
+  </data>
+  <data name="menu_uveditor_moveamount" xml:space="preserve">
+    <value>移动量（帧）</value>
+  </data>
+  <data name="menu_uveditor_setmanualuv" xml:space="preserve">
+    <value>将手动 UV 设置为全部</value>
+  </data>
+  <data name="menu_uveditor_selectedframes" xml:space="preserve">
+    <value>选定的帧</value>
+  </data>
+  <data name="menu_uveditor_setvalues" xml:space="preserve">
+    <value>设定值</value>
+  </data>
+  <data name="menu_uveditor_cancel" xml:space="preserve">
+    <value>取消</value>
+  </data>
+  <data name="menu_uveditor_restore" xml:space="preserve">
+    <value>恢复</value>
+  </data>
+  <data name="menu_uveditor_ok" xml:space="preserve">
+    <value>好的</value>
+  </data>
+  <data name="menu_filter" xml:space="preserve">
+    <value>筛选</value>
+  </data>
+  <data name="menu_filter_title" xml:space="preserve">
+    <value>高级过滤器</value>
+  </data>
+  <data name="menu_uveditor_title" xml:space="preserve">
+    <value>紫外线编辑器</value>
+  </data>
 </root>

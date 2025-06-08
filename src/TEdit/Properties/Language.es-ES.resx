@@ -1362,4 +1362,88 @@ Presione reintentar para elegir una nueva carpeta o cancelar para usar {0} como 
   <data name="wp_fixbackground" xml:space="preserve">
     <value>Arreglar fondo</value>
   </data>
+  <data name="menu_filter_header_tiles" xml:space="preserve">
+    <value>Azulejos</value>
+  </data>
+  <data name="menu_filter_header_walls" xml:space="preserve">
+    <value>Paredes</value>
+  </data>
+  <data name="menu_filter_header_liquids" xml:space="preserve">
+    <value>Líquidos</value>
+  </data>
+  <data name="menu_filter_header_wires" xml:space="preserve">
+    <value>alambres</value>
+  </data>
+  <data name="menu_filter_tab_searchname" xml:space="preserve">
+    <value>Nombre</value>
+  </data>
+  <data name="menu_filter_tab_check_all" xml:space="preserve">
+    <value>Verificar todo</value>
+  </data>
+  <data name="menu_filter_tab_uncheck_all" xml:space="preserve">
+    <value>Desmarcar todo</value>
+  </data>
+  <data name="menu_filter_filtermode" xml:space="preserve">
+    <value>Modo de filtro</value>
+  </data>
+  <data name="menu_filter_backgroundmode" xml:space="preserve">
+    <value>Modo de fondo</value>
+  </data>
+  <data name="menu_filter_hide" xml:space="preserve">
+    <value>Esconder</value>
+  </data>
+  <data name="menu_filter_grayscale" xml:space="preserve">
+    <value>Escala de grises</value>
+  </data>
+  <data name="menu_filter_normal" xml:space="preserve">
+    <value>Normal</value>
+  </data>
+  <data name="menu_filter_transparent" xml:space="preserve">
+    <value>Transparente</value>
+  </data>
+  <data name="menu_filter_custom" xml:space="preserve">
+    <value>Costumbre</value>
+  </data>
+  <data name="menu_filter_cancel" xml:space="preserve">
+    <value>Cancelar</value>
+  </data>
+  <data name="menu_filter_disable" xml:space="preserve">
+    <value>Desactivar</value>
+  </data>
+  <data name="menu_filter_apply" xml:space="preserve">
+    <value>Aplicar</value>
+  </data>
+  <data name="menu_uveditor_moveallframes" xml:space="preserve">
+    <value>Mover todos los cuadros</value>
+  </data>
+  <data name="menu_uveditor_moveamount" xml:space="preserve">
+    <value>Cantidad de movimiento (fotogramas)</value>
+  </data>
+  <data name="menu_uveditor_setmanualuv" xml:space="preserve">
+    <value>Establecer UV manuales en todos</value>
+  </data>
+  <data name="menu_uveditor_selectedframes" xml:space="preserve">
+    <value>Marcos seleccionados</value>
+  </data>
+  <data name="menu_uveditor_setvalues" xml:space="preserve">
+    <value>Establecer valores</value>
+  </data>
+  <data name="menu_uveditor_cancel" xml:space="preserve">
+    <value>Cancelar</value>
+  </data>
+  <data name="menu_uveditor_restore" xml:space="preserve">
+    <value>Restaurar</value>
+  </data>
+  <data name="menu_uveditor_ok" xml:space="preserve">
+    <value>DE ACUERDO</value>
+  </data>
+  <data name="menu_filter" xml:space="preserve">
+    <value>Filtrar</value>
+  </data>
+  <data name="menu_filter_title" xml:space="preserve">
+    <value>Filtro avanzado</value>
+  </data>
+  <data name="menu_uveditor_title" xml:space="preserve">
+    <value>Editor UV</value>
+  </data>
 </root>

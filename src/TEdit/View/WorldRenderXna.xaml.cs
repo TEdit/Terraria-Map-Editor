@@ -26,6 +26,7 @@ using TEdit.Geometry;
 using TEdit.Common;
 using TEdit.Configuration;
 using TEdit.UI;
+using TEdit.View.Popups;
 
 namespace TEdit.View;
 
@@ -660,8 +661,18 @@ public partial class WorldRenderXna : UserControl
         //AlphaDestinationBlend = Blend.One
     };
 
+    private World? _lastRenderedWorld = null;
     private void Render(GraphicsDeviceEventArgs e)
     {
+        // Clear all filters and the grayscale cache only when the world changes.
+        // Hack: Using .CurrentWorld will always clear cache on world load.
+        if (_wvm.CurrentWorld != _lastRenderedWorld)
+        {
+            FilterManager.ClearAll();
+            GrayscaleManager.GrayscaleCache.Clear();
+            _lastRenderedWorld = _wvm.CurrentWorld;
+        }
+
         // Clear the graphics device and texture buffer
         //e.GraphicsDevice.Clear(TileColor.Black);
         e.GraphicsDevice.Textures[0] = null;
@@ -903,6 +914,9 @@ public partial class WorldRenderXna : UserControl
     {
         if (!AreTexturesVisible()) return;
 
+        // Check if the background mode is normal. If not, return.
+        if (FilterManager.CurrentBackgroundMode != FilterManager.BackgroundMode.Normal) return;
+
         Rectangle visibleBounds = GetViewingArea();
         BlendRules blendRules = BlendRules.Instance;
 
@@ -937,6 +951,7 @@ public partial class WorldRenderXna : UserControl
                             backX = _wvm.CurrentWorld.CaveBackStyle3;
                         var source = new Rectangle(0, 0, 16, 16);
                         var backTex = _textureDictionary.GetBackground(0);
+
                         if (y < _wvm.CurrentWorld.GroundLevel)
                         {
                             backTex = _textureDictionary.GetBackground(0);
@@ -1003,7 +1018,7 @@ public partial class WorldRenderXna : UserControl
 
     Texture2D wallTex;
 
-    private void DrawTileWalls(bool drawInverted = false)
+    public void DrawTileWalls(bool drawInverted = false)
     {
         Rectangle visibleBounds = GetViewingArea();
         BlendRules blendRules = BlendRules.Instance;
@@ -1028,15 +1043,31 @@ public partial class WorldRenderXna : UserControl
                     var curtile = _wvm.CurrentWorld.Tiles[x, y];
                     if ((curtile.WallColor == 30) != drawInverted) continue;
 
+                    // Hide all walls not within a filter when enabled.
+                    bool forceGrayscale = false;
+                    if (FilterManager.WallIsNotAllowed(curtile.Wall))
+                        if (FilterManager.CurrentFilterMode == FilterManager.FilterMode.Hide) continue;
+                        else if (FilterManager.CurrentFilterMode == FilterManager.FilterMode.Grayscale) forceGrayscale = true;
+
+                    /// <summary>
+                    /// Returns the tile at (nx, ny) if within bounds; otherwise returns null.
+                    /// Use this for wall neighbor lookups (no filter checks).
+                    /// </summary>
+                    Tile GetWallNeighbor(int nx, int ny)
+                    {
+                        if (nx < 0 || ny < 0 || nx >= width || ny >= height) return null;
+                        return _wvm.CurrentWorld.Tiles[nx, ny];
+                    }
+
                     //Neighbor tiles are often used when dynamically determining which UV position to render
-                    neighborTile[e] = (x + 1) < width ? _wvm.CurrentWorld.Tiles[x + 1, y] : null;
-                    neighborTile[n] = (y - 1) > 0 ? _wvm.CurrentWorld.Tiles[x, y - 1] : null;
-                    neighborTile[w] = (x - 1) > 0 ? _wvm.CurrentWorld.Tiles[x - 1, y] : null;
-                    neighborTile[s] = (y + 1) < height ? _wvm.CurrentWorld.Tiles[x, y + 1] : null;
-                    neighborTile[ne] = (x + 1) < width && (y - 1) > 0 ? _wvm.CurrentWorld.Tiles[x + 1, y - 1] : null;
-                    neighborTile[nw] = (x - 1) > 0 && (y - 1) > 0 ? _wvm.CurrentWorld.Tiles[x - 1, y - 1] : null;
-                    neighborTile[sw] = (x - 1) > 0 && (y + 1) < height ? _wvm.CurrentWorld.Tiles[x - 1, y + 1] : null;
-                    neighborTile[se] = (x + 1) < width && (y + 1) < height ? _wvm.CurrentWorld.Tiles[x + 1, y + 1] : null;
+                    neighborTile[e] = GetWallNeighbor(x + 1, y);
+                    neighborTile[n] = GetWallNeighbor(x, y - 1);
+                    neighborTile[w] = GetWallNeighbor(x - 1, y);
+                    neighborTile[s] = GetWallNeighbor(x, y + 1);
+                    neighborTile[ne] = GetWallNeighbor(x + 1, y - 1);
+                    neighborTile[nw] = GetWallNeighbor(x - 1, y - 1);
+                    neighborTile[sw] = GetWallNeighbor(x - 1, y + 1);
+                    neighborTile[se] = GetWallNeighbor(x + 1, y + 1);
 
                     if (_wvm.ShowWalls)
                     {
@@ -1103,8 +1134,15 @@ public partial class WorldRenderXna : UserControl
                                 var source = new Rectangle((curtile.uvWallCache & 0x00FF) * (texsize.X + 4), (curtile.uvWallCache >> 8) * (texsize.Y + 4), texsize.X, texsize.Y);
                                 var dest = new Rectangle(1 + (int)((_scrollPosition.X + x - 0.5) * _zoom), 1 + (int)((_scrollPosition.Y + y - 0.5) * _zoom), (int)_zoom * 2, (int)_zoom * 2);
 
-                                _spriteBatch.Draw(wallTex, dest, source, wallPaintColor, 0f, default, SpriteEffects.None, LayerTileWallTextures);
-
+                                if (forceGrayscale) // Check if to force grayscale via the filter manager.
+                                {
+                                    // Get or create grayscale version of this subtexture. // Paint color should also be gray.
+                                    Texture2D grayTex = GrayscaleManager.GrayscaleCache.GetOrCreate(_spriteBatch.GraphicsDevice, wallTex, source);
+                                    Color grayedPaint = GrayscaleManager.ToGrayscale(wallPaintColor);
+                                    _spriteBatch.Draw(grayTex, dest, new Rectangle(0, 0, source.Width, source.Height), grayedPaint, 0f, default, SpriteEffects.None, LayerTileWallTextures);
+                                }
+                                else
+                                    _spriteBatch.Draw(wallTex, dest, source, wallPaintColor, 0f, default, SpriteEffects.None, LayerTileWallTextures);
                             }
                         }
                     }
@@ -1118,7 +1156,7 @@ public partial class WorldRenderXna : UserControl
     }
 
     Texture2D tileTex;
-    private void DrawTileTextures(bool drawInverted = false)
+    public void DrawTileTextures(bool drawInverted = false)
     {
         Rectangle visibleBounds = GetViewingArea();
         BlendRules blendRules = BlendRules.Instance;
@@ -1148,18 +1186,35 @@ public partial class WorldRenderXna : UserControl
                     if (curtile.Type >= WorldConfiguration.TileProperties.Count) { continue; }
                     var tileprop = WorldConfiguration.GetTileProperties(curtile.Type);
 
+                    // Hide all tiles not within a filter when enabled.
+                    bool forceGrayscale = false;
+                    if (FilterManager.TileIsNotAllowed(curtile.Type))
+                        if (FilterManager.CurrentFilterMode == FilterManager.FilterMode.Hide) continue;
+                        else if (FilterManager.CurrentFilterMode == FilterManager.FilterMode.Grayscale) forceGrayscale = true;
+
+                    /// <summary>
+                    /// Returns the tile at (nx, ny) unless it's out of bounds or filtered out (when filter mode is Hide).
+                    /// If filtered, returns Tile.Empty (treated as air/inactive).
+                    /// </summary>
+                    Tile GetNeighbor(int nx, int ny)
+                    {
+                        if (nx < 0 || ny < 0 || nx >= width || ny >= height) return null;
+                        var t = _wvm.CurrentWorld.Tiles[nx, ny];
+                        if (FilterManager.TileIsNotAllowed(t.Type) && FilterManager.CurrentFilterMode == FilterManager.FilterMode.Hide)
+                            return Tile.Empty;
+                        return t;
+                    }
+
                     //Neighbor tiles are often used when dynamically determining which UV position to render
                     //Tile[] neighborTile = new Tile[8];
-                    neighborTile[e] = (x + 1) < width ? _wvm.CurrentWorld.Tiles[x + 1, y] : null;
-                    neighborTile[n] = (y - 1) > 0 ? _wvm.CurrentWorld.Tiles[x, y - 1] : null;
-                    neighborTile[w] = (x - 1) > 0 ? _wvm.CurrentWorld.Tiles[x - 1, y] : null;
-                    neighborTile[s] = (y + 1) < height ? _wvm.CurrentWorld.Tiles[x, y + 1] : null;
-                    neighborTile[ne] = (x + 1) < width && (y - 1) > 0 ? _wvm.CurrentWorld.Tiles[x + 1, y - 1] : null;
-                    neighborTile[nw] = (x - 1) > 0 && (y - 1) > 0 ? _wvm.CurrentWorld.Tiles[x - 1, y - 1] : null;
-                    neighborTile[sw] = (x - 1) > 0 && (y + 1) < height ? _wvm.CurrentWorld.Tiles[x - 1, y + 1] : null;
-                    neighborTile[se] = (x + 1) < width && (y + 1) < height ? _wvm.CurrentWorld.Tiles[x + 1, y + 1] : null;
-
-
+                    neighborTile[e] = GetNeighbor(x + 1, y);
+                    neighborTile[n] = GetNeighbor(x, y - 1);
+                    neighborTile[w] = GetNeighbor(x - 1, y);
+                    neighborTile[s] = GetNeighbor(x, y + 1);
+                    neighborTile[ne] = GetNeighbor(x + 1, y - 1);
+                    neighborTile[nw] = GetNeighbor(x - 1, y - 1);
+                    neighborTile[sw] = GetNeighbor(x - 1, y + 1);
+                    neighborTile[se] = GetNeighbor(x + 1, y + 1);
 
                     if (_wvm.ShowTiles)
                     {
@@ -1463,9 +1518,29 @@ public partial class WorldRenderXna : UserControl
                                                 break;
                                         }
                                         if (curtile.U % 100 < 36)
-                                            _spriteBatch.Draw(tileTex, dest, source, tilePaintColor, 0f, default, SpriteEffects.FlipHorizontally, LayerTileTrack);
+                                        {
+                                            if (forceGrayscale) // Check if to force grayscale via the filter manager.
+                                            {
+                                                // Get or create grayscale version of this subtexture. // Paint color should also be gray.
+                                                Texture2D grayTex = GrayscaleManager.GrayscaleCache.GetOrCreate(_spriteBatch.GraphicsDevice, tileTex, source);
+                                                Color grayedPaint = GrayscaleManager.ToGrayscale(tilePaintColor);
+                                                _spriteBatch.Draw(grayTex, dest, new Rectangle(0, 0, source.Width, source.Height), grayedPaint, 0f, default, SpriteEffects.FlipHorizontally, LayerTileTrack);
+                                            }
+                                            else
+                                                _spriteBatch.Draw(tileTex, dest, source, tilePaintColor, 0f, default, SpriteEffects.FlipHorizontally, LayerTileTrack);
+                                        }
                                         else
-                                            _spriteBatch.Draw(tileTex, dest, source, tilePaintColor, 0f, default, SpriteEffects.None, LayerTileTrack);
+                                        {
+                                            if (forceGrayscale) // Check if to force grayscale via the filter manager.
+                                            {
+                                                // Get or create grayscale version of this subtexture. // Paint color should also be gray.
+                                                Texture2D grayTex = GrayscaleManager.GrayscaleCache.GetOrCreate(_spriteBatch.GraphicsDevice, tileTex, source);
+                                                Color grayedPaint = GrayscaleManager.ToGrayscale(tilePaintColor);
+                                                _spriteBatch.Draw(grayTex, dest, new Rectangle(0, 0, source.Width, source.Height), grayedPaint, 0f, default, SpriteEffects.None, LayerTileTrack);
+                                            }
+                                            else
+                                                _spriteBatch.Draw(tileTex, dest, source, tilePaintColor, 0f, default, SpriteEffects.None, LayerTileTrack);
+                                        }
                                         tileTex = _textureDictionary.GetTile(curtile.Type);
                                         source = new Rectangle((curtile.U % 100), curtile.V, tileprop.TextureGrid.X, tileprop.TextureGrid.Y);
                                         dest = new Rectangle(1 + (int)((_scrollPosition.X + x) * _zoom), 1 + (int)((_scrollPosition.Y + y) * _zoom), (int)_zoom, (int)_zoom);
@@ -1495,7 +1570,16 @@ public partial class WorldRenderXna : UserControl
                                             {
                                                 effect = SpriteEffects.FlipHorizontally;
                                             }
-                                            _spriteBatch.Draw(tileTex, new Vector2(1 + (int)((_scrollPosition.X + x + 1.5) * _zoom), 1 + (int)((_scrollPosition.Y + y + .5) * _zoom)), source, tilePaintColor, 0f, new Vector2((float)(tileTex.Width / 2), (float)(tileTex.Height / 2)), scale * _zoom / 16f, effect, LayerTileTrack);
+
+                                            if (forceGrayscale) // Check if to force grayscale via the filter manager.
+                                            {
+                                                // Get or create grayscale version of this subtexture. // Paint color should also be gray.
+                                                Texture2D grayTex = GrayscaleManager.GrayscaleCache.GetOrCreate(_spriteBatch.GraphicsDevice, tileTex, source);
+                                                Color grayedPaint = GrayscaleManager.ToGrayscale(tilePaintColor);
+                                                _spriteBatch.Draw(grayTex, new Vector2(1 + (int)((_scrollPosition.X + x + 1.5) * _zoom), 1 + (int)((_scrollPosition.Y + y + .5) * _zoom)), new Rectangle(0, 0, source.Width, source.Height), grayedPaint, 0f, new Vector2((float)(tileTex.Width / 2), (float)(tileTex.Height / 2)), scale * _zoom / 16f, effect, LayerTileTrack);
+                                            }
+                                            else
+                                                _spriteBatch.Draw(tileTex, new Vector2(1 + (int)((_scrollPosition.X + x + 1.5) * _zoom), 1 + (int)((_scrollPosition.Y + y + .5) * _zoom)), source, tilePaintColor, 0f, new Vector2((float)(tileTex.Width / 2), (float)(tileTex.Height / 2)), scale * _zoom / 16f, effect, LayerTileTrack);
                                         }
                                         source = new Rectangle(((curtile.U / 5000) - 1) * 18, curtile.V, tileprop.TextureGrid.X, tileprop.TextureGrid.Y);
                                         tileTex = _textureDictionary.GetTile(curtile.Type);
@@ -1523,19 +1607,15 @@ public partial class WorldRenderXna : UserControl
                                                     scale *= itemProps?.Scale ?? 1.0f;
                                                 }
                                                 source = new Rectangle(0, 0, tileTex.Width, tileTex.Height);
-                                                _spriteBatch.Draw(
-                                                    tileTex,
-                                                    new Vector2(
-                                                        1 + (int)((_scrollPosition.X + x + 1) * _zoom),
-                                                        1 + (int)((_scrollPosition.Y + y + 1) * _zoom)),
-                                                    source,
-                                                    Color.White,
-                                                    0f,
-                                                    new Vector2((float)(tileTex.Width / 2),
-                                                    (float)(tileTex.Height / 2)),
-                                                    scale * _zoom / 16f,
-                                                    SpriteEffects.None,
-                                                    LayerTileTrack);
+
+                                                if (forceGrayscale) // Check if to force grayscale via the filter manager.
+                                                {
+                                                    // Get or create grayscale version of this subtexture.
+                                                    Texture2D grayTex = GrayscaleManager.GrayscaleCache.GetOrCreate(_spriteBatch.GraphicsDevice, tileTex, source);
+                                                    _spriteBatch.Draw(grayTex, new Vector2(1 + (int)((_scrollPosition.X + x + 1) * _zoom), 1 + (int)((_scrollPosition.Y + y + 1) * _zoom)), source, Color.White, 0f, new Vector2((float)(tileTex.Width / 2), (float)(tileTex.Height / 2)), scale * _zoom / 16f, SpriteEffects.None, LayerTileTrack);
+                                                }
+                                                else
+                                                    _spriteBatch.Draw(tileTex, new Vector2(1 + (int)((_scrollPosition.X + x + 1) * _zoom), 1 + (int)((_scrollPosition.Y + y + 1) * _zoom)), source, Color.White, 0f, new Vector2((float)(tileTex.Width / 2), (float)(tileTex.Height / 2)), scale * _zoom / 16f, SpriteEffects.None, LayerTileTrack);
                                             }
                                         }
                                         source = new Rectangle(curtile.U, curtile.V, tileprop.TextureGrid.X, tileprop.TextureGrid.Y);
@@ -1568,35 +1648,30 @@ public partial class WorldRenderXna : UserControl
 
                                                 float scale = 1f;
 
-                                                _spriteBatch.Draw(tileTex,
-                                                    new Vector2(
-                                                        1 + (int)((_scrollPosition.X + x + 0.5) * _zoom),
-                                                        1 + (int)((_scrollPosition.Y + y + 1) * _zoom)),
-                                                    source,
-                                                    tilePaintColor,
-                                                    0f,
-                                                    new Vector2((float)(source.Width / 2),
-                                                    (float)(source.Height)),
-                                                    scale * _zoom / 16f,
-                                                    effect,
-                                                    LayerTileTrack);
+                                                if (forceGrayscale) // Check if to force grayscale via the filter manager.
+                                                {
+                                                    // Get or create grayscale version of this subtexture. // Paint color should also be gray.
+                                                    Texture2D grayTex = GrayscaleManager.GrayscaleCache.GetOrCreate(_spriteBatch.GraphicsDevice, tileTex, source);
+                                                    Color grayedPaint = GrayscaleManager.ToGrayscale(tilePaintColor);
+                                                    _spriteBatch.Draw(grayTex, new Vector2(1 + (int)((_scrollPosition.X + x + 0.5) * _zoom), 1 + (int)((_scrollPosition.Y + y + 1) * _zoom)), new Rectangle(0, 0, source.Width, source.Height), grayedPaint, 0f, new Vector2((float)(source.Width / 2), (float)(source.Height)), scale * _zoom / 16f, effect, LayerTileTrack);
+                                                }
+                                                else
+                                                    _spriteBatch.Draw(tileTex, new Vector2(1 + (int)((_scrollPosition.X + x + 0.5) * _zoom), 1 + (int)((_scrollPosition.Y + y + 1) * _zoom)), source, tilePaintColor, 0f, new Vector2((float)(source.Width / 2), (float)(source.Height)), scale * _zoom / 16f, effect, LayerTileTrack);
                                             }
                                             //else
                                             {
                                                 tileTex = _textureDictionary.GetTile(curtile.Type);
                                                 source = (curtile.U == 0) ? tileTex.Frame(2, 1, 0, 0, 0, 0) : tileTex.Frame(2, 1, 1, 0, 0, 0);
-                                                _spriteBatch.Draw(tileTex,
-                                                     new Vector2(
-                                                         1 + (int)((_scrollPosition.X + x + 1) * _zoom),
-                                                         1 + (int)((_scrollPosition.Y + y + 0.5) * _zoom)),
-                                                     source,
-                                                     tilePaintColor,
-                                                     0f,
-                                                     new Vector2((float)(tileTex.Width / 2),
-                                                     (float)(tileTex.Height / 2)),
-                                                     1f * _zoom / 16f,
-                                                     effect,
-                                                     LayerTileTextures);
+
+                                                if (forceGrayscale) // Check if to force grayscale via the filter manager.
+                                                {
+                                                    // Get or create grayscale version of this subtexture. // Paint color should also be gray.
+                                                    Texture2D grayTex = GrayscaleManager.GrayscaleCache.GetOrCreate(_spriteBatch.GraphicsDevice, tileTex, source);
+                                                    Color grayedPaint = GrayscaleManager.ToGrayscale(tilePaintColor);
+                                                    _spriteBatch.Draw(grayTex, new Vector2(1 + (int)((_scrollPosition.X + x + 1) * _zoom), 1 + (int)((_scrollPosition.Y + y + 0.5) * _zoom)), new Rectangle(0, 0, source.Width, source.Height), grayedPaint, 0f, new Vector2((float)(tileTex.Width / 2), (float)(tileTex.Height / 2)), 1f * _zoom / 16f, effect, LayerTileTextures);
+                                                }
+                                                else
+                                                    _spriteBatch.Draw(tileTex, new Vector2(1 + (int)((_scrollPosition.X + x + 1) * _zoom), 1 + (int)((_scrollPosition.Y + y + 0.5) * _zoom)), source, tilePaintColor, 0f, new Vector2((float)(tileTex.Width / 2), (float)(tileTex.Height / 2)), 1f * _zoom / 16f, effect, LayerTileTextures);
                                             }
                                         }
                                     }
@@ -1614,25 +1689,61 @@ public partial class WorldRenderXna : UserControl
                                             {
                                                 tileTex = (Texture2D)_textureDictionary.GetMisc("Xmas_3");
                                                 source.X = 66 * (star - 1);
-                                                _spriteBatch.Draw(tileTex, dest, source, tilePaintColor, 0f, default, SpriteEffects.None, LayerTileTrack);
+
+                                                if (forceGrayscale) // Check if to force grayscale via the filter manager.
+                                                {
+                                                    // Get or create grayscale version of this subtexture. // Paint color should also be gray.
+                                                    Texture2D grayTex = GrayscaleManager.GrayscaleCache.GetOrCreate(_spriteBatch.GraphicsDevice, tileTex, source);
+                                                    Color grayedPaint = GrayscaleManager.ToGrayscale(tilePaintColor);
+                                                    _spriteBatch.Draw(grayTex, dest, new Rectangle(0, 0, source.Width, source.Height), grayedPaint, 0f, default, SpriteEffects.None, LayerTileTrack);
+                                                }
+                                                else
+                                                    _spriteBatch.Draw(tileTex, dest, source, tilePaintColor, 0f, default, SpriteEffects.None, LayerTileTrack);
                                             }
                                             if (garland > 0)
                                             {
                                                 tileTex = (Texture2D)_textureDictionary.GetMisc("Xmas_1");
                                                 source.X = 66 * (garland - 1);
-                                                _spriteBatch.Draw(tileTex, dest, source, tilePaintColor, 0f, default, SpriteEffects.None, LayerTileTrack);
+
+                                                if (forceGrayscale) // Check if to force grayscale via the filter manager.
+                                                {
+                                                    // Get or create grayscale version of this subtexture. // Paint color should also be gray.
+                                                    Texture2D grayTex = GrayscaleManager.GrayscaleCache.GetOrCreate(_spriteBatch.GraphicsDevice, tileTex, source);
+                                                    Color grayedPaint = GrayscaleManager.ToGrayscale(tilePaintColor);
+                                                    _spriteBatch.Draw(grayTex, dest, new Rectangle(0, 0, source.Width, source.Height), grayedPaint, 0f, default, SpriteEffects.None, LayerTileTrack);
+                                                }
+                                                else
+                                                    _spriteBatch.Draw(tileTex, dest, source, tilePaintColor, 0f, default, SpriteEffects.None, LayerTileTrack);
                                             }
                                             if (bulb > 0)
                                             {
                                                 tileTex = (Texture2D)_textureDictionary.GetMisc("Xmas_2");
                                                 source.X = 66 * (bulb - 1);
-                                                _spriteBatch.Draw(tileTex, dest, source, tilePaintColor, 0f, default, SpriteEffects.None, LayerTileTrack);
+
+                                                if (forceGrayscale) // Check if to force grayscale via the filter manager.
+                                                {
+                                                    // Get or create grayscale version of this subtexture. // Paint color should also be gray.
+                                                    Texture2D grayTex = GrayscaleManager.GrayscaleCache.GetOrCreate(_spriteBatch.GraphicsDevice, tileTex, source);
+                                                    Color grayedPaint = GrayscaleManager.ToGrayscale(tilePaintColor);
+                                                    _spriteBatch.Draw(grayTex, dest, new Rectangle(0, 0, source.Width, source.Height), grayedPaint, 0f, default, SpriteEffects.None, LayerTileTrack);
+                                                }
+                                                else
+                                                    _spriteBatch.Draw(tileTex, dest, source, tilePaintColor, 0f, default, SpriteEffects.None, LayerTileTrack);
                                             }
                                             if (light > 0)
                                             {
                                                 tileTex = (Texture2D)_textureDictionary.GetMisc("Xmas_4");
                                                 source.X = 66 * (light - 1);
-                                                _spriteBatch.Draw(tileTex, dest, source, tilePaintColor, 0f, default, SpriteEffects.None, LayerTileTrack);
+
+                                                if (forceGrayscale) // Check if to force grayscale via the filter manager.
+                                                {
+                                                    // Get or create grayscale version of this subtexture. // Paint color should also be gray.
+                                                    Texture2D grayTex = GrayscaleManager.GrayscaleCache.GetOrCreate(_spriteBatch.GraphicsDevice, tileTex, source);
+                                                    Color grayedPaint = GrayscaleManager.ToGrayscale(tilePaintColor);
+                                                    _spriteBatch.Draw(grayTex, dest, new Rectangle(0, 0, source.Width, source.Height), grayedPaint, 0f, default, SpriteEffects.None, LayerTileTrack);
+                                                }
+                                                else
+                                                    _spriteBatch.Draw(tileTex, dest, source, tilePaintColor, 0f, default, SpriteEffects.None, LayerTileTrack);
                                             }
                                             source.X = 0;
                                             tileTex = (Texture2D)_textureDictionary.GetMisc("Xmas_0");
@@ -1647,21 +1758,48 @@ public partial class WorldRenderXna : UserControl
                                             Vector2Int32 uvback = TrackUV(curtile.V);
                                             source.X = uvback.X * (source.Width + 2);
                                             source.Y = uvback.Y * (source.Height + 2);
-                                            _spriteBatch.Draw(tileTex, dest, source, tilePaintColor, 0f, default, SpriteEffects.None, LayerTileTrackBack);
+
+                                            if (forceGrayscale) // Check if to force grayscale via the filter manager.
+                                            {
+                                                // Get or create grayscale version of this subtexture. // Paint color should also be gray.
+                                                Texture2D grayTex = GrayscaleManager.GrayscaleCache.GetOrCreate(_spriteBatch.GraphicsDevice, tileTex, source);
+                                                Color grayedPaint = GrayscaleManager.ToGrayscale(tilePaintColor);
+                                                _spriteBatch.Draw(grayTex, dest, new Rectangle(0, 0, source.Width, source.Height), grayedPaint, 0f, default, SpriteEffects.None, LayerTileTrackBack);
+                                            }
+                                            else
+                                                _spriteBatch.Draw(tileTex, dest, source, tilePaintColor, 0f, default, SpriteEffects.None, LayerTileTrackBack);
                                         }
                                         if ((curtile.U >= 2 && curtile.U <= 3) || (curtile.U >= 10 && curtile.U <= 13))
                                         { // Adding regular endcap
                                             dest.Y = 1 + (int)((_scrollPosition.Y + y - 1) * _zoom);
                                             source.X = 0;
                                             source.Y = 126;
-                                            _spriteBatch.Draw(tileTex, dest, source, tilePaintColor, 0f, default, SpriteEffects.None, LayerTileTrack);
+
+                                            if (forceGrayscale) // Check if to force grayscale via the filter manager.
+                                            {
+                                                // Get or create grayscale version of this subtexture. // Paint color should also be gray.
+                                                Texture2D grayTex = GrayscaleManager.GrayscaleCache.GetOrCreate(_spriteBatch.GraphicsDevice, tileTex, source);
+                                                Color grayedPaint = GrayscaleManager.ToGrayscale(tilePaintColor);
+                                                _spriteBatch.Draw(grayTex, dest, new Rectangle(0, 0, source.Width, source.Height), grayedPaint, 0f, default, SpriteEffects.None, LayerTileTrack);
+                                            }
+                                            else
+                                                _spriteBatch.Draw(tileTex, dest, source, tilePaintColor, 0f, default, SpriteEffects.None, LayerTileTrack);
                                         }
                                         if (curtile.U >= 24 && curtile.U <= 29)
                                         { // Adding bumper endcap
                                             dest.Y = 1 + (int)((_scrollPosition.Y + y - 1) * _zoom);
                                             source.X = 18;
                                             source.Y = 126;
-                                            _spriteBatch.Draw(tileTex, dest, source, tilePaintColor, 0f, default, SpriteEffects.None, LayerTileTrack);
+
+                                            if (forceGrayscale) // Check if to force grayscale via the filter manager.
+                                            {
+                                                // Get or create grayscale version of this subtexture. // Paint color should also be gray.
+                                                Texture2D grayTex = GrayscaleManager.GrayscaleCache.GetOrCreate(_spriteBatch.GraphicsDevice, tileTex, source);
+                                                Color grayedPaint = GrayscaleManager.ToGrayscale(tilePaintColor);
+                                                _spriteBatch.Draw(grayTex, dest, new Rectangle(0, 0, source.Width, source.Height), grayedPaint, 0f, default, SpriteEffects.None, LayerTileTrack);
+                                            }
+                                            else
+                                                _spriteBatch.Draw(tileTex, dest, source, tilePaintColor, 0f, default, SpriteEffects.None, LayerTileTrack);
                                         }
                                         if (curtile.U == 4 || curtile.U == 9 || curtile.U == 10 || curtile.U == 16 || curtile.U == 26 || curtile.U == 33 || curtile.U == 35 || curtile.V == 4)
                                         { // Adding angle track bottom right
@@ -1673,7 +1811,15 @@ public partial class WorldRenderXna : UserControl
                                                 Rectangle? sourceSlice = new Rectangle(source.X + slice * 2, source.Y, 2, 12 - slice * 2);
                                                 Vector2 destSlice = new Vector2((int)(dest.X + slice * _zoom / 8.0f), dest.Y);
 
-                                                _spriteBatch.Draw(tileTex, destSlice, sourceSlice, tilePaintColor, 0f, default, _zoom / 16, SpriteEffects.None, LayerTileTrack);
+                                                if (forceGrayscale) // Check if to force grayscale via the filter manager.
+                                                {
+                                                    // Get or create grayscale version of this subtexture. // Paint color should also be gray.
+                                                    Texture2D grayTex = GrayscaleManager.GrayscaleCache.GetOrCreate(_spriteBatch.GraphicsDevice, tileTex, source);
+                                                    Color grayedPaint = GrayscaleManager.ToGrayscale(tilePaintColor);
+                                                    _spriteBatch.Draw(grayTex, destSlice, sourceSlice, grayedPaint, 0f, default, _zoom / 16, SpriteEffects.None, LayerTileTrack);
+                                                }
+                                                else
+                                                    _spriteBatch.Draw(tileTex, destSlice, sourceSlice, tilePaintColor, 0f, default, _zoom / 16, SpriteEffects.None, LayerTileTrack);
                                             }
                                         }
                                         if (curtile.U == 5 || curtile.U == 8 || curtile.U == 11 || curtile.U == 17 || curtile.U == 27 || curtile.U == 32 || curtile.U == 34 || curtile.V == 5)
@@ -1686,7 +1832,15 @@ public partial class WorldRenderXna : UserControl
                                                 Rectangle? sourceSlice = new Rectangle(source.X + slice * 2, source.Y, 2, slice * 2 - 2);
                                                 Vector2 destSlice = new Vector2((int)(dest.X + slice * _zoom / 8.0f), dest.Y);
 
-                                                _spriteBatch.Draw(tileTex, destSlice, sourceSlice, tilePaintColor, 0f, default, _zoom / 16, SpriteEffects.None, LayerTileTrack);
+                                                if (forceGrayscale) // Check if to force grayscale via the filter manager.
+                                                {
+                                                    // Get or create grayscale version of this subtexture. // Paint color should also be gray.
+                                                    Texture2D grayTex = GrayscaleManager.GrayscaleCache.GetOrCreate(_spriteBatch.GraphicsDevice, tileTex, source);
+                                                    Color grayedPaint = GrayscaleManager.ToGrayscale(tilePaintColor);
+                                                    _spriteBatch.Draw(grayTex, destSlice, sourceSlice, grayedPaint, 0f, default, _zoom / 16, SpriteEffects.None, LayerTileTrack);
+                                                }
+                                                else
+                                                    _spriteBatch.Draw(tileTex, destSlice, sourceSlice, tilePaintColor, 0f, default, _zoom / 16, SpriteEffects.None, LayerTileTrack);
                                             }
                                         }
                                         dest.Y = 1 + (int)((_scrollPosition.Y + y) * _zoom);
@@ -1857,11 +2011,28 @@ public partial class WorldRenderXna : UserControl
                                         }
                                     }
 
-                                    _spriteBatch.Draw(tileTex, dest, source, curtile.InActive ? Color.Gray : tilePaintColor, 0f, default, SpriteEffects.None, LayerTileTextures);
+                                    if (forceGrayscale) // Check if to force grayscale via the filter manager.
+                                    {
+                                        // Get or create grayscale version of this subtexture. // Paint color should also be gray.
+                                        Texture2D grayTex = GrayscaleManager.GrayscaleCache.GetOrCreate(_spriteBatch.GraphicsDevice, tileTex, source);
+                                        Color grayedPaint = GrayscaleManager.ToGrayscale(curtile.InActive ? Color.Gray : tilePaintColor);
+                                        _spriteBatch.Draw(grayTex, dest, new Rectangle(0, 0, source.Width, source.Height), grayedPaint, 0f, default, SpriteEffects.None, LayerTileTextures);
+                                    }
+                                    else
+                                        _spriteBatch.Draw(tileTex, dest, source, curtile.InActive ? Color.Gray : tilePaintColor, 0f, default, SpriteEffects.None, LayerTileTextures);
+
                                     // Actuator Overlay
                                     if (curtile.Actuator && _wvm.ShowActuators)
-                                        _spriteBatch.Draw(_textureDictionary.Actuator, dest, _textureDictionary.ZeroSixteenRectangle, Color.White, 0f, default, SpriteEffects.None, LayerTileActuator);
-
+                                    {
+                                        if (forceGrayscale) // Check if to force grayscale via the filter manager.
+                                        {
+                                            // Get or create grayscale version of this subtexture.
+                                            Texture2D grayTex = GrayscaleManager.GrayscaleCache.GetOrCreate(_spriteBatch.GraphicsDevice, _textureDictionary.Actuator, source);
+                                            _spriteBatch.Draw(grayTex, dest, _textureDictionary.ZeroSixteenRectangle, Color.White, 0f, default, SpriteEffects.None, LayerTileActuator);
+                                        }
+                                        else
+                                            _spriteBatch.Draw(_textureDictionary.Actuator, dest, _textureDictionary.ZeroSixteenRectangle, Color.White, 0f, default, SpriteEffects.None, LayerTileActuator);
+                                    }
                                 }
                             }
                             else if (tileprop.IsPlatform)
@@ -1919,11 +2090,28 @@ public partial class WorldRenderXna : UserControl
                                     var source = new Rectangle((curtile.uvTileCache & 0x00FF) * (texsize.X + 2), (curtile.uvTileCache >> 8) * (texsize.Y + 2), texsize.X, texsize.Y);
                                     var dest = new Rectangle(1 + (int)((_scrollPosition.X + x) * _zoom), 1 + (int)((_scrollPosition.Y + y) * _zoom), (int)_zoom, (int)_zoom);
 
-                                    _spriteBatch.Draw(tileTex, dest, source, curtile.InActive ? Color.Gray : tilePaintColor, 0f, default, SpriteEffects.None, LayerTileTextures);
+                                    if (forceGrayscale) // Check if to force grayscale via the filter manager.
+                                    {
+                                        // Get or create grayscale version of this subtexture. // Paint color should also be gray.
+                                        Texture2D grayTex = GrayscaleManager.GrayscaleCache.GetOrCreate(_spriteBatch.GraphicsDevice, tileTex, source);
+                                        Color grayedPaint = GrayscaleManager.ToGrayscale(curtile.InActive ? Color.Gray : tilePaintColor);
+                                        _spriteBatch.Draw(grayTex, dest, new Rectangle(0, 0, source.Width, source.Height), grayedPaint, 0f, default, SpriteEffects.None, LayerTileTextures);
+                                    }
+                                    else
+                                        _spriteBatch.Draw(tileTex, dest, source, curtile.InActive ? Color.Gray : tilePaintColor, 0f, default, SpriteEffects.None, LayerTileTextures);
+
                                     // Actuator Overlay
                                     if (curtile.Actuator && _wvm.ShowActuators)
-                                        _spriteBatch.Draw(_textureDictionary.Actuator, dest, _textureDictionary.ZeroSixteenRectangle, Color.White, 0f, default, SpriteEffects.None, LayerTileActuator);
-
+                                    {
+                                        if (forceGrayscale) // Check if to force grayscale via the filter manager.
+                                        {
+                                            // Get or create grayscale version of this subtexture.
+                                            Texture2D grayTex = GrayscaleManager.GrayscaleCache.GetOrCreate(_spriteBatch.GraphicsDevice, _textureDictionary.Actuator, source);
+                                            _spriteBatch.Draw(grayTex, dest, _textureDictionary.ZeroSixteenRectangle, Color.White, 0f, default, SpriteEffects.None, LayerTileActuator);
+                                        }
+                                        else
+                                            _spriteBatch.Draw(_textureDictionary.Actuator, dest, _textureDictionary.ZeroSixteenRectangle, Color.White, 0f, default, SpriteEffects.None, LayerTileActuator);
+                                    }
                                 }
                             }
                             else if (tileprop.IsCactus)
@@ -2165,7 +2353,15 @@ public partial class WorldRenderXna : UserControl
                                     var source = new Rectangle(((curtile.uvTileCache & 0x00FF) % 8) * (texsize.X + 2), (curtile.uvTileCache >> 8) * (texsize.Y + 2), texsize.X, texsize.Y);
                                     var dest = new Rectangle(1 + (int)((_scrollPosition.X + x) * _zoom), 1 + (int)((_scrollPosition.Y + y) * _zoom), (int)_zoom, (int)_zoom);
 
-                                    _spriteBatch.Draw(tileTex, dest, source, tilePaintColor, 0f, default, SpriteEffects.None, LayerTileTextures);
+                                    if (forceGrayscale) // Check if to force grayscale via the filter manager.
+                                    {
+                                        // Get or create grayscale version of this subtexture. // Paint color should also be gray.
+                                        Texture2D grayTex = GrayscaleManager.GrayscaleCache.GetOrCreate(_spriteBatch.GraphicsDevice, tileTex, source);
+                                        Color grayedPaint = GrayscaleManager.ToGrayscale(tilePaintColor);
+                                        _spriteBatch.Draw(grayTex, dest, new Rectangle(0, 0, source.Width, source.Height), grayedPaint, 0f, default, SpriteEffects.None, LayerTileTextures);
+                                    }
+                                    else
+                                        _spriteBatch.Draw(tileTex, dest, source, tilePaintColor, 0f, default, SpriteEffects.None, LayerTileTextures);
                                 }
                             }
                             else if (tileprop.CanBlend || !(tileprop.IsFramed || tileprop.IsAnimated))
@@ -2264,7 +2460,6 @@ public partial class WorldRenderXna : UserControl
                                     var source = new Rectangle((curtile.uvTileCache & 0x00FF) * (texsize.X + 2), (curtile.uvTileCache >> 8) * (texsize.Y + 2), texsize.X, texsize.Y);
                                     var dest = new Rectangle(1 + (int)((_scrollPosition.X + x) * _zoom), 1 + (int)((_scrollPosition.Y + y) * _zoom), (int)_zoom, (int)_zoom);
 
-
                                     // hack for some slopes
                                     switch (curtile.BrickStyle)
                                     {
@@ -2273,7 +2468,16 @@ public partial class WorldRenderXna : UserControl
                                             source.Height /= 2;
                                             dest.Y += (int)(_zoom * 0.5);
                                             dest.Height = (int)(_zoom / 2.0f);
-                                            _spriteBatch.Draw(tileTex, dest, source, curtile.InActive ? Color.Gray : tilePaintColor, 0f, default, SpriteEffects.None, LayerTileTextures);
+
+                                            if (forceGrayscale) // Check if to force grayscale via the filter manager.
+                                            {
+                                                // Get or create grayscale version of this subtexture. // Paint color should also be gray.
+                                                Texture2D grayTex = GrayscaleManager.GrayscaleCache.GetOrCreate(_spriteBatch.GraphicsDevice, tileTex, source);
+                                                Color grayedPaint = GrayscaleManager.ToGrayscale(curtile.InActive ? Color.Gray : tilePaintColor);
+                                                _spriteBatch.Draw(grayTex, dest, new Rectangle(0, 0, source.Width, source.Height), grayedPaint, 0f, default, SpriteEffects.None, LayerTileTextures);
+                                            }
+                                            else
+                                                _spriteBatch.Draw(tileTex, dest, source, curtile.InActive ? Color.Gray : tilePaintColor, 0f, default, SpriteEffects.None, LayerTileTextures);
                                             break;
                                         case BrickStyle.SlopeTopRight:
 
@@ -2282,7 +2486,19 @@ public partial class WorldRenderXna : UserControl
                                                 Rectangle? sourceSlice = new Rectangle(source.X + slice * 2, source.Y, 2, 16 - slice * 2);
                                                 Vector2 destSlice = new Vector2((int)(dest.X + slice * _zoom / 8.0f), (int)(dest.Y + slice * _zoom / 8.0f));
 
-                                                _spriteBatch.Draw(tileTex, destSlice, sourceSlice, curtile.InActive ? Color.Gray : tilePaintColor, 0f, default, _zoom / 16, SpriteEffects.None, LayerTileTextures);
+                                                if (forceGrayscale) // Check if to force grayscale via the filter manager.
+                                                {
+                                                    // Get or create grayscale version of this subtexture. // Paint color should also be gray.
+                                                    Texture2D grayTex = GrayscaleManager.GrayscaleCache.GetOrCreate(_spriteBatch.GraphicsDevice, tileTex, source);
+                                                    Color grayedPaint = GrayscaleManager.ToGrayscale(curtile.InActive ? Color.Gray : tilePaintColor);
+
+                                                    // Compute region relative to the grayscale texture.
+                                                    Rectangle graySlice = new Rectangle(sourceSlice.Value.X - source.X, sourceSlice.Value.Y - source.Y, sourceSlice.Value.Width, sourceSlice.Value.Height);
+
+                                                    _spriteBatch.Draw(grayTex, destSlice, graySlice, grayedPaint, 0f, default, _zoom / 16, SpriteEffects.None, LayerTileTextures);
+                                                }
+                                                else
+                                                    _spriteBatch.Draw(tileTex, destSlice, sourceSlice, curtile.InActive ? Color.Gray : tilePaintColor, 0f, default, _zoom / 16, SpriteEffects.None, LayerTileTextures);
                                             }
 
                                             break;
@@ -2292,7 +2508,19 @@ public partial class WorldRenderXna : UserControl
                                                 Rectangle? sourceSlice = new Rectangle(source.X + slice * 2, source.Y, 2, slice * 2 + 2);
                                                 Vector2 destSlice = new Vector2((int)(dest.X + slice * _zoom / 8.0f), (int)(dest.Y + (7 - slice) * _zoom / 8.0f));
 
-                                                _spriteBatch.Draw(tileTex, destSlice, sourceSlice, curtile.InActive ? Color.Gray : tilePaintColor, 0f, default, _zoom / 16, SpriteEffects.None, LayerTileTextures);
+                                                if (forceGrayscale) // Check if to force grayscale via the filter manager.
+                                                {
+                                                    // Get or create grayscale version of this subtexture. // Paint color should also be gray.
+                                                    Texture2D grayTex = GrayscaleManager.GrayscaleCache.GetOrCreate(_spriteBatch.GraphicsDevice, tileTex, source);
+                                                    Color grayedPaint = GrayscaleManager.ToGrayscale(curtile.InActive ? Color.Gray : tilePaintColor);
+
+                                                    // Compute region relative to the grayscale texture.
+                                                    Rectangle graySlice = new Rectangle(sourceSlice.Value.X - source.X, sourceSlice.Value.Y - source.Y, sourceSlice.Value.Width, sourceSlice.Value.Height);
+
+                                                    _spriteBatch.Draw(grayTex, destSlice, graySlice, grayedPaint, 0f, default, _zoom / 16, SpriteEffects.None, LayerTileTextures);
+                                                }
+                                                else
+                                                    _spriteBatch.Draw(tileTex, destSlice, sourceSlice, curtile.InActive ? Color.Gray : tilePaintColor, 0f, default, _zoom / 16, SpriteEffects.None, LayerTileTextures);
                                             }
 
                                             break;
@@ -2302,7 +2530,19 @@ public partial class WorldRenderXna : UserControl
                                                 Rectangle? sourceSlice = new Rectangle(source.X + slice * 2, source.Y + slice * 2, 2, 16 - slice * 2);
                                                 Vector2 destSlice = new Vector2((int)(dest.X + slice * _zoom / 8.0f), dest.Y);
 
-                                                _spriteBatch.Draw(tileTex, destSlice, sourceSlice, curtile.InActive ? Color.Gray : tilePaintColor, 0f, default, _zoom / 16, SpriteEffects.None, LayerTileTextures);
+                                                if (forceGrayscale) // Check if to force grayscale via the filter manager.
+                                                {
+                                                    // Get or create grayscale version of this subtexture. // Paint color should also be gray.
+                                                    Texture2D grayTex = GrayscaleManager.GrayscaleCache.GetOrCreate(_spriteBatch.GraphicsDevice, tileTex, source);
+                                                    Color grayedPaint = GrayscaleManager.ToGrayscale(curtile.InActive ? Color.Gray : tilePaintColor);
+
+                                                    // Compute region relative to the grayscale texture.
+                                                    Rectangle graySlice = new Rectangle(sourceSlice.Value.X - source.X, sourceSlice.Value.Y - source.Y, sourceSlice.Value.Width, sourceSlice.Value.Height);
+
+                                                    _spriteBatch.Draw(grayTex, destSlice, graySlice, grayedPaint, 0f, default, _zoom / 16, SpriteEffects.None, LayerTileTextures);
+                                                }
+                                                else
+                                                    _spriteBatch.Draw(tileTex, destSlice, sourceSlice, curtile.InActive ? Color.Gray : tilePaintColor, 0f, default, _zoom / 16, SpriteEffects.None, LayerTileTextures);
                                             }
 
                                             break;
@@ -2312,21 +2552,51 @@ public partial class WorldRenderXna : UserControl
                                                 Rectangle? sourceSlice = new Rectangle(source.X + slice * 2, source.Y, 2, slice * 2 + 2);
                                                 Vector2 destSlice = new Vector2((int)(dest.X + slice * _zoom / 8.0f), dest.Y);
 
-                                                _spriteBatch.Draw(tileTex, destSlice, sourceSlice, curtile.InActive ? Color.Gray : tilePaintColor, 0f, default, _zoom / 16, SpriteEffects.None, LayerTileTextures);
+                                                if (forceGrayscale) // Check if to force grayscale via the filter manager.
+                                                {
+                                                    // Get or create grayscale version of this subtexture. // Paint color should also be gray.
+                                                    Texture2D grayTex = GrayscaleManager.GrayscaleCache.GetOrCreate(_spriteBatch.GraphicsDevice, tileTex, source);
+                                                    Color grayedPaint = GrayscaleManager.ToGrayscale(curtile.InActive ? Color.Gray : tilePaintColor);
+
+                                                    // Compute region relative to the grayscale texture.
+                                                    Rectangle graySlice = new Rectangle(sourceSlice.Value.X - source.X, sourceSlice.Value.Y - source.Y, sourceSlice.Value.Width, sourceSlice.Value.Height);
+
+                                                    _spriteBatch.Draw(grayTex, destSlice, graySlice, grayedPaint, 0f, default, _zoom / 16, SpriteEffects.None, LayerTileTextures);
+                                                }
+                                                else
+                                                    _spriteBatch.Draw(tileTex, destSlice, sourceSlice, curtile.InActive ? Color.Gray : tilePaintColor, 0f, default, _zoom / 16, SpriteEffects.None, LayerTileTextures);
                                             }
 
                                             break;
                                         case BrickStyle.Full:
                                         default:
-                                            _spriteBatch.Draw(tileTex, dest, source, curtile.InActive ? Color.Gray : tilePaintColor, 0f, default, SpriteEffects.None, LayerTileTextures);
-                                            break;
+                                            {
+                                                
+                                                if (forceGrayscale) // Check if to force grayscale via the filter manager.
+                                                {
+                                                    // Get or create grayscale version of this subtexture. // Paint color should also be gray.
+                                                    Texture2D grayTex = GrayscaleManager.GrayscaleCache.GetOrCreate(_spriteBatch.GraphicsDevice, tileTex, source);
+                                                    Color grayedPaint = GrayscaleManager.ToGrayscale(curtile.InActive ? Color.Gray : tilePaintColor);
+                                                    _spriteBatch.Draw(grayTex, dest, _textureDictionary.ZeroSixteenRectangle, grayedPaint, 0f, default, SpriteEffects.None, LayerTileTextures);
+                                                }
+                                                else
+                                                    _spriteBatch.Draw(tileTex, dest, source, curtile.InActive ? Color.Gray : tilePaintColor, 0f, default, SpriteEffects.None, LayerTileTextures);
+                                                break;
+                                            }
                                     }
-
 
                                     // Actuator Overlay
                                     if (curtile.Actuator && _wvm.ShowActuators)
-                                        _spriteBatch.Draw(_textureDictionary.Actuator, dest, _textureDictionary.ZeroSixteenRectangle, Color.White, 0f, default, SpriteEffects.None, LayerTileActuator);
-
+                                    {
+                                        if (forceGrayscale) // Check if to force grayscale via the filter manager.
+                                        {
+                                            // Get or create grayscale version of this subtexture.
+                                            Texture2D grayTex = GrayscaleManager.GrayscaleCache.GetOrCreate(_spriteBatch.GraphicsDevice, _textureDictionary.Actuator, source);
+                                            _spriteBatch.Draw(grayTex, dest, _textureDictionary.ZeroSixteenRectangle, Color.White, 0f, default, SpriteEffects.None, LayerTileActuator);
+                                        }
+                                        else
+                                            _spriteBatch.Draw(_textureDictionary.Actuator, dest, _textureDictionary.ZeroSixteenRectangle, Color.White, 0f, default, SpriteEffects.None, LayerTileActuator);
+                                    }
                                 }
                             }
                         }
@@ -2365,6 +2635,28 @@ public partial class WorldRenderXna : UserControl
                     var curtile = _wvm.CurrentWorld.Tiles[x, y];
                     if (curtile.Type >= WorldConfiguration.TileProperties.Count) { continue; }
 
+                    // Hide all wires not within a filter when enabled.
+                    bool forceRedGrayscale = false;
+                    if (curtile.WireRed)
+                        if (FilterManager.WireIsNotAllowed(FilterManager.WireType.Red))
+                            if (FilterManager.CurrentFilterMode == FilterManager.FilterMode.Hide) continue;
+                            else if (FilterManager.CurrentFilterMode == FilterManager.FilterMode.Grayscale) forceRedGrayscale = true;
+                    bool forceBlueGrayscale = false;
+                    if (curtile.WireBlue)
+                        if (FilterManager.WireIsNotAllowed(FilterManager.WireType.Blue))
+                            if (FilterManager.CurrentFilterMode == FilterManager.FilterMode.Hide) continue;
+                            else if (FilterManager.CurrentFilterMode == FilterManager.FilterMode.Grayscale) forceBlueGrayscale = true;
+                    bool forceGreenGrayscale = false;
+                    if (curtile.WireGreen)
+                        if (FilterManager.WireIsNotAllowed(FilterManager.WireType.Green))
+                            if (FilterManager.CurrentFilterMode == FilterManager.FilterMode.Hide) continue;
+                            else if (FilterManager.CurrentFilterMode == FilterManager.FilterMode.Grayscale) forceGreenGrayscale = true;
+                    bool forceYellowGrayscale = false;
+                    if (curtile.WireYellow)
+                        if (FilterManager.WireIsNotAllowed(FilterManager.WireType.Yellow))
+                            if (FilterManager.CurrentFilterMode == FilterManager.FilterMode.Hide) continue;
+                            else if (FilterManager.CurrentFilterMode == FilterManager.FilterMode.Grayscale) forceYellowGrayscale = true;
+
                     //Neighbor tiles are often used when dynamically determining which UV position to render
 #pragma warning disable CS0219 // Variable is assigned but its value is never used
                     int e = 0, n = 1, w = 2, s = 3, ne = 4, nw = 5, sw = 6, se = 7;
@@ -2400,7 +2692,15 @@ public partial class WorldRenderXna : UserControl
 
                                 var color = (!_wvm.ShowWireTransparency) ? Color.White : (curtile.WireRed && (_wvm.ShowBlueWires || _wvm.ShowGreenWires || _wvm.ShowYellowWires)) ? Translucent : Color.White;
 
-                                _spriteBatch.Draw(tileTex, dest, source, Color.White, 0f, default, SpriteEffects.None, LayerRedWires);
+                                if (forceRedGrayscale) // Check if to force grayscale via the filter manager.
+                                {
+                                    // Get or create grayscale version of this subtexture.
+                                    Texture2D grayTex = GrayscaleManager.GrayscaleCache.GetOrCreate(_spriteBatch.GraphicsDevice, tileTex, source);
+                                    Color grayedColor = GrayscaleManager.ToGrayscale(color);
+                                    _spriteBatch.Draw(grayTex, dest, new Rectangle(0, 0, source.Width, source.Height), grayedColor, 0f, default, SpriteEffects.None, LayerRedWires);
+                                }
+                                else
+                                    _spriteBatch.Draw(tileTex, dest, source, Color.White, 0f, default, SpriteEffects.None, LayerRedWires);
                             }
                             if (curtile.WireBlue && _wvm.ShowBlueWires)
                             {
@@ -2416,7 +2716,16 @@ public partial class WorldRenderXna : UserControl
                                 source.Y = 18 + voffset;
 
                                 var color = (!_wvm.ShowWireTransparency) ? Color.White : (curtile.WireRed && (_wvm.ShowRedWires || _wvm.ShowGreenWires || _wvm.ShowYellowWires)) ? Translucent : Color.White;
-                                _spriteBatch.Draw(tileTex, dest, source, color, 0f, default, SpriteEffects.None, LayerBlueWires);
+
+                                if (forceBlueGrayscale) // Check if to force grayscale via the filter manager.
+                                {
+                                    // Get or create grayscale version of this subtexture. // Paint color should also be gray.
+                                    Texture2D grayTex = GrayscaleManager.GrayscaleCache.GetOrCreate(_spriteBatch.GraphicsDevice, tileTex, source);
+                                    Color grayedColor = GrayscaleManager.ToGrayscale(color);
+                                    _spriteBatch.Draw(grayTex, dest, new Rectangle(0, 0, source.Width, source.Height), grayedColor, 0f, default, SpriteEffects.None, LayerBlueWires);
+                                }
+                                else
+                                    _spriteBatch.Draw(tileTex, dest, source, color, 0f, default, SpriteEffects.None, LayerBlueWires);
                             }
                             if (curtile.WireGreen && _wvm.ShowGreenWires)
                             {
@@ -2432,7 +2741,16 @@ public partial class WorldRenderXna : UserControl
                                 source.Y = 36 + voffset;
 
                                 var color = (!_wvm.ShowWireTransparency) ? Color.White : ((curtile.WireRed || curtile.WireBlue) && (_wvm.ShowRedWires || _wvm.ShowBlueWires || _wvm.ShowYellowWires)) ? Translucent : Color.White;
-                                _spriteBatch.Draw(tileTex, dest, source, color, 0f, default, SpriteEffects.None, LayerGreenWires);
+
+                                if (forceGreenGrayscale) // Check if to force grayscale via the filter manager.
+                                {
+                                    // Get or create grayscale version of this subtexture. // Paint color should also be gray.
+                                    Texture2D grayTex = GrayscaleManager.GrayscaleCache.GetOrCreate(_spriteBatch.GraphicsDevice, tileTex, source);
+                                    Color grayedColor = GrayscaleManager.ToGrayscale(color);
+                                    _spriteBatch.Draw(grayTex, dest, new Rectangle(0, 0, source.Width, source.Height), grayedColor, 0f, default, SpriteEffects.None, LayerGreenWires);
+                                }
+                                else
+                                    _spriteBatch.Draw(tileTex, dest, source, color, 0f, default, SpriteEffects.None, LayerGreenWires);
                             }
                             if (curtile.WireYellow && _wvm.ShowYellowWires)
                             {
@@ -2448,7 +2766,16 @@ public partial class WorldRenderXna : UserControl
                                 source.Y = 54 + voffset;
 
                                 var color = (!_wvm.ShowWireTransparency) ? Color.White : ((curtile.WireRed || curtile.WireBlue || curtile.WireGreen) && (_wvm.ShowRedWires || _wvm.ShowBlueWires || _wvm.ShowGreenWires)) ? Translucent : Color.White;
-                                _spriteBatch.Draw(tileTex, dest, source, color, 0f, default, SpriteEffects.None, LayerYellowWires);
+
+                                if (forceYellowGrayscale) // Check if to force grayscale via the filter manager.
+                                {
+                                    // Get or create grayscale version of this subtexture. // Paint color should also be gray.
+                                    Texture2D grayTex = GrayscaleManager.GrayscaleCache.GetOrCreate(_spriteBatch.GraphicsDevice, tileTex, source);
+                                    Color grayedColor = GrayscaleManager.ToGrayscale(color);
+                                    _spriteBatch.Draw(grayTex, dest, new Rectangle(0, 0, source.Width, source.Height), grayedColor, 0f, default, SpriteEffects.None, LayerYellowWires);
+                                }
+                                else
+                                    _spriteBatch.Draw(tileTex, dest, source, color, 0f, default, SpriteEffects.None, LayerYellowWires);
                             }
                         }
                     }
@@ -2482,6 +2809,12 @@ public partial class WorldRenderXna : UserControl
 
                     var curtile = _wvm.CurrentWorld.Tiles[x, y];
                     if (curtile.Type >= WorldConfiguration.TileProperties.Count) { continue; }
+
+                    // Hide all liquids not within a filter when enabled.
+                    bool forceGrayscale = false;
+                    if (FilterManager.LiquidIsNotAllowed(curtile.LiquidType))
+                        if (FilterManager.CurrentFilterMode == FilterManager.FilterMode.Hide) continue;
+                        else if (FilterManager.CurrentFilterMode == FilterManager.FilterMode.Grayscale) forceGrayscale = true;
 
                     //Neighbor tiles are often used when dynamically determining which UV position to render
 #pragma warning disable CS0219 // Variable is assigned but its value is never used
@@ -2542,7 +2875,17 @@ public partial class WorldRenderXna : UserControl
                                     dest.Y = 1 + (int)((_scrollPosition.Y + y) * _zoom + ((16 - source.Height) * _zoom / 16f));
                                 }
 
-                                _spriteBatch.Draw(tileTex, dest, source, liquidColor * alpha, 0f, default, SpriteEffects.None, LayerLiquid);
+                                Color color = liquidColor * alpha;
+
+                                if (forceGrayscale) // Check if to force grayscale via the filter manager.
+                                {
+                                    // Get or create grayscale version of this subtexture. // Paint color should also be gray.
+                                    Texture2D grayTex = GrayscaleManager.GrayscaleCache.GetOrCreate(_spriteBatch.GraphicsDevice, tileTex, source);
+                                    Color grayedColor = GrayscaleManager.ToGrayscale(color);
+                                    _spriteBatch.Draw(grayTex, dest, new Rectangle(0, 0, source.Width, source.Height), grayedColor, 0f, default, SpriteEffects.None, LayerLiquid);
+                                }
+                                else
+                                    _spriteBatch.Draw(tileTex, dest, source, color, 0f, default, SpriteEffects.None, LayerLiquid);
                             }
                         }
                     }
@@ -2554,9 +2897,6 @@ public partial class WorldRenderXna : UserControl
             }
         }
     }
-
-
-
 
     private Vector2Int32 TrackUV(int num)
     {

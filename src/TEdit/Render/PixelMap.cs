@@ -1,8 +1,11 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using System;
+using System.Collections.Generic;
 using TEdit.Common;
 using TEdit.Configuration;
 using TEdit.Terraria;
+using TEdit.ViewModel;
 
 namespace TEdit.Render;
 
@@ -158,9 +161,9 @@ public static class PixelMap
 
     #endregion
 
-
-
-    public static Color GetTileColor(Tile tile, Color background, bool showWall = true, bool showTile = true, bool showLiquid = true, bool showRedWire = true, bool showBlueWire = true, bool showGreenWire = true, bool showYellowWire = true, bool showCoatings = true)
+    public static Color GetTileColor(Tile tile, Color background, bool showWall = true, bool showTile = true, bool showLiquid = true, bool showRedWire = true, bool showBlueWire = true, bool showGreenWire = true, bool showYellowWire = true, bool showCoatings = true,
+        bool wallGrayscale = false, bool tileGrayscale = false, bool liquidGrayscale = false,
+        bool redWireGrayscale = false, bool blueWireGrayscale = false, bool greenWireGrayscale = false, bool yellowWireGrayscale = false)
     {
         var c = new Color(0, 0, 0, 0);
 
@@ -218,6 +221,9 @@ public static class PixelMap
                 c.G = (byte)(c.G * (brightness / 255.0f));
                 c.B = (byte)(c.B * (brightness / 255.0f));
             }
+
+            if (wallGrayscale)
+                c = GrayscaleManager.ToGrayscale(c);
         }
         else
             c = background;
@@ -271,6 +277,9 @@ public static class PixelMap
                 c.G = (byte)(c.G * (brightness / 255.0f));
                 c.B = (byte)(c.B * (brightness / 255.0f));
             }
+
+            if (tileGrayscale)
+                c = GrayscaleManager.ToGrayscale(c);
         }
 
         if (tile.LiquidAmount > 0 && showLiquid)
@@ -279,23 +288,38 @@ public static class PixelMap
             else if (tile.LiquidType == LiquidType.Honey) c = c.AlphaBlend(WorldConfiguration.GlobalColors["Honey"]);
             else if (tile.LiquidType == LiquidType.Shimmer) c = c.AlphaBlend(WorldConfiguration.GlobalColors["Shimmer"]);
             else c = c.AlphaBlend(WorldConfiguration.GlobalColors["Water"]);
+
+            if (liquidGrayscale)
+                c = GrayscaleManager.ToGrayscale(c);
         }
 
         if (tile.WireRed && showRedWire)
         {
             c = c.AlphaBlend(WorldConfiguration.GlobalColors["Wire"]);
-        }
-        if (tile.WireGreen && showGreenWire)
-        {
-            c = c.AlphaBlend(WorldConfiguration.GlobalColors["Wire2"]);
+
+            if (redWireGrayscale)
+                c = GrayscaleManager.ToGrayscale(c);
         }
         if (tile.WireBlue && showBlueWire)
         {
             c = c.AlphaBlend(WorldConfiguration.GlobalColors["Wire1"]);
+
+            if (blueWireGrayscale)
+                c = GrayscaleManager.ToGrayscale(c);
+        }
+        if (tile.WireGreen && showGreenWire)
+        {
+            c = c.AlphaBlend(WorldConfiguration.GlobalColors["Wire2"]);
+
+            if (greenWireGrayscale)
+                c = GrayscaleManager.ToGrayscale(c);
         }
         if (tile.WireYellow && showYellowWire)
         {
             c = c.AlphaBlend(WorldConfiguration.GlobalColors["Wire3"]);
+
+            if (yellowWireGrayscale)
+                c = GrayscaleManager.ToGrayscale(c);
         }
 
         return c;
