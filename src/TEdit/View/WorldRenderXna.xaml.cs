@@ -1194,27 +1194,27 @@ public partial class WorldRenderXna : UserControl
 
                     /// <summary>
                     /// Returns the tile at (nx, ny) unless it's out of bounds or filtered out (when filter mode is Hide).
-                    /// If filtered, returns Tile.Empty (treated as air/inactive).
+                    /// If filtered, returns null (treated as air/inactive).
                     /// </summary>
-                    Tile GetNeighbor(int nx, int ny)
+                    Tile GetTileNeighbor(int nx, int ny)
                     {
                         if (nx < 0 || ny < 0 || nx >= width || ny >= height) return null;
                         var t = _wvm.CurrentWorld.Tiles[nx, ny];
                         if (FilterManager.TileIsNotAllowed(t.Type) && FilterManager.CurrentFilterMode == FilterManager.FilterMode.Hide)
-                            return Tile.Empty;
+                            return null;
                         return t;
                     }
 
                     //Neighbor tiles are often used when dynamically determining which UV position to render
                     //Tile[] neighborTile = new Tile[8];
-                    neighborTile[e] = GetNeighbor(x + 1, y);
-                    neighborTile[n] = GetNeighbor(x, y - 1);
-                    neighborTile[w] = GetNeighbor(x - 1, y);
-                    neighborTile[s] = GetNeighbor(x, y + 1);
-                    neighborTile[ne] = GetNeighbor(x + 1, y - 1);
-                    neighborTile[nw] = GetNeighbor(x - 1, y - 1);
-                    neighborTile[sw] = GetNeighbor(x - 1, y + 1);
-                    neighborTile[se] = GetNeighbor(x + 1, y + 1);
+                    neighborTile[e] = GetTileNeighbor(x + 1, y);
+                    neighborTile[n] = GetTileNeighbor(x, y - 1);
+                    neighborTile[w] = GetTileNeighbor(x - 1, y);
+                    neighborTile[s] = GetTileNeighbor(x, y + 1);
+                    neighborTile[ne] = GetTileNeighbor(x + 1, y - 1);
+                    neighborTile[nw] = GetTileNeighbor(x - 1, y - 1);
+                    neighborTile[sw] = GetTileNeighbor(x - 1, y + 1);
+                    neighborTile[se] = GetTileNeighbor(x + 1, y + 1);
 
                     if (_wvm.ShowTiles)
                     {
