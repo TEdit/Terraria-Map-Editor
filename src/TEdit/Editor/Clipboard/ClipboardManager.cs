@@ -121,9 +121,7 @@ public class ClipboardManager : ObservableObject
             wireFilter:   onlyCopyFiltered ? (id => FilterManager.WireIsNotAllowed((FilterManager.WireType)id)) : null
         );
 
-
         LoadedBuffers.Add(new ClipboardBufferPreview(bufferData));
-		
         Buffer = new ClipboardBufferPreview(bufferData); // Set the last added buffer as the active one
     }
 
