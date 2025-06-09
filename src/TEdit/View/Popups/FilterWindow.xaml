@@ -184,6 +184,9 @@
                     Click="PickCustomColor_Click"/>
           
             <!-- Buttons aligned to the right, spanning rows -->
+            <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.RowSpan="1" Grid.Column="10" HorizontalAlignment="Left">
+                <CheckBox x:Name="FilterClipboardCheckBox" Content="{x:Static p:Language.menu_filter_filterclipboard}" VerticalAlignment="Bottom" IsChecked="{Binding IsFilterClipboardEnabled, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+            </StackPanel>
             <StackPanel Orientation="Horizontal" Grid.Row="2" Grid.RowSpan="3" Grid.Column="10" HorizontalAlignment="Right">
                 <Button Content="{x:Static p:Language.menu_filter_cancel}" Width="55" Margin="0,0,8,0" Click="Cancel_Click"/>
                 <Button Content="{x:Static p:Language.menu_filter_disable}" Width="55" Margin="0,0,8,0" Click="Disable_Click"/>

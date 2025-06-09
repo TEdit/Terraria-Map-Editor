@@ -39,6 +39,10 @@ namespace TEdit.View.Popups
         private string _wireSearchText;
         public string WireSearchText { get => _wireSearchText; set { _wireSearchText = value; OnPropertyChanged(nameof(WireSearchText)); FilterWireItems(); } }
 
+        // Checkboxes
+        private bool _isFilterClipboardEnabled;
+        public bool IsFilterClipboardEnabled { get => _isFilterClipboardEnabled; set { _isFilterClipboardEnabled = value; OnPropertyChanged(nameof(IsFilterClipboardEnabled)); } }
+
         // RadioButtons
         private FilterManager.FilterMode _pendingFilterMode;
         private FilterManager.BackgroundMode _pendingBackgroundMode;
@@ -111,6 +115,9 @@ namespace TEdit.View.Popups
             // Synchronize color fields with FilterManager for persistence.
             CustomModeColor = FromXnaColor(FilterManager.FilterModeCustomColor);
             CustomBackgroundColor = FromXnaColor(FilterManager.BackgroundModeCustomColor);
+
+            // Sync and toggle filter clipboard checkbox with the actual value.
+            IsFilterClipboardEnabled = FilterManager.FilerClipboard;
 
             // Sync pending filter / background modes with the actual value.
             PendingFilterMode = FilterManager.CurrentFilterMode;
@@ -233,8 +240,15 @@ namespace TEdit.View.Popups
                 FilterManager.SelectedWireNames.Add(wire.Name);
             }
 
-            #region REMOVED: Toggle UI Wire Layers
+            #region Toggle UI Wire Layers
 
+            // Toggle on each UI wire selection if hidden and choosen.
+            if (!_wvm.ShowRedWires    && FilterManager.WireIsAllowed(FilterManager.WireType.Red)) _wvm.ShowRedWires = true;
+            if (!_wvm.ShowBlueWires   && FilterManager.WireIsAllowed(FilterManager.WireType.Blue)) _wvm.ShowBlueWires = true;
+            if (!_wvm.ShowGreenWires  && FilterManager.WireIsAllowed(FilterManager.WireType.Green)) _wvm.ShowGreenWires = true;
+            if (!_wvm.ShowYellowWires && FilterManager.WireIsAllowed(FilterManager.WireType.Yellow)) _wvm.ShowYellowWires = true;
+
+            #region REMOVED: Toggle UI wire layers based on the wire selections.
             /*
             // Wires.
             FilterManager.ClearWireFilters();
@@ -280,6 +294,7 @@ namespace TEdit.View.Popups
                 }
             }
             */
+            #endregion
 
             #endregion
 
@@ -308,6 +323,9 @@ namespace TEdit.View.Popups
                 }
             }
             FilterManager.BackgroundModeCustomColor = ToXnaColor(CustomBackgroundColor);
+
+            // Update the filter clipboard preferences.
+            FilterManager.FilerClipboard = IsFilterClipboardEnabled;
 
             // Schedule RedrawMap to run after this method (and window) closes.
             // This eliminates the akward wait time for redraw before closing.

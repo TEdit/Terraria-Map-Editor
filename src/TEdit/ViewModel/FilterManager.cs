@@ -37,6 +37,8 @@ namespace TEdit.ViewModel
         public static BackgroundMode CurrentBackgroundMode { get; set; } = BackgroundMode.Normal;
         public static Color BackgroundModeCustomColor { get; set; }      = Color.Lime;
 
+        public static bool FilerClipboard { get; set; } = false;
+
         /// <summary>
         /// Returns true if any tile‐filter is active.
         /// </summary>
@@ -92,6 +94,9 @@ namespace TEdit.ViewModel
             // Reset the filter modes.
             CurrentFilterMode = FilterManager.FilterMode.Hide;
             CurrentBackgroundMode = FilterManager.BackgroundMode.Normal;
+
+            // Reset the clipboard settings.
+            FilerClipboard = false;
         }
 
         #region Tile Filter Methods
@@ -174,10 +179,10 @@ namespace TEdit.ViewModel
         [Flags]
         public enum WireType : byte
         {
-            Red = 1 << 0,
-            Blue = 1 << 1,
-            Green = 1 << 2,
-            Yellow = 1 << 3,
+            Red = 1 << 0,    // 1.
+            Blue = 1 << 1,   // 2.
+            Green = 1 << 2,  // 4.
+            Yellow = 1 << 3, // 8.
         }
         public static void AddWireFilter(WireType wire) { _selectedWires.Add(wire); }
         public static void RemoveWireFilter(WireType wire) { _selectedWires.Remove(wire); }

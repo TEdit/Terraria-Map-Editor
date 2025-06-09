@@ -755,6 +755,15 @@ namespace TEdit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Filter Clipboard.
+        /// </summary>
+        public static string menu_filter_filterclipboard {
+            get {
+                return ResourceManager.GetString("menu_filter_filterclipboard", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to FilterMode.
         /// </summary>
         public static string menu_filter_filtermode {

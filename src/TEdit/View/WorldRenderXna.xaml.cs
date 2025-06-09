@@ -2636,25 +2636,29 @@ public partial class WorldRenderXna : UserControl
                     if (curtile.Type >= WorldConfiguration.TileProperties.Count) { continue; }
 
                     // Hide all wires not within a filter when enabled.
+                    bool allowRed          = true;
                     bool forceRedGrayscale = false;
                     if (curtile.WireRed)
                         if (FilterManager.WireIsNotAllowed(FilterManager.WireType.Red))
-                            if (FilterManager.CurrentFilterMode == FilterManager.FilterMode.Hide) continue;
+                            if (FilterManager.CurrentFilterMode == FilterManager.FilterMode.Hide)           allowRed = false;
                             else if (FilterManager.CurrentFilterMode == FilterManager.FilterMode.Grayscale) forceRedGrayscale = true;
+                    bool allowBlue          = true;
                     bool forceBlueGrayscale = false;
                     if (curtile.WireBlue)
                         if (FilterManager.WireIsNotAllowed(FilterManager.WireType.Blue))
-                            if (FilterManager.CurrentFilterMode == FilterManager.FilterMode.Hide) continue;
+                            if (FilterManager.CurrentFilterMode == FilterManager.FilterMode.Hide)           allowBlue = false;
                             else if (FilterManager.CurrentFilterMode == FilterManager.FilterMode.Grayscale) forceBlueGrayscale = true;
+                    bool allowGreen          = true;
                     bool forceGreenGrayscale = false;
                     if (curtile.WireGreen)
                         if (FilterManager.WireIsNotAllowed(FilterManager.WireType.Green))
-                            if (FilterManager.CurrentFilterMode == FilterManager.FilterMode.Hide) continue;
+                            if (FilterManager.CurrentFilterMode == FilterManager.FilterMode.Hide)           allowGreen = false;
                             else if (FilterManager.CurrentFilterMode == FilterManager.FilterMode.Grayscale) forceGreenGrayscale = true;
+                    bool allowYellow          = true;
                     bool forceYellowGrayscale = false;
                     if (curtile.WireYellow)
                         if (FilterManager.WireIsNotAllowed(FilterManager.WireType.Yellow))
-                            if (FilterManager.CurrentFilterMode == FilterManager.FilterMode.Hide) continue;
+                            if (FilterManager.CurrentFilterMode == FilterManager.FilterMode.Hide)           allowYellow = false;
                             else if (FilterManager.CurrentFilterMode == FilterManager.FilterMode.Grayscale) forceYellowGrayscale = true;
 
                     //Neighbor tiles are often used when dynamically determining which UV position to render
@@ -2677,7 +2681,7 @@ public partial class WorldRenderXna : UserControl
                                 voffset = (curtile.U / 18 + 1) * 72;
                             if (curtile.Type == 445)
                                 voffset = 72;
-                            if (curtile.WireRed && _wvm.ShowRedWires)
+                            if (curtile.WireRed && _wvm.ShowRedWires && allowRed)
                             {
                                 var source = new Rectangle(0, 0, 16, 16);
                                 var dest = new Rectangle(1 + (int)((_scrollPosition.X + x) * _zoom), 1 + (int)((_scrollPosition.Y + y) * _zoom), (int)_zoom, (int)_zoom);
@@ -2702,7 +2706,7 @@ public partial class WorldRenderXna : UserControl
                                 else
                                     _spriteBatch.Draw(tileTex, dest, source, Color.White, 0f, default, SpriteEffects.None, LayerRedWires);
                             }
-                            if (curtile.WireBlue && _wvm.ShowBlueWires)
+                            if (curtile.WireBlue && _wvm.ShowBlueWires && allowBlue)
                             {
                                 var source = new Rectangle(0, 0, 16, 16);
                                 var dest = new Rectangle(1 + (int)((_scrollPosition.X + x) * _zoom), 1 + (int)((_scrollPosition.Y + y) * _zoom), (int)_zoom, (int)_zoom);
@@ -2727,7 +2731,7 @@ public partial class WorldRenderXna : UserControl
                                 else
                                     _spriteBatch.Draw(tileTex, dest, source, color, 0f, default, SpriteEffects.None, LayerBlueWires);
                             }
-                            if (curtile.WireGreen && _wvm.ShowGreenWires)
+                            if (curtile.WireGreen && _wvm.ShowGreenWires && allowGreen)
                             {
                                 var source = new Rectangle(0, 0, 16, 16);
                                 var dest = new Rectangle(1 + (int)((_scrollPosition.X + x) * _zoom), 1 + (int)((_scrollPosition.Y + y) * _zoom), (int)_zoom, (int)_zoom);
@@ -2752,7 +2756,7 @@ public partial class WorldRenderXna : UserControl
                                 else
                                     _spriteBatch.Draw(tileTex, dest, source, color, 0f, default, SpriteEffects.None, LayerGreenWires);
                             }
-                            if (curtile.WireYellow && _wvm.ShowYellowWires)
+                            if (curtile.WireYellow && _wvm.ShowYellowWires && allowYellow)
                             {
                                 var source = new Rectangle(0, 0, 16, 16);
                                 var dest = new Rectangle(1 + (int)((_scrollPosition.X + x) * _zoom), 1 + (int)((_scrollPosition.Y + y) * _zoom), (int)_zoom, (int)_zoom);

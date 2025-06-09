@@ -111,7 +111,17 @@ public class ClipboardManager : ObservableObject
 
     public void CopySelection(World world, RectangleInt32 selection)
     {
-        var bufferData = ClipboardBuffer.GetSelectionBuffer(world, selection);
+        bool onlyCopyFiltered = FilterManager.FilerClipboard;
+        var bufferData = ClipboardBuffer.GetSelectionBuffer(
+            world, selection,
+            onlyCopyFiltered,
+            tileFilter:   onlyCopyFiltered ? FilterManager.TileIsNotAllowed : null,
+            wallFilter:   onlyCopyFiltered ? FilterManager.WallIsNotAllowed : null,
+            liquidFilter: onlyCopyFiltered ? (id => FilterManager.LiquidIsNotAllowed((LiquidType)id)) : null,
+            wireFilter:   onlyCopyFiltered ? (id => FilterManager.WireIsNotAllowed((FilterManager.WireType)id)) : null
+        );
+
+
         LoadedBuffers.Add(new ClipboardBufferPreview(bufferData));
 		
         Buffer = new ClipboardBufferPreview(bufferData); // Set the last added buffer as the active one
