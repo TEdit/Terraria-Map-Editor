@@ -1402,7 +1402,7 @@
     <value>透明的</value>
   </data>
   <data name="menu_filter_custom" xml:space="preserve">
-    <value>风俗</value>
+    <value>自定义</value>
   </data>
   <data name="menu_filter_cancel" xml:space="preserve">
     <value>取消</value>
