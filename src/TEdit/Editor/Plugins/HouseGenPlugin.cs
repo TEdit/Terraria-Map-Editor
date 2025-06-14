@@ -85,7 +85,7 @@ public class HouseGenPlugin : BasePlugin
         /// https://docs.microsoft.com/en-us/dotnet/desktop/wpf/data/how-to-implement-property-change-notification?view=netframeworkdesktop-4.8
         /// </summary>
 
-        public WriteableBitmap Preview => GeneratredSchematic.Preview;
+        public WriteableBitmap Preview => GeneratredSchematic?.Preview;
 
         public event PropertyChangedEventHandler PropertyChanged;
         // Create the OnPropertyChanged method to raise the event

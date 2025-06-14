@@ -62,6 +62,7 @@ public partial class WorldViewModel
             return;
 
         _clipboard.CopySelection(CurrentWorld, Selection.SelectionArea);
+        this.SelectedTabIndex = 3; // Open the clipboard tab.
     }
 
     public async void CropWorld()
@@ -372,6 +373,7 @@ public partial class WorldViewModel
         if (!CanPaste())
             return;
 
+        this.SelectedTabIndex = 3; // Open the clipboard tab.
         var pasteTool = Tools.FirstOrDefault(t => t.Name == "Paste");
         if (pasteTool != null)
         {

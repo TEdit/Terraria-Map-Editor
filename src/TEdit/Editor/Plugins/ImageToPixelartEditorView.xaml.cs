@@ -737,6 +737,7 @@ namespace TEdit.Editor.Plugins
                 var bufferRendered = new ClipboardBufferPreview(GeneratedSchematic);
                 _worldViewModel.Clipboard.LoadedBuffers.Add(bufferRendered);
                 _worldViewModel.ClipboardSetActiveCommand.Execute(bufferRendered);
+                _worldViewModel.SelectedTabIndex = 3; // Open the clipboard tab.
 
                 // Display completion message.
                 MessageBox.Show("Schematic copied to clipboard.");
