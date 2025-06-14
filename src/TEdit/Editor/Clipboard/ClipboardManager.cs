@@ -111,7 +111,7 @@ public class ClipboardManager : ObservableObject
 
     public void CopySelection(World world, RectangleInt32 selection)
     {
-        bool onlyCopyFiltered = FilterManager.FilerClipboard;
+        bool onlyCopyFiltered = FilterManager.FilterClipboard;
         var bufferData = ClipboardBuffer.GetSelectionBuffer(
             world, selection,
             onlyCopyFiltered,
