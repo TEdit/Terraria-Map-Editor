@@ -189,7 +189,7 @@ namespace TEdit.View.Popups
             GrayscaleManager.GrayscaleCache.Clear();
 
             // Schedule RedrawMap to run after this method (and window) closes.
-            // This eliminates the akward wait time for redraw before closing.
+            // This eliminates the awkward wait time for redraw before closing.
             Dispatcher.BeginInvoke(new Action(() =>
             {
                 RedrawMap(true);
