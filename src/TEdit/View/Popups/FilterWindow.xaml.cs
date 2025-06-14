@@ -344,16 +344,20 @@ namespace TEdit.View.Popups
         private void RedrawMap(bool loadDefualt = false)
         {
             var main = (MainWindow)Application.Current.MainWindow;
-            main.MapView.DrawTileWalls();
-            main.MapView.DrawTileTextures();
-
+            
             // Reload the map without any filtration applied.
             if (loadDefualt)
             {
+                main.MapView.DrawTileWalls();
+                main.MapView.DrawTileTextures();
+
                 _wvm.UpdateRenderWorld();                                             // Re-render map.
                 _wvm.MinimapImage = Render.RenderMiniMap.Render(_wvm.CurrentWorld);   // Update Minimap.
                 return;
             }
+
+            main.MapView.DrawTileWallsFiltered();
+            main.MapView.DrawTileTexturesFiltered();
 
             _wvm.UpdateRenderWorldUsingFilter();                                      // Re-render map.
             _wvm.MinimapImage = Render.RenderMiniMap.Render(_wvm.CurrentWorld, true); // Update Minimap.

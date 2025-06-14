@@ -42,7 +42,7 @@ namespace TEdit.ViewModel
         /// <summary>
         /// Returns true if any tile‐filter is active.
         /// </summary>
-        public static bool AnyFilterActive => SelectedTileIDs.Count > 0 || SelectedWallIDs.Count > 0 || SelectedLiquidNames.Count > 0 || SelectedWireNames.Count > 0;
+        public static bool AnyFilterActive => SelectedTileNames.Count > 0 || SelectedWallNames.Count > 0 || SelectedLiquidNames.Count > 0 || SelectedWireNames.Count > 0;
 
         /// <summary>
         /// Returns true if tile‐filter is active and the tileId is not in the set.
