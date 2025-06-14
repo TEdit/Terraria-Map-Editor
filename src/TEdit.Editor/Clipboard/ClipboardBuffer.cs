@@ -69,7 +69,14 @@ public partial class ClipboardBuffer : ITileData
     	return TileEntities.FirstOrDefault(c => (c.PosX == x) && (c.PosY == y));
     }
 
-    public static ClipboardBuffer GetSelectionBuffer(World world, RectangleInt32 area)
+    public static ClipboardBuffer GetSelectionBuffer(
+        World world,
+        RectangleInt32 area,
+        bool onlyCopyFiltered        = false,
+        Func<int, bool> tileFilter   = null,
+        Func<int, bool> wallFilter   = null,
+        Func<int, bool> liquidFilter = null,
+        Func<int, bool> wireFilter   = null)
     {
         var buffer = new ClipboardBuffer(
             new Vector2Int32(area.Width, area.Height),
@@ -80,6 +87,52 @@ public partial class ClipboardBuffer : ITileData
             for (int y = 0; y < area.Height; y++)
             {
                 Tile curTile = (Tile)world.Tiles[x + area.X, y + area.Y].Clone();
+
+                // ---- FILTERING ----
+                // If the clipboard filter is enabled, remove all non-matching filter tiles.
+                if (onlyCopyFiltered)
+                {
+                    // Tiles.
+                    if (tileFilter != null && tileFilter(curTile.Type))
+                    {
+                        curTile.IsActive = false;
+                        curTile.Type = 0;
+                        curTile.TileColor = 0;
+                    }
+
+                    // Walls.
+                    if (wallFilter != null && wallFilter(curTile.Wall))
+                    {
+                        curTile.Wall = 0;
+                        curTile.WallColor = 0;
+                    }
+
+                    // Liquids.
+                    if (liquidFilter != null && liquidFilter((int)curTile.LiquidType))
+                    {
+                        curTile.LiquidType = 0;
+                        curTile.LiquidAmount = 0;
+                    }
+
+                    // Wires.
+                    if (wireFilter != null && curTile.WireRed && wireFilter(1))    // Red.
+                    {
+                        curTile.WireRed = false;
+                    }
+                    if (wireFilter != null && curTile.WireBlue && wireFilter(2))   // Blue.
+                    {
+                        curTile.WireBlue = false;
+                    }
+                    if (wireFilter != null && curTile.WireGreen && wireFilter(4))  // Green.
+                    {
+                        curTile.WireGreen = false;
+                    }
+                    if (wireFilter != null && curTile.WireYellow && wireFilter(8)) // Yellow.
+                    {
+                        curTile.WireYellow = false;
+                    }
+                }
+                // ---- END FILTERING ----
 
                 if (curTile.IsChest())
                 {

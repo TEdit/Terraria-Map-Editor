@@ -1365,4 +1365,91 @@ Press retry to pick a new folder or cancel to use {0} as your terraria path.</va
   <data name="wp_fixbackground" xml:space="preserve">
     <value>Fix Background Gap</value>
   </data>
+  <data name="menu_filter_header_tiles" xml:space="preserve">
+    <value>Tiles</value>
+  </data>
+  <data name="menu_filter_header_walls" xml:space="preserve">
+    <value>Walls</value>
+  </data>
+  <data name="menu_filter_header_liquids" xml:space="preserve">
+    <value>Liquids</value>
+  </data>
+  <data name="menu_filter_header_wires" xml:space="preserve">
+    <value>Wires</value>
+  </data>
+  <data name="menu_filter_tab_searchname" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="menu_filter_tab_check_all" xml:space="preserve">
+    <value>Check All</value>
+  </data>
+  <data name="menu_filter_tab_uncheck_all" xml:space="preserve">
+    <value>Uncheck All</value>
+  </data>
+  <data name="menu_filter_filtermode" xml:space="preserve">
+    <value>FilterMode</value>
+  </data>
+  <data name="menu_filter_backgroundmode" xml:space="preserve">
+    <value>BackgroundMode</value>
+  </data>
+  <data name="menu_filter_hide" xml:space="preserve">
+    <value>Hide</value>
+  </data>
+  <data name="menu_filter_grayscale" xml:space="preserve">
+    <value>Grayscale</value>
+  </data>
+  <data name="menu_filter_normal" xml:space="preserve">
+    <value>Normal</value>
+  </data>
+  <data name="menu_filter_transparent" xml:space="preserve">
+    <value>Transparent</value>
+  </data>
+  <data name="menu_filter_custom" xml:space="preserve">
+    <value>Custom</value>
+  </data>
+  <data name="menu_filter_cancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="menu_filter_disable" xml:space="preserve">
+    <value>Disable</value>
+  </data>
+  <data name="menu_filter_apply" xml:space="preserve">
+    <value>Apply</value>
+  </data>
+  <data name="menu_uveditor_moveallframes" xml:space="preserve">
+    <value>Move All Frames</value>
+  </data>
+  <data name="menu_uveditor_moveamount" xml:space="preserve">
+    <value>Move Amount (Frames)</value>
+  </data>
+  <data name="menu_uveditor_setmanualuv" xml:space="preserve">
+    <value>Set Manual UV's To All</value>
+  </data>
+  <data name="menu_uveditor_selectedframes" xml:space="preserve">
+    <value>Selected Frames</value>
+  </data>
+  <data name="menu_uveditor_setvalues" xml:space="preserve">
+    <value>Set Values</value>
+  </data>
+  <data name="menu_uveditor_cancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="menu_uveditor_restore" xml:space="preserve">
+    <value>Restore</value>
+  </data>
+  <data name="menu_uveditor_ok" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="menu_filter" xml:space="preserve">
+    <value>Filter</value>
+  </data>
+  <data name="menu_filter_title" xml:space="preserve">
+    <value>Advanced Filter</value>
+  </data>
+  <data name="menu_uveditor_title" xml:space="preserve">
+    <value>UV Editor</value>
+  </data>
+  <data name="menu_filter_filterclipboard" xml:space="preserve">
+    <value>Filter Clipboard</value>
+  </data>
 </root>

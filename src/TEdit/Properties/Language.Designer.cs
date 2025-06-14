@@ -566,20 +566,20 @@ namespace TEdit.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Expand World.
-        /// </summary>
-        public static string menu_edit_expand {
-            get {
-                return ResourceManager.GetString("menu_edit_expand", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Delete Selection.
         /// </summary>
         public static string menu_edit_delete {
             get {
                 return ResourceManager.GetString("menu_edit_delete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Expand World.
+        /// </summary>
+        public static string menu_edit_expand {
+            get {
+                return ResourceManager.GetString("menu_edit_expand", resourceCulture);
             }
         }
         
@@ -697,6 +697,186 @@ namespace TEdit.Properties {
         public static string menu_file_update {
             get {
                 return ResourceManager.GetString("menu_file_update", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Filter.
+        /// </summary>
+        public static string menu_filter {
+            get {
+                return ResourceManager.GetString("menu_filter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Apply.
+        /// </summary>
+        public static string menu_filter_apply {
+            get {
+                return ResourceManager.GetString("menu_filter_apply", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to BackgroundMode.
+        /// </summary>
+        public static string menu_filter_backgroundmode {
+            get {
+                return ResourceManager.GetString("menu_filter_backgroundmode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cancel.
+        /// </summary>
+        public static string menu_filter_cancel {
+            get {
+                return ResourceManager.GetString("menu_filter_cancel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Custom.
+        /// </summary>
+        public static string menu_filter_custom {
+            get {
+                return ResourceManager.GetString("menu_filter_custom", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Disable.
+        /// </summary>
+        public static string menu_filter_disable {
+            get {
+                return ResourceManager.GetString("menu_filter_disable", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Filter Clipboard.
+        /// </summary>
+        public static string menu_filter_filterclipboard {
+            get {
+                return ResourceManager.GetString("menu_filter_filterclipboard", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to FilterMode.
+        /// </summary>
+        public static string menu_filter_filtermode {
+            get {
+                return ResourceManager.GetString("menu_filter_filtermode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Grayscale.
+        /// </summary>
+        public static string menu_filter_grayscale {
+            get {
+                return ResourceManager.GetString("menu_filter_grayscale", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Liquids.
+        /// </summary>
+        public static string menu_filter_header_liquids {
+            get {
+                return ResourceManager.GetString("menu_filter_header_liquids", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tiles.
+        /// </summary>
+        public static string menu_filter_header_tiles {
+            get {
+                return ResourceManager.GetString("menu_filter_header_tiles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Walls.
+        /// </summary>
+        public static string menu_filter_header_walls {
+            get {
+                return ResourceManager.GetString("menu_filter_header_walls", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wires.
+        /// </summary>
+        public static string menu_filter_header_wires {
+            get {
+                return ResourceManager.GetString("menu_filter_header_wires", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hide.
+        /// </summary>
+        public static string menu_filter_hide {
+            get {
+                return ResourceManager.GetString("menu_filter_hide", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Normal.
+        /// </summary>
+        public static string menu_filter_normal {
+            get {
+                return ResourceManager.GetString("menu_filter_normal", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Check All.
+        /// </summary>
+        public static string menu_filter_tab_check_all {
+            get {
+                return ResourceManager.GetString("menu_filter_tab_check_all", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name.
+        /// </summary>
+        public static string menu_filter_tab_searchname {
+            get {
+                return ResourceManager.GetString("menu_filter_tab_searchname", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Uncheck All.
+        /// </summary>
+        public static string menu_filter_tab_uncheck_all {
+            get {
+                return ResourceManager.GetString("menu_filter_tab_uncheck_all", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Advanced Filter.
+        /// </summary>
+        public static string menu_filter_title {
+            get {
+                return ResourceManager.GetString("menu_filter_title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Transparent.
+        /// </summary>
+        public static string menu_filter_transparent {
+            get {
+                return ResourceManager.GetString("menu_filter_transparent", resourceCulture);
             }
         }
         
@@ -1003,6 +1183,87 @@ namespace TEdit.Properties {
         public static string menu_toolbar_zoom_out {
             get {
                 return ResourceManager.GetString("menu_toolbar_zoom_out", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cancel.
+        /// </summary>
+        public static string menu_uveditor_cancel {
+            get {
+                return ResourceManager.GetString("menu_uveditor_cancel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Move All Frames.
+        /// </summary>
+        public static string menu_uveditor_moveallframes {
+            get {
+                return ResourceManager.GetString("menu_uveditor_moveallframes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Move Amount (Frames).
+        /// </summary>
+        public static string menu_uveditor_moveamount {
+            get {
+                return ResourceManager.GetString("menu_uveditor_moveamount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to OK.
+        /// </summary>
+        public static string menu_uveditor_ok {
+            get {
+                return ResourceManager.GetString("menu_uveditor_ok", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Restore.
+        /// </summary>
+        public static string menu_uveditor_restore {
+            get {
+                return ResourceManager.GetString("menu_uveditor_restore", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Selected Frames.
+        /// </summary>
+        public static string menu_uveditor_selectedframes {
+            get {
+                return ResourceManager.GetString("menu_uveditor_selectedframes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Set Manual UV&apos;s To All.
+        /// </summary>
+        public static string menu_uveditor_setmanualuv {
+            get {
+                return ResourceManager.GetString("menu_uveditor_setmanualuv", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Set Values.
+        /// </summary>
+        public static string menu_uveditor_setvalues {
+            get {
+                return ResourceManager.GetString("menu_uveditor_setvalues", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to UV Editor.
+        /// </summary>
+        public static string menu_uveditor_title {
+            get {
+                return ResourceManager.GetString("menu_uveditor_title", resourceCulture);
             }
         }
         

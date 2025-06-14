@@ -307,12 +307,12 @@ public partial class WorldViewModel
     }
     public ICommand RedoCommand
     {
-        get { return _redoCommand ??= new RelayCommand(() => UndoManager.Redo()); }
+        get { return _redoCommand ??= new RelayCommand(() => UndoManager?.Redo()); }
     }
 
     public ICommand UndoCommand
     {
-        get { return _undoCommand ??= new RelayCommand(() => UndoManager.Undo()); }
+        get { return _undoCommand ??= new RelayCommand(() => UndoManager?.Undo()); }
     }
 
     public ICommand CopyCommand
@@ -340,7 +340,7 @@ public partial class WorldViewModel
     }
     private bool CanPaste()
     {
-        return _clipboard.Buffer != null;
+        return Clipboard != null && _clipboard.Buffer != null;
     }
     public ICommand DeleteCommand
     {

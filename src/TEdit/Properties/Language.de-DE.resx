@@ -1362,4 +1362,91 @@ Klicke auf „Wiederholen“, um einen neuen Ordner auszuwählen, oder auf „Ab
   <data name="wp_fixbackground" xml:space="preserve">
     <value>Hintergrundlücke schließen</value>
   </data>
+  <data name="menu_filter_header_tiles" xml:space="preserve">
+    <value>Fliesen</value>
+  </data>
+  <data name="menu_filter_header_walls" xml:space="preserve">
+    <value>Wände</value>
+  </data>
+  <data name="menu_filter_header_liquids" xml:space="preserve">
+    <value>Flüssigkeiten</value>
+  </data>
+  <data name="menu_filter_header_wires" xml:space="preserve">
+    <value>Drähte</value>
+  </data>
+  <data name="menu_filter_tab_searchname" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="menu_filter_tab_check_all" xml:space="preserve">
+    <value>Alle markieren</value>
+  </data>
+  <data name="menu_filter_tab_uncheck_all" xml:space="preserve">
+    <value>Deaktivieren Sie „Alle“.</value>
+  </data>
+  <data name="menu_filter_filtermode" xml:space="preserve">
+    <value>Filtermodus</value>
+  </data>
+  <data name="menu_filter_backgroundmode" xml:space="preserve">
+    <value>Hintergrundmodus</value>
+  </data>
+  <data name="menu_filter_hide" xml:space="preserve">
+    <value>Verstecken</value>
+  </data>
+  <data name="menu_filter_grayscale" xml:space="preserve">
+    <value>Graustufen</value>
+  </data>
+  <data name="menu_filter_normal" xml:space="preserve">
+    <value>Normal</value>
+  </data>
+  <data name="menu_filter_transparent" xml:space="preserve">
+    <value>Transparent</value>
+  </data>
+  <data name="menu_filter_custom" xml:space="preserve">
+    <value>Brauch</value>
+  </data>
+  <data name="menu_filter_cancel" xml:space="preserve">
+    <value>Stornieren</value>
+  </data>
+  <data name="menu_filter_disable" xml:space="preserve">
+    <value>Deaktivieren</value>
+  </data>
+  <data name="menu_filter_apply" xml:space="preserve">
+    <value>Anwenden</value>
+  </data>
+  <data name="menu_uveditor_moveallframes" xml:space="preserve">
+    <value>Alle Frames verschieben</value>
+  </data>
+  <data name="menu_uveditor_moveamount" xml:space="preserve">
+    <value>Bewegungsbetrag (Frames)</value>
+  </data>
+  <data name="menu_uveditor_setmanualuv" xml:space="preserve">
+    <value>Manuelle UVs auf alle setzen</value>
+  </data>
+  <data name="menu_uveditor_selectedframes" xml:space="preserve">
+    <value>Ausgewählte Frames</value>
+  </data>
+  <data name="menu_uveditor_setvalues" xml:space="preserve">
+    <value>Werte festlegen</value>
+  </data>
+  <data name="menu_uveditor_cancel" xml:space="preserve">
+    <value>Abbrechen</value>
+  </data>
+  <data name="menu_uveditor_restore" xml:space="preserve">
+    <value>Wiederherstellen</value>
+  </data>
+  <data name="menu_uveditor_ok" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="menu_filter" xml:space="preserve">
+    <value>Filter</value>
+  </data>
+  <data name="menu_filter_title" xml:space="preserve">
+    <value>Erweiterter Filter</value>
+  </data>
+  <data name="menu_uveditor_title" xml:space="preserve">
+    <value>UV-Editor</value>
+  </data>
+  <data name="menu_filter_filterclipboard" xml:space="preserve">
+    <value>Zwischenablage filtern</value>
+  </data>
 </root>

@@ -11,6 +11,8 @@ using TEdit.Properties;
 using TEdit.UI.Xaml;
 using TEdit.View.Popups;
 using System.IO;
+using System.Windows.Controls;
+using TEdit.View;
 
 namespace TEdit;
 
@@ -75,24 +77,30 @@ public partial class MainWindow : Window
             switch (command)
             {
                 case "copy":
-                    if (_vm.CopyCommand.CanExecute(null))
+                    if (_vm.CurrentWorld != null && _vm.CopyCommand.CanExecute(null))
                     {
                         _vm.CopyCommand.Execute(null);
                         _vm.SelectedTabIndex = 3;
                     }
                     break;
                 case "paste":
-                    if (_vm.PasteCommand.CanExecute(null))
+                    if (_vm.CurrentWorld != null && _vm.PasteCommand.CanExecute(null))
                     {
                         _vm.PasteCommand.Execute(null);
                         _vm.SelectedTabIndex = 3;
                     }
                     break;
                 case "undo":
-                    _vm.UndoCommand.Execute(null);
+                    if (_vm.CurrentWorld != null)
+                    {
+                        _vm.UndoCommand.Execute(null);
+                    }
                     break;
                 case "redo":
-                    _vm.RedoCommand.Execute(null);
+                    if (_vm.CurrentWorld != null)
+                    {
+                        _vm.RedoCommand.Execute(null);
+                    }
                     break;
                 case "selectall":
                     if (_vm.CurrentWorld != null)
@@ -296,5 +304,19 @@ public partial class MainWindow : Window
             UVEditorWindow uvEditorWindow = new(tileList, _vm);
             uvEditorWindow.ShowDialog();
         }
+    }
+
+    private void FilterMenuItem_Click(object sender, RoutedEventArgs e)
+    {
+        // Prevent the default focus behavior on clickAdd commentMore actions
+        // e.Handled = true;
+
+        // Ensure a world is loaded.
+        if (_vm.CurrentWorld == null)
+            return;
+
+        // Launch the advanced filter popup.
+        FilterWindow filterWindow = new(_vm);
+        filterWindow.ShowDialog();
     }
 }
