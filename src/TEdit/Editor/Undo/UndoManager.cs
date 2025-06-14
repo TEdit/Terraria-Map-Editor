@@ -412,7 +412,7 @@ public class UndoManager : ObservableObject, IDisposable
 
     public void Redo()
     {
-        if (_currentIndex > _maxIndex || _currentIndex < 0)
+        if (_currentIndex > _maxIndex || _currentIndex <= 0)
             return;
 
         ErrorLogging.TelemetryClient?.TrackEvent(nameof(Redo));

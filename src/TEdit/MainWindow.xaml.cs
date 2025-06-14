@@ -77,24 +77,30 @@ public partial class MainWindow : Window
             switch (command)
             {
                 case "copy":
-                    if (_vm.CopyCommand.CanExecute(null))
+                    if (_vm.CurrentWorld != null && _vm.CopyCommand.CanExecute(null))
                     {
                         _vm.CopyCommand.Execute(null);
                         _vm.SelectedTabIndex = 3;
                     }
                     break;
                 case "paste":
-                    if (_vm.PasteCommand.CanExecute(null))
+                    if (_vm.CurrentWorld != null && _vm.PasteCommand.CanExecute(null))
                     {
                         _vm.PasteCommand.Execute(null);
                         _vm.SelectedTabIndex = 3;
                     }
                     break;
                 case "undo":
-                    _vm.UndoCommand.Execute(null);
+                    if (_vm.CurrentWorld != null)
+                    {
+                        _vm.UndoCommand.Execute(null);
+                    }
                     break;
                 case "redo":
-                    _vm.RedoCommand.Execute(null);
+                    if (_vm.CurrentWorld != null)
+                    {
+                        _vm.RedoCommand.Execute(null);
+                    }
                     break;
                 case "selectall":
                     if (_vm.CurrentWorld != null)
