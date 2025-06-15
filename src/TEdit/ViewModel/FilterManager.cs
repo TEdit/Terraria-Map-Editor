@@ -37,7 +37,7 @@ namespace TEdit.ViewModel
         public static BackgroundMode CurrentBackgroundMode { get; set; } = BackgroundMode.Normal;
         public static Color BackgroundModeCustomColor { get; set; }      = Color.Lime;
 
-        public static bool FilerClipboard { get; set; } = false;
+        public static bool FilterClipboard { get; set; } = false;
 
         /// <summary>
         /// Returns true if any tile‐filter is active.
@@ -96,7 +96,7 @@ namespace TEdit.ViewModel
             CurrentBackgroundMode = FilterManager.BackgroundMode.Normal;
 
             // Reset the clipboard settings.
-            FilerClipboard = false;
+            FilterClipboard = false;
         }
 
         #region Tile Filter Methods

@@ -117,7 +117,7 @@ namespace TEdit.View.Popups
             CustomBackgroundColor = FromXnaColor(FilterManager.BackgroundModeCustomColor);
 
             // Sync and toggle filter clipboard checkbox with the actual value.
-            IsFilterClipboardEnabled = FilterManager.FilerClipboard;
+            IsFilterClipboardEnabled = FilterManager.FilterClipboard;
 
             // Sync pending filter / background modes with the actual value.
             PendingFilterMode = FilterManager.CurrentFilterMode;
@@ -325,7 +325,7 @@ namespace TEdit.View.Popups
             FilterManager.BackgroundModeCustomColor = ToXnaColor(CustomBackgroundColor);
 
             // Update the filter clipboard preferences.
-            FilterManager.FilerClipboard = IsFilterClipboardEnabled;
+            FilterManager.FilterClipboard = IsFilterClipboardEnabled;
 
             // Schedule RedrawMap to run after this method (and window) closes.
             // This eliminates the akward wait time for redraw before closing.
