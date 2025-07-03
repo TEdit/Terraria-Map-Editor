@@ -25,12 +25,15 @@ namespace TEdit.ViewModel
         private static readonly HashSet<int> _selectedWallIDs = [];
         private static readonly HashSet<LiquidType> _selectedLiquids = [];
         private static readonly HashSet<WireType> _selectedWires = [];
+        private static readonly HashSet<int> _selectedSpriteIDs = [];
         public static ObservableCollection<string> SelectedTileNames { get; } = [];
         public static ObservableCollection<string> SelectedWallNames { get; } = [];
         public static ObservableCollection<string> SelectedLiquidNames { get; } = [];
         public static ObservableCollection<string> SelectedWireNames { get; } = [];
+        public static ObservableCollection<string> SelectedSpriteNames { get; } = [];
         public static IReadOnlyCollection<int> SelectedTileIDs => _selectedTileIDs;
         public static IReadOnlyCollection<int> SelectedWallIDs => _selectedWallIDs;
+        public static IReadOnlyCollection<int> SelectedSpriteIDs => _selectedSpriteIDs;
 
         public static FilterMode CurrentFilterMode { get; set; }         = FilterMode.Hide;
         public static Color FilterModeCustomColor { get; set; }          = Color.Transparent;
@@ -42,7 +45,7 @@ namespace TEdit.ViewModel
         /// <summary>
         /// Returns true if any tile‐filter is active.
         /// </summary>
-        public static bool AnyFilterActive => SelectedTileNames.Count > 0 || SelectedWallNames.Count > 0 || SelectedLiquidNames.Count > 0 || SelectedWireNames.Count > 0;
+        public static bool AnyFilterActive => SelectedTileNames.Count > 0 || SelectedWallNames.Count > 0 || SelectedLiquidNames.Count > 0 || SelectedWireNames.Count > 0 || SelectedSpriteNames.Count > 0;
 
         /// <summary>
         /// Returns true if tile‐filter is active and the tileId is not in the set.
@@ -70,6 +73,11 @@ namespace TEdit.ViewModel
         public static bool WireIsAllowed(WireType wire) => _selectedWires.Contains(wire);
 
         /// <summary>
+        /// Returns true if sprite‐filter is active and the spriteId is not in the set.
+        /// </summary>
+        public static bool SpriteIsNotAllowed(int spriteId) => (_selectedSpriteIDs.Count > 0 || AnyFilterActive) && !_selectedSpriteIDs.Contains(spriteId);
+
+        /// <summary>
         /// Clears everything – both tile, wall, liquid, and wire filters – and resets the modes to hide & normal.
         /// </summary>
         public static void ClearAll()
@@ -79,17 +87,20 @@ namespace TEdit.ViewModel
             _selectedWallIDs.Clear();
             _selectedLiquids.Clear();
             _selectedWires.Clear();
+            _selectedSpriteIDs.Clear();
 
             // Also clear the "names" lists to prevent UI resync issues.
             FilterManager.SelectedTileNames.Clear();
             FilterManager.SelectedWallNames.Clear();
             FilterManager.SelectedLiquidNames.Clear();
             FilterManager.SelectedWireNames.Clear();
+            FilterManager.SelectedSpriteNames.Clear();
 
             FilterManager.ClearWallFilters();
             FilterManager.ClearTileFilters();
             FilterManager.ClearLiquidFilters();
             FilterManager.ClearWireFilters();
+            FilterManager.ClearSpriteFilters();
 
             // Reset the filter modes.
             CurrentFilterMode = FilterManager.FilterMode.Hide;
@@ -191,6 +202,31 @@ namespace TEdit.ViewModel
             _selectedWires.Clear();
             SelectedWireNames.Clear();
         }
+
+        #endregion
+
+        #region Sprite Filter Methods
+
+        /// <summary>
+        /// Add a sprite ID to the filter.
+        /// </summary>
+        public static void AddSpriteFilter(int spriteId)
+        {
+            if (spriteId >= -1 && _selectedSpriteIDs.Add(spriteId))
+            {
+                // no direct UI work here—UI binds to SelectedSpriteNames
+            }
+        }
+
+        /// <summary>
+        /// Remove a sprite ID from the filter (i.e. stop showing this ID).
+        /// </summary>
+        public static void RemoveSpriteFilter(int spriteId) => _selectedSpriteIDs.Remove(spriteId);
+
+        /// <summary>
+        /// Clear all sprite filters (i.e. show every sprite).
+        /// </summary>
+        public static void ClearSpriteFilters() => _selectedSpriteIDs.Clear();
 
         #endregion
     }

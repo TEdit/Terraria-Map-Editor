@@ -106,6 +106,26 @@
                     </ListBox>
                 </StackPanel>
             </TabItem>
+            <!-- SPRITES -->
+            <TabItem Header="{x:Static p:Language.menu_filter_header_sprites}">
+                <StackPanel Margin="10,0,10,0" Height="365">
+                    <StackPanel Orientation="Horizontal" Margin="0,0,0,5" VerticalAlignment="Center">
+                        <TextBlock Foreground="Snow" VerticalAlignment="Center" Margin="0,0,5,0">
+                            <TextBlock.Text><MultiBinding StringFormat="{}{0}:"><Binding Path="(p:Language.menu_filter_tab_searchname)" /></MultiBinding></TextBlock.Text>
+                        </TextBlock>
+                        <TextBox Width="320" Margin="0,0,10,0" VerticalAlignment="Center" Text="{Binding SpriteSearchText, UpdateSourceTrigger=PropertyChanged}"/>
+                        <Button Content="{x:Static p:Language.menu_filter_tab_check_all}" Width="80" Margin="0,0,5,0" Click="SpriteCheckAll_Click"/>
+                        <Button Content="{x:Static p:Language.menu_filter_tab_uncheck_all}" Width="90" Click="SpriteUncheckAll_Click"/>
+                    </StackPanel>
+                    <ListBox ItemsSource="{Binding FilteredSpriteItems}" Height="335">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <CheckBox IsChecked="{Binding IsChecked, Mode=TwoWay}" Content="{Binding Name}"/>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </StackPanel>
+            </TabItem>
         </TabControl>
       
         <!-- Bottom Buttons & Modes -->

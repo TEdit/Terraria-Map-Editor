@@ -1449,4 +1449,7 @@ Klicke auf „Wiederholen“, um einen neuen Ordner auszuwählen, oder auf „Ab
   <data name="menu_filter_filterclipboard" xml:space="preserve">
     <value>Zwischenablage filtern</value>
   </data>
+  <data name="menu_filter_header_sprites" xml:space="preserve">
+    <value>Sprites</value>
+  </data>
 </root>

@@ -230,6 +230,7 @@ public static class PixelMap
 
         if (tile.IsActive && showTile)
         {
+            // TODO: Allow the minimap to show sprites.
             if (WorldConfiguration.TileProperties.Count > tile.Type)
                 c = c.AlphaBlend(WorldConfiguration.TileProperties[tile.Type].Color);
             else
