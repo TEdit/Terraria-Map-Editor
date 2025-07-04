@@ -2536,9 +2536,9 @@ public partial class WorldRenderXna : UserControl
                     if (curtile.Type >= WorldConfiguration.TileProperties.Count) { continue; }
                     var tileprop = WorldConfiguration.GetTileProperties(curtile.Type);
 
-                    // Hide all tiles not within a filter when enabled.
+                    // Hide all tiles & sprites not within a filter when enabled.
                     bool forceGrayscale = false;
-                    if (FilterManager.TileIsNotAllowed(curtile.Type))
+                    if (FilterManager.TileIsNotAllowed(curtile.Type) && FilterManager.SpriteIsNotAllowed(curtile.Type))
                         if (FilterManager.CurrentFilterMode == FilterManager.FilterMode.Hide) continue;
                         else if (FilterManager.CurrentFilterMode == FilterManager.FilterMode.Grayscale) forceGrayscale = true;
 

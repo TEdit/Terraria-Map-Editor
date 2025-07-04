@@ -7,6 +7,7 @@ using TEdit.ViewModel;     // For FilterItem, FilterManager, etc.
 using System.Windows;
 using System.Linq;
 using System;
+using System.Collections.Generic;
 
 namespace TEdit.View.Popups
 {
@@ -38,6 +39,12 @@ namespace TEdit.View.Popups
         public ObservableCollection<FilterCheckItem> FilteredWireItems { get; } = [];
         private string _wireSearchText;
         public string WireSearchText { get => _wireSearchText; set { _wireSearchText = value; OnPropertyChanged(nameof(WireSearchText)); FilterWireItems(); } }
+
+        // Sprites
+        public ObservableCollection<FilterCheckItem> SpriteItems { get; } = [];
+        public ObservableCollection<FilterCheckItem> FilteredSpriteItems { get; } = [];
+        private string _spriteSearchText;
+        public string SpriteSearchText { get => _spriteSearchText; set { _spriteSearchText = value; OnPropertyChanged(nameof(SpriteSearchText)); FilterSpriteItems(); } }
 
         // Checkboxes
         private bool _isFilterClipboardEnabled;
@@ -74,6 +81,8 @@ namespace TEdit.View.Popups
             _wvm = worldViewModel;
             DataContext = this;
 
+            #region Populate Tiles
+
             // Populate tile items.
             TileItems.Clear();
             foreach (var tile in TEdit.Configuration.WorldConfiguration.TileBricks)
@@ -82,6 +91,10 @@ namespace TEdit.View.Popups
                 item.IsChecked = FilterManager.SelectedTileIDs.Contains(item.Id);
             FilterTileItems();
 
+            #endregion
+
+            #region Populate Walls
+
             // Populate wall items.
             WallItems.Clear();
             foreach (var wall in TEdit.Configuration.WorldConfiguration.WallProperties)
@@ -89,6 +102,10 @@ namespace TEdit.View.Popups
             foreach (var item in WallItems)   // Populate IsChecked with previous saved values.
                 item.IsChecked = FilterManager.SelectedWallIDs.Contains(item.Id);
             FilterWallItems();
+
+            #endregion
+
+            #region Populate Liquids
 
             // Populate liquid items.
             LiquidItems.Clear();
@@ -102,6 +119,10 @@ namespace TEdit.View.Popups
                 item.IsChecked = FilterManager.SelectedLiquidNames.Contains(item.Name); // or use IDs.
             FilterLiquidItems();
 
+            #endregion
+
+            #region Populate Wires
+
             // Populate wires (red, blue, green, yellow).
             WireItems.Clear();
             WireItems.Add(new FilterCheckItem((int)FilterManager.WireType.Red, "Red Wire", false));       // 1. _wvm.ShowXXXWires
@@ -111,6 +132,39 @@ namespace TEdit.View.Popups
             foreach (var item in WireItems)   // Populate IsChecked with previous saved values.
                 item.IsChecked = FilterManager.WireIsAllowed((FilterManager.WireType)item.Id);
             FilterWireItems();
+
+            #endregion
+
+            #region Populate Sprites
+
+            // Get all tile IDs that are considered "brick" tiles (from TileBricks).
+            // We'll use these to exclude tiles that are already in the main tile list.
+            var tileIds = TEdit.Configuration.WorldConfiguration.TileBricks.Select(tb => tb.Id).ToHashSet();
+
+            // Get all unique sprite IDs for sprites whose base tile type isn't a main tile (i.e., not in TileBricks).
+            var spriteIds = WorldConfiguration.Sprites2
+                .Select(s => s.Tile)                // Get the tile ID each sprite is based on.
+                .Distinct()                         // Only consider each ID once.
+                .Where(id => !tileIds.Contains(id)) // Exclude IDs that are already in TileBricks (plain tiles).
+                .ToList();                          // Convert to list.
+
+            // Build a display list of sprites for UI (ID and name), only including those not already in the tile list.
+            var spriteDisplayList = spriteIds
+               .Select(id => new {
+                   Id = id,
+                   WorldConfiguration.Sprites2.First(s => s.Tile == id).Name
+               })
+               .ToList();
+
+            // Populate sprite items.
+            SpriteItems.Clear();
+            foreach (var sprite in spriteDisplayList)
+                SpriteItems.Add(new FilterCheckItem(sprite.Id, sprite.Name, false));
+            foreach (var item in SpriteItems)   // Populate IsChecked with previous saved values.
+                item.IsChecked = FilterManager.SelectedSpriteIDs.Contains(item.Id);
+            FilterSpriteItems();
+
+            #endregion
 
             // Synchronize color fields with FilterManager for persistence.
             CustomModeColor = FromXnaColor(FilterManager.FilterModeCustomColor);
@@ -149,6 +203,12 @@ namespace TEdit.View.Popups
             foreach (var item in WireItems.Where(i => string.IsNullOrWhiteSpace(WireSearchText) || i.Name.Contains(WireSearchText, StringComparison.CurrentCultureIgnoreCase)))
                 FilteredWireItems.Add(item);
         }
+        private void FilterSpriteItems()
+        {
+            FilteredSpriteItems.Clear();
+            foreach (var item in SpriteItems.Where(i => string.IsNullOrWhiteSpace(SpriteSearchText) || i.Name.Contains(SpriteSearchText, StringComparison.CurrentCultureIgnoreCase)))
+                FilteredSpriteItems.Add(item);
+        }
 
         // Check All / Uncheck All.
         private void TileCheckAll_Click(object sender, RoutedEventArgs e) => FilteredTileItems.ToList().ForEach(i => i.IsChecked = true);
@@ -162,6 +222,9 @@ namespace TEdit.View.Popups
 
         private void WireCheckAll_Click(object sender, RoutedEventArgs e) => FilteredWireItems.ToList().ForEach(i => i.IsChecked = true);
         private void WireUncheckAll_Click(object sender, RoutedEventArgs e) => FilteredWireItems.ToList().ForEach(i => i.IsChecked = false);
+
+        private void SpriteCheckAll_Click(object sender, RoutedEventArgs e) => FilteredSpriteItems.ToList().ForEach(i => i.IsChecked = true);
+        private void SpriteUncheckAll_Click(object sender, RoutedEventArgs e) => FilteredSpriteItems.ToList().ForEach(i => i.IsChecked = false);
 
         // Final buttons.
         private void Cancel_Click(object sender, RoutedEventArgs e)
@@ -297,6 +360,15 @@ namespace TEdit.View.Popups
             #endregion
 
             #endregion
+
+            // Sprites.
+            FilterManager.ClearSpriteFilters();
+            FilterManager.SelectedSpriteNames.Clear();
+            foreach (var sprite in SpriteItems.Where(x => x.IsChecked))
+            {
+                FilterManager.AddSpriteFilter(sprite.Id);
+                FilterManager.SelectedSpriteNames.Add(sprite.Name);
+            }
 
             // Filter mode.
             FilterManager.CurrentFilterMode = PendingFilterMode;

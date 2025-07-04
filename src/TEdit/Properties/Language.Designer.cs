@@ -791,6 +791,15 @@ namespace TEdit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Sprites.
+        /// </summary>
+        public static string menu_filter_header_sprites {
+            get {
+                return ResourceManager.GetString("menu_filter_header_sprites", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Tiles.
         /// </summary>
         public static string menu_filter_header_tiles {

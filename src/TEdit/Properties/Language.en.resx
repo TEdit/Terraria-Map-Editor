@@ -1449,4 +1449,7 @@ Press retry to pick a new folder or cancel to use {0} as your terraria path.</va
   <data name="menu_filter_filterclipboard" xml:space="preserve">
     <value>Filter Clipboard</value>
   </data>
+  <data name="menu_filter_header_sprites" xml:space="preserve">
+    <value>Sprites</value>
+  </data>
 </root>

@@ -552,7 +552,10 @@ public partial class World
                 bw.Write(WorldConfiguration.NpcNames[npc.SpriteId]);
             }
 
-            bw.Write(npc.DisplayName);
+            // Check displayName for a null value encase the world is being upgraded from v0 or v1.
+            string displayName = npc.DisplayName ?? npc.Name;
+
+            bw.Write(displayName);
             bw.Write(npc.Position.X);
             bw.Write(npc.Position.Y);
             bw.Write(npc.IsHomeless);
@@ -723,7 +726,9 @@ public partial class World
             }
             else
             {
-                bw.Write(world.Seed);
+                // Use TryParse encase the world is being upgraded from v0 or v1.
+                int.TryParse(world.Seed, out var seed);
+                bw.Write(seed.ToString());
             }
 
             bw.Write(world.WorldGenVersion);

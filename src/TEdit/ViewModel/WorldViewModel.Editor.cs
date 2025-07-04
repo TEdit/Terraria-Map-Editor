@@ -452,12 +452,13 @@ public partial class WorldViewModel
                             bool greenWireGrayscale  = false;
                             bool yellowWireGrayscale = false;
 
-                            // Test the the filter for walls, tiles, liquids, and wires. 
+                            // Test the the filter for walls, tiles, liquids, wires, and sprites. 
                             if (FilterManager.WallIsNotAllowed(CurrentWorld.Tiles[x, y].Wall))                                                      // Check if this wall is not in the list.
                                 if (FilterManager.CurrentFilterMode == FilterManager.FilterMode.Hide)               showWalls = false;              // Hide walls not in list.
                                 else if (FilterManager.CurrentFilterMode == FilterManager.FilterMode.Grayscale)     wallGrayscale = true;           // Grayscale walls not in list.
 
-                            if (FilterManager.TileIsNotAllowed(CurrentWorld.Tiles[x, y].Type))                                                      // Check if this block is not in the list.
+                            if (FilterManager.TileIsNotAllowed(CurrentWorld.Tiles[x, y].Type)                                                       // Since sprites are under the tile denomination, we combine them.
+                                && FilterManager.SpriteIsNotAllowed(CurrentWorld.Tiles[x, y].Type))                                                 // Check if this block / sprite is not in the list.
                                 if (FilterManager.CurrentFilterMode == FilterManager.FilterMode.Hide)               showTiles = false;              // Hide blocks not in list.
                                 else if (FilterManager.CurrentFilterMode == FilterManager.FilterMode.Grayscale)     tileGrayscale = true;           // Grayscale blocks not in list.
 
