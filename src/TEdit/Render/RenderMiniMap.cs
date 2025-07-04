@@ -95,7 +95,7 @@ public class RenderMiniMap
                     else if (FilterManager.CurrentFilterMode == FilterManager.FilterMode.Grayscale) wallGrayscale = true;               // Grayscale walls not in list.
 
                 if (FilterManager.TileIsNotAllowed(w.Tiles[worldX, worldY].Type)                                                        // Since sprites are under the tile denomination, we combine them.
-                    && FilterManager.SpriteIsNotAllowed(w.Tiles[x, y].Type))                                                            // Check if this block / sprite is not in the list.
+                    && FilterManager.SpriteIsNotAllowed(w.Tiles[worldX, worldY].Type))                                                  // Check if this block / sprite is not in the list.
                     if (FilterManager.CurrentFilterMode == FilterManager.FilterMode.Hide) showTiles = false;                            // Hide blocks not in list.
                     else if (FilterManager.CurrentFilterMode == FilterManager.FilterMode.Grayscale) tileGrayscale = true;               // Grayscale blocks not in list.
 
