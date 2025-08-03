@@ -225,13 +225,9 @@ public static class DependencyChecker
         return Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), @"My Games\Terraria\Worlds");
     }
 
+    // Updated function restores user prompting.
     public static bool DirectoryHasContentFolder(string path)
-    {
-        if (!Directory.Exists(Path.Combine(path, "Content")))
-            return false;
-
-        return true;
-    }
+        => Directory.Exists(path);
 
     private static string BrowseForTerraria()
     {
