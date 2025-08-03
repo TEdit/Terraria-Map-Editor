@@ -66,6 +66,9 @@ public partial class App : Application
 
     protected override void OnStartup(StartupEventArgs e)
     {
+        // Read settings immediately.
+        LoadAppSettings();
+
         Version = SemVersion.Parse(Assembly.GetEntryAssembly().GetCustomAttribute<AssemblyInformationalVersionAttribute>().InformationalVersion, SemVersionStyles.Any);
         ErrorLogging.Initialize();
         AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
@@ -169,8 +172,6 @@ public partial class App : Application
         DispatcherHelper.Initialize();
         TaskFactoryHelper.Initialize();
 
-        LoadAppSettings();
-
         base.OnStartup(e);
     }
 
@@ -212,7 +213,7 @@ public partial class App : Application
 
         ClipboardBufferRenderer.ClipboardRenderSize = clipboardSize;
         ToolDefaultData.LoadSettings(xmlSettings.Elements("Tools"));
-        AltC = (string)xmlSettings.Element("AltC");
+        AltC = (string)(xmlSettings.Element("AltC") ?? xmlSettings.Element("App")?.Element("AltC")); // Handles either nesting.
         SteamUserId = (int?)xmlSettings.Element("SteamUserId") ?? null;
     }
 }
