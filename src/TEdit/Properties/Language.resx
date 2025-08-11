@@ -1455,4 +1455,10 @@ Press retry to pick a new folder or cancel to use {0} as your terraria path.</va
   <data name="menu_filter_header_sprites" xml:space="preserve">
     <value>Sprites</value>
   </data>
+  <data name="menu_pasteall" xml:space="preserve">
+    <value>Paste to all slots</value>
+  </data>
+  <data name="menu_copyfirstitem" xml:space="preserve">
+    <value>Copy first item</value>
+  </data>
 </root>

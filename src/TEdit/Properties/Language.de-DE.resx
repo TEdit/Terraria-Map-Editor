@@ -1452,4 +1452,10 @@ Klicke auf „Wiederholen“, um einen neuen Ordner auszuwählen, oder auf „Ab
   <data name="menu_filter_header_sprites" xml:space="preserve">
     <value>Sprites</value>
   </data>
+  <data name="menu_pasteall" xml:space="preserve">
+    <value>In alle Slots einfügen</value>
+  </data>
+  <data name="menu_copyfirstitem" xml:space="preserve">
+    <value>Erstes Element kopieren</value>
+  </data>
 </root>

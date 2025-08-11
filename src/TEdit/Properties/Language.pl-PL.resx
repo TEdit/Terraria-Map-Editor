@@ -1452,4 +1452,10 @@ Naciśnij spróbuj ponownie aby wybrać nowy folder lub anuluj aby użyć {0} ja
   <data name="menu_filter_header_sprites" xml:space="preserve">
     <value>Duszki</value>
   </data>
+  <data name="menu_pasteall" xml:space="preserve">
+    <value>Wklej do wszystkich miejsc</value>
+  </data>
+  <data name="menu_copyfirstitem" xml:space="preserve">
+    <value>Kopiuj pierwszy element</value>
+  </data>
 </root>

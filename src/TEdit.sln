@@ -72,8 +72,6 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		RESX_SortFileContentOnSave = True
-		RESX_PrefixTranslations = False
 		SolutionGuid = {9CD90452-C706-4BBF-8C2E-6C2D1052531B}
 	EndGlobalSection
 	GlobalSection(TestCaseManagementSettings) = postSolution

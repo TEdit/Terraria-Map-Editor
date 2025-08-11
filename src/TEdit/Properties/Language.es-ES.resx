@@ -1452,4 +1452,10 @@ Presione reintentar para elegir una nueva carpeta o cancelar para usar {0} como 
   <data name="menu_filter_header_sprites" xml:space="preserve">
     <value>duendes</value>
   </data>
+  <data name="menu_pasteall" xml:space="preserve">
+    <value>Pegar en todas las ranuras</value>
+  </data>
+  <data name="menu_copyfirstitem" xml:space="preserve">
+    <value>Copiar primer elemento</value>
+  </data>
 </root>
