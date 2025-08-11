@@ -426,7 +426,7 @@ public partial class WorldViewModel
     }
     public ICommand PasteChestItemCommand
     {
-        get { return _pasteChestItemCommand ??= new RelayCommand<Item>(PasteChestItem); }
+        get { return _pasteChestItemCommand ??= new RelayCommand<object>(PasteChestItems); }
     }
 
     public ICommand ChestItemSetToMaxStack
@@ -439,6 +439,24 @@ public partial class WorldViewModel
     private void CopyChestItem(Item item)
     {
         _chestItemClipboard = item?.Copy();
+    }
+
+    private void PasteChestItems(object parameter)
+    {
+        if (parameter is System.Collections.IList selectedItems)
+        {
+            foreach (var obj in selectedItems)
+            {
+                if (obj is Item item)
+                {
+                    PasteChestItem(item);
+                }
+            }
+        }
+        else if (parameter is Item item)
+        {
+            PasteChestItem(item);
+        }
     }
 
     private void PasteChestItem(Item item)

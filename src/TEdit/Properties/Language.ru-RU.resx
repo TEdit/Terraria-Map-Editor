@@ -1452,4 +1452,10 @@
   <data name="menu_filter_header_sprites" xml:space="preserve">
     <value>Спрайты</value>
   </data>
+  <data name="menu_pasteall" xml:space="preserve">
+    <value>Вставить во все слоты</value>
+  </data>
+  <data name="menu_copyfirstitem" xml:space="preserve">
+    <value>Скопировать первый элемент</value>
+  </data>
 </root>

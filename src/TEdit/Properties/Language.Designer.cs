@@ -539,6 +539,15 @@ namespace TEdit.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Copy first item.
+        /// </summary>
+        public static string menu_copyfirstitem {
+            get {
+                return ResourceManager.GetString("menu_copyfirstitem", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Edit.
         /// </summary>
         public static string menu_edit {
@@ -1156,6 +1165,15 @@ namespace TEdit.Properties {
         public static string menu_layers_wire_yellow {
             get {
                 return ResourceManager.GetString("menu_layers_wire_yellow", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Paste to all slots.
+        /// </summary>
+        public static string menu_pasteall {
+            get {
+                return ResourceManager.GetString("menu_pasteall", resourceCulture);
             }
         }
         
