@@ -273,11 +273,11 @@
                     <TextBlock Text="{x:Static p:Language.specialtile_label_chestname}" Foreground="{DynamicResource TextBrush}" Margin="2" FontWeight="Bold" VerticalAlignment="Center" />
                     <TextBox Margin="2" Width="100px" Height="20px" MaxLength="100" MaxLines="1" Text="{Binding SelectedChest.Name}" />
                     <Button Margin="2,0,0,0" Height="20" Width="32" Content="{StaticResource TB_CopyIcon}"
-                            ToolTip="Copy first item"
+                            ToolTip="{x:Static p:Language.menu_copyfirstitem}"
                             Command="{Binding CopyChestItemCommand}"
                             CommandParameter="{Binding SelectedChest.Items, Converter={StaticResource FirstOrNullConverter}}" />
                     <Button Margin="2,0,0,0" Height="20" Width="32" Content="{StaticResource TB_PasteIcon}"
-                            ToolTip="Paste to all items"
+                            ToolTip="{x:Static p:Language.menu_pasteall}"
                             Command="{Binding PasteChestItemCommand}"
                             CommandParameter="{Binding SelectedChest.Items}" />
                 </StackPanel>
