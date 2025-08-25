@@ -46,4 +46,19 @@ public class TileEntityItem : ObservableObject
         Prefix = this.Prefix,
         StackSize = this.StackSize
     };
+
+    public static implicit operator TileEntityItem(Item item)
+    {
+        return new TileEntityItem
+        {
+            Id = (short)item.NetId,
+            Prefix = item.Prefix,
+            StackSize = (short)item.StackSize
+        };
+    }
+
+    public Item ToItem()
+    {
+        return new Item(StackSize, Id, Prefix);
+    }
 }

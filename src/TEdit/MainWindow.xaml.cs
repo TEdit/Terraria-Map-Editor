@@ -40,6 +40,7 @@ public partial class MainWindow : Window
             _vm.EnableTelemetry = true;
         }
 
+        
         if (Settings.Default.ShowNews)
         {
             var w = new NotificationsWindow();

@@ -422,8 +422,10 @@ public partial class WorldViewModel
 
     public ICommand CopyChestItemCommand
     {
-        get { return _copyChestItemCommand ??= new RelayCommand<Item>(CopyChestItem); }
+        get { return _copyChestItemCommand ??= new RelayCommand<object>(CopyChestItems); }
     }
+
+
     public ICommand PasteChestItemCommand
     {
         get { return _pasteChestItemCommand ??= new RelayCommand<object>(PasteChestItems); }
@@ -431,10 +433,29 @@ public partial class WorldViewModel
 
     public ICommand ChestItemSetToMaxStack
     {
-        get { return _chestItemSetToMaxStack ??= new RelayCommand<Item>(ChestItemMaxStack); }
+        get { return _chestItemSetToMaxStack ??= new RelayCommand<object>(ChestItemMaxStack); }
     }
 
     private Item _chestItemClipboard;
+
+    private void CopyChestItems(object container)
+    {
+        if (container is Item item)
+        {
+            CopyChestItem(item);
+        }
+        else if (container is TileEntity te)
+        {
+            if (te.EntityType == TileEntityType.ItemFrame &&
+                te.StackSize > 0 &&
+                te.NetId != 0)
+            {
+                var frameItem = new Item(te.StackSize, te.NetId, te.Prefix);
+
+                CopyChestItem(frameItem);
+            }
+        }
+    }
 
     private void CopyChestItem(Item item)
     {
@@ -457,6 +478,24 @@ public partial class WorldViewModel
         {
             PasteChestItem(item);
         }
+        else if (parameter is TileEntity te)
+        {
+            if (te.EntityType == TileEntityType.ItemFrame)
+            {
+                if (_chestItemClipboard != null)
+                {
+                    te.NetId = _chestItemClipboard.NetId;
+                    te.Prefix = _chestItemClipboard.Prefix;
+                    te.StackSize = (short)_chestItemClipboard.StackSize;
+                }
+                else
+                {
+                    te.NetId = 0;
+                    te.Prefix = 0;
+                    te.StackSize = 0;
+                }
+            }
+        }
     }
 
     private void PasteChestItem(Item item)
@@ -473,10 +512,24 @@ public partial class WorldViewModel
         }
     }
 
-    private void ChestItemMaxStack(Item item)
+    private void ChestItemMaxStack(object container)
     {
-        if (item == null) return;
+        if (container == null) return;
 
+        if (container is Item item)
+        {
+            SetItemMaxStack(item);
+        }
+        if (container is TileEntity te && te.EntityType == TileEntityType.ItemFrame)
+        {
+            var teItem = new Item(te.StackSize, te.NetId, te.Prefix);
+            SetItemMaxStack(teItem);
+            te.StackSize = (short)teItem.StackSize;
+        }
+    }
+
+    private static void SetItemMaxStack(Item item)
+    {
         if (WorldConfiguration.ItemLookupTable.TryGetValue(item.NetId, out var props) && props.MaxStackSize > 0)
         {
             item.StackSize = props.MaxStackSize;

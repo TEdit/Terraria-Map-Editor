@@ -38,7 +38,7 @@ public class Item : ObservableObject
         var curItem = WorldConfiguration.ItemProperties.FirstOrDefault(x => x.Name == name);
         NetId = curItem.Id;
         if (NetId != 0)
-        StackSize = 1;
+            StackSize = 1;
     }
 
     public string Name
@@ -77,7 +77,27 @@ public class Item : ObservableObject
         NetId = stackSize > 0 ? netId : 0;
     }
 
+    public Item(int stackSize, int netId, byte prefix)
+    {
+        StackSize = stackSize;
+        NetId = stackSize > 0 ? netId : 0;
+        Prefix = prefix;
+    }
 
+    public static implicit operator Item(TileEntityItem tileEntityItem)
+    {
+        return new Item(tileEntityItem.StackSize, tileEntityItem.Id, tileEntityItem.Prefix);
+    }
+
+    public TileEntityItem ToTileEntityItem()
+    {
+        return new TileEntityItem
+        {
+            Id = (short)NetId,
+            Prefix = Prefix,
+            StackSize = (short)StackSize
+        };
+    }
 
     private ItemProperty _currentItemProperty;
     public int StackSize
