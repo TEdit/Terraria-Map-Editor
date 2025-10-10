@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 using System.IO;
+using System.IO.Hashing;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -74,29 +75,31 @@ public partial class World
                     string temp = filename + ".tmp";
                     using (var fs = new FileStream(temp, FileMode.Create))
                     {
-                        using (var bw = new BinaryWriter(fs))
+                    using (var bw = new BinaryWriter(fs))
+                    {
+                        if (versionOverride < 0 || world.IsV0 || world.Version == 38)
                         {
-                            if (versionOverride < 0 || world.IsV0 || world.Version == 38)
-                            {
-                                bool addLight = (currentWorldVersion > world.Version); // Check if world is being downgraded.
-                                world.Version = (uint)Math.Abs(versionOverride);
-                                SaveV0(world, bw, addLight, progress);
-                            }
-                            else if (world.Version > 87 && world.Version != 38)
-                            {
-                                SaveV2(world, bw, incrementRevision, progress);
-                            }
-                            else
-                            {
-                                // Check if world is being downgraded below v26.
-                                // currentWorldVersion = whatever version the file is now.
-                                // world.Version       = the target (downgrade‐to) version.
-                                bool addLight = world.Version <= 25
-                                             && currentWorldVersion > world.Version;
-                                SaveV1(world, bw, addLight, progress);
-                            }
-
-                            if (world.IsConsole)
+                            bool addLight = (currentWorldVersion > world.Version); // Check if world is being downgraded.
+                            world.Version = (uint)Math.Abs(versionOverride);
+                            SaveV0(world, bw, addLight, progress);
+                        }
+                        else if (versionOverride == 0 && world.IsXbox)
+                        {
+                            SaveXbox(world, bw, incrementRevision, progress);
+                        }
+                        else if (world.Version > 87 && world.Version != 38)
+                        {
+                            SaveV2(world, bw, incrementRevision, progress);
+                        }
+                        else
+                        {
+                            // Check if world is being downgraded below v26.
+                            // currentWorldVersion = whatever version the file is now.
+                            // world.Version       = the target (downgrade‐to) version.
+                            bool addLight = world.Version <= 25
+                                         && currentWorldVersion > world.Version;
+                            SaveV1(world, bw, addLight, progress);
+                        }                            if (world.IsConsole)
                             {
                                 ConsoleCompressor.CompressStream(fs);
                             }
@@ -167,6 +170,10 @@ public partial class World
                             bool addLight = (currentWorldVersion > world.Version) ? true : false; // Check if world is being downgraded.
                             world.Version = (uint)Math.Abs(versionOverride);
                             SaveV0(world, bw, addLight, progress);
+                        }
+                        else if (versionOverride == 0 && world.IsXbox)
+                        {
+                            SaveXbox(world, bw, incrementRevision, progress);
                         }
                         else if (world.Version > 87 && world.Version != 38)
                         {
@@ -380,6 +387,50 @@ public partial class World
 
                         w.Version = b.ReadUInt32();
 
+                        // Detect Xbox/Console format
+                        // Xbox format uses CRC32 header for versions 47-87 (before V2 format)
+                        // Key indicator: After version, there's CRC32 (uint32), then Title string
+                        bool isXbox = false;
+                        if (w.Version >= 47 && w.Version <= 87)
+                        {
+                            // Save position after version
+                            long posAfterVersion = b.BaseStream.Position;
+
+                            // Try to detect Xbox format by checking if CRC32 + string pattern exists
+                            try
+                            {
+                                uint potentialCrc = b.ReadUInt32(); // Read potential CRC32
+
+                                // Try to read string - Xbox format has Title string immediately after CRC32
+                                // PC format would have different data structure here
+                                long stringStart = b.BaseStream.Position;
+                                try
+                                {
+                                    string potentialTitle = b.ReadString();
+
+                                    // Xbox worlds have reasonable title lengths and printable characters
+                                    // If we can read a valid string here, it's likely Xbox format
+                                    if (!string.IsNullOrEmpty(potentialTitle) &&
+                                        potentialTitle.Length < 200 &&
+                                        potentialTitle.All(c => c >= 32 || c == '\t' || c == '\n' || c == '\r'))
+                                    {
+                                        isXbox = true;
+                                    }
+                                }
+                                catch
+                                {
+                                    // Not a valid string, not Xbox format
+                                }
+                            }
+                            catch
+                            {
+                                // Error reading, not Xbox format
+                            }
+
+                            // Reset stream position
+                            b.BaseStream.Position = posAfterVersion;
+                        }
+
                         // only perform this check for v38 and under
                         if (w.Version <= 38)
                         {
@@ -396,7 +447,13 @@ public partial class World
                             b.BaseStream.Position = readerPos;
                         }
 
-                        if (w.Version > 87)
+
+                        if (isXbox)
+                        {
+                            // Reset to start for Xbox loader
+                            LoadXbox(b, w, headersOnly, progress);
+                        }
+                        else if (w.Version > 87)
                         {
                             LoadV2(b, w, headersOnly, progress);
                         }

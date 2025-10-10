@@ -183,12 +183,12 @@ public class EnumItemList : ObservableCollection<EnumItem>, IValueConverter
             if (m_enumType.IsEnum)
             {
                 // For all public static fields, i.e. all enum values
-                foreach (FieldInfo field in m_enumType.GetFields(BindingFlags.Public | BindingFlags.Static))
+                foreach (FieldInfo fieldInfo in m_enumType.GetFields(BindingFlags.Public | BindingFlags.Static))
                 {
-                    object fieldValue = field.GetValue(null);
+                    object fieldValue = fieldInfo.GetValue(null);
 
                     // Look for DescriptionAttributes.
-                    object[] descriptions = field.GetCustomAttributes(typeof(DescriptionAttribute), true);
+                    object[] descriptions = fieldInfo.GetCustomAttributes(typeof(DescriptionAttribute), true);
 
                     string displayName;
                     if (descriptions.Length > 0)
@@ -204,7 +204,7 @@ public class EnumItemList : ObservableCollection<EnumItem>, IValueConverter
                         }
                         catch (Exception)
                         {
-                            displayName = field.Name;
+                            displayName = fieldInfo.Name;
                         }
                     }
                     EnumItem item = new EnumItem() { Value = fieldValue, DisplayValue = displayName };
