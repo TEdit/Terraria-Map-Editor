@@ -3,19 +3,24 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.IO;
+using System.IO.Hashing;
 using System.Linq;
 using TEdit.Configuration;
 using TEdit.Geometry;
 using TEdit.Helper;
 using TEdit.Terraria.Objects;
 using TEdit.Utility;
+using static System.Net.WebRequestMethods;
 using Vector2 = TEdit.Geometry.Vector2Float;
 
 namespace TEdit.Terraria;
 
+
 public partial class World
 {
     public static Dictionary<string, short> _legacyItemLookup { get; private set; }
+
+
 
     public static void SaveV1(World world, BinaryWriter bw, bool ForceLighting, IProgress<ProgressChangedEventArgs>? progress = null)
     {

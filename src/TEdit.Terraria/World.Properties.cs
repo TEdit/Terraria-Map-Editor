@@ -61,7 +61,7 @@ public partial class World : ReactiveObject, ITileData
         bool canAdjustCavernDown = RockLevel <= MaxCavernLevel - 6;
         bool canAdjustCavernUp = RockLevel >= 12;
         bool canAdjustGroundUp = GroundLevel > 6;
-        // priority is 
+        // priority is
         // 1) cavern level: down
         // 3) cavern level: up
         // 2) ground level: up
@@ -96,7 +96,7 @@ public partial class World : ReactiveObject, ITileData
         {
             MaxCavernLevel = Calc.Clamp(TilesHigh - WorldConfiguration.CavernLevelToBottomOfWorld, 6, TilesHigh);
             MaxGroundLevel = Calc.Clamp(MaxCavernLevel - 6, 0, TilesHigh);
-            
+
             // Adjust the sliders to reflect new values if over the max.
             if (GroundLevel > MaxGroundLevel)
                 GroundLevel = MaxGroundLevel;
@@ -104,7 +104,7 @@ public partial class World : ReactiveObject, ITileData
                 RockLevel = MaxCavernLevel;
         }
     }
-    
+
     public uint WorldVersion => Version;
     public Random Rand;
     public int[] TreeBG = new int[3];
@@ -140,7 +140,13 @@ public partial class World : ReactiveObject, ITileData
     [Reactive] public string Title { get; set; }
 
     [Category("World")]
+    [Reactive] public bool IsXbox { get; set; }
+
+    [Category("World")]
     [Reactive] public int WorldId { get; set; }
+
+    [Category("World")]
+    [Reactive] public int XboxWorldTimestamp { get; set; }
 
     [Category("World")]
     [Reactive] public Guid WorldGUID { get; set; }
@@ -160,7 +166,7 @@ public partial class World : ReactiveObject, ITileData
     [Category("World")]
     [Reactive] public bool IsConsole { get; set; }
 
-    #endregion 
+    #endregion
 
     #region Moon
 
@@ -288,7 +294,7 @@ public partial class World : ReactiveObject, ITileData
             }
         }
     }
-    
+
     [Category("Levels")]
     public bool SafeGroundLayers
     {
@@ -899,7 +905,7 @@ public partial class World : ReactiveObject, ITileData
     [Reactive] public byte BgTree4 { get; set; }
     [Reactive] public byte UnderworldBg { get; set; }
     [Reactive] public byte MushroomBg { get; set; }
-    
+
     [Reactive] public int TilesWide { get; set; }
     [Reactive] public int TilesHighReactive { get; set; }
     public int TilesHigh
@@ -909,7 +915,7 @@ public partial class World : ReactiveObject, ITileData
         {
             // Update the reactive property to ensure UI and other bindings are notified.
             TilesHighReactive = value;
-            
+
             _tilesHigh = value;
             this.RaiseAndSetIfChanged(ref _tilesHigh, value);
             UpdateMaxLayerLevels();
