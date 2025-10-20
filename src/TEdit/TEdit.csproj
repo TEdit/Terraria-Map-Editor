@@ -24,7 +24,7 @@
     <PackageReference Include="Microsoft.Extensions.Logging" Version="9.0.10" />
     <PackageReference Include="Microsoft.Extensions.Options" Version="9.0.10" />
     <PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" Version="1.1.135" />
-    <PackageReference Include="MonoGame.Framework.WindowsDX" Version="3.8.4" />
+    <PackageReference Include="MonoGame.Framework.WindowsDX" Version="3.8.4.1" />
     <PackageReference Include="NetEscapades.Configuration.Yaml" Version="3.1.0" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.4" />
     <PackageReference Include="Semver" Version="3.0.0" />
