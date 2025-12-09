@@ -55,7 +55,7 @@
 	<PackageReference Include="ReactiveUI" Version="20.4.1" />
 	<PackageReference Include="ReactiveUI.Fody" Version="19.5.41" />
       
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="9.0.11" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="10.0.1" />
       
     <PackageReference Include="SkiaSharp" Version="3.119.1" />
   </ItemGroup>
