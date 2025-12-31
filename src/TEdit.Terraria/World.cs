@@ -103,13 +103,6 @@ public partial class World
 
                             bw.Close();
                             fs.Close();
-                            // Make a backup of the current file if it exists
-                            if (File.Exists(filename))
-                            {
-                                string backup = filename + "." + DateTime.Now.ToString("yyyyMMddHHmmss") + ".TEdit";
-                                File.Copy(filename, backup, true);
-                            }
-
                             // Replace the actual file with temp save file
                             File.Copy(temp, filename, true);
                             // Delete temp save file
@@ -190,12 +183,6 @@ public partial class World
                         bw.Close();
                         fs.Close();
 
-                        // make a backup of current file if it exists
-                        if (File.Exists(filename))
-                        {
-                            string backup = filename + "." + DateTime.Now.ToString("yyyyMMddHHmmss") + ".TEdit";
-                            File.Copy(filename, backup, true);
-                        }
                         // replace actual file with temp save file
                         File.Copy(temp, filename, true);
                         // delete temp save file

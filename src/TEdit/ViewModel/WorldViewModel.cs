@@ -104,6 +104,10 @@ public partial class WorldViewModel : ViewModelBase
     private ICommand _showNewsCommand;
     private string _windowTitle;
     private ICommand _checkUpdatesCommand;
+    private int _lastSavedUndoIndex = 0;
+    private bool _hasUnsavedPropertyChanges = false;
+    private int _lastUserSavedUndoIndex = 0;
+    private bool _hasUnsavedUserPropertyChanges = false;
 
 
 
@@ -122,6 +126,9 @@ public partial class WorldViewModel : ViewModelBase
         {
             return;
         }
+
+        // Clean up accumulated autosave files on startup
+        CleanupOldAutosaves();
 
         CheckUpdates = Settings.Default.CheckUpdates;
 
@@ -405,6 +412,32 @@ public partial class WorldViewModel : ViewModelBase
         }
     }
 
+    public bool HasUnsavedChanges
+    {
+        get
+        {
+            // Check if undo index has changed since last autosave (tile edits)
+            if (_undoManager != null && _undoManager.CurrentIndex != _lastSavedUndoIndex)
+                return true;
+
+            // Check if World properties have changed since last autosave
+            return _hasUnsavedPropertyChanges;
+        }
+    }
+
+    public bool HasUnsavedUserChanges
+    {
+        get
+        {
+            // Check if undo index has changed since last manual save (tile edits)
+            if (_undoManager != null && _undoManager.CurrentIndex != _lastUserSavedUndoIndex)
+                return true;
+
+            // Check if World properties have changed since last manual save
+            return _hasUnsavedUserPropertyChanges;
+        }
+    }
+
     public bool ShowGrid
     {
         get { return _showGrid; }
@@ -468,6 +501,12 @@ public partial class WorldViewModel : ViewModelBase
         get { return _currentWorld; }
         set
         {
+            // Unsubscribe from old world
+            if (_currentWorld != null)
+            {
+                _currentWorld.PropertyChanged -= OnWorldPropertyChanged;
+            }
+
             Set(nameof(CurrentWorld), ref _currentWorld, value);
 
             if (value != null)
@@ -485,6 +524,12 @@ public partial class WorldViewModel : ViewModelBase
                 };
 
                 _undoManager = new UndoManager(CurrentWorld, updateTiles, UpdateMinimap);
+
+                // Reset both autosave and user save tracking
+                _lastSavedUndoIndex = 0;
+                _hasUnsavedPropertyChanges = false;
+                _lastUserSavedUndoIndex = 0;
+                _hasUnsavedUserPropertyChanges = false;
 
                 var undo = new UndoManagerWrapper(UndoManager);
 
@@ -512,6 +557,9 @@ public partial class WorldViewModel : ViewModelBase
                 _clipboardManager = Clipboard;
 
                 WorldEditor = new WorldEditor(TilePicker, CurrentWorld, Selection, undo, updateTiles);
+
+                // Subscribe to new world property changes
+                _currentWorld.PropertyChanged += OnWorldPropertyChanged;
             }
             else
             {
@@ -775,17 +823,183 @@ public partial class WorldViewModel : ViewModelBase
             if (MinimapImage != null)
                 RenderMiniMap.UpdateMinimap(CurrentWorld, ref _minimapImage);
         }
+        UpdateTitle();
+    }
+
+    private void CleanupOldAutosaves()
+    {
+        try
+        {
+            if (!Directory.Exists(TempPath))
+                return;
+
+            // Find all autosave files (including old .tmp files)
+            var autosaveFiles = Directory.GetFiles(TempPath, "*.autosave*")
+                .Where(f => f.EndsWith(".autosave", StringComparison.OrdinalIgnoreCase) ||
+                           f.EndsWith(".autosave.tmp", StringComparison.OrdinalIgnoreCase))
+                .ToList();
+
+            int totalAutosaveCount = autosaveFiles.Count;
+            long totalAutosaveSize = autosaveFiles.Sum(f => new FileInfo(f).Length);
+
+            ErrorLogging.Log($"Autosave cleanup: Found {totalAutosaveCount} autosave files using {FormatFileSize(totalAutosaveSize)}");
+
+            // Group by base world name (everything before .autosave)
+            var groupedFiles = autosaveFiles
+                .GroupBy(f =>
+                {
+                    string filename = Path.GetFileName(f);
+                    int idx = filename.IndexOf(".autosave", StringComparison.OrdinalIgnoreCase);
+                    return idx >= 0 ? filename.Substring(0, idx) : filename;
+                });
+
+            int deletedCount = 0;
+            long deletedSize = 0;
+
+            foreach (var group in groupedFiles)
+            {
+                // Sort by last write time, newest first
+                var sortedFiles = group.OrderByDescending(f => File.GetLastWriteTimeUtc(f)).ToList();
+
+                // Keep the most recent .autosave file (not .tmp)
+                var keepFile = sortedFiles.FirstOrDefault(f => f.EndsWith(".autosave", StringComparison.OrdinalIgnoreCase));
+
+                // Delete all others
+                foreach (var file in sortedFiles)
+                {
+                    if (file != keepFile)
+                    {
+                        try
+                        {
+                            long fileSize = new FileInfo(file).Length;
+                            File.Delete(file);
+                            deletedCount++;
+                            deletedSize += fileSize;
+                            ErrorLogging.Log($"Deleted old autosave: {Path.GetFileName(file)} ({FormatFileSize(fileSize)})");
+                        }
+                        catch
+                        {
+                            // Ignore errors deleting individual files
+                        }
+                    }
+                }
+            }
+
+            if (deletedCount > 0)
+            {
+                ErrorLogging.Log($"Autosave cleanup complete: Deleted {deletedCount} old autosave files, freed {FormatFileSize(deletedSize)}");
+            }
+            else
+            {
+                ErrorLogging.Log("Autosave cleanup complete: No old autosave files to delete");
+            }
+        }
+        catch (Exception ex)
+        {
+            ErrorLogging.LogException(ex);
+        }
+    }
+
+    private void CleanupOldWorldBackups(string worldFilePath)
+    {
+        try
+        {
+            if (!File.Exists(worldFilePath))
+                return;
+
+            string directory = Path.GetDirectoryName(worldFilePath);
+            string baseFilename = Path.GetFileName(worldFilePath);
+
+            // Find all timestamped backup files for this world (format: worldname.wld.yyyyMMddHHmmss.TEdit)
+            var backupFiles = Directory.GetFiles(directory, baseFilename + ".*.TEdit")
+                .Where(f =>
+                {
+                    string pattern = baseFilename + ".";
+                    string remaining = Path.GetFileName(f).Substring(pattern.Length);
+                    // Check if it matches the timestamp pattern (14 digits followed by .TEdit)
+                    return remaining.Length >= 14 &&
+                           remaining.Substring(0, 14).All(char.IsDigit) &&
+                           remaining.EndsWith(".TEdit", StringComparison.OrdinalIgnoreCase);
+                })
+                .ToList();
+
+            if (backupFiles.Count > 0)
+            {
+                long totalBackupSize = backupFiles.Sum(f => new FileInfo(f).Length);
+                ErrorLogging.Log($"Found {backupFiles.Count} old timestamped backup(s) for {baseFilename} using {FormatFileSize(totalBackupSize)}");
+            }
+
+            // Keep only the newest backup file (non-timestamped .TEdit file)
+            string keepFile = worldFilePath + ".TEdit";
+
+            int deletedCount = 0;
+            long deletedSize = 0;
+
+            // Delete all timestamped backups
+            foreach (var file in backupFiles)
+            {
+                try
+                {
+                    long fileSize = new FileInfo(file).Length;
+                    File.Delete(file);
+                    deletedCount++;
+                    deletedSize += fileSize;
+                    ErrorLogging.Log($"Deleted old backup: {Path.GetFileName(file)} ({FormatFileSize(fileSize)})");
+                }
+                catch
+                {
+                    // Ignore errors deleting individual files
+                }
+            }
+
+            if (deletedCount > 0)
+            {
+                ErrorLogging.Log($"Backup cleanup complete: Deleted {deletedCount} old backup(s), freed {FormatFileSize(deletedSize)}");
+            }
+        }
+        catch (Exception ex)
+        {
+            ErrorLogging.LogException(ex);
+        }
+    }
+
+    private static string FormatFileSize(long bytes)
+    {
+        string[] sizes = { "B", "KB", "MB", "GB", "TB" };
+        double len = bytes;
+        int order = 0;
+        while (len >= 1024 && order < sizes.Length - 1)
+        {
+            order++;
+            len = len / 1024;
+        }
+        return $"{len:0.##} {sizes[order]}";
     }
 
     private void SaveTimerTick(object sender, ElapsedEventArgs e)
     {
-        if (IsAutoSaveEnabled)
+        if (IsAutoSaveEnabled && HasUnsavedChanges)
         {
             if (!string.IsNullOrWhiteSpace(CurrentFile))
-                SaveWorldThreaded(Path.Combine(TempPath, Path.GetFileNameWithoutExtension(CurrentFile) + ".autosave"));
+                SaveWorldThreaded(Path.Combine(TempPath, Path.GetFileNameWithoutExtension(CurrentFile) + ".autosave.tmp"));
             else
-                SaveWorldThreaded(Path.Combine(TempPath, "newworld.autosave"));
+                SaveWorldThreaded(Path.Combine(TempPath, "newworld.autosave.tmp"));
         }
+    }
+
+    private void OnWorldPropertyChanged(object sender, PropertyChangedEventArgs e)
+    {
+        // Ignore metadata properties that are updated during save operations
+        if (e.PropertyName == nameof(World.LastSave) ||
+            e.PropertyName == nameof(World.FileRevision))
+            return;
+
+        // Mark as having unsaved changes for both autosave and user save tracking
+        _hasUnsavedPropertyChanges = true;
+        _hasUnsavedUserPropertyChanges = true;
+        RaisePropertyChanged(nameof(HasUnsavedChanges));
+        RaisePropertyChanged(nameof(HasUnsavedUserChanges));
+        UpdateTitle();
     }
 
     private void ShowNewsDialog()
@@ -803,8 +1017,9 @@ public partial class WorldViewModel : ViewModelBase
 
     private void UpdateTitle()
     {
-        WindowTitle =
-            $"TEdit v{App.Version} {Path.GetFileName(_currentFile)}";
+        string fileName = Path.GetFileName(_currentFile);
+        string dirtyIndicator = HasUnsavedUserChanges ? "*" : "";
+        WindowTitle = $"TEdit v{App.Version} {fileName}{dirtyIndicator}";
     }
 
     public async Task CheckVersion(bool auto = true)
@@ -1697,7 +1912,48 @@ public partial class WorldViewModel : ViewModelBase
             {
                 DispatcherHelper.CheckBeginInvokeOnUI(() => OnProgressChanged(CurrentWorld, e));
             }));
-        }).ContinueWith(t => CommandManager.InvalidateRequerySuggested(), TaskFactoryHelper.UiTaskScheduler);
+        }).ContinueWith(t =>
+        {
+            if (t.IsCompletedSuccessfully && _undoManager != null)
+            {
+                bool isAutosave = filename.EndsWith(".autosave.tmp", StringComparison.OrdinalIgnoreCase);
+
+                if (isAutosave)
+                {
+                    // Autosave: atomically rename temp file to final autosave file
+                    try
+                    {
+                        string finalPath = filename.Substring(0, filename.Length - 4); // Remove ".tmp"
+
+                        // Use File.Move with overwrite for atomic replacement (requires .NET Core 3.0+)
+                        if (File.Exists(finalPath))
+                            File.Delete(finalPath);
+                        File.Move(filename, finalPath);
+                    }
+                    catch (Exception ex)
+                    {
+                        ErrorLogging.LogException(ex);
+                    }
+
+                    // Only reset autosave tracking, keep user save tracking
+                    _lastSavedUndoIndex = _undoManager.CurrentIndex;
+                    _hasUnsavedPropertyChanges = false;
+                    RaisePropertyChanged(nameof(HasUnsavedChanges));
+                }
+                else
+                {
+                    // Manual save: reset both autosave and user save tracking
+                    _lastSavedUndoIndex = _undoManager.CurrentIndex;
+                    _hasUnsavedPropertyChanges = false;
+                    _lastUserSavedUndoIndex = _undoManager.CurrentIndex;
+                    _hasUnsavedUserPropertyChanges = false;
+                    RaisePropertyChanged(nameof(HasUnsavedChanges));
+                    RaisePropertyChanged(nameof(HasUnsavedUserChanges));
+                    UpdateTitle();
+                }
+            }
+            CommandManager.InvalidateRequerySuggested();
+        }, TaskFactoryHelper.UiTaskScheduler);
     }
 
     public void ReloadWorld()
@@ -1805,6 +2061,24 @@ public partial class WorldViewModel : ViewModelBase
                 }
             }
 
+            // Create a single backup of the original world file (if it doesn't already exist)
+            // This preserves the unedited state when first opening a world
+            try
+            {
+                string backupPath = filename + ".TEdit";
+                if (!File.Exists(backupPath) && File.Exists(filename))
+                {
+                    File.Copy(filename, backupPath, false);
+                }
+
+                // Clean up old timestamped backup files
+                CleanupOldWorldBackups(filename);
+            }
+            catch (Exception ex)
+            {
+                ErrorLogging.LogException(ex);
+                // Continue loading even if backup fails
+            }
 
             var (world, error) = World.LoadWorld(filename);
             if (error != null)
@@ -1848,6 +2122,16 @@ public partial class WorldViewModel : ViewModelBase
                     }
                     MinimapImage = RenderMiniMap.Render(CurrentWorld);
                     _loadTimer.Stop();
+
+                    // Reset both autosave and user save tracking after world load
+                    _lastSavedUndoIndex = _undoManager?.CurrentIndex ?? 0;
+                    _hasUnsavedPropertyChanges = false;
+                    _lastUserSavedUndoIndex = _undoManager?.CurrentIndex ?? 0;
+                    _hasUnsavedUserPropertyChanges = false;
+                    RaisePropertyChanged(nameof(HasUnsavedChanges));
+                    RaisePropertyChanged(nameof(HasUnsavedUserChanges));
+                    UpdateTitle();
+
                     OnProgressChanged(this, new ProgressChangedEventArgs(0,
                         $"World loaded in {_loadTimer.Elapsed.TotalSeconds} seconds."));
                     _saveTimer.Start();

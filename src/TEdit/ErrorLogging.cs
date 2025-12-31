@@ -18,7 +18,18 @@ public static class ErrorLogging
 
     public static void ViewLog()
     {
-        Process.Start(LogFilePath);
+        try
+        {
+            Process.Start(new ProcessStartInfo
+            {
+                FileName = LogFilePath,
+                UseShellExecute = true
+            });
+        }
+        catch (Exception ex)
+        {
+            System.Windows.MessageBox.Show($"Failed to open log file: {ex.Message}", "Error", System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Error);
+        }
     }
 
     public static void Initialize()
@@ -40,8 +51,67 @@ public static class ErrorLogging
                 App.Current.Shutdown();
             }
 
-            // cleanup old 
-            foreach (string file in Directory.GetFiles(dir))
+            // Roll the log file if it exceeds 100MB
+            RollLogIfNeeded();
+
+            // Clean up old rolled log files (keep last 5)
+            CleanupOldLogs(dir);
+        }
+
+        InitializeTelemetry();
+    }
+
+    private const long MaxLogFileSize = 100 * 1024 * 1024; // 100MB
+
+    private static void RollLogIfNeeded()
+    {
+        try
+        {
+            if (File.Exists(LogFilePath))
+            {
+                var fileInfo = new FileInfo(LogFilePath);
+                if (fileInfo.Length >= MaxLogFileSize)
+                {
+                    // Roll the log files (TEdit.txt -> TEdit.1.txt -> TEdit.2.txt -> etc.)
+                    string logDirectory = Path.GetDirectoryName(LogFilePath);
+                    string baseFileName = Path.GetFileNameWithoutExtension(LogFilePath); // "TEdit"
+
+                    // Delete the oldest log (TEdit.4.txt) if it exists
+                    string oldestLog = Path.Combine(logDirectory, $"{baseFileName}.4.txt");
+                    if (File.Exists(oldestLog))
+                        File.Delete(oldestLog);
+
+                    // Roll TEdit.3.txt -> TEdit.4.txt, TEdit.2.txt -> TEdit.3.txt, TEdit.1.txt -> TEdit.2.txt
+                    for (int i = 3; i >= 1; i--)
+                    {
+                        string oldFile = Path.Combine(logDirectory, $"{baseFileName}.{i}.txt");
+                        string newFile = Path.Combine(logDirectory, $"{baseFileName}.{i + 1}.txt");
+                        if (File.Exists(oldFile))
+                            File.Move(oldFile, newFile);
+                    }
+
+                    // Move current log to TEdit.1.txt
+                    string firstBackup = Path.Combine(logDirectory, $"{baseFileName}.1.txt");
+                    File.Move(LogFilePath, firstBackup);
+
+                    Log($"Log file rolled. Previous log saved as {baseFileName}.1.txt");
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            // If rolling fails, just continue - we'll append to the large file
+            try { Log($"Warning: Failed to roll log file: {ex.Message}"); } catch { }
+        }
+    }
+
+    private static void CleanupOldLogs(string logDirectory)
+    {
+        try
+        {
+            // Clean up old timestamped log files from previous versions
+            var oldTimestampedLogs = Directory.GetFiles(logDirectory, "TEditLog_*.txt");
+            foreach (string file in oldTimestampedLogs)
             {
                 try
                 {
@@ -51,26 +121,16 @@ public static class ErrorLogging
                         fi.Delete();
                     }
                 }
-                catch (Exception)
+                catch
                 {
-                    // skip deleting this file
+                    // Ignore errors deleting old log files
                 }
             }
-
-            try
-            {
-                File.Create(LogFilePath).Dispose();
-
-            }
-            catch (Exception ex)
-            {
-                System.Windows.Forms.MessageBox.Show($"Unable to create log file. Application will exit.\r\n{dir}\r\n{ex.Message}",
-                "Unable to create undo folder.", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Error);
-                App.Current.Shutdown();
-            }
         }
-
-        InitializeTelemetry();
+        catch
+        {
+            // Ignore errors in cleanup
+        }
     }
 
     public static TelemetryClient TelemetryClient => _telemetry;
@@ -115,7 +175,7 @@ public static class ErrorLogging
         return client;
     }
 
-    public static string LogFilePath = Path.Combine(WorldViewModel.TempPath, "Logs", $"TEditLog_{DateTime.Now:yyyyMMddHHmmss}.txt");
+    public static string LogFilePath = Path.Combine(WorldViewModel.TempPath, "Logs", "TEdit.txt");
 
     #region ErrorLevel enum
 

@@ -176,6 +176,8 @@ public class UndoManager : ObservableObject, IDisposable
     private int _currentIndex = 0;
     private int _maxIndex = 0;
 
+    public int CurrentIndex => _currentIndex;
+
 
 
     public string GetUndoFileName()
