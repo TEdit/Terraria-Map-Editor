@@ -130,6 +130,9 @@ public partial class WorldViewModel : ViewModelBase
         // Clean up accumulated autosave files on startup
         CleanupOldAutosaves();
 
+        // Log existing .TEdit backup files on startup
+        LogWorldBackupFiles();
+
         CheckUpdates = Settings.Default.CheckUpdates;
 
         if (CheckUpdates)
@@ -974,6 +977,35 @@ public partial class WorldViewModel : ViewModelBase
             len = len / 1024;
         }
         return $"{len:0.##} {sizes[order]}";
+    }
+
+    private void LogWorldBackupFiles()
+    {
+        try
+        {
+            string worldsPath = DependencyChecker.PathToWorlds;
+            if (!Directory.Exists(worldsPath))
+                return;
+
+            // Find all .TEdit backup files in the Terraria worlds directory
+            var backupFiles = Directory.GetFiles(worldsPath, "*.TEdit", SearchOption.TopDirectoryOnly).ToList();
+
+            int totalBackupCount = backupFiles.Count;
+            long totalBackupSize = backupFiles.Sum(f => new FileInfo(f).Length);
+
+            if (totalBackupCount > 0)
+            {
+                ErrorLogging.Log($"Found {totalBackupCount} .TEdit backup files using {FormatFileSize(totalBackupSize)}");
+            }
+            else
+            {
+                ErrorLogging.Log("No .TEdit backup files found");
+            }
+        }
+        catch (Exception ex)
+        {
+            ErrorLogging.LogException(ex);
+        }
     }
 
     private void SaveTimerTick(object sender, ElapsedEventArgs e)
