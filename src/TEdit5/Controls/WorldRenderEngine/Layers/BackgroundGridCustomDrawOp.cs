@@ -10,8 +10,8 @@ namespace TEdit5.Controls.WorldRenderEngine.Layers;
 
 public class BackgroundGridCustomDrawOp : ICustomDrawOperation
 {
-    private static SKPaint _rowPaint;
-    private static SKPaint _altPaint;
+    private SKPaint _rowPaint;
+    private SKPaint _altPaint;
     private readonly int _cellSize = 16;
 
     public BackgroundGridCustomDrawOp(Rect bounds, int cellSize = 16)

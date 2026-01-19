@@ -708,11 +708,11 @@ public class SkiaWorldRenderBox : TemplatedControl, IScrollable
         if (_world == null) { return; }
         var tile = new RasterTile
         {
-            Bitmap = RasterTileRenderer.CreateBitmapTile(_world, x, y, _pixelTileCache.TileSize),
+            Bitmap = RasterTileRenderer.CreateBitmapTile(_world, x, y, _pixelTileCache.TileSizeX, _pixelTileCache.TileSizeY),
             TileX = x,
             TileY = y,
-            PixelX = x * _pixelTileCache.TileSize,
-            PixelY = y * _pixelTileCache.TileSize,
+            PixelX = x * _pixelTileCache.TileSizeX,
+            PixelY = y * _pixelTileCache.TileSizeY,
             IsDirty = false
         };
 

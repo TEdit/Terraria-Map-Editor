@@ -22,7 +22,7 @@ public class Sign : ObservableObject
     private string _name = string.Empty;
     private int _signId = -1;
 
-   
+
 
     public string Name
     {
@@ -39,13 +39,13 @@ public class Sign : ObservableObject
 
     private int _x;
     private int _y;
-  
+
 
     public int Y
     {
         get { return _y; }
         set { Set(nameof(Y), ref _y, value); }
-    } 
+    }
 
     public int X
     {
@@ -56,7 +56,8 @@ public class Sign : ObservableObject
 
     public override string ToString()
     {
-        return $"[Sign: {Text.Substring(0, Math.Max(25, Text.Length))}[{Text.Length}], ({X},{Y})]";
+        var textPreview = string.IsNullOrEmpty(_text) ? string.Empty : _text.Substring(0, Math.Min(_text.Length, 25));
+        return $"[Sign: {textPreview}, ({X},{Y})]";
     }
 
 

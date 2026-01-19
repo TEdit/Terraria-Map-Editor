@@ -15,19 +15,21 @@ public class RasterTileCache : IRasterTileCache
 
     public int TilesX { get; }
     public int TilesY { get; }
-    public int TileSize { get; } = 100;
+    public int TileSizeX { get; } = 200;
+    public int TileSizeY { get; } = 150;
 
     private RasterTile[] _tiles;
 
-    public RasterTileCache(int pixelsHigh, int pixelsWide, int tileSize = 100)
+    public RasterTileCache(int pixelsHigh, int pixelsWide, int tileSizeX = 200, int tileSizeY = 150)
     {
-        TileSize = tileSize;
+        TileSizeX = tileSizeX;
+        TileSizeY = tileSizeY;
 
         _pixelsHigh = pixelsHigh;
         _pixelsWide = pixelsWide;
 
-        TilesX = (int)Math.Ceiling((float)_pixelsWide / TileSize);
-        TilesY = (int)Math.Ceiling((float)_pixelsHigh / TileSize);
+        TilesX = (int)Math.Ceiling((float)_pixelsWide / TileSizeX);
+        TilesY = (int)Math.Ceiling((float)_pixelsHigh / TileSizeY);
 
         _tiles = new RasterTile[TilesX * TilesY];
     }
@@ -59,8 +61,8 @@ public class RasterTileCache : IRasterTileCache
 
     public int PixelToTileIndex(int worldPixelX, int worldPixelY)
     {
-        int curTileX = worldPixelX / TileSize;
-        int curTileY = worldPixelY / TileSize;
+        int curTileX = worldPixelX / TileSizeX;
+        int curTileY = worldPixelY / TileSizeY;
 
         int tileIndex = curTileX + curTileY * TilesX;
 
@@ -70,16 +72,19 @@ public class RasterTileCache : IRasterTileCache
     public void SetPixelDirty(int x, int y)
     {
         (int tileIndex, int tilePixelX, int tilePixelY) = PixelToTilePixelIndex(x, y);
-        _tiles[tileIndex].IsDirty = true;
+        if (tileIndex >= 0 && tileIndex < _tiles.Length && _tiles[tileIndex] != null)
+        {
+            _tiles[tileIndex].IsDirty = true;
+        }
     }
 
     private (int tileIndex, int tilePixelX, int tilePixelY) PixelToTilePixelIndex(int worldPixelX, int worldPixelY)
     {
-        int curTileX = worldPixelX / TileSize;
-        int curTileY = worldPixelY / TileSize;
+        int curTileX = worldPixelX / TileSizeX;
+        int curTileY = worldPixelY / TileSizeY;
 
-        int tilePixelX = worldPixelX - (curTileX * TileSize);
-        int tilePixelY = worldPixelY - (curTileY * TileSize);
+        int tilePixelX = worldPixelX - (curTileX * TileSizeX);
+        int tilePixelY = worldPixelY - (curTileY * TileSizeY);
 
         int tileIndex = curTileX + curTileY * TilesX;
 
@@ -127,22 +132,12 @@ public class RasterTileCache : IRasterTileCache
                 }
             }
 
-            // TODO: free unmanaged resources (unmanaged objects) and override finalizer
-            // TODO: set large fields to null
             _disposedValue = true;
         }
     }
 
-    // // TODO: override finalizer only if 'Dispose(bool disposing)' has code to free unmanaged resources
-    // ~RasterTileCache()
-    // {
-    //     // Do not change this code. Put cleanup code in 'Dispose(bool disposing)' method
-    //     Dispose(disposing: false);
-    // }
-
     public void Dispose()
     {
-        // Do not change this code. Put cleanup code in 'Dispose(bool disposing)' method
         Dispose(disposing: true);
         GC.SuppressFinalize(this);
     }

@@ -12,7 +12,8 @@ public interface IRasterTileCache : IDisposable
 
     void SetPixelDirty(int x, int y);
 
-    int TileSize { get; }
+    int TileSizeX { get; }
+    int TileSizeY { get; }
 
     int TilesX { get; }
     int TilesY { get; }
